@@ -6,4 +6,5 @@ sources/DLoader/DebugConfig/*
 sources/Device/Objects/*
 sources/Device/Listings/*
 sources/Device/DebugConfig/*
-    
+
+sources/generated/*

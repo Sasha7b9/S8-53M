@@ -1,9 +1,9 @@
 project (DLoader)
 
 include_directories(src
-                    src/libs
+                    src/Hardware/HAL
                     ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc
-                    ../common/STM32Cube_F2/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+                    ../common/STM32Cube_F2/Drivers/CMSIS/Device/ST/STM32F2xx/Include
                     ../common/STM32Cube_F2/Drivers/CMSIS/Include
                     ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Device_Library/Core/Inc
                     ../common/STM32Cube_F2/Middlewares/Third_Party/FatFS/src
@@ -12,7 +12,7 @@ include_directories(src
                     ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc
                     )
 
-add_definitions(-DSTM32F207xx -DLOADER)
+add_definitions(-DSTM32F207xx)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -MP -Wall")
 
@@ -82,17 +82,10 @@ file(GLOB HARDWARE_FATFS src/Hardware/FatFS/*)
 file(GLOB HARDWARE_HAL   src/Hardware/HAL/*)
 file(GLOB HARDWARE_USBH  src/Hardware/USBH/*)
 file(GLOB SRC            src/*.h src/*.cpp)
-file(GLOB COMMON         ../common/Command.*
-                         ../common/Common.*
-                         ../common/Handlers_d.h
-                         ../common/Interface_d.*
-                         ../common/Messages.*
-                         ../common/Messages_l.*
-                         ../common/Transceiver.h
-                         ../common/Transceiver_d.cpp)
-file(GLOB FDRIVE         src/FDrive/*)
-file(GLOB GENERATOR      src/Generator/*)
-file(GLOB INTERFACE      src/Interface/*)
+file(GLOB DISPLAY        src/Display/*.h src/Display/*.cpp)
+file(GLOB DISPLAY_FONT   src/Display/font/*)
+file(GLOB FDRIVE         src/FlashDrive/*)
+file(GLOB PANEL          src/Panel/*)
 file(GLOB SETTINGS       src/Settings/*)
 file(GLOB UTILS          src/Utils/*)
 
@@ -106,13 +99,14 @@ source_group(Hardware\\CMSIS FILES ${HARDWARE_CMSIS})
 source_group(Hardware\\HAL   FILES ${HARDWARE_HAL})
 source_group(Hardware\\USBH  FILES ${HARDWARE_USBH})
 source_group(src             FILES ${SRC})
-source_group(common          FILES ${COMMON})
+source_group(Display         FILES ${DISPLAY})
+source_group(Display\\font   FILES ${DISPLAY_FONT})
 source_group(FDrive          FILES ${FDRIVE})
-source_group(Generator       FILES ${GENERATOR})
-source_group(Interface       FILES ${INTERFACE})
+source_group(Panel           FILES ${PANEL})
 source_group(Settings        FILES ${SETTINGS})
 source_group(Utils           FILES ${UTILS})
 
                    
-add_library(DLoader ${LIBS_FATFS} ${LIBS_USBH} ${LIBS_HAL} ${HARDWARE} ${HARDWARE_CMSIS} ${HARDWARE_HAL} ${HARDWARE_USBH}
-                    ${SRC} ${COMMON} ${FDRIVE} ${GENERATOR} ${INTERFACE} ${SETTINGS} ${UTILS})
+add_library(DLoader ${LIBS_FATFS} ${LIBS_HAL} ${LIBS_USBH} ${HARDWARE} ${HARDWARE_CMSIS} ${HARDWARE_HAL} ${HARDWARE_USBH}
+                    ${SRC} ${DISPLAY} ${DISPLAY_FONT} ${FDRIVE} ${PANEL} ${SETTINGS} ${UTILS})
+                    
