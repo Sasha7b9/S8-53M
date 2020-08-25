@@ -6,7 +6,7 @@
   <Header>### uVision Project, (C) Keil Software</Header>
 
   <PrjGuiSettings>
-    <LastAddFilePath></LastAddFilePath>
+    <LastAddFilePath>C:\My\work\S8-53M\sources\common\STM32Cube_F2\Drivers\STM32F2xx_HAL_Driver\Inc\Legacy</LastAddFilePath>
   </PrjGuiSettings>
 
   <ViewPool/>
@@ -101,10 +101,10 @@
         <yPos>-1</yPos>
       </MaxPosition>
       <NormalPosition>
-        <Top>278</Top>
-        <Left>706</Left>
-        <Right>2626</Right>
-        <Bottom>1340</Bottom>
+        <Top>62</Top>
+        <Left>208</Left>
+        <Right>1054</Right>
+        <Bottom>1445</Bottom>
       </NormalPosition>
     </WindowPosition>
     <MDIClientArea>
