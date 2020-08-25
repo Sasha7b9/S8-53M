@@ -24,7 +24,7 @@ void FLASH_Prepare(void)
     HAL_FLASH_Lock();
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void FLASH_WriteData(uint address, uint8 *data, int size)
 {
     CLEAR_FLASH_FLAGS;

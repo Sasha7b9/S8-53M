@@ -42,7 +42,7 @@ void FDrive_Init(void)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8 id)
 {
     switch (id)
@@ -130,7 +130,7 @@ bool FDrive_FileExist(char *fileName)
     return false;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool GetNameFile(const char *fullPath, int numFile, char *nameFileOut, StructForReadDir *s)
 {
     memcpy(s->nameDir, fullPath, strlen(fullPath));
@@ -178,7 +178,7 @@ static bool GetNameFile(const char *fullPath, int numFile, char *nameFileOut, St
     return false;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 static bool GetNextNameFile(char *nameFileOut, StructForReadDir *s)
 {
     FILINFO *pFNO = &s->fno;
@@ -213,7 +213,7 @@ static bool GetNextNameFile(char *nameFileOut, StructForReadDir *s)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int FDrive_OpenFileForRead(char *fileName)
 {
     if (f_open(&ms->drive.file, fileName, FA_READ) == FR_OK)
@@ -223,7 +223,7 @@ int FDrive_OpenFileForRead(char *fileName)
     return -1;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 int FDrive_ReadFromFile(int numBytes, uint8 *buffer)
 {
     uint readed = 0;
@@ -234,7 +234,7 @@ int FDrive_ReadFromFile(int numBytes, uint8 *buffer)
     return -1;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void FDrive_CloseOpenedFile(void)
 {
     f_close(&ms->drive.file);
