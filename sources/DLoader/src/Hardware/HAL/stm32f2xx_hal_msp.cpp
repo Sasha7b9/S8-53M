@@ -3,18 +3,16 @@
 #include <stm32f2xx_hal_sram.h>
 
 
-void HAL_SPI_MspInit(SPI_HandleTypeDef *hspi)
+void HAL_SPI_MspInit(SPI_HandleTypeDef *)
 {
-
 }
 
-void HAL_SPI_MspDeInit(SPI_HandleTypeDef *hspi)
+void HAL_SPI_MspDeInit(SPI_HandleTypeDef *)
 {
-
 }
 
 
-void HAL_SRAM_MspInit(SRAM_HandleTypeDef *hsram)
+void HAL_SRAM_MspInit(SRAM_HandleTypeDef *)
 {
     __FSMC_CLK_ENABLE();
     __GPIOB_CLK_ENABLE();
@@ -61,7 +59,7 @@ void HAL_SRAM_MspInit(SRAM_HandleTypeDef *hsram)
 
 }
 
-void HAL_SRAM_MspDeInit(SRAM_HandleTypeDef *hsram)
+void HAL_SRAM_MspDeInit(SRAM_HandleTypeDef *)
 {
     HAL_GPIO_DeInit(GPIOB, GPIO_PIN_7);
     HAL_GPIO_DeInit(GPIOD, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_7 | GPIO_PIN_11 ||
@@ -71,7 +69,7 @@ void HAL_SRAM_MspDeInit(SRAM_HandleTypeDef *hsram)
 
 
 
-void HAL_HCD_MspInit(HCD_HandleTypeDef *hhcd)
+void HAL_HCD_MspInit(HCD_HandleTypeDef *)
 {
     __GPIOB_CLK_ENABLE();
     __USB_OTG_HS_CLK_ENABLE();
@@ -94,7 +92,7 @@ void HAL_HCD_MspInit(HCD_HandleTypeDef *hhcd)
 
 
 
-void HAL_HCD_MspDeInit(HCD_HandleTypeDef *hhcd)
+void HAL_HCD_MspDeInit(HCD_HandleTypeDef *)
 {
     __USB_OTG_HS_CLK_DISABLE();
 }

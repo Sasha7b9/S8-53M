@@ -26,8 +26,12 @@ void HAL_HCD_Disconnect_Callback(HCD_HandleTypeDef *hhcd)
 } 
 
 
-void HAL_HCD_HC_NotifyURBChange_Callback(HCD_HandleTypeDef *hhcd, uint8_t chnum, HCD_URBStateTypeDef)
+void HAL_HCD_HC_NotifyURBChange_Callback(HCD_HandleTypeDef *hhcd, uint8_t chnum, HCD_URBStateTypeDef h)
 {
+    UNUSED(hhcd);
+    UNUSED(chnum);
+    UNUSED(h);
+
     /* To be used with OS to sync URB state with the global state machine */
 }
 
@@ -213,6 +217,9 @@ USBH_URBStateTypeDef USBH_LL_GetURBState(USBH_HandleTypeDef *phost, uint8_t pipe
   */
 USBH_StatusTypeDef USBH_LL_DriverVBUS(USBH_HandleTypeDef *phost, uint8_t state)
 {
+    UNUSED(phost);
+    UNUSED(state);
+
     HAL_Delay(200);
     return USBH_OK;  
 }
@@ -227,6 +234,8 @@ USBH_StatusTypeDef USBH_LL_DriverVBUS(USBH_HandleTypeDef *phost, uint8_t state)
   */
 USBH_StatusTypeDef USBH_LL_SetToggle(USBH_HandleTypeDef *phost, uint8_t pipe, uint8_t toggle)   
 {
+    UNUSED(phost);
+
     if(handleHCD.hc[pipe].ep_is_in)
     {
         handleHCD.hc[pipe].toggle_in = toggle;
@@ -247,6 +256,8 @@ USBH_StatusTypeDef USBH_LL_SetToggle(USBH_HandleTypeDef *phost, uint8_t pipe, ui
   */
 uint8_t USBH_LL_GetToggle(USBH_HandleTypeDef *phost, uint8_t pipe)   
 {
+    UNUSED(phost);
+
     uint8_t toggle = 0;
   
     if(handleHCD.hc[pipe].ep_is_in)

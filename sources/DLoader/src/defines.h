@@ -63,3 +63,6 @@ typedef void    (*pFuncVpVIIB)(void*, int, int, bool);
 #define ERROR_VALUE_INT     INT_MAX
 #define ERROR_STRING_VALUE  "--.--"
 #define M_PI                3.14159265358979323846f
+
+
+//#define UNUSED(expr) do { (void)(expr); } while (0)

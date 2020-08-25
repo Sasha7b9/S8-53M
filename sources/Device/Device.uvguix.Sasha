@@ -15,7 +15,7 @@
     <View>
       <WinId>38003</WinId>
       <ViewName>Registers</ViewName>
-      <TableColWidths>189 37</TableColWidths>
+      <TableColWidths>266 267</TableColWidths>
     </View>
     <View>
       <WinId>346</WinId>
@@ -90,8 +90,8 @@
     <sActiveDebugView></sActiveDebugView>
     <WindowPosition>
       <length>44</length>
-      <flags>0</flags>
-      <showCmd>1</showCmd>
+      <flags>2</flags>
+      <showCmd>3</showCmd>
       <MinPosition>
         <xPos>-1</xPos>
         <yPos>-1</yPos>
