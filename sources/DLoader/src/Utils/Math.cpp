@@ -18,7 +18,7 @@ float Math_GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, int
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool Math_FloatsIsEquals(float value0, float value1, float epsilonPart)
 {
     float max = fabsf(value0) > fabsf(value1) ? fabsf(value0) : fabsf(value1);
@@ -29,7 +29,7 @@ bool Math_FloatsIsEquals(float value0, float value1, float epsilonPart)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 float Math_MinFrom3float(float value1, float value2, float value3)
 {
     float retValue = value1;
@@ -52,7 +52,7 @@ int Math_MaxInt(int val1, int val2)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Math_MinInt(int val1, int val2)
 {
     return val1 < val2 ? val1 : val2;
@@ -60,7 +60,7 @@ int Math_MinInt(int val1, int val2)
 
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 float Math_RandFloat(float min, float max)
 {
     float delta = max - min;
@@ -68,7 +68,7 @@ float Math_RandFloat(float min, float max)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 int8 Math_AddInt8WithLimitation(int8 value, int8 delta, int8 min, int8 max)
 {
     int8 retValue = value + delta;
@@ -84,7 +84,7 @@ int8 Math_AddInt8WithLimitation(int8 value, int8 delta, int8 min, int8 max)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Math_Sign(int value)
 {
     if (value > 0)
@@ -99,7 +99,7 @@ int Math_Sign(int value)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Math_Pow10(int pow)
 {
     int retValue = 1;
@@ -113,7 +113,7 @@ int Math_Pow10(int pow)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Math_NumDigitsInNumber(int value)
 {
     value = Math_FabsInt(value);
@@ -126,14 +126,14 @@ int Math_NumDigitsInNumber(int value)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Math_FabsInt(int value)
 {
     return value >= 0 ? value : -value;
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 uint8 Math_GetMinFromArray(const uint8 *data, int firstPoint, int lastPoint)
 {
 #define MIN_IF_LESS if(d < min) { min = d; }
@@ -158,7 +158,7 @@ uint8 Math_GetMinFromArray(const uint8 *data, int firstPoint, int lastPoint)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 uint8 Math_GetMinFromArray_RAM(const uint16 *data, int firstPoint, int lastPoint)
 {
     uint8 min = 255;
@@ -187,7 +187,7 @@ uint8 Math_GetMinFromArray_RAM(const uint16 *data, int firstPoint, int lastPoint
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 uint8 Math_GetMaxFromArray(const uint8 *data, int firstPoint, int lastPoint)
 {
 #define MAX_IF_ABOVE if(d > max) { max = d; }
@@ -212,7 +212,7 @@ uint8 Math_GetMaxFromArray(const uint8 *data, int firstPoint, int lastPoint)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 uint8 Math_GetMaxFromArray_RAM(const uint16 *data, int firstPoint, int lastPoint)
 {
     uint8 max = 0;
@@ -242,35 +242,35 @@ uint8 Math_GetMaxFromArray_RAM(const uint16 *data, int firstPoint, int lastPoint
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 #define LIMIT                           \
     if (value <= min) { return min; }   \
     if (value >= max) { return max; }   \
     return value;
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 int LimitationInt(int value, int min, int max)
 {
     LIMIT
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 uint8 LimitationUInt8(uint8 value, uint8 min, uint8 max)
 {
     LIMIT
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 float LimitationFloat(float value, float min, float max)
 {
     LIMIT
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 uint8 Math_CalculateFiltr(const uint8 *data, int x, int numPoints, int numSmoothing)
 {
     if (numSmoothing < 2)
@@ -308,7 +308,7 @@ uint8 Math_CalculateFiltr(const uint8 *data, int x, int numPoints, int numSmooth
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Math_CalculateFiltrArray(const uint8 *dataIn, uint8 *dataOut, int numPoints, int numSmoothing)
 {
     if (numSmoothing < 2)

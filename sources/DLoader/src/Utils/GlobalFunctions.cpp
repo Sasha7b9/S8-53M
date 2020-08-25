@@ -16,7 +16,7 @@ char* FloatFract2String(float value, bool alwaysSign, char bufferOut[20])
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 static int NumDigitsInIntPart(float value)
 {
     float fabsValue = fabsf(value);
@@ -47,7 +47,7 @@ static int NumDigitsInIntPart(float value)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[20])
 {
     bufferOut[0] = 0;
@@ -110,7 +110,7 @@ char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 char* Int2String(int value, bool alwaysSign, int numMinFields, char buffer[20])
 {
     char format[20] = "%";
@@ -129,7 +129,7 @@ char* Int2String(int value, bool alwaysSign, int numMinFields, char buffer[20])
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool String2Int(char *str, int *value)
 {
     int sign = str[0] == '-' ? -1 : 1;
@@ -162,7 +162,7 @@ bool String2Int(char *str, int *value)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 char* Hex8toString(uint8 value, char buffer[3], bool upper)
 {
     sprintf(value < 16 ? (buffer[0] = '0', buffer + 1) : (buffer), upper ? "%X" : "%x", value);
@@ -170,7 +170,7 @@ char* Hex8toString(uint8 value, char buffer[3], bool upper)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 char* Hex16toString(uint16 value, char buffer[5], bool upper)
 {
     sprintf(buffer, "%04X", value);
@@ -178,7 +178,7 @@ char* Hex16toString(uint16 value, char buffer[5], bool upper)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 char*    Voltage2String(float voltage, bool alwaysSign, char buffer[20])
 {
     buffer[0] = 0;
@@ -217,14 +217,14 @@ char*    Voltage2String(float voltage, bool alwaysSign, char buffer[20])
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 char* Time2String(float time, bool alwaysSign, char buffer[20])
 {
     return Time2StringAccuracy(time, alwaysSign, buffer, 4);
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 char* Time2StringAccuracy(float time, bool alwaysSign, char buffer[20], int numDigits)
 {
     buffer[0] = 0;
@@ -266,7 +266,7 @@ char* Time2StringAccuracy(float time, bool alwaysSign, char buffer[20], int numD
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 char* Phase2String(float phase, bool empty, char bufferOut[20])
 {
     char buffer[20];
@@ -275,14 +275,14 @@ char* Phase2String(float phase, bool empty, char bufferOut[20])
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 char*  Freq2String(float freq, bool alwaysSign, char bufferOut[20])
 {
     return Freq2StringAccuracy(freq, bufferOut, 4);
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 char* Freq2StringAccuracy(float freq, char bufferOut[20], int numDigits)
 {
     bufferOut[0] = 0;
@@ -313,7 +313,7 @@ char* Freq2StringAccuracy(float freq, char bufferOut[20], int numDigits)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 char* Float2Db(float value, int numDigits, char bufferOut[20])
 {
     bufferOut[0] = 0;
@@ -324,14 +324,14 @@ char* Float2Db(float value, int numDigits, char bufferOut[20])
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool IntInRange(int value, int min, int max)
 {
     return (value >= min) && (value <= max);
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 float MaxFloat(float val1, float val2, float val3)
 {
     float retValue = val1;
@@ -347,7 +347,7 @@ float MaxFloat(float val1, float val2, float val3)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 int8 CircleIncreaseInt8(int8 *val, int8 min, int8 max)
 {
     (*val)++;
@@ -359,7 +359,7 @@ int8 CircleIncreaseInt8(int8 *val, int8 min, int8 max)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 int16 CircleIncreaseInt16(int16 *val, int16 min, int16 max)
 {
     (*val)++;
@@ -371,7 +371,7 @@ int16 CircleIncreaseInt16(int16 *val, int16 min, int16 max)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 int CircleIncreaseInt(int *val, int min, int max)
 {
     (*val)++;
@@ -383,7 +383,7 @@ int CircleIncreaseInt(int *val, int min, int max)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 int8 CircleDecreaseInt8(int8 *val, int8 min, int8 max)
 {
     (*val)--;
@@ -395,7 +395,7 @@ int8 CircleDecreaseInt8(int8 *val, int8 min, int8 max)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 int16 CircleDecreaseInt16(int16 *val, int16 min, int16 max)
 {
     (*val)--;
@@ -407,7 +407,7 @@ int16 CircleDecreaseInt16(int16 *val, int16 min, int16 max)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 int CircleDecreaseInt(int *val, int min, int max)
 {
     (*val)--;
@@ -419,7 +419,7 @@ int CircleDecreaseInt(int *val, int min, int max)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CircleAddFloat(float *val, float delta, float min, float max)
 {
     *val += delta;
@@ -431,7 +431,7 @@ float CircleAddFloat(float *val, float delta, float min, float max)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 float CircleSubFloat(float *val, float delta, float min, float max)
 {
     *val -= delta;
@@ -443,7 +443,7 @@ float CircleSubFloat(float *val, float delta, float min, float max)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 void AddLimitationFloat(float *val, float delta, float min, float max)
 {
     float sum = *val + delta;
@@ -462,7 +462,7 @@ void AddLimitationFloat(float *val, float delta, float min, float max)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 void SwapInt(int *value0, int *value1)
 {
     int temp = *value0;
@@ -471,7 +471,7 @@ void SwapInt(int *value0, int *value1)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 void SortInt(int *value0, int *value1)
 {
     if (*value1 < *value0)
@@ -480,50 +480,50 @@ void SortInt(int *value0, int *value1)
     }
 }
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 void EmptyFuncVV(void)
 {
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 void EmptyFuncVI(int i)
 {
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 void EmptyFuncVpV(void *empty)
 {
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 bool EmptyFuncBV(void)
 {
     return true;
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 void EmptyFuncpVII(void *v, int i, int ii)
 {
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 void EmptyFuncVI16(int16 i)
 {
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 void EmptyFuncVB(bool b)
 {
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 char* IntToStrCat(char *_buffer, int _value)
 {
 #define LENGTH_INTTOSTRCAT 10
@@ -567,7 +567,7 @@ char* IntToStrCat(char *_buffer, int _value)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------
+
 int BCD2Int(uint bcd)
 {
     int pow = 1;
