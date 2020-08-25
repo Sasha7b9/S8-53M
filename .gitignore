@@ -1,8 +1,8 @@
 *.bin
 
-sources/Loader53/Objects/*
-sources/Loader53/Listings/*
-sources/Loader53/DebugConfig/*
+sources/DLoader/Objects/*
+sources/DLoader/Listings/*
+sources/DLoader/DebugConfig/*
 sources/Device/Objects/*
 sources/Device/Listings/*
 sources/Device/DebugConfig/*
