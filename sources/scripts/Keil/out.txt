@@ -1,0 +1,3 @@
+Load "D:\\Projects\\stm32\\G6-49\\sources\\DLoader\\Objects\\Generator.axf" 
+Erase Done.Programming Done.Application running ...
+Flash Load finished at 09:14:54
