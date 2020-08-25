@@ -70,7 +70,7 @@ void HAL_SRAM_MspDeInit(SRAM_HandleTypeDef *hsram)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void HAL_HCD_MspInit(HCD_HandleTypeDef *hhcd)
 {
     __GPIOB_CLK_ENABLE();
@@ -93,7 +93,7 @@ void HAL_HCD_MspInit(HCD_HandleTypeDef *hhcd)
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void HAL_HCD_MspDeInit(HCD_HandleTypeDef *hhcd)
 {
     __USB_OTG_HS_CLK_DISABLE();
