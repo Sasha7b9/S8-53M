@@ -1057,7 +1057,8 @@ HAL_StatusTypeDef HAL_SPI_Receive(SPI_HandleTypeDef *hspi, uint8_t *pData, uint1
     }
 
     /* Read CRC to Flush DR and RXNE flag */
-    READ_REG(hspi->Instance->DR);
+    uint32_t value = READ_REG(hspi->Instance->DR);
+    value = value;
   }
 #endif /* USE_SPI_CRC */
 
@@ -1274,7 +1275,8 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive(SPI_HandleTypeDef *hspi, uint8_t *pTxD
       goto error;
     }
     /* Read CRC */
-    READ_REG(hspi->Instance->DR);
+    uint32_t value = READ_REG(hspi->Instance->DR);
+    value++;
   }
 
   /* Check if CRC error occurred */
@@ -2705,7 +2707,8 @@ static void SPI_DMAReceiveCplt(DMA_HandleTypeDef *hdma)
         SET_BIT(hspi->ErrorCode, HAL_SPI_ERROR_CRC);
       }
       /* Read CRC */
-      READ_REG(hspi->Instance->DR);
+      uint32_t value = READ_REG(hspi->Instance->DR);
+      value++;
     }
 #endif /* USE_SPI_CRC */
 
@@ -2779,7 +2782,8 @@ static void SPI_DMATransmitReceiveCplt(DMA_HandleTypeDef *hdma)
         SET_BIT(hspi->ErrorCode, HAL_SPI_ERROR_CRC);
       }
       /* Read CRC to Flush DR and RXNE flag */
-      READ_REG(hspi->Instance->DR);
+      uint32_t value = READ_REG(hspi->Instance->DR);
+      value++;
     }
 #endif /* USE_SPI_CRC */
 
@@ -3091,7 +3095,8 @@ static void SPI_2linesRxISR_8BIT(struct __SPI_HandleTypeDef *hspi)
 static void SPI_2linesRxISR_8BITCRC(struct __SPI_HandleTypeDef *hspi)
 {
   /* Read 8bit CRC to flush Data Regsiter */
-  READ_REG(*(__IO uint8_t *)&hspi->Instance->DR);
+  uint32_t value = READ_REG(*(__IO uint8_t *)&hspi->Instance->DR);
+  value++;
 
   /* Disable RXNE and ERR interrupt */
   __HAL_SPI_DISABLE_IT(hspi, (SPI_IT_RXNE | SPI_IT_ERR));
@@ -3182,7 +3187,8 @@ static void SPI_2linesRxISR_16BIT(struct __SPI_HandleTypeDef *hspi)
 static void SPI_2linesRxISR_16BITCRC(struct __SPI_HandleTypeDef *hspi)
 {
   /* Read 16bit CRC to flush Data Regsiter */
-  READ_REG(hspi->Instance->DR);
+  uint32_t value = READ_REG(hspi->Instance->DR);
+  value++;
 
   /* Disable RXNE interrupt */
   __HAL_SPI_DISABLE_IT(hspi, SPI_IT_RXNE);
@@ -3238,7 +3244,8 @@ static void SPI_2linesTxISR_16BIT(struct __SPI_HandleTypeDef *hspi)
 static void SPI_RxISR_8BITCRC(struct __SPI_HandleTypeDef *hspi)
 {
   /* Read 8bit CRC to flush Data Register */
-  READ_REG(*(__IO uint8_t *)&hspi->Instance->DR);
+  uint32_t value = READ_REG(*(__IO uint8_t *)&hspi->Instance->DR);
+  value++;
 
   SPI_CloseRx_ISR(hspi);
 }
@@ -3287,7 +3294,8 @@ static void SPI_RxISR_8BIT(struct __SPI_HandleTypeDef *hspi)
 static void SPI_RxISR_16BITCRC(struct __SPI_HandleTypeDef *hspi)
 {
   /* Read 16bit CRC to flush Data Register */
-  READ_REG(hspi->Instance->DR);
+  uint32_t value = READ_REG(hspi->Instance->DR);
+  value++;
 
   /* Disable RXNE and ERR interrupt */
   __HAL_SPI_DISABLE_IT(hspi, (SPI_IT_RXNE | SPI_IT_ERR));
@@ -3723,7 +3731,8 @@ static void SPI_AbortRx_ISR(SPI_HandleTypeDef *hspi)
   CLEAR_BIT(hspi->Instance->CR2, (SPI_CR2_TXEIE | SPI_CR2_RXNEIE | SPI_CR2_ERRIE));
 
   /* Read CRC to flush Data Register */
-  READ_REG(hspi->Instance->DR);
+  uint32_t value = READ_REG(hspi->Instance->DR);
+  value++;
 
   hspi->State = HAL_SPI_STATE_ABORT;
 }
