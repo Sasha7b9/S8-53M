@@ -380,6 +380,36 @@
       </TargetOption>
       <Groups>
         <Group>
+          <GroupName>libs/CMSIS</GroupName>
+          <Files>
+            <File>
+              <FileName>cmsis_armcc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\STM32Cube_F2\Drivers\CMSIS\Include\cmsis_armcc.h</FilePath>
+            </File>
+            <File>
+              <FileName>cmsis_compiler.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\STM32Cube_F2\Drivers\CMSIS\Include\cmsis_compiler.h</FilePath>
+            </File>
+            <File>
+              <FileName>cmsis_version.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\STM32Cube_F2\Drivers\CMSIS\Include\cmsis_version.h</FilePath>
+            </File>
+            <File>
+              <FileName>core_cm3.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\STM32Cube_F2\Drivers\CMSIS\Include\core_cm3.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_armv7.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\STM32Cube_F2\Drivers\CMSIS\Include\mpu_armv7.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>libs/FatFS</GroupName>
           <Files>
             <File>
