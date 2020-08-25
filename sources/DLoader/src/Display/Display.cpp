@@ -233,23 +233,23 @@ static void DrawBigMNIPI(void)
     LIMITATION(numColor, static_cast<int>(static_cast<float>(time) / (float)TIME_WAIT * 13.0f), 0, 13);
     Painter_SetColor((Color)(numColor + 2));
 
-    float amplitude = 3.0f - (time / (TIME_WAIT / 2.0f)) * 3;
+    float amplitude = 3.0f - (static_cast<float>(time) / (TIME_WAIT / 2.0f)) * 3;
     LIMIT_BELOW(amplitude, 0.0f);
     float frequency = 0.05f;
 
-    float radius = 5000.0f * (TIME_WAIT) / 3000.0f / time;
+    float radius = 5000.0f * (TIME_WAIT) / 3000.0f / static_cast<float>(time);
     LIMIT_BELOW(radius, 0);
 
     float shift[240];
 
     for (int i = 0; i < 240; i++)
     {
-        shift[i] = amplitude * sin(frequency * time + i / 5.0f);
+        shift[i] = amplitude * sin(frequency * static_cast<float>(time) + static_cast<float>(i) / 5.0f);
     }
 
     for (int i = 0; i < numPoints; i++)
     {
-        int x = array[i].x + shift[array[i].y];
+        int x = static_cast<int>(static_cast<float>(array[i].x) + shift[array[i].y]);
         int y = array[i].y;
         if (x > 0 && x < 319 && y > 0 && y < 239)
         {
@@ -271,8 +271,8 @@ static void InitPoints(void)
         {
             if (buffer[x][y])
             {
-                array[numPoints].x = x;
-                array[numPoints].y = y;
+                array[numPoints].x = static_cast<uint16>(x);
+                array[numPoints].y = static_cast<uint8>(y);
                 numPoints++;
             }
         }

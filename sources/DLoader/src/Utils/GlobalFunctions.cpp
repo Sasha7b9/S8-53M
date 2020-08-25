@@ -171,7 +171,7 @@ char* Hex8toString(uint8 value, char buffer[3], bool upper)
 
 
 
-char* Hex16toString(uint16 value, char buffer[5], bool upper)
+char* Hex16toString(uint16 value, char buffer[5], bool)
 {
     sprintf(buffer, "%04X", value);
     return buffer;
@@ -267,7 +267,7 @@ char* Time2StringAccuracy(float time, bool alwaysSign, char buffer[20], int numD
 
 
 
-char* Phase2String(float phase, bool empty, char bufferOut[20])
+char* Phase2String(float phase, bool, char bufferOut[20])
 {
     char buffer[20];
     sprintf(bufferOut, "%s\xa8", Float2String(phase, false, 4, buffer));
@@ -276,7 +276,7 @@ char* Phase2String(float phase, bool empty, char bufferOut[20])
 
 
 
-char*  Freq2String(float freq, bool alwaysSign, char bufferOut[20])
+char*  Freq2String(float freq, bool, char bufferOut[20])
 {
     return Freq2StringAccuracy(freq, bufferOut, 4);
 }
@@ -487,13 +487,13 @@ void EmptyFuncVV(void)
 
 
 
-void EmptyFuncVI(int i)
+void EmptyFuncVI(int)
 {
 }
 
 
 
-void EmptyFuncVpV(void *empty)
+void EmptyFuncVpV(void *)
 {
 }
 
@@ -506,19 +506,19 @@ bool EmptyFuncBV(void)
 
 
 
-void EmptyFuncpVII(void *v, int i, int ii)
+void EmptyFuncpVII(void *, int, int)
 {
 }
 
 
 
-void EmptyFuncVI16(int16 i)
+void EmptyFuncVI16(int16)
 {
 }
 
 
 
-void EmptyFuncVB(bool b)
+void EmptyFuncVB(bool)
 {
 }
 

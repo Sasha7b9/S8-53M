@@ -57,7 +57,7 @@ Color LightShadingTextColor(void)
 }
 
 
-void Color_Log(Color color)
+void Color_Log(Color)
 {
 }
 
@@ -118,7 +118,7 @@ void Color_BrightnessChange(ColorType *colorType, int delta)
         return;
     }
 
-    int sign = Math_Sign(delta);
+    float sign = static_cast<float>(Math_Sign(delta));
 
     LIMITATION(colorType->brightness, colorType->brightness + sign * 0.01f, 0.0f, 1.0f);
 
