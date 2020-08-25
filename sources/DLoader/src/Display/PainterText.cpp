@@ -688,9 +688,9 @@ int Painter_DrawTextInRectWithTransfers(int eX, int eY, int eWidth, int eHeight,
                 int lengthString = Font_GetLengthText(word);
                 if (x + lengthString > right + 5)
                 {
-                    int numSymbols = DrawPartWord(word, x, y, right, true);
+                    int nums = DrawPartWord(word, x, y, right, true);
                     x = right;
-                    curSymbol += numSymbols;
+                    curSymbol += nums;
                     continue;
                 }
                 else
@@ -710,7 +710,7 @@ int Painter_DrawTextInRectWithTransfers(int eX, int eY, int eWidth, int eHeight,
 
 static int Painter_DrawBigCharInBuffer(int eX, int eY, int size, char symbol, uint8 buffer[320][240])
 {
-    int8 width = font->symbol[symbol].width;
+    int8 width = static_cast<int8>(font->symbol[symbol].width);
     int8 height = (int8)font->height;
 
     for (int b = 0; b < height; b++)
@@ -757,7 +757,7 @@ void Painter_DrawBigTextInBuffer(int eX, int eY, int size, const char* text, uin
         }
     }
 
-    int numSymbols = strlen(text);
+    int numSymbols = static_cast<int>(strlen(text));
 
     int x = eX;
 
