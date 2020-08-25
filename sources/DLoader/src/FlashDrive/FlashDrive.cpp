@@ -27,7 +27,7 @@ static bool GetNextNameFile(char *nameFileOut, StructForReadDir *s);
 static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8 id);
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void FDrive_Init(void)
 {
     ms->drive.state = StateDisk_Idle;

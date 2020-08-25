@@ -7,6 +7,6 @@ After Build - User command #1: fromelf --bin --output .\s8-53.bin .\Objects\s8-5
 ".\Objects\s8-53.axf": Error: Q0122E: Could not open file '.\Objects\s8-53.axf': No such file or directory
 Finished: 0 information, 0 warning and 1 error messages.
 ".\Objects\Device.axf" - 0 Error(s), 0 Warning(s).
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:03
   
-Batch-Build summary: 1 succeeded, 0 failed, 0 skipped - Time Elapsed: 00:00:02
+Batch-Build summary: 1 succeeded, 0 failed, 0 skipped - Time Elapsed: 00:00:03
