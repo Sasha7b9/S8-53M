@@ -2,6 +2,7 @@
 #include "DisplayTypes.h"
 #include "font/Font.h"
 #include "Painter.h"
+#include <string.h>
 #include <stdarg.h>
 
 
@@ -24,7 +25,7 @@ void Painter_SetFont(TypeFont typeFont)
 }
 
 
-void Painter_LoadFont(TypeFont typeFont)
+void Painter_LoadFont(TypeFont)
 {
 }
 
@@ -38,7 +39,7 @@ bool ByteFontNotEmpty(int eChar, int byte)
         prevChar = eChar;
         bytes = font->symbol[prevChar].bytes;
     }
-    return bytes[byte];
+    return bytes[byte] != 0;
 }
 
 
@@ -59,7 +60,7 @@ static bool BitInFontIsExist(int eChar, int numByte, int bit)
 
 static void DrawCharInColorDisplay(int eX, int eY, uchar symbol)
 {
-    int8 width = font->symbol[symbol].width;
+    int8 width = static_cast<int8>(font->symbol[symbol].width);
     int8 height = (int8)font->height;
 
     for (int b = 0; b < height; b++)
@@ -84,7 +85,7 @@ static void DrawCharInColorDisplay(int eX, int eY, uchar symbol)
 
 static int Painter_DrawBigChar(int eX, int eY, int size, char symbol)
 {
-    int8 width = font->symbol[symbol].width;
+    int8 width = static_cast<int8>(font->symbol[symbol].width);
     int8 height = (int8)font->height;
 
     for (int b = 0; b < height; b++)
@@ -145,9 +146,9 @@ int Painter_DrawChar(int x, int y, char symbol)
     }
     else
     {
-        DrawCharInColorDisplay(x, y, symbol);
+        DrawCharInColorDisplay(x, y, static_cast<uchar>(symbol));
     }
-    return x + Font_GetLengthSymbol(symbol);
+    return x + Font_GetLengthSymbol(static_cast<uchar>(symbol));
 }
 
 
@@ -174,7 +175,7 @@ int Painter_DrawText(int x, int y, const char *text)
     uint8 command[SIZE_BUFFER];
     command[0] = DRAW_TEXT;
     *((int16*)(command + 1)) = (int16)x;
-    *(command + 3) = (int8)(y + 1);
+    *(command + 3) = (uint8)(y + 1);
     uint8 *pointer = command + 5;
     uint8 length = 0;
 
@@ -182,7 +183,7 @@ int Painter_DrawText(int x, int y, const char *text)
     while (*text && length < (SIZE_BUFFER - 7))
     {
         *pointer = (uint8)(*text);
-        retValue += Font_GetLengthSymbol(*text);
+        retValue += Font_GetLengthSymbol(static_cast<uchar>(*text));
         text++;
         pointer++;
         length++;
@@ -208,7 +209,7 @@ int Painter_DrawTextC(int x, int y, const char *text, Color color)
 
 static int DrawCharWithLimitation(int eX, int eY, uchar symbol, int limitX, int limitY, int limitWidth, int limitHeight)
 {
-    int8 width = font->symbol[symbol].width;
+    int8 width = static_cast<int8>(font->symbol[symbol].width);
     int8 height = (int8)font->height;
 
     for (int b = 0; b < height; b++)
@@ -242,8 +243,8 @@ int Painter_DrawTextWithLimitationC(int x, int y, const char* text, Color color,
     int retValue = x;
     while (*text)
     {
-        x = DrawCharWithLimitation(x, y, *text, limitX, limitY, limitWidth, limitHeight);
-        retValue += Font_GetLengthSymbol(*text);
+        x = DrawCharWithLimitation(x, y, static_cast<uchar>(*text), limitX, limitY, limitWidth, limitHeight);
+        retValue += Font_GetLengthSymbol(static_cast<uchar>(*text));
         text++;
     }
     return retValue + 1;
@@ -358,7 +359,7 @@ static bool FindNextTransfer(char *letters, int8 *lettersInSyllable)
 
     bool consonant[20];
 
-    int size = strlen(letters);
+    int size = static_cast<int>(strlen(letters));
     for (int i = 0; i < size; i++)
     {
         consonant[i] = IsConsonant(letters[i]);
@@ -494,7 +495,7 @@ static int GetLenghtSubString(char *text)
     int retValue = 0;
     while (((*text) != ' ') && ((*text) != '\0'))
     {
-        retValue += Font_GetLengthSymbol(*text);
+        retValue += Font_GetLengthSymbol(static_cast<uchar>(*text));
         text++;
     }
     return retValue;
@@ -586,7 +587,7 @@ void Painter_Draw10SymbolsInRect(int x, int y, char eChar)
 
 void Painter_DrawBigText(int eX, int eY, int size, const char *text)
 {
-    int numSymbols = strlen(text);
+    int numSymbols = static_cast<int>(strlen(text));
 
     int x = eX;
 
@@ -606,7 +607,7 @@ static char* PartWordForTransfer(char *word, int8* lengthSyllables, int numSylla
     {
         length += lengthSyllables[i];
     }
-    memcpy((void*)buffer, (void*)word, length);
+    memcpy((void*)buffer, (void*)word, static_cast<size_t>(length));
     buffer[length] = '-';
     buffer[length + 1] = '\0';
     return buffer;
@@ -638,7 +639,7 @@ static int DrawPartWord(char *word, int x, int y, int xRight, bool draw)
             {
                 Painter_DrawText(x, y, subString);
             }
-            return strlen(subString) - 1;
+            return static_cast<int>(strlen(subString) - 1);
         }
     }
 
@@ -654,7 +655,7 @@ int Painter_DrawTextInRectWithTransfers(int eX, int eY, int eWidth, int eHeight,
     int bottom = eY + eHeight;
 
     char buffer[20];
-    int numSymbols = strlen(text);
+    int numSymbols = static_cast<int>(strlen(text));
 
     int y = top - 1;
     int x = left;
