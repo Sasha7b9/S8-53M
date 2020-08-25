@@ -4,7 +4,7 @@
 
 @echo %TIME%   Building VS-Keil version
 
-MSBuild.exe ..\..\generated\Keil\G6-49.sln -clp:ErrorsOnly;WarningsOnly -nologo /m
+MSBuild.exe ..\..\generated\Keil\S8-53M.sln -clp:ErrorsOnly;WarningsOnly -nologo /m
 set BUILD_STATUS=%ERRORLEVEL%
 if not %BUILD_STATUS%==0 goto Failed
 

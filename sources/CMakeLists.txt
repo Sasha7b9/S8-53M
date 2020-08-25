@@ -1,8 +1,8 @@
-cmake_minimum_required(VERSION 3.18)
+cmake_minimum_required(VERSION 2.4)
 
 # Set project name
-project (S8-54)
+project (S8-53M)
 
-set (TARGET_NAME S8-54)
+set (TARGET_NAME S8-53M)
 
 add_subdirectory(DLoader)

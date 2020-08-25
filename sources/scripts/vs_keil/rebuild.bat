@@ -3,7 +3,7 @@
 @echo.
 @echo %TIME%   Rebuild VS-Keil version
 
-MSBuild.exe ..\..\generated\Keil\G6-49.sln -t:rebuild -clp:ErrorsOnly;WarningsOnly -nologo /m
+MSBuild.exe ..\..\generated\Keil\S8-53M.sln -t:rebuild -clp:ErrorsOnly;WarningsOnly -nologo /m
 set BUILD_STATUS=%ERRORLEVEL%
 if not %BUILD_STATUS%==0 goto Failed
 
