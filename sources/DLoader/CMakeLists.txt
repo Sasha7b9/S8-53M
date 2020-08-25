@@ -35,6 +35,9 @@ file(GLOB LIBS_FATFS     ../common/STM32Cube_F2/Middlewares/Third_Party/FatFS/sr
                          ../common/STM32Cube_F2/Middlewares/Third_Party/FatFS/src/option/ccsbcs.*
                          ../common/STM32Cube_F2/Middlewares/Third_Party/FatFS/src/option/syscall.*)
 
+file(GLOB LIBS_CMSIS     ../common/STM32Cube_F2/Drivers/CMSIS/Device/ST/STM32F2xx/Include/*
+                         ../common/STM32Cube_F2/Drivers/CMSIS/Include/*)
+
 file(GLOB LIBS_HAL       ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal.*
                          ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_cortex.*
                          ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_dma.*
@@ -95,6 +98,7 @@ file(GLOB UTILS          src/Utils/*)
 set_source_files_properties(${LIBS_FATFS} ${LIBS_HAL} ${LIBS_USBH} PROPERTIES HEADER_FILE_ONLY TRUE)
 
 source_group(libs\\vs_keil\\CMSIS  FILES ${VS_KEIL_CMSIS})
+source_group(libs\\CMSIS           FILES ${LIBS_CMSIS})
 source_group(libs\\FatFS           FILES ${LIBS_FATFS})
 source_group(libs\\HAL             FILES ${LIBS_HAL})
 source_group(libs\\USBH            FILES ${LIBS_USBH})
@@ -111,7 +115,7 @@ source_group(Settings              FILES ${SETTINGS})
 source_group(Utils                 FILES ${UTILS})
 
                    
-add_library(DLoader ${VS_KEIL_CMSIS}
+add_library(DLoader ${VS_KEIL_CMSIS} ${LIBS_CMSIS}
                     ${LIBS_FATFS} ${LIBS_HAL} ${LIBS_USBH} ${HARDWARE} ${HARDWARE_CMSIS} ${HARDWARE_HAL} ${HARDWARE_USBH}
                     ${SRC} ${DISPLAY} ${DISPLAY_FONT} ${FDRIVE} ${PANEL} ${SETTINGS} ${UTILS})
                     

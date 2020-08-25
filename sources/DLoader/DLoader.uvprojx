@@ -407,6 +407,21 @@
               <FileType>5</FileType>
               <FilePath>..\common\STM32Cube_F2\Drivers\CMSIS\Include\mpu_armv7.h</FilePath>
             </File>
+            <File>
+              <FileName>stm32f2xx.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\STM32Cube_F2\Drivers\CMSIS\Device\ST\STM32F2xx\Include\stm32f2xx.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f207xx.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\STM32Cube_F2\Drivers\CMSIS\Device\ST\STM32F2xx\Include\stm32f207xx.h</FilePath>
+            </File>
+            <File>
+              <FileName>system_stm32f2xx.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\STM32Cube_F2\Drivers\CMSIS\Device\ST\STM32F2xx\Include\system_stm32f2xx.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
