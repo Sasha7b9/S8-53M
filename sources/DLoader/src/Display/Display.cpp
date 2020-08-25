@@ -56,9 +56,9 @@ void Display_Init(void)
 
     for (int i = 0; i < 14; i++)
     {
-        float red = i / 14.0f * 31.0f + 0.5f;
-        float green = i / 14.0f * 63.0f + 0.5f;
-        float blue = i / 14.0f * 31.0f + 0.5f;
+        float red = static_cast<float>(i) / 14.0f * 31.0f + 0.5f;
+        float green = static_cast<float>(i) / 14.0f * 63.0f + 0.5f;
+        float blue = static_cast<float>(i) / 14.0f * 31.0f + 0.5f;
         set.display.colors[i + 2] = MAKE_COLOR((int)red, (int)green, (int)blue);
     }
 
@@ -95,7 +95,7 @@ void Display_Update1(void)
 
     Painter_BeginScene(COLOR_BLACK);
 
-    Painter_DrawTextFormatting(5, 200, COLOR_WHITE, "%f секунд", HAL_GetTick() / 1000.0f);
+    Painter_DrawTextFormatting(5, 200, COLOR_WHITE, "%f секунд", static_cast<float>(HAL_GetTick()) / 1000.0f);
 
 //    Painter_DrawTextFormatting(5, 210, COLOR_WHITE, "%d frames", numFrames);
 
@@ -162,7 +162,7 @@ void Display_Update(void)
 
         int height = 30;
         int fullWidth = 280;
-        int width = fullWidth * ms->percentUpdate;
+        int width = static_cast<int>(static_cast<float>(fullWidth) * ms->percentUpdate);
 
         Painter_FillRegion(20, 130, width, height);
         Painter_DrawRectangle(20, 130, fullWidth, height);
@@ -183,7 +183,7 @@ void DrawProgressBar(uint dT)
     const int X = 10;
     const int Y = 200;
 
-    float step = dT / ms->display.direction;
+    float step = static_cast<float>(dT) / ms->display.direction;
 
     ms->display.value += step;
 
@@ -206,7 +206,7 @@ void DrawProgressBar(uint dT)
     Painter_DrawStringInCenterRect(X, y0 + 2 * dH, WIDTH, 10, "Подождите...");
 
     Painter_DrawRectangle(X, Y, WIDTH, HEIGHT);
-    Painter_FillRegion(X, Y, ms->display.value, HEIGHT);
+    Painter_FillRegion(X, Y, static_cast<int>(ms->display.value), HEIGHT);
 }
 
 
@@ -230,7 +230,7 @@ static void DrawBigMNIPI(void)
     uint time = HAL_GetTick() - startTime;
 
     int numColor = 0;
-    LIMITATION(numColor, time / (float)TIME_WAIT * 13.0f, 0, 13);
+    LIMITATION(numColor, static_cast<int>(static_cast<float>(time) / (float)TIME_WAIT * 13.0f), 0, 13);
     Painter_SetColor((Color)(numColor + 2));
 
     float amplitude = 3.0f - (time / (TIME_WAIT / 2.0f)) * 3;

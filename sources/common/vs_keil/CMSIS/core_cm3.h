@@ -4,5 +4,18 @@
 
 #include <stdint.h>
 
-
 #define __IO
+
+void NVIC_SystemReset(void);
+void __disable_irq(void);
+void __set_MSP(uint32_t);
+void __enable_irq(void);
+
+
+typedef struct
+{
+    uint32_t VTOR;
+} _SCB;
+
+
+extern _SCB *SCB;

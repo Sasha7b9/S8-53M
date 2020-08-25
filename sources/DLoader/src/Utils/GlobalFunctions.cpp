@@ -137,7 +137,7 @@ bool String2Int(char *str, int *value)
     {
         str++;
     }
-    int length = strlen(str);
+    int length = static_cast<int>(strlen(str));
     if (length == 0)
     {
         return false;
@@ -536,7 +536,7 @@ char* IntToStrCat(char *_buffer, int _value)
 
     while (_value > 0)
     {
-        buffer[pointer] = (unsigned char)(_value % 10);
+        buffer[pointer] = (char)(_value % 10);
         _value /= 10;
         pointer--;
     }

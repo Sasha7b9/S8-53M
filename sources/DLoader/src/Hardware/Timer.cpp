@@ -30,7 +30,7 @@ void Timer_PauseOnTime(uint timeMS)
 
 void Timer_StartMultiMeasurement()
 {
-    TIM2->CR1 &= (uint16)~TIM_CR1_CEN;
+    TIM2->CR1 &= static_cast<uint16>(~TIM_CR1_CEN);
     TIM2->CNT = 0;
     TIM2->CR1 |= TIM_CR1_CEN; 
 }
@@ -43,7 +43,7 @@ void Timer_StartLogging()
 }
 
 
-uint Timer_LogPointUS(char *name)
+uint Timer_LogPointUS(char *)
 {
     uint interval = gTimerTics - timePrevPoint;
     timePrevPoint = gTimerTics;
@@ -51,7 +51,7 @@ uint Timer_LogPointUS(char *name)
 }
 
 
-uint Timer_LogPointMS(char *name)
+uint Timer_LogPointMS(char *)
 {
     uint interval = gTimerTics - timePrevPoint;
     timePrevPoint = gTimerTics;

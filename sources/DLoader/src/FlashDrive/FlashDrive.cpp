@@ -43,7 +43,7 @@ void FDrive_Init(void)
 }
 
 
-void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8 id)
+void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
 {
     switch (id)
     {
@@ -96,7 +96,7 @@ void ToLower(char *str)
 {
     while (*str)
     {
-        *str = tolower(*str);
+        *str = static_cast<char>(tolower(*str));
         str++;
     }
 }
@@ -227,7 +227,7 @@ int FDrive_OpenFileForRead(char *fileName)
 int FDrive_ReadFromFile(int numBytes, uint8 *buffer)
 {
     uint readed = 0;
-    if (f_read(&ms->drive.file, buffer, numBytes, &readed) == FR_OK)
+    if (f_read(&ms->drive.file, buffer, static_cast<uint>(numBytes), &readed) == FR_OK)
     {
         return (int)readed;
     }

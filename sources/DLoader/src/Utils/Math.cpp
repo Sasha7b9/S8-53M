@@ -14,7 +14,7 @@ float Math_GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, int
         return (float)x1;
     }
 
-    return (yHorLine - y0) / ((float)(y1 - y0) / (float)(x1 - x0)) + x0;
+    return static_cast<float>(yHorLine - y0) / ((float)(y1 - y0) / (float)(x1 - x0)) + static_cast<float>(x0);
 }
 
 
