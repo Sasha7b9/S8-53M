@@ -2,7 +2,9 @@ project (DLoader)
 
 include_directories(src
                     src/Hardware/HAL
+                    src/Hardware/USBH
                     ../common/vs_keil/CMSIS
+                    ../common/vs_keil/ARMCLANG
                     ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc
                     ../common/STM32Cube_F2/Drivers/CMSIS/Device/ST/STM32F2xx/Include
                     ../common/STM32Cube_F2/Drivers/CMSIS/Include
@@ -11,6 +13,7 @@ include_directories(src
                     ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Host_Library/Core/Inc
                     ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc
                     ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc
+                    c:/Keil_v5/ARM/ARMCLANG/include
                     )
 
 add_definitions(-DSTM32F207xx)
@@ -28,6 +31,7 @@ add_compile_options(/wd5045)
 add_compile_options(/wd5220)    # a non-static data member with a volatile qualified type no longer implies
 
 file(GLOB VS_KEIL_CMSIS  ../common/vs_keil/CMSIS/*)
+file(GLOB VS_KEIL_ARMCLANG ../common/vs_keil/ARMCLANG/*)
 
 file(GLOB LIBS_FATFS     ../common/STM32Cube_F2/Middlewares/Third_Party/FatFS/src/ff_gen_drv.*
                          ../common/STM32Cube_F2/Middlewares/Third_Party/FatFS/src/ff.*
@@ -97,25 +101,26 @@ file(GLOB UTILS          src/Utils/*)
 
 set_source_files_properties(${LIBS_FATFS} ${LIBS_HAL} ${LIBS_USBH} PROPERTIES HEADER_FILE_ONLY TRUE)
 
-source_group(libs\\vs_keil\\CMSIS  FILES ${VS_KEIL_CMSIS})
-source_group(libs\\CMSIS           FILES ${LIBS_CMSIS})
-source_group(libs\\FatFS           FILES ${LIBS_FATFS})
-source_group(libs\\HAL             FILES ${LIBS_HAL})
-source_group(libs\\USBH            FILES ${LIBS_USBH})
-source_group(Hardware              FILES ${HARDWARE})
-source_group(Hardware\\CMSIS       FILES ${HARDWARE_CMSIS})
-source_group(Hardware\\HAL         FILES ${HARDWARE_HAL})
-source_group(Hardware\\USBH        FILES ${HARDWARE_USBH})
-source_group(src                   FILES ${SRC})
-source_group(Display               FILES ${DISPLAY})
-source_group(Display\\font         FILES ${DISPLAY_FONT})
-source_group(FDrive                FILES ${FDRIVE})
-source_group(Panel                 FILES ${PANEL})
-source_group(Settings              FILES ${SETTINGS})
-source_group(Utils                 FILES ${UTILS})
+source_group(libs\\vs_keil\\CMSIS    FILES ${VS_KEIL_CMSIS})
+source_group(libs\\vs_keil\\ARMCLANG FILES ${VS_KEIL_ARMCLANG})
+source_group(libs\\CMSIS             FILES ${LIBS_CMSIS})
+source_group(libs\\FatFS             FILES ${LIBS_FATFS})
+source_group(libs\\HAL               FILES ${LIBS_HAL})
+source_group(libs\\USBH              FILES ${LIBS_USBH})
+source_group(Hardware                FILES ${HARDWARE})
+source_group(Hardware\\CMSIS         FILES ${HARDWARE_CMSIS})
+source_group(Hardware\\HAL           FILES ${HARDWARE_HAL})
+source_group(Hardware\\USBH          FILES ${HARDWARE_USBH})
+source_group(src                     FILES ${SRC})
+source_group(Display                 FILES ${DISPLAY})
+source_group(Display\\font           FILES ${DISPLAY_FONT})
+source_group(FDrive                  FILES ${FDRIVE})
+source_group(Panel                   FILES ${PANEL})
+source_group(Settings                FILES ${SETTINGS})
+source_group(Utils                   FILES ${UTILS})
 
                    
-add_library(DLoader ${VS_KEIL_CMSIS} ${LIBS_CMSIS}
+add_library(DLoader ${VS_KEIL_CMSIS} ${VS_KEIL_ARMCLANG} ${LIBS_CMSIS}
                     ${LIBS_FATFS} ${LIBS_HAL} ${LIBS_USBH} ${HARDWARE} ${HARDWARE_CMSIS} ${HARDWARE_HAL} ${HARDWARE_USBH}
                     ${SRC} ${DISPLAY} ${DISPLAY_FONT} ${FDRIVE} ${PANEL} ${SETTINGS} ${UTILS})
                     
