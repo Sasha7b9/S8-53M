@@ -2,13 +2,10 @@
 #include "log.h"
 #include "common/Command.h"
 #include "Hardware/HAL/HAL.h"
-#include <Display/Display.h>
-#include <Hardware/CPU.h>
 #include <stdarg.h>
-#include <cstring>
+#include <string.h>
 #include <stdio.h>
 #include <cstdlib>
-
 
 
 #define SIZE_BUFFER_LOG 200
@@ -24,7 +21,7 @@ void Log::Write(TypeTrace type, const char *format, ...)
     if (type == TypeTrace_Error)
     {
         buffer[0] = 0;
-        std::strcat(buffer, "!!! ERROR !!! ");
+        strcat(buffer, "!!! ERROR !!! ");
         while (*pointer++) {};
         ++pointer;
     }
@@ -51,21 +48,21 @@ void Log::Trace(TypeTrace type, const char *module, const char *func, int numLin
 
     if (type == TypeTrace_Error)
     {
-        std::strcat(message, "!!!ERROR!!! ");
+        strcat(message, "!!!ERROR!!! ");
     }
     else if (type == TypeTrace_Info) //-V547
     {
-        std::strcat(message, "            ");
+        strcat(message, "            ");
     }
     else
     {
         // больше типов нет
     }
 
-    std::strcat(message, module);
-    std::strcat(message, " ");
-    std::strcat(message, func);
-    std::strcat(message, numBuffer);
+    strcat(message, module);
+    strcat(message, " ");
+    strcat(message, func);
+    strcat(message, numBuffer);
     AddToConsole(message);
     AddToConsole(buffer);
 }
@@ -73,14 +70,14 @@ void Log::Trace(TypeTrace type, const char *module, const char *func, int numLin
 
 static void AddToConsole(const char *text)
 {
-    uint8 *buffer = static_cast<uint8 *>(std::malloc(std::strlen(text) + 3U));
+    uint8 *buffer = static_cast<uint8 *>(std::malloc(strlen(text) + 3U));
 
     if (buffer)
     {
         buffer[0] = Command::AddToConsole;
-        buffer[1] = static_cast<uint8>(std::strlen(text));
-        std::strcpy(reinterpret_cast<char *>(buffer + 1), text);
-        HAL_BUS::SendToDevice(buffer, std::strlen(text) + 2);
+        buffer[1] = static_cast<uint8>(strlen(text));
+        strcpy(reinterpret_cast<char *>(buffer + 1), text);
+        HAL_BUS::SendToDevice(buffer, strlen(text) + 2);
 
         std::free(buffer);
     }

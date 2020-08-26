@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "Hardware/CPU.h"
 #include "Utils/Debug.h"
+#include <stm32f4xx_hal.h>
 
 
 #ifdef __cplusplus

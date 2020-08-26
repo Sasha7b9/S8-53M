@@ -2,6 +2,7 @@
 #include "common/Command.h"
 #include "Hardware/Keyboard.h"
 #include "Hardware/HAL/HAL.h"
+#include <stm32f4xx_hal.h>
 
 
 #define SL0 GPIO_PIN_14

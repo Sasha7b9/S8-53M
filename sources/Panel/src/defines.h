@@ -6,10 +6,6 @@
 #endif
 
 
-#include <stm32f4xx.h>
-#include <stm32f4xx_hal.h>
-
-
 typedef const char *const   pString;
 typedef unsigned int        uint;
 typedef unsigned short int  uint16;

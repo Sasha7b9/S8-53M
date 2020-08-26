@@ -2,7 +2,7 @@
 #include "CPU.h"
 #include "Hardware/HAL/HAL.h"
 #include <stm32f4xx.h>
-
+#include <stm32f4xx_hal.h>
 
 
 void CPU::Init()

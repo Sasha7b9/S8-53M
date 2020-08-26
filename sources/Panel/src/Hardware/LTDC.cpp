@@ -4,6 +4,7 @@
 #include "Hardware/LTDC.h"
 #include "Hardware/HAL/HAL.h"
 #include "Settings/SettingsTypes.h"
+#include <stm32f4xx_hal.h>
 
 
 static LTDC_HandleTypeDef handleLTDC;

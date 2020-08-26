@@ -1,7 +1,7 @@
 #include "log.h"
 #include "Debug.h"
 #include "Hardware/Timer.h"
-
+#include <stm32f4xx_hal.h>
 
 
 uint  Debug::timeStart = 0;
