@@ -1,0 +1,17 @@
+#pragma once
+
+
+namespace std
+{
+#include "math.h"
+
+    template<class T>
+    class numeric_limits
+    {
+    public:
+        static float epsilon();
+        static float quiet_NaN();
+        static float infinity();
+    };
+
+}

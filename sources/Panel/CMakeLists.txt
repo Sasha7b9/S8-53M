@@ -36,8 +36,9 @@ file(GLOB HARDWARE_STM32 src/Hardware/stm32/*)
 file(GLOB SRC            src/*.h src/*.cpp)
 file(GLOB COMMON         ../common/Command.h ../common/Decoder_p.h ../common/Decoder_p.cpp ../common/Decoder_d.h)
 file(GLOB DISPLAY        src/Display/*.h src/Display/*.cpp)
-file(GLOB DISPLAY_FONT   ../common/Display/Font/AdvancedFont_p.h ../common/Display/Font/AdvancedFont_p.cpp
-                         ../common/Display/Font/Font_p.h ../common/Display/Font/Font_p.cpp)
+file(GLOB DISPLAY_FONT   ../common/Display/Font/AdvancedFont_p.h ../common/Display/Font/AdvancedFont_p.cpp ../common/Display/Font/Font_p.h ../common/Display/Font/Font_p.cpp)
+file(GLOB SETTINGS       src/Settings/*)
+file(GLOB UTILS          src/Utils/*)
 
 set_source_files_properties(${LIBS_HAL} PROPERTIES HEADER_FILE_ONLY TRUE)
 
@@ -53,6 +54,8 @@ source_group(src                     FILES ${SRC})
 source_group(common                  FILES ${COMMON})
 source_group(Display                 FILES ${DISPLAY})
 source_group(Display\\Font           FILES ${DISPLAY_FONT})
+source_group(Settings                FILES ${SETTINGS})
+source_group(Utils                   FILES ${UTILS})
 
 add_library(Panel ${VS_KEIL_ARMCLANG} ${VS_KEIL_CMSIS} ${LIBS_CMSIS} ${LIBS_HAL} ${HARDWARE} ${HARDWARE_CMSIS} ${HARDWARE_HAL} ${HARDWARE_STM32}
-                  ${SRC} ${COMMON} ${DISPLAY} ${DISPLAY_FONT})
+                  ${SRC} ${COMMON} ${DISPLAY} ${DISPLAY_FONT} ${SETTINGS} ${UTILS})
