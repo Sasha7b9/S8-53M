@@ -1,6 +1,4 @@
-/*
-*************** Описание внизу ****************************
-*/
+#include "defines.h"
 #include "main.h"
 #include "globals.h"
 #include "FDrive/FDrive.h"
@@ -11,6 +9,7 @@
 #include "Hardware/Timer.h"
 #include "Panel/Panel.h"
 #include "Hardware/FLASH.h"
+#include <stdlib.h>
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,10 +1,9 @@
 #include "Math.h"
 #include "Settings/Settings.h"
 #include "Hardware/Timer.h"
-
-
 #include <math.h>
-
+#include <stdlib.h>
+#include <string.h>
 
 
 float Math_GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, int yHorLine)

@@ -2,12 +2,11 @@
 #include "GlobalFunctions.h"
 #include "Settings/Settings.h"
 #include "Math.h"
-
 #include <math.h>
 #include <string.h>
 #include <ctype.h>
-
-
+#include <stdio.h>
+#include <stdlib.h>
 
 
 char* FloatFract2String(float value, bool alwaysSign, char bufferOut[20])

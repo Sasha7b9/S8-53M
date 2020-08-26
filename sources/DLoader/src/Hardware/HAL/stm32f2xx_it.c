@@ -1,4 +1,6 @@
 #include "defines.h"
+#include "Globals.h"
+#include <stm32f2xx_hal.h>
 
 #ifdef __cplusplus
 extern "C" {

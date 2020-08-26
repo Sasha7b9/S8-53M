@@ -3,8 +3,8 @@
 #include "Display/Text.h"
 #include "Utils/Math.h"
 #include <cstdarg>
-#include <stdio.h>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
 
 
 
@@ -13,7 +13,7 @@ int Painter::DrawFormatText(int x, int y, char *format, ...)
     char buffer[200];
     std::va_list args;
     va_start(args, format); //-V2528
-    vsprintf(buffer, format, args);
+    std::vsprintf(buffer, format, args);
     va_end(args);
     return Text::Draw(x, y, buffer);
 }

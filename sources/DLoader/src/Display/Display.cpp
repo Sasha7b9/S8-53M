@@ -1,11 +1,12 @@
-#include "Display.h"
-#include "Painter.h"
-#include "Hardware/Timer.h"
+#include "defines.h"
 #include "main.h"
+#include "Display/Display.h"
+#include "Display/Colors.h"
+#include "Display/Painter.h"
 #include "Utils/Math.h"
 #include "Settings/Settings.h"
 #include <math.h>
-
+#include <stm32f2xx_hal.h>
 
 
 typedef struct

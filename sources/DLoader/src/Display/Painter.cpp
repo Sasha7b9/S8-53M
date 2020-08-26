@@ -3,7 +3,7 @@
 #include "Hardware/FSMC.h"
 #include "Settings/Settings.h"
 #include "Utils/Math.h"
-
+#include <stm32f2xx_hal.h>
 
 
 static bool inverseColors = false;

@@ -9,7 +9,7 @@
 #include "FDrive.h"
 #include "main.h"
 #include <ctype.h>
-
+#include <string.h>
 
 
 typedef struct

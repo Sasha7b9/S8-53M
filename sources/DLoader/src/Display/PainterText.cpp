@@ -4,7 +4,7 @@
 #include "Painter.h"
 #include <string.h>
 #include <stdarg.h>
-
+#include <stdio.h>
 
 
 static TypeFont currentTypeFont = TypeFont_None;

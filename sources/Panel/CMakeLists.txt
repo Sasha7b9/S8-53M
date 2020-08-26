@@ -34,6 +34,8 @@ file(GLOB HARDWARE_CMSIS src/Hardware/CMSIS/*)
 file(GLOB HARDWARE_HAL   src/Hardware/HAL/*)
 file(GLOB HARDWARE_STM32 src/Hardware/stm32/*)
 file(GLOB SRC            src/*.h src/*.cpp)
+file(GLOB COMMON         ../common/Command.h ../common/Decoder_p.h ../common/Decoder_p.cpp ../common/Decoder_d.h)
+file(GLOB DISPLAY        src/Display/*.h src/Display/*.cpp)
 
 set_source_files_properties(${LIBS_HAL} PROPERTIES HEADER_FILE_ONLY TRUE)
 
@@ -46,5 +48,8 @@ source_group(Hardware\\CMSIS         FILES ${HARDWARE_CMSIS})
 source_group(Hardware\\HAL           FILES ${HARDWARE_HAL})
 source_group(Hardware\\stm32         FILES ${HARDWARE_STM32})
 source_group(src                     FILES ${SRC})
+source_group(common                  FILES ${COMMON})
+source_group(Display                 FILES ${DISPLAY})
 
-add_library(Panel ${VS_KEIL_ARMCLANG} ${VS_KEIL_CMSIS} ${LIBS_CMSIS} ${LIBS_HAL} ${HARDWARE} ${HARDWARE_CMSIS} ${HARDWARE_HAL} ${HARDWARE_STM32} ${SRC})
+add_library(Panel ${VS_KEIL_ARMCLANG} ${VS_KEIL_CMSIS} ${LIBS_CMSIS} ${LIBS_HAL} ${HARDWARE} ${HARDWARE_CMSIS} ${HARDWARE_HAL} ${HARDWARE_STM32}
+                  ${SRC} ${COMMON} ${DISPLAY})

@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "globals.h"
 #include "stm32f2xx_hal.h"
 #include "usbh_core.h"
 
