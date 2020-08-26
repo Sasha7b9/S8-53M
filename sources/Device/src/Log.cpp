@@ -17,7 +17,7 @@ void Log_Write(char *format, ...)
     char buffer[SIZE_BUFFER_LOG];
     std::va_list args;
     va_start(args, format);
-    vsprintf(buffer, format, args);
+    std::vsprintf(buffer, format, args);
     va_end(args);
     Display::AddStringToIndicating(buffer);
     if(loggerUSB)
@@ -32,17 +32,17 @@ void Log_Error(const char *module, const char *func, int numLine, char *format, 
     char buffer[SIZE_BUFFER_LOG];
     std::va_list args;
     va_start(args, format);
-    vsprintf(buffer, format, args);
+    std::vsprintf(buffer, format, args);
     va_end(args);
     char numBuffer[20];
-    sprintf(numBuffer, ":%d", numLine);
+    std::sprintf(numBuffer, ":%d", numLine);
     char message[SIZE_BUFFER_LOG];
     message[0] = 0;
-    strcat(message, "!!!ERROR!!! ");
-    strcat(message, module);
-    strcat(message, " ");
-    strcat(message, func);
-    strcat(message, numBuffer);
+    std::strcat(message, "!!!ERROR!!! ");
+    std::strcat(message, module);
+    std::strcat(message, " ");
+    std::strcat(message, func);
+    std::strcat(message, numBuffer);
     Display::AddStringToIndicating(message);
     Display::AddStringToIndicating(buffer);
     if(loggerUSB)

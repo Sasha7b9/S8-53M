@@ -1094,7 +1094,7 @@ char* Processing::GetStringMeasure(Measure measure, Channel chan, char buffer[20
     sprintf(buffer, chan == A ? "1: " : "2: ");
     if(dataSet == 0)
     {
-        strcat(buffer, "-.-");
+        std::strcat(buffer, "-.-");
     }
     else if((chan == A && dataSet->enableCh0 == 0) || (chan == B && dataSet->enableCh1 == 0))
     {
@@ -1105,7 +1105,7 @@ char* Processing::GetStringMeasure(Measure measure, Channel chan, char buffer[20
         pFuncCFBC func = measures[measure].FucnConvertate;
         float value = values[measure].value[chan];
         char *text = func(value, measures[measure].showSign, bufferForFunc);
-        strcat(buffer, text);
+        std::strcat(buffer, text);
     }
     else
     {
@@ -1126,8 +1126,8 @@ int Processing::GetMarkerVertical(Channel chan, int numMarker)
 
 void Processing::CountedToCurrentSettings()
 {
-    memset(dataOut0, 0, FPGA_MAX_POINTS);
-    memset(dataOut1, 0, FPGA_MAX_POINTS);
+    std::memset(dataOut0, 0, FPGA_MAX_POINTS);
+    std::memset(dataOut1, 0, FPGA_MAX_POINTS);
     
     int numPoints = (int)dataSet->length1channel * (dataSet->peakDet == PeackDet_Disable ? 1 : 2);
 

@@ -251,18 +251,18 @@ void Settings::Load(bool _default)
         uint16 rShiftAddA[RangeSize][2];
         uint16 rshiftAddB[RangeSize][2];
 
-        memcpy((void *)rShiftAddA, (void *)&RSHIFT_ADD(A, 0, 0), 2 * RangeSize * 2); // Сначала сохраняем несбрасываемые настройки
-        memcpy((void *)rshiftAddB, (void *)&RSHIFT_ADD(B, 0, 0), 2 * RangeSize * 2);
+        std::memcpy((void *)rShiftAddA, (void *)&RSHIFT_ADD(A, 0, 0), 2 * RangeSize * 2); // Сначала сохраняем несбрасываемые настройки
+        std::memcpy((void *)rshiftAddB, (void *)&RSHIFT_ADD(B, 0, 0), 2 * RangeSize * 2);
 
         int16  balanceADC0 = BALANCE_ADC_A;
         int16  balanceADC1 = BALANCE_ADC_B;
         int16  numAverageForRand = NUM_AVE_FOR_RAND;
         BalanceADCtype balanceType = BALANCE_ADC_TYPE;
 
-        memcpy((void*)&set, (void*)(&defaultSettings), sizeof(set));                // Потом заполняем значениями по умолчанию
+        std::memcpy((void*)&set, (void*)(&defaultSettings), sizeof(set));                // Потом заполняем значениями по умолчанию
 
-        memcpy((void *)&RSHIFT_ADD(A, 0, 0), (void *)rShiftAddA, 2 * RangeSize * 2);  // И восстанавливаем несбрасываемые настройки
-        memcpy((void *)&RSHIFT_ADD(B, 0, 0), (void *)rshiftAddB, 2 * RangeSize * 2);
+        std::memcpy((void *)&RSHIFT_ADD(A, 0, 0), (void *)rShiftAddA, 2 * RangeSize * 2);  // И восстанавливаем несбрасываемые настройки
+        std::memcpy((void *)&RSHIFT_ADD(B, 0, 0), (void *)rshiftAddB, 2 * RangeSize * 2);
 
         BALANCE_ADC_A = balanceADC0;
         BALANCE_ADC_B = balanceADC1;

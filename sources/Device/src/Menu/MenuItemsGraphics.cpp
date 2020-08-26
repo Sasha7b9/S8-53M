@@ -556,14 +556,14 @@ void ItemTime_DrawOpened(Time *time, int x, int y)
     };
 
     char strI[8][20];
-    strcpy(strI[iEXIT],     "Не сохранять");
-    strcpy(strI[iDAY],      Int2String(*time->day,      false, 2, buffer));
-    strcpy(strI[iMONTH],    Int2String(*time->month,    false, 2, buffer));
-    strcpy(strI[iYEAR],     Int2String(*time->year,     false, 2, buffer));
-    strcpy(strI[iHOURS],    Int2String(*time->hours,    false, 2, buffer));
-    strcpy(strI[iMIN],      Int2String(*time->minutes,  false, 2, buffer));
-    strcpy(strI[iSEC],      Int2String(*time->seconds,  false, 2, buffer));
-    strcpy(strI[iSET],      "Сохранить");
+    std::strcpy(strI[iEXIT], "Не сохранять");
+    std::strcpy(strI[iDAY], Int2String(*time->day, false, 2, buffer));
+    std::strcpy(strI[iMONTH], Int2String(*time->month, false, 2, buffer));
+    std::strcpy(strI[iYEAR], Int2String(*time->year, false, 2, buffer));
+    std::strcpy(strI[iHOURS], Int2String(*time->hours, false, 2, buffer));
+    std::strcpy(strI[iMIN], Int2String(*time->minutes, false, 2, buffer));
+    std::strcpy(strI[iSEC], Int2String(*time->seconds, false, 2, buffer));
+    std::strcpy(strI[iSET], "Сохранить");
 
     Painter::DrawTextC(x + 3, y + y0, "д м г - ", COLOR_FILL);
     Painter::DrawText(x + 3, y + y1, "ч м с - ");

@@ -51,11 +51,11 @@ void Storage::Clear(void)
 
 void Storage::ClearLimitsAndSums(void)
 {
-    memset(limitUp[0], 0, FPGA_MAX_POINTS);
-    memset(limitUp[1], 0, FPGA_MAX_POINTS);
-    memset(limitDown[0], 0xff, FPGA_MAX_POINTS);
-    memset(limitDown[1], 0xff, FPGA_MAX_POINTS);
-    memset(&(sum[0][0]), 0, 2 * FPGA_MAX_POINTS * 2);
+    std::memset(limitUp[0], 0, FPGA_MAX_POINTS);
+    std::memset(limitUp[1], 0, FPGA_MAX_POINTS);
+    std::memset(limitDown[0], 0xff, FPGA_MAX_POINTS);
+    std::memset(limitDown[1], 0xff, FPGA_MAX_POINTS);
+    std::memset(&(sum[0][0]), 0, 2 * FPGA_MAX_POINTS * 2);
 }
 
 
@@ -326,7 +326,7 @@ bool Storage::CopyData(DataSettings *ds, Channel chan, uint8 datatImportRel[2][F
         address += length;
     }
 
-    memcpy(pointer, address, length);
+    std::memcpy(pointer, address, length);
 
     return true;
 }
@@ -406,7 +406,7 @@ int Storage::NumberAvailableEntries(void)
 
 
 #define COPY_AND_INCREASE(address, data, length)    \
-    memcpy((address), (data), (length));            \
+    std::memcpy((address), (data), (length));       \
     address += (length);
 
 

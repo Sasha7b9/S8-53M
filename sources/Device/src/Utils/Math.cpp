@@ -506,7 +506,7 @@ void Math_CalculateMathFunction(float *data0andResult, float *data1, int numPoin
 float Math_RandFloat(float min, float max)
 {
     float delta = max - min;
-    return min + ((rand() / (float)RAND_MAX) * delta);
+    return min + ((std::rand() / (float)RAND_MAX) * delta);
 }
 
 int8 Math_AddInt8WithLimitation(int8 value, int8 delta, int8, int8 max)
@@ -692,7 +692,7 @@ void Math_CalculateFiltrArray(const uint8 *dataIn, uint8 *dataOut, int numPoints
 {
     if (numSmoothing < 2)
     {
-        memcpy(dataOut, dataIn, static_cast<size_t>(numPoints));
+        std::memcpy(dataOut, dataIn, static_cast<size_t>(numPoints));
     }
     else
     {

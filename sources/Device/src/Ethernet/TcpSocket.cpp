@@ -126,9 +126,9 @@ void SendAnswer(void *_arg, struct tcp_pcb *_tpcb)
         "<allow-access-from domain=\"*\" to-ports=\"9999\" />"                                                 \
         "</cross-domain-policy>"                                                                            \
         "\0";
-    struct pbuf *tcpBuffer = pbuf_alloc(PBUF_RAW, (uint16)strlen(policy), PBUF_POOL);
+    struct pbuf *tcpBuffer = pbuf_alloc(PBUF_RAW, (uint16)std::strlen(policy), PBUF_POOL);
     tcpBuffer->flags = 1;
-    pbuf_take(tcpBuffer, policy, (uint16)strlen(policy));
+    pbuf_take(tcpBuffer, policy, (uint16)std::strlen(policy));
     struct State *s = (struct State *)_arg;
     s->p = tcpBuffer;
     Send(_tpcb, s);
@@ -426,6 +426,6 @@ void TCPSocket_SendFormatString(char *format, ...)
     va_start(args, format);
     std::vsprintf(buffer, format, args);
     va_end(args);
-    strcat(buffer, "\r\n");
-    TCPSocket_Send(buffer, (uint)strlen(buffer));
+    std::strcat(buffer, "\r\n");
+    TCPSocket_Send(buffer, (uint)std::strlen(buffer));
 }

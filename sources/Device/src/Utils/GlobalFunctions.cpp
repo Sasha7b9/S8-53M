@@ -49,7 +49,7 @@ char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
 
     if(value == ERROR_VALUE_FLOAT)
     {
-        strcat(bufferOut, ERROR_STRING_VALUE);
+        std::strcat(bufferOut, ERROR_STRING_VALUE);
         return bufferOut;
     }
 
@@ -79,9 +79,9 @@ char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
         format[5] = '.';
     }
     
-    snprintf(pBuffer, 19, format, std::fabsf(value));
+    std::snprintf(pBuffer, 19, format, std::fabsf(value));
 
-    float val = static_cast<float>(atof(pBuffer));
+    float val = static_cast<float>(std::atof(pBuffer));
 
     if (NumDigitsInIntPart(val) != numDigitsInInt)
     {
@@ -91,13 +91,13 @@ char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
         {
             format[5] = '.';
         }
-        sprintf(pBuffer, format, value);
+        std::sprintf(pBuffer, format, value);
     }
 
     bool signExist = alwaysSign || value < 0;
-    while(static_cast<int>(strlen(bufferOut)) < numDigits + (signExist ? 2 : 1))
+    while(static_cast<int>(std::strlen(bufferOut)) < numDigits + (signExist ? 2 : 1))
     {
-        strcat(bufferOut, "0");
+        std::strcat(bufferOut, "0");
     }
 
     return bufferOut;
@@ -106,16 +106,16 @@ char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
 char* Int2String(int value, bool alwaysSign, int numMinFields, char buffer[20])
 {
     char format[20] = "%";
-    sprintf(&(format[1]), "0%d", numMinFields);
-    strcat(format, "d");
+    std::sprintf(&(format[1]), "0%d", numMinFields);
+    std::strcat(format, "d");
     if(alwaysSign && value >= 0)
     {
         buffer[0] = '+';
-        sprintf(buffer + 1, format, value);
+        std::sprintf(buffer + 1, format, value);
     }
     else
     {
-        sprintf(buffer, format, value);
+        std::sprintf(buffer, format, value);
     }
     return buffer;
 }
@@ -127,7 +127,7 @@ bool String2Int(char *str, int *value)
     {
         str++;
     }
-    int length = static_cast<int>(strlen(str));
+    int length = static_cast<int>(std::strlen(str));
     if (length == 0)
     {
         return false;
@@ -163,14 +163,14 @@ char*    Bin2String(uint8 value, char buffer[9])
 char*   Bin2String16(uint16 value, char valBuffer[19])
 {
     char buffer[9];
-    strcpy(valBuffer, Bin2String((uint8)(value >> 8), buffer));
-    strcpy((valBuffer[8] = ' ', valBuffer + 9), Bin2String((uint8)value, buffer));
+    std::strcpy(valBuffer, Bin2String((uint8)(value >> 8), buffer));
+    std::strcpy((valBuffer[8] = ' ', valBuffer + 9), Bin2String((uint8)value, buffer));
     return valBuffer;
 }
 
 char* Hex8toString(uint8 value, char buffer[3])
 {
-    sprintf(value < 16 ? (buffer[0] = '0', buffer + 1) :  (buffer), "%x", value);
+    std::sprintf(value < 16 ? (buffer[0] = '0', buffer + 1) :  (buffer), "%x", value);
     return buffer;
 }
 
@@ -180,7 +180,7 @@ char* Voltage2String(float voltage, bool alwaysSign, char buffer[20])
     char *suffix;
     if(voltage == ERROR_VALUE_FLOAT)
     {
-        strcat(buffer, ERROR_STRING_VALUE);
+        std::strcat(buffer, ERROR_STRING_VALUE);
         return buffer;
     }
     else if(std::fabsf(voltage) + 0.5e-4 < 1e-3)
@@ -206,8 +206,8 @@ char* Voltage2String(float voltage, bool alwaysSign, char buffer[20])
     char bufferOut[20];
 
     Float2String(voltage, alwaysSign, 4, bufferOut);
-    strcat(buffer, bufferOut);
-    strcat(buffer, suffix);
+    std::strcat(buffer, bufferOut);
+    std::strcat(buffer, suffix);
     return buffer;
 }
 
@@ -217,7 +217,7 @@ char* Time2String(float time, bool alwaysSign, char buffer[20])
     char *suffix = 0;
     if(time == ERROR_VALUE_FLOAT)
     {
-        strcat(buffer, ERROR_STRING_VALUE);
+        std::strcat(buffer, ERROR_STRING_VALUE);
         return buffer;
     }
     else if(std::fabsf(time) + 0.5e-10 < 1e-6)
@@ -241,15 +241,15 @@ char* Time2String(float time, bool alwaysSign, char buffer[20])
     }
 
     char bufferOut[20];
-    strcat(buffer, Float2String(time, alwaysSign, 4, bufferOut));
-    strcat(buffer, suffix);
+    std::strcat(buffer, Float2String(time, alwaysSign, 4, bufferOut));
+    std::strcat(buffer, suffix);
     return buffer;
 }
 
 char* Phase2String(float phase, bool, char bufferOut[20])
 {
     char buffer[20];
-    sprintf(bufferOut, "%s\xa8", Float2String(phase, false, 4, buffer));
+    std::sprintf(bufferOut, "%s\xa8", Float2String(phase, false, 4, buffer));
     return bufferOut;
 }
 
@@ -259,7 +259,7 @@ char *  Freq2String(float freq, bool, char bufferOut[20])
     char *suffix = 0;
     if(freq == ERROR_VALUE_FLOAT)
     {
-        strcat(bufferOut, ERROR_STRING_VALUE);
+        std::strcat(bufferOut, ERROR_STRING_VALUE);
         return bufferOut;
     }
     if(freq >= 1e6)
@@ -277,8 +277,8 @@ char *  Freq2String(float freq, bool, char bufferOut[20])
         suffix = set.common.lang == Russian ? "ร๖" : "Hz";
     }
     char buffer[20];
-    strcat(bufferOut, Float2String(freq, false, 4, buffer));
-    strcat(bufferOut, suffix);
+    std::strcat(bufferOut, Float2String(freq, false, 4, buffer));
+    std::strcat(bufferOut, suffix);
     return bufferOut;
 }
 
@@ -286,8 +286,8 @@ char* Float2Db(float value, int numDigits, char bufferOut[20])
 {
     bufferOut[0] = 0;
     char buffer[20];
-    strcat(bufferOut, Float2String(value, false, numDigits, buffer));
-    strcat(bufferOut, "ไม");
+    std::strcat(bufferOut, Float2String(value, false, numDigits, buffer));
+    std::strcat(bufferOut, "ไม");
     return bufferOut;
 }
 

@@ -257,9 +257,9 @@ extern void *extraMEM;      // Это специальный указатель. Используется для выдел
                             // но нужны болеее чем в одной функции. Перед использованием с помощью вызова malloc() выделяется необходимое количество
                             // памяти, которая затем освобождается вызвом free()
 
-#define MALLOC_EXTRAMEM(NameStruct, name)   extraMEM = malloc(sizeof(NameStruct));    \
+#define MALLOC_EXTRAMEM(NameStruct, name)   extraMEM = std::malloc(sizeof(NameStruct));    \
                                             NameStruct *name = (NameStruct*)extraMEM
 #define ACCESS_EXTRAMEM(NameStruct, name)   NameStruct *name = (NameStruct*)extraMEM
-#define FREE_EXTRAMEM()                     free(extraMEM)
+#define FREE_EXTRAMEM()                     std::free(extraMEM)
 
 extern int transmitBytes;

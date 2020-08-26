@@ -932,7 +932,7 @@ static void Draw_EnterSerialNumber(void)
     bool selNumber = s->curDigt == 0;
 
     char buffer[20];
-    snprintf(buffer, 19, "%02d", s->number);
+    std::snprintf(buffer, 19, "%02d", s->number);
 
     Color colorText = COLOR_FILL;
     Color colorBackground = COLOR_BACK;
@@ -957,7 +957,7 @@ static void Draw_EnterSerialNumber(void)
         colorBackground = COLOR_BACK;
     }
 
-    snprintf(buffer, 19, "%04d", s->year);
+    std::snprintf(buffer, 19, "%04d", s->year);
 
     Painter::SetColor(colorText);
     Painter::DrawTextOnBackground(x + 5, y, buffer, colorBackground);
@@ -1048,7 +1048,7 @@ static void OnPress_SerialNumber_Save(void)
 
     char stringSN[20];
 
-    snprintf(stringSN, 19, "%02d %04d", s->number, s->year);
+    std::snprintf(stringSN, 19, "%02d %04d", s->number, s->year);
 
     if (!OTP::SaveSerialNumber(stringSN))
     {

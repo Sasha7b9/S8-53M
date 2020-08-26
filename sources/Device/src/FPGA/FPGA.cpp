@@ -807,8 +807,8 @@ float FPGA::GetFreq(void)
 
 void FPGA::ClearData(void)
 {
-    memset(dataRel0, 0, FPGA_MAX_POINTS);
-    memset(dataRel1, 0, FPGA_MAX_POINTS);
+    std::memset(dataRel0, 0, FPGA_MAX_POINTS);
+    std::memset(dataRel1, 0, FPGA_MAX_POINTS);
 }
 
 

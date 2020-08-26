@@ -21,10 +21,10 @@
   #define   USBH_PROCESS_PRIO    osPriorityNormal
 #endif    
 
-#define USBH_malloc               malloc
-#define USBH_free                 free
-#define USBH_memset               memset
-#define USBH_memcpy               memcpy
+#define USBH_malloc        malloc
+#define USBH_free          free
+#define USBH_memset        memset
+#define USBH_memcpy        memcpy
     
 #if (USBH_DEBUG_LEVEL > 0)
 #define USBH_UsrLog(...)   printf(__VA_ARGS__);\

@@ -246,7 +246,7 @@ void Menu::PressButton(PanelButton button)
         }
         bufferForButtons[0] = button;
       
-        if (memcmp(bufferForButtons, sampleBufferForButtons, SIZE_BUFFER_FOR_BUTTONS) == 0)
+        if (std::memcmp(bufferForButtons, sampleBufferForButtons, SIZE_BUFFER_FOR_BUTTONS) == 0)
         {
             SHOW_DEBUG_MENU = 1;
             Display::ShowWarningGood(MenuDebugEnabled);
@@ -330,10 +330,10 @@ char* Menu::StringNavigation(char buffer[100])
         {
             if(titles[i])
             {
-                strcat(buffer, titles[i]);
+                std::strcat(buffer, titles[i]);
                 if(i != 0)
                 {
-                    strcat(buffer, " - ");
+                    std::strcat(buffer, " - ");
                 }
             }
         }

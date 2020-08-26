@@ -70,7 +70,7 @@ static void DrawHintItem(int x, int y, int width)
 
     const int SIZE = 100;
     char title[SIZE];
-    snprintf(title, SIZE, "%s \"%s\"", names[type][lang], TITLE(item));
+    std::snprintf(title, SIZE, "%s \"%s\"", names[type][lang], TITLE(item));
 
     if (item->type == Item_SmallButton)
     {

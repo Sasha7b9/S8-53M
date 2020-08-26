@@ -267,7 +267,7 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
             char buffer[100];
             buffer[0] = 0;
             sprintf(buffer, "%5.3f", percent);
-            strcat(buffer, "%");
+            std::strcat(buffer, "%");
             LOG_ERROR("Ошибок SPI - %s %d/%d, command = %d", buffer, errRecData, allRecData, (int)command);
         }
         return false;

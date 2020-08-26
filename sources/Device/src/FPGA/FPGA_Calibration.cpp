@@ -11,7 +11,7 @@
 #include "Utils/GlobalFunctions.h"
 #include "Hardware/Timer.h"
 #include "Log.h"
-#include <stdio.h>
+#include <cstdio>
 #include <limits>
 
 
@@ -294,7 +294,7 @@ void FuncAttScreen(void)
     }
     */
     char buffer[100];
-    sprintf(buffer, "%.1f", (gTimerMS - startTime) / 1000.0f);
+    std::sprintf(buffer, "%.1f", (gTimerMS - startTime) / 1000.0f);
     Painter::DrawTextC(0, 0, buffer, COLOR_BLACK);
 
     Painter::EndScene();
@@ -321,16 +321,16 @@ void DrawParametersChannel(Channel chan, int eX, int eY, bool inProgress)
         int y = eY + (inProgress ? 110 : 0);
         Painter::DrawText(x, y, "Отклонение от нуля:");
         char buffer[100] = {0};
-        sprintf(buffer, "АЦП1 = %.2f/%.2f, АЦП2 = %.2f/%.2f, d = %.2f/%.2f", avrADC1old[chan] - AVE_VALUE, avrADC1[chan] - AVE_VALUE, 
+        std::sprintf(buffer, "АЦП1 = %.2f/%.2f, АЦП2 = %.2f/%.2f, d = %.2f/%.2f", avrADC1old[chan] - AVE_VALUE, avrADC1[chan] - AVE_VALUE,
                                                                              avrADC2old[chan] - AVE_VALUE, avrADC2[chan] - AVE_VALUE,
                                                                              deltaADCold[chan], deltaADC[chan]);
         y += 10;
         Painter::DrawText(x, y, buffer);
         buffer[0] = 0;
-        sprintf(buffer, "Расхождение AЦП = %.2f/%.2f %%", deltaADCPercentsOld[chan], deltaADCPercents[chan]);
+        std::sprintf(buffer, "Расхождение AЦП = %.2f/%.2f %%", deltaADCPercentsOld[chan], deltaADCPercents[chan]);
         Painter::DrawText(x, y + 11, buffer);
         buffer[0] = 0;
-        sprintf(buffer, "Записано %d", SET_BALANCE_ADC(chan));
+        std::sprintf(buffer, "Записано %d", SET_BALANCE_ADC(chan));
         Painter::DrawText(x, y + 19, buffer);
     }
 }

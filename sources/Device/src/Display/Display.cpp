@@ -31,7 +31,7 @@
 #include <cmath>
 #include <limits>
 #include "Hardware/DisplayHardware.inc"
-
+#include <cstring>
 
 
 #define NUM_P2P_POINTS (FPGA_MAX_POINTS)
@@ -1320,9 +1320,9 @@ void Display::WriteValueTrigLevel()
             trigLev += rShiftAbs;
         }
         char buffer[20];
-        strcpy(buffer, LANG_RU ? "”р синхр = " : "Trig lvl = ");
+        std::strcpy(buffer, LANG_RU ? "”р синхр = " : "Trig lvl = ");
         char bufForVolt[20];
-        strcat(buffer, Voltage2String(trigLev, true, bufForVolt));
+        std::strcat(buffer, Voltage2String(trigLev, true, bufForVolt));
         int width = 96;
         int x = (Grid::Width() - width) / 2 + Grid::Left();
         int y = Grid::BottomMessages() - 20;
@@ -1960,13 +1960,13 @@ void Display::WriteTextVoltage(Channel chan, int x, int y)
 
         char buffer[100] = {0};
 
-        sprintf(buffer, "%s\xa5%s\xa5%s", (chan == A) ? (set.common.lang == Russian ? "1к" : "1c") : (set.common.lang == Russian ? "2к" : "2c"), couple[modeCouple], 
+        std::sprintf(buffer, "%s\xa5%s\xa5%s", (chan == A) ? (set.common.lang == Russian ? "1к" : "1c") : (set.common.lang == Russian ? "2к" : "2c"), couple[modeCouple],
             sChannel_Range2String(range, multiplier));
 
         Painter::DrawTextC(x + 1, y, buffer, colorDraw);
 
         char bufferTemp[20];
-        sprintf(buffer, "\xa5%s", sChannel_RShift2String((int16)rShift, range, multiplier, bufferTemp));
+        std::sprintf(buffer, "\xa5%s", sChannel_RShift2String((int16)rShift, range, multiplier, bufferTemp));
         Painter::DrawText(x + 46, y, buffer);
     }
 }
@@ -1979,11 +1979,11 @@ void Display::WriteStringAndNumber(char *text, int x, int y, int number)
     Painter::DrawTextC(x, y, text, COLOR_FILL);
     if(number == 0)
     {
-        sprintf(buffer, "-");
+        std::sprintf(buffer, "-");
     }
     else
     {
-        sprintf(buffer, "%d", number);
+        std::sprintf(buffer, "%d", number);
     }
     Painter::DrawTextRelativelyRight(x + 41, y, buffer);
 }
@@ -2021,19 +2021,19 @@ void Display::DrawLowPart()
         }
     }
 
-    sprintf(buffer, "р\xa5%s", Tables_GetTBaseString(tBase));
+    std::sprintf(buffer, "р\xa5%s", Tables_GetTBaseString(tBase));
     Painter::DrawText(x, y0, buffer);
 
     buffer[0] = 0;
     char bufForVal[20];
-    sprintf(buffer, "\xa5%s", FPGA::GetTShiftString(tShift, bufForVal));
+    std::sprintf(buffer, "\xa5%s", FPGA::GetTShiftString(tShift, bufForVal));
     Painter::DrawText(x + 35, y0, buffer);
 
     buffer[0] = 0;
     const char *source[3] = {"1", "2", "\x82"};
     if (MODE_WORK_IS_DIRECT)
     {
-        sprintf(buffer, "с\xa5\x10%s", source[TRIG_SOURCE]);
+        std::sprintf(buffer, "с\xa5\x10%s", source[TRIG_SOURCE]);
     }
 
     Painter::DrawTextC(x, y1, buffer, ColorTrig());
@@ -2060,7 +2060,7 @@ void Display::DrawLowPart()
     };
     if (MODE_WORK_IS_DIRECT)
     {
-        sprintf(buffer, "\xa5\x10%s\x10\xa5\x10%s\x10\xa5\x10", couple[TRIG_INPUT], polar[TRIG_POLARITY]);
+        std::sprintf(buffer, "\xa5\x10%s\x10\xa5\x10%s\x10\xa5\x10", couple[TRIG_INPUT], polar[TRIG_POLARITY]);
         Painter::DrawText(x + 18, y1, buffer);
         Painter::DrawChar(x + 45, y1, filtr[TRIG_INPUT][0]);
         Painter::DrawChar(x + 53, y1, filtr[TRIG_INPUT][1]);
@@ -2075,7 +2075,7 @@ void Display::DrawLowPart()
     };
     if (MODE_WORK_IS_DIRECT)
     {
-        sprintf(buffer, "\xa5\x10%c", mode[START_MODE]);
+        std::sprintf(buffer, "\xa5\x10%c", mode[START_MODE]);
         Painter::DrawText(x + 63, y1, buffer);
     }
     
@@ -2109,11 +2109,11 @@ void Display::DrawLowPart()
         float freq = FPGA::GetFreq();
         if (freq == -1.0f) //-V550
         {
-            strcat(mesFreq, "******");
+            std::strcat(mesFreq, "******");
         }
         else
         {
-            strcat(mesFreq, Freq2String(freq, false, buf));
+            std::strcat(mesFreq, Freq2String(freq, false, buf));
         }
         Painter::DrawText(x + 3, GRID_BOTTOM + 2, mesFreq);
     }
@@ -2179,7 +2179,7 @@ void Display::DrawTimeForFrame(uint timeTicks)
     
     if((gTimerMS - timeMSstartCalculation) >= 500)
     {
-        sprintf(buffer, "%.1fms/%d", numMS / numFrames, numFrames * 2);
+        std::sprintf(buffer, "%.1fms/%d", numMS / numFrames, numFrames * 2);
         timeMSstartCalculation = gTimerMS;
         numMS = 0.0f;
         numFrames = 0;
@@ -2190,11 +2190,11 @@ void Display::DrawTimeForFrame(uint timeTicks)
     Painter::DrawTextC(Grid::Left() + 2, Grid::FullBottom() - 9, buffer, COLOR_FILL);
 
     char message[20] = {0};
-    sprintf(message, "%d", Storage::NumElementsWithSameSettings());
-    strcat(message, "/");
+    std::sprintf(message, "%d", Storage::NumElementsWithSameSettings());
+    std::strcat(message, "/");
     char numAvail[10] = {0};
-    sprintf(numAvail, "%d", Storage::NumberAvailableEntries());
-    strcat(message, numAvail);
+    std::sprintf(numAvail, "%d", Storage::NumberAvailableEntries());
+    std::strcat(message, numAvail);
     Painter::DrawText(Grid::Left() + 50, Grid::FullBottom() - 9, message);
 }
 
@@ -2230,8 +2230,8 @@ void Display::ResetP2Ppoints(bool empty)
 {
     dataP2PIsEmpty = empty;
     lastP2Pdata = 0;
-    memset(dataP2P_0, AVE_VALUE, NUM_P2P_POINTS);
-    memset(dataP2P_1, AVE_VALUE, NUM_P2P_POINTS);
+    std::memset(dataP2P_0, AVE_VALUE, NUM_P2P_POINTS);
+    std::memset(dataP2P_1, AVE_VALUE, NUM_P2P_POINTS);
 }
 
 
@@ -2242,8 +2242,8 @@ void Display::AddPoints(uint8 data00, uint8 data01, uint8 data10, uint8 data11)
     {
         if (lastP2Pdata == NUM_P2P_POINTS)
         {
-            memcpy(dataP2P_0, dataP2P_0 + 2, NUM_P2P_POINTS - 2);
-            memcpy(dataP2P_1, dataP2P_1 + 2, NUM_P2P_POINTS - 2);
+            std::memcpy(dataP2P_0, dataP2P_0 + 2, NUM_P2P_POINTS - 2);
+            std::memcpy(dataP2P_1, dataP2P_1 + 2, NUM_P2P_POINTS - 2);
         }
     }
 
@@ -2330,7 +2330,7 @@ int Display::CalculateFreeSize()
     {
         return SIZE_BUFFER_FOR_STRINGS;
     }
-    return static_cast<int>(SIZE_BUFFER_FOR_STRINGS - (strings[firstEmptyString - 1] - bufferForStrings) - strlen(strings[firstEmptyString - 1]) - 1);
+    return static_cast<int>(SIZE_BUFFER_FOR_STRINGS - (strings[firstEmptyString - 1] - bufferForStrings) - std::strlen(strings[firstEmptyString - 1]) - 1);
 }
 
 
@@ -2340,7 +2340,7 @@ void Display::DeleteFirstString()
     {
         return;
     }
-    int delta = static_cast<int>(strlen(strings[0])) + 1;
+    int delta = static_cast<int>(std::strlen(strings[0])) + 1;
     int numStrings = FirstEmptyString();
     for(int i = 1; i < numStrings; i++)
     {
@@ -2366,9 +2366,9 @@ void Display::AddString(const char *string)
     }
     static int num = 0;
     char buffer[100];
-    sprintf(buffer, "%d\x11", num++);
-    strcat(buffer, string);
-    int size = static_cast<int>(strlen(buffer)) + 1;
+    std::sprintf(buffer, "%d\x11", num++);
+    std::strcat(buffer, string);
+    int size = static_cast<int>(std::strlen(buffer)) + 1;
     while(CalculateFreeSize() < size)
     {
         DeleteFirstString();
@@ -2376,14 +2376,14 @@ void Display::AddString(const char *string)
     if(!strings[0])
     {
         strings[0] = bufferForStrings;
-        strcpy(strings[0], buffer);
+        std::strcpy(strings[0], buffer);
     }
     else
     {
         char *addressLastString = strings[FirstEmptyString() - 1];
-        char *address = addressLastString + strlen(addressLastString) + 1;
+        char *address = addressLastString + std::strlen(addressLastString) + 1;
         strings[FirstEmptyString()] = address;
-        strcpy(address, buffer);
+        std::strcpy(address, buffer);
     }
 }
 
