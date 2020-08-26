@@ -47,7 +47,7 @@
 #include "stm32f4xx_hal.h"
 #include "usbh_core.h"
 
-HCD_HandleTypeDef hhcd;
+static HCD_HandleTypeDef handleHCD;
 
 #define HOST_POWERSW_CLK_ENABLE()          __HAL_RCC_GPIOC_CLK_ENABLE()
 #define HOST_POWERSW_PORT                  GPIOC
@@ -179,7 +179,7 @@ void HAL_HCD_PortDisabled_Callback(HCD_HandleTypeDef *hhcd)
   * @param  urb_state:
   * @retval None
   */
-void HAL_HCD_HC_NotifyURBChange_Callback(HCD_HandleTypeDef *hhcd, uint8_t chnum, HCD_URBStateTypeDef urb_state)
+void HAL_HCD_HC_NotifyURBChange_Callback(HCD_HandleTypeDef *, uint8_t, HCD_URBStateTypeDef)
 {
   /* To be used with OS to sync URB state with the global state machine */
 }
@@ -196,20 +196,20 @@ void HAL_HCD_HC_NotifyURBChange_Callback(HCD_HandleTypeDef *hhcd, uint8_t chnum,
 USBH_StatusTypeDef USBH_LL_Init(USBH_HandleTypeDef *phost)
 {
   /* Set the LL driver parameters */
-  hhcd.Instance = USB_OTG_FS;
-  hhcd.Init.Host_channels = 11; 
-  hhcd.Init.dma_enable = 0;
-  hhcd.Init.low_power_enable = 0;
-  hhcd.Init.phy_itface = HCD_PHY_EMBEDDED; 
-  hhcd.Init.Sof_enable = 0;
-  hhcd.Init.speed = HCD_SPEED_FULL;
+  handleHCD.Instance = USB_OTG_FS;
+  handleHCD.Init.Host_channels = 11; 
+  handleHCD.Init.dma_enable = 0;
+  handleHCD.Init.low_power_enable = 0;
+  handleHCD.Init.phy_itface = HCD_PHY_EMBEDDED; 
+  handleHCD.Init.Sof_enable = 0;
+  handleHCD.Init.speed = HCD_SPEED_FULL;
   /* Link the driver to the stack */
-  hhcd.pData = phost;
-  phost->pData = &hhcd;
+  handleHCD.pData = phost;
+  phost->pData = &handleHCD;
   /*Initialize the LL Driver */
-  HAL_HCD_Init(&hhcd);
+  HAL_HCD_Init(&handleHCD);
  
-  USBH_LL_SetTimer(phost, HAL_HCD_GetCurrentFrame(&hhcd));
+  USBH_LL_SetTimer(phost, HAL_HCD_GetCurrentFrame(&handleHCD));
   
   return USBH_OK;
 }
@@ -415,7 +415,7 @@ USBH_URBStateTypeDef USBH_LL_GetURBState(USBH_HandleTypeDef *phost, uint8_t pipe
   *           1: VBUS Inactive
   * @retval USBH Status
   */
-USBH_StatusTypeDef USBH_LL_DriverVBUS(USBH_HandleTypeDef *phost, uint8_t state)
+USBH_StatusTypeDef USBH_LL_DriverVBUS(USBH_HandleTypeDef *, uint8_t state)
 {
   if(state == 0)
   {
@@ -437,15 +437,15 @@ USBH_StatusTypeDef USBH_LL_DriverVBUS(USBH_HandleTypeDef *phost, uint8_t state)
   * @param  toggle: toggle (0/1)
   * @retval USBH Status
   */
-USBH_StatusTypeDef USBH_LL_SetToggle(USBH_HandleTypeDef *phost, uint8_t pipe, uint8_t toggle)   
+USBH_StatusTypeDef USBH_LL_SetToggle(USBH_HandleTypeDef *, uint8_t pipe, uint8_t toggle)   
 {
-  if(hhcd.hc[pipe].ep_is_in)
+  if(handleHCD.hc[pipe].ep_is_in)
   {
-    hhcd.hc[pipe].toggle_in = toggle;
+    handleHCD.hc[pipe].toggle_in = toggle;
   }
   else
   {
-    hhcd.hc[pipe].toggle_out = toggle;
+    handleHCD.hc[pipe].toggle_out = toggle;
   }
   return USBH_OK; 
 }
@@ -456,17 +456,17 @@ USBH_StatusTypeDef USBH_LL_SetToggle(USBH_HandleTypeDef *phost, uint8_t pipe, ui
   * @param  pipe: Pipe index
   * @retval toggle (0/1)
   */
-uint8_t USBH_LL_GetToggle(USBH_HandleTypeDef *phost, uint8_t pipe)   
+uint8_t USBH_LL_GetToggle(USBH_HandleTypeDef *, uint8_t pipe)   
 {
   uint8_t toggle = 0;
   
-  if(hhcd.hc[pipe].ep_is_in)
+  if(handleHCD.hc[pipe].ep_is_in)
   {
-    toggle = hhcd.hc[pipe].toggle_in;
+    toggle = handleHCD.hc[pipe].toggle_in;
   }
   else
   {
-    toggle = hhcd.hc[pipe].toggle_out;
+    toggle = handleHCD.hc[pipe].toggle_out;
   }
   return toggle; 
 }

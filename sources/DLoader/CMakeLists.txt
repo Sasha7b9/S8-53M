@@ -7,18 +7,18 @@ include_directories(src
                     ../common/vs_keil/ARMCLANG
                     ../common/vs_keil/CMSIS
                     ../common/vs_keil/FatFS
-                    ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc
-                    ../common/STM32Cube_F2/Drivers/CMSIS/Device/ST/STM32F2xx/Include
-                    ../common/STM32Cube_F2/Drivers/CMSIS/Include
-                    ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Device_Library/Core/Inc
-                    ../common/STM32Cube_F2/Middlewares/Third_Party/FatFS/src
-                    ../common/STM32Cube_F2/Middlewares/Third_Party/FatFS/src/drivers
-                    ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Host_Library/Core/Inc
-                    ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc
-                    ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc
+                    ../common/STM32Cube_F4/Drivers/STM32F4xx_HAL_Driver/Inc
+                    ../common/STM32Cube_F4/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+                    ../common/STM32Cube_F4/Drivers/CMSIS/Include
+                    ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc
+                    ../common/STM32Cube_F4/Middlewares/Third_Party/FatFS/src
+                    ../common/STM32Cube_F4/Middlewares/Third_Party/FatFS/src/drivers
+                    ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Core/Inc
+                    ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc
+                    ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc
                     )
 
-add_definitions(-DSTM32F207xx)
+add_definitions(-DSTM32F429xx)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -MP -Wall")
 
@@ -31,37 +31,38 @@ add_compile_options(/wd5027)    # 'derived class' : move assignment operator was
 add_compile_options(/wd5039)    # 'function': pointer or reference to potentially throwing function passed to 'extern "C"' function under -EHc. Undefined behavior may occur if this function throws an exception
 add_compile_options(/wd5045)    # Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
 add_compile_options(/wd5219)    # implicit conversion from 'type1' to 'type2', possible loss of data
+add_compile_options(/wd5220)    # 
 
 file(GLOB VS_KEIL_ARMCLANG ../common/vs_keil/ARMCLANG/*)
-file(GLOB VS_KEIL_CMSIS    ../common/vs_keil/CMSIS/core_cm3.h)
+file(GLOB VS_KEIL_CMSIS    ../common/vs_keil/CMSIS/core_cm4.h)
 file(GLOB VS_KEIL_FATFS    ../common/vs_keil/FatFS/*)
 
-file(GLOB LIBS_FATFS     ../common/STM32Cube_F2/Middlewares/Third_Party/FatFS/src/ff_gen_drv.*
-                         ../common/STM32Cube_F2/Middlewares/Third_Party/FatFS/src/ff.*
-                         ../common/STM32Cube_F2/Middlewares/Third_Party/FatFS/src/diskio.*
-                         ../common/STM32Cube_F2/Middlewares/Third_Party/FatFS/src/option/ccsbcs.*
-                         ../common/STM32Cube_F2/Middlewares/Third_Party/FatFS/src/option/syscall.*)
+file(GLOB LIBS_FATFS     ../common/STM32Cube_F4/Middlewares/Third_Party/FatFS/src/ff_gen_drv.*
+                         ../common/STM32Cube_F4/Middlewares/Third_Party/FatFS/src/ff.*
+                         ../common/STM32Cube_F4/Middlewares/Third_Party/FatFS/src/diskio.*
+                         ../common/STM32Cube_F4/Middlewares/Third_Party/FatFS/src/option/ccsbcs.*
+                         ../common/STM32Cube_F4/Middlewares/Third_Party/FatFS/src/option/syscall.*)
 
-file(GLOB LIBS_CMSIS     ../common/STM32Cube_F2/Drivers/CMSIS/Device/ST/STM32F2xx/Include/*
-                         ../common/STM32Cube_F2/Drivers/CMSIS/Include/*)
+file(GLOB LIBS_CMSIS     ../common/STM32Cube_F4/Drivers/CMSIS/Device/ST/STM32F2xx/Include/*
+                         ../common/STM32Cube_F4/Drivers/CMSIS/Include/*)
 
-file(GLOB LIBS_HAL       ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/*.h
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/*.c)
+file(GLOB LIBS_HAL       ../common/STM32Cube_F2/Drivers/STM32F4xx_HAL_Driver/Inc/*.h
+                         ../common/STM32Cube_F2/Drivers/STM32F4xx_HAL_Driver/Src/*.c)
 
-file(GLOB LIBS_USBH      ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Host_Library/Core/Inc/usbh_core.*
-                         ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Host_Library/Core/Inc/usbh_ctlreq.*
-                         ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Host_Library/Core/Inc/usbh_ioreq.*
-                         ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Host_Library/Core/Inc/usbh_pipes.*
-                         ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.*
-                         ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.*
-                         ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ioreq.*
-                         ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_pipes.*
-                         ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc/usbh_msc.*
-                         ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc/usbh_msc_bot.*
-                         ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc/usbh_msc_scsi.*
-                         ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc.*
-                         ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_bot.*
-                         ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_scsi.*)
+file(GLOB LIBS_USBH      ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Core/Inc/usbh_core.*
+                         ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Core/Inc/usbh_ctlreq.*
+                         ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Core/Inc/usbh_ioreq.*
+                         ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Core/Inc/usbh_pipes.*
+                         ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.*
+                         ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.*
+                         ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ioreq.*
+                         ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_pipes.*
+                         ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc/usbh_msc.*
+                         ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc/usbh_msc_bot.*
+                         ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc/usbh_msc_scsi.*
+                         ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc.*
+                         ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_bot.*
+                         ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_scsi.*)
                          
 file(GLOB HARDWARE       src/Hardware/*.h src/Hardware/*.cpp)
 file(GLOB HARDWARE_CMSIS src/Hardware/CMSIS/*)
