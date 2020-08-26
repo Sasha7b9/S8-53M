@@ -1,4 +1,5 @@
 *.bin
+*.out
 
 sources/DLoader/Objects/*
 sources/DLoader/Listings/*
