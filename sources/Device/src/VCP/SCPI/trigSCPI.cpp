@@ -169,7 +169,7 @@ void SCPI::TRIGGER::OFFSET(uint8 *buffer)
     ENTER_ANALYSIS
         if (value == 0)
         {
-            int retValue = 0.5f * (TRIG_LEVEL_SOURCE - RShiftZero);
+            int retValue = static_cast<int>(0.5F * (TRIG_LEVEL_SOURCE - RShiftZero));
             SCPI_SEND(":TRIGGER:OFFSET %d", retValue);
         }
     LEAVE_ANALYSIS

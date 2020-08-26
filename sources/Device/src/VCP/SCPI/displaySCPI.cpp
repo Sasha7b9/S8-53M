@@ -138,7 +138,7 @@ void SCPI::DISPLAY::ACCUM_MODE(uint8 *buffer)
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void SCPI::DISPLAY::ACCUM_CLEAR(uint8 *buffer)
+void SCPI::DISPLAY::ACCUM_CLEAR(uint8 *)
 {
     OnPress_Accumulation_Clear();
 }

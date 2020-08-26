@@ -154,6 +154,8 @@ file(GLOB MENU_PAGES     src/Menu/Pages/*)
 file(GLOB PANEL          src/Panel/*)
 file(GLOB SETTINGS       src/Settings/*)
 file(GLOB UTILS          src/Utils/*)
+file(GLOB VCP            src/VCP/*.h src/VCP/*.cpp)
+file(GLOB VCP_SCPI       src/VCP/SCPI/*)
 
 set_source_files_properties(src/Panel/PanelFunctions.cpp PROPERTIES HEADER_FILE_ONLY TRUE)
 set_source_files_properties(src/Menu/Pages/PageHelp.cpp PROPERTIES HEADER_FILE_ONLY TRUE)
@@ -184,8 +186,10 @@ source_group(Menu\\Pages             FILES ${MENU_PAGES})
 source_group(Panel                   FILES ${PANEL})
 source_group(Settings                FILES ${SETTINGS})
 source_group(Utils                   FILES ${UTILS})
+source_group(VCP                     FILES ${VCP})
+source_group(VCP\\SCPI               FILES ${VCP_SCPI})
 
 add_library(Device ${VS_KEIL_CMSIS} ${VS_KEIL_ARMCLANG} ${VS_KEIL_FATFS} ${LIBS_CMSIS}
                    ${LIBS_FATFS} ${LIBS_HAL} ${LIBS_LWIP} ${LIBS_USBH} ${HARDWARE} ${HARDWARE_CMSIS} ${HARDWARE_FATFS} ${HARDWARE_HAL} ${HARDWARE_LWIP}
                    ${HARDWARE_USBD} ${HARDWARE_USBH} ${SRC} ${DISPLAY} ${DISPLAY_FONT} ${ETHERNET} ${FDRIVE} ${FPGA} ${MENU} ${MENU_PAGES}
-                   ${PANEL} ${SETTINGS} ${UTILS})
+                   ${PANEL} ${SETTINGS} ${UTILS} ${VCP} ${VCP_SCPI})

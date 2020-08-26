@@ -48,7 +48,7 @@ void SCPI::AddNewData(uint8 *data, uint length)
     free(temp);
     */
 
-    memcpy(&bufData[pointer], data, (int)length);
+    memcpy(&bufData[pointer], data, length);
     pointer += length;
 
 label_another:
@@ -173,8 +173,8 @@ bool SCPI::FirstIsInt(uint8 *buffer, int *value, int min, int max)
     Word param;
     if (GetWord(buffer, &param, 0))
     {
-        char *n = (char *)malloc(param.numSymbols + 1);
-        memcpy(n, param.address, param.numSymbols);
+        char *n = (char *)malloc(static_cast<size_t>(param.numSymbols + 1));
+        memcpy(n, param.address, static_cast<size_t>(param.numSymbols));
         n[param.numSymbols] = '\0';
         bool res = String2Int(n, value) && *value >= min && *value <= max;
         free(n);
