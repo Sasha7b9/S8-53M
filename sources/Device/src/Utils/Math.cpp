@@ -158,7 +158,7 @@ void Math_PointsRelToVoltage(const uint8 *points, int numPoints, Range range, in
     int voltInPixel = voltsInPixelInt[range];
     float maxVoltsOnScreen = MAX_VOLTAGE_ON_SCREEN(range);
     float rShiftAbs = RSHIFT_2_ABS(rShift, range);
-    int diff = static_cast<int>((MIN_VALUE * voltInPixel) + (maxVoltsOnScreen + rShiftAbs) * 20e3);
+    int diff = static_cast<int>((MIN_VALUE * voltInPixel) + (maxVoltsOnScreen + rShiftAbs) * 20e3F);
     float koeff = 1.0f / 20e3f;
     for (int i = 0; i < numPoints; i++)
     {

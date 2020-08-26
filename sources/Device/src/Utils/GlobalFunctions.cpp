@@ -183,17 +183,17 @@ char* Voltage2String(float voltage, bool alwaysSign, char buffer[20])
         std::strcat(buffer, ERROR_STRING_VALUE);
         return buffer;
     }
-    else if(std::fabsf(voltage) + 0.5e-4 < 1e-3)
+    else if(std::fabsf(voltage) + 0.5e-4F < 1e-3F)
     {
         suffix = set.common.lang == Russian ? "\x10ìêÂ" : "\x10uV";
-        voltage *= 1e6;
+        voltage *= 1e6F;
     }
-    else if(std::fabsf(voltage) + 0.5e-4 < 1)
+    else if(std::fabsf(voltage) + 0.5e-4F < 1.0F)
     {
         suffix = set.common.lang == Russian ? "\x10ìÂ" : "\x10mV" ;
-        voltage *= 1e3;
+        voltage *= 1e3F;
     }
-    else if(std::fabsf(voltage) + 0.5e-4 < 1000)
+    else if(std::fabsf(voltage) + 0.5e-4F < 1000.0F)
     {
         suffix = set.common.lang == Russian ? "\x10Â" : "\x10V";
     }
@@ -220,20 +220,20 @@ char* Time2String(float time, bool alwaysSign, char buffer[20])
         std::strcat(buffer, ERROR_STRING_VALUE);
         return buffer;
     }
-    else if(std::fabsf(time) + 0.5e-10 < 1e-6)
+    else if(std::fabsf(time) + 0.5e-10F < 1e-6F)
     {
         suffix = set.common.lang == Russian ? "íñ" : "ns";
-        time *= 1e9;
+        time *= 1e9F;
     }
-    else if(std::fabsf(time) + 0.5e-7 < 1e-3)
+    else if(std::fabsf(time) + 0.5e-7F < 1e-3F)
     {
         suffix = set.common.lang == Russian ? "ìêñ" : "us";
-        time *= 1e6;
+        time *= 1e6F;
     }
-    else if(std::fabsf(time) + 0.5e-3 < 1)
+    else if(std::fabsf(time) + 0.5e-3F < 1.0F)
     {
         suffix = set.common.lang == Russian ? "ìñ" : "ms";
-        time *= 1e3;
+        time *= 1e3F;
     }
     else
     {
@@ -262,15 +262,15 @@ char *  Freq2String(float freq, bool, char bufferOut[20])
         std::strcat(bufferOut, ERROR_STRING_VALUE);
         return bufferOut;
     }
-    if(freq >= 1e6)
+    if(freq >= 1e6F)
     {
         suffix = set.common.lang == Russian ? "ÌÃö" : "MHz";
-        freq /= 1e6;
+        freq /= 1e6F;
     }
-    else if (freq >= 1e3)
+    else if (freq >= 1e3F)
     {
         suffix = set.common.lang == Russian ? "êÃö" : "kHz";
-        freq /= 1e3;
+        freq /= 1e3F;
     }
     else
     {

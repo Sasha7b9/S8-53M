@@ -188,7 +188,7 @@ void TIM7_Config(uint16 prescaler, uint16 period)
 
 uint16 CalculatePeriodForTIM(void)
 {
-    return static_cast<uint16>(120e6 / frequency / POINTS_IN_PERIOD);
+    return static_cast<uint16>(120e6F / frequency / POINTS_IN_PERIOD);
 }
 
 

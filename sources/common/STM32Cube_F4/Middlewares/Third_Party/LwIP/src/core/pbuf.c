@@ -598,6 +598,7 @@ pbuf_remove_header(struct pbuf *p, size_t header_size_decrement)
 
   /* remember current payload pointer */
   payload = p->payload;
+  payload = payload;
   LWIP_UNUSED_ARG(payload); /* only used in LWIP_DEBUGF below */
 
   /* increase payload pointer (guarded by length check above) */
