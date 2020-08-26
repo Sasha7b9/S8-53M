@@ -6,7 +6,7 @@
   <Header>### uVision Project, (C) Keil Software</Header>
 
   <PrjGuiSettings>
-    <LastAddFilePath>C:\My\work\S8-53M\sources\DLoader\src\Hardware\HAL</LastAddFilePath>
+    <LastAddFilePath>D:\Projects\stm32\S8-53M\sources\DLoader\src\FDrive</LastAddFilePath>
   </PrjGuiSettings>
 
   <ViewPool/>
@@ -40,7 +40,7 @@
       <WinId>1506</WinId>
       <ViewName>Symbols</ViewName>
       <UserString></UserString>
-      <TableColWidths>106 106 106</TableColWidths>
+      <TableColWidths>70 70 70</TableColWidths>
     </View>
     <View>
       <WinId>1936</WinId>
@@ -101,10 +101,10 @@
         <yPos>-1</yPos>
       </MaxPosition>
       <NormalPosition>
-        <Top>31</Top>
-        <Left>-88</Left>
-        <Right>758</Right>
-        <Bottom>1414</Bottom>
+        <Top>62</Top>
+        <Left>-29</Left>
+        <Right>873</Right>
+        <Bottom>997</Bottom>
       </NormalPosition>
     </WindowPosition>
     <MDIClientArea>

@@ -324,7 +324,7 @@
             <wLevel>2</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>1</uSurpInc>
-            <uC99>1</uC99>
+            <uC99>0</uC99>
             <uGnu>0</uGnu>
             <useXO>0</useXO>
             <v6Lang>1</v6Lang>
@@ -930,17 +930,17 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>FlashDrive</GroupName>
+          <GroupName>FDrive</GroupName>
           <Files>
             <File>
-              <FileName>FlashDrive.cpp</FileName>
+              <FileName>FDrive.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\FlashDrive\FlashDrive.cpp</FilePath>
+              <FilePath>.\src\FDrive\FDrive.cpp</FilePath>
             </File>
             <File>
-              <FileName>FlashDrive.h</FileName>
+              <FileName>FDrive.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\FlashDrive\FlashDrive.h</FilePath>
+              <FilePath>.\src\FDrive\FDrive.h</FilePath>
             </File>
           </Files>
         </Group>

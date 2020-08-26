@@ -6,7 +6,7 @@
 #include <usbh_core.h>
 #include <usbh_msc.h>
 #include "ffconf.h"
-#include "FlashDrive.h"
+#include "FDrive.h"
 #include "main.h"
 #include <ctype.h>
 
