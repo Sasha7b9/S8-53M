@@ -1,11 +1,13 @@
 *.bin
 *.out
 
+sources/generated/*
+
 sources/DLoader/Objects/*
 sources/DLoader/Listings/*
 sources/DLoader/DebugConfig/*
 sources/Device/Objects/*
 sources/Device/Listings/*
 sources/Device/DebugConfig/*
-
-sources/generated/*
+sources/Panel/Objects/*
+sources/Panel/Listings/*
