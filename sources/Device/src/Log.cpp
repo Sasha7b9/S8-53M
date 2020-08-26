@@ -2,8 +2,8 @@
 #include "Display/Display.h"
 #include "Settings/Settings.h"
 #include "VCP/VCP.h"
-#include <stdarg.h>
-
+#include <cstdarg>
+#include <cstdio>
 
 
 static bool loggerUSB = false;
@@ -15,7 +15,7 @@ static bool loggerUSB = false;
 void Log_Write(char *format, ...)
 {
     char buffer[SIZE_BUFFER_LOG];
-    va_list args;
+    std::va_list args;
     va_start(args, format);
     vsprintf(buffer, format, args);
     va_end(args);
@@ -30,7 +30,7 @@ void Log_Write(char *format, ...)
 void Log_Error(const char *module, const char *func, int numLine, char *format, ...)
 {
     char buffer[SIZE_BUFFER_LOG];
-    va_list args;
+    std::va_list args;
     va_start(args, format);
     vsprintf(buffer, format, args);
     va_end(args);

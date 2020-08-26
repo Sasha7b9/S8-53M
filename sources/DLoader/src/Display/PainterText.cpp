@@ -2,9 +2,9 @@
 #include "DisplayTypes.h"
 #include "font/Font.h"
 #include "Painter.h"
-#include <string.h>
-#include <stdarg.h>
-#include <stdio.h>
+#include <cstring>
+#include <cstdarg>
+#include <cstdio>
 
 
 static TypeFont currentTypeFont = TypeFont_None;
@@ -342,8 +342,8 @@ static bool FindNextTransfer(char *letters, int8 *lettersInSyllable)
 #define VOWEL       0   // Гласная
 #define CONSONANT   1   // Согласная
 
-    * lettersInSyllable = (int8)strlen(letters);
-    if (strlen(letters) <= 3)
+    * lettersInSyllable = (int8)std::strlen(letters);
+    if (std::strlen(letters) <= 3)
     {
         return false;
     }
@@ -359,7 +359,7 @@ static bool FindNextTransfer(char *letters, int8 *lettersInSyllable)
 
     bool consonant[20];
 
-    int size = static_cast<int>(strlen(letters));
+    int size = static_cast<int>(std::strlen(letters));
     for (int i = 0; i < size; i++)
     {
         consonant[i] = IsConsonant(letters[i]);
@@ -375,7 +375,7 @@ static bool FindNextTransfer(char *letters, int8 *lettersInSyllable)
         *lettersInSyllable = 2;
         return true;
     }
-    if (strlen(letters) < 5)
+    if (std::strlen(letters) < 5)
     {
         return false;
     }
@@ -384,7 +384,7 @@ static bool FindNextTransfer(char *letters, int8 *lettersInSyllable)
         *lettersInSyllable = 3;
         return true;
     }
-    if (strlen(letters) < 6)
+    if (std::strlen(letters) < 6)
     {
         return false;
     }
@@ -413,15 +413,15 @@ static int8* BreakWord(char *word)
         num++;
     }
     lengthSyllables[num + 1] = 0;
-    if (strcmp(word, "структуру") == 0)
+    if (std::strcmp(word, "структуру") == 0)
     {
         int8 lengths[] = {5, 2, 2, 0};
-        memcpy(lengthSyllables, lengths, 4);
+        std::memcpy(lengthSyllables, lengths, 4);
     }
-    else if (strcmp(word, "соответствующей") == 0)
+    else if (std::strcmp(word, "соответствующей") == 0)
     {
         int8 lenghts[] = {4, 3, 4, 5, 3, 0};
-        memcpy(lengthSyllables, lenghts, 6);
+        std::memcpy(lengthSyllables, lenghts, 6);
     }
     return lengthSyllables;
 }
@@ -443,7 +443,7 @@ int Painter_DrawTextFormatting(int x, int y, Color color, char *text, ...)
 #ifdef _MS_VS
     text[0] = 0;
 #else
-    va_list args;
+    std::va_list args;
     va_start(args, text);
     vsprintf(buffer, text, args);
     va_end(args);
@@ -587,7 +587,7 @@ void Painter_Draw10SymbolsInRect(int x, int y, char eChar)
 
 void Painter_DrawBigText(int eX, int eY, int size, const char *text)
 {
-    int numSymbols = static_cast<int>(strlen(text));
+    int numSymbols = static_cast<int>(std::strlen(text));
 
     int x = eX;
 
@@ -607,7 +607,7 @@ static char* PartWordForTransfer(char *word, int8* lengthSyllables, int numSylla
     {
         length += lengthSyllables[i];
     }
-    memcpy((void*)buffer, (void*)word, static_cast<size_t>(length));
+    std::memcpy((void*)buffer, (void*)word, static_cast<uint>(length));
     buffer[length] = '-';
     buffer[length + 1] = '\0';
     return buffer;
@@ -639,7 +639,7 @@ static int DrawPartWord(char *word, int x, int y, int xRight, bool draw)
             {
                 Painter_DrawText(x, y, subString);
             }
-            return static_cast<int>(strlen(subString) - 1);
+            return static_cast<int>(std::strlen(subString) - 1);
         }
     }
 
@@ -655,7 +655,7 @@ int Painter_DrawTextInRectWithTransfers(int eX, int eY, int eWidth, int eHeight,
     int bottom = eY + eHeight;
 
     char buffer[20];
-    int numSymbols = static_cast<int>(strlen(text));
+    int numSymbols = static_cast<int>(std::strlen(text));
 
     int y = top - 1;
     int x = left;
@@ -757,7 +757,7 @@ void Painter_DrawBigTextInBuffer(int eX, int eY, int size, const char* text, uin
         }
     }
 
-    int numSymbols = static_cast<int>(strlen(text));
+    int numSymbols = static_cast<int>(std::strlen(text));
 
     int x = eX;
 

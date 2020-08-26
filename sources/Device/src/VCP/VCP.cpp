@@ -8,9 +8,9 @@
 #include "Hardware/Timer.h"
 #include <usbd_cdc.h>
 #include <usbd_def.h>
-#include <stdarg.h>
-#include <string.h>
-#include <stdio.h>
+#include <cstdarg>
+#include <cstring>
+#include <cstdio>
 
 
 USBD_HandleTypeDef handleUSBD;
@@ -118,7 +118,7 @@ void VCP::SendFormatStringAsynch(char *format, ...)
 {
     static const int SIZE_BUFFER = 200;
     static char buffer[SIZE_BUFFER];
-    va_list args;
+    std::va_list args;
     va_start(args, format);
     vsprintf(buffer, format, args);
     va_end(args);
@@ -129,7 +129,7 @@ void VCP::SendFormatStringAsynch(char *format, ...)
 void VCP::SendFormatStringSynch(char *format, ...) {
     static const int SIZE_BUFFER = 200;
     char buffer[SIZE_BUFFER];
-    va_list args;
+    std::va_list args;
     va_start(args, format);
     vsprintf(buffer, format, args);
     va_end(args);
