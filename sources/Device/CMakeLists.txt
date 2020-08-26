@@ -31,8 +31,7 @@ add_compile_options(/wd4820)    # 'bytes' bytes padding added after construct 'm
 add_compile_options(/wd5027)    # 'derived class' : move assignment operator was implicitly defined as deleted
 add_compile_options(/wd5039)    # 'function': pointer or reference to potentially throwing function passed to 'extern "C"' function under -EHc. Undefined behavior may occur if this function throws an exception
 add_compile_options(/wd5045)    # Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-#add_compile_options(/wd5208)
-add_compile_options(/wd5219)
+add_compile_options(/wd5219)    # implicit conversion from 'type1' to 'type2', possible loss of data
 
 file(GLOB VS_KEIL_ARMCLANG ../common/vs_keil/ARMCLANG/*)
 file(GLOB VS_KEIL_CMSIS    ../common/vs_keil/CMSIS/*)
