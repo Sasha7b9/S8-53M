@@ -66,7 +66,7 @@ DRESULT USBH_read (BYTE, BYTE*, DWORD, UINT);
   */
 DSTATUS USBH_initialize(BYTE lun)
 {
-    UNUSED(lun);
+    lun = lun;
   /* CAUTION : USB Host library has to be initialized in the application */
 
   return RES_OK;
