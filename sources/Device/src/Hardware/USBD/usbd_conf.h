@@ -5,6 +5,11 @@
 #include <cstring>
 
 
+#ifdef WIN32
+#define USBD_CLASS_BOS_ENABLED 0
+#define __STATIC_INLINE
+#endif
+
 
 #define USBD_MAX_NUM_INTERFACES               1
 #define USBD_MAX_NUM_CONFIGURATION            1

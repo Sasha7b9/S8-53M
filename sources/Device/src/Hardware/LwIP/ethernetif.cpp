@@ -43,6 +43,12 @@
   ******************************************************************************
   */
 /* Includes ------------------------------------------------------------------*/
+
+#ifdef WIN32
+#define LWIP_HAVE_INT64 0
+#define __ALIGN_BEGIN
+#endif
+
 #include "stm32f4xx_hal.h"
 #include "lwip/timeouts.h"
 #include "lwip/tcpip.h"
@@ -50,6 +56,7 @@
 #include "ethernetif.h"
 #include <string.h>
 #include "Settings/Settings.h"
+
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -280,7 +287,7 @@ static void low_level_init(struct netif *netif)
   *       to become availale since the stack doesn't retry to send a packet
   *       dropped because of memory failure (except for the TCP timers).
   */
-static err_t low_level_output(struct netif *netif, struct pbuf *p)
+static err_t low_level_output(struct netif *, struct pbuf *p)
 {
   err_t errval;
   struct pbuf *q;
@@ -365,7 +372,7 @@ error:
   * @return a pbuf filled with the received packet (including MAC header)
   *         NULL on memory error
   */
-static struct pbuf * low_level_input(struct netif *netif)
+static struct pbuf * low_level_input(struct netif *)
 {
   struct pbuf *p = NULL;
   struct pbuf *q;
@@ -381,7 +388,7 @@ static struct pbuf * low_level_input(struct netif *netif)
     return NULL;
   
   /* Obtain the size of the packet and put it into the "len" variable. */
-  len = EthHandle.RxFrameInfos.length;
+  len = (uint16_t)EthHandle.RxFrameInfos.length;
   buffer = (uint8_t *)EthHandle.RxFrameInfos.buffer;
   
   if (len > 0)
@@ -623,7 +630,7 @@ void ethernetif_update_config(struct netif *netif)
       assert_param(IS_ETH_DUPLEX_MODE(EthHandle.Init.DuplexMode));
       
       /* Set MAC Speed and Duplex Mode to PHY */
-      HAL_ETH_WritePHYRegister(&EthHandle, PHY_BCR, ((uint16_t)(EthHandle.Init.DuplexMode >> 3) |
+      HAL_ETH_WritePHYRegister(&EthHandle, PHY_BCR, (uint32_t)((uint16_t)(EthHandle.Init.DuplexMode >> 3) |
                                                      (uint16_t)(EthHandle.Init.Speed >> 1))); 
     }
 
@@ -647,7 +654,7 @@ void ethernetif_update_config(struct netif *netif)
   * @param  netif: the network interface
   * @retval None
   */
-__weak void ethernetif_notify_conn_changed(struct netif *netif)
+__weak void ethernetif_notify_conn_changed(struct netif *)
 {
   /* NOTE : This is function clould be implemented in user file 
             when the callback is needed,

@@ -1,6 +1,6 @@
 #pragma once
 
-#define __weak __attribute((weak))
+#define __weak
 
 
 #ifdef MSVC

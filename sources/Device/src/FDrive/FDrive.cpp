@@ -79,7 +79,7 @@ bool FlashDrive::AppendStringToFile(const char *)
 }
 
 
-void WriteToFile(FIL *file, char *string)
+void WriteToFile(FIL *file, char *)
 {
     //    uint bytesWritten;
     f_open(file, "list.txt", FA_OPEN_EXISTING);
@@ -89,7 +89,7 @@ void WriteToFile(FIL *file, char *string)
 }
 
 
-void FlashDrive::GetNumDirsAndFiles(const char* fullPath, int *numDirs, int *numFiles)
+void FlashDrive::GetNumDirsAndFiles(const char* , int *, int *)
 {
 //    FILINFO fno;
 //    DIR dir;
@@ -144,7 +144,7 @@ void FlashDrive::GetNumDirsAndFiles(const char* fullPath, int *numDirs, int *num
 }
 
 
-bool FlashDrive::GetNameDir(const char *fullPath, int numDir, char *nameDirOut, StructForReadDir *s)
+bool FlashDrive::GetNameDir(const char *, int, char *, StructForReadDir *)
 {
 //    std::memcpy(s->nameDir, fullPath, std::strlen(fullPath));
 //    s->nameDir[std::strlen(fullPath)] = '\0';
@@ -234,7 +234,7 @@ void FlashDrive::CloseCurrentDir(StructForReadDir *s)
 }
 
 
-bool FlashDrive::GetNameFile(const char *fullPath, int numFile, char *nameFileOut, StructForReadDir *s)
+bool FlashDrive::GetNameFile(const char *, int, char *, StructForReadDir *)
 {
 //    std::memcpy(s->nameDir, fullPath, std::strlen(fullPath));
 //    s->nameDir[std::strlen(fullPath)] = '\0';

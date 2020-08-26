@@ -4,5 +4,5 @@
 
 double atof(const char *);
 int rand(void);
-void *malloc(size_t size);
+void *malloc(unsigned int size);
 void free(void *);

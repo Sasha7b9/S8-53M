@@ -49,6 +49,9 @@
 
 #ifdef WIN32
 #define __attribute__(x)
+#ifndef LWIP_HAVE_INT64
+#define LWIP_HAVE_INT64 0
+#endif
 #endif
 
 /**
