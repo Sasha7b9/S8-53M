@@ -6,8 +6,8 @@
 #include "Settings/Settings.h"
 #include "Display/Display.h"
 #include "Hardware/Timer.h"
-#include <stm32f2xx_hal.h>
-#include <stm32f2xx_hal_gpio.h>
+#include <stm32f4xx_hal.h>
+#include <stm32f4xx_hal_gpio.h>
 #include <cstdio>
 #include <cstring>
 

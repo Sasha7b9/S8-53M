@@ -1,9 +1,9 @@
-#include <stm32f207xx.h>
-#include <stm32f2xx_hal.h>
-#include <stm32f2xx_hal_tim.h>
-#include <stm32f2xx_hal_gpio.h>
-#include <stm32f2xx_hal_rcc.h>
-#include <stm32f2xx_hal_dac.h>
+#include <stm32f429xx.h>
+#include <stm32f4xx_hal.h>
+#include <stm32f4xx_hal_tim.h>
+#include <stm32f4xx_hal_gpio.h>
+#include <stm32f4xx_hal_rcc.h>
+#include <stm32f4xx_hal_dac.h>
 #include "Hardware.h"
 #include "FSMC.h"
 #include "Hardware/Timer.h"

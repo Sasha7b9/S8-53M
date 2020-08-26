@@ -6,7 +6,7 @@
 #include "Utils/Math.h"
 #include "Settings/Settings.h"
 #include <cmath>
-#include <stm32f2xx_hal.h>
+#include <stm32f4xx_hal.h>
 
 
 typedef struct

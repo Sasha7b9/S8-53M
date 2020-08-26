@@ -85,6 +85,9 @@ static void USBH_Process_OS(void *argument);
 #endif
 #endif
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /**
   * @brief  HCD_Init
@@ -167,6 +170,11 @@ USBH_StatusTypeDef  USBH_Init(USBH_HandleTypeDef *phost,
 
   return USBH_OK;
 }
+
+
+#ifdef __cplusplus
+}
+#endif
 
 
 /**

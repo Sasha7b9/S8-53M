@@ -24,7 +24,7 @@ typedef struct
 
 static bool GetNameFile(const char *fullPath, int numFile, char *nameFileOut, StructForReadDir *s);
 static bool GetNextNameFile(char *nameFileOut, StructForReadDir *s);
-static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8 id);
+//static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8 id);
 
 
 
@@ -34,43 +34,43 @@ void FDrive_Init(void)
     ms->drive.connection = 0;
     ms->drive.active = 0;
 
-    if (FATFS_LinkDriver(&USBH_Driver, ms->drive.USBDISKPath) == FR_OK)
-    {
-        USBH_StatusTypeDef res = USBH_Init(&handleUSBH, USBH_UserProcess, 0);
-        res = USBH_RegisterClass(&handleUSBH, USBH_MSC_CLASS);
-        res = USBH_Start(&handleUSBH);
-    }
+//    if (FATFS_LinkDriver(&USBH_Driver, ms->drive.USBDISKPath) == FR_OK)
+//    {
+//        USBH_StatusTypeDef res = USBH_Init(&handleUSBH, USBH_UserProcess, 0);
+//        res = USBH_RegisterClass(&handleUSBH, USBH_MSC_CLASS);
+//        res = USBH_Start(&handleUSBH);
+//    }
 }
 
 
-void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
-{
-    switch (id)
-    {
-        case HOST_USER_SELECT_CONFIGURATION:
-            break;
-
-        case HOST_USER_CLASS_ACTIVE:
-            ms->drive.active++;
-            ms->drive.state = StateDisk_Start;
-            break;
-
-        case HOST_USER_CLASS_SELECTED:
-            break;
-
-        case HOST_USER_CONNECTION:
-            ms->drive.connection++;
-            ms->state = State_Mount;
-            f_mount(NULL, (TCHAR const*)"", 0);
-            break;
-
-        case HOST_USER_DISCONNECTION:
-            break;
-
-        default:
-            break;
-    }
-}
+//void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
+//{
+//    switch (id)
+//    {
+//        case HOST_USER_SELECT_CONFIGURATION:
+//            break;
+//
+//        case HOST_USER_CLASS_ACTIVE:
+//            ms->drive.active++;
+//            ms->drive.state = StateDisk_Start;
+//            break;
+//
+//        case HOST_USER_CLASS_SELECTED:
+//            break;
+//
+//        case HOST_USER_CONNECTION:
+//            ms->drive.connection++;
+//            ms->state = State_Mount;
+//            f_mount(NULL, (TCHAR const*)"", 0);
+//            break;
+//
+//        case HOST_USER_DISCONNECTION:
+//            break;
+//
+//        default:
+//            break;
+//    }
+//}
 
 
 bool FDrive_Update(void)
@@ -133,55 +133,55 @@ bool FDrive_FileExist(char *fileName)
 
 static bool GetNameFile(const char *fullPath, int numFile, char *nameFileOut, StructForReadDir *s)
 {
-    memcpy(s->nameDir, fullPath, strlen(fullPath));
-    s->nameDir[strlen(fullPath)] = '\0';
-
-    s->fno.lfname = s->lfn;
-    s->fno.lfsize = sizeof(s->lfn);
-
-    DIR *pDir = &s->dir;
-    FILINFO *pFNO = &s->fno;
-    if (f_opendir(pDir, s->nameDir) == FR_OK)
-    {
-        int numFiles = 0;
-        bool alreadyNull = false;
-        while (true)
-        {
-            if (f_readdir(pDir, pFNO) != FR_OK)
-            {
-                *nameFileOut = '\0';
-                f_closedir(pDir);
-                return false;
-            }
-            if (pFNO->fname[0] == 0)
-            {
-                if (alreadyNull)
-                {
-                    *nameFileOut = '\0';
-                    f_closedir(pDir);
-                    return false;
-                }
-                alreadyNull = true;
-            }
-            char *fn = *(pFNO->lfname) ? pFNO->lfname : pFNO->fname;
-            if (numFile == numFiles && (pFNO->fattrib & AM_DIR) == 0)
-            {
-                strcpy(nameFileOut, fn);
-                return true;
-            }
-            if ((pFNO->fattrib & AM_DIR) == 0 && (pFNO->fname[0] != '.'))
-            {
-                numFiles++;
-            }
-        }
-    }
+//    memcpy(s->nameDir, fullPath, strlen(fullPath));
+//    s->nameDir[strlen(fullPath)] = '\0';
+//
+//    s->fno.lfname = s->lfn;
+//    s->fno.lfsize = sizeof(s->lfn);
+//
+//    DIR *pDir = &s->dir;
+//    FILINFO *pFNO = &s->fno;
+//    if (f_opendir(pDir, s->nameDir) == FR_OK)
+//    {
+//        int numFiles = 0;
+//        bool alreadyNull = false;
+//        while (true)
+//        {
+//            if (f_readdir(pDir, pFNO) != FR_OK)
+//            {
+//                *nameFileOut = '\0';
+//                f_closedir(pDir);
+//                return false;
+//            }
+//            if (pFNO->fname[0] == 0)
+//            {
+//                if (alreadyNull)
+//                {
+//                    *nameFileOut = '\0';
+//                    f_closedir(pDir);
+//                    return false;
+//                }
+//                alreadyNull = true;
+//            }
+//            char *fn = *(pFNO->lfname) ? pFNO->lfname : pFNO->fname;
+//            if (numFile == numFiles && (pFNO->fattrib & AM_DIR) == 0)
+//            {
+//                strcpy(nameFileOut, fn);
+//                return true;
+//            }
+//            if ((pFNO->fattrib & AM_DIR) == 0 && (pFNO->fname[0] != '.'))
+//            {
+//                numFiles++;
+//            }
+//        }
+//    }
     return false;
 }
 
 
 static bool GetNextNameFile(char *nameFileOut, StructForReadDir *s)
 {
-    FILINFO *pFNO = &s->fno;
+//    FILINFO *pFNO = &s->fno;
     bool alreadyNull = false;
     while (true)
     {
@@ -203,12 +203,12 @@ static bool GetNextNameFile(char *nameFileOut, StructForReadDir *s)
         }
         else
         {
-            char *fn = *(pFNO->lfname) ? pFNO->lfname : pFNO->fname;
-            if ((pFNO->fattrib & AM_DIR) == 0 && pFNO->fname[0] != '.')
-            {
-                strcpy(nameFileOut, fn);
-                return true;
-            }
+//            char *fn = *(pFNO->lfname) ? pFNO->lfname : pFNO->fname;
+//            if ((pFNO->fattrib & AM_DIR) == 0 && pFNO->fname[0] != '.')
+//            {
+//                strcpy(nameFileOut, fn);
+//                return true;
+//            }
         }
     }
 }
@@ -218,7 +218,7 @@ int FDrive_OpenFileForRead(char *fileName)
 {
     if (f_open(&ms->drive.file, fileName, FA_READ) == FR_OK)
     {
-        return (int)ms->drive.file.fsize;
+//        return (int)ms->drive.file.fsize;
     }
     return -1;
 }
