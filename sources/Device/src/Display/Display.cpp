@@ -2572,7 +2572,7 @@ void Display::ShowWarningGood(Warning warning)
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-void Display::DrawStringInRectangle(int x, int y, char const *text)
+void Display::DrawStringInRectangle(int, int y, char const *text)
 {
     int width = Font_GetLengthText(text);
     int height = 8;

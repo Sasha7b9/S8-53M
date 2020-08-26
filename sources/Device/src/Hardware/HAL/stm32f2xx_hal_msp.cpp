@@ -6,7 +6,7 @@
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void HAL_RTC_MspInit(RTC_HandleTypeDef *hrtc)
+void HAL_RTC_MspInit(RTC_HandleTypeDef *)
 {
     RCC_OscInitTypeDef oscIS;
     RCC_PeriphCLKInitTypeDef periphClkIS;
@@ -34,7 +34,7 @@ void HAL_RTC_MspInit(RTC_HandleTypeDef *hrtc)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void HAL_RTC_MspDeInit(RTC_HandleTypeDef *hrtc)
+void HAL_RTC_MspDeInit(RTC_HandleTypeDef *)
 {
     __HAL_RCC_RTC_DISABLE();
     HAL_PWR_DisableBkUpAccess();
@@ -42,19 +42,19 @@ void HAL_RTC_MspDeInit(RTC_HandleTypeDef *hrtc)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void HAL_SPI_MspInit(SPI_HandleTypeDef *hspi)
+void HAL_SPI_MspInit(SPI_HandleTypeDef *)
 {
 
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void HAL_SPI_MspDeInit(SPI_HandleTypeDef *hspi)
+void HAL_SPI_MspDeInit(SPI_HandleTypeDef *)
 {
 
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void HAL_SRAM_MspInit(SRAM_HandleTypeDef *hsram)
+void HAL_SRAM_MspInit(SRAM_HandleTypeDef *)
 {
     __FSMC_CLK_ENABLE();
     __GPIOB_CLK_ENABLE();
@@ -102,7 +102,7 @@ void HAL_SRAM_MspInit(SRAM_HandleTypeDef *hsram)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void HAL_SRAM_MspDeInit(SRAM_HandleTypeDef *hsram)
+void HAL_SRAM_MspDeInit(SRAM_HandleTypeDef *)
 {
     HAL_GPIO_DeInit(GPIOB, GPIO_PIN_7);
     HAL_GPIO_DeInit(GPIOD, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_7 | GPIO_PIN_11 ||
@@ -150,7 +150,7 @@ void HAL_DAC_MspInit(DAC_HandleTypeDef* hdac)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void HAL_DAC_MspDeInit(DAC_HandleTypeDef* hdac)
+void HAL_DAC_MspDeInit(DAC_HandleTypeDef *)
 {
 
 }
@@ -224,13 +224,13 @@ void HAL_ETH_MspInit(ETH_HandleTypeDef *heth)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void HAL_CRC_MspInit(CRC_HandleTypeDef *hcrc)
+void HAL_CRC_MspInit(CRC_HandleTypeDef *)
 {
     __HAL_RCC_CRC_CLK_ENABLE();
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void HAL_CRC_MspDeInit(CRC_HandleTypeDef *hcrc)
+void HAL_CRC_MspDeInit(CRC_HandleTypeDef *)
 {
     __HAL_RCC_CRC_FORCE_RESET();
     __HAL_RCC_CRC_RELEASE_RESET();

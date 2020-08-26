@@ -462,7 +462,7 @@ static int8* BreakWord(char *word)
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 // Возвращает часть слова до слога numSyllable(включительн) вместе со знаком переноса
-static char* PartWordForTransfer(char *word, int8* lengthSyllables, int numSyllables, int numSyllable, char buffer[30])
+static char* PartWordForTransfer(char *word, int8* lengthSyllables, int, int numSyllable, char buffer[30])
 {
     int length = 0;
     for (int i = 0; i <= numSyllable; i++)
@@ -757,7 +757,7 @@ int Painter::DrawSpaces(int x, int y, char *text, int *numSymbols)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void Painter::DrawTextInRect(int x, int y, int width, int height, char *text)
+void Painter::DrawTextInRect(int x, int y, int width, int, char *text)
 {
     int xStart = x;
     int xEnd = xStart + width;

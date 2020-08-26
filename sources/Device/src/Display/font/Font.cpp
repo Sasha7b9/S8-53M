@@ -41,7 +41,7 @@ int Font_GetLengthText(const char *text)
 
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-int Font_GetHeightSymbol(char symbol)
+int Font_GetHeightSymbol(char)
 {
     return 9;
 }

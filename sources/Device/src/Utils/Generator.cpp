@@ -44,7 +44,7 @@ void SetParametersWave(Channel channel, TypeWave typeWave, float frequency, floa
     amplNoise[channel] = amplNoise_;
 }
 
-void StartNewWave(Channel channel)
+void StartNewWave(Channel)
 {
     numSample[0] = numSample[1] = 0;
 }
@@ -61,7 +61,7 @@ uint8 GetSampleSinusWave(Channel channel, int numSample_)
     return Math_VoltageToPoint(voltage, SET_RANGE(channel), SET_RSHIFT(channel));
 }
 
-uint8 GetSampleMeanderWave(Channel channel, int numSample_)
+uint8 GetSampleMeanderWave(Channel, int)
 {
     return 0;
 }

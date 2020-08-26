@@ -272,7 +272,7 @@ static float const *Koeff(int numPoints)
 
 #endif
 
-static void Normalize(float *data, int numPoints)
+static void Normalize(float *data, int)
 {
     float max = 0.0;
     for (int i = 0; i < 256; i++)
@@ -511,7 +511,7 @@ float Math_RandFloat(float min, float max)
     return min + ((rand() / (float)RAND_MAX) * delta);
 }
 
-int8 Math_AddInt8WithLimitation(int8 value, int8 delta, int8 min, int8 max)
+int8 Math_AddInt8WithLimitation(int8 value, int8 delta, int8, int8 max)
 {
     int8 retValue = value + delta;
     if (retValue < 0)
