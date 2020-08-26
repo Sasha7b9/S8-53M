@@ -188,7 +188,7 @@ void TIM7_Config(uint16 prescaler, uint16 period)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 uint16 CalculatePeriodForTIM(void)
 {
-    return 120e6 / frequency / POINTS_IN_PERIOD;
+    return static_cast<uint16>(120e6 / frequency / POINTS_IN_PERIOD);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -198,7 +198,7 @@ void CalculateSine(void)
     {
         float step = 2.0f * 3.1415926f / (POINTS_IN_PERIOD - 1);
         float value = (sin(i * step) + 1.0f) / 2.0f;
-        points[i] = value * amplitude * 255;
+        points[i] = static_cast<uint8>(value * amplitude * 255);
     }
 }
 
@@ -207,7 +207,7 @@ void CalculateMeandr(void)
 {
     for (int i = 0; i < POINTS_IN_PERIOD / 2; i++)
     {
-        points[i] = 255 * amplitude;
+        points[i] = static_cast<uint8>(255 * amplitude);
     }
     for (int i = POINTS_IN_PERIOD / 2; i < POINTS_IN_PERIOD; i++)
     {
@@ -221,6 +221,6 @@ void CalculateTriangle(void)
     float k = 255.0 / POINTS_IN_PERIOD;
     for (int i = 0; i < POINTS_IN_PERIOD; i++)
     {
-        points[i] = k * i * amplitude;
+        points[i] = static_cast<uint8>(k * i * amplitude);
     }
 }

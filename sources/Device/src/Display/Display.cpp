@@ -188,13 +188,13 @@ void Display::DrawMarkersForMeasure(float scale, Channel chan)
         int pos = Processing::GetMarkerHorizontal(chan, numMarker);
         if(pos != ERROR_VALUE_INT && pos > 0 && pos < 200)
         {
-            Painter::DrawDashedHLine(Grid::FullBottom() - pos * scale, Grid::Left(), Grid::Right(), 3, 2, 0);
+            Painter::DrawDashedHLine(Grid::FullBottom() - static_cast<int>(pos * scale), Grid::Left(), Grid::Right(), 3, 2, 0);
         }
 
         pos = Processing::GetMarkerVertical(chan, numMarker);
         if (pos != ERROR_VALUE_INT && pos > 0 && pos < Grid::Right())
         {
-            Painter::DrawDashedVLine(Grid::Left() + pos * scale, GRID_TOP, Grid::FullBottom(), 3, 2, 0);
+            Painter::DrawDashedVLine(Grid::Left() + static_cast<int>(pos * scale), GRID_TOP, Grid::FullBottom(), 3, 2, 0);
         }
        
     }
@@ -333,7 +333,7 @@ void Display::DrawSignalPointed(const uint8 *data, const DataSettings *ds, int s
             int index = i - startPoint;
             int dat = 0;
             CONVERT_DATA_TO_DISPLAY(dat, Math_CalculateFiltr(data, i, numPoints, numSmoothing));
-            Painter::SetPoint(Grid::Left() + index * scaleX, dat);
+            Painter::SetPoint(Grid::Left() + static_cast<int>(index * scaleX), dat);
         }
     }
 }
@@ -454,7 +454,7 @@ void Display::DrawSpectrumChannel(const float *spectrum, Color color)
 	int gridHeight = Grid::MathHeight();
     for (int i = 0; i < 256; i++) 
     {
-        Painter::DrawVLine(gridLeft + i, gridBottom, gridBottom - gridHeight * spectrum[i]);
+        Painter::DrawVLine(gridLeft + i, gridBottom, gridBottom - static_cast<int>(gridHeight * spectrum[i]));
     }
 }
 
@@ -840,7 +840,7 @@ void Display::DrawDataInRect(int x, int width, const uint8 *data, int numElems, 
             float lastElem = firstElem + elemsInColumn - 1;
             min[col] = data[(int)firstElem];
             max[col] = data[(int)firstElem + 1];
-            for (int elem = firstElem + 2; elem <= lastElem; elem += 2)
+            for (int elem = static_cast<int>(firstElem) + 2; elem <= lastElem; elem += 2)
             {
                 SET_MIN_IF_LESS(data[elem], min[col]);
                 SET_MAX_IF_LARGER(data[elem + 1], max[col]);
@@ -854,8 +854,8 @@ void Display::DrawDataInRect(int x, int width, const uint8 *data, int numElems, 
 
         for (int col = 0; col < width; col++, iMin++, iMax++)
         {
-            int firstElem = col * elemsInColumn;
-            int lastElem = firstElem + elemsInColumn - 1;
+            int firstElem = static_cast<int>(col * elemsInColumn);
+            int lastElem = firstElem + static_cast<int>(elemsInColumn) - 1;
             *iMin = data[firstElem];
             *iMax = data[firstElem];
             for (int elem = firstElem + 1; elem <= lastElem; elem++)
@@ -873,7 +873,7 @@ void Display::DrawDataInRect(int x, int width, const uint8 *data, int numElems, 
             float lastElem = firstElem + elemsInColumn - 1;
             min[col] = data[(int)firstElem];
             max[col] = data[(int)firstElem + shiftForPeakDet];
-            for (int elem = firstElem + 1; elem <= lastElem; elem++)
+            for (int elem = static_cast<int>(firstElem) + 1; elem <= lastElem; elem++)
             {
                 SET_MIN_IF_LESS(data[elem], min[col]);
                 SET_MAX_IF_LARGER(data[elem + shiftForPeakDet], max[col]);
@@ -890,8 +890,8 @@ void Display::DrawDataInRect(int x, int width, const uint8 *data, int numElems, 
 #define NUM_POINTS (300 * 2)
     uint8 points[NUM_POINTS];
 
-    points[0] = ORDINATE(max[0]);
-    points[1] = ORDINATE(min[0]);
+    points[0] = static_cast<uint8>(ORDINATE(max[0]));
+    points[1] = static_cast<uint8>(ORDINATE(min[0]));
 
 
 
@@ -899,8 +899,8 @@ void Display::DrawDataInRect(int x, int width, const uint8 *data, int numElems, 
     {
         int value0 = min[i] > max[i - 1] ? max[i - 1] : min[i];
         int value1 = max[i] < min[i - 1] ? min[i - 1] : max[i];
-        points[i * 2] = ORDINATE(value1);
-        points[i * 2 + 1] = ORDINATE(value0);
+        points[i * 2] = static_cast<uint8>(ORDINATE(value1));
+        points[i * 2 + 1] = static_cast<uint8>(ORDINATE(value0));
     }
 	if(width < 256)
     {
@@ -957,7 +957,7 @@ void Display::DrawMemoryWindow()
         rightX = 68;
     }
 
-    int timeWindowRectWidth = (rightX - leftX) * (282.0f / sMemory_GetNumPoints(false));
+    int timeWindowRectWidth = static_cast<int>((rightX - leftX) * (282.0f / sMemory_GetNumPoints(false)));
     float scaleX = (float)(rightX - leftX + 1) / sMemory_GetNumPoints(false);
 
     int16 shiftInMemory = SHIFT_IN_MEMORY;
@@ -965,8 +965,8 @@ void Display::DrawMemoryWindow()
     int startI = shiftInMemory;
     int endI = startI + 281;
 
-    const int xVert0 = leftX + shiftInMemory * scaleX;
-    const int xVert1 = leftX + shiftInMemory * scaleX + timeWindowRectWidth;
+    const int xVert0 = static_cast<int>(leftX + shiftInMemory * scaleX);
+    const int xVert1 = leftX + static_cast<int>(shiftInMemory * scaleX) + timeWindowRectWidth;
     bool showFull = set.display.showFullMemoryWindow;
     Painter::DrawRectangleC(xVert0, top + (showFull ? 0 : 1), xVert1 - xVert0, bottom - top - (showFull ? 0 : 2), COLOR_FILL);
 
@@ -1020,29 +1020,29 @@ void Display::DrawMemoryWindow()
     
     if(xShift < leftX - 2)
     {
-        xShift = leftX - 2;
+        xShift = static_cast<float>(leftX - 2);
     }
 
-    Painter::FillRegionC(xShift - 1, 3, 6, 6, COLOR_BACK);
-    Painter::FillRegionC(xShift, 4, 4, 4, COLOR_FILL);
+    Painter::FillRegionC(static_cast<int>(xShift - 1), 3, 6, 6, COLOR_BACK);
+    Painter::FillRegionC(static_cast<int>(xShift), 4, 4, 4, COLOR_FILL);
     Painter::SetColor(COLOR_BACK);
 
     if(xShift == leftX - 2)
     {
-        xShift = leftX - 2;
-        Painter::DrawLine(xShift + 3, 5, xShift + 3, 7);
-        Painter::DrawLine(xShift + 1, 6, xShift + 2, 6);
+        xShift = static_cast<float>(leftX - 2);
+        Painter::DrawLine(static_cast<int>(xShift) + 3, 5, static_cast<int>(xShift) + 3, 7);
+        Painter::DrawLine(static_cast<int>(xShift) + 1, 6, static_cast<int>(xShift) + 2, 6);
     }
     else if(xShift > rightX - 1)
     {
-        xShift = rightX - 2;
-        Painter::DrawLine(xShift + 1, 5, xShift + 1, 7);
-        Painter::DrawLine(xShift + 2, 6, xShift + 3, 6);
+        xShift = static_cast<float>(rightX - 2);
+        Painter::DrawLine(static_cast<int>(xShift) + 1, 5, static_cast<int>(xShift) + 1, 7);
+        Painter::DrawLine(static_cast<int>(xShift) + 2, 6, static_cast<int>(xShift) + 3, 6);
     }
     else
     {
-        Painter::DrawLine(xShift + 1, 5, xShift + 3, 5);
-        Painter::DrawLine(xShift + 2, 6, xShift + 2, 7);
+        Painter::DrawLine(static_cast<int>(xShift) + 1, 5, static_cast<int>(xShift) + 3, 5);
+        Painter::DrawLine(static_cast<int>(xShift) + 2, 6, static_cast<int>(xShift) + 2, 7);
     }
 }
 
@@ -1343,7 +1343,7 @@ void Display::DrawGridSpectrum()
         float scale = (float)Grid::MathHeight() / numParts;
         for (int i = 1; i < numParts; i++)
         {
-            int y = Grid::MathTop() + i * scale;
+            int y = static_cast<int>(Grid::MathTop() + i * scale);
             Painter::DrawHLineC(y, Grid::Left(), Grid::Left() + 256, ColorGrid());
             if (!MenuIsMinimize())
             {
@@ -1363,7 +1363,7 @@ void Display::DrawGridSpectrum()
         float scale = (float)Grid::MathHeight() / 5;
         for (int i = 1; i < 5; i++)
         {
-            int y = Grid::MathTop() + i * scale;
+            int y = static_cast<int>(Grid::MathTop() + i * scale);
             Painter::DrawHLineC(y, Grid::Left(), Grid::Left() + 256, ColorGrid());
             if (!MenuIsMinimize())
             {
@@ -1446,37 +1446,37 @@ void Display::DrawGridType1(int left, int top, int right, int bottom, float cent
     masX[0] = (uint16)(left + 1);
     for (int i = 1; i < 7; i++)
     {
-        masX[i] = left + deltaX * i;
+        masX[i] = static_cast<uint16>(left + deltaX * i);
     }
     for (int i = 7; i < 10; i++)
     {
-        masX[i] = centerX - 8 + i;
+        masX[i] = static_cast<uint16>(centerX - 8 + i);
     }
     for (int i = 10; i < 16; i++)
     {
-        masX[i] = centerX + deltaX * (i - 9);
+        masX[i] = static_cast<uint16>(centerX + deltaX * (i - 9));
     }
     masX[16] = (uint16)(right - 1);
 
-    Painter::DrawMultiVPointLine(17, top + stepY, masX, stepY, CalculateCountV(), ColorGrid());
+    Painter::DrawMultiVPointLine(17, static_cast<int>(top + stepY), masX, static_cast<int>(stepY), CalculateCountV(), ColorGrid());
 
     uint8 mas[13];
     mas[0] = (uint8)(top + 1);
     for (int i = 1; i < 5; i++)
     {
-        mas[i] = top + deltaY * i;
+        mas[i] = static_cast<uint8>(top + deltaY * i);
     }
     for (int i = 5; i < 8; i++)
     {
-        mas[i] = centerY - 6 + i;
+        mas[i] = static_cast<uint8>(centerY - 6 + i);
     }
     for (int i = 8; i < 12; i++)
     {
-        mas[i] = centerY + deltaY * (i - 7);
+        mas[i] = static_cast<uint8>(centerY + deltaY * (i - 7));
     }
     mas[12] = (uint8)(bottom - 1);
 
-    Painter::DrawMultiHPointLine(13, left + stepX, mas, stepX, CalculateCountH(), ColorGrid());
+    Painter::DrawMultiHPointLine(13, static_cast<int>(left + stepX), mas, static_cast<int>(stepX), CalculateCountH(), ColorGrid());
 }
 
 
@@ -1506,10 +1506,10 @@ void Display::DrawGridType2(int left, int top, int right, int bottom, int deltaX
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 void Display::DrawGridType3(int left, int top, int right, int bottom, int centerX, int centerY, int deltaX, int deltaY, int stepX, int stepY)
 {
-    Painter::DrawHPointLine(centerY, left + stepX, right, stepX);
+    Painter::DrawHPointLine(centerY, left + stepX, right, static_cast<float>(stepX));
     uint8 masY[6] = {(uint8)(top + 1), (uint8)(top + 2), (uint8)(centerY - 1), (uint8)(centerY + 1), (uint8)(bottom - 2), (uint8)(bottom - 1)};
     Painter::DrawMultiHPointLine(6, left + deltaX, masY, deltaX, (right - top) / deltaX, ColorGrid());
-    Painter::DrawVPointLine(centerX, top + stepY, bottom, stepY, ColorGrid());
+    Painter::DrawVPointLine(centerX, top + stepY, bottom, static_cast<float>(stepY), ColorGrid());
     uint16 masX[6] = {(uint16)(left + 1), (uint16)(left + 2), (uint16)(centerX - 1), (uint16)(centerX + 1), (uint16)(right - 2), (uint16)(right - 1)};
     Painter::DrawMultiVPointLine(6, top + deltaY, masX, deltaY, (bottom - top) / deltaY, ColorGrid());
 
@@ -1547,11 +1547,11 @@ void Display::DrawGrid(int left, int top, int width, int height)
     Painter::SetColor(ColorGrid());
     if (TYPE_GRID_IS_1)
     {
-        DrawGridType1(left, top, right, bottom, centerX, centerY, deltaX, deltaY, stepX, stepY);
+        DrawGridType1(left, top, right, bottom, static_cast<float>(centerX), static_cast<float>(centerY), deltaX, deltaY, stepX, stepY);
     }
     else if (TYPE_GRID_IS_2)
     {
-        DrawGridType2(left, top, right, bottom, deltaX, deltaY, stepX, stepY);
+        DrawGridType2(left, top, right, bottom, static_cast<int>(deltaX), static_cast<int>(deltaY), static_cast<int>(stepX), static_cast<int>(stepY));
     }
     else if (TYPE_GRID_IS_3)
     {
