@@ -458,7 +458,7 @@ static uint8_t USBD_CDC_Init(USBD_HandleTypeDef *pdev, uint8_t cfgidx)
   UNUSED(cfgidx);
   USBD_CDC_HandleTypeDef *hcdc;
 
-  hcdc = USBD_malloc(sizeof(USBD_CDC_HandleTypeDef));
+  hcdc = reinterpret_cast<USBD_CDC_HandleTypeDef *>(USBD_malloc(sizeof(USBD_CDC_HandleTypeDef)));
 
   if (hcdc == NULL)
   {
@@ -673,7 +673,7 @@ static uint8_t USBD_CDC_Setup(USBD_HandleTypeDef *pdev,
 static uint8_t USBD_CDC_DataIn(USBD_HandleTypeDef *pdev, uint8_t epnum)
 {
   USBD_CDC_HandleTypeDef *hcdc;
-  PCD_HandleTypeDef *hpcd = pdev->pData;
+  PCD_HandleTypeDef *hpcd = reinterpret_cast<PCD_HandleTypeDef *>(pdev->pData);
 
   if (pdev->pClassData == NULL)
   {

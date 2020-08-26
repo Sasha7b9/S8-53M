@@ -49,24 +49,24 @@ typedef struct
 #define MAC_ADDR3       (set.eth.mac3)
 #define MAC_ADDR4       (set.eth.mac4)
 #define MAC_ADDR5       (set.eth.mac5)
-
+//
 #define IP_ADDR0        (set.eth.ip0)
 #define IP_ADDR1        (set.eth.ip1)
 #define IP_ADDR2        (set.eth.ip2)
 #define IP_ADDR3        (set.eth.ip3)
-
+//
 #define PORT            (set.eth.port)
-
+//
 #define NETMASK_ADDR0   (set.eth.mask0)
 #define NETMASK_ADDR1   (set.eth.mask1)
 #define NETMASK_ADDR2   (set.eth.mask2)
 #define NETMASK_ADDR3   (set.eth.mask3)
-
+//
 #define GW_ADDR0        (set.eth.gw0)
 #define GW_ADDR1        (set.eth.gw1)
 #define GW_ADDR2        (set.eth.gw2)
 #define GW_ADDR3        (set.eth.gw3)
-
+//
 #define ETH_ENABLE      (set.eth.enable)
 
 

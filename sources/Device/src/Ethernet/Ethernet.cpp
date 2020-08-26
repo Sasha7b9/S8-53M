@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "Globals.h"
 #include "Ethernet.h"
 #include "TcpSocket.h"
 #include "main.h"
@@ -60,7 +61,7 @@ void LAN::Update(uint timeMS)
 
     do 
     {
-        CABLE_LAN_IS_CONNECTED = (gTimerMS - gEthTimeLastEthifInput <= 1500) ? 1U : 0U;
+//        CABLE_LAN_IS_CONNECTED = (gTimerMS - gEthTimeLastEthifInput <= 1500) ? 1U : 0U;
 
         ethernetif_input(&gnetif);
         sys_check_timeouts();

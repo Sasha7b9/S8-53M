@@ -666,6 +666,7 @@ tcp_listen_input(struct tcp_pcb_listen *pcb)
       TCP_STATS_INC(tcp.memerr);
       TCP_EVENT_ACCEPT(pcb, NULL, pcb->callback_arg, ERR_MEM, err);
       LWIP_UNUSED_ARG(err); /* err not useful here */
+      err++;
       return;
     }
 #if TCP_LISTEN_BACKLOG

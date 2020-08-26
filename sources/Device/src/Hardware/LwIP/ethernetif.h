@@ -2,13 +2,11 @@
   ******************************************************************************
   * @file    ethernetif.h
   * @author  MCD Application Team
-  * @version $VERSION$
-  * @date    $DATE$
   * @brief   Ethernet interface header file.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics International N.V. 
+  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics International N.V.
   * All rights reserved.</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without 
@@ -48,7 +46,7 @@
 #ifndef __ETHERNETIF_H__
 #define __ETHERNETIF_H__
 
-#include "defines.h"
+
 #include "lwip/err.h"
 #include "lwip/netif.h"
 
@@ -58,8 +56,4 @@ void ethernetif_input(struct netif *netif);
 void ethernetif_set_link(struct netif *netif);
 void ethernetif_update_config(struct netif *netif);
 void ethernetif_notify_conn_changed(struct netif *netif);
-
-extern uint gEthTimeLastEthifInput;
-
 #endif
-
