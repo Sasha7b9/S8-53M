@@ -23,15 +23,24 @@ add_definitions(-DSTM32F207xx)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -MP -Wall")
 
+add_compile_options(/wd4018)
 add_compile_options(/wd4099)
+add_compile_options(/wd4100)
 add_compile_options(/wd4201)
+add_compile_options(/wd4244)
+add_compile_options(/wd4310)
+add_compile_options(/wd4365)
 add_compile_options(/wd4514)
 add_compile_options(/wd4623)
 add_compile_options(/wd4626)
+add_compile_options(/wd4774)
+add_compile_options(/wd4800)
 add_compile_options(/wd4820)
 add_compile_options(/wd5027)
 add_compile_options(/wd5039)
 add_compile_options(/wd5045)
+add_compile_options(/wd5208)
+add_compile_options(/wd5219)
 add_compile_options(/wd5220)    # a non-static data member with a volatile qualified type no longer implies
 
 file(GLOB VS_KEIL_ARMCLANG ../common/vs_keil/ARMCLANG/*)
@@ -111,6 +120,7 @@ file(GLOB PANEL          src/Panel/*)
 file(GLOB SETTINGS       src/Settings/*)
 file(GLOB UTILS          src/Utils/*)
 
+set_source_files_properties(src/Panel/PanelFunctions.cpp PROPERTIES HEADER_FILE_ONLY TRUE)
 set_source_files_properties(${LIBS_FATFS} ${LIBS_HAL} ${LIBS_USBH} PROPERTIES HEADER_FILE_ONLY TRUE)
 
 source_group(libs\\vs_keil\\ARMCLANG FILES ${VS_KEIL_ARMCLANG})
