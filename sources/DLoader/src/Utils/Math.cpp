@@ -45,7 +45,7 @@ float Math_MinFrom3float(float value1, float value2, float value3)
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 int Math_MaxInt(int val1, int val2)
 {
     return val1 > val2 ? val1 : val2;

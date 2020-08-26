@@ -9,7 +9,7 @@
 
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 char* FloatFract2String(float value, bool alwaysSign, char bufferOut[20])
 {
     return Float2String(value, alwaysSign, 4, bufferOut);

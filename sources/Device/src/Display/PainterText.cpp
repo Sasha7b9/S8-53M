@@ -827,7 +827,7 @@ void Painter::Draw10SymbolsInRect(int x, int y, char eChar)
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Painter::DrawBigText(int eX, int eY, int size, const char *text)
 {
     int numSymbols = strlen(text);
