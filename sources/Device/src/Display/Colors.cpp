@@ -4,7 +4,7 @@
 #include "Utils/GlobalFunctions.h"
 #include "Utils/Math.h"
 #include "Hardware/Timer.h"
-#include <math.h>
+#include <cmath>
 
 
 

@@ -1,7 +1,7 @@
 #include "Math.h"
 #include "Settings/Settings.h"
 #include "Hardware/Timer.h"
-#include <math.h>
+#include <cmath>
 #include <stdlib.h>
 #include <string.h>
 
@@ -20,11 +20,11 @@ float Math_GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, int
 
 bool Math_FloatsIsEquals(float value0, float value1, float epsilonPart)
 {
-    float max = fabsf(value0) > fabsf(value1) ? fabsf(value0) : fabsf(value1);
+    float max = std::fabsf(value0) > std::fabsf(value1) ? std::fabsf(value0) : std::fabsf(value1);
 
     float epsilonAbs = max * epsilonPart;
 
-    return fabsf(value0 - value1) < epsilonAbs;
+    return std::fabsf(value0 - value1) < epsilonAbs;
 }
 
 

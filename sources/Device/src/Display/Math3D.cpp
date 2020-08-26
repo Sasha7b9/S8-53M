@@ -1,6 +1,6 @@
 #include "Math3D.h"
 #include <string.h>
-#include <math.h>
+#include <cmath>
 
 
 
@@ -13,12 +13,12 @@ void FillMatriceRotation(Mat4x4 *mat, float angleX, float angleY, float angleZ)
     Mat4x4 matZ = {0};
     Mat4x4 matTemp = {0};
 
-    float cosX = cos(angleX);
-    float sinX = sin(angleX);
-    float cosY = cos(angleY);
-    float sinY = sin(angleY);
-    float cosZ = cos(angleZ);
-    float sinZ = sin(angleZ);
+    float cosX = std::cos(angleX);
+    float sinX = std::sin(angleX);
+    float cosY = std::cos(angleY);
+    float sinY = std::sin(angleY);
+    float cosZ = std::cos(angleZ);
+    float sinZ = std::sin(angleZ);
 
     matZ.n[0][0] = cosZ;
     matZ.n[0][1] = sinZ;

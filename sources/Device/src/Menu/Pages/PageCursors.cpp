@@ -12,7 +12,7 @@
 #include "Hardware/Sound.h"
 #include "Log.h"
 #include "Display/Painter.h"
-#include <math.h>
+#include <cmath>
 #include <string.h>
 
 
@@ -667,8 +667,8 @@ static void PressSB_Cursors_100(void)
 
 static void SetCursPos100(Channel chan)
 {
-    DELTA_U100(chan) = fabsf(CURS_POS_U0(chan) - CURS_POS_U1(chan));
-    DELTA_T100(chan) = fabsf(CURS_POS_T0(chan) - CURS_POS_T1(chan));
+    DELTA_U100(chan) = std::fabsf(CURS_POS_U0(chan) - CURS_POS_U1(chan));
+    DELTA_T100(chan) = std::fabsf(CURS_POS_T0(chan) - CURS_POS_T1(chan));
 }
 
 static void DrawSB_Cursors_100(int x, int y)

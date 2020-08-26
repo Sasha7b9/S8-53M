@@ -5,7 +5,7 @@
 #include "Display/Painter.h"
 #include "Utils/Math.h"
 #include "Settings/Settings.h"
-#include <math.h>
+#include <cmath>
 #include <stm32f2xx_hal.h>
 
 
@@ -245,7 +245,7 @@ static void DrawBigMNIPI(void)
 
     for (int i = 0; i < 240; i++)
     {
-        shift[i] = amplitude * sin(frequency * static_cast<float>(time) + static_cast<float>(i) / 5.0f);
+        shift[i] = amplitude * std::sin(frequency * static_cast<float>(time) + static_cast<float>(i) / 5.0f);
     }
 
     for (int i = 0; i < numPoints; i++)

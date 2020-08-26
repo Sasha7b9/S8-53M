@@ -11,7 +11,7 @@
 #include <stm32f2xx_hal_gpio.h>
 #include <stm32f2xx_hal_dma.h>
 #include <stm32f2xx_hal_dma_ex.h>
-#include <math.h>
+#include <cmath>
 
 
 
@@ -197,7 +197,7 @@ void CalculateSine(void)
     for (int i = 0; i < POINTS_IN_PERIOD; i++)
     {
         float step = 2.0f * 3.1415926f / (POINTS_IN_PERIOD - 1);
-        float value = (sin(static_cast<float>(i) * step) + 1.0f) / 2.0f;
+        float value = (std::sin(static_cast<float>(i) * step) + 1.0f) / 2.0f;
         points[i] = static_cast<uint8>(value * amplitude * 255);
     }
 }

@@ -3,9 +3,9 @@
 #include "Log.h"
 #include "Display/Symbols.h"
 #include "Math.h"
-#include <math.h>
-#include <stdio.h>
-#include <string.h>
+#include <cmath>
+#include <cstdio>
+#include <cstring>
 
 
 char* FloatFract2String(float value, bool alwaysSign, char bufferOut[20])
@@ -15,7 +15,7 @@ char* FloatFract2String(float value, bool alwaysSign, char bufferOut[20])
 
 static int NumDigitsInIntPart(float value)
 {
-    float fabsValue = fabsf(value);
+    float fabsValue = std::fabsf(value);
 
     int numDigitsInInt = 0;
     if (fabsValue >= 10000)
@@ -79,7 +79,7 @@ char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
         format[5] = '.';
     }
     
-    snprintf(pBuffer, 19, format, fabsf(value));
+    snprintf(pBuffer, 19, format, std::fabsf(value));
 
     float val = static_cast<float>(atof(pBuffer));
 
@@ -183,17 +183,17 @@ char* Voltage2String(float voltage, bool alwaysSign, char buffer[20])
         strcat(buffer, ERROR_STRING_VALUE);
         return buffer;
     }
-    else if(fabsf(voltage) + 0.5e-4 < 1e-3)
+    else if(std::fabsf(voltage) + 0.5e-4 < 1e-3)
     {
         suffix = set.common.lang == Russian ? "\x10ìêÂ" : "\x10uV";
         voltage *= 1e6;
     }
-    else if(fabsf(voltage) + 0.5e-4 < 1)
+    else if(std::fabsf(voltage) + 0.5e-4 < 1)
     {
         suffix = set.common.lang == Russian ? "\x10ìÂ" : "\x10mV" ;
         voltage *= 1e3;
     }
-    else if(fabsf(voltage) + 0.5e-4 < 1000)
+    else if(std::fabsf(voltage) + 0.5e-4 < 1000)
     {
         suffix = set.common.lang == Russian ? "\x10Â" : "\x10V";
     }
@@ -220,17 +220,17 @@ char* Time2String(float time, bool alwaysSign, char buffer[20])
         strcat(buffer, ERROR_STRING_VALUE);
         return buffer;
     }
-    else if(fabsf(time) + 0.5e-10 < 1e-6)
+    else if(std::fabsf(time) + 0.5e-10 < 1e-6)
     {
         suffix = set.common.lang == Russian ? "íñ" : "ns";
         time *= 1e9;
     }
-    else if(fabsf(time) + 0.5e-7 < 1e-3)
+    else if(std::fabsf(time) + 0.5e-7 < 1e-3)
     {
         suffix = set.common.lang == Russian ? "ìêñ" : "us";
         time *= 1e6;
     }
-    else if(fabsf(time) + 0.5e-3 < 1)
+    else if(std::fabsf(time) + 0.5e-3 < 1)
     {
         suffix = set.common.lang == Russian ? "ìñ" : "ms";
         time *= 1e3;

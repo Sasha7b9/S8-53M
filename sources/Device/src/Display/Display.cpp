@@ -28,8 +28,8 @@
 #include "Hardware/Timer.h"
 #include "Log.h"
 #include "PainterMem.h"
-#include <math.h>
-#include <limits.h>
+#include <cmath>
+#include <limits>
 #include "Hardware/DisplayHardware.inc"
 
 
@@ -1074,7 +1074,7 @@ void Display::WriteCursors()
             x = startX + 49;
             float pos0 = Math_VoltageCursor(sCursors_GetCursPosU(source, 0), SET_RANGE(source), SET_RSHIFT(source));
             float pos1 = Math_VoltageCursor(sCursors_GetCursPosU(source, 1), SET_RANGE(source), SET_RSHIFT(source));
-            float delta = fabsf(pos1 - pos0);
+            float delta = std::fabsf(pos1 - pos0);
             Painter::DrawText(x, y1, ":dU=");
             Painter::DrawText(x + 17, y1, Voltage2String(delta, false, buffer));
             Painter::DrawText(x, y2, ":");
@@ -1095,7 +1095,7 @@ void Display::WriteCursors()
             x = startX + 153;
             float pos0 = Math_TimeCursor(CURS_POS_T0(source), SET_TBASE);
             float pos1 = Math_TimeCursor(CURS_POS_T1(source), SET_TBASE);
-            float delta = fabsf(pos1 - pos0);
+            float delta = std::fabsf(pos1 - pos0);
             Painter::DrawText(x, y1, ":dT=");
             char buf[20];
             Painter::DrawText(x + 17, y1, Time2String(delta, false, buf));

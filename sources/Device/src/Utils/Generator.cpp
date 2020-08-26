@@ -1,13 +1,9 @@
 #pragma once
-
-
 #include "Generator.h"
 #include "Math.h"
 #include "Settings/Settings.h"
-
-
 #include <stdlib.h>
-#include <math.h>
+#include <cmath>
 
 
 static void SetParametersWave(Channel channel, TypeWave typeWave, float frequency, float startAngle, float amplWave, float amplNoise);
@@ -57,7 +53,7 @@ uint8 GetSampleWave(Channel channel)
 uint8 GetSampleSinusWave(Channel channel, int numSample_)
 {
     float dT = numSample_ * TSHIFT_2_ABS(1, SET_TBASE);
-    float voltage = ampl[channel] * sin(2 * M_PI * freq[channel] * dT + angle[channel]) + NewNoiseValue(channel);
+    float voltage = ampl[channel] * std::sin(2 * M_PI * freq[channel] * dT + angle[channel]) + NewNoiseValue(channel);
     return Math_VoltageToPoint(voltage, SET_RANGE(channel), SET_RSHIFT(channel));
 }
 

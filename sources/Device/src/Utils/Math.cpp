@@ -4,9 +4,7 @@
 #include "FPGA/FPGA_Types.h"
 #include "Display/Grid.h"
 #include "Hardware/Timer.h"
-
-
-#include <math.h>
+#include <cmath>
 
 
 const float tableScalesRange[RangeSize] = {2e-3f, 5e-3f, 10e-3f, 20e-3f, 50e-3f, 100e-3f, 200e-3f, 500e-3f, 1.0f, 2.0f, 5.0f, 10.0f, 20.0f};
@@ -214,11 +212,11 @@ float Math_GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, int
 
 bool Math_FloatsIsEquals(float value0, float value1, float epsilonPart)
 {
-    float max = fabsf(value0) > fabsf(value1) ? fabsf(value0) : fabsf(value1);
+    float max = std::fabsf(value0) > std::fabsf(value1) ? std::fabsf(value0) : std::fabsf(value1);
 
     float epsilonAbs = max * epsilonPart;
 
-    return fabsf(value0 - value1) < epsilonAbs;
+    return std::fabsf(value0 - value1) < epsilonAbs;
 }
 
 float Math_MinFrom3float(float value1, float value2, float value3)
@@ -303,7 +301,7 @@ static void MultiplyToWindow(float *data, int numPoints)
     {
         for (int i = 0; i < numPoints; i++)
         {
-            data[i] *= 0.53836F - 0.46164F * cos(2 * 3.1415926F * i / (numPoints - 1));
+            data[i] *= 0.53836F - 0.46164F * std::cos(2 * 3.1415926F * i / (numPoints - 1));
         }
     }
     else if (WINDOW_FFT_IS_BLACKMAN)
@@ -314,14 +312,14 @@ static void MultiplyToWindow(float *data, int numPoints)
         float a2 = alpha / 2.0f;
         for (int i = 0; i < numPoints; i++)
         {
-            data[i] *= a0 - a1 * cos(2 * 3.1415926F * i / (numPoints - 1)) + a2 * cos(4 * 3.1415926F * i / (numPoints - 1));
+            data[i] *= a0 - a1 * std::cos(2 * 3.1415926F * i / (numPoints - 1)) + a2 * std::cos(4 * 3.1415926F * i / (numPoints - 1));
         }
     }
     else if (WINDOW_FFT_IS_HANN)
     {
         for (int i = 0; i < numPoints; i++)
         {
-            data[i] *= 0.5F * (1.0F - cos(2.0f * 3.1415926F * i / (numPoints - 1.0F)));
+            data[i] *= 0.5F * (1.0F - std::cos(2.0f * 3.1415926F * i / (numPoints - 1.0F)));
         }
     }
 #endif
@@ -439,7 +437,7 @@ void Math_CalculateFFT(float *dataR, int numPoints, float *result, float *freq0,
 
     for (int i = 0; i < 256; i++)
     {
-        result[i] = sqrtf(dataR[i] * dataR[i] + result[i] * result[i]);
+        result[i] = std::sqrtf(dataR[i] * dataR[i] + result[i] * result[i]);
     }
 
     result[0] = 0.0f;       // WARN нулева€ составл€юща€ мешает посто€нно. надо еЄ убрать
@@ -453,7 +451,7 @@ void Math_CalculateFFT(float *dataR, int numPoints, float *result, float *freq0,
         for (int i = 0; i < 256; i++)
         {
 #ifdef DEBUG
-            result[i] = 20 * log10f(result[i]);
+            result[i] = 20 * std::log10f(result[i]);
 #else
             result[i] = Log10[(int)(result[i] * 10000)];
 #endif

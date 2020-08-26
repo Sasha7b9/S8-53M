@@ -5,10 +5,10 @@
 #include "Hardware/Timer.h"
 #include "Menu/Pages/PageMemory.h"
 #include "Settings/Settings.h"
-#include <math.h>
+#include <cmath>
 #include <string.h>
 #include <stdio.h>
-#include <limits.h>
+#include <limits>
 
 
 typedef struct
@@ -197,7 +197,7 @@ float Processing::CalculateVoltageVybrosPlus(Channel chan)
     }
 
     int16 rShift = chan == A ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1;
-    return fabsf(POINT_2_VOLTAGE(maxSteady, dataSet->range[chan], rShift) - POINT_2_VOLTAGE(max, dataSet->range[chan], rShift)) * VALUE_MULTIPLIER(chan);
+    return std::fabsf(POINT_2_VOLTAGE(maxSteady, dataSet->range[chan], rShift) - POINT_2_VOLTAGE(max, dataSet->range[chan], rShift)) * VALUE_MULTIPLIER(chan);
 }
 
 float Processing::CalculateVoltageVybrosMinus(Channel chan)
@@ -213,7 +213,7 @@ float Processing::CalculateVoltageVybrosMinus(Channel chan)
     }
 
     int16 rShift = chan == A ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1;
-    return fabsf(POINT_2_VOLTAGE(minSteady, dataSet->range[chan], rShift) - POINT_2_VOLTAGE(min, dataSet->range[chan], rShift)) * VALUE_MULTIPLIER(chan);
+    return std::fabsf(POINT_2_VOLTAGE(minSteady, dataSet->range[chan], rShift) - POINT_2_VOLTAGE(min, dataSet->range[chan], rShift)) * VALUE_MULTIPLIER(chan);
 }
 
 float Processing::CalculateVoltageAmpl(Channel chan)
@@ -270,10 +270,10 @@ float Processing::CalculateVoltageRMS(Channel chan)
 
     if(MEAS_MARKED == Measure_VoltageRMS)
     {
-        markerHor[chan][0] = Math_VoltageToPoint(sqrtf(rms / period), dataSet->range[chan], rShift);
+        markerHor[chan][0] = Math_VoltageToPoint(std::sqrtf(rms / period), dataSet->range[chan], rShift);
     }
 
-    return sqrtf(rms / period) * VALUE_MULTIPLIER(chan);
+    return std::sqrtf(rms / period) * VALUE_MULTIPLIER(chan);
 }
 
 float Processing::CalculatePeriod(Channel chan)
@@ -1044,7 +1044,7 @@ void Processing::InterpolationSinX_X(uint8 data[FPGA_MAX_POINTS], TBase tBase)
         {
             int part = num % ((delta - 1) * 2);
             num++;
-            float sinX = (part < delta - 1) ? sin(PI / delta * (part + 1)) : sin(PI / delta * (part - (delta - 1) * 2));
+            float sinX = (part < delta - 1) ? std::sin(PI / delta * (part + 1)) : std::sin(PI / delta * (part - (delta - 1) * 2));
 
             if (tBase > TBase_5ns)                 // Здесь используем более быструю, но более неправильную арифметику целвых чисел
             {

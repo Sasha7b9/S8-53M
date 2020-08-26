@@ -2,7 +2,7 @@
 #include "GlobalFunctions.h"
 #include "Settings/Settings.h"
 #include "Math.h"
-#include <math.h>
+#include <cmath>
 #include <string.h>
 #include <ctype.h>
 #include <stdio.h>
@@ -18,7 +18,7 @@ char* FloatFract2String(float value, bool alwaysSign, char bufferOut[20])
 
 static int NumDigitsInIntPart(float value)
 {
-    float fabsValue = fabsf(value);
+    float fabsValue = std::fabsf(value);
 
     int numDigitsInInt = 0;
     if (fabsValue >= 10000)
@@ -84,7 +84,7 @@ char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
         format[5] = '.';
     }
 
-    sprintf(pBuffer, format, fabsf(value));
+    sprintf(pBuffer, format, std::fabsf(value));
 
     float val = (float)atof(pBuffer);
 
@@ -187,17 +187,17 @@ char*    Voltage2String(float voltage, bool alwaysSign, char buffer[20])
         strcat(buffer, ERROR_STRING_VALUE);
         return buffer;
     }
-    else if (fabsf(voltage) + 0.5e-4f < 1e-3f)
+    else if (std::fabsf(voltage) + 0.5e-4f < 1e-3f)
     {
         suffix = set.common.lang == Russian ? "\x10ìêÂ" : "\x10uV";
         voltage *= 1e6f;
     }
-    else if (fabsf(voltage) + 0.5e-4f < 1.0f)
+    else if (std::fabsf(voltage) + 0.5e-4f < 1.0f)
     {
         suffix = set.common.lang == Russian ? "\x10ìÂ" : "\x10mV";
         voltage *= 1e3f;
     }
-    else if (fabsf(voltage) + 0.5e-4f < 1000.0f)
+    else if (std::fabsf(voltage) + 0.5e-4f < 1000.0f)
     {
         suffix = set.common.lang == Russian ? "\x10Â" : "\x10V";
     }
@@ -229,7 +229,7 @@ char* Time2StringAccuracy(float time, bool alwaysSign, char buffer[20], int numD
     buffer[0] = 0;
     char *suffix = 0;
 
-    float fabsTime = fabsf(time);
+    float fabsTime = std::fabsf(time);
     bool russian = set.common.lang == Russian;
 
     if (time == ERROR_VALUE_FLOAT)
