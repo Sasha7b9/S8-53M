@@ -16,7 +16,6 @@ include_directories(src
                     ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Host_Library/Core/Inc
                     ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc
                     ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc
-                    c:/Keil_v5/ARM/ARMCLANG/include
                     )
 
 add_definitions(-DSTM32F207xx)
