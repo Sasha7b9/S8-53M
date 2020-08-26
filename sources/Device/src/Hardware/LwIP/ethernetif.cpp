@@ -654,10 +654,10 @@ void ethernetif_update_config(struct netif *netif)
   * @param  netif: the network interface
   * @retval None
   */
-__weak void ethernetif_notify_conn_changed(struct netif *)
-{
-  /* NOTE : This is function clould be implemented in user file 
-            when the callback is needed,
-  */  
-}
+//__weak void ethernetif_notify_conn_changed(struct netif *)
+//{
+//  /* NOTE : This is function clould be implemented in user file 
+//            when the callback is needed,
+//  */  
+//}
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
