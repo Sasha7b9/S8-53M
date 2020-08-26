@@ -40,7 +40,7 @@ bool GetWord(const uint8 *string, Word *word, const int numWord)
         {
             word->address = (uint8*)string;
             ChooseSymbols(&string);
-            word->numSymbols = string - word->address;
+            word->numSymbols = static_cast<int8>(string - word->address);
             
             uint8 *pointer = word->address;
             int numSymbols = word->numSymbols;

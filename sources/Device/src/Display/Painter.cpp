@@ -60,11 +60,11 @@ void CalculateColor(uint8 *color)
     currentColor = (Color)*color;
     if (*color == COLOR_FLASH_10)
     {
-        *color = inverseColors ? COLOR_BACK : COLOR_FILL;
+        *color = static_cast<uint8>(inverseColors ? COLOR_BACK : COLOR_FILL);
     }
     else if (*color == COLOR_FLASH_01)
     {
-        *color = inverseColors ? COLOR_FILL : COLOR_BACK;
+        *color = static_cast<uint8>(inverseColors ? COLOR_FILL : COLOR_BACK);
     }
 }
 
@@ -199,7 +199,7 @@ void Painter::SetPalette(Color color)
 {
     uint8 command[4];
     command[0] = SET_PALETTE;
-    *(command + 1) = color;
+    *(command + 1) = static_cast<uint8>(color);
     *((uint16*)(command + 2)) = set.display.colors[color];
     SendToDisplay(command, 4);
     SendToVCP(command, 4);
@@ -216,7 +216,7 @@ void Painter::SetColor(Color color)
             CalculateColor((uint8 *)&color);
         }
         uint8 command[4] = {SET_COLOR};
-        command[1] = color;
+        command[1] = static_cast<uint8>(color);
         SendToDisplay(command, 4);
         SendToVCP(command, 2);
     }
@@ -279,12 +279,12 @@ void Painter::DrawLineC(int x0, int y0, int x1, int y1, Color color)
 void Painter::DrawVPointLine(int x, int y0, int y1, float delta, Color color)
 {
     SetColor(color);
-    uint8 numPoints = (y1 - y0) / delta;
+    uint8 numPoints = static_cast<uint8>((y1 - y0) / delta);
     uint8 command[6];
     command[0] = DRAW_VPOINT_LINE;
     *((int16*)(command + 1)) = (int16)x;
     *(command + 3) = (uint8)y0;
-    *(command + 4) = delta;
+    *(command + 4) = static_cast<uint8>(delta);
     *(command + 5) = (uint8)numPoints;
     SendToDisplay(command, 6);
 }
@@ -292,7 +292,7 @@ void Painter::DrawVPointLine(int x, int y0, int y1, float delta, Color color)
 
 void Painter::DrawHPointLine(int y, int x0, int x1, float delta)
 {
-    for (int x = x0; x <= x1; x += delta)
+    for (int x = x0; x <= x1; x += static_cast<int>(delta))
     {
         SetPoint(x, y);
     }
@@ -490,7 +490,7 @@ void Painter::DrawVLineArray(int x, int numLines, uint8 *y0y1, Color color)
 void Painter::DrawSignal(int x, uint8 data[281], bool modeLines)
 {
     uint8 command[284];
-    command[0] = modeLines ? DRAW_SIGNAL_LINES : DRAW_SIGNAL_POINTS;
+    command[0] = static_cast<uint8>(modeLines ? DRAW_SIGNAL_LINES : DRAW_SIGNAL_POINTS);
     *((int16*)(command + 1)) = (int16)x;
     for (int i = 0; i < 281; i++)
     {
@@ -627,11 +627,11 @@ void Painter::DrawPicture(int x, int y, int width, int height, uint8 *address)
 
 uint16 Painter::ReduceBrightness(uint16 colorValue, float newBrightness)
 {
-    int red = R_FROM_COLOR(colorValue) * newBrightness;
+    int red = static_cast<int>(R_FROM_COLOR(colorValue) * newBrightness);
     LIMITATION(red, red, 0, 31);
-    int green = G_FROM_COLOR(colorValue) * newBrightness;
+    int green = static_cast<int>(G_FROM_COLOR(colorValue) * newBrightness);
     LIMITATION(green, green, 0, 63);
-    int blue = B_FROM_COLOR(colorValue) * newBrightness;
+    int blue = static_cast<int>(B_FROM_COLOR(colorValue) * newBrightness);
     LIMITATION(blue, blue, 0, 31);
     return MAKE_COLOR(red, green, blue);
 }
@@ -739,9 +739,9 @@ bool Painter::SaveScreenToFlashDrive(void) {
     for(int i = 0; i < 16; i++)
     {
         uint16 color = set.display.colors[i];
-        colorStruct.blue = (float)B_FROM_COLOR(color) / 31.0f * 255.0f;
-        colorStruct.green = (float)G_FROM_COLOR(color) / 63.0f * 255.0f;
-        colorStruct.red = (float)R_FROM_COLOR(color) / 31.0f * 255.0f;
+        colorStruct.blue = static_cast<uint8>(B_FROM_COLOR(color) / 31.0f * 255.0f);
+        colorStruct.green = static_cast<uint8>(G_FROM_COLOR(color) / 63.0f * 255.0f);
+        colorStruct.red = static_cast<uint8>(R_FROM_COLOR(color) / 31.0f * 255.0f);
         colorStruct.rgbReserved = 0;
         ((RGBQUAD*)(buffer))[i] = colorStruct;
     }

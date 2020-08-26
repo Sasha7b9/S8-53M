@@ -73,7 +73,7 @@ char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
 
     int numDigitsInInt = NumDigitsInIntPart(value);
 
-    format[3] = (numDigits - numDigitsInInt) + 0x30;
+    format[3] = static_cast<char>((numDigits - numDigitsInInt) + 0x30);
     if(numDigits == numDigitsInInt)
     {
         format[5] = '.';
@@ -81,12 +81,12 @@ char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
     
     snprintf(pBuffer, 19, format, fabsf(value));
 
-    float val = atof(pBuffer);
+    float val = static_cast<float>(atof(pBuffer));
 
     if (NumDigitsInIntPart(val) != numDigitsInInt)
     {
         numDigitsInInt = NumDigitsInIntPart(val);
-        format[3] = (numDigits - numDigitsInInt) + 0x30;
+        format[3] = static_cast<char>((numDigits - numDigitsInInt) + 0x30);
         if (numDigits == numDigitsInInt)
         {
             format[5] = '.';

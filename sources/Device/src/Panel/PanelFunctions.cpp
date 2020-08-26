@@ -199,7 +199,7 @@ void ChangeTShift(int *prevTime, void(*f)(int), int16 relStep)
 {
     int count = CalculateCount(prevTime);
     int tShiftOld = TSHIFT;
-    float step = relStep * count;
+    float step = static_cast<float>(relStep * count);
     if (step < 0)
     {
         if (step > -1)
@@ -215,7 +215,7 @@ void ChangeTShift(int *prevTime, void(*f)(int), int16 relStep)
         }
     }
 
-    int16 tShift = TSHIFT + step;
+    int16 tShift = static_cast<int16>(TSHIFT + step);
     if (((tShiftOld > 0) && (tShift < 0)) || (tShiftOld < 0 && tShift > 0))
     {
         tShift = 0;
@@ -230,7 +230,7 @@ void ChangeTShift(int *prevTime, void(*f)(int), int16 relStep)
 void ChangeShiftScreen(int *prevTime, void(*f)(int), int16 relStep)
 {
     int count = CalculateCount(prevTime);
-    float step = relStep * count;
+    float step = static_cast<float>(relStep * count);
     if (step < 0)
     {
         if (step > -1)
@@ -242,7 +242,7 @@ void ChangeShiftScreen(int *prevTime, void(*f)(int), int16 relStep)
     {
         step = 1;
     }
-    f(step);
+    f(static_cast<int>(step));
 }
 
 static void SetRShift(Channel ch, int16 rShift)
@@ -308,7 +308,7 @@ void XShift(int delta)
     {
         if (!ENUM_POINTS_IS_281)
         {
-            ChangeShiftScreen(&prevTime, ShiftScreen, 2 * delta);
+            ChangeShiftScreen(&prevTime, ShiftScreen, static_cast<int16>(2 * delta));
         }
     }
     else

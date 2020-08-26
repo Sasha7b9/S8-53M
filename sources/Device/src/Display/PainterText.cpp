@@ -35,7 +35,7 @@ void Painter::LoadFont(TypeFont typeFont)
 
     uint8 command[2 + 4];
     command[0] = LOAD_FONT;
-    command[1] = typeFont;
+    command[1] = static_cast<uint8>(typeFont);
     *(uint*)(command + 2) = (uint)fonts[typeFont]->height;
     Painter::SendToVCP(command, 2 + 4);
 
@@ -805,8 +805,8 @@ void Painter::Draw4SymbolsInRect(int x, int y, char eChar)
 {
     for (int i = 0; i < 2; i++)
     {
-        DrawChar(x + 8 * i, y, eChar + i);
-        DrawChar(x + 8 * i, y + 8, eChar + i + 16);
+        DrawChar(x + 8 * i, y, static_cast<char>(eChar + i));
+        DrawChar(x + 8 * i, y + 8, static_cast<char>(eChar + i + 16));
     }
 }
 
@@ -822,8 +822,8 @@ void Painter::Draw10SymbolsInRect(int x, int y, char eChar)
 {
     for (int i = 0; i < 5; i++)
     {
-        DrawChar(x + 8 * i, y, eChar + i);
-        DrawChar(x + 8 * i, y + 8, eChar + i + 16);
+        DrawChar(x + 8 * i, y, static_cast<char>(eChar + i));
+        DrawChar(x + 8 * i, y + 8, static_cast<char>(eChar + i + 16));
     }
 }
 

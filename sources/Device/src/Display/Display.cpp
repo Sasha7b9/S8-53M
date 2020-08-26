@@ -1555,7 +1555,7 @@ void Display::DrawGrid(int left, int top, int width, int height)
     }
     else if (TYPE_GRID_IS_3)
     {
-        DrawGridType3(left, top, right, bottom, centerX, centerY, deltaX, deltaY, stepX, stepY);
+        DrawGridType3(left, top, right, bottom, centerX, centerY, static_cast<int>(deltaX), static_cast<int>(deltaY), static_cast<int>(stepX), static_cast<int>(stepY));
     }
 }
 
@@ -1608,8 +1608,8 @@ void Display::DrawCursorTrigLevel()
     }
     int trigLev = TRIG_LEVEL(chan) + ((chan == TrigSource_Ext) ? 0 : SET_RSHIFT(chan) - RShiftZero);
     float scale = 1.0f / ((TrigLevMax - TrigLevMin) / 2 / Grid::ChannelHeight());
-    int y0 = (GRID_TOP + Grid::ChannelBottom()) / 2 + scale * (TrigLevZero - TrigLevMin);
-    int y = y0 - scale * (trigLev - TrigLevMin);
+    int y0 = static_cast<int>((GRID_TOP + Grid::ChannelBottom()) / 2 + scale * (TrigLevZero - TrigLevMin));
+    int y = static_cast<int>(y0 - scale * (trigLev - TrigLevMin));
 
     if(chan != TrigSource_Ext)
     {
@@ -1653,7 +1653,7 @@ void Display::DrawCursorTrigLevel()
         int shiftFullMax = RShiftMax + TrigLevMax;
         scale = (float)height / (shiftFullMax - shiftFullMin);
         int shiftFull = TRIG_LEVEL_SOURCE + (TRIG_SOURCE_IS_EXT ? 0 : SET_RSHIFT(chan));
-        int yFull = GRID_TOP + DELTA + height - scale * (shiftFull - RShiftMin - TrigLevMin) - 4;
+        int yFull = static_cast<int>(GRID_TOP + DELTA + height - scale * (shiftFull - RShiftMin - TrigLevMin) - 4);
         Painter::FillRegionC(left + 2, yFull + 1, 4, 6, ColorTrig());
         Painter::SetFont(TypeFont_5);
         Painter::DrawCharC(left + 3, yFull - 5 + dY, simbols[TRIG_SOURCE], COLOR_BACK);
@@ -1664,15 +1664,15 @@ void Display::DrawCursorTrigLevel()
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 void Display::DrawCursorRShift(Channel chan)
 {
-    float x = Grid::Right() - Grid::Width() - Measure_GetDeltaGridLeft();
+    float x = static_cast<float>(Grid::Right() - Grid::Width() - Measure_GetDeltaGridLeft());
 
     if (chan == Math)
     {
         int rShift = SET_RSHIFT_MATH;
         float scale = (float)Grid::MathHeight() / 960;
         float y = (Grid::MathTop() + Grid::MathBottom()) / 2 - scale * (rShift - RShiftZero);
-        Painter::DrawCharC(x - 9, y - 4, SYMBOL_RSHIFT_NORMAL, COLOR_FILL);
-        Painter::DrawCharC(x - 8, y - 5, 'm', COLOR_BACK);
+        Painter::DrawCharC(static_cast<int>(x - 9), static_cast<int>(y - 4), SYMBOL_RSHIFT_NORMAL, COLOR_FILL);
+        Painter::DrawCharC(static_cast<int>(x - 8), static_cast<int>(y - 5), 'm', COLOR_BACK);
         return;
     }
     if(!sChannel_Enabled(chan))
@@ -1690,24 +1690,24 @@ void Display::DrawCursorRShift(Channel chan)
 
     if(y > Grid::ChannelBottom())
     {
-        Painter::DrawCharC(x - 7, Grid::ChannelBottom() - 11, SYMBOL_RSHIFT_LOWER, ColorChannel(chan));
-        Painter::SetPoint(x - 5, Grid::ChannelBottom() - 2);
-        y = Grid::ChannelBottom() - 7;
+        Painter::DrawCharC(static_cast<int>(x - 7), Grid::ChannelBottom() - 11, SYMBOL_RSHIFT_LOWER, ColorChannel(chan));
+        Painter::SetPoint(static_cast<int>(x - 5), Grid::ChannelBottom() - 2);
+        y = static_cast<float>(Grid::ChannelBottom() - 7);
         x++;
     }
     else if(y < GRID_TOP)
     {
-        Painter::DrawCharC(x - 7, GRID_TOP + 2, SYMBOL_RSHIFT_ABOVE, ColorChannel(chan));
-        Painter::SetPoint(x - 5, GRID_TOP + 2);
+        Painter::DrawCharC(static_cast<int>(x - 7), GRID_TOP + 2, SYMBOL_RSHIFT_ABOVE, ColorChannel(chan));
+        Painter::SetPoint(static_cast<int>(x - 5), GRID_TOP + 2);
         y = GRID_TOP + 7;
         x++;
     }
     else
     {
-        Painter::DrawCharC(x - 8, y - 4, SYMBOL_RSHIFT_NORMAL, ColorChannel(chan));
+        Painter::DrawCharC(static_cast<int>(x - 8), static_cast<int>(y - 4), SYMBOL_RSHIFT_NORMAL, ColorChannel(chan));
         if(((chan == A) ? (SHOW_LEVEL_RSHIFT_0 == 1) : (SHOW_LEVEL_RSHIFT_1 == 1)) && MODE_WORK_IS_DIRECT)
         {
-            Painter::DrawDashedHLine(y, Grid::Left(), Grid::Right(), 7, 3, 0);
+            Painter::DrawDashedHLine(static_cast<int>(y), Grid::Left(), Grid::Right(), 7, 3, 0);
         }
     }
 
@@ -1716,10 +1716,10 @@ void Display::DrawCursorRShift(Channel chan)
 
     if((!MenuIsMinimize() || !MenuIsShown()) && DRAW_RSHIFT_MARKERS)
     {
-        Painter::FillRegionC(4, yFull - 3, 4, 6, ColorChannel(chan));
-        Painter::DrawCharC(5, yFull - 9 + dY, chan == A ? '1' : '2', COLOR_BACK);
+        Painter::FillRegionC(4, static_cast<int>(yFull - 3), 4, 6, ColorChannel(chan));
+        Painter::DrawCharC(5, static_cast<int>(yFull - 9 + dY), chan == A ? '1' : '2', COLOR_BACK);
     }
-    Painter::DrawCharC(x - 7, y - 9 + dY, chan == A ? '1' : '2', COLOR_BACK);
+    Painter::DrawCharC(static_cast<int>(x - 7), static_cast<int>(y - 9 + dY), chan == A ? '1' : '2', COLOR_BACK);
     Painter::SetFont(TypeFont_8);
 }
 
@@ -1732,9 +1732,9 @@ void Display::DrawCursorTShift()
 
     // Рисуем TPos
     int shiftTPos = sTime_TPosInPoints((PeackDetMode)gDSet->peakDet, (int)gDSet->length1channel, SET_TPOS) - SHIFT_IN_MEMORY;
-    float scale = (lastPoint - firstPoint) / Grid::Width();
+    float scale = static_cast<float>((lastPoint - firstPoint) / Grid::Width());
     int gridLeft = Grid::Left();
-    int x = gridLeft + shiftTPos * scale - 3;
+    int x = static_cast<int>(gridLeft + shiftTPos * scale - 3);
     if (IntInRange(x + 3, gridLeft, Grid::Right() + 1))
     {
         Painter::Draw2SymbolsC(x, GRID_TOP - 1, SYMBOL_TPOS_2, SYMBOL_TPOS_3, COLOR_BACK, COLOR_FILL);
@@ -1809,10 +1809,10 @@ void Display::DrawCursors()
 
         if (bothCursors)
         {
-            x0 = Grid::Left() + CURS_POS_T0(source);
-            x1 = Grid::Left() + CURS_POS_T1(source);
-            y0 = GRID_TOP + sCursors_GetCursPosU(source, 0);
-            y1 = GRID_TOP + sCursors_GetCursPosU(source, 1);
+            x0 = static_cast<int>(Grid::Left() + CURS_POS_T0(source));
+            x1 = static_cast<int>(Grid::Left() + CURS_POS_T1(source));
+            y0 = static_cast<int>(GRID_TOP + sCursors_GetCursPosU(source, 0));
+            y1 = static_cast<int>(GRID_TOP + sCursors_GetCursPosU(source, 1));
 
             Painter::DrawRectangle(x0 - 2, y0 - 2, 4, 4);
             Painter::DrawRectangle(x1 - 2, y1 - 2, 4, 4);
@@ -1821,14 +1821,14 @@ void Display::DrawCursors()
         CursCntrl cntrl = CURS_CNTRL_T(source);
         if (cntrl != CursCntrl_Disable)
         {
-            DrawVerticalCursor(CURS_POS_T0(source), y0);
-            DrawVerticalCursor(CURS_POS_T1(source), y1);
+            DrawVerticalCursor(static_cast<int>(CURS_POS_T0(source)), y0);
+            DrawVerticalCursor(static_cast<int>(CURS_POS_T1(source)), y1);
         }
         cntrl = CURsU_CNTRL;
         if (cntrl != CursCntrl_Disable)
         {
-            DrawHorizontalCursor(sCursors_GetCursPosU(source, 0), x0);
-            DrawHorizontalCursor(sCursors_GetCursPosU(source, 1), x1);
+            DrawHorizontalCursor(static_cast<int>(sCursors_GetCursPosU(source, 0)), x0);
+            DrawHorizontalCursor(static_cast<int>(sCursors_GetCursPosU(source, 1)), x1);
         }
     }
 }
@@ -2287,7 +2287,7 @@ void Display::Clear()
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 void Display::ShiftScreen(int delta)
 {
-    LIMITATION(SHIFT_IN_MEMORY, SHIFT_IN_MEMORY + delta, 0, sMemory_GetNumPoints(false) - 282);
+    LIMITATION(SHIFT_IN_MEMORY, static_cast<int16>(SHIFT_IN_MEMORY + delta), 0, static_cast<int16>(sMemory_GetNumPoints(false) - 282));
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------

@@ -88,7 +88,7 @@ int Math_MinFrom2Int(int val0, int val1)
 
 int Math_RShift2Rel(float rShiftAbs, Range range)
 {
-    int retValue = RShiftZero + rShiftAbs / absStepRShift[range];
+    int retValue = static_cast<int>(RShiftZero + rShiftAbs / absStepRShift[range]);
     if(retValue < RShiftMin)
     {
         retValue = RShiftMin;
@@ -148,7 +148,7 @@ void Math_DataExtrapolation(uint8 *data, uint8 *there, int size)
             float deltaX = (float)(data[pointer2] - data[pointer]) / deltaY;
             for(int i = 1; i < deltaY; i++)
             {
-                data[pointer + i] = data[pointer] + i * deltaX;
+                data[pointer + i] = static_cast<uint8>(data[pointer] + i * deltaX);
             }
         }
         pointer = pointer2 + 1;
@@ -160,7 +160,7 @@ void Math_PointsRelToVoltage(const uint8 *points, int numPoints, Range range, in
     int voltInPixel = voltsInPixelInt[range];
     float maxVoltsOnScreen = MAX_VOLTAGE_ON_SCREEN(range);
     float rShiftAbs = RSHIFT_2_ABS(rShift, range);
-    int diff = (MIN_VALUE * voltInPixel) + (maxVoltsOnScreen + rShiftAbs) * 20e3;;
+    int diff = static_cast<int>((MIN_VALUE * voltInPixel) + (maxVoltsOnScreen + rShiftAbs) * 20e3);
     float koeff = 1.0f / 20e3f;
     for (int i = 0; i < numPoints; i++)
     {
@@ -180,7 +180,7 @@ void Math_PointsVoltageToRel(const float *voltage, int numPoints, Range range, i
 
     for (int i = 0; i < numPoints; i++)
     {
-        int value = voltage[i] * voltInPixel + delta;
+        int value = static_cast<int>(voltage[i] * voltInPixel + delta);
         if (value < 0)
         {
             points[i] = 0;
@@ -197,7 +197,7 @@ void Math_PointsVoltageToRel(const float *voltage, int numPoints, Range range, i
 
 uint8 Math_VoltageToPoint(float voltage, Range range, int16 rShift)
 {
-    int relValue = (voltage + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) / voltsInPixel[range] + MIN_VALUE;
+    int relValue = static_cast<int>((voltage + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) / voltsInPixel[range] + MIN_VALUE);
     LIMITATION(relValue, relValue, 0, 255);
     return (uint8)relValue;
 }
@@ -206,7 +206,7 @@ float Math_GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, int
 {
     if(y0 == y1)
     {
-        return x1;
+        return static_cast<float>(x1);
     }
 
     return (yHorLine - y0) / ((float)(y1 - y0) / (float)(x1 - x0)) + x0;
@@ -303,7 +303,7 @@ static void MultiplyToWindow(float *data, int numPoints)
     {
         for (int i = 0; i < numPoints; i++)
         {
-            data[i] *= 0.53836 - 0.46164 * cos(2 * 3.1415926 * i / (numPoints - 1));
+            data[i] *= 0.53836F - 0.46164F * cos(2 * 3.1415926F * i / (numPoints - 1));
         }
     }
     else if (WINDOW_FFT_IS_BLACKMAN)
@@ -314,14 +314,14 @@ static void MultiplyToWindow(float *data, int numPoints)
         float a2 = alpha / 2.0f;
         for (int i = 0; i < numPoints; i++)
         {
-            data[i] *= a0 - a1 * cos(2 * 3.1415926 * i / (numPoints - 1)) + a2 * cos(4 * 3.1415926 * i / (numPoints - 1));
+            data[i] *= a0 - a1 * cos(2 * 3.1415926F * i / (numPoints - 1)) + a2 * cos(4 * 3.1415926F * i / (numPoints - 1));
         }
     }
     else if (WINDOW_FFT_IS_HANN)
     {
         for (int i = 0; i < numPoints; i++)
         {
-            data[i] *= 0.5f * (1.0f - cos(2.0f * 3.1415926 * i / (numPoints - 1.0f)));
+            data[i] *= 0.5F * (1.0F - cos(2.0f * 3.1415926F * i / (numPoints - 1.0F)));
         }
     }
 #endif
@@ -333,9 +333,9 @@ static void MultiplyToWindow(float *data, int numPoints)
 
 void Math_CalculateFFT(float *dataR, int numPoints, float *result, float *freq0, float *density0, float *freq1, float *density1, int *y0, int *y1)
 {
-    float scale = 1.0 / absStepTShift[SET_TBASE] / 1024.0;
+    float scale = 1.0F / absStepTShift[SET_TBASE] / 1024.0F;
 
-    float K = 1024.0 / numPoints;
+    float K = 1024.0F / numPoints;
 
     *freq0 = scale * FFT_POS_CURSOR_0 * K;
     *freq1 = scale * FFT_POS_CURSOR_1 * K;
@@ -477,8 +477,8 @@ void Math_CalculateFFT(float *dataR, int numPoints, float *result, float *freq0,
         *density0 = result[FFT_POS_CURSOR_0];
         *density1 = result[FFT_POS_CURSOR_1];
     }
-    *y0 = Grid::MathBottom() - result[FFT_POS_CURSOR_0] * Grid::MathHeight();
-    *y1 = Grid::MathBottom() - result[FFT_POS_CURSOR_1] * Grid::MathHeight();
+    *y0 = static_cast<int>(Grid::MathBottom() - result[FFT_POS_CURSOR_0] * Grid::MathHeight());
+    *y1 = static_cast<int>(Grid::MathBottom() - result[FFT_POS_CURSOR_1] * Grid::MathHeight());
 }
 
 void Math_CalculateMathFunction(float *data0andResult, float *data1, int numPoints)
