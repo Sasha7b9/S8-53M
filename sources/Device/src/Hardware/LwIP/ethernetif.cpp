@@ -15,6 +15,12 @@
 uint gEthTimeLastEthifInput = 0;
 
 
+#ifdef WIN32
+#define __ALIGN_BEGIN
+#endif
+
+
+
 #if defined ( __ICCARM__ ) /*!< IAR Compiler */
   #pragma data_alignment=4   
 #endif
@@ -133,7 +139,7 @@ static void low_level_init(struct netif *netif)
   *       to become availale since the stack doesn't retry to send a packet
   *       dropped because of memory failure (except for the TCP timers).
   */
-static err_t low_level_output(struct netif *netif, struct pbuf *p)
+static err_t low_level_output(struct netif *, struct pbuf *p)
 {
   err_t errval;
   struct pbuf *q;
@@ -165,7 +171,7 @@ static err_t low_level_output(struct netif *netif, struct pbuf *p)
     while( (byteslefttocopy + bufferoffset) > ETH_TX_BUF_SIZE )
     {
       /* Copy data to Tx buffer*/
-      memcpy( (uint8_t*)((uint8_t*)buffer + bufferoffset), (uint8_t*)((uint8_t*)q->payload + payloadoffset), (int)(ETH_TX_BUF_SIZE - bufferoffset) );
+      memcpy( (uint8_t*)((uint8_t*)buffer + bufferoffset), (uint8_t*)((uint8_t*)q->payload + payloadoffset), (size_t)(ETH_TX_BUF_SIZE - bufferoffset) );
       
       /* Point to next descriptor */
       DmaTxDesc = (ETH_DMADescTypeDef *)(DmaTxDesc->Buffer2NextDescAddr);
@@ -186,7 +192,7 @@ static err_t low_level_output(struct netif *netif, struct pbuf *p)
     }
     
     /* Copy the remaining bytes */
-    memcpy( (uint8_t*)((uint8_t*)buffer + bufferoffset), (uint8_t*)((uint8_t*)q->payload + payloadoffset), (int)byteslefttocopy );
+    memcpy( (uint8_t*)((uint8_t*)buffer + bufferoffset), (uint8_t*)((uint8_t*)q->payload + payloadoffset), (size_t)byteslefttocopy );
     bufferoffset = bufferoffset + byteslefttocopy;
     framelength = framelength + byteslefttocopy;
   }
@@ -218,7 +224,7 @@ error:
   * @return a pbuf filled with the received packet (including MAC header)
   *         NULL on memory error
   */
-static struct pbuf * low_level_input(struct netif *netif)
+static struct pbuf * low_level_input(struct netif *)
 {
   struct pbuf *p = NULL;
   struct pbuf *q;
@@ -259,7 +265,7 @@ static struct pbuf * low_level_input(struct netif *netif)
       while( (byteslefttocopy + bufferoffset) > ETH_RX_BUF_SIZE )
       {
         /* Copy data to pbuf */
-        memcpy( (uint8_t*)((uint8_t*)q->payload + payloadoffset), (uint8_t*)((uint8_t*)buffer + bufferoffset), (int)(ETH_RX_BUF_SIZE - bufferoffset));
+        memcpy( (uint8_t*)((uint8_t*)q->payload + payloadoffset), (uint8_t*)((uint8_t*)buffer + bufferoffset), (size_t)(ETH_RX_BUF_SIZE - bufferoffset));
         
         /* Point to next descriptor */
         dmarxdesc = (ETH_DMADescTypeDef *)(dmarxdesc->Buffer2NextDescAddr);
@@ -271,7 +277,7 @@ static struct pbuf * low_level_input(struct netif *netif)
       }
       
       /* Copy remaining data in pbuf */
-      memcpy( (uint8_t*)((uint8_t*)q->payload + payloadoffset), (uint8_t*)((uint8_t*)buffer + bufferoffset), (int)byteslefttocopy);
+      memcpy( (uint8_t*)((uint8_t*)q->payload + payloadoffset), (uint8_t*)((uint8_t*)buffer + bufferoffset), (size_t)byteslefttocopy);
       bufferoffset = bufferoffset + byteslefttocopy;
     }
   } 
