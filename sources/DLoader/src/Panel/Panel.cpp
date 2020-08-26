@@ -8,8 +8,8 @@
 #include "Hardware/Timer.h"
 #include <stm32f2xx_hal.h>
 #include <stm32f2xx_hal_gpio.h>
-#include <stdio.h>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
 
 
 

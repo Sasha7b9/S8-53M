@@ -6,8 +6,8 @@
 #include "Menu/Pages/PageMemory.h"
 #include "Settings/Settings.h"
 #include <cmath>
-#include <string.h>
-#include <stdio.h>
+#include <cstring>
+#include <cstdio>
 #include <limits>
 
 

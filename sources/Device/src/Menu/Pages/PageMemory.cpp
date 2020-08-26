@@ -20,8 +20,8 @@
 #include "Hardware/Sound.h"
 #include "Log.h"
 #include "Tables.h"
-#include <string.h>
-#include <stdio.h>
+#include <cstring>
+#include <cstdio>
 
 
 /** @addtogroup Menu

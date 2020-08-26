@@ -9,9 +9,7 @@
 #include "Display/Painter.h"
 #include "Display/Grid.h"
 #include "Hardware/Sound.h"
-
-
-#include <stdio.h>
+#include <cstdio>
 
 
 typedef struct

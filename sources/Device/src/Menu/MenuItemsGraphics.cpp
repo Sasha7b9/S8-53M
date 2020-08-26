@@ -9,8 +9,8 @@
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
 #include "Log.h"
-#include <string.h>
-#include <stdio.h>
+#include <cstring>
+#include <cstdio>
 
  
 static void Governor_DrawOpened(Governor *governor, int x, int y);
