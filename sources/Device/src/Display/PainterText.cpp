@@ -6,8 +6,8 @@
 #include "Utils/Math.h"
 #include "Menu/MenuItems.h"
 #include "Settings/Settings.h"
-#include <stdarg.h>
-
+#include <cstdarg>
+#include <cstdio>
 
 
 static TypeFont currentTypeFont = TypeFont_None;
@@ -653,7 +653,7 @@ int Painter::DrawFormatText(int x, int y, Color color, char *text, ...)
 #undef SIZE_BUFFER
 #define SIZE_BUFFER 200
     char buffer[SIZE_BUFFER];
-    va_list args;
+    std::va_list args;
     va_start(args, text);
     vsprintf(buffer, text, args);
     va_end(args);

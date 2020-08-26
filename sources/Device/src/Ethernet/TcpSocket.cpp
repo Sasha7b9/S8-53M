@@ -1,9 +1,8 @@
-
-
 #include "TcpSocket.h"
 #include <lwip/tcp.h>
-#include <string.h>
-#include <stdarg.h>
+#include <cstring>
+#include <cstdarg>
+#include <cstdio>
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -423,9 +422,9 @@ void TCPSocket_SendFormatString(char *format, ...)
 #undef SIZE_BUFFER
 #define SIZE_BUFFER 200
     static char buffer[SIZE_BUFFER];
-    va_list args;
+    std::va_list args;
     va_start(args, format);
-    vsprintf(buffer, format, args);
+    std::vsprintf(buffer, format, args);
     va_end(args);
     strcat(buffer, "\r\n");
     TCPSocket_Send(buffer, (uint)strlen(buffer));
