@@ -39,7 +39,7 @@ add_compile_options(/wd5045)    # Compiler will insert Spectre mitigation for me
 add_compile_options(/wd5219)    # implicit conversion from 'type1' to 'type2', possible loss of data
 
 file(GLOB VS_KEIL_ARMCLANG ../common/vs_keil/ARMCLANG/*)
-file(GLOB VS_KEIL_CMSIS    ../common/vs_keil/CMSIS/*)
+file(GLOB VS_KEIL_CMSIS    ../common/vs_keil/CMSIS/core_cm3.h)
 file(GLOB VS_KEIL_FATFS    ../common/vs_keil/FatFS/*)
 
 file(GLOB LIBS_FATFS     ../common/STM32Cube_F2/Middlewares/Third_Party/FatFS/src/ff_gen_drv.*
