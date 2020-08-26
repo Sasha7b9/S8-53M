@@ -209,7 +209,7 @@ static const Choice cCalibrator_Mode =
     (int8*)&CALIBRATOR, OnChanged_Calibrator_Mode
 };
 
-static void OnChanged_Calibrator_Mode(bool active)
+static void OnChanged_Calibrator_Mode(bool)
 {
     FPGA::SetCalibratorMode(CALIBRATOR);
 }
@@ -781,7 +781,7 @@ static const Choice cEthernet_Enable =
     (int8*)&ETH_ENABLE, OnChanged_Ethernet_Enable
 };
 
-static void OnChanged_Ethernet_Enable(bool active)
+static void OnChanged_Ethernet_Enable(bool)
 {
     Display::ShowWarningGood(NeedRebootDevice2);
     Display::ShowWarningGood(NeedRebootDevice1);

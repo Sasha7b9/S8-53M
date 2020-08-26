@@ -41,7 +41,7 @@ static void DrawSetMask();  // Эта функция рисует, когда выбран режим задания ма
 static void DrawSetName();  // Эта функция рисует, когда нужно задать имя файла для сохранения
 
 
-void ChangeC_Memory_NumPoints(bool active)
+void ChangeC_Memory_NumPoints(bool)
 {
     if(sMemory_GetNumPoints(false) == 281)
     {
@@ -55,11 +55,11 @@ void ChangeC_Memory_NumPoints(bool active)
         }
         else if(SET_TPOS_IS_CENTER)
         {
-            SHIFT_IN_MEMORY = sMemory_GetNumPoints(false) / 2 - Grid::Width() / 2;
+            SHIFT_IN_MEMORY = static_cast<int16>(sMemory_GetNumPoints(false) / 2 - Grid::Width() / 2);
         }
         else if(SET_TPOS_IS_RIGHT)
         {
-            SHIFT_IN_MEMORY = sMemory_GetNumPoints(false) - Grid::Width() - 2;
+            SHIFT_IN_MEMORY = static_cast<int16>(sMemory_GetNumPoints(false) - Grid::Width() - 2);
         }
     }
     FPGA::SetTShift(TSHIFT);
@@ -100,12 +100,12 @@ void PressSB_MemLastSelect()
 
 void PressSB_MemLast_Next()
 {
-    CircleIncreaseInt16(&CURRENT_NUM_LATEST_SIGNAL, 0, Storage::AllDatas() - 1);
+    CircleIncreaseInt16(&CURRENT_NUM_LATEST_SIGNAL, 0, static_cast<int16>(Storage::AllDatas() - 1));
 }
 
 void PressSB_MemLast_Prev()
 {
-    CircleDecreaseInt16(&CURRENT_NUM_LATEST_SIGNAL, 0, Storage::AllDatas() - 1);
+    CircleDecreaseInt16(&CURRENT_NUM_LATEST_SIGNAL, 0, static_cast<int16>(Storage::AllDatas() - 1));
 }
 
 static void RotateSB_MemLast(int angle)
@@ -280,7 +280,7 @@ void DrawSB_SetName_Backspace(int x, int y)
 
 void PressSB_SetMask_Backspace()
 {
-    int size = strlen(FILE_NAME_MASK);
+    int size = static_cast<int>(strlen(FILE_NAME_MASK));
     if (size > 0)
     {
         if (size > 1 && FILE_NAME_MASK[size - 2] == 0x07)
@@ -297,7 +297,7 @@ void PressSB_SetMask_Backspace()
 
 void PressSB_SetName_Backspace()
 {
-    int size = strlen(FILE_NAME);
+    int size = static_cast<int>(strlen(FILE_NAME));
     if (size > 0)
     {
         FILE_NAME[size - 1] = '\0';
@@ -338,7 +338,7 @@ void DrawSB_SetMask_Insert(int x, int y)
 void PressSB_SetMask_Insert()
 {
     int index = INDEX_SYMBOL;
-    int size = strlen(FILE_NAME_MASK);
+    int size = static_cast<int>(strlen(FILE_NAME_MASK));
     if (size == MAX_SYMBOLS_IN_FILE_NAME - 1)
     {
         return;
@@ -380,7 +380,7 @@ void DrawSB_SetName_Insert(int x, int y)
 
 void PressSB_SetName_Insert()
 {
-    int size = strlen(FILE_NAME);
+    int size = static_cast<int>(strlen(FILE_NAME));
     if (size < MAX_SYMBOLS_IN_FILE_NAME - 1)
     {
         FILE_NAME[size] = symbolsAlphaBet[INDEX_SYMBOL][0];
@@ -400,9 +400,9 @@ void OnMemExtSetMaskNameRegSet(int angle, int maxIndex)
     Painter::ResetFlash();
     if (INDEX_SYMBOL > maxIndex)
     {
-        INDEX_SYMBOL = maxIndex - 1;
+        INDEX_SYMBOL = static_cast<int8>(maxIndex - 1);
     }
-    func[Math_Sign(angle) + 1](&INDEX_SYMBOL, 0, maxIndex - 1);
+    func[Math_Sign(angle) + 1](&INDEX_SYMBOL, 0, static_cast<int8>(maxIndex - 1));
     Sound::RegulatorSwitchRotate();
 
 }

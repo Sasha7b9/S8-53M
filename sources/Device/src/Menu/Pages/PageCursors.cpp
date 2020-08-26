@@ -115,27 +115,27 @@ void Cursors_Update()
     CursLookMode lookMode0 = CURS_LOOKMODE_0;
     CursLookMode lookMode1 = CURS_LOOKMODE_1;
 
-    int posT0 = 0, posT1 = 0;
+    float posT0 = 0.0F, posT1 = 0.0F;
 
     if((lookMode0 == CursLookMode_Voltage || lookMode0 == CursLookMode_Both) && CURS_ACTIVE_IS_T)
     {
-        int posU0 = Processing::GetCursU(source, CURS_POS_T0(source));
+        float posU0 = Processing::GetCursU(source, CURS_POS_T0(source));
         SetCursPosU(source, 0, posU0);
     }
     if((lookMode1 == CursLookMode_Voltage || lookMode1 == CursLookMode_Both)  && CURS_ACTIVE_IS_T)
     {
-        int posU1 = Processing::GetCursU(source, CURS_POS_T1(source));
+        float posU1 = Processing::GetCursU(source, CURS_POS_T1(source));
         SetCursPosU(source, 1, posU1);
     }
     if((lookMode0 == CursLookMode_Time || lookMode0 == CursLookMode_Both) && CURS_ACTIVE_IS_U)
     {
-        int posU0 = CURS_POS_U0(source);
+        float posU0 = CURS_POS_U0(source);
         posT0 = Processing::GetCursT(source, posU0, 0);
         SetCursPosT(source, 0, posT0);
     }
     if((lookMode1 == CursLookMode_Time || lookMode1 == CursLookMode_Both) && CURS_ACTIVE_IS_U)
     {
-        int posU1 = CURS_POS_U1(source);
+        float posU1 = CURS_POS_U1(source);
         posT1 = Processing::GetCursT(source, posU1, 1);
         SetCursPosT(source, 1, posT1);
     }
@@ -328,7 +328,7 @@ static void MoveCursUonPercentsOrPoints(int delta)
 {
     CursCntrl cursCntrl = CURsU_CNTRL;
 
-    float value = delta;
+    float value = static_cast<float>(delta);
 
     Channel source = CURS_SOURCE;
 
@@ -365,7 +365,7 @@ static void MoveCursTonPercentsOrPoints(int delta)
     Channel source = CURS_SOURCE;
     CursCntrl cursCntrl = CURS_CNTRL_T(source);
 
-    float value = delta;
+    float value = static_cast<float>(delta);
 
     if(CURS_MOVEMENT_IS_PERCENTS)
     {
@@ -502,7 +502,7 @@ static void DrawSB_Cursors_U(int x, int y)
         {
             Channel source = CURS_SOURCE;
             bool condTop = false, condDown = false;
-            CalculateConditions(sCursors_GetCursPosU(source, 0), sCursors_GetCursPosU(source, 1), cursCntrl, &condTop, &condDown);
+            CalculateConditions(static_cast<int16>(sCursors_GetCursPosU(source, 0)), static_cast<int16>(sCursors_GetCursPosU(source, 1)), cursCntrl, &condTop, &condDown);
             if (condTop && condDown)
             {
                 DrawSB_Cursors_U_Both_Enable(x, y);
@@ -606,7 +606,7 @@ static void DrawSB_Cursors_T(int x, int y)
         else
         {
             bool condLeft = false, condDown = false;
-            CalculateConditions(CURS_POS_T0(source), CURS_POS_T1(source), cursCntrl, &condLeft, &condDown);
+            CalculateConditions(static_cast<int16>(CURS_POS_T0(source)), static_cast<int16>(CURS_POS_T1(source)), cursCntrl, &condLeft, &condDown);
             if (condLeft && condDown)
             {
                 DrawSB_Cursors_T_Both_Enable(x, y);
@@ -667,8 +667,8 @@ static void PressSB_Cursors_100(void)
 
 static void SetCursPos100(Channel chan)
 {
-    DELTA_U100(chan) = fabs(CURS_POS_U0(chan) - CURS_POS_U1(chan));
-    DELTA_T100(chan) = fabs(CURS_POS_T0(chan) - CURS_POS_T1(chan));
+    DELTA_U100(chan) = fabsf(CURS_POS_U0(chan) - CURS_POS_U1(chan));
+    DELTA_T100(chan) = fabsf(CURS_POS_T0(chan) - CURS_POS_T1(chan));
 }
 
 static void DrawSB_Cursors_100(int x, int y)

@@ -106,7 +106,7 @@ static const Choice mcInputA =
     (int8*)&SET_ENABLED_A, OnChanged_InputA
 };
 
-void OnChanged_InputA(bool active)
+void OnChanged_InputA(bool)
 {
     Panel::EnableLEDChannel0(sChannel_Enabled(A));
 }
@@ -129,7 +129,7 @@ static const Choice mcCoupleA =
     (int8*)&SET_COUPLE_A, OnChanged_CoupleA
 };
 
-void OnChanged_CoupleA(bool active)
+void OnChanged_CoupleA(bool)
 {
     FPGA::SetModeCouple(A, SET_COUPLE_A);
 }
@@ -151,7 +151,7 @@ static const Choice mcFiltrA =
     (int8*)&SET_FILTR_A, OnChanged_FiltrA
 };
 
-void OnChanged_FiltrA(bool active)
+void OnChanged_FiltrA(bool)
 {
     FPGA::EnableChannelFiltr(A, SET_FILTR_A);
 }
@@ -173,7 +173,7 @@ static const Choice mcInverseA =
     (int8*)&SET_INVERSE_A, OnChanged_InverseA
 };
 
-static void OnChanged_InverseA(bool active)
+static void OnChanged_InverseA(bool)
 {
     FPGA::SetRShift(A, SET_RSHIFT_A);
 }
@@ -233,7 +233,7 @@ static const Choice mcInputB =  ///< ÊÀÍÀË 2
     (int8*)&SET_ENABLED_B, OnChanged_InputB
 };
 
-void OnChanged_InputB(bool active)
+void OnChanged_InputB(bool)
 {
     Panel::EnableLEDChannel1(sChannel_Enabled(B));
 }
@@ -256,7 +256,7 @@ static const Choice mcCoupleB =
     (int8*)&SET_COUPLE_B, OnChanged_CoupleB
 };
 
-void OnChanged_CoupleB(bool active)
+void OnChanged_CoupleB(bool)
 {
     FPGA::SetModeCouple(B, SET_COUPLE_B);
 }
@@ -277,7 +277,7 @@ static const Choice mcFiltrB =
     (int8*)&SET_FILTR_B, OnChanged_FiltrB
 };
 
-void OnChanged_FiltrB(bool active)
+void OnChanged_FiltrB(bool)
 {
     FPGA::EnableChannelFiltr(B, SET_FILTR_B);
 }
@@ -299,7 +299,7 @@ static const Choice mcInverseB =
     (int8*)&SET_INVERSE_B, OnChanged_InverseB
 };
 
-static void OnChanged_InverseB(bool active)
+static void OnChanged_InverseB(bool)
 {
     FPGA::SetRShift(B, SET_RSHIFT_B);
 }

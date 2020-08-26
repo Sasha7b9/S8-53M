@@ -40,7 +40,7 @@ void DrawSB_Help_ParagraphNext(int x, int y)
     Painter::SetFont(TypeFont_8);
 }
 
-void OnHelpRegSet(int angle) 
+void OnHelpRegSet(int)
 {
 
 }

@@ -26,6 +26,7 @@ add_definitions(-DSTM32F207xx)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -MP -Wall")
 
+add_compile_options(/wd4211)    # nonstandard extension used : redefined extern to static
 add_compile_options(/wd4310)    # cast truncates constant value
 add_compile_options(/wd4514)    # 'function' : unreferenced inline function has been removed
 add_compile_options(/wd4623)    # 'derived class' : default constructor was implicitly defined as deleted because a base class default constructor is inaccessible or deleted
@@ -149,11 +150,13 @@ file(GLOB ETHERNET       src/Ethernet/*)
 file(GLOB FDRIVE         src/FDrive/*)
 file(GLOB FPGA           src/FPGA/*)
 file(GLOB MENU           src/Menu/*.h src/Menu/*.cpp)
+file(GLOB MENU_PAGES     src/Menu/Pages/*)
 file(GLOB PANEL          src/Panel/*)
 file(GLOB SETTINGS       src/Settings/*)
 file(GLOB UTILS          src/Utils/*)
 
 set_source_files_properties(src/Panel/PanelFunctions.cpp PROPERTIES HEADER_FILE_ONLY TRUE)
+set_source_files_properties(src/Menu/Pages/PageHelp.cpp PROPERTIES HEADER_FILE_ONLY TRUE)
 set_source_files_properties(${LIBS_FATFS} ${LIBS_HAL} ${LIBS_USBH} PROPERTIES HEADER_FILE_ONLY TRUE)
 
 source_group(libs\\vs_keil\\ARMCLANG FILES ${VS_KEIL_ARMCLANG})
@@ -177,11 +180,12 @@ source_group(Ethernet                FILES ${ETHERNET})
 source_group(FDrive                  FILES ${FDRIVE})
 source_group(FPGA                    FILES ${FPGA})
 source_group(Menu                    FILES ${MENU})
+source_group(Menu\\Pages             FILES ${MENU_PAGES})
 source_group(Panel                   FILES ${PANEL})
 source_group(Settings                FILES ${SETTINGS})
 source_group(Utils                   FILES ${UTILS})
 
 add_library(Device ${VS_KEIL_CMSIS} ${VS_KEIL_ARMCLANG} ${VS_KEIL_FATFS} ${LIBS_CMSIS}
                    ${LIBS_FATFS} ${LIBS_HAL} ${LIBS_LWIP} ${LIBS_USBH} ${HARDWARE} ${HARDWARE_CMSIS} ${HARDWARE_FATFS} ${HARDWARE_HAL} ${HARDWARE_LWIP}
-                   ${HARDWARE_USBD} ${HARDWARE_USBH} ${SRC} ${DISPLAY} ${DISPLAY_FONT} ${ETHERNET} ${FDRIVE} ${FPGA} ${MENU}
+                   ${HARDWARE_USBD} ${HARDWARE_USBH} ${SRC} ${DISPLAY} ${DISPLAY_FONT} ${ETHERNET} ${FDRIVE} ${FPGA} ${MENU} ${MENU_PAGES}
                    ${PANEL} ${SETTINGS} ${UTILS})

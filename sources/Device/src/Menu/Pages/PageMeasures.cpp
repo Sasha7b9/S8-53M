@@ -60,22 +60,22 @@ void RotateRegMeasureSetField(int angle)
     {
         if (cursActive == CursActive_T)
         {
-            LIMITATION(MEAS_POS_CUR_T0, MEAS_POS_CUR_T0 - sign, 0, sMemory_GetNumPoints(false) - 1);
+            LIMITATION(MEAS_POS_CUR_T0, static_cast<int16>(MEAS_POS_CUR_T0 - sign), 0, static_cast<int16>(sMemory_GetNumPoints(false) - 1));
         }
         else
         {
-            LIMITATION(MEAS_POS_CUR_U0, MEAS_POS_CUR_U0 + sign, 0, 200);
+            LIMITATION(MEAS_POS_CUR_U0, static_cast<int16>(MEAS_POS_CUR_U0 + sign), 0, 200);
         }
     }
     if (cursCntrl == CursCntrl_2 || cursCntrl == CursCntrl_1_2)
     {
         if (cursActive == CursActive_T)
         {
-            LIMITATION(MEAS_POS_CUR_T1, MEAS_POS_CUR_T1 - sign, 0, sMemory_GetNumPoints(false) - 1);
+            LIMITATION(MEAS_POS_CUR_T1, static_cast<int16>(MEAS_POS_CUR_T1 - sign), 0, static_cast<int16>(sMemory_GetNumPoints(false) - 1));
         }
         else
         {
-            LIMITATION(MEAS_POS_CUR_U1, MEAS_POS_CUR_U1 + sign, 0, 200);
+            LIMITATION(MEAS_POS_CUR_U1, static_cast<int16>(MEAS_POS_CUR_U1 + sign), 0, 200);
         }
     }
 }

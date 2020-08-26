@@ -78,7 +78,7 @@ static const Choice mcMode =
     (int8*)&START_MODE, OnPress_Mode
 };
 
-void OnPress_Mode(bool active)
+void OnPress_Mode(bool)
 {
     FPGA::Stop(false);
     if (!START_MODE_IS_SINGLE)
@@ -105,7 +105,7 @@ static const Choice mcSource =
     (int8*)&TRIG_SOURCE, OnChanged_Source
 };
 
-static void OnChanged_Source(bool active)
+static void OnChanged_Source(bool)
 {
     FPGA::SetTrigSource(TRIG_SOURCE);
 }
@@ -131,7 +131,7 @@ static const Choice mcPolarity =
     (int8*)&TRIG_POLARITY, OnChanged_Polarity
 };
 
-static void OnChanged_Polarity(bool active)
+static void OnChanged_Polarity(bool)
 {
     FPGA::SetTrigPolarity(TRIG_POLARITY);
 }
@@ -165,7 +165,7 @@ static const Choice mcInput =
     (int8*)&TRIG_INPUT, OnChanged_Input
 };
 
-static void OnChanged_Input(bool active)
+static void OnChanged_Input(bool)
 {
     FPGA::SetTrigInput(TRIG_INPUT);
 }
@@ -200,11 +200,15 @@ static const Choice mcAutoFind_Mode =
         "2. \"Автоматический\" - поиск производится автоматически."
         ,
         "Selecting the automatic search of synchronization:\n"
+#ifndef WIN32
 #pragma push
 #pragma diag_suppress 192
+#endif
         "1. \"Hand\" - search is run on pressing of the button \"Find\" or on deduction during 0.5s the СИНХР button if it is established \"SERVICE\x99Mode long СИНХР\x99\x41utolevel\".\n"
+#ifndef WIN32
 #pragma pop
-        "2. \"Auto\" - the search is automatically."
+#endif
+    "2. \"Auto\" - the search is automatically."
     },
     {
         {"Ручной",          "Hand"},

@@ -481,7 +481,7 @@ static const Choice mcADC_Balance_Mode =
 static int16 shiftADCA;
 static int16 shiftADCB;
 
-static void OnChanged_ADC_Balance_Mode(bool active)
+static void OnChanged_ADC_Balance_Mode(bool)
 {
     Draw_ADC_Balance_Mode(0, 0);
 
@@ -489,12 +489,12 @@ static void OnChanged_ADC_Balance_Mode(bool active)
     FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)shiftADCB, false);
 }
 
-static void Draw_ADC_Balance_Mode(int x, int y)
+static void Draw_ADC_Balance_Mode(int, int)
 {
     int8 shift[2][3] =
     {
-        {0, SET_BALANCE_ADC_A, BALANCE_ADC_A},
-        {0, SET_BALANCE_ADC_B, BALANCE_ADC_B}
+        {0, SET_BALANCE_ADC_A, static_cast<int8>(BALANCE_ADC_A)},
+        {0, SET_BALANCE_ADC_B, static_cast<int8>(BALANCE_ADC_B)}
     };
 
     shiftADCA = shift[0][BALANCE_ADC_TYPE];
