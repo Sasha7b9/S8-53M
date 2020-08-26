@@ -1,6 +1,7 @@
 #pragma once
 
 #define __sizeof_ptr 4
+#define __FPU_USED 0
 
 #include <stdint.h>
 

@@ -1,6 +1,7 @@
 #pragma once
 
 
+double fabs(double);
 float fabsf(float);
 float sin(float);
 float cos(float);
