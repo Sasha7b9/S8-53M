@@ -51,68 +51,8 @@ file(GLOB LIBS_FATFS     ../common/STM32Cube_F2/Middlewares/Third_Party/FatFS/sr
 file(GLOB LIBS_CMSIS     ../common/STM32Cube_F2/Drivers/CMSIS/Device/ST/STM32F2xx/Include/*
                          ../common/STM32Cube_F2/Drivers/CMSIS/Include/*)
 
-file(GLOB LIBS_HAL       ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_adc.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_adc_ex.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_cortex.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_crc.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_dac.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_dac_ex.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_def.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_dma.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_dma_ex.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_eth.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_flash.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_flash_ex.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_gpio.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_gpio_ex.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_hcd.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pcd.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pcd_ex.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_pwr_ex.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_rcc.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_rcc_ex.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_rtc.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_rtc_ex.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_spi.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_sram.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_tim_ex.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_hal_uart.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_ll_fsmc.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/stm32f2xx_ll_usb.*
-
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_adc.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_adc_ex.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_cortex.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_crc.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_dac.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_dac_ex.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_eth.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_dma.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_dma_ex.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_flash.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_flash_ex.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_gpio.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_gpio_ex.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_hcd.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_pcd.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_pcd_ex.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_pwr.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_pwr_ex.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rcc.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rcc_ex.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rtc.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_rtc_ex.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_spi.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_sram.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_tim.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_tim_ex.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_hal_uart.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_ll_fsmc.*
-                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/stm32f2xx_ll_usb.*)
+file(GLOB LIBS_HAL       ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Inc/*.h
+                         ../common/STM32Cube_F2/Drivers/STM32F2xx_HAL_Driver/Src/*.c)
 
 file(GLOB LIBS_USBD      ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.*
                          ../common/STM32Cube_F2/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.*
@@ -189,7 +129,6 @@ source_group(Utils                   FILES ${UTILS})
 source_group(VCP                     FILES ${VCP})
 source_group(VCP\\SCPI               FILES ${VCP_SCPI})
 
-add_library(Device ${VS_KEIL_CMSIS} ${VS_KEIL_ARMCLANG} ${VS_KEIL_FATFS} ${LIBS_CMSIS}
-                   ${LIBS_FATFS} ${LIBS_HAL} ${LIBS_LWIP} ${LIBS_USBH} ${HARDWARE} ${HARDWARE_CMSIS} ${HARDWARE_FATFS} ${HARDWARE_HAL} ${HARDWARE_LWIP}
-                   ${HARDWARE_USBD} ${HARDWARE_USBH} ${SRC} ${DISPLAY} ${DISPLAY_FONT} ${ETHERNET} ${FDRIVE} ${FPGA} ${MENU} ${MENU_PAGES}
-                   ${PANEL} ${SETTINGS} ${UTILS} ${VCP} ${VCP_SCPI})
+add_library(Device ${VS_KEIL_CMSIS} ${VS_KEIL_ARMCLANG} ${VS_KEIL_FATFS} ${LIBS_CMSIS} ${LIBS_FATFS} ${LIBS_HAL} ${LIBS_LWIP} ${LIBS_USBH} ${HARDWARE}
+                   ${HARDWARE_CMSIS} ${HARDWARE_FATFS} ${HARDWARE_HAL} ${HARDWARE_LWIP} ${HARDWARE_USBD} ${HARDWARE_USBH} ${SRC} ${DISPLAY} 
+                   ${DISPLAY_FONT} ${ETHERNET} ${FDRIVE} ${FPGA} ${MENU} ${MENU_PAGES} ${PANEL} ${SETTINGS} ${UTILS} ${VCP} ${VCP_SCPI})
