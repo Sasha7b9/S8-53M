@@ -61,7 +61,7 @@ bool ByteFontNotEmpty(int eChar, int byte)
         prevChar = eChar;
         bytes = font->symbol[prevChar].bytes;
     }
-    return bytes[byte];
+    return bytes[byte] != 0;
 }
 
 
