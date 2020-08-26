@@ -20,7 +20,7 @@ void Timer::PauseOnTicks(uint numTicks)
 
 void Timer::StartMultiMeasurement(void)
 {
-    TIM2->CR1 &= (uint16)~TIM_CR1_CEN;
+    TIM2->CR1 &= (uint)~TIM_CR1_CEN;
     TIM2->CNT = 0;
     TIM2->CR1 |= TIM_CR1_CEN; 
 }

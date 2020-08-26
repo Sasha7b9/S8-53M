@@ -2330,7 +2330,7 @@ int Display::CalculateFreeSize()
     {
         return SIZE_BUFFER_FOR_STRINGS;
     }
-    return SIZE_BUFFER_FOR_STRINGS - (strings[firstEmptyString - 1] - bufferForStrings) - strlen(strings[firstEmptyString - 1]) - 1;
+    return static_cast<int>(SIZE_BUFFER_FOR_STRINGS - (strings[firstEmptyString - 1] - bufferForStrings) - strlen(strings[firstEmptyString - 1]) - 1);
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
