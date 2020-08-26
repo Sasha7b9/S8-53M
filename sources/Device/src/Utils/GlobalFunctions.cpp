@@ -127,7 +127,7 @@ bool String2Int(char *str, int *value)
     {
         str++;
     }
-    int length = strlen(str);
+    int length = static_cast<int>(strlen(str));
     if (length == 0)
     {
         return false;

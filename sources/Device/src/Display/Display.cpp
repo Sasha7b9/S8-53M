@@ -2340,7 +2340,7 @@ void Display::DeleteFirstString()
     {
         return;
     }
-    int delta = strlen(strings[0]) + 1;
+    int delta = static_cast<int>(strlen(strings[0])) + 1;
     int numStrings = FirstEmptyString();
     for(int i = 1; i < numStrings; i++)
     {
@@ -2368,7 +2368,7 @@ void Display::AddString(const char *string)
     char buffer[100];
     sprintf(buffer, "%d\x11", num++);
     strcat(buffer, string);
-    int size = strlen(buffer) + 1;
+    int size = static_cast<int>(strlen(buffer)) + 1;
     while(CalculateFreeSize() < size)
     {
         DeleteFirstString();
