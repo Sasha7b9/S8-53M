@@ -32,7 +32,7 @@ const char* NameButton(PanelButton button)
     return namesButtons[button];
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 PanelButton& operator++(PanelButton &button)
 {
     button = (PanelButton)((int)button + 1);

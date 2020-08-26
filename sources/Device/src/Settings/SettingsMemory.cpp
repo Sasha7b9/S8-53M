@@ -21,7 +21,7 @@ int sMemory_GetNumPoints(bool forCalculate)
     return numPoints[PEAKDET][ENUM_POINTS];
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 ENUM_POINTS_FPGA sMemory_IntNumPoints2FPGA_NUM_POINTS(int numPoints)
 {
     if (numPoints == 1024)

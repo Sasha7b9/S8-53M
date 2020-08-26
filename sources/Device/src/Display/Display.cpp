@@ -110,13 +110,13 @@ void Display::RotateRShift(Channel chan)
     Display::Redraw();
 };
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::FuncOnTimerDisableShowLevelRShiftA()
 {
     DisableShowLevelRShiftA();
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::FuncOnTimerDisableShowLevelRShiftB()
 {
     Display::DisableShowLevelRShiftB();
@@ -133,7 +133,7 @@ void Display::RotateTrigLev()
     Display::Redraw();
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Display::FuncOnTimerDisableShowLevelTrigLev()
 {
     Display::DisableShowLevelTrigLev();

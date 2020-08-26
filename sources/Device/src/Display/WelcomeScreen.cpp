@@ -125,7 +125,7 @@ bool WelcomeScreen_Run()
     return isRun;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void WelcomeScreen_Update() {
     Painter::BeginScene(COLOR_WHITE);
     for(int num = 0; num < 12; num++) {
