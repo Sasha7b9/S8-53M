@@ -208,7 +208,7 @@ void FPGA::SetTBase(TBase tBase)
         float tShiftAbsOld = TSHIFT_2_ABS(TSHIFT, SET_TBASE);
         sTime_SetTBase(tBase);
         LoadTBase();
-        FPGA::SetTShift(TSHIFT_2_REL(tShiftAbsOld, SET_TBASE));
+        FPGA::SetTShift(static_cast<int>(TSHIFT_2_REL(tShiftAbsOld, SET_TBASE)));
         Display::Redraw();
     }
     else
@@ -425,7 +425,7 @@ void FPGA::LoadRegUPR(void)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void FPGA::LoadKoeffCalibration(Channel chan)
 {
-    FPGA::WriteToHardware(chan == A ? WR_CAL_A : WR_CAL_B, STRETCH_ADC(chan) * 0x80, false);
+    FPGA::WriteToHardware(chan == A ? WR_CAL_A : WR_CAL_B, static_cast<uint8>(STRETCH_ADC(chan) * 0x80), false);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------

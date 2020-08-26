@@ -66,7 +66,7 @@ void FPGA::Init(void)
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 void FPGA::SetNumSignalsInSec(int numSigInSec) 
 {
-    Timer::Enable(kNumSignalsInSec, 1000.f / numSigInSec, OnTimerCanReadData);
+    Timer::Enable(kNumSignalsInSec, static_cast<int>(1000.F / numSigInSec), OnTimerCanReadData);
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -534,8 +534,8 @@ bool FPGA::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
         min = 0xffff;
         max = 0;
     }
-    *eMin = minGate;
-    *eMax = maxGate;
+    *eMin = static_cast<uint16>(minGate);
+    *eMax = static_cast<uint16>(maxGate);
 
     //LOG_WRITE("min %u, max %u, rand %d", *eMin, *eMax, rand);
     return true;
@@ -567,8 +567,8 @@ int FPGA::CalculateShift(void)            // \todo Не забыть восстановить функци
 
     if (sTime_RandomizeModeEnabled())
     {
-        float tin = (float)(rand - min) / (max - min) * 10e-9;
-        int retValue = tin / 10e-9 * Kr[SET_TBASE];
+        float tin = (float)(rand - min) / (max - min) * 10e-9F;
+        int retValue = static_cast<int>(tin / 10e-9F * Kr[SET_TBASE]);
         return retValue;
     }
 
@@ -1075,7 +1075,7 @@ TBase FPGA::AccurateFindTBase(Channel chan)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-TBase FPGA::FindTBase(Channel chan)
+TBase FPGA::FindTBase(Channel)
 {
     SetTrigInput(TrigInput_Full);
     Timer::PauseOnTime(10);
@@ -1177,7 +1177,7 @@ void FPGA::FindAndSetTrigLevel(void)
 
     static const float scale = (float)(TrigLevMax - TrigLevZero) / (float)(MAX_VALUE - AVE_VALUE) / 2.4f;
 
-    int16 trigLev = TrigLevZero + scale * ((int)aveValue - AVE_VALUE) - (SET_RSHIFT(chanTrig) - RShiftZero);
+    int16 trigLev = static_cast<int16>(TrigLevZero + scale * ((int)aveValue - AVE_VALUE) - (SET_RSHIFT(chanTrig) - RShiftZero));
 
     FPGA::SetTrigLev(trigSource, trigLev);
 }

@@ -26,6 +26,7 @@ add_definitions(-DSTM32F207xx)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -MP -Wall")
 
+add_compile_options(/wd4310)    # cast truncates constant value
 add_compile_options(/wd4514)    # 'function' : unreferenced inline function has been removed
 add_compile_options(/wd4623)    # 'derived class' : default constructor was implicitly defined as deleted because a base class default constructor is inaccessible or deleted
 add_compile_options(/wd4626)    # 'derived class' : assignment operator was implicitly defined as deleted because a base class assignment operator is inaccessible or deleted
@@ -146,6 +147,7 @@ file(GLOB DISPLAY        src/Display/*.h src/Display/*.cpp)
 file(GLOB DISPLAY_FONT   src/Display/font/*)
 file(GLOB ETHERNET       src/Ethernet/*)
 file(GLOB FDRIVE         src/FDrive/*)
+file(GLOB FPGA           src/FPGA/*)
 file(GLOB PANEL          src/Panel/*)
 file(GLOB SETTINGS       src/Settings/*)
 file(GLOB UTILS          src/Utils/*)
@@ -172,10 +174,12 @@ source_group(Display                 FILES ${DISPLAY})
 source_group(Display\\font           FILES ${DISPLAY_FONT})
 source_group(Ethernet                FILES ${ETHERNET})
 source_group(FDrive                  FILES ${FDRIVE})
+source_group(FPGA                    FILES ${FPGA})
 source_group(Panel                   FILES ${PANEL})
 source_group(Settings                FILES ${SETTINGS})
 source_group(Utils                   FILES ${UTILS})
 
 add_library(Device ${VS_KEIL_CMSIS} ${VS_KEIL_ARMCLANG} ${VS_KEIL_FATFS} ${LIBS_CMSIS}
                    ${LIBS_FATFS} ${LIBS_HAL} ${LIBS_LWIP} ${LIBS_USBH} ${HARDWARE} ${HARDWARE_CMSIS} ${HARDWARE_FATFS} ${HARDWARE_HAL} ${HARDWARE_LWIP}
-                   ${HARDWARE_USBD} ${HARDWARE_USBH} ${SRC} ${DISPLAY} ${DISPLAY_FONT} ${ETHERNET} ${FDRIVE} ${PANEL} ${SETTINGS} ${UTILS})
+                   ${HARDWARE_USBD} ${HARDWARE_USBH} ${SRC} ${DISPLAY} ${DISPLAY_FONT} ${ETHERNET} ${FDRIVE} ${FPGA}
+                   ${PANEL} ${SETTINGS} ${UTILS})
