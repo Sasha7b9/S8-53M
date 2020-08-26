@@ -158,7 +158,7 @@ float Governor_Step(Governor *governor)
 
 int16 Governor_NextValue(Governor *governor)
 {
-    return ((*governor->cell) < governor->maxValue) ? (*governor->cell) + 1 : governor->minValue;
+    return ((*governor->cell) < governor->maxValue) ? (*governor->cell) + 1 : static_cast<int16>(governor->minValue);
 }
 
 int16 Governor_PrevValue(Governor *governor)
@@ -170,7 +170,7 @@ void Governor_NextPosition(Governor *governor)
 {
     if (Menu::OpenedItem() == governor)
     {
-        CircleIncreaseInt8(&gCurDigit, 0, Governor_NumDigits(   governor) - 1);
+        CircleIncreaseInt8(&gCurDigit, 0, static_cast<int8>(Governor_NumDigits(governor)) - 1);
     }
 }
 

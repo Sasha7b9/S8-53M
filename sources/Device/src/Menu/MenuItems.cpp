@@ -206,7 +206,7 @@ float Choice::Step()
             {
                 return delta;
             }
-            CircleIncreaseInt8(cell, 0, NumSubItems() - 1);
+            CircleIncreaseInt8(cell, 0, static_cast<int8>(NumSubItems() - 1));
         }
         else if (tsChoice.inMoveDecrease == 1)
         {
@@ -216,7 +216,7 @@ float Choice::Step()
             {
                 return delta;
             }
-            CircleDecreaseInt8(cell, 0, NumSubItems() - 1);
+            CircleDecreaseInt8(cell, 0, static_cast<int8>(NumSubItems() - 1));
         }
         tsChoice.choice = 0;
         FuncOnChanged(Menu::ItemIsActive(this));
@@ -237,7 +237,7 @@ void Choice::ChangeValue(int delta)
     }
     else
     {
-        int8 value = (*cell == 0) ? (NumSubItems() - 1) : (*cell - 1);
+        int8 value = static_cast<int8>((*cell == 0) ? (NumSubItems() - 1) : (*cell - 1));
         *cell = value;
     }
     FuncOnChanged(Menu::ItemIsActive(this));

@@ -81,7 +81,7 @@ void DrawGovernorChoiceColorFormulaHiPart(void *item, int x, int y, bool pressed
     }
 }
 
-void DrawGovernorLowPart(Governor *governor, int x, int y, bool pressed, bool shade)
+void DrawGovernorLowPart(Governor *governor, int x, int y, bool, bool shade)
 {
     char buffer[20];
     
@@ -111,16 +111,16 @@ void DrawGovernorLowPart(Governor *governor, int x, int y, bool pressed, bool sh
             int limHeight = MI_HEIGHT_VALUE - 1;
             if(delta > 0.0f)
             {
-                x = Painter::DrawTextWithLimitationC(drawX, y + 21 - delta, Int2String(*governor->cell, false, 1, buffer), 
+                x = Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - delta), Int2String(*governor->cell, false, 1, buffer),
                                             COLOR_BACK, limX, limY, limWidth, limHeight);
-                Painter::DrawTextWithLimitationC(drawX, y + 21 + 10 - delta, Int2String(Governor_NextValue(governor), false, 1, buffer),
+                Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 + 10 - delta), Int2String(Governor_NextValue(governor), false, 1, buffer),
                                             COLOR_BACK, limX, limY, limWidth, limHeight);
             }
             if(delta < 0.0f)
             {
-                x = Painter::DrawTextWithLimitationC(drawX, y + 21 - delta, Int2String(*governor->cell, false, 1, buffer), 
+                x = Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - delta), Int2String(*governor->cell, false, 1, buffer),
                                             COLOR_BACK, limX, limY, limWidth, limHeight);
-                Painter::DrawTextWithLimitationC(drawX, y + 21 - 10 - delta, Int2String(Governor_PrevValue(governor), false, 1, buffer),
+                Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - 10 - delta), Int2String(Governor_PrevValue(governor), false, 1, buffer),
                     COLOR_BACK, limX, limY, limWidth, limHeight);
             }
         }
@@ -132,7 +132,7 @@ void DrawGovernorLowPart(Governor *governor, int x, int y, bool pressed, bool sh
     Painter::DrawTextC(x + 1, y + 21, "\x81", colorTextDown);
 }
 
-static void DrawIPaddressLowPart(IPaddress *ip, int x, int y, bool pressed, bool shade)
+static void DrawIPaddressLowPart(IPaddress *ip, int x, int y, bool, bool shade)
 {
     char buffer[20];
 
@@ -158,7 +158,7 @@ static void DrawIPaddressLowPart(IPaddress *ip, int x, int y, bool pressed, bool
     }
 }
 
-static void DrawMACaddressLowPart(MACaddress *mac, int x, int y, bool pressed, bool shade)
+static void DrawMACaddressLowPart(MACaddress *mac, int x, int y, bool, bool shade)
 {
     char buffer[20];
 
@@ -184,7 +184,7 @@ static void DrawMACaddressLowPart(MACaddress *mac, int x, int y, bool pressed, b
     }
 }
 
-void WriteTextFormula(Formula *formula, int x, int y, bool opened)
+void WriteTextFormula(Formula *formula, int x, int y, bool)
 {
     Function function = (Function)(*formula->function);
     
@@ -213,7 +213,7 @@ void WriteTextFormula(Formula *formula, int x, int y, bool opened)
     Painter::DrawText(x + 48, y, "K2");
 }
 
-void DrawFormulaLowPart(Formula *formula, int x, int y, bool pressed, bool shade)
+void DrawFormulaLowPart(Formula *formula, int x, int y, bool, bool shade)
 {
     Color colorTextDown = COLOR_BACK;
 
@@ -273,7 +273,7 @@ static void DrawValueWithSelectedPosition(int x, int y, int value, int numDigits
         }
         if (!(rest == 0 && value == 0) || (firstValue == 0 && i == 0))
         {
-            Painter::DrawCharC(x, y, rest + 48, selPos == i ? COLOR_BACK : COLOR_FILL);
+            Painter::DrawCharC(x, y, static_cast<char>(rest + 48), selPos == i ? COLOR_BACK : COLOR_FILL);
         }
         else if (fillNull)
         {
@@ -438,7 +438,7 @@ void DrawGovernorColorValue(int x, int y, GovernorColor *govColor, int delta)
         Color_Init(ct);
     }
 
-    int vals[4] = {ct->brightness * 100, blue, green, red};
+    int vals[4] = { static_cast<int>(ct->brightness * 100), blue, green, red };
 
     Painter::FillRegionC(x, y, MI_WIDTH + delta - 2, MI_HEIGHT / 2 - 3, COLOR_BLACK);
     x += 92;
@@ -630,9 +630,9 @@ void ItemChoice_DrawClosed(Choice *choice, int x, int y)
     }
     else
     {
-        Painter::DrawTextWithLimitationC(x + 4, y + 21 - deltaY, choice->NameCurrentSubItem(), colorText, x, y + 19, MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1);
-        Painter::DrawHLineC(y + (deltaY > 0 ? 31 : 19) - deltaY, x + 3, x + MI_WIDTH_VALUE + 1, COLOR_BLACK);
-        Painter::DrawTextWithLimitationC(x + 4, y + (deltaY > 0 ? 33 : 9) - deltaY, deltaY > 0 ? choice->NameNextSubItem() : choice->NamePrevSubItem(), colorText, x, y + 19, MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1);
+        Painter::DrawTextWithLimitationC(x + 4, static_cast<int>(y + 21 - deltaY), choice->NameCurrentSubItem(), colorText, x, y + 19, MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1);
+        Painter::DrawHLineC(static_cast<int>(y + (deltaY > 0 ? 31 : 19) - deltaY), x + 3, x + MI_WIDTH_VALUE + 1, COLOR_BLACK);
+        Painter::DrawTextWithLimitationC(x + 4, static_cast<int>(y + (deltaY > 0 ? 33 : 9) - deltaY), deltaY > 0 ? choice->NameNextSubItem() : choice->NamePrevSubItem(), colorText, x, y + 19, MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1);
     }
     Painter::DrawHLineC(y + MI_HEIGHT + 1, x, x + MI_WIDTH, ColorBorderMenu(false));
 

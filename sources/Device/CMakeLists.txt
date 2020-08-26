@@ -148,6 +148,7 @@ file(GLOB DISPLAY_FONT   src/Display/font/*)
 file(GLOB ETHERNET       src/Ethernet/*)
 file(GLOB FDRIVE         src/FDrive/*)
 file(GLOB FPGA           src/FPGA/*)
+file(GLOB MENU           src/Menu/*.h src/Menu/*.cpp)
 file(GLOB PANEL          src/Panel/*)
 file(GLOB SETTINGS       src/Settings/*)
 file(GLOB UTILS          src/Utils/*)
@@ -175,11 +176,12 @@ source_group(Display\\font           FILES ${DISPLAY_FONT})
 source_group(Ethernet                FILES ${ETHERNET})
 source_group(FDrive                  FILES ${FDRIVE})
 source_group(FPGA                    FILES ${FPGA})
+source_group(Menu                    FILES ${MENU})
 source_group(Panel                   FILES ${PANEL})
 source_group(Settings                FILES ${SETTINGS})
 source_group(Utils                   FILES ${UTILS})
 
 add_library(Device ${VS_KEIL_CMSIS} ${VS_KEIL_ARMCLANG} ${VS_KEIL_FATFS} ${LIBS_CMSIS}
                    ${LIBS_FATFS} ${LIBS_HAL} ${LIBS_LWIP} ${LIBS_USBH} ${HARDWARE} ${HARDWARE_CMSIS} ${HARDWARE_FATFS} ${HARDWARE_HAL} ${HARDWARE_LWIP}
-                   ${HARDWARE_USBD} ${HARDWARE_USBH} ${SRC} ${DISPLAY} ${DISPLAY_FONT} ${ETHERNET} ${FDRIVE} ${FPGA}
+                   ${HARDWARE_USBD} ${HARDWARE_USBH} ${SRC} ${DISPLAY} ${DISPLAY_FONT} ${ETHERNET} ${FDRIVE} ${FPGA} ${MENU}
                    ${PANEL} ${SETTINGS} ${UTILS})
