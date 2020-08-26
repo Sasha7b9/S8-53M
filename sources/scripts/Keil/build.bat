@@ -4,7 +4,8 @@ if "%1" EQU "" goto HINT
 if %1==load    goto BUILD_LOAD
 if %1==device  ( call :BUILD Device  Device ..\..\Device\S8-53.bin & goto EXIT )
 if %1==dloader ( call :BUILD DLoader DLoader & goto EXIT )
-if %1==all     ( call build.bat device & call build.bat dloader & goto EXIT)
+if %1==panel   ( call :BUILD Panel   Panel & goto EXIT )
+if %1==all     ( call build.bat device & call build.bat dloader & call build.bat panel & goto EXIT)
 
 goto HINT
 
@@ -16,8 +17,8 @@ goto HINT
 :HINT
     echo.
     echo Usage:
-    echo       build.bat [device^|dloader^|all]      - compile
-    echo       build.bat load [device^|dloader^|all] - compile and load
+    echo       build.bat [device^|dloader^|panel^|all]      - compile
+    echo       build.bat load [device^|dloader^|panel^|all] - compile and load
     goto EXIT
 
 :BUILD

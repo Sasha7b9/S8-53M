@@ -3,6 +3,7 @@
 if "%1" EQU "" goto HINT
 if %1==device  ( call :CLEAN Device  & goto EXIT )
 if %1==dloader ( call :CLEAN DLoader & goto EXIT )
+if %1==panel   ( call :CLEAN Panel   & goto EXIT )
 if %1==all     ( call clean.bat device & call clean.bat dloader & goto EXIT )
 
 goto HINT
@@ -16,7 +17,7 @@ goto HINT
 
     echo.
     echo Usage:
-    echo       clean [device^|dloader^|all]
+    echo       clean [device^|dloader^|panel^|all]
     echo.
     goto EXIT
 
