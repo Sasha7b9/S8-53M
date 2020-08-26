@@ -83,7 +83,7 @@ void ethernetif_notify_conn_changed(struct netif *netif)
 }
 
 #ifdef USE_DHCP
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 /**
   * @brief  DHCP_Process_Handle
   */
@@ -144,7 +144,7 @@ void DHCP_Process(struct netif *netif)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 /**
   * @brief  DHCP periodic check
   * @param  localtime the current LocalTime value

@@ -64,7 +64,7 @@ void SCPI::CONTROL::KEY(uint8 *buffer)
     }
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 void SCPI::CONTROL::GOVERNOR(uint8 *buffer)
 {
     static const MapElement governors[] =

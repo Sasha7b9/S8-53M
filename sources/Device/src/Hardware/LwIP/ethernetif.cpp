@@ -48,7 +48,7 @@ ETH_HandleTypeDef EthHandle;
                        LL Driver Interface ( LwIP stack --> ETH) 
 *******************************************************************************/
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
+
 /**
   * @brief In this function, the hardware should be initialized.
   * Called from ethernetif_init().
