@@ -1,6 +1,10 @@
 #pragma once
 
+#ifdef WIN32
 #define __weak
+#else
+#define __weak __attribute((weak))
+#endif
 
 
 #ifdef MSVC
