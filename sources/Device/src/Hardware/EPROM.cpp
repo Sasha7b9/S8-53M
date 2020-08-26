@@ -374,7 +374,7 @@ void EPROM::SaveData(int num, DataSettings *ds, uint8 *data0, uint8 *data1)
     int size = CalculateSizeData(ds);
 
 // 2
-    if (FreeMemory() < size)
+    if (FreeMemory() < static_cast<uint>(size))
     {
         CompactMemory();
     }

@@ -23,7 +23,6 @@ add_definitions(-DSTM32F207xx)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -MP -Wall")
 
-add_compile_options(/wd4018)
 add_compile_options(/wd4099)
 add_compile_options(/wd4100)
 add_compile_options(/wd4201)

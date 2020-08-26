@@ -95,7 +95,7 @@ char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
     }
 
     bool signExist = alwaysSign || value < 0;
-    while(strlen(bufferOut) < numDigits + (signExist ? 2 : 1))
+    while(static_cast<int>(strlen(bufferOut)) < numDigits + (signExist ? 2 : 1))
     {
         strcat(bufferOut, "0");
     }

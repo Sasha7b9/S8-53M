@@ -1221,7 +1221,7 @@ bool Display::NeedForClearScreen()
         NEED_FINISH_REDRAW = 0;
         return true;
     }
-    if (MODE_ACCUM_IS_RESET && NUM_DRAWING_SIGNALS >= numAccum)
+    if (MODE_ACCUM_IS_RESET && NUM_DRAWING_SIGNALS >= static_cast<uint>(numAccum))
     {
         NUM_DRAWING_SIGNALS = 0;
         return true;
@@ -2513,7 +2513,7 @@ void Display::OnTimerShowWarning()
     uint time = gTimerMS;
     for (int i = 0; i < NUM_WARNINGS; i++)
     {
-        if (time - timeWarnings[i] > TIME_MESSAGES * 1000)
+        if (time - timeWarnings[i] > static_cast<uint>(TIME_MESSAGES * 1000))
         {
             timeWarnings[i] = 0;
             warnings[i] = 0;
