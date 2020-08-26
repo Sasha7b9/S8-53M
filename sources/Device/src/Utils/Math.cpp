@@ -214,11 +214,11 @@ float Math_GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, int
 
 bool Math_FloatsIsEquals(float value0, float value1, float epsilonPart)
 {
-    float max = fabs(value0) > fabs(value1) ? fabs(value0) : fabs(value1);
+    float max = fabsf(value0) > fabsf(value1) ? fabsf(value0) : fabsf(value1);
 
     float epsilonAbs = max * epsilonPart;
 
-    return fabs(value0 - value1) < epsilonAbs;
+    return fabsf(value0 - value1) < epsilonAbs;
 }
 
 float Math_MinFrom3float(float value1, float value2, float value3)
@@ -439,7 +439,7 @@ void Math_CalculateFFT(float *dataR, int numPoints, float *result, float *freq0,
 
     for (int i = 0; i < 256; i++)
     {
-        result[i] = sqrt(dataR[i] * dataR[i] + result[i] * result[i]);
+        result[i] = sqrtf(dataR[i] * dataR[i] + result[i] * result[i]);
     }
 
     result[0] = 0.0f;       // WARN нулева€ составл€юща€ мешает посто€нно. надо еЄ убрать
@@ -453,7 +453,7 @@ void Math_CalculateFFT(float *dataR, int numPoints, float *result, float *freq0,
         for (int i = 0; i < 256; i++)
         {
 #ifdef DEBUG
-            result[i] = 20 * log10(result[i]);
+            result[i] = 20 * log10f(result[i]);
 #else
             result[i] = Log10[(int)(result[i] * 10000)];
 #endif

@@ -1,8 +1,4 @@
-#include "usbd_desc.h"
 #include "defines.h"
-#include "VCP/VCP.h"
-#include "Log.h"
-#include <usbd_cdc_interface.h>
 
 
 #ifdef __cplusplus

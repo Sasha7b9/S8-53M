@@ -49,8 +49,9 @@ typedef enum
 
 #define DEBUG
 
-
+#ifndef __IO
 #define __IO volatile
+#endif
 
 typedef void    (*pFuncVV)();               // ”казатель на функцию, ничего не принимающую и ничего не возвращающую.
 typedef void    (*pFuncVpV)(void*);             // ”казатель на функцию, принимающую указатель на void и ничего не возвращающую.

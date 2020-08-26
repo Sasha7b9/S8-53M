@@ -270,10 +270,10 @@ float Processing::CalculateVoltageRMS(Channel chan)
 
     if(MEAS_MARKED == Measure_VoltageRMS)
     {
-        markerHor[chan][0] = Math_VoltageToPoint(sqrt(rms / period), dataSet->range[chan], rShift);
+        markerHor[chan][0] = Math_VoltageToPoint(sqrtf(rms / period), dataSet->range[chan], rShift);
     }
 
-    return sqrt(rms / period) * VALUE_MULTIPLIER(chan);
+    return sqrtf(rms / period) * VALUE_MULTIPLIER(chan);
 }
 
 float Processing::CalculatePeriod(Channel chan)
