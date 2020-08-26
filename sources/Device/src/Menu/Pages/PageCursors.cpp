@@ -87,28 +87,28 @@ static void SetCursPosT(Channel chan, int numCur, float pos);           ///< Óñò
 void *PageCursors::PageSet::pointer = (void *)&mspSet;
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void SetCursSource(Channel chan)
 {
     CURS_SOURCE = chan;
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void IncCursCntrlU(Channel chan)
 {
     CircleIncreaseInt8((int8*)&CURsU_CNTRL_CH(chan), 0, 3);
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void IncCursCntrlT(Channel chan)
 {
     CircleIncreaseInt8((int8*)&CURS_CNTRL_T(chan), 0, 3);
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void Cursors_Update()
 {
     Channel source = CURS_SOURCE;
@@ -141,7 +141,7 @@ void Cursors_Update()
     }
 }
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void SetCursPosU(Channel chan, int numCur, float pos)
 {
     if (CURS_MOVEMENT_IS_PERCENTS)
@@ -155,7 +155,7 @@ void SetCursPosU(Channel chan, int numCur, float pos)
 }
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
 void SetCursPosT(Channel chan, int numCur, float pos)
 {
     if (CURS_MOVEMENT_IS_PERCENTS)
