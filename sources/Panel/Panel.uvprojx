@@ -380,6 +380,51 @@
       </TargetOption>
       <Groups>
         <Group>
+          <GroupName>libs/CMSIS</GroupName>
+          <Files>
+            <File>
+              <FileName>stm32f4xx.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f429xx.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h</FilePath>
+            </File>
+            <File>
+              <FileName>system_stm32f4xx.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h</FilePath>
+            </File>
+            <File>
+              <FileName>cmsis_armcc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\STM32Cube_F4\Drivers\CMSIS\Include\cmsis_armcc.h</FilePath>
+            </File>
+            <File>
+              <FileName>cmsis_compiler.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\STM32Cube_F4\Drivers\CMSIS\Include\cmsis_compiler.h</FilePath>
+            </File>
+            <File>
+              <FileName>cmsis_version.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\STM32Cube_F4\Drivers\CMSIS\Include\cmsis_version.h</FilePath>
+            </File>
+            <File>
+              <FileName>core_cm4.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\STM32Cube_F4\Drivers\CMSIS\Include\core_cm4.h</FilePath>
+            </File>
+            <File>
+              <FileName>mpu_armv7.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\STM32Cube_F4\Drivers\CMSIS\Include\mpu_armv7.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>libs/HAL</GroupName>
           <Files>
             <File>
@@ -1328,6 +1373,11 @@
               <FileName>Decoder_p.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Decoder_p.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Decoder_d.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Decoder_d.h</FilePath>
             </File>
           </Files>
         </Group>

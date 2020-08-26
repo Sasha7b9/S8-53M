@@ -6,7 +6,7 @@
   <Header>### uVision Project, (C) Keil Software</Header>
 
   <PrjGuiSettings>
-    <LastAddFilePath>D:\Projects\stm32\S8-57\sources\Panel\src\Hardware\CMSIS</LastAddFilePath>
+    <LastAddFilePath>D:\Projects\stm32\S8-53M\sources\common</LastAddFilePath>
   </PrjGuiSettings>
 
   <ViewPool/>
@@ -101,10 +101,10 @@
         <yPos>-1</yPos>
       </MaxPosition>
       <NormalPosition>
-        <Top>62</Top>
-        <Left>-29</Left>
-        <Right>873</Right>
-        <Bottom>997</Bottom>
+        <Top>88</Top>
+        <Left>-16</Left>
+        <Right>886</Right>
+        <Bottom>1023</Bottom>
       </NormalPosition>
     </WindowPosition>
     <MDIClientArea>
