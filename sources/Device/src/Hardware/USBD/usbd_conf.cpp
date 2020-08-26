@@ -17,7 +17,7 @@ extern USBD_HandleTypeDef handleUSBD;
 *******************************************************************************/
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void HAL_PCD_MspInit(PCD_HandleTypeDef *hpcd)
+void HAL_PCD_MspInit(PCD_HandleTypeDef *)
 {
     GPIO_InitTypeDef  GPIO_InitStruct;
 
@@ -42,7 +42,7 @@ void HAL_PCD_MspInit(PCD_HandleTypeDef *hpcd)
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------
-void HAL_PCD_MspDeInit(PCD_HandleTypeDef *hpcd)
+void HAL_PCD_MspDeInit(PCD_HandleTypeDef *)
 {
     __USB_OTG_FS_CLK_DISABLE();
 }

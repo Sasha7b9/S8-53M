@@ -87,6 +87,10 @@ USBD_DescriptorsTypeDef VCP_Desc = {
   USBD_VCP_InterfaceStrDescriptor,  
 };
 
+#ifdef WIN32
+#define __ALIGN_BEGIN
+#endif
+
 /* USB Standard Device Descriptor */
 #if defined ( __ICCARM__ ) /*!< IAR Compiler */
   #pragma data_alignment=4   
@@ -144,7 +148,7 @@ static void Get_SerialNum();
   * @param  length: Pointer to data length variable
   * @retval Pointer to descriptor buffer
   */
-uint8_t *USBD_VCP_DeviceDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
+uint8_t *USBD_VCP_DeviceDescriptor(USBD_SpeedTypeDef, uint16_t *length)
 {
   *length = sizeof(USBD_DeviceDesc);
   return (uint8_t*)USBD_DeviceDesc;
@@ -156,7 +160,7 @@ uint8_t *USBD_VCP_DeviceDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
   * @param  length: Pointer to data length variable
   * @retval Pointer to descriptor buffer
   */
-uint8_t *USBD_VCP_LangIDStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
+uint8_t *USBD_VCP_LangIDStrDescriptor(USBD_SpeedTypeDef, uint16_t *length)
 {
   *length = sizeof(USBD_LangIDDesc);  
   return (uint8_t*)USBD_LangIDDesc;
@@ -187,7 +191,7 @@ uint8_t *USBD_VCP_ProductStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length
   * @param  length: Pointer to data length variable
   * @retval Pointer to descriptor buffer
   */
-uint8_t *USBD_VCP_ManufacturerStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
+uint8_t *USBD_VCP_ManufacturerStrDescriptor(USBD_SpeedTypeDef, uint16_t *length)
 {
   USBD_GetString((uint8_t *)USBD_MANUFACTURER_STRING, USBD_StrDesc, length);
   return USBD_StrDesc;
@@ -199,7 +203,7 @@ uint8_t *USBD_VCP_ManufacturerStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *l
   * @param  length: Pointer to data length variable
   * @retval Pointer to descriptor buffer
   */
-uint8_t *USBD_VCP_SerialStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
+uint8_t *USBD_VCP_SerialStrDescriptor(USBD_SpeedTypeDef, uint16_t *length)
 {
   *length = USB_SIZ_STRING_SERIAL;
   
