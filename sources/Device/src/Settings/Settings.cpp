@@ -10,7 +10,7 @@
 #include "Display/Display.h"
 #include "Menu/Menu.h"
 #include "Log.h"
-#include <string.h>
+#include <cstring>
 
 
 /** @addtogroup Settings

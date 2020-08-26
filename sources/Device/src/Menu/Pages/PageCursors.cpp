@@ -13,7 +13,7 @@
 #include "Log.h"
 #include "Display/Painter.h"
 #include <cmath>
-#include <string.h>
+#include <cstring>
 
 
 /** @addtogroup Menu

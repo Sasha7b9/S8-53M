@@ -2,7 +2,7 @@
 #include "Generator.h"
 #include "Math.h"
 #include "Settings/Settings.h"
-#include <stdlib.h>
+#include <cstdlib>
 #include <cmath>
 
 

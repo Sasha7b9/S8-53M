@@ -2,8 +2,8 @@
 #include "Math.h"
 #include "FPGA/FPGATypes.h"
 #include <cmath>
-#include <stdlib.h>
-#include <string.h>
+#include <cstdlib>
+#include <cstring>
 #include <limits>
 
 

@@ -2,8 +2,8 @@
 #include "Settings/Settings.h"
 #include "Hardware/Timer.h"
 #include <cmath>
-#include <stdlib.h>
-#include <string.h>
+#include <cstdlib>
+#include <cstring>
 
 
 float Math_GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, int yHorLine)
@@ -63,7 +63,7 @@ int Math_MinInt(int val1, int val2)
 float Math_RandFloat(float min, float max)
 {
     float delta = max - min;
-    return min + ((static_cast<float>(rand()) / (float)RAND_MAX) * delta);
+    return min + ((static_cast<float>(std::rand()) / (float)RAND_MAX) * delta);
 }
 
 
@@ -312,7 +312,7 @@ void Math_CalculateFiltrArray(const uint8 *dataIn, uint8 *dataOut, int numPoints
 {
     if (numSmoothing < 2)
     {
-        memcpy(dataOut, dataIn, static_cast<size_t>(numPoints));
+        std::memcpy(dataOut, dataIn, static_cast<uint>(numPoints));
     }
     else
     {

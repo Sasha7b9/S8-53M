@@ -6,7 +6,7 @@
 #include "Hardware/Timer.h"
 #include "Hardware/Keyboard.h"
 #include "Hardware/HAL/HAL.h"
-#include <stdlib.h>
+#include <cstdlib>
 
 
 
