@@ -7,6 +7,7 @@
 #include "Settings/Settings.h"
 #include "Display/Display.h"
 #include "Hardware/Timer.h"
+#include "Hardware/HAL/HAL.h"
 #include "Log.h"
 #include "Hardware/Sound.h"
 #include <stm32f4xx_hal.h>
@@ -376,7 +377,7 @@ void Panel::Init()
 
 void Panel::EnableLEDRegSet(bool enable)
 {
-    HAL_GPIO_WritePin(GPIOG, GPIO_PIN_12, enable ? GPIO_PIN_RESET : GPIO_PIN_SET);
+    pinLED.Write(enable ? 1 : 0);
 }
 
 PanelButton Panel::WaitPressingButton()

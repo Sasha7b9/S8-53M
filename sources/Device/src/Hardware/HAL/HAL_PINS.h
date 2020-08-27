@@ -61,7 +61,7 @@ struct PinPin
 struct Pin
 {
     void Init(PinMode::E mode, PinPort::E port, PinPin::E pin);
-    void Write(uint state);
+    void Write(int state);
     void Set();
     void Reset();
     uint Read();

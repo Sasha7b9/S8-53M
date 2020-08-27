@@ -177,7 +177,7 @@ void Pin::Init(PinMode::E mode, PinPort::E _port, PinPin::E _pin)
 }
 
 
-void Pin::Write(uint state)
+void Pin::Write(int state)
 {
     HAL_GPIO_WritePin(reinterpret_cast<GPIO_TypeDef *>(port), pin, static_cast<GPIO_PinState>(state));
 }
