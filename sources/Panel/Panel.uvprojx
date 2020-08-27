@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32L063xx</Define>
               <Undefine></Undefine>
-              <IncludePath>..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Inc;..\common\STM32Cube_L0\Drivers\CMSIS\Device\ST\STM32L0xx\Include;.\src;..\common\STM32Cube_L0\Drivers\CMSIS\Include</IncludePath>
+              <IncludePath>.\src;.\src\Hardware\HAL;..\common\STM32Cube_L0\Drivers\CMSIS\Device\ST\STM32L0xx\Include;..\common\STM32Cube_L0\Drivers\CMSIS\Include;..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -379,51 +379,6 @@
         </TargetArmAds>
       </TargetOption>
       <Groups>
-        <Group>
-          <GroupName>src</GroupName>
-          <Files>
-            <File>
-              <FileName>main.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\main.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32l0xx_hal_conf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\stm32l0xx_hal_conf.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32l0xx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\stm32l0xx_it.h</FilePath>
-            </File>
-            <File>
-              <FileName>startup_stm32l063xx.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\src\startup_stm32l063xx.s</FilePath>
-            </File>
-            <File>
-              <FileName>main.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\main.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>stm32l0xx_hal_msp.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\stm32l0xx_hal_msp.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>system_stm32l0xx.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\system_stm32l0xx.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>stm32l0xx_it.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\stm32l0xx_it.c</FilePath>
-            </File>
-          </Files>
-        </Group>
         <Group>
           <GroupName>libs/HAL</GroupName>
           <Files>
@@ -486,6 +441,61 @@
               <FileName>stm32l0xx_hal_dma.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_dma.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Hardware/CMSIS</GroupName>
+          <Files>
+            <File>
+              <FileName>startup_stm32l063xx.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\src\Hardware\CMSIS\startup_stm32l063xx.s</FilePath>
+            </File>
+            <File>
+              <FileName>system_stm32l0xx.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\CMSIS\system_stm32l0xx.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Hardware/HAL</GroupName>
+          <Files>
+            <File>
+              <FileName>stm32l0xx_hal_conf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\HAL\stm32l0xx_hal_conf.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_msp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HAL\stm32l0xx_hal_msp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_it.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\Hardware\HAL\stm32l0xx_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_it.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\HAL\stm32l0xx_it.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>src</GroupName>
+          <Files>
+            <File>
+              <FileName>main.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\main.h</FilePath>
+            </File>
+            <File>
+              <FileName>main.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\main.cpp</FilePath>
             </File>
           </Files>
         </Group>
