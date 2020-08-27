@@ -1,5 +1,6 @@
 #pragma once
 #include "defines.h"
+#include "Settings/SettingsTime.h"
 
 
 /** @addtogroup Settings

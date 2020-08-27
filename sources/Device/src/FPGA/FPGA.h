@@ -5,7 +5,6 @@
 #include "Settings/SettingsTrig.h"
 #include "Settings/SettingsService.h"
 
-
 class FPGA
 {
 public:

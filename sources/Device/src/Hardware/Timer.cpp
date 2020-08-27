@@ -122,3 +122,8 @@ void Timer_Update10ms(void)
         }
     }
 }
+
+void Timer::PauseOnTime(uint timeMS)
+{
+    HAL_Delay(timeMS);
+}

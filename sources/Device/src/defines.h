@@ -5,7 +5,6 @@
 #define __packed__
 #endif
 
-
 #include <stm32f4xx_hal.h>
 
 
@@ -121,4 +120,5 @@ typedef struct
 #define HARDWARE_ERROR HardwareErrorHandler(__FILE__, __FUNCTION__, __LINE__);
 void HardwareErrorHandler(const char *file, const char *function, int line);
 
-#include "Globals.h"
+
+#include "globals.h"

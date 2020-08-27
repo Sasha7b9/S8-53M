@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "globals.h"
 
 
 #ifdef __cplusplus

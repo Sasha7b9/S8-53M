@@ -5,6 +5,8 @@
 #include "Hardware/Timer.h"
 #include "Utils/GlobalFunctions.h"
 #include "Log.h"
+#include "globals.h"
+#include <cstring>
 #include <stm32f4xx_hal.h>
 
 

@@ -14,7 +14,6 @@
 #include <usbd_def.h>
 #include <usbh_def.h>
 
-
 extern USBH_HandleTypeDef handleUSBH;
 extern HCD_HandleTypeDef handleHCD;
 extern SPI_HandleTypeDef handleSPI;
@@ -197,7 +196,7 @@ typedef struct
     StateCalibration stateCalibration;          // Текущее состояние калибровки. Используется в процессе калибровки.
 } StateFPGA;
 
-typedef struct
+struct PackedTime
 {
     uint hours : 5;
     uint minutes : 6;
@@ -205,9 +204,9 @@ typedef struct
     uint year : 7;
     uint month : 4;
     uint day : 5;
-} PackedTime;
+};
 
-typedef struct
+struct DataSettings
 {
     void*       addrNext;               // Адрес следующей записи.
     void*       addrPrev;               // Адрес предыдущей записи.
@@ -231,7 +230,7 @@ typedef struct
     Divider  multiplier0     : 1;
     Divider  multiplier1     : 1;
     PackedTime  time;
-} DataSettings;
+};
 
 
 extern const char *gStringForHint;  // Строка подсказки, которую надо выводить в случае включённого режима подсказок.

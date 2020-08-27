@@ -5,6 +5,9 @@
 #include "Tables.h"
 
 
+struct DataSettings;
+
+
 class Display
 {
 public:

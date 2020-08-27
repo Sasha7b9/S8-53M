@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "globals.h"
 #include "Ethernet/Ethernet.h"
 #include "FDrive/FDrive.h"
 #include "FPGA/FPGA.h"
