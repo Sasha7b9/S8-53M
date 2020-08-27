@@ -15,26 +15,6 @@ void ADConverter::Init(void)
     - одиночное измерение по фронту внешнего запуска(прерывание от 112 - EXT11 - PC11)
     */
 
-    __ADC3_CLK_ENABLE();
-
-    static GPIO_InitTypeDef isGPIO =
-    {
-        GPIO_PIN_6,
-        GPIO_MODE_ANALOG,
-        GPIO_NOPULL
-    };
-
-    HAL_GPIO_Init(GPIOF, &isGPIO);
-
-    GPIO_InitTypeDef isGPIOC =
-    {
-        GPIO_PIN_11,
-        GPIO_MODE_IT_RISING,
-        GPIO_NOPULL
-    };
-
-    HAL_GPIO_Init(GPIOC, &isGPIOC);
-
     HAL_NVIC_SetPriority(ADC_IRQn, 5, 0);
     HAL_NVIC_EnableIRQ(ADC_IRQn);
 
