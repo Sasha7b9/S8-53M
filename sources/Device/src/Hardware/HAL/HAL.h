@@ -26,5 +26,6 @@ struct HAL_PINS
 struct HAL_ADC3
 {
     static void Init();
+    static uint16 GetValue();
 };
 

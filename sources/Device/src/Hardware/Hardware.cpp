@@ -5,7 +5,6 @@
 #include <stm32f4xx_hal_rcc.h>
 #include <stm32f4xx_hal_dac.h>
 #include "Hardware.h"
-#include "ADC.h"
 #include "Sound.h"
 #include "Hardware/CLOCK.h"
 #include "FSMC.h"

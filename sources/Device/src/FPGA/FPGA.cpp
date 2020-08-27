@@ -5,7 +5,6 @@
 #include "Display/Display.h"
 #include "Hardware/FSMC.h"
 #include "Hardware/Hardware.h"
-#include "Hardware/ADC.h"
 #include "Hardware/HAL/HAL.h"
 #include "Panel/Panel.h"
 #include "Panel/Controls.h"
@@ -545,7 +544,7 @@ bool FPGA::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
 
 int FPGA::CalculateShift(void)            // \todo Не забыть восстановить функцию
 {
-    uint16 rand = ADConverter::GetValue();
+    uint16 rand = HAL_ADC3::GetValue();
     //LOG_WRITE("rand = %d", (int)rand);
     uint16 min = 0;
     uint16 max = 0;

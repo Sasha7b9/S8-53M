@@ -1059,16 +1059,6 @@
           <GroupName>Hardware</GroupName>
           <Files>
             <File>
-              <FileName>ADC.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\ADC.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>ADC.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\ADC.h</FilePath>
-            </File>
-            <File>
               <FileName>FSMC.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\FSMC.h</FilePath>

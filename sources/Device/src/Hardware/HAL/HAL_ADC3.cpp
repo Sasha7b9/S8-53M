@@ -3,6 +3,9 @@
 #include <stm32f4xx_hal.h>
 
 
+static uint16 adcValue = 0;
+
+
 void HAL_ADC3::Init()
 {
     /*
@@ -52,4 +55,16 @@ void HAL_ADC3::Init()
     {
         HARDWARE_ERROR
     }
+}
+
+
+uint16 HAL_ADC3::GetValue(void)
+{
+    return adcValue;
+}
+
+
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
+{
+    adcValue = (uint16)HAL_ADC_GetValue(hadc);
 }
