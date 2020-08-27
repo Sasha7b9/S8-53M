@@ -42,6 +42,8 @@ struct HAL_PINS
 struct HAL_SPI2
 {
     static void Init();
+
+    static void Send(uint8 data, int size);
 };
 
 struct HAL_TIM
