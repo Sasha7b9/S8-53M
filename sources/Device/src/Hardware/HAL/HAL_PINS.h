@@ -13,7 +13,8 @@ struct PinMode
         _ETH,
         _OTG_HS_FS,
         _OTG_FS,
-        _SP1
+        _SPI1,
+        _SPI1_NSS
     };
 };
 

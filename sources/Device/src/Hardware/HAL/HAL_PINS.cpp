@@ -15,9 +15,10 @@ static Pin pinOTG_FS_DP;
 static Pin pinOTG_FS_DM;
 static Pin pinOTG_FS_VBUS;
 
-static Pin pinSPI1_A5;
-static Pin pinSPI1_A6;
-static Pin pinSPI1_B5;
+static Pin pinSPI1_SCK;
+static Pin pinSPI1_MISO;
+static Pin pinSPI1_MOSI;
+static Pin pinSPI1_NSS;
 
 static Pin pinETH_CRS;
 static Pin pinETH_MDIO;
@@ -43,6 +44,8 @@ Pin pinG3;
 Pin pinG5;
 Pin pinG7;
 
+Pin pinLED;
+
 
 void HAL_PINS::Init()
 {
@@ -58,9 +61,10 @@ void HAL_PINS::Init()
     pinOTG_FS_DM  .Init(PinMode::_OTG_FS,    PinPort::_A, PinPin::_11);
     pinOTG_FS_VBUS.Init(PinMode::_OTG_FS,    PinPort::_A, PinPin::_9);
 
-    pinSPI1_A5.Init(PinMode::_SP1, PinPort::_A, PinPin::_5);
-    pinSPI1_A6.Init(PinMode::_SP1, PinPort::_A, PinPin::_6);
-    pinSPI1_B5.Init(PinMode::_SP1, PinPort::_B, PinPin::_5);
+    pinSPI1_SCK   .Init(PinMode::_SPI1,      PinPort::_A, PinPin::_5);
+    pinSPI1_MISO  .Init(PinMode::_SPI1,      PinPort::_A, PinPin::_6);
+    pinSPI1_MOSI  .Init(PinMode::_SPI1,      PinPort::_B, PinPin::_5);
+    pinSPI1_NSS   .Init(PinMode::_SPI1_NSS,  PinPort::_G, PinPin::_0);
 
     pinETH_RX_ER .Init(PinMode::_ETH, PinPort::_I, PinPin::_10);
     pinETH_MDC   .Init(PinMode::_ETH, PinPort::_C, PinPin::_1);
@@ -85,6 +89,7 @@ void HAL_PINS::Init()
     pinG3.Init(PinMode::_Output, PinPort::_G, PinPin::_3);
     pinG5.Init(PinMode::_Output, PinPort::_G, PinPin::_5);
     pinG7.Init(PinMode::_Output, PinPort::_G, PinPin::_7);
+    pinLED.Init(PinMode::_Output, PinPort::_G, PinPin::_12);
 }
 
 
@@ -157,11 +162,15 @@ void Pin::Init(PinMode::E mode, PinPort::E _port, PinPin::E _pin)
         isGPIO.Speed = GPIO_SPEED_HIGH;
         isGPIO.Alternate = GPIO_AF10_OTG_FS;
     }
-    else if (mode == PinMode::_SP1)
+    else if (mode == PinMode::_SPI1)
     {
         isGPIO.Mode = GPIO_MODE_AF_PP;
         isGPIO.Speed = GPIO_SPEED_FAST;
         isGPIO.Alternate = GPIO_AF5_SPI1;
+    }
+    else if (mode == PinMode::_SPI1_NSS)
+    {
+        isGPIO.Mode = GPIO_MODE_IT_RISING;
     }
 
     HAL_GPIO_Init(reinterpret_cast<GPIO_TypeDef *>(port), &isGPIO);

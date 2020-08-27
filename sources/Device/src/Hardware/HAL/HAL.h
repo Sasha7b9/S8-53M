@@ -8,6 +8,8 @@ extern Pin pinG3;
 extern Pin pinG5;
 extern Pin pinG7;
 
+extern Pin pinLED;
+
 
 struct HAL
 {

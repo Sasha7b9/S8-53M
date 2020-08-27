@@ -353,15 +353,6 @@ void Panel::Enable()
     PANEL_IS_RUNNING = 1;
 }
 
-/*
-    SPI1
-    56  - PG0 - программный NSS 
-    41  - PA5 - SCK
-    42  - PA6 - MISO
-    135 - PB5 - MOSI
-*/
-
-
 
 void Panel::Init()
 {
@@ -375,23 +366,10 @@ void Panel::Init()
     
     // Теперь настроим программный NSS (PG0).
 
-    GPIO_InitTypeDef isGPIOG =
-    {
-        GPIO_PIN_0,                 // GPIO_Pin
-        GPIO_MODE_IT_RISING,        // GPIO_Mode
-        GPIO_NOPULL
-    };      
-    HAL_GPIO_Init(GPIOG, &isGPIOG);
-
     HAL_NVIC_SetPriority(EXTI0_IRQn, 3, 0);
     HAL_NVIC_EnableIRQ(EXTI0_IRQn);
 
-    // Лампочка УСТАНОВКА
-    isGPIOG.Pin = GPIO_PIN_12;
-    isGPIOG.Mode = GPIO_MODE_OUTPUT_PP;
-    isGPIOG.Speed = GPIO_SPEED_HIGH;
-    isGPIOG.Alternate = GPIO_AF0_MCO;
-    HAL_GPIO_Init(GPIOG, &isGPIOG);
+    // Лампочка УСТАНОВКА  pinLED
 
     Panel::EnableLEDRegSet(false);
 }
