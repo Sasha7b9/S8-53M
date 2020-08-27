@@ -49,7 +49,11 @@ struct HAL_TIM
     static uint TimeMS();
 };
 
+// Таймер для опроса клавиатуры
 struct HAL_TIM2
 {
     static void Init(void (*func)());
+
+    // TIM_HandleTypeDef
+    static void *handle;
 };

@@ -383,16 +383,6 @@
           <GroupName>libs/HAL</GroupName>
           <Files>
             <File>
-              <FileName>stm32l0xx_hal_gpio.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_gpio.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32l0xx_hal_gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_gpio.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32l0xx_hal.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal.h</FilePath>
@@ -403,14 +393,44 @@
               <FilePath>..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal.c</FilePath>
             </File>
             <File>
-              <FileName>stm32l0xx_hal_rcc.c</FileName>
+              <FileName>stm32l0xx_hal_cortex.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_cortex.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_cortex.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_rcc.c</FilePath>
+              <FilePath>..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_cortex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_dma.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_dma.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_gpio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_gpio.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_gpio.c</FilePath>
             </File>
             <File>
               <FileName>stm32l0xx_hal_rcc.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_rcc.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_rcc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_rcc.c</FilePath>
             </File>
             <File>
               <FileName>stm32l0xx_hal_spi.h</FileName>
@@ -423,24 +443,14 @@
               <FilePath>..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_spi.c</FilePath>
             </File>
             <File>
-              <FileName>stm32l0xx_hal_cortex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_cortex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32l0xx_hal_cortex.h</FileName>
+              <FileName>stm32l0xx_hal_tim.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_cortex.h</FilePath>
+              <FilePath>..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_tim.h</FilePath>
             </File>
             <File>
-              <FileName>stm32l0xx_hal_dma.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_dma.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32l0xx_hal_dma.c</FileName>
+              <FileName>stm32l0xx_hal_tim.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_dma.c</FilePath>
+              <FilePath>..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_tim.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -498,14 +508,14 @@
               <FilePath>.\src\Hardware\HAL\stm32l0xx_hal_conf.h</FilePath>
             </File>
             <File>
-              <FileName>stm32l0xx_it.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\Hardware\HAL\stm32l0xx_it.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32l0xx_it.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\HAL\stm32l0xx_it.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_it.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HAL\stm32l0xx_it.cpp</FilePath>
             </File>
           </Files>
         </Group>
