@@ -12,21 +12,41 @@ static PinADC3_OUT pinADC3_OUT;
 static PinDAC      pinDAC;
 
 
-PinADC3_OUT::PinADC3_OUT() : Pin(PinPort::_F, PinPin::_6)  { }
-PinADC3_IT::PinADC3_IT()   : Pin(PinPort::_C, PinPin::_11) { }
-PinDAC::PinDAC()           : Pin(PinPort::_A, PinPin::_4)  { }
-
-
 void HAL_PINS::Init()
 {
-    pinADC3_OUT.Init(PinMode::_ADC3_OUT);
-    pinADC3_IT.Init(PinMode::_ADC3_IT);
-    pinDAC.Init(PinMode::_DAC);
+    pinADC3_OUT.Init(PinMode::_ADC3_OUT, PinPort::_F, PinPin::_6);
+    pinADC3_IT .Init(PinMode::_ADC3_IT,  PinPort::_C, PinPin::_11);
+    pinDAC     .Init(PinMode::_DAC,      PinPort::_A, PinPin::_4);
 }
 
 
-void Pin::Init(PinMode::E mode)
+void Pin::Init(PinMode::E mode, PinPort::E _port, PinPin::E _pin)
 {
+    static const GPIO_TypeDef *ports[2] = { GPIOA, GPIOB };
+
+    static const uint16 pins[16] =
+    {
+        GPIO_PIN_0,
+        GPIO_PIN_1,
+        GPIO_PIN_2,
+        GPIO_PIN_3,
+        GPIO_PIN_4,
+        GPIO_PIN_5,
+        GPIO_PIN_6,
+        GPIO_PIN_7,
+        GPIO_PIN_8,
+        GPIO_PIN_9,
+        GPIO_PIN_10,
+        GPIO_PIN_11,
+        GPIO_PIN_12,
+        GPIO_PIN_13,
+        GPIO_PIN_14,
+        GPIO_PIN_15
+    };
+
+    port = const_cast<GPIO_TypeDef *>(ports[_port]);
+    pin = pins[_pin];
+
     GPIO_InitTypeDef isGPIO = { pin };
     isGPIO.Pull = GPIO_PULLUP;
 
