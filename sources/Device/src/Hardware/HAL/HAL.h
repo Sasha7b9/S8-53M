@@ -9,6 +9,7 @@ extern Pin pinG5;
 extern Pin pinG7;
 
 extern Pin pinLED;
+extern Pin pinDisplayReady;
 
 
 struct HAL

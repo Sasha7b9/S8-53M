@@ -45,6 +45,7 @@ Pin pinG5;
 Pin pinG7;
 
 Pin pinLED;
+Pin pinDisplayReady;
 
 
 void HAL_PINS::Init()
@@ -90,6 +91,7 @@ void HAL_PINS::Init()
     pinG5.Init(PinMode::_Output, PinPort::_G, PinPin::_5);
     pinG7.Init(PinMode::_Output, PinPort::_G, PinPin::_7);
     pinLED.Init(PinMode::_Output, PinPort::_G, PinPin::_12);
+    pinDisplayReady.Init(PinMode::_Input, PinPort::_G, PinPin::_11);
 }
 
 
@@ -125,7 +127,7 @@ void Pin::Init(PinMode::E mode, PinPort::E _port, PinPin::E _pin)
 
     if (mode == PinMode::_Input)
     {
-
+        isGPIO.Mode = GPIO_MODE_INPUT;
     }
     else if (mode == PinMode::_Output)
     {

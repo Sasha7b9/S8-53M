@@ -6,6 +6,7 @@
 #include "Ethernet/Ethernet.h"
 #include "Ethernet/TcpSocket.h"
 #include "Hardware/Timer.h"
+#include "Hardware/HAL/HAL.h"
 #include "Settings/Settings.h"
 #include "VCP/VCP.h"
 #include "Hardware/FSMC.h"
@@ -175,7 +176,7 @@ void Painter::SendToDisplay(uint8 *bytes, int numBytes)
 {
     for (int i = 0; i < numBytes; i += 4)
     {
-        while (HAL_GPIO_ReadPin(GPIOG, GPIO_PIN_11) == GPIO_PIN_RESET) {};
+        while (pinDisplayReady.Read() == 0) { };
         Timer::PauseOnTicks(100);
         *ADDR_CDISPLAY = *bytes++;
         *ADDR_CDISPLAY = *bytes++;
@@ -187,7 +188,7 @@ void Painter::SendToDisplay(uint8 *bytes, int numBytes)
 
 static void Get4Bytes(uint8 bytes[4])
 {
-    while (HAL_GPIO_ReadPin(GPIOG, GPIO_PIN_11) == GPIO_PIN_RESET) {};
+    while (pinDisplayReady.Read() == 0) { }
     bytes[0] = *ADDR_CDISPLAY;
     bytes[1] = *ADDR_CDISPLAY;
     bytes[2] = *ADDR_CDISPLAY;
@@ -593,12 +594,12 @@ void Painter::Get8Points(int x, int y, uint8 buffer[4])
 
 uint8 Get2Points(int x, int y)
 {
-    while (HAL_GPIO_ReadPin(GPIOG, GPIO_PIN_11) == GPIO_PIN_RESET) {};
+    while(pinDisplayReady.Read() == 0) { }
     *ADDR_CDISPLAY = GET_POINT;
     *ADDR_CDISPLAY = (uint8)x;
     *ADDR_CDISPLAY = (uint8)(x >> 8);
     *ADDR_CDISPLAY = (uint8)y;
-    while (HAL_GPIO_ReadPin(GPIOG, GPIO_PIN_11) == GPIO_PIN_RESET) {};
+    while(pinDisplayReady.Read() == 0) { }
     return *ADDR_CDISPLAY;
 }
 
