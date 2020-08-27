@@ -6,7 +6,8 @@ struct PinMode
     enum E
     {
         Input,
-        Output
+        Output,
+        SPI2_
     };
 };
 
@@ -61,6 +62,7 @@ struct PinSL2 : public Pin { PinSL2(); };
 struct PinSL3 : public Pin { PinSL3(); };
 struct PinSL4 : public Pin { PinSL4(); };
 struct PinSL5 : public Pin { PinSL5(); };
+
 struct PinRL0 : public Pin { PinRL0(); };
 struct PinRL1 : public Pin { PinRL1(); };
 struct PinRL2 : public Pin { PinRL2(); };
@@ -69,6 +71,7 @@ struct PinRL4 : public Pin { PinRL4(); };
 struct PinRL5 : public Pin { PinRL5(); };
 struct PinRL6 : public Pin { PinRL6(); };
 struct PinRL7 : public Pin { PinRL7(); };
+
 struct PinRC0 : public Pin { PinRC0(); };
 struct PinRC1 : public Pin { PinRC1(); };
 struct PinRC2 : public Pin { PinRC2(); };
@@ -97,4 +100,3 @@ extern PinRC2 pinRC2;
 extern PinRC3 pinRC3;
 
 extern PinON pinON;
-

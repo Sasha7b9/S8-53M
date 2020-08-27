@@ -27,11 +27,11 @@ add_compile_options(/wd5220)
 file(GLOB VS_KEIL_ARMCLANG ../common/vs_keil/ARMCLANG/*)
 file(GLOB VS_KEIL_CMSIS    ../common/vs_keil/CMSIS/core_cm0plus.h)
 
-file(GLOB LIBS_CMSIS     ../common/STM32Cube_F4/Drivers/CMSIS/Device/ST/STM32F2xx/Include/*
-                         ../common/STM32Cube_F4/Drivers/CMSIS/Include/*)
+file(GLOB LIBS_CMSIS     ../common/STM32Cube_L0/Drivers/CMSIS/Device/ST/STM32L0xx/Include/*
+                         ../common/STM32Cube_L0/Drivers/CMSIS/Include/*)
 
-file(GLOB LIBS_HAL       ../common/STM32Cube_F2/Drivers/STM32F4xx_HAL_Driver/Inc/*.h
-                         ../common/STM32Cube_F2/Drivers/STM32F4xx_HAL_Driver/Src/*.c)
+file(GLOB LIBS_HAL       ../common/STM32Cube_L0/Drivers/STM32L0xx_HAL_Driver/Inc/*.h
+                         ../common/STM32Cube_L0/Drivers/STM32L0xx_HAL_Driver/Src/*.c)
 
 file(GLOB SRC            src/*.h src/*.c src/*.cpp)
 file(GLOB HARDWARE_CMSIS src/Hardware/CMSIS/*)

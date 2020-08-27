@@ -2,7 +2,19 @@
 #include "Hardware/HAL/HAL.h"
 #include <stm32l0xx_hal.h>
 
+struct PinSPI2_SCK : public Pin  { PinSPI2_SCK();  };
+struct PinSPI2_NSS : public Pin  { PinSPI2_NSS();  };
+struct PinSPI2_MISO : public Pin { PinSPI2_MISO(); };
+struct PinSPI2_MOSI : public Pin { PinSPI2_MOSI(); };
 
+// К этим пинам нет доступа из проиграммы
+static PinSPI2_SCK  pinSPI2_SCK;
+static PinSPI2_NSS  pinSPI2_NSS;
+static PinSPI2_MISO pinSPI2_MISO;
+static PinSPI2_MOSI pinSPI2_MOSI;
+
+
+// Этими пинами можно управлять во время исполнения программы
 PinSL0 pinSL0;
 PinSL1 pinSL1;
 PinSL2 pinSL2;
@@ -26,6 +38,7 @@ PinRC3 pinRC3;
 
 PinON pinON;
 
+
 PinSL0::PinSL0() : Pin(PinPort::A, PinPin::_0) { }
 PinSL1::PinSL1() : Pin(PinPort::A, PinPin::_1) { }
 PinSL2::PinSL2() : Pin(PinPort::A, PinPin::_2) { }
@@ -48,6 +61,11 @@ PinRC2::PinRC2() : Pin(PinPort::A, PinPin::_9) { }
 PinRC3::PinRC3() : Pin(PinPort::A, PinPin::_12) { }
 
 PinON::PinON() : Pin(PinPort::A, PinPin::_8) { }
+
+PinSPI2_SCK::PinSPI2_SCK() : Pin(PinPort::B, PinPin::_10) { }
+PinSPI2_NSS::PinSPI2_NSS() : Pin(PinPort::B, PinPin::_12) { }
+PinSPI2_MISO::PinSPI2_MISO() : Pin(PinPort::B, PinPin::_14) { }
+PinSPI2_MOSI::PinSPI2_MOSI() : Pin(PinPort::B, PinPin::_15) { }
 
 
 void HAL_PINS::Init()
@@ -74,6 +92,11 @@ void HAL_PINS::Init()
     pinRC3.Init(PinMode::Output);
 
     pinON.Init(PinMode::Output);
+
+    pinSPI2_SCK.Init(PinMode::SPI2_);
+    pinSPI2_NSS.Init(PinMode::SPI2_);
+    pinSPI2_MISO.Init(PinMode::SPI2_);
+    pinSPI2_MOSI.Init(PinMode::SPI2_);
 }
 
 
@@ -107,15 +130,39 @@ Pin::Pin(PinPort::E _port, PinPin::E _pin)
 
 void Pin::Init(PinMode::E mode)
 {
+    static GPIO_InitTypeDef isGPIO =
+    {
+        GPIO_PIN_0,
+        GPIO_MODE_INPUT,
+        GPIO_PULLUP,
+        GPIO_SPEED_FREQ_VERY_HIGH
+    };
 
+    isGPIO.Pin = pin;
+
+    if (mode == PinMode::Input)
+    {
+        isGPIO.Mode = GPIO_MODE_INPUT;
+    }
+    else if (mode == PinMode::Output)
+    {
+        isGPIO.Mode = GPIO_MODE_OUTPUT_PP;
+    }
+    else if (mode == PinMode::SPI2_)
+    {
+        isGPIO.Mode = GPIO_MODE_AF_PP;
+        isGPIO.Alternate = GPIO_AF0_SPI2;
+    }
+
+    HAL_GPIO_Init(reinterpret_cast<GPIO_TypeDef *>(port), &isGPIO);
 }
 
 void Pin::Write(uint state)
 {
-
+    HAL_GPIO_WritePin(reinterpret_cast<GPIO_TypeDef *>(port), pin, static_cast<GPIO_PinState>(state));
 }
 
 uint Pin::Read()
 {
-    return 0;
+    return HAL_GPIO_ReadPin(reinterpret_cast<GPIO_TypeDef *>(port), pin);
 }
