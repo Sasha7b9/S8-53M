@@ -6,7 +6,7 @@
   <Header>### uVision Project, (C) Keil Software</Header>
 
   <PrjGuiSettings>
-    <LastAddFilePath></LastAddFilePath>
+    <LastAddFilePath>D:\Projects\stm32\S8-53M\sources\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Src</LastAddFilePath>
   </PrjGuiSettings>
 
   <ViewPool/>
@@ -15,7 +15,7 @@
     <View>
       <WinId>38003</WinId>
       <ViewName>Registers</ViewName>
-      <TableColWidths>189 109</TableColWidths>
+      <TableColWidths>149 149</TableColWidths>
     </View>
     <View>
       <WinId>346</WinId>
@@ -40,7 +40,7 @@
       <WinId>1506</WinId>
       <ViewName>Symbols</ViewName>
       <UserString></UserString>
-      <TableColWidths>106 106 106</TableColWidths>
+      <TableColWidths>70 70 70</TableColWidths>
     </View>
     <View>
       <WinId>1936</WinId>
@@ -68,7 +68,7 @@
     </View>
     <View>
       <WinId>466</WinId>
-      <ViewName>Source Browser - *** Not Enabled ***</ViewName>
+      <ViewName>Source Browser</ViewName>
       <UserString>500</UserString>
       <TableColWidths>300</TableColWidths>
     </View>
@@ -101,10 +101,10 @@
         <yPos>-1</yPos>
       </MaxPosition>
       <NormalPosition>
-        <Top>31</Top>
-        <Left>-88</Left>
-        <Right>758</Right>
-        <Bottom>1414</Bottom>
+        <Top>237</Top>
+        <Left>113</Left>
+        <Right>1558</Right>
+        <Bottom>1172</Bottom>
       </NormalPosition>
     </WindowPosition>
     <MDIClientArea>
