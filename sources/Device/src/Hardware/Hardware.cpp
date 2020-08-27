@@ -49,22 +49,7 @@ void Hardware::Init(void)
 
     SystemClock_Config();
 
-    __GPIOA_CLK_ENABLE();
-    __GPIOB_CLK_ENABLE();
-    __GPIOC_CLK_ENABLE();
-    __GPIOD_CLK_ENABLE();
-    __GPIOE_CLK_ENABLE();
-    __GPIOF_CLK_ENABLE();
-    __GPIOG_CLK_ENABLE();
-    __DMA1_CLK_ENABLE();        // Для DAC1 (бикалка)
-    
-    __TIM6_CLK_ENABLE();        // Для отсчёта миллисекунд
-    __TIM2_CLK_ENABLE();        // Для тиков
-    __TIM7_CLK_ENABLE();        // Для DAC1 (бикалка)
-    __DAC_CLK_ENABLE();         // Для бикалки
-    __PWR_CLK_ENABLE();
-
-    __SYSCFG_CLK_ENABLE();
+    HAL::Init();
 
     HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
 
@@ -112,8 +97,6 @@ void Hardware::Init(void)
     Panel::Init();
 
     FSMC::Init();
-
-    ADConverter::Init();
 
     FlashDrive::Init();
     

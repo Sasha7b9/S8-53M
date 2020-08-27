@@ -21,3 +21,10 @@ struct HAL_PINS
 {
     static void Init();
 };
+
+// АЦП рандомизатора
+struct HAL_ADC3
+{
+    static void Init();
+};
+

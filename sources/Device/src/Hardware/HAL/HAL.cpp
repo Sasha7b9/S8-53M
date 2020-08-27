@@ -7,6 +7,8 @@ void HAL::Init()
 {
     HAL_Init();
 
+    __SYSCFG_CLK_ENABLE();
+
     __GPIOA_CLK_ENABLE();
     __GPIOB_CLK_ENABLE();
     __GPIOC_CLK_ENABLE();
@@ -18,11 +20,19 @@ void HAL::Init()
     __GPIOI_CLK_ENABLE();
 
     __ADC3_CLK_ENABLE();
+    __DAC_CLK_ENABLE();         // Для бикалки
+    __DMA1_CLK_ENABLE();        // Для DAC1 (бикалка)
     __ETH_CLK_ENABLE();
+    __PWR_CLK_ENABLE();
     __SPI1_CLK_ENABLE();
     __SYSCFG_CLK_ENABLE();
+    __TIM2_CLK_ENABLE();        // Для тиков
+    __TIM6_CLK_ENABLE();        // Для отсчёта миллисекунд
+    __TIM7_CLK_ENABLE();        // Для DAC1 (бикалка)
     __USB_OTG_FS_CLK_ENABLE();
     __USB_OTG_HS_CLK_ENABLE();
 
     HAL_PINS::Init();
+
+    HAL_ADC3::Init();
 }
