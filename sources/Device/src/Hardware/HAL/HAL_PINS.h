@@ -9,7 +9,8 @@ struct PinMode
         _Output,
         _ADC3_OUT,
         _ADC3_IT,
-        _DAC
+        _DAC,
+        _ETH
     };
 };
 
@@ -22,7 +23,10 @@ struct PinPort
         _C,
         _D,
         _E,
-        _F
+        _F,
+        _G,
+        _H,
+        _I
     };
 };
 

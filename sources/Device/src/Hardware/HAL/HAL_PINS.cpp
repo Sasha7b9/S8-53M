@@ -3,20 +3,51 @@
 #include "Hardware/HAL/HAL_PINS.h"
 
 
-struct PinADC3_OUT : public Pin { PinADC3_OUT(); };
-struct PinADC3_IT : public Pin  { PinADC3_IT();  };
-struct PinDAC : public Pin      { PinDAC();      };
-
-static PinADC3_IT  pinADC3_IT;
-static PinADC3_OUT pinADC3_OUT;
-static PinDAC      pinDAC;
+static Pin pinADC3_IT;
+static Pin pinADC3_OUT;
+static Pin pinDAC;
+static Pin pinETH_CRS;
+static Pin pinETH_MDIO;
+static Pin pinETH_COL;
+static Pin pinETH_RX_DV;
+static Pin pinETH_RXD2;
+static Pin pinETH_RXD3;
+static Pin pinETH_TXD3;
+static Pin pinETH_RX_ER;
+static Pin pinETH_TX_EN;
+static Pin pinETH_MDC;
+static Pin pinETH_TXD2;
+static Pin pinETH_TX_CLK;
+static Pin pinETH_RX_CLK;
+static Pin pinETH_RXD0;
+static Pin pinETH_RXD1;
+static Pin pinETH_TXD0;
+static Pin pinETH_TXD1;
 
 
 void HAL_PINS::Init()
 {
-    pinADC3_OUT.Init(PinMode::_ADC3_OUT, PinPort::_F, PinPin::_6);
-    pinADC3_IT .Init(PinMode::_ADC3_IT,  PinPort::_C, PinPin::_11);
-    pinDAC     .Init(PinMode::_DAC,      PinPort::_A, PinPin::_4);
+    pinADC3_OUT  .Init(PinMode::_ADC3_OUT, PinPort::_F, PinPin::_6);
+    pinADC3_IT   .Init(PinMode::_ADC3_IT,  PinPort::_C, PinPin::_11);
+    pinDAC       .Init(PinMode::_DAC,      PinPort::_A, PinPin::_4);
+
+    pinETH_RX_ER .Init(PinMode::_ETH, PinPort::_I, PinPin::_10);
+    pinETH_MDC   .Init(PinMode::_ETH, PinPort::_C, PinPin::_1);
+    pinETH_TXD2  .Init(PinMode::_ETH, PinPort::_C, PinPin::_2);
+    pinETH_TX_CLK.Init(PinMode::_ETH, PinPort::_C, PinPin::_3);
+    pinETH_RX_CLK.Init(PinMode::_ETH, PinPort::_A, PinPin::_1);
+    pinETH_MDIO  .Init(PinMode::_ETH, PinPort::_A, PinPin::_2);
+    pinETH_CRS   .Init(PinMode::_ETH, PinPort::_H, PinPin::_2);
+    pinETH_COL   .Init(PinMode::_ETH, PinPort::_H, PinPin::_3);
+    pinETH_RX_DV .Init(PinMode::_ETH, PinPort::_A, PinPin::_7);
+    pinETH_RXD0  .Init(PinMode::_ETH, PinPort::_C, PinPin::_4);
+    pinETH_RXD1  .Init(PinMode::_ETH, PinPort::_C, PinPin::_5);
+    pinETH_RXD3  .Init(PinMode::_ETH, PinPort::_B, PinPin::_1);
+    pinETH_TX_EN .Init(PinMode::_ETH, PinPort::_B, PinPin::_11);
+    pinETH_RXD2  .Init(PinMode::_ETH, PinPort::_H, PinPin::_6);
+    pinETH_TXD0  .Init(PinMode::_ETH, PinPort::_B, PinPin::_12);
+    pinETH_TXD1  .Init(PinMode::_ETH, PinPort::_G, PinPin::_14);
+    pinETH_TXD3  .Init(PinMode::_ETH, PinPort::_B, PinPin::_8);
 }
 
 
@@ -68,6 +99,12 @@ void Pin::Init(PinMode::E mode, PinPort::E _port, PinPin::E _pin)
     else if (mode == PinMode::_DAC)
     {
         isGPIO.Mode = GPIO_MODE_ANALOG;
+    }
+    else if (mode == PinMode::_ETH)
+    {
+        isGPIO.Mode = GPIO_MODE_AF_PP;
+        isGPIO.Speed = GPIO_SPEED_HIGH;
+        isGPIO.Alternate = GPIO_AF11_ETH;
     }
 
     HAL_GPIO_Init(reinterpret_cast<GPIO_TypeDef *>(port), &isGPIO);
