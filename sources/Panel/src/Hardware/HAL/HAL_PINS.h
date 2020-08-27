@@ -79,26 +79,3 @@ struct PinRC1 : public Pin { PinRC1(); };
 struct PinRC2 : public Pin { PinRC2(); };
 struct PinRC3 : public Pin { PinRC3(); };
 struct PinON : public Pin { PinON(); };
-
-extern PinSL0 pinSL0;
-extern PinSL1 pinSL1;
-extern PinSL2 pinSL2;
-extern PinSL3 pinSL3;
-extern PinSL4 pinSL4;
-extern PinSL5 pinSL5;
-
-extern PinRL0 pinRL0;
-extern PinRL1 pinRL1;
-extern PinRL2 pinRL2;
-extern PinRL3 pinRL3;
-extern PinRL4 pinRL4;
-extern PinRL5 pinRL5;
-extern PinRL6 pinRL6;
-extern PinRL7 pinRL7;
-
-extern PinRC0 pinRC0;
-extern PinRC1 pinRC1;
-extern PinRC2 pinRC2;
-extern PinRC3 pinRC3;
-
-extern PinON pinON;
