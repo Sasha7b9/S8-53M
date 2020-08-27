@@ -1,5 +1,5 @@
+#include "defines.h"
 #include "Hardware/HAL/HAL.h"
-#include "Hardware/HAL/HAL_PIO.h"
 #include <stm32l0xx_hal.h>
 
 
@@ -18,7 +18,7 @@ void HAL::Init()
 
     SystemClock_Config();
 
-    HAL_PIO::Init();
+    HAL_PINS::Init();
 
     HAL_SPI2::Init();
 }

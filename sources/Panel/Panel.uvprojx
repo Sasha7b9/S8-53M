@@ -468,19 +468,19 @@
               <FilePath>.\src\Hardware\HAL\HAL.h</FilePath>
             </File>
             <File>
+              <FileName>HAL_PINS.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\HAL\HAL_PINS.h</FilePath>
+            </File>
+            <File>
               <FileName>HAL.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\HAL\HAL.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_PIO.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_PIO.h</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_PIO.cpp</FileName>
+              <FileName>HAL_PINS.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_PIO.cpp</FilePath>
+              <FilePath>.\src\Hardware\HAL\HAL_PINS.cpp</FilePath>
             </File>
             <File>
               <FileName>HAL_SPI2.cpp</FileName>

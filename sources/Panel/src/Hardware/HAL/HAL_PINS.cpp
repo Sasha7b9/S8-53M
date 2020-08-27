@@ -1,11 +1,14 @@
-#include "Hardware/HAL/HAL_PIO.h"
+#include "defines.h"
+#include "Hardware/HAL/HAL.h"
 #include <stm32l0xx_hal.h>
 
 
 #define SL0_Pin GPIO_PIN_0
 #define SL0_GPIO_Port GPIOA
+
 #define SL1_Pin GPIO_PIN_1
 #define SL1_GPIO_Port GPIOA
+
 #define SL2_Pin GPIO_PIN_2
 #define SL2_GPIO_Port GPIOA
 #define SL3_Pin GPIO_PIN_3
@@ -42,7 +45,7 @@
 #define RL7_GPIO_Port GPIOB
 
 
-void HAL_PIO::Init()
+void HAL_PINS::Init()
 {
     GPIO_InitTypeDef GPIO_InitStruct = { 0 };
 
