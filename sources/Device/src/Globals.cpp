@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "Globals.h"
 #include "Display/DisplayTypes.h"
+#include <usbh_def.h>
 
 void *extraMEM = 0;
 
@@ -8,7 +9,8 @@ void *extraMEM = 0;
 
 HCD_HandleTypeDef handleHCD;
 
-USBH_HandleTypeDef handleUSBH;
+USBH_HandleTypeDef hUSBH;
+void *handleUSBH = &hUSBH;
 
 SPI_HandleTypeDef handleSPI =
 {

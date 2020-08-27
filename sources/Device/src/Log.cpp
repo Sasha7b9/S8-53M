@@ -4,6 +4,7 @@
 #include "VCP/VCP.h"
 #include <cstdarg>
 #include <cstdio>
+#include <cstring>
 
 
 static bool loggerUSB = false;

@@ -10,6 +10,7 @@
 #include "ffconf.h"
 #include "Hardware/Hardware.h"
 #include "FDrive.h"
+#include <cstring>
 
 
 
@@ -38,7 +39,7 @@ void FlashDrive::Init()
 
 void FlashDrive::Update(void)
 {
-    USBH_Process(&handleUSBH);
+    USBH_Process(reinterpret_cast<USBH_HandleTypeDef *>(handleUSBH));
 }
 
 

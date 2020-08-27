@@ -145,7 +145,7 @@ static void DrawIPaddressLowPart(IPaddress *ip, int x, int y, bool, bool shade)
         colorTextDown = ColorMenuItem(false);
     }
 
-    sprintf(buffer, "%03d.%03d.%03d.%03d", *ip->ip0, *ip->ip1, *ip->ip2, *ip->ip3);
+    std::sprintf(buffer, "%03d.%03d.%03d.%03d", *ip->ip0, *ip->ip1, *ip->ip2, *ip->ip3);
 
     if (Menu::OpenedItem() != ip)
     {
@@ -171,7 +171,7 @@ static void DrawMACaddressLowPart(MACaddress *mac, int x, int y, bool, bool shad
         colorTextDown = ColorMenuItem(false);
     }
 
-    sprintf(buffer, "%02X.%02X.%02X.%02X.%02X.%02X", *mac->mac0, *mac->mac1, *mac->mac2, *mac->mac3, *mac->mac4, *mac->mac5);
+    std::sprintf(buffer, "%02X.%02X.%02X.%02X.%02X.%02X", *mac->mac0, *mac->mac1, *mac->mac2, *mac->mac3, *mac->mac4, *mac->mac5);
 
     if (Menu::OpenedItem() != mac)
     {
@@ -364,7 +364,7 @@ static void DrawMACvalue(int x, int y, MACaddress *mac)
             Painter::FillRegionC(x - 1, y, 10, 8, COLOR_FILL);
         }
         char buffer[20];
-        sprintf(buffer, "%02X", value);
+        std::sprintf(buffer, "%02X", value);
         Painter::DrawTextC(x, y, buffer, gCurDigit == num ? COLOR_BACK : COLOR_FILL);
         x -= 12;
     }

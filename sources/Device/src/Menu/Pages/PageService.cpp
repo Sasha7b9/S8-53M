@@ -8,6 +8,8 @@
 #include "Hardware/Sound.h"
 #include "Hardware/Timer.h"
 #include "Utils/Math.h"
+#include <cstring>
+#include <cstdio>
 
 
 /** @addtogroup Menu

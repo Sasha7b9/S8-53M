@@ -15,6 +15,7 @@
 #include "Menu/Menu.h"
 #include "Menu/Pages/PageDebug.h"
 #include "Log.h"
+#include <cstdio>
 
 
 /** @addtogroup Menu

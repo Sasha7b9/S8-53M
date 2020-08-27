@@ -6,6 +6,7 @@
 #include <cmath>
 #include <cstdio>
 #include <cstring>
+#include <cstdlib>
 
 
 char* FloatFract2String(float value, bool alwaysSign, char bufferOut[20])

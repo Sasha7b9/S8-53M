@@ -32,6 +32,7 @@
 #include <limits>
 #include "Hardware/DisplayHardware.inc"
 #include <cstring>
+#include <cstdio>
 
 
 #define NUM_P2P_POINTS (FPGA_MAX_POINTS)

@@ -3,9 +3,8 @@
 #include "Settings/SettingsTypes.h"
 #include "Settings/SettingsChannel.h"
 #include "Settings/SettingsTime.h"
-#include <usbh_def.h>
 
-extern USBH_HandleTypeDef handleUSBH;
+extern void *handleUSBH;
 extern HCD_HandleTypeDef handleHCD;
 extern SPI_HandleTypeDef handleSPI;
 extern ADC_HandleTypeDef handleADC;

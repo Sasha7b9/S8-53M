@@ -8,6 +8,7 @@
 #include "Settings/Settings.h"
 #include <cstdarg>
 #include <cstdio>
+#include <cstring>
 
 
 static TypeFont currentTypeFont = TypeFont_None;

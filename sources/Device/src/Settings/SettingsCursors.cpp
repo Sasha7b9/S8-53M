@@ -6,7 +6,7 @@
 #include "Utils/GlobalFunctions.h"
 #include "FPGA/FPGA_Types.h"
 #include <cmath>
-
+#include <cstring>
 
 
 float sCursors_GetCursPosU(Channel chan, int numCur)

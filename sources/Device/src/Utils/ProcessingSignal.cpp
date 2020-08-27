@@ -1091,7 +1091,7 @@ char* Processing::GetStringMeasure(Measure measure, Channel chan, char buffer[20
         return "";
     }
     buffer[0] = '\0';
-    sprintf(buffer, chan == A ? "1: " : "2: ");
+    std::sprintf(buffer, chan == A ? "1: " : "2: ");
     if(dataSet == 0)
     {
         std::strcat(buffer, "-.-");

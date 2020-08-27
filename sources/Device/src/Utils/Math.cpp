@@ -5,6 +5,8 @@
 #include "Display/Grid.h"
 #include "Hardware/Timer.h"
 #include <cmath>
+#include <cstdlib>
+#include <cstring>
 
 
 const float tableScalesRange[RangeSize] = {2e-3f, 5e-3f, 10e-3f, 20e-3f, 50e-3f, 100e-3f, 200e-3f, 500e-3f, 1.0f, 2.0f, 5.0f, 10.0f, 20.0f};
