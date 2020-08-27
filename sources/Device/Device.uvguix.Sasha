@@ -6,7 +6,7 @@
   <Header>### uVision Project, (C) Keil Software</Header>
 
   <PrjGuiSettings>
-    <LastAddFilePath>C:\My\work\S8-53M\sources\common\STM32Cube_F4\Middlewares\Third_Party\LwIP\test\unit\arch</LastAddFilePath>
+    <LastAddFilePath>D:\Projects\stm32\S8-53M\sources\Device\src\Hardware\HAL</LastAddFilePath>
   </PrjGuiSettings>
 
   <ViewPool/>
@@ -68,7 +68,7 @@
     </View>
     <View>
       <WinId>466</WinId>
-      <ViewName>Source Browser</ViewName>
+      <ViewName>Source Browser - *** Not Enabled ***</ViewName>
       <UserString>500</UserString>
       <TableColWidths>300</TableColWidths>
     </View>

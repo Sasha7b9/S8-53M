@@ -24,6 +24,12 @@ static Pin pinETH_RXD1;
 static Pin pinETH_TXD0;
 static Pin pinETH_TXD1;
 
+Pin pinG1;
+Pin pinG2;
+Pin pinG3;
+Pin pinG5;
+Pin pinG7;
+
 
 void HAL_PINS::Init()
 {
@@ -48,6 +54,12 @@ void HAL_PINS::Init()
     pinETH_TXD0  .Init(PinMode::_ETH, PinPort::_B, PinPin::_12);
     pinETH_TXD1  .Init(PinMode::_ETH, PinPort::_G, PinPin::_14);
     pinETH_TXD3  .Init(PinMode::_ETH, PinPort::_B, PinPin::_8);
+
+    pinG1.Init(PinMode::_Output, PinPort::_G, PinPin::_1);
+    pinG2.Init(PinMode::_Output, PinPort::_G, PinPin::_2);
+    pinG3.Init(PinMode::_Output, PinPort::_G, PinPin::_3);
+    pinG5.Init(PinMode::_Output, PinPort::_G, PinPin::_5);
+    pinG7.Init(PinMode::_Output, PinPort::_G, PinPin::_7);
 }
 
 
@@ -87,6 +99,8 @@ void Pin::Init(PinMode::E mode, PinPort::E _port, PinPin::E _pin)
     }
     else if (mode == PinMode::_Output)
     {
+        isGPIO.Mode = GPIO_MODE_OUTPUT_PP;
+        isGPIO.Speed = GPIO_SPEED_HIGH;
     }
     else if (mode == PinMode::_ADC3_OUT)
     {
@@ -108,4 +122,28 @@ void Pin::Init(PinMode::E mode, PinPort::E _port, PinPin::E _pin)
     }
 
     HAL_GPIO_Init(reinterpret_cast<GPIO_TypeDef *>(port), &isGPIO);
+}
+
+
+void Pin::Write(uint state)
+{
+    HAL_GPIO_WritePin(reinterpret_cast<GPIO_TypeDef *>(port), pin, static_cast<GPIO_PinState>(state));
+}
+
+
+void Pin::Set()
+{
+    HAL_GPIO_WritePin(reinterpret_cast<GPIO_TypeDef *>(port), pin, GPIO_PIN_SET);
+}
+
+
+void Pin::Reset()
+{
+    HAL_GPIO_WritePin(reinterpret_cast<GPIO_TypeDef *>(port), pin, GPIO_PIN_RESET);
+}
+
+
+uint Pin::Read()
+{
+    return HAL_GPIO_ReadPin(reinterpret_cast<GPIO_TypeDef *>(port), pin);
 }
