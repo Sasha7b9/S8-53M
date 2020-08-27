@@ -1,4 +1,5 @@
 #include "Hardware/HAL/HAL.h"
+#include "Hardware/HAL/HAL_PINS.h"
 #include <stm32l0xx_hal.h>
 
 
@@ -14,6 +15,8 @@ void HAL::Init()
     __HAL_RCC_SPI2_CLK_ENABLE();
 
     SystemClock_Config();
+
+    HAL_PINS::Init();
 
     HAL_SPI2::Init();
 }
