@@ -110,15 +110,6 @@ void HAL_SRAM_MspDeInit(SRAM_HandleTypeDef *)
 
 void HAL_DAC_MspInit(DAC_HandleTypeDef* hdac)
 {
-    GPIO_InitTypeDef structGPIO =
-    {
-        GPIO_PIN_4,
-        GPIO_MODE_ANALOG,
-        GPIO_NOPULL
-    };
-
-    HAL_GPIO_Init(GPIOA, &structGPIO);
-
     static DMA_HandleTypeDef hdmaDAC1 =
     {
         DMA1_Stream5,

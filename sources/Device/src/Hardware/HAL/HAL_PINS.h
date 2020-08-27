@@ -5,23 +5,24 @@ struct PinMode
 {
     enum E
     {
-        Input,
-        Output,
-        ADC3_OUT,
-        ADC3_IT
+        _Input,
+        _Output,
+        _ADC3_OUT,
+        _ADC3_IT,
+        _DAC
     };
 };
 
 struct PinPort
 {
-    enum P
+    enum E
     {
-        A,
-        B,
-        C,
-        D,
-        E,
-        F
+        _A,
+        _B,
+        _C,
+        _D,
+        _E,
+        _F
     };
 };
 
@@ -51,7 +52,7 @@ struct PinPin
 
 struct Pin
 {
-    Pin(PinPort::P port, PinPin::E pin);
+    Pin(PinPort::E port, PinPin::E pin);
     void Init(PinMode::E mode);
     void Write(uint state);
     void Set();
