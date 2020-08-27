@@ -49,6 +49,8 @@ struct Pin
     Pin(PinPort::E port, PinPin::E pin);
     void Init(PinMode::E mode);
     void Write(uint state);
+    void Set();
+    void Reset();
     uint Read();
 
 private:

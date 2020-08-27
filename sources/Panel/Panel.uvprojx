@@ -488,6 +488,11 @@
               <FilePath>.\src\Hardware\HAL\HAL_SPI2.cpp</FilePath>
             </File>
             <File>
+              <FileName>HAL_TIM2.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HAL\HAL_TIM2.cpp</FilePath>
+            </File>
+            <File>
               <FileName>stm32l0xx_hal_conf.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\HAL\stm32l0xx_hal_conf.h</FilePath>
@@ -511,6 +516,31 @@
               <FileName>main.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\main.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Keyboard</GroupName>
+          <Files>
+            <File>
+              <FileName>Controls.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Keyboard\Controls.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Controls.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Keyboard\Controls.h</FilePath>
+            </File>
+            <File>
+              <FileName>Keyboard.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Keyboard\Keyboard.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Keyboard.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Keyboard\Keyboard.h</FilePath>
             </File>
           </Files>
         </Group>

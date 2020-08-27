@@ -56,6 +56,12 @@ static void SystemClock_Config()
 }
 
 
+uint HAL_TIM::TimeMS()
+{
+    return HAL_GetTick();
+}
+
+
 void HAL::ErrorHandler()
 {
     while (1)

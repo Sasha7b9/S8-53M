@@ -157,10 +157,24 @@ void Pin::Init(PinMode::E mode)
     HAL_GPIO_Init(reinterpret_cast<GPIO_TypeDef *>(port), &isGPIO);
 }
 
+
 void Pin::Write(uint state)
 {
     HAL_GPIO_WritePin(reinterpret_cast<GPIO_TypeDef *>(port), pin, static_cast<GPIO_PinState>(state));
 }
+
+
+void Pin::Set()
+{
+    HAL_GPIO_WritePin(reinterpret_cast<GPIO_TypeDef *>(port), pin, GPIO_PIN_SET);
+}
+
+
+void Pin::Reset()
+{
+    HAL_GPIO_WritePin(reinterpret_cast<GPIO_TypeDef *>(port), pin, GPIO_PIN_RESET);
+}
+
 
 uint Pin::Read()
 {
