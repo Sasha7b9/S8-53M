@@ -18,7 +18,7 @@ void HAL::Init()
 
     SystemClock_Config();
 
-    HAL_PINS::Init();
+    HAL_PIO::Init();
 
     HAL_SPI2::Init();
 }

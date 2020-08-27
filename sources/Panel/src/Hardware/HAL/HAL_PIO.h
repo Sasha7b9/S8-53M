@@ -1,7 +1,7 @@
 #pragma once
 
 
-struct HAL_PINS
+struct HAL_PIO
 {
     static void Init();
 };

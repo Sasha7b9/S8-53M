@@ -42,7 +42,7 @@
 #define RL7_GPIO_Port GPIOB
 
 
-void HAL_PINS::Init()
+void HAL_PIO::Init()
 {
     GPIO_InitTypeDef GPIO_InitStruct = { 0 };
 
