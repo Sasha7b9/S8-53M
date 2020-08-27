@@ -10,7 +10,8 @@ struct PinMode
         _ADC3_OUT,
         _ADC3_IT,
         _DAC,
-        _ETH
+        _ETH,
+        _OTG_HS_FS
     };
 };
 

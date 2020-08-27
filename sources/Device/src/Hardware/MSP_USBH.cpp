@@ -9,20 +9,8 @@
 
 
 
-void HAL_HCD_MspInit(HCD_HandleTypeDef *) {
-
-    __GPIOB_CLK_ENABLE();
-    __USB_OTG_HS_CLK_ENABLE();
-    __SYSCFG_CLK_ENABLE();
-
-    GPIO_InitTypeDef isGPIO;
-    isGPIO.Pin = GPIO_PIN_14 | GPIO_PIN_15;
-    isGPIO.Mode = GPIO_MODE_AF_PP;
-    isGPIO.Pull = GPIO_NOPULL;
-    isGPIO.Speed = GPIO_SPEED_FAST;
-    isGPIO.Alternate = GPIO_AF12_OTG_HS_FS;
-    HAL_GPIO_Init(GPIOB, &isGPIO);
-
+void HAL_HCD_MspInit(HCD_HandleTypeDef *)
+{
     /* Set USBHS Interrupt to the lowest priority */
     HAL_NVIC_SetPriority(OTG_HS_IRQn, 15, 0);
 
