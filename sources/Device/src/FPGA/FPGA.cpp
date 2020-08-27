@@ -6,6 +6,7 @@
 #include "Hardware/FSMC.h"
 #include "Hardware/Hardware.h"
 #include "Hardware/ADC.h"
+#include "Hardware/HAL/HAL.h"
 #include "Panel/Panel.h"
 #include "Panel/Controls.h"
 #include "Settings/Settings.h"
@@ -1183,20 +1184,15 @@ void FPGA::FindAndSetTrigLevel(void)
 }
 
 
-#define pinCLC      GPIO_PIN_2
-#define pinData     GPIO_PIN_3
-#define CHIP_SELECT_IN_LOW  HAL_GPIO_WritePin(GPIOG, pinSelect, GPIO_PIN_RESET);
-#define CHIP_SELECT_IN_HI   HAL_GPIO_WritePin(GPIOG, pinSelect, GPIO_PIN_SET);
-#define CLC_HI              HAL_GPIO_WritePin(GPIOG, pinCLC, GPIO_PIN_SET);
-#define CLC_LOW             HAL_GPIO_WritePin(GPIOG, pinCLC, GPIO_PIN_RESET);
-#define DATA_SET(x)         HAL_GPIO_WritePin(GPIOG, pinData, x);
+#define CLC_HI              pinG2.Set();
+#define CLC_LOW             pinG2.Reset();
+#define DATA_SET(x)         pinG3.Write(x);
 
 
 void FPGA::WriteToAnalog(TypeWriteAnalog type, uint data)
 {
-#define pinSelect   GPIO_PIN_5
-
     char buffer[19];
+
     char *str = Bin2String16((uint16)data, buffer);
     if (type == TypeWriteAnalog_Range0 && IS_SHOW_REG_RANGE_A)
     {
@@ -1223,22 +1219,21 @@ void FPGA::WriteToAnalog(TypeWriteAnalog type, uint data)
         LOG_WRITE("полная запись в аналоговую часть = %s", str);
     }
 
-    CHIP_SELECT_IN_LOW
-        for (int i = 23; i >= 0; i--)
-        {
-            DATA_SET((data & (1 << i)) ? GPIO_PIN_SET : GPIO_PIN_RESET);
-            CLC_HI
-                CLC_LOW
-        }
-    CHIP_SELECT_IN_HI;
+    pinG5.Reset();
+    for (int i = 23; i >= 0; i--)
+    {
+        DATA_SET((data & (1 << i)) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+        CLC_HI
+        CLC_LOW
+    }
+    pinG5.Set();
 }
 
 
 void FPGA::WriteToDAC(TypeWriteDAC type, uint16 data)
 {
-#undef pinSelect
-#define pinSelect   GPIO_PIN_7
     char buffer[19];
+
     if (type == TypeWriteDAC_RShiftA && IS_SHOW_REG_RSHIFT_A)
     {
         LOG_WRITE("rShift 0 = %s", Bin2String16(data, buffer));
@@ -1252,12 +1247,12 @@ void FPGA::WriteToDAC(TypeWriteDAC type, uint16 data)
         LOG_WRITE("trigLev = %s", Bin2String16(data, buffer));
     }
 
-    CHIP_SELECT_IN_LOW
-        for (int i = 15; i >= 0; i--)
-        {
-            DATA_SET((data & (1 << i)) ? GPIO_PIN_SET : GPIO_PIN_RESET);
-            CLC_HI
-                CLC_LOW
-        }
-    CHIP_SELECT_IN_HI;
+    pinG7.Reset();
+    for (int i = 15; i >= 0; i--)
+    {
+        DATA_SET((data & (1 << i)) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+        CLC_HI
+        CLC_LOW
+    }
+    pinG7.Set();
 }
