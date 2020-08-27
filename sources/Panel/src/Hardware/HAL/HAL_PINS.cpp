@@ -3,73 +3,119 @@
 #include <stm32l0xx_hal.h>
 
 
-#define SL0_Pin GPIO_PIN_0
-#define SL0_GPIO_Port GPIOA
+PinSL0 pinSL0;
+PinSL1 pinSL1;
+PinSL2 pinSL2;
+PinSL3 pinSL3;
+PinSL4 pinSL4;
+PinSL5 pinSL5;
 
-#define SL1_Pin GPIO_PIN_1
-#define SL1_GPIO_Port GPIOA
+PinRL0 pinRL0;
+PinRL1 pinRL1;
+PinRL2 pinRL2;
+PinRL3 pinRL3;
+PinRL4 pinRL4;
+PinRL5 pinRL5;
+PinRL6 pinRL6;
+PinRL7 pinRL7;
 
-#define SL2_Pin GPIO_PIN_2
-#define SL2_GPIO_Port GPIOA
-#define SL3_Pin GPIO_PIN_3
-#define SL3_GPIO_Port GPIOA
-#define SL4_Pin GPIO_PIN_4
-#define SL4_GPIO_Port GPIOA
-#define SL5_Pin GPIO_PIN_5
-#define SL5_GPIO_Port GPIOA
-#define RL0_Pin GPIO_PIN_0
-#define RL0_GPIO_Port GPIOB
-#define RL1_Pin GPIO_PIN_1
-#define RL1_GPIO_Port GPIOB
-#define RL2_Pin GPIO_PIN_2
-#define RL2_GPIO_Port GPIOB
-#define ON_Pin GPIO_PIN_8
-#define ON_GPIO_Port GPIOA
-#define RC2_Pin GPIO_PIN_9
-#define RC2_GPIO_Port GPIOA
-#define RC1_Pin GPIO_PIN_10
-#define RC1_GPIO_Port GPIOA
-#define RC0_Pin GPIO_PIN_11
-#define RC0_GPIO_Port GPIOA
-#define RC3_Pin GPIO_PIN_12
-#define RC3_GPIO_Port GPIOA
-#define RL3_Pin GPIO_PIN_3
-#define RL3_GPIO_Port GPIOB
-#define RL4_Pin GPIO_PIN_4
-#define RL4_GPIO_Port GPIOB
-#define RL5_Pin GPIO_PIN_5
-#define RL5_GPIO_Port GPIOB
-#define RL6_Pin GPIO_PIN_6
-#define RL6_GPIO_Port GPIOB
-#define RL7_Pin GPIO_PIN_7
-#define RL7_GPIO_Port GPIOB
+PinRC0 pinRC0;
+PinRC1 pinRC1;
+PinRC2 pinRC2;
+PinRC3 pinRC3;
+
+PinON pinON;
+
+PinSL0::PinSL0() : Pin(PinPort::A, PinPin::_0) { }
+PinSL1::PinSL1() : Pin(PinPort::A, PinPin::_1) { }
+PinSL2::PinSL2() : Pin(PinPort::A, PinPin::_2) { }
+PinSL3::PinSL3() : Pin(PinPort::A, PinPin::_3) { }
+PinSL4::PinSL4() : Pin(PinPort::A, PinPin::_4) { }
+PinSL5::PinSL5() : Pin(PinPort::A, PinPin::_5) { }
+
+PinRL0::PinRL0() : Pin(PinPort::B, PinPin::_0) { }
+PinRL1::PinRL1() : Pin(PinPort::B, PinPin::_1) { }
+PinRL2::PinRL2() : Pin(PinPort::B, PinPin::_2) { }
+PinRL3::PinRL3() : Pin(PinPort::B, PinPin::_3) { }
+PinRL4::PinRL4() : Pin(PinPort::B, PinPin::_4) { }
+PinRL5::PinRL5() : Pin(PinPort::B, PinPin::_5) { }
+PinRL6::PinRL6() : Pin(PinPort::B, PinPin::_6) { }
+PinRL7::PinRL7() : Pin(PinPort::B, PinPin::_7) { }
+
+PinRC0::PinRC0() : Pin(PinPort::A, PinPin::_11) { }
+PinRC1::PinRC1() : Pin(PinPort::A, PinPin::_10) { }
+PinRC2::PinRC2() : Pin(PinPort::A, PinPin::_9) { }
+PinRC3::PinRC3() : Pin(PinPort::A, PinPin::_12) { }
+
+PinON::PinON() : Pin(PinPort::A, PinPin::_8) { }
 
 
 void HAL_PINS::Init()
 {
-    GPIO_InitTypeDef GPIO_InitStruct = { 0 };
+    pinRL0.Init(PinMode::Input);
+    pinRL1.Init(PinMode::Input);
+    pinRL2.Init(PinMode::Input);
+    pinRL3.Init(PinMode::Input);
+    pinRL4.Init(PinMode::Input);
+    pinRL5.Init(PinMode::Input);
+    pinRL6.Init(PinMode::Input);
+    pinRL7.Init(PinMode::Input);
+ 
+    pinSL0.Init(PinMode::Output);
+    pinSL1.Init(PinMode::Output);
+    pinSL2.Init(PinMode::Output);
+    pinSL3.Init(PinMode::Output);
+    pinSL4.Init(PinMode::Output);
+    pinSL5.Init(PinMode::Output);
 
-    /*Configure GPIO pin Output Level */
-    HAL_GPIO_WritePin(GPIOA, SL0_Pin | SL1_Pin | SL2_Pin | SL3_Pin
-                      | SL4_Pin | SL5_Pin | ON_Pin | RC2_Pin
-                      | RC1_Pin | RC0_Pin | RC3_Pin, GPIO_PIN_RESET);
+    pinRC0.Init(PinMode::Output);
+    pinRC1.Init(PinMode::Output);
+    pinRC2.Init(PinMode::Output);
+    pinRC3.Init(PinMode::Output);
 
-    /*Configure GPIO pins : SL0_Pin SL1_Pin SL2_Pin SL3_Pin
-                             SL4_Pin SL5_Pin ON_Pin RC2_Pin
-                             RC1_Pin RC0_Pin RC3_Pin */
-    GPIO_InitStruct.Pin = SL0_Pin | SL1_Pin | SL2_Pin | SL3_Pin
-        | SL4_Pin | SL5_Pin | ON_Pin | RC2_Pin
-        | RC1_Pin | RC0_Pin | RC3_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+    pinON.Init(PinMode::Output);
+}
 
-    /*Configure GPIO pins : RL0_Pin RL1_Pin RL2_Pin RL3_Pin
-                             RL4_Pin RL5_Pin RL6_Pin RL7_Pin */
-    GPIO_InitStruct.Pin = RL0_Pin | RL1_Pin | RL2_Pin | RL3_Pin
-        | RL4_Pin | RL5_Pin | RL6_Pin | RL7_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+Pin::Pin(PinPort::E _port, PinPin::E _pin)
+{
+    static const GPIO_TypeDef *ports[2] = { GPIOA, GPIOB };
+
+    static const uint16 pins[16] =
+    {
+        GPIO_PIN_0,
+        GPIO_PIN_1,
+        GPIO_PIN_2,
+        GPIO_PIN_3,
+        GPIO_PIN_4,
+        GPIO_PIN_5,
+        GPIO_PIN_6,
+        GPIO_PIN_7,
+        GPIO_PIN_8,
+        GPIO_PIN_9,
+        GPIO_PIN_10,
+        GPIO_PIN_11,
+        GPIO_PIN_12,
+        GPIO_PIN_13,
+        GPIO_PIN_14,
+        GPIO_PIN_15
+    };
+
+    port = const_cast<GPIO_TypeDef *>(ports[_port]);
+    pin = pins[_pin];
+}
+
+void Pin::Init(PinMode::E mode)
+{
+
+}
+
+void Pin::Write(uint state)
+{
+
+}
+
+uint Pin::Read()
+{
+    return 0;
 }
