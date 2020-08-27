@@ -362,7 +362,7 @@
 
   <Group>
     <GroupName>Hardware/HAL</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -397,8 +397,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Hardware\HAL\HAL_PINS.h</PathWithFileName>
-      <FilenameWithoutPath>HAL_PINS.h</FilenameWithoutPath>
+      <PathWithFileName>.\src\Hardware\HAL\HAL_PIO.h</PathWithFileName>
+      <FilenameWithoutPath>HAL_PIO.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -409,8 +409,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Hardware\HAL\HAL_PINS.cpp</PathWithFileName>
-      <FilenameWithoutPath>HAL_PINS.cpp</FilenameWithoutPath>
+      <PathWithFileName>.\src\Hardware\HAL\HAL_PIO.cpp</PathWithFileName>
+      <FilenameWithoutPath>HAL_PIO.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
