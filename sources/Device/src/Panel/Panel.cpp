@@ -10,8 +10,6 @@
 #include "Hardware/HAL/HAL.h"
 #include "Log.h"
 #include "Hardware/Sound.h"
-#include <stm32f4xx_hal.h>
-#include <stm32f4xx_hal_gpio.h>
 #include <cstdio>
 #include <cstring>
 #include "PanelFunctions.cpp"
