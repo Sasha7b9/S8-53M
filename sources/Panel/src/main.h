@@ -5,8 +5,6 @@
 extern "C" {
 #endif
 
-void Error_Handler(void);
-
 #define SL0_Pin GPIO_PIN_0
 #define SL0_GPIO_Port GPIOA
 #define SL1_Pin GPIO_PIN_1

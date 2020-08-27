@@ -483,11 +483,6 @@
               <FilePath>.\src\Hardware\HAL\stm32l0xx_hal_conf.h</FilePath>
             </File>
             <File>
-              <FileName>stm32l0xx_hal_msp.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\stm32l0xx_hal_msp.cpp</FilePath>
-            </File>
-            <File>
               <FileName>stm32l0xx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\Hardware\HAL\stm32l0xx_it.c</FilePath>

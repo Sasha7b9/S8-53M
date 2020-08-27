@@ -4,6 +4,7 @@
 struct HAL
 {
     static void Init();
+    static void ErrorHandler();
 };
 
 struct HAL_SPI2
