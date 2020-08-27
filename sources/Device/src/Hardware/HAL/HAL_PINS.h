@@ -12,7 +12,8 @@ struct PinMode
         _DAC,
         _ETH,
         _OTG_HS_FS,
-        _OTG_FS
+        _OTG_FS,
+        _SP1
     };
 };
 

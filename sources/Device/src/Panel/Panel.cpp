@@ -365,21 +365,6 @@ void Panel::Enable()
 
 void Panel::Init()
 {
-    __SPI1_CLK_ENABLE();
-
-    GPIO_InitTypeDef isGPIOA_B =
-    {
-        GPIO_PIN_5 | GPIO_PIN_6,    // GPIO_Pin
-        GPIO_MODE_AF_PP,            // GPIO_Mode
-        GPIO_PULLDOWN,
-        GPIO_SPEED_FAST,            // GPIO_Speed
-        GPIO_AF5_SPI1
-    };
-    HAL_GPIO_Init(GPIOA, &isGPIOA_B);
-    
-    isGPIOA_B.Pin = GPIO_PIN_5;
-    HAL_GPIO_Init(GPIOB, &isGPIOA_B);
-    
     if (HAL_SPI_Init(&handleSPI) != HAL_OK)
     {
         HARDWARE_ERROR
