@@ -6,8 +6,8 @@
 #include "Utils/Math.h"
 #include "Log.h"
 #include "Hardware/Timer.h"
+#include "Hardware/HAL/HAL.h"
 #include "Settings/Settings.h"
-#include "Hardware/CLOCK.h"
 #include <cstring>
 
 
@@ -97,7 +97,7 @@ void Storage::CalculateAroundAverage(uint8 *data0, uint8 *data1, DataSettings *d
 
 void Storage::AddData(uint8 *data0, uint8 *data1, DataSettings dss)
 {
-    dss.time = Clock::GetPackedTime();
+    dss.time = HAL_RTC::GetPackedTime();
 
     if(dss.enableCh0 == 0 && dss.enableCh1 == 0)
     {

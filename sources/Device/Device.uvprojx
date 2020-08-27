@@ -1118,16 +1118,6 @@
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\EPROM.h</FilePath>
             </File>
-            <File>
-              <FileName>CLOCK.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\CLOCK.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>CLOCK.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\CLOCK.h</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -1212,6 +1202,11 @@
               <FileName>HAL_PINS.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\HAL\HAL_PINS.h</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_RTC.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HAL\HAL_RTC.cpp</FilePath>
             </File>
           </Files>
         </Group>

@@ -2,7 +2,7 @@
 #include "MenuItemsLogic.h"
 #include "Menu.h"
 #include "Hardware/Hardware.h"
-#include "Hardware/CLOCK.h"
+#include "Hardware/HAL/HAL.h"
 #include "Display/Colors.h"
 #include "Display/Display.h"
 #include "Display/Painter.h"
@@ -669,7 +669,7 @@ void ItemTime_DrawClosed(Time *item, int x, int y)
     int deltaSeparator = 2;
     int startX = 3;
     y += 21;
-    PackedTime time = Clock::GetPackedTime();
+    PackedTime time = HAL_RTC::GetPackedTime();
     Painter::DrawTextC(x + startX, y, Int2String((int)time.hours, false, 2, buffer), COLOR_BACK);
     Painter::DrawText(x + startX + deltaField, y, ":");
     Painter::DrawText(x + startX + deltaField + deltaSeparator, y, Int2String((int)time.minutes, false, 2, buffer));

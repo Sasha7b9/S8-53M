@@ -6,7 +6,6 @@
 #include <stm32f4xx_hal_dac.h>
 #include "Hardware.h"
 #include "Sound.h"
-#include "Hardware/CLOCK.h"
 #include "FSMC.h"
 #include "Utils/GlobalFunctions.h"
 #include "Hardware/Timer.h"
@@ -101,7 +100,7 @@ void Hardware::Init(void)
     
     pinG1.Reset();      // PG1 - когда равен 1, чтение дисплея, в остальных случаях 0
 
-    Clock::Init();
+    HAL_RTC::Init();
 
     crcHandle.Instance = CRC;
     if (HAL_CRC_Init(&crcHandle) != HAL_OK)

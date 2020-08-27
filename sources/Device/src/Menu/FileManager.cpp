@@ -11,7 +11,7 @@
 #include "Utils/Math.h"
 #include "Hardware/Hardware.h"
 #include "Hardware/Sound.h"
-#include "Hardware/CLOCK.h"
+#include "Hardware/HAL/HAL.h"
 #include "FDrive/FDrive.h"
 #include "Panel/Panel.h"
 #include "Log.h"
@@ -374,7 +374,7 @@ LabelNextNumber:
     }
     else
     {
-        PackedTime time = Clock::GetPackedTime();
+        PackedTime time = HAL_RTC::GetPackedTime();
                            //  1          2           3         4           5             6
         uint values[] = {0, time.year, time.month, time.day, time.hours, time.minutes, time.seconds};
 

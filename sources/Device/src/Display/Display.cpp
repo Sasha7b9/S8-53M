@@ -15,7 +15,7 @@
 #include "Hardware/FSMC.h"
 #include "Hardware/Hardware.h"
 #include "Hardware/Sound.h"
-#include "Hardware/CLOCK.h"
+#include "Hardware/HAL/HAL.h"
 #include "VCP/VCP.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/PageCursors.h"
@@ -770,7 +770,7 @@ void Display::DrawTime(int x, int y)
     int dField = 10;
     int dSeparator = 2;
 
-    PackedTime time = Clock::GetPackedTime();
+    PackedTime time = HAL_RTC::GetPackedTime();
     
     char buffer[20];
     

@@ -1,11 +1,6 @@
-#include "Clock.h"
-#include "Hardware/Hardware.h"
-#include "Log.h"
-#include "Display/Display.h"
-#include "Menu/Menu.h"
+#include "defines.h"
+#include "Hardware/HAL/HAL.h"
 #include <stm32f4xx_hal.h>
-#include <stm32f4xx_hal_rtc.h>
-
 
 
 #define VALUE_FOR_RTC 0x644
@@ -27,7 +22,7 @@
 #endif
 
 
-const RTC_HandleTypeDef Clock::handle =
+static RTC_HandleTypeDef handleRTC =
 {
     RTC,
     {
@@ -41,36 +36,39 @@ const RTC_HandleTypeDef Clock::handle =
 };
 
 
-void Clock::Init(void)
+void *HAL_RTC::handle = &handleRTC;
+
+
+void HAL_RTC::Init()
 {
-    if (HAL_RTC_Init((RTC_HandleTypeDef*)(&handle)) != HAL_OK)
+    if (HAL_RTC_Init((RTC_HandleTypeDef *)(&handle)) != HAL_OK)
     {
         HARDWARE_ERROR
     }
 
-    if (HAL_RTCEx_BKUPRead((RTC_HandleTypeDef*)&handle, RTC_BKP_DR0) != VALUE_FOR_RTC)
+    if (HAL_RTCEx_BKUPRead((RTC_HandleTypeDef *)&handle, RTC_BKP_DR0) != VALUE_FOR_RTC)
     {
-        if(SetTimeAndData(11, 11, 11, 11, 11, 11))
+        if (SetTimeAndData(11, 11, 11, 11, 11, 11))
         {
-            HAL_RTCEx_BKUPWrite((RTC_HandleTypeDef*)&handle, RTC_BKP_DR0, VALUE_FOR_RTC);
+            HAL_RTCEx_BKUPWrite((RTC_HandleTypeDef *)&handle, RTC_BKP_DR0, VALUE_FOR_RTC);
         }
     }
 }
 
 
-PackedTime Clock::GetPackedTime(void)
+PackedTime HAL_RTC::GetPackedTime(void)
 {
     PackedTime time;
 
     RTC_TimeTypeDef isTime;
-    HAL_RTC_GetTime((RTC_HandleTypeDef*)&handle, &isTime, FORMAT_BIN);
+    HAL_RTC_GetTime((RTC_HandleTypeDef *)&handle, &isTime, FORMAT_BIN);
 
     time.hours = isTime.Hours;
     time.minutes = isTime.Minutes;
     time.seconds = isTime.Seconds;
 
     RTC_DateTypeDef isDate;
-    HAL_RTC_GetDate((RTC_HandleTypeDef*)&handle, &isDate, FORMAT_BIN);
+    HAL_RTC_GetDate((RTC_HandleTypeDef *)&handle, &isDate, FORMAT_BIN);
 
     time.year = isDate.Year;
     time.month = isDate.Month;
@@ -80,7 +78,7 @@ PackedTime Clock::GetPackedTime(void)
 }
 
 
-bool Clock::SetTimeAndData(int8 day, int8 month, int8 year, int8 hours, int8 minutes, int8 seconds)
+bool HAL_RTC::SetTimeAndData(int8 day, int8 month, int8 year, int8 hours, int8 minutes, int8 seconds)
 {
     RTC_DateTypeDef dateStruct =
     {
@@ -90,7 +88,7 @@ bool Clock::SetTimeAndData(int8 day, int8 month, int8 year, int8 hours, int8 min
         (uint8)year
     };
 
-    if(HAL_RTC_SetDate((RTC_HandleTypeDef*)&handle, &dateStruct, FORMAT_BIN) != HAL_OK)
+    if (HAL_RTC_SetDate((RTC_HandleTypeDef *)&handle, &dateStruct, FORMAT_BIN) != HAL_OK)
     {
         return false;
     };
@@ -105,10 +103,10 @@ bool Clock::SetTimeAndData(int8 day, int8 month, int8 year, int8 hours, int8 min
         RTC_STOREOPERATION_SET
     };
 
-    if(HAL_RTC_SetTime((RTC_HandleTypeDef*)&handle, &timeStruct, FORMAT_BIN) != HAL_OK)
+    if (HAL_RTC_SetTime((RTC_HandleTypeDef *)&handle, &timeStruct, FORMAT_BIN) != HAL_OK)
     {
         return false;
     };
-    
+
     return true;
 }

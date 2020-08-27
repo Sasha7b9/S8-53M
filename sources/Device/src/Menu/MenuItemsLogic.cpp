@@ -3,11 +3,11 @@
 #include "Display/Display.h"
 #include "Display/Painter.h"
 #include "Hardware/Timer.h"
+#include "Hardware/HAL/HAL.h"
 #include "Log.h"
 #include "Settings/Settings.h"
 #include "Hardware/Hardware.h"
 #include "Hardware/Sound.h"
-#include "Hardware/CLOCK.h"
 #include "Utils/Math.h"
 
 
@@ -192,7 +192,7 @@ void IPaddress_NextPosition(IPaddress *ipEthernet_IP)
 
 void ItemTime_SetOpened(Time *item)
 {
-    PackedTime time = Clock::GetPackedTime();
+    PackedTime time = HAL_RTC::GetPackedTime();
     *(item->seconds) = (int8)time.seconds;
     *(item->minutes) = (int8)time.minutes;
     *(item->hours) = (int8)time.hours;
@@ -203,7 +203,7 @@ void ItemTime_SetOpened(Time *item)
 
 void ItemTime_SetNewTime(Time *time)
 {
-    Clock::SetTimeAndData(*time->day, *time->month, *time->year, *time->hours, *time->minutes, *time->seconds);
+    HAL_RTC::SetTimeAndData(*time->day, *time->month, *time->year, *time->hours, *time->minutes, *time->seconds);
 }
 
 void ItemTime_SelectNextPosition(Time *time)
