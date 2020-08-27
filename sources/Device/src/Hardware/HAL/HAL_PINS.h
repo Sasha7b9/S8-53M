@@ -11,7 +11,8 @@ struct PinMode
         _ADC3_IT,
         _DAC,
         _ETH,
-        _OTG_HS_FS
+        _OTG_HS_FS,
+        _OTG_FS
     };
 };
 

@@ -20,6 +20,7 @@ void HAL::Init()
     __ADC3_CLK_ENABLE();
     __ETH_CLK_ENABLE();
     __SYSCFG_CLK_ENABLE();
+    __USB_OTG_FS_CLK_ENABLE();
     __USB_OTG_HS_CLK_ENABLE();
 
     HAL_PINS::Init();

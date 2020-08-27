@@ -6,9 +6,14 @@
 static Pin pinADC3_IT;
 static Pin pinADC3_OUT;
 static Pin pinDAC;
+
 static Pin pinOTG_HS_DP;
 static Pin pinOTG_HS_DM;
 static Pin pinOTG_HS_VBUS;
+
+static Pin pinOTG_FS_DP;
+static Pin pinOTG_FS_DM;
+static Pin pinOTG_FS_VBUS;
 
 static Pin pinETH_CRS;
 static Pin pinETH_MDIO;
@@ -43,6 +48,9 @@ void HAL_PINS::Init()
     pinOTG_HS_DP  .Init(PinMode::_OTG_HS_FS, PinPort::_B, PinPin::_15);
     pinOTG_HS_DM  .Init(PinMode::_OTG_HS_FS, PinPort::_B, PinPin::_14);
     pinOTG_HS_VBUS.Init(PinMode::_OTG_HS_FS, PinPort::_B, PinPin::_13);
+    pinOTG_FS_DP  .Init(PinMode::_OTG_FS,    PinPort::_A, PinPin::_12);
+    pinOTG_FS_DM  .Init(PinMode::_OTG_FS,    PinPort::_A, PinPin::_11);
+    pinOTG_FS_VBUS.Init(PinMode::_OTG_FS,    PinPort::_A, PinPin::_9);
 
     pinETH_RX_ER .Init(PinMode::_ETH, PinPort::_I, PinPin::_10);
     pinETH_MDC   .Init(PinMode::_ETH, PinPort::_C, PinPin::_1);
@@ -132,6 +140,12 @@ void Pin::Init(PinMode::E mode, PinPort::E _port, PinPin::E _pin)
         isGPIO.Mode = GPIO_MODE_AF_PP;
         isGPIO.Speed = GPIO_SPEED_FAST;
         isGPIO.Alternate = GPIO_AF12_OTG_HS_FS;
+    }
+    else if (mode == PinMode::_OTG_FS)
+    {
+        isGPIO.Mode = GPIO_MODE_AF_PP;
+        isGPIO.Speed = GPIO_SPEED_HIGH;
+        isGPIO.Alternate = GPIO_AF10_OTG_FS;
     }
 
     HAL_GPIO_Init(reinterpret_cast<GPIO_TypeDef *>(port), &isGPIO);
