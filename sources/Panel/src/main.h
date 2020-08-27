@@ -5,8 +5,6 @@
 extern "C" {
 #endif
 
-#include "stm32l0xx_hal.h"
-
 void Error_Handler(void);
 
 #define SL0_Pin GPIO_PIN_0
