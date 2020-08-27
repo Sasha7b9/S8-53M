@@ -6,7 +6,7 @@
   <Header>### uVision Project, (C) Keil Software</Header>
 
   <PrjGuiSettings>
-    <LastAddFilePath>D:\Projects\stm32\S8-53M\sources\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Src</LastAddFilePath>
+    <LastAddFilePath>D:\Projects\stm32\S8-53M\sources\Panel\src</LastAddFilePath>
   </PrjGuiSettings>
 
   <ViewPool/>
@@ -101,10 +101,10 @@
         <yPos>-1</yPos>
       </MaxPosition>
       <NormalPosition>
-        <Top>237</Top>
-        <Left>113</Left>
-        <Right>1558</Right>
-        <Bottom>1172</Bottom>
+        <Top>79</Top>
+        <Left>-1029</Left>
+        <Right>416</Right>
+        <Bottom>1014</Bottom>
       </NormalPosition>
     </WindowPosition>
     <MDIClientArea>

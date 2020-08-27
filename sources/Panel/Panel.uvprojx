@@ -383,11 +383,6 @@
           <GroupName>src</GroupName>
           <Files>
             <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\main.c</FilePath>
-            </File>
-            <File>
               <FileName>main.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\main.h</FilePath>
@@ -398,29 +393,34 @@
               <FilePath>.\src\stm32l0xx_hal_conf.h</FilePath>
             </File>
             <File>
-              <FileName>stm32l0xx_hal_msp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\stm32l0xx_hal_msp.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32l0xx_it.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\stm32l0xx_it.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32l0xx_it.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\stm32l0xx_it.h</FilePath>
             </File>
             <File>
-              <FileName>system_stm32l0xx.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\system_stm32l0xx.c</FilePath>
-            </File>
-            <File>
               <FileName>startup_stm32l063xx.s</FileName>
               <FileType>2</FileType>
               <FilePath>.\src\startup_stm32l063xx.s</FilePath>
+            </File>
+            <File>
+              <FileName>main.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\main.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_msp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\stm32l0xx_hal_msp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>system_stm32l0xx.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\system_stm32l0xx.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_it.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\stm32l0xx_it.c</FilePath>
             </File>
           </Files>
         </Group>
