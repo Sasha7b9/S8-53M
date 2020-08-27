@@ -13,6 +13,7 @@
 #include <cstdio>
 #include <cstring>
 #include "PanelFunctions.cpp"
+#include <stm32f4xx_hal.h>
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -355,7 +356,7 @@ void Panel::Enable()
 
 void Panel::Init()
 {
-    if (HAL_SPI_Init(&handleSPI) != HAL_OK)
+    if (HAL_SPI_Init(reinterpret_cast<SPI_HandleTypeDef *>(handleSPI)) != HAL_OK)
     {
         HARDWARE_ERROR
     }
@@ -391,7 +392,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t pin)
 {
     if (pin == GPIO_PIN_0)
     {
-        HAL_SPI_Receive_IT(&handleSPI, &dataSPIfromPanel, 1);
+        HAL_SPI_Receive_IT(reinterpret_cast<SPI_HandleTypeDef *>(handleSPI), &dataSPIfromPanel, 1);
     }
 }
 

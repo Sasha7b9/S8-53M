@@ -42,23 +42,26 @@ void HAL_HCD_HC_NotifyURBChange_Callback(HCD_HandleTypeDef *, uint8_t, HCD_URBSt
   */
 USBH_StatusTypeDef USBH_LL_Init(USBH_HandleTypeDef *phost)
 {  
+    
+    HCD_HandleTypeDef *hHCD = reinterpret_cast<HCD_HandleTypeDef *>(handleHCD);
+    
     /* Set the LL driver parameters */
-    handleHCD.Instance = USB_OTG_HS;
-    handleHCD.Init.Host_channels = 12; 
-    handleHCD.Init.dma_enable = 0;
-    handleHCD.Init.low_power_enable = 0;
-    handleHCD.Init.phy_itface = HCD_PHY_EMBEDDED; 
-    handleHCD.Init.Sof_enable = 0;
-    handleHCD.Init.speed = HCD_SPEED_FULL;
-    handleHCD.Init.vbus_sensing_enable = 0;
-    handleHCD.Init.use_external_vbus = 0;  
+    hHCD->Instance = USB_OTG_HS;
+    hHCD->Init.Host_channels = 12; 
+    hHCD->Init.dma_enable = 0;
+    hHCD->Init.low_power_enable = 0;
+    hHCD->Init.phy_itface = HCD_PHY_EMBEDDED; 
+    hHCD->Init.Sof_enable = 0;
+    hHCD->Init.speed = HCD_SPEED_FULL;
+    hHCD->Init.vbus_sensing_enable = 0;
+    hHCD->Init.use_external_vbus = 0;  
     /* Link the driver to the stack */
-    handleHCD.pData = phost;
-    phost->pData = &handleHCD;
+    hHCD->pData = phost;
+    phost->pData = hHCD;
     /* Initialize the LL driver */
-    HAL_HCD_Init(&handleHCD);
+    HAL_HCD_Init(hHCD);
  
-    USBH_LL_SetTimer(phost, HAL_HCD_GetCurrentFrame(&handleHCD));
+    USBH_LL_SetTimer(phost, HAL_HCD_GetCurrentFrame(hHCD));
   
     return USBH_OK;
 }
@@ -250,13 +253,13 @@ USBH_StatusTypeDef USBH_LL_DriverVBUS(USBH_HandleTypeDef *, uint8_t)
   */
 USBH_StatusTypeDef USBH_LL_SetToggle(USBH_HandleTypeDef *, uint8_t pipe, uint8_t toggle)   
 {
-    if(handleHCD.hc[pipe].ep_is_in)
+    if(reinterpret_cast<HCD_HandleTypeDef *>(handleHCD)->hc[pipe].ep_is_in)
     {
-        handleHCD.hc[pipe].toggle_in = toggle;
+        reinterpret_cast<HCD_HandleTypeDef *>(handleHCD)->hc[pipe].toggle_in = toggle;
     }
     else
     {
-        handleHCD.hc[pipe].toggle_out = toggle;
+        reinterpret_cast<HCD_HandleTypeDef *>(handleHCD)->hc[pipe].toggle_out = toggle;
     }
     return USBH_OK; 
 }
@@ -272,13 +275,13 @@ uint8_t USBH_LL_GetToggle(USBH_HandleTypeDef *, uint8_t pipe)
 {
     uint8_t toggle = 0;
   
-    if(handleHCD.hc[pipe].ep_is_in)
+    if(reinterpret_cast<HCD_HandleTypeDef *>(handleHCD)->hc[pipe].ep_is_in)
     {
-        toggle = handleHCD.hc[pipe].toggle_in;
+        toggle = reinterpret_cast<HCD_HandleTypeDef *>(handleHCD)->hc[pipe].toggle_in;
     }
     else
     {
-        toggle = handleHCD.hc[pipe].toggle_out;
+        toggle = reinterpret_cast<HCD_HandleTypeDef *>(handleHCD)->hc[pipe].toggle_out;
     }
     return toggle; 
 }

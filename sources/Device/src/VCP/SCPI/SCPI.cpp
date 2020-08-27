@@ -175,8 +175,8 @@ bool SCPI::FirstIsInt(uint8 *buffer, int *value, int min, int max)
     Word param;
     if (GetWord(buffer, &param, 0))
     {
-        char *n = (char *)std::malloc(static_cast<size_t>(param.numSymbols + 1));
-        std::memcpy(n, param.address, static_cast<size_t>(param.numSymbols));
+        char *n = (char *)std::malloc(static_cast<uint>(param.numSymbols + 1));
+        std::memcpy(n, param.address, static_cast<uint>(param.numSymbols));
         n[param.numSymbols] = '\0';
         bool res = String2Int(n, value) && *value >= min && *value <= max;
         std::free(n);

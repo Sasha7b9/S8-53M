@@ -5,7 +5,7 @@
 #define __packed__
 #endif
 
-#include <stm32f4xx_hal.h>
+//#include <stm32f4xx_hal.h>
 
 
 #define NUM_VER "1.3"

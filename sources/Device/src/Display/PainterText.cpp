@@ -470,7 +470,7 @@ static char* PartWordForTransfer(char *word, int8* lengthSyllables, int, int num
     {
         length += lengthSyllables[i];
     }
-    std::memcpy((void*)buffer, (void*)word, static_cast<size_t>(length));
+    std::memcpy((void*)buffer, (void*)word, static_cast<uint>(length));
     buffer[length] = '-';
     buffer[length + 1] = '\0';
     return buffer;

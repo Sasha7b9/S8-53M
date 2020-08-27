@@ -9,7 +9,7 @@
 #include "Hardware/Hardware.h"
 #include "Hardware/Sound.h"
 #include "Utils/Math.h"
-
+#include <stm32f4xx_hal.h>
 
 
 int8 gCurDigit = 0;

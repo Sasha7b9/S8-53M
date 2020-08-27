@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "globals.h"
+#include <stm32f4xx_hal.h>
 
 
 #ifdef __cplusplus
@@ -68,7 +69,7 @@ void SysTick_Handler(void)
 
 void ADC_IRQHandler(void)
 {
-    HAL_ADC_IRQHandler(&handleADC);
+    HAL_ADC_IRQHandler(reinterpret_cast<ADC_HandleTypeDef *>(handleADC));
 }
 
 
@@ -82,19 +83,19 @@ void EXTI0_IRQHandler(void)
 /// See Hardware::SPIforPanel.c::HAL_SPI_RxCpltCallback().
 void SPI1_IRQHandler(void)
 {
-    HAL_SPI_IRQHandler(&handleSPI);
+    HAL_SPI_IRQHandler(reinterpret_cast<SPI_HandleTypeDef *>(handleSPI));
 }
 
 
 void OTG_HS_IRQHandler(void)
 {
-    HAL_HCD_IRQHandler(&handleHCD);
+    HAL_HCD_IRQHandler(reinterpret_cast<HCD_HandleTypeDef *>(handleHCD));
 }
 
 
 void DMA1_Stream5_IRQHandler()
 {
-    HAL_DMA_IRQHandler(handleDAC.DMA_Handle1);
+    HAL_DMA_IRQHandler(reinterpret_cast<DAC_HandleTypeDef *>(handleDAC)->DMA_Handle1);
 }
 
 #ifdef __cplusplus

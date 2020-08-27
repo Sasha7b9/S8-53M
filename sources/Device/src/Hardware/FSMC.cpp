@@ -6,8 +6,6 @@
 #include "Hardware/Timer.h"
 #include "Log.h"
 #include <stm32f4xx_hal.h>
-#include <stm32f4xx_ll_fsmc.h>
-#include <stm32f4xx_hal_sram.h>
 
 
 

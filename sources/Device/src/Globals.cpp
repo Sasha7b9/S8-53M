@@ -7,12 +7,13 @@ void *extraMEM = 0;
 
 
 
-HCD_HandleTypeDef handleHCD;
+static HCD_HandleTypeDef hHCD;
+void *handleHCD = &hHCD;
 
-USBH_HandleTypeDef hUSBH;
+static USBH_HandleTypeDef hUSBH;
 void *handleUSBH = &hUSBH;
 
-SPI_HandleTypeDef handleSPI =
+static SPI_HandleTypeDef hSPI =
 {
     SPI1,
     {
@@ -29,15 +30,18 @@ SPI_HandleTypeDef handleSPI =
         7                               // InitCRCPolynomial
     }
 };
+void *handleSPI = &hSPI;
 
 
-ADC_HandleTypeDef handleADC;
+static ADC_HandleTypeDef hADC;
+void *handleADC = &hADC;
 
 
-DAC_HandleTypeDef handleDAC =
+static DAC_HandleTypeDef hDAC =
 {
     DAC
 };
+void *handleDAC = &hDAC;
 
 
 BitField gBF =

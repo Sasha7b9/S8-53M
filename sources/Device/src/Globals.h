@@ -5,10 +5,10 @@
 #include "Settings/SettingsTime.h"
 
 extern void *handleUSBH;
-extern HCD_HandleTypeDef handleHCD;
-extern SPI_HandleTypeDef handleSPI;
-extern ADC_HandleTypeDef handleADC;
-extern DAC_HandleTypeDef handleDAC;
+extern void *handleHCD;
+extern void *handleSPI;
+extern void *handleADC;
+extern void *handleDAC;
 
 
 #define CLIENT_LAN_IS_CONNECTED  (gBF.clientLANisConnected)

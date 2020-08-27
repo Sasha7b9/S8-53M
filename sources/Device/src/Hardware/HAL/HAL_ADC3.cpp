@@ -19,22 +19,24 @@ void HAL_ADC3::Init()
 
     HAL_NVIC_SetPriority(ADC_IRQn, 5, 0);
     HAL_NVIC_EnableIRQ(ADC_IRQn);
+    
+    ADC_HandleTypeDef *hADC = reinterpret_cast<ADC_HandleTypeDef *>(handleADC);
 
-    handleADC.Instance = ADC3;
-    handleADC.Init.ClockPrescaler = ADC_CLOCKPRESCALER_PCLK_DIV2;
-    handleADC.Init.Resolution = ADC_RESOLUTION12b;
-    handleADC.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-    handleADC.Init.ScanConvMode = DISABLE;
-    handleADC.Init.EOCSelection = ENABLE;
-    handleADC.Init.ContinuousConvMode = DISABLE;
-    handleADC.Init.DMAContinuousRequests = DISABLE;
-    handleADC.Init.NbrOfConversion = 1;
-    handleADC.Init.DiscontinuousConvMode = DISABLE;
-    handleADC.Init.NbrOfDiscConversion = 0;
-    handleADC.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_RISING;
-    handleADC.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_Ext_IT11;
+    hADC->Instance = ADC3;
+    hADC->Init.ClockPrescaler = ADC_CLOCKPRESCALER_PCLK_DIV2;
+    hADC->Init.Resolution = ADC_RESOLUTION12b;
+    hADC->Init.DataAlign = ADC_DATAALIGN_RIGHT;
+    hADC->Init.ScanConvMode = DISABLE;
+    hADC->Init.EOCSelection = ENABLE;
+    hADC->Init.ContinuousConvMode = DISABLE;
+    hADC->Init.DMAContinuousRequests = DISABLE;
+    hADC->Init.NbrOfConversion = 1;
+    hADC->Init.DiscontinuousConvMode = DISABLE;
+    hADC->Init.NbrOfDiscConversion = 0;
+    hADC->Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_RISING;
+    hADC->Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_Ext_IT11;
 
-    if (HAL_ADC_Init(&handleADC) != HAL_OK)
+    if (HAL_ADC_Init(hADC) != HAL_OK)
     {
         HARDWARE_ERROR
     }
@@ -46,12 +48,12 @@ void HAL_ADC3::Init()
     sConfig.SamplingTime = ADC_SAMPLETIME_28CYCLES;
     sConfig.Offset = 0;
 
-    if (HAL_ADC_ConfigChannel(&handleADC, &sConfig) != HAL_OK)
+    if (HAL_ADC_ConfigChannel(hADC, &sConfig) != HAL_OK)
     {
         HARDWARE_ERROR
     }
 
-    if (HAL_ADC_Start_IT(&handleADC) != HAL_OK)
+    if (HAL_ADC_Start_IT(hADC) != HAL_OK)
     {
         HARDWARE_ERROR
     }
