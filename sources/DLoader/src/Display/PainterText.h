@@ -3,9 +3,9 @@
 #include "DisplayTypes.h"
 
 
-void Painter_SetFont(TypeFont typeFont);
+void Painter_SetFont(TypeFont::E typeFont);
 /// Загрузить шрифта в дисплей
-void Painter_LoadFont(TypeFont typeFont);
+void Painter_LoadFont(TypeFont::E typeFont);
 
 int Painter_DrawChar(int x, int y, char symbol);
 

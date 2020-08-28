@@ -110,6 +110,16 @@ void Painter_DrawDashedVLine(int x, int y0, int y1, int deltaFill, int deltaEmtp
 }
 
 
+void Painter_SetFont(TypeFont::E)
+{
+}
+
+
+void Painter_LoadFont(TypeFont::E)
+{
+}
+
+
 void Painter_DrawDashedHLine(int y, int x0, int x1, int deltaFill, int deltaEmpty, int deltaStart)
 {
     if (deltaStart < 0 || deltaStart >= (deltaFill + deltaEmpty))
@@ -283,10 +293,10 @@ void Painter_BeginScene(Color::E color)
             Painter_LoadPalette(0);
             Painter_LoadPalette(1);
             Painter_LoadPalette(2);
-            Painter_LoadFont(TypeFont_5);
-            Painter_LoadFont(TypeFont_8);
-            Painter_LoadFont(TypeFont_UGO);
-            Painter_LoadFont(TypeFont_UGO2);
+            Painter_LoadFont(TypeFont::_5);
+            Painter_LoadFont(TypeFont::_8);
+            Painter_LoadFont(TypeFont::_UGO);
+            Painter_LoadFont(TypeFont::_UGO2);
         }
     }
 

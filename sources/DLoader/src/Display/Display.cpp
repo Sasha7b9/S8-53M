@@ -52,7 +52,7 @@ void Display_Init(void)
     Painter_LoadPalette(1);
     Painter_LoadPalette(2);
 
-    Painter_SetFont(TypeFont_8);
+    Painter_SetFont(TypeFont::_8);
     
     InitPoints();
 }
