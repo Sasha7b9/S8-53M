@@ -12,7 +12,7 @@ public:
 
     static void SendToVCP(uint8 *pointer, int size);
 
-    static void BeginScene(Color color);
+    static void BeginScene(Color::E color);
 
     static void EndScene(bool endScene = true);
     // По умолчанию запрашиваем первый фрейм с шрифтами
@@ -20,35 +20,35 @@ public:
 
     static void ResetFlash();
 
-    static void SetColor(Color color);
+    static void SetColor(Color::E color);
 
-    static Color CurrentColor();
+    static Color::E CurrentColor();
 
     static void LoadPalette();
 
-    static void SetPalette(Color color);
+    static void SetPalette(Color::E color);
 
     static void SetPoint(int x, int y);
 
     static void DrawHLine(int y, int x0, int x1);
 
-    static void DrawHLineC(int y, int x0, int x1, Color color);
+    static void DrawHLineC(int y, int x0, int x1, Color::E color);
 
     static void DrawVLine(int x, int y0, int y1);
 
-    static void DrawVLineC(int x, int y0, int y1, Color color);
+    static void DrawVLineC(int x, int y0, int y1, Color::E color);
 
-    static void DrawVPointLine(int x, int y0, int y1, float delta, Color color);
+    static void DrawVPointLine(int x, int y0, int y1, float delta, Color::E color);
 
     static void DrawHPointLine(int y, int x0, int x1, float delta);
 
-    static void DrawMultiVPointLine(int numLines, int y, uint16 x[], int delta, int count, Color color);
+    static void DrawMultiVPointLine(int numLines, int y, uint16 x[], int delta, int count, Color::E color);
 
-    static void DrawMultiHPointLine(int numLines, int x, uint8 y[], int delta, int count, Color color);
+    static void DrawMultiHPointLine(int numLines, int x, uint8 y[], int delta, int count, Color::E color);
 
     static void DrawLine(int x0, int y0, int x1, int y1);
 
-    static void DrawLineC(int x0, int y0, int x1, int y1, Color color);
+    static void DrawLineC(int x0, int y0, int x1, int y1, Color::E color);
     /// \brief Рисует прерывистую горизонтальную линию. dFill - длина штриха, dEmpty - расст. между штрихами.
     /// Линия всегда начинается со штриха. dStart указывает смещение первой рисуемой точки относительно начала штриха.
     static void DrawDashedHLine(int y, int x0, int x1, int dFill, int dEmpty, int dStart);
@@ -57,19 +57,19 @@ public:
 
     static void DrawRectangle(int x, int y, int width, int height);
 
-    static void DrawRectangleC(int x, int y, int width, int height, Color color);
+    static void DrawRectangleC(int x, int y, int width, int height, Color::E color);
 
     static void FillRegion(int x, int y, int width, int height);
 
-    static void FillRegionC(int x, int y, int width, int height, Color color);
+    static void FillRegionC(int x, int y, int width, int height, Color::E color);
 
-    static void DrawVolumeButton(int x, int y, int width, int height, int thickness, Color normal, Color bright, Color dark, bool isPressed, bool inShade);
+    static void DrawVolumeButton(int x, int y, int width, int height, int thickness, Color::E normal, Color::E bright, Color::E dark, bool isPressed, bool inShade);
     /// Установить яркость дисплея.
     static void SetBrightnessDisplay(int16 brightness);
 
     static uint16 ReduceBrightness(uint16 colorValue, float newBrightness);
     /// Нарисовать массив вертикальных линий. Линии рисуются одна за другой. y0y1 - массив вертикальных координат.
-    static void DrawVLineArray(int x, int numLines, uint8 *y0y1, Color color);
+    static void DrawVLineArray(int x, int numLines, uint8 *y0y1, Color::E color);
     /// modeLines - true - точками, false - точками
     static void DrawSignal(int x, uint8 data[281], bool modeLines);
 
@@ -83,29 +83,29 @@ public:
 
     static int DrawChar(int x, int y, char symbol);
 
-    static int DrawCharC(int x, int y, char symbol, Color color);
+    static int DrawCharC(int x, int y, char symbol, Color::E color);
 
     static int DrawText(int x, int y, const char *text);
 
-    static int DrawTextC(int x, int y, const char *text, Color color);
+    static int DrawTextC(int x, int y, const char *text, Color::E color);
     /// Выводит текст на прямоугольнике цвета colorBackgound
-    static int DrawTextOnBackground(int x, int y, const char *text, Color colorBackground);
+    static int DrawTextOnBackground(int x, int y, const char *text, Color::E colorBackground);
 
-    static int DrawTextWithLimitationC(int x, int y, const char* text, Color color, int limitX, int limitY, int limitWidth, int limitHeight);
+    static int DrawTextWithLimitationC(int x, int y, const char* text, Color::E color, int limitX, int limitY, int limitWidth, int limitHeight);
     /// Возвращает нижнюю координату прямоугольника.
-    static int DrawTextInBoundedRectWithTransfers(int x, int y, int width, const char *text, Color colorBackground, Color colorFill);
+    static int DrawTextInBoundedRectWithTransfers(int x, int y, int width, const char *text, Color::E colorBackground, Color::E colorFill);
 
-    static int DrawTextInRectWithTransfersC(int x, int y, int width, int height, const char *text, Color color);
+    static int DrawTextInRectWithTransfersC(int x, int y, int width, int height, const char *text, Color::E color);
 
-    static int DrawFormatText(int x, int y, Color color, char *text, ...);
+    static int DrawFormatText(int x, int y, Color::E color, char *text, ...);
 
     static int DrawStringInCenterRect(int x, int y, int width, int height, const char *text);
 
-    static int DrawStringInCenterRectC(int x, int y, int width, int height, const char *text, Color color);
+    static int DrawStringInCenterRectC(int x, int y, int width, int height, const char *text, Color::E color);
     /// Пишет строку текста в центре области(x, y, width, height)цветом ColorText на прямоугольнике с шириной бордюра widthBorder цвета colorBackground.
-    static void DrawStringInCenterRectOnBackgroundC(int x, int y, int width, int height, const char *text, Color colorText, int widthBorder, Color colorBackground);
+    static void DrawStringInCenterRectOnBackgroundC(int x, int y, int width, int height, const char *text, Color::E colorText, int widthBorder, Color::E colorBackground);
 
-    static int DrawStringInCenterRectAndBoundItC(int x, int y, int width, int height, const char *text, Color colorBackground, Color colorFill);
+    static int DrawStringInCenterRectAndBoundItC(int x, int y, int width, int height, const char *text, Color::E colorBackground, Color::E colorFill);
 
     static void DrawHintsForSmallButton(int x, int y, int width, void *smallButton);
 
@@ -113,13 +113,13 @@ public:
 
     static void DrawTextRelativelyRight(int xRight, int y, const char *text);
 
-    static void DrawTextRelativelyRightC(int xRight, int y, const char *text, Color color);
+    static void DrawTextRelativelyRightC(int xRight, int y, const char *text, Color::E color);
 
-    static void Draw2SymbolsC(int x, int y, char symbol1, char symbol2, Color color1, Color color2);
+    static void Draw2SymbolsC(int x, int y, char symbol1, char symbol2, Color::E color1, Color::E color2);
 
     static void Draw4SymbolsInRect(int x, int y, char eChar);
 
-    static void Draw4SymbolsInRectC(int x, int y, char eChar, Color color);
+    static void Draw4SymbolsInRectC(int x, int y, char eChar, Color::E color);
 
     static void Draw10SymbolsInRect(int x, int y, char eChar);
     /// Пишет текст с переносами.
@@ -133,7 +133,7 @@ private:
 
     static void CalculateCurrentColor();
 
-    static Color GetColor(int x, int y);
+    static Color::E GetColor(int x, int y);
 
     static void Get8Points(int x, int y, uint8 buffer[4]);
 

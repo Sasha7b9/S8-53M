@@ -82,7 +82,7 @@ bool WelcomeScreen_Run()
 
     static bool isDown = false;
 
-    Painter::BeginScene(COLOR_BLACK);
+    Painter::BeginScene(Color::BLACK);
 
     Painter::DrawRectangleC(0, 0, 319, 239, COLOR_FILL);
 
@@ -126,7 +126,7 @@ bool WelcomeScreen_Run()
 
 
 void WelcomeScreen_Update() {
-    Painter::BeginScene(COLOR_WHITE);
+    Painter::BeginScene(Color::WHITE);
     for(int num = 0; num < 12; num++) {
         Point p0 = mesh.points[mesh.edges[num].numPoint0];
         Point p1 = mesh.points[mesh.edges[num].numPoint1];
@@ -167,7 +167,7 @@ void WelcomeScreen_Update() {
         PresentPointToScreen(&p0out3, &x0, &y0);
         PresentPointToScreen(&p1out3, &x1, &y1);
 
-        Painter::DrawLineC(static_cast<int>(x0), static_cast<int>(y0), static_cast<int>(x1), static_cast<int>(y1), COLOR_WHITE);
+        Painter::DrawLineC(static_cast<int>(x0), static_cast<int>(y0), static_cast<int>(x1), static_cast<int>(y1), Color::WHITE);
     }
     Painter::EndScene();
 }
