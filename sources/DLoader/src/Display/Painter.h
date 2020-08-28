@@ -7,7 +7,7 @@
 
 void Painter_SendToDisplay(uint8 *bytes, int numBytes);
 
-void Painter_BeginScene(Color color);
+void Painter_BeginScene(Color::E color);
 
 void Painter_EndScene(void);
 
@@ -15,11 +15,11 @@ void Painter_SendFrame(bool first);
 
 void Painter_ResetFlash(void);
 
-void Painter_SetColor(Color color);
+void Painter_SetColor(Color::E color);
 
 void Painter_LoadPalette(int num);
 
-void Painter_SetPalette(Color color);
+void Painter_SetPalette(Color::E color);
 
 void Painter_SetPoint(int x, int y);
 
@@ -27,13 +27,13 @@ void Painter_DrawHLine(int y, int x0, int x1);
 
 void Painter_DrawVLine(int x, int y0, int y1);
 
-void Painter_DrawVPointLine(int x, int y0, int y1, float delta, Color color);
+void Painter_DrawVPointLine(int x, int y0, int y1, float delta, Color::E color);
 
 void Painter_DrawHPointLine(int y, int x0, int x1, float delta);
 
-void Painter_DrawMultiVPointLine(int numLines, int y, uint16 x[], int delta, int count, Color color);
+void Painter_DrawMultiVPointLine(int numLines, int y, uint16 x[], int delta, int count, Color::E color);
 
-void Painter_DrawMultiHPointLine(int numLines, int x, uint8 y[], int delta, int count, Color color);
+void Painter_DrawMultiHPointLine(int numLines, int x, uint8 y[], int delta, int count, Color::E color);
 
 void Painter_DrawLine(int x0, int y0, int x1, int y1);
 /// Рисует прерывистую горизонтальную линию. dFill - длина штриха, dEmpty - расст. между штрихами
@@ -46,12 +46,12 @@ void Painter_DrawRectangle(int x, int y, int width, int height);
 
 void Painter_FillRegion(int x, int y, int width, int height);
 
-void Painter_DrawVolumeButton(int x, int y, int width, int height, int thickness, Color normal, Color bright, Color dark, bool isPressed, bool inShade);
+void Painter_DrawVolumeButton(int x, int y, int width, int height, int thickness, Color::E normal, Color::E bright, Color::E dark, bool isPressed, bool inShade);
 
 void Painter_SetBrightnessDisplay(int16 brightness);  // Установить яркость дисплея.
 uint16 Painter_ReduceBrightness(uint16 colorValue, float newBrightness);
 /// Нарисовать массив вертикальных линий. Линии рисуются одна за другой. y0y1 - массив вертикальных координат
-void Painter_DrawVLineArray(int x, int numLines, uint8 *y0y1, Color color);
+void Painter_DrawVLineArray(int x, int numLines, uint8 *y0y1, Color::E color);
 /// modeLines - true - точками, false - точками
 void Painter_DrawSignal(int x, uint8 data[281], bool modeLines);
 
