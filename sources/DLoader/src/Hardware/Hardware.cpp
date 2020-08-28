@@ -79,8 +79,6 @@ void Hardware_Init()
     HAL_TIM_Base_Init(&tim2handle);
     HAL_TIM_Base_Start(&tim2handle);
 
-    Panel_Init();
-
     FSMC_Init();
     
 // Analog and DAC programmable SPI ////////////////////////////////////////

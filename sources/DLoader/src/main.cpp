@@ -8,6 +8,7 @@
 #include "Hardware/Timer.h"
 #include "Panel/Panel.h"
 #include "Hardware/FLASH.h"
+#include "common/Hardware/HAL/HAL.h"
 #include <cstdlib>
 #include <stm32f4xx_hal.h>
 
@@ -95,7 +96,7 @@ int main(void)
 
     ms->state = State_Ok;
 
-    Panel_DeInit();
+    HAL_SPI1::DeInit();
 
     Timer_Disable(kTemp);
 

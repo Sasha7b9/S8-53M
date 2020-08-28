@@ -8,7 +8,6 @@
 #include "Hardware/Timer.h"
 #include <cstdio>
 #include <cstring>
-#include <stm32f4xx_hal.h>
 
 
 #define MAX_DATA            20
@@ -24,66 +23,10 @@
 
 
 static PanelButton pressedButton = B_Empty;
-static uint8 dataSPIfromPanel = 0;
 
 
 
-static bool ProcessingCommandFromPIC(uint16 command);
 static PanelButton ButtonIsPress(uint16 command);
-
-
-
-void Panel_Init(void)
-{
-    /*
-        SPI1
-        56  - PG0 - программный NSS
-        41  - PA5 - SCK
-        42  - PA6 - MISO
-        135 - PB5 - MOSI
-    */
-
-    __SPI1_CLK_ENABLE();
-
-    GPIO_InitTypeDef isGPIOA_B =
-    {
-        GPIO_PIN_5 | GPIO_PIN_6,
-        GPIO_MODE_AF_PP,
-        GPIO_PULLDOWN,
-        GPIO_SPEED_FAST,
-        GPIO_AF5_SPI1
-    };
-    HAL_GPIO_Init(GPIOA, &isGPIOA_B);
-
-    isGPIOA_B.Pin = GPIO_PIN_5;
-    HAL_GPIO_Init(GPIOB, &isGPIOA_B);
-
-    HAL_SPI_Init(reinterpret_cast<SPI_HandleTypeDef *>(HAL_SPI1::handle));
-
-    HAL_NVIC_SetPriority(SPI1_IRQn, 4, 0);
-    HAL_NVIC_EnableIRQ(SPI1_IRQn);
-
-    // Теперь настроим программный NSS (PG0)
-
-    GPIO_InitTypeDef isGPIOG =
-    {
-        GPIO_PIN_0,
-        GPIO_MODE_IT_RISING,
-        GPIO_NOPULL
-    };
-    HAL_GPIO_Init(GPIOG, &isGPIOG);
-
-    HAL_NVIC_SetPriority(EXTI0_IRQn, 3, 0);
-    HAL_NVIC_EnableIRQ(EXTI0_IRQn);
-}
-
-
-
-void Panel_DeInit(void)
-{
-    HAL_NVIC_DisableIRQ(SPI1_IRQn);
-    HAL_NVIC_DisableIRQ(EXTI0_IRQn);
-}
 
 
 
@@ -93,8 +36,13 @@ PanelButton Panel_PressedButton(void)
 }
 
 
+uint16 Panel::NextData()
+{
+    return 0;
+}
 
-bool ProcessingCommandFromPIC(uint16 command)
+
+bool Panel::ProcessingCommandFromPIC(uint16 command)
 {
     if(command)
     {
@@ -121,57 +69,12 @@ static PanelButton ButtonIsPress(uint16 command)
 
     if(command < (B_NumButtons | 0x80) && command > (B_Empty | 0x80))
     {
-        if(HAL_GetTick() - timePrevPressButton > 100)
+        if(HAL_TIM2::TimeMS() - timePrevPressButton > 100)
         {
             button = (PanelButton)(command & 0x7f);
-            timePrevPressButton = HAL_GetTick();
+            timePrevPressButton = HAL_TIM2::TimeMS();
         }
     }
 
     return button;
 }
-
-
-
-void HAL_GPIO_EXTI_Callback(uint16 pin)
-{
-    // Прерывание на SPI от панели управления
-    if(pin == GPIO_PIN_0)
-    {
-        HAL_SPI_Receive_IT(reinterpret_cast<SPI_HandleTypeDef *>(HAL_SPI1::handle), &dataSPIfromPanel, 1);
-    }
-}
-
-
-
-void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *handle)
-{
-    if(!ProcessingCommandFromPIC(dataSPIfromPanel))
-    {
-        HAL_SPI_DeInit(handle);
-        HAL_SPI_Init(handle);
-    }
-    SPI1->DR = 0;
-}
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-
-// Прервывание NSS на SPI
-void EXTI0_IRQHandler(void)
-{
-    HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0);
-}
-
-
-
-void SPI1_IRQHandler(void)
-{
-    HAL_SPI_IRQHandler(reinterpret_cast<SPI_HandleTypeDef *>(HAL_SPI1::handle));
-}
-
-#ifdef __cplusplus
-}
-#endif

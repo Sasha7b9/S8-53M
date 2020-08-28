@@ -71,12 +71,12 @@ file(GLOB HARDWARE_FATFS src/Hardware/FatFS/*)
 file(GLOB HARDWARE_HAL   src/Hardware/HAL/*
                          ../common/Hardware/HAL/HAL.h
                          ../common/Hardware/HAL/cHAL.cpp
-                         ../common/Hardware/HAL_PINS.h
-                         ../common/Hardware/cHAL_EPROM.cpp
-                         ../common/Hardware/cHAL_PINS.cpp
-                         ../common/Hardware/cHAL_SPI1.cpp
-                         ../common/Hardware/cHAL_TIM2.cpp
-                         ../common/Hardware/cHAL_TIM7.cpp)
+                         ../common/Hardware/HAL/HAL_PINS.h
+                         ../common/Hardware/HAL/cHAL_EPROM.cpp
+                         ../common/Hardware/HAL/cHAL_PINS.cpp
+                         ../common/Hardware/HAL/cHAL_SPI1.cpp
+                         ../common/Hardware/HAL/cHAL_TIM2.cpp
+                         ../common/Hardware/HAL/cHAL_TIM7.cpp)
 file(GLOB HARDWARE_USBH  src/Hardware/USBH/*)
 file(GLOB SRC            src/*.h src/*.cpp)
 file(GLOB DISPLAY        src/Display/*.h src/Display/*.cpp)

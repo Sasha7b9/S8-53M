@@ -115,6 +115,7 @@ private:
 struct HAL_SPI1
 {
     static void Init();
+    static void DeInit();
     static void *handle;    // SPI_HandleTypeDef
 };
 
