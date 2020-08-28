@@ -41,6 +41,30 @@ void *HAL_RTC::handle = &handleRTC;
 
 void HAL_RTC::Init()
 {
+    RCC_OscInitTypeDef oscIS;
+    RCC_PeriphCLKInitTypeDef periphClkIS;
+
+    __PWR_CLK_ENABLE();
+    HAL_PWR_EnableBkUpAccess();
+
+    oscIS.OscillatorType = RCC_OSCILLATORTYPE_LSI | RCC_OSCILLATORTYPE_LSE;
+    oscIS.PLL.PLLState = RCC_PLL_NONE;
+    oscIS.LSEState = RCC_LSE_ON;
+    oscIS.LSIState = RCC_LSI_OFF;
+
+    if (HAL_RCC_OscConfig(&oscIS) != HAL_OK)
+    {
+        HARDWARE_ERROR
+    }
+
+    periphClkIS.PeriphClockSelection = RCC_PERIPHCLK_RTC;
+    periphClkIS.RTCClockSelection = RCC_RTCCLKSOURCE_LSE;
+    if (HAL_RCCEx_PeriphCLKConfig(&periphClkIS) != HAL_OK)
+    {
+        HARDWARE_ERROR
+    }
+    __HAL_RCC_RTC_ENABLE();
+
     if (HAL_RTC_Init((RTC_HandleTypeDef *)(&handle)) != HAL_OK)
     {
         HARDWARE_ERROR
