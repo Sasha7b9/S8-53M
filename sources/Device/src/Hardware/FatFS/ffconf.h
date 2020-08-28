@@ -310,17 +310,17 @@
 
 /* #include <windows.h>	// O/S definitions  */
 
-#if _USE_LFN == 3
-#if !defined(ff_malloc) || !defined(ff_free)
-#include <stdlib.h>
-#endif
-
-#if !defined(ff_malloc)
-#define ff_malloc malloc
-#endif
-
-#if !defined(ff_free)
-#define ff_free free
-#endif
-#endif
+//#if _USE_LFN == 3
+//#if !defined(ff_malloc) || !defined(ff_free)
+//#include <stdlib.h>
+//#endif
+//
+//#if !defined(ff_malloc)
+//#define ff_malloc malloc
+//#endif
+//
+//#if !defined(ff_free)
+//#define ff_free free
+//#endif
+//#endif
 /*--- End of configuration options ---*/
