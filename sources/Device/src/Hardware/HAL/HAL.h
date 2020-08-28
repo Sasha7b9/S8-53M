@@ -44,6 +44,7 @@ private:
 struct HAL_SPI1
 {
     static void Init();
+    static void *handle;    // SPI_HandleTypeDef
 };
 
 struct HAL_HCD

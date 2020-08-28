@@ -83,7 +83,7 @@ void EXTI0_IRQHandler(void)
 /// See Hardware::SPIforPanel.c::HAL_SPI_RxCpltCallback().
 void SPI1_IRQHandler(void)
 {
-    HAL_SPI_IRQHandler(reinterpret_cast<SPI_HandleTypeDef *>(handleSPI));
+    HAL_SPI_IRQHandler(reinterpret_cast<SPI_HandleTypeDef *>(HAL_SPI1::handle));
 }
 
 
