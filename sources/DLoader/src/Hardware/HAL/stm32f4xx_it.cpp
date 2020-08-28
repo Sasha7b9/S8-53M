@@ -1,6 +1,8 @@
 #include "defines.h"
 #include "Globals.h"
+#include "common/Hardware/HAL/HAL.h"
 #include <stm32f4xx_hal.h>
+
 
 #ifdef __cplusplus
 extern "C" {
@@ -61,7 +63,7 @@ void ADC_IRQHandler(void)
 
 void OTG_HS_IRQHandler(void)
 {
-    HAL_HCD_IRQHandler(&handleHCD);
+    HAL_HCD_IRQHandler(reinterpret_cast<HCD_HandleTypeDef *>(HAL_HCD::handle));
 }
 
 void DMA1_Stream5_IRQHandler(void)
