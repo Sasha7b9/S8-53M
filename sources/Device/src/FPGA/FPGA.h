@@ -113,13 +113,13 @@ private:
     /// Загузка полярности синхронизации в аппаратную часть.
     static void LoadTrigPolarity();
     /// Загрузить все параметры напряжения каналов и синхронизации в аппаратную часть.
-    static void SetAttribChannelsAndTrig(TypeWriteAnalog type);
+    static void SetAttribChannelsAndTrig(TypeWriteAnalog::E type);
     /// Загрузить регистр WR_UPR (пиковый детектор и калибратор).
     static void LoadRegUPR();
 
-    static void WriteToAnalog(TypeWriteAnalog type, uint data);
+    static void WriteToAnalog(TypeWriteAnalog::E type, uint data);
 
-    static void WriteToDAC(TypeWriteDAC type, uint16 data);
+    static void WriteToDAC(TypeWriteDAC::E type, uint16 data);
     /// Прочитать данные.
     static void DataRead(
                         bool necessaryShift,    ///< Признак того, что сигнал нужно смещать.

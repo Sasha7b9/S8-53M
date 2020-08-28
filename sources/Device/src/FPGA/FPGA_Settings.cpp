@@ -77,7 +77,7 @@ void FPGA::LoadSettings(void)
 {
     LoadKoeffCalibration(A);
     LoadKoeffCalibration(B);
-    SetAttribChannelsAndTrig(TypeWriteAnalog_All);
+    SetAttribChannelsAndTrig(TypeWriteAnalog::All);
     LoadTBase();
     LoadTShift();
     LoadRange(A);
@@ -114,7 +114,7 @@ void FPGA::LoadSettings(void)
 }
 
 
-void FPGA::SetAttribChannelsAndTrig(TypeWriteAnalog type) 
+void FPGA::SetAttribChannelsAndTrig(TypeWriteAnalog::E type) 
 {
     uint data = 0;
 
@@ -187,7 +187,7 @@ void FPGA::SetRange(Channel chan, Range range)
 
 void FPGA::LoadRange(Channel chan)
 {
-    SetAttribChannelsAndTrig(TypeWriteAnalog_Range0);
+    SetAttribChannelsAndTrig(TypeWriteAnalog::Range0);
     LoadRShift(chan);
     if (chan == (Channel)TRIG_SOURCE)
     {
@@ -315,7 +315,7 @@ void FPGA::LoadRShift(Channel chan)
     rShift = (uint16)(delta + RShiftZero);
 
     rShift = (uint16)(RShiftMax + RShiftMin - rShift);
-    WriteToDAC(chan == A ? TypeWriteDAC_RShiftA : TypeWriteDAC_RShiftB, (uint16)(mask[chan] | (rShift << 2)));
+    WriteToDAC(chan == A ? TypeWriteDAC::RShiftA : TypeWriteDAC::RShiftB, (uint16)(mask[chan] | (rShift << 2)));
 }
 
 
@@ -354,7 +354,7 @@ void FPGA::LoadTrigLev(void)
     data |= trigLev << 2;
     // FPGA_WriteToHardware(WR_DAC_LOW, data.byte[0], true);
     // FPGA_WriteToHardware(WR_DAC_HI, data.byte[1], true);
-    WriteToDAC(TypeWriteDAC_TrigLev, data);
+    WriteToDAC(TypeWriteDAC::TrigLev, data);
 }
 
 
@@ -495,7 +495,7 @@ bool FPGA::RangeDecrease(Channel chan)
 void FPGA::SetTrigSource(TrigSource trigSource)
 {
     TRIG_SOURCE = trigSource;
-    SetAttribChannelsAndTrig(TypeWriteAnalog_TrigParam);
+    SetAttribChannelsAndTrig(TypeWriteAnalog::TrigParam);
     if (!TRIG_SOURCE_IS_EXT)
     {
         SetTrigLev(TRIG_SOURCE, TRIG_LEVEL_SOURCE);
@@ -519,14 +519,14 @@ void FPGA::LoadTrigPolarity(void)
 void FPGA::SetTrigInput(TrigInput trigInput)
 {
     TRIG_INPUT = trigInput;
-    SetAttribChannelsAndTrig(TypeWriteAnalog_TrigParam);
+    SetAttribChannelsAndTrig(TypeWriteAnalog::TrigParam);
 }
 
 
 void FPGA::SetModeCouple(Channel chan, ModeCouple modeCoupe)
 {
     SET_COUPLE(chan) = modeCoupe;
-    SetAttribChannelsAndTrig(chan == A ? TypeWriteAnalog_ChanParam0 : TypeWriteAnalog_ChanParam1);
+    SetAttribChannelsAndTrig(chan == A ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
     SetRShift(chan, SET_RSHIFT(chan));
 }
 
@@ -534,5 +534,5 @@ void FPGA::SetModeCouple(Channel chan, ModeCouple modeCoupe)
 void FPGA::EnableChannelFiltr(Channel chan, bool enable)
 {
     SET_FILTR(chan) = enable;
-    SetAttribChannelsAndTrig(chan == A ? TypeWriteAnalog_ChanParam0 : TypeWriteAnalog_ChanParam1);
+    SetAttribChannelsAndTrig(chan == A ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
 }

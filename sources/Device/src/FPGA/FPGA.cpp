@@ -1188,32 +1188,32 @@ void FPGA::FindAndSetTrigLevel(void)
 #define DATA_SET(x)         pinG3.Write(x);
 
 
-void FPGA::WriteToAnalog(TypeWriteAnalog type, uint data)
+void FPGA::WriteToAnalog(TypeWriteAnalog::E type, uint data)
 {
     char buffer[19];
 
     char *str = Bin2String16((uint16)data, buffer);
-    if (type == TypeWriteAnalog_Range0 && IS_SHOW_REG_RANGE_A)
+    if (type == TypeWriteAnalog::Range0 && IS_SHOW_REG_RANGE_A)
     {
         LOG_WRITE("range 0 = %s", str);
     }
-    else if (type == TypeWriteAnalog_Range1 && IS_SHOW_REG_RANGE_B)
+    else if (type == TypeWriteAnalog::Range1 && IS_SHOW_REG_RANGE_B)
     {
         LOG_WRITE("range 1 = %s", str);
     }
-    else if (type == TypeWriteAnalog_TrigParam && IS_SHOW_REG_TRIGPARAM)
+    else if (type == TypeWriteAnalog::TrigParam && IS_SHOW_REG_TRIGPARAM)
     {
         LOG_WRITE("парам. синхр. = %s", str);
     }
-    else if (type == TypeWriteAnalog_ChanParam0 && IS_SHOW_REG_PARAM_A)
+    else if (type == TypeWriteAnalog::ChanParam0 && IS_SHOW_REG_PARAM_A)
     {
         LOG_WRITE("парам. кан. 1 = %s", str);
     }
-    else if (type == TypeWriteAnalog_ChanParam1 && IS_SHOW_REG_PARAM_B)
+    else if (type == TypeWriteAnalog::ChanParam1 && IS_SHOW_REG_PARAM_B)
     {
         LOG_WRITE("парам. кан. 2 = %s", str);
     }
-    else if (type == TypeWriteAnalog_All && (IS_SHOW_REG_TRIGPARAM || IS_SHOW_REG_RANGE_A || IS_SHOW_REG_RANGE_B || IS_SHOW_REG_PARAM_A || IS_SHOW_REG_PARAM_B))
+    else if (type == TypeWriteAnalog::All && (IS_SHOW_REG_TRIGPARAM || IS_SHOW_REG_RANGE_A || IS_SHOW_REG_RANGE_B || IS_SHOW_REG_PARAM_A || IS_SHOW_REG_PARAM_B))
     {
         LOG_WRITE("полная запись в аналоговую часть = %s", str);
     }
@@ -1229,19 +1229,19 @@ void FPGA::WriteToAnalog(TypeWriteAnalog type, uint data)
 }
 
 
-void FPGA::WriteToDAC(TypeWriteDAC type, uint16 data)
+void FPGA::WriteToDAC(TypeWriteDAC::E type, uint16 data)
 {
     char buffer[19];
 
-    if (type == TypeWriteDAC_RShiftA && IS_SHOW_REG_RSHIFT_A)
+    if (type == TypeWriteDAC::RShiftA && IS_SHOW_REG_RSHIFT_A)
     {
         LOG_WRITE("rShift 0 = %s", Bin2String16(data, buffer));
     }
-    else if (type == TypeWriteDAC_RShiftB && IS_SHOW_REG_RSHIFT_B)
+    else if (type == TypeWriteDAC::RShiftB && IS_SHOW_REG_RSHIFT_B)
     {
         LOG_WRITE("rShfit 1 = %s", Bin2String16(data, buffer));
     }
-    else if (type == TypeWriteDAC_TrigLev && IS_SHOW_REG_TRIGLEV)
+    else if (type == TypeWriteDAC::TrigLev && IS_SHOW_REG_TRIGLEV)
     {
         LOG_WRITE("trigLev = %s", Bin2String16(data, buffer));
     }
