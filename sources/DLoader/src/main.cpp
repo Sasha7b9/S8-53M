@@ -7,7 +7,6 @@
 #include "Display/Display.h"
 #include "Hardware/Timer.h"
 #include "Panel/Panel.h"
-#include "Hardware/FLASH.h"
 #include "common/Hardware/HAL/HAL.h"
 #include <cstdlib>
 
@@ -112,16 +111,16 @@ void Upgrade(void)
 
     uint8 buffer[sizeSector];
 
-    FLASH_Prepare();
+    HAL_EPROM::EraseSector(5);
 
     int size = FDrive_OpenFileForRead(FILE_NAME);
     int fullSize = size;
-    uint address = ADDR_SECTOR_PROGRAM_0;
+    uint address = 0x08020000U;
 
     while (size)
     {
         int readedBytes = FDrive_ReadFromFile(sizeSector, buffer);
-        FLASH_WriteData(address, buffer, readedBytes);
+        HAL_EPROM::WriteBufferBytes(address, buffer, readedBytes);
         size -= readedBytes;
         address += readedBytes;
 

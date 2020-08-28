@@ -1,6 +1,5 @@
 #include "defines.h"
 #include "Settings.h"
-#include "Hardware/FLASH.H"
 #include "Display/Display.h"
 #include "Display/Colors.h"
 #include "Panel/Panel.h"
