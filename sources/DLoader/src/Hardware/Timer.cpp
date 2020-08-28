@@ -94,7 +94,7 @@ bool Timer_IsRun(TypeTimer type)
 };
 
 
-void Timer_Update1ms()
+void Timer::Update1ms()
 {
     timerMS++;
     for(int num = 0; num < TypeTimerSize; num++)

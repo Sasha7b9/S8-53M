@@ -76,6 +76,7 @@ file(GLOB HARDWARE_HAL   src/Hardware/HAL/*
                          ../common/Hardware/HAL/cHAL_PINS.cpp
                          ../common/Hardware/HAL/cHAL_SPI1.cpp
                          ../common/Hardware/HAL/cHAL_TIM2.cpp
+                         ../common/Hardware/HAL/cHAL_TIM6.cpp
                          ../common/Hardware/HAL/cHAL_TIM7.cpp)
 file(GLOB HARDWARE_USBH  src/Hardware/USBH/*)
 file(GLOB SRC            src/*.h src/*.cpp)

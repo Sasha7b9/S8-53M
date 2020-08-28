@@ -834,6 +834,11 @@
               <FilePath>..\common\Hardware\HAL\cHAL_SPI1.cpp</FilePath>
             </File>
             <File>
+              <FileName>cHAL_TIM6.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\cHAL_TIM6.cpp</FilePath>
+            </File>
+            <File>
               <FileName>cHAL_TIM2.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\cHAL_TIM2.cpp</FilePath>
