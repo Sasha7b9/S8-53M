@@ -1,7 +1,7 @@
 #include "defines.h"
 #include "SCPI.h"
 #include "Hardware/Hardware.h"
-#include "Hardware/HAL/HAL.h"
+#include "common/Hardware/HAL/HAL.h"
 #include "VCP/VCP.h"
 #include "Settings/Settings.h"
 

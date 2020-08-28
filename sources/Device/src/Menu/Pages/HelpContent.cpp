@@ -8,7 +8,7 @@
 #include "Utils/Math.h"
 #include "Settings/Settings.h"
 #include "Hardware/Timer.h"
-#include "Hardware/HAL/HAL.h"
+#include "common/Hardware/HAL/HAL.h"
 
 
 int currentParagraph = 0;   // ≈сли TypePage(currentPage) == TypePage_Content, то указывает не текущий раздел оглавлени€

@@ -7,7 +7,7 @@
 #include "Hardware/Timer.h"
 #include "Hardware/Hardware.h"
 #include "Hardware/EPROM.h"
-#include "Hardware/HAL/HAL.h"
+#include "common/Hardware/HAL/HAL.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/PageCursors.h"
 #include "Settings/Settings.h"

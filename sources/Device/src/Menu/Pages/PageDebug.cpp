@@ -6,7 +6,7 @@
 #include "Hardware/EPROM.h"
 #include "Hardware/FSMC.h"
 #include "Hardware/Sound.h"
-#include "Hardware/HAL/HAL.h"
+#include "common/Hardware/HAL/HAL.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
 #include "Menu/Pages/PageDebug.h"

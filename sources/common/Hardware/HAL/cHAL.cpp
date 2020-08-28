@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "Hardware/HAL/HAL.h"
+#include "common/Hardware/HAL/HAL.h"
 #include <usbh_def.h>
 #include <stm32f4xx_hal.h>
 

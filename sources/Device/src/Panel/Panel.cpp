@@ -1,7 +1,7 @@
 #include "defines.h"
 #include "Panel.h"
 #include "Panel/Controls.h"
-#include "Hardware/HAL/HAL.h"
+#include "common/Hardware/HAL/HAL.h"
 #include "PanelFunctions.cpp"
 #include "Utils/GlobalFunctions.h"
 #include <cstdio>

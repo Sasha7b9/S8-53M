@@ -7,7 +7,7 @@
 #include "Hardware/Hardware.h"
 #include "Hardware/Sound.h"
 #include "Hardware/Timer.h"
-#include "Hardware/HAL/HAL.h"
+#include "common/Hardware/HAL/HAL.h"
 #include "Settings/Settings.h"
 #include "Utils/Math.h"
 #include <cstring>

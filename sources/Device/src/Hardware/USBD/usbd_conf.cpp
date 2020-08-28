@@ -3,7 +3,7 @@
 #include "usbd_core.h"
 #include "VCP/VCP.h"
 #include "Hardware/Timer.h"
-#include "Hardware/HAL/HAL.h"
+#include "common/Hardware/HAL/HAL.h"
 #include "Display/Display.h"
 #include "Log.h"
 #include "Settings/Settings.h"

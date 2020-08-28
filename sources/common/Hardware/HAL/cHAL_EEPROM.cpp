@@ -1,6 +1,6 @@
 #include "defines.h"
 #include "Log.h"
-#include "Hardware/HAL/HAL.h"
+#include "common/Hardware/HAL/HAL.h"
 #include <stm32f4xx_hal.h>
 
 

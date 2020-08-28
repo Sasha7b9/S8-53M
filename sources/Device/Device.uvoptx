@@ -1990,7 +1990,7 @@
 
   <Group>
     <GroupName>Hardware/HAL</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -2037,20 +2037,20 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Hardware\HAL\HAL.cpp</PathWithFileName>
-      <FilenameWithoutPath>HAL.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\HAL\cHAL.cpp</PathWithFileName>
+      <FilenameWithoutPath>cHAL.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>10</GroupNumber>
       <FileNumber>150</FileNumber>
-      <FileType>5</FileType>
+      <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Hardware\HAL\HAL.h</PathWithFileName>
-      <FilenameWithoutPath>HAL.h</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\HAL\cHAL_ADC3.cpp</PathWithFileName>
+      <FilenameWithoutPath>cHAL_ADC3.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2061,8 +2061,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Hardware\HAL\HAL_ADC3.cpp</PathWithFileName>
-      <FilenameWithoutPath>HAL_ADC3.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\HAL\cHAL_DAC.cpp</PathWithFileName>
+      <FilenameWithoutPath>cHAL_DAC.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2073,8 +2073,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Hardware\HAL\HAL_DAC.cpp</PathWithFileName>
-      <FilenameWithoutPath>HAL_DAC.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\HAL\cHAL_EEPROM.cpp</PathWithFileName>
+      <FilenameWithoutPath>cHAL_EEPROM.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2085,8 +2085,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Hardware\HAL\HAL_EEPROM.cpp</PathWithFileName>
-      <FilenameWithoutPath>HAL_EEPROM.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\HAL\cHAL_OTP.cpp</PathWithFileName>
+      <FilenameWithoutPath>cHAL_OTP.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2097,8 +2097,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Hardware\HAL\HAL_OTP.cpp</PathWithFileName>
-      <FilenameWithoutPath>HAL_OTP.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\HAL\cHAL_PINS.cpp</PathWithFileName>
+      <FilenameWithoutPath>cHAL_PINS.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2109,20 +2109,20 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Hardware\HAL\HAL_PINS.cpp</PathWithFileName>
-      <FilenameWithoutPath>HAL_PINS.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\HAL\cHAL_RTC.cpp</PathWithFileName>
+      <FilenameWithoutPath>cHAL_RTC.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>10</GroupNumber>
       <FileNumber>156</FileNumber>
-      <FileType>5</FileType>
+      <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Hardware\HAL\HAL_PINS.h</PathWithFileName>
-      <FilenameWithoutPath>HAL_PINS.h</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\HAL\cHAL_SPI1.cpp</PathWithFileName>
+      <FilenameWithoutPath>cHAL_SPI1.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2133,8 +2133,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Hardware\HAL\HAL_RTC.cpp</PathWithFileName>
-      <FilenameWithoutPath>HAL_RTC.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\HAL\cHAL_SRAM.cpp</PathWithFileName>
+      <FilenameWithoutPath>cHAL_SRAM.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2145,8 +2145,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Hardware\HAL\HAL_SPI1.cpp</PathWithFileName>
-      <FilenameWithoutPath>HAL_SPI1.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\HAL\cHAL_TIM2.cpp</PathWithFileName>
+      <FilenameWithoutPath>cHAL_TIM2.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2157,8 +2157,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Hardware\HAL\HAL_SRAM.cpp</PathWithFileName>
-      <FilenameWithoutPath>HAL_SRAM.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\HAL\cHAL_TIM6.cpp</PathWithFileName>
+      <FilenameWithoutPath>cHAL_TIM6.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2169,8 +2169,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Hardware\HAL\HAL_TIM2.cpp</PathWithFileName>
-      <FilenameWithoutPath>HAL_TIM2.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\HAL\cHAL_TIM7.cpp</PathWithFileName>
+      <FilenameWithoutPath>cHAL_TIM7.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2181,32 +2181,32 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Hardware\HAL\HAL_TIM6.cpp</PathWithFileName>
-      <FilenameWithoutPath>HAL_TIM6.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\HAL\cHAL_USBD.cpp</PathWithFileName>
+      <FilenameWithoutPath>cHAL_USBD.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>10</GroupNumber>
       <FileNumber>162</FileNumber>
-      <FileType>8</FileType>
+      <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Hardware\HAL\HAL_TIM7.cpp</PathWithFileName>
-      <FilenameWithoutPath>HAL_TIM7.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\HAL\HAL.h</PathWithFileName>
+      <FilenameWithoutPath>HAL.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>10</GroupNumber>
       <FileNumber>163</FileNumber>
-      <FileType>8</FileType>
+      <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Hardware\HAL\HAL_USBD.cpp</PathWithFileName>
-      <FilenameWithoutPath>HAL_USBD.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\HAL\HAL_PINS.h</PathWithFileName>
+      <FilenameWithoutPath>HAL_PINS.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

@@ -5,7 +5,7 @@
 #include "Display/Display.h"
 #include "Hardware/FSMC.h"
 #include "Hardware/Hardware.h"
-#include "Hardware/HAL/HAL.h"
+#include "common/Hardware/HAL/HAL.h"
 #include "Panel/Panel.h"
 #include "Panel/Controls.h"
 #include "Settings/Settings.h"

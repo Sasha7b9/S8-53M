@@ -1,6 +1,5 @@
 #include "defines.h"
-#include "Hardware/HAL/HAL.h"
-#include "Hardware/HAL/HAL_PINS.h"
+#include "common/Hardware/HAL/HAL.h"
 #include <stm32f4xx_hal.h>
 
 static Pin pinADC3_IT;

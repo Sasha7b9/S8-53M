@@ -4,7 +4,7 @@
 #include "FPGA/FPGA.h"
 #include "Hardware/FSMC.h"
 #include "Hardware/Timer.h"
-#include "Hardware/HAL/HAL.h"
+#include "common/Hardware/HAL/HAL.h"
 #include "Panel/Panel.h"
 #include "Settings/Settings.h"
 #include <limits>

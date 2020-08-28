@@ -2,7 +2,7 @@
 #include "MenuItemsLogic.h"
 #include "Menu.h"
 #include "Hardware/Hardware.h"
-#include "Hardware/HAL/HAL.h"
+#include "common/Hardware/HAL/HAL.h"
 #include "Display/Colors.h"
 #include "Display/Display.h"
 #include "Display/Painter.h"

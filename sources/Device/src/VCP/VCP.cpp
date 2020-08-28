@@ -4,7 +4,7 @@
 #include "Utils/Math.h"
 #include "SCPI/SCPI.h"
 #include "Hardware/Timer.h"
-#include "Hardware/HAL/HAL.h"
+#include "common/Hardware/HAL/HAL.h"
 #include <cstdarg>
 #include <cstring>
 #include <cstdio>

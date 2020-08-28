@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "Hardware/HAL/HAL.h"
+#include "common/Hardware/HAL/HAL.h"
 #include "Hardware/USBD/usbd_desc.h"
 #include "Hardware/USBD/usbd_cdc_interface.h"
 #include <usbd_def.h>

@@ -1,7 +1,7 @@
 #include "defines.h"
+#include "common/Hardware/HAL/HAL.h"
 #include "Log.h"
 #include "Hardware/EPROM.h"
-#include "Hardware/HAL/HAL.h"
 #include "Menu/MenuItems.h"
 #include "Settings/Settings.h"
 #include <cstring>

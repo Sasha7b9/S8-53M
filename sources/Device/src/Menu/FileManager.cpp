@@ -11,7 +11,7 @@
 #include "Utils/Math.h"
 #include "Hardware/Hardware.h"
 #include "Hardware/Sound.h"
-#include "Hardware/HAL/HAL.h"
+#include "common/Hardware/HAL/HAL.h"
 #include "FDrive/FDrive.h"
 #include "Panel/Panel.h"
 #include "Log.h"

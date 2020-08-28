@@ -3,7 +3,7 @@
 #include "FSMC.h"
 #include "Utils/GlobalFunctions.h"
 #include "Hardware/Timer.h"
-#include "Hardware/HAL/HAL.h"
+#include "common/Hardware/HAL/HAL.h"
 #include "Log.h"
 #include "Ethernet/Ethernet.h"
 #include "Display/Display.h"

@@ -6,7 +6,7 @@
 #include "Utils/Math.h"
 #include "Log.h"
 #include "Hardware/Timer.h"
-#include "Hardware/HAL/HAL.h"
+#include "common/Hardware/HAL/HAL.h"
 #include "Settings/Settings.h"
 #include <cstring>
 

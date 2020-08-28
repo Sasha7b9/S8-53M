@@ -1,7 +1,7 @@
 #include "defines.h"
 #include "Hardware/Sound.h"
 #include "Hardware/Timer.h"
-#include "Hardware/HAL/HAL.h"
+#include "common/Hardware/HAL/HAL.h"
 #include "Menu/Menu.h"
 #include "Menu/MenuItemsLogic.h"
 #include "Utils/Math.h"
