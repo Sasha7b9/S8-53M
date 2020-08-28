@@ -77,9 +77,9 @@ public:
 
     static bool SaveScreenToFlashDrive();
 
-    static void SetFont(TypeFont typeFont);
+    static void SetFont(TypeFont::E typeFont);
     /// Загрузить шрифта в дисплей.
-    static void LoadFont(TypeFont typeFont);
+    static void LoadFont(TypeFont::E typeFont);
 
     static int DrawChar(int x, int y, char symbol);
 

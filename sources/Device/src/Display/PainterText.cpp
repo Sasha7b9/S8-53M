@@ -11,11 +11,11 @@
 #include <cstring>
 
 
-static TypeFont currentTypeFont = TypeFont_None;
+static TypeFont::E currentTypeFont = TypeFont::_None;
 
 
 
-void Painter::SetFont(TypeFont typeFont)
+void Painter::SetFont(TypeFont::E typeFont)
 {
     if (typeFont == currentTypeFont)
     {
@@ -30,7 +30,7 @@ void Painter::SetFont(TypeFont typeFont)
 }
 
 
-void Painter::LoadFont(TypeFont typeFont)
+void Painter::LoadFont(TypeFont::E typeFont)
 {
     uint8 *pFont = (uint8 *)fonts[typeFont];
 

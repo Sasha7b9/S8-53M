@@ -71,11 +71,11 @@ void Display::Init()
 
     InitHardware();
 
-    Painter::LoadFont(TypeFont_5);
-    Painter::LoadFont(TypeFont_8);
-    Painter::LoadFont(TypeFont_UGO);
-    Painter::LoadFont(TypeFont_UGO2);
-    Painter::SetFont(TypeFont_8);
+    Painter::LoadFont(TypeFont::_5);
+    Painter::LoadFont(TypeFont::_8);
+    Painter::LoadFont(TypeFont::_UGO);
+    Painter::LoadFont(TypeFont::_UGO2);
+    Painter::SetFont(TypeFont::_8);
 
     Painter::LoadPalette();
 }
@@ -1636,13 +1636,13 @@ void Display::DrawCursorTrigLevel()
     {
         Painter::DrawChar(x + 1, y - 4, SYMBOL_TRIG_LEV_NORMAL);
     }
-    Painter::SetFont(TypeFont_5);
+    Painter::SetFont(TypeFont::_5);
 
     const char simbols[3] = {'1', '2', '¬'};
     int dY = 0;
     
     Painter::DrawCharC(x + 5, y - 9 + dY, simbols[TRIG_SOURCE], COLOR_BACK);
-    Painter::SetFont(TypeFont_8);
+    Painter::SetFont(TypeFont::_8);
 
     if (DRAW_RSHIFT_MARKERS && !MenuIsMinimize())
     {
@@ -1655,9 +1655,9 @@ void Display::DrawCursorTrigLevel()
         int shiftFull = TRIG_LEVEL_SOURCE + (TRIG_SOURCE_IS_EXT ? 0 : SET_RSHIFT(chan));
         int yFull = static_cast<int>(GRID_TOP + DELTA + height - scale * (shiftFull - RShiftMin - TrigLevMin) - 4);
         Painter::FillRegionC(left + 2, yFull + 1, 4, 6, ColorTrig());
-        Painter::SetFont(TypeFont_5);
+        Painter::SetFont(TypeFont::_5);
         Painter::DrawCharC(left + 3, yFull - 5 + dY, simbols[TRIG_SOURCE], COLOR_BACK);
-        Painter::SetFont(TypeFont_8);
+        Painter::SetFont(TypeFont::_8);
     }
 }
 
@@ -1711,7 +1711,7 @@ void Display::DrawCursorRShift(Channel chan)
         }
     }
 
-    Painter::SetFont(TypeFont_5);
+    Painter::SetFont(TypeFont::_5);
     int dY = 0;
 
     if((!MenuIsMinimize() || !MenuIsShown()) && DRAW_RSHIFT_MARKERS)
@@ -1720,7 +1720,7 @@ void Display::DrawCursorRShift(Channel chan)
         Painter::DrawCharC(5, static_cast<int>(yFull - 9 + dY), chan == A ? '1' : '2', COLOR_BACK);
     }
     Painter::DrawCharC(static_cast<int>(x - 7), static_cast<int>(y - 9 + dY), chan == A ? '1' : '2', COLOR_BACK);
-    Painter::SetFont(TypeFont_8);
+    Painter::SetFont(TypeFont::_8);
 }
 
 
@@ -2088,7 +2088,7 @@ void Display::DrawLowPart()
     y0 = y0 - 3;
     y1 = y1 - 6;
     int y2 = y1 + 6;
-    Painter::SetFont(TypeFont_5);
+    Painter::SetFont(TypeFont::_5);
     
     if (MODE_WORK_IS_DIRECT)
     {
@@ -2100,7 +2100,7 @@ void Display::DrawLowPart()
     x += 42;
     Painter::DrawVLine(x, GRID_BOTTOM + 2, SCREEN_HEIGHT - 2);
 
-    Painter::SetFont(TypeFont_8);
+    Painter::SetFont(TypeFont::_8);
 
     if (MODE_WORK_IS_DIRECT)
     {
@@ -2122,7 +2122,7 @@ void Display::DrawLowPart()
 
     Painter::DrawVLine(x + 55, GRID_BOTTOM + 2, SCREEN_HEIGHT - 2);
 
-    Painter::SetFont(TypeFont_UGO2);
+    Painter::SetFont(TypeFont::_UGO2);
 
     // ‘ÎÂ¯Í‡
     if (FLASH_DRIVE_IS_CONNECTED)
@@ -2151,9 +2151,9 @@ void Display::DrawLowPart()
 
     if (MODE_WORK_IS_DIRECT)
     {
-        Painter::SetFont(TypeFont_5);
+        Painter::SetFont(TypeFont::_5);
         WriteStringAndNumber("—√À¿∆.:", x + 57, GRID_BOTTOM + 10, sDisplay_NumPointSmoothing());
-        Painter::SetFont(TypeFont_8);
+        Painter::SetFont(TypeFont::_8);
     }
 }
 
@@ -2444,7 +2444,7 @@ void Display::OneStringDown()
 void Display::DrawConsole()
 {
     int count = 0;
-    Painter::SetFont(sDebug_GetSizeFontForConsole() == 5 ? TypeFont_5 : TypeFont_8);
+    Painter::SetFont(sDebug_GetSizeFontForConsole() == 5 ? TypeFont::_5 : TypeFont::_8);
     int height = Font_GetSize();
 
     int lastString = FirstEmptyString() - 1;
@@ -2480,7 +2480,7 @@ void Display::DrawConsole()
         count++;
     }
 
-    Painter::SetFont(TypeFont_8);
+    Painter::SetFont(TypeFont::_8);
 }
 
 

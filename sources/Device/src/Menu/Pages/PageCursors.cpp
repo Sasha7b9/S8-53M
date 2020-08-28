@@ -520,9 +520,9 @@ static void DrawSB_Cursors_U(int x, int y)
         if (set.cursors.lookMode[0] == CursLookMode_Voltage || set.cursors.lookMode[0] == CursLookMode_Both ||
             set.cursors.lookMode[1] == CursLookMode_Voltage || set.cursors.lookMode[1] == CursLookMode_Both)
         {
-            Painter::SetFont(TypeFont_5);
+            Painter::SetFont(TypeFont::_5);
             Painter::DrawChar(x + 10, y, 'c');
-            Painter::SetFont(TypeFont_8);
+            Painter::SetFont(TypeFont::_8);
         }
         */
     }
@@ -673,9 +673,9 @@ static void SetCursPos100(Channel chan)
 
 static void DrawSB_Cursors_100(int x, int y)
 {
-    Painter::SetFont(TypeFont_5);
+    Painter::SetFont(TypeFont::_5);
     Painter::DrawText(x + 2, y + 3, "100%");
-    Painter::SetFont(TypeFont_8);
+    Painter::SetFont(TypeFont::_8);
 }
 
 
@@ -723,9 +723,9 @@ static void DrawSB_Cursors_PointsPercents_Percents(int x, int y)
 
 static void DrawSB_Cursors_PointsPercents_Points(int x, int y)
 {
-    Painter::SetFont(TypeFont_5);
+    Painter::SetFont(TypeFont::_5);
     Painter::DrawText(x + 4, y + 3, "ò÷ê");
-    Painter::SetFont(TypeFont_8);
+    Painter::SetFont(TypeFont::_8);
 }
 
 

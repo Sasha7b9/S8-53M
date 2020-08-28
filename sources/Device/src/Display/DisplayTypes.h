@@ -46,22 +46,25 @@ struct DrawMode
     };
 };
 
-typedef enum
+enum SourceBuffer
 {
-    SB_Signals,
-    SB_Send,
-    SB_Intermediate
-} SourceBuffer;
+    Signals,
+    Send,
+    Intermediate
+};
 
-typedef enum
+struct TypeFont
 {
-    TypeFont_5,
-    TypeFont_8,
-    TypeFont_UGO,
-    TypeFont_UGO2,
-    TypeFont_Number,
-    TypeFont_None
-} TypeFont;
+    enum E
+    {
+        _5,
+        _8,
+        _UGO,
+        _UGO2,
+        _Count,
+        _None
+    };
+};
 
 
 typedef enum

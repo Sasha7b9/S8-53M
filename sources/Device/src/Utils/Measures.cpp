@@ -247,7 +247,7 @@ void Measure_DrawPageChoice()
     int maxRow = num61or62 ? 8 : 5;
     int maxCol = num61or62 ? 3 : 5;
     Measure meas = Measure_None;
-    Painter::SetFont(TypeFont_UGO);
+    Painter::SetFont(TypeFont::_UGO);
     for(int row = 0; row < maxRow; row++)
     {
         for(int col = 0; col < maxCol; col++)
@@ -265,14 +265,14 @@ void Measure_DrawPageChoice()
             Painter::Draw10SymbolsInRect(x0 + 2, y0 + 1, Measure_GetChar(meas));
             if(meas < Measure_NumMeasures)
             {
-                Painter::SetFont(TypeFont_5);
+                Painter::SetFont(TypeFont::_5);
                 Painter::DrawTextRelativelyRightC(x0 + dX, y0 + 12, measures[meas].name, active ? Color::FLASH_01 : COLOR_FILL);
-                Painter::SetFont(TypeFont_UGO);
+                Painter::SetFont(TypeFont::_UGO);
             }
             ++meas;
         }
     }
-    Painter::SetFont(TypeFont_8);
+    Painter::SetFont(TypeFont::_8);
 }
 
 
