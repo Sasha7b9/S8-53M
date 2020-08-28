@@ -22,7 +22,7 @@ include_directories(src
                     ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc
                     )
 
-add_definitions(-DSTM32F429xx)
+add_definitions(-DSTM32F429xx -DUSE_HAL_DRIVER)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -MP -Wall")
 

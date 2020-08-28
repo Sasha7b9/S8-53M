@@ -3,9 +3,9 @@
 #ifdef WIN32
 #define __attribute__(x)
 #define __packed__
+#else
+#define nullptr 0
 #endif
-
-//#include <stm32f4xx_hal.h>
 
 
 #define NUM_VER "1.3"
