@@ -7,21 +7,12 @@
 #include <cstdio>
 
 
-static TypeFont currentTypeFont = TypeFont_None;
+//static TypeFont currentTypeFont = TypeFont_None;
 
 
 
-void Painter_SetFont(TypeFont typeFont)
+void Painter_SetFont(TypeFont)
 {
-    if (typeFont == currentTypeFont)
-    {
-        return;
-    }
-    font = fonts[typeFont];
-    uint8 command[4];
-    command[0] = SET_FONT;
-    command[1] = (uint8)typeFont;
-    Painter_SendToDisplay(command, 4);
 }
 
 
@@ -159,44 +150,9 @@ int Painter_DrawCharC(int x, int y, char symbol, Color::E color)
 }
 
 
-int Painter_DrawText(int x, int y, const char *text)
+int Painter_DrawText(int x, int, const char *)
 {
-#undef SIZE_BUFFER
-#define SIZE_BUFFER 100
-
-    if (*text == 0)
-    {
-        return x;
-    }
-    CalculateCurrentColor();
-
-    int retValue = x;
-    y += (8 - Font_GetSize());
-    uint8 command[SIZE_BUFFER];
-    command[0] = DRAW_TEXT;
-    *((int16*)(command + 1)) = (int16)x;
-    *(command + 3) = (uint8)(y + 1);
-    uint8 *pointer = command + 5;
-    uint8 length = 0;
-
-    int counter = 0;
-    while (*text && length < (SIZE_BUFFER - 7))
-    {
-        *pointer = (uint8)(*text);
-        retValue += Font_GetLengthSymbol(static_cast<uchar>(*text));
-        text++;
-        pointer++;
-        length++;
-        counter++;
-    }
-
-    *pointer = 0;
-    *(command + 4) = length;
-    int numBytes = ((length + 4) / 4) * 4 + 4;
-    Painter_SendToDisplay(command, numBytes);
-    return retValue;
-#undef SIZE_BUFFER
-
+    return x;
 }
 
 
