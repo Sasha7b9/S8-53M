@@ -3,15 +3,13 @@
 #include "usbd_core.h"
 #include "VCP/VCP.h"
 #include "Hardware/Timer.h"
+#include "Hardware/HAL/HAL.h"
 #include "Display/Display.h"
 #include "Log.h"
 #include "Settings/Settings.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-extern PCD_HandleTypeDef handlePCD;
-extern USBD_HandleTypeDef handleUSBD;
-
 /*******************************************************************************
                        PCD BSP Routines
 *******************************************************************************/
@@ -159,6 +157,8 @@ void HAL_PCD_DisconnectCallback(PCD_HandleTypeDef *hpcd)
 
 USBD_StatusTypeDef  USBD_LL_Init (USBD_HandleTypeDef *pdev)
 { 
+    PCD_HandleTypeDef &handlePCD = *reinterpret_cast<PCD_HandleTypeDef *>(HAL_PCD::handle);
+
     /* Change Systick prioity */
     NVIC_SetPriority (SysTick_IRQn, 0);  
   

@@ -3,36 +3,21 @@
 #include "Log.h"
 #include "Utils/Math.h"
 #include "SCPI/SCPI.h"
-#include "usbd_desc.h"
-#include "usbd_cdc_interface.h"
 #include "Hardware/Timer.h"
 #include "Hardware/HAL/HAL.h"
-#include <usbd_cdc.h>
-#include <usbd_def.h>
 #include <cstdarg>
 #include <cstring>
 #include <cstdio>
 
-
-USBD_HandleTypeDef handleUSBD;
-PCD_HandleTypeDef handlePCD;
 
 uint VCP::lastTimeSend = 0;
 
 
 void VCP::Init()
 {
-    USBD_Init(&handleUSBD, &VCP_Desc, 0);
-    USBD_RegisterClass(&handleUSBD, &USBD_CDC);
-    USBD_CDC_RegisterInterface(&handleUSBD, &USBD_CDC_fops);
-    USBD_Start(&handleUSBD);
+    HAL_USBD::Init();
 } 
 
-static bool PrevSendingComplete(void)
-{
-    USBD_CDC_HandleTypeDef *pCDC = (USBD_CDC_HandleTypeDef *)handleUSBD.pClassData;
-    return pCDC->TxState == 0;
-}
 
 void VCP::SendDataAsinch(uint8 *buffer, int size)
 {
@@ -42,11 +27,10 @@ void VCP::SendDataAsinch(uint8 *buffer, int size)
     static uint8 trBuf[SIZE_BUFFER];
 
     size = Math_MinInt(size, SIZE_BUFFER);
-    while (!PrevSendingComplete())  {};
-    std::memcpy(trBuf, buffer, static_cast<size_t>(size));
+    while (!HAL_USBD::PrevSendingComplete())  {};
+    std::memcpy(trBuf, buffer, static_cast<uint>(size));
 
-    USBD_CDC_SetTxBuffer(&handleUSBD, trBuf, (uint16)size);
-    USBD_CDC_TransmitPacket(&handleUSBD);
+    HAL_USBD::Transmit(trBuf, size);
 }
 
 static const int SIZE_BUFFER_VCP = 256;     // WARN если поставить размер буфера 512, то на ТЕ207 глюки
@@ -57,11 +41,7 @@ void VCP::Flush()
 {
     if (sizeBuffer)
     {
-        USBD_CDC_HandleTypeDef *pCDC = (USBD_CDC_HandleTypeDef *)handleUSBD.pClassData;
-        while (pCDC->TxState == 1) {};
-        USBD_CDC_SetTxBuffer(&handleUSBD, buffSend, (uint16)sizeBuffer);
-        USBD_CDC_TransmitPacket(&handleUSBD);
-        while (pCDC->TxState == 1) {};
+        HAL_USBD::Flush(buffSend, sizeBuffer);
     }
     sizeBuffer = 0;
 }
@@ -75,25 +55,22 @@ void VCP::SendDataSynch(const uint8 *buffer, int size)
 
     lastTimeSend = gTimerMS;
 
-    USBD_CDC_HandleTypeDef *pCDC = (USBD_CDC_HandleTypeDef *)handleUSBD.pClassData;
-
     do 
     {
         if (sizeBuffer + size > SIZE_BUFFER_VCP)
         {
             int reqBytes = SIZE_BUFFER_VCP - sizeBuffer;
             LIMITATION(reqBytes, reqBytes, 0, size);
-            while (pCDC->TxState == 1) {};
-            std::memcpy(buffSend + sizeBuffer, buffer, static_cast<size_t>(reqBytes));
-            USBD_CDC_SetTxBuffer(&handleUSBD, buffSend, SIZE_BUFFER_VCP);
-            USBD_CDC_TransmitPacket(&handleUSBD);
+            HAL_USBD::Wait();
+            std::memcpy(buffSend + sizeBuffer, buffer, static_cast<uint>(reqBytes));
+            HAL_USBD::Transmit(buffSend, SIZE_BUFFER_VCP);
             size -= reqBytes;
             buffer += reqBytes;
             sizeBuffer = 0;
         }
         else
         {
-            std::memcpy(buffSend + sizeBuffer, buffer, static_cast<size_t>(size));
+            std::memcpy(buffSend + sizeBuffer, buffer, static_cast<uint>(size));
             sizeBuffer += size;
             size = 0;
         }
@@ -146,16 +123,3 @@ void VCP::Update()
         LOG_WRITE("Долго нет засылок");
     }
 }
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-
-void OTG_FS_IRQHandler() {
-    HAL_PCD_IRQHandler(&handlePCD);
-}
-
-#ifdef __cplusplus
-}
-#endif

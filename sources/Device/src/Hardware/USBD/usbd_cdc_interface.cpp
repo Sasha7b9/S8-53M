@@ -1,17 +1,13 @@
-
-
 #include "main.h"
 #include "Globals.h"
 #include "VCP/VCP.h"
 #include "VCP/SCPI/SCPI.h"
 #include "Log.h"
 #include "Hardware/Timer.h"
+#include "Hardware/HAL/HAL.h"
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-extern USBD_HandleTypeDef handleUSBD;
-
-
 static USBD_CDC_LineCodingTypeDef LineCoding =
 {
     115200, /* baud rate*/
@@ -51,7 +47,7 @@ static void SetAttributeConnected()
 
 static int8_t CDC_Itf_Init(void)
 {
-    USBD_CDC_SetRxBuffer(&handleUSBD, UserRxBuffer);
+    USBD_CDC_SetRxBuffer(reinterpret_cast<USBD_HandleTypeDef *>(HAL_USBD::handle), UserRxBuffer);
     Timer::Enable(kTemp, 100, SetAttributeConnected);    // GOVNOCODE Задержка введена для того, чтобы не было ложных срабатываний в 
     return (USBD_OK);                                   // usbd_conf.c:HAL_PCD_SetupStageCallback при определении подключения хоста
 }
@@ -132,6 +128,6 @@ static int8_t CDC_Itf_Receive(uint8* buffer, uint *length)
 {
     SCPI::AddNewData(buffer, *length);
 
-    USBD_CDC_ReceivePacket(&handleUSBD);
+    USBD_CDC_ReceivePacket(reinterpret_cast<USBD_HandleTypeDef *>(HAL_USBD::handle));
     return (USBD_OK);
 }

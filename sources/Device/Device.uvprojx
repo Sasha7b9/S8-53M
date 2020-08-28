@@ -1219,9 +1219,19 @@
               <FilePath>.\src\Hardware\HAL\HAL_TIM2.cpp</FilePath>
             </File>
             <File>
+              <FileName>HAL_TIM6.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HAL\HAL_TIM6.cpp</FilePath>
+            </File>
+            <File>
               <FileName>HAL_TIM7.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\HAL\HAL_TIM7.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_USBD.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HAL\HAL_USBD.cpp</FilePath>
             </File>
           </Files>
         </Group>

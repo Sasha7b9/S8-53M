@@ -76,6 +76,11 @@ struct HAL_HCD
     static void *handle;    // HCD_HandleTypeDef
 };
 
+struct HAL_PCD
+{
+    static void *handle;    // PCD_HandleTypeDef
+};
+
 struct HAL_TIM2
 {
     static void Init();
@@ -99,6 +104,16 @@ struct HAL_TIM6
 struct HAL_TIM7
 {
     static void Config(uint16 prescaler, uint16 period);
+};
+
+struct HAL_USBD
+{
+    static void Init();
+    static bool PrevSendingComplete();
+    static void Transmit(uint8 *buffer, int size);
+    static void Flush(uint8 *buffer, int sizeBuffer);
+    static void Wait();
+    static void *handle;    // USBD_HandleTypeDef
 };
 
 struct HAL_USBH

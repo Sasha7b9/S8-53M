@@ -98,6 +98,13 @@ void DMA1_Stream5_IRQHandler()
     HAL_DMA_IRQHandler(reinterpret_cast<DAC_HandleTypeDef *>(HAL_DAC::handle)->DMA_Handle1);
 }
 
+
+void OTG_FS_IRQHandler()
+{
+    HAL_PCD_IRQHandler(reinterpret_cast<PCD_HandleTypeDef *>(HAL_HCD::handle));
+}
+
+
 #ifdef __cplusplus
 }
 #endif
