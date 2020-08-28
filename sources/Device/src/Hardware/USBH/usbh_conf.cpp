@@ -1,6 +1,7 @@
 #include "defines.h"
-#include "stm32f4xx_hal.h"
-#include "usbh_core.h"
+#include "Hardware/HAL/HAL.h"
+#include <stm32f4xx_hal.h>
+#include <usbh_core.h>
 
 
 /*******************************************************************************
@@ -43,7 +44,7 @@ void HAL_HCD_HC_NotifyURBChange_Callback(HCD_HandleTypeDef *, uint8_t, HCD_URBSt
 USBH_StatusTypeDef USBH_LL_Init(USBH_HandleTypeDef *phost)
 {  
     
-    HCD_HandleTypeDef *hHCD = reinterpret_cast<HCD_HandleTypeDef *>(handleHCD);
+    HCD_HandleTypeDef *hHCD = reinterpret_cast<HCD_HandleTypeDef *>(HAL_HCD::handle);
     
     /* Set the LL driver parameters */
     hHCD->Instance = USB_OTG_HS;
@@ -253,13 +254,15 @@ USBH_StatusTypeDef USBH_LL_DriverVBUS(USBH_HandleTypeDef *, uint8_t)
   */
 USBH_StatusTypeDef USBH_LL_SetToggle(USBH_HandleTypeDef *, uint8_t pipe, uint8_t toggle)   
 {
-    if(reinterpret_cast<HCD_HandleTypeDef *>(handleHCD)->hc[pipe].ep_is_in)
+
+
+    if(reinterpret_cast<HCD_HandleTypeDef *>(HAL_HCD::handle)->hc[pipe].ep_is_in)
     {
-        reinterpret_cast<HCD_HandleTypeDef *>(handleHCD)->hc[pipe].toggle_in = toggle;
+        reinterpret_cast<HCD_HandleTypeDef *>(HAL_HCD::handle)->hc[pipe].toggle_in = toggle;
     }
     else
     {
-        reinterpret_cast<HCD_HandleTypeDef *>(handleHCD)->hc[pipe].toggle_out = toggle;
+        reinterpret_cast<HCD_HandleTypeDef *>(HAL_HCD::handle)->hc[pipe].toggle_out = toggle;
     }
     return USBH_OK; 
 }
@@ -275,13 +278,13 @@ uint8_t USBH_LL_GetToggle(USBH_HandleTypeDef *, uint8_t pipe)
 {
     uint8_t toggle = 0;
   
-    if(reinterpret_cast<HCD_HandleTypeDef *>(handleHCD)->hc[pipe].ep_is_in)
+    if(reinterpret_cast<HCD_HandleTypeDef *>(HAL_HCD::handle)->hc[pipe].ep_is_in)
     {
-        toggle = reinterpret_cast<HCD_HandleTypeDef *>(handleHCD)->hc[pipe].toggle_in;
+        toggle = reinterpret_cast<HCD_HandleTypeDef *>(HAL_HCD::handle)->hc[pipe].toggle_in;
     }
     else
     {
-        toggle = reinterpret_cast<HCD_HandleTypeDef *>(handleHCD)->hc[pipe].toggle_out;
+        toggle = reinterpret_cast<HCD_HandleTypeDef *>(HAL_HCD::handle)->hc[pipe].toggle_out;
     }
     return toggle; 
 }

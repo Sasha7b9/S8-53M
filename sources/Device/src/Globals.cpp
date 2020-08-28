@@ -4,12 +4,9 @@
 #include <usbh_def.h>
 #include <stm32f4xx_hal.h>
 
+
 void *extraMEM = 0;
 
-
-
-static HCD_HandleTypeDef hHCD;
-void *handleHCD = &hHCD;
 
 static USBH_HandleTypeDef hUSBH;
 void *handleUSBH = &hUSBH;

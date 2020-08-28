@@ -40,3 +40,14 @@ private:
     // RTC_HandleTypeDef
     static void *handle;
 };
+
+struct HAL_SPI1
+{
+    static void Init();
+};
+
+
+struct HAL_HCD
+{
+    static void *handle;    // HCD_HandleTypeDef
+};

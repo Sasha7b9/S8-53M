@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "globals.h"
+#include "Hardware/HAL/HAL.h"
 #include <stm32f4xx_hal.h>
 
 
@@ -89,7 +89,7 @@ void SPI1_IRQHandler(void)
 
 void OTG_HS_IRQHandler(void)
 {
-    HAL_HCD_IRQHandler(reinterpret_cast<HCD_HandleTypeDef *>(handleHCD));
+    HAL_HCD_IRQHandler(reinterpret_cast<HCD_HandleTypeDef *>(HAL_HCD::handle));
 }
 
 

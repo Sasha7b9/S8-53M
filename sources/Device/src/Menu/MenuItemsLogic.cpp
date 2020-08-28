@@ -5,7 +5,6 @@
 #include "Menu/Menu.h"
 #include "Menu/MenuItemsLogic.h"
 #include "Utils/Math.h"
-#include <stm32f4xx_hal.h>
 
 int8 gCurDigit = 0;
 

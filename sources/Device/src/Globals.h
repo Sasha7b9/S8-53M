@@ -5,7 +5,6 @@
 #include "Settings/SettingsTime.h"
 
 extern void *handleUSBH;
-extern void *handleHCD;
 extern void *handleSPI;
 extern void *handleADC;
 extern void *handleDAC;

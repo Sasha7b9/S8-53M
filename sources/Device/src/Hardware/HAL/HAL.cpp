@@ -35,4 +35,10 @@ void HAL::Init()
     HAL_PINS::Init();
 
     HAL_ADC3::Init();
+
+    HAL_SPI1::Init();
 }
+
+
+static HCD_HandleTypeDef hHCD;
+void *HAL_HCD::handle = &hHCD;
