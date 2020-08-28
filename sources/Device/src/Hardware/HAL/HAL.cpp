@@ -38,6 +38,7 @@ void HAL::Init()
     __GPIOI_CLK_ENABLE();
 
     __ADC3_CLK_ENABLE();
+    __CRC_CLK_ENABLE();
     __DAC_CLK_ENABLE();         // Для бикалки
     __DMA1_CLK_ENABLE();        // Для DAC1 (бикалка)
     __ETH_CLK_ENABLE();
@@ -56,6 +57,8 @@ void HAL::Init()
 
     HAL_DAC::Init();
 
+    HAL_ETH::Init();
+
     HAL_HCD::Init();
 
     HAL_SPI1::Init();
@@ -63,6 +66,8 @@ void HAL::Init()
     HAL_TIM6::Init();
 
     HAL_RTC::Init();
+
+    HAL_SRAM::Init();
 
     HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
 }
@@ -120,4 +125,10 @@ void HAL_CRC::Init()
 uint HAL_CRC::Calculate(uint address, uint numBytes)
 {
     return HAL_CRC_Calculate(&handleCRC, (uint *)address, numBytes);
+}
+
+void HAL_ETH::Init()
+{
+    /* Output HSE clock (25MHz) on MCO pin (PA8) to clock the PHY */
+    HAL_RCC_MCOConfig(RCC_MCO1, RCC_MCO1SOURCE_HSE, RCC_MCODIV_1);
 }

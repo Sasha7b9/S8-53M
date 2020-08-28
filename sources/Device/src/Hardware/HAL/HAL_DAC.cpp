@@ -9,6 +9,32 @@ void *HAL_DAC::handle = &handleDAC;
 
 void HAL_DAC::Init()
 {
+    static DMA_HandleTypeDef hdmaDAC1 =
+    {
+        DMA1_Stream5,
+        {
+            DMA_CHANNEL_7,
+            DMA_MEMORY_TO_PERIPH,
+            DMA_PINC_DISABLE,
+            DMA_MINC_ENABLE,
+            DMA_PDATAALIGN_BYTE,
+            DMA_MDATAALIGN_BYTE,
+            DMA_CIRCULAR,
+            DMA_PRIORITY_HIGH,
+            DMA_FIFOMODE_DISABLE,
+            DMA_FIFO_THRESHOLD_HALFFULL,
+            DMA_MBURST_SINGLE,
+            DMA_PBURST_SINGLE
+        }
+    };
+
+    HAL_DMA_Init(&hdmaDAC1);
+
+    __HAL_LINKDMA(&handleDAC, DMA_Handle1, hdmaDAC1);
+
+    HAL_NVIC_SetPriority(DMA1_Stream5_IRQn, 7, 0);
+    HAL_NVIC_EnableIRQ(DMA1_Stream5_IRQn);
+
     DAC_ChannelConfTypeDef config =
     {
         DAC_TRIGGER_T7_TRGO,

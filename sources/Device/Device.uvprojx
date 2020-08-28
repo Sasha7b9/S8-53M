@@ -1159,11 +1159,6 @@
               <FilePath>.\src\Hardware\HAL\stm32f4xx_hal_conf.h</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_hal_msp.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\stm32f4xx_hal_msp.cpp</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_it.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\HAL\stm32f4xx_it.cpp</FilePath>
@@ -1222,6 +1217,11 @@
               <FileName>HAL_SPI1.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\HAL\HAL_SPI1.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_SRAM.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HAL\HAL_SRAM.cpp</FilePath>
             </File>
             <File>
               <FileName>HAL_TIM2.cpp</FileName>

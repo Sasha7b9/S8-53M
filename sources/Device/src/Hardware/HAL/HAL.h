@@ -85,6 +85,12 @@ struct HAL_EPROM
     static void WriteBufferBytes(uint address, uint8 *buffer, int size);
 };
 
+
+struct HAL_ETH
+{
+    static void Init();
+};
+
 struct HAL_RTC
 {
 public:
@@ -100,6 +106,11 @@ struct HAL_SPI1
 {
     static void Init();
     static void *handle;    // SPI_HandleTypeDef
+};
+
+struct HAL_SRAM
+{
+    static void Init();
 };
 
 struct HAL_HCD
