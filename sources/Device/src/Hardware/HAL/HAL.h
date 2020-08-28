@@ -39,6 +39,12 @@ struct HAL_ADC3
     static void *handle;    // ADC_HandleTypeDef
 };
 
+struct HAL_CRC
+{
+    static void Init();
+    static uint Calculate(uint address = 0x08020000, uint numBytes = 128 * 1024 * 3 / 4);
+};
+
 struct HAL_DAC
 {
     static void Init();
@@ -72,6 +78,8 @@ struct HAL_HCD
 
 struct HAL_TIM2
 {
+    static void Init();
+
     static uint GetTicks();
 
     static uint TimeMS();
@@ -81,6 +89,11 @@ struct HAL_TIM2
     
     // Задержка на timeMS миллисекунд
     static void Delay(uint timeMS);
+};
+
+struct HAL_TIM6
+{
+    static void Init();
 };
 
 struct HAL_TIM7

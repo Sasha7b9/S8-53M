@@ -7,6 +7,7 @@
 #include "Hardware/Hardware.h"
 #include "Hardware/Sound.h"
 #include "Hardware/Timer.h"
+#include "Hardware/HAL/HAL.h"
 #include "Settings/Settings.h"
 #include "Utils/Math.h"
 #include <cstring>
@@ -995,7 +996,7 @@ static void Information_Draw(void)
     Painter::DrawText(x, y, buffer);
     y += dY;
 
-Painter::DrawFormatText(x, y, COLOR_FILL, "CRC32 : %X", Hardware::CalculateCRC32());
+    Painter::DrawFormatText(x, y, COLOR_FILL, "CRC32 : %X", HAL_CRC::Calculate());
 
     dY = -10;
     Painter::DrawStringInCenterRect(0, 190 + dY, 320, 20, "Для получения помощи нажмите и удерживайте кнопку ПОМОЩЬ");
