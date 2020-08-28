@@ -819,14 +819,9 @@
               <FilePath>..\common\Hardware\HAL\cHAL.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_EEPROM.cpp</FileName>
+              <FileName>cHAL_EPROM.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_EEPROM.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>cHAL_OTP.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_OTP.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\cHAL_EPROM.cpp</FilePath>
             </File>
             <File>
               <FileName>cHAL_PINS.cpp</FileName>
@@ -834,9 +829,9 @@
               <FilePath>..\common\Hardware\HAL\cHAL_PINS.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_SRAM.cpp</FileName>
+              <FileName>cHAL_SPI1.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_SRAM.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\cHAL_SPI1.cpp</FilePath>
             </File>
             <File>
               <FileName>cHAL_TIM2.cpp</FileName>
@@ -877,16 +872,6 @@
               <FileName>defines.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\defines.h</FilePath>
-            </File>
-            <File>
-              <FileName>globals.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\globals.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>globals.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\globals.h</FilePath>
             </File>
             <File>
               <FileName>main.cpp</FileName>

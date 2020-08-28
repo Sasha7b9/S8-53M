@@ -1,6 +1,5 @@
 #include "defines.h"
 #include "main.h"
-#include "globals.h"
 #include "FDrive/FDrive.h"
 #include "Hardware/Hardware.h"
 #include "Settings/Settings.h"
@@ -10,6 +9,7 @@
 #include "Panel/Panel.h"
 #include "Hardware/FLASH.h"
 #include <cstdlib>
+#include <stm32f4xx_hal.h>
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

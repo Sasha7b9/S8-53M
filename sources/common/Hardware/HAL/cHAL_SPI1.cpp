@@ -38,6 +38,9 @@ void HAL_SPI1::Init()
     HAL_NVIC_EnableIRQ(EXTI0_IRQn);
 }
 
+
+#ifdef DEVICE
+
 static uint8 dataSPIfromPanel;
 
 void HAL_GPIO_EXTI_Callback(uint16 pin)
@@ -58,3 +61,5 @@ void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *handle)
     uint16 data = Panel::NextData();
     SPI1->DR = data;
 }
+
+#endif

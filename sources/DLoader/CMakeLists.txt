@@ -68,7 +68,15 @@ file(GLOB LIBS_USBH      ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Li
 file(GLOB HARDWARE       src/Hardware/*.h src/Hardware/*.cpp)
 file(GLOB HARDWARE_CMSIS src/Hardware/CMSIS/*)
 file(GLOB HARDWARE_FATFS src/Hardware/FatFS/*)
-file(GLOB HARDWARE_HAL   src/Hardware/HAL/* ../common/Hardware/HAL/HAL.h ../common/Hardware/HAL/cHAL.cpp)
+file(GLOB HARDWARE_HAL   src/Hardware/HAL/*
+                         ../common/Hardware/HAL/HAL.h
+                         ../common/Hardware/HAL/cHAL.cpp
+                         ../common/Hardware/HAL_PINS.h
+                         ../common/Hardware/cHAL_EPROM.cpp
+                         ../common/Hardware/cHAL_PINS.cpp
+                         ../common/Hardware/cHAL_SPI1.cpp
+                         ../common/Hardware/cHAL_TIM2.cpp
+                         ../common/Hardware/cHAL_TIM7.cpp)
 file(GLOB HARDWARE_USBH  src/Hardware/USBH/*)
 file(GLOB SRC            src/*.h src/*.cpp)
 file(GLOB DISPLAY        src/Display/*.h src/Display/*.cpp)

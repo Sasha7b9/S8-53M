@@ -1199,9 +1199,9 @@
               <FilePath>..\common\Hardware\HAL\cHAL_DAC.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_EEPROM.cpp</FileName>
+              <FileName>cHAL_EPROM.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_EEPROM.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\cHAL_EPROM.cpp</FilePath>
             </File>
             <File>
               <FileName>cHAL_OTP.cpp</FileName>

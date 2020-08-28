@@ -1,14 +1,14 @@
 #include "Panel.h"
-#include "Globals.h"
 #include "Controls.h"
 #include "Utils/Math.h"
 #include "Utils/GlobalFunctions.h"
 #include "Settings/Settings.h"
+#include "common/Hardware/HAL/HAL.h"
 #include "Display/Display.h"
 #include "Hardware/Timer.h"
 #include <cstdio>
 #include <cstring>
-
+#include <stm32f4xx_hal.h>
 
 
 #define MAX_DATA            20
@@ -58,7 +58,7 @@ void Panel_Init(void)
     isGPIOA_B.Pin = GPIO_PIN_5;
     HAL_GPIO_Init(GPIOB, &isGPIOA_B);
 
-    HAL_SPI_Init(&handleSPI);
+    HAL_SPI_Init(reinterpret_cast<SPI_HandleTypeDef *>(HAL_SPI1::handle));
 
     HAL_NVIC_SetPriority(SPI1_IRQn, 4, 0);
     HAL_NVIC_EnableIRQ(SPI1_IRQn);
@@ -138,7 +138,7 @@ void HAL_GPIO_EXTI_Callback(uint16 pin)
     // Прерывание на SPI от панели управления
     if(pin == GPIO_PIN_0)
     {
-        HAL_SPI_Receive_IT(&handleSPI, &dataSPIfromPanel, 1);
+        HAL_SPI_Receive_IT(reinterpret_cast<SPI_HandleTypeDef *>(HAL_SPI1::handle), &dataSPIfromPanel, 1);
     }
 }
 
@@ -169,7 +169,7 @@ void EXTI0_IRQHandler(void)
 
 void SPI1_IRQHandler(void)
 {
-    HAL_SPI_IRQHandler(&handleSPI);
+    HAL_SPI_IRQHandler(reinterpret_cast<SPI_HandleTypeDef *>(HAL_SPI1::handle));
 }
 
 #ifdef __cplusplus

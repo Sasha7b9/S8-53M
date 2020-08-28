@@ -60,18 +60,17 @@ void HAL::Init()
 
     HAL_RTC::Init();
 
-    HAL_SPI1::Init();
-
     HAL_TIM6::Init();
 
+    HAL_SRAM::Init();
+
 #endif
+
+    HAL_SPI1::Init();
 
     HAL_ETH::Init();
 
     HAL_HCD::Init();
-
-
-    HAL_SRAM::Init();
 
     HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
 }

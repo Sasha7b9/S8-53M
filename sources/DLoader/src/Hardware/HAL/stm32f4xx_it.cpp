@@ -1,5 +1,4 @@
 #include "defines.h"
-#include "Globals.h"
 #include "common/Hardware/HAL/HAL.h"
 #include <stm32f4xx_hal.h>
 

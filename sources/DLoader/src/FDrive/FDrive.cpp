@@ -1,5 +1,5 @@
 #include "defines.h" 
-#include "globals.h"
+#include "common/Hardware/HAL/HAL.h"
 #include <usbh_def.h>
 #include <ff_gen_drv.h>
 #include <usbh_diskio.h>
@@ -75,7 +75,7 @@ void FDrive_Init(void)
 
 bool FDrive_Update(void)
 {
-    USBH_Process(&handleUSBH);
+    USBH_Process(reinterpret_cast<USBH_HandleTypeDef *>(HAL_USBH::handle));
     if (ms->drive.state == StateDisk_Start)
     {
         if (f_mount(&(ms->drive.USBDISKFatFS), (TCHAR const*)ms->drive.USBDISKPath, 0) == FR_OK)
