@@ -33,7 +33,7 @@ public:
 
     static void ClearFromWarnings();
 
-    static void SetDrawMode(DrawMode mode, pFuncVV func);
+    static void SetDrawMode(DrawMode::E mode, pFuncVV func);
 
     static void SetAddDrawFunction(pFuncVV func);
 

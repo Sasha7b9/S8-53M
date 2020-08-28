@@ -89,11 +89,11 @@ typedef union
     unsigned int            word[2];
 } BitSet64;
 
-typedef struct
+struct StructRelAbs
 {
     int16 rel;
     float abs;
-} StructRelAbs;
+};
 
 #define _bitset(bits)                               \
   ((uint8)(                                         \

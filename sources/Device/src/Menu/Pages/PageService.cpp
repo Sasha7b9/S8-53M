@@ -135,7 +135,7 @@ static const Button bResetSettings
 static void OnPress_ResetSettings(void)
 {
     Panel::Disable();
-    Display::SetDrawMode(DrawMode_Hand, FuncDraw);
+    Display::SetDrawMode(DrawMode::Hand, FuncDraw);
     Timer::Enable(kTimerDrawHandFunction, 100, OnTimerDraw);
 
     if (Panel::WaitPressingButton() == B_Start)
@@ -145,7 +145,7 @@ static void OnPress_ResetSettings(void)
     }
 
     Timer::Disable(kTimerDrawHandFunction);
-    Display::SetDrawMode(DrawMode_Auto, 0);
+    Display::SetDrawMode(DrawMode::Auto, 0);
     Panel::Enable();
 }
 
@@ -962,7 +962,7 @@ void *PageService::Information::GetPointer()
 static void OnPress_Information(void)
 {
     Menu::OpenPageAndSetItCurrent(PageService::Information::GetPointer());
-    Display::SetDrawMode(DrawMode_Hand, Information_Draw);
+    Display::SetDrawMode(DrawMode::Hand, Information_Draw);
 }
 
 static void Information_Draw(void)
@@ -1018,7 +1018,7 @@ const SmallButton sbInformation_Exit
 
 static void OnPress_Information_Exit(void)
 {
-    Display::SetDrawMode(DrawMode_Auto, 0);
+    Display::SetDrawMode(DrawMode::Auto, 0);
     Display::RemoveAddDrawFunction();
 }
 

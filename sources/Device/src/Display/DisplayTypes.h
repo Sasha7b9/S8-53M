@@ -37,11 +37,14 @@
 #define WIDTH_SB                19
 #define LEFT_SB                 299 
 
-typedef enum
+struct DrawMode
 {
-    DrawMode_Auto,
-    DrawMode_Hand
-} DrawMode;
+    enum E
+    {
+        Auto,
+        Hand
+    };
+};
 
 typedef enum
 {

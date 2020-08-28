@@ -2260,9 +2260,9 @@ void Display::AddPoints(uint8 data00, uint8 data01, uint8 data10, uint8 data11)
 
 
 
-void Display::SetDrawMode(DrawMode mode, pFuncVV func)
+void Display::SetDrawMode(DrawMode::E mode, pFuncVV func)
 {
-    funcOnHand = mode == DrawMode_Auto ? 0 : func;
+    funcOnHand = (mode == DrawMode::Auto) ? 0 : func;
 }
 
 
