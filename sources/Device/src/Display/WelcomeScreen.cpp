@@ -6,7 +6,6 @@
 #include "Display/Painter.h"
 #include "Hardware/Timer.h"
 #include "Settings/Settings.h"
-#include <stm32f4xx_hal.h>
 
 
 static Point points[8] =

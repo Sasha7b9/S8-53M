@@ -18,7 +18,6 @@
 #include "Settings/Settings.h"
 #include "Utils/Generator.h"
 #include <cstring>
-#include <stm32f4xx_hal.h>
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1223,7 +1222,7 @@ void FPGA::WriteToAnalog(TypeWriteAnalog type, uint data)
     pinG5.Reset();
     for (int i = 23; i >= 0; i--)
     {
-        DATA_SET((data & (1 << i)) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+        DATA_SET((data & (1 << i)) ? 1 : 0);
         CLC_HI
         CLC_LOW
     }
@@ -1251,7 +1250,7 @@ void FPGA::WriteToDAC(TypeWriteDAC type, uint16 data)
     pinG7.Reset();
     for (int i = 15; i >= 0; i--)
     {
-        DATA_SET((data & (1 << i)) ? GPIO_PIN_SET : GPIO_PIN_RESET);
+        DATA_SET((data & (1 << i)) ? 1 : 0);
         CLC_HI
         CLC_LOW
     }
