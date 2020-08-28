@@ -8,7 +8,7 @@
 #define KEY_VALUE           0xAAAA5555
 
 // Flash configuration
-#define MAIN_PROGRAM_START_ADDRESS  (uint)0x8020000
+
 #define MAIN_PROGRAM_PAGE_NUMBER    21
 #define NUM_OF_PAGES                256
 #define FLASH_PAGE_SIZE             2048

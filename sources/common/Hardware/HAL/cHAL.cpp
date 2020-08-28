@@ -134,3 +134,32 @@ void HAL::Error()
     {
     }
 }
+
+
+void HAL::SystemReset()
+{
+    HAL_NVIC_SystemReset();
+}
+
+
+void HAL::DeInit()
+{
+    HAL_DeInit();
+}
+
+
+void HAL::JumpToApplication()
+{
+#define MAIN_PROGRAM_START_ADDRESS  (uint)0x8020000
+
+    typedef void(*pFunction)(void);
+
+    pFunction JumpToApplication;
+
+    __disable_irq();
+    // Теперь переходим на основную программу
+    JumpToApplication = (pFunction)(*(__IO uint *)(MAIN_PROGRAM_START_ADDRESS + 4));
+    __set_MSP(*(__IO uint *)MAIN_PROGRAM_START_ADDRESS);
+    __enable_irq();
+    JumpToApplication();
+}

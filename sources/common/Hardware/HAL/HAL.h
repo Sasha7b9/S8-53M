@@ -56,7 +56,11 @@ struct PackedTime
 struct HAL
 {
     static void Init();
+    static void DeInit();
     static void Error();
+    static void SystemReset();
+    // Функция используется в загрузчике для перехода на основную программу
+    static void JumpToApplication();
 };
 
 struct HAL_PINS

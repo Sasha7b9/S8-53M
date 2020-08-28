@@ -10,19 +10,12 @@
 #include "Hardware/FLASH.h"
 #include "common/Hardware/HAL/HAL.h"
 #include <cstdlib>
-#include <stm32f4xx_hal.h>
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define FILE_NAME "S8-53.bin"
 
-typedef void(*pFunction)(void);
-
-
-
 MainStruct *ms;
-
-
 
 void Upgrade(void);
 
@@ -30,8 +23,6 @@ void Upgrade(void);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main(void)
 {
-    pFunction JumpToApplication;
-
     ms = (MainStruct *)malloc(sizeof(MainStruct));
     ms->percentUpdate = 0.0f;
 
@@ -47,11 +38,11 @@ int main(void)
 
     Timer_Enable(kTemp, 10, Display_Update);
 
-    uint timeStart = HAL_GetTick();
+    uint timeStart = HAL_TIM2::TimeMS();
 
     FDrive_Init();
 
-    while (HAL_GetTick() - timeStart < TIME_WAIT && !FDrive_Update())
+    while (HAL_TIM2::TimeMS() - timeStart < TIME_WAIT && !FDrive_Update())
     {
     }
 
@@ -59,7 +50,7 @@ int main(void)
         (ms->drive.active && ms->state != State_Mount))     // или перешла в активное состояние, по почему-то не запустился процесс монтирования
     {
         free(ms);
-        NVIC_SystemReset();
+        HAL::SystemReset();
     }
 
     if (ms->state == State_Mount)                           // Это означает, что диск удачно примонтирован
@@ -106,16 +97,11 @@ int main(void)
 
     Display_Update();
 
-    HAL_DeInit();
+    HAL::DeInit();
 
     free(ms);
 
-    __disable_irq();
-    // Теперь переходим на основную программу
-    JumpToApplication = (pFunction)(*(__IO uint*)(MAIN_PROGRAM_START_ADDRESS + 4));
-    __set_MSP(*(__IO uint*)MAIN_PROGRAM_START_ADDRESS);
-    __enable_irq();
-    JumpToApplication();
+    HAL::JumpToApplication();
 }
 
 
