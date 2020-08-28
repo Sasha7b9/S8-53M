@@ -3,7 +3,6 @@
 #include "Hardware/FSMC.h"
 #include "Settings/Settings.h"
 #include "Utils/Math.h"
-#include <stm32f4xx_hal.h>
 
 
 static bool inverseColors = false;
@@ -136,27 +135,13 @@ void Painter_DrawDashedHLine(int y, int x0, int x1, int deltaFill, int deltaEmpt
 }
 
 
-void Painter_SendToDisplay(uint8 *bytes, int numBytes)
+void Painter_SendToDisplay(uint8 *, int)
 {
-    for (int i = 0; i < numBytes; i += 4)
-    {
-        while (HAL_GPIO_ReadPin(GPIOG, GPIO_PIN_11) == GPIO_PIN_RESET) {};
-        Timer_PauseOnTicks(50);
-        *ADDR_CDISPLAY = *bytes++;
-        *ADDR_CDISPLAY = *bytes++;
-        *ADDR_CDISPLAY = *bytes++;
-        *ADDR_CDISPLAY = *bytes++;
-    }
 }
 
 
-static void Get4Bytes(uint8 bytes[4])
+static void Get4Bytes(uint8 [4])
 {
-    while (HAL_GPIO_ReadPin(GPIOG, GPIO_PIN_11) == GPIO_PIN_RESET) {};
-    bytes[0] = *ADDR_CDISPLAY;
-    bytes[1] = *ADDR_CDISPLAY;
-    bytes[2] = *ADDR_CDISPLAY;
-    bytes[3] = *ADDR_CDISPLAY;
 }
 
 
@@ -529,15 +514,9 @@ void Get8Points(int x, int y, uint8 buffer[4])
 }
 
 
-uint8 Get2Points(int x, int y)
+uint8 Get2Points(int, int)
 {
-    while (HAL_GPIO_ReadPin(GPIOG, GPIO_PIN_11) == GPIO_PIN_RESET) {};
-    *ADDR_CDISPLAY = GET_POINT;
-    *ADDR_CDISPLAY = (uint8)x;
-    *ADDR_CDISPLAY = (uint8)(x >> 8);
-    *ADDR_CDISPLAY = (uint8)y;
-    while (HAL_GPIO_ReadPin(GPIOG, GPIO_PIN_11) == GPIO_PIN_RESET) {};
-    return *ADDR_CDISPLAY;
+    return 0;
 }
 
 
