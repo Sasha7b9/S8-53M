@@ -1,8 +1,6 @@
 #include "defines.h"
 #include "Timer.h"
 #include "common/Hardware/HAL/HAL.h"
-#include <stm32f4xx_hal.h>
-
 
 
 static volatile uint timerMS = 0;
@@ -27,14 +25,6 @@ void Timer_PauseOnTime(uint timeMS)
 {
     uint time = timerMS;
     while(timerMS - time < timeMS) {};
-}
-
-
-void Timer_StartMultiMeasurement()
-{
-    TIM2->CR1 &= static_cast<uint16>(~TIM_CR1_CEN);
-    TIM2->CNT = 0;
-    TIM2->CR1 |= TIM_CR1_CEN; 
 }
 
 

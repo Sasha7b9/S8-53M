@@ -44,8 +44,6 @@ void Timer_Pause(TypeTimer type);
 void Timer_Continue(TypeTimer type);
 /// С помощью этой функции можно узнать, работает ли таймер
 bool Timer_IsRun(TypeTimer type);
-/// Запускает счётчик для измерения малых отрезков времени.
-void Timer_StartMultiMeasurement(void);
 /// Устанавливает стартовую точку логгирования. Далее вызовы Timer_LogPoint засекают временные интервалы от это точки.
 void Timer_StartLogging(void);               
 
