@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "Log.h"
+#include "common/Log.h"
 #include "Settings/SettingsTypes.h"
 #include "Menu/MenuItems.h"
 #include "Panel/Panel.h"

@@ -14,7 +14,7 @@
 #include "common/Hardware/HAL/HAL.h"
 #include "FDrive/FDrive.h"
 #include "Panel/Panel.h"
-#include "Log.h"
+#include "common/Log.h"
 #include "Hardware/Timer.h"
 #include <cstring>
 

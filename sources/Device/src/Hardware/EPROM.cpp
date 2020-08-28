@@ -1,6 +1,6 @@
 #include "defines.h"
 #include "common/Hardware/HAL/HAL.h"
-#include "Log.h"
+#include "common/Log.h"
 #include "Hardware/EPROM.h"
 #include "Menu/MenuItems.h"
 #include "Settings/Settings.h"

@@ -3,7 +3,7 @@
 #include "Hardware/Timer.h"
 #include "common/Hardware/HAL/HAL.h"
 #include "Utils/Math.h"
-#include "Log.h"
+#include "common/Log.h"
 #include "Settings/Settings.h"
 #include <cmath>
 #include "globals.h"

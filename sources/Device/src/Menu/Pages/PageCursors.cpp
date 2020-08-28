@@ -10,7 +10,7 @@
 #include "Utils/ProcessingSignal.h"
 #include "Utils/GlobalFunctions.h"
 #include "Hardware/Sound.h"
-#include "Log.h"
+#include "common/Log.h"
 #include "Display/Painter.h"
 #include <cmath>
 #include <cstring>

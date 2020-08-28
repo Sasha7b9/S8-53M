@@ -54,20 +54,20 @@ void HAL_RTC::Init()
 
     if (HAL_RCC_OscConfig(&oscIS) != HAL_OK)
     {
-        HARDWARE_ERROR
+        HAL::Error();
     }
 
     periphClkIS.PeriphClockSelection = RCC_PERIPHCLK_RTC;
     periphClkIS.RTCClockSelection = RCC_RTCCLKSOURCE_LSE;
     if (HAL_RCCEx_PeriphCLKConfig(&periphClkIS) != HAL_OK)
     {
-        HARDWARE_ERROR
+        HAL::Error();
     }
     __HAL_RCC_RTC_ENABLE();
 
     if (HAL_RTC_Init((RTC_HandleTypeDef *)(&handle)) != HAL_OK)
     {
-        HARDWARE_ERROR
+        HAL::Error();
     }
 
     if (HAL_RTCEx_BKUPRead((RTC_HandleTypeDef *)&handle, RTC_BKP_DR0) != VALUE_FOR_RTC)

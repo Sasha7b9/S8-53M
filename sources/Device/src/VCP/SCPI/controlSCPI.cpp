@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "Log.h"
+#include "common/Log.h"
 #include "VCP/SCPI/SCPI.h"
 #include "Panel/Panel.h"
 #include "Utils/Strings.h"

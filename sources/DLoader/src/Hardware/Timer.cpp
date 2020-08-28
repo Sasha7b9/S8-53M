@@ -1,10 +1,11 @@
 #include "defines.h"
 #include "Timer.h"
+#include "common/Hardware/HAL/HAL.h"
 #include <stm32f4xx_hal.h>
 
 
 
-static volatile uint gTimerMS = 0;
+static volatile uint timerMS = 0;
 static void (*f[TypeTimerSize])() = {0};
 static int reactionTimeMS[TypeTimerSize] = {0};
 static int currentTimeMS[TypeTimerSize] = {0};
@@ -24,8 +25,8 @@ void Timer_PauseOnTicks(uint numTicks)
 
 void Timer_PauseOnTime(uint timeMS)
 {
-    uint time = gTimerMS;
-    while(gTimerMS - time < timeMS) {};
+    uint time = timerMS;
+    while(timerMS - time < timeMS) {};
 }
 
 
@@ -95,7 +96,7 @@ bool Timer_IsRun(TypeTimer type)
 
 void Timer_Update1ms()
 {
-    gTimerMS++;
+    timerMS++;
     for(int num = 0; num < TypeTimerSize; num++)
     {
         if(isRun[num])
@@ -114,7 +115,7 @@ void Timer_Update1ms()
 
 void Timer_Update10ms()
 {
-    gTimerMS += 10;
+    timerMS += 10;
     for(int num = 0; num < TypeTimerSize; num++)
     {
         if(isRun[num])

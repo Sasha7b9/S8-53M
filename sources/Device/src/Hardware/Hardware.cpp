@@ -4,7 +4,7 @@
 #include "Utils/GlobalFunctions.h"
 #include "Hardware/Timer.h"
 #include "common/Hardware/HAL/HAL.h"
-#include "Log.h"
+#include "common/Log.h"
 #include "Ethernet/Ethernet.h"
 #include "Display/Display.h"
 #include "FDrive/FDrive.h"

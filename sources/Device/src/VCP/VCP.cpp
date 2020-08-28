@@ -1,6 +1,6 @@
 #include "defines.h"
 #include "VCP.h"
-#include "Log.h"
+#include "common/Log.h"
 #include "Utils/Math.h"
 #include "SCPI/SCPI.h"
 #include "Hardware/Timer.h"

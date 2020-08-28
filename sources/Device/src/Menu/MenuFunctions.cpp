@@ -17,7 +17,7 @@
 #include "Settings/Settings.h"
 #include "Utils/Math.h"
 #include "Panel/Panel.h"
-#include "Log.h"
+#include "common/Log.h"
 #include "Hardware/Sound.h"
 
 

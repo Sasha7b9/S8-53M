@@ -1,6 +1,6 @@
 #include "GlobalFunctions.h"
 #include "Settings/Settings.h"
-#include "Log.h"
+#include "common/Log.h"
 #include "Display/Symbols.h"
 #include "Math.h"
 #include <cmath>

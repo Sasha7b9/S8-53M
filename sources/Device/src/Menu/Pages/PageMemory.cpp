@@ -18,7 +18,7 @@
 #include "FDrive/FDrive.h"
 #include "Hardware/EPROM.h"
 #include "Hardware/Sound.h"
-#include "Log.h"
+#include "common/Log.h"
 #include "Tables.h"
 #include <cstring>
 #include <cstdio>

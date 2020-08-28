@@ -2,7 +2,7 @@
 #include "Globals.h"
 #include "VCP/VCP.h"
 #include "VCP/SCPI/SCPI.h"
-#include "Log.h"
+#include "common/Log.h"
 #include "Hardware/Timer.h"
 #include "common/Hardware/HAL/HAL.h"
 

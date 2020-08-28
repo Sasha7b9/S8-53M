@@ -1,7 +1,7 @@
 #include "ProcessingSignal.h"
 #include "Math.h"
 #include "GlobalFunctions.h"
-#include "Log.h"
+#include "common/Log.h"
 #include "Hardware/Timer.h"
 #include "Menu/Pages/PageMemory.h"
 #include "Settings/Settings.h"

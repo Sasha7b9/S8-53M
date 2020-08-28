@@ -8,7 +8,7 @@
 #include "Display/Painter.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
-#include "Log.h"
+#include "common/Log.h"
 #include <cstring>
 #include <cstdio>
 

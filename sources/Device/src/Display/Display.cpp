@@ -26,7 +26,7 @@
 #include "Utils/GlobalFunctions.h"
 #include "Utils/ProcessingSignal.h"
 #include "Hardware/Timer.h"
-#include "Log.h"
+#include "common/Log.h"
 #include "PainterMem.h"
 #include <cmath>
 #include <limits>

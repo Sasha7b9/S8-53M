@@ -3,6 +3,7 @@
 #include "Settings/SettingsTypes.h"
 #include "Settings/SettingsChannel.h"
 #include "Settings/SettingsTime.h"
+#include "common/Hardware/HAL/HAL.h"
 
 
 #define CLIENT_LAN_IS_CONNECTED  (gBF.clientLANisConnected)
@@ -179,16 +180,6 @@ typedef struct
     StateWorkFPGA stateWorkBeforeCalibration;
     StateCalibration stateCalibration;          // Текущее состояние калибровки. Используется в процессе калибровки.
 } StateFPGA;
-
-struct PackedTime
-{
-    uint hours : 5;
-    uint minutes : 6;
-    uint seconds : 6;
-    uint year : 7;
-    uint month : 4;
-    uint day : 5;
-};
 
 struct DataSettings
 {

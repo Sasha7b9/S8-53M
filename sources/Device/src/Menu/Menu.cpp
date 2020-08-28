@@ -16,7 +16,7 @@
 #include "Utils/Math.h"
 #include "Settings/Settings.h"
 #include "Hardware/Timer.h"
-#include "Log.h"
+#include "common/Log.h"
 #include "FPGA/FPGA.h"
 #include "Hardware/Hardware.h"
 #include "Hardware/Sound.h"

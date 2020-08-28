@@ -23,7 +23,7 @@ include_directories(..
                     ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc
                     )
 
-add_definitions(-DSTM32F429xx -DUSE_HAL_DRIVER)
+add_definitions(-DSTM32F429xx -DUSE_HAL_DRIVER -DDEVICE)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -MP -Wall")
 
@@ -85,7 +85,7 @@ file(GLOB HARDWARE_HAL   src/Hardware/HAL/* ../common/Hardware/HAL/*)
 file(GLOB HARDWARE_LWIP  src/Hardware/LwIP/*)
 file(GLOB HARDWARE_USBD  src/Hardware/USBD/*)
 file(GLOB HARDWARE_USBH  src/Hardware/USBH/*)
-file(GLOB SRC            src/*.h src/*.cpp)
+file(GLOB SRC            src/*.h src/*.cpp ../common/Log.*)
 file(GLOB DISPLAY        src/Display/*.h src/Display/*.cpp)
 file(GLOB DISPLAY_FONT   src/Display/font/*)
 file(GLOB ETHERNET       src/Ethernet/*)

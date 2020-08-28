@@ -16,8 +16,6 @@ void *HAL_USBH::handle = &handleUSBH;
 static PCD_HandleTypeDef handlePCD;
 void *HAL_PCD::handle = &handlePCD;
 
-static CRC_HandleTypeDef handleCRC = { CRC };
-
 
 void HAL::Init()
 {
@@ -53,19 +51,25 @@ void HAL::Init()
 
     HAL_PINS::Init();
 
+
+#ifdef DEVICE
+
     HAL_ADC3::Init();
 
     HAL_DAC::Init();
 
-    HAL_ETH::Init();
-
-    HAL_HCD::Init();
+    HAL_RTC::Init();
 
     HAL_SPI1::Init();
 
     HAL_TIM6::Init();
 
-    HAL_RTC::Init();
+#endif
+
+    HAL_ETH::Init();
+
+    HAL_HCD::Init();
+
 
     HAL_SRAM::Init();
 
@@ -90,7 +94,7 @@ static void SystemClock_Config()
     if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
     {
         // Initialization Error
-        HARDWARE_ERROR
+        HAL::Error();
     }
     // Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2 clocks dividers
     RCC_ClkInitStruct.ClockType = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
@@ -101,7 +105,7 @@ static void SystemClock_Config()
     if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_3) != HAL_OK)
     {
         // Initialization Error
-        HARDWARE_ERROR
+        HAL::Error();
     }
 }
 
@@ -116,19 +120,16 @@ void HAL_HCD::Init()
 }
 
 
-void HAL_CRC::Init()
-{
-    HAL_CRC_Init(&handleCRC);
-}
-
-
-uint HAL_CRC::Calculate(uint address, uint numBytes)
-{
-    return HAL_CRC_Calculate(&handleCRC, (uint *)address, numBytes);
-}
-
 void HAL_ETH::Init()
 {
     /* Output HSE clock (25MHz) on MCO pin (PA8) to clock the PHY */
     HAL_RCC_MCOConfig(RCC_MCO1, RCC_MCO1SOURCE_HSE, RCC_MCODIV_1);
+}
+
+
+void HAL::Error()
+{
+    while(1)
+    {
+    }
 }

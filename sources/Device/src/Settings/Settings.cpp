@@ -9,7 +9,7 @@
 #include "Utils/GlobalFunctions.h"
 #include "Display/Display.h"
 #include "Menu/Menu.h"
-#include "Log.h"
+#include "common/Log.h"
 #include <cstring>
 
 

@@ -5,7 +5,7 @@
 #include "Display/Painter.h"
 #include "Utils/Math.h"
 #include "Settings/Settings.h"
-#include "Hardware/HAL/HAL.h"
+#include "common/Hardware/HAL/HAL.h"
 #include <cmath>
 
 
@@ -71,8 +71,8 @@ void Display_Update(void)
 {
     ms->display.isRun = true;
 
-    uint dT = HAL_TIM::GetTimeMS() - ms->display.timePrev;
-    ms->display.timePrev = HAL_TIM::GetTimeMS();
+    uint dT = HAL_TIM2::TimeMS() - ms->display.timePrev;
+    ms->display.timePrev = HAL_TIM2::TimeMS();
 
     Painter_BeginScene(COLOR_BLACK);
 
@@ -175,10 +175,10 @@ static void DrawBigMNIPI(void)
     if (first)
     {
         first = false;
-        startTime = HAL_TIM::GetTimeMS();
+        startTime = HAL_TIM2::TimeMS();
     }
 
-    uint time = HAL_TIM::GetTimeMS() - startTime;
+    uint time = HAL_TIM2::TimeMS() - startTime;
 
     int numColor = 0;
     LIMITATION(numColor, static_cast<int>(static_cast<float>(time) / (float)TIME_WAIT * 13.0f), 0, 13);

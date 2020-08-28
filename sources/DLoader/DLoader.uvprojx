@@ -336,9 +336,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls>--cpp</MiscControls>
-              <Define>USE_HAL_DRIVER, STM32F429xx, __cplusplus</Define>
+              <Define>USE_HAL_DRIVER, STM32F429xx, __cplusplus, LOADER</Define>
               <Undefine></Undefine>
-              <IncludePath>.\src;.\src\libs;.\src\Hardware\FatFS;.\src\Hardware\HAL;.\src\Hardware\USBH;..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\common\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\common\STM32Cube_F4\Drivers\CMSIS\Include;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc;..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src;..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\drivers</IncludePath>
+              <IncludePath>.\src;.\src\libs;.\src\Hardware\FatFS;.\src\Hardware\HAL;.\src\Hardware\USBH;..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\common\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\common\STM32Cube_F4\Drivers\CMSIS\Include;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc;..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src;..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\drivers;..</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -794,11 +794,6 @@
               <FilePath>.\src\Hardware\HAL\stm32f4xx_hal_conf.h</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_hal_msp.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\stm32f4xx_hal_msp.cpp</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\Hardware\HAL\stm32f4xx_it.c</FilePath>
@@ -811,12 +806,47 @@
             <File>
               <FileName>HAL.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL.h</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL.h</FilePath>
             </File>
             <File>
-              <FileName>HAL.cpp</FileName>
+              <FileName>HAL_PINS.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_PINS.h</FilePath>
+            </File>
+            <File>
+              <FileName>cHAL.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\cHAL.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>cHAL_EEPROM.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\cHAL_EEPROM.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>cHAL_OTP.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\cHAL_OTP.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>cHAL_PINS.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\cHAL_PINS.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>cHAL_SRAM.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\cHAL_SRAM.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>cHAL_TIM2.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\cHAL_TIM2.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>cHAL_TIM7.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\cHAL_TIM7.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -867,6 +897,16 @@
               <FileName>main.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\main.h</FilePath>
+            </File>
+            <File>
+              <FileName>Log.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Log.h</FilePath>
+            </File>
+            <File>
+              <FileName>cLog.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\cLog.cpp</FilePath>
             </File>
           </Files>
         </Group>

@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "Log.h"
+#include "common/Log.h"
 #include "SCPI.h"
 #include "Utils/Strings.h"
 #include "Utils/GlobalFunctions.h"

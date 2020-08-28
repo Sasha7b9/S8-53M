@@ -1,11 +1,11 @@
-#include "Log.h"
+#include "common/Log.h"
 #include "Display/Display.h"
 #include "Settings/Settings.h"
-#include "VCP/VCP.h"
 #include <cstdarg>
 #include <cstdio>
 #include <cstring>
 
+#ifdef DEVICE
 
 static bool loggerUSB = false;
 
@@ -66,3 +66,10 @@ void Log_EnableLoggerUSB(bool enable)
 {
     loggerUSB = enable;
 }
+#else
+
+void Log_Error(const char *, const char *, int, char *, ...)
+{
+}
+
+#endif

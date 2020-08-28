@@ -5,7 +5,7 @@
 #include "Hardware/Timer.h"
 #include "common/Hardware/HAL/HAL.h"
 #include "Display/Display.h"
-#include "Log.h"
+#include "common/Log.h"
 #include "Settings/Settings.h"
 
 

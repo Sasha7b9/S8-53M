@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "Log.h"
+#include "common/Log.h"
 #include "Painter.h"
 #include "Font/font.h"
 #include "Hardware/Timer.h"

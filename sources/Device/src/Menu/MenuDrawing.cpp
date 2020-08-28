@@ -15,7 +15,7 @@
 #include "Utils/Math.h"
 #include "Utils/Measures.h"
 #include "Hardware/Timer.h"
-#include "Log.h"
+#include "common/Log.h"
 #include <cstring>
 #include <cstdio>
 

@@ -1,4 +1,4 @@
-#include "Log.h"
+#include "common/Log.h"
 #include "FPGA/FPGA.h"
 #include "Hardware/Sound.h"
 #include "Hardware/Timer.h"

@@ -1,7 +1,11 @@
 #include "defines.h"
-#include "Log.h"
+#include "common/Log.h"
 #include "common/Hardware/HAL/HAL.h"
 #include <stm32f4xx_hal.h>
+
+#ifdef LOADER
+static bool SOUND_IS_BEEP = false;
+#endif
 
 
 void HAL_EPROM::ClearFlags()
@@ -72,7 +76,7 @@ void HAL_EPROM::WriteBufferBytes(uint address, uint8 *buffer, int size)
     {
         if (HAL_FLASH_Program(TYPEPROGRAM_BYTE, address, (uint64_t)(buffer[i])) != HAL_OK)
         {
-            HARDWARE_ERROR;
+            HAL::Error();
         }
         address++;
     }

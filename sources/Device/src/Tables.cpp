@@ -1,7 +1,7 @@
 #include "defines.h"
 #include "Settings/SettingsTypes.h"
 #include "Settings/Settings.h"
-#include "Log.h"
+#include "common/Log.h"
 #include "Tables.h"
 #include "Utils/GlobalFunctions.h"
 #include "Display/font/Font.h"

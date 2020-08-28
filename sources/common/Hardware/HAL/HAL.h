@@ -11,6 +11,15 @@ extern Pin pinG7;
 extern Pin pinLED;
 extern Pin pinDisplayReady;
 
+struct PackedTime
+{
+    uint hours : 5;
+    uint minutes : 6;
+    uint seconds : 6;
+    uint year : 7;
+    uint month : 4;
+    uint day : 5;
+};
 
 /**
   * gTimerTics - количество тиков, прошедших с момента последнего вызова функции Timer_StartMultiMeasurement().
@@ -47,6 +56,7 @@ extern Pin pinDisplayReady;
 struct HAL
 {
     static void Init();
+    static void Error();
 };
 
 struct HAL_PINS

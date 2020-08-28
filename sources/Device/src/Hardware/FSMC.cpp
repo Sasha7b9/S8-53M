@@ -2,8 +2,7 @@
 #include "FPGA/FPGA_Types.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
-#include "Log.h"
-
+#include "common/Log.h"
 
 
 static const char *addrNamesForWrite[32] =

@@ -2,7 +2,7 @@
 #include "Colors.h"
 #include "Painter.h"
 #include "font/Font.h"
-#include "Log.h"
+#include "common/Log.h"
 #include "Ethernet/Ethernet.h"
 #include "Ethernet/TcpSocket.h"
 #include "Hardware/Timer.h"

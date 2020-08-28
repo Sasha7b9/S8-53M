@@ -1,6 +1,7 @@
 project (DLoader)
 
-include_directories(src
+include_directories(..
+                    src
                     src/Hardware/FatFS
                     src/Hardware/HAL
                     src/Hardware/USBH
@@ -18,7 +19,7 @@ include_directories(src
                     ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc
                     )
 
-add_definitions(-DSTM32F429xx)
+add_definitions(-DSTM32F429xx -DUSE_HAL_DRIVER -DLOADER)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -MP -Wall")
 
@@ -67,7 +68,7 @@ file(GLOB LIBS_USBH      ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Li
 file(GLOB HARDWARE       src/Hardware/*.h src/Hardware/*.cpp)
 file(GLOB HARDWARE_CMSIS src/Hardware/CMSIS/*)
 file(GLOB HARDWARE_FATFS src/Hardware/FatFS/*)
-file(GLOB HARDWARE_HAL   src/Hardware/HAL/*)
+file(GLOB HARDWARE_HAL   src/Hardware/HAL/* ../common/Hardware/HAL/HAL.h ../common/Hardware/HAL/cHAL.cpp)
 file(GLOB HARDWARE_USBH  src/Hardware/USBH/*)
 file(GLOB SRC            src/*.h src/*.cpp)
 file(GLOB DISPLAY        src/Display/*.h src/Display/*.cpp)
@@ -90,7 +91,7 @@ source_group(Hardware                FILES ${HARDWARE})
 source_group(Hardware\\CMSIS         FILES ${HARDWARE_CMSIS})
 source_group(Hardware\\HAL           FILES ${HARDWARE_HAL})
 source_group(Hardware\\USBH          FILES ${HARDWARE_USBH})
-source_group(src                     FILES ${SRC})
+source_group(src                     FILES ${SRC} ../co)
 source_group(Display                 FILES ${DISPLAY})
 source_group(Display\\font           FILES ${DISPLAY_FONT})
 source_group(FDrive                  FILES ${FDRIVE})
