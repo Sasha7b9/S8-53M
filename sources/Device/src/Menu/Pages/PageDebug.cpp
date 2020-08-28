@@ -6,6 +6,7 @@
 #include "Hardware/EPROM.h"
 #include "Hardware/FSMC.h"
 #include "Hardware/Sound.h"
+#include "Hardware/HAL/HAL.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
 #include "Menu/Pages/PageDebug.h"
@@ -962,7 +963,7 @@ static void Draw_EnterSerialNumber(void)
 
     // Теперь выведем информацию об оставшемся месте в OTP-памяти для записи
 
-    int allShots = OTP::GetSerialNumber(buffer);
+    int allShots = HAL_OTP::GetSerialNumber(buffer);
 
     Painter::DrawFormatText(x0 + deltaX, y0 + 130, COLOR_FILL, "Текущий сохранённый номер %s", buffer[0] == 0 ? "-- ----" : buffer);
 
@@ -1048,7 +1049,7 @@ static void OnPress_SerialNumber_Save(void)
 
     std::snprintf(stringSN, 19, "%02d %04d", s->number, s->year);
 
-    if (!OTP::SaveSerialNumber(stringSN))
+    if (!HAL_OTP::SaveSerialNumber(stringSN))
     {
         Display::ShowWarningBad(FullyCompletedOTP);
     }

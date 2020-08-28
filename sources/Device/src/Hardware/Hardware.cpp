@@ -11,10 +11,6 @@
 #include "Panel/Panel.h"
 
 
-static void SystemClock_Config();
-
-
-
 #ifdef __cplusplus
 extern "C" {
 #endif

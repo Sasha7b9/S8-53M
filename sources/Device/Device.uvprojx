@@ -1194,6 +1194,16 @@
               <FilePath>.\src\Hardware\HAL\HAL_DAC.cpp</FilePath>
             </File>
             <File>
+              <FileName>HAL_EEPROM.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HAL\HAL_EEPROM.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_OTP.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HAL\HAL_OTP.cpp</FilePath>
+            </File>
+            <File>
               <FileName>HAL_PINS.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\HAL\HAL_PINS.cpp</FilePath>

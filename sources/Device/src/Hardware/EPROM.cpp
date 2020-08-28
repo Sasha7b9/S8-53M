@@ -1,15 +1,13 @@
 #include "defines.h"
 #include "Log.h"
 #include "Hardware/EPROM.h"
+#include "Hardware/HAL/HAL.h"
 #include "Menu/MenuItems.h"
 #include "Settings/Settings.h"
 #include <cstring>
-#include <stm32f4xx_hal.h>
 
 
 
-#define CLEAR_FLAGS \
-__HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP | FLASH_FLAG_OPERR | FLASH_FLAG_WRPERR | FLASH_FLAG_PGAERR | FLASH_FLAG_PGPERR | FLASH_FLAG_PGSERR)
 
 
 struct RecordConfig
@@ -44,7 +42,7 @@ void EPROM::PrepareSectorForData()
     EraseSector(ADDR_SECTOR_DATA_MAIN);
     for (int i = 0; i < MAX_NUM_SAVED_WAVES; i++)
     {
-        WriteWord(startDataInfo + i * 4, 0);
+        HAL_EPROM::WriteWord(startDataInfo + i * 4, 0);
     }
 }
 
@@ -63,7 +61,7 @@ bool EPROM::LoadSettings(void)
             Settings и вызываем Flash_SaveSettings().
     */
 
-    CLEAR_FLAGS;
+    HAL_EPROM::ClearFlags();
 
     if(TheFirstInclusion())                                         // Если это первое включение
     {                                                               // то делаем предварительные приготовления
@@ -85,7 +83,7 @@ bool EPROM::LoadSettings(void)
         {                                                                                   // за пределы сектора (глюк предыдущей версии сохранения)
             --record;                                                                       // то воспользуемся предыдущими сохранёнными настройками
         }
-        std::memcpy(&set, (const void *)(record->addrData - 4), static_cast<size_t>(record->sizeData));               // Считываем их
+        std::memcpy(&set, (const void *)(record->addrData - 4), static_cast<uint>(record->sizeData));               // Считываем их
         EraseSector(ADDR_SECTOR_SETTINGS);                                                  // Стираем сектор настроек
         EPROM::SaveSettings(true);                                                           // И сохраняем настройки в новом формате
     }
@@ -102,7 +100,7 @@ bool EPROM::LoadSettings(void)
         
         if (addressPrev != 0)                   // Если по этому адресу что-то записано
         {
-            std::memcpy(&set, (const void *)addressPrev, (size_t)READ_WORD(addressPrev));    // Счтываем сохранённые настройки
+            std::memcpy(&set, (const void *)addressPrev, (uint)READ_WORD(addressPrev));    // Счтываем сохранённые настройки
             return true;
         }
     }
@@ -115,7 +113,7 @@ void EPROM::WriteAddressDataInRecord(RecordConfig *record)
 {
     uint address = (record == FirstRecord()) ? ADDR_FIRST_SET : (record - 1)->addrData + (record - 1)->sizeData;
 
-    WriteWord((uint)(&record->addrData), address);
+    HAL_EPROM::WriteWord((uint)(&record->addrData), address);
 }
 
 
@@ -126,7 +124,7 @@ void EPROM::SaveSettings(bool verifyLoadede)
         return;
     }
 
-    CLEAR_FLAGS;
+    HAL_EPROM::ClearFlags();
 
     set.size = sizeof(set);
 
@@ -144,7 +142,7 @@ void EPROM::SaveSettings(bool verifyLoadede)
         address = ADDR_SECTOR_SETTINGS;                                         // и сохранять настройки будем прямо в начало сектора
     }
 
-    WriteBufferBytes(address, (uint8 *)&set, sizeof(set));                      // И банально сохраняем настройки
+    HAL_EPROM::WriteBufferBytes(address, (uint8 *)&set, sizeof(set));                      // И банально сохраняем настройки
 }
 
 
@@ -254,31 +252,14 @@ bool EPROM::ExistData(int num)
 void EPROM::DeleteData(int num)
 {
     uint address = FindActualDataInfo();
-    WriteWord(address + num * 4, 0);
+    HAL_EPROM::WriteWord(address + num * 4, 0);
 }
 
 
 void EPROM::EraseData()
 {
-    CLEAR_FLAGS;
-
-    HAL_FLASH_Unlock();
-
-    FLASH_EraseInitTypeDef flashITD;
-    flashITD.TypeErase = TYPEERASE_SECTORS;
-    flashITD.Sector = FLASH_SECTOR_8;
-    flashITD.NbSectors = 2;
-    flashITD.VoltageRange = VOLTAGE_RANGE_3;
-
-    uint error = 0;
-
-    while(SOUND_IS_BEEP) {};
-
-    HAL_FLASHEx_Erase(&flashITD, &error);
-
+    HAL_EPROM::EraseSector(8);
     PrepareSectorForData();
-
-    HAL_FLASH_Lock();
 }
 
 
@@ -311,7 +292,7 @@ void EPROM::CompactMemory()
     uint dataInfoRel = FindActualDataInfo() - ADDR_SECTOR_DATA_MAIN;
 
     EraseSector(ADDR_SECTOR_DATA_HELP);
-    WriteBufferBytes(ADDR_SECTOR_DATA_HELP, (uint8*)ADDR_SECTOR_DATA_MAIN, 1024 * 128);
+    HAL_EPROM::WriteBufferBytes(ADDR_SECTOR_DATA_HELP, (uint8*)ADDR_SECTOR_DATA_MAIN, 1024 * 128);
     PrepareSectorForData();
 
     uint addressDataInfo = ADDR_SECTOR_DATA_HELP + dataInfoRel;
@@ -384,23 +365,23 @@ void EPROM::SaveData(int num, DataSettings *ds, uint8 *data0, uint8 *data1)
 // 4
     uint addrForWrite = addrDataInfo + MAX_NUM_SAVED_WAVES * 4;             // Это - адрес, по которому будет храниться адрес следующего информационного массива
     uint valueForWrite = addrForWrite + 4 + size;                           // Это - адрес следующего информационного массива
-    WriteWord(addrForWrite, valueForWrite);
+    HAL_EPROM::WriteWord(addrForWrite, valueForWrite);
 
 // 5
     uint address = addrDataInfo + MAX_NUM_SAVED_WAVES * 4 + 4;              // Адрес, по которому будет сохранён сигнал с настройками
     uint addressNewData = address;
-    WriteBufferBytes(address, (uint8*)ds, sizeof(DataSettings));            // Сохраняем настройки сигнала
+    HAL_EPROM::WriteBufferBytes(address, (uint8*)ds, sizeof(DataSettings));            // Сохраняем настройки сигнала
     address += sizeof(DataSettings);
     
     if (ds->enableCh0 == 1)
     {
-        WriteBufferBytes(address, (uint8*)data0, (int)ds->length1channel);       // Сохраняем первый канал
+        HAL_EPROM::WriteBufferBytes(address, (uint8*)data0, (int)ds->length1channel);       // Сохраняем первый канал
         address += ds->length1channel;
     }
 
     if (ds->enableCh1 == 1)
     {
-        WriteBufferBytes(address, (uint8*)data1, (int)ds->length1channel);       // Сохраняем второй канал
+        HAL_EPROM::WriteBufferBytes(address, (uint8*)data1, (int)ds->length1channel);       // Сохраняем второй канал
         address += ds->length1channel;
     }
 
@@ -410,11 +391,11 @@ void EPROM::SaveData(int num, DataSettings *ds, uint8 *data0, uint8 *data1)
         uint addressForWrite = address + i * 4;
         if (i == num)
         {
-            WriteWord(addressForWrite, addressNewData);
+            HAL_EPROM::WriteWord(addressForWrite, addressNewData);
         }
         else
         {
-            WriteWord(addressForWrite, READ_WORD(addrDataInfo + i * 4));
+            HAL_EPROM::WriteWord(addressForWrite, READ_WORD(addrDataInfo + i * 4));
         }
     }
 }
@@ -462,112 +443,7 @@ bool EPROM::GetData(int num, DataSettings **ds, uint8 **data0, uint8 **data1)
 }
 
 
-uint EPROM::GetSector(uint startAddress)
-{
-    switch (startAddress)
-    {
-        case ADDR_SECTOR_DATA_MAIN:
-            return FLASH_SECTOR_8;
-        case ADDR_SECTOR_DATA_HELP:
-            return FLASH_SECTOR_9;
-        case ADDR_SECTOR_RESOURCES:
-            return FLASH_SECTOR_10;
-        case ADDR_SECTOR_SETTINGS:
-            return FLASH_SECTOR_11;
-    }
-    LOG_ERROR("Недопустимый сектор");
-    return FLASH_SECTOR_11;
-}
-
-
 void EPROM::EraseSector(uint startAddress)
 {
-    __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP | FLASH_FLAG_OPERR | FLASH_FLAG_WRPERR | FLASH_FLAG_PGAERR | FLASH_FLAG_PGPERR | FLASH_FLAG_PGSERR);
-
-    HAL_FLASH_Unlock();
-
-    FLASH_EraseInitTypeDef flashITD;
-    flashITD.TypeErase = TYPEERASE_SECTORS;
-    flashITD.Sector = GetSector(startAddress);
-    flashITD.NbSectors = 1;
-    flashITD.VoltageRange = VOLTAGE_RANGE_3;
-
-    uint32_t error = 0;
-    while (SOUND_IS_BEEP) {};
-    HAL_FLASHEx_Erase(&flashITD, &error);
-
-    HAL_FLASH_Lock();
-}
-
-
-void EPROM::WriteWord(uint address, uint word)
-{
-    __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP | FLASH_FLAG_OPERR | FLASH_FLAG_WRPERR | FLASH_FLAG_PGAERR | FLASH_FLAG_PGPERR | FLASH_FLAG_PGSERR);
-    HAL_FLASH_Unlock();
-    if (HAL_FLASH_Program(TYPEPROGRAM_WORD, address, (uint64_t)word) != HAL_OK)
-    {
-        LOG_ERROR("Не могу записать в память");
-    }
-    HAL_FLASH_Lock();
-}
-
-
-void EPROM::WriteBufferBytes(uint address, uint8 *buffer, int size)
-{
-    HAL_FLASH_Unlock();
-    for (int i = 0; i < size; i++)
-    {
-        if (HAL_FLASH_Program(TYPEPROGRAM_BYTE, address, (uint64_t)(buffer[i])) != HAL_OK)
-        {
-            HARDWARE_ERROR;
-        }
-        address++;
-    }
-    HAL_FLASH_Lock();
-}
-
-
-bool OTP::SaveSerialNumber(char *serialNumber)
-{
-    // Находим первую пустую строку длиной 16 байт в области OPT, начиная с начала.
-    uint8 *address = (uint8*)FLASH_OTP_BASE;
-
-    while ((*address) != 0xff &&                // *address != 0xff означает, что запись в эту строку уже производилась
-           address < (uint8*)FLASH_OTP_END - 16)
-    {
-        address += 16;
-    }
-
-    if (address < (uint8*)FLASH_OTP_END - 16)
-    {
-        EPROM::WriteBufferBytes((uint)address, (uint8*)serialNumber, static_cast<int>(std::strlen(serialNumber)) + 1);
-        return true;
-    }
-
-    return false;
-}
-
-
-int OTP::GetSerialNumber(char buffer[17])
-{
-    /// \todo улучшить - нельзя разбрасываться байтами. Каждая запись должна занимать столько места, сколько в ней символов, а не 16, как сейчас.
-
-    const int allShotsMAX = 512 / 16;   // Максимальное число записей в OPT серийного номера.
-
-    uint8* address = (uint8*)FLASH_OTP_END - 15;
-
-    do
-    {
-        address -= 16;
-    } while(*address == 0xff && address > (uint8*)FLASH_OTP_BASE);
-
-    if (*address == 0xff)   // Не нашли строки с информацией, дойдя до начального адреса OTP
-    {
-        buffer[0] = 0;
-        return allShotsMAX;
-    }
-
-    std::strcpy(buffer, (char*)address);
-
-    return allShotsMAX - (address - (uint8*)FLASH_OTP_BASE) / 16 - 1;
+    HAL_EPROM::EraseSector(HAL_EPROM::GetSector(startAddress));
 }
