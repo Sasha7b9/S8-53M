@@ -69,7 +69,7 @@ void SysTick_Handler(void)
 
 void ADC_IRQHandler(void)
 {
-    HAL_ADC_IRQHandler(reinterpret_cast<ADC_HandleTypeDef *>(handleADC));
+    HAL_ADC_IRQHandler(reinterpret_cast<ADC_HandleTypeDef *>(HAL_ADC3::handle));
 }
 
 

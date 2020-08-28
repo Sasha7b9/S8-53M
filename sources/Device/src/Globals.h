@@ -6,7 +6,6 @@
 
 extern void *handleUSBH;
 extern void *handleSPI;
-extern void *handleADC;
 extern void *handleDAC;
 
 

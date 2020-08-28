@@ -3,6 +3,10 @@
 #include <stm32f4xx_hal.h>
 
 
+static HCD_HandleTypeDef hHCD;
+void *HAL_HCD::handle = &hHCD;
+
+
 void HAL::Init()
 {
     HAL_Init();
@@ -38,7 +42,3 @@ void HAL::Init()
 
     HAL_SPI1::Init();
 }
-
-
-static HCD_HandleTypeDef hHCD;
-void *HAL_HCD::handle = &hHCD;

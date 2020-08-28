@@ -31,10 +31,6 @@ static SPI_HandleTypeDef hSPI =
 void *handleSPI = &hSPI;
 
 
-static ADC_HandleTypeDef hADC;
-void *handleADC = &hADC;
-
-
 static DAC_HandleTypeDef hDAC =
 {
     DAC

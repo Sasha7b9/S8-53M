@@ -27,6 +27,7 @@ struct HAL_ADC3
 {
     static void Init();
     static uint16 GetValue();
+    static void *handle;        // ADC_HandleTypeDef
 };
 
 struct HAL_RTC
