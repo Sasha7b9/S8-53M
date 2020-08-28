@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "FDrive/FDrive.h"
+#include "Hardware/HAL/HAL.h"
 #include <usbh_diskio.h>
 
 
@@ -28,7 +29,7 @@ void FlashDrive::Init()
 
 void FlashDrive::Update(void)
 {
-    USBH_Process(reinterpret_cast<USBH_HandleTypeDef *>(handleUSBH));
+    USBH_Process(reinterpret_cast<USBH_HandleTypeDef *>(HAL_USBH::handle));
 }
 
 

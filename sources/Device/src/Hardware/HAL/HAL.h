@@ -27,7 +27,7 @@ struct HAL_ADC3
 {
     static void Init();
     static uint16 GetValue();
-    static void *handle;        // ADC_HandleTypeDef
+    static void *handle;    // ADC_HandleTypeDef
 };
 
 struct HAL_RTC
@@ -38,8 +38,7 @@ public:
     static PackedTime GetPackedTime();
 
 private:
-    // RTC_HandleTypeDef
-    static void *handle;
+    static void *handle;    // RTC_HandleTypeDef
 };
 
 struct HAL_SPI1
@@ -47,8 +46,12 @@ struct HAL_SPI1
     static void Init();
 };
 
-
 struct HAL_HCD
 {
     static void *handle;    // HCD_HandleTypeDef
+};
+
+struct HAL_USBH
+{
+    static void *handle;    // USBH_HandleTypeDef
 };

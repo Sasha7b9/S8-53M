@@ -1,10 +1,14 @@
 #include "defines.h"
 #include "Hardware/HAL/HAL.h"
+#include <usbh_def.h>
 #include <stm32f4xx_hal.h>
 
 
 static HCD_HandleTypeDef hHCD;
 void *HAL_HCD::handle = &hHCD;
+
+static USBH_HandleTypeDef hUSBH;
+void *HAL_USBH::handle = &hUSBH;
 
 
 void HAL::Init()

@@ -1,15 +1,11 @@
 #include "defines.h"
 #include "Globals.h"
 #include "Display/DisplayTypes.h"
-#include <usbh_def.h>
 #include <stm32f4xx_hal.h>
 
 
 void *extraMEM = 0;
 
-
-static USBH_HandleTypeDef hUSBH;
-void *handleUSBH = &hUSBH;
 
 static SPI_HandleTypeDef hSPI =
 {

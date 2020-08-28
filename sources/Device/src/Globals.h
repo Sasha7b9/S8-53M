@@ -4,7 +4,6 @@
 #include "Settings/SettingsChannel.h"
 #include "Settings/SettingsTime.h"
 
-extern void *handleUSBH;
 extern void *handleSPI;
 extern void *handleDAC;
 
