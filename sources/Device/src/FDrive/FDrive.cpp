@@ -1,17 +1,6 @@
 #include "defines.h"
-#include "Log.h"
-#include "Menu/FileManager.h"
-#include "Menu/Menu.h"
-#include <usbh_def.h>
-#include <ff_gen_drv.h>
-#include <usbh_diskio.h>
-#include <usbh_core.h>
-#include <usbh_msc.h>
-#include "ffconf.h"
-#include "Hardware/Hardware.h"
 #include "FDrive/FDrive.h"
-#include <cstring>
-
+#include <usbh_diskio.h>
 
 
 //static FATFS USBDISKFatFs;
@@ -323,7 +312,7 @@ bool FlashDrive::OpenNewFileForWrite(const char* fullPathToFile, StructForWrite 
     {
         return false;
     }
-    std::strcpy(structForWrite->name, fullPathToFile);
+    strcpy(structForWrite->name, fullPathToFile);
     structForWrite->sizeData = 0;
     return true;
 }
@@ -339,7 +328,7 @@ bool FlashDrive::WriteToFile(uint8* data, int sizeData, StructForWrite *structFo
             dataToCopy = SIZE_FLASH_TEMP_BUFFER - structForWrite->sizeData;
         }
         sizeData -= dataToCopy;
-        std::memcpy(structForWrite->tempBuffer + structForWrite->sizeData, data, static_cast<size_t>(dataToCopy));
+        memcpy(structForWrite->tempBuffer + structForWrite->sizeData, data, static_cast<size_t>(dataToCopy));
         data += dataToCopy;
         structForWrite->sizeData += dataToCopy;
         if (structForWrite->sizeData == SIZE_FLASH_TEMP_BUFFER)
