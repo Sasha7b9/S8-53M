@@ -1,9 +1,5 @@
 #pragma once
 
-
-#include "defines.h"
-
-
 struct tcp_pcb;
 
 static const int    DEFAULT_PORT = 7,
