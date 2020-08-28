@@ -1,8 +1,5 @@
 #pragma once
 
-//#include <stm32f2xx_hal.h>
-//#include "globals.h"
-
 typedef unsigned char uint8;
 typedef unsigned int uint;
 typedef signed char int8;

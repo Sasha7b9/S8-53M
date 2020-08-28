@@ -808,6 +808,16 @@
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\HAL\stm32f4xx_it.h</FilePath>
             </File>
+            <File>
+              <FileName>HAL.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\HAL\HAL.h</FilePath>
+            </File>
+            <File>
+              <FileName>HAL.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HAL\HAL.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

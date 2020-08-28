@@ -5,8 +5,8 @@
 #include "Display/Painter.h"
 #include "Utils/Math.h"
 #include "Settings/Settings.h"
+#include "Hardware/HAL/HAL.h"
 #include <cmath>
-#include <stm32f4xx_hal.h>
 
 
 typedef struct
@@ -25,24 +25,7 @@ Vector array[SIZE_ARRAY];
 static void DrawProgressBar(uint dT);
 static void DrawBigMNIPI(void);
 static void InitPoints(void);
-//static void DrawSeconds(void);
-//static void DrawFrames(void);
 
-
-
-void InitHardware(void)
-{
-    GPIO_InitTypeDef isGPIO_ =
-    {
-        GPIO_PIN_11,
-        GPIO_MODE_INPUT,
-        GPIO_NOPULL,
-        GPIO_SPEED_HIGH,
-        GPIO_AF0_MCO,
-    };
-    // Сигнал готовности дисплея  к приёму команды
-    HAL_GPIO_Init(GPIOG, &isGPIO_);
-}
 
 
 void Display_Init(void)
@@ -65,8 +48,6 @@ void Display_Init(void)
 
     Painter_ResetFlash();
 
-    InitHardware();
-
     Painter_LoadPalette(0);
     Painter_LoadPalette(1);
     Painter_LoadPalette(2);
@@ -86,43 +67,12 @@ void DrawButton(int x, int y, char *text)
 }
 
 
-void Display_Update1(void)
-{
-    static uint min = 1000;
-    static uint max = 0;
-    static uint current = 0;
-
-    uint time = HAL_GetTick();
-
-    Painter_BeginScene(COLOR_BLACK);
-
-    Painter_DrawTextFormatting(5, 200, COLOR_WHITE, "%f секунд", static_cast<float>(HAL_GetTick()) / 1000.0f);
-
-//    Painter_DrawTextFormatting(5, 210, COLOR_WHITE, "%d frames", numFrames);
-
-    Painter_DrawTextFormatting(5, 220, COLOR_WHITE, "min = %d max = %d, current = %d", min , max, current);
-
-    Painter_EndScene();
-
-    current = HAL_GetTick() - time;
-
-    if (current < min)
-    {
-        min = current;
-    }
-    if (current > max)
-    {
-        max = current;
-    }
-}
-
-
 void Display_Update(void)
 {
     ms->display.isRun = true;
 
-    uint dT = HAL_GetTick() - ms->display.timePrev;
-    ms->display.timePrev = HAL_GetTick();
+    uint dT = HAL_TIM::GetTimeMS() - ms->display.timePrev;
+    ms->display.timePrev = HAL_TIM::GetTimeMS();
 
     Painter_BeginScene(COLOR_BLACK);
 
@@ -225,10 +175,10 @@ static void DrawBigMNIPI(void)
     if (first)
     {
         first = false;
-        startTime = HAL_GetTick();
+        startTime = HAL_TIM::GetTimeMS();
     }
 
-    uint time = HAL_GetTick() - startTime;
+    uint time = HAL_TIM::GetTimeMS() - startTime;
 
     int numColor = 0;
     LIMITATION(numColor, static_cast<int>(static_cast<float>(time) / (float)TIME_WAIT * 13.0f), 0, 13);
