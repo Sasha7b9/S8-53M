@@ -1,14 +1,9 @@
 #include "defines.h"
 #include "Globals.h"
 #include "Display/DisplayTypes.h"
-#include <stm32f4xx_hal.h>
 
 
 void *extraMEM = 0;
-
-
-
-
 
 BitField gBF =
 {

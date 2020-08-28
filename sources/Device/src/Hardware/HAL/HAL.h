@@ -54,6 +54,7 @@ struct HAL_SPI1
 
 struct HAL_HCD
 {
+    static void Init();
     static void *handle;    // HCD_HandleTypeDef
 };
 

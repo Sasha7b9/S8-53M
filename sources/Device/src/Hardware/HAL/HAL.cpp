@@ -47,5 +47,17 @@ void HAL::Init()
 
     HAL_ADC3::Init();
 
+    HAL_HCD::Init();
+
     HAL_SPI1::Init();
+}
+
+
+void HAL_HCD::Init()
+{
+    /* Set USBHS Interrupt to the lowest priority */
+    HAL_NVIC_SetPriority(OTG_HS_IRQn, 15, 0);
+
+    /* Enable USBHS Interrupt */
+    HAL_NVIC_EnableIRQ(OTG_HS_IRQn);
 }
