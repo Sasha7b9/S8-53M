@@ -5,54 +5,53 @@
 #include "PainterC.h"
 
 
-void Painter_SendToDisplay(uint8 *bytes, int numBytes);
+namespace Painter
+{
+    void SetPoint(int, int);
+    
+    void SendToDisplay(uint8 *bytes, int numBytes);
 
-void Painter_BeginScene(Color::E color);
+    void BeginScene(Color::E color);
 
-void Painter_EndScene(void);
+    void EndScene(void);
 
-void Painter_SendFrame(bool first);
+    void ResetFlash(void);
 
-void Painter_ResetFlash(void);
+    void SetColor(Color::E color);
 
-void Painter_SetColor(Color::E color);
+    void LoadPalette(int num);
 
-void Painter_LoadPalette(int num);
+    static void SetPalette(Color::E color);
 
-void Painter_SetPalette(Color::E color);
+    static void DrawHLine(int y, int x0, int x1);
 
-void Painter_SetPoint(int x, int y);
+    static void DrawVLine(int x, int y0, int y1);
 
-void Painter_DrawHLine(int y, int x0, int x1);
+    void DrawVPointLine(int x, int y0, int y1, float delta, Color::E color);
 
-void Painter_DrawVLine(int x, int y0, int y1);
+    void DrawHPointLine(int y, int x0, int x1, float delta);
 
-void Painter_DrawVPointLine(int x, int y0, int y1, float delta, Color::E color);
+    void DrawMultiVPointLine(int numLines, int y, uint16 x[], int delta, int count, Color::E color);
 
-void Painter_DrawHPointLine(int y, int x0, int x1, float delta);
+    void DrawMultiHPointLine(int numLines, int x, uint8 y[], int delta, int count, Color::E color);
 
-void Painter_DrawMultiVPointLine(int numLines, int y, uint16 x[], int delta, int count, Color::E color);
+    void DrawLine(int x0, int y0, int x1, int y1);
+    /// Рисует прерывистую горизонтальную линию. dFill - длина штриха, dEmpty - расст. между штрихами
+    /// Линия всегда начинается со штриха. dStart указывает смещение первой рисуемой точки относительно начала штриха.
+    void DrawDashedHLine(int y, int x0, int x1, int dFill, int dEmpty, int dStart);
+    /// Рисует прерывистую вертикальную линию.
+    void DrawDashedVLine(int x, int y0, int y1, int dFill, int dEmpty, int dStart);
 
-void Painter_DrawMultiHPointLine(int numLines, int x, uint8 y[], int delta, int count, Color::E color);
+    void DrawRectangle(int x, int y, int width, int height);
 
-void Painter_DrawLine(int x0, int y0, int x1, int y1);
-/// Рисует прерывистую горизонтальную линию. dFill - длина штриха, dEmpty - расст. между штрихами
-/// Линия всегда начинается со штриха. dStart указывает смещение первой рисуемой точки относительно начала штриха.
-void Painter_DrawDashedHLine(int y, int x0, int x1, int dFill, int dEmpty, int dStart);
-/// Рисует прерывистую вертикальную линию.
-void Painter_DrawDashedVLine(int x, int y0, int y1, int dFill, int dEmpty, int dStart);
+    void FillRegion(int x, int y, int width, int height);
 
-void Painter_DrawRectangle(int x, int y, int width, int height);
+    void DrawVolumeButton(int x, int y, int width, int height, int thickness, Color::E normal, Color::E bright, Color::E dark, bool isPressed, bool inShade);
 
-void Painter_FillRegion(int x, int y, int width, int height);
-
-void Painter_DrawVolumeButton(int x, int y, int width, int height, int thickness, Color::E normal, Color::E bright, Color::E dark, bool isPressed, bool inShade);
-
-void Painter_SetBrightnessDisplay(int16 brightness);  // Установить яркость дисплея.
-uint16 Painter_ReduceBrightness(uint16 colorValue, float newBrightness);
-/// Нарисовать массив вертикальных линий. Линии рисуются одна за другой. y0y1 - массив вертикальных координат
-void Painter_DrawVLineArray(int x, int numLines, uint8 *y0y1, Color::E color);
-/// modeLines - true - точками, false - точками
-void Painter_DrawSignal(int x, uint8 data[281], bool modeLines);
-
-void Painter_DrawPicture(int x, int y, int width, int height, uint8 *address);
+    void SetBrightnessDisplay(int16 brightness);  // Установить яркость дисплея.
+    
+    /// Нарисовать массив вертикальных линий. Линии рисуются одна за другой. y0y1 - массив вертикальных координат
+    void DrawVLineArray(int x, int numLines, uint8 *y0y1, Color::E color);
+    /// modeLines - true - точками, false - точками
+    void DrawSignal(int x, uint8 data[281], bool modeLines);
+};

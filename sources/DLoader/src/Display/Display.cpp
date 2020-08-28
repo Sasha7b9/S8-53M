@@ -46,13 +46,13 @@ void Display_Init(void)
         set.display.colors[i + 2] = MAKE_COLOR((int)red, (int)green, (int)blue);
     }
 
-    Painter_ResetFlash();
+    Painter::ResetFlash();
 
-    Painter_LoadPalette(0);
-    Painter_LoadPalette(1);
-    Painter_LoadPalette(2);
+    Painter::LoadPalette(0);
+    Painter::LoadPalette(1);
+    Painter::LoadPalette(2);
 
-    Painter_SetFont(TypeFont::_8);
+    Painter::SetFont(TypeFont::_8);
     
     InitPoints();
 }
@@ -62,8 +62,8 @@ void DrawButton(int x, int y, char *text)
 {
     int width = 25;
     int height = 20;
-    Painter_DrawRectangle(x, y, width, height);
-    Painter_DrawStringInCenterRect(x, y, width + 2, height - 1, text);
+    Painter::DrawRectangle(x, y, width, height);
+    Painter::DrawStringInCenterRect(x, y, width + 2, height - 1, text);
 }
 
 
@@ -74,20 +74,20 @@ void Display_Update(void)
     uint dT = HAL_TIM2::TimeMS() - ms->display.timePrev;
     ms->display.timePrev = HAL_TIM2::TimeMS();
 
-    Painter_BeginScene(Color::BLACK);
+    Painter::BeginScene(Color::BLACK);
 
-    Painter_SetColor(Color::WHITE);
+    Painter::SetColor(Color::WHITE);
 
     if (ms->state == State_Start || ms->state == State_Ok)
     {
-        Painter_BeginScene(gColorBack);
-        Painter_SetColor(gColorFill);
-        Painter_DrawRectangle(0, 0, 319, 239);
+        Painter::BeginScene(gColorBack);
+        Painter::SetColor(gColorFill);
+        Painter::DrawRectangle(0, 0, 319, 239);
         DrawBigMNIPI();
-        Painter_SetColor(Color::WHITE);
-        Painter_DrawStringInCenterRect(0, 180, 320, 20, "Для получения помощи нажмите и удерживайте кнопку ПОМОЩЬ");
-        Painter_DrawStringInCenterRect(0, 205, 320, 20, "Отдел маркетинга: тел./факс. 8-017-270-02-00");
-        Painter_DrawStringInCenterRect(0, 220, 320, 20, "Разработчики: e-mail: mnipi-24(@)tut.by, тел. 8-017-270-02-23");
+        Painter::SetColor(Color::WHITE);
+        Painter::DrawStringInCenterRect(0, 180, 320, 20, "Для получения помощи нажмите и удерживайте кнопку ПОМОЩЬ");
+        Painter::DrawStringInCenterRect(0, 205, 320, 20, "Отдел маркетинга: тел./факс. 8-017-270-02-00");
+        Painter::DrawStringInCenterRect(0, 220, 320, 20, "Разработчики: e-mail: mnipi-24(@)tut.by, тел. 8-017-270-02-23");
     }
     else if (ms->state == State_Mount)
     {
@@ -95,34 +95,34 @@ void Display_Update(void)
     }
     else if (ms->state == State_WrongFlash)
     {
-        Painter_DrawStringInCenterRectC(0, 0, 320, 200, "НЕ УДАЛОСЬ ПРОЧИТАТЬ ДИСК", Color::FLASH_10);
-        Painter_DrawStringInCenterRectC(0, 20, 320, 200, "УБЕДИТЕСЬ, ЧТО ФАЙЛОВАЯ СИСТЕМА FAT32", Color::WHITE);
+        Painter::DrawStringInCenterRectC(0, 0, 320, 200, "НЕ УДАЛОСЬ ПРОЧИТАТЬ ДИСК", Color::FLASH_10);
+        Painter::DrawStringInCenterRectC(0, 20, 320, 200, "УБЕДИТЕСЬ, ЧТО ФАЙЛОВАЯ СИСТЕМА FAT32", Color::WHITE);
     }
     else if (ms->state == State_RequestAction)
     {
-        Painter_DrawStringInCenterRect(0, 0, 320, 200, "Обнаружено программное обеспечение");
-        Painter_DrawStringInCenterRect(0, 20, 320, 200, "Установить его?");
+        Painter::DrawStringInCenterRect(0, 0, 320, 200, "Обнаружено программное обеспечение");
+        Painter::DrawStringInCenterRect(0, 20, 320, 200, "Установить его?");
 
         DrawButton(290, 55, "ДА");
         DrawButton(290, 195, "НЕТ");
     }
     else if (ms->state == State_Upgrade)
     {
-        Painter_DrawStringInCenterRect(0, 0, 320, 190, "Подождите завершения");
-        Painter_DrawStringInCenterRect(0, 0, 320, 220, "установки программного обеспечения");
+        Painter::DrawStringInCenterRect(0, 0, 320, 190, "Подождите завершения");
+        Painter::DrawStringInCenterRect(0, 0, 320, 220, "установки программного обеспечения");
 
         int height = 30;
         int fullWidth = 280;
         int width = static_cast<int>(static_cast<float>(fullWidth) * ms->percentUpdate);
 
-        Painter_FillRegion(20, 130, width, height);
-        Painter_DrawRectangle(20, 130, fullWidth, height);
+        Painter::FillRegion(20, 130, width, height);
+        Painter::DrawRectangle(20, 130, fullWidth, height);
     }
 
     //DrawFrames();
     //DrawSeconds();
 
-    Painter_EndScene();
+    Painter::EndScene();
     ms->display.isRun = false;
 }
 
@@ -152,12 +152,12 @@ void DrawProgressBar(uint dT)
     int dH = 15;
     int y0 = 50;
 
-    Painter_DrawStringInCenterRectC(X, y0, WIDTH, 10, "Обнаружен USB-диск.", Color::WHITE);
-    Painter_DrawStringInCenterRect(X, y0 + dH, WIDTH, 10, "Идёт поиск программного обеспечения");
-    Painter_DrawStringInCenterRect(X, y0 + 2 * dH, WIDTH, 10, "Подождите...");
+    Painter::DrawStringInCenterRectC(X, y0, WIDTH, 10, "Обнаружен USB-диск.", Color::WHITE);
+    Painter::DrawStringInCenterRect(X, y0 + dH, WIDTH, 10, "Идёт поиск программного обеспечения");
+    Painter::DrawStringInCenterRect(X, y0 + 2 * dH, WIDTH, 10, "Подождите...");
 
-    Painter_DrawRectangle(X, Y, WIDTH, HEIGHT);
-    Painter_FillRegion(X, Y, static_cast<int>(ms->display.value), HEIGHT);
+    Painter::DrawRectangle(X, Y, WIDTH, HEIGHT);
+    Painter::FillRegion(X, Y, static_cast<int>(ms->display.value), HEIGHT);
 }
 
 
@@ -182,7 +182,7 @@ static void DrawBigMNIPI(void)
 
     int numColor = 0;
     LIMITATION(numColor, static_cast<int>(static_cast<float>(time) / (float)TIME_WAIT * 13.0f), 0, 13);
-    Painter_SetColor((Color::E)(numColor + 2));
+    Painter::SetColor((Color::E)(numColor + 2));
 
     float amplitude = 3.0f - (static_cast<float>(time) / (TIME_WAIT / 2.0f)) * 3;
     LIMIT_BELOW(amplitude, 0.0f);
@@ -204,7 +204,7 @@ static void DrawBigMNIPI(void)
         int y = array[i].y;
         if (x > 0 && x < 319 && y > 0 && y < 239)
         {
-            Painter_SetPoint(x, y);
+            Painter::SetPoint(x, y);
         }
     }
 }
@@ -214,7 +214,7 @@ static void InitPoints(void)
 {
     uint8 buffer[320][240];
 
-    Painter_DrawBigTextInBuffer(31, 70, 9, "МНИПИ", buffer);
+    Painter::DrawBigTextInBuffer(31, 70, 9, "МНИПИ", buffer);
 
     for (int x = 0; x < 320; x++)
     {
@@ -229,26 +229,3 @@ static void InitPoints(void)
         }
     }
 }
-
-/*
-
-static void DrawSeconds(void)
-{
-    Painter_DrawTextFormatting(5, 200, Color::WHITE, "%f секунд", HAL_GetTick() / 1000.0f);
-}
-
-
-static void DrawFrames(void)
-{
-    static int numFrames = 0;
-
-    numFrames++;
-    
-    for (int i = 0; i < numFrames; i++)
-    {
-        Painter_SetPoint(i + 1, 1);
-    }
-
-    Painter_DrawTextFormatting(5, 15, Color::WHITE, "%d кадров", numFrames);
-}
-*/

@@ -18,7 +18,7 @@ Color::E gColorChan[4];
 static void SetColor(ColorType *colorType)
 {
     set.display.colors[colorType->color] = MAKE_COLOR((int)colorType->red, (int)colorType->green, (int)colorType->blue);
-    Painter_SetPalette(colorType->color);
+    Painter::SetPalette(colorType->color);
 }
 
 
@@ -224,4 +224,9 @@ const char* NameColorFromValue(uint16 colorValue)
 const char* NameColor(Color::E color)
 {
     return colorNames[color];
+}
+
+void Painter::SetPalette(Color::E)
+{
+
 }
