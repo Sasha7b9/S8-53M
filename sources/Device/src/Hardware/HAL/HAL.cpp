@@ -10,9 +10,6 @@ void *HAL_HCD::handle = &handleHCD;
 static USBH_HandleTypeDef handleUSBH;
 void *HAL_USBH::handle = &handleUSBH;
 
-static DAC_HandleTypeDef handleDAC = { DAC };
-void *HAL_DAC::handle = &handleDAC;
-
 
 void HAL::Init()
 {
@@ -46,6 +43,8 @@ void HAL::Init()
     HAL_PINS::Init();
 
     HAL_ADC3::Init();
+
+    HAL_DAC::Init();
 
     HAL_HCD::Init();
 

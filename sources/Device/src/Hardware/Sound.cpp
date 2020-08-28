@@ -7,11 +7,9 @@
 #include "Settings/Settings.h"
 #include <cmath>
 #include "globals.h"
-#include <stm32f4xx_hal.h>
 
 
 
-static void TIM7_Config(uint16 prescaler, uint16 period);
 static uint16 CalculatePeriodForTIM();
 static void SetWave();
 static void CalculateSine();
@@ -27,25 +25,9 @@ static TypeWave typeWave = TypeWave_Sine;
 
 
 
-void Sound::Init(void)
-{
-    DAC_ChannelConfTypeDef config =
-    {
-        DAC_TRIGGER_T7_TRGO,
-        DAC_OUTPUTBUFFER_ENABLE
-    };
-
-    HAL_DAC_DeInit(reinterpret_cast<DAC_HandleTypeDef *>(HAL_DAC::handle));
-
-    HAL_DAC_Init(reinterpret_cast<DAC_HandleTypeDef *>(HAL_DAC::handle));
-
-    HAL_DAC_ConfigChannel(reinterpret_cast<DAC_HandleTypeDef *>(HAL_DAC::handle), &config, DAC_CHANNEL_1);
-}
-
-
 static void Stop(void)
 {
-    HAL_DAC_Stop_DMA(reinterpret_cast<DAC_HandleTypeDef *>(HAL_DAC::handle), DAC_CHANNEL_1);
+    HAL_DAC::StopDMA();
     SOUND_IS_BEEP = 0;
     SOUND_WARN_IS_BEEP = 0;
 }
@@ -74,7 +56,8 @@ void Sound_Beep(TypeWave typeWave_, float frequency_, float amplitude_, int dura
     Stop();
     
     SOUND_IS_BEEP = 1;
-    HAL_DAC_Start_DMA(reinterpret_cast<DAC_HandleTypeDef *>(HAL_DAC::handle), DAC_CHANNEL_1, (uint32_t*)points, POINTS_IN_PERIOD, DAC_ALIGN_8B_R);
+
+    HAL_DAC::StartDMA(points, POINTS_IN_PERIOD);
 
     Timer::Enable(kStopSound, duration, Stop);
 }
@@ -135,7 +118,7 @@ void Sound::WarnBeepGood(void)
 
 void SetWave(void)
 {
-    TIM7_Config(0, CalculatePeriodForTIM());
+    HAL_TIM7::Config(0, CalculatePeriodForTIM());
 
     if(typeWave == TypeWave_Sine)
     {
@@ -149,36 +132,6 @@ void SetWave(void)
     {
         CalculateTriangle();
     }
-}
-
-
-void TIM7_Config(uint16 prescaler, uint16 period)
-{
-    static TIM_HandleTypeDef htim =
-    {
-        TIM7,
-        {
-            0,
-            TIM_COUNTERMODE_UP,
-        }
-    };
-
-    htim.Init.Prescaler = prescaler;
-    htim.Init.Period = period;
-    htim.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-
-    HAL_TIM_Base_Init(&htim);
-
-    TIM_MasterConfigTypeDef masterConfig =
-    {
-        TIM_TRGO_UPDATE,
-        TIM_MASTERSLAVEMODE_DISABLE
-    };
-
-    HAL_TIMEx_MasterConfigSynchronization(&htim, &masterConfig);
-
-    HAL_TIM_Base_Stop(&htim);
-    HAL_TIM_Base_Start(&htim);
 }
 
 

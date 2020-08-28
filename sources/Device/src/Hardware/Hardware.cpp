@@ -90,8 +90,6 @@ void Hardware::Init(void)
         HARDWARE_ERROR
     }
 
-    Sound::Init();
-    
     Panel::Init();
 
     FSMC::Init();

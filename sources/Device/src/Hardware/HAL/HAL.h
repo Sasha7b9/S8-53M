@@ -32,6 +32,9 @@ struct HAL_ADC3
 
 struct HAL_DAC
 {
+    static void Init();
+    static void StartDMA(uint8 *points, int numPoints);
+    static void StopDMA();
     static void *handle;    // DAC_HandleTypeDef
 };
 
@@ -56,6 +59,11 @@ struct HAL_HCD
 {
     static void Init();
     static void *handle;    // HCD_HandleTypeDef
+};
+
+struct HAL_TIM7
+{
+    static void Config(uint16 prescaler, uint16 period);
 };
 
 struct HAL_USBH
