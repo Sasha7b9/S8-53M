@@ -6,11 +6,15 @@
 #include "Hardware/Timer.h"
 #include <stm32f4xx_hal.h>
 
-uint8 * const HAL_FSMC::ADDR_DISPLAY_A0 = ((uint8 *)(HAL_FSMC::ADDR_BANK + 0x00910000));
-uint8 * const HAL_FSMC::ADDR_DISPLAY_D7_D0 = ((uint8 *)(HAL_FSMC::ADDR_BANK + 0x00900000));
-uint8 * const HAL_FSMC::ADDR_CDISPLAY = ((uint8 *)(HAL_FSMC::ADDR_BANK + 0x00800000));
-uint8 * const HAL_FSMC::ADDR_FPGA = ((uint8 *)(HAL_FSMC::ADDR_BANK + 0x00c80000));  // Адрес записи в аппаратные регистры.
-uint8 * const HAL_FSMC::ADDR_NULL = ((uint8 *)(HAL_FSMC::ADDR_BANK + 0x00a00000));
+
+static const uint ADDR_BANK = 0x60000000;
+
+
+uint8 * const HAL_FSMC::ADDR_DISPLAY_A0 = ((uint8 *)(ADDR_BANK + 0x00910000));
+uint8 * const HAL_FSMC::ADDR_DISPLAY_D7_D0 = ((uint8 *)(ADDR_BANK + 0x00900000));
+uint8 * const HAL_FSMC::ADDR_CDISPLAY = ((uint8 *)(ADDR_BANK + 0x00800000));
+uint8 * const HAL_FSMC::ADDR_FPGA = ((uint8 *)(ADDR_BANK + 0x00c80000));  // Адрес записи в аппаратные регистры.
+uint8 * const HAL_FSMC::ADDR_NULL = ((uint8 *)(ADDR_BANK + 0x00a00000));
 
 
 

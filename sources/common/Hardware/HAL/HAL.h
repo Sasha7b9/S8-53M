@@ -107,12 +107,11 @@ struct HAL_ETH
 
 struct HAL_FSMC 
 {
-    static const uint ADDR_BANK            = 0x60000000;
-    static uint8 * const ADDR_DISPLAY_A0    ;
-    static uint8 * const ADDR_DISPLAY_D7_D0 ;
-    static uint8 * const ADDR_CDISPLAY      ;
-    static uint8 * const ADDR_FPGA          ;  // Адрес записи в аппаратные регистры.
-    static uint8 * const ADDR_NULL          ;
+    static uint8 * const ADDR_DISPLAY_A0;
+    static uint8 * const ADDR_DISPLAY_D7_D0;
+    static uint8 * const ADDR_CDISPLAY;
+    static uint8 * const ADDR_FPGA;  // Адрес записи в аппаратные регистры.
+    static uint8 * const ADDR_NULL;
     static void    Init(void);
 
     static uint8   Read(uint8 const * const address);
