@@ -5,7 +5,9 @@
 
 #include <stdint.h>
 
+#ifndef __IO
 #define __IO
+#endif
 
 void NVIC_SystemReset(void);
 void NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority);

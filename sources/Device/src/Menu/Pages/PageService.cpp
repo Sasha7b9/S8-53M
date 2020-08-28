@@ -7,6 +7,7 @@
 #include "Hardware/Hardware.h"
 #include "Hardware/Sound.h"
 #include "Hardware/Timer.h"
+#include "Settings/Settings.h"
 #include "Utils/Math.h"
 #include <cstring>
 #include <cstdio>
@@ -798,7 +799,7 @@ static const IPaddressStruct structIP =
         "Set of IP-address",  },
     &IP_ADDR0, &IP_ADDR1, &IP_ADDR2, &IP_ADDR3,
     OnChanged_Ethernet_Enable,
-    &PORT
+    &PORT_ETH
 };
 
 static const IPaddress ipEthernet_IP

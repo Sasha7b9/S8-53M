@@ -1,11 +1,8 @@
 #include "FSMC.h"
-#include "Hardware.h"
 #include "FPGA/FPGA_Types.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
-#include "Hardware/Timer.h"
 #include "Log.h"
-#include <stm32f4xx_hal.h>
 
 
 

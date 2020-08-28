@@ -2,6 +2,7 @@
 #include "Globals.h"
 #include "Display/DisplayTypes.h"
 #include <usbh_def.h>
+#include <stm32f4xx_hal.h>
 
 void *extraMEM = 0;
 

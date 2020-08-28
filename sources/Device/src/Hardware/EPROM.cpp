@@ -1,11 +1,8 @@
-#include "EPROM.h"
-#include "Hardware.h"
-#include "Sound.h"
-#include "Settings/Settings.h"
-#include "Hardware/Timer.h"
-#include "Utils/GlobalFunctions.h"
+#include "defines.h"
 #include "Log.h"
-#include "globals.h"
+#include "Hardware/EPROM.h"
+#include "Menu/MenuItems.h"
+#include "Settings/Settings.h"
 #include <cstring>
 #include <stm32f4xx_hal.h>
 

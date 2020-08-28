@@ -1,19 +1,12 @@
+#include "defines.h"
 #include "Panel.h"
-#include "Controls.h"
-#include "FPGA/FPGA.h"
-#include "Utils/Math.h"
-#include "Utils/GlobalFunctions.h"
-#include "Menu/Menu.h"
-#include "Settings/Settings.h"
-#include "Display/Display.h"
-#include "Hardware/Timer.h"
+#include "Panel/Controls.h"
 #include "Hardware/HAL/HAL.h"
-#include "Log.h"
-#include "Hardware/Sound.h"
+#include "PanelFunctions.cpp"
+#include "Utils/GlobalFunctions.h"
 #include <cstdio>
 #include <cstring>
-#include "PanelFunctions.cpp"
-#include <stm32f4xx_hal.h>
+
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////

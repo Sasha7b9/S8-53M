@@ -52,9 +52,13 @@ public:
     static uint LogPointUS(char *name);
     
     static uint LogPointMS(char *name);
+    
+    static void Delay(uint timeMS);
+    
+    static uint TimeMS();
 };
 
-#define gTimerMS HAL_GetTick()
+#define gTimerMS Timer::TimeMS()
 
 /**
   * gTimerTics - количество тиков, прошедших с момента последнего вызова функции Timer_StartMultiMeasurement().

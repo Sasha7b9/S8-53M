@@ -1,16 +1,11 @@
-#include "Menu.h"
-#include "MenuItemsLogic.h"
-#include "Display/Display.h"
-#include "Display/Painter.h"
+#include "defines.h"
+#include "Hardware/Sound.h"
 #include "Hardware/Timer.h"
 #include "Hardware/HAL/HAL.h"
-#include "Log.h"
-#include "Settings/Settings.h"
-#include "Hardware/Hardware.h"
-#include "Hardware/Sound.h"
+#include "Menu/Menu.h"
+#include "Menu/MenuItemsLogic.h"
 #include "Utils/Math.h"
 #include <stm32f4xx_hal.h>
-
 
 int8 gCurDigit = 0;
 

@@ -1,19 +1,13 @@
-#include "FPGA.h" 
-#include "FPGA_Types.h"
+#include "defines.h"
 #include "Display/Display.h"
 #include "Display/DisplayPrimitives.h"
-#include "Display/Colors.h"
-#include "Display/Painter.h"
-#include "Panel/Panel.h"
+#include "FPGA/FPGA.h"
 #include "Hardware/FSMC.h"
-#include "Settings/SettingsTypes.h"
-#include "Settings/Settings.h"
-#include "Utils/GlobalFunctions.h"
 #include "Hardware/Timer.h"
-#include "Log.h"
-#include <cstdio>
+#include "Panel/Panel.h"
+#include "Settings/Settings.h"
 #include <limits>
-#include <stm32f4xx_hal.h>
+#include <cstdio>
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -140,7 +134,7 @@ void FPGA::ProcedureCalibration(void)
 
         gStateFPGA.stateCalibration = StateCalibration_RShift1start;
 
-        HAL_Delay(500);
+        Timer::Delay(500);
 
 		if(Panel::WaitPressingButton() == B_Start)                 // ќжидаем подтверждени€ или отмены процедуры калибровки второго канала.
         {

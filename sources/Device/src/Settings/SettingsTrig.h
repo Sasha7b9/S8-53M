@@ -1,8 +1,5 @@
-
-
 #pragma once
-#include "defines.h"
-#include "SettingsTypes.h"
+//#include "SettingsTypes.h"
 
 
 /** @addtogroup Settings

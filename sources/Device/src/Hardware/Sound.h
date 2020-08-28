@@ -1,6 +1,4 @@
 #pragma once
-#include "Settings/Settings.h"
-
 
 
 typedef enum
@@ -9,8 +7,6 @@ typedef enum
     TypeWave_Meandr,
     TypeWave_Triangle
 } TypeWave;
-
-
 
 
 class Sound

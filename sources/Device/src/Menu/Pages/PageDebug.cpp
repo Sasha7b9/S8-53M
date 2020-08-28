@@ -1,21 +1,18 @@
 #include "defines.h"
-#include "Definition.h"
-#include "FDrive/FDrive.h"
-#include "Settings/SettingsTypes.h"
-#include "Settings/Settings.h"
-#include "Display/Display.h"
 #include "Display/Grid.h"
 #include "Display/Symbols.h"
-#include "Utils/GlobalFunctions.h"
+#include "FDrive/FDrive.h"
 #include "FPGA/FPGA.h"
-#include "FPGA/FPGA_Types.h"
+#include "Hardware/EPROM.h"
 #include "Hardware/FSMC.h"
 #include "Hardware/Sound.h"
-#include "Hardware/EPROM.h"
 #include "Menu/Menu.h"
+#include "Menu/Pages/Definition.h"
 #include "Menu/Pages/PageDebug.h"
-#include "Log.h"
+#include "Settings/Settings.h"
+#include "Utils/GlobalFunctions.h"
 #include <cstdio>
+#include <cstdlib>
 
 
 /** @addtogroup Menu

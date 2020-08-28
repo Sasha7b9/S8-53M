@@ -16,11 +16,6 @@
 #include "SettingsMath.h"
 
 
-/** @defgroup Settings
- *  @{
- */
-
-
 #define RSHIFT_ADD(ch, range, closed) set.chan[ch].rShiftAdd[range][closed]
 
 
@@ -55,7 +50,7 @@ typedef struct
 #define IP_ADDR2        (set.eth.ip2)
 #define IP_ADDR3        (set.eth.ip3)
 //
-#define PORT            (set.eth.port)
+#define PORT_ETH        (set.eth.port)
 //
 #define NETMASK_ADDR0   (set.eth.mask0)
 #define NETMASK_ADDR1   (set.eth.mask1)
@@ -163,7 +158,7 @@ typedef struct
 #define NUM_AVE_FOR_RAND                    (set.debug.numAveForRand)
 
 
-/// Отладочные настройки.
+// Отладочные настройки.
 typedef  struct
 {
     int16           numStrings;                 ///< Число строк в консоли.
@@ -210,7 +205,7 @@ void CurrentPageSBregSet(int angle);                            ///< Повернуть р
 const SmallButton*  GetSmallButton(PanelButton button);         ///< Вернуть указатель на малую кнопку, соответствующую данной кнопки панели.
 
 
-/// Струкура хранит все настройки прибора.
+// Струкура хранит все настройки прибора.
 struct Settings
 {
     uint                size;
@@ -236,7 +231,3 @@ struct Settings
 };
 
 extern Settings set;
-
-
-/** @}
- */

@@ -124,7 +124,20 @@ void Timer_Update10ms(void)
     }
 }
 
+
 void Timer::PauseOnTime(uint timeMS)
 {
     HAL_Delay(timeMS);
+}
+
+
+void Timer::Delay(uint timeMS)
+{
+    HAL_Delay(timeMS);
+}
+
+
+uint Timer::TimeMS()
+{
+    return HAL_GetTick();
 }

@@ -1,16 +1,10 @@
-#include "Panel.h"
-#include "Settings/Settings.h"
-#include "Display/Display.h"
-#include "FPGA/FPGA.h"
-#include "Menu/Menu.h"
-#include "Menu/Pages/Definition.h"
-#include "Menu/Pages/PageMemory.h"
-#include "Utils/Math.h"
-#include "Hardware/Timer.h"
 #include "Log.h"
+#include "FPGA/FPGA.h"
 #include "Hardware/Sound.h"
+#include "Hardware/Timer.h"
+#include "Menu/Menu.h"
+#include "Settings/Settings.h"
 #include <stm32f4xx_hal.h>
-
 
 static const uint MIN_TIME = 500;
 

@@ -1,8 +1,4 @@
 #pragma once
-#include "defines.h"
-#include "Settings/SettingsTypes.h"
-#include "Display/Display.h"
-//#include "FPGA/DataStorage.h"
 
 
 /// Программа и константные данные

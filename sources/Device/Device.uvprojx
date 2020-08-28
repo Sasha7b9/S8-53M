@@ -1059,9 +1059,24 @@
           <GroupName>Hardware</GroupName>
           <Files>
             <File>
+              <FileName>EPROM.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\EPROM.h</FilePath>
+            </File>
+            <File>
+              <FileName>EPROM.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\EPROM.cpp</FilePath>
+            </File>
+            <File>
               <FileName>FSMC.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\FSMC.h</FilePath>
+            </File>
+            <File>
+              <FileName>FSMC.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\FSMC.cpp</FilePath>
             </File>
             <File>
               <FileName>Hardware.h</FileName>
@@ -1079,19 +1094,9 @@
               <FilePath>.\src\Hardware\Sound.h</FilePath>
             </File>
             <File>
-              <FileName>Timer.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\Timer.h</FilePath>
-            </File>
-            <File>
               <FileName>DisplayHardware.inc</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\DisplayHardware.inc</FilePath>
-            </File>
-            <File>
-              <FileName>FSMC.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\FSMC.cpp</FilePath>
             </File>
             <File>
               <FileName>Hardware.cpp</FileName>
@@ -1104,19 +1109,14 @@
               <FilePath>.\src\Hardware\MSP_USBH.cpp</FilePath>
             </File>
             <File>
+              <FileName>Timer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\Timer.h</FilePath>
+            </File>
+            <File>
               <FileName>Timer.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\Timer.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>EPROM.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\EPROM.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>EPROM.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\EPROM.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1742,11 +1742,6 @@
               <FilePath>.\src\Menu\Pages\Definition.cpp</FilePath>
             </File>
             <File>
-              <FileName>PageService.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\PageService.cpp</FilePath>
-            </File>
-            <File>
               <FileName>PageDebug.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\PageDebug.cpp</FilePath>
@@ -1836,6 +1831,11 @@
               <FileName>PageService.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Menu\Pages\PageService.h</FilePath>
+            </File>
+            <File>
+              <FileName>PageService.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\PageService.cpp</FilePath>
             </File>
             <File>
               <FileName>PageTime.cpp</FileName>
