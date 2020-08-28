@@ -4,11 +4,14 @@
 #include <stm32f4xx_hal.h>
 
 
-static HCD_HandleTypeDef hHCD;
-void *HAL_HCD::handle = &hHCD;
+static HCD_HandleTypeDef handleHCD;
+void *HAL_HCD::handle = &handleHCD;
 
-static USBH_HandleTypeDef hUSBH;
-void *HAL_USBH::handle = &hUSBH;
+static USBH_HandleTypeDef handleUSBH;
+void *HAL_USBH::handle = &handleUSBH;
+
+static DAC_HandleTypeDef handleDAC = { DAC };
+void *HAL_DAC::handle = &handleDAC;
 
 
 void HAL::Init()

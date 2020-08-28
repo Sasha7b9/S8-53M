@@ -30,6 +30,11 @@ struct HAL_ADC3
     static void *handle;    // ADC_HandleTypeDef
 };
 
+struct HAL_DAC
+{
+    static void *handle;    // DAC_HandleTypeDef
+};
+
 struct HAL_RTC
 {
 public:

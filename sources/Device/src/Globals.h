@@ -5,9 +5,6 @@
 #include "Settings/SettingsTime.h"
 
 
-extern void *handleDAC;
-
-
 #define CLIENT_LAN_IS_CONNECTED  (gBF.clientLANisConnected)
 #define CABLE_LAN_IS_CONNECTED   (gBF.cableLANisConnected)
 #define CLIENT_VCP_IS_CONNECTED  (gBF.connectToHost)

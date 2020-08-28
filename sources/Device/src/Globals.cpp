@@ -7,11 +7,7 @@
 void *extraMEM = 0;
 
 
-static DAC_HandleTypeDef hDAC =
-{
-    DAC
-};
-void *handleDAC = &hDAC;
+
 
 
 BitField gBF =

@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "Sound.h"
 #include "Hardware/Timer.h"
+#include "Hardware/HAL/HAL.h"
 #include "Utils/Math.h"
 #include "Log.h"
 #include "Settings/Settings.h"
@@ -34,17 +35,17 @@ void Sound::Init(void)
         DAC_OUTPUTBUFFER_ENABLE
     };
 
-    HAL_DAC_DeInit(reinterpret_cast<DAC_HandleTypeDef *>(handleDAC));
+    HAL_DAC_DeInit(reinterpret_cast<DAC_HandleTypeDef *>(HAL_DAC::handle));
 
-    HAL_DAC_Init(reinterpret_cast<DAC_HandleTypeDef *>(handleDAC));
+    HAL_DAC_Init(reinterpret_cast<DAC_HandleTypeDef *>(HAL_DAC::handle));
 
-    HAL_DAC_ConfigChannel(reinterpret_cast<DAC_HandleTypeDef *>(handleDAC), &config, DAC_CHANNEL_1);
+    HAL_DAC_ConfigChannel(reinterpret_cast<DAC_HandleTypeDef *>(HAL_DAC::handle), &config, DAC_CHANNEL_1);
 }
 
 
 static void Stop(void)
 {
-    HAL_DAC_Stop_DMA(reinterpret_cast<DAC_HandleTypeDef *>(handleDAC), DAC_CHANNEL_1);
+    HAL_DAC_Stop_DMA(reinterpret_cast<DAC_HandleTypeDef *>(HAL_DAC::handle), DAC_CHANNEL_1);
     SOUND_IS_BEEP = 0;
     SOUND_WARN_IS_BEEP = 0;
 }
@@ -73,7 +74,7 @@ void Sound_Beep(TypeWave typeWave_, float frequency_, float amplitude_, int dura
     Stop();
     
     SOUND_IS_BEEP = 1;
-    HAL_DAC_Start_DMA(reinterpret_cast<DAC_HandleTypeDef *>(handleDAC), DAC_CHANNEL_1, (uint32_t*)points, POINTS_IN_PERIOD, DAC_ALIGN_8B_R);
+    HAL_DAC_Start_DMA(reinterpret_cast<DAC_HandleTypeDef *>(HAL_DAC::handle), DAC_CHANNEL_1, (uint32_t*)points, POINTS_IN_PERIOD, DAC_ALIGN_8B_R);
 
     Timer::Enable(kStopSound, duration, Stop);
 }

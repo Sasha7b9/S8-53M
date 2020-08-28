@@ -95,7 +95,7 @@ void OTG_HS_IRQHandler(void)
 
 void DMA1_Stream5_IRQHandler()
 {
-    HAL_DMA_IRQHandler(reinterpret_cast<DAC_HandleTypeDef *>(handleDAC)->DMA_Handle1);
+    HAL_DMA_IRQHandler(reinterpret_cast<DAC_HandleTypeDef *>(HAL_DAC::handle)->DMA_Handle1);
 }
 
 #ifdef __cplusplus
