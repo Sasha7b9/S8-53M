@@ -1,6 +1,5 @@
 #include "Hardware.h"
 #include "Sound.h"
-#include "FSMC.h"
 #include "Utils/GlobalFunctions.h"
 #include "Hardware/Timer.h"
 #include "common/Hardware/HAL/HAL.h"
@@ -20,8 +19,6 @@ void Hardware::Init(void)
     HAL::Init();
 
     Panel::Init();
-
-    FSMC::Init();
 
     FlashDrive::Init();
     

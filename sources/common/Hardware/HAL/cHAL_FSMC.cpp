@@ -1,10 +1,20 @@
-#include "FSMC.h"
-#include "FPGA/FPGA_Types.h"
+#include "defines.h"
+#include "common/Hardware/HAL/HAL.h"
+#include "Hardware/Hardware.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
-#include "common/Log.h"
+#include "Hardware/Timer.h"
+#include <stm32f4xx_hal.h>
+
+uint8 * const HAL_FSMC::ADDR_DISPLAY_A0 = ((uint8 *)(HAL_FSMC::ADDR_BANK + 0x00910000));
+uint8 * const HAL_FSMC::ADDR_DISPLAY_D7_D0 = ((uint8 *)(HAL_FSMC::ADDR_BANK + 0x00900000));
+uint8 * const HAL_FSMC::ADDR_CDISPLAY = ((uint8 *)(HAL_FSMC::ADDR_BANK + 0x00800000));
+uint8 * const HAL_FSMC::ADDR_FPGA = ((uint8 *)(HAL_FSMC::ADDR_BANK + 0x00c80000));  // Адрес записи в аппаратные регистры.
+uint8 * const HAL_FSMC::ADDR_NULL = ((uint8 *)(HAL_FSMC::ADDR_BANK + 0x00a00000));
 
 
+
+/*
 static const char *addrNamesForWrite[32] =
 {
     "WR_START",         // 0x00
@@ -19,8 +29,8 @@ static const char *addrNamesForWrite[32] =
     "WR_TRIG_F",
     "NONE",
     "NONE",
-    "WR_CAL_A",
-    "WR_CAL_B",
+    "WR_CAL_1",
+    "WR_CAL_2",
     "WR_UPR",
     "WR_STOP",
     "RD_ADC_A2",
@@ -40,36 +50,27 @@ static const char *addrNamesForWrite[32] =
     "RD_ADDR_FREQ_MID",         // 0x1e
     "RD_ADDR_FREQ_HI"           // 0x1f
 };
+*/
+
+
+uint8 FSMC_Read(uint8 *address);
+void FSMC_Write(uint8 *address, uint8 value);
 
 
 
-uint8 FSMC::Read(uint8 *address)
+uint8 HAL_FSMC::Read(const uint8 * const address)
 {
     return(*(address));
 }
 
 
-void FSMC::Write(uint8 *address, uint8 value)
+void HAL_FSMC::Write(uint8 * const address, uint8 value)
 {
-    char buffer[9];
-    char buffer8[3];
-    if((address != WR_START && address != WR_STOP && address != WR_TRIG_F) && IS_SHOW_REGISTERS_ALL)
-    {
-        LOG_WRITE("%s-%s\x10->\x10%s", Hex8toString(value, buffer8), Bin2String(value, buffer), addrNamesForWrite[address - ADDR_FPGA]);
-    }
-    else if (IS_SHOW_REG_TSHIFT && (address == WR_POST_LOW || address == WR_POST_HI || address == WR_PRED_HI || address == WR_PRED_LOW))
-    {
-        LOG_WRITE("%s-%s\x10->\x10%s", Hex8toString(value, buffer8), Bin2String(value, buffer), addrNamesForWrite[address - ADDR_FPGA]);
-    }
-    else if(IS_SHOW_REG_TBASE && address == WR_RAZVERTKA)
-    {
-        LOG_WRITE("%s-%s\x10->\x10%s", Hex8toString(value, buffer8), Bin2String(value, buffer), addrNamesForWrite[address - ADDR_FPGA]);
-    };
     *address = value;
 }
 
 
-void FSMC::Init()
+void HAL_FSMC::Init()
 {
 //    static const FSMC_NORSRAM_TimingTypeDef sramTiming =
 //    {
@@ -103,8 +104,5 @@ void FSMC::Init()
 //        }
 //    };
 //
-//    if (HAL_SRAM_Init((SRAM_HandleTypeDef*)(&sramHandle), (FSMC_NORSRAM_TimingTypeDef*)(&sramTiming), (FSMC_NORSRAM_TimingTypeDef*)(&sramTiming)) != HAL_OK)
-//    {
-//        HARDWARE_ERROR
-//    }
+//    HAL_SRAM_Init((SRAM_HandleTypeDef*)(&sramHandle), (FSMC_NORSRAM_TimingTypeDef*)(&sramTiming), (FSMC_NORSRAM_TimingTypeDef*)(&sramTiming));
 }

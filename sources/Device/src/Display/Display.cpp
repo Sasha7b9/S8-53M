@@ -12,7 +12,6 @@
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/Storage.h"
-#include "Hardware/FSMC.h"
 #include "Hardware/Hardware.h"
 #include "Hardware/Sound.h"
 #include "common/Hardware/HAL/HAL.h"

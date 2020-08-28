@@ -9,7 +9,6 @@
 #include "common/Hardware/HAL/HAL.h"
 #include "Settings/Settings.h"
 #include "VCP/VCP.h"
-#include "Hardware/FSMC.h"
 #include "Utils/Math.h"
 #include "Utils/GlobalFunctions.h"
 #include "FDrive/FDrive.h"
@@ -178,10 +177,10 @@ void Painter::SendToDisplay(uint8 *bytes, int numBytes)
     {
         while (pinDisplayReady.Read() == 0) { };
         Timer::PauseOnTicks(100);
-        *ADDR_CDISPLAY = *bytes++;
-        *ADDR_CDISPLAY = *bytes++;
-        *ADDR_CDISPLAY = *bytes++;
-        *ADDR_CDISPLAY = *bytes++;
+        *HAL_FSMC::ADDR_CDISPLAY = *bytes++;
+        *HAL_FSMC::ADDR_CDISPLAY = *bytes++;
+        *HAL_FSMC::ADDR_CDISPLAY = *bytes++;
+        *HAL_FSMC::ADDR_CDISPLAY = *bytes++;
     }
 }
 
@@ -189,10 +188,10 @@ void Painter::SendToDisplay(uint8 *bytes, int numBytes)
 static void Get4Bytes(uint8 bytes[4])
 {
     while (pinDisplayReady.Read() == 0) { }
-    bytes[0] = *ADDR_CDISPLAY;
-    bytes[1] = *ADDR_CDISPLAY;
-    bytes[2] = *ADDR_CDISPLAY;
-    bytes[3] = *ADDR_CDISPLAY;
+    bytes[0] = *HAL_FSMC::ADDR_CDISPLAY;
+    bytes[1] = *HAL_FSMC::ADDR_CDISPLAY;
+    bytes[2] = *HAL_FSMC::ADDR_CDISPLAY;
+    bytes[3] = *HAL_FSMC::ADDR_CDISPLAY;
 }
 
 
@@ -595,12 +594,12 @@ void Painter::Get8Points(int x, int y, uint8 buffer[4])
 uint8 Get2Points(int x, int y)
 {
     while(pinDisplayReady.Read() == 0) { }
-    *ADDR_CDISPLAY = GET_POINT;
-    *ADDR_CDISPLAY = (uint8)x;
-    *ADDR_CDISPLAY = (uint8)(x >> 8);
-    *ADDR_CDISPLAY = (uint8)y;
+    *HAL_FSMC::ADDR_CDISPLAY = GET_POINT;
+    *HAL_FSMC::ADDR_CDISPLAY = (uint8)x;
+    *HAL_FSMC::ADDR_CDISPLAY = (uint8)(x >> 8);
+    *HAL_FSMC::ADDR_CDISPLAY = (uint8)y;
     while(pinDisplayReady.Read() == 0) { }
-    return *ADDR_CDISPLAY;
+    return *HAL_FSMC::ADDR_CDISPLAY;
 }
 
 

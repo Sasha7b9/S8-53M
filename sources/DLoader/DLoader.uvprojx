@@ -668,16 +668,6 @@
               <FilePath>.\src\Hardware\FLASH.h</FilePath>
             </File>
             <File>
-              <FileName>FSMC.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\FSMC.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>FSMC.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\FSMC.h</FilePath>
-            </File>
-            <File>
               <FileName>Hardware.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\Hardware.cpp</FilePath>
@@ -847,6 +837,11 @@
               <FileName>cHAL_TIM7.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\cHAL_TIM7.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>cHAL_FSMC.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\cHAL_FSMC.cpp</FilePath>
             </File>
           </Files>
         </Group>

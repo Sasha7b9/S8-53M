@@ -73,6 +73,7 @@ file(GLOB HARDWARE_HAL   src/Hardware/HAL/*
                          ../common/Hardware/HAL/cHAL.cpp
                          ../common/Hardware/HAL/HAL_PINS.h
                          ../common/Hardware/HAL/cHAL_EPROM.cpp
+                         ../common/Hardware/HAL/cHAL_FSMC.cpp
                          ../common/Hardware/HAL/cHAL_PINS.cpp
                          ../common/Hardware/HAL/cHAL_SPI1.cpp
                          ../common/Hardware/HAL/cHAL_TIM2.cpp

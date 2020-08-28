@@ -1069,16 +1069,6 @@
               <FilePath>.\src\Hardware\EPROM.cpp</FilePath>
             </File>
             <File>
-              <FileName>FSMC.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\FSMC.h</FilePath>
-            </File>
-            <File>
-              <FileName>FSMC.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\FSMC.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Hardware.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\Hardware.h</FilePath>
@@ -1202,6 +1192,11 @@
               <FileName>cHAL_EPROM.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\cHAL_EPROM.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>cHAL_FSMC.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\cHAL_FSMC.cpp</FilePath>
             </File>
             <File>
               <FileName>cHAL_OTP.cpp</FileName>

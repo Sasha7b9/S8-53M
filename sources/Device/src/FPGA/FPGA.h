@@ -16,7 +16,7 @@ public:
     static void Update();
     /// «апись в регистр ѕЋ»— нового значени€.
     static void WriteToHardware				        
-                            (uint8 *address,    ///< адрес регистра.
+                            (uint8 * const address,    ///< адрес регистра.
                                 uint8 value,    ///< записываемое значение.
                                 bool restart    ///< true означает, что после записи нужно запусить режим измерений, если до этого прибор не находилс€ в режиме паузы.
                             );
