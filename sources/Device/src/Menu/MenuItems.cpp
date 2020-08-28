@@ -2,6 +2,7 @@
 #include "MenuItems.h"
 #include "Hardware/Sound.h"
 #include "Hardware/Timer.h"
+#include "Hardware/HAL/HAL.h"
 #include "Settings/Settings.h"
 
 

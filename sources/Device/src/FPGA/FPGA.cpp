@@ -994,7 +994,7 @@ Range FPGA::AccurateFindRange(Channel chan)
         //Timer::LogPointMS("1");
         FPGA::Stop(false);
         FPGA::SetRange(chan, (Range)range);
-        Timer::PauseOnTime(10);
+        HAL_TIM2::Delay(10);
         FPGA::Start();
 
         for (int i = 0; i < 50; i++)
@@ -1079,7 +1079,7 @@ TBase FPGA::AccurateFindTBase(Channel chan)
 TBase FPGA::FindTBase(Channel)
 {
     SetTrigInput(TrigInput_Full);
-    Timer::PauseOnTime(10);
+    HAL_TIM2::Delay(10);
     FPGA::Stop(false);
     float fr = CalculateFreqFromCounterFreq();
 
@@ -1105,7 +1105,7 @@ TBase FPGA::FindTBase(Channel)
         {
             tBase = CalculateTBase(fr);
             FPGA::SetTBase(tBase);
-            Timer::PauseOnTime(10);
+            HAL_TIM2::Delay(10);
             FPGA::Start();
             return tBase;
         }

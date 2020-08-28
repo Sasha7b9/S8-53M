@@ -7,6 +7,7 @@
 #include "Hardware/Timer.h"
 #include "Hardware/Hardware.h"
 #include "Hardware/EPROM.h"
+#include "Hardware/HAL/HAL.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/PageCursors.h"
 #include "Settings/Settings.h"
@@ -27,7 +28,7 @@ int main(void)
     VCP::Init();
     Settings::Load(false);
     FPGA::Init();    
-    Timer::PauseOnTime(250);
+    HAL_TIM2::Delay(250);
     FPGA::OnPressStartStop();
     LAN::Init();
     Display::Init();
@@ -40,7 +41,7 @@ int main(void)
             NEED_RESET_SETTINGS = 0;
         }
 
-        Timer::StartMultiMeasurement();      // —брос таймера дл€ замера длительности временных интервалов в течение одной итерации цикла.
+        HAL_TIM2::StartMultiMeasurement();      // —брос таймера дл€ замера длительности временных интервалов в течение одной итерации цикла.
         FlashDrive::Update();
         LAN::Update(0);
         FPGA::Update();                      // ќбновл€ем аппаратную часть.

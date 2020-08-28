@@ -15,7 +15,7 @@
     <View>
       <WinId>38003</WinId>
       <ViewName>Registers</ViewName>
-      <TableColWidths>125 125</TableColWidths>
+      <TableColWidths>133 134</TableColWidths>
     </View>
     <View>
       <WinId>346</WinId>

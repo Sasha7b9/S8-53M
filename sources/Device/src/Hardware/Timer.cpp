@@ -1,7 +1,7 @@
 #include "defines.h"
-#include "Timer.h"
+#include "Hardware/Timer.h"
+#include "Hardware/HAL/HAL.h"
 #include "Log.h"
-#include <stm32f4xx_hal.h>
 
 
 
@@ -16,14 +16,6 @@ void Timer::PauseOnTicks(uint numTicks)
 {
     uint startTicks = gTimerTics;
     while (gTimerTics - startTicks < numTicks) {};
-}
-
-
-void Timer::StartMultiMeasurement(void)
-{
-    TIM2->CR1 &= (uint)~TIM_CR1_CEN;
-    TIM2->CNT = 0;
-    TIM2->CR1 |= TIM_CR1_CEN; 
 }
 
 
@@ -122,22 +114,4 @@ void Timer_Update10ms(void)
 
         }
     }
-}
-
-
-void Timer::PauseOnTime(uint timeMS)
-{
-    HAL_Delay(timeMS);
-}
-
-
-void Timer::Delay(uint timeMS)
-{
-    HAL_Delay(timeMS);
-}
-
-
-uint Timer::TimeMS()
-{
-    return HAL_GetTick();
 }

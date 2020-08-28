@@ -5,6 +5,7 @@
 #include "Display/Display.h"
 #include "Display/Painter.h"
 #include "Hardware/Timer.h"
+#include "Hardware/HAL/HAL.h"
 #include "Settings/Settings.h"
 
 

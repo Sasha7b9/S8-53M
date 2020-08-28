@@ -4,6 +4,7 @@
 #include "FPGA/FPGA.h"
 #include "Hardware/FSMC.h"
 #include "Hardware/Timer.h"
+#include "Hardware/HAL/HAL.h"
 #include "Panel/Panel.h"
 #include "Settings/Settings.h"
 #include <limits>
@@ -134,7 +135,7 @@ void FPGA::ProcedureCalibration(void)
 
         gStateFPGA.stateCalibration = StateCalibration_RShift1start;
 
-        Timer::Delay(500);
+        HAL_TIM2::Delay(500);
 
 		if(Panel::WaitPressingButton() == B_Start)                 // ќжидаем подтверждени€ или отмены процедуры калибровки второго канала.
         {

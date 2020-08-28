@@ -26,8 +26,6 @@ typedef enum
 class Timer
 {
 public:
-    /// Задержка на timeMS миллисекунд
-    static void PauseOnTime(uint timeMS);
 
     static void PauseOnTicks(uint numTicks);
     /// Функция вызывается по прерыванию системного таймера для работы таймеров. Увеличивает внутренее время таймеров на 1мс.
@@ -44,25 +42,10 @@ public:
     static void Continue(TypeTimer type);
     /// С помощью этой функции можно узнать, работает ли таймер.
     static bool IsRun(TypeTimer type);
-    /// Запускает счётчик для измерения малых отрезков времени.
-    static void StartMultiMeasurement();
     /// Устанавливает стартовую точку логгирования. Далее вызовы Timer_LogPoint засекают временные интервалы от это точки.
     static void StartLogging();
     
     static uint LogPointUS(char *name);
     
     static uint LogPointMS(char *name);
-    
-    static void Delay(uint timeMS);
-    
-    static uint TimeMS();
 };
-
-#define gTimerMS Timer::TimeMS()
-
-/**
-  * gTimerTics - количество тиков, прошедших с момента последнего вызова функции Timer_StartMultiMeasurement().
-  * В одной секунде 120.000.000 тиков. Максимальный отрезок времени, который можно отсчитать с её помощью - 35 сек.
-  * Количество тиков, прошедших с момента последнего вызова функции Timer_StartMultiMeasurement(). Не более (1 << 32).
-***/
-#define gTimerTics (TIM2->CNT)

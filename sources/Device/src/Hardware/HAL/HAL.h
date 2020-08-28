@@ -12,6 +12,15 @@ extern Pin pinLED;
 extern Pin pinDisplayReady;
 
 
+/**
+  * gTimerTics - количество тиков, прошедших с момента последнего вызова функции Timer_StartMultiMeasurement().
+  * В одной секунде 120.000.000 тиков. Максимальный отрезок времени, который можно отсчитать с её помощью - 35 сек.
+  * Количество тиков, прошедших с момента последнего вызова функции Timer_StartMultiMeasurement(). Не более (1 << 32).
+***/
+#define gTimerTics HAL_TIM2::GetTicks()
+#define gTimerMS   HAL_TIM2::TimeMS()
+
+
 struct HAL
 {
     static void Init();
@@ -59,6 +68,19 @@ struct HAL_HCD
 {
     static void Init();
     static void *handle;    // HCD_HandleTypeDef
+};
+
+struct HAL_TIM2
+{
+    static uint GetTicks();
+
+    static uint TimeMS();
+    
+    // Запускает счётчик для измерения малых отрезков времени.
+    static void StartMultiMeasurement();
+    
+    // Задержка на timeMS миллисекунд
+    static void Delay(uint timeMS);
 };
 
 struct HAL_TIM7

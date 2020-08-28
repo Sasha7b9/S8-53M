@@ -4,6 +4,7 @@
 #include "TcpSocket.h"
 #include "main.h"
 #include "Hardware/Timer.h"
+#include "Hardware/HAL/HAL.h"
 #include "ethernetif.h"
 #include "VCP/SCPI/SCPI.h"
 #include "Log.h"

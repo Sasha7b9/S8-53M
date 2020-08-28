@@ -6,6 +6,7 @@
 #include "usbd_desc.h"
 #include "usbd_cdc_interface.h"
 #include "Hardware/Timer.h"
+#include "Hardware/HAL/HAL.h"
 #include <usbd_cdc.h>
 #include <usbd_def.h>
 #include <cstdarg>
