@@ -29,7 +29,6 @@
 #include "PainterMem.h"
 #include <cmath>
 #include <limits>
-#include "Hardware/DisplayHardware.inc"
 #include <cstring>
 #include <cstdio>
 
@@ -68,8 +67,6 @@ void Display::Init()
     */
 
     Painter::ResetFlash();
-
-    InitHardware();
 
     Painter::LoadFont(TypeFont::_5);
     Painter::LoadFont(TypeFont::_8);
