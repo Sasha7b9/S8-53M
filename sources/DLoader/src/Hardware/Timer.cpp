@@ -45,8 +45,8 @@ uint Timer_LogPointUS(char *)
 
 uint Timer_LogPointMS(char *)
 {
-    uint interval = gTimerTics - timePrevPoint;
-    timePrevPoint = gTimerTics;
+    uint interval = gTimerMS - timePrevPoint;
+    timePrevPoint = gTimerMS;
     return interval;
 }
 
@@ -68,7 +68,7 @@ void Timer_Disable(TypeTimer type)
 
 void Timer_Pause(TypeTimer type)
 {
-    isRun[type] = false;
+    Timer_Disable(type);
 }
 
 
