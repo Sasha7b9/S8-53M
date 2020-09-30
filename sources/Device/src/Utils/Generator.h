@@ -11,12 +11,12 @@ typedef enum
     Wave_Meander
 } TypeWave;
 
-typedef struct
+struct SGenerator
 {
     void(*SetParametersWave)(Channel channel, TypeWave typeWave, float frequency, float startAngle, float amplWave, float amplNoise);    // numWave = 1, 2. Может быть до двух сигналов.
                                                                                                     // amplWave = 0.0f...1.0f, amplNoise = 0.0f...1.0f - относительно амплитуды сигнала.
     void(*StartNewWave)(Channel channel);
     uint8(*GetSampleWave)(Channel channel);
-} SGenerator;
+};
 
 extern const SGenerator Generator;

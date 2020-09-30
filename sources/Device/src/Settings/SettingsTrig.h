@@ -90,7 +90,7 @@ typedef enum
 
 
 /// Настройки синхронизации
-typedef struct
+struct SettingsTrig
 {
     StartMode           startMode;          ///< Режим запуска.
     TrigSource          source;             ///< Источник.
@@ -99,7 +99,7 @@ typedef struct
     int16               levelRel[3];        ///< Уровень синхронизации для трёх источников.
     ModeLongPressTrig   modeLongPressTrig;  ///< Режим работы длительного нажатия кнопки СИНХР.
     TrigModeFind        modeFind;           ///< Поиск синхронизации - вручную или автоматически.
-} SettingsTrig;
+};
 
 
 /** @}  @}

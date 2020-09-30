@@ -79,7 +79,7 @@ typedef enum
 
 
 /// Настройки оси X.
-typedef struct
+struct SettingsTime
 { //-V802
     TBase               tBase;          ///< Масштаб по времени.
     int16               tShiftRel;      ///< Смещение по времени.
@@ -90,7 +90,7 @@ typedef struct
     bool                selfRecorder;   ///< Включен ли режим самописца.
     ENUM_POINTS_FPGA    oldNumPoints;   ///< \brief Когда переключаемся в режим пикового детектора, устанавливаем количество точек в 1024, а сюда 
                                         /// записываем то, что было, чтобы потом восстановить.
-} SettingsTime;
+};
 
 
 

@@ -62,7 +62,7 @@ typedef struct
 
 
 // ВременнЫе настройки
-typedef struct
+struct SettingsTime
 {
     TBase           tBase;                  // Масштаб по времени.
     int16           tShiftRel;              // Смещение по времени
@@ -72,7 +72,7 @@ typedef struct
     PeackDetMode    peakDet;
     bool            selfRecorder;           // Включен ли режим самописца.
     FPGA_NUM_POINTS oldNumPoints;           // Когда переключаемся в режим пикового детектора, устанавливаем количество точек в 1024, а сюда записываем то, что было, чтобы потом восстановить
-} SettingsTime;
+};
 
 
 // Настройки курсоров

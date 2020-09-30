@@ -11,10 +11,10 @@
 #include <limits>
 
 
-typedef struct
+struct MeasureValue
 {
     float value[2];
-} MeasureValue;
+};
 
 static uint8 dataOut0[FPGA_MAX_POINTS];
 static uint8 dataOut1[FPGA_MAX_POINTS];

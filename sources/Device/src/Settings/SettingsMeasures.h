@@ -79,7 +79,7 @@ typedef enum
 
 
 /// Настройки меню ИЗМЕРЕНИЯ
-typedef struct
+struct SettingsMeasures
 {
     MeasuresNumber  number;             ///< Сколько измерений выводить.
     Channel         source;             ///< Для каких каналов выводить измерения.
@@ -93,7 +93,7 @@ typedef struct
     CursCntrl       cntrlT;             ///< Активные курсоры времени.
     CursActive      cursActive;         ///< Какие курсоры активны - по времени или напряжению.
     Measure         markedMeasure;      ///< Измерение, на которое нужно выводить маркеры.
-} SettingsMeasures;
+};
 
 
 

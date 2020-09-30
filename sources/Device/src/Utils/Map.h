@@ -4,11 +4,11 @@
 #include "Strings.h"
 
 
-typedef struct
+struct MapElement
 {
     char *key;
     uint8 value;
-} MapElement;
+};
 
 
 uint8 GetValueFromMap(const MapElement *map, Word *key);      // ≈сли значение не найдено, возвращеетс€ 255;

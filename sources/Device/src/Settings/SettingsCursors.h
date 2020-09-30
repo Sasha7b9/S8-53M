@@ -56,7 +56,7 @@
 
 
 /// Настройки курсорных измерений.
-typedef struct
+struct SettingsCursors
 {
     CursCntrl       cntrlU[NumChannels];        ///< Активные курсоры напряжения.
     CursCntrl       cntrlT[NumChannels];        ///< Активные курсоры напряжения.
@@ -70,7 +70,7 @@ typedef struct
     CursLookMode    lookMode[2];                ///< Режимы слежения за курсорами для двух пар курсоров.
     bool            showFreq;                   ///< Установленное в true значение, что нужно показывать на экране значение 1/dT между курсорами.
     bool            showCursors;                ///< Показывать ли курсоры.
-} SettingsCursors;
+};
 
 
 

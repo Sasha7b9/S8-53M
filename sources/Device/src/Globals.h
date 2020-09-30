@@ -47,7 +47,7 @@
 #define PANEL_IS_RUNNING         (gBF.panelIsRunning)
 
 
-typedef struct
+struct BitField
 {
     // Ethernet
     uint ethTimeLastEthifInput      : 32;   // Время последнего входа в процедуру ethernetif.c:ethernetif_input() Используется для определения того, 
@@ -114,7 +114,7 @@ typedef struct
     uint needOpenFileMananger       : 1;    // Если 1, то нужно открыть файловый менеджер (сработало автоподключение)
     uint needClosePageSB            : 1;    // Если 1, нужно закрывать страницу малых кнопок
     uint needResetSettings          : 1;    // Если 1, то необходим сброс настроек
-} BitField;
+};
 
 
 extern BitField gBF;
@@ -136,7 +136,7 @@ extern BitField gBF;
 #define EXIT_FROM_SET_NAME_TO_INT       (EXIT_FROM_SET_NAME_TO == RETURN_TO_INT_MEM)
 #define EXIT_FROM_SET_NAME_TO_DIS_MENU  (EXIT_FROM_SET_NAME_TO == RETURN_TO_DISABLE_MENU)
 
-typedef struct 
+struct GMemory
 {
     int16   currentNumLatestSignal;                 // Текущий номер последнего сигнала в режиме ПАМЯТЬ - Последние
     int8    currentNumIntSignal;                    // Текущий номер сигнала, сохранённого в ППЗУ
@@ -146,7 +146,7 @@ typedef struct
     uint    exitFromModeSetNameTo           : 2;    // Куда возвращаться из окна установки имени при сохранении : 0 - в основное меню, 1 - в окно 
                                                     // последних, 2 - в окно Внутр ЗУ, 3 - в основно окно в выключенным меню
     uint    needForSaveToFlashDrive         : 1;    // Если 1, то нужно сохранить после отрисовки на флешку.
-} GMemory;
+};
 
 
 extern GMemory gMemory;
@@ -174,12 +174,12 @@ typedef enum
 } StateWorkFPGA;
 
 
-typedef struct
+struct StateFPGA
 {
     bool needCalibration;				        // Установленное в true значение означает, что необходимо произвести калибровку.
     StateWorkFPGA stateWorkBeforeCalibration;
     StateCalibration stateCalibration;          // Текущее состояние калибровки. Используется в процессе калибровки.
-} StateFPGA;
+};
 
 struct DataSettings
 {

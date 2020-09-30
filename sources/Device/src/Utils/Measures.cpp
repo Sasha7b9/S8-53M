@@ -12,11 +12,11 @@
 #include <cstdio>
 
 
-typedef struct
+struct StructMeasure
 {
     const char *name;
     const char UGO;
-} StructMeasure;
+};
 
 static const StructMeasure measures[Measure_NumMeasures] =
 {

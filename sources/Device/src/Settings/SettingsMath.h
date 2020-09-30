@@ -106,7 +106,7 @@ typedef enum
 } ModeRegSet;
 
 
-typedef struct
+struct SettingsMath
 {
     ScaleFFT        scaleFFT;       ///< Масштаб шкалы для отображения спектра.
     SourceFFT       sourceFFT;      ///< Источник сигнала для расчёта и отображения спектра.
@@ -125,7 +125,7 @@ typedef struct
     Range           range;          ///< Масштаб по напряжению математического сигнала.
     Divider      multiplier;     ///< Множитель масштаба математического сигнала.
     int16           rShift;         ///< Смещение по вертикальной оси математического сигнала.
-} SettingsMath;
+};
 
 
 /** @}  @}
