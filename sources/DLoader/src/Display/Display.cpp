@@ -9,11 +9,11 @@
 #include <cmath>
 
 
-typedef struct
+struct Vector
 {
     uint16 x;
     uint8 y;
-} Vector;
+};
 
 
 int numPoints = 0;

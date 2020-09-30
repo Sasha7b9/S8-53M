@@ -33,15 +33,15 @@ typedef enum
     StateDisk_Start
 } StateDisk;
 
-typedef struct
+struct Display
 {
     bool isRun;
     float value;
     float direction;
     uint timePrev;
-} Display;
+};
 
-typedef struct
+struct FDrive
 {
     FATFS USBDISKFatFS;
     char USBDISKPath[4];
@@ -49,15 +49,15 @@ typedef struct
     FIL file;
     int connection;
     int active;
-} FDrive;
+};
 
-typedef struct
+struct MainStruct
 {
     FDrive drive;
     Display display;
     float percentUpdate;
     State state;
-} MainStruct;
+};
 
 
 // Данная структура используется во всех модулях программы для уменьшения расхода ОЗУ

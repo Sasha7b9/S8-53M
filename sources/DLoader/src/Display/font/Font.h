@@ -1,21 +1,19 @@
 #pragma once
-
-
 #include "defines.h"
 
 
-typedef struct
+struct Symbol
 {
     uchar width;
     uchar bytes[8];
-} Symbol;
+};
 
 
-typedef struct
+struct Font
 {
     int height;
     Symbol symbol[256];
-} Font;
+};
 
 
 extern const Font *font;

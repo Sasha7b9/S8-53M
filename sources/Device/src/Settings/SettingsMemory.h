@@ -86,10 +86,10 @@ typedef enum
 
 
 
-typedef  struct
+struct StructMemoryLast
 {
     bool isActiveModeSelect;
-} StructMemoryLast;
+};
 
 // Настройки МЕНЮ->ПАМЯТЬ
 struct SettingsMemory

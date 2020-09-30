@@ -1,13 +1,11 @@
 #pragma once
-
-
 #include "defines.h"
 #include "SettingsTypes.h"
 #include "Panel/Controls.h"
 
 
 // Настройки изображения
-typedef struct
+struct SettingsDisplay
 {
     int16               timeShowLevels;             // Время, в течение которого нужно показывать уровни смещения
     int16               shiftInMemory;              // Показывает смещение левого края сетки относительно нулевого байта памяти. Нужно для правильного отображения сигнала в окне.
@@ -29,11 +27,11 @@ typedef struct
     MenuAutoHide        menuAutoHide;               // Через сколько времени после последнего нажатия клавиши прятать меню 
     bool                showFullMemoryWindow;       // Показывать ли окно памяти вверху экрана.
     bool                showStringNavigation;       // Показывать ли строку текущего состояния меню.
-} SettingsDisplay;
+};
 
 
 // Настройки каналов
-typedef struct
+struct SettingsChannel
 {
     float           stretchADC;         	    // Поправочный коэффициент.
     int16           rShiftRel;
@@ -45,11 +43,11 @@ typedef struct
     bool            inverse;            	    // Инвертирован ли канал.
     bool            filtr;              	    // Фильтр
     int8            balanceShiftADC;    	    // Добавочное смещение для балансировки АЦП.
-} SettingsChannel;
+};
 
 
 // Настройки синхронизации
-typedef struct
+struct SettingsTrig
 {
     StartMode           startMode;          // Режим запуска.
     TrigSource          source;             // Источник.
@@ -58,7 +56,7 @@ typedef struct
     int16               levelRel[3];        // Уровень синхронизации для трёх источников.
     ModeLongPressTrig   modeLongPressTrig;  // Режим работы длительного нажатия кнопки СИНХР.
     TrigModeFind        modeFind;           // Поиск синхронизации - вручную или автоматически.
-} SettingsTrig;
+};
 
 
 // ВременнЫе настройки
@@ -76,7 +74,7 @@ struct SettingsTime
 
 
 // Настройки курсоров
-typedef struct
+struct SettingsCursors
 {
     CursCntrl           cntrlU[NumChannels];                    // Активные курсоры напряжения.
     CursCntrl           cntrlT[NumChannels];                    // Активные курсоры напряжения.
@@ -90,15 +88,15 @@ typedef struct
     CursLookMode        lookMode[2];                            // Режимы слежения за курсорами для двух пар курсоров.
     bool                showFreq;                               // Установленное в true значение, что нужно показывать на экране значение 1/dT между курсорами.
     bool                showCursors;                            // Показывать ли курсоры
-} SettingsCursors;
+};
 
-typedef  struct
+struct StructMemoryLast
 {
     bool isActiveModeSelect;
-} StructMemoryLast;
+};
 
 // Настройки МЕНЮ->ПАМЯТЬ
-typedef struct
+struct SettingsMemory
 {
 #define MAX_SYMBOLS_IN_FILE_NAME 35
     FPGA_NUM_POINTS fpgaNumPoints;              // Число точек.
@@ -118,9 +116,9 @@ typedef struct
     bool                flashAutoConnect;       // Если true, при подлючении флеш автоматически выводится NC (Нортон Коммандер)
     ModeBtnMemory       modeBtnMemory;     
     ModeSaveSignal      modeSaveSignal;         // В каком виде сохранять сигнал.
-} SettingsMemory;
+};
                                     
-typedef struct
+struct SettingsMath
 {
     ScaleFFT        scaleFFT;
     SourceFFT       sourceFFT;
@@ -139,19 +137,19 @@ typedef struct
     Range           range;
     Multiplier      multiplier;
     int16           rShift;
-} SettingsMath;
+};
 
 // Эти настройки меняются через МЕНЮ -> СЕРВИС
-typedef struct
+struct SettingsService
 {
     bool            screenWelcomeEnable;    // Будет ли показываться экран приглашения при включении прибора.
     bool            soundEnable;            // Включены ли звуки.
     CalibratorMode  calibrator;             // Режим работы калибратора.
     int8            IPaddress;              // IP-адрес (временно)
     ColorScheme     colorScheme;            //
-} SettingsService;
+};
 
-typedef struct
+struct SettingsEthernet
 {
     uint8 mac0;
     uint8 mac1;
@@ -178,18 +176,18 @@ typedef struct
     uint8 gw3;
 
     bool enable;
-} SettingsEthernet;
+};
                                     
-typedef struct
+struct SettingsCommon
 {
     int     countEnables;               // Количество включений. Увеличивается при каждом включении
     int     countErasedFlashData;       // Сколько раз стирался первый сектор с ресурсами
     int     countErasedFlashSettings;   // Сколько раз стирался сектор с настройкаи
     int     workingTimeInSecs;          // Время работы в секундах
     Language lang;                      // Язык меню
-} SettingsCommon;
+};
 
-typedef struct
+struct OutputRegisters
 {
     bool    all;                                // Показывать значения всех регистров.
     bool    flag;                               // Выводить ли флаг готовности.
@@ -201,11 +199,11 @@ typedef struct
     bool    trigParam;
     bool    tShift;
     bool    tBase;
-} OutputRegisters;
+};
 
 
 // Настройки отладчика
-typedef  struct
+struct SettingsDebug
 {
     int16           numStrings;                 // Число строк в консоли.
     int8            sizeFont;                   // Размер шрифта консоли - 0 - 5, 1 - 8,
@@ -224,10 +222,10 @@ typedef  struct
     bool            viewAllAlteraWrittingData;  // Показывать ли все данные, идущие в альтеру (если false, то постоянно идущие команды вроде START, STOP не показываются).
     int16           altShift;                   // Добавочное смещение для устранения эффекта горизонтальной помехи синхронизации.
     OutputRegisters showRegisters;
-} SettingsDebug;
+};
 
 // Струкура хранит все настройки прибора.
-typedef struct
+struct Settings
 {
     SettingsDisplay     display;                    // настройки изображения          (меню ДИСПЛЕЙ)
     SettingsTime        time;                       // временнЫе настройки            (меню РАЗВЁРТКА)
@@ -239,7 +237,7 @@ typedef struct
     SettingsCommon      common;                     // системные настройки
     SettingsDebug       debug;                      // настройки режима отладки       (меню ОТЛАДКА)
     int temp;
-} Settings;
+};
 
 extern Settings set;
 
