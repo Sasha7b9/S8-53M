@@ -1,4 +1,4 @@
-/// @file
+// @file
 
 #include "Stack2500uint16.h"
 #include "common/Log.h"

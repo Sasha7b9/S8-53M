@@ -36,10 +36,10 @@ namespace Painter
     void DrawMultiHPointLine(int numLines, int x, uint8 y[], int delta, int count, Color::E color);
 
     void DrawLine(int x0, int y0, int x1, int y1);
-    /// Рисует прерывистую горизонтальную линию. dFill - длина штриха, dEmpty - расст. между штрихами
-    /// Линия всегда начинается со штриха. dStart указывает смещение первой рисуемой точки относительно начала штриха.
+    // Рисует прерывистую горизонтальную линию. dFill - длина штриха, dEmpty - расст. между штрихами
+    // Линия всегда начинается со штриха. dStart указывает смещение первой рисуемой точки относительно начала штриха.
     void DrawDashedHLine(int y, int x0, int x1, int dFill, int dEmpty, int dStart);
-    /// Рисует прерывистую вертикальную линию.
+    // Рисует прерывистую вертикальную линию.
     void DrawDashedVLine(int x, int y0, int y1, int dFill, int dEmpty, int dStart);
 
     void DrawRectangle(int x, int y, int width, int height);
@@ -50,8 +50,8 @@ namespace Painter
 
     void SetBrightnessDisplay(int16 brightness);  // Установить яркость дисплея.
     
-    /// Нарисовать массив вертикальных линий. Линии рисуются одна за другой. y0y1 - массив вертикальных координат
+    // Нарисовать массив вертикальных линий. Линии рисуются одна за другой. y0y1 - массив вертикальных координат
     void DrawVLineArray(int x, int numLines, uint8 *y0y1, Color::E color);
-    /// modeLines - true - точками, false - точками
+    // modeLines - true - точками, false - точками
     void DrawSignal(int x, uint8 data[281], bool modeLines);
 };

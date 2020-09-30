@@ -45,7 +45,7 @@
 
 
 
-/// Режим работы.
+// Режим работы.
 typedef enum
 {
     ModeWork_Direct,        ///< Основной режим.
@@ -54,14 +54,14 @@ typedef enum
 } ModeWork;
 
 
-/// Режим наименования файлов.
+// Режим наименования файлов.
 typedef enum
 {
     FileNamingMode_Mask,        ///< Именовать по маске.
     FileNamingMode_Manually     ///< Именовать вручную.
 } FileNamingMode;
 
-/// Что показывать в режиме Внутр ЗУ - считанный или записанный сигнал.
+// Что показывать в режиме Внутр ЗУ - считанный или записанный сигнал.
 typedef enum
 {
     ModeShowIntMem_Direct,  ///< Показывать данные реального времени.
@@ -69,14 +69,14 @@ typedef enum
     ModeShowIntMem_Both     ///< Показывать данные реального времени и сохранённые данные.
 } ModeShowIntMem;
 
-/// Что делать при нажатии кнопки ПАМЯТЬ.
+// Что делать при нажатии кнопки ПАМЯТЬ.
 typedef enum
 {
     ModeBtnMemory_Menu,     ///< Будет открывааться соответствующая страница меню.
     ModeBtnMemory_Save      ///< Сохранение содержимого экрана на флешку.
 } ModeBtnMemory;
 
-/// Как сохранять данные на флешку.
+// Как сохранять данные на флешку.
 typedef enum
 {
     ModeSaveSignal_BMP,     ///< Сохранять данные на флешку в формате .bmp.
@@ -91,7 +91,7 @@ typedef  struct
     bool isActiveModeSelect;
 } StructMemoryLast;
 
-/// Настройки МЕНЮ->ПАМЯТЬ
+// Настройки МЕНЮ->ПАМЯТЬ
 struct SettingsMemory
 {
 #define MAX_SYMBOLS_IN_FILE_NAME 35

@@ -70,14 +70,14 @@
 
 
 
- /// Режим отрисовки сигнала.
+ // Режим отрисовки сигнала.
 typedef enum
 {
     ModeDrawSignal_Lines = 0,   ///< Сигнал рисуется линиями.
     ModeDrawSignal_Points = 1   ///< Сигнал рисуется точками.
 } ModeDrawSignal;
 
-/// Тип сетки на экране.
+// Тип сетки на экране.
 typedef enum
 {
     TypeGrid_1,
@@ -87,7 +87,7 @@ typedef enum
     TG_Size
 } TypeGrid;
 
-/// Перечисление накоплений.
+// Перечисление накоплений.
 typedef enum
 {
     NumAccumulation_1,
@@ -101,7 +101,7 @@ typedef enum
     NumAccumulation_Infinity
 } ENumAccumulation;
 
-/// Количество усреднений по измерениям.
+// Количество усреднений по измерениям.
 typedef enum
 {
     NumAveraging_1,
@@ -116,14 +116,14 @@ typedef enum
     NumAveraging_512
 } ENumAveraging;
 
-/// Тип усреднений по измерениям.
+// Тип усреднений по измерениям.
 typedef enum
 {
     Averaging_Accurately,   ///< Усреднять точно.
     Averaging_Around        ///< Усреднять приблизительно.
 } ModeAveraging;
 
-/// Количество измерений для расчёта минимального и максимального значений.
+// Количество измерений для расчёта минимального и максимального значений.
 typedef enum
 {
     NumMinMax_1,
@@ -136,7 +136,7 @@ typedef enum
     NumMinMax_128
 } ENumMinMax;
 
-/// Количество точек для расчёта скользящего фильтра.
+// Количество точек для расчёта скользящего фильтра.
 typedef enum
 {
     Smoothing_Disable,
@@ -151,7 +151,7 @@ typedef enum
     Smoothing_10points = 9
 } Smoothing;
 
-/// Ограничение FPS.
+// Ограничение FPS.
 typedef enum
 {
     NumSignalsInSec_25,
@@ -161,14 +161,14 @@ typedef enum
     NumSignalsInSec_1
 } ENumSignalsInSec;
 
-/// Режим накопления.
+// Режим накопления.
 typedef enum
 {
     ModeAccumulation_NoReset,   ///< В этом режиме показываются строго N последних измерений.
     ModeAccumulation_Reset      ///< В этом режиме набираются N последних измерений и потом сбрасываются.
 } ModeAccumulation;
 
-/// Режим отображения дополнительных боковых маркеров смещения по напряжению.
+// Режим отображения дополнительных боковых маркеров смещения по напряжению.
 typedef enum
 {
     AM_Hide,        ///< Никода не выводить.
@@ -176,7 +176,7 @@ typedef enum
     AM_AutoHide     ///< Выводить и прятать через timeShowLevels.
 } AltMarkers;
 
-/// Через какое время после последнего нажатия кнопки скрывать меню.
+// Через какое время после последнего нажатия кнопки скрывать меню.
 typedef enum
 {
     MenuAutoHide_None = 0,  ///< Никогда.
@@ -187,7 +187,7 @@ typedef enum
     MenuAutoHide_60 = 60    ///< Через 60 секунд.
 } MenuAutoHide;
 
-/// Тип привязки к смещению по вертикали
+// Тип привязки к смещению по вертикали
 typedef enum
 {
     LinkingRShift_Voltage,      ///< Смещение привязано к напряжению
@@ -196,7 +196,7 @@ typedef enum
 
 
 
-/// Настройки изображения
+// Настройки изображения
 struct SettingsDisplay
 {
     int16               timeShowLevels;             ///< Время, в течение которого нужно показывать уровни смещения.
@@ -224,21 +224,21 @@ struct SettingsDisplay
 
 
 
-/// Возвращает ограничение частоты кадров.
+// Возвращает ограничение частоты кадров.
 int sDisplay_NumSignalsInS();
-/// Устанавливает ограничение частоты кадров.
+// Устанавливает ограничение частоты кадров.
 void sDisplay_SetNumSignalsInS(int maxFPS);
-/// Возвращает число точек сглаживающего фильтра (режим ДИСПЛЕЙ - Сглаживание).
+// Возвращает число точек сглаживающего фильтра (режим ДИСПЛЕЙ - Сглаживание).
 int sDisplay_NumPointSmoothing();
-/// Возвращает адрес первой и последней точки на экране.
+// Возвращает адрес первой и последней точки на экране.
 void sDisplay_PointsOnDisplay(int *firstPoint, int *lastPoint);
-/// Возвращает время, через которое меню автоматически скрывается, если не было больше нажатий.
+// Возвращает время, через которое меню автоматически скрывается, если не было больше нажатий.
 int sDisplay_TimeMenuAutoHide();
-/// Если экран разделён на две части и основной сигнал выводится сверху - например, в режиме вывода спектра
+// Если экран разделён на две части и основной сигнал выводится сверху - например, в режиме вывода спектра
 bool sDisplay_IsSeparate();
-/// brightness = 1..100
+// brightness = 1..100
 void sDisplay_SetBrightness(int16 brightness);
-/// Возвращает режим усреднения
+// Возвращает режим усреднения
 ModeAveraging sDisplay_ModeAveraging();
 
 int sDisplay_NumAverage();

@@ -6,7 +6,7 @@
 #include "Settings/Settings.h"
 
 
-/// »спользуетс€ дл€ анимации изменени€ значени€ Choice
+// »спользуетс€ дл€ анимации изменени€ значени€ Choice
 struct TimeStructChoice
 {
     Choice* choice;                 ///< јдрес Choice, который находитс€ в данный момент в движении. ≈сли 0 - все статичны.

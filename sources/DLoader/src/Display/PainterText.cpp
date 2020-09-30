@@ -225,8 +225,8 @@ static bool CompareArrays(const bool *array1, const bool *array2, int numElems)
 }
 
 
-/// Находит следующий перенос. C letters начинается часть слово, где нужно найти перенос, в lettersInSyllable будет записано число букв в найденном 
-/// слоге. Если слово закончилось, функция возвращает false
+// Находит следующий перенос. C letters начинается часть слово, где нужно найти перенос, в lettersInSyllable будет записано число букв в найденном 
+// слоге. Если слово закончилось, функция возвращает false
 static bool FindNextTransfer(char *letters, int8 *lettersInSyllable)
 {
 
@@ -464,7 +464,7 @@ void Painter::DrawBigText(int eX, int eY, int size, const char *text)
 }
 
 
-/// Возвращает часть слова до слога numSyllable(включительн) вместе со знаком переноса
+// Возвращает часть слова до слога numSyllable(включительн) вместе со знаком переноса
 static char* PartWordForTransfer(char *word, int8* lengthSyllables, int numSyllable, char buffer[30])
 {
     int length = 0;
@@ -479,7 +479,7 @@ static char* PartWordForTransfer(char *word, int8* lengthSyllables, int numSylla
 }
 
 
-/// Если draw == false, то рисовать символ не надо, фунция используется только для вычислений
+// Если draw == false, то рисовать символ не надо, фунция используется только для вычислений
 static int DrawPartWord(char *word, int x, int y, int xRight, bool draw)
 {
     int8 *lengthSyllables = BreakWord(word);

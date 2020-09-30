@@ -99,7 +99,7 @@ extern const       Button bEraseData;                       ///< ОТЛАДКА - Стере
 static void       OnPress_EraseData();
 
 
-/// В этой структуре будут храниться данные серийного номера при открытой странице ppSerialNumer
+// В этой структуре будут храниться данные серийного номера при открытой странице ppSerialNumer
 struct StructForSN
 {
     int number;     ///< Соответственно, порядковый номер.
@@ -1137,7 +1137,7 @@ static void Draw_SerialNumber_Save(int x, int y)
         // ОТЛАДКА - АЦП - ДОП. СМЕЩ. ПАМ.
 const Page mspDebugADCaltShift;
 
-/// ОТЛАДКА - АЦП - ДОП. СМЕЩ. ПАМ. - Величина
+// ОТЛАДКА - АЦП - ДОП. СМЕЩ. ПАМ. - Величина
 const Governor mgDebugADCaltShift =
 {
     &mspDebugADCaltShift, 0,
