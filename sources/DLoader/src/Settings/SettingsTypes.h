@@ -80,15 +80,15 @@ typedef enum
 typedef enum
 {
     DisplaySmooth_Disable,
-    DisplaySmooth_2points = 1,
-    DisplaySmooth_3points = 2,
-    DisplaySmooth_4points = 3,
-    DisplaySmooth_5points = 4,
-    DisplaySmooth_6points = 5,
-    DisplaySmooth_7points = 6,
-    DisplaySmooth_8points = 7,
-    DisplaySmooth_9points = 8,
-    DisplaySmooth_10points = 9
+    DisplaySmooth_2points,
+    DisplaySmooth_3points,
+    DisplaySmooth_4points,
+    DisplaySmooth_5points,
+    DisplaySmooth_6points,
+    DisplaySmooth_7points,
+    DisplaySmooth_8points,
+    DisplaySmooth_9points,
+    DisplaySmooth_10points
 } DisplaySmoothing;
 
 // Ограничение FPS.
