@@ -1,12 +1,12 @@
 #pragma once
 
 
-typedef enum
+enum TypeWave
 {
     TypeWave_Sine,
     TypeWave_Meandr,
     TypeWave_Triangle
-} TypeWave;
+};
 
 
 class Sound
