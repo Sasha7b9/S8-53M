@@ -4,31 +4,31 @@
 // SDisplay
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-typedef enum
+enum ColorScheme
 {
     ColorScheme_WhiteLetters,       // В этом случае заголовки элементов меню пишутся белым - не очень хорошо видно снизу
     ColorScheme_BlackLetters        // В этом случае заголовки элементов меню пишутся чёрным - не очень красиво выглядит
-} ColorScheme;
+};
 
 // Режим отрисовки сигнала.
-typedef enum
+enum ModeDrawSignal
 {
     ModeDrawSignal_Lines = 0,   // линиями
     ModeDrawSignal_Points = 1   // точками
-} ModeDrawSignal;
+};
 
 // Тип сетки на экране.
-typedef enum
+enum TypeGrid
 {
     TypeGrid_1,
     TypeGrid_2,
     TypeGrid_3,
     TypeGrid_4,
     TG_Size
-} TypeGrid;
+};
 
 // Количество накоплений.
-typedef enum
+enum NumAccumulation
 {
     NumAccumulation_1,
     NumAccumulation_2,
@@ -39,10 +39,10 @@ typedef enum
     NumAccumulation_64,
     NumAccumulation_128,
     NumAccumulation_Infinity
-} NumAccumulation;
+};
 
 // Количество усреднений по измерениям.
-typedef enum
+enum NumAveraging
 {
     NumAveraging_1,
     NumAveraging_2,
@@ -54,17 +54,17 @@ typedef enum
     NumAveraging_128,
     NumAveraging_256,
     NumAveraging_512
-} NumAveraging;
+};
 
 // Тип усреднений по измерениям
-typedef enum
+enum ModeAveraging
 {
     Averaging_Accurately,   // Усреднять точно.
     Averaging_Around        // Усреднять приблизительно.
-} ModeAveraging;
+};
 
 // Количество измерений для расчёта минимального и максимального значений.
-typedef enum
+enum NumMinMax
 {
     NumMinMax_1,
     NumMinMax_2,
@@ -74,10 +74,10 @@ typedef enum
     NumMinMax_32,
     NumMinMax_64,
     NumMinMax_128
-} NumMinMax;
+};
 
 // Количество точек для расчёта сглаживания.
-typedef enum
+enum DisplaySmoothing
 {
     DisplaySmooth_Disable,
     DisplaySmooth_2points,
@@ -89,42 +89,42 @@ typedef enum
     DisplaySmooth_8points,
     DisplaySmooth_9points,
     DisplaySmooth_10points
-} DisplaySmoothing;
+};
 
 // Ограничение FPS.
-typedef enum
+enum NumSignalsInSec
 {
     NumSignalsInSec_25,
     NumSignalsInSec_10,
     NumSignalsInSec_5,
     NumSignalsInSec_2,
     NumSignalsInSec_1
-} NumSignalsInSec;
+};
 
 // Режим отображения пропущенных сигналов при ограничении частоты кадров.
-typedef enum
+enum MissedSignals
 {
     Missed_Hide,    // Не выводить на экран
     Missed_Show,    // Выводить на экран
     Missed_Average  // Устреднять и выводить на экран
-} MissedSignals;
+};
 
-typedef enum
+enum ModeAccumulation
 {
     ModeAccumulation_NoReset,   // В этом режиме показываются строго N последних
     ModeAccumulation_Reset      // В этом режиме набираются N последних и потом сбрасываются
-} ModeAccumulation;
+};
 
 // Режим отображения дополнительных боковых маркеров смещения по напряжению 
-typedef enum
+enum AltMarkers
 {
     AM_Hide,        // Никода не выводить
     AM_Show,        // Всегда выводить
     AM_AutoHide     // Выводить и прятать через timeShowLevels
-} AltMarkers;
+};
 
 // Через какое время после последнего нажатия кнопки скрывать меню
-typedef enum
+enum MenuAutoHide
 {
     MenuAutoHide_None    = 0,    // Никогда
     MenuAutoHide_5       = 5,    // Через 5 секунд
@@ -132,38 +132,38 @@ typedef enum
     MenuAutoHide_15      = 15,   // Через 15 секунд
     MenuAutoHide_30      = 30,   // Через 30 секунд
     MenuAutoHide_60      = 60    // Через 60 секунд
-} MenuAutoHide;
+};
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ChannelX
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-typedef enum
+enum Channel
 {
     ChanA,
     ChanB,
     ChanA_B,
     ChanMath
-} Channel;
+};
 
 #define NumChannels 2
 
 // Режим канала по входу
-typedef enum
+enum ModeCouple
 {
     ModeCouple_DC,      // Открытый вход
     ModeCouple_AC,      // Закрытый вход
     ModeCouple_GND      // Вход заземлён
-} ModeCouple;
+};
 
 // Делитель
-typedef enum
+enum Multiplier
 {
     Multiplier_1,
     Multiplier_10
-} Multiplier;
+};
 
 // Масштаб по напряжению
-typedef enum
+enum Range
 {
     Range_2mV,
     Range_5mV,
@@ -179,7 +179,7 @@ typedef enum
     Range_10V,
     Range_20V,
     RangeSize
-} Range;
+};
 
 // Режим запуска
 typedef enum

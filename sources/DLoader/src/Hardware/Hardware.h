@@ -6,14 +6,14 @@
 #define PRIORITY_PANEL_SPI1     4, 0
 
 
-typedef enum
+enum TypeWriteDAC
 {
     TypeWriteDAC_RShift0,
     TypeWriteDAC_RShift1,
     TypeWriteDAC_TrigLev
-} TypeWriteDAC;
+};
 
-typedef enum
+enum TypeWriteAnalog
 {
     TypeWriteAnalog_All,
     TypeWriteAnalog_Range0,
@@ -21,7 +21,7 @@ typedef enum
     TypeWriteAnalog_TrigParam,
     TypeWriteAnalog_ChanParam0,
     TypeWriteAnalog_ChanParam1
-} TypeWriteAnalog;
+};
 
 
 void Hardware_Init(void);

@@ -16,7 +16,7 @@
 #define TIME_WAIT   5000    ///< Время работы заставки
 
 
-typedef enum
+enum State
 {
     State_Start,            ///< Исходное состояние
     State_Mount,            ///< Монтирование флешки
@@ -25,13 +25,13 @@ typedef enum
     State_NotFile,          ///< Если диск примонтирован, но обновления на нём нету
     State_Upgrade,          ///< Процесс апгрейда
     State_Ok                ///< Обновление удачно завершено
-} State;
+};
 
-typedef enum
+enum StateDisk
 {
     StateDisk_Idle,
     StateDisk_Start
-} StateDisk;
+};
 
 struct Display
 {
