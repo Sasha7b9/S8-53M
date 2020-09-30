@@ -24,7 +24,7 @@
 #include <cstring>
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 extern void OnChanged_InputA(bool active);
 extern void OnChanged_InputB(bool active);
                                                 
@@ -49,7 +49,7 @@ static PanelButton bufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {B_Empty, B_Empty
 static const PanelButton sampleBufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {B_F5, B_F4, B_F3, B_F2, B_F1};
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void Menu::UpdateInput()
 {
     ProcessingShortPressureButton();

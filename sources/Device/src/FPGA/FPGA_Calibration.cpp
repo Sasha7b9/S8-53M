@@ -10,7 +10,7 @@
 #include <cstdio>
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static int16    CalculateAdditionRShift(Channel chan, Range range);	///< Измерить добавочное смещение канала по напряжению.
 static float    CalculateKoeffCalibration(Channel chan);			///< Измерить коэффициент калибровки канала по напряжению.
 static void     AlignmentADC();
@@ -44,7 +44,7 @@ static float koeffCalibrationOld[2];
 
 extern void LoadStretchADC(Channel chan);
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static void OnTimerDraw(void)
 {
     Display::Update();

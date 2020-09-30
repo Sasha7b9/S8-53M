@@ -19,7 +19,7 @@ extern const Page pChanA;
 extern const Page pChanB;
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 extern const Choice mcInputA;                   ///< КАНАЛ 1 - Вход
 void OnChanged_InputA(bool active);
 extern const Choice mcCoupleA;                  ///< КАНАЛ 1 - Связь
@@ -66,7 +66,7 @@ extern const char chanMultiplierRu[] = "Ослабление сигнала:\n\"x1\" - сигнал не 
 extern const char chanMultiplierEn[] = "Attenuation: \n\"x1\" - the signal is not attenuated.\n\"x10\" - the signal is attenuated by 10 times";
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 extern const Page mainPage;
 
 

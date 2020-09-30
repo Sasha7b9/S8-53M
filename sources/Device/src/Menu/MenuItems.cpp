@@ -18,7 +18,7 @@ struct TimeStructChoice
 static TimeStructChoice tsChoice;
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 Control::Control(const ControlStruct *str) : type(str->type), keeper(str->keeper), funcOfActive(str->funcOfActive)
 {
     titleHint[0] = str->titleHint[0];

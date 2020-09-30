@@ -23,7 +23,7 @@
 
 extern const Page pDebug;
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 extern const Choice     mcStats;                            ///< ОТЛАДКА - Статистика
 extern const Page       mpConsole;                          ///< ОТЛАДКА - КОНСОЛЬ
 extern const Governor   mgConsole_NumStrings;               ///< ОТЛАДКА - КОНСОЛЬ - Число строк
@@ -98,7 +98,7 @@ static void           Draw_SerialNumber_Save(int, int);
 extern const       Button bEraseData;                       ///< ОТЛАДКА - Стереть данные
 static void       OnPress_EraseData();
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 /// В этой структуре будут храниться данные серийного номера при открытой странице ppSerialNumer
 struct StructForSN
 {
