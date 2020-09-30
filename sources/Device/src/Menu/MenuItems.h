@@ -30,7 +30,7 @@ enum TypeItem
 };
 
 // Здесь ID всех представленных в меню страниц
-typedef enum
+enum NamePage
 {
     Page_Display,               // ДИСПЕЙ
     Page_DisplayAccumulation,   // ДИСПЛЕЙ - НАКОПЛЕНИЕ
@@ -83,7 +83,7 @@ typedef enum
     Page_SB_SerialNumber,       // ОТАДКА - С/Н
     Page_NumPages,
     Page_NoPage
-} NamePage;             // При добавлении страниц нужно изменять инициализацию SettingsMenu в SSettings.c
+};             // При добавлении страниц нужно изменять инициализацию SettingsMenu в SSettings.c
 
 class Page;
 
