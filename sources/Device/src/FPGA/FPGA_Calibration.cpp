@@ -71,7 +71,7 @@ void FPGA::ProcedureCalibration(void)
 
     while(1)
     {
-        gStateFPGA.stateCalibration = StateCalibration_ADCinProgress;                  // Запускаем процедуру балансировки АЦП.
+        gStateFPGA.stateCalibration = StateCalibration::ADCinProgress;                  // Запускаем процедуру балансировки АЦП.
 
         FPGA::SetTBase(TBase_500us);
         FPGA::SetTShift(0);
@@ -96,18 +96,18 @@ void FPGA::ProcedureCalibration(void)
         deltaADCPercents[A] = CalculateDeltaADC(A, &avrADC1[A], &avrADC2[A], &deltaADC[A]);
         deltaADCPercents[B] = CalculateDeltaADC(B, &avrADC1[B], &avrADC2[B], &deltaADC[B]);
 
-        gStateFPGA.stateCalibration = StateCalibration_RShift0start;                 
+        gStateFPGA.stateCalibration = StateCalibration::RShift0start;                 
 
         koeffCal0 = koeffCal1 = ERROR_VALUE_FLOAT;
 
         if(Panel::WaitPressingButton() == B_Start)             // Ожидаем подтверждения или отмены процедуры калибровки первого канала.
         {
-			gStateFPGA.stateCalibration = StateCalibration_RShift0inProgress;
+			gStateFPGA.stateCalibration = StateCalibration::RShift0inProgress;
 
 			koeffCal0 = CalculateKoeffCalibration(A);
 			if(koeffCal0 == ERROR_VALUE_FLOAT)
             {
-				gStateFPGA.stateCalibration = StateCalibration_ErrorCalibration0;
+				gStateFPGA.stateCalibration = StateCalibration::ErrorCalibration0;
 				Panel::WaitPressingButton();
                 DEBUG_STRETCH_ADC_TYPE = StretchADC_Hand;
                 LoadStretchADC(A);
@@ -132,18 +132,18 @@ void FPGA::ProcedureCalibration(void)
             }
 		}
 
-        gStateFPGA.stateCalibration = StateCalibration_RShift1start;
+        gStateFPGA.stateCalibration = StateCalibration::RShift1start;
 
         HAL_TIM2::Delay(500);
 
 		if(Panel::WaitPressingButton() == B_Start)                 // Ожидаем подтверждения или отмены процедуры калибровки второго канала.
         {
-			gStateFPGA.stateCalibration = StateCalibration_RShift1inProgress;
+			gStateFPGA.stateCalibration = StateCalibration::RShift1inProgress;
 
             koeffCal1 = CalculateKoeffCalibration(B);
 			if(koeffCal1 == ERROR_VALUE_FLOAT)
             {
-				gStateFPGA.stateCalibration = StateCalibration_ErrorCalibration1;
+				gStateFPGA.stateCalibration = StateCalibration::ErrorCalibration1;
 				Panel::WaitPressingButton();
                 DEBUG_STRETCH_ADC_TYPE = StretchADC_Hand;
                 LoadStretchADC(B);
@@ -188,12 +188,12 @@ void FPGA::ProcedureCalibration(void)
     STRETCH_ADC_B = (koeffCal1 == ERROR_VALUE_FLOAT) ? koeffCalibrationOld[1] : koeffCal1;
     FPGA::LoadKoeffCalibration(B);
 
-    gStateFPGA.stateCalibration = StateCalibration_None;
+    gStateFPGA.stateCalibration = StateCalibration::None;
     Panel::WaitPressingButton();
     Panel::Enable();
     Timer::Disable(kTimerDrawHandFunction);
     Display::SetDrawMode(DrawMode::Auto, 0);
-    gStateFPGA.stateCalibration = StateCalibration_None;
+    gStateFPGA.stateCalibration = StateCalibration::None;
 
     SET_ENABLED_A = chanAenable;
     SET_ENABLED_B = chanBenable;
@@ -223,7 +223,7 @@ void FuncAttScreen(void)
     
     switch(gStateFPGA.stateCalibration)
     {
-        case StateCalibration_None:
+        case StateCalibration::None:
         {
                 Painter::DrawTextInRect(40 + dX, y + 25 + dY, SCREEN_WIDTH - 100, 200, "Калибровка завершена. Нажмите любую кнопку, чтобы выйти из режима калибровки.");
 
@@ -245,32 +245,32 @@ void FuncAttScreen(void)
         }
             break;
 
-        case StateCalibration_ADCinProgress:
+        case StateCalibration::ADCinProgress:
             DrawParametersChannel(A, 5, 25, true);
             DrawParametersChannel(B, 5, 75, true);
             break;
 
-        case StateCalibration_RShift0start:
+        case StateCalibration::RShift0start:
             Painter::DrawTextInRect(50, y + 25, SCREEN_WIDTH - 100, 200, "Подключите ко входу канала 1 выход калибратора и нажмите кнопку ПУСК/СТОП. \
 Если вы не хотите калибровать первый канала, нажмите любую другую кнопку.");
             break;
 
-        case StateCalibration_RShift0inProgress:
+        case StateCalibration::RShift0inProgress:
             break;
 
-        case StateCalibration_RShift1start:
+        case StateCalibration::RShift1start:
             Painter::DrawTextInRect(50, y + 25, SCREEN_WIDTH - 100, 200, "Подключите ко входу канала 2 выход калибратора и нажмите кнопку ПУСК/СТОП. \
 Если вы не хотите калибровать второй канал, нажмите любую другую кнопку.");
             break;
 
-        case StateCalibration_RShift1inProgress:
+        case StateCalibration::RShift1inProgress:
             break;
 
-        case StateCalibration_ErrorCalibration0:
+        case StateCalibration::ErrorCalibration0:
             Painter::DrawTextInRect(50, y + 25, SCREEN_WIDTH - 100, 200, "Внимание !!! Канал 1 не скалиброван.");
             break;
 
-        case StateCalibration_ErrorCalibration1:
+        case StateCalibration::ErrorCalibration1:
             Painter::DrawTextInRect(50, y + 25, SCREEN_WIDTH - 100, 200, "Внимание !!! Канал 2 не скалиброван.");
             break;
     }

@@ -79,7 +79,7 @@ StateFPGA gStateFPGA =
 {
     false,
     StateWorkFPGA_Stop,
-    StateCalibration_None
+    StateCalibration::None
 };
 
 const char *gStringForHint = 0;

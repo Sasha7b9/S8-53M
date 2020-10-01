@@ -152,16 +152,19 @@ struct GMemory
 extern GMemory gMemory;
 
 
-enum StateCalibration
+struct StateCalibration
 {
-    StateCalibration_None,
-    StateCalibration_ADCinProgress,
-    StateCalibration_RShift0start,
-    StateCalibration_RShift0inProgress,
-    StateCalibration_RShift1start,
-    StateCalibration_RShift1inProgress,
-    StateCalibration_ErrorCalibration0,
-    StateCalibration_ErrorCalibration1
+    enum E
+    {
+        None,
+        ADCinProgress,
+        RShift0start,
+        RShift0inProgress,
+        RShift1start,
+        RShift1inProgress,
+        ErrorCalibration0,
+        ErrorCalibration1
+    };
 };
 
 enum StateWorkFPGA
@@ -178,7 +181,7 @@ struct StateFPGA
 {
     bool needCalibration;				        // Установленное в true значение означает, что необходимо произвести калибровку.
     StateWorkFPGA stateWorkBeforeCalibration;
-    StateCalibration stateCalibration;          // Текущее состояние калибровки. Используется в процессе калибровки.
+    StateCalibration::E stateCalibration;          // Текущее состояние калибровки. Используется в процессе калибровки.
 };
 
 struct DataSettings
