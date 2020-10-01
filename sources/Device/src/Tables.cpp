@@ -97,7 +97,7 @@ int Tables_ENUMtoNumSignalsInSec(ENumSignalsInSec::E enumSignalsInSec)
     {
         return fps[enumSignalsInSec];
     }
-    LOG_ERROR("Неправильный параметр %d", (int)enumSignalsInSec);
+    LOG_ERROR("Неправильный параметр %d", static_cast<int>(enumSignalsInSec));
     return 1;
 }
 
