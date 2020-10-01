@@ -165,7 +165,7 @@ static const Settings defaultSettings =
     },
     // math
     {
-        ScaleFFT_Log,
+        ScaleFFT::Log,
         SourceFFT_A,
         WindowFFT_Rectangle,
         FFTmaxDB_60,

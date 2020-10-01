@@ -10,8 +10,8 @@
 
 
 #define SCALE_FFT                   (set.math.scaleFFT)                 // SettingMath.scaleFFT
-#define SCALE_FFT_IS_LOG            (SCALE_FFT == ScaleFFT_Log)
-#define SCALE_FFT_IS_LINEAR         (SCALE_FFT == ScaleFFT_Linear)
+#define SCALE_FFT_IS_LOG            (SCALE_FFT == ScaleFFT::Log)
+#define SCALE_FFT_IS_LINEAR         (SCALE_FFT == ScaleFFT::Linear)
 
 #define SOURCE_FFT                  (set.math.sourceFFT)                // SettingsMath.sourceFFT
 #define SOURCE_FFT_IS_A             (SOURCE_FFT == SourceFFT_A)
@@ -52,11 +52,11 @@
 
 
 // Масштаб шкалы для отображения спектра.
-enum ScaleFFT
+struct ScaleFFT { enum E
 {
-    ScaleFFT_Log,           // Это значение означает логарифмическую шкалу вывода спектра.
-    ScaleFFT_Linear         // Это значение означает линейную шкалу вывода спектра.
-};
+    Log,           // Это значение означает логарифмическую шкалу вывода спектра.
+    Linear         // Это значение означает линейную шкалу вывода спектра.
+}; };
 
 // Источинк сигнала для отображения спектра.
 enum SourceFFT
@@ -108,7 +108,7 @@ enum ModeRegSet
 
 struct SettingsMath
 {
-    ScaleFFT        scaleFFT;       // Масштаб шкалы для отображения спектра.
+    ScaleFFT::E     scaleFFT;       // Масштаб шкалы для отображения спектра.
     SourceFFT       sourceFFT;      // Источник сигнала для расчёта и отображения спектра.
     WindowFFT       windowFFT;      // Задаёт вид окна, на которое умножается сигнал перед расчётом спектра.
     FFTmaxDB        fftMaxDB;       // Минимальное значение на вертикальной координате графика спектра.
