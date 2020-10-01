@@ -624,7 +624,7 @@ void Display::DrawDataInModePoint2Point()
     }
     else
     {
-        if (SET_SELFRECORDER || !Storage::NumElementsWithCurrentSettings())
+        if (SET_SELFRECORDER || (Storage::NumElementsWithCurrentSettings() == 0))
         {
             DrawDataChannel(dataP2P_1, B, ds, GRID_TOP, Grid::ChannelBottom());
             DrawDataChannel(dataP2P_0, A, ds, GRID_TOP, Grid::ChannelBottom());
@@ -2240,8 +2240,8 @@ void Display::AddPoints(uint8 data00, uint8 data01, uint8 data10, uint8 data11)
     {
         if (lastP2Pdata == NUM_P2P_POINTS)
         {
-            std::memcpy(dataP2P_0, dataP2P_0 + 2, NUM_P2P_POINTS - 2);
-            std::memcpy(dataP2P_1, dataP2P_1 + 2, NUM_P2P_POINTS - 2);
+            std::memcpy(dataP2P_0, dataP2P_0 + 2, NUM_P2P_POINTS - 2); //-V743
+            std::memcpy(dataP2P_1, dataP2P_1 + 2, NUM_P2P_POINTS - 2); //-V743
         }
     }
 
