@@ -55,8 +55,8 @@ static const Settings defaultSettings =
         Smoothing::Disable,         // smoothing
         ENumSignalsInSec::_25,      // num signals in one second
         A,                          // lastAffectedChannel
-        ModeAccumulation::NoReset,   // modeAccumulation
-        AM_Show,                    // altMarkers
+        ModeAccumulation::NoReset,  // modeAccumulation
+        AltMarkers::Show,           // altMarkers
         MenuAutoHide_None,          // menuAutoHide
         true,                       // showFullMemoryWindow
         false,                      // showStringNavigation
@@ -69,7 +69,7 @@ static const Settings defaultSettings =
             RShiftZero,
             {{0}, {0}},             // rShiftAdd
             ModeCouple_AC,          // ModCouple
-            Divider_1,           // Divider
+            Divider_1,              // Divider
             Range_500mV,            // range
             true,                   // enable
             false,                  // inverse

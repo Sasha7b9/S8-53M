@@ -59,7 +59,7 @@
 #define MODE_ACCUM_IS_NORESET       (MODE_ACCUM == ModeAccumulation::NoReset)   // \c true, если накопление без сброса.
 
 #define ALT_MARKERS                 (set.display.altMarkers)                    // SettingsDisplay.altMarkers
-#define ALT_MARKERS_HIDE            (ALT_MARKERS == AM_Hide)                    // \c true, если дополнительные маркеры никогда не надо показывать.
+#define ALT_MARKERS_HIDE            (ALT_MARKERS == AltMarkers::Hide)           // \c true, если дополнительные маркеры никогда не надо показывать.
 
 #define MENU_AUTO_HIDE              (set.display.menuAutoHide)                  // SettingsDisplay.menuAutoHide
 
@@ -169,12 +169,12 @@ struct ModeAccumulation { enum E
 }; };
 
 // –ежим отображени€ дополнительных боковых маркеров смещени€ по напр€жению.
-enum AltMarkers
+struct AltMarkers { enum E
 {
-    AM_Hide,        // Ќикода не выводить.
-    AM_Show,        // ¬сегда выводить.
-    AM_AutoHide     // ¬ыводить и пр€тать через timeShowLevels.
-};
+    Hide,        // Ќикода не выводить.
+    Show,        // ¬сегда выводить.
+    AutoHide     // ¬ыводить и пр€тать через timeShowLevels.
+}; };
 
 // „ерез какое врем€ после последнего нажати€ кнопки скрывать меню.
 enum MenuAutoHide
@@ -215,7 +215,7 @@ struct SettingsDisplay
     ENumSignalsInSec::E enumSignalsInSec;           // ѕеречисление считываний сигнала в секунду.
     Channel             lastAffectedChannel;        // «десь хранитс€ номер последнего канала, которым управл€ли ручками. Ќужно дл€ того, чтобы знать, какой сигнал рисовать наверху.
     ModeAccumulation::E modeAccumulation;           // «адаЄт режим накоплени€ сигналов.
-    AltMarkers          altMarkers;                 // –ежим отображени€ дополнительных боковых маркеров смещений.
+    AltMarkers::E       altMarkers;                 // –ежим отображени€ дополнительных боковых маркеров смещений.
     MenuAutoHide        menuAutoHide;               // „ерез сколько времени после последнего нажати€ клавиши пр€тать меню.
     bool                showFullMemoryWindow;       // ѕоказывать ли окно пам€ти вверху экрана. \todo Ќе используетс€.
     bool                showStringNavigation;       // ѕоказывать ли строку текущего состо€ни€ меню..
