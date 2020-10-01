@@ -25,7 +25,7 @@ extern const Page mspAccumulation;                          //     ДИСПЛЕЙ - НАК
 static bool IsActive_Accumulation();                        // Активна ли страница ДИСПЛЕЙ-НАКОПЛЕНИЕ
 extern const Choice mcAccumulation_Number;                  // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Количество
 extern const Choice mcAccumulation_Mode;                    // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Режим
-extern const Button mcAccumulation_Clear;                   // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Очистить
+extern const Button mbAccumulation_Clear;                   // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Очистить
 static bool IsActive_Accumulation_Clear();                  // Активна ли кнопка ДИСПЛЕЙ-НАКОПЛЕНИЕ-Очистить
 void OnPress_Accumulation_Clear();                          // Обработка нажатия ДИСПЛЕЙ-НАКОПЛЕНИЕ-Очистить
 
@@ -73,15 +73,15 @@ extern Page mainPage;
 
 static const arrayItems itemsDisplay =
 {
-    (void*)&mcMapping,              // ДИСПЛЕЙ - Отображение
-    (void*)&mspAccumulation,        // ДИСПЛЕЙ - НАКОПЛЕНИЕ
-    (void*)&mspAveraging,           // ДИСПЛЕЙ - УСРЕДНЕНИЕ
-    (void*)&mcMinMax,               // ДИСПЛЕЙ - Мин Макс
-    (void*)&mcSmoothing,            // ДИСПЛЕЙ - Сглаживание
-    (void*)&mcRefreshFPS,           // ДИСПЛЕЙ - Частота обновл
-    (void*)&mspGrid,                // ДИСПЛЕЙ - СЕТКА
-    (void*)&mcTypeShift,            // ДИСПЛЕЙ - Смещение
-    (void*)&mspSettings             // ДИСПЛЕЙ - НАСТРОЙКИ
+    reinterpret_cast<void*>(const_cast<Choice *>(&mcMapping)),       // ДИСПЛЕЙ - Отображение
+    reinterpret_cast<void*>(const_cast<Page *>(&mspAccumulation)),   // ДИСПЛЕЙ - НАКОПЛЕНИЕ
+    reinterpret_cast<void*>(const_cast<Page *>(&mspAveraging)),      // ДИСПЛЕЙ - УСРЕДНЕНИЕ
+    reinterpret_cast<void*>(const_cast<Choice *>(&mcMinMax)),        // ДИСПЛЕЙ - Мин Макс
+    reinterpret_cast<void*>(const_cast<Choice *>(&mcSmoothing)),     // ДИСПЛЕЙ - Сглаживание
+    reinterpret_cast<void*>(const_cast<Choice *>(&mcRefreshFPS)),    // ДИСПЛЕЙ - Частота обновл
+    reinterpret_cast<void*>(const_cast<Page *>(&mspGrid)),           // ДИСПЛЕЙ - СЕТКА
+    reinterpret_cast<void*>(const_cast<Choice *>(&mcTypeShift)),     // ДИСПЛЕЙ - Смещение
+    reinterpret_cast<void*>(const_cast<Page *>(&mspSettings))        // ДИСПЛЕЙ - НАСТРОЙКИ
     //(void*)&mcDisplMemoryWindow,  // ДИСПЛЕЙ - Окно памяти
 };
 
@@ -115,9 +115,9 @@ static const Choice mcMapping =
 // ДИСПЛЕЙ - НАКОПЛЕНИЕ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 static const arrayItems itemsAccumulation =
 {
-    (void*)&mcAccumulation_Number,  // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Количество
-    (void*)&mcAccumulation_Mode,    // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Режим
-    (void*)&mcAccumulation_Clear    // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Очистить    
+    reinterpret_cast<void*>(const_cast<Choice *>(&mcAccumulation_Number)),  // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Количество
+    reinterpret_cast<void*>(const_cast<Choice *>(&mcAccumulation_Mode)),    // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Режим
+    reinterpret_cast<void*>(const_cast<Button *>(&mbAccumulation_Clear))    // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Очистить    
 };
 
 static const Page mspAccumulation
@@ -190,7 +190,7 @@ static const Choice mcAccumulation_Mode =
 
 
 // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Очистить ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-static const Button mcAccumulation_Clear
+static const Button mbAccumulation_Clear
 (
     &mspAccumulation, IsActive_Accumulation_Clear,
     "Очистить", "Clear",
