@@ -21,7 +21,7 @@ static const int POINTS_IN_PERIOD = 10;
 static uint8 points[POINTS_IN_PERIOD] = {0};
 static float frequency = 0.0f;
 static float amplitude = 0.0f;
-static TypeWave typeWave = TypeWave_Sine;
+static TypeWave::E typeWave = TypeWave::Sine;
 
 
 
@@ -33,7 +33,7 @@ static void Stop(void)
 }
 
 
-void Sound_Beep(TypeWave typeWave_, float frequency_, float amplitude_, int duration)
+void Sound_Beep(TypeWave::E typeWave_, float frequency_, float amplitude_, int duration)
 {
     if (SOUND_WARN_IS_BEEP)
     {
@@ -65,7 +65,7 @@ void Sound_Beep(TypeWave typeWave_, float frequency_, float amplitude_, int dura
 
 void Sound::ButtonPress(void)
 {
-    Sound_Beep(TypeWave_Sine, 2000.0f, 0.5f, 50);
+    Sound_Beep(TypeWave::Sine, 2000.0f, 0.5f, 50);
     BUTTON_IS_PRESSED = 1;
 }
 
@@ -74,7 +74,7 @@ void Sound::ButtonRelease(void)
 {
     if (BUTTON_IS_PRESSED)
     {
-        Sound_Beep(TypeWave_Sine, 1000.0f, 0.25f, 50);
+        Sound_Beep(TypeWave::Sine, 1000.0f, 0.25f, 50);
         BUTTON_IS_PRESSED = 0;
     }
 }
@@ -82,28 +82,28 @@ void Sound::ButtonRelease(void)
 
 void Sound::GovernorChangedValue(void)
 {
-    Sound_Beep(TypeWave_Sine, 1000.0f, 0.5f, 50);
+    Sound_Beep(TypeWave::Sine, 1000.0f, 0.5f, 50);
     BUTTON_IS_PRESSED = 0;
 }
 
 
 void Sound::RegulatorShiftRotate(void)
 {
-    Sound_Beep(TypeWave_Sine, 1.0f, 0.35f, 3);
+    Sound_Beep(TypeWave::Sine, 1.0f, 0.35f, 3);
     BUTTON_IS_PRESSED = 0;
 }
 
 
 void Sound::RegulatorSwitchRotate(void)
 {
-    Sound_Beep(TypeWave_Triangle, 2500.0f, 0.5f, 25);
+    Sound_Beep(TypeWave::Triangle, 2500.0f, 0.5f, 25);
     BUTTON_IS_PRESSED = 0;
 }
 
 
 void Sound::WarnBeepBad(void)
 {
-    Sound_Beep(TypeWave_Meandr, 250.0f, 1.0f, 500);
+    Sound_Beep(TypeWave::Meandr, 250.0f, 1.0f, 500);
     SOUND_WARN_IS_BEEP = 1;
     BUTTON_IS_PRESSED = 0;
 }
@@ -111,7 +111,7 @@ void Sound::WarnBeepBad(void)
 
 void Sound::WarnBeepGood(void)
 {
-    Sound_Beep(TypeWave_Triangle, 1000.0f, 0.5f, 250);
+    Sound_Beep(TypeWave::Triangle, 1000.0f, 0.5f, 250);
     BUTTON_IS_PRESSED = 0;
 }
 
@@ -120,15 +120,15 @@ void SetWave(void)
 {
     HAL_TIM7::Config(0, CalculatePeriodForTIM());
 
-    if(typeWave == TypeWave_Sine)
+    if(typeWave == TypeWave::Sine)
     {
         CalculateSine();
     }
-    else if(typeWave == TypeWave_Meandr)
+    else if(typeWave == TypeWave::Meandr)
     {
         CalculateMeandr();
     }
-    else if(typeWave == TypeWave_Triangle)
+    else if(typeWave == TypeWave::Triangle)
     {
         CalculateTriangle();
     }

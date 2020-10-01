@@ -1,11 +1,14 @@
 #pragma once
 
 
-enum TypeWave
+struct TypeWave
 {
-    TypeWave_Sine,
-    TypeWave_Meandr,
-    TypeWave_Triangle
+    enum E
+    {
+        Sine,
+        Meandr,
+        Triangle
+    };
 };
 
 
