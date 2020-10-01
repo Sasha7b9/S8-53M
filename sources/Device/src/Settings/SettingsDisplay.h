@@ -66,7 +66,7 @@
 #define SHOW_STRING_NAVIGATION      (set.display.showStringNavigation)          // SettingsDisplay.showStringNavigation
 
 #define LINKING_RSHIFT              (set.display.linkingRShift)                 // SettingsDisplay.linkingRShift
-#define LINKING_RSHIFT_IS_VOLTAGE   (LINKING_RSHIFT == LinkingRShift_Voltage)   // \c true, если привязка к абсолютному напряжению.
+#define LINKING_RSHIFT_IS_VOLTAGE   (LINKING_RSHIFT == LinkingRShift::Voltage)   // \c true, если привязка к абсолютному напряжению.
 
 
 
@@ -177,22 +177,22 @@ struct AltMarkers { enum E
 }; };
 
 // Через какое время после последнего нажатия кнопки скрывать меню.
-enum MenuAutoHide
+struct MenuAutoHide { enum E
 {
-    MenuAutoHide_None = 0,  // Никогда.
-    MenuAutoHide_5 = 5,     // Через 5 секунд.
-    MenuAutoHide_10 = 10,   // Через 10 секунд.
-    MenuAutoHide_15 = 15,   // Через 15 секунд.
-    MenuAutoHide_30 = 30,   // Через 30 секунд.
-    MenuAutoHide_60 = 60    // Через 60 секунд.
-};
+    None,   // Никогда.
+    _5,     // Через 5 секунд.
+    _10,    // Через 10 секунд.
+    _15,    // Через 15 секунд.
+    _30,    // Через 30 секунд.
+    _60     // Через 60 секунд.
+}; };
 
 // Тип привязки к смещению по вертикали
-enum LinkingRShift
+struct LinkingRShift { enum E
 {
-    LinkingRShift_Voltage,      // Смещение привязано к напряжению
-    LinkingRShift_Position      // Смещение привязаоно к позиции на экране
-};
+    Voltage,      // Смещение привязано к напряжению
+    Position      // Смещение привязаоно к позиции на экране
+}; };
 
 
 
@@ -216,10 +216,10 @@ struct SettingsDisplay
     Channel             lastAffectedChannel;        // Здесь хранится номер последнего канала, которым управляли ручками. Нужно для того, чтобы знать, какой сигнал рисовать наверху.
     ModeAccumulation::E modeAccumulation;           // Задаёт режим накопления сигналов.
     AltMarkers::E       altMarkers;                 // Режим отображения дополнительных боковых маркеров смещений.
-    MenuAutoHide        menuAutoHide;               // Через сколько времени после последнего нажатия клавиши прятать меню.
+    MenuAutoHide::E     menuAutoHide;               // Через сколько времени после последнего нажатия клавиши прятать меню.
     bool                showFullMemoryWindow;       // Показывать ли окно памяти вверху экрана. \todo Не используется.
     bool                showStringNavigation;       // Показывать ли строку текущего состояния меню..
-    LinkingRShift       linkingRShift;              // Тип привязки смещения по вертикали.
+    LinkingRShift::E    linkingRShift;              // Тип привязки смещения по вертикали.
 };
 
 

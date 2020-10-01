@@ -57,10 +57,10 @@ static const Settings defaultSettings =
         A,                          // lastAffectedChannel
         ModeAccumulation::NoReset,  // modeAccumulation
         AltMarkers::Show,           // altMarkers
-        MenuAutoHide_None,          // menuAutoHide
+        MenuAutoHide::None,         // menuAutoHide
         true,                       // showFullMemoryWindow
         false,                      // showStringNavigation
-        LinkingRShift_Voltage       // linkingRShift
+        LinkingRShift::Voltage      // linkingRShift
     },
     // channels
     {
