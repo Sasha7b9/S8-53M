@@ -14,5 +14,5 @@ void HAL_CRC::Init()
 
 uint HAL_CRC::Calculate(uint address, uint numBytes)
 {
-    return HAL_CRC_Calculate(&handleCRC, (uint *)address, numBytes);
+    return HAL_CRC_Calculate(&handleCRC, reinterpret_cast<uint *>(address), numBytes);
 }
