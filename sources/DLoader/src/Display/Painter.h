@@ -31,9 +31,9 @@ namespace Painter
 
     void DrawHPointLine(int y, int x0, int x1, float delta);
 
-    void DrawMultiVPointLine(int numLines, int y, uint16 x[], int delta, int count, Color::E color);
+    void DrawMultiVPointLine(int numLines, int y, uint16 *x, int delta, int count, Color::E color);
 
-    void DrawMultiHPointLine(int numLines, int x, uint8 y[], int delta, int count, Color::E color);
+    void DrawMultiHPointLine(int numLines, int x, uint8 *y, int delta, int count, Color::E color);
 
     void DrawLine(int x0, int y0, int x1, int y1);
     // Рисует прерывистую горизонтальную линию. dFill - длина штриха, dEmpty - расст. между штрихами

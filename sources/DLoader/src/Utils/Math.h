@@ -32,9 +32,9 @@
 #define PI 3.141592653589793
 
 extern const float tableScalesRange[RangeSize];
-extern const float absStepRShift[];
-extern const float voltsInPixel[];
-extern const float absStepTShift[];
+extern const float *absStepRShift;
+extern const float *voltsInPixel;
+extern const float *absStepTShift;
 
 int     Math_MinFrom2Int(int val0, int val1);
 int     Math_RShift2Rel(float rShiftAbs, Range range);
