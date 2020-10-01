@@ -6,24 +6,24 @@
 
 
 // Режим отображения пропущенных сигналов при ограничении частоты кадров.
-typedef enum
+enum MissedSignals
 {
     Missed_Hide,    // Не выводить на экран
     Missed_Show,    // Выводить на экран
     Missed_Average  // Устреднять и выводить на экран
-} MissedSignals;
+};
 
 
 
 // ChannelX
 
-typedef enum
+enum Channel
 {
     A,
     B,
     A_B,
     Math
-} Channel;
+};
 
 // Режим канала по входу.
 typedef enum
