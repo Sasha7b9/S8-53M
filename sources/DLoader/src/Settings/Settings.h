@@ -146,7 +146,7 @@ struct SettingsService
     bool            soundEnable;            // ¬ключены ли звуки.
     CalibratorMode  calibrator;             // –ежим работы калибратора.
     int8            IPaddress;              // IP-адрес (временно)
-    ColorScheme     colorScheme;            //
+    ColorScheme::E  colorScheme;            //
 };
 
 struct SettingsEthernet
