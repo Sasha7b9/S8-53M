@@ -9,14 +9,19 @@ static Color::E currentColor = Color::Count;
 //static bool framesElapsed = false;
 static int numberColorsUsed = 0;
 
-static enum StateTransmit
-{
-    StateTransmit_Free,
-    StateTransmit_NeedForTransmitFirst,  // Это когда нужно передать первый кадр - передаются шрифты
-    StateTransmit_NeedForTransmitSecond, // Это когда нужно передать второй и последующий кадры - шрифты не передаются
-    StateTransmit_InProcess
-} stateTransmit = StateTransmit_Free;
 
+struct StateTransmit
+{
+    enum E
+    {
+        Free,
+        NeedForTransmitFirst,  // Это когда нужно передать первый кадр - передаются шрифты
+        NeedForTransmitSecond, // Это когда нужно передать второй и последующий кадры - шрифты не передаются
+        InProcess
+    };
+};
+
+static StateTransmit::E stateTransmit = StateTransmit::Free;
 
 
 void CalculateCurrentColor(void)
@@ -275,10 +280,10 @@ void Painter::LoadPalette(int num)
 
 void Painter::BeginScene(Color::E color)
 {
-    if (stateTransmit == StateTransmit_NeedForTransmitFirst || stateTransmit == StateTransmit_NeedForTransmitSecond)
+    if (stateTransmit == StateTransmit::NeedForTransmitFirst || stateTransmit == StateTransmit::NeedForTransmitSecond)
     {
-        bool needForLoadFontsAndPalette = stateTransmit == StateTransmit_NeedForTransmitFirst;
-        stateTransmit = StateTransmit_InProcess;
+        bool needForLoadFontsAndPalette = stateTransmit == StateTransmit::NeedForTransmitFirst;
+        stateTransmit = StateTransmit::InProcess;
         if(needForLoadFontsAndPalette) 
         {
             Painter::LoadPalette(0);

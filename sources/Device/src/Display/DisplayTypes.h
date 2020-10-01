@@ -46,11 +46,14 @@ struct DrawMode
     };
 };
 
-enum SourceBuffer
+struct SourceBuffer
 {
-    Signals,
-    Send,
-    Intermediate
+    enum E
+    {
+        Signals,
+        Send,
+        Intermediate
+    };
 };
 
 struct TypeFont

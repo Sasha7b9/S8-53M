@@ -19,25 +19,29 @@
 static bool inverseColors = false;
 static Color::E currentColor = Color::NUM;
 
-static enum StateTransmit
+struct StateTransmit
 {
-    StateTransmit_Free,
-    StateTransmit_NeedForTransmitFirst,  // Это когда нужно передать первый кадр - передаются шрифты
-    StateTransmit_NeedForTransmitSecond, // Это когда нужно передать второй и последующий кадры - шрифты не передаются
-    StateTransmit_InProcess
-} stateTransmit = StateTransmit_Free;
+    enum E
+    {
+        Free,
+        NeedForTransmitFirst,  // Это когда нужно передать первый кадр - передаются шрифты
+        NeedForTransmitSecond, // Это когда нужно передать второй и последующий кадры - шрифты не передаются
+        InProcess
+    };
+};
+
+static StateTransmit::E stateTransmit = StateTransmit::Free;
 
 static bool noFonts = false;
-
 
 
 void Painter::SendFrame(bool first, bool noFonts_)
 {
     noFonts = noFonts_;
 
-    if (stateTransmit == StateTransmit_Free)
+    if (stateTransmit == StateTransmit::Free)
     {
-        stateTransmit = (first ? StateTransmit_NeedForTransmitFirst : StateTransmit_NeedForTransmitSecond);
+        stateTransmit = (first ? StateTransmit::NeedForTransmitFirst : StateTransmit::NeedForTransmitSecond);
     }
 }
 
@@ -163,7 +167,7 @@ static int numberColorsUsed = 0;
 
 void Painter::SendToVCP(uint8 *pointer, int size)
 {
-    if(stateTransmit == StateTransmit_InProcess)
+    if(stateTransmit == StateTransmit::InProcess)
     {
         VCP::SendDataSynch(pointer, size);
         TCPSocket_Send((const char *)pointer, (uint)size);
@@ -348,10 +352,10 @@ void Painter::LoadPalette(void)
 
 void Painter::BeginScene(Color::E color)
 {
-    if (stateTransmit == StateTransmit_NeedForTransmitFirst || stateTransmit == StateTransmit_NeedForTransmitSecond)
+    if (stateTransmit == StateTransmit::NeedForTransmitFirst || stateTransmit == StateTransmit::NeedForTransmitSecond)
     {
-        bool needForLoadFontsAndPalette = stateTransmit == StateTransmit_NeedForTransmitFirst;
-        stateTransmit = StateTransmit_InProcess;
+        bool needForLoadFontsAndPalette = stateTransmit == StateTransmit::NeedForTransmitFirst;
+        stateTransmit = StateTransmit::InProcess;
         if(needForLoadFontsAndPalette) 
         {
             LoadPalette();
