@@ -13,8 +13,8 @@ struct SettingsDisplay
     int16               brightness;                 // Яркость дисплея (только для цветного)
     int16               brightnessGrid;             // Яркость сетки от 0 до 100
     uint16              colors[16];
-    ModeDrawSignal      modeDrawSignal;             // Режим отрисовки сигнала
-    TypeGrid            typeGrid;                   // Тип сетки
+    ModeDrawSignal::E   modeDrawSignal;             // Режим отрисовки сигнала
+    TypeGrid::E         typeGrid;                   // Тип сетки
     NumAccumulation     numAccumulation;            // Число накоплений сигнала на экране
     NumAveraging        numAve;                     // Число усреднений сигнала
     ModeAveraging       modeAve;                    // Тип усреднений по измерениям

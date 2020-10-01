@@ -14,20 +14,26 @@ struct ColorScheme
 };
 
 // Режим отрисовки сигнала.
-enum ModeDrawSignal
+struct ModeDrawSignal
 {
-    ModeDrawSignal_Lines = 0,   // линиями
-    ModeDrawSignal_Points = 1   // точками
+    enum E
+    {
+        Lines = 0,   // линиями
+        Points = 1   // точками
+    };
 };
 
 // Тип сетки на экране.
-enum TypeGrid
+struct TypeGrid
 {
-    TypeGrid_1,
-    TypeGrid_2,
-    TypeGrid_3,
-    TypeGrid_4,
-    TG_Size
+    enum E
+    {
+        _1,
+        _2,
+        _3,
+        _4,
+        Count
+    };
 };
 
 // Количество накоплений.
