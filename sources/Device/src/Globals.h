@@ -167,20 +167,23 @@ struct StateCalibration
     };
 };
 
-enum StateWorkFPGA
+struct StateWorkFPGA
 {
-    StateWorkFPGA_Stop,                             // СТОП - не занимается считыванием информации.
-    StateWorkFPGA_Wait,                             // Ждёт поступления синхроимпульса.
-    StateWorkFPGA_Work,                             // Идёт работа.
-    StateWorkFPGA_Pause                             // Это состояние, когда временно приостановлен прибор, например, для чтения данных или для 
-                                                    // записи значений регистров.
+    enum E
+    {
+        Stop,    // СТОП - не занимается считыванием информации.
+        Wait,    // Ждёт поступления синхроимпульса.
+        Work,    // Идёт работа.
+        Pause    // Это состояние, когда временно приостановлен прибор, например, для чтения данных или для 
+                 // записи значений регистров.
+    };
 };
 
 
 struct StateFPGA
 {
     bool needCalibration;				        // Установленное в true значение означает, что необходимо произвести калибровку.
-    StateWorkFPGA stateWorkBeforeCalibration;
+    StateWorkFPGA::E stateWorkBeforeCalibration;
     StateCalibration::E stateCalibration;          // Текущее состояние калибровки. Используется в процессе калибровки.
 };
 

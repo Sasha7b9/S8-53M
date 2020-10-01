@@ -24,7 +24,7 @@
 
 static float freq = 0.0f;           // Частота, намеренная альтерой.
 static float prevFreq = 0.0f;
-static StateWorkFPGA stateWork = StateWorkFPGA_Stop;
+static StateWorkFPGA::E stateWork = StateWorkFPGA::Stop;
 
 
 volatile static int numberMeasuresForGates = 1000;
@@ -91,7 +91,7 @@ void FPGA::Start(void)
     HAL_FSMC::Write(WR_START, 1);
     FillDataPointer(&ds);
     timeStart = gTimerMS;
-    stateWork = StateWorkFPGA_Wait;
+    stateWork = StateWorkFPGA::Wait;
     FPGA_CRITICAL_SITUATION = 0;
 }
 
@@ -139,7 +139,7 @@ bool FPGA::ProcessingData(void)
             if (!START_MODE_IS_SINGLE)
             {
                 Start();
-                stateWork = StateWorkFPGA_Work;
+                stateWork = StateWorkFPGA::Work;
             }
             else
             {
@@ -184,8 +184,8 @@ void FPGA::Update(void)
 		return;
 	}
 
-    //if(((FPGA_CAN_READ_DATA == 0) && !sTime_RandomizeModeEnabled()) || (stateWork == StateWorkFPGA_Stop))
-    if((FPGA_CAN_READ_DATA == 0) || (stateWork == StateWorkFPGA_Stop))
+    //if(((FPGA_CAN_READ_DATA == 0) && !sTime_RandomizeModeEnabled()) || (stateWork == StateWorkFPGA::Stop))
+    if((FPGA_CAN_READ_DATA == 0) || (stateWork == StateWorkFPGA::Stop))
     {
         return;
     }
@@ -201,7 +201,7 @@ void FPGA::Update(void)
 }
 
 
-StateWorkFPGA FPGA::CurrentStateWork(void)
+StateWorkFPGA::E FPGA::CurrentStateWork(void)
 {
     return stateWork;
 }
@@ -209,7 +209,7 @@ StateWorkFPGA FPGA::CurrentStateWork(void)
 
 void FPGA::OnPressStartStop(void)
 {
-    if(stateWork == StateWorkFPGA_Stop) 
+    if(stateWork == StateWorkFPGA::Stop) 
     {
         FPGA::Start();
     } 
@@ -224,13 +224,13 @@ void FPGA::Stop(bool pause)
 {
     Timer::Disable(kP2P);
     HAL_FSMC::Write(WR_STOP, 1);
-    stateWork = pause ? StateWorkFPGA_Pause : StateWorkFPGA_Stop;
+    stateWork = pause ? StateWorkFPGA::Pause : StateWorkFPGA::Stop;
 }
 
 
 bool FPGA::IsRunning(void)
 {
-    return stateWork != StateWorkFPGA_Stop;
+    return stateWork != StateWorkFPGA::Stop;
 }
 
 
@@ -596,7 +596,7 @@ void FPGA::WriteToHardware(uint8 * const address, uint8 value, bool restart)
         }
         else
         {
-            if(stateWork != StateWorkFPGA_Stop)
+            if(stateWork != StateWorkFPGA::Stop)
             {
                 FPGA::Stop(true);
                 HAL_FSMC::Write(address, value);
@@ -660,9 +660,9 @@ void FPGA::RestoreState(void)
         }
     }
     FPGA::LoadSettings();
-    if(gStateFPGA.stateWorkBeforeCalibration != StateWorkFPGA_Stop)
+    if(gStateFPGA.stateWorkBeforeCalibration != StateWorkFPGA::Stop)
     {
-        gStateFPGA.stateWorkBeforeCalibration = StateWorkFPGA_Stop;
+        gStateFPGA.stateWorkBeforeCalibration = StateWorkFPGA::Stop;
         FPGA::OnPressStartStop();
     }
 }

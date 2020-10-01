@@ -78,7 +78,7 @@ GMemory gMemory =
 StateFPGA gStateFPGA = 
 {
     false,
-    StateWorkFPGA_Stop,
+    StateWorkFPGA::Stop,
     StateCalibration::None
 };
 

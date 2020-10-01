@@ -95,7 +95,7 @@ public:
     // Запуск функции калибровки.
     static void ProcedureCalibration();
 
-    static StateWorkFPGA CurrentStateWork();
+    static StateWorkFPGA::E CurrentStateWork();
 
 private:
     // Загрузить настройки в аппаратную часть из глобальной структуры SSettings.
