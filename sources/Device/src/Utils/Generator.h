@@ -5,11 +5,11 @@
 #include "Settings/SettingsTypes.h"
 
 
-typedef enum
+enum TypeWave
 {
     Wave_Sinus,
     Wave_Meander
-} TypeWave;
+};
 
 struct SGenerator
 {

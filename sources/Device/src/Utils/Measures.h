@@ -3,7 +3,7 @@
 
 
 // Виды измерений.
-typedef enum
+enum Measure
 {
     Measure_None,
     Measure_VoltageMax,
@@ -29,7 +29,7 @@ typedef enum
     Measure_PhazaPlus,
     Measure_PhazaMinus,
     Measure_NumMeasures
-} Measure;
+};
 
 Measure& operator++(Measure &measure);
 

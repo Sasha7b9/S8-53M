@@ -2,7 +2,7 @@
 #include "Settings/SettingsDisplay.h"
 
 
-typedef enum
+enum Warning
 {
     LimitChan1_Volts,
     LimitChan2_Volts,
@@ -32,12 +32,12 @@ typedef enum
     FirmwareSaved,
     FullyCompletedOTP,
     Warning_NumWarnings
-} Warning;
+};
 
-typedef enum
+enum WarningWithNumber
 {
     ExcessValues        // Превышение значения количества сигналов в "НАКОПЛЕНИЕ", "УСРЕДНЕНИЕ", "Мин Макс"
-} WarningWithNumber;
+};
 
 
 ENumSignalsInSec Tables_NumSignalsInSecToENUM(int enumSignalsInSec);

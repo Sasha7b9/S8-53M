@@ -182,63 +182,63 @@ enum Range
 };
 
 // Режим запуска
-typedef enum
+enum StartMode
 {
     StartMode_Auto,     // Автоматический
     StartMode_Wait,     // Ждущий 
     StartMode_Single    // Однократный
-} StartMode;
+};
 
 // Источник синхронизации
-typedef enum
+enum TrigSource
 {
     TrigSource_Channel0,    // Канал 1
     TrigSource_Channel1,    // Канал 2
     TrigSource_Ext          // Внешняя
-} TrigSource;
+};
 
 // Тип синхронизацц
-typedef enum
+enum TrigPolarity
 {
     TrigPolarity_Front,     // По фронту
     TrigPolarity_Back       // По срезу
-} TrigPolarity;
+};
 
 // Вход синхронизации
-typedef enum
+enum TrigInput
 {
     TrigInput_Full,         // Полный сиганл
     TrigInput_AC,           // Переменный
     TrigInput_LPF,          // ФНЧ
     TrigInput_HPF           // ФВЧ
-} TrigInput;
+};
 
-typedef enum
+enum TrigModeFind
 {
     TrigModeFind_Hand,          // Уровень синхронизации устанавливается вручную или автоматически - однократным нажажтием кнопки
     TrigModeFind_Auto           // Подстройки уровня синхронизации производится автоматически после каждого нового считанного сигнала
-} TrigModeFind;
+};
 
 // Режим длительного нажатия кнопки СИНХР
-typedef enum
+enum ModeLongPressTrig
 {
     ModeLongPRessTrig_Level0,
     ModeLongPressTrig_Auto
-} ModeLongPressTrig;
+};
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Time
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Функция ВР/ДЕЛ
-typedef enum
+enum FunctionTime
 {
     FunctionTime_Time,
     FunctionTime_ShiftInMemory
-} FunctionTime;
+};
 
 // Масштаб по времени
-typedef enum 
+enum TBase
 {
     TBase_2ns,
     TBase_5ns,
@@ -271,128 +271,128 @@ typedef enum
     TBase_5s,
     TBase_10s,
     TBaseSize
-} TBase;
+};
 
 // Положение точки синхронизация на сигнале
-typedef enum
+enum TPos
 {
     TPos_Left,      // Привязка к левому краю
     TPos_Center,    // Привязка к центру
     TPos_Right      // Привязка к правому краю
-} TPos;
+};
 
 // Тип выборки для режима рандомизатора.
-typedef enum
+enum SampleType
 {
     SampleType_Real,   // реальное время - в построении участвуют только реально считанные точки, ничего не рассчитывается
     SampleType_Equal   // эквивалентная - сигнал строится по последним точкам, полученным от рандомизатора
-} SampleType;
+};
 
-typedef enum
+enum PeackDetMode
 {
     PeackDet_Disable,
     PeackDet_Enable,
     PeackDet_Average
-} PeackDetMode;
+};
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Cursors
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Каким курсором управлять
-typedef enum
+enum CursCntrl
 {
     CursCntrl_1,        // первым
     CursCntrl_2,        // вторым
     CursCntrl_1_2,      // обоими
     CursCntrl_Disable   // никаким
-} CursCntrl;
+};
 
 // Дискретность перемещения курсоров
-typedef enum
+enum CursMovement
 {
     CursMovement_Points,    // по точкам
     CursMovement_Percents   // по процентам
-} CursMovement;
+};
 
 // Какие курсоры сейчас активны. Какие активны, те и будут перемещаться по вращению ручки УСТАНОВКА.
-typedef enum
+enum CursActive
 {
     CursActive_U,
     CursActive_T,
     CursActive_None
-} CursActive;
+};
 
 // Режим слежения курсоров
-typedef enum
+enum CursLookMode
 {
     CursLookMode_None,          // Курсоры не следят
     CursLookMode_Voltage,       // Курсоры следят за напряжением автоматически
     CursLookMode_Time,          // Курсоры следят за временем автоматически
     CursLookMode_Both           // Курсоры следят за временем и напряжением, в зависимости от того, какой курсоры вращали последним.
-} CursLookMode;
+};
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Memory
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Число точек сигнала, с которым идёт работа.
-typedef enum
+enum FPGA_NUM_POINTS
 {
     FNP_281,
     FNP_512,
     FNP_1024
-} FPGA_NUM_POINTS;
+};
 
 // Режим работы.
-typedef enum
+enum ModeWork
 {
     ModeWork_Direct,        // Основной режим.
     ModeWork_Latest,        // В этом режиме можно просмотреть последние сохранённые измерения
     ModeWork_MemInt,        // В этом режиме можно сохранять во flash-памяти измерения просматривать ранее сохранённые
-} ModeWork;
+};
 
 // Что показывать в режиме Внутр ЗУ - считанный или записанный сигнал
-typedef enum
+enum ModeShowIntMem
 {
     ModeShowIntMem_Direct,  // Показывать данные реального времени.
     ModeShowIntMem_Saved,   // Показывать сохранённые данные
     ModeShowIntMem_Both     // Показывать данные реального времени и сохранённые данные
-} ModeShowIntMem;
+};
 
 // Что делать при нажатии кнопки ПАМЯТЬ
-typedef enum
+enum ModeBtnMemory
 {
     ModeBtnMemory_Menu,     // Будет открывааться соответствующая страница меню
     ModeBtnMemory_Save      // Сохранение содержимого экрана на флешку
-} ModeBtnMemory;
+};
 
 // Режим наименования файлов
-typedef enum
+enum FileNamingMode
 {
     FileNamingMode_Mask,        // Именовать по маске
     FileNamingMode_Manually     // Именовать вручную
-} FileNamingMode;
+};
 
 // Как сохранять данные на флешку
-typedef enum
+enum ModeSaveSignal
 {
     ModeSaveSignal_BMP,
     ModeSaveSignal_TXT
-} ModeSaveSignal;
+};
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Measures
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Сжимать ли сигналы при выводе измерений.
-typedef enum
+enum ModeViewSignals
 {
     ModeViewSignals_AsIs,       // Показывать сигналы как есть
     ModeViewSignals_Compress    // Сжимать сетку с сигналами
-} ModeViewSignals;
+};
 
-typedef enum
+enum MeasuresNumber
 {
     MN_1,                       // 1 измерение слева внизу
     MN_2,                       // 2 измерения слева внизу
@@ -401,91 +401,91 @@ typedef enum
     MN_3_5,                     // 3 строки по 5 измерений
     MN_6_1,                     // 6 строк по 1 измерению
     MN_6_2                      // 6 строк по 2 измерения
-} MeasuresNumber;
+};
 
 // Зона, по которой считаются измрения
-typedef enum
+enum MeasuresField
 {
     MeasuresField_Screen,       // Измерения будут производиться по той части сингала, которая видна на экране.
     MeasuresField_AllMemory,    // Измерения будут производиться по всему сигналу.
     MeasuresField_Hand          // Измерения будут производиться по окну, задаваемому пользователем.
-} MeasuresField;
+};
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Math
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-typedef enum
+enum Function
 {
     Function_Sum,
     Function_Mul
-} Function;
+};
 
-typedef enum
+enum ScaleMath
 {
     ScaleMath_Channel0,     // Масштаб берётся из канала 1
     ScaleMath_Channel1,     // Масштаб берётся из канала 2
     ScaleMath_Hand          // Масштаб задаётся вручную.
-} ScaleMath;
+};
 
-typedef enum
+enum ScaleFFT
 {
     ScaleFFT_Log,           // Это значение означает логарифмическую шкалу вывода спектра
     ScaleFFT_Linear         // Это значение означает линейную шкалу вывода спектра
-} ScaleFFT;
+};
 
-typedef enum
+enum SourceFFT
 {
     SourceFFT_Channel0,
     SourceFFT_Channel1,
     SourceFFT_Both
-} SourceFFT;
+};
 
-typedef enum
+enum WindowFFT
 {
     WindowFFT_Rectangle,
     WindowFFT_Hamming,
     WindowFFT_Blackman,
     WindowFFT_Hann
-} WindowFFT;
+};
 
-typedef enum
+enum FFTmaxDB
 {
     FFTmaxDB_40,
     FFTmaxDB_60,
     FFTmaxDB_80
-} FFTmaxDB;
+};
 
-typedef enum
+enum ModeDrawMath
 {
     ModeDrawMath_Disable,
     ModeDrawMath_Separate,
     ModeDrawMath_Together
-} ModeDrawMath;
+};
 
-typedef enum
+enum ModeRegSet
 {
     ModeRegSet_Range,
     ModeRegSet_RShift
-} ModeRegSet;
+};
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Service
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Язык меню
-typedef enum
+enum Language
 {
     Russian,    // Русский
     English     // Английский
-} Language;
+};
 
-typedef enum
+enum CalibratorMode
 {
     Calibrator_Freq,
     Calibrator_DC,
     Calibrator_GND
-} CalibratorMode;
+};
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Debug
@@ -493,25 +493,25 @@ typedef enum
 
 // Тип балансировки АЦП каналов.
 // Дело в том, что уровни АЦП не совпадают из-за отличия характеристик ( ? ), поэтому мы вводим дополнительное смещение для одного из АЦП канала.
-typedef enum
+enum BalanceADCtype
 {
     BalanceADC_Disable,     // Балансировка выключена.
     BalanceADC_Settings,    // Используются значения балансировки, которые получены автоматически.
     BalanceADC_Hand         // Используются значения балансировки, заданные вручную.
-} BalanceADCtype;
+};
 
 // Тип растяжки АЦП
-typedef enum
+enum StretchADCtype
 {
     StretchADC_Disable,
     StretchADC_Settings,
     StretchADC_Hand
-} StretchADCtype;
+};
 
 // Тип дополнительного смещения
-typedef enum
+enum RShiftADCtype
 {
     RShiftADC_Disable,
     RShiftADC_Settings,
     RShiftADC_Hand
-} RShiftADCtype;
+};
