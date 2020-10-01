@@ -148,8 +148,11 @@ struct Smoothing { enum E
     _7points,
     _8points,
     _9points,
-    _10points
-}; };
+    _10points };
+
+    // Возвращает число точек сглаживающего фильтра (режим ДИСПЛЕЙ - Сглаживание).
+    static int NumPoints();
+ };
 
 // Ограничение FPS.
 struct ENumSignalsInSec { enum E
@@ -158,8 +161,11 @@ struct ENumSignalsInSec { enum E
     _10,
     _5,
     _2,
-    _1
-}; };
+    _1  };
+
+    // Возвращает ограничение частоты кадров.
+    static int NumSignalsInS();
+ };
 
 // Режим накопления.
 struct ModeAccumulation { enum E
@@ -220,17 +226,9 @@ struct SettingsDisplay
     bool                showFullMemoryWindow;       // Показывать ли окно памяти вверху экрана. \todo Не используется.
     bool                showStringNavigation;       // Показывать ли строку текущего состояния меню..
     LinkingRShift::E    linkingRShift;              // Тип привязки смещения по вертикали.
-
-    // Возвращает ограничение частоты кадров.
-    static int NumSignalsInS();
 };
 
 
-
-// Устанавливает ограничение частоты кадров.
-void sDisplay_SetNumSignalsInS(int maxFPS);
-// Возвращает число точек сглаживающего фильтра (режим ДИСПЛЕЙ - Сглаживание).
-int sDisplay_NumPointSmoothing();
 // Возвращает адрес первой и последней точки на экране.
 void sDisplay_PointsOnDisplay(int *firstPoint, int *lastPoint);
 // Возвращает время, через которое меню автоматически скрывается, если не было больше нажатий.

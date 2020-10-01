@@ -884,7 +884,7 @@ void Processing::SetSignal(uint8 *data0, uint8 *data1, DataSettings *ds, int _fi
     lastP = _lastPoint;
     numP = lastP - firstP;
     
-    int numSmoothing = sDisplay_NumPointSmoothing();
+    int numSmoothing = Smoothing::NumPoints();
 
     int length = (int)ds->length1channel * (ds->peakDet == PeackDet_Disable ? 1 : 2);
 

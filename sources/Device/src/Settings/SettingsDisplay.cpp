@@ -4,19 +4,13 @@
 
 
 
-int SettingsDisplay::NumSignalsInS()
+int ENumSignalsInSec::NumSignalsInS()
 {
     return Tables_ENUMtoNumSignalsInSec(ENUM_SIGNALS_IN_SEC);
 }
 
 
-void sDisplay_SetNumSignalsInS(int numSignalsInS)
-{
-    ENUM_SIGNALS_IN_SEC = Tables_NumSignalsInSecToENUM(numSignalsInS);
-}
-
-
-int sDisplay_NumPointSmoothing()
+int Smoothing::NumPoints()
 {
     if (SMOOTHING_IS_DISABLE)
     {

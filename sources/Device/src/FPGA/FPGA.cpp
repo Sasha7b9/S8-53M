@@ -58,7 +58,7 @@ void FPGA::Init(void)
 {
     Storage::Clear();
     FPGA::LoadSettings();
-    FPGA::SetNumSignalsInSec(SettingsDisplay::NumSignalsInS());
+    FPGA::SetNumSignalsInSec(ENumSignalsInSec::NumSignalsInS());
     FPGA::SetNumberMeasuresForGates(NUM_MEAS_FOR_GATES);
     FPGA::SetNumberMeasuresForGates(NUM_MEAS_FOR_GATES);
 } 

@@ -219,7 +219,7 @@ void Display::DrawSignalLined(const uint8 *data, const DataSettings *ds, int sta
 	int gridRight = Grid::Right();
     
     int numPoints = sMemory_GetNumPoints(false);
-    int numSmoothing = sDisplay_NumPointSmoothing();
+    int numSmoothing = Smoothing::NumPoints();
 
     if (ds->peakDet == PeackDet_Disable)
     {
@@ -296,7 +296,7 @@ void Display::DrawSignalLined(const uint8 *data, const DataSettings *ds, int sta
 void Display::DrawSignalPointed(const uint8 *data, const DataSettings *ds, int startPoint, int endPoint, int minY, int maxY, float scaleY, float scaleX)
 {
     int numPoints = sMemory_GetNumPoints(false);
-    int numSmoothing = sDisplay_NumPointSmoothing();
+    int numSmoothing = Smoothing::NumPoints();
     
     uint8 dataCD[281];
 
@@ -2149,7 +2149,7 @@ void Display::DrawLowPart()
     if (MODE_WORK_IS_DIRECT)
     {
         Painter::SetFont(TypeFont::_5);
-        WriteStringAndNumber("—√À¿∆.:", x + 57, GRID_BOTTOM + 10, sDisplay_NumPointSmoothing());
+        WriteStringAndNumber("—√À¿∆.:", x + 57, GRID_BOTTOM + 10, Smoothing::NumPoints());
         Painter::SetFont(TypeFont::_8);
     }
 }
