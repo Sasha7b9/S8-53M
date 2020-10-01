@@ -226,11 +226,12 @@ struct SettingsDisplay
     bool                showFullMemoryWindow;       // Показывать ли окно памяти вверху экрана. \todo Не используется.
     bool                showStringNavigation;       // Показывать ли строку текущего состояния меню..
     LinkingRShift::E    linkingRShift;              // Тип привязки смещения по вертикали.
+
+    // Возвращает адрес первой и последней точки на экране.
+    static void PointsOnDisplay(int *firstPoint, int *lastPoint);
 };
 
 
-// Возвращает адрес первой и последней точки на экране.
-void sDisplay_PointsOnDisplay(int *firstPoint, int *lastPoint);
 // Возвращает время, через которое меню автоматически скрывается, если не было больше нажатий.
 int sDisplay_TimeMenuAutoHide();
 // Если экран разделён на две части и основной сигнал выводится сверху - например, в режиме вывода спектра

@@ -61,7 +61,7 @@ void ProcessingSignal()
 
     int first = 0;
     int last = 0;
-    sDisplay_PointsOnDisplay(&first, &last);
+    SettingsDisplay::PointsOnDisplay(&first, &last);
 
     if (MODE_WORK_IS_DIRECT)
     {

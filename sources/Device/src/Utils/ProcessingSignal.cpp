@@ -918,7 +918,7 @@ float Processing::GetCursU(Channel chan, float posCurT)
     
     int first = 0;
     int last = 0;
-    sDisplay_PointsOnDisplay(&first, &last);
+    SettingsDisplay::PointsOnDisplay(&first, &last);
 
     float retValue = 0.0F;
     LIMITATION(retValue, static_cast<float>(200.0F - (dataIn[chan])[first + (int)posCurT] + MIN_VALUE), 0.0F, 200.0F);
@@ -934,7 +934,7 @@ float Processing::GetCursT(Channel chan, float posCurU, int numCur)
 
     int firstPoint = 0;
     int lastPoint = 0;
-    sDisplay_PointsOnDisplay(&firstPoint, &lastPoint);
+    SettingsDisplay::PointsOnDisplay(&firstPoint, &lastPoint);
 
     int prevData = 200 - (dataIn[chan])[firstPoint] + MIN_VALUE;
 

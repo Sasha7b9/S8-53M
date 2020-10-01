@@ -369,7 +369,7 @@ void Display::DrawDataChannel(uint8 *data, Channel chan, DataSettings *ds, int m
 
     int firstPoint = 0;
     int lastPoint = 0;
-    sDisplay_PointsOnDisplay(&firstPoint, &lastPoint);
+    SettingsDisplay::PointsOnDisplay(&firstPoint, &lastPoint);
     if(data == dataP2P_0 || data == dataP2P_1)
     {
         if(SET_SELFRECORDER)
@@ -1725,7 +1725,7 @@ void Display::DrawCursorTShift()
 {
     int firstPoint = 0;
     int lastPoint = 0;
-    sDisplay_PointsOnDisplay(&firstPoint, &lastPoint);
+    SettingsDisplay::PointsOnDisplay(&firstPoint, &lastPoint);
 
     // Рисуем TPos
     int shiftTPos = sTime_TPosInPoints((PeackDetMode)gDSet->peakDet, (int)gDSet->length1channel, SET_TPOS) - SHIFT_IN_MEMORY;
