@@ -25,22 +25,22 @@ struct Color
 {
     enum E
     {
-        BLACK = 0x00,
-        WHITE = 0x01,
-        GRID = 0x02,
-        DATA_A = 0x03,
-        DATA_B = 0x04,
-        MENU_FIELD = 0x05,
-        MENU_TITLE = 0x06,
-        MENU_TITLE_DARK = 0x07,
-        MENU_TITLE_BRIGHT = 0x08,
-        MENU_ITEM = 0x09,
-        MENU_ITEM_DARK = 0x0a,
-        MENU_ITEM_BRIGHT = 0x0b,
-        MENU_SHADOW = 0x0c,
-        EMPTY = 0x0d,
-        EMPTY_A = 0x0e,
-        EMPTY_B = 0x0f,
+        BLACK,
+        WHITE,
+        GRID,
+        DATA_A,
+        DATA_B,
+        MENU_FIELD,
+        MENU_TITLE,
+        MENU_TITLE_DARK,
+        MENU_TITLE_BRIGHT,
+        MENU_ITEM,
+        MENU_ITEM_DARK,
+        MENU_ITEM_BRIGHT,
+        MENU_SHADOW,
+        EMPTY,
+        EMPTY_A,
+        EMPTY_B,
         NUM,
         FLASH_10,
         FLASH_01,
@@ -76,11 +76,11 @@ typedef void    (*pFuncVpVIIB)(void*, int, int, bool);
 #define _CLEAR_BIT(value, bit) ((value) &= (~(1 << bit)))
 
 // Объединение размером 32 бита
-typedef union
+union BitSet32
 {
     uint  word;
     uint8 byte[4]; //-V112
-} BitSet32;
+};
 
 // Объединение размером 64 бита
 typedef union

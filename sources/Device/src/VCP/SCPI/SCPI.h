@@ -56,7 +56,7 @@ struct StructCommand
 class SCPI
 {
 public:
-    static void AddNewData(uint8 *buffer, uint length);
+    static void AddNewData(const uint8 *buffer, uint length);
 
 private:
     static void ParseNewCommand(uint8 *buffer);   ///< \todo Временно. Потом доделать

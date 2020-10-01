@@ -160,8 +160,8 @@ void HAL::JumpToApplication()
 
     __disable_irq();
     // Теперь переходим на основную программу
-    JumpToApplication = (pFunction)(*(__IO uint *)(MAIN_PROGRAM_START_ADDRESS + 4));
-    __set_MSP(*(__IO uint *)MAIN_PROGRAM_START_ADDRESS);
+    JumpToApplication = (pFunction)(*(__IO uint *)(MAIN_PROGRAM_START_ADDRESS + 4)); //-V566
+    __set_MSP(*(__IO uint *)MAIN_PROGRAM_START_ADDRESS); //-V566
     __enable_irq();
     JumpToApplication();
 }

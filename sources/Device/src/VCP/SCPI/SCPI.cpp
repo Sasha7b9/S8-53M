@@ -25,7 +25,7 @@ static int pointer = 0;
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void SCPI::AddNewData(uint8 *data, uint length)
+void SCPI::AddNewData(const uint8 *data, uint length)
 {
     /*
     uint8 *temp = (uint8 *)malloc(length + 1);
@@ -57,7 +57,7 @@ label_another:
 
     for (int i = 0; i < pointer; i++)
     {
-        bufData[i] = (uint8)toupper((int8)bufData[i]);
+        bufData[i] = static_cast<uint8>(toupper(static_cast<int8>(bufData[i])));
 
         if (bufData[i] == 0x0d || bufData[i] == 0x0a)
         {
@@ -82,7 +82,7 @@ label_another:
                     ++pBuf;
                     pointer = pBuf - bufData;
                 }
-                goto label_another;         // и проверяем буфер ещё раз
+                goto label_another;         // и проверяем буфер ещё раз //-V2505
             }
         }
     }

@@ -4,25 +4,25 @@
 // Идентификаторы кнопок.
 enum PanelButton
 {
-    B_Empty     = 0,        // кнопка не нажата
-    B_Channel0  = 1,        // КАНАЛ 1
-    B_Service   = 2,        // СЕРВИС
-    B_Channel1  = 3,        // КАНАЛ 2
-    B_Display   = 4,        // ДИСПЛЕЙ
-    B_Time      = 5,        // РАЗВ
-    B_Memory    = 6,        // ПАМЯТЬ
-    B_Trig      = 7,        // СИНХР
-    B_Start     = 8,        // ПУСК/СТАРТ
-    B_Cursors   = 9,        // КУРСОРЫ
-    B_Measures  = 10,       // ИЗМЕР
-    B_Power     = 11,       // ПИТАНИЕ
-    B_Help      = 12,       // ПОМОЩЬ
-    B_Menu      = 13,       // МЕНЮ
-    B_F1        = 14,       // 1
-    B_F2        = 15,       // 2
-    B_F3        = 16,       // 3
-    B_F4        = 17,       // 4
-    B_F5        = 18,       // 5
+    B_Empty,        // кнопка не нажата
+    B_Channel0,        // КАНАЛ 1
+    B_Service,        // СЕРВИС
+    B_Channel1,        // КАНАЛ 2
+    B_Display,        // ДИСПЛЕЙ
+    B_Time,        // РАЗВ
+    B_Memory,        // ПАМЯТЬ
+    B_Trig,        // СИНХР
+    B_Start,        // ПУСК/СТАРТ
+    B_Cursors,        // КУРСОРЫ
+    B_Measures,       // ИЗМЕР
+    B_Power,       // ПИТАНИЕ
+    B_Help,       // ПОМОЩЬ
+    B_Menu,       // МЕНЮ
+    B_F1,       // 1
+    B_F2,       // 2
+    B_F3,       // 3
+    B_F4,       // 4
+    B_F5,       // 5
     B_NumButtons            // общее количество кнопок
 };
 

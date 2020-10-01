@@ -10,11 +10,11 @@
 static const uint ADDR_BANK = 0x60000000;
 
 
-uint8 * const HAL_FSMC::ADDR_DISPLAY_A0 = ((uint8 *)(ADDR_BANK + 0x00910000));
-uint8 * const HAL_FSMC::ADDR_DISPLAY_D7_D0 = ((uint8 *)(ADDR_BANK + 0x00900000));
-uint8 * const HAL_FSMC::ADDR_CDISPLAY = ((uint8 *)(ADDR_BANK + 0x00800000));
-uint8 * const HAL_FSMC::ADDR_FPGA = ((uint8 *)(ADDR_BANK + 0x00c80000));  // Адрес записи в аппаратные регистры.
-uint8 * const HAL_FSMC::ADDR_NULL = ((uint8 *)(ADDR_BANK + 0x00a00000));
+uint8 * const HAL_FSMC::ADDR_DISPLAY_A0 = (reinterpret_cast<uint8 *>(ADDR_BANK + 0x00910000)); //-V566
+uint8 * const HAL_FSMC::ADDR_DISPLAY_D7_D0 = (reinterpret_cast<uint8 *>(ADDR_BANK + 0x00900000)); //-V566
+uint8 * const HAL_FSMC::ADDR_CDISPLAY = (reinterpret_cast<uint8 *>(ADDR_BANK + 0x00800000)); //-V566
+uint8 * const HAL_FSMC::ADDR_FPGA = (reinterpret_cast<uint8 *>(ADDR_BANK + 0x00c80000));  // Адрес записи в аппаратные регистры. //-V566
+uint8 * const HAL_FSMC::ADDR_NULL = (reinterpret_cast<uint8 *>(ADDR_BANK + 0x00a00000)); //-V566
 
 
 
