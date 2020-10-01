@@ -384,19 +384,9 @@
           <GroupName>libs/CMSIS</GroupName>
           <Files>
             <File>
-              <FileName>stm32f2xx.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f2xx.h</FilePath>
-            </File>
-            <File>
               <FileName>stm32f207xx.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h</FilePath>
-            </File>
-            <File>
-              <FileName>system_stm32f2xx.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f2xx.h</FilePath>
             </File>
             <File>
               <FileName>cmsis_armcc.h</FileName>
@@ -412,11 +402,6 @@
               <FileName>cmsis_version.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\STM32Cube_F4\Drivers\CMSIS\Include\cmsis_version.h</FilePath>
-            </File>
-            <File>
-              <FileName>core_cm3.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\STM32Cube_F4\Drivers\CMSIS\Include\core_cm3.h</FilePath>
             </File>
             <File>
               <FileName>mpu_armv7.h</FileName>
