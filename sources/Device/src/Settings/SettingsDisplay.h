@@ -55,8 +55,8 @@
 #define LAST_AFFECTED_CHANNEL_IS_B  (LAST_AFFECTED_CHANNEL == B)                // \c true, если последний канал, которым управляли - 2.
 
 #define MODE_ACCUM                  (set.display.modeAccumulation)              // SettingsDisplay.modeAccumulation
-#define MODE_ACCUM_IS_RESET         (MODE_ACCUM == ModeAccumulation_Reset)      // \c true, если накопление со сбросом.
-#define MODE_ACCUM_IS_NORESET       (MODE_ACCUM == ModeAccumulation_NoReset)    // \c true, если накопление без сброса.
+#define MODE_ACCUM_IS_RESET         (MODE_ACCUM == ModeAccumulation::Reset)     // \c true, если накопление со сбросом.
+#define MODE_ACCUM_IS_NORESET       (MODE_ACCUM == ModeAccumulation::NoReset)   // \c true, если накопление без сброса.
 
 #define ALT_MARKERS                 (set.display.altMarkers)                    // SettingsDisplay.altMarkers
 #define ALT_MARKERS_HIDE            (ALT_MARKERS == AM_Hide)                    // \c true, если дополнительные маркеры никогда не надо показывать.
@@ -162,11 +162,11 @@ struct ENumSignalsInSec { enum E
 }; };
 
 // Режим накопления.
-enum ModeAccumulation
+struct ModeAccumulation { enum E
 {
-    ModeAccumulation_NoReset,   // В этом режиме показываются строго N последних измерений.
-    ModeAccumulation_Reset      // В этом режиме набираются N последних измерений и потом сбрасываются.
-};
+    NoReset,   // В этом режиме показываются строго N последних измерений.
+    Reset      // В этом режиме набираются N последних измерений и потом сбрасываются.
+}; };
 
 // Режим отображения дополнительных боковых маркеров смещения по напряжению.
 enum AltMarkers
@@ -214,7 +214,7 @@ struct SettingsDisplay
     Smoothing::E        smoothing;                  // Число точек для скользящего фильтра.
     ENumSignalsInSec::E enumSignalsInSec;           // Перечисление считываний сигнала в секунду.
     Channel             lastAffectedChannel;        // Здесь хранится номер последнего канала, которым управляли ручками. Нужно для того, чтобы знать, какой сигнал рисовать наверху.
-    ModeAccumulation    modeAccumulation;           // Задаёт режим накопления сигналов.
+    ModeAccumulation::E modeAccumulation;           // Задаёт режим накопления сигналов.
     AltMarkers          altMarkers;                 // Режим отображения дополнительных боковых маркеров смещений.
     MenuAutoHide        menuAutoHide;               // Через сколько времени после последнего нажатия клавиши прятать меню.
     bool                showFullMemoryWindow;       // Показывать ли окно памяти вверху экрана. \todo Не используется.
