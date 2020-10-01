@@ -100,9 +100,9 @@ void Color_Log(Color::E color)
 
 static void ColorType_CalcSteps(ColorType *colorType)
 {
-    colorType->stepRed = colorType->red / (colorType->brightness * 100.0f);
-    colorType->stepGreen = colorType->green / (colorType->brightness * 100.0f);
-    colorType->stepBlue = colorType->blue / (colorType->brightness * 100.0f);
+    colorType->stepRed = colorType->red / (colorType->brightness * 100.0F);
+    colorType->stepGreen = colorType->green / (colorType->brightness * 100.0F);
+    colorType->stepBlue = colorType->blue / (colorType->brightness * 100.0F);
 }
 
 
@@ -118,7 +118,7 @@ static void ColorType_SetBrightness(ColorType *colorType)
 
 void Color_SetBrightness(ColorType *colorType, float brightness)
 {
-    int delta = (int)((brightness + 0.0005f) * 100.0f) - (int)(colorType->brightness * 100.0f);
+    int delta = (int)((brightness + 0.0005f) * 100.0F) - (int)(colorType->brightness * 100.0F);
 
     if (delta > 0)
     {
@@ -140,14 +140,14 @@ void Color_SetBrightness(ColorType *colorType, float brightness)
 
 void Color_BrightnessChange(ColorType *colorType, int delta)
 {
-    if ((delta > 0 && colorType->brightness == 1.0f) || (delta < 0 && colorType->brightness == 0.0f))
+    if ((delta > 0 && colorType->brightness == 1.0f) || (delta < 0 && colorType->brightness == 0.0F))
     {
         return;
     }
 
     int sign = Math_Sign(delta);
 
-    LIMITATION(colorType->brightness, colorType->brightness + sign * 0.01f, 0.0f, 1.0f);
+    LIMITATION(colorType->brightness, colorType->brightness + sign * 0.01f, 0.0F, 1.0f);
 
     colorType->red += sign * colorType->stepRed;
     colorType->green += sign * colorType->stepGreen;
@@ -179,7 +179,7 @@ void Color_Init(ColorType *colorType)
 
         ColorType_SetBrightness(colorType);
 
-        if (colorType->red == 0.0f && colorType->green == 0.0f && colorType->blue == 0.0f)
+        if (colorType->red == 0.0F && colorType->green == 0.0F && colorType->blue == 0.0F)
         {
             colorType->stepRed = 0.31f;
             colorType->stepGreen = 0.63f;
@@ -192,13 +192,13 @@ void Color_Init(ColorType *colorType)
 
 void Color_ComponentChange(ColorType *colorType, int delta)
 {
-    static const float maxs[4] = {0.0f, 31.0f, 63.0f, 31.0f};
+    static const float maxs[4] = {0.0F, 31.0f, 63.0f, 31.0f};
     float *pointers[4] = {0, &colorType->blue, &colorType->green, &colorType->red};
     int8 index = colorType->currentField;
 
     if (index >= 1 && index <= 3)
     {
-        AddLimitationFloat(pointers[index], (float)Math_Sign(delta), 0.0f, maxs[index]);
+        AddLimitationFloat(pointers[index], (float)Math_Sign(delta), 0.0F, maxs[index]);
     }
 
     SetColor(colorType);

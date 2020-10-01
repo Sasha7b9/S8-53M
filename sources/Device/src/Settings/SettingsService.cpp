@@ -11,6 +11,6 @@ bool sService_MathEnabled()
 
 float sService_MathGetFFTmaxDBabs()
 {
-    static const float db[] = {-40.0f, -60.0f, -80.0f};
+    static const float db[] = {-40.0F, -60.0F, -80.0F};
     return db[FFT_MAX_DB];
 }

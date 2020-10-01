@@ -17,7 +17,7 @@
 
 static void ProcessingSignal();
 
-#define TICS ((gTimerTics - time) / 120.0f)
+#define TICS ((gTimerTics - time) / 120.0F)
 
 extern void main3();    
 

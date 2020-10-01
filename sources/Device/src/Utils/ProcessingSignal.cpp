@@ -52,7 +52,7 @@ const Processing::MeasureCalculate Processing::measures[Measure_NumMeasures] =
     {"CalculatePhazaMinus",         CalculatePhazaMinus,           Phase2String, false}
 };
 
-static MeasureValue values[Measure_NumMeasures] = {{0.0f, 0.0f}};
+static MeasureValue values[Measure_NumMeasures] = {{0.0F, 0.0F}};
 
 static int markerHor[NumChannels][2] = {{ERROR_VALUE_INT}, {ERROR_VALUE_INT}};
 static int markerVert[NumChannels][2] = {{ERROR_VALUE_INT}, {ERROR_VALUE_INT}};
@@ -260,7 +260,7 @@ float Processing::CalculateVoltageRMS(Channel chan)
 
     EXIT_IF_ERROR_INT(period);
 
-    float rms = 0.0f;
+    float rms = 0.0F;
     int16 rShift = chan == A ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1;
     for(int i = firstP; i < firstP + period; i++)
     {
@@ -278,7 +278,7 @@ float Processing::CalculateVoltageRMS(Channel chan)
 
 float Processing::CalculatePeriod(Channel chan)
 {
-    static float period[2] = {0.0f, 0.0f};
+    static float period[2] = {0.0F, 0.0F};
 
     if(!periodIsCaclulating[chan])
     {
@@ -725,7 +725,7 @@ float Processing::CalculateMaxSteadyRel(Channel chan)
 
 float Processing::CalculateMaxRel(Channel chan)
 {
-    static float max[2] = {0.0f, 0.0f};
+    static float max[2] = {0.0F, 0.0F};
 
     if(!maxIsCalculating[chan])
     {
@@ -753,7 +753,7 @@ float Processing::CalculateMinRel(Channel chan)
 
 float Processing::CalculateAverageRel(Channel chan)
 {
-    static float ave[2] = {0.0f, 0.0f};
+    static float ave[2] = {0.0F, 0.0F};
 
     if(!aveIsCalculating[chan])
     {
@@ -767,7 +767,7 @@ float Processing::CalculateAverageRel(Channel chan)
 
 float Processing::CalculatePicRel(Channel chan)
 {
-    static float pic[2] = {0.0f, 0.0f};
+    static float pic[2] = {0.0F, 0.0F};
 
     if(!picIsCalculating[chan])
     {
@@ -795,8 +795,8 @@ float Processing::CalculateDelayPlus(Channel chan)
 
     EXIT_IF_ERRORS_FLOAT(average0, average1);
 
-    float firstIntersection = 0.0f;
-    float secondIntersection = 0.0f;
+    float firstIntersection = 0.0F;
+    float secondIntersection = 0.0F;
     float averageFirst = chan == A ? average0 : average1;
     float averageSecond = chan == A ? average1 : average0;
     Channel firstChannel = chan == A ? A : B;
@@ -834,8 +834,8 @@ float Processing::CalculateDelayMinus(Channel chan)
 
     EXIT_IF_ERRORS_FLOAT(average0, average1);
 
-    float firstIntersection = 0.0f;
-    float secondIntersection = 0.0f;
+    float firstIntersection = 0.0F;
+    float secondIntersection = 0.0F;
     float averageFirst = chan == A ? average0 : average1;
     float averageSecond = chan == A ? average1 : average0;
     Channel firstChannel = chan == A ? A : B;
@@ -864,7 +864,7 @@ float Processing::CalculatePhazaPlus(Channel chan)
     {
         return ERROR_VALUE_FLOAT;
     }
-    return delay / period * 360.0f;
+    return delay / period * 360.0F;
 }
 
 float Processing::CalculatePhazaMinus(Channel chan)
@@ -875,7 +875,7 @@ float Processing::CalculatePhazaMinus(Channel chan)
     {
         return ERROR_VALUE_FLOAT;
     }
-    return delay / period * 360.0f; 
+    return delay / period * 360.0F; 
 }
 
 void Processing::SetSignal(uint8 *data0, uint8 *data1, DataSettings *ds, int _firstPoint, int _lastPoint)
@@ -920,7 +920,7 @@ float Processing::GetCursU(Channel chan, float posCurT)
     int last = 0;
     sDisplay_PointsOnDisplay(&first, &last);
 
-    float retValue = 0.0f;
+    float retValue = 0.0F;
     LIMITATION(retValue, static_cast<float>(200.0F - (dataIn[chan])[first + (int)posCurT] + MIN_VALUE), 0.0F, 200.0F);
     return retValue;
 }
@@ -1062,7 +1062,7 @@ void Processing::InterpolationSinX_X(uint8 data[FPGA_MAX_POINTS], TBase::E tBase
             }
             else                                    // На этих развёртках арифметика с плавающей запятой даёт приемлемое быстродействие
             {
-                float value = 0.0f;
+                float value = 0.0F;
                 float x = x0;
 
                 for (int n = 0; n < numSignedPoints; n++)

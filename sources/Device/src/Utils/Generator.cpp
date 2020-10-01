@@ -25,7 +25,7 @@ static uint8 GetSampleMeanderWave(Channel channel, int numSample);
 
 
 static TypeWave type[2] = {Wave_Sinus, Wave_Meander};
-static float freq[2] = {1000.0f, 500.0f};
+static float freq[2] = {1000.0F, 500.0F};
 static float angle[2] = {0.05f, 0.1f};
 static float ampl[2] = {1.0f, 0.5f};
 static float amplNoise[2] = {0.1f, 0.1f};
@@ -64,7 +64,7 @@ uint8 GetSampleMeanderWave(Channel, int)
 
 float NewNoiseValue(Channel channel)
 {
-    static float prevNoise[2] = {0.0f, 0.0f};            // Здесь хранятся значения шума из предыдущих точек, необходимые для расчёта шума в текущей точке.
+    static float prevNoise[2] = {0.0F, 0.0F};            // Здесь хранятся значения шума из предыдущих точек, необходимые для расчёта шума в текущей точке.
 
     float noise = prevNoise[channel];
 

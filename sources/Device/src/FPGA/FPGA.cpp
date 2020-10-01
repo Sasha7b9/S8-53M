@@ -22,8 +22,8 @@
 
 #define NULL_TSHIFT 1000000
 
-static float freq = 0.0f;           // Частота, намеренная альтерой.
-static float prevFreq = 0.0f;
+static float freq = 0.0F;           // Частота, намеренная альтерой.
+static float prevFreq = 0.0F;
 static StateWorkFPGA::E stateWork = StateWorkFPGA::Stop;
 
 
@@ -493,8 +493,8 @@ bool FPGA::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
     
     static const int numValues = 1000;
 
-    static float minGate = 0.0f;
-    static float maxGate = 0.0f;
+    static float minGate = 0.0F;
+    static float maxGate = 0.0F;
     static int numElements = 0;
     static uint16 min = 0xffff;
     static uint16 max = 0;
@@ -695,7 +695,7 @@ static BitSet32 ReadRegPeriod(void)
 
 static float FreqCounterToValue(BitSet32 *fr)
 {
-    return fr->word * 10.0f;
+    return fr->word * 10.0F;
 }
 
 
@@ -703,7 +703,7 @@ static float PeriodCounterToValue(BitSet32 *period)
 {
     if (period->word == 0)
     {
-        return 0.0f;
+        return 0.0F;
     }
     return 10e6f / (float)period->word;
 }
@@ -779,7 +779,7 @@ static float CalculateFreqFromCounterFreq(void)
     {
         return FreqCounterToValue(&fr);
     }
-    return 0.0f;
+    return 0.0F;
 }
 
 
@@ -795,7 +795,7 @@ static float CalculateFreqFromCounterPeriod(void)
     {
         return PeriodCounterToValue(&period);
     }
-    return 0.0f;
+    return 0.0F;
 }
 
 
@@ -1088,7 +1088,7 @@ TBase::E FPGA::FindTBase(Channel)
 
     TBase::E tBase = TBase::Count;
 
-    if (fr >= 50.0f)
+    if (fr >= 50.0F)
     {
         tBase = CalculateTBase(fr);
         FPGA::SetTBase(tBase);
@@ -1100,7 +1100,7 @@ TBase::E FPGA::FindTBase(Channel)
     {
         FPGA::SetTrigInput(TrigInput_LPF);
         freq = CalculateFreqFromCounterPeriod();
-        if (fr > 0.0f)
+        if (fr > 0.0F)
         {
             tBase = CalculateTBase(fr);
             FPGA::SetTBase(tBase);

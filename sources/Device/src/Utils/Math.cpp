@@ -9,13 +9,13 @@
 #include <cstring>
 
 
-const float tableScalesRange[RangeSize] = {2e-3f, 5e-3f, 10e-3f, 20e-3f, 50e-3f, 100e-3f, 200e-3f, 500e-3f, 1.0f, 2.0f, 5.0f, 10.0f, 20.0f};
+const float tableScalesRange[RangeSize] = {2e-3f, 5e-3f, 10e-3f, 20e-3f, 50e-3f, 100e-3f, 200e-3f, 500e-3f, 1.0f, 2.0f, 5.0f, 10.0F, 20.0F};
 /*
 static const float tableScalesTBase[TBase::Count] = 
     {2e-9, 5e-9, 10e-9, 20e-9, 50e-9, 100e-9, 200e-9, 500e-9,
     1e-6, 2e-6, 5e-6, 10e-6, 20e-6, 50e-6, 100e-6, 200e-6, 500e-6,
     1e-3, 2e-3, 5e-3, 10e-3, 20e-3, 50e-3, 100e-3, 200e-3, 500e-3,
-    1.0f, 2.0f, 5.0f, 10.0f};
+    1.0f, 2.0f, 5.0f, 10.0F};
 */
 
 const float absStepRShift[] =
@@ -31,8 +31,8 @@ const float absStepRShift[] =
     1.0f / 20 / STEP_RSHIFT,
     2.0f / 20 / STEP_RSHIFT,
     5.0f / 20 / STEP_RSHIFT,
-    10.0f / 20 / STEP_RSHIFT,
-    20.0f / 20 / STEP_RSHIFT
+    10.0F / 20 / STEP_RSHIFT,
+    20.0F / 20 / STEP_RSHIFT
 };
 
 const float voltsInPixel[] =
@@ -48,8 +48,8 @@ const float voltsInPixel[] =
     1.0f / 20,       // 1V
     2.0f / 20,       // 2V
     5.0f / 20,       // 5V
-    10.0f / 20,      // 10V
-    20.0f / 20       // 20V
+    10.0F / 20,      // 10V
+    20.0F / 20       // 20V
 };
 
 const int voltsInPixelInt[] =   //  оэффициент 20000
@@ -74,7 +74,7 @@ const float absStepTShift[] =
     2e-9f / 20, 5e-9f / 20, 10e-9f / 20, 20e-9f / 20, 50e-9f / 20, 100e-9f / 20, 200e-9f / 20, 500e-9f / 20,
     1e-6f / 20, 2e-6f / 20, 5e-6f / 20, 10e-6f / 20, 20e-6f / 20, 50e-6f / 20, 100e-6f / 20, 200e-6f / 20, 500e-6f / 20,
     1e-3f / 20, 2e-3f / 20, 5e-3f / 20, 10e-3f / 20, 20e-3f / 20, 50e-3f / 20, 100e-3f / 20, 200e-3f / 20, 500e-3f / 20,
-    1.0f / 20, 2.0f / 20, 5.0f / 20, 10.0f / 20
+    1.0f / 20, 2.0f / 20, 5.0f / 20, 10.0F / 20
 };
 
 int Math_MinFrom2Int(int val0, int val1)
@@ -347,7 +347,7 @@ void Math_CalculateFFT(float *dataR, int numPoints, float *result, float *freq0,
 
     for (int i = 0; i < numPoints; i++)
     {
-        result[i] = 0.0f;
+        result[i] = 0.0F;
     }
 
     MultiplyToWindow(dataR, numPoints);
@@ -388,7 +388,7 @@ void Math_CalculateFFT(float *dataR, int numPoints, float *result, float *freq0,
         float iw = Icoef[logN - n];
         int in = ie >> 1;
         float ru = 1.0f;
-        float iu = 0.0f;
+        float iu = 0.0F;
         for (int j = 0; j < in; j++) 
         {
             for (int i = j; i < numPoints; i += ie) 
@@ -442,7 +442,7 @@ void Math_CalculateFFT(float *dataR, int numPoints, float *result, float *freq0,
         result[i] = std::sqrtf(dataR[i] * dataR[i] + result[i] * result[i]);
     }
 
-    result[0] = 0.0f;       // WARN нулева€ составл€юща€ мешает посто€нно. надо еЄ убрать
+    result[0] = 0.0F;       // WARN нулева€ составл€юща€ мешает посто€нно. надо еЄ убрать
 
     Normalize(result, 256);
 

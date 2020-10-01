@@ -13,8 +13,8 @@ void ProgressBar_Draw(ProgressBar *bar)
     std::sprintf(buffer, "Завершено %.1f %%", passedPercents);
     Painter::DrawStringInCenterRectC(x, y - 15, bar->width, bar->height, buffer, COLOR_FILL);
     Painter::DrawRectangle(bar->x, bar->y, bar->width, bar->height);
-    Painter::FillRegion(bar->x, bar->y, static_cast<int>(bar->width * passedPercents / 100.0f), bar->height);
+    Painter::FillRegion(bar->x, bar->y, static_cast<int>(bar->width * passedPercents / 100.0F), bar->height);
     buffer[0] = 0;
-    std::sprintf(buffer, "Осталось %.1f с", (int)(bar->fullTime - bar->passedTime) / 1000.0f);
+    std::sprintf(buffer, "Осталось %.1f с", (int)(bar->fullTime - bar->passedTime) / 1000.0F);
     Painter::DrawStringInCenterRect(x, y + bar->height, bar->width, bar->height, buffer);
 }

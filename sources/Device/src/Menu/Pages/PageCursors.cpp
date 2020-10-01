@@ -334,7 +334,7 @@ static void MoveCursUonPercentsOrPoints(int delta)
 
     if(CURS_MOVEMENT_IS_PERCENTS)
     {
-        value *= DELTA_U100(source) / 100.0f;
+        value *= DELTA_U100(source) / 100.0F;
     }
 
     if(cursCntrl == CursCntrl_1 || cursCntrl == CursCntrl_1_2)
@@ -369,7 +369,7 @@ static void MoveCursTonPercentsOrPoints(int delta)
 
     if(CURS_MOVEMENT_IS_PERCENTS)
     {
-        value *= DELTA_T100(source) / 100.0f;
+        value *= DELTA_T100(source) / 100.0F;
     }
 
     if(cursCntrl == CursCntrl_1 || cursCntrl == CursCntrl_1_2)

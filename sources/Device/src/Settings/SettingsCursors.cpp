@@ -43,7 +43,7 @@ const char* sCursors_GetCursorPercentsU(Channel source, char buffer[20])
     float dPerc = DELTA_U100(source);
     float dValue = std::fabsf(sCursors_GetCursPosU(source, 0) - sCursors_GetCursPosU(source, 1));
     char bufferOut[20];
-    char* percents = Float2String(dValue / dPerc * 100.0f, false, 5, bufferOut);
+    char* percents = Float2String(dValue / dPerc * 100.0F, false, 5, bufferOut);
     std::strcat(buffer, percents);
     std::strcat(buffer, "%");
     return buffer;
@@ -56,7 +56,7 @@ const char* sCursors_GetCursorPercentsT(Channel source, char buffer[20])
     float dPerc = DELTA_T100(source);
     float dValue = std::fabsf(CURS_POS_T0(source) - CURS_POS_T1(source));
     char bufferOut[20];
-    char* percents = Float2String(dValue / dPerc * 100.0f, false, 6, bufferOut);
+    char* percents = Float2String(dValue / dPerc * 100.0F, false, 6, bufferOut);
     std::strcat(buffer, percents);
     std::strcat(buffer, "%");
     return buffer;

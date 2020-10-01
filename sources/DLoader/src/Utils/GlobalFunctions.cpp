@@ -197,7 +197,7 @@ char*    Voltage2String(float voltage, bool alwaysSign, char buffer[20])
         suffix = set.common.lang == Russian ? "\x10ìÂ" : "\x10mV";
         voltage *= 1e3f;
     }
-    else if (std::fabsf(voltage) + 0.5e-4f < 1000.0f)
+    else if (std::fabsf(voltage) + 0.5e-4f < 1000.0F)
     {
         suffix = set.common.lang == Russian ? "\x10Â" : "\x10V";
     }

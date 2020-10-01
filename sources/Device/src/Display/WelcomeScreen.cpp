@@ -61,7 +61,7 @@ void WelcomeScreen_Init() {
     }
 
     for (int i = 0; i < 8; i++) {
-        float k = 50.0f;
+        float k = 50.0F;
         points[i].x *= k;
         points[i].y *= k;
         points[i].z *= k;
@@ -86,7 +86,7 @@ bool WelcomeScreen_Run()
 
     Painter::DrawRectangleC(0, 0, 319, 239, COLOR_FILL);
 
-    static float y0 = 0.0f;
+    static float y0 = 0.0F;
 
     if (isDown)
     {
@@ -98,12 +98,12 @@ bool WelcomeScreen_Run()
     else
     {
         float g = 98.0f * 4.0f;
-        float time0 = 0.0f;
+        float time0 = 0.0F;
         y0 = g * time0 * time0 / 2.0f;
-        float time = (gTimerMS - startTime) / 1000.0f + time0;
-        y0 = -y0 + g * time * time / 2.0f + 10.0f;
+        float time = (gTimerMS - startTime) / 1000.0F + time0;
+        y0 = -y0 + g * time * time / 2.0f + 10.0F;
 
-        static const float MAX_Y = 130.0f;
+        static const float MAX_Y = 130.0F;
 
         if (y0 > MAX_Y)
         {

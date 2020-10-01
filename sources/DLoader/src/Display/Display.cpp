@@ -30,10 +30,10 @@ static void InitPoints(void);
 
 void Display_Init(void)
 {
-    ms->display.value = 0.0f;
+    ms->display.value = 0.0F;
     ms->display.isRun = false;
     ms->display.timePrev = 0;
-    ms->display.direction = 10.0f;
+    ms->display.direction = 10.0F;
 
     gColorBack = Color::BLACK;
     gColorFill = Color::WHITE;
@@ -138,12 +138,12 @@ void DrawProgressBar(uint dT)
 
     ms->display.value += step;
 
-    if (ms->display.direction > 0.0f && ms->display.value > WIDTH)
+    if (ms->display.direction > 0.0F && ms->display.value > WIDTH)
     {
         ms->display.direction = -ms->display.direction;
         ms->display.value -= step;
     }
-    else if (ms->display.direction < 0.0f && ms->display.value < 0)
+    else if (ms->display.direction < 0.0F && ms->display.value < 0)
     {
         ms->display.direction = -ms->display.direction;
         ms->display.value -= step;
@@ -185,10 +185,10 @@ static void DrawBigMNIPI(void)
     Painter::SetColor((Color::E)(numColor + 2));
 
     float amplitude = 3.0f - (static_cast<float>(time) / (TIME_WAIT / 2.0f)) * 3;
-    LIMIT_BELOW(amplitude, 0.0f);
+    LIMIT_BELOW(amplitude, 0.0F);
     float frequency = 0.05f;
 
-    float radius = 5000.0f * (TIME_WAIT) / 3000.0f / static_cast<float>(time);
+    float radius = 5000.0F * (TIME_WAIT) / 3000.0F / static_cast<float>(time);
     LIMIT_BELOW(radius, 0);
 
     float shift[240];

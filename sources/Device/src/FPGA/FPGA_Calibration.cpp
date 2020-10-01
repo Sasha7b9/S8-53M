@@ -18,15 +18,15 @@ static void     FuncAttScreen();								// Функция обновления экрана в режиме ка
 static float    CalculateDeltaADC(Channel chan, float *avgADC1, float *avgADC2, float *delta);
 static void     DrawParametersChannel(Channel chan, int x, int y, bool inProgress);
 
-static float deltaADC[2] = {0.0f, 0.0f};
-static float deltaADCPercents[2] = {0.0f, 0.0f};
-static float avrADC1[2] = {0.0f, 0.0f};
-static float avrADC2[2] = {0.0f, 0.0f};
+static float deltaADC[2] = {0.0F, 0.0F};
+static float deltaADCPercents[2] = {0.0F, 0.0F};
+static float avrADC1[2] = {0.0F, 0.0F};
+static float avrADC2[2] = {0.0F, 0.0F};
 
-static float deltaADCold[2] = {0.0f, 0.0f};
-static float deltaADCPercentsOld[2] = {0.0f, 0.0f};
-static float avrADC1old[2] = {0.0f, 0.0f};
-static float avrADC2old[2] = {0.0f, 0.0f};
+static float deltaADCold[2] = {0.0F, 0.0F};
+static float deltaADCPercentsOld[2] = {0.0F, 0.0F};
+static float avrADC1old[2] = {0.0F, 0.0F};
+static float avrADC2old[2] = {0.0F, 0.0F};
 
 static int8 shiftADC0 = 0;
 static int8 shiftADC1 = 0;
@@ -289,7 +289,7 @@ void FuncAttScreen(void)
     }
     */
     char buffer[100];
-    std::sprintf(buffer, "%.1f", (gTimerMS - startTime) / 1000.0f);
+    std::sprintf(buffer, "%.1f", (gTimerMS - startTime) / 1000.0F);
     Painter::DrawTextC(0, 0, buffer, Color::BLACK);
 
     Painter::EndScene();
@@ -537,7 +537,7 @@ float CalculateKoeffCalibration(Channel chan)
     float aveMin = (float)sumMIN / (float)numMIN;
     float aveMax = (float)sumMAX / (float)numMAX;
 
-    float retValue = 160.0f / (aveMax - aveMin);
+    float retValue = 160.0F / (aveMax - aveMin);
 
     if(retValue < 0.5f || retValue > 1.5f)
     {

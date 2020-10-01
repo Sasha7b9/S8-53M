@@ -256,7 +256,7 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
         {
             static int errRecData = 0;
             errRecData++;
-            float percent = (float)errRecData / allRecData * 100.0f;
+            float percent = (float)errRecData / allRecData * 100.0F;
             char buffer[100];
             buffer[0] = 0;
             std::sprintf(buffer, "%5.3f", percent);

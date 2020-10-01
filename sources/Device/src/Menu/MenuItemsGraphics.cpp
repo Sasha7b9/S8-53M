@@ -98,7 +98,7 @@ void DrawGovernorLowPart(Governor *governor, int x, int y, bool, bool shade)
     if(Menu::OpenedItem() != governor)
     {
         float delta = Governor_Step(governor);
-        if(delta == 0.0f)
+        if(delta == 0.0F)
         {
             x = Painter::DrawText(x + 1, y + 21, Int2String(*governor->cell, false, 1, buffer));
         }
@@ -109,14 +109,14 @@ void DrawGovernorLowPart(Governor *governor, int x, int y, bool, bool shade)
             int limY = y + 19;
             int limWidth = MI_WIDTH_VALUE;
             int limHeight = MI_HEIGHT_VALUE - 1;
-            if(delta > 0.0f)
+            if(delta > 0.0F)
             {
                 x = Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - delta), Int2String(*governor->cell, false, 1, buffer),
                                             COLOR_BACK, limX, limY, limWidth, limHeight);
                 Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 + 10 - delta), Int2String(Governor_NextValue(governor), false, 1, buffer),
                                             COLOR_BACK, limX, limY, limWidth, limHeight);
             }
-            if(delta < 0.0f)
+            if(delta < 0.0F)
             {
                 x = Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - delta), Int2String(*governor->cell, false, 1, buffer),
                                             COLOR_BACK, limX, limY, limWidth, limHeight);
@@ -624,7 +624,7 @@ void ItemChoice_DrawClosed(Choice *choice, int x, int y)
     float deltaY = choice->Step();
     Color::E colorText = shade ? LightShadingTextColor() : COLOR_BACK;
     Painter::SetColor(colorText);
-    if(deltaY == 0.0f)
+    if(deltaY == 0.0F)
     {
         Painter::DrawText(x + 4, y + 21, choice->NameCurrentSubItem());
     }

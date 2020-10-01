@@ -71,7 +71,7 @@ int Grid::WidthInCells(void)
 
 float Grid::DeltaY(void)
 {
-    float delta = (FullBottom() - GRID_TOP) / 10.0f;
+    float delta = (FullBottom() - GRID_TOP) / 10.0F;
     return sDisplay_IsSeparate() ? (delta / 2.0f) : delta;
 }
 

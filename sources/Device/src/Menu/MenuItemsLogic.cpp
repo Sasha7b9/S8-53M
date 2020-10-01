@@ -112,7 +112,7 @@ float Governor_Step(Governor *governor)
     if (ADDRESS_GOVERNOR == (uint)governor && IN_MOVE_DECREASE)
     {
         float delta = -speed * (gTimerMS - TIME_START_MS);
-        if (delta == 0.0f)
+        if (delta == 0.0F)
         {
             return -0.001f;
         }
@@ -124,14 +124,14 @@ float Governor_Step(Governor *governor)
             {
                 governor->funcOfChanged();
             }
-            return 0.0f;
+            return 0.0F;
         }
         return delta;
     }
     if (ADDRESS_GOVERNOR == (uint)governor && IN_MOVE_INCREASE)
     {
         float delta = speed * (gTimerMS - TIME_START_MS);
-        if (delta == 0.0f)
+        if (delta == 0.0F)
         {
             return 0.001f;
         }
@@ -143,11 +143,11 @@ float Governor_Step(Governor *governor)
             {
                 governor->funcOfChanged();
             }
-            return 0.0f;
+            return 0.0F;
         }
         return delta;
     }
-    return 0.0f;
+    return 0.0F;
 }
 
 int16 Governor_NextValue(Governor *governor)

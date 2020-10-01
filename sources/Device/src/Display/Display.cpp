@@ -360,7 +360,7 @@ void Display::DrawDataChannel(uint8 *data, Channel chan, DataSettings *ds, int m
     }
 
     float scaleY = (float)(maxY - minY) / (MAX_VALUE - MIN_VALUE);
-    float scaleX = (float)Grid::Width() / 280.0f;
+    float scaleX = (float)Grid::Width() / 280.0F;
 
     if(SHOW_MEASURES)
     {
@@ -493,10 +493,10 @@ void Display::DRAW_SPECTRUM(const uint8 *data, int numPoints, Channel channel)
     float dataR[FPGA_MAX_POINTS];
     float spectrum[FPGA_MAX_POINTS];
 
-    float freq0 = 0.0f;
-    float freq1 = 0.0f;
-    float density0 = 0.0f;
-    float density1 = 0.0f;
+    float freq0 = 0.0F;
+    float freq1 = 0.0F;
+    float density0 = 0.0F;
+    float density1 = 0.0F;
     int y0 = 0;
     int y1 = 0;
     int s = 2;
@@ -2165,20 +2165,20 @@ void Display::DrawTimeForFrame(uint timeTicks)
     static bool first = true;
     static uint timeMSstartCalculation = 0;
     static int numFrames = 0;
-    static float numMS = 0.0f;
+    static float numMS = 0.0F;
     if(first)
     {
         timeMSstartCalculation = gTimerMS;
         first = false;
     }
-    numMS += timeTicks / 120000.0f;
+    numMS += timeTicks / 120000.0F;
     numFrames++;
     
     if((gTimerMS - timeMSstartCalculation) >= 500)
     {
         std::sprintf(buffer, "%.1fms/%d", numMS / numFrames, numFrames * 2);
         timeMSstartCalculation = gTimerMS;
-        numMS = 0.0f;
+        numMS = 0.0F;
         numFrames = 0;
     }
 
