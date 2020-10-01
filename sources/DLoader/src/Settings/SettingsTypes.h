@@ -72,11 +72,11 @@ struct ENumAveraging
 };
 
 // Тип усреднений по измерениям
-enum ModeAveraging
+struct ModeAveraging { enum E
 {
-    Averaging_Accurately,   // Усреднять точно.
-    Averaging_Around        // Усреднять приблизительно.
-};
+    Accurately,   // Усреднять точно.
+    Around        // Усреднять приблизительно.
+}; };
 
 // Количество измерений для расчёта минимального и максимального значений.
 enum NumMinMax

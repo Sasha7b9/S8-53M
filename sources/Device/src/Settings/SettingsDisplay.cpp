@@ -57,11 +57,11 @@ void sDisplay_SetBrightness(int16 brightness)
 }
 
 
-ModeAveraging sDisplay_ModeAveraging()
+ModeAveraging::E sDisplay_ModeAveraging()
 {
     if (sTime_RandomizeModeEnabled())
     {
-        return Averaging_Around;
+        return ModeAveraging::Around;
     }
     return MODE_AVE;
 }

@@ -46,13 +46,13 @@ static const Settings defaultSettings =
             MAKE_COLOR(1, 40, 25),   // COLOR_EMPTY_A = 0x0e,
             MAKE_COLOR(0, 51, 0)     // COLOR_EMPTY_B = 0x0f,
         },
-        ModeDrawSignal::Lines,       // modeDrawSignal
-        TypeGrid::_1,                 // typeGrid
-        ENumAccumulation::_1,          // numAccumulation
-        NumAveraging_1,             // numAveraging
-        Averaging_Accurately,       // modeAveraging
+        ModeDrawSignal::Lines,      // modeDrawSignal
+        TypeGrid::_1,               // typeGrid
+        ENumAccumulation::_1,       // numAccumulation
+        ENumAveraging::_1,          // numAveraging
+        ModeAveraging::Accurately,  // modeAveraging
         NumMinMax_1,                // enumMinMax
-        Smoothing::Disable,          // smoothing
+        Smoothing::Disable,         // smoothing
         NumSignalsInSec_25,         // num signals in one second
         A,                          // lastAffectedChannel
         ModeAccumulation_NoReset,   // modeAccumulation

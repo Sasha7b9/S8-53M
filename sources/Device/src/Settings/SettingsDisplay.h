@@ -102,26 +102,26 @@ struct ENumAccumulation { enum E
 }; };
 
 // Количество усреднений по измерениям.
-enum ENumAveraging
+struct ENumAveraging { enum E
 {
-    NumAveraging_1,
-    NumAveraging_2,
-    NumAveraging_4,
-    NumAveraging_8,
-    NumAveraging_16,
-    NumAveraging_32,
-    NumAveraging_64,
-    NumAveraging_128,
-    NumAveraging_256,
-    NumAveraging_512
-};
+    _1,
+    _2,
+    _4,
+    _8,
+    _16,
+    _32,
+    _64,
+    _128,
+    _256,
+    _512
+}; };
 
 // Тип усреднений по измерениям.
-enum ModeAveraging
+struct ModeAveraging { enum E
 {
-    Averaging_Accurately,   // Усреднять точно.
-    Averaging_Around        // Усреднять приблизительно.
-};
+    Accurately,   // Усреднять точно.
+    Around        // Усреднять приблизительно.
+}; };
 
 // Количество измерений для расчёта минимального и максимального значений.
 enum ENumMinMax
@@ -208,8 +208,8 @@ struct SettingsDisplay
     ModeDrawSignal::E   modeDrawSignal;             // Режим отрисовки сигнала.
     TypeGrid::E         typeGrid;                   // Тип сетки.
     ENumAccumulation::E enumAccumulation;           // Перечисление накоплений сигнала на экране.
-    ENumAveraging       enumAve;                    // Перечисление усреднений сигнала.
-    ModeAveraging       modeAve;                    // Тип усреднений по измерениям.
+    ENumAveraging::E    enumAve;                    // Перечисление усреднений сигнала.
+    ModeAveraging::E    modeAve;                    // Тип усреднений по измерениям.
     ENumMinMax          enumMinMax;                 // Число измерений для определения минимумов и максимумов.
     Smoothing::E        smoothing;                  // Число точек для скользящего фильтра.
     ENumSignalsInSec    enumSignalsInSec;           // Перечисление считываний сигнала в секунду.
@@ -239,7 +239,7 @@ bool sDisplay_IsSeparate();
 // brightness = 1..100
 void sDisplay_SetBrightness(int16 brightness);
 // Возвращает режим усреднения
-ModeAveraging sDisplay_ModeAveraging();
+ModeAveraging::E sDisplay_ModeAveraging();
 
 int sDisplay_NumAverage();
 

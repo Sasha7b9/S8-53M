@@ -354,7 +354,7 @@ uint8* Storage::GetAverageData(Channel chan)
 
     uint numPoints = ds->length1channel * (ds->peakDet == PeackDet_Disable ? 1 : 2);
 
-    if (sDisplay_ModeAveraging() == Averaging_Around)
+    if (sDisplay_ModeAveraging() == ModeAveraging::Around)
     {
         float *floatAveData = (chan == A) ? aveData0 : aveData1;
         

@@ -163,7 +163,7 @@ void SCPI::DISPLAY::AVERAGE_NUMBER(uint8 *buffer)
     };
 
     ENTER_ANALYSIS
-        if (value <= 9) { ENUM_AVE = (ENumAveraging)value; }
+        if (value <= 9) { ENUM_AVE = (ENumAveraging::E)value; }
         else if (10 == value)
         {
             SCPI_SEND(":DISPLAY:AVERAGE:NUMBER %s", map[ENUM_AVE].key);
@@ -183,7 +183,7 @@ void SCPI::DISPLAY::AVERAGE_MODE(uint8 *buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (value <= 1) { MODE_AVE = (ModeAveraging)value; }
+        if (value <= 1) { MODE_AVE = (ModeAveraging::E)value; }
         else if (2 == value)
         {
             SCPI_SEND(":DISPLAY:AVARAGE:MODE %s", map[MODE_AVE].key);

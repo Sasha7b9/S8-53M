@@ -386,7 +386,7 @@ void Display::DrawDataChannel(uint8 *data, Channel chan, DataSettings *ds, int m
     if(MODE_DRAW_IS_SIGNAL_LINES)
     {
         /*
-        if (set.display.numAveraging > NumAveraging_1)
+        if (set.display.numAveraging > ENumAveraging::_1)
         {
             Painter::SetColor(ColorGrid());
             DrawSignalLined(DS_GetData(chan, 0), ds, firstPoint, lastPoint, minY, maxY, scaleY, scaleX, calculateFiltr);    // WARN
