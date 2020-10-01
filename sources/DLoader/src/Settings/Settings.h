@@ -15,7 +15,7 @@ struct SettingsDisplay
     uint16              colors[16];
     ModeDrawSignal::E   modeDrawSignal;             // Режим отрисовки сигнала
     TypeGrid::E         typeGrid;                   // Тип сетки
-    NumAccumulation     numAccumulation;            // Число накоплений сигнала на экране
+    ENumAccumulation::E enumAccumulation;           // Число накоплений сигнала на экране
     NumAveraging        numAve;                     // Число усреднений сигнала
     ModeAveraging       modeAve;                    // Тип усреднений по измерениям
     NumMinMax           numMinMax;                  // Число измерений для определения минимумов и максимумов

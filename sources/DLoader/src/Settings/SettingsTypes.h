@@ -37,17 +37,20 @@ struct TypeGrid
 };
 
 // Количество накоплений.
-enum NumAccumulation
+struct ENumAccumulation
 {
-    NumAccumulation_1,
-    NumAccumulation_2,
-    NumAccumulation_4,
-    NumAccumulation_8,
-    NumAccumulation_16,
-    NumAccumulation_32,
-    NumAccumulation_64,
-    NumAccumulation_128,
-    NumAccumulation_Infinity
+    enum E
+    {
+        _1,
+        _2,
+        _4,
+        _8,
+        _16,
+        _32,
+        _64,
+        _128,
+        _Infinity
+    };
 };
 
 // Количество усреднений по измерениям.
