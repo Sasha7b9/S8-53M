@@ -16,7 +16,7 @@ struct SettingsDisplay
     ModeDrawSignal::E   modeDrawSignal;             // Режим отрисовки сигнала
     TypeGrid::E         typeGrid;                   // Тип сетки
     ENumAccumulation::E enumAccumulation;           // Число накоплений сигнала на экране
-    NumAveraging        numAve;                     // Число усреднений сигнала
+    ENumAveraging::E    enumAve;                    // Число усреднений сигнала
     ModeAveraging       modeAve;                    // Тип усреднений по измерениям
     NumMinMax           numMinMax;                  // Число измерений для определения минимумов и максимумов
     DisplaySmoothing    smoothing;                  // Число точек для скользящего фильтра

@@ -54,18 +54,21 @@ struct ENumAccumulation
 };
 
 // Количество усреднений по измерениям.
-enum NumAveraging
+struct ENumAveraging
 {
-    NumAveraging_1,
-    NumAveraging_2,
-    NumAveraging_4,
-    NumAveraging_8,
-    NumAveraging_16,
-    NumAveraging_32,
-    NumAveraging_64,
-    NumAveraging_128,
-    NumAveraging_256,
-    NumAveraging_512
+    enum E
+    {
+        _1,
+        _2,
+        _4,
+        _8,
+        _16,
+        _32,
+        _64,
+        _128,
+        _256,
+        _512
+    };
 };
 
 // Тип усреднений по измерениям
