@@ -5,10 +5,10 @@
 
 
 
-static void (*f[TypeTimerSize])() = {0};
-static int reactionTimeMS[TypeTimerSize] = {0};
-static int currentTimeMS[TypeTimerSize] = {0};
-static bool isRun[TypeTimerSize] = {false};
+static void (*f[TypeTimer::Count])() = {0};
+static int reactionTimeMS[TypeTimer::Count] = {0};
+static int currentTimeMS[TypeTimer::Count] = {0};
+static bool isRun[TypeTimer::Count] = {false};
 
 
 
@@ -48,7 +48,7 @@ uint Timer::LogPointMS(char *name)
 }
 
 
-void Timer::Enable(TypeTimer type, int timeInMS, void(*eF)())
+void Timer::Enable(TypeTimer::E type, int timeInMS, void(*eF)())
 {
     f[type] = eF;
     reactionTimeMS[type] = timeInMS;
@@ -57,25 +57,25 @@ void Timer::Enable(TypeTimer type, int timeInMS, void(*eF)())
 }
 
 
-void Timer::Disable(TypeTimer type)
+void Timer::Disable(TypeTimer::E type)
 {
     isRun[type] = false;
 }
 
 
-void Timer_Pause(TypeTimer type)
+void Timer_Pause(TypeTimer::E type)
 {
     isRun[type] = false;
 }
 
 
-void Timer_Continue(TypeTimer type)
+void Timer_Continue(TypeTimer::E type)
 {
     isRun[type] = true;
 }
 
 
-bool Timer_IsRun(TypeTimer type)
+bool Timer_IsRun(TypeTimer::E type)
 {
     return isRun[type];
 };
@@ -83,7 +83,7 @@ bool Timer_IsRun(TypeTimer type)
 
 void Timer::Update1ms(void)
 {
-    for(int num = 0; num < TypeTimerSize; num++)
+    for(int num = 0; num < TypeTimer::Count; num++)
     {
         if(isRun[num])
         {
@@ -101,7 +101,7 @@ void Timer::Update1ms(void)
 
 void Timer_Update10ms(void)
 {
-    for(int num = 0; num < TypeTimerSize; num++)
+    for(int num = 0; num < TypeTimer::Count; num++)
     {
         if(isRun[num])
         {

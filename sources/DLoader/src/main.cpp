@@ -35,7 +35,7 @@ int main(void)
 
     Display_Init();
 
-    Timer_Enable(kTemp, 10, Display_Update);
+    Timer_Enable(TypeTimer::Temp, 10, Display_Update);
 
     uint timeStart = HAL_TIM2::TimeMS();
 
@@ -88,7 +88,7 @@ int main(void)
 
     HAL_SPI1::DeInit();
 
-    Timer_Disable(kTemp);
+    Timer_Disable(TypeTimer::Temp);
 
     while (Display_IsRun())
     {

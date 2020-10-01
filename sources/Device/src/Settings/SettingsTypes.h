@@ -28,9 +28,9 @@ enum Channel
 // Режим канала по входу.
 enum ModeCouple
 {
-    ModeCouple_DC,      ///< Открытый вход.
-    ModeCouple_AC,      ///< Закрытый вход.
-    ModeCouple_GND      ///< Вход заземлён.
+    ModeCouple_DC,      // Открытый вход.
+    ModeCouple_AC,      // Закрытый вход.
+    ModeCouple_GND      // Вход заземлён.
 };
 
 // Делитель.
@@ -138,18 +138,18 @@ enum ScaleMath
 // Каким курсором управлять.
 enum CursCntrl
 {
-    CursCntrl_1,            ///< первым.
-    CursCntrl_2,            ///< вторым.
-    CursCntrl_1_2,          ///< обоими.
-    CursCntrl_Disable       ///< никаким.
+    CursCntrl_1,            // первым.
+    CursCntrl_2,            // вторым.
+    CursCntrl_1_2,          // обоими.
+    CursCntrl_Disable       // никаким.
 };
 
 
 // Дискретность перемещения курсоров.
 enum CursMovement
 {
-    CursMovement_Points,    ///< по точкам.
-    CursMovement_Percents   ///< по процентам.
+    CursMovement_Points,    // по точкам.
+    CursMovement_Percents   // по процентам.
 };
 
 // Какие курсоры сейчас активны. Какие активны, те и будут перемещаться по вращению ручки УСТАНОВКА.
@@ -163,10 +163,10 @@ enum CursActive
 // Режим слежения курсоров.
 enum CursLookMode
 {
-    CursLookMode_None,      ///< Курсоры не следят.
-    CursLookMode_Voltage,   ///< Курсоры следят за напряжением автоматически.
-    CursLookMode_Time,      ///< Курсоры следят за временем автоматически.
-    CursLookMode_Both       ///< Курсоры следят за временем и напряжением, в зависимости от того, какой курсоры вращали последним.
+    CursLookMode_None,      // Курсоры не следят.
+    CursLookMode_Voltage,   // Курсоры следят за напряжением автоматически.
+    CursLookMode_Time,      // Курсоры следят за временем автоматически.
+    CursLookMode_Both       // Курсоры следят за временем и напряжением, в зависимости от того, какой курсоры вращали последним.
 };
 
 

@@ -299,7 +299,7 @@ static const arrayItems itemsMeasures =
     (void*)&mspMeasTune    
 };
 
-const Page pMeasures            ///< ÈÇÌÅĞÅÍÈß
+const Page pMeasures            // ÈÇÌÅĞÅÍÈß
 (
     &mainPage, 0,
     "ÈÇÌÅĞÅÍÈß", "MEASURES",

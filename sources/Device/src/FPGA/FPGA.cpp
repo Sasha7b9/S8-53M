@@ -36,10 +36,10 @@ static const int Kr[] = {n / 2, n / 5, n / 10, n / 20, n / 50};
 static DataSettings ds;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-static uint8 dataRel0[FPGA_MAX_POINTS] = {0};   ///< Буфер используется для чтения данных первого канала.
-static uint8 dataRel1[FPGA_MAX_POINTS] = {0};   ///< Буфер используется для чтения данных второго канала.
+static uint8 dataRel0[FPGA_MAX_POINTS] = {0};   // Буфер используется для чтения данных первого канала.
+static uint8 dataRel1[FPGA_MAX_POINTS] = {0};   // Буфер используется для чтения данных второго канала.
 
-static Settings storingSettings;                ///< Здесь нужно уменьшить необходимый размер памяти - сохранять настройки только альтеры
+static Settings storingSettings;                // Здесь нужно уменьшить необходимый размер памяти - сохранять настройки только альтеры
 static uint timeStart = 0;
 
 // Функция вызывается, когда можно считывать очередной сигнал.
@@ -66,7 +66,7 @@ void FPGA::Init(void)
 
 void FPGA::SetNumSignalsInSec(int numSigInSec) 
 {
-    Timer::Enable(kNumSignalsInSec, static_cast<int>(1000.F / numSigInSec), OnTimerCanReadData);
+    Timer::Enable(TypeTimer::NumSignalsInSec, static_cast<int>(1000.F / numSigInSec), OnTimerCanReadData);
 }
 
 
@@ -81,11 +81,11 @@ void FPGA::Start(void)
     if(SET_TBASE >= MIN_TBASE_P2P)
     {
         Display::ResetP2Ppoints(false);
-        Timer::Enable(kP2P, 1, ReadPoint);
+        Timer::Enable(TypeTimer::P2P, 1, ReadPoint);
     }
     else
     {
-        Timer::Disable(kP2P);
+        Timer::Disable(TypeTimer::P2P);
         Display::ResetP2Ppoints(true);
     }
     HAL_FSMC::Write(WR_START, 1);
@@ -222,7 +222,7 @@ void FPGA::OnPressStartStop(void)
 
 void FPGA::Stop(bool pause) 
 {
-    Timer::Disable(kP2P);
+    Timer::Disable(TypeTimer::P2P);
     HAL_FSMC::Write(WR_STOP, 1);
     stateWork = pause ? StateWorkFPGA::Pause : StateWorkFPGA::Stop;
 }
@@ -668,7 +668,7 @@ void FPGA::RestoreState(void)
 }
 
 
-static bool readPeriod = false;     ///< Установленный в true флаг означает, что частоту нужно считать по счётчику периода
+static bool readPeriod = false;     // Установленный в true флаг означает, что частоту нужно считать по счётчику периода
 
 
 static BitSet32 ReadRegFreq(void)
@@ -1117,14 +1117,14 @@ TBase FPGA::FindTBase(Channel)
 void StopTemporaryPause(void)
 {
     FPGA_TEMPORARY_PAUSE = 0;
-    Timer::Disable(kTemporaryPauseFPGA);
+    Timer::Disable(TypeTimer::TemporaryPauseFPGA);
 }
 
 
 void FPGA::TemporaryPause(void)
 {
     FPGA_TEMPORARY_PAUSE = 1;
-    Timer::Enable(kTemporaryPauseFPGA, 500, StopTemporaryPause);
+    Timer::Enable(TypeTimer::TemporaryPauseFPGA, 500, StopTemporaryPause);
 }
 
 

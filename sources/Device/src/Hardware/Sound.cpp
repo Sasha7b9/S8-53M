@@ -59,7 +59,7 @@ void Sound_Beep(TypeWave::E typeWave_, float frequency_, float amplitude_, int d
 
     HAL_DAC::StartDMA(points, POINTS_IN_PERIOD);
 
-    Timer::Enable(kStopSound, duration, Stop);
+    Timer::Enable(TypeTimer::StopSound, duration, Stop);
 }
 
 

@@ -1340,7 +1340,7 @@ static const arrayItems itemsMemory =
     (void*)&mspMemoryExt
 };
 
-static const Page pMemory              ///< ÏÀÌßÒÜ
+static const Page pMemory              // ÏÀÌßÒÜ
 (
     &mainPage, 0,
     "ÏÀÌßÒÜ", "MEMORY",

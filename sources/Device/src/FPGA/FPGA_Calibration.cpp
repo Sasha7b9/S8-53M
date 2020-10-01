@@ -11,10 +11,10 @@
 
 
 
-static int16    CalculateAdditionRShift(Channel chan, Range range);	///< Измерить добавочное смещение канала по напряжению.
-static float    CalculateKoeffCalibration(Channel chan);			///< Измерить коэффициент калибровки канала по напряжению.
+static int16    CalculateAdditionRShift(Channel chan, Range range);	// Измерить добавочное смещение канала по напряжению.
+static float    CalculateKoeffCalibration(Channel chan);			// Измерить коэффициент калибровки канала по напряжению.
 static void     AlignmentADC();
-static void     FuncAttScreen();								///< Функция обновления экрана в режиме калибровки.
+static void     FuncAttScreen();								// Функция обновления экрана в режиме калибровки.
 static float    CalculateDeltaADC(Channel chan, float *avgADC1, float *avgADC2, float *delta);
 static void     DrawParametersChannel(Channel chan, int x, int y, bool inProgress);
 
@@ -59,7 +59,7 @@ void FPGA::ProcedureCalibration(void)
     SET_ENABLED_A = SET_ENABLED_B = true;
 
     Display::SetDrawMode(DrawMode::Hand, FuncAttScreen);
-    Timer::Enable(kTimerDrawHandFunction, 100, OnTimerDraw);
+    Timer::Enable(TypeTimer::TimerDrawHandFunction, 100, OnTimerDraw);
 
     koeffCalibrationOld[A] = STRETCH_ADC_A;
     koeffCalibrationOld[B] = STRETCH_ADC_B;
@@ -191,7 +191,7 @@ void FPGA::ProcedureCalibration(void)
     gStateFPGA.stateCalibration = StateCalibration::None;
     Panel::WaitPressingButton();
     Panel::Enable();
-    Timer::Disable(kTimerDrawHandFunction);
+    Timer::Disable(TypeTimer::TimerDrawHandFunction);
     Display::SetDrawMode(DrawMode::Auto, 0);
     gStateFPGA.stateCalibration = StateCalibration::None;
 

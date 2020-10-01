@@ -162,8 +162,8 @@ public:
 class StructHelpSmallButton
 {
 public:
-    pFuncVII    funcDrawUGO;    ///< Указатель на функцию отрисовки изображения варианта кнопки
-    const char *helpUGO[2];     ///< Подпись к данному изображению.
+    pFuncVII    funcDrawUGO;    // Указатель на функцию отрисовки изображения варианта кнопки
+    const char *helpUGO[2];     // Подпись к данному изображению.
 };
 
 typedef StructHelpSmallButton arrayHints[MAX_NUM_CHOICE_SMALL_BUTTON];
@@ -173,8 +173,8 @@ typedef StructHelpSmallButton arrayHints[MAX_NUM_CHOICE_SMALL_BUTTON];
 class SmallButton : public Control
 {
 public:
-    pFuncVV             funcOnPress;    ///< Эта функция вызвается для обработки нажатия кнопки. Возвращает true, если надо за
-    pFuncVII            funcOnDraw;     ///< Эта функция вызывается для отрисовки кнопки в месте с координатами x, y.
+    pFuncVV             funcOnPress;    // Эта функция вызвается для обработки нажатия кнопки. Возвращает true, если надо за
+    pFuncVII            funcOnDraw;     // Эта функция вызывается для отрисовки кнопки в месте с координатами x, y.
     const arrayHints   *hintUGO;
 
     SmallButton(const Page *keeper_, pFuncBV funcOfActive_,
@@ -188,10 +188,10 @@ class Governor : public Control
 { 
 public:
     int16*      cell;
-    int         minValue;               ///< Минмальное значение, которое может принимать регулятор.
-    int16       maxValue;               ///< Максимальное значение.
-    pFuncVV     funcOfChanged;          ///< Функция, которую нужно вызывать после того, как значение регулятора изменилось.
-    pFuncVV     funcBeforeDraw;         ///< Функция, которая вызывается перед отрисовкой
+    int         minValue;               // Минмальное значение, которое может принимать регулятор.
+    int16       maxValue;               // Максимальное значение.
+    pFuncVV     funcOfChanged;          // Функция, которую нужно вызывать после того, как значение регулятора изменилось.
+    pFuncVV     funcBeforeDraw;         // Функция, которая вызывается перед отрисовкой
 
     Governor(const Page *keeper_, pFuncBV funcOfActive_,
              const char *titleRU, const char *titleEN, const char *hintRU, const char *hintEN,
