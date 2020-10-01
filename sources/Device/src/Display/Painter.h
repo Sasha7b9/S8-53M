@@ -42,9 +42,9 @@ public:
 
     static void DrawHPointLine(int y, int x0, int x1, float delta);
 
-    static void DrawMultiVPointLine(int numLines, int y, uint16 x[], int delta, int count, Color::E color);
+    static void DrawMultiVPointLine(int numLines, int y, uint16 *x, int delta, int count, Color::E color);
 
-    static void DrawMultiHPointLine(int numLines, int x, uint8 y[], int delta, int count, Color::E color);
+    static void DrawMultiHPointLine(int numLines, int x, uint8 *y, int delta, int count, Color::E color);
 
     static void DrawLine(int x0, int y0, int x1, int y1);
 

@@ -46,7 +46,7 @@
 #define NUM_MIN_MAX                 (1 << ENUM_MIN_MAX)                         // Количество измерений сигналов для расчёта минимумов и максимумов.
 
 #define SMOOTHING                   (set.display.smoothing)                     // SettingsDisplay.smoothing
-#define SMOOTHING_IS_DISABLE        (SMOOTHING == Smoothing_Disable)            // \c true, если скользящий фильтр выключен.
+#define SMOOTHING_IS_DISABLE        (SMOOTHING == Smoothing::Disable)            // \c true, если скользящий фильтр выключен.
 
 #define ENUM_SIGNALS_IN_SEC         (set.display.enumSignalsInSec)              // SettingsDisplay.enumSignalsInSec
 
@@ -137,19 +137,19 @@ enum ENumMinMax
 };
 
 // Количество точек для расчёта скользящего фильтра.
-enum Smoothing
+struct Smoothing { enum E
 {
-    Smoothing_Disable,
-    Smoothing_2points = 1,
-    Smoothing_3points = 2,
-    Smoothing_4points = 3,
-    Smoothing_5points = 4,
-    Smoothing_6points = 5,
-    Smoothing_7points = 6,
-    Smoothing_8points = 7,
-    Smoothing_9points = 8,
-    Smoothing_10points = 9
-};
+    Disable,
+    _2points,
+    _3points,
+    _4points,
+    _5points,
+    _6points,
+    _7points,
+    _8points,
+    _9points,
+    _10points
+}; };
 
 // Ограничение FPS.
 enum ENumSignalsInSec
@@ -211,7 +211,7 @@ struct SettingsDisplay
     ENumAveraging       enumAve;                    // Перечисление усреднений сигнала.
     ModeAveraging       modeAve;                    // Тип усреднений по измерениям.
     ENumMinMax          enumMinMax;                 // Число измерений для определения минимумов и максимумов.
-    Smoothing           smoothing;                  // Число точек для скользящего фильтра.
+    Smoothing::E        smoothing;                  // Число точек для скользящего фильтра.
     ENumSignalsInSec    enumSignalsInSec;           // Перечисление считываний сигнала в секунду.
     Channel             lastAffectedChannel;        // Здесь хранится номер последнего канала, которым управляли ручками. Нужно для того, чтобы знать, какой сигнал рисовать наверху.
     ModeAccumulation    modeAccumulation;           // Задаёт режим накопления сигналов.
