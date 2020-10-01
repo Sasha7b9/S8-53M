@@ -23,28 +23,23 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -MP -Wall")
 
 add_compile_options(/wd4100)    # 'identifier' : unreferenced formal parameter
 add_compile_options(/wd4127)    # conditional expression is constant
-#add_compile_options(/wd4201)    # nonstandard extension used: nameless struct/union
 add_compile_options(/wd4211)    # nonstandard extension used : redefined extern to static
 add_compile_options(/wd4255)    # 'function' : no function prototype given: converting '()' to '(void)'
 add_compile_options(/wd4310)    # cast truncates constant value
 add_compile_options(/wd4464)    # relative include path contains '..'
 add_compile_options(/wd4514)    # 'function' : unreferenced inline function has been removed
-#add_compile_options(/wd4571)    # Informational: catch(...) semantics changed since Visual C++ 7.1; structured exceptions (SEH) are no longer caught
 add_compile_options(/wd4623)    # 'derived class' : default constructor was implicitly defined as deleted because a base class default constructor is inaccessible or deleted
-#add_compile_options(/wd4625)    # 'xxx': copy constructor was implicitly defined as deleted 
 add_compile_options(/wd4626)    # 'xxx': assignment operator was implicitly defined as deleted
 add_compile_options(/wd4668)    # 'xxx' is not defined as a preprocessor macro, replacing with '0' for '#if/#elif'
 add_compile_options(/wd4710)    # 'xxx': function not inlined
-#add_compile_options(/wd4774)    # 'string' : format string expected in argument number is not a string literal
+add_compile_options(/wd4774)    # 'string' : format string expected in argument number is not a string literal
 add_compile_options(/wd4820)    # 'xxx': '4' bytes padding added after data member 'yyy'
 add_compile_options(/wd4996)    # 'xxx': This function or variable may be unsafe.
-#add_compile_options(/wd5026)    # 'xxx': move constructor was implicitly defined as deleted
 add_compile_options(/wd5027)    # 'type': move assignment operator was implicitly defined as deleted
-#add_compile_options(/wd5039)    # 'xxx': pointer or reference to potentially throwing function passed to extern C function under -EHc.
+add_compile_options(/wd5039)    # 'xxx': pointer or reference to potentially throwing function passed to extern C function under -EHc.
 add_compile_options(/wd5045)    # Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
 add_compile_options(/wd5219)
 add_compile_options(/wd5220)    # a non-static data member with a volatile qualified type no longer implies that compiler generated copy/move constructors and copy/move assignment operators are not trivial
-#add_compile_options(/wd26812)   # Prefer 'enum class' over 'enum' (Enum.3)
 
 file(GLOB LIBS_CMSIS        ../../common/_VS_GUI/CMSIS/*)
 file(GLOB LIBS_FATFS        ../../common/STM32Cube_F4/Middlewares/Third_Party/FatFs/src/diskio.*
