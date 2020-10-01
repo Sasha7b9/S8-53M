@@ -43,7 +43,7 @@ void Sound_Beep(TypeWave::E typeWave_, float frequency_, float amplitude_, int d
     {
         return;
     }
-    if (frequency != frequency_ || amplitude != amplitude_ || typeWave != typeWave_)
+    if (frequency != frequency_ || amplitude != amplitude_ || typeWave != typeWave_) //-V2550 //-V550
     {
         frequency = frequency_;
         amplitude = amplitude_;
@@ -65,7 +65,7 @@ void Sound_Beep(TypeWave::E typeWave_, float frequency_, float amplitude_, int d
 
 void Sound::ButtonPress(void)
 {
-    Sound_Beep(TypeWave::Sine, 2000.0f, 0.5f, 50);
+    Sound_Beep(TypeWave::Sine, 2000.0F, 0.5F, 50);
     BUTTON_IS_PRESSED = 1;
 }
 
@@ -74,7 +74,7 @@ void Sound::ButtonRelease(void)
 {
     if (BUTTON_IS_PRESSED)
     {
-        Sound_Beep(TypeWave::Sine, 1000.0f, 0.25f, 50);
+        Sound_Beep(TypeWave::Sine, 1000.0F, 0.25F, 50);
         BUTTON_IS_PRESSED = 0;
     }
 }
@@ -82,28 +82,28 @@ void Sound::ButtonRelease(void)
 
 void Sound::GovernorChangedValue(void)
 {
-    Sound_Beep(TypeWave::Sine, 1000.0f, 0.5f, 50);
+    Sound_Beep(TypeWave::Sine, 1000.0F, 0.5F, 50);
     BUTTON_IS_PRESSED = 0;
 }
 
 
 void Sound::RegulatorShiftRotate(void)
 {
-    Sound_Beep(TypeWave::Sine, 1.0f, 0.35f, 3);
+    Sound_Beep(TypeWave::Sine, 1.0F, 0.35F, 3);
     BUTTON_IS_PRESSED = 0;
 }
 
 
 void Sound::RegulatorSwitchRotate(void)
 {
-    Sound_Beep(TypeWave::Triangle, 2500.0f, 0.5f, 25);
+    Sound_Beep(TypeWave::Triangle, 2500.0F, 0.5F, 25);
     BUTTON_IS_PRESSED = 0;
 }
 
 
 void Sound::WarnBeepBad(void)
 {
-    Sound_Beep(TypeWave::Meandr, 250.0f, 1.0f, 500);
+    Sound_Beep(TypeWave::Meandr, 250.0F, 1.0F, 500);
     SOUND_WARN_IS_BEEP = 1;
     BUTTON_IS_PRESSED = 0;
 }
@@ -111,7 +111,7 @@ void Sound::WarnBeepBad(void)
 
 void Sound::WarnBeepGood(void)
 {
-    Sound_Beep(TypeWave::Triangle, 1000.0f, 0.5f, 250);
+    Sound_Beep(TypeWave::Triangle, 1000.0F, 0.5F, 250);
     BUTTON_IS_PRESSED = 0;
 }
 
@@ -145,7 +145,7 @@ void CalculateSine(void)
 {
     for (int i = 0; i < POINTS_IN_PERIOD; i++)
     {
-        float step = 2.0f * 3.1415926f / (POINTS_IN_PERIOD - 1);
+        float step = 2.0F * 3.1415926F / (POINTS_IN_PERIOD - 1);
         float value = (std::sin(static_cast<float>(i) * step) + 1.0f) / 2.0f;
         points[i] = static_cast<uint8>(value * amplitude * 255);
     }
