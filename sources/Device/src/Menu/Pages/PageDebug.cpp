@@ -108,7 +108,7 @@ struct StructForSN
 };
 
 
-extern Page mainPage;
+extern const Page mainPage;
 
 void *PageDebug::SerialNumber::GetPointer()
 {

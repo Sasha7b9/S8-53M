@@ -96,7 +96,7 @@ static void Information_Draw();
 extern const SmallButton sbInformation_Exit;             // ÑÅĞÂÈÑ - ÈÍÔÎĞÌÀÖÈß - Âûõîä
 static void        OnPress_Information_Exit();
 
-extern Page mainPage;
+extern const Page mainPage;
 
 // ÑÅĞÂÈÑ ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 static const arrayItems itemsService =

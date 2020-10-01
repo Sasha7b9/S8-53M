@@ -32,7 +32,7 @@ static bool  IsActive_SelfRecorder();
 extern const Choice mcDivRole;          // пюгбепрйю - т-ЖХЪ бп/дек
 
 
-extern Page mainPage;
+extern const Page mainPage;
 
 
 // пюгбепрйю //////////////////////////////////////////////////////////////////////////////////////////////////////////
