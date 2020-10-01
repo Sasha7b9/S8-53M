@@ -25,7 +25,7 @@
 #define DISPLAY_COLOR(num)          (set.display.colors[num])                   // SettingsDisplay.colors
 
 #define MODE_DRAW_SIGNAL            (set.display.modeDrawSignal)                // SettingsDisplay.modeDrawSignal
-#define MODE_DRAW_IS_SIGNAL_LINES   (MODE_DRAW_SIGNAL == ModeDrawSignal_Lines)  // \c true, если сигнал выводится линиями.
+#define MODE_DRAW_IS_SIGNAL_LINES   (MODE_DRAW_SIGNAL == ModeDrawSignal::Lines)  // \c true, если сигнал выводится линиями.
 
 #define TYPE_GRID                   (set.display.typeGrid)                      // SettingsDisplay.typeGrid
 #define TYPE_GRID_IS_1              (TYPE_GRID == TypeGrid_1)                   // Установлен тип сетки TypeGrid_1.
@@ -71,11 +71,11 @@
 
 
  // Режим отрисовки сигнала.
-enum ModeDrawSignal
+struct ModeDrawSignal { enum E
 {
-    ModeDrawSignal_Lines = 0,   // Сигнал рисуется линиями.
-    ModeDrawSignal_Points = 1   // Сигнал рисуется точками.
-};
+    Lines,      // Сигнал рисуется линиями.
+    Points      // Сигнал рисуется точками.
+}; };
 
 // Тип сетки на экране.
 enum TypeGrid
@@ -205,7 +205,7 @@ struct SettingsDisplay
     int16               brightness;                 // Яркость дисплея.
     int16               brightnessGrid;             // Яркость сетки от 0 до 100.
     uint16              colors[16];                 // Цвета.
-    ModeDrawSignal      modeDrawSignal;             // Режим отрисовки сигнала.
+    ModeDrawSignal::E   modeDrawSignal;             // Режим отрисовки сигнала.
     TypeGrid            typeGrid;                   // Тип сетки.
     ENumAccumulation    enumAccumulation;           // Перечисление накоплений сигнала на экране.
     ENumAveraging       enumAve;                    // Перечисление усреднений сигнала.

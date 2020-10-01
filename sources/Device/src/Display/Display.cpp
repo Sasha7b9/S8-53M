@@ -681,8 +681,8 @@ bool Display::DrawDataInModeNormal()
 
 void Display::DrawDataMinMax()
 {
-    ModeDrawSignal modeDrawSignalOld = MODE_DRAW_SIGNAL;
-    MODE_DRAW_SIGNAL = ModeDrawSignal_Lines;
+    ModeDrawSignal::E modeDrawSignalOld = MODE_DRAW_SIGNAL;
+    MODE_DRAW_SIGNAL = ModeDrawSignal::Lines;
     if (LAST_AFFECTED_CHANNEL_IS_B)
     {
         DrawDataChannel(Storage::GetLimitation(A, 0), A, gDSet, GRID_TOP, Grid::ChannelBottom());
