@@ -295,9 +295,9 @@ void FPGA::ReadRandomizeMode(void)
 
     while (pData0 < &dataRel0[FPGA_MAX_POINTS])
     {
-        uint8 data10 = *RD_ADC_B2;
+        volatile uint8 data10 = *RD_ADC_B2; //-V2551
         //uint8 data11 = *RD_ADC_B1;
-        uint8 data00 = *RD_ADC_A2;
+        volatile uint8 data00 = *RD_ADC_A2; //-V2551
         //uint8 data01 = *RD_ADC_A1;
 
         /*
@@ -377,7 +377,7 @@ void FPGA::ReadRealMode(bool necessaryShift)
         uint8 *p0max = p0min + 512;
         uint8 *p1min = p1;
         uint8 *p1max = p1min + 512;
-        while (p0max < endP && FPGA_IN_PROCESS_READ)
+        while ((p0max < endP) && (FPGA_IN_PROCESS_READ == 1))
         {
             uint8 data = *RD_ADC_B2;
             *p1max++ = data;
@@ -391,7 +391,7 @@ void FPGA::ReadRealMode(bool necessaryShift)
     }
     else
     {
-        while (p0 < endP && FPGA_IN_PROCESS_READ)
+        while ((p0 < endP) && (FPGA_IN_PROCESS_READ == 1))
         {
             *p1++ = *RD_ADC_B2;
             *p1++ = *RD_ADC_B1;
@@ -439,7 +439,7 @@ void FPGA::DataRead(bool necessaryShift, bool saveToStorage)
 {
     Panel::EnableLEDTrig(false);
     FPGA_IN_PROCESS_READ = 1;
-    if((TBase::E)ds.tBase < TBase::_100ns)
+    if(static_cast<TBase::E>(ds.tBase) < TBase::_100ns)
     {
         ReadRandomizeMode();
     } 
@@ -461,7 +461,7 @@ void FPGA::DataRead(bool necessaryShift, bool saveToStorage)
 
         Storage::AddData(dataRel0, dataRel1, ds);
 
-        if (TRIG_MODE_FIND_IS_AUTO && TRIG_AUTO_FIND)
+        if (TRIG_MODE_FIND_IS_AUTO && (TRIG_AUTO_FIND == 1))
         {
             FPGA::FindAndSetTrigLevel();
             TRIG_AUTO_FIND = 0;
@@ -509,7 +509,7 @@ bool FPGA::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
         max = rand;
     }
 
-    if(minGate == 0)
+    if(minGate == 0.0F) //-V550 //-V2550
     {
         *eMin = min;
         *eMax = max;
@@ -534,8 +534,8 @@ bool FPGA::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
         min = 0xffff;
         max = 0;
     }
-    *eMin = static_cast<uint16>(minGate);
-    *eMax = static_cast<uint16>(maxGate);
+    *eMin = static_cast<uint16>(minGate); //-V519
+    *eMax = static_cast<uint16>(maxGate); //-V519
 
     //LOG_WRITE("min %u, max %u, rand %d", *eMin, *eMax, rand);
     return true;
@@ -567,7 +567,7 @@ int FPGA::CalculateShift(void)            // \todo Не забыть восстановить функци
 
     if (sTime_RandomizeModeEnabled())
     {
-        float tin = (float)(rand - min) / (max - min) * 10e-9F;
+        float tin = static_cast<float>(rand - min) / (max - min) * 10e-9F;
         int retValue = static_cast<int>(tin / 10e-9F * Kr[SET_TBASE]);
         return retValue;
     }
@@ -693,19 +693,19 @@ static BitSet32 ReadRegPeriod(void)
 }
 
 
-static float FreqCounterToValue(BitSet32 *fr)
+static float FreqCounterToValue(const BitSet32 *fr)
 {
     return fr->word * 10.0F;
 }
 
 
-static float PeriodCounterToValue(BitSet32 *period)
+static float PeriodCounterToValue(const BitSet32 *period)
 {
     if (period->word == 0)
     {
         return 0.0F;
     }
-    return 10e6f / (float)period->word;
+    return 10e6f / period->word;
 }
 
 
@@ -760,7 +760,7 @@ static uint8 ReadFlag(void)
             ReadFreq();
         }
     }
-    if(readPeriod && _GET_BIT(flag, BIT_PERIOD_READY)) 
+    if(readPeriod && (_GET_BIT(flag, BIT_PERIOD_READY) == 1)) 
     {
         ReadPeriod();
     }
@@ -852,7 +852,7 @@ void FPGA::StartAutoFind(void)
 }
 
 
-uint8 FPGA::CalculateMinWithout0(uint8 buffer[100])
+uint8 FPGA::CalculateMinWithout0(const uint8 buffer[100])
 {
     // \todo На одном экземпляре был страшенныый глюк, когда без сигнала выбивались значения 0 и 255 в рандомных местах
     // Вот такой кастыиль на скорую ногу, чтобы нули выкинуть.
@@ -869,7 +869,7 @@ uint8 FPGA::CalculateMinWithout0(uint8 buffer[100])
 }
 
 
-uint8 FPGA::CalculateMaxWithout255(uint8 buffer[100])
+uint8 FPGA::CalculateMaxWithout255(const uint8 buffer[100])
 {
     // \todo На одном экземпляре был страшенныый глюк, когда без сигнала выбивались значения 0 и 255 в рандомных местах
     // Вот такой кастыиль на скорую ногу, чтобы нули выкинуть.
@@ -943,8 +943,8 @@ bool FPGA::FindWave(Channel chan)
 
     Stop(false);
     SET_ENABLED(chan) = true;
-    FPGA::SetTrigSource((TrigSource)chan);
-    FPGA::SetTrigLev((TrigSource)chan, TrigLevZero);
+    FPGA::SetTrigSource(static_cast<TrigSource>(chan));
+    FPGA::SetTrigLev(static_cast<TrigSource>(chan), TrigLevZero);
     FPGA::SetRShift(chan, RShiftZero);
     FPGA::SetModeCouple(chan, ModeCouple_AC);
     Range range = AccurateFindRange(chan);
@@ -956,7 +956,7 @@ bool FPGA::FindWave(Channel chan)
         if (tBase != TBase::Count)
         {
             SET_TBASE = tBase;
-            TRIG_SOURCE = (TrigSource)chan;
+            TRIG_SOURCE = static_cast<TrigSource>(chan);
             return true;
         }
     }
@@ -992,7 +992,7 @@ Range FPGA::AccurateFindRange(Channel chan)
     {
         //Timer::LogPointMS("1");
         FPGA::Stop(false);
-        FPGA::SetRange(chan, (Range)range);
+        FPGA::SetRange(chan, static_cast<Range>(range));
         HAL_TIM2::Delay(10);
         FPGA::Start();
 
@@ -1042,7 +1042,7 @@ Range FPGA::AccurateFindRange(Channel chan)
                 range++;
             }
             FPGA::SetPeackDetMode(peackDetMode);
-            return (Range)range;
+            return static_cast<Range>(range);
         }
 
         uint8 min = AVE_VALUE - 30;
@@ -1064,7 +1064,7 @@ TBase::E FPGA::AccurateFindTBase(Channel chan)
     for (int i = 0; i < 5; i++)
     {
         TBase::E tBase = FindTBase(chan);
-        TBase::E secondTBase = FindTBase(chan);
+        TBase::E secondTBase = FindTBase(chan); //-V656
 
         if (tBase == secondTBase && tBase != TBase::Count)
         {
@@ -1142,7 +1142,7 @@ void FPGA::FillDataPointer(DataSettings *dp)
     dp->tShift = TSHIFT;
     dp->modeCouple0 = SET_COUPLE_A;
     dp->modeCouple1 = SET_COUPLE_B;
-    dp->length1channel = (uint)sMemory_GetNumPoints(false);
+    dp->length1channel = static_cast<uint>(sMemory_GetNumPoints(false));
     dp->trigLevCh0 = (uint)TRIG_LEVEL_A;
     dp->trigLevCh1 = (uint)TRIG_LEVEL_B;
     dp->peakDet = (uint)PEAKDET;
@@ -1159,7 +1159,7 @@ void FPGA::FindAndSetTrigLevel(void)
         return;
     }
 
-    Channel chanTrig = (Channel)trigSource;
+    Channel chanTrig = static_cast<Channel>(trigSource);
     uint8 *data0 = 0;
     uint8 *data1 = 0;
     DataSettings *ds_ = 0;
@@ -1168,16 +1168,16 @@ void FPGA::FindAndSetTrigLevel(void)
 
     const uint8 *data = (chanTrig == A) ? data0 : data1;
 
-    int lastPoint = (int)ds_->length1channel - 1;
+    int lastPoint = static_cast<int>(ds_->length1channel) - 1;
 
     uint8 min = Math_GetMinFromArray(data, 0, lastPoint);
     uint8 max = Math_GetMaxFromArray(data, 0, lastPoint);
 
-    uint8 aveValue = (uint8)(((int)min + (int)max) / 2);
+    uint8 aveValue = static_cast<uint8>((static_cast<int>(min) + static_cast<int>(max)) / 2);
 
     static const float scale = (float)(TrigLevMax - TrigLevZero) / (float)(MAX_VALUE - AVE_VALUE) / 2.4f;
 
-    int16 trigLev = static_cast<int16>(TrigLevZero + scale * ((int)aveValue - AVE_VALUE) - (SET_RSHIFT(chanTrig) - RShiftZero));
+    int16 trigLev = static_cast<int16>(TrigLevZero + scale * (static_cast<int>(aveValue) - AVE_VALUE) - (SET_RSHIFT(chanTrig) - RShiftZero));
 
     FPGA::SetTrigLev(trigSource, trigLev);
 }
@@ -1192,7 +1192,7 @@ void FPGA::WriteToAnalog(TypeWriteAnalog::E type, uint data)
 {
     char buffer[19];
 
-    char *str = Bin2String16((uint16)data, buffer);
+    char *str = Bin2String16(static_cast<uint16>(data), buffer);
     if (type == TypeWriteAnalog::Range0 && IS_SHOW_REG_RANGE_A)
     {
         LOG_WRITE("range 0 = %s", str);
@@ -1213,7 +1213,7 @@ void FPGA::WriteToAnalog(TypeWriteAnalog::E type, uint data)
     {
         LOG_WRITE("парам. кан. 2 = %s", str);
     }
-    else if (type == TypeWriteAnalog::All && (IS_SHOW_REG_TRIGPARAM || IS_SHOW_REG_RANGE_A || IS_SHOW_REG_RANGE_B || IS_SHOW_REG_PARAM_A || IS_SHOW_REG_PARAM_B))
+    else if (type == TypeWriteAnalog::All && (IS_SHOW_REG_TRIGPARAM || IS_SHOW_REG_RANGE_A || IS_SHOW_REG_RANGE_B || IS_SHOW_REG_PARAM_A || IS_SHOW_REG_PARAM_B)) //-V560 //-V501
     {
         LOG_WRITE("полная запись в аналоговую часть = %s", str);
     }

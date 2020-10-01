@@ -236,7 +236,7 @@ void Display::DrawSignalLined(const uint8 *data, const DataSettings *ds, int sta
     }
     else
     {
-        int shift = (int)ds->length1channel;
+        int shift = static_cast<int>(ds->length1channel);
 
         int yMinNext = -1;
         int yMaxNext = -1;
@@ -269,7 +269,7 @@ void Display::DrawSignalLined(const uint8 *data, const DataSettings *ds, int sta
                     yMax = yMinNext - 1;
                 }
 
-                Painter::DrawVLine((int)x, yMin, yMax);
+                Painter::DrawVLine(static_cast<int>(x), yMin, yMax);
             }
         }
     }
@@ -300,7 +300,7 @@ void Display::DrawSignalPointed(const uint8 *data, const DataSettings *ds, int s
     
     uint8 dataCD[281];
 
-    if (scaleX == 1.0f) //-V550
+    if (scaleX == 1.0f) //-V550 //-V2550
     {
         for (int i = startPoint; i < endPoint; i++)
         {
@@ -359,8 +359,8 @@ void Display::DrawDataChannel(uint8 *data, Channel chan, DataSettings *ds, int m
         return;
     }
 
-    float scaleY = (float)(maxY - minY) / (MAX_VALUE - MIN_VALUE);
-    float scaleX = (float)Grid::Width() / 280.0F;
+    float scaleY = static_cast<float>(maxY - minY) / (MAX_VALUE - MIN_VALUE);
+    float scaleX = Grid::Width() / 280.0F;
 
     if(SHOW_MEASURES)
     {
@@ -417,13 +417,13 @@ void Display::DrawMath()
     float dataAbs0[FPGA_MAX_POINTS];
     float dataAbs1[FPGA_MAX_POINTS];
 
-    Math_PointsRelToVoltage(dataRel0, (int)ds->length1channel, ds->range[A], (int16)ds->rShiftCh0, dataAbs0);
-    Math_PointsRelToVoltage(dataRel1, (int)ds->length1channel, ds->range[B], (int16)ds->rShiftCh1, dataAbs1);
+    Math_PointsRelToVoltage(dataRel0, static_cast<int>(ds->length1channel), ds->range[A], static_cast<int16>(ds->rShiftCh0), dataAbs0);
+    Math_PointsRelToVoltage(dataRel1, static_cast<int>(ds->length1channel), ds->range[B], static_cast<int16>(ds->rShiftCh1), dataAbs1);
 
-    Math_CalculateMathFunction(dataAbs0, dataAbs1, (int)ds->length1channel);
+    Math_CalculateMathFunction(dataAbs0, dataAbs1, static_cast<int>(ds->length1channel));
     
     uint8 points[FPGA_MAX_POINTS];
-    Math_PointsVoltageToRel(dataAbs0, (int)ds->length1channel, SET_RANGE_MATH, SET_RSHIFT_MATH, points);
+    Math_PointsVoltageToRel(dataAbs0, static_cast<int>(ds->length1channel), SET_RANGE_MATH, SET_RSHIFT_MATH, points);
 
     DrawDataChannel(points, Math, ds, Grid::MathTop(), Grid::MathBottom());
 
@@ -499,13 +499,14 @@ void Display::DRAW_SPECTRUM(const uint8 *data, int numPoints, Channel channel)
     float density1 = 0.0F;
     int y0 = 0;
     int y1 = 0;
-    int s = 2;
 
-    Math_PointsRelToVoltage(data, numPoints, gDSet->range[channel], channel == A ? (int16)gDSet->rShiftCh0 : (int16)gDSet->rShiftCh1, dataR);
+    Math_PointsRelToVoltage(data, numPoints, gDSet->range[channel], channel == A ? static_cast<int16>(gDSet->rShiftCh0) : static_cast<int16>(gDSet->rShiftCh1), dataR);
     Math_CalculateFFT(dataR, numPoints, spectrum, &freq0, &density0, &freq1, &density1, &y0, &y1);
     DrawSpectrumChannel(spectrum, ColorChannel(channel));
     if (!MenuIsShown() || MenuIsMinimize())
     {
+        int s = 2;
+
         Color::E color = COLOR_FILL;
         WriteParametersFFT(channel, freq0, density0, freq1, density1);
         Painter::DrawRectangleC(FFT_POS_CURSOR_0 + Grid::Left() - s, y0 - s, s * 2, s * 2, color);
@@ -610,7 +611,7 @@ void Display::DrawDataInModePoint2Point()
 
     if (LAST_AFFECTED_CHANNEL_IS_B)
     {
-        if (SET_SELFRECORDER || !Storage::NumElementsWithCurrentSettings())
+        if (SET_SELFRECORDER || (Storage::NumElementsWithCurrentSettings() == 0))
         {
             DrawDataChannel(dataP2P_0, A, ds, GRID_TOP, Grid::ChannelBottom());
             DrawDataChannel(dataP2P_1, B, ds, GRID_TOP, Grid::ChannelBottom());
