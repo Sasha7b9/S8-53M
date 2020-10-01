@@ -4,7 +4,7 @@
 
 
 
-int sDisplay_NumSignalsInS()
+int SettingsDisplay::NumSignalsInS()
 {
     return Tables_ENUMtoNumSignalsInSec(ENUM_SIGNALS_IN_SEC);
 }

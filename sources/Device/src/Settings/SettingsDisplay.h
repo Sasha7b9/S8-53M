@@ -220,12 +220,13 @@ struct SettingsDisplay
     bool                showFullMemoryWindow;       // Показывать ли окно памяти вверху экрана. \todo Не используется.
     bool                showStringNavigation;       // Показывать ли строку текущего состояния меню..
     LinkingRShift::E    linkingRShift;              // Тип привязки смещения по вертикали.
+
+    // Возвращает ограничение частоты кадров.
+    static int NumSignalsInS();
 };
 
 
 
-// Возвращает ограничение частоты кадров.
-int sDisplay_NumSignalsInS();
 // Устанавливает ограничение частоты кадров.
 void sDisplay_SetNumSignalsInS(int maxFPS);
 // Возвращает число точек сглаживающего фильтра (режим ДИСПЛЕЙ - Сглаживание).
