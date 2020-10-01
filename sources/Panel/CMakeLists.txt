@@ -2,8 +2,8 @@ project (Panel)
 
 include_directories(src
                     src/Hardware/HAL
-                    ../common/vs_keil/ARMCLANG
-                    ../common/vs_keil/CMSIS
+                    ../common/_VS_KEIL/ARMCLANG
+                    ../common/_VS_KEIL/CMSIS
                     ../common/STM32Cube_L0/Drivers/STM32L0xx_HAL_Driver/Inc
                     ../common/STM32Cube_L0/Drivers/CMSIS/Device/ST/STM32L0xx/Include
                     ../common/STM32Cube_L0/Drivers/CMSIS/Include

@@ -5,9 +5,9 @@ include_directories(..
                     src/Hardware/FatFS
                     src/Hardware/HAL
                     src/Hardware/USBH
-                    ../common/vs_keil/ARMCLANG
-                    ../common/vs_keil/CMSIS
-                    ../common/vs_keil/FatFS
+                    ../common/_VS_KEIL/ARMCLANG
+                    ../common/_VS_KEIL/CMSIS
+                    ../common/_VS_KEIL/FatFS
                     ../common/STM32Cube_F4/Drivers/STM32F4xx_HAL_Driver/Inc
                     ../common/STM32Cube_F4/Drivers/CMSIS/Device/ST/STM32F4xx/Include
                     ../common/STM32Cube_F4/Drivers/CMSIS/Include

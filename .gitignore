@@ -12,3 +12,5 @@ sources/Device/DebugConfig/*
 sources/Panel/Objects/*
 sources/Panel/Listings/*
 sources/Panel/DebugConfig/*
+
+sources/ThirdParty/wxWidgets/generated/*

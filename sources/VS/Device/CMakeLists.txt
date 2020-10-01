@@ -4,7 +4,7 @@ include_directories(../..
                     ../../Device/src
                     ../../Device/src/Hardware/FatFS
                     ../../Device/src/Hardware/USBH
-                    ../
+                    ../vs_keil/CMSIS
                     ../../common/STM32Cube_F4/Middlewares/Third_Party/FatFs/src
                     ../../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Core/Inc
                     )
