@@ -192,7 +192,7 @@ void SCPI::TBASE::FUNCTIMEDIV(uint8 *buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (value < 2) { TIME_DIV_XPOS = (FunctionTime)value; }
+        if (value < 2) { TIME_DIV_XPOS = (FunctionTime::E)value; }
         else if (2 == value)
         {
             SCPI_SEND(":TBASE:FUNCTIMEDIV %s", map[TIME_DIV_XPOS].key);

@@ -64,7 +64,7 @@ struct SettingsTime
 {
     TBase           tBase;                  // Масштаб по времени.
     int16           tShiftRel;              // Смещение по времени
-    FunctionTime    timeDivXPos;
+    FunctionTime::E timeDivXPos;
     TPos            tPos;
     SampleType      sampleType;
     PeackDetMode    peakDet;

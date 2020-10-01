@@ -104,7 +104,7 @@ static const Settings defaultSettings =
     {
         TBase_200us,
         0,                          // set.time.tShiftRel
-        FunctionTime_Time,
+        FunctionTime::Time,
         TPos_Center,
         SampleType_Equal,
         PeackDet_Disable,

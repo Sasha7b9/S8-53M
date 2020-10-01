@@ -18,7 +18,7 @@
 #define TSHIFT                              (set.time.tShiftRel)    // SettingsTime.tShiftRel
 
 #define TIME_DIV_XPOS                       (set.time.timeDivXPos)  // SettingsTime.timeDivXPos
-#define TIME_DIV_XPOS_IS_SHIFT_IN_MEMORY    (TIME_DIV_XPOS == FunctionTime_ShiftInMemory)
+#define TIME_DIV_XPOS_IS_SHIFT_IN_MEMORY    (TIME_DIV_XPOS == FunctionTime::ShiftInMemory)
 
 #define SET_TPOS                            (set.time.tPos)         // SettingsTime.tPos
 #define SET_TPOS_IS_LEFT                    (SET_TPOS == TPos_Left)
@@ -39,11 +39,11 @@
 
 
 // Функция ручки ВРЕМЯ/ДЕЛ.
-enum FunctionTime
+struct FunctionTime { enum E
 {
-    FunctionTime_Time,              // Ручка управляет смещением по времени.
-    FunctionTime_ShiftInMemory      // Ручка управляет отображаемым на экране участком памяти.
-};
+    Time,              // Ручка управляет смещением по времени.
+    ShiftInMemory      // Ручка управляет отображаемым на экране участком памяти.
+}; };
 
 // Привязка синхронизации к памяти.
 enum TPos
@@ -83,7 +83,7 @@ struct SettingsTime
 { //-V802
     TBase               tBase;          // Масштаб по времени.
     int16               tShiftRel;      // Смещение по времени.
-    FunctionTime        timeDivXPos;
+    FunctionTime::E     timeDivXPos;
     TPos                tPos;           // Привязка синхронизации к памяти.
     SampleType          sampleType;     // Тип выборки для режима рандомизатора.
     PeackDetMode        peakDet;        // Режим работы пикового детектора

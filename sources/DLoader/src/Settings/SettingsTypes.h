@@ -246,11 +246,11 @@ enum ModeLongPressTrig
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Функция ВР/ДЕЛ
-enum FunctionTime
+struct FunctionTime { enum E
 {
-    FunctionTime_Time,
-    FunctionTime_ShiftInMemory
-};
+    Time,
+    ShiftInMemory
+}; };
 
 // Масштаб по времени
 enum TBase
