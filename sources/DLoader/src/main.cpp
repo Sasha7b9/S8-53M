@@ -14,7 +14,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define FILE_NAME "S8-53.bin"
 
-MainStruct *ms;
+MainStruct *ms; //-V707
 
 void Upgrade(void);
 
@@ -22,8 +22,8 @@ void Upgrade(void);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main(void)
 {
-    ms = (MainStruct *)malloc(sizeof(MainStruct));
-    ms->percentUpdate = 0.0f;
+    ms = static_cast<MainStruct *>(malloc(sizeof(MainStruct)));
+    ms->percentUpdate = 0.0F; //-V522
 
     Hardware_Init();
 
@@ -45,8 +45,8 @@ int main(void)
     {
     }
 
-    if ((ms->drive.connection && ms->drive.active == 0) ||  // ≈сли флеша подключена, но в активное состо€ние почему-то не перешла
-        (ms->drive.active && ms->state != State_Mount))     // или перешла в активное состо€ние, по почему-то не запустилс€ процесс монтировани€
+    if (((ms->drive.connection != 0) && (ms->drive.active == 0)) ||  // ≈сли флеша подключена, но в активное состо€ние почему-то не перешла
+        ((ms->drive.active != 0) && (ms->state != State_Mount)))     // или перешла в активное состо€ние, по почему-то не запустилс€ процесс монтировани€
     {
         free(ms);
         HAL::SystemReset();
@@ -58,7 +58,7 @@ int main(void)
         {
             ms->state = State_RequestAction;
 
-            while (1)
+            while (1) //-V2530
             {
                 PanelButton button = Panel_PressedButton();
                 if (button == B_F1)
@@ -101,6 +101,8 @@ int main(void)
     free(ms);
 
     HAL::JumpToApplication();
+    
+    return 0;
 }
 
 
@@ -124,7 +126,7 @@ void Upgrade(void)
         size -= readedBytes;
         address += readedBytes;
 
-        ms->percentUpdate = 1.0f - (float)size / static_cast<float>(fullSize);
+        ms->percentUpdate = 1.0F - static_cast<float>(size) / static_cast<float>(fullSize);
     }
 
     FDrive_CloseOpenedFile();

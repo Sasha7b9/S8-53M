@@ -12,7 +12,7 @@ void HAL_TIM2::Init()
         {
             0,
             TIM_COUNTERMODE_UP,
-            0xffffffff,
+            0xffffffffU,
             TIM_CLOCKDIVISION_DIV1
         }
     };

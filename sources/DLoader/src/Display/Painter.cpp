@@ -39,7 +39,7 @@ void CalculateCurrentColor(void)
 
 void CalculateColor(uint8 *color)
 {
-    currentColor = (Color::E)*color;
+    currentColor = static_cast<Color::E>(*color);
     if (*color == Color::FLASH_10)
     {
         *color = static_cast<uint8>(inverseColors ? gColorBack : gColorFill);
@@ -184,12 +184,12 @@ void Painter::SetPoint(int, int )
 }
 
 
-void Painter::DrawMultiVPointLine(int , int , uint16 [], int , int , Color::E ) 
+void Painter::DrawMultiVPointLine(int , int , uint16 *, int , int , Color::E ) 
 {
 }
 
 
-void Painter::DrawMultiHPointLine(int , int , uint8 [], int , int , Color::E )
+void Painter::DrawMultiHPointLine(int , int , uint8 *, int , int , Color::E )
 {
 }
 
@@ -273,7 +273,7 @@ void Painter::LoadPalette(int num)
 
     for (; i <= a; i++)
     {
-        Painter::SetPalette((Color::E)i);
+        Painter::SetPalette(static_cast<Color::E>(i));
     }
 }
 

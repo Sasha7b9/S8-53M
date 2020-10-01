@@ -47,7 +47,7 @@ uint HAL_EPROM::GetSector(uint startAddress)
     case ADDR_SECTOR_DATA_MAIN: result = FLASH_SECTOR_8;  break;
     case ADDR_SECTOR_DATA_HELP: result = FLASH_SECTOR_9;  break;
     case ADDR_SECTOR_RESOURCES: result = FLASH_SECTOR_10; break;
-    case ADDR_SECTOR_SETTINGS:  result = FLASH_SECTOR_11; break;
+    case ADDR_SECTOR_SETTINGS:                            break;
     }
     LOG_ERROR("Недопустимый сектор");
     
