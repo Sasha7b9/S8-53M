@@ -33,8 +33,8 @@
 #define TYPE_GRID_IS_3              (TYPE_GRID == TypeGrid::_3)                 // Установлен тип сетки TypeGrid_3.
 
 #define ENUM_ACCUM                  (set.display.enumAccumulation)              // SettingsDisplay.numAccumulation
-#define ENUM_ACCUM_IS_NONE          (ENUM_ACCUM == NumAccumulation_1)           // \c true, если накопление выключено.
-#define ENUM_ACCUM_IS_INFINITY      (ENUM_ACCUM == NumAccumulation_Infinity)    // \c true, если установлено бесконечное число накоплений.
+#define ENUM_ACCUM_IS_NONE          (ENUM_ACCUM == ENumAccumulation::_1)        // \c true, если накопление выключено.
+#define ENUM_ACCUM_IS_INFINITY      (ENUM_ACCUM == ENumAccumulation::Infinity)  // \c true, если установлено бесконечное число накоплений.
 #define NUM_ACCUM                   (1 << (int)set.display.enumAccumulation)    // Количество накоплений.
 
 #define ENUM_AVE                    (set.display.enumAve)                       // SettingsDisplay.enumAve
@@ -88,18 +88,18 @@ struct TypeGrid { enum E
 }; };
 
 // Перечисление накоплений.
-enum ENumAccumulation
+struct ENumAccumulation { enum E
 {
-    NumAccumulation_1,
-    NumAccumulation_2,
-    NumAccumulation_4,
-    NumAccumulation_8,
-    NumAccumulation_16,
-    NumAccumulation_32,
-    NumAccumulation_64,
-    NumAccumulation_128,
-    NumAccumulation_Infinity
-};
+    _1,
+    _2,
+    _4,
+    _8,
+    _16,
+    _32,
+    _64,
+    _128,
+    Infinity
+}; };
 
 // Количество усреднений по измерениям.
 enum ENumAveraging
@@ -207,7 +207,7 @@ struct SettingsDisplay
     uint16              colors[16];                 // Цвета.
     ModeDrawSignal::E   modeDrawSignal;             // Режим отрисовки сигнала.
     TypeGrid::E         typeGrid;                   // Тип сетки.
-    ENumAccumulation    enumAccumulation;           // Перечисление накоплений сигнала на экране.
+    ENumAccumulation::E enumAccumulation;           // Перечисление накоплений сигнала на экране.
     ENumAveraging       enumAve;                    // Перечисление усреднений сигнала.
     ModeAveraging       modeAve;                    // Тип усреднений по измерениям.
     ENumMinMax          enumMinMax;                 // Число измерений для определения минимумов и максимумов.
