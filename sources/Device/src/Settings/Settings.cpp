@@ -47,7 +47,7 @@ static const Settings defaultSettings =
             MAKE_COLOR(0, 51, 0)     // COLOR_EMPTY_B = 0x0f,
         },
         ModeDrawSignal::Lines,       // modeDrawSignal
-        TypeGrid_1,                 // typeGrid
+        TypeGrid::_1,                 // typeGrid
         NumAccumulation_1,          // numAccumulation
         NumAveraging_1,             // numAveraging
         Averaging_Accurately,       // modeAveraging
