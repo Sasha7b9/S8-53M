@@ -113,15 +113,21 @@ struct ENumAveraging { enum E
     _64,
     _128,
     _256,
-    _512
-}; };
+    _512   };
+
+    static int NumAverages();
+ };
 
 // Тип усреднений по измерениям.
 struct ModeAveraging { enum E
 {
     Accurately,   // Усреднять точно.
     Around        // Усреднять приблизительно.
-}; };
+    };
+
+    // Возвращает режим усреднения
+    static ModeAveraging::E Current();
+ };
 
 // Количество измерений для расчёта минимального и максимального значений.
 struct ENumMinMax { enum E
@@ -191,7 +197,11 @@ struct MenuAutoHide { enum E
     _15,    // Через 15 секунд.
     _30,    // Через 30 секунд.
     _60     // Через 60 секунд.
-}; };
+    };
+
+    // Возвращает время, через которое меню автоматически скрывается, если не было больше нажатий.
+    static int Time();
+ };
 
 // Тип привязки к смещению по вертикали
 struct LinkingRShift { enum E
@@ -229,19 +239,10 @@ struct SettingsDisplay
 
     // Возвращает адрес первой и последней точки на экране.
     static void PointsOnDisplay(int *firstPoint, int *lastPoint);
+
+    // Если экран разделён на две части и основной сигнал выводится сверху - например, в режиме вывода спектра
+    static bool IsSeparate();
 };
-
-
-// Возвращает время, через которое меню автоматически скрывается, если не было больше нажатий.
-int sDisplay_TimeMenuAutoHide();
-// Если экран разделён на две части и основной сигнал выводится сверху - например, в режиме вывода спектра
-bool sDisplay_IsSeparate();
-// brightness = 1..100
-void sDisplay_SetBrightness(int16 brightness);
-// Возвращает режим усреднения
-ModeAveraging::E sDisplay_ModeAveraging();
-
-int sDisplay_NumAverage();
 
 
 /** @}  @}

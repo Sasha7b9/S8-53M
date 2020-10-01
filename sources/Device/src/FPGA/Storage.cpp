@@ -73,9 +73,9 @@ void Storage::CalculateAroundAverage(uint8 *data0, uint8 *data1, DataSettings *d
     }
     else
     {
-        if (numAveData > sDisplay_NumAverage())
+        if (numAveData > ENumAveraging::NumAverages())
         {
-            numAveData = sDisplay_NumAverage();
+            numAveData = ENumAveraging::NumAverages();
         }
         float numAveDataF = static_cast<float>(numAveData);
         float numAveDataFless = numAveDataF - 1.0f;
@@ -180,9 +180,9 @@ void Storage::CalculateSums(void)
         numAveragings = NUM_AVE_FOR_RAND;
     }
 
-    if (sDisplay_NumAverage() > numAveragings)
+    if (ENumAveraging::NumAverages() > numAveragings)
     {
-        numAveragings = sDisplay_NumAverage();
+        numAveragings = ENumAveraging::NumAverages();
     }
 
     for(uint i = 0; i < numPoints; i++)
@@ -354,7 +354,7 @@ uint8* Storage::GetAverageData(Channel chan)
 
     uint numPoints = ds->length1channel * (ds->peakDet == PeackDet_Disable ? 1 : 2);
 
-    if (sDisplay_ModeAveraging() == ModeAveraging::Around)
+    if (ModeAveraging::Current() == ModeAveraging::Around)
     {
         float *floatAveData = (chan == A) ? aveData0 : aveData1;
         
@@ -365,7 +365,7 @@ uint8* Storage::GetAverageData(Channel chan)
         return &data[chan][0];
     }
 
-    int numAveraging = sDisplay_NumAverage();
+    int numAveraging = ENumAveraging::NumAverages();
 
     LIMIT_ABOVE(numAveraging, NumElementsWithSameSettings());
 

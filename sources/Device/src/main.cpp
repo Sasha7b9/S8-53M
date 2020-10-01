@@ -66,7 +66,7 @@ void ProcessingSignal()
     if (MODE_WORK_IS_DIRECT)
     {
         Storage::GetDataFromEnd(0, &gDSet, &gData0, &gData1);
-        if (sDisplay_NumAverage() != 1 || sTime_RandomizeModeEnabled())
+        if (ENumAveraging::NumAverages() != 1 || sTime_RandomizeModeEnabled())
         {
             gData0 = Storage::GetAverageData(A);
             gData1 = Storage::GetAverageData(B);

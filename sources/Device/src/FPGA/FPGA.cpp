@@ -281,9 +281,9 @@ void FPGA::ReadRandomizeMode(void)
 
     int numAve = NUM_AVE_FOR_RAND;
 
-    if (sDisplay_NumAverage() > numAve)
+    if (ENumAveraging::NumAverages() > numAve)
     {
-        numAve = sDisplay_NumAverage();
+        numAve = ENumAveraging::NumAverages();
     }
 
     int addShiftMem = step / 2;

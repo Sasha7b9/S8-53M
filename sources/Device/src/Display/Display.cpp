@@ -1375,7 +1375,7 @@ void Display::DrawGridSpectrum()
 
 void Display::DrawFullGrid()
 {
-    if (sDisplay_IsSeparate())
+    if (SettingsDisplay::IsSeparate())
     {
         DrawGrid(Grid::Left(), GRID_TOP, Grid::Width(), Grid::FullHeight() / 2);
         if (ENABLED_FFT)

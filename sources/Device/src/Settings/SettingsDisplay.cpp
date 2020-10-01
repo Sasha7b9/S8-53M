@@ -28,7 +28,7 @@ void SettingsDisplay::PointsOnDisplay(int *firstPoint, int *lastPoint)
 }
 
 
-int sDisplay_TimeMenuAutoHide()
+int MenuAutoHide::Time()
 {
     static const int times[] =
     {
@@ -38,20 +38,13 @@ int sDisplay_TimeMenuAutoHide()
 }
 
 
-bool sDisplay_IsSeparate()
+bool SettingsDisplay::IsSeparate()
 {
     return (!DISABLED_DRAW_MATH && MODE_DRAW_MATH_IS_SEPARATE) || ENABLED_FFT;
 }
 
 
-void sDisplay_SetBrightness(int16 brightness)
-{
-    BRIGHTNESS = brightness;
-    Painter::SetBrightnessDisplay(brightness);
-}
-
-
-ModeAveraging::E sDisplay_ModeAveraging()
+ModeAveraging::E ModeAveraging::Current()
 {
     if (sTime_RandomizeModeEnabled())
     {
@@ -61,7 +54,7 @@ ModeAveraging::E sDisplay_ModeAveraging()
 }
 
 
-int sDisplay_NumAverage()
+int ENumAveraging::NumAverages()
 {
     if (sTime_RandomizeModeEnabled() && (NUM_AVE_FOR_RAND >= NUM_AVE))
     {

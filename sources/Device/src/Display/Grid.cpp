@@ -17,7 +17,7 @@ int Grid::Right(void)
 
 int Grid::ChannelBottom(void)
 {
-    return (sDisplay_IsSeparate()) ? (GRID_TOP + GRID_HEIGHT / 2) : FullBottom();
+    return (SettingsDisplay::IsSeparate()) ? (GRID_TOP + GRID_HEIGHT / 2) : FullBottom();
 }
 
 
@@ -29,7 +29,7 @@ int Grid::SignalWidth(void)
 
 int Grid::ChannelHeight(void)
 {
-    return (sDisplay_IsSeparate()) ? FullHeight() / 2 : FullHeight();
+    return (SettingsDisplay::IsSeparate()) ? FullHeight() / 2 : FullHeight();
 }
 
 
@@ -72,7 +72,7 @@ int Grid::WidthInCells(void)
 float Grid::DeltaY(void)
 {
     float delta = (FullBottom() - GRID_TOP) / 10.0F;
-    return sDisplay_IsSeparate() ? (delta / 2.0f) : delta;
+    return SettingsDisplay::IsSeparate() ? (delta / 2.0f) : delta;
 }
 
 
