@@ -79,17 +79,17 @@ struct ModeAveraging { enum E
 }; };
 
 // Количество измерений для расчёта минимального и максимального значений.
-enum NumMinMax
+struct ENumMinMax { enum E
 {
-    NumMinMax_1,
-    NumMinMax_2,
-    NumMinMax_4,
-    NumMinMax_8,
-    NumMinMax_16,
-    NumMinMax_32,
-    NumMinMax_64,
-    NumMinMax_128
-};
+    _1,
+    _2,
+    _4,
+    _8,
+    _16,
+    _32,
+    _64,
+    _128
+}; };
 
 // Количество точек для расчёта сглаживания.
 enum DisplaySmoothing
@@ -107,14 +107,14 @@ enum DisplaySmoothing
 };
 
 // Ограничение FPS.
-enum NumSignalsInSec
+struct ENumSignalsInSec { enum E
 {
-    NumSignalsInSec_25,
-    NumSignalsInSec_10,
-    NumSignalsInSec_5,
-    NumSignalsInSec_2,
-    NumSignalsInSec_1
-};
+    _25,
+    _10,
+    _5,
+    _2,
+    _1
+}; };
 
 // Режим отображения пропущенных сигналов при ограничении частоты кадров.
 enum MissedSignals

@@ -124,17 +124,17 @@ struct ModeAveraging { enum E
 }; };
 
 // Количество измерений для расчёта минимального и максимального значений.
-enum ENumMinMax
+struct ENumMinMax { enum E
 {
-    NumMinMax_1,
-    NumMinMax_2,
-    NumMinMax_4,
-    NumMinMax_8,
-    NumMinMax_16,
-    NumMinMax_32,
-    NumMinMax_64,
-    NumMinMax_128
-};
+    _1,
+    _2,
+    _4,
+    _8,
+    _16,
+    _32,
+    _64,
+    _128
+}; };
 
 // Количество точек для расчёта скользящего фильтра.
 struct Smoothing { enum E
@@ -152,14 +152,14 @@ struct Smoothing { enum E
 }; };
 
 // Ограничение FPS.
-enum ENumSignalsInSec
+struct ENumSignalsInSec { enum E
 {
-    NumSignalsInSec_25,
-    NumSignalsInSec_10,
-    NumSignalsInSec_5,
-    NumSignalsInSec_2,
-    NumSignalsInSec_1
-};
+    _25,
+    _10,
+    _5,
+    _2,
+    _1
+}; };
 
 // Режим накопления.
 enum ModeAccumulation
@@ -210,9 +210,9 @@ struct SettingsDisplay
     ENumAccumulation::E enumAccumulation;           // Перечисление накоплений сигнала на экране.
     ENumAveraging::E    enumAve;                    // Перечисление усреднений сигнала.
     ModeAveraging::E    modeAve;                    // Тип усреднений по измерениям.
-    ENumMinMax          enumMinMax;                 // Число измерений для определения минимумов и максимумов.
+    ENumMinMax::E       enumMinMax;                 // Число измерений для определения минимумов и максимумов.
     Smoothing::E        smoothing;                  // Число точек для скользящего фильтра.
-    ENumSignalsInSec    enumSignalsInSec;           // Перечисление считываний сигнала в секунду.
+    ENumSignalsInSec::E enumSignalsInSec;           // Перечисление считываний сигнала в секунду.
     Channel             lastAffectedChannel;        // Здесь хранится номер последнего канала, которым управляли ручками. Нужно для того, чтобы знать, какой сигнал рисовать наверху.
     ModeAccumulation    modeAccumulation;           // Задаёт режим накопления сигналов.
     AltMarkers          altMarkers;                 // Режим отображения дополнительных боковых маркеров смещений.

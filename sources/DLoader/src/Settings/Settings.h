@@ -18,9 +18,9 @@ struct SettingsDisplay
     ENumAccumulation::E enumAccumulation;           // Число накоплений сигнала на экране
     ENumAveraging::E    enumAve;                    // Число усреднений сигнала
     ModeAveraging::E    modeAve;                    // Тип усреднений по измерениям
-    NumMinMax           numMinMax;                  // Число измерений для определения минимумов и максимумов
+    ENumMinMax::E       enumMinMax;                 // Число измерений для определения минимумов и максимумов
     DisplaySmoothing    smoothing;                  // Число точек для скользящего фильтра
-    NumSignalsInSec     numSignalsInSec;            // Число считываний сигнала в секунду
+    ENumSignalsInSec::E enumSignalsInSec;           // Число считываний сигнала в секунду
     Channel             lastAffectedChannel;        // Здесь хранится номер последнего канала, которым управляли ручками. Нужно для того, чтобы знать, какой сигнал рисовать наверху.
     ModeAccumulation    modeAccumulation;           // Задаёт режим накопления сигналов
     AltMarkers          altMarkers;                 // Режим отображения дополнительных боковых маркеров смещений
