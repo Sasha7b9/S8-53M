@@ -986,7 +986,7 @@ float Processing::GetCursT(Channel chan, float posCurU, int numCur)
     return 0;
 }
 
-void Processing::InterpolationSinX_X(uint8 data[FPGA_MAX_POINTS], TBase tBase)
+void Processing::InterpolationSinX_X(uint8 data[FPGA_MAX_POINTS], TBase::E tBase)
 {
 /*
      Последовательности x в sin(x)
@@ -1046,7 +1046,7 @@ void Processing::InterpolationSinX_X(uint8 data[FPGA_MAX_POINTS], TBase tBase)
             num++;
             float sinX = (part < delta - 1) ? std::sin(PI / delta * (part + 1)) : std::sin(PI / delta * (part - (delta - 1) * 2));
 
-            if (tBase > TBase_5ns)                 // Здесь используем более быструю, но более неправильную арифметику целвых чисел
+            if (tBase > TBase::_5ns)                 // Здесь используем более быструю, но более неправильную арифметику целвых чисел
             {
                 int sinXint = (int)(sinX * MUL_SIN);
                 int value = 0;

@@ -131,7 +131,7 @@ static const Page mspAccumulation
 
 static bool IsActive_Accumulation(void)
 {
-    return SET_TBASE > TBase_50ns;
+    return SET_TBASE > TBase::_50ns;
 }
 
 // ÄÈÑÏËÅÉ - ÍÀÊÎÏËÅÍÈÅ - Êîëè÷åñòâî -----------------------------------------------------------------------------------------------------------------
@@ -307,7 +307,7 @@ static const Choice mcMinMax =
 
 static bool IsActive_MinMax(void)
 {
-    return SET_TBASE > TBase_50ns;
+    return SET_TBASE > TBase::_50ns;
 }
 
 static void OnChanged_MinMax(bool)

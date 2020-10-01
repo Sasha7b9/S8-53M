@@ -62,7 +62,7 @@ struct SettingsTrig
 // ВременнЫе настройки
 struct SettingsTime
 {
-    TBase           tBase;                  // Масштаб по времени.
+    TBase::E        tBase;                  // Масштаб по времени.
     int16           tShiftRel;              // Смещение по времени
     FunctionTime::E timeDivXPos;
     TPos            tPos;

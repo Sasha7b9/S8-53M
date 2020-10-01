@@ -402,7 +402,7 @@ void FPGA::ReadRealMode(bool necessaryShift)
         }
 
         int shift = 0;
-        if (SET_TBASE == TBase_100ns || SET_TBASE == TBase_200ns)
+        if (SET_TBASE == TBase::_100ns || SET_TBASE == TBase::_200ns)
         {
             shift = CalculateShift();
         }
@@ -439,7 +439,7 @@ void FPGA::DataRead(bool necessaryShift, bool saveToStorage)
 {
     Panel::EnableLEDTrig(false);
     FPGA_IN_PROCESS_READ = 1;
-    if((TBase)ds.tBase < TBase_100ns)
+    if((TBase::E)ds.tBase < TBase::_100ns)
     {
         ReadRandomizeMode();
     } 
@@ -549,7 +549,7 @@ int FPGA::CalculateShift(void)            // \todo Не забыть восстановить функци
     uint16 min = 0;
     uint16 max = 0;
 
-    if (SET_TBASE == TBase_200ns)
+    if (SET_TBASE == TBase::_200ns)
     {
         return rand < 3000 ? 0 : -1;    // set.debug.altShift; \todo Остановились на жёстком задании дополнительного смещения. На PageDebug выбор 
                                         // закомментирован, можно раскомментировать при необходимости
@@ -572,7 +572,7 @@ int FPGA::CalculateShift(void)            // \todo Не забыть восстановить функци
         return retValue;
     }
 
-    if (SET_TBASE == TBase_100ns && rand < (min + max) / 2)
+    if (SET_TBASE == TBase::_100ns && rand < (min + max) / 2)
     {
         return 0;
     }
@@ -814,7 +814,7 @@ void FPGA::ClearData(void)
 
 bool FPGA::AllPointsRandomizer(void)
 {
-    if(SET_TBASE < TBase_100ns) 
+    if(SET_TBASE < TBase::_100ns) 
     {
         for(int i = 0; i < 281; i++) 
         {
@@ -885,33 +885,33 @@ uint8 FPGA::CalculateMaxWithout255(uint8 buffer[100])
 }
 
 
-TBase CalculateTBase(float freq_)
+TBase::E CalculateTBase(float freq_)
 {
-    if     (freq_ >= 100e6F)  { return TBase_2ns;   }
-    else if(freq_ >= 40e6F)   { return TBase_5ns;   }
-    else if(freq_ >= 20e6F)   { return TBase_10ns;  }
-    else if(freq_ >= 10e6F)   { return TBase_20ns;  }
-    else if(freq_ >= 3e6F)    { return TBase_50ns;  }
-    else if(freq_ >= 2e6F)    { return TBase_100ns; }
-    else if(freq_ >= 900e3F)  { return TBase_200ns; }
-    else if(freq_ >= 400e3F)  { return TBase_500ns; }
-    else if(freq_ >= 200e3F)  { return TBase_1us;   }
-    else if(freq_ >= 90e3F)   { return TBase_2us;   }
-    else if(freq_ >= 30e3F)   { return TBase_5us;   }
-    else if(freq_ >= 20e3F)   { return TBase_10us;  }
-    else if(freq_ >= 10e3F)   { return TBase_20us;  }
-    else if(freq_ >= 4e3F)    { return TBase_50us;  }
-    else if(freq_ >= 2e3F)    { return TBase_100us; }
-    else if(freq_ >= 1e3F)    { return TBase_200us; }
-    else if(freq_ >= 350.0F) { return TBase_500us; }
-    else if(freq_ >= 200.0F) { return TBase_1ms;   }
-    else if(freq_ >= 100.0F) { return TBase_2ms;   }
-    else if(freq_ >= 40.0F)  { return TBase_5ms;   }
-    else if(freq_ >= 20.0F)  { return TBase_10ms;  }
-    else if(freq_ >= 10.0F)  { return TBase_20ms;  }
-    else if(freq_ >= 4.0F)   { return TBase_50ms;  }
-    else if(freq_ >= 2.0F)   { return TBase_100ms; }
-    return TBase_200ms;
+    if     (freq_ >= 100e6F)  { return TBase::_2ns;   }
+    else if(freq_ >= 40e6F)   { return TBase::_5ns;   }
+    else if(freq_ >= 20e6F)   { return TBase::_10ns;  }
+    else if(freq_ >= 10e6F)   { return TBase::_20ns;  }
+    else if(freq_ >= 3e6F)    { return TBase::_50ns;  }
+    else if(freq_ >= 2e6F)    { return TBase::_100ns; }
+    else if(freq_ >= 900e3F)  { return TBase::_200ns; }
+    else if(freq_ >= 400e3F)  { return TBase::_500ns; }
+    else if(freq_ >= 200e3F)  { return TBase::_1us;   }
+    else if(freq_ >= 90e3F)   { return TBase::_2us;   }
+    else if(freq_ >= 30e3F)   { return TBase::_5us;   }
+    else if(freq_ >= 20e3F)   { return TBase::_10us;  }
+    else if(freq_ >= 10e3F)   { return TBase::_20us;  }
+    else if(freq_ >= 4e3F)    { return TBase::_50us;  }
+    else if(freq_ >= 2e3F)    { return TBase::_100us; }
+    else if(freq_ >= 1e3F)    { return TBase::_200us; }
+    else if(freq_ >= 350.0F) { return TBase::_500us; }
+    else if(freq_ >= 200.0F) { return TBase::_1ms;   }
+    else if(freq_ >= 100.0F) { return TBase::_2ms;   }
+    else if(freq_ >= 40.0F)  { return TBase::_5ms;   }
+    else if(freq_ >= 20.0F)  { return TBase::_10ms;  }
+    else if(freq_ >= 10.0F)  { return TBase::_20ms;  }
+    else if(freq_ >= 4.0F)   { return TBase::_50ms;  }
+    else if(freq_ >= 2.0F)   { return TBase::_100ms; }
+    return TBase::_200ms;
 }
 
 
@@ -952,8 +952,8 @@ bool FPGA::FindWave(Channel chan)
     if(range != RangeSize)
     {
         SET_RANGE(chan) = range;
-        TBase tBase = AccurateFindTBase(chan);
-        if (tBase != TBaseSize)
+        TBase::E tBase = AccurateFindTBase(chan);
+        if (tBase != TBase::Count)
         {
             SET_TBASE = tBase;
             TRIG_SOURCE = (TrigSource)chan;
@@ -984,7 +984,7 @@ Range FPGA::AccurateFindRange(Channel chan)
 
     uint8 buffer[100];  // Сюда будем считывать точки
 
-    SetTBase(TBase_50ms);
+    SetTBase(TBase::_50ms);
     FPGA::SetModeCouple(chan, ModeCouple_AC);
     PeackDetMode peackDetMode = PEAKDET;
     FPGA::SetPeackDetMode(PeackDet_Enable);
@@ -1059,23 +1059,23 @@ Range FPGA::AccurateFindRange(Channel chan)
 }
 
 
-TBase FPGA::AccurateFindTBase(Channel chan)
+TBase::E FPGA::AccurateFindTBase(Channel chan)
 {
     for (int i = 0; i < 5; i++)
     {
-        TBase tBase = FindTBase(chan);
-        TBase secondTBase = FindTBase(chan);
+        TBase::E tBase = FindTBase(chan);
+        TBase::E secondTBase = FindTBase(chan);
 
-        if (tBase == secondTBase && tBase != TBaseSize)
+        if (tBase == secondTBase && tBase != TBase::Count)
         {
             return tBase;
         }
     }
-    return TBaseSize;
+    return TBase::Count;
 }
 
 
-TBase FPGA::FindTBase(Channel)
+TBase::E FPGA::FindTBase(Channel)
 {
     SetTrigInput(TrigInput_Full);
     HAL_TIM2::Delay(10);
@@ -1086,7 +1086,7 @@ TBase FPGA::FindTBase(Channel)
 
     fr = CalculateFreqFromCounterFreq();
 
-    TBase tBase = TBaseSize;
+    TBase::E tBase = TBase::Count;
 
     if (fr >= 50.0f)
     {
@@ -1110,7 +1110,7 @@ TBase FPGA::FindTBase(Channel)
         }
     }
 
-    return TBaseSize;
+    return TBase::Count;
 }
 
 

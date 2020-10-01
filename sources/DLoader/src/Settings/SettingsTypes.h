@@ -253,40 +253,40 @@ struct FunctionTime { enum E
 }; };
 
 // Масштаб по времени
-enum TBase
+struct TBase { enum E
 {
-    TBase_2ns,
-    TBase_5ns,
-    TBase_10ns,
-    TBase_20ns,
-    TBase_50ns,
-    TBase_100ns,
-    TBase_200ns,
-    TBase_500ns,
-    TBase_1us, 
-    TBase_2us,
-    TBase_5us,
-    TBase_10us,
-    TBase_20us,
-    TBase_50us,
-    TBase_100us,
-    TBase_200us,
-    TBase_500us,
-    TBase_1ms,
-    TBase_2ms,
-    TBase_5ms,
-    TBase_10ms,
-    TBase_20ms,
-    TBase_50ms,
-    TBase_100ms,
-    TBase_200ms,
-    TBase_500ms,
-    TBase_1s,
-    TBase_2s,
-    TBase_5s,
-    TBase_10s,
-    TBaseSize
-};
+    _2ns,
+    _5ns,
+    _10ns,
+    _20ns,
+    _50ns,
+    _100ns,
+    _200ns,
+    _500ns,
+    _1us, 
+    _2us,
+    _5us,
+    _10us,
+    _20us,
+    _50us,
+    _100us,
+    _200us,
+    _500us,
+    _1ms,
+    _2ms,
+    _5ms,
+    _10ms,
+    _20ms,
+    _50ms,
+    _100ms,
+    _200ms,
+    _500ms,
+    _1s,
+    _2s,
+    _5s,
+    _10s,
+    Count
+}; };
 
 // Положение точки синхронизация на сигнале
 enum TPos

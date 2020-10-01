@@ -16,7 +16,7 @@ public:
     // Получить позицию курсора времени, соответствующую заданной позиции курсора напряжения posCurU.
     static float GetCursT(Channel chan, float posCurU, int numCur);
     // Аппроксимировать единичное измерение режима рандомизатора функцией sinX/X.
-    static void InterpolationSinX_X(uint8 data[FPGA_MAX_POINTS], TBase tBase);
+    static void InterpolationSinX_X(uint8 data[FPGA_MAX_POINTS], TBase::E tBase);
     // Возвращает строку автоматического измерения.
     static char* GetStringMeasure(Measure measure, Channel chan, char buffer[20]);
     // Расчитать все измерения.

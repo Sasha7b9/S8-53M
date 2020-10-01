@@ -65,7 +65,7 @@ public:
     // Уменьшить масштаб по напряжению.
     static bool RangeDecrease(Channel chan);
     // Установить масштаб по времени.
-    static void SetTBase(TBase tBase);
+    static void SetTBase(TBase::E tBase);
     // Уменьшить масштаб по времени.
     static void TBaseDecrease();
     // Увеличить масштаб по времени.
@@ -146,9 +146,9 @@ private:
 
     static Range AccurateFindRange(Channel chan);
 
-    static TBase FindTBase(Channel chan);
+    static TBase::E FindTBase(Channel chan);
 
-    static TBase AccurateFindTBase(Channel chan);
+    static TBase::E AccurateFindTBase(Channel chan);
 
     static bool FindWave(Channel chan);
 };

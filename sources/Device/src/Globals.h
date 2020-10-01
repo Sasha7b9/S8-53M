@@ -200,7 +200,7 @@ struct DataSettings
 
     uint        trigLevCh1      : 10;
     uint        length1channel  : 11;   // Сколько занимает в байтах длина измерения одного канала
-    TBase       tBase           : 5;    // Масштаб по времени
+    TBase::E    tBase           : 5;    // Масштаб по времени
     ModeCouple  modeCouple0     : 2;    // Режим канала по входу
     uint        peakDet         : 2;    // Включен ли пиковый детектор
     uint        enableCh0       : 1;    // Включён ли канал 0
