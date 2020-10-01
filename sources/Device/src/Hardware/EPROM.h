@@ -32,7 +32,7 @@ private:
     static RecordConfig *FirstEmptyRecord();
     static uint CalculatFreeMemory();
     static void CompactMemory();
-    static int CalculateSizeData(DataSettings *ds);
+    static int CalculateSizeData(const DataSettings *ds);
     static uint FindActualDataInfo();
     static uint FindAddressNextDataInfo();
     static uint FreeMemory();

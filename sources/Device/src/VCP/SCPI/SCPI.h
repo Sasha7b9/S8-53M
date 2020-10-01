@@ -61,7 +61,7 @@ public:
 private:
     static void ParseNewCommand(uint8 *buffer);   // \todo Временно. Потом доделать
     static void ProcessingCommand(const StructCommand *commands, uint8 *buffer);
-    static bool FirstIsInt(uint8 *buffer, int *value, int min, int max);
+    static bool FirstIsInt(const uint8 *buffer, int *value, int min, int max);
     static void ProcessDISPLAY(uint8 *buffer);
     static void ProcessCHANNEL(uint8 *buffer);
     static void ProcessTRIG(uint8 *buffer);

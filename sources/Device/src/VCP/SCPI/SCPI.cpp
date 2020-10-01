@@ -170,13 +170,13 @@ static int FindNumSymbolsInCommand(const uint8 *buffer)
 
 
 
-bool SCPI::FirstIsInt(uint8 *buffer, int *value, int min, int max)
+bool SCPI::FirstIsInt(const uint8 *buffer, int *value, int min, int max)
 {
     Word param;
     if (GetWord(buffer, &param, 0))
     {
-        char *n = (char *)std::malloc(static_cast<uint>(param.numSymbols + 1));
-        std::memcpy(n, param.address, static_cast<uint>(param.numSymbols));
+        char *n = reinterpret_cast<char *>(std::malloc(static_cast<uint>(param.numSymbols + 1)));
+        std::memcpy(n, param.address, static_cast<uint>(param.numSymbols)); //-V575
         n[param.numSymbols] = '\0';
         bool res = String2Int(n, value) && *value >= min && *value <= max;
         std::free(n);

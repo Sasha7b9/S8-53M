@@ -34,7 +34,7 @@ uint Timer::LogPointUS(char *name)
 {
     uint interval = gTimerTics - timePrevPoint;
     timePrevPoint = gTimerTics;
-    LOG_WRITE("%s %.2f us", name, static_cast<float>(interval) / 120.0f);
+    LOG_WRITE("%s %.2f us", name, static_cast<float>(interval) / 120.0F);
     return interval;
 }
 

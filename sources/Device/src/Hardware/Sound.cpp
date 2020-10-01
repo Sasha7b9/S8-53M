@@ -19,8 +19,8 @@ static void CalculateTriangle();
 
 static const int POINTS_IN_PERIOD = 10;
 static uint8 points[POINTS_IN_PERIOD] = {0};
-static float frequency = 0.0f;
-static float amplitude = 0.0f;
+static float frequency = 0.0F;
+static float amplitude = 0.0F;
 static TypeWave::E typeWave = TypeWave::Sine;
 
 
