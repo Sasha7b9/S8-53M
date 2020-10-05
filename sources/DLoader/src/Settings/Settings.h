@@ -114,8 +114,8 @@ struct SettingsMemory
     StructMemoryLast    strMemoryLast;
     ModeShowIntMem::E   modeShowIntMem;         // Какие сигналы показывать в режиме внутреннего ЗУ
     bool                flashAutoConnect;       // Если true, при подлючении флеш автоматически выводится NC (Нортон Коммандер)
-    ModeBtnMemory       modeBtnMemory;     
-    ModeSaveSignal      modeSaveSignal;         // В каком виде сохранять сигнал.
+    ModeBtnMemory::E    modeBtnMemory;     
+    ModeSaveSignal::E   modeSaveSignal;         // В каком виде сохранять сигнал.
 };
                                     
 struct SettingsMath

@@ -37,10 +37,10 @@
 #define FLASH_AUTOCONNECT           (set.memory.flashAutoConnect)                   // SettingsMemory.flashAutoConnect
 
 #define MODE_BTN_MEMORY             (set.memory.modeBtnMemory)                      // SettingsMemory.modeBtnMemory
-#define MODE_BTN_MEMORY_IS_SAVE     (MODE_BTN_MEMORY == ModeBtnMemory_Save)
+#define MODE_BTN_MEMORY_IS_SAVE     (MODE_BTN_MEMORY == ModeBtnMemory::Save)
 
 #define MODE_SAVE_SIGNAL            (set.memory.modeSaveSignal)                     // SettingsMemory.modeSaveSignal
-#define MODE_SAVE_SIGNAL_IS_BMP     (MODE_SAVE_SIGNAL == ModeSaveSignal_BMP)
+#define MODE_SAVE_SIGNAL_IS_BMP     (MODE_SAVE_SIGNAL == ModeSaveSignal::BMP)
 
 
 
@@ -70,20 +70,18 @@ struct ModeShowIntMem { enum E
 };};
 
 // Что делать при нажатии кнопки ПАМЯТЬ.
-enum ModeBtnMemory
+struct ModeBtnMemory { enum E
 {
-    ModeBtnMemory_Menu,     // Будет открывааться соответствующая страница меню.
-    ModeBtnMemory_Save      // Сохранение содержимого экрана на флешку.
-};
+    Menu,     // Будет открывааться соответствующая страница меню.
+    Save      // Сохранение содержимого экрана на флешку.
+};};
 
 // Как сохранять данные на флешку.
-enum ModeSaveSignal
+struct ModeSaveSignal { enum E
 {
-    ModeSaveSignal_BMP,     // Сохранять данные на флешку в формате .bmp.
-    ModeSaveSignal_TXT      // Сохранять данные на флешку в текствовом виде.
-};
-
-
+    BMP,     // Сохранять данные на флешку в формате .bmp.
+    TXT      // Сохранять данные на флешку в текствовом виде.
+};};
 
 
 struct StructMemoryLast
@@ -110,8 +108,8 @@ struct SettingsMemory
     StructMemoryLast    strMemoryLast;
     ModeShowIntMem::E   modeShowIntMem;                         // Какие сигналы показывать в режиме внутреннего ЗУ
     bool                flashAutoConnect;                       // Если true, при подлючении флеш автоматически выводится NC (Нортон Коммандер)
-    ModeBtnMemory       modeBtnMemory;
-    ModeSaveSignal      modeSaveSignal;                         // В каком виде сохранять сигнал.
+    ModeBtnMemory::E    modeBtnMemory;
+    ModeSaveSignal::E   modeSaveSignal;                         // В каком виде сохранять сигнал.
 };
 
 

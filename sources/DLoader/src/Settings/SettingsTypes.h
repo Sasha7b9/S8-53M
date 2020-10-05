@@ -353,11 +353,11 @@ struct ModeShowIntMem { enum E
 };};
 
 // Что делать при нажатии кнопки ПАМЯТЬ
-enum ModeBtnMemory
+struct ModeBtnMemory { enum E
 {
-    ModeBtnMemory_Menu,     // Будет открывааться соответствующая страница меню
-    ModeBtnMemory_Save      // Сохранение содержимого экрана на флешку
-};
+    Menu,       // Будет открывааться соответствующая страница меню
+    Save        // Сохранение содержимого экрана на флешку
+};};
 
 // Режим наименования файлов
 struct FileNamingMode { enum E
@@ -367,11 +367,11 @@ struct FileNamingMode { enum E
 };};
 
 // Как сохранять данные на флешку
-enum ModeSaveSignal
+struct ModeSaveSignal { enum E
 {
-    ModeSaveSignal_BMP,
-    ModeSaveSignal_TXT
-};
+    BMP,
+    TXT
+};};
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Measures
