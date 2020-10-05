@@ -1,21 +1,13 @@
 #pragma once
 
 
-/** @addtogroup Settings
- *  @{
- *  @defgroup SettingsMath
- *  @{
- */
-
-
-
 #define SCALE_FFT                   (set.math.scaleFFT)                 // SettingMath.scaleFFT
 #define SCALE_FFT_IS_LOG            (SCALE_FFT == ScaleFFT::Log)
 #define SCALE_FFT_IS_LINEAR         (SCALE_FFT == ScaleFFT::Linear)
 
 #define SOURCE_FFT                  (set.math.sourceFFT)                // SettingsMath.sourceFFT
-#define SOURCE_FFT_IS_A             (SOURCE_FFT == SourceFFT_A)
-#define SOURCE_FFT_IS_B             (SOURCE_FFT == SourceFFT_B)
+#define SOURCE_FFT_IS_A             (SOURCE_FFT == SourceFFT::A)
+#define SOURCE_FFT_IS_B             (SOURCE_FFT == SourceFFT::B)
 
 #define WINDOW_FFT                  (set.math.windowFFT)                // SettingsMath.windowFFT
 #define WINDOW_FFT_IS_HAMMING       (WINDOW_FFT == WindowFFT_Hamming)
@@ -59,12 +51,12 @@ struct ScaleFFT { enum E
 }; };
 
 // Источинк сигнала для отображения спектра.
-enum SourceFFT
+struct SourceFFT { enum E
 {
-    SourceFFT_A,            // Расчёт и отображение спектра первого канала.
-    SourceFFT_B,            // Расчёт и отображение спектра второго канала.
-    SourceFFT_Both          // Расчёт и отображение спектров обоих каналов.
-};
+    A,            // Расчёт и отображение спектра первого канала.
+    B,            // Расчёт и отображение спектра второго канала.
+    Both          // Расчёт и отображение спектров обоих каналов.
+};};
 
 // Вид окна для умножения сигнала перед расчётом спектра.
 enum WindowFFT
@@ -109,7 +101,7 @@ enum ModeRegSet
 struct SettingsMath
 {
     ScaleFFT::E     scaleFFT;       // Масштаб шкалы для отображения спектра.
-    SourceFFT       sourceFFT;      // Источник сигнала для расчёта и отображения спектра.
+    SourceFFT::E    sourceFFT;      // Источник сигнала для расчёта и отображения спектра.
     WindowFFT       windowFFT;      // Задаёт вид окна, на которое умножается сигнал перед расчётом спектра.
     FFTmaxDB        fftMaxDB;       // Минимальное значение на вертикальной координате графика спектра.
     Function        func;           // Включённая математическая функция.
@@ -126,7 +118,3 @@ struct SettingsMath
     Divider::E      multiplier;     // Множитель масштаба математического сигнала.
     int16           rShift;         // Смещение по вертикальной оси математического сигнала.
 };
-
-
-/** @}  @}
- */
