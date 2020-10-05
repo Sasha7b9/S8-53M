@@ -10,16 +10,13 @@ static Color::E currentColor = Color::Count;
 static int numberColorsUsed = 0;
 
 
-struct StateTransmit
+struct StateTransmit { enum E
 {
-    enum E
-    {
-        Free,
-        NeedForTransmitFirst,  // Это когда нужно передать первый кадр - передаются шрифты
-        NeedForTransmitSecond, // Это когда нужно передать второй и последующий кадры - шрифты не передаются
-        InProcess
-    };
-};
+    Free,
+    NeedForTransmitFirst,  // Это когда нужно передать первый кадр - передаются шрифты
+    NeedForTransmitSecond, // Это когда нужно передать второй и последующий кадры - шрифты не передаются
+    InProcess
+};};
 
 static StateTransmit::E stateTransmit = StateTransmit::Free;
 
