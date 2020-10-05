@@ -1,7 +1,7 @@
 #include "defines.h"
 #include "GUI/ConsoleSCPI.h"
 #include "GUI/ComPort.h"
-#include "SCPI/SCPI.h"
+//#include "SCPI/SCPI.h"
 #include "Utils/String.h"
 
 #pragma warning(push, 0)
@@ -122,7 +122,7 @@ void ConsoleSCPI::OnTextEnter(wxCommandEvent &)
     }
     else
     {
-        SCPI::AppendNewData(txt.c_str(), static_cast<int>(std::strlen(txt.c_str())));
+        //SCPI::AppendNewData(txt.c_str(), static_cast<int>(std::strlen(txt.c_str())));
     }
 
     line->Clear();

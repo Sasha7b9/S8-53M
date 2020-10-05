@@ -18,6 +18,8 @@ typedef unsigned    short   int uint16;
 typedef unsigned    int         uint;
 typedef unsigned long long int  uint64;
 typedef unsigned    char        uchar;
+typedef const char             *pCHAR;
+typedef const char       *const pString;
 
 
 // Тип цвета

@@ -2,6 +2,8 @@
 #include "GUI/Dialogs/Dialog.h"
 
 
+wxSize BUTTON_SIZE(120, 50);
+
 enum
 {
     ID_SPINCTRL_DONW,

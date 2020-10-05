@@ -39,6 +39,7 @@ add_compile_options(/wd4710)    # 'xxx': function not inlined
 add_compile_options(/wd4774)    # 'string' : format string expected in argument number is not a string literal
 add_compile_options(/wd4820)    # 'xxx': '4' bytes padding added after data member 'yyy'
 add_compile_options(/wd4996)    # 'xxx': This function or variable may be unsafe.
+add_compile_options(/wd5026)    # 'type': move assignment operator was implicitly defined as deleted
 add_compile_options(/wd5027)    # 'type': move assignment operator was implicitly defined as deleted
 add_compile_options(/wd5039)    # 'xxx': pointer or reference to potentially throwing function passed to extern C function under -EHc.
 add_compile_options(/wd5045)    # Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
@@ -56,7 +57,8 @@ file(GLOB LIBS_LWIP         ../../common/_VS_GUI/LwIP/*)
 file(GLOB LIBS_HAL          ../../common/_VS_GUI/HAL/*)
 file(GLOB LIBS_USBH         ../../common/_VS_GUI/USBH/*)
 file(GLOB DISPLAY           ../../Device/src/Display/*.h
-                            ../../Device/src/Display/*.cpp)
+                            ../../Device/src/Display/*.cpp
+                                         src/Display/Painter_win.cpp)
 file(GLOB DISPLAY_FONT      ../../Device/src/Display/font/*)
 file(GLOB ETHERNET          ../../Device/src/Ethernet/Ethernet.h
                                              Ethernet/Ethernet_win.cpp
@@ -88,15 +90,21 @@ file(GLOB MENU              ../../Device/src/Menu/*.h
 file(GLOB MENU_PAGES        ../../Device/src/Menu/Pages/*)
 file(GLOB PANEL             ../../Device/src/Panel/*)
 file(GLOB SETTINGS          ../../Device/src/Settings/*)
-file(GLOB SRC               src/main_win.cpp)
+file(GLOB SRC                            src/main_win.cpp
+                            ../../Device/src/defines.*
+                            ../../Device/src/device.*
+                            ../../Device/src/Globals.*
+                            ../../Device/src/Tables.*
+                            ../../common/Log.h
+                            ../../common/cLog.cpp)
 file(GLOB VCP               ../../Device/src/VCP/*.h
                             ../../Device/src/VCP/*.cpp)
 file(GLOB UTILS             ../../Device/src/Utils/*.h
                             ../../Device/src/Utils/*.cpp)
-file(GLOB GUI               src/GUI/*.h
-                            src/GUI/*.cpp
-                            src/GUI/*.c)
-file(GLOB GUI_DIALOGS       src/GUI/Dialogs/*)
+file(GLOB GUI                            src/GUI/*.h
+                                         src/GUI/*.cpp
+                                         src/GUI/*.c)
+file(GLOB GUI_DIALOGS                    src/GUI/Dialogs/*)
 
 set_source_files_properties(../../Device/src/Ethernet/Ethernet.cpp
                             ../../Device/src/Menu/Pages/PageHelp.cpp

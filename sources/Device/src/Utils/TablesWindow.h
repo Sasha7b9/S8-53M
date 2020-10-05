@@ -3608,7 +3608,7 @@ static const float koeffsBlack1024[1024] =
 
 static const float koeffsHann256[256] =
 {
-	0.0F,
+	0.0f,
 	0.0001517740058865069f,
 	0.0006070038821504586f,
 	0.0013654132605442904f,
@@ -3868,7 +3868,7 @@ static const float koeffsHann256[256] =
 
 static const float koeffsHann512[512] =
 {
-	0.0F,
+	0.0f,
 	3.779657598462771e-05f,
 	0.00015118058961399727f,
 	0.0003401348987780439f,
@@ -4384,7 +4384,7 @@ static const float koeffsHann512[512] =
 
 static const float koeffsHann1024[1024] =
 {
-	0.0F,
+	0.0f,
 	9.430768797002997e-06f,
 	3.7722719430310914e-05f,
 	8.487478464058729e-05f,
