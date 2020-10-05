@@ -95,7 +95,7 @@ static const Settings defaultSettings =
         StartMode::Auto,
         TrigSource::A,
         TrigPolarity::Front,
-        TrigInput_Full,
+        TrigInput::Full,
         {TrigLevZero, TrigLevZero, TrigLevZero},
         ModeLongPressTrig_Auto,
         TrigModeFind_Hand

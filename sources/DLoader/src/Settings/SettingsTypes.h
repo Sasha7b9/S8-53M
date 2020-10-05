@@ -197,13 +197,13 @@ struct TrigPolarity { enum E
 };};
 
 // Вход синхронизации
-enum TrigInput
+struct TrigInput { enum E
 {
-    TrigInput_Full,         // Полный сиганл
-    TrigInput_AC,           // Переменный
-    TrigInput_LPF,          // ФНЧ
-    TrigInput_HPF           // ФВЧ
-};
+    Full,         // Полный сиганл
+    AC,           // Переменный
+    LPF,          // ФНЧ
+    HPF           // ФВЧ
+};};
 
 enum TrigModeFind
 {

@@ -1077,12 +1077,12 @@ TBase::E FPGA::AccurateFindTBase(Channel::E chan)
 
 TBase::E FPGA::FindTBase(Channel::E)
 {
-    SetTrigInput(TrigInput_Full);
+    SetTrigInput(TrigInput::Full);
     HAL_TIM2::Delay(10);
     FPGA::Stop(false);
     float fr = CalculateFreqFromCounterFreq();
 
-    FPGA::SetTrigInput(fr < 1e6f ? TrigInput_LPF : TrigInput_Full);
+    FPGA::SetTrigInput(fr < 1e6f ? TrigInput::LPF : TrigInput::Full);
 
     fr = CalculateFreqFromCounterFreq();
 
@@ -1093,12 +1093,12 @@ TBase::E FPGA::FindTBase(Channel::E)
         tBase = CalculateTBase(fr);
         FPGA::SetTBase(tBase);
         FPGA::Start();
-        FPGA::SetTrigInput(fr < 500e3F ? TrigInput_LPF : TrigInput_HPF);
+        FPGA::SetTrigInput(fr < 500e3F ? TrigInput::LPF : TrigInput::HPF);
         return tBase;
     }
     else
     {
-        FPGA::SetTrigInput(TrigInput_LPF);
+        FPGA::SetTrigInput(TrigInput::LPF);
         freq = CalculateFreqFromCounterPeriod();
         if (fr > 0.0F)
         {

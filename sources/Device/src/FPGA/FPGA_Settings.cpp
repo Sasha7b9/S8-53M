@@ -516,7 +516,7 @@ void FPGA::LoadTrigPolarity(void)
 }
 
 
-void FPGA::SetTrigInput(TrigInput trigInput)
+void FPGA::SetTrigInput(TrigInput::E trigInput)
 {
     TRIG_INPUT = trigInput;
     SetAttribChannelsAndTrig(TypeWriteAnalog::TrigParam);
