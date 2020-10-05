@@ -32,21 +32,19 @@ struct Measure { enum E
     };
 
     static char GetChar(Measure::E measure);
+
+    static bool IsActive(int row, int col);
+
+    static void GetActive(int *row, int *col);
+
+    static void SetActive(int row, int col);
+
+    static int GetDY();
+
+    static int GetDX();
 };
 
 Measure::E& operator++(Measure::E &measure);
-
-
-
-bool Measure_IsActive(int row, int col); 
-
-void Measure_GetActive(int *row, int *col);
-
-void Measure_SetActive(int row, int col);
-
-int Measure_GetDY();
-
-int Measure_GetDX();
 
 const char* Measure_Name(int row, int col);
 

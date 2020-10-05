@@ -1854,8 +1854,8 @@ void Display::DrawMeasures()
     }
 
     int x0 = Grid::Left() - Measure_GetDeltaGridLeft();
-    int dX = Measure_GetDX();
-    int dY = Measure_GetDY();
+    int dX = Measure::GetDX();
+    int dY = Measure::GetDY();
     int y0 = Measure_GetTopTable();
 
     int numRows = Measure_NumRows();
@@ -1867,7 +1867,7 @@ void Display::DrawMeasures()
         {
             int x = x0 + dX * elem;
             int y = y0 + str * dY;
-            bool active = Measure_IsActive(str, elem) && Menu::GetNameOpenedPage() == NamePage::SB_MeasTuneMeas;
+            bool active = Measure::IsActive(str, elem) && Menu::GetNameOpenedPage() == NamePage::SB_MeasTuneMeas;
             Color::E color = active ? COLOR_BACK : COLOR_FILL;
             Measure::E meas = Measure_Type(str, elem);
             if(meas != Measure::None)

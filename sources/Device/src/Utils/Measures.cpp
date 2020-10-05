@@ -48,7 +48,7 @@ static const StructMeasure measures[Measure::Count] =
 static int8 posActive = 0;                  // ѕозици€ активного измерени€ (на котором курсор)
 static int8 posOnPageChoice = 0;            // ѕозици€ курсора на странице выбора измерени€
 
-bool Measure_IsActive(int row, int col)
+bool Measure::IsActive(int row, int col)
 {
     if(posActive >= Measure_NumCols() * Measure_NumRows())
     {
@@ -57,13 +57,13 @@ bool Measure_IsActive(int row, int col)
     return (row * Measure_NumCols() + col) == posActive;
 }
 
-void Measure_GetActive(int *row, int *col)
+void Measure::GetActive(int *row, int *col)
 {
     *row = posActive / Measure_NumCols();
     *col = posActive - (*row) * Measure_NumCols();
 }
 
-void Measure_SetActive(int row, int col)
+void Measure::SetActive(int row, int col)
 {
     posActive = static_cast<int8>(row * Measure_NumCols() + col);
 }
@@ -73,7 +73,7 @@ char Measure::GetChar(Measure::E measure)
     return measures[measure].UGO;
 }
 
-int Measure_GetDY()
+int Measure::GetDY()
 {
     if(MEAS_SOURCE_IS_A_B)
     {
@@ -82,7 +82,7 @@ int Measure_GetDY()
     return 21;
 }
 
-int Measure_GetDX()
+int Measure::GetDX()
 {
     return GRID_WIDTH / 5; 
 }
@@ -103,9 +103,9 @@ int Measure_GetTopTable()
 {
     if(MEAS_NUM_IS_6_2 || MEAS_NUM_IS_6_2)
     {
-        return GRID_BOTTOM - Measure_GetDY() * 6;
+        return GRID_BOTTOM - Measure::GetDY() * 6;
     }
-    return GRID_BOTTOM - Measure_NumRows() * Measure_GetDY();
+    return GRID_BOTTOM - Measure_NumRows() * Measure::GetDY();
 }
 
 int Measure_NumCols()
@@ -126,11 +126,11 @@ int Measure_GetDeltaGridLeft()
     {
         if(MEAS_NUM_IS_6_1)
         {
-            return Measure_GetDX();
+            return Measure::GetDX();
         }
         else if(MEAS_NUM_IS_6_2)
         {
-            return Measure_GetDX() * 2;
+            return Measure::GetDX() * 2;
         }
     }
     return 0;
@@ -142,15 +142,15 @@ int Measure_GetDeltaGridBottom()
     {
         if(MEAS_NUM_IS_1_5)
         {
-            return Measure_GetDY();
+            return Measure::GetDY();
         }
         else if(MEAS_NUM_IS_2_5)
         {
-            return Measure_GetDY() * 2;
+            return Measure::GetDY() * 2;
         }
         else if(MEAS_NUM_IS_3_5)
         {
-            return Measure_GetDY() * 3;
+            return Measure::GetDY() * 3;
         }
     }
     return 0;
@@ -184,7 +184,7 @@ void Measure_RotateRegSet(int angle)
     {
         int row = 0;
         int col = 0;
-        Measure_GetActive(&row, &col);
+        Measure::GetActive(&row, &col);
         col += Math_Sign(currentAngle);
         if (col < 0)
         {
@@ -204,7 +204,7 @@ void Measure_RotateRegSet(int angle)
                 row = 0;
             }
         }
-        Measure_SetActive(row, col);
+        Measure::SetActive(row, col);
         Sound::RegulatorSwitchRotate();
     }
     currentAngle = 0;
