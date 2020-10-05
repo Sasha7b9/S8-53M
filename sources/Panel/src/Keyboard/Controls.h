@@ -1,37 +1,35 @@
 #pragma once
 
 
-struct Key
+struct Key { enum E
 {
-    enum E
-    {
-        None,
-        F1,
-        F2,
-        F3,
-        F4,
-        _0,
-        _1,
-        _2,
-        _3,
-        _4,
-        _5,
-        _6,
-        _7,
-        _8,
-        _9,
-        Comma,
-        Minus,
-        Esc,
-        Left,
-        Right,
-        On1,
-        On2,
-        RotateLeft,
-        RotateRight,
-        RegButton,
-        Count
-    };
+    None,
+    F1,
+    F2,
+    F3,
+    F4,
+    _0,
+    _1,
+    _2,
+    _3,
+    _4,
+    _5,
+    _6,
+    _7,
+    _8,
+    _9,
+    Comma,
+    Minus,
+    Esc,
+    Left,
+    Right,
+    On1,
+    On2,
+    RotateLeft,
+    RotateRight,
+    RegButton,
+    Count
+};
 
     Key(E v) : value(v) { }
 
@@ -45,16 +43,13 @@ struct Key
 };
 
 
-struct Action
+struct Action { enum E
 {
-    enum E
-    {
-        Down,
-        Long,
-        Up,
-        Count
-    };
-};
+    Down,
+    Long,
+    Up,
+    Count
+};};
 
 
 struct Control

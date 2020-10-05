@@ -1,10 +1,4 @@
-
-
 #pragma once
-
-
-
-
 
 /** @addtogroup Settings
  *  @{
