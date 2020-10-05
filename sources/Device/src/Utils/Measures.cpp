@@ -68,7 +68,7 @@ void Measure_SetActive(int row, int col)
     posActive = static_cast<int8>(row * Measure_NumCols() + col);
 }
 
-char  Measure_GetChar(Measure::E measure)
+char Measure::GetChar(Measure::E measure)
 {
     return measures[measure].UGO;
 }
@@ -262,7 +262,7 @@ void Measure_DrawPageChoice()
             Painter::DrawRectangleC(x0, y0, dX, dY, COLOR_FILL);
             Painter::FillRegionC(x0 + 1, y0 + 1, dX - 2, dY - 2, active ? Color::FLASH_10 : COLOR_BACK);
             Painter::SetColor(active ? Color::FLASH_01 : COLOR_FILL);
-            Painter::Draw10SymbolsInRect(x0 + 2, y0 + 1, Measure_GetChar(meas));
+            Painter::Draw10SymbolsInRect(x0 + 2, y0 + 1, Measure::GetChar(meas));
             if(meas < Measure::Count)
             {
                 Painter::SetFont(TypeFont::_5);

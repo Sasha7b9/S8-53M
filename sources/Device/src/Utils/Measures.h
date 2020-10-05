@@ -4,36 +4,39 @@
 
 // Виды измерений.
 struct Measure { enum E
-{
-    None,
-    VoltageMax,
-    VoltageMin,
-    VoltagePic,
-    VoltageMaxSteady,
-    VoltageMinSteady,
-    VoltageAmpl,
-    VoltageAverage,
-    VoltageRMS,
-    VoltageVybrosPlus,
-    VoltageVybrosMinus,
-    Period,
-    Freq,
-    TimeNarastaniya,
-    TimeSpada,
-    DurationPlus,
-    DurationMinus,
-    SkvaznostPlus,
-    SkvaznostMinus,
-    DelayPlus,
-    DelayMinus,
-    PhazaPlus,
-    PhazaMinus,
-    Count
-};};
+    {
+        None,
+        VoltageMax,
+        VoltageMin,
+        VoltagePic,
+        VoltageMaxSteady,
+        VoltageMinSteady,
+        VoltageAmpl,
+        VoltageAverage,
+        VoltageRMS,
+        VoltageVybrosPlus,
+        VoltageVybrosMinus,
+        Period,
+        Freq,
+        TimeNarastaniya,
+        TimeSpada,
+        DurationPlus,
+        DurationMinus,
+        SkvaznostPlus,
+        SkvaznostMinus,
+        DelayPlus,
+        DelayMinus,
+        PhazaPlus,
+        PhazaMinus,
+        Count
+    };
+
+    static char GetChar(Measure::E measure);
+};
 
 Measure::E& operator++(Measure::E &measure);
 
-char Measure_GetChar(Measure::E measure);
+
 
 bool Measure_IsActive(int row, int col); 
 
