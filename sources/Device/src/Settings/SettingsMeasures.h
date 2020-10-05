@@ -27,7 +27,7 @@
 #define SHOW_MEASURES                   (set.measures.show)                             // SettingsMeasures.show
 
 #define MEAS_FIELD                      (set.measures.field)                            // SettingsMeaseres.field
-#define MEAS_FIELD_IS_HAND              (MEAS_FIELD == MeasuresField_Hand)
+#define MEAS_FIELD_IS_HAND              (MEAS_FIELD == MeasuresField::Hand)
 
 #define MEAS_POS_CUR_U(num)             (set.measures.posCurU[num])                     // SettingsMeasures.posCurU
 #define MEAS_POS_CUR_U0                 (MEAS_POS_CUR_U(0))
@@ -50,25 +50,22 @@
 // Количество и расположение на экране результатов измерений.
 struct MeasuresNumber { enum E
 {
-    _1,                       // 1 измерение слева внизу.
-    _2,                       // 2 измерения слева внизу.
-    _1_5,                     // 1 строка с 5 измерениями.
-    _2_5,                     // 2 строки по 5 измерений.
-    _3_5,                     // 3 строки по 5 измерений.
-    _6_1,                     // 6 строк по 1 измерению.
-    _6_2                      // 6 строк по 2 измерения.
+    _1,             // 1 измерение слева внизу.
+    _2,             // 2 измерения слева внизу.
+    _1_5,           // 1 строка с 5 измерениями.
+    _2_5,           // 2 строки по 5 измерений.
+    _3_5,           // 3 строки по 5 измерений.
+    _6_1,           // 6 строк по 1 измерению.
+    _6_2            // 6 строк по 2 измерения.
 };};
 
 // Зона, по которой считаются измрения
-enum MeasuresField
+struct MeasuresField { enum E
 {
-    MeasuresField_Screen,       // Измерения будут производиться по той части сингала, которая видна на экране.
-    MeasuresField_AllMemory,    // Измерения будут производиться по всему сигналу.
-    MeasuresField_Hand          // Измерения будут производиться по окну, задаваемому пользователем.
-};
-
-
-
+    Screen,         // Измерения будут производиться по той части сингала, которая видна на экране.
+    AllMemory,      // Измерения будут производиться по всему сигналу.
+    Hand            // Измерения будут производиться по окну, задаваемому пользователем.
+};};
 
 // Настройки меню ИЗМЕРЕНИЯ
 struct SettingsMeasures
@@ -78,9 +75,9 @@ struct SettingsMeasures
     ModeViewSignals   modeViewSignals;  // Сжимать ли сигналы при выводе измерений.
     Measure           measures[15];     // Выбранные для индикации измерения.
     bool              show;             // Показывать ли измерения.
-    MeasuresField     field;            // Задаёт область, из которой берутся значения для расчёта измерений.
-    int16             posCurU[2];       // Позиции курсоров, которые задают область, из которой берутся значения для расчёта измерений при field == MeasuresField_Hand.
-    int16             posCurT[2];       // Позиции курсоров, которые задают область, из которой берутся значения для расчёта измерений при field == MeasuresField_Hand.
+    MeasuresField::E  field;            // Задаёт область, из которой берутся значения для расчёта измерений.
+    int16             posCurU[2];       // Позиции курсоров, которые задают область, из которой берутся значения для расчёта измерений при field == MeasuresField::Hand.
+    int16             posCurT[2];       // Позиции курсоров, которые задают область, из которой берутся значения для расчёта измерений при field == MeasuresField::Hand.
     CursCntrl         cntrlU;           // Активные курсоры напряжения.
     CursCntrl         cntrlT;           // Активные курсоры времени.
     CursActive        cursActive;       // Какие курсоры активны - по времени или напряжению.

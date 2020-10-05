@@ -16,13 +16,13 @@
 #define ENUM_POINTS_IS_1024         (ENUM_POINTS == FNP_1024)
 
 #define MODE_WORK                   (set.memory.modeWork)                           // SettingsMemory.modeWork
-#define MODE_WORK_IS_DIRECT         (MODE_WORK == ModeWork_Direct)
-#define MODE_WORK_IS_LATEST         (MODE_WORK == ModeWork_Latest)
-#define MODE_WORK_IS_MEMINT         (MODE_WORK == ModeWork_MemInt)
+#define MODE_WORK_IS_DIRECT         (MODE_WORK == ModeWork::Direct)
+#define MODE_WORK_IS_LATEST         (MODE_WORK == ModeWork::Latest)
+#define MODE_WORK_IS_MEMINT         (MODE_WORK == ModeWork::MemInt)
 
 #define FILE_NAMING_MODE            (set.memory.fileNamingMode)                     // SettingsMemory.fileNamingMode
-#define FILE_NAMING_MODE_IS_MASK    (FILE_NAMING_MODE == FileNamingMode_Mask)
-#define FILE_NAMING_MODE_IS_HAND    (FILE_NAMING_MODE == FileNamingMode_Manually)
+#define FILE_NAMING_MODE_IS_MASK    (FILE_NAMING_MODE == FileNamingMode::Mask)
+#define FILE_NAMING_MODE_IS_HAND    (FILE_NAMING_MODE == FileNamingMode::Manually)
 
 #define FILE_NAME_MASK              (set.memory.fileNameMask)                       // SettingsMemory.fileNameMask
 
@@ -31,8 +31,8 @@
 #define INDEX_SYMBOL                (set.memory.indexCurSymbolNameMask)             // SettingsMemory.indexCurSymbolNameMask
 
 #define MODE_SHOW_MEMINT            (set.memory.modeShowIntMem)                     // SettingsMemory.modeShowIntMem
-#define MODE_SHOW_MEMINT_IS_SAVED   (MODE_SHOW_MEMINT == ModeShowIntMem_Saved)
-#define MODE_SHOW_MEMINT_IS_DIRECT  (MODE_SHOW_MEMINT == ModeShowIntMem_Direct)
+#define MODE_SHOW_MEMINT_IS_SAVED   (MODE_SHOW_MEMINT == ModeShowIntMem::Saved)
+#define MODE_SHOW_MEMINT_IS_DIRECT  (MODE_SHOW_MEMINT == ModeShowIntMem::Direct)
 
 #define FLASH_AUTOCONNECT           (set.memory.flashAutoConnect)                   // SettingsMemory.flashAutoConnect
 
@@ -46,28 +46,28 @@
 
 
 // Режим работы.
-enum ModeWork
+struct ModeWork { enum E
 {
-    ModeWork_Direct,        // Основной режим.
-    ModeWork_Latest,        // В этом режиме можно просмотреть последние сохранённые измерения.
-    ModeWork_MemInt,        // В этом режиме можно сохранять во flash-памяти измерения просматривать ранее сохранённые.
-};
+    Direct,        // Основной режим.
+    Latest,        // В этом режиме можно просмотреть последние сохранённые измерения.
+    MemInt,        // В этом режиме можно сохранять во flash-памяти измерения просматривать ранее сохранённые.
+};};
 
 
 // Режим наименования файлов.
-enum FileNamingMode
+struct FileNamingMode { enum E
 {
-    FileNamingMode_Mask,        // Именовать по маске.
-    FileNamingMode_Manually     // Именовать вручную.
-};
+    Mask,        // Именовать по маске.
+    Manually     // Именовать вручную.
+};};
 
 // Что показывать в режиме Внутр ЗУ - считанный или записанный сигнал.
-enum ModeShowIntMem
+struct ModeShowIntMem { enum E
 {
-    ModeShowIntMem_Direct,  // Показывать данные реального времени.
-    ModeShowIntMem_Saved,   // Показывать сохранённые данные.
-    ModeShowIntMem_Both     // Показывать данные реального времени и сохранённые данные.
-};
+    Direct,  // Показывать данные реального времени.
+    Saved,   // Показывать сохранённые данные.
+    Both     // Показывать данные реального времени и сохранённые данные.
+};};
 
 // Что делать при нажатии кнопки ПАМЯТЬ.
 enum ModeBtnMemory
@@ -96,8 +96,8 @@ struct SettingsMemory
 {
 #define MAX_SYMBOLS_IN_FILE_NAME 35
     ENUM_POINTS_FPGA    fpgaNumPoints;                          // Число точек.
-    ModeWork            modeWork;                               // Режим работы.
-    FileNamingMode      fileNamingMode;                         // Режим именования файлов.
+    ModeWork::E         modeWork;                               // Режим работы.
+    FileNamingMode::E   fileNamingMode;                         // Режим именования файлов.
     char                fileNameMask[MAX_SYMBOLS_IN_FILE_NAME]; // Здесь маска для автоматического именования файлов\n
          // Правила именования.\n
          // %y('\x42') - год, %m('\x43') - месяц, %d('\x44') - день, %H('\x45') - часы, %M('\x46') - минуты, %S('\x47') - секунды\n
@@ -108,7 +108,7 @@ struct SettingsMemory
     char                fileName[MAX_SYMBOLS_IN_FILE_NAME];     // Имя файла для режима ручного задания
     int8                indexCurSymbolNameMask;                 // Индекс текущего символа в режиме задания маски или выбора имени.
     StructMemoryLast    strMemoryLast;
-    ModeShowIntMem      modeShowIntMem;                         // Какие сигналы показывать в режиме внутреннего ЗУ
+    ModeShowIntMem::E   modeShowIntMem;                         // Какие сигналы показывать в режиме внутреннего ЗУ
     bool                flashAutoConnect;                       // Если true, при подлючении флеш автоматически выводится NC (Нортон Коммандер)
     ModeBtnMemory       modeBtnMemory;
     ModeSaveSignal      modeSaveSignal;                         // В каком виде сохранять сигнал.

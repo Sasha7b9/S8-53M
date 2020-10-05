@@ -226,7 +226,7 @@ const SmallButton sbMemLastNext
 void PressSB_MemLast_IntEnter()
 {
     Menu::OpenPageAndSetItCurrent(PageMemory::Internal::GetPointer());
-    MODE_WORK = ModeWork_MemInt;
+    MODE_WORK = ModeWork::MemInt;
     EPROM::GetData(CURRENT_NUM_INT_SIGNAL, &gDSmemInt, &gData0memInt, &gData1memInt);
     EXIT_FROM_INT_TO_LAST = 1;
 }
@@ -722,17 +722,17 @@ static void DrawSB_MemInt_ModeShow_Both(int x, int y)
 
 static void DrawSB_MemInt_ModeShow(int x, int y)
 {
-    ModeShowIntMem mode = MODE_SHOW_MEMINT;
+    ModeShowIntMem::E mode = MODE_SHOW_MEMINT;
 
-    if (mode == ModeShowIntMem_Direct)
+    if (mode == ModeShowIntMem::Direct)
     {
         DrawSB_MemInt_ModeShow_Direct(x, y);
     }
-    else if (mode == ModeShowIntMem_Saved)
+    else if (mode == ModeShowIntMem::Saved)
     {
         DrawSB_MemInt_ModeShow_Saved(x, y);
     }
-    else if (mode == ModeShowIntMem_Both)
+    else if (mode == ModeShowIntMem::Both)
     {
         DrawSB_MemInt_ModeShow_Both(x, y);
     }
@@ -811,13 +811,13 @@ void PressSB_MemInt_Exit()
     if (EXIT_FROM_INT_TO_LAST)
     {
         Menu::OpenPageAndSetItCurrent(PageMemory::Latest::GetPointer());
-        MODE_WORK = ModeWork_Latest;
+        MODE_WORK = ModeWork::Latest;
         EXIT_FROM_INT_TO_LAST = 0;
         NEED_CLOSE_PAGE_SB = 0;
     }
     else
     {
-        MODE_WORK = ModeWork_Direct;
+        MODE_WORK = ModeWork::Direct;
         Menu::ShortPressOnPageItem(Menu::PagePointerFromName(NamePage::SB_MemInt), 0);
     }
 }
@@ -1125,7 +1125,7 @@ void Memory_SaveSignalToFlashDrive()
 
 static void PressSB_MemLast_Exit()
 {
-    MODE_WORK = ModeWork_Direct;
+    MODE_WORK = ModeWork::Direct;
     if (RUN_FPGA_AFTER_SMALL_BUTTONS)
     {
         FPGA::Start();
@@ -1140,7 +1140,7 @@ void OnPressMemoryLatest()
     CURRENT_NUM_LATEST_SIGNAL = 0;
     RUN_FPGA_AFTER_SMALL_BUTTONS = FPGA::IsRunning() ? 1U : 0U;
     FPGA::Stop(false);
-    MODE_WORK = ModeWork_Latest;
+    MODE_WORK = ModeWork::Latest;
 }
 
 static const SmallButton sbExitMemLast
@@ -1283,7 +1283,7 @@ static const Page mspMemoryExt
 void OnPressMemoryInt()
 {
     Menu::OpenPageAndSetItCurrent(PageMemory::Internal::GetPointer());
-    MODE_WORK = ModeWork_MemInt;
+    MODE_WORK = ModeWork::MemInt;
     EPROM::GetData(CURRENT_NUM_INT_SIGNAL, &gDSmemInt, &gData0memInt, &gData1memInt);
 }
 

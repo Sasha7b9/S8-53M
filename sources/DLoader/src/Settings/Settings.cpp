@@ -81,15 +81,15 @@ static const Settings defaultSettings =
     // memory
     {
         FNP_1024,
-        ModeWork_Direct,
-        FileNamingMode_Mask,
+        ModeWork::Direct,
+        FileNamingMode::Mask,
         "Signal_\x07\x03",      // \x07 - означает, что здесь должен быть очередной номер, \x03 - минимум на три знакоместа
         "Signal01",
         0,
         {
             false
         },
-        ModeShowIntMem_Both,    // modeShowIntMem
+        ModeShowIntMem::Both,    // modeShowIntMem
         false,                  // flashAutoConnect
         ModeBtnMemory_Menu,
         ModeSaveSignal_BMP

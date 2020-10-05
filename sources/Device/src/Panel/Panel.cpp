@@ -234,7 +234,7 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
     else if(regLeft)
     {
         /*
-        if (set.memory.modeWork == ModeWork_Direct || regLeft == Regulator::Set || regLeft == R_TShift)
+        if (set.memory.modeWork == ModeWork::Direct || regLeft == Regulator::Set || regLeft == R_TShift)
         {
         */
             funculatorLeft[regLeft]();
@@ -243,7 +243,7 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
     else if(regRight)
     {
         /*
-        if (set.memory.modeWork == ModeWork_Direct || regRight == Regulator::Set || regRight == R_TShift)
+        if (set.memory.modeWork == ModeWork::Direct || regRight == Regulator::Set || regRight == R_TShift)
         {
         */
             funculatorRight[regRight]();

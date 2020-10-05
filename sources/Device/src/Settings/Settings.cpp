@@ -129,15 +129,15 @@ static const Settings defaultSettings =
     // memory
     {
         FNP_1024,
-        ModeWork_Direct,
-        FileNamingMode_Mask,
+        ModeWork::Direct,
+        FileNamingMode::Mask,
         "Signal_\x07\x03",      // \x07 - означает, что здесь должен быть очередной номер, \x03 - минимум на три знакоместа
         "Signal01",
         0,
         {
             false
         },
-        ModeShowIntMem_Both,    // modeShowIntMem
+        ModeShowIntMem::Both,    // modeShowIntMem
         false,                  // flashAutoConnect
         ModeBtnMemory_Menu,
         ModeSaveSignal_BMP
@@ -153,7 +153,7 @@ static const Settings defaultSettings =
             Measure_Period,         Measure_Freq,           Measure_TimeNarastaniya,    Measure_TimeSpada,          Measure_DurationPlus
         },
         false,                      // show
-        MeasuresField_Screen,       // брать для измерений значения, видимые на экране
+        MeasuresField::Screen,      // брать для измерений значения, видимые на экране
         //{0, 200},                 // начальные значения курсоров напряжения для зоны измерений
         //{372, 652},               // начальные значения курсоров времени для зоны измерений
         {50, 150},                  // начальные значения курсоров напряжения для зоны измерений
