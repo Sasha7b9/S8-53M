@@ -101,19 +101,11 @@ struct ENumSignalsInSec { enum E
     _1
 }; };
 
-// Режим отображения пропущенных сигналов при ограничении частоты кадров.
-enum MissedSignals
+struct ModeAccumulation { enum E
 {
-    Missed_Hide,    // Не выводить на экран
-    Missed_Show,    // Выводить на экран
-    Missed_Average  // Устреднять и выводить на экран
-};
-
-enum ModeAccumulation
-{
-    ModeAccumulation_NoReset,   // В этом режиме показываются строго N последних
-    ModeAccumulation_Reset      // В этом режиме набираются N последних и потом сбрасываются
-};
+    NoReset,   // В этом режиме показываются строго N последних
+    Reset      // В этом режиме набираются N последних и потом сбрасываются
+};};
 
 // Режим отображения дополнительных боковых маркеров смещения по напряжению 
 enum AltMarkers
