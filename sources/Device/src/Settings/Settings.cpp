@@ -148,7 +148,7 @@ static const Settings defaultSettings =
         Channel::A_B,               // source
         ModeViewSignals::AsIs,      // mode view signal
         {
-            Measure_VoltageMax,     Measure_VoltageMin,     Measure_VoltagePic,         Measure_VoltageMaxSteady,   Measure_VoltageMinSteady,
+            Measure::VoltageMax,     Measure::VoltageMin,     Measure_VoltagePic,         Measure_VoltageMaxSteady,   Measure_VoltageMinSteady,
             Measure_VoltageAverage, Measure_VoltageAmpl,    Measure_VoltageRMS,         Measure_VoltageVybrosPlus,  Measure_VoltageVybrosMinus,
             Measure_Period,         Measure_Freq,           Measure_TimeNarastaniya,    Measure_TimeSpada,          Measure_DurationPlus
         },
@@ -161,7 +161,7 @@ static const Settings defaultSettings =
         CursCntrl::_1,              // ”правл€ем первым курсором напр€жени€
         CursCntrl::_1,              // ”правл€ем первым курсором времени
         CursActive::T,              // јктивны курсоры времени.
-        Measure_None                // marked Measure
+        Measure::None                // marked Measure
     },
     // math
     {

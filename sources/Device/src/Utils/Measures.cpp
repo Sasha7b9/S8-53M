@@ -18,7 +18,7 @@ struct StructMeasure
     const char UGO;
 };
 
-static const StructMeasure measures[Measure_NumMeasures] =
+static const StructMeasure measures[Measure::Count] =
 {
     {"",            '\x00'},
     {"U макс",      '\x20'},
@@ -68,7 +68,7 @@ void Measure_SetActive(int row, int col)
     posActive = static_cast<int8>(row * Measure_NumCols() + col);
 }
 
-char  Measure_GetChar(Measure measure)
+char  Measure_GetChar(Measure::E measure)
 {
     return measures[measure].UGO;
 }
@@ -171,9 +171,9 @@ void Measure_RotateRegSet(int angle)
         Sound::RegulatorSwitchRotate();
         if (posOnPageChoice < 0)
         {
-            posOnPageChoice = Measure_NumMeasures - 1;
+            posOnPageChoice = Measure::Count - 1;
         }
-        else if (posOnPageChoice == Measure_NumMeasures)
+        else if (posOnPageChoice == Measure::Count)
         {
             posOnPageChoice = 0;
         }
@@ -223,7 +223,7 @@ void Measure_ShortPressOnSmallButonMarker()
 {
     if(MEASURE_IS_MARKED(posActive))
     {
-        MEAS_MARKED = Measure_None;
+        MEAS_MARKED = Measure::None;
     }
     else
     {
@@ -246,13 +246,13 @@ void Measure_DrawPageChoice()
     int dY = 22;
     int maxRow = num61or62 ? 8 : 5;
     int maxCol = num61or62 ? 3 : 5;
-    Measure meas = Measure_None;
+    Measure meas = Measure::None;
     Painter::SetFont(TypeFont::_UGO);
     for(int row = 0; row < maxRow; row++)
     {
         for(int col = 0; col < maxCol; col++)
         {
-            if(meas >= Measure_NumMeasures)
+            if(meas >= Measure::Count)
             {
                 break;
             }
@@ -263,7 +263,7 @@ void Measure_DrawPageChoice()
             Painter::FillRegionC(x0 + 1, y0 + 1, dX - 2, dY - 2, active ? Color::FLASH_10 : COLOR_BACK);
             Painter::SetColor(active ? Color::FLASH_01 : COLOR_FILL);
             Painter::Draw10SymbolsInRect(x0 + 2, y0 + 1, Measure_GetChar(meas));
-            if(meas < Measure_NumMeasures)
+            if(meas < Measure::Count)
             {
                 Painter::SetFont(TypeFont::_5);
                 Painter::DrawTextRelativelyRightC(x0 + dX, y0 + 12, measures[meas].name, active ? Color::FLASH_01 : COLOR_FILL);

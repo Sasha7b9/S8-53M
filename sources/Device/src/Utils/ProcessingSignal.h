@@ -18,7 +18,7 @@ public:
     // Аппроксимировать единичное измерение режима рандомизатора функцией sinX/X.
     static void InterpolationSinX_X(uint8 data[FPGA_MAX_POINTS], TBase::E tBase);
     // Возвращает строку автоматического измерения.
-    static char* GetStringMeasure(Measure measure, Channel::E chan, char buffer[20]);
+    static char* GetStringMeasure(Measure::E measure, Channel::E chan, char buffer[20]);
     // Расчитать все измерения.
     static void CalculateMeasures();
     // Возвращает значение горизонтального маркера. Если ERROR_VALUE_INT - маркер рисовать не нужно.
@@ -78,5 +78,5 @@ private:
         bool        showSign;
     };
 
-    static const MeasureCalculate measures[Measure_NumMeasures];
+    static const MeasureCalculate measures[Measure::Count];
 };

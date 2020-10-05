@@ -25,7 +25,7 @@ static int firstP = 0;
 static int lastP = 0;
 static int numP = 0;
 
-const Processing::MeasureCalculate Processing::measures[Measure_NumMeasures] =
+const Processing::MeasureCalculate Processing::measures[Measure::Count] =
 {
     {0, 0},
     {"CalculateVoltageMax",         CalculateVoltageMax,           Voltage2String, true},
@@ -52,7 +52,7 @@ const Processing::MeasureCalculate Processing::measures[Measure_NumMeasures] =
     {"CalculatePhazaMinus",         CalculatePhazaMinus,           Phase2String, false}
 };
 
-static MeasureValue values[Measure_NumMeasures] = {{0.0F, 0.0F}};
+static MeasureValue values[Measure::Count] = {{0.0F, 0.0F}};
 
 static int markerHor[NumChannels][2] = {{ERROR_VALUE_INT}, {ERROR_VALUE_INT}};
 static int markerVert[NumChannels][2] = {{ERROR_VALUE_INT}, {ERROR_VALUE_INT}};
@@ -119,7 +119,7 @@ float Processing::CalculateVoltageMax(Channel::E chan)
     float max = CalculateMaxRel(chan);
     
     EXIT_IF_ERROR_FLOAT(max);
-    if(MEAS_MARKED == Measure_VoltageMax)
+    if(MEAS_MARKED == Measure::VoltageMax)
     {
         markerHor[chan][0] = static_cast<int>(max);                           // Здесь не округляем, потому что max может быть только целым
     }
@@ -131,7 +131,7 @@ float Processing::CalculateVoltageMin(Channel::E chan)
 {
     float min = CalculateMinRel(chan);
     EXIT_IF_ERROR_FLOAT(min);
-    if(MEAS_MARKED == Measure_VoltageMin)
+    if(MEAS_MARKED == Measure::VoltageMin)
     {
         markerHor[chan][0] = static_cast<int>(min);                           // Здесь не округляем, потому что min может быть только целым
     }
@@ -1084,7 +1084,7 @@ void Processing::InterpolationSinX_X(uint8 data[FPGA_MAX_POINTS], TBase::E tBase
     }
 }
 
-char* Processing::GetStringMeasure(Measure measure, Channel::E chan, char buffer[20])
+char* Processing::GetStringMeasure(Measure::E measure, Channel::E chan, char buffer[20])
 {
     if (!SET_ENABLED(chan))
     {

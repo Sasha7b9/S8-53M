@@ -9,11 +9,11 @@
 
 
 
-enum StateProcessing
+struct StateProcessing { enum E
 {
     WAIT,
     SAVE_SYMBOLS
-};
+};};
 
 static int FindNumSymbolsInCommand(const uint8 *buffer);
 

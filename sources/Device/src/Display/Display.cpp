@@ -1869,8 +1869,8 @@ void Display::DrawMeasures()
             int y = y0 + str * dY;
             bool active = Measure_IsActive(str, elem) && Menu::GetNameOpenedPage() == NamePage::SB_MeasTuneMeas;
             Color::E color = active ? COLOR_BACK : COLOR_FILL;
-            Measure meas = Measure_Type(str, elem);
-            if(meas != Measure_None)
+            Measure::E meas = Measure_Type(str, elem);
+            if(meas != Measure::None)
             {
                 Painter::FillRegionC(x, y, dX, dY, COLOR_BACK);
                 Painter::DrawRectangleC(x, y, dX, dY, COLOR_FILL);
@@ -1880,7 +1880,7 @@ void Display::DrawMeasures()
             {
                 Painter::FillRegionC(x + 2, y + 2, dX - 4, dY - 4, COLOR_FILL);
             }
-            if(meas != Measure_None)
+            if(meas != Measure::None)
             {
                 char buffer[20];
                 Painter::DrawTextC(x + 4, y + 2, Measure_Name(str, elem), color);
