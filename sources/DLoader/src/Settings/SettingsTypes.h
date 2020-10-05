@@ -433,13 +433,13 @@ enum SourceFFT
     SourceFFT_Both
 };
 
-enum WindowFFT
+struct WindowFFT { enum E
 {
-    WindowFFT_Rectangle,
-    WindowFFT_Hamming,
-    WindowFFT_Blackman,
-    WindowFFT_Hann
-};
+    Rectangle,
+    Hamming,
+    Blackman,
+    Hann
+};};
 
 enum FFTmaxDB
 {

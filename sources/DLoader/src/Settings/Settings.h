@@ -122,7 +122,7 @@ struct SettingsMath
 {
     ScaleFFT::E     scaleFFT;
     SourceFFT       sourceFFT;
-    WindowFFT       windowFFT;
+    WindowFFT::E    windowFFT;
     FFTmaxDB        fftMaxDB;
     Function        func;
     uint8           currentCursor;          // Определяет, каким курсором спектра управляет ручка УСТАНОВКА
