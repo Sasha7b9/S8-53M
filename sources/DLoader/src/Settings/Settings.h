@@ -23,7 +23,7 @@ struct SettingsDisplay
     ENumSignalsInSec::E enumSignalsInSec;           // Число считываний сигнала в секунду
     Channel             lastAffectedChannel;        // Здесь хранится номер последнего канала, которым управляли ручками. Нужно для того, чтобы знать, какой сигнал рисовать наверху.
     ModeAccumulation::E modeAccumulation;           // Задаёт режим накопления сигналов
-    AltMarkers          altMarkers;                 // Режим отображения дополнительных боковых маркеров смещений
+    AltMarkers::E       altMarkers;                 // Режим отображения дополнительных боковых маркеров смещений
     MenuAutoHide        menuAutoHide;               // Через сколько времени после последнего нажатия клавиши прятать меню 
     bool                showFullMemoryWindow;       // Показывать ли окно памяти вверху экрана.
     bool                showStringNavigation;       // Показывать ли строку текущего состояния меню.

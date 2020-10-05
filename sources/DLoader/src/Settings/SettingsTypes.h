@@ -108,12 +108,12 @@ struct ModeAccumulation { enum E
 };};
 
 // Режим отображения дополнительных боковых маркеров смещения по напряжению 
-enum AltMarkers
+struct AltMarkers { enum E
 {
-    AM_Hide,        // Никода не выводить
-    AM_Show,        // Всегда выводить
-    AM_AutoHide     // Выводить и прятать через timeShowLevels
-};
+    Hide,        // Никода не выводить
+    Show,        // Всегда выводить
+    AutoHide     // Выводить и прятать через timeShowLevels
+};};
 
 // Через какое время после последнего нажатия кнопки скрывать меню
 enum MenuAutoHide
