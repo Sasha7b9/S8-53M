@@ -58,7 +58,7 @@ static const Settings defaultSettings =
         0,                          // set.time.tShiftRel
         FunctionTime::Time,
         TPos::Center,
-        SampleType_Equal,
+        SampleType::Equal,
         PeackDetMode::Disable,
         false,
         FNP_1024

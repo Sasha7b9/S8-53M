@@ -51,7 +51,7 @@ struct SettingsTime
     int16           tShiftRel;              // Смещение по времени
     FunctionTime::E timeDivXPos;
     TPos::E         tPos;
-    SampleType      sampleType;
+    SampleType::E   sampleType;
     PeackDetMode::E peakDet;
     bool            selfRecorder;           // Включен ли режим самописца.
     FPGA_NUM_POINTS oldNumPoints;           // Когда переключаемся в режим пикового детектора, устанавливаем количество точек в 1024, а сюда записываем то, что было, чтобы потом восстановить

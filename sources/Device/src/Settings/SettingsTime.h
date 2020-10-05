@@ -26,8 +26,8 @@
 #define SET_TPOS_IS_RIGHT                   (SET_TPOS == TPos::Right)
 
 #define SAMPLE_TYPE                         (set.time.sampleType)   // SettingsTime.sampleType
-#define SAMPLE_TYPE_IS_EQUAL                (SAMPLE_TYPE == SampleType_Equal)
-#define SAMPLE_TYPE_IS_REAL                 (SAMPLE_TYPE == SampleType_Real)
+#define SAMPLE_TYPE_IS_EQUAL                (SAMPLE_TYPE == SampleType::Equal)
+#define SAMPLE_TYPE_IS_REAL                 (SAMPLE_TYPE == SampleType::Real)
 
 #define PEAKDET                             (set.time.peakDet)      // SettingsTime.peakDet
 #define PEAKDET_IS_DISABLE                  (PEAKDET == PeackDetMode::Disable)
@@ -52,13 +52,6 @@ struct TPos { enum E
     Center,    // Синхронизация привязана к центру памяти.
     Right      // Синхронизация привязана к концу памяти.
 };};
-
-// Тип выборки для режима рандомизатора.
-enum SampleType
-{
-    SampleType_Real,   // реальное время - в построении участвуют только реально считанные точки, ничего не рассчитывается.
-    SampleType_Equal   // эквивалентная - сигнал строится по последним точкам, полученным от рандомизатора.
-};
 
 // Режим работы пикового детектора.
 struct PeackDetMode { enum E
@@ -85,7 +78,7 @@ struct SettingsTime
     int16               tShiftRel;      // Смещение по времени.
     FunctionTime::E     timeDivXPos;
     TPos::E             tPos;           // Привязка синхронизации к памяти.
-    SampleType          sampleType;     // Тип выборки для режима рандомизатора.
+    SampleType::E       sampleType;     // Тип выборки для режима рандомизатора.
     PeackDetMode::E     peakDet;        // Режим работы пикового детектора
     bool                selfRecorder;   // Включен ли режим самописца.
     ENUM_POINTS_FPGA    oldNumPoints;   // \brief Когда переключаемся в режим пикового детектора, устанавливаем количество точек в 1024, а сюда 
