@@ -1310,8 +1310,8 @@ void Display::WriteValueTrigLevel()
     if (SHOW_LEVEL_TRIGLEV && MODE_WORK_IS_DIRECT)
     {
         float trigLev = RSHIFT_2_ABS(TRIG_LEVEL_SOURCE, SET_RANGE(TRIG_SOURCE));     // WARN Здесь для внешней синхронизации неправильно рассчитывается уровень.
-        TrigSource trigSource = TRIG_SOURCE;
-        if (TRIG_INPUT_IS_AC && trigSource <= TrigSource_ChannelB)
+        TrigSource::E trigSource = TRIG_SOURCE;
+        if (TRIG_INPUT_IS_AC && trigSource <= TrigSource::B)
         {
             int16 rShift = SET_RSHIFT(trigSource);
             float rShiftAbs = RSHIFT_2_ABS(rShift, SET_RANGE(trigSource));
@@ -1599,17 +1599,17 @@ void Display::DrawCursorsWindow()
 
 void Display::DrawCursorTrigLevel()
 {
-    TrigSource chan = TRIG_SOURCE;
-    if (chan == TrigSource_Ext)
+    TrigSource::E chan = TRIG_SOURCE;
+    if (chan == TrigSource::Ext)
     {
         return;
     }
-    int trigLev = TRIG_LEVEL(chan) + ((chan == TrigSource_Ext) ? 0 : SET_RSHIFT(chan) - RShiftZero);
+    int trigLev = TRIG_LEVEL(chan) + ((chan == TrigSource::Ext) ? 0 : SET_RSHIFT(chan) - RShiftZero);
     float scale = 1.0f / ((TrigLevMax - TrigLevMin) / 2 / Grid::ChannelHeight());
     int y0 = static_cast<int>((GRID_TOP + Grid::ChannelBottom()) / 2 + scale * (TrigLevZero - TrigLevMin));
     int y = static_cast<int>(y0 - scale * (trigLev - TrigLevMin));
 
-    if(chan != TrigSource_Ext)
+    if(chan != TrigSource::Ext)
     {
         y = (y - Grid::ChannelCenterHeight()) + Grid::ChannelCenterHeight();
     }

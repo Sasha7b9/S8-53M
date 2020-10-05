@@ -319,7 +319,7 @@ void FPGA::LoadRShift(Channel::E chan)
 }
 
 
-void FPGA::SetTrigLev(TrigSource chan, int16 trigLev)
+void FPGA::SetTrigLev(TrigSource::E chan, int16 trigLev)
 {
     Display::ChangedRShiftMarkers();
     if (trigLev < TrigLevMin || trigLev > TrigLevMax)
@@ -492,7 +492,7 @@ bool FPGA::RangeDecrease(Channel::E chan)
 };
 
 
-void FPGA::SetTrigSource(TrigSource trigSource)
+void FPGA::SetTrigSource(TrigSource::E trigSource)
 {
     TRIG_SOURCE = trigSource;
     SetAttribChannelsAndTrig(TypeWriteAnalog::TrigParam);

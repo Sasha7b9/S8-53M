@@ -83,9 +83,9 @@ public:
     // Загрузить в аппарат коэффициенты калибровки каналов.
     static void LoadKoeffCalibration(Channel::E chan);
     // Установить относительный уровень синхронизации.
-    static void SetTrigLev(TrigSource chan, int16 trigLev);
+    static void SetTrigLev(TrigSource::E chan, int16 trigLev);
     // Установить источник синхронизации.
-    static void SetTrigSource(TrigSource trigSource);
+    static void SetTrigSource(TrigSource::E trigSource);
     // Установить полярность синхронизации.
     static void SetTrigPolarity(TrigPolarity polarity);
     // Установить режим входа синхронизации.

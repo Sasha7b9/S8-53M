@@ -15,7 +15,7 @@
 #define START_MODE_IS_AUTO      (START_MODE == StartMode::Auto)         // \c true, если автоматический режим запуска.
 
 #define TRIG_SOURCE             (set.trig.source)                       // SettingsTrig.source
-#define TRIG_SOURCE_IS_EXT      (TRIG_SOURCE == TrigSource_Ext)         // \c true, если внешний источник синхронизации.
+#define TRIG_SOURCE_IS_EXT      (TRIG_SOURCE == TrigSource::Ext)         // \c true, если внешний источник синхронизации.
 
 #define TRIG_POLARITY           (set.trig.polarity)                     // SettingsTrig.polarity
 #define TRIG_POLARITY_IS_FRONT  (TRIG_POLARITY == TrigPolarity_Front)   // \c true, если синхронизация по фронту.
@@ -48,12 +48,12 @@ struct StartMode { enum E
 };};
 
 // Источник синхронизации.
-enum TrigSource
+struct TrigSource { enum E
 {
-    TrigSource_ChannelA,        // Канал 1.
-    TrigSource_ChannelB,        // Канал 2.
-    TrigSource_Ext              // Внешняя.
-};
+    A,      // Канал 1.
+    B,      // Канал 2.
+    Ext     // Внешняя.
+};};
 
 // Тип синхронизацц
 enum TrigPolarity
@@ -93,7 +93,7 @@ enum TrigModeFind
 struct SettingsTrig
 {
     StartMode::E        startMode;          // Режим запуска.
-    TrigSource          source;             // Источник.
+    TrigSource::E       source;             // Источник.
     TrigPolarity        polarity;           // Тип синхронизации.
     TrigInput           input;              // Вход синхронизации.
     int16               levelRel[3];        // Уровень синхронизации для трёх источников.

@@ -31,8 +31,8 @@ Color::E ColorCursors(Channel::E chan)
 
 Color::E ColorTrig()
 {
-    TrigSource trigChan = TRIG_SOURCE;
-    if (trigChan == TrigSource_ChannelA || trigChan == TrigSource_ChannelB)
+    TrigSource::E trigChan = TRIG_SOURCE;
+    if (trigChan == TrigSource::A || trigChan == TrigSource::B)
     {
         return ColorChannel((Channel::E)trigChan);
     }

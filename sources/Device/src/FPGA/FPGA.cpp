@@ -943,8 +943,8 @@ bool FPGA::FindWave(Channel::E chan)
 
     Stop(false);
     SET_ENABLED(chan) = true;
-    FPGA::SetTrigSource(static_cast<TrigSource>(chan));
-    FPGA::SetTrigLev(static_cast<TrigSource>(chan), TrigLevZero);
+    FPGA::SetTrigSource(static_cast<TrigSource::E>(chan));
+    FPGA::SetTrigLev(static_cast<TrigSource::E>(chan), TrigLevZero);
     FPGA::SetRShift(chan, RShiftZero);
     FPGA::SetModeCouple(chan, ModeCouple::AC);
     Range range = AccurateFindRange(chan);
@@ -956,7 +956,7 @@ bool FPGA::FindWave(Channel::E chan)
         if (tBase != TBase::Count)
         {
             SET_TBASE = tBase;
-            TRIG_SOURCE = static_cast<TrigSource>(chan);
+            TRIG_SOURCE = static_cast<TrigSource::E>(chan);
             return true;
         }
     }
@@ -1153,7 +1153,7 @@ void FPGA::FillDataPointer(DataSettings *dp)
 
 void FPGA::FindAndSetTrigLevel(void)
 {
-    TrigSource trigSource = TRIG_SOURCE;
+    TrigSource::E trigSource = TRIG_SOURCE;
     if (Storage::AllDatas() == 0 || TRIG_SOURCE_IS_EXT)
     {
         return;

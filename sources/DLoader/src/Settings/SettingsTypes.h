@@ -182,12 +182,12 @@ struct StartMode { enum E
 };};
 
 // Источник синхронизации
-enum TrigSource
+struct TrigSource { enum E
 {
-    TrigSource_Channel0,    // Канал 1
-    TrigSource_Channel1,    // Канал 2
-    TrigSource_Ext          // Внешняя
-};
+    A,      // Канал 1
+    B,      // Канал 2
+    Ext     // Внешняя
+};};
 
 // Тип синхронизацц
 enum TrigPolarity
