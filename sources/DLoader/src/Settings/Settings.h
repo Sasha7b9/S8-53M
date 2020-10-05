@@ -142,11 +142,11 @@ struct SettingsMath
 // Эти настройки меняются через МЕНЮ -> СЕРВИС
 struct SettingsService
 {
-    bool            screenWelcomeEnable;    // Будет ли показываться экран приглашения при включении прибора.
-    bool            soundEnable;            // Включены ли звуки.
-    CalibratorMode  calibrator;             // Режим работы калибратора.
-    int8            IPaddress;              // IP-адрес (временно)
-    ColorScheme::E  colorScheme;            //
+    bool              screenWelcomeEnable;    // Будет ли показываться экран приглашения при включении прибора.
+    bool              soundEnable;            // Включены ли звуки.
+    CalibratorMode::E calibrator;             // Режим работы калибратора.
+    int8              IPaddress;              // IP-адрес (временно)
+    ColorScheme::E    colorScheme;            //
 };
 
 struct SettingsEthernet

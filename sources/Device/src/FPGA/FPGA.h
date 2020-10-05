@@ -79,7 +79,7 @@ public:
     // Включить/выключить режим пикового детектора.
     static void SetPeackDetMode(PeackDetMode::E peackDetMode);
     // Включить/выключить калибратор.
-    static void SetCalibratorMode(CalibratorMode calibratorMode);
+    static void SetCalibratorMode(CalibratorMode::E calibratorMode);
     // Загрузить в аппарат коэффициенты калибровки каналов.
     static void LoadKoeffCalibration(Channel::E chan);
     // Установить относительный уровень синхронизации.

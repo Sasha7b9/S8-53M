@@ -118,9 +118,9 @@ static const Settings defaultSettings =
     {
         true,                       // screenWelcomeEnable
         true,                       // soundEnable
-        Calibrator_Freq,            // calibratorEnable
+        CalibratorMode::Freq,       // calibratorEnable
         0,                          // IP-адрес (временно)  WARN
-        ColorScheme::WhiteLetters    // colorScheme
+        ColorScheme::WhiteLetters   // colorScheme
     },
     {
         0x8b, 0x2e, 0xaf, 0x8f, 0x13, 0x00, // mac

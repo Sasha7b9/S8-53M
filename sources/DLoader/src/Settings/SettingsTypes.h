@@ -472,12 +472,12 @@ enum Language
     English     // Английский
 };
 
-enum CalibratorMode
+struct CalibratorMode { enum E
 {
-    Calibrator_Freq,
-    Calibrator_DC,
-    Calibrator_GND
-};
+    Freq,
+    DC,
+    GND
+};};
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Debug
