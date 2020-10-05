@@ -5,13 +5,6 @@
 #include "HelpContent.h"
 
 
-/** @addtogroup Menu
- *  @{
- *  @addtogroup PageHelp
- *  @{
- */
-
-
 void DrawSB_Help_ParagraphEnter(int x, int y)
 {
     Painter::SetFont(TypeFont::_UGO2);
@@ -125,7 +118,3 @@ void *PageHelp::GetPointer()
 {
     return (void *)&mpHelp;
 }
-
-
-/** @}  @}
- */

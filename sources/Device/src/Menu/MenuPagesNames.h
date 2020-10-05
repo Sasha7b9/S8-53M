@@ -40,7 +40,7 @@ enum NamePage
     Page_MathFFT,
     Page_TrigAuto,              // СИНХР - АВТ ПОИСК
     Page_SB_Curs,               // Открыта страница КУРСОРЫ - Измерения
-    Page_SB_MeasTuneMeas,       // Открыта страница ИЗМЕРЕНИЯ - Настроить
+    NamePage::SB_MeasTuneMeas,       // Открыта страница ИЗМЕРЕНИЯ - Настроить
     Page_SB_MeasTuneField,      // Открыта страница ИЗМЕРЕНИЯ - ЗОНА - Задать
     Page_SB_MemLatest,          // Открыта страница ПАМЯТЬ - Последние
     Page_SB_MemInt,             // Открыта страница ПАМЯТЬ - Внутр ЗУ
@@ -52,6 +52,6 @@ enum NamePage
     Page_SB_MathFunction,       // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ
     Page_SB_Information,        // СЕРВИС - ИНФОРМАЦИЯ
     Page_SB_SerialNumber,       // ОТАДКА - С/Н
-    Page_NumPages,
+    NamePage::Count,
     Page_NoPage
 };             // При добавлении страниц нужно изменять инициализацию SettingsMenu в SSettings.c

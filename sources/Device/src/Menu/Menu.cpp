@@ -816,14 +816,14 @@ bool Menu::NeedForFireSetLED()    // Возвращает true, если лампочка УСТАНОВКА до
     }
     NamePage name = GetNameOpenedPage();
 
-    if (name == Page_SB_MeasTuneMeas && MEAS_NUM == MN_1 && !PageMeasures::choiceMeasuresIsActive)
+    if (name == NamePage::SB_MeasTuneMeas && MEAS_NUM == MN_1 && !PageMeasures::choiceMeasuresIsActive)
     {
         return false;
     }
 
     if (
         name == Page_SB_MathCursorsFFT                          ||
-        name == Page_SB_MeasTuneMeas                            ||
+        name == NamePage::SB_MeasTuneMeas                            ||
         name == Page_SB_MemLatest                               || 
         name == Page_SB_MemInt                                  ||
         (name == Page_SB_MathFunction && !DISABLED_DRAW_MATH)   ||
