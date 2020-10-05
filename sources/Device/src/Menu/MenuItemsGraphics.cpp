@@ -186,14 +186,14 @@ static void DrawMACaddressLowPart(MACaddress *mac, int x, int y, bool, bool shad
 
 void WriteTextFormula(Formula *formula, int x, int y, bool)
 {
-    Function function = (Function)(*formula->function);
+    Function::E function = (Function::E)(*formula->function);
     
-    if (function != Function_Mul && function != Function_Sum)
+    if (function != Function::Mul && function != Function::Sum)
     {
         return;
     }
 
-    bool funcIsMul = function == Function_Mul;
+    bool funcIsMul = function == Function::Mul;
     int8 koeff1 = funcIsMul ? *formula->koeff1mul : *formula->koeff1add;
     int8 koeff2 = funcIsMul ? *formula->koeff2mul : *formula->koeff2add;
     if (koeff1 != 0)

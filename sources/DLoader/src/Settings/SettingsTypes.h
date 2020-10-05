@@ -407,11 +407,11 @@ enum MeasuresField
 // Math
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-enum Function
+struct Function { enum E
 {
-    Function_Sum,
-    Function_Mul
-};
+    Sum,
+    Mul
+};};
 
 enum ScaleMath
 {
@@ -441,12 +441,12 @@ struct WindowFFT { enum E
     Hann
 };};
 
-enum FFTmaxDB
+struct FFTmaxDB { enum E
 {
-    FFTmaxDB_40,
-    FFTmaxDB_60,
-    FFTmaxDB_80
-};
+    _40,
+    _60,
+    _80
+};};
 
 enum ModeDrawMath
 {
