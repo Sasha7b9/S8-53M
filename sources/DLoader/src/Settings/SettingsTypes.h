@@ -455,11 +455,11 @@ struct ModeDrawMath { enum E
     Together
 };};
 
-enum ModeRegSet
+struct ModeRegSet { enum E
 {
-    ModeRegSet_Range,
-    ModeRegSet_RShift
-};
+    Range,
+    RShift
+};};
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Service

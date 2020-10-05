@@ -35,8 +35,8 @@
 #define MODE_DRAW_MATH_IS_SEPARATE  (MODE_DRAW_MATH == ModeDrawMath::Separate)
 
 #define MATH_MODE_REG_SET           (set.math.modeRegSet)               // SettingsMath.modeRegSet
-#define MATH_MODE_REG_SET_IS_RSHIFT (MATH_MODE_REG_SET == ModeRegSet_RShift)
-#define MATH_MODE_REG_SET_IS_RANGE  (MATH_MODE_REG_SET == ModeRegSet_Range)
+#define MATH_MODE_REG_SET_IS_RSHIFT (MATH_MODE_REG_SET == ModeRegSet::RShift)
+#define MATH_MODE_REG_SET_IS_RANGE  (MATH_MODE_REG_SET == ModeRegSet::Range)
 
 #define MATH_MULTIPLIER             (set.math.multiplier)               // SettingsMath.multiplier
 
@@ -91,11 +91,11 @@ struct ModeDrawMath { enum E
 };};
 
 // Чем управляет ручка УСТАНОВКА, когда включена математическая функция.
-enum ModeRegSet
+struct ModeRegSet { enum E
 {
-    ModeRegSet_Range,       // Ручка УСТАНОВКА управляет масштабом по напряжению.
-    ModeRegSet_RShift       // Ручка УСТАНОВКА управляет смещением по напряжению.
-};
+    Range,      // Ручка УСТАНОВКА управляет масштабом по напряжению.
+    RShift      // Ручка УСТАНОВКА управляет смещением по напряжению.
+};};
 
 
 struct SettingsMath
@@ -113,7 +113,7 @@ struct SettingsMath
     int8            koeff2mul;
     bool            enableFFT;      // \c true, если включён спектр.
     ModeDrawMath::E modeDraw;       // Раздельный или общий дисплей в режиме математической функции.
-    ModeRegSet      modeRegSet;     // Функция ручки УСТАНОВКА - масштаб по времени или смещение по вертикали.
+    ModeRegSet::E   modeRegSet;     // Функция ручки УСТАНОВКА - масштаб по времени или смещение по вертикали.
     Range::E        range;          // Масштаб по напряжению математического сигнала.
     Divider::E      multiplier;     // Множитель масштаба математического сигнала.
     int16           rShift;         // Смещение по вертикальной оси математического сигнала.

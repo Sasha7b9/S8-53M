@@ -109,7 +109,7 @@ static const Settings defaultSettings =
         1,
         false,
         ModeDrawMath::Disable,       // modeDrawMath
-        ModeRegSet_Range,           // modeRegSet
+        ModeRegSet::Range,           // modeRegSet
         Range::_50mV,
         Multiplier_1,
         0
