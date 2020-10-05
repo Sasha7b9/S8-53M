@@ -10,7 +10,7 @@
 
 
 
-static const uint8 masksRange[RangeSize] =
+static const uint8 masksRange[Range::Count] =
 {
     BINARY_U8(0000000),
     BINARY_U8(1000000),
@@ -75,15 +75,15 @@ static const TBaseMaskStruct masksTBase[TBase::Count] =
 
 void FPGA::LoadSettings(void)
 {
-    LoadKoeffCalibration(Channel::Channel::A);
-    LoadKoeffCalibration(Channel::Channel::B);
+    LoadKoeffCalibration(Channel::A);
+    LoadKoeffCalibration(Channel::B);
     SetAttribChannelsAndTrig(TypeWriteAnalog::All);
     LoadTBase();
     LoadTShift();
-    LoadRange(Channel::Channel::A);
-    LoadRShift(Channel::Channel::A);
-    LoadRange(Channel::Channel::B);
-    LoadRShift(Channel::Channel::B);
+    LoadRange(Channel::A);
+    LoadRShift(Channel::A);
+    LoadRange(Channel::B);
+    LoadRShift(Channel::B);
     LoadTrigLev();
     LoadTrigPolarity();
     LoadRegUPR();
@@ -160,13 +160,13 @@ void FPGA::SetAttribChannelsAndTrig(TypeWriteAnalog::E type)
 }
 
 
-void FPGA::SetRange(Channel::E chan, Range range)
+void FPGA::SetRange(Channel::E chan, Range::E range)
 {
     if (!sChannel_Enabled(chan))
     {
         return;
     }
-    if (range < RangeSize && (int)range >= 0)
+    if (range < Range::Count && (int)range >= 0)
     {
         float rShiftAbs = RSHIFT_2_ABS(SET_RSHIFT(chan), SET_RANGE(chan));
         float trigLevAbs = RSHIFT_2_ABS(TRIG_LEVEL(chan), SET_RANGE(chan));
@@ -198,7 +198,7 @@ void FPGA::LoadRange(Channel::E chan)
 
 void FPGA::SetTBase(TBase::E tBase)
 {
-    if (!sChannel_Enabled(Channel::Channel::A) && !sChannel_Enabled(Channel::Channel::B))
+    if (!sChannel_Enabled(Channel::A) && !sChannel_Enabled(Channel::B))
     {
         return;
     }
@@ -300,7 +300,7 @@ void FPGA::LoadRShift(Channel::E chan)
 {
     static const uint16 mask[2] = {0x2000, 0x6000};
 
-    Range range = SET_RANGE(chan);
+    Range::E range = SET_RANGE(chan);
     ModeCouple::E mode = SET_COUPLE(chan);
     static const int index[3] = {0, 1, 1};
     int16 rShiftAdd = RSHIFT_ADD(chan, range, index[mode]);
@@ -360,7 +360,7 @@ void FPGA::LoadTrigLev(void)
 
 void FPGA::SetTShift(int tShift)
 {
-    if (!sChannel_Enabled(Channel::Channel::A) && !sChannel_Enabled(Channel::Channel::B))
+    if (!sChannel_Enabled(Channel::A) && !sChannel_Enabled(Channel::B))
     {
         return;
     }
@@ -461,9 +461,9 @@ const char *FPGA::GetTShiftString(int16 tShiftRel, char buffer[20])
 bool FPGA::RangeIncrease(Channel::E chan)
 {
     bool retValue = false;
-    if (SET_RANGE(chan) < RangeSize - 1)
+    if (SET_RANGE(chan) < Range::Count - 1)
     {
-        SetRange(chan, (Range)(SET_RANGE(chan) + 1));
+        SetRange(chan, (Range::E)(SET_RANGE(chan) + 1));
         retValue = true;
     }
     else
@@ -480,7 +480,7 @@ bool FPGA::RangeDecrease(Channel::E chan)
     bool retValue = false;
     if (SET_RANGE(chan) > 0)
     {
-        SetRange(chan, (Range)(SET_RANGE(chan) - 1));
+        SetRange(chan, (Range::E)(SET_RANGE(chan) - 1));
         retValue = true;
     }
     else

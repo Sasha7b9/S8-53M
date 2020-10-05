@@ -150,23 +150,23 @@ const char* Tables_GetTBaseStringEN(TBase::E tBase)
 }
 
 
-const char* Tables_RangeNameFromValue(Range range)
+const char* Tables_RangeNameFromValue(Range::E range)
 {
-    static const char* names[RangeSize] =
+    static const char* names[Range::Count] =
     {
-        "Range_2mV",
-        "Range_5mV",
-        "Range_10mV",
-        "Range_20mV",
-        "Range_50mV",
-        "Range_100mV",
-        "Range_200mV",
-        "Range_500mV",
-        "Range_1V",
-        "Range_2V",
-        "Range_5V",
-        "Range_10V",
-        "Range_20V"
+        "Range::_2mV",
+        "Range::_5mV",
+        "Range::_10mV",
+        "Range::_20mV",
+        "Range::_50mV",
+        "Range::_100mV",
+        "Range::_200mV",
+        "Range::_500mV",
+        "Range::_1V",
+        "Range::_2V",
+        "Range::_5V",
+        "Range::_10V",
+        "Range::_20V"
     };
     return names[range];
 }
@@ -174,7 +174,7 @@ const char* Tables_RangeNameFromValue(Range range)
 
 int Tables_GetNumChannel(Channel::E chan)
 {
-    return (chan == Channel::Channel::A) ? 1 : 2;
+    return (chan == Channel::A) ? 1 : 2;
 }
 
 

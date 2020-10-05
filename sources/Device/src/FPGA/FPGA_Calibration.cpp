@@ -11,7 +11,7 @@
 
 
 
-static int16    CalculateAdditionRShift(Channel::E chan, Range range);	// Измерить добавочное смещение канала по напряжению.
+static int16    CalculateAdditionRShift(Channel::E chan, Range::E range);	// Измерить добавочное смещение канала по напряжению.
 static float    CalculateKoeffCalibration(Channel::E chan);			// Измерить коэффициент калибровки канала по напряжению.
 static void     AlignmentADC();
 static void     FuncAttScreen();								// Функция обновления экрана в режиме калибровки.
@@ -77,10 +77,10 @@ void FPGA::ProcedureCalibration(void)
         FPGA::SetTShift(0);
         STRETCH_ADC_A = 1.0f;
         STRETCH_ADC_B = 1.0f;
-        FPGA::LoadKoeffCalibration(Channel::Channel::A);
-        FPGA::LoadKoeffCalibration(Channel::Channel::B);
-        FPGA::SetRange(Channel::A, Range_500mV);
-        FPGA::SetRange(Channel::B, Range_500mV);
+        FPGA::LoadKoeffCalibration(Channel::A);
+        FPGA::LoadKoeffCalibration(Channel::B);
+        FPGA::SetRange(Channel::A, Range::_500mV);
+        FPGA::SetRange(Channel::B, Range::_500mV);
         FPGA::SetRShift(Channel::A, RShiftZero);
         FPGA::SetRShift(Channel::B, RShiftZero);
         FPGA::SetModeCouple(Channel::A, ModeCouple::GND);
@@ -104,29 +104,29 @@ void FPGA::ProcedureCalibration(void)
         {
 			gStateFPGA.stateCalibration = StateCalibration::RShift0inProgress;
 
-			koeffCal0 = CalculateKoeffCalibration(Channel::Channel::A);
+			koeffCal0 = CalculateKoeffCalibration(Channel::A);
 			if(koeffCal0 == ERROR_VALUE_FLOAT)
             {
 				gStateFPGA.stateCalibration = StateCalibration::ErrorCalibration0;
 				Panel::WaitPressingButton();
                 DEBUG_STRETCH_ADC_TYPE = StretchADC_Hand;
-                LoadStretchADC(Channel::Channel::A);
+                LoadStretchADC(Channel::A);
             }
             else
             {
                 STRETCH_ADC_A = koeffCal0;
-                FPGA::LoadKoeffCalibration(Channel::Channel::A);
+                FPGA::LoadKoeffCalibration(Channel::A);
             }
 			
-            for (int range = 0; range < RangeSize; range++)
+            for (int range = 0; range < Range::Count; range++)
             {
                 for (int mode = 0; mode < 2; mode++)
                 {
-                    if (!(mode == 0 && (range == Range_2mV || range == Range_5mV || range == Range_10mV)))
+                    if (!(mode == 0 && (range == Range::_2mV || range == Range::_5mV || range == Range::_10mV)))
                     {
                         FPGA::SetModeCouple(Channel::A, (ModeCouple::E)mode);
                         RSHIFT_ADD(Channel::A, range, mode) = 0;
-                        RSHIFT_ADD(Channel::A, range, mode) = CalculateAdditionRShift(Channel::A, (Range)range);
+                        RSHIFT_ADD(Channel::A, range, mode) = CalculateAdditionRShift(Channel::A, (Range::E)range);
                     }
                 }
             }
@@ -140,29 +140,29 @@ void FPGA::ProcedureCalibration(void)
         {
 			gStateFPGA.stateCalibration = StateCalibration::RShift1inProgress;
 
-            koeffCal1 = CalculateKoeffCalibration(Channel::Channel::B);
+            koeffCal1 = CalculateKoeffCalibration(Channel::B);
 			if(koeffCal1 == ERROR_VALUE_FLOAT)
             {
 				gStateFPGA.stateCalibration = StateCalibration::ErrorCalibration1;
 				Panel::WaitPressingButton();
                 DEBUG_STRETCH_ADC_TYPE = StretchADC_Hand;
-                LoadStretchADC(Channel::Channel::B);
+                LoadStretchADC(Channel::B);
 			}
             else
             {
                 STRETCH_ADC_B = koeffCal1;
-                FPGA::LoadKoeffCalibration(Channel::Channel::B);
+                FPGA::LoadKoeffCalibration(Channel::B);
             }
 
-            for (int range = 0; range < RangeSize; range++)
+            for (int range = 0; range < Range::Count; range++)
             {
                 for (int mode = 0; mode < 2; mode++)
                 {
-                    if (!(mode == 0 && (range == Range_2mV || range == Range_5mV || range == Range_10mV)))
+                    if (!(mode == 0 && (range == Range::_2mV || range == Range::_5mV || range == Range::_10mV)))
                     {
                         FPGA::SetModeCouple(Channel::B, (ModeCouple::E)mode);
                         RSHIFT_ADD(Channel::B, range, mode) = 0;
-                        RSHIFT_ADD(Channel::B, range, mode) = CalculateAdditionRShift(Channel::B, (Range)range);
+                        RSHIFT_ADD(Channel::B, range, mode) = CalculateAdditionRShift(Channel::B, (Range::E)range);
                     }
                 }
             }
@@ -183,10 +183,10 @@ void FPGA::ProcedureCalibration(void)
 
     STRETCH_ADC_A = (koeffCal0 == ERROR_VALUE_FLOAT) ? koeffCalibrationOld[0] : koeffCal0;
 
-    FPGA::LoadKoeffCalibration(Channel::Channel::A);
+    FPGA::LoadKoeffCalibration(Channel::A);
 
     STRETCH_ADC_B = (koeffCal1 == ERROR_VALUE_FLOAT) ? koeffCalibrationOld[1] : koeffCal1;
-    FPGA::LoadKoeffCalibration(Channel::Channel::B);
+    FPGA::LoadKoeffCalibration(Channel::B);
 
     gStateFPGA.stateCalibration = StateCalibration::None;
     Panel::WaitPressingButton();
@@ -229,7 +229,7 @@ void FuncAttScreen(void)
 
                 Painter::DrawText(10 + dX, 55 + dY, "Поправка нуля 1к :");
                 Painter::DrawText(10 + dX, 80 + dY, "Поправка нуля 2к :");
-                for (int i = 0; i < RangeSize; i++)
+                for (int i = 0; i < Range::Count; i++)
                 {
                     Painter::DrawFormatText(95 + i * 16 + dX, 55 + dY, COLOR_FILL, "%d", RSHIFT_ADD(Channel::A, i, 0));
                     Painter::DrawFormatText(95 + i * 16 + dX, 65 + dY, COLOR_FILL, "%d", RSHIFT_ADD(Channel::A, i, 1));
@@ -302,7 +302,7 @@ void DrawParametersChannel(Channel::E chan, int eX, int eY, bool inProgress)
     if(inProgress)
     {
         Painter::DrawText(eX, eY + 4, chan == 0 ? "КАНАЛ 1" : "КАНАЛ 2");
-        ProgressBar *bar = (chan == Channel::Channel::A) ? &bar0 : &bar1;
+        ProgressBar *bar = (chan == Channel::A) ? &bar0 : &bar1;
         bar->width = 240;
         bar->height = 15;
         bar->y = eY;
@@ -333,10 +333,10 @@ void DrawParametersChannel(Channel::E chan, int eX, int eY, bool inProgress)
 
 float CalculateDeltaADC(Channel::E chan, float *avgADC1, float *avgADC2, float *delta)
 {
-    uint *startTime = (chan == Channel::Channel::A) ? &startTimeChan0 : &startTimeChan1;
+    uint *startTime = (chan == Channel::A) ? &startTimeChan0 : &startTimeChan1;
     *startTime = gTimerMS;
     
-    ProgressBar *bar = (chan == Channel::Channel::A) ? &bar0 : &bar1;
+    ProgressBar *bar = (chan == Channel::A) ? &bar0 : &bar1;
     bar->passedTime = 0;
     bar->fullTime = 0;
 
@@ -357,7 +357,7 @@ float CalculateDeltaADC(Channel::E chan, float *avgADC1, float *avgADC2, float *
 
         for(int i = 0; i < FPGA_MAX_POINTS; i++)
         {
-            if(chan == Channel::Channel::A)
+            if(chan == Channel::A)
             {
                 *avgADC1 += HAL_FSMC::Read(address1);
                 *avgADC2 += HAL_FSMC::Read(address2);
@@ -397,7 +397,7 @@ void AlignmentADC(void)
 }
 
 
-int16 CalculateAdditionRShift(Channel::E chan, Range range)
+int16 CalculateAdditionRShift(Channel::E chan, Range::E range)
 {
     FPGA::SetRange(chan, range);
     FPGA::SetRShift(chan, RShiftZero);

@@ -108,7 +108,7 @@ static const Choice mcInputA =
 
 void OnChanged_InputA(bool)
 {
-    Panel::EnableLEDChannel0(sChannel_Enabled(Channel::Channel::A));
+    Panel::EnableLEDChannel0(sChannel_Enabled(Channel::A));
 }
 
 
@@ -192,7 +192,7 @@ static const Choice mcMultiplierA =
         {"ı1",  "x1"},
         {"x10", "x10"}
     },
-    (int8*)&SET_DIVIDER(Channel::Channel::A)
+    (int8*)&SET_DIVIDER(Channel::A)
 };
 
 
@@ -235,7 +235,7 @@ static const Choice mcInputB =  //  ¿Õ¿À 2
 
 void OnChanged_InputB(bool)
 {
-    Panel::EnableLEDChannel1(sChannel_Enabled(Channel::Channel::B));
+    Panel::EnableLEDChannel1(sChannel_Enabled(Channel::B));
 }
 
 
@@ -318,7 +318,7 @@ static const Choice mcMultiplierB =
         {"ı1",  "x1"},
         {"x10", "x10"}
     },
-    (int8*)&SET_DIVIDER(Channel::Channel::B)
+    (int8*)&SET_DIVIDER(Channel::B)
 };
 
 

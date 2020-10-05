@@ -324,25 +324,25 @@ void TShiftRight()
 void Range0Left()
 {
     Sound::RegulatorSwitchRotate();
-    FPGA::RangeIncrease(Channel::Channel::A);
+    FPGA::RangeIncrease(Channel::A);
 }
 
 void Range0Right()
 {
     Sound::RegulatorSwitchRotate();
-    FPGA::RangeDecrease(Channel::Channel::A);
+    FPGA::RangeDecrease(Channel::A);
 }
 
 void Range1Left()
 {
     Sound::RegulatorSwitchRotate();
-    FPGA::RangeIncrease(Channel::Channel::B);
+    FPGA::RangeIncrease(Channel::B);
 }
 
 void Range1Right()
 {
     Sound::RegulatorSwitchRotate();
-    FPGA::RangeDecrease(Channel::Channel::B);
+    FPGA::RangeDecrease(Channel::B);
 }
 
 void TBaseLeft()

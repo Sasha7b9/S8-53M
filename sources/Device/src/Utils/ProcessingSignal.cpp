@@ -103,11 +103,11 @@ void Processing::CalculateMeasures()
                 }
                 if(MEAS_SOURCE_IS_A || MEAS_SOURCE_IS_A_B)
                 {
-                    values[meas].value[Channel::A] = func(Channel::Channel::A);
+                    values[meas].value[Channel::A] = func(Channel::A);
                 }
                 if(MEAS_SOURCE_IS_B || MEAS_SOURCE_IS_A_B)
                 {
-                    values[meas].value[Channel::B] = func(Channel::Channel::B);
+                    values[meas].value[Channel::B] = func(Channel::B);
                 }
             }
         }
@@ -177,7 +177,7 @@ float Processing::CalculateVoltageMaxSteady(Channel::E chan)
         markerHor[chan][0] = static_cast<int>(max);
     }
 
-    Range range = dataSet->range[chan];
+    Range::E range = dataSet->range[chan];
     uint rShift = chan == Channel::A ? dataSet->rShiftCh0 : dataSet->rShiftCh1;
 
     return (POINT_2_VOLTAGE(max, range, rShift) * VALUE_MULTIPLIER(chan));
@@ -781,8 +781,8 @@ float Processing::CalculatePicRel(Channel::E chan)
 
 float Processing::CalculateDelayPlus(Channel::E chan)
 {
-    float period0 = CalculatePeriod(Channel::Channel::A);
-    float period1 = CalculatePeriod(Channel::Channel::B);
+    float period0 = CalculatePeriod(Channel::A);
+    float period1 = CalculatePeriod(Channel::B);
 
     EXIT_IF_ERRORS_FLOAT(period0, period1);
     if(!Math_FloatsIsEquals(period0, period1, 1.05f))
@@ -790,8 +790,8 @@ float Processing::CalculateDelayPlus(Channel::E chan)
         return ERROR_VALUE_FLOAT;
     }
 
-    float average0 = CalculateAverageRel(Channel::Channel::A);
-    float average1 = CalculateAverageRel(Channel::Channel::B);
+    float average0 = CalculateAverageRel(Channel::A);
+    float average1 = CalculateAverageRel(Channel::B);
 
     EXIT_IF_ERRORS_FLOAT(average0, average1);
 
@@ -819,8 +819,8 @@ float Processing::CalculateDelayPlus(Channel::E chan)
 
 float Processing::CalculateDelayMinus(Channel::E chan)
 {
-    float period0 = CalculatePeriod(Channel::Channel::A);
-    float period1 = CalculatePeriod(Channel::Channel::B);
+    float period0 = CalculatePeriod(Channel::A);
+    float period1 = CalculatePeriod(Channel::B);
 
     EXIT_IF_ERRORS_FLOAT(period0, period1);
 
@@ -829,8 +829,8 @@ float Processing::CalculateDelayMinus(Channel::E chan)
         return ERROR_VALUE_FLOAT;
     }
 
-    float average0 = CalculateAverageRel(Channel::Channel::A);
-    float average1 = CalculateAverageRel(Channel::Channel::B);
+    float average0 = CalculateAverageRel(Channel::A);
+    float average1 = CalculateAverageRel(Channel::B);
 
     EXIT_IF_ERRORS_FLOAT(average0, average1);
 
@@ -1147,7 +1147,7 @@ void Processing::CountedToCurrentSettings()
  
     if (dataSet->enableCh0 == 1U && (dataSet->range[0] != SET_RANGE_A || dataSet->rShiftCh0 != (uint)SET_RSHIFT_A))
     {
-        Range range = SET_RANGE_A;
+        Range::E range = SET_RANGE_A;
         int16 rShift = SET_RSHIFT_A;
 
         for (int i = 0; i < numPoints; i++)
@@ -1162,7 +1162,7 @@ void Processing::CountedToCurrentSettings()
     }
     if (dataSet->enableCh1 == 1 && (dataSet->range[1] != SET_RANGE_B || dataSet->rShiftCh1 != (uint)SET_RSHIFT_B))
     {
-        Range range = SET_RANGE_B;
+        Range::E range = SET_RANGE_B;
         int16 rShift = SET_RSHIFT_B;
 
         for (int i = 0; i < numPoints; i++)

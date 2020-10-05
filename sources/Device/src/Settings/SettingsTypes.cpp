@@ -10,9 +10,9 @@ int Divider::ToAbs(Divider::E multiplier)
 }
 
 
-const char *RangeName(Range range)
+const char *RangeName(Range::E range)
 {
-    static const char *names[RangeSize + 1] =
+    static const char *names[Range::Count + 1] =
     {
         "2mV",
         "5mV",
@@ -27,7 +27,7 @@ const char *RangeName(Range range)
         "5V",
         "10V",
         "20V",
-        "RangeSize"
+        "Range::Count"
     };
     return names[range];
 }

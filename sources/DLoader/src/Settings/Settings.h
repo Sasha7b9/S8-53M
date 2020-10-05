@@ -35,7 +35,7 @@ struct SettingsChannel
 {
     float           stretchADC;         	    // Поправочный коэффициент.
     int16           rShiftRel;
-    int16           rShiftAdd[RangeSize][2];    // Добавочное смещение для открытого (0) и закрытого (1) входов.
+    int16           rShiftAdd[Range::Count][2]; // Добавочное смещение для открытого (0) и закрытого (1) входов.
     ModeCouple::E   modeCouple;         	    // Режим по входу.
     Multiplier      multiplier;         	    // Множитель.
     Range           range;              	    // Масштаб по напряжению.
@@ -134,7 +134,7 @@ struct SettingsMath
     bool            enableFFT;
     ModeDrawMath    modeDraw;               // Раздельный или общий дисплей в режиме математической функции
     ModeRegSet      modeRegSet;             // Функция ручки УСТАНОВКА - масштаб по времени или смещение по вертикали
-    Range           range;
+    Range::E        range;
     Multiplier      multiplier;
     int16           rShift;
 };
@@ -213,7 +213,7 @@ struct SettingsDebug
     StretchADCtype  stretchADCtype;             // Тип растяжки канала.
     int16           stretchADC[2];              // Значение растяжки канала для ручного режима.
     //RShiftADCtype   rShiftADCtype;
-    //int16           rShiftADC[RangeSize][2];    // Дополнительное смещение для каналов в режиме ручного управления. 0 - range == Range_2mV, 1 - все остальные
+    //int16           rShiftADC[Range::Count][2];    // Дополнительное смещение для каналов в режиме ручного управления. 0 - range == Range::_2mV, 1 - все остальные
     int16           numMeasuresForGates;        // Число измерений для ворот.
     int16           shiftT0;                    // Дополнительное смещение по времени для данной развёртки режима рандомизатора.
     bool            showStats;                  // Показывать статистику на экране (fps, например).

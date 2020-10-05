@@ -29,30 +29,30 @@ struct Divider { enum E
 };
 
 // Масштаб по напряжению.
-enum Range
+struct Range { enum E
 {
-    Range_2mV,
-    Range_5mV,
-    Range_10mV,
-    Range_20mV,
-    Range_50mV,
-    Range_100mV,
-    Range_200mV,
-    Range_500mV,
-    Range_1V,
-    Range_2V,
-    Range_5V,
-    Range_10V,
-    Range_20V,
-    RangeSize
-};
+    _2mV,
+    _5mV,
+    _10mV,
+    _20mV,
+    _50mV,
+    _100mV,
+    _200mV,
+    _500mV,
+    _1V,
+    _2V,
+    _5V,
+    _10V,
+    _20V,
+    Count
+};};
 
-Range& operator++(Range &range);
-Range& operator--(Range &range);
+Range::E& operator++(Range::E &range);
+Range::E& operator--(Range::E &range);
 
 #define NumChannels 2
 
-const char *RangeName(Range range);
+const char *RangeName(Range::E range);
 
 
 

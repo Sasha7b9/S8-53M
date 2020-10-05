@@ -70,7 +70,7 @@ static const Settings defaultSettings =
             {{0}, {0}},             // rShiftAdd
             ModeCouple::AC,          // ModCouple
             Divider::_1,              // Divider
-            Range_500mV,            // range
+            Range::_500mV,            // range
             true,                   // enable
             false,                  // inverse
             false,                  // filtr
@@ -82,7 +82,7 @@ static const Settings defaultSettings =
             {{0}, {0}},             // rShiftAdd
             ModeCouple::AC,          // ModCouple
             Divider::_1,           // Divider
-            Range_500mV,            // range
+            Range::_500mV,            // range
             true,                   // enable
             false,                  // inverse
             false,                  // filtr
@@ -179,7 +179,7 @@ static const Settings defaultSettings =
         false,
         ModeDrawMath_Disable,       // modeDrawMath
         ModeRegSet_Range,           // modeRegSet
-        Range_50mV,
+        Range::_50mV,
         Divider::_1,
         RShiftZero                  // rShift
     },
@@ -248,11 +248,11 @@ void Settings::Load(bool _default)
     
     if(_default)
     {
-        uint16 rShiftAddA[RangeSize][2];
-        uint16 rshiftAddB[RangeSize][2];
+        uint16 rShiftAddA[Range::Count][2];
+        uint16 rshiftAddB[Range::Count][2];
 
-        std::memcpy((void *)rShiftAddA, (void *)&RSHIFT_ADD(Channel::A, 0, 0), 2 * RangeSize * 2); // Сначала сохраняем несбрасываемые настройки
-        std::memcpy((void *)rshiftAddB, (void *)&RSHIFT_ADD(Channel::B, 0, 0), 2 * RangeSize * 2);
+        std::memcpy((void *)rShiftAddA, (void *)&RSHIFT_ADD(Channel::A, 0, 0), 2 * Range::Count * 2); // Сначала сохраняем несбрасываемые настройки
+        std::memcpy((void *)rshiftAddB, (void *)&RSHIFT_ADD(Channel::B, 0, 0), 2 * Range::Count * 2);
 
         int16  balanceADC0 = BALANCE_ADC_A;
         int16  balanceADC1 = BALANCE_ADC_B;
@@ -261,8 +261,8 @@ void Settings::Load(bool _default)
 
         std::memcpy((void*)&set, (void*)(&defaultSettings), sizeof(set));                // Потом заполняем значениями по умолчанию
 
-        std::memcpy((void *)&RSHIFT_ADD(Channel::A, 0, 0), (void *)rShiftAddA, 2 * RangeSize * 2);  // И восстанавливаем несбрасываемые настройки
-        std::memcpy((void *)&RSHIFT_ADD(Channel::B, 0, 0), (void *)rshiftAddB, 2 * RangeSize * 2);
+        std::memcpy((void *)&RSHIFT_ADD(Channel::A, 0, 0), (void *)rShiftAddA, 2 * Range::Count * 2);  // И восстанавливаем несбрасываемые настройки
+        std::memcpy((void *)&RSHIFT_ADD(Channel::B, 0, 0), (void *)rshiftAddB, 2 * Range::Count * 2);
 
         BALANCE_ADC_A = balanceADC0;
         BALANCE_ADC_B = balanceADC1;
@@ -272,8 +272,8 @@ void Settings::Load(bool _default)
 
     Painter::LoadPalette();
 
-    Panel::EnableLEDChannel0(sChannel_Enabled(Channel::Channel::A));
-    Panel::EnableLEDChannel1(sChannel_Enabled(Channel::Channel::B));
+    Panel::EnableLEDChannel0(sChannel_Enabled(Channel::A));
+    Panel::EnableLEDChannel1(sChannel_Enabled(Channel::B));
     Menu::SetAutoHide(true);
     Display::ChangedRShiftMarkers();
 
@@ -357,17 +357,17 @@ const SmallButton* GetSmallButton(PanelButton button)
 }
 
 
-Range& operator++(Range &range)
+Range::E& operator++(Range::E &range)
 {
-    range = (Range)((int)range + 1);
+    range = (Range::E)((int)range + 1);
     return range;
 
 }
 
 
-Range& operator--(Range &range)
+Range::E& operator--(Range::E &range)
 {
-    range = (Range)((int)range - 1);
+    range = (Range::E)((int)range - 1);
     return range;
 }
 

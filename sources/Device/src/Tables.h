@@ -50,7 +50,7 @@ const char* Tables_GetTBaseString(TBase::E tBase);
 
 const char* Tables_GetTBaseStringEN(TBase::E tBase);
 
-const char* Tables_RangeNameFromValue(Range range);
+const char* Tables_RangeNameFromValue(Range::E range);
 // Возвращает номер канала от 1 до 2
 int Tables_GetNumChannel(Channel::E chan);
 

@@ -59,7 +59,7 @@ public:
     // Включить/выключить фильтр на входе канала.
     static void EnableChannelFiltr(Channel::E chan, bool enable);
     // Установить масштаб по напряжению.
-    static void SetRange(Channel::E chan, Range range);
+    static void SetRange(Channel::E chan, Range::E range);
     // Увеличить масштаб по напряжению.
     static bool RangeIncrease(Channel::E chan);
     // Уменьшить масштаб по напряжению.
@@ -144,7 +144,7 @@ private:
 
     static void ReadRealMode(bool necessaryShift);
 
-    static Range AccurateFindRange(Channel::E chan);
+    static Range::E AccurateFindRange(Channel::E chan);
 
     static TBase::E FindTBase(Channel::E chan);
 

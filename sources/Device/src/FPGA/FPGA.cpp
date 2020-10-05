@@ -637,12 +637,12 @@ void FPGA::SaveState(void)
 
 void FPGA::RestoreState(void)
 {
-    int16 rShiftAdd[2][RangeSize][2];
+    int16 rShiftAdd[2][Range::Count][2];
     for (int chan = 0; chan < 2; chan++)
     {
         for (int mode = 0; mode < 2; mode++)
         {
-            for (int range = 0; range < RangeSize; range++)
+            for (int range = 0; range < Range::Count; range++)
             {
                 rShiftAdd[chan][range][mode] = RSHIFT_ADD(chan, range, mode);
             }
@@ -653,7 +653,7 @@ void FPGA::RestoreState(void)
     {
         for (int mode = 0; mode < 2; mode++)
         {
-            for (int range = 0; range < RangeSize; range++)
+            for (int range = 0; range < Range::Count; range++)
             {
                  RSHIFT_ADD(chan, range, mode) = rShiftAdd[chan][range][mode];
             }
@@ -921,10 +921,10 @@ void FPGA::AutoFind(void)
     //Timer::StartLogging();
 
     //LOG_WRITE("Канал 1");
-    if (!FindWave(Channel::Channel::A))
+    if (!FindWave(Channel::A))
     {
         //LOG_WRITE("Канал 2");
-        if(!FindWave(Channel::Channel::B))
+        if(!FindWave(Channel::B))
         {
             Display::ShowWarningBad(SignalNotFound);
         }
@@ -947,9 +947,9 @@ bool FPGA::FindWave(Channel::E chan)
     FPGA::SetTrigLev(static_cast<TrigSource::E>(chan), TrigLevZero);
     FPGA::SetRShift(chan, RShiftZero);
     FPGA::SetModeCouple(chan, ModeCouple::AC);
-    Range range = AccurateFindRange(chan);
+    Range::E range = AccurateFindRange(chan);
     //LOG_WRITE("Range %s", RangeName(range));
-    if(range != RangeSize)
+    if(range != Range::Count)
     {
         SET_RANGE(chan) = range;
         TBase::E tBase = AccurateFindTBase(chan);
@@ -967,7 +967,7 @@ bool FPGA::FindWave(Channel::E chan)
 }
 
 
-Range FPGA::AccurateFindRange(Channel::E chan)
+Range::E FPGA::AccurateFindRange(Channel::E chan)
 {
     /*
     Алгоритм поиска.
@@ -988,11 +988,11 @@ Range FPGA::AccurateFindRange(Channel::E chan)
     FPGA::SetModeCouple(chan, ModeCouple::AC);
     PeackDetMode::E peackDetMode = PEAKDET;
     FPGA::SetPeackDetMode(PeackDetMode::Enable);
-    for (int range = RangeSize - 1; range >= 0; range--)
+    for (int range = Range::Count - 1; range >= 0; range--)
     {
         //Timer::LogPointMS("1");
         FPGA::Stop(false);
-        FPGA::SetRange(chan, static_cast<Range>(range));
+        FPGA::SetRange(chan, static_cast<Range::E>(range));
         HAL_TIM2::Delay(10);
         FPGA::Start();
 
@@ -1005,7 +1005,7 @@ Range FPGA::AccurateFindRange(Channel::E chan)
             HAL_FSMC::Read(RD_ADC_A1);
         }
 
-        if (chan == Channel::Channel::A)
+        if (chan == Channel::A)
         {
             for (int i = 0; i < 100; i += 2)
             {
@@ -1029,7 +1029,7 @@ Range FPGA::AccurateFindRange(Channel::E chan)
         }
 
         /*
-        if(chan == Channel::Channel::A)
+        if(chan == Channel::A)
         {
             LOG_WRITE("min = %d, max = %d", CalculateMinWithout0(buffer), CalculateMaxWithout255(buffer));
         }
@@ -1037,25 +1037,25 @@ Range FPGA::AccurateFindRange(Channel::E chan)
 
         if (CalculateMinWithout0(buffer) < MIN_VALUE || CalculateMaxWithout255(buffer) > MAX_VALUE)
         {
-            if (range < Range_20V)
+            if (range < Range::_20V)
             {
                 range++;
             }
             FPGA::SetPeackDetMode(peackDetMode);
-            return static_cast<Range>(range);
+            return static_cast<Range::E>(range);
         }
 
         uint8 min = AVE_VALUE - 30;
         uint8 max = AVE_VALUE + 30;
 
-        if(range == Range_2mV && CalculateMinWithout0(buffer) > min && CalculateMaxWithout255(buffer) < max)
+        if(range == Range::_2mV && CalculateMinWithout0(buffer) > min && CalculateMaxWithout255(buffer) < max)
         {
             FPGA::SetPeackDetMode(peackDetMode);
-            return RangeSize;
+            return Range::Count;
         }
     }
     FPGA::SetPeackDetMode(peackDetMode);
-    return RangeSize;
+    return Range::Count;
 }
 
 
@@ -1130,8 +1130,8 @@ void FPGA::TemporaryPause(void)
 
 void FPGA::FillDataPointer(DataSettings *dp)
 {
-    dp->enableCh0 = sChannel_Enabled(Channel::Channel::A) ? 1U : 0U;
-    dp->enableCh1 = sChannel_Enabled(Channel::Channel::B) ? 1U : 0U;
+    dp->enableCh0 = sChannel_Enabled(Channel::A) ? 1U : 0U;
+    dp->enableCh1 = sChannel_Enabled(Channel::B) ? 1U : 0U;
     dp->inverseCh0 = SET_INVERSE_A ? 1U : 0U;
     dp->inverseCh1 = SET_INVERSE_B ? 1U : 0U;
     dp->range[0] = SET_RANGE_A;
@@ -1166,7 +1166,7 @@ void FPGA::FindAndSetTrigLevel(void)
 
     Storage::GetDataFromEnd(0, &ds_, &data0, &data1);
 
-    const uint8 *data = (chanTrig == Channel::Channel::A) ? data0 : data1;
+    const uint8 *data = (chanTrig == Channel::A) ? data0 : data1;
 
     int lastPoint = static_cast<int>(ds_->length1channel) - 1;
 

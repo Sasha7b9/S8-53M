@@ -322,7 +322,7 @@ bool Storage::CopyData(DataSettings *ds, Channel::E chan, uint8 datatImportRel[2
     {
         return false;
     }
-    uint8* pointer = (chan == Channel::Channel::A) ? (&datatImportRel[0][0]) : (&datatImportRel[1][0]);
+    uint8* pointer = (chan == Channel::A) ? (&datatImportRel[0][0]) : (&datatImportRel[1][0]);
 
     uint8* address = ((uint8*)ds + sizeof(DataSettings));
 
@@ -363,7 +363,7 @@ uint8* Storage::GetAverageData(Channel::E chan)
 
     if (ModeAveraging::Current() == ModeAveraging::Around)
     {
-        float *floatAveData = (chan == Channel::Channel::A) ? aveData0 : aveData1;
+        float *floatAveData = (chan == Channel::A) ? aveData0 : aveData1;
         
         for (uint i = 0; i < numPoints; i++)
         {

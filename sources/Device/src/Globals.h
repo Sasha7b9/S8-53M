@@ -196,7 +196,7 @@ struct DataSettings
     uint          trigLevCh0      : 10;   // Уровень синхронизации
     int16         tShift;                 // Смещение по времени
     ModeCouple::E modeCouple1     : 2;
-    Range         range[2];               // Масштаб по напряжению обоих каналов.
+    Range::E      range[2];               // Масштаб по напряжению обоих каналов.
 
     uint          trigLevCh1      : 10;
     uint          length1channel  : 11;   // Сколько занимает в байтах длина измерения одного канала
