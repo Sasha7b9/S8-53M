@@ -94,15 +94,14 @@ file(GLOB FPGA           src/FPGA/*)
 file(GLOB MENU           src/Menu/*.h src/Menu/*.cpp)
 file(GLOB MENU_PAGES     src/Menu/Pages/*)
 file(GLOB PANEL          src/Panel/*)
-file(GLOB SETTINGS       src/Settings/*)
+file(GLOB SETTINGS       src/Settings/* ../common/Settings/cSettingsTypes.h)
 file(GLOB UTILS          src/Utils/*)
 file(GLOB VCP            src/VCP/*.h src/VCP/*.cpp)
 file(GLOB VCP_SCPI       src/VCP/SCPI/*)
 
-set_source_files_properties(src/Panel/PanelFunctions.cpp PROPERTIES HEADER_FILE_ONLY TRUE)
-set_source_files_properties(src/Menu/Pages/PageHelp.cpp PROPERTIES HEADER_FILE_ONLY TRUE)
-#set_source_files_properties(src/VCP/SCPI/trigSCPI.cpp PROPERTIES HEADER_FILE_ONLY TRUE)
-set_source_files_properties(${LIBS_FATFS} ${LIBS_HAL} ${LIBS_USBH} PROPERTIES HEADER_FILE_ONLY TRUE)
+set_source_files_properties(${LIBS_FATFS} ${LIBS_HAL} ${LIBS_USBH}
+                            src/Panel/PanelFunctions.cpp src/Menu/Pages/PageHelp.cpp
+                            PROPERTIES HEADER_FILE_ONLY TRUE)
 
 source_group(libs\\vs_keil\\ARMCLANG FILES ${VS_KEIL_ARMCLANG})
 source_group(libs\\vs_keil\\CMSIS    FILES ${VS_KEIL_CMSIS})

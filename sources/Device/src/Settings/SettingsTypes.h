@@ -19,15 +19,6 @@ struct ModeCouple { enum E
     GND      // Вход заземлён.
 };};
 
-// Делитель.
-struct Divider { enum E
-    {
-        _1,
-        _10
-    };
-    static int ToAbs(Divider::E divider);
-};
-
 // Масштаб по напряжению.
 struct Range { enum E
 {

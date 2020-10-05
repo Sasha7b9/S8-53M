@@ -1,6 +1,7 @@
 #pragma once
 #include "defines.h"
-#include "SettingsTypes.h"
+#include "common/Settings/cSettingsTypes.h"
+#include "Settings/SettingsTypes.h"
 #include "Panel/Controls.h"
 
 
@@ -27,22 +28,6 @@ struct SettingsDisplay
     MenuAutoHide::E     menuAutoHide;               // Через сколько времени после последнего нажатия клавиши прятать меню 
     bool                showFullMemoryWindow;       // Показывать ли окно памяти вверху экрана.
     bool                showStringNavigation;       // Показывать ли строку текущего состояния меню.
-};
-
-
-// Настройки каналов
-struct SettingsChannel
-{
-    float           stretchADC;         	    // Поправочный коэффициент.
-    int16           rShiftRel;
-    int16           rShiftAdd[Range::Count][2]; // Добавочное смещение для открытого (0) и закрытого (1) входов.
-    ModeCouple::E   modeCouple;         	    // Режим по входу.
-    Multiplier      multiplier;         	    // Множитель.
-    Range           range;              	    // Масштаб по напряжению.
-    bool            enable;             	    // Включён ли канал.
-    bool            inverse;            	    // Инвертирован ли канал.
-    bool            filtr;              	    // Фильтр
-    int8            balanceShiftADC;    	    // Добавочное смещение для балансировки АЦП.
 };
 
 
@@ -135,7 +120,7 @@ struct SettingsMath
     ModeDrawMath::E modeDraw;               // Раздельный или общий дисплей в режиме математической функции
     ModeRegSet::E   modeRegSet;             // Функция ручки УСТАНОВКА - масштаб по времени или смещение по вертикали
     Range::E        range;
-    Multiplier      multiplier;
+    Divider::E      multiplier;
     int16           rShift;
 };
 

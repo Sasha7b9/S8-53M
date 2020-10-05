@@ -147,13 +147,6 @@ struct ModeCouple { enum E
     GND      // Вход заземлён
 };};
 
-// Делитель
-enum Multiplier
-{
-    Multiplier_1,
-    Multiplier_10
-};
-
 // Масштаб по напряжению
 struct Range { enum E
 {

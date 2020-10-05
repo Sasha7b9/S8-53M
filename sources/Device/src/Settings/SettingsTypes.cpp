@@ -1,3 +1,4 @@
+#include "common/Settings/cSettingsTypes.h"
 #include "SettingsTypes.h"
 
 
