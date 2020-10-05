@@ -142,7 +142,7 @@ const Page pDebug
 // ОТЛАДКА - Статистика ------------------------------------------------------------------------------------------------------------------------------
 static const Choice mcStats =
 {
-    Item_Choice, &pDebug, 0,
+    TypeItem::Choice, &pDebug, 0,
     {
         "Статистика", "Statistics",
         "Показывать/не показывать время/кадр, кадров в секунду, количество сигналов с последними настройками в памяти/количество сохраняемых в памяти сигналов",
@@ -186,7 +186,7 @@ static const Governor mgConsole_NumStrings
 // ОТЛАДКА - КОНСОЛЬ - Размер шрифта -----------------------------------------------------------------------------------------------------------------
 static const Choice mcConsole_SizeFont =
 {
-    Item_Choice, &mpConsole, 0,
+    TypeItem::Choice, &mpConsole, 0,
     {
         "Размер шрифта", "Size font",
         "",
@@ -229,7 +229,7 @@ static const Page mpConsole_Registers
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Показывать все -----------------------------------------------------------------------------------------------------
 static const Choice mcConsole_Registers_ShowAll =
 {
-    Item_Choice, &mpConsole_Registers, 0,
+    TypeItem::Choice, &mpConsole_Registers, 0,
     {
         "Показывать все", "Show all",
         "Показывать все значения, засылаемые в регистры",
@@ -245,7 +245,7 @@ static const Choice mcConsole_Registers_ShowAll =
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - RD_FL --------------------------------------------------------------------------------------------------------------
 static const Choice mcConsole_Registers_RD_FL =
 {
-    Item_Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
+    TypeItem::Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
     {
         "RD_FL", "RD_FL",
         "",
@@ -266,7 +266,7 @@ static bool IsActive_Console_Registers_RD_FL(void)
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - U см. 1к -----------------------------------------------------------------------------------------------------------
 static const Choice mcConsole_Registers_RShiftA =
 {
-    Item_Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
+    TypeItem::Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
     {
         "U см. 1к", "U shift 1ch",
         "",
@@ -282,7 +282,7 @@ static const Choice mcConsole_Registers_RShiftA =
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - U см. 2к -----------------------------------------------------------------------------------------------------------
 static const Choice mcConsole_Registers_RShiftB =
 {
-    Item_Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
+    TypeItem::Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
     {
         "U см. 2к", "U shift 2ch",
         "",
@@ -298,7 +298,7 @@ static const Choice mcConsole_Registers_RShiftB =
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - U синхр. -----------------------------------------------------------------------------------------------------------
 static const Choice mcConsole_Registers_TrigLev =
 {
-    Item_Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
+    TypeItem::Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
     {
         "U синхр.", "U trig.",
         "",
@@ -314,7 +314,7 @@ static const Choice mcConsole_Registers_TrigLev =
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - ВОЛЬТ/ДЕЛ 1 --------------------------------------------------------------------------------------------------------
 static const Choice mcConsole_Registers_RangeA =
 {
-    Item_Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
+    TypeItem::Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
     {
         "ВОЛЬТ/ДЕЛ 1", "Range 1",
         "",
@@ -330,7 +330,7 @@ static const Choice mcConsole_Registers_RangeA =
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - ВОЛЬТ/ДЕЛ 2 --------------------------------------------------------------------------------------------------------
 static const Choice mcConsole_Registers_RangeB =
 {
-    Item_Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
+    TypeItem::Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
     {
         "ВОЛЬТ/ДЕЛ 2", "Range 2",
         "",
@@ -346,7 +346,7 @@ static const Choice mcConsole_Registers_RangeB =
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Парам. синхр. ------------------------------------------------------------------------------------------------------
 static const Choice mcConsole_Registers_TrigParam =
 {
-    Item_Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
+    TypeItem::Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
     {
         "Парам. синхр.", "Trig param",
         "",
@@ -362,7 +362,7 @@ static const Choice mcConsole_Registers_TrigParam =
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Парам. кан. 1 ------------------------------------------------------------------------------------------------------
 static const Choice mcConsole_Registers_ChanParamA =
 {
-    Item_Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
+    TypeItem::Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
     {
         "Парам. кан. 1",  "Chan 1 param",
         "",
@@ -378,7 +378,7 @@ static const Choice mcConsole_Registers_ChanParamA =
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Парам. кан. 2 ------------------------------------------------------------------------------------------------------
 static const Choice mcConsole_Registers_ChanParamB =
 {
-    Item_Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
+    TypeItem::Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
     {
         "Парам. кан. 2", "Chan 2 param",
         "",
@@ -394,7 +394,7 @@ static const Choice mcConsole_Registers_ChanParamB =
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - ВРЕМЯ/ДЕЛ ----------------------------------------------------------------------------------------------------------
 static const Choice mcConsole_Registers_TBase =
 {
-    Item_Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
+    TypeItem::Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
     {
         "ВРЕМЯ/ДЕЛ", "TBase",
         "",
@@ -410,7 +410,7 @@ static const Choice mcConsole_Registers_TBase =
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Т см. --------------------------------------------------------------------------------------------------------------
 static const Choice mcConsole_Registers_tShift =
 {
-    Item_Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
+    TypeItem::Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
     {
         "Т см.", "tShift",
         "",
@@ -462,7 +462,7 @@ static const Page mpADC_Balance
 // ОТЛАДКА - АЦП - БАЛАНС - Режим --------------------------------------------------------------------------------------------------------------------
 static const Choice mcADC_Balance_Mode =
 {
-    Item_Choice, &mpADC_Balance, 0,
+    TypeItem::Choice, &mpADC_Balance, 0,
     {
         "Режим", "Mode",
         "",
@@ -557,7 +557,7 @@ static const Page mpADC_Stretch
 // ОТЛАДКА - АЦП - РАСТЯЖКА - Режим ------------------------------------------------------------------------------------------------------------------
 static const Choice mcADC_Stretch_Mode =
 {
-    Item_Choice, &mpADC_Stretch, 0,
+    TypeItem::Choice, &mpADC_Stretch, 0,
     {
         "Режим", "Mode",
         "",
@@ -810,7 +810,7 @@ static const Governor mgRandomizer_Average
 // ОТЛАДКА - Размер настроек  ------------------------------------------------------------------------------------------------------------------------
 static const Choice mcSizeSettings =
 {
-    Item_Choice, &pDebug, 0,
+    TypeItem::Choice, &pDebug, 0,
     {
         "Размер настроек", "Size settings",
         "Вывод размера структуры Settings",
@@ -1075,7 +1075,7 @@ static void Draw_SerialNumber_Save(int x, int y)
 
         const Choice mcDebugADCrShiftMode =
         {
-            Item_Choice, &mpADC_AltRShift, {"Режим",      "Mode"},
+            TypeItem::Choice, &mpADC_AltRShift, {"Режим",      "Mode"},
             {
                 "",
                 ""
@@ -1152,7 +1152,7 @@ const Governor mgDebugADCaltShift =
 // ОТЛАДКА - АЦП - ДОП СМЕЩ ПАМ /////////////////////////////////////////////////////////////////////////////////////////////
 const Page mspDebugADCaltShift =
 {
-    Item_Page, &mpADC, 0,
+    TypeItem::Page, &mpADC, 0,
     {
         "ДОП СМЕЩ ПАМ", "ALT SHIFT MEM",
         "",
@@ -1209,7 +1209,7 @@ const Governor mgDebugInfoVersion =
 // ОТЛАДКА - ИНФОРМАЦИЯ ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const Page mspDebugInformation =
 {
-    Item_Page, &pDebug,
+    TypeItem::Page, &pDebug,
     {
         "ИНФОРМАЦИЯ", "INFORMATION",
     },

@@ -24,7 +24,7 @@ void DrawGovernorChoiceColorFormulaHiPart(void *item, int x, int y, bool pressed
     int delta = pressed && !shade ? 1 : 0;
     int width = MI_WIDTH_VALUE;
 
-    if (Menu::TypeMenuItem(item) == Item_IP && opened && ((IPaddress*)item)->port != 0)
+    if (Menu::TypeMenuItem(item) == TypeItem::IP && opened && ((IPaddress*)item)->port != 0)
     {
         width += MOI_WIDTH_D_IP;
     }
@@ -43,22 +43,22 @@ void DrawGovernorChoiceColorFormulaHiPart(void *item, int x, int y, bool pressed
 
     Painter::DrawTextC(x + 6 + delta, y + 6 + delta, Menu::TitleItem(item), color);
     
-    TypeItem type = Menu::TypeMenuItem(item);
+    TypeItem::E type = Menu::TypeMenuItem(item);
 
     if(Menu::CurrentItem() == item)
     {
         char symbol = 0;
 
-        if (type == Item_Governor)
+        if (type == TypeItem::Governor)
         {
             symbol = GetSymbolForGovernor(*((Governor*)item)->cell);
             ADDRESS_GOVERNOR = (uint)item;
         }
-        else if (type == Item_Governor || type == Item_ChoiceReg ||  (Menu::ItemIsOpened(item) && type == Item_Choice))
+        else if (type == TypeItem::Governor || type == TypeItem::ChoiceReg ||  (Menu::ItemIsOpened(item) && type == TypeItem::Choice))
         {
             symbol = GetSymbolForGovernor(*((Choice*)item)->cell);
         }
-        else if (type == Item_Time)
+        else if (type == TypeItem::Time)
         {
             Time *time = (Time*)item;
             if ((Menu::OpenedItem() == item) && (*time->curField != iEXIT) && (*time->curField != iSET))

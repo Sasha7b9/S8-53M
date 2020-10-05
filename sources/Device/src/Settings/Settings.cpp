@@ -323,7 +323,7 @@ void ShowMenu(bool show)
 
 bool MenuIsMinimize()
 {
-    return Menu::TypeOpenedItem() == Item_Page && Menu::GetNamePage((const Page *)Menu::OpenedItem()) >= Page_SB_Curs;
+    return Menu::TypeOpenedItem() == TypeItem::Page && Menu::GetNamePage((const Page *)Menu::OpenedItem()) >= Page_SB_Curs;
 }
 
 bool MenuPageDebugIsActive()

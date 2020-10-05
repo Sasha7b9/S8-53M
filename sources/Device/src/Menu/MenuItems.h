@@ -11,23 +11,23 @@
 
 
 // Разные виды пунктов меню
-enum TypeItem
+struct TypeItem { enum E
 {
-    Item_None,           
-    Item_Choice,        // Пункт выбора - позволяет выбрать одно из нескольких заданных значений.
-    Item_Button,        // Кнопка.
-    Item_Page,          // Страница.
-    Item_Governor,      // Регулятор - позволяет выбрать любое целое числовое значение из заранее заданного диапазаона.
-    Item_Time,          // Позволяет ввести время.
-    Item_IP,            // Позволяет ввести IP-адрес.
-    Item_SwitchButton,
-    Item_GovernorColor, // Позволяет выбрать цвет.
-    Item_Formula,       // Позволяет выбрать знак и коэффициенты для математической формулы (умножение и сложение)
-    Item_MAC,           // MAC-адрес
-    Item_ChoiceReg,     // Элемент выбора, в котором выбор осуществляется не кнопкой, а ручкой
-    Item_SmallButton,   // Кнопка для режима малых кнопок
-    Item_NumberItems
-};
+    None,           
+    Choice,        // Пункт выбора - позволяет выбрать одно из нескольких заданных значений.
+    Button,        // Кнопка.
+    Page,          // Страница.
+    Governor,      // Регулятор - позволяет выбрать любое целое числовое значение из заранее заданного диапазаона.
+    Time,          // Позволяет ввести время.
+    IP,            // Позволяет ввести IP-адрес.
+    SwitchButton,
+    GovernorColor, // Позволяет выбрать цвет.
+    Formula,       // Позволяет выбрать знак и коэффициенты для математической формулы (умножение и сложение)
+    MAC,           // MAC-адрес
+    ChoiceReg,     // Элемент выбора, в котором выбор осуществляется не кнопкой, а ручкой
+    SmallButton,   // Кнопка для режима малых кнопок
+    Count
+};};
 
 // Здесь ID всех представленных в меню страниц
 enum NamePage
@@ -88,7 +88,7 @@ enum NamePage
 class Page;
 
 #define COMMON_PART_MENU_ITEM                                                                                     \
-    TypeItem    type;             /* Тип итема */                                                     \
+    TypeItem::E type;             /* Тип итема */                                                     \
     const Page* keeper;           /* Адрес страницы, которой принадлежит. Для Page_MainPage = 0 */    \
     pFuncBV     funcOfActive;     /* Активен ли данный элемент */                                     \
     const char* titleHint[4];     /* Название страницы на русском и английском языках. Также подсказка для режима помощи */
@@ -106,7 +106,7 @@ public:
 
 public:
     Control(const ControlStruct *str);
-    Control(TypeItem type_, const Page* keeper_, pFuncBV funcOfActive_, const char *tileRU, const char *titleEN, const char *hintRU, const char *hintEN);
+    Control(TypeItem::E type_, const Page* keeper_, pFuncBV funcOfActive_, const char *tileRU, const char *titleEN, const char *hintRU, const char *hintEN);
     // Возвращает true, если кнопка, соответствующая данному элементу меню, находится в нажатом положении.
     bool IsPressed();
 };

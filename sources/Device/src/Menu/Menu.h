@@ -50,9 +50,9 @@ public:
     // Dозвращает число подстраниц в странице по адресу page.
     static int NumSubPages(const Page *page);
     // Возвращает тип элемента меню по адресу address.
-    static TypeItem TypeMenuItem(void *address);
+    static TypeItem::E TypeMenuItem(void *address);
     // Возвращает тип открытого элемента меню.
-    static TypeItem TypeOpenedItem();
+    static TypeItem::E TypeOpenedItem();
     // Возвращает адрес открытого элемента меню.
     static void *OpenedItem();
     // Возвращает адрес текущего элемента меню (текущим, как правило, является элемент, кнопка которого была нажата последней.
@@ -164,7 +164,7 @@ private:
 
     static int ItemOpenedPosY(void *item);
 
-    static void *RetLastOpened(Page *_page, TypeItem *_type);
+    static void *RetLastOpened(Page *_page, TypeItem::E *_type);
     
     static void OpenFileManager();
     // Обработка события таймера автоматического сокрытия меню.

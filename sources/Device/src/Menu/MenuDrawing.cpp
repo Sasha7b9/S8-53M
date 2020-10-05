@@ -50,23 +50,23 @@ static void DrawHintItem(int x, int y, int width)
         return;
     }
 
-    const char *names[Item_NumberItems][2] =
+    const char *names[TypeItem::Count][2] =
     {
-        {"",            ""},        // Item_None
-        {"",            ""},        // Item_Choice
-        {"Кнопка",      "Button"},  // Item_Button
-        {"Страница",    "Page"},    // Item_Page
-        {"",            ""},        // Item_Governor
-        {"",            ""},        // Item_Time
-        {"",            ""},        // Item_IP
+        {"",            ""},        // TypeItem::None
+        {"",            ""},        // TypeItem::Choice
+        {"Кнопка",      "Button"},  // TypeItem::Button
+        {"Страница",    "Page"},    // TypeItem::Page
+        {"",            ""},        // TypeItem::Governor
+        {"",            ""},        // TypeItem::Time
+        {"",            ""},        // TypeItem::IP
         {"",            ""},        // Item_SwitchButton
-        {"",            ""},        // Item_GovernorColor
+        {"",            ""},        // TypeItem::GovernorColor
         {"",            ""},        // Item_Formula
-        {"",            ""},        // Item_MAC
-        {"",            ""},        // Item_ChoiceReg
-        {"Кнопка",      "Button"}   // Item_SmallButton
+        {"",            ""},        // TypeItem::MAC
+        {"",            ""},        // TypeItem::ChoiceReg
+        {"Кнопка",      "Button"}   // TypeItem::SmallButton
     };
-    TypeItem type = Menu::TypeMenuItem(gItemHint);
+    TypeItem::E type = Menu::TypeMenuItem(gItemHint);
     Language lang = set.common.lang;
     Page *item = (Page*)gItemHint;
 
@@ -74,13 +74,13 @@ static void DrawHintItem(int x, int y, int width)
     char title[SIZE];
     std::snprintf(title, SIZE, "%s \"%s\"", names[type][lang], TITLE(item));
 
-    if (item->type == Item_SmallButton)
+    if (item->type == TypeItem::SmallButton)
     {
         y -= 9;
     }
     Painter::DrawStringInCenterRectAndBoundItC(x, y, width, 15, title, COLOR_BACK, COLOR_FILL);
     y = Painter::DrawTextInBoundedRectWithTransfers(x, y + 15, width, HINT(item), COLOR_BACK, COLOR_FILL);
-    if (item->type == Item_SmallButton)
+    if (item->type == TypeItem::SmallButton)
     {
         Painter::DrawHintsForSmallButton(x, y, width, reinterpret_cast<SmallButton*>(item));
     }
@@ -89,21 +89,21 @@ static void DrawHintItem(int x, int y, int width)
 
 void Menu::Draw()
 {
-    if(MenuIsShown() || TypeMenuItem(OpenedItem()) != Item_Page)
+    if(MenuIsShown() || TypeMenuItem(OpenedItem()) != TypeItem::Page)
     {
         ResetItemsUnderButton();
         void *item = OpenedItem();
         if(MenuIsShown())
         {
-            DrawOpenedPage(TypeMenuItem(item) == Item_Page ? (Page *)item : Keeper(item), 0, GRID_TOP);
+            DrawOpenedPage(TypeMenuItem(item) == TypeItem::Page ? (Page *)item : Keeper(item), 0, GRID_TOP);
         }
         else
         {
-            if(TypeMenuItem(item) == Item_Choice)
+            if(TypeMenuItem(item) == TypeItem::Choice)
             {
                 ItemChoice_Draw((Choice *)item, CalculateX(0), GRID_TOP, true);
             }
-            else if(TypeMenuItem(item) == Item_Governor)
+            else if(TypeMenuItem(item) == TypeItem::Governor)
             {
                 ItemGovernor_Draw((Governor *)item, CalculateX(0), GRID_TOP, true);
             }
@@ -158,7 +158,7 @@ void Menu::DrawTitlePage(Page *page, int layer, int yTop)
     }
     
     Painter::DrawVLineC(x, yTop, yTop + HeightOpenedItem(page), ColorBorderMenu(false));
-    bool condDrawRSet = NumSubPages(page) > 1 && TypeMenuItem(CurrentItem()) != Item_ChoiceReg && TypeMenuItem(CurrentItem()) != Item_Governor && TypeOpenedItem() == Item_Page;
+    bool condDrawRSet = NumSubPages(page) > 1 && TypeMenuItem(CurrentItem()) != TypeItem::ChoiceReg && TypeMenuItem(CurrentItem()) != TypeItem::Governor && TypeOpenedItem() == TypeItem::Page;
     int delta = condDrawRSet ? -10 : 0;
     Color::E colorText = shade ? LightShadingTextColor() : Color::BLACK;
     x = Painter::DrawStringInCenterRectC(x, yTop, MP_TITLE_WIDTH + 2 + delta, MP_TITLE_HEIGHT, TitleItem(page), colorText);
@@ -264,21 +264,21 @@ static void DrawPage(void *item, int x, int y)
 
 void Menu::DrawItemsPage(Page *page, int layer, int yTop)
 {
-    void (*funcOfDraw[Item_NumberItems])(void*, int, int) = 
+    void (*funcOfDraw[TypeItem::Count])(void*, int, int) = 
     {  
-        EmptyFuncpVII,      // Item_None
-        DrawChoice,         // Item_Choice
-        DrawButton,         // Item_Button
-        DrawPage,           // Item_Page
-        DrawGovernor,       // Item_Governor
-        DrawTime,           // Item_Time
-        DrawIPaddress,      // Item_IP
+        EmptyFuncpVII,      // TypeItem::None
+        DrawChoice,         // TypeItem::Choice
+        DrawButton,         // TypeItem::Button
+        DrawPage,           // TypeItem::Page
+        DrawGovernor,       // TypeItem::Governor
+        DrawTime,           // TypeItem::Time
+        DrawIPaddress,      // TypeItem::IP
         EmptyFuncpVII,      // Item_SwitchButton
-        DrawGovernorColor,  // Item_GovernorColor
+        DrawGovernorColor,  // TypeItem::GovernorColor
         DrawFormula,        // Item_Formula
         DrawMACaddress,     // Item_Mac
-        DrawChoice,         // Item_ChoiceReg
-        DrawSmallButton     // Item_SmallButton
+        DrawChoice,         // TypeItem::ChoiceReg
+        DrawSmallButton     // TypeItem::SmallButton
     };
     int posFirstItem = PosItemOnTop(page);
     int posLastItem = posFirstItem + MENU_ITEMS_ON_DISPLAY - 1;
@@ -287,7 +287,7 @@ void Menu::DrawItemsPage(Page *page, int layer, int yTop)
     for(int posItem = posFirstItem; posItem <= posLastItem; posItem++)
     {
         void *item = Item(page, posItem);
-        TypeItem type = TypeMenuItem(item);
+        TypeItem::E type = TypeMenuItem(item);
         int top = yTop + MI_HEIGHT * count;
         funcOfDraw[type](item, CalculateX(layer), top);
         count++;
@@ -311,28 +311,28 @@ void Menu::DrawOpenedPage(Page *page, int layer, int yTop)
                 itemUnderButton[i + B_F1] = 0;
             }
         }
-        TypeItem type = TypeMenuItem(item);
-        if (type == Item_Choice || type == Item_ChoiceReg)
+        TypeItem::E type = TypeMenuItem(item);
+        if (type == TypeItem::Choice || type == TypeItem::ChoiceReg)
         {
             ItemChoice_Draw((Choice *)item, CalculateX(1), ItemOpenedPosY(item), true);
         }
-        else if (type == Item_Governor)
+        else if (type == TypeItem::Governor)
         {
             ItemGovernor_Draw((Governor *)item, CalculateX(1), ItemOpenedPosY(item), true);
         }
-        else if (type == Item_GovernorColor)
+        else if (type == TypeItem::GovernorColor)
         {
             GovernorColor_Draw((GovernorColor *)item, CalculateX(1), ItemOpenedPosY(item), true);
         }
-        else if (type == Item_Time)
+        else if (type == TypeItem::Time)
         {
             ItemTime_Draw((Time *)item, CalculateX(1), ItemOpenedPosY(item), true);
         }
-        else if (type == Item_IP)
+        else if (type == TypeItem::IP)
         {
             ItemIPaddress_Draw((IPaddress *)item, CalculateX(1), ItemOpenedPosY(item), true);
         }
-        else if (type == Item_MAC)
+        else if (type == TypeItem::MAC)
         {
             ItemMACaddress_Draw((MACaddress *)item, CalculateX(1), ItemOpenedPosY(item), true);
         }

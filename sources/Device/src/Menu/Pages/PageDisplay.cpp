@@ -98,7 +98,7 @@ const Page pDisplay                 // ДИСПЛЕЙ
 // ДИСПЛЕЙ - Отображение -----------------------------------------------------------------------------------------------------------------------------
 static const Choice mcMapping =
 {
-    Item_Choice, &pDisplay, 0,
+    TypeItem::Choice, &pDisplay, 0,
     {
         "Отображение", "View",
         "Задаёт режим отображения сигнала.",
@@ -137,7 +137,7 @@ static bool IsActive_Accumulation(void)
 // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Количество -----------------------------------------------------------------------------------------------------------------
 static const Choice mcAccumulation_Number =
 {
-    Item_ChoiceReg, &mspAccumulation, 0,
+    TypeItem::ChoiceReg, &mspAccumulation, 0,
     {
         "Количество", "Number"
         ,
@@ -167,7 +167,7 @@ static const Choice mcAccumulation_Number =
 // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Режим ----------------------------------------------------------------------------------------------------------------------
 static const Choice mcAccumulation_Mode =
 {
-    Item_Choice, &mspAccumulation, 0,
+    TypeItem::Choice, &mspAccumulation, 0,
     {
         "Режим", "Mode"
         ,
@@ -235,7 +235,7 @@ static bool IsActive_Averaging(void)
 // ДИСПЛЕЙ - УСРЕДНЕНИЕ - Количество -----------------------------------------------------------------------------------------------------------------
 static const Choice mcAveraging_Number =
 {
-    Item_ChoiceReg, &mspAveraging, 0,
+    TypeItem::ChoiceReg, &mspAveraging, 0,
     {
         "Количество", "Number",
         "Задаёт количество последних измерений, по которым производится усреднение.",
@@ -260,7 +260,7 @@ static const Choice mcAveraging_Number =
 // ДИСПЛЕЙ - УСРЕДНЕНИЕ - Режим ----------------------------------------------------------------------------------------------------------------------
 static const Choice mcAveraging_Mode =
 {
-    Item_Choice, &mspAveraging, 0,
+    TypeItem::Choice, &mspAveraging, 0,
     {
         "Режим", "Mode"
         ,
@@ -283,7 +283,7 @@ static const Choice mcAveraging_Mode =
 // ДИСПЛЕЙ - Мин Макс --------------------------------------------------------------------------------------------------------------------------------
 static const Choice mcMinMax =
 {
-    Item_ChoiceReg, &pDisplay, IsActive_MinMax,
+    TypeItem::ChoiceReg, &pDisplay, IsActive_MinMax,
     {
         "Мин Макс", "Min Max"
         ,
@@ -328,7 +328,7 @@ static void OnChanged_MinMax(bool)
 // ДИСПЛЕЙ - Сглаживание -----------------------------------------------------------------------------------------------------------------------------
 static const Choice mcSmoothing =
 {
-    Item_ChoiceReg, &pDisplay, 0,
+    TypeItem::ChoiceReg, &pDisplay, 0,
     {
         "Сглаживание", "Smoothing",
         "Устанавливает количество точек для расчёта сглаженного по соседним точкам сигнала.",
@@ -353,7 +353,7 @@ static const Choice mcSmoothing =
 // ДИСПЛЕЙ - Частота обновл --------------------------------------------------------------------------------------------------------------------------
 static const Choice mcRefreshFPS =
 {
-    Item_Choice, &pDisplay, 0,
+    TypeItem::Choice, &pDisplay, 0,
     {
         "Частота обновл", "Refresh rate",
         "Задаёт максимальное число выводимых в секунду кадров.",
@@ -395,7 +395,7 @@ static const Page mspGrid
 // ДИСПЛЕЙ - СЕТКА - Тип -----------------------------------------------------------------------------------------------------------------------------
 static const Choice mcGrid_Type =
 {
-    Item_Choice, &mspGrid, 0,
+    TypeItem::Choice, &mspGrid, 0,
     {
         "Тип", "Type",
         "Выбор типа сетки.",
@@ -437,7 +437,7 @@ static void BeforeDraw_Grid_Brightness(void)
 // ДИСПЛЕЙ - Смещение --------------------------------------------------------------------------------------------------------------------------------
 static const Choice mcTypeShift =
 {
-    Item_Choice, &pDisplay, 0,
+    TypeItem::Choice, &pDisplay, 0,
     {
         "Смещение", "Offset"
         ,
@@ -501,7 +501,7 @@ static const Page mspSettings_Colors
 // ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Цветовая схема ------------------------------------------------------------------------------------------------------
 static const Choice mcSettings_Colors_Scheme =
 {
-    Item_Choice, &mspSettings_Colors, 0,
+    TypeItem::Choice, &mspSettings_Colors, 0,
     {
         "Цветовая схема", "Color scheme",
         "Режим работы калибратора",
@@ -519,7 +519,7 @@ static ColorType colorT1 = {0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::DAT
 // ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Канал 1 -------------------------------------------------------------------------------------------------------------
 static const GovernorColor mgcSettings_Colors_ChannelA =
 {
-    Item_GovernorColor, &mspSettings_Colors, 0,
+    TypeItem::GovernorColor, &mspSettings_Colors, 0,
     {
         "Канал 1", "Channel 1",
         "",
@@ -533,7 +533,7 @@ static ColorType colorT2 = {0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::DAT
 // ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Канал 2 -------------------------------------------------------------------------------------------------------------
 static const GovernorColor mgcSettings_Colors_ChannelB =
 {
-    Item_GovernorColor, &mspSettings_Colors, 0,
+    TypeItem::GovernorColor, &mspSettings_Colors, 0,
     {
         "Канал 2", "Channel 2",
         "",
@@ -546,7 +546,7 @@ static const GovernorColor mgcSettings_Colors_ChannelB =
 // ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Сетка ---------------------------------------------------------------------------------------------------------------
 static const GovernorColor mgcSettings_Colors_Grid =
 {
-    Item_GovernorColor, &mspSettings_Colors, 0,
+    TypeItem::GovernorColor, &mspSettings_Colors, 0,
     {
         "Сетка", "Grid",
         "Устанавливает цвет сетки",
@@ -597,7 +597,7 @@ static const Governor mgSettings_TimeMessages
 // ДИСПЛЕЙ - НАСТРОЙКИ - Строка меню -----------------------------------------------------------------------------------------------------------------
 static const Choice mcSettings_ShowStringNavigation =
 {
-    Item_Choice, &mspSettings, 0,
+    TypeItem::Choice, &mspSettings, 0,
     {
         "Строка меню", "Path menu",
         "При выборе \nПоказывать\n слева вверху экрана выводится полный путь до текущей страницы меню",
@@ -614,7 +614,7 @@ static const Choice mcSettings_ShowStringNavigation =
 // ДИСПЛЕЙ - НАСТРОЙКИ - Доп. маркеры ----------------------------------------------------------------------------------------------------------------
 static const Choice mcSettings_ShowAltMarkers =
 {
-    Item_Choice, &mspSettings, 0,
+    TypeItem::Choice, &mspSettings, 0,
     {
         "Доп. маркеры", "Alt. markers"
         ,
@@ -645,7 +645,7 @@ static void OnChanged_Settings_ShowAltMarkers(bool)
 // ДИСПЛЕЙ - НАСТРОЙКИ - Скрывать --------------------------------------------------------------------------------------------------------------------
 static const Choice mcSettings_AutoHide =
 {
-    Item_Choice, &mspSettings, 0,
+    TypeItem::Choice, &mspSettings, 0,
     {
         "Скрывать", "Hide",
         "Установка после последнего нажатия кнопки или поворота ручки, по истечении которого меню автоматически убирается с экрана",
@@ -672,7 +672,7 @@ static void OnChanged_Settings_AutoHide(bool autoHide)
 /*
 static const Choice mcDisplMemoryWindow =
 {
-    Item_Choice, &pDisplay, 0,
+    TypeItem::Choice, &pDisplay, 0,
     {
         "Окно памяти", "Window memory",
         "1. \"Стандартное\" - в верхней части экрана выводится содержимое памяти.\n2. \"Упрощённое\" - выводится положение видимого окна в памяти.",

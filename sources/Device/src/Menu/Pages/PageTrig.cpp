@@ -56,7 +56,7 @@ const Page pTrig              // СИНХР
 // СИНХР - Режим -------------------------------------------------------------------------------------------------------------------------------------
 static const Choice mcMode =
 {
-    Item_Choice, &pTrig, 0,
+    TypeItem::Choice, &pTrig, 0,
     {
         "Режим", "Mode"
         ,
@@ -91,7 +91,7 @@ void OnPress_Mode(bool)
 // СИНХР - Источник ----------------------------------------------------------------------------------------------------------------------------------
 static const Choice mcSource =
 {
-    Item_Choice, &pTrig, 0,
+    TypeItem::Choice, &pTrig, 0,
     {
         "Источник", "Source",
         "Выбор источника сигнала синхронизации.",
@@ -114,7 +114,7 @@ static void OnChanged_Source(bool)
 // СИНХР - Полярность --------------------------------------------------------------------------------------------------------------------------------
 static const Choice mcPolarity =
 {
-    Item_Choice, &pTrig, 0,
+    TypeItem::Choice, &pTrig, 0,
     {
         "Полярность", "Polarity"
         ,
@@ -140,7 +140,7 @@ static void OnChanged_Polarity(bool)
 // СИНХР - Вход --------------------------------------------------------------------------------------------------------------------------------------
 static const Choice mcInput =
 {
-    Item_Choice, &pTrig, 0,
+    TypeItem::Choice, &pTrig, 0,
     {
         "Вход", "Input"
         ,
@@ -191,7 +191,7 @@ static const Page mpAutoFind
 // СИНХР - ПОИСК - Режим -----------------------------------------------------------------------------------------------------------------------------
 static const Choice mcAutoFind_Mode =
 {
-    Item_Choice, &mpAutoFind, 0,
+    TypeItem::Choice, &mpAutoFind, 0,
     {
         "Режим", "Mode"
         ,

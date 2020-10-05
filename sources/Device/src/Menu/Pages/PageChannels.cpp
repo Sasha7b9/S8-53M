@@ -93,7 +93,7 @@ const Page pChanA           // КАНАЛ 1
 // КАНАЛ 1 - Вход ------------------------------------------------------------------------------------------------------------------------------------
 static const Choice mcInputA =
 {
-    Item_Choice, &pChanA, 0,
+    TypeItem::Choice, &pChanA, 0,
     {
         "Вход", "Input",
         chanInputRu,
@@ -115,7 +115,7 @@ void OnChanged_InputA(bool)
 // КАНАЛ 1 - Связь -----------------------------------------------------------------------------------------------------------------------------------
 static const Choice mcCoupleA =
 {
-    Item_Choice, &pChanA, 0,
+    TypeItem::Choice, &pChanA, 0,
     {
         "Связь",   "Couple",
         chanCoupleRu,
@@ -138,7 +138,7 @@ void OnChanged_CoupleA(bool)
 // КАНАЛ 1 - Фильтр ----------------------------------------------------------------------------------------------------------------------------------
 static const Choice mcFiltrA =
 {
-    Item_Choice, &pChanA, 0,
+    TypeItem::Choice, &pChanA, 0,
     {
         "Фильтр", "Filtr",
         chanFiltrRu,
@@ -160,7 +160,7 @@ void OnChanged_FiltrA(bool)
 // КАНАЛ 1 - Инверсия --------------------------------------------------------------------------------------------------------------------------------
 static const Choice mcInverseA =
 {
-    Item_Choice, &pChanA, 0,
+    TypeItem::Choice, &pChanA, 0,
     {
         "Инверсия",    "Inverse",
         chanInverseRu,
@@ -182,7 +182,7 @@ static void OnChanged_InverseA(bool)
 // КАНАЛ 1 - Множитель -------------------------------------------------------------------------------------------------------------------------------
 static const Choice mcMultiplierA =
 {
-    Item_Choice, &pChanA, 0,
+    TypeItem::Choice, &pChanA, 0,
     {
         "Множитель", "Divider",
         chanMultiplierRu,
@@ -220,7 +220,7 @@ const Page pChanB
 // КАНАЛ 2 - Вход ------------------------------------------------------------------------------------------------------------------------------------
 static const Choice mcInputB =  // КАНАЛ 2
 {
-    Item_Choice, &pChanB, 0,
+    TypeItem::Choice, &pChanB, 0,
     {
         "Вход", "Input",
         chanInputRu,
@@ -242,7 +242,7 @@ void OnChanged_InputB(bool)
 // КАНАЛ 2 - Связь -----------------------------------------------------------------------------------------------------------------------------------
 static const Choice mcCoupleB =
 {
-    Item_Choice, &pChanB, 0,
+    TypeItem::Choice, &pChanB, 0,
     {
         "Связь", "Couple",
         chanCoupleRu,
@@ -264,7 +264,7 @@ void OnChanged_CoupleB(bool)
 // КАНАЛ 2 - Фильтр ----------------------------------------------------------------------------------------------------------------------------------
 static const Choice mcFiltrB =
 {
-    Item_Choice, &pChanB, 0,
+    TypeItem::Choice, &pChanB, 0,
     {
         "Фильтр", "Filtr",
         chanFiltrRu,
@@ -286,7 +286,7 @@ void OnChanged_FiltrB(bool)
 // КАНАЛ 2 - Инверсия --------------------------------------------------------------------------------------------------------------------------------
 static const Choice mcInverseB =
 {
-    Item_Choice, &pChanB, 0,
+    TypeItem::Choice, &pChanB, 0,
     {
         "Инверсия", "Inverse",
         chanInverseRu,
@@ -308,7 +308,7 @@ static void OnChanged_InverseB(bool)
 // КАНАЛ 2 - Множитель -------------------------------------------------------------------------------------------------------------------------------
 static const Choice mcMultiplierB =
 {
-    Item_Choice, &pChanB, 0,
+    TypeItem::Choice, &pChanB, 0,
     {
         "Множитель", "Divider",
         chanMultiplierRu,
