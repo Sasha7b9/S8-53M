@@ -245,7 +245,7 @@ void Menu::PressButton(PanelButton::E button)
         }
         bufferForButtons[0] = button;
       
-        if (std::memcmp(bufferForButtons, sampleBufferForButtons, SIZE_BUFFER_FOR_BUTTONS) == 0)
+        if (std::memcmp(bufferForButtons, sampleBufferForButtons, SIZE_BUFFER_FOR_BUTTONS * sizeof(PanelButton::E)) == 0)
         {
             SHOW_DEBUG_MENU = 1;
             Display::ShowWarningGood(Warning::MenuDebugEnabled);

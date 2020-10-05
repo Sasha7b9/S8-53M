@@ -12,11 +12,11 @@ int8 gCurDigit = 0;
 void Governor_StartChange(Governor *governor, int delta)
 {
     Sound::GovernorChangedValue();
-    if (delta > 0 && ADDRESS_GOVERNOR == (uint)governor && IN_MOVE_INCREASE)
+    if (delta > 0 && ADDRESS_GOVERNOR == reinterpret_cast<uint>(governor) && (IN_MOVE_INCREASE != 0))
     {
         *governor->cell = Governor_NextValue(governor);
     }
-    else if (delta < 0 && ADDRESS_GOVERNOR == (uint)governor && IN_MOVE_DECREASE)
+    else if (delta < 0 && ADDRESS_GOVERNOR == reinterpret_cast<uint>(governor) && (IN_MOVE_DECREASE != 0))
     {
         *governor->cell = Governor_PrevValue(governor);
     }
@@ -31,7 +31,10 @@ void Governor_StartChange(Governor *governor, int delta)
 void Governor_ChangeValue(Governor *governor, int delta)
 {
     int16 oldValue = *governor->cell;
-    LIMITATION(*governor->cell, (int16)(oldValue + Math_Sign(delta) * Math_Pow10(gCurDigit)), (int16)governor->minValue, (int16)governor->maxValue);
+    LIMITATION(*governor->cell,
+                static_cast<int16>(oldValue + Math_Sign(delta) * Math_Pow10(gCurDigit)),
+                static_cast<int16>(governor->minValue),
+                static_cast<int16>(governor->maxValue));
     if (*governor->cell != oldValue)
     {
         if (governor->funcOfChanged)
@@ -68,11 +71,11 @@ void IPaddress_ChangeValue(IPaddress *ip, int delta)
     {
         if (numByte == 4)
         {
-            *ip->port = (uint16)newValue;
+            *ip->port = static_cast<uint16>(newValue);
         }
         else
         {
-            ip->ip0[numByte] = (uint8)newValue;
+            ip->ip0[numByte] = static_cast<uint8>(newValue);
         }
         Sound::GovernorChangedValue();
         Display::ShowWarningGood(Warning::NeedRebootDevice2);
@@ -107,14 +110,14 @@ void IPaddress_GetNumPosIPvalue(int *numIP, int *selPos)
 
 float Governor_Step(Governor *governor)
 {
-    static const float speed = 0.05f;
+    static const float speed = 0.05F;
     static const int numLines = 10;
-    if (ADDRESS_GOVERNOR == (uint)governor && IN_MOVE_DECREASE)
+    if (ADDRESS_GOVERNOR == reinterpret_cast<uint>(governor) && (IN_MOVE_DECREASE != 0))
     {
         float delta = -speed * (gTimerMS - TIME_START_MS);
-        if (delta == 0.0F)
+        if (delta == 0.0F) //-V2550 //-V550
         {
-            return -0.001f;
+            return -0.001F;
         }
         if (delta < -numLines)
         {
@@ -128,12 +131,12 @@ float Governor_Step(Governor *governor)
         }
         return delta;
     }
-    if (ADDRESS_GOVERNOR == (uint)governor && IN_MOVE_INCREASE)
+    if (ADDRESS_GOVERNOR == reinterpret_cast<uint>(governor) && (IN_MOVE_INCREASE != 0))
     {
         float delta = speed * (gTimerMS - TIME_START_MS);
-        if (delta == 0.0F)
+        if (delta == 0.0F) //-V550 //-V2550
         {
-            return 0.001f;
+            return 0.001F;
         }
         if (delta > numLines)
         {
@@ -150,17 +153,17 @@ float Governor_Step(Governor *governor)
     return 0.0F;
 }
 
-int16 Governor_NextValue(Governor *governor)
+int16 Governor_NextValue(const Governor *governor)
 {
     return ((*governor->cell) < governor->maxValue) ? (*governor->cell) + 1 : static_cast<int16>(governor->minValue);
 }
 
-int16 Governor_PrevValue(Governor *governor)
+int16 Governor_PrevValue(const Governor *governor)
 {
     return ((*governor->cell) > governor->minValue) ? (*governor->cell) - 1 : governor->maxValue;
 }
 
-void Governor_NextPosition(Governor *governor)
+void Governor_NextPosition(const Governor *governor)
 {
     if (Menu::OpenedItem() == governor)
     {
@@ -168,7 +171,7 @@ void Governor_NextPosition(Governor *governor)
     }
 }
 
-int Governor_NumDigits(Governor *governor)
+int Governor_NumDigits(const Governor *governor)
 {
     int min = Math_NumDigitsInNumber(Math_FabsInt(governor->minValue));
     int max = Math_NumDigitsInNumber(Math_FabsInt(governor->maxValue));
@@ -179,7 +182,7 @@ int Governor_NumDigits(Governor *governor)
     return max;
 }
 
-void IPaddress_NextPosition(IPaddress *ipEthernet_IP)
+void IPaddress_NextPosition(const IPaddress *ipEthernet_IP)
 {
     CircleIncreaseInt8(&gCurDigit, 0, ipEthernet_IP->port == 0 ? 11 : 16);
 }
@@ -187,15 +190,15 @@ void IPaddress_NextPosition(IPaddress *ipEthernet_IP)
 void ItemTime_SetOpened(Time *item)
 {
     PackedTime time = HAL_RTC::GetPackedTime();
-    *(item->seconds) = (int8)time.seconds;
-    *(item->minutes) = (int8)time.minutes;
-    *(item->hours) = (int8)time.hours;
-    *(item->day) = (int8)time.day;
-    *(item->month) = (int8)time.month;
-    *(item->year) = (int8)time.year ;
+    *(item->seconds) = static_cast<int8>(time.seconds);
+    *(item->minutes) = static_cast<int8>(time.minutes);
+    *(item->hours) = static_cast<int8>(time.hours);
+    *(item->day) = static_cast<int8>(time.day);
+    *(item->month) = static_cast<int8>(time.month);
+    *(item->year) = static_cast<int8>(time.year);
 }
 
-void ItemTime_SetNewTime(Time *time)
+void ItemTime_SetNewTime(const Time *time)
 {
     HAL_RTC::SetTimeAndData(*time->day, *time->month, *time->year, *time->hours, *time->minutes, *time->seconds);
 }
@@ -206,16 +209,16 @@ void ItemTime_SelectNextPosition(Time *time)
     Painter::ResetFlash();
 }
 
-void ItemTime_IncCurrentPosition(Time *time)
+void ItemTime_IncCurrentPosition(const Time *time)
 {
     Sound::GovernorChangedValue();
-    int8 *value[] = {0, time->day, time->month, time->year, time->hours, time->minutes, time->seconds};
     int8 position = *time->curField;
     if (position != iSET && position != iEXIT)
     {
+        int8 *value[] = { 0, time->day, time->month, time->year, time->hours, time->minutes, time->seconds };
         static const int8 max[] = {0, 31, 12, 99, 23, 59, 59};
         static const int8 min[] = {0, 1, 1, 15, 0, 0, 0};
-        *(value[position]) = (*(value[position]))++;
+        *(value[position]) = (*(value[position]))++; //-V567
         if (*value[position] > max[position])
         {
             *value[position] = min[position];
@@ -223,15 +226,15 @@ void ItemTime_IncCurrentPosition(Time *time)
     }
 }
 
-void ItemTime_DecCurrentPosition(Time *time)
+void ItemTime_DecCurrentPosition(const Time *time)
 {
     Sound::GovernorChangedValue();
     static const int8 max[] = {0, 31, 12, 99, 23, 59, 59};
     static const int8 min[] = {0, 1, 1, 15, 0, 0, 0};
-    int8 *value[] = {0, time->day, time->month, time->year, time->hours, time->minutes, time->seconds};
     int8 position = *time->curField;
     if (position != iSET && position != iEXIT)
     {
+        int8 *value[] = { 0, time->day, time->month, time->year, time->hours, time->minutes, time->seconds };
         (*(value[position]))--;
         if (*value[position] < min[position])
         {

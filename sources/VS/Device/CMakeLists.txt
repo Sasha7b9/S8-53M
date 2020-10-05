@@ -40,6 +40,7 @@ add_compile_options(/wd5039)    # 'xxx': pointer or reference to potentially thr
 add_compile_options(/wd5045)    # Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
 add_compile_options(/wd5219)
 add_compile_options(/wd5220)    # a non-static data member with a volatile qualified type no longer implies that compiler generated copy/move constructors and copy/move assignment operators are not trivial
+add_compile_options(/wd26812)   # the enum type 'xxx' is unscoped. Prefer 'enum class' over 'enum'
 
 file(GLOB LIBS_CMSIS        ../../common/_VS_GUI/CMSIS/*)
 file(GLOB LIBS_FATFS        ../../common/STM32Cube_F4/Middlewares/Third_Party/FatFs/src/diskio.*

@@ -89,10 +89,6 @@ void Processing::CalculateMeasures()
         for(int elem = 0; elem < Measure::NumCols(); elem++)
         {
             Measure::E meas = Measure::Type(str, elem);
-            if (meas == Measure::TimeNarastaniya)
-            {
-                meas = meas;
-            }
             pFuncFCh func = measures[meas].FuncCalculate;
             if(func)
             {
@@ -118,7 +114,7 @@ float Processing::CalculateVoltageMax(Channel::E chan)
 {
     float max = CalculateMaxRel(chan);
     
-    EXIT_IF_ERROR_FLOAT(max);
+    EXIT_IF_ERROR_FLOAT(max); //-V2550
     if(MEAS_MARKED == Measure::VoltageMax)
     {
         markerHor[chan][0] = static_cast<int>(max);                           // Здесь не округляем, потому что max может быть только целым
@@ -130,7 +126,7 @@ float Processing::CalculateVoltageMax(Channel::E chan)
 float Processing::CalculateVoltageMin(Channel::E chan)
 {
     float min = CalculateMinRel(chan);
-    EXIT_IF_ERROR_FLOAT(min);
+    EXIT_IF_ERROR_FLOAT(min); //-V2550
     if(MEAS_MARKED == Measure::VoltageMin)
     {
         markerHor[chan][0] = static_cast<int>(min);                           // Здесь не округляем, потому что min может быть только целым
@@ -144,7 +140,7 @@ float Processing::CalculateVoltagePic(Channel::E chan)
     float max = CalculateVoltageMax(chan);
     float min = CalculateVoltageMin(chan);
 
-    EXIT_IF_ERRORS_FLOAT(min, max);
+    EXIT_IF_ERRORS_FLOAT(min, max); //-V2550
 
     if(MEAS_MARKED == Measure::VoltagePic)
     {
@@ -157,7 +153,7 @@ float Processing::CalculateVoltagePic(Channel::E chan)
 float Processing::CalculateVoltageMinSteady(Channel::E chan)
 {
     float min = CalculateMinSteadyRel(chan);
-    EXIT_IF_ERROR_FLOAT(min);
+    EXIT_IF_ERROR_FLOAT(min); //-V2550
     if(MEAS_MARKED == Measure::VoltageMinSteady)
     {
         markerHor[chan][0] = static_cast<int>(ROUND(min));
@@ -170,7 +166,7 @@ float Processing::CalculateVoltageMaxSteady(Channel::E chan)
 {
     float max = CalculateMaxSteadyRel(chan);
 
-    EXIT_IF_ERROR_FLOAT(max);
+    EXIT_IF_ERROR_FLOAT(max); //-V2550
 
     if(MEAS_MARKED == Measure::VoltageMaxSteady)
     {
@@ -188,7 +184,7 @@ float Processing::CalculateVoltageVybrosPlus(Channel::E chan)
     float max = CalculateMaxRel(chan);
     float maxSteady = CalculateMaxSteadyRel(chan);
 
-    EXIT_IF_ERRORS_FLOAT(max, maxSteady);
+    EXIT_IF_ERRORS_FLOAT(max, maxSteady); //-V2550
 
     if (MEAS_MARKED == Measure::VoltageVybrosPlus)
     {
@@ -204,7 +200,7 @@ float Processing::CalculateVoltageVybrosMinus(Channel::E chan)
 {
     float min = CalculateMinRel(chan);
     float minSteady = CalculateMinSteadyRel(chan);
-    EXIT_IF_ERRORS_FLOAT(min, minSteady);
+    EXIT_IF_ERRORS_FLOAT(min, minSteady); //-V2550
 
     if (MEAS_MARKED == Measure::VoltageVybrosMinus)
     {
@@ -221,7 +217,7 @@ float Processing::CalculateVoltageAmpl(Channel::E chan)
     float max = CalculateVoltageMaxSteady(chan);
     float min = CalculateVoltageMinSteady(chan);
 
-    EXIT_IF_ERRORS_FLOAT(min, max);
+    EXIT_IF_ERRORS_FLOAT(min, max); //-V2550
 
     if(MEAS_MARKED == Measure::VoltageAmpl)
     {
