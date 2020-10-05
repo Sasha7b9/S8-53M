@@ -33,8 +33,8 @@
 #define MODE_LONG_PRESS_TRIG_IS_LEVEL0  (MODE_LONG_PRESS_TRIG == ModeLongPressTrig::Level0)
 
 #define TRIG_MODE_FIND          (set.trig.modeFind)                     // SettingsTrig.modeFind
-#define TRIG_MODE_FIND_IS_AUTO  (TRIG_MODE_FIND == TrigModeFind_Auto)   // \c true, если автоматическая установка синхронизации.
-#define TRIG_MODE_FIND_IS_HAND  (TRIG_MODE_FIND == TrigModeFind_Hand)   // \c true, если синхронизация устанавливается вручную.
+#define TRIG_MODE_FIND_IS_AUTO  (TRIG_MODE_FIND == TrigModeFind::Auto)  // \c true, если автоматическая установка синхронизации.
+#define TRIG_MODE_FIND_IS_HAND  (TRIG_MODE_FIND == TrigModeFind::Hand)  // \c true, если синхронизация устанавливается вручную.
 
 
 
@@ -80,11 +80,11 @@ struct ModeLongPressTrig { enum E
 
 
 // Режим установки синхронизации.
-enum TrigModeFind
+struct TrigModeFind { enum E
 {
-    TrigModeFind_Hand,          // Уровень синхронизации устанавливается вручную.
-    TrigModeFind_Auto           // Подстройки уровня синхронизации производится автоматически после каждого нового считанного сигнала.
-};
+    Hand,          // Уровень синхронизации устанавливается вручную.
+    Auto           // Подстройки уровня синхронизации производится автоматически после каждого нового считанного сигнала.
+};};
 
 
 
@@ -98,7 +98,7 @@ struct SettingsTrig
     TrigInput::E         input;              // Вход синхронизации.
     int16                levelRel[3];        // Уровень синхронизации для трёх источников.
     ModeLongPressTrig::E modeLongPressTrig;  // Режим работы длительного нажатия кнопки СИНХР.
-    TrigModeFind         modeFind;           // Поиск синхронизации - вручную или автоматически.
+    TrigModeFind::E      modeFind;           // Поиск синхронизации - вручную или автоматически.
 };
 
 

@@ -98,7 +98,7 @@ static const Settings defaultSettings =
         TrigInput::Full,
         {TrigLevZero, TrigLevZero, TrigLevZero},
         ModeLongPressTrig::Auto,
-        TrigModeFind_Hand
+        TrigModeFind::Hand
     },
     // time
     {
