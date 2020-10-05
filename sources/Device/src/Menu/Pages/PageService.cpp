@@ -138,7 +138,7 @@ static void OnPress_ResetSettings(void)
     Display::SetDrawMode(DrawMode::Hand, FuncDraw);
     Timer::Enable(TypeTimer::TimerDrawHandFunction, 100, OnTimerDraw);
 
-    if (Panel::WaitPressingButton() == B_Start)
+    if (Panel::WaitPressingButton() == PanelButton::Start)
     {
         Settings::Load(true);
         FPGA::Init();

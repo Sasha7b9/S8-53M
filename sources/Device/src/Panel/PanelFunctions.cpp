@@ -20,24 +20,24 @@ void HelpLong(void)
 
 void Channel0Long(void)
 {
-    Menu::LongPressureButton(B_Channel0);
+    Menu::LongPressureButton(PanelButton::Channel0);
 }
 
 void Channel1Long(void)
 {
-    Menu::LongPressureButton(B_Channel1);
+    Menu::LongPressureButton(PanelButton::Channel1);
 }
 
 void TimeLong(void)
 {
-    Menu::LongPressureButton(B_Time);
+    Menu::LongPressureButton(PanelButton::Time);
 }
 
 void TrigLong(void)
 {
     if (MODE_LONG_PRESS_TRIG_IS_LEVEL0)
     {
-        Menu::LongPressureButton(B_Trig);
+        Menu::LongPressureButton(PanelButton::Trig);
     }
     else
     {
@@ -45,11 +45,11 @@ void TrigLong(void)
     }
 }
 
-void StartDown()                        // B_Start
+void StartDown()                        // PanelButton::Start
 {
     if (MODE_WORK_IS_DIRECT)
     {
-        Menu::PressButton(B_Start);
+        Menu::PressButton(PanelButton::Start);
     }
 }
 
@@ -63,32 +63,32 @@ void PowerDown()                        // B_Power
 
 void MenuLong() 
 {
-    Menu::LongPressureButton(B_Menu);
+    Menu::LongPressureButton(PanelButton::Menu);
 }
 
 void F1Long()
 {
-    Menu::LongPressureButton(B_F1);
+    Menu::LongPressureButton(PanelButton::F1);
 }
 
 void F2Long()
 {
-    Menu::LongPressureButton(B_F2);
+    Menu::LongPressureButton(PanelButton::F2);
 }
 
 void F3Long()
 {
-    Menu::LongPressureButton(B_F3);
+    Menu::LongPressureButton(PanelButton::F3);
 }
 
 void F4Long()
 {
-    Menu::LongPressureButton(B_F4);
+    Menu::LongPressureButton(PanelButton::F4);
 }
 
 void F5Long()
 {
-    Menu::LongPressureButton(B_F5);
+    Menu::LongPressureButton(PanelButton::F5);
 }
 
 //****************************************************************************************************************

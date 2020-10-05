@@ -12,7 +12,7 @@ class Menu
 {
 public:
     // Возвращает адрес элемента меню, соответствующего данной button.
-    static void* ItemUnderButton(PanelButton button);
+    static void* ItemUnderButton(PanelButton::E button);
     // Возвращает true, если элемент меню item затенён (находится не на самом верхнем слое. Как правило, это означает, что раскрыт раскрывающийся элемент меню вроде Choice или Governor.
     static bool IsShade(const void *item);
 
@@ -22,13 +22,13 @@ public:
     // Функция должна вызываться в главном цикле.
     static void UpdateInput();
     // Функция обработки короткого нажатия кнопки (менее 0.5 сек.).
-    static void ShortPressureButton(PanelButton button);
+    static void ShortPressureButton(PanelButton::E button);
     // Функция обработки длинного нажатия кнопки (более 0.5 сек.).
-    static void LongPressureButton(PanelButton button);
+    static void LongPressureButton(PanelButton::E button);
     // Функция вызывается, когда кнопка переходит из отжатого в нажатое положение.
-    static void PressButton(PanelButton button);
+    static void PressButton(PanelButton::E button);
     // Функция вызывается, когда кнопка переходит из нажатого в отжатое положение.
-    static void ReleaseButton(PanelButton button);
+    static void ReleaseButton(PanelButton::E button);
     // Функция обработки поворота ручки УСТАНОВКА вправо.
     static void RotateRegSetRight();
     // Функция обработки поворота ручки УСТАНОВКА влево.
@@ -84,7 +84,7 @@ public:
     // Возвращает позицию первого элемента страницы по адресу page на экране. Если текущая подстраница 0, это будет 0, если текущая подстраница 1, это будет 5 и т.д.
     static int PosItemOnTop(Page *page);
     // Возвращает true, если button - функциональная клавиша [1..5].
-    static bool IsFunctionalButton(PanelButton button);
+    static bool IsFunctionalButton(PanelButton::E button);
     // Закрыть открытый элемент меню.
     static void CloseOpenedItem();
 
@@ -170,7 +170,7 @@ private:
     // Обработка события таймера автоматического сокрытия меню.
     static void OnTimerAutoHide();
     
-    static void ProcessButtonForHint(PanelButton button);
+    static void ProcessButtonForHint(PanelButton::E button);
 };
 
 /** @}

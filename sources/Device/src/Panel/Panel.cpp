@@ -20,81 +20,81 @@
 #define LED_TRIG_DISABLE    3
 #define POWER_OFF           4
 
-static PanelButton pressedKey = B_Empty;
-static PanelButton pressedButton = B_Empty;         // Это используется для отслеживания нажатой кнопки при отключенной панели
+static PanelButton::E pressedKey = PanelButton::Empty;
+static PanelButton::E pressedButton = PanelButton::Empty;         // Это используется для отслеживания нажатой кнопки при отключенной панели
 static uint16 dataTransmitted[MAX_DATA] = {0x00};
 static uint16 numDataForTransmitted = 0;
 static uint timePrevPressButton = 0;
 static uint timePrevReleaseButton = 0;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-static void(*funcOnKeyDown[B_NumButtons])(void)    =
+static void(*funcOnKeyDown[PanelButton::Count])(void)    =
 {    
     0,
-    EmptyFuncVV,    // B_Channel0
-    EmptyFuncVV,    // B_Service
-    EmptyFuncVV,    // B_Channel1
-    EmptyFuncVV,    // B_Display
-    EmptyFuncVV,    // B_Time
-    EmptyFuncVV,    // B_Memory                                         
+    EmptyFuncVV,    // PanelButton::Channel0
+    EmptyFuncVV,    // PanelButton::Service
+    EmptyFuncVV,    // PanelButton::Channel1
+    EmptyFuncVV,    // PanelButton::Display
+    EmptyFuncVV,    // PanelButton::Time
+    EmptyFuncVV,    // PanelButton::Memory                                         
     EmptyFuncVV,    // B_Sinchro
-    StartDown,      // B_Start
-    EmptyFuncVV,    // B_Cursors
-    EmptyFuncVV,    // B_Measures
+    StartDown,      // PanelButton::Start
+    EmptyFuncVV,    // PanelButton::Cursors
+    EmptyFuncVV,    // PanelButton::Measures
     PowerDown,      // B_Power
-    EmptyFuncVV,    // B_Help
-    EmptyFuncVV,    // B_Menu
-    EmptyFuncVV,    // B_F1
-    EmptyFuncVV,    // B_F2
-    EmptyFuncVV,    // B_F3
-    EmptyFuncVV,    // B_F4
-    EmptyFuncVV     // B_F5
+    EmptyFuncVV,    // PanelButton::Help
+    EmptyFuncVV,    // PanelButton::Menu
+    EmptyFuncVV,    // PanelButton::F1
+    EmptyFuncVV,    // PanelButton::F2
+    EmptyFuncVV,    // PanelButton::F3
+    EmptyFuncVV,    // PanelButton::F4
+    EmptyFuncVV     // PanelButton::F5
 };
 
-static void (*funcOnKeyUp[B_NumButtons])(void)    =
+static void (*funcOnKeyUp[PanelButton::Count])(void)    =
 {
     0,
-    EmptyFuncVV,    // B_Channel0
-    EmptyFuncVV,    // B_Service
-    EmptyFuncVV,    // B_Channel1
-    EmptyFuncVV,    // B_Display
-    EmptyFuncVV,    // B_Time
-    EmptyFuncVV,    // B_Memory
+    EmptyFuncVV,    // PanelButton::Channel0
+    EmptyFuncVV,    // PanelButton::Service
+    EmptyFuncVV,    // PanelButton::Channel1
+    EmptyFuncVV,    // PanelButton::Display
+    EmptyFuncVV,    // PanelButton::Time
+    EmptyFuncVV,    // PanelButton::Memory
     EmptyFuncVV,    // B_Sinchro
-    EmptyFuncVV,    // B_Start
-    EmptyFuncVV,    // B_Cursors
-    EmptyFuncVV,    // B_Measures
+    EmptyFuncVV,    // PanelButton::Start
+    EmptyFuncVV,    // PanelButton::Cursors
+    EmptyFuncVV,    // PanelButton::Measures
     EmptyFuncVV,    // B_Power
-    EmptyFuncVV,    // B_Help
-    EmptyFuncVV,    // B_Menu
-    EmptyFuncVV,    // B_F1
-    EmptyFuncVV,    // B_F2
-    EmptyFuncVV,    // B_F3
-    EmptyFuncVV,    // B_F4
-    EmptyFuncVV     // B_F5
+    EmptyFuncVV,    // PanelButton::Help
+    EmptyFuncVV,    // PanelButton::Menu
+    EmptyFuncVV,    // PanelButton::F1
+    EmptyFuncVV,    // PanelButton::F2
+    EmptyFuncVV,    // PanelButton::F3
+    EmptyFuncVV,    // PanelButton::F4
+    EmptyFuncVV     // PanelButton::F5
 };
 
-static void (*funcOnLongPressure[B_NumButtons])(void)    =
+static void (*funcOnLongPressure[PanelButton::Count])(void)    =
 {
     0,
-    Channel0Long,   // B_Channel0
-    EmptyFuncVV,    // B_Service
-    Channel1Long,   // B_Channel1
-    EmptyFuncVV,    // B_Display
-    TimeLong,       // B_Time
-    EmptyFuncVV,    // B_Memory
+    Channel0Long,   // PanelButton::Channel0
+    EmptyFuncVV,    // PanelButton::Service
+    Channel1Long,   // PanelButton::Channel1
+    EmptyFuncVV,    // PanelButton::Display
+    TimeLong,       // PanelButton::Time
+    EmptyFuncVV,    // PanelButton::Memory
     TrigLong,       // B_Sinchro
-    EmptyFuncVV,    // B_Start
-    EmptyFuncVV,    // B_Cursors
-    EmptyFuncVV,    // B_Measures
+    EmptyFuncVV,    // PanelButton::Start
+    EmptyFuncVV,    // PanelButton::Cursors
+    EmptyFuncVV,    // PanelButton::Measures
     EmptyFuncVV,    // B_Power
-    HelpLong,       // B_Help
-    MenuLong,       // B_Menu
-    F1Long,         // B_F1
-    F2Long,         // B_F2
-    F3Long,         // B_F3
-    F4Long,         // B_F4
-    F5Long          // B_F5
+    HelpLong,       // PanelButton::Help
+    MenuLong,       // PanelButton::Menu
+    F1Long,         // PanelButton::F1
+    F2Long,         // PanelButton::F2
+    F3Long,         // PanelButton::F3
+    F4Long,         // PanelButton::F4
+    F5Long          // PanelButton::F5
 };
 
 static void (*funculatorLeft[R_Set + 1])(void)    =
@@ -124,28 +124,28 @@ static void (*funculatorRight[R_Set + 1])(void) =
 
 
 
-PanelButton ButtonIsRelease(uint16 command)
+PanelButton::E ButtonIsRelease(uint16 command)
 {
-    PanelButton button = B_Empty;
-    if(command < B_NumButtons && command > B_Empty)
+    PanelButton::E button = PanelButton::Empty;
+    if(command < PanelButton::Count && command > PanelButton::Empty)
     {
         if(gTimerMS - timePrevReleaseButton > 100)
         {
-            button = (PanelButton)command;
+            button = (PanelButton::E)command;
             timePrevReleaseButton = gTimerMS;
         }
     }
     return button;
 }
 
-PanelButton ButtonIsPress(uint16 command)
+PanelButton::E ButtonIsPress(uint16 command)
 {
-    PanelButton button = B_Empty;
-    if (((command & 0x7f) < B_NumButtons) && ((command & 0x7f) > B_Empty))
+    PanelButton::E button = PanelButton::Empty;
+    if (((command & 0x7f) < PanelButton::Count) && ((command & 0x7f) > PanelButton::Empty))
     {
         if(gTimerMS - timePrevPressButton > 100)
         {
-            button = (PanelButton)(command & 0x7f);
+            button = (PanelButton::E)(command & 0x7f);
             timePrevPressButton = gTimerMS;
         }
     }
@@ -172,7 +172,7 @@ Regulator RegulatorRight(uint16 command)
 
 void OnTimerPressedKey()
 {
-    if(pressedKey != B_Empty)
+    if(pressedKey != PanelButton::Empty)
     {
         void (*func)(void) = funcOnLongPressure[pressedKey];
         Menu::ReleaseButton(pressedKey);
@@ -180,7 +180,7 @@ void OnTimerPressedKey()
         {
             func();
         }
-        pressedKey = B_Empty;
+        pressedKey = PanelButton::Empty;
     }
     Timer::Disable(TypeTimer::PressKey);
 }
@@ -189,8 +189,8 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
 {
     static int allRecData = 0;
 
-    PanelButton releaseButton = ButtonIsRelease(command);
-    PanelButton pressButton = ButtonIsPress(command);
+    PanelButton::E releaseButton = ButtonIsRelease(command);
+    PanelButton::E pressButton = ButtonIsPress(command);
     Regulator regLeft = RegulatorLeft(command);
     Regulator regRight = RegulatorRight(command);
 
@@ -218,10 +218,10 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
     {
         Menu::ReleaseButton(releaseButton);
         funcOnKeyUp[releaseButton]();
-        if(pressedKey != B_Empty)
+        if(pressedKey != PanelButton::Empty)
         {
             Menu::ShortPressureButton(releaseButton);
-            pressedKey = B_Empty;
+            pressedKey = PanelButton::Empty;
         }
     }
     else if(pressButton)
@@ -250,7 +250,7 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
         //}
     }
 
-    if ((command > R_Set && command < (B_Empty + 1 + 128)) || (command > (R_Set + 128)))
+    if ((command > R_Set && command < (PanelButton::Empty + 1 + 128)) || (command > (R_Set + 128)))
     {
         if(Settings::DebugModeEnable())
         {
@@ -361,9 +361,9 @@ void Panel::EnableLEDRegSet(bool enable)
     pinLED.Write(enable ? 1 : 0);
 }
 
-PanelButton Panel::WaitPressingButton()
+PanelButton::E Panel::WaitPressingButton()
 {
-    pressedButton = B_Empty;
-    while (pressedButton == B_Empty) {};
+    pressedButton = PanelButton::Empty;
+    while (pressedButton == PanelButton::Empty) {};
     return pressedButton;
 }

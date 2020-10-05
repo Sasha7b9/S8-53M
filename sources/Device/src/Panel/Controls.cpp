@@ -4,37 +4,37 @@
 
 static const char* namesButtons[] = 
 {
-    "B_Empty",
-    "B_Channel0",
-    "B_Service",
-    "B_Channel1",
-    "B_Display",
-    "B_Time",
-    "B_Memory",
+    "PanelButton::Empty",
+    "PanelButton::Channel0",
+    "PanelButton::Service",
+    "PanelButton::Channel1",
+    "PanelButton::Display",
+    "PanelButton::Time",
+    "PanelButton::Memory",
     "B_Sinchro",
-    "B_Start",
-    "B_Cursors",
-    "B_Measures",
+    "PanelButton::Start",
+    "PanelButton::Cursors",
+    "PanelButton::Measures",
     "B_Power",
     "B_Info",
-    "B_Menu",
-    "B_F1",
-    "B_F2",
-    "B_F3",
-    "B_F4",
-    "B_F5"
+    "PanelButton::Menu",
+    "PanelButton::F1",
+    "PanelButton::F2",
+    "PanelButton::F3",
+    "PanelButton::F4",
+    "PanelButton::F5"
 };
 
 
 
-const char* NameButton(PanelButton button) 
+const char* NameButton(PanelButton::E button) 
 {
     return namesButtons[button];
 }
 
 
-PanelButton& operator++(PanelButton &button)
+PanelButton::E& operator++(PanelButton::E &button)
 {
-    button = (PanelButton)((int)button + 1);
+    button = (PanelButton::E)((int)button + 1);
     return button;
 }

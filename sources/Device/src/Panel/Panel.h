@@ -22,7 +22,7 @@ public:
 
     static void Enable();
     // ќжидать нажатие клавиши.
-    static PanelButton WaitPressingButton();
+    static PanelButton::E WaitPressingButton();
 
     static bool ProcessingCommandFromPIC(uint16 command);
 

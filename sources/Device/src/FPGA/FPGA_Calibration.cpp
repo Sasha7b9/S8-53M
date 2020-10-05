@@ -100,7 +100,7 @@ void FPGA::ProcedureCalibration(void)
 
         koeffCal0 = koeffCal1 = ERROR_VALUE_FLOAT;
 
-        if(Panel::WaitPressingButton() == B_Start)             // ќжидаем подтверждени€ или отмены процедуры калибровки первого канала.
+        if(Panel::WaitPressingButton() == PanelButton::Start)             // ќжидаем подтверждени€ или отмены процедуры калибровки первого канала.
         {
 			gStateFPGA.stateCalibration = StateCalibration::RShift0inProgress;
 
@@ -136,7 +136,7 @@ void FPGA::ProcedureCalibration(void)
 
         HAL_TIM2::Delay(500);
 
-		if(Panel::WaitPressingButton() == B_Start)                 // ќжидаем подтверждени€ или отмены процедуры калибровки второго канала.
+		if(Panel::WaitPressingButton() == PanelButton::Start)                 // ќжидаем подтверждени€ или отмены процедуры калибровки второго канала.
         {
 			gStateFPGA.stateCalibration = StateCalibration::RShift1inProgress;
 

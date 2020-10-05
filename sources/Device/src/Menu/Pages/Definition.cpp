@@ -143,28 +143,28 @@ const Page mainPage
 
 
 
-const void *PageForButton(PanelButton button)
+const void *PageForButton(PanelButton::E button)
 {
     static const void *pages[] = {  
-        0,                          // B_Empty
-        (void*)&pChanA,             // B_Channel0
-        (void*)&pService,           // B_Service
-        (void*)&pChanB,             // B_Channel1
-        (void*)&pDisplay,           // B_Display
-        (void*)&pTime,              // B_Time
-        PageMemory::GetPointer(),   // B_Memory
-        (void*)&pTrig,              // B_Trig
-        0,                          // B_Start
-        PageCursors::GetPointer(),  // B_Cursors
-        (void*)&pMeasures,          // B_Measures
+        0,                          // PanelButton::Empty
+        (void*)&pChanA,             // PanelButton::Channel0
+        (void*)&pService,           // PanelButton::Service
+        (void*)&pChanB,             // PanelButton::Channel1
+        (void*)&pDisplay,           // PanelButton::Display
+        (void*)&pTime,              // PanelButton::Time
+        PageMemory::GetPointer(),   // PanelButton::Memory
+        (void*)&pTrig,              // PanelButton::Trig
+        0,                          // PanelButton::Start
+        PageCursors::GetPointer(),  // PanelButton::Cursors
+        (void*)&pMeasures,          // PanelButton::Measures
         0,                          // B_Power
-        0,                          // B_Help
-        0,                          // B_Menu
-        0,                          // B_F1
-        0,                          // B_F2
-        0,                          // B_F3
-        0,                          // B_F4
-        0,                          // B_F5
+        0,                          // PanelButton::Help
+        0,                          // PanelButton::Menu
+        0,                          // PanelButton::F1
+        0,                          // PanelButton::F2
+        0,                          // PanelButton::F3
+        0,                          // PanelButton::F4
+        0,                          // PanelButton::F5
     };
 
     return pages[button];

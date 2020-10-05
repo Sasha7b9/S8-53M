@@ -21,15 +21,15 @@
 
 
 
-static void *itemUnderButton[B_NumButtons] = {0};
+static void *itemUnderButton[PanelButton::Count] = {0};
 
 
 
-PanelButton GetFuncButtonFromY(int _y)
+PanelButton::E GetFuncButtonFromY(int _y)
 {
     int y = GRID_TOP + GRID_HEIGHT / 12;
     int step = GRID_HEIGHT / 6;
-    PanelButton button = B_Menu;
+    PanelButton::E button = PanelButton::Menu;
     for(int i = 0; i < 6; i++)
     {
         if(_y < y)
@@ -39,7 +39,7 @@ PanelButton GetFuncButtonFromY(int _y)
         ++button;
         y += step;
     }
-    return  B_F5;
+    return  PanelButton::F5;
 }
 
 
@@ -306,9 +306,9 @@ void Menu::DrawOpenedPage(Page *page, int layer, int yTop)
         void *item = Item(page, posCurItem);
         for (int i = 0; i < 5; i++)
         {
-            if (itemUnderButton[i + B_F1] != item)
+            if (itemUnderButton[i + PanelButton::F1] != item)
             {
-                itemUnderButton[i + B_F1] = 0;
+                itemUnderButton[i + PanelButton::F1] = 0;
             }
         }
         TypeItem::E type = TypeMenuItem(item);
@@ -363,7 +363,7 @@ bool Menu::IsPressed(const void* item)
 }
 
 
-void* Menu::ItemUnderButton(PanelButton button)
+void* Menu::ItemUnderButton(PanelButton::E button)
 {
     return itemUnderButton[button];
 }
@@ -371,7 +371,7 @@ void* Menu::ItemUnderButton(PanelButton button)
 
 void Menu::ResetItemsUnderButton()
 {
-    for(int i = 0; i < B_NumButtons; i++)
+    for(int i = 0; i < PanelButton::Count; i++)
     {
         itemUnderButton[i] = 0;
     }

@@ -2,31 +2,31 @@
 
 
 // Идентификаторы кнопок.
-enum PanelButton
+struct PanelButton { enum E
 {
-    B_Empty,        // кнопка не нажата
-    B_Channel0,        // КАНАЛ 1
-    B_Service,        // СЕРВИС
-    B_Channel1,        // КАНАЛ 2
-    B_Display,        // ДИСПЛЕЙ
-    B_Time,        // РАЗВ
-    B_Memory,        // ПАМЯТЬ
-    B_Trig,        // СИНХР
-    B_Start,        // ПУСК/СТАРТ
-    B_Cursors,        // КУРСОРЫ
-    B_Measures,       // ИЗМЕР
-    B_Power,       // ПИТАНИЕ
-    B_Help,       // ПОМОЩЬ
-    B_Menu,       // МЕНЮ
-    B_F1,       // 1
-    B_F2,       // 2
-    B_F3,       // 3
-    B_F4,       // 4
-    B_F5,       // 5
-    B_NumButtons            // общее количество кнопок
-};
+    Empty,      // кнопка не нажата
+    Channel0,   // КАНАЛ 1
+    Service,    // СЕРВИС
+    Channel1,   // КАНАЛ 2
+    Display,    // ДИСПЛЕЙ
+    Time,       // РАЗВ
+    Memory,     // ПАМЯТЬ
+    Trig,       // СИНХР
+    Start,      // ПУСК/СТАРТ
+    Cursors,    // КУРСОРЫ
+    Measures,   // ИЗМЕР
+    Power,      // ПИТАНИЕ
+    Help,       // ПОМОЩЬ
+    Menu,       // МЕНЮ
+    F1,         // 1
+    F2,         // 2
+    F3,         // 3
+    F4,         // 4
+    F5,         // 5
+    Count            // общее количество кнопок
+};};
 
-PanelButton& operator++(PanelButton &button);
+PanelButton::E& operator++(PanelButton::E &button);
 
 // Идентификаторы регуляторов.
 enum Regulator
@@ -54,4 +54,4 @@ enum RegulatorDirection
 #define NUM_REGULATORS (R_Set - R_Range0 + 1)
 
 
-const char* NameButton(PanelButton button);
+const char* NameButton(PanelButton::E button);

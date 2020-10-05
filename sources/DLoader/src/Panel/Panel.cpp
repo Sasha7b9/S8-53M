@@ -22,15 +22,15 @@
 
 
 
-static PanelButton pressedButton = B_Empty;
+static PanelButton::E pressedButton = PanelButton::Empty;
 
 
 
-static PanelButton ButtonIsPress(uint16 command);
+static PanelButton::E ButtonIsPress(uint16 command);
 
 
 
-PanelButton Panel_PressedButton(void)
+PanelButton::E Panel_PressedButton(void)
 {
     return pressedButton;
 }
@@ -46,14 +46,14 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
 {
     if(command)
     {
-        PanelButton prButton = ButtonIsPress(command);
+        PanelButton::E prButton = ButtonIsPress(command);
         if(prButton)
         {
             pressedButton = prButton;
         }
         else
         {
-            pressedButton = B_Empty;
+            pressedButton = PanelButton::Empty;
         }
     }
     return true;
@@ -61,17 +61,17 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
 
 
 
-static PanelButton ButtonIsPress(uint16 command)
+static PanelButton::E ButtonIsPress(uint16 command)
 {
-    PanelButton button = B_Empty;
+    PanelButton::E button = PanelButton::Empty;
 
     static uint timePrevPressButton = 0;
 
-    if(command < (B_NumButtons | 0x80) && command > (B_Empty | 0x80))
+    if(command < (PanelButton::Count | 0x80) && command > (PanelButton::Empty | 0x80))
     {
         if(HAL_TIM2::TimeMS() - timePrevPressButton > 100)
         {
-            button = (PanelButton)(command & 0x7f);
+            button = (PanelButton::E)(command & 0x7f);
             timePrevPressButton = HAL_TIM2::TimeMS();
         }
     }
