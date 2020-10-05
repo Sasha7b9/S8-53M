@@ -144,7 +144,7 @@ static const Settings defaultSettings =
     },
     // measures
     {
-        MN_1,                       // measures number
+        MeasuresNumber::_1,                       // measures number
         Channel::A_B,               // source
         ModeViewSignals_AsIs,       // mode view signal
         {
