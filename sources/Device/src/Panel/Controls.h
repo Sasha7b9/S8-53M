@@ -42,16 +42,5 @@ struct Regulator { enum E
     Set               // УСТАНОВКА
 };};
 
-// Направления вращения регуляторов.
-enum RegulatorDirection
-{
-    Direction_Left,     // вращение регулятора влево
-    Direction_Right,    // вращение регулятора вправо
-    Direction_None      // вращение отсутствует
-};
-
-
-#define NUM_REGULATORS (Regulator::Set - R_Range0 + 1)
-
 
 const char* NameButton(PanelButton::E button);
