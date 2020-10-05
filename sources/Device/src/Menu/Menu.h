@@ -14,9 +14,9 @@ public:
     // Возвращает адрес элемента меню, соответствующего данной button.
     static void* ItemUnderButton(PanelButton button);
     // Возвращает true, если элемент меню item затенён (находится не на самом верхнем слое. Как правило, это означает, что раскрыт раскрывающийся элемент меню вроде Choice или Governor.
-    static bool IsShade(void* item);
+    static bool IsShade(const void *item);
 
-    static bool IsPressed(void* item);
+    static bool IsPressed(const void* item);
 
     static void Draw();
     // Функция должна вызываться в главном цикле.

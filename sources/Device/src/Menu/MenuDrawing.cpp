@@ -82,7 +82,7 @@ static void DrawHintItem(int x, int y, int width)
     y = Painter::DrawTextInBoundedRectWithTransfers(x, y + 15, width, HINT(item), COLOR_BACK, COLOR_FILL);
     if (item->type == Item_SmallButton)
     {
-        Painter::DrawHintsForSmallButton(x, y, width, (SmallButton*)item);
+        Painter::DrawHintsForSmallButton(x, y, width, reinterpret_cast<SmallButton*>(item));
     }
 }
 
@@ -112,10 +112,10 @@ void Menu::Draw()
 
     if (SHOW_HELP_HINTS)
     {
-        int x = 0;
+        int x = 1;
         int y = 0;
         int width = MenuIsMinimize() ? 289 : 220;
-        Painter::DrawTextInBoundedRectWithTransfers(x + 1, y, width - 1,
+        Painter::DrawTextInBoundedRectWithTransfers(x, y, width - 1,
             set.common.lang == Russian ?    "Включён режим подсказок. В этом режиме при нажатии на кнопку на экран выводится информация о её назначении. "
                                                 "Чтобы выключить этот режим, нажмите кнопку ПОМОЩЬ и удерживайте её в течение 0.5с." : 
                                                 "Mode is activated hints. In this mode, pressing the button displays the information on its purpose. "
@@ -124,11 +124,11 @@ void Menu::Draw()
         y += set.common.lang == Russian ? 49 : 40;
         if (gStringForHint)
         {
-            Painter::DrawTextInBoundedRectWithTransfers(x + 1, y, width - 1, gStringForHint, COLOR_BACK, COLOR_FILL);
+            Painter::DrawTextInBoundedRectWithTransfers(x, y, width - 1, gStringForHint, COLOR_BACK, COLOR_FILL);
         }
         else if (gItemHint)
         {
-            DrawHintItem(x + 1, y, width - 1);
+            DrawHintItem(x, y, width - 1);
         }
     }
 }
@@ -284,16 +284,10 @@ void Menu::DrawItemsPage(Page *page, int layer, int yTop)
     int posLastItem = posFirstItem + MENU_ITEMS_ON_DISPLAY - 1;
     LIMITATION(posLastItem, posLastItem, 0, NumItemsInPage(page) - 1);
     int count = 0;
-    Page *p = 0;
     for(int posItem = posFirstItem; posItem <= posLastItem; posItem++)
     {
         void *item = Item(page, posItem);
         TypeItem type = TypeMenuItem(item);
-        if(type == Item_Page)
-        {
-            p = (Page *)item;
-            p = p;
-        }
         int top = yTop + MI_HEIGHT * count;
         funcOfDraw[type](item, CalculateX(layer), top);
         count++;
@@ -357,13 +351,13 @@ int Menu::CalculateX(int layer)
 }
 
 
-bool Menu::IsShade(void* item)
+bool Menu::IsShade(const void* item)
 {
     return CurrentItemIsOpened(GetNamePage(Keeper(item))) && (item != OpenedItem());
 }
 
 
-bool Menu::IsPressed(void* item)
+bool Menu::IsPressed(const void* item)
 {
     return item == Menu::ItemUnderKey();
 }

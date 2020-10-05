@@ -44,7 +44,8 @@ void Storage::Clear(void)
 {
     firstElem = 0;
     lastElem = (DataSettings*)beginPool;
-    lastElem->addrNext = lastElem->addrPrev = 0;
+    lastElem->addrNext = 0;
+    lastElem->addrPrev = 0;
     ClearLimitsAndSums();
 }
 
@@ -55,11 +56,11 @@ void Storage::ClearLimitsAndSums(void)
     std::memset(limitUp[1], 0, FPGA_MAX_POINTS);
     std::memset(limitDown[0], 0xff, FPGA_MAX_POINTS);
     std::memset(limitDown[1], 0xff, FPGA_MAX_POINTS);
-    std::memset(&(sum[0][0]), 0, 2 * FPGA_MAX_POINTS * 2);
+    std::memset(&(sum[0][0]), 0, NumChannels * FPGA_MAX_POINTS * sizeof(uint));
 }
 
 
-void Storage::CalculateAroundAverage(uint8 *data0, uint8 *data1, DataSettings *dss)
+void Storage::CalculateAroundAverage(uint8 *data0, uint8 *data1, const DataSettings *dss)
 {
     int numAveData = NumElementsWithCurrentSettings();
     int size = (int)(dss->length1channel * (dss->peakDet == PeackDet_Disable ? 1 : 2));
@@ -88,8 +89,8 @@ void Storage::CalculateAroundAverage(uint8 *data0, uint8 *data1, DataSettings *d
 
         do 
         {
-            *aData0++ = ((*aData0) * numAveDataFless + (float)(*d0++)) * numAveDataInv;
-            *aData1++ = ((*aData1) * numAveDataFless + (float)(*d1++)) * numAveDataInv;
+            *aData0++ = ((*aData0) * numAveDataFless + (float)(*d0++)) * numAveDataInv; //-V567
+            *aData1++ = ((*aData1) * numAveDataFless + (float)(*d1++)) * numAveDataInv; //-V567
         } while (aData0 != endData);
     }
 }
@@ -120,7 +121,7 @@ int Storage::AllDatas(void)
 }
 
 
-void Storage::CalculateLimits(uint8 *data0, uint8 *data1, DataSettings *dss)
+void Storage::CalculateLimits(const uint8 *data0, const uint8 *data1, const DataSettings *dss)
 {
     uint numElements = dss->length1channel * (dss->peakDet == PeackDet_Disable ? 1 : 2);
 
@@ -128,8 +129,10 @@ void Storage::CalculateLimits(uint8 *data0, uint8 *data1, DataSettings *dss)
     {
         for(uint i = 0; i < numElements; i++)
         {
-            limitDown[0][i] = limitUp[0][i] = data0[i];
-            limitDown[1][i] = limitUp[1][i] = data1[i];
+            limitDown[0][i] = data0[i];
+            limitUp[0][i] = data0[i];
+            limitDown[1][i] = data1[i];
+            limitUp[1][i] = data1[i];
         }
     }
     else
@@ -141,8 +144,10 @@ void Storage::CalculateLimits(uint8 *data0, uint8 *data1, DataSettings *dss)
         {
             for(uint i = 0; i < numElements; i++)
             {
-                limitDown[0][i] = limitUp[0][i] = data0[i];
-                limitDown[1][i] = limitUp[1][i] = data1[i];
+                limitDown[0][i] = data0[i];
+                limitUp[0][i] = data0[i];
+                limitDown[1][i] = data1[i];
+                limitUp[1][i] = data1[i];
             }
             allDatas--;
         }
@@ -153,10 +158,10 @@ void Storage::CalculateLimits(uint8 *data0, uint8 *data1, DataSettings *dss)
             const uint8 *dataB = GetData(B, numData);
             for(uint i = 0; i < numElements; i++)
             {
-                if(dataA[i] < limitDown[0][i])  limitDown[0][i] = dataA[i];
-                if(dataA[i] > limitUp[0][i])    limitUp[0][i] = dataA[i];
-                if(dataB[i] < limitDown[1][i])  limitDown[1][i] = dataB[i];
-                if(dataB[i] > limitUp[1][i])    limitUp[1][i] = dataB[i];
+                if(dataA[i] < limitDown[0][i])  { limitDown[0][i] = dataA[i]; }
+                if(dataA[i] > limitUp[0][i])    { limitUp[0][i] = dataA[i];   }
+                if(dataB[i] < limitDown[1][i])  { limitDown[1][i] = dataB[i]; }
+                if(dataB[i] > limitUp[1][i])    { limitUp[1][i] = dataB[i];   }
             }
         }
     }
@@ -207,7 +212,9 @@ void Storage::CalculateSums(void)
             }
         }
     }
-    newSumCalculated[0] = newSumCalculated[1] = true;
+
+    newSumCalculated[0] = true;
+    newSumCalculated[1] = true;
 }
 
 
@@ -256,7 +263,7 @@ int Storage::NumElementsInStorage(void)
         else
         {
             retValue++;
-            while((elem = NextElem(elem)) != 0)
+            while((elem = NextElem(elem)) != 0) //-V2561
             {
                 retValue++;
             }
@@ -410,7 +417,7 @@ int Storage::NumberAvailableEntries(void)
     address += (length);
 
 
-void Storage::PushData(DataSettings *dp, uint8 *data0, uint8 *data1)
+void Storage::PushData(DataSettings *dp, const uint8 *data0, const uint8 *data1)
 {
     int required = SizeElem(dp);
     while(MemoryFree() < required)
@@ -492,7 +499,7 @@ int Storage::MemoryFree(void)
 }
 
 
-int Storage::SizeElem(DataSettings *dp)
+int Storage::SizeElem(const DataSettings *dp)
 {
     int retValue = sizeof(DataSettings);
     if(dp->enableCh0 == 1)
@@ -537,7 +544,7 @@ DataSettings* Storage::FromEnd(int indexFromEnd)
     }
     int index = indexFromEnd;
     DataSettings *retValue = lastElem;
-    while(index != 0 && ((retValue = (DataSettings *)retValue->addrPrev) != 0))
+    while(index != 0 && ((retValue = (DataSettings *)retValue->addrPrev) != 0)) //-V2561
     {
         index--;
     }
@@ -558,7 +565,7 @@ bool Storage::SettingsIsIdentical(int elemFromEnd0, int elemFromEnd1)
 }
 
 
-bool Storage::SettingsIsEquals(DataSettings *dp0, DataSettings *dp1)
+bool Storage::SettingsIsEquals(const DataSettings *dp0, const DataSettings *dp1)
 {
     bool retValue = (dp0->enableCh0  == dp1->enableCh0) &&
         (dp0->enableCh1     == dp1->enableCh1) &&

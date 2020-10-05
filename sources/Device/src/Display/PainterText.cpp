@@ -298,14 +298,14 @@ static bool CompareArrays(const bool *array1, const bool *array2, int numElems)
 
 // Находит следующий перенос. C letters начинается часть слово, где нужно найти перенос, в lettersInSyllable будет записано число букв в найденном 
 // слоге. Если слово закончилось, функция возвращает false
-static bool FindNextTransfer(char *letters, int8 *lettersInSyllable)
+static bool FindNextTransfer(const char *letters, int8 *lettersInSyllable)
 {
 
 #define VOWEL       0   // Гласная
 #define CONSONANT   1   // Согласная
 
-    *lettersInSyllable = (int8)std::strlen(letters);
-    if (std::strlen(letters) <= 3)
+    *lettersInSyllable = static_cast<int8>(std::strlen(letters)); //-V1029
+    if (std::strlen(letters) <= 3) //-V1051
     {
         return false;
     }
@@ -390,7 +390,7 @@ static int8* BreakWord(char *word)
 
 
 // Возвращает часть слова до слога numSyllable(включительн) вместе со знаком переноса
-static char* PartWordForTransfer(char *word, int8* lengthSyllables, int, int numSyllable, char buffer[30])
+static char* PartWordForTransfer(char *word, const int8* lengthSyllables, int, int numSyllable, char buffer[30])
 {
     int length = 0;
     for (int i = 0; i <= numSyllable; i++)
@@ -427,7 +427,7 @@ int Painter::DrawPartWord(char *word, int x, int y, int xRight, bool draw)
         {
             if (draw)
             {
-                DrawText(x, y, subString);
+                DrawText(x, y, subString); //-V530 //-V2547
             }
             return static_cast<int>(std::strlen(subString)) - 1;
         }
@@ -711,7 +711,7 @@ void Painter::DrawTextInRect(int x, int y, int width, int, char *text)
 void Painter::DrawTextRelativelyRight(int xRight, int y, const char *text)
 {
     int lenght = Font_GetLengthText(text);
-    DrawText(xRight - lenght, y, text);
+    DrawText(xRight - lenght, y, text); //-V530 //-V2547
 }
 
 

@@ -35,11 +35,11 @@ private:
     // Возвращает количество свободной памяти в байтах
     static int MemoryFree();
     // Вычисляет, сколько памяти трубуется, чтобы сохранить измерения с настройками dp
-    static int SizeElem(DataSettings *dp);
+    static int SizeElem(const DataSettings *dp);
     // Удалить первое (самое старое) измерение
     static void RemoveFirstElement();
     // Сохранить данные
-    static void PushData(DataSettings *dp, uint8 *data0, uint8 *data1);
+    static void PushData(DataSettings *dp, const uint8 *data0, const uint8 *data1);
     // Возвращает указатель на измерение, следующее за elem
     static DataSettings* NextElem(DataSettings *elem);
     // Возвращает указатель на данные, отстоящие на indexFromEnd oт последнего сохранённого
@@ -47,11 +47,11 @@ private:
     // Возвращает true, если настройки измерений с индексами elemFromEnd0 и elemFromEnd1 совпадают, и false в ином случае.
     static bool SettingsIsIdentical(int elemFromEnd0, int elemFromEnd1);
     // Возващает true, если настройки в обоих структурах одинаковы
-    static bool SettingsIsEquals(DataSettings *dp0, DataSettings *dp1);
+    static bool SettingsIsEquals(const DataSettings *dp0, const DataSettings *dp1);
     // Очистка значений мин, макс и сумм
     static void ClearLimitsAndSums();
 
-    static void CalculateLimits(uint8 *data0, uint8 *data1, DataSettings *dss);
+    static void CalculateLimits(const uint8 *data0, const uint8 *data1, const DataSettings *dss);
 
     static DataSettings* GetSettingsDataFromEnd(int fromEnd);
     // Копирует данные канала chan из, определяемые ds, в одну из двух строк массива dataImportRel. Возвращаемое значение false означает, что данный канал выключен.
@@ -59,7 +59,7 @@ private:
 
     static void PrintElement(DataSettings *dp);
     
-    static void CalculateAroundAverage(uint8 *data0, uint8 *data1, DataSettings *dss);
+    static void CalculateAroundAverage(uint8 *data0, uint8 *data1, const DataSettings *dss);
     // Количество отведённой для измерений памяти.
     static const int SIZE_POOL = (30 * 1024);
     // Здесь хранятся данные.
