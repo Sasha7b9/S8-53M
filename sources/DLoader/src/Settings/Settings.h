@@ -65,7 +65,7 @@ struct SettingsTime
     TBase::E        tBase;                  // Масштаб по времени.
     int16           tShiftRel;              // Смещение по времени
     FunctionTime::E timeDivXPos;
-    TPos            tPos;
+    TPos::E         tPos;
     SampleType      sampleType;
     PeackDetMode::E peakDet;
     bool            selfRecorder;           // Включен ли режим самописца.
