@@ -301,7 +301,7 @@ void FPGA::ReadRandomizeMode(void)
         //uint8 data01 = *RD_ADC_A1;
 
         /*
-        if (*pData0 == 0 || numAve == 1 || startMode == StartMode_Single)
+        if (*pData0 == 0 || numAve == 1 || startMode == StartMode::Single)
         {
         */
             if (pData0 >= first0 && pData0 <= last0)

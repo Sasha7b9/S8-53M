@@ -11,8 +11,8 @@
 
 
 #define START_MODE              (set.trig.startMode)                    // SettingsTrig.startMode
-#define START_MODE_IS_SINGLE    (START_MODE == StartMode_Single)        // \c true, если однократный режим запуска.
-#define START_MODE_IS_AUTO      (START_MODE == StartMode_Auto)          // \c true, если автоматический режим запуска.
+#define START_MODE_IS_SINGLE    (START_MODE == StartMode::Single)       // \c true, если однократный режим запуска.
+#define START_MODE_IS_AUTO      (START_MODE == StartMode::Auto)         // \c true, если автоматический режим запуска.
 
 #define TRIG_SOURCE             (set.trig.source)                       // SettingsTrig.source
 #define TRIG_SOURCE_IS_EXT      (TRIG_SOURCE == TrigSource_Ext)         // \c true, если внешний источник синхронизации.
@@ -25,8 +25,8 @@
 
 #define TRIG_LEVEL(source)      (set.trig.levelRel[source])             // SettingsTrig.levelRel
 #define TRIG_LEVEL_SOURCE       (TRIG_LEVEL(TRIG_SOURCE))               // set.trig.levelRel[set.trig.source]
-#define TRIG_LEVEL_A            (TRIG_LEVEL(Channel::Channel::A))                         // set.trig.levelRel[Channel::A]
-#define TRIG_LEVEL_B            (TRIG_LEVEL(Channel::Channel::B))                         // set.trig.levelRel[Channel::B]
+#define TRIG_LEVEL_A            (TRIG_LEVEL(Channel::A))                // set.trig.levelRel[Channel::A]
+#define TRIG_LEVEL_B            (TRIG_LEVEL(Channel::B))                // set.trig.levelRel[Channel::B]
 
 #define MODE_LONG_PRESS_TRIG    (set.trig.modeLongPressTrig)            // SettingsTrig.modeLongPressTrig
 // если \c true, то длительное нажатие кнопки \b СИНХР сбрасывает уровень синхронизации в 0.
@@ -40,12 +40,12 @@
 
 
 // Режим запуска.
-enum StartMode
+struct StartMode { enum E
 {
-    StartMode_Auto,             // Автоматический.
-    StartMode_Wait,             // Ждущий.
-    StartMode_Single            // Однократный.
-};
+    Auto,             // Автоматический.
+    Wait,             // Ждущий.
+    Single            // Однократный.
+};};
 
 // Источник синхронизации.
 enum TrigSource
@@ -92,7 +92,7 @@ enum TrigModeFind
 // Настройки синхронизации
 struct SettingsTrig
 {
-    StartMode           startMode;          // Режим запуска.
+    StartMode::E        startMode;          // Режим запуска.
     TrigSource          source;             // Источник.
     TrigPolarity        polarity;           // Тип синхронизации.
     TrigInput           input;              // Вход синхронизации.

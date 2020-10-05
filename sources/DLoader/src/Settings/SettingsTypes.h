@@ -174,12 +174,12 @@ enum Range
 };
 
 // Режим запуска
-enum StartMode
+struct StartMode { enum E
 {
-    StartMode_Auto,     // Автоматический
-    StartMode_Wait,     // Ждущий 
-    StartMode_Single    // Однократный
-};
+    Auto,     // Автоматический
+    Wait,     // Ждущий 
+    Single    // Однократный
+};};
 
 // Источник синхронизации
 enum TrigSource
