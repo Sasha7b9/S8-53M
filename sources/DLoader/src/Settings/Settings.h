@@ -21,10 +21,10 @@ struct SettingsDisplay
     ENumMinMax::E       enumMinMax;                 // „исло измерений дл€ определени€ минимумов и максимумов
     DisplaySmoothing::E smoothing;                  // „исло точек дл€ скольз€щего фильтра
     ENumSignalsInSec::E enumSignalsInSec;           // „исло считываний сигнала в секунду
-    Channel             lastAffectedChannel;        // «десь хранитс€ номер последнего канала, которым управл€ли ручками. Ќужно дл€ того, чтобы знать, какой сигнал рисовать наверху.
+    Channel::E          lastAffectedChannel;        // «десь хранитс€ номер последнего канала, которым управл€ли ручками. Ќужно дл€ того, чтобы знать, какой сигнал рисовать наверху.
     ModeAccumulation::E modeAccumulation;           // «адаЄт режим накоплени€ сигналов
     AltMarkers::E       altMarkers;                 // –ежим отображени€ дополнительных боковых маркеров смещений
-    MenuAutoHide        menuAutoHide;               // „ерез сколько времени после последнего нажати€ клавиши пр€тать меню 
+    MenuAutoHide::E     menuAutoHide;               // „ерез сколько времени после последнего нажати€ клавиши пр€тать меню 
     bool                showFullMemoryWindow;       // ѕоказывать ли окно пам€ти вверху экрана.
     bool                showStringNavigation;       // ѕоказывать ли строку текущего состо€ни€ меню.
 };
@@ -78,7 +78,7 @@ struct SettingsCursors
 {
     CursCntrl           cntrlU[NumChannels];                    // јктивные курсоры напр€жени€.
     CursCntrl           cntrlT[NumChannels];                    // јктивные курсоры напр€жени€.
-    Channel             source;                                 // »сточник - к какому каналу относ€тс€ курсоры.
+    Channel::E          source;                                 // »сточник - к какому каналу относ€тс€ курсоры.
     float               posCurU[NumChannels][2];                // “екущие позиции курсоров напр€жени€ обоих каналов.
     float               posCurT[NumChannels][2];                // “екущие позиции курсоров времени обоих каналов.
     float               deltaU100percents[2];                   // –ассто€ние между курсорами напр€жени€ дл€ 100%, дл€ обоих каналов.

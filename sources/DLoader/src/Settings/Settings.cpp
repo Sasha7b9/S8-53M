@@ -45,10 +45,10 @@ static const Settings defaultSettings =
         ENumMinMax::_1,             // numMinMax
         DisplaySmoothing::Disable,  // smoothing
         ENumSignalsInSec::_25,      // num signals in one second
-        ChanA,                      // lastAffectedChannel
+        Channel::A,                 // lastAffectedChannel
         ModeAccumulation::NoReset,  // modeAccumulation
         AltMarkers::Show,           // altMarkers
-        MenuAutoHide_None,          // menuAutoHide
+        MenuAutoHide::None,         // menuAutoHide
         true,                       // showFullMemoryWindow
         false                       // showStringNavigation
     },
@@ -67,7 +67,7 @@ static const Settings defaultSettings =
     {
         { CursCntrl_Disable, CursCntrl_Disable },   // CursCntrl U
         { CursCntrl_Disable, CursCntrl_Disable },   // CursCntrl T
-        ChanA,                                      // source
+        Channel::A,                                 // source
         { 60.0F,  140.0F, 60.0F, 140.0F },          // posCur U
         { 80.0F,  200.0F, 80.0F, 200.0F },          // posCur T
         { 80.0F,  80.0F },                          // расстояние между курсорами напряжения для 100%
