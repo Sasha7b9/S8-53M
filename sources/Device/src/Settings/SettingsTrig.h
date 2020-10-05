@@ -30,7 +30,7 @@
 
 #define MODE_LONG_PRESS_TRIG    (set.trig.modeLongPressTrig)            // SettingsTrig.modeLongPressTrig
 // если \c true, то длительное нажатие кнопки \b СИНХР сбрасывает уровень синхронизации в 0.
-#define MODE_LONG_PRESS_TRIG_IS_LEVEL0  (MODE_LONG_PRESS_TRIG == ModeLongPRessTrig_Level0)
+#define MODE_LONG_PRESS_TRIG_IS_LEVEL0  (MODE_LONG_PRESS_TRIG == ModeLongPressTrig::Level0)
 
 #define TRIG_MODE_FIND          (set.trig.modeFind)                     // SettingsTrig.modeFind
 #define TRIG_MODE_FIND_IS_AUTO  (TRIG_MODE_FIND == TrigModeFind_Auto)   // \c true, если автоматическая установка синхронизации.
@@ -72,11 +72,11 @@ struct TrigInput { enum E
 };};
 
 // Режим длительного нажатия кнопки СИНХР.
-enum ModeLongPressTrig
+struct ModeLongPressTrig { enum E
 {
-    ModeLongPRessTrig_Level0,   // Сброс уровня синхронизации в 0.
-    ModeLongPressTrig_Auto      // Автоматический поиск синхронизации - уровень устанавливается посередине между максимумом и минимумом.
-};
+    Level0,   // Сброс уровня синхронизации в 0.
+    Auto      // Автоматический поиск синхронизации - уровень устанавливается посередине между максимумом и минимумом.
+};};
 
 
 // Режим установки синхронизации.
@@ -92,13 +92,13 @@ enum TrigModeFind
 // Настройки синхронизации
 struct SettingsTrig
 {
-    StartMode::E        startMode;          // Режим запуска.
-    TrigSource::E       source;             // Источник.
-    TrigPolarity::E     polarity;           // Тип синхронизации.
-    TrigInput::E        input;              // Вход синхронизации.
-    int16               levelRel[3];        // Уровень синхронизации для трёх источников.
-    ModeLongPressTrig   modeLongPressTrig;  // Режим работы длительного нажатия кнопки СИНХР.
-    TrigModeFind        modeFind;           // Поиск синхронизации - вручную или автоматически.
+    StartMode::E         startMode;          // Режим запуска.
+    TrigSource::E        source;             // Источник.
+    TrigPolarity::E      polarity;           // Тип синхронизации.
+    TrigInput::E         input;              // Вход синхронизации.
+    int16                levelRel[3];        // Уровень синхронизации для трёх источников.
+    ModeLongPressTrig::E modeLongPressTrig;  // Режим работы длительного нажатия кнопки СИНХР.
+    TrigModeFind         modeFind;           // Поиск синхронизации - вручную или автоматически.
 };
 
 

@@ -212,11 +212,11 @@ enum TrigModeFind
 };
 
 // Режим длительного нажатия кнопки СИНХР
-enum ModeLongPressTrig
+struct ModeLongPressTrig { enum E
 {
-    ModeLongPRessTrig_Level0,
-    ModeLongPressTrig_Auto
-};
+    Level0,
+    Auto
+};};
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Time

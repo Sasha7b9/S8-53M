@@ -97,7 +97,7 @@ static const Settings defaultSettings =
         TrigPolarity::Front,
         TrigInput::Full,
         {TrigLevZero, TrigLevZero, TrigLevZero},
-        ModeLongPressTrig_Auto,
+        ModeLongPressTrig::Auto,
         TrigModeFind_Hand
     },
     // time
