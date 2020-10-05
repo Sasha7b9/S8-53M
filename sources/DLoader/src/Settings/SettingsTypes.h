@@ -4,72 +4,57 @@
 // SDisplay
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-struct ColorScheme
+struct ColorScheme { enum E
 {
-    enum E
-    {
-        WhiteLetters,       // В этом случае заголовки элементов меню пишутся белым - не очень хорошо видно снизу
-        BlackLetters        // В этом случае заголовки элементов меню пишутся чёрным - не очень красиво выглядит
-    };
-};
+    WhiteLetters,       // В этом случае заголовки элементов меню пишутся белым - не очень хорошо видно снизу
+    BlackLetters        // В этом случае заголовки элементов меню пишутся чёрным - не очень красиво выглядит
+};};
 
 // Режим отрисовки сигнала.
-struct ModeDrawSignal
+struct ModeDrawSignal { enum E
 {
-    enum E
-    {
-        Lines = 0,   // линиями
-        Points = 1   // точками
-    };
-};
+    Lines = 0,   // линиями
+    Points = 1   // точками
+};};
 
 // Тип сетки на экране.
-struct TypeGrid
+struct TypeGrid { enum E
 {
-    enum E
-    {
-        _1,
-        _2,
-        _3,
-        _4,
-        Count
-    };
-};
+    _1,
+    _2,
+    _3,
+    _4,
+    Count
+};};
 
 // Количество накоплений.
-struct ENumAccumulation
+struct ENumAccumulation { enum E
 {
-    enum E
-    {
-        _1,
-        _2,
-        _4,
-        _8,
-        _16,
-        _32,
-        _64,
-        _128,
-        _Infinity
-    };
-};
+    _1,
+    _2,
+    _4,
+    _8,
+    _16,
+    _32,
+    _64,
+    _128,
+    _Infinity
+};};
 
 // Количество усреднений по измерениям.
-struct ENumAveraging
+struct ENumAveraging { enum E
 {
-    enum E
-    {
-        _1,
-        _2,
-        _4,
-        _8,
-        _16,
-        _32,
-        _64,
-        _128,
-        _256,
-        _512
-    };
-};
+    _1,
+    _2,
+    _4,
+    _8,
+    _16,
+    _32,
+    _64,
+    _128,
+    _256,
+    _512
+};};
 
 // Тип усреднений по измерениям
 struct ModeAveraging { enum E
@@ -92,19 +77,19 @@ struct ENumMinMax { enum E
 }; };
 
 // Количество точек для расчёта сглаживания.
-enum DisplaySmoothing
+struct DisplaySmoothing { enum E
 {
-    DisplaySmooth_Disable,
-    DisplaySmooth_2points,
-    DisplaySmooth_3points,
-    DisplaySmooth_4points,
-    DisplaySmooth_5points,
-    DisplaySmooth_6points,
-    DisplaySmooth_7points,
-    DisplaySmooth_8points,
-    DisplaySmooth_9points,
-    DisplaySmooth_10points
-};
+    Disable,
+    _2points,
+    _3points,
+    _4points,
+    _5points,
+    _6points,
+    _7points,
+    _8points,
+    _9points,
+    _10points
+};};
 
 // Ограничение FPS.
 struct ENumSignalsInSec { enum E

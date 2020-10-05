@@ -37,34 +37,25 @@
 #define WIDTH_SB                19
 #define LEFT_SB                 299 
 
-struct DrawMode
+struct DrawMode { enum E
 {
-    enum E
-    {
-        Auto,
-        Hand
-    };
-};
+    Auto,
+    Hand
+};};
 
-struct SourceBuffer
+struct SourceBuffer { enum E
 {
-    enum E
-    {
-        Signals,
-        Send,
-        Intermediate
-    };
-};
+    Signals,
+    Send,
+    Intermediate
+};};
 
-struct TypeFont
+struct TypeFont { enum E
 {
-    enum E
-    {
-        _5,
-        _8,
-        _UGO,
-        _UGO2,
-        _Count,
-        _None
-    };
-};
+    _5,
+    _8,
+    _UGO,
+    _UGO2,
+    _Count,
+    _None
+};};

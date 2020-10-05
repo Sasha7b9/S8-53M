@@ -1,61 +1,52 @@
 #pragma once
 
 
-struct PinMode
+struct PinMode { enum E
 {
-    enum E
-    {
-        _Input,
-        _Output,
-        _ADC3_OUT,
-        _ADC3_IT,
-        _DAC,
-        _ETH,
-        _OTG_HS_FS,
-        _OTG_FS,
-        _SPI1,
-        _SPI1_NSS
-    };
-};
+    _Input,
+    _Output,
+    _ADC3_OUT,
+    _ADC3_IT,
+    _DAC,
+    _ETH,
+    _OTG_HS_FS,
+    _OTG_FS,
+    _SPI1,
+    _SPI1_NSS
+};};
 
-struct PinPort
+struct PinPort { enum E
 {
-    enum E
-    {
-        _A,
-        _B,
-        _C,
-        _D,
-        _E,
-        _F,
-        _G,
-        _H,
-        _I
-    };
-};
+    _A,
+    _B,
+    _C,
+    _D,
+    _E,
+    _F,
+    _G,
+    _H,
+    _I
+};};
 
-struct PinPin
+struct PinPin { enum E
 {
-    enum E
-    {
-        _0,
-        _1,
-        _2,
-        _3,
-        _4,
-        _5,
-        _6,
-        _7,
-        _8,
-        _9,
-        _10,
-        _11,
-        _12,
-        _13,
-        _14,
-        _15
-    };
-};
+    _0,
+    _1,
+    _2,
+    _3,
+    _4,
+    _5,
+    _6,
+    _7,
+    _8,
+    _9,
+    _10,
+    _11,
+    _12,
+    _13,
+    _14,
+    _15
+}; };
 
 
 struct Pin
