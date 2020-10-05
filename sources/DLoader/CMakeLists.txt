@@ -85,7 +85,7 @@ file(GLOB DISPLAY        src/Display/*.h src/Display/*.cpp)
 file(GLOB DISPLAY_FONT   src/Display/font/*)
 file(GLOB FDRIVE         src/FDrive/*)
 file(GLOB PANEL          src/Panel/*)
-file(GLOB SETTINGS       src/Settings/*)
+file(GLOB SETTINGS       src/Settings/* ../common/Settings/cSettingsTypes.h)
 file(GLOB UTILS          src/Utils/*)
 
 set_source_files_properties(${LIBS_FATFS} ${LIBS_HAL} ${LIBS_USBH} PROPERTIES HEADER_FILE_ONLY TRUE)
