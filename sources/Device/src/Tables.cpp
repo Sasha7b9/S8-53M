@@ -102,9 +102,9 @@ int Tables_ENUMtoNumSignalsInSec(ENumSignalsInSec::E enumSignalsInSec)
 }
 
 
-const char* Tables_GetWarning(Warning warning)
+const char* Tables_GetWarning(Warning::E warning)
 {
-    static const char *warnings[Warning_NumWarnings][2] =
+    static const char *warnings[Warning::Count][2] =
     {
         {"опедек йюмюк 1 - бнкэр/дек",      "LIMIT CHANNEL 1 - VOLTS/DIV"},
         {"опедек йюмюк 2 - бнкэр/дек",      "LIMIT CHANNEL 2 - VOLTS/DIV"},

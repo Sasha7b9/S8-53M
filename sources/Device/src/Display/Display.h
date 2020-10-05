@@ -27,9 +27,9 @@ public:
     // ƒобавл€ет точки в режиме поточечного вывода и самописца data00, data01 - дл€ первого канала; data10, data11 - дл€ второго канала
     static void AddPoints(uint8 data00, uint8 data01, uint8 data10, uint8 data11);
 
-    static void ShowWarningBad(Warning warning);
+    static void ShowWarningBad(Warning::E warning);
 
-    static void ShowWarningGood(Warning warning);
+    static void ShowWarningGood(Warning::E warning);
 
     static void ClearFromWarnings();
 

@@ -926,7 +926,7 @@ void FPGA::AutoFind(void)
         //LOG_WRITE("Канал 2");
         if(!FindWave(Channel::B))
         {
-            Display::ShowWarningBad(SignalNotFound);
+            Display::ShowWarningBad(Warning::SignalNotFound);
         }
     }
 

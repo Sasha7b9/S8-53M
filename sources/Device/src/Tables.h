@@ -2,7 +2,7 @@
 #include "Settings/SettingsDisplay.h"
 
 
-enum Warning
+struct Warning { enum E
 {
     LimitChan1_Volts,
     LimitChan2_Volts,
@@ -31,20 +31,20 @@ enum Warning
     ImpossibleEnableFFT,
     FirmwareSaved,
     FullyCompletedOTP,
-    Warning_NumWarnings
-};
+    Count
+};};
 
-enum WarningWithNumber
+struct WarningWithNumber { enum E
 {
     ExcessValues        // Превышение значения количества сигналов в "НАКОПЛЕНИЕ", "УСРЕДНЕНИЕ", "Мин Макс"
-};
+};};
 
 
 ENumSignalsInSec::E Tables_NumSignalsInSecToENUM(int enumSignalsInSec);
 
 int Tables_ENUMtoNumSignalsInSec(ENumSignalsInSec::E enumSignalsInSec);
 
-const char* Tables_GetWarning(Warning warning);
+const char* Tables_GetWarning(Warning::E warning);
 
 const char* Tables_GetTBaseString(TBase::E tBase);
 

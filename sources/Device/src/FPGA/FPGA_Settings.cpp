@@ -180,7 +180,7 @@ void FPGA::SetRange(Channel::E chan, Range::E range)
     }
     else
     {
-        Display::ShowWarningBad(chan == Channel::A ? LimitChan1_Volts : LimitChan2_Volts);
+        Display::ShowWarningBad(chan == Channel::A ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
     }
 };
 
@@ -212,7 +212,7 @@ void FPGA::SetTBase(TBase::E tBase)
     }
     else
     {
-        Display::ShowWarningBad(LimitSweep_Time);
+        Display::ShowWarningBad(Warning::LimitSweep_Time);
     }
 };
 
@@ -230,8 +230,8 @@ void FPGA::TBaseDecrease(void)
 {
     if (PEAKDET && SET_TBASE <= MIN_TBASE_PEC_DEAT)
     {
-        Display::ShowWarningBad(LimitSweep_Time);
-        Display::ShowWarningBad(EnabledPeakDet);
+        Display::ShowWarningBad(Warning::LimitSweep_Time);
+        Display::ShowWarningBad(Warning::EnabledPeakDet);
         return;
     }
 
@@ -239,7 +239,7 @@ void FPGA::TBaseDecrease(void)
     {
         if (SET_SELFRECORDER && SET_TBASE == MIN_TBASE_P2P)
         {
-            Display::ShowWarningBad(TooFastScanForSelfRecorder);
+            Display::ShowWarningBad(Warning::TooFastScanForSelfRecorder);
         }
         else
         {
@@ -249,7 +249,7 @@ void FPGA::TBaseDecrease(void)
     }
     else
     {
-        Display::ShowWarningBad(LimitSweep_Time);
+        Display::ShowWarningBad(Warning::LimitSweep_Time);
     }
 }
 
@@ -263,7 +263,7 @@ void FPGA::TBaseIncrease(void)
     }
     else
     {
-        Display::ShowWarningBad(LimitSweep_Time);
+        Display::ShowWarningBad(Warning::LimitSweep_Time);
     }
 }
 
@@ -278,7 +278,7 @@ void FPGA::SetRShift(Channel::E chan, int16 rShift)
 
     if (rShift > RShiftMax || rShift < RShiftMin)
     {
-        Display::ShowWarningBad(chan == Channel::A ? LimitChan1_RShift : LimitChan2_RShift);
+        Display::ShowWarningBad(chan == Channel::A ? Warning::LimitChan1_RShift : Warning::LimitChan2_RShift);
     }
 
     LIMITATION(rShift, rShift, RShiftMin, RShiftMax);
@@ -324,7 +324,7 @@ void FPGA::SetTrigLev(TrigSource::E chan, int16 trigLev)
     Display::ChangedRShiftMarkers();
     if (trigLev < TrigLevMin || trigLev > TrigLevMax)
     {
-        Display::ShowWarningBad(LimitSweep_Level);
+        Display::ShowWarningBad(Warning::LimitSweep_Level);
     }
     LIMITATION(trigLev, trigLev, TrigLevMin, TrigLevMax);
 
@@ -368,7 +368,7 @@ void FPGA::SetTShift(int tShift)
     if (tShift < sTime_TShiftMin() || tShift > TShiftMax)
     {
         LIMITATION(tShift, tShift, sTime_TShiftMin(), TShiftMax);
-        Display::ShowWarningBad(LimitSweep_TShift);
+        Display::ShowWarningBad(Warning::LimitSweep_TShift);
     }
 
     sTime_SetTShift((int16)tShift);
@@ -468,7 +468,7 @@ bool FPGA::RangeIncrease(Channel::E chan)
     }
     else
     {
-       Display::ShowWarningBad(chan == Channel::A ? LimitChan1_Volts : LimitChan2_Volts);
+       Display::ShowWarningBad(chan == Channel::A ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
     }
     Display::Redraw();
     return retValue;
@@ -485,7 +485,7 @@ bool FPGA::RangeDecrease(Channel::E chan)
     }
     else
     {
-        Display::ShowWarningBad(chan == Channel::A ? LimitChan1_Volts : LimitChan2_Volts);
+        Display::ShowWarningBad(chan == Channel::A ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
     }
     Display::Redraw();
     return retValue;

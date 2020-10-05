@@ -287,7 +287,7 @@ uint EPROM::FreeMemory()
 void EPROM::CompactMemory()
 {
     Display::ClearFromWarnings();
-    Display::ShowWarningGood(MovingData);
+    Display::ShowWarningGood(Warning::MovingData);
     Display::Update();
     uint dataInfoRel = FindActualDataInfo() - ADDR_SECTOR_DATA_MAIN;
 

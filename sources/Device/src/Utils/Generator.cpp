@@ -6,7 +6,7 @@
 #include <cmath>
 
 
-static void SetParametersWave(Channel::E channel, TypeWave typeWave, float frequency, float startAngle, float amplWave, float amplNoise);
+static void SetParametersWave(Channel::E channel, TypeWave::E typeWave, float frequency, float startAngle, float amplWave, float amplNoise);
 static void StartNewWave(Channel::E channel);
 static uint8 GetSampleWave(Channel::E channel);
 
@@ -24,14 +24,14 @@ static uint8 GetSampleSinusWave(Channel::E channel, int numSample);
 static uint8 GetSampleMeanderWave(Channel::E channel, int numSample);
 
 
-static TypeWave type[2] = {Wave_Sinus, Wave_Meander};
+static TypeWave::E type[2] = {TypeWave::Sinus, TypeWave::Meander};
 static float freq[2] = {1000.0F, 500.0F};
 static float angle[2] = {0.05f, 0.1f};
 static float ampl[2] = {1.0f, 0.5f};
 static float amplNoise[2] = {0.1f, 0.1f};
 static int numSample[2] = {0, 0};
 
-void SetParametersWave(Channel::E channel, TypeWave typeWave, float frequency, float startAngle, float amplWave, float amplNoise_)
+void SetParametersWave(Channel::E channel, TypeWave::E typeWave, float frequency, float startAngle, float amplWave, float amplNoise_)
 {
     type[channel] = typeWave;
     freq[channel] = frequency;
@@ -47,7 +47,7 @@ void StartNewWave(Channel::E)
 
 uint8 GetSampleWave(Channel::E channel)
 {
-    return (type[channel] == Wave_Sinus) ? GetSampleSinusWave(channel, (numSample[channel])++) : GetSampleMeanderWave(channel, (numSample[channel])++);
+    return (type[channel] == TypeWave::Sinus) ? GetSampleSinusWave(channel, (numSample[channel])++) : GetSampleMeanderWave(channel, (numSample[channel])++);
 }
 
 uint8 GetSampleSinusWave(Channel::E channel, int numSample_)

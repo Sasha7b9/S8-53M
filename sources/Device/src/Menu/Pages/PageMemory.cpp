@@ -552,7 +552,7 @@ static void SaveSignalToIntMemory(void)
         {                               // то сохраняем сигнал из последних
             EPROM::SaveData(CURRENT_NUM_INT_SIGNAL, gDSmemLast, gData0memLast, gData1memLast);
             EPROM::GetData(CURRENT_NUM_INT_SIGNAL, &gDSmemInt, &gData0memInt, &gData1memInt);
-            Display::ShowWarningGood(SignalIsSaved);
+            Display::ShowWarningGood(Warning::SignalIsSaved);
         }
     }
     else                                // Иначе сохраняем текущий сигнал
@@ -561,7 +561,7 @@ static void SaveSignalToIntMemory(void)
         {
             EPROM::SaveData(CURRENT_NUM_INT_SIGNAL, gDSet, gData0, gData1);
             EPROM::GetData(CURRENT_NUM_INT_SIGNAL, &gDSet, &gData0memInt, &gData1memInt);
-            Display::ShowWarningGood(SignalIsSaved);
+            Display::ShowWarningGood(Warning::SignalIsSaved);
         }
     }
 }

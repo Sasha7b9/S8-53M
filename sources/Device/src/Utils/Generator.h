@@ -5,15 +5,15 @@
 #include "Settings/SettingsTypes.h"
 
 
-enum TypeWave
+struct TypeWave { enum E
 {
-    Wave_Sinus,
-    Wave_Meander
-};
+    Sinus,
+    Meander
+};};
 
 struct SGenerator
 {
-    void(*SetParametersWave)(Channel::E channel, TypeWave typeWave, float frequency, float startAngle, float amplWave, float amplNoise);    // numWave = 1, 2. Может быть до двух сигналов.
+    void(*SetParametersWave)(Channel::E channel, TypeWave::E typeWave, float frequency, float startAngle, float amplWave, float amplNoise);    // numWave = 1, 2. Может быть до двух сигналов.
                                                                                                     // amplWave = 0.0F...1.0f, amplNoise = 0.0F...1.0f - относительно амплитуды сигнала.
     void(*StartNewWave)(Channel::E channel);
     uint8(*GetSampleWave)(Channel::E channel);

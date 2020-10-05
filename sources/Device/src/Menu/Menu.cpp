@@ -248,7 +248,7 @@ void Menu::PressButton(PanelButton::E button)
         if (std::memcmp(bufferForButtons, sampleBufferForButtons, SIZE_BUFFER_FOR_BUTTONS) == 0)
         {
             SHOW_DEBUG_MENU = 1;
-            Display::ShowWarningGood(MenuDebugEnabled);
+            Display::ShowWarningGood(Warning::MenuDebugEnabled);
         }
     }
     pressButton = button;
@@ -792,7 +792,7 @@ extern const Page pService;
 
 void Menu::OpenItemTime(void)
 {
-    Display::ShowWarningGood(TimeNotSet);
+    Display::ShowWarningGood(Warning::TimeNotSet);
     Menu::ShortPressureButton(PanelButton::Service);
     Menu::UpdateInput();
     Display::Update();
