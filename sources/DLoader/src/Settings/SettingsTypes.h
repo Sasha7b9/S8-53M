@@ -448,12 +448,12 @@ struct FFTmaxDB { enum E
     _80
 };};
 
-enum ModeDrawMath
+struct ModeDrawMath { enum E
 {
-    ModeDrawMath_Disable,
-    ModeDrawMath_Separate,
-    ModeDrawMath_Together
-};
+    Disable,
+    Separate,
+    Together
+};};
 
 enum ModeRegSet
 {

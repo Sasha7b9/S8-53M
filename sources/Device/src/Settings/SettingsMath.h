@@ -30,9 +30,9 @@
 #define ENABLED_FFT                 (set.math.enableFFT)                // SettingsMath.enableFFT
 
 #define MODE_DRAW_MATH              (set.math.modeDraw)                 // SettingsMath.modeDraw
-#define DISABLED_DRAW_MATH          (MODE_DRAW_MATH == ModeDrawMath_Disable)
-#define MODE_DRAW_MATH_IS_TOGETHER  (MODE_DRAW_MATH == ModeDrawMath_Together)
-#define MODE_DRAW_MATH_IS_SEPARATE  (MODE_DRAW_MATH == ModeDrawMath_Separate)
+#define DISABLED_DRAW_MATH          (MODE_DRAW_MATH == ModeDrawMath::Disable)
+#define MODE_DRAW_MATH_IS_TOGETHER  (MODE_DRAW_MATH == ModeDrawMath::Together)
+#define MODE_DRAW_MATH_IS_SEPARATE  (MODE_DRAW_MATH == ModeDrawMath::Separate)
 
 #define MATH_MODE_REG_SET           (set.math.modeRegSet)               // SettingsMath.modeRegSet
 #define MATH_MODE_REG_SET_IS_RSHIFT (MATH_MODE_REG_SET == ModeRegSet_RShift)
@@ -83,12 +83,12 @@ struct Function { enum E
 };};
 
 // Где отрисовывать математический сигнал.
-enum ModeDrawMath
+struct ModeDrawMath { enum E
 {
-    ModeDrawMath_Disable,   // Отображение математического сигнала выключено.
-    ModeDrawMath_Separate,  // Математический сигнал отображается на отдельном экране.
-    ModeDrawMath_Together   // Математический сигнал отображается поверх текущего сигнала.
-};
+    Disable,    // Отображение математического сигнала выключено.
+    Separate,   // Математический сигнал отображается на отдельном экране.
+    Together    // Математический сигнал отображается поверх текущего сигнала.
+};};
 
 // Чем управляет ручка УСТАНОВКА, когда включена математическая функция.
 enum ModeRegSet
@@ -112,7 +112,7 @@ struct SettingsMath
     int8            koeff1mul;
     int8            koeff2mul;
     bool            enableFFT;      // \c true, если включён спектр.
-    ModeDrawMath    modeDraw;       // Раздельный или общий дисплей в режиме математической функции.
+    ModeDrawMath::E modeDraw;       // Раздельный или общий дисплей в режиме математической функции.
     ModeRegSet      modeRegSet;     // Функция ручки УСТАНОВКА - масштаб по времени или смещение по вертикали.
     Range::E        range;          // Масштаб по напряжению математического сигнала.
     Divider::E      multiplier;     // Множитель масштаба математического сигнала.

@@ -132,7 +132,7 @@ struct SettingsMath
     int8            koeff1mul;
     int8            koeff2mul;
     bool            enableFFT;
-    ModeDrawMath    modeDraw;               // Раздельный или общий дисплей в режиме математической функции
+    ModeDrawMath::E modeDraw;               // Раздельный или общий дисплей в режиме математической функции
     ModeRegSet      modeRegSet;             // Функция ручки УСТАНОВКА - масштаб по времени или смещение по вертикали
     Range::E        range;
     Multiplier      multiplier;
