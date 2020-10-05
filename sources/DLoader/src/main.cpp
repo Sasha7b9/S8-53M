@@ -60,7 +60,7 @@ int main(void)
 
             while (1) //-V2530
             {
-                PanelButton::E button = Panel_PressedButton();
+                PanelButton::E button = Panel::PressedButton();
                 if (button == PanelButton::F1)
                 {
                     ms->state = State_Upgrade;

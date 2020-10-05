@@ -30,7 +30,7 @@ static PanelButton::E ButtonIsPress(uint16 command);
 
 
 
-PanelButton::E Panel_PressedButton(void)
+PanelButton::E Panel::PressedButton(void)
 {
     return pressedButton;
 }
