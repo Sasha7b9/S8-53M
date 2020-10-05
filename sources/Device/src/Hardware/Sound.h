@@ -1,15 +1,12 @@
 #pragma once
 
 
-struct TypeWave
+struct TypeWave { enum E
 {
-    enum E
-    {
-        Sine,
-        Meandr,
-        Triangle
-    };
-};
+    Sine,
+    Meandr,
+    Triangle
+};};
 
 
 class Sound

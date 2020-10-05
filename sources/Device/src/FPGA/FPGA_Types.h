@@ -124,25 +124,19 @@
 #define RD_ADDR_FREQ_MID    (HAL_FSMC::ADDR_FPGA + 0x1e)      //    1-й байт замеренного значения периода. Признак того, что счёт периода завершён, находится в D5 RD_FL.
 #define RD_ADDR_FREQ_HI     (HAL_FSMC::ADDR_FPGA + 0x1f)      //    2-й байт замеренного значения периода. Признак того, что счёт периода завершён, находится в D5 RD_FL.
 
-struct TypeWriteAnalog
+struct TypeWriteAnalog { enum E
 {
-    enum E
-    {
-        All,
-        Range0,
-        Range1,
-        TrigParam,
-        ChanParam0,
-        ChanParam1
-    };
-};
+    All,
+    Range0,
+    Range1,
+    TrigParam,
+    ChanParam0,
+    ChanParam1
+};};
 
-struct TypeWriteDAC
+struct TypeWriteDAC { enum E
 {
-    enum E
-    {
-        RShiftA,
-        RShiftB,
-        TrigLev
-    };
-};
+    RShiftA,
+    RShiftB,
+    TrigLev
+};};

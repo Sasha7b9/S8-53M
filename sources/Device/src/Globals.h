@@ -152,32 +152,26 @@ struct GMemory
 extern GMemory gMemory;
 
 
-struct StateCalibration
+struct StateCalibration { enum E
 {
-    enum E
-    {
-        None,
-        ADCinProgress,
-        RShift0start,
-        RShift0inProgress,
-        RShift1start,
-        RShift1inProgress,
-        ErrorCalibration0,
-        ErrorCalibration1
-    };
-};
+    None,
+    ADCinProgress,
+    RShift0start,
+    RShift0inProgress,
+    RShift1start,
+    RShift1inProgress,
+    ErrorCalibration0,
+    ErrorCalibration1
+};};
 
-struct StateWorkFPGA
+struct StateWorkFPGA { enum E
 {
-    enum E
-    {
-        Stop,    // СТОП - не занимается считыванием информации.
-        Wait,    // Ждёт поступления синхроимпульса.
-        Work,    // Идёт работа.
-        Pause    // Это состояние, когда временно приостановлен прибор, например, для чтения данных или для 
-                 // записи значений регистров.
-    };
-};
+    Stop,    // СТОП - не занимается считыванием информации.
+    Wait,    // Ждёт поступления синхроимпульса.
+    Work,    // Идёт работа.
+    Pause    // Это состояние, когда временно приостановлен прибор, например, для чтения данных или для 
+             // записи значений регистров.
+};};
 
 
 struct StateFPGA
