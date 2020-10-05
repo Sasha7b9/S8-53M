@@ -47,14 +47,14 @@ struct SettingsTrig
 // ВременнЫе настройки
 struct SettingsTime
 {
-    TBase::E        tBase;                  // Масштаб по времени.
-    int16           tShiftRel;              // Смещение по времени
-    FunctionTime::E timeDivXPos;
-    TPos::E         tPos;
-    SampleType::E   sampleType;
-    PeackDetMode::E peakDet;
-    bool            selfRecorder;           // Включен ли режим самописца.
-    FPGA_NUM_POINTS oldNumPoints;           // Когда переключаемся в режим пикового детектора, устанавливаем количество точек в 1024, а сюда записываем то, что было, чтобы потом восстановить
+    TBase::E            tBase;                  // Масштаб по времени.
+    int16               tShiftRel;              // Смещение по времени
+    FunctionTime::E     timeDivXPos;
+    TPos::E             tPos;
+    SampleType::E       sampleType;
+    PeackDetMode::E     peakDet;
+    bool                selfRecorder;           // Включен ли режим самописца.
+    ENUM_POINTS_FPGA::E oldNumPoints;           // Когда переключаемся в режим пикового детектора, устанавливаем количество точек в 1024, а сюда записываем то, что было, чтобы потом восстановить
 };
 
 
@@ -84,7 +84,7 @@ struct StructMemoryLast
 struct SettingsMemory
 {
 #define MAX_SYMBOLS_IN_FILE_NAME 35
-    FPGA_NUM_POINTS     fpgaNumPoints;          // Число точек.
+    ENUM_POINTS_FPGA::E fpgaNumPoints;          // Число точек.
     ModeWork::E         modeWork;               // Режим работы.
     FileNamingMode::E   fileNamingMode;         // Режим именования файлов.
     char                fileNameMask[MAX_SYMBOLS_IN_FILE_NAME]; // Здесь маска для автоматического именования файлов\n

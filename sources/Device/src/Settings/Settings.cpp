@@ -109,7 +109,7 @@ static const Settings defaultSettings =
         SampleType::Equal,
         PeackDetMode::Disable,
         false,
-        FNP_1024
+        ENUM_POINTS_FPGA::_1024
     },
     // cursors
     {
@@ -128,7 +128,7 @@ static const Settings defaultSettings =
     },
     // memory
     {
-        FNP_1024,
+        ENUM_POINTS_FPGA::_1024,
         ModeWork::Direct,
         FileNamingMode::Mask,
         "Signal_\x07\x03",      // \x07 - означает, что здесь должен быть очередной номер, \x03 - минимум на три знакоместа

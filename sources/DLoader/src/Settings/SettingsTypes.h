@@ -1,9 +1,6 @@
 #pragma once
 
 
-// SDisplay
-
-
 struct ColorScheme { enum E
 {
     WhiteLetters,       // В этом случае заголовки элементов меню пишутся белым - не очень хорошо видно снизу
@@ -310,17 +307,6 @@ struct CursLookMode { enum E
     Both           // Курсоры следят за временем и напряжением, в зависимости от того, какой курсоры вращали последним.
 };};
 
-
-// Memory
-
-
-// Число точек сигнала, с которым идёт работа.
-enum FPGA_NUM_POINTS
-{
-    FNP_281,
-    FNP_512,
-    FNP_1024
-};
 
 // Режим работы.
 struct ModeWork { enum E

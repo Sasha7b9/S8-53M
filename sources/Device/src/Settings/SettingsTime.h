@@ -1,16 +1,6 @@
-
-
 #pragma once
 #include "SettingsTypes.h"
 #include "defines.h"
-
-
-/** @addtogroup Settings
- *  @{
- *  @defgroup SettingsTime
- *  @{
- */
-
 
 
 #define SET_TBASE                           (set.time.tBase)        // SettingTime.tBase
@@ -61,16 +51,6 @@ struct PeackDetMode { enum E
     Average
 };};
 
-// Число точек сигнала, с которым идёт работа.
-enum ENUM_POINTS_FPGA
-{
-    FNP_281,
-    FNP_512,
-    FNP_1024
-};
-
-
-
 // Настройки оси X.
 struct SettingsTime
 { //-V802
@@ -81,10 +61,9 @@ struct SettingsTime
     SampleType::E       sampleType;     // Тип выборки для режима рандомизатора.
     PeackDetMode::E     peakDet;        // Режим работы пикового детектора
     bool                selfRecorder;   // Включен ли режим самописца.
-    ENUM_POINTS_FPGA    oldNumPoints;   // \brief Когда переключаемся в режим пикового детектора, устанавливаем количество точек в 1024, а сюда 
+    ENUM_POINTS_FPGA::E oldNumPoints;   // \brief Когда переключаемся в режим пикового детектора, устанавливаем количество точек в 1024, а сюда 
                                         // записываем то, что было, чтобы потом восстановить.
 };
-
 
 
 // Сохранить масштаб по времени.
@@ -101,7 +80,3 @@ int16 sTime_TShiftMin();
 int16 sTime_TShiftZero();
 // Если true, значит, работает рандомизатор.
 bool sTime_RandomizeModeEnabled();
-
-
-/** @}  @}
- */
