@@ -49,19 +49,6 @@ void sChannel_SetRange(Channel::E chan, Range range)
 }
 
 
-int sChannel_MultiplierRel2Abs(Divider multiplier)
-{
-    switch (multiplier)
-    {
-        case Divider_10:
-            return 10;
-        case Divider_1:
-            return 1;
-    }
-    return 1;
-}
-
-
 bool sChannel_Enabled(Channel::E chan)
 {
     if (chan == Channel::Math && !DISABLED_DRAW_MATH)
@@ -72,15 +59,15 @@ bool sChannel_Enabled(Channel::E chan)
 }
 
 
-const char* sChannel_Range2String(Range range, Divider multiplier)
+const char* sChannel_Range2String(Range range, Divider::E multiplier)
 {
     return ranges[range].name[set.common.lang][multiplier];
 }
 
 
-const char* sChannel_RShift2String(int16 rShiftRel, Range range, Divider multiplier, char buffer[20])
+const char* sChannel_RShift2String(int16 rShiftRel, Range range, Divider::E multiplier, char buffer[20])
 {
-    float rShiftVal = RSHIFT_2_ABS(rShiftRel, range) * sChannel_MultiplierRel2Abs(multiplier);
+    float rShiftVal = RSHIFT_2_ABS(rShiftRel, range) * Divider::ToAbs(multiplier);
     return Voltage2String(rShiftVal, true, buffer);
 };
 

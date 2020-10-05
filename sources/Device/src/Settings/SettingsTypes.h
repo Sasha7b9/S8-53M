@@ -1,20 +1,6 @@
 #pragma once
 
 
-
-// SDisplay
-
-
-// Режим отображения пропущенных сигналов при ограничении частоты кадров.
-enum MissedSignals
-{
-    Missed_Hide,    // Не выводить на экран
-    Missed_Show,    // Выводить на экран
-    Missed_Average  // Устреднять и выводить на экран
-};
-
-
-
 // ChannelX
 
 struct Channel { enum E
@@ -34,10 +20,12 @@ struct ModeCouple { enum E
 };};
 
 // Делитель.
-enum Divider
-{
-    Divider_1,
-    Divider_10
+struct Divider { enum E
+    {
+        _1,
+        _10
+    };
+    static int ToAbs(Divider::E divider);
 };
 
 // Масштаб по напряжению.

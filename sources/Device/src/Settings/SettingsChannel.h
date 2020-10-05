@@ -35,9 +35,9 @@
 #define SET_DIVIDER(ch)         (set.chan[ch].divider)          // SettingsChannel.divider
 #define SET_DIVIDER_A           SET_DIVIDER(Channel::Channel::A)
 #define SET_DIVIDER_B           SET_DIVIDER(Channel::Channel::B)
-#define SET_DIVIDER_1(ch)       (SET_DIVIDER(ch) == Divider_1)
-#define SET_DIVIDER_10(ch)      (SET_DIVIDER(ch) == Divider_10)
-#define VALUE_MULTIPLIER(ch)    (sChannel_MultiplierRel2Abs(SET_DIVIDER(ch)))
+#define SET_DIVIDER_1(ch)       (SET_DIVIDER(ch) == Divider::_1)
+#define SET_DIVIDER_10(ch)      (SET_DIVIDER(ch) == Divider::_10)
+#define VALUE_MULTIPLIER(ch)    (Divider::ToAbs(SET_DIVIDER(ch)))
 
 #define SET_ENABLED(ch)         (set.chan[ch].enable)           // SettingsChannel.enable
 #define SET_ENABLED_A           SET_ENABLED(Channel::Channel::A)                  // set.chan[Channel::A].enable
@@ -60,13 +60,12 @@
 // Установить масштаб по напряжению канала chan.
 void sChannel_SetRange(Channel::E chan, Range range);
 
-int sChannel_MultiplierRel2Abs(Divider multiplier);
 // Возвращает true, если канал chan включён.
 bool sChannel_Enabled(Channel::E chan);
 
-const char *sChannel_Range2String(Range range, Divider multiplier);
+const char *sChannel_Range2String(Range range, Divider::E multiplier);
 
-const char *sChannel_RShift2String(int16 rShiftRel, Range range, Divider multiplier, char buffer[20]);
+const char *sChannel_RShift2String(int16 rShiftRel, Range range, Divider::E multiplier, char buffer[20]);
 
 /** @}  @}
  */

@@ -200,8 +200,8 @@ void SCPI::CHANNEL::FACTOR(uint8 *buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (value == 0)         { SET_DIVIDER(chan) = Divider_1; }
-        else if (value == 1)    { SET_DIVIDER(chan) = Divider_10; }
+        if (value == 0)         { SET_DIVIDER(chan) = Divider::_1; }
+        else if (value == 1)    { SET_DIVIDER(chan) = Divider::_10; }
         else if (value == 2)
         {
             SCPI_SEND(":CHANNEL%d:PROBE %s", Tables_GetNumChannel(chan), map[SET_DIVIDER(chan)].key);

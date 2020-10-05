@@ -2,6 +2,14 @@
 
 
 
+int Divider::ToAbs(Divider::E multiplier)
+{
+    static const int results[2] = { 1, 10 };
+
+    return results[multiplier];
+}
+
+
 const char *RangeName(Range range)
 {
     static const char *names[RangeSize + 1] =
