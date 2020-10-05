@@ -3,14 +3,6 @@
 #include "Settings/SettingsTime.h"
 
 
-/** @addtogroup Settings
- *  @{
- *  @defgroup SettingsMemory
- *  @{
- */
-
-
-
 #define ENUM_POINTS                 (set.memory.fpgaNumPoints)                      // SettingsMemory.fpgaNumPoints
 #define ENUM_POINTS_IS_281          (ENUM_POINTS == FNP_281)
 #define ENUM_POINTS_IS_1024         (ENUM_POINTS == FNP_1024)
@@ -117,7 +109,3 @@ struct SettingsMemory
 int sMemory_GetNumPoints(bool forCalculate);
 
 ENUM_POINTS_FPGA sMemory_IntNumPoints2FPGA_NUM_POINTS(int numPoints);
-
-
-/** @}  @}
- */
