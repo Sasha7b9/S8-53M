@@ -138,7 +138,7 @@ const Page mainPage
     "лемч", "MENU",
     "",
     "",
-    Page::EMainPage, &itemsMainPage
+    NamePage::MainPage, &itemsMainPage
 );
 
 

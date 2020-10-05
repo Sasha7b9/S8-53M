@@ -393,13 +393,13 @@ void Menu::ProcessingShortPressureButton()
             else                                                        // Если меню не показано.
             {
                 NamePage::E name = GetNamePage((const Page *)OpenedItem());
-                if(button == B_Channel0 && name == Page::EChannel0)
+                if(button == B_Channel0 && name == NamePage::Channel0)
                 {
                     SET_ENABLED_A = !sChannel_Enabled(Channel::A);
                     OnChanged_InputA(true);
                     break;
                 }
-                if(button == B_Channel1 && name == Page::EChannel1)
+                if(button == B_Channel1 && name == NamePage::Channel1)
                 {
                     SET_ENABLED_B = !sChannel_Enabled(Channel::B);
                     OnChanged_InputB(true);

@@ -252,7 +252,7 @@ NamePage::E Menu::GetNamePage(const Page *page)
 {
     if(TypeMenuItem((void*)page) != TypeItem::Page)
     {
-        return Page::ENoPage;
+        return NamePage::NoPage;
     }
     return page->name;
 }

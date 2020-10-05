@@ -53,5 +53,5 @@ enum NamePage
     NamePage::SB_Information,        // СЕРВИС - ИНФОРМАЦИЯ
     NamePage::SB_SerialNumber,       // ОТАДКА - С/Н
     NamePage::Count,
-    Page::ENoPage
+    NamePage::NoPage
 };             // При добавлении страниц нужно изменять инициализацию SettingsMenu в SSettings.c

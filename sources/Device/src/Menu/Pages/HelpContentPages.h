@@ -3,8 +3,8 @@
 
 enum TypePageHelp
 {
-    TypePage::EContent,       // На этой странице расположены ссылки на другие страницы
-    TypePage::EDescription    // На этой странице нет ссылок, только описание
+    TypePage_Content,       // На этой странице расположены ссылки на другие страницы
+    TypePage_Description    // На этой странице нет ссылок, только описание
 };
 
 
@@ -17,15 +17,15 @@ struct PageHelp
     TypePageHelp    type;
     void*           parent;             // Адрес родительской страницы
     pFuncBV         funcNotUsed;        // Оставлено для совместимости с типом Page - нужно для отрисовки.
-    char*           titleHint[4];       // Название страницы на русском и английском языках, а затем содержимое на русском и английском (для случая TypePage::EDescription)
-    void*           pages[MAX_PAGES];   // Массив содержит адреса ссылаемых страниц в случае TypePage::EContent
+    char*           titleHint[4];       // Название страницы на русском и английском языках, а затем содержимое на русском и английском (для случая TypePage_Description)
+    void*           pages[MAX_PAGES];   // Массив содержит адреса ссылаемых страниц в случае TypePage_Content
 };
 
 extern const PageHelp helpMenu;
 
 static const PageHelp helpMenuCommon =
 {
-    TypePage::EDescription, (void*)&helpMenu, 0,
+    TypePage_Description, (void*)&helpMenu, 0,
     {
         "Общее описание принципов меню", "General description of the principles of the menu"
         ,
@@ -51,7 +51,7 @@ static const PageHelp helpMenuCommon =
 
 static const PageHelp helpMenuControls =
 {
-    TypePage::EDescription, (void*)&helpMenu, 0,
+    TypePage_Description, (void*)&helpMenu, 0,
     {
         "Описание органов управлениея", "Description of the controls"
         ,
@@ -64,7 +64,7 @@ extern const PageHelp helpMain;
 
 static const PageHelp helpSCPI =
 {
-    TypePage::EDescription, (void*)&helpMain, 0,
+    TypePage_Description, (void*)&helpMain, 0,
     {
         "Работа с SCPI", "Working with SCPI",
         "",
@@ -74,7 +74,7 @@ static const PageHelp helpSCPI =
 
 static const PageHelp helpMenu =
 {
-    TypePage::EContent, (void*)&helpMain, 0,
+    TypePage_Content, (void*)&helpMain, 0,
     {
         "Работа с меню", "Working with menus",
         "",
@@ -88,7 +88,7 @@ static const PageHelp helpMenu =
 
 static const PageHelp helpMain =
 {
-    TypePage::EContent,  0, 0,
+    TypePage_Content,  0, 0,
     {
         "ПОМОЩЬ", "HELP",
         "",

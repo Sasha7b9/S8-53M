@@ -11,7 +11,7 @@
 #include "common/Hardware/HAL/HAL.h"
 
 
-int currentParagraph = 0;   // ≈сли TypePage(currentPage) == TypePage::EContent, то указывает не текущий раздел оглавлени€
+int currentParagraph = 0;   // ≈сли TypePage(currentPage) == TypePage_Content, то указывает не текущий раздел оглавлени€
 const PageHelp *currentPage = &helpMain;
 
 
@@ -72,11 +72,11 @@ void HelpContent_Draw()
     }
     */
 
-    if(currentPage->type == TypePage::EContent)
+    if(currentPage->type == TypePage_Content)
     {
         DrawPageContent();
     }
-    else if(currentPage->type == TypePage::EDescription)
+    else if(currentPage->type == TypePage_Description)
     {
         DrawPageDescription();
     }
@@ -95,7 +95,7 @@ static int NumParagraphs(const PageHelp *page)
 
 void HelpContent_NextParagraph()
 {
-    if(currentPage->type == TypePage::EContent)
+    if(currentPage->type == TypePage_Content)
     {
         CircleIncreaseInt(&currentParagraph, 0, NumParagraphs(currentPage) - 1);
     }
@@ -103,7 +103,7 @@ void HelpContent_NextParagraph()
 
 void HelpContent_PrevParagraph()
 {
-    if(currentPage->type == TypePage::EContent)
+    if(currentPage->type == TypePage_Content)
     {
         CircleDecreaseInt(&currentParagraph, 0, NumParagraphs(currentPage) - 1);
     }
@@ -111,7 +111,7 @@ void HelpContent_PrevParagraph()
 
 void HelpContent_EnterParagraph()
 {
-    if(currentPage->type == TypePage::EContent)
+    if(currentPage->type == TypePage_Content)
     {
         currentPage = (const PageHelp *)currentPage->pages[currentParagraph];
     }
@@ -134,5 +134,5 @@ bool HelpContent_LeaveParagraphIsActive()
 
 bool HelpContent_EnterParagraphIsActive()
 {
-    return currentPage->type == TypePage::EContent;
+    return currentPage->type == TypePage_Content;
 }

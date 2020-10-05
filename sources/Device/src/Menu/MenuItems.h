@@ -89,7 +89,7 @@ class Page;
 
 #define COMMON_PART_MENU_ITEM                                                                                     \
     TypeItem::E type;             /* Тип итема */                                                     \
-    const Page* keeper;           /* Адрес страницы, которой принадлежит. Для Page::EMainPage = 0 */    \
+    const Page* keeper;           /* Адрес страницы, которой принадлежит. Для NamePage::MainPage = 0 */    \
     pFuncBV     funcOfActive;     /* Активен ли данный элемент */                                     \
     const char* titleHint[4];     /* Название страницы на русском и английском языках. Также подсказка для режима помощи */
 
