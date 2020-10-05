@@ -11,7 +11,7 @@
 #include <cstdlib>
 
 
-/////////////////////////////
+
 #define FILE_NAME "S8-53.bin"
 
 MainStruct *ms; //-V707
@@ -19,7 +19,7 @@ MainStruct *ms; //-V707
 void Upgrade(void);
 
 
-/////////////////////////////
+
 int main(void)
 {
     ms = static_cast<MainStruct *>(malloc(sizeof(MainStruct)));

@@ -268,7 +268,7 @@ static const SmallButton sbExitMeasTune
     DrawSB_Exit
 );
 
-// ÈÇÌÅĞÅÍÈß - Íàñòğîèòü ///////////////////////////////////////////////////////////////////////////////////////////
+// ÈÇÌÅĞÅÍÈß - Íàñòğîèòü ////
 static const arrayItems itemsMeasTune =
 {
     (void*)&sbExitMeasTune,
@@ -289,7 +289,7 @@ static const Page mspMeasTune
 );
 
 
-// ÈÇÌÅĞÅÍÈß /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ÈÇÌÅĞÅÍÈß //////////////////////////
 static const arrayItems itemsMeasures =
 {
     (void*)&mcMeasuresIsShow,

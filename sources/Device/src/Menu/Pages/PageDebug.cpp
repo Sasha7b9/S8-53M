@@ -1149,7 +1149,7 @@ const Governor mgDebugADCaltShift =
     &set.debug.altShift, -2, 2
 };
 
-// нркюдйю - южо - дно ялеы оюл /////////////////////////////////////////////////////////////////////////////////////////////
+// нркюдйю - южо - дно ялеы оюл //////
 const Page mspDebugADCaltShift =
 {
     TypeItem::Page, &mpADC, 0,
@@ -1206,7 +1206,7 @@ const Governor mgDebugInfoVersion =
     &set.debug.infoVer, 10, 100
 };
 
-// нркюдйю - хмтнплюжхъ ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// нркюдйю - хмтнплюжхъ /////////////////////
 const Page mspDebugInformation =
 {
     TypeItem::Page, &pDebug,

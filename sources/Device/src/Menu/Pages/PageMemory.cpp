@@ -1151,7 +1151,7 @@ static const SmallButton sbExitMemLast
     DrawSB_Exit
 );
 
-// Память - Последние /////////////////////////////////////////////////////////////////////////////////////////////
+// Память - Последние //////
 static const arrayItems itemsMemLast =
 {
     (void*)&sbExitMemLast,
@@ -1184,7 +1184,7 @@ static const SmallButton sbExitSetMask
     DrawSB_Exit
 );
 
-// Память - ВНЕШН ЗУ - Маска ////////////////////////////////////////////////////////////////////////////////////
+// Память - ВНЕШН ЗУ - Маска //////////////////////////
 static const arrayItems itemsSetMask =
 {
     (void*)&sbExitSetMask,
@@ -1204,7 +1204,7 @@ static const Page mspSetMask
     NamePage::SB_MemExtSetMask, &itemsSetMask, EmptyFuncVV, OnPressMemoryExtMask, OnMemExtSetMaskRegSet
 );
 
-// ПАМЯТЬ - ВНЕШН ЗУ - Каталог ///////////////////////////////////////////////////////////////////////////////
+// ПАМЯТЬ - ВНЕШН ЗУ - Каталог /////////////////////
 void OnPressMemoryExtFileManager()
 {
     if(FLASH_DRIVE_IS_CONNECTED)
@@ -1257,7 +1257,7 @@ static const Page mspFileManager
     NamePage::SB_FileManager, &itemsFileManager, OnPressMemoryExtFileManager, EmptyFuncVV, FM::RotateRegSet
 );
 
-// ПАМЯТЬ - ВНЕШН ЗУ /////////////////////////////////////////////////////////////////
+// ПАМЯТЬ - ВНЕШН ЗУ ///////
 static const arrayItems itemsMemoryExt =
 {
     (void*)&mspFileManager,
@@ -1277,7 +1277,7 @@ static const Page mspMemoryExt
     NamePage::MemoryExt, &itemsMemoryExt
 );
 
-// ПАМЯТЬ - Внутр ЗУ ///////////////////////////////////////////////////////////////////////////////////////
+// ПАМЯТЬ - Внутр ЗУ 
 
 // Нажатие ПАМЯТЬ - Внутр ЗУ
 void OnPressMemoryInt()
@@ -1331,7 +1331,7 @@ static const Page mpSetName
     NamePage::SB_MemExtSetName, &itemsSetName, EmptyFuncVV, EmptyFuncVV, OnMemExtSetNameRegSet
 );
 
-// ПАМЯТЬ /////////////////////////////////////////////////////////////////////////////
+// ПАМЯТЬ ///////////////////
 static const arrayItems itemsMemory =
 {
     (void*)&mcMemoryNumPoints,
