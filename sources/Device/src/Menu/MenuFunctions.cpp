@@ -32,7 +32,7 @@ TypeItem::E Menu::TypeMenuItem(void *address)
 }
 
 
-bool Menu::CurrentItemIsOpened(NamePage namePage)
+bool Menu::CurrentItemIsOpened(NamePage::E namePage)
 {
     bool retValue = _GET_BIT(MenuPosActItem(namePage), 7) == 1;
     return retValue;
@@ -203,7 +203,7 @@ void Menu::CloseOpenedItem()
         }
         if(NEED_CLOSE_PAGE_SB == 1)
         {
-            NamePage namePage = Keeper(item)->name;
+            NamePage::E namePage = Keeper(item)->name;
             SetMenuPosActItem(namePage, MenuPosActItem(namePage) & 0x7f);   // Сбрасываем бит 7 - "закрываем" активный пункт страницы namePage
         }
         NEED_CLOSE_PAGE_SB = 1;
@@ -248,17 +248,17 @@ Page* Menu::Keeper(const void *item)
 }
 
 
-NamePage Menu::GetNamePage(const Page *page)
+NamePage::E Menu::GetNamePage(const Page *page)
 {
     if(TypeMenuItem((void*)page) != TypeItem::Page)
     {
-        return Page_NoPage;
+        return Page::ENoPage;
     }
     return page->name;
 }
 
 
-NamePage Menu::GetNameOpenedPage()
+NamePage::E Menu::GetNameOpenedPage()
 {
     return GetNamePage((const Page *)OpenedItem());
 }
@@ -290,7 +290,7 @@ bool Menu::ItemIsActive(void *item)
 
 int Menu::NumItemsInPage(const Page * const page) 
 {
-    if (page->name == Page_MainPage)
+    if (page->name == Page::EMainPage)
     {
         return (SHOW_DEBUG_MENU == 0) ? 10 : 11;
     }
@@ -378,8 +378,8 @@ void Menu::ShortPressOnPageItem(Page *page, int numItem)
     {
         return;
     }
-    NamePage namePage = page->name;
-    if (namePage >= Page_SB_Curs)
+    NamePage::E namePage = page->name;
+    if (namePage >= NamePage::SB_Curs)
     {
         SmallButton *sb = (SmallButton*)(*page->items)[numItem];
         if (sb && sb->funcOnPress)
@@ -398,7 +398,7 @@ Page* Menu::PagePointerFromName(NamePage)
 
 bool Menu::PageIsSB(const Page *page)
 {
-    return page->name >= Page_SB_Curs;
+    return page->name >= NamePage::SB_Curs;
 }
 
 

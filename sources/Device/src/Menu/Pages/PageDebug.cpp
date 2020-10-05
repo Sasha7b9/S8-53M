@@ -136,7 +136,7 @@ const Page pDebug
     "ОТЛАДКА", "DEBUG",
     "",
     "",
-    Page_Debug, &itemsDebug
+    Page::EDebug, &itemsDebug
 );
 
 // ОТЛАДКА - Статистика ------------------------------------------------------------------------------------------------------------------------------
@@ -170,7 +170,7 @@ static const Page mpConsole
     "КОНСОЛЬ", "CONSOLE",
     "",
     "",
-    Page_DebugConsole, &itemsConsole
+    Page::EDebugConsole, &itemsConsole
 );
 
 // ОТЛАДКА - КОНСОЛЬ - Число строк -------------------------------------------------------------------------------------------------------------------
@@ -223,7 +223,7 @@ static const Page mpConsole_Registers
     "РЕГИСТРЫ", "REGISTERS",
     "",
     "",
-    Page_DebugShowRegisters, &itemsConsole_Registers
+    Page::EDebugShowRegisters, &itemsConsole_Registers
 );
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Показывать все -----------------------------------------------------------------------------------------------------
@@ -439,7 +439,7 @@ static const Page mpADC
     "АЦП", "ADC",
     "",
     "",
-    Page_DebugADC, &itemsADC
+    Page::EDebugADC, &itemsADC
 );
 
 // ОТЛАДКА - АЦП - БАЛАНС ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -456,7 +456,7 @@ static const Page mpADC_Balance
     "БАЛАНС", "BALANCE",
     "",
     "",
-    Page_DebugADCbalance, &itemsADC_Balance
+    Page::EDebugADCbalance, &itemsADC_Balance
 );
 
 // ОТЛАДКА - АЦП - БАЛАНС - Режим --------------------------------------------------------------------------------------------------------------------
@@ -551,7 +551,7 @@ static const Page mpADC_Stretch
     "РАСТЯЖКА", "STRETCH",
     "",
     "",
-    Page_DebugADCstretch, &itemsADC_Stretch
+    Page::EDebugADCstretch, &itemsADC_Stretch
 );
 
 // ОТЛАДКА - АЦП - РАСТЯЖКА - Режим ------------------------------------------------------------------------------------------------------------------
@@ -650,7 +650,7 @@ static const Page mpADC_AltRShift
     "ДОП СМЕЩ", "ADD RSHFIT",
     "",
     "",
-    Page_DebugADCrShift, &itemsADC_AltRShift
+    Page::EDebugADCrShift, &itemsADC_AltRShift
 );
 
 // ОТЛАДКА - АЦП - ДОП СМЕЩ - Сброс ------------------------------------------------------------------------------------------------------------------
@@ -763,7 +763,7 @@ static const Page mpRandomizer
     "РАНД-ТОР", "RANDOMIZER",
     "",
     "",
-    Page_DebugRandomizer, &itemsRandomizer
+    Page::EDebugRandomizer, &itemsRandomizer
 );
 
 // ОТЛАДКА - РАНД-ТОР - Выб-к/ворота -----------------------------------------------------------------------------------------------------------------
@@ -900,7 +900,7 @@ static const Page ppSerialNumber
     "С/Н", "S/N",
     "Запись серийного номера в OTP-память. ВНИМАНИЕ!!! ОТP-память - память с однократной записью.",
     "Serial number recording in OTP-memory. ATTENTION!!! OTP memory is a one-time programming memory.",
-    Page_SB_SerialNumber, &itemsSerialNumber, OnPress_SerialNumber, 0, OnRegSet_SerialNumber
+    NamePage::SB_SerialNumber, &itemsSerialNumber, OnPress_SerialNumber, 0, OnRegSet_SerialNumber
 );
 
 static void OnPress_SerialNumber(void)
@@ -1158,7 +1158,7 @@ const Page mspDebugADCaltShift =
         "",
         ""
     },
-    Page_DebugADCaltShift,
+    Page::EDebugADCaltShift,
     {
         (void*)&mgDebugADCaltShift
     }
@@ -1217,7 +1217,7 @@ const Page mspDebugInformation =
         "Позволяет ввести информацию для меню СЕРВИС-ИНФОРМАЦИЯ",
         "It allows you to enter information for SERVICE INFORMATION menu"
     },
-    EmptyFuncBV, Page_DebugInformation,
+    EmptyFuncBV, Page::EDebugInformation,
     {
         (void*)&mgDebugInfoNumber,
         (void*)&mgDebugInfoYear,

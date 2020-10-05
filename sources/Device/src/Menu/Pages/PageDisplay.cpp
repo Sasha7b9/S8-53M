@@ -91,7 +91,7 @@ const Page pDisplay                 // ДИСПЛЕЙ
     "ДИСПЛЕЙ", "DISPLAY",
     "Содержит настройки отображения дисплея.",
     "Contains settings of display of the Display::",
-    Page_Display, &itemsDisplay
+    Page::EDisplay, &itemsDisplay
 );
 
 
@@ -126,7 +126,7 @@ static const Page mspAccumulation
     "НАКОПЛЕНИЕ", "ACCUMULATION",
     "Настройки режима отображения последних сигналов на экране.",
     "Mode setting signals to display the last screen.",
-    Page_DisplayAccumulation, &itemsAccumulation
+    Page::EDisplayAccumulation, &itemsAccumulation
 );
 
 static bool IsActive_Accumulation(void)
@@ -223,7 +223,7 @@ static const Page mspAveraging
     "УСРЕДНЕНИЕ", "AVERAGE",
     "Настройки режима усреднения по последним измерениям.",
     "Settings of the mode of averaging on the last measurements.",
-    Page_DisplayAverage, &itemsAveraging
+    Page::EDisplayAverage, &itemsAveraging
 );
 
 static bool IsActive_Averaging(void)
@@ -388,7 +388,7 @@ static const Page mspGrid
     "СЕТКА", "GRID",
     "Содержит настройки отображения координатной сетки.",
     "Contains settings of display of a coordinate Grid::",
-    Page_DisplayGrid, &itemsGrid
+    Page::EDisplayGrid, &itemsGrid
 );
 
 
@@ -473,7 +473,7 @@ static const Page mspSettings
     "НАСТРОЙКИ", "SETTINGS",
     "Дополнительные настройки дисплея",
     "Additional display settings",
-    Page_ServiceDisplay, &itemsSettings
+    Page::EServiceDisplay, &itemsSettings
 );
 
 
@@ -494,7 +494,7 @@ static const Page mspSettings_Colors
     "ЦВЕТА", "COLORS",
     "Выбор цветов дисплея",
     "The choice of colors display",
-    Page_ServiceDisplayColors, &itemsSettings_Colors
+    Page::EServiceDisplayColors, &itemsSettings_Colors
 );
 
 

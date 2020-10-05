@@ -89,7 +89,7 @@ class Page;
 
 #define COMMON_PART_MENU_ITEM                                                                                     \
     TypeItem::E type;             /* Тип итема */                                                     \
-    const Page* keeper;           /* Адрес страницы, которой принадлежит. Для Page_MainPage = 0 */    \
+    const Page* keeper;           /* Адрес страницы, которой принадлежит. Для Page::EMainPage = 0 */    \
     pFuncBV     funcOfActive;     /* Активен ли данный элемент */                                     \
     const char* titleHint[4];     /* Название страницы на русском и английском языках. Также подсказка для режима помощи */
 
@@ -122,7 +122,7 @@ typedef pVOID arrayItems[MAX_NUM_ITEMS_IN_PAGE];
 struct PageStruct
 {
     COMMON_PART_MENU_ITEM
-    NamePage            name;
+    NamePage::E         name;
     const arrayItems    items;
     pFuncVV             funcOnPress;
     pFuncVV             funcOnDraw;
@@ -133,7 +133,7 @@ struct PageStruct
 class Page : public     Control
 {
 public:
-    NamePage            name;                               // Имя из перечисления NamePage
+    NamePage::E         name;                               // Имя из перечисления NamePage
     const arrayItems   *items;                              // Здесь указатели на пункты этой страницы (в обычной странице)
                                                             // для страницы малых кнопок  здесь хранятся 6 указателей на SmallButton : 0 - B_Menu, 1...5 - B_F1...B_F5
     pFuncVV             funcOnPress;                        // Будет вызываться при нажатии на свёрнутую страницу
@@ -143,7 +143,7 @@ public:
     //Page(PageStruct *pageStruct);
     
     Page(const Page *keeper_, pFuncBV funcOfActive_,
-         const char *titleRU, const char *titleEN, const char *hintRU, const char *hintEN, NamePage name_,
+         const char *titleRU, const char *titleEN, const char *hintRU, const char *hintEN, NamePage::E name_,
          const arrayItems *items_, pFuncVV funcOnPress_ = 0, pFuncVV funcOnDraw_ = 0, pFuncVI funcRegSetSB_ = 0);
 };
 

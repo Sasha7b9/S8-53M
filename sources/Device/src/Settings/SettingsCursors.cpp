@@ -18,7 +18,7 @@ float sCursors_GetCursPosU(Channel::E chan, int numCur)
 bool sCursors_NecessaryDrawCursors()
 {
     return ((!CURS_CNTRL_U_IS_DISABLE(CURS_SOURCE)) || (!CURS_CNTRL_T_IS_DISABLE(CURS_SOURCE))) && 
-        (CURS_SHOW || Menu::GetNameOpenedPage() == Page_SB_Curs);
+        (CURS_SHOW || Menu::GetNameOpenedPage() == NamePage::SB_Curs);
 }
 
 

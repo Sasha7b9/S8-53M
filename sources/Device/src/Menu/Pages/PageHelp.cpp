@@ -109,7 +109,7 @@ static const Page mpHelp            // ѕќћќў№
     "ѕќћќў№", "HELP",
     "ќткрыть разделы помощи",
     "To open sections of the help",
-    Page_SB_Help, &itemsHelp, EmptyFuncVV, HelpContent_Draw, OnHelpRegSet
+    NamePage::SB_Help, &itemsHelp, EmptyFuncVV, HelpContent_Draw, OnHelpRegSet
 );
 
 

@@ -305,7 +305,7 @@ const Page pMeasures            // ИЗМЕРЕНИЯ
     "ИЗМЕРЕНИЯ", "MEASURES",
     "Автоматические измерения",
     "Automatic measurements",
-    Page_Measures, &itemsMeasures
+    Page::EMeasures, &itemsMeasures
 );
 
 void *PageMeasures::Tune::pointer = (void *)&mspMeasTune;

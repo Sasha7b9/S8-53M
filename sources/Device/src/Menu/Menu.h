@@ -60,7 +60,7 @@ public:
     // Возвращает адрес элемента меню заданной страницы.
     static void *Item(const Page *page, int numElement);
     // Возвращает true, если текущий элемент страницы с именем namePage открыт.
-    static bool CurrentItemIsOpened(NamePage namePage);
+    static bool CurrentItemIsOpened(NamePage::E namePage);
     // Возвращает позицию текущего элемента странцы page.
     static int8 PosCurrentItem(const Page *page);
     // Сделать/разделать текущим пункт страницы.
@@ -68,16 +68,16 @@ public:
     // Возвращает адрес элемента, которому принадлежит элемент по адресу item.
     static Page* Keeper(const void *item);
     // Возвращает имя страницы page.
-    static NamePage GetNamePage(const Page *page);
+    static NamePage::E GetNamePage(const Page *page);
 
-    static NamePage GetNameOpenedPage();
+    static NamePage::E GetNameOpenedPage();
 
     static void OpenPageAndSetItCurrent(void *page);
 
     static bool ChangeOpenedItem(void *item, int delta);
     // Уменьшает или увеличивает значение Governor, GovernorColor или Choice по адресу item в зависимости от знака delta
     static void ChangeItem(void *item, int delta);
-    // Возвращает высоту в пикселях открытого элемента Choice или NamePage по адресу item.
+    // Возвращает высоту в пикселях открытого элемента Choice или NamePage::E по адресу item.
     static int HeightOpenedItem(void *item);
     // Возвращает название элемента по адресу item, как оно выглядит на дисплее прибора.
     static const char* TitleItem(void *item);
@@ -96,7 +96,7 @@ public:
 
     static void ShortPressOnPageItem(Page *page, int numItem);   // Вызывает функцию короткого нажатия кнопки над итемом numItem страницы page;
 
-    static Page *PagePointerFromName(NamePage namePage);
+    static Page *PagePointerFromName(NamePage::E namePage);
 
     static bool PageIsSB(const Page *page);
 
@@ -117,7 +117,7 @@ private:
     static void ProcessingRegulatorSet();
     // Включить/выключить светодиод ручки УСТАНОВКА, если необходимо.
     static void SwitchSetLED();
-    // Обработка короткого нажатия на элемент NamePage с адресом page.
+    // Обработка короткого нажатия на элемент NamePage::E с адресом page.
     static void ShortPress_Page(void *page);
     // Обработка короткого нажатия на элемент Choice с адресом choice.
     static void ShortPress_Choice(void *choice);

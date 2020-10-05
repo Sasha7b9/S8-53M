@@ -119,7 +119,7 @@ const Page pService                     // СЕРВИС
     "СЕРВИС", "SERVICE",
     "Дополнительные настройки, калибровка, поиск сигнала, математические функции",
     "Additional settings, calibration, signal search, mathematical functions",
-    Page_Service, &itemsService
+    Page::EService, &itemsService
 );
 
 // СЕРВИС - Сброс настроек ---------------------------------------------------------------------------------------------------------------------------
@@ -193,7 +193,7 @@ static const Page ppCalibrator
     "КАЛИБРАТОР", "CALIBRATOR",
     "Управлением калибратором и калибровка осциллографа",
     "Control of the calibrator and calibration of an oscillograph",
-    Page_ServiceCalibrator, &itemsCalibrator
+    Page::EServiceCalibrator, &itemsCalibrator
 );
 
 // СЕРВИС - КАЛИБРАТОР - Калибратор ------------------------------------------------------------------------------------------------------------------
@@ -246,7 +246,7 @@ static const Page ppMath
     "МАТЕМАТИКА", "MATH",
     "Математические функции и БПФ",
     "Mathematical functions and FFT",
-    Page_Math, &itemsMath
+    Page::EMath, &itemsMath
 );
 
 // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -266,7 +266,7 @@ static const Page pppMath_Function
     "ФУНКЦИЯ", "FUNCTION",
     "Установка и выбор математической функции - сложения или умножения",
     "Installation and selection of mathematical functions - addition or multiplication",
-    Page_SB_MathFunction, &itemsMath_Function, OnPress_Math_Function, EmptyFuncVV, OnRegSet_Math_Function
+    NamePage::SB_MathFunction, &itemsMath_Function, OnPress_Math_Function, EmptyFuncVV, OnRegSet_Math_Function
 );
 
 void *PageService::Math::Function::GetPointer()
@@ -570,7 +570,7 @@ static const Page pppMath_FFT
     "СПЕКТР", "SPECTRUM",
     "Отображение спектра входного сигнала",
     "Mapping the input signal spectrum",
-    Page_MathFFT, &itemsMath_FFT, OnPress_Math_FFT
+    Page::EMathFFT, &itemsMath_FFT, OnPress_Math_FFT
 );
 
 static bool IsActive_Math_FFT(void)
@@ -670,7 +670,7 @@ static const Page ppppMath_FFT_Cursors
     "КУРСОРЫ", "CURSORS",
     "Включает курсоры для измерения параметров спектра",
     "Includes cursors to measure the parameters of the spectrum",
-    Page_SB_MathCursorsFFT, &itemsMath_FFT_Cursors, EmptyFuncVV, EmptyFuncVV, OnRegSet_Math_FFT_Cursors
+    NamePage::SB_MathCursorsFFT, &itemsMath_FFT_Cursors, EmptyFuncVV, EmptyFuncVV, OnRegSet_Math_FFT_Cursors
 );
 
 void *PageService::Math::FFT::Cursors::GetPointer()
@@ -762,7 +762,7 @@ static const Page ppEthernet
     "ETHERNET", "ETHERNET",
     "Настройки ethernet",
     "Settings of ethernet",
-    Page_ServiceEthernet, &itemsEthernet
+    Page::EServiceEthernet, &itemsEthernet
 );
 
 // СЕРВИС - ETHERNET - Ethernet ----------------------------------------------------------------------------------------------------------------------
@@ -951,7 +951,7 @@ static const Page ppInformation
     "ИНФОРМАЦИЯ", "INFORMATION",
     "Выводит на экран идентификационные данные осциллографа",
     "Displays identification data of the oscilloscope",
-    Page_SB_Information, &itemsInformation, OnPress_Information, EmptyFuncVV, EmptyFuncVI
+    NamePage::SB_Information, &itemsInformation, OnPress_Information, EmptyFuncVV, EmptyFuncVI
 );
 
 void *PageService::Information::GetPointer()
