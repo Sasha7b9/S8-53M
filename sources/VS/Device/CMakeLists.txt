@@ -7,6 +7,7 @@ include_directories(../..
                     ../../Device/src/Hardware/LwIP
                     ../../Device/src/Hardware/USBD
                     ../../Device/src/Hardware/USBH
+                    src
                     ../../common/_VS_GUI/CMSIS
                     ../../common/STM32Cube_F4/Drivers/CMSIS/Device/ST/STM32F4xx/Include
                     ../../common/STM32Cube_F4/Drivers/STM32F4xx_HAL_Driver/Inc
@@ -16,6 +17,8 @@ include_directories(../..
                     ../../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc
                     ../../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Core/Inc
                     ../../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc
+                    ../../ThirdParty/wxWidgets/include
+                    ../../ThirdParty/wxWidgets/generated/lib/vc_dll/mswud
                     )
 add_definitions(-DSTM32F437xx -DWXUSINGDLL -DGUI -DDEVICE)
 
@@ -29,6 +32,7 @@ add_compile_options(/wd4310)    # cast truncates constant value
 add_compile_options(/wd4464)    # relative include path contains '..'
 add_compile_options(/wd4514)    # 'function' : unreferenced inline function has been removed
 add_compile_options(/wd4623)    # 'derived class' : default constructor was implicitly defined as deleted because a base class default constructor is inaccessible or deleted
+add_compile_options(/wd4625)    # 'derived class' : copy constructor was implicitly defined as deleted because a base class copy constructor is inaccessible or deleted
 add_compile_options(/wd4626)    # 'xxx': assignment operator was implicitly defined as deleted
 add_compile_options(/wd4668)    # 'xxx' is not defined as a preprocessor macro, replacing with '0' for '#if/#elif'
 add_compile_options(/wd4710)    # 'xxx': function not inlined
@@ -84,14 +88,15 @@ file(GLOB MENU              ../../Device/src/Menu/*.h
 file(GLOB MENU_PAGES        ../../Device/src/Menu/Pages/*)
 file(GLOB PANEL             ../../Device/src/Panel/*)
 file(GLOB SETTINGS          ../../Device/src/Settings/*)
-file(GLOB SRC               ../../common/Log.h
-                            ../../common/cLog.cpp
-                            ../../Device/src/*.h
-                            ../../Device/src/*.cpp)
+file(GLOB SRC               src/main_win.cpp)
 file(GLOB VCP               ../../Device/src/VCP/*.h
                             ../../Device/src/VCP/*.cpp)
 file(GLOB UTILS             ../../Device/src/Utils/*.h
                             ../../Device/src/Utils/*.cpp)
+file(GLOB GUI               src/GUI/*.h
+                            src/GUI/*.cpp
+                            src/GUI/*.c)
+file(GLOB GUI_DIALOGS       src/GUI/Dialogs/*)
 
 set_source_files_properties(../../Device/src/Ethernet/Ethernet.cpp
                             ../../Device/src/Menu/Pages/PageHelp.cpp
@@ -108,6 +113,8 @@ source_group(Display\\Font  FILES ${DISPLAY_FONT})
 source_group(Ethernet       FILES ${ETHERNET})
 source_group(FDrive         FILES ${FDRIVE})
 source_group(FPGA           FILES ${FPGA})
+source_group(GUI            FILES ${GUI})
+source_group(GUI\\Dialogs   FILES ${GUI_DIALOGS})
 source_group(Hardware       FILES ${HARDWARE})
 source_group(Hardware\\HAL  FILES ${HARDWARE_HAL})
 source_group(Menu           FILES ${MENU})
@@ -118,7 +125,8 @@ source_group(src            FILES ${SRC})
 source_group(VCP            FILES ${VCP})
 source_group(Utils          FILES ${UTILS})
 
-add_executable(S8-53M ${LIBS_CMSIS} ${LIBS_FATFS} ${LIBS_LWIP} ${LIBS_HAL} ${LIBS_USBH} ${DISPLAY} ${DISPLAY_FONT} ${ETHERNET} ${FDRIVE} ${FPGA} ${HARDWARE} ${HARDWARE_HAL} ${MENU} ${MENU_PAGES} ${PANEL} ${SETTINGS} ${SRC} ${VCP} ${UTILS})
+add_executable(S8-53M ${LIBS_CMSIS} ${LIBS_FATFS} ${LIBS_LWIP} ${LIBS_HAL} ${LIBS_USBH} ${DISPLAY} ${DISPLAY_FONT} ${ETHERNET} ${FDRIVE} ${FPGA} ${GUI} ${GUI_DIALOGS} ${HARDWARE}
+                      ${HARDWARE_HAL} ${MENU} ${MENU_PAGES} ${PANEL} ${SETTINGS} ${SRC} ${VCP} ${UTILS})
 
 target_link_libraries(S8-53M ../../../ThirdParty/wxWidgets/generated/lib/vc_dll/wxbase31ud)
 target_link_libraries(S8-53M ../../../ThirdParty/wxWidgets/generated/lib/vc_dll/wxmsw31ud_core)
