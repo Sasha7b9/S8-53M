@@ -16,16 +16,16 @@
 #define TIME_WAIT   5000    // Время работы заставки
 
 
-enum State
+struct State { enum E
 {
-    State_Start,            // Исходное состояние
-    State_Mount,            // Монтирование флешки
-    State_WrongFlash,       // Флешка есть, но прочитать нельзя
-    State_RequestAction,    // Что делать - апгрейдить или нет
-    State_NotFile,          // Если диск примонтирован, но обновления на нём нету
-    State_Upgrade,          // Процесс апгрейда
-    State_Ok                // Обновление удачно завершено
-};
+    Start,            // Исходное состояние
+    Mount,            // Монтирование флешки
+    WrongFlash,       // Флешка есть, но прочитать нельзя
+    RequestAction,    // Что делать - апгрейдить или нет
+    NotFile,          // Если диск примонтирован, но обновления на нём нету
+    Upgrade,          // Процесс апгрейда
+    Ok                // Обновление удачно завершено
+};};
 
 enum StateDisk
 {
@@ -56,7 +56,7 @@ struct MainStruct
     FDrive drive;
     Display display;
     float percentUpdate;
-    State state;
+    State::E state;
 };
 
 

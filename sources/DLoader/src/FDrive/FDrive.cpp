@@ -60,7 +60,7 @@ void FDrive_Init(void)
 //
 //        case HOST_USER_CONNECTION:
 //            ms->drive.connection++;
-//            ms->state = State_Mount;
+//            ms->state = State::Mount;
 //            f_mount(NULL, (TCHAR const*)"", 0);
 //            break;
 //
@@ -84,7 +84,7 @@ bool FDrive_Update(void)
         }
         else
         {
-            ms->state = State_WrongFlash;
+            ms->state = State::WrongFlash;
             return false;
         }
     }

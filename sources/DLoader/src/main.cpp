@@ -31,7 +31,7 @@ int main(void)
 
     Timer_PauseOnTime(250);
 
-    ms->state = State_Start;
+    ms->state = State::Start;
 
     Display_Init();
 
@@ -46,45 +46,45 @@ int main(void)
     }
 
     if (((ms->drive.connection != 0) && (ms->drive.active == 0)) ||  // Если флеша подключена, но в активное состояние почему-то не перешла
-        ((ms->drive.active != 0) && (ms->state != State_Mount)))     // или перешла в активное состояние, по почему-то не запустился процесс монтирования
+        ((ms->drive.active != 0) && (ms->state != State::Mount)))     // или перешла в активное состояние, по почему-то не запустился процесс монтирования
     {
         free(ms);
         HAL::SystemReset();
     }
 
-    if (ms->state == State_Mount)                           // Это означает, что диск удачно примонтирован
+    if (ms->state == State::Mount)                           // Это означает, что диск удачно примонтирован
     {
         if (FDrive_FileExist(FILE_NAME))                    // Если на диске обнаружена прошивка
         {
-            ms->state = State_RequestAction;
+            ms->state = State::RequestAction;
 
             while (1) //-V2530
             {
                 PanelButton::E button = Panel::PressedButton();
                 if (button == PanelButton::F1)
                 {
-                    ms->state = State_Upgrade;
+                    ms->state = State::Upgrade;
                     Upgrade();
                     break;
                 }
                 else if (button == PanelButton::F5)
                 {
-                    ms->state = State_Ok;
+                    ms->state = State::Ok;
                     break;
                 }
             }
         }
         else
         {
-            ms->state = State_NotFile;
+            ms->state = State::NotFile;
         }
     }
-    else if (ms->state == State_WrongFlash) // Диск не удалось примонтировать
+    else if (ms->state == State::WrongFlash) // Диск не удалось примонтировать
     {
         Timer_PauseOnTime(5000);
     }
 
-    ms->state = State_Ok;
+    ms->state = State::Ok;
 
     HAL_SPI1::DeInit();
 

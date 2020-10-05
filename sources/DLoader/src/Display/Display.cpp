@@ -78,7 +78,7 @@ void Display_Update(void)
 
     Painter::SetColor(Color::WHITE);
 
-    if (ms->state == State_Start || ms->state == State_Ok)
+    if (ms->state == State::Start || ms->state == State::Ok)
     {
         Painter::BeginScene(gColorBack);
         Painter::SetColor(gColorFill);
@@ -89,16 +89,16 @@ void Display_Update(void)
         Painter::DrawStringInCenterRect(0, 205, 320, 20, "Отдел маркетинга: тел./факс. 8-017-270-02-00");
         Painter::DrawStringInCenterRect(0, 220, 320, 20, "Разработчики: e-mail: mnipi-24(@)tut.by, тел. 8-017-270-02-23");
     }
-    else if (ms->state == State_Mount)
+    else if (ms->state == State::Mount)
     {
         DrawProgressBar(dT);
     }
-    else if (ms->state == State_WrongFlash)
+    else if (ms->state == State::WrongFlash)
     {
         Painter::DrawStringInCenterRectC(0, 0, 320, 200, "НЕ УДАЛОСЬ ПРОЧИТАТЬ ДИСК", Color::FLASH_10);
         Painter::DrawStringInCenterRectC(0, 20, 320, 200, "УБЕДИТЕСЬ, ЧТО ФАЙЛОВАЯ СИСТЕМА FAT32", Color::WHITE);
     }
-    else if (ms->state == State_RequestAction)
+    else if (ms->state == State::RequestAction)
     {
         Painter::DrawStringInCenterRect(0, 0, 320, 200, "Обнаружено программное обеспечение");
         Painter::DrawStringInCenterRect(0, 20, 320, 200, "Установить его?");
@@ -106,7 +106,7 @@ void Display_Update(void)
         DrawButton(290, 55, "ДА");
         DrawButton(290, 195, "НЕТ");
     }
-    else if (ms->state == State_Upgrade)
+    else if (ms->state == State::Upgrade)
     {
         Painter::DrawStringInCenterRect(0, 0, 320, 190, "Подождите завершения");
         Painter::DrawStringInCenterRect(0, 0, 320, 220, "установки программного обеспечения");
