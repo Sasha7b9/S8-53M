@@ -280,12 +280,12 @@ enum SampleType
     SampleType_Equal   // эквивалентная - сигнал строится по последним точкам, полученным от рандомизатора
 };
 
-enum PeackDetMode
+struct PeackDetMode { enum E
 {
-    PeackDet_Disable,
-    PeackDet_Enable,
-    PeackDet_Average
-};
+    Disable,
+    Enable,
+    Average
+};};
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Cursors

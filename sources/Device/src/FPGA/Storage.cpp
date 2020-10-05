@@ -63,7 +63,7 @@ void Storage::ClearLimitsAndSums(void)
 void Storage::CalculateAroundAverage(uint8 *data0, uint8 *data1, const DataSettings *dss)
 {
     int numAveData = NumElementsWithCurrentSettings();
-    int size = (int)(dss->length1channel * (dss->peakDet == PeackDet_Disable ? 1 : 2));
+    int size = (int)(dss->length1channel * (dss->peakDet == PeackDetMode::Disable ? 1 : 2));
     if (numAveData == 1)
     {
         for (int i = 0; i < size; i++)
@@ -123,7 +123,7 @@ int Storage::AllDatas(void)
 
 void Storage::CalculateLimits(const uint8 *data0, const uint8 *data1, const DataSettings *dss)
 {
-    uint numElements = dss->length1channel * (dss->peakDet == PeackDet_Disable ? 1 : 2);
+    uint numElements = dss->length1channel * (dss->peakDet == PeackDetMode::Disable ? 1 : 2);
 
     if(NumElementsInStorage() == 0 || NUM_MIN_MAX == 1 || (!SettingsIsEquals(dss, GetSettingsDataFromEnd(0))))
     {
@@ -176,7 +176,7 @@ void Storage::CalculateSums(void)
 
     GetDataFromEnd(0, &ds, &data0, &data1);
     
-    uint numPoints = ds->length1channel * (ds->peakDet == PeackDet_Disable ? 1 : 2);
+    uint numPoints = ds->length1channel * (ds->peakDet == PeackDetMode::Disable ? 1 : 2);
 
     int numAveragings = 0;
 
@@ -326,7 +326,7 @@ bool Storage::CopyData(DataSettings *ds, Channel::E chan, uint8 datatImportRel[2
 
     uint8* address = ((uint8*)ds + sizeof(DataSettings));
 
-    uint length = ds->length1channel * (ds->peakDet == PeackDet_Disable ? 1 : 2);
+    uint length = ds->length1channel * (ds->peakDet == PeackDetMode::Disable ? 1 : 2);
 
     if(chan == Channel::B && ds->enableCh0 == 1)
     {
@@ -359,7 +359,7 @@ uint8* Storage::GetAverageData(Channel::E chan)
         return 0;
     }
 
-    uint numPoints = ds->length1channel * (ds->peakDet == PeackDet_Disable ? 1 : 2);
+    uint numPoints = ds->length1channel * (ds->peakDet == PeackDetMode::Disable ? 1 : 2);
 
     if (ModeAveraging::Current() == ModeAveraging::Around)
     {
@@ -454,7 +454,7 @@ void Storage::PushData(DataSettings *dp, const uint8 *data0, const uint8 *data1)
     if(dp->enableCh0 == 1)
     {
         COPY_AND_INCREASE(addrRecord, data0, length);
-        if (dp->peakDet != PeackDet_Disable)
+        if (dp->peakDet != PeackDetMode::Disable)
         {
             COPY_AND_INCREASE(addrRecord, data0 + 512, length);
         }
@@ -462,7 +462,7 @@ void Storage::PushData(DataSettings *dp, const uint8 *data0, const uint8 *data1)
     if(dp->enableCh1 == 1)
     {
         COPY_AND_INCREASE(addrRecord, data1, length);
-        if (dp->peakDet != PeackDet_Disable)
+        if (dp->peakDet != PeackDetMode::Disable)
         {
             COPY_AND_INCREASE(addrRecord, data1 + 512, length);
         }
@@ -505,7 +505,7 @@ int Storage::SizeElem(const DataSettings *dp)
     if(dp->enableCh0 == 1)
     {
         retValue += dp->length1channel;
-        if (dp->peakDet != PeackDet_Disable)
+        if (dp->peakDet != PeackDetMode::Disable)
         {
             retValue += dp->length1channel;
         }
@@ -513,7 +513,7 @@ int Storage::SizeElem(const DataSettings *dp)
     if(dp->enableCh1 == 1)
     {
         retValue += dp->length1channel;
-        if (dp->peakDet != PeackDet_Disable)
+        if (dp->peakDet != PeackDetMode::Disable)
         {
             retValue += dp->length1channel;
         }

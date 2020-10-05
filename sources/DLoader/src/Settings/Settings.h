@@ -67,7 +67,7 @@ struct SettingsTime
     FunctionTime::E timeDivXPos;
     TPos            tPos;
     SampleType      sampleType;
-    PeackDetMode    peakDet;
+    PeackDetMode::E peakDet;
     bool            selfRecorder;           // Включен ли режим самописца.
     FPGA_NUM_POINTS oldNumPoints;           // Когда переключаемся в режим пикового детектора, устанавливаем количество точек в 1024, а сюда записываем то, что было, чтобы потом восстановить
 };
