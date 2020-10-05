@@ -29,18 +29,18 @@ struct PanelButton { enum E
 PanelButton::E& operator++(PanelButton::E &button);
 
 // Идентификаторы регуляторов.
-enum Regulator
+struct Regulator { enum E
 {
-    R_Empty     = 0,    // регулятор не вращался
-    R_Range0    = 20,   // ВОЛЬТ/ДЕЛ кан. 1
-    R_RShift0   = 21,   
-    R_Range1    = 22,   // ВОЛЬТ/ДЕЛ кан. 2
-    R_RShift1   = 23,
-    R_TBase     = 24,   // ВРЕМЯ/ДЕЛ
-    R_TShift    = 25,
-    R_TrigLev   = 26,   // УРОВЕНЬ
-    R_Set       = 27    // УСТАНОВКА
-};
+    Empty     = 0,    // регулятор не вращался
+    Range0    = 20,   // ВОЛЬТ/ДЕЛ кан. 1
+    RShift0,
+    Range1,           // ВОЛЬТ/ДЕЛ кан. 2
+    RShift1,
+    TBase,            // ВРЕМЯ/ДЕЛ
+    TShift,
+    TrigLev,          // УРОВЕНЬ
+    Set               // УСТАНОВКА
+};};
 
 // Направления вращения регуляторов.
 enum RegulatorDirection
@@ -51,7 +51,7 @@ enum RegulatorDirection
 };
 
 
-#define NUM_REGULATORS (R_Set - R_Range0 + 1)
+#define NUM_REGULATORS (Regulator::Set - R_Range0 + 1)
 
 
 const char* NameButton(PanelButton::E button);

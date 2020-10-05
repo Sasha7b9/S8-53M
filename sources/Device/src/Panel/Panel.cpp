@@ -97,7 +97,7 @@ static void (*funcOnLongPressure[PanelButton::Count])(void)    =
     F5Long          // PanelButton::F5
 };
 
-static void (*funculatorLeft[R_Set + 1])(void)    =
+static void (*funculatorLeft[Regulator::Set + 1])(void)    =
 {
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     Range0Left,     // R_Range0
@@ -107,9 +107,9 @@ static void (*funculatorLeft[R_Set + 1])(void)    =
     TBaseLeft,      // R_TBase
     TShiftLeft,     // R_TShift
     TrigLevLeft,    // R_TrigLev
-    SetLeft         // R_Set
+    SetLeft         // Regulator::Set
 };
-static void (*funculatorRight[R_Set + 1])(void) =
+static void (*funculatorRight[Regulator::Set + 1])(void) =
 {
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     Range0Right,    // R_Range0
@@ -119,7 +119,7 @@ static void (*funculatorRight[R_Set + 1])(void) =
     TBaseRight,     // R_TBase
     TShiftRight,    // R_TShift
     TrigLevRight,   // R_TrigLev
-    SetRight        // R_Set
+    SetRight        // Regulator::Set
 };
 
 
@@ -152,22 +152,22 @@ PanelButton::E ButtonIsPress(uint16 command)
     return button;
 }
 
-Regulator RegulatorLeft(uint16 command)
+Regulator::E RegulatorLeft(uint16 command)
 {
     if(command >= 20 && command <= 27)
     {
-        return (Regulator)command;
+        return (Regulator::E)command;
     }
-    return R_Empty;
+    return Regulator::Empty;
 }
 
-Regulator RegulatorRight(uint16 command)
+Regulator::E RegulatorRight(uint16 command)
 {
     if(((command & 0x7f) >= 20) && ((command & 0x7f) <= 27))
     {
-        return (Regulator)(command & 0x7f);
+        return (Regulator::E)(command & 0x7f);
     }
-    return R_Empty;
+    return Regulator::Empty;
 }
 
 void OnTimerPressedKey()
@@ -191,8 +191,8 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
 
     PanelButton::E releaseButton = ButtonIsRelease(command);
     PanelButton::E pressButton = ButtonIsPress(command);
-    Regulator regLeft = RegulatorLeft(command);
-    Regulator regRight = RegulatorRight(command);
+    Regulator::E regLeft = RegulatorLeft(command);
+    Regulator::E regRight = RegulatorRight(command);
 
     if (pressButton)
     {
@@ -234,7 +234,7 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
     else if(regLeft)
     {
         /*
-        if (set.memory.modeWork == ModeWork_Direct || regLeft == R_Set || regLeft == R_TShift)
+        if (set.memory.modeWork == ModeWork_Direct || regLeft == Regulator::Set || regLeft == R_TShift)
         {
         */
             funculatorLeft[regLeft]();
@@ -243,14 +243,14 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
     else if(regRight)
     {
         /*
-        if (set.memory.modeWork == ModeWork_Direct || regRight == R_Set || regRight == R_TShift)
+        if (set.memory.modeWork == ModeWork_Direct || regRight == Regulator::Set || regRight == R_TShift)
         {
         */
             funculatorRight[regRight]();
         //}
     }
 
-    if ((command > R_Set && command < (PanelButton::Empty + 1 + 128)) || (command > (R_Set + 128)))
+    if ((command > Regulator::Set && command < (PanelButton::Empty + 1 + 128)) || (command > (Regulator::Set + 128)))
     {
         if(Settings::DebugModeEnable())
         {
