@@ -161,13 +161,11 @@ bool String2Int(char *str, int *value)
 }
 
 
-
 char* Hex8toString(uint8 value, char buffer[3], bool upper)
 {
     std::sprintf(value < 16 ? (buffer[0] = '0', buffer + 1) : (buffer), upper ? "%X" : "%x", value);
     return buffer;
 }
-
 
 
 char* Hex16toString(uint16 value, char buffer[5], bool)
@@ -177,140 +175,12 @@ char* Hex16toString(uint16 value, char buffer[5], bool)
 }
 
 
-
-char*    Voltage2String(float voltage, bool alwaysSign, char buffer[20])
-{
-    buffer[0] = 0;
-    char *suffix;
-    if (voltage == ERROR_VALUE_FLOAT)
-    {
-        std::strcat(buffer, ERROR_STRING_VALUE);
-        return buffer;
-    }
-    else if (std::fabsf(voltage) + 0.5e-4f < 1e-3f)
-    {
-        suffix = set.common.lang == Russian ? "\x10ìêÂ" : "\x10uV";
-        voltage *= 1e6f;
-    }
-    else if (std::fabsf(voltage) + 0.5e-4f < 1.0f)
-    {
-        suffix = set.common.lang == Russian ? "\x10ìÂ" : "\x10mV";
-        voltage *= 1e3f;
-    }
-    else if (std::fabsf(voltage) + 0.5e-4f < 1000.0F)
-    {
-        suffix = set.common.lang == Russian ? "\x10Â" : "\x10V";
-    }
-    else
-    {
-        suffix = set.common.lang == Russian ? "\x10êÂ" : "\x10kV";
-        voltage *= 1e-3f;
-    }
-
-    char bufferOut[20];
-
-    Float2String(voltage, alwaysSign, 4, bufferOut);
-    std::strcat(buffer, bufferOut);
-    std::strcat(buffer, suffix);
-    return buffer;
-}
-
-
-
-char* Time2String(float time, bool alwaysSign, char buffer[20])
-{
-    return Time2StringAccuracy(time, alwaysSign, buffer, 4);
-}
-
-
-
-char* Time2StringAccuracy(float time, bool alwaysSign, char buffer[20], int numDigits)
-{
-    buffer[0] = 0;
-    char *suffix = 0;
-
-    float fabsTime = std::fabsf(time);
-    bool russian = set.common.lang == Russian;
-
-    if (time == ERROR_VALUE_FLOAT)
-    {
-        std::strcat(buffer, ERROR_STRING_VALUE);
-        return buffer;
-    }
-    else if (fabsTime + 0.5e-10f < 1e-6f)
-    {
-        suffix = russian ? "íñ" : "ns";
-        time *= 1e9f;
-    }
-    else if (fabsTime + 0.5e-7f < 1e-3f)
-    {
-        suffix = russian ? "ìêñ" : "us";
-        time *= 1e6f;
-    }
-    else if (fabsTime + 0.5e-3f < 1.0f)
-    {
-        suffix = russian ? "ìñ" : "ms";
-        time *= 1e3f;
-    }
-    else
-    {
-        suffix = russian ? "ñ" : "s";
-    }
-
-    char bufferOut[20];
-    std::strcat(buffer, Float2String(time, alwaysSign, numDigits, bufferOut));
-    std::strcat(buffer, suffix);
-
-    return buffer;
-}
-
-
-
 char* Phase2String(float phase, bool, char bufferOut[20])
 {
     char buffer[20];
     std::sprintf(bufferOut, "%s\xa8", Float2String(phase, false, 4, buffer));
     return bufferOut;
 }
-
-
-
-char*  Freq2String(float freq, bool, char bufferOut[20])
-{
-    return Freq2StringAccuracy(freq, bufferOut, 4);
-}
-
-
-
-char* Freq2StringAccuracy(float freq, char bufferOut[20], int numDigits)
-{
-    bufferOut[0] = 0;
-    char *suffix = 0;
-    if (freq == ERROR_VALUE_FLOAT)
-    {
-        std::strcat(bufferOut, ERROR_STRING_VALUE);
-        return bufferOut;
-    }
-    if (freq >= 1e6f)
-    {
-        suffix = set.common.lang == Russian ? "ÌÃö" : "MHz";
-        freq /= 1e6f;
-    }
-    else if (freq >= 1e3f)
-    {
-        suffix = set.common.lang == Russian ? "êÃö" : "kHz";
-        freq /= 1e3f;
-    }
-    else
-    {
-        suffix = set.common.lang == Russian ? "Ãö" : "Hz";
-    }
-    char buffer[20];
-    std::strcat(bufferOut, Float2String(freq, false, numDigits, buffer));
-    std::strcat(bufferOut, suffix);
-    return bufferOut;
-}
-
 
 
 char* Float2Db(float value, int numDigits, char bufferOut[20])

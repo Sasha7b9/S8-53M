@@ -113,16 +113,16 @@ static const Settings defaultSettings =
     },
     // cursors
     {
-        { CursCntrl_Disable, CursCntrl_Disable },   // CursCntrl U
-        { CursCntrl_Disable, CursCntrl_Disable },   // CursCntrl T
+        { CursCntrl::Disable, CursCntrl::Disable },   // CursCntrl U
+        { CursCntrl::Disable, CursCntrl::Disable },   // CursCntrl T
         Channel::A,                                      // source
         { 60.0F,  140.0F, 60.0F, 140.0F },          // posCur U
         { 80.0F,  200.0F, 80.0F, 200.0F },          // posCur T
         { 80.0F,  80.0F },                          // рассто€ние между курсорами напр€жени€ дл€ 100%
         { 120.0F, 120.0F },                         // рассто€ние между курсорами времени дл€ 100%
-        CursMovement_Points,                        // CursMovement
-        CursActive_None,                            // CursActive
-        { CursLookMode_None, CursLookMode_None },   // –ежим слежени€ курсоров.
+        CursMovement::Points,                        // CursMovement
+        CursActive::None,                            // CursActive
+        { CursLookMode::None, CursLookMode::None },   // –ежим слежени€ курсоров.
         false,                                      // showFreq
         false                                       // showCursors
     },
@@ -137,16 +137,16 @@ static const Settings defaultSettings =
         {
             false
         },
-        ModeShowIntMem::Both,    // modeShowIntMem
-        false,                  // flashAutoConnect
+        ModeShowIntMem::Both,       // modeShowIntMem
+        false,                      // flashAutoConnect
         ModeBtnMemory::Menu,
         ModeSaveSignal::BMP
     },
     // measures
     {
-        MeasuresNumber::_1,                       // measures number
+        MeasuresNumber::_1,         // measures number
         Channel::A_B,               // source
-        ModeViewSignals_AsIs,       // mode view signal
+        ModeViewSignals::AsIs,      // mode view signal
         {
             Measure_VoltageMax,     Measure_VoltageMin,     Measure_VoltagePic,         Measure_VoltageMaxSteady,   Measure_VoltageMinSteady,
             Measure_VoltageAverage, Measure_VoltageAmpl,    Measure_VoltageRMS,         Measure_VoltageVybrosPlus,  Measure_VoltageVybrosMinus,
@@ -158,9 +158,9 @@ static const Settings defaultSettings =
         //{372, 652},               // начальные значени€ курсоров времени дл€ зоны измерений
         {50, 150},                  // начальные значени€ курсоров напр€жени€ дл€ зоны измерений
         {422, 602},                 // начальные значени€ курсоров времени дл€ зоны измерений
-        CursCntrl_1,                // ”правл€ем первым курсором напр€жени€
-        CursCntrl_1,                // ”правл€ем первым курсором времени
-        CursActive_T,               // јктивны курсоры времени.
+        CursCntrl::_1,              // ”правл€ем первым курсором напр€жени€
+        CursCntrl::_1,              // ”правл€ем первым курсором времени
+        CursActive::T,              // јктивны курсоры времени.
         Measure_None                // marked Measure
     },
     // math
@@ -214,9 +214,9 @@ static const Settings defaultSettings =
         0,                      // numStrings
         0,                      // размер шрифта - 5
         0,                      // consoleInPause
-        BalanceADC_Settings,    // balanceADC
+        BalanceADCtype::Settings,    // balanceADC
         {0, 5},                 // shiftADC
-        StretchADC_Settings,    // stretch
+        StretchADCtype::Settings,    // stretch
         {128, 128},             // stretchADC
 //      RShiftADC_Settings,
         1000,                   // numMeasuresForGates
@@ -257,7 +257,7 @@ void Settings::Load(bool _default)
         int16  balanceADC0 = BALANCE_ADC_A;
         int16  balanceADC1 = BALANCE_ADC_B;
         int16  numAverageForRand = NUM_AVE_FOR_RAND;
-        BalanceADCtype balanceType = BALANCE_ADC_TYPE;
+        BalanceADCtype::E balanceType = BALANCE_ADC_TYPE;
 
         std::memcpy((void*)&set, (void*)(&defaultSettings), sizeof(set));                // ѕотом заполн€ем значени€ми по умолчанию
 

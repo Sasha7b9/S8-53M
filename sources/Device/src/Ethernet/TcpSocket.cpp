@@ -6,7 +6,7 @@
 #include <cstdio>
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 static struct tcp_pcb *pcbClient = 0;      // 0, если клиент не приконнекчен
 
 struct States { enum E
@@ -27,7 +27,7 @@ void(*SocketFuncConnect)(void) = 0;                                 // this func
 void(*SocketFuncReciever)(const char *buffer, uint length) = 0;     // this function will be called when a message is recieved from any client
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void CloseConnection(struct tcp_pcb *tpcb, struct State *ss)
 {
     CLIENT_LAN_IS_CONNECTED = 0;

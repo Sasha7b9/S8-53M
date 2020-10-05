@@ -65,16 +65,16 @@ static const Settings defaultSettings =
     },
     // cursors
     {
-        { CursCntrl_Disable, CursCntrl_Disable },   // CursCntrl U
-        { CursCntrl_Disable, CursCntrl_Disable },   // CursCntrl T
+        { CursCntrl::Disable, CursCntrl::Disable }, // CursCntrl U
+        { CursCntrl::Disable, CursCntrl::Disable }, // CursCntrl T
         Channel::A,                                 // source
         { 60.0F,  140.0F, 60.0F, 140.0F },          // posCur U
         { 80.0F,  200.0F, 80.0F, 200.0F },          // posCur T
         { 80.0F,  80.0F },                          // расстояние между курсорами напряжения для 100%
         { 120.0F, 120.0F },                         // расстояние между курсорами времени для 100%
-        CursMovement_Points,                        // CursMovement
-        CursActive_None,                            // CursActive
-        { CursLookMode_None, CursLookMode_None },   // Режим слежения курсоров.
+        CursMovement::Points,                        // CursMovement
+        CursActive::None,                           // CursActive
+        { CursLookMode::None, CursLookMode::None },   // Режим слежения курсоров.
         false,                                      // showFreq
         false                                       // showCursors
     },
@@ -135,26 +135,26 @@ static const Settings defaultSettings =
     },
     // debug
     {
-        0,                      // numStrings
-        0,                      // размер шрифта - 5
-        0,                      // consoleInPause
-        BalanceADC_Settings,    // balanceADC
-        {0, 5},                 // shiftADC
-        StretchADC_Settings,    // stretch
-        {128, 128},             // stretchADC
+        0,                          // numStrings
+        0,                          // размер шрифта - 5
+        0,                          // consoleInPause
+        BalanceADCtype::Settings,   // balanceADC
+        {0, 5},                     // shiftADC
+        StretchADCtype::Settings,   // stretch
+        {128, 128},                 // stretchADC
 //      RShiftADC_Settings,
-        1000,                   // numMeasuresForGates
-        0,                      // shiftT0
-        false,                  // showStats
-        6,                      // numAveForRand
-        false,                  // view altera writting data
-        false,                  // view all altera writting data
-        0,                      // alt shift
+        1000,                       // numMeasuresForGates
+        0,                          // shiftT0
+        false,                      // showStats
+        6,                          // numAveForRand
+        false,                      // view altera writting data
+        false,                      // view all altera writting data
+        0,                          // alt shift
         {
-            false,              // показывать ли флаг готовности
-            false,              // rShift0
-            false,              // rShift1
-            false               // trigLev
+            false,                  // показывать ли флаг готовности
+            false,                  // rShift0
+            false,                  // rShift1
+            false                   // trigLev
         }
     }
 };

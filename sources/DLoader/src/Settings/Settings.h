@@ -76,16 +76,16 @@ struct SettingsTime
 // Настройки курсоров
 struct SettingsCursors
 {
-    CursCntrl           cntrlU[NumChannels];                    // Активные курсоры напряжения.
-    CursCntrl           cntrlT[NumChannels];                    // Активные курсоры напряжения.
+    CursCntrl::E        cntrlU[NumChannels];                    // Активные курсоры напряжения.
+    CursCntrl::E        cntrlT[NumChannels];                    // Активные курсоры напряжения.
     Channel::E          source;                                 // Источник - к какому каналу относятся курсоры.
     float               posCurU[NumChannels][2];                // Текущие позиции курсоров напряжения обоих каналов.
     float               posCurT[NumChannels][2];                // Текущие позиции курсоров времени обоих каналов.
     float               deltaU100percents[2];                   // Расстояние между курсорами напряжения для 100%, для обоих каналов.
     float               deltaT100percents[2];                   // Расстояние между курсорами времени для 100%, для обоих каналов.
-    CursMovement        movement;                               // Как перемещаться курсорам - по точкам или по процентам.
-    CursActive          active;                                 // Какие курсоры сейчас активны.
-    CursLookMode        lookMode[2];                            // Режимы слежения за курсорами для двух пар курсоров.
+    CursMovement::E     movement;                               // Как перемещаться курсорам - по точкам или по процентам.
+    CursActive::E       active;                                 // Какие курсоры сейчас активны.
+    CursLookMode::E     lookMode[2];                            // Режимы слежения за курсорами для двух пар курсоров.
     bool                showFreq;                               // Установленное в true значение, что нужно показывать на экране значение 1/dT между курсорами.
     bool                showCursors;                            // Показывать ли курсоры
 };
@@ -205,23 +205,21 @@ struct OutputRegisters
 // Настройки отладчика
 struct SettingsDebug
 {
-    int16           numStrings;                 // Число строк в консоли.
-    int8            sizeFont;                   // Размер шрифта консоли - 0 - 5, 1 - 8,
-    bool            consoleInPause;             // Признак того, что консоль находится в режиме паузы. Режим паузы означает, что новые сообщения она не записывает и не сохраняет.
-    BalanceADCtype  balanceADCtype;             // Тип балансировки.
-    int16           balanceADC[2];              // Значение дополнительного смещения АЦП для ручной балансировки.
-    StretchADCtype  stretchADCtype;             // Тип растяжки канала.
-    int16           stretchADC[2];              // Значение растяжки канала для ручного режима.
-    //RShiftADCtype   rShiftADCtype;
-    //int16           rShiftADC[Range::Count][2];    // Дополнительное смещение для каналов в режиме ручного управления. 0 - range == Range::_2mV, 1 - все остальные
-    int16           numMeasuresForGates;        // Число измерений для ворот.
-    int16           shiftT0;                    // Дополнительное смещение по времени для данной развёртки режима рандомизатора.
-    bool            showStats;                  // Показывать статистику на экране (fps, например).
-    int16           numAveForRand;              // По скольким измерениям усреднять сигнал в режиме рандомизатора.
-    bool            viewAlteraWrittingData;     // Показывать ли данные, идущие в альтеру.
-    bool            viewAllAlteraWrittingData;  // Показывать ли все данные, идущие в альтеру (если false, то постоянно идущие команды вроде START, STOP не показываются).
-    int16           altShift;                   // Добавочное смещение для устранения эффекта горизонтальной помехи синхронизации.
-    OutputRegisters showRegisters;
+    int16             numStrings;                 // Число строк в консоли.
+    int8              sizeFont;                   // Размер шрифта консоли - 0 - 5, 1 - 8,
+    bool              consoleInPause;             // Признак того, что консоль находится в режиме паузы. Режим паузы означает, что новые сообщения она не записывает и не сохраняет.
+    BalanceADCtype::E balanceADCtype;             // Тип балансировки.
+    int16             balanceADC[2];              // Значение дополнительного смещения АЦП для ручной балансировки.
+    StretchADCtype::E stretchADCtype;             // Тип растяжки канала.
+    int16             stretchADC[2];              // Значение растяжки канала для ручного режима.
+    int16             numMeasuresForGates;        // Число измерений для ворот.
+    int16             shiftT0;                    // Дополнительное смещение по времени для данной развёртки режима рандомизатора.
+    bool              showStats;                  // Показывать статистику на экране (fps, например).
+    int16             numAveForRand;              // По скольким измерениям усреднять сигнал в режиме рандомизатора.
+    bool              viewAlteraWrittingData;     // Показывать ли данные, идущие в альтеру.
+    bool              viewAllAlteraWrittingData;  // Показывать ли все данные, идущие в альтеру (если false, то постоянно идущие команды вроде START, STOP не показываются).
+    int16             altShift;                   // Добавочное смещение для устранения эффекта горизонтальной помехи синхронизации.
+    OutputRegisters   showRegisters;
 };
 
 // Струкура хранит все настройки прибора.

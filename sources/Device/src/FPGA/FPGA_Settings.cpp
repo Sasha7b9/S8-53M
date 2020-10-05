@@ -90,11 +90,11 @@ void FPGA::LoadSettings(void)
 
     switch(BALANCE_ADC_TYPE) 
     {
-        case BalanceADC_Settings:
+        case BalanceADCtype::Settings:
             WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)SET_BALANCE_ADC_A, false);
             WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)SET_BALANCE_ADC_B, false);
             break;
-        case BalanceADC_Hand:
+        case BalanceADCtype::Hand:
             SetPeackDetMode(PEAKDET);
             SetTBase(SET_TBASE);
             if (PEAKDET)
@@ -108,7 +108,7 @@ void FPGA::LoadSettings(void)
                 WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)BALANCE_ADC_B, false);
             }
             break;
-        case BalanceADC_Disable:
+        case BalanceADCtype::Disable:
             break;
     }
 }

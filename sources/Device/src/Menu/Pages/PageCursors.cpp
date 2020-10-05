@@ -25,7 +25,7 @@
 extern const Page pCursors;
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 extern const Choice mcShow;                             //  ”–—Œ–€ - œÓÍ‡Á˚‚‡Ú¸
 
 extern const Choice mcTrackingT1U1;                     //  ”–—Œ–€ -  ÛÒÓ˚ T1,U1
@@ -112,28 +112,28 @@ void IncCursCntrlT(Channel::E chan)
 void Cursors_Update()
 {
     Channel::E source = CURS_SOURCE;
-    CursLookMode lookMode0 = CURS_LOOKMODE_0;
-    CursLookMode lookMode1 = CURS_LOOKMODE_1;
+    CursLookMode::E lookMode0 = CURS_LOOKMODE_0;
+    CursLookMode::E lookMode1 = CURS_LOOKMODE_1;
 
     float posT0 = 0.0F, posT1 = 0.0F;
 
-    if((lookMode0 == CursLookMode_Voltage || lookMode0 == CursLookMode_Both) && CURS_ACTIVE_IS_T)
+    if((lookMode0 == CursLookMode::Voltage || lookMode0 == CursLookMode::Both) && CURS_ACTIVE_IS_T)
     {
         float posU0 = Processing::GetCursU(source, CURS_POS_T0(source));
         SetCursPosU(source, 0, posU0);
     }
-    if((lookMode1 == CursLookMode_Voltage || lookMode1 == CursLookMode_Both)  && CURS_ACTIVE_IS_T)
+    if((lookMode1 == CursLookMode::Voltage || lookMode1 == CursLookMode::Both)  && CURS_ACTIVE_IS_T)
     {
         float posU1 = Processing::GetCursU(source, CURS_POS_T1(source));
         SetCursPosU(source, 1, posU1);
     }
-    if((lookMode0 == CursLookMode_Time || lookMode0 == CursLookMode_Both) && CURS_ACTIVE_IS_U)
+    if((lookMode0 == CursLookMode::Time || lookMode0 == CursLookMode::Both) && CURS_ACTIVE_IS_U)
     {
         float posU0 = CURS_POS_U0(source);
         posT0 = Processing::GetCursT(source, posU0, 0);
         SetCursPosT(source, 0, posT0);
     }
-    if((lookMode1 == CursLookMode_Time || lookMode1 == CursLookMode_Both) && CURS_ACTIVE_IS_U)
+    if((lookMode1 == CursLookMode::Time || lookMode1 == CursLookMode::Both) && CURS_ACTIVE_IS_U)
     {
         float posU1 = CURS_POS_U1(source);
         posT1 = Processing::GetCursT(source, posU1, 1);
@@ -171,7 +171,7 @@ void SetCursPosT(Channel::E chan, int numCur, float pos)
 
 extern const Page mainPage;
 
-//  ”–—Œ–€ ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//  ”–—Œ–€ /////////////////////////
 static const arrayItems itemsCursors =
 {
     (void*)&mcShow,             //  ”–—Œ–€ - œÓÍ‡Á˚‚‡Ú¸
@@ -291,7 +291,7 @@ static const Choice mcShowFreq =
 };
 
 
-//  ”–—Œ–€ - ”—“¿ÕŒ¬»“‹ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//  ”–—Œ–€ - ”—“¿ÕŒ¬»“‹ ////////////
 static const arrayItems itemsSet =
 {
     (void*)&sbSetExit,              //  ”–—Œ–€ - ”—“¿ÕŒ¬»“‹ - ¬˚ıÓ‰
@@ -326,7 +326,7 @@ static void OnRotate_RegSet_Set(int angle)
 
 static void MoveCursUonPercentsOrPoints(int delta)
 {
-    CursCntrl cursCntrl = CURsU_CNTRL;
+    CursCntrl::E cursCntrl = CURsU_CNTRL;
 
     float value = static_cast<float>(delta);
 
@@ -337,11 +337,11 @@ static void MoveCursUonPercentsOrPoints(int delta)
         value *= DELTA_U100(source) / 100.0F;
     }
 
-    if(cursCntrl == CursCntrl_1 || cursCntrl == CursCntrl_1_2)
+    if(cursCntrl == CursCntrl::_1 || cursCntrl == CursCntrl::_1_2)
     {
         SetShiftCursPosU(source, 0, value);
     }
-    if(cursCntrl == CursCntrl_2 || cursCntrl == CursCntrl_1_2)
+    if(cursCntrl == CursCntrl::_2 || cursCntrl == CursCntrl::_1_2)
     {
         SetShiftCursPosU(source, 1, value);
     }
@@ -363,7 +363,7 @@ static void SetShiftCursPosU(Channel::E chan, int numCur, float delta)
 static void MoveCursTonPercentsOrPoints(int delta)
 {
     Channel::E source = CURS_SOURCE;
-    CursCntrl cursCntrl = CURS_CNTRL_T(source);
+    CursCntrl::E cursCntrl = CURS_CNTRL_T(source);
 
     float value = static_cast<float>(delta);
 
@@ -372,11 +372,11 @@ static void MoveCursTonPercentsOrPoints(int delta)
         value *= DELTA_T100(source) / 100.0F;
     }
 
-    if(cursCntrl == CursCntrl_1 || cursCntrl == CursCntrl_1_2)
+    if(cursCntrl == CursCntrl::_1 || cursCntrl == CursCntrl::_1_2)
     {
         SetShiftCursPosT(source, 0, value);
     }
-    if(cursCntrl == CursCntrl_2 || cursCntrl == CursCntrl_1_2)
+    if(cursCntrl == CursCntrl::_2 || cursCntrl == CursCntrl::_1_2)
     {
         SetShiftCursPosT(source, 1, value);
     }
@@ -482,13 +482,13 @@ static void PressSB_Cursors_U(void)
     {
         IncCursCntrlU(CURS_SOURCE);
     }
-    CURS_ACTIVE = CursActive_U;
+    CURS_ACTIVE = CursActive::U;
 }
 
 static void DrawSB_Cursors_U(int x, int y)
 {
-    CursCntrl cursCntrl = CURsU_CNTRL;
-    if (cursCntrl == CursCntrl_Disable)
+    CursCntrl::E cursCntrl = CURsU_CNTRL;
+    if (cursCntrl == CursCntrl::Disable)
     {
        DrawSB_Cursors_U_Disable(x, y);
     }
@@ -517,8 +517,8 @@ static void DrawSB_Cursors_U(int x, int y)
             }
         }
         /*
-        if (set.cursors.lookMode[0] == CursLookMode_Voltage || set.cursors.lookMode[0] == CursLookMode_Both ||
-            set.cursors.lookMode[1] == CursLookMode_Voltage || set.cursors.lookMode[1] == CursLookMode_Both)
+        if (set.cursors.lookMode[0] == CursLookMode::Voltage || set.cursors.lookMode[0] == CursLookMode::Both ||
+            set.cursors.lookMode[1] == CursLookMode::Voltage || set.cursors.lookMode[1] == CursLookMode::Both)
         {
             Painter::SetFont(TypeFont::_5);
             Painter::DrawChar(x + 10, y, 'c');
@@ -586,14 +586,14 @@ static void PressSB_Cursors_T(void)
     {
         IncCursCntrlT(CURS_SOURCE);
     }
-    CURS_ACTIVE = CursActive_T;
+    CURS_ACTIVE = CursActive::T;
 }
 
 static void DrawSB_Cursors_T(int x, int y)
 {
     Channel::E source = CURS_SOURCE;
-    CursCntrl cursCntrl = CURS_CNTRL_T(source);
-    if (cursCntrl == CursCntrl_Disable)
+    CursCntrl::E cursCntrl = CURS_CNTRL_T(source);
+    if (cursCntrl == CursCntrl::Disable)
     {
         DrawSB_Cursors_T_Disable(x, y);
     }

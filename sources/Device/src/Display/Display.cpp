@@ -1132,7 +1132,7 @@ void Display::DrawHiRightPart()
         if (TRIG_ENABLE)
         {
             Painter::FillRegion(x, 1 + y, GRID_TOP - 3, GRID_TOP - 7);
-            Painter::DrawTextC(x + 3, 3 + y, set.common.lang == Russian ? "СИ" : "Tr", COLOR_BACK);
+            Painter::DrawTextC(x + 3, 3 + y, set.common.lang == Language::Russian ? "СИ" : "Tr", COLOR_BACK);
         }
     }
 
@@ -1149,7 +1149,7 @@ void Display::DrawHiRightPart()
         x += 18;
         Painter::DrawVLineC(x, 1, GRID_TOP - 2, COLOR_FILL);
         x += 2;
-        Painter::DrawText(set.common.lang == Russian ? x : x + 3, -1, set.common.lang == Russian ? "режим" : "mode");
+        Painter::DrawText(set.common.lang == Language::Russian ? x : x + 3, -1, set.common.lang == Language::Russian ? "режим" : "mode");
         Painter::DrawStringInCenterRect(x + 1, 9, 25, 8, strings_[MODE_WORK][set.common.lang]);
     }
     else
@@ -1816,14 +1816,14 @@ void Display::DrawCursors()
             Painter::DrawRectangle(x1 - 2, y1 - 2, 4, 4);
         }
 
-        CursCntrl cntrl = CURS_CNTRL_T(source);
-        if (cntrl != CursCntrl_Disable)
+        CursCntrl::E cntrl = CURS_CNTRL_T(source);
+        if (cntrl != CursCntrl::Disable)
         {
             DrawVerticalCursor(static_cast<int>(CURS_POS_T0(source)), y0);
             DrawVerticalCursor(static_cast<int>(CURS_POS_T1(source)), y1);
         }
         cntrl = CURsU_CNTRL;
-        if (cntrl != CursCntrl_Disable)
+        if (cntrl != CursCntrl::Disable)
         {
             DrawHorizontalCursor(static_cast<int>(sCursors_GetCursPosU(source, 0)), x0);
             DrawHorizontalCursor(static_cast<int>(sCursors_GetCursPosU(source, 1)), x1);
@@ -1958,7 +1958,7 @@ void Display::WriteTextVoltage(Channel::E chan, int x, int y)
 
         char buffer[100] = {0};
 
-        std::sprintf(buffer, "%s\xa5%s\xa5%s", (chan == Channel::A) ? (set.common.lang == Russian ? "1к" : "1c") : (set.common.lang == Russian ? "2к" : "2c"), couple[modeCouple],
+        std::sprintf(buffer, "%s\xa5%s\xa5%s", (chan == Channel::A) ? ((set.common.lang == Language::Russian) ? "1к" : "1c") : ((set.common.lang == Language::Russian) ? "2к" : "2c"), couple[modeCouple],
             sChannel_Range2String(range, multiplier));
 
         Painter::DrawTextC(x + 1, y, buffer, colorDraw);

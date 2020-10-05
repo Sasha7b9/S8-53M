@@ -97,16 +97,16 @@ struct SettingsEthernet
 
 
 #define LANG            (set.common.lang)       // SettingsCommon.lang
-#define LANG_RU         (LANG == Russian)
-#define LANG_EN         (LANG == English)
+#define LANG_RU         (LANG == Language::Russian)
+#define LANG_EN         (LANG == Language::English)
                                     
 struct SettingsCommon
 {
-    int     countEnables;               // Количество включений. Увеличивается при каждом включении.
-    int     countErasedFlashData;       // Сколько раз стирался первый сектор с ресурсами.
-    int     countErasedFlashSettings;   // Сколько раз стирался сектор с настройкаи.
-    int     workingTimeInSecs;          // Время работы в секундах.
-    Language lang;                      // Язык меню.
+    int         countEnables;               // Количество включений. Увеличивается при каждом включении.
+    int         countErasedFlashData;       // Сколько раз стирался первый сектор с ресурсами.
+    int         countErasedFlashSettings;   // Сколько раз стирался сектор с настройкаи.
+    int         workingTimeInSecs;          // Время работы в секундах.
+    Language::E lang;                       // Язык меню.
 };
 
 
@@ -134,16 +134,16 @@ struct OutputRegisters
 #define CONSOLE_IN_PAUSE                    (set.debug.consoleInPause)
 
 #define BALANCE_ADC_TYPE                    (set.debug.balanceADCtype)
-#define BALANCE_ADC_TYPE_IS_HAND            (BALANCE_ADC_TYPE == BalanceADC_Hand)
+#define BALANCE_ADC_TYPE_IS_HAND            (BALANCE_ADC_TYPE == BalanceADCtype::Hand)
 
 #define BALANCE_ADC(ch)                     (set.debug.balanceADC[ch])
 #define BALANCE_ADC_A                       (BALANCE_ADC(Channel::A))
 #define BALANCE_ADC_B                       (BALANCE_ADC(Channel::B))
 
 #define DEBUG_STRETCH_ADC_TYPE              (set.debug.stretchADCtype)
-#define DEBUG_STRETCH_ADC_TYPE_IS_DISABLED  (DEBUG_STRETCH_ADC_TYPE == StretchADC_Disable)
-#define DEBUG_STRETCH_ADC_TYPE_IS_HAND      (DEBUG_STRETCH_ADC_TYPE == StretchADC_Hand)
-#define DEBUG_STRETCH_ADC_TYPE_IS_SETTINGS  (DEBUG_STRETCH_ADC_TYPE == StretchADC_Settings)
+#define DEBUG_STRETCH_ADC_TYPE_IS_DISABLED  (DEBUG_STRETCH_ADC_TYPE == StretchADCtype::Disable)
+#define DEBUG_STRETCH_ADC_TYPE_IS_HAND      (DEBUG_STRETCH_ADC_TYPE == StretchADCtype::Hand)
+#define DEBUG_STRETCH_ADC_TYPE_IS_SETTINGS  (DEBUG_STRETCH_ADC_TYPE == StretchADCtype::Settings)
 
 #define DEBUG_STRETCH_ADC(ch)               (set.debug.stretchADC[ch])
 #define DEBUG_STRETCH_ADC_A                 (DEBUG_STRETCH_ADC(Channel::A))
@@ -161,25 +161,23 @@ struct OutputRegisters
 // Отладочные настройки.
 struct SettingsDebug
 {
-    int16           numStrings;                 // Число строк в консоли.
-    int8            sizeFont;                   // Размер шрифта консоли - 0 - 5, 1 - 8,
-    bool            consoleInPause;             // \brief Признак того, что консоль находится в режиме паузы. Режим паузы означает, что новые 
-                                                    // сообщения она не записывает и не сохраняет.
-    BalanceADCtype  balanceADCtype;             // Тип балансировки.
-    int16           balanceADC[2];              // Значение дополнительного смещения АЦП для ручной балансировки.
-    StretchADCtype  stretchADCtype;             // Тип растяжки канала.
-    int16           stretchADC[2];              // Значение растяжки канала для ручного режима.
-    //RShiftADCtype   rShiftADCtype;
-    //int16           rShiftADC[Range::Count][2];    // Дополнительное смещение для каналов в режиме ручного управления. 0 - range == Range::_2mV, 1 - все остальные
-    int16           numMeasuresForGates;        // Число измерений для ворот.
-    int16           shiftT0;                    // Дополнительное смещение по времени для данной развёртки режима рандомизатора.
-    bool            showStats;                  // Показывать статистику на экране (fps, например).
-    int16           numAveForRand;              // По скольким измерениям усреднять сигнал в режиме рандомизатора.
-    bool            viewAlteraWrittingData;     // Показывать ли данные, идущие в альтеру.
-    bool            viewAllAlteraWrittingData;  // \brief Показывать ли все данные, идущие в альтеру (если false, то постоянно идущие команды вроде 
-                                                    // START, STOP не показываются).
-    int16           altShift;                   // Добавочное смещение для устранения эффекта горизонтальной помехи синхронизации.
-    OutputRegisters showRegisters;
+    int16             numStrings;                 // Число строк в консоли.
+    int8              sizeFont;                   // Размер шрифта консоли - 0 - 5, 1 - 8,
+    bool              consoleInPause;             // \brief Признак того, что консоль находится в режиме паузы. Режим паузы означает, что новые 
+                                                  // сообщения она не записывает и не сохраняет.
+    BalanceADCtype::E balanceADCtype;             // Тип балансировки.
+    int16             balanceADC[2];              // Значение дополнительного смещения АЦП для ручной балансировки.
+    StretchADCtype::E stretchADCtype;             // Тип растяжки канала.
+    int16             stretchADC[2];              // Значение растяжки канала для ручного режима.
+    int16             numMeasuresForGates;        // Число измерений для ворот.
+    int16             shiftT0;                    // Дополнительное смещение по времени для данной развёртки режима рандомизатора.
+    bool              showStats;                  // Показывать статистику на экране (fps, например).
+    int16             numAveForRand;              // По скольким измерениям усреднять сигнал в режиме рандомизатора.
+    bool              viewAlteraWrittingData;     // Показывать ли данные, идущие в альтеру.
+    bool              viewAllAlteraWrittingData;  // \brief Показывать ли все данные, идущие в альтеру (если false, то постоянно идущие команды вроде 
+                                                  // START, STOP не показываются).
+    int16             altShift;                   // Добавочное смещение для устранения эффекта горизонтальной помехи синхронизации.
+    OutputRegisters   showRegisters;
 };
 
 struct SettingsMenu

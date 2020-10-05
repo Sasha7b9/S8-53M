@@ -41,7 +41,7 @@ static void OnChanged_InverseB(bool active);
 extern const Choice mcMultiplierB;              // КАНАЛ 2 - Множитель
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 extern const char chanInputRu[] =   "1. \"Вкл\" - выводить сигнал на экран.\n"
                                     "2. \"Откл\" - не выводить сигнал на экран.";
 extern const char chanInputEn[] =   "1. \"Enable\" - signal output to the screen.\n"
@@ -70,7 +70,7 @@ extern const char chanMultiplierEn[] = "Attenuation: \n\"x1\" - the signal is no
 extern const Page mainPage;
 
 
-// КАНАЛ 1 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// КАНАЛ 1 /////////////////////////
 static const arrayItems itemsChanA =
 {
     (void*)&mcInputA,       // КАНАЛ 1 - Вход
@@ -197,7 +197,7 @@ static const Choice mcMultiplierA =
 
 
 
-// КАНАЛ 2 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// КАНАЛ 2 /////////////////////////
 static const arrayItems itemsChanB =
 {
     (void*)&mcInputB,       // КАНАЛ 2 - Вход

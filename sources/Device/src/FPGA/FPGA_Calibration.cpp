@@ -109,7 +109,7 @@ void FPGA::ProcedureCalibration(void)
             {
 				gStateFPGA.stateCalibration = StateCalibration::ErrorCalibration0;
 				Panel::WaitPressingButton();
-                DEBUG_STRETCH_ADC_TYPE = StretchADC_Hand;
+                DEBUG_STRETCH_ADC_TYPE = StretchADCtype::Hand;
                 LoadStretchADC(Channel::A);
             }
             else
@@ -145,7 +145,7 @@ void FPGA::ProcedureCalibration(void)
             {
 				gStateFPGA.stateCalibration = StateCalibration::ErrorCalibration1;
 				Panel::WaitPressingButton();
-                DEBUG_STRETCH_ADC_TYPE = StretchADC_Hand;
+                DEBUG_STRETCH_ADC_TYPE = StretchADCtype::Hand;
                 LoadStretchADC(Channel::B);
 			}
             else

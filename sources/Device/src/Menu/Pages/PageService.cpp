@@ -98,7 +98,7 @@ static void        OnPress_Information_Exit();
 
 extern const Page mainPage;
 
-// ÑÅĞÂÈÑ ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ÑÅĞÂÈÑ //////////////////////////
 static const arrayItems itemsService =
 {
     (void*)&bResetSettings,             // ÑÅĞÂÈÑ - Ñáğîñ íàñòğîåê
@@ -180,7 +180,7 @@ static void OnPress_AutoSearch(void)
     FPGA::StartAutoFind();
 };
 
-// ÑÅĞÂÈÑ - ÊÀËÈÁĞÀÒÎĞ ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ÑÅĞÂÈÑ - ÊÀËÈÁĞÀÒÎĞ /////////////
 static const arrayItems itemsCalibrator =
 {
     (void*)&cCalibrator_Mode,       // ÑÅĞÂÈÑ - ÊÀËÈÁĞÀÒÎĞ - Êàëèáğàòîğ
@@ -233,7 +233,7 @@ static void OnPress_Calibrator_Calibrate(void)
     gStateFPGA.needCalibration = true;
 }
 
-// ÑÅĞÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ÑÅĞÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ /////////////
 static const arrayItems itemsMath =
 {
     (void*)&pppMath_Function,     // ÑÅĞÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÔÓÍÊÖÈß
@@ -249,7 +249,7 @@ static const Page ppMath
     NamePage::Math, &itemsMath
 );
 
-// ÑÅĞÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÔÓÍÊÖÈß /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ÑÅĞÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÔÓÍÊÖÈß ///
 static const arrayItems itemsMath_Function =
 {
     (void*)&sbMath_Function_Exit,       // ÑÅĞÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÔÓÍÊÖÈß - Âûõîä
@@ -413,7 +413,7 @@ static void Draw_Math_Function_ModeDraw(int x, int y)
 
 static void Draw_Math_Function_ModeDraw_Disable(int x, int y)
 {
-    Painter::DrawText(x + 2 + (set.common.lang == English ? 2 : 0), y + 5, set.common.lang == Russian ? "Âûê" : "Dis");
+    Painter::DrawText(x + 2 + (LANG_RU ? 2 : 0), y + 5, LANG_RU ? "Âûê" : "Dis");
 }
 
 static void Draw_Math_Function_ModeDraw_Separate(int x, int y)
@@ -501,12 +501,12 @@ static void Draw_Math_Function_ModeRegSet(int x, int y)
 
 static void Draw_Math_Function_ModeRegSet_Range(int x, int y)
 {
-    Painter::DrawChar(x + 7, y + 5, set.common.lang == Russian ? 'M' : 'S');
+    Painter::DrawChar(x + 7, y + 5, LANG_RU ? 'M' : 'S');
 }
 
 static void Draw_Math_Function_ModeRegSet_RShift(int x, int y)
 {
-    Painter::DrawText(x + 5 - (set.common.lang == English ? 3 : 0), y + 5, set.common.lang == Russian ? "Ñì" : "Shif");
+    Painter::DrawText(x + 5 - (LANG_EN ? 3 : 0), y + 5, LANG_RU ? "Ñì" : "Shif");
 }
 
 // ÑÅĞÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÔÓÍÊÖÈß - Ìàñøòàá 1-ãî êàíàëà -----------------------------------------------------------------------------------------------
@@ -553,7 +553,7 @@ static void Draw_Math_Function_RangeB(int x, int y)
     Painter::DrawChar(x + 8, y + 5, '2');
 }
 
-// ÑÅĞÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÑÏÅÊÒĞ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ÑÅĞÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÑÏÅÊÒĞ ////
 static const arrayItems itemsMath_FFT =
 {
     (void*)&cMath_FFT_Enable,       // ÑÅĞÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÑÏÅÊÒĞ - Îòîáğàæåíèå
@@ -746,7 +746,7 @@ static bool IsActive_Math_FFT_Limit(void)
     return SCALE_FFT_IS_LOG;
 }
 
-// ÑÅĞÂÈÑ - ETHERNET /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ÑÅĞÂÈÑ - ETHERNET ///////////////
 static const arrayItems itemsEthernet =
 {
     (void*)&cEthernet_Enable,       // ÑÅĞÂÈÑ - ETHERNET - Ethernet
@@ -967,17 +967,15 @@ static void OnPress_Information(void)
 
 static void Information_Draw(void)
 {
-    Language lang = LANG;
-
     Painter::BeginScene(Color::BLACK);
     int x = 100;
     int dY = 20;
     int y = 20;
     Painter::DrawRectangleC(0, 0, 319, 239, COLOR_FILL);
     y += dY;
-    Painter::DrawText(x, y, lang == Russian ? "ÈÍÔÎĞÌÀÖÈß" : "INFORMATION");
+    Painter::DrawText(x, y, LANG_RU ? "ÈÍÔÎĞÌÀÖÈß" : "INFORMATION");
     y += dY;
-    Painter::DrawText(x, y, lang == Russian ? "Ìîäåëü : Ñ8-53/1" : "Model : S8-53/1");
+    Painter::DrawText(x, y, LANG_RU ? "Ìîäåëü : Ñ8-53/1" : "Model : S8-53/1");
     y += dY;
 
     char buffer[100];
@@ -990,9 +988,9 @@ static void Information_Draw(void)
     }
     */
 
-    Painter::DrawText(x, y, lang == Russian ? "Ïğîãğàììíîå îáåñïå÷åíèå:" : "Software:");
+    Painter::DrawText(x, y, LANG_RU ? "Ïğîãğàììíîå îáåñïå÷åíèå:" : "Software:");
     y += dY;
-    std::sprintf(buffer, (const char*)((lang == Russian) ? "âåğñèÿ %s" : "version %s"), NUM_VER);
+    std::sprintf(buffer, (const char*)(LANG_RU ? "âåğñèÿ %s" : "version %s"), NUM_VER);
     Painter::DrawText(x, y, buffer);
     y += dY;
 

@@ -22,7 +22,7 @@
 extern const Page pMeasures;
 extern const Page mainPage;
 
-static CursCntrl    GetMeasuresCursCntrlActive();       // Каким курсором из активной пары сейчас происходит управление.
+static CursCntrl::E GetMeasuresCursCntrlActive();       // Каким курсором из активной пары сейчас происходит управление.
 bool PageMeasures::choiceMeasuresIsActive = false;
 
 void DrawSB_MeasTune_Settings(int x, int y)
@@ -51,14 +51,14 @@ void PressSB_MeasTune_Markers()
 
 void RotateRegMeasureSetField(int angle)
 {
-    CursCntrl cursCntrl = GetMeasuresCursCntrlActive();
-    CursActive cursActive = MEAS_CURS_ACTIVE;
+    CursCntrl::E cursCntrl = GetMeasuresCursCntrlActive();
+    CursActive::E cursActive = MEAS_CURS_ACTIVE;
 
     int sign = Math_Sign(angle);
 
-    if (cursCntrl == CursCntrl_1 || cursCntrl == CursCntrl_1_2)
+    if (cursCntrl == CursCntrl::_1 || cursCntrl == CursCntrl::_1_2)
     {
-        if (cursActive == CursActive_T)
+        if (cursActive == CursActive::T)
         {
             LIMITATION(MEAS_POS_CUR_T0, static_cast<int16>(MEAS_POS_CUR_T0 - sign), 0, static_cast<int16>(sMemory_GetNumPoints(false) - 1));
         }
@@ -67,9 +67,9 @@ void RotateRegMeasureSetField(int angle)
             LIMITATION(MEAS_POS_CUR_U0, static_cast<int16>(MEAS_POS_CUR_U0 + sign), 0, 200);
         }
     }
-    if (cursCntrl == CursCntrl_2 || cursCntrl == CursCntrl_1_2)
+    if (cursCntrl == CursCntrl::_2 || cursCntrl == CursCntrl::_1_2)
     {
-        if (cursActive == CursActive_T)
+        if (cursActive == CursActive::T)
         {
             LIMITATION(MEAS_POS_CUR_T1, static_cast<int16>(MEAS_POS_CUR_T1 - sign), 0, static_cast<int16>(sMemory_GetNumPoints(false) - 1));
         }
@@ -246,7 +246,7 @@ const Choice mcMeasuresFieldType =
 };
 */
 
-CursCntrl GetMeasuresCursCntrlActive()
+CursCntrl::E GetMeasuresCursCntrlActive()
 {
     if(MEAS_CURS_ACTIVE_IS_T)
     {

@@ -146,7 +146,7 @@ const char* Tables_GetTBaseString(TBase::E tBase)
 
 const char* Tables_GetTBaseStringEN(TBase::E tBase)
 {
-    return tBases[tBase].name[English];
+    return tBases[tBase].name[Language::English];
 }
 
 
