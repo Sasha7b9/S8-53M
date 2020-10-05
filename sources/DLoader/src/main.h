@@ -27,11 +27,11 @@ struct State { enum E
     Ok                // Обновление удачно завершено
 };};
 
-enum StateDisk
+struct StateDisk { enum E
 {
-    StateDisk_Idle,
-    StateDisk_Start
-};
+    Idle,
+    Start
+};};
 
 struct Display
 {
@@ -45,7 +45,7 @@ struct FDrive
 {
     FATFS USBDISKFatFS;
     char USBDISKPath[4];
-    StateDisk state;
+    StateDisk::E state;
     FIL file;
     int connection;
     int active;

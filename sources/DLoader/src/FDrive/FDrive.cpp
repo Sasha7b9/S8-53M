@@ -30,7 +30,7 @@ static bool GetNextNameFile(char *nameFileOut, StructForReadDir *s);
 
 void FDrive_Init(void)
 {
-    ms->drive.state = StateDisk_Idle;
+    ms->drive.state = StateDisk::Idle;
     ms->drive.connection = 0;
     ms->drive.active = 0;
 
@@ -76,7 +76,7 @@ void FDrive_Init(void)
 bool FDrive_Update(void)
 {
     USBH_Process(reinterpret_cast<USBH_HandleTypeDef *>(HAL_USBH::handle));
-    if (ms->drive.state == StateDisk_Start)
+    if (ms->drive.state == StateDisk::Start)
     {
         if (f_mount(&(ms->drive.USBDISKFatFS), (TCHAR const*)ms->drive.USBDISKPath, 0) == FR_OK)
         {
