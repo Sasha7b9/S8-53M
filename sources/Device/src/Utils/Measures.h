@@ -50,20 +50,20 @@ struct Measure { enum E
     static int NumRows();
 
     static int NumCols();
+    
+    static int GetTopTable();
+
+    static int GetDeltaGridLeft();
+
+    static int GetDeltaGridBottom();
+
+    static void RotateRegSet(int angle);
+    // Вызывается при коротком нажатии на кнопку выбора измерения.
+    static void ShorPressOnSmallButtonSettings();
+
+    static void ShortPressOnSmallButonMarker();
+    // Нарисовать страницу выбора измерений.
+    static void DrawPageChoice();
 };
 
 Measure::E& operator++(Measure::E &measure);
-
-int Measure_GetTopTable();
-
-int Measure_GetDeltaGridLeft();
-
-int Measure_GetDeltaGridBottom();
-
-void Measure_RotateRegSet(int angle);
-// Вызывается при коротком нажатии на кнопку выбора измерения.
-void Measure_ShorPressOnSmallButtonSettings();
-
-void Measure_ShortPressOnSmallButonMarker();
-// Нарисовать страницу выбора измерений.
-void Measure_DrawPageChoice();

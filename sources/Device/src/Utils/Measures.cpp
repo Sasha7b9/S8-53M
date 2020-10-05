@@ -99,7 +99,7 @@ Measure::E Measure::Type(int row, int col)
     return MEASURE(numMeasure);
 }
 
-int Measure_GetTopTable()
+int Measure::GetTopTable()
 {
     if(MEAS_NUM_IS_6_2 || MEAS_NUM_IS_6_2)
     {
@@ -120,7 +120,7 @@ int Measure::NumRows()
     return rows[MEAS_NUM];
 }
 
-int Measure_GetDeltaGridLeft()
+int Measure::GetDeltaGridLeft()
 {
     if(SHOW_MEASURES && MODE_VIEW_SIGNALS_IS_COMPRESS)
     {
@@ -136,7 +136,7 @@ int Measure_GetDeltaGridLeft()
     return 0;
 }
 
-int Measure_GetDeltaGridBottom()
+int Measure::GetDeltaGridBottom()
 {
     if(SHOW_MEASURES && MODE_VIEW_SIGNALS_IS_COMPRESS)
     {
@@ -156,7 +156,7 @@ int Measure_GetDeltaGridBottom()
     return 0;
 }
 
-void Measure_RotateRegSet(int angle)
+void Measure::RotateRegSet(int angle)
 {
     static const int8 step = 3;
     static int8 currentAngle = 0;
@@ -210,7 +210,7 @@ void Measure_RotateRegSet(int angle)
     currentAngle = 0;
 }
 
-void Measure_ShorPressOnSmallButtonSettings()
+void Measure::ShorPressOnSmallButtonSettings()
 {
     PageMeasures::choiceMeasuresIsActive = !PageMeasures::choiceMeasuresIsActive;
     if(PageMeasures::choiceMeasuresIsActive)
@@ -219,7 +219,7 @@ void Measure_ShorPressOnSmallButtonSettings()
     }
 }
 
-void Measure_ShortPressOnSmallButonMarker()
+void Measure::ShortPressOnSmallButonMarker()
 {
     if(MEASURE_IS_MARKED(posActive))
     {
@@ -231,7 +231,7 @@ void Measure_ShortPressOnSmallButonMarker()
     }
 }
 
-void Measure_DrawPageChoice()
+void Measure::DrawPageChoice()
 {
     if(!PageMeasures::choiceMeasuresIsActive)
     {

@@ -1662,7 +1662,7 @@ void Display::DrawCursorTrigLevel()
 
 void Display::DrawCursorRShift(Channel::E chan)
 {
-    float x = static_cast<float>(Grid::Right() - Grid::Width() - Measure_GetDeltaGridLeft());
+    float x = static_cast<float>(Grid::Right() - Grid::Width() - Measure::GetDeltaGridLeft());
 
     if (chan == Channel::Math)
     {
@@ -1853,10 +1853,10 @@ void Display::DrawMeasures()
         Painter::DrawRectangleC(x0, y0, x1 - x0, y1 - y0, COLOR_FILL);
     }
 
-    int x0 = Grid::Left() - Measure_GetDeltaGridLeft();
+    int x0 = Grid::Left() - Measure::GetDeltaGridLeft();
     int dX = Measure::GetDX();
     int dY = Measure::GetDY();
-    int y0 = Measure_GetTopTable();
+    int y0 = Measure::GetTopTable();
 
     int numRows = Measure::NumRows();
     int numCols = Measure::NumCols();
@@ -1908,7 +1908,7 @@ void Display::DrawMeasures()
 
     if(Menu::GetNameOpenedPage() == NamePage::SB_MeasTuneMeas)
     {
-        Measure_DrawPageChoice();
+        Measure::DrawPageChoice();
     }
 }
 
@@ -1994,8 +1994,8 @@ void Display::DrawLowPart()
     int y1 = SCREEN_HEIGHT - 10;
     int x = -1;
 
-    Painter::DrawHLineC(Grid::ChannelBottom(), 1, Grid::Left() - Measure_GetDeltaGridLeft() - 2, COLOR_FILL);
-    Painter::DrawHLine(Grid::FullBottom(), 1, Grid::Left() - Measure_GetDeltaGridLeft() - 2);
+    Painter::DrawHLineC(Grid::ChannelBottom(), 1, Grid::Left() - Measure::GetDeltaGridLeft() - 2, COLOR_FILL);
+    Painter::DrawHLine(Grid::FullBottom(), 1, Grid::Left() - Measure::GetDeltaGridLeft() - 2);
 
     WriteTextVoltage(Channel::A, x + 2, y0);
 

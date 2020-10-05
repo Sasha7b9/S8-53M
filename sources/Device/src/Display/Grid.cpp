@@ -5,7 +5,7 @@
 
 int Grid::Left(void)
 {
-    return (MenuIsMinimize() && MenuIsShown() ? 9 : 20) + Measure_GetDeltaGridLeft();
+    return (MenuIsMinimize() && MenuIsShown() ? 9 : 20) + Measure::GetDeltaGridLeft();
 }
 
 
@@ -41,7 +41,7 @@ int Grid::ChannelCenterHeight(void)
 
 int Grid::FullBottom(void)
 {
-    return GRID_BOTTOM - Measure_GetDeltaGridBottom();
+    return GRID_BOTTOM - Measure::GetDeltaGridBottom();
 }
 
 

@@ -34,7 +34,7 @@ void DrawSB_MeasTune_Settings(int x, int y)
 
 void PressSB_MeasTune_Settings()
 {
-    Measure_ShorPressOnSmallButtonSettings();
+    Measure::ShorPressOnSmallButtonSettings();
 }
 
 void DrawSB_MeasTune_Markers(int x, int y)
@@ -46,7 +46,7 @@ void DrawSB_MeasTune_Markers(int x, int y)
 
 void PressSB_MeasTune_Markers()
 {
-    Measure_ShortPressOnSmallButonMarker();
+    Measure::ShortPressOnSmallButonMarker();
 }
 
 void RotateRegMeasureSetField(int angle)
@@ -285,7 +285,7 @@ static const Page mspMeasTune
     "НАСТРОИТЬ", "CONFIGURE",
     "Переход в режми точной настройки количества и видов измерений",
     "Transition to rezhm of exact control of quantity and types of measurements",
-    NamePage::SB_MeasTuneMeas, &itemsMeasTune, EmptyFuncVV, EmptyFuncVV, Measure_RotateRegSet
+    NamePage::SB_MeasTuneMeas, &itemsMeasTune, EmptyFuncVV, EmptyFuncVV, Measure::RotateRegSet
 );
 
 
