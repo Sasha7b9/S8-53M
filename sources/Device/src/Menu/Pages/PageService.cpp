@@ -119,7 +119,7 @@ const Page pService                     // СЕРВИС
     "СЕРВИС", "SERVICE",
     "Дополнительные настройки, калибровка, поиск сигнала, математические функции",
     "Additional settings, calibration, signal search, mathematical functions",
-    Page::EService, &itemsService
+    NamePage::Service, &itemsService
 );
 
 // СЕРВИС - Сброс настроек ---------------------------------------------------------------------------------------------------------------------------
@@ -193,7 +193,7 @@ static const Page ppCalibrator
     "КАЛИБРАТОР", "CALIBRATOR",
     "Управлением калибратором и калибровка осциллографа",
     "Control of the calibrator and calibration of an oscillograph",
-    Page::EServiceCalibrator, &itemsCalibrator
+    NamePage::ServiceCalibrator, &itemsCalibrator
 );
 
 // СЕРВИС - КАЛИБРАТОР - Калибратор ------------------------------------------------------------------------------------------------------------------
@@ -246,7 +246,7 @@ static const Page ppMath
     "МАТЕМАТИКА", "MATH",
     "Математические функции и БПФ",
     "Mathematical functions and FFT",
-    Page::EMath, &itemsMath
+    NamePage::Math, &itemsMath
 );
 
 // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -570,7 +570,7 @@ static const Page pppMath_FFT
     "СПЕКТР", "SPECTRUM",
     "Отображение спектра входного сигнала",
     "Mapping the input signal spectrum",
-    Page::EMathFFT, &itemsMath_FFT, OnPress_Math_FFT
+    NamePage::MathFFT, &itemsMath_FFT, OnPress_Math_FFT
 );
 
 static bool IsActive_Math_FFT(void)
@@ -762,7 +762,7 @@ static const Page ppEthernet
     "ETHERNET", "ETHERNET",
     "Настройки ethernet",
     "Settings of ethernet",
-    Page::EServiceEthernet, &itemsEthernet
+    NamePage::ServiceEthernet, &itemsEthernet
 );
 
 // СЕРВИС - ETHERNET - Ethernet ----------------------------------------------------------------------------------------------------------------------

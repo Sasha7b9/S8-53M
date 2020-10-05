@@ -1274,7 +1274,7 @@ static const Page mspMemoryExt
     "¬Ќ≈ЎЌ «”", "EXT STORAGE",
     "–абота с внешним запоминающим устройством.",
     "Work with external storage device.",
-    Page::EMemoryExt, &itemsMemoryExt
+    NamePage::MemoryExt, &itemsMemoryExt
 );
 
 // ѕјћя“№ - ¬нутр «” ///////////////////////////////////////////////////////////////////////////////////////
@@ -1346,7 +1346,7 @@ static const Page pMemory              // ѕјћя“№
     "ѕјћя“№", "MEMORY",
     "–абота с внешней и внутренней пам€тью.",
     "Working with external and internal memory.",
-    Page::EMemory, &itemsMemory
+    NamePage::Memory, &itemsMemory
 );
 
 

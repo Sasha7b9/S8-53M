@@ -49,7 +49,7 @@ const Page pTrig              // СИНХР
     "СИНХР", "TRIG",
     "Содержит настройки синхронизации.",
     "Contains synchronization settings.",
-    Page::ETrig, &itemsTrig
+    NamePage::Trig, &itemsTrig
 );
 
 
@@ -184,7 +184,7 @@ static const Page mpAutoFind
     "ПОИСК", "SEARCH",
     "Управление автоматическим поиском уровня синхронизации.",
     "Office of the automatic search the trigger level.",
-    Page::ETrigAuto, &itemsAutoFind
+    NamePage::TrigAuto, &itemsAutoFind
 );
 
 

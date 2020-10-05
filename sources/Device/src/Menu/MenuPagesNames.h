@@ -3,42 +3,42 @@
 // гДЕЯЭ ID БЯЕУ ОПЕДЯРЮБКЕММШУ Б ЛЕМЧ ЯРПЮМХЖ
 enum NamePage
 {
-    Page::EDisplay,               // дхяоеи
-    Page::EDisplayAccumulation,   // дхяокеи - мюйнокемхе
-    Page::EDisplayAverage,        // дхяокеи - сяпедмемхе
-    Page::EDisplayGrid,           // дхяокеи - яерйю
-    Page::EDisplayRefresh,        // дхяокеи - намнбкемхе
-    Page::EMainPage,              // цКЮБМЮЪ ЯРПЮМХЖЮ ЛЕМЧ. хГ МЕ╦ ПЮЯРСР БЯЕ НЯРЮКЭМШЕ
-    Page::EDebug,                 // нркюдйю
-    Page::EDebugConsole,          // нркюдйю - йнмянкэ
-    Page::EDebugADC,              // нркюдйю - южо
-    Page::EDebugADCbalance,       // нркюдйю - южо - аюкюмя
-    Page::EDebugADCstretch,       // нркюдйю - южо - пюяръфйю
-    Page::EDebugADCrShift,        // нркюдйю - южо - дно. ялеыемхе
-    Page::EDebugADCaltShift,      // нркюдйю - южо - дно. ялеы. оюл.
-    Page::EDebugShowRegisters,    // нркюдйю - пецхярпш
-    Page::EDebugRandomizer,       // нркюдйю - пюмд-рнп
-    Page::EDebugInformation,      // нркюдйю - хмтнплюжхъ
-    Page::EDebugSound,            // нркюдйю - гбсй
-    Page::EDebugAltera,           // нркюдйю - юкэрепю
-    Page::EChannel0,              // йюмюк 1
-    Page::EChannel1,              // йюмюк 2
-    Page::ECursors,               // йспянпш
-    Page::ETrig,                  // яхмуп.
-    Page::EMemory,                // оюлърэ
-    Page::EMemoryExt,             // оюлърэ - бмеьм. гс
-    Page::EMeasures,              // хглепемхъ
-    Page::EMeasuresField,         // хглепемхъ - гнмю
-    Page::EService,               // яепбхя
-    Page::EServiceDisplay,        // яепбхя - дхяокеи
-    Page::EServiceDisplayColors,  // яепбхя - дхяокеи - жберю
-    Page::EServiceCalibrator,     // яепбхя - йюкхапюрнп
-    Page::EServiceEthernet,       // яепбхя - ETHERNET
-    Page::EHelp,                  // онлныэ
-    Page::ETime,                  // пюгбепрйю
-    Page::EMath,                  // яепбхя - люрелюрхйю
-    Page::EMathFFT,
-    Page::ETrigAuto,              // яхмуп - юбр онхяй
+    NamePage::Display,               // дхяоеи
+    NamePage::DisplayAccumulation,   // дхяокеи - мюйнокемхе
+    NamePage::DisplayAverage,        // дхяокеи - сяпедмемхе
+    NamePage::DisplayGrid,           // дхяокеи - яерйю
+    NamePage::DisplayRefresh,        // дхяокеи - намнбкемхе
+    NamePage::MainPage,              // цКЮБМЮЪ ЯРПЮМХЖЮ ЛЕМЧ. хГ МЕ╦ ПЮЯРСР БЯЕ НЯРЮКЭМШЕ
+    NamePage::Debug,                 // нркюдйю
+    NamePage::DebugConsole,          // нркюдйю - йнмянкэ
+    NamePage::DebugADC,              // нркюдйю - южо
+    NamePage::DebugADCbalance,       // нркюдйю - южо - аюкюмя
+    NamePage::DebugADCstretch,       // нркюдйю - южо - пюяръфйю
+    NamePage::DebugADCrShift,        // нркюдйю - южо - дно. ялеыемхе
+    NamePage::DebugADCaltShift,      // нркюдйю - южо - дно. ялеы. оюл.
+    NamePage::DebugShowRegisters,    // нркюдйю - пецхярпш
+    NamePage::DebugRandomizer,       // нркюдйю - пюмд-рнп
+    NamePage::DebugInformation,      // нркюдйю - хмтнплюжхъ
+    NamePage::DebugSound,            // нркюдйю - гбсй
+    NamePage::DebugAltera,           // нркюдйю - юкэрепю
+    NamePage::Channel0,              // йюмюк 1
+    NamePage::Channel1,              // йюмюк 2
+    NamePage::Cursors,               // йспянпш
+    NamePage::Trig,                  // яхмуп.
+    NamePage::Memory,                // оюлърэ
+    NamePage::MemoryExt,             // оюлърэ - бмеьм. гс
+    NamePage::Measures,              // хглепемхъ
+    NamePage::MeasuresField,         // хглепемхъ - гнмю
+    NamePage::Service,               // яепбхя
+    NamePage::ServiceDisplay,        // яепбхя - дхяокеи
+    NamePage::ServiceDisplayColors,  // яепбхя - дхяокеи - жберю
+    NamePage::ServiceCalibrator,     // яепбхя - йюкхапюрнп
+    NamePage::ServiceEthernet,       // яепбхя - ETHERNET
+    NamePage::Help,                  // онлныэ
+    NamePage::Time,                  // пюгбепрйю
+    NamePage::Math,                  // яепбхя - люрелюрхйю
+    NamePage::MathFFT,
+    NamePage::TrigAuto,              // яхмуп - юбр онхяй
     NamePage::SB_Curs,               // нРЙПШРЮ ЯРПЮМХЖЮ йспянпш - хГЛЕПЕМХЪ
     NamePage::SB_MeasTuneMeas,       // нРЙПШРЮ ЯРПЮМХЖЮ хглепемхъ - мЮЯРПНХРЭ
     NamePage::SB_MeasTuneField,      // нРЙПШРЮ ЯРПЮМХЖЮ хглепемхъ - гнмю - гЮДЮРЭ

@@ -734,7 +734,7 @@ void ItemSmallButton_Draw(SmallButton *smallButton, int x, int y)
     }
 }
 
-void ItemPage::EDraw(Page *page, int x, int y)
+void ItemPage_Draw(Page *page, int x, int y)
 {
     bool isShade = Menu::IsShade(page) || !Menu::ItemIsActive(page);
     bool isPressed = Menu::IsPressed(page);

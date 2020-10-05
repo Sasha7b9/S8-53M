@@ -290,7 +290,7 @@ bool Menu::ItemIsActive(void *item)
 
 int Menu::NumItemsInPage(const Page * const page) 
 {
-    if (page->name == Page::EMainPage)
+    if (page->name == NamePage::MainPage)
     {
         return (SHOW_DEBUG_MENU == 0) ? 10 : 11;
     }
@@ -390,7 +390,7 @@ void Menu::ShortPressOnPageItem(Page *page, int numItem)
 }
 
 
-Page* Menu::PagePointerFromName(NamePage)
+Page* Menu::PagePointerFromName(NamePage::E)
 {
     return 0;
 }

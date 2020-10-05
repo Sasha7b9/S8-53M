@@ -187,7 +187,7 @@ static const Page pCursors                // КУРСОРЫ
     "КУРСОРЫ", "CURSORS",
     "Курсорные измерения.",
     "Cursor measurements.",
-    Page::ECursors, &itemsCursors
+    NamePage::Cursors, &itemsCursors
 );
 
 void *PageCursors::GetPointer()
