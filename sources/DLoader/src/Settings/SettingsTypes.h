@@ -1,29 +1,6 @@
 #pragma once
 
 
-struct ColorScheme { enum E
-{
-    WhiteLetters,       // В этом случае заголовки элементов меню пишутся белым - не очень хорошо видно снизу
-    BlackLetters        // В этом случае заголовки элементов меню пишутся чёрным - не очень красиво выглядит
-};};
-
-// Режим отрисовки сигнала.
-struct ModeDrawSignal { enum E
-{
-    Lines = 0,   // линиями
-    Points = 1   // точками
-};};
-
-// Тип сетки на экране.
-struct TypeGrid { enum E
-{
-    _1,
-    _2,
-    _3,
-    _4,
-    Count
-};};
-
 // Количество накоплений.
 struct ENumAccumulation { enum E
 {
@@ -436,19 +413,3 @@ struct BalanceADCtype { enum E
     Settings,    // Используются значения балансировки, которые получены автоматически.
     Hand         // Используются значения балансировки, заданные вручную.
 };};
-
-// Тип растяжки АЦП
-struct StretchADCtype { enum E
-{
-    Disable,
-    Settings,
-    Hand
-};};
-
-// Тип дополнительного смещения
-enum RShiftADCtype
-{
-    RShiftADC_Disable,
-    RShiftADC_Settings,
-    RShiftADC_Hand
-};

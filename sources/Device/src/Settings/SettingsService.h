@@ -21,15 +21,6 @@ struct CalibratorMode { enum E
     GND             // На выходе калибратора 0В.
 };};
 
-// Цветовая схема
-struct ColorScheme { enum E
-{
-    WhiteLetters,   // В этом случае заголовки элементов меню пишутся белым - не очень хорошо видно снизу.
-    BlackLetters    // В этом случае заголовки элементов меню пишутся чёрным - не очень красиво выглядит.
-};};
-
-
-
 // Настройки меню СЕРВИС.
 struct SettingsService
 { //-V802
@@ -39,8 +30,6 @@ struct SettingsService
     int8              IPaddress;           // IP-адрес (временно).
     ColorScheme::E    colorScheme;         // Цветовая схеама.
 };
-
-
 
 bool sService_MathEnabled();
 

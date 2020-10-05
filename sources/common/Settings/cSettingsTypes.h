@@ -28,7 +28,6 @@ struct ENUM_POINTS_FPGA { enum E
 };};
 
 
-
 // Источинк сигнала для отображения спектра.
 struct SourceFFT { enum E
 {
@@ -37,9 +36,46 @@ struct SourceFFT { enum E
     Both        // Расчёт и отображение спектров обоих каналов.
 };};
 
+
 // Язык меню
 struct Language { enum E
 {
     Russian,    // Русский
     English     // Английский
+};};
+
+
+// Тип растяжки АЦП
+struct StretchADCtype { enum E
+{
+    Disable,
+    Settings,
+    Hand
+};};
+
+
+// Режим отрисовки сигнала.
+struct ModeDrawSignal {enum E
+{
+    Lines,      // Сигнал рисуется линиями.
+    Points      // Сигнал рисуется точками.
+};};
+
+
+// Тип сетки на экране.
+struct TypeGrid { enum E
+{
+    _1,
+    _2,
+    _3,
+    _4,
+    Count
+};};
+
+
+// Цветовая схема
+struct ColorScheme { enum E
+{
+    WhiteLetters,   // В этом случае заголовки элементов меню пишутся белым - не очень хорошо видно снизу.
+    BlackLetters    // В этом случае заголовки элементов меню пишутся чёрным - не очень красиво выглядит.
 };};

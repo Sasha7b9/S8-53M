@@ -158,14 +158,6 @@ struct BalanceADCtype { enum E
     Hand         // Используются значения балансировки, заданные вручную.
 };};
 
-// Тип растяжки АЦП
-struct StretchADCtype { enum E
-{
-    Disable,
-    Settings,
-    Hand
-};};
-
 // Тип дополнительного смещения
 struct RShiftADCtype { enum E
 {

@@ -52,21 +52,13 @@ struct Color { enum E
 #define __IO volatile
 #endif
 
-typedef void    (*pFuncVV)();               // ”казатель на функцию, ничего не принимающую и ничего не возвращающую.
-typedef void    (*pFuncVpV)(void*);             // ”казатель на функцию, принимающую указатель на void и ничего не возвращающую.
+typedef void    (*pFuncVV)();
 typedef bool    (*pFuncBV)();
 typedef void    (*pFuncVB)(bool);
 typedef void    (*pFuncVI)(int);
 typedef void    (*pFuncVII)(int, int);
-typedef void    (*pFuncVIIC)(int, int, Color);
-typedef void    (*pFuncVI16)(int16);
-typedef bool    (*pFuncBU8)(uint8);
-typedef void    (*pFuncVI16pI16pI16)(int16, int16*, int16*);
-typedef float   (*pFuncFU8)(uint8);
-typedef char*   (*pFuncCFB)(float, bool);
 typedef char*   (*pFuncCFBC)(float, bool, char*);
 typedef void    (*pFuncpU8)(uint8*);
-typedef void    (*pFuncVpVIIB)(void*, int, int, bool);
 
 #define _GET_BIT(value, bit) (((value) >> (bit)) & 0x01)
 #define _SET_BIT(value, bit) ((value) |= (1 << (bit)))

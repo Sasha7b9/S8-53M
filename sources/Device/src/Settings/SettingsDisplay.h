@@ -69,24 +69,6 @@
 #define LINKING_RSHIFT_IS_VOLTAGE   (LINKING_RSHIFT == LinkingRShift::Voltage)   // \c true, если привязка к абсолютному напряжению.
 
 
-
- // Режим отрисовки сигнала.
-struct ModeDrawSignal { enum E
-{
-    Lines,      // Сигнал рисуется линиями.
-    Points      // Сигнал рисуется точками.
-}; };
-
-// Тип сетки на экране.
-struct TypeGrid { enum E
-{
-    _1,
-    _2,
-    _3,
-    _4,
-    Count
-}; };
-
 // Перечисление накоплений.
 struct ENumAccumulation { enum E
 {
