@@ -503,7 +503,7 @@ void FPGA::SetTrigSource(TrigSource::E trigSource)
 }
 
 
-void FPGA::SetTrigPolarity(TrigPolarity polarity)
+void FPGA::SetTrigPolarity(TrigPolarity::E polarity)
 {
     TRIG_POLARITY = polarity;
     LoadTrigPolarity();

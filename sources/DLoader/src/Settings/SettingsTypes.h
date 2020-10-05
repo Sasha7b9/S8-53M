@@ -190,11 +190,11 @@ struct TrigSource { enum E
 };};
 
 // Тип синхронизацц
-enum TrigPolarity
+struct TrigPolarity { enum E
 {
-    TrigPolarity_Front,     // По фронту
-    TrigPolarity_Back       // По срезу
-};
+    Front,     // По фронту
+    Back       // По срезу
+};};
 
 // Вход синхронизации
 enum TrigInput

@@ -87,7 +87,7 @@ public:
     // Установить источник синхронизации.
     static void SetTrigSource(TrigSource::E trigSource);
     // Установить полярность синхронизации.
-    static void SetTrigPolarity(TrigPolarity polarity);
+    static void SetTrigPolarity(TrigPolarity::E polarity);
     // Установить режим входа синхронизации.
     static void SetTrigInput(TrigInput trigInput);
     // Возвращает установленное смещение по времени в текстовом виде, пригодном для вывода на экран.

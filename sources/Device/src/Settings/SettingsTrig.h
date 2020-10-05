@@ -15,10 +15,10 @@
 #define START_MODE_IS_AUTO      (START_MODE == StartMode::Auto)         // \c true, если автоматический режим запуска.
 
 #define TRIG_SOURCE             (set.trig.source)                       // SettingsTrig.source
-#define TRIG_SOURCE_IS_EXT      (TRIG_SOURCE == TrigSource::Ext)         // \c true, если внешний источник синхронизации.
+#define TRIG_SOURCE_IS_EXT      (TRIG_SOURCE == TrigSource::Ext)        // \c true, если внешний источник синхронизации.
 
 #define TRIG_POLARITY           (set.trig.polarity)                     // SettingsTrig.polarity
-#define TRIG_POLARITY_IS_FRONT  (TRIG_POLARITY == TrigPolarity_Front)   // \c true, если синхронизация по фронту.
+#define TRIG_POLARITY_IS_FRONT  (TRIG_POLARITY == TrigPolarity::Front)  // \c true, если синхронизация по фронту.
 
 #define TRIG_INPUT              (set.trig.input)                        // SettingsTrig.input
 #define TRIG_INPUT_IS_AC        (TRIG_INPUT == TrigInput_AC)            // \c true, если закрытый вход синхронизации.
@@ -56,11 +56,11 @@ struct TrigSource { enum E
 };};
 
 // Тип синхронизацц
-enum TrigPolarity
+struct TrigPolarity { enum E
 {
-    TrigPolarity_Front,         // Синхронизация по фронту.
-    TrigPolarity_Back           // Синхронизация по срезу.
-};
+    Front,  // Синхронизация по фронту.
+    Back    // Синхронизация по срезу.
+};};
 
 // Вход синхронизации.
 enum TrigInput
@@ -94,7 +94,7 @@ struct SettingsTrig
 {
     StartMode::E        startMode;          // Режим запуска.
     TrigSource::E       source;             // Источник.
-    TrigPolarity        polarity;           // Тип синхронизации.
+    TrigPolarity::E     polarity;           // Тип синхронизации.
     TrigInput           input;              // Вход синхронизации.
     int16               levelRel[3];        // Уровень синхронизации для трёх источников.
     ModeLongPressTrig   modeLongPressTrig;  // Режим работы длительного нажатия кнопки СИНХР.

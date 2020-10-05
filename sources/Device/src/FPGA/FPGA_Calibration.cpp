@@ -403,7 +403,7 @@ int16 CalculateAdditionRShift(Channel::E chan, Range range)
     FPGA::SetRShift(chan, RShiftZero);
     FPGA::SetTBase(TBase::_200us);
     FPGA::SetTrigSource(chan == Channel::A ? TrigSource::A : TrigSource::B);
-    FPGA::SetTrigPolarity(TrigPolarity_Front);
+    FPGA::SetTrigPolarity(TrigPolarity::Front);
     FPGA::SetTrigLev((TrigSource::E)chan, TrigLevZero);
 
     FPGA::WriteToHardware(WR_UPR, BINARY_U8(00000000), false);   // Устанавливаем выход калибратора в ноль
