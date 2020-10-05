@@ -9,12 +9,12 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 static struct tcp_pcb *pcbClient = 0;      // 0, если клиент не приконнекчен
 
-enum States
+struct States { enum E
 {
-    S_ACCEPTED,
-    S_RECIEVED,
-    S_CLOSING
-};
+    ACCEPTED,
+    RECIEVED,
+    CLOSING
+};};
 
 struct State
 {
@@ -109,7 +109,7 @@ err_t CallbackOnSent(void *_arg, struct tcp_pcb *_tpcb, u16_t _len)
     else
     {
         // no more pbufs to send
-        if (ss->state == S_CLOSING)
+        if (ss->state == States::CLOSING)
         {
             CloseConnection(_tpcb, ss);
         }
@@ -147,7 +147,7 @@ err_t CallbackOnRecieve(void *_arg, struct tcp_pcb *_tpcb, struct pbuf *_p, err_
     if (_p == NULL)
     {
         // remote host closed connection
-        ss->state = S_CLOSING;
+        ss->state = States::CLOSING;
         if (ss->p == NULL)
         {
             // we're done sending, close it
@@ -170,27 +170,27 @@ err_t CallbackOnRecieve(void *_arg, struct tcp_pcb *_tpcb, struct pbuf *_p, err_
         }
         ret_err = _err;
     }
-    else if (ss->state == S_ACCEPTED)
+    else if (ss->state == States::ACCEPTED)
     {
         if (ss->numPort == POLICY_PORT)
         {
             pbuf_free(_p);
-            ss->state = S_RECIEVED;
+            ss->state = States::RECIEVED;
             SendAnswer(ss, _tpcb);
-            ss->state = S_CLOSING;
+            ss->state = States::CLOSING;
             ret_err = ERR_OK;
         }
         else
         {
             // first data chunk in _p->payload
-            ss->state = S_RECIEVED;
+            ss->state = States::RECIEVED;
             // store reference to incoming pbuf (chain)
             //ss->p = _p;
             // Send(_tpcb, ss);
             ret_err = ERR_OK;
         }
     }
-    else if (ss->state == S_RECIEVED)
+    else if (ss->state == States::RECIEVED)
     {
         // read some more data
         if (ss->p == NULL)
@@ -217,7 +217,7 @@ err_t CallbackOnRecieve(void *_arg, struct tcp_pcb *_tpcb, struct pbuf *_p, err_
         }
         ret_err = ERR_OK;
     }
-    else if (ss->state == S_CLOSING)
+    else if (ss->state == States::CLOSING)
     {
         // odd case, remote side closing twice, trash data
         tcp_recved(_tpcb, _p->tot_len);
@@ -273,7 +273,7 @@ err_t CallbackOnPoll(void *_arg, struct tcp_pcb *_tpcb)
         else
         {
             // no remaining pbuf (chain)
-            if (ss->state == S_CLOSING)
+            if (ss->state == States::CLOSING)
             {
                 CloseConnection(_tpcb, ss);
             }
@@ -309,7 +309,7 @@ err_t CallbackOnAccept(void *_arg, struct tcp_pcb *_newPCB, err_t _err)
 
     if (s)
     {
-        s->state = S_ACCEPTED;
+        s->state = States::ACCEPTED;
         s->numPort = ((unsigned short)POLICY_PORT == _newPCB->local_port) ? POLICY_PORT : DEFAULT_PORT;
         s->p = NULL;
         /* pass newly allocated s to our callbacks */
@@ -327,7 +327,7 @@ err_t CallbackOnAccept(void *_arg, struct tcp_pcb *_newPCB, err_t _err)
                 pcbClient = _newPCB;
                 SocketFuncConnect();
                 CLIENT_LAN_IS_CONNECTED = 1;
-                s->state = S_RECIEVED;
+                s->state = States::RECIEVED;
             }
         }
 
