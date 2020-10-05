@@ -106,7 +106,7 @@ struct SettingsMemory
 struct SettingsMath
 {
     ScaleFFT::E     scaleFFT;
-    SourceFFT       sourceFFT;
+    SourceFFT::E    sourceFFT;
     WindowFFT::E    windowFFT;
     FFTmaxDB::E     fftMaxDB;
     Function::E     func;

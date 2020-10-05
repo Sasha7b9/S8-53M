@@ -376,34 +376,17 @@ struct MeasuresField { enum E
 };};
 
 
-// Math
-
-
 struct Function { enum E
 {
     Sum,
     Mul
 };};
 
-enum ScaleMath
-{
-    ScaleMath_Channel0,     // Масштаб берётся из канала 1
-    ScaleMath_Channel1,     // Масштаб берётся из канала 2
-    ScaleMath_Hand          // Масштаб задаётся вручную.
-};
-
 struct ScaleFFT { enum E
 {
     Log,           // Это значение означает логарифмическую шкалу вывода спектра
     Linear         // Это значение означает линейную шкалу вывода спектра
 }; };
-
-enum SourceFFT
-{
-    SourceFFT_Channel0,
-    SourceFFT_Channel1,
-    SourceFFT_Both
-};
 
 struct WindowFFT { enum E
 {
