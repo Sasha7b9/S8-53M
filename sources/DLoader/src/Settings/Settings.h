@@ -165,11 +165,11 @@ struct SettingsEthernet
                                     
 struct SettingsCommon
 {
-    int     countEnables;               // Количество включений. Увеличивается при каждом включении
-    int     countErasedFlashData;       // Сколько раз стирался первый сектор с ресурсами
-    int     countErasedFlashSettings;   // Сколько раз стирался сектор с настройкаи
-    int     workingTimeInSecs;          // Время работы в секундах
-    Language lang;                      // Язык меню
+    int         countEnables;               // Количество включений. Увеличивается при каждом включении
+    int         countErasedFlashData;       // Сколько раз стирался первый сектор с ресурсами
+    int         countErasedFlashSettings;   // Сколько раз стирался сектор с настройкаи
+    int         workingTimeInSecs;          // Время работы в секундах
+    Language::E lang;                       // Язык меню
 };
 
 struct OutputRegisters

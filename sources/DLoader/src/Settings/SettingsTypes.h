@@ -417,16 +417,6 @@ struct ModeRegSet { enum E
 };};
 
 
-// Service
-
-
-// язык меню
-enum Language
-{
-    Russian,    // –усский
-    English     // јнглийский
-};
-
 struct CalibratorMode { enum E
 {
     Freq,
