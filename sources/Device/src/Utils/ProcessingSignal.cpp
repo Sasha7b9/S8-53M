@@ -84,11 +84,11 @@ void Processing::CalculateMeasures()
     periodAccurateIsCalculating[0] = periodAccurateIsCalculating[1] = false;
     picIsCalculating[0] = picIsCalculating[1] = false;
 
-    for(int str = 0; str < Measure_NumRows(); str++)
+    for(int str = 0; str < Measure::NumRows(); str++)
     {
-        for(int elem = 0; elem < Measure_NumCols(); elem++)
+        for(int elem = 0; elem < Measure::NumCols(); elem++)
         {
-            Measure::E meas = Measure_Type(str, elem);
+            Measure::E meas = Measure::Type(str, elem);
             if (meas == Measure::TimeNarastaniya)
             {
                 meas = meas;

@@ -1858,8 +1858,8 @@ void Display::DrawMeasures()
     int dY = Measure::GetDY();
     int y0 = Measure_GetTopTable();
 
-    int numRows = Measure_NumRows();
-    int numCols = Measure_NumCols();
+    int numRows = Measure::NumRows();
+    int numCols = Measure::NumCols();
 
     for(int str = 0; str < numRows; str++)
     {
@@ -1869,7 +1869,7 @@ void Display::DrawMeasures()
             int y = y0 + str * dY;
             bool active = Measure::IsActive(str, elem) && Menu::GetNameOpenedPage() == NamePage::SB_MeasTuneMeas;
             Color::E color = active ? COLOR_BACK : COLOR_FILL;
-            Measure::E meas = Measure_Type(str, elem);
+            Measure::E meas = Measure::Type(str, elem);
             if(meas != Measure::None)
             {
                 Painter::FillRegionC(x, y, dX, dY, COLOR_BACK);
@@ -1883,11 +1883,11 @@ void Display::DrawMeasures()
             if(meas != Measure::None)
             {
                 char buffer[20];
-                Painter::DrawTextC(x + 4, y + 2, Measure_Name(str, elem), color);
+                Painter::DrawTextC(x + 4, y + 2, Measure::Name(str, elem), color);
                 if(meas == MEAS_MARKED)
                 {
                     Painter::FillRegionC(x + 1, y + 1, dX - 2, 9, active ? COLOR_BACK : COLOR_FILL);
-                    Painter::DrawTextC(x + 4, y + 2, Measure_Name(str, elem), active ? COLOR_FILL : COLOR_BACK);
+                    Painter::DrawTextC(x + 4, y + 2, Measure::Name(str, elem), active ? COLOR_FILL : COLOR_BACK);
                 }
                 if(MEAS_SOURCE_IS_A)
                 {

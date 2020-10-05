@@ -50,22 +50,22 @@ static int8 posOnPageChoice = 0;            // Позиция курсора на странице выбор
 
 bool Measure::IsActive(int row, int col)
 {
-    if(posActive >= Measure_NumCols() * Measure_NumRows())
+    if(posActive >= Measure::NumCols() * Measure::NumRows())
     {
         posActive = 0;
     }
-    return (row * Measure_NumCols() + col) == posActive;
+    return (row * Measure::NumCols() + col) == posActive;
 }
 
 void Measure::GetActive(int *row, int *col)
 {
-    *row = posActive / Measure_NumCols();
-    *col = posActive - (*row) * Measure_NumCols();
+    *row = posActive / Measure::NumCols();
+    *col = posActive - (*row) * Measure::NumCols();
 }
 
 void Measure::SetActive(int row, int col)
 {
-    posActive = static_cast<int8>(row * Measure_NumCols() + col);
+    posActive = static_cast<int8>(row * Measure::NumCols() + col);
 }
 
 char Measure::GetChar(Measure::E measure)
@@ -87,15 +87,15 @@ int Measure::GetDX()
     return GRID_WIDTH / 5; 
 }
 
-const char* Measure_Name(int row, int col)
+const char* Measure::Name(int row, int col)
 {
-    int numMeasure = row * Measure_NumCols() + col;
+    int numMeasure = row * Measure::NumCols() + col;
     return measures[MEASURE(numMeasure)].name;
 }
 
-Measure::E Measure_Type(int row, int col)
+Measure::E Measure::Type(int row, int col)
 {
-    int numMeasure = row * Measure_NumCols() + col;
+    int numMeasure = row * Measure::NumCols() + col;
     return MEASURE(numMeasure);
 }
 
@@ -105,16 +105,16 @@ int Measure_GetTopTable()
     {
         return GRID_BOTTOM - Measure::GetDY() * 6;
     }
-    return GRID_BOTTOM - Measure_NumRows() * Measure::GetDY();
+    return GRID_BOTTOM - Measure::NumRows() * Measure::GetDY();
 }
 
-int Measure_NumCols()
+int Measure::NumCols()
 {
     static const int cols[] = {1, 2, 5, 5, 5, 1, 2};
     return cols[MEAS_NUM];
 }
 
-int Measure_NumRows()
+int Measure::NumRows()
 {
     static const int rows[] = {1, 1, 1, 2, 3, 6, 6};
     return rows[MEAS_NUM];
@@ -188,18 +188,18 @@ void Measure_RotateRegSet(int angle)
         col += Math_Sign(currentAngle);
         if (col < 0)
         {
-            col = Measure_NumCols() - 1;
+            col = Measure::NumCols() - 1;
             row--;
             if (row < 0)
             {
-                row = Measure_NumRows() - 1;
+                row = Measure::NumRows() - 1;
             }
         }
-        else if (col == Measure_NumCols())
+        else if (col == Measure::NumCols())
         {
             col = 0;
             row++;
-            if (row >= Measure_NumRows())
+            if (row >= Measure::NumRows())
             {
                 row = 0;
             }
