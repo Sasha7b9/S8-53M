@@ -9,7 +9,7 @@
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-static Channel chan = A;
+static Channel::E chan = Channel::A;
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -27,7 +27,7 @@ ENTER_PARSE_FUNC(SCPI::ProcessCHANNEL)
         {0}
     };
 
-    chan = (char)(*(buffer - 2)) == '1' ? A : B;
+    chan = (char)(*(buffer - 2)) == '1' ? Channel::A : Channel::B;
 
     SCPI::ProcessingCommand(commands, buffer);
 }
@@ -73,9 +73,9 @@ void SCPI::CHANNEL::COUPLE(uint8 *buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (0 == value)         { SET_COUPLE(chan) = ModeCouple_DC; func[chan](true); }
-        else if (1 == value)    { SET_COUPLE(chan) = ModeCouple_AC; func[chan](true); }
-        else if (2 == value)    { SET_COUPLE(chan) = ModeCouple_GND; func[chan](true); }
+        if (0 == value)         { SET_COUPLE(chan) = ModeCouple::DC; func[chan](true); }
+        else if (1 == value)    { SET_COUPLE(chan) = ModeCouple::AC; func[chan](true); }
+        else if (2 == value)    { SET_COUPLE(chan) = ModeCouple::GND; func[chan](true); }
         else if (3 == value)
         {
             SCPI_SEND(":CHANNEL%d:COUPLING %s", Tables_GetNumChannel(chan), map[SET_COUPLE(chan)].key);

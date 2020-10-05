@@ -395,13 +395,13 @@ void Menu::ProcessingShortPressureButton()
                 NamePage name = GetNamePage((const Page *)OpenedItem());
                 if(button == B_Channel0 && name == Page_Channel0)
                 {
-                    SET_ENABLED_A = !sChannel_Enabled(A);
+                    SET_ENABLED_A = !sChannel_Enabled(Channel::Channel::A);
                     OnChanged_InputA(true);
                     break;
                 }
                 if(button == B_Channel1 && name == Page_Channel1)
                 {
-                    SET_ENABLED_B = !sChannel_Enabled(B);
+                    SET_ENABLED_B = !sChannel_Enabled(Channel::Channel::B);
                     OnChanged_InputB(true);
                     break;
                 }
@@ -438,11 +438,11 @@ void Menu::ProcessingLongPressureButton(void)
         }
         else if(longPressureButton == B_Channel0)
         {
-            FPGA::SetRShift(A, RShiftZero);
+            FPGA::SetRShift(Channel::A, RShiftZero);
         }
         else if(longPressureButton == B_Channel1)
         {
-            FPGA::SetRShift(B, RShiftZero);
+            FPGA::SetRShift(Channel::B, RShiftZero);
         }
         else if(longPressureButton == B_Menu)
         {

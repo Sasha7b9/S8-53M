@@ -55,15 +55,15 @@ public:
     // Найти и установить уровень синхронизации по последнему считанному сигналу
     static void FindAndSetTrigLevel();
     // Установить режим канала по входу.
-    static void SetModeCouple(Channel chan, ModeCouple modeCoupe);
+    static void SetModeCouple(Channel::E chan, ModeCouple::E modeCoupe);
     // Включить/выключить фильтр на входе канала.
-    static void EnableChannelFiltr(Channel chan, bool enable);
+    static void EnableChannelFiltr(Channel::E chan, bool enable);
     // Установить масштаб по напряжению.
-    static void SetRange(Channel chan, Range range);
+    static void SetRange(Channel::E chan, Range range);
     // Увеличить масштаб по напряжению.
-    static bool RangeIncrease(Channel chan);
+    static bool RangeIncrease(Channel::E chan);
     // Уменьшить масштаб по напряжению.
-    static bool RangeDecrease(Channel chan);
+    static bool RangeDecrease(Channel::E chan);
     // Установить масштаб по времени.
     static void SetTBase(TBase::E tBase);
     // Уменьшить масштаб по времени.
@@ -71,7 +71,7 @@ public:
     // Увеличить масштаб по времени.
     static void TBaseIncrease();
     // Установить относительное смещение по напряжению.
-    static void SetRShift(Channel chan, int16 rShift);
+    static void SetRShift(Channel::E chan, int16 rShift);
     // Установить относительное смещение по времени.
     static void SetTShift(int tShift);
     // Установить добавочное смещение по времени для режима рандомизатора. В каждой развёртке это смещение должно быть разное.
@@ -81,7 +81,7 @@ public:
     // Включить/выключить калибратор.
     static void SetCalibratorMode(CalibratorMode calibratorMode);
     // Загрузить в аппарат коэффициенты калибровки каналов.
-    static void LoadKoeffCalibration(Channel chan);
+    static void LoadKoeffCalibration(Channel::E chan);
     // Установить относительный уровень синхронизации.
     static void SetTrigLev(TrigSource chan, int16 trigLev);
     // Установить источник синхронизации.
@@ -105,9 +105,9 @@ private:
     // Загрузка смещения по времени в аппаратную часть.
     static void LoadTShift();
     // Загрузка масштаба по напряжению в аппаратную часть.
-    static void LoadRange(Channel chan);
+    static void LoadRange(Channel::E chan);
     // Загрузка смещения по напряжению в аппаратную часть.
-    static void LoadRShift(Channel chan);
+    static void LoadRShift(Channel::E chan);
     // Загрузка уровня синхронизации в аппаратную часть.
     static void LoadTrigLev();                                  
     // Загузка полярности синхронизации в аппаратную часть.
@@ -130,7 +130,7 @@ private:
 
     static int CalculateShift();
     // Инвертирует данные.
-    static void InverseDataIsNecessary(Channel chan, uint8 *data);
+    static void InverseDataIsNecessary(Channel::E chan, uint8 *data);
 
     static void AutoFind();
 
@@ -144,11 +144,11 @@ private:
 
     static void ReadRealMode(bool necessaryShift);
 
-    static Range AccurateFindRange(Channel chan);
+    static Range AccurateFindRange(Channel::E chan);
 
-    static TBase::E FindTBase(Channel chan);
+    static TBase::E FindTBase(Channel::E chan);
 
-    static TBase::E AccurateFindTBase(Channel chan);
+    static TBase::E AccurateFindTBase(Channel::E chan);
 
-    static bool FindWave(Channel chan);
+    static bool FindWave(Channel::E chan);
 };

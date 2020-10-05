@@ -242,7 +242,7 @@ bool FPGA::IsRunning(void)
     *addr = data;
 
 /*
-static uint8 InverseIfNecessary(uint8 data, Channel chan)
+static uint8 InverseIfNecessary(uint8 data, Channel::E chan)
 {
     if (set.chan[chan].inverse)  
     {
@@ -306,23 +306,23 @@ void FPGA::ReadRandomizeMode(void)
         */
             if (pData0 >= first0 && pData0 <= last0)
             {
-                WRITE_AND_OR_INVERSE(pData0, data00, A);
+                WRITE_AND_OR_INVERSE(pData0, data00, Channel::A);
             }
 
             uint8 *addr = pData0 + addShiftMem;
             if (addr >= first0 && addr <= last0)
             {
-//                WRITE_AND_OR_INVERSE(addr, data01, A);
+//                WRITE_AND_OR_INVERSE(addr, data01, Channel::A);
             }
 
             if (pData1 >= first1 && pData1 <= last1)
             {
-                WRITE_AND_OR_INVERSE(pData1, data10, B);
+                WRITE_AND_OR_INVERSE(pData1, data10, Channel::B);
             }
             addr = pData1 + addShiftMem;
             if (addr >= first1 && addr <= last1)
             {
-//                WRITE_AND_OR_INVERSE(addr, data11, B);
+//                WRITE_AND_OR_INVERSE(addr, data11, Channel::B);
             }
         /*
         }
@@ -330,25 +330,25 @@ void FPGA::ReadRandomizeMode(void)
         {
             if (pData0 >= first0 && pData0 <= last0)
             {
-                *pData0 = (float)(numAve - 1) / (float)(numAve)* (*pData0) + InverseIfNecessary(data00, A) * 1.0f / (float)numAve;
+                *pData0 = (float)(numAve - 1) / (float)(numAve)* (*pData0) + InverseIfNecessary(data00, Channel::A) * 1.0f / (float)numAve;
             }
 
             uint8 *addr = pData0 + addShiftMem;
             if (addr >= first0 && addr <= last0)
             {
-                *addr = (float)(numAve - 1) / (float)(numAve)* (*(pData0 + addShiftMem)) + InverseIfNecessary(data01, A) * 1.0f / (float)numAve;
+                *addr = (float)(numAve - 1) / (float)(numAve)* (*(pData0 + addShiftMem)) + InverseIfNecessary(data01, Channel::A) * 1.0f / (float)numAve;
             }
 
             if (pData1 >= first1 && pData1 <= last1)
             {
-                *pData1 = (float)(numAve - 1) / (float)(numAve)* (*pData1) + InverseIfNecessary(data10, B) * 1.0f / (float)numAve;
+                *pData1 = (float)(numAve - 1) / (float)(numAve)* (*pData1) + InverseIfNecessary(data10, Channel::B) * 1.0f / (float)numAve;
             }
 
             addr = pData1 + addShiftMem;
 
             if (addr >= first1 && addr <= last1)
             {
-                *addr = (float)(numAve - 1) / (float)(numAve)* (*(pData1 + addShiftMem)) + InverseIfNecessary(data11, B) * 1.0f / (float)numAve;
+                *addr = (float)(numAve - 1) / (float)(numAve)* (*(pData1 + addShiftMem)) + InverseIfNecessary(data11, Channel::B) * 1.0f / (float)numAve;
             }
         }
         */
@@ -455,8 +455,8 @@ void FPGA::DataRead(bool necessaryShift, bool saveToStorage)
         prevTime = gTimerMS;
         if (!sTime_RandomizeModeEnabled())
         {
-            InverseDataIsNecessary(A, dataRel0);
-            InverseDataIsNecessary(B, dataRel1);
+            InverseDataIsNecessary(Channel::A, dataRel0);
+            InverseDataIsNecessary(Channel::B, dataRel1);
         }
 
         Storage::AddData(dataRel0, dataRel1, ds);
@@ -828,7 +828,7 @@ bool FPGA::AllPointsRandomizer(void)
 }
 
 
-void FPGA::InverseDataIsNecessary(Channel chan, uint8 *data)
+void FPGA::InverseDataIsNecessary(Channel::E chan, uint8 *data)
 {
     if(SET_INVERSE(chan))
     {
@@ -921,10 +921,10 @@ void FPGA::AutoFind(void)
     //Timer::StartLogging();
 
     //LOG_WRITE("Канал 1");
-    if (!FindWave(A))
+    if (!FindWave(Channel::Channel::A))
     {
         //LOG_WRITE("Канал 2");
-        if(!FindWave(B))
+        if(!FindWave(Channel::Channel::B))
         {
             Display::ShowWarningBad(SignalNotFound);
         }
@@ -937,7 +937,7 @@ void FPGA::AutoFind(void)
 }
 
 
-bool FPGA::FindWave(Channel chan)
+bool FPGA::FindWave(Channel::E chan)
 {
     Settings settings = set;    // Сохраняем предыдущие настройки
 
@@ -946,7 +946,7 @@ bool FPGA::FindWave(Channel chan)
     FPGA::SetTrigSource(static_cast<TrigSource>(chan));
     FPGA::SetTrigLev(static_cast<TrigSource>(chan), TrigLevZero);
     FPGA::SetRShift(chan, RShiftZero);
-    FPGA::SetModeCouple(chan, ModeCouple_AC);
+    FPGA::SetModeCouple(chan, ModeCouple::AC);
     Range range = AccurateFindRange(chan);
     //LOG_WRITE("Range %s", RangeName(range));
     if(range != RangeSize)
@@ -967,7 +967,7 @@ bool FPGA::FindWave(Channel chan)
 }
 
 
-Range FPGA::AccurateFindRange(Channel chan)
+Range FPGA::AccurateFindRange(Channel::E chan)
 {
     /*
     Алгоритм поиска.
@@ -985,7 +985,7 @@ Range FPGA::AccurateFindRange(Channel chan)
     uint8 buffer[100];  // Сюда будем считывать точки
 
     SetTBase(TBase::_50ms);
-    FPGA::SetModeCouple(chan, ModeCouple_AC);
+    FPGA::SetModeCouple(chan, ModeCouple::AC);
     PeackDetMode peackDetMode = PEAKDET;
     FPGA::SetPeackDetMode(PeackDet_Enable);
     for (int range = RangeSize - 1; range >= 0; range--)
@@ -1005,7 +1005,7 @@ Range FPGA::AccurateFindRange(Channel chan)
             HAL_FSMC::Read(RD_ADC_A1);
         }
 
-        if (chan == A)
+        if (chan == Channel::Channel::A)
         {
             for (int i = 0; i < 100; i += 2)
             {
@@ -1029,7 +1029,7 @@ Range FPGA::AccurateFindRange(Channel chan)
         }
 
         /*
-        if(chan == A)
+        if(chan == Channel::Channel::A)
         {
             LOG_WRITE("min = %d, max = %d", CalculateMinWithout0(buffer), CalculateMaxWithout255(buffer));
         }
@@ -1059,7 +1059,7 @@ Range FPGA::AccurateFindRange(Channel chan)
 }
 
 
-TBase::E FPGA::AccurateFindTBase(Channel chan)
+TBase::E FPGA::AccurateFindTBase(Channel::E chan)
 {
     for (int i = 0; i < 5; i++)
     {
@@ -1075,7 +1075,7 @@ TBase::E FPGA::AccurateFindTBase(Channel chan)
 }
 
 
-TBase::E FPGA::FindTBase(Channel)
+TBase::E FPGA::FindTBase(Channel::E)
 {
     SetTrigInput(TrigInput_Full);
     HAL_TIM2::Delay(10);
@@ -1130,8 +1130,8 @@ void FPGA::TemporaryPause(void)
 
 void FPGA::FillDataPointer(DataSettings *dp)
 {
-    dp->enableCh0 = sChannel_Enabled(A) ? 1U : 0U;
-    dp->enableCh1 = sChannel_Enabled(B) ? 1U : 0U;
+    dp->enableCh0 = sChannel_Enabled(Channel::Channel::A) ? 1U : 0U;
+    dp->enableCh1 = sChannel_Enabled(Channel::Channel::B) ? 1U : 0U;
     dp->inverseCh0 = SET_INVERSE_A ? 1U : 0U;
     dp->inverseCh1 = SET_INVERSE_B ? 1U : 0U;
     dp->range[0] = SET_RANGE_A;
@@ -1159,14 +1159,14 @@ void FPGA::FindAndSetTrigLevel(void)
         return;
     }
 
-    Channel chanTrig = static_cast<Channel>(trigSource);
+    Channel::E chanTrig = static_cast<Channel::E>(trigSource);
     uint8 *data0 = 0;
     uint8 *data1 = 0;
     DataSettings *ds_ = 0;
 
     Storage::GetDataFromEnd(0, &ds_, &data0, &data1);
 
-    const uint8 *data = (chanTrig == A) ? data0 : data1;
+    const uint8 *data = (chanTrig == Channel::Channel::A) ? data0 : data1;
 
     int lastPoint = static_cast<int>(ds_->length1channel) - 1;
 

@@ -108,7 +108,7 @@ static const Choice mcInputA =
 
 void OnChanged_InputA(bool)
 {
-    Panel::EnableLEDChannel0(sChannel_Enabled(A));
+    Panel::EnableLEDChannel0(sChannel_Enabled(Channel::Channel::A));
 }
 
 
@@ -131,7 +131,7 @@ static const Choice mcCoupleA =
 
 void OnChanged_CoupleA(bool)
 {
-    FPGA::SetModeCouple(A, SET_COUPLE_A);
+    FPGA::SetModeCouple(Channel::A, SET_COUPLE_A);
 }
 
 
@@ -153,7 +153,7 @@ static const Choice mcFiltrA =
 
 void OnChanged_FiltrA(bool)
 {
-    FPGA::EnableChannelFiltr(A, SET_FILTR_A);
+    FPGA::EnableChannelFiltr(Channel::A, SET_FILTR_A);
 }
 
 
@@ -175,7 +175,7 @@ static const Choice mcInverseA =
 
 static void OnChanged_InverseA(bool)
 {
-    FPGA::SetRShift(A, SET_RSHIFT_A);
+    FPGA::SetRShift(Channel::A, SET_RSHIFT_A);
 }
 
 
@@ -192,7 +192,7 @@ static const Choice mcMultiplierA =
         {"ı1",  "x1"},
         {"x10", "x10"}
     },
-    (int8*)&SET_DIVIDER(A)
+    (int8*)&SET_DIVIDER(Channel::Channel::A)
 };
 
 
@@ -235,7 +235,7 @@ static const Choice mcInputB =  //  ¿Õ¿À 2
 
 void OnChanged_InputB(bool)
 {
-    Panel::EnableLEDChannel1(sChannel_Enabled(B));
+    Panel::EnableLEDChannel1(sChannel_Enabled(Channel::Channel::B));
 }
 
 
@@ -258,7 +258,7 @@ static const Choice mcCoupleB =
 
 void OnChanged_CoupleB(bool)
 {
-    FPGA::SetModeCouple(B, SET_COUPLE_B);
+    FPGA::SetModeCouple(Channel::B, SET_COUPLE_B);
 }
 
 //  ¿Õ¿À 2 - ‘ËÎ¸Ú ----------------------------------------------------------------------------------------------------------------------------------
@@ -279,7 +279,7 @@ static const Choice mcFiltrB =
 
 void OnChanged_FiltrB(bool)
 {
-    FPGA::EnableChannelFiltr(B, SET_FILTR_B);
+    FPGA::EnableChannelFiltr(Channel::B, SET_FILTR_B);
 }
 
 
@@ -301,7 +301,7 @@ static const Choice mcInverseB =
 
 static void OnChanged_InverseB(bool)
 {
-    FPGA::SetRShift(B, SET_RSHIFT_B);
+    FPGA::SetRShift(Channel::B, SET_RSHIFT_B);
 }
 
 
@@ -318,7 +318,7 @@ static const Choice mcMultiplierB =
         {"ı1",  "x1"},
         {"x10", "x10"}
     },
-    (int8*)&SET_DIVIDER(B)
+    (int8*)&SET_DIVIDER(Channel::Channel::B)
 };
 
 

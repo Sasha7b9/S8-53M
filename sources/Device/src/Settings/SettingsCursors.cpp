@@ -9,7 +9,7 @@
 #include <cstring>
 
 
-float sCursors_GetCursPosU(Channel chan, int numCur)
+float sCursors_GetCursPosU(Channel::E chan, int numCur)
 {
     return CURS_POS_U(chan, numCur) / (Grid::ChannelBottom() == Grid::FullBottom() ? 1.0f : 2.0f);
 }
@@ -22,14 +22,14 @@ bool sCursors_NecessaryDrawCursors()
 }
 
 
-const char* sCursors_GetCursVoltage(Channel source, int numCur, char buffer[20])
+const char* sCursors_GetCursVoltage(Channel::E source, int numCur, char buffer[20])
 {
     float voltage = Math_VoltageCursor(sCursors_GetCursPosU(source, numCur), SET_RANGE(source), SET_RSHIFT(source));
     return Voltage2String(voltage, true, buffer);
 }
 
 
-const char* sCursors_GetCursorTime(Channel source, int numCur, char buffer[20])
+const char* sCursors_GetCursorTime(Channel::E source, int numCur, char buffer[20])
 {
     float time = Math_TimeCursor(CURS_POS_T(source, numCur), SET_TBASE);
         
@@ -37,7 +37,7 @@ const char* sCursors_GetCursorTime(Channel source, int numCur, char buffer[20])
 }
 
 
-const char* sCursors_GetCursorPercentsU(Channel source, char buffer[20])
+const char* sCursors_GetCursorPercentsU(Channel::E source, char buffer[20])
 {
     buffer[0] = 0;
     float dPerc = DELTA_U100(source);
@@ -50,7 +50,7 @@ const char* sCursors_GetCursorPercentsU(Channel source, char buffer[20])
 }
 
 
-const char* sCursors_GetCursorPercentsT(Channel source, char buffer[20])
+const char* sCursors_GetCursorPercentsT(Channel::E source, char buffer[20])
 {
     buffer[0] = 0;
     float dPerc = DELTA_T100(source);

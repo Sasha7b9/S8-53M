@@ -54,7 +54,7 @@ static const Settings defaultSettings =
         ENumMinMax::_1,             // enumMinMax
         Smoothing::Disable,         // smoothing
         ENumSignalsInSec::_25,      // num signals in one second
-        A,                          // lastAffectedChannel
+        Channel::A,                          // lastAffectedChannel
         ModeAccumulation::NoReset,  // modeAccumulation
         AltMarkers::Show,           // altMarkers
         MenuAutoHide::None,         // menuAutoHide
@@ -68,7 +68,7 @@ static const Settings defaultSettings =
             1.0f,                   // коэффициент калибровки
             RShiftZero,
             {{0}, {0}},             // rShiftAdd
-            ModeCouple_AC,          // ModCouple
+            ModeCouple::AC,          // ModCouple
             Divider_1,              // Divider
             Range_500mV,            // range
             true,                   // enable
@@ -80,7 +80,7 @@ static const Settings defaultSettings =
             1.0f,                   // коэффициент калибровки
             RShiftZero,
             {{0}, {0}},             // rShiftAdd
-            ModeCouple_AC,          // ModCouple
+            ModeCouple::AC,          // ModCouple
             Divider_1,           // Divider
             Range_500mV,            // range
             true,                   // enable
@@ -115,7 +115,7 @@ static const Settings defaultSettings =
     {
         { CursCntrl_Disable, CursCntrl_Disable },   // CursCntrl U
         { CursCntrl_Disable, CursCntrl_Disable },   // CursCntrl T
-        A,                                      // source
+        Channel::A,                                      // source
         { 60.0F,  140.0F, 60.0F, 140.0F },          // posCur U
         { 80.0F,  200.0F, 80.0F, 200.0F },          // posCur T
         { 80.0F,  80.0F },                          // расстояние между курсорами напряжения для 100%
@@ -145,7 +145,7 @@ static const Settings defaultSettings =
     // measures
     {
         MN_1,                       // measures number
-        A_B,                        // source
+        Channel::A_B,               // source
         ModeViewSignals_AsIs,       // mode view signal
         {
             Measure_VoltageMax,     Measure_VoltageMin,     Measure_VoltagePic,         Measure_VoltageMaxSteady,   Measure_VoltageMinSteady,
@@ -251,8 +251,8 @@ void Settings::Load(bool _default)
         uint16 rShiftAddA[RangeSize][2];
         uint16 rshiftAddB[RangeSize][2];
 
-        std::memcpy((void *)rShiftAddA, (void *)&RSHIFT_ADD(A, 0, 0), 2 * RangeSize * 2); // Сначала сохраняем несбрасываемые настройки
-        std::memcpy((void *)rshiftAddB, (void *)&RSHIFT_ADD(B, 0, 0), 2 * RangeSize * 2);
+        std::memcpy((void *)rShiftAddA, (void *)&RSHIFT_ADD(Channel::A, 0, 0), 2 * RangeSize * 2); // Сначала сохраняем несбрасываемые настройки
+        std::memcpy((void *)rshiftAddB, (void *)&RSHIFT_ADD(Channel::B, 0, 0), 2 * RangeSize * 2);
 
         int16  balanceADC0 = BALANCE_ADC_A;
         int16  balanceADC1 = BALANCE_ADC_B;
@@ -261,8 +261,8 @@ void Settings::Load(bool _default)
 
         std::memcpy((void*)&set, (void*)(&defaultSettings), sizeof(set));                // Потом заполняем значениями по умолчанию
 
-        std::memcpy((void *)&RSHIFT_ADD(A, 0, 0), (void *)rShiftAddA, 2 * RangeSize * 2);  // И восстанавливаем несбрасываемые настройки
-        std::memcpy((void *)&RSHIFT_ADD(B, 0, 0), (void *)rshiftAddB, 2 * RangeSize * 2);
+        std::memcpy((void *)&RSHIFT_ADD(Channel::A, 0, 0), (void *)rShiftAddA, 2 * RangeSize * 2);  // И восстанавливаем несбрасываемые настройки
+        std::memcpy((void *)&RSHIFT_ADD(Channel::B, 0, 0), (void *)rshiftAddB, 2 * RangeSize * 2);
 
         BALANCE_ADC_A = balanceADC0;
         BALANCE_ADC_B = balanceADC1;
@@ -272,8 +272,8 @@ void Settings::Load(bool _default)
 
     Painter::LoadPalette();
 
-    Panel::EnableLEDChannel0(sChannel_Enabled(A));
-    Panel::EnableLEDChannel1(sChannel_Enabled(B));
+    Panel::EnableLEDChannel0(sChannel_Enabled(Channel::Channel::A));
+    Panel::EnableLEDChannel1(sChannel_Enabled(Channel::Channel::B));
     Menu::SetAutoHide(true);
     Display::ChangedRShiftMarkers();
 

@@ -20,13 +20,13 @@ public:
     // Получить указатель на данные
     static bool GetDataFromEnd(int fromEnd, DataSettings **ds, uint8 **data0, uint8 **data1);
 
-    static uint8* GetData(Channel chan, int fromEnd);
+    static uint8* GetData(Channel::E chan, int fromEnd);
     // Получить усреднённые данные по нескольким измерениям.
-    static uint8* GetAverageData(Channel chan);
+    static uint8* GetAverageData(Channel::E chan);
     // Сколько всего измерений сохранено в памяти.
     static int AllDatas();
     // Получить ограничивающую линию сигнала 0 - снизу, 1 - сверху.
-    static uint8* GetLimitation(Channel chan, int direction);                                      
+    static uint8* GetLimitation(Channel::E chan, int direction);                                      
 
     static int NumberAvailableEntries();
 private:
@@ -55,7 +55,7 @@ private:
 
     static DataSettings* GetSettingsDataFromEnd(int fromEnd);
     // Копирует данные канала chan из, определяемые ds, в одну из двух строк массива dataImportRel. Возвращаемое значение false означает, что данный канал выключен.
-    static bool CopyData(DataSettings *ds, Channel chan, uint8 datatImportRel[NumChannels][FPGA_MAX_POINTS]);
+    static bool CopyData(DataSettings *ds, Channel::E chan, uint8 datatImportRel[NumChannels][FPGA_MAX_POINTS]);
 
     static void PrintElement(DataSettings *dp);
     

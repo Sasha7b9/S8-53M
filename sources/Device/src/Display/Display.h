@@ -15,7 +15,7 @@ public:
 
     static void Update(bool endScene = true);
 
-    static void RotateRShift(Channel channel);
+    static void RotateRShift(Channel::E channel);
 
     static void RotateTrigLev();
 
@@ -75,7 +75,7 @@ private:
 
     static void DrawCursorsRShift();
     // Нарисовать маркеры смещения по напряжению
-    static void DrawCursorRShift(Channel chan);
+    static void DrawCursorRShift(Channel::E chan);
     // Нарисовать маркер уровня синхронизации.
     static void DrawCursorTrigLevel();
     // Нарисовать маркер смещения по времени.
@@ -107,9 +107,9 @@ private:
     
     static int CalculateFreeSize();
     
-    static bool ChannelNeedForDraw(const uint8 *data, Channel chan, const DataSettings *ds);
+    static bool ChannelNeedForDraw(const uint8 *data, Channel::E chan, const DataSettings *ds);
     
-    static void DrawDataChannel(uint8 *data, Channel chan, DataSettings *ds, int minY, int maxY);
+    static void DrawDataChannel(uint8 *data, Channel::E chan, DataSettings *ds, int minY, int maxY);
     
     static void DrawBothChannels(uint8 *data0, uint8 *data1);
     
@@ -129,17 +129,17 @@ private:
     // Нарисовать окно памяти
     static void DrawMemoryWindow();
     
-    static void DRAW_SPECTRUM(const uint8 *data, int numPoints, Channel channel);
+    static void DRAW_SPECTRUM(const uint8 *data, int numPoints, Channel::E channel);
     
     static void DrawGridSpectrum();
     
-    static void DrawMarkersForMeasure(float scale, Channel chan);
+    static void DrawMarkersForMeasure(float scale, Channel::E chan);
     
     static void DrawScaleLine(int x, bool forTrigLev);
     
-    static void WriteParametersFFT(Channel chan, float freq0, float density0, float freq1, float density1);
+    static void WriteParametersFFT(Channel::E chan, float freq0, float density0, float freq1, float density1);
     
-    static void WriteTextVoltage(Channel chan, int x, int y);
+    static void WriteTextVoltage(Channel::E chan, int x, int y);
     
     static void FuncOnTimerDisableShowLevelRShiftA();
     
@@ -172,11 +172,11 @@ private:
     static void DrawGridType3(int left, int top, int right, int bottom, int centerX, int centerY, int deltaX, int deltaY, int stepX, int stepY);
     
     static void DrawChannelInWindowMemory(int timeWindowRectWidth, int xVert0, int xVert1, int startI, int endI, const uint8 *data, int rightX, 
-        Channel chan, int shiftForPeakDet);
+        Channel::E chan, int shiftForPeakDet);
     
     static void DrawDataInModeSelfRecorder();
     
-    static void DrawDataInRect(int x, int width, const uint8 *data, int numElems, Channel chan, int shiftForPeakDet);
+    static void DrawDataInRect(int x, int width, const uint8 *data, int numElems, Channel::E chan, int shiftForPeakDet);
 
     static void DrawTimeForFrame(uint timeMS);
     

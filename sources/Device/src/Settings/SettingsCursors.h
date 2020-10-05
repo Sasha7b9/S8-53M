@@ -17,7 +17,7 @@
 #define CURS_MOVEMENT_IS_PERCENTS   (CURS_MOVEMENT == CursMovement_Percents)
 
 #define CURS_SOURCE                 (set.cursors.source)                        // SettingsCursors.source
-#define CURS_SOURCE_A               (CURS_SOURCE == A)
+#define CURS_SOURCE_A               (CURS_SOURCE == Channel::A)
 
 #define CURsU_CNTRL_CH(ch)          (set.cursors.cntrlU[ch])                    // SettingsCursors.cntrlU
 #define CURsU_CNTRL                 (CURsU_CNTRL_CH(CURS_SOURCE))
@@ -60,7 +60,7 @@ struct SettingsCursors
 {
     CursCntrl       cntrlU[NumChannels];        // Активные курсоры напряжения.
     CursCntrl       cntrlT[NumChannels];        // Активные курсоры напряжения.
-    Channel         source;                     // Источник - к какому каналу относятся курсоры.
+    Channel::E      source;                     // Источник - к какому каналу относятся курсоры.
     float           posCurU[NumChannels][2];    // Текущие позиции курсоров напряжения обоих каналов.
     float           posCurT[NumChannels][2];    // Текущие позиции курсоров времени обоих каналов.
     float           deltaU100percents[2];       // Расстояние между курсорами напряжения для 100%, для обоих каналов.
@@ -75,17 +75,17 @@ struct SettingsCursors
 
 
 // Получить позицию курсора напряжения.
-float sCursors_GetCursPosU(Channel chan, int numCur);
+float sCursors_GetCursPosU(Channel::E chan, int numCur);
 // Возвращает true,если нужно рисовать курсоры.
 bool sCursors_NecessaryDrawCursors();
 // Получить строку курсора напряжения.
-const char* sCursors_GetCursVoltage(Channel source, int numCur, char buffer[20]);
+const char* sCursors_GetCursVoltage(Channel::E source, int numCur, char buffer[20]);
 // Получить строку курсора времени.
-const char* sCursors_GetCursorTime(Channel source, int numCur, char buffer[20]);
+const char* sCursors_GetCursorTime(Channel::E source, int numCur, char buffer[20]);
 // Получить строку процентов курсоров напряжения.
-const char* sCursors_GetCursorPercentsU(Channel source, char buffer[20]);
+const char* sCursors_GetCursorPercentsU(Channel::E source, char buffer[20]);
 // Получить строку процентов курсоров времени.
-const char* sCursors_GetCursorPercentsT(Channel source, char buffer[20]);
+const char* sCursors_GetCursorPercentsT(Channel::E source, char buffer[20]);
 
 
 /** @}  @}

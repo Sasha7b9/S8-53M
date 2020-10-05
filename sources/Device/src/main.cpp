@@ -68,8 +68,8 @@ void ProcessingSignal()
         Storage::GetDataFromEnd(0, &gDSet, &gData0, &gData1);
         if (ENumAveraging::NumAverages() != 1 || sTime_RandomizeModeEnabled())
         {
-            gData0 = Storage::GetAverageData(A);
-            gData1 = Storage::GetAverageData(B);
+            gData0 = Storage::GetAverageData(Channel::Channel::A);
+            gData1 = Storage::GetAverageData(Channel::Channel::B);
         }
     }
     else if (MODE_WORK_IS_LATEST)

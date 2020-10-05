@@ -43,7 +43,7 @@ static const RangeStruct ranges[RangeSize] =
 
 
 
-void sChannel_SetRange(Channel chan, Range range)
+void sChannel_SetRange(Channel::E chan, Range range)
 {
     SET_RANGE(chan) = range;
 }
@@ -62,9 +62,9 @@ int sChannel_MultiplierRel2Abs(Divider multiplier)
 }
 
 
-bool sChannel_Enabled(Channel chan)
+bool sChannel_Enabled(Channel::E chan)
 {
-    if (chan == Math && !DISABLED_DRAW_MATH)
+    if (chan == Channel::Math && !DISABLED_DRAW_MATH)
     {
         return true;
     }

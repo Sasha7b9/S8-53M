@@ -15,14 +15,14 @@ static void SetColor(ColorType *colorType)
 }
 
 
-Color::E ColorChannel(Channel chan)
+Color::E ColorChannel(Channel::E chan)
 {
     static const Color::E colors[4] = { Color::DATA_A, Color::DATA_B, Color::WHITE, Color::WHITE };
     return colors[chan];
 }
 
 
-Color::E ColorCursors(Channel chan)
+Color::E ColorCursors(Channel::E chan)
 {
     static const Color::E colors[4] = { Color::DATA_A, Color::DATA_B, Color::WHITE, Color::WHITE };
     return colors[chan];
@@ -34,7 +34,7 @@ Color::E ColorTrig()
     TrigSource trigChan = TRIG_SOURCE;
     if (trigChan == TrigSource_ChannelA || trigChan == TrigSource_ChannelB)
     {
-        return ColorChannel((Channel)trigChan);
+        return ColorChannel((Channel::E)trigChan);
     }
     return COLOR_FILL;
 }

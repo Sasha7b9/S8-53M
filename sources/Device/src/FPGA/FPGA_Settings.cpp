@@ -75,15 +75,15 @@ static const TBaseMaskStruct masksTBase[TBase::Count] =
 
 void FPGA::LoadSettings(void)
 {
-    LoadKoeffCalibration(A);
-    LoadKoeffCalibration(B);
+    LoadKoeffCalibration(Channel::Channel::A);
+    LoadKoeffCalibration(Channel::Channel::B);
     SetAttribChannelsAndTrig(TypeWriteAnalog::All);
     LoadTBase();
     LoadTShift();
-    LoadRange(A);
-    LoadRShift(A);
-    LoadRange(B);
-    LoadRShift(B);
+    LoadRange(Channel::Channel::A);
+    LoadRShift(Channel::Channel::A);
+    LoadRange(Channel::Channel::B);
+    LoadRShift(Channel::Channel::B);
     LoadTrigLev();
     LoadTrigPolarity();
     LoadRegUPR();
@@ -136,8 +136,8 @@ void FPGA::SetAttribChannelsAndTrig(TypeWriteAnalog::E type)
         {0x0800, 0x0000, 0x3000}
     };
 
-    data |= maskCouple[A][SET_COUPLE_A];
-    data |= maskCouple[B][SET_COUPLE_B];
+    data |= maskCouple[Channel::A][SET_COUPLE_A];
+    data |= maskCouple[Channel::B][SET_COUPLE_B];
 
     static const uint maskFiltr[2][2] = 
     {
@@ -145,8 +145,8 @@ void FPGA::SetAttribChannelsAndTrig(TypeWriteAnalog::E type)
         {0x0000, 0x0100}
     };
 
-    data |= maskFiltr[A][SET_FILTR_A];
-    data |= maskFiltr[B][SET_FILTR_B];
+    data |= maskFiltr[Channel::A][SET_FILTR_A];
+    data |= maskFiltr[Channel::B][SET_FILTR_B];
 
 
     // Параметры синхронизации
@@ -160,7 +160,7 @@ void FPGA::SetAttribChannelsAndTrig(TypeWriteAnalog::E type)
 }
 
 
-void FPGA::SetRange(Channel chan, Range range)
+void FPGA::SetRange(Channel::E chan, Range range)
 {
     if (!sChannel_Enabled(chan))
     {
@@ -180,16 +180,16 @@ void FPGA::SetRange(Channel chan, Range range)
     }
     else
     {
-        Display::ShowWarningBad(chan == A ? LimitChan1_Volts : LimitChan2_Volts);
+        Display::ShowWarningBad(chan == Channel::A ? LimitChan1_Volts : LimitChan2_Volts);
     }
 };
 
 
-void FPGA::LoadRange(Channel chan)
+void FPGA::LoadRange(Channel::E chan)
 {
     SetAttribChannelsAndTrig(TypeWriteAnalog::Range0);
     LoadRShift(chan);
-    if (chan == (Channel)TRIG_SOURCE)
+    if (chan == (Channel::E)TRIG_SOURCE)
     {
         LoadTrigLev();
     }
@@ -198,7 +198,7 @@ void FPGA::LoadRange(Channel chan)
 
 void FPGA::SetTBase(TBase::E tBase)
 {
-    if (!sChannel_Enabled(A) && !sChannel_Enabled(B))
+    if (!sChannel_Enabled(Channel::Channel::A) && !sChannel_Enabled(Channel::Channel::B))
     {
         return;
     }
@@ -268,7 +268,7 @@ void FPGA::TBaseIncrease(void)
 }
 
 
-void FPGA::SetRShift(Channel chan, int16 rShift)
+void FPGA::SetRShift(Channel::E chan, int16 rShift)
 {
     if (!sChannel_Enabled(chan))
     {
@@ -278,7 +278,7 @@ void FPGA::SetRShift(Channel chan, int16 rShift)
 
     if (rShift > RShiftMax || rShift < RShiftMin)
     {
-        Display::ShowWarningBad(chan == A ? LimitChan1_RShift : LimitChan2_RShift);
+        Display::ShowWarningBad(chan == Channel::A ? LimitChan1_RShift : LimitChan2_RShift);
     }
 
     LIMITATION(rShift, rShift, RShiftMin, RShiftMax);
@@ -296,12 +296,12 @@ void FPGA::SetRShift(Channel chan, int16 rShift)
 };
 
 
-void FPGA::LoadRShift(Channel chan)
+void FPGA::LoadRShift(Channel::E chan)
 {
     static const uint16 mask[2] = {0x2000, 0x6000};
 
     Range range = SET_RANGE(chan);
-    ModeCouple mode = SET_COUPLE(chan);
+    ModeCouple::E mode = SET_COUPLE(chan);
     static const int index[3] = {0, 1, 1};
     int16 rShiftAdd = RSHIFT_ADD(chan, range, index[mode]);
 
@@ -315,7 +315,7 @@ void FPGA::LoadRShift(Channel chan)
     rShift = (uint16)(delta + RShiftZero);
 
     rShift = (uint16)(RShiftMax + RShiftMin - rShift);
-    WriteToDAC(chan == A ? TypeWriteDAC::RShiftA : TypeWriteDAC::RShiftB, (uint16)(mask[chan] | (rShift << 2)));
+    WriteToDAC(chan == Channel::A ? TypeWriteDAC::RShiftA : TypeWriteDAC::RShiftB, (uint16)(mask[chan] | (rShift << 2)));
 }
 
 
@@ -360,7 +360,7 @@ void FPGA::LoadTrigLev(void)
 
 void FPGA::SetTShift(int tShift)
 {
-    if (!sChannel_Enabled(A) && !sChannel_Enabled(B))
+    if (!sChannel_Enabled(Channel::Channel::A) && !sChannel_Enabled(Channel::Channel::B))
     {
         return;
     }
@@ -422,9 +422,9 @@ void FPGA::LoadRegUPR(void)
 }
 
 
-void FPGA::LoadKoeffCalibration(Channel chan)
+void FPGA::LoadKoeffCalibration(Channel::E chan)
 {
-    FPGA::WriteToHardware(chan == A ? WR_CAL_A : WR_CAL_B, static_cast<uint8>(STRETCH_ADC(chan) * 0x80), false);
+    FPGA::WriteToHardware(chan == Channel::A ? WR_CAL_A : WR_CAL_B, static_cast<uint8>(STRETCH_ADC(chan) * 0x80), false);
 }
 
 
@@ -458,7 +458,7 @@ const char *FPGA::GetTShiftString(int16 tShiftRel, char buffer[20])
 }
 
 
-bool FPGA::RangeIncrease(Channel chan)
+bool FPGA::RangeIncrease(Channel::E chan)
 {
     bool retValue = false;
     if (SET_RANGE(chan) < RangeSize - 1)
@@ -468,14 +468,14 @@ bool FPGA::RangeIncrease(Channel chan)
     }
     else
     {
-       Display::ShowWarningBad(chan == A ? LimitChan1_Volts : LimitChan2_Volts);
+       Display::ShowWarningBad(chan == Channel::A ? LimitChan1_Volts : LimitChan2_Volts);
     }
     Display::Redraw();
     return retValue;
 };
 
 
-bool FPGA::RangeDecrease(Channel chan)
+bool FPGA::RangeDecrease(Channel::E chan)
 {
     bool retValue = false;
     if (SET_RANGE(chan) > 0)
@@ -485,7 +485,7 @@ bool FPGA::RangeDecrease(Channel chan)
     }
     else
     {
-        Display::ShowWarningBad(chan == A ? LimitChan1_Volts : LimitChan2_Volts);
+        Display::ShowWarningBad(chan == Channel::A ? LimitChan1_Volts : LimitChan2_Volts);
     }
     Display::Redraw();
     return retValue;
@@ -523,16 +523,16 @@ void FPGA::SetTrigInput(TrigInput trigInput)
 }
 
 
-void FPGA::SetModeCouple(Channel chan, ModeCouple modeCoupe)
+void FPGA::SetModeCouple(Channel::E chan, ModeCouple::E modeCoupe)
 {
     SET_COUPLE(chan) = modeCoupe;
-    SetAttribChannelsAndTrig(chan == A ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
+    SetAttribChannelsAndTrig(chan == Channel::A ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
     SetRShift(chan, SET_RSHIFT(chan));
 }
 
 
-void FPGA::EnableChannelFiltr(Channel chan, bool enable)
+void FPGA::EnableChannelFiltr(Channel::E chan, bool enable)
 {
     SET_FILTR(chan) = enable;
-    SetAttribChannelsAndTrig(chan == A ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
+    SetAttribChannelsAndTrig(chan == Channel::A ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
 }

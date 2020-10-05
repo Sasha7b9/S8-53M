@@ -140,12 +140,12 @@ struct Channel { enum E
 #define NumChannels 2
 
 // Режим канала по входу
-enum ModeCouple
+struct ModeCouple { enum E
 {
-    ModeCouple_DC,      // Открытый вход
-    ModeCouple_AC,      // Закрытый вход
-    ModeCouple_GND      // Вход заземлён
-};
+    DC,      // Открытый вход
+    AC,      // Закрытый вход
+    GND      // Вход заземлён
+};};
 
 // Делитель
 enum Multiplier

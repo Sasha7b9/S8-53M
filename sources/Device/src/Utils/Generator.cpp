@@ -6,9 +6,9 @@
 #include <cmath>
 
 
-static void SetParametersWave(Channel channel, TypeWave typeWave, float frequency, float startAngle, float amplWave, float amplNoise);
-static void StartNewWave(Channel channel);
-static uint8 GetSampleWave(Channel channel);
+static void SetParametersWave(Channel::E channel, TypeWave typeWave, float frequency, float startAngle, float amplWave, float amplNoise);
+static void StartNewWave(Channel::E channel);
+static uint8 GetSampleWave(Channel::E channel);
 
 
 const SGenerator Generator = 
@@ -19,9 +19,9 @@ const SGenerator Generator =
 };
 
 
-static float NewNoiseValue(Channel channel);
-static uint8 GetSampleSinusWave(Channel channel, int numSample);
-static uint8 GetSampleMeanderWave(Channel channel, int numSample);
+static float NewNoiseValue(Channel::E channel);
+static uint8 GetSampleSinusWave(Channel::E channel, int numSample);
+static uint8 GetSampleMeanderWave(Channel::E channel, int numSample);
 
 
 static TypeWave type[2] = {Wave_Sinus, Wave_Meander};
@@ -31,7 +31,7 @@ static float ampl[2] = {1.0f, 0.5f};
 static float amplNoise[2] = {0.1f, 0.1f};
 static int numSample[2] = {0, 0};
 
-void SetParametersWave(Channel channel, TypeWave typeWave, float frequency, float startAngle, float amplWave, float amplNoise_)
+void SetParametersWave(Channel::E channel, TypeWave typeWave, float frequency, float startAngle, float amplWave, float amplNoise_)
 {
     type[channel] = typeWave;
     freq[channel] = frequency;
@@ -40,29 +40,29 @@ void SetParametersWave(Channel channel, TypeWave typeWave, float frequency, floa
     amplNoise[channel] = amplNoise_;
 }
 
-void StartNewWave(Channel)
+void StartNewWave(Channel::E)
 {
     numSample[0] = numSample[1] = 0;
 }
 
-uint8 GetSampleWave(Channel channel)
+uint8 GetSampleWave(Channel::E channel)
 {
     return (type[channel] == Wave_Sinus) ? GetSampleSinusWave(channel, (numSample[channel])++) : GetSampleMeanderWave(channel, (numSample[channel])++);
 }
 
-uint8 GetSampleSinusWave(Channel channel, int numSample_)
+uint8 GetSampleSinusWave(Channel::E channel, int numSample_)
 {
     float dT = numSample_ * TSHIFT_2_ABS(1, SET_TBASE);
     float voltage = ampl[channel] * std::sin(2 * M_PI * freq[channel] * dT + angle[channel]) + NewNoiseValue(channel);
     return Math_VoltageToPoint(voltage, SET_RANGE(channel), SET_RSHIFT(channel));
 }
 
-uint8 GetSampleMeanderWave(Channel, int)
+uint8 GetSampleMeanderWave(Channel::E, int)
 {
     return 0;
 }
 
-float NewNoiseValue(Channel channel)
+float NewNoiseValue(Channel::E channel)
 {
     static float prevNoise[2] = {0.0F, 0.0F};            // Здесь хранятся значения шума из предыдущих точек, необходимые для расчёта шума в текущей точке.
 

@@ -19,9 +19,9 @@
 #define MEAS_NUM_IS_6_2                 (MEAS_NUM == MN_6_2)
 
 #define MEAS_SOURCE                     (set.measures.source)                           // SettingsMeasures.source
-#define MEAS_SOURCE_IS_A                (MEAS_SOURCE == A)
-#define MEAS_SOURCE_IS_B                (MEAS_SOURCE == B)
-#define MEAS_SOURCE_IS_A_B              (MEAS_SOURCE == A_B)
+#define MEAS_SOURCE_IS_A                (MEAS_SOURCE == Channel::A)
+#define MEAS_SOURCE_IS_B                (MEAS_SOURCE == Channel::B)
+#define MEAS_SOURCE_IS_A_B              (MEAS_SOURCE == Channel::A_B)
 
 #define MODE_VIEW_SIGNALS               (set.measures.modeViewSignals)                 // SettingsMeasures.modeViewSignals
 #define MODE_VIEW_SIGNALS_IS_COMPRESS   (MODE_VIEW_SIGNALS == ModeViewSignals_Compress)
@@ -82,7 +82,7 @@ enum MeasuresField
 struct SettingsMeasures
 {
     MeasuresNumber  number;             // Сколько измерений выводить.
-    Channel         source;             // Для каких каналов выводить измерения.
+    Channel::E      source;             // Для каких каналов выводить измерения.
     ModeViewSignals modeViewSignals;    // Сжимать ли сигналы при выводе измерений.
     Measure         measures[15];       // Выбранные для индикации измерения.
     bool            show;               // Показывать ли измерения.

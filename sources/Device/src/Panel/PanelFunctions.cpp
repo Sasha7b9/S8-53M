@@ -8,7 +8,7 @@
 static const uint MIN_TIME = 500;
 
 
-static void ChangeRShift(int *prevTime, void(*f)(Channel, int16), Channel chan, int16 relStep);
+static void ChangeRShift(int *prevTime, void(*f)(Channel, int16), Channel::E chan, int16 relStep);
 
 
 void HelpLong(void)
@@ -153,7 +153,7 @@ bool CanChangeRShiftOrTrigLev(TrigSource channel, int16 rShift)
     return false;
 }
 
-void ChangeRShift(int *prevTime, void(*f)(Channel, int16), Channel chan, int16 relStep)
+void ChangeRShift(int *prevTime, void(*f)(Channel::E, int16), Channel::E chan, int16 relStep)
 {
     if (ENUM_ACCUM_IS_NONE)
     {
@@ -239,7 +239,7 @@ void ChangeShiftScreen(int *prevTime, void(*f)(int), int16 relStep)
     f(static_cast<int>(step));
 }
 
-static void SetRShift(Channel ch, int16 rShift)
+static void SetRShift(Channel::E ch, int16 rShift)
 {
     FPGA::SetRShift(ch, rShift);
 }
@@ -247,25 +247,25 @@ static void SetRShift(Channel ch, int16 rShift)
 void RShift0Left()
 {
     static int prevTime = 0;
-    ChangeRShift(&prevTime, SetRShift, A, -STEP_RSHIFT);
+    ChangeRShift(&prevTime, SetRShift, Channel::A, -STEP_RSHIFT);
 }
 
 void RShift0Right()
 {
     static int prevTime = 0;
-    ChangeRShift(&prevTime, SetRShift, A, +STEP_RSHIFT);
+    ChangeRShift(&prevTime, SetRShift, Channel::A, +STEP_RSHIFT);
 }
 
 void RShift1Left()
 {
     static int prevTime = 0;
-    ChangeRShift(&prevTime, SetRShift, B, -STEP_RSHIFT);
+    ChangeRShift(&prevTime, SetRShift, Channel::B, -STEP_RSHIFT);
 }
 
 void RShift1Right()
 {
     static int prevTime = 0;
-    ChangeRShift(&prevTime, SetRShift, B, +STEP_RSHIFT);
+    ChangeRShift(&prevTime, SetRShift, Channel::B, +STEP_RSHIFT);
 }
 
 static void SetTrigLev(TrigSource ch, int16 trigLev)
@@ -324,25 +324,25 @@ void TShiftRight()
 void Range0Left()
 {
     Sound::RegulatorSwitchRotate();
-    FPGA::RangeIncrease(A);
+    FPGA::RangeIncrease(Channel::Channel::A);
 }
 
 void Range0Right()
 {
     Sound::RegulatorSwitchRotate();
-    FPGA::RangeDecrease(A);
+    FPGA::RangeDecrease(Channel::Channel::A);
 }
 
 void Range1Left()
 {
     Sound::RegulatorSwitchRotate();
-    FPGA::RangeIncrease(B);
+    FPGA::RangeIncrease(Channel::Channel::B);
 }
 
 void Range1Right()
 {
     Sound::RegulatorSwitchRotate();
-    FPGA::RangeDecrease(B);
+    FPGA::RangeDecrease(Channel::Channel::B);
 }
 
 void TBaseLeft()

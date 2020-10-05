@@ -120,7 +120,7 @@ const char* Tables_GetWarning(Warning warning)
         {"яхцмюк янупюмем",                 "SIGNAL IS SAVED"},
         {"яхцмкю сдюкем",                   "SIGNAL IS DELETED"},
         {"лемч нркюдйю бйкчвемн",           "MENU DEBUG IS SET_ENABLED"},
-        {"онднфдхре меяйнкэйн яейсмд, хдер оепелеыемхе дюммшу", "WAIT A FEW SECONDS, GOES A MOVEMENT DATA"},
+        {"онднфдхре меяйнкэйн яейсмд, хдер оепелеыемхе дюммшу", "WAIT Channel::A FEW SECONDS, GOES Channel::A MOVEMENT DATA"},
         {"бпелъ ме сярюмнбкемн. лнфере сярюмнбхрэ ецн яеивюя", "TIME IS NOT SET. YOU CAN INSTALL IT NOW"},
         {"яхцмюк ме мюидем",                "SIGNAL IS NOT FOUND"},
         {"мю пюгбепрйюу ледкеммее 10ЛЯ/ДЕК фекюрекэмн сярюмюб-", "AT SCANNER SLOWLY 10ms/div DESIRABLY SET \"SCAN - \x7b\" IN"},
@@ -172,9 +172,9 @@ const char* Tables_RangeNameFromValue(Range range)
 }
 
 
-int Tables_GetNumChannel(Channel chan)
+int Tables_GetNumChannel(Channel::E chan)
 {
-    return (chan == A) ? 1 : 2;
+    return (chan == Channel::Channel::A) ? 1 : 2;
 }
 
 

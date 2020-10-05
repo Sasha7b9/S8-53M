@@ -71,14 +71,14 @@ static void DrawSB_Cursors_PointsPercents_Points(int x, int y);
 
 static void MoveCursUonPercentsOrPoints(int delta);
 static void MoveCursTonPercentsOrPoints(int delta);
-static void SetShiftCursPosU(Channel chan, int numCur, float delta);    // »зменить значение позиции курсора напр€жени€ на delta точек
-static void SetShiftCursPosT(Channel chan, int numCurs, float delta);   // »зменить значение позиции курсора времени на delta точек
-static void SetCursPos100(Channel chan);                                // «апомнить позиции курсоров, соответствующие 100%.
+static void SetShiftCursPosU(Channel::E chan, int numCur, float delta);    // »зменить значение позиции курсора напр€жени€ на delta точек
+static void SetShiftCursPosT(Channel::E chan, int numCurs, float delta);   // »зменить значение позиции курсора времени на delta точек
+static void SetCursPos100(Channel::E chan);                                // «апомнить позиции курсоров, соответствующие 100%.
 static void SetCursSource(Channel chann);                               // ”становить источник курсорных измерений.
-static void IncCursCntrlU(Channel chan);                                // ¬ыбрать следующий курсор.
-static void IncCursCntrlT(Channel chan);                                // ¬ыбрать следующий курсор.
-static void SetCursPosU(Channel chan, int numCur, float pos);           // ”становить позицию курсора напр€жени€.
-static void SetCursPosT(Channel chan, int numCur, float pos);           // ”становить значение курсора по времени.
+static void IncCursCntrlU(Channel::E chan);                                // ¬ыбрать следующий курсор.
+static void IncCursCntrlT(Channel::E chan);                                // ¬ыбрать следующий курсор.
+static void SetCursPosU(Channel::E chan, int numCur, float pos);           // ”становить позицию курсора напр€жени€.
+static void SetCursPosT(Channel::E chan, int numCur, float pos);           // ”становить значение курсора по времени.
 
 
 #define MAX_POS_U   200
@@ -88,21 +88,21 @@ void *PageCursors::PageSet::pointer = (void *)&mspSet;
 
 
 
-void SetCursSource(Channel chan)
+void SetCursSource(Channel::E chan)
 {
     CURS_SOURCE = chan;
 }
 
 
 
-void IncCursCntrlU(Channel chan)
+void IncCursCntrlU(Channel::E chan)
 {
     CircleIncreaseInt8((int8*)&CURsU_CNTRL_CH(chan), 0, 3);
 }
 
 
 
-void IncCursCntrlT(Channel chan)
+void IncCursCntrlT(Channel::E chan)
 {
     CircleIncreaseInt8((int8*)&CURS_CNTRL_T(chan), 0, 3);
 }
@@ -111,7 +111,7 @@ void IncCursCntrlT(Channel chan)
 
 void Cursors_Update()
 {
-    Channel source = CURS_SOURCE;
+    Channel::E source = CURS_SOURCE;
     CursLookMode lookMode0 = CURS_LOOKMODE_0;
     CursLookMode lookMode1 = CURS_LOOKMODE_1;
 
@@ -142,7 +142,7 @@ void Cursors_Update()
 }
 
 
-void SetCursPosU(Channel chan, int numCur, float pos)
+void SetCursPosU(Channel::E chan, int numCur, float pos)
 {
     if (CURS_MOVEMENT_IS_PERCENTS)
     {
@@ -156,7 +156,7 @@ void SetCursPosU(Channel chan, int numCur, float pos)
 
 
 
-void SetCursPosT(Channel chan, int numCur, float pos)
+void SetCursPosT(Channel::E chan, int numCur, float pos)
 {
     if (CURS_MOVEMENT_IS_PERCENTS)
     {
@@ -330,7 +330,7 @@ static void MoveCursUonPercentsOrPoints(int delta)
 
     float value = static_cast<float>(delta);
 
-    Channel source = CURS_SOURCE;
+    Channel::E source = CURS_SOURCE;
 
     if(CURS_MOVEMENT_IS_PERCENTS)
     {
@@ -348,7 +348,7 @@ static void MoveCursUonPercentsOrPoints(int delta)
     Cursors_Update();
 }
 
-static void SetShiftCursPosU(Channel chan, int numCur, float delta)
+static void SetShiftCursPosU(Channel::E chan, int numCur, float delta)
 {
     if (CURS_MOVEMENT_IS_PERCENTS)
     {
@@ -362,7 +362,7 @@ static void SetShiftCursPosU(Channel chan, int numCur, float delta)
 
 static void MoveCursTonPercentsOrPoints(int delta)
 {
-    Channel source = CURS_SOURCE;
+    Channel::E source = CURS_SOURCE;
     CursCntrl cursCntrl = CURS_CNTRL_T(source);
 
     float value = static_cast<float>(delta);
@@ -383,7 +383,7 @@ static void MoveCursTonPercentsOrPoints(int delta)
     Cursors_Update();
 }
 
-static void SetShiftCursPosT(Channel chan, int numCur, float delta)
+static void SetShiftCursPosT(Channel::E chan, int numCur, float delta)
 {
     if (CURS_MOVEMENT_IS_PERCENTS)
     {
@@ -430,7 +430,7 @@ static const SmallButton sbSetSource
 
 static void PressSB_Cursors_Source(void)
 {
-    Channel source = CURS_SOURCE_A ? B : A;
+    Channel::E source = CURS_SOURCE_A ? Channel::B : Channel::A;
     SetCursSource(source);
 }
 
@@ -500,7 +500,7 @@ static void DrawSB_Cursors_U(int x, int y)
         }
         else
         {
-            Channel source = CURS_SOURCE;
+            Channel::E source = CURS_SOURCE;
             bool condTop = false, condDown = false;
             CalculateConditions(static_cast<int16>(sCursors_GetCursPosU(source, 0)), static_cast<int16>(sCursors_GetCursPosU(source, 1)), cursCntrl, &condTop, &condDown);
             if (condTop && condDown)
@@ -591,7 +591,7 @@ static void PressSB_Cursors_T(void)
 
 static void DrawSB_Cursors_T(int x, int y)
 {
-    Channel source = CURS_SOURCE;
+    Channel::E source = CURS_SOURCE;
     CursCntrl cursCntrl = CURS_CNTRL_T(source);
     if (cursCntrl == CursCntrl_Disable)
     {
@@ -665,7 +665,7 @@ static void PressSB_Cursors_100(void)
     SetCursPos100(CURS_SOURCE);
 }
 
-static void SetCursPos100(Channel chan)
+static void SetCursPos100(Channel::E chan)
 {
     DELTA_U100(chan) = std::fabsf(CURS_POS_U0(chan) - CURS_POS_U1(chan));
     DELTA_T100(chan) = std::fabsf(CURS_POS_T0(chan) - CURS_POS_T1(chan));

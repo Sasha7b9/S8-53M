@@ -51,8 +51,8 @@
 #define ENUM_SIGNALS_IN_SEC         (set.display.enumSignalsInSec)              // SettingsDisplay.enumSignalsInSec
 
 #define LAST_AFFECTED_CHANNEL       (set.display.lastAffectedChannel)           // SettingsDisplay.lastAffectedChannel
-#define LAST_AFFECTED_CHANNEL_IS_A  (LAST_AFFECTED_CHANNEL == A)                // \c true, если последний канал, которым управл€ли - 1.
-#define LAST_AFFECTED_CHANNEL_IS_B  (LAST_AFFECTED_CHANNEL == B)                // \c true, если последний канал, которым управл€ли - 2.
+#define LAST_AFFECTED_CHANNEL_IS_A  (LAST_AFFECTED_CHANNEL == Channel::A)       // \c true, если последний канал, которым управл€ли - 1.
+#define LAST_AFFECTED_CHANNEL_IS_B  (LAST_AFFECTED_CHANNEL == Channel::B)       // \c true, если последний канал, которым управл€ли - 2.
 
 #define MODE_ACCUM                  (set.display.modeAccumulation)              // SettingsDisplay.modeAccumulation
 #define MODE_ACCUM_IS_RESET         (MODE_ACCUM == ModeAccumulation::Reset)     // \c true, если накопление со сбросом.
@@ -229,7 +229,7 @@ struct SettingsDisplay
     ENumMinMax::E       enumMinMax;                 // „исло измерений дл€ определени€ минимумов и максимумов.
     Smoothing::E        smoothing;                  // „исло точек дл€ скольз€щего фильтра.
     ENumSignalsInSec::E enumSignalsInSec;           // ѕеречисление считываний сигнала в секунду.
-    Channel             lastAffectedChannel;        // «десь хранитс€ номер последнего канала, которым управл€ли ручками. Ќужно дл€ того, чтобы знать, какой сигнал рисовать наверху.
+    Channel::E          lastAffectedChannel;        // «десь хранитс€ номер последнего канала, которым управл€ли ручками. Ќужно дл€ того, чтобы знать, какой сигнал рисовать наверху.
     ModeAccumulation::E modeAccumulation;           // «адаЄт режим накоплени€ сигналов.
     AltMarkers::E       altMarkers;                 // –ежим отображени€ дополнительных боковых маркеров смещений.
     MenuAutoHide::E     menuAutoHide;               // „ерез сколько времени после последнего нажати€ клавиши пр€тать меню.
