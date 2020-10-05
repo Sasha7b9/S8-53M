@@ -31,7 +31,7 @@ struct Measure { enum E
     Count
 };};
 
-Measure& operator++(Measure::E &measure);
+Measure::E& operator++(Measure::E &measure);
 
 char Measure_GetChar(Measure::E measure);
 

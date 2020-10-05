@@ -88,8 +88,8 @@ void Processing::CalculateMeasures()
     {
         for(int elem = 0; elem < Measure_NumCols(); elem++)
         {
-            Measure meas = Measure_Type(str, elem);
-            if (meas == Measure_TimeNarastaniya)
+            Measure::E meas = Measure_Type(str, elem);
+            if (meas == Measure::TimeNarastaniya)
             {
                 meas = meas;
             }
@@ -146,7 +146,7 @@ float Processing::CalculateVoltagePic(Channel::E chan)
 
     EXIT_IF_ERRORS_FLOAT(min, max);
 
-    if(MEAS_MARKED == Measure_VoltagePic)
+    if(MEAS_MARKED == Measure::VoltagePic)
     {
         markerHor[chan][0] = static_cast<int>(CalculateMaxRel(chan));
         markerHor[chan][1] = static_cast<int>(CalculateMinRel(chan));
@@ -158,7 +158,7 @@ float Processing::CalculateVoltageMinSteady(Channel::E chan)
 {
     float min = CalculateMinSteadyRel(chan);
     EXIT_IF_ERROR_FLOAT(min);
-    if(MEAS_MARKED == Measure_VoltageMinSteady)
+    if(MEAS_MARKED == Measure::VoltageMinSteady)
     {
         markerHor[chan][0] = static_cast<int>(ROUND(min));
     }
@@ -172,7 +172,7 @@ float Processing::CalculateVoltageMaxSteady(Channel::E chan)
 
     EXIT_IF_ERROR_FLOAT(max);
 
-    if(MEAS_MARKED == Measure_VoltageMaxSteady)
+    if(MEAS_MARKED == Measure::VoltageMaxSteady)
     {
         markerHor[chan][0] = static_cast<int>(max);
     }
@@ -190,7 +190,7 @@ float Processing::CalculateVoltageVybrosPlus(Channel::E chan)
 
     EXIT_IF_ERRORS_FLOAT(max, maxSteady);
 
-    if (MEAS_MARKED == Measure_VoltageVybrosPlus)
+    if (MEAS_MARKED == Measure::VoltageVybrosPlus)
     {
         markerHor[chan][0] = static_cast<int>(max);
         markerHor[chan][1] = static_cast<int>(maxSteady);
@@ -206,7 +206,7 @@ float Processing::CalculateVoltageVybrosMinus(Channel::E chan)
     float minSteady = CalculateMinSteadyRel(chan);
     EXIT_IF_ERRORS_FLOAT(min, minSteady);
 
-    if (MEAS_MARKED == Measure_VoltageVybrosMinus)
+    if (MEAS_MARKED == Measure::VoltageVybrosMinus)
     {
         markerHor[chan][0] = static_cast<int>(min);
         markerHor[chan][1] = static_cast<int>(minSteady);
@@ -223,7 +223,7 @@ float Processing::CalculateVoltageAmpl(Channel::E chan)
 
     EXIT_IF_ERRORS_FLOAT(min, max);
 
-    if(MEAS_MARKED == Measure_VoltageAmpl)
+    if(MEAS_MARKED == Measure::VoltageAmpl)
     {
         markerHor[chan][0] = static_cast<int>(CalculateMaxSteadyRel(chan));
         markerHor[chan][1] = static_cast<int>(CalculateMinSteadyRel(chan));
@@ -246,7 +246,7 @@ float Processing::CalculateVoltageAverage(Channel::E chan)
 
     uint8 aveRel = static_cast<uint8>((float)sum / period);
 
-    if(MEAS_MARKED == Measure_VoltageAverage)
+    if(MEAS_MARKED == Measure::VoltageAverage)
     {
         markerHor[chan][0] = aveRel;
     }
@@ -268,7 +268,7 @@ float Processing::CalculateVoltageRMS(Channel::E chan)
         rms +=  volts * volts;
     }
 
-    if(MEAS_MARKED == Measure_VoltageRMS)
+    if(MEAS_MARKED == Measure::VoltageRMS)
     {
         markerHor[chan][0] = Math_VoltageToPoint(std::sqrtf(rms / period), dataSet->range[chan], rShift);
     }
@@ -508,7 +508,7 @@ float Processing::CalculateTimeNarastaniya(Channel::E chan)                    /
 
     float retValue = TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0f, dataSet->tBase);
 
-    if (MEAS_MARKED == Measure_TimeNarastaniya)
+    if (MEAS_MARKED == Measure::TimeNarastaniya)
     {
         markerHor[chan][0] = static_cast<int>(max09);
         markerHor[chan][1] = static_cast<int>(min01);
@@ -544,7 +544,7 @@ float Processing::CalculateTimeSpada(Channel::E chan)                          /
 
     float retValue = TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0f, dataSet->tBase);
 
-    if (MEAS_MARKED == Measure_TimeSpada)
+    if (MEAS_MARKED == Measure::TimeSpada)
     {
         markerHor[chan][0] = static_cast<int>(max09);
         markerHor[chan][1] = static_cast<int>(min01);

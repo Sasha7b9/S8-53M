@@ -93,7 +93,7 @@ const char* Measure_Name(int row, int col)
     return measures[MEASURE(numMeasure)].name;
 }
 
-Measure Measure_Type(int row, int col)
+Measure::E Measure_Type(int row, int col)
 {
     int numMeasure = row * Measure_NumCols() + col;
     return MEASURE(numMeasure);
@@ -177,7 +177,7 @@ void Measure_RotateRegSet(int angle)
         {
             posOnPageChoice = 0;
         }
-        MEASURE(posActive) = (Measure)posOnPageChoice;
+        MEASURE(posActive) = (Measure::E)posOnPageChoice;
         Painter::ResetFlash();
     }
     else
@@ -246,7 +246,7 @@ void Measure_DrawPageChoice()
     int dY = 22;
     int maxRow = num61or62 ? 8 : 5;
     int maxCol = num61or62 ? 3 : 5;
-    Measure meas = Measure::None;
+    Measure::E meas = Measure::None;
     Painter::SetFont(TypeFont::_UGO);
     for(int row = 0; row < maxRow; row++)
     {
@@ -276,8 +276,8 @@ void Measure_DrawPageChoice()
 }
 
 
-Measure& operator++(Measure &measure)
+Measure::E& operator++(Measure::E &measure)
 {
-    measure = (Measure)((int)measure + 1);
+    measure = (Measure::E)((int)measure + 1);
     return measure;
 }

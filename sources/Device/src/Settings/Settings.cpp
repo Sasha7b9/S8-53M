@@ -148,9 +148,9 @@ static const Settings defaultSettings =
         Channel::A_B,               // source
         ModeViewSignals::AsIs,      // mode view signal
         {
-            Measure::VoltageMax,     Measure::VoltageMin,     Measure_VoltagePic,         Measure_VoltageMaxSteady,   Measure_VoltageMinSteady,
-            Measure_VoltageAverage, Measure_VoltageAmpl,    Measure_VoltageRMS,         Measure_VoltageVybrosPlus,  Measure_VoltageVybrosMinus,
-            Measure_Period,         Measure_Freq,           Measure_TimeNarastaniya,    Measure_TimeSpada,          Measure_DurationPlus
+            Measure::VoltageMax,     Measure::VoltageMin,     Measure::VoltagePic,         Measure::VoltageMaxSteady,   Measure::VoltageMinSteady,
+            Measure::VoltageAverage, Measure::VoltageAmpl,    Measure::VoltageRMS,         Measure::VoltageVybrosPlus,  Measure::VoltageVybrosMinus,
+            Measure::Period,         Measure::Freq,           Measure::TimeNarastaniya,    Measure::TimeSpada,          Measure::DurationPlus
         },
         false,                      // show
         MeasuresField::Screen,      // брать дл€ измерений значени€, видимые на экране
