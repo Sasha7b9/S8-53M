@@ -69,48 +69,6 @@
 #define LINKING_RSHIFT_IS_VOLTAGE   (LINKING_RSHIFT == LinkingRShift::Voltage)   // \c true, если привязка к абсолютному напряжению.
 
 
-// Перечисление накоплений.
-struct ENumAccumulation { enum E
-{
-    _1,
-    _2,
-    _4,
-    _8,
-    _16,
-    _32,
-    _64,
-    _128,
-    Infinity
-}; };
-
-// Количество усреднений по измерениям.
-struct ENumAveraging { enum E
-{
-    _1,
-    _2,
-    _4,
-    _8,
-    _16,
-    _32,
-    _64,
-    _128,
-    _256,
-    _512   };
-
-    static int NumAverages();
- };
-
-// Тип усреднений по измерениям.
-struct ModeAveraging { enum E
-{
-    Accurately,   // Усреднять точно.
-    Around        // Усреднять приблизительно.
-    };
-
-    // Возвращает режим усреднения
-    static ModeAveraging::E Current();
- };
-
 // Количество измерений для расчёта минимального и максимального значений.
 struct ENumMinMax { enum E
 {
