@@ -263,12 +263,9 @@ void Measure::DrawPageChoice()
             Painter::FillRegionC(x0 + 1, y0 + 1, dX - 2, dY - 2, active ? Color::FLASH_10 : COLOR_BACK);
             Painter::SetColor(active ? Color::FLASH_01 : COLOR_FILL);
             Painter::Draw10SymbolsInRect(x0 + 2, y0 + 1, Measure::GetChar(meas));
-            if(meas < Measure::Count)
-            {
-                Painter::SetFont(TypeFont::_5);
-                Painter::DrawTextRelativelyRightC(x0 + dX, y0 + 12, measures[meas].name, active ? Color::FLASH_01 : COLOR_FILL);
-                Painter::SetFont(TypeFont::_UGO);
-            }
+            Painter::SetFont(TypeFont::_5);
+            Painter::DrawTextRelativelyRightC(x0 + dX, y0 + 12, measures[meas].name, active ? Color::FLASH_01 : COLOR_FILL);
+            Painter::SetFont(TypeFont::_UGO);
             ++meas;
         }
     }

@@ -1673,7 +1673,7 @@ void Display::DrawCursorRShift(Channel::E chan)
 
     int rShift = SET_RSHIFT(chan);
  
-    float scale = (float)Grid::ChannelHeight() / (STEP_RSHIFT * 200);
+    float scale = Grid::ChannelHeight() / (STEP_RSHIFT * 200.0F);
     float y = Grid::ChannelCenterHeight() - scale * (rShift - RShiftZero);
 
     if(y > Grid::ChannelBottom())
