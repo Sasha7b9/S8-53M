@@ -27,8 +27,8 @@ static void *itemUnderButton[PanelButton::Count] = {0};
 
 PanelButton::E GetFuncButtonFromY(int _y)
 {
-    int y = Grid::TOP + GRID_HEIGHT / 12;
-    int step = GRID_HEIGHT / 6;
+    int y = Grid::TOP + Grid::Height() / 12;
+    int step = Grid::Height() / 6;
     PanelButton::E button = PanelButton::Menu;
     for(int i = 0; i < 6; i++)
     {

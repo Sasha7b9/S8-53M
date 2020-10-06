@@ -4,7 +4,7 @@
 
 int Grid::Bottom()
 {
-    return Grid::TOP + GRID_HEIGHT;
+    return Grid::TOP + Height();
 }
 
 
@@ -28,7 +28,7 @@ int Grid::Right(void)
 
 int Grid::ChannelBottom(void)
 {
-    return (SettingsDisplay::IsSeparate()) ? (Grid::TOP + GRID_HEIGHT / 2) : FullBottom();
+    return (SettingsDisplay::IsSeparate()) ? (Grid::TOP + Height() / 2) : FullBottom();
 }
 
 
@@ -65,6 +65,12 @@ int Grid::FullHeight(void)
 int Grid::Width(void)
 {
     return Right() - Left();
+}
+
+
+int Grid::Height()
+{
+    return CELLS_IN_HEIGHT * DELTA;
 }
 
 

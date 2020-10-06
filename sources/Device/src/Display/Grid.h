@@ -14,6 +14,7 @@ public:
     static int Left();
     static int Right();
     static int Width();
+    static int Height();
     static float DeltaY();
     static float DeltaX();
     static int Bottom();

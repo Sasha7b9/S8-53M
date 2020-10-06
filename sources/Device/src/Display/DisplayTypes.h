@@ -1,8 +1,6 @@
 #pragma once
 
 
-#define GRID_HEIGHT             ((Grid::CELLS_IN_HEIGHT) * (Grid::DELTA))
-
 #define CUR_WIDTH               6
 #define CUR_HEIGHT              8
 
