@@ -38,3 +38,9 @@ PanelButton::E& operator++(PanelButton::E &button)
     button = (PanelButton::E)((int)button + 1);
     return button;
 }
+
+
+pString PanelButton::Name() const
+{
+    return "";
+}

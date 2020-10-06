@@ -27,3 +27,8 @@ void Painter::BeginScene(Color::E color)
 
     FillRegionC(0, 0, 319, 239, color);
 }
+
+
+void Painter::EndScene(bool)
+{
+}

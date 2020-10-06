@@ -223,29 +223,29 @@ static void CreateButton(PanelButton::E key, Frame *frame, const wxPoint &pos, c
 }
 
 
-static void CreateButtonsChannel(Frame *frame, const char *title, int x, int y, PanelButton::E keyChannel, PanelButton::E keyRangeLess, PanelButton::E keyRangeMore, PanelButton::E keyRShiftLess, PanelButton::E keyRShiftMore)
-{
-    int width = 45;
-    int height = 20;
-
-    int dX = 5;
-    int dY = 5;
-
-    wxSize size = {width, height};
-
-    CreateButton(keyRangeLess, frame, {x, y}, size, "ìÂ");
-    CreateButton(keyRangeMore, frame, {x, y + height + dY}, size, "Â");
-
-    CreateButton(keyRShiftMore, frame, {x + width + 2 * dX, y}, size, "+");
-    CreateButton(keyRShiftLess, frame, {x + width + 2 * dX, y + height + dY}, size, "-");
-
-    size.SetHeight(25);
-    size.SetWidth(width + width + dX * 2);
-
-    wxPoint pos = {x, y - dY - size.GetHeight()};
-
-    CreateButton(keyChannel, frame, pos, size, title);
-}
+//static void CreateButtonsChannel(Frame *frame, const char *title, int x, int y, PanelButton::E keyChannel, PanelButton::E keyRangeLess, PanelButton::E keyRangeMore, PanelButton::E keyRShiftLess, PanelButton::E keyRShiftMore)
+//{
+//    int width = 45;
+//    int height = 20;
+//
+//    int dX = 5;
+//    int dY = 5;
+//
+//    wxSize size = {width, height};
+//
+//    CreateButton(keyRangeLess, frame, {x, y}, size, "ìÂ");
+//    CreateButton(keyRangeMore, frame, {x, y + height + dY}, size, "Â");
+//
+//    CreateButton(keyRShiftMore, frame, {x + width + 2 * dX, y}, size, "+");
+//    CreateButton(keyRShiftLess, frame, {x + width + 2 * dX, y + height + dY}, size, "-");
+//
+//    size.SetHeight(25);
+//    size.SetWidth(width + width + dX * 2);
+//
+//    wxPoint pos = {x, y - dY - size.GetHeight()};
+//
+//    CreateButton(keyChannel, frame, pos, size, title);
+//}
 
 
 static void CreateButtonsTrig(Frame *frame, int x, int y)

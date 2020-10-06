@@ -30,7 +30,7 @@ struct PanelButton { enum E
 
     explicit PanelButton(E v) : value(v) { }
 
-    pString Name();
+    pString Name() const;
 };
 
 PanelButton::E& operator++(PanelButton::E &button);

@@ -343,11 +343,6 @@ void Painter::RunDisplay()
 }
 
 
-void Painter::EndScene(bool)
-{
-}
-
-
 Color::E Painter::GetColor(int , int )
 {
     return Color::WHITE;
