@@ -98,11 +98,12 @@ void Painter::BeginScene(Color::E color)
     memDC.SelectObject(bitmapButton);
     wxBrush brush({ 0, 0, 0 }, wxTRANSPARENT);
     memDC.SetBrush(brush);
-    Region(SCREEN_WIDTH, SCREEN_HEIGHT).Fill(0, 0, color);
+    SetColor(color);
+    FillRegionC(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, color);
 }
 
 
-void Painter::EndScene()
+void Painter::EndScene(bool)
 {
     memDC.SelectObject(wxNullBitmap);
     screen->Refresh();
