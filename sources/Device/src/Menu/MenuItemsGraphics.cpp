@@ -54,7 +54,7 @@ void DrawGovernorChoiceColorFormulaHiPart(void *item, int x, int y, bool pressed
             symbol = GetSymbolForGovernor(*((Governor*)item)->cell);
             ADDRESS_GOVERNOR = (uint)item;
         }
-        else if (type == TypeItem::Governor || type == TypeItem::ChoiceReg ||  (Menu::ItemIsOpened(item) && type == TypeItem::Choice))
+        else if (type == TypeItem::ChoiceReg || (Menu::ItemIsOpened(item) && type == TypeItem::Choice))
         {
             symbol = GetSymbolForGovernor(*((Choice*)item)->cell);
         }
@@ -98,7 +98,7 @@ void DrawGovernorLowPart(Governor *governor, int x, int y, bool, bool shade)
     if(Menu::OpenedItem() != governor)
     {
         float delta = Governor_Step(governor);
-        if(delta == 0.0F)
+        if(delta == 0.0F) //-V2550 //-V550
         {
             x = Painter::DrawText(x + 1, y + 21, Int2String(*governor->cell, false, 1, buffer));
         }
@@ -132,7 +132,7 @@ void DrawGovernorLowPart(Governor *governor, int x, int y, bool, bool shade)
     Painter::DrawTextC(x + 1, y + 21, "\x81", colorTextDown);
 }
 
-static void DrawIPaddressLowPart(IPaddress *ip, int x, int y, bool, bool shade)
+static void DrawIPaddressLowPart(const IPaddress *ip, int x, int y, bool, bool shade)
 {
     char buffer[20];
 
@@ -158,7 +158,7 @@ static void DrawIPaddressLowPart(IPaddress *ip, int x, int y, bool, bool shade)
     }
 }
 
-static void DrawMACaddressLowPart(MACaddress *mac, int x, int y, bool, bool shade)
+static void DrawMACaddressLowPart(const MACaddress *mac, int x, int y, bool, bool shade)
 {
     char buffer[20];
 
@@ -184,7 +184,7 @@ static void DrawMACaddressLowPart(MACaddress *mac, int x, int y, bool, bool shad
     }
 }
 
-void WriteTextFormula(Formula *formula, int x, int y, bool)
+void WriteTextFormula(const Formula *formula, int x, int y, bool)
 {
     Function::E function = (Function::E)(*formula->function);
     
@@ -213,7 +213,7 @@ void WriteTextFormula(Formula *formula, int x, int y, bool)
     Painter::DrawText(x + 48, y, "K2");
 }
 
-void DrawFormulaLowPart(Formula *formula, int x, int y, bool, bool shade)
+void DrawFormulaLowPart(const Formula *formula, int x, int y, bool, bool shade)
 {
     Color::E colorTextDown = COLOR_BACK;
 
@@ -287,7 +287,7 @@ static void DrawValueWithSelectedPosition(int x, int y, int value, int numDigits
     }
 }
 
-void DrawGovernorValue(int x, int y, Governor *governor)
+void DrawGovernorValue(int x, int y, const Governor *governor)
 {
     char buffer[20];
 
@@ -624,7 +624,7 @@ void ItemChoice_DrawClosed(Choice *choice, int x, int y)
     float deltaY = choice->Step();
     Color::E colorText = shade ? LightShadingTextColor() : COLOR_BACK;
     Painter::SetColor(colorText);
-    if(deltaY == 0.0F)
+    if(deltaY == 0.0F) //-V2550 //-V550
     {
         Painter::DrawText(x + 4, y + 21, choice->NameCurrentSubItem());
     }

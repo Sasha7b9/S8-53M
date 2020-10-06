@@ -37,11 +37,14 @@ static int numFiles = 0;
 void FM::Init(void)
 {
     std::strcpy(currentDir, "\\");
-    numFirstDir = numFirstFile = numCurDir = numCurFile = 0;
+    numFirstDir = 0;
+    numFirstFile = 0;
+    numCurDir = 0;
+    numCurFile = 0;
 }
 
 
-void FM::DrawLongString(int x, int y, char *string, bool hightlight)
+void FM::DrawLongString(int x, int y, const char *string, bool hightlight)
 {
     int length = Font_GetLengthText(string);
 
@@ -81,12 +84,12 @@ void FM::DrawDirs(int x, int y)
     y += 12;
     if (FlashDrive::GetNameDir(currentDir, numFirstDir, nameDir, &sfrd))
     {
-        int  drawingDirs = 0;
-        DrawLongString(x, y, nameDir, CURSORS_IN_DIRS && ( numFirstDir + drawingDirs == numCurDir));
+        DrawLongString(x, y, nameDir, (CURSORS_IN_DIRS != 0) && (numFirstDir == numCurDir));
+        int drawingDirs = 0;
         while (drawingDirs < (RECS_ON_PAGE - 1) && FlashDrive::GetNextNameDir(nameDir, &sfrd))
         {
             drawingDirs++;
-            DrawLongString(x, y + drawingDirs * 9, nameDir, CURSORS_IN_DIRS && ( numFirstDir + drawingDirs == numCurDir));
+            DrawLongString(x, y + drawingDirs * 9, nameDir, (CURSORS_IN_DIRS != 0) && ( numFirstDir + drawingDirs == numCurDir));
         }
     }
 }
@@ -100,8 +103,8 @@ void FM::DrawFiles(int x, int y)
     y += 12;
     if (FlashDrive::GetNameFile(currentDir, numFirstFile, nameFile, &sfrd))
     {
+        DrawLongString(x, y, nameFile, CURSORS_IN_DIRS == 0 && (numFirstFile == numCurFile));
         int drawingFiles = 0;
-        DrawLongString(x, y, nameFile, CURSORS_IN_DIRS == 0 && (numFirstFile + drawingFiles == numCurFile));
         while (drawingFiles < (RECS_ON_PAGE - 1) && FlashDrive::GetNextNameFile(nameFile, &sfrd))
         {
             drawingFiles++;
@@ -111,7 +114,7 @@ void FM::DrawFiles(int x, int y)
 }
 
 
-bool FM::FileIsExist(char name[255])
+bool FM::FileIsExist(const char name[255])
 {
     char nameFile[255];
     FlashDrive::GetNumDirsAndFiles(currentDir, &numDirs, &numFiles);
@@ -234,7 +237,10 @@ void FM::PressLevelDown(void)
             FlashDrive::CloseCurrentDir(&sfrd);
             std::strcat(currentDir, "\\");
             std::strcat(currentDir, nameDir);
-            numFirstDir = numFirstFile = numCurDir = numCurFile = 0;
+            numFirstDir = 0;
+            numFirstFile = 0;
+            numCurDir = 0;
+            numCurFile = 0;
         }
 
     }
@@ -255,7 +261,10 @@ void FM::PressLevelUp(void)
         pointer--;
     }
     *pointer = '\0';
-    numFirstDir = numFirstFile = numCurDir = numCurFile = 0;
+    numFirstDir = 0;
+    numFirstFile = 0;
+    numCurDir = 0;
+    numCurFile = 0;
     CURSORS_IN_DIRS = 1;
 }
 
@@ -421,7 +430,7 @@ LabelNextNumber:
         if(FileIsExist(name))
         {
             number++;
-            goto LabelNextNumber;
+            goto LabelNextNumber; //-V2505
         }
 
         return true;

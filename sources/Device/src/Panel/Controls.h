@@ -29,7 +29,7 @@ struct PanelButton { enum E
 PanelButton::E& operator++(PanelButton::E &button);
 
 // Идентификаторы регуляторов.
-struct Regulator { enum E
+struct Regulator { enum E //-V2521
 {
     Empty     = 0,    // регулятор не вращался
     Range0    = 20,   // ВОЛЬТ/ДЕЛ кан. 1

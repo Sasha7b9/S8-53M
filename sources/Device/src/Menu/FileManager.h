@@ -22,9 +22,9 @@ public:
 
 private:
     
-    static bool FileIsExist(char name[255]);
+    static bool FileIsExist(const char name[255]);
 
-    static void DrawLongString(int x, int y, char *string, bool hightlight);
+    static void DrawLongString(int x, int y, const char *string, bool hightlight);
 
     static void DrawDirs(int x, int y);
 

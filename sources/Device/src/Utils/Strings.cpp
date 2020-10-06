@@ -7,8 +7,9 @@ static bool ChooseSymbols(const uint8 **string);    // Возвращает false, если вы
 static bool ChooseSpaces(const uint8 **string);     // Возвращает false, если выбор невозможен - строка кончилась.
 
 
-int GetNumWordsInString(const uint8 *string)
+int GetNumWordsInString(const uint8 *)
 {
+    /*
     ChooseSpaces(&string);
 
     int numWords = 0;
@@ -20,6 +21,9 @@ int GetNumWordsInString(const uint8 *string)
     }
     
     return numWords;
+    */
+    
+    return 0;
 }
 
 bool GetWord(const uint8 *string, Word *word, const int numWord)

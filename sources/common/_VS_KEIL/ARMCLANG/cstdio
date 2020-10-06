@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace std
+namespace std //-V1061
 {
 #pragma warning(push, 0)
     int vsprintf(char *__restrict, const char *__restrict, struct va_list);
