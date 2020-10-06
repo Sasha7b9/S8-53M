@@ -9,23 +9,17 @@ static bool ChooseSpaces(const uint8 **string);     // Возвращает false, если вы
 
 int GetNumWordsInString(const uint8 *string)
 {
-
     ChooseSpaces(&string);
 
-    while (true)
+    int numWords = 0;
+    
+    while (ChooseSymbols(&string))
     {
-        int numWords = 0;
-        
-        if (ChooseSymbols(&string))
-        {
-            numWords++;
-        }
-        else
-        {
-            return numWords;
-        }
+        numWords++;
         ChooseSpaces(&string);
     }
+    
+    return numWords;
 }
 
 bool GetWord(const uint8 *string, Word *word, const int numWord)
