@@ -1,9 +1,6 @@
 #pragma once
 
 
-#define CUR_WIDTH               6
-#define CUR_HEIGHT              8
-
 #define MP_Y                    ((Grid::TOP) + 1)
 #define MP_TITLE_WIDTH          79
 #define MP_X                    (Grid::Right() - (MP_TITLE_WIDTH) - 1)
