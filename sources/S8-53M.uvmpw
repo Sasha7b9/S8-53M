@@ -26,6 +26,7 @@
 
   <project>
     <PathAndName>.\DLoader\DLoader-Debug.uvprojx</PathAndName>
+    <NodeIsExpanded>1</NodeIsExpanded>
   </project>
 
   <project>

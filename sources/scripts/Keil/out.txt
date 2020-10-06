@@ -1,4 +1,4 @@
 Load "D:\\Projects\\stm32\\S8-53M\\sources\\DLoader\\Objects\\DLoader.axf" 
 Internal DLL Error
 Error: Flash Download failed  -  Target DLL has been cancelled
-Flash Load finished at 13:35:38
+Flash Load finished at 13:46:26
