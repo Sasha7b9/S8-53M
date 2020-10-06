@@ -59,10 +59,10 @@ file(GLOB LIBS_USBH         ../../common/_VS_GUI/USBH/*)
 file(GLOB DISPLAY           ../../Device/src/Display/Painter.h
                                          src/Display/Painter_win.cpp)
 file(GLOB DISPLAY_FONT      ../../Device/src/Display/font/*)
-file(GLOB ETHERNET          ../../Device/src/Ethernet/Ethernet.h
-                                             Ethernet/Ethernet_win.cpp
-                            ../../Device/src/Ethernet/TcpSocket.h
-                            ../../Device/src/Ethernet/TcpSocket.cpp)
+file(GLOB LAN               ../../Device/src/LAN/LAN.h
+                                             LAN/LAN_win.cpp
+                            ../../Device/src/LAN/SocketTCP.h
+                            ../../Device/src/LAN/SocketTCP.cpp)
 file(GLOB FDRIVE            ../../Device/src/FDrive/*)
 file(GLOB FPGA              ../../Device/src/FPGA/*)
 file(GLOB HARDWARE          ../../Device/src/Hardware/*.h
