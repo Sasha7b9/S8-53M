@@ -822,7 +822,7 @@ void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channe
     uint8 max[300];
 
 
-    if (SET_TBASE >= TBase::_20ms && PEAKDET)
+    if ((SET_TBASE >= TBase::_20ms) && (PEAKDET != PeackDetMode::Disable))
     {
         for (int col = 0; col < width; col++)
         {
@@ -842,7 +842,7 @@ void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channe
         uint8 *iMin = &min[0];
         uint8 *iMax = &max[0];
 
-        for (int col = 0; col < width; col++, iMin++, iMax++)
+        for (int col = 0; col < width; col++, iMin++, iMax++) //-V2528
         {
             int firstElem = static_cast<int>(col * elemsInColumn);
             int lastElem = firstElem + static_cast<int>(elemsInColumn) - 1;
@@ -875,7 +875,7 @@ void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channe
     int height = 14;
     float scale = (float)height / (float)(MAX_VALUE - MIN_VALUE);
 
-#define ORDINATE(x) bottom - scale * LimitationInt(x - MIN_VALUE, 0, 200)
+#define ORDINATE(x) bottom - scale * LimitationInt((x) - MIN_VALUE, 0, 200)
 
 #define NUM_POINTS (300 * 2)
     uint8 points[NUM_POINTS];
@@ -952,9 +952,6 @@ void Display::DrawMemoryWindow()
 
     int16 shiftInMemory = SHIFT_IN_MEMORY;
     
-    int startI = shiftInMemory;
-    int endI = startI + 281;
-
     const int xVert0 = static_cast<int>(leftX + shiftInMemory * scaleX);
     const int xVert1 = leftX + static_cast<int>(shiftInMemory * scaleX) + timeWindowRectWidth;
     bool showFull = set.display.showFullMemoryWindow;
@@ -970,6 +967,9 @@ void Display::DrawMemoryWindow()
     {
         if (gData0 || gData1 || (!dataP2PIsEmpty))
         {
+            int startI = shiftInMemory;
+            int endI = startI + 281;
+
             Channel::E chanFirst = LAST_AFFECTED_CHANNEL_IS_A ? Channel::B : Channel::A;
             Channel::E chanSecond = LAST_AFFECTED_CHANNEL_IS_A ? Channel::A : Channel::B;
             pUCHAR dataFirst = LAST_AFFECTED_CHANNEL_IS_A ? dat1 : dat0;
@@ -1017,7 +1017,7 @@ void Display::DrawMemoryWindow()
     Painter::FillRegionC(static_cast<int>(xShift), 4, 4, 4, COLOR_FILL);
     Painter::SetColor(COLOR_BACK);
 
-    if(xShift == leftX - 2)
+    if(xShift == leftX - 2) //-V2550 //-V550
     {
         xShift = static_cast<float>(leftX - 2);
         Painter::DrawLine(static_cast<int>(xShift) + 3, 5, static_cast<int>(xShift) + 3, 7);
@@ -1045,11 +1045,13 @@ void Display::WriteCursors()
     {
         startX += 29;
     }
-    int x = startX;
-    int y1 = 0;
-    int y2 = 9;
+
     if(sCursors_NecessaryDrawCursors())
     {
+        int x = startX;
+        int y1 = 0;
+        int y2 = 9;
+
         Painter::DrawVLineC(x, 1, GRID_TOP - 2, COLOR_FILL);
         x += 3;
         Channel::E source = CURS_SOURCE;
@@ -1202,16 +1204,19 @@ void Display::DrawCursorsRShift()
 bool Display::NeedForClearScreen()
 {
     int numAccum = NUM_ACCUM;
+
     if (sTime_RandomizeModeEnabled() || numAccum == 1 || MODE_ACCUM_IS_NORESET || SET_SELFRECORDER)
     {
         return true;
     }
+
     if (NEED_FINISH_REDRAW)
     {
         NEED_FINISH_REDRAW = 0;
         return true;
     }
-    if (MODE_ACCUM_IS_RESET && NUM_DRAWING_SIGNALS >= static_cast<uint>(numAccum))
+
+    if (MODE_ACCUM_IS_RESET && (NUM_DRAWING_SIGNALS >= static_cast<uint>(numAccum))) //-V560
     {
         NUM_DRAWING_SIGNALS = 0;
         return true;
@@ -1299,7 +1304,7 @@ void Display::Update(bool endScene)
 
 void Display::WriteValueTrigLevel()
 {
-    if (SHOW_LEVEL_TRIGLEV && MODE_WORK_IS_DIRECT)
+    if ((SHOW_LEVEL_TRIGLEV != 0) && MODE_WORK_IS_DIRECT)
     {
         float trigLev = RSHIFT_2_ABS(TRIG_LEVEL_SOURCE, SET_RANGE(TRIG_SOURCE));     // WARN Здесь для внешней синхронизации неправильно рассчитывается уровень.
         TrigSource::E trigSource = TRIG_SOURCE;
@@ -1582,7 +1587,7 @@ void Display::DrawScaleLine(int x, bool forTrigLev)
 
 void Display::DrawCursorsWindow()
 {
-    if((!MenuIsMinimize() || !MenuIsShown()) && DRAW_RSHIFT_MARKERS)
+    if((!MenuIsMinimize() || !MenuIsShown()) && (DRAW_RSHIFT_MARKERS != 0))
     {
         DrawScaleLine(2, false);
     }
@@ -1596,15 +1601,12 @@ void Display::DrawCursorTrigLevel()
     {
         return;
     }
-    int trigLev = TRIG_LEVEL(chan) + ((chan == TrigSource::Ext) ? 0 : SET_RSHIFT(chan) - RShiftZero);
-    float scale = 1.0f / ((TrigLevMax - TrigLevMin) / 2 / Grid::ChannelHeight());
+    int trigLev = TRIG_LEVEL(chan) + (SET_RSHIFT(chan) - RShiftZero);
+    float scale = 1.0F / ((TrigLevMax - TrigLevMin) / 2.0F / Grid::ChannelHeight());
     int y0 = static_cast<int>((GRID_TOP + Grid::ChannelBottom()) / 2 + scale * (TrigLevZero - TrigLevMin));
     int y = static_cast<int>(y0 - scale * (trigLev - TrigLevMin));
 
-    if(chan != TrigSource::Ext)
-    {
-        y = (y - Grid::ChannelCenterHeight()) + Grid::ChannelCenterHeight();
-    }
+    y = (y - Grid::ChannelCenterHeight()) + Grid::ChannelCenterHeight();
 
     int x = Grid::Right();
     Painter::SetColor(ColorTrig());
@@ -1629,12 +1631,11 @@ void Display::DrawCursorTrigLevel()
     Painter::SetFont(TypeFont::_5);
 
     const char simbols[3] = {'1', '2', 'В'};
-    int dY = 0;
-    
-    Painter::DrawCharC(x + 5, y - 9 + dY, simbols[TRIG_SOURCE], COLOR_BACK);
+
+    Painter::DrawCharC(x + 5, y - 9, simbols[TRIG_SOURCE], COLOR_BACK);
     Painter::SetFont(TypeFont::_8);
 
-    if (DRAW_RSHIFT_MARKERS && !MenuIsMinimize())
+    if ((DRAW_RSHIFT_MARKERS != 0) && !MenuIsMinimize())
     {
         DrawScaleLine(SCREEN_WIDTH - 11, true);
         int left = Grid::Right() + 9;
@@ -1646,7 +1647,7 @@ void Display::DrawCursorTrigLevel()
         int yFull = static_cast<int>(GRID_TOP + DELTA + height - scale * (shiftFull - RShiftMin - TrigLevMin) - 4);
         Painter::FillRegionC(left + 2, yFull + 1, 4, 6, ColorTrig());
         Painter::SetFont(TypeFont::_5);
-        Painter::DrawCharC(left + 3, yFull - 5 + dY, simbols[TRIG_SOURCE], COLOR_BACK);
+        Painter::DrawCharC(left + 3, yFull - 5, simbols[TRIG_SOURCE], COLOR_BACK);
         Painter::SetFont(TypeFont::_8);
     }
 }
@@ -1660,7 +1661,7 @@ void Display::DrawCursorRShift(Channel::E chan)
     {
         int rShift = SET_RSHIFT_MATH;
         float scale = (float)Grid::MathHeight() / 960;
-        float y = (Grid::MathTop() + Grid::MathBottom()) / 2 - scale * (rShift - RShiftZero);
+        float y = (Grid::MathTop() + Grid::MathBottom()) / 2.0F - scale * (rShift - RShiftZero);
         Painter::DrawCharC(static_cast<int>(x - 9), static_cast<int>(y - 4), SYMBOL_RSHIFT_NORMAL, COLOR_FILL);
         Painter::DrawCharC(static_cast<int>(x - 8), static_cast<int>(y - 5), 'm', COLOR_BACK);
         return;
@@ -1674,9 +1675,6 @@ void Display::DrawCursorRShift(Channel::E chan)
  
     float scale = (float)Grid::ChannelHeight() / (STEP_RSHIFT * 200);
     float y = Grid::ChannelCenterHeight() - scale * (rShift - RShiftZero);
-
-    float scaleFull = (float)Grid::ChannelHeight() / (RShiftMax - RShiftMin) * (sService_MathEnabled() ? 0.9f : 0.91f);
-    float yFull = Grid::ChannelCenterHeight() - scaleFull *(rShift - RShiftZero);
 
     if(y > Grid::ChannelBottom())
     {
@@ -1695,21 +1693,23 @@ void Display::DrawCursorRShift(Channel::E chan)
     else
     {
         Painter::DrawCharC(static_cast<int>(x - 8), static_cast<int>(y - 4), SYMBOL_RSHIFT_NORMAL, ColorChannel(chan));
-        if(((chan == Channel::A) ? (SHOW_LEVEL_RSHIFT_0 == 1) : (SHOW_LEVEL_RSHIFT_1 == 1)) && MODE_WORK_IS_DIRECT)
+        if(((chan == Channel::A) ? (SHOW_LEVEL_RSHIFT_0 == 1) : (SHOW_LEVEL_RSHIFT_1 == 1)) && MODE_WORK_IS_DIRECT) //-V2570
         {
             Painter::DrawDashedHLine(static_cast<int>(y), Grid::Left(), Grid::Right(), 7, 3, 0);
         }
     }
 
     Painter::SetFont(TypeFont::_5);
-    int dY = 0;
 
-    if((!MenuIsMinimize() || !MenuIsShown()) && DRAW_RSHIFT_MARKERS)
+    if((!MenuIsMinimize() || !MenuIsShown()) && DRAW_RSHIFT_MARKERS_IS_TRUE)
     {
+        float scaleFull = (float)Grid::ChannelHeight() / (RShiftMax - RShiftMin) * (sService_MathEnabled() ? 0.9f : 0.91f);
+        float yFull = Grid::ChannelCenterHeight() - scaleFull * (rShift - RShiftZero);
+
         Painter::FillRegionC(4, static_cast<int>(yFull - 3), 4, 6, ColorChannel(chan));
-        Painter::DrawCharC(5, static_cast<int>(yFull - 9 + dY), chan == Channel::A ? '1' : '2', COLOR_BACK);
+        Painter::DrawCharC(5, static_cast<int>(yFull - 9), chan == Channel::A ? '1' : '2', COLOR_BACK);
     }
-    Painter::DrawCharC(static_cast<int>(x - 7), static_cast<int>(y - 9 + dY), chan == Channel::A ? '1' : '2', COLOR_BACK);
+    Painter::DrawCharC(static_cast<int>(x - 7), static_cast<int>(y - 9), chan == Channel::A ? '1' : '2', COLOR_BACK);
     Painter::SetFont(TypeFont::_8);
 }
 
@@ -1939,12 +1939,11 @@ void Display::WriteTextVoltage(Channel::E chan, int x, int y)
 
     if(enable)
     {
-        const int widthField = 91;
-        const int heightField = 8;
-
         Color::E colorDraw = inverse ? Color::WHITE : color;
         if(inverse)
         {
+            const int widthField = 91;
+            const int heightField = 8;
             Painter::FillRegionC(x, y, widthField, heightField, color);
         }
 
@@ -1963,7 +1962,7 @@ void Display::WriteTextVoltage(Channel::E chan, int x, int y)
 
 
 
-void Display::WriteStringAndNumber(char *text, int x, int y, int number)
+void Display::WriteStringAndNumber(pCHAR text, int x, int y, int number)
 {
     char buffer[100];
     Painter::DrawTextC(x, y, text, COLOR_FILL);
@@ -2020,9 +2019,9 @@ void Display::DrawLowPart()
     Painter::DrawText(x + 35, y0, buffer);
 
     buffer[0] = 0;
-    const char *source[3] = {"1", "2", "\x82"};
     if (MODE_WORK_IS_DIRECT)
     {
+        const char *source[3] = { "1", "2", "\x82" };
         std::sprintf(buffer, "с\xa5\x10%s", source[TRIG_SOURCE]);
     }
 
@@ -2077,11 +2076,11 @@ void Display::DrawLowPart()
     x += 82;
     y0 = y0 - 3;
     y1 = y1 - 6;
-    int y2 = y1 + 6;
     Painter::SetFont(TypeFont::_5);
     
     if (MODE_WORK_IS_DIRECT)
     {
+        int y2 = y1 + 6;
         WriteStringAndNumber("накопл", x, y0, NUM_ACCUM);
         WriteStringAndNumber("усредн", x, y1, NUM_AVE);
         WriteStringAndNumber("мн\x93мкс", x, y2, NUM_MIN_MAX);
@@ -2097,7 +2096,7 @@ void Display::DrawLowPart()
         char mesFreq[20] = "\x7c=";
         char buf[20];
         float freq = FPGA::GetFreq();
-        if (freq == -1.0f) //-V550
+        if (freq == -1.0f) //-V550 //-V2550
         {
             std::strcat(mesFreq, "******");
         }
@@ -2121,12 +2120,12 @@ void Display::DrawLowPart()
     }
 
     // Ethernet
-    if ((CLIENT_LAN_IS_CONNECTED || CABLE_LAN_IS_CONNECTED) && gTimerMS > 2000)
+    if (((CLIENT_LAN_IS_CONNECTED != 0) || (CABLE_LAN_IS_CONNECTED != 0)) && gTimerMS > 2000)
     {
         Painter::Draw4SymbolsInRectC(x + 87, GRID_BOTTOM + 2, SYMBOL_ETHERNET, CLIENT_LAN_IS_CONNECTED ? COLOR_FILL : Color::FLASH_01);
     }
 
-    if (CLIENT_VCP_IS_CONNECTED || CABLE_VCP_IS_CONNECTED)
+    if ((CLIENT_VCP_IS_CONNECTED != 0) || (CABLE_VCP_IS_CONNECTED != 0))
     {
         Painter::Draw4SymbolsInRectC(x + 72, GRID_BOTTOM + 2, SYMBOL_USB, CLIENT_VCP_IS_CONNECTED ? COLOR_FILL : Color::FLASH_01);
     }
@@ -2309,7 +2308,7 @@ int Display::FirstEmptyString()
             return i;
         }
     }
-    return MAX_NUM_STRINGS;
+    return MAX_NUM_STRINGS - 1;
 }
 
 
@@ -2338,7 +2337,7 @@ void Display::DeleteFirstString()
     }
     for(int i = numStrings - 1; i < MAX_NUM_STRINGS; i++)
     {
-        strings[i] = 0;
+        strings[i] = 0; //-V557
     }
     for(int i = 0; i < SIZE_BUFFER_FOR_STRINGS - delta; i++)
     {
@@ -2381,7 +2380,7 @@ void Display::AddString(const char *string)
 
 void Display::AddStringToIndicating(const char *string)
 {
-    if(FirstEmptyString() == MAX_NUM_STRINGS)
+    if(FirstEmptyString() == (MAX_NUM_STRINGS - 1))
     {
         DeleteFirstString();
     }
@@ -2455,8 +2454,6 @@ void Display::DrawConsole()
         firstString = 0;
     }
 
-    int dY = 0;
-    
     for(int numString = firstString; numString <= lastString; numString++)
     {
         int width = Font_GetLengthText(strings[numString]);
@@ -2466,7 +2463,7 @@ void Display::DrawConsole()
         {
             y -= 3;
         }
-        Painter::DrawTextC(Grid::Left() + 2, y + dY + delta, strings[numString], COLOR_FILL);
+        Painter::DrawTextC(Grid::Left() + 2, y + delta, strings[numString], COLOR_FILL);
         count++;
     }
 

@@ -167,7 +167,7 @@ private:
     
     static bool NeedForClearScreen();
     
-    static void WriteStringAndNumber(char *text, int x, int y, int number);
+    static void WriteStringAndNumber(pCHAR text, int x, int y, int number);
     
     static void DrawGridType3(int left, int top, int right, int bottom, int centerX, int centerY, int deltaX, int deltaY, int stepX, int stepY);
     
