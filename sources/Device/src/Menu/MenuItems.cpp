@@ -1,3 +1,4 @@
+#include "defines.h"
 #include "Menu.h"
 #include "MenuItems.h"
 #include "Hardware/Sound.h"

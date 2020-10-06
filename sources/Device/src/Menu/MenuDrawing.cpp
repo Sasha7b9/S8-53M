@@ -1,3 +1,4 @@
+#include "defines.h"
 #include "Panel/Controls.h"
 #include "Settings/SettingsTypes.h"
 #include "Utils/Measures.h"

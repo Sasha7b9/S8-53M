@@ -3,28 +3,35 @@
 
 // Идентификаторы кнопок.
 struct PanelButton { enum E
-{
-    Empty,      // кнопка не нажата
-    Channel0,   // КАНАЛ 1
-    Service,    // СЕРВИС
-    Channel1,   // КАНАЛ 2
-    Display,    // ДИСПЛЕЙ
-    Time,       // РАЗВ
-    Memory,     // ПАМЯТЬ
-    Trig,       // СИНХР
-    Start,      // ПУСК/СТАРТ
-    Cursors,    // КУРСОРЫ
-    Measures,   // ИЗМЕР
-    Power,      // ПИТАНИЕ
-    Help,       // ПОМОЩЬ
-    Menu,       // МЕНЮ
-    F1,         // 1
-    F2,         // 2
-    F3,         // 3
-    F4,         // 4
-    F5,         // 5
-    Count            // общее количество кнопок
-};};
+    {
+        Empty,      // кнопка не нажата
+        Channel0,   // КАНАЛ 1
+        Service,    // СЕРВИС
+        Channel1,   // КАНАЛ 2
+        Display,    // ДИСПЛЕЙ
+        Time,       // РАЗВ
+        Memory,     // ПАМЯТЬ
+        Trig,       // СИНХР
+        Start,      // ПУСК/СТАРТ
+        Cursors,    // КУРСОРЫ
+        Measures,   // ИЗМЕР
+        Power,      // ПИТАНИЕ
+        Help,       // ПОМОЩЬ
+        Menu,       // МЕНЮ
+        F1,         // 1
+        F2,         // 2
+        F3,         // 3
+        F4,         // 4
+        F5,         // 5
+        Count            // общее количество кнопок
+    };
+
+    E value;
+
+    explicit PanelButton(E v) : value(v) { }
+
+    pString Name();
+};
 
 PanelButton::E& operator++(PanelButton::E &button);
 

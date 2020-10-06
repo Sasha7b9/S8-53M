@@ -1,5 +1,5 @@
+#include "defines.h"
 #include "Controls.h"
-
 
 
 static const char* namesButtons[] = 
