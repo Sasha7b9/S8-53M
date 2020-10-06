@@ -116,6 +116,7 @@ static int8_t CDC_Itf_Control (uint8_t cmd, uint8_t* pbuf, uint16_t)
         break;    
     
     default:
+        // здесь ничего
         break;
     }
   
@@ -124,7 +125,7 @@ static int8_t CDC_Itf_Control (uint8_t cmd, uint8_t* pbuf, uint16_t)
 
 
 
-static int8_t CDC_Itf_Receive(uint8* buffer, uint *length)
+static int8_t CDC_Itf_Receive(uint8* buffer, uint *length) //-V2009 //-V2558
 {
     SCPI::AddNewData(buffer, *length);
 
