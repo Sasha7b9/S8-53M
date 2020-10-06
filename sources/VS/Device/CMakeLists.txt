@@ -81,7 +81,6 @@ file(GLOB HARDWARE_HAL          ../../common/Hardware/HAL/HAL.h
                                 ../../common/Hardware/HAL/cHAL_ADC3.cpp
                                 ../../common/Hardware/HAL/cHAL_CRC.cpp
                                 ../../common/Hardware/HAL/cHAL_DAC.cpp
-                                ../../common/Hardware/HAL/cHAL_FSMC.cpp
                                 ../../common/Hardware/HAL/cHAL_OTP.cpp
                                 ../../common/Hardware/HAL/cHAL_RTC.cpp
                                 ../../common/Hardware/HAL/cHAL_SPI1.cpp
