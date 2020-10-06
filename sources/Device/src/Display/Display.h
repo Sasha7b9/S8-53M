@@ -11,6 +11,9 @@ struct DataSettings;
 class Display
 {
 public:
+    static const int WIDTH = 320;
+    static const int HEIGHT = 240;
+
     static void Init();
 
     static void Update(bool endScene = true);

@@ -93,7 +93,7 @@ void Painter::DrawRectangle(int x, int y, int width, int height)
     DrawHLine(y, x, x + width);
     DrawVLine(x, y, y + height);
     DrawHLine(y + height, x, x + width);
-    if (x + width < SCREEN_WIDTH)
+    if (x + width < Display::WIDTH)
     {
         DrawVLine(x + width, y, y + height);
     }

@@ -428,11 +428,11 @@ void Display::DrawMath()
 
     DrawDataChannel(points, Channel::Math, ds, Grid::MathTop(), Grid::MathBottom());
 
-    static const int WIDTH = 71;
-    static const int HEIGHT = 10;
+    static const int w = 71;
+    static const int h = 10;
     int delta = (SHOW_STRING_NAVIGATION && MODE_DRAW_MATH_IS_TOGETHER) ? 10 : 0;
-    Painter::DrawRectangleC(Grid::Left(), Grid::MathTop() + delta, WIDTH, HEIGHT, COLOR_FILL);
-    Painter::FillRegionC(Grid::Left() + 1, Grid::MathTop() + 1 + delta, WIDTH - 2, HEIGHT - 2, COLOR_BACK);
+    Painter::DrawRectangleC(Grid::Left(), Grid::MathTop() + delta, w, h, COLOR_FILL);
+    Painter::FillRegionC(Grid::Left() + 1, Grid::MathTop() + 1 + delta, w - 2, h - 2, COLOR_BACK);
     Divider::E multiplier = MATH_MULTIPLIER;
     Painter::DrawTextC(Grid::Left() + 2, Grid::MathTop() + 1 + delta, sChannel_Range2String(SET_RANGE_MATH, multiplier), COLOR_FILL);
     Painter::DrawText(Grid::Left() + 25, Grid::MathTop() + 1 + delta, ":");
@@ -1522,7 +1522,7 @@ void Display::DrawGrid(int left, int top, int width, int height)
     if (top == GRID_TOP)
     {
         Painter::DrawHLine(top, 1, left - 2);
-        Painter::DrawHLine(top, right + 2, SCREEN_WIDTH - 2);
+        Painter::DrawHLine(top, right + 2, Display::WIDTH - 2);
 
         if (!MenuIsMinimize() || !MenuIsShown())
         {
@@ -1637,7 +1637,7 @@ void Display::DrawCursorTrigLevel()
 
     if ((DRAW_RSHIFT_MARKERS != 0) && !MenuIsMinimize())
     {
-        DrawScaleLine(SCREEN_WIDTH - 11, true);
+        DrawScaleLine(Display::WIDTH - 11, true);
         int left = Grid::Right() + 9;
         int height = Grid::ChannelHeight() - 2 * DELTA;
         int shiftFullMin = RShiftMin + TrigLevMin;
@@ -1981,8 +1981,8 @@ void Display::WriteStringAndNumber(pCHAR text, int x, int y, int number)
 
 void Display::DrawLowPart()
 {
-    int y0 = SCREEN_HEIGHT - 19;
-    int y1 = SCREEN_HEIGHT - 10;
+    int y0 = Display::HEIGHT - 19;
+    int y1 = Display::HEIGHT - 10;
     int x = -1;
 
     Painter::DrawHLineC(Grid::ChannelBottom(), 1, Grid::Left() - Measure::GetDeltaGridLeft() - 2, COLOR_FILL);
@@ -1992,7 +1992,7 @@ void Display::DrawLowPart()
 
     WriteTextVoltage(Channel::B, x + 2, y1);
 
-    Painter::DrawVLineC(x + 95, GRID_BOTTOM + 2, SCREEN_HEIGHT - 2, COLOR_FILL);
+    Painter::DrawVLineC(x + 95, GRID_BOTTOM + 2, Display::HEIGHT - 2, COLOR_FILL);
 
     x += 98;
     char buffer[100] = {0};
@@ -2068,10 +2068,10 @@ void Display::DrawLowPart()
         Painter::DrawText(x + 63, y1, buffer);
     }
     
-    Painter::DrawVLineC(x + 79, GRID_BOTTOM + 2, SCREEN_HEIGHT - 2, COLOR_FILL);
+    Painter::DrawVLineC(x + 79, GRID_BOTTOM + 2, Display::HEIGHT - 2, COLOR_FILL);
 
-    Painter::DrawHLine(GRID_BOTTOM, GRID_RIGHT + 2, SCREEN_WIDTH - 2);
-    Painter::DrawHLine(Grid::ChannelBottom(), GRID_RIGHT + 2, SCREEN_WIDTH - 2);
+    Painter::DrawHLine(GRID_BOTTOM, GRID_RIGHT + 2, Display::WIDTH - 2);
+    Painter::DrawHLine(Grid::ChannelBottom(), GRID_RIGHT + 2, Display::WIDTH - 2);
 
     x += 82;
     y0 = y0 - 3;
@@ -2087,7 +2087,7 @@ void Display::DrawLowPart()
     }
 
     x += 42;
-    Painter::DrawVLine(x, GRID_BOTTOM + 2, SCREEN_HEIGHT - 2);
+    Painter::DrawVLine(x, GRID_BOTTOM + 2, Display::HEIGHT - 2);
 
     Painter::SetFont(TypeFont::_8);
 
@@ -2109,7 +2109,7 @@ void Display::DrawLowPart()
 
     DrawTime(x + 3, GRID_BOTTOM + 11);
 
-    Painter::DrawVLine(x + 55, GRID_BOTTOM + 2, SCREEN_HEIGHT - 2);
+    Painter::DrawVLine(x + 55, GRID_BOTTOM + 2, Display::HEIGHT - 2);
 
     Painter::SetFont(TypeFont::_UGO2);
 
@@ -2270,7 +2270,7 @@ void Display::RemoveAddDrawFunction()
 
 void Display::Clear()
 {
-    Painter::FillRegionC(0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 2, COLOR_BACK);
+    Painter::FillRegionC(0, 0, Display::WIDTH - 1, Display::HEIGHT - 2, COLOR_BACK);
 }
 
 

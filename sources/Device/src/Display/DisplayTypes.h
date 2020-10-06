@@ -1,14 +1,9 @@
 #pragma once
 
 
-//#include "defines.h"
-
-
-#define SCREEN_WIDTH            320
 #define SCREEN_WIDTH_IN_BYTES   (320 / 8)
-#define SCREEN_HEIGHT           240
 #define SCREEN_HEIGHT_IN_BYTES  (240 / 8)
-#define SIZE_BUFFER_FOR_SCREEN  ((SCREEN_WIDTH) * (SCREEN_HEIGHT) / 8)
+#define SIZE_BUFFER_FOR_SCREEN  ((Display::WIDTH) * (Display::HEIGHT) / 8)
 
 #define GRID_DELTA              20
 #define GRID_TOP                19

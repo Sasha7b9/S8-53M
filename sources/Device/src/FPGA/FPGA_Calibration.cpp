@@ -225,7 +225,7 @@ void FuncAttScreen(void)
     {
         case StateCalibration::None:
         {
-                Painter::DrawTextInRect(40 + dX, y + 25 + dY, SCREEN_WIDTH - 100, 200, "Калибровка завершена. Нажмите любую кнопку, чтобы выйти из режима калибровки.");
+                Painter::DrawTextInRect(40 + dX, y + 25 + dY, Display::WIDTH - 100, 200, "Калибровка завершена. Нажмите любую кнопку, чтобы выйти из режима калибровки.");
 
                 Painter::DrawText(10 + dX, 55 + dY, "Поправка нуля 1к :");
                 Painter::DrawText(10 + dX, 80 + dY, "Поправка нуля 2к :");
@@ -251,7 +251,7 @@ void FuncAttScreen(void)
             break;
 
         case StateCalibration::RShift0start:
-            Painter::DrawTextInRect(50, y + 25, SCREEN_WIDTH - 100, 200, "Подключите ко входу канала 1 выход калибратора и нажмите кнопку ПУСК/СТОП. \
+            Painter::DrawTextInRect(50, y + 25, Display::WIDTH - 100, 200, "Подключите ко входу канала 1 выход калибратора и нажмите кнопку ПУСК/СТОП. \
 Если вы не хотите калибровать первый канала, нажмите любую другую кнопку.");
             break;
 
@@ -259,7 +259,7 @@ void FuncAttScreen(void)
             break;
 
         case StateCalibration::RShift1start:
-            Painter::DrawTextInRect(50, y + 25, SCREEN_WIDTH - 100, 200, "Подключите ко входу канала 2 выход калибратора и нажмите кнопку ПУСК/СТОП. \
+            Painter::DrawTextInRect(50, y + 25, Display::WIDTH - 100, 200, "Подключите ко входу канала 2 выход калибратора и нажмите кнопку ПУСК/СТОП. \
 Если вы не хотите калибровать второй канал, нажмите любую другую кнопку.");
             break;
 
@@ -267,11 +267,11 @@ void FuncAttScreen(void)
             break;
 
         case StateCalibration::ErrorCalibration0:
-            Painter::DrawTextInRect(50, y + 25, SCREEN_WIDTH - 100, 200, "Внимание !!! Канал 1 не скалиброван.");
+            Painter::DrawTextInRect(50, y + 25, Display::WIDTH - 100, 200, "Внимание !!! Канал 1 не скалиброван.");
             break;
 
         case StateCalibration::ErrorCalibration1:
-            Painter::DrawTextInRect(50, y + 25, SCREEN_WIDTH - 100, 200, "Внимание !!! Канал 2 не скалиброван.");
+            Painter::DrawTextInRect(50, y + 25, Display::WIDTH - 100, 200, "Внимание !!! Канал 2 не скалиброван.");
             break;
     }
 
