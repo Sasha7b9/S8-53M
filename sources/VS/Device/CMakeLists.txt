@@ -56,8 +56,7 @@ file(GLOB LIBS_FATFS        ../../common/STM32Cube_F4/Middlewares/Third_Party/Fa
 file(GLOB LIBS_LWIP         ../../common/_VS_GUI/LwIP/*)
 file(GLOB LIBS_HAL          ../../common/_VS_GUI/HAL/*)
 file(GLOB LIBS_USBH         ../../common/_VS_GUI/USBH/*)
-file(GLOB DISPLAY           ../../Device/src/Display/*.h
-                            ../../Device/src/Display/*.cpp
+file(GLOB DISPLAY           ../../Device/src/Display/Painter.h
                                          src/Display/Painter_win.cpp)
 file(GLOB DISPLAY_FONT      ../../Device/src/Display/font/*)
 file(GLOB ETHERNET          ../../Device/src/Ethernet/Ethernet.h

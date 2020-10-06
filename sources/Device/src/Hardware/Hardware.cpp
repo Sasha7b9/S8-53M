@@ -4,9 +4,9 @@
 #include "Hardware/Timer.h"
 #include "common/Hardware/HAL/HAL.h"
 #include "common/Log.h"
-#include "Ethernet/Ethernet.h"
 #include "Display/Display.h"
 #include "FDrive/FDrive.h"
+#include "LAN/LAN.h"
 #include "Panel/Panel.h"
 
 

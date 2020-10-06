@@ -6,7 +6,7 @@
   <Header>### uVision Project, (C) Keil Software</Header>
 
   <PrjGuiSettings>
-    <LastAddFilePath>C:\My\work\S8-53M\sources\common\Settings</LastAddFilePath>
+    <LastAddFilePath></LastAddFilePath>
   </PrjGuiSettings>
 
   <ViewPool/>
@@ -68,7 +68,7 @@
     </View>
     <View>
       <WinId>466</WinId>
-      <ViewName>Source Browser</ViewName>
+      <ViewName>Source Browser - *** Not Enabled ***</ViewName>
       <UserString>500</UserString>
       <TableColWidths>300</TableColWidths>
     </View>
@@ -101,10 +101,10 @@
         <yPos>-1</yPos>
       </MaxPosition>
       <NormalPosition>
-        <Top>188</Top>
-        <Left>261</Left>
-        <Right>1521</Right>
-        <Bottom>958</Bottom>
+        <Top>110</Top>
+        <Left>110</Left>
+        <Right>1370</Right>
+        <Bottom>880</Bottom>
       </NormalPosition>
     </WindowPosition>
     <MDIClientArea>

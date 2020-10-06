@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "TcpSocket.h"
+#include "LAN/SocketTCP.h"
 #include <lwip/tcp.h>
 #include <cstring>
 #include <cstdarg>
