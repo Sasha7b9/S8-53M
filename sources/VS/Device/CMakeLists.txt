@@ -60,7 +60,7 @@ file(GLOB DISPLAY           ../../Device/src/Display/Painter.h
                                          src/Display/Painter_win.cpp)
 file(GLOB DISPLAY_FONT      ../../Device/src/Display/font/*)
 file(GLOB LAN               ../../Device/src/LAN/LAN.h
-                                             LAN/LAN_win.cpp
+                                         src/LAN/LAN_win.cpp
                             ../../Device/src/LAN/SocketTCP.h
                             ../../Device/src/LAN/SocketTCP.cpp)
 file(GLOB FDRIVE            ../../Device/src/FDrive/*)
@@ -117,7 +117,7 @@ source_group(libs\\HAL      FILES ${LIBS_HAL})
 source_group(libs\\USBH     FILES ${LIBS_USBH})
 source_group(Display        FILES ${DISPLAY})
 source_group(Display\\Font  FILES ${DISPLAY_FONT})
-source_group(Ethernet       FILES ${ETHERNET})
+source_group(LAN            FILES ${LAN})
 source_group(FDrive         FILES ${FDRIVE})
 source_group(FPGA           FILES ${FPGA})
 source_group(GUI            FILES ${GUI})
@@ -132,7 +132,7 @@ source_group(src            FILES ${SRC})
 source_group(VCP            FILES ${VCP})
 source_group(Utils          FILES ${UTILS})
 
-add_executable(S8-53M ${LIBS_CMSIS} ${LIBS_FATFS} ${LIBS_LWIP} ${LIBS_HAL} ${LIBS_USBH} ${DISPLAY} ${DISPLAY_FONT} ${ETHERNET} ${FDRIVE} ${FPGA} ${GUI} ${GUI_DIALOGS} ${HARDWARE}
+add_executable(S8-53M ${LIBS_CMSIS} ${LIBS_FATFS} ${LIBS_LWIP} ${LIBS_HAL} ${LIBS_USBH} ${DISPLAY} ${DISPLAY_FONT} ${LAN} ${FDRIVE} ${FPGA} ${GUI} ${GUI_DIALOGS} ${HARDWARE}
                       ${HARDWARE_HAL} ${MENU} ${MENU_PAGES} ${PANEL} ${SETTINGS} ${SRC} ${VCP} ${UTILS})
 
 target_link_libraries(S8-53M ../../../ThirdParty/wxWidgets/generated/lib/vc_dll/wxbase31ud)

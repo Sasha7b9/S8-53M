@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "Ethernet/Ethernet.h"
+#include "LAN/LAN.h"
 
 
 void LAN::Init()
