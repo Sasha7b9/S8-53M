@@ -48,7 +48,7 @@ char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
     bufferOut[0] = 0;
     char *pBuffer = bufferOut;
 
-    if(value == ERROR_VALUE_FLOAT)
+    if(value == ERROR_VALUE_FLOAT) //-V550 //-V2550
     {
         std::strcat(bufferOut, ERROR_STRING_VALUE);
         return bufferOut;
@@ -165,13 +165,14 @@ char*   Bin2String16(uint16 value, char valBuffer[19])
 {
     char buffer[9];
     std::strcpy(valBuffer, Bin2String((uint8)(value >> 8), buffer));
-    std::strcpy((valBuffer[8] = ' ', valBuffer + 9), Bin2String((uint8)value, buffer));
+    valBuffer[8] = ' ';
+    std::strcpy(valBuffer + 9, Bin2String((uint8)value, buffer));
     return valBuffer;
 }
 
 char* Hex8toString(uint8 value, char buffer[3])
 {
-    std::sprintf(value < 16 ? (buffer[0] = '0', buffer + 1) :  (buffer), "%x", value);
+    std::sprintf(value < 16 ? (buffer[0] = '0', buffer + 1) :  (buffer), "%x", value); //-V2528
     return buffer;
 }
 
@@ -179,7 +180,7 @@ char* Voltage2String(float voltage, bool alwaysSign, char buffer[20])
 {
     buffer[0] = 0;
     char *suffix;
-    if(voltage == ERROR_VALUE_FLOAT)
+    if(voltage == ERROR_VALUE_FLOAT) //-V2550 //-V550
     {
         std::strcat(buffer, ERROR_STRING_VALUE);
         return buffer;
@@ -216,7 +217,7 @@ char* Time2String(float time, bool alwaysSign, char buffer[20])
 {
     buffer[0] = 0;
     char *suffix = 0;
-    if(time == ERROR_VALUE_FLOAT)
+    if(time == ERROR_VALUE_FLOAT) //-V2550 //-V550
     {
         std::strcat(buffer, ERROR_STRING_VALUE);
         return buffer;
@@ -258,7 +259,7 @@ char *  Freq2String(float freq, bool, char bufferOut[20])
 {
     bufferOut[0] = 0;
     char *suffix = 0;
-    if(freq == ERROR_VALUE_FLOAT)
+    if(freq == ERROR_VALUE_FLOAT) //-V2550 //-V550
     {
         std::strcat(bufferOut, ERROR_STRING_VALUE);
         return bufferOut;

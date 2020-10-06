@@ -119,13 +119,13 @@ private:
     
     static void DrawDataInModePoint2Point();
     
-    static bool DrawDataInModeNormal();
+    static void DrawDataInModeNormal();
     
     static void DrawDataMinMax();
     
-    static bool DrawDataNormal();
+    static void DrawDataNormal();
     
-    static bool DrawData();
+    static void DrawData();
     // Нарисовать окно памяти
     static void DrawMemoryWindow();
     

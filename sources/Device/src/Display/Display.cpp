@@ -100,7 +100,8 @@ void Display::RotateRShift(Channel::E chan)
     LAST_AFFECTED_CHANNEL = chan;
     if(TIME_SHOW_LEVELS)
     {
-        (chan == Channel::A) ? (SHOW_LEVEL_RSHIFT_0 = 1) : (SHOW_LEVEL_RSHIFT_1 = 1);
+        if (chan == Channel::A) { SHOW_LEVEL_RSHIFT_0 = 1; }
+        else                    { SHOW_LEVEL_RSHIFT_1 = 1; }
         Timer::Enable((chan == Channel::A) ? TypeTimer::ShowLevelRShift0 : TypeTimer::ShowLevelRShift1, TIME_SHOW_LEVELS  * 1000, (chan == Channel::A) ? FuncOnTimerDisableShowLevelRShiftA :
                      FuncOnTimerDisableShowLevelRShiftB);
     };
@@ -646,10 +647,9 @@ void Display::DrawDataInModeSelfRecorder()
 
 
 
-bool Display::DrawDataInModeNormal()
+void Display::DrawDataInModeNormal()
 {
     static void* prevAddr = 0;
-    bool retValue = true;
 
     uint8 *data0 = 0;
     uint8 *data1 = 0;
@@ -674,8 +674,6 @@ bool Display::DrawDataInModeNormal()
             DrawBothChannels(Storage::GetData(Channel::A, i), Storage::GetData(Channel::B, i));
         }
     }
-
-    return retValue;
 }
 
 
@@ -703,9 +701,8 @@ void Display::DrawDataMinMax()
 
 
 
-bool Display::DrawDataNormal()
+void Display::DrawDataNormal()
 {
-    bool retValue = true;
     if (!dataP2PIsEmpty)
     {
         static const pFuncVV funcs[2] = {DrawDataInModePoint2Point, DrawDataInModeSelfRecorder};
@@ -713,17 +710,14 @@ bool Display::DrawDataNormal()
     }
     else
     {
-        retValue = DrawDataInModeNormal();
+        DrawDataInModeNormal();
     }
-    return retValue;
 }
 
 
 
-bool Display::DrawData()
+void Display::DrawData()
 {
-    bool retValue = true;
-
     if (Storage::AllDatas())
     {
 
@@ -748,7 +742,7 @@ bool Display::DrawData()
             {
                 DrawDataMemInt();
             }
-            retValue = DrawDataNormal();
+            DrawDataNormal();
         }
 
         if (NUM_MIN_MAX != 1)
@@ -758,8 +752,6 @@ bool Display::DrawData()
     }
 
     Painter::DrawRectangleC(Grid::Left(), GRID_TOP, Grid::Width(), Grid::FullHeight(), COLOR_FILL);
-
-    return retValue;
 }
 
 
