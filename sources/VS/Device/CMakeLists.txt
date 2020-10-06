@@ -7,7 +7,7 @@ include_directories(../..
                     ../../Device/src/Hardware/LwIP
                     ../../Device/src/Hardware/USBD
                     ../../Device/src/Hardware/USBH
-                    src
+                                 src
                     ../../common/_VS_GUI/CMSIS
                     ../../common/STM32Cube_F4/Drivers/CMSIS/Device/ST/STM32F4xx/Include
                     ../../common/STM32Cube_F4/Drivers/STM32F4xx_HAL_Driver/Inc
@@ -70,16 +70,17 @@ file(GLOB LAN               ../../Device/src/LAN/LAN.h
                             ../../Device/src/LAN/SocketTCP.cpp)
 file(GLOB FDRIVE            ../../Device/src/FDrive/*)
 file(GLOB FPGA              ../../Device/src/FPGA/*)
-file(GLOB HARDWARE          ../../Device/src/Hardware/*.h
-                            ../../Device/src/Hardware/*.cpp)
+file(GLOB HARDWARE          ../../Device/src/Hardware/EPROM.h
+                                         src/Hardware/EPROM_win.cpp
+                            ../../Device/src/Hardware/Hardware.*
+                            ../../Device/src/Hardware/Sound.*
+                            ../../Device/src/Hardware/Timer.*)
 file(GLOB HARDWARE_HAL          ../../common/Hardware/HAL/HAL.h
-                                ../../common/Hardware/HAL/cHAL.cpp
                                 ../../common/Hardware/HAL/HAL_PINS.h
                                 ../../common/Hardware/HAL/cHAL_PINS.cpp
                                 ../../common/Hardware/HAL/cHAL_ADC3.cpp
                                 ../../common/Hardware/HAL/cHAL_CRC.cpp
                                 ../../common/Hardware/HAL/cHAL_DAC.cpp
-                                ../../common/Hardware/HAL/cHAL_EPROM.cpp
                                 ../../common/Hardware/HAL/cHAL_FSMC.cpp
                                 ../../common/Hardware/HAL/cHAL_OTP.cpp
                                 ../../common/Hardware/HAL/cHAL_RTC.cpp
