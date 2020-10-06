@@ -22,7 +22,7 @@
 
 
 #define SCPI_SEND(...)                                  \
-    if(CLIENT_VCP_IS_CONNECTED)                             \
+    if(CLIENT_VCP_IS_CONNECTED)                         \
     {                                                   \
         VCP::SendFormatStringAsynch(__VA_ARGS__);       \
     }                                                   \
@@ -32,7 +32,7 @@
     }
 
 #define ENTER_PARSE_FUNC(funcName)                      \
-void funcName(uint8 *buffer)                            \
+void funcName(const uint8 *buffer)                      \
 {                                                       \
     static const StructCommand commands[] =             \
     {
@@ -48,7 +48,7 @@ void funcName(uint8 *buffer)                            \
 struct StructCommand
 {
     char        *name;
-    pFuncpU8    func;
+    pFuncpCU8   func;
 };
 
 
@@ -60,29 +60,29 @@ public:
 
 private:
     static void ParseNewCommand(uint8 *buffer);   // \todo Временно. Потом доделать
-    static void ProcessingCommand(const StructCommand *commands, uint8 *buffer);
+    static void ProcessingCommand(const StructCommand *commands, const uint8 *buffer);
     static bool FirstIsInt(const uint8 *buffer, int *value, int min, int max);
-    static void ProcessDISPLAY(uint8 *buffer);
-    static void ProcessCHANNEL(uint8 *buffer);
-    static void ProcessTRIG(uint8 *buffer);
-    static void ProcessTBASE(uint8 *buffer);
+    static void ProcessDISPLAY(const uint8 *buffer);
+    static void ProcessCHANNEL(const uint8 *buffer);
+    static void ProcessTRIG(const uint8 *buffer);
+    static void ProcessTBASE(const uint8 *buffer);
 
     class COMMON
     {
     public:
-        static void IDN(uint8 *buffer);
-        static void RUN(uint8 *buffer);
-        static void STOP(uint8 *buffer);
-        static void RESET(uint8 *buffer);
-        static void AUTOSCALE(uint8 *buffer);
-        static void REQUEST(uint8 *buffer);
+        static void IDN(const uint8 *buffer);
+        static void RUN(const uint8 *buffer);
+        static void STOP(const uint8 *buffer);
+        static void RESET(const uint8 *buffer);
+        static void AUTOSCALE(const uint8 *buffer);
+        static void REQUEST(const uint8 *buffer);
     };
 
     class CONTROL
     {
     public:
-        static void KEY(uint8 *buffer);
-        static void GOVERNOR(uint8 *buffer);
+        static void KEY(const uint8 *buffer);
+        static void GOVERNOR(const uint8 *buffer);
     };
 
     class CHANNEL
@@ -100,22 +100,22 @@ private:
     class DISPLAY
     {
     public:
-        static void AUTOSEND(uint8 *buffer);
-        static void MAPPING(uint8 *buffer);
-        static void ACCUM(uint8 *buffer);
-        static void ACCUM_NUMBER(uint8 *buffer);
-        static void ACCUM_MODE(uint8 *buffer);
-        static void ACCUM_CLEAR(uint8 *buffer);
-        static void AVERAGE(uint8 *buffer);
-        static void AVERAGE_NUMBER(uint8 *buffer);
-        static void AVERAGE_MODE(uint8 *buffer);
-        static void MINMAX(uint8 *buffer);
-        static void FILTR(uint8 *buffer);
-        static void FPS(uint8 *buffer);
-        static void WINDOW(uint8 *buffer);
-        static void GRID(uint8 *buffer);
-        static void GRID_TYPE(uint8 *buffer);
-        static void GRID_BRIGHTNESS(uint8 *buffer);
+        static void AUTOSEND(const uint8 *buffer);
+        static void MAPPING(const uint8 *buffer);
+        static void ACCUM(const uint8 *buffer);
+        static void ACCUM_NUMBER(const uint8 *buffer);
+        static void ACCUM_MODE(const uint8 *buffer);
+        static void ACCUM_CLEAR(const uint8 *buffer);
+        static void AVERAGE(const uint8 *buffer);
+        static void AVERAGE_NUMBER(const uint8 *buffer);
+        static void AVERAGE_MODE(const uint8 *buffer);
+        static void MINMAX(const uint8 *buffer);
+        static void FILTR(const uint8 *buffer);
+        static void FPS(const uint8 *buffer);
+        static void WINDOW(const uint8 *buffer);
+        static void GRID(const uint8 *buffer);
+        static void GRID_TYPE(const uint8 *buffer);
+        static void GRID_BRIGHTNESS(const uint8 *buffer);
     };
 
     class TBASE
