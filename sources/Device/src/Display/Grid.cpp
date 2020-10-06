@@ -2,6 +2,17 @@
 #include "Settings/Settings.h"
 
 
+int Grid::Bottom()
+{
+    return Grid::TOP + GRID_HEIGHT;
+}
+
+
+int Grid::Delta()
+{
+    return DELTA;
+}
+
 
 int Grid::Left(void)
 {
@@ -17,7 +28,7 @@ int Grid::Right(void)
 
 int Grid::ChannelBottom(void)
 {
-    return (SettingsDisplay::IsSeparate()) ? (GRID_TOP + GRID_HEIGHT / 2) : FullBottom();
+    return (SettingsDisplay::IsSeparate()) ? (Grid::TOP + GRID_HEIGHT / 2) : FullBottom();
 }
 
 
@@ -35,19 +46,19 @@ int Grid::ChannelHeight(void)
 
 int Grid::ChannelCenterHeight(void)
 {
-    return (GRID_TOP + ChannelBottom()) / 2;
+    return (Grid::TOP + ChannelBottom()) / 2;
 }
 
 
 int Grid::FullBottom(void)
 {
-    return GRID_BOTTOM - Measure::GetDeltaGridBottom();
+    return Grid::Bottom() - Measure::GetDeltaGridBottom();
 }
 
 
 int Grid::FullHeight(void)
 {
-    return FullBottom() - GRID_TOP;
+    return FullBottom() - Grid::TOP;
 }
 
 
@@ -59,7 +70,7 @@ int Grid::Width(void)
 
 int Grid::FullCenterHeight(void)
 {
-    return (FullBottom() + GRID_TOP) / 2;
+    return (FullBottom() + Grid::TOP) / 2;
 }
 
 
@@ -71,7 +82,7 @@ int Grid::WidthInCells(void)
 
 float Grid::DeltaY(void)
 {
-    float delta = (FullBottom() - GRID_TOP) / 10.0F;
+    float delta = (FullBottom() - Grid::TOP) / 10.0F;
     return SettingsDisplay::IsSeparate() ? (delta / 2.0f) : delta;
 }
 

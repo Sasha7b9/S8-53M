@@ -103,9 +103,9 @@ int Measure::GetTopTable()
 {
     if(MEAS_NUM_IS_6_2 || MEAS_NUM_IS_6_1)
     {
-        return GRID_BOTTOM - Measure::GetDY() * 6;
+        return Grid::Bottom() - Measure::GetDY() * 6;
     }
-    return GRID_BOTTOM - Measure::NumRows() * Measure::GetDY();
+    return Grid::Bottom() - Measure::NumRows() * Measure::GetDY();
 }
 
 int Measure::NumCols()
@@ -241,7 +241,7 @@ void Measure::DrawPageChoice()
     bool num61or62 = MEAS_NUM_IS_6_1 || MEAS_NUM_IS_6_2;
 
     int x = num61or62 ? (Grid::Right() - 3 * GRID_WIDTH / 5) : Grid::Left();
-    int y = GRID_TOP;
+    int y = Grid::TOP;
     int dX = GRID_WIDTH / 5;
     int dY = 22;
     int maxRow = num61or62 ? 8 : 5;

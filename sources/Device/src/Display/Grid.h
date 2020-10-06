@@ -4,11 +4,16 @@
 class Grid
 {
 public:
+    static const int DELTA = 20;
+    static const int TOP = 19;
+
+    static int Delta();
     static int Left();
     static int Right();
     static int Width();
     static float DeltaY();
     static float DeltaX();
+    static int Bottom();
 
     static int WidthInCells();
 

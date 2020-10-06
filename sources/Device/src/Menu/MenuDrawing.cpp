@@ -27,7 +27,7 @@ static void *itemUnderButton[PanelButton::Count] = {0};
 
 PanelButton::E GetFuncButtonFromY(int _y)
 {
-    int y = GRID_TOP + GRID_HEIGHT / 12;
+    int y = Grid::TOP + GRID_HEIGHT / 12;
     int step = GRID_HEIGHT / 6;
     PanelButton::E button = PanelButton::Menu;
     for(int i = 0; i < 6; i++)
@@ -95,17 +95,17 @@ void Menu::Draw()
         void *item = OpenedItem();
         if(MenuIsShown())
         {
-            DrawOpenedPage(TypeMenuItem(item) == TypeItem::Page ? (Page *)item : Keeper(item), 0, GRID_TOP);
+            DrawOpenedPage(TypeMenuItem(item) == TypeItem::Page ? (Page *)item : Keeper(item), 0, Grid::TOP);
         }
         else
         {
             if(TypeMenuItem(item) == TypeItem::Choice)
             {
-                ItemChoice_Draw((Choice *)item, CalculateX(0), GRID_TOP, true);
+                ItemChoice_Draw((Choice *)item, CalculateX(0), Grid::TOP, true);
             }
             else if(TypeMenuItem(item) == TypeItem::Governor)
             {
-                ItemGovernor_Draw((Governor *)item, CalculateX(0), GRID_TOP, true);
+                ItemGovernor_Draw((Governor *)item, CalculateX(0), Grid::TOP, true);
             }
         }
     }
@@ -347,7 +347,7 @@ void Menu::DrawOpenedPage(Page *page, int layer, int yTop)
 
 int Menu::CalculateX(int layer)
 {
-    return MP_X - layer * GRID_DELTA / 4;
+    return MP_X - layer * Grid::DELTA / 4;
 }
 
 
@@ -382,10 +382,10 @@ int Menu::ItemOpenedPosY(void *item)
 {
     Page *page = Keeper(item);
     int8 posCurItem = PosCurrentItem(page);
-    int y = GRID_TOP + (posCurItem % MENU_ITEMS_ON_DISPLAY) * MI_HEIGHT + MP_TITLE_HEIGHT;
-    if(y + HeightOpenedItem(item) > GRID_BOTTOM)
+    int y = Grid::TOP + (posCurItem % MENU_ITEMS_ON_DISPLAY) * MI_HEIGHT + MP_TITLE_HEIGHT;
+    if(y + HeightOpenedItem(item) > Grid::Bottom())
     {
-        y = GRID_BOTTOM - HeightOpenedItem(item) - 2;
+        y = Grid::Bottom() - HeightOpenedItem(item) - 2;
     }
     return y + 1;
 }

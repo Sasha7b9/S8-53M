@@ -130,11 +130,11 @@ static void FuncDrawingAdditionSPageMemoryLast()
     
     int width = 40;
     int height = 10;
-    Painter::FillRegionC(Grid::Right() - width, GRID_TOP, width, height, COLOR_BACK);
-    Painter::DrawRectangleC(Grid::Right() - width, GRID_TOP, width, height, COLOR_FILL);
-    Painter::DrawText(Grid::Right() - width + 2, GRID_TOP + 1, Int2String(CURRENT_NUM_LATEST_SIGNAL + 1, false, 3, buffer));
-    Painter::DrawText(Grid::Right() - width + 17, GRID_TOP + 1, "/");
-    Painter::DrawText(Grid::Right() - width + 23, GRID_TOP + 1, Int2String(Storage::AllDatas(), false, 3, buffer));
+    Painter::FillRegionC(Grid::Right() - width, Grid::TOP, width, height, COLOR_BACK);
+    Painter::DrawRectangleC(Grid::Right() - width, Grid::TOP, width, height, COLOR_FILL);
+    Painter::DrawText(Grid::Right() - width + 2, Grid::TOP + 1, Int2String(CURRENT_NUM_LATEST_SIGNAL + 1, false, 3, buffer));
+    Painter::DrawText(Grid::Right() - width + 17, Grid::TOP + 1, "/");
+    Painter::DrawText(Grid::Right() - width + 23, Grid::TOP + 1, Int2String(Storage::AllDatas(), false, 3, buffer));
 }
 
 void DrawSB_MemLast_IntEnter(int x, int y)
@@ -961,7 +961,7 @@ const Choice mcMemoryExtModeSave =
 void DrawSetName()
 {
     int x0 = Grid::Left() + 40;
-    int y0 = GRID_TOP + 60;
+    int y0 = Grid::TOP + 60;
     int width = Grid::Width() - 80;
     int height = 80;
 
@@ -1037,7 +1037,7 @@ static void DrawFileMask(int x, int y)
 void DrawSetMask()
 {
     int x0 = Grid::Left() + 40;
-    int y0 = GRID_TOP + 20;
+    int y0 = Grid::TOP + 20;
     int width = Grid::Width() - 80;
     int height = 160;
 

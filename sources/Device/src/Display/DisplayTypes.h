@@ -1,25 +1,16 @@
 #pragma once
 
 
-#define SCREEN_WIDTH_IN_BYTES   (320 / 8)
-#define SCREEN_HEIGHT_IN_BYTES  (240 / 8)
-#define SIZE_BUFFER_FOR_SCREEN  ((Display::WIDTH) * (Display::HEIGHT) / 8)
-
-#define GRID_DELTA              20
-#define GRID_TOP                19
 #define GRID_CELLS_IN_HEIGHT    10
-#define GRID_HEIGHT             ((GRID_CELLS_IN_HEIGHT) * (GRID_DELTA))
-#define GRID_BOTTOM             ((GRID_TOP) + (GRID_HEIGHT))
+#define GRID_HEIGHT             ((GRID_CELLS_IN_HEIGHT) * (Grid::DELTA))
 #define GRID_WIDTH              (280)
-
-#define GRID_RIGHT              ((Grid::Left()) + (Grid::Width()))
 
 #define CUR_WIDTH               6
 #define CUR_HEIGHT              8
 
-#define MP_Y                    ((GRID_TOP) + 1)
+#define MP_Y                    ((Grid::TOP) + 1)
 #define MP_TITLE_WIDTH          79
-#define MP_X                    ((GRID_RIGHT) - (MP_TITLE_WIDTH) - 1)
+#define MP_X                    (Grid::Right() - (MP_TITLE_WIDTH) - 1)
 #define MP_TITLE_HEIGHT         34
 #define MI_HEIGHT               33
 #define MI_WIDTH                ((MP_TITLE_WIDTH) + 1)

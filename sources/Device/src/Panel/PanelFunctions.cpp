@@ -1,4 +1,5 @@
 #include "common/Log.h"
+#include "Display/Grid.h"
 #include "FPGA/FPGA.h"
 #include "Hardware/Sound.h"
 #include "Hardware/Timer.h"

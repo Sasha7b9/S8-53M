@@ -916,7 +916,7 @@ static void OnPress_SerialNumber(void)
 static void Draw_EnterSerialNumber(void)
 {
     int x0 = Grid::Left() + 40;
-    int y0 = GRID_TOP + 20;
+    int y0 = Grid::TOP + 20;
     int width = Grid::Width() - 80;
     int height = 160;
 
