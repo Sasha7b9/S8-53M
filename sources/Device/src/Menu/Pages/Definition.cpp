@@ -11,22 +11,15 @@
 #include "Panel/Panel.h"
 
 
-/** @addtogroup Menu
- *  @{
- */
-
-
-
 extern Choice mcCursorsSource;
 extern Choice mcCursorsU;
 extern Choice mcCursorsT;
 
 
-
 void CalculateConditions(int16 pos0, int16 pos1, CursCntrl::E cursCntrl, bool *cond0, bool *cond1)
 {
     bool zeroLessFirst = pos0 < pos1;
-    *cond0 = cursCntrl == CursCntrl::_1_2 || (cursCntrl == CursCntrl::_1 && zeroLessFirst) || (cursCntrl == CursCntrl::_2 && !zeroLessFirst);
+    *cond0 = cursCntrl == CursCntrl::_1_2 || (cursCntrl == CursCntrl::_1 && zeroLessFirst) || (cursCntrl == CursCntrl::_2 && !zeroLessFirst); //-V537
     *cond1 = cursCntrl == CursCntrl::_1_2 || (cursCntrl == CursCntrl::_1 && !zeroLessFirst) || (cursCntrl == CursCntrl::_2 && zeroLessFirst);
 }
 
@@ -172,10 +165,7 @@ const void *PageForButton(PanelButton::E button)
 
 
 
-bool IsMainPage(void *item)
+bool IsMainPage(const void *item)
 {
     return item == &mainPage;
 }
-
-/** @}  @}
- */

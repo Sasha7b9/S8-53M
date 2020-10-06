@@ -166,13 +166,13 @@ void FPGA::SetRange(Channel::E chan, Range::E range)
     {
         return;
     }
-    if (range < Range::Count && (int)range >= 0)
+    if (range < Range::Count)
     {
-        float rShiftAbs = RSHIFT_2_ABS(SET_RSHIFT(chan), SET_RANGE(chan));
-        float trigLevAbs = RSHIFT_2_ABS(TRIG_LEVEL(chan), SET_RANGE(chan));
         sChannel_SetRange(chan, range);
         if (LINKING_RSHIFT_IS_VOLTAGE)
         {
+            float rShiftAbs = RSHIFT_2_ABS(SET_RSHIFT(chan), SET_RANGE(chan));
+            float trigLevAbs = RSHIFT_2_ABS(TRIG_LEVEL(chan), SET_RANGE(chan));
             SET_RSHIFT(chan) = (int16)Math_RShift2Rel(rShiftAbs, range);
             TRIG_LEVEL(chan) = (int16)Math_RShift2Rel(trigLevAbs, range);
         }
@@ -202,7 +202,7 @@ void FPGA::SetTBase(TBase::E tBase)
     {
         return;
     }
-    if (tBase < TBase::Count && (int)tBase >= 0)
+    if (tBase < TBase::Count)
     {
         float tShiftAbsOld = TSHIFT_2_ABS(TSHIFT, SET_TBASE);
         sTime_SetTBase(tBase);
@@ -228,7 +228,7 @@ void FPGA::LoadTBase(void)
 
 void FPGA::TBaseDecrease(void)
 {
-    if (PEAKDET && SET_TBASE <= MIN_TBASE_PEC_DEAT)
+    if ((PEAKDET != PeackDetMode::Disable) && SET_TBASE <= MIN_TBASE_PEC_DEAT)
     {
         Display::ShowWarningBad(Warning::LimitSweep_Time);
         Display::ShowWarningBad(Warning::EnabledPeakDet);

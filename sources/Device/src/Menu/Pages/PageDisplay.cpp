@@ -305,7 +305,7 @@ static const Choice mcMinMax =
     (int8*)&ENUM_MIN_MAX, OnChanged_MinMax
 };
 
-static bool IsActive_MinMax(void)
+static bool IsActive_MinMax(void) //-V524
 {
     return SET_TBASE > TBase::_50ns;
 }

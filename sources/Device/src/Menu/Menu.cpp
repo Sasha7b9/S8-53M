@@ -69,7 +69,7 @@ void Menu::UpdateInput()
 
 void Menu::ShortPressureButton(PanelButton::E button)
 {
-    if (!SHOW_HELP_HINTS)
+    if (SHOW_HELP_HINTS == 0)
     {
         if(button == PanelButton::Help)
         {
@@ -233,11 +233,7 @@ void Menu::PressButton(PanelButton::E button)
         return;
     }
 
-    if (pressButton == PanelButton::Start)
-    {
-        pressButton = button;
-    } 
-    else if (!MenuIsShown())
+    if (!MenuIsShown())
     {
         for (int i = SIZE_BUFFER_FOR_BUTTONS - 1; i > 0; i--)
         {
@@ -365,7 +361,7 @@ void Menu::ProcessingShortPressureButton()
 
         PanelButton::E button = shortPressureButton;
 
-        do
+        do //-V2530
         {
             if(button == PanelButton::Menu)                                   // Если нажата кнопка МЕНЮ и мы не находимся в режме настройки измерений.
             {
@@ -667,7 +663,7 @@ void Menu::ShortPress_IP(void *item)
 }
 
 
-void Menu::ShortPress_MAC(void *item)
+void Menu::ShortPress_MAC(void *item) //-V2009 //-V2558
 {
     if (OpenedItem() == item)
     {
@@ -827,7 +823,7 @@ bool Menu::NeedForFireSetLED()    // Возвращает true, если лампочка УСТАНОВКА до
         name == NamePage::SB_MemLatest                               || 
         name == NamePage::SB_MemInt                                  ||
         (name == NamePage::SB_MathFunction && !DISABLED_DRAW_MATH)   ||
-        name == NamePage::SB_Curs && sCursors_NecessaryDrawCursors()
+        name == NamePage::SB_Curs && sCursors_NecessaryDrawCursors() //-V648
         )
     {
         return true;

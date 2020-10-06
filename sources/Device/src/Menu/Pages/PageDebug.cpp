@@ -850,7 +850,7 @@ static void OnPress_SaveFirmware()
 
     FlashDrive::OpenNewFileForWrite("S8-53.bin", &structForWrite);
 
-    uint8 *address = (uint8*)0x08020000;
+    uint8 *address = (uint8*)0x08020000; //-V566
     uint8 *endAddress = address + 128 * 1024 * 3;
 
     int sizeBlock = 512;
@@ -908,7 +908,7 @@ static void OnPress_SerialNumber(void)
     Menu::OpenPageAndSetItCurrent(PageDebug::SerialNumber::GetPointer());
     Display::SetAddDrawFunction(Draw_EnterSerialNumber);
     MALLOC_EXTRAMEM(StructForSN, s);
-    s->number = 01;
+    s->number = 01; //-V522
     s->year = 2017;
     s->curDigt = 0;
 }

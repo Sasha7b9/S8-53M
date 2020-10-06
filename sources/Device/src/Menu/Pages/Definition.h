@@ -8,7 +8,7 @@
 
 
 const void* PageForButton(PanelButton::E button);   // ¬озвращает страницу меню, котора€ должна открыватьс€ по нажатию кнопки button.
-bool IsMainPage(void *item);                        // ¬озвращает true, если item - адрес главной страницы меню.
+bool IsMainPage(const void *item);                        // ¬озвращает true, если item - адрес главной страницы меню.
 
 
 void DrawMenuCursVoltage(int x, int y, bool top, bool bottom);

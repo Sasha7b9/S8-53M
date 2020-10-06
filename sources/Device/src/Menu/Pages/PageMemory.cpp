@@ -271,7 +271,7 @@ void DrawSB_SetMask_Backspace(int x, int y)
     Painter::SetFont(TypeFont::_8);
 }
 
-void DrawSB_SetName_Backspace(int x, int y)
+void DrawSB_SetName_Backspace(int x, int y) //-V524
 {
     Painter::SetFont(TypeFont::_UGO2);
     Painter::Draw4SymbolsInRect(x + 2, y + 1, SYMBOL_BACKSPACE);
@@ -316,7 +316,7 @@ void PressSB_SetMask_Delete()
     FILE_NAME_MASK[0] = '\0';
 }
 
-void DrawSB_SetName_Delete(int x, int y)
+void DrawSB_SetName_Delete(int x, int y) //-V524
 {
     Painter::SetFont(TypeFont::_UGO2);
     Painter::Draw4SymbolsInRect(x + 2, y + 1, SYMBOL_DELETE);
@@ -371,7 +371,7 @@ void PressSB_SetMask_Insert()
     }
 }
 
-void DrawSB_SetName_Insert(int x, int y)
+void DrawSB_SetName_Insert(int x, int y) //-V524
 {
     Painter::SetFont(TypeFont::_UGO2);
     Painter::Draw4SymbolsInRect(x + 2, y + 2, '\x26');
@@ -572,7 +572,7 @@ void PressSB_MemInt_SaveToIntMemory()
     SaveSignalToIntMemory();
 }
 
-void DrawSB_MemInt_SaveToFlashDrive(int x, int y)
+void DrawSB_MemInt_SaveToFlashDrive(int x, int y) //-V524
 {
     if (FLASH_DRIVE_IS_CONNECTED)
     {

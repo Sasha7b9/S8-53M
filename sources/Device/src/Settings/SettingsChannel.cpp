@@ -51,9 +51,13 @@ void sChannel_SetRange(Channel::E chan, Range::E range)
 
 bool sChannel_Enabled(Channel::E chan)
 {
-    if (chan == Channel::Math && !DISABLED_DRAW_MATH)
+    if (chan == Channel::Math)
     {
-        return true;
+        return !DISABLED_DRAW_MATH;
+    }
+    if (chan == Channel::A_B)
+    {
+        return false;
     }
     return SET_ENABLED(chan);
 }

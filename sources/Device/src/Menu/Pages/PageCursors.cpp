@@ -115,8 +115,6 @@ void Cursors_Update()
     CursLookMode::E lookMode0 = CURS_LOOKMODE_0;
     CursLookMode::E lookMode1 = CURS_LOOKMODE_1;
 
-    float posT0 = 0.0F, posT1 = 0.0F;
-
     if((lookMode0 == CursLookMode::Voltage || lookMode0 == CursLookMode::Both) && CURS_ACTIVE_IS_T)
     {
         float posU0 = Processing::GetCursU(source, CURS_POS_T0(source));
@@ -130,13 +128,13 @@ void Cursors_Update()
     if((lookMode0 == CursLookMode::Time || lookMode0 == CursLookMode::Both) && CURS_ACTIVE_IS_U)
     {
         float posU0 = CURS_POS_U0(source);
-        posT0 = Processing::GetCursT(source, posU0, 0);
+        float posT0 = Processing::GetCursT(source, posU0, 0);
         SetCursPosT(source, 0, posT0);
     }
     if((lookMode1 == CursLookMode::Time || lookMode1 == CursLookMode::Both) && CURS_ACTIVE_IS_U)
     {
         float posU1 = CURS_POS_U1(source);
-        posT1 = Processing::GetCursT(source, posU1, 1);
+        float posT1 = Processing::GetCursT(source, posU1, 1);
         SetCursPosT(source, 1, posT1);
     }
 }

@@ -46,7 +46,7 @@ public:
     // Возвращает количество элементов в странице по адресу page.
     static int NumItemsInPage(const Page * const page);
     // Возвращает номер текущей подстранцы элемента по адресу page.
-    static int NumCurrentSubPage(Page *page);
+    static int NumCurrentSubPage(const Page *page);
     // Dозвращает число подстраниц в странице по адресу page.
     static int NumSubPages(const Page *page);
     // Возвращает тип элемента меню по адресу address.
@@ -82,7 +82,7 @@ public:
     // Возвращает название элемента по адресу item, как оно выглядит на дисплее прибора.
     static const char* TitleItem(void *item);
     // Возвращает позицию первого элемента страницы по адресу page на экране. Если текущая подстраница 0, это будет 0, если текущая подстраница 1, это будет 5 и т.д.
-    static int PosItemOnTop(Page *page);
+    static int PosItemOnTop(const Page *page);
     // Возвращает true, если button - функциональная клавиша [1..5].
     static bool IsFunctionalButton(PanelButton::E button);
     // Закрыть открытый элемент меню.

@@ -197,7 +197,7 @@ float Choice::Step()
     if (tsChoice.choice == this)
     {
         float delta = speed * (gTimerMS - tsChoice.timeStartMS);
-        if (delta == 0.0F)
+        if (delta == 0.0F) //-V2550 //-V550
         {
             delta = 0.001f; // Таймер в несколько первых кадров может показать, что прошло 0 мс, но мы возвращаем большее число, потому что ноль будет говорить о том, что движения нет
         }
@@ -222,7 +222,8 @@ float Choice::Step()
         tsChoice.choice = 0;
         FuncOnChanged(Menu::ItemIsActive(this));
         Display::Redraw();
-        tsChoice.inMoveDecrease = tsChoice.inMoveIncrease = 0;
+        tsChoice.inMoveDecrease = 0;
+        tsChoice.inMoveIncrease = 0;
         return 0.0F;
     }
     return 0.0F;

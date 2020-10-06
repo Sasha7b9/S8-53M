@@ -119,7 +119,7 @@ int Menu::HeightOpenedItem(void *item)
 }
 
 
-int Menu::NumCurrentSubPage(Page *page)
+int Menu::NumCurrentSubPage(const Page *page)
 {
     return MenuCurrentSubPage(page->name);
 }
@@ -131,7 +131,7 @@ const char* Menu::TitleItem(void *item)
 }
 
 
-int Menu::PosItemOnTop(Page *page)
+int Menu::PosItemOnTop(const Page *page)
 {
     return NumCurrentSubPage(page) * MENU_ITEMS_ON_DISPLAY;
 }
