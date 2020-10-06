@@ -29,12 +29,12 @@ ENTER_PARSE_FUNC(SCPI::ProcessCHANNEL)
 
     chan = (char)(*(buffer - 2)) == '1' ? Channel::A : Channel::B;
 
-    SCPI::ProcessingCommand(commands, buffer);
+    SCPI::ProcessingCommand(commands, const_cast<uint8 *>(buffer));
 }
 
 
 
-void SCPI::CHANNEL::INPUT(uint8 *buffer)
+void SCPI::CHANNEL::INPUT(pUCHAR buffer)
 {
     static const MapElement map[] = 
     {
@@ -60,7 +60,7 @@ extern void OnChanged_CoupleB(bool);
 
 
 
-void SCPI::CHANNEL::COUPLE(uint8 *buffer)
+void SCPI::CHANNEL::COUPLE(pUCHAR buffer)
 {
     static const pFuncVB func[2] = {OnChanged_CoupleA, OnChanged_CoupleB};
 
@@ -90,7 +90,7 @@ extern void OnChanged_FiltrB(bool activate);
 
 
 
-void SCPI::CHANNEL::FILTR(uint8 *buffer)
+void SCPI::CHANNEL::FILTR(pUCHAR buffer)
 {
     static const pFuncVB func[2] = {OnChanged_FiltrA, OnChanged_FiltrB};
 
@@ -113,7 +113,7 @@ void SCPI::CHANNEL::FILTR(uint8 *buffer)
 
 
 
-void SCPI::CHANNEL::INVERSE(uint8 *buffer)
+void SCPI::CHANNEL::INVERSE(pUCHAR buffer)
 {
     static const MapElement map[] =
     {
@@ -134,7 +134,7 @@ void SCPI::CHANNEL::INVERSE(uint8 *buffer)
 
 
 
-void SCPI::CHANNEL::RANGE(uint8 *buffer)
+void SCPI::CHANNEL::RANGE(pUCHAR buffer)
 {
     static const MapElement map[] = 
     {
@@ -165,7 +165,7 @@ void SCPI::CHANNEL::RANGE(uint8 *buffer)
 
 
 
-void SCPI::CHANNEL::OFFSET(uint8 *buffer)
+void SCPI::CHANNEL::OFFSET(pUCHAR buffer)
 {
     static const MapElement map[] =
     {
@@ -190,7 +190,7 @@ void SCPI::CHANNEL::OFFSET(uint8 *buffer)
 
 
 
-void SCPI::CHANNEL::FACTOR(uint8 *buffer)
+void SCPI::CHANNEL::FACTOR(pUCHAR buffer)
 {
     static const MapElement map[] =
     {

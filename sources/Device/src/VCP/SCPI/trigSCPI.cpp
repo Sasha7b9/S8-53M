@@ -35,7 +35,7 @@ extern void OnPress_Mode(bool active);
 
 
 
-void SCPI::TRIGGER::MODE(uint8 *buffer)
+void SCPI::TRIGGER::MODE(pUCHAR buffer)
 {
     static const MapElement map[] =
     {
@@ -58,7 +58,7 @@ void SCPI::TRIGGER::MODE(uint8 *buffer)
 
 
 
-void SCPI::TRIGGER::SOURCE(uint8 *buffer)
+void SCPI::TRIGGER::SOURCE(pUCHAR buffer)
 {
     static const MapElement map[] =
     {
@@ -81,7 +81,7 @@ void SCPI::TRIGGER::SOURCE(uint8 *buffer)
 
 
 
-void SCPI::TRIGGER::POLARITY(uint8 *buffer)
+void SCPI::TRIGGER::POLARITY(pUCHAR buffer)
 {
     static const MapElement map[] =
     {
@@ -102,7 +102,7 @@ void SCPI::TRIGGER::POLARITY(uint8 *buffer)
 
 
 
-void SCPI::TRIGGER::INPUT(uint8 *buffer)
+void SCPI::TRIGGER::INPUT(pUCHAR buffer)
 {
     static const MapElement map[] =
     {
@@ -127,7 +127,7 @@ void SCPI::TRIGGER::INPUT(uint8 *buffer)
 
 
 
-void SCPI::TRIGGER::FIND(uint8 *buffer)
+void SCPI::TRIGGER::FIND(pUCHAR buffer)
 {
     static const MapElement map[] =
     {
@@ -150,7 +150,7 @@ void SCPI::TRIGGER::FIND(uint8 *buffer)
 
 
 
-void SCPI::TRIGGER::OFFSET(uint8 *buffer)
+void SCPI::TRIGGER::OFFSET(pUCHAR buffer)
 {
     static const MapElement map[] =
     {

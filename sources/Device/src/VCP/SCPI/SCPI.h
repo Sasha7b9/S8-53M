@@ -40,7 +40,7 @@ void funcName(const uint8 *buffer)                      \
 #define LEAVE_PARSE_FUNC                                \
         {0}                                             \
     };                                                  \
-    SCPI::ProcessingCommand(commands, buffer);          \
+    SCPI::ProcessingCommand(commands, const_cast<uint8 *>(buffer));  \
 }
 
 
@@ -60,7 +60,7 @@ public:
 
 private:
     static void ParseNewCommand(uint8 *buffer);   // \todo Временно. Потом доделать
-    static void ProcessingCommand(const StructCommand *commands, const uint8 *buffer);
+    static void ProcessingCommand(const StructCommand *commands, uint8 *buffer);
     static bool FirstIsInt(const uint8 *buffer, int *value, int min, int max);
     static void ProcessDISPLAY(const uint8 *buffer);
     static void ProcessCHANNEL(const uint8 *buffer);
@@ -88,13 +88,13 @@ private:
     class CHANNEL
     {
     public:
-        static void INPUT(uint8 *buffer);
-        static void COUPLE(uint8 *buffer);
-        static void FILTR(uint8 *buffer);
-        static void INVERSE(uint8 *buffer);
-        static void RANGE(uint8 *buffer);
-        static void OFFSET(uint8 *buffer);
-        static void FACTOR(uint8 *buffer);
+        static void INPUT(pUCHAR buffer);
+        static void COUPLE(pUCHAR buffer);
+        static void FILTR(pUCHAR buffer);
+        static void INVERSE(pUCHAR buffer);
+        static void RANGE(pUCHAR buffer);
+        static void OFFSET(pUCHAR buffer);
+        static void FACTOR(pUCHAR buffer);
     };
 
     class DISPLAY
@@ -121,24 +121,24 @@ private:
     class TBASE
     {
     public:
-        static void RANGE(uint8 *buffer);
-        static void OFFSET(uint8 *buffer);
-        static void SAMPLING(uint8 *buffer);
-        static void PEACKDET(uint8 *buffer);
-        static void TPOS(uint8 *buffer);
-        static void SELFRECORDER(uint8 *buffer);
-        static void FUNCTIMEDIV(uint8 *buffer);
+        static void RANGE(pUCHAR buffer);
+        static void OFFSET(pUCHAR buffer);
+        static void SAMPLING(pUCHAR buffer);
+        static void PEACKDET(pUCHAR buffer);
+        static void TPOS(pUCHAR buffer);
+        static void SELFRECORDER(pUCHAR buffer);
+        static void FUNCTIMEDIV(pUCHAR buffer);
     };
 
     class TRIGGER
     {
     public:
-        static void MODE(uint8 *buffer);
-        static void SOURCE(uint8 *buffer);
-        static void POLARITY(uint8 *buffer);
-        static void INPUT(uint8 *buffer);
-        static void FIND(uint8 *buffer);
-        static void OFFSET(uint8 *buffer);
+        static void MODE(pUCHAR buffer);
+        static void SOURCE(pUCHAR buffer);
+        static void POLARITY(pUCHAR buffer);
+        static void INPUT(pUCHAR buffer);
+        static void FIND(pUCHAR buffer);
+        static void OFFSET(pUCHAR buffer);
     };
 };
 

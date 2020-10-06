@@ -221,7 +221,7 @@ void SCPI::DISPLAY::MINMAX(const uint8 *buffer)
 
 
 
-void SCPI::DISPLAY::FILTR(uint8 *buffer)
+void SCPI::DISPLAY::FILTR(pUCHAR buffer)
 {
     static const MapElement map[] =
     {
@@ -255,7 +255,7 @@ extern void OnChanged_RefreshFPS(bool active);
 
 
 
-void SCPI::DISPLAY::FPS(uint8 *buffer)
+void SCPI::DISPLAY::FPS(pUCHAR buffer)
 {
     static const MapElement map[] =
     {
@@ -278,7 +278,7 @@ void SCPI::DISPLAY::FPS(uint8 *buffer)
 
 
 
-void SCPI::DISPLAY::WINDOW(uint8 *buffer)
+void SCPI::DISPLAY::WINDOW(pUCHAR buffer)
 {
     static const MapElement map[] =
     {
@@ -303,7 +303,7 @@ extern void OnChanged_Grid_Brightness();
 
 
 
-void SCPI::DISPLAY::GRID_BRIGHTNESS(uint8 *buffer)
+void SCPI::DISPLAY::GRID_BRIGHTNESS(pUCHAR buffer)
 {
     int intVal = 0;
     if (SCPI::FirstIsInt(buffer, &intVal, 0, 100))
@@ -332,7 +332,7 @@ void SCPI::DISPLAY::GRID_BRIGHTNESS(uint8 *buffer)
 
 
 
-void SCPI::DISPLAY::GRID_TYPE(uint8 *buffer)
+void SCPI::DISPLAY::GRID_TYPE(pUCHAR buffer)
 {
     static const MapElement map[] =
     {
