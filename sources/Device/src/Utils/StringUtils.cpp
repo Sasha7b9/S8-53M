@@ -42,33 +42,13 @@ char SU::ToLower(char symbol)
 }
 
 
-char *SU::DoubleToString(double value)
+char *SU::DoubleToString(double)
 {
     return "";
 }
 
 
-bool SU::StringToDouble(double *value, const char *str)
+bool SU::StringToDouble(double *, const char *)
 {
-    static const int SIZE_BUFFER = 100;
-    char buffer[SIZE_BUFFER];
-
-    strcpy_s(buffer, SIZE_BUFFER - 1, str);
-
-    char *p = buffer;
-
-    while (*p)
-    {
-        if (*p == '.')
-        {
-            *p = ',';
-        }
-        p++;
-    }
-
-    char *end = nullptr;
-
-    *value = std::strtod(buffer, &end);
-
-    return (end != buffer);
+    return false;
 }
