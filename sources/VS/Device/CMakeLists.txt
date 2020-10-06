@@ -87,7 +87,6 @@ file(GLOB HARDWARE_HAL          ../../common/Hardware/HAL/HAL.h
                                 ../../common/Hardware/HAL/cHAL_RTC.cpp
                                 ../../common/Hardware/HAL/cHAL_SPI1.cpp
                                 ../../common/Hardware/HAL/cHAL_SRAM.cpp
-                                ../../common/Hardware/HAL/cHAL_TIM2.cpp
                                 ../../common/Hardware/HAL/cHAL_TIM6.cpp
                                 ../../common/Hardware/HAL/cHAL_TIM7.cpp
                                          src/Hardware/*.h
