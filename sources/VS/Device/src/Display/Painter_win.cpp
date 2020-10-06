@@ -37,7 +37,7 @@
 #include "Utils/Math.h"
 
 
-static wxBitmap bitmapButton(SCREEN_WIDTH, SCREEN_HEIGHT);
+static wxBitmap bitmapButton(Display::WIDTH, Display::HEIGHT);
 /// Здесь будем рисовать
 wxMemoryDC memDC;
 
@@ -99,7 +99,7 @@ void Painter::BeginScene(Color::E color)
     wxBrush brush({ 0, 0, 0 }, wxTRANSPARENT);
     memDC.SetBrush(brush);
     SetColor(color);
-    FillRegionC(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, color);
+    FillRegionC(0, 0, Display::WIDTH, Display::HEIGHT, color);
 }
 
 
@@ -134,8 +134,8 @@ static void CreateButtons(Frame *frame)
 
     PanelButton::E keys[2][5] = 
     {
-        { PanelButton::F1,       PanelButton::F2,      PanelButton::F3,     PanelButton::F4,      PanelButton::F5 },
-        { PanelButton::Function, PanelButton::Measure, PanelButton::Memory, PanelButton::Display, PanelButton::Service }
+        { PanelButton::F1,      PanelButton::F2,      PanelButton::F3,     PanelButton::F4,       PanelButton::F5 },
+        { PanelButton::Cursors, PanelButton::Display, PanelButton::Memory, PanelButton::Measures, PanelButton::Service }
     };
 
     int x0 = 37;
