@@ -69,7 +69,9 @@ file(GLOB LAN               ../../Device/src/LAN/LAN.h
                             ../../Device/src/LAN/SocketTCP.h
                             ../../Device/src/LAN/SocketTCP.cpp)
 file(GLOB FDRIVE            ../../Device/src/FDrive/*)
-file(GLOB FPGA              ../../Device/src/FPGA/*)
+file(GLOB FPGA              ../../Device/src/FPGA/FPGA.h
+                            ../../Device/src/FPGA/Storage.*
+                                         src/FPGA/FPGA_win.cpp)
 file(GLOB HARDWARE          ../../Device/src/Hardware/EPROM.h
                                          src/Hardware/EPROM_win.cpp
                             ../../Device/src/Hardware/Hardware.*
