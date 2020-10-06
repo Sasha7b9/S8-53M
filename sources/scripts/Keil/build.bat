@@ -27,6 +27,7 @@ goto HINT
 
 :BUILD_RELEASE
     call :BUILD_COMMON %1 Release
+    if %1==Device ( echo copy S8-53M.bin h:\ & copy S8-53M.bin h:\ )
     exit /b
 
 :BUILD_COMMON
