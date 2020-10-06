@@ -56,7 +56,11 @@ file(GLOB LIBS_FATFS        ../../common/STM32Cube_F4/Middlewares/Third_Party/Fa
 file(GLOB LIBS_LWIP         ../../common/_VS_GUI/LwIP/*)
 file(GLOB LIBS_HAL          ../../common/_VS_GUI/HAL/*)
 file(GLOB LIBS_USBH         ../../common/_VS_GUI/USBH/*)
-file(GLOB DISPLAY           ../../Device/src/Display/Painter.h
+file(GLOB DISPLAY           ../../Device/src/Display/Colors.*
+                            ../../Device/src/Display/Display.*
+                            ../../Device/src/Display/Grid.*
+                            ../../Device/src/Display/Painter.*
+                            ../../Device/src/Display/PainterText.cpp
                                          src/Display/Painter_win.cpp)
 file(GLOB DISPLAY_FONT      ../../Device/src/Display/font/*)
 file(GLOB LAN               ../../Device/src/LAN/LAN.h
@@ -67,23 +71,24 @@ file(GLOB FDRIVE            ../../Device/src/FDrive/*)
 file(GLOB FPGA              ../../Device/src/FPGA/*)
 file(GLOB HARDWARE          ../../Device/src/Hardware/*.h
                             ../../Device/src/Hardware/*.cpp)
-file(GLOB HARDWARE_HAL      ../../common/Hardware/HAL/HAL.h
-                            ../../common/Hardware/HAL/cHAL.cpp
-                            ../../common/Hardware/HAL/HAL_PINS.h
-                            ../../common/Hardware/HAL/cHAL_PINS.cpp
-                            ../../common/Hardware/HAL/cHAL_ADC3.cpp
-                            ../../common/Hardware/HAL/cHAL_CRC.cpp
-                            ../../common/Hardware/HAL/cHAL_DAC.cpp
-                            ../../common/Hardware/HAL/cHAL_EPROM.cpp
-                            ../../common/Hardware/HAL/cHAL_FSMC.cpp
-                            ../../common/Hardware/HAL/cHAL_OTP.cpp
-                            ../../common/Hardware/HAL/cHAL_RTC.cpp
-                            ../../common/Hardware/HAL/cHAL_SPI1.cpp
-                            ../../common/Hardware/HAL/cHAL_SRAM.cpp
-                            ../../common/Hardware/HAL/cHAL_TIM2.cpp
-                            ../../common/Hardware/HAL/cHAL_TIM6.cpp
-                            ../../common/Hardware/HAL/cHAL_TIM7.cpp
-                                         Hardware/HAL/HAL_USBD_win.cpp)
+file(GLOB HARDWARE_HAL          ../../common/Hardware/HAL/HAL.h
+                                ../../common/Hardware/HAL/cHAL.cpp
+                                ../../common/Hardware/HAL/HAL_PINS.h
+                                ../../common/Hardware/HAL/cHAL_PINS.cpp
+                                ../../common/Hardware/HAL/cHAL_ADC3.cpp
+                                ../../common/Hardware/HAL/cHAL_CRC.cpp
+                                ../../common/Hardware/HAL/cHAL_DAC.cpp
+                                ../../common/Hardware/HAL/cHAL_EPROM.cpp
+                                ../../common/Hardware/HAL/cHAL_FSMC.cpp
+                                ../../common/Hardware/HAL/cHAL_OTP.cpp
+                                ../../common/Hardware/HAL/cHAL_RTC.cpp
+                                ../../common/Hardware/HAL/cHAL_SPI1.cpp
+                                ../../common/Hardware/HAL/cHAL_SRAM.cpp
+                                ../../common/Hardware/HAL/cHAL_TIM2.cpp
+                                ../../common/Hardware/HAL/cHAL_TIM6.cpp
+                                ../../common/Hardware/HAL/cHAL_TIM7.cpp
+                                         src/Hardware/*.h
+                                         src/Hardware/HAL/*.cpp)
 file(GLOB MENU              ../../Device/src/Menu/*.h
                             ../../Device/src/Menu/*.cpp)
 file(GLOB MENU_PAGES        ../../Device/src/Menu/Pages/*)

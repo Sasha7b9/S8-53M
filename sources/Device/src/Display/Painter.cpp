@@ -18,17 +18,9 @@
 static bool inverseColors = false;
 static Color::E currentColor = Color::NUM;
 
-struct StateTransmit { enum E
-{
-    Free,
-    NeedForTransmitFirst,  // Это когда нужно передать первый кадр - передаются шрифты
-    NeedForTransmitSecond, // Это когда нужно передать второй и последующий кадры - шрифты не передаются
-    InProcess
-};};
+StateTransmit::E stateTransmit = StateTransmit::Free;
 
-static StateTransmit::E stateTransmit = StateTransmit::Free;
-
-static bool noFonts = false;
+bool noFonts = false;
 
 
 void Painter::SendFrame(bool first, bool noFonts_)
@@ -343,29 +335,6 @@ void Painter::LoadPalette(void)
     {
         SetPalette((Color::E)i);
     }
-}
-
-
-void Painter::BeginScene(Color::E color)
-{
-    if (stateTransmit == StateTransmit::NeedForTransmitFirst || stateTransmit == StateTransmit::NeedForTransmitSecond)
-    {
-        bool needForLoadFontsAndPalette = stateTransmit == StateTransmit::NeedForTransmitFirst;
-        stateTransmit = StateTransmit::InProcess;
-        if(needForLoadFontsAndPalette) 
-        {
-            LoadPalette();
-            if(!noFonts)                // Если был запрос на загрузку шрифтов
-            {
-                LoadFont(TypeFont::_5);
-                LoadFont(TypeFont::_8);
-                LoadFont(TypeFont::_UGO);
-                LoadFont(TypeFont::_UGO2);
-            }
-        }
-    }
-
-    FillRegionC(0, 0, 319, 239, color);
 }
 
 
