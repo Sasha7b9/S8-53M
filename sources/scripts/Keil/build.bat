@@ -1,38 +1,55 @@
 @echo off
 
 if "%1" EQU "" goto HINT
+if "%2" EQU "" goto HINT
 if %1==load    goto BUILD_LOAD
-if %1==device  ( call :BUILD Device  Device ..\..\Device\S8-53.bin & goto EXIT )
-if %1==dloader ( call :BUILD DLoader DLoader & goto EXIT )
-if %1==panel   ( call :BUILD Panel   Panel & goto EXIT )
-if %1==all     ( call build.bat device & call build.bat dloader & call build.bat panel & goto EXIT)
+if %1==device  ( call :BUILD Device %2 & goto EXIT )
+if %1==dloader ( call :BUILD DLoader %2 & goto EXIT )
+if %1==panel   ( call :BUILD Panel %2 & goto EXIT )
+if %1==all     ( call :BUILD Device %2 & call :BUILD DLoader %2 & call :BUILD Panel %2 & goto EXIT )
 
 goto HINT
 
 :BUILD_LOAD
-    call build.bat %2
+    call build.bat %2 %3
     call load.bat %2
     goto EXIT
 
-:HINT
-    echo.
-    echo Usage:
-    echo       build.bat [device^|dloader^|panel^|all]      - compile
-    echo       build.bat load [device^|dloader^|panel^|all] - compile and load
-    goto EXIT
-
 :BUILD
-    echo Compile %1
-    c:\Keil_v5\UV4\UV4 -b ..\..\%2\%2.uvprojx -j0 -z -o %2.out
+    if %2==debug   ( call :BUILD_DEBUG %1 & exit /b )
+    if %2==release ( call :BUILD_RELEASE %1 & exit /b )
+    if %2==full    ( call :BUILD_DEBUG %1 & call :BUILD_RELEASE %1 & exit /b )
+    goto HINT
+
+:BUILD_DEBUG
+    echo Keil : Build Debug %1
+    %COMPILER% -b ..\..\%1\%1-Debug.uvprojx -j0 -z -o %1.out
     set BUILD_STATUS=%ERRORLEVEL%
     if %BUILD_STATUS%==0 goto BUILD_SUCCESS
-    echo ERROR!!! %2    failed!!!
-    type ..\..\%2\%2.out
+    echo ERROR!!! %1 failed !!!
+    type ..\..\%1\%1.out
     exit /b
+
+:BUILD_RELEASE
+    echo Keil : Build Release %1
+    %COMPILER% -b ..\..\%1\%1.uvprojx -j0 -z -o %1.out
+    set BUILD_STATUS=%ERRORLEVEL%
+    if %BUILD_STATUS%==0 goto BUILD_SUCCESS
+    echo ERROR!!! %1 failed !!!
+    type ..\..\%1\%1.out
+    exit /b
+
 :BUILD_SUCCESS
     if "%3" EQU "" exit /b
     echo copy %3 h:\
     copy %3 h:\
     exit /b
+
+:HINT
+    echo.
+    echo Usage:
+    echo       build.bat [device^|dloader^|panel^|all] [debug^|release^|full]      - compile
+    echo       build.bat load [device^|dloader^|panel^|all] [debug^|release^|full] - compile and load
+    goto EXIT
 
 :EXIT
