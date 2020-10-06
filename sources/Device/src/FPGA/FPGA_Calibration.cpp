@@ -56,7 +56,8 @@ void FPGA::ProcedureCalibration(void)
     bool chanAenable = SET_ENABLED_A;
     bool chanBenable = SET_ENABLED_B;
 
-    SET_ENABLED_A = SET_ENABLED_B = true;
+    SET_ENABLED_A = true;
+    SET_ENABLED_B = true;
 
     Display::SetDrawMode(DrawMode::Hand, FuncAttScreen);
     Timer::Enable(TypeTimer::TimerDrawHandFunction, 100, OnTimerDraw);
@@ -64,7 +65,10 @@ void FPGA::ProcedureCalibration(void)
     koeffCalibrationOld[Channel::A] = STRETCH_ADC_A;
     koeffCalibrationOld[Channel::B] = STRETCH_ADC_B;
 
-    bar0.fullTime = bar0.passedTime = bar1.fullTime = bar1.passedTime = 0;
+    bar0.fullTime = 0;
+    bar0.passedTime = 0;
+    bar1.fullTime = 0;
+    bar1.passedTime = 0;
 
     FPGA::SaveState();                               // Сохраняем текущее состояние.
     Panel::Disable();                                // Отлкючаем панель управления.
@@ -98,14 +102,15 @@ void FPGA::ProcedureCalibration(void)
 
         gStateFPGA.stateCalibration = StateCalibration::RShift0start;                 
 
-        koeffCal0 = koeffCal1 = ERROR_VALUE_FLOAT;
+        koeffCal0 = ERROR_VALUE_FLOAT;
+        koeffCal1 = ERROR_VALUE_FLOAT;
 
         if(Panel::WaitPressingButton() == PanelButton::Start)             // Ожидаем подтверждения или отмены процедуры калибровки первого канала.
         {
 			gStateFPGA.stateCalibration = StateCalibration::RShift0inProgress;
 
 			koeffCal0 = CalculateKoeffCalibration(Channel::A);
-			if(koeffCal0 == ERROR_VALUE_FLOAT)
+			if(koeffCal0 == ERROR_VALUE_FLOAT) //-V2550 //-V550
             {
 				gStateFPGA.stateCalibration = StateCalibration::ErrorCalibration0;
 				Panel::WaitPressingButton();
@@ -141,7 +146,7 @@ void FPGA::ProcedureCalibration(void)
 			gStateFPGA.stateCalibration = StateCalibration::RShift1inProgress;
 
             koeffCal1 = CalculateKoeffCalibration(Channel::B);
-			if(koeffCal1 == ERROR_VALUE_FLOAT)
+			if(koeffCal1 == ERROR_VALUE_FLOAT) //-V2550 //-V550
             {
 				gStateFPGA.stateCalibration = StateCalibration::ErrorCalibration1;
 				Panel::WaitPressingButton();
@@ -181,11 +186,11 @@ void FPGA::ProcedureCalibration(void)
     FPGA::SetRShift(Channel::A, SET_RSHIFT_A);
     FPGA::SetRShift(Channel::B, SET_RSHIFT_B);
 
-    STRETCH_ADC_A = (koeffCal0 == ERROR_VALUE_FLOAT) ? koeffCalibrationOld[0] : koeffCal0;
+    STRETCH_ADC_A = (koeffCal0 == ERROR_VALUE_FLOAT) ? koeffCalibrationOld[0] : koeffCal0; //-V2550 //-V550
 
     FPGA::LoadKoeffCalibration(Channel::A);
 
-    STRETCH_ADC_B = (koeffCal1 == ERROR_VALUE_FLOAT) ? koeffCalibrationOld[1] : koeffCal1;
+    STRETCH_ADC_B = (koeffCal1 == ERROR_VALUE_FLOAT) ? koeffCalibrationOld[1] : koeffCal1; //-V2550 //-V550
     FPGA::LoadKoeffCalibration(Channel::B);
 
     gStateFPGA.stateCalibration = StateCalibration::None;
