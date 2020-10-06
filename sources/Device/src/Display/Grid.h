@@ -6,6 +6,9 @@ class Grid
 public:
     static const int DELTA = 20;
     static const int TOP = 19;
+    static const int WIDTH = 280;
+    static const int CELLS_IN_HEIGHT = 10;
+
 
     static int Delta();
     static int Left();

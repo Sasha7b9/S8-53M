@@ -84,7 +84,7 @@ int Measure::GetDY()
 
 int Measure::GetDX()
 {
-    return GRID_WIDTH / 5; 
+    return Grid::WIDTH / 5; 
 }
 
 const char* Measure::Name(int row, int col)
@@ -240,9 +240,9 @@ void Measure::DrawPageChoice()
 
     bool num61or62 = MEAS_NUM_IS_6_1 || MEAS_NUM_IS_6_2;
 
-    int x = num61or62 ? (Grid::Right() - 3 * GRID_WIDTH / 5) : Grid::Left();
+    int x = num61or62 ? (Grid::Right() - 3 * Grid::WIDTH / 5) : Grid::Left();
     int y = Grid::TOP;
-    int dX = GRID_WIDTH / 5;
+    int dX = Grid::WIDTH / 5;
     int dY = 22;
     int maxRow = num61or62 ? 8 : 5;
     int maxCol = num61or62 ? 3 : 5;
