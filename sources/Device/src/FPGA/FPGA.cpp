@@ -270,14 +270,14 @@ void FPGA::ReadRandomizeMode(void)
     }
 
     uint8 *pData0 = &dataRel0[index];
-    const uint8 * const pData0Last = &dataRel0[FPGA_MAX_POINTS - 1];
+    pUCHAR const pData0Last = &dataRel0[FPGA_MAX_POINTS - 1];
     uint8 *pData1 = &dataRel1[index];
-    const uint8 * const pData1Last = &dataRel1[FPGA_MAX_POINTS - 1];
+    pUCHAR const pData1Last = &dataRel1[FPGA_MAX_POINTS - 1];
 
-    const uint8 * const first0 = &dataRel0[0];
-    const uint8 * const last0 = pData0Last;
-    const uint8 * const first1 = &dataRel1[0];
-    const uint8 * const last1 = pData1Last;
+    pUCHAR const first0 = &dataRel0[0];
+    pUCHAR const last0 = pData0Last;
+    pUCHAR const first1 = &dataRel1[0];
+    pUCHAR const last1 = pData1Last;
 
     int numAve = NUM_AVE_FOR_RAND;
 

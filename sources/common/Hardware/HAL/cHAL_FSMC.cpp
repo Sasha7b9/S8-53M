@@ -62,7 +62,7 @@ void FSMC_Write(uint8 *address, uint8 value);
 
 
 
-uint8 HAL_FSMC::Read(const uint8 * const address)
+uint8 HAL_FSMC::Read(pUCHAR const address)
 {
     return(*(address));
 }

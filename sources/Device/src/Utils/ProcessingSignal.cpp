@@ -587,7 +587,7 @@ float Processing::CalculateMinSteadyRel(Channel::E chan)
             int sum = 0;
             int numSums = 0;
             uint8 *data = &dataIn[chan][firstP];
-            const uint8 * const end = &dataIn[chan][lastP];
+            pUCHAR const end = &dataIn[chan][lastP];
             while(data <= end)
             {
                 uint8 d = *data++;
@@ -661,7 +661,7 @@ float Processing::CalculateMaxSteadyRel(Channel::E chan)
             int sum = 0;
             int numSums = 0;
             uint8 *data = &dataIn[chan][firstP];
-            const uint8 * const end = &dataIn[chan][lastP];
+            pUCHAR const end = &dataIn[chan][lastP];
             while (data <= end)
             {
                 uint8 d = *data++;

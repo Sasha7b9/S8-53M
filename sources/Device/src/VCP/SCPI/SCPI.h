@@ -100,7 +100,7 @@ private:
     class DISPLAY
     {
     public:
-        static void AUTOSEND(const uint8 *buffer);
+        static void AUTOSEND(pUCHAR buffer);
         static void MAPPING(const uint8 *buffer);
         static void ACCUM(const uint8 *buffer);
         static void ACCUM_NUMBER(const uint8 *buffer);
