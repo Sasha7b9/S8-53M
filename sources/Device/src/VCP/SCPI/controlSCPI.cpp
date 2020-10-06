@@ -7,7 +7,7 @@
 
 
 
-void SCPI::CONTROL::KEY(const uint8 *buffer)
+void SCPI::CONTROL::KEY(pUCHAR buffer)
 {
     static const MapElement keys[] =
     {
@@ -65,7 +65,7 @@ void SCPI::CONTROL::KEY(const uint8 *buffer)
 }
 
 
-void SCPI::CONTROL::GOVERNOR(const uint8 *buffer)
+void SCPI::CONTROL::GOVERNOR(pUCHAR buffer)
 {
     static const MapElement governors[] =
     {

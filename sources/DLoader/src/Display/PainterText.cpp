@@ -9,7 +9,7 @@
 
 bool ByteFontNotEmpty(int eChar, int byte)
 {
-    static const uint8 *bytes = 0;
+    static pUCHAR bytes = 0;
     static int prevChar = -1;
     if (eChar != prevChar)
     {

@@ -40,13 +40,13 @@ int     Math_RShift2Rel(float rShiftAbs, Range::E range);
 float   Math_VoltageCursor(float shiftCurU, Range::E range, int16 rShift);
 float   Math_TimeCursor(float shiftCurT, TBase::E tBase);
 void    Math_DataExtrapolation(uint8 *data, uint8 *there, int size);
-void    Math_PointsRelToVoltage(const uint8 *points, int numPoints, Range::E range, int16 rShift, float *voltage);
+void    Math_PointsRelToVoltage(pUCHAR points, int numPoints, Range::E range, int16 rShift, float *voltage);
 uint8   Math_VoltageToPoint(float voltage, Range::E range, int16 rShift);
 void	Math_PointsVoltageToRel(const float *voltage, int numPoints, Range::E range, int16 rShift, uint8 *points);
-uint8   Math_GetMaxFromArrayWithErrorCode(const uint8 *data, int firstPoint, int lastPoint);
-uint8   Math_GetMinFromArrayWithErrorCode(const uint8 *data, int firstPoint, int lastPoint);
-uint8   Math_GetMaxFromArray(const uint8 *data, int firstPoint, int lastPoint);
-uint8   Math_GetMinFromArray(const uint8 *data, int firstPoint, int lastPoint);
+uint8   Math_GetMaxFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoint);
+uint8   Math_GetMinFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoint);
+uint8   Math_GetMaxFromArray(pUCHAR data, int firstPoint, int lastPoint);
+uint8   Math_GetMinFromArray(pUCHAR data, int firstPoint, int lastPoint);
 // \brief Возвращает координату x пересечения линии, проходящей через (x0, y0), (x1, y1), с горизонтальной линией, проходящей через точку с 
 // ординатой yHorLine.
 float   Math_GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, int yHorLine);
@@ -71,5 +71,5 @@ int     LimitationInt(int value, int min, int max);
 uint8   LimitationUInt8(uint8 value, uint8 min, uint8 max);
 float   LimitationFloat(float value, float min, float max);
 
-uint8   Math_CalculateFiltr(const uint8 *data, int x, int numPoints, int numSmoothing);
-void    Math_CalculateFiltrArray(const uint8 *dataIn, uint8 *dataOut, int numPoints, int numSmoothing);
+uint8   Math_CalculateFiltr(pUCHAR data, int x, int numPoints, int numSmoothing);
+void    Math_CalculateFiltrArray(pUCHAR dataIn, uint8 *dataOut, int numPoints, int numSmoothing);

@@ -121,7 +121,7 @@ int Storage::AllDatas(void)
 }
 
 
-void Storage::CalculateLimits(const uint8 *data0, const uint8 *data1, const DataSettings *dss)
+void Storage::CalculateLimits(pUCHAR data0, pUCHAR data1, const DataSettings *dss)
 {
     uint numElements = dss->length1channel * (dss->peakDet == PeackDetMode::Disable ? 1 : 2);
 
@@ -154,8 +154,8 @@ void Storage::CalculateLimits(const uint8 *data0, const uint8 *data1, const Data
      
         for(int numData = 0; numData < allDatas; numData++)
         {
-            const uint8 *dataA = GetData(Channel::A, numData);
-            const uint8 *dataB = GetData(Channel::B, numData);
+            pUCHAR dataA = GetData(Channel::A, numData);
+            pUCHAR dataB = GetData(Channel::B, numData);
             for(uint i = 0; i < numElements; i++)
             {
                 if(dataA[i] < limitDown[0][i])  { limitDown[0][i] = dataA[i]; }
@@ -417,7 +417,7 @@ int Storage::NumberAvailableEntries(void)
     address += (length);
 
 
-void Storage::PushData(DataSettings *dp, const uint8 *data0, const uint8 *data1)
+void Storage::PushData(DataSettings *dp, pUCHAR data0, pUCHAR data1)
 {
     int required = SizeElem(dp);
     while(MemoryFree() < required)

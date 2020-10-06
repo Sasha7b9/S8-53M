@@ -46,7 +46,7 @@ void VCP::Flush()
     sizeBuffer = 0;
 }
 
-void VCP::SendDataSynch(const uint8 *buffer, int size)
+void VCP::SendDataSynch(pUCHAR buffer, int size)
 {
     if (CLIENT_VCP_IS_CONNECTED == 0)
     {
@@ -77,7 +77,7 @@ void VCP::SendDataSynch(const uint8 *buffer, int size)
     } while (size);
 }
 
-void SendData(const uint8 *, int)
+void SendData(pUCHAR , int)
 {
 
 }

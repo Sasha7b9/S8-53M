@@ -107,7 +107,7 @@ private:
     
     static int CalculateFreeSize();
     
-    static bool ChannelNeedForDraw(const uint8 *data, Channel::E chan, const DataSettings *ds);
+    static bool ChannelNeedForDraw(pUCHAR data, Channel::E chan, const DataSettings *ds);
     
     static void DrawDataChannel(uint8 *data, Channel::E chan, DataSettings *ds, int minY, int maxY);
     
@@ -129,7 +129,7 @@ private:
     // Нарисовать окно памяти
     static void DrawMemoryWindow();
     
-    static void DRAW_SPECTRUM(const uint8 *data, int numPoints, Channel::E channel);
+    static void DRAW_SPECTRUM(pUCHAR data, int numPoints, Channel::E channel);
     
     static void DrawGridSpectrum();
     
@@ -151,10 +151,10 @@ private:
     
     static void OnTimerShowWarning();
     
-    static void DrawSignalLined(const uint8 *data, const DataSettings *ds, int startPoint, int endPoint, int minY, int maxY, float scaleY, 
+    static void DrawSignalLined(pUCHAR data, const DataSettings *ds, int startPoint, int endPoint, int minY, int maxY, float scaleY, 
         float scaleX, bool calculateFiltr);
     
-    static void DrawSignalPointed(const uint8 *data, const DataSettings *ds, int startPoint, int endPoint, int minY, int maxY, float scaleY, 
+    static void DrawSignalPointed(pUCHAR data, const DataSettings *ds, int startPoint, int endPoint, int minY, int maxY, float scaleY, 
         float scaleX);
     
     static void DrawSpectrumChannel(const float *spectrum, Color::E color);
@@ -171,12 +171,12 @@ private:
     
     static void DrawGridType3(int left, int top, int right, int bottom, int centerX, int centerY, int deltaX, int deltaY, int stepX, int stepY);
     
-    static void DrawChannelInWindowMemory(int timeWindowRectWidth, int xVert0, int xVert1, int startI, int endI, const uint8 *data, int rightX, 
+    static void DrawChannelInWindowMemory(int timeWindowRectWidth, int xVert0, int xVert1, int startI, int endI, pUCHAR data, int rightX, 
         Channel::E chan, int shiftForPeakDet);
     
     static void DrawDataInModeSelfRecorder();
     
-    static void DrawDataInRect(int x, int width, const uint8 *data, int numElems, Channel::E chan, int shiftForPeakDet);
+    static void DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channel::E chan, int shiftForPeakDet);
 
     static void DrawTimeForFrame(uint timeMS);
     

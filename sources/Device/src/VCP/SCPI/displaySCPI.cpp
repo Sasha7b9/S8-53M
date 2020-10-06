@@ -50,7 +50,7 @@ LEAVE_PARSE_FUNC
 
 
 
-void SCPI::DISPLAY::AUTOSEND(const uint8 *buffer)
+void SCPI::DISPLAY::AUTOSEND(pUCHAR buffer)
 {
     static int counter = 0;
     counter++;
@@ -71,7 +71,7 @@ void SCPI::DISPLAY::AUTOSEND(const uint8 *buffer)
 
 
 
-void SCPI::DISPLAY::MAPPING(const uint8 *buffer)
+void SCPI::DISPLAY::MAPPING(pUCHAR buffer)
 {
     static const MapElement map[] =
     {
@@ -92,7 +92,7 @@ void SCPI::DISPLAY::MAPPING(const uint8 *buffer)
 extern void OnPress_Accumulation_Clear();
 
 
-void SCPI::DISPLAY::ACCUM_NUMBER(const uint8 *buffer)
+void SCPI::DISPLAY::ACCUM_NUMBER(pUCHAR buffer)
 {
     static const MapElement map[] =
     {
@@ -119,7 +119,7 @@ void SCPI::DISPLAY::ACCUM_NUMBER(const uint8 *buffer)
 }
 
 
-void SCPI::DISPLAY::ACCUM_MODE(const uint8 *buffer)
+void SCPI::DISPLAY::ACCUM_MODE(pUCHAR buffer)
 {
     static const MapElement map[] =
     {
@@ -138,13 +138,13 @@ void SCPI::DISPLAY::ACCUM_MODE(const uint8 *buffer)
 }
 
 
-void SCPI::DISPLAY::ACCUM_CLEAR(const uint8 *)
+void SCPI::DISPLAY::ACCUM_CLEAR(pUCHAR )
 {
     OnPress_Accumulation_Clear();
 }
 
 
-void SCPI::DISPLAY::AVERAGE_NUMBER(const uint8 *buffer)
+void SCPI::DISPLAY::AVERAGE_NUMBER(pUCHAR buffer)
 {
     static const MapElement map[] =
     {
@@ -173,7 +173,7 @@ void SCPI::DISPLAY::AVERAGE_NUMBER(const uint8 *buffer)
 
 
 
-void SCPI::DISPLAY::AVERAGE_MODE(const uint8 *buffer)
+void SCPI::DISPLAY::AVERAGE_MODE(pUCHAR buffer)
 {
     static const MapElement map[] =
     {
@@ -193,7 +193,7 @@ void SCPI::DISPLAY::AVERAGE_MODE(const uint8 *buffer)
 
 
 
-void SCPI::DISPLAY::MINMAX(const uint8 *buffer)
+void SCPI::DISPLAY::MINMAX(pUCHAR buffer)
 {
     static const MapElement map[] =
     {

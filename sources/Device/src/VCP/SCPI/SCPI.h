@@ -32,7 +32,7 @@
     }
 
 #define ENTER_PARSE_FUNC(funcName)                      \
-void funcName(const uint8 *buffer)                      \
+void funcName(pUCHAR buffer)                      \
 {                                                       \
     static const StructCommand commands[] =             \
     {
@@ -56,33 +56,33 @@ struct StructCommand
 class SCPI
 {
 public:
-    static void AddNewData(const uint8 *buffer, uint length);
+    static void AddNewData(pUCHAR buffer, uint length);
 
 private:
     static void ParseNewCommand(uint8 *buffer);   // \todo Временно. Потом доделать
     static void ProcessingCommand(const StructCommand *commands, uint8 *buffer);
-    static bool FirstIsInt(const uint8 *buffer, int *value, int min, int max);
-    static void ProcessDISPLAY(const uint8 *buffer);
-    static void ProcessCHANNEL(const uint8 *buffer);
-    static void ProcessTRIG(const uint8 *buffer);
-    static void ProcessTBASE(const uint8 *buffer);
+    static bool FirstIsInt(pUCHAR buffer, int *value, int min, int max);
+    static void ProcessDISPLAY(pUCHAR buffer);
+    static void ProcessCHANNEL(pUCHAR buffer);
+    static void ProcessTRIG(pUCHAR buffer);
+    static void ProcessTBASE(pUCHAR buffer);
 
     class COMMON
     {
     public:
-        static void IDN(const uint8 *buffer);
-        static void RUN(const uint8 *buffer);
-        static void STOP(const uint8 *buffer);
-        static void RESET(const uint8 *buffer);
-        static void AUTOSCALE(const uint8 *buffer);
-        static void REQUEST(const uint8 *buffer);
+        static void IDN(pUCHAR buffer);
+        static void RUN(pUCHAR buffer);
+        static void STOP(pUCHAR buffer);
+        static void RESET(pUCHAR buffer);
+        static void AUTOSCALE(pUCHAR buffer);
+        static void REQUEST(pUCHAR buffer);
     };
 
     class CONTROL
     {
     public:
-        static void KEY(const uint8 *buffer);
-        static void GOVERNOR(const uint8 *buffer);
+        static void KEY(pUCHAR buffer);
+        static void GOVERNOR(pUCHAR buffer);
     };
 
     class CHANNEL
@@ -101,21 +101,21 @@ private:
     {
     public:
         static void AUTOSEND(pUCHAR buffer);
-        static void MAPPING(const uint8 *buffer);
-        static void ACCUM(const uint8 *buffer);
-        static void ACCUM_NUMBER(const uint8 *buffer);
-        static void ACCUM_MODE(const uint8 *buffer);
-        static void ACCUM_CLEAR(const uint8 *buffer);
-        static void AVERAGE(const uint8 *buffer);
-        static void AVERAGE_NUMBER(const uint8 *buffer);
-        static void AVERAGE_MODE(const uint8 *buffer);
-        static void MINMAX(const uint8 *buffer);
-        static void FILTR(const uint8 *buffer);
-        static void FPS(const uint8 *buffer);
-        static void WINDOW(const uint8 *buffer);
-        static void GRID(const uint8 *buffer);
-        static void GRID_TYPE(const uint8 *buffer);
-        static void GRID_BRIGHTNESS(const uint8 *buffer);
+        static void MAPPING(pUCHAR buffer);
+        static void ACCUM(pUCHAR buffer);
+        static void ACCUM_NUMBER(pUCHAR buffer);
+        static void ACCUM_MODE(pUCHAR buffer);
+        static void ACCUM_CLEAR(pUCHAR buffer);
+        static void AVERAGE(pUCHAR buffer);
+        static void AVERAGE_NUMBER(pUCHAR buffer);
+        static void AVERAGE_MODE(pUCHAR buffer);
+        static void MINMAX(pUCHAR buffer);
+        static void FILTR(pUCHAR buffer);
+        static void FPS(pUCHAR buffer);
+        static void WINDOW(pUCHAR buffer);
+        static void GRID(pUCHAR buffer);
+        static void GRID_TYPE(pUCHAR buffer);
+        static void GRID_BRIGHTNESS(pUCHAR buffer);
     };
 
     class TBASE

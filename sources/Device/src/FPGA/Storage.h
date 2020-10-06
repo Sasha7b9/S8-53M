@@ -39,7 +39,7 @@ private:
     // Удалить первое (самое старое) измерение
     static void RemoveFirstElement();
     // Сохранить данные
-    static void PushData(DataSettings *dp, const uint8 *data0, const uint8 *data1);
+    static void PushData(DataSettings *dp, pUCHAR data0, pUCHAR data1);
     // Возвращает указатель на измерение, следующее за elem
     static DataSettings* NextElem(DataSettings *elem);
     // Возвращает указатель на данные, отстоящие на indexFromEnd oт последнего сохранённого
@@ -51,7 +51,7 @@ private:
     // Очистка значений мин, макс и сумм
     static void ClearLimitsAndSums();
 
-    static void CalculateLimits(const uint8 *data0, const uint8 *data1, const DataSettings *dss);
+    static void CalculateLimits(pUCHAR data0, pUCHAR data1, const DataSettings *dss);
 
     static DataSettings* GetSettingsDataFromEnd(int fromEnd);
     // Копирует данные канала chan из, определяемые ds, в одну из двух строк массива dataImportRel. Возвращаемое значение false означает, что данный канал выключен.

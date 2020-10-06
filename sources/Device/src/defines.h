@@ -62,7 +62,7 @@ typedef void    (*pFuncVI)(int);
 typedef void    (*pFuncVII)(int, int);
 typedef char*   (*pFuncCFBC)(float, bool, char*);
 typedef void    (*pFuncpU8)(uint8*);
-typedef void    (*pFuncpCU8)(const uint8 *);
+typedef void    (*pFuncpCU8)(pUCHAR );
 
 #define _GET_BIT(value, bit) (((value) >> (bit)) & 0x01)
 #define _SET_BIT(value, bit) ((value) |= (1 << (bit)))

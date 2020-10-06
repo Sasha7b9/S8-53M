@@ -133,12 +133,12 @@ int Math_FabsInt(int value)
 
 
 
-uint8 Math_GetMinFromArray(const uint8 *data, int firstPoint, int lastPoint)
+uint8 Math_GetMinFromArray(pUCHAR data, int firstPoint, int lastPoint)
 {
 #define MIN_IF_LESS if(d < min) { min = d; }
 
     uint8 min = 255;
-    const uint8 *pointer = &data[firstPoint];
+    pUCHAR pointer = &data[firstPoint];
 
     for (int i = firstPoint; i < lastPoint; i += 2)
     {
@@ -187,12 +187,12 @@ uint8 Math_GetMinFromArray_RAM(const uint16 *data, int firstPoint, int lastPoint
 
 
 
-uint8 Math_GetMaxFromArray(const uint8 *data, int firstPoint, int lastPoint)
+uint8 Math_GetMaxFromArray(pUCHAR data, int firstPoint, int lastPoint)
 {
 #define MAX_IF_ABOVE if(d > max) { max = d; }
 
     uint8 max = 0;
-    const uint8 *pointer = &data[firstPoint];
+    pUCHAR pointer = &data[firstPoint];
 
     for (int i = firstPoint; i < lastPoint; i += 2)
     {
@@ -270,7 +270,7 @@ float LimitationFloat(float value, float min, float max)
 
 
 
-uint8 Math_CalculateFiltr(const uint8 *data, int x, int numPoints, int numSmoothing)
+uint8 Math_CalculateFiltr(pUCHAR data, int x, int numPoints, int numSmoothing)
 {
     if (numSmoothing < 2)
     {
@@ -308,7 +308,7 @@ uint8 Math_CalculateFiltr(const uint8 *data, int x, int numPoints, int numSmooth
 
 
 
-void Math_CalculateFiltrArray(const uint8 *dataIn, uint8 *dataOut, int numPoints, int numSmoothing)
+void Math_CalculateFiltrArray(pUCHAR dataIn, uint8 *dataOut, int numPoints, int numSmoothing)
 {
     if (numSmoothing < 2)
     {

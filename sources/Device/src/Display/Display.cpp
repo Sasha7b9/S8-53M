@@ -143,7 +143,7 @@ void Display::Redraw(void)
 }
 
 
-bool Display::ChannelNeedForDraw(const uint8 *data, Channel::E chan, const DataSettings *ds)
+bool Display::ChannelNeedForDraw(pUCHAR data, Channel::E chan, const DataSettings *ds)
 {
     if (!data)
     {
@@ -206,7 +206,7 @@ void Display::DrawMarkersForMeasure(float scale, Channel::E chan)
 
 
 
-void Display::DrawSignalLined(const uint8 *data, const DataSettings *ds, int startPoint, int endPoint, int minY, int maxY, float scaleY, float scaleX, 
+void Display::DrawSignalLined(pUCHAR data, const DataSettings *ds, int startPoint, int endPoint, int minY, int maxY, float scaleY, float scaleX, 
     bool calculateFiltr)
 {
     if (endPoint < startPoint)
@@ -293,7 +293,7 @@ void Display::DrawSignalLined(const uint8 *data, const DataSettings *ds, int sta
 
 
 
-void Display::DrawSignalPointed(const uint8 *data, const DataSettings *ds, int startPoint, int endPoint, int minY, int maxY, float scaleY, float scaleX)
+void Display::DrawSignalPointed(pUCHAR data, const DataSettings *ds, int startPoint, int endPoint, int minY, int maxY, float scaleY, float scaleX)
 {
     int numPoints = sMemory_GetNumPoints(false);
     int numSmoothing = Smoothing::NumPoints();
@@ -484,7 +484,7 @@ void Display::WriteParametersFFT(Channel::E chan, float freq0, float density0, f
 
 
 
-void Display::DRAW_SPECTRUM(const uint8 *data, int numPoints, Channel::E channel)
+void Display::DRAW_SPECTRUM(pUCHAR data, int numPoints, Channel::E channel)
 {
     if (!sChannel_Enabled(channel))
     {
@@ -817,7 +817,7 @@ void Display::DrawHiPart()
 
 
 // shiftForPeakDet - если рисуем информацию с пикового детектора - то через shiftForPeakDet точек расположена иниформация о максимумах.
-void Display::DrawDataInRect(int x, int width, const uint8 *data, int numElems, Channel::E chan, int shiftForPeakDet)
+void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channel::E chan, int shiftForPeakDet)
 {
     if(numElems == 0)
     {
@@ -914,7 +914,7 @@ void Display::DrawDataInRect(int x, int width, const uint8 *data, int numElems, 
 
 
 // shiftForPeakDet - если рисуем информацию с пикового детектора - то через shiftForPeakDet точек расположена иниформация о максимумах.
-void Display::DrawChannelInWindowMemory(int timeWindowRectWidth, int xVert0, int xVert1, int startI, int endI, const uint8 *data, int rightX, Channel::E chan, int shiftForPeakDet)
+void Display::DrawChannelInWindowMemory(int timeWindowRectWidth, int xVert0, int xVert1, int startI, int endI, pUCHAR data, int rightX, Channel::E chan, int shiftForPeakDet)
 {
     if(data == dataP2P_0 && data == dataP2P_1)
     {
@@ -980,8 +980,8 @@ void Display::DrawMemoryWindow()
         {
             Channel::E chanFirst = LAST_AFFECTED_CHANNEL_IS_A ? Channel::B : Channel::A;
             Channel::E chanSecond = LAST_AFFECTED_CHANNEL_IS_A ? Channel::A : Channel::B;
-            const uint8 *dataFirst = LAST_AFFECTED_CHANNEL_IS_A ? dat1 : dat0;
-            const uint8 *dataSecond = LAST_AFFECTED_CHANNEL_IS_A ? dat0 : dat1;
+            pUCHAR dataFirst = LAST_AFFECTED_CHANNEL_IS_A ? dat1 : dat0;
+            pUCHAR dataSecond = LAST_AFFECTED_CHANNEL_IS_A ? dat0 : dat1;
 
             int shiftForPeakDet = ds->peakDet == PeackDetMode::Disable ? 0 : (int)ds->length1channel;
 

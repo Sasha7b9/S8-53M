@@ -3,11 +3,11 @@
 #include <ctype.h>
 
 
-static bool ChooseSymbols(const uint8 **string);    // Возвращает false, если выбор невозможен - строка кончилась.
-static bool ChooseSpaces(const uint8 **string);     // Возвращает false, если выбор невозможен - строка кончилась.
+static bool ChooseSymbols(pUCHAR *string);    // Возвращает false, если выбор невозможен - строка кончилась.
+static bool ChooseSpaces(pUCHAR *string);     // Возвращает false, если выбор невозможен - строка кончилась.
 
 
-int GetNumWordsInString(const uint8 *)
+int GetNumWordsInString(pUCHAR )
 {
     /*
     ChooseSpaces(&string);
@@ -26,7 +26,7 @@ int GetNumWordsInString(const uint8 *)
     return 0;
 }
 
-bool GetWord(const uint8 *string, Word *word, const int numWord)
+bool GetWord(pUCHAR string, Word *word, const int numWord)
 {
     ChooseSpaces(&string);
 
@@ -79,7 +79,7 @@ bool WordEqualZeroString(Word *word, char* string)
 
 #define  SYMBOL(x) (*(*(x)))
 
-bool ChooseSymbols(const uint8 **string)
+bool ChooseSymbols(pUCHAR *string)
 {
     if (SYMBOL(string) == 0x0d && SYMBOL(string + 1) == 0x0a)
     {
@@ -94,7 +94,7 @@ bool ChooseSymbols(const uint8 **string)
     return true;
 }
 
-bool ChooseSpaces(const uint8 **string)
+bool ChooseSpaces(pUCHAR *string)
 {
     if (SYMBOL(string) == 0x0d && SYMBOL(string + 1) == 0x0a)
     {

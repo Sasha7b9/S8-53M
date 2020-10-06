@@ -7,42 +7,42 @@
 
 
 
-void SCPI::COMMON::IDN(const uint8 *)
+void SCPI::COMMON::IDN(pUCHAR )
 {
     SCPI_SEND("MNIPI,S8-53/1,V%S,%X", NUM_VER, HAL_CRC::Calculate());
 }
 
 
 
-void SCPI::COMMON::RUN(const uint8 *)
+void SCPI::COMMON::RUN(pUCHAR )
 {
 
 }
 
 
 
-void SCPI::COMMON::STOP(const uint8 *)
+void SCPI::COMMON::STOP(pUCHAR )
 {
 
 }
 
 
 
-void SCPI::COMMON::RESET(const uint8 *)
+void SCPI::COMMON::RESET(pUCHAR )
 {
     NEED_RESET_SETTINGS = 1;
 }
 
 
 
-void SCPI::COMMON::AUTOSCALE(const uint8 *)
+void SCPI::COMMON::AUTOSCALE(pUCHAR )
 {
 
 }
 
 
 
-void SCPI::COMMON::REQUEST(const uint8 *)
+void SCPI::COMMON::REQUEST(pUCHAR )
 {
     SCPI_SEND("S8-53/1");
 }

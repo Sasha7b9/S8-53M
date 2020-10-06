@@ -155,7 +155,7 @@ void Math_DataExtrapolation(uint8 *data, uint8 *there, int size)
     }
 }
 
-void Math_PointsRelToVoltage(const uint8 *points, int numPoints, Range::E range, int16 rShift, float *voltage)
+void Math_PointsRelToVoltage(pUCHAR points, int numPoints, Range::E range, int16 rShift, float *voltage)
 {
     int voltInPixel = voltsInPixelInt[range];
     float maxVoltsOnScreen = MAX_VOLTAGE_ON_SCREEN(range);
@@ -566,7 +566,7 @@ int Math_FabsInt(int value)
     return value >= 0 ? value : -value;
 }
 
-uint8 Math_GetMaxFromArrayWithErrorCode(const uint8 *data, int firstPoint, int lastPoint)
+uint8 Math_GetMaxFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoint)
 {
     uint8 max = Math_GetMaxFromArray(data, firstPoint, lastPoint);
     if (max >= MAX_VALUE)
@@ -576,7 +576,7 @@ uint8 Math_GetMaxFromArrayWithErrorCode(const uint8 *data, int firstPoint, int l
     return max;
 }
 
-uint8 Math_GetMinFromArrayWithErrorCode(const uint8 *data, int firstPoint, int lastPoint)
+uint8 Math_GetMinFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoint)
 {
     uint8 min = Math_GetMinFromArray(data, firstPoint, lastPoint);
     if (min < MIN_VALUE || min >= MAX_VALUE)
@@ -586,13 +586,13 @@ uint8 Math_GetMinFromArrayWithErrorCode(const uint8 *data, int firstPoint, int l
     return min;
 }
 
-uint8 Math_GetMinFromArray(const uint8 *data, int firstPoint, int lastPoint)
+uint8 Math_GetMinFromArray(pUCHAR data, int firstPoint, int lastPoint)
 {
 
 #define MIN_IF_LESS if(d < min) { min = d; }
 
     uint8 min = 255;
-    const uint8 *pointer = &data[firstPoint];
+    pUCHAR pointer = &data[firstPoint];
 
     for (int i = firstPoint; i < lastPoint; i += 2)
     {
@@ -610,13 +610,13 @@ uint8 Math_GetMinFromArray(const uint8 *data, int firstPoint, int lastPoint)
     return min;
 }
 
-uint8 Math_GetMaxFromArray(const uint8 *data, int firstPoint, int lastPoint)
+uint8 Math_GetMaxFromArray(pUCHAR data, int firstPoint, int lastPoint)
 {
 
 #define MAX_IF_ABOVE if(d > max) { max = d; }
 
     uint8 max = 0;
-    const uint8 *pointer = &data[firstPoint];
+    pUCHAR pointer = &data[firstPoint];
 
     for (int i = firstPoint; i < lastPoint; i += 2)
     {
@@ -654,7 +654,7 @@ float LimitationFloat(float value, float min, float max)
     LIMIT
 }
 
-uint8 Math_CalculateFiltr(const uint8 *data, int x, int numPoints, int numSmoothing)
+uint8 Math_CalculateFiltr(pUCHAR data, int x, int numPoints, int numSmoothing)
 {
     if (numSmoothing < 2)
     {
@@ -690,7 +690,7 @@ uint8 Math_CalculateFiltr(const uint8 *data, int x, int numPoints, int numSmooth
     return (uint8)(sum / count);
 }
 
-void Math_CalculateFiltrArray(const uint8 *dataIn, uint8 *dataOut, int numPoints, int numSmoothing)
+void Math_CalculateFiltrArray(pUCHAR dataIn, uint8 *dataOut, int numPoints, int numSmoothing)
 {
     if (numSmoothing < 2)
     {
