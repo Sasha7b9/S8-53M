@@ -1422,14 +1422,19 @@
           <GroupName>Display</GroupName>
           <Files>
             <File>
+              <FileName>Display.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\Display.h</FilePath>
+            </File>
+            <File>
               <FileName>Display.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Display\Display.cpp</FilePath>
             </File>
             <File>
-              <FileName>Display.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\Display.h</FilePath>
+              <FileName>Display_stm.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\Display_stm.cpp</FilePath>
             </File>
             <File>
               <FileName>DisplayPrimitives.h</FileName>

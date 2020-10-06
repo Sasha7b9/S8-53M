@@ -110,6 +110,12 @@ void Painter::EndScene(bool)
 }
 
 
+void Display::Init()
+{
+    CreateFrame();
+}
+
+
 static void CreateFrame()
 {
     Frame *frame = new Frame("");
