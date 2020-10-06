@@ -909,6 +909,11 @@ void Display::DrawMemoryWindow()
         dat1 = gData1;
         ds = gDSet;
     }
+
+    if(ds == nullptr)
+    {
+        return;
+    }
     
     int leftX = 3;
     int top = 1;
@@ -1694,6 +1699,11 @@ void Display::DrawCursorTShift()
     int firstPoint = 0;
     int lastPoint = 0;
     SettingsDisplay::PointsOnDisplay(&firstPoint, &lastPoint);
+
+    if (gDSet == nullptr)
+    {
+        return;
+    }
 
     // Рисуем TPos
     int shiftTPos = sTime_TPosInPoints((PeackDetMode::E)gDSet->peakDet, (int)gDSet->length1channel, SET_TPOS) - SHIFT_IN_MEMORY;

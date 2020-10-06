@@ -879,6 +879,12 @@ void Processing::SetSignal(uint8 *data0, uint8 *data1, DataSettings *ds, int _fi
     firstP = _firstPoint;
     lastP = _lastPoint;
     numP = lastP - firstP;
+    dataSet = ds;
+
+    if (ds == nullptr)
+    {
+        return;
+    }
     
     int numSmoothing = Smoothing::NumPoints();
 
@@ -886,8 +892,6 @@ void Processing::SetSignal(uint8 *data0, uint8 *data1, DataSettings *ds, int _fi
 
     Math_CalculateFiltrArray(data0, &dataIn[Channel::A][0], length, numSmoothing);
     Math_CalculateFiltrArray(data1, &dataIn[Channel::B][0], length, numSmoothing);
-
-    dataSet = ds;
 
     CountedToCurrentSettings();
 }
