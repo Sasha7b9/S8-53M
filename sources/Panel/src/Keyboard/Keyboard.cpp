@@ -25,6 +25,7 @@ struct KeyStruct
     bool HappenedLongPressed() const { return (timePress == UINT_MAX); }
 
     bool IsValid() const { return (key != Key::None); }
+    void Process(int sl, int rl);
     Key::E key;
     uint   timePress;   // Время нажатия кнопки
 };
@@ -42,7 +43,6 @@ static KeyStruct keys[NUM_SL][NUM_RL] =
 static Pin *sls[NUM_SL] = { &pinSL0, &pinSL1, &pinSL2, &pinSL3, &pinSL4, &pinSL5 };
 static Pin *rls[NUM_RL] = { &pinRL0, &pinRL1, &pinRL2, &pinRL3, &pinRL4, &pinRL5, &pinRL6, &pinRL7 };
 
-#define SET_ALL_SL      pinSL0.Set(); pinSL1.Set(); pinSL2.Set(); pinSL3.Set(); pinSL4.Set(); pinSL5.Set()
 #define SET_SL(n)       sls[n]->Set();
 #define RESET_SL(n)     sls[n]->Reset();
 #define READ_RL(n)      rls[n]->Read();
@@ -76,7 +76,12 @@ static GovernorStruct governors[NUM_GOVERNORS] =
 
 void Keyboard::Init()
 {
-    SET_ALL_SL;
+    pinSL0.Set();
+    pinSL1.Set();
+    pinSL2.Set();
+    pinSL3.Set();
+    pinSL4.Set();
+    pinSL5.Set();
 
     pointer = 0;
 
@@ -88,14 +93,10 @@ void Keyboard::Update()
 {
     for (int sl = 0; sl < NUM_SL; sl++)
     {
-        RESET_SL(sl);
-
         for (int rl = 0; rl < NUM_RL; rl++)
         {
-            ProcessKey(sl, rl);
+            KEY(sl, rl).Process(sl, rl);
         }
-        
-        SET_ALL_SL;
     }
 
     for (int i = 0; i < NUM_GOVERNORS; i++)
@@ -105,39 +106,41 @@ void Keyboard::Update()
 }
 
 
-void Keyboard::ProcessKey(int sl, int rl)
+void KeyStruct::Process(int sl, int rl)
 {
     uint time = TIME_MS;
 
+    SET_SL(sl);
+
     uint state = READ_RL(rl);
 
-    KeyStruct &key = KEY(sl, rl);
+    RESET_SL(sl);
 
-    if (key.IsValid())
+    if (IsValid())
     {
-        if (key.IsPressed() && !key.HappenedLongPressed())                  // Если клавиша находится в нажатом положении
+        if (IsPressed() && !HappenedLongPressed())                      // Если клавиша находится в нажатом положении
         {
-            uint delta = time - key.timePress;
-            if (delta > 500)                                                 // Если прошло более 500 мс с момента нажатия -
+            uint delta = time - timePress;
+            if (delta > 500)                                            // Если прошло более 500 мс с момента нажатия -
             {
-                key.timePress = UINT_MAX;
-                Buffer::AppendEvent(key.key, Action::Long);                 // это будет длинное нажатие
+                timePress = UINT_MAX;
+                Keyboard::Buffer::AppendEvent(key, Action::Long);       // это будет длинное нажатие
             }
-            else if (delta > 100 &&                                         // Если прошло более 100 мс с момента нажатия
-                     !BUTTON_IS_PRESS(state))                                    // и сейчас кнопка находится в отжатом состоянии
+            else if (delta > 100 &&                                     // Если прошло более 100 мс с момента нажатия
+                     !BUTTON_IS_PRESS(state))                           // и сейчас кнопка находится в отжатом состоянии
             {
-                key.timePress = UINT_MAX;                                   // То учитываем это в массиве
-                Buffer::AppendEvent(key.key, Action::Up);                   // И сохраняем отпускание кнопки в буфере команд
+                timePress = UINT_MAX;                                   // То учитываем это в массиве
+                Keyboard::Buffer::AppendEvent(key, Action::Up);         // И сохраняем отпускание кнопки в буфере команд
             }
         }
-        else if (BUTTON_IS_PRESS(state) && !key.HappenedLongPressed())      // Если кнопка нажата
+        else if (BUTTON_IS_PRESS(state) && !HappenedLongPressed())      // Если кнопка нажата
         {
-            key.timePress = time;                                           // то сохраняем время её нажатия
-            Buffer::AppendEvent(key.key, Action::Down);
+            timePress = time;                                           // то сохраняем время её нажатия
+            Keyboard::Buffer::AppendEvent(key, Action::Down);
         }
-        else if (!BUTTON_IS_PRESS(state) && key.HappenedLongPressed())
+        else if (!BUTTON_IS_PRESS(state) && HappenedLongPressed())
         {
-            key.timePress = 0;
+            timePress = 0;
         }
     }
 }

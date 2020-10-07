@@ -20,9 +20,7 @@ public:
     private:
         friend struct Keyboard;
         friend struct GovernorStruct;
+        friend struct KeyStruct;
         static void AppendEvent(Key::E key, Action::E action);
     };
-
-private:
-    static void ProcessKey(int sl, int rl);
 };
