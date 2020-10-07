@@ -85,19 +85,19 @@ void Keyboard::Update()
                     if(delta > 500)                                                 // Если прошло более 500 мс с момента нажатия -
                     {
                         timePress[rl][sl] = UINT_MAX;
-                        AppendEvent(keys[rl][sl], Action::Long);                    // это будет длинное нажатие
+                        Buffer::AppendEvent(keys[rl][sl], Action::Long);                    // это будет длинное нажатие
                     }
                     else if (delta > 100 &&                                         // Если прошло более 100 мс с момента нажатия
                         !BUTTON_IS_PRESS(state))                                    // и сейчас кнопка находится в отжатом состоянии
                     {
                         timePress[rl][sl] = UINT_MAX;                               // То учитываем это в массиве
-                        AppendEvent(keys[rl][sl], Action::Up);                      // И сохраняем отпускание кнопки в буфере команд
+                        Buffer::AppendEvent(keys[rl][sl], Action::Up);                      // И сохраняем отпускание кнопки в буфере команд
                     }
                 }
                 else if (BUTTON_IS_PRESS(state) && timePress[rl][sl] != UINT_MAX)   // Если кнопка нажата
                 {
                     timePress[rl][sl] = time;                                       // то сохраняем время её нажатия
-                    AppendEvent(keys[rl][sl], Action::Down);
+                    Buffer::AppendEvent(keys[rl][sl], Action::Down);
                 }
                 else if(!BUTTON_IS_PRESS(state) && timePress[rl][sl] == UINT_MAX)
                 {
@@ -188,7 +188,7 @@ static void DetectRegulator()
 }
 
 
-void Keyboard::AppendEvent(Key::E key, Action::E action)
+void Keyboard::Buffer::AppendEvent(Key::E key, Action::E action)
 {
     commands[pointer].key = key;
     commands[pointer].action = action;
@@ -196,17 +196,17 @@ void Keyboard::AppendEvent(Key::E key, Action::E action)
 }
 
 
-bool Keyboard::BufferIsEmpty()
+bool Keyboard::Buffer::IsEmpty()
 {
-    return pointer == 0;
+    return (pointer == 0);
 }
 
 
-Control Keyboard::GetNextControl()
+Control Keyboard::Buffer::GetNextControl()
 {
     Control control;
 
-    if (BufferIsEmpty())
+    if (IsEmpty())
     {
         control.key = Key::None;
     }
