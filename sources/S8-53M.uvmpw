@@ -17,6 +17,8 @@
 
   <project>
     <PathAndName>.\Panel\Panel.uvprojx</PathAndName>
+    <NodeIsActive>1</NodeIsActive>
+    <NodeIsExpanded>1</NodeIsExpanded>
   </project>
 
   <project>
@@ -29,7 +31,6 @@
 
   <project>
     <PathAndName>.\Panel\Panel-Debug.uvprojx</PathAndName>
-    <NodeIsActive>1</NodeIsActive>
   </project>
 
 </ProjectWorkspace>

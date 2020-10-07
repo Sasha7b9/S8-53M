@@ -6,7 +6,7 @@
   <Header>### uVision Project, (C) Keil Software</Header>
 
   <PrjGuiSettings>
-    <LastAddFilePath>D:\Projects\stm32\S8-53M\sources\Panel\src\Hardware\CMSIS</LastAddFilePath>
+    <LastAddFilePath>D:\Projects\stm32\S8-53M\sources\Panel\src\Interface</LastAddFilePath>
   </PrjGuiSettings>
 
   <ViewPool/>
