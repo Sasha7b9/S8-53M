@@ -21,7 +21,7 @@ struct KeyStruct
     bool HappenedLongPressed() const { return (timePress == UINT_MAX); }
 
     bool IsValid() const { return (key != Key::None); }
-    void Process(int sl, int rl);
+    void Process(uint time, bool pressed);
     Key::E key;
     uint   timePress;   // Время нажатия кнопки
 };
@@ -85,11 +85,16 @@ void Keyboard::Init()
 
 void Keyboard::Update()
 {
+    uint time = TIME_MS;
+
     for (int sl = 0; sl < NUM_SL; sl++)
     {
         for (int rl = 0; rl < NUM_RL; rl++)
         {
-            keys[sl][rl].Process(sl, rl);
+            SET_SL(sl);
+            bool pressed = (READ_RL(rl) == 0);
+            RESET_SL(sl);
+            keys[sl][rl].Process(time, pressed);
         }
     }
 
@@ -100,16 +105,8 @@ void Keyboard::Update()
 }
 
 
-void KeyStruct::Process(int sl, int rl)
+void KeyStruct::Process(uint time, bool pressed)
 {
-    uint time = TIME_MS;
-
-    SET_SL(sl);
-
-    bool pressed = READ_RL(rl) == 0;
-
-    RESET_SL(sl);
-
     if (IsValid())
     {
         if (IsPressed() && !HappenedLongPressed())                      // Если клавиша находится в нажатом положении
