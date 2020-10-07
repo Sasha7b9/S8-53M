@@ -68,7 +68,7 @@ static void DrawCharInColorDisplay(int eX, int eY, uchar symbol)
             {
                 if (BitInFontIsExist(symbol, b, bit))
                 {
-                    Painter::SetPoint(x, y);
+                    Point().Draw(x, y);
                 }
                 x++;
             }
@@ -97,7 +97,7 @@ static int Painter_DrawBigChar(int eX, int eY, int size, char symbol)
                     {
                         for (int j = 0; j < size; j++)
                         {
-                            Painter::SetPoint(x + i, y + j);
+                            Point().Draw(x + i, y + j);
                         }
                     }
                 }
@@ -190,7 +190,7 @@ int Painter::DrawCharWithLimitation(int eX, int eY, uchar symbol, int limitX, in
                 {
                     if ((x >= limitX) && (x <= (limitX + limitWidth)) && (y >= limitY) && (y <= limitY + limitHeight))
                     {
-                        SetPoint(x, y);
+                        Point().Draw(x, y);
                     }
                 }
                 x++;

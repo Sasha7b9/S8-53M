@@ -309,7 +309,7 @@ void Display::DrawSignalPointed(pUCHAR data, const DataSettings *ds, int startPo
             int index = i - startPoint;
             int dat = 0;
             CONVERT_DATA_TO_DISPLAY(dat, Math_CalculateFiltr(data, i, numPoints, numSmoothing));
-            Painter::SetPoint(Grid::Left() + static_cast<int>(index * scaleX), dat);
+            Point().Draw(Grid::Left() + static_cast<int>(index * scaleX), dat);
         }
     }
 }
@@ -1596,14 +1596,14 @@ void Display::DrawCursorTrigLevel()
     if(y > Grid::ChannelBottom())
     {
         Painter::DrawChar(x + 3, Grid::ChannelBottom() - 11, SYMBOL_TRIG_LEV_LOWER);
-        Painter::SetPoint(x + 5, Grid::ChannelBottom() - 2);
+        Point().Draw(x + 5, Grid::ChannelBottom() - 2);
         y = Grid::ChannelBottom() - 7;
         x--;
     }
     else if(y < Grid::TOP)
     {
         Painter::DrawChar(x + 3, Grid::TOP + 2, SYMBOL_TRIG_LEV_ABOVE);
-        Painter::SetPoint(x + 5, Grid::TOP + 2);
+        Point().Draw(x + 5, Grid::TOP + 2);
         y = Grid::TOP + 7;
         x--;
     }
@@ -1662,14 +1662,14 @@ void Display::DrawCursorRShift(Channel::E chan)
     if(y > Grid::ChannelBottom())
     {
         Painter::DrawCharC(static_cast<int>(x - 7), Grid::ChannelBottom() - 11, SYMBOL_RSHIFT_LOWER, ColorChannel(chan));
-        Painter::SetPoint(static_cast<int>(x - 5), Grid::ChannelBottom() - 2);
+        Point().Draw(static_cast<int>(x - 5), Grid::ChannelBottom() - 2);
         y = static_cast<float>(Grid::ChannelBottom() - 7);
         x++;
     }
     else if(y < Grid::TOP)
     {
         Painter::DrawCharC(static_cast<int>(x - 7), Grid::TOP + 2, SYMBOL_RSHIFT_ABOVE, ColorChannel(chan));
-        Painter::SetPoint(static_cast<int>(x - 5), Grid::TOP + 2);
+        Point().Draw(static_cast<int>(x - 5), Grid::TOP + 2);
         y = Grid::TOP + 7;
         x++;
     }

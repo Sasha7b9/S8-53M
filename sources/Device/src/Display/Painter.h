@@ -39,8 +39,6 @@ public:
 
     static void SetPalette(Color::E color);
 
-    static void SetPoint(int x, int y);
-
     static void DrawVLine(int x, int y0, int y1);
 
     static void DrawVLineC(int x, int y0, int y1, Color::E color);
@@ -156,6 +154,12 @@ private:
 
 namespace Primitives
 {
+    class Point
+    {
+    public:
+        void Draw(int x, int y);
+    };
+
     class Region
     {
     public:

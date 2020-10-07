@@ -218,13 +218,8 @@ void Painter::DrawHPointLine(int y, int x0, int x1, float delta)
 {
     for (int x = x0; x <= x1; x += static_cast<int>(delta))
     {
-        SetPoint(x, y);
+        Point().Draw(x, y);
     }
-}
-
-
-void Painter::SetPoint(int , int )
-{
 }
 
 
