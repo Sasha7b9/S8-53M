@@ -706,12 +706,12 @@ static void DrawSB_MemInt_ModeShow_Both(int x, int y)
 
     Painter::DrawRectangle(x + 8, y + 8, 4, 4);
     Painter::DrawVLine(x + 8, y + 8, y + 5);
-    Painter::DrawHLine(y + 5, x + 8, x + 12);
+    HLine().Draw(y + 5, x + 8, x + 12);
 
     Painter::DrawVLine(x + 14, y + 6, y + 12);
     Painter::DrawVLine(x + 17, y + 5, y + 12);
-    Painter::DrawHLine(y + 9, x + 14, x + 17);
-    Painter::DrawHLine(y + 5, x + 15, x + 17);
+    HLine().Draw(y + 9, x + 14, x + 17);
+    HLine().Draw(y + 5, x + 15, x + 17);
 }
 
 static void DrawSB_MemInt_ModeShow(int x, int y)

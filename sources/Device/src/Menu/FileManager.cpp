@@ -73,7 +73,7 @@ void FM::DrawHat(int x, int y, char *string, int num1, int num2)
 {
     Region(WIDTH_COL + 9, RECS_ON_PAGE * 9 + 11).Fill(x - 1, y, COLOR_BACK);
     Painter::DrawFormatText(x + 60, y, COLOR_FILL, string, num1, num2);
-    Painter::DrawHLine(y + 10, x + 2, x + 140);
+    HLine().Draw(y + 10, x + 2, x + 140);
 }
 
 
@@ -183,7 +183,7 @@ void FM::Draw(void)
         FlashDrive::GetNumDirsAndFiles(currentDir, &numDirs, &numFiles);
         DrawNameCurrentDir(left + 1, top + 2);
         Painter::DrawVLineC(left2col, top + 16, 239, COLOR_FILL);
-        Painter::DrawHLine(top + 15, 0, width);
+        HLine().Draw(top + 15, 0, width);
     }
 
     if (NEED_REDRAW_FILEMANAGER != 3)

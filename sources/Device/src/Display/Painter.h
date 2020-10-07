@@ -41,10 +41,6 @@ public:
 
     static void SetPoint(int x, int y);
 
-    static void DrawHLine(int y, int x0, int x1);
-
-    static void DrawHLineC(int y, int x0, int x1, Color::E color);
-
     static void DrawVLine(int x, int y0, int y1);
 
     static void DrawVLineC(int x, int y0, int y1, Color::E color);
@@ -169,5 +165,12 @@ namespace Primitives
     private:
         int width;
         int height;
+    };
+
+    class HLine
+    {
+    public:
+        HLine() {};
+        void Draw(int y, int x1, int x2, Color::E color = Color::NUM);
     };
 }

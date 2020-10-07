@@ -11,6 +11,9 @@
 #include "Panel/Panel.h"
 
 
+using namespace Primitives;
+
+
 extern Choice mcCursorsSource;
 extern Choice mcCursorsU;
 extern Choice mcCursorsT;
@@ -75,11 +78,11 @@ void DrawMenuCursVoltage(int x, int y, bool top, bool bottom)
     CalculateXY(&x0, &x1, &y0, &y1);
     for(int i = 0; i < (top ? 3 : 1); i++)
     {
-        Painter::DrawHLine(y0 + i, x0, x1);
+        HLine().Draw(y0 + i, x0, x1);
     }
     for(int i = 0; i < (bottom ? 3 : 1); i++)
     {
-        Painter::DrawHLine(y1 - i, x0, x1);
+        HLine().Draw(y1 - i, x0, x1);
     }
 }
 

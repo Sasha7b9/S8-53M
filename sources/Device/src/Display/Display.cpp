@@ -537,8 +537,8 @@ void Display::DrawSpectrum()
         }
     }
 
-    Painter::DrawHLineC(Grid::ChannelBottom(), Grid::Left(), Grid::Right(), COLOR_FILL);
-    Painter::DrawHLine(Grid::MathBottom(), Grid::Left(), Grid::Right());
+    HLine().Draw(Grid::ChannelBottom(), Grid::Left(), Grid::Right(), COLOR_FILL);
+    HLine().Draw(Grid::MathBottom(), Grid::Left(), Grid::Right());
 }
 
 
@@ -974,10 +974,10 @@ void Display::DrawMemoryWindow()
     {
         Painter::DrawVLineC(leftX - 2, top, bottom, COLOR_FILL);
         Painter::DrawVLine(rightX + 2, top, bottom);
-        Painter::DrawHLine((bottom + top) / 2 - 3, leftX, xVert0 - 2);
-        Painter::DrawHLine((bottom + top) / 2 + 3, leftX, xVert0 - 2);
-        Painter::DrawHLine((bottom + top) / 2 + 3, xVert1 + 2, rightX);
-        Painter::DrawHLine((bottom + top) / 2 - 3, xVert1 + 2, rightX);
+        HLine().Draw((bottom + top) / 2 - 3, leftX, xVert0 - 2);
+        HLine().Draw((bottom + top) / 2 + 3, leftX, xVert0 - 2);
+        HLine().Draw((bottom + top) / 2 + 3, xVert1 + 2, rightX);
+        HLine().Draw((bottom + top) / 2 - 3, xVert1 + 2, rightX);
     }
 
     int x[] = {leftX, (rightX - leftX) / 2 + leftX + 1, rightX};
@@ -1322,7 +1322,7 @@ void Display::DrawGridSpectrum()
         for (int i = 1; i < numParts; i++)
         {
             int y = static_cast<int>(Grid::MathTop() + i * scale);
-            Painter::DrawHLineC(y, Grid::Left(), Grid::Left() + 256, ColorGrid());
+            HLine().Draw(y, Grid::Left(), Grid::Left() + 256, ColorGrid());
             if (!MenuIsMinimize())
             {
                 Painter::SetColor(COLOR_FILL);
@@ -1342,7 +1342,7 @@ void Display::DrawGridSpectrum()
         for (int i = 1; i < 5; i++)
         {
             int y = static_cast<int>(Grid::MathTop() + i * scale);
-            Painter::DrawHLineC(y, Grid::Left(), Grid::Left() + 256, ColorGrid());
+            HLine().Draw(y, Grid::Left(), Grid::Left() + 256, ColorGrid());
             if (!MenuIsMinimize())
             {
                 Painter::DrawTextC(5, y - 4, strs[i], COLOR_FILL);
@@ -1367,7 +1367,7 @@ void Display::DrawFullGrid()
         {
             DrawGrid(Grid::Left(), Grid::TOP + Grid::FullHeight() / 2, Grid::Width(), Grid::FullHeight() / 2);
         }
-        Painter::DrawHLineC(Grid::TOP + Grid::FullHeight() / 2, Grid::Left(), Grid::Left() + Grid::Width(), COLOR_FILL);
+        HLine().Draw(Grid::TOP + Grid::FullHeight() / 2, Grid::Left(), Grid::Left() + Grid::Width(), COLOR_FILL);
     }
     else
     {
@@ -1504,8 +1504,8 @@ void Display::DrawGrid(int left, int top, int width, int height)
 
     if (top == Grid::TOP)
     {
-        Painter::DrawHLine(top, 1, left - 2);
-        Painter::DrawHLine(top, right + 2, Display::WIDTH - 2);
+        HLine().Draw(top, 1, left - 2);
+        HLine().Draw(top, right + 2, Display::WIDTH - 2);
 
         if (!MenuIsMinimize() || !MenuIsShown())
         {
@@ -1973,8 +1973,8 @@ void Display::DrawLowPart()
     int y1 = Display::HEIGHT - 10;
     int x = -1;
 
-    Painter::DrawHLineC(Grid::ChannelBottom(), 1, Grid::Left() - Measure::GetDeltaGridLeft() - 2, COLOR_FILL);
-    Painter::DrawHLine(Grid::FullBottom(), 1, Grid::Left() - Measure::GetDeltaGridLeft() - 2);
+    HLine().Draw(Grid::ChannelBottom(), 1, Grid::Left() - Measure::GetDeltaGridLeft() - 2, COLOR_FILL);
+    HLine().Draw(Grid::FullBottom(), 1, Grid::Left() - Measure::GetDeltaGridLeft() - 2);
 
     WriteTextVoltage(Channel::A, x + 2, y0);
 
@@ -2058,8 +2058,8 @@ void Display::DrawLowPart()
     
     Painter::DrawVLineC(x + 79, Grid::Bottom() + 2, Display::HEIGHT - 2, COLOR_FILL);
 
-    Painter::DrawHLine(Grid::Bottom(), Grid::Right() + 2, Display::WIDTH - 2);
-    Painter::DrawHLine(Grid::ChannelBottom(), Grid::Right() + 2, Display::WIDTH - 2);
+    HLine().Draw(Grid::Bottom(), Grid::Right() + 2, Display::WIDTH - 2);
+    HLine().Draw(Grid::ChannelBottom(), Grid::Right() + 2, Display::WIDTH - 2);
 
     x += 82;
     y0 = y0 - 3;

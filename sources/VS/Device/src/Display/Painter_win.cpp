@@ -349,3 +349,10 @@ void Frame::HandlerEvents()
         needStopTimerLong = false;
     }
 }
+
+
+void Primitives::HLine::Draw(int y, int x1, int x2, Color::E color)
+{
+    Painter::SetColor(color);
+    memDC.DrawLine({ x1, y }, { x2, y });
+}

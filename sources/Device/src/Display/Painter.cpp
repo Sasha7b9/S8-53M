@@ -84,9 +84,9 @@ void Painter::ResetFlash()
 
 void Painter::DrawRectangle(int x, int y, int width, int height)
 {
-    DrawHLine(y, x, x + width);
+    HLine().Draw(y, x, x + width);
     DrawVLine(x, y, y + height);
-    DrawHLine(y + height, x, x + width);
+    HLine().Draw(y + height, x, x + width);
     if (x + width < Display::WIDTH)
     {
         DrawVLine(x + width, y, y + height);
@@ -139,13 +139,13 @@ void Painter::DrawDashedHLine(int y, int x0, int x1, int deltaFill, int deltaEmp
         x += (deltaFill + deltaEmpty - deltaStart);
         if (deltaStart < deltaFill)     // Если начало линии приходится на штрих
         {
-            DrawHLine(y, x0, x - 1);
+            HLine().Draw(y, x0, x - 1);
         }
     }
 
     while (x < x1)
     {
-        DrawHLine(y, x, x + deltaFill - 1);
+        HLine().Draw(y, x, x + deltaFill - 1);
         x += (deltaFill + deltaEmpty);
     }
 }
@@ -187,18 +187,6 @@ void Painter::SetPalette(Color::E )
 Color::E Painter::CurrentColor(void)
 {
     return currentColor;
-}
-
-
-void Painter::DrawHLine(int , int , int )
-{
-}
-
-
-void Painter::DrawHLineC(int y, int x0, int x1, Color::E color)
-{
-    SetColor(color);
-    DrawHLine(y, x0, x1);
 }
 
 
@@ -258,7 +246,7 @@ void Painter::DrawLine(int x0, int y0, int x1, int y1)
     }
     else if (y0 == y1)
     {
-        DrawHLine(y0, x0, x1);
+        HLine().Draw(y0, x0, x1);
     }
 }
 
@@ -276,20 +264,20 @@ void Painter::DrawVolumeButton(int x, int y, int width, int height, int thicknes
     {
         for (int i = 0; i < thickness; i++)
         {
-            DrawHLineC(y + i, x + i, x + width - i, dark);
+            HLine().Draw(y + i, x + i, x + width - i, dark);
             DrawVLine(x + i, y + 1 + i, y + height - i);
             DrawVLineC(x + width - i, y + 1 + i, y + height - i, bright);
-            DrawHLine(y + height - i, x + 1 + i, x + width - i);
+            HLine().Draw(y + height - i, x + 1 + i, x + width - i);
         }
     }
     else
     {
         for (int i = 0; i < thickness; i++)
         {
-            DrawHLineC(y + i, x + i, x + width - i, bright);
+            HLine().Draw(y + i, x + i, x + width - i, bright);
             DrawVLine(x + i, y + 1 + i, y + height - i);
             DrawVLineC(x + width - i, y + 1 + i, y + height - i, dark);
-            DrawHLine(y + height - i, x + 1 + i, x + width - i);
+            HLine().Draw(y + height - i, x + 1 + i, x + width - i);
         }
     }
 }

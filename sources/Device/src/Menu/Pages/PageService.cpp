@@ -15,11 +15,8 @@
 #include <cstdio>
 
 
-/** @addtogroup Menu
- *  @{
- *  @addtogroup PageService
- *  @{
- */
+using namespace Primitives;
+
 
 extern const Page pService;
 
@@ -420,8 +417,8 @@ static void Draw_Math_Function_ModeDraw_Disable(int x, int y)
 static void Draw_Math_Function_ModeDraw_Separate(int x, int y)
 {
     Painter::DrawRectangle(x + 3, y + 5, 13, 9);
-    Painter::DrawHLine(y + 9, x + 3, x + 16);
-    Painter::DrawHLine(y + 10, x + 3, x + 16);
+    HLine().Draw(y + 9, x + 3, x + 16);
+    HLine().Draw(y + 10, x + 3, x + 16);
 }
 
 static void Draw_Math_Function_ModeDraw_Together(int x, int y)
@@ -460,7 +457,7 @@ static void Draw_Math_Function_Type(int x, int y)
 
 static void Draw_Math_Function_Type_Sum(int x, int y)
 {
-    Painter::DrawHLine(y + 9, x + 4, x + 14);
+    HLine().Draw(y + 9, x + 4, x + 14);
     Painter::DrawVLine(x + 9, y + 4, y + 14);
 }
 
@@ -1020,7 +1017,3 @@ static void OnPress_Information_Exit(void)
     Display::SetDrawMode(DrawMode::Auto, 0);
     Display::RemoveAddDrawFunction();
 }
-
-
-/** @}  @}
- */

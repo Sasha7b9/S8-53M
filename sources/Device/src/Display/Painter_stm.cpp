@@ -46,3 +46,8 @@ void Primitives::Region::Fill(int , int , Color::E )
 {
 
 }
+
+
+void Primitives::HLine::Draw(int , int , int , Color::E )
+{
+}
