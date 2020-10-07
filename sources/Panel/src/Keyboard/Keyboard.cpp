@@ -150,8 +150,8 @@ void GovernorStruct::Process()
 {
     sl.Reset();
 
-    bool stateLeft = rlA.Read() != 0;
-    bool stateRight = rlB.Read() != 0;
+    bool stateLeft = (rlA.Read() != 0);
+    bool stateRight = (rlB.Read() != 0);
 
     sl.Set();
 
