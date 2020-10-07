@@ -18,9 +18,9 @@ static void DetectRegulator();
 #define KEY(sl, rl) (keys[sl][rl])
 
 
-struct KeyboardStruct
+struct KeyStruct
 {
-    KeyboardStruct(Key::E k) : key(k), timePress(0U) { }
+    KeyStruct(Key::E k) : key(k), timePress(0U) { }
     // Возвращает true, если нопка наодится в нажатом положении
     bool IsPressed() const { return (timePress != 0); }
     // Вовзращате true, если произошло длинное нажатие
@@ -32,7 +32,7 @@ struct KeyboardStruct
 };
 
 
-static KeyboardStruct keys[NUM_SL][NUM_RL] =     
+static KeyStruct keys[NUM_SL][NUM_RL] =     
 //    RL0                   RL1            RL2           RL3         RL4          RL5           RL6         RL7
     {{Key::ChannelA,        Key::Count,    Key::Count,   Key::Count, Key::Count,  Key::Count,   Key::Count, Key::Menu},  // SL0
      {Key::ChannelB,        Key::Count,    Key::Count,   Key::Count, Key::Count,  Key::Count,   Key::Count, Key::F1},    // SL1
@@ -50,26 +50,16 @@ static Pin *rls[NUM_RL] = { &pinRL0, &pinRL1, &pinRL2, &pinRL3, &pinRL4, &pinRL5
 #define READ_RL(n)      rls[n]->Read();
 
 
-static bool init = false;
-
-
 void Keyboard::Init()
 {
     pointer = 0;
 
     HAL_TIM2::Init(&Keyboard::Update);
-
-    init = true;
 }
 
 
 void Keyboard::Update()
 {
-    if(!init)
-    {
-        return;
-    }
-    
     uint time = TIME_MS;
 
     for (int sl = 0; sl < NUM_SL; sl++)
@@ -80,7 +70,7 @@ void Keyboard::Update()
         {
             uint state = READ_RL(rl);
 
-            KeyboardStruct &key = KEY(sl, rl);
+            KeyStruct &key = KEY(sl, rl);
 
             if (key.IsValid())
             {
