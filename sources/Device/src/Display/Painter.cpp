@@ -192,11 +192,6 @@ void Painter::DrawHPointLine(int y, int x0, int x1, float delta)
 }
 
 
-void Painter::DrawMultiHPointLine(int , int , uint8 [], int , int , Color::E ) //-V2504
-{
-}
-
-
 void Painter::DrawLine(int x0, int y0, int x1, int y1)
 {
     if (x0 == x1)

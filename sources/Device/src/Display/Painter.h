@@ -43,8 +43,6 @@ public:
 
     static void DrawHPointLine(int y, int x0, int x1, float delta);
 
-    static void DrawMultiHPointLine(int numLines, int x, uint8 *y, int delta, int count, Color::E color);
-
     static void DrawLine(int x0, int y0, int x1, int y1);
 
     static void DrawLineC(int x0, int y0, int x1, int y1, Color::E color);
@@ -194,6 +192,20 @@ namespace Primitives
     private:
         int numLines;
         uint16 *x0;
+        int delta;
+        int count;
+    };
+
+    // \brief Нарисовать numLines горизонтальных линий, состоящих из count точек каждая с расстоянием между точками delta. Вертикальная координата
+    // первой точки каждой линии соответствует очередному элементу массива y[]
+    class MultiHPointLine
+    {
+    public:
+        MultiHPointLine(int _numLines, const uint8 *_y, int _delta, int _count) : numLines(_numLines), y(_y), delta(_delta), count(_count) { }
+        void Draw(int x, Color::E color = Color::NUM);
+    private:
+        int numLines;
+        const uint8 *y;
         int delta;
         int count;
     };
