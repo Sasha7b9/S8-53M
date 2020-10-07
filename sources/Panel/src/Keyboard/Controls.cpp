@@ -2,13 +2,13 @@
 #include "Controls.h"
 
 
-bool Control::IsFunctional() const
+bool KeyboardEvent::IsFunctional() const
 {
     return (key >= Key::F1) && (key <= Key::F4);
 }
 
 
-bool Control::IsRelease() const
+bool KeyboardEvent::IsRelease() const
 {
     return (action == Action::Up) || (action == Action::Long);
 }

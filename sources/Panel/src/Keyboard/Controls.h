@@ -51,7 +51,7 @@ struct Action { enum E
 };};
 
 
-struct Control
+struct KeyboardEvent
 {
     Key::E key;
     Action::E action;
@@ -68,7 +68,7 @@ struct Control
     // true, если функциональная клавиша
     bool IsFunctional() const;
     
-    bool operator==(const Control &rhl) const
+    bool operator==(const KeyboardEvent &rhl) const
     {
         return (rhl.key == key) && (rhl.action == action);
     }

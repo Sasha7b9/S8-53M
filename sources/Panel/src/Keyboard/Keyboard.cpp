@@ -7,20 +7,20 @@
 struct Buffer
 {
     static void AppendEvent(Key::E key, Action::E action);
-    static Control commands[10];
+    static KeyboardEvent commands[10];
     static int pointer;
     static bool IsEmpty() { return (pointer == 0); }
-    static Control GetNextControl()
+    static KeyboardEvent GetNextEvent()
     {
-        Control control;
+        KeyboardEvent event;
     
         if (IsEmpty())
         {
-            control.key = Key::None;
+            event.key = Key::None;
         }
         else
         {
-            control = commands[0];
+            event = commands[0];
             for (int i = 1; i < pointer; i++)
             {
                 commands[i - 1] = commands[i];
@@ -28,11 +28,11 @@ struct Buffer
             --pointer;
         }
     
-        return control;
+        return event;
     }
 };
 
-Control Buffer::commands[10];
+KeyboardEvent Buffer::commands[10];
 int Buffer::pointer = 0;
 
 
@@ -201,7 +201,7 @@ bool Keyboard::Buffer::IsEmpty()
 }
 
 
-Control Keyboard::Buffer::GetNextControl()
+KeyboardEvent Keyboard::Buffer::GetNextEvent()
 {
-    return ::Buffer::GetNextControl();
+    return ::Buffer::GetNextEvent();
 }

@@ -16,6 +16,6 @@ public:
         static bool IsEmpty();
 
         // Возвращает следующий орган управления, если таковой имеется
-        static Control GetNextControl();
+        static KeyboardEvent GetNextEvent();
     };
 };
