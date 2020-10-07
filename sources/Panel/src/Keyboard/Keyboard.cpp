@@ -11,10 +11,6 @@ static int pointer = 0;
 #define NUM_SL 6
 #define NUM_RL 8    
 
-#define BUTTON_IS_PRESS(state)  ((state) == 0)
-
-#define KEY(sl, rl) (keys[sl][rl])
-
 
 struct KeyStruct
 {
@@ -76,12 +72,10 @@ static GovernorStruct governors[NUM_GOVERNORS] =
 
 void Keyboard::Init()
 {
-    pinSL0.Set();
-    pinSL1.Set();
-    pinSL2.Set();
-    pinSL3.Set();
-    pinSL4.Set();
-    pinSL5.Set();
+    for (int i = 0; i < NUM_SL; i++)
+    {
+        SET_SL(i);
+    }
 
     pointer = 0;
 
@@ -95,7 +89,7 @@ void Keyboard::Update()
     {
         for (int rl = 0; rl < NUM_RL; rl++)
         {
-            KEY(sl, rl).Process(sl, rl);
+            keys[sl][rl].Process(sl, rl);
         }
     }
 
@@ -112,7 +106,7 @@ void KeyStruct::Process(int sl, int rl)
 
     SET_SL(sl);
 
-    uint state = READ_RL(rl);
+    bool pressed = READ_RL(rl) == 0;
 
     RESET_SL(sl);
 
@@ -127,18 +121,18 @@ void KeyStruct::Process(int sl, int rl)
                 Keyboard::Buffer::AppendEvent(key, Action::Long);       // это будет длинное нажатие
             }
             else if (delta > 100 &&                                     // Если прошло более 100 мс с момента нажатия
-                     !BUTTON_IS_PRESS(state))                           // и сейчас кнопка находится в отжатом состоянии
+                     !pressed)                                          // и сейчас кнопка находится в отжатом состоянии
             {
                 timePress = UINT_MAX;                                   // То учитываем это в массиве
                 Keyboard::Buffer::AppendEvent(key, Action::Up);         // И сохраняем отпускание кнопки в буфере команд
             }
         }
-        else if (BUTTON_IS_PRESS(state) && !HappenedLongPressed())      // Если кнопка нажата
+        else if (pressed && !HappenedLongPressed())                     // Если кнопка нажата
         {
             timePress = time;                                           // то сохраняем время её нажатия
             Keyboard::Buffer::AppendEvent(key, Action::Down);
         }
-        else if (!BUTTON_IS_PRESS(state) && HappenedLongPressed())
+        else if (!pressed && HappenedLongPressed())
         {
             timePress = 0;
         }
