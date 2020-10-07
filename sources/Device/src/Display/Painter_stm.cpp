@@ -32,3 +32,13 @@ void Painter::BeginScene(Color::E color)
 void Painter::EndScene(bool)
 {
 }
+
+
+void Painter::FillRegion(int , int , int , int )
+{
+}
+
+void Painter::SetColor(Color::E)
+{
+}
+

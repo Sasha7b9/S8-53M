@@ -110,6 +110,32 @@ void Painter::EndScene(bool)
 }
 
 
+void Painter::SetColor(Color::E color)
+{
+    if (color == Color::BLACK)
+    {
+        wxColour colorDraw = wxColour(0, 0, 0);
+        memDC.SetPen(wxPen(colorDraw));
+    }
+    else
+    {
+        wxColour colorDraw = wxColour(0xFF, 0xFF, 0xFF);
+        memDC.SetPen(wxPen(colorDraw));
+    }
+}
+
+
+void Painter::FillRegion(int x, int y, int width, int height)
+{
+    wxBrush brush = memDC.GetBrush();
+    wxPen pen = memDC.GetPen();
+    memDC.SetBrush(wxBrush(pen.GetColour()));
+    memDC.DrawRectangle({ x, y, width + 1, height + 1 });
+    memDC.SetBrush(brush);
+}
+
+
+
 void Display::Init()
 {
     CreateFrame();

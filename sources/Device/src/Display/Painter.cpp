@@ -182,11 +182,6 @@ void Painter::SetPalette(Color::E )
 }
 
 
-void Painter::SetColor(Color::E )
-{
-}
-
-
 Color::E Painter::CurrentColor(void)
 {
     return currentColor;
@@ -263,11 +258,6 @@ void Painter::DrawLine(int x0, int y0, int x1, int y1)
     {
         DrawHLine(y0, x0, x1);
     }
-}
-
-
-void Painter::FillRegion(int , int , int , int )
-{
 }
 
 
