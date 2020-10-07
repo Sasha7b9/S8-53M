@@ -51,8 +51,8 @@ static bool BitInFontIsExist(int eChar, int numByte, int bit)
 
 static void DrawCharInColorDisplay(int eX, int eY, uchar symbol)
 {
-    int8 width = (int8)font->symbol[symbol].width;
-    int8 height = (int8)font->height;
+    int8 width = static_cast<int8>(font->symbol[symbol].width);
+    int8 height = static_cast<int8>(font->height);
 
     for (int b = 0; b < height; b++)
     {
@@ -76,8 +76,8 @@ static void DrawCharInColorDisplay(int eX, int eY, uchar symbol)
 
 static int Painter_DrawBigChar(int eX, int eY, int size, char symbol)
 {
-    int8 width = (int8)font->symbol[symbol].width;
-    int8 height = (int8)font->height;
+    int8 width = static_cast<int8>(font->symbol[symbol].width);
+    int8 height = static_cast<int8>(font->height);
 
     for (int b = 0; b < height; b++)
     {
@@ -130,9 +130,9 @@ int Painter::DrawChar(int x, int y, char symbol)
     }
     else
     {
-        DrawCharInColorDisplay(x, y, (uint8)symbol);
+        DrawCharInColorDisplay(x, y, static_cast<uint8>(symbol));
     }
-    return x + Font_GetLengthSymbol((uint8)symbol);
+    return x + Font_GetLengthSymbol(static_cast<uint8>(symbol));
 }
 
 
@@ -171,8 +171,8 @@ int Painter::DrawTextOnBackground(int x, int y, const char *text, Color::E color
 
 int Painter::DrawCharWithLimitation(int eX, int eY, uchar symbol, int limitX, int limitY, int limitWidth, int limitHeight)
 {
-    int8 width = (int8)font->symbol[symbol].width;
-    int8 height = (int8)font->height;
+    int8 width = static_cast<int8>(font->symbol[symbol].width);
+    int8 height = static_cast<int8>(font->height);
 
     for (int b = 0; b < height; b++)
     {
@@ -205,8 +205,8 @@ int Painter::DrawTextWithLimitationC(int x, int y, const char* text, Color::E co
     int retValue = x;
     while (*text)
     {
-        x = DrawCharWithLimitation(x, y, (uint8)*text, limitX, limitY, limitWidth, limitHeight);
-        retValue += Font_GetLengthSymbol((uint8)*text);
+        x = DrawCharWithLimitation(x, y, static_cast<uint8>(*text), limitX, limitY, limitWidth, limitHeight);
+        retValue += Font_GetLengthSymbol(static_cast<uint8>(*text));
         text++;
     }
     return retValue + 1;
@@ -235,7 +235,7 @@ static bool IsLetter(char symbol)
         true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
     };
 
-    return isLetter[(uint8)symbol];
+    return isLetter[static_cast<uint8>(symbol)];
 }
 
 
@@ -279,7 +279,7 @@ static bool IsConsonant(char symbol)
         true, true, true, false, true, true, true, true, true, true, true, false, true, false, false, false
     };
 
-    return isConsonat[(uint8)symbol];
+    return isConsonat[static_cast<uint8>(symbol)];
 }
 
 
@@ -397,7 +397,7 @@ static char* PartWordForTransfer(char *word, const int8* lengthSyllables, int, i
     {
         length += lengthSyllables[i];
     }
-    std::memcpy((void*)buffer, (void*)word, static_cast<uint>(length));
+    std::memcpy(static_cast<void*>(buffer), static_cast<void*>(word), static_cast<uint>(length));
     buffer[length] = '-';
     buffer[length + 1] = '\0';
     return buffer;
@@ -528,7 +528,7 @@ bool Painter::GetHeightTextWithTransfers(int left, int top, int right, const cha
                 {
                     continue;
                 }
-                x += Font_GetLengthSymbol((uint8)symbol);
+                x += Font_GetLengthSymbol(static_cast<uint8>(symbol));
             }
             else                                            // ј здесь найдено по крайней мере два буквенных символа, т.е. найдено слово
             {
@@ -630,7 +630,7 @@ int Painter::DrawStringInCenterRectAndBoundItC(int x, int y, int width, int heig
 
 void Painter::DrawHintsForSmallButton(int x, int y, int width, void *smallButton)
 {
-    SmallButton *sb = (SmallButton*)smallButton;
+    SmallButton *sb = static_cast<SmallButton*>(smallButton);
     FillRegionC(x, y, width, 239 - y, COLOR_BACK);
     DrawRectangleC(x, y, width, 239 - y, COLOR_FILL);
     const StructHelpSmallButton *structHelp = &(*sb->hintUGO)[0];
@@ -652,7 +652,7 @@ static int GetLenghtSubString(char *text)
     int retValue = 0;
     while (((*text) != ' ') && ((*text) != '\0'))
     {
-        retValue += Font_GetLengthSymbol((uint8)*text);
+        retValue += Font_GetLengthSymbol(static_cast<uint8>(*text));
         text++;
     }
     return retValue;

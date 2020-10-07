@@ -33,7 +33,7 @@ int Font_GetLengthText(const char *text)
     int retValue = 0;
     while (*text)
     {
-        retValue += Font_GetLengthSymbol((uint8)*text);
+        retValue += Font_GetLengthSymbol(static_cast<uint8>(*text));
         text++;
     }
     return retValue;

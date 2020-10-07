@@ -100,7 +100,7 @@ err_t CallbackOnSent(void *_arg, struct tcp_pcb *_tpcb, u16_t _len)
 {
     struct State *ss;
     LWIP_UNUSED_ARG(_len);
-    ss = (struct State*)_arg;
+    ss = static_cast<struct State*>(_arg);
 
     if (ss->p != NULL)
     {
@@ -127,10 +127,10 @@ void SendAnswer(void *_arg, struct tcp_pcb *_tpcb)
         "<allow-access-from domain=\"*\" to-ports=\"9999\" />"                                                 \
         "</cross-domain-policy>"                                                                            \
         "\0";
-    struct pbuf *tcpBuffer = pbuf_alloc(PBUF_RAW, (uint16)std::strlen(policy), PBUF_POOL);
+    struct pbuf *tcpBuffer = pbuf_alloc(PBUF_RAW, static_cast<uint16>(std::strlen(policy)), PBUF_POOL);
     tcpBuffer->flags = 1;
-    pbuf_take(tcpBuffer, policy, (uint16)std::strlen(policy));
-    struct State *s = (struct State *)_arg;
+    pbuf_take(tcpBuffer, policy, static_cast<uint16>(std::strlen(policy)));
+    struct State *s = static_cast<struct State *>(_arg);
     s->p = tcpBuffer;
     Send(_tpcb, s);
 }
@@ -142,7 +142,7 @@ err_t CallbackOnRecieve(void *_arg, struct tcp_pcb *_tpcb, struct pbuf *_p, err_
     err_t ret_err;
 
     LWIP_ASSERT("arg != NULL", _arg != NULL);
-    struct State *ss = (struct State*)_arg;
+    struct State *ss = static_cast<struct State*>(_arg);
 
     if (_p == NULL)
     {
@@ -198,7 +198,7 @@ err_t CallbackOnRecieve(void *_arg, struct tcp_pcb *_tpcb, struct pbuf *_p, err_
             //ss->p = _p;
             //tcp_sent(_tpcb, CallbackOnSent);
             //Send(_tpcb, ss);
-            SocketFuncReciever((char*)_p->payload, _p->len);
+            SocketFuncReciever(static_cast<char*>(_p->payload), _p->len);
 
             u8_t freed = 0;
             do
@@ -243,7 +243,7 @@ void CallbackOnError(void *_arg, err_t _err)
 {
     struct State *ss;
     LWIP_UNUSED_ARG(_err);
-    ss = (struct State *)_arg;
+    ss = static_cast<struct State *>(_arg);
 
     pcbClient = 0;
 
@@ -261,7 +261,7 @@ void CallbackOnError(void *_arg, err_t _err)
 err_t CallbackOnPoll(void *_arg, struct tcp_pcb *_tpcb)
 {
     err_t ret_err;
-    struct State *ss = (struct State *)_arg;
+    struct State *ss = static_cast<struct State *>(_arg);
     if (ss != NULL)
     {
         if (ss->p != NULL)
@@ -305,12 +305,12 @@ err_t CallbackOnAccept(void *_arg, struct tcp_pcb *_newPCB, err_t _err)
         new pcbs of higher priority. */
     tcp_setprio(_newPCB, TCP_PRIO_MIN);
 
-    s = (struct State*)mem_malloc(sizeof(struct State));
+    s = static_cast<struct State*>(mem_malloc(sizeof(struct State)));
 
     if (s)
     {
         s->state = States::ACCEPTED;
-        s->numPort = ((unsigned short)POLICY_PORT == _newPCB->local_port) ? POLICY_PORT : DEFAULT_PORT;
+        s->numPort = (static_cast<unsigned short>(POLICY_PORT) == _newPCB->local_port) ? POLICY_PORT : DEFAULT_PORT;
         s->p = NULL;
         /* pass newly allocated s to our callbacks */
         tcp_arg(_newPCB, s);
@@ -404,11 +404,11 @@ bool TCPSocket_Send(const char *buffer, uint length)
 {
     if (pcbClient)
     {
-        struct pbuf *tcpBuffer = pbuf_alloc(PBUF_RAW, (uint16)length, PBUF_POOL);
+        struct pbuf *tcpBuffer = pbuf_alloc(PBUF_RAW, static_cast<uint16>(length), PBUF_POOL);
         tcpBuffer->flags = 1;
-        pbuf_take(tcpBuffer, buffer, (uint16)length);
+        pbuf_take(tcpBuffer, buffer, static_cast<uint16>(length));
         transmitBytes += length;
-        struct State *ss = (struct State*)mem_malloc(sizeof(struct State));
+        struct State *ss = static_cast<struct State*>(mem_malloc(sizeof(struct State)));
         ss->p = tcpBuffer;
         Send(pcbClient, ss);
         mem_free(ss);
@@ -428,5 +428,5 @@ void TCPSocket_SendFormatString(char *format, ...) //-V2560
     std::vsprintf(buffer, format, args);
     va_end(args);
     std::strcat(buffer, "\r\n");
-    TCPSocket_Send(buffer, (uint)std::strlen(buffer));
+    TCPSocket_Send(buffer, static_cast<uint>(std::strlen(buffer)));
 }
