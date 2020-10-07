@@ -19,7 +19,7 @@ void VCP::Init()
 } 
 
 
-void VCP::SendDataAsinch(uint8 *buffer, int size)
+void VCP::SendDataAsinch(pUCHAR buffer, int size)
 {
     lastTimeSend = gTimerMS;
 
