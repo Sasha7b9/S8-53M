@@ -50,25 +50,26 @@ static Pin *rls[NUM_RL] = { &pinRL0, &pinRL1, &pinRL2, &pinRL3, &pinRL4, &pinRL5
 
 struct GovernorStruct
 {
-//    GovernorStruct(Key::E k, Pin &rlA_, Pin &rlB_, Pin &sl_) : key(k), rlA(rlA_), rlB(rlB_), sl(sl_) { }
+    GovernorStruct(Key::E k, Pin &rlA_, Pin &rlB_, Pin &sl_) : key(k), rlA(rlA_), rlB(rlB_), sl(sl_), prevStateIsSame(false) { }
     Key::E key;
     Pin &rlA;
     Pin &rlB;
     Pin &sl;
+    bool prevStateIsSame;   // true, если предыдущие состояния одинаковы
 };
 
 #define NUM_GOVERNORS 8
 
 static GovernorStruct governors[NUM_GOVERNORS] =
 {
-    {Key::RangeA,  pinRL1, pinRL2, pinSL0},
-    {Key::RangeB,  pinRL1, pinRL2, pinSL1},
-    {Key::RShiftA, pinRL4, pinRL5, pinSL0},
-    {Key::RShiftB, pinRL4, pinRL5, pinSL1},
-    {Key::TBase,   pinRL1, pinRL2, pinSL2},
-    {Key::TShift,  pinRL4, pinRL5, pinSL2},
-    {Key::TrigLev, pinRL1, pinRL2, pinSL3},
-    {Key::Setting, pinRL1, pinRL2, pinSL5}
+    GovernorStruct(Key::RangeA,  pinRL1, pinRL2, pinSL0),
+    GovernorStruct(Key::RangeB,  pinRL1, pinRL2, pinSL1),
+    GovernorStruct(Key::RShiftA, pinRL4, pinRL5, pinSL0),
+    GovernorStruct(Key::RShiftB, pinRL4, pinRL5, pinSL1),
+    GovernorStruct(Key::TBase,   pinRL1, pinRL2, pinSL2),
+    GovernorStruct(Key::TShift,  pinRL4, pinRL5, pinSL2),
+    GovernorStruct(Key::TrigLev, pinRL1, pinRL2, pinSL3),
+    GovernorStruct(Key::Setting, pinRL1, pinRL2, pinSL5)
 };
 
 
@@ -144,31 +145,27 @@ void Keyboard::ProcessKey(int sl, int rl)
 void Keyboard::ProcessGovernor(int i)
 {
     GovernorStruct governor = governors[i];
-    governor.key = Key::None;
-}
 
+    governor.sl.Reset();
 
-static void DetectRegulator()
-{
-    // Детектируем поворот
-    static bool prevStatesIsOne = false;
+    bool stateLeft = governor.rlA.Read() != 0;
+    bool stateRight = governor.rlB.Read() != 0;
 
-    bool stateLeft = false; // HAL_PIO::ReadPin('C', HPin::_0);
-    bool stateRight = false; // HAL_PIO::ReadPin('C', HPin::_1);
+    governor.sl.Set();
 
     if (stateLeft && stateRight)
     {
-        prevStatesIsOne = true;
+        governor.prevStateIsSame = true;
     }
-    else if (prevStatesIsOne && stateLeft && !stateRight)
+    else if (governor.prevStateIsSame && stateLeft && !stateRight)
     {
-//        Keyboard::AppendEvent(Key::RotateLeft, Action::Down);
-        prevStatesIsOne = false;
+        Buffer::AppendEvent(governor.key, Action::RotateLeft);
+        governor.prevStateIsSame = false;
     }
-    else if (prevStatesIsOne && !stateLeft && stateRight)
+    else if (governor.prevStateIsSame && !stateLeft && stateRight)
     {
-//        Keyboard::AppendEvent(Key::RotateRight, Action::Down);
-        prevStatesIsOne = false;
+        Buffer::AppendEvent(governor.key, Action::RotateRight);
+        governor.prevStateIsSame = false;
     }
 }
 
