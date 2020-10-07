@@ -14,6 +14,8 @@
 #include "Menu/FileManager.h"
 
 
+using namespace Primitives;
+
 
 static bool inverseColors = false;
 static Color::E currentColor = Color::NUM;
@@ -261,20 +263,15 @@ void Painter::DrawLine(int x0, int y0, int x1, int y1)
 }
 
 
-void Painter::FillRegionC(int x, int y, int width, int height, Color::E color)
-{
-    SetColor(color);
-    FillRegion(x, y, width, height);
-}
-
-
 void Painter::DrawVolumeButton(int x, int y, int width, int height, int thickness, Color::E normal, Color::E bright, Color::E dark, bool isPressed, bool inShade)
 {
     if (inShade)
     {
         thickness = 1;
     }
-    FillRegionC(x + thickness, y + thickness, width - thickness * 2, height - thickness * 2, normal);
+
+    Region(width - thickness * 2, height - thickness * 2).Fill(x + thickness, y + thickness, normal);
+
     if (isPressed || inShade)
     {
         for (int i = 0; i < thickness; i++)

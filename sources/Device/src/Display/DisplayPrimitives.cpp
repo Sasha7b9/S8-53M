@@ -4,6 +4,9 @@
 #include <cstdio> 
 
 
+using namespace Primitives;
+
+
 void ProgressBar_Draw(const ProgressBar *bar)
 {
     int x = bar->x;
@@ -13,7 +16,7 @@ void ProgressBar_Draw(const ProgressBar *bar)
     std::sprintf(buffer, "Завершено %.1f %%", passedPercents);
     Painter::DrawStringInCenterRectC(x, y - 15, bar->width, bar->height, buffer, COLOR_FILL);
     Painter::DrawRectangle(bar->x, bar->y, bar->width, bar->height);
-    Painter::FillRegion(bar->x, bar->y, static_cast<int>(bar->width * passedPercents / 100.0F), bar->height);
+    Region(static_cast<int>(bar->width * passedPercents / 100.0F), bar->height).Fill(bar->x, bar->y);
     buffer[0] = 0;
     std::sprintf(buffer, "Осталось %.1f с", static_cast<int>(bar->fullTime - bar->passedTime) / 1000.0F);
     Painter::DrawStringInCenterRect(x, y + bar->height, bar->width, bar->height, buffer);

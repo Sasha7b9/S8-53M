@@ -11,6 +11,9 @@
 #include "common/Hardware/HAL/HAL.h"
 
 
+using namespace Primitives;
+
+
 int currentParagraph = 0;   // ≈сли TypePage(currentPage) == TypePageHelp::Content, то указывает не текущий раздел оглавлени€
 const PageHelp *currentPage = &helpMain;
 
@@ -54,9 +57,9 @@ static void DrawPageDescription()
 void HelpContent_Draw()
 {
     uint startTime = gTimerMS;
-    Painter::FillRegionC(Grid::Right(), 0, 319 - Grid::Right(), 20, COLOR_BACK);
-    Painter::FillRegion(Grid::Right(), 219, 319 - Grid::Right(), 21);
-    Painter::FillRegion(1, 1, WIDTH, 237);
+    Region(319 - Grid::Right(), 20).Fill(Grid::Right(), 0, COLOR_BACK);
+    Region(319 - Grid::Right(), 21).Fill(Grid::Right(), 219);
+    Region(WIDTH, 237).Fill(1, 1);
     Painter::DrawRectangleC(0, 0, WIDTH + 2, 239, COLOR_FILL);
 
     /*

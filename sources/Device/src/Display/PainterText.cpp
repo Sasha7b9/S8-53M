@@ -11,6 +11,9 @@
 #include <cstring>
 
 
+using namespace Primitives;
+
+
 void Painter::SetFont(TypeFont::E)
 {
 }
@@ -162,7 +165,7 @@ int Painter::DrawTextOnBackground(int x, int y, const char *text, Color::E color
     int height = Font_GetSize();
 
     Color::E colorText = Painter::CurrentColor();
-    FillRegionC(x - 1, y, width, height, colorBackground);
+    Region(width, height).Fill(x - 1, y, colorBackground);
     SetColor(colorText);
 
     return DrawText(x, y, text);
@@ -563,7 +566,7 @@ int Painter::DrawTextInBoundedRectWithTransfers(int x, int y, int width, const c
     GetHeightTextWithTransfers(x + 3, y + 3, x + width - 8, text, &height);
 
     DrawRectangleC(x, y, width, height, colorFill);
-    FillRegionC(x + 1, y + 1, width - 2, height - 2, colorBackground);
+    Region(width - 2, height - 2).Fill(x + 1, y + 1, colorBackground);
     DrawTextInRectWithTransfersC(x + 3, y + 3, width - 8, height, text, colorFill);
     return y + height;
 }
@@ -614,7 +617,7 @@ void Painter::DrawStringInCenterRectOnBackgroundC(int x, int y, int width, int h
     int eX = DrawStringInCenterRectC(x, y, width, height, text, colorBackground);
     int w = lenght + widthBorder * 2 - 2;
     int h = 7 + widthBorder * 2 - 1;
-    FillRegion(eX - lenght - widthBorder, y - widthBorder + 1, w, h);
+    Region(w, h).Fill(eX - lenght - widthBorder, y - widthBorder);
     DrawStringInCenterRectC(x, y, width, height, text, colorText);
 }
 
@@ -622,7 +625,7 @@ void Painter::DrawStringInCenterRectOnBackgroundC(int x, int y, int width, int h
 int Painter::DrawStringInCenterRectAndBoundItC(int x, int y, int width, int height, const char *text, Color::E colorBackground, Color::E colorFill)
 {
     DrawRectangleC(x, y, width, height, colorFill);
-    FillRegionC(x + 1, y + 1, width - 2, height - 2, colorBackground);
+    Region(width - 2, height - 2).Fill(x + 1, y + 1, colorBackground);
     SetColor(colorFill);
     return DrawStringInCenterRect(x, y, width, height, text);
 }
@@ -631,7 +634,7 @@ int Painter::DrawStringInCenterRectAndBoundItC(int x, int y, int width, int heig
 void Painter::DrawHintsForSmallButton(int x, int y, int width, void *smallButton)
 {
     SmallButton *sb = static_cast<SmallButton*>(smallButton);
-    FillRegionC(x, y, width, 239 - y, COLOR_BACK);
+    Region(width, 239 - y).Fill(x, y, COLOR_BACK);
     DrawRectangleC(x, y, width, 239 - y, COLOR_FILL);
     const StructHelpSmallButton *structHelp = &(*sb->hintUGO)[0];
     x += 3;

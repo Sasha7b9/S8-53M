@@ -17,7 +17,6 @@
 
 #include "Display/Painter.h"
 #include "Hardware/Timer.h"
-//#include "Keyboard/BufferButtons.h"
 
 
 #undef uint   
@@ -31,10 +30,11 @@
 
 
 #include "defines.h"
-//#include "Display/Primitives.h"
-//#include "Keyboard/Keyboard.h"
 #include "Menu/Menu.h"
 #include "Utils/Math.h"
+
+
+using namespace Primitives;
 
 
 static wxBitmap bitmapButton(Display::WIDTH, Display::HEIGHT);
@@ -99,7 +99,7 @@ void Painter::BeginScene(Color::E color)
     wxBrush brush({ 0, 0, 0 }, wxTRANSPARENT);
     memDC.SetBrush(brush);
     SetColor(color);
-    FillRegionC(0, 0, Display::WIDTH, Display::HEIGHT, color);
+    Region(Display::WIDTH, Display::HEIGHT).Fill(0, 0, color);
 }
 
 
@@ -112,6 +112,11 @@ void Painter::EndScene(bool)
 
 void Painter::SetColor(Color::E color)
 {
+    if (color == Color::NUM)
+    {
+        return;
+    }
+
     if (color == Color::BLACK)
     {
         wxColour colorDraw = wxColour(0, 0, 0);
@@ -125,8 +130,9 @@ void Painter::SetColor(Color::E color)
 }
 
 
-void Painter::FillRegion(int x, int y, int width, int height)
+void Primitives::Region::Fill(int x, int y, Color::E color)
 {
+    Painter::SetColor(color);
     wxBrush brush = memDC.GetBrush();
     wxPen pen = memDC.GetPen();
     memDC.SetBrush(wxBrush(pen.GetColour()));

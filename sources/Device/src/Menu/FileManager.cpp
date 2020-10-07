@@ -19,9 +19,11 @@
 #include <cstring>
 
 
+using namespace Primitives;
+
+
 #define RECS_ON_PAGE 23
 #define WIDTH_COL 135
-
 
 
 static char currentDir[255] = "\\";
@@ -31,7 +33,6 @@ static int numFirstFile = 0;        // Номер первого выведенного файла в правой 
 static int numCurFile = 0;          // Номер подсвеченного файла
 static int numDirs = 0;
 static int numFiles = 0;
-
 
 
 void FM::Init(void)
@@ -51,7 +52,8 @@ void FM::DrawLongString(int x, int y, const char *string, bool hightlight)
     Color::E color = COLOR_FILL;
     if (hightlight)
     {
-        Painter::FillRegionC(x - 1, y, WIDTH_COL + 9, 8, color);
+        Region(WIDTH_COL + 9, 8).Fill(x - 1, y, color);
+
         color = COLOR_BACK;
     }
 
@@ -69,7 +71,7 @@ void FM::DrawLongString(int x, int y, const char *string, bool hightlight)
 
 void FM::DrawHat(int x, int y, char *string, int num1, int num2)
 {
-    Painter::FillRegionC(x - 1, y, WIDTH_COL + 9, RECS_ON_PAGE * 9 + 11, COLOR_BACK);
+    Region(WIDTH_COL + 9, RECS_ON_PAGE * 9 + 11).Fill(x - 1, y, COLOR_BACK);
     Painter::DrawFormatText(x + 60, y, COLOR_FILL, string, num1, num2);
     Painter::DrawHLine(y + 10, x + 2, x + 140);
 }

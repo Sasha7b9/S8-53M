@@ -70,10 +70,6 @@ public:
 
     static void DrawRectangleC(int x, int y, int width, int height, Color::E color);
 
-    static void FillRegion(int x, int y, int width, int height);
-
-    static void FillRegionC(int x, int y, int width, int height, Color::E color);
-
     static void DrawVolumeButton(int x, int y, int width, int height, int thickness, Color::E normal, Color::E bright, Color::E dark, bool isPressed, bool inShade);
     // ”становить €ркость диспле€.
     static void SetBrightnessDisplay(int16 brightness);
@@ -160,3 +156,18 @@ private:
 
     static bool GetHeightTextWithTransfers(int left, int top, int right, const char *text, int *height);
 };
+
+
+namespace Primitives
+{
+    class Region
+    {
+    public:
+        Region(int w, int h) : width(w), height(h) { }
+        void Fill(int x, int y, Color::E color = Color::NUM);
+
+    private:
+        int width;
+        int height;
+    };
+}

@@ -7,6 +7,7 @@
 #include "Display/font/Font.h"
 
 
+using namespace Primitives;
 
 
 // Структура для описания диапазона масштаба по времени.
@@ -183,7 +184,7 @@ void DrawStr(int index, int x, int y)
     const char *str = symbolsAlphaBet[index];
     if (index == INDEX_SYMBOL)
     {
-        Painter::FillRegionC(x - 1, y, Font_GetLengthText(str), 9, Color::FLASH_10);
+        Region(Font_GetLengthText(str), 9).Fill(x - 1, y, Color::FLASH_10);
     }
     Painter::DrawTextC(x, y, symbolsAlphaBet[index], index == INDEX_SYMBOL ? Color::FLASH_01 : COLOR_FILL);
 }

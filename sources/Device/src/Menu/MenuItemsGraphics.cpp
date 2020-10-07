@@ -12,6 +12,9 @@
 #include <cstring>
 #include <cstdio>
 
+
+using namespace Primitives;
+
  
 static void Governor_DrawOpened(Governor *governor, int x, int y);
 static void ItemMACaddress_DrawOpened(MACaddress *mac, int x, int y);
@@ -34,7 +37,7 @@ void DrawGovernorChoiceColorFormulaHiPart(void *item, int x, int y, bool pressed
 
     if (shade)
     {
-        Painter::FillRegionC(x + 1, y + 2, width + 2, MI_HEIGHT_VALUE + 3, ColorMenuItem(false));
+        Region(width + 2, MI_HEIGHT_VALUE + 3).Fill(x + 1, y + 2, ColorMenuItem(false));
     }
     else
     {
@@ -269,7 +272,7 @@ static void DrawValueWithSelectedPosition(int x, int y, int value, int numDigits
         value /= 10;
         if (selPos == i)
         {
-            Painter::FillRegionC(x - 1, y, 5, height, COLOR_FILL);
+            Region(5, height).Fill(x - 1, y, COLOR_FILL);
         }
         if (!(rest == 0 && value == 0) || (firstValue == 0 && i == 0))
         {
@@ -361,7 +364,7 @@ static void DrawMACvalue(int x, int y, MACaddress *mac)
         int value = (int)(*(bytes + num));
         if (gCurDigit == num)
         {
-            Painter::FillRegionC(x - 1, y, 10, 8, COLOR_FILL);
+            Region(10, 8).Fill(x - 1, y, COLOR_FILL);
         }
         char buffer[20];
         std::sprintf(buffer, "%02X", value);
@@ -440,14 +443,14 @@ void DrawGovernorColorValue(int x, int y, GovernorColor *govColor, int delta)
 
     int vals[4] = { static_cast<int>(ct->brightness * 100), blue, green, red };
 
-    Painter::FillRegionC(x, y, MI_WIDTH + delta - 2, MI_HEIGHT / 2 - 3, Color::BLACK);
+    Region(MI_WIDTH + delta - 2, MI_HEIGHT / 2 - 3).Fill(x, y, Color::BLACK);
     x += 92;
     
     for(int i = 0; i < 4; i++)
     {
         Color::E colorBack = (field == i) ? Color::WHITE : Color::BLACK;
         Color::E colorDraw = (field == i) ? Color::BLACK : Color::WHITE;
-        Painter::FillRegionC(x - 1, y + 1, 29, 10, colorBack);
+        Region(29, 10).Fill(x - 1, y + 1, colorBack);
         Painter::DrawTextC(x, y + 2, texts[i], colorDraw);
         Painter::DrawText(x + 14, y + 2, Int2String(vals[i], false, 1, buffer));
         x -= 30;
@@ -473,7 +476,7 @@ static void GovernorColor_DrawClosed(GovernorColor *gov, int x, int y)
 {
     Color_Init(gov->colorType);
     DrawGovernorChoiceColorFormulaHiPart(gov, x, y, Menu::IsPressed(gov), Menu::IsShade(gov) || !Menu::ItemIsActive(gov), true);
-    Painter::FillRegionC(x + 2, y + 20, MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1, gov->colorType->color);
+    Region(MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1).Fill(x + 2, y + 20, gov->colorType->color);
 }
 
 void GovernorColor_Draw(GovernorColor *govColor, int x, int y, bool opened)
@@ -572,7 +575,7 @@ void ItemTime_DrawOpened(Time *time, int x, int y)
     {
         if (*time->curField == i)
         {
-            Painter::FillRegionC(x + strPaint[i].x - 1, y + strPaint[i].y, strPaint[i].width, 8, Color::FLASH_10);
+            Region(strPaint[i].width, 8).Fill(x + strPaint[i].x - 1, y + strPaint[i].y, Color::FLASH_10);
         }
         Painter::DrawTextC(x + strPaint[i].x, y + strPaint[i].y, strI[i], *time->curField == i ? Color::FLASH_01 : COLOR_FILL);
     }
@@ -614,7 +617,7 @@ void ItemChoice_DrawClosed(Choice *choice, int x, int y)
         
     if (shade)
     {
-        Painter::FillRegionC(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, ColorMenuTitleLessBright());
+        Region(MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3).Fill(x + 1, y + 17, ColorMenuTitleLessBright());
     }
     else
     {
@@ -703,7 +706,7 @@ void ItemButton_Draw(Button *button, int x, int y)
 
     Painter::DrawHLineC(y + 1, x, x + MI_WIDTH, ColorMenuTitle(shade));
     Color::E color = shade ? Color::MENU_SHADOW : Color::WHITE;
-    Painter::FillRegionC(x + 1, y + 2, MI_WIDTH - 2, MI_HEIGHT - 2, ColorMenuItem(false));
+    Region(MI_WIDTH - 2, MI_HEIGHT - 2).Fill(x + 1, y + 2, ColorMenuItem(false));
     Painter::DrawVolumeButton(x + 4, y + 5, MI_WIDTH - 8, MI_HEIGHT - 8, 3, ColorMenuItem(false), ColorMenuItemBrighter(), 
                             ColorMenuItemLessBright(), pressed, shade);
 
@@ -718,7 +721,7 @@ void ItemSmallButton_Draw(SmallButton *smallButton, int x, int y)
     {
         if (Menu::IsPressed(smallButton))
         {
-            Painter::FillRegionC(x, y, WIDTH_SB, WIDTH_SB, COLOR_FILL);
+            Region(WIDTH_SB, WIDTH_SB).Fill(x, y, COLOR_FILL);
             Painter::SetColor(COLOR_BACK);
         }
         else
@@ -741,7 +744,7 @@ void ItemPage_Draw(Page *page, int x, int y)
     Painter::DrawHLineC(y + 1, x, x + MI_WIDTH, ColorBorderMenu(false));
     if (isShade)
     {
-        Painter::FillRegionC(x + 1, y + 2, MI_WIDTH - 2, MI_HEIGHT - 2, ColorMenuTitleLessBright());
+        Region(MI_WIDTH - 2, MI_HEIGHT - 2).Fill(x + 1, y + 2, ColorMenuTitleLessBright());
     }
     else
     {

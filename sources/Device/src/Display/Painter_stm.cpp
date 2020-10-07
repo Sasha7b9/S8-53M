@@ -2,6 +2,9 @@
 #include "Display/Painter.h"
 
 
+using namespace Primitives;
+
+
 extern StateTransmit::E stateTransmit;
 extern bool noFonts;
 
@@ -25,7 +28,7 @@ void Painter::BeginScene(Color::E color)
         }
     }
 
-    FillRegionC(0, 0, 319, 239, color);
+    Region(319, 239).Fill(0, 0, color);
 }
 
 
@@ -34,11 +37,12 @@ void Painter::EndScene(bool)
 }
 
 
-void Painter::FillRegion(int , int , int , int )
-{
-}
-
 void Painter::SetColor(Color::E)
 {
 }
 
+
+void Primitives::Region::Fill(int , int , Color::E )
+{
+
+}

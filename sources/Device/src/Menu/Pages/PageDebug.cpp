@@ -15,11 +15,8 @@
 #include <cstdlib>
 
 
-/** @addtogroup Menu
- *  @{
- *  @defgroup PageDebug
- *  @{
- */
+using namespace Primitives;
+
 
 extern const Page pDebug;
 
@@ -921,7 +918,7 @@ static void Draw_EnterSerialNumber(void)
     int height = 160;
 
     Painter::DrawRectangleC(x0, y0, width, height, COLOR_FILL);
-    Painter::FillRegionC(x0 + 1, y0 + 1, width - 2, height - 2, COLOR_BACK);
+    Region(width - 2, height - 2).Fill(x0 + 1, y0 + 1, COLOR_BACK);
 
     int deltaX = 10;
 
