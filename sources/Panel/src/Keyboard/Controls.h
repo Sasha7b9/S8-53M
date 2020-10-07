@@ -3,39 +3,36 @@
 
 struct Key { enum E
 {
-    None,
-    F1,
-    F2,
-    F3,
-    F4,
-    _0,
-    _1,
-    _2,
-    _3,
-    _4,
-    _5,
-    _6,
-    _7,
-    _8,
-    _9,
-    Comma,
-    Minus,
-    Esc,
-    Left,
-    Right,
-    On1,
-    On2,
-    RotateLeft,
-    RotateRight,
-    RegButton,
+    None,               // 
+    F1,                 // 1
+    F2,                 // 2
+    F3,                 // 3
+    F4,                 // 4
+    F5,                 // 5
+    ChannelA,           // КАНАЛ 1
+    ChannelB,           // КАНАЛ 2
+    Time,               // РАЗВ
+    Synchronization,    // СИНХР
+    Cursors,            // КУРСОРЫ
+    Measures,           // ИЗМЕР
+    Display,            // ДИСПЛЕЙ
+    Help,               // ПОМОЩЬ
+    Start,              // ПУСК/СТОП
+    Memory,             // ПАМЯТЬ
+    Service,            // СЕРВИС
+    Menu,               // МЕНЮ
+    RangeA,             // ВОЛЬТ/ДЕЛ 1
+    RangeB,             // ВОЛЬТ/ДЕЛ 2
+    RShiftA,            // 
+    RShiftB,            // 
+    TBase,              // ВРЕМЯ/ДЕЛ
+    TShift,             // 
+    TrigLev,            // УРОВЕНЬ
+    Setting,            // УСТАНОВКА
     Count
 };
 
     Key(E v) : value(v) { }
-
-    char ToChar() const;
-
-    bool IsDigit() const;
 
     pString Name() const;
 
@@ -45,9 +42,11 @@ struct Key { enum E
 
 struct Action { enum E
 {
-    Down,
-    Long,
-    Up,
+    Down,   // Нажатие кнопки
+    Up,     // Отпускание кнопки
+    Long,   // "Длинное" нажатие
+    Left,   // Поворото ручки влево
+    Right,  // Поворот ручки вправо
     Count
 };};
 
@@ -69,15 +68,6 @@ struct Control
     // true, если функциональная клавиша
     bool IsFunctional() const;
     
-    // Возвращает true, если поворот ручки
-    bool IsRotate() const;
-
-    // Возвращает true, если кнопка управления курсором (Влево-Вправо)
-    bool IsCursors() const { return (key == Key::Left) || (key == Key::Right); };
-
-    // Возвращает true, если цифровая кнопка, 'минус' или 'точка'
-    bool IsEntering() const;
-
     bool operator==(const Control &rhl) const
     {
         return (rhl.key == key) && (rhl.action == action);

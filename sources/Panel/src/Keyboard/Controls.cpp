@@ -2,40 +2,9 @@
 #include "Controls.h"
 
 
-bool Key::IsDigit() const
-{
-    return (value >= Key::_0 && value <= Key::_9);
-}
-
-
-char Key::ToChar() const
-{
-    if(IsDigit())
-    {
-        return static_cast<char>((value - Key::_0) | 0x30);
-    }
-    else if(value == Key::Comma)
-    {
-        return '.';
-    }
-    else if (value == Key::Minus)
-    {
-        return '-';
-    }
-
-    return ' ';
-}
-
-
 bool Control::IsFunctional() const
 {
     return (key >= Key::F1) && (key <= Key::F4);
-}
-
-
-bool Control::IsRotate() const
-{
-    return (key == Key::RotateLeft) || (key == Key::RotateRight);
 }
 
 
@@ -77,15 +46,4 @@ pString Key::Name() const
     };
 
     return names[value];
-}
-
-
-bool Control::IsEntering() const
-{
-    if (key >= Key::_0 && key <= Key::_9)
-    {
-        return true;
-    }
-
-    return ((key == Key::Minus) || (key == Key::Comma));
 }

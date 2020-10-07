@@ -11,19 +11,22 @@ static int pointer = 0;
 static void DetectRegulator();
 
 #define NUM_SL 6
-#define NUM_RL 5
+#define NUM_RL 8    
 
 #define BUTTON_IS_PRESS(state)  ((state) == 0)
 
 // ѕри обнаружении нажати€ кнопки сюда записываетс€ врем€ нажати€
-static uint timePress[5][6];
+static uint timePress[NUM_SL][NUM_RL];
 
-//                                         SL0      SL1       SL2          SL3        S4          SL5
-static const Key::E keys[5][6] =     {{Key::_0, Key::_5, Key::Comma, Key::Esc,   Key::F1,   Key::None},    // RL0
-                                      {Key::_1, Key::_6, Key::Minus, Key::Right, Key::F2,   Key::None},    // RL1
-                                      {Key::_2, Key::_7, Key::None,  Key::Left,  Key::F3,   Key::None},    // RL2
-                                      {Key::_3, Key::_8, Key::On1,   Key::None,  Key::F4,   Key::None},    // RL3
-                                      {Key::_4, Key::_9, Key::On2,   Key::None,  Key::None, Key::None}};   // RL4
+
+static const Key::E keys[NUM_SL][NUM_RL] =     
+//    RL0                   RL1            RL2           RL3         RL4          RL5           RL6         RL7
+    {{Key::ChannelA,        Key::Count,    Key::Count,   Key::Count, Key::Count,  Key::Count,   Key::Count, Key::Menu},  // SL0
+     {Key::ChannelB,        Key::Count,    Key::Count,   Key::Count, Key::Count,  Key::Count,   Key::Count, Key::F1},    // SL1
+     {Key::Time,            Key::Count,    Key::Count,   Key::Count, Key::Count,  Key::Count,   Key::Count, Key::F2},    // SL2
+     {Key::Synchronization, Key::Count,    Key::Count,   Key::Count, Key::Start,  Key::None,    Key::None,  Key::F3},    // SL3
+     {Key::Cursors,         Key::Measures, Key::Display, Key::Help,  Key::Memory, Key::Service, Key::None,  Key::F4},    // SL4
+     {Key::None,            Key::Count,    Key::Count,   Key::Count, Key::None,   Key::None,    Key::None,  Key::F5}};   // SL5
 
 static Pin *sls[] = { &pinSL0, &pinSL1, &pinSL2, &pinSL3, &pinSL4, &pinSL5 };
 static Pin *rls[] = { &pinRL0, &pinRL1, &pinRL2, &pinRL3, &pinRL4, &pinRL5, &pinRL6, &pinRL7 };
@@ -132,7 +135,7 @@ static void DetectRegulator()
 
         if(press && prevPressButton && time - timePrevPress > 500)          // ≈сли нажатие длитс€ более 0.5 сек
         {
-            Keyboard::AppendEvent(Key::RegButton, Action::Long);                                     // посылаем длинное нажатие
+//            Keyboard::AppendEvent(Key::RegButton, Action::Long);                                     // посылаем длинное нажатие
             needDetectButton = false;
             prevPressButton = false;
             timePrevPress = 0;
@@ -144,7 +147,7 @@ static void DetectRegulator()
             {
                 timePrevPress = time;
                 prevPressButton = true;
-                Keyboard::AppendEvent(Key::RegButton, Action::Down);
+//                Keyboard::AppendEvent(Key::RegButton, Action::Down);
             }
         }
         else                                                                // ≈ксли копка была нажата ранее
@@ -153,7 +156,7 @@ static void DetectRegulator()
             {                                                               // во избежание дребезга контактов
                 if(!press)
                 {
-                    Keyboard::AppendEvent(Key::RegButton, Action::Up);
+//                    Keyboard::AppendEvent(Key::RegButton, Action::Up);
                     timePrevPress = 0;
                     prevPressButton = false;
                 }
@@ -174,12 +177,12 @@ static void DetectRegulator()
     }
     else if (prevStatesIsOne && stateLeft && !stateRight)
     {
-        Keyboard::AppendEvent(Key::RotateLeft, Action::Down);
+//        Keyboard::AppendEvent(Key::RotateLeft, Action::Down);
         prevStatesIsOne = false;
     }
     else if (prevStatesIsOne && !stateLeft && stateRight)
     {
-        Keyboard::AppendEvent(Key::RotateRight, Action::Down);
+//        Keyboard::AppendEvent(Key::RotateRight, Action::Down);
         prevStatesIsOne = false;
     }
 }
