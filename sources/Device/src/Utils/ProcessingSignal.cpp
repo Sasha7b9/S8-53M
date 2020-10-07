@@ -66,9 +66,9 @@ static bool periodIsCaclulating[2] = {false, false};
 static bool periodAccurateIsCalculating[2];
 static bool picIsCalculating[2] = {false, false};
 
-#define EXIT_IF_ERROR_FLOAT(x)      if((x) == ERROR_VALUE_FLOAT)                                return ERROR_VALUE_FLOAT;
-#define EXIT_IF_ERRORS_FLOAT(x, y)  if((x) == ERROR_VALUE_FLOAT || (y) == ERROR_VALUE_FLOAT)    return ERROR_VALUE_FLOAT;
-#define EXIT_IF_ERROR_INT(x)        if((x) == ERROR_VALUE_INT)                                  return ERROR_VALUE_FLOAT;
+#define EXIT_IF_ERROR_FLOAT(x)      if(std::fabsf((x) - ERROR_VALUE_FLOAT) < 1e-10)                                                  { return ERROR_VALUE_FLOAT; }
+#define EXIT_IF_ERRORS_FLOAT(x, y)  if(std::fabsf((x) - ERROR_VALUE_FLOAT) < 1e-10 || std::fabsf((y) - ERROR_VALUE_FLOAT) < 1e-10)   { return ERROR_VALUE_FLOAT; }
+#define EXIT_IF_ERROR_INT(x)        if((x) == ERROR_VALUE_INT)                                                                       { return ERROR_VALUE_FLOAT; }
 
 void Processing::CalculateMeasures()
 {
@@ -81,11 +81,18 @@ void Processing::CalculateMeasures()
     maxIsCalculating[1] = false;
     maxSteadyIsCalculating[0] = false;
     maxSteadyIsCalculating[1] = false;
-    minIsCalculating[0] = minIsCalculating[1] = minSteadyIsCalculating[0] = minSteadyIsCalculating[1] = false;
-    aveIsCalculating[0] = aveIsCalculating[1] = false;
-    periodIsCaclulating[0] = periodIsCaclulating[1] = false;
-    periodAccurateIsCalculating[0] = periodAccurateIsCalculating[1] = false;
-    picIsCalculating[0] = picIsCalculating[1] = false;
+    minIsCalculating[0] = false;
+    minIsCalculating[1] = false;
+    minSteadyIsCalculating[0] = false;
+    minSteadyIsCalculating[1] = false;
+    aveIsCalculating[0] = false;
+    aveIsCalculating[1] = false;
+    periodIsCaclulating[0] = false;
+    periodIsCaclulating[1] = false;
+    periodAccurateIsCalculating[0] = false;
+    periodAccurateIsCalculating[1] = false;
+    picIsCalculating[0] = false;
+    picIsCalculating[1] = false;
 
     for(int str = 0; str < Measure::NumRows(); str++)
     {
@@ -97,8 +104,14 @@ void Processing::CalculateMeasures()
             {
                 if(meas == MEAS_MARKED || MEAS_MARKED_IS_NONE)
                 {
-                    markerVert[Channel::A][0] = markerVert[Channel::A][1] = markerVert[Channel::B][0] = markerVert[Channel::B][1] = ERROR_VALUE_INT;
-                    markerHor[Channel::A][0] = markerHor[Channel::A][1] = markerHor[Channel::B][0] = markerHor[Channel::B][1] = ERROR_VALUE_INT;
+                    markerVert[Channel::A][0] = ERROR_VALUE_INT;
+                    markerVert[Channel::A][1] = ERROR_VALUE_INT;
+                    markerVert[Channel::B][0] = ERROR_VALUE_INT;
+                    markerVert[Channel::B][1] = ERROR_VALUE_INT;
+                    markerHor[Channel::A][0] = ERROR_VALUE_INT;
+                    markerHor[Channel::A][1] = ERROR_VALUE_INT;
+                    markerHor[Channel::B][0] = ERROR_VALUE_INT;
+                    markerHor[Channel::B][1] = ERROR_VALUE_INT;
                 }
                 if(MEAS_SOURCE_IS_A || MEAS_SOURCE_IS_A_B)
                 {
@@ -117,7 +130,7 @@ float Processing::CalculateVoltageMax(Channel::E chan)
 {
     float max = CalculateMaxRel(chan);
     
-    EXIT_IF_ERROR_FLOAT(max); //-V2550
+    EXIT_IF_ERROR_FLOAT(max); //-V2550 //-V550 //-V2507
     if(MEAS_MARKED == Measure::VoltageMax)
     {
         markerHor[chan][0] = static_cast<int>(max);                           // Здесь не округляем, потому что max может быть только целым
@@ -129,7 +142,7 @@ float Processing::CalculateVoltageMax(Channel::E chan)
 float Processing::CalculateVoltageMin(Channel::E chan)
 {
     float min = CalculateMinRel(chan);
-    EXIT_IF_ERROR_FLOAT(min); //-V2550
+    EXIT_IF_ERROR_FLOAT(min); //-V2550 //-V550
     if(MEAS_MARKED == Measure::VoltageMin)
     {
         markerHor[chan][0] = static_cast<int>(min);                           // Здесь не округляем, потому что min может быть только целым
@@ -143,7 +156,7 @@ float Processing::CalculateVoltagePic(Channel::E chan)
     float max = CalculateVoltageMax(chan);
     float min = CalculateVoltageMin(chan);
 
-    EXIT_IF_ERRORS_FLOAT(min, max); //-V2550
+    EXIT_IF_ERRORS_FLOAT(min, max); //-V2550 //-V550
 
     if(MEAS_MARKED == Measure::VoltagePic)
     {
@@ -156,10 +169,10 @@ float Processing::CalculateVoltagePic(Channel::E chan)
 float Processing::CalculateVoltageMinSteady(Channel::E chan)
 {
     float min = CalculateMinSteadyRel(chan);
-    EXIT_IF_ERROR_FLOAT(min); //-V2550
+    EXIT_IF_ERROR_FLOAT(min); //-V2550 //-V550
     if(MEAS_MARKED == Measure::VoltageMinSteady)
     {
-        markerHor[chan][0] = static_cast<int>(ROUND(min));
+        markerHor[chan][0] = static_cast<int>(ROUND(min)); //-V2528
     }
 
     return (POINT_2_VOLTAGE(min, dataSet->range[chan], chan == Channel::A ? dataSet->rShiftCh0 : dataSet->rShiftCh1) * VALUE_MULTIPLIER(chan));
@@ -169,7 +182,7 @@ float Processing::CalculateVoltageMaxSteady(Channel::E chan)
 {
     float max = CalculateMaxSteadyRel(chan);
 
-    EXIT_IF_ERROR_FLOAT(max); //-V2550
+    EXIT_IF_ERROR_FLOAT(max); //-V2550 //-V550
 
     if(MEAS_MARKED == Measure::VoltageMaxSteady)
     {
@@ -187,7 +200,7 @@ float Processing::CalculateVoltageVybrosPlus(Channel::E chan)
     float max = CalculateMaxRel(chan);
     float maxSteady = CalculateMaxSteadyRel(chan);
 
-    EXIT_IF_ERRORS_FLOAT(max, maxSteady); //-V2550
+    EXIT_IF_ERRORS_FLOAT(max, maxSteady); //-V2550 //-V550
 
     if (MEAS_MARKED == Measure::VoltageVybrosPlus)
     {
@@ -203,7 +216,7 @@ float Processing::CalculateVoltageVybrosMinus(Channel::E chan)
 {
     float min = CalculateMinRel(chan);
     float minSteady = CalculateMinSteadyRel(chan);
-    EXIT_IF_ERRORS_FLOAT(min, minSteady); //-V2550
+    EXIT_IF_ERRORS_FLOAT(min, minSteady); //-V2550 //-V550
 
     if (MEAS_MARKED == Measure::VoltageVybrosMinus)
     {
@@ -220,7 +233,7 @@ float Processing::CalculateVoltageAmpl(Channel::E chan)
     float max = CalculateVoltageMaxSteady(chan);
     float min = CalculateVoltageMinSteady(chan);
 
-    EXIT_IF_ERRORS_FLOAT(min, max); //-V2550
+    EXIT_IF_ERRORS_FLOAT(min, max); //-V2550 //-V550
 
     if(MEAS_MARKED == Measure::VoltageAmpl)
     {
@@ -282,7 +295,7 @@ float Processing::CalculatePeriod(Channel::E chan)
     if(!periodIsCaclulating[chan])
     {
         float aveValue = CalculateAverageRel(chan);
-        if(aveValue == ERROR_VALUE_UINT8)
+        if(aveValue == ERROR_VALUE_UINT8) //-V2550 //-V550
         {
             period[chan] = ERROR_VALUE_FLOAT;
         }
@@ -291,12 +304,12 @@ float Processing::CalculatePeriod(Channel::E chan)
             float intersectionDownToTop = FindIntersectionWithHorLine(chan, 1, true, static_cast<uint8>(aveValue));
             float intersectionTopToDown = FindIntersectionWithHorLine(chan, 1, false, static_cast<uint8>(aveValue));
 
-            EXIT_IF_ERRORS_FLOAT(intersectionDownToTop, intersectionTopToDown);
+            EXIT_IF_ERRORS_FLOAT(intersectionDownToTop, intersectionTopToDown); //-V2550 //-V550
 
             float firstIntersection = intersectionDownToTop < intersectionTopToDown ? intersectionDownToTop : intersectionTopToDown;
             float secondIntersection = FindIntersectionWithHorLine(chan, 2, intersectionDownToTop < intersectionTopToDown, static_cast<uint8>(aveValue));
 
-            EXIT_IF_ERRORS_FLOAT(firstIntersection, secondIntersection);
+            EXIT_IF_ERRORS_FLOAT(firstIntersection, secondIntersection); //-V2550 //-V550
 
             float per = TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0f, dataSet->tBase);
 
@@ -324,7 +337,7 @@ int Processing::CalculatePeriodAccurately(Channel::E chan)
         period[chan] = 0;
         float pic = CalculatePicRel(chan);
 
-        if(pic == ERROR_VALUE_FLOAT)
+        if(pic == ERROR_VALUE_FLOAT) //-V2550 //-V550
         {
             EXIT_FROM_PERIOD_ACCURACY
         }
@@ -400,7 +413,7 @@ int Processing::CalculatePeriodAccurately(Channel::E chan)
 float Processing::CalculateFreq(Channel::E chan)
 {
     float period = CalculatePeriod(chan);
-    return period == ERROR_VALUE_FLOAT ? ERROR_VALUE_FLOAT : 1.0f / period;
+    return period == ERROR_VALUE_FLOAT ? ERROR_VALUE_FLOAT : 1.0f / period; //-V2550 //-V550
 }
 
 float Processing::FindIntersectionWithHorLine(Channel::E chan, int numIntersection, bool downToUp, uint8 yLine)
@@ -445,7 +458,7 @@ float Processing::FindIntersectionWithHorLine(Channel::E chan, int numIntersecti
 float Processing::CalculateDurationPlus(Channel::E chan)
 {
     float aveValue = CalculateAverageRel(chan);
-    EXIT_IF_ERROR_FLOAT(aveValue);
+    EXIT_IF_ERROR_FLOAT(aveValue); //-V2550 //-V550
 
     float firstIntersection = FindIntersectionWithHorLine(chan, 1, true, static_cast<uint8>(aveValue));
     float secondIntersection = FindIntersectionWithHorLine(chan, 1, false, static_cast<uint8>(aveValue));
@@ -581,7 +594,7 @@ float Processing::CalculateMinSteadyRel(Channel::E chan)
     if(!minSteadyIsCalculating[chan])
     {
         float aveValue = CalculateAverageRel(chan);
-        if(aveValue == ERROR_VALUE_FLOAT)
+        if(aveValue == ERROR_VALUE_FLOAT) //-V2550 //-V550
         {
             min[chan] = ERROR_VALUE_FLOAT;
         }
@@ -601,19 +614,17 @@ float Processing::CalculateMinSteadyRel(Channel::E chan)
                 }
             }
             min[chan] = (float)sum / numSums;
-            int numMin = numSums;
-
-            int numDeleted = 0;
+            int numMin = numSums; //-V2551
 
             float pic = CalculatePicRel(chan);
-            if (pic == ERROR_VALUE_FLOAT)
+            if (pic == ERROR_VALUE_FLOAT) //-V2550 //-V550
             {
                 min[chan] = ERROR_VALUE_FLOAT;
             }
             else
             {
+                int numDeleted = 0;
                 float value = pic / 9.0f;
-
                 data = &dataIn[chan][firstP];
                 float _min = min[chan];
                 while (data <= end)
@@ -655,7 +666,7 @@ float Processing::CalculateMaxSteadyRel(Channel::E chan)
     {
         float aveValue = CalculateAverageRel(chan);
         
-        if(aveValue == ERROR_VALUE_FLOAT)
+        if(aveValue == ERROR_VALUE_FLOAT) //-V2550 //-V550
         {
             max[chan] = ERROR_VALUE_FLOAT;
         }
@@ -675,18 +686,17 @@ float Processing::CalculateMaxSteadyRel(Channel::E chan)
                 }
             }
             max[chan] = (float)sum / numSums;
-            int numMax = numSums;
-
-            int numDeleted = 0;
 
             float pic = CalculatePicRel(chan);
 
-            if (pic == ERROR_VALUE_FLOAT)
+            if (pic == ERROR_VALUE_FLOAT) //-V2550 //-V550
             {
                 max[chan] = ERROR_VALUE_FLOAT;
             }
             else
             {
+                int numDeleted = 0;
+                int numMax = numSums;
                 float value = pic / 9.0f;
 
                 data = &dataIn[chan][firstP];
@@ -758,7 +768,7 @@ float Processing::CalculateAverageRel(Channel::E chan)
     {
         float min = CalculateMinRel(chan);
         float max = CalculateMaxRel(chan);
-        ave[chan] = (min == ERROR_VALUE_FLOAT || max == ERROR_VALUE_FLOAT) ? ERROR_VALUE_FLOAT : (min + max) / 2.0f;
+        ave[chan] = (min == ERROR_VALUE_FLOAT || max == ERROR_VALUE_FLOAT) ? ERROR_VALUE_FLOAT : (min + max) / 2.0f; //-V2550 //-V550
         aveIsCalculating[chan] = true;
     }
     return ave[chan];
@@ -772,7 +782,7 @@ float Processing::CalculatePicRel(Channel::E chan)
     {
         float min = CalculateMinRel(chan);
         float max = CalculateMaxRel(chan);
-        pic[chan] = (min == ERROR_VALUE_FLOAT || max == ERROR_VALUE_FLOAT) ? ERROR_VALUE_FLOAT : max - min;
+        pic[chan] = (min == ERROR_VALUE_FLOAT || max == ERROR_VALUE_FLOAT) ? ERROR_VALUE_FLOAT : max - min; //-V2550 //-V550
         picIsCalculating[chan] = true;
     }
     return pic[chan];
@@ -794,15 +804,13 @@ float Processing::CalculateDelayPlus(Channel::E chan)
 
     EXIT_IF_ERRORS_FLOAT(average0, average1);
 
-    float firstIntersection = 0.0F;
-    float secondIntersection = 0.0F;
     float averageFirst = (chan == Channel::A) ? average0 : average1;
     float averageSecond = (chan == Channel::A) ? average1 : average0;
     Channel::E firstChannel = (chan == Channel::A) ? Channel::A : Channel::B;
     Channel::E secondChannel = (chan == Channel::A) ? Channel::B : Channel::A;
 
-    firstIntersection = FindIntersectionWithHorLine(firstChannel, 1, true, static_cast<uint8>(averageFirst));
-    secondIntersection = FindIntersectionWithHorLine(secondChannel, 1, true, static_cast<uint8>(averageSecond));
+    float firstIntersection = FindIntersectionWithHorLine(firstChannel, 1, true, static_cast<uint8>(averageFirst));
+    float secondIntersection = FindIntersectionWithHorLine(secondChannel, 1, true, static_cast<uint8>(averageSecond));
 
     EXIT_IF_ERRORS_FLOAT(firstIntersection, secondIntersection);
 
@@ -833,15 +841,13 @@ float Processing::CalculateDelayMinus(Channel::E chan)
 
     EXIT_IF_ERRORS_FLOAT(average0, average1);
 
-    float firstIntersection = 0.0F;
-    float secondIntersection = 0.0F;
     float averageFirst = (chan == Channel::A) ? average0 : average1;
     float averageSecond = (chan == Channel::A) ? average1 : average0;
     Channel::E firstChannel = (chan == Channel::A) ? Channel::A : Channel::B;
     Channel::E secondChannel = (chan == Channel::A) ? Channel::B : Channel::A;
 
-    firstIntersection = FindIntersectionWithHorLine(firstChannel, 1, false, static_cast<uint8>(averageFirst));
-    secondIntersection = FindIntersectionWithHorLine(secondChannel, 1, false, static_cast<uint8>(averageSecond));
+    float firstIntersection = FindIntersectionWithHorLine(firstChannel, 1, false, static_cast<uint8>(averageFirst));
+    float secondIntersection = FindIntersectionWithHorLine(secondChannel, 1, false, static_cast<uint8>(averageSecond));
 
     EXIT_IF_ERRORS_FLOAT(firstIntersection, secondIntersection);
 
@@ -859,7 +865,7 @@ float Processing::CalculatePhazaPlus(Channel::E chan)
 {
     float delay = CalculateDelayPlus(chan);
     float period = CalculatePeriod(chan);
-    if(delay == ERROR_VALUE_FLOAT || period == ERROR_VALUE_FLOAT)
+    if(delay == ERROR_VALUE_FLOAT || period == ERROR_VALUE_FLOAT) //-V2550 //-V550
     {
         return ERROR_VALUE_FLOAT;
     }
@@ -870,14 +876,14 @@ float Processing::CalculatePhazaMinus(Channel::E chan)
 {
     float delay = CalculateDelayMinus(chan);
     float period = CalculatePeriod(chan);
-    if(delay == ERROR_VALUE_FLOAT || period == ERROR_VALUE_FLOAT)
+    if(delay == ERROR_VALUE_FLOAT || period == ERROR_VALUE_FLOAT) //-V2550 //-V550
     {
         return ERROR_VALUE_FLOAT;
     }
     return delay / period * 360.0F; 
 }
 
-void Processing::SetSignal(uint8 *data0, uint8 *data1, DataSettings *ds, int _firstPoint, int _lastPoint)
+void Processing::SetSignal(pUCHAR data0, pUCHAR data1, DataSettings *ds, int _firstPoint, int _lastPoint)
 {
     firstP = _firstPoint;
     lastP = _lastPoint;
@@ -913,28 +919,18 @@ void Processing::GetData(uint8 **data0, uint8 **data1, DataSettings **ds)
 }
 
 float Processing::GetCursU(Channel::E chan, float posCurT)
-{
-    if(!dataIn[chan])
-    {
-        return 0;
-    }
-    
+{   
     int first = 0;
     int last = 0;
     SettingsDisplay::PointsOnDisplay(&first, &last);
 
-    float retValue = 0.0F;
+    float retValue;
     LIMITATION(retValue, static_cast<float>(200.0F - (dataIn[chan])[first + (int)posCurT] + MIN_VALUE), 0.0F, 200.0F);
     return retValue;
 }
 
 float Processing::GetCursT(Channel::E chan, float posCurU, int numCur)
 {
-    if(!dataIn[chan])
-    {
-        return 0;
-    }
-
     int firstPoint = 0;
     int lastPoint = 0;
     SettingsDisplay::PointsOnDisplay(&firstPoint, &lastPoint);
