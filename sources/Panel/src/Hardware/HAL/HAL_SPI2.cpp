@@ -27,7 +27,7 @@ void HAL_SPI2::Init()
 }
 
 
-void HAL_SPI2::Send(uint8, int)
+void HAL_SPI2::Send(uint8 *, int)
 {
 
 }
