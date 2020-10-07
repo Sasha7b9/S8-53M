@@ -40,12 +40,6 @@ void SysTick_Handler(void)
 }
 
 
-void TIM2_IRQHandler(void)
-{
-    HAL_TIM_IRQHandler(reinterpret_cast<TIM_HandleTypeDef *>(HAL_TIM2::handle));
-}
-
-
 #ifdef __cplusplus
 }
 #endif

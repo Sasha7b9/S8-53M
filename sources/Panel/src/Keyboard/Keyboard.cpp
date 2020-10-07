@@ -104,8 +104,6 @@ void Keyboard::Init()
     {
         SET_SL(i);
     }
-
-    HAL_TIM2::Init(&Keyboard::Update);
 }
 
 

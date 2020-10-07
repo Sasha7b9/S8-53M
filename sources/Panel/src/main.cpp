@@ -11,5 +11,6 @@ int main(void)
 
     while (1)
     {
+        Keyboard::Update();
     }
 }
