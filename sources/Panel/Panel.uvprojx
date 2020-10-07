@@ -464,9 +464,9 @@
               <FilePath>.\src\Hardware\CMSIS\startup_stm32l063xx.s</FilePath>
             </File>
             <File>
-              <FileName>system_stm32l0xx.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\CMSIS\system_stm32l0xx.cpp</FilePath>
+              <FileName>system_stm32l0xx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\Hardware\CMSIS\system_stm32l0xx.c</FilePath>
             </File>
           </Files>
         </Group>
