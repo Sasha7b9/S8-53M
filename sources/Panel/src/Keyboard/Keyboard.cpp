@@ -45,32 +45,32 @@ static Pin *rls[NUM_RL] = { &pinRL0, &pinRL1, &pinRL2, &pinRL3, &pinRL4, &pinRL5
 
 #define SET_SL(n)       sls[n]->Set();
 #define RESET_SL(n)     sls[n]->Reset();
-#define READ_RL(n)      rls[n]->Read();
+#define READ_RL(n)      rls[n]->Read()
 
 
 struct GovernorStruct
 {
-    GovernorStruct(Key::E k, Pin &rlA_, Pin &rlB_, Pin &sl_) : key(k), rlA(rlA_), rlB(rlB_), sl(sl_), prevStateIsSame(false) { }
+    GovernorStruct(Key::E k, uint8 rlA_, uint8 rlB_, uint8 sl_) : key(k), rlA(rlA_), rlB(rlB_), sl(sl_), prevStateIsSame(false) { }
     void Process();
     Key::E key;
-    Pin &rlA;
-    Pin &rlB;
-    Pin &sl;
-    bool prevStateIsSame;   // true, если предыдущие состояния одинаковы
+    uint8  rlA;
+    uint8  rlB;
+    uint8  sl;
+    bool   prevStateIsSame;   // true, если предыдущие состояния одинаковы
 };
 
 #define NUM_GOVERNORS 8
 
 static GovernorStruct governors[NUM_GOVERNORS] =
 {
-    GovernorStruct(Key::RangeA,  pinRL1, pinRL2, pinSL0),
-    GovernorStruct(Key::RangeB,  pinRL1, pinRL2, pinSL1),
-    GovernorStruct(Key::RShiftA, pinRL4, pinRL5, pinSL0),
-    GovernorStruct(Key::RShiftB, pinRL4, pinRL5, pinSL1),
-    GovernorStruct(Key::TBase,   pinRL1, pinRL2, pinSL2),
-    GovernorStruct(Key::TShift,  pinRL4, pinRL5, pinSL2),
-    GovernorStruct(Key::TrigLev, pinRL1, pinRL2, pinSL3),
-    GovernorStruct(Key::Setting, pinRL1, pinRL2, pinSL5)
+    GovernorStruct(Key::RangeA,  1, 2, 0),
+    GovernorStruct(Key::RangeB,  1, 2, 1),
+    GovernorStruct(Key::RShiftA, 4, 5, 0),
+    GovernorStruct(Key::RShiftB, 4, 5, 1),
+    GovernorStruct(Key::TBase,   1, 2, 2),
+    GovernorStruct(Key::TShift,  4, 5, 2),
+    GovernorStruct(Key::TrigLev, 1, 2, 3),
+    GovernorStruct(Key::Setting, 1, 2, 5)
 };
 
 
@@ -148,12 +148,12 @@ void KeyStruct::Process(int sl, int rl)
 
 void GovernorStruct::Process()
 {
-    sl.Reset();
+    RESET_SL(sl);
 
-    bool stateLeft = (rlA.Read() != 0);
-    bool stateRight = (rlB.Read() != 0);
+    bool stateLeft = (READ_RL(rlA) != 0);
+    bool stateRight = (READ_RL(rlB) != 0);
 
-    sl.Set();
+    SET_SL(sl);
 
     if (stateLeft && stateRight)
     {
