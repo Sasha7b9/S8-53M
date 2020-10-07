@@ -5,7 +5,7 @@ struct PinMode { enum E
 {
     Input,
     Output,
-    SPI2_
+    _SPI2
 };};
 
 struct PinPort { enum E
@@ -45,7 +45,7 @@ struct Pin
     uint Read();
 
 private:
-    void *port;
+    void *port; // GPIO_TypeDef *
     uint16 pin;
 };
 

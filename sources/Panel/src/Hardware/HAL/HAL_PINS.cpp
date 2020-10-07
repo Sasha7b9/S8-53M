@@ -42,9 +42,9 @@ PinON pinON;
 PinSL0::PinSL0() : Pin(PinPort::A, PinPin::_0) { }
 PinSL1::PinSL1() : Pin(PinPort::A, PinPin::_1) { }
 PinSL2::PinSL2() : Pin(PinPort::A, PinPin::_2) { }
-PinSL3::PinSL3() : Pin(PinPort::A, PinPin::_3) { }
-PinSL4::PinSL4() : Pin(PinPort::A, PinPin::_4) { }
-PinSL5::PinSL5() : Pin(PinPort::A, PinPin::_5) { }
+PinSL3::PinSL3() : Pin(PinPort::A, PinPin::_5) { }
+PinSL4::PinSL4() : Pin(PinPort::A, PinPin::_3) { }
+PinSL5::PinSL5() : Pin(PinPort::A, PinPin::_4) { }
 
 PinRL0::PinRL0() : Pin(PinPort::B, PinPin::_0) { }
 PinRL1::PinRL1() : Pin(PinPort::B, PinPin::_1) { }
@@ -55,8 +55,8 @@ PinRL5::PinRL5() : Pin(PinPort::B, PinPin::_5) { }
 PinRL6::PinRL6() : Pin(PinPort::B, PinPin::_6) { }
 PinRL7::PinRL7() : Pin(PinPort::B, PinPin::_7) { }
 
-PinRC0::PinRC0() : Pin(PinPort::A, PinPin::_11) { }
-PinRC1::PinRC1() : Pin(PinPort::A, PinPin::_10) { }
+PinRC0::PinRC0() : Pin(PinPort::A, PinPin::_10) { }
+PinRC1::PinRC1() : Pin(PinPort::A, PinPin::_11) { }
 PinRC2::PinRC2() : Pin(PinPort::A, PinPin::_9) { }
 PinRC3::PinRC3() : Pin(PinPort::A, PinPin::_12) { }
 
@@ -93,10 +93,10 @@ void HAL_PINS::Init()
 
     pinON.Init(PinMode::Output);
 
-    pinSPI2_SCK.Init(PinMode::SPI2_);
-    pinSPI2_NSS.Init(PinMode::SPI2_);
-    pinSPI2_MISO.Init(PinMode::SPI2_);
-    pinSPI2_MOSI.Init(PinMode::SPI2_);
+    pinSPI2_SCK.Init(PinMode::_SPI2);
+    pinSPI2_NSS.Init(PinMode::_SPI2);
+    pinSPI2_MISO.Init(PinMode::_SPI2);
+    pinSPI2_MOSI.Init(PinMode::_SPI2);
 }
 
 
@@ -148,7 +148,7 @@ void Pin::Init(PinMode::E mode)
     {
         isGPIO.Mode = GPIO_MODE_OUTPUT_PP;
     }
-    else if (mode == PinMode::SPI2_)
+    else if (mode == PinMode::_SPI2)
     {
         isGPIO.Mode = GPIO_MODE_AF_PP;
         isGPIO.Alternate = GPIO_AF0_SPI2;
