@@ -211,11 +211,6 @@ void Painter::DrawHPointLine(int y, int x0, int x1, float delta)
 }
 
 
-void Painter::DrawMultiVPointLine(int , int , uint16 [], int , int , Color::E )  //-V2504
-{
-}
-
-
 void Painter::DrawMultiHPointLine(int , int , uint8 [], int , int , Color::E ) //-V2504
 {
 }

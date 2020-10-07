@@ -1436,7 +1436,7 @@ void Display::DrawGridType1(int left, int top, int right, int bottom, float cent
     }
     masX[16] = (uint16)(right - 1);
 
-    Painter::DrawMultiVPointLine(17, static_cast<int>(top + stepY), masX, static_cast<int>(stepY), CalculateCountV(), ColorGrid());
+    MultiVPointLine(17, masX, static_cast<int>(stepY), CalculateCountV()).Draw(static_cast<int>(top + stepY), ColorGrid());
 
     uint8 mas[13];
     mas[0] = (uint8)(top + 1);
@@ -1468,7 +1468,7 @@ void Display::DrawGridType2(int left, int top, int right, int bottom, int deltaX
         masX[i] = (uint16)(left + deltaX * i);
     }
     masX[14] = (uint16)(right - 1);
-    Painter::DrawMultiVPointLine(15, top + stepY, masX, stepY, CalculateCountV(), ColorGrid());
+    MultiVPointLine(15, masX, stepY, CalculateCountV()).Draw(top + stepY, ColorGrid());
 
     uint8 mas[11];
     mas[0] = (uint8)(top + 1);
@@ -1489,8 +1489,7 @@ void Display::DrawGridType3(int left, int top, int right, int bottom, int center
     Painter::DrawMultiHPointLine(6, left + deltaX, masY, deltaX, (right - top) / deltaX, ColorGrid());
     Painter::DrawVPointLine(centerX, top + stepY, bottom, static_cast<float>(stepY), ColorGrid());
     uint16 masX[6] = {(uint16)(left + 1), (uint16)(left + 2), (uint16)(centerX - 1), (uint16)(centerX + 1), (uint16)(right - 2), (uint16)(right - 1)};
-    Painter::DrawMultiVPointLine(6, top + deltaY, masX, deltaY, (bottom - top) / deltaY, ColorGrid());
-
+    MultiVPointLine(6, masX, deltaY, (bottom - top) / deltaY).Draw(top + deltaY, ColorGrid());
 }
 
 
