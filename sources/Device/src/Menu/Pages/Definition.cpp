@@ -60,11 +60,11 @@ void DrawMenuCursTime(int x, int y, bool left, bool right)
     CalculateXY(&x0, &x1, &y0, &y1);
     for(int i = 0; i < (left ? 3 : 1); i++)
     {
-        Painter::DrawVLine(x0 + i, y0, y1);
+        HLine().Draw(x0 + i, y0, y1);
     }
     for(int i = 0; i < (right ? 3 : 1); i++)
     {
-        Painter::DrawVLine(x1 - i, y0, y1);
+        HLine().Draw(x1 - i, y0, y1);
     }
 }
 

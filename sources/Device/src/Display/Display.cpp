@@ -248,7 +248,7 @@ void Display::DrawSignalLined(pUCHAR data, const DataSettings *ds, int startPoin
                     yMax = yMinNext - 1;
                 }
 
-                Painter::DrawVLine(static_cast<int>(x), yMin, yMax);
+                HLine().Draw(static_cast<int>(x), yMin, yMax);
             }
         }
     }
@@ -430,7 +430,7 @@ void Display::DrawSpectrumChannel(const float *spectrum, Color::E color)
 	int gridHeight = Grid::MathHeight();
     for (int i = 0; i < 256; i++) 
     {
-        Painter::DrawVLine(gridLeft + i, gridBottom, gridBottom - static_cast<int>(gridHeight * spectrum[i]));
+        HLine().Draw(gridLeft + i, gridBottom, gridBottom - static_cast<int>(gridHeight * spectrum[i]));
     }
 }
 
@@ -491,8 +491,8 @@ void Display::DRAW_SPECTRUM(pUCHAR data, int numPoints, Channel::E channel)
         Painter::DrawRectangleC(FFT_POS_CURSOR_0 + Grid::Left() - s, y0 - s, s * 2, s * 2, color);
         Painter::DrawRectangle(FFT_POS_CURSOR_1 + Grid::Left() - s, y1 - s, s * 2, s * 2);
 
-        Painter::DrawVLine(Grid::Left() + FFT_POS_CURSOR_0, Grid::MathBottom(), y0 + s);
-        Painter::DrawVLine(Grid::Left() + FFT_POS_CURSOR_1, Grid::MathBottom(), y1 + s);
+        HLine().Draw(Grid::Left() + FFT_POS_CURSOR_0, Grid::MathBottom(), y0 + s);
+        HLine().Draw(Grid::Left() + FFT_POS_CURSOR_1, Grid::MathBottom(), y1 + s);
     }
 }
 
@@ -504,7 +504,7 @@ void Display::DrawSpectrum()
         return;
     }
 
-    Painter::DrawVLineC(Grid::Right(), Grid::ChannelBottom() + 1, Grid::MathBottom() - 1, COLOR_BACK);
+    HLine().Draw(Grid::Right(), Grid::ChannelBottom() + 1, Grid::MathBottom() - 1, COLOR_BACK);
 
     if (MODE_WORK_IS_DIRECT)
     {
@@ -972,8 +972,8 @@ void Display::DrawMemoryWindow()
     }
     else
     {
-        Painter::DrawVLineC(leftX - 2, top, bottom, COLOR_FILL);
-        Painter::DrawVLine(rightX + 2, top, bottom);
+        HLine().Draw(leftX - 2, top, bottom, COLOR_FILL);
+        HLine().Draw(rightX + 2, top, bottom);
         HLine().Draw((bottom + top) / 2 - 3, leftX, xVert0 - 2);
         HLine().Draw((bottom + top) / 2 + 3, leftX, xVert0 - 2);
         HLine().Draw((bottom + top) / 2 + 3, xVert1 + 2, rightX);
@@ -1035,7 +1035,7 @@ void Display::WriteCursors()
         int y1 = 0;
         int y2 = 9;
 
-        Painter::DrawVLineC(x, 1, Grid::TOP - 2, COLOR_FILL);
+        HLine().Draw(x, 1, Grid::TOP - 2, COLOR_FILL);
         x += 3;
         Channel::E source = CURS_SOURCE;
         Color::E colorText = ColorChannel(source);
@@ -1057,7 +1057,7 @@ void Display::WriteCursors()
         }
 
         x = startX + 101;
-        Painter::DrawVLineC(x, 1, Grid::TOP - 2, COLOR_FILL);
+        HLine().Draw(x, 1, Grid::TOP - 2, COLOR_FILL);
         x += 3;
         if(!CURS_CNTRL_T_IS_DISABLE(source))
         {
@@ -1102,7 +1102,7 @@ void Display::DrawHiRightPart()
 
     if (!MODE_WORK_IS_LATEST)
     {
-        Painter::DrawVLineC(x, 1, Grid::TOP - 2, COLOR_FILL);
+        HLine().Draw(x, 1, Grid::TOP - 2, COLOR_FILL);
 
         x += 2;
 
@@ -1124,7 +1124,7 @@ void Display::DrawHiRightPart()
     if(!MODE_WORK_IS_DIRECT)
     {
         x += 18;
-        Painter::DrawVLineC(x, 1, Grid::TOP - 2, COLOR_FILL);
+        HLine().Draw(x, 1, Grid::TOP - 2, COLOR_FILL);
         x += 2;
         Painter::DrawText(set.common.lang == Language::Russian ? x : x + 3, -1, set.common.lang == Language::Russian ? "режим" : "mode");
         Painter::DrawStringInCenterRect(x + 1, 9, 25, 8, strings_[MODE_WORK][set.common.lang]);
@@ -1138,7 +1138,7 @@ void Display::DrawHiRightPart()
     {
 
         x += 27;
-        Painter::DrawVLineC(x, 1, Grid::TOP - 2, COLOR_FILL);
+        HLine().Draw(x, 1, Grid::TOP - 2, COLOR_FILL);
 
         x += 2;
         y = 1;
@@ -1349,7 +1349,7 @@ void Display::DrawGridSpectrum()
             }
         }
     }
-    Painter::DrawVLineC(Grid::Left() + 256, Grid::MathTop(), Grid::MathBottom(), COLOR_FILL);
+    HLine().Draw(Grid::Left() + 256, Grid::MathTop(), Grid::MathBottom(), COLOR_FILL);
 }
 
 
@@ -1509,8 +1509,8 @@ void Display::DrawGrid(int left, int top, int width, int height)
 
         if (!MenuIsMinimize() || !MenuIsShown())
         {
-            Painter::DrawVLine(1, top + 2, bottom - 2);
-            Painter::DrawVLine(318, top + 2, bottom - 2);
+            HLine().Draw(1, top + 2, bottom - 2);
+            HLine().Draw(318, top + 2, bottom - 2);
         }
     }
 
@@ -1980,7 +1980,7 @@ void Display::DrawLowPart()
 
     WriteTextVoltage(Channel::B, x + 2, y1);
 
-    Painter::DrawVLineC(x + 95, Grid::Bottom() + 2, Display::HEIGHT - 2, COLOR_FILL);
+    HLine().Draw(x + 95, Grid::Bottom() + 2, Display::HEIGHT - 2, COLOR_FILL);
 
     x += 98;
     char buffer[100] = {0};
@@ -2056,7 +2056,7 @@ void Display::DrawLowPart()
         Painter::DrawText(x + 63, y1, buffer);
     }
     
-    Painter::DrawVLineC(x + 79, Grid::Bottom() + 2, Display::HEIGHT - 2, COLOR_FILL);
+    HLine().Draw(x + 79, Grid::Bottom() + 2, Display::HEIGHT - 2, COLOR_FILL);
 
     HLine().Draw(Grid::Bottom(), Grid::Right() + 2, Display::WIDTH - 2);
     HLine().Draw(Grid::ChannelBottom(), Grid::Right() + 2, Display::WIDTH - 2);
@@ -2075,7 +2075,7 @@ void Display::DrawLowPart()
     }
 
     x += 42;
-    Painter::DrawVLine(x, Grid::Bottom() + 2, Display::HEIGHT - 2);
+    HLine().Draw(x, Grid::Bottom() + 2, Display::HEIGHT - 2);
 
     Painter::SetFont(TypeFont::_8);
 
@@ -2097,7 +2097,7 @@ void Display::DrawLowPart()
 
     DrawTime(x + 3, Grid::Bottom() + 11);
 
-    Painter::DrawVLine(x + 55, Grid::Bottom() + 2, Display::HEIGHT - 2);
+    HLine().Draw(x + 55, Grid::Bottom() + 2, Display::HEIGHT - 2);
 
     Painter::SetFont(TypeFont::_UGO2);
 

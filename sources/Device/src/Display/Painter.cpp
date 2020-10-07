@@ -85,11 +85,11 @@ void Painter::ResetFlash()
 void Painter::DrawRectangle(int x, int y, int width, int height)
 {
     HLine().Draw(y, x, x + width);
-    DrawVLine(x, y, y + height);
+    VLine().Draw(x, y, y + height);
     HLine().Draw(y + height, x, x + width);
     if (x + width < Display::WIDTH)
     {
-        DrawVLine(x + width, y, y + height);
+        HLine().Draw(x + width, y, y + height);
     }
 }
 
@@ -114,13 +114,13 @@ void Painter::DrawDashedVLine(int x, int y0, int y1, int deltaFill, int deltaEmt
         y += (deltaFill + deltaEmtpy - deltaStart);
         if (deltaStart < deltaFill)     // Если начало линии приходится на штрих
         {
-            DrawVLine(x, y0, y - 1);
+            HLine().Draw(x, y0, y - 1);
         }
     }
 
     while (y < y1)
     {
-        DrawVLine(x, y, y + deltaFill - 1);
+        HLine().Draw(x, y, y + deltaFill - 1);
         y += (deltaFill + deltaEmtpy);
     }
 }
@@ -190,18 +190,6 @@ Color::E Painter::CurrentColor(void)
 }
 
 
-void Painter::DrawVLine(int , int , int )
-{
-}
-
-
-void Painter::DrawVLineC(int x, int y0, int y1, Color::E color)
-{
-    SetColor(color);
-    DrawVLine(x, y0, y1);
-}
-
-
 void Painter::DrawLineC(int x0, int y0, int x1, int y1, Color::E color)
 {
     SetColor(color);
@@ -237,7 +225,7 @@ void Painter::DrawLine(int x0, int y0, int x1, int y1)
 {
     if (x0 == x1)
     {
-        DrawVLine(x0, y0, y1);
+        HLine().Draw(x0, y0, y1);
     }
     else if (y0 == y1)
     {
@@ -260,8 +248,8 @@ void Painter::DrawVolumeButton(int x, int y, int width, int height, int thicknes
         for (int i = 0; i < thickness; i++)
         {
             HLine().Draw(y + i, x + i, x + width - i, dark);
-            DrawVLine(x + i, y + 1 + i, y + height - i);
-            DrawVLineC(x + width - i, y + 1 + i, y + height - i, bright);
+            HLine().Draw(x + i, y + 1 + i, y + height - i);
+            HLine().Draw(x + width - i, y + 1 + i, y + height - i, bright);
             HLine().Draw(y + height - i, x + 1 + i, x + width - i);
         }
     }
@@ -270,8 +258,8 @@ void Painter::DrawVolumeButton(int x, int y, int width, int height, int thicknes
         for (int i = 0; i < thickness; i++)
         {
             HLine().Draw(y + i, x + i, x + width - i, bright);
-            DrawVLine(x + i, y + 1 + i, y + height - i);
-            DrawVLineC(x + width - i, y + 1 + i, y + height - i, dark);
+            HLine().Draw(x + i, y + 1 + i, y + height - i);
+            HLine().Draw(x + width - i, y + 1 + i, y + height - i, dark);
             HLine().Draw(y + height - i, x + 1 + i, x + width - i);
         }
     }

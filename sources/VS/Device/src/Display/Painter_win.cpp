@@ -362,3 +362,9 @@ void Primitives::Point::Draw(int x, int y)
 {
     memDC.DrawPoint({ x, y });
 }
+
+void Primitives::VLine::Draw(int x, int y0, int y1, Color::E color)
+{
+    Painter::SetColor(color);
+    memDC.DrawLine({ x, y0 }, { x, y1 });
+}

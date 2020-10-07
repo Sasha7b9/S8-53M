@@ -458,7 +458,7 @@ static void Draw_Math_Function_Type(int x, int y)
 static void Draw_Math_Function_Type_Sum(int x, int y)
 {
     HLine().Draw(y + 9, x + 4, x + 14);
-    Painter::DrawVLine(x + 9, y + 4, y + 14);
+    HLine().Draw(x + 9, y + 4, y + 14);
 }
 
 static void Draw_Math_Function_Type_Mul(int x, int y)

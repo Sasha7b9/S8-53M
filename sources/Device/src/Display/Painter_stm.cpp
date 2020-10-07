@@ -58,3 +58,9 @@ void Primitives::Point::Draw(int , int )
 {
 
 }
+
+
+void Primitives::VLine::Draw(int , int , int , Color::E)
+{
+
+}

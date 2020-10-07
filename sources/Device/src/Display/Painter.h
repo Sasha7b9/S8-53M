@@ -39,10 +39,6 @@ public:
 
     static void SetPalette(Color::E color);
 
-    static void DrawVLine(int x, int y0, int y1);
-
-    static void DrawVLineC(int x, int y0, int y1, Color::E color);
-
     static void DrawVPointLine(int x, int y0, int y1, float delta, Color::E color);
 
     static void DrawHPointLine(int y, int x0, int x1, float delta);
@@ -176,5 +172,11 @@ namespace Primitives
     public:
         HLine() {};
         void Draw(int y, int x1, int x2, Color::E color = Color::NUM);
+    };
+
+    class VLine
+    {
+    public:
+        static void Draw(int x, int y0, int y1, Color::E color = Color::NUM);
     };
 }
