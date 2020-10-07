@@ -66,9 +66,9 @@ static bool periodIsCaclulating[2] = {false, false};
 static bool periodAccurateIsCalculating[2];
 static bool picIsCalculating[2] = {false, false};
 
-#define EXIT_IF_ERROR_FLOAT(x)      if(std::fabsf((x) - ERROR_VALUE_FLOAT) < 1e-10)                                                  { return ERROR_VALUE_FLOAT; }
-#define EXIT_IF_ERRORS_FLOAT(x, y)  if(std::fabsf((x) - ERROR_VALUE_FLOAT) < 1e-10 || std::fabsf((y) - ERROR_VALUE_FLOAT) < 1e-10)   { return ERROR_VALUE_FLOAT; }
-#define EXIT_IF_ERROR_INT(x)        if((x) == ERROR_VALUE_INT)                                                                       { return ERROR_VALUE_FLOAT; }
+#define EXIT_IF_ERROR_FLOAT(x)      if(std::fabsf((x) - ERROR_VALUE_FLOAT) < 1e-10F)                                                  { return ERROR_VALUE_FLOAT; }
+#define EXIT_IF_ERRORS_FLOAT(x, y)  if(std::fabsf((x) - ERROR_VALUE_FLOAT) < 1e-10F || std::fabsf((y) - ERROR_VALUE_FLOAT) < 1e-10F)  { return ERROR_VALUE_FLOAT; }
+#define EXIT_IF_ERROR_INT(x)        if((x) == ERROR_VALUE_INT)                                                                        { return ERROR_VALUE_FLOAT; }
 
 void Processing::CalculateMeasures()
 {
