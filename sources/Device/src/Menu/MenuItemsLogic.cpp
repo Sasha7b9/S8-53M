@@ -121,7 +121,8 @@ float Governor_Step(Governor *governor)
         }
         if (delta < -numLines)
         {
-            IN_MOVE_DECREASE = IN_MOVE_INCREASE = 0;
+            IN_MOVE_DECREASE = 0;
+            IN_MOVE_INCREASE = 0;
             *governor->cell = Governor_PrevValue(governor);
             if (governor->funcOfChanged)
             {
@@ -140,7 +141,8 @@ float Governor_Step(Governor *governor)
         }
         if (delta > numLines)
         {
-            IN_MOVE_DECREASE = IN_MOVE_INCREASE = 0;
+            IN_MOVE_DECREASE = 0;
+            IN_MOVE_INCREASE = 0;
             *governor->cell = Governor_NextValue(governor);
             if(governor->funcOfChanged)
             {

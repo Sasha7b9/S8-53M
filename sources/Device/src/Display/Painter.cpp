@@ -153,7 +153,7 @@ static int numberColorsUsed = 0;
 
 
 
-void Painter::SendToVCP(uint8 *pointer, int size)
+void Painter::SendToVCP(pUCHAR pointer, int size)
 {
     if(stateTransmit == StateTransmit::InProcess)
     {
@@ -243,12 +243,12 @@ void Painter::SetPoint(int , int )
 }
 
 
-void Painter::DrawMultiVPointLine(int , int , uint16 [], int , int , Color::E ) 
+void Painter::DrawMultiVPointLine(int , int , uint16 [], int , int , Color::E )  //-V2504
 {
 }
 
 
-void Painter::DrawMultiHPointLine(int , int , uint8 [], int , int , Color::E )
+void Painter::DrawMultiHPointLine(int , int , uint8 [], int , int , Color::E ) //-V2504
 {
 }
 

@@ -56,7 +56,7 @@ void HAL_PCD_SetupStageCallback(PCD_HandleTypeDef *hpcd)
             {                                                       //
                 CLIENT_VCP_IS_CONNECTED = 0;                        //
             }                                                       //
-            CLIENT_VCP_IS_CONNECTED = (prevLength != 0) ? 1U : 0U;  //
+            CLIENT_VCP_IS_CONNECTED = (prevLength != 0) ? 1U : 0U;  // //-V519
         }                                                           //
     }                                                               //
     prevLength = request.wLength;                                   //
@@ -101,11 +101,10 @@ void HAL_PCD_ResetCallback(PCD_HandleTypeDef *hpcd)
         break;
     
     case PCD_SPEED_FULL:
-        speed = USBD_SPEED_FULL;    
         break;
 	
 	default:
-        speed = USBD_SPEED_FULL;    
+        // здесь ничего
         break;
     }
     USBD_LL_SetSpeed((USBD_HandleTypeDef *)hpcd->pData, speed);  

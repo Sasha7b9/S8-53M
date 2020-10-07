@@ -194,7 +194,7 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
     Regulator::E regLeft = RegulatorLeft(command);
     Regulator::E regRight = RegulatorRight(command);
 
-    if (pressButton)
+    if (pressButton != PanelButton::Empty)
     {
         pressedButton = pressButton;
     }
@@ -214,7 +214,7 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
         allRecData--;
     }
 
-    if(releaseButton)
+    if(releaseButton != PanelButton::Empty)
     {
         Menu::ReleaseButton(releaseButton);
         funcOnKeyUp[releaseButton]();
@@ -224,14 +224,14 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
             pressedKey = PanelButton::Empty;
         }
     }
-    else if(pressButton)
+    else if(pressButton != PanelButton::Empty)
     {
         funcOnKeyDown[pressButton]();
         Menu::PressButton(pressButton);
         pressedKey = pressButton;
         Timer::Enable(TypeTimer::PressKey, 500, OnTimerPressedKey);
     }
-    else if(regLeft)
+    else if(regLeft != Regulator::Empty)
     {
         /*
         if (set.memory.modeWork == ModeWork::Direct || regLeft == Regulator::Set || regLeft == R_TShift)
@@ -240,7 +240,7 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
             funculatorLeft[regLeft]();
         //}
     }
-    else if(regRight)
+    else if(regRight != Regulator::Empty)
     {
         /*
         if (set.memory.modeWork == ModeWork::Direct || regRight == Regulator::Set || regRight == R_TShift)

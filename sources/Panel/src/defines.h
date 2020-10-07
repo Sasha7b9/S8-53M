@@ -8,5 +8,5 @@ typedef const char *const pString;
 
 
 #ifndef WIN32
-#define nullptr 0
+#define nullptr 0 //-V1059
 #endif

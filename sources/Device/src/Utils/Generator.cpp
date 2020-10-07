@@ -42,7 +42,8 @@ void SetParametersWave(Channel::E channel, TypeWave::E typeWave, float frequency
 
 void StartNewWave(Channel::E)
 {
-    numSample[0] = numSample[1] = 0;
+    numSample[0] = 0;
+    numSample[1] = 0;
 }
 
 uint8 GetSampleWave(Channel::E channel)

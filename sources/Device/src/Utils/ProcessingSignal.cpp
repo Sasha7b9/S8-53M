@@ -77,7 +77,10 @@ void Processing::CalculateMeasures()
         return;
     }
 
-    maxIsCalculating[0] = maxIsCalculating[1] = maxSteadyIsCalculating[0] = maxSteadyIsCalculating[1] = false;
+    maxIsCalculating[0] = false;
+    maxIsCalculating[1] = false;
+    maxSteadyIsCalculating[0] = false;
+    maxSteadyIsCalculating[1] = false;
     minIsCalculating[0] = minIsCalculating[1] = minSteadyIsCalculating[0] = minSteadyIsCalculating[1] = false;
     aveIsCalculating[0] = aveIsCalculating[1] = false;
     periodIsCaclulating[0] = periodIsCaclulating[1] = false;

@@ -177,7 +177,7 @@ void Menu::DrawTitlePage(Page *page, int layer, int yTop)
 }
 
 
-void Menu::DrawPagesUGO(Page *page, int right, int bottom)
+void Menu::DrawPagesUGO(const Page *page, int right, int bottom)
 {
     int size = 4;
     int delta = 2;
@@ -263,7 +263,7 @@ static void DrawPage(void *item, int x, int y)
 }
 
 
-void Menu::DrawItemsPage(Page *page, int layer, int yTop)
+void Menu::DrawItemsPage(const Page *page, int layer, int yTop)
 {
     void (*funcOfDraw[TypeItem::Count])(void*, int, int) = 
     {  

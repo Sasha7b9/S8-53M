@@ -21,7 +21,7 @@ public:
 
     static void SendToDisplay(uint8 *bytes, int numBytes);
 
-    static void SendToVCP(uint8 *pointer, int size);
+    static void SendToVCP(pUCHAR pointer, int size);
 
     static void BeginScene(Color::E color);
 

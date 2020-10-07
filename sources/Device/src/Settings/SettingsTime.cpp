@@ -65,7 +65,7 @@ int16 sTime_TShiftMin()
     {-511, -255, 0}};
 
     ENUM_POINTS_FPGA::E numPoints = ENUM_POINTS;
-    if ((int)numPoints < 3 && (int)numPoints >= 0)
+    if ((int)numPoints < 3)
     {
         return m[numPoints][SET_TPOS];
     }

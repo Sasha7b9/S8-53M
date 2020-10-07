@@ -111,7 +111,7 @@ bool ChooseSpaces(pUCHAR *string)
 
 #undef SYMBOL
 
-bool EqualsStrings(char *str1, char *str2, int size)
+bool EqualsStrings(pCHAR str1, pCHAR str2, int size)
 {
     for (int i = 0; i < size; i++)
     {

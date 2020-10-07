@@ -154,9 +154,9 @@ private:
 
     static void DrawTitlePage(Page *page, int layer, int yTop);
 
-    static void DrawItemsPage(Page *page, int layer, int yTop);
+    static void DrawItemsPage(const Page *page, int layer, int yTop);
 
-    static void DrawPagesUGO(Page *page, int right, int bottom);
+    static void DrawPagesUGO(const Page *page, int right, int bottom);
 
     static int CalculateX(int layer);
 

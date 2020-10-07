@@ -35,9 +35,9 @@ static Mesh mesh = {
     points
 };
 
-static float x = 0.0; 
-static float y = 0.0;
-static float z = 200.0;
+static float x = 0.0;  //-V707
+static float y = 0.0; //-V707
+static float z = 200.0; //-V707
 
 static float scaleX = 1.0f;
 static float scaleY = 1.0f;

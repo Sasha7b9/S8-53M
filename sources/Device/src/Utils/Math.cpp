@@ -110,7 +110,7 @@ float Math_TimeCursor(float shiftCurT, TBase::E tBase)
     return shiftCurT * absStepTShift[tBase];
 }
 
-void Math_DataExtrapolation(uint8 *data, uint8 *there, int size)
+void Math_DataExtrapolation(uint8 *data, pUCHAR there, int size)
 {
     int pointer = 0;
     while(there[pointer] == 0)
@@ -164,7 +164,7 @@ void Math_PointsRelToVoltage(pUCHAR points, int numPoints, Range::E range, int16
     float koeff = 1.0f / 20e3f;
     for (int i = 0; i < numPoints; i++)
     {
-        voltage[i] = (points[i] * voltInPixel - diff) * koeff;
+        voltage[i] = static_cast<float>(points[i] * voltInPixel - diff) * koeff;
     }
 }
 
@@ -481,7 +481,7 @@ void Math_CalculateFFT(float *dataR, int numPoints, float *result, float *freq0,
     *y1 = static_cast<int>(Grid::MathBottom() - result[FFT_POS_CURSOR_1] * Grid::MathHeight());
 }
 
-void Math_CalculateMathFunction(float *data0andResult, float *data1, int numPoints)
+void Math_CalculateMathFunction(float *data0andResult, const float *data1, int numPoints)
 {
     if (MATH_FUNC_IS_SUM)
     {
@@ -554,7 +554,7 @@ int Math_NumDigitsInNumber(int value)
 {
     value = Math_FabsInt(value);
     int num = 1;
-    while ((value /= 10) > 0)
+    while ((value /= 10) > 0) //-V2561
     {
         num++;
     }
