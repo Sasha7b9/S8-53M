@@ -4,8 +4,36 @@
 #include <limits>
 
 
-static Control commands[10];
-static int pointer = 0;
+struct Buffer
+{
+    static void AppendEvent(Key::E key, Action::E action);
+    static Control commands[10];
+    static int pointer;
+    static bool IsEmpty() { return (pointer == 0); }
+    static Control GetNextControl()
+    {
+        Control control;
+    
+        if (IsEmpty())
+        {
+            control.key = Key::None;
+        }
+        else
+        {
+            control = commands[0];
+            for (int i = 1; i < pointer; i++)
+            {
+                commands[i - 1] = commands[i];
+            }
+            --pointer;
+        }
+    
+        return control;
+    }
+};
+
+Control Buffer::commands[10];
+int Buffer::pointer = 0;
 
 
 #define NUM_SL 6
@@ -77,8 +105,6 @@ void Keyboard::Init()
         SET_SL(i);
     }
 
-    pointer = 0;
-
     HAL_TIM2::Init(&Keyboard::Update);
 }
 
@@ -109,25 +135,25 @@ void KeyStruct::Process(uint time, bool pressed)
 {
     if (IsValid())
     {
-        if (IsPressed() && !HappenedLongPressed())                      // Если клавиша находится в нажатом положении
+        if (IsPressed() && !HappenedLongPressed())          // Если клавиша находится в нажатом положении
         {
             uint delta = time - timePress;
-            if (delta > 500)                                            // Если прошло более 500 мс с момента нажатия -
+            if (delta > 500)                                // Если прошло более 500 мс с момента нажатия -
             {
                 timePress = UINT_MAX;
-                Keyboard::Buffer::AppendEvent(key, Action::Long);       // это будет длинное нажатие
+                Buffer::AppendEvent(key, Action::Long);     // это будет длинное нажатие
             }
-            else if (delta > 100 &&                                     // Если прошло более 100 мс с момента нажатия
-                     !pressed)                                          // и сейчас кнопка находится в отжатом состоянии
+            else if (delta > 100 &&                         // Если прошло более 100 мс с момента нажатия
+                     !pressed)                              // и сейчас кнопка находится в отжатом состоянии
             {
-                timePress = UINT_MAX;                                   // То учитываем это в массиве
-                Keyboard::Buffer::AppendEvent(key, Action::Up);         // И сохраняем отпускание кнопки в буфере команд
+                timePress = UINT_MAX;                       // То учитываем это в массиве
+                Buffer::AppendEvent(key, Action::Up);       // И сохраняем отпускание кнопки в буфере команд
             }
         }
-        else if (pressed && !HappenedLongPressed())                     // Если кнопка нажата
+        else if (pressed && !HappenedLongPressed())         // Если кнопка нажата
         {
-            timePress = time;                                           // то сохраняем время её нажатия
-            Keyboard::Buffer::AppendEvent(key, Action::Down);
+            timePress = time;                               // то сохраняем время её нажатия
+            Buffer::AppendEvent(key, Action::Down);
         }
         else if (!pressed && HappenedLongPressed())
         {
@@ -152,18 +178,18 @@ void GovernorStruct::Process()
     }
     else if (prevStateIsSame && stateLeft && !stateRight)
     {
-        Keyboard::Buffer::AppendEvent(key, Action::RotateLeft);
+        Buffer::AppendEvent(key, Action::RotateLeft);
         prevStateIsSame = false;
     }
     else if (prevStateIsSame && !stateLeft && stateRight)
     {
-        Keyboard::Buffer::AppendEvent(key, Action::RotateRight);
+        Buffer::AppendEvent(key, Action::RotateRight);
         prevStateIsSame = false;
     }
 }
 
 
-void Keyboard::Buffer::AppendEvent(Key::E key, Action::E action)
+void Buffer::AppendEvent(Key::E key, Action::E action)
 {
     commands[pointer].key = key;
     commands[pointer].action = action;
@@ -173,27 +199,11 @@ void Keyboard::Buffer::AppendEvent(Key::E key, Action::E action)
 
 bool Keyboard::Buffer::IsEmpty()
 {
-    return (pointer == 0);
+    return ::Buffer::IsEmpty();
 }
 
 
 Control Keyboard::Buffer::GetNextControl()
 {
-    Control control;
-
-    if (IsEmpty())
-    {
-        control.key = Key::None;
-    }
-    else
-    {
-        control = commands[0];
-        for (int i = 1; i < pointer; i++)
-        {
-            commands[i - 1] = commands[i];
-        }
-        --pointer;
-    }
-
-    return control;
+    return ::Buffer::GetNextControl();
 }

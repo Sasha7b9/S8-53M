@@ -17,10 +17,5 @@ public:
 
         // Возвращает следующий орган управления, если таковой имеется
         static Control GetNextControl();
-    private:
-        friend struct Keyboard;
-        friend struct GovernorStruct;
-        friend struct KeyStruct;
-        static void AppendEvent(Key::E key, Action::E action);
     };
 };
