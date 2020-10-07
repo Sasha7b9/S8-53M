@@ -60,7 +60,7 @@ void HelpContent_Draw()
     Region(319 - Grid::Right(), 20).Fill(Grid::Right(), 0, COLOR_BACK);
     Region(319 - Grid::Right(), 21).Fill(Grid::Right(), 219);
     Region(WIDTH, 237).Fill(1, 1);
-    Painter::DrawRectangleC(0, 0, WIDTH + 2, 239, COLOR_FILL);
+    Rectangle(WIDTH + 2, 239).Draw(0, 0, COLOR_FILL);
 
     /*
     uint16 *addr1 = (uint16*)(0x08000000 + (rand() % 65535));

@@ -145,6 +145,14 @@ void Primitives::Region::Fill(int x, int y, Color::E color)
 
 
 
+void Primitives::Rectangle::Draw(int x, int y, Color::E color)
+{
+    Painter::SetColor(color);
+
+    memDC.DrawRectangle({ x, y, width + 1, height + 1 });
+}
+
+
 void Display::Init()
 {
     CreateFrame();

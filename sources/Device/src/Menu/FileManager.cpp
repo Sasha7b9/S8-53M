@@ -179,7 +179,7 @@ void FM::Draw(void)
     {
         Painter::BeginScene(COLOR_BACK);
         Menu::Draw();
-        Painter::DrawRectangleC(1, 0, width, 239, COLOR_FILL);
+        Rectangle(width, 239).Draw(1, 0, COLOR_FILL);
         FlashDrive::GetNumDirsAndFiles(currentDir, &numDirs, &numFiles);
         DrawNameCurrentDir(left + 1, top + 2);
         HLine().Draw(left2col, top + 16, 239, COLOR_FILL);

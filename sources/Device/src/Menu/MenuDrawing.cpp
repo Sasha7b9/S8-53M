@@ -147,7 +147,7 @@ void Menu::DrawTitlePage(Page *page, int layer, int yTop)
     int height = HeightOpenedItem(page);
     bool shade = CurrentItemIsOpened(GetNamePage(page));
     Region(MP_TITLE_WIDTH + 2, height + 2).Fill(x - 1, yTop, COLOR_BACK);
-    Painter::DrawRectangleC(x, yTop, MP_TITLE_WIDTH + 1, height + 1, ColorBorderMenu(shade));
+    Rectangle(MP_TITLE_WIDTH + 1, height + 1).Draw(x, yTop, ColorBorderMenu(shade));
 
     if (shade)
     {
@@ -198,7 +198,7 @@ void Menu::DrawPagesUGO(const Page *page, int right, int bottom)
         }
         else
         {
-            Painter::DrawRectangle(x, top, size, size);
+            Rectangle(size, size).Draw(x, top);
         }
     }
 }

@@ -125,7 +125,7 @@ static void FuncDrawingAdditionSPageMemoryLast()
     int width = 40;
     int height = 10;
     Region(width, height).Fill(Grid::Right() - width, Grid::TOP, COLOR_BACK);
-    Painter::DrawRectangleC(Grid::Right() - width, Grid::TOP, width, height, COLOR_FILL);
+    Rectangle(width, height).Draw(Grid::Right() - width, Grid::TOP, COLOR_FILL);
     Painter::DrawText(Grid::Right() - width + 2, Grid::TOP + 1, Int2String(CURRENT_NUM_LATEST_SIGNAL + 1, false, 3, buffer));
     Painter::DrawText(Grid::Right() - width + 17, Grid::TOP + 1, "/");
     Painter::DrawText(Grid::Right() - width + 23, Grid::TOP + 1, Int2String(Storage::AllDatas(), false, 3, buffer));
@@ -584,7 +584,7 @@ static void DrawMemoryWave(int num, bool exist)
     int y = Grid::FullBottom() - 10;
     int width = 12;
     Region(width, 10).Fill(x, y, num == CURRENT_NUM_INT_SIGNAL ? Color::FLASH_10 : COLOR_BACK);
-    Painter::DrawRectangleC(x, y, width, 10, COLOR_FILL);
+    Rectangle(width, 10).Draw(x, y, COLOR_FILL);
     Painter::SetColor(num == CURRENT_NUM_INT_SIGNAL ? Color::FLASH_01 : COLOR_FILL);
     if (exist)
     {
@@ -702,9 +702,9 @@ static void DrawSB_MemInt_ModeShow_Both(int x, int y)
 {
     ++y;
 
-    Painter::DrawRectangle(x + 2, y + 5, 4, 7);
+    Rectangle(4, 7).Draw(x + 2, y + 5);
 
-    Painter::DrawRectangle(x + 8, y + 8, 4, 4);
+    Rectangle(4, 4).Draw(x + 8, y + 8);
     HLine().Draw(x + 8, y + 8, y + 5);
     HLine().Draw(y + 5, x + 8, x + 12);
 
@@ -959,7 +959,7 @@ void DrawSetName()
     int width = Grid::Width() - 80;
     int height = 80;
 
-    Painter::DrawRectangleC(x0, y0, width, height, COLOR_FILL);
+    Rectangle(width, height).Draw(x0, y0, COLOR_FILL);
     Region(width - 2, height - 2).Fill(x0 + 1, y0 + 1, COLOR_BACK);
 
     int index = 0;
@@ -1035,7 +1035,7 @@ void DrawSetMask()
     int width = Grid::Width() - 80;
     int height = 160;
 
-    Painter::DrawRectangleC(x0, y0, width, height, COLOR_FILL);
+    Rectangle(width, height).Draw(x0, y0, COLOR_FILL);
     Region(width - 2, height - 2).Fill(x0 + 1, y0 + 1, COLOR_BACK);
 
     int index = 0;

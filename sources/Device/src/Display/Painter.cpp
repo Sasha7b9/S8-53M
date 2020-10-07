@@ -82,25 +82,6 @@ void Painter::ResetFlash()
 }
 
 
-void Painter::DrawRectangle(int x, int y, int width, int height)
-{
-    HLine().Draw(y, x, x + width);
-    VLine().Draw(x, y, y + height);
-    HLine().Draw(y + height, x, x + width);
-    if (x + width < Display::WIDTH)
-    {
-        HLine().Draw(x + width, y, y + height);
-    }
-}
-
-
-void Painter::DrawRectangleC(int x, int y, int width, int height, Color::E color)
-{
-    SetColor(color);
-    DrawRectangle(x, y, width, height);
-}
-
-
 void Painter::DrawDashedVLine(int x, int y0, int y1, int deltaFill, int deltaEmtpy, int deltaStart)
 {
     if (deltaStart < 0 || deltaStart >= (deltaFill + deltaEmtpy))

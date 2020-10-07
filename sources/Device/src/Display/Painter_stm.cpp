@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "Display/Display.h"
 #include "Display/Painter.h"
 
 
@@ -93,5 +94,19 @@ static void DrawVPointLine(int x, int y, int count, int delta)
     {
         Point().Draw(x, y);
         y += delta;
+    }
+}
+
+
+void Primitives::Rectangle::Draw(int x, int y, Color::E color)
+{
+    Painter::SetColor(color);
+
+    HLine().Draw(y, x, x + width);
+    VLine().Draw(x, y, y + height);
+    HLine().Draw(y + height, x, x + width);
+    if (x + width < Display::WIDTH)
+    {
+        HLine().Draw(x + width, y, y + height);
     }
 }

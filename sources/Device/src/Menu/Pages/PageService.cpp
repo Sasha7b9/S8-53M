@@ -416,14 +416,14 @@ static void Draw_Math_Function_ModeDraw_Disable(int x, int y)
 
 static void Draw_Math_Function_ModeDraw_Separate(int x, int y)
 {
-    Painter::DrawRectangle(x + 3, y + 5, 13, 9);
+    Rectangle(13, 9).Draw(x + 3, y + 5);
     HLine().Draw(y + 9, x + 3, x + 16);
     HLine().Draw(y + 10, x + 3, x + 16);
 }
 
 static void Draw_Math_Function_ModeDraw_Together(int x, int y)
 {
-    Painter::DrawRectangle(x + 3, y + 5, 13, 9);
+    Rectangle(13, 9).Draw(x + 3, y + 5);
 }
 
 // —≈–¬»— - Ã¿“≈Ã¿“» ¿ - ‘”Õ ÷»ﬂ - ¬Ë‰ ---------------------------------------------------------------------------------------------------------------
@@ -969,7 +969,7 @@ static void Information_Draw(void)
     int x = 100;
     int dY = 20;
     int y = 20;
-    Painter::DrawRectangleC(0, 0, 319, 239, COLOR_FILL);
+    Rectangle(319, 239).Draw(0, 0, COLOR_FILL);
     y += dY;
     Painter::DrawText(x, y, LANG_RU ? "»Õ‘Œ–Ã¿÷»ﬂ" : "INFORMATION");
     y += dY;

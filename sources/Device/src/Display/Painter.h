@@ -54,10 +54,6 @@ public:
     //  –исует прерывистую вертикальную линию.
     static void DrawDashedVLine(int x, int y0, int y1, int dFill, int dEmpty, int dStart);
 
-    static void DrawRectangle(int x, int y, int width, int height);
-
-    static void DrawRectangleC(int x, int y, int width, int height, Color::E color);
-
     static void DrawVolumeButton(int x, int y, int width, int height, int thickness, Color::E normal, Color::E bright, Color::E dark, bool isPressed, bool inShade);
     // ”становить €ркость диспле€.
     static void SetBrightnessDisplay(int16 brightness);
@@ -160,6 +156,16 @@ namespace Primitives
         Region(int w, int h) : width(w), height(h) { }
         void Fill(int x, int y, Color::E color = Color::NUM);
 
+    private:
+        int width;
+        int height;
+    };
+
+    class Rectangle
+    {
+    public:
+        Rectangle(int w, int h) : width(w), height(h) { }
+        void Draw(int x, int y, Color::E color = Color::NUM);
     private:
         int width;
         int height;

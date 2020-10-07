@@ -262,7 +262,7 @@ void Measure::DrawPageChoice()
             int x0 = x + col * dX;
             int y0 = y + row * dY;
             bool active = meas == posOnPageChoice;
-            Painter::DrawRectangleC(x0, y0, dX, dY, COLOR_FILL);
+            Rectangle(dX, dY).Draw(x0, y0, COLOR_FILL);
             Region(dX - 2, dY - 2).Fill(x0 + 1, y0 + 1, active ? Color::FLASH_10 : COLOR_BACK);
             Painter::SetColor(active ? Color::FLASH_01 : COLOR_FILL);
             Painter::Draw10SymbolsInRect(x0 + 2, y0 + 1, Measure::GetChar(meas));
