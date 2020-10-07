@@ -12,17 +12,17 @@ public:
 
     struct Buffer
     {
-    friend struct Keyboard;
         // Возвращает true, если буфер пуст
         static bool IsEmpty();
 
         // Возвращает следующий орган управления, если таковой имеется
         static Control GetNextControl();
     private:
+        friend struct Keyboard;
+        friend struct GovernorStruct;
         static void AppendEvent(Key::E key, Action::E action);
     };
 
 private:
     static void ProcessKey(int sl, int rl);
-    static void ProcessGovernor(int i);
 };

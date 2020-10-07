@@ -51,6 +51,7 @@ static Pin *rls[NUM_RL] = { &pinRL0, &pinRL1, &pinRL2, &pinRL3, &pinRL4, &pinRL5
 struct GovernorStruct
 {
     GovernorStruct(Key::E k, Pin &rlA_, Pin &rlB_, Pin &sl_) : key(k), rlA(rlA_), rlB(rlB_), sl(sl_), prevStateIsSame(false) { }
+    void Process();
     Key::E key;
     Pin &rlA;
     Pin &rlB;
@@ -75,6 +76,8 @@ static GovernorStruct governors[NUM_GOVERNORS] =
 
 void Keyboard::Init()
 {
+    SET_ALL_SL;
+
     pointer = 0;
 
     HAL_TIM2::Init(&Keyboard::Update);
@@ -94,13 +97,11 @@ void Keyboard::Update()
         
         SET_ALL_SL;
     }
-    
+
     for (int i = 0; i < NUM_GOVERNORS; i++)
     {
-        ProcessGovernor(i);
+        governors[i].Process();
     }
-
-    SET_ALL_SL;
 }
 
 
@@ -142,30 +143,28 @@ void Keyboard::ProcessKey(int sl, int rl)
 }
 
 
-void Keyboard::ProcessGovernor(int i)
+void GovernorStruct::Process()
 {
-    GovernorStruct governor = governors[i];
+    sl.Reset();
 
-    governor.sl.Reset();
+    bool stateLeft = rlA.Read() != 0;
+    bool stateRight = rlB.Read() != 0;
 
-    bool stateLeft = governor.rlA.Read() != 0;
-    bool stateRight = governor.rlB.Read() != 0;
-
-    governor.sl.Set();
+    sl.Set();
 
     if (stateLeft && stateRight)
     {
-        governor.prevStateIsSame = true;
+        prevStateIsSame = true;
     }
-    else if (governor.prevStateIsSame && stateLeft && !stateRight)
+    else if (prevStateIsSame && stateLeft && !stateRight)
     {
-        Buffer::AppendEvent(governor.key, Action::RotateLeft);
-        governor.prevStateIsSame = false;
+        Keyboard::Buffer::AppendEvent(key, Action::RotateLeft);
+        prevStateIsSame = false;
     }
-    else if (governor.prevStateIsSame && !stateLeft && stateRight)
+    else if (prevStateIsSame && !stateLeft && stateRight)
     {
-        Buffer::AppendEvent(governor.key, Action::RotateRight);
-        governor.prevStateIsSame = false;
+        Keyboard::Buffer::AppendEvent(key, Action::RotateRight);
+        prevStateIsSame = false;
     }
 }
 
