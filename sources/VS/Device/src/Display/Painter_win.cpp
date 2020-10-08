@@ -356,7 +356,7 @@ static void DrawVPointLine(int x, int y, int count, int delta)
 {
     for (int i = 0; i < count; i++)
     {
-        memDC.DrawPoint({ x, y });
+        Point().Draw(x, y);
         y += delta;
     }
 }
@@ -377,7 +377,7 @@ static void DrawHPointLine(int x, int y, int count, int delta)
 {
     for (int i = 0; i < count; i++)
     {
-        memDC.DrawPoint({ x, y });
+        Point().Draw(x, y);
         x += delta;
     }
 }
