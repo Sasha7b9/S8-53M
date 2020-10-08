@@ -13,14 +13,6 @@
 #define IS_COLOR_SCHEME_WHITE_LETTERS   (COLOR_SCHEME == ColorScheme::WhiteLetters)
 
 
-// Режим работы калибратора.
-struct CalibratorMode { enum E
-{
-    Freq,           // На выходе калибратора 4В, 1кГц.
-    DC,             // На выходе калибратора 4В постоянного напряжения.
-    GND             // На выходе калибратора 0В.
-};};
-
 // Настройки меню СЕРВИС.
 struct SettingsService
 { //-V802
