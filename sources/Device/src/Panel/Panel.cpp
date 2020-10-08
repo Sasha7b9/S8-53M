@@ -20,8 +20,8 @@
 #define LED_TRIG_DISABLE    3
 #define POWER_OFF           4
 
-static PanelButton::E pressedKey = PanelButton::Empty;
-volatile static PanelButton::E pressedButton = PanelButton::Empty;         // Это используется для отслеживания нажатой кнопки при отключенной панели
+static Key::E pressedKey = PanelButton::Empty;
+volatile static Key::E pressedButton = PanelButton::Empty;         // Это используется для отслеживания нажатой кнопки при отключенной панели
 static uint16 dataTransmitted[MAX_DATA] = {0x00};
 static uint16 numDataForTransmitted = 0;
 static uint timePrevPressButton = 0;
@@ -124,28 +124,28 @@ static void (*funculatorRight[Regulator::Set + 1])(void) =
 
 
 
-PanelButton::E ButtonIsRelease(uint16 command)
+Key::E ButtonIsRelease(uint16 command)
 {
-    PanelButton::E button = PanelButton::Empty;
+    Key::E button = PanelButton::Empty;
     if(command < PanelButton::Count && command > PanelButton::Empty)
     {
         if(gTimerMS - timePrevReleaseButton > 100)
         {
-            button = (PanelButton::E)command;
+            button = (Key::E)command;
             timePrevReleaseButton = gTimerMS;
         }
     }
     return button;
 }
 
-PanelButton::E ButtonIsPress(uint16 command)
+Key::E ButtonIsPress(uint16 command)
 {
-    PanelButton::E button = PanelButton::Empty;
+    Key::E button = PanelButton::Empty;
     if (((command & 0x7f) < PanelButton::Count) && ((command & 0x7f) > PanelButton::Empty))
     {
         if(gTimerMS - timePrevPressButton > 100)
         {
-            button = (PanelButton::E)(command & 0x7f);
+            button = (Key::E)(command & 0x7f);
             timePrevPressButton = gTimerMS;
         }
     }
@@ -189,8 +189,8 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
 {
     static int allRecData = 0;
 
-    PanelButton::E releaseButton = ButtonIsRelease(command);
-    PanelButton::E pressButton = ButtonIsPress(command);
+    Key::E releaseButton = ButtonIsRelease(command);
+    Key::E pressButton = ButtonIsPress(command);
     Regulator::E regLeft = RegulatorLeft(command);
     Regulator::E regRight = RegulatorRight(command);
 
@@ -361,7 +361,7 @@ void Panel::EnableLEDRegSet(bool enable)
     pinLED.Write(enable ? 1 : 0);
 }
 
-PanelButton::E Panel::WaitPressingButton()
+Key::E Panel::WaitPressingButton()
 {
     pressedButton = PanelButton::Empty;
     while (pressedButton == PanelButton::Empty) {};

@@ -2,6 +2,7 @@ project (Panel)
 
 include_directories(src
                     src/Hardware/HAL
+                    ..
                     ../common/_VS_KEIL/ARMCLANG
                     ../common/_VS_KEIL/CMSIS
                     ../common/STM32Cube_L0/Drivers/STM32L0xx_HAL_Driver/Inc
@@ -37,7 +38,7 @@ file(GLOB SRC            src/*.h src/*.c src/*.cpp)
 file(GLOB HARDWARE_CMSIS src/Hardware/CMSIS/*)
 file(GLOB HARDWARE_HAL   src/Hardware/HAL/*)
 file(GLOB INTERFACE      src/Interface/*)
-file(GLOB KEYBOARD       src/Keyboard/*)
+file(GLOB KEYBOARD       src/Keyboard/* ../common/Keyboard/*)
 
 set_source_files_properties(${LIBS_HAL} PROPERTIES HEADER_FILE_ONLY TRUE)
 

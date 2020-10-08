@@ -1,5 +1,5 @@
 #pragma once
-#include "Panel/Controls.h"
+#include "common/Keyboard/Controls.h"
 #include "Settings/SettingsTypes.h"
 #include "Settings/SettingsChannel.h"
 #include "Settings/SettingsTime.h"

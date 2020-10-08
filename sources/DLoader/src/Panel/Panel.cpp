@@ -1,5 +1,5 @@
 #include "Panel.h"
-#include "Controls.h"
+#include "common/Keyboard/Controls.h"
 #include "Utils/Math.h"
 #include "Utils/GlobalFunctions.h"
 #include "Settings/Settings.h"
@@ -22,15 +22,15 @@
 
 
 
-static PanelButton::E pressedButton = PanelButton::Empty;
+static Key::E pressedButton = Key::None;
 
 
 
-static PanelButton::E ButtonIsPress(uint16 command);
+static Key::E ButtonIsPress(uint16 command);
 
 
 
-PanelButton::E Panel::PressedButton(void)
+Key::E Panel::PressedButton(void)
 {
     return pressedButton;
 }
@@ -46,14 +46,14 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
 {
     if(command)
     {
-        PanelButton::E prButton = ButtonIsPress(command);
+        Key::E prButton = ButtonIsPress(command);
         if(prButton)
         {
             pressedButton = prButton;
         }
         else
         {
-            pressedButton = PanelButton::Empty;
+            pressedButton = Key::None;
         }
     }
     return true;
@@ -61,17 +61,17 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
 
 
 
-static PanelButton::E ButtonIsPress(uint16 command)
+static Key::E ButtonIsPress(uint16 command)
 {
-    PanelButton::E button = PanelButton::Empty;
+    Key::E button = Key::None;
 
     static uint timePrevPressButton = 0;
 
-    if(command < (PanelButton::Count | 0x80) && command > (PanelButton::Empty | 0x80))
+    if(command < (Key::Count | 0x80) && command > (Key::None | 0x80))
     {
         if(HAL_TIM2::TimeMS() - timePrevPressButton > 100)
         {
-            button = (PanelButton::E)(command & 0x7f);
+            button = (Key::E)(command & 0x7f);
             timePrevPressButton = HAL_TIM2::TimeMS();
         }
     }

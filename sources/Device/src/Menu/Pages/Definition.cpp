@@ -139,7 +139,7 @@ const Page mainPage
 
 
 
-const void *PageForButton(PanelButton::E button)
+const void *PageForButton(Key::E button)
 {
     static const void *pages[] = {  
         0,                          // PanelButton::Empty

@@ -1,18 +1,13 @@
 #pragma once
-#include "Panel/Controls.h"
+#include "common/Keyboard/Controls.h"
 #include "MenuItems.h"
-
-
-/** @defgroup Menu
- *  @{
- */
 
 
 class Menu
 {
 public:
     // Возвращает адрес элемента меню, соответствующего данной button.
-    static void* ItemUnderButton(PanelButton::E button);
+    static void* ItemUnderButton(Key::E button);
     // Возвращает true, если элемент меню item затенён (находится не на самом верхнем слое. Как правило, это означает, что раскрыт раскрывающийся элемент меню вроде Choice или Governor.
     static bool IsShade(const void *item);
 
@@ -22,13 +17,13 @@ public:
     // Функция должна вызываться в главном цикле.
     static void UpdateInput();
     // Функция обработки короткого нажатия кнопки (менее 0.5 сек.).
-    static void ShortPressureButton(PanelButton::E button);
+    static void ShortPressureButton(Key::E button);
     // Функция обработки длинного нажатия кнопки (более 0.5 сек.).
-    static void LongPressureButton(PanelButton::E button);
+    static void LongPressureButton(Key::E button);
     // Функция вызывается, когда кнопка переходит из отжатого в нажатое положение.
-    static void PressButton(PanelButton::E button);
+    static void PressButton(Key::E button);
     // Функция вызывается, когда кнопка переходит из нажатого в отжатое положение.
-    static void ReleaseButton(PanelButton::E button);
+    static void ReleaseButton(Key::E button);
     // Функция обработки поворота ручки УСТАНОВКА вправо.
     static void RotateRegSetRight();
     // Функция обработки поворота ручки УСТАНОВКА влево.
@@ -84,7 +79,7 @@ public:
     // Возвращает позицию первого элемента страницы по адресу page на экране. Если текущая подстраница 0, это будет 0, если текущая подстраница 1, это будет 5 и т.д.
     static int PosItemOnTop(const Page *page);
     // Возвращает true, если button - функциональная клавиша [1..5].
-    static bool IsFunctionalButton(PanelButton::E button);
+    static bool IsFunctionalButton(Key::E button);
     // Закрыть открытый элемент меню.
     static void CloseOpenedItem();
 
@@ -170,8 +165,5 @@ private:
     // Обработка события таймера автоматического сокрытия меню.
     static void OnTimerAutoHide();
     
-    static void ProcessButtonForHint(PanelButton::E button);
+    static void ProcessButtonForHint(Key::E button);
 };
-
-/** @}
- */

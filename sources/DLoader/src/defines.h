@@ -1,13 +1,14 @@
 #pragma once
 
-typedef unsigned char uint8;
-typedef unsigned int uint;
-typedef signed char int8;
+typedef unsigned char      uint8;
+typedef unsigned int       uint;
+typedef signed char        int8;
 typedef unsigned short int uint16;
-typedef signed short int int16;
-typedef unsigned char uchar;
-typedef const char *pCHAR;
-typedef const uint8 *pUCHAR;
+typedef signed short int   int16;
+typedef unsigned char      uchar;
+typedef const char *       pCHAR;
+typedef const uint8 *      pUCHAR;
+typedef const char *const  pString;
 
 #ifndef __cplusplus
 typedef unsigned char bool;

@@ -1,10 +1,10 @@
 project (DLoader)
 
-include_directories(..
-                    src
+include_directories(src
                     src/Hardware/FatFS
                     src/Hardware/HAL
                     src/Hardware/USBH
+                    ..
                     ../common/_VS_KEIL/ARMCLANG
                     ../common/_VS_KEIL/CMSIS
                     ../common/_VS_KEIL/FatFS
@@ -84,7 +84,7 @@ file(GLOB SRC            src/*.h src/*.cpp)
 file(GLOB DISPLAY        src/Display/*.h src/Display/*.cpp)
 file(GLOB DISPLAY_FONT   src/Display/font/*)
 file(GLOB FDRIVE         src/FDrive/*)
-file(GLOB PANEL          src/Panel/*)
+file(GLOB PANEL          src/Panel/* ../common/Keyboard/*)
 file(GLOB SETTINGS       src/Settings/* ../common/Settings/cSettingsTypes.h)
 file(GLOB UTILS          src/Utils/*)
 

@@ -27,11 +27,11 @@ using namespace Primitives;
 static void *itemUnderButton[PanelButton::Count] = {0};
 
 
-PanelButton::E GetFuncButtonFromY(int _y)
+Key::E GetFuncButtonFromY(int _y)
 {
     int y = Grid::TOP + Grid::Height() / 12;
     int step = Grid::Height() / 6;
-    PanelButton::E button = PanelButton::Menu;
+    Key::E button = PanelButton::Menu;
     for(int i = 0; i < 6; i++)
     {
         if(_y < y)
@@ -365,7 +365,7 @@ bool Menu::IsPressed(const void* item)
 }
 
 
-void* Menu::ItemUnderButton(PanelButton::E button)
+void* Menu::ItemUnderButton(Key::E button)
 {
     return itemUnderButton[button];
 }

@@ -6,7 +6,7 @@
 #include "Hardware/Hardware.h"
 #include "common/Hardware/HAL/HAL.h"
 #include "Panel/Panel.h"
-#include "Panel/Controls.h"
+#include "common/Keyboard/Controls.h"
 #include "Settings/Settings.h"
 #include "Settings/SettingsChannel.h"
 #include "Utils/Math.h"

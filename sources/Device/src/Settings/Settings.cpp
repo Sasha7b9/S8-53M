@@ -345,7 +345,7 @@ void CurrentPageSBregSet(int angle)
     }
 }
 
-const SmallButton* GetSmallButton(PanelButton::E button)
+const SmallButton* GetSmallButton(Key::E button)
 {
     if(MenuIsMinimize() && button >= PanelButton::Menu && button <= PanelButton::F5)
     {

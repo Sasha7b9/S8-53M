@@ -29,13 +29,13 @@ extern void OnChanged_InputA(bool active);
 extern void OnChanged_InputB(bool active);
                                                 
 // Если произошло короткое нажатие кнопки, то здесь хранится имя этой кнопки до обработки этого  нажатия.
-static PanelButton::E shortPressureButton = PanelButton::Empty;
+static Key::E shortPressureButton = PanelButton::Empty;
 // Если произошло длинное нажатие кнопки, то здесь хранится имя этой кнопки до обработки этого нажатия.
-static PanelButton::E longPressureButton = PanelButton::Empty;
+static Key::E longPressureButton = PanelButton::Empty;
 // При нажатии кнопки её имя записывается в эту переменную и хранится там до обратоки события нажатия кнопки.
-static PanelButton::E pressButton = PanelButton::Empty;
+static Key::E pressButton = PanelButton::Empty;
 // При отпускании кнопки её имя записывается в эту переменную и хранится там до обработки  события отпускания кнопки.
-static PanelButton::E releaseButton = PanelButton::Empty;
+static Key::E releaseButton = PanelButton::Empty;
 // Угол, на который нужно повернуть ручку УСТАНОВКА - величина означает количество щелчков, знак - направление - "-" - влево, "+" - вправо
 static int angleRegSet = 0;
 
@@ -45,8 +45,8 @@ static const int stepAngleRegSet = 2;
 static void* itemUnderKey = 0;
 
 #define SIZE_BUFFER_FOR_BUTTONS 5
-static PanelButton::E bufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {PanelButton::Empty, PanelButton::Empty, PanelButton::Empty, PanelButton::Empty, PanelButton::Empty};
-static const PanelButton::E sampleBufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {PanelButton::F5, PanelButton::F4, PanelButton::F3, PanelButton::F2, PanelButton::F1};
+static Key::E bufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {PanelButton::Empty, PanelButton::Empty, PanelButton::Empty, PanelButton::Empty, PanelButton::Empty};
+static const Key::E sampleBufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {PanelButton::F5, PanelButton::F4, PanelButton::F3, PanelButton::F2, PanelButton::F1};
 
 
 
@@ -67,7 +67,7 @@ void Menu::UpdateInput()
 };
 
 
-void Menu::ShortPressureButton(PanelButton::E button)
+void Menu::ShortPressureButton(Key::E button)
 {
     if (SHOW_HELP_HINTS == 0)
     {
@@ -83,7 +83,7 @@ void Menu::ShortPressureButton(PanelButton::E button)
 
 
 
-void Menu::LongPressureButton(PanelButton::E button)
+void Menu::LongPressureButton(Key::E button)
 {
     if (SHOW_HELP_HINTS == 0)
     {
@@ -93,7 +93,7 @@ void Menu::LongPressureButton(PanelButton::E button)
 };
 
 
-void Menu::ProcessButtonForHint(PanelButton::E button)
+void Menu::ProcessButtonForHint(Key::E button)
 {
     if (button == PanelButton::Menu)
     {
@@ -224,7 +224,7 @@ void Menu::ProcessButtonForHint(PanelButton::E button)
 }
 
 
-void Menu::PressButton(PanelButton::E button)
+void Menu::PressButton(Key::E button)
 {
     Sound::ButtonPress();
     if (SHOW_HELP_HINTS)
@@ -241,7 +241,7 @@ void Menu::PressButton(PanelButton::E button)
         }
         bufferForButtons[0] = button;
       
-        if (std::memcmp(bufferForButtons, sampleBufferForButtons, SIZE_BUFFER_FOR_BUTTONS * sizeof(PanelButton::E)) == 0)
+        if (std::memcmp(bufferForButtons, sampleBufferForButtons, SIZE_BUFFER_FOR_BUTTONS * sizeof(Key::E)) == 0)
         {
             SHOW_DEBUG_MENU = 1;
             Display::ShowWarningGood(Warning::MenuDebugEnabled);
@@ -251,7 +251,7 @@ void Menu::PressButton(PanelButton::E button)
 };
 
 
-void Menu::ReleaseButton(PanelButton::E button)
+void Menu::ReleaseButton(Key::E button)
 {
     Sound::ButtonRelease();
     if (SHOW_HELP_HINTS == 0)
@@ -359,7 +359,7 @@ void Menu::ProcessingShortPressureButton()
         Display::Redraw();
         Menu::SetAutoHide(true);
 
-        PanelButton::E button = shortPressureButton;
+        Key::E button = shortPressureButton;
 
         do //-V2530
         {

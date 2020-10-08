@@ -2,7 +2,7 @@
 #include "SettingsTypes.h"
 #include "Utils/Measures.h"
 #include "Menu/MenuItems.h"
-#include "Panel/Controls.h"
+#include "common/Keyboard/Controls.h"
 #include "SettingsChannel.h"
 #include "SettingsDisplay.h"
 #include "SettingsMemory.h"
@@ -200,7 +200,7 @@ bool MenuIsMinimize();                                              // Если true
 bool MenuPageDebugIsActive();                                       // Активна ли страница отладки.
 void SetMenuPageDebugActive(bool active);                           // Сделать/разделать активной страницу отладки.
 void CurrentPageSBregSet(int angle);                                // Повернуть ручку УСТАНОВКА на текущей странице малых кнопок.
-const SmallButton*  GetSmallButton(PanelButton::E button);          // Вернуть указатель на малую кнопку, соответствующую данной кнопки панели.
+const SmallButton*  GetSmallButton(Key::E button);          // Вернуть указатель на малую кнопку, соответствующую данной кнопки панели.
 
 
 // Струкура хранит все настройки прибора.

@@ -60,14 +60,14 @@ int main(void)
 
             while (1) //-V2530
             {
-                PanelButton::E button = Panel::PressedButton();
-                if (button == PanelButton::F1)
+                Key::E button = Panel::PressedButton();
+                if (button == Key::F1)
                 {
                     ms->state = State::Upgrade;
                     Upgrade();
                     break;
                 }
-                else if (button == PanelButton::F5)
+                else if (button == Key::F5)
                 {
                     ms->state = State::Ok;
                     break;
