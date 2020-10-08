@@ -39,9 +39,9 @@ static float x = 0.0;  //-V707
 static float y = 0.0; //-V707
 static float z = 200.0; //-V707
 
-static float scaleX = 1.0f;
-static float scaleY = 1.0f;
-static float scaleZ = 1.0f;
+static float scaleX = 1.0F;
+static float scaleY = 1.0F;
+static float scaleZ = 1.0F;
 
 static float angleX = 0.0;
 static float angleY = 0.0;

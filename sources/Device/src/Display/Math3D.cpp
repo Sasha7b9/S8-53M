@@ -52,7 +52,7 @@ void FillMatriceScale(Mat4x4 *mat, float scaleX, float scaleY, float scaleZ)
     mat->n[0][0] = scaleX;
     mat->n[1][1] = scaleY;
     mat->n[2][2] = scaleZ;
-    mat->n[3][3] = 1.0f;
+    mat->n[3][3] = 1.0F;
 }
 
 

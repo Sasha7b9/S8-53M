@@ -40,9 +40,9 @@ void Display_Init(void)
 
     for (int i = 0; i < 14; i++)
     {
-        float red = static_cast<float>(i) / 14.0f * 31.0f + 0.5f;
+        float red = static_cast<float>(i) / 14.0f * 31.0F + 0.5f;
         float green = static_cast<float>(i) / 14.0f * 63.0f + 0.5f;
-        float blue = static_cast<float>(i) / 14.0f * 31.0f + 0.5f;
+        float blue = static_cast<float>(i) / 14.0f * 31.0F + 0.5f;
         set.display.colors[i + 2] = MAKE_COLOR((int)red, (int)green, (int)blue);
     }
 

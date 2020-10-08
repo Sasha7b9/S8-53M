@@ -31,8 +31,8 @@ static float avrADC2old[2] = {0.0F, 0.0F};
 static int8 shiftADC0 = 0;
 static int8 shiftADC1 = 0;
 
-static float koeffCal0 = -1.0f;
-static float koeffCal1 = -1.0f;
+static float koeffCal0 = -1.0F;
+static float koeffCal1 = -1.0F;
 
 static ProgressBar bar0;                            // Прогресс-бар для калибровки первого канала.
 static ProgressBar bar1;                            // Прогресс-бар для калибровки второго канала.
@@ -79,8 +79,8 @@ void FPGA::ProcedureCalibration(void)
 
         FPGA::SetTBase(TBase::_500us);
         FPGA::SetTShift(0);
-        STRETCH_ADC_A = 1.0f;
-        STRETCH_ADC_B = 1.0f;
+        STRETCH_ADC_A = 1.0F;
+        STRETCH_ADC_B = 1.0F;
         FPGA::LoadKoeffCalibration(Channel::A);
         FPGA::LoadKoeffCalibration(Channel::B);
         FPGA::SetRange(Channel::A, Range::_500mV);

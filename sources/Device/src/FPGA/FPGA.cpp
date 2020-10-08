@@ -330,25 +330,25 @@ void FPGA::ReadRandomizeMode(void)
         {
             if (pData0 >= first0 && pData0 <= last0)
             {
-                *pData0 = (float)(numAve - 1) / (float)(numAve)* (*pData0) + InverseIfNecessary(data00, Channel::A) * 1.0f / (float)numAve;
+                *pData0 = (float)(numAve - 1) / (float)(numAve)* (*pData0) + InverseIfNecessary(data00, Channel::A) * 1.0F / (float)numAve;
             }
 
             uint8 *addr = pData0 + addShiftMem;
             if (addr >= first0 && addr <= last0)
             {
-                *addr = (float)(numAve - 1) / (float)(numAve)* (*(pData0 + addShiftMem)) + InverseIfNecessary(data01, Channel::A) * 1.0f / (float)numAve;
+                *addr = (float)(numAve - 1) / (float)(numAve)* (*(pData0 + addShiftMem)) + InverseIfNecessary(data01, Channel::A) * 1.0F / (float)numAve;
             }
 
             if (pData1 >= first1 && pData1 <= last1)
             {
-                *pData1 = (float)(numAve - 1) / (float)(numAve)* (*pData1) + InverseIfNecessary(data10, Channel::B) * 1.0f / (float)numAve;
+                *pData1 = (float)(numAve - 1) / (float)(numAve)* (*pData1) + InverseIfNecessary(data10, Channel::B) * 1.0F / (float)numAve;
             }
 
             addr = pData1 + addShiftMem;
 
             if (addr >= first1 && addr <= last1)
             {
-                *addr = (float)(numAve - 1) / (float)(numAve)* (*(pData1 + addShiftMem)) + InverseIfNecessary(data11, Channel::B) * 1.0f / (float)numAve;
+                *addr = (float)(numAve - 1) / (float)(numAve)* (*(pData1 + addShiftMem)) + InverseIfNecessary(data11, Channel::B) * 1.0F / (float)numAve;
             }
         }
         */
