@@ -69,14 +69,6 @@
 #define LINKING_RSHIFT_IS_VOLTAGE   (LINKING_RSHIFT == LinkingRShift::Voltage)   // \c true, если прив€зка к абсолютному напр€жению.
 
 
-// –ежим отображени€ дополнительных боковых маркеров смещени€ по напр€жению.
-struct AltMarkers { enum E
-{
-    Hide,        // Ќикода не выводить.
-    Show,        // ¬сегда выводить.
-    AutoHide     // ¬ыводить и пр€тать через timeShowLevels.
-}; };
-
 // „ерез какое врем€ после последнего нажати€ кнопки скрывать меню.
 struct MenuAutoHide { enum E
 {
