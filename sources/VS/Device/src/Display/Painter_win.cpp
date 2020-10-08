@@ -42,23 +42,23 @@ static wxBitmap bitmapButton(Display::WIDTH, Display::HEIGHT);
 wxMemoryDC memDC;
 
 // Здесь хранятся указатели на кнопки
-static wxButton *buttons[PanelButton::Count] = { nullptr };
+static wxButton *buttons[Key::Count] = { nullptr };
 // Цвета
 static uint colors[256];
 
 static bool needStartTimerLong = false;
 static bool needStopTimerLong = false;
 // Здесь имя нажатой кнопки
-static PanelButton::E pressedKey = PanelButton::Empty;
+static Key::E pressedKey = Key::None;
 
 // Создаёт окно приложения. Возвращает хэндл виджета для отрисовки
 static void CreateFrame();
 // Создаёт все кнопки
 static void CreateButtons(Frame *frame);
 // Создаёт одну кнопку
-static void CreateButton(PanelButton::E key, Frame *frame, const wxPoint &pos, const wxSize &size, pString title);
+static void CreateButton(Key::E key, Frame *frame, const wxPoint &pos, const wxSize &size, pString title);
 // Создаёт кнопки для меню канала
-static void CreateButtonsChannel(Frame *frame, const char *title, int x, int y, PanelButton::E keyChannel, PanelButton::E keyRangeLess, PanelButton::E keyRangeMore, PanelButton::E keyRShiftLess, PanelButton::E keyRShiftMore);
+static void CreateButtonsChannel(Frame *frame, const char *title, int x, int y, Key::E keyChannel, Key::E keyRangeLess, Key::E keyRangeMore, Key::E keyRShiftLess, Key::E keyRShiftMore);
 // Создаёт кнопки группы синхронизации
 static void CreateButtonsTrig(Frame *frame, int x, int y);
 
@@ -183,10 +183,10 @@ static void CreateButtons(Frame *frame)
 {
     // Рисуем кнопки меню и функциональные
 
-    PanelButton::E keys[2][5] = 
+    Key::E keys[2][5] = 
     {
-        { PanelButton::F1,      PanelButton::F2,      PanelButton::F3,     PanelButton::F4,       PanelButton::F5 },
-        { PanelButton::Cursors, PanelButton::Display, PanelButton::Memory, PanelButton::Measures, PanelButton::Service }
+        { Key::F1,      Key::F2,      Key::F3,     Key::F4,       Key::F5 },
+        { Key::Cursors, Key::Display, Key::Memory, Key::Measures, Key::Service }
     };
 
     int x0 = 37;
@@ -204,8 +204,8 @@ static void CreateButtons(Frame *frame)
     {
         for (int j = 0; j < 2; j++)
         {
-            PanelButton::E key = keys[j][i];
-            CreateButton(key, frame, {x0 + (width + dX) * i, y0 + (height + dY) * j}, size, PanelButton(key).Name());
+            Key::E key = keys[j][i];
+            CreateButton(key, frame, {x0 + (width + dX) * i, y0 + (height + dY) * j}, size, Key(key).Name());
         }
     }
 
@@ -224,11 +224,11 @@ static void CreateButtons(Frame *frame)
     size.SetWidth(width);
     size.SetHeight(height);
 
-    CreateButton(PanelButton::Menu, frame, {x0, y0}, size, "E");
-//    CreateButton(PanelButton::Left, frame, {x0 - dX - width, y0}, size, "L");
-//    CreateButton(PanelButton::Right, frame, {x0 + dX + width, y0}, size, "R");
-//    CreateButton(PanelButton::Up, frame, {x0, y0 - height - dY}, size, "U");
-//    CreateButton(PanelButton::Down, frame, {x0, y0 + height + dY}, size, "D");
+    CreateButton(Key::Menu, frame, {x0, y0}, size, "E");
+//    CreateButton(Key::Left, frame, {x0 - dX - width, y0}, size, "L");
+//    CreateButton(Key::Right, frame, {x0 + dX + width, y0}, size, "R");
+//    CreateButton(Key::Up, frame, {x0, y0 - height - dY}, size, "U");
+//    CreateButton(Key::Down, frame, {x0, y0 + height + dY}, size, "D");
 
     // Кнопки времени
 
@@ -237,33 +237,33 @@ static void CreateButtons(Frame *frame)
 
     size.SetWidth(width);
 
-//    CreateButton(PanelButton::TBaseLess, frame, {x0 + width + dY, y0}, size, "мс");
-//    CreateButton(PanelButton::TBaseMore, frame, {x0, y0}, size, "с");
+//    CreateButton(Key::TBaseLess, frame, {x0 + width + dY, y0}, size, "мс");
+//    CreateButton(Key::TBaseMore, frame, {x0, y0}, size, "с");
     y0 += height + dY;
-//    CreateButton(PanelButton::TShiftLess, frame, {x0, y0}, size, "<-");
-//    CreateButton(PanelButton::TShiftMore, frame, {x0 + width + dY, y0}, size, "->");
+//    CreateButton(Key::TShiftLess, frame, {x0, y0}, size, "<-");
+//    CreateButton(Key::TShiftMore, frame, {x0 + width + dY, y0}, size, "->");
 
     int x = x00 + 5 + (2 * width + dX) / 2 - width / 2;
 
-    CreateButton(PanelButton::Time, frame, {x, y0 - height - dY - height - dY}, size, "Развёртка");
+    CreateButton(Key::Time, frame, {x, y0 - height - dY - height - dY}, size, "Развёртка");
 
     // Кнопки канала A
 
     int y = Frame::HEIGHT + 200;
 
-//    CreateButtonsChannel(frame, "Канал 1", 5 + x00, y, PanelButton::ChannelA, PanelButton::RangeLessA, PanelButton::RangeMoreA, PanelButton::RShiftLessA, PanelButton::RShiftMoreA);
+//    CreateButtonsChannel(frame, "Канал 1", 5 + x00, y, Key::ChannelA, Key::RangeLessA, Key::RangeMoreA, Key::RShiftLessA, Key::RShiftMoreA);
 
     // Кнопки канала B
 
-//    CreateButtonsChannel(frame, "Канал 1", 120 + x00, y, PanelButton::ChannelB, PanelButton::RangeLessB, PanelButton::RangeMoreB, PanelButton::RShiftLessB, PanelButton::RShiftMoreB);
+//    CreateButtonsChannel(frame, "Канал 1", 120 + x00, y, Key::ChannelB, Key::RangeLessB, Key::RangeMoreB, Key::RShiftLessB, Key::RShiftMoreB);
 
     CreateButtonsTrig(frame, 235 + x00, y - 130);
 
-    CreateButton(PanelButton::Start, frame, { 230 + x00, Frame::HEIGHT + 198 }, { 80, 25 }, "ПУСК/СТОП");
+    CreateButton(Key::Start, frame, { 230 + x00, Frame::HEIGHT + 198 }, { 80, 25 }, "ПУСК/СТОП");
 }
 
 
-static void CreateButton(PanelButton::E key, Frame *frame, const wxPoint &pos, const wxSize &size, pString title)
+static void CreateButton(Key::E key, Frame *frame, const wxPoint &pos, const wxSize &size, pString title)
 {
     wxButton *button = new wxButton(frame, static_cast<wxWindowID>(key), title, pos, size);
 
@@ -274,7 +274,7 @@ static void CreateButton(PanelButton::E key, Frame *frame, const wxPoint &pos, c
 }
 
 
-//static void CreateButtonsChannel(Frame *frame, const char *title, int x, int y, PanelButton::E keyChannel, PanelButton::E keyRangeLess, PanelButton::E keyRangeMore, PanelButton::E keyRShiftLess, PanelButton::E keyRShiftMore)
+//static void CreateButtonsChannel(Frame *frame, const char *title, int x, int y, Key::E keyChannel, Key::E keyRangeLess, Key::E keyRangeMore, Key::E keyRShiftLess, Key::E keyRShiftMore)
 //{
 //    int width = 45;
 //    int height = 20;
@@ -306,15 +306,15 @@ static void CreateButtonsTrig(Frame *frame, int x, int y)
 
     wxSize size = { width, height };
 
-    CreateButton(PanelButton::Trig, frame, { x, y }, size, "СИНХР");
-//    CreateButton(PanelButton::TrigLevMore, frame, { x, y + 30 }, size, "больше");
-//    CreateButton(PanelButton::TrigLevLess, frame, { x, y + 60 }, size, "меньше");
+    CreateButton(Key::Synchronization, frame, { x, y }, size, "СИНХР");
+//    CreateButton(Key::TrigLevMore, frame, { x, y + 30 }, size, "больше");
+//    CreateButton(Key::TrigLevLess, frame, { x, y + 60 }, size, "меньше");
 }
 
 
 void Frame::OnDown(wxCommandEvent &event)
 {
-    PanelButton::E key = static_cast<PanelButton::E>(event.GetId());
+    Key::E key = static_cast<Key::E>(event.GetId());
 
     event.Skip();
 
@@ -328,7 +328,7 @@ void Frame::OnDown(wxCommandEvent &event)
 
 void Frame::OnUp(wxCommandEvent &event)
 {
-//    PanelButton::E key = static_cast<PanelButton::E>(event.GetId());
+//    Key::E key = static_cast<Key::E>(event.GetId());
 
     event.Skip();
 
@@ -336,7 +336,7 @@ void Frame::OnUp(wxCommandEvent &event)
 
     needStopTimerLong = true;
 
-    pressedKey = PanelButton::Empty;
+    pressedKey = Key::None;
 }
 
 
@@ -344,7 +344,7 @@ void Frame::OnTimerLong(wxTimerEvent&)
 {
 //    BufferButtons::Push(KeyEvent(pressedKey, TypePress::Long));
 
-    pressedKey = PanelButton::Empty;
+    pressedKey = Key::None;
 }
 
 
