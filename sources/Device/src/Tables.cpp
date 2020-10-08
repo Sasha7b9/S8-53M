@@ -5,6 +5,7 @@
 #include "Tables.h"
 #include "Utils/GlobalFunctions.h"
 #include "Display/font/Font.h"
+#include "Display/Primitives.h"
 
 
 using namespace Primitives;

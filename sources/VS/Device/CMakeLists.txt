@@ -62,7 +62,8 @@ file(GLOB DISPLAY           ../../Device/src/Display/Colors.*
                             ../../Device/src/Display/Grid.*
                             ../../Device/src/Display/Painter.*
                             ../../Device/src/Display/PainterText.cpp
-                                         src/Display/Painter_win.cpp)
+                                         src/Display/Painter_win.cpp
+                                         src/Display/Primitives_win.cpp)
 file(GLOB DISPLAY_FONT      ../../Device/src/Display/font/*)
 file(GLOB LAN               ../../Device/src/LAN/LAN.h
                                          src/LAN/LAN_win.cpp

@@ -7,6 +7,7 @@
 #include "Display/Display.h"
 #include "Display/Colors.h"
 #include "Display/Painter.h"
+#include "Display/Primitives.h"
 #include "Display/Grid.h"
 #include "Hardware/Sound.h"
 #include <cstdio>

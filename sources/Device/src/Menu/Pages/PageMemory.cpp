@@ -9,6 +9,7 @@
 #include "Display/Display.h"
 #include "Display/font/Font.h"
 #include "Display/Painter.h"
+#include "Display/Primitives.h"
 #include "Display/Grid.h"
 #include "Display/Symbols.h"
 #include "Menu/Menu.h"

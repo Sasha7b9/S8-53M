@@ -16,6 +16,7 @@
 #pragma warning(pop)
 
 #include "Display/Painter.h"
+#include "Display/Primitives.h"
 #include "Hardware/Timer.h"
 
 
@@ -364,12 +365,6 @@ void Primitives::HLine::Draw(int y, int x1, int x2, Color::E color)
 {
     Painter::SetColor(color);
     memDC.DrawLine({ x1, y }, { x2, y });
-}
-
-
-void Primitives::Point::Draw(int x, int y)
-{
-    memDC.DrawPoint({ x, y });
 }
 
 

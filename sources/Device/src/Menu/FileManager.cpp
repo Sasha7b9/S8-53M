@@ -5,6 +5,7 @@
 #include "Settings/SettingsMemory.h"
 #include "Display/Colors.h"
 #include "Display/Display.h"
+#include "Display/Primitives.h"
 #include "Display/font/Font.h"
 #include "Display/Grid.h"
 #include "Utils/GlobalFunctions.h"

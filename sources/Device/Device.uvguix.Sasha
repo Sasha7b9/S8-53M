@@ -6,7 +6,7 @@
   <Header>### uVision Project, (C) Keil Software</Header>
 
   <PrjGuiSettings>
-    <LastAddFilePath>D:\Projects\stm32\S8-53M\sources\Device\src\Hardware\HAL</LastAddFilePath>
+    <LastAddFilePath>D:\Projects\stm32\S8-53M\sources\Device\src\Display</LastAddFilePath>
   </PrjGuiSettings>
 
   <ViewPool/>
@@ -90,8 +90,8 @@
     <sActiveDebugView></sActiveDebugView>
     <WindowPosition>
       <length>44</length>
-      <flags>2</flags>
-      <showCmd>3</showCmd>
+      <flags>0</flags>
+      <showCmd>1</showCmd>
       <MinPosition>
         <xPos>-1</xPos>
         <yPos>-1</yPos>
@@ -101,10 +101,10 @@
         <yPos>-1</yPos>
       </MaxPosition>
       <NormalPosition>
-        <Top>208</Top>
-        <Left>441</Left>
-        <Right>1401</Right>
-        <Bottom>919</Bottom>
+        <Top>263</Top>
+        <Left>570</Left>
+        <Right>1530</Right>
+        <Bottom>974</Bottom>
       </NormalPosition>
     </WindowPosition>
     <MDIClientArea>

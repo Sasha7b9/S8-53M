@@ -6,6 +6,7 @@
 #include "Display/Colors.h"
 #include "Display/Display.h"
 #include "Display/Painter.h"
+#include "Display/Primitives.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
 #include "common/Log.h"

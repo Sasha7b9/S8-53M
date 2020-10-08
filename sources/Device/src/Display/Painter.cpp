@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "Colors.h"
-#include "Painter.h"
+#include "Display/Painter.h"
+#include "Display/Primitives.h"
 #include "font/Font.h"
 #include "common/Log.h"
 #include "LAN/SocketTCP.h"

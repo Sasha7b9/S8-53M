@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "Display/Display.h"
 #include "Display/Painter.h"
+#include "Display/Primitives.h"
 
 
 using namespace Primitives;
