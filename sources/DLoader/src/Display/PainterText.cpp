@@ -116,7 +116,7 @@ int Painter::DrawChar(int x, int y, char symbol)
     {
         DrawCharInColorDisplay(x, y, static_cast<uchar>(symbol));
     }
-    return x + Font_GetLengthSymbol(static_cast<uchar>(symbol));
+    return x + Font::GetLengthSymbol(static_cast<uchar>(symbol));
 }
 
 
@@ -343,7 +343,7 @@ static int GetLenghtSubString(char *text)
     int retValue = 0;
     while (((*text) != ' ') && ((*text) != '\0'))
     {
-        retValue += Font_GetLengthSymbol(static_cast<uchar>(*text));
+        retValue += Font::GetLengthSymbol(static_cast<uchar>(*text));
         text++;
     }
     return retValue;

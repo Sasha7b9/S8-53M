@@ -136,7 +136,7 @@ int Painter::DrawChar(int x, int y, char symbol)
     {
         DrawCharInColorDisplay(x, y, static_cast<uint8>(symbol));
     }
-    return x + Font_GetLengthSymbol(static_cast<uint8>(symbol));
+    return x + Font::GetLengthSymbol(static_cast<uint8>(symbol));
 }
 
 
@@ -197,7 +197,7 @@ int Painter::DrawTextWithLimitationC(int x, int y, const char* text, Color::E co
     while (*text)
     {
         x = DrawCharWithLimitation(x, y, static_cast<uint8>(*text), limitX, limitY, limitWidth, limitHeight);
-        retValue += Font_GetLengthSymbol(static_cast<uint8>(*text));
+        retValue += Font::GetLengthSymbol(static_cast<uint8>(*text));
         text++;
     }
     return retValue + 1;
@@ -519,7 +519,7 @@ bool Painter::GetHeightTextWithTransfers(int left, int top, int right, const cha
                 {
                     continue;
                 }
-                x += Font_GetLengthSymbol(static_cast<uint8>(symbol));
+                x += Font::GetLengthSymbol(static_cast<uint8>(symbol));
             }
             else                                            // ј здесь найдено по крайней мере два буквенных символа, т.е. найдено слово
             {
@@ -643,7 +643,7 @@ static int GetLenghtSubString(char *text)
     int retValue = 0;
     while (((*text) != ' ') && ((*text) != '\0'))
     {
-        retValue += Font_GetLengthSymbol(static_cast<uint8>(*text));
+        retValue += Font::GetLengthSymbol(static_cast<uint8>(*text));
         text++;
     }
     return retValue;
