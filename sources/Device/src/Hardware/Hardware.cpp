@@ -1,12 +1,6 @@
-#include "Hardware.h"
-#include "Sound.h"
-#include "Utils/GlobalFunctions.h"
-#include "Hardware/Timer.h"
-#include "common/Hardware/HAL/HAL.h"
-#include "common/Log.h"
-#include "Display/Display.h"
+#include "defines.h"
 #include "FDrive/FDrive.h"
-#include "LAN/LAN.h"
+#include "Hardware/Hardware.h"
 #include "Panel/Panel.h"
 
 

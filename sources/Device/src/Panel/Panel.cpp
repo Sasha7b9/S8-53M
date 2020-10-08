@@ -1,9 +1,6 @@
 #include "defines.h"
-#include "Panel.h"
-#include "common/Keyboard/Controls.h"
-#include "common/Hardware/HAL/HAL.h"
-#include "PanelFunctions.cpp"
-#include "Utils/GlobalFunctions.h"
+#include "Panel/Panel.h"
+#include "Panel/PanelFunctions.cpp"
 #include <cstdio>
 #include <cstring>
 

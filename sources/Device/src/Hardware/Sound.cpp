@@ -1,13 +1,8 @@
 #include "defines.h"
-#include "Sound.h"
+#include "Hardware/Sound.h"
 #include "Hardware/Timer.h"
-#include "common/Hardware/HAL/HAL.h"
-#include "Utils/Math.h"
-#include "common/Log.h"
 #include "Settings/Settings.h"
 #include <cmath>
-#include "globals.h"
-
 
 
 static uint16 CalculatePeriodForTIM();

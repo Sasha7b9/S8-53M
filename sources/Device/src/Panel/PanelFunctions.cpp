@@ -1,10 +1,9 @@
 #include "common/Log.h"
-#include "Display/Grid.h"
 #include "FPGA/FPGA.h"
 #include "Hardware/Sound.h"
-#include "Hardware/Timer.h"
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
+#include "Hardware/Timer.h"
 
 static const uint MIN_TIME = 500;
 

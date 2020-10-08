@@ -1,12 +1,9 @@
 #include "defines.h"
-#include "Settings/SettingsTypes.h"
-#include "Settings/Settings.h"
-#include "common/Log.h"
 #include "Tables.h"
-#include "Utils/GlobalFunctions.h"
-#include "common/Display/font/Font.h"
+#include "common/Log.h"
 #include "common/Display/Primitives.h"
 #include "common/Display/Text.h"
+#include "Settings/Settings.h"
 
 
 using namespace Primitives;
