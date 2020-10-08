@@ -1979,7 +1979,7 @@ void Display::DrawLowPart()
 
     WriteTextVoltage(Channel::B, x + 2, y1);
 
-    HLine().Draw(x + 95, Grid::Bottom() + 2, Display::HEIGHT - 2, COLOR_FILL);
+    VLine().Draw(x + 95, Grid::Bottom() + 2, Display::HEIGHT - 2, COLOR_FILL);
 
     x += 98;
     char buffer[100] = {0};
@@ -2055,7 +2055,7 @@ void Display::DrawLowPart()
         Painter::DrawText(x + 63, y1, buffer);
     }
     
-    HLine().Draw(x + 79, Grid::Bottom() + 2, Display::HEIGHT - 2, COLOR_FILL);
+    VLine().Draw(x + 79, Grid::Bottom() + 2, Display::HEIGHT - 2, COLOR_FILL);
 
     HLine().Draw(Grid::Bottom(), Grid::Right() + 2, Display::WIDTH - 2);
     HLine().Draw(Grid::ChannelBottom(), Grid::Right() + 2, Display::WIDTH - 2);
@@ -2074,7 +2074,7 @@ void Display::DrawLowPart()
     }
 
     x += 42;
-    HLine().Draw(x, Grid::Bottom() + 2, Display::HEIGHT - 2);
+    VLine().Draw(x, Grid::Bottom() + 2, Display::HEIGHT - 2);
 
     Painter::SetFont(TypeFont::_8);
 
