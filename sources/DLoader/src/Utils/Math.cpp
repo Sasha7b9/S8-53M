@@ -117,7 +117,7 @@ int Math_NumDigitsInNumber(int value)
 {
     value = Math_FabsInt(value);
     int num = 1;
-    while ((value /= 10) > 0)
+    while ((value /= 10) > 0) //-V2561
     {
         num++;
     }

@@ -102,7 +102,7 @@ void ToLower(char *str)
 }
 
 
-bool FDrive_FileExist(char *fileName)
+bool FDrive_FileExist(const char *fileName)
 {
     char nameFile[255];
     char file[255];
@@ -214,7 +214,7 @@ static bool GetNextNameFile(char *nameFileOut, StructForReadDir *s)
 }
 
 
-int FDrive_OpenFileForRead(char *fileName)
+int FDrive_OpenFileForRead(const char *fileName)
 {
     if (f_open(&ms->drive.file, fileName, FA_READ) == FR_OK)
     {

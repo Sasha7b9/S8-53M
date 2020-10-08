@@ -57,9 +57,9 @@ typedef char*   (*pFuncCFBC)(float, bool, char*);
 typedef void    (*pFuncpU8)(uint8*);
 typedef void    (*pFuncVpVIIB)(void*, int, int, bool);
 
-#define ERROR_VALUE_FLOAT   1.111e29f
+#define ERROR_VALUE_FLOAT   1.111e29F
 #define ERROR_VALUE_INT16   SHRT_MAX
 #define ERROR_VALUE_UINT8   255
 #define ERROR_VALUE_INT     INT_MAX
 #define ERROR_STRING_VALUE  "--.--"
-#define M_PI                3.14159265358979323846f
+#define M_PI                3.14159265358979323846F

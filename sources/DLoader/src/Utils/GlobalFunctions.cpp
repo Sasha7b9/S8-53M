@@ -52,7 +52,7 @@ char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
     bufferOut[0] = 0;
     char *pBuffer = bufferOut;
 
-    if (value == ERROR_VALUE_FLOAT)
+    if (value == ERROR_VALUE_FLOAT) //-V2550 //-V550
     {
         std::strcat(bufferOut, ERROR_STRING_VALUE);
         return bufferOut;
@@ -163,7 +163,7 @@ bool String2Int(char *str, int *value)
 
 char* Hex8toString(uint8 value, char buffer[3], bool upper)
 {
-    std::sprintf(value < 16 ? (buffer[0] = '0', buffer + 1) : (buffer), upper ? "%X" : "%x", value);
+    std::sprintf(value < 16 ? (buffer[0] = '0', buffer + 1) : (buffer), upper ? "%X" : "%x", value); //-V2528
     return buffer;
 }
 
