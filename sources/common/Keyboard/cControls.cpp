@@ -47,3 +47,10 @@ pString Key::Name() const
 
     return names[value];
 }
+
+
+Key::E &operator++(Key::E &right)
+{
+    right = (Key::E)((int)right + 1);
+    return right;
+}

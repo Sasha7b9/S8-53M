@@ -142,25 +142,25 @@ const Page mainPage
 const void *PageForButton(Key::E button)
 {
     static const void *pages[] = {  
-        0,                          // PanelButton::Empty
-        (void*)&pChanA,             // PanelButton::Channel0
-        (void*)&pService,           // PanelButton::Service
-        (void*)&pChanB,             // PanelButton::Channel1
-        (void*)&pDisplay,           // PanelButton::Display
-        (void*)&pTime,              // PanelButton::Time
-        PageMemory::GetPointer(),   // PanelButton::Memory
-        (void*)&pTrig,              // PanelButton::Trig
-        0,                          // PanelButton::Start
-        PageCursors::GetPointer(),  // PanelButton::Cursors
-        (void*)&pMeasures,          // PanelButton::Measures
+        0,                          // Key::None
+        (void*)&pChanA,             // Key::ChannelA
+        (void*)&pService,           // Key::Service
+        (void*)&pChanB,             // Key::ChannelB
+        (void*)&pDisplay,           // Key::Display
+        (void*)&pTime,              // Key::Time
+        PageMemory::GetPointer(),   // Key::Memory
+        (void*)&pTrig,              // Key::Trig
+        0,                          // Key::Start
+        PageCursors::GetPointer(),  // Key::Cursors
+        (void*)&pMeasures,          // Key::Measures
         0,                          // B_Power
-        0,                          // PanelButton::Help
-        0,                          // PanelButton::Menu
-        0,                          // PanelButton::F1
-        0,                          // PanelButton::F2
-        0,                          // PanelButton::F3
-        0,                          // PanelButton::F4
-        0,                          // PanelButton::F5
+        0,                          // Key::Help
+        0,                          // Key::Menu
+        0,                          // Key::F1
+        0,                          // Key::F2
+        0,                          // Key::F3
+        0,                          // Key::F4
+        0,                          // Key::F5
     };
 
     return pages[button];

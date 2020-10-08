@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "Panel/Controls.h"
+#include "common/Keyboard/Controls.h"
 #include "Settings/SettingsTypes.h"
 #include "Utils/Measures.h"
 #include "Tables.h"
@@ -24,14 +24,14 @@
 using namespace Primitives;
 
 
-static void *itemUnderButton[PanelButton::Count] = {0};
+static void *itemUnderButton[Key::Count] = {0};
 
 
 Key::E GetFuncButtonFromY(int _y)
 {
     int y = Grid::TOP + Grid::Height() / 12;
     int step = Grid::Height() / 6;
-    Key::E button = PanelButton::Menu;
+    Key::E button = Key::Menu;
     for(int i = 0; i < 6; i++)
     {
         if(_y < y)
@@ -41,7 +41,7 @@ Key::E GetFuncButtonFromY(int _y)
         ++button;
         y += step;
     }
-    return  PanelButton::F5;
+    return  Key::F5;
 }
 
 
@@ -308,9 +308,9 @@ void Menu::DrawOpenedPage(Page *page, int layer, int yTop)
         void *item = Item(page, posCurItem);
         for (int i = 0; i < 5; i++)
         {
-            if (itemUnderButton[i + PanelButton::F1] != item)
+            if (itemUnderButton[i + Key::F1] != item)
             {
-                itemUnderButton[i + PanelButton::F1] = 0;
+                itemUnderButton[i + Key::F1] = 0;
             }
         }
         TypeItem::E type = TypeMenuItem(item);
@@ -373,7 +373,7 @@ void* Menu::ItemUnderButton(Key::E button)
 
 void Menu::ResetItemsUnderButton()
 {
-    for(int i = 0; i < PanelButton::Count; i++)
+    for(int i = 0; i < Key::Count; i++)
     {
         itemUnderButton[i] = 0;
     }

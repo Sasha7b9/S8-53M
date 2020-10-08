@@ -39,6 +39,8 @@ struct Key { enum E
     E value;
 };
 
+Key::E& operator++(Key::E &right);
+
 
 struct Action { enum E
 {

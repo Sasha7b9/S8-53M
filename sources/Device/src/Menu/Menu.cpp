@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "Panel/Controls.h"
+#include "common/Keyboard/Controls.h"
 #include "Menu.h" 
 #include "Settings/Settings.h"
 #include "Pages/Definition.h"
@@ -29,13 +29,13 @@ extern void OnChanged_InputA(bool active);
 extern void OnChanged_InputB(bool active);
                                                 
 // Если произошло короткое нажатие кнопки, то здесь хранится имя этой кнопки до обработки этого  нажатия.
-static Key::E shortPressureButton = PanelButton::Empty;
+static Key::E shortPressureButton = Key::None;
 // Если произошло длинное нажатие кнопки, то здесь хранится имя этой кнопки до обработки этого нажатия.
-static Key::E longPressureButton = PanelButton::Empty;
+static Key::E longPressureButton = Key::None;
 // При нажатии кнопки её имя записывается в эту переменную и хранится там до обратоки события нажатия кнопки.
-static Key::E pressButton = PanelButton::Empty;
+static Key::E pressButton = Key::None;
 // При отпускании кнопки её имя записывается в эту переменную и хранится там до обработки  события отпускания кнопки.
-static Key::E releaseButton = PanelButton::Empty;
+static Key::E releaseButton = Key::None;
 // Угол, на который нужно повернуть ручку УСТАНОВКА - величина означает количество щелчков, знак - направление - "-" - влево, "+" - вправо
 static int angleRegSet = 0;
 
@@ -45,8 +45,8 @@ static const int stepAngleRegSet = 2;
 static void* itemUnderKey = 0;
 
 #define SIZE_BUFFER_FOR_BUTTONS 5
-static Key::E bufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {PanelButton::Empty, PanelButton::Empty, PanelButton::Empty, PanelButton::Empty, PanelButton::Empty};
-static const Key::E sampleBufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {PanelButton::F5, PanelButton::F4, PanelButton::F3, PanelButton::F2, PanelButton::F1};
+static Key::E bufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {Key::None, Key::None, Key::None, Key::None, Key::None};
+static const Key::E sampleBufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {Key::F5, Key::F4, Key::F3, Key::F2, Key::F1};
 
 
 
@@ -71,7 +71,7 @@ void Menu::ShortPressureButton(Key::E button)
 {
     if (SHOW_HELP_HINTS == 0)
     {
-        if(button == PanelButton::Help)
+        if(button == Key::Help)
         {
             SHOW_HELP_HINTS++;
             gStringForHint = 0;
@@ -95,7 +95,7 @@ void Menu::LongPressureButton(Key::E button)
 
 void Menu::ProcessButtonForHint(Key::E button)
 {
-    if (button == PanelButton::Menu)
+    if (button == Key::Menu)
     {
         gStringForHint = set.common.lang == Language::Russian ?
             "Кнопка МЕНЮ выполняет следующие функции:\n"
@@ -119,21 +119,21 @@ void Menu::ProcessButtonForHint(Key::E button)
             "4. At control \"SERVICE\x99Mode btn MENU\x99Toggle\" current becomes the page of the current level of the menu. If the current page the last in the current level, happens transition to the previous level of the menu.\n"
             "5. If the menu is in the mode of small buttons, pressing closes the page.";
 
-    } else if (button == PanelButton::Cursors)
+    } else if (button == Key::Cursors)
     {
         gStringForHint = LANG_RU ? 
             "Кнопка КУРСОРЫ открывает меню курсорных измерений."
             :
             "КУРСОРЫ button to open the menu cursor measurements.";
     }
-    else if (button == PanelButton::Display)
+    else if (button == Key::Display)
     {
         gStringForHint = LANG_RU ?
             "Кнопка ДИСПЛЕЙ открывает меню настроек дисплея."
             :
             "DISPLAY button opens the display settings menu.";
     }
-    else if (button == PanelButton::Memory)
+    else if (button == Key::Memory)
     {
         gStringForHint = LANG_RU ?
             "1. При настройке \"ПАМЯТЬ\x99ВНЕШН ЗУ\x99Реж кн ПАМЯТЬ\x99Меню\" открывает меню работы с памятью.\n"
@@ -142,14 +142,14 @@ void Menu::ProcessButtonForHint(Key::E button)
             "1. When setting \"MEMORY-EXT\x99STORAGE\x99Mode btn MEMORY\x99Menu\" opens a menu of memory\n"
             "2. When setting \"MEMORY-EXT\x99STORAGE\x99Mode btn MEMORY\x99Save\" saves the signal to the flash drive";
     }
-    else if (button == PanelButton::Measures)
+    else if (button == Key::Measures)
     {
         gStringForHint = LANG_RU ?
             "Кнопка ИЗМЕР открывает меню автоматических измерений."
             :
             "ИЗМЕР button opens a menu of automatic measurements.";
     }
-    else if (button == PanelButton::Help)
+    else if (button == Key::Help)
     {
         gStringForHint = LANG_RU ?
             "1. Кнопка ПОМОЩЬ открывает меню помощи.\n"
@@ -158,21 +158,21 @@ void Menu::ProcessButtonForHint(Key::E button)
             "1. ПОМОЩЬ button opens the help menu.\n"
             "2. Pressing and holding the ПОМОЩЬ for 0.5s enables and disables output mode hints.";
     }
-    else if (button == PanelButton::Service)
+    else if (button == Key::Service)
     {
         gStringForHint = LANG_RU ?
             "Кнопка СЕРВИС открывает меню сервисных возможностей."
             :
             "СЕРВИС button opens a menu of service options.";
     }
-    else if (button == PanelButton::Start)
+    else if (button == Key::Start)
     {
         gStringForHint = LANG_RU ?
             "Кнопка ПУСК/СTOП запускает и останавливает процесс сбора информации."
             :
             "ПУСК/СTOП button starts and stops the process of gathering information.";
     }
-    else if (button == PanelButton::Channel0)
+    else if (button == Key::ChannelA)
     {
         gStringForHint = LANG_RU ?
             "1. Кнопка КАНАЛ1 открывает меню настроек канала 1.\n"
@@ -181,7 +181,7 @@ void Menu::ProcessButtonForHint(Key::E button)
             "1. КАНАЛ1 button opens the settings menu of the channel 1.\n"
             "2. Pressing and holding the button КАНАЛ1 for 0.5c for the offset of the vertical channel 1 0V.";
     }
-    else if (button == PanelButton::Channel1)
+    else if (button == Key::ChannelB)
     {
         gStringForHint = LANG_RU ?
             "1. Кнопка КАНАЛ2 открывает меню настроек канала 2.\n"
@@ -190,7 +190,7 @@ void Menu::ProcessButtonForHint(Key::E button)
             "1. КАНАЛ2 button opens the settings menu of the channel 2.\n"
             "2. Pressing and holding the button КАНАЛ2 for 0.5c for the offset of the vertical channel 2 0V.";
     }
-    else if (button == PanelButton::Time)
+    else if (button == Key::Time)
     {
         gStringForHint = LANG_RU ?
             "1. Кнопка РАЗВ открывает меню настроек развертки.\n"
@@ -199,7 +199,7 @@ void Menu::ProcessButtonForHint(Key::E button)
             "1. РАЗВ button open the settings menu sweep.\n"
             "2. Pressing and holding the button РАЗВ for 0.5s Is the offset horizontal 0s.";
     }
-    else if (button == PanelButton::Trig)
+    else if (button == Key::Synchronization)
     {
         gStringForHint = LANG_RU ?
             "1. Кнопка СИНХР открывает меню настроек синхронизации.\n"
@@ -347,13 +347,13 @@ void Menu::OnTimerAutoHide()
 
 void Menu::ProcessingShortPressureButton()
 {
-    if(shortPressureButton != PanelButton::Empty)
+    if(shortPressureButton != Key::None)
     {
-        if (shortPressureButton == PanelButton::Memory && MODE_BTN_MEMORY_IS_SAVE && FLASH_DRIVE_IS_CONNECTED == 1)
+        if (shortPressureButton == Key::Memory && MODE_BTN_MEMORY_IS_SAVE && FLASH_DRIVE_IS_CONNECTED == 1)
         {
             EXIT_FROM_SET_NAME_TO = MenuIsShown() ? RETURN_TO_MAIN_MENU : RETURN_TO_DISABLE_MENU;
             Memory_SaveSignalToFlashDrive();
-            shortPressureButton = PanelButton::Empty;
+            shortPressureButton = Key::None;
             return;
         }
         Display::Redraw();
@@ -363,7 +363,7 @@ void Menu::ProcessingShortPressureButton()
 
         do //-V2530
         {
-            if(button == PanelButton::Menu)                                   // Если нажата кнопка МЕНЮ и мы не находимся в режме настройки измерений.
+            if(button == Key::Menu)                                   // Если нажата кнопка МЕНЮ и мы не находимся в режме настройки измерений.
             {
                 if(!MenuIsShown())
                 {
@@ -389,13 +389,13 @@ void Menu::ProcessingShortPressureButton()
             else                                                        // Если меню не показано.
             {
                 NamePage::E name = GetNamePage((const Page *)OpenedItem());
-                if(button == PanelButton::Channel0 && name == NamePage::Channel0)
+                if(button == Key::ChannelA && name == NamePage::Channel0)
                 {
                     SET_ENABLED_A = !sChannel_Enabled(Channel::A);
                     OnChanged_InputA(true);
                     break;
                 }
-                if(button == PanelButton::Channel1 && name == NamePage::Channel1)
+                if(button == Key::ChannelB && name == NamePage::Channel1)
                 {
                     SET_ENABLED_B = !sChannel_Enabled(Channel::B);
                     OnChanged_InputB(true);
@@ -412,35 +412,35 @@ void Menu::ProcessingShortPressureButton()
             }
         } while(false);
 
-        shortPressureButton = PanelButton::Empty;
+        shortPressureButton = Key::None;
     }
 }
 
 
 void Menu::ProcessingLongPressureButton(void)
 {
-    if(longPressureButton != PanelButton::Empty)
+    if(longPressureButton != Key::None)
     {
         Display::Redraw();
         Menu::SetAutoHide(true);
 
-        if(longPressureButton == PanelButton::Time)
+        if(longPressureButton == Key::Time)
         {
             FPGA::SetTShift(0);
         }
-        else if(longPressureButton == PanelButton::Trig)
+        else if(longPressureButton == Key::Synchronization)
         {
             FPGA::SetTrigLev(TRIG_SOURCE, TrigLevZero);
         }
-        else if(longPressureButton == PanelButton::Channel0)
+        else if(longPressureButton == Key::ChannelA)
         {
             FPGA::SetRShift(Channel::A, RShiftZero);
         }
-        else if(longPressureButton == PanelButton::Channel1)
+        else if(longPressureButton == Key::ChannelB)
         {
             FPGA::SetRShift(Channel::B, RShiftZero);
         }
-        else if(longPressureButton == PanelButton::Menu)
+        else if(longPressureButton == Key::Menu)
         {
                 ShowMenu(!MenuIsShown());
         }
@@ -449,7 +449,7 @@ void Menu::ProcessingLongPressureButton(void)
             void *item = ItemUnderButton(longPressureButton);
             ExecuteFuncForLongPressureOnItem(item);
         }
-        longPressureButton = PanelButton::Empty;
+        longPressureButton = Key::None;
     }
 }
 
@@ -507,27 +507,27 @@ void Menu::ProcessingRegulatorSet(void)
 
 void Menu::ProcessingPressButton(void)
 {
-    if (pressButton == PanelButton::Start && !MODE_WORK_IS_LATEST)
+    if (pressButton == Key::Start && !MODE_WORK_IS_LATEST)
     {
         FPGA::OnPressStartStop();
     } 
-    else if((pressButton >= PanelButton::F1 && pressButton <= PanelButton::F5) || pressButton == PanelButton::Menu)
+    else if((pressButton >= Key::F1 && pressButton <= Key::F5) || pressButton == Key::Menu)
     {
-        if (pressButton != PanelButton::Menu)
+        if (pressButton != Key::Menu)
         {
             itemUnderKey = ItemUnderButton(pressButton);
         }
     }
-    pressButton = PanelButton::Empty;
+    pressButton = Key::None;
 }
 
 
 void Menu::ProcessingReleaseButton(void)
 {
-    if(releaseButton >= PanelButton::F1 && releaseButton <= PanelButton::F5 || pressButton == PanelButton::Menu)
+    if(releaseButton >= Key::F1 && releaseButton <= Key::F5 || pressButton == Key::Menu)
     {
         itemUnderKey = 0;
-        releaseButton = PanelButton::Empty;
+        releaseButton = Key::None;
     }
 }
 
@@ -789,7 +789,7 @@ extern const Page pService;
 void Menu::OpenItemTime(void)
 {
     Display::ShowWarningGood(Warning::TimeNotSet);
-    Menu::ShortPressureButton(PanelButton::Service);
+    Menu::ShortPressureButton(Key::Service);
     Menu::UpdateInput();
     Display::Update();
     for (int i = 0; i < 2; i++)
@@ -798,7 +798,7 @@ void Menu::OpenItemTime(void)
         Menu::UpdateInput();
         Display::Update();
     }
-    Menu::ShortPressureButton(PanelButton::F4);
+    Menu::ShortPressureButton(Key::F4);
     Menu::UpdateInput();
     Display::Update();
 }
@@ -874,14 +874,14 @@ void Menu::OpenFileManager()
     angleRegSet = 0;
     for (int i = 0; i < 10; i++)
     {
-        ShortPressureButton(PanelButton::Menu);
+        ShortPressureButton(Key::Menu);
         UpdateInput();
         Display::Update(false);
     }
 
     if (!MenuIsShown())
     {
-        ShortPressureButton(PanelButton::Menu);
+        ShortPressureButton(Key::Menu);
         UpdateInput();
         Display::Update(false);
     }
@@ -904,11 +904,11 @@ void Menu::OpenFileManager()
 
     angleRegSet = 0;
 
-    ShortPressureButton(PanelButton::F2);
+    ShortPressureButton(Key::F2);
     UpdateInput();
     Display::Update(false);
 
-    ShortPressureButton(PanelButton::F4);
+    ShortPressureButton(Key::F4);
     UpdateInput();
     Display::Update(false);
 
@@ -921,7 +921,7 @@ void Menu::OpenFileManager()
 
     for (int i = 0; i < 2; i++)
     {
-        ShortPressureButton(PanelButton::F1);
+        ShortPressureButton(Key::F1);
         UpdateInput();
         Display::Update(false);
     }

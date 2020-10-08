@@ -10,7 +10,7 @@
       <TargetName>DLoader</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060750::V5.06 update 6 (build 750)::.\ARMCC</pCCUsed>
+      <pCCUsed>5060960::V5.06 update 7 (build 960)::.\ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -1015,24 +1015,24 @@
           <GroupName>Panel</GroupName>
           <Files>
             <File>
-              <FileName>Controls.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Panel\Controls.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Controls.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Panel\Controls.h</FilePath>
+              <FilePath>..\common\Keyboard\Controls.h</FilePath>
             </File>
             <File>
-              <FileName>Panel.cpp</FileName>
+              <FileName>cControls.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Panel\Panel.cpp</FilePath>
+              <FilePath>..\common\Keyboard\cControls.cpp</FilePath>
             </File>
             <File>
               <FileName>Panel.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Panel\Panel.h</FilePath>
+            </File>
+            <File>
+              <FileName>Panel.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Panel\Panel.cpp</FilePath>
             </File>
           </Files>
         </Group>

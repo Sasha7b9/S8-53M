@@ -3,7 +3,7 @@
 #include "Definition.h"
 #include "Settings/SettingsTypes.h"
 #include "Settings/Settings.h"
-#include "Panel/Controls.h"
+#include "common/Keyboard/Controls.h"
 #include "Display/Colors.h"
 #include "Display/Grid.h"
 #include "Utils/Math.h"
@@ -16,14 +16,7 @@
 #include <cstring>
 
 
-/** @addtogroup Menu
- *  @{
- *  @addtogroup PageCursors
- *  @{
- */
-
 extern const Page pCursors;
-
 
 
 extern const Choice mcShow;                             // КУРСОРЫ - Показывать
@@ -697,7 +690,3 @@ static void DrawSB_Cursors_PointsPercents_Points(int x, int y)
     Painter::DrawText(x + 4, y + 3, "тчк");
     Painter::SetFont(TypeFont::_8);
 }
-
-
-/** @}  @}
- */

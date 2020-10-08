@@ -1,7 +1,7 @@
 #include "defines.h"
 #include "Display/DisplayTypes.h"
 #include "MenuItems.h"
-#include "Panel/Controls.h"
+#include "common/Keyboard/Controls.h"
 #include "MenuItemsLogic.h"
 #include "Menu.h"
 #include "Menu/Pages/PageCursors.h"
@@ -139,7 +139,7 @@ int Menu::PosItemOnTop(const Page *page)
 
 bool Menu::IsFunctionalButton(Key::E button)
 {
-    return button >= PanelButton::F1 && button <= PanelButton::F5;
+    return button >= Key::F1 && button <= Key::F5;
 }
 
 
@@ -195,7 +195,7 @@ void Menu::CloseOpenedItem()
     {
         if (PageIsSB((const Page *)item))                               // Для страницы малых кнопок
         {
-            SmallButton *sb = SmallButonFromPage((Page *)item, 0);      // Выполняем функцию нажатия кнопки PanelButton::Menu
+            SmallButton *sb = SmallButonFromPage((Page *)item, 0);      // Выполняем функцию нажатия кнопки Key::Menu
             if (sb->funcOnPress)                                        // Если она есть
             {
                 sb->funcOnPress();

@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32L063xx</Define>
               <Undefine></Undefine>
-              <IncludePath>.\src;.\src\Hardware\HAL;..\common\STM32Cube_L0\Drivers\CMSIS\Device\ST\STM32L0xx\Include;..\common\STM32Cube_L0\Drivers\CMSIS\Include;..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Inc</IncludePath>
+              <IncludePath>.\src;..\..\sources;.\src\Hardware\HAL;..\common\STM32Cube_L0\Drivers\CMSIS\Device\ST\STM32L0xx\Include;..\common\STM32Cube_L0\Drivers\CMSIS\Include;..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -544,24 +544,24 @@
           <GroupName>Keyboard</GroupName>
           <Files>
             <File>
-              <FileName>Controls.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Keyboard\Controls.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Controls.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Keyboard\Controls.h</FilePath>
+              <FilePath>..\common\Keyboard\Controls.h</FilePath>
             </File>
             <File>
-              <FileName>Keyboard.cpp</FileName>
+              <FileName>cControls.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Keyboard\Keyboard.cpp</FilePath>
+              <FilePath>..\common\Keyboard\cControls.cpp</FilePath>
             </File>
             <File>
               <FileName>Keyboard.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Keyboard\Keyboard.h</FilePath>
+            </File>
+            <File>
+              <FileName>Keyboard.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Keyboard\Keyboard.cpp</FilePath>
             </File>
           </Files>
         </Group>

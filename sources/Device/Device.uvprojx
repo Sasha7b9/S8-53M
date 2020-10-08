@@ -1895,12 +1895,12 @@
             <File>
               <FileName>Controls.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Panel\Controls.h</FilePath>
+              <FilePath>..\common\Keyboard\Controls.h</FilePath>
             </File>
             <File>
-              <FileName>Panel.cpp</FileName>
+              <FileName>cControls.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Panel\Panel.cpp</FilePath>
+              <FilePath>..\common\Keyboard\cControls.cpp</FilePath>
             </File>
             <File>
               <FileName>Panel.h</FileName>
@@ -1908,9 +1908,9 @@
               <FilePath>.\src\Panel\Panel.h</FilePath>
             </File>
             <File>
-              <FileName>Controls.cpp</FileName>
+              <FileName>Panel.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Panel\Controls.cpp</FilePath>
+              <FilePath>.\src\Panel\Panel.cpp</FilePath>
             </File>
             <File>
               <FileName>PanelFunctions.cpp</FileName>

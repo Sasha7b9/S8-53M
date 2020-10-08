@@ -94,7 +94,7 @@ file(GLOB HARDWARE_HAL          ../../common/Hardware/HAL/HAL.h
 file(GLOB MENU              ../../Device/src/Menu/*.h
                             ../../Device/src/Menu/*.cpp)
 file(GLOB MENU_PAGES        ../../Device/src/Menu/Pages/*)
-file(GLOB PANEL             ../../Device/src/Panel/*)
+file(GLOB PANEL             ../../Device/src/Panel/* ../../common/Keyboard/*)
 file(GLOB SETTINGS          ../../Device/src/Settings/*)
 file(GLOB SRC                            src/main_win.cpp
                             ../../Device/src/defines.*
