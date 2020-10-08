@@ -13,11 +13,6 @@
 #include <cstring>
 
 
-/** @addtogroup Settings
- *  @{
- */
-
-
 static const Settings defaultSettings =
 {
     0,                              // size
@@ -370,6 +365,3 @@ Range::E& operator--(Range::E &range)
     range = (Range::E)((int)range - 1);
     return range;
 }
-
-/** @}
- */

@@ -115,23 +115,19 @@ void Painter::EndScene(bool)
 }
 
 
-void Painter::SetColor(Color::E color)
+void Painter::SetColor(Color::E c)
 {
-    if (color == Color::NUM)
+    if (c == Color::NUM)
     {
         return;
     }
 
-    if (color == Color::BLACK)
-    {
-        wxColour colorDraw = wxColour(0, 0, 0);
-        memDC.SetPen(wxPen(colorDraw));
-    }
-    else
-    {
-        wxColour colorDraw = wxColour(0xFF, 0xFF, 0xFF);
-        memDC.SetPen(wxPen(colorDraw));
-    }
+    uint colorValue = Color::FromSettings(c);
+    uint8 b = colorValue & 0xFF;
+    uint8 g = (colorValue >> 8) & 0xFF;
+    uint8 r = (colorValue >> 16) & 0xFF;
+    wxColour color = wxColour(r, g, b);
+    memDC.SetPen(wxPen(color));
 }
 
 

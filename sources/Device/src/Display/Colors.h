@@ -1,6 +1,4 @@
 #pragma once
-
-
 #include "defines.h"
 #include "Settings/SettingsTypes.h"
 #include "DisplayTypes.h"
@@ -63,3 +61,4 @@ const char* NameColor(Color::E color);
 #define G_FROM_COLOR(color) (((uint16)(color) >> 5) & (uint16)0x3f)
 #define B_FROM_COLOR(color) ((uint16)(color) & 0x1f)
 #define COLOR(i) set.display.colors[i];
+
