@@ -305,3 +305,12 @@ struct PeackDetMode { enum E
     Enable,
     Average
 };};
+
+
+struct Channel { enum E
+{
+    A,
+    B,
+    A_B,
+    Math
+};};

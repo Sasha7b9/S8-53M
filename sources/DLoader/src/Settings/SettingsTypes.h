@@ -3,14 +3,6 @@
 
 // ChannelX
 
-struct Channel { enum E
-{
-    A,
-    B,
-    A_B,
-    Math
-};};
-
 #define NumChannels 2
 
 // Режим канала по входу

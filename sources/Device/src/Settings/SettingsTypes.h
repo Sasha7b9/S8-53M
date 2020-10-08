@@ -3,14 +3,6 @@
 
 // ChannelX
 
-struct Channel { enum E
-{
-    A,
-    B,
-    A_B,
-    Math
-};};
-
 // Режим канала по входу.
 struct ModeCouple { enum E
 {
