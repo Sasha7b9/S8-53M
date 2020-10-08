@@ -7,7 +7,7 @@
 #include "Display/Painter.h"
 #include "common/Display/Primitives.h"
 #include "common/Display/Font/Font.h"
-#include "Colors.h"
+#include "common/Display/Colors.h"
 #include "FDrive/FDrive.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGA_Types.h"

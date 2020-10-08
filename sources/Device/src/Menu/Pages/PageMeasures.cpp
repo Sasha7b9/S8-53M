@@ -7,7 +7,7 @@
 #include "Utils/GlobalFunctions.h"
 #include "Settings/SettingsTypes.h"
 #include "Settings/Settings.h"
-#include "Display/Colors.h"
+#include "common/Display/Colors.h"
 #include "defines.h"
 #include "Display/Painter.h"
 #include "PageMeasures.h"

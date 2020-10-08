@@ -3,7 +3,7 @@
 #include "Pages/PageMemory.h"
 #include "Settings/Settings.h"
 #include "Settings/SettingsMemory.h"
-#include "Display/Colors.h"
+#include "common/Display/Colors.h"
 #include "Display/Display.h"
 #include "common/Display/Primitives.h"
 #include "common/Display/Font/Font.h"

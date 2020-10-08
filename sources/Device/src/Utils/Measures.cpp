@@ -5,7 +5,7 @@
 #include "Settings/SettingsTypes.h"
 #include "Settings/Settings.h"
 #include "Display/Display.h"
-#include "Display/Colors.h"
+#include "common/Display/Colors.h"
 #include "Display/Painter.h"
 #include "common/Display/Primitives.h"
 #include "Display/Grid.h"

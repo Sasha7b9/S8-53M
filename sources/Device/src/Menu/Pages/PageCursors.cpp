@@ -4,7 +4,7 @@
 #include "Settings/SettingsTypes.h"
 #include "Settings/Settings.h"
 #include "common/Keyboard/Controls.h"
-#include "Display/Colors.h"
+#include "common/Display/Colors.h"
 #include "Display/Grid.h"
 #include "common/Display/Primitives.h"
 #include "Utils/Math.h"

@@ -1,6 +1,6 @@
 #pragma once
 #include "Display/Display.h"
-#include "Display/Colors.h"
+#include "common/Display/Colors.h"
 #include "defines.h"
 
                                             

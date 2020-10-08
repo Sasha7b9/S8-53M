@@ -3,7 +3,7 @@
 #include "Menu.h"
 #include "Hardware/Hardware.h"
 #include "common/Hardware/HAL/HAL.h"
-#include "Display/Colors.h"
+#include "common/Display/Colors.h"
 #include "Display/Display.h"
 #include "Display/Painter.h"
 #include "common/Display/Primitives.h"

@@ -1,7 +1,6 @@
 #pragma once
 #include "defines.h"
-#include "Settings/SettingsTypes.h"
-#include "DisplayTypes.h"
+//#include "Display/DisplayTypes.h"
 
 
 // Тип цвета
