@@ -159,7 +159,7 @@ void Menu::DrawTitlePage(Page *page, int layer, int yTop)
         Painter::DrawVolumeButton(x + 1, yTop + 1, MP_TITLE_WIDTH - 1, MP_TITLE_HEIGHT - 1, 3, ColorMenuTitle(false), ColorMenuTitleBrighter(), ColorMenuTitleLessBright(), shade, false);
     }
     
-    HLine().Draw(x, yTop, yTop + HeightOpenedItem(page), ColorBorderMenu(false));
+    VLine().Draw(x, yTop, yTop + HeightOpenedItem(page), ColorBorderMenu(false));
     bool condDrawRSet = NumSubPages(page) > 1 && TypeMenuItem(CurrentItem()) != TypeItem::ChoiceReg && TypeMenuItem(CurrentItem()) != TypeItem::Governor && TypeOpenedItem() == TypeItem::Page;
     int delta = condDrawRSet ? -10 : 0;
     Color::E colorText = shade ? LightShadingTextColor() : Color::BLACK;

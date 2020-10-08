@@ -177,7 +177,7 @@ Frame::Frame(const wxString& title)
 
     timerLongPress.SetOwner(this, TIMER_LONG_ID);
 
-    ConsoleSCPI::Self()->Show();
+    //ConsoleSCPI::Self()->Show();
 
     frame = this;
 }

@@ -219,8 +219,8 @@ void Painter::DrawVolumeButton(int x, int y, int width, int height, int thicknes
         for (int i = 0; i < thickness; i++)
         {
             HLine().Draw(y + i, x + i, x + width - i, dark);
-            HLine().Draw(x + i, y + 1 + i, y + height - i);
-            HLine().Draw(x + width - i, y + 1 + i, y + height - i, bright);
+            VLine().Draw(x + i, y + 1 + i, y + height - i);
+            VLine().Draw(x + width - i, y + 1 + i, y + height - i, bright);
             HLine().Draw(y + height - i, x + 1 + i, x + width - i);
         }
     }
@@ -229,8 +229,8 @@ void Painter::DrawVolumeButton(int x, int y, int width, int height, int thicknes
         for (int i = 0; i < thickness; i++)
         {
             HLine().Draw(y + i, x + i, x + width - i, bright);
-            HLine().Draw(x + i, y + 1 + i, y + height - i);
-            HLine().Draw(x + width - i, y + 1 + i, y + height - i, dark);
+            VLine().Draw(x + i, y + 1 + i, y + height - i);
+            VLine().Draw(x + width - i, y + 1 + i, y + height - i, dark);
             HLine().Draw(y + height - i, x + 1 + i, x + width - i);
         }
     }
