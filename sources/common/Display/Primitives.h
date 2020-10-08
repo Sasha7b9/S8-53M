@@ -45,26 +45,6 @@ namespace Primitives
         void Draw(int x, int y0, int y1, Color::E color = Color::NUM);
     };
 
-    class Char
-    {
-    public:
-        Char(char s) : symbol(s) {}
-        int Draw(int x, int y, Color::E color = Color::NUM);
-    private:
-        char symbol;
-    };
-
-    class Text
-    {
-    public:
-        Text(char* t) : text(t) {}
-        Text(pString t) : text(t) {};
-        int Draw(int x, int y, Color::E color = Color::NUM);
-    private:
-        String text;
-        int DrawChar(int x, int y, uint8 symbol);
-    };
-
     // numLines вертикальных линий, состоящих из count точек каждая с расстоянием между точками delta. Горизонтальная координата
     // первой точки каждой линии соответствует очередному элементу массива x[]
     class MultiVPointLine

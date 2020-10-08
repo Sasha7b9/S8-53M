@@ -10,6 +10,7 @@
 #include "common/Display/Font/Font.h"
 #include "Display/Painter.h"
 #include "common/Display/Primitives.h"
+#include "common/Display/Text.h"
 #include "Display/Grid.h"
 #include "Display/Symbols.h"
 #include "Menu/Menu.h"

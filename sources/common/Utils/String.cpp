@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "Display/Painter.h"
 #include "common/Display/Primitives.h"
+#include "common/Display/Text.h"
 #include "common/Utils/String.h"
 #include "common/Utils/StringUtils.h"
 #include <cstring>
@@ -189,7 +190,7 @@ int String::Draw(int x, int y, Color::E color) const
         Painter::SetColor(color);
     }
 
-    return Primitives::Text(c_str()).Draw(x, y);
+    return Text(c_str()).Draw(x, y);
 }
 
 

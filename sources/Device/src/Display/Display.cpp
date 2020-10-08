@@ -6,6 +6,7 @@
 #include "Display/Display.h"
 #include "Display/Painter.h"
 #include "common/Display/Primitives.h"
+#include "common/Display/Text.h"
 #include "common/Display/Font/Font.h"
 #include "common/Display/Colors.h"
 #include "FDrive/FDrive.h"

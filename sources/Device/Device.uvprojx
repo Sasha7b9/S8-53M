@@ -1482,11 +1482,6 @@
               <FilePath>.\src\Display\Painter_stm.cpp</FilePath>
             </File>
             <File>
-              <FileName>PainterC.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\PainterC.h</FilePath>
-            </File>
-            <File>
               <FileName>PainterMem.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Display\PainterMem.h</FilePath>
@@ -1545,6 +1540,16 @@
               <FileName>Colors_d.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Display\Colors_d.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Text.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Text.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Text.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\Text.h</FilePath>
             </File>
           </Files>
         </Group>

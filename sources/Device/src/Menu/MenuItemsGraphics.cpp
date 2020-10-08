@@ -7,6 +7,7 @@
 #include "Display/Display.h"
 #include "Display/Painter.h"
 #include "common/Display/Primitives.h"
+#include "common/Display/Text.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
 #include "common/Log.h"

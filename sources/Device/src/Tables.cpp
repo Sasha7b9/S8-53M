@@ -6,6 +6,7 @@
 #include "Utils/GlobalFunctions.h"
 #include "common/Display/font/Font.h"
 #include "common/Display/Primitives.h"
+#include "common/Display/Text.h"
 
 
 using namespace Primitives;

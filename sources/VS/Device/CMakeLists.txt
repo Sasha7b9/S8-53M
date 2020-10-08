@@ -65,6 +65,7 @@ file(GLOB DISPLAY           ../../Device/src/Display/Colors.*
                             ../../Device/src/Display/PainterText.cpp
                                 ../../common/Display/Colors.*
                                 ../../common/Display/Primitives.*
+                                ../../common/Display/Text.*
                                          src/Display/Painter_win.cpp
                                          src/Display/Primitives_win.cpp)
 file(GLOB DISPLAY_FONT          ../../common/Display/Font/*)

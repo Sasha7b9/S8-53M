@@ -6,6 +6,7 @@
 #include "common/Display/Colors.h"
 #include "Display/Display.h"
 #include "common/Display/Primitives.h"
+#include "common/Display/Text.h"
 #include "common/Display/Font/Font.h"
 #include "Display/Grid.h"
 #include "Utils/GlobalFunctions.h"
