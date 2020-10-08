@@ -4,14 +4,6 @@
 #include "Display/Colors.h"
 
 
-/** @addtogroup Settings
- *  @{
- *  @defgroup SettingsDisplay
- *  @{
- */
-
-
-
 #define TIME_SHOW_LEVELS            (set.display.timeShowLevels)                // SettingsDisplay.timeShowLevels
 
 #define SHIFT_IN_MEMORY             (set.display.shiftInMemory)                 // SettingsDisplay.shiftInMemory
@@ -25,7 +17,7 @@
 #define DISPLAY_COLOR(num)          (set.display.colors[num])                   // SettingsDisplay.colors
 
 #define MODE_DRAW_SIGNAL            (set.display.modeDrawSignal)                // SettingsDisplay.modeDrawSignal
-#define MODE_DRAW_IS_SIGNAL_LINES   (MODE_DRAW_SIGNAL == ModeDrawSignal::Lines)  // \c true, если сигнал выводится линиями.
+#define MODE_DRAW_IS_SIGNAL_LINES   (MODE_DRAW_SIGNAL == ModeDrawSignal::Lines) // \c true, если сигнал выводится линиями.
 
 #define TYPE_GRID                   (set.display.typeGrid)                      // SettingsDisplay.typeGrid
 #define TYPE_GRID_IS_1              (TYPE_GRID == TypeGrid::_1)                 // Установлен тип сетки TypeGrid::_1.
@@ -66,16 +58,7 @@
 #define SHOW_STRING_NAVIGATION      (set.display.showStringNavigation)          // SettingsDisplay.showStringNavigation
 
 #define LINKING_RSHIFT              (set.display.linkingRShift)                 // SettingsDisplay.linkingRShift
-#define LINKING_RSHIFT_IS_VOLTAGE   (LINKING_RSHIFT == LinkingRShift::Voltage)   // \c true, если привязка к абсолютному напряжению.
-
-
-// Тип привязки к смещению по вертикали
-struct LinkingRShift { enum E
-{
-    Voltage,      // Смещение привязано к напряжению
-    Position      // Смещение привязаоно к позиции на экране
-}; };
-
+#define LINKING_RSHIFT_IS_VOLTAGE   (LINKING_RSHIFT == LinkingRShift::Voltage)  // \c true, если привязка к абсолютному напряжению.
 
 
 // Настройки изображения
@@ -109,7 +92,3 @@ struct SettingsDisplay
     // Если экран разделён на две части и основной сигнал выводится сверху - например, в режиме вывода спектра
     static bool IsSeparate();
 };
-
-
-/** @}  @}
- */
