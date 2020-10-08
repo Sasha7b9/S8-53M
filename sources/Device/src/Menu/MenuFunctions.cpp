@@ -1,29 +1,12 @@
 #include "defines.h"
-#include "Display/DisplayTypes.h"
-#include "MenuItems.h"
-#include "common/Keyboard/Controls.h"
-#include "MenuItemsLogic.h"
-#include "Menu.h"
-#include "Menu/Pages/PageCursors.h"
-#include "Menu/Pages/PageMeasures.h"
-#include "Menu/Pages/PageMemory.h"
-#include "Menu/Pages/PageHelp.h"
-#include "Menu/Pages/PageService.h"
-#include "Menu/Pages/PageDebug.h"
-#include "Settings/SettingsTypes.h"
-#include "Utils/Measures.h"
-#include "Tables.h"
-#include "Display/Display.h"
+#include "Hardware/Sound.h"
+#include "Menu/Menu.h"
+#include "Menu/MenuItemsLogic.h"
 #include "Settings/Settings.h"
 #include "Utils/Math.h"
-#include "Panel/Panel.h"
-#include "common/Log.h"
-#include "Hardware/Sound.h"
-
 
 
 extern const Page mainPage;
-
 
 
 TypeItem::E Menu::TypeMenuItem(void *address) 

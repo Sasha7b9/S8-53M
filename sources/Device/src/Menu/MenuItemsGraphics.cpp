@@ -1,18 +1,13 @@
-#include "MenuItemsGraphics.h"
-#include "MenuItemsLogic.h"
-#include "Menu.h"
-#include "Hardware/Hardware.h"
-#include "common/Hardware/HAL/HAL.h"
-#include "common/Display/Colors.h"
-#include "Display/Display.h"
-#include "Display/Painter.h"
+#include "defines.h"
 #include "common/Display/Primitives.h"
 #include "common/Display/Text.h"
+#include "Menu/Menu.h"
+#include "Menu/MenuItemsGraphics.h"
+#include "Menu/MenuItemsLogic.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
-#include "common/Log.h"
-#include <cstring>
 #include <cstdio>
+#include <cstring>
 
 
 using namespace Primitives;

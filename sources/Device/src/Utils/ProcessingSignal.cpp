@@ -1,13 +1,12 @@
-#include "ProcessingSignal.h"
-#include "Math.h"
-#include "GlobalFunctions.h"
-#include "common/Log.h"
-#include "Hardware/Timer.h"
-#include "Menu/Pages/PageMemory.h"
+#include "defines.h"
+#include "FPGA/FPGA_Types.h"
 #include "Settings/Settings.h"
+#include "Utils/GlobalFunctions.h"
+#include "Utils/ProcessingSignal.h"
+#include "Utils/Math.h"
 #include <cmath>
-#include <cstring>
 #include <cstdio>
+#include <cstring>
 #include <limits>
 
 

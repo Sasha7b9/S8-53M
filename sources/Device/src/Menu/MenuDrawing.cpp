@@ -1,24 +1,11 @@
 #include "defines.h"
-#include "common/Keyboard/Controls.h"
-#include "Settings/SettingsTypes.h"
-#include "Utils/Measures.h"
-#include "Tables.h"
-#include "Panel/Panel.h"
-#include "MenuItemsGraphics.h"
-#include "Menu.h"
-#include "MenuItemsLogic.h"
-#include "Display/Display.h"
-#include "common/Display/Colors.h"
-#include "common/Display/Font/Font.h"
-#include "Display/Painter.h"
 #include "common/Display/Primitives.h"
 #include "Display/Grid.h"
+#include "Menu/Menu.h"
+#include "Menu/MenuItemsGraphics.h"
 #include "Settings/Settings.h"
+#include "Utils/GlobalFunctions.h"
 #include "Utils/Math.h"
-#include "Utils/Measures.h"
-#include "Hardware/Timer.h"
-#include "common/Log.h"
-#include <cstring>
 #include <cstdio>
 
 

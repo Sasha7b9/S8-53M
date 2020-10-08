@@ -1,12 +1,11 @@
-#include "GlobalFunctions.h"
-#include "Settings/Settings.h"
-#include "common/Log.h"
+#include "defines.h"
 #include "Display/Symbols.h"
-#include "Math.h"
+#include "Settings/Settings.h"
+#include "Utils/GlobalFunctions.h"
 #include <cmath>
 #include <cstdio>
-#include <cstring>
 #include <cstdlib>
+#include <cstring>
 
 
 char* FloatFract2String(float value, bool alwaysSign, char bufferOut[20])

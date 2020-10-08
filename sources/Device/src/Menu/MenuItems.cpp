@@ -1,10 +1,8 @@
 #include "defines.h"
-#include "Menu.h"
-#include "MenuItems.h"
 #include "Hardware/Sound.h"
-#include "Hardware/Timer.h"
-#include "common/Hardware/HAL/HAL.h"
+#include "Menu/Menu.h"
 #include "Settings/Settings.h"
+#include "Utils/GlobalFunctions.h"
 
 
 // »спользуетс€ дл€ анимации изменени€ значени€ Choice
