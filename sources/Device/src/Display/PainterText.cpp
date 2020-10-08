@@ -44,39 +44,6 @@ static bool BitInFontIsExist(int eChar, int numByte, int bit)
 }
 
 
-static int Painter_DrawBigChar(int eX, int eY, int size, char symbol)
-{
-    int8 width = static_cast<int8>(font->symbol[symbol].width);
-    int8 height = static_cast<int8>(font->height);
-
-    for (int b = 0; b < height; b++)
-    {
-        if (ByteFontNotEmpty(symbol, b))
-        {
-            int x = eX;
-            int y = eY + b * size + 9 - height;
-            int endBit = 8 - width;
-            for (int bit = 7; bit >= endBit; bit--)
-            {
-                if (BitInFontIsExist(symbol, b, bit))
-                {
-                    for (int i = 0; i < size; i++)
-                    {
-                        for (int j = 0; j < size; j++)
-                        {
-                            Point().Draw(x + i, y + j);
-                        }
-                    }
-                }
-                x += size;
-            }
-        }
-    }
-
-    return eX + width * size;
-}
-
-
 int Painter::DrawTextOnBackground(int x, int y, const char *text, Color::E colorBackground)
 {
     int width = Font::GetLengthText(text);
@@ -612,19 +579,5 @@ void Painter::Draw10SymbolsInRect(int x, int y, char eChar)
     {
         Char(static_cast<char>(eChar + i)).Draw(x + 8 * i, y);
         Char(static_cast<char>(eChar + i + 16)).Draw(x + 8 * i, y + 8);
-    }
-}
-
-
-void Painter::DrawBigText(int eX, int eY, int size, const char *text)
-{
-    int numSymbols = static_cast<int>(std::strlen(text));
-
-    int x = eX;
-
-    for (int i = 0; i < numSymbols; i++)
-    {
-        x = Painter_DrawBigChar(x, eY, size, text[i]);
-        x += size;
     }
 }

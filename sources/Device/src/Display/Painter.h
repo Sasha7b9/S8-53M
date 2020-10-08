@@ -97,8 +97,6 @@ public:
     // Пишет текст с переносами.
     static int DrawTextInRectWithTransfers(int x, int y, int width, int height, const char *text);
 
-    static void DrawBigText(int x, int y, int size, const char *text);
-
     static void CalculateCurrentColor();
 
 private:

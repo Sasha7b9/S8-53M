@@ -5,6 +5,7 @@
 #include "Display/Display.h"
 #include "Display/Painter.h"
 #include "common/Display/Primitives.h"
+#include "common/Display/Text.h"
 #include "Hardware/Timer.h"
 #include "common/Hardware/HAL/HAL.h"
 #include "Settings/Settings.h"
@@ -114,7 +115,7 @@ bool WelcomeScreen_Run()
         }
     }
 
-    Painter::DrawBigText(45, static_cast<int>(y0), 8, "МНИПИ");
+    Text("МНИПИ").DrawBig(45, static_cast<int>(y0), 8);
 
     Painter::DrawStringInCenterRect(0, 190, 320, 20, "Для получения помощи нажмите и удерживайте кнопку ПОМОЩЬ");
     Painter::DrawStringInCenterRect(0, 205, 320, 20, "Отдел маркетинга: тел./факс. 8-017-262-57-50");

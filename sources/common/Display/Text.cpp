@@ -2,6 +2,7 @@
 #include "common/Display/Primitives.h"
 #include "common/Display/Text.h"
 #include "Display/Painter.h"
+#include <cstring>
 
 
 static bool ByteFontNotEmpty(int eChar, int byte)
@@ -192,5 +193,52 @@ void Text::DrawInRect(int x, int y, int width, int)
         x += length;
         x = DrawSpaces(x, y, t, &numSymbols);
         t += numSymbols;
+    }
+}
+
+
+static int DrawBigChar(int eX, int eY, int size, char symbol)
+{
+    int8 width = static_cast<int8>(font->symbol[symbol].width);
+    int8 height = static_cast<int8>(font->height);
+
+    for (int b = 0; b < height; b++)
+    {
+        if (ByteFontNotEmpty(symbol, b))
+        {
+            int x = eX;
+            int y = eY + b * size + 9 - height;
+            int endBit = 8 - width;
+            for (int bit = 7; bit >= endBit; bit--)
+            {
+                if (BitInFontIsExist(symbol, b, bit))
+                {
+                    for (int i = 0; i < size; i++)
+                    {
+                        for (int j = 0; j < size; j++)
+                        {
+                            Primitives::Point().Draw(x + i, y + j);
+                        }
+                    }
+                }
+                x += size;
+            }
+        }
+    }
+
+    return eX + width * size;
+}
+
+
+void Text::DrawBig(int eX, int eY, int size)
+{
+    int numSymbols = static_cast<int>(std::strlen(text.c_str()));
+
+    int x = eX;
+
+    for (int i = 0; i < numSymbols; i++)
+    {
+        x = DrawBigChar(x, eY, size, text[i]);
+        x += size;
     }
 }

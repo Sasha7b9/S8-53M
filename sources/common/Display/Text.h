@@ -20,6 +20,7 @@ public:
     Text(pString t) : text(t) {};
     int Draw(int x, int y, Color::E color = Color::NUM);
     void DrawInRect(int x, int y, int width, int height);
+    void DrawBig(int x, int y, int size);
 private:
     String text;
     int DrawChar(int x, int y, uint8 symbol);
