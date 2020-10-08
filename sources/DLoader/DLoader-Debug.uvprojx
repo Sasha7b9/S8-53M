@@ -775,11 +775,6 @@
               <FilePath>.\src\Hardware\HAL\stm32f4xx_hal_conf.h</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_it.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\stm32f4xx_it.cpp</FilePath>
-            </File>
-            <File>
               <FileName>HAL.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Hardware\HAL\HAL.h</FilePath>
@@ -795,9 +790,19 @@
               <FilePath>..\common\Hardware\HAL\cHAL.cpp</FilePath>
             </File>
             <File>
+              <FileName>HAL_IT.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HAL\HAL_IT.cpp</FilePath>
+            </File>
+            <File>
               <FileName>cHAL_EPROM.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\cHAL_EPROM.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>cHAL_FSMC.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\cHAL_FSMC.cpp</FilePath>
             </File>
             <File>
               <FileName>cHAL_PINS.cpp</FileName>
@@ -810,24 +815,19 @@
               <FilePath>..\common\Hardware\HAL\cHAL_SPI1.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_TIM6.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_TIM6.cpp</FilePath>
-            </File>
-            <File>
               <FileName>cHAL_TIM2.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\cHAL_TIM2.cpp</FilePath>
             </File>
             <File>
+              <FileName>cHAL_TIM6.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\cHAL_TIM6.cpp</FilePath>
+            </File>
+            <File>
               <FileName>cHAL_TIM7.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\cHAL_TIM7.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>cHAL_FSMC.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_FSMC.cpp</FilePath>
             </File>
           </Files>
         </Group>

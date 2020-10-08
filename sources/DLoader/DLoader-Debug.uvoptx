@@ -954,7 +954,7 @@
 
   <Group>
     <GroupName>Hardware/HAL</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -973,18 +973,6 @@
     <File>
       <GroupNumber>8</GroupNumber>
       <FileNumber>62</FileNumber>
-      <FileType>8</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Hardware\HAL\stm32f4xx_it.cpp</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_it.cpp</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>8</GroupNumber>
-      <FileNumber>63</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -996,7 +984,7 @@
     </File>
     <File>
       <GroupNumber>8</GroupNumber>
-      <FileNumber>64</FileNumber>
+      <FileNumber>63</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1008,13 +996,25 @@
     </File>
     <File>
       <GroupNumber>8</GroupNumber>
-      <FileNumber>65</FileNumber>
+      <FileNumber>64</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>..\common\Hardware\HAL\cHAL.cpp</PathWithFileName>
       <FilenameWithoutPath>cHAL.cpp</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>8</GroupNumber>
+      <FileNumber>65</FileNumber>
+      <FileType>8</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\src\Hardware\HAL\HAL_IT.cpp</PathWithFileName>
+      <FilenameWithoutPath>HAL_IT.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1037,8 +1037,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\common\Hardware\HAL\cHAL_PINS.cpp</PathWithFileName>
-      <FilenameWithoutPath>cHAL_PINS.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\HAL\cHAL_FSMC.cpp</PathWithFileName>
+      <FilenameWithoutPath>cHAL_FSMC.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1049,8 +1049,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\common\Hardware\HAL\cHAL_SPI1.cpp</PathWithFileName>
-      <FilenameWithoutPath>cHAL_SPI1.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\HAL\cHAL_PINS.cpp</PathWithFileName>
+      <FilenameWithoutPath>cHAL_PINS.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1061,8 +1061,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\common\Hardware\HAL\cHAL_TIM6.cpp</PathWithFileName>
-      <FilenameWithoutPath>cHAL_TIM6.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\HAL\cHAL_SPI1.cpp</PathWithFileName>
+      <FilenameWithoutPath>cHAL_SPI1.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1085,8 +1085,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\common\Hardware\HAL\cHAL_TIM7.cpp</PathWithFileName>
-      <FilenameWithoutPath>cHAL_TIM7.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\HAL\cHAL_TIM6.cpp</PathWithFileName>
+      <FilenameWithoutPath>cHAL_TIM6.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1097,8 +1097,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\common\Hardware\HAL\cHAL_FSMC.cpp</PathWithFileName>
-      <FilenameWithoutPath>cHAL_FSMC.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\HAL\cHAL_TIM7.cpp</PathWithFileName>
+      <FilenameWithoutPath>cHAL_TIM7.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

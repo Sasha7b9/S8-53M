@@ -474,6 +474,11 @@
           <GroupName>Hardware/HAL</GroupName>
           <Files>
             <File>
+              <FileName>stm32l0xx_hal_conf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\HAL\stm32l0xx_hal_conf.h</FilePath>
+            </File>
+            <File>
               <FileName>HAL.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\HAL\HAL.h</FilePath>
@@ -489,6 +494,11 @@
               <FilePath>.\src\Hardware\HAL\HAL.cpp</FilePath>
             </File>
             <File>
+              <FileName>HAL_IT.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HAL\HAL_IT.cpp</FilePath>
+            </File>
+            <File>
               <FileName>HAL_PINS.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\HAL\HAL_PINS.cpp</FilePath>
@@ -497,16 +507,6 @@
               <FileName>HAL_SPI2.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\HAL\HAL_SPI2.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>stm32l0xx_hal_conf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\HAL\stm32l0xx_hal_conf.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32l0xx_it.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\stm32l0xx_it.cpp</FilePath>
             </File>
           </Files>
         </Group>

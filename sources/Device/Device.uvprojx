@@ -1134,11 +1134,6 @@
               <FilePath>.\src\Hardware\HAL\stm32f4xx_hal_conf.h</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_it.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\stm32f4xx_it.cpp</FilePath>
-            </File>
-            <File>
               <FileName>HAL.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Hardware\HAL\HAL.h</FilePath>
@@ -1152,6 +1147,11 @@
               <FileName>cHAL.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\cHAL.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_IT.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HAL\HAL_IT.cpp</FilePath>
             </File>
             <File>
               <FileName>cHAL_ADC3.cpp</FileName>
