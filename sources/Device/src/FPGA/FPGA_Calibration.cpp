@@ -544,9 +544,9 @@ float CalculateKoeffCalibration(Channel::E chan)
 
     float retValue = 160.0F / (aveMax - aveMin);
 
-    if(retValue < 0.5f || retValue > 1.5f)
+    if(retValue < 0.5F || retValue > 1.5F)
     {
         return ERROR_VALUE_FLOAT;
     }
-    return retValue * 1.004f;
+    return retValue * 1.004F;
 }

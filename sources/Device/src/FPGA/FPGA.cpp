@@ -527,8 +527,8 @@ bool FPGA::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
 
     if(numElements == numValues)
     {
-        minGate = 0.9f * minGate + 0.1f * min;
-        maxGate = 0.9f * maxGate + 0.1f * max;
+        minGate = 0.9F * minGate + 0.1F * min;
+        maxGate = 0.9F * maxGate + 0.1F * max;
         //LOG_WRITE("%.0F ... %.0F, min = %u, max = %u", minGate, maxGate, min, max);
         numElements = 0;
         min = 0xffff;
@@ -705,7 +705,7 @@ static float PeriodCounterToValue(const BitSet32 *period)
     {
         return 0.0F;
     }
-    return 10e6f / period->word;
+    return 10e6F / period->word;
 }
 
 
@@ -720,7 +720,7 @@ static void ReadFreq(void)                         // Чтение счётчика частоты пр
     else 
     {
         float fr = FreqCounterToValue(&freqFPGA);
-        if (fr < prevFreq * 0.9f || fr > prevFreq * 1.1f)
+        if (fr < prevFreq * 0.9F || fr > prevFreq * 1.1F)
         {
             freq = ERROR_VALUE_FLOAT;
         }
@@ -737,7 +737,7 @@ void ReadPeriod(void)
 {
     BitSet32 periodFPGA = ReadRegPeriod();
     float fr = PeriodCounterToValue(&periodFPGA);
-    if (fr < prevFreq * 0.9f || fr > prevFreq * 1.1f)
+    if (fr < prevFreq * 0.9F || fr > prevFreq * 1.1F)
     {
         freq = ERROR_VALUE_FLOAT;
     }
@@ -1082,7 +1082,7 @@ TBase::E FPGA::FindTBase(Channel::E)
     FPGA::Stop(false);
     float fr = CalculateFreqFromCounterFreq();
 
-    FPGA::SetTrigInput(fr < 1e6f ? TrigInput::LPF : TrigInput::Full);
+    FPGA::SetTrigInput(fr < 1e6F ? TrigInput::LPF : TrigInput::Full);
 
     fr = CalculateFreqFromCounterFreq();
 
@@ -1175,7 +1175,7 @@ void FPGA::FindAndSetTrigLevel(void)
 
     uint8 aveValue = static_cast<uint8>((static_cast<int>(min) + static_cast<int>(max)) / 2);
 
-    static const float scale = (float)(TrigLevMax - TrigLevZero) / (float)(MAX_VALUE - AVE_VALUE) / 2.4f;
+    static const float scale = (float)(TrigLevMax - TrigLevZero) / (float)(MAX_VALUE - AVE_VALUE) / 2.4F;
 
     int16 trigLev = static_cast<int16>(TrigLevZero + scale * (static_cast<int>(aveValue) - AVE_VALUE) - (SET_RSHIFT(chanTrig) - RShiftZero));
 

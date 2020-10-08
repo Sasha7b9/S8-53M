@@ -237,7 +237,7 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
         if (set.memory.modeWork == ModeWork::Direct || regLeft == Key::Setting || regLeft == R_TShift)
         {
         */
-            funculatorLeft[regLeft]();
+            funculatorLeft[regLeft](); //-V557
         //}
     }
     else if(regRight != Key::None)
