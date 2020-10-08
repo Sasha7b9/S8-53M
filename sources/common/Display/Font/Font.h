@@ -16,7 +16,7 @@ struct Font
 
 	static int GetSize();
 	static int GetLengthText(const char * text);
-	static int GetHeightSymbol(char symbol);
+	static int GetHeightSymbol();
 };
 
 

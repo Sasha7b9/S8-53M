@@ -387,7 +387,7 @@ void Painter::DrawTextInRect(int x, int y, int width, char *text)
         if (length + x > xEnd)
         {
             x = xStart;
-            y += Font::GetHeightSymbol(*text);
+            y += Font::GetHeightSymbol();
         }
         int numSymbols = 0;
         numSymbols = DrawSubString(x, y, text);

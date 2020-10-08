@@ -41,7 +41,7 @@ int Font::GetLengthText(const char * text)
 
 
 
-int Font::GetHeightSymbol(char)
+int Font::GetHeightSymbol()
 {
     return 9;
 }
