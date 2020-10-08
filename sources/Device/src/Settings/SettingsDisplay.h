@@ -69,19 +69,6 @@
 #define LINKING_RSHIFT_IS_VOLTAGE   (LINKING_RSHIFT == LinkingRShift::Voltage)   // \c true, если привязка к абсолютному напряжению.
 
 
-// Количество измерений для расчёта минимального и максимального значений.
-struct ENumMinMax { enum E
-{
-    _1,
-    _2,
-    _4,
-    _8,
-    _16,
-    _32,
-    _64,
-    _128
-}; };
-
 // Количество точек для расчёта скользящего фильтра.
 struct Smoothing { enum E
 {

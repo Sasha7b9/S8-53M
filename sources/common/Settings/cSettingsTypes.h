@@ -125,3 +125,17 @@ struct ModeAveraging { enum E
     // Возвращает режим усреднения
     static ModeAveraging::E Current();
 };
+
+
+// Количество измерений для расчёта минимального и максимального значений.
+struct ENumMinMax { enum E
+{
+    _1,
+    _2,
+    _4,
+    _8,
+    _16,
+    _32,
+    _64,
+    _128
+};};
