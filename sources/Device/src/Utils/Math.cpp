@@ -124,7 +124,7 @@ void Math::PointsRelToVoltage(pUCHAR points, int numPoints, Range::E range, int1
     }
 }
 
-void Math_PointsVoltageToRel(const float *voltage, int numPoints, Range::E range, int16 rShift, uint8 *points)
+void Math::PointsVoltageToRel(const float *voltage, int numPoints, Range::E range, int16 rShift, uint8 *points)
 {
     float maxVoltOnScreen = MAX_VOLTAGE_ON_SCREEN(range);
     float rShiftAbs = RSHIFT_2_ABS(rShift, range);
@@ -522,9 +522,9 @@ int Math_FabsInt(int value)
     return value >= 0 ? value : -value;
 }
 
-uint8 Math_GetMaxFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoint)
+uint8 Math::GetMaxFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoint)
 {
-    uint8 max = Math_GetMaxFromArray(data, firstPoint, lastPoint);
+    uint8 max = Math::GetMaxFromArray(data, firstPoint, lastPoint);
     if (max >= MAX_VALUE)
     {
         max = ERROR_VALUE_UINT8;
@@ -532,9 +532,9 @@ uint8 Math_GetMaxFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoi
     return max;
 }
 
-uint8 Math_GetMinFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoint)
+uint8 Math::GetMinFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoint)
 {
-    uint8 min = Math_GetMinFromArray(data, firstPoint, lastPoint);
+    uint8 min = Math::GetMinFromArray(data, firstPoint, lastPoint);
     if (min < MIN_VALUE || min >= MAX_VALUE)
     {
         min = ERROR_VALUE_UINT8;
@@ -542,7 +542,7 @@ uint8 Math_GetMinFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoi
     return min;
 }
 
-uint8 Math_GetMinFromArray(pUCHAR data, int firstPoint, int lastPoint)
+uint8 Math::GetMinFromArray(pUCHAR data, int firstPoint, int lastPoint)
 {
 
 #define MIN_IF_LESS if(d < min) { min = d; }
@@ -566,7 +566,7 @@ uint8 Math_GetMinFromArray(pUCHAR data, int firstPoint, int lastPoint)
     return min;
 }
 
-uint8 Math_GetMaxFromArray(pUCHAR data, int firstPoint, int lastPoint)
+uint8 Math::GetMaxFromArray(pUCHAR data, int firstPoint, int lastPoint)
 {
 
 #define MAX_IF_ABOVE if(d > max) { max = d; }

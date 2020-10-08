@@ -1161,8 +1161,8 @@ void FPGA::FindAndSetTrigLevel(void)
 
     int lastPoint = static_cast<int>(ds_->length1channel) - 1;
 
-    uint8 min = Math_GetMinFromArray(data, 0, lastPoint);
-    uint8 max = Math_GetMaxFromArray(data, 0, lastPoint);
+    uint8 min = Math::GetMinFromArray(data, 0, lastPoint);
+    uint8 max = Math::GetMaxFromArray(data, 0, lastPoint);
 
     uint8 aveValue = static_cast<uint8>((static_cast<int>(min) + static_cast<int>(max)) / 2);
 

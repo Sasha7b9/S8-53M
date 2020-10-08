@@ -43,14 +43,13 @@ namespace Math
     float   TimeCursor(float shiftCurT, TBase::E tBase);
     void    PointsRelToVoltage(pUCHAR points, int numPoints, Range::E range, int16 rShift, float *voltage);
     uint8   VoltageToPoint(float voltage, Range::E range, int16 rShift);
-
+    void	PointsVoltageToRel(const float *voltage, int numPoints, Range::E range, int16 rShift, uint8 *points);
+    uint8   GetMaxFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoint);
+    uint8   GetMinFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoint);
+    uint8   GetMaxFromArray(pUCHAR data, int firstPoint, int lastPoint);
+    uint8   GetMinFromArray(pUCHAR data, int firstPoint, int lastPoint);
 }
 
-void	Math_PointsVoltageToRel(const float *voltage, int numPoints, Range::E range, int16 rShift, uint8 *points);
-uint8   Math_GetMaxFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoint);
-uint8   Math_GetMinFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoint);
-uint8   Math_GetMaxFromArray(pUCHAR data, int firstPoint, int lastPoint);
-uint8   Math_GetMinFromArray(pUCHAR data, int firstPoint, int lastPoint);
 // \brief Возвращает координату x пересечения линии, проходящей через (x0, y0), (x1, y1), с горизонтальной линией, проходящей через точку с 
 // ординатой yHorLine.
 float   Math_GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, int yHorLine);
