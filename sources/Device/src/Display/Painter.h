@@ -99,8 +99,6 @@ public:
 
     static void DrawBigText(int x, int y, int size, const char *text);
 
-    static void DrawCharHardCol(int x, int y, char symbol);
-
     static void CalculateCurrentColor();
 
 private:

@@ -61,6 +61,13 @@ static void DrawCharInColorDisplay(int eX, int eY, uchar symbol)
 }
 
 
+static void DrawCharHardCol(int x, int y, char symbol)
+{
+    char str[2] = { symbol, 0 };
+    Text(str).Draw(x, y);
+}
+
+
 int Char::Draw(int x, int y, Color::E color)
 {
     Color::SetCurrent(color);
@@ -69,11 +76,11 @@ int Char::Draw(int x, int y, Color::E color)
 
     if (Font::GetSize() == 5)
     {
-        Painter::DrawCharHardCol(x, y + 3, symbol);
+        DrawCharHardCol(x, y + 3, symbol);
     }
     else if (Font::GetSize() == 8)
     {
-        Painter::DrawCharHardCol(x, y, symbol);
+        DrawCharHardCol(x, y, symbol);
     }
     else
     {

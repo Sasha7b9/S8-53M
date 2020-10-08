@@ -77,14 +77,6 @@ static int Painter_DrawBigChar(int eX, int eY, int size, char symbol)
 }
 
 
-void Painter::DrawCharHardCol(int x, int y, char symbol)
-{
-    char str[2] = {symbol, 0};
-    Text(str).Draw(x, y);
-}
-
-
-
 int Painter::DrawTextOnBackground(int x, int y, const char *text, Color::E colorBackground)
 {
     int width = Font::GetLengthText(text);
