@@ -529,7 +529,7 @@ bool FPGA::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
     {
         minGate = 0.9f * minGate + 0.1f * min;
         maxGate = 0.9f * maxGate + 0.1f * max;
-        //LOG_WRITE("%.0f ... %.0f, min = %u, max = %u", minGate, maxGate, min, max);
+        //LOG_WRITE("%.0F ... %.0F, min = %u, max = %u", minGate, maxGate, min, max);
         numElements = 0;
         min = 0xffff;
         max = 0;

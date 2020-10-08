@@ -387,7 +387,7 @@ float CalculateDeltaADC(Channel::E chan, float *avgADC1, float *avgADC2, float *
 
     *delta = *avgADC1 - *avgADC2;
 
-    return ((*avgADC1) - (*avgADC2)) / 255.0f * 100;
+    return ((*avgADC1) - (*avgADC2)) / 255.0F * 100;
 }
 
 

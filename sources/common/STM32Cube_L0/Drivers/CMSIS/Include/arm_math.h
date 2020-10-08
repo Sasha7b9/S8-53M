@@ -5746,7 +5746,7 @@ void arm_rfft_fast_f32(
   float32_t in,
   float32_t * pOut)
   {
-    if(in >= 0.0f)
+    if(in >= 0.0F)
     {
 
 #if   (__FPU_USED == 1) && defined ( __CC_ARM   )
@@ -5765,7 +5765,7 @@ void arm_rfft_fast_f32(
     }
     else
     {
-      *pOut = 0.0f;
+      *pOut = 0.0F;
       return (ARM_MATH_ARGUMENT_ERROR);
     }
   }

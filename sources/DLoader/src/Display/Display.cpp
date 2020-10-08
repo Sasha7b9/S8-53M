@@ -40,9 +40,9 @@ void Display_Init(void)
 
     for (int i = 0; i < 14; i++)
     {
-        float red = static_cast<float>(i) / 14.0f * 31.0F + 0.5f;
-        float green = static_cast<float>(i) / 14.0f * 63.0f + 0.5f;
-        float blue = static_cast<float>(i) / 14.0f * 31.0F + 0.5f;
+        float red = static_cast<float>(i) / 14.0F * 31.0F + 0.5F;
+        float green = static_cast<float>(i) / 14.0F * 63.0F + 0.5F;
+        float blue = static_cast<float>(i) / 14.0F * 31.0F + 0.5F;
         set.display.colors[i + 2] = MAKE_COLOR((int)red, (int)green, (int)blue);
     }
 
@@ -58,7 +58,7 @@ void Display_Init(void)
 }
 
 
-void DrawButton(int x, int y, char *text)
+void DrawButton(int x, int y, const char *text)
 {
     int width = 25;
     int height = 20;
@@ -181,12 +181,12 @@ static void DrawBigMNIPI(void)
     uint time = HAL_TIM2::TimeMS() - startTime;
 
     int numColor = 0;
-    LIMITATION(numColor, static_cast<int>(static_cast<float>(time) / (float)TIME_WAIT * 13.0f), 0, 13);
+    LIMITATION(numColor, static_cast<int>(static_cast<float>(time) / (float)TIME_WAIT * 13.0F), 0, 13);
     Painter::SetColor((Color::E)(numColor + 2));
 
-    float amplitude = 3.0f - (static_cast<float>(time) / (TIME_WAIT / 2.0f)) * 3;
+    float amplitude = 3.0F - (static_cast<float>(time) / (TIME_WAIT / 2.0F)) * 3;
     LIMIT_BELOW(amplitude, 0.0F);
-    float frequency = 0.05f;
+    float frequency = 0.05F;
 
     float radius = 5000.0F * (TIME_WAIT) / 3000.0F / static_cast<float>(time);
     LIMIT_BELOW(radius, 0);
@@ -195,12 +195,12 @@ static void DrawBigMNIPI(void)
 
     for (int i = 0; i < 240; i++)
     {
-        shift[i] = amplitude * std::sin(frequency * static_cast<float>(time) + static_cast<float>(i) / 5.0f);
+        shift[i] = amplitude * std::sin(frequency * static_cast<float>(time) + static_cast<float>(i) / 5.0F);
     }
 
     for (int i = 0; i < numPoints; i++)
     {
-        int x = static_cast<int>(static_cast<float>(array[i].x) + shift[array[i].y]);
+        int x = static_cast<int>(static_cast<float>(array[i].x) + shift[array[i].y]); //-V537
         int y = array[i].y;
         if (x > 0 && x < 319 && y > 0 && y < 239)
         {

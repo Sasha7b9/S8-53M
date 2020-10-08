@@ -97,11 +97,11 @@ bool WelcomeScreen_Run()
     }
     else
     {
-        float g = 98.0f * 4.0f;
+        float g = 98.0F * 4.0F;
         float time0 = 0.0F;
-        y0 = g * time0 * time0 / 2.0f;
+        y0 = g * time0 * time0 / 2.0F;
         float time = (gTimerMS - startTime) / 1000.0F + time0;
-        y0 = -y0 + g * time * time / 2.0f + 10.0F;
+        y0 = -y0 + g * time * time / 2.0F + 10.0F;
 
         static const float MAX_Y = 130.0F;
 
