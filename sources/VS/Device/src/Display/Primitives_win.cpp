@@ -1,6 +1,8 @@
 #include "defines.h"
 #include "Display/Painter.h"
 #include "Display/Primitives.h"
+#include "Display/Font/Font.h"
+
 #pragma warning(push, 0)
 #include <wx/wx.h>
 #pragma warning(pop)
@@ -70,7 +72,64 @@ void Primitives::MultiHPointLine::Draw(int x, Color::E color)
 }
 
 
-int Primitives::Text::Draw(int x, int , Color::E )
+static bool ByteFontNotEmpty(int eChar, int byte)
 {
-    return x;
+    static const uint8* bytes = 0;
+    static int prevChar = -1;
+
+    if (eChar != prevChar)
+    {
+        prevChar = eChar;
+        bytes = font->symbol[prevChar].bytes;
+    }
+
+    return bytes[byte];
+}
+
+
+static bool BitInFontIsExist(int eChar, int numByte, int bit)
+{
+    static uint8 prevByte = 0;
+    static int prevChar = -1;
+    static int prevNumByte = -1;
+
+    if (prevNumByte != numByte || prevChar != eChar)
+    {
+        prevByte = font->symbol[eChar].bytes[numByte];
+        prevChar = eChar;
+        prevNumByte = numByte;
+    }
+
+    return prevByte & (1 << bit);
+}
+
+
+int Primitives::Text::Draw(int eX, int eY, Color::E color)
+{
+    Painter::SetColor(color);
+
+    uchar symbol = (uchar)text.c_str()[0];
+
+    int8 width = (int8)font->symbol[symbol].width;
+    int8 height = (int8)font->height;
+
+    for (int b = 0; b < height; b++)
+    {
+        if (ByteFontNotEmpty(symbol, b))
+        {
+            int x = eX;
+            int y = eY + b + 9 - height;
+            int endBit = 8 - width;
+            for (int bit = 7; bit >= endBit; bit--)
+            {
+                if (BitInFontIsExist(symbol, b, bit))
+                {
+                    Point().Draw(x, y);
+                }
+                x++;
+            }
+        }
+    }
+
+    return eX + width;
 }

@@ -1,4 +1,5 @@
 #pragma once
+#include "Utils/String.h"
 
 
 namespace Primitives
@@ -47,9 +48,11 @@ namespace Primitives
     class Text
     {
     public:
-        Text(char* ) {};
-        Text(pString ) {};
+        Text(char* t) : text(t) {}
+        Text(pString t) : text(t) {};
         int Draw(int x, int y, Color::E color = Color::NUM);
+    private:
+        String text;
     };
 
     // numLines вертикальных линий, состоящих из count точек каждая с расстоянием между точками delta. Горизонтальная координата
