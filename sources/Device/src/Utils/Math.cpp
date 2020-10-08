@@ -9,13 +9,13 @@
 #include <cstring>
 
 
-const float tableScalesRange[Range::Count] = {2e-3f, 5e-3f, 10e-3f, 20e-3f, 50e-3f, 100e-3f, 200e-3f, 500e-3f, 1.0F, 2.0f, 5.0f, 10.0F, 20.0F};
+const float tableScalesRange[Range::Count] = {2e-3f, 5e-3f, 10e-3f, 20e-3f, 50e-3f, 100e-3f, 200e-3f, 500e-3f, 1.0F, 2.0F, 5.0F, 10.0F, 20.0F};
 /*
 static const float tableScalesTBase[TBase::Count] = 
     {2e-9, 5e-9, 10e-9, 20e-9, 50e-9, 100e-9, 200e-9, 500e-9,
     1e-6, 2e-6, 5e-6, 10e-6, 20e-6, 50e-6, 100e-6, 200e-6, 500e-6,
     1e-3, 2e-3, 5e-3, 10e-3, 20e-3, 50e-3, 100e-3, 200e-3, 500e-3,
-    1.0F, 2.0f, 5.0f, 10.0F};
+    1.0F, 2.0F, 5.0F, 10.0F};
 */
 
 const float absStepRShift[] =
@@ -29,8 +29,8 @@ const float absStepRShift[] =
     200e-3f / 20 / STEP_RSHIFT,
     500e-3f / 20 / STEP_RSHIFT,
     1.0F / 20 / STEP_RSHIFT,
-    2.0f / 20 / STEP_RSHIFT,
-    5.0f / 20 / STEP_RSHIFT,
+    2.0F / 20 / STEP_RSHIFT,
+    5.0F / 20 / STEP_RSHIFT,
     10.0F / 20 / STEP_RSHIFT,
     20.0F / 20 / STEP_RSHIFT
 };
@@ -46,8 +46,8 @@ const float voltsInPixel[] =
     200e-3f / 20,    // 200mV
     500e-3f / 20,    // 500mV
     1.0F / 20,       // 1V
-    2.0f / 20,       // 2V
-    5.0f / 20,       // 5V
+    2.0F / 20,       // 2V
+    5.0F / 20,       // 5V
     10.0F / 20,      // 10V
     20.0F / 20       // 20V
 };
@@ -74,7 +74,7 @@ const float absStepTShift[] =
     2e-9f / 20, 5e-9f / 20, 10e-9f / 20, 20e-9f / 20, 50e-9f / 20, 100e-9f / 20, 200e-9f / 20, 500e-9f / 20,
     1e-6f / 20, 2e-6f / 20, 5e-6f / 20, 10e-6f / 20, 20e-6f / 20, 50e-6f / 20, 100e-6f / 20, 200e-6f / 20, 500e-6f / 20,
     1e-3f / 20, 2e-3f / 20, 5e-3f / 20, 10e-3f / 20, 20e-3f / 20, 50e-3f / 20, 100e-3f / 20, 200e-3f / 20, 500e-3f / 20,
-    1.0F / 20, 2.0f / 20, 5.0f / 20, 10.0F / 20
+    1.0F / 20, 2.0F / 20, 5.0F / 20, 10.0F / 20
 };
 
 int Math_MinFrom2Int(int val0, int val1)
@@ -309,9 +309,9 @@ static void MultiplyToWindow(float *data, int numPoints)
     else if (WINDOW_FFT_IS_BLACKMAN)
     {
         float alpha = 0.16f;
-        float a0 = (1.0F - alpha) / 2.0f;
+        float a0 = (1.0F - alpha) / 2.0F;
         float a1 = 0.5f;
-        float a2 = alpha / 2.0f;
+        float a2 = alpha / 2.0F;
         for (int i = 0; i < numPoints; i++)
         {
             data[i] *= a0 - a1 * std::cos(2 * 3.1415926F * i / (numPoints - 1)) + a2 * std::cos(4 * 3.1415926F * i / (numPoints - 1));
@@ -321,7 +321,7 @@ static void MultiplyToWindow(float *data, int numPoints)
     {
         for (int i = 0; i < numPoints; i++)
         {
-            data[i] *= 0.5F * (1.0F - std::cos(2.0f * 3.1415926F * i / (numPoints - 1.0F)));
+            data[i] *= 0.5F * (1.0F - std::cos(2.0F * 3.1415926F * i / (numPoints - 1.0F)));
         }
     }
 #endif

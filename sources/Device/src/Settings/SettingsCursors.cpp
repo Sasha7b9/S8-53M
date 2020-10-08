@@ -11,7 +11,7 @@
 
 float sCursors_GetCursPosU(Channel::E chan, int numCur)
 {
-    return CURS_POS_U(chan, numCur) / (Grid::ChannelBottom() == Grid::FullBottom() ? 1.0F : 2.0f);
+    return CURS_POS_U(chan, numCur) / (Grid::ChannelBottom() == Grid::FullBottom() ? 1.0F : 2.0F);
 }
 
 

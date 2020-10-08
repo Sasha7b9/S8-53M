@@ -930,7 +930,7 @@ void Display::DrawMemoryWindow()
         rightX = 68;
     }
 
-    int timeWindowRectWidth = static_cast<int>((rightX - leftX) * (282.0f / sMemory_GetNumPoints(false)));
+    int timeWindowRectWidth = static_cast<int>((rightX - leftX) * (282.0F / sMemory_GetNumPoints(false)));
     float scaleX = (float)(rightX - leftX + 1) / sMemory_GetNumPoints(false);
 
     int16 shiftInMemory = SHIFT_IN_MEMORY;

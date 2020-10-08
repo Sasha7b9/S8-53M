@@ -193,7 +193,7 @@ void Choice::FuncForDraw(int x, int y)
 
 float Choice::Step()
 {
-    static const float speed = 0.1f;
+    static const float speed = 0.1F;
     static const int numLines = 12;
     if (tsChoice.choice == this)
     {

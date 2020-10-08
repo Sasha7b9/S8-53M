@@ -109,7 +109,7 @@ static void ColorType_CalcSteps(ColorType *colorType)
 
 static void ColorType_SetBrightness(ColorType *colorType)
 {
-    colorType->brightness = MaxFloat(colorType->red / 31.0f, colorType->green / 63.0f, colorType->blue / 31.0F);
+    colorType->brightness = MaxFloat(colorType->red / 31.0F, colorType->green / 63.0F, colorType->blue / 31.0F);
 
     ColorType_CalcSteps(colorType);
 }
@@ -118,7 +118,7 @@ static void ColorType_SetBrightness(ColorType *colorType)
 
 void Color_SetBrightness(ColorType *colorType, float brightness)
 {
-    int delta = (int)((brightness + 0.0005f) * 100.0F) - (int)(colorType->brightness * 100.0F);
+    int delta = (int)((brightness + 0.0005F) * 100.0F) - (int)(colorType->brightness * 100.0F);
 
     if (delta > 0)
     {
@@ -147,7 +147,7 @@ void Color_BrightnessChange(ColorType *colorType, int delta)
 
     int sign = Math_Sign(delta);
 
-    LIMITATION(colorType->brightness, colorType->brightness + sign * 0.01f, 0.0F, 1.0F);
+    LIMITATION(colorType->brightness, colorType->brightness + sign * 0.01F, 0.0F, 1.0F);
 
     colorType->red += sign * colorType->stepRed;
     colorType->green += sign * colorType->stepGreen;
@@ -155,11 +155,11 @@ void Color_BrightnessChange(ColorType *colorType, int delta)
 
     SetColor(colorType);
 
-    if (colorType->stepRed < 0.01f && colorType->stepGreen < 0.01f && colorType->stepBlue < 0.01f)
+    if (colorType->stepRed < 0.01F && colorType->stepGreen < 0.01F && colorType->stepBlue < 0.01F)
     {
-        colorType->stepRed = 0.31f;
-        colorType->stepGreen = 0.63f;
-        colorType->stepBlue = 0.31f;
+        colorType->stepRed = 0.31F;
+        colorType->stepGreen = 0.63F;
+        colorType->stepBlue = 0.31F;
     }
 }
 
@@ -181,9 +181,9 @@ void Color_Init(ColorType *colorType)
 
         if (colorType->red == 0.0F && colorType->green == 0.0F && colorType->blue == 0.0F) //-V2550 //-V550
         {
-            colorType->stepRed = 0.31f;
-            colorType->stepGreen = 0.63f;
-            colorType->stepBlue = 0.31f;
+            colorType->stepRed = 0.31F;
+            colorType->stepGreen = 0.63F;
+            colorType->stepBlue = 0.31F;
         }
     }
 }
@@ -192,7 +192,7 @@ void Color_Init(ColorType *colorType)
 
 void Color_ComponentChange(ColorType *colorType, int delta)
 {
-    static const float maxs[4] = {0.0F, 31.0f, 63.0f, 31.0f};
+    static const float maxs[4] = {0.0F, 31.0F, 63.0F, 31.0F};
     int8 index = colorType->currentField;
 
     if (index >= 1 && index <= 3)

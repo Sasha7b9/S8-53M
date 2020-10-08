@@ -311,7 +311,7 @@ float Processing::CalculatePeriod(Channel::E chan)
 
             EXIT_IF_ERRORS_FLOAT(firstIntersection, secondIntersection); //-V2550 //-V550
 
-            float per = TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0f, dataSet->tBase);
+            float per = TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
 
             period[chan] = per;
             periodIsCaclulating[chan] = true;
@@ -472,7 +472,7 @@ float Processing::CalculateDurationPlus(Channel::E chan)
 
     EXIT_IF_ERROR_FLOAT(secondIntersection);
 
-    return TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0f, dataSet->tBase);
+    return TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
 }
 
 float Processing::CalculateDurationMinus(Channel::E chan)
@@ -492,7 +492,7 @@ float Processing::CalculateDurationMinus(Channel::E chan)
 
     EXIT_IF_ERROR_FLOAT(secondIntersection);
 
-    return TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0f, dataSet->tBase);
+    return TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
 }
 
 float Processing::CalculateTimeNarastaniya(Channel::E chan)                    // WARN Здесь, возможно, нужно увеличить точность - брать не целые значени расстояний между отсчётами по времени, а рассчитывать пересечения линий
@@ -502,7 +502,7 @@ float Processing::CalculateTimeNarastaniya(Channel::E chan)                    /
 
     EXIT_IF_ERRORS_FLOAT(maxSteady, minSteady);
 
-    float value01 = (maxSteady - minSteady) * 0.1f;
+    float value01 = (maxSteady - minSteady) * 0.1F;
     float max09 = maxSteady - value01;
     float min01 = minSteady + value01;
 
@@ -518,7 +518,7 @@ float Processing::CalculateTimeNarastaniya(Channel::E chan)                    /
 
     EXIT_IF_ERROR_FLOAT(secondIntersection);
 
-    float retValue = TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0f, dataSet->tBase);
+    float retValue = TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
 
     if (MEAS_MARKED == Measure::TimeNarastaniya)
     {
@@ -538,7 +538,7 @@ float Processing::CalculateTimeSpada(Channel::E chan)                          /
 
     EXIT_IF_ERRORS_FLOAT(maxSteady, minSteady);
 
-    float value01 = (maxSteady - minSteady) * 0.1f;
+    float value01 = (maxSteady - minSteady) * 0.1F;
     float max09 = maxSteady - value01;
     float min01 = minSteady + value01;
 
@@ -554,7 +554,7 @@ float Processing::CalculateTimeSpada(Channel::E chan)                          /
 
     EXIT_IF_ERROR_FLOAT(secondIntersection);
 
-    float retValue = TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0f, dataSet->tBase);
+    float retValue = TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
 
     if (MEAS_MARKED == Measure::TimeSpada)
     {
@@ -589,7 +589,7 @@ float Processing::CalculateSkvaznostMinus(Channel::E chan)
 
 float Processing::CalculateMinSteadyRel(Channel::E chan)
 {
-    static float min[2] = {255.0f, 255.0f};
+    static float min[2] = {255.0F, 255.0F};
 
     if(!minSteadyIsCalculating[chan])
     {
@@ -624,7 +624,7 @@ float Processing::CalculateMinSteadyRel(Channel::E chan)
             else
             {
                 int numDeleted = 0;
-                float value = pic / 9.0f;
+                float value = pic / 9.0F;
                 data = &dataIn[chan][firstP];
                 float _min = min[chan];
                 while (data <= end)
@@ -649,7 +649,7 @@ float Processing::CalculateMinSteadyRel(Channel::E chan)
                         }
                     }
                 }
-                min[chan] = (numDeleted > numMin / 2.0f) ? CalculateMinRel(chan) : (float)sum / numSums;
+                min[chan] = (numDeleted > numMin / 2.0F) ? CalculateMinRel(chan) : (float)sum / numSums;
             }
         }
         minSteadyIsCalculating[chan] = true;
@@ -660,7 +660,7 @@ float Processing::CalculateMinSteadyRel(Channel::E chan)
 
 float Processing::CalculateMaxSteadyRel(Channel::E chan)
 {
-    static float max[2] = {255.0f, 255.0f};
+    static float max[2] = {255.0F, 255.0F};
 
     if(!maxSteadyIsCalculating[chan])
     {
@@ -697,7 +697,7 @@ float Processing::CalculateMaxSteadyRel(Channel::E chan)
             {
                 int numDeleted = 0;
                 int numMax = numSums;
-                float value = pic / 9.0f;
+                float value = pic / 9.0F;
 
                 data = &dataIn[chan][firstP];
                 uint8 _max = static_cast<uint8>(max[chan]);
@@ -748,7 +748,7 @@ float Processing::CalculateMaxRel(Channel::E chan)
 
 float Processing::CalculateMinRel(Channel::E chan)
 {
-    static float min[2] = {255.0f, 255.0f};
+    static float min[2] = {255.0F, 255.0F};
 
     if (!minIsCalculating[chan])
     {
@@ -768,7 +768,7 @@ float Processing::CalculateAverageRel(Channel::E chan)
     {
         float min = CalculateMinRel(chan);
         float max = CalculateMaxRel(chan);
-        ave[chan] = (min == ERROR_VALUE_FLOAT || max == ERROR_VALUE_FLOAT) ? ERROR_VALUE_FLOAT : (min + max) / 2.0f; //-V2550 //-V550
+        ave[chan] = (min == ERROR_VALUE_FLOAT || max == ERROR_VALUE_FLOAT) ? ERROR_VALUE_FLOAT : (min + max) / 2.0F; //-V2550 //-V550
         aveIsCalculating[chan] = true;
     }
     return ave[chan];
@@ -821,7 +821,7 @@ float Processing::CalculateDelayPlus(Channel::E chan)
 
     EXIT_IF_ERROR_FLOAT(secondIntersection);
 
-    return TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0f, dataSet->tBase);
+    return TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
 }
 
 float Processing::CalculateDelayMinus(Channel::E chan)
@@ -858,7 +858,7 @@ float Processing::CalculateDelayMinus(Channel::E chan)
 
     EXIT_IF_ERROR_FLOAT(secondIntersection);
 
-    return TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0f, dataSet->tBase);
+    return TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
 }
 
 float Processing::CalculatePhazaPlus(Channel::E chan)
