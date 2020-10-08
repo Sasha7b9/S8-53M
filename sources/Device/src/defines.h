@@ -23,35 +23,6 @@ typedef const uint8            *pUCHAR;
 typedef const char       *const pString;
 
 
-// Тип цвета
-struct Color { enum E
-    {
-        BLACK,
-        WHITE,
-        GRID,
-        DATA_A,
-        DATA_B,
-        MENU_FIELD,
-        MENU_TITLE,
-        MENU_TITLE_DARK,
-        MENU_TITLE_BRIGHT,
-        MENU_ITEM,
-        MENU_ITEM_DARK,
-        MENU_ITEM_BRIGHT,
-        MENU_SHADOW,
-        EMPTY,
-        EMPTY_A,
-        EMPTY_B,
-        NUM,
-        FLASH_10,
-        FLASH_01,
-        SET_INVERSE
-    };
-
-    static uint FromSettings(Color::E);
-};
-
-
 #define DEBUG
 
 #ifndef __IO
