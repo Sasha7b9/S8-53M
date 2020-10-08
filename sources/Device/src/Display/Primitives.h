@@ -40,7 +40,8 @@ namespace Primitives
     class VLine
     {
     public:
-        static void Draw(int x, int y0, int y1, Color::E color = Color::NUM);
+        VLine() { };
+        void Draw(int x, int y0, int y1, Color::E color = Color::NUM);
     };
 
     // numLines вертикальных линий, состоящих из count точек каждая с расстоянием между точками delta. Горизонтальная координата
@@ -48,7 +49,7 @@ namespace Primitives
     class MultiVPointLine
     {
     public:
-        MultiVPointLine(int numLines, uint16 *x0, int delta, int count);
+        MultiVPointLine(int _numLines, uint16 *_x0, int _delta, int _count) : numLines(_numLines), x0(_x0), delta(_delta), count(_count) { }
         void Draw(int y0, Color::E color = Color::NUM);
     private:
         int numLines;

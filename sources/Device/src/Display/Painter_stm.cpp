@@ -74,12 +74,6 @@ void Primitives::VLine::Draw(int , int , int , Color::E)
 }
 
 
-Primitives::MultiVPointLine::MultiVPointLine(int _numLines, uint16 *_x0, int _delta, int _count) : numLines(_numLines), x0(_x0), delta(_delta), count(_count)
-{
-
-}
-
-
 void Primitives::MultiVPointLine::Draw(int y, Color::E color)
 {
     Painter::SetColor(color);

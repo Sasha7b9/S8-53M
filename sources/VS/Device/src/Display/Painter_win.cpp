@@ -132,26 +132,6 @@ void Painter::SetColor(Color::E c)
 }
 
 
-void Primitives::Region::Fill(int x, int y, Color::E color)
-{
-    Painter::SetColor(color);
-    wxBrush brush = memDC.GetBrush();
-    wxPen pen = memDC.GetPen();
-    memDC.SetBrush(wxBrush(pen.GetColour()));
-    memDC.DrawRectangle({ x, y, width + 1, height + 1 });
-    memDC.SetBrush(brush);
-}
-
-
-
-void Primitives::Rectangle::Draw(int x, int y, Color::E color)
-{
-    Painter::SetColor(color);
-
-    memDC.DrawRectangle({ x, y, width + 1, height + 1 });
-}
-
-
 void Display::Init()
 {
     CreateFrame();
@@ -358,25 +338,6 @@ void Frame::HandlerEvents()
         timerLongPress.Stop();
         needStopTimerLong = false;
     }
-}
-
-
-void Primitives::HLine::Draw(int y, int x1, int x2, Color::E color)
-{
-    Painter::SetColor(color);
-    memDC.DrawLine({ x1, y }, { x2, y });
-}
-
-
-void Primitives::VLine::Draw(int x, int y0, int y1, Color::E color)
-{
-    Painter::SetColor(color);
-    memDC.DrawLine({ x, y0 }, { x, y1 });
-}
-
-
-Primitives::MultiVPointLine::MultiVPointLine(int _numLines, uint16 *_x0, int _delta, int _count) : numLines(_numLines), x0(_x0), delta(_delta), count(_count)
-{
 }
 
 
