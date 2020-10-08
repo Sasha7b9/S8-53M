@@ -202,7 +202,7 @@ char* Voltage2String(float voltage, bool alwaysSign, char buffer[20])
     else
     {
         suffix = LANG_RU ? "\x10êÂ" : "\x10kV";
-        voltage *= 1e-3f;
+        voltage *= 1e-3F;
     }
 
     char bufferOut[20];

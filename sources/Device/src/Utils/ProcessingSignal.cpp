@@ -794,7 +794,7 @@ float Processing::CalculateDelayPlus(Channel::E chan)
     float period1 = CalculatePeriod(Channel::B);
 
     EXIT_IF_ERRORS_FLOAT(period0, period1);
-    if(!Math_FloatsIsEquals(period0, period1, 1.05f))
+    if(!Math_FloatsIsEquals(period0, period1, 1.05F))
     {
         return ERROR_VALUE_FLOAT;
     }
@@ -831,7 +831,7 @@ float Processing::CalculateDelayMinus(Channel::E chan)
 
     EXIT_IF_ERRORS_FLOAT(period0, period1);
 
-    if(!Math_FloatsIsEquals(period0, period1, 1.05f))
+    if(!Math_FloatsIsEquals(period0, period1, 1.05F))
     {
         return ERROR_VALUE_FLOAT;
     }
@@ -996,8 +996,8 @@ void Processing::InterpolationSinX_X(uint8 data[FPGA_MAX_POINTS], TBase::E tBase
 98   5. 2нс  : pi/50, pi/50 * 2 ... pi/50 * 49, -pi/50 * 49 ... -pi/50 * 2, -pi/50 ...
 */
 
-#define MUL_SIN 1e7f
-#define MUL     1e6f
+#define MUL_SIN 1e7F
+#define MUL     1e6F
 #define KOEFF   (MUL / MUL_SIN)
 
     int deltas[5] = {50, 20, 10, 5, 2};

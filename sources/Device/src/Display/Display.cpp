@@ -1685,7 +1685,7 @@ void Display::DrawCursorRShift(Channel::E chan)
 
     if((!MenuIsMinimize() || !MenuIsShown()) && DRAW_RSHIFT_MARKERS_IS_TRUE)
     {
-        float scaleFull = (float)Grid::ChannelHeight() / (RShiftMax - RShiftMin) * (sService_MathEnabled() ? 0.9f : 0.91f);
+        float scaleFull = (float)Grid::ChannelHeight() / (RShiftMax - RShiftMin) * (sService_MathEnabled() ? 0.9F : 0.91F);
         float yFull = Grid::ChannelCenterHeight() - scaleFull * (rShift - RShiftZero);
 
         Region(4, 6).Fill(4, static_cast<int>(yFull - 3), ColorChannel(chan));

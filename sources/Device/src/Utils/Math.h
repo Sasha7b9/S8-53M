@@ -28,7 +28,7 @@
 
 #define ROUND(x) (x += 0.5F, x)
 
-#define PI 3.141592653589793f
+#define PI 3.141592653589793F
 
 extern const float tableScalesRange[Range::Count];
 extern const float absStepRShift[]; //-V2504

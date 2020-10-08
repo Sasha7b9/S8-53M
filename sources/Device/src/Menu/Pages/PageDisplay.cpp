@@ -424,7 +424,7 @@ ColorType colorTypeGrid = {0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::GRID
 
 void OnChanged_Grid_Brightness(void)
 {
-    Color_SetBrightness(&colorTypeGrid, BRIGHTNESS_GRID / 1e2f);
+    Color_SetBrightness(&colorTypeGrid, BRIGHTNESS_GRID / 1e2F);
 }
 
 static void BeforeDraw_Grid_Brightness(void)
