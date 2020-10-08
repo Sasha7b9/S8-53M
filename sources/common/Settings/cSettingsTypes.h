@@ -174,3 +174,11 @@ struct ENumSignalsInSec { enum E
     // ¬озвращает ограничение частоты кадров.
     static int NumSignalsInS();
 };
+
+
+// –ежим накоплени€.
+struct ModeAccumulation { enum E
+{
+    NoReset,   // ¬ этом режиме показываютс€ строго N последних измерений.
+    Reset      // ¬ этом режиме набираютс€ N последних измерений и потом сбрасываютс€.
+};};

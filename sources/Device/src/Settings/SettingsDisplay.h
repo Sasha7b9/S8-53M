@@ -69,13 +69,6 @@
 #define LINKING_RSHIFT_IS_VOLTAGE   (LINKING_RSHIFT == LinkingRShift::Voltage)   // \c true, если привязка к абсолютному напряжению.
 
 
-// Режим накопления.
-struct ModeAccumulation { enum E
-{
-    NoReset,   // В этом режиме показываются строго N последних измерений.
-    Reset      // В этом режиме набираются N последних измерений и потом сбрасываются.
-}; };
-
 // Режим отображения дополнительных боковых маркеров смещения по напряжению.
 struct AltMarkers { enum E
 {
