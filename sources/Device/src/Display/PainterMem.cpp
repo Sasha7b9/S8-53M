@@ -1,7 +1,4 @@
-
-
 #include "PainterMem.h"
-
 
 
 static uint8 *buffer;
@@ -9,12 +6,10 @@ static int width;
 volatile static int height;
 
 
-
 static uint8* FindByte(int x, int y)
 {
     return buffer + (y * width + x) / 2;
 }
-
 
 
 static uint8 GetClearMask(int x, int y)

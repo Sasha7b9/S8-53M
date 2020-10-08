@@ -1,11 +1,9 @@
-#include "Colors.h"
-#include "Settings/Settings.h"
+#include "defines.h"
 #include "common/Log.h"
+#include "common/Display/Colors.h"
+#include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
 #include "Utils/Math.h"
-#include "Hardware/Timer.h"
-#include "Display/Painter.h"
-#include <cmath>
 
 
 Color::E Color::current = Color::NUM;

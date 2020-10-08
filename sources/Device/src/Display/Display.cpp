@@ -1,38 +1,21 @@
 #include "defines.h"
-#include "Globals.h"
-#include "Settings/SettingsTypes.h"
-#include "Settings/Settings.h"
-#include "Symbols.h"
-#include "Display/Display.h"
-#include "Display/Painter.h"
+#include "common/Log.h"
 #include "common/Display/Primitives.h"
 #include "common/Display/Text.h"
-#include "common/Display/Font/Font.h"
-#include "common/Display/Colors.h"
-#include "FDrive/FDrive.h"
-#include "FPGA/FPGA.h"
+#include "Display/Display.h"
+#include "Display/Symbols.h"
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/Storage.h"
-#include "Hardware/Hardware.h"
 #include "Hardware/Sound.h"
-#include "common/Hardware/HAL/HAL.h"
-#include "VCP/VCP.h"
-#include "Menu/Menu.h"
-#include "Menu/Pages/PageCursors.h"
-#include "Menu/Pages/PageMemory.h"
-#include "Menu/Pages/PageHelp.h"
-#include "Utils/Measures.h"
-#include "Utils/Math.h"
-#include "Utils/GlobalFunctions.h"
-#include "Utils/ProcessingSignal.h"
 #include "Hardware/Timer.h"
-#include "common/Log.h"
-#include "PainterMem.h"
+#include "Menu/Menu.h"
+#include "Settings/Settings.h"
+#include "Utils/Math.h"
+#include "Utils/ProcessingSignal.h"
 #include <cmath>
-#include <limits>
-#include <cstring>
 #include <cstdio>
-#include "Display/Grid.h"
+#include <cstring>
+#include <limits>
 
 
 using namespace Primitives;

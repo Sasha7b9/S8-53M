@@ -1,13 +1,11 @@
 #include "defines.h"
-#include "common/Log.h"
-#include "Display/Painter.h"
 #include "common/Display/Primitives.h"
 #include "common/Display/Text.h"
 #include "common/Display/Font/Font.h"
-#include "Hardware/Timer.h"
-#include "Utils/Math.h"
+#include "Display/Painter.h"
 #include "Menu/MenuItems.h"
 #include "Settings/Settings.h"
+#include "Utils/Math.h"
 #include <cstdarg>
 #include <cstdio>
 #include <cstring>

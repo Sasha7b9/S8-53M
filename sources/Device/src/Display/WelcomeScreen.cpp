@@ -1,13 +1,7 @@
 #include "defines.h"
-#include "WelcomeScreen.h"
-#include "Math3D.h"
-#include "DisplayTypes.h"
-#include "Display/Display.h"
-#include "Display/Painter.h"
 #include "common/Display/Primitives.h"
 #include "common/Display/Text.h"
-#include "Hardware/Timer.h"
-#include "common/Hardware/HAL/HAL.h"
+#include "Display/Math3D.h"
 #include "Settings/Settings.h"
 
 

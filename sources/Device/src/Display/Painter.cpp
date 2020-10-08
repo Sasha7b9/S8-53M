@@ -1,18 +1,11 @@
 #include "defines.h"
-#include "common/Display/Colors.h"
-#include "Display/Painter.h"
-#include "common/Display/Primitives.h"
-#include "common/Display/Font/Font.h"
 #include "common/Log.h"
-#include "LAN/SocketTCP.h"
+#include "common/Display/Primitives.h"
+#include "Display/Painter.h"
 #include "Hardware/Timer.h"
-#include "common/Hardware/HAL/HAL.h"
-#include "Settings/Settings.h"
+#include "LAN/SocketTCP.h"
 #include "VCP/VCP.h"
 #include "Utils/Math.h"
-#include "Utils/GlobalFunctions.h"
-#include "FDrive/FDrive.h"
-#include "Menu/FileManager.h"
 
 
 using namespace Primitives;
