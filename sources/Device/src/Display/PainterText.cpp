@@ -2,7 +2,7 @@
 #include "common/Log.h"
 #include "Display/Painter.h"
 #include "Display/Primitives.h"
-#include "Font/font.h"
+#include "common/Display/Font/Font.h"
 #include "Hardware/Timer.h"
 #include "Utils/Math.h"
 #include "Menu/MenuItems.h"

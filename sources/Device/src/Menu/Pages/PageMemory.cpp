@@ -7,7 +7,7 @@
 #include "FPGA/Storage.h"
 #include "Display/Colors.h"
 #include "Display/Display.h"
-#include "Display/font/Font.h"
+#include "common/Display/Font/Font.h"
 #include "Display/Painter.h"
 #include "Display/Primitives.h"
 #include "Display/Grid.h"

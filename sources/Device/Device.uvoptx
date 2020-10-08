@@ -2817,7 +2817,7 @@
   </Group>
 
   <Group>
-    <GroupName>Display/font</GroupName>
+    <GroupName>Display/Font</GroupName>
     <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
@@ -2825,12 +2825,12 @@
     <File>
       <GroupNumber>16</GroupNumber>
       <FileNumber>211</FileNumber>
-      <FileType>5</FileType>
+      <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Display\font\Font.h</PathWithFileName>
-      <FilenameWithoutPath>Font.h</FilenameWithoutPath>
+      <PathWithFileName>..\common\Display\Font\Font.cpp</PathWithFileName>
+      <FilenameWithoutPath>Font.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2841,8 +2841,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Display\font\font5.inc</PathWithFileName>
-      <FilenameWithoutPath>font5.inc</FilenameWithoutPath>
+      <PathWithFileName>..\common\Display\Font\Font.h</PathWithFileName>
+      <FilenameWithoutPath>Font.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2853,8 +2853,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Display\font\font5display.inc</PathWithFileName>
-      <FilenameWithoutPath>font5display.inc</FilenameWithoutPath>
+      <PathWithFileName>..\common\Display\Font\font5.inc</PathWithFileName>
+      <FilenameWithoutPath>font5.inc</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2865,8 +2865,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Display\font\font8.inc</PathWithFileName>
-      <FilenameWithoutPath>font8.inc</FilenameWithoutPath>
+      <PathWithFileName>..\common\Display\Font\font5display.inc</PathWithFileName>
+      <FilenameWithoutPath>font5display.inc</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2877,8 +2877,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Display\font\font8display.inc</PathWithFileName>
-      <FilenameWithoutPath>font8display.inc</FilenameWithoutPath>
+      <PathWithFileName>..\common\Display\Font\font8.inc</PathWithFileName>
+      <FilenameWithoutPath>font8.inc</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2889,8 +2889,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Display\font\fontUGO.inc</PathWithFileName>
-      <FilenameWithoutPath>fontUGO.inc</FilenameWithoutPath>
+      <PathWithFileName>..\common\Display\Font\font8display.inc</PathWithFileName>
+      <FilenameWithoutPath>font8display.inc</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2901,8 +2901,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Display\font\fontUGO2.inc</PathWithFileName>
-      <FilenameWithoutPath>fontUGO2.inc</FilenameWithoutPath>
+      <PathWithFileName>..\common\Display\Font\fontUGO.inc</PathWithFileName>
+      <FilenameWithoutPath>fontUGO.inc</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2913,8 +2913,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Display\font\fontUGO2display.inc</PathWithFileName>
-      <FilenameWithoutPath>fontUGO2display.inc</FilenameWithoutPath>
+      <PathWithFileName>..\common\Display\Font\fontUGO2.inc</PathWithFileName>
+      <FilenameWithoutPath>fontUGO2.inc</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -2925,20 +2925,20 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Display\font\fontUGOdisplay.inc</PathWithFileName>
-      <FilenameWithoutPath>fontUGOdisplay.inc</FilenameWithoutPath>
+      <PathWithFileName>..\common\Display\Font\fontUGO2display.inc</PathWithFileName>
+      <FilenameWithoutPath>fontUGO2display.inc</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>16</GroupNumber>
       <FileNumber>220</FileNumber>
-      <FileType>8</FileType>
+      <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Display\font\Font.cpp</PathWithFileName>
-      <FilenameWithoutPath>Font.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\common\Display\Font\fontUGOdisplay.inc</PathWithFileName>
+      <FilenameWithoutPath>fontUGOdisplay.inc</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

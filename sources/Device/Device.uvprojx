@@ -1544,57 +1544,57 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Display/font</GroupName>
+          <GroupName>Display/Font</GroupName>
           <Files>
+            <File>
+              <FileName>Font.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Font\Font.cpp</FilePath>
+            </File>
             <File>
               <FileName>Font.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Display\font\Font.h</FilePath>
+              <FilePath>..\common\Display\Font\Font.h</FilePath>
             </File>
             <File>
               <FileName>font5.inc</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Display\font\font5.inc</FilePath>
+              <FilePath>..\common\Display\Font\font5.inc</FilePath>
             </File>
             <File>
               <FileName>font5display.inc</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Display\font\font5display.inc</FilePath>
+              <FilePath>..\common\Display\Font\font5display.inc</FilePath>
             </File>
             <File>
               <FileName>font8.inc</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Display\font\font8.inc</FilePath>
+              <FilePath>..\common\Display\Font\font8.inc</FilePath>
             </File>
             <File>
               <FileName>font8display.inc</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Display\font\font8display.inc</FilePath>
+              <FilePath>..\common\Display\Font\font8display.inc</FilePath>
             </File>
             <File>
               <FileName>fontUGO.inc</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Display\font\fontUGO.inc</FilePath>
+              <FilePath>..\common\Display\Font\fontUGO.inc</FilePath>
             </File>
             <File>
               <FileName>fontUGO2.inc</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Display\font\fontUGO2.inc</FilePath>
+              <FilePath>..\common\Display\Font\fontUGO2.inc</FilePath>
             </File>
             <File>
               <FileName>fontUGO2display.inc</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Display\font\fontUGO2display.inc</FilePath>
+              <FilePath>..\common\Display\Font\fontUGO2display.inc</FilePath>
             </File>
             <File>
               <FileName>fontUGOdisplay.inc</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Display\font\fontUGOdisplay.inc</FilePath>
-            </File>
-            <File>
-              <FileName>Font.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\font\Font.cpp</FilePath>
+              <FilePath>..\common\Display\Font\fontUGOdisplay.inc</FilePath>
             </File>
           </Files>
         </Group>

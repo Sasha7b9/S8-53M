@@ -1,6 +1,6 @@
 #include "PainterText.h"
 #include "DisplayTypes.h"
-#include "font/Font.h"
+#include "common/Display/Font/Font.h"
 #include "Painter.h"
 #include <cstring>
 #include <cstdarg>
