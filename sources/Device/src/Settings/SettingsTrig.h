@@ -1,13 +1,4 @@
 #pragma once
-//#include "SettingsTypes.h"
-
-
-/** @addtogroup Settings
- *  @{
- *  @addtogroup SettingsTrig
- *  @{
- */
-
 
 
 #define START_MODE              (set.trig.startMode)                    // SettingsTrig.startMode
@@ -37,58 +28,6 @@
 #define TRIG_MODE_FIND_IS_HAND  (TRIG_MODE_FIND == TrigModeFind::Hand)  // \c true, если синхронизация устанавливается вручную.
 
 
-
-
-// Режим запуска.
-struct StartMode { enum E
-{
-    Auto,             // Автоматический.
-    Wait,             // Ждущий.
-    Single            // Однократный.
-};};
-
-// Источник синхронизации.
-struct TrigSource { enum E
-{
-    A,      // Канал 1.
-    B,      // Канал 2.
-    Ext     // Внешняя.
-};};
-
-// Тип синхронизацц
-struct TrigPolarity { enum E
-{
-    Front,  // Синхронизация по фронту.
-    Back    // Синхронизация по срезу.
-};};
-
-// Вход синхронизации.
-struct TrigInput { enum E
-{
-    Full,   // Полный сиганл.
-    AC,     // Переменный.
-    LPF,    // ФНЧ.
-    HPF     // ФВЧ.
-};};
-
-// Режим длительного нажатия кнопки СИНХР.
-struct ModeLongPressTrig { enum E
-{
-    Level0,   // Сброс уровня синхронизации в 0.
-    Auto      // Автоматический поиск синхронизации - уровень устанавливается посередине между максимумом и минимумом.
-};};
-
-
-// Режим установки синхронизации.
-struct TrigModeFind { enum E
-{
-    Hand,          // Уровень синхронизации устанавливается вручную.
-    Auto           // Подстройки уровня синхронизации производится автоматически после каждого нового считанного сигнала.
-};};
-
-
-
-
 // Настройки синхронизации
 struct SettingsTrig
 {
@@ -100,7 +39,3 @@ struct SettingsTrig
     ModeLongPressTrig::E modeLongPressTrig;  // Режим работы длительного нажатия кнопки СИНХР.
     TrigModeFind::E      modeFind;           // Поиск синхронизации - вручную или автоматически.
 };
-
-
-/** @}  @}
- */
