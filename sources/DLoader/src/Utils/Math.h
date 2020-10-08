@@ -38,7 +38,6 @@ int     Math_MinFrom2Int(int val0, int val1);
 int     Math_RShift2Rel(float rShiftAbs, Range::E range);
 float   Math_VoltageCursor(float shiftCurU, Range::E range, int16 rShift);
 float   Math_TimeCursor(float shiftCurT, TBase::E tBase);
-void    Math_DataExtrapolation(uint8 *data, uint8 *there, int size);
 void    Math_PointsRelToVoltage(pUCHAR points, int numPoints, Range::E range, int16 rShift, float *voltage);
 uint8   Math_VoltageToPoint(float voltage, Range::E range, int16 rShift);
 void	Math_PointsVoltageToRel(const float *voltage, int numPoints, Range::E range, int16 rShift, uint8 *points);

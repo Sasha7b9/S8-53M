@@ -110,50 +110,6 @@ float Math_TimeCursor(float shiftCurT, TBase::E tBase)
     return shiftCurT * absStepTShift[tBase];
 }
 
-void Math_DataExtrapolation(uint8 *data, pUCHAR there, int size)
-{
-    int pointer = 0;
-    while(there[pointer] == 0)
-    {
-        pointer++;
-    }
-    for(int i = 0; i < pointer; i++)
-    {
-        data[i] = data[pointer];
-    }
-    
-    while(pointer < size)
-    {
-        while(there[pointer] != 0)
-        {
-            pointer++;
-            if(pointer >= size)
-            {
-                return;
-            }
-        }
-        pointer--;
-        int pointer2 = pointer + 1;
-        while(there[pointer2] == 0)
-        {
-            pointer2++;
-            if(pointer2 >= size)
-            {
-                return;
-            }
-        }
-        int deltaY = pointer2 - pointer;
-        if(deltaY >= 2)
-        {
-            float deltaX = (float)(data[pointer2] - data[pointer]) / deltaY;
-            for(int i = 1; i < deltaY; i++)
-            {
-                data[pointer + i] = static_cast<uint8>(data[pointer] + i * deltaX);
-            }
-        }
-        pointer = pointer2 + 1;
-    }
-}
 
 void Math_PointsRelToVoltage(pUCHAR points, int numPoints, Range::E range, int16 rShift, float *voltage)
 {
