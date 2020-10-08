@@ -1,6 +1,9 @@
 #pragma once
 
 
+#define NumChannels 2
+
+
 // Делитель.
 struct Divider { enum E
     {
@@ -314,3 +317,35 @@ struct Channel { enum E
     A_B,
     Math
 };};
+
+
+// Режим канала по входу.
+struct ModeCouple { enum E
+{
+    DC,      // Открытый вход.
+    AC,      // Закрытый вход.
+    GND      // Вход заземлён.
+};};
+
+
+// Масштаб по напряжению.
+struct Range { enum E
+{
+    _2mV,
+    _5mV,
+    _10mV,
+    _20mV,
+    _50mV,
+    _100mV,
+    _200mV,
+    _500mV,
+    _1V,
+    _2V,
+    _5V,
+    _10V,
+    _20V,
+    Count
+};};
+
+Range::E &operator++(Range::E &range);
+Range::E &operator--(Range::E &range);

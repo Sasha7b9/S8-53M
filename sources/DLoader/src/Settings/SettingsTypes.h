@@ -3,35 +3,6 @@
 
 // ChannelX
 
-#define NumChannels 2
-
-// Режим канала по входу
-struct ModeCouple { enum E
-{
-    DC,      // Открытый вход
-    AC,      // Закрытый вход
-    GND      // Вход заземлён
-};};
-
-// Масштаб по напряжению
-struct Range { enum E
-{
-    _2mV,
-    _5mV,
-    _10mV,
-    _20mV,
-    _50mV,
-    _100mV,
-    _200mV,
-    _500mV,
-    _1V,
-    _2V,
-    _5V,
-    _10V,
-    _20V,
-    Count
-};};
-
 // Режим запуска
 struct StartMode { enum E
 {

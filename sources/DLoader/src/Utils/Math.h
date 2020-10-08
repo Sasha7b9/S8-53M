@@ -1,8 +1,7 @@
 #pragma once
-
-
 #include "defines.h"
 #include "Settings/SettingsTypes.h"
+#include "common/Settings/cSettingsTypes.h"
 
 
 #define LIMIT_BELOW(x, min)         if(x < min) { x = min; }
