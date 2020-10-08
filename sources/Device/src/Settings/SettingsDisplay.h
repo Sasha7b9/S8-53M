@@ -69,24 +69,6 @@
 #define LINKING_RSHIFT_IS_VOLTAGE   (LINKING_RSHIFT == LinkingRShift::Voltage)   // \c true, если привязка к абсолютному напряжению.
 
 
-// Количество точек для расчёта скользящего фильтра.
-struct Smoothing { enum E
-{
-    Disable,
-    _2points,
-    _3points,
-    _4points,
-    _5points,
-    _6points,
-    _7points,
-    _8points,
-    _9points,
-    _10points };
-
-    // Возвращает число точек сглаживающего фильтра (режим ДИСПЛЕЙ - Сглаживание).
-    static int NumPoints();
- };
-
 // Ограничение FPS.
 struct ENumSignalsInSec { enum E
 {

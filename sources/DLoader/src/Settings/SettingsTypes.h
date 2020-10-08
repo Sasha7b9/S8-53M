@@ -1,21 +1,6 @@
 #pragma once
 
 
-// Количество точек для расчёта сглаживания.
-struct DisplaySmoothing { enum E
-{
-    Disable,
-    _2points,
-    _3points,
-    _4points,
-    _5points,
-    _6points,
-    _7points,
-    _8points,
-    _9points,
-    _10points
-};};
-
 // Ограничение FPS.
 struct ENumSignalsInSec { enum E
 {
