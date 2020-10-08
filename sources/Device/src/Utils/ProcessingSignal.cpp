@@ -282,7 +282,7 @@ float Processing::CalculateVoltageRMS(Channel::E chan)
 
     if(MEAS_MARKED == Measure::VoltageRMS)
     {
-        markerHor[chan][0] = Math_VoltageToPoint(std::sqrtf(rms / period), dataSet->range[chan], rShift);
+        markerHor[chan][0] = Math::VoltageToPoint(std::sqrtf(rms / period), dataSet->range[chan], rShift);
     }
 
     return std::sqrtf(rms / period) * VALUE_MULTIPLIER(chan);

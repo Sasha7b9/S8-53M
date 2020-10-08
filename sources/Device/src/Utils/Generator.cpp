@@ -21,7 +21,6 @@ const SGenerator Generator =
 
 static float NewNoiseValue(Channel::E channel);
 static uint8 GetSampleSinusWave(Channel::E channel, int numSample);
-static uint8 GetSampleMeanderWave(Channel::E channel, int numSample);
 
 
 static TypeWave::E type[2] = {TypeWave::Sinus, TypeWave::Meander};
@@ -48,19 +47,14 @@ void StartNewWave(Channel::E)
 
 uint8 GetSampleWave(Channel::E channel)
 {
-    return (type[channel] == TypeWave::Sinus) ? GetSampleSinusWave(channel, (numSample[channel])++) : GetSampleMeanderWave(channel, (numSample[channel])++);
+    return (type[channel] == TypeWave::Sinus) ? GetSampleSinusWave(channel, (numSample[channel])++) : 0U;
 }
 
 uint8 GetSampleSinusWave(Channel::E channel, int numSample_)
 {
     float dT = numSample_ * TSHIFT_2_ABS(1, SET_TBASE);
     float voltage = ampl[channel] * std::sin(2 * M_PI * freq[channel] * dT + angle[channel]) + NewNoiseValue(channel);
-    return Math_VoltageToPoint(voltage, SET_RANGE(channel), SET_RSHIFT(channel));
-}
-
-uint8 GetSampleMeanderWave(Channel::E, int)
-{
-    return 0;
+    return Math::VoltageToPoint(voltage, SET_RANGE(channel), SET_RSHIFT(channel));
 }
 
 float NewNoiseValue(Channel::E channel)

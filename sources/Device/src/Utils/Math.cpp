@@ -86,7 +86,7 @@ int Math::MinFrom2Int(int val0, int val1)
     return val1;
 }
 
-int Math_RShift2Rel(float rShiftAbs, Range::E range)
+int Math::RShift2Rel(float rShiftAbs, Range::E range)
 {
     int retValue = static_cast<int>(RShiftZero + rShiftAbs / absStepRShift[range]);
     if(retValue < RShiftMin)
@@ -100,18 +100,18 @@ int Math_RShift2Rel(float rShiftAbs, Range::E range)
     return retValue;
 };
 
-float Math_VoltageCursor(float shiftCurU, Range::E range, int16 rShift)
+float Math::VoltageCursor(float shiftCurU, Range::E range, int16 rShift)
 {
     return MAX_VOLTAGE_ON_SCREEN(range) - shiftCurU * voltsInPixel[range] - RSHIFT_2_ABS(rShift, range);
 }
 
-float Math_TimeCursor(float shiftCurT, TBase::E tBase)
+float Math::TimeCursor(float shiftCurT, TBase::E tBase)
 {
     return shiftCurT * absStepTShift[tBase];
 }
 
 
-void Math_PointsRelToVoltage(pUCHAR points, int numPoints, Range::E range, int16 rShift, float *voltage)
+void Math::PointsRelToVoltage(pUCHAR points, int numPoints, Range::E range, int16 rShift, float *voltage)
 {
     int voltInPixel = voltsInPixelInt[range];
     float maxVoltsOnScreen = MAX_VOLTAGE_ON_SCREEN(range);
@@ -151,7 +151,7 @@ void Math_PointsVoltageToRel(const float *voltage, int numPoints, Range::E range
     }
 }
 
-uint8 Math_VoltageToPoint(float voltage, Range::E range, int16 rShift)
+uint8 Math::VoltageToPoint(float voltage, Range::E range, int16 rShift)
 {
     int relValue = static_cast<int>((voltage + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) / voltsInPixel[range] + MIN_VALUE);
     LIMITATION(relValue, relValue, 0, 255);

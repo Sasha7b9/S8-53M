@@ -38,12 +38,14 @@ extern const float absStepTShift[]; //-V2504
 namespace Math
 {
     int     MinFrom2Int(int val0, int val1);
+    int     RShift2Rel(float rShiftAbs, Range::E range);
+    float   VoltageCursor(float shiftCurU, Range::E range, int16 rShift);
+    float   TimeCursor(float shiftCurT, TBase::E tBase);
+    void    PointsRelToVoltage(pUCHAR points, int numPoints, Range::E range, int16 rShift, float *voltage);
+    uint8   VoltageToPoint(float voltage, Range::E range, int16 rShift);
+
 }
-int     Math_RShift2Rel(float rShiftAbs, Range::E range);
-float   Math_VoltageCursor(float shiftCurU, Range::E range, int16 rShift);
-float   Math_TimeCursor(float shiftCurT, TBase::E tBase);
-void    Math_PointsRelToVoltage(pUCHAR points, int numPoints, Range::E range, int16 rShift, float *voltage);
-uint8   Math_VoltageToPoint(float voltage, Range::E range, int16 rShift);
+
 void	Math_PointsVoltageToRel(const float *voltage, int numPoints, Range::E range, int16 rShift, uint8 *points);
 uint8   Math_GetMaxFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoint);
 uint8   Math_GetMinFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoint);

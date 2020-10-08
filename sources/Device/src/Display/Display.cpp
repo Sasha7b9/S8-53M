@@ -381,8 +381,8 @@ void Display::DrawMath()
     float dataAbs0[FPGA_MAX_POINTS];
     float dataAbs1[FPGA_MAX_POINTS];
 
-    Math_PointsRelToVoltage(dataRel0, static_cast<int>(ds->length1channel), ds->range[Channel::A], static_cast<int16>(ds->rShiftCh0), dataAbs0);
-    Math_PointsRelToVoltage(dataRel1, static_cast<int>(ds->length1channel), ds->range[Channel::B], static_cast<int16>(ds->rShiftCh1), dataAbs1);
+    Math::PointsRelToVoltage(dataRel0, static_cast<int>(ds->length1channel), ds->range[Channel::A], static_cast<int16>(ds->rShiftCh0), dataAbs0);
+    Math::PointsRelToVoltage(dataRel1, static_cast<int>(ds->length1channel), ds->range[Channel::B], static_cast<int16>(ds->rShiftCh1), dataAbs1);
 
     Math_CalculateMathFunction(dataAbs0, dataAbs1, static_cast<int>(ds->length1channel));
     
@@ -462,7 +462,7 @@ void Display::DRAW_SPECTRUM(pUCHAR data, int numPoints, Channel::E channel)
     int y0 = 0;
     int y1 = 0;
 
-    Math_PointsRelToVoltage(data, numPoints, gDSet->range[channel], channel == Channel::A ? static_cast<int16>(gDSet->rShiftCh0) : static_cast<int16>(gDSet->rShiftCh1), dataR);
+    Math::PointsRelToVoltage(data, numPoints, gDSet->range[channel], channel == Channel::A ? static_cast<int16>(gDSet->rShiftCh0) : static_cast<int16>(gDSet->rShiftCh1), dataR);
     Math_CalculateFFT(dataR, numPoints, spectrum, &freq0, &density0, &freq1, &density1, &y0, &y1);
     DrawSpectrumChannel(spectrum, ColorChannel(channel));
     if (!MenuIsShown() || MenuIsMinimize())
@@ -1030,8 +1030,8 @@ void Display::WriteCursors()
             Text(sCursors_GetCursVoltage(source, 0, buffer)).Draw(x, y1);
             Text(sCursors_GetCursVoltage(source, 1, buffer)).Draw(x, y2);
             x = startX + 49;
-            float pos0 = Math_VoltageCursor(sCursors_GetCursPosU(source, 0), SET_RANGE(source), SET_RSHIFT(source));
-            float pos1 = Math_VoltageCursor(sCursors_GetCursPosU(source, 1), SET_RANGE(source), SET_RSHIFT(source));
+            float pos0 = Math::VoltageCursor(sCursors_GetCursPosU(source, 0), SET_RANGE(source), SET_RSHIFT(source));
+            float pos1 = Math::VoltageCursor(sCursors_GetCursPosU(source, 1), SET_RANGE(source), SET_RSHIFT(source));
             float delta = std::fabsf(pos1 - pos0);
             Text(":dU=").Draw(x, y1);
             Text(Voltage2String(delta, false, buffer)).Draw(x + 17, y1);
@@ -1051,8 +1051,8 @@ void Display::WriteCursors()
             Text(sCursors_GetCursorTime(source, 0, buffer)).Draw(x, y1);
             Text(sCursors_GetCursorTime(source, 1, buffer)).Draw(x, y2);
             x = startX + 153;
-            float pos0 = Math_TimeCursor(CURS_POS_T0(source), SET_TBASE);
-            float pos1 = Math_TimeCursor(CURS_POS_T1(source), SET_TBASE);
+            float pos0 = Math::TimeCursor(CURS_POS_T0(source), SET_TBASE);
+            float pos1 = Math::TimeCursor(CURS_POS_T1(source), SET_TBASE);
             float delta = std::fabsf(pos1 - pos0);
             Text(":dT=").Draw(x, y1);
             char buf[20];
