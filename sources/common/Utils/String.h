@@ -1,6 +1,6 @@
 #pragma once
 #include "Display/Colors.h"
-#include "Utils/String.h"
+#include "common/Utils/String.h"
 
 
 struct TypeConversionString

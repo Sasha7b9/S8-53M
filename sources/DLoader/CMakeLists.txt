@@ -81,12 +81,12 @@ file(GLOB HARDWARE_HAL   src/Hardware/HAL/*
                          ../common/Hardware/HAL/cHAL_TIM7.cpp)
 file(GLOB HARDWARE_USBH  src/Hardware/USBH/*)
 file(GLOB SRC            src/*.h src/*.cpp)
-file(GLOB DISPLAY        src/Display/*.h src/Display/*.cpp)
+file(GLOB DISPLAY        src/Display/*.h src/Display/*.cpp ../common/Display/*)
 file(GLOB DISPLAY_FONT   ../common/Display/Font/*)
 file(GLOB FDRIVE         src/FDrive/*)
 file(GLOB PANEL          src/Panel/* ../common/Keyboard/*)
 file(GLOB SETTINGS       src/Settings/* ../common/Settings/cSettingsTypes.h)
-file(GLOB UTILS          src/Utils/*)
+file(GLOB UTILS          src/Utils/* ../common/Utils/*)
 
 set_source_files_properties(${LIBS_FATFS} ${LIBS_HAL} ${LIBS_USBH} PROPERTIES HEADER_FILE_ONLY TRUE)
 

@@ -1,7 +1,7 @@
 #include "Definition.h"
 #include "Menu/Pages/PageService.h"
 #include "Display/Grid.h"
-#include "Display/Primitives.h"
+#include "common/Display/Primitives.h"
 #include "Display/Symbols.h"
 #include "FPGA/FPGA.h"
 #include "Menu/Menu.h"

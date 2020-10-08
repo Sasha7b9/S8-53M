@@ -11,7 +11,7 @@
 #include "Display/Colors.h"
 #include "common/Display/Font/Font.h"
 #include "Display/Painter.h"
-#include "Display/Primitives.h"
+#include "common/Display/Primitives.h"
 #include "Display/Grid.h"
 #include "Settings/Settings.h"
 #include "Utils/Math.h"

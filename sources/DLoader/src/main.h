@@ -1,5 +1,6 @@
 #pragma once
 #include <ff.h>
+#include "Display/Display.h"
     
 
 // Key configuration
@@ -32,14 +33,6 @@ struct StateDisk { enum E
     Idle,
     Start
 };};
-
-struct Display
-{
-    bool isRun;
-    float value;
-    float direction;
-    uint timePrev;
-};
 
 struct FDrive
 {

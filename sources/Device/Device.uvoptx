@@ -2749,30 +2749,6 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Display\Primitives.h</PathWithFileName>
-      <FilenameWithoutPath>Primitives.h</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>15</GroupNumber>
-      <FileNumber>206</FileNumber>
-      <FileType>8</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Display\Primitives.cpp</PathWithFileName>
-      <FilenameWithoutPath>Primitives.cpp</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>15</GroupNumber>
-      <FileNumber>207</FileNumber>
-      <FileType>5</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
       <PathWithFileName>.\src\Display\Symbols.h</PathWithFileName>
       <FilenameWithoutPath>Symbols.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
@@ -2780,7 +2756,7 @@
     </File>
     <File>
       <GroupNumber>15</GroupNumber>
-      <FileNumber>208</FileNumber>
+      <FileNumber>206</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2792,7 +2768,7 @@
     </File>
     <File>
       <GroupNumber>15</GroupNumber>
-      <FileNumber>209</FileNumber>
+      <FileNumber>207</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2804,12 +2780,36 @@
     </File>
     <File>
       <GroupNumber>15</GroupNumber>
+      <FileNumber>208</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\common\Display\Primitives.h</PathWithFileName>
+      <FilenameWithoutPath>Primitives.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>15</GroupNumber>
+      <FileNumber>209</FileNumber>
+      <FileType>8</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\common\Display\Primitives.cpp</PathWithFileName>
+      <FilenameWithoutPath>Primitives.cpp</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>15</GroupNumber>
       <FileNumber>210</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Display\Primitives_stm.cpp</PathWithFileName>
+      <PathWithFileName>..\common\Display\Primitives_stm.cpp</PathWithFileName>
       <FilenameWithoutPath>Primitives_stm.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4129,7 +4129,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Utils\String.cpp</PathWithFileName>
+      <PathWithFileName>..\common\Utils\String.cpp</PathWithFileName>
       <FilenameWithoutPath>String.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4141,7 +4141,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Utils\String.h</PathWithFileName>
+      <PathWithFileName>..\common\Utils\String.h</PathWithFileName>
       <FilenameWithoutPath>String.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4153,7 +4153,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Utils\StringUtils.cpp</PathWithFileName>
+      <PathWithFileName>..\common\Utils\StringUtils.cpp</PathWithFileName>
       <FilenameWithoutPath>StringUtils.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4165,7 +4165,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Utils\StringUtils.h</PathWithFileName>
+      <PathWithFileName>..\common\Utils\StringUtils.h</PathWithFileName>
       <FilenameWithoutPath>StringUtils.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>

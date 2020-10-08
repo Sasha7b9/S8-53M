@@ -1,12 +1,15 @@
-#include "Painter.h"
+#include "Display/Painter.h"
+#include "common/Display/Primitives.h"
 #include "Hardware/Timer.h"
 #include "Settings/Settings.h"
 #include "Utils/Math.h"
 
 
+using namespace Primitives;
+
+
 static bool inverseColors = false;
-static Color::E currentColor = Color::Count;
-//static bool framesElapsed = false;
+static Color::E currentColor = Color::NUM;
 static int numberColorsUsed = 0;
 
 
@@ -215,14 +218,15 @@ void Painter::DrawVolumeButton(int x, int y, int width, int height, int thicknes
     {
         thickness = 1;
     }
-    Painter_FillRegionC(x + thickness, y + thickness, width - thickness * 2, height - thickness * 2, normal);
+    Region(width - thickness * 2, height - thickness * 2).Fill(x + thickness, y + thickness, normal);
+
     if (isPressed || inShade)
     {
         for (int i = 0; i < thickness; i++)
         {
-            Painter_DrawHLineC(y + i, x + i, x + width - i, dark);
+            HLine().Draw(y + i, x + i, x + width - i, dark);
             Painter::DrawVLine(x + i, y + 1 + i, y + height - i);
-            Painter_DrawVLineC(x + width - i, y + 1 + i, y + height - i, bright);
+            VLine().Draw(x + width - i, y + 1 + i, y + height - i, bright);
             Painter::DrawHLine(y + height - i, x + 1 + i, x + width - i);
         }
     }
@@ -230,9 +234,9 @@ void Painter::DrawVolumeButton(int x, int y, int width, int height, int thicknes
     {
         for (int i = 0; i < thickness; i++)
         {
-            Painter_DrawHLineC(y + i, x + i, x + width - i, bright);
+            HLine().Draw(y + i, x + i, x + width - i, bright);
             Painter::DrawVLine(x + i, y + 1 + i, y + height - i);
-            Painter_DrawVLineC(x + width - i, y + 1 + i, y + height - i, dark);
+            VLine().Draw(x + width - i, y + 1 + i, y + height - i, dark);
             Painter::DrawHLine(y + height - i, x + 1 + i, x + width - i);
         }
     }
@@ -293,7 +297,7 @@ void Painter::BeginScene(Color::E color)
         }
     }
 
-    Painter_FillRegionC(0, 0, 319, 239, color);
+    Region(319, 239).Fill(0, 0, color);
 }
 
 

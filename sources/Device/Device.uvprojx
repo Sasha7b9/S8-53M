@@ -1512,16 +1512,6 @@
               <FilePath>.\src\Display\PainterText.cpp</FilePath>
             </File>
             <File>
-              <FileName>Primitives.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\Primitives.h</FilePath>
-            </File>
-            <File>
-              <FileName>Primitives.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\Primitives.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Symbols.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Display\Symbols.h</FilePath>
@@ -1537,9 +1527,19 @@
               <FilePath>.\src\Display\WelcomeScreen.cpp</FilePath>
             </File>
             <File>
+              <FileName>Primitives.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\Primitives.h</FilePath>
+            </File>
+            <File>
+              <FileName>Primitives.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Primitives.cpp</FilePath>
+            </File>
+            <File>
               <FileName>Primitives_stm.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Display\Primitives_stm.cpp</FilePath>
+              <FilePath>..\common\Display\Primitives_stm.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -2206,22 +2206,22 @@
             <File>
               <FileName>String.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Utils\String.cpp</FilePath>
+              <FilePath>..\common\Utils\String.cpp</FilePath>
             </File>
             <File>
               <FileName>String.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Utils\String.h</FilePath>
+              <FilePath>..\common\Utils\String.h</FilePath>
             </File>
             <File>
               <FileName>StringUtils.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Utils\StringUtils.cpp</FilePath>
+              <FilePath>..\common\Utils\StringUtils.cpp</FilePath>
             </File>
             <File>
               <FileName>StringUtils.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Utils\StringUtils.h</FilePath>
+              <FilePath>..\common\Utils\StringUtils.h</FilePath>
             </File>
           </Files>
         </Group>

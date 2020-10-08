@@ -6,7 +6,7 @@
 #include "common/Keyboard/Controls.h"
 #include "Display/Colors.h"
 #include "Display/Grid.h"
-#include "Display/Primitives.h"
+#include "common/Display/Primitives.h"
 #include "Utils/Math.h"
 #include "Utils/ProcessingSignal.h"
 #include "Utils/GlobalFunctions.h"

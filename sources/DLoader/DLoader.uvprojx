@@ -934,6 +934,16 @@
               <FileType>5</FileType>
               <FilePath>.\src\Display\PainterText.h</FilePath>
             </File>
+            <File>
+              <FileName>Primitives_stm.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Primitives_stm.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Primitives.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Primitives.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

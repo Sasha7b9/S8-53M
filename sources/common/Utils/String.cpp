@@ -1,8 +1,8 @@
 #include "defines.h"
 #include "Display/Painter.h"
-#include "Display/Primitives.h"
-#include "Utils/String.h"
-#include "Utils/StringUtils.h"
+#include "common/Display/Primitives.h"
+#include "common/Utils/String.h"
+#include "common/Utils/StringUtils.h"
 #include <cstring>
 #include <cstdio>
 #include <cstdlib>

@@ -1,7 +1,7 @@
 #include "defines.h"
 #include "Display/Display.h"
 #include "Display/DisplayPrimitives.h"
-#include "Display/Primitives.h"
+#include "common/Display/Primitives.h"
 #include "FPGA/FPGA.h"
 #include "Hardware/Timer.h"
 #include "common/Hardware/HAL/HAL.h"

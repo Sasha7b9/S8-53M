@@ -1,10 +1,15 @@
-#include "PainterText.h"
+#include "defines.h"
+#include "common/Display/Primitives.h"
+#include "Display/PainterText.h"
 #include "DisplayTypes.h"
 #include "common/Display/Font/Font.h"
 #include "Painter.h"
 #include <cstring>
 #include <cstdarg>
 #include <cstdio>
+
+
+using namespace Primitives;
 
 
 bool ByteFontNotEmpty(int eChar, int byte)
@@ -331,8 +336,8 @@ void Painter::DrawStringInCenterRectOnBackgroundC(int x, int y, int width, int h
 
 int Painter::DrawStringInCenterRectAndBoundItC(int x, int y, int width, int height, const char *text, Color::E colorBackground, Color::E colorFill)
 {
-    Painter_DrawRectangleC(x, y, width, height, colorFill);
-    Painter_FillRegionC(x + 1, y + 1, width - 2, height - 2, colorBackground);
+    Rectangle(width, height).Draw(x, y, colorFill);
+    Region(width - 2, height - 2).Fill(x + 1, y + 1, colorBackground);
     Painter::SetColor(colorFill);
     return Painter::DrawStringInCenterRect(x, y, width, height, text);
 }

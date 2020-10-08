@@ -210,7 +210,7 @@ static const char* colorNames[] =
 
 const char* NameColorFromValue(uint16 colorValue)
 {
-    for (int i = 0; i < Color::Count; i++)
+    for (int i = 0; i < Color::NUM; i++)
     {
         if (set.display.colors[(Color::E)i] == colorValue)
         {

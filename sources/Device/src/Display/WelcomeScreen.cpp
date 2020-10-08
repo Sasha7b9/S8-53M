@@ -4,7 +4,7 @@
 #include "DisplayTypes.h"
 #include "Display/Display.h"
 #include "Display/Painter.h"
-#include "Display/Primitives.h"
+#include "common/Display/Primitives.h"
 #include "Hardware/Timer.h"
 #include "common/Hardware/HAL/HAL.h"
 #include "Settings/Settings.h"

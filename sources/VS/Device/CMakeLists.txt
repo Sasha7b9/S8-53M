@@ -62,10 +62,10 @@ file(GLOB DISPLAY           ../../Device/src/Display/Colors.*
                             ../../Device/src/Display/Grid.*
                             ../../Device/src/Display/Painter.*
                             ../../Device/src/Display/PainterText.cpp
-                            ../../Device/src/Display/Primitives.*
+                                ../../common/Display/Primitives.*
                                          src/Display/Painter_win.cpp
                                          src/Display/Primitives_win.cpp)
-file(GLOB DISPLAY_FONT      ../../common/Display/Font/*)
+file(GLOB DISPLAY_FONT          ../../common/Display/Font/*)
 file(GLOB LAN               ../../Device/src/LAN/LAN.h
                                          src/LAN/LAN_win.cpp
                             ../../Device/src/LAN/SocketTCP.h
@@ -103,12 +103,13 @@ file(GLOB SRC                            src/main_win.cpp
                             ../../Device/src/device.*
                             ../../Device/src/Globals.*
                             ../../Device/src/Tables.*
-                            ../../common/Log.h
-                            ../../common/cLog.cpp)
+                                ../../common/Log.h
+                                ../../common/cLog.cpp)
 file(GLOB VCP               ../../Device/src/VCP/*.h
                             ../../Device/src/VCP/*.cpp)
 file(GLOB UTILS             ../../Device/src/Utils/*.h
-                            ../../Device/src/Utils/*.cpp)
+                            ../../Device/src/Utils/*.cpp
+                                ../../common/Utils/*)
 file(GLOB GUI                            src/GUI/*.h
                                          src/GUI/*.cpp
                                          src/GUI/*.c)
