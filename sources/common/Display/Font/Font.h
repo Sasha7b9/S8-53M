@@ -9,18 +9,6 @@ struct Symbol
 };
 
 
-struct Font
-{
-	int height;
-    Symbol symbol[256];
-
-	static int GetSize();
-	static int GetLengthText(const char * text);
-	static int GetHeightSymbol();
-	static int GetLengthSymbol(uchar symbol);
-};
-
-
 struct TypeFont { enum E
 {
 	_5,
@@ -30,6 +18,18 @@ struct TypeFont { enum E
 	_Count,
 	_None
 };};
+
+struct Font
+{
+    int height;
+    Symbol symbol[256];
+
+    static int GetSize();
+    static int GetLengthText(const char *text);
+    static int GetHeightSymbol();
+    static int GetLengthSymbol(uchar symbol);
+    static void Set(TypeFont::E typeFont);
+};
 
 
 extern const Font *font;

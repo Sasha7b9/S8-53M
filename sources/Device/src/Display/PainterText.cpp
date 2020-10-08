@@ -15,11 +15,6 @@
 using namespace Primitives;
 
 
-void Painter::SetFont(TypeFont::E)
-{
-}
-
-
 void Painter::LoadFont(TypeFont::E)
 {
 }

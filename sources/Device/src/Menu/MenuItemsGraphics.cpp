@@ -301,11 +301,11 @@ void DrawGovernorValue(int x, int y, const Governor *governor)
     {
         value = -value;
     }
-    Painter::SetFont(TypeFont::_5);
+    Font::Set(TypeFont::_5);
     bool sign = governor->minValue < 0;
     Text(Int2String(governor->maxValue, sign, 1, buffer)).Draw(x + 55, y - 5, COLOR_FILL);
     Text(Int2String(governor->minValue, sign, 1, buffer)).Draw(x + 55, y + 2);
-    Painter::SetFont(TypeFont::_8);
+    Font::Set(TypeFont::_8);
 
     DrawValueWithSelectedPosition(startX, y, value, Governor_NumDigits(governor), gCurDigit, true, true);
 

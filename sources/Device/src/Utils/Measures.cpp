@@ -251,7 +251,7 @@ void Measure::DrawPageChoice()
     int maxRow = num61or62 ? 8 : 5;
     int maxCol = num61or62 ? 3 : 5;
     Measure::E meas = Measure::None;
-    Painter::SetFont(TypeFont::_UGO);
+    Font::Set(TypeFont::_UGO);
     for(int row = 0; row < maxRow; row++)
     {
         for(int col = 0; col < maxCol; col++)
@@ -267,13 +267,13 @@ void Measure::DrawPageChoice()
             Region(dX - 2, dY - 2).Fill(x0 + 1, y0 + 1, active ? Color::FLASH_10 : COLOR_BACK);
             Painter::SetColor(active ? Color::FLASH_01 : COLOR_FILL);
             Painter::Draw10SymbolsInRect(x0 + 2, y0 + 1, Measure::GetChar(meas));
-            Painter::SetFont(TypeFont::_5);
+            Font::Set(TypeFont::_5);
             Painter::DrawTextRelativelyRightC(x0 + dX, y0 + 12, measures[meas].name, active ? Color::FLASH_01 : COLOR_FILL);
-            Painter::SetFont(TypeFont::_UGO);
+            Font::Set(TypeFont::_UGO);
             ++meas;
         }
     }
-    Painter::SetFont(TypeFont::_8);
+    Font::Set(TypeFont::_8);
 }
 
 

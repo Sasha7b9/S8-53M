@@ -52,3 +52,9 @@ int Font::GetLengthSymbol(uchar symbol)
 {
     return font->symbol[symbol].width + 1;
 }
+
+
+void Font::Set(TypeFont::E )
+{
+
+}

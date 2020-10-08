@@ -1022,9 +1022,9 @@ static void OnPress_SerialNumber_Change(void)
 
 static void Draw_SerialNumber_Change(int x, int y)
 {
-    Painter::SetFont(TypeFont::_UGO2);
+    Font::Set(TypeFont::_UGO2);
     Painter::Draw4SymbolsInRect(x + 2, y + 2, SYMBOL_TAB);
-    Painter::SetFont(TypeFont::_8);
+    Font::Set(TypeFont::_8);
 }
 
 // ОТЛАДКА - С/Н - Сохранить -------------------------------------------------------------------------------------------------------------------------
@@ -1054,9 +1054,9 @@ static void OnPress_SerialNumber_Save(void)
 
 static void Draw_SerialNumber_Save(int x, int y)
 {
-    Painter::SetFont(TypeFont::_UGO2);
+    Font::Set(TypeFont::_UGO2);
     Painter::Draw4SymbolsInRect(x + 2, y + 1, SYMBOL_SAVE_TO_MEM);
-    Painter::SetFont(TypeFont::_8);
+    Font::Set(TypeFont::_8);
 }
 
 

@@ -1609,12 +1609,12 @@ void Display::DrawCursorTrigLevel()
     {
         Char(SYMBOL_TRIG_LEV_NORMAL).Draw(x + 1, y - 4);
     }
-    Painter::SetFont(TypeFont::_5);
+    Font::Set(TypeFont::_5);
 
     const char simbols[3] = {'1', '2', '¬'};
 
     Char(simbols[TRIG_SOURCE]).Draw(x + 5, y - 9, COLOR_BACK);
-    Painter::SetFont(TypeFont::_8);
+    Font::Set(TypeFont::_8);
 
     if ((DRAW_RSHIFT_MARKERS != 0) && !MenuIsMinimize())
     {
@@ -1627,9 +1627,9 @@ void Display::DrawCursorTrigLevel()
         int shiftFull = TRIG_LEVEL_SOURCE + (TRIG_SOURCE_IS_EXT ? 0 : SET_RSHIFT(chan));
         int yFull = static_cast<int>(Grid::TOP + DELTA + height - scale * (shiftFull - RShiftMin - TrigLevMin) - 4);
         Region(4, 6).Fill(left + 2, yFull + 1, ColorTrig());
-        Painter::SetFont(TypeFont::_5);
+        Font::Set(TypeFont::_5);
         Char(simbols[TRIG_SOURCE]).Draw(left + 3, yFull - 5, COLOR_BACK);
-        Painter::SetFont(TypeFont::_8);
+        Font::Set(TypeFont::_8);
     }
 }
 
@@ -1680,7 +1680,7 @@ void Display::DrawCursorRShift(Channel::E chan)
         }
     }
 
-    Painter::SetFont(TypeFont::_5);
+    Font::Set(TypeFont::_5);
 
     if((!MenuIsMinimize() || !MenuIsShown()) && DRAW_RSHIFT_MARKERS_IS_TRUE)
     {
@@ -1691,7 +1691,7 @@ void Display::DrawCursorRShift(Channel::E chan)
         Char(chan == Channel::A ? '1' : '2').Draw(5, static_cast<int>(yFull - 9), COLOR_BACK);
     }
     Char(chan == Channel::A ? '1' : '2').Draw(static_cast<int>(x - 7), static_cast<int>(y - 9), COLOR_BACK);
-    Painter::SetFont(TypeFont::_8);
+    Font::Set(TypeFont::_8);
 }
 
 
@@ -2062,7 +2062,7 @@ void Display::DrawLowPart()
     x += 82;
     y0 = y0 - 3;
     y1 = y1 - 6;
-    Painter::SetFont(TypeFont::_5);
+    Font::Set(TypeFont::_5);
     
     if (MODE_WORK_IS_DIRECT)
     {
@@ -2075,7 +2075,7 @@ void Display::DrawLowPart()
     x += 42;
     VLine().Draw(x, Grid::Bottom() + 2, Display::HEIGHT - 2);
 
-    Painter::SetFont(TypeFont::_8);
+    Font::Set(TypeFont::_8);
 
     if (MODE_WORK_IS_DIRECT)
     {
@@ -2097,7 +2097,7 @@ void Display::DrawLowPart()
 
     HLine().Draw(x + 55, Grid::Bottom() + 2, Display::HEIGHT - 2);
 
-    Painter::SetFont(TypeFont::_UGO2);
+    Font::Set(TypeFont::_UGO2);
 
     // ‘ÎÂ¯Í‡
     if (FLASH_DRIVE_IS_CONNECTED)
@@ -2126,9 +2126,9 @@ void Display::DrawLowPart()
 
     if (MODE_WORK_IS_DIRECT)
     {
-        Painter::SetFont(TypeFont::_5);
+        Font::Set(TypeFont::_5);
         WriteStringAndNumber("—√À¿∆.:", x + 57, Grid::Bottom() + 10, Smoothing::NumPoints());
-        Painter::SetFont(TypeFont::_8);
+        Font::Set(TypeFont::_8);
     }
 }
 
@@ -2419,7 +2419,7 @@ void Display::OneStringDown()
 void Display::DrawConsole()
 {
     int count = 0;
-    Painter::SetFont(sDebug_GetSizeFontForConsole() == 5 ? TypeFont::_5 : TypeFont::_8);
+    Font::Set(sDebug_GetSizeFontForConsole() == 5 ? TypeFont::_5 : TypeFont::_8);
     int height = Font::GetSize();
 
     int lastString = FirstEmptyString() - 1;
@@ -2453,7 +2453,7 @@ void Display::DrawConsole()
         count++;
     }
 
-    Painter::SetFont(TypeFont::_8);
+    Font::Set(TypeFont::_8);
 }
 
 

@@ -19,7 +19,7 @@ void Display::Init()
     Painter::LoadFont(TypeFont::_8);
     Painter::LoadFont(TypeFont::_UGO);
     Painter::LoadFont(TypeFont::_UGO2);
-    Painter::SetFont(TypeFont::_8);
+    Font::Set(TypeFont::_8);
 
     Painter::LoadPalette();
 }
