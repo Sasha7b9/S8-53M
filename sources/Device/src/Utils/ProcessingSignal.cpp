@@ -413,7 +413,7 @@ int Processing::CalculatePeriodAccurately(Channel::E chan)
 float Processing::CalculateFreq(Channel::E chan)
 {
     float period = CalculatePeriod(chan);
-    return period == ERROR_VALUE_FLOAT ? ERROR_VALUE_FLOAT : 1.0f / period; //-V2550 //-V550
+    return period == ERROR_VALUE_FLOAT ? ERROR_VALUE_FLOAT : 1.0F / period; //-V2550 //-V550
 }
 
 float Processing::FindIntersectionWithHorLine(Channel::E chan, int numIntersection, bool downToUp, uint8 yLine)

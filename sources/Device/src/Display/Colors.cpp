@@ -109,7 +109,7 @@ static void ColorType_CalcSteps(ColorType *colorType)
 
 static void ColorType_SetBrightness(ColorType *colorType)
 {
-    colorType->brightness = MaxFloat(colorType->red / 31.0f, colorType->green / 63.0f, colorType->blue / 31.0f);
+    colorType->brightness = MaxFloat(colorType->red / 31.0f, colorType->green / 63.0f, colorType->blue / 31.0F);
 
     ColorType_CalcSteps(colorType);
 }
@@ -140,14 +140,14 @@ void Color_SetBrightness(ColorType *colorType, float brightness)
 
 void Color_BrightnessChange(ColorType *colorType, int delta)
 {
-    if ((delta > 0 && colorType->brightness == 1.0f) || (delta < 0 && colorType->brightness == 0.0F)) //-V2550 //-V550
+    if ((delta > 0 && colorType->brightness == 1.0F) || (delta < 0 && colorType->brightness == 0.0F)) //-V2550 //-V550
     {
         return;
     }
 
     int sign = Math_Sign(delta);
 
-    LIMITATION(colorType->brightness, colorType->brightness + sign * 0.01f, 0.0F, 1.0f);
+    LIMITATION(colorType->brightness, colorType->brightness + sign * 0.01f, 0.0F, 1.0F);
 
     colorType->red += sign * colorType->stepRed;
     colorType->green += sign * colorType->stepGreen;

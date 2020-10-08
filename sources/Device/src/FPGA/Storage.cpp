@@ -79,8 +79,8 @@ void Storage::CalculateAroundAverage(uint8 *data0, uint8 *data1, const DataSetti
             numAveData = ENumAveraging::NumAverages();
         }
         float numAveDataF = static_cast<float>(numAveData);
-        float numAveDataFless = numAveDataF - 1.0f;
-        float numAveDataInv = 1.0f / numAveDataF;
+        float numAveDataFless = numAveDataF - 1.0F;
+        float numAveDataInv = 1.0F / numAveDataF;
         float* aData0 = &aveData0[0];
         float* aData1 = &aveData1[0];
         uint8* d0 = &data0[0];

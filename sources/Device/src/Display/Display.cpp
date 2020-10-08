@@ -279,7 +279,7 @@ void Display::DrawSignalPointed(pUCHAR data, const DataSettings *ds, int startPo
     
     uint8 dataCD[281];
 
-    if (scaleX == 1.0f) //-V550 //-V2550
+    if (scaleX == 1.0F) //-V550 //-V2550
     {
         for (int i = startPoint; i < endPoint; i++)
         {
@@ -1085,7 +1085,7 @@ void Display::WriteCursors()
                 Region(width - 2, 10).Fill(x0 + 1, Grid::TOP + 1, COLOR_BACK);
                 Painter::DrawTextC(x0 + 1, Grid::TOP + 2, "1/dT=", colorText);
                 char buff[20];
-                Painter::DrawText(x0 + 25, Grid::TOP + 2, Freq2String(1.0f / delta, false, buff));
+                Painter::DrawText(x0 + 25, Grid::TOP + 2, Freq2String(1.0F / delta, false, buff));
             }
         }
     }
@@ -2083,7 +2083,7 @@ void Display::DrawLowPart()
         char mesFreq[20] = "\x7c=";
         char buf[20];
         float freq = FPGA::GetFreq();
-        if (freq == -1.0f) //-V550 //-V2550
+        if (freq == -1.0F) //-V550 //-V2550
         {
             std::strcat(mesFreq, "******");
         }

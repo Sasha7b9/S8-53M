@@ -27,7 +27,7 @@ static uint8 GetSampleMeanderWave(Channel::E channel, int numSample);
 static TypeWave::E type[2] = {TypeWave::Sinus, TypeWave::Meander};
 static float freq[2] = {1000.0F, 500.0F};
 static float angle[2] = {0.05f, 0.1f};
-static float ampl[2] = {1.0f, 0.5f};
+static float ampl[2] = {1.0F, 0.5f};
 static float amplNoise[2] = {0.1f, 0.1f};
 static int numSample[2] = {0, 0};
 

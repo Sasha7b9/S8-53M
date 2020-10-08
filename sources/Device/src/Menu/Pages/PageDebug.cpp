@@ -905,7 +905,7 @@ static void OnPress_SerialNumber(void)
     Menu::OpenPageAndSetItCurrent(PageDebug::SerialNumber::GetPointer());
     Display::SetAddDrawFunction(Draw_EnterSerialNumber);
     MALLOC_EXTRAMEM(StructForSN, s);
-    s->number = 01; //-V522
+    s->number = 1; //-V522
     s->year = 2017;
     s->curDigt = 0;
 }

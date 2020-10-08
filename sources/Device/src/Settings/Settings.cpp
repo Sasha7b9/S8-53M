@@ -65,7 +65,7 @@ static const Settings defaultSettings =
     // channels
     {
         {
-            1.0f,                   // коэффициент калибровки
+            1.0F,                   // коэффициент калибровки
             RShiftZero,
             {{0}, {0}},             // rShiftAdd
             ModeCouple::AC,          // ModCouple
@@ -77,7 +77,7 @@ static const Settings defaultSettings =
 			0                       // addShiftADC
         },
         {
-            1.0f,                   // коэффициент калибровки
+            1.0F,                   // коэффициент калибровки
             RShiftZero,
             {{0}, {0}},             // rShiftAdd
             ModeCouple::AC,          // ModCouple

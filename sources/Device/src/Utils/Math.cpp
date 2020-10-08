@@ -9,13 +9,13 @@
 #include <cstring>
 
 
-const float tableScalesRange[Range::Count] = {2e-3f, 5e-3f, 10e-3f, 20e-3f, 50e-3f, 100e-3f, 200e-3f, 500e-3f, 1.0f, 2.0f, 5.0f, 10.0F, 20.0F};
+const float tableScalesRange[Range::Count] = {2e-3f, 5e-3f, 10e-3f, 20e-3f, 50e-3f, 100e-3f, 200e-3f, 500e-3f, 1.0F, 2.0f, 5.0f, 10.0F, 20.0F};
 /*
 static const float tableScalesTBase[TBase::Count] = 
     {2e-9, 5e-9, 10e-9, 20e-9, 50e-9, 100e-9, 200e-9, 500e-9,
     1e-6, 2e-6, 5e-6, 10e-6, 20e-6, 50e-6, 100e-6, 200e-6, 500e-6,
     1e-3, 2e-3, 5e-3, 10e-3, 20e-3, 50e-3, 100e-3, 200e-3, 500e-3,
-    1.0f, 2.0f, 5.0f, 10.0F};
+    1.0F, 2.0f, 5.0f, 10.0F};
 */
 
 const float absStepRShift[] =
@@ -28,7 +28,7 @@ const float absStepRShift[] =
     100e-3f / 20 / STEP_RSHIFT,
     200e-3f / 20 / STEP_RSHIFT,
     500e-3f / 20 / STEP_RSHIFT,
-    1.0f / 20 / STEP_RSHIFT,
+    1.0F / 20 / STEP_RSHIFT,
     2.0f / 20 / STEP_RSHIFT,
     5.0f / 20 / STEP_RSHIFT,
     10.0F / 20 / STEP_RSHIFT,
@@ -45,7 +45,7 @@ const float voltsInPixel[] =
     100e-3f / 20,    // 100mV
     200e-3f / 20,    // 200mV
     500e-3f / 20,    // 500mV
-    1.0f / 20,       // 1V
+    1.0F / 20,       // 1V
     2.0f / 20,       // 2V
     5.0f / 20,       // 5V
     10.0F / 20,      // 10V
@@ -74,7 +74,7 @@ const float absStepTShift[] =
     2e-9f / 20, 5e-9f / 20, 10e-9f / 20, 20e-9f / 20, 50e-9f / 20, 100e-9f / 20, 200e-9f / 20, 500e-9f / 20,
     1e-6f / 20, 2e-6f / 20, 5e-6f / 20, 10e-6f / 20, 20e-6f / 20, 50e-6f / 20, 100e-6f / 20, 200e-6f / 20, 500e-6f / 20,
     1e-3f / 20, 2e-3f / 20, 5e-3f / 20, 10e-3f / 20, 20e-3f / 20, 50e-3f / 20, 100e-3f / 20, 200e-3f / 20, 500e-3f / 20,
-    1.0f / 20, 2.0f / 20, 5.0f / 20, 10.0F / 20
+    1.0F / 20, 2.0f / 20, 5.0f / 20, 10.0F / 20
 };
 
 int Math_MinFrom2Int(int val0, int val1)
@@ -161,7 +161,7 @@ void Math_PointsRelToVoltage(pUCHAR points, int numPoints, Range::E range, int16
     float maxVoltsOnScreen = MAX_VOLTAGE_ON_SCREEN(range);
     float rShiftAbs = RSHIFT_2_ABS(rShift, range);
     int diff = static_cast<int>((MIN_VALUE * voltInPixel) + (maxVoltsOnScreen + rShiftAbs) * 20e3F);
-    float koeff = 1.0f / 20e3f;
+    float koeff = 1.0F / 20e3f;
     for (int i = 0; i < numPoints; i++)
     {
         voltage[i] = static_cast<float>(points[i] * voltInPixel - diff) * koeff;
@@ -172,7 +172,7 @@ void Math_PointsVoltageToRel(const float *voltage, int numPoints, Range::E range
 {
     float maxVoltOnScreen = MAX_VOLTAGE_ON_SCREEN(range);
     float rShiftAbs = RSHIFT_2_ABS(rShift, range);
-    float voltInPixel = 1.0f / voltsInPixel[range];
+    float voltInPixel = 1.0F / voltsInPixel[range];
 
     float add = maxVoltOnScreen + rShiftAbs;
 
@@ -309,7 +309,7 @@ static void MultiplyToWindow(float *data, int numPoints)
     else if (WINDOW_FFT_IS_BLACKMAN)
     {
         float alpha = 0.16f;
-        float a0 = (1.0f - alpha) / 2.0f;
+        float a0 = (1.0F - alpha) / 2.0f;
         float a1 = 0.5f;
         float a2 = alpha / 2.0f;
         for (int i = 0; i < numPoints; i++)
@@ -387,7 +387,7 @@ void Math_CalculateFFT(float *dataR, int numPoints, float *result, float *freq0,
         float rw = Rcoef[logN - n];
         float iw = Icoef[logN - n];
         int in = ie >> 1;
-        float ru = 1.0f;
+        float ru = 1.0F;
         float iu = 0.0F;
         for (int j = 0; j < in; j++) 
         {
@@ -469,7 +469,7 @@ void Math_CalculateFFT(float *dataR, int numPoints, float *result, float *freq0,
             {
                 result[i] = minDB;
             }
-            result[i] = 1.0f - result[i] / minDB;
+            result[i] = 1.0F - result[i] / minDB;
         }
     }
     else
