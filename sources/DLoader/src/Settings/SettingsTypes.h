@@ -1,16 +1,6 @@
 #pragma once
 
 
-// Ограничение FPS.
-struct ENumSignalsInSec { enum E
-{
-    _25,
-    _10,
-    _5,
-    _2,
-    _1
-}; };
-
 struct ModeAccumulation { enum E
 {
     NoReset,   // В этом режиме показываются строго N последних

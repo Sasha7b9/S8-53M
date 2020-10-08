@@ -159,3 +159,18 @@ struct Smoothing { enum E
     // Возвращает число точек сглаживающего фильтра (режим ДИСПЛЕЙ - Сглаживание).
     static int NumPoints();
 };
+
+
+// Ограничение FPS.
+struct ENumSignalsInSec { enum E
+    {
+        _25,
+        _10,
+        _5,
+        _2,
+        _1
+    };
+
+    // Возвращает ограничение частоты кадров.
+    static int NumSignalsInS();
+};

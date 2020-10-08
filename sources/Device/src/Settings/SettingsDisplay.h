@@ -69,19 +69,6 @@
 #define LINKING_RSHIFT_IS_VOLTAGE   (LINKING_RSHIFT == LinkingRShift::Voltage)   // \c true, если прив€зка к абсолютному напр€жению.
 
 
-// ќграничение FPS.
-struct ENumSignalsInSec { enum E
-{
-    _25,
-    _10,
-    _5,
-    _2,
-    _1  };
-
-    // ¬озвращает ограничение частоты кадров.
-    static int NumSignalsInS();
- };
-
 // –ежим накоплени€.
 struct ModeAccumulation { enum E
 {
