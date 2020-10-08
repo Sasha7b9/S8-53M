@@ -99,7 +99,7 @@ void Painter::BeginScene(Color::E color)
     memDC.SelectObject(bitmapButton);
     wxBrush brush({ 0, 0, 0 }, wxTRANSPARENT);
     memDC.SetBrush(brush);
-    SetColor(color);
+    Color::SetCurrent(color);
     Region(Display::WIDTH, Display::HEIGHT).Fill(0, 0, color);
 }
 
@@ -111,7 +111,7 @@ void Painter::EndScene(bool)
 }
 
 
-void Painter::SetColor(Color::E c)
+void Color::SetCurrent(Color::E c)
 {
     if (c == Color::NUM)
     {

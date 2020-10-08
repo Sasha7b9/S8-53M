@@ -160,7 +160,7 @@ void Display::DrawMarkersForMeasure(float scale, Channel::E chan)
     {
         return;
     }
-    Painter::SetColor(ColorCursors(chan));
+    Color::SetCurrent(ColorCursors(chan));
     for(int numMarker = 0; numMarker < 2; numMarker++)
     {
         int pos = Processing::GetMarkerHorizontal(chan, numMarker);
@@ -363,16 +363,16 @@ void Display::DrawDataChannel(uint8 *data, Channel::E chan, DataSettings *ds, in
         }
     }
 
-    Painter::SetColor(ColorChannel(chan));
+    Color::SetCurrent(ColorChannel(chan));
     if(MODE_DRAW_IS_SIGNAL_LINES)
     {
         /*
         if (set.display.numAveraging > ENumAveraging::_1)
         {
-            Painter::SetColor(ColorGrid());
+            Color::SetCurrent(ColorGrid());
             DrawSignalLined(DS_GetData(chan, 0), ds, firstPoint, lastPoint, minY, maxY, scaleY, scaleX, calculateFiltr);    // WARN
         }
-        Painter::SetColor(ColorChannel(chan));
+        Color::SetCurrent(ColorChannel(chan));
         */
         DrawSignalLined(data, ds, firstPoint, lastPoint, minY, maxY, scaleY, scaleX, calculateFiltr);
     }
@@ -424,7 +424,7 @@ void Display::DrawMath()
 
 void Display::DrawSpectrumChannel(const float *spectrum, Color::E color)
 {
-    Painter::SetColor(color);
+    Color::SetCurrent(color);
 	int gridLeft = Grid::Left();
 	int gridBottom = Grid::MathBottom();
 	int gridHeight = Grid::MathHeight();
@@ -443,7 +443,7 @@ void Display::WriteParametersFFT(Channel::E chan, float freq0, float density0, f
     int dY = 10;
 
     char buffer[20];
-    Painter::SetColor(COLOR_FILL);
+    Color::SetCurrent(COLOR_FILL);
     Text(Freq2String(freq0, false, buffer)).Draw(x, y);
     y += dY;
     Text(Freq2String(freq1, false, buffer)).Draw(x, y);
@@ -455,7 +455,7 @@ void Display::WriteParametersFFT(Channel::E chan, float freq0, float density0, f
     {
         y += dY * 3 + 4;
     }
-    Painter::SetColor(ColorChannel(chan));
+    Color::SetCurrent(ColorChannel(chan));
     Text(SCALE_FFT_IS_LOG ? Float2Db(density0, 4, buffer) : Float2String(density0, false, 7, buffer)).Draw(x, y);
     y += dY;
     Text(SCALE_FFT_IS_LOG ? Float2Db(density1, 4, buffer) : Float2String(density1, false, 7, buffer)).Draw(x, y);
@@ -742,7 +742,7 @@ void Display::DrawTime(int x, int y)
     
     char buffer[20];
     
-    Painter::SetColor(COLOR_FILL);
+    Color::SetCurrent(COLOR_FILL);
     
     if (MODE_WORK_IS_MEMINT || MODE_WORK_IS_LATEST)
     {
@@ -998,7 +998,7 @@ void Display::DrawMemoryWindow()
 
     Region(6, 6).Fill(static_cast<int>(xShift - 1), 3, COLOR_BACK);
     Region(4, 4).Fill(static_cast<int>(xShift), 4, COLOR_FILL);
-    Painter::SetColor(COLOR_BACK);
+    Color::SetCurrent(COLOR_BACK);
 
     if(xShift == leftX - 2) //-V2550 //-V550
     {
@@ -1061,7 +1061,7 @@ void Display::WriteCursors()
         x += 3;
         if(!CURS_CNTRL_T_IS_DISABLE(source))
         {
-            Painter::SetColor(colorText);
+            Color::SetCurrent(colorText);
             Text("1:").Draw(x, y1);
             Text("2:").Draw(x, y2);
             x+=7;
@@ -1264,7 +1264,7 @@ void Display::Update(bool endScene)
 
     DrawTimeForFrame(gTimerTics - timeStart);
 
-    Painter::SetColor(COLOR_FILL);
+    Color::SetCurrent(COLOR_FILL);
 
     Painter::EndScene(endScene);
 
@@ -1325,13 +1325,13 @@ void Display::DrawGridSpectrum()
             HLine().Draw(y, Grid::Left(), Grid::Left() + 256, ColorGrid());
             if (!MenuIsMinimize())
             {
-                Painter::SetColor(COLOR_FILL);
+                Color::SetCurrent(COLOR_FILL);
                 Text(strs[i]).Draw(3, y - 4);
             }
         }
         if (!MenuIsMinimize())
         {
-            Painter::SetColor(COLOR_FILL);
+            Color::SetCurrent(COLOR_FILL);
             Text("дБ").Draw(5, Grid::MathTop() + 1);
         }
     }
@@ -1499,7 +1499,7 @@ void Display::DrawGrid(int left, int top, int width, int height)
     int right = left + width;
     int bottom = top + height;
 
-    Painter::SetColor(COLOR_FILL);
+    Color::SetCurrent(COLOR_FILL);
 
     if (top == Grid::TOP)
     {
@@ -1521,7 +1521,7 @@ void Display::DrawGrid(int left, int top, int width, int height)
     int centerX = left + width / 2;
     int centerY = top + height / 2;
 
-    Painter::SetColor(ColorGrid());
+    Color::SetCurrent(ColorGrid());
     if (TYPE_GRID_IS_1)
     {
         DrawGridType1(left, top, right, bottom, static_cast<float>(centerX), static_cast<float>(centerY), deltaX, deltaY, stepX, stepY);
@@ -1591,7 +1591,7 @@ void Display::DrawCursorTrigLevel()
     y = (y - Grid::ChannelCenterHeight()) + Grid::ChannelCenterHeight();
 
     int x = Grid::Right();
-    Painter::SetColor(ColorTrig());
+    Color::SetCurrent(ColorTrig());
     if(y > Grid::ChannelBottom())
     {
         Char(SYMBOL_TRIG_LEV_LOWER).Draw(x + 3, Grid::ChannelBottom() - 11);;
@@ -1774,7 +1774,7 @@ void Display::DrawVerticalCursor(int x, int yTearing)
 void Display::DrawCursors()
 {
     Channel::E source = CURS_SOURCE;
-    Painter::SetColor(ColorCursors(source));
+    Color::SetCurrent(ColorCursors(source));
     if (sCursors_NecessaryDrawCursors())
     {
         bool bothCursors = !CURS_CNTRL_T_IS_DISABLE(source) && !CURS_CNTRL_U_IS_DISABLE(source);  // Признак того, что включены и вертикальные и 
@@ -2117,7 +2117,7 @@ void Display::DrawLowPart()
         Painter::Draw4SymbolsInRectC(x + 72, Grid::Bottom() + 2, SYMBOL_USB, CLIENT_VCP_IS_CONNECTED ? COLOR_FILL : Color::FLASH_01);
     }
     
-    Painter::SetColor(COLOR_FILL);
+    Color::SetCurrent(COLOR_FILL);
     // Пиковый детектор
     if(!PEAKDET_IS_DISABLE)
     {

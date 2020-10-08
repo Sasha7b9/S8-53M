@@ -187,7 +187,7 @@ int String::Draw(int x, int y, Color::E color) const
 {
     if (color != Color::NUM)
     {
-        Painter::SetColor(color);
+        Color::SetCurrent(color);
     }
 
     return Text(c_str()).Draw(x, y);

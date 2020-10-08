@@ -41,11 +41,11 @@ void Painter::CalculateCurrentColor()
 {
     if (currentColor == Color::FLASH_10)
     {
-        SetColor(inverseColors ? COLOR_BACK : COLOR_FILL);
+        Color::SetCurrent(inverseColors ? COLOR_BACK : COLOR_FILL);
     }
     else if (currentColor == Color::FLASH_01)
     {
-        SetColor(inverseColors ? COLOR_FILL : COLOR_BACK);
+        Color::SetCurrent(inverseColors ? COLOR_FILL : COLOR_BACK);
     }
 }
 
@@ -174,7 +174,7 @@ Color::E Painter::CurrentColor(void)
 
 void Painter::DrawLineC(int x0, int y0, int x1, int y1, Color::E color)
 {
-    SetColor(color);
+    Color::SetCurrent(color);
     DrawLine(x0, y0, x1, y1);
 }
 

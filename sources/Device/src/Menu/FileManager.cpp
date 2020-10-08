@@ -139,7 +139,7 @@ bool FM::FileIsExist(const char name[255])
 
 void FM::DrawNameCurrentDir(int left, int top)
 {
-    Painter::SetColor(COLOR_FILL);
+    Color::SetCurrent(COLOR_FILL);
     int length = Font::GetLengthText(currentDir);
     if (length < 277)
     {

@@ -954,6 +954,11 @@
               <FileType>5</FileType>
               <FilePath>..\common\Display\Text.h</FilePath>
             </File>
+            <File>
+              <FileName>Colors_stm.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Colors_stm.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

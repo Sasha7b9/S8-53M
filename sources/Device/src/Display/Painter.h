@@ -31,8 +31,6 @@ public:
 
     static void ResetFlash();
 
-    static void SetColor(Color::E color);
-
     static Color::E CurrentColor();
 
     static void LoadPalette();

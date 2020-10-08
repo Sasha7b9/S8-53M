@@ -33,8 +33,3 @@ void Painter::BeginScene(Color::E color)
 void Painter::EndScene(bool)
 {
 }
-
-
-void Painter::SetColor(Color::E)
-{
-}

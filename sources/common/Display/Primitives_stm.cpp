@@ -18,7 +18,7 @@ void Primitives::VLine::Draw(int, int, int, Color::E)
 
 void Primitives::MultiVPointLine::Draw(int y, Color::E color)
 {
-    Painter::SetColor(color);
+    Color::SetCurrent(color);
 
     for (int i = 0; i < numLines; i++)
     {
@@ -29,7 +29,7 @@ void Primitives::MultiVPointLine::Draw(int y, Color::E color)
 
 void Primitives::Rectangle::Draw(int x, int y, Color::E color)
 {
-    Painter::SetColor(color);
+    Color::SetCurrent(color);
 
     HLine().Draw(y, x, x + width);
     VLine().Draw(x, y, y + height);
@@ -43,7 +43,7 @@ void Primitives::Rectangle::Draw(int x, int y, Color::E color)
 
 void Primitives::MultiHPointLine::Draw(int x, Color::E color)
 {
-    Painter::SetColor(color);
+    Color::SetCurrent(color);
 
     for (int i = 0; i < numLines; i++)
     {

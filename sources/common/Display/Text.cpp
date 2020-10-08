@@ -63,7 +63,7 @@ static void DrawCharInColorDisplay(int eX, int eY, uchar symbol)
 
 int Char::Draw(int x, int y, Color::E color)
 {
-    Painter::SetColor(color);
+    Color::SetCurrent(color);
 
     Painter::CalculateCurrentColor();
 
@@ -85,7 +85,7 @@ int Char::Draw(int x, int y, Color::E color)
 
 int Text::Draw(int x, int y, Color::E color)
 {
-    Painter::SetColor(color);
+    Color::SetCurrent(color);
 
     char *pointer = text.c_str();
 

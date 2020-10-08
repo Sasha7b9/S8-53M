@@ -587,7 +587,7 @@ static void DrawMemoryWave(int num, bool exist)
     int width = 12;
     Region(width, 10).Fill(x, y, num == CURRENT_NUM_INT_SIGNAL ? Color::FLASH_10 : COLOR_BACK);
     Rectangle(width, 10).Draw(x, y, COLOR_FILL);
-    Painter::SetColor(num == CURRENT_NUM_INT_SIGNAL ? Color::FLASH_01 : COLOR_FILL);
+    Color::SetCurrent(num == CURRENT_NUM_INT_SIGNAL ? Color::FLASH_01 : COLOR_FILL);
     if (exist)
     {
         Text(Int2String(num + 1, false, 2, buffer)).Draw(x + 2, y + 1);
@@ -1004,7 +1004,7 @@ static void DrawFileMask(int x, int y)
 {
     char *ch = FILE_NAME_MASK;
 
-    Painter::SetColor(COLOR_FILL);
+    Color::SetCurrent(COLOR_FILL);
     while (*ch != '\0')
     {
         if (*ch >= 32)
@@ -1092,7 +1092,7 @@ void DrawSetMask()
     };
 
     deltaY--;
-    Painter::SetColor(COLOR_FILL);
+    Color::SetCurrent(COLOR_FILL);
     for(int i = 0; i < sizeof(strings) / 4; i++)
     {
         Text(strings[i]).Draw(x0 + deltaX, y0 + 100 + deltaY * i);
