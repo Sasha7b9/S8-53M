@@ -28,7 +28,7 @@ int Font::GetSize()
 
 
 
-int Font_GetLengthText(const char *text)
+int Font::GetLengthText(const char *text)
 {
     int retValue = 0;
     while (*text)

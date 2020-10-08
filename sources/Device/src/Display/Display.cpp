@@ -64,7 +64,7 @@ void Display::DrawStringNavigation()
     char *string = Menu::StringNavigation(buffer);
     if(string) 
     {
-        int length = Font_GetLengthText(string);
+        int length = Font::GetLengthText(string);
         int height = 10;
         Rectangle(length + 2, height).Draw(Grid::Left(), Grid::TOP, COLOR_FILL);
         Region(length, height - 2).Fill(Grid::Left() + 1, Grid::TOP + 1, COLOR_BACK);
@@ -2442,7 +2442,7 @@ void Display::DrawConsole()
 
     for(int numString = firstString; numString <= lastString; numString++)
     {
-        int width = Font_GetLengthText(strings[numString]);
+        int width = Font::GetLengthText(strings[numString]);
         Region(width, height + 1).Fill(Grid::Left() + 1, Grid::TOP + 1 + count * (height + 1) + delta, COLOR_BACK);
         int y = Grid::TOP + 5 + count * (height + 1) - 4;
         if(Font::GetSize() == 5)
@@ -2547,7 +2547,7 @@ void Display::ShowWarningGood(Warning::E warning)
 
 void Display::DrawStringInRectangle(int, int y, char const *text)
 {
-    int width = Font_GetLengthText(text);
+    int width = Font::GetLengthText(text);
     int height = 8;
     Rectangle(width + 4, height + 4).Draw(Grid::Left(), y, COLOR_FILL);
     Rectangle(width + 2, height + 2).Draw(Grid::Left() + 1, y + 1, COLOR_BACK);

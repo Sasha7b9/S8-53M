@@ -104,11 +104,11 @@ extern void CalculateCurrentColor(void);
 int Painter::DrawChar(int x, int y, char symbol)
 {
     CalculateCurrentColor();
-    if (Font_GetSize() == 5)
+    if (Font::GetSize() == 5)
     {
         DrawCharHardCol(x, y + 3, symbol);
     }
-    else if (Font_GetSize() == 8)
+    else if (Font::GetSize() == 8)
     {
         DrawCharHardCol(x, y, symbol);
     }
@@ -305,7 +305,7 @@ static int8* BreakWord(char *word)
 
 int Painter::DrawStringInCenterRect(int eX, int , int width, int , const char *text)
 {
-    int lenght = Font_GetLengthText(text);
+    int lenght = Font::GetLengthText(text);
     int x = eX + (width - lenght) / 2;
     return x;
 }
@@ -320,7 +320,7 @@ int Painter::DrawStringInCenterRectC(int x, int y, int width, int height, const 
 
 void Painter::DrawStringInCenterRectOnBackgroundC(int x, int y, int width, int height, const char *text, Color::E colorText, int widthBorder, Color::E colorBackground)
 {
-    int lenght = Font_GetLengthText(text);
+    int lenght = Font::GetLengthText(text);
     int eX = Painter::DrawStringInCenterRectC(x, y, width, height, text, colorBackground);
     int w = lenght + widthBorder * 2 - 2;
     int h = 7 + widthBorder * 2 - 1;
@@ -478,7 +478,7 @@ static int DrawPartWord(char *word, int x, int , int xRight, bool draw)
     for (int i = numSyllabels - 2; i >= 0; i--)
     {
         char *subString = PartWordForTransfer(word, lengthSyllables, i, buffer);
-        int length = Font_GetLengthText(subString);
+        int length = Font::GetLengthText(subString);
         if (xRight - x > length - 5)
         {
             if (draw)
@@ -530,7 +530,7 @@ int Painter::DrawTextInRectWithTransfers(int eX, int eY, int eWidth, int eHeight
             }
             else                                            // ј здесь найдено по крайней мере два буквенных символа, т.е. найдено слово
             {
-                int lengthString = Font_GetLengthText(word);
+                int lengthString = Font::GetLengthText(word);
                 if (x + lengthString > right + 5)
                 {
                     int nums = DrawPartWord(word, x, y, right, true);
