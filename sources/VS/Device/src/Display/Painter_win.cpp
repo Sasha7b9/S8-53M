@@ -37,7 +37,6 @@
 
 using namespace Primitives;
 
-
 static wxBitmap bitmapButton(Display::WIDTH, Display::HEIGHT);
 // Здесь будем рисовать
 wxMemoryDC memDC;
@@ -117,6 +116,8 @@ void Color::SetCurrent(Color::E c)
     {
         return;
     }
+
+    current = c;
 
     uint colorValue = Color::FromSettings(c);
     uint8 b = colorValue & 0xFF;

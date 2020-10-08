@@ -32,6 +32,10 @@ struct Color {
     static uint FromSettings(Color::E);
 
     static void SetCurrent(Color::E color);
+    static Color::E GetCurrent() { return current; };
+
+private:
+    static Color::E current;
 };
 
 

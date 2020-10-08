@@ -90,7 +90,7 @@ int Painter::DrawTextOnBackground(int x, int y, const char *text, Color::E color
     int width = Font::GetLengthText(text);
     int height = Font::GetSize();
 
-    Color::E colorText = Painter::CurrentColor();
+    Color::E colorText = Color::GetCurrent();
     Region(width, height).Fill(x - 1, y, colorBackground);
     Color::SetCurrent(colorText);
 

@@ -8,6 +8,8 @@
 #include <cmath>
 
 
+Color::E Color::current = Color::NUM;
+
 
 static void SetColor(const ColorType *colorType)
 {

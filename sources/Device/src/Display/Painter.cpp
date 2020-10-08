@@ -166,12 +166,6 @@ void Painter::SetPalette(Color::E )
 }
 
 
-Color::E Painter::CurrentColor(void)
-{
-    return currentColor;
-}
-
-
 void Painter::DrawLineC(int x0, int y0, int x1, int y1, Color::E color)
 {
     Color::SetCurrent(color);
