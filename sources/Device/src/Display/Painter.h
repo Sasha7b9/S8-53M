@@ -66,9 +66,6 @@ public:
 
     static bool SaveScreenToFlashDrive();
 
-    // Загрузить шрифта в дисплей.
-    static void LoadFont(TypeFont::E typeFont);
-
     // Выводит текст на прямоугольнике цвета colorBackgound
     static int DrawTextOnBackground(int x, int y, const char *text, Color::E colorBackground);
 

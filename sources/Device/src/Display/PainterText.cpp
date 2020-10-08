@@ -16,11 +16,6 @@
 using namespace Primitives;
 
 
-void Painter::LoadFont(TypeFont::E)
-{
-}
-
-
 bool ByteFontNotEmpty(int eChar, int byte)
 {
     static pUCHAR bytes = 0;

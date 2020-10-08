@@ -15,10 +15,6 @@ void Display::Init()
 
     Painter::ResetFlash();
 
-    Painter::LoadFont(TypeFont::_5);
-    Painter::LoadFont(TypeFont::_8);
-    Painter::LoadFont(TypeFont::_UGO);
-    Painter::LoadFont(TypeFont::_UGO2);
     Font::Set(TypeFont::_8);
 
     Painter::LoadPalette();
