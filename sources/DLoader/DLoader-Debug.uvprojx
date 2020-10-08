@@ -1050,11 +1050,6 @@
               <FilePath>.\src\Settings\Settings.h</FilePath>
             </File>
             <File>
-              <FileName>SettingsTypes.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Settings\SettingsTypes.h</FilePath>
-            </File>
-            <File>
               <FileName>cSettingsTypes.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Settings\cSettingsTypes.h</FilePath>
