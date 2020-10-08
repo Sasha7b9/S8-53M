@@ -62,3 +62,9 @@ void Primitives::HLine::Draw(int, int, int, Color::E)
 {
 
 }
+
+
+int Primitives::Text::Draw(int x, int , Color::E )
+{
+    return x;
+}

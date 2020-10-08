@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "Display/Display.h"
 #include "Display/DisplayPrimitives.h"
+#include "Display/Primitives.h"
 #include "FPGA/FPGA.h"
 #include "Hardware/Timer.h"
 #include "common/Hardware/HAL/HAL.h"
@@ -9,6 +10,8 @@
 #include <limits>
 #include <cstdio>
 
+
+using namespace Primitives;
 
 
 static int16    CalculateAdditionRShift(Channel::E chan, Range::E range);	// Измерить добавочное смещение канала по напряжению.
@@ -232,8 +235,9 @@ void FuncAttScreen(void)
         {
                 Painter::DrawTextInRect(40 + dX, y + 25 + dY, Display::WIDTH - 100, 200, "Калибровка завершена. Нажмите любую кнопку, чтобы выйти из режима калибровки.");
 
-                Painter::DrawText(10 + dX, 55 + dY, "Поправка нуля 1к :");
-                Painter::DrawText(10 + dX, 80 + dY, "Поправка нуля 2к :");
+                Text("Поправка нуля 1к :").Draw(10 + dX, 55 + dY);
+                Text("Поправка нуля 2к :").Draw(10 + dX, 80 + dY);
+
                 for (int i = 0; i < Range::Count; i++)
                 {
                     Painter::DrawFormatText(95 + i * 16 + dX, 55 + dY, COLOR_FILL, "%d", RSHIFT_ADD(Channel::A, i, 0));
@@ -295,7 +299,7 @@ void FuncAttScreen(void)
     */
     char buffer[100];
     std::sprintf(buffer, "%.1f", (gTimerMS - startTime) / 1000.0F);
-    Painter::DrawTextC(0, 0, buffer, Color::BLACK);
+    Text(buffer).Draw(0, 0, Color::BLACK);
 
     Painter::EndScene();
 }
@@ -306,7 +310,7 @@ void DrawParametersChannel(Channel::E chan, int eX, int eY, bool inProgress)
     Painter::SetColor(COLOR_FILL);
     if(inProgress)
     {
-        Painter::DrawText(eX, eY + 4, chan == 0 ? "КАНАЛ 1" : "КАНАЛ 2");
+        Text(chan == 0 ? "КАНАЛ 1" : "КАНАЛ 2").Draw(eX, eY + 4);
         ProgressBar *bar = (chan == Channel::A) ? &bar0 : &bar1;
         bar->width = 240;
         bar->height = 15;
@@ -319,19 +323,19 @@ void DrawParametersChannel(Channel::E chan, int eX, int eY, bool inProgress)
     {
         int x = inProgress ? 5 : eX;
         int y = eY + (inProgress ? 110 : 0);
-        Painter::DrawText(x, y, "Отклонение от нуля:");
+        Text("Отклонение от нуля:").Draw(x, y);
         char buffer[100] = {0};
         std::sprintf(buffer, "АЦП1 = %.2f/%.2f, АЦП2 = %.2f/%.2f, d = %.2f/%.2f", avrADC1old[chan] - AVE_VALUE, avrADC1[chan] - AVE_VALUE,
                                                                              avrADC2old[chan] - AVE_VALUE, avrADC2[chan] - AVE_VALUE,
                                                                              deltaADCold[chan], deltaADC[chan]);
         y += 10;
-        Painter::DrawText(x, y, buffer);
+        Text(buffer).Draw(x, y);
         buffer[0] = 0;
         std::sprintf(buffer, "Расхождение Channel::AЦП = %.2f/%.2f %%", deltaADCPercentsOld[chan], deltaADCPercents[chan]);
-        Painter::DrawText(x, y + 11, buffer);
+        Text(buffer).Draw(x, y + 11);
         buffer[0] = 0;
         std::sprintf(buffer, "Записано %d", SET_BALANCE_ADC(chan));
-        Painter::DrawText(x, y + 19, buffer);
+        Text(buffer).Draw(x, y + 19);
     }
 }
 

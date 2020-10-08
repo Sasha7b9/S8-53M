@@ -114,7 +114,7 @@ static int Painter_DrawBigChar(int eX, int eY, int size, char symbol)
 void Painter::DrawCharHardCol(int x, int y, char symbol)
 {
     char str[2] = {symbol, 0};
-    DrawText(x, y, str);
+    Text(str).Draw(x, y);
 }
 
 
@@ -147,19 +147,6 @@ int Painter::DrawCharC(int x, int y, char symbol, Color::E color)
 }
 
 
-int Painter::DrawText(int x, int , const char *)
-{
-    return x;
-}
-
-
-int Painter::DrawTextC(int x, int y, const char *text, Color::E color)
-{
-    SetColor(color);
-    return Painter::DrawText(x, y, text);
-}
-
-
 int Painter::DrawTextOnBackground(int x, int y, const char *text, Color::E colorBackground)
 {
     int width = Font_GetLengthText(text);
@@ -169,7 +156,7 @@ int Painter::DrawTextOnBackground(int x, int y, const char *text, Color::E color
     Region(width, height).Fill(x - 1, y, colorBackground);
     SetColor(colorText);
 
-    return DrawText(x, y, text);
+    return Text(text).Draw(x, y);
 }
 
 
@@ -431,7 +418,7 @@ int Painter::DrawPartWord(char *word, int x, int y, int xRight, bool draw)
         {
             if (draw)
             {
-                DrawText(x, y, subString); //-V530 //-V2547
+                Text(subString).Draw(x, y);
             }
             return static_cast<int>(std::strlen(subString)) - 1;
         }
@@ -490,7 +477,7 @@ int Painter::DrawTextInRectWithTransfers(int eX, int eY, int eWidth, int eHeight
                 else
                 {
                     curSymbol += length;
-                    x = DrawText(x, y, word);
+                    x = Text(word).Draw(x, y);
                 }
             }
         }
@@ -589,7 +576,7 @@ int Painter::DrawFormatText(int x, int y, Color::E color, char *text, ...)
     va_start(args, text);
     std::vsprintf(buffer, text, args);
     va_end(args);
-    return DrawTextC(x, y, buffer, color);
+    return Text(buffer).Draw(x, y, color);
 #undef SIZE_BUFFER
 }
 
@@ -600,7 +587,7 @@ int Painter::DrawStringInCenterRect(int eX, int eY, int width, int eHeight, cons
     int height = Font_GetHeightSymbol(text[0]);
     int x = eX + (width - lenght) / 2;
     int y = eY + (eHeight - height) / 2;
-    return DrawText(x, y, text);
+    return Text(text).Draw(x, y);
 }
 
 
@@ -715,7 +702,7 @@ void Painter::DrawTextInRect(int x, int y, int width, int, char *text)
 void Painter::DrawTextRelativelyRight(int xRight, int y, const char *text)
 {
     int lenght = Font_GetLengthText(text);
-    DrawText(xRight - lenght, y, text); //-V530 //-V2547
+    Text(text).Draw(xRight - lenght, y);
 }
 
 

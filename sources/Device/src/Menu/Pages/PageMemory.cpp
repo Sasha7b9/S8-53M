@@ -127,9 +127,9 @@ static void FuncDrawingAdditionSPageMemoryLast()
     int height = 10;
     Region(width, height).Fill(Grid::Right() - width, Grid::TOP, COLOR_BACK);
     Rectangle(width, height).Draw(Grid::Right() - width, Grid::TOP, COLOR_FILL);
-    Painter::DrawText(Grid::Right() - width + 2, Grid::TOP + 1, Int2String(CURRENT_NUM_LATEST_SIGNAL + 1, false, 3, buffer));
-    Painter::DrawText(Grid::Right() - width + 17, Grid::TOP + 1, "/");
-    Painter::DrawText(Grid::Right() - width + 23, Grid::TOP + 1, Int2String(Storage::AllDatas(), false, 3, buffer));
+    Text(Int2String(CURRENT_NUM_LATEST_SIGNAL + 1, false, 3, buffer)).Draw(Grid::Right() - width + 2, Grid::TOP + 1);
+    Text("/").Draw(Grid::Right() - width + 17, Grid::TOP + 1);
+    Text(Int2String(Storage::AllDatas(), false, 3, buffer)).Draw(Grid::Right() - width + 23, Grid::TOP + 1);
 }
 
 void DrawSB_MemLast_IntEnter(int x, int y)
@@ -589,11 +589,11 @@ static void DrawMemoryWave(int num, bool exist)
     Painter::SetColor(num == CURRENT_NUM_INT_SIGNAL ? Color::FLASH_01 : COLOR_FILL);
     if (exist)
     {
-        Painter::DrawText(x + 2, y + 1, Int2String(num + 1, false, 2, buffer));
+        Text(Int2String(num + 1, false, 2, buffer)).Draw(x + 2, y + 1);
     }
     else
     {
-        Painter::DrawText(x + 3, y + 1, "\x88");
+        Text("\x88").Draw(x + 3, y + 1);
     }
 }
 
@@ -995,7 +995,7 @@ void DrawSetName()
         position++;
     }
 
-    int x = Painter::DrawTextC(x0 + deltaX, y0 + 65, FILE_NAME, COLOR_FILL);
+    int x = Text(FILE_NAME).Draw(x0 + deltaX, y0 + 65, COLOR_FILL);
     Region(5, 8).Fill(x, y0 + 65, Color::FLASH_10);
 }
 
@@ -1021,7 +1021,7 @@ static void DrawFileMask(int x, int y)
             }
             else
             {
-                x = Painter::DrawText(x, y, symbolsAlphaBet[*ch + 0x40]);
+                x = Text(symbolsAlphaBet[*ch + 0x40]).Draw(x, y);
             }
         }
         ch++;
@@ -1094,7 +1094,7 @@ void DrawSetMask()
     Painter::SetColor(COLOR_FILL);
     for(int i = 0; i < sizeof(strings) / 4; i++)
     {
-        Painter::DrawText(x0 + deltaX, y0 + 100 + deltaY * i, strings[i]);
+        Text(strings[i]).Draw(x0 + deltaX, y0 + 100 + deltaY * i);
     }
 }
 

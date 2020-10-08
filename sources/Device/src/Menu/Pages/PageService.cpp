@@ -412,7 +412,7 @@ static void Draw_Math_Function_ModeDraw(int x, int y)
 
 static void Draw_Math_Function_ModeDraw_Disable(int x, int y)
 {
-    Painter::DrawText(x + 2 + (LANG_RU ? 2 : 0), y + 5, LANG_RU ? "Вык" : "Dis");
+    Text(LANG_RU ? "Вык" : "Dis").Draw(x + 2 + (LANG_RU ? 2 : 0), y + 5);
 }
 
 static void Draw_Math_Function_ModeDraw_Separate(int x, int y)
@@ -505,7 +505,7 @@ static void Draw_Math_Function_ModeRegSet_Range(int x, int y)
 
 static void Draw_Math_Function_ModeRegSet_RShift(int x, int y)
 {
-    Painter::DrawText(x + 5 - (LANG_EN ? 3 : 0), y + 5, LANG_RU ? "См" : "Shif");
+    Text(LANG_RU ? "См" : "Shif").Draw(x + 5 - (LANG_EN ? 3 : 0), y + 5);
 }
 
 // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Масштаб 1-го канала -----------------------------------------------------------------------------------------------
@@ -720,7 +720,7 @@ static void OnPress_Math_FFT_Cursors_Source(void)
 
 static void Draw_Math_FFT_Cursors_Source(int x, int y)
 {
-    Painter::DrawText(x + 7, y + 5, FFT_CUR_CURSOR_IS_0 ? "1" : "2");
+    Text(FFT_CUR_CURSOR_IS_0 ? "1" : "2").Draw(x + 7, y + 5);
 }
 
 // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Диапазон -----------------------------------------------------------------------------------------------------------
@@ -972,9 +972,9 @@ static void Information_Draw(void)
     int y = 20;
     Rectangle(319, 239).Draw(0, 0, COLOR_FILL);
     y += dY;
-    Painter::DrawText(x, y, LANG_RU ? "ИНФОРМАЦИЯ" : "INFORMATION");
+    Text(LANG_RU ? "ИНФОРМАЦИЯ" : "INFORMATION").Draw(x, y);
     y += dY;
-    Painter::DrawText(x, y, LANG_RU ? "Модель : С8-53/1" : "Model : S8-53/1");
+    Text(LANG_RU ? "Модель : С8-53/1" : "Model : S8-53/1").Draw(x, y);
     y += dY;
 
     char buffer[100];
@@ -987,10 +987,10 @@ static void Information_Draw(void)
     }
     */
 
-    Painter::DrawText(x, y, LANG_RU ? "Программное обеспечение:" : "Software:");
+    Text(LANG_RU ? "Программное обеспечение:" : "Software:").Draw(x, y);
     y += dY;
     std::sprintf(buffer, (const char*)(LANG_RU ? "версия %s" : "version %s"), NUM_VER);
-    Painter::DrawText(x, y, buffer);
+    Text(buffer).Draw(x, y);
     y += dY;
 
     Painter::DrawFormatText(x, y, COLOR_FILL, "CRC32 : %X", HAL_CRC::Calculate());

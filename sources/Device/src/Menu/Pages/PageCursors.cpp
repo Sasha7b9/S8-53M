@@ -6,6 +6,7 @@
 #include "common/Keyboard/Controls.h"
 #include "Display/Colors.h"
 #include "Display/Grid.h"
+#include "Display/Primitives.h"
 #include "Utils/Math.h"
 #include "Utils/ProcessingSignal.h"
 #include "Utils/GlobalFunctions.h"
@@ -16,8 +17,10 @@
 #include <cstring>
 
 
-extern const Page pCursors;
+using namespace Primitives;
 
+
+extern const Page pCursors;
 
 extern const Choice mcShow;                             // ÊÓÐÑÎÐÛ - Ïîêàçûâàòü
 
@@ -404,12 +407,12 @@ static void DrawSB_Cursors_Source(int x, int y)
 
 static void DrawSB_Cursors_SourceA(int x, int y)
 {
-    Painter::DrawText(x + 7, y + 5, "1");
+    Text("1").Draw(x + 7, y + 5);
 }
 
 static void DrawSB_Cursors_SourceB(int x, int y)
 {
-    Painter::DrawText(x + 7, y + 5, "2");
+    Text("2").Draw(x + 7, y + 5);
 }
 
 
@@ -493,7 +496,7 @@ static void DrawSB_Cursors_U(int x, int y)
 
 static void DrawSB_Cursors_U_Disable(int x, int y)
 {
-    Painter::DrawText(x + 7, y + 5, "U");
+    Text("U").Draw(x + 7, y + 5);
 }
 
 static void DrawSB_Cursors_U_Upper(int x, int y)
@@ -588,7 +591,7 @@ static void DrawSB_Cursors_T(int x, int y)
 
 static void DrawSB_Cursors_T_Disable(int x, int y)
 {
-    Painter::DrawText(x + 7, y + 5, "T");
+    Text("T").Draw(x + 7, y + 5);
 }
 
 static void DrawSB_Cursors_T_Both_Disable(int x, int y)
@@ -637,7 +640,7 @@ static void SetCursPos100(Channel::E chan)
 static void DrawSB_Cursors_100(int x, int y)
 {
     Painter::SetFont(TypeFont::_5);
-    Painter::DrawText(x + 2, y + 3, "100%");
+    Text("100%").Draw(x + 2, y + 3);
     Painter::SetFont(TypeFont::_8);
 }
 
@@ -681,12 +684,12 @@ static void DrawSB_Cursors_PointsPercents(int x, int y)
 
 static void DrawSB_Cursors_PointsPercents_Percents(int x, int y)
 {
-    Painter::DrawText(x + 6, y + 5, "\x83");
+    Text("\x83").Draw(x + 6, y + 5);
 }
 
 static void DrawSB_Cursors_PointsPercents_Points(int x, int y)
 {
     Painter::SetFont(TypeFont::_5);
-    Painter::DrawText(x + 4, y + 3, "ò÷ê");
+    Text("ò÷ê").Draw(x + 4, y + 3);
     Painter::SetFont(TypeFont::_8);
 }

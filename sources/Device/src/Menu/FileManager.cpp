@@ -60,12 +60,12 @@ void FM::DrawLongString(int x, int y, const char *string, bool hightlight)
 
     if (length <= WIDTH_COL)
     {
-        Painter::DrawTextC(x, y, string, color);
+        Text(string).Draw(x, y, color);
     }
     else
     {
         Painter::DrawTextWithLimitationC(x, y, string, color, x, y, WIDTH_COL, 10);
-        Painter::DrawText(x + WIDTH_COL + 3, y, "...");
+        Text("...").Draw(x + WIDTH_COL + 3, y);
     }
 }
 
@@ -142,7 +142,7 @@ void FM::DrawNameCurrentDir(int left, int top)
     int length = Font_GetLengthText(currentDir);
     if (length < 277)
     {
-        Painter::DrawText(left + 1, top + 1, currentDir);
+        Text(currentDir).Draw(left + 1, top + 1);
     }
     else
     {
@@ -159,7 +159,7 @@ void FM::DrawNameCurrentDir(int left, int top)
             }
             length = Font_GetLengthText(++pointer);
         }
-        Painter::DrawText(left + 1, top + 1, pointer);
+        Text(pointer).Draw(left + 1, top + 1);
     }
 }
 

@@ -68,3 +68,9 @@ void Primitives::MultiHPointLine::Draw(int x, Color::E color)
         DrawHPointLine(x, y[i], count, delta);
     }
 }
+
+
+int Primitives::Text::Draw(int x, int , Color::E )
+{
+    return x;
+}

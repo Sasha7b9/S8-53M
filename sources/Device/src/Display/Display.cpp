@@ -68,7 +68,7 @@ void Display::DrawStringNavigation()
         int height = 10;
         Rectangle(length + 2, height).Draw(Grid::Left(), Grid::TOP, COLOR_FILL);
         Region(length, height - 2).Fill(Grid::Left() + 1, Grid::TOP + 1, COLOR_BACK);
-        Painter::DrawTextC(Grid::Left() + 2, Grid::TOP + 1, string, COLOR_FILL);
+        Text(string).Draw(Grid::Left() + 2, Grid::TOP + 1, COLOR_FILL);
     }
 }
 
@@ -413,12 +413,10 @@ void Display::DrawMath()
     Rectangle(w, h).Draw(Grid::Left(), Grid::MathTop() + delta, COLOR_FILL);
     Region(w - 2, h - 2).Fill(Grid::Left() + 1, Grid::MathTop() + 1 + delta, COLOR_BACK);
     Divider::E multiplier = MATH_MULTIPLIER;
-    Painter::DrawTextC(Grid::Left() + 2, Grid::MathTop() + 1 + delta, sChannel_Range2String(SET_RANGE_MATH, multiplier), COLOR_FILL);
-    Painter::DrawText(Grid::Left() + 25, Grid::MathTop() + 1 + delta, ":");
+    Text(sChannel_Range2String(SET_RANGE_MATH, multiplier)).Draw(Grid::Left() + 2, Grid::MathTop() + 1 + delta, COLOR_FILL);
+    Text(":").Draw(Grid::Left() + 25, Grid::MathTop() + 1 + delta);
     char buffer[20];
-    Painter::DrawText(Grid::Left() + 27, Grid::MathTop() + 1 + delta, sChannel_RShift2String(SET_RSHIFT_MATH, SET_RANGE_MATH, multiplier, buffer));
-
-
+    Text(sChannel_RShift2String(SET_RSHIFT_MATH, SET_RANGE_MATH, multiplier, buffer)).Draw(Grid::Left() + 27, Grid::MathTop() + 1 + delta);
 }
 
 
@@ -445,9 +443,9 @@ void Display::WriteParametersFFT(Channel::E chan, float freq0, float density0, f
 
     char buffer[20];
     Painter::SetColor(COLOR_FILL);
-    Painter::DrawText(x, y, Freq2String(freq0, false, buffer));
+    Text(Freq2String(freq0, false, buffer)).Draw(x, y);
     y += dY;
-    Painter::DrawText(x, y, Freq2String(freq1, false, buffer));
+    Text(Freq2String(freq1, false, buffer)).Draw(x, y);
     if (chan == Channel::A)
     {
         y += dY + 2;
@@ -457,9 +455,9 @@ void Display::WriteParametersFFT(Channel::E chan, float freq0, float density0, f
         y += dY * 3 + 4;
     }
     Painter::SetColor(ColorChannel(chan));
-    Painter::DrawText(x, y, SCALE_FFT_IS_LOG ? Float2Db(density0, 4, buffer) : Float2String(density0, false, 7, buffer));
+    Text(SCALE_FFT_IS_LOG ? Float2Db(density0, 4, buffer) : Float2String(density0, false, 7, buffer)).Draw(x, y);
     y += dY;
-    Painter::DrawText(x, y, SCALE_FFT_IS_LOG ? Float2Db(density1, 4, buffer) : Float2String(density1, false, 7, buffer));
+    Text(SCALE_FFT_IS_LOG ? Float2Db(density1, 4, buffer) : Float2String(density1, false, 7, buffer)).Draw(x, y);
 }
 
 
@@ -758,11 +756,11 @@ void Display::DrawTime(int x, int y)
             time.seconds = ds->time.seconds;
             time.month = ds->time.month;
             time.year = ds->time.year;
-            Painter::DrawText(x, y, Int2String((int)time.day, false, 2, buffer));
-            Painter::DrawText(x + dField, y, ":");
-            Painter::DrawText(x + dField + dSeparator, y, Int2String((int)time.month, false, 2, buffer));
-            Painter::DrawText(x + 2 * dField + dSeparator, y, ":");
-            Painter::DrawText(x + 2 * dField + 2 * dSeparator, y, Int2String((int)time.year + 2000, false, 4, buffer));
+            Text(Int2String((int)time.day, false, 2, buffer)).Draw(x, y);
+            Text(":").Draw(x + dField, y);
+            Text(Int2String((int)time.month, false, 2, buffer)).Draw(x + dField + dSeparator, y);
+            Text(":").Draw(x + 2 * dField + dSeparator, y);
+            Text(Int2String((int)time.year + 2000, false, 4, buffer)).Draw(x + 2 * dField + 2 * dSeparator, y);
             y += 9;
         }
         else
@@ -772,11 +770,11 @@ void Display::DrawTime(int x, int y)
     }
     
     
-    Painter::DrawText(x, y, Int2String((int)time.hours, false, 2, buffer));
-    Painter::DrawText(x + dField, y, ":");
-    Painter::DrawText(x + dField + dSeparator, y, Int2String((int)time.minutes, false, 2, buffer));
-    Painter::DrawText(x + 2 * dField + dSeparator, y, ":");
-    Painter::DrawText(x + 2 * dField + 2 * dSeparator, y, Int2String((int)time.seconds, false, 2, buffer));
+    Text(Int2String((int)time.hours, false, 2, buffer)).Draw(x, y);
+    Text(":").Draw(x + dField, y);
+    Text(Int2String((int)time.minutes, false, 2, buffer)).Draw(x + dField + dSeparator, y);
+    Text(":").Draw(x + 2 * dField + dSeparator, y);
+    Text(Int2String((int)time.seconds, false, 2, buffer)).Draw(x + 2 * dField + 2 * dSeparator, y);
 }
 
 
@@ -1042,19 +1040,19 @@ void Display::WriteCursors()
         Color::E colorText = ColorChannel(source);
         if(!CURS_CNTRL_U_IS_DISABLE(source))
         {
-            Painter::DrawTextC(x, y1, "1:", colorText);
-            Painter::DrawText(x, y2, "2:");
+            Text("1:").Draw(x, y1, colorText);
+            Text("2:").Draw(x, y2);
             x += 7;
-            Painter::DrawText(x, y1, sCursors_GetCursVoltage(source, 0, buffer));
-            Painter::DrawText(x, y2, sCursors_GetCursVoltage(source, 1, buffer));
+            Text(sCursors_GetCursVoltage(source, 0, buffer)).Draw(x, y1);
+            Text(sCursors_GetCursVoltage(source, 1, buffer)).Draw(x, y2);
             x = startX + 49;
             float pos0 = Math_VoltageCursor(sCursors_GetCursPosU(source, 0), SET_RANGE(source), SET_RSHIFT(source));
             float pos1 = Math_VoltageCursor(sCursors_GetCursPosU(source, 1), SET_RANGE(source), SET_RSHIFT(source));
             float delta = std::fabsf(pos1 - pos0);
-            Painter::DrawText(x, y1, ":dU=");
-            Painter::DrawText(x + 17, y1, Voltage2String(delta, false, buffer));
-            Painter::DrawText(x, y2, ":");
-            Painter::DrawText(x + 10, y2, sCursors_GetCursorPercentsU(source, buffer));
+            Text(":dU=").Draw(x, y1);
+            Text(Voltage2String(delta, false, buffer)).Draw(x + 17, y1);
+            Text(":").Draw(x, y2);
+            Text(sCursors_GetCursorPercentsU(source, buffer)).Draw(x + 10, y2);
         }
 
         x = startX + 101;
@@ -1063,20 +1061,20 @@ void Display::WriteCursors()
         if(!CURS_CNTRL_T_IS_DISABLE(source))
         {
             Painter::SetColor(colorText);
-            Painter::DrawText(x, y1, "1:");
-            Painter::DrawText(x, y2, "2:");
+            Text("1:").Draw(x, y1);
+            Text("2:").Draw(x, y2);
             x+=7;
-            Painter::DrawText(x, y1, sCursors_GetCursorTime(source, 0, buffer));
-            Painter::DrawText(x, y2, sCursors_GetCursorTime(source, 1, buffer));
+            Text(sCursors_GetCursorTime(source, 0, buffer)).Draw(x, y1);
+            Text(sCursors_GetCursorTime(source, 1, buffer)).Draw(x, y2);
             x = startX + 153;
             float pos0 = Math_TimeCursor(CURS_POS_T0(source), SET_TBASE);
             float pos1 = Math_TimeCursor(CURS_POS_T1(source), SET_TBASE);
             float delta = std::fabsf(pos1 - pos0);
-            Painter::DrawText(x, y1, ":dT=");
+            Text(":dT=").Draw(x, y1);
             char buf[20];
-            Painter::DrawText(x + 17, y1, Time2String(delta, false, buf));
-            Painter::DrawText(x, y2, ":");
-            Painter::DrawText(x + 8, y2, sCursors_GetCursorPercentsT(source, buf));
+            Text(Time2String(delta, false, buf)).Draw(x + 17, y1);
+            Text(":").Draw(x, y2);
+            Text(sCursors_GetCursorPercentsT(source, buf)).Draw(x + 8, y2);
 
             if(CURSORS_SHOW_FREQ)
             {
@@ -1084,9 +1082,9 @@ void Display::WriteCursors()
                 int x0 = Grid::Right() - width;
                 Rectangle(width, 12).Draw(x0, Grid::TOP, COLOR_FILL);
                 Region(width - 2, 10).Fill(x0 + 1, Grid::TOP + 1, COLOR_BACK);
-                Painter::DrawTextC(x0 + 1, Grid::TOP + 2, "1/dT=", colorText);
+                Text("1/dT=").Draw(x0 + 1, Grid::TOP + 2, colorText);
                 char buff[20];
-                Painter::DrawText(x0 + 25, Grid::TOP + 2, Freq2String(1.0F / delta, false, buff));
+                Text(Freq2String(1.0F / delta, false, buff)).Draw(x0 + 25, Grid::TOP + 2);
             }
         }
     }
@@ -1110,7 +1108,7 @@ void Display::DrawHiRightPart()
         if (TRIG_ENABLE)
         {
             Region(Grid::TOP - 3, Grid::TOP - 7).Fill(x, 1 + y);
-            Painter::DrawTextC(x + 3, 3 + y, set.common.lang == Language::Russian ? "—»" : "Tr", COLOR_BACK);
+            Text(set.common.lang == Language::Russian ? "—»" : "Tr").Draw(x + 3, 3 + y, COLOR_BACK);
         }
     }
 
@@ -1127,7 +1125,7 @@ void Display::DrawHiRightPart()
         x += 18;
         HLine().Draw(x, 1, Grid::TOP - 2, COLOR_FILL);
         x += 2;
-        Painter::DrawText(set.common.lang == Language::Russian ? x : x + 3, -1, set.common.lang == Language::Russian ? "режим" : "mode");
+        Text(set.common.lang == Language::Russian ? "режим" : "mode").Draw(set.common.lang == Language::Russian ? x : x + 3, -1);
         Painter::DrawStringInCenterRect(x + 1, 9, 25, 8, strings_[MODE_WORK][set.common.lang]);
     }
     else
@@ -1307,7 +1305,7 @@ void Display::WriteValueTrigLevel()
         int y = Grid::BottomMessages() - 20;
         Rectangle(width, 10).Draw(x, y, COLOR_FILL);
         Region(width - 2, 8).Fill(x + 1, y + 1, COLOR_BACK);
-        Painter::DrawTextC(x + 2, y + 1, buffer, COLOR_FILL);
+        Text(buffer).Draw(x + 2, y + 1, COLOR_FILL);
     }
 }
 
@@ -1327,13 +1325,13 @@ void Display::DrawGridSpectrum()
             if (!MenuIsMinimize())
             {
                 Painter::SetColor(COLOR_FILL);
-                Painter::DrawText(3, y - 4, strs[i]);
+                Text(strs[i]).Draw(3, y - 4);
             }
         }
         if (!MenuIsMinimize())
         {
             Painter::SetColor(COLOR_FILL);
-            Painter::DrawText(5, Grid::MathTop() + 1, "дЅ");
+            Text("дЅ").Draw(5, Grid::MathTop() + 1);
         }
     }
     else if (SCALE_FFT_IS_LINEAR)
@@ -1346,7 +1344,7 @@ void Display::DrawGridSpectrum()
             HLine().Draw(y, Grid::Left(), Grid::Left() + 256, ColorGrid());
             if (!MenuIsMinimize())
             {
-                Painter::DrawTextC(5, y - 4, strs[i], COLOR_FILL);
+                Text(strs[i]).Draw(5, y - 4, COLOR_FILL);
             }
         }
     }
@@ -1863,24 +1861,24 @@ void Display::DrawMeasures()
             if(meas != Measure::None)
             {
                 char buffer[20];
-                Painter::DrawTextC(x + 4, y + 2, Measure::Name(str, elem), color);
+                Text(Measure::Name(str, elem)).Draw(x + 4, y + 2, color);
                 if(meas == MEAS_MARKED)
                 {
                     Region(dX - 2, 9).Fill(x + 1, y + 1, active ? COLOR_BACK : COLOR_FILL);
-                    Painter::DrawTextC(x + 4, y + 2, Measure::Name(str, elem), active ? COLOR_FILL : COLOR_BACK);
+                    Text(Measure::Name(str, elem)).Draw(x + 4, y + 2, active ? COLOR_FILL : COLOR_BACK);
                 }
                 if(MEAS_SOURCE_IS_A)
                 {
-                    Painter::DrawTextC(x + 2, y + 11, Processing::GetStringMeasure(meas, Channel::A, buffer), ColorChannel(Channel::A));
+                    Text(Processing::GetStringMeasure(meas, Channel::A, buffer)).Draw(x + 2, y + 11, ColorChannel(Channel::A));
                 }
                 else if(MEAS_SOURCE_IS_B)
                 {
-                    Painter::DrawTextC(x + 2, y + 11, Processing::GetStringMeasure(meas, Channel::B, buffer), ColorChannel(Channel::B));
+                    Text(Processing::GetStringMeasure(meas, Channel::B, buffer)).Draw(x + 2, y + 11, ColorChannel(Channel::B));
                 }
                 else
                 {
-                    Painter::DrawTextC(x + 2, y + 11, Processing::GetStringMeasure(meas, Channel::A, buffer), ColorChannel(Channel::A));
-                    Painter::DrawTextC(x + 2, y + 20, Processing::GetStringMeasure(meas, Channel::B, buffer), ColorChannel(Channel::B));
+                    Text(Processing::GetStringMeasure(meas, Channel::A, buffer)).Draw(x + 2, y + 11, ColorChannel(Channel::A));
+                    Text(Processing::GetStringMeasure(meas, Channel::B, buffer)).Draw(x + 2, y + 20, ColorChannel(Channel::B));
                 }
             }
         }
@@ -1940,11 +1938,11 @@ void Display::WriteTextVoltage(Channel::E chan, int x, int y)
         std::sprintf(buffer, "%s\xa5%s\xa5%s", (chan == Channel::A) ? ((set.common.lang == Language::Russian) ? "1к" : "1c") : ((set.common.lang == Language::Russian) ? "2к" : "2c"), couple[modeCouple],
             sChannel_Range2String(range, multiplier));
 
-        Painter::DrawTextC(x + 1, y, buffer, colorDraw);
+        Text(buffer).Draw(x + 1, y, colorDraw);
 
         char bufferTemp[20];
         std::sprintf(buffer, "\xa5%s", sChannel_RShift2String((int16)rShift, range, multiplier, bufferTemp));
-        Painter::DrawText(x + 46, y, buffer);
+        Text(buffer).Draw(x + 46, y);
     }
 }
 
@@ -1953,7 +1951,7 @@ void Display::WriteTextVoltage(Channel::E chan, int x, int y)
 void Display::WriteStringAndNumber(pCHAR text, int x, int y, int number)
 {
     char buffer[100];
-    Painter::DrawTextC(x, y, text, COLOR_FILL);
+    Text(text).Draw(x, y, COLOR_FILL);
     if(number == 0)
     {
         std::sprintf(buffer, "-");
@@ -1999,12 +1997,12 @@ void Display::DrawLowPart()
     }
 
     std::sprintf(buffer, "р\xa5%s", Tables_GetTBaseString(tBase));
-    Painter::DrawText(x, y0, buffer);
+    Text(buffer).Draw(x, y0);
 
     buffer[0] = 0;
     char bufForVal[20];
     std::sprintf(buffer, "\xa5%s", FPGA::GetTShiftString(tShift, bufForVal));
-    Painter::DrawText(x + 35, y0, buffer);
+    Text(buffer).Draw(x + 35, y0);
 
     buffer[0] = 0;
     if (MODE_WORK_IS_DIRECT)
@@ -2013,7 +2011,7 @@ void Display::DrawLowPart()
         std::sprintf(buffer, "с\xa5\x10%s", source[TRIG_SOURCE]);
     }
 
-    Painter::DrawTextC(x, y1, buffer, ColorTrig());
+    Text(buffer).Draw(x, y1, ColorTrig());
 
     buffer[0] = 0;
     static const char *couple[] =
@@ -2038,7 +2036,7 @@ void Display::DrawLowPart()
     if (MODE_WORK_IS_DIRECT)
     {
         std::sprintf(buffer, "\xa5\x10%s\x10\xa5\x10%s\x10\xa5\x10", couple[TRIG_INPUT], polar[TRIG_POLARITY]);
-        Painter::DrawText(x + 18, y1, buffer);
+        Text(buffer).Draw(x + 18, y1);
         Painter::DrawChar(x + 45, y1, filtr[TRIG_INPUT][0]);
         Painter::DrawChar(x + 53, y1, filtr[TRIG_INPUT][1]);
     }
@@ -2053,7 +2051,7 @@ void Display::DrawLowPart()
     if (MODE_WORK_IS_DIRECT)
     {
         std::sprintf(buffer, "\xa5\x10%c", mode[START_MODE]);
-        Painter::DrawText(x + 63, y1, buffer);
+        Text(buffer).Draw(x + 63, y1);
     }
     
     VLine().Draw(x + 79, Grid::Bottom() + 2, Display::HEIGHT - 2, COLOR_FILL);
@@ -2092,7 +2090,7 @@ void Display::DrawLowPart()
         {
             std::strcat(mesFreq, Freq2String(freq, false, buf));
         }
-        Painter::DrawText(x + 3, Grid::Bottom() + 2, mesFreq);
+        Text(mesFreq).Draw(x + 3, Grid::Bottom() + 2);
     }
 
     DrawTime(x + 3, Grid::Bottom() + 11);
@@ -2164,7 +2162,7 @@ void Display::DrawTimeForFrame(uint timeTicks)
 
     Rectangle(84, 10).Draw(Grid::Left(), Grid::FullBottom() - 10, COLOR_FILL);
     Region(82, 8).Fill(Grid::Left() + 1, Grid::FullBottom() - 9, COLOR_BACK);
-    Painter::DrawTextC(Grid::Left() + 2, Grid::FullBottom() - 9, buffer, COLOR_FILL);
+    Text(buffer).Draw(Grid::Left() + 2, Grid::FullBottom() - 9, COLOR_FILL);
 
     char message[20] = {0};
     std::sprintf(message, "%d", Storage::NumElementsWithSameSettings());
@@ -2172,7 +2170,7 @@ void Display::DrawTimeForFrame(uint timeTicks)
     char numAvail[10] = {0};
     std::sprintf(numAvail, "%d", Storage::NumberAvailableEntries());
     std::strcat(message, numAvail);
-    Painter::DrawText(Grid::Left() + 50, Grid::FullBottom() - 9, message);
+    Text(message).Draw(Grid::Left() + 50, Grid::FullBottom() - 9);
 }
 
 
@@ -2451,7 +2449,7 @@ void Display::DrawConsole()
         {
             y -= 3;
         }
-        Painter::DrawTextC(Grid::Left() + 2, y + delta, strings[numString], COLOR_FILL);
+        Text(strings[numString]).Draw(Grid::Left() + 2, y + delta, COLOR_FILL);
         count++;
     }
 
@@ -2554,7 +2552,7 @@ void Display::DrawStringInRectangle(int, int y, char const *text)
     Rectangle(width + 4, height + 4).Draw(Grid::Left(), y, COLOR_FILL);
     Rectangle(width + 2, height + 2).Draw(Grid::Left() + 1, y + 1, COLOR_BACK);
     Region(width, height).Fill(Grid::Left() + 2, y + 2, Color::FLASH_10);
-    Painter::DrawTextC(Grid::Left() + 3, y + 2, text, Color::FLASH_01);
+    Text(text).Draw(Grid::Left() + 3, y + 2, Color::FLASH_01);
 }
 
 

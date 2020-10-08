@@ -187,5 +187,5 @@ void DrawStr(int index, int x, int y)
     {
         Region(Font_GetLengthText(str), 9).Fill(x - 1, y, Color::FLASH_10);
     }
-    Painter::DrawTextC(x, y, symbolsAlphaBet[index], index == INDEX_SYMBOL ? Color::FLASH_01 : COLOR_FILL);
+    Text(symbolsAlphaBet[index]).Draw(x, y, index == INDEX_SYMBOL ? Color::FLASH_01 : COLOR_FILL);
 }
