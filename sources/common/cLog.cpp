@@ -72,4 +72,9 @@ void Log_Error(const char *, const char *, int, char *, ...)
 {
 }
 
+
+void Log_Write(char *, ...)
+{
+}
+
 #endif

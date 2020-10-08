@@ -1417,16 +1417,6 @@
           <GroupName>Display</GroupName>
           <Files>
             <File>
-              <FileName>Colors.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\Colors.h</FilePath>
-            </File>
-            <File>
-              <FileName>Colors.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\Colors.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Display.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Display\Display.h</FilePath>
@@ -1540,6 +1530,21 @@
               <FileName>Primitives_stm.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Display\Primitives_stm.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Colors.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Colors.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Colors.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\Colors.h</FilePath>
+            </File>
+            <File>
+              <FileName>Colors_d.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\Colors_d.cpp</FilePath>
             </File>
           </Files>
         </Group>

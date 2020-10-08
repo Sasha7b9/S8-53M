@@ -81,7 +81,7 @@ file(GLOB HARDWARE_HAL   src/Hardware/HAL/*
                          ../common/Hardware/HAL/cHAL_TIM7.cpp)
 file(GLOB HARDWARE_USBH  src/Hardware/USBH/*)
 file(GLOB SRC            src/*.h src/*.cpp)
-file(GLOB DISPLAY        src/Display/*.h src/Display/*.cpp ../common/Display/*)
+file(GLOB DISPLAY        src/Display/*.h src/Display/*.cpp ../common/Display/*.h ../common/Display/*.cpp)
 file(GLOB DISPLAY_FONT   ../common/Display/Font/*)
 file(GLOB FDRIVE         src/FDrive/*)
 file(GLOB PANEL          src/Panel/* ../common/Keyboard/*)

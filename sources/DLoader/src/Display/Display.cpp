@@ -1,7 +1,7 @@
 #include "defines.h"
 #include "main.h"
 #include "Display/Display.h"
-#include "Display/Colors.h"
+#include "common/Display/Colors.h"
 #include "Display/Painter.h"
 #include "Utils/Math.h"
 #include "Settings/Settings.h"
@@ -25,6 +25,12 @@ Vector array[SIZE_ARRAY];
 static void DrawProgressBar(uint dT);
 static void DrawBigMNIPI(void);
 static void InitPoints(void);
+
+
+extern Color::E gColorFill;
+extern Color::E gColorBack;
+extern Color::E gColorGrid;
+extern Color::E gColorChan[4];
 
 
 

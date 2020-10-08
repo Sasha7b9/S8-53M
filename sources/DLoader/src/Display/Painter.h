@@ -1,5 +1,5 @@
 #pragma once
-#include "Colors.h"
+#include "common/Display/Colors.h"
 #include "DisplayTypes.h"
 #include "PainterText.h"
 #include "PainterC.h"
@@ -20,8 +20,6 @@ namespace Painter
     void SetColor(Color::E color);
 
     void LoadPalette(int num);
-
-    static void SetPalette(Color::E color);
 
     static void DrawHLine(int y, int x0, int x1);
 

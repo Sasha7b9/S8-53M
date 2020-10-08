@@ -1437,11 +1437,6 @@
               <FilePath>.\src\Display\DisplayPrimitives.h</FilePath>
             </File>
             <File>
-              <FileName>Colors.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\Colors.h</FilePath>
-            </File>
-            <File>
               <FileName>Painter.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Display\Painter.h</FilePath>
@@ -1497,11 +1492,6 @@
               <FilePath>.\src\Display\PainterMem.cpp</FilePath>
             </File>
             <File>
-              <FileName>Colors.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\Colors.cpp</FilePath>
-            </File>
-            <File>
               <FileName>DisplayPrimitives.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Display\DisplayPrimitives.cpp</FilePath>
@@ -1540,6 +1530,21 @@
               <FileName>Primitives_stm.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Display\Primitives_stm.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Colors.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Colors.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Colors.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\Colors.h</FilePath>
+            </File>
+            <File>
+              <FileName>Colors_d.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\Colors_d.cpp</FilePath>
             </File>
           </Files>
         </Group>

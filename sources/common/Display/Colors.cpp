@@ -4,6 +4,7 @@
 #include "Utils/GlobalFunctions.h"
 #include "Utils/Math.h"
 #include "Hardware/Timer.h"
+#include "Display/Painter.h"
 #include <cmath>
 
 
@@ -11,7 +12,6 @@
 static void SetColor(const ColorType *colorType)
 {
     set.display.colors[colorType->color] = MAKE_COLOR((int)colorType->red, (int)colorType->green, (int)colorType->blue);
-    Painter::SetPalette(colorType->color);
 }
 
 
@@ -26,17 +26,6 @@ Color::E ColorCursors(Channel::E chan)
 {
     static const Color::E colors[4] = { Color::DATA_A, Color::DATA_B, Color::WHITE, Color::WHITE };
     return colors[chan];
-}
-
-
-Color::E ColorTrig()
-{
-    TrigSource::E trigChan = TRIG_SOURCE;
-    if (trigChan == TrigSource::A || trigChan == TrigSource::B)
-    {
-        return ColorChannel((Channel::E)trigChan);
-    }
-    return COLOR_FILL;
 }
 
 

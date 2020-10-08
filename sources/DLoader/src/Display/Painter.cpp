@@ -13,6 +13,10 @@ static Color::E currentColor = Color::NUM;
 static int numberColorsUsed = 0;
 
 
+Color::E gColorFill;
+Color::E gColorBack;
+
+
 struct StateTransmit { enum E
 {
     Free,
@@ -145,11 +149,6 @@ void Painter::SendToDisplay(uint8 *, int)
 }
 
 
-void Painter::SetPalette(Color::E)
-{
-}
-
-
 void Painter::SetColor(Color::E)
 {
 }
@@ -274,7 +273,6 @@ void Painter::LoadPalette(int num)
 
     for (; i <= a; i++)
     {
-        Painter::SetPalette(static_cast<Color::E>(i));
     }
 }
 
