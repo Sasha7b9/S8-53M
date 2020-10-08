@@ -35,7 +35,10 @@ extern const float absStepRShift[]; //-V2504
 extern const float voltsInPixel[]; //-V2504
 extern const float absStepTShift[]; //-V2504
 
-int     Math_MinFrom2Int(int val0, int val1);
+namespace Math
+{
+    int     MinFrom2Int(int val0, int val1);
+}
 int     Math_RShift2Rel(float rShiftAbs, Range::E range);
 float   Math_VoltageCursor(float shiftCurU, Range::E range, int16 rShift);
 float   Math_TimeCursor(float shiftCurT, TBase::E tBase);

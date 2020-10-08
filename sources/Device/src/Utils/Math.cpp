@@ -77,7 +77,7 @@ const float absStepTShift[] =
     1.0F / 20, 2.0F / 20, 5.0F / 20, 10.0F / 20
 };
 
-int Math_MinFrom2Int(int val0, int val1)
+int Math::MinFrom2Int(int val0, int val1)
 {
     if (val0 < val1)
     {

@@ -1836,7 +1836,7 @@ void Display::DrawMeasures()
             {
                 Region(dX, dY).Fill(x, y, COLOR_BACK);
                 Rectangle(dX, dY).Draw(x, y, COLOR_FILL);
-                TOP_MEASURES = Math_MinFrom2Int(TOP_MEASURES, y);
+                TOP_MEASURES = Math::MinFrom2Int(TOP_MEASURES, y);
             }
             if(active)
             {
