@@ -662,8 +662,8 @@ void Painter::DrawTextRelativelyRightC(int xRight, int y, const char *text, Colo
 
 void Painter::Draw2SymbolsC(int x, int y, char symbol1, char symbol2, Color::E color1, Color::E color2)
 {
-    DrawCharC(x, y, symbol1, color1);
-    DrawCharC(x, y, symbol2, color2);
+    Char(symbol1).Draw(x, y, color1);
+    Char(symbol2).Draw(x, y, color2);
 }
 
 
@@ -671,8 +671,8 @@ void Painter::Draw4SymbolsInRect(int x, int y, char eChar)
 {
     for (int i = 0; i < 2; i++)
     {
-        DrawChar(x + 8 * i, y, static_cast<char>(eChar + i));
-        DrawChar(x + 8 * i, y + 8, static_cast<char>(eChar + i + 16));
+        Char(static_cast<char>(eChar + i)).Draw(x + 8 * i, y);
+        Char(static_cast<char>(eChar + i + 16)).Draw(x + 8 * i, y + 8);
     }
 }
 
@@ -688,8 +688,8 @@ void Painter::Draw10SymbolsInRect(int x, int y, char eChar)
 {
     for (int i = 0; i < 5; i++)
     {
-        DrawChar(x + 8 * i, y, static_cast<char>(eChar + i));
-        DrawChar(x + 8 * i, y + 8, static_cast<char>(eChar + i + 16));
+        Char(static_cast<char>(eChar + i)).Draw(x + 8 * i, y);
+        Char(static_cast<char>(eChar + i + 16)).Draw(x + 8 * i, y + 8);
     }
 }
 

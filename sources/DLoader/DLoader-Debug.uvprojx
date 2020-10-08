@@ -910,11 +910,6 @@
               <FilePath>.\src\Display\Painter.h</FilePath>
             </File>
             <File>
-              <FileName>PainterC.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\PainterC.h</FilePath>
-            </File>
-            <File>
               <FileName>PainterText.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Display\PainterText.cpp</FilePath>
@@ -1088,6 +1083,26 @@
               <FileName>Math.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Utils\Math.h</FilePath>
+            </File>
+            <File>
+              <FileName>String.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\String.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>String.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\String.h</FilePath>
+            </File>
+            <File>
+              <FileName>StringUtils.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\StringUtils.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>StringUtils.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\StringUtils.h</FilePath>
             </File>
           </Files>
         </Group>

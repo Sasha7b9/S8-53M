@@ -984,7 +984,7 @@ void Display::DrawMemoryWindow()
 
     // Маркер TPos
     Region(6, 6).Fill(x0 - 3, 9, COLOR_BACK);
-    Painter::DrawCharC(x0 - 3, 9, SYMBOL_TPOS_1, COLOR_FILL);
+    Char(SYMBOL_TPOS_1).Draw(x0 - 3, 9, COLOR_FILL);
 
     // Маркер tShift
     float scale = (float)(rightX - leftX + 1) / ((float)sMemory_GetNumPoints(false) - (sMemory_GetNumPoints(false) == 281 ? 1 : 0));
@@ -1593,27 +1593,27 @@ void Display::DrawCursorTrigLevel()
     Painter::SetColor(ColorTrig());
     if(y > Grid::ChannelBottom())
     {
-        Painter::DrawChar(x + 3, Grid::ChannelBottom() - 11, SYMBOL_TRIG_LEV_LOWER);
+        Char(SYMBOL_TRIG_LEV_LOWER).Draw(x + 3, Grid::ChannelBottom() - 11);;
         Point().Draw(x + 5, Grid::ChannelBottom() - 2);
         y = Grid::ChannelBottom() - 7;
         x--;
     }
     else if(y < Grid::TOP)
     {
-        Painter::DrawChar(x + 3, Grid::TOP + 2, SYMBOL_TRIG_LEV_ABOVE);
+        Char(SYMBOL_TRIG_LEV_ABOVE).Draw(x + 3, Grid::TOP + 2);
         Point().Draw(x + 5, Grid::TOP + 2);
         y = Grid::TOP + 7;
         x--;
     }
     else
     {
-        Painter::DrawChar(x + 1, y - 4, SYMBOL_TRIG_LEV_NORMAL);
+        Char(SYMBOL_TRIG_LEV_NORMAL).Draw(x + 1, y - 4);
     }
     Painter::SetFont(TypeFont::_5);
 
     const char simbols[3] = {'1', '2', 'В'};
 
-    Painter::DrawCharC(x + 5, y - 9, simbols[TRIG_SOURCE], COLOR_BACK);
+    Char(simbols[TRIG_SOURCE]).Draw(x + 5, y - 9, COLOR_BACK);
     Painter::SetFont(TypeFont::_8);
 
     if ((DRAW_RSHIFT_MARKERS != 0) && !MenuIsMinimize())
@@ -1628,7 +1628,7 @@ void Display::DrawCursorTrigLevel()
         int yFull = static_cast<int>(Grid::TOP + DELTA + height - scale * (shiftFull - RShiftMin - TrigLevMin) - 4);
         Region(4, 6).Fill(left + 2, yFull + 1, ColorTrig());
         Painter::SetFont(TypeFont::_5);
-        Painter::DrawCharC(left + 3, yFull - 5, simbols[TRIG_SOURCE], COLOR_BACK);
+        Char(simbols[TRIG_SOURCE]).Draw(left + 3, yFull - 5, COLOR_BACK);
         Painter::SetFont(TypeFont::_8);
     }
 }
@@ -1643,8 +1643,8 @@ void Display::DrawCursorRShift(Channel::E chan)
         int rShift = SET_RSHIFT_MATH;
         float scale = (float)Grid::MathHeight() / 960;
         float y = (Grid::MathTop() + Grid::MathBottom()) / 2.0F - scale * (rShift - RShiftZero);
-        Painter::DrawCharC(static_cast<int>(x - 9), static_cast<int>(y - 4), SYMBOL_RSHIFT_NORMAL, COLOR_FILL);
-        Painter::DrawCharC(static_cast<int>(x - 8), static_cast<int>(y - 5), 'm', COLOR_BACK);
+        Char(SYMBOL_RSHIFT_NORMAL).Draw(static_cast<int>(x - 9), static_cast<int>(y - 4), COLOR_FILL);
+        Char('m').Draw(static_cast<int>(x - 8), static_cast<int>(y - 5), COLOR_BACK);
         return;
     }
     if(!sChannel_Enabled(chan))
@@ -1659,21 +1659,21 @@ void Display::DrawCursorRShift(Channel::E chan)
 
     if(y > Grid::ChannelBottom())
     {
-        Painter::DrawCharC(static_cast<int>(x - 7), Grid::ChannelBottom() - 11, SYMBOL_RSHIFT_LOWER, ColorChannel(chan));
+        Char(SYMBOL_RSHIFT_LOWER).Draw(static_cast<int>(x - 7), Grid::ChannelBottom() - 11, ColorChannel(chan));
         Point().Draw(static_cast<int>(x - 5), Grid::ChannelBottom() - 2);
         y = static_cast<float>(Grid::ChannelBottom() - 7);
         x++;
     }
     else if(y < Grid::TOP)
     {
-        Painter::DrawCharC(static_cast<int>(x - 7), Grid::TOP + 2, SYMBOL_RSHIFT_ABOVE, ColorChannel(chan));
+        Char(SYMBOL_RSHIFT_ABOVE).Draw(static_cast<int>(x - 7), Grid::TOP + 2, ColorChannel(chan));
         Point().Draw(static_cast<int>(x - 5), Grid::TOP + 2);
         y = Grid::TOP + 7;
         x++;
     }
     else
     {
-        Painter::DrawCharC(static_cast<int>(x - 8), static_cast<int>(y - 4), SYMBOL_RSHIFT_NORMAL, ColorChannel(chan));
+        Char(SYMBOL_RSHIFT_NORMAL).Draw(static_cast<int>(x - 8), static_cast<int>(y - 4), ColorChannel(chan));
         if(((chan == Channel::A) ? (SHOW_LEVEL_RSHIFT_0 == 1) : (SHOW_LEVEL_RSHIFT_1 == 1)) && MODE_WORK_IS_DIRECT) //-V2570
         {
             Painter::DrawDashedHLine(static_cast<int>(y), Grid::Left(), Grid::Right(), 7, 3, 0);
@@ -1688,9 +1688,9 @@ void Display::DrawCursorRShift(Channel::E chan)
         float yFull = Grid::ChannelCenterHeight() - scaleFull * (rShift - RShiftZero);
 
         Region(4, 6).Fill(4, static_cast<int>(yFull - 3), ColorChannel(chan));
-        Painter::DrawCharC(5, static_cast<int>(yFull - 9), chan == Channel::A ? '1' : '2', COLOR_BACK);
+        Char(chan == Channel::A ? '1' : '2').Draw(5, static_cast<int>(yFull - 9), COLOR_BACK);
     }
-    Painter::DrawCharC(static_cast<int>(x - 7), static_cast<int>(y - 9), chan == Channel::A ? '1' : '2', COLOR_BACK);
+    Char(chan == Channel::A ? '1' : '2').Draw(static_cast<int>(x - 7), static_cast<int>(y - 9), COLOR_BACK);
     Painter::SetFont(TypeFont::_8);
 }
 
@@ -2037,8 +2037,8 @@ void Display::DrawLowPart()
     {
         std::sprintf(buffer, "\xa5\x10%s\x10\xa5\x10%s\x10\xa5\x10", couple[TRIG_INPUT], polar[TRIG_POLARITY]);
         Text(buffer).Draw(x + 18, y1);
-        Painter::DrawChar(x + 45, y1, filtr[TRIG_INPUT][0]);
-        Painter::DrawChar(x + 53, y1, filtr[TRIG_INPUT][1]);
+        Char(filtr[TRIG_INPUT][0]).Draw(x + 45, y1);
+        Char(filtr[TRIG_INPUT][1]).Draw(x + 53, y1);
     }
 
     buffer[0] = '\0';
@@ -2120,8 +2120,8 @@ void Display::DrawLowPart()
     // Пиковый детектор
     if(!PEAKDET_IS_DISABLE)
     {
-       Painter::DrawChar(x + 38, Grid::Bottom() + 11, '\x12');
-       Painter::DrawChar(x + 46, Grid::Bottom() + 11, '\x13');
+       Char('\x12').Draw(x + 38, Grid::Bottom() + 11);
+       Char('\x13').Draw(x + 46, Grid::Bottom() + 11);
     }
 
     if (MODE_WORK_IS_DIRECT)

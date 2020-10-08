@@ -98,11 +98,6 @@ static int DrawBigChar(int eX, int eY, int size, char symbol)
 }
 
 
-static void DrawCharHardCol(int , int , char )
-{
-}
-
-
 extern void CalculateCurrentColor(void);
 
 

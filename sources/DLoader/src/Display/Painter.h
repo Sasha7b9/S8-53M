@@ -2,7 +2,6 @@
 #include "common/Display/Colors.h"
 #include "DisplayTypes.h"
 #include "PainterText.h"
-#include "PainterC.h"
 
 
 namespace Painter
@@ -52,4 +51,8 @@ namespace Painter
     void DrawVLineArray(int x, int numLines, uint8 *y0y1, Color::E color);
     // modeLines - true - точками, false - точками
     void DrawSignal(int x, uint8 data[281], bool modeLines);
+    
+    void CalculateCurrentColor();
+
+    void DrawCharHardCol(int, int, char);
 };

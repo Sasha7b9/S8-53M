@@ -319,3 +319,15 @@ uint8 Get2Points(int, int)
 {
     return 0;
 }
+
+
+void Painter::DrawCharHardCol(int , int , char )
+{
+
+}
+
+
+void Painter::CalculateCurrentColor()
+{
+
+}
