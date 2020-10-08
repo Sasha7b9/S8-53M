@@ -53,31 +53,6 @@ static bool BitInFontIsExist(int eChar, int numByte, int bit)
 }
 
 
-static void DrawCharInColorDisplay(int eX, int eY, uchar symbol)
-{
-    int8 width = static_cast<int8>(font->symbol[symbol].width);
-    int8 height = static_cast<int8>(font->height);
-
-    for (int b = 0; b < height; b++)
-    {
-        if (ByteFontNotEmpty(symbol, b))
-        {
-            int x = eX;
-            int y = eY + b + 9 - height;
-            int endBit = 8 - width;
-            for (int bit = 7; bit >= endBit; bit--)
-            {
-                if (BitInFontIsExist(symbol, b, bit))
-                {
-                    Point().Draw(x, y);
-                }
-                x++;
-            }
-        }
-    }
-}
-
-
 static int Painter_DrawBigChar(int eX, int eY, int size, char symbol)
 {
     int8 width = static_cast<int8>(font->symbol[symbol].width);
@@ -118,25 +93,12 @@ void Painter::DrawCharHardCol(int x, int y, char symbol)
 }
 
 
-extern void CalculateCurrentColor();
+
 
 
 int Painter::DrawChar(int x, int y, char symbol)
 {
-    CalculateCurrentColor();
-    if (Font::GetSize() == 5)
-    {
-        DrawCharHardCol(x, y + 3, symbol);
-    }
-    else if (Font::GetSize() == 8)
-    {
-        DrawCharHardCol(x, y, symbol);
-    }
-    else
-    {
-        DrawCharInColorDisplay(x, y, static_cast<uint8>(symbol));
-    }
-    return x + Font::GetLengthSymbol(static_cast<uint8>(symbol));
+    return 0;
 }
 
 

@@ -114,17 +114,17 @@ public:
 
     static void DrawBigText(int x, int y, int size, const char *text);
 
+    static void DrawCharHardCol(int x, int y, char symbol);
+
+    static void CalculateCurrentColor();
+
 private:
 
     static void RunDisplay();
 
-    static void CalculateCurrentColor();
-
     static Color::E GetColor(int x, int y);
 
     static void Get8Points(int x, int y, uint8 buffer[4]);
-
-    static void DrawCharHardCol(int x, int y, char symbol);
 
     static int DrawCharWithLimitation(int eX, int eY, uchar symbol, int limitX, int limitY, int limitWidth, int limitHeight);
 

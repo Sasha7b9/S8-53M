@@ -45,6 +45,15 @@ namespace Primitives
         void Draw(int x, int y0, int y1, Color::E color = Color::NUM);
     };
 
+    class Char
+    {
+    public:
+        Char(char s) : symbol(s) {}
+        int Draw(int x, int y, Color::E color = Color::NUM);
+    private:
+        char symbol;
+    };
+
     class Text
     {
     public:
