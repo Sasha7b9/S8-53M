@@ -11,12 +11,6 @@ extern StateTransmit::E stateTransmit;
 extern bool noFonts;
 
 
-// Нарисовать одну вертикальную лиинию из count точек c расстоянием delta между соседнимит точками
-static void DrawVPointLine(int x, int y, int count, int delta);
-// Нарисовать одну горизонтальную лиинию из count точек c расстоянием delta между соседнимит точками
-static void DrawHPointLine(int x, int y, int count, int delta);
-
-
 void Painter::BeginScene(Color::E color)
 {
     if (stateTransmit == StateTransmit::NeedForTransmitFirst || stateTransmit == StateTransmit::NeedForTransmitSecond)
@@ -47,84 +41,4 @@ void Painter::EndScene(bool)
 
 void Painter::SetColor(Color::E)
 {
-}
-
-
-void Primitives::Region::Fill(int , int , Color::E )
-{
-
-}
-
-
-void Primitives::HLine::Draw(int , int , int , Color::E )
-{
-
-}
-
-
-void Primitives::Point::Draw(int , int )
-{
-
-}
-
-
-void Primitives::VLine::Draw(int , int , int , Color::E)
-{
-
-}
-
-
-void Primitives::MultiVPointLine::Draw(int y, Color::E color)
-{
-    Painter::SetColor(color);
-
-    for (int i = 0; i < numLines; i++)
-    {
-        DrawVPointLine(x0[i], y, count, delta);
-    }
-}
-
-
-static void DrawVPointLine(int x, int y, int count, int delta)
-{
-    for (int i = 0; i < count; i++)
-    {
-        Point().Draw(x, y);
-        y += delta;
-    }
-}
-
-
-void Primitives::Rectangle::Draw(int x, int y, Color::E color)
-{
-    Painter::SetColor(color);
-
-    HLine().Draw(y, x, x + width);
-    VLine().Draw(x, y, y + height);
-    HLine().Draw(y + height, x, x + width);
-    if (x + width < Display::WIDTH)
-    {
-        HLine().Draw(x + width, y, y + height);
-    }
-}
-
-
-void Primitives::MultiHPointLine::Draw(int x, Color::E color)
-{
-    Painter::SetColor(color);
-
-    for (int i = 0; i < numLines; i++)
-    {
-        DrawHPointLine(x, y[i], count, delta);
-    }
-}
-
-
-static void DrawHPointLine(int x, int y, int count, int delta)
-{
-    for (int i = 0; i < count; i++)
-    {
-        Point().Draw(x, y);
-        x += delta;
-    }
 }

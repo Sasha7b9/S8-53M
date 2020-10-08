@@ -1536,6 +1536,11 @@
               <FileType>5</FileType>
               <FilePath>.\src\Display\Primitives.h</FilePath>
             </File>
+            <File>
+              <FileName>Primitives_stm.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\Primitives_stm.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

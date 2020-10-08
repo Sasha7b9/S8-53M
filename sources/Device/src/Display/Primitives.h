@@ -56,6 +56,8 @@ namespace Primitives
         uint16 *x0;
         int delta;
         int count;
+        // Нарисовать одну вертикальную лиинию из count точек c расстоянием delta между соседнимит точками
+        static void DrawVPointLine(int x, int y, int count, int delta);
     };
 
     // \brief Нарисовать numLines горизонтальных линий, состоящих из count точек каждая с расстоянием между точками delta. Вертикальная координата
@@ -70,5 +72,7 @@ namespace Primitives
         const uint8 *y;
         int delta;
         int count;
+        // Нарисовать одну горизонтальную лиинию из count точек c расстоянием delta между соседнимит точками
+        static void DrawHPointLine(int x, int y, int count, int delta);
     };
 }

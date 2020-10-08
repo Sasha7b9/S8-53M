@@ -46,3 +46,25 @@ void Primitives::VLine::Draw(int x, int y0, int y1, Color::E color)
     Painter::SetColor(color);
     memDC.DrawLine({ x, y0 }, { x, y1 });
 }
+
+
+void Primitives::MultiVPointLine::Draw(int y, Color::E color)
+{
+    Painter::SetColor(color);
+
+    for (int i = 0; i < numLines; i++)
+    {
+        DrawVPointLine(x0[i], y, count, delta);
+    }
+}
+
+
+void Primitives::MultiHPointLine::Draw(int x, Color::E color)
+{
+    Painter::SetColor(color);
+
+    for (int i = 0; i < numLines; i++)
+    {
+        DrawHPointLine(x, y[i], count, delta);
+    }
+}

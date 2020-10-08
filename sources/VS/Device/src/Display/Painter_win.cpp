@@ -63,11 +63,6 @@ static void CreateButtonsChannel(Frame *frame, const char *title, int x, int y, 
 // Создаёт кнопки группы синхронизации
 static void CreateButtonsTrig(Frame *frame, int x, int y);
 
-// Нарисовать одну вертикальную лиинию из count точек c расстоянием delta между соседнимит точками
-static void DrawVPointLine(int x, int y, int count, int delta);
-// Нарисовать одну горизонтальную лиинию из count точек c расстоянием delta между соседнимит точками
-static void DrawHPointLine(int x, int y, int count, int delta);
-
 
 class Screen : public wxPanel
 {
@@ -337,47 +332,5 @@ void Frame::HandlerEvents()
     {
         timerLongPress.Stop();
         needStopTimerLong = false;
-    }
-}
-
-
-void Primitives::MultiVPointLine::Draw(int y, Color::E color)
-{
-    Painter::SetColor(color);
-
-    for (int i = 0; i < numLines; i++)
-    {
-        DrawVPointLine(x0[i], y, count, delta);
-    }
-}
-
-
-static void DrawVPointLine(int x, int y, int count, int delta)
-{
-    for (int i = 0; i < count; i++)
-    {
-        Point().Draw(x, y);
-        y += delta;
-    }
-}
-
-
-void Primitives::MultiHPointLine::Draw(int x, Color::E color)
-{
-    Painter::SetColor(color);
-
-    for (int i = 0; i < numLines; i++)
-    {
-        DrawHPointLine(x, y[i], count, delta);
-    }
-}
-
-
-static void DrawHPointLine(int x, int y, int count, int delta)
-{
-    for (int i = 0; i < count; i++)
-    {
-        Point().Draw(x, y);
-        x += delta;
     }
 }

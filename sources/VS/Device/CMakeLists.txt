@@ -62,7 +62,7 @@ file(GLOB DISPLAY           ../../Device/src/Display/Colors.*
                             ../../Device/src/Display/Grid.*
                             ../../Device/src/Display/Painter.*
                             ../../Device/src/Display/PainterText.cpp
-                            ../../Device/src/Display/Primitives.h
+                            ../../Device/src/Display/Primitives.*
                                          src/Display/Painter_win.cpp
                                          src/Display/Primitives_win.cpp)
 file(GLOB DISPLAY_FONT      ../../Device/src/Display/font/*)
