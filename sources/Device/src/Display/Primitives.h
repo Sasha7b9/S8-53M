@@ -53,6 +53,7 @@ namespace Primitives
         int Draw(int x, int y, Color::E color = Color::NUM);
     private:
         String text;
+        int DrawChar(int x, int y, uint8 symbol);
     };
 
     // numLines вертикальных линий, состоящих из count точек каждая с расстоянием между точками delta. Горизонтальная координата

@@ -83,7 +83,7 @@ static bool ByteFontNotEmpty(int eChar, int byte)
         bytes = font->symbol[prevChar].bytes;
     }
 
-    return bytes[byte];
+    return bytes[byte] != 0;
 }
 
 
@@ -104,12 +104,24 @@ static bool BitInFontIsExist(int eChar, int numByte, int bit)
 }
 
 
-int Primitives::Text::Draw(int eX, int eY, Color::E color)
+int Primitives::Text::Draw(int x, int y, Color::E color)
 {
     Painter::SetColor(color);
 
-    uchar symbol = (uchar)text.c_str()[0];
+    char* pointer = text.c_str();
 
+    while (*pointer != '\0')
+    {
+        x = DrawChar(x, y, (uint8)(*pointer)) + 1;
+        pointer++;
+    }
+
+    return x;
+}
+
+
+int Primitives::Text::DrawChar(int eX, int eY, uint8 symbol)
+{
     int8 width = (int8)font->symbol[symbol].width;
     int8 height = (int8)font->height;
 
