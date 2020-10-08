@@ -15,7 +15,8 @@ struct Font
     Symbol symbol[256];
 
 	static int GetSize();
-	static int GetLengthText(pString text);
+	static int GetLengthText(const char * text);
+	static int GetHeightSymbol(char symbol);
 };
 
 
@@ -40,5 +41,5 @@ extern const uchar fontUGO2display[3080];
 
 
 
-int Font_GetHeightSymbol(char symbol);
+
 int Font_GetLengthSymbol(uchar symbol);

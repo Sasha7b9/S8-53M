@@ -584,7 +584,7 @@ int Painter::DrawFormatText(int x, int y, Color::E color, char *text, ...)
 int Painter::DrawStringInCenterRect(int eX, int eY, int width, int eHeight, const char *text)
 {
     int lenght = Font::GetLengthText(text);
-    int height = Font_GetHeightSymbol(text[0]);
+    int height = Font::GetHeightSymbol(text[0]);
     int x = eX + (width - lenght) / 2;
     int y = eY + (eHeight - height) / 2;
     return Text(text).Draw(x, y);
@@ -687,7 +687,7 @@ void Painter::DrawTextInRect(int x, int y, int width, int, char *text)
         if (length + x > xEnd)
         {
             x = xStart;
-            y += Font_GetHeightSymbol(*text);
+            y += Font::GetHeightSymbol(*text);
         }
         int numSymbols = 0;
         numSymbols = DrawSubString(x, y, text);
