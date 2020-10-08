@@ -93,17 +93,8 @@ static int DrawBigChar(int eX, int eY, int size, char symbol)
 }
 
 
-static void DrawCharHardCol(int x, int y, char symbol)
+static void DrawCharHardCol(int , int , char )
 {
-#ifdef _MS_VS
-#pragma warning(push)
-#pragma warning(disable:4204)
-#endif
-    char str[2] = {symbol, 0};
-#ifdef _MS_VS
-#pragma warning(pop)
-#endif
-    Painter::DrawText(x, y, str);
 }
 
 
@@ -133,12 +124,6 @@ int Painter::DrawCharC(int x, int y, char symbol, Color::E color)
 {
     Painter::SetColor(color);
     return Painter::DrawChar(x, y, symbol);
-}
-
-
-int Painter::DrawText(int x, int, const char *)
-{
-    return x;
 }
 
 
@@ -318,13 +303,11 @@ static int8* BreakWord(char *word)
 }
 
 
-int Painter::DrawStringInCenterRect(int eX, int eY, int width, int eHeight, const char *text)
+int Painter::DrawStringInCenterRect(int eX, int , int width, int , const char *text)
 {
     int lenght = Font_GetLengthText(text);
-    int height = Font_GetHeightSymbol(text[0]);
     int x = eX + (width - lenght) / 2;
-    int y = eY + (eHeight - height) / 2;
-    return Painter::DrawText(x, y, text);
+    return x;
 }
 
 
@@ -416,10 +399,8 @@ void Painter::DrawTextInRect(int x, int y, int width, char *text)
 }
 
 
-void Painter::DrawTextRelativelyRight(int xRight, int y, const char *text)
+void Painter::DrawTextRelativelyRight(int , int , const char *)
 {
-    int lenght = Font_GetLengthText(text);
-    Painter::DrawText(xRight - lenght, y, text);
 }
 
 
@@ -465,7 +446,7 @@ void Painter::DrawBigText(int eX, int eY, int size, const char *text)
 
 
 // Возвращает часть слова до слога numSyllable(включительн) вместе со знаком переноса
-static char* PartWordForTransfer(char *word, int8* lengthSyllables, int numSyllable, char buffer[30])
+static char* PartWordForTransfer(char *word, const int8* lengthSyllables, int numSyllable, char buffer[30])
 {
     int length = 0;
     for (int i = 0; i <= numSyllable; i++)
@@ -480,7 +461,7 @@ static char* PartWordForTransfer(char *word, int8* lengthSyllables, int numSylla
 
 
 // Если draw == false, то рисовать символ не надо, фунция используется только для вычислений
-static int DrawPartWord(char *word, int x, int y, int xRight, bool draw)
+static int DrawPartWord(char *word, int x, int , int xRight, bool draw)
 {
     int8 *lengthSyllables = BreakWord(word);
     int numSyllabels = 0;
@@ -502,7 +483,6 @@ static int DrawPartWord(char *word, int x, int y, int xRight, bool draw)
         {
             if (draw)
             {
-                Painter::DrawText(x, y, subString);
             }
             return static_cast<int>(std::strlen(subString) - 1);
         }
@@ -561,7 +541,6 @@ int Painter::DrawTextInRectWithTransfers(int eX, int eY, int eWidth, int eHeight
                 else
                 {
                     curSymbol += length;
-                    x = Painter::DrawText(x, y, word);
                 }
             }
         }

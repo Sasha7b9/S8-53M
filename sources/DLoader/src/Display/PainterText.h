@@ -13,8 +13,6 @@ namespace Painter
 
     static int DrawCharC(int x, int y, char symbol, Color::E color);
 
-    static int DrawText(int x, int y, const char *text);
-
     int DrawStringInCenterRect(int x, int y, int width, int height, const char *text);
 
     int DrawStringInCenterRectC(int x, int y, int width, int height, const char *text, Color::E color);
