@@ -1508,8 +1508,8 @@ void Display::DrawGrid(int left, int top, int width, int height)
 
         if (!MenuIsMinimize() || !MenuIsShown())
         {
-            HLine().Draw(1, top + 2, bottom - 2);
-            HLine().Draw(318, top + 2, bottom - 2);
+            VLine().Draw(1, top + 2, bottom - 2);
+            VLine().Draw(318, top + 2, bottom - 2);
         }
     }
 
