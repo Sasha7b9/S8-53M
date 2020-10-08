@@ -71,10 +71,6 @@ public:
     // Загрузить шрифта в дисплей.
     static void LoadFont(TypeFont::E typeFont);
 
-    static int DrawChar(int x, int y, char symbol);
-
-    static int DrawCharC(int x, int y, char symbol, Color::E color);
-
     // Выводит текст на прямоугольнике цвета colorBackgound
     static int DrawTextOnBackground(int x, int y, const char *text, Color::E colorBackground);
 

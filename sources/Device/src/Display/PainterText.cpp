@@ -94,21 +94,6 @@ void Painter::DrawCharHardCol(int x, int y, char symbol)
 
 
 
-
-
-int Painter::DrawChar(int x, int y, char symbol)
-{
-    return 0;
-}
-
-
-int Painter::DrawCharC(int x, int y, char symbol, Color::E color)
-{
-    Painter::SetColor(color);
-    return DrawChar(x, y, symbol);
-}
-
-
 int Painter::DrawTextOnBackground(int x, int y, const char *text, Color::E colorBackground)
 {
     int width = Font::GetLengthText(text);
@@ -424,7 +409,7 @@ int Painter::DrawTextInRectWithTransfers(int eX, int eY, int eWidth, int eHeight
                 {
                     continue;
                 }
-                x = DrawChar(x, y, symbol);
+                x = Char(symbol).Draw(x, y);
             }
             else                                            // ј здесь найдено по крайней мере два буквенных символа, т.е. найдено слово
             {
@@ -617,7 +602,7 @@ int Painter::DrawSubString(int x, int y, char *text)
     int numSymbols = 0;
     while (((*text) != ' ') && ((*text) != '\0'))
     {
-        x = DrawChar(x, y, *text);
+        x = Char(*text).Draw(x, y);
         numSymbols++;
         text++;
     }
@@ -630,7 +615,7 @@ int Painter::DrawSpaces(int x, int y, char *text, int *numSymbols)
     *numSymbols = 0;
     while (*text == ' ')
     {
-        x = DrawChar(x, y, *text);
+        x = Char(*text).Draw(x, y);
         text++;
         (*numSymbols)++;
     }
