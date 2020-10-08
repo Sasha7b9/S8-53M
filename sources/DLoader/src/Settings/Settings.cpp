@@ -54,13 +54,13 @@ static const Settings defaultSettings =
     },
     // time
     {
-        TBase::_200us,
+        false,
         0,                          // set.time.tShiftRel
+        TBase::_200us,
         FunctionTime::Time,
         TPos::Center,
         SampleType::Equal,
         PeackDetMode::Disable,
-        false,
         ENUM_POINTS_FPGA::_1024
     },
     // cursors
@@ -118,8 +118,8 @@ static const Settings defaultSettings =
     {
         true,                       // screenWelcomeEnable
         true,                       // soundEnable
-        CalibratorMode::Freq,       // calibratorEnable
         0,                          // IP-адрес (временно)  WARN
+        CalibratorMode::Freq,       // calibratorEnable
         ColorScheme::WhiteLetters   // colorScheme
     },
     {

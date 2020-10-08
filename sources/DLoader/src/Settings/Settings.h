@@ -47,13 +47,13 @@ struct SettingsTrig
 // ВременнЫе настройки
 struct SettingsTime
 {
-    TBase::E            tBase;                  // Масштаб по времени.
+    bool                selfRecorder;           // Включен ли режим самописца.
     int16               tShiftRel;              // Смещение по времени
+    TBase::E            tBase;                  // Масштаб по времени.
     FunctionTime::E     timeDivXPos;
     TPos::E             tPos;
     SampleType::E       sampleType;
     PeackDetMode::E     peakDet;
-    bool                selfRecorder;           // Включен ли режим самописца.
     ENUM_POINTS_FPGA::E oldNumPoints;           // Когда переключаемся в режим пикового детектора, устанавливаем количество точек в 1024, а сюда записываем то, что было, чтобы потом восстановить
 };
 
@@ -129,8 +129,8 @@ struct SettingsService
 {
     bool              screenWelcomeEnable;    // Будет ли показываться экран приглашения при включении прибора.
     bool              soundEnable;            // Включены ли звуки.
-    CalibratorMode::E calibrator;             // Режим работы калибратора.
     int8              IPaddress;              // IP-адрес (временно)
+    CalibratorMode::E calibrator;             // Режим работы калибратора.
     ColorScheme::E    colorScheme;            //
 };
 
