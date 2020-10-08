@@ -26,31 +26,6 @@
 #define SET_SELFRECORDER                    (set.time.selfRecorder) // SettingsTime.selfRecorder
 
 
-
-
-// Функция ручки ВРЕМЯ/ДЕЛ.
-struct FunctionTime { enum E
-{
-    Time,              // Ручка управляет смещением по времени.
-    ShiftInMemory      // Ручка управляет отображаемым на экране участком памяти.
-}; };
-
-// Привязка синхронизации к памяти.
-struct TPos { enum E
-{
-    Left,      // Синхронизация привязана к началу памяти.
-    Center,    // Синхронизация привязана к центру памяти.
-    Right      // Синхронизация привязана к концу памяти.
-};};
-
-// Режим работы пикового детектора.
-struct PeackDetMode { enum E
-{
-    Disable,
-    Enable,
-    Average
-};};
-
 // Настройки оси X.
 struct SettingsTime
 { //-V802

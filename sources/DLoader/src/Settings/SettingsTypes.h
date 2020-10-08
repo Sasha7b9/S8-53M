@@ -89,13 +89,6 @@ struct ModeLongPressTrig { enum E
 // Time
 
 
-// Функция ВР/ДЕЛ
-struct FunctionTime { enum E
-{
-    Time,
-    ShiftInMemory
-}; };
-
 // Масштаб по времени
 struct TBase { enum E
 {
@@ -131,21 +124,6 @@ struct TBase { enum E
     _10s,
     Count
 }; };
-
-// Положение точки синхронизация на сигнале
-struct TPos { enum E
-{
-    Left,      // Привязка к левому краю
-    Center,    // Привязка к центру
-    Right      // Привязка к правому краю
-};};
-
-struct PeackDetMode { enum E
-{
-    Disable,
-    Enable,
-    Average
-};};
 
 
 // Cursors
