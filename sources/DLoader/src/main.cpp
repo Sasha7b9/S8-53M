@@ -33,9 +33,9 @@ int main(void)
 
     ms->state = State::Start;
 
-    Display_Init();
+    Display::Init();
 
-    Timer_Enable(TypeTimer::Temp, 10, Display_Update);
+    Timer_Enable(TypeTimer::Temp, 10, Display::Update);
 
     uint timeStart = HAL_TIM2::TimeMS();
 
@@ -90,11 +90,11 @@ int main(void)
 
     Timer_Disable(TypeTimer::Temp);
 
-    while (Display_IsRun())
+    while (Display::IsRun())
     {
     }
 
-    Display_Update();
+    Display::Update();
 
     HAL::DeInit();
 

@@ -28,7 +28,7 @@ static void InitPoints(void);
 
 
 
-void Display_Init(void)
+void Display::Init(void)
 {
     ms->display.value = 0.0F;
     ms->display.isRun = false;
@@ -67,7 +67,7 @@ void DrawButton(int x, int y, const char *text)
 }
 
 
-void Display_Update(void)
+void Display::Update(void)
 {
     ms->display.isRun = true;
 
@@ -161,7 +161,7 @@ void DrawProgressBar(uint dT)
 }
 
 
-bool Display_IsRun(void)
+bool Display::IsRun(void)
 {
     return ms->display.isRun;
 }
