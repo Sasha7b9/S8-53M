@@ -504,11 +504,6 @@
               <FilePath>.\src\Hardware\HAL\stm32l0xx_hal_conf.h</FilePath>
             </File>
             <File>
-              <FileName>stm32l0xx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\HAL\stm32l0xx_it.h</FilePath>
-            </File>
-            <File>
               <FileName>stm32l0xx_it.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\HAL\stm32l0xx_it.cpp</FilePath>

@@ -1,6 +1,5 @@
 #include "defines.h"
 #include "Hardware/HAL/HAL.h"
-#include "stm32l0xx_it.h"
 #include <stm32l0xx_hal.h>
 
 

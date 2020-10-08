@@ -25,11 +25,11 @@
 
   <project>
     <PathAndName>.\DLoader\DLoader-Debug.uvprojx</PathAndName>
-    <NodeIsActive>1</NodeIsActive>
   </project>
 
   <project>
     <PathAndName>.\Panel\Panel-Debug.uvprojx</PathAndName>
+    <NodeIsActive>1</NodeIsActive>
   </project>
 
 </ProjectWorkspace>
