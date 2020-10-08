@@ -21,7 +21,7 @@ const Font *font = &font8;
 
 
 
-int Font_GetSize()
+int Font::GetSize()
 {
     return font->height;
 }

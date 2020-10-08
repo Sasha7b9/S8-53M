@@ -2,6 +2,7 @@
 #include "Colors.h"
 #include "DisplayTypes.h"
 #include "PainterC.h"
+#include "common/Display/Font/Font.h"
 
 
 struct StateTransmit { enum E

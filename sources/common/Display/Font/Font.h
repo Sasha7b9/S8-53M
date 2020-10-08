@@ -11,9 +11,22 @@ struct Symbol
 
 struct Font
 {
-    int height;
+	int height;
     Symbol symbol[256];
+
+	static int GetSize();
 };
+
+
+struct TypeFont { enum E
+{
+	_5,
+	_8,
+	_UGO,
+	_UGO2,
+	_Count,
+	_None
+};};
 
 
 extern const Font *font;
@@ -25,7 +38,6 @@ extern const uchar fontUGOdisplay[3080];
 extern const uchar fontUGO2display[3080];
 
 
-int Font_GetSize();
 int Font_GetLengthText(const char *text);
 int Font_GetHeightSymbol(char symbol);
 int Font_GetLengthSymbol(uchar symbol);

@@ -124,11 +124,11 @@ extern void CalculateCurrentColor();
 int Painter::DrawChar(int x, int y, char symbol)
 {
     CalculateCurrentColor();
-    if (Font_GetSize() == 5)
+    if (Font::GetSize() == 5)
     {
         DrawCharHardCol(x, y + 3, symbol);
     }
-    else if (Font_GetSize() == 8)
+    else if (Font::GetSize() == 8)
     {
         DrawCharHardCol(x, y, symbol);
     }
@@ -150,7 +150,7 @@ int Painter::DrawCharC(int x, int y, char symbol, Color::E color)
 int Painter::DrawTextOnBackground(int x, int y, const char *text, Color::E colorBackground)
 {
     int width = Font_GetLengthText(text);
-    int height = Font_GetSize();
+    int height = Font::GetSize();
 
     Color::E colorText = Painter::CurrentColor();
     Region(width, height).Fill(x - 1, y, colorBackground);

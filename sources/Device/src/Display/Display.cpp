@@ -2420,7 +2420,7 @@ void Display::DrawConsole()
 {
     int count = 0;
     Painter::SetFont(sDebug_GetSizeFontForConsole() == 5 ? TypeFont::_5 : TypeFont::_8);
-    int height = Font_GetSize();
+    int height = Font::GetSize();
 
     int lastString = FirstEmptyString() - 1;
     int numStr = NUM_STRINGS;
@@ -2445,7 +2445,7 @@ void Display::DrawConsole()
         int width = Font_GetLengthText(strings[numString]);
         Region(width, height + 1).Fill(Grid::Left() + 1, Grid::TOP + 1 + count * (height + 1) + delta, COLOR_BACK);
         int y = Grid::TOP + 5 + count * (height + 1) - 4;
-        if(Font_GetSize() == 5)
+        if(Font::GetSize() == 5)
         {
             y -= 3;
         }

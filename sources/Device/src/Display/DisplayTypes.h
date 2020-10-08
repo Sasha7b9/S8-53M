@@ -28,13 +28,3 @@ struct SourceBuffer { enum E
     Send,
     Intermediate
 };};
-
-struct TypeFont { enum E
-{
-    _5,
-    _8,
-    _UGO,
-    _UGO2,
-    _Count,
-    _None
-};};
