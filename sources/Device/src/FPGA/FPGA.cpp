@@ -1,23 +1,14 @@
-#include "FPGA.h"
-#include "Storage.h"
-#include "FPGA_Types.h"
-#include "Menu/Pages/PageMemory.h"
-#include "Display/Display.h"
-#include "Hardware/Hardware.h"
-#include "common/Hardware/HAL/HAL.h"
+#include "defines.h"
+#include "common/Log.h"
+#include "FPGA/FPGA.h"
+#include "FPGA/FPGA_Types.h"
+#include "FPGA/Storage.h"
+#include "Hardware/Timer.h"
 #include "Panel/Panel.h"
-#include "common/Keyboard/Controls.h"
 #include "Settings/Settings.h"
-#include "Settings/SettingsChannel.h"
 #include "Utils/Math.h"
 #include "Utils/ProcessingSignal.h"
-#include "Utils/Generator.h"
-#include "Hardware/Timer.h"
-#include "common/Log.h"
-#include "Settings/Settings.h"
-#include "Utils/Generator.h"
 #include <cstring>
-
 
 
 #define NULL_TSHIFT 1000000

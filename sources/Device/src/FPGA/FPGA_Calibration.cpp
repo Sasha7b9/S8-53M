@@ -1,15 +1,14 @@
 #include "defines.h"
-#include "Display/Display.h"
-#include "Display/DisplayPrimitives.h"
 #include "common/Display/Primitives.h"
 #include "common/Display/Text.h"
+#include "Display/Display.h"
+#include "Display/DisplayPrimitives.h"
 #include "FPGA/FPGA.h"
 #include "Hardware/Timer.h"
-#include "common/Hardware/HAL/HAL.h"
 #include "Panel/Panel.h"
 #include "Settings/Settings.h"
-#include <limits>
 #include <cstdio>
+#include <limits>
 
 
 using namespace Primitives;

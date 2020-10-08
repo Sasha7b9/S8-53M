@@ -1,13 +1,8 @@
-#include "FPGA_Types.h"
-#include "FPGA.h"
+#include "defines.h"
+#include "FPGA/FPGA.h"
 #include "Settings/Settings.h"
-#include "Hardware/Hardware.h"
-#include "Display/Display.h"
-#include "Utils/GlobalFunctions.h"
 #include "Utils/Math.h"
-#include "common/Log.h"
-#include "Hardware/Timer.h"
-
+#include "Utils/GlobalFunctions.h"
 
 
 static const uint8 masksRange[Range::Count] =

@@ -1,16 +1,9 @@
-#include "Storage.h"
-#include "FPGA_Types.h"
-#include "FPGA.h"
-#include "Menu/Pages/PageMemory.h"
+#include "defines.h"
+#include "common/Log.h"
+#include "FPGA/Storage.h"
 #include "Settings/Settings.h"
 #include "Utils/Math.h"
-#include "common/Log.h"
-#include "Hardware/Timer.h"
-#include "common/Hardware/HAL/HAL.h"
-#include "Settings/Settings.h"
 #include <cstring>
-
-
 
 uint8  Storage::pool[SIZE_POOL] = {0};
 uint8 *Storage::beginPool = &(pool[0]);
