@@ -35,47 +35,6 @@
 #define MODE_SAVE_SIGNAL_IS_BMP     (MODE_SAVE_SIGNAL == ModeSaveSignal::BMP)
 
 
-
-
-// Режим работы.
-struct ModeWork { enum E
-{
-    Direct,        // Основной режим.
-    Latest,        // В этом режиме можно просмотреть последние сохранённые измерения.
-    MemInt,        // В этом режиме можно сохранять во flash-памяти измерения просматривать ранее сохранённые.
-};};
-
-
-// Режим наименования файлов.
-struct FileNamingMode { enum E
-{
-    Mask,        // Именовать по маске.
-    Manually     // Именовать вручную.
-};};
-
-// Что показывать в режиме Внутр ЗУ - считанный или записанный сигнал.
-struct ModeShowIntMem { enum E
-{
-    Direct,  // Показывать данные реального времени.
-    Saved,   // Показывать сохранённые данные.
-    Both     // Показывать данные реального времени и сохранённые данные.
-};};
-
-// Что делать при нажатии кнопки ПАМЯТЬ.
-struct ModeBtnMemory { enum E
-{
-    Menu,     // Будет открывааться соответствующая страница меню.
-    Save      // Сохранение содержимого экрана на флешку.
-};};
-
-// Как сохранять данные на флешку.
-struct ModeSaveSignal { enum E
-{
-    BMP,     // Сохранять данные на флешку в формате .bmp.
-    TXT      // Сохранять данные на флешку в текствовом виде.
-};};
-
-
 struct StructMemoryLast
 {
     bool isActiveModeSelect;
@@ -103,7 +62,6 @@ struct SettingsMemory
     ModeBtnMemory::E    modeBtnMemory;
     ModeSaveSignal::E   modeSaveSignal;                         // В каком виде сохранять сигнал.
 };
-
 
 
 int sMemory_GetNumPoints(bool forCalculate);
