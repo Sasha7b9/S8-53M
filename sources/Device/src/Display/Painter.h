@@ -83,8 +83,6 @@ public:
 
     static void DrawHintsForSmallButton(int x, int y, int width, void *smallButton);
 
-    static void DrawTextInRect(int x, int y, int width, int height, char *text);
-
     static void DrawTextRelativelyRight(int xRight, int y, const char *text);
 
     static void DrawTextRelativelyRightC(int xRight, int y, const char *text, Color::E color);
@@ -114,10 +112,6 @@ private:
     static void Get8Points(int x, int y, uint8 buffer[4]);
 
     static int DrawCharWithLimitation(int eX, int eY, uchar symbol, int limitX, int limitY, int limitWidth, int limitHeight);
-
-    static int DrawSubString(int x, int y, char *text);
-
-    static int DrawSpaces(int x, int y, char *text, int *numSymbols);
 
     static int DrawPartWord(char *word, int x, int y, int xRight, bool draw);
 

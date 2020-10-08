@@ -576,67 +576,6 @@ void Painter::DrawHintsForSmallButton(int x, int y, int width, void *smallButton
 }
 
 
-static int GetLenghtSubString(char *text)
-{
-    int retValue = 0;
-    while (((*text) != ' ') && ((*text) != '\0'))
-    {
-        retValue += Font::GetLengthSymbol(static_cast<uint8>(*text));
-        text++;
-    }
-    return retValue;
-}
-
-
-int Painter::DrawSubString(int x, int y, char *text)
-{
-    int numSymbols = 0;
-    while (((*text) != ' ') && ((*text) != '\0'))
-    {
-        x = Char(*text).Draw(x, y);
-        numSymbols++;
-        text++;
-    }
-    return numSymbols;
-}
-
-
-int Painter::DrawSpaces(int x, int y, char *text, int *numSymbols)
-{
-    *numSymbols = 0;
-    while (*text == ' ')
-    {
-        x = Char(*text).Draw(x, y);
-        text++;
-        (*numSymbols)++;
-    }
-    return x;
-}
-
-
-void Painter::DrawTextInRect(int x, int y, int width, int, char *text)
-{
-    int xStart = x;
-    int xEnd = xStart + width;
-
-    while (*text != 0)
-    {
-        int length = GetLenghtSubString(text);
-        if (length + x > xEnd)
-        {
-            x = xStart;
-            y += Font::GetHeightSymbol();
-        }
-        int numSymbols = 0;
-        numSymbols = DrawSubString(x, y, text);
-        text += numSymbols;
-        x += length;
-        x = DrawSpaces(x, y, text, &numSymbols);
-        text += numSymbols;
-    }
-}
-
-
 void Painter::DrawTextRelativelyRight(int xRight, int y, const char *text)
 {
     int lenght = Font::GetLengthText(text);

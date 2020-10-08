@@ -19,6 +19,7 @@ public:
     Text(char *t) : text(t) {}
     Text(pString t) : text(t) {};
     int Draw(int x, int y, Color::E color = Color::NUM);
+    void DrawInRect(int x, int y, int width, int height);
 private:
     String text;
     int DrawChar(int x, int y, uint8 symbol);

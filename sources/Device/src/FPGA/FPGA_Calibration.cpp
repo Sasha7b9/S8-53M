@@ -234,7 +234,7 @@ void FuncAttScreen(void)
     {
         case StateCalibration::None:
         {
-                Painter::DrawTextInRect(40 + dX, y + 25 + dY, Display::WIDTH - 100, 200, "Калибровка завершена. Нажмите любую кнопку, чтобы выйти из режима калибровки.");
+                Text("Калибровка завершена. Нажмите любую кнопку, чтобы выйти из режима калибровки.").DrawInRect(40 + dX, y + 25 + dY, Display::WIDTH - 100, 200);
 
                 Text("Поправка нуля 1к :").Draw(10 + dX, 55 + dY);
                 Text("Поправка нуля 2к :").Draw(10 + dX, 80 + dY);
@@ -261,27 +261,27 @@ void FuncAttScreen(void)
             break;
 
         case StateCalibration::RShift0start:
-            Painter::DrawTextInRect(50, y + 25, Display::WIDTH - 100, 200, "Подключите ко входу канала 1 выход калибратора и нажмите кнопку ПУСК/СТОП. \
-Если вы не хотите калибровать первый канала, нажмите любую другую кнопку.");
+            Text("Подключите ко входу канала 1 выход калибратора и нажмите кнопку ПУСК/СТОП. Если вы не хотите калибровать первый канала, нажмите любую другую кнопку.").
+                DrawInRect(50, y + 25, Display::WIDTH - 100, 200);
             break;
 
         case StateCalibration::RShift0inProgress:
             break;
 
         case StateCalibration::RShift1start:
-            Painter::DrawTextInRect(50, y + 25, Display::WIDTH - 100, 200, "Подключите ко входу канала 2 выход калибратора и нажмите кнопку ПУСК/СТОП. \
-Если вы не хотите калибровать второй канал, нажмите любую другую кнопку.");
+            Text("Подключите ко входу канала 2 выход калибратора и нажмите кнопку ПУСК/СТОП. Если вы не хотите калибровать второй канал, нажмите любую другую кнопку.").
+                DrawInRect(50, y + 25, Display::WIDTH - 100, 200);
             break;
 
         case StateCalibration::RShift1inProgress:
             break;
 
         case StateCalibration::ErrorCalibration0:
-            Painter::DrawTextInRect(50, y + 25, Display::WIDTH - 100, 200, "Внимание !!! Канал 1 не скалиброван.");
+            Text("Внимание !!! Канал 1 не скалиброван.").DrawInRect(50, y + 25, Display::WIDTH - 100, 200);
             break;
 
         case StateCalibration::ErrorCalibration1:
-            Painter::DrawTextInRect(50, y + 25, Display::WIDTH - 100, 200, "Внимание !!! Канал 2 не скалиброван.");
+            Text("Внимание !!! Канал 2 не скалиброван.").DrawInRect(50, y + 25, Display::WIDTH - 100, 200);
             break;
     }
 
