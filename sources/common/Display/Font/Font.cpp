@@ -54,7 +54,7 @@ int Font::GetLengthSymbol(uchar symbol)
 }
 
 
-void Font::Set(TypeFont::E )
+void Font::Set(TypeFont::E typeFont)
 {
-
+    font = fonts[typeFont];
 }
