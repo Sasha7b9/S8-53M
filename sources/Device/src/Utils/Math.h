@@ -48,16 +48,15 @@ namespace Math
     uint8   GetMinFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoint);
     uint8   GetMaxFromArray(pUCHAR data, int firstPoint, int lastPoint);
     uint8   GetMinFromArray(pUCHAR data, int firstPoint, int lastPoint);
+    // Возвращает координату x пересечения линии, проходящей через (x0, y0), (x1, y1), с горизонтальной линией, проходящей через точку с ординатой yHorLine.
+    float   GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, int yHorLine);
+    // Сравнивает два числа. Возвращает true, если числа отличаются друг от друга не более, чем на epsilonPart. При этом для расчёта epsilonPart 
+    // используется большее в смысле модуля число.
+    bool    FloatsIsEquals(float value0, float value1, float epsilonPart);
+    float   MinFrom3float(float value1, float value2, float value3);
+    int     MinInt(int val1, int val2);
 }
 
-// \brief Возвращает координату x пересечения линии, проходящей через (x0, y0), (x1, y1), с горизонтальной линией, проходящей через точку с 
-// ординатой yHorLine.
-float   Math_GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, int yHorLine);
-// \brief Сравнивает два числа. Возвращает true, если числа отличаются друг от друга не более, чем на epsilonPart. При этом для расчёта epsilonPart 
-// используется большее в смысле модуля число.
-bool    Math_FloatsIsEquals(float value0, float value1, float epsilonPart);
-float   Math_MinFrom3float(float value1, float value2, float value3);
-int     Math_MinInt(int val1, int val2);
 void    Math_CalculateFFT(float *data, int numPoints, float *result, float *freq0, float *density0, float *freq1, float *density1, int *y0, int *y1);
 void    Math_CalculateMathFunction(float *data0andResult, const float *data1, int numPoints);
 float   Math_RandFloat(float min, float max);

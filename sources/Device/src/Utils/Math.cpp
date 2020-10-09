@@ -158,7 +158,7 @@ uint8 Math::VoltageToPoint(float voltage, Range::E range, int16 rShift)
     return (uint8)relValue;
 }
 
-float Math_GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, int yHorLine)
+float Math::GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, int yHorLine)
 {
     if(y0 == y1)
     {
@@ -168,7 +168,7 @@ float Math_GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, int
     return (yHorLine - y0) / ((float)(y1 - y0) / (float)(x1 - x0)) + x0;
 }
 
-bool Math_FloatsIsEquals(float value0, float value1, float epsilonPart)
+bool Math::FloatsIsEquals(float value0, float value1, float epsilonPart)
 {
     float max = std::fabsf(value0) > std::fabsf(value1) ? std::fabsf(value0) : std::fabsf(value1);
 
@@ -191,7 +191,7 @@ float Math_MinFrom3float(float value1, float value2, float value3)
     return retValue;
 }
 
-int Math_MinInt(int val1, int val2)
+int Math::MinInt(int val1, int val2)
 {
     return val1 < val2 ? val1 : val2;
 }

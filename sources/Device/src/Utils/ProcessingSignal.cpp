@@ -451,7 +451,7 @@ float Processing::FindIntersectionWithHorLine(Channel::E chan, int numIntersecti
     {
         return ERROR_VALUE_FLOAT;
     }
-    return Math_GetIntersectionWithHorizontalLine(x, data[x], x + 1, data[x + 1], yLine);
+    return Math::GetIntersectionWithHorizontalLine(x, data[x], x + 1, data[x + 1], yLine);
 }
 
 float Processing::CalculateDurationPlus(Channel::E chan)
@@ -793,7 +793,7 @@ float Processing::CalculateDelayPlus(Channel::E chan)
     float period1 = CalculatePeriod(Channel::B);
 
     EXIT_IF_ERRORS_FLOAT(period0, period1);
-    if(!Math_FloatsIsEquals(period0, period1, 1.05F))
+    if(!Math::FloatsIsEquals(period0, period1, 1.05F))
     {
         return ERROR_VALUE_FLOAT;
     }
@@ -830,7 +830,7 @@ float Processing::CalculateDelayMinus(Channel::E chan)
 
     EXIT_IF_ERRORS_FLOAT(period0, period1);
 
-    if(!Math_FloatsIsEquals(period0, period1, 1.05F))
+    if(!Math::FloatsIsEquals(period0, period1, 1.05F))
     {
         return ERROR_VALUE_FLOAT;
     }

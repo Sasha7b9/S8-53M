@@ -26,7 +26,7 @@ void VCP::SendDataAsinch(pUCHAR buffer, int size)
     const int SIZE_BUFFER = 64;
     static uint8 trBuf[SIZE_BUFFER];
 
-    size = Math_MinInt(size, SIZE_BUFFER);
+    size = Math::MinInt(size, SIZE_BUFFER);
     while (!HAL_USBD::PrevSendingComplete())  {};
     std::memcpy(trBuf, buffer, static_cast<uint>(size));
 
