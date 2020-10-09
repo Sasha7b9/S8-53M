@@ -454,18 +454,18 @@ void DrawGovernorColorValue(int x, int y, GovernorColor *govColor, int delta)
     
 }
 
-static void GovernorColor_DrawOpened(GovernorColor *gov, int x, int y)
+void GovernorColor::DrawOpened(int x, int y)
 {
     static const int delta = 43;
     x -= delta;
-    Color_Init(gov->colorType);
+    Color_Init(colorType);
     Rectangle(MI_WIDTH + delta + 2, MI_HEIGHT + 2).Draw(x - 1, y - 1, Color::BLACK);
     Rectangle(MI_WIDTH + delta, MI_HEIGHT).Draw(x, y, ColorMenuTitle(false));
     Painter::DrawVolumeButton(x + 1, y + 1, MI_WIDTH_VALUE + 2 + delta, MI_HEIGHT_VALUE + 3, 2, ColorMenuItem(false), 
-        ColorMenuItemBrighter(), ColorMenuItemLessBright(), Menu::IsPressed(gov), Menu::IsShade(gov));
+        ColorMenuItemBrighter(), ColorMenuItemLessBright(), Menu::IsPressed(this), Menu::IsShade(this));
     HLine().Draw(y + MI_HEIGHT / 2 + 2, x, x + MI_WIDTH + delta, ColorMenuTitle(false));
-    Painter::DrawStringInCenterRectC(x + (Menu::IsPressed(gov) ? 2 : 1), y + (Menu::IsPressed(gov) ? 2 : 1), MI_WIDTH + delta, MI_HEIGHT / 2 + 2, Menu::TitleItem(gov), Color::WHITE);
-    DrawGovernorColorValue(x + 1, y + 19, gov, delta);
+    Painter::DrawStringInCenterRectC(x + (Menu::IsPressed(this) ? 2 : 1), y + (Menu::IsPressed(this) ? 2 : 1), MI_WIDTH + delta, MI_HEIGHT / 2 + 2, Menu::TitleItem(this), Color::WHITE);
+    DrawGovernorColorValue(x + 1, y + 19, this, delta);
 }
 
 static void GovernorColor_DrawClosed(GovernorColor *gov, int x, int y)
@@ -479,7 +479,7 @@ void GovernorColor::Draw(int x, int y, bool opened)
 {
     if(opened)
     {
-        GovernorColor_DrawOpened(this, x, y);
+        DrawOpened(x, y);
     }
     else
     {
