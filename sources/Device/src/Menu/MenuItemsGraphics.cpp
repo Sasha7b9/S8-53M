@@ -512,7 +512,7 @@ void ItemChoice_DrawOpened(const Choice *choice, int x, int y)
     }
 }
 
-void ItemTime_DrawOpened(Time *time, int x, int y)
+void ItemTime_DrawOpened(const Time *time, int x, int y)
 {
     char buffer[20];
     
@@ -651,7 +651,7 @@ void Choice::Draw(int x, int y, bool opened) const
     }
 }
 
-void ItemTime_DrawClosed(Time *item, int x, int y)
+void ItemTime_DrawClosed(const Time *item, int x, int y)
 {
     char buffer[20];
     
@@ -682,7 +682,7 @@ void ItemTime_DrawClosed(Time *item, int x, int y)
     Text(Int2String((int)time.year, false, 2, buffer)).Draw(x + startX + 2 * deltaField + 2 * deltaSeparator, y);
 }
 
-void Time::Draw(int x, int y, bool opened)
+void Time::Draw(int x, int y, bool opened) const
 {
     if(opened)
     {
