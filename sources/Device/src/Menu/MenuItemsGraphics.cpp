@@ -732,10 +732,10 @@ void SmallButton::Draw(int x, int y) const
     }
 }
 
-void ItemPage_Draw(Page *page, int x, int y)
+void Page::Draw(int x, int y)
 {
-    bool isShade = Menu::IsShade(page) || !Menu::ItemIsActive(page);
-    bool isPressed = Menu::IsPressed(page);
+    bool isShade = Menu::IsShade(this) || !Menu::ItemIsActive(this);
+    bool isPressed = Menu::IsPressed(this);
     HLine().Draw(y + 1, x, x + MI_WIDTH, ColorBorderMenu(false));
     if (isShade)
     {
@@ -752,5 +752,5 @@ void ItemPage_Draw(Page *page, int x, int y)
         colorText = COLOR_FILL;
         delta = 1;
     }
-    Painter::DrawStringInCenterRectC(x + delta, y + delta, MI_WIDTH, MI_HEIGHT, Menu::TitleItem(page), colorText);
+    Painter::DrawStringInCenterRectC(x + delta, y + delta, MI_WIDTH, MI_HEIGHT, Menu::TitleItem(this), colorText);
 }

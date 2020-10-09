@@ -248,7 +248,7 @@ static void DrawButton(void *item, int x, int y)
 
 static void DrawPage(void *item, int x, int y)
 {
-    ItemPage_Draw((Page *)item, x, y);
+    ((Page *)item)->Draw(x, y);
 }
 
 

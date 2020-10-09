@@ -144,6 +144,7 @@ public:
     Page(const Page *keeper_, pFuncBV funcOfActive_,
          const char *titleRU, const char *titleEN, const char *hintRU, const char *hintEN, NamePage::E name_,
          const arrayItems *items_, pFuncVV funcOnPress_ = 0, pFuncVV funcOnDraw_ = 0, pFuncVI funcRegSetSB_ = 0);
+    void Draw(int x, int y);
 };
 
 
