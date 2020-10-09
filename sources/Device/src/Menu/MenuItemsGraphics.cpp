@@ -710,11 +710,11 @@ void Button::Draw(int x, int y) const
     Painter::DrawStringInCenterRectC(x + delta, y + delta, MI_WIDTH, MI_HEIGHT, Menu::TitleItem(this), color);
 }
 
-void ItemSmallButton_Draw(SmallButton *smallButton, int x, int y)
+void SmallButton::Draw(int x, int y)
 {
-    if (Menu::ItemIsActive(smallButton))
+    if (Menu::ItemIsActive(this))
     {
-        if (Menu::IsPressed(smallButton))
+        if (Menu::IsPressed(this))
         {
             Region(WIDTH_SB, WIDTH_SB).Fill(x, y, COLOR_FILL);
             Color::SetCurrent(COLOR_BACK);
@@ -724,7 +724,7 @@ void ItemSmallButton_Draw(SmallButton *smallButton, int x, int y)
             Rectangle(WIDTH_SB, WIDTH_SB).Draw(x, y, COLOR_FILL);
             Color::SetCurrent(COLOR_FILL);
         }
-        smallButton->funcOnDraw(x, y);
+        funcOnDraw(x, y);
     }
     else
     {
