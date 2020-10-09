@@ -84,19 +84,19 @@ IPaddress::IPaddress(const IPaddressStruct *str) :
 }
 
 
-const char *Choice::NameSubItem(int i)
+const char *Choice::NameSubItem(int i) const
 {
     return names[i][LANG];
 }
 
 
-const char *Choice::NameCurrentSubItem()
+const char *Choice::NameCurrentSubItem() const
 {
     return (cell == 0) ? "" : names[*cell][LANG];
 }
 
 
-const char *Choice::NameNextSubItem()
+const char *Choice::NameNextSubItem() const
 {
     if (cell == 0)
     {
@@ -111,7 +111,7 @@ const char *Choice::NameNextSubItem()
 }
 
 
-const char *Choice::NamePrevSubItem()
+const char *Choice::NamePrevSubItem() const
 {
     if (cell == 0)
     {
@@ -126,7 +126,7 @@ const char *Choice::NamePrevSubItem()
 }
 
 
-int Choice::NumSubItems()
+int Choice::NumSubItems() const
 {
     int i = 0;
     for (; i < MAX_NUM_SUBITEMS_IN_CHOICE; i++)
@@ -171,7 +171,7 @@ void Choice::StartChange(int delta)
 }
 
 
-void Choice::FuncOnChanged(bool active)
+void Choice::FuncOnChanged(bool active) const
 {
     if (funcOnChanged)
     {
@@ -180,7 +180,7 @@ void Choice::FuncOnChanged(bool active)
 }
 
 
-void Choice::FuncForDraw(int x, int y)
+void Choice::FuncForDraw(int x, int y) const
 {
     if (funcForDraw)
     {
@@ -189,7 +189,7 @@ void Choice::FuncForDraw(int x, int y)
 }
 
 
-float Choice::Step()
+float Choice::Step() const
 {
     static const float speed = 0.1F;
     static const int numLines = 12;

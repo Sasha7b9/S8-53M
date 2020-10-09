@@ -301,27 +301,27 @@ public:
     int8*       cell;                                   // Адрес ячейки, в которой хранится позиция текущего выбора.
     pFuncVB	    funcOnChanged;                          // Функция должна вызываться после изменения значения элемента.
     pFuncVII    funcForDraw;                            // Функция вызывается после отрисовки элемента. 
-    const char *NameSubItem(int i);
+    const char *NameSubItem(int i) const;
     // Возвращает имя текущего варианта выбора элемента choice, как оно записано в исходном коде программы.
-    const char *NameCurrentSubItem();
+    const char *NameCurrentSubItem() const;
     // Возвращает имя следующего варианта выбора элемента choice, как оно записано в исходном коде программы.
-    const char *NameNextSubItem();
+    const char *NameNextSubItem() const;
 
-    const char *NamePrevSubItem();
+    const char *NamePrevSubItem() const;
     // Возвращает количество вариантов выбора в элементе по адресу choice.
-    int NumSubItems();
+    int NumSubItems() const;
 
     void StartChange(int delta);
     // Рассчитывает следующий кадр анимации.
-    float Step();
+    float Step() const;
     // Изменяет значение choice в зависимости от величины и знака delta.
     void ChangeValue(int delta);
 
-    void FuncOnChanged(bool active);
+    void FuncOnChanged(bool active) const;
 
-    void FuncForDraw(int x, int y);
+    void FuncForDraw(int x, int y) const;
 
-    void Draw(int x, int y, bool opened);
+    void Draw(int x, int y, bool opened) const;
 };
 
 

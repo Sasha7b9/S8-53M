@@ -73,7 +73,7 @@ public:
     // ”меньшает или увеличивает значение Governor, GovernorColor или Choice по адресу item в зависимости от знака delta
     static void ChangeItem(void *item, int delta);
     // ¬озвращает высоту в пиксел€х открытого элемента Choice или NamePage::E по адресу item.
-    static int HeightOpenedItem(void *item);
+    static int HeightOpenedItem(const void *item);
     // ¬озвращает название элемента по адресу item, как оно выгл€дит на дисплее прибора.
     static const char* TitleItem(const void *item);
     // ¬озвращает позицию первого элемента страницы по адресу page на экране. ≈сли текуща€ подстраница 0, это будет 0, если текуща€ подстраница 1, это будет 5 и т.д.

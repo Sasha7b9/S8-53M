@@ -486,7 +486,7 @@ void GovernorColor::Draw(int x, int y, bool opened)
     }
 }
 
-void ItemChoice_DrawOpened(Choice *choice, int x, int y)
+void ItemChoice_DrawOpened(const Choice *choice, int x, int y)
 {
     int height = Menu::HeightOpenedItem(choice);
 
@@ -605,7 +605,7 @@ static void ItemMACaddress_DrawOpened(MACaddress *mac, int x, int y)
     DrawMACvalue(x, y + 22, mac);
 }
 
-void ItemChoice_DrawClosed(Choice *choice, int x, int y)
+void ItemChoice_DrawClosed(const Choice *choice, int x, int y)
 {
     bool pressed = Menu::IsPressed(choice);
     bool shade = Menu::IsShade(choice) || !Menu::ItemIsActive(choice);
@@ -639,7 +639,7 @@ void ItemChoice_DrawClosed(Choice *choice, int x, int y)
     choice->FuncForDraw(x, y);
 }
 
-void Choice::Draw(int x, int y, bool opened)
+void Choice::Draw(int x, int y, bool opened) const
 {
     if(opened)
     {

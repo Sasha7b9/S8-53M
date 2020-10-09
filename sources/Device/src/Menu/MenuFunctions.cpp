@@ -85,7 +85,7 @@ void* Menu::CurrentItem()
 }
 
 
-int Menu::HeightOpenedItem(void *item) 
+int Menu::HeightOpenedItem(const void *item) 
 {
     TypeItem::E type = TypeMenuItem(item);
     if(type == TypeItem::Page)
