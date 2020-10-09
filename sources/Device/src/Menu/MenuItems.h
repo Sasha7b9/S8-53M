@@ -328,6 +328,8 @@ public:
     void FuncForDraw(int x, int y) const;
 
     void Draw(int x, int y, bool opened) const;
+private:
+    void DrawClosed(int x, int y) const;
 };
 
 

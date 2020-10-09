@@ -604,10 +604,10 @@ static void ItemMACaddress_DrawOpened(MACaddress *mac, int x, int y)
     DrawMACvalue(x, y + 22, mac);
 }
 
-void ItemChoice_DrawClosed(const Choice *choice, int x, int y)
+void Choice::DrawClosed(int x, int y) const
 {
-    bool pressed = Menu::IsPressed(choice);
-    bool shade = Menu::IsShade(choice) || !Menu::ItemIsActive(choice);
+    bool pressed = Menu::IsPressed(this);
+    bool shade = Menu::IsShade(this) || !Menu::ItemIsActive(this);
         
     if (shade)
     {
@@ -618,24 +618,24 @@ void ItemChoice_DrawClosed(const Choice *choice, int x, int y)
         Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, ColorMenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true, shade);
     }
 
-    float deltaY = choice->Step();
+    float deltaY = Step();
     Color::E colorText = shade ? LightShadingTextColor() : COLOR_BACK;
     Color::SetCurrent(colorText);
     if(deltaY == 0.0F) //-V2550 //-V550
     {
-        Text(choice->NameCurrentSubItem()).Draw(x + 4, y + 21);
+        Text(NameCurrentSubItem()).Draw(x + 4, y + 21);
     }
     else
     {
-        Painter::DrawTextWithLimitationC(x + 4, static_cast<int>(y + 21 - deltaY), choice->NameCurrentSubItem(), colorText, x, y + 19, MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1);
+        Painter::DrawTextWithLimitationC(x + 4, static_cast<int>(y + 21 - deltaY), NameCurrentSubItem(), colorText, x, y + 19, MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1);
         HLine().Draw(static_cast<int>(y + (deltaY > 0 ? 31 : 19) - deltaY), x + 3, x + MI_WIDTH_VALUE + 1, Color::BLACK);
-        Painter::DrawTextWithLimitationC(x + 4, static_cast<int>(y + (deltaY > 0 ? 33 : 9) - deltaY), deltaY > 0 ? choice->NameNextSubItem() : choice->NamePrevSubItem(), colorText, x, y + 19, MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1);
+        Painter::DrawTextWithLimitationC(x + 4, static_cast<int>(y + (deltaY > 0 ? 33 : 9) - deltaY), deltaY > 0 ? NameNextSubItem() : NamePrevSubItem(), colorText, x, y + 19, MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1);
     }
     HLine().Draw(y + MI_HEIGHT + 1, x, x + MI_WIDTH, ColorBorderMenu(false));
 
-    DrawGovernorChoiceColorFormulaHiPart(choice, x, y, pressed, shade, false);
+    DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 
-    choice->FuncForDraw(x, y);
+    FuncForDraw(x, y);
 }
 
 void Choice::Draw(int x, int y, bool opened) const
@@ -646,7 +646,7 @@ void Choice::Draw(int x, int y, bool opened) const
     }
     else
     {
-        ItemChoice_DrawClosed(this, x, y);
+        DrawClosed(x, y);
     }
 }
 
