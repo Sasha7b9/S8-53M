@@ -31,7 +31,7 @@ void Governor_ChangeValue(Governor *governor, int delta)
 {
     int16 oldValue = *governor->cell;
     LIMITATION(*governor->cell,
-                static_cast<int16>(oldValue + Math_Sign(delta) * Math_Pow10(gCurDigit)),
+                static_cast<int16>(oldValue + Math::Sign(delta) * Math::Pow10(gCurDigit)),
                 static_cast<int16>(governor->minValue),
                 static_cast<int16>(governor->maxValue));
     if (*governor->cell != oldValue)
@@ -63,7 +63,7 @@ void IPaddress_ChangeValue(IPaddress *ip, int delta)
         oldValue = *ip->port;
     }
 
-    int newValue = oldValue + Math_Sign(delta) * Math_Pow10(numPos);
+    int newValue = oldValue + Math::Sign(delta) * Math::Pow10(numPos);
     LIMITATION(newValue, newValue, 0, numByte == 4 ? 65535 : 255);
 
     if (oldValue != newValue)
@@ -174,8 +174,8 @@ void Governor_NextPosition(const Governor *governor)
 
 int Governor_NumDigits(const Governor *governor)
 {
-    int min = Math_NumDigitsInNumber(Math_FabsInt(governor->minValue));
-    int max = Math_NumDigitsInNumber(Math_FabsInt(governor->maxValue));
+    int min = Math::NumDigitsInNumber(Math::FabsInt(governor->minValue));
+    int max = Math::NumDigitsInNumber(Math::FabsInt(governor->maxValue));
     if (min > max)
     {
         max = min;

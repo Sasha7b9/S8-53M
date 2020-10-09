@@ -171,7 +171,7 @@ void Measure::RotateRegSet(int angle)
     }
     if (PageMeasures::choiceMeasuresIsActive)
     {
-        posOnPageChoice += (int8)Math_Sign(currentAngle);
+        posOnPageChoice += (int8)Math::Sign(currentAngle);
         Sound::RegulatorSwitchRotate();
         if (posOnPageChoice < 0)
         {
@@ -189,7 +189,7 @@ void Measure::RotateRegSet(int angle)
         int row = 0;
         int col = 0;
         Measure::GetActive(&row, &col);
-        col += Math_Sign(currentAngle);
+        col += Math::Sign(currentAngle);
         if (col < 0)
         {
             col = Measure::NumCols() - 1;

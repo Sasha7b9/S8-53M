@@ -898,8 +898,8 @@ void Processing::SetSignal(pUCHAR data0, pUCHAR data1, DataSettings *ds, int _fi
 
     int length = (int)ds->length1channel * (ds->peakDet == PeackDetMode::Disable ? 1 : 2);
 
-    Math_CalculateFiltrArray(data0, &dataIn[Channel::A][0], length, numSmoothing);
-    Math_CalculateFiltrArray(data1, &dataIn[Channel::B][0], length, numSmoothing);
+    Math::CalculateFiltrArray(data0, &dataIn[Channel::A][0], length, numSmoothing);
+    Math::CalculateFiltrArray(data1, &dataIn[Channel::B][0], length, numSmoothing);
 
     CountedToCurrentSettings();
 }

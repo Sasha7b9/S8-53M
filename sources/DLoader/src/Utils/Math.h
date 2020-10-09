@@ -34,6 +34,11 @@ extern const float *absStepRShift;
 extern const float *voltsInPixel;
 extern const float *absStepTShift;
 
+namespace Math
+{
+    int Sign(int vlaue);
+}
+
 int     Math_MinFrom2Int(int val0, int val1);
 int     Math_RShift2Rel(float rShiftAbs, Range::E range);
 float   Math_VoltageCursor(float shiftCurU, Range::E range, int16 rShift);
@@ -54,7 +59,6 @@ void    Math_CalculateFFT(float *data, int numPoints, float *result, float *freq
 void    Math_CalculateMathFunction(float *data0andResult, float *data1, int numPoints);
 float   Math_RandFloat(float min, float max);
 int8    Math_AddInt8WithLimitation(int8 value, int8 delta, int8 min, int8 max);
-int     Math_Sign(int vlaue);
 int     Math_Pow10(int pow);                                                                    // Вычисляет 10**pow.
 int     Math_NumDigitsInNumber(int value);                                                      // Вычисляет число разрядов в целом типа int.
 int     Math_FabsInt(int value);                                                                // Возвращает модуль value.

@@ -54,7 +54,7 @@ void RotateRegMeasureSetField(int angle)
     CursCntrl::E cursCntrl = GetMeasuresCursCntrlActive();
     CursActive::E cursActive = MEAS_CURS_ACTIVE;
 
-    int sign = Math_Sign(angle);
+    int sign = Math::Sign(angle);
 
     if (cursCntrl == CursCntrl::_1 || cursCntrl == CursCntrl::_1_2)
     {

@@ -84,7 +84,7 @@ int8 Math_AddInt8WithLimitation(int8 value, int8 delta, int8, int8 max)
 
 
 
-int Math_Sign(int value)
+int Math::Sign(int value)
 {
     if (value > 0)
     {

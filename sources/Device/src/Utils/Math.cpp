@@ -287,7 +287,7 @@ static void MultiplyToWindow(float *data, int numPoints)
 	if (x < min) min = x;	\
 	if (x > max) max = x;
 
-void Math_CalculateFFT(float *dataR, int numPoints, float *result, float *freq0, float *density0, float *freq1, float *density1, int *y0, int *y1)
+void Math::CalculateFFT(float *dataR, int numPoints, float *result, float *freq0, float *density0, float *freq1, float *density1, int *y0, int *y1)
 {
     float scale = 1.0F / absStepTShift[SET_TBASE] / 1024.0F;
 
@@ -437,7 +437,7 @@ void Math_CalculateFFT(float *dataR, int numPoints, float *result, float *freq0,
     *y1 = static_cast<int>(Grid::MathBottom() - result[FFT_POS_CURSOR_1] * Grid::MathHeight());
 }
 
-void Math_CalculateMathFunction(float *data0andResult, const float *data1, int numPoints)
+void Math::CalculateMathFunction(float *data0andResult, const float *data1, int numPoints)
 {
     if (MATH_FUNC_IS_SUM)
     {
@@ -461,7 +461,7 @@ void Math_CalculateMathFunction(float *data0andResult, const float *data1, int n
     }
 }
 
-float Math_RandFloat(float min, float max)
+float Math::RandFloat(float min, float max)
 {
     float delta = max - min;
     return min + ((std::rand() / (float)RAND_MAX) * delta);
@@ -481,7 +481,7 @@ int8 Math_AddInt8WithLimitation(int8 value, int8 delta, int8, int8 max)
     return retValue;
 }
 
-int Math_Sign(int value)
+int Math::Sign(int value)
 {
     if (value > 0)
     {
@@ -494,7 +494,7 @@ int Math_Sign(int value)
     return 0;
 }
 
-int Math_Pow10(int pow)
+int Math::Pow10(int pow)
 {
     int retValue = 1;
 
@@ -506,9 +506,9 @@ int Math_Pow10(int pow)
     return retValue;
 }
 
-int Math_NumDigitsInNumber(int value)
+int Math::NumDigitsInNumber(int value)
 {
-    value = Math_FabsInt(value);
+    value = Math::FabsInt(value);
     int num = 1;
     while ((value /= 10) > 0) //-V2561
     {
@@ -517,7 +517,7 @@ int Math_NumDigitsInNumber(int value)
     return num;
 }
 
-int Math_FabsInt(int value)
+int Math::FabsInt(int value)
 {
     return value >= 0 ? value : -value;
 }
@@ -610,7 +610,7 @@ float LimitationFloat(float value, float min, float max)
     LIMIT
 }
 
-uint8 Math_CalculateFiltr(pUCHAR data, int x, int numPoints, int numSmoothing)
+uint8 Math::CalculateFiltr(pUCHAR data, int x, int numPoints, int numSmoothing)
 {
     if (numSmoothing < 2)
     {
@@ -646,7 +646,7 @@ uint8 Math_CalculateFiltr(pUCHAR data, int x, int numPoints, int numSmoothing)
     return (uint8)(sum / count);
 }
 
-void Math_CalculateFiltrArray(pUCHAR dataIn, uint8 *dataOut, int numPoints, int numSmoothing)
+void Math::CalculateFiltrArray(pUCHAR dataIn, uint8 *dataOut, int numPoints, int numSmoothing)
 {
     if (numSmoothing < 2)
     {

@@ -193,7 +193,7 @@ void Display::DrawSignalLined(pUCHAR data, const DataSettings *ds, int startPoin
             if (x0 >= gridLeft && x0 <= gridRight)
             {
                 int index = i - startPoint;
-                int y = calculateFiltr ? Math_CalculateFiltr(data, i, numPoints, numSmoothing) : data[i];
+                int y = calculateFiltr ? Math::CalculateFiltr(data, i, numPoints, numSmoothing) : data[i];
                 CONVERT_DATA_TO_DISPLAY(dataCD[index], y);
             }
         }
@@ -269,7 +269,7 @@ void Display::DrawSignalPointed(pUCHAR data, const DataSettings *ds, int startPo
         for (int i = startPoint; i < endPoint; i++)
         {
             int index = i - startPoint;
-            CONVERT_DATA_TO_DISPLAY(dataCD[index], Math_CalculateFiltr(data, i, numPoints, numSmoothing));
+            CONVERT_DATA_TO_DISPLAY(dataCD[index], Math::CalculateFiltr(data, i, numPoints, numSmoothing));
         }
         Painter::DrawSignal(Grid::Left(), dataCD, false);
 
@@ -282,7 +282,7 @@ void Display::DrawSignalPointed(pUCHAR data, const DataSettings *ds, int startPo
             for (int i = startPoint; i < endPoint; i++)
             {
                 int index = i - startPoint;
-                CONVERT_DATA_TO_DISPLAY(dataCD[index], Math_CalculateFiltr(data, i, numPoints, numSmoothing));
+                CONVERT_DATA_TO_DISPLAY(dataCD[index], Math::CalculateFiltr(data, i, numPoints, numSmoothing));
             }
             Painter::DrawSignal(Grid::Left(), dataCD, false);
         }
@@ -293,7 +293,7 @@ void Display::DrawSignalPointed(pUCHAR data, const DataSettings *ds, int startPo
         {
             int index = i - startPoint;
             int dat = 0;
-            CONVERT_DATA_TO_DISPLAY(dat, Math_CalculateFiltr(data, i, numPoints, numSmoothing));
+            CONVERT_DATA_TO_DISPLAY(dat, Math::CalculateFiltr(data, i, numPoints, numSmoothing));
             Point().Draw(Grid::Left() + static_cast<int>(index * scaleX), dat);
         }
     }
@@ -384,7 +384,7 @@ void Display::DrawMath()
     Math::PointsRelToVoltage(dataRel0, static_cast<int>(ds->length1channel), ds->range[Channel::A], static_cast<int16>(ds->rShiftCh0), dataAbs0);
     Math::PointsRelToVoltage(dataRel1, static_cast<int>(ds->length1channel), ds->range[Channel::B], static_cast<int16>(ds->rShiftCh1), dataAbs1);
 
-    Math_CalculateMathFunction(dataAbs0, dataAbs1, static_cast<int>(ds->length1channel));
+    Math::CalculateMathFunction(dataAbs0, dataAbs1, static_cast<int>(ds->length1channel));
     
     uint8 points[FPGA_MAX_POINTS];
     Math::PointsVoltageToRel(dataAbs0, static_cast<int>(ds->length1channel), SET_RANGE_MATH, SET_RSHIFT_MATH, points);
@@ -463,7 +463,7 @@ void Display::DRAW_SPECTRUM(pUCHAR data, int numPoints, Channel::E channel)
     int y1 = 0;
 
     Math::PointsRelToVoltage(data, numPoints, gDSet->range[channel], channel == Channel::A ? static_cast<int16>(gDSet->rShiftCh0) : static_cast<int16>(gDSet->rShiftCh1), dataR);
-    Math_CalculateFFT(dataR, numPoints, spectrum, &freq0, &density0, &freq1, &density1, &y0, &y1);
+    Math::CalculateFFT(dataR, numPoints, spectrum, &freq0, &density0, &freq1, &density1, &y0, &y1);
     DrawSpectrumChannel(spectrum, ColorChannel(channel));
     if (!MenuIsShown() || MenuIsMinimize())
     {

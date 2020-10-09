@@ -134,7 +134,7 @@ void Color_BrightnessChange(ColorType *colorType, int delta)
         return;
     }
 
-    int sign = Math_Sign(delta);
+    int sign = Math::Sign(delta);
 
     LIMITATION(colorType->brightness, colorType->brightness + sign * 0.01F, 0.0F, 1.0F);
 
@@ -187,7 +187,7 @@ void Color_ComponentChange(ColorType *colorType, int delta)
     if (index >= 1 && index <= 3)
     {
         float *pointers[4] = { 0, &colorType->blue, &colorType->green, &colorType->red };
-        AddLimitationFloat(pointers[index], (float)Math_Sign(delta), 0.0F, maxs[index]);
+        AddLimitationFloat(pointers[index], (float)Math::Sign(delta), 0.0F, maxs[index]);
     }
 
     SetColor(colorType);
