@@ -3,7 +3,6 @@
 #include "common/Utils/Math.h"
 #include "Display/Grid.h"
 #include "Menu/Menu.h"
-#include "Menu/MenuItemsGraphics.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
 #include <cstdio>
