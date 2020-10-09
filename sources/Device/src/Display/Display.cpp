@@ -347,7 +347,7 @@ void Display::DrawDataChannel(uint8 *data, Channel::E chan, DataSettings *ds, in
         }
     }
 
-    Color::SetCurrent(ColorChannel(chan));
+    Color::SetCurrent(Color::Channel(chan));
     if(MODE_DRAW_IS_SIGNAL_LINES)
     {
         /*
@@ -439,7 +439,7 @@ void Display::WriteParametersFFT(Channel::E chan, float freq0, float density0, f
     {
         y += dY * 3 + 4;
     }
-    Color::SetCurrent(ColorChannel(chan));
+    Color::SetCurrent(Color::Channel(chan));
     Text(SCALE_FFT_IS_LOG ? Float2Db(density0, 4, buffer) : Float2String(density0, false, 7, buffer)).Draw(x, y);
     y += dY;
     Text(SCALE_FFT_IS_LOG ? Float2Db(density1, 4, buffer) : Float2String(density1, false, 7, buffer)).Draw(x, y);
@@ -465,7 +465,7 @@ void Display::DRAW_SPECTRUM(pUCHAR data, int numPoints, Channel::E channel)
 
     Math::PointsRelToVoltage(data, numPoints, gDSet->range[channel], channel == Channel::A ? static_cast<int16>(gDSet->rShiftCh0) : static_cast<int16>(gDSet->rShiftCh1), dataR);
     Math::CalculateFFT(dataR, numPoints, spectrum, &freq0, &density0, &freq1, &density1, &y0, &y1);
-    DrawSpectrumChannel(spectrum, ColorChannel(channel));
+    DrawSpectrumChannel(spectrum, Color::Channel(channel));
     if (!MenuIsShown() || MenuIsMinimize())
     {
         int s = 2;
@@ -856,12 +856,12 @@ void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channe
     }
 	if(width < 256)
     {
-		Painter::DrawVLineArray(x, width, points, ColorChannel(chan));
+		Painter::DrawVLineArray(x, width, points, Color::Channel(chan));
 	}
     else
     {
-		Painter::DrawVLineArray(x, 255, points, ColorChannel(chan));
-		Painter::DrawVLineArray(x + 255, width - 255, points + 255 * 2, ColorChannel(chan));
+		Painter::DrawVLineArray(x, 255, points, Color::Channel(chan));
+		Painter::DrawVLineArray(x + 255, width - 255, points + 255 * 2, Color::Channel(chan));
 	}
 }
 
@@ -1022,7 +1022,7 @@ void Display::WriteCursors()
         HLine().Draw(x, 1, Grid::TOP - 2, COLOR_FILL);
         x += 3;
         Channel::E source = CURS_SOURCE;
-        Color::E colorText = ColorChannel(source);
+        Color::E colorText = Color::Channel(source);
         if(!CURS_CNTRL_U_IS_DISABLE(source))
         {
             Text("1:").Draw(x, y1, colorText);
@@ -1644,21 +1644,21 @@ void Display::DrawCursorRShift(Channel::E chan)
 
     if(y > Grid::ChannelBottom())
     {
-        Char(SYMBOL_RSHIFT_LOWER).Draw(static_cast<int>(x - 7), Grid::ChannelBottom() - 11, ColorChannel(chan));
+        Char(SYMBOL_RSHIFT_LOWER).Draw(static_cast<int>(x - 7), Grid::ChannelBottom() - 11, Color::Channel(chan));
         Point().Draw(static_cast<int>(x - 5), Grid::ChannelBottom() - 2);
         y = static_cast<float>(Grid::ChannelBottom() - 7);
         x++;
     }
     else if(y < Grid::TOP)
     {
-        Char(SYMBOL_RSHIFT_ABOVE).Draw(static_cast<int>(x - 7), Grid::TOP + 2, ColorChannel(chan));
+        Char(SYMBOL_RSHIFT_ABOVE).Draw(static_cast<int>(x - 7), Grid::TOP + 2, Color::Channel(chan));
         Point().Draw(static_cast<int>(x - 5), Grid::TOP + 2);
         y = Grid::TOP + 7;
         x++;
     }
     else
     {
-        Char(SYMBOL_RSHIFT_NORMAL).Draw(static_cast<int>(x - 8), static_cast<int>(y - 4), ColorChannel(chan));
+        Char(SYMBOL_RSHIFT_NORMAL).Draw(static_cast<int>(x - 8), static_cast<int>(y - 4), Color::Channel(chan));
         if(((chan == Channel::A) ? (SHOW_LEVEL_RSHIFT_0 == 1) : (SHOW_LEVEL_RSHIFT_1 == 1)) && MODE_WORK_IS_DIRECT) //-V2570
         {
             Painter::DrawDashedHLine(static_cast<int>(y), Grid::Left(), Grid::Right(), 7, 3, 0);
@@ -1672,7 +1672,7 @@ void Display::DrawCursorRShift(Channel::E chan)
         float scaleFull = (float)Grid::ChannelHeight() / (RShiftMax - RShiftMin) * (sService_MathEnabled() ? 0.9F : 0.91F);
         float yFull = Grid::ChannelCenterHeight() - scaleFull * (rShift - RShiftZero);
 
-        Region(4, 6).Fill(4, static_cast<int>(yFull - 3), ColorChannel(chan));
+        Region(4, 6).Fill(4, static_cast<int>(yFull - 3), Color::Channel(chan));
         Char(chan == Channel::A ? '1' : '2').Draw(5, static_cast<int>(yFull - 9), COLOR_BACK);
     }
     Char(chan == Channel::A ? '1' : '2').Draw(static_cast<int>(x - 7), static_cast<int>(y - 9), COLOR_BACK);
@@ -1854,16 +1854,16 @@ void Display::DrawMeasures()
                 }
                 if(MEAS_SOURCE_IS_A)
                 {
-                    Text(Processing::GetStringMeasure(meas, Channel::A, buffer)).Draw(x + 2, y + 11, ColorChannel(Channel::A));
+                    Text(Processing::GetStringMeasure(meas, Channel::A, buffer)).Draw(x + 2, y + 11, Color::Channel(Channel::A));
                 }
                 else if(MEAS_SOURCE_IS_B)
                 {
-                    Text(Processing::GetStringMeasure(meas, Channel::B, buffer)).Draw(x + 2, y + 11, ColorChannel(Channel::B));
+                    Text(Processing::GetStringMeasure(meas, Channel::B, buffer)).Draw(x + 2, y + 11, Color::Channel(Channel::B));
                 }
                 else
                 {
-                    Text(Processing::GetStringMeasure(meas, Channel::A, buffer)).Draw(x + 2, y + 11, ColorChannel(Channel::A));
-                    Text(Processing::GetStringMeasure(meas, Channel::B, buffer)).Draw(x + 2, y + 20, ColorChannel(Channel::B));
+                    Text(Processing::GetStringMeasure(meas, Channel::A, buffer)).Draw(x + 2, y + 11, Color::Channel(Channel::A));
+                    Text(Processing::GetStringMeasure(meas, Channel::B, buffer)).Draw(x + 2, y + 20, Color::Channel(Channel::B));
                 }
             }
         }
@@ -1885,7 +1885,7 @@ void Display::WriteTextVoltage(Channel::E chan, int x, int y)
         "\x91",
         "\x90"
     };
-    Color::E color = ColorChannel(chan);
+    Color::E color = Color::Channel(chan);
 
     bool inverse = SET_INVERSE(chan);
     ModeCouple::E modeCouple = SET_COUPLE(chan);

@@ -32,13 +32,13 @@ struct Color {
 
     static void SetCurrent(Color::E color);
     static Color::E GetCurrent() { return current; };
+    static Color::E Channel(Channel::E chan);
 
 private:
     static Color::E current;
 };
 
 
-Color::E ColorChannel(Channel::E chan);
 Color::E ColorCursors(Channel::E cnan);
 Color::E ColorTrig();                  // Возвращает цвет синхронизации.
 Color::E ColorMenuTitle                    // Цвет заголовка страницы.

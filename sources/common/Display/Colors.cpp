@@ -15,7 +15,7 @@ static void SetColor(const ColorType *colorType)
 }
 
 
-Color::E ColorChannel(Channel::E chan)
+Color::E Color::Channel(Channel::E chan)
 {
     static const Color::E colors[4] = { Color::DATA_A, Color::DATA_B, Color::WHITE, Color::WHITE };
     return colors[chan];

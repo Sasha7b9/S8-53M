@@ -39,6 +39,7 @@ add_compile_options(/wd5039)    # 'function': pointer or reference to potentiall
 add_compile_options(/wd5045)    # Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
 add_compile_options(/wd5219)    # implicit conversion from 'type1' to 'type2', possible loss of data
 add_compile_options(/wd5220)
+add_compile_options(/wd26812)
 
 file(GLOB VS_KEIL_ARMCLANG ../common/vs_keil/ARMCLANG/*)
 file(GLOB VS_KEIL_CMSIS    ../common/vs_keil/CMSIS/core_cm3.h)
