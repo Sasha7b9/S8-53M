@@ -226,7 +226,7 @@ void DrawFormulaLowPart(const Formula *formula, int x, int y, bool, bool shade)
 
 void Governor::DrawClosed(int x, int y) const
 {
-    bool pressed = Menu::IsPressed(this);
+    bool pressed = IsPressed();
     bool shade = Menu::IsShade(this) || !Menu::ItemIsActive(this);
     DrawGovernorLowPart(this, x, y, pressed, shade);
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
@@ -234,7 +234,7 @@ void Governor::DrawClosed(int x, int y) const
 
 static void ItemIPaddress_DrawClosed(IPaddress *ip, int x, int y)
 {
-    bool pressed = Menu::IsPressed(ip);
+    bool pressed = ip->IsPressed();
     bool shade = Menu::IsShade(ip) || !Menu::ItemIsActive(ip);
     DrawIPaddressLowPart(ip, x, y, pressed, shade);
     DrawGovernorChoiceColorFormulaHiPart(ip, x, y, pressed, shade, false);
