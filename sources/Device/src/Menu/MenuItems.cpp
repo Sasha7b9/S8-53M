@@ -245,3 +245,13 @@ void Choice::ChangeValue(int delta)
     Sound::GovernorChangedValue();
     Display::Redraw();
 }
+
+
+NamePage::E Page::GetName() const
+{
+    if (Menu::TypeMenuItem((void *)this) != TypeItem::Page)
+    {
+        return NamePage::NoPage;
+    }
+    return name;
+}

@@ -63,7 +63,7 @@ public:
     // Возвращает адрес элемента, которому принадлежит элемент по адресу item.
     static Page* Keeper(const void *item);
     // Возвращает имя страницы page.
-    static NamePage::E GetNamePage(const Page *page);
+    //static NamePage::E GetNamePage(const Page *page);
 
     static NamePage::E GetNameOpenedPage();
 

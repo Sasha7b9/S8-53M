@@ -132,7 +132,7 @@ void Menu::DrawTitlePage(Page *page, int layer, int yTop)
         return;
     }
     int height = HeightOpenedItem(page);
-    bool shade = CurrentItemIsOpened(GetNamePage(page));
+    bool shade = CurrentItemIsOpened(page->GetName());
     Region(MP_TITLE_WIDTH + 2, height + 2).Fill(x - 1, yTop, COLOR_BACK);
     Rectangle(MP_TITLE_WIDTH + 1, height + 1).Draw(x, yTop, ColorBorderMenu(shade));
 
@@ -289,7 +289,7 @@ void Menu::DrawOpenedPage(Page *page, int layer, int yTop)
 {
     DrawTitlePage(page, layer, yTop);
     DrawItemsPage(page, layer, yTop + MP_TITLE_HEIGHT);
-    if (CurrentItemIsOpened(GetNamePage(page)))
+    if (CurrentItemIsOpened(page->GetName()))
     {
         int8 posCurItem = PosCurrentItem(page);
         void *item = Item(page, posCurItem);
@@ -342,7 +342,7 @@ int Menu::CalculateX(int layer)
 
 bool Menu::IsShade(const void* item)
 {
-    return CurrentItemIsOpened(GetNamePage(Keeper(item))) && (item != OpenedItem());
+    return CurrentItemIsOpened(Keeper(item)->GetName()) && (item != OpenedItem());
 }
 
 
