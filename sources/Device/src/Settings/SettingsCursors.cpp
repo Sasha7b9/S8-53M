@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "common/Utils/Math.h"
 #include "Display/Grid.h"
+#include "FPGA/MathFPGA.h"
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"

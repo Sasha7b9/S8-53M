@@ -1661,6 +1661,16 @@
               <FileType>5</FileType>
               <FilePath>.\src\FPGA\Storage.h</FilePath>
             </File>
+            <File>
+              <FileName>MathFPGA.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\FPGA\MathFPGA.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MathFPGA.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\FPGA\MathFPGA.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

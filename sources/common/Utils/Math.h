@@ -1,7 +1,4 @@
 #pragma once
-#include "common/Settings/cSettingsTypes.h"
-#include "Settings/SettingsTypes.h"
-
 
 #define LIMIT_BELOW(x, min)         if(x < min) { x = min; }
 
@@ -15,10 +12,6 @@
 
 #define LIMITATION_BOUND(var, min, max)     if((var) < (min)) { (min) = (var); }; if((var) > (max)) { (max) = (var); };
 
-#define MAX_VOLTAGE_ON_SCREEN(range) (tableScalesRange[(range)] * 5.0F)
-
-#define RSHIFT_2_ABS(rShift, range) (-((float)RShiftZero - (float)(rShift)) * absStepRShift[(uint)(range)])
-
 #define POINT_2_VOLTAGE(value, range, rShift)   \
                 (((float)(value) - (float)MIN_VALUE) * voltsInPixel[(range)] - MAX_VOLTAGE_ON_SCREEN((range)) - RSHIFT_2_ABS((rShift), (range)))
 
@@ -30,22 +23,9 @@
 
 #define PI 3.141592653589793F
 
-extern const float tableScalesRange[Range::Count];
-extern const float absStepRShift[]; //-V2504
-extern const float voltsInPixel[]; //-V2504
-extern const float absStepTShift[]; //-V2504
-
 namespace Math
 {
     int     MinFrom2Int(int val0, int val1);
-    int     RShift2Rel(float rShiftAbs, Range::E range);
-    float   VoltageCursor(float shiftCurU, Range::E range, int16 rShift);
-    float   TimeCursor(float shiftCurT, TBase::E tBase);
-    void    PointsRelToVoltage(pUCHAR points, int numPoints, Range::E range, int16 rShift, float *voltage);
-    uint8   VoltageToPoint(float voltage, Range::E range, int16 rShift);
-    void	PointsVoltageToRel(const float *voltage, int numPoints, Range::E range, int16 rShift, uint8 *points);
-    uint8   GetMaxFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoint);
-    uint8   GetMinFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoint);
     uint8   GetMaxFromArray(pUCHAR data, int firstPoint, int lastPoint);
     uint8   GetMinFromArray(pUCHAR data, int firstPoint, int lastPoint);
     // Возвращает координату x пересечения линии, проходящей через (x0, y0), (x1, y1), с горизонтальной линией, проходящей через точку с ординатой yHorLine.
@@ -55,8 +35,6 @@ namespace Math
     bool    FloatsIsEquals(float value0, float value1, float epsilonPart);
     float   MinFrom3float(float value1, float value2, float value3);
     int     MinInt(int val1, int val2);
-    void    CalculateFFT(float* data, int numPoints, float* result, float* freq0, float* density0, float* freq1, float* density1, int* y0, int* y1);
-    void    CalculateMathFunction(float* data0andResult, const float* data1, int numPoints);
     float   RandFloat(float min, float max);
     int8    AddInt8WithLimitation(int8 value, int8 delta, int8 min, int8 max);
     int     Sign(int vlaue);

@@ -1110,14 +1110,14 @@
               <FilePath>..\common\Utils\StringUtils.h</FilePath>
             </File>
             <File>
-              <FileName>Math.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Utils\Math.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Math.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Utils\Math.h</FilePath>
+            </File>
+            <File>
+              <FileName>cMath.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\cMath.cpp</FilePath>
             </File>
           </Files>
         </Group>

@@ -6,6 +6,7 @@
 #include "Display/Display.h"
 #include "Display/Symbols.h"
 #include "FPGA/FPGA_Types.h"
+#include "FPGA/MathFPGA.h"
 #include "FPGA/Storage.h"
 #include "Hardware/Sound.h"
 #include "Hardware/Timer.h"

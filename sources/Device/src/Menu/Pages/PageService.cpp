@@ -4,6 +4,7 @@
 #include "common/Utils/Math.h"
 #include "Display/Symbols.h"
 #include "FPGA/FPGA.h"
+#include "FPGA/MathFPGA.h"
 #include "Hardware/Sound.h"
 #include "Hardware/Timer.h"
 #include "Menu/Menu.h"
