@@ -1,3 +1,4 @@
+#include "defines.h"
 #include "Hardware.h"
 #include "Hardware/Timer.h"
 #include "Panel/Panel.h"

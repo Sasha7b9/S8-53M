@@ -1,5 +1,4 @@
 #pragma once  
-#include "defines.h"
 
 
 #define PRIORITY_PANEL_EXTI9_5  3, 0
