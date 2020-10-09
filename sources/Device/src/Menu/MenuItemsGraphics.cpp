@@ -111,7 +111,7 @@ void DrawGovernorLowPart(const Governor *governor, int x, int y, bool, bool shad
             {
                 x = Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - delta), Int2String(*governor->cell, false, 1, buffer),
                                             COLOR_BACK, limX, limY, limWidth, limHeight);
-                Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 + 10 - delta), Int2String(Governor_NextValue(governor), false, 1, buffer),
+                Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 + 10 - delta), Int2String(governor->NextValue(), false, 1, buffer),
                                             COLOR_BACK, limX, limY, limWidth, limHeight);
             }
             if(delta < 0.0F)

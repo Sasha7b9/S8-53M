@@ -13,7 +13,7 @@ void Governor::StartChange(int delta)
     Sound::GovernorChangedValue();
     if (delta > 0 && ADDRESS_GOVERNOR == reinterpret_cast<uint>(this) && (IN_MOVE_INCREASE != 0))
     {
-        *cell = Governor_NextValue(this);
+        *cell = NextValue();
     }
     else if (delta < 0 && ADDRESS_GOVERNOR == reinterpret_cast<uint>(this) && (IN_MOVE_DECREASE != 0))
     {
@@ -142,7 +142,7 @@ float Governor::Step() const
         {
             IN_MOVE_DECREASE = 0;
             IN_MOVE_INCREASE = 0;
-            *cell = Governor_NextValue(this);
+            *cell = NextValue();
             if(funcOfChanged)
             {
                 funcOfChanged();
@@ -154,9 +154,9 @@ float Governor::Step() const
     return 0.0F;
 }
 
-int16 Governor_NextValue(const Governor *governor)
+int16 Governor::NextValue() const
 {
-    return ((*governor->cell) < governor->maxValue) ? (*governor->cell) + 1 : static_cast<int16>(governor->minValue);
+    return ((*cell) < maxValue) ? (*cell) + 1 : static_cast<int16>(minValue);
 }
 
 int16 Governor_PrevValue(const Governor *governor)
