@@ -28,11 +28,11 @@
     }                                                   \
     if (CLIENT_LAN_IS_CONNECTED)                        \
     {                                                   \
-        TCPSocket_SendFormatString(__VA_ARGS__);        \
+        TCPSocket::SendFormatString(__VA_ARGS__);       \
     }
 
 #define ENTER_PARSE_FUNC(funcName)                      \
-void funcName(pUCHAR buffer)                      \
+void funcName(pUCHAR buffer)                            \
 {                                                       \
     static const StructCommand commands[] =             \
     {

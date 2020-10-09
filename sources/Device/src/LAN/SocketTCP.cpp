@@ -349,7 +349,7 @@ err_t CallbackOnAcceptPolicyPort(void *_arg, struct tcp_pcb *_newPCB, err_t _err
 
 
 
-bool TCPSocket_Init(void(*_funcConnect)(void), void(*_funcReciever)(const char *_buffer, uint _length))
+bool TCPSocket::Init(void(*_funcConnect)(void), void(*_funcReciever)(const char *_buffer, uint _length))
 {
     struct tcp_pcb *pcb = tcp_new();
     if (pcb != NULL)
@@ -400,7 +400,7 @@ bool TCPSocket_Init(void(*_funcConnect)(void), void(*_funcReciever)(const char *
 
 
 
-bool TCPSocket_Send(const char *buffer, uint length)
+bool TCPSocket::Send(const char *buffer, uint length)
 {
     if (pcbClient)
     {
@@ -410,7 +410,7 @@ bool TCPSocket_Send(const char *buffer, uint length)
         transmitBytes += length;
         struct State *ss = static_cast<struct State*>(mem_malloc(sizeof(struct State)));
         ss->p = tcpBuffer;
-        Send(pcbClient, ss);
+        ::Send(pcbClient, ss);
         mem_free(ss);
     }
     return pcbClient != 0;
@@ -418,7 +418,7 @@ bool TCPSocket_Send(const char *buffer, uint length)
 
 
 
-void TCPSocket_SendFormatString(char *format, ...) //-V2560
+void TCPSocket::SendFormatString(char *format, ...) //-V2560
 {
 #undef SIZE_BUFFER
 #define SIZE_BUFFER 200
@@ -428,5 +428,5 @@ void TCPSocket_SendFormatString(char *format, ...) //-V2560
     std::vsprintf(buffer, format, args);
     va_end(args);
     std::strcat(buffer, "\r\n");
-    TCPSocket_Send(buffer, static_cast<uint>(std::strlen(buffer)));
+    TCPSocket::Send(buffer, static_cast<uint>(std::strlen(buffer)));
 }
