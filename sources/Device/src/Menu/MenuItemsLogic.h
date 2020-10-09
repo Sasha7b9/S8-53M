@@ -3,7 +3,7 @@
 
 
 void    Governor_StartChange(Governor *governor, int detla);    // «апускает процессс анимации инкремента или декремента элемента меню типа Governor (в зависимости от знака delta)
-float   Governor_Step(Governor *governor);                      // –ассчитывате следующий кадр анимации.
+float   Governor_Step(const Governor *governor);                      // –ассчитывате следующий кадр анимации.
 void    Governor_ChangeValue(Governor *governor, int delta);    // »змен€ет значение в текущей позиции при раскрытом элементе
 int16   Governor_NextValue(const Governor *governor);           // ¬озвращает следующее большее значение, которое может прин€ть governor.
 int16   Governor_PrevValue(const Governor *governor);           // ¬озвращает следующее меньшее значение, которое может прин€ть governor.

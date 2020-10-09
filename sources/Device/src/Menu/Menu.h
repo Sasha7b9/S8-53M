@@ -37,7 +37,7 @@ public:
 
     static void OpenItemTime();
     // Вовзращает true, если элемент меню item является ативным, т.е. может быть нажат.
-    static bool ItemIsActive(void *item);
+    static bool ItemIsActive(const void *item);
     // Возвращает количество элементов в странице по адресу page.
     static int NumItemsInPage(const Page * const page);
     // Возвращает номер текущей подстранцы элемента по адресу page.

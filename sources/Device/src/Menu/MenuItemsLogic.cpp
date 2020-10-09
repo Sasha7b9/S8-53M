@@ -107,7 +107,7 @@ void IPaddress_GetNumPosIPvalue(int *numIP, int *selPos)
 
 }
 
-float Governor_Step(Governor *governor)
+float Governor_Step(const Governor *governor)
 {
     static const float speed = 0.05F;
     static const int numLines = 10;

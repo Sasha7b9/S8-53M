@@ -80,7 +80,7 @@ void DrawGovernorChoiceColorFormulaHiPart(const void *item, int x, int y, bool p
     }
 }
 
-void DrawGovernorLowPart(Governor *governor, int x, int y, bool, bool shade)
+void DrawGovernorLowPart(const Governor *governor, int x, int y, bool, bool shade)
 {
     char buffer[20];
     
@@ -225,7 +225,7 @@ void DrawFormulaLowPart(const Formula *formula, int x, int y, bool, bool shade)
     WriteTextFormula(formula, x + 6, y + 21, false);
 }
 
-static void Governor_DrawClosed(Governor *governor, int x, int y)
+static void Governor_DrawClosed(const Governor *governor, int x, int y)
 {
     bool pressed = Menu::IsPressed(governor);
     bool shade = Menu::IsShade(governor) || !Menu::ItemIsActive(governor);
@@ -368,7 +368,7 @@ static void DrawMACvalue(int x, int y, MACaddress *mac)
     }
 }
 
-void Governor::Draw(int x, int y, bool opened)
+void Governor::Draw(int x, int y, bool opened) const
 {
     if (funcBeforeDraw)
     {

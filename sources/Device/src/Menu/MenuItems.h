@@ -195,7 +195,7 @@ public:
     Governor(const Page *keeper_, pFuncBV funcOfActive_,
              const char *titleRU, const char *titleEN, const char *hintRU, const char *hintEN,
              int16 *cell_, int16 minValue_, int16 maxValue_, pFuncVV funcOfChanged_ = 0, pFuncVV funcBeforeDraw_ = 0);
-    void Draw(int x, int y, bool opened);
+    void Draw(int x, int y, bool opened) const;
     // Обработка короткого нажатия на элемент Governor с адресом governor.
     void ShortPress();
 

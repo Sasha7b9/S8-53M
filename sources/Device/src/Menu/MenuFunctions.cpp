@@ -254,7 +254,7 @@ void Menu::OpenPageAndSetItCurrent(void *page)
 }
 
 
-bool Menu::ItemIsActive(void *item)
+bool Menu::ItemIsActive(const void *item)
 {
     TypeItem::E type = TypeMenuItem(item);
 
