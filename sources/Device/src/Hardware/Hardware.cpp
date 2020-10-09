@@ -14,7 +14,7 @@ void Hardware::Init(void)
 
     Panel::Init();
 
-    FlashDrive::Init();
+    FDrive::Init();
     
     pinG1.Reset();      // PG1 - когда равен 1, чтение дисплея, в остальных случаях 0
 }

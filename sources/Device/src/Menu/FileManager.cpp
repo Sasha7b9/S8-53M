@@ -73,16 +73,16 @@ void FM::DrawHat(int x, int y, char *string, int num1, int num2)
 
 void FM::DrawDirs(int x, int y)
 {
-    FlashDrive::GetNumDirsAndFiles(currentDir, &numDirs, &numFiles);
+    FDrive::GetNumDirsAndFiles(currentDir, &numDirs, &numFiles);
     DrawHat(x, y, "Каталог : %d/%d", numCurDir + ((numDirs == 0) ? 0 : 1), numDirs);
     char nameDir[255];
     StructForReadDir sfrd;
     y += 12;
-    if (FlashDrive::GetNameDir(currentDir, numFirstDir, nameDir, &sfrd))
+    if (FDrive::GetNameDir(currentDir, numFirstDir, nameDir, &sfrd))
     {
         DrawLongString(x, y, nameDir, (CURSORS_IN_DIRS != 0) && (numFirstDir == numCurDir));
         int drawingDirs = 0;
-        while (drawingDirs < (RECS_ON_PAGE - 1) && FlashDrive::GetNextNameDir(nameDir, &sfrd))
+        while (drawingDirs < (RECS_ON_PAGE - 1) && FDrive::GetNextNameDir(nameDir, &sfrd))
         {
             drawingDirs++;
             DrawLongString(x, y + drawingDirs * 9, nameDir, (CURSORS_IN_DIRS != 0) && ( numFirstDir + drawingDirs == numCurDir));
@@ -97,11 +97,11 @@ void FM::DrawFiles(int x, int y)
     char nameFile[255];
     StructForReadDir sfrd;
     y += 12;
-    if (FlashDrive::GetNameFile(currentDir, numFirstFile, nameFile, &sfrd))
+    if (FDrive::GetNameFile(currentDir, numFirstFile, nameFile, &sfrd))
     {
         DrawLongString(x, y, nameFile, CURSORS_IN_DIRS == 0 && (numFirstFile == numCurFile));
         int drawingFiles = 0;
-        while (drawingFiles < (RECS_ON_PAGE - 1) && FlashDrive::GetNextNameFile(nameFile, &sfrd))
+        while (drawingFiles < (RECS_ON_PAGE - 1) && FDrive::GetNextNameFile(nameFile, &sfrd))
         {
             drawingFiles++;
             DrawLongString(x, y + drawingFiles * 9, nameFile, CURSORS_IN_DIRS == 0 && (numFirstFile + drawingFiles == numCurFile));
@@ -113,11 +113,11 @@ void FM::DrawFiles(int x, int y)
 bool FM::FileIsExist(const char name[255])
 {
     char nameFile[255];
-    FlashDrive::GetNumDirsAndFiles(currentDir, &numDirs, &numFiles);
+    FDrive::GetNumDirsAndFiles(currentDir, &numDirs, &numFiles);
     StructForReadDir sfrd;
-    if(FlashDrive::GetNameFile(currentDir, 0, nameFile, &sfrd))
+    if(FDrive::GetNameFile(currentDir, 0, nameFile, &sfrd))
     {
-        while(FlashDrive::GetNextNameFile(nameFile, &sfrd))
+        while(FDrive::GetNextNameFile(nameFile, &sfrd))
         {
             if(std::strcmp(name + 2, nameFile) == 0)
             {
@@ -174,7 +174,7 @@ void FM::Draw(void)
         Painter::BeginScene(COLOR_BACK);
         Menu::Draw();
         Rectangle(width, 239).Draw(1, 0, COLOR_FILL);
-        FlashDrive::GetNumDirsAndFiles(currentDir, &numDirs, &numFiles);
+        FDrive::GetNumDirsAndFiles(currentDir, &numDirs, &numFiles);
         DrawNameCurrentDir(left + 1, top + 2);
         HLine().Draw(left2col, top + 16, 239, COLOR_FILL);
         HLine().Draw(top + 15, 0, width);
@@ -226,11 +226,11 @@ void FM::PressLevelDown(void)
     }
     char nameDir[100];
     StructForReadDir sfrd;
-    if (FlashDrive::GetNameDir(currentDir, numCurDir, nameDir, &sfrd))
+    if (FDrive::GetNameDir(currentDir, numCurDir, nameDir, &sfrd))
     {
         if (std::strlen(currentDir) + std::strlen(nameDir) < 250)
         {
-            FlashDrive::CloseCurrentDir(&sfrd);
+            FDrive::CloseCurrentDir(&sfrd);
             std::strcat(currentDir, "\\");
             std::strcat(currentDir, nameDir);
             numFirstDir = 0;
@@ -240,7 +240,7 @@ void FM::PressLevelDown(void)
         }
 
     }
-    FlashDrive::CloseCurrentDir(&sfrd);
+    FDrive::CloseCurrentDir(&sfrd);
 }
 
 

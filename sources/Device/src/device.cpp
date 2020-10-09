@@ -39,7 +39,7 @@ void Device::Update()
     }
 
     HAL_TIM2::StartMultiMeasurement();      // Сброс таймера для замера длительности временных интервалов в течение одной итерации цикла.
-    FlashDrive::Update();
+    FDrive::Update();
     LAN::Update(0);
     FPGA::Update();                      // Обновляем аппаратную часть.
     ProcessingSignal();

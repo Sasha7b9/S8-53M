@@ -27,7 +27,7 @@ struct StructForReadDir
     DIR dir;
 };
 
-class FlashDrive
+class FDrive
 {
 public:
     static void Init();
