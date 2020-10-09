@@ -17,7 +17,7 @@ static void ItemMACaddress_DrawOpened(MACaddress *mac, int x, int y);
 static void ItemIPaddress_DrawOpened(IPaddress *ip, int x, int y);
 
 
-void DrawGovernorChoiceColorFormulaHiPart(void *item, int x, int y, bool pressed, bool shade, bool opened)
+void DrawGovernorChoiceColorFormulaHiPart(const void *item, int x, int y, bool pressed, bool shade, bool opened)
 {
 
     int delta = pressed && !shade ? 1 : 0;
@@ -285,7 +285,7 @@ static void DrawValueWithSelectedPosition(int x, int y, int value, int numDigits
     }
 }
 
-void Governor::DrawValue(int x, int y)
+void Governor::DrawValue(int x, int y) const
 {
     char buffer[20];
 
@@ -576,7 +576,7 @@ void ItemTime_DrawOpened(Time *time, int x, int y)
     }
 }
 
-static void GovernorIpCommon_DrawOpened(void *item, int x, int y, int dWidth)
+static void GovernorIpCommon_DrawOpened(const void *item, int x, int y, int dWidth)
 {
     int height = 34;
     Rectangle(MP_TITLE_WIDTH + 2 + dWidth, height + 3).Draw(x - 1, y - 1, COLOR_BACK);
@@ -587,7 +587,7 @@ static void GovernorIpCommon_DrawOpened(void *item, int x, int y, int dWidth)
                              ColorMenuTitleLessBright(), false, false);
 }
 
-void Governor::DrawOpened(int x, int y)
+void Governor::DrawOpened(int x, int y) const
 {
     GovernorIpCommon_DrawOpened(this, x, y, 0);
     DrawValue(x, y + 22);

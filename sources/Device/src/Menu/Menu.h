@@ -45,7 +45,7 @@ public:
     // Dозвращает число подстраниц в странице по адресу page.
     static int NumSubPages(const Page *page);
     // Возвращает тип элемента меню по адресу address.
-    static TypeItem::E TypeMenuItem(void *address);
+    static TypeItem::E TypeMenuItem(const void *address);
     // Возвращает тип открытого элемента меню.
     static TypeItem::E TypeOpenedItem();
     // Возвращает адрес открытого элемента меню.
@@ -75,7 +75,7 @@ public:
     // Возвращает высоту в пикселях открытого элемента Choice или NamePage::E по адресу item.
     static int HeightOpenedItem(void *item);
     // Возвращает название элемента по адресу item, как оно выглядит на дисплее прибора.
-    static const char* TitleItem(void *item);
+    static const char* TitleItem(const void *item);
     // Возвращает позицию первого элемента страницы по адресу page на экране. Если текущая подстраница 0, это будет 0, если текущая подстраница 1, это будет 5 и т.д.
     static int PosItemOnTop(const Page *page);
     // Возвращает true, если button - функциональная клавиша [1..5].
@@ -85,7 +85,7 @@ public:
 
     static void OpenItem(const void *item, bool open);          // Открыть/закрыть элемент меню по адрему item.
 
-    static bool ItemIsOpened(void *item);                       // Возвращает true, если элемент меню по адрему item открыт.
+    static bool ItemIsOpened(const void *item);                       // Возвращает true, если элемент меню по адрему item открыт.
 
     static void ChangeSubPage(const Page *page, int delta);
 

@@ -9,7 +9,7 @@
 extern const Page mainPage;
 
 
-TypeItem::E Menu::TypeMenuItem(void *address) 
+TypeItem::E Menu::TypeMenuItem(const void *address) 
 {
     return address ? (*((TypeItem::E*)address)) : TypeItem::None;
 }
@@ -108,7 +108,7 @@ int Menu::NumCurrentSubPage(const Page *page)
 }
 
 
-const char* Menu::TitleItem(void *item) 
+const char* Menu::TitleItem(const void *item) 
 {
     return TITLE((Page*)item);
 }
@@ -212,7 +212,7 @@ void Menu::OpenItem(const void *item, bool open)
 }
 
 
-bool Menu::ItemIsOpened(void *item)
+bool Menu::ItemIsOpened(const void *item)
 {
     TypeItem::E type = TypeMenuItem(item);
     Page *page = Keeper(item);

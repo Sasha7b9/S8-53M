@@ -200,8 +200,8 @@ public:
     void ShortPress();
 
 private:
-    void DrawOpened(int x, int y);
-    void DrawValue(int x, int y);
+    void DrawOpened(int x, int y) const;
+    void DrawValue(int x, int y) const;
 
     // Возвращает число знакомест в поле для ввода элемента governor. Зависит от максимального значения, которое может принимать governor.
     int  NumDigits() const;
