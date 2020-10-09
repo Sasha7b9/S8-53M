@@ -1427,16 +1427,6 @@
               <FilePath>.\src\Display\Display_stm.cpp</FilePath>
             </File>
             <File>
-              <FileName>DisplayPrimitives.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\DisplayPrimitives.h</FilePath>
-            </File>
-            <File>
-              <FileName>DisplayPrimitives.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\DisplayPrimitives.cpp</FilePath>
-            </File>
-            <File>
               <FileName>DisplayTypes.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Display\DisplayTypes.h</FilePath>
@@ -1450,16 +1440,6 @@
               <FileName>Grid.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Display\Grid.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Math3D.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\Math3D.h</FilePath>
-            </File>
-            <File>
-              <FileName>Math3D.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\Math3D.cpp</FilePath>
             </File>
             <File>
               <FileName>Painter.h</FileName>
@@ -1477,16 +1457,6 @@
               <FilePath>.\src\Display\Painter_stm.cpp</FilePath>
             </File>
             <File>
-              <FileName>PainterMem.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\PainterMem.h</FilePath>
-            </File>
-            <File>
-              <FileName>PainterMem.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\PainterMem.cpp</FilePath>
-            </File>
-            <File>
               <FileName>PainterText.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Display\PainterText.cpp</FilePath>
@@ -1495,16 +1465,6 @@
               <FileName>Symbols.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Display\Symbols.h</FilePath>
-            </File>
-            <File>
-              <FileName>WelcomeScreen.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\WelcomeScreen.h</FilePath>
-            </File>
-            <File>
-              <FileName>WelcomeScreen.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\WelcomeScreen.cpp</FilePath>
             </File>
             <File>
               <FileName>Primitives.h</FileName>
@@ -1550,6 +1510,16 @@
               <FileName>Colors_stm.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Display\Colors_stm.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>DisplayPrimitives.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\DisplayPrimitives.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>DisplayPrimitives.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\DisplayPrimitives.h</FilePath>
             </File>
           </Files>
         </Group>
