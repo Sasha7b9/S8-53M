@@ -8,16 +8,16 @@
 int8 gCurDigit = 0;
 
 
-void Governor_StartChange(Governor *governor, int delta)
+void Governor::StartChange(int delta)
 {
     Sound::GovernorChangedValue();
-    if (delta > 0 && ADDRESS_GOVERNOR == reinterpret_cast<uint>(governor) && (IN_MOVE_INCREASE != 0))
+    if (delta > 0 && ADDRESS_GOVERNOR == reinterpret_cast<uint>(this) && (IN_MOVE_INCREASE != 0))
     {
-        *governor->cell = Governor_NextValue(governor);
+        *cell = Governor_NextValue(this);
     }
-    else if (delta < 0 && ADDRESS_GOVERNOR == reinterpret_cast<uint>(governor) && (IN_MOVE_DECREASE != 0))
+    else if (delta < 0 && ADDRESS_GOVERNOR == reinterpret_cast<uint>(this) && (IN_MOVE_DECREASE != 0))
     {
-        *governor->cell = Governor_PrevValue(governor);
+        *cell = Governor_PrevValue(this);
     }
     else
     {
