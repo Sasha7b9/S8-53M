@@ -2,7 +2,6 @@
 #include "MenuItems.h"
 
 
-void ItemMACaddress_Draw(MACaddress *mac, int x, int y, bool opened);
 void ItemFormula_Draw(Formula *formula, int x, int y, bool opened);
 void ItemChoice_Draw(Choice *choice, int x, int y, bool opened);
 void ItemButton_Draw(Button *button, int x, int y);

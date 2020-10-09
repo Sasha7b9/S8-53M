@@ -206,7 +206,7 @@ static void DrawIPaddress(void* item, int x, int y)
 
 static void DrawMACaddress(void* item, int x, int y)
 {
-    ItemMACaddress_Draw((MACaddress *)item, x, y, false);
+    ((MACaddress *)item)->Draw(x, y, false);
 }
 
 
@@ -324,7 +324,7 @@ void Menu::DrawOpenedPage(Page *page, int layer, int yTop)
         }
         else if (type == TypeItem::MAC)
         {
-            ItemMACaddress_Draw((MACaddress *)item, CalculateX(1), ItemOpenedPosY(item), true);
+            ((MACaddress *)item)->Draw(CalculateX(1), ItemOpenedPosY(item), true);
         }
     }
 

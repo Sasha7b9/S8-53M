@@ -250,6 +250,8 @@ public:
     uint8*  mac4;
     uint8*  mac5;
     pFuncVB funcOfChanged;
+
+    void Draw(int x, int y, bool opened);
 };
 
 // Описывает элемент меню для установки коэффициентов и знаков математической формулы
