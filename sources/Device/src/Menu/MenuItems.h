@@ -155,6 +155,7 @@ public:
 
     Button(const Page *keeper_, pFuncBV funcOfActive_,
             const char *titleRU, const char *titleEN, const char *hintRU, const char *hintEN, pFuncVV funcOnPress_);
+    void Draw(int x, int y);
 };
 
 
