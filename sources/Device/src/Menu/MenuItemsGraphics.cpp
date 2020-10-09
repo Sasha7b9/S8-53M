@@ -468,11 +468,11 @@ void GovernorColor::DrawOpened(int x, int y)
     DrawGovernorColorValue(x + 1, y + 19, this, delta);
 }
 
-static void GovernorColor_DrawClosed(GovernorColor *gov, int x, int y)
+void GovernorColor::DrawClosed(int x, int y)
 {
-    Color_Init(gov->colorType);
-    DrawGovernorChoiceColorFormulaHiPart(gov, x, y, Menu::IsPressed(gov), Menu::IsShade(gov) || !Menu::ItemIsActive(gov), true);
-    Region(MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1).Fill(x + 2, y + 20, gov->colorType->color);
+    Color_Init(colorType);
+    DrawGovernorChoiceColorFormulaHiPart(this, x, y, Menu::IsPressed(this), Menu::IsShade(this) || !Menu::ItemIsActive(this), true);
+    Region(MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1).Fill(x + 2, y + 20, colorType->color);
 }
 
 void GovernorColor::Draw(int x, int y, bool opened)
@@ -483,7 +483,7 @@ void GovernorColor::Draw(int x, int y, bool opened)
     }
     else
     {
-        GovernorColor_DrawClosed(this, x, y);
+        DrawClosed(x, y);
     }
 }
 

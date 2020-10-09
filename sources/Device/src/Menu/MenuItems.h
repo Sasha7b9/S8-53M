@@ -269,6 +269,7 @@ public:
     void Draw(int x, int y, bool opened);
 private:
     void DrawOpened(int x, int y);
+    void DrawClosed(int x, int y);
 };
 
 
