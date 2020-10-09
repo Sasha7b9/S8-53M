@@ -682,15 +682,15 @@ void ItemTime_DrawClosed(Time *item, int x, int y)
     Text(Int2String((int)time.year, false, 2, buffer)).Draw(x + startX + 2 * deltaField + 2 * deltaSeparator, y);
 }
 
-void ItemTime_Draw(Time *time, int x, int y, bool opened)
+void Time::Draw(int x, int y, bool opened)
 {
     if(opened)
     {
-        ItemTime_DrawOpened(time, x, y);
+        ItemTime_DrawOpened(this, x, y);
     }
     else
     {
-        ItemTime_DrawClosed(time, x, y);
+        ItemTime_DrawClosed(this, x, y);
     }
 }
 
