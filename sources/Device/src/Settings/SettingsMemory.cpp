@@ -1,7 +1,6 @@
-#include "SettingsMemory.h"
-#include "Settings.h"
+#include "defines.h"
 #include "FPGA/FPGA_types.h"
-
+#include "Settings/Settings.h"
 
 
 int sMemory_GetNumPoints(bool forCalculate)

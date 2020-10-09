@@ -1,20 +1,14 @@
+#include "defines.h"
 #include "Menu/MenuItems.h"
 #include "defines.h"
 #include "Menu/Menu.h"
 #include "Tables.h"
 #include "Display/Painter.h"
 #include "FPGA/FPGA.h"
-//#include "FPGA/DataStorage.h"
 #include "Settings/SettingsTypes.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
 
-
-/** @addtogroup Menu
- *  @{
- *  @defgroup PageDisplay
- *  @{
- */
 
 extern const Page pDisplay;
 
@@ -685,7 +679,3 @@ static const Choice mcDisplMemoryWindow =
     (int8*)&set.display.showFullMemoryWindow
 };
 */
-
-
-/** @}  @}
- */

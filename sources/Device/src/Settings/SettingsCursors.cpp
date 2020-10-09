@@ -1,10 +1,9 @@
-#include "Settings.h"
+#include "defines.h"
+#include "common/Utils/Math.h"
 #include "Display/Grid.h"
 #include "Menu/Menu.h"
-#include "SettingsCursors.h"
-#include "Utils/Math.h"
+#include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
-#include "FPGA/FPGA_Types.h"
 #include <cmath>
 #include <cstring>
 

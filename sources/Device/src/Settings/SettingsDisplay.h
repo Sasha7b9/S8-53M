@@ -1,5 +1,4 @@
 #pragma once
-#include "defines.h"
 #include "SettingsTypes.h"
 #include "common/Display/Colors.h"
 

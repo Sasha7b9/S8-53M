@@ -1,8 +1,5 @@
 #pragma once
 
-
-#include "defines.h"
-
                                                 
 char*   FloatFract2String(float value, bool alwaysSign, char bufferOut[20]);
 

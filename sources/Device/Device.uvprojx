@@ -1069,11 +1069,6 @@
               <FilePath>.\src\Hardware\Sound.h</FilePath>
             </File>
             <File>
-              <FileName>DisplayHardware.inc</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\DisplayHardware.inc</FilePath>
-            </File>
-            <File>
               <FileName>Hardware.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\Hardware.cpp</FilePath>
@@ -2089,11 +2084,6 @@
               <FilePath>.\src\Settings\SettingsDisplay.cpp</FilePath>
             </File>
             <File>
-              <FileName>SettingsMeasures.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Settings\SettingsMeasures.cpp</FilePath>
-            </File>
-            <File>
               <FileName>SettingsMeasures.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Settings\SettingsMeasures.h</FilePath>
@@ -2142,11 +2132,6 @@
               <FileName>GlobalFunctions.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Utils\GlobalFunctions.h</FilePath>
-            </File>
-            <File>
-              <FileName>Math.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Math.h</FilePath>
             </File>
             <File>
               <FileName>Measures.h</FileName>
@@ -2199,11 +2184,6 @@
               <FilePath>.\src\Utils\Map.cpp</FilePath>
             </File>
             <File>
-              <FileName>Math.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Math.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Measures.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Utils\Measures.cpp</FilePath>
@@ -2237,6 +2217,16 @@
               <FileName>StringUtils.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Utils\StringUtils.h</FilePath>
+            </File>
+            <File>
+              <FileName>Math.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\Math.h</FilePath>
+            </File>
+            <File>
+              <FileName>cMath.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\cMath.cpp</FilePath>
             </File>
           </Files>
         </Group>

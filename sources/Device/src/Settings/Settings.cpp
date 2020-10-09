@@ -1,15 +1,10 @@
-#include "Settings.h"
-#include "Hardware/EPROM.H"
-#include "Display/Display.h"
-#include "Display/Painter.h"
-#include "Panel/Panel.h"
+#include "defines.h"
+#include "common/Utils/Math.h"
 #include "FPGA/FPGA.h"
-#include "FPGA/FPGA_Types.h"
-#include "Utils/Math.h"
-#include "Utils/GlobalFunctions.h"
-#include "Display/Display.h"
+#include "Hardware/EPROM.H"
 #include "Menu/Menu.h"
-#include "common/Log.h"
+#include "Panel/Panel.h"
+#include "Settings/Settings.h"
 #include <cstring>
 
 

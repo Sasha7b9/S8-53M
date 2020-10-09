@@ -1,12 +1,12 @@
 #include "defines.h"
 #include "common/Log.h"
+#include "common/Utils/Math.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/Storage.h"
 #include "Hardware/Timer.h"
 #include "Panel/Panel.h"
 #include "Settings/Settings.h"
-#include "Utils/Math.h"
 #include "Utils/ProcessingSignal.h"
 #include <cstring>
 

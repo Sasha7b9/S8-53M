@@ -1,7 +1,7 @@
 #include "defines.h"
+#include "common/Utils/Math.h"
 #include "FPGA/FPGA.h"
 #include "Settings/Settings.h"
-#include "Utils/Math.h"
 #include "Utils/GlobalFunctions.h"
 
 

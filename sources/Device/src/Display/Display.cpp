@@ -2,6 +2,7 @@
 #include "common/Log.h"
 #include "common/Display/Primitives.h"
 #include "common/Display/Text.h"
+#include "common/Utils/Math.h"
 #include "Display/Display.h"
 #include "Display/Symbols.h"
 #include "FPGA/FPGA_Types.h"
@@ -10,7 +11,6 @@
 #include "Hardware/Timer.h"
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
-#include "Utils/Math.h"
 #include "Utils/ProcessingSignal.h"
 #include <cmath>
 #include <cstdio>

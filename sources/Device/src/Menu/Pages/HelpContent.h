@@ -1,5 +1,4 @@
 #pragma once
-#include "defines.h"
 
 
 void HelpContent_Draw();

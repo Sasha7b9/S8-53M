@@ -1,13 +1,7 @@
-#include "Panel.h"
-#include "common/Keyboard/Controls.h"
-#include "Utils/Math.h"
-#include "Utils/GlobalFunctions.h"
-#include "Settings/Settings.h"
+#include "defines.h"
 #include "common/Hardware/HAL/HAL.h"
-#include "Display/Display.h"
-#include "Hardware/Timer.h"
-#include <cstdio>
-#include <cstring>
+#include "common/Keyboard/Controls.h"
+#include "Panel/Panel.h"
 
 
 #define MAX_DATA            20

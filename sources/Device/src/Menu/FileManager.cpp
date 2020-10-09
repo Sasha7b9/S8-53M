@@ -2,6 +2,7 @@
 #include "common/Display/Primitives.h"
 #include "common/Display/Text.h"
 #include "common/Display/Font/Font.h"
+#include "common/Utils/Math.h"
 #include "Display/Painter.h"
 #include "FDrive/FDrive.h"
 #include "Hardware/Sound.h"
@@ -9,7 +10,6 @@
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
-#include "Utils/Math.h"
 #include <cstring>
 
 

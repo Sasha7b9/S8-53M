@@ -1,21 +1,15 @@
 #include "defines.h"
-#include "PageCursors.h"
-#include "Definition.h"
-#include "Settings/SettingsTypes.h"
-#include "Settings/Settings.h"
-#include "common/Keyboard/Controls.h"
-#include "common/Display/Colors.h"
-#include "Display/Grid.h"
 #include "common/Display/Primitives.h"
 #include "common/Display/Text.h"
-#include "Utils/Math.h"
-#include "Utils/ProcessingSignal.h"
-#include "Utils/GlobalFunctions.h"
+#include "common/Utils/Math.h"
 #include "Hardware/Sound.h"
-#include "common/Log.h"
-#include "Display/Painter.h"
+#include "Menu/Menu.h"
+#include "Menu/Pages/Definition.h"
+#include "Menu/Pages/PageCursors.h"
+#include "Settings/Settings.h"
+#include "Utils/GlobalFunctions.h"
+#include "Utils/ProcessingSignal.h"
 #include <cmath>
-#include <cstring>
 
 
 using namespace Primitives;

@@ -1,3 +1,4 @@
+#include "defines.h"
 #include "DisplayPrimitives.h"
 #include "common/Display/Colors.h"
 #include "Display/Painter.h"

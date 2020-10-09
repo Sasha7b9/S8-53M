@@ -1,9 +1,9 @@
 #include "defines.h"
+#include "common/Utils/Math.h"
 #include "FPGA/FPGA_Types.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
 #include "Utils/ProcessingSignal.h"
-#include "Utils/Math.h"
 #include <cmath>
 #include <cstdio>
 #include <cstring>

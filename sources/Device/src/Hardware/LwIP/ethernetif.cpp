@@ -55,6 +55,7 @@
 #include "netif/etharp.h"
 #include "ethernetif.h"
 #include <string.h>
+#include "defines.h"
 #include "Settings/Settings.h"
 
 

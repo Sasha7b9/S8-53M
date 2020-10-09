@@ -1,6 +1,6 @@
-#include "Settings.h"
-#include "SettingsService.h"
-
+#include "defines.h"
+#include "Settings/Settings.h"
+#include "Settings/SettingsService.h"
 
 
 bool sService_MathEnabled()

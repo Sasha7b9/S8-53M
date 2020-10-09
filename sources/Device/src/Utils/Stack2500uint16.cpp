@@ -1,5 +1,4 @@
-// @file
-
+#include "defines.h"
 #include "Stack2500uint16.h"
 #include "common/Log.h"
 #include "Hardware/Timer.h"

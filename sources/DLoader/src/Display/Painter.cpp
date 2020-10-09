@@ -1,8 +1,7 @@
-#include "Display/Painter.h"
+#include "defines.h"
 #include "common/Display/Primitives.h"
+#include "Display/Painter.h"
 #include "Hardware/Timer.h"
-#include "Settings/Settings.h"
-#include "Utils/Math.h"
 
 
 using namespace Primitives;

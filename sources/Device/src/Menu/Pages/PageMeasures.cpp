@@ -1,23 +1,11 @@
-#include "Settings/SettingsTypes.h"
-#include "Utils/Measures.h"
-#include "Utils/Math.h"
-#include "PageMemory.h"
-#include "Definition.h"
-#include "Menu/MenuItems.h"
-#include "Utils/GlobalFunctions.h"
-#include "Settings/SettingsTypes.h"
-#include "Settings/Settings.h"
-#include "common/Display/Colors.h"
 #include "defines.h"
-#include "Display/Painter.h"
-#include "PageMeasures.h"
-
-
-/** @addtogroup Menu
- *  @{
- *  @addtogroup PageMeasures
- *  @{
- */
+#include "common/Utils/Math.h"
+#include "Menu/MenuItems.h"
+#include "Menu/Pages/Definition.h"
+#include "Menu/Pages/PageMeasures.h"
+#include "Settings/Settings.h"
+#include "Utils/GlobalFunctions.h"
+#include "Utils/Measures.h"
 
 extern const Page pMeasures;
 extern const Page mainPage;
@@ -309,6 +297,3 @@ const Page pMeasures            // »«Ã≈–≈Õ»ﬂ
 );
 
 void *PageMeasures::Tune::pointer = (void *)&mspMeasTune;
-
-/** @}  @}
- */

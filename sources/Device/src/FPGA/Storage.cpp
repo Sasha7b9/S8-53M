@@ -1,8 +1,8 @@
 #include "defines.h"
 #include "common/Log.h"
+#include "common/Utils/Math.h"
 #include "FPGA/Storage.h"
 #include "Settings/Settings.h"
-#include "Utils/Math.h"
 #include <cstring>
 
 uint8  Storage::pool[SIZE_POOL] = {0};

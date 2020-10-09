@@ -1,16 +1,11 @@
-#include "Measures.h"
-#include "GlobalFunctions.h"
-#include "Math.h"
-#include "Menu/Pages/PageMeasures.h"
-#include "Settings/SettingsTypes.h"
-#include "Settings/Settings.h"
-#include "Display/Display.h"
-#include "common/Display/Colors.h"
-#include "Display/Painter.h"
+#include "defines.h"
+#include "common/Utils/Math.h"
 #include "common/Display/Primitives.h"
 #include "Display/Grid.h"
 #include "Hardware/Sound.h"
-#include <cstdio>
+#include "Menu/Pages/PageMeasures.h"
+#include "Settings/Settings.h"
+#include "Utils/Measures.h"
 
 
 using namespace Primitives;

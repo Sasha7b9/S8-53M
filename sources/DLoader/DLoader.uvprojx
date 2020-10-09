@@ -1090,16 +1090,6 @@
               <FilePath>.\src\Utils\GlobalFunctions.h</FilePath>
             </File>
             <File>
-              <FileName>Math.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Math.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Math.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Math.h</FilePath>
-            </File>
-            <File>
               <FileName>String.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Utils\String.cpp</FilePath>
@@ -1118,6 +1108,16 @@
               <FileName>StringUtils.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Utils\StringUtils.h</FilePath>
+            </File>
+            <File>
+              <FileName>Math.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\Math.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Math.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\Math.h</FilePath>
             </File>
           </Files>
         </Group>

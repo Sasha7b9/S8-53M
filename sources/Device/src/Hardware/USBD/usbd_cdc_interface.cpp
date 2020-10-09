@@ -1,3 +1,4 @@
+#include "defines.h"
 #include "main.h"
 #include "Globals.h"
 #include "VCP/VCP.h"

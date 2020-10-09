@@ -1,6 +1,6 @@
 #include "defines.h"
+#include "common/Utils/Math.h"
 #include "Settings/Settings.h"
-#include "Utils/Math.h"
 
 
 void HardwareErrorHandler(const char *, const char *, int)

@@ -1,11 +1,11 @@
 #include "defines.h"
 #include "main.h"
-#include "Display/Display.h"
 #include "common/Display/Colors.h"
-#include "Display/Painter.h"
-#include "Utils/Math.h"
-#include "Settings/Settings.h"
 #include "common/Hardware/HAL/HAL.h"
+#include "common/Utils/Math.h"
+#include "Display/Display.h"
+#include "Display/Painter.h"
+#include "Settings/Settings.h"
 #include <cmath>
 
 

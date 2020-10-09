@@ -1,8 +1,7 @@
-#pragma once
-#include "Generator.h"
-#include "Math.h"
+#include "defines.h"
+#include "common/Utils/Math.h"
 #include "Settings/Settings.h"
-#include <cstdlib>
+#include "Utils/Generator.h"
 #include <cmath>
 
 

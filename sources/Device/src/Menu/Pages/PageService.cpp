@@ -1,19 +1,16 @@
-#include "Definition.h"
-#include "Menu/Pages/PageService.h"
-#include "Display/Grid.h"
+#include "defines.h"
 #include "common/Display/Primitives.h"
 #include "common/Display/Text.h"
+#include "common/Utils/Math.h"
 #include "Display/Symbols.h"
 #include "FPGA/FPGA.h"
-#include "Menu/Menu.h"
-#include "Panel/Panel.h"
-#include "Hardware/Hardware.h"
 #include "Hardware/Sound.h"
 #include "Hardware/Timer.h"
-#include "common/Hardware/HAL/HAL.h"
+#include "Menu/Menu.h"
+#include "Menu/Pages/Definition.h"
+#include "Menu/Pages/PageService.h"
+#include "Panel/Panel.h"
 #include "Settings/Settings.h"
-#include "Utils/Math.h"
-#include <cstring>
 #include <cstdio>
 
 

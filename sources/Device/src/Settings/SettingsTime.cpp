@@ -1,16 +1,7 @@
-#include "SettingsTime.h"
-#include "Settings.h"
+#include "defines.h"
 #include "common/Log.h"
-#include "Utils/Math.h"
 #include "FPGA/FPGA.h"
-
-
-/** @addtogroup Settings
- *  @{
- *  @addtogroup SettingsTime
- *  @{
- */
-
+#include "Settings/Settings.h"
 
 
 void sTime_SetTBase(TBase::E tBase)
@@ -84,7 +75,3 @@ bool sTime_RandomizeModeEnabled()
 {
     return SET_TBASE < TBase::_100ns;
 }
-
-
-/** @}  @}
- */

@@ -1,11 +1,11 @@
 #include "defines.h"
 #include "common/Log.h"
 #include "common/Display/Primitives.h"
+#include "common/Utils/Math.h"
 #include "Display/Painter.h"
 #include "Hardware/Timer.h"
 #include "LAN/SocketTCP.h"
 #include "VCP/VCP.h"
-#include "Utils/Math.h"
 
 
 using namespace Primitives;

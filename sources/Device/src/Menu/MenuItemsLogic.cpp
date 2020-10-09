@@ -1,9 +1,9 @@
 #include "defines.h"
+#include "common/Utils/Math.h"
 #include "Hardware/Sound.h"
 #include "Menu/Menu.h"
 #include "Menu/MenuItemsLogic.h"
 #include "Utils/GlobalFunctions.h"
-#include "Utils/Math.h"
 
 int8 gCurDigit = 0;
 

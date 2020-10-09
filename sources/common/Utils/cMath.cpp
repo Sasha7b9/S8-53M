@@ -1,12 +1,10 @@
-#include "Math.h"
-#include "Settings/Settings.h"
-#include "common/Log.h"
+#include "defines.h"
+#include "common/Utils/Math.h"
 #include "FPGA/FPGA_Types.h"
-#include "Display/Grid.h"
-#include "Hardware/Timer.h"
-#include <cmath>
+#include "Settings/Settings.h"
 #include <cstdlib>
 #include <cstring>
+#include <cmath>
 
 
 const float tableScalesRange[Range::Count] = {2e-3F, 5e-3F, 10e-3F, 20e-3F, 50e-3F, 100e-3F, 200e-3F, 500e-3F, 1.0F, 2.0F, 5.0F, 10.0F, 20.0F};

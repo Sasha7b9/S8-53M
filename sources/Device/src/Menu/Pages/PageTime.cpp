@@ -1,20 +1,9 @@
 #include "defines.h"
-#include "Settings/Settings.h"
-#include "Settings/SettingsTypes.h"
-#include "PageMemory.h"
+#include "common/Utils/Math.h"
 #include "FPGA/FPGA.h"
-#include "common/Log.h"
-#include "Display/Display.h"
-#include "Utils/GlobalFunctions.h"
-#include "Utils/Math.h"
-#include "Display/Grid.h"
-
-
-/** @addtogroup Menu
- *  @{
- *  @addtogroup PageTime
- *  @{
- */
+#include "Menu/MenuItems.h"
+#include "Menu/Pages/PageMemory.h"
+#include "Settings/Settings.h"
 
 
 extern const Page pTime;
@@ -208,7 +197,3 @@ static const Choice mcDivRole =
     },
     (int8*)&TIME_DIV_XPOS
 };
-
-
-/** @}  @}
- */

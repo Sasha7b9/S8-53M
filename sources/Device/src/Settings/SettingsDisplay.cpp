@@ -1,7 +1,6 @@
-#include "Settings.h"
-#include "SettingsDisplay.h"
-#include "Utils/Math.h"
-
+#include "defines.h"
+#include "common/Utils/Math.h"
+#include "Settings/Settings.h"
 
 
 int ENumSignalsInSec::NumSignalsInS()

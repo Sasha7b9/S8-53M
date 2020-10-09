@@ -1,19 +1,8 @@
-
-
-#include "Settings.h"
-#include "SettingsChannel.h"
+#include "defines.h"
+#include "common/Utils/Math.h"
 #include "FPGA/FPGA.h"
-#include "Utils/Math.h"
+#include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
-
-
-/** @addtogroup Settings
- *  @{
- *  @addtogroup SettingsChannel
- *  @{
- */
-
-
 
 
 // Структура для описания диапазона масштаба по напряжению.
@@ -74,7 +63,3 @@ const char* sChannel_RShift2String(int16 rShiftRel, Range::E range, Divider::E m
     float rShiftVal = RSHIFT_2_ABS(rShiftRel, range) * Divider::ToAbs(multiplier);
     return Voltage2String(rShiftVal, true, buffer);
 };
-
-
-/** @}  @}
- */

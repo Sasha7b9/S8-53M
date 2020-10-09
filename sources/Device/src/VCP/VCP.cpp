@@ -1,13 +1,10 @@
 #include "defines.h"
-#include "VCP.h"
 #include "common/Log.h"
-#include "Utils/Math.h"
-#include "SCPI/SCPI.h"
-#include "Hardware/Timer.h"
-#include "common/Hardware/HAL/HAL.h"
+#include "common/Utils/Math.h"
+#include "VCP/VCP.h"
 #include <cstdarg>
-#include <cstring>
 #include <cstdio>
+#include <cstring>
 
 
 uint VCP::lastTimeSend = 0;
