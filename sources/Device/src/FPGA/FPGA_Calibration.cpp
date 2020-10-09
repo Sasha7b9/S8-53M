@@ -316,7 +316,7 @@ void DrawParametersChannel(Channel::E chan, int eX, int eY, bool inProgress)
         bar->height = 15;
         bar->y = eY;
         bar->x = 60;
-        ProgressBar_Draw(bar);
+        bar->Draw();
     }
 
     if(Settings::DebugModeEnable())

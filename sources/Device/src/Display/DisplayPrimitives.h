@@ -9,7 +9,6 @@ struct ProgressBar
     int height;
     float fullTime;
     float passedTime;
+
+    void Draw();
 };
-
-
-void ProgressBar_Draw(const ProgressBar *bar);
