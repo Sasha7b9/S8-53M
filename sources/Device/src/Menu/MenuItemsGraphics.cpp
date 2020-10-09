@@ -248,12 +248,12 @@ static void ItemMACaddress_DrawClosed(MACaddress *mac, int x, int y)
     DrawGovernorChoiceColorFormulaHiPart(mac, x, y, pressed, shade, false);
 }
 
-void Formula_DrawClosed(Formula *formula, int x, int y)
+void Formula::DrawClosed(int x, int y) const
 {
-    bool pressed = Menu::IsPressed(formula);
-    bool shade = Menu::IsShade(formula) || !Menu::ItemIsActive(formula);
-    DrawFormulaLowPart(formula, x, y, pressed, shade);
-    DrawGovernorChoiceColorFormulaHiPart(formula, x, y, pressed, shade, false);
+    bool pressed = Menu::IsPressed(this);
+    bool shade = Menu::IsShade(this) || !Menu::ItemIsActive(this);
+    DrawFormulaLowPart(this, x, y, pressed, shade);
+    DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 }
 
 static void DrawValueWithSelectedPosition(int x, int y, int value, int numDigits, int selPos, bool hLine, bool fillNull) // Если selPos == -1, подсвечивать не нужно
@@ -407,7 +407,7 @@ void MACaddress::Draw(int x, int y, bool opened)
     }
 }
 
-void Formula::Draw(int x, int y, bool opened)
+void Formula::Draw(int x, int y, bool opened) const
 {
     if (opened)
     {
@@ -415,7 +415,7 @@ void Formula::Draw(int x, int y, bool opened)
     }
     else
     {
-        Formula_DrawClosed(this, x, y);
+        DrawClosed(x, y);
     }
 }
 

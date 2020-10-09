@@ -281,7 +281,9 @@ public:
                                                 //  2 - знак второго члена, 3 - коэффициент второго члена
     pFuncVV         funcOfChanged;              // Эта функция вызывается после изменения состояния элемента управления.
 
-    void Draw(int x, int y, bool opened);
+    void Draw(int x, int y, bool opened) const;
+private:
+    void DrawClosed(int x, int y) const;
 };
 
 
