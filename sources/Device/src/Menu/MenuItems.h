@@ -234,6 +234,8 @@ public:
     uint16* port;
 
     IPaddress(const IPaddressStruct *str);
+
+    void Draw(int x, int y, bool opened);
 };
 
 
