@@ -172,10 +172,10 @@ void Governor::NextPosition()
     }
 }
 
-int Governor_NumDigits(const Governor *governor)
+int Governor::NumDigits() const
 {
-    int min = Math::NumDigitsInNumber(Math::FabsInt(governor->minValue));
-    int max = Math::NumDigitsInNumber(Math::FabsInt(governor->maxValue));
+    int min = Math::NumDigitsInNumber(Math::FabsInt(minValue));
+    int max = Math::NumDigitsInNumber(Math::FabsInt(maxValue));
     if (min > max)
     {
         max = min;

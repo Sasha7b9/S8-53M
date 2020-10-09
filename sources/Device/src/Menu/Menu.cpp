@@ -897,3 +897,9 @@ void Menu::OpenFileManager()
         Display::Update(false);
     }
 }
+
+
+static void ShortPress_Governor(void *item)
+{
+    ((Governor *)item)->ShortPress();
+}

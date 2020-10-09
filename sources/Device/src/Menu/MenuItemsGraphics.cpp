@@ -302,7 +302,7 @@ void Governor::DrawValue(int x, int y)
     Text(Int2String(minValue, sign, 1, buffer)).Draw(x + 55, y + 2);
     Font::Set(TypeFont::_8);
 
-    DrawValueWithSelectedPosition(startX, y, value, Governor_NumDigits(this), gCurDigit, true, true);
+    DrawValueWithSelectedPosition(startX, y, value, NumDigits(), gCurDigit, true, true);
 
     if(sign)
     {
