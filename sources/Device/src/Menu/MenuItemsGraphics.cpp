@@ -710,7 +710,7 @@ void Button::Draw(int x, int y) const
     Painter::DrawStringInCenterRectC(x + delta, y + delta, MI_WIDTH, MI_HEIGHT, Menu::TitleItem(this), color);
 }
 
-void SmallButton::Draw(int x, int y)
+void SmallButton::Draw(int x, int y) const
 {
     if (Menu::ItemIsActive(this))
     {

@@ -180,7 +180,7 @@ public:
     SmallButton(const Page *keeper_, pFuncBV funcOfActive_,
                 const char *titleRU, const char *titleEN, const char *hintRU, const char *hintEN,
                 pFuncVV funcOnPress_, pFuncVII funcOnDraw_, const arrayHints *hintUGO_ = 0);
-    void Draw(int x, int y);
+    void Draw(int x, int y) const;
 };
 
 
