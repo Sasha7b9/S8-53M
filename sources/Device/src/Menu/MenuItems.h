@@ -201,6 +201,7 @@ public:
 
 private:
     void DrawOpened(int x, int y) const;
+    void DrawClosed(int x, int y) const;
     void DrawValue(int x, int y) const;
 
     // Возвращает число знакомест в поле для ввода элемента governor. Зависит от максимального значения, которое может принимать governor.

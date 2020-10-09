@@ -225,12 +225,12 @@ void DrawFormulaLowPart(const Formula *formula, int x, int y, bool, bool shade)
     WriteTextFormula(formula, x + 6, y + 21, false);
 }
 
-static void Governor_DrawClosed(const Governor *governor, int x, int y)
+void Governor::DrawClosed(int x, int y) const
 {
-    bool pressed = Menu::IsPressed(governor);
-    bool shade = Menu::IsShade(governor) || !Menu::ItemIsActive(governor);
-    DrawGovernorLowPart(governor, x, y, pressed, shade);
-    DrawGovernorChoiceColorFormulaHiPart(governor, x, y, pressed, shade, false);
+    bool pressed = Menu::IsPressed(this);
+    bool shade = Menu::IsShade(this) || !Menu::ItemIsActive(this);
+    DrawGovernorLowPart(this, x, y, pressed, shade);
+    DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 }
 
 static void ItemIPaddress_DrawClosed(IPaddress *ip, int x, int y)
@@ -380,7 +380,7 @@ void Governor::Draw(int x, int y, bool opened) const
     }
     else
     {
-        Governor_DrawClosed(this, x, y);
+        DrawClosed(x, y);
     }
 }
 
