@@ -95,7 +95,7 @@ void Menu::Draw()
             }
             else if(TypeMenuItem(item) == TypeItem::Governor)
             {
-                ItemGovernor_Draw((Governor *)item, CalculateX(0), Grid::TOP, true);
+                ((Governor *)item)->Draw(CalculateX(0), Grid::TOP, true);
             }
         }
     }
@@ -194,7 +194,7 @@ void Menu::DrawPagesUGO(const Page *page, int right, int bottom)
 
 static void DrawGovernor(void* item, int x, int y)
 {
-    ItemGovernor_Draw((Governor *)item, x, y, false);
+    ((Governor *)item)->Draw(x, y, false);
 }
 
 
@@ -308,7 +308,7 @@ void Menu::DrawOpenedPage(Page *page, int layer, int yTop)
         }
         else if (type == TypeItem::Governor)
         {
-            ItemGovernor_Draw((Governor *)item, CalculateX(1), ItemOpenedPosY(item), true);
+            ((Governor *)item)->Draw(CalculateX(1), ItemOpenedPosY(item), true);
         }
         else if (type == TypeItem::GovernorColor)
         {
