@@ -322,7 +322,7 @@ bool Menu::ChangeOpenedItem(void *item, int delta)
     }
     else if (type == TypeItem::Governor)
     {
-        Governor_ChangeValue((Governor *)item, delta);
+        ((Governor *)item)->ChangeValue(delta);
     }
     
     return true;
@@ -345,7 +345,7 @@ void Menu::ChangeItem(void *item, int delta)
         }
         else
         {
-            Governor_ChangeValue(governor, delta);
+            governor->ChangeValue(delta);
         }
     }
     else if (type == TypeItem::GovernorColor)

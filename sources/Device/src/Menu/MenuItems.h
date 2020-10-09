@@ -204,7 +204,7 @@ public:
     void ShortPress();
     void StartChange(int detla);        // Запускает процессс анимации инкремента или декремента элемента меню типа Governor (в зависимости от знака delta)
     float Step() const;                 // Рассчитывате следующий кадр анимации.
-
+    void  ChangeValue(int delta);       // Изменяет значение в текущей позиции при раскрытом элементе
 
 private:
     void DrawOpened(int x, int y) const;
