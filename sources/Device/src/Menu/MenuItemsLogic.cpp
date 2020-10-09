@@ -164,11 +164,11 @@ int16 Governor_PrevValue(const Governor *governor)
     return ((*governor->cell) > governor->minValue) ? (*governor->cell) - 1 : governor->maxValue;
 }
 
-void Governor_NextPosition(const Governor *governor)
+void Governor::NextPosition()
 {
-    if (Menu::OpenedItem() == governor)
+    if (Menu::OpenedItem() == this)
     {
-        CircleIncreaseInt8(&gCurDigit, 0, static_cast<int8>(Governor_NumDigits(governor)) - 1);
+        CircleIncreaseInt8(&gCurDigit, 0, static_cast<int8>(NumDigits()) - 1);
     }
 }
 
@@ -227,6 +227,7 @@ void ItemTime_IncCurrentPosition(const Time *time)
     }
 }
 
+
 void ItemTime_DecCurrentPosition(const Time *time)
 {
     Sound::GovernorChangedValue();
@@ -244,6 +245,7 @@ void ItemTime_DecCurrentPosition(const Time *time)
     }
 }
 
+
 void GovernorColor_ChangeValue(GovernorColor *governor, int delta)
 {
     ColorType *ct = governor->colorType;
@@ -254,6 +256,23 @@ void GovernorColor_ChangeValue(GovernorColor *governor, int delta)
     else
     {
         Color_ComponentChange(ct, delta);
+    }
+}
+
+
+void Governor::ShortPress()
+{
+    if (!Menu::ItemIsActive(this))
+    {
+        return;
+    }
+    if (Menu::OpenedItem() == this)
+    {
+        NextPosition();
+    }
+    else
+    {
+        Menu::SetCurrentItem(this, Menu::CurrentItem() != this);
     }
 }
 

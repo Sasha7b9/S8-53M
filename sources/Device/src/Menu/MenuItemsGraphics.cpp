@@ -13,7 +13,6 @@
 using namespace Primitives;
 
  
-static void Governor_DrawOpened(Governor *governor, int x, int y);
 static void ItemMACaddress_DrawOpened(MACaddress *mac, int x, int y);
 static void ItemIPaddress_DrawOpened(IPaddress *ip, int x, int y);
 
@@ -286,24 +285,24 @@ static void DrawValueWithSelectedPosition(int x, int y, int value, int numDigits
     }
 }
 
-void DrawGovernorValue(int x, int y, const Governor *governor)
+void Governor::DrawValue(int x, int y)
 {
     char buffer[20];
 
     int startX = x + 40;
-    int16 value = *governor->cell;
-    int signGovernor = *governor->cell < 0 ? -1 : 1;
+    int16 value = *cell;
+    int signGovernor = *cell < 0 ? -1 : 1;
     if(signGovernor == -1)
     {
         value = -value;
     }
     Font::Set(TypeFont::_5);
-    bool sign = governor->minValue < 0;
-    Text(Int2String(governor->maxValue, sign, 1, buffer)).Draw(x + 55, y - 5, COLOR_FILL);
-    Text(Int2String(governor->minValue, sign, 1, buffer)).Draw(x + 55, y + 2);
+    bool sign = minValue < 0;
+    Text(Int2String(maxValue, sign, 1, buffer)).Draw(x + 55, y - 5, COLOR_FILL);
+    Text(Int2String(minValue, sign, 1, buffer)).Draw(x + 55, y + 2);
     Font::Set(TypeFont::_8);
 
-    DrawValueWithSelectedPosition(startX, y, value, Governor_NumDigits(governor), gCurDigit, true, true);
+    DrawValueWithSelectedPosition(startX, y, value, Governor_NumDigits(this), gCurDigit, true, true);
 
     if(sign)
     {
@@ -377,7 +376,7 @@ void Governor::Draw(int x, int y, bool opened)
     }
     if(opened)
     {
-        Governor_DrawOpened(this, x, y);
+        DrawOpened(x, y);
     }
     else
     {
@@ -588,10 +587,10 @@ static void GovernorIpCommon_DrawOpened(void *item, int x, int y, int dWidth)
                              ColorMenuTitleLessBright(), false, false);
 }
 
-static void Governor_DrawOpened(Governor *governor, int x, int y)
+void Governor::DrawOpened(int x, int y)
 {
-    GovernorIpCommon_DrawOpened(governor, x, y, 0);
-    DrawGovernorValue(x, y + 22, governor);
+    GovernorIpCommon_DrawOpened(this, x, y, 0);
+    DrawValue(x, y + 22);
 }
 
 static void ItemIPaddress_DrawOpened(IPaddress *ip, int x, int y)

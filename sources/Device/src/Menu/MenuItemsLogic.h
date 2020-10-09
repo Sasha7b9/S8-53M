@@ -7,8 +7,6 @@ float   Governor_Step(Governor *governor);                      // Рассчитывате 
 void    Governor_ChangeValue(Governor *governor, int delta);    // Изменяет значение в текущей позиции при раскрытом элементе
 int16   Governor_NextValue(const Governor *governor);           // Возвращает следующее большее значение, которое может принять governor.
 int16   Governor_PrevValue(const Governor *governor);           // Возвращает следующее меньшее значение, которое может принять governor.
-void    Governor_NextPosition(const Governor *governor);        // При открытом элементе переставляет курсор на следующую позицию
-int     Governor_NumDigits(const Governor *governor);           // Возвращает число знакомест в поле для ввода элемента governor. Зависит от максимального значения, которое может принимать governor.
 
 void    IPaddress_NextPosition(const IPaddress *ip);            // При открытом элементе переставляет курсор на следующую позицию
 void    IPaddress_ChangeValue(IPaddress *ip, int delta);        // Изменяет значение в текущей позиции при открытом элементе

@@ -120,8 +120,6 @@ private:
     static void ShortPress_Time(void *time);
     // Обработка короткого нажатия на элемент Button с адресом button.
     static void ShortPress_Button(void *button);
-    // Обработка короткого нажатия на элемент Governor с адресом governor.
-    static void ShortPress_Governor(void *governor);
     // Обработка короткого нажатия на элемент GovernorColor с адресом governorColor.
     static void ShortPress_GovernorColor(void *governorColor);
 
