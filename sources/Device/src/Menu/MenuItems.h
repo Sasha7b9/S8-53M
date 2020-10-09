@@ -107,7 +107,7 @@ public:
     Control(const ControlStruct *str);
     Control(TypeItem::E type_, const Page* keeper_, pFuncBV funcOfActive_, const char *tileRU, const char *titleEN, const char *hintRU, const char *hintEN);
     // Возвращает true, если кнопка, соответствующая данному элементу меню, находится в нажатом положении.
-    bool IsPressed();
+    bool IsPressed() const;
 };
 
 
