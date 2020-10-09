@@ -694,7 +694,7 @@ void ItemTime_Draw(Time *time, int x, int y, bool opened)
     }
 }
 
-void Button::Draw(int x, int y)
+void Button::Draw(int x, int y) const
 {
     bool pressed = Menu::IsPressed(this);
     bool shade = Menu::IsShade(this) || !Menu::ItemIsActive(this);
