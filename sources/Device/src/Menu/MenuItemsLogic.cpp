@@ -107,11 +107,11 @@ void IPaddress_GetNumPosIPvalue(int *numIP, int *selPos)
 
 }
 
-float Governor_Step(const Governor *governor)
+float Governor::Step() const
 {
     static const float speed = 0.05F;
     static const int numLines = 10;
-    if (ADDRESS_GOVERNOR == reinterpret_cast<uint>(governor) && (IN_MOVE_DECREASE != 0))
+    if (ADDRESS_GOVERNOR == reinterpret_cast<uint>(this) && (IN_MOVE_DECREASE != 0))
     {
         float delta = -speed * (gTimerMS - TIME_START_MS);
         if (delta == 0.0F) //-V2550 //-V550
@@ -122,16 +122,16 @@ float Governor_Step(const Governor *governor)
         {
             IN_MOVE_DECREASE = 0;
             IN_MOVE_INCREASE = 0;
-            *governor->cell = Governor_PrevValue(governor);
-            if (governor->funcOfChanged)
+            *cell = Governor_PrevValue(this);
+            if (funcOfChanged)
             {
-                governor->funcOfChanged();
+                funcOfChanged();
             }
             return 0.0F;
         }
         return delta;
     }
-    if (ADDRESS_GOVERNOR == reinterpret_cast<uint>(governor) && (IN_MOVE_INCREASE != 0))
+    if (ADDRESS_GOVERNOR == reinterpret_cast<uint>(this) && (IN_MOVE_INCREASE != 0))
     {
         float delta = speed * (gTimerMS - TIME_START_MS);
         if (delta == 0.0F) //-V550 //-V2550
@@ -142,10 +142,10 @@ float Governor_Step(const Governor *governor)
         {
             IN_MOVE_DECREASE = 0;
             IN_MOVE_INCREASE = 0;
-            *governor->cell = Governor_NextValue(governor);
-            if(governor->funcOfChanged)
+            *cell = Governor_NextValue(this);
+            if(funcOfChanged)
             {
-                governor->funcOfChanged();
+                funcOfChanged();
             }
             return 0.0F;
         }

@@ -202,7 +202,9 @@ public:
     void Draw(int x, int y, bool opened) const;
     // Обработка короткого нажатия на элемент Governor с адресом governor.
     void ShortPress();
-    void StartChange(int detla);    // Запускает процессс анимации инкремента или декремента элемента меню типа Governor (в зависимости от знака delta)
+    void StartChange(int detla);        // Запускает процессс анимации инкремента или декремента элемента меню типа Governor (в зависимости от знака delta)
+    float Step() const;                 // Рассчитывате следующий кадр анимации.
+
 
 private:
     void DrawOpened(int x, int y) const;

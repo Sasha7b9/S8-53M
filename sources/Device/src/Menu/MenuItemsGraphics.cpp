@@ -95,7 +95,7 @@ void DrawGovernorLowPart(const Governor *governor, int x, int y, bool, bool shad
     x = Text("\x80").Draw(x + 4, y + 21, colorTextDown);
     if(Menu::OpenedItem() != governor)
     {
-        float delta = Governor_Step(governor);
+        float delta = governor->Step();
         if(delta == 0.0F) //-V2550 //-V550
         {
             x = Text(Int2String(*governor->cell, false, 1, buffer)).Draw(x + 1, y + 21);
