@@ -75,11 +75,6 @@ public:
 
     void OnPaint(wxPaintEvent &)
     {
-//        wxBitmap background("BACKGROUND_BMP", wxBITMAP_TYPE_BMP_RESOURCE);
-//        wxImage imgBackground = background.ConvertToImage();
-//        imgBackground = imgBackground.Rescale(Frame::WIDTH, Frame::HEIGHT);
-//        dc.DrawBitmap(wxBitmap(imgBackground), 0, 0);
-
         wxPaintDC dc(this);
         wxImage image = bitmapScreen.ConvertToImage();
         image = image.Rescale(Frame::WIDTH, Frame::HEIGHT);

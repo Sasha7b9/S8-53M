@@ -221,6 +221,19 @@ void Frame::OnSize(wxCommandEvent&)
 }
 
 
+void Frame::OnPaint(wxPaintEvent& event)
+{
+    wxFrame::OnPaint(event);
+
+    wxBitmap background("BACKGROUND_BMP", wxBITMAP_TYPE_BMP_RESOURCE);
+    wxImage imgBackground = background.ConvertToImage();
+    imgBackground = imgBackground.Rescale(GetSize().x, GetSize().y);
+
+    wxPaintDC dc(this);
+    dc.DrawBitmap(wxBitmap(imgBackground), 0, 0);
+}
+
+
 void Frame::OnQuit(wxCommandEvent& WXUNUSED(event))
 {
     Close(true);
