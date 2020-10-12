@@ -118,6 +118,11 @@ file(GLOB GUI                            src/GUI/*.h
                                          src/GUI/*.cpp
                                          src/GUI/*.c)
 file(GLOB GUI_DIALOGS                    src/GUI/Dialogs/*)
+file(GLOB RESOURCES         resources/*)
+
+set_source_files_properties(resources/*
+                            PROPERTIES LANGUAGE RC)
+
 
 set_source_files_properties(../../Device/src/Ethernet/Ethernet.cpp
                             ../../Device/src/Menu/Pages/PageHelp.cpp
@@ -141,13 +146,14 @@ source_group(Hardware\\HAL  FILES ${HARDWARE_HAL})
 source_group(Menu           FILES ${MENU})
 source_group(Menu\\Pages    FILES ${MENU_PAGES})
 source_group(Panel          FILES ${PANEL})
+source_group(Resources      FILES ${RESOURCES})
 source_group(Settings       FILES ${SETTINGS})
 source_group(src            FILES ${SRC})
 source_group(VCP            FILES ${VCP})
 source_group(Utils          FILES ${UTILS})
 
 add_executable(S8-53M ${LIBS_CMSIS} ${LIBS_FATFS} ${LIBS_LWIP} ${LIBS_HAL} ${LIBS_USBH} ${DISPLAY} ${DISPLAY_FONT} ${LAN} ${FDRIVE} ${FPGA} ${GUI} ${GUI_DIALOGS} ${HARDWARE}
-                      ${HARDWARE_HAL} ${MENU} ${MENU_PAGES} ${PANEL} ${SETTINGS} ${SRC} ${VCP} ${UTILS})
+                      ${HARDWARE_HAL} ${MENU} ${MENU_PAGES} ${PANEL} ${RESOURCES} ${SETTINGS} ${SRC} ${VCP} ${UTILS})
 
 target_link_libraries(S8-53M ../../../ThirdParty/wxWidgets/generated/lib/vc_dll/wxbase31ud)
 target_link_libraries(S8-53M ../../../ThirdParty/wxWidgets/generated/lib/vc_dll/wxmsw31ud_core)
