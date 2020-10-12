@@ -139,10 +139,13 @@ static void CreateFrame()
     Frame *frame = new Frame("");
 
     wxBoxSizer *sizer = new wxBoxSizer(wxHORIZONTAL);
-
+    wxBoxSizer* vSizer = new wxBoxSizer(wxVERTICAL);
+    sizer->AddSpacer(0);
+    vSizer->AddSpacer(20);
+    sizer->Add(vSizer);
     screen = new Screen(frame);
 
-    sizer->Add(screen);
+    vSizer->Add(screen);
 
     frame->SetSizer(sizer);
 
