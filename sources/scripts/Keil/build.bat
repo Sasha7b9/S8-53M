@@ -32,8 +32,8 @@ goto HINT
 
 :BUILD_COMMON
     echo Keil : Build %1 %2
-    if %2==Debug   ( %COMPILER% -b ..\..\%1\%1-Debug.uvprojx -j0 -z -o %1.out)
-    if %2==Release ( %COMPILER% -b ..\..\%1\%1.uvprojx -j0 -z -o %1.out)
+    if %2==Debug   ( %COMPILER% -b ..\..\%1\%1.uvprojx -t"Debug" -j0 -z -o %1.out)
+    if %2==Release ( %COMPILER% -b ..\..\%1\%1.uvprojx -t"Release" -j0 -z -o %1.out)
     set BUILD_STATUS=%ERRORLEVEL%
     if %BUILD_STATUS%==0 goto BUILD_SUCCESS
     echo ERROR!!! %1 failed !!!
