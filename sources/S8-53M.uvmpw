@@ -17,20 +17,8 @@
 
   <project>
     <PathAndName>.\Panel\Panel.uvprojx</PathAndName>
-  </project>
-
-  <project>
-    <PathAndName>.\Device\Device-Debug.uvprojx</PathAndName>
     <NodeIsActive>1</NodeIsActive>
     <NodeIsExpanded>1</NodeIsExpanded>
-  </project>
-
-  <project>
-    <PathAndName>.\DLoader\DLoader-Debug.uvprojx</PathAndName>
-  </project>
-
-  <project>
-    <PathAndName>.\Panel\Panel-Debug.uvprojx</PathAndName>
   </project>
 
 </ProjectWorkspace>
