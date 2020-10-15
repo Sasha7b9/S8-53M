@@ -35,7 +35,7 @@ pString Key::Name() const
         "осяй/ярно",
         "оюлърэ",
         "яепбхя",
-        "Esc",
+        "лемч",
         "Left",
         "Right",
         "On1",

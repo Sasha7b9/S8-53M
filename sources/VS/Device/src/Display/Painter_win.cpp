@@ -1,6 +1,7 @@
 #include "defines.h"
 #pragma warning(push, 0)
 #include "GUI/Application.h"
+#include "GUI/Governor.h"
 
 #define uint    unsigned int
 #define int8    signed char
@@ -43,6 +44,7 @@ wxMemoryDC memDC;
 
 // Здесь хранятся указатели на кнопки
 static wxButton *buttons[Key::Count] = { nullptr };
+static GovernorGUI *governors[Key::Count] = { nullptr };
 // Цвета
 static uint colors[256];
 
@@ -57,6 +59,10 @@ static void CreateFrame();
 static void CreateButtons(Frame *frame);
 // Создаёт одну кнопку
 static void CreateButton(Key::E key, Frame *frame, const wxPoint &pos, const wxSize &size);
+
+static void CreateGovernors(Frame *frame);
+
+static void CreateGovernor(Key::E key, Frame *frame, const wxPoint &pos);
 
 class Screen : public wxPanel
 {
@@ -146,6 +152,8 @@ static void CreateFrame()
 
     CreateButtons(frame);
 
+    CreateGovernors(frame);
+
     frame->Show(true);
 }
 
@@ -196,9 +204,54 @@ static void CreateButtons(Frame *frame)
 }
 
 
+static void CreateGovernors(Frame *frame)
+{
+    int x0 = 750;
+
+    CreateGovernor(Key::Setting, frame, { x0, 53 });
+
+    for (int row = 0; row < 2; row++)
+    {
+        for (int col = 0; col < 2; col++)
+        {
+            Key::E keys[2][2] =
+            {
+                { Key::RShiftA, Key::RShiftB },
+                { Key::RangeA,  Key::RangeB }
+            };
+
+            CreateGovernor(keys[row][col], frame, { x0 + col * 133, 250 + row * 120 });
+        }
+    }
+
+    for (int row = 0; row < 2; row++)
+    {
+        for (int col = 0; col < 2; col++)
+        {
+            Key::E keys[2][2] =
+            {
+                { Key::TShift, Key::TrigLev},
+                { Key::TBase,  Key::None}
+            };
+
+            if (keys[row][col] != Key::None)
+            {
+                CreateGovernor(keys[row][col], frame, { 1030 + col * 125, 250 + row * 120 });
+            }
+        }
+    }
+}
+
+
+static void CreateGovernor(Key::E key, Frame *frame, const wxPoint &pos)
+{
+    governors[key] = new GovernorGUI(frame, pos);
+}
+
+
 static void CreateButton(Key::E key, Frame *frame, const wxPoint &pos, const wxSize &size)
 {
-    wxButton *button = new wxButton(frame, static_cast<wxWindowID>(key), Key(key).Name(), pos, size);
+    wxButton *button = new wxButton(frame, static_cast<wxWindowID>(key), "", /*Key(key).Name(), */ pos, size);
 
     button->Connect(static_cast<wxWindowID>(key), wxEVT_LEFT_DOWN, wxCommandEventHandler(Frame::OnDown));
     button->Connect(static_cast<wxWindowID>(key), wxEVT_LEFT_UP, wxCommandEventHandler(Frame::OnUp));
