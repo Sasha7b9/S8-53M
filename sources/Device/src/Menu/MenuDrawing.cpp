@@ -138,12 +138,12 @@ void Menu::DrawTitlePage(Page *page, int layer, int yTop)
 
     if (shade)
     {
-        Region(MP_TITLE_WIDTH - 1, MP_TITLE_HEIGHT - 1).Fill(x + 1, yTop + 1, ColorMenuTitleLessBright());
+        Region(MP_TITLE_WIDTH - 1, MP_TITLE_HEIGHT - 1).Fill(x + 1, yTop + 1, Color::MenuTitleLessBright());
         Region(MP_TITLE_WIDTH - 7, MP_TITLE_HEIGHT - 7).Fill(x + 4, yTop + 4, Color::MENU_TITLE_DARK);
     }
     else
     {
-        Painter::DrawVolumeButton(x + 1, yTop + 1, MP_TITLE_WIDTH - 1, MP_TITLE_HEIGHT - 1, 3, ColorMenuTitle(false), ColorMenuTitleBrighter(), ColorMenuTitleLessBright(), shade, false);
+        Painter::DrawVolumeButton(x + 1, yTop + 1, MP_TITLE_WIDTH - 1, MP_TITLE_HEIGHT - 1, 3, ColorMenuTitle(false), ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), shade, false);
     }
     
     VLine().Draw(x, yTop, yTop + HeightOpenedItem(page), ColorBorderMenu(false));

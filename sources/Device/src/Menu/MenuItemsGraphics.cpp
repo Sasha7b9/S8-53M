@@ -22,7 +22,7 @@ void DrawGovernorChoiceColorFormulaHiPart(const void *item, int x, int y, bool p
         width += MOI_WIDTH_D_IP;
     }
 
-    Color::E color = shade ? ColorMenuTitleLessBright() : (IS_COLOR_SCHEME_WHITE_LETTERS ? Color::WHITE : Color::BLACK);
+    Color::E color = shade ? Color::MenuTitleLessBright() : (IS_COLOR_SCHEME_WHITE_LETTERS ? Color::WHITE : Color::BLACK);
     HLine().Draw(y + 1, x, x + width + 3, ColorBorderMenu(false));
 
     if (shade)
@@ -481,8 +481,7 @@ void Choice::DrawOpened(int x, int y) const
     Rectangle(MP_TITLE_WIDTH + 1, height + 1).Draw(x - 1, y, ColorMenuTitle(false));
  
     HLine().Draw(y + MOI_HEIGHT_TITLE - 1, x, x + MOI_WIDTH);
-    Painter::DrawVolumeButton(x, y + MOI_HEIGHT_TITLE, MOI_WIDTH - 1, height - MOI_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(),
-                        ColorMenuTitleLessBright(), false, false);
+    Painter::DrawVolumeButton(x, y + MOI_HEIGHT_TITLE, MOI_WIDTH - 1, height - MOI_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false, false);
     int index = *((int8*)cell);
     for(int i = 0; i < NumSubItems(); i++)
     {
@@ -490,7 +489,7 @@ void Choice::DrawOpened(int x, int y) const
         bool pressed = i == index;
         if(pressed)
         {
-            Painter::DrawVolumeButton(x + 1, yItem, MOI_WIDTH - 2 , MOSI_HEIGHT - 2, 2, Color::MenuField(), ColorMenuTitleBrighter(), ColorMenuTitleLessBright(), pressed, false);
+            Painter::DrawVolumeButton(x + 1, yItem, MOI_WIDTH - 2 , MOSI_HEIGHT - 2, 2, Color::MenuField(), ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), pressed, false);
         }
         Text(NameSubItem(i)).Draw(x + 4, yItem + 2, pressed ? Color::BLACK : Color::MenuField());
     }
@@ -508,7 +507,7 @@ void TimeItem::DrawOpened(int x, int y) const
     Rectangle(width + 1, height + 1).Draw(x - 1, y, ColorMenuTitle(false));
 
     HLine().Draw(y + MOI_HEIGHT_TITLE - 1, x, x + MOI_WIDTH);
-    Painter::DrawVolumeButton(x, y + MOI_HEIGHT_TITLE, MOI_WIDTH - 1, height - MOI_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(), ColorMenuTitleLessBright(), false, false);
+    Painter::DrawVolumeButton(x, y + MOI_HEIGHT_TITLE, MOI_WIDTH - 1, height - MOI_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false, false);
 
     int y0 = 21;
     int y1 = 31;
@@ -566,8 +565,7 @@ static void GovernorIpCommon_DrawOpened(const void *item, int x, int y, int dWid
     Rectangle(MP_TITLE_WIDTH + 1 + dWidth, height + 1).Draw(x - 1, y, ColorMenuTitle(false));
     HLine().Draw(y + MOI_HEIGHT_TITLE - 1, x, x + MOI_WIDTH + dWidth);
     DrawGovernorChoiceColorFormulaHiPart(item, x - 1, y - 1, Menu::IsPressed(item), false, true);
-    Painter::DrawVolumeButton(x, y + MOI_HEIGHT_TITLE, MOI_WIDTH - 1 + dWidth, height - MOI_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(),
-                             ColorMenuTitleLessBright(), false, false);
+    Painter::DrawVolumeButton(x, y + MOI_HEIGHT_TITLE, MOI_WIDTH - 1 + dWidth, height - MOI_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false, false);
 }
 
 void Governor::DrawOpened(int x, int y) const
@@ -595,7 +593,7 @@ void Choice::DrawClosed(int x, int y) const
         
     if (shade)
     {
-        Region(MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3).Fill(x + 1, y + 17, ColorMenuTitleLessBright());
+        Region(MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3).Fill(x + 1, y + 17, Color::MenuTitleLessBright());
     }
     else
     {
@@ -642,7 +640,7 @@ void TimeItem::DrawClosed(int x, int y) const
     bool shade = Menu::IsShade(this);
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 
-    Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, shade ? ColorMenuTitleLessBright() : Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true, shade);
+    Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, shade ? Color::MenuTitleLessBright() : Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true, shade);
     //int delta = 0;
 
     int deltaField = 10;
@@ -721,7 +719,7 @@ void Page::Draw(int x, int y)
     HLine().Draw(y + 1, x, x + MI_WIDTH, ColorBorderMenu(false));
     if (isShade)
     {
-        Region(MI_WIDTH - 2, MI_HEIGHT - 2).Fill(x + 1, y + 2, ColorMenuTitleLessBright());
+        Region(MI_WIDTH - 2, MI_HEIGHT - 2).Fill(x + 1, y + 2, Color::MenuTitleLessBright());
     }
     else
     {

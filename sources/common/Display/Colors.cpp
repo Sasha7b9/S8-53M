@@ -41,6 +41,12 @@ Color::E Color::MenuField()
 }
 
 
+Color::E Color::MenuTitleLessBright()
+{
+    return Color::MENU_TITLE_DARK;
+}
+
+
 Color::E ColorMenuItem(bool inShade)
 {
     return inShade ? Color::MENU_ITEM_DARK : Color::MENU_ITEM;
