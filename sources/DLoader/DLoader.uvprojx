@@ -860,14 +860,14 @@
               <FilePath>.\src\main.h</FilePath>
             </File>
             <File>
-              <FileName>Log.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Log.h</FilePath>
+              <FileName>Log_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Log_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>cLog.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\cLog.cpp</FilePath>
+              <FileName>Log_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Log_c.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1025,16 +1025,6 @@
           <GroupName>Panel</GroupName>
           <Files>
             <File>
-              <FileName>Controls.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Keyboard\Controls.h</FilePath>
-            </File>
-            <File>
-              <FileName>cControls.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Keyboard\cControls.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Panel.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Panel\Panel.h</FilePath>
@@ -1043,6 +1033,16 @@
               <FileName>Panel.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Panel\Panel.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Controls_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Keyboard\Controls_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Controls_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Keyboard\Controls_c.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1080,34 +1080,34 @@
               <FilePath>.\src\Utils\GlobalFunctions.h</FilePath>
             </File>
             <File>
-              <FileName>String.cpp</FileName>
+              <FileName>Math_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Utils\String.cpp</FilePath>
+              <FilePath>..\common\Utils\Math_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>String.h</FileName>
+              <FileName>Math_c.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Utils\String.h</FilePath>
+              <FilePath>..\common\Utils\Math_c.h</FilePath>
             </File>
             <File>
-              <FileName>StringUtils.cpp</FileName>
+              <FileName>String_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Utils\StringUtils.cpp</FilePath>
+              <FilePath>..\common\Utils\String_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>StringUtils.h</FileName>
+              <FileName>String_c.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Utils\StringUtils.h</FilePath>
+              <FilePath>..\common\Utils\String_c.h</FilePath>
             </File>
             <File>
-              <FileName>Math.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Utils\Math.h</FilePath>
-            </File>
-            <File>
-              <FileName>cMath.cpp</FileName>
+              <FileName>StringUtils_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Utils\cMath.cpp</FilePath>
+              <FilePath>..\common\Utils\StringUtils_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>StringUtils_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\StringUtils_c.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1967,14 +1967,14 @@
               <FilePath>.\src\main.h</FilePath>
             </File>
             <File>
-              <FileName>Log.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Log.h</FilePath>
+              <FileName>Log_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Log_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>cLog.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\cLog.cpp</FilePath>
+              <FileName>Log_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Log_c.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2132,16 +2132,6 @@
           <GroupName>Panel</GroupName>
           <Files>
             <File>
-              <FileName>Controls.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Keyboard\Controls.h</FilePath>
-            </File>
-            <File>
-              <FileName>cControls.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Keyboard\cControls.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Panel.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Panel\Panel.h</FilePath>
@@ -2150,6 +2140,16 @@
               <FileName>Panel.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Panel\Panel.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Controls_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Keyboard\Controls_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Controls_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Keyboard\Controls_c.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2187,34 +2187,34 @@
               <FilePath>.\src\Utils\GlobalFunctions.h</FilePath>
             </File>
             <File>
-              <FileName>String.cpp</FileName>
+              <FileName>Math_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Utils\String.cpp</FilePath>
+              <FilePath>..\common\Utils\Math_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>String.h</FileName>
+              <FileName>Math_c.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Utils\String.h</FilePath>
+              <FilePath>..\common\Utils\Math_c.h</FilePath>
             </File>
             <File>
-              <FileName>StringUtils.cpp</FileName>
+              <FileName>String_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Utils\StringUtils.cpp</FilePath>
+              <FilePath>..\common\Utils\String_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>StringUtils.h</FileName>
+              <FileName>String_c.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Utils\StringUtils.h</FilePath>
+              <FilePath>..\common\Utils\String_c.h</FilePath>
             </File>
             <File>
-              <FileName>Math.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Utils\Math.h</FilePath>
-            </File>
-            <File>
-              <FileName>cMath.cpp</FileName>
+              <FileName>StringUtils_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Utils\cMath.cpp</FilePath>
+              <FilePath>..\common\Utils\StringUtils_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>StringUtils_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\StringUtils_c.h</FilePath>
             </File>
           </Files>
         </Group>

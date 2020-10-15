@@ -1,4 +1,4 @@
-#include "common/Log.h"
+#include "common/Log_c.h"
 #include "FPGA/FPGA.h"
 #include "Hardware/Sound.h"
 #include "Menu/Menu.h"

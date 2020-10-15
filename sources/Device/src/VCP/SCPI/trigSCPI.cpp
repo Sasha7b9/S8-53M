@@ -1,6 +1,6 @@
 #include "defines.h"
 #include "SCPI.h"
-#include "common/Log.h"
+#include "common/Log_c.h"
 #include "Settings/Settings.h"
 #include "Utils/Map.h"
 #include "Utils/GlobalFunctions.h"

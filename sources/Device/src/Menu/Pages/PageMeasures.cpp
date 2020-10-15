@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "common/Utils/Math.h"
+#include "common/Utils/Math_c.h"
 #include "Menu/MenuItems.h"
 #include "Menu/Pages/Definition.h"
 #include "Menu/Pages/PageMeasures.h"

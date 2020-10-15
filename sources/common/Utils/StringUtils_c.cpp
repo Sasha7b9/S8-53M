@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "common/Utils/StringUtils.h"
+#include "common/Utils/StringUtils_c.h"
 #include <cstring>
 #include <cstdlib>
 

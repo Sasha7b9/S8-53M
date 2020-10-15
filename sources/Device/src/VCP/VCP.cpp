@@ -1,6 +1,6 @@
 #include "defines.h"
-#include "common/Log.h"
-#include "common/Utils/Math.h"
+#include "common/Log_c.h"
+#include "common/Utils/Math_c.h"
 #include "VCP/VCP.h"
 #include <cstdarg>
 #include <cstdio>

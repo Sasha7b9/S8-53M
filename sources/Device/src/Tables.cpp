@@ -1,6 +1,6 @@
 #include "defines.h"
 #include "Tables.h"
-#include "common/Log.h"
+#include "common/Log_c.h"
 #include "common/Display/Primitives_c.h"
 #include "common/Display/Text_c.h"
 #include "Settings/Settings.h"

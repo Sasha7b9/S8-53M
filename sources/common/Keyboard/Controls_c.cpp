@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "Controls.h"
+#include "common/Keyboard/Controls_c.h"
 
 
 bool KeyboardEvent::IsFunctional() const

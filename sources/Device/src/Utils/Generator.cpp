@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "common/Utils/Math.h"
+#include "common/Utils/Math_c.h"
 #include "FPGA/MathFPGA.h"
 #include "Settings/Settings.h"
 #include "Utils/Generator.h"

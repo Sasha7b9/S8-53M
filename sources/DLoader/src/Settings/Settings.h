@@ -1,6 +1,6 @@
 #pragma once
-#include "common/Settings/cSettingsTypes.h"
-#include "common/Keyboard/Controls.h"
+#include "common/Settings/SettingsTypes_c.h"
+#include "common/Keyboard/Controls_c.h"
 
 
 // Настройки изображения

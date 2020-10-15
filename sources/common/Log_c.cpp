@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "common/Log.h"
+#include "common/Log_c.h"
 #include "Display/Display.h"
 #include "Settings/Settings.h"
 #include <cstdarg>

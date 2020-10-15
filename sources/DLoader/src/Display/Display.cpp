@@ -2,7 +2,7 @@
 #include "main.h"
 #include "common/Display/Colors_c.h"
 #include "common/Hardware/HAL/HAL_c.h"
-#include "common/Utils/Math.h"
+#include "common/Utils/Math_c.h"
 #include "Display/Display.h"
 #include "Display/Painter.h"
 #include "Settings/Settings.h"

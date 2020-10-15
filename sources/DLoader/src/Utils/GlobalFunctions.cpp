@@ -1,7 +1,7 @@
 #include "defines.h"
 #include "GlobalFunctions.h"
 #include "Settings/Settings.h"
-#include "common/Utils/Math.h"
+#include "common/Utils/Math_c.h"
 #include <cmath>
 #include <cstring>
 #include <ctype.h>

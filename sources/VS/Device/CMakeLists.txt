@@ -103,8 +103,7 @@ file(GLOB SRC                            src/main_win.cpp
                             ../../Device/src/device.*
                             ../../Device/src/Globals.*
                             ../../Device/src/Tables.*
-                                ../../common/Log.h
-                                ../../common/cLog.cpp)
+                                ../../common/Log_c.*)
 file(GLOB VCP               ../../Device/src/VCP/*.h
                             ../../Device/src/VCP/*.cpp)
 file(GLOB UTILS             ../../Device/src/Utils/*.h

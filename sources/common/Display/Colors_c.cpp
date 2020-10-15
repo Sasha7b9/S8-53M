@@ -1,7 +1,7 @@
 #include "defines.h"
-#include "common/Log.h"
+#include "common/Log_c.h"
 #include "common/Display/Colors_c.h"
-#include "common/Utils/Math.h"
+#include "common/Utils/Math_c.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
 

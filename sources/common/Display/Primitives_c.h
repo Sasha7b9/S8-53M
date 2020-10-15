@@ -1,5 +1,5 @@
 #pragma once
-#include "common/Utils/String.h"
+#include "common/Utils/String_c.h"
 
 
 namespace Primitives

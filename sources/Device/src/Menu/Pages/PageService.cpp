@@ -1,7 +1,7 @@
 #include "defines.h"
 #include "common/Display/Primitives_c.h"
 #include "common/Display/Text_c.h"
-#include "common/Utils/Math.h"
+#include "common/Utils/Math_c.h"
 #include "Display/Symbols.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/MathFPGA.h"

@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "common/Utils/Math.h"
+#include "common/Utils/Math_c.h"
 #include "FPGA/FPGA.h"
 #include "Hardware/EPROM.H"
 #include "Menu/Menu.h"

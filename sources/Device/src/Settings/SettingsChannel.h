@@ -1,5 +1,5 @@
 #pragma once
-#include "common/Settings/cSettingsTypes.h"
+#include "common/Settings/SettingsTypes_c.h"
 #include "SettingsTypes.h"
 
 

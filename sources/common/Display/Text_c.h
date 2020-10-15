@@ -1,6 +1,6 @@
 #pragma once
 #include "common/Display/Colors_c.h"
-#include "common/Utils/String.h"
+#include "common/Utils/String_c.h"
 
 
 class Char

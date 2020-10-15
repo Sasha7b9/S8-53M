@@ -2,7 +2,7 @@
 #include "SettingsTypes.h"
 #include "Utils/Measures.h"
 #include "Menu/MenuItems.h"
-#include "common/Keyboard/Controls.h"
+#include "common/Keyboard/Controls_c.h"
 #include "SettingsChannel.h"
 #include "SettingsDisplay.h"
 #include "SettingsMemory.h"

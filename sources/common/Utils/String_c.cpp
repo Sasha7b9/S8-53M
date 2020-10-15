@@ -2,8 +2,8 @@
 #include "Display/Painter.h"
 #include "common/Display/Primitives_c.h"
 #include "common/Display/Text_c.h"
-#include "common/Utils/String.h"
-#include "common/Utils/StringUtils.h"
+#include "common/Utils/String_c.h"
+#include "common/Utils/StringUtils_c.h"
 #include <cstring>
 #include <cstdio>
 #include <cstdlib>

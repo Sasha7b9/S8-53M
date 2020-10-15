@@ -7,7 +7,7 @@
 #include "common/Hardware/HAL/HAL_c.h"
 #include "ethernetif.h"
 #include "VCP/SCPI/SCPI.h"
-#include "common/Log.h"
+#include "common/Log_c.h"
 #include <lwip/init.h>
 #include <lwip/ip_addr.h>
 #include <lwip/netif.h>

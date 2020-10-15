@@ -352,7 +352,7 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
-            <ClangAsOpt>13</ClangAsOpt>
+            <ClangAsOpt>4</ClangAsOpt>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define></Define>
@@ -539,16 +539,6 @@
           <GroupName>Keyboard</GroupName>
           <Files>
             <File>
-              <FileName>Controls.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Keyboard\Controls.h</FilePath>
-            </File>
-            <File>
-              <FileName>cControls.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Keyboard\cControls.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Keyboard.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Keyboard\Keyboard.h</FilePath>
@@ -557,6 +547,16 @@
               <FileName>Keyboard.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Keyboard\Keyboard.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Controls_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Keyboard\Controls_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Controls_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Keyboard\Controls_c.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -908,7 +908,7 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
-            <ClangAsOpt>13</ClangAsOpt>
+            <ClangAsOpt>4</ClangAsOpt>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define></Define>
@@ -1095,16 +1095,6 @@
           <GroupName>Keyboard</GroupName>
           <Files>
             <File>
-              <FileName>Controls.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Keyboard\Controls.h</FilePath>
-            </File>
-            <File>
-              <FileName>cControls.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Keyboard\cControls.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Keyboard.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Keyboard\Keyboard.h</FilePath>
@@ -1113,6 +1103,16 @@
               <FileName>Keyboard.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Keyboard\Keyboard.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Controls_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Keyboard\Controls_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Controls_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Keyboard\Controls_c.h</FilePath>
             </File>
           </Files>
         </Group>
