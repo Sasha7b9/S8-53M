@@ -603,7 +603,7 @@ void Menu::FuncOnLongPressItemTime(void *time)
     }
     if(ItemIsOpened(time) && *((Time*)time)->curField == iSET)
     {
-        ItemTime_SetNewTime((Time *)time);
+        ((Time *)time)->SetNewTime();
     }
     OpenItem(time, !ItemIsOpened(time));
     ((Time *)time)->SetOpened();

@@ -199,9 +199,9 @@ void Time::SetOpened()
     *year = static_cast<int8>(time.year);
 }
 
-void ItemTime_SetNewTime(const Time *time)
+void Time::SetNewTime() const
 {
-    HAL_RTC::SetTimeAndData(*time->day, *time->month, *time->year, *time->hours, *time->minutes, *time->seconds);
+    HAL_RTC::SetTimeAndData(*day, *month, *year, *hours, *minutes, *seconds);
 }
 
 void ItemTime_SelectNextPosition(Time *time)
