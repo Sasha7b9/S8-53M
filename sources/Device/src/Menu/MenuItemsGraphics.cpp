@@ -11,9 +11,6 @@
 using namespace Primitives;
 
  
-static void ItemMACaddress_DrawOpened(MACaddress *mac, int x, int y);
-
-
 void DrawGovernorChoiceColorFormulaHiPart(const void *item, int x, int y, bool pressed, bool shade, bool opened)
 {
 
@@ -397,7 +394,7 @@ void MACaddress::Draw(int x, int y, bool opened)
 {
     if (opened)
     {
-        ItemMACaddress_DrawOpened(this, x, y);
+        DrawOpened(x, y);
     }
     else
     {
@@ -596,10 +593,10 @@ void IPaddress::DrawOpened(int x, int y)
     DrawValue(x, y + 22);
 }
 
-static void ItemMACaddress_DrawOpened(MACaddress *mac, int x, int y)
+void MACaddress::DrawOpened(int x, int y)
 {
-    GovernorIpCommon_DrawOpened(mac, x, y, 0);
-    mac->DrawValue(x, y + 22);
+    GovernorIpCommon_DrawOpened(this, x, y, 0);
+    DrawValue(x, y + 22);
 }
 
 void Choice::DrawClosed(int x, int y) const
