@@ -506,14 +506,14 @@ void Choice::DrawOpened(int x, int y) const
     }
 }
 
-void ItemTime_DrawOpened(const TimeItem *time, int x, int y)
+void TimeItem::DrawOpened(int x, int y) const
 {
     char buffer[20];
     
     int width = MI_WIDTH_VALUE + 3;
     int height = 61;
     Rectangle(width + 2, height + 3).Draw(x - 1, y - 1, COLOR_BACK);
-    DrawGovernorChoiceColorFormulaHiPart(time, x - 1, y - 1, Menu::IsPressed(time), false, true);
+    DrawGovernorChoiceColorFormulaHiPart(this, x - 1, y - 1, Menu::IsPressed(this), false, true);
 
     Rectangle(width + 1, height + 1).Draw(x - 1, y, ColorMenuTitle(false));
 
@@ -549,12 +549,12 @@ void ItemTime_DrawOpened(const TimeItem *time, int x, int y)
 
     char strI[8][20];
     std::strcpy(strI[iEXIT], "Не сохранять");
-    std::strcpy(strI[iDAY], Int2String(*time->day, false, 2, buffer));
-    std::strcpy(strI[iMONTH], Int2String(*time->month, false, 2, buffer));
-    std::strcpy(strI[iYEAR], Int2String(*time->year, false, 2, buffer));
-    std::strcpy(strI[iHOURS], Int2String(*time->hours, false, 2, buffer));
-    std::strcpy(strI[iMIN], Int2String(*time->minutes, false, 2, buffer));
-    std::strcpy(strI[iSEC], Int2String(*time->seconds, false, 2, buffer));
+    std::strcpy(strI[iDAY], Int2String(*day, false, 2, buffer));
+    std::strcpy(strI[iMONTH], Int2String(*month, false, 2, buffer));
+    std::strcpy(strI[iYEAR], Int2String(*year, false, 2, buffer));
+    std::strcpy(strI[iHOURS], Int2String(*hours, false, 2, buffer));
+    std::strcpy(strI[iMIN], Int2String(*minutes, false, 2, buffer));
+    std::strcpy(strI[iSEC], Int2String(*seconds, false, 2, buffer));
     std::strcpy(strI[iSET], "Сохранить");
 
     Text("д м г - ").Draw(x + 3, y + y0, COLOR_FILL);
@@ -562,11 +562,11 @@ void ItemTime_DrawOpened(const TimeItem *time, int x, int y)
 
     for (int i = 0; i < 8; i++)
     {
-        if (*time->curField == i)
+        if (*curField == i)
         {
             Region(strPaint[i].width, 8).Fill(x + strPaint[i].x - 1, y + strPaint[i].y, Color::FLASH_10);
         }
-        Text(strI[i]).Draw(x + strPaint[i].x, y + strPaint[i].y, *time->curField == i ? Color::FLASH_01 : COLOR_FILL);
+        Text(strI[i]).Draw(x + strPaint[i].x, y + strPaint[i].y, *curField == i ? Color::FLASH_01 : COLOR_FILL);
     }
 }
 
@@ -680,7 +680,7 @@ void TimeItem::Draw(int x, int y, bool opened) const
 {
     if(opened)
     {
-        ItemTime_DrawOpened(this, x, y);
+        DrawOpened(x, y);
     }
     else
     {

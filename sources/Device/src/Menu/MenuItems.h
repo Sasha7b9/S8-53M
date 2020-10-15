@@ -410,5 +410,7 @@ struct TimeItem
     void DecCurrentPosition() const;
 
     void DrawClosed(int x, int y) const;
+
+    void DrawOpened(int x, int y) const;
 };
 
