@@ -303,6 +303,7 @@ public:
     void Draw(int x, int y, bool opened) const;
 private:
     void DrawClosed(int x, int y) const;
+    void DrawLowPart(int x, int y, bool, bool shade) const;
 };
 
 

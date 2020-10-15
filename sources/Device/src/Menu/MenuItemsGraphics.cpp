@@ -209,7 +209,7 @@ void WriteTextFormula(const Formula *formula, int x, int y, bool)
     Text("K2").Draw(x + 48, y);
 }
 
-void DrawFormulaLowPart(const Formula *formula, int x, int y, bool, bool shade)
+void Formula::DrawLowPart(int x, int y, bool, bool shade) const
 {
     Color::E colorTextDown = COLOR_BACK;
 
@@ -220,7 +220,7 @@ void DrawFormulaLowPart(const Formula *formula, int x, int y, bool, bool shade)
         colorTextDown = ColorMenuItem(false);
     }
     Color::SetCurrent(colorTextDown);
-    WriteTextFormula(formula, x + 6, y + 21, false);
+    WriteTextFormula(this, x + 6, y + 21, false);
 }
 
 void Governor::DrawClosed(int x, int y) const
@@ -251,7 +251,7 @@ void Formula::DrawClosed(int x, int y) const
 {
     bool pressed = Menu::IsPressed(this);
     bool shade = Menu::IsShade(this) || !Menu::ItemIsActive(this);
-    DrawFormulaLowPart(this, x, y, pressed, shade);
+    DrawLowPart(x, y, pressed, shade);
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 }
 
