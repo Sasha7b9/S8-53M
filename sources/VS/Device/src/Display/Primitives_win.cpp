@@ -1,7 +1,7 @@
 #include "defines.h"
 #include "Display/Painter.h"
-#include "common/Display/Primitives.h"
-#include "common/Display/Font/Font.h"
+#include "common/Display/Primitives_c.h"
+#include "common/Display/Font/Font_c.h"
 
 #pragma warning(push, 0)
 #include <wx/wx.h>

@@ -1,5 +1,5 @@
 #pragma once
-#include "common/Display/Colors.h"
+#include "common/Display/Colors_c.h"
 #include "DisplayTypes.h"
 #include "PainterText.h"
 

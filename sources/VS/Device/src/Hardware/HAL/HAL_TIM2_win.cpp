@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "common/Hardware/HAL/HAL.h"
+#include "common/Hardware/HAL/HAL_c.h"
 
 
 uint HAL_TIM2::GetTicks()

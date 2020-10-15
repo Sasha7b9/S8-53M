@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "common/Display/Primitives.h"
+#include "common/Display/Primitives_c.h"
 #include "common/Utils/Math.h"
 #include "Display/Grid.h"
 #include "Menu/Menu.h"

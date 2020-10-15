@@ -1,6 +1,6 @@
 #pragma once
 #include "SettingsTypes.h"
-#include "common/Display/Colors.h"
+#include "common/Display/Colors_c.h"
 
 
 #define TIME_SHOW_LEVELS            (set.display.timeShowLevels)                // SettingsDisplay.timeShowLevels

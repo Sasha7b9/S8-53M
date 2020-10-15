@@ -1,6 +1,6 @@
 #include "defines.h"
 #include "common/Log.h"
-#include "common/Display/Colors.h"
+#include "common/Display/Colors_c.h"
 #include "common/Utils/Math.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"

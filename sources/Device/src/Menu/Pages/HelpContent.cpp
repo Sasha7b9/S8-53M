@@ -2,14 +2,14 @@
 #include "HelpContentPages.h"
 #include "HelpContent.h"
 #include "Display/Painter.h"
-#include "common/Display/Primitives.h"
+#include "common/Display/Primitives_c.h"
 #include "Display/Grid.h"
-#include "common/Display/Font/Font.h"
+#include "common/Display/Font/Font_c.h"
 #include "Utils/GlobalFunctions.h"
 #include "common/Utils/Math.h"
 #include "Settings/Settings.h"
 #include "Hardware/Timer.h"
-#include "common/Hardware/HAL/HAL.h"
+#include "common/Hardware/HAL/HAL_c.h"
 
 
 using namespace Primitives;

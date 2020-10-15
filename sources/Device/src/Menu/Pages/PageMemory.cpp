@@ -1,6 +1,6 @@
 #include "defines.h"
-#include "common/Display/Primitives.h"
-#include "common/Display/Text.h"
+#include "common/Display/Primitives_c.h"
+#include "common/Display/Text_c.h"
 #include "common/Utils/Math.h"
 #include "Display/Grid.h"
 #include "Display/Symbols.h"

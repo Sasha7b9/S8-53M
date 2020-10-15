@@ -8,9 +8,6 @@
 static const uint MIN_TIME = 500;
 
 
-static void ChangeRShift(int *prevTime, void(*f)(Channel, int16), Channel::E chan, int16 relStep);
-
-
 void HelpLong(void)
 {
     SHOW_HELP_HINTS++;

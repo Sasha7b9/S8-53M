@@ -63,9 +63,9 @@ file(GLOB DISPLAY           ../../Device/src/Display/Colors.*
                             ../../Device/src/Display/Grid.*
                             ../../Device/src/Display/Painter.*
                             ../../Device/src/Display/PainterText.cpp
-                                ../../common/Display/Colors.*
-                                ../../common/Display/Primitives.*
-                                ../../common/Display/Text.*
+                                ../../common/Display/Colors_c.*
+                                ../../common/Display/Primitives_c.*
+                                ../../common/Display/Text_c.*
                                          src/Display/Painter_win.cpp
                                          src/Display/Primitives_win.cpp)
 file(GLOB DISPLAY_FONT          ../../common/Display/Font/*)
@@ -85,16 +85,12 @@ file(GLOB HARDWARE          ../../Device/src/Hardware/EPROM.h
                             ../../Device/src/Hardware/Timer.*)
 file(GLOB HARDWARE_HAL          ../../common/Hardware/HAL/HAL.h
                                 ../../common/Hardware/HAL/HAL_PINS.h
-                                ../../common/Hardware/HAL/cHAL_PINS.cpp
-                                ../../common/Hardware/HAL/cHAL_ADC3.cpp
-                                ../../common/Hardware/HAL/cHAL_CRC.cpp
-                                ../../common/Hardware/HAL/cHAL_DAC.cpp
-                                ../../common/Hardware/HAL/cHAL_OTP.cpp
-                                ../../common/Hardware/HAL/cHAL_RTC.cpp
-                                ../../common/Hardware/HAL/cHAL_SPI1.cpp
-                                ../../common/Hardware/HAL/cHAL_SRAM.cpp
-                                ../../common/Hardware/HAL/cHAL_TIM6.cpp
-                                ../../common/Hardware/HAL/cHAL_TIM7.cpp
+                                ../../common/Hardware/HAL/HAL_PINS_c.cpp
+                                ../../common/Hardware/HAL/HAL_CRC_c.cpp
+                                ../../common/Hardware/HAL/HAL_DAC_c.cpp
+                                ../../common/Hardware/HAL/HAL_OTP_c.cpp
+                                ../../common/Hardware/HAL/HAL_RTC_c.cpp
+                                ../../common/Hardware/HAL/HAL_TIM7_c.cpp
                                          src/Hardware/*.h
                                          src/Hardware/HAL/*.cpp)
 file(GLOB MENU              ../../Device/src/Menu/*.h

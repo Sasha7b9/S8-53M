@@ -1,5 +1,5 @@
 #pragma once
-#include "common/Hardware/HAL/HAL_PINS.h"
+#include "common/Hardware/HAL/HAL_PINS_c.h"
 
 
 extern Pin pinG1;

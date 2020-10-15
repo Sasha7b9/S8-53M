@@ -1,7 +1,7 @@
 #pragma once
-#include "common/Display/Colors.h"
+#include "common/Display/Colors_c.h"
 #include "DisplayTypes.h"
-#include "common/Display/Font/Font.h"
+#include "common/Display/Font/Font_c.h"
 
 
 struct StateTransmit { enum E

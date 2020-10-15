@@ -1,6 +1,6 @@
 #include "defines.h"
 #include "common/Log.h"
-#include "common/Display/Primitives.h"
+#include "common/Display/Primitives_c.h"
 #include "common/Utils/Math.h"
 #include "Display/Painter.h"
 #include "Hardware/Timer.h"

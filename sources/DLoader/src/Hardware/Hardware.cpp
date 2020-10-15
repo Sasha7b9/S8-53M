@@ -2,7 +2,7 @@
 #include "Hardware.h"
 #include "Hardware/Timer.h"
 #include "Panel/Panel.h"
-#include "common/Hardware/HAL/HAL.h"
+#include "common/Hardware/HAL/HAL_c.h"
 
 
 

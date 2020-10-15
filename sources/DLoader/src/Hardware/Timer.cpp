@@ -1,6 +1,6 @@
 #include "defines.h"
 #include "Timer.h"
-#include "common/Hardware/HAL/HAL.h"
+#include "common/Hardware/HAL/HAL_c.h"
 
 
 static volatile uint timerMS = 0;

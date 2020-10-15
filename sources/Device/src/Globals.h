@@ -3,7 +3,7 @@
 #include "Settings/SettingsTypes.h"
 #include "Settings/SettingsChannel.h"
 #include "Settings/SettingsTime.h"
-#include "common/Hardware/HAL/HAL.h"
+#include "common/Hardware/HAL/HAL_c.h"
 
 
 #define CLIENT_LAN_IS_CONNECTED     (gBF.clientLANisConnected)

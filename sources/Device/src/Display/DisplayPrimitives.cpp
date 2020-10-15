@@ -1,8 +1,8 @@
 #include "defines.h"
 #include "DisplayPrimitives.h"
-#include "common/Display/Colors.h"
+#include "common/Display/Colors_c.h"
 #include "Display/Painter.h"
-#include "common/Display/Primitives.h"
+#include "common/Display/Primitives_c.h"
 #include <cstdio> 
 
 

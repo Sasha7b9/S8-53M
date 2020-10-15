@@ -1,8 +1,8 @@
 #include "defines.h"
-#include "common/Display/Primitives.h"
+#include "common/Display/Primitives_c.h"
 #include "Display/PainterText.h"
 #include "DisplayTypes.h"
-#include "common/Display/Font/Font.h"
+#include "common/Display/Font/Font_c.h"
 #include "Painter.h"
 #include <cstring>
 #include <cstdarg>

@@ -17,7 +17,7 @@
 #pragma warning(pop)
 
 #include "Display/Painter.h"
-#include "common/Display/Primitives.h"
+#include "common/Display/Primitives_c.h"
 #include "Hardware/Timer.h"
 
 

@@ -1,6 +1,6 @@
 #include "defines.h"
 #include "Hardware/Timer.h"
-#include "common/Hardware/HAL/HAL.h"
+#include "common/Hardware/HAL/HAL_c.h"
 #include <stm32f4xx_hal.h>
 
 

@@ -230,21 +230,11 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
     }
     else if(regLeft != Key::None)
     {
-        /*
-        if (set.memory.modeWork == ModeWork::Direct || regLeft == Key::Setting || regLeft == R_TShift)
-        {
-        */
-            funculatorLeft[regLeft](); //-V557
-        //}
+        funculatorLeft[regLeft](); //-V557
     }
     else if(regRight != Key::None)
     {
-        /*
-        if (set.memory.modeWork == ModeWork::Direct || regRight == Key::Setting || regRight == R_TShift)
-        {
-        */
-            funculatorRight[regRight]();
-        //}
+        funculatorRight[regRight]();
     }
 
     if ((command > Key::Setting && command < (Key::None + 1 + 128)) || (command > (Key::Setting + 128)))

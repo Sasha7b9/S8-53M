@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "common/Display/Primitives.h"
+#include "common/Display/Primitives_c.h"
 #include "Display/Painter.h"
 #include "Hardware/Timer.h"
 

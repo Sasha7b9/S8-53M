@@ -1129,94 +1129,94 @@
               <FilePath>.\src\Hardware\HAL\stm32f4xx_hal_conf.h</FilePath>
             </File>
             <File>
-              <FileName>HAL.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL.h</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_PINS.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_PINS.h</FilePath>
-            </File>
-            <File>
-              <FileName>cHAL.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL.cpp</FilePath>
-            </File>
-            <File>
               <FileName>HAL_IT.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\HAL\HAL_IT.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_ADC3.cpp</FileName>
+              <FileName>HAL_ADC3_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_ADC3.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_ADC3_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_CRC.cpp</FileName>
+              <FileName>HAL_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_CRC.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_DAC.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_DAC.cpp</FilePath>
+              <FileName>HAL_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_c.h</FilePath>
             </File>
             <File>
-              <FileName>cHAL_EPROM.cpp</FileName>
+              <FileName>HAL_CRC_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_EPROM.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_CRC_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_FSMC.cpp</FileName>
+              <FileName>HAL_DAC_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_FSMC.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_DAC_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_OTP.cpp</FileName>
+              <FileName>HAL_EPROM_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_OTP.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_EPROM_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_PINS.cpp</FileName>
+              <FileName>HAL_FSMC_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_PINS.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_FSMC_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_RTC.cpp</FileName>
+              <FileName>HAL_OTP_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_RTC.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_OTP_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_SPI1.cpp</FileName>
+              <FileName>HAL_PINS_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_SPI1.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_PINS_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_SRAM.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_SRAM.cpp</FilePath>
+              <FileName>HAL_PINS_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_PINS_c.h</FilePath>
             </File>
             <File>
-              <FileName>cHAL_TIM2.cpp</FileName>
+              <FileName>HAL_RTC_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_TIM2.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_RTC_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_TIM6.cpp</FileName>
+              <FileName>HAL_SPI1_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_TIM6.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_SPI1_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_TIM7.cpp</FileName>
+              <FileName>HAL_SRAM_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_TIM7.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_SRAM_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_USBD.cpp</FileName>
+              <FileName>HAL_TIM2_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_USBD.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_TIM2_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_TIM6_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_TIM6_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_TIM7_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_TIM7_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_USBD_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_USBD_c.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -1467,49 +1467,9 @@
               <FilePath>.\src\Display\Symbols.h</FilePath>
             </File>
             <File>
-              <FileName>Primitives.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Display\Primitives.h</FilePath>
-            </File>
-            <File>
-              <FileName>Primitives.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Primitives.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Primitives_stm.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Primitives_stm.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Colors.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Colors.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Colors.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Display\Colors.h</FilePath>
-            </File>
-            <File>
               <FileName>Colors_d.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Display\Colors_d.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Text.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Text.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Text.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Display\Text.h</FilePath>
-            </File>
-            <File>
-              <FileName>Colors_stm.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Colors_stm.cpp</FilePath>
             </File>
             <File>
               <FileName>DisplayPrimitives.cpp</FileName>
@@ -1521,21 +1481,51 @@
               <FileType>5</FileType>
               <FilePath>.\src\Display\DisplayPrimitives.h</FilePath>
             </File>
+            <File>
+              <FileName>Colors_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Colors_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Colors_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\Colors_c.h</FilePath>
+            </File>
+            <File>
+              <FileName>Colors_c_stm.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Colors_c_stm.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Primitives_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Primitives_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Primitives_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\Primitives_c.h</FilePath>
+            </File>
+            <File>
+              <FileName>Primitives_c_stm.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Primitives_c_stm.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Text_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Text_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Text_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\Text_c.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
           <GroupName>Display/Font</GroupName>
           <Files>
-            <File>
-              <FileName>Font.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Font\Font.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Font.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Display\Font\Font.h</FilePath>
-            </File>
             <File>
               <FileName>font5.inc</FileName>
               <FileType>5</FileType>
@@ -1575,6 +1565,16 @@
               <FileName>fontUGOdisplay.inc</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Display\Font\fontUGOdisplay.inc</FilePath>
+            </File>
+            <File>
+              <FileName>Font_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Font\Font_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Font_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\Font\Font_c.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -3390,94 +3390,94 @@
               <FilePath>.\src\Hardware\HAL\stm32f4xx_hal_conf.h</FilePath>
             </File>
             <File>
-              <FileName>HAL.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL.h</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_PINS.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_PINS.h</FilePath>
-            </File>
-            <File>
-              <FileName>cHAL.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL.cpp</FilePath>
-            </File>
-            <File>
               <FileName>HAL_IT.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\HAL\HAL_IT.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_ADC3.cpp</FileName>
+              <FileName>HAL_ADC3_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_ADC3.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_ADC3_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_CRC.cpp</FileName>
+              <FileName>HAL_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_CRC.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_DAC.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_DAC.cpp</FilePath>
+              <FileName>HAL_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_c.h</FilePath>
             </File>
             <File>
-              <FileName>cHAL_EPROM.cpp</FileName>
+              <FileName>HAL_CRC_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_EPROM.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_CRC_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_FSMC.cpp</FileName>
+              <FileName>HAL_DAC_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_FSMC.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_DAC_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_OTP.cpp</FileName>
+              <FileName>HAL_EPROM_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_OTP.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_EPROM_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_PINS.cpp</FileName>
+              <FileName>HAL_FSMC_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_PINS.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_FSMC_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_RTC.cpp</FileName>
+              <FileName>HAL_OTP_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_RTC.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_OTP_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_SPI1.cpp</FileName>
+              <FileName>HAL_PINS_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_SPI1.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_PINS_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_SRAM.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_SRAM.cpp</FilePath>
+              <FileName>HAL_PINS_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_PINS_c.h</FilePath>
             </File>
             <File>
-              <FileName>cHAL_TIM2.cpp</FileName>
+              <FileName>HAL_RTC_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_TIM2.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_RTC_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_TIM6.cpp</FileName>
+              <FileName>HAL_SPI1_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_TIM6.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_SPI1_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_TIM7.cpp</FileName>
+              <FileName>HAL_SRAM_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_TIM7.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_SRAM_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>cHAL_USBD.cpp</FileName>
+              <FileName>HAL_TIM2_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\cHAL_USBD.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_TIM2_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_TIM6_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_TIM6_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_TIM7_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_TIM7_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_USBD_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_USBD_c.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -3728,49 +3728,9 @@
               <FilePath>.\src\Display\Symbols.h</FilePath>
             </File>
             <File>
-              <FileName>Primitives.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Display\Primitives.h</FilePath>
-            </File>
-            <File>
-              <FileName>Primitives.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Primitives.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Primitives_stm.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Primitives_stm.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Colors.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Colors.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Colors.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Display\Colors.h</FilePath>
-            </File>
-            <File>
               <FileName>Colors_d.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Display\Colors_d.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Text.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Text.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Text.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Display\Text.h</FilePath>
-            </File>
-            <File>
-              <FileName>Colors_stm.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Colors_stm.cpp</FilePath>
             </File>
             <File>
               <FileName>DisplayPrimitives.cpp</FileName>
@@ -3782,21 +3742,51 @@
               <FileType>5</FileType>
               <FilePath>.\src\Display\DisplayPrimitives.h</FilePath>
             </File>
+            <File>
+              <FileName>Colors_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Colors_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Colors_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\Colors_c.h</FilePath>
+            </File>
+            <File>
+              <FileName>Colors_c_stm.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Colors_c_stm.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Primitives_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Primitives_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Primitives_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\Primitives_c.h</FilePath>
+            </File>
+            <File>
+              <FileName>Primitives_c_stm.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Primitives_c_stm.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Text_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Text_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Text_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\Text_c.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
           <GroupName>Display/Font</GroupName>
           <Files>
-            <File>
-              <FileName>Font.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Font\Font.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Font.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Display\Font\Font.h</FilePath>
-            </File>
             <File>
               <FileName>font5.inc</FileName>
               <FileType>5</FileType>
@@ -3836,6 +3826,16 @@
               <FileName>fontUGOdisplay.inc</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Display\Font\fontUGOdisplay.inc</FilePath>
+            </File>
+            <File>
+              <FileName>Font_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Font\Font_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Font_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\Font\Font_c.h</FilePath>
             </File>
           </Files>
         </Group>
