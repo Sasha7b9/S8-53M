@@ -154,7 +154,7 @@ void IPaddress::DrawLowPart(int x, int y, bool, bool shade) const
     }
 }
 
-static void DrawMACaddressLowPart(const MACaddress *mac, int x, int y, bool, bool shade)
+void MACaddress::DrawLowPart(int x, int y, bool, bool shade) const
 {
     char buffer[20];
 
@@ -167,9 +167,9 @@ static void DrawMACaddressLowPart(const MACaddress *mac, int x, int y, bool, boo
         colorTextDown = ColorMenuItem(false);
     }
 
-    std::sprintf(buffer, "%02X.%02X.%02X.%02X.%02X.%02X", *mac->mac0, *mac->mac1, *mac->mac2, *mac->mac3, *mac->mac4, *mac->mac5);
+    std::sprintf(buffer, "%02X.%02X.%02X.%02X.%02X.%02X", *mac0, *mac1, *mac2, *mac3, *mac4, *mac5);
 
-    if (Menu::OpenedItem() != mac)
+    if (Menu::OpenedItem() != this)
     {
 
         Text(buffer).Draw(x + 4, y + 21, colorTextDown);
@@ -243,7 +243,7 @@ static void ItemMACaddress_DrawClosed(const MACaddress *mac, int x, int y)
 {
     bool pressed = Menu::IsPressed(mac);
     bool shade = Menu::IsShade(mac) || !Menu::ItemIsActive(mac);
-    DrawMACaddressLowPart(mac, x, y, pressed, shade);
+    mac->DrawLowPart(x, y, pressed, shade);
     DrawGovernorChoiceColorFormulaHiPart(mac, x, y, pressed, shade, false);
 }
 
@@ -343,13 +343,13 @@ void IPaddress::DrawValue(int x, int y)
     }
 }
 
-static void DrawMACvalue(int x, int y, MACaddress *mac)
+void MACaddress::DrawValue(int x, int y)
 {
     if (gCurDigit > 5)
     {
         gCurDigit = 0;
     }
-    uint8 *bytes = mac->mac0;
+    uint8 *bytes = mac0;
     x += MOI_WIDTH - 14;
     y++;
     for (int num = 5; num >= 0; num--)
@@ -600,7 +600,7 @@ static void ItemIPaddress_DrawOpened(IPaddress *ip, int x, int y)
 static void ItemMACaddress_DrawOpened(MACaddress *mac, int x, int y)
 {
     GovernorIpCommon_DrawOpened(mac, x, y, 0);
-    DrawMACvalue(x, y + 22, mac);
+    mac->DrawValue(x, y + 22);
 }
 
 void Choice::DrawClosed(int x, int y) const

@@ -280,6 +280,10 @@ public:
     void Draw(int x, int y, bool opened);
 
     void ChangeValue(int delta);
+
+    void DrawLowPart(int x, int y, bool, bool shade) const;
+
+    void DrawValue(int x, int y);
 };
 
 // Описывает элемент меню для установки коэффициентов и знаков математической формулы
