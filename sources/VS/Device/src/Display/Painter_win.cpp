@@ -56,7 +56,7 @@ static void CreateFrame();
 // Создаёт все кнопки
 static void CreateButtons(Frame *frame);
 // Создаёт одну кнопку
-static void CreateButton(Key::E key, Frame *frame, const wxPoint &pos, const wxSize &size, pString title);
+static void CreateButton(Key::E key, Frame *frame, const wxPoint &pos, const wxSize &size);
 
 class Screen : public wxPanel
 {
@@ -152,50 +152,53 @@ static void CreateFrame()
 
 static void CreateButtons(Frame *frame)
 {
-    // Рисуем кнопки меню и функциональные
-
-    Key::E keys[5] = 
-    {
-        Key::F1, Key::F2, Key::F3, Key::F4, Key::F5
-    };
-
-    int x = 640;
-    int y0 = 167;
-
-    int dY = 29;
-
     int width = 58;
     int height = 25;
 
-    wxSize size = {width, height};
+    wxSize size = { width, height };
 
     for (int i = 0; i < 5; i++)
     {
-        Key::E key = keys[i];
-        CreateButton(key, frame, { x, y0 + (height + dY) * i }, size, Key(key).Name());
+        Key::E keys[5] =
+        {
+            Key::F1, Key::F2, Key::F3, Key::F4, Key::F5
+        };
+
+        CreateButton(keys[i], frame, { 640, 167 + (height + 29) * i }, size);
     }
 
-    int y = 45;
+    for (int row = 0; row < 2; row++)
+    {
+        Key::E keys[2][3] =
+        {
+            { Key::Cursors,  Key::Display, Key::Memory },
+            { Key::Measures, Key::Help,    Key::Service }
+        };
 
-    CreateButton(Key::Cursors, frame, { 845, y }, size, Key(Key::Cursors).Name());
+        for (int col = 0; col < 3; col++)
+        {
+            CreateButton(keys[row][col], frame, { 845 + col * (width + 5), 45 + 55 * row }, size);
+        }
+    }
 
-//    CreateButton(Key::Menu, frame, { x, 101 }, size, Key(Key::Menu).Name());
-//
-//    CreateButton(Key::Menu, frame, { x, 101 }, size, Key(Key::Menu).Name());
-//
-//    CreateButton(Key::Menu, frame, { x, 101 }, size, Key(Key::Menu).Name());
-//
-//    CreateButton(Key::Menu, frame, { x, 101 }, size, Key(Key::Menu).Name());
-//
-//    CreateButton(Key::Menu, frame, { x, 101 }, size, Key(Key::Menu).Name());
-//
-//    CreateButton(Key::Menu, frame, { x, 101 }, size, Key(Key::Menu).Name());
+    CreateButton(Key::Start, frame, { 1047, 71 }, size);
+
+    for (int i = 0; i < 4; i++)
+    {
+        Key::E keys[4] = { Key::ChannelA, Key::ChannelB, Key::Time, Key::Synchronization };
+
+        int x[4] = { 760, 882, 1030, 1150 };
+
+        CreateButton(keys[i], frame, { x[i], 197 }, size);
+    }
+
+    CreateButton(Key::Menu, frame, { 640, 102 }, size);
 }
 
 
-static void CreateButton(Key::E key, Frame *frame, const wxPoint &pos, const wxSize &size, pString title)
+static void CreateButton(Key::E key, Frame *frame, const wxPoint &pos, const wxSize &size)
 {
-    wxButton *button = new wxButton(frame, static_cast<wxWindowID>(key), title, pos, size);
+    wxButton *button = new wxButton(frame, static_cast<wxWindowID>(key), Key(key).Name(), pos, size);
 
     button->Connect(static_cast<wxWindowID>(key), wxEVT_LEFT_DOWN, wxCommandEventHandler(Frame::OnDown));
     button->Connect(static_cast<wxWindowID>(key), wxEVT_LEFT_UP, wxCommandEventHandler(Frame::OnUp));
