@@ -22,7 +22,7 @@ Color::E Color::Channel(Channel::E chan)
 }
 
 
-Color::E ColorCursors(Channel::E chan)
+Color::E Color::Cursors(Channel::E chan)
 {
     static const Color::E colors[4] = { Color::DATA_A, Color::DATA_B, Color::WHITE, Color::WHITE };
     return colors[chan];

@@ -144,7 +144,7 @@ void Display::DrawMarkersForMeasure(float scale, Channel::E chan)
     {
         return;
     }
-    Color::SetCurrent(ColorCursors(chan));
+    Color::SetCurrent(Color::Cursors(chan));
     for(int numMarker = 0; numMarker < 2; numMarker++)
     {
         int pos = Processing::GetMarkerHorizontal(chan, numMarker);
@@ -1758,7 +1758,7 @@ void Display::DrawVerticalCursor(int x, int yTearing)
 void Display::DrawCursors()
 {
     Channel::E source = CURS_SOURCE;
-    Color::SetCurrent(ColorCursors(source));
+    Color::SetCurrent(Color::Cursors(source));
     if (sCursors_NecessaryDrawCursors())
     {
         bool bothCursors = !CURS_CNTRL_T_IS_DISABLE(source) && !CURS_CNTRL_U_IS_DISABLE(source);  // Признак того, что включены и вертикальные и 
