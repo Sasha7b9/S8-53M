@@ -204,9 +204,9 @@ void Time::SetNewTime() const
     HAL_RTC::SetTimeAndData(*day, *month, *year, *hours, *minutes, *seconds);
 }
 
-void ItemTime_SelectNextPosition(Time *time)
+void Time::SelectNextPosition()
 {
-    CircleIncreaseInt8(time->curField, 0, 7);
+    CircleIncreaseInt8(curField, 0, 7);
     Painter::ResetFlash();
 }
 

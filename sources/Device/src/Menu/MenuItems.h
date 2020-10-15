@@ -375,5 +375,7 @@ struct Time
     void SetOpened();
 
     void SetNewTime() const;
+
+    void SelectNextPosition();
 };
 
