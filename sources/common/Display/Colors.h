@@ -37,14 +37,14 @@ struct Color {
     static Color::E MenuField();
     // Чуть менее светлый цвет, чем цвет заголовка страницы. Используется для создания эффекта объёма.
     static Color::E MenuTitleLessBright();
-
+    // Возвращает цвет синхронизации.
+    static Color::E Trig();
 
 private:
     static Color::E current;
 };
 
 
-Color::E ColorTrig();                  // Возвращает цвет синхронизации.
 Color::E ColorMenuTitle                    // Цвет заголовка страницы.
                     (bool inShade       // Затенена ли страница.
                     );

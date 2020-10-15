@@ -1575,7 +1575,7 @@ void Display::DrawCursorTrigLevel()
     y = (y - Grid::ChannelCenterHeight()) + Grid::ChannelCenterHeight();
 
     int x = Grid::Right();
-    Color::SetCurrent(ColorTrig());
+    Color::SetCurrent(Color::Trig());
     if(y > Grid::ChannelBottom())
     {
         Char(SYMBOL_TRIG_LEV_LOWER).Draw(x + 3, Grid::ChannelBottom() - 11);;
@@ -1611,7 +1611,7 @@ void Display::DrawCursorTrigLevel()
         scale = (float)height / (shiftFullMax - shiftFullMin);
         int shiftFull = TRIG_LEVEL_SOURCE + (TRIG_SOURCE_IS_EXT ? 0 : SET_RSHIFT(chan));
         int yFull = static_cast<int>(Grid::TOP + DELTA + height - scale * (shiftFull - RShiftMin - TrigLevMin) - 4);
-        Region(4, 6).Fill(left + 2, yFull + 1, ColorTrig());
+        Region(4, 6).Fill(left + 2, yFull + 1, Color::Trig());
         Font::Set(TypeFont::_5);
         Char(simbols[TRIG_SOURCE]).Draw(left + 3, yFull - 5, COLOR_BACK);
         Font::Set(TypeFont::_8);
@@ -1996,7 +1996,7 @@ void Display::DrawLowPart()
         std::sprintf(buffer, "ñ\xa5\x10%s", source[TRIG_SOURCE]);
     }
 
-    Text(buffer).Draw(x, y1, ColorTrig());
+    Text(buffer).Draw(x, y1, Color::Trig());
 
     buffer[0] = 0;
     static const char *couple[] =
