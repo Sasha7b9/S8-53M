@@ -314,7 +314,7 @@ bool Menu::ChangeOpenedItem(void *item, int delta)
     }
     else if (type == TypeItem::MAC)
     {
-        MACaddress_ChangeValue((MACaddress *)item, delta);
+        ((MACaddress *)item)->ChangeValue(delta);
     }
     else if (type == TypeItem::ChoiceReg || type == TypeItem::Choice)
     {

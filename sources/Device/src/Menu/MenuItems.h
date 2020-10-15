@@ -270,6 +270,8 @@ public:
     pFuncVB funcOfChanged;
 
     void Draw(int x, int y, bool opened);
+
+    void ChangeValue(int delta);
 };
 
 // Описывает элемент меню для установки коэффициентов и знаков математической формулы

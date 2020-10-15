@@ -2,8 +2,6 @@
 #include "MenuItems.h"
 
 
-void    MACaddress_ChangeValue(MACaddress *mac, int delta);
-
 void    ItemTime_SetOpened(Time *time);
 void    ItemTime_SetNewTime(const Time *time);
 void    ItemTime_SelectNextPosition(Time *time);
