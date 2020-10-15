@@ -34,6 +34,7 @@ struct Color {
     static Color::E GetCurrent() { return current; };
     static Color::E Channel(Channel::E chan);
     static Color::E Cursors(Channel::E cnan);
+    static Color::E MenuField();
 
 private:
     static Color::E current;
@@ -54,7 +55,6 @@ Color::E LightShadingTextColor();      // Светлый цвет в тени.
 #define ColorGrid() Color::GRID
 
 
-#define ColorMenuField() Color::MENU_FIELD
 // Чуть менее светлый цвет, чем цвет элемента меню. Используется для создания эффекта объёма.
 #define ColorMenuItemLessBright()   Color::MENU_ITEM_DARK
 // Чуть более светлый цвет, чем цвет заголовка страницы. Используется для создания эффекта объёма.

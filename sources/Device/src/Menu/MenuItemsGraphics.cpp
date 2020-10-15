@@ -80,7 +80,7 @@ void Governor::DrawLowPart(int x, int y, bool, bool shade) const
     
     Color::E colorTextDown = COLOR_BACK;
 
-    Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, ColorMenuField(), 
+    Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, Color::MenuField(), 
         ColorMenuItemBrighter(), ColorMenuItemLessBright(), true, shade);
     if(shade)
     {
@@ -104,17 +104,13 @@ void Governor::DrawLowPart(int x, int y, bool, bool shade) const
             int limHeight = MI_HEIGHT_VALUE - 1;
             if(delta > 0.0F)
             {
-                x = Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - delta), Int2String(*cell, false, 1, buffer),
-                                            COLOR_BACK, limX, limY, limWidth, limHeight);
-                Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 + 10 - delta), Int2String(NextValue(), false, 1, buffer),
-                                            COLOR_BACK, limX, limY, limWidth, limHeight);
+                x = Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - delta), Int2String(*cell, false, 1, buffer), COLOR_BACK, limX, limY, limWidth, limHeight);
+                Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 + 10 - delta), Int2String(NextValue(), false, 1, buffer), COLOR_BACK, limX, limY, limWidth, limHeight);
             }
             if(delta < 0.0F)
             {
-                x = Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - delta), Int2String(*cell, false, 1, buffer),
-                                            COLOR_BACK, limX, limY, limWidth, limHeight);
-                Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - 10 - delta), Int2String(PrevValue(), false, 1, buffer),
-                    COLOR_BACK, limX, limY, limWidth, limHeight);
+                x = Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - delta), Int2String(*cell, false, 1, buffer), COLOR_BACK, limX, limY, limWidth, limHeight);
+                Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - 10 - delta), Int2String(PrevValue(), false, 1, buffer), COLOR_BACK, limX, limY, limWidth, limHeight);
             }
         }
     }
@@ -131,8 +127,7 @@ void IPaddress::DrawLowPart(int x, int y, bool, bool shade) const
 
     Color::E colorTextDown = COLOR_BACK;
 
-    Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, ColorMenuField(),
-                             ColorMenuItemBrighter(), ColorMenuItemLessBright(), true, shade);
+    Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true, shade);
     if (shade)
     {
         colorTextDown = ColorMenuItem(false);
@@ -156,8 +151,7 @@ void MACaddress::DrawLowPart(int x, int y, bool, bool shade) const
 
     Color::E colorTextDown = COLOR_BACK;
 
-    Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, ColorMenuField(),
-                             ColorMenuItemBrighter(), ColorMenuItemLessBright(), true, shade);
+    Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true, shade);
     if (shade)
     {
         colorTextDown = ColorMenuItem(false);
@@ -207,8 +201,7 @@ void Formula::DrawLowPart(int x, int y, bool, bool shade) const
 {
     Color::E colorTextDown = COLOR_BACK;
 
-    Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, ColorMenuField(),
-                     ColorMenuItemBrighter(), ColorMenuItemLessBright(), true, shade);
+    Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true, shade);
     if (shade)
     {
         colorTextDown = ColorMenuItem(false);
@@ -497,10 +490,9 @@ void Choice::DrawOpened(int x, int y) const
         bool pressed = i == index;
         if(pressed)
         {
-            Painter::DrawVolumeButton(x + 1, yItem, MOI_WIDTH - 2 , MOSI_HEIGHT - 2, 2, ColorMenuField(), ColorMenuTitleBrighter(),
-                ColorMenuTitleLessBright(), pressed, false);
+            Painter::DrawVolumeButton(x + 1, yItem, MOI_WIDTH - 2 , MOSI_HEIGHT - 2, 2, Color::MenuField(), ColorMenuTitleBrighter(), ColorMenuTitleLessBright(), pressed, false);
         }
-        Text(NameSubItem(i)).Draw(x + 4, yItem + 2, pressed ? Color::BLACK : ColorMenuField());
+        Text(NameSubItem(i)).Draw(x + 4, yItem + 2, pressed ? Color::BLACK : Color::MenuField());
     }
 }
 
@@ -516,8 +508,7 @@ void TimeItem::DrawOpened(int x, int y) const
     Rectangle(width + 1, height + 1).Draw(x - 1, y, ColorMenuTitle(false));
 
     HLine().Draw(y + MOI_HEIGHT_TITLE - 1, x, x + MOI_WIDTH);
-    Painter::DrawVolumeButton(x, y + MOI_HEIGHT_TITLE, MOI_WIDTH - 1, height - MOI_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(),
-                             ColorMenuTitleLessBright(), false, false);
+    Painter::DrawVolumeButton(x, y + MOI_HEIGHT_TITLE, MOI_WIDTH - 1, height - MOI_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(), ColorMenuTitleLessBright(), false, false);
 
     int y0 = 21;
     int y1 = 31;
@@ -608,7 +599,7 @@ void Choice::DrawClosed(int x, int y) const
     }
     else
     {
-        Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, ColorMenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true, shade);
+        Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true, shade);
     }
 
     float deltaY = Step();
@@ -651,8 +642,7 @@ void TimeItem::DrawClosed(int x, int y) const
     bool shade = Menu::IsShade(this);
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 
-    Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, shade ? ColorMenuTitleLessBright() : ColorMenuField(), 
-        ColorMenuItemBrighter(), ColorMenuItemLessBright(), true, shade);
+    Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, shade ? ColorMenuTitleLessBright() : Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true, shade);
     //int delta = 0;
 
     int deltaField = 10;

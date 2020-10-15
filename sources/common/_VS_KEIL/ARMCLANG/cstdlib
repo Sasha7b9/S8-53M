@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace std
+namespace std //-V1061
 {
 #include "stdlib.h"
 }
