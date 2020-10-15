@@ -290,6 +290,8 @@ public:
     void DrawValue(int x, int y);
 
     void DrawOpened(int x, int y);
+
+    void DrawClosed(int x, int y) const;
 };
 
 // Описывает элемент меню для установки коэффициентов и знаков математической формулы

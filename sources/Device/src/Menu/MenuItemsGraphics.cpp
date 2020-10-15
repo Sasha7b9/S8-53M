@@ -235,12 +235,12 @@ void IPaddress::DrawClosed(int x, int y) const
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 }
 
-static void ItemMACaddress_DrawClosed(const MACaddress *mac, int x, int y)
+void MACaddress::DrawClosed(int x, int y) const
 {
-    bool pressed = Menu::IsPressed(mac);
-    bool shade = Menu::IsShade(mac) || !Menu::ItemIsActive(mac);
-    mac->DrawLowPart(x, y, pressed, shade);
-    DrawGovernorChoiceColorFormulaHiPart(mac, x, y, pressed, shade, false);
+    bool pressed = Menu::IsPressed(this);
+    bool shade = Menu::IsShade(this) || !Menu::ItemIsActive(this);
+    DrawLowPart(x, y, pressed, shade);
+    DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 }
 
 void Formula::DrawClosed(int x, int y) const
@@ -398,7 +398,7 @@ void MACaddress::Draw(int x, int y, bool opened)
     }
     else
     {
-        ItemMACaddress_DrawClosed(this, x, y);
+        DrawClosed(x, y);
     }
 }
 
