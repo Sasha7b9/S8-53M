@@ -176,18 +176,16 @@ void MACaddress::DrawLowPart(int x, int y, bool, bool shade) const
     }
 }
 
-void WriteTextFormula(const Formula *formula, int x, int y, bool)
+void Formula::WriteText(int x, int y, bool) const
 {
-    Function::E function = (Function::E)(*formula->function);
-    
-    if (function != Function::Mul && function != Function::Sum)
+    if (*function != Function::Mul && *function != Function::Sum)
     {
         return;
     }
 
-    bool funcIsMul = function == Function::Mul;
-    int8 koeff1 = funcIsMul ? *formula->koeff1mul : *formula->koeff1add;
-    int8 koeff2 = funcIsMul ? *formula->koeff2mul : *formula->koeff2add;
+    bool funcIsMul = (*function == Function::Mul);
+    int8 koeff1 = funcIsMul ? *koeff1mul : *koeff1add;
+    int8 koeff2 = funcIsMul ? *koeff2mul : *koeff2add;
     if (koeff1 != 0)
     {
        Char(koeff1 < 0 ? '-' : '+').Draw(x, y);
@@ -216,7 +214,7 @@ void Formula::DrawLowPart(int x, int y, bool, bool shade) const
         colorTextDown = ColorMenuItem(false);
     }
     Color::SetCurrent(colorTextDown);
-    WriteTextFormula(this, x + 6, y + 21, false);
+    WriteText(x + 6, y + 21, false);
 }
 
 void Governor::DrawClosed(int x, int y) const
