@@ -2,8 +2,6 @@
 #include "MenuItems.h"
 
 
-int16   Governor_PrevValue(const Governor *governor);           // ¬озвращает следующее меньшее значение, которое может прин€ть governor.
-
 void    IPaddress_NextPosition(const IPaddress *ip);            // ѕри открытом элементе переставл€ет курсор на следующую позицию
 void    IPaddress_ChangeValue(IPaddress *ip, int delta);        // »змен€ет значение в текущей позиции при открытом элементе
 void    IPaddress_GetNumPosIPvalue(int *numIP, int *selPos);    // ¬озвращает номер текущего байта (4 - номер порта) и номер текущей позиции в байте.

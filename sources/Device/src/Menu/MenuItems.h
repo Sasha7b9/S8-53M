@@ -206,6 +206,7 @@ public:
     float Step() const;                 // –ассчитывате следующий кадр анимации.
     void  ChangeValue(int delta);       // »змен€ет значение в текущей позиции при раскрытом элементе
     int16 NextValue() const;            // ¬озвращает следующее большее значение, которое может прин€ть governor.
+    int16 PrevValue() const;            // ¬озвращает следующее меньшее значение, которое может прин€ть governor.
 
 private:
     void DrawOpened(int x, int y) const;
