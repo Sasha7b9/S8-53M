@@ -418,11 +418,11 @@ void Formula::Draw(int x, int y, bool opened) const
     }
 }
 
-void DrawGovernorColorValue(int x, int y, GovernorColor *govColor, int delta)
+void GovernorColor::DrawValue(int x, int y, int delta)
 {
     char buffer[20];
     
-    ColorType *ct = govColor->colorType;
+    ColorType *ct = colorType;
     int8 field = ct->currentField;
     char *texts[4] = {"ßð", "Ñí", "Çë", "Êð"};
     uint16 color = set.display.colors[ct->color];
@@ -462,7 +462,7 @@ void GovernorColor::DrawOpened(int x, int y)
         ColorMenuItemBrighter(), ColorMenuItemLessBright(), Menu::IsPressed(this), Menu::IsShade(this));
     HLine().Draw(y + MI_HEIGHT / 2 + 2, x, x + MI_WIDTH + delta, ColorMenuTitle(false));
     Painter::DrawStringInCenterRectC(x + (Menu::IsPressed(this) ? 2 : 1), y + (Menu::IsPressed(this) ? 2 : 1), MI_WIDTH + delta, MI_HEIGHT / 2 + 2, Menu::TitleItem(this), Color::WHITE);
-    DrawGovernorColorValue(x + 1, y + 19, this, delta);
+    DrawValue(x + 1, y + 19, delta);
 }
 
 void GovernorColor::DrawClosed(int x, int y)
