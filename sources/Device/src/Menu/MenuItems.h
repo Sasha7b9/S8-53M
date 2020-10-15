@@ -101,14 +101,14 @@ struct ControlStruct
 {
     COMMON_PART_MENU_ITEM
 };
-class Control
+class Item
 {
 public:
     COMMON_PART_MENU_ITEM
 
 public:
-    Control(const ControlStruct *str);
-    Control(TypeItem::E type_, const Page* keeper_, pFuncBV funcOfActive_, const char *tileRU, const char *titleEN, const char *hintRU, const char *hintEN);
+    Item(const ControlStruct *str);
+    Item(TypeItem::E type_, const Page* keeper_, pFuncBV funcOfActive_, const char *tileRU, const char *titleEN, const char *hintRU, const char *hintEN);
     // Возвращает true, если кнопка, соответствующая данному элементу меню, находится в нажатом положении.
     bool IsPressed() const;
 };
@@ -132,7 +132,7 @@ struct PageStruct
 };
 
 // Описывает страницу меню.
-class Page : public     Control
+class Page : public     Item
 {
 public:
     NamePage::E         name;                               // Имя из перечисления NamePage
@@ -153,7 +153,7 @@ public:
 
 
 // Описывает кнопку.
-class Button : public Control
+class Button : public Item
 {
 public:
     pFuncVV         funcOnPress;    // Функция, которая вызывается при нажатии на кнопку.
@@ -175,7 +175,7 @@ typedef StructHelpSmallButton arrayHints[MAX_NUM_CHOICE_SMALL_BUTTON];
 
 
 // Описывает кнопку для дополнительного режима меню.
-class SmallButton : public Control
+class SmallButton : public Item
 {
 public:
     pFuncVV             funcOnPress;    // Эта функция вызвается для обработки нажатия кнопки. Возвращает true, если надо за
@@ -190,7 +190,7 @@ public:
 
 
 // Описывает регулятор.
-class Governor : public Control
+class Governor : public Item
 { 
 public:
     int16*      cell;
@@ -235,7 +235,7 @@ struct IPaddressStruct
     uint16 *port;
 };
 
-class  IPaddress : public Control
+class  IPaddress : public Item
 {
 public:
     uint8*  ip0;
