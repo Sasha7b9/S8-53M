@@ -262,6 +262,8 @@ public:
 
     void DrawClosed(int x, int y) const;
 
+    void DrawOpened(int x, int y);
+
     // Возвращает номер текущего байта (4 - номер порта) и номер текущей позиции в байте.
     static void GetNumPosIPvalue(int *numIP, int *selPos);
 };
