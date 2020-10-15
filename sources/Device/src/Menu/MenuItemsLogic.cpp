@@ -246,9 +246,9 @@ void Time::DecCurrentPosition() const
 }
 
 
-void GovernorColor_ChangeValue(GovernorColor *governor, int delta)
+void GovernorColor::ChangeValue(int delta)
 {
-    ColorType *ct = governor->colorType;
+    ColorType *ct = colorType;
     if (ct->currentField == 0)
     {
         Color_BrightnessChange(ct, delta);

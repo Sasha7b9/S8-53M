@@ -309,6 +309,9 @@ public:
     COMMON_PART_MENU_ITEM
     ColorType*      colorType;                  // Структура для описания цвета.
     void Draw(int x, int y, bool opened);
+
+    // Изменить яркость цвета в governor
+    void ChangeValue(int delta);
 private:
     void DrawOpened(int x, int y);
     void DrawClosed(int x, int y);
