@@ -78,7 +78,7 @@ void DrawGovernorChoiceColorFormulaHiPart(const void *item, int x, int y, bool p
     }
 }
 
-void DrawGovernorLowPart(const Governor *governor, int x, int y, bool, bool shade)
+void Governor::DrawLowPart(int x, int y, bool, bool shade) const
 {
     char buffer[20];
     
@@ -92,12 +92,12 @@ void DrawGovernorLowPart(const Governor *governor, int x, int y, bool, bool shad
     }
 
     x = Text("\x80").Draw(x + 4, y + 21, colorTextDown);
-    if(Menu::OpenedItem() != governor)
+    if(Menu::OpenedItem() != this)
     {
-        float delta = governor->Step();
+        float delta = Step();
         if(delta == 0.0F) //-V2550 //-V550
         {
-            x = Text(Int2String(*governor->cell, false, 1, buffer)).Draw(x + 1, y + 21);
+            x = Text(Int2String(*cell, false, 1, buffer)).Draw(x + 1, y + 21);
         }
         else
         {
@@ -108,23 +108,23 @@ void DrawGovernorLowPart(const Governor *governor, int x, int y, bool, bool shad
             int limHeight = MI_HEIGHT_VALUE - 1;
             if(delta > 0.0F)
             {
-                x = Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - delta), Int2String(*governor->cell, false, 1, buffer),
+                x = Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - delta), Int2String(*cell, false, 1, buffer),
                                             COLOR_BACK, limX, limY, limWidth, limHeight);
-                Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 + 10 - delta), Int2String(governor->NextValue(), false, 1, buffer),
+                Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 + 10 - delta), Int2String(NextValue(), false, 1, buffer),
                                             COLOR_BACK, limX, limY, limWidth, limHeight);
             }
             if(delta < 0.0F)
             {
-                x = Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - delta), Int2String(*governor->cell, false, 1, buffer),
+                x = Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - delta), Int2String(*cell, false, 1, buffer),
                                             COLOR_BACK, limX, limY, limWidth, limHeight);
-                Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - 10 - delta), Int2String(governor->PrevValue(), false, 1, buffer),
+                Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - 10 - delta), Int2String(PrevValue(), false, 1, buffer),
                     COLOR_BACK, limX, limY, limWidth, limHeight);
             }
         }
     }
     else
     {
-        x = Text(Int2String(*governor->cell, false, 1, buffer)).Draw(x + 1, y + 21, COLOR_FILL);
+        x = Text(Int2String(*cell, false, 1, buffer)).Draw(x + 1, y + 21, COLOR_FILL);
     }
     Text("\x81").Draw(x + 1, y + 21, colorTextDown);
 }
@@ -227,7 +227,7 @@ void Governor::DrawClosed(int x, int y) const
 {
     bool pressed = IsPressed();
     bool shade = Menu::IsShade(this) || !Menu::ItemIsActive(this);
-    DrawGovernorLowPart(this, x, y, pressed, shade);
+    DrawLowPart(x, y, pressed, shade);
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 }
 

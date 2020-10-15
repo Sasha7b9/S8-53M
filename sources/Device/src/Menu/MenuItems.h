@@ -220,6 +220,7 @@ private:
     int  NumDigits() const;
     // При открытом элементе переставляет курсор на следующую позицию
     void NextPosition();
+    void DrawLowPart(int x, int y, bool, bool shade) const;
 
 };
 
