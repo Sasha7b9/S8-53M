@@ -251,6 +251,9 @@ public:
 
     // »змен€ет значение в текущей позиции при открытом элементе
     void ChangeValue(int delta);
+
+    // ¬озвращает номер текущего байта (4 - номер порта) и номер текущей позиции в байте.
+    static void GetNumPosIPvalue(int *numIP, int *selPos);
 };
 
 
