@@ -484,20 +484,20 @@ void GovernorColor::Draw(int x, int y, bool opened)
     }
 }
 
-void ItemChoice_DrawOpened(const Choice *choice, int x, int y)
+void Choice::DrawOpened(int x, int y) const
 {
-    int height = Menu::HeightOpenedItem(choice);
+    int height = Menu::HeightOpenedItem(this);
 
     Rectangle(MP_TITLE_WIDTH + 2, height + 3).Draw(x - 1, y - 1, COLOR_BACK);
     
-    DrawGovernorChoiceColorFormulaHiPart(choice, x - 1, y - 1, Menu::IsPressed(choice), false, true);
+    DrawGovernorChoiceColorFormulaHiPart(this, x - 1, y - 1, Menu::IsPressed(this), false, true);
     Rectangle(MP_TITLE_WIDTH + 1, height + 1).Draw(x - 1, y, ColorMenuTitle(false));
  
     HLine().Draw(y + MOI_HEIGHT_TITLE - 1, x, x + MOI_WIDTH);
     Painter::DrawVolumeButton(x, y + MOI_HEIGHT_TITLE, MOI_WIDTH - 1, height - MOI_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(),
                         ColorMenuTitleLessBright(), false, false);
-    int index = *((int8*)choice->cell);
-    for(int i = 0; i < choice->NumSubItems(); i++)
+    int index = *((int8*)cell);
+    for(int i = 0; i < NumSubItems(); i++)
     {
         int yItem = y + MOI_HEIGHT_TITLE + i * MOSI_HEIGHT + 1;
         bool pressed = i == index;
@@ -506,7 +506,7 @@ void ItemChoice_DrawOpened(const Choice *choice, int x, int y)
             Painter::DrawVolumeButton(x + 1, yItem, MOI_WIDTH - 2 , MOSI_HEIGHT - 2, 2, ColorMenuField(), ColorMenuTitleBrighter(),
                 ColorMenuTitleLessBright(), pressed, false);
         }
-        Text(choice->NameSubItem(i)).Draw(x + 4, yItem + 2, pressed ? Color::BLACK : ColorMenuField());
+        Text(NameSubItem(i)).Draw(x + 4, yItem + 2, pressed ? Color::BLACK : ColorMenuField());
     }
 }
 
@@ -641,7 +641,7 @@ void Choice::Draw(int x, int y, bool opened) const
 {
     if(opened)
     {
-        ItemChoice_DrawOpened(this, x, y);
+        DrawOpened(x, y);
     }
     else
     {

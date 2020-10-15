@@ -352,6 +352,8 @@ public:
     void Draw(int x, int y, bool opened) const;
 private:
     void DrawClosed(int x, int y) const;
+
+    void DrawOpened(int x, int y) const;
 };
 
 
