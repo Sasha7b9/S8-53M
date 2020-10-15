@@ -129,7 +129,7 @@ void Governor::DrawLowPart(int x, int y, bool, bool shade) const
     Text("\x81").Draw(x + 1, y + 21, colorTextDown);
 }
 
-static void DrawIPaddressLowPart(const IPaddress *ip, int x, int y, bool, bool shade)
+void IPaddress::DrawLowPart(int x, int y, bool, bool shade) const
 {
     char buffer[20];
 
@@ -142,9 +142,9 @@ static void DrawIPaddressLowPart(const IPaddress *ip, int x, int y, bool, bool s
         colorTextDown = ColorMenuItem(false);
     }
 
-    std::sprintf(buffer, "%03d.%03d.%03d.%03d", *ip->ip0, *ip->ip1, *ip->ip2, *ip->ip3);
+    std::sprintf(buffer, "%03d.%03d.%03d.%03d", *ip0, *ip1, *ip2, *ip3);
 
-    if (Menu::OpenedItem() != ip)
+    if (Menu::OpenedItem() != this)
     {
         Text(buffer).Draw(x + 4, y + 21, colorTextDown);
     }
@@ -235,7 +235,7 @@ static void ItemIPaddress_DrawClosed(const IPaddress *ip, int x, int y)
 {
     bool pressed = ip->IsPressed();
     bool shade = Menu::IsShade(ip) || !Menu::ItemIsActive(ip);
-    DrawIPaddressLowPart(ip, x, y, pressed, shade);
+    ip->DrawLowPart(x, y, pressed, shade);
     DrawGovernorChoiceColorFormulaHiPart(ip, x, y, pressed, shade, false);
 }
 
