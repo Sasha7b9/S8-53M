@@ -188,15 +188,15 @@ void IPaddress::NextPosition() const
     CircleIncreaseInt8(&gCurDigit, 0, (port == 0) ? 11 : 16);
 }
 
-void ItemTime_SetOpened(Time *item)
+void Time::SetOpened()
 {
     PackedTime time = HAL_RTC::GetPackedTime();
-    *(item->seconds) = static_cast<int8>(time.seconds);
-    *(item->minutes) = static_cast<int8>(time.minutes);
-    *(item->hours) = static_cast<int8>(time.hours);
-    *(item->day) = static_cast<int8>(time.day);
-    *(item->month) = static_cast<int8>(time.month);
-    *(item->year) = static_cast<int8>(time.year);
+    *seconds = static_cast<int8>(time.seconds);
+    *minutes = static_cast<int8>(time.minutes);
+    *hours = static_cast<int8>(time.hours);
+    *day = static_cast<int8>(time.day);
+    *month = static_cast<int8>(time.month);
+    *year = static_cast<int8>(time.year);
 }
 
 void ItemTime_SetNewTime(const Time *time)
