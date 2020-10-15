@@ -485,7 +485,7 @@ void Menu::ProcessingRegulatorSet(void)
             }
             else if (type == TypeItem::Time)
             {
-                angleRegSet > 0 ? ((Time *)item)->IncCurrentPosition() : ItemTime_DecCurrentPosition((Time *)item);
+                angleRegSet > 0 ? ((Time *)item)->IncCurrentPosition() : ((Time *)item)->DecCurrentPosition();
             }
         }
     }
