@@ -210,13 +210,13 @@ void Time::SelectNextPosition()
     Painter::ResetFlash();
 }
 
-void ItemTime_IncCurrentPosition(const Time *time)
+void Time::IncCurrentPosition() const
 {
     Sound::GovernorChangedValue();
-    int8 position = *time->curField;
+    int8 position = *curField;
     if (position != iSET && position != iEXIT)
     {
-        int8 *value[] = { 0, time->day, time->month, time->year, time->hours, time->minutes, time->seconds };
+        int8 *value[] = { 0, day, month, year, hours, minutes, seconds };
         static const int8 max[] = {0, 31, 12, 99, 23, 59, 59};
         static const int8 min[] = {0, 1, 1, 15, 0, 0, 0};
         *(value[position]) = (*(value[position]))++; //-V567
