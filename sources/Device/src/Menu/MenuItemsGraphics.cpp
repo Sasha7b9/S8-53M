@@ -645,13 +645,13 @@ void Choice::Draw(int x, int y, bool opened) const
     }
 }
 
-void ItemTime_DrawClosed(const TimeItem *item, int x, int y)
+void TimeItem::DrawClosed(int x, int y) const
 {
     char buffer[20];
     
-    bool pressed = Menu::IsPressed(item);
-    bool shade = Menu::IsShade(item);
-    DrawGovernorChoiceColorFormulaHiPart(item, x, y, pressed, shade, false);
+    bool pressed = Menu::IsPressed(this);
+    bool shade = Menu::IsShade(this);
+    DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 
     Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, shade ? ColorMenuTitleLessBright() : ColorMenuField(), 
         ColorMenuItemBrighter(), ColorMenuItemLessBright(), true, shade);
@@ -684,7 +684,7 @@ void TimeItem::Draw(int x, int y, bool opened) const
     }
     else
     {
-        ItemTime_DrawClosed(this, x, y);
+        DrawClosed(x, y);
     }
 }
 
