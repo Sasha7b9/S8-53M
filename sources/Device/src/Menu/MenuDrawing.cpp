@@ -229,7 +229,7 @@ static void DrawSmallButton(void *item, int, int y)
 
 static void DrawTime(void *item, int x, int y)
 {
-    ((Time *)item)->Draw(x, y, false);
+    ((TimeItem *)item)->Draw(x, y, false);
 }
 
 
@@ -315,7 +315,7 @@ void Menu::DrawOpenedPage(Page *page, int layer, int yTop)
         }
         else if (type == TypeItem::Time)
         {
-            ((Time *)item)->Draw(CalculateX(1), ItemOpenedPosY(item), true);
+            ((TimeItem *)item)->Draw(CalculateX(1), ItemOpenedPosY(item), true);
         }
         else if (type == TypeItem::IP)
         {

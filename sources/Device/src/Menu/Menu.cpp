@@ -484,7 +484,7 @@ void Menu::ProcessingRegulatorSet(void)
             }
             else if (type == TypeItem::Time)
             {
-                angleRegSet > 0 ? ((Time *)item)->IncCurrentPosition() : ((Time *)item)->DecCurrentPosition();
+                angleRegSet > 0 ? ((TimeItem *)item)->IncCurrentPosition() : ((TimeItem *)item)->DecCurrentPosition();
             }
         }
     }
@@ -600,12 +600,12 @@ void Menu::FuncOnLongPressItemTime(void *time)
     {
         SetCurrentItem(time, true);
     }
-    if(ItemIsOpened(time) && *((Time*)time)->curField == iSET)
+    if(ItemIsOpened(time) && *((TimeItem *)time)->curField == iSET)
     {
-        ((Time *)time)->SetNewTime();
+        ((TimeItem *)time)->SetNewTime();
     }
     OpenItem(time, !ItemIsOpened(time));
-    ((Time *)time)->SetOpened();
+    ((TimeItem *)time)->SetOpened();
 }
 
 
@@ -614,12 +614,12 @@ void Menu::ShortPress_Time(void *time)
     if(!ItemIsOpened(time))
     {
         SetCurrentItem(time, true);
-        ((Time *)time)->SetOpened();
+        ((TimeItem *)time)->SetOpened();
         OpenItem(time, true);
     }
     else
     {
-        ((Time *)time)->SelectNextPosition();
+        ((TimeItem *)time)->SelectNextPosition();
     }
 }
 

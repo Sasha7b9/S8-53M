@@ -86,7 +86,7 @@ extern const IPaddress   ipEthernet_Gateway;            // ÑÅĞÂÈÑ - ETHERNET - Ø
 extern const MACaddress macEthernet_MAC;                // ÑÅĞÂÈÑ - ETHERNET - Ôèç àäğåñ
 extern const Choice       cSound;                       // ÑÅĞÂÈÑ - Çâóê
 extern const Choice       cLang;                        // ÑÅĞÂÈÑ - ßçûê
-extern const Time         tTime;                        // ÑÅĞÂÈÑ - Âğåìÿ
+extern const TimeItem     tTime;                        // ÑÅĞÂÈÑ - Âğåìÿ
 extern const Choice       cModeLongPressButtonTrig;     // ÑÅĞÂÈÑ - Ğåæ äëèò ÑÈÍÕĞ
 extern const Page        ppInformation;                 // ÑÅĞÂÈÑ - ÈÍÔÎĞÌÀÖÈß
 static void        OnPress_Information();
@@ -889,7 +889,7 @@ static const Choice cLang =
 // ÑÅĞÂÈÑ - Âğåìÿ ------------------------------------------------------------------------------------------------------------------------------------
 static int8 dServicetime = 0;
 static int8 hours = 0, minutes = 0, secondes = 0, year = 0, month = 0, day = 0;
-static const Time tTime =
+static const TimeItem tTime =
 {
     TypeItem::Time, &pService, 0,
     {

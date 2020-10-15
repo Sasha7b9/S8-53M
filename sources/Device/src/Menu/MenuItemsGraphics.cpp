@@ -57,7 +57,7 @@ void DrawGovernorChoiceColorFormulaHiPart(const void *item, int x, int y, bool p
         }
         else if (type == TypeItem::Time)
         {
-            Time *time = (Time*)item;
+            TimeItem *time = (TimeItem *)item;
             if ((Menu::OpenedItem() == item) && (*time->curField != iEXIT) && (*time->curField != iSET))
             {
                 int8 values[7] =
@@ -510,7 +510,7 @@ void ItemChoice_DrawOpened(const Choice *choice, int x, int y)
     }
 }
 
-void ItemTime_DrawOpened(const Time *time, int x, int y)
+void ItemTime_DrawOpened(const TimeItem *time, int x, int y)
 {
     char buffer[20];
     
@@ -649,7 +649,7 @@ void Choice::Draw(int x, int y, bool opened) const
     }
 }
 
-void ItemTime_DrawClosed(const Time *item, int x, int y)
+void ItemTime_DrawClosed(const TimeItem *item, int x, int y)
 {
     char buffer[20];
     
@@ -680,7 +680,7 @@ void ItemTime_DrawClosed(const Time *item, int x, int y)
     Text(Int2String((int)time.year, false, 2, buffer)).Draw(x + startX + 2 * deltaField + 2 * deltaSeparator, y);
 }
 
-void Time::Draw(int x, int y, bool opened) const
+void TimeItem::Draw(int x, int y, bool opened) const
 {
     if(opened)
     {

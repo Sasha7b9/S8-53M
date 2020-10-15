@@ -187,7 +187,7 @@ void IPaddress::NextPosition() const
     CircleIncreaseInt8(&gCurDigit, 0, (port == 0) ? 11 : 16);
 }
 
-void Time::SetOpened()
+void TimeItem::SetOpened()
 {
     PackedTime time = HAL_RTC::GetPackedTime();
     *seconds = static_cast<int8>(time.seconds);
@@ -198,18 +198,18 @@ void Time::SetOpened()
     *year = static_cast<int8>(time.year);
 }
 
-void Time::SetNewTime() const
+void TimeItem::SetNewTime() const
 {
     HAL_RTC::SetTimeAndData(*day, *month, *year, *hours, *minutes, *seconds);
 }
 
-void Time::SelectNextPosition()
+void TimeItem::SelectNextPosition()
 {
     CircleIncreaseInt8(curField, 0, 7);
     Painter::ResetFlash();
 }
 
-void Time::IncCurrentPosition() const
+void TimeItem::IncCurrentPosition() const
 {
     Sound::GovernorChangedValue();
     int8 position = *curField;
@@ -227,7 +227,7 @@ void Time::IncCurrentPosition() const
 }
 
 
-void Time::DecCurrentPosition() const
+void TimeItem::DecCurrentPosition() const
 {
     Sound::GovernorChangedValue();
     static const int8 max[] = {0, 31, 12, 99, 23, 59, 59};
