@@ -34,6 +34,7 @@ public:
     void OnAbout(wxCommandEvent &);
     void OnDown(wxCommandEvent &event);
     void OnUp(wxCommandEvent &event);
+    void OnPaint(wxPaintEvent& event);
 
     void OnTimer(wxTimerEvent &);
     void OnTimerLong(wxTimerEvent &);

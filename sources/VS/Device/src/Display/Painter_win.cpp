@@ -37,7 +37,7 @@
 
 using namespace Primitives;
 
-static wxBitmap bitmapButton(Display::WIDTH, Display::HEIGHT);
+static wxBitmap bitmapScreen(Display::WIDTH, Display::HEIGHT);
 // Здесь будем рисовать
 wxMemoryDC memDC;
 
@@ -76,7 +76,7 @@ public:
     void OnPaint(wxPaintEvent &)
     {
         wxPaintDC dc(this);
-        wxImage image = bitmapButton.ConvertToImage();
+        wxImage image = bitmapScreen.ConvertToImage();
         image = image.Rescale(Frame::WIDTH, Frame::HEIGHT);
         wxBitmap bitmap(image);
         dc.DrawBitmap(bitmap, 0, 0);
@@ -95,7 +95,7 @@ void Painter::Init()
 
 void Painter::BeginScene(Color::E color)
 {
-    memDC.SelectObject(bitmapButton);
+    memDC.SelectObject(bitmapScreen);
     wxBrush brush({ 0, 0, 0 }, wxTRANSPARENT);
     memDC.SetBrush(brush);
     Color::SetCurrent(color);
@@ -139,10 +139,13 @@ static void CreateFrame()
     Frame *frame = new Frame("");
 
     wxBoxSizer *sizer = new wxBoxSizer(wxHORIZONTAL);
-
+    wxBoxSizer* vSizer = new wxBoxSizer(wxVERTICAL);
+    sizer->AddSpacer(0);
+    vSizer->AddSpacer(20);
+    sizer->Add(vSizer);
     screen = new Screen(frame);
 
-    sizer->Add(screen);
+    vSizer->Add(screen);
 
     frame->SetSizer(sizer);
 

@@ -4,21 +4,21 @@
 sources/generated/*
 
 sources/DLoader/Objects/*
-sources/DLoader/Objects-dbg/*
+sources/DLoader/Objects-Debug/*
 sources/DLoader/Listings/*
-sources/DLoader/Listings-dbg/*
+sources/DLoader/Listings-Debug/*
 sources/DLoader/DebugConfig/*
 
 sources/Device/Objects/*
-sources/Device/Objects-dbg/*
+sources/Device/Objects-Debug/*
 sources/Device/Listings/*
-sources/Device/Listings-dbg/*
+sources/Device/Listings-Debug/*
 sources/Device/DebugConfig/*
 
 sources/Panel/Objects/*
-sources/Panel/Objects-dbg/*
+sources/Panel/Objects-Debug/*
 sources/Panel/Listings/*
-sources/Panel/Listings-dbg/*
+sources/Panel/Listings-Debug/*
 sources/Panel/DebugConfig/*
 
 sources/ThirdParty/wxWidgets/generated/*

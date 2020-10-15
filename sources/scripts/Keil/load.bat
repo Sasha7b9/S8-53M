@@ -10,7 +10,7 @@ goto HINT
 
 :LOAD
     echo Load firmware to %1
-    %COMPILER% -f ..\..\%1\%1.uvprojx -j0 -o ..\scripts\Keil\out.txt
+    %COMPILER% -f ..\..\%1\%1.uvprojx -t"Release" -j0 -o ..\scripts\Keil\out.txt
     exit /b
 
 :HINT

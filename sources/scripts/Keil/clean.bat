@@ -9,17 +9,17 @@ goto HINT
 
 :CLEAN_DEBUG
     echo Clean Debug Keil
-    %COMPILER% -c..\..\Device\Device-Debug.uvprojx -j0
-    %COMPILER% -c..\..\DLoader\DLoader-Debug.uvprojx -j0
-    %COMPILER% -c..\..\Panel\Panel-Debug.uvprojx -j0
+    %COMPILER% -c..\..\Device\Device.uvprojx -j0 -t"Debug"
+    %COMPILER% -c..\..\DLoader\DLoader.uvprojx -j0 -t"Debug"
+    %COMPILER% -c..\..\Panel\Panel.uvprojx -j0 -t"Debug"
 
     exit /b
 
 :CLEAN_RELEASE
     echo Clean Release Keil
-    %COMPILER% -c..\..\Device\Device.uvprojx -j0
-    %COMPILER% -c..\..\DLoader\DLoader.uvprojx -j0
-    %COMPILER% -c..\..\Panel\Panel.uvprojx -j0
+    %COMPILER% -c..\..\Device\Device.uvprojx -j0 -t"Release"
+    %COMPILER% -c..\..\DLoader\DLoader.uvprojx -j0 -t"Release"
+    %COMPILER% -c..\..\Panel\Panel.uvprojx -j0 -t"Release"
 
     exit /b
 
