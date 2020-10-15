@@ -153,7 +153,7 @@ private:
 
     static void ResetItemsUnderButton();
 
-    static int ItemOpenedPosY(void *item);
+    static int ItemOpenedPosY(const void *item);
 
     static void *RetLastOpened(Page *_page, TypeItem::E *_type);
     

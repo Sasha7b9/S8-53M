@@ -367,7 +367,7 @@ void Menu::ResetItemsUnderButton()
 }
 
 
-int Menu::ItemOpenedPosY(void *item)
+int Menu::ItemOpenedPosY(const void *item)
 {
     Page *page = Keeper(item);
     int8 posCurItem = PosCurrentItem(page);

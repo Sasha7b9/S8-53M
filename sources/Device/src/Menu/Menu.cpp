@@ -585,7 +585,7 @@ void Menu::ShortPress_Button(void *button)
 }
 
 
-void Menu::FuncOnLongPressItem(void *item)
+void Menu::FuncOnLongPressItem(void *item) //-V2009 //-V2558
 {
     if (CurrentItem() != item)
     {

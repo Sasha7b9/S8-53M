@@ -232,7 +232,7 @@ void Governor::DrawClosed(int x, int y) const
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 }
 
-static void ItemIPaddress_DrawClosed(IPaddress *ip, int x, int y)
+static void ItemIPaddress_DrawClosed(const IPaddress *ip, int x, int y)
 {
     bool pressed = ip->IsPressed();
     bool shade = Menu::IsShade(ip) || !Menu::ItemIsActive(ip);
@@ -240,7 +240,7 @@ static void ItemIPaddress_DrawClosed(IPaddress *ip, int x, int y)
     DrawGovernorChoiceColorFormulaHiPart(ip, x, y, pressed, shade, false);
 }
 
-static void ItemMACaddress_DrawClosed(MACaddress *mac, int x, int y)
+static void ItemMACaddress_DrawClosed(const MACaddress *mac, int x, int y)
 {
     bool pressed = Menu::IsPressed(mac);
     bool shade = Menu::IsShade(mac) || !Menu::ItemIsActive(mac);

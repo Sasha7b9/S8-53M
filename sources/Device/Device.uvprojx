@@ -4536,14 +4536,4 @@
     <files/>
   </RTE>
 
-  <LayerInfo>
-    <Layers>
-      <Layer>
-        <LayName>Device</LayName>
-        <LayTarg>0</LayTarg>
-        <LayPrjMark>1</LayPrjMark>
-      </Layer>
-    </Layers>
-  </LayerInfo>
-
 </Project>
