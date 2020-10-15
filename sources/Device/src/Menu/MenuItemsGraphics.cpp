@@ -308,14 +308,14 @@ void Governor::DrawValue(int x, int y) const
     }
 }
 
-static void DrawIPvalue(int x, int y, IPaddress *ip)
+void IPaddress::DrawValue(int x, int y)
 {
-    if (gCurDigit > (ip->port == 0 ? 11 : 16))
+    if (gCurDigit > (port == 0 ? 11 : 16))
     {
         gCurDigit = 0;
     }
 
-    uint8 *bytes = ip->ip0;
+    uint8 *bytes = ip0;
 
     x += 15;
 
@@ -336,10 +336,10 @@ static void DrawIPvalue(int x, int y, IPaddress *ip)
         x += 19;
     }
 
-    if (ip->port != 0)
+    if (port != 0)
     {
         Char(':').Draw(x - 13, y, COLOR_FILL);
-        DrawValueWithSelectedPosition(x + 14, y, *ip->port, 5, numIP == 4 ? selPos : -1, false, true);
+        DrawValueWithSelectedPosition(x + 14, y, *port, 5, numIP == 4 ? selPos : -1, false, true);
     }
 }
 
@@ -594,7 +594,7 @@ void Governor::DrawOpened(int x, int y) const
 static void ItemIPaddress_DrawOpened(IPaddress *ip, int x, int y)
 {
     GovernorIpCommon_DrawOpened(ip, x, y, ip->port == 0 ? 0 : MOI_WIDTH_D_IP);
-    DrawIPvalue(x, y + 22, ip);
+    ip->DrawValue(x, y + 22);
 }
 
 static void ItemMACaddress_DrawOpened(MACaddress *mac, int x, int y)

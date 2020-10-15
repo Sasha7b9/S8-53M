@@ -258,6 +258,8 @@ public:
 
     void DrawLowPart(int x, int y, bool, bool shade) const;
 
+    void DrawValue(int x, int y);
+
     // Возвращает номер текущего байта (4 - номер порта) и номер текущей позиции в байте.
     static void GetNumPosIPvalue(int *numIP, int *selPos);
 };
