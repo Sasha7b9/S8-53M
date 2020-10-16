@@ -2,12 +2,12 @@
 #include "GUI/Controls/Governor.h"
 
 
-//#define SHOW_NAME_FUNC()   std::cout << __FUNCTION__ << std::endl
+const float GovernorGUI::stepDegree = 60.0F;
 
 
 GovernorGUI::GovernorGUI(wxWindow *parent, const wxPoint &position) : wxPanel(parent, wxID_ANY, position), timer(this, 1)
 {
-    angle = static_cast<float>(rand());
+    angleDiscrete = ((std::rand() % 100) - 100) * stepDegree;
 
     cursor = { false, {0, 0}, 0 };
 
@@ -33,8 +33,8 @@ void GovernorGUI::OnPaint(wxPaintEvent &)
 
     float r = static_cast<float>(radius) * 0.6F;
 
-    float x = static_cast<float>(radius) + Sin(static_cast<int>(angle) * stepAngle) * r;
-    float y = static_cast<float>(radius) + Cos(static_cast<int>(angle) * stepAngle) * r;
+    float x = static_cast<float>(radius) + Sin(angleDiscrete) * r;
+    float y = static_cast<float>(radius) + Cos(angleDiscrete) * r;
 
     dc.DrawCircle(static_cast<int>(x), static_cast<int>(y), radius / 5);
 }
@@ -71,15 +71,15 @@ bool GovernorGUI::MouseOnGovernor(wxMouseEvent &event) //-V2009
 }
 
 
-float GovernorGUI::Sin(int grad)
+float GovernorGUI::Sin(float degree)
 {
-    return sinf(static_cast<float>(grad) * 3.1415926F / 180.0F);
+    return sinf(static_cast<float>(degree) * 3.1415926F / 180.0F);
 }
 
 
-float GovernorGUI::Cos(int grad)
+float GovernorGUI::Cos(float degree)
 {
-    return cosf(static_cast<float>(grad) * 3.1415926F / 180.0F);
+    return cosf(static_cast<float>(degree) * 3.1415926F / 180.0F);
 }
 
 
@@ -93,11 +93,28 @@ void GovernorGUI::OnTimer(wxTimerEvent &)
 
         if(delta != 0)
         {
-            angle += 0.1F * static_cast<float>(delta);
+            angleFull += delta * 2;
+
+            if (angleFull <= -60.0F)
+            {
+                FuncChange(-1);
+            }
+            else if (angleFull >= 60.0F)
+            {
+                FuncChange(1);
+            }
 
             Refresh();
         }
     }
+}
+
+
+void GovernorGUI::FuncChange(int delta)
+{
+    angleDiscrete += delta * stepDegree;
+
+    angleFull -= delta * stepDegree;
 }
 
 
