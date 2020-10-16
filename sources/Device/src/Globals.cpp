@@ -59,7 +59,7 @@ BitField gBF =
     Grid::Bottom(), // topMeasures
  
     0,  // needOpenFileManager
-    1,  // needClosePageSB
+    0,  // needClosePageSB
     0   // needResetSettings
 };
 
