@@ -23,7 +23,7 @@ bool Menu::CurrentItemIsOpened(NamePage::E namePage)
 
 int8 Menu::PosCurrentItem(const Page *page)
 {
-    return MenuPosActItem(page->name) & 0x7f;
+    return MenuPosActItem(page->OwnData()->name) & 0x7f;
 }
 
 
@@ -34,7 +34,7 @@ void Menu::SetCurrentItem(const void *item, bool active)
         Page *page = (Keeper(item));
         if(!active)
         {
-            SetMenuPosActItem(page->name, 0x7f);
+            SetMenuPosActItem(page->OwnData()->name, 0x7f);
         }
         else
         {
@@ -42,7 +42,7 @@ void Menu::SetCurrentItem(const void *item, bool active)
             {
                 if(GetItem(page, i) == item)
                 {
-                    SetMenuPosActItem(page->name, i);
+                    SetMenuPosActItem(page->OwnData()->name, i);
                     return;
                 }
             }
@@ -66,8 +66,9 @@ void* Menu::OpenedItem()
 
 void* Menu::GetItem(const Page *page, int numElement)
 {
-    const arrayItems &array = (*page->items);
-    return array[numElement + (PageIsSB(page) ? 1 : 0)];
+    const DataPage *own = page->OwnData();
+
+    return own->items[numElement + (PageIsSB(page) ? 1 : 0)];
 }
 
 
@@ -103,7 +104,7 @@ int Menu::HeightOpenedItem(const void *item)
 
 int Menu::NumCurrentSubPage(const Page *page)
 {
-    return MenuCurrentSubPage(page->name);
+    return MenuCurrentSubPage(page->OwnData()->name);
 }
 
 
@@ -129,15 +130,15 @@ void Menu::ChangeSubPage(const Page *page, int delta)
 {
     if (page)
     {
-        if (delta > 0 && MenuCurrentSubPage(page->name) < NumSubPages(page) - 1)
+        if (delta > 0 && MenuCurrentSubPage(page->OwnData()->name) < NumSubPages(page) - 1)
         {
             Sound::RegulatorSwitchRotate();
-            SetMenuCurrentSubPage(page->name, MenuCurrentSubPage(page->name) + 1);
+            SetMenuCurrentSubPage(page->OwnData()->name, MenuCurrentSubPage(page->OwnData()->name) + 1);
         }
-        else if (delta < 0 && MenuCurrentSubPage(page->name) > 0)
+        else if (delta < 0 && MenuCurrentSubPage(page->OwnData()->name) > 0)
         {
             Sound::RegulatorSwitchRotate();
-            SetMenuCurrentSubPage(page->name, MenuCurrentSubPage(page->name) - 1);
+            SetMenuCurrentSubPage(page->OwnData()->name, MenuCurrentSubPage(page->OwnData()->name) - 1);
         }
     }
 }
@@ -175,17 +176,17 @@ void Menu::CloseOpenedItem()
     void *item = OpenedItem();
     if(TypeOpenedItem() == TypeItem::Page)
     {
-        if (PageIsSB((const Page *)item))                               // Для страницы малых кнопок
+        if (PageIsSB((const Page *)item))                                   // Для страницы малых кнопок
         {
-            SmallButton *sb = SmallButonFromPage((Page *)item, 0);      // Выполняем функцию нажатия кнопки Key::Menu
-            if (sb->funcOnPress)                                        // Если она есть
+            SmallButton *sb = SmallButonFromPage((Page *)item, 0);          // Выполняем функцию нажатия кнопки Key::Menu
+            if (sb->OwnData()->funcOnPress)                                 // Если она есть
             {
-                sb->funcOnPress();
+                sb->OwnData()->funcOnPress();
             }
         }
         if(NEED_CLOSE_PAGE_SB == 1)
         {
-            NamePage::E namePage = Keeper(item)->name;
+            NamePage::E namePage = Keeper(item)->OwnData()->name;
             SetMenuPosActItem(namePage, MenuPosActItem(namePage) & 0x7f);   // Сбрасываем бит 7 - "закрываем" активный пункт страницы namePage
         }
         NEED_CLOSE_PAGE_SB = 1;
@@ -219,13 +220,13 @@ bool Menu::ItemIsOpened(const void *item)
     {
         return CurrentItemIsOpened(Keeper(item)->GetName());
     }
-    return (MenuPosActItem(page->name) & 0x80) != 0;
+    return (MenuPosActItem(page->OwnData()->name) & 0x80) != 0;
 }
 
 
 Page* Menu::Keeper(const void *item)
 {
-    const Page* page = ((Page*)(item))->keeper;
+    const Page* page = ((Page*)(item))->data->keeper;
     return (Page *)page;
 }
 
@@ -251,7 +252,7 @@ bool Menu::ItemIsActive(const void *item)
 
     if (type == TypeItem::Choice || type == TypeItem::Page || type == TypeItem::Button || type == TypeItem::Governor || type == TypeItem::SmallButton)
     {
-        pFuncBV func = ((Page*)(item))->funcOfActive;
+        pFuncBV func = ((Page*)(item))->data->funcOfActive;
 
         return func ? func() : true;
     }
@@ -262,7 +263,7 @@ bool Menu::ItemIsActive(const void *item)
 
 int Menu::NumItemsInPage(const Page * const page) 
 {
-    if (page->name == NamePage::MainPage)
+    if (page->OwnData()->name == NamePage::MainPage)
     {
         return (SHOW_DEBUG_MENU == 0) ? 10 : 11;
     }
@@ -346,17 +347,19 @@ void Menu::ChangeItem(void *item, int delta)
 
 void Menu::ShortPressOnPageItem(Page *page, int numItem)
 {
+    const DataPage *own = page->OwnData();
+
     if (TypeMenuItem(page) != TypeItem::Page)
     {
         return;
     }
-    NamePage::E namePage = page->name;
+    NamePage::E namePage = own->name;
     if (namePage >= NamePage::SB_Curs)
     {
-        SmallButton *sb = (SmallButton*)(*page->items)[numItem];
-        if (sb && sb->funcOnPress)
+        SmallButton *sb = (SmallButton*)(own->items)[numItem];
+        if (sb && own->funcOnPress)
         {
-            sb->funcOnPress();
+            own->funcOnPress();
         }
     }
 }
@@ -370,11 +373,13 @@ Page* Menu::PagePointerFromName(NamePage::E)
 
 bool Menu::PageIsSB(const Page *page)
 {
-    return page->name >= NamePage::SB_Curs;
+    return page->OwnData()->name >= NamePage::SB_Curs;
 }
 
 
 SmallButton* Menu::SmallButonFromPage(Page *page, int numButton)
 {
-    return (SmallButton *)(*page->items)[numButton];
+    const DataPage *own = page->OwnData();
+
+    return (SmallButton *)(own->items)[numButton];
 }

@@ -3,7 +3,7 @@
 #include "Settings/SettingsCursors.h"
 
 
-#define COMMON_BEGIN_SB_EXIT  0, "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu"
+#define COMMON_BEGIN_SB_EXIT  "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu"
 
 
 const void* PageForButton(Key::E button);   // Возвращает страницу меню, которая должна открываться по нажатию кнопки button.

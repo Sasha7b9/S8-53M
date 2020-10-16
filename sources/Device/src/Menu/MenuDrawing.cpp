@@ -63,13 +63,13 @@ static void DrawHintItem(int x, int y, int width)
     char title[SIZE];
     std::snprintf(title, SIZE, "%s \"%s\"", names[type][lang], TITLE(item));
 
-    if (item->type == TypeItem::SmallButton)
+    if (item->data->type == TypeItem::SmallButton)
     {
         y -= 9;
     }
     Painter::DrawStringInCenterRectAndBoundItC(x, y, width, 15, title, COLOR_BACK, COLOR_FILL);
     y = Painter::DrawTextInBoundedRectWithTransfers(x, y + 15, width, HINT(item), COLOR_BACK, COLOR_FILL);
-    if (item->type == TypeItem::SmallButton)
+    if (item->data->type == TypeItem::SmallButton)
     {
         Painter::DrawHintsForSmallButton(x, y, width, reinterpret_cast<SmallButton*>(item));
     }
@@ -327,9 +327,9 @@ void Menu::DrawOpenedPage(Page *page, int layer, int yTop)
         }
     }
 
-    if (page->funcOnDraw)
+    if (page->OwnData()->funcOnDraw)
     {
-        page->funcOnDraw();
+        page->OwnData()->funcOnDraw();
     }
 }
 

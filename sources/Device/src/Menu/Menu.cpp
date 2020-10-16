@@ -523,9 +523,9 @@ void Menu::ProcessingReleaseButton(void)
 void Menu::ShortPress_Page(void *item)
 {
     Page *page = (Page *)item;
-    if (page->funcOnPress)
+    if (page->OwnData()->funcOnPress)
     {
-        page->funcOnPress();
+        page->OwnData()->funcOnPress();
     }
     if (!ItemIsActive(page))
     {
@@ -580,7 +580,7 @@ void Menu::ShortPress_Button(void *button)
         return;
     }
     SetCurrentItem(button, true);
-    ((Button*)button)->funcOnPress();
+    ((Button*)button)->OwnData()->funcOnPress();
 }
 
 
@@ -600,7 +600,7 @@ void Menu::FuncOnLongPressItemTime(void *time)
     {
         SetCurrentItem(time, true);
     }
-    if(ItemIsOpened(time) && *((TimeItem *)time)->curField == iSET)
+    if(ItemIsOpened(time) && *((TimeItem *)time)->OwnData()->curField == iSET)
     {
         ((TimeItem *)time)->SetNewTime();
     }
@@ -651,7 +651,7 @@ void Menu::ShortPress_GovernorColor(void *governorColor)
     GovernorColor *governor = (GovernorColor*)governorColor;
     if(OpenedItem() == governor)
     {
-        CircleIncreaseInt8(&(governor->colorType->currentField), 0, 3);
+        CircleIncreaseInt8(&(governor->OwnData()->colorType->currentField), 0, 3);
     }
     else
     {
@@ -665,7 +665,7 @@ void Menu::ShortPress_SmallButton(void *smallButton)
     SmallButton *sb = (SmallButton *)smallButton;
     if (sb)
     {
-        pFuncVV func = sb->funcOnPress;
+        pFuncVV func = sb->OwnData()->funcOnPress;
         if (func)
         {
             func();

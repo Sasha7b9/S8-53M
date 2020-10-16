@@ -1,6 +1,7 @@
 #pragma once
 #include "Display/Display.h"
 #include "common/Display/Colors_c.h"
+#include "Menu/MenuItemsDefs.h"
 
                                             
 #define MAX_NUM_SUBITEMS_IN_CHOICE  12  // Максимальное количество вариантов выбора в элементе Choice.
@@ -89,66 +90,62 @@ struct NamePage { enum E
 
 class Page;
 
-#define COMMON_PART_MENU_ITEM                                                                                     \
-    TypeItem::E type;             /* Тип итема */                                                     \
-    const Page* keeper;           /* Адрес страницы, которой принадлежит. Для NamePage::MainPage = 0 */    \
-    pFuncBV     funcOfActive;     /* Активен ли данный элемент */                                     \
-    const char* titleHint[4];     /* Название страницы на русском и английском языках. Также подсказка для режима помощи */
 
-
-
-struct ControlStruct
+struct DataItem
 {
-    COMMON_PART_MENU_ITEM
+    TypeItem::E type;
+    const Page *keeper;
+    pFuncBV     funcOfActive;
+    const char **titleHint;
+    const void *ad;
 };
+
+
 class Item
 {
 public:
-    COMMON_PART_MENU_ITEM
+    const DataItem *data;
 
-public:
-    Item(const ControlStruct *str);
-    Item(TypeItem::E type_, const Page* keeper_, pFuncBV funcOfActive_, const char *tileRU, const char *titleEN, const char *hintRU, const char *hintEN);
+    Item(const DataItem * const data = nullptr);
     // Возвращает true, если кнопка, соответствующая данному элементу меню, находится в нажатом положении.
     bool IsPressed() const;
+
+    static DataItem emptyData;
 };
 
 
-#define TITLE(item) ((item)->titleHint[LANG])
-#define HINT(item) ((item)->titleHint[2 + LANG])
+#define TITLE(item) ((item)->data->titleHint[LANG])
+#define HINT(item) ((item)->data->titleHint[2 + LANG])
 
 typedef void * pVOID;
 typedef pVOID arrayItems[MAX_NUM_ITEMS_IN_PAGE];
 
 
-struct PageStruct
+struct DataPage
 {
-    COMMON_PART_MENU_ITEM
-    NamePage::E         name;
-    const arrayItems    items;
-    pFuncVV             funcOnPress;
-    pFuncVV             funcOnDraw;
-    pFuncVI             funcRegSetSB;
+    NamePage::E  name;
+    Item       **items;
+    pFuncVV      funcOnPress;
+    pFuncVV      funcOnDraw;
+    pFuncVI      funcRegSetSB;
 };
+
 
 // Описывает страницу меню.
 class Page : public     Item
 {
 public:
-    NamePage::E         name;                               // Имя из перечисления NamePage
-    const arrayItems   *items;                              // Здесь указатели на пункты этой страницы (в обычной странице)
-                                                            // для страницы малых кнопок  здесь хранятся 6 указателей на SmallButton : 0 - Key::Menu, 1...5 - Key::F1...Key::F5
-    pFuncVV             funcOnPress;                        // Будет вызываться при нажатии на свёрнутую страницу
-    pFuncVV             funcOnDraw;                         // Будет вызываться после отрисовки кнопок
-    pFuncVI             funcRegSetSB;                       // В странице малых кнопок вызывается при повороте ручки установка
+    Page(const DataItem *const data) : Item(data) {};
 
-    //Page(PageStruct *pageStruct);
-    
-    Page(const Page *keeper_, pFuncBV funcOfActive_,
-         const char *titleRU, const char *titleEN, const char *hintRU, const char *hintEN, NamePage::E name_,
-         const arrayItems *items_, pFuncVV funcOnPress_ = 0, pFuncVV funcOnDraw_ = 0, pFuncVI funcRegSetSB_ = 0);
     void Draw(int x, int y);
     NamePage::E GetName() const;
+    const DataPage *OwnData() const { return static_cast<const DataPage *>(data->ad); }
+};
+
+
+struct DataButton
+{
+    pFuncVV         funcOnPress;    // Функция, которая вызывается при нажатии на кнопку.
 };
 
 
@@ -156,10 +153,8 @@ public:
 class Button : public Item
 {
 public:
-    pFuncVV         funcOnPress;    // Функция, которая вызывается при нажатии на кнопку.
-
-    Button(const Page *keeper_, pFuncBV funcOfActive_,
-            const char *titleRU, const char *titleEN, const char *hintRU, const char *hintEN, pFuncVV funcOnPress_);
+    Button(const DataItem *const data) : Item(data) {};
+    const DataButton *OwnData() const { return static_cast<const DataButton *>(data->ad); }
     void Draw(int x, int y) const;
 };
 
@@ -174,18 +169,33 @@ public:
 typedef StructHelpSmallButton arrayHints[MAX_NUM_CHOICE_SMALL_BUTTON];
 
 
+struct DataSmallButton
+{
+    pFuncVV           funcOnPress;    // Эта функция вызвается для обработки нажатия кнопки. Возвращает true, если надо за
+    pFuncVII          funcOnDraw;     // Эта функция вызывается для отрисовки кнопки в месте с координатами x, y.
+    const arrayHints *hintUGO;
+};
+
 // Описывает кнопку для дополнительного режима меню.
 class SmallButton : public Item
 {
 public:
-    pFuncVV             funcOnPress;    // Эта функция вызвается для обработки нажатия кнопки. Возвращает true, если надо за
-    pFuncVII            funcOnDraw;     // Эта функция вызывается для отрисовки кнопки в месте с координатами x, y.
-    const arrayHints   *hintUGO;
 
-    SmallButton(const Page *keeper_, pFuncBV funcOfActive_,
-                const char *titleRU, const char *titleEN, const char *hintRU, const char *hintEN,
-                pFuncVV funcOnPress_, pFuncVII funcOnDraw_, const arrayHints *hintUGO_ = 0);
+    SmallButton(const DataItem *const data) : Item(data) {};
+
     void Draw(int x, int y) const;
+
+    const DataSmallButton *OwnData() const { return static_cast<const DataSmallButton *>(data->ad); }
+};
+
+
+struct DataGovernor
+{
+    int16 *cell;
+    int         minValue;               // Минмальное значение, которое может принимать регулятор.
+    int16       maxValue;               // Максимальное значение.
+    pFuncVV     funcOfChanged;          // Функция, которую нужно вызывать после того, как значение регулятора изменилось.
+    pFuncVV     funcBeforeDraw;         // Функция, которая вызывается перед отрисовкой
 };
 
 
@@ -193,15 +203,8 @@ public:
 class Governor : public Item
 { 
 public:
-    int16*      cell;
-    int         minValue;               // Минмальное значение, которое может принимать регулятор.
-    int16       maxValue;               // Максимальное значение.
-    pFuncVV     funcOfChanged;          // Функция, которую нужно вызывать после того, как значение регулятора изменилось.
-    pFuncVV     funcBeforeDraw;         // Функция, которая вызывается перед отрисовкой
 
-    Governor(const Page *keeper_, pFuncBV funcOfActive_,
-             const char *titleRU, const char *titleEN, const char *hintRU, const char *hintEN,
-             int16 *cell_, int16 minValue_, int16 maxValue_, pFuncVV funcOfChanged_ = 0, pFuncVV funcBeforeDraw_ = 0);
+    Governor(const DataItem *const data) : Item(data) {};
     void Draw(int x, int y, bool opened) const;
     // Обработка короткого нажатия на элемент Governor с адресом governor.
     void ShortPress();
@@ -210,6 +213,7 @@ public:
     void  ChangeValue(int delta);       // Изменяет значение в текущей позиции при раскрытом элементе
     int16 NextValue() const;            // Возвращает следующее большее значение, которое может принять governor.
     int16 PrevValue() const;            // Возвращает следующее меньшее значение, которое может принять governor.
+    const DataGovernor *OwnData() const { return static_cast<const DataGovernor *>(data->ad); }
 
 private:
     void DrawOpened(int x, int y) const;
@@ -225,13 +229,12 @@ private:
 };
 
 
-struct IPaddressStruct
+struct DataIPaddress
 {
-    ControlStruct str;
-    uint8* ip0;
-    uint8* ip1;
-    uint8* ip2;
-    uint8* ip3;
+    uint8 *ip0;
+    uint8 *ip1;
+    uint8 *ip2;
+    uint8 *ip3;
     pFuncVB funcOfChanged;
     uint16 *port;
 };
@@ -239,14 +242,10 @@ struct IPaddressStruct
 class  IPaddress : public Item
 {
 public:
-    uint8*  ip0;
-    uint8*  ip1;
-    uint8*  ip2;
-    uint8*  ip3;
-    pFuncVB funcOfChanged;
-    uint16* port;
 
-    IPaddress(const IPaddressStruct *str);
+    IPaddress(const DataItem *const data) : Item(data) {};
+
+    const DataIPaddress *OwnData() const { return static_cast<const DataIPaddress *>(data->ad); }
 
     void Draw(int x, int y, bool opened);
 
@@ -269,17 +268,24 @@ public:
 };
 
 
-class  MACaddress
+struct DataMACaddress
+{
+    uint8 *mac0;
+    uint8 *mac1;
+    uint8 *mac2;
+    uint8 *mac3;
+    uint8 *mac4;
+    uint8 *mac5;
+    pFuncVB funcOfChanged;
+};
+
+
+class  MACaddress : public Item
 {
 public:
-    COMMON_PART_MENU_ITEM
-    uint8*  mac0;
-    uint8*  mac1;
-    uint8*  mac2;
-    uint8*  mac3;
-    uint8*  mac4;
-    uint8*  mac5;
-    pFuncVB funcOfChanged;
+    MACaddress(const DataItem *const data) : Item(data) {};
+
+    const DataMACaddress *OwnData() const { return static_cast<const DataMACaddress *>(data->ad); }
 
     void Draw(int x, int y, bool opened);
 
@@ -304,19 +310,24 @@ public:
 #define POS_SIGN_MEMBER_2       2
 #define POS_KOEFF_MEMBER_2      3
 
-class Formula
+
+struct DataFormula
+{
+    int8    *function;      // Адрес ячейки, где хранится Function, из которой берётся знак операции
+    int8    *koeff1add;     // Адрес коэффициента при первом члене для сложения
+    int8    *koeff2add;     // Адрес коэффициента при втором члене для сложения
+    int8    *koeff1mul;     // Адрес коэффициента при первом члене для умножения
+    int8    *koeff2mul;     // Адрес коэффициента при втором члене для умножения
+    int8    *curDigit;      // Текущий разряд : 0 - знак первого члена, 1 - коэффициент первого члена,
+                            //  2 - знак второго члена, 3 - коэффициент второго члена
+    pFuncVV funcOfChanged;  // Эта функция вызывается после изменения состояния элемента управления.
+};
+
+
+class Formula : public Item
 {
 public:
-    COMMON_PART_MENU_ITEM
-    int8*           function;                   // Адрес ячейки, где хранится Function, из которой берётся знак операции
-    int8*           koeff1add;                  // Адрес коэффициента при первом члене для сложения
-    int8*           koeff2add;                  // Адрес коэффициента при втором члене для сложения
-    int8*           koeff1mul;                  // Адрес коэффициента при первом члене для умножения
-    int8*           koeff2mul;                  // Адрес коэффициента при втором члене для умножения
-    int8*           curDigit;                   // Текущий разряд : 0 - знак первого члена, 1 - коэффициент первого члена,
-                                                //  2 - знак второго члена, 3 - коэффициент второго члена
-    pFuncVV         funcOfChanged;              // Эта функция вызывается после изменения состояния элемента управления.
-
+    Formula(const DataItem *const data) : Item(data) {};
     void Draw(int x, int y, bool opened) const;
 private:
     void DrawClosed(int x, int y) const;
@@ -325,15 +336,23 @@ private:
 };
 
 
-class  GovernorColor
+struct DataGovernorColor
+{
+    ColorType *colorType;                  // Структура для описания цвета.
+};
+
+
+class GovernorColor : public Item
 {
 public:
-    COMMON_PART_MENU_ITEM
-    ColorType*      colorType;                  // Структура для описания цвета.
+    GovernorColor(const DataItem *const data) : Item(data) {};
     void Draw(int x, int y, bool opened);
 
     // Изменить яркость цвета в governor
     void ChangeValue(int delta);
+
+    const DataGovernorColor *OwnData() const { return static_cast<const DataGovernorColor *>(data->ad); }
+
 private:
     void DrawOpened(int x, int y);
     void DrawClosed(int x, int y);
@@ -341,14 +360,22 @@ private:
 };
 
 
-class Choice
+struct DataChoice
+{
+    const char **names;             // Варианты выбора на русском и английском языках.
+    int8        *cell;              // Адрес ячейки, в которой хранится позиция текущего выбора.
+    pFuncVB	     funcOnChanged;     // Функция должна вызываться после изменения значения элемента.
+    pFuncVII     funcForDraw;       // Функция вызывается после отрисовки элемента. 
+};
+
+
+class Choice : public Item
 {
 public:
-    COMMON_PART_MENU_ITEM
-    const char *names[MAX_NUM_SUBITEMS_IN_CHOICE][2];   // Варианты выбора на русском и английском языках.
-    int8*       cell;                                   // Адрес ячейки, в которой хранится позиция текущего выбора.
-    pFuncVB	    funcOnChanged;                          // Функция должна вызываться после изменения значения элемента.
-    pFuncVII    funcForDraw;                            // Функция вызывается после отрисовки элемента. 
+    Choice(const DataItem *const data) : Item(data) {};
+
+    const DataChoice *OwnData() const { return static_cast<const DataChoice *>(data->ad); }
+
     const char *NameSubItem(int i) const;
     // Возвращает имя текущего варианта выбора элемента choice, как оно записано в исходном коде программы.
     const char *NameCurrentSubItem() const;
@@ -386,17 +413,25 @@ private:
 #define iSEC    6
 #define iSET    7
 
-// Устанавливает и показывает время.
-struct TimeItem
+
+struct DataTime
 {
-    COMMON_PART_MENU_ITEM
-    int8*       curField;       // Текущее поле установки. 0 - выход, 1 - сек, 2 - мин, 3 - часы, 4 - день, 5 - месяц, 6 - год, 7 - установить.
-    int8*       hours;
-    int8*       minutes;
-    int8*       seconds;
-    int8*       month;
-    int8*       day;
-    int8*       year;
+    int8 *curField;       // Текущее поле установки. 0 - выход, 1 - сек, 2 - мин, 3 - часы, 4 - день, 5 - месяц, 6 - год, 7 - установить.
+    int8 *hours;
+    int8 *minutes;
+    int8 *seconds;
+    int8 *month;
+    int8 *day;
+    int8 *year;
+};
+
+
+// Устанавливает и показывает время.
+struct TimeItem : public Item
+{
+    TimeItem(const DataItem *const data) : Item(data) {};
+
+    const DataTime *OwnData() const { return static_cast<const DataTime *>(data->ad); }
 
     void Draw(int x, int y, bool opened) const;
 

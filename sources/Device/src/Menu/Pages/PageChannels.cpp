@@ -71,40 +71,29 @@ extern const Page mainPage;
 
 
 // КАНАЛ 1 /////////////////////////
-static const arrayItems itemsChanA =
-{
-    (void*)&mcInputA,       // КАНАЛ 1 - Вход
-    (void*)&mcCoupleA,      // КАНАЛ 1 - Связь
-    (void*)&mcFiltrA,       // КАНАЛ 1 - Фильтр
-    (void*)&mcInverseA,     // КАНАЛ 1 - Инверсия
-    (void*)&mcMultiplierA   // КАНАЛ 1 - Множитель
-};
-
-const Page pChanA           // КАНАЛ 1
-(
-    &mainPage, 0,
+DEF_PAGE_5(pChanA,
     "КАНАЛ 1", "CHANNEL 1",
     "Содержит настройки канала 1.",
     "Contains settings of the channel 1.",
-    NamePage::Channel0, &itemsChanA
-);
+    mcInputA,
+    mcCoupleA,
+    mcFiltrA,
+    mcInverseA,
+    mcMultiplierA,
+    mainPage, NamePage::Channel0, nullptr, nullptr, nullptr, nullptr
+)
 
 
 // КАНАЛ 1 - Вход ------------------------------------------------------------------------------------------------------------------------------------
-static const Choice mcInputA =
-{
-    TypeItem::Choice, &pChanA, 0,
-    {
-        "Вход", "Input",
-        chanInputRu,
-        chanInputEn
-    },
-    {
-        {DISABLE_RU,    DISABLE_EN},
-        {ENABLE_RU,     ENABLE_EN}
-    },
-    (int8*)&SET_ENABLED_A, OnChanged_InputA
-};
+DEF_CHOCIE_2(mcInputA,
+    "Вход", "Input",
+    chanInputRu,
+    chanInputEn,
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU,  ENABLE_EN,
+    (int8)SET_ENABLED_A, pChanA, nullptr, OnChanged_InputA, nullptr
+)
+
 
 void OnChanged_InputA(bool)
 {
@@ -113,21 +102,16 @@ void OnChanged_InputA(bool)
 
 
 // КАНАЛ 1 - Связь -----------------------------------------------------------------------------------------------------------------------------------
-static const Choice mcCoupleA =
-{
-    TypeItem::Choice, &pChanA, 0,
-    {
-        "Связь",   "Couple",
-        chanCoupleRu,
-        chanCoupleEn
-    },
-    {
-        {"Пост",    "AC"},
-        {"Перем",   "DC"},
-        {"Земля",   "Ground"}
-    },
-    (int8*)&SET_COUPLE_A, OnChanged_CoupleA
-};
+DEF_CHOCIE_3(mcCoupleA,
+    "Связь", "Couple",
+    chanCoupleRu,
+    chanCoupleEn,
+    "Пост",    "AC",
+    "Перем",   "DC",
+    "Земля",   "Ground",
+    (int8)SET_COUPLE_A, pChanA, nullptr, OnChanged_CoupleA, nullptr
+)
+
 
 void OnChanged_CoupleA(bool)
 {
@@ -136,20 +120,15 @@ void OnChanged_CoupleA(bool)
 
 
 // КАНАЛ 1 - Фильтр ----------------------------------------------------------------------------------------------------------------------------------
-static const Choice mcFiltrA =
-{
-    TypeItem::Choice, &pChanA, 0,
-    {
-        "Фильтр", "Filtr",
-        chanFiltrRu,
-        chanFiltrEn
-    },
-    {
-        {DISABLE_RU,    DISABLE_EN},
-        {ENABLE_RU,     ENABLE_EN}
-    },
-    (int8*)&SET_FILTR_A, OnChanged_FiltrA
-};
+DEF_CHOCIE_2(mcFiltrA,
+    "Фильтр", "Filtr",
+    chanFiltrRu,
+    chanFiltrEn,
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU,  ENABLE_EN,
+    (int8)SET_FILTR_A, pChanA, nullptr, OnChanged_FiltrA, nullptr
+)
+
 
 void OnChanged_FiltrA(bool)
 {
@@ -158,20 +137,15 @@ void OnChanged_FiltrA(bool)
 
 
 // КАНАЛ 1 - Инверсия --------------------------------------------------------------------------------------------------------------------------------
-static const Choice mcInverseA =
-{
-    TypeItem::Choice, &pChanA, 0,
-    {
-        "Инверсия",    "Inverse",
-        chanInverseRu,
-        chanInverseEn
-    },
-    {
-        {DISABLE_RU,    DISABLE_EN},
-        {ENABLE_RU,     ENABLE_EN}
-    },
-    (int8*)&SET_INVERSE_A, OnChanged_InverseA
-};
+DEF_CHOCIE_2(mcInverseA,
+    "Инверсия", "Inverse",
+    chanInverseRu,
+    chanInverseEn,
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU,  ENABLE_EN,
+    (int8)SET_INVERSE_A, pChanA, nullptr, OnChanged_InverseA, nullptr
+)
+
 
 static void OnChanged_InverseA(bool)
 {

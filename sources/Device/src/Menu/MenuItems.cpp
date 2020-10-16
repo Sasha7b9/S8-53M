@@ -18,56 +18,12 @@ static TimeStructChoice tsChoice;
 
 
 
-Item::Item(const ControlStruct *str) : type(str->type), keeper(str->keeper), funcOfActive(str->funcOfActive)
+Item::Item(const DataItem *const _data) : data(_data)
 {
-    titleHint[0] = str->titleHint[0];
-    titleHint[1] = str->titleHint[1];
-    titleHint[2] = str->titleHint[2];
-    titleHint[3] = str->titleHint[3];
-}
-
-
-Item::Item(TypeItem::E type_, const Page* keeper_, pFuncBV funcOfActive_, const char *titleRU, const char *titleEN, const char *hintRU, const char *hintEN) :
-    type(type_), keeper(keeper_), funcOfActive(funcOfActive_)
-{
-    titleHint[0] = titleRU;
-    titleHint[1] = titleEN;
-    titleHint[2] = hintRU;
-    titleHint[3] = hintEN;
-}
-
-
-Page::Page(const Page *keeper_, pFuncBV funcOfActive_, const char *titleRU, const char *titleEN, const char *hintRU, const char *hintEN, 
-           NamePage::E name_, const arrayItems *items_, pFuncVV funcOnPress_, pFuncVV funcOnDraw_, pFuncVI funcRegSetSB_) :
-    Item(TypeItem::Page, keeper_, funcOfActive_, titleRU, titleEN, hintRU, hintEN),
-    name(name_), items(items_), funcOnPress(funcOnPress_), funcOnDraw(funcOnDraw_), funcRegSetSB(funcRegSetSB_)
-{
-}
-
-
-Button::Button(const Page *keeper_, pFuncBV funcOfActive_,
-       const char *titleRU, const char *titleEN, const char *hintRU, const char *hintEN, pFuncVV funcOnPress_) :
-    Item(TypeItem::Button, keeper_, funcOfActive_, titleRU, titleEN, hintRU, hintEN),
-    funcOnPress(funcOnPress_)
-{
-};
-
-
-SmallButton::SmallButton(const Page *keeper_, pFuncBV funcOfActive_,
-            const char *titleRU, const char *titleEN, const char *hintRU, const char *hintEN,
-            pFuncVV funcOnPress_, pFuncVII funcOnDraw_, const arrayHints *hintUGO_) :
-    Item(TypeItem::SmallButton, keeper_, funcOfActive_, titleRU, titleEN, hintRU, hintEN),
-    funcOnPress(funcOnPress_), funcOnDraw(funcOnDraw_), hintUGO(hintUGO_)
-{
-}
-
-
-Governor::Governor(const Page *keeper_, pFuncBV funcOfActive_,
-         const char *titleRU, const char *titleEN, const char *hintRU, const char *hintEN,
-         int16 *cell_, int16 minValue_, int16 maxValue_, pFuncVV funcOfChanged_, pFuncVV funcBeforeDraw_) :
-    Item(TypeItem::Governor, keeper_, funcOfActive_, titleRU, titleEN, hintRU, hintEN),
-    cell(cell_), minValue(minValue_), maxValue(maxValue_), funcOfChanged(funcOfChanged_), funcBeforeDraw(funcBeforeDraw_)
-{
+    if (data == nullptr)
+    {
+        data = &emptyData;
+    }
 }
 
 
@@ -77,52 +33,51 @@ bool Item::IsPressed() const
 }
 
 
-IPaddress::IPaddress(const IPaddressStruct *str) :
-    Item(&str->str), ip0(str->ip0), ip1(str->ip1), ip2(str->ip2), ip3(str->ip3), funcOfChanged(str->funcOfChanged), port(str->port)
-{
-
-}
-
-
 const char *Choice::NameSubItem(int i) const
 {
-    return names[i][LANG];
+    return OwnData()->names[(i * 2) + LANG];
 }
 
 
 const char *Choice::NameCurrentSubItem() const
 {
-    return (cell == 0) ? "" : names[*cell][LANG];
+    const DataChoice *own = OwnData();
+
+    return (own->cell == 0) ? "" : NameSubItem(*own->cell);
 }
 
 
 const char *Choice::NameNextSubItem() const
 {
-    if (cell == 0)
+    const DataChoice *own = OwnData();
+
+    if (own->cell == 0)
     {
         return "";
     }
-    int index = *cell + 1;
+    int index = *own->cell + 1;
     if (index == NumSubItems())
     {
         index = 0;
     }
-    return names[index][LANG];
+    return NameSubItem(index);
 }
 
 
 const char *Choice::NamePrevSubItem() const
 {
-    if (cell == 0)
+    const DataChoice *own = OwnData();
+
+    if (own->cell == 0)
     {
         return "";
     }
-    int index = *cell - 1;
+    int index = *own->cell - 1;
     if (index < 0)
     {
         index = NumSubItems() - 1;
     }
-    return names[index][set.common.lang];
+    return NameSubItem(index);
 }
 
 
@@ -131,7 +86,7 @@ int Choice::NumSubItems() const
     int i = 0;
     for (; i < MAX_NUM_SUBITEMS_IN_CHOICE; i++)
     {
-        if (names[i][set.common.lang] == 0)
+        if (OwnData()->names[i][set.common.lang] == 0)
         {
             return i;
         }
@@ -173,24 +128,26 @@ void Choice::StartChange(int delta)
 
 void Choice::FuncOnChanged(bool active) const
 {
-    if (funcOnChanged)
+    if (OwnData()->funcOnChanged)
     {
-        funcOnChanged(active);
+        OwnData()->funcOnChanged(active);
     }
 }
 
 
 void Choice::FuncForDraw(int x, int y) const
 {
-    if (funcForDraw)
+    if (OwnData()->funcForDraw)
     {
-        funcForDraw(x, y);
+        OwnData()->funcForDraw(x, y);
     }
 }
 
 
 float Choice::Step() const
 {
+    const DataChoice *own = OwnData();
+
     static const float speed = 0.1F;
     static const int numLines = 12;
     if (tsChoice.choice == this)
@@ -206,7 +163,7 @@ float Choice::Step() const
             {
                 return delta;
             }
-            CircleIncreaseInt8(cell, 0, static_cast<int8>(NumSubItems() - 1));
+            CircleIncreaseInt8(own->cell, 0, static_cast<int8>(NumSubItems() - 1));
         }
         else if (tsChoice.inMoveDecrease == 1)
         {
@@ -216,7 +173,7 @@ float Choice::Step() const
             {
                 return delta;
             }
-            CircleDecreaseInt8(cell, 0, static_cast<int8>(NumSubItems() - 1));
+            CircleDecreaseInt8(own->cell, 0, static_cast<int8>(NumSubItems() - 1));
         }
         tsChoice.choice = 0;
         FuncOnChanged(Menu::ItemIsActive(this));
@@ -231,15 +188,17 @@ float Choice::Step() const
 
 void Choice::ChangeValue(int delta)
 {
+    const DataChoice *own = OwnData();
+
     if (delta < 0)
     {
-        int8 value = (*cell == NumSubItems() - 1) ? 0 : (*cell + 1);
-        *cell = value;
+        int8 value = (*own->cell == NumSubItems() - 1) ? 0 : (*own->cell + 1);
+        *own->cell = value;
     }
     else
     {
-        int8 value = static_cast<int8>((*cell == 0) ? (NumSubItems() - 1) : (*cell - 1));
-        *cell = value;
+        int8 value = static_cast<int8>((*own->cell == 0) ? (NumSubItems() - 1) : (*own->cell - 1));
+        *own->cell = value;
     }
     FuncOnChanged(Menu::ItemIsActive(this));
     Sound::GovernorChangedValue();
@@ -253,5 +212,5 @@ NamePage::E Page::GetName() const
     {
         return NamePage::NoPage;
     }
-    return name;
+    return OwnData()->name;
 }

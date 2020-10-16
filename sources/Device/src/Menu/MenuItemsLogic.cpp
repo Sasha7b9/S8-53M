@@ -12,11 +12,11 @@ void Governor::StartChange(int delta)
     Sound::GovernorChangedValue();
     if (delta > 0 && ADDRESS_GOVERNOR == reinterpret_cast<uint>(this) && (IN_MOVE_INCREASE != 0))
     {
-        *cell = NextValue();
+        *OwnData()->cell = NextValue();
     }
     else if (delta < 0 && ADDRESS_GOVERNOR == reinterpret_cast<uint>(this) && (IN_MOVE_DECREASE != 0))
     {
-        *cell = PrevValue();
+        *OwnData()->cell = PrevValue();
     }
     else
     {
@@ -28,16 +28,16 @@ void Governor::StartChange(int delta)
 
 void Governor::ChangeValue(int delta)
 {
-    int16 oldValue = *cell;
-    LIMITATION(*cell,
+    int16 oldValue = *OwnData()->cell;
+    LIMITATION(*OwnData()->cell,
                 static_cast<int16>(oldValue + Math::Sign(delta) * Math::Pow10(gCurDigit)),
-                static_cast<int16>(minValue),
-                static_cast<int16>(maxValue));
-    if (*cell != oldValue)
+                static_cast<int16>(OwnData()->minValue),
+                static_cast<int16>(OwnData()->maxValue));
+    if (*OwnData()->cell != oldValue)
     {
-        if (funcOfChanged)
+        if (OwnData()->funcOfChanged)
         {
-            funcOfChanged();
+            OwnData()->funcOfChanged();
         }
         Sound::GovernorChangedValue();
     }
@@ -54,12 +54,12 @@ void IPaddress::ChangeValue(int delta)
 
     if (numByte < 4)
     {
-        uint8 *bytes = ip0;
+        uint8 *bytes = OwnData()->ip0;
         oldValue = bytes[numByte];
     }
     else
     {
-        oldValue = *port;
+        oldValue = *OwnData()->port;
     }
 
     int newValue = oldValue + Math::Sign(delta) * Math::Pow10(numPos);
@@ -69,11 +69,11 @@ void IPaddress::ChangeValue(int delta)
     {
         if (numByte == 4)
         {
-            *port = static_cast<uint16>(newValue);
+            *OwnData()->port = static_cast<uint16>(newValue);
         }
         else
         {
-            ip0[numByte] = static_cast<uint8>(newValue);
+            OwnData()->ip0[numByte] = static_cast<uint8>(newValue);
         }
         Sound::GovernorChangedValue();
         Display::ShowWarningGood(Warning::NeedRebootDevice2);
@@ -83,7 +83,7 @@ void IPaddress::ChangeValue(int delta)
 
 void MACaddress::ChangeValue(int delta)
 {
-    uint8 *value = mac0 + gCurDigit;
+    uint8 *value = OwnData()->mac0 + gCurDigit;
     *value += delta > 0 ? 1 : -1;
     Sound::GovernorChangedValue();
     Display::ShowWarningGood(Warning::NeedRebootDevice2);
@@ -121,10 +121,10 @@ float Governor::Step() const
         {
             IN_MOVE_DECREASE = 0;
             IN_MOVE_INCREASE = 0;
-            *cell = PrevValue();
-            if (funcOfChanged)
+            *OwnData()->cell = PrevValue();
+            if (OwnData()->funcOfChanged)
             {
-                funcOfChanged();
+                OwnData()->funcOfChanged();
             }
             return 0.0F;
         }
@@ -141,10 +141,10 @@ float Governor::Step() const
         {
             IN_MOVE_DECREASE = 0;
             IN_MOVE_INCREASE = 0;
-            *cell = NextValue();
-            if(funcOfChanged)
+            *OwnData()->cell = NextValue();
+            if(OwnData()->funcOfChanged)
             {
-                funcOfChanged();
+                OwnData()->funcOfChanged();
             }
             return 0.0F;
         }
@@ -155,12 +155,12 @@ float Governor::Step() const
 
 int16 Governor::NextValue() const
 {
-    return ((*cell) < maxValue) ? (*cell) + 1 : static_cast<int16>(minValue);
+    return ((*OwnData()->cell) < OwnData()->maxValue) ? (*OwnData()->cell) + 1 : static_cast<int16>(OwnData()->minValue);
 }
 
 int16 Governor::PrevValue() const
 {
-    return ((*cell) > minValue) ? (*cell) - 1 : maxValue;
+    return ((*OwnData()->cell) > OwnData()->minValue) ? (*OwnData()->cell) - 1 : OwnData()->maxValue;
 }
 
 void Governor::NextPosition()
@@ -173,8 +173,8 @@ void Governor::NextPosition()
 
 int Governor::NumDigits() const
 {
-    int min = Math::NumDigitsInNumber(Math::FabsInt(minValue));
-    int max = Math::NumDigitsInNumber(Math::FabsInt(maxValue));
+    int min = Math::NumDigitsInNumber(Math::FabsInt(OwnData()->minValue));
+    int max = Math::NumDigitsInNumber(Math::FabsInt(OwnData()->maxValue));
     if (min > max)
     {
         max = min;
@@ -184,38 +184,42 @@ int Governor::NumDigits() const
 
 void IPaddress::NextPosition() const
 {
-    CircleIncreaseInt8(&gCurDigit, 0, (port == 0) ? 11 : 16);
+    CircleIncreaseInt8(&gCurDigit, 0, (OwnData()->port == 0) ? 11 : 16);
 }
 
 void TimeItem::SetOpened()
 {
     PackedTime time = HAL_RTC::GetPackedTime();
-    *seconds = static_cast<int8>(time.seconds);
-    *minutes = static_cast<int8>(time.minutes);
-    *hours = static_cast<int8>(time.hours);
-    *day = static_cast<int8>(time.day);
-    *month = static_cast<int8>(time.month);
-    *year = static_cast<int8>(time.year);
+    *OwnData()->seconds = static_cast<int8>(time.seconds);
+    *OwnData()->minutes = static_cast<int8>(time.minutes);
+    *OwnData()->hours = static_cast<int8>(time.hours);
+    *OwnData()->day = static_cast<int8>(time.day);
+    *OwnData()->month = static_cast<int8>(time.month);
+    *OwnData()->year = static_cast<int8>(time.year);
 }
 
 void TimeItem::SetNewTime() const
 {
-    HAL_RTC::SetTimeAndData(*day, *month, *year, *hours, *minutes, *seconds);
+    const DataTime *own = OwnData();
+
+    HAL_RTC::SetTimeAndData(*own->day, *own->month, *own->year, *own->hours, *own->minutes, *own->seconds);
 }
 
 void TimeItem::SelectNextPosition()
 {
-    CircleIncreaseInt8(curField, 0, 7);
+    CircleIncreaseInt8(OwnData()->curField, 0, 7);
     Painter::ResetFlash();
 }
 
 void TimeItem::IncCurrentPosition() const
 {
+    const DataTime *own = OwnData();
+
     Sound::GovernorChangedValue();
-    int8 position = *curField;
+    int8 position = *own->curField;
     if (position != iSET && position != iEXIT)
     {
-        int8 *value[] = { 0, day, month, year, hours, minutes, seconds };
+        int8 *value[] = { 0, own->day, own->month, own->year, own->hours, own->minutes, own->seconds };
         static const int8 max[] = {0, 31, 12, 99, 23, 59, 59};
         static const int8 min[] = {0, 1, 1, 15, 0, 0, 0};
         *(value[position]) = (*(value[position]))++; //-V567
@@ -229,13 +233,15 @@ void TimeItem::IncCurrentPosition() const
 
 void TimeItem::DecCurrentPosition() const
 {
+    const DataTime *own = OwnData();
+
     Sound::GovernorChangedValue();
     static const int8 max[] = {0, 31, 12, 99, 23, 59, 59};
     static const int8 min[] = {0, 1, 1, 15, 0, 0, 0};
-    int8 position = *curField;
+    int8 position = *own->curField;
     if (position != iSET && position != iEXIT)
     {
-        int8 *value[] = { 0, day, month, year, hours, minutes, seconds };
+        int8 *value[] = { 0, own->day, own->month, own->year, own->hours, own->minutes, own->seconds };
         (*(value[position]))--;
         if (*value[position] < min[position])
         {
@@ -247,7 +253,7 @@ void TimeItem::DecCurrentPosition() const
 
 void GovernorColor::ChangeValue(int delta)
 {
-    ColorType *ct = colorType;
+    ColorType *ct = OwnData()->colorType;
     if (ct->currentField == 0)
     {
         Color_BrightnessChange(ct, delta);
