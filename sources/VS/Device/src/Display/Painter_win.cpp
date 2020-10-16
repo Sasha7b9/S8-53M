@@ -19,6 +19,7 @@
 #include "Display/Painter.h"
 #include "common/Display/Primitives_c.h"
 #include "Hardware/Timer.h"
+#include "Panel/Panel.h"
 
 
 #undef uint   
@@ -31,7 +32,6 @@
 #undef pString
 
 
-#include "defines.h"
 #include "Menu/Menu.h"
 #include "common/Utils/Math_c.h"
 
@@ -266,7 +266,9 @@ void Frame::OnDown(wxCommandEvent &event)
 
     event.Skip();
 
-//    BufferButtons::Push(KeyEvent(key, TypePress::Press));
+    int code = Key::ToCode(key) | Action::ToCode(Action::Down);
+
+    Panel::ProcessingCommandFromPIC(static_cast<uint16>(code));
 
     needStartTimerLong = true;
 
@@ -276,11 +278,13 @@ void Frame::OnDown(wxCommandEvent &event)
 
 void Frame::OnUp(wxCommandEvent &event)
 {
-//    Key::E key = static_cast<Key::E>(event.GetId());
+    Key::E key = static_cast<Key::E>(event.GetId());
 
     event.Skip();
 
-//    BufferButtons::Push(KeyEvent(key, TypePress::Release));
+    int code = Key::ToCode(key) | Action::ToCode(Action::Up);
+
+    Panel::ProcessingCommandFromPIC(static_cast<uint16>(code));
 
     needStopTimerLong = true;
 
