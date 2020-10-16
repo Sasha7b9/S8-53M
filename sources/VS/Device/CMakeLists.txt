@@ -29,6 +29,7 @@ add_compile_options(/wd4127)    # conditional expression is constant
 add_compile_options(/wd4211)    # nonstandard extension used : redefined extern to static
 add_compile_options(/wd4255)    # 'function' : no function prototype given: converting '()' to '(void)'
 add_compile_options(/wd4310)    # cast truncates constant value
+add_compile_options(/wd4355)    # 'this' : used in base member initializer list
 add_compile_options(/wd4464)    # relative include path contains '..'
 add_compile_options(/wd4514)    # 'function' : unreferenced inline function has been removed
 add_compile_options(/wd4623)    # 'derived class' : default constructor was implicitly defined as deleted because a base class default constructor is inaccessible or deleted
