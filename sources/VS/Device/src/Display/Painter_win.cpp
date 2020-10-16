@@ -201,6 +201,8 @@ static void CreateButtons(Frame *frame)
     }
 
     CreateButton(Key::Menu, frame, { 640, 102 }, size);
+
+    CreateButton(Key::Power, frame, { 1150, 43 }, size);
 }
 
 

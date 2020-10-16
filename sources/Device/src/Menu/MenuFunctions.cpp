@@ -230,16 +230,6 @@ Page* Menu::Keeper(const void *item)
 }
 
 
-//NamePage::E Menu::GetNamePage(const Page *page)
-//{
-//    if(TypeMenuItem((void*)page) != TypeItem::Page)
-//    {
-//        return NamePage::NoPage;
-//    }
-//    return page->name;
-//}
-
-
 NamePage::E Menu::GetNameOpenedPage()
 {
     return ((const Page *)OpenedItem())->GetName();
