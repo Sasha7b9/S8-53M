@@ -434,7 +434,9 @@ void FPGA::LoadTShift(void)
     {
         tShift = tShift / k[tBase] + deltaTShift[tBase];
     }
-    int additionShift = (tShiftOld % k[tBase]) * 2;
+    
+    int additionShift = (k[tBase] == 0) ? 0 : ((tShiftOld % k[tBase]) * 2);
+
     FPGA::SetAdditionShift(additionShift);
     uint16 post = (uint16)tShift;
     post = (uint16)(~post);
