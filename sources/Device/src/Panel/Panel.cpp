@@ -152,13 +152,11 @@ Key::E ButtonIsPress(uint16 command)
 Key::E RegulatorLeft(uint16 command)
 {
     Key::E key = Key::FromCode(command);
+    Action::E action = Action::FromCode(command);
 
-    if (key >= Key::RangeA && key <= Key::Setting)
+    if (Key::IsGovernor(key) && (action == Action::RotateLeft))
     {
-        if (Action::FromCode(command) == Action::RotateLeft)
-        {
-            return key;
-        }
+        return key;
     }
 
     return Key::None;
@@ -167,13 +165,11 @@ Key::E RegulatorLeft(uint16 command)
 Key::E RegulatorRight(uint16 command)
 {
     Key::E key = Key::FromCode(command);
+    Action::E action = Action::FromCode(command);
 
-    if (key >= Key::RangeA && key <= Key::Setting)
+    if (Key::IsGovernor(key) && (action == Action::RotateRight))
     {
-        if (Action::FromCode(command) == Action::RotateRight)
-        {
-            return key;
-        }
+        return key;
     }
 
     return Key::None;

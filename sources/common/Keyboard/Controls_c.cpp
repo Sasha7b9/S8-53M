@@ -68,6 +68,12 @@ uint16 Key::ToCode(Key::E key)
 }
 
 
+bool Key::IsGovernor(Key::E key)
+{
+    return (key >= Key::RangeA) && (key <= Key::Setting);
+}
+
+
 Action::E Action::FromCode(uint16 code)
 {
     return static_cast<Action::E>((code >> 5) & 0x7);
