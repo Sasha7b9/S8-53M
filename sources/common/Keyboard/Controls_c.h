@@ -21,6 +21,7 @@ struct Key { enum E
         Memory,             // оюлърэ
         Service,            // яепбхя
         Menu,               // лемч
+        Power,              // бшйк
         RangeA,             // бнкэр/дек 1
         RangeB,             // бнкэр/дек 2
         RShiftA,            // 

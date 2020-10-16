@@ -144,24 +144,24 @@ const void *PageForButton(Key::E button)
 {
     static const void *pages[] = {  
         0,                          // Key::None
-        (void*)&pChanA,             // Key::ChannelA
-        (void*)&pService,           // Key::Service
-        (void*)&pChanB,             // Key::ChannelB
-        (void*)&pDisplay,           // Key::Display
-        (void*)&pTime,              // Key::Time
-        PageMemory::GetPointer(),   // Key::Memory
-        (void*)&pTrig,              // Key::Trig
-        0,                          // Key::Start
-        PageCursors::GetPointer(),  // Key::Cursors
-        (void*)&pMeasures,          // Key::Measures
-        0,                          // B_Power
-        0,                          // Key::Help
-        0,                          // Key::Menu
         0,                          // Key::F1
         0,                          // Key::F2
         0,                          // Key::F3
         0,                          // Key::F4
         0,                          // Key::F5
+        (void *)&pChanA,            // Key::ChannelA
+        (void *)&pChanB,            // Key::ChannelB
+        (void *)&pTime,             // Key::Time
+        (void *)&pTrig,             // Key::Trig
+        PageCursors::GetPointer(),  // Key::Cursors
+        (void *)&pMeasures,         // Key::Measures
+        (void *)&pDisplay,          // Key::Display
+        0,                          // Key::Help
+        0,                          // Key::Start
+        PageMemory::GetPointer(),   // Key::Memory
+        (void *)&pService,          // Key::Service
+        0,                          // Key::Menu
+        0                           // B_Power
     };
 
     return pages[button];

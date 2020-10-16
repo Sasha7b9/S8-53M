@@ -28,70 +28,70 @@ static uint timePrevReleaseButton = 0;
 static void(*funcOnKeyDown[Key::Count])(void)    =
 {    
     0,
-    EmptyFuncVV,    // Key::ChannelA
-    EmptyFuncVV,    // Key::Service
-    EmptyFuncVV,    // Key::ChannelB
-    EmptyFuncVV,    // Key::Display
-    EmptyFuncVV,    // Key::Time
-    EmptyFuncVV,    // Key::Memory                                         
-    EmptyFuncVV,    // B_Sinchro
-    StartDown,      // Key::Start
-    EmptyFuncVV,    // Key::Cursors
-    EmptyFuncVV,    // Key::Measures
-    PowerDown,      // B_Power
-    EmptyFuncVV,    // Key::Help
-    EmptyFuncVV,    // Key::Menu
     EmptyFuncVV,    // Key::F1
     EmptyFuncVV,    // Key::F2
     EmptyFuncVV,    // Key::F3
     EmptyFuncVV,    // Key::F4
-    EmptyFuncVV     // Key::F5
+    EmptyFuncVV,    // Key::F5
+    EmptyFuncVV,    // Key::ChannelA
+    EmptyFuncVV,    // Key::ChannelB
+    EmptyFuncVV,    // Key::Time
+    EmptyFuncVV,    // B_Sinchro
+    EmptyFuncVV,    // Key::Cursors
+    EmptyFuncVV,    // Key::Measures
+    EmptyFuncVV,    // Key::Display
+    EmptyFuncVV,    // Key::Help
+    StartDown,      // Key::Start
+    EmptyFuncVV,    // Key::Memory                                         
+    EmptyFuncVV,    // Key::Service
+    EmptyFuncVV,    // Key::Menu
+    PowerDown       // B_Power
 };
 
 static void (*funcOnKeyUp[Key::Count])(void)    =
 {
     0,
-    EmptyFuncVV,    // Key::ChannelA
-    EmptyFuncVV,    // Key::Service
-    EmptyFuncVV,    // Key::ChannelB
-    EmptyFuncVV,    // Key::Display
-    EmptyFuncVV,    // Key::Time
-    EmptyFuncVV,    // Key::Memory
-    EmptyFuncVV,    // B_Sinchro
-    EmptyFuncVV,    // Key::Start
-    EmptyFuncVV,    // Key::Cursors
-    EmptyFuncVV,    // Key::Measures
-    EmptyFuncVV,    // B_Power
-    EmptyFuncVV,    // Key::Help
-    EmptyFuncVV,    // Key::Menu
     EmptyFuncVV,    // Key::F1
     EmptyFuncVV,    // Key::F2
     EmptyFuncVV,    // Key::F3
     EmptyFuncVV,    // Key::F4
-    EmptyFuncVV     // Key::F5
+    EmptyFuncVV,    // Key::F5
+    EmptyFuncVV,    // Key::ChannelA
+    EmptyFuncVV,    // Key::ChannelB
+    EmptyFuncVV,    // Key::Time
+    EmptyFuncVV,    // B_Sinchro
+    EmptyFuncVV,    // Key::Cursors
+    EmptyFuncVV,    // Key::Measures
+    EmptyFuncVV,    // Key::Display
+    EmptyFuncVV,    // Key::Help
+    EmptyFuncVV,    // Key::Start
+    EmptyFuncVV,    // Key::Memory
+    EmptyFuncVV,    // Key::Service
+    EmptyFuncVV,    // Key::Menu
+    EmptyFuncVV     // B_Power
 };
 
 static void (*funcOnLongPressure[Key::Count])(void)    =
 {
     0,
-    Channel0Long,   // Key::ChannelA
-    EmptyFuncVV,    // Key::Service
-    Channel1Long,   // Key::ChannelB
-    EmptyFuncVV,    // Key::Display
-    TimeLong,       // Key::Time
-    EmptyFuncVV,    // Key::Memory
-    TrigLong,       // B_Sinchro
-    EmptyFuncVV,    // Key::Start
-    EmptyFuncVV,    // Key::Cursors
-    EmptyFuncVV,    // Key::Measures
-    EmptyFuncVV,    // B_Power
-    HelpLong,       // Key::Help
-    MenuLong,       // Key::Menu
     F1Long,         // Key::F1
     F2Long,         // Key::F2
     F3Long,         // Key::F3
     F4Long,         // Key::F4
-    F5Long          // Key::F5
+    F5Long,         // Key::F5
+    Channel0Long,   // Key::ChannelA
+    Channel1Long,   // Key::ChannelB
+    TimeLong,       // Key::Time
+    TrigLong,       // B_Sinchro
+    EmptyFuncVV,    // Key::Cursors
+    EmptyFuncVV,    // Key::Measures
+    EmptyFuncVV,    // Key::Display
+    HelpLong,       // Key::Help
+    EmptyFuncVV,    // Key::Start
+    EmptyFuncVV,    // Key::Memory
+    EmptyFuncVV,    // Key::Service
+    MenuLong,       // Key::Menu
+    EmptyFuncVV     // B_Power
 };
 
 static void (*funculatorLeft[Key::Count])(void)    =
