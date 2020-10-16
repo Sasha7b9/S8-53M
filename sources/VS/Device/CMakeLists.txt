@@ -24,7 +24,6 @@ add_definitions(-DSTM32F437xx -DWXUSINGDLL -DGUI -DDEVICE)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -MP -Wall")
 
-add_compile_options(/wd4100)    # 'identifier' : unreferenced formal parameter
 add_compile_options(/wd4127)    # conditional expression is constant
 add_compile_options(/wd4211)    # nonstandard extension used : redefined extern to static
 add_compile_options(/wd4255)    # 'function' : no function prototype given: converting '()' to '(void)'

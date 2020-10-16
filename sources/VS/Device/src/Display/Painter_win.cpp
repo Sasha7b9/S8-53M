@@ -245,7 +245,7 @@ static void CreateGovernors(Frame *frame)
 
 static void CreateGovernor(Key::E key, Frame *frame, const wxPoint &pos)
 {
-    governors[key] = new GovernorGUI(frame, pos);
+    governors[key] = new GovernorGUI(frame, pos, key);
 }
 
 

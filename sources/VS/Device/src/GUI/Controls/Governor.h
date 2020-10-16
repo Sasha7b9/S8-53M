@@ -7,7 +7,8 @@
 class GovernorGUI : public wxPanel
 {
 public:
-    GovernorGUI(wxWindow *parent, const wxPoint &position);
+    // code - код ручки
+    GovernorGUI(wxWindow *parent, const wxPoint &position, int code);
 
 private:
     static const int radius = 32;

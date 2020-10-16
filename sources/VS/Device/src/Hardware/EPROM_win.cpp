@@ -8,7 +8,7 @@ void EPROM::EraseData()
 }
 
 
-void EPROM::GetDataInfo(bool existData[MAX_NUM_SAVED_WAVES])
+void EPROM::GetDataInfo(bool [MAX_NUM_SAVED_WAVES])
 {
 
 }
