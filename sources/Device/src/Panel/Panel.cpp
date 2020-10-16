@@ -110,8 +110,8 @@ static void (*funculatorRight[Key::Count])(void) =
 {
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     Range0Right,    // R_Range0
-    RShift0Right,   // R_RShift0
     Range1Right,    // R_Range1
+    RShift0Right,   // R_RShift0
     RShift1Right,   // R_RShift1
     TBaseRight,     // R_TBase
     TShiftRight,    // R_TShift
