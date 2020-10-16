@@ -1,11 +1,12 @@
 #include "defines.h"
 #include "GUI/Controls/Governor.h"
+#include "Panel/Panel.h"
 
 
 const float GovernorGUI::stepDegree = 60.0F;
 
 
-GovernorGUI::GovernorGUI(wxWindow *parent, const wxPoint &position, int code) : wxPanel(parent, wxID_ANY, position), timer(this, 1)
+GovernorGUI::GovernorGUI(wxWindow *parent, const wxPoint &position, int code) : wxPanel(parent, wxID_ANY, position), timer(this, 1), keyCode(code)
 {
     angleDiscrete = ((std::rand() % 100) - 100) * stepDegree;
 
@@ -115,6 +116,21 @@ void GovernorGUI::FuncChange(int delta)
     angleDiscrete += delta * stepDegree;
 
     angleFull -= delta * stepDegree;
+
+    uint16 code = keyCode | (((delta > 0) ? Action::RotateRight : Action::RotateLeft) << 5);
+
+    if (delta < 0)
+    {
+        delta = -delta;
+    }
+
+    delta *= 2;         // Это сделано потому, что в реальном приборе переключение происходит при двух срабатаваниях ручки
+
+    while (delta > 0)
+    {
+        Panel::ProcessingCommandFromPIC(code);
+        delta--;
+    }
 }
 
 

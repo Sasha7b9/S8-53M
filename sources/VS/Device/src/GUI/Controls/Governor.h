@@ -14,11 +14,6 @@ private:
     static const int radius = 32;
     static const float stepDegree;
     
-    float angleFull = 0.0F;     // Реальный угол поворота ручки (без градаций переключения)
-    float angleDiscrete = 0.0F; // Отображаемый угол поворота ручки (у учётом градаций переключения)
-
-    wxTimer timer;
-
     void OnPaint(wxPaintEvent &);
     void OnMouseLeftDown(wxMouseEvent &);
     void OnMouseMove(wxMouseEvent &);
@@ -51,4 +46,11 @@ private:
         // Вызывается при нажатии левой кнопки мыши
         void OnPressLeftButton();
     } cursor;
+
+    float angleFull = 0.0F;     // Реальный угол поворота ручки (без градаций переключения)
+    float angleDiscrete = 0.0F; // Отображаемый угол поворота ручки (у учётом градаций переключения)
+
+    wxTimer timer;
+
+    int keyCode;
 };
