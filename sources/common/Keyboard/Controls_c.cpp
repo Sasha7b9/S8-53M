@@ -74,6 +74,12 @@ bool Key::IsGovernor(Key::E key)
 }
 
 
+bool Key::IsButton(Key::E key)
+{
+    return (key < Key::RangeA) && (key != Key::None);
+}
+
+
 Action::E Action::FromCode(uint16 code)
 {
     return static_cast<Action::E>((code >> 5) & 0x7);

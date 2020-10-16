@@ -16,9 +16,11 @@
 
 #pragma warning(pop)
 
-#include "Display/Painter.h"
 #include "common/Display/Primitives_c.h"
+#include "common/Utils/Math_c.h"
+#include "Display/Painter.h"
 #include "Hardware/Timer.h"
+#include "Menu/Menu.h"
 #include "Panel/Panel.h"
 
 
@@ -32,8 +34,6 @@
 #undef pString
 
 
-#include "Menu/Menu.h"
-#include "common/Utils/Math_c.h"
 
 
 using namespace Primitives;

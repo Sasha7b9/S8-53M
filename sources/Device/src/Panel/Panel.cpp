@@ -123,30 +123,28 @@ static void (*funculatorRight[Key::Count])(void) =
 
 Key::E ButtonIsRelease(uint16 command)
 {
-    Key::E button = Key::None;
-    if(command < Key::Count && command > Key::None)
+    Key::E key = Key::FromCode(command);
+    Action::E action = Action::FromCode(command);
+
+    if (Key::IsButton(key) && (action == Action::Up))
     {
-        if(gTimerMS - timePrevReleaseButton > 100)
-        {
-            button = (Key::E)command;
-            timePrevReleaseButton = gTimerMS;
-        }
+        return key;
     }
-    return button;
+
+    return Key::None;
 }
 
 Key::E ButtonIsPress(uint16 command)
 {
-    Key::E button = Key::None;
-    if (((command & 0x7f) < Key::Count) && ((command & 0x7f) > Key::None))
+    Key::E key = Key::FromCode(command);
+    Action::E action = Action::FromCode(command);
+
+    if (Key::IsButton(key) && (action == Action::Down))
     {
-        if(gTimerMS - timePrevPressButton > 100)
-        {
-            button = (Key::E)(command & 0x7f);
-            timePrevPressButton = gTimerMS;
-        }
+        return key;
     }
-    return button;
+
+    return Key::None;
 }
 
 Key::E RegulatorLeft(uint16 command)
