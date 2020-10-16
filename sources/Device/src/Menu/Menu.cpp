@@ -40,6 +40,9 @@ static void ShortPress_Governor(void*);
 
 void Menu::UpdateInput()
 {
+    void *itemF1 = ItemUnderButton(Key::F1);
+    void *itemF2 = ItemUnderButton(Key::F2);
+
     ProcessingShortPressureButton();
     ProcessingLongPressureButton();
     ProcessingRegulatorSet();
