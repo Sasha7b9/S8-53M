@@ -241,25 +241,25 @@ static void SetRShift(Channel::E ch, int16 rShift)
     FPGA::SetRShift(ch, rShift);
 }
 
-void RShift0Left()
+void RShiftLeftA()
 {
     static int prevTime = 0;
     ChangeRShift(&prevTime, SetRShift, Channel::A, -STEP_RSHIFT);
 }
 
-void RShift0Right()
+void RShiftRightA()
 {
     static int prevTime = 0;
     ChangeRShift(&prevTime, SetRShift, Channel::A, +STEP_RSHIFT);
 }
 
-void RShift1Left()
+void RShiftLeftB()
 {
     static int prevTime = 0;
     ChangeRShift(&prevTime, SetRShift, Channel::B, -STEP_RSHIFT);
 }
 
-void RShift1Right()
+void RShiftRightB()
 {
     static int prevTime = 0;
     ChangeRShift(&prevTime, SetRShift, Channel::B, +STEP_RSHIFT);
@@ -318,25 +318,25 @@ void TShiftRight()
     XShift(1);
 }
 
-void Range0Left()
+void RangeLeftA()
 {
     Sound::RegulatorSwitchRotate();
     FPGA::RangeIncrease(Channel::A);
 }
 
-void Range0Right()
+void RangeRightA()
 {
     Sound::RegulatorSwitchRotate();
     FPGA::RangeDecrease(Channel::A);
 }
 
-void Range1Left()
+void RangeLeftB()
 {
     Sound::RegulatorSwitchRotate();
     FPGA::RangeIncrease(Channel::B);
 }
 
-void Range1Right()
+void RangeRightB()
 {
     Sound::RegulatorSwitchRotate();
     FPGA::RangeDecrease(Channel::B);

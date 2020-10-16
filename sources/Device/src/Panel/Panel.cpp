@@ -97,10 +97,10 @@ static void (*funcOnLongPressure[Key::Count])(void)    =
 static void (*funculatorLeft[Key::Count])(void)    =
 {
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    Range0Left,     // R_Range0
-    Range1Left,     // R_Range1
-    RShift0Left,    // R_RShift0
-    RShift1Left,    // R_RShift1
+    RangeLeftA,     // R_Range0
+    RangeLeftB,     // R_Range1
+    RShiftLeftA,    // R_RShift0
+    RShiftLeftB,    // R_RShift1
     TBaseLeft,      // R_TBase
     TShiftLeft,     // R_TShift
     TrigLevLeft,    // R_TrigLev
@@ -109,10 +109,10 @@ static void (*funculatorLeft[Key::Count])(void)    =
 static void (*funculatorRight[Key::Count])(void) =
 {
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    Range0Right,    // R_Range0
-    Range1Right,    // R_Range1
-    RShift0Right,   // R_RShift0
-    RShift1Right,   // R_RShift1
+    RangeRightA,    // R_Range0
+    RangeRightB,    // R_Range1
+    RShiftRightA,   // R_RShift0
+    RShiftRightB,   // R_RShift1
     TBaseRight,     // R_TBase
     TShiftRight,    // R_TShift
     TrigLevRight,   // R_TrigLev
