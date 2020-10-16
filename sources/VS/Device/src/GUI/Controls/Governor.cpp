@@ -94,7 +94,7 @@ void GovernorGUI::OnTimer(wxTimerEvent &)
 
         if(delta != 0)
         {
-            angleFull += delta * 2;
+            angleFull += delta * 3;
 
             if (angleFull <= -60.0F)
             {
@@ -119,12 +119,15 @@ void GovernorGUI::FuncChange(int delta)
 
     int code = keyCode | Action::ToCode((delta < 0) ? Action::RotateRight : Action::RotateLeft);
 
+    if (keyCode == Key::Setting)
+    {
+        delta *= 2;
+    }
+
     if (delta < 0)
     {
         delta = -delta;
     }
-
-    delta *= 2;         // Это сделано потому, что в реальном приборе переключение происходит при двух срабатаваниях ручки
 
     while (delta > 0)
     {
