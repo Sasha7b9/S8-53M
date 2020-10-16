@@ -54,3 +54,27 @@ Key::E &operator++(Key::E &right)
     right = (Key::E)((int)right + 1);
     return right;
 }
+
+
+Key::E Key::FromCode(uint16 code)
+{
+    return static_cast<Key::E>(code & 0x1F);
+}
+
+
+uint16 Key::ToCode(Key::E key)
+{
+    return static_cast<uint16>(key);
+}
+
+
+Action::E Action::FromCode(uint16 code)
+{
+    return static_cast<Action::E>((code >> 5) & 0x7);
+}
+
+
+uint16 Action::ToCode(Action::E action)
+{
+    return static_cast<uint16>(action << 5);
+}

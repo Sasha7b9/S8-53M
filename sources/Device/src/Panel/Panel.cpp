@@ -151,19 +151,31 @@ Key::E ButtonIsPress(uint16 command)
 
 Key::E RegulatorLeft(uint16 command)
 {
-    if(command >= 20 && command <= 27)
+    Key::E key = Key::FromCode(command);
+
+    if (key >= Key::RangeA && key <= Key::Setting)
     {
-        return (Key::E)command;
+        if (Action::FromCode(command) == Action::RotateLeft)
+        {
+            return key;
+        }
     }
+
     return Key::None;
 }
 
 Key::E RegulatorRight(uint16 command)
 {
-    if(((command & 0x7f) >= 20) && ((command & 0x7f) <= 27))
+    Key::E key = Key::FromCode(command);
+
+    if (key >= Key::RangeA && key <= Key::Setting)
     {
-        return (Key::E)(command & 0x7f);
+        if (Action::FromCode(command) == Action::RotateRight)
+        {
+            return key;
+        }
     }
+
     return Key::None;
 }
 
