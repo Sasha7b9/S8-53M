@@ -1,6 +1,6 @@
 #include "defines.h"
 #include "GUI/ConsoleSCPI.h"
-#include "GUI/ComPort.h"
+#include "GUI/VCP/ComPort.h"
 #include "common/Utils/String_c.h"
 
 #pragma warning(push, 0)

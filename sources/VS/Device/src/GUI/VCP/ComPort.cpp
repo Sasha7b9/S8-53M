@@ -1,6 +1,6 @@
 #include "defines.h"
-#include "GUI/ComPort.h"
-#include "GUI/rs232.h"
+#include "GUI/VCP/ComPort.h"
+#include "GUI/VCP/rs232.h"
 #include <cstring>
 
 

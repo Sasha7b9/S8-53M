@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "GUI/Governor.h"
+#include "GUI/Controls/Governor.h"
 
 
 //#define SHOW_NAME_FUNC()   std::cout << __FUNCTION__ << std::endl

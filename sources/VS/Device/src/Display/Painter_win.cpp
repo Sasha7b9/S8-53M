@@ -1,7 +1,7 @@
 #include "defines.h"
 #pragma warning(push, 0)
 #include "GUI/Application.h"
-#include "GUI/Governor.h"
+#include "GUI/Controls/Governor.h"
 
 #define uint    unsigned int
 #define int8    signed char
