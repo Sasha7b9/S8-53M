@@ -332,6 +332,7 @@ class Formula : public Item
 {
 public:
     Formula(const DataItem *const data) : Item(data) {};
+    const DataFormula *OwnData() const { return reinterpret_cast<const DataFormula *>(data->ad); }
     void Draw(int x, int y, bool opened) const;
 private:
     void DrawClosed(int x, int y) const;

@@ -17,7 +17,7 @@ void DrawGovernorChoiceColorFormulaHiPart(const void *item, int x, int y, bool p
     int delta = pressed && !shade ? 1 : 0;
     int width = MI_WIDTH_VALUE;
 
-    if (Menu::TypeMenuItem(item) == TypeItem::IP && opened && ((IPaddress*)item)->port != 0)
+    if (Menu::TypeMenuItem(item) == TypeItem::IP && opened && ((IPaddress*)item)->OwnData()->port != 0)
     {
         width += MOI_WIDTH_D_IP;
     }
@@ -44,29 +44,30 @@ void DrawGovernorChoiceColorFormulaHiPart(const void *item, int x, int y, bool p
 
         if (type == TypeItem::Governor)
         {
-            symbol = GetSymbolForGovernor(*((Governor*)item)->cell);
+            symbol = GetSymbolForGovernor(*((Governor*)item)->OwnData()->cell);
             ADDRESS_GOVERNOR = (uint)item;
         }
         else if (type == TypeItem::ChoiceReg || (Menu::ItemIsOpened(item) && type == TypeItem::Choice))
         {
-            symbol = GetSymbolForGovernor(*((Choice*)item)->cell);
+            symbol = GetSymbolForGovernor(*((Choice*)item)->OwnData()->cell);
         }
         else if (type == TypeItem::Time)
         {
             TimeItem *time = (TimeItem *)item;
-            if ((Menu::OpenedItem() == item) && (*time->curField != iEXIT) && (*time->curField != iSET))
+            const DataTime *own = time->OwnData();
+            if ((Menu::OpenedItem() == item) && (*own->curField != iEXIT) && (*own->curField != iSET))
             {
                 int8 values[7] =
                 {
                     0,
-                    *time->day,
-                    *time->month,
-                    *time->year,
-                    *time->hours,
-                    *time->minutes,
-                    *time->seconds
+                    *own->day,
+                    *own->month,
+                    *own->year,
+                    *own->hours,
+                    *own->minutes,
+                    *own->seconds
                 };
-                symbol = GetSymbolForGovernor(values[*time->curField]);
+                symbol = GetSymbolForGovernor(values[*own->curField]);
             }
         }
 
@@ -77,6 +78,8 @@ void DrawGovernorChoiceColorFormulaHiPart(const void *item, int x, int y, bool p
 void Governor::DrawLowPart(int x, int y, bool, bool shade) const
 {
     char buffer[20];
+
+    const DataGovernor *own = OwnData();
     
     Color::E colorTextDown = COLOR_BACK;
 
@@ -93,7 +96,7 @@ void Governor::DrawLowPart(int x, int y, bool, bool shade) const
         float delta = Step();
         if(delta == 0.0F) //-V2550 //-V550
         {
-            x = Text(Int2String(*cell, false, 1, buffer)).Draw(x + 1, y + 21);
+            x = Text(Int2String(*own->cell, false, 1, buffer)).Draw(x + 1, y + 21);
         }
         else
         {
@@ -104,19 +107,19 @@ void Governor::DrawLowPart(int x, int y, bool, bool shade) const
             int limHeight = MI_HEIGHT_VALUE - 1;
             if(delta > 0.0F)
             {
-                x = Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - delta), Int2String(*cell, false, 1, buffer), COLOR_BACK, limX, limY, limWidth, limHeight);
+                x = Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - delta), Int2String(*own->cell, false, 1, buffer), COLOR_BACK, limX, limY, limWidth, limHeight);
                 Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 + 10 - delta), Int2String(NextValue(), false, 1, buffer), COLOR_BACK, limX, limY, limWidth, limHeight);
             }
             if(delta < 0.0F)
             {
-                x = Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - delta), Int2String(*cell, false, 1, buffer), COLOR_BACK, limX, limY, limWidth, limHeight);
+                x = Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - delta), Int2String(*own->cell, false, 1, buffer), COLOR_BACK, limX, limY, limWidth, limHeight);
                 Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - 10 - delta), Int2String(PrevValue(), false, 1, buffer), COLOR_BACK, limX, limY, limWidth, limHeight);
             }
         }
     }
     else
     {
-        x = Text(Int2String(*cell, false, 1, buffer)).Draw(x + 1, y + 21, COLOR_FILL);
+        x = Text(Int2String(*own->cell, false, 1, buffer)).Draw(x + 1, y + 21, COLOR_FILL);
     }
     Text("\x81").Draw(x + 1, y + 21, colorTextDown);
 }
@@ -133,7 +136,9 @@ void IPaddress::DrawLowPart(int x, int y, bool, bool shade) const
         colorTextDown = ColorMenuItem(false);
     }
 
-    std::sprintf(buffer, "%03d.%03d.%03d.%03d", *ip0, *ip1, *ip2, *ip3);
+    const DataIPaddress *own = OwnData();
+
+    std::sprintf(buffer, "%03d.%03d.%03d.%03d", *own->ip0, *own->ip1, *own->ip2, *own->ip3);
 
     if (Menu::OpenedItem() != this)
     {
@@ -157,7 +162,9 @@ void MACaddress::DrawLowPart(int x, int y, bool, bool shade) const
         colorTextDown = ColorMenuItem(false);
     }
 
-    std::sprintf(buffer, "%02X.%02X.%02X.%02X.%02X.%02X", *mac0, *mac1, *mac2, *mac3, *mac4, *mac5);
+    const DataMACaddress *own = OwnData();
+
+    std::sprintf(buffer, "%02X.%02X.%02X.%02X.%02X.%02X", *own->mac0, *own->mac1, *own->mac2, *own->mac3, *own->mac4, *own->mac5);
 
     if (Menu::OpenedItem() != this)
     {
@@ -172,14 +179,16 @@ void MACaddress::DrawLowPart(int x, int y, bool, bool shade) const
 
 void Formula::WriteText(int x, int y, bool) const
 {
-    if (*function != Function::Mul && *function != Function::Sum)
+    const DataFormula *own = OwnData();
+
+    if (*own->function != Function::Mul && *own->function != Function::Sum)
     {
         return;
     }
 
-    bool funcIsMul = (*function == Function::Mul);
-    int8 koeff1 = funcIsMul ? *koeff1mul : *koeff1add;
-    int8 koeff2 = funcIsMul ? *koeff2mul : *koeff2add;
+    bool funcIsMul = (*own->function == Function::Mul);
+    int8 koeff1 = funcIsMul ? *own->koeff1mul : *own->koeff1add;
+    int8 koeff2 = funcIsMul ? *own->koeff2mul : *own->koeff2add;
     if (koeff1 != 0)
     {
        Char(koeff1 < 0 ? '-' : '+').Draw(x, y);
@@ -272,19 +281,21 @@ static void DrawValueWithSelectedPosition(int x, int y, int value, int numDigits
 
 void Governor::DrawValue(int x, int y) const
 {
+    const DataGovernor *own = OwnData();
+
     char buffer[20];
 
     int startX = x + 40;
-    int16 value = *cell;
-    int signGovernor = *cell < 0 ? -1 : 1;
+    int16 value = *own->cell;
+    int signGovernor = *own->cell < 0 ? -1 : 1;
     if(signGovernor == -1)
     {
         value = -value;
     }
     Font::Set(TypeFont::_5);
-    bool sign = minValue < 0;
-    Text(Int2String(maxValue, sign, 1, buffer)).Draw(x + 55, y - 5, COLOR_FILL);
-    Text(Int2String(minValue, sign, 1, buffer)).Draw(x + 55, y + 2);
+    bool sign = own->minValue < 0;
+    Text(Int2String(own->maxValue, sign, 1, buffer)).Draw(x + 55, y - 5, COLOR_FILL);
+    Text(Int2String(own->minValue, sign, 1, buffer)).Draw(x + 55, y + 2);
     Font::Set(TypeFont::_8);
 
     DrawValueWithSelectedPosition(startX, y, value, NumDigits(), gCurDigit, true, true);
@@ -297,12 +308,14 @@ void Governor::DrawValue(int x, int y) const
 
 void IPaddress::DrawValue(int x, int y)
 {
-    if (gCurDigit > (port == 0 ? 11 : 16))
+    const DataIPaddress *own = OwnData();
+
+    if (gCurDigit > (own->port == 0 ? 11 : 16))
     {
         gCurDigit = 0;
     }
 
-    uint8 *bytes = ip0;
+    uint8 *bytes = own->ip0;
 
     x += 15;
 
@@ -323,10 +336,10 @@ void IPaddress::DrawValue(int x, int y)
         x += 19;
     }
 
-    if (port != 0)
+    if (own->port != 0)
     {
         Char(':').Draw(x - 13, y, COLOR_FILL);
-        DrawValueWithSelectedPosition(x + 14, y, *port, 5, numIP == 4 ? selPos : -1, false, true);
+        DrawValueWithSelectedPosition(x + 14, y, *own->port, 5, numIP == 4 ? selPos : -1, false, true);
     }
 }
 
@@ -336,7 +349,7 @@ void MACaddress::DrawValue(int x, int y)
     {
         gCurDigit = 0;
     }
-    uint8 *bytes = mac0;
+    uint8 *bytes = OwnData()->mac0;
     x += MOI_WIDTH - 14;
     y++;
     for (int num = 5; num >= 0; num--)
@@ -355,9 +368,9 @@ void MACaddress::DrawValue(int x, int y)
 
 void Governor::Draw(int x, int y, bool opened) const
 {
-    if (funcBeforeDraw)
+    if (OwnData()->funcBeforeDraw)
     {
-        funcBeforeDraw();
+        OwnData()->funcBeforeDraw();
     }
     if(opened)
     {
@@ -373,7 +386,7 @@ void IPaddress::Draw(int x, int y, bool opened)
 {
     if (opened)
     {
-        DrawOpened(x - (port == 0 ? 0 : MOI_WIDTH_D_IP), y);
+        DrawOpened(x - (OwnData()->port == 0 ? 0 : MOI_WIDTH_D_IP), y);
     }
     else
     {
@@ -407,9 +420,11 @@ void Formula::Draw(int x, int y, bool opened) const
 
 void GovernorColor::DrawValue(int x, int y, int delta)
 {
+    const DataGovernorColor *own = OwnData();
+
     char buffer[20];
     
-    ColorType *ct = colorType;
+    ColorType *ct = own->colorType;
     int8 field = ct->currentField;
     char *texts[4] = {"Яр", "Сн", "Зл", "Кр"};
     uint16 color = set.display.colors[ct->color];
@@ -442,7 +457,7 @@ void GovernorColor::DrawOpened(int x, int y)
 {
     static const int delta = 43;
     x -= delta;
-    Color_Init(colorType);
+    Color_Init(OwnData()->colorType);
     Rectangle(MI_WIDTH + delta + 2, MI_HEIGHT + 2).Draw(x - 1, y - 1, Color::BLACK);
     Rectangle(MI_WIDTH + delta, MI_HEIGHT).Draw(x, y, ColorMenuTitle(false));
     Painter::DrawVolumeButton(x + 1, y + 1, MI_WIDTH_VALUE + 2 + delta, MI_HEIGHT_VALUE + 3, 2, ColorMenuItem(false), 
@@ -454,9 +469,9 @@ void GovernorColor::DrawOpened(int x, int y)
 
 void GovernorColor::DrawClosed(int x, int y)
 {
-    Color_Init(colorType);
+    Color_Init(OwnData()->colorType);
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, Menu::IsPressed(this), Menu::IsShade(this) || !Menu::ItemIsActive(this), true);
-    Region(MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1).Fill(x + 2, y + 20, colorType->color);
+    Region(MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1).Fill(x + 2, y + 20, OwnData()->colorType->color);
 }
 
 void GovernorColor::Draw(int x, int y, bool opened)
@@ -482,7 +497,7 @@ void Choice::DrawOpened(int x, int y) const
  
     HLine().Draw(y + MOI_HEIGHT_TITLE - 1, x, x + MOI_WIDTH);
     Painter::DrawVolumeButton(x, y + MOI_HEIGHT_TITLE, MOI_WIDTH - 1, height - MOI_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false, false);
-    int index = *((int8*)cell);
+    int index = *((int8*)OwnData()->cell);
     for(int i = 0; i < NumSubItems(); i++)
     {
         int yItem = y + MOI_HEIGHT_TITLE + i * MOSI_HEIGHT + 1;
@@ -535,14 +550,16 @@ void TimeItem::DrawOpened(int x, int y) const
         {3,             y2, 46}     // Сохранить
     };
 
+    const DataTime *own = OwnData();
+
     char strI[8][20];
     std::strcpy(strI[iEXIT], "Не сохранять");
-    std::strcpy(strI[iDAY], Int2String(*day, false, 2, buffer));
-    std::strcpy(strI[iMONTH], Int2String(*month, false, 2, buffer));
-    std::strcpy(strI[iYEAR], Int2String(*year, false, 2, buffer));
-    std::strcpy(strI[iHOURS], Int2String(*hours, false, 2, buffer));
-    std::strcpy(strI[iMIN], Int2String(*minutes, false, 2, buffer));
-    std::strcpy(strI[iSEC], Int2String(*seconds, false, 2, buffer));
+    std::strcpy(strI[iDAY], Int2String(*own->day, false, 2, buffer));
+    std::strcpy(strI[iMONTH], Int2String(*own->month, false, 2, buffer));
+    std::strcpy(strI[iYEAR], Int2String(*own->year, false, 2, buffer));
+    std::strcpy(strI[iHOURS], Int2String(*own->hours, false, 2, buffer));
+    std::strcpy(strI[iMIN], Int2String(*own->minutes, false, 2, buffer));
+    std::strcpy(strI[iSEC], Int2String(*own->seconds, false, 2, buffer));
     std::strcpy(strI[iSET], "Сохранить");
 
     Text("д м г - ").Draw(x + 3, y + y0, COLOR_FILL);
@@ -550,11 +567,11 @@ void TimeItem::DrawOpened(int x, int y) const
 
     for (int i = 0; i < 8; i++)
     {
-        if (*curField == i)
+        if (*own->curField == i)
         {
             Region(strPaint[i].width, 8).Fill(x + strPaint[i].x - 1, y + strPaint[i].y, Color::FLASH_10);
         }
-        Text(strI[i]).Draw(x + strPaint[i].x, y + strPaint[i].y, *curField == i ? Color::FLASH_01 : COLOR_FILL);
+        Text(strI[i]).Draw(x + strPaint[i].x, y + strPaint[i].y, *own->curField == i ? Color::FLASH_01 : COLOR_FILL);
     }
 }
 
@@ -576,7 +593,7 @@ void Governor::DrawOpened(int x, int y) const
 
 void IPaddress::DrawOpened(int x, int y)
 {
-    GovernorIpCommon_DrawOpened(this, x, y, (port == 0) ? 0 : MOI_WIDTH_D_IP);
+    GovernorIpCommon_DrawOpened(this, x, y, (OwnData()->port == 0) ? 0 : MOI_WIDTH_D_IP);
     DrawValue(x, y + 22);
 }
 
@@ -704,7 +721,7 @@ void SmallButton::Draw(int x, int y) const
             Rectangle(WIDTH_SB, WIDTH_SB).Draw(x, y, COLOR_FILL);
             Color::SetCurrent(COLOR_FILL);
         }
-        funcOnDraw(x, y);
+        OwnData()->funcOnDraw(x, y);
     }
     else
     {

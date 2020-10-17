@@ -97,38 +97,30 @@ static void        OnPress_Information_Exit();
 extern const Page mainPage;
 
 // СЕРВИС //////////////////////////
-static const arrayItems itemsService =
-{
-    (void*)&bResetSettings,             // СЕРВИС - Сброс настроек
-    (void*)&bAutoSearch,                // СЕРВИС - Поиск сигнала
-    (void*)&ppCalibrator,               // СЕРВИС - КАЛИБРАТОР
-    (void*)&ppMath,                     // СЕРВИС - МАТЕМАТИКА
-    (void*)&ppEthernet,                 // СЕРВИС - ETHERNET
-    (void*)&cSound,                     // СЕРВИС - Звук
-    (void*)&cLang,                      // СЕРВИС - Язык
-    (void*)&tTime,                      // СЕРВИС - Время
-    (void*)&cModeLongPressButtonTrig,   // СЕРВИС - Реж длит СИНХР
-    (void*)&ppInformation               // СЕРВИС - ИНФОРМАЦИЯ
-};
-
-const Page pService                     // СЕРВИС
-(
-    &mainPage, 0,
+DEF_PAGE_10(pService, mainPage, NamePage::Service,
     "СЕРВИС", "SERVICE",
     "Дополнительные настройки, калибровка, поиск сигнала, математические функции",
     "Additional settings, calibration, signal search, mathematical functions",
-    NamePage::Service, &itemsService
+    bResetSettings,             // СЕРВИС - Сброс настроек
+    bAutoSearch,                // СЕРВИС - Поиск сигнала
+    ppCalibrator,               // СЕРВИС - КАЛИБРАТОР
+    ppMath,                     // СЕРВИС - МАТЕМАТИКА
+    ppEthernet,                 // СЕРВИС - ETHERNET
+    cSound,                     // СЕРВИС - Звук
+    cLang,                      // СЕРВИС - Язык
+    tTime,                      // СЕРВИС - Время
+    cModeLongPressButtonTrig,   // СЕРВИС - Реж длит СИНХР
+    ppInformation,              // СЕРВИС - ИНФОРМАЦИЯ
+    nullptr, nullptr, nullptr, nullptr
 );
 
 // СЕРВИС - Сброс настроек ---------------------------------------------------------------------------------------------------------------------------
-static const Button bResetSettings
-(
-    &pService, 0,
+DEF_BUTTON(bResetSettings, pService,
     "Сброс настроек", "Reset settings",
     "Сброс настроек на настройки по умолчанию",
     "Reset to default settings",
-    OnPress_ResetSettings
-);
+    nullptr, OnPress_ResetSettings
+)
 
 static void OnPress_ResetSettings(void)
 {
@@ -164,14 +156,12 @@ static void OnTimerDraw(void)
 
 
 // СЕРВИС - Поиск сигнала ----------------------------------------------------------------------------------------------------------------------------
-static const Button bAutoSearch
-(
-    &pService, 0,
+DEF_BUTTON(bAutoSearch, pService,
     "Поиск сигнала", "Find signal",
     "Устанавливает оптимальные установки осциллографа для сигнала в канале 1",
     "Sets optimal settings for the oscilloscope signal on channel 1",
-    OnPress_AutoSearch
-);
+    nullptr, OnPress_AutoSearch
+)
 
 static void OnPress_AutoSearch(void)
 {
@@ -179,37 +169,25 @@ static void OnPress_AutoSearch(void)
 };
 
 // СЕРВИС - КАЛИБРАТОР /////////////
-static const arrayItems itemsCalibrator =
-{
-    (void*)&cCalibrator_Mode,       // СЕРВИС - КАЛИБРАТОР - Калибратор
-    (void*)&cCalibrator_Calibrate   // СЕРВИС - КАЛИБРАТОР - Калибровать
-};
-
-static const Page ppCalibrator
-(
-    &pService, 0,
+DEF_PAGE_2(ppCalibrator, pService, NamePage::ServiceCalibrator,
     "КАЛИБРАТОР", "CALIBRATOR",
     "Управлением калибратором и калибровка осциллографа",
     "Item of the calibrator and calibration of an oscillograph",
-    NamePage::ServiceCalibrator, &itemsCalibrator
-);
+    cCalibrator_Mode,       // СЕРВИС - КАЛИБРАТОР - Калибратор
+    cCalibrator_Calibrate,  // СЕРВИС - КАЛИБРАТОР - Калибровать
+    nullptr, nullptr, nullptr, nullptr
+)
 
 // СЕРВИС - КАЛИБРАТОР - Калибратор ------------------------------------------------------------------------------------------------------------------
-static const Choice cCalibrator_Mode =
-{
-    TypeItem::Choice, &ppCalibrator, 0,
-    {
-        "Калибратор",  "Calibrator",
-        "Режим работы калибратора",
-        "Mode of operation of the calibrator"
-    },
-    {
-        {"Перем",   "DC"},
-        {"Пост",    "AC"},
-        {"0В",      "OV"}
-    },
-    (int8*)&CALIBRATOR, OnChanged_Calibrator_Mode
-};
+DEF_CHOICE_3(cCalibrator_Mode, ppCalibrator,
+    "Калибратор",  "Calibrator",
+    "Режим работы калибратора",
+    "Mode of operation of the calibrator",
+    "Перем", "DC",
+    "Пост",  "AC",
+    "0В",    "OV",
+    (int8)CALIBRATOR, nullptr, OnChanged_Calibrator_Mode, nullptr
+)
 
 static void OnChanged_Calibrator_Mode(bool)
 {
@@ -217,14 +195,12 @@ static void OnChanged_Calibrator_Mode(bool)
 }
 
 // СЕРВИС - КАЛИБРАТОР - Калибровать -----------------------------------------------------------------------------------------------------------------
-static const Button cCalibrator_Calibrate
-(
-    &ppCalibrator, 0,
+DEF_BUTTON(cCalibrator_Calibrate, ppCalibrator,
     "Калибровать", "Calibrate",
     "Запуск процедуры калибровки",
     "Running the calibration procedure",
-    OnPress_Calibrator_Calibrate
-);
+    nullptr, OnPress_Calibrator_Calibrate
+)
 
 static void OnPress_Calibrator_Calibrate(void)
 {
@@ -232,39 +208,27 @@ static void OnPress_Calibrator_Calibrate(void)
 }
 
 // СЕРВИС - МАТЕМАТИКА /////////////
-static const arrayItems itemsMath =
-{
-    (void*)&pppMath_Function,     // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ
-    (void*)&pppMath_FFT           // СЕРВИС - МАТЕМАТИКА - СПЕКТР
-};
-
-static const Page ppMath
-(
-    &pService, 0,
+DEF_PAGE_2(ppMath, pService, NamePage::Math,
     "МАТЕМАТИКА", "MATH",
     "Математические функции и БПФ",
     "Mathematical functions and FFT",
-    NamePage::Math, &itemsMath
-);
+    pppMath_Function,     // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ
+    pppMath_FFT,          // СЕРВИС - МАТЕМАТИКА - СПЕКТР
+    nullptr, nullptr, nullptr, nullptr
+)
 
 // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ ///
-static const arrayItems itemsMath_Function =
-{
-    (void*)&sbMath_Function_Exit,       // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Выход
-    (void*)&sbMath_Function_ModeDraw,   // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Экран
-    (void*)&sbMath_Function_Type,       // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Вид
-    (void*)&sbMath_Function_ModeRegSet, // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Режим ручки УСТАНОВКА
-    (void*)&sbMath_Function_RangeA,     // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Масштаб 1-го канала
-    (void*)&sbMath_Function_RangeB      // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Масштаб 2-го канала    
-};
-
-static const Page pppMath_Function
-(
-    &ppMath, IsActive_Math_Function,
+DEF_PAGE_6(pppMath_Function, ppMath, NamePage::SB_MathFunction, 
     "ФУНКЦИЯ", "FUNCTION",
     "Установка и выбор математической функции - сложения или умножения",
     "Installation and selection of mathematical functions - addition or multiplication",
-    NamePage::SB_MathFunction, &itemsMath_Function, OnPress_Math_Function, EmptyFuncVV, OnRegSet_Math_Function
+    sbMath_Function_Exit,       // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Выход
+    sbMath_Function_ModeDraw,   // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Экран
+    sbMath_Function_Type,       // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Вид
+    sbMath_Function_ModeRegSet, // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Режим ручки УСТАНОВКА
+    sbMath_Function_RangeA,     // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Масштаб 1-го канала
+    sbMath_Function_RangeB,     // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Масштаб 2-го канала    
+    IsActive_Math_Function, OnPress_Math_Function, nullptr, OnRegSet_Math_Function
 );
 
 void *PageService::Math::Function::GetPointer()
@@ -356,13 +320,10 @@ static void OnRegSet_Math_Function(int delta)
 }
 
 // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Выход -------------------------------------------------------------------------------------------------------------
-static const SmallButton sbMath_Function_Exit
-(
-    &pppMath_Function,
-    COMMON_BEGIN_SB_EXIT,
-    EmptyFuncVV,
-    DrawSB_Exit
-);
+DEF_SMALL_BUTTON(sbMath_Function_Exit, pppMath_Function,
+    "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
+    nullptr, DrawSB_Exit, nullptr
+)
 
 // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Экран -------------------------------------------------------------------------------------------------------------
 static const arrayHints hintsMath_Function_ModeDraw =
@@ -375,16 +336,12 @@ static const arrayHints hintsMath_Function_ModeDraw =
                                             "Signals and mathematical function are removed in one window"}
 };
 
-static const SmallButton sbMath_Function_ModeDraw
-(
-    &pppMath_Function, 0,
+DEF_SMALL_BUTTON(sbMath_Function_ModeDraw, pppMath_Function,
     "Экран", "Display",
     "Выбирает режим отображения математического сигнала",
     "Chooses the mode of display of a mathematical signal",
-    OnPress_Math_Function_ModeDraw,
-    Draw_Math_Function_ModeDraw,
-    &hintsMath_Function_ModeDraw
-);
+    OnPress_Math_Function_ModeDraw, Draw_Math_Function_ModeDraw, &hintsMath_Function_ModeDraw
+)
 
 static void OnPress_Math_Function_ModeDraw(void)
 {
@@ -433,16 +390,12 @@ static const arrayHints hintsMath_Function_Type =
     { Draw_Math_Function_Type_Mul,      "Умножение",    "Multiplication" }
 };
 
-static const SmallButton sbMath_Function_Type
-(
-    &pppMath_Function, 0,
+DEF_SMALL_BUTTON(sbMath_Function_Type, pppMath_Function,
     "Вид", "Type",
     "Выбор математической функции",
     "Choice of mathematical function",
-    OnPress_Math_Function_Type,
-    Draw_Math_Function_Type,
-    &hintsMath_Function_Type
-);
+    OnPress_Math_Function_Type, Draw_Math_Function_Type, &hintsMath_Function_Type
+)
 
 static void OnPress_Math_Function_Type(void)
 {
@@ -475,16 +428,12 @@ static const arrayHints hintsMath_Function_ModeRegSet =
     {Draw_Math_Function_ModeRegSet_RShift, "Управление смещением", "Management of shift"}
 };
 
-static const SmallButton sbMath_Function_ModeRegSet
-(
-    &pppMath_Function, 0,
+DEF_SMALL_BUTTON(sbMath_Function_ModeRegSet, pppMath_Function,
     "Режим ручки УСТАНОВКА", "Mode regulator SET",
     "Выбор режима ручки УСТАНОВКА - управление масштабом или смещением",
     "Choice mode regulcator УСТАНОВКА - management of scale or shift",
-    OnPress_Math_Function_ModeRegSet,
-    Draw_Math_Function_ModeRegSet,
-    &hintsMath_Function_ModeRegSet
-);
+    OnPress_Math_Function_ModeRegSet, Draw_Math_Function_ModeRegSet, &hintsMath_Function_ModeRegSet
+)
 
 static void OnPress_Math_Function_ModeRegSet(void)
 {
@@ -508,15 +457,12 @@ static void Draw_Math_Function_ModeRegSet_RShift(int x, int y)
 }
 
 // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Масштаб 1-го канала -----------------------------------------------------------------------------------------------
-static const SmallButton sbMath_Function_RangeA
-(
-    &pppMath_Function, 0,
+DEF_SMALL_BUTTON(sbMath_Function_RangeA, pppMath_Function,
     "Масштаб 1-го канала", "Scale of the 1st channel",
     "Берёт масштаб для математического сигнала из первого канала",
     "Takes scale for a mathematical signal from the first channel",
-    OnPress_Math_Function_RangeA,
-    Draw_Math_Function_RangeA
-);
+    OnPress_Math_Function_RangeA, Draw_Math_Function_RangeA, nullptr
+)
 
 static void OnPress_Math_Function_RangeA(void)
 {
@@ -530,15 +476,12 @@ static void Draw_Math_Function_RangeA(int x, int y)
 }
 
 // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Масштаб 2-го канала -----------------------------------------------------------------------------------------------
-static const SmallButton sbMath_Function_RangeB
-(
-    &pppMath_Function, 0,
+DEF_SMALL_BUTTON(sbMath_Function_RangeB, pppMath_Function,
     "Масштаб 2-го канала", "Scale of the 2nd channel",
     "Берёт масштаб для математического сигнала из второго канала",
     "Takes scale for a mathematical signal from the second channel",
-    OnPress_Math_Function_RangeB,
-    Draw_Math_Function_RangeB
-);
+    OnPress_Math_Function_RangeB, Draw_Math_Function_RangeB, nullptr
+)
 
 static void OnPress_Math_Function_RangeB(void)
 {
@@ -552,24 +495,18 @@ static void Draw_Math_Function_RangeB(int x, int y)
 }
 
 // СЕРВИС - МАТЕМАТИКА - СПЕКТР ////
-static const arrayItems itemsMath_FFT =
-{
-    (void*)&cMath_FFT_Enable,       // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Отображение
-    (void*)&cMath_FFT_Scale,        // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Шкала
-    (void*)&cMath_FFT_Source,       // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Источник
-    (void*)&cMath_FFT_Window,       // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Окно
-    (void*)&ppppMath_FFT_Cursors,   // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ
-    (void*)&cMath_FFT_Limit         // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Диапазон
-};
-
-static const Page pppMath_FFT
-(
-    &ppMath, IsActive_Math_FFT,
+DEF_PAGE_6(pppMath_FFT, ppMath, NamePage::MathFFT,
     "СПЕКТР", "SPECTRUM",
     "Отображение спектра входного сигнала",
     "Mapping the input signal spectrum",
-    NamePage::MathFFT, &itemsMath_FFT, OnPress_Math_FFT
-);
+    cMath_FFT_Enable,       // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Отображение
+    cMath_FFT_Scale,        // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Шкала
+    cMath_FFT_Source,       // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Источник
+    cMath_FFT_Window,       // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Окно
+    ppppMath_FFT_Cursors,   // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ
+    cMath_FFT_Limit,        // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Диапазон
+    IsActive_Math_FFT, OnPress_Math_FFT, nullptr, nullptr
+)
 
 static bool IsActive_Math_FFT(void)
 {
@@ -585,91 +522,61 @@ static void OnPress_Math_FFT(void)
 }
 
 // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Отображение --------------------------------------------------------------------------------------------------------
-static const Choice cMath_FFT_Enable =
-{
-    TypeItem::Choice, &pppMath_FFT, 0,
-    {
-        "Отображение", "Display",
-        "Включает и выключает отображение спектра",
-        "Enables or disables the display of the spectrum"
-    },
-    {
-        {DISABLE_RU,    DISABLE_EN},
-        {ENABLE_RU,     ENABLE_EN}
-    },
-    (int8*)&ENABLED_FFT
-};
+DEF_CHOICE_2(cMath_FFT_Enable, pppMath_FFT,
+    "Отображение", "Display",
+    "Включает и выключает отображение спектра",
+    "Enables or disables the display of the spectrum",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU,  ENABLE_EN,
+    (int8)ENABLED_FFT, nullptr, nullptr, nullptr
+)
 
 // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Шкала --------------------------------------------------------------------------------------------------------------
-static const Choice cMath_FFT_Scale =
-{
-    TypeItem::Choice, &pppMath_FFT, 0,
-    {
-        "Шкала", "Scale",
-        "Задаёт масштаб вывода спектра - линейный или логарифмический",
-        "Sets the scale of the output spectrum - linear or logarithmic"
-    },
-    {
-        {"Логарифм",    "Log"},
-        {"Линейная",    "Linear"}
-    },
-    (int8*)&SCALE_FFT
-};
+DEF_CHOICE_2(cMath_FFT_Scale, pppMath_FFT,
+    "Шкала", "Scale",
+    "Задаёт масштаб вывода спектра - линейный или логарифмический",
+    "Sets the scale of the output spectrum - linear or logarithmic",
+    "Логарифм", "Log",
+    "Линейная", "Linear",
+    (int8)SCALE_FFT, nullptr, nullptr, nullptr
+)
 
 // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Источник -----------------------------------------------------------------------------------------------------------
-static const Choice cMath_FFT_Source =
-{
-    TypeItem::Choice, &pppMath_FFT, 0,
-    {
-        "Источник", "Source",
-        "Выбор источника для расчёта спектра",
-        "Selecting the source for the calculation of the spectrum"
-    },
-    {
-        {"Канал 1",     "Channel 1"},
-        {"Канал 2",     "Channel 2"},
-        {"Канал 1 + 2", "Channel 1 + 2"}
-    },
-    (int8*)&SOURCE_FFT
-};
+DEF_CHOICE_3(cMath_FFT_Source, pppMath_FFT,
+    "Источник", "Source",
+    "Выбор источника для расчёта спектра",
+    "Selecting the source for the calculation of the spectrum",
+    "Канал 1",     "Channel 1",
+    "Канал 2",     "Channel 2",
+    "Канал 1 + 2", "Channel 1 + 2",
+    (int8)SOURCE_FFT, nullptr, nullptr, nullptr
+)
 
 // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Окно ---------------------------------------------------------------------------------------------------------------
-static const Choice cMath_FFT_Window =
-{
-    TypeItem::Choice, &pppMath_FFT, 0,
-    {
-        "Окно", "Window",
-        "Задаёт окно для расчёта спектра",
-        "Sets the window to calculate the spectrum"
-    },
-    {
-        {"Прямоугольн", "Rectangle"},
-        {"Хэмминга",    "Hamming"},
-        {"Блэкмена",    "Blackman"},
-        {"Ханна",       "Hann"}
-    },
-    (int8*)&WINDOW_FFT
-};
+DEF_CHOICE_4(cMath_FFT_Window, pppMath_FFT,
+    "Окно", "Window",
+    "Задаёт окно для расчёта спектра",
+    "Sets the window to calculate the spectrum",
+    "Прямоугольн", "Rectangle",
+    "Хэмминга",    "Hamming",
+    "Блэкмена",    "Blackman",
+    "Ханна",       "Hann",
+    (int8)WINDOW_FFT, nullptr, nullptr, nullptr
+)
 
 // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ ------------------------------------------------------------------------------------------------------------
-static const arrayItems itemsMath_FFT_Cursors =
-{
-    (void*)&cMath_FFT_Cursors_Exit,     // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ - Выход
-    (void*)&cMath_FFT_Cursors_Source,   // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ - Источник
-    (void*)0,
-    (void*)0,
-    (void*)0,
-    (void*)0
-};
-
-static const Page ppppMath_FFT_Cursors
-(
-    &pppMath_FFT, IsActive_Math_FFT_Cursors,
+DEF_PAGE_6(ppppMath_FFT_Cursors, pppMath_FFT, NamePage::SB_MathCursorsFFT,
     "КУРСОРЫ", "CURSORS",
     "Включает курсоры для измерения параметров спектра",
     "Includes cursors to measure the parameters of the spectrum",
-    NamePage::SB_MathCursorsFFT, &itemsMath_FFT_Cursors, EmptyFuncVV, EmptyFuncVV, OnRegSet_Math_FFT_Cursors
-);
+    cMath_FFT_Cursors_Exit,     // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ - Выход
+    cMath_FFT_Cursors_Source,   // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ - Источник
+    Item::empty,
+    Item::empty,
+    Item::empty,
+    Item::empty,
+    IsActive_Math_FFT_Cursors, nullptr, nullptr, OnRegSet_Math_FFT_Cursors
+)
 
 void *PageService::Math::FFT::Cursors::GetPointer()
 {
@@ -688,13 +595,10 @@ static void OnRegSet_Math_FFT_Cursors(int angle)
 }
 
 // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ - Выход ----------------------------------------------------------------------------------------------------
-static const SmallButton cMath_FFT_Cursors_Exit
-(
-    &ppppMath_FFT_Cursors,
-    COMMON_BEGIN_SB_EXIT,
-    OnPress_Math_FFT_Cursors_Exit,
-    DrawSB_Exit
-);
+DEF_SMALL_BUTTON(cMath_FFT_Cursors_Exit, ppppMath_FFT_Cursors,
+    "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
+    OnPress_Math_FFT_Cursors_Exit, DrawSB_Exit, nullptr
+)
 
 static void OnPress_Math_FFT_Cursors_Exit(void)
 {
@@ -702,15 +606,12 @@ static void OnPress_Math_FFT_Cursors_Exit(void)
 }
 
 // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ - Источник -------------------------------------------------------------------------------------------------
-static const SmallButton cMath_FFT_Cursors_Source
-(
-    &ppppMath_FFT_Cursors, 0,
+DEF_SMALL_BUTTON(cMath_FFT_Cursors_Source, ppppMath_FFT_Cursors,
     "Источник", "Source",
     "Выбор источника для расчёта спектра",
     "Source choice for calculation of a range",
-    OnPress_Math_FFT_Cursors_Source,
-    Draw_Math_FFT_Cursors_Source
-);
+    OnPress_Math_FFT_Cursors_Source, Draw_Math_FFT_Cursors_Source, nullptr
+)
 
 static void OnPress_Math_FFT_Cursors_Source(void)
 {
@@ -723,21 +624,15 @@ static void Draw_Math_FFT_Cursors_Source(int x, int y)
 }
 
 // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Диапазон -----------------------------------------------------------------------------------------------------------
-static const Choice cMath_FFT_Limit =
-{
-    TypeItem::Choice, &pppMath_FFT,  IsActive_Math_FFT_Limit,
-    {
-        "Диапазон", "Range",
-        "Здесь можно задать предел наблюдения за мощностью спектра",
-        "Here you can set the limit of monitoring the power spectrum"
-    },
-    {
-        {"-40дБ",   "-40dB"},
-        {"-60дБ",   "-60dB"},
-        {"-80дБ",   "-80dB"}
-    },
-    (int8*)&FFT_MAX_DB
-};
+DEF_CHOICE_3(cMath_FFT_Limit, pppMath_FFT,
+    "Диапазон", "Range",
+    "Здесь можно задать предел наблюдения за мощностью спектра",
+    "Here you can set the limit of monitoring the power spectrum",
+    "-40дБ", "-40dB",
+    "-60дБ", "-60dB",
+    "-80дБ", "-80dB",
+    (int8)FFT_MAX_DB, IsActive_Math_FFT_Limit, nullptr, nullptr
+)
 
 static bool IsActive_Math_FFT_Limit(void)
 {
@@ -747,41 +642,34 @@ static bool IsActive_Math_FFT_Limit(void)
 // СЕРВИС - ETHERNET ///////////////
 static const arrayItems itemsEthernet =
 {
-    (void*)&cEthernet_Enable,       // СЕРВИС - ETHERNET - Ethernet
-    (void*)&ipEthernet_IP,          // СЕРВИС - ETHERNET - IP адрес
-    (void*)&ipEthernet_Mask,        // СЕРВИС - ETHERNET - Маска подсети
-    (void*)&ipEthernet_Gateway,     // СЕРВИС - ETHERNET - Шлюз
-    (void*)&macEthernet_MAC         // СЕРВИС - ETHERNET - Физ адрес
 };
 
-static const Page ppEthernet
-(
-    &pService, 0,
+DEF_PAGE_5(ppEthernet, pService, NamePage::ServiceEthernet,
     "ETHERNET", "ETHERNET",
     "Настройки ethernet",
     "Settings of ethernet",
-    NamePage::ServiceEthernet, &itemsEthernet
-);
+    cEthernet_Enable,       // СЕРВИС - ETHERNET - Ethernet
+    ipEthernet_IP,          // СЕРВИС - ETHERNET - IP адрес
+    ipEthernet_Mask,        // СЕРВИС - ETHERNET - Маска подсети
+    ipEthernet_Gateway,     // СЕРВИС - ETHERNET - Шлюз
+    macEthernet_MAC,        // СЕРВИС - ETHERNET - Физ адрес
+    nullptr, nullptr, nullptr, nullptr
+)
 
 // СЕРВИС - ETHERNET - Ethernet ----------------------------------------------------------------------------------------------------------------------
-static const Choice cEthernet_Enable =
-{
-    TypeItem::Choice, &ppEthernet, 0,
-    {
-        "Ethernet", "Ethernet"
-        ,
-        "Чтобы задействовать ethernet, выберите \"Включено\" и выключите прибор.\n"
-        "Чтобы отключить ethernet, выберите \"Отключено\" и выключите прибор."
-        ,
-        "To involve ethernet, choose \"Included\" and switch off the device.\n"
-        "To disconnect ethernet, choose \"Disconnected\" and switch off the device."
-    },
-    {
-        {"Включено",    "Included"},
-        {"Отключено",   "Disconnected"}
-    },
-    (int8*)&ETH_ENABLE, OnChanged_Ethernet_Enable
-};
+DEF_CHOICE_2(cEthernet_Enable, ppEthernet,
+    "Ethernet", "Ethernet"
+    ,
+    "Чтобы задействовать ethernet, выберите \"Включено\" и выключите прибор.\n"
+    "Чтобы отключить ethernet, выберите \"Отключено\" и выключите прибор."
+    ,
+    "To involve ethernet, choose \"Included\" and switch off the device.\n"
+    "To disconnect ethernet, choose \"Disconnected\" and switch off the device."
+    ,
+    "Включено",  "Included",
+    "Отключено", "Disconnected",
+    (int8)ETH_ENABLE, nullptr,  OnChanged_Ethernet_Enable, nullptr
+)
 
 static void OnChanged_Ethernet_Enable(bool)
 {
@@ -790,167 +678,112 @@ static void OnChanged_Ethernet_Enable(bool)
 }
 
 // СЕРВИС - ETHERNET - IP адрес ----------------------------------------------------------------------------------------------------------------------
-static const IPaddressStruct structIP =
-{
-    TypeItem::IP, &ppEthernet, 0,
-    {   "IP адрес", "IP-address",
-        "Установка IP адреса",
-        "Set of IP-address",  },
-    &IP_ADDR0, &IP_ADDR1, &IP_ADDR2, &IP_ADDR3,
-    OnChanged_Ethernet_Enable,
-    &PORT_ETH
-};
-
-static const IPaddress ipEthernet_IP
-(
-    &structIP
-);
-
+DEF_IPADDRESS(structIP, ppEthernet,
+    "IP адрес", "IP-address",
+    "Установка IP адреса",
+    "Set of IP-address",
+    IP_ADDR0, IP_ADDR1, IP_ADDR2, IP_ADDR3, PORT_ETH, OnChanged_Ethernet_Enable
+)
 
 // СЕРВИС - ETHERNET - Маска подсети -----------------------------------------------------------------------------------------------------------------
-static const IPaddressStruct structMask =
-{
-    TypeItem::IP, &ppEthernet, 0,
-    {   "Маска подсети", "Network mask",
-        "Установка маски подсети",
-        "Set of network mask",    },
-    &NETMASK_ADDR0, &NETMASK_ADDR1, &NETMASK_ADDR2, &NETMASK_ADDR3,
-    OnChanged_Ethernet_Enable    
-};
-
-static const IPaddress ipEthernet_Mask
-(
-    &structMask
-);
+static uint16 portMask = 0;
+DEF_IPADDRESS(structMask, ppEthernet,
+    "Маска подсети", "Network mask",
+    "Установка маски подсети",
+    "Set of network mask",
+    NETMASK_ADDR0, NETMASK_ADDR1, NETMASK_ADDR2, NETMASK_ADDR3, portMask, OnChanged_Ethernet_Enable
+)
 
 // СЕРВИС - ETHERNET - Шлюз --------------------------------------------------------------------------------------------------------------------------
-static const IPaddressStruct structGateway =
-{
-    TypeItem::IP, &ppEthernet, 0,
-    {   "Шлюз", "Gateway",
-        "Установка адреса основного шлюза",
-        "Set of gateway address", },
-    &GW_ADDR0, &GW_ADDR1, &GW_ADDR2, &GW_ADDR3,
-    OnChanged_Ethernet_Enable
-};
-
-static const IPaddress ipEthernet_Gateway
-(
-    &structGateway
-);
+static uint16 portGateway = 0;
+DEF_IPADDRESS(structGateway, ppEthernet,
+    "Шлюз", "Gateway",
+    "Установка адреса основного шлюза",
+    "Set of gateway address",
+    GW_ADDR0, GW_ADDR1, GW_ADDR2, GW_ADDR3, portGateway, OnChanged_Ethernet_Enable
+)
 
 // СЕРВИС - ETHERNET - Физ адрес ---------------------------------------------------------------------------------------------------------------------
-static const MACaddress macEthernet_MAC =
-{
-    TypeItem::MAC, &ppEthernet, 0,
-    {
-        "Физ адрес", "MAC-address",
-        "Установка физического адреса",
-        "Set of MAC-address"
-    },
-    &MAC_ADDR0, &MAC_ADDR1, &MAC_ADDR2, &MAC_ADDR3, &MAC_ADDR4, &MAC_ADDR5,
-    OnChanged_Ethernet_Enable
-};
+DEF_MACADDRESS(macEthernet_MAC, ppEthernet,
+    "Физ адрес", "MAC-address",
+    "Установка физического адреса",
+    "Set of MAC-address",
+    MAC_ADDR0, MAC_ADDR1, MAC_ADDR2, MAC_ADDR3, MAC_ADDR4, MAC_ADDR5, OnChanged_Ethernet_Enable
+)
 
 // СЕРВИС - Звук -------------------------------------------------------------------------------------------------------------------------------------
-static const Choice cSound =
-{
-    TypeItem::Choice, &pService, 0,
-    {
-        "Звук", "Sound",
-        "Включение/выключение звука",
-        "Inclusion/switching off of a sound"
-    },
-    {
-        {DISABLE_RU,    DISABLE_EN},
-        {ENABLE_RU,     ENABLE_EN}
-    },
-    (int8*)&SOUND_ENABLED
-};
+DEF_CHOICE_2(cSound, pService,
+    "Звук", "Sound",
+    "Включение/выключение звука",
+    "Inclusion/switching off of a sound",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU,  ENABLE_EN,
+    (int8)SOUND_ENABLED, nullptr, nullptr, nullptr
+)
 
 
 // СЕРВИС - Язык -------------------------------------------------------------------------------------------------------------------------------------
-static const Choice cLang =
-{
-    TypeItem::Choice, &pService, 0,
-    {
-        "Язык", "Language",
-        "Позволяет выбрать язык меню",
-        "Allows you to select the menu language"
-    },
-    {
-        {"Русский",     "Russian"},
-        {"Английский",  "English"}
-    },
-    (int8*)&LANG
-};
+DEF_CHOICE_2(cLang, pService,
+    "Язык", "Language",
+    "Позволяет выбрать язык меню",
+    "Allows you to select the menu language",
+    "Русский",    "Russian",
+    "Английский", "English",
+    (int8)LANG, nullptr, nullptr, nullptr
+)
 
 
 // СЕРВИС - Время ------------------------------------------------------------------------------------------------------------------------------------
 static int8 dServicetime = 0;
 static int8 hours = 0, minutes = 0, secondes = 0, year = 0, month = 0, day = 0;
-static const TimeItem tTime =
-{
-    TypeItem::Time, &pService, 0,
-    {
-        "Время", "Time"
-        ,
-        "Установка текущего времени.\nПорядок работы:\n"
-        "Нажать на элемент меню \"Время\". Откроется меню установки текущего времени. Короткими нажатиями кнопки на цифровой клавиатуре, соответсвующей "
-        "элементу управления \"Время\", выделить часы, минуты, секунды, год, месяц, или число. Выделенный элемент обозначается мигающей областью. "
-        "Вращением ручки УСТАНОВКА установить необходимое значение. Затем выделить пункт \"Сохранить\", нажать и удреживать более 0.5 сек кнопку на панели "
-        "управления. Меню установки текущего временя закроется с сохранением нового текущего времени. Нажатие длительное удержание кнопки на любом другом элементе "
-        "приведёт к закрытию меню установки текущего времени без сохранения нового текущего времени"
-        ,
-        "Setting the current time. \nPoryadok work:\n"
-        "Click on the menu item \"Time\".The menu set the current time.By briefly pressing the button on the numeric keypad of conformity "
-        "Item \"Time\", highlight the hours, minutes, seconds, year, month, or a number.The selected item is indicated by a flashing area. "
-        "Turn the setting knob to set the desired value. Then highlight \"Save\", press and udrezhivat more than 0.5 seconds, the button on the panel "
-        "Item. Menu Setting the current time will be closed to the conservation of the new current time. Pressing a button on the prolonged retention of any other element "
-        "will lead to the closure of the current time setting menu without saving the new current time"
-    },
-    &dServicetime, &hours, &minutes, &secondes, &month, &day, &year
-};
+DEF_TIME(tTime, pService,
+    "Время", "Time"
+    ,
+    "Установка текущего времени.\nПорядок работы:\n"
+    "Нажать на элемент меню \"Время\". Откроется меню установки текущего времени. Короткими нажатиями кнопки на цифровой клавиатуре, соответсвующей "
+    "элементу управления \"Время\", выделить часы, минуты, секунды, год, месяц, или число. Выделенный элемент обозначается мигающей областью. "
+    "Вращением ручки УСТАНОВКА установить необходимое значение. Затем выделить пункт \"Сохранить\", нажать и удреживать более 0.5 сек кнопку на панели "
+    "управления. Меню установки текущего временя закроется с сохранением нового текущего времени. Нажатие длительное удержание кнопки на любом другом элементе "
+    "приведёт к закрытию меню установки текущего времени без сохранения нового текущего времени"
+    ,
+    "Setting the current time. \nPoryadok work:\n"
+    "Click on the menu item \"Time\".The menu set the current time.By briefly pressing the button on the numeric keypad of conformity "
+    "Item \"Time\", highlight the hours, minutes, seconds, year, month, or a number.The selected item is indicated by a flashing area. "
+    "Turn the setting knob to set the desired value. Then highlight \"Save\", press and udrezhivat more than 0.5 seconds, the button on the panel "
+    "Item. Menu Setting the current time will be closed to the conservation of the new current time. Pressing a button on the prolonged retention of any other element "
+    "will lead to the closure of the current time setting menu without saving the new current time"
+    ,
+    dServicetime, hours, minutes, secondes, month, day, year
+)
 
 // СЕРВИС - Реж длит СИНХР ---------------------------------------------------------------------------------------------------------------------------
-static const Choice cModeLongPressButtonTrig =
-{
-    TypeItem::Choice, &pService, 0,
-    {
-        "Реж длит СИНХР", "Mode long СИНХР"
-        ,
-        "Устанавливает действия для длительного нажатия кнопки СИНХР:\n\"Сброс уровня\" - установка уровня синхронизации в ноль,\n\"Автоуровень\" "
-        "- автоматическое определение и установка уровня синхронизации"
-        ,
-        "Sets the action for long press CLOCK:\n\"Reset trig lvl\" - to set the trigger level to zero, \n\"Auto level\""
-        "- Automatically detect and install the trigger level"
-    },
-    {
-        {"Сброс уровня",    "Reset trig level"},
-        {"Автоуровень",     "Autolevel"}
-    },
-    (int8*)&MODE_LONG_PRESS_TRIG
-};
+DEF_CHOICE_2(cModeLongPressButtonTrig, pService,
+    "Реж длит СИНХР", "Mode long СИНХР"
+    ,
+    "Устанавливает действия для длительного нажатия кнопки СИНХР:\n\"Сброс уровня\" - установка уровня синхронизации в ноль,\n\"Автоуровень\" "
+    "- автоматическое определение и установка уровня синхронизации"
+    ,
+    "Sets the action for long press CLOCK:\n\"Reset trig lvl\" - to set the trigger level to zero, \n\"Auto level\""
+    "- Automatically detect and install the trigger level"
+    ,
+    "Сброс уровня", "Reset trig level",
+    "Автоуровень",  "Autolevel",
+    (int8)MODE_LONG_PRESS_TRIG, nullptr, nullptr, nullptr
+)
 
 // СЕРВИС - ИНФОРМАЦИЯ -------------------------------------------------------------------------------------------------------------------------------
-static const arrayItems itemsInformation =
-{
-    (void*)&sbInformation_Exit, // СЕРВИС - ИНФОРМАЦИЯ - Выход
-    (void*)0,
-    (void*)0,
-    (void*)0,
-    (void*)0,
-    (void*)0
-};
-
-static const Page ppInformation
-(
-    &pService, 0,
+DEF_PAGE_6(ppInformation, pService, NamePage::SB_Information,
     "ИНФОРМАЦИЯ", "INFORMATION",
     "Выводит на экран идентификационные данные осциллографа",
     "Displays identification data of the oscilloscope",
-    NamePage::SB_Information, &itemsInformation, OnPress_Information, EmptyFuncVV, EmptyFuncVI
-);
+    sbInformation_Exit, // СЕРВИС - ИНФОРМАЦИЯ - Выход
+    Item::empty,
+    Item::empty,
+    Item::empty,
+    Item::empty,
+    Item::empty,
+    nullptr, OnPress_Information, nullptr, nullptr
+)
 
 void *PageService::Information::GetPointer()
 {
@@ -1004,13 +837,10 @@ static void Information_Draw(void)
 }
 
 // СЕРВИС - ИНФОРМАЦИЯ - Выход -----------------------------------------------------------------------------------------------------------------------
-const SmallButton sbInformation_Exit
-(
-    &ppInformation,
-    COMMON_BEGIN_SB_EXIT,
-    OnPress_Information_Exit,
-    DrawSB_Exit
-);
+DEF_SMALL_BUTTON(sbInformation_Exit, ppInformation,
+    "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
+    OnPress_Information_Exit, DrawSB_Exit, nullptr
+)
 
 static void OnPress_Information_Exit(void)
 {

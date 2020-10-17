@@ -29,6 +29,30 @@ static const DataItem di##name = { TypeItem::GovernorColor, &keeper, funcActive,
 static const GovernorColor name(&di##name);
 
 
+#define DEF_IPADDRESS(name, keeper, titleRU, titleEN, hintRU, hintEN,   \
+    ip0, ip1, ip2, ip3, port, funcOnChanged)    \
+static const DataIPaddress dip##name = {&ip0, &ip1, &ip2, &ip3, funcOnChanged, &port};  \
+static const char *th##name[] = {titleRU, titleEN, hintRU, hintEN}; \
+static const DataItem di##name = { TypeItem::IP, &keeper, nullptr, th##name, &dip##name};   \
+static const IPaddress name(&di##name);
+
+
+#define DEF_MACADDRESS(name, keeper, titleRU, titleEN, hintRU, hintEN,  \
+    mac0, mac1, mac2, mac3, mac4, mac5, funcOnChanged)  \
+static const DataMACaddress dmac##name = {&mac0, &mac1, &mac2, &mac3, &mac4, &mac5, funcOnChanged}; \
+static const char *th##name[] = {titleRU, titleEN, hintRU, hintEN}; \
+static const DataItem di##name = { TypeItem::MAC, &keeper, nullptr, th##name, &dmac##name}; \
+static const MACaddress name(&di##name);
+
+
+#define DEF_TIME(name, keeper, titleRU, titleEN, hintRU, hintEN,    \
+    curField, hours, minutes, seconds, month, day, year)    \
+static const DataTime dt##name = {&curField, &hours, &minutes, &seconds, &month, &day, &year};  \
+static const char *th##name[] = {titleRU, titleEN, hintRU, hintEN}; \
+static const DataItem di##name = { TypeItem::Time, &keeper, nullptr, th##name, &dt##name};  \
+static const TimeItem name(&di##name);
+
+
 #define DEF_PAGE_2(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN,                                              \
     item1, item2, funcActive, funcPress, funcDraw, funcRegSet)   \
 static const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                    \
@@ -90,6 +114,16 @@ static const Page name(&di##name);
     funcActive, funcPress, funcDraw, funcRegSet)   \
 static const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                    \
 static Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, (Item*)&item4, (Item*)&item5, (Item*)&item6, (Item*)&item7, (Item*)&item8, (Item*)&item9, nullptr};                             \
+static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                 \
+static const DataItem di##name = { TypeItem::Page, &keeper, funcActive, th##name, &dp##name};           \
+static const Page name(&di##name);
+
+
+#define DEF_PAGE_10(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN,                                              \
+    item1, item2, item3, item4, item5, item6, item7, item8, item9, item10,  \
+    funcActive, funcPress, funcDraw, funcRegSet)   \
+static const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                    \
+static Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, (Item*)&item4, (Item*)&item5, (Item*)&item6, (Item*)&item7, (Item*)&item8, (Item*)&item9, (Item*)&item10, nullptr};                             \
 static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                 \
 static const DataItem di##name = { TypeItem::Page, &keeper, funcActive, th##name, &dp##name};           \
 static const Page name(&di##name);
