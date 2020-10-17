@@ -190,25 +190,21 @@ static void PressSB_MemExtSetNameSave()
 
 extern const Page mspMemLast;
 
-const SmallButton sbMemLastPrev
-(
-    &mspMemLast, 0,
+DEF_SMALL_BUTTON(sbMemLastPrev, mspMemLast,
     "Предыдущий", "Previous",
     "Перейти к предыдущему сигналу",
     "Go to the previous signal",
-    PressSB_MemLast_Prev,
-    DrawSB_MemLast_Prev
-);
+    PressSB_MemLast_Prev, DrawSB_MemLast_Prev
+)
 
-const SmallButton sbMemLastNext
-(
-    &mspMemLast, 0,
+
+DEF_SMALL_BUTTON(sbMemLastNext, mspMemLast,
     "Следующий", "Next",
     "Перейти к следующему сигналу",
     "Go to the next signal",
-    PressSB_MemLast_Next,
-    DrawSB_MemLast_Next
-);
+    PressSB_MemLast_Next, DrawSB_MemLast_Next
+)
+
 
 void PressSB_MemLast_IntEnter()
 {
@@ -218,15 +214,12 @@ void PressSB_MemLast_IntEnter()
     EXIT_FROM_INT_TO_LAST = 1;
 }
 
-const SmallButton sbMemLastIntEnter
-(
-    &mspMemLast, 0,
+DEF_SMALL_BUTTON(sbMemLastIntEnter, mspMemLast,
     "Внутр ЗУ", "Internal storage",
     "Нажмите эту кнопку, чтобы сохранить сигнал во внутреннем запоминающем устройстве",
     "Press this button to keep a signal in an internal memory",
-    PressSB_MemLast_IntEnter,
-    DrawSB_MemLast_IntEnter
-);
+    PressSB_MemLast_IntEnter, DrawSB_MemLast_IntEnter
+)
 
 const SmallButton sbMemLastSaveToFlash
 (

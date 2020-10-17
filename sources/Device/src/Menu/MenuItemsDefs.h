@@ -22,6 +22,13 @@ static const DataItem di##name = { TypeItem::Governor, &keeper, funcActive, th##
 static const Governor name(&di##name);
 
 
+#define DEF_GOVERNOR_COLOR(name, keeper, titleRU, titleEN, hintRU, hintEN, colorType, funcActive)   \
+static const DataGovernorColor dgc##name = { &colorType };  \
+static const char *th##name[] = {titleRU, titleEN, hintRU, hintEN}; \
+static const DataItem di##name = { TypeItem::GovernorColor, &keeper, funcActive, th##name, &dgc##name}; \
+static const GovernorColor name(&di##name);
+
+
 #define DEF_PAGE_2(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN,                                              \
     item1, item2, funcActive, funcPress, funcDraw, funcRegSet)   \
 static const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                    \
@@ -122,6 +129,16 @@ static const Choice name(&di##name);
     nameRu1, nameEn1, nameRu2, nameEn2, nameRu3, nameEn3, nameRu4, nameEn4, nameRu5, nameEn5,                                                       \
     cell, funcActive, funcChanged, funcDraw)                                                                                                                                    \
 static const char *names##name[] = {nameRu1, nameEn1, nameRu2, nameEn2, nameRu3, nameEn3, nameRu4, nameEn4, nameRu5, nameEn5, nullptr};    \
+static const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                                                                                                    \
+static const DataChoice dc##name = {names##name, &cell, funcChanged, funcDraw};                                                                                                         \
+static const DataItem di##name = { TypeItem::Choice, &keeper, funcActive, th##name, &dc##name};                                                                                         \
+static const Choice name(&di##name);
+
+
+#define DEF_CHOICE_6(name, keeper, titleRU, titleEN, hintRU, hintEN,                                                                                                                            \
+    nameRu1, nameEn1, nameRu2, nameEn2, nameRu3, nameEn3, nameRu4, nameEn4, nameRu5, nameEn5, nameRu6, nameEn6,                                                       \
+    cell, funcActive, funcChanged, funcDraw)                                                                                                                                    \
+static const char *names##name[] = {nameRu1, nameEn1, nameRu2, nameEn2, nameRu3, nameEn3, nameRu4, nameEn4, nameRu5, nameEn5, nameRu6, nameEn6, nullptr};    \
 static const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                                                                                                    \
 static const DataChoice dc##name = {names##name, &cell, funcChanged, funcDraw};                                                                                                         \
 static const DataItem di##name = { TypeItem::Choice, &keeper, funcActive, th##name, &dc##name};                                                                                         \

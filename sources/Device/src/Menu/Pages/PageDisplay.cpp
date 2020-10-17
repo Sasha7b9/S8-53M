@@ -65,7 +65,7 @@ static void OnChanged_Settings_AutoHide(bool autoHide);     // Вызывается при из
 // ДИСПЛЕЙ /////////////////////////
 extern const Page mainPage;
 
-DEF_PAGE_9(pDisplay,
+DEF_PAGE_9(pDisplay, mainPage, NamePage::Display,
     "ДИСПЛЕЙ", "DISPLAY",
     "Содержит настройки отображения дисплея.",
     "Contains settings of display of the Display::",
@@ -78,30 +78,30 @@ DEF_PAGE_9(pDisplay,
     mspGrid,
     mcTypeShift,
     mspSettings,
-    mainPage, NamePage::Display, nullptr, nullptr, nullptr, nullptr
+    nullptr, nullptr, nullptr, nullptr
 )
 
 
 // ДИСПЛЕЙ - Отображение -----------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcMapping,
+DEF_CHOICE_2(mcMapping, pDisplay,
     "Отображение", "View",
     "Задаёт режим отображения сигнала.",
     "Sets the display mode signal.",
     "Вектор", "Vector",
     "Точки",  "Points",
-    (int8)MODE_DRAW_SIGNAL, pDisplay, nullptr, nullptr, nullptr
+    (int8)MODE_DRAW_SIGNAL, nullptr, nullptr, nullptr
 )
 
 
 // ДИСПЛЕЙ - НАКОПЛЕНИЕ ////////////
-DEF_PAGE_3(mspAccumulation,
+DEF_PAGE_3(mspAccumulation, pDisplay, NamePage::DisplayAccumulation,
     "НАКОПЛЕНИЕ", "ACCUMULATION",
     "Настройки режима отображения последних сигналов на экране.",
     "Mode setting signals to display the last screen.",
     mcAccumulation_Number,
     mcAccumulation_Mode,
     mbAccumulation_Clear,
-    pDisplay, NamePage::DisplayAccumulation, IsActive_Accumulation, nullptr, nullptr, nullptr
+    IsActive_Accumulation, nullptr, nullptr, nullptr
 )
 
 static bool IsActive_Accumulation(void)
@@ -110,7 +110,7 @@ static bool IsActive_Accumulation(void)
 }
 
 // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Количество -----------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_9(mcAccumulation_Number,
+DEF_CHOICE_9(mcAccumulation_Number, mspAccumulation,
     "Количество", "Number"
     ,
     "Задаёт максимальное количество последних сигналов на экране. Если в настройке \"Режим\" выбрано \"Бесконечность\", экран очищается только "
@@ -130,12 +130,12 @@ DEF_CHOICE_9(mcAccumulation_Number,
     "64",            "64",
     "128",           "128",
     "Бесконечность", "Infinity",
-    (int8)ENUM_ACCUM, mspAccumulation, nullptr, nullptr, nullptr
+    (int8)ENUM_ACCUM, nullptr, nullptr, nullptr
 )
 
 
 // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Режим ----------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcAccumulation_Mode,
+DEF_CHOICE_2(mcAccumulation_Mode, mspAccumulation,
     "Режим", "Mode"
     ,
     "1. \"Сбрасывать\" - после накопления заданного количества измерения происходит очистка дисплея. Этот режим удобен, когда памяти не хватает "
@@ -150,16 +150,16 @@ DEF_CHOICE_2(mcAccumulation_Mode,
     ,
     "Не сбрасывать", "Not to dump",
     "Сбрасывать",    "Dump",
-    (int8)MODE_ACCUM, mspAccumulation, nullptr, nullptr, nullptr
+    (int8)MODE_ACCUM, nullptr, nullptr, nullptr
 )
 
 
 // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Очистить /
-DEF_BUTTON(mbAccumulation_Clear,
+DEF_BUTTON(mbAccumulation_Clear, mspAccumulation,
     "Очистить", "Clear",
     "Очищает экран от накопленных сигналов.",
     "Clears the screen of the saved-up signals.",
-    mspAccumulation, IsActive_Accumulation_Clear, OnPress_Accumulation_Clear
+    IsActive_Accumulation_Clear, OnPress_Accumulation_Clear
 )
 
 
@@ -175,13 +175,13 @@ void OnPress_Accumulation_Clear(void)
 
 
 // ДИСПЛЕЙ - УСРЕДНЕНИЕ ////////////
-DEF_PAGE_2(mspAveraging,
+DEF_PAGE_2(mspAveraging, pDisplay, NamePage::DisplayAverage,
     "УСРЕДНЕНИЕ", "AVERAGE",
     "Настройки режима усреднения по последним измерениям.",
     "Settings of the mode of averaging on the last measurements.",
     mcAveraging_Number,
     mcAveraging_Mode,
-    pDisplay, NamePage::DisplayAverage, IsActive_Averaging, nullptr, nullptr, nullptr
+    IsActive_Averaging, nullptr, nullptr, nullptr
 )
 
 static bool IsActive_Averaging(void)
@@ -191,7 +191,7 @@ static bool IsActive_Averaging(void)
 
 
 // ДИСПЛЕЙ - УСРЕДНЕНИЕ - Количество -----------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_10(mcAveraging_Number,
+DEF_CHOICE_10(mcAveraging_Number, mspAveraging,
     "Количество", "Number",
     "Задаёт количество последних измерений, по которым производится усреднение.",
     "Sets number of the last measurements on which averaging is made.",
@@ -205,11 +205,11 @@ DEF_CHOICE_10(mcAveraging_Number,
     "128",         "128",
     "256",         "256",
     "512",         "512",
-    (int8)ENUM_AVE, mspAveraging, nullptr, nullptr, nullptr
+    (int8)ENUM_AVE, nullptr, nullptr, nullptr
 )
 
 // ДИСПЛЕЙ - УСРЕДНЕНИЕ - Режим ----------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcAveraging_Mode,
+DEF_CHOICE_2(mcAveraging_Mode, mspAveraging,
     "Режим", "Mode"
     ,
     "1. \"Точно\" - точный режим усреднения, когда в расчёте участвуют только последние сигналы.\n"
@@ -221,12 +221,12 @@ DEF_CHOICE_2(mcAveraging_Mode,
     "memory.",
     "Точно",          "Accurately",
     "Приблизительно", "Around",
-    (int8)MODE_AVE, mspAveraging, nullptr, nullptr, nullptr
+    (int8)MODE_AVE, nullptr, nullptr, nullptr
 )
 
 
 // ДИСПЛЕЙ - Мин Макс --------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_8(mcMinMax,
+DEF_CHOICE_8(mcMinMax, pDisplay,
     "Мин Макс", "Min Max",
     "Задаёт количество последних измерений, по которым строятся ограничительные линии, огибающие минимумы и максимумы измерений.",
     "Sets number of the last measurements on which the limiting lines which are bending around minima and maxima of measurements are under construction.",
@@ -238,7 +238,7 @@ DEF_CHOICE_8(mcMinMax,
     "32",       "32",
     "64",       "64",
     "128",      "128",
-    (int8)ENUM_MIN_MAX, pDisplay, IsActive_MinMax, OnChanged_MinMax, nullptr
+    (int8)ENUM_MIN_MAX, IsActive_MinMax, OnChanged_MinMax, nullptr
 )
 
 static bool IsActive_MinMax(void) //-V524
@@ -262,7 +262,7 @@ static void OnChanged_MinMax(bool)
 
 
 // ДИСПЛЕЙ - Сглаживание -----------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_10(mcSmoothing,
+DEF_CHOICE_10(mcSmoothing, pDisplay,
     "Сглаживание", "Smoothing",
     "Устанавливает количество точек для расчёта сглаженного по соседним точкам сигнала.",
     "Establishes quantity of points for calculation of the signal smoothed on the next points.",
@@ -276,12 +276,12 @@ DEF_CHOICE_10(mcSmoothing,
     "8 точек",  "8 points",
     "9 точек",  "9 points",
     "10 точек", "10 points",
-    (int8)SMOOTHING, pDisplay, nullptr, nullptr, nullptr
+    (int8)SMOOTHING, nullptr, nullptr, nullptr
 )
 
 
 // ДИСПЛЕЙ - Частота обновл --------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_5(mcRefreshFPS,
+DEF_CHOICE_5(mcRefreshFPS, pDisplay,
     "Частота обновл", "Refresh rate",
     "Задаёт максимальное число выводимых в секунду кадров.",
     "Sets the maximum number of the shots removed in a second.",
@@ -290,7 +290,7 @@ DEF_CHOICE_5(mcRefreshFPS,
     "5",  "5",
     "2",  "2",
     "1",  "1",
-    (int8)ENUM_SIGNALS_IN_SEC, pDisplay, nullptr, OnChanged_RefreshFPS, nullptr
+    (int8)ENUM_SIGNALS_IN_SEC, nullptr, OnChanged_RefreshFPS, nullptr
 )
 
 void OnChanged_RefreshFPS(bool)
@@ -300,18 +300,18 @@ void OnChanged_RefreshFPS(bool)
 
 
 // ДИСПЛЕЙ - СЕТКА /////////////////
-DEF_PAGE_2(mspGrid,
+DEF_PAGE_2(mspGrid, pDisplay, NamePage::DisplayGrid,
     "СЕТКА", "GRID",
     "Содержит настройки отображения координатной сетки.",
     "Contains settings of display of a coordinate Grid::",
     mcGrid_Type,
     mgGrid_Brightness,
-    pDisplay, NamePage::DisplayGrid, nullptr, nullptr, nullptr, nullptr
+    nullptr, nullptr, nullptr, nullptr
 )
 
 
 // ДИСПЛЕЙ - СЕТКА - Тип -----------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_4(mcGrid_Type,
+DEF_CHOICE_4(mcGrid_Type, mspGrid,
     "Тип", "Type",
     "Выбор типа сетки.",
     "Choice like Grid.",
@@ -319,16 +319,16 @@ DEF_CHOICE_4(mcGrid_Type,
     "Тип 2", "Type 2",
     "Тип 3", "Type 3",
     "Тип 4", "Type 4",
-    (int8)TYPE_GRID, mspGrid, nullptr, nullptr, nullptr
+    (int8)TYPE_GRID, nullptr, nullptr, nullptr
 )
 
 
 // ДИСПЛЕЙ - СЕТКА - Яркость -------------------------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mgGrid_Brightness,
+DEF_GOVERNOR(mgGrid_Brightness, mspGrid,
     "Яркость", "Brightness",
     "Устанавливает яркость сетки.",
     "Adjust the brightness of the Grid.",
-    BRIGHTNESS_GRID, 0, 100, mspGrid, nullptr, OnChanged_Grid_Brightness, BeforeDraw_Grid_Brightness
+    BRIGHTNESS_GRID, 0, 100, nullptr, OnChanged_Grid_Brightness, BeforeDraw_Grid_Brightness
 )
 
 
@@ -347,18 +347,18 @@ static void BeforeDraw_Grid_Brightness(void)
 
 
 // ДИСПЛЕЙ - Смещение --------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcTypeShift,
+DEF_CHOICE_2(mcTypeShift, pDisplay,
     "Смещение", "Offset",
     "Задаёт режим удержания смещения по вертикали\n1. \"Напряжение\" - сохраняется напряжение смещения.\n2. \"Деления\" - сохраняется положение смещения на экране.",
     "Sets the mode of retaining the vertical displacement\n1. \"Voltage\" - saved dressing bias.\n2. \"Divisions\" - retained the position of the offset on the screen.",
     "Напряжение", "Voltage",
     "Деления",    "Divisions",
-    (int8)LINKING_RSHIFT, pDisplay, nullptr, nullptr, nullptr
+    (int8)LINKING_RSHIFT, nullptr, nullptr, nullptr
 )
 
 
 // ДИСПЛЕЙ - НАСТРОЙКИ /////////////
-DEF_PAGE_7(mspSettings,
+DEF_PAGE_7(mspSettings, pDisplay, NamePage::ServiceDisplay,
     "НАСТРОЙКИ", "SETTINGS",
     "Дополнительные настройки дисплея",
     "Additional display settings",
@@ -369,7 +369,7 @@ DEF_PAGE_7(mspSettings,
     mcSettings_ShowStringNavigation,
     mcSettings_ShowAltMarkers,
     mcSettings_AutoHide,
-    pDisplay, NamePage::ServiceDisplay, nullptr, nullptr, nullptr, nullptr
+    nullptr, nullptr, nullptr, nullptr
 )
 
 
@@ -387,72 +387,53 @@ DEF_PAGE_4(mspSettings_Colors, mspSettings, NamePage::ServiceDisplayColors,
 
 
 // ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Цветовая схема ------------------------------------------------------------------------------------------------------
-static const Choice mcSettings_Colors_Scheme =
-{
-    TypeItem::Choice, &mspSettings_Colors, 0,
-    {
-        "Цветовая схема", "Color scheme",
-        "Режим работы калибратора",
-        "Mode of operation of the calibrator"
-    },
-    {   
-        {"Схема 1", "Scheme 1"},
-        {"Схема 2", "Scheme 2"}
-    },
-    (int8*)&COLOR_SCHEME
-};
+DEF_CHOICE_2(mcSettings_Colors_Scheme, mspSettings_Colors,
+    "Цветовая схема", "Color scheme",
+    "Режим работы калибратора",
+    "Mode of operation of the calibrator",
+    "Схема 1", "Scheme 1",
+    "Схема 2", "Scheme 2",
+    (int8)COLOR_SCHEME, nullptr, nullptr, nullptr
+)
 
 static ColorType colorT1 = {0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::DATA_A};
 
 // ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Канал 1 -------------------------------------------------------------------------------------------------------------
-static const GovernorColor mgcSettings_Colors_ChannelA =
-{
-    TypeItem::GovernorColor, &mspSettings_Colors, 0,
-    {
-        "Канал 1", "Channel 1",
-        "",
-        ""
-    },
-    &colorT1
-};
+DEF_GOVERNOR_COLOR(mgcSettings_Colors_ChannelA, mspSettings_Colors,
+    "Канал 1", "Channel 1",
+    "",
+    "",
+    colorT1, nullptr
+)
+
 
 static ColorType colorT2 = {0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::DATA_B};
 
 // ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Канал 2 -------------------------------------------------------------------------------------------------------------
-static const GovernorColor mgcSettings_Colors_ChannelB =
-{
-    TypeItem::GovernorColor, &mspSettings_Colors, 0,
-    {
-        "Канал 2", "Channel 2",
-        "",
-        ""
-    },
-    &colorT2
-};
+DEF_GOVERNOR_COLOR(mgcSettings_Colors_ChannelB, mspSettings_Colors,
+    "Канал 2", "Channel 2",
+    "",
+    "",
+    colorT2, nullptr
+)
 
 
 // ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Сетка ---------------------------------------------------------------------------------------------------------------
-static const GovernorColor mgcSettings_Colors_Grid =
-{
-    TypeItem::GovernorColor, &mspSettings_Colors, 0,
-    {
-        "Сетка", "Grid",
-        "Устанавливает цвет сетки",
-        "Sets the grid color"
-    },
-    &colorTypeGrid
-};
+DEF_GOVERNOR_COLOR(mgcSettings_Colors_Grid, mspSettings_Colors,
+    "Сетка", "Grid",
+    "Устанавливает цвет сетки",
+    "Sets the grid color",
+    colorTypeGrid, nullptr
+)
 
 
 // ДИСПЛЕЙ - НАСТРОЙКИ - Яркость ---------------------------------------------------------------------------------------------------------------------
-static const Governor mgSettings_Brightness
-(
-    &mspSettings, 0,
+DEF_GOVERNOR(mgSettings_Brightness, mspSettings,
     "Яркость", "Brightness",
     "Установка яркости свечения дисплея",
     "Setting the brightness of the display",
-    &BRIGHTNESS, 0, 100, OnChanged_Settings_Brightness
-);
+    BRIGHTNESS, 0, 100, nullptr, OnChanged_Settings_Brightness, nullptr
+)
 
 static void OnChanged_Settings_Brightness(void)
 {
@@ -461,68 +442,52 @@ static void OnChanged_Settings_Brightness(void)
 
 
 // ДИСПЛЕЙ - НАСТРОЙКИ - Уровни ----------------------------------------------------------------------------------------------------------------------
-static const Governor mgSettings_Levels
-(
-    &mspSettings, 0,
+DEF_GOVERNOR(mgSettings_Levels, mspSettings,
     "Уровни", "Levels",
     "Задаёт время, в течение которого после поворота ручки сещения напряжения на экране остаётся вспомогательная метка уровня смещения",
     "Defines the time during which, after turning the handle visits to the voltage on the screen remains auxiliary label offset level",
-    &TIME_SHOW_LEVELS, 0, 125
-);
-
+    TIME_SHOW_LEVELS, 0, 125, nullptr, nullptr, nullptr
+)
 
 // ДИСПЛЕЙ - НАСТРОЙКИ - Время -----------------------------------------------------------------------------------------------------------------------
-static const Governor mgSettings_TimeMessages
-(
-    &mspSettings, 0,
+DEF_GOVERNOR(mgSettings_TimeMessages, mspSettings,
     "Время", "Time",
     "Установка времени, в течение которого сообщения будут находиться на экране",
     "Set the time during which the message will be on the screen",
-    &TIME_MESSAGES, 1, 99
-);
+    TIME_MESSAGES, 1, 99, nullptr, nullptr, nullptr
+)
 
 
 // ДИСПЛЕЙ - НАСТРОЙКИ - Строка меню -----------------------------------------------------------------------------------------------------------------
-static const Choice mcSettings_ShowStringNavigation =
-{
-    TypeItem::Choice, &mspSettings, 0,
-    {
-        "Строка меню", "Path menu",
-        "При выборе \nПоказывать\n слева вверху экрана выводится полный путь до текущей страницы меню",
-        "When choosing \nDisplay\n at the top left of the screen displays the full path to the current page menu"
-    },
-    {   
-        {"Скрывать",    "Hide"},
-        {"Показывать",  "Show"}
-    },
-    (int8*)&SHOW_STRING_NAVIGATION
-};
+DEF_CHOICE_2(mcSettings_ShowStringNavigation, mspSettings,
+    "Строка меню", "Path menu",
+    "При выборе \nПоказывать\n слева вверху экрана выводится полный путь до текущей страницы меню",
+    "When choosing \nDisplay\n at the top left of the screen displays the full path to the current page menu",
+    "Скрывать",   "Hide",
+    "Показывать", "Show",
+    (int8)SHOW_STRING_NAVIGATION, nullptr, nullptr, nullptr
+)
 
 
 // ДИСПЛЕЙ - НАСТРОЙКИ - Доп. маркеры ----------------------------------------------------------------------------------------------------------------
-static const Choice mcSettings_ShowAltMarkers =
-{
-    TypeItem::Choice, &mspSettings, 0,
-    {
-        "Доп. маркеры", "Alt. markers"
-        ,
-        "Устанавливает режим отображения дополнительных маркеров уровней смещения и синхронизации:\n"
-        "\"Скрывать\" - дополнительные маркеры не показываются,\n"
-        "\"Показывать\" - дополнительные маркеры показываются всегда,\n"
-        "\"Авто\" - дополнительные маркеры показываются в течение 5 сек после поворота ручки смещения канала по напряжению или уровня синхронизации"
-        ,
-        "Sets the display mode of additional markers levels of displacement and synchronization:\n"
-        "\"Hide\" - additional markers are not shown,\n"
-        "\"Show\" - additional markers are shown always,\n"
-        "\"Auto\" - additional markers are displayed for 5 seconds after turning the handle channel offset voltage or trigger level"
-    },
-    {   
-        {"Скрывать",    "Hide"},
-        {"Показывать",  "Show"},
-        {"Авто",        "Auto"}
-    },
-    (int8*)&ALT_MARKERS, OnChanged_Settings_ShowAltMarkers
-};
+DEF_CHOICE_3(mcSettings_ShowAltMarkers, mspSettings,
+    "Доп. маркеры", "Alt. markers"
+    ,
+    "Устанавливает режим отображения дополнительных маркеров уровней смещения и синхронизации:\n"
+    "\"Скрывать\" - дополнительные маркеры не показываются,\n"
+    "\"Показывать\" - дополнительные маркеры показываются всегда,\n"
+    "\"Авто\" - дополнительные маркеры показываются в течение 5 сек после поворота ручки смещения канала по напряжению или уровня синхронизации"
+    ,
+    "Sets the display mode of additional markers levels of displacement and synchronization:\n"
+    "\"Hide\" - additional markers are not shown,\n"
+    "\"Show\" - additional markers are shown always,\n"
+    "\"Auto\" - additional markers are displayed for 5 seconds after turning the handle channel offset voltage or trigger level"
+    ,
+    "Скрывать",   "Hide",
+    "Показывать", "Show",
+    "Авто",       "Auto",
+    (int8)ALT_MARKERS, nullptr, OnChanged_Settings_ShowAltMarkers, nullptr
+)
 
 static void OnChanged_Settings_ShowAltMarkers(bool)
 {
@@ -531,24 +496,18 @@ static void OnChanged_Settings_ShowAltMarkers(bool)
 
 
 // ДИСПЛЕЙ - НАСТРОЙКИ - Скрывать --------------------------------------------------------------------------------------------------------------------
-static const Choice mcSettings_AutoHide =
-{
-    TypeItem::Choice, &mspSettings, 0,
-    {
-        "Скрывать", "Hide",
-        "Установка после последнего нажатия кнопки или поворота ручки, по истечении которого меню автоматически убирается с экрана",
-        "Installation after the last keystroke or turning the handle, after which the menu will automatically disappear"
-    },
-    {   
-        {"Никогда",         "Never"},
-        {"Через 5 сек",     "Through 5 s"},
-        {"Через 10 сек",    "Through 10 s"},
-        {"Через 15 сек",    "Through 15 s"},
-        {"Через 30 сек",    "Through 30 s"},
-        {"Через 60 сек",    "Through 60 s"}
-    },
-    (int8*)&MENU_AUTO_HIDE, OnChanged_Settings_AutoHide
-};
+DEF_CHOICE_6(mcSettings_AutoHide, mspSettings,
+    "Скрывать", "Hide",
+    "Установка после последнего нажатия кнопки или поворота ручки, по истечении которого меню автоматически убирается с экрана",
+    "Installation after the last keystroke or turning the handle, after which the menu will automatically disappear",
+    "Никогда",      "Never",
+    "Через 5 сек",  "Through 5 s",
+    "Через 10 сек", "Through 10 s",
+    "Через 15 сек", "Through 15 s",
+    "Через 30 сек", "Through 30 s",
+    "Через 60 сек", "Through 60 s",
+    (int8)MENU_AUTO_HIDE, nullptr, OnChanged_Settings_AutoHide, nullptr
+)
 
 static void OnChanged_Settings_AutoHide(bool autoHide)
 {
