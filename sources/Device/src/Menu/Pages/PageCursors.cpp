@@ -149,21 +149,19 @@ extern const Page mainPage;
 // КУРСОРЫ /////////////////////////
 static const arrayItems itemsCursors =
 {
-    (void*)&mcShow,             // КУРСОРЫ - Показывать
-    (void*)&mcTrackingT1U1,     // КУРСОРЫ - Курсоры T1,U1
-    (void*)&mcTrackingT2U2,     // КУРСОРЫ - Курсоры T2,U2
-    (void*)&mcShowFreq,         // КУРОСРЫ - 1/dT
-    (void*)&mspSet              // КУРСОРЫ - УСТАНОВИТЬ
 };
 
-static const Page pCursors                // КУРСОРЫ
-(
-    &mainPage, 0,
+DEF_PAGE_5(pCursors, mainPage, NamePage::Cursors,
     "КУРСОРЫ", "CURSORS",
     "Курсорные измерения.",
     "Cursor measurements.",
-    NamePage::Cursors, &itemsCursors
-);
+    mcShow,             // КУРСОРЫ - Показывать
+    mcTrackingT1U1,     // КУРСОРЫ - Курсоры T1,U1
+    mcTrackingT2U2,     // КУРСОРЫ - Курсоры T2,U2
+    mcShowFreq,         // КУРОСРЫ - 1/dT
+    mspSet,              // КУРСОРЫ - УСТАНОВИТЬ
+    nullptr, nullptr, nullptr, nullptr
+)
 
 void *PageCursors::GetPointer()
 {
@@ -171,120 +169,92 @@ void *PageCursors::GetPointer()
 }
 
 // КУРСОРЫ - Показывать ------------------------------------------------------------------------------------------------------------------------------
-static const Choice mcShow =
-{
-    TypeItem::Choice, &pCursors, 0,
-    {
-        "Показывать", "Shown",
-        "Включает/отключает курсоры.",
-        "Enable/disable cursors."
-    },
-    {
-        {"Нет", "No"},
-        {"Да",  "Yes"}
-    },
-    (int8*)&CURS_SHOW
-};
+DEF_CHOICE_2(mcShow, pCursors,
+    "Показывать", "Shown",
+    "Включает/отключает курсоры.",
+    "Enable/disable cursors.",
+    "Нет", "No",
+    "Да",  "Yes",
+    (int8)CURS_SHOW, nullptr, nullptr, nullptr
+)
 
 
 // КУРСОРЫ - Курсоры T1,U1 ---------------------------------------------------------------------------------------------------------------------------
-static const Choice mcTrackingT1U1 =
-{
-    TypeItem::Choice, &pCursors, 0,
-    {
-        "Слежение \x8e, \x9e",  "Tracking \x8e, \x9e"
-        ,
-        "Задаёт режим слежения за первым курсором времени и напряжения:\n"
-        "1. \"Откл\" - курсор времени и курсор напряжения устанавливаются вручную.\n"
-        "2. \"Напряжение\" - при ручном изменении положения курсора времени курсор напряжения автоматически отслеживают изменения сигнала.\n"
-        "3. \"Время\" - при ручном изменении положения курсора напряжения курсор времени автоматически отслеживают изменения сигнала.\n"
-        "4. \"Напряж и время\" - действует как один из предыдущих режимов, в зависимости от того, на какой курсор производилось последнее воздействие."
-        ,
-        "Sets the mode tracking for second cursor:\n"                   // WARN Перевод
-        "1. \"Disable\" - all cursors are set manually.\n"
-        "2. \"Voltage\" - when manually changing the position of the cursor time cursors voltage automatically track changes in the signal.\n"
-        "3. \"Time\" - when manually changing the position of the cursor voltage cursors time automatically track changes in the signal.\n"
-        "4. \"Volt and time\" - acts as one of the previous modes, depending on which was carried out last effect cursors."
-    },
-    {
-        {DISABLE_RU,        DISABLE_EN},
-        {"Напряжение",      "Voltage"},
-        {"Время",           "Time"},
-        {"Напряж и время",  "Volt and time"}
-    },
-    (int8*)&CURS_LOOKMODE_0
-};
+DEF_CHOICE_4(mcTrackingT1U1, pCursors,
+    "Слежение \x8e, \x9e",  "Tracking \x8e, \x9e"
+    ,
+    "Задаёт режим слежения за первым курсором времени и напряжения:\n"
+    "1. \"Откл\" - курсор времени и курсор напряжения устанавливаются вручную.\n"
+    "2. \"Напряжение\" - при ручном изменении положения курсора времени курсор напряжения автоматически отслеживают изменения сигнала.\n"
+    "3. \"Время\" - при ручном изменении положения курсора напряжения курсор времени автоматически отслеживают изменения сигнала.\n"
+    "4. \"Напряж и время\" - действует как один из предыдущих режимов, в зависимости от того, на какой курсор производилось последнее воздействие."
+    ,
+    "Sets the mode tracking for second cursor:\n"                   // WARN Перевод
+    "1. \"Disable\" - all cursors are set manually.\n"
+    "2. \"Voltage\" - when manually changing the position of the cursor time cursors voltage automatically track changes in the signal.\n"
+    "3. \"Time\" - when manually changing the position of the cursor voltage cursors time automatically track changes in the signal.\n"
+    "4. \"Volt and time\" - acts as one of the previous modes, depending on which was carried out last effect cursors."
+    ,
+    DISABLE_RU,       DISABLE_EN,
+    "Напряжение",     "Voltage",
+    "Время",          "Time",
+    "Напряж и время", "Volt and time",
+    (int8)CURS_LOOKMODE_0, nullptr, nullptr, nullptr
+)
 
 
 // КУРСОРЫ - Курсоры T2,U2 ---------------------------------------------------------------------------------------------------------------------------
-static const Choice mcTrackingT2U2 =
-{
-    TypeItem::Choice, &pCursors, 0,
-    {
-        "Слежение \x8f, \x9f", "Tracking \x8f, \x9f"
-        ,
-        "Задаёт режим слежения за вторым курсором времени и напряжения:\n"
-        "1. \"Откл\" - курсор времени и курсор напряжения устанавливаются вручную.\n"
-        "2. \"Напряжение\" - при ручном изменении положения курсора времени курсор напряжения автоматически отслеживают изменения сигнала.\n"
-        "3. \"Время\" - при ручном изменении положения курсора напряжения курсор времени автоматически отслеживают изменения сигнала.\n"
-        "4. \"Напряж и время\" - действует как один из предыдущих режимов, в зависимости от того, на какой курсор производилось последнее воздействие."
-        ,
-        "Sets the mode tracking cursors channel 2:\n"
-        "1. \"Disable\" - all cursors are set manually.\n"
-        "2. \"Voltage\" - when manually changing the position of the cursor time cursors voltage automatically track changes in the signal.\n"
-        "3. \"Time\" - when manually changing the position of the cursor voltage cursors time automatically track changes in the signal.\n"
-        "4. \"Volt and time\" - acts as one of the previous modes, depending on which was carried out last effect cursors."
-    },
-    {
-        {DISABLE_RU,        DISABLE_EN},
-        {"Напряжение",      "Voltage"},
-        {"Время",           "Time"},
-        {"Напряж. и время", "Volt. and time"}
-    },
-    (int8*)&CURS_LOOKMODE_1
-};
+DEF_CHOICE_4(mcTrackingT2U2, pCursors,
+    "Слежение \x8f, \x9f", "Tracking \x8f, \x9f"
+    ,
+    "Задаёт режим слежения за вторым курсором времени и напряжения:\n"
+    "1. \"Откл\" - курсор времени и курсор напряжения устанавливаются вручную.\n"
+    "2. \"Напряжение\" - при ручном изменении положения курсора времени курсор напряжения автоматически отслеживают изменения сигнала.\n"
+    "3. \"Время\" - при ручном изменении положения курсора напряжения курсор времени автоматически отслеживают изменения сигнала.\n"
+    "4. \"Напряж и время\" - действует как один из предыдущих режимов, в зависимости от того, на какой курсор производилось последнее воздействие."
+    ,
+    "Sets the mode tracking cursors channel 2:\n"
+    "1. \"Disable\" - all cursors are set manually.\n"
+    "2. \"Voltage\" - when manually changing the position of the cursor time cursors voltage automatically track changes in the signal.\n"
+    "3. \"Time\" - when manually changing the position of the cursor voltage cursors time automatically track changes in the signal.\n"
+    "4. \"Volt and time\" - acts as one of the previous modes, depending on which was carried out last effect cursors."
+    ,
+    DISABLE_RU,        DISABLE_EN,
+    "Напряжение",      "Voltage",
+    "Время",           "Time",
+    "Напряж. и время", "Volt. and time",
+    (int8)CURS_LOOKMODE_1, nullptr, nullptr, nullptr
+)
 
 
 // КУРОСРЫ - 1/dT ------------------------------------------------------------------------------------------------------------------------------------
-static const Choice mcShowFreq =
-{
-    TypeItem::Choice, &pCursors, 0,
-    {
-        "1/dT", "1/dT"
-        ,
-        "Если выбрано \"Вкл\", в правом верхнем углу выводится величина, обратная расстоянию между курсорами времени - частота сигнала, один период "
-        "которого равен расстоянию между временными курсорами."
-        ,
-        "If you select \"Enable\" in the upper right corner displays the inverse of the distance between cursors time - frequency signal, a period "
-        "equal to the distance between the time cursors."
-    },
-    {
-        {DISABLE_RU,    DISABLE_EN},
-        {ENABLE_RU,     ENABLE_EN}
-    },
-    (int8*)&CURSORS_SHOW_FREQ
-};
+DEF_CHOICE_2(mcShowFreq, pCursors,
+    "1/dT", "1/dT",
+    "Если выбрано \"Вкл\", в правом верхнем углу выводится величина, обратная расстоянию между курсорами времени - частота сигнала, один период которого равен расстоянию между временными курсорами.",
+    "If you select \"Enable\" in the upper right corner displays the inverse of the distance between cursors time - frequency signal, a period equal to the distance between the time cursors.",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU,  ENABLE_EN,
+    (int8)CURSORS_SHOW_FREQ, nullptr, nullptr, nullptr
+)
 
 
 // КУРСОРЫ - УСТАНОВИТЬ ////////////
 static const arrayItems itemsSet =
 {
-    (void*)&sbSetExit,              // КУРСОРЫ - УСТАНОВИТЬ - Выход
-    (void*)&sbSetSource,            // КУРСОРЫ - УСТАНОВИТЬ - Источник
-    (void*)&sbSetU,                 // КУРСОРЫ - УСТАНОВИТЬ - Курсоры U
-    (void*)&sbSetT,                 // КУРСОРЫ - УСТАНОВИТЬ - Курсоры T
-    (void*)&sbSet100,               // КУРСОРЫ - УСТАНОВИТЬ - 100%
-    (void*)&sbSetPointsPercents     // КУРСОРЫ - УСТАНОВИТЬ - Перемещение
 };
 
-static const Page mspSet
-(
-    &pCursors, 0,
+DEF_PAGE_6(mspSet, pCursors, NamePage::SB_Curs,
     "УСТАНОВИТЬ", "SET",
     "Переход в режим курсорных измерений",
     "Switch to cursor measures",
-    NamePage::SB_Curs, &itemsSet, EmptyFuncVV, EmptyFuncVV, OnRotate_RegSet_Set
-);
+    sbSetExit,              // КУРСОРЫ - УСТАНОВИТЬ - Выход
+    sbSetSource,            // КУРСОРЫ - УСТАНОВИТЬ - Источник
+    sbSetU,                 // КУРСОРЫ - УСТАНОВИТЬ - Курсоры U
+    sbSetT,                 // КУРСОРЫ - УСТАНОВИТЬ - Курсоры T
+    sbSet100,               // КУРСОРЫ - УСТАНОВИТЬ - 100%
+    sbSetPointsPercents,    // КУРСОРЫ - УСТАНОВИТЬ - Перемещение
+    nullptr, nullptr, nullptr, OnRotate_RegSet_Set
+)
 
 static void OnRotate_RegSet_Set(int angle)
 {
@@ -358,13 +328,10 @@ static void SetShiftCursPosT(Channel::E chan, int numCur, float delta)
 
 
 // КУРСОРЫ - УСТАНОВИТЬ - Выход ----------------------------------------------------------------------------------------------------------------------
-static const SmallButton sbSetExit
-(
-    &mspSet,
-    COMMON_BEGIN_SB_EXIT,
-    PressSB_Cursors_Exit,
-    DrawSB_Exit
-);
+DEF_SMALL_BUTTON(sbSetExit, mspSet,
+    "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
+    PressSB_Cursors_Exit, DrawSB_Exit, nullptr
+)
 
 static void PressSB_Cursors_Exit(void)
 {
@@ -378,16 +345,12 @@ static const arrayHints hintsSetSource =
     { DrawSB_Cursors_SourceA, "канал 1", "channel 1" }, { DrawSB_Cursors_SourceB, "канал 2", "channel 2" }
 };
 
-static const SmallButton sbSetSource
-(
-    &mspSet, 0,
+DEF_SMALL_BUTTON(sbSetSource, mspSet,
     "Источник", "Source",
     "Выбор канала для курсорных измерений",
     "Channel choice for measurements",
-    PressSB_Cursors_Source,
-    DrawSB_Cursors_Source,
-    &hintsSetSource
-);
+    PressSB_Cursors_Source, DrawSB_Cursors_Source, &hintsSetSource
+)
 
 static void PressSB_Cursors_Source(void)
 {
@@ -426,16 +389,12 @@ static const arrayHints hintsSetU =
                                     "cursors of tension are switched on, control of both cursors" }
 };
 
-static const SmallButton sbSetU
-(
-    &mspSet, 0,
+DEF_SMALL_BUTTON(sbSetU, mspSet,
     "Курсоры U", "Cursors U",
     "Выбор курсоров напряжения для индикации и управления",
     "Choice of cursors of voltage for indication and management",
-    PressSB_Cursors_U,
-    DrawSB_Cursors_U,
-    &hintsSetU
-);
+    PressSB_Cursors_U, DrawSB_Cursors_U, &hintsSetU
+)
 
 static void PressSB_Cursors_U(void)
 {
@@ -530,16 +489,12 @@ static const arrayHints hintsSetT =
                                         "cursors of time are switched on, control of both cursors" }    
 };
 
-static const SmallButton sbSetT
-(
-    &mspSet, 0,
+DEF_SMALL_BUTTON(sbSetT, mspSet,
     "Курсоры T", "Cursors T",
     "Выбор курсоров времени для индикации и управления",
     "Choice of cursors of time for indication and management",
-    PressSB_Cursors_T,
-    DrawSB_Cursors_T,
-    &hintsSetT
-);
+    PressSB_Cursors_T, DrawSB_Cursors_T, &hintsSetT
+)
 
 static void PressSB_Cursors_T(void)
 {
@@ -611,15 +566,12 @@ static void DrawSB_Cursors_T_Both_Enable(int x, int y)
 
 
 // КУРСОРЫ - УСТАНОВИТЬ - 100% -----------------------------------------------------------------------------------------------------------------------
-static const SmallButton sbSet100
-(
-    &mspSet, 0,
+DEF_SMALL_BUTTON(sbSet100, mspSet,
     "100%", "100%",
     "Используется для процентных измерений. Нажатие помечает расстояние между активными курсорами как 100%",
     "It is used for percentage measurements. Pressing marks distance between active cursors as 100%",
-    PressSB_Cursors_100,
-    DrawSB_Cursors_100
-);
+    PressSB_Cursors_100, DrawSB_Cursors_100, nullptr
+)
 
 static void PressSB_Cursors_100(void)
 {
@@ -649,16 +601,12 @@ static const arrayHints hintsSetPointsPercents =
                                                 "the step of movement of the cursor is multiple to one pixel" }
 };
 
-static const SmallButton sbSetPointsPercents
-(
-    &mspSet, 0,
+DEF_SMALL_BUTTON(sbSetPointsPercents, mspSet,
     "Перемещение", "Movement",
     "Выбор шага перемещения курсоров - проценты или точки",
     "Choice of a step of movement of cursors - percent or points",
-    PressSB_Cursors_PointsPercents,
-    DrawSB_Cursors_PointsPercents,
-    &hintsSetPointsPercents
-);
+    PressSB_Cursors_PointsPercents, DrawSB_Cursors_PointsPercents, &hintsSetPointsPercents
+)
 
 static void PressSB_Cursors_PointsPercents(void)
 {
