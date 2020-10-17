@@ -194,7 +194,7 @@ DEF_SMALL_BUTTON(sbMemLastPrev, mspMemLast,
     "Предыдущий", "Previous",
     "Перейти к предыдущему сигналу",
     "Go to the previous signal",
-    PressSB_MemLast_Prev, DrawSB_MemLast_Prev, nullptr
+    nullptr, PressSB_MemLast_Prev, DrawSB_MemLast_Prev, nullptr
 )
 
 
@@ -202,7 +202,7 @@ DEF_SMALL_BUTTON(sbMemLastNext, mspMemLast,
     "Следующий", "Next",
     "Перейти к следующему сигналу",
     "Go to the next signal",
-    PressSB_MemLast_Next, DrawSB_MemLast_Next, nullptr
+    nullptr, PressSB_MemLast_Next, DrawSB_MemLast_Next, nullptr
 )
 
 
@@ -218,14 +218,14 @@ DEF_SMALL_BUTTON(sbMemLastIntEnter, mspMemLast,
     "Внутр ЗУ", "Internal storage",
     "Нажмите эту кнопку, чтобы сохранить сигнал во внутреннем запоминающем устройстве",
     "Press this button to keep a signal in an internal memory",
-    PressSB_MemLast_IntEnter, DrawSB_MemLast_IntEnter, nullptr
+    nullptr, PressSB_MemLast_IntEnter, DrawSB_MemLast_IntEnter, nullptr
 )
 
 DEF_SMALL_BUTTON(sbMemLastSaveToFlash, mspMemLast,
     "Сохранить", "Save",
     "Кнопка становится доступна при присоединённом внешнем ЗУ. Позволяет сохранить сигнал на внешем ЗУ",
     "Click this button to save the signal on the external FLASH",
-    PressSB_MemLast_SaveToFlash, DrawSB_MemLast_SaveToFlash, nullptr
+    nullptr, PressSB_MemLast_SaveToFlash, DrawSB_MemLast_SaveToFlash, nullptr
 )
 
 
@@ -235,7 +235,7 @@ DEF_SMALL_BUTTON(sbSetNameSave, mpSetName,
     "Сохранить", "Save",
     "Сохранение на флеш под заданным именем",
     "Saving to flashdrive with the specified name",
-    PressSB_MemExtSetNameSave, DrawSB_MemExtSetNameSave, nullptr
+    nullptr, PressSB_MemExtSetNameSave, DrawSB_MemExtSetNameSave, nullptr
 )
 
 
@@ -394,21 +394,21 @@ DEF_SMALL_BUTTON(sbSetMaskBackspace, mspSetMask,
     "Backspace", "Backspace",
     "Удаляет последний введённый символ",
     "Deletes the last entered symbol",
-    PressSB_SetMask_Backspace, DrawSB_SetMask_Backspace, nullptr
+    nullptr, PressSB_SetMask_Backspace, DrawSB_SetMask_Backspace, nullptr
 )
 
 DEF_SMALL_BUTTON(sbSetMaskDelete, mspSetMask,
     "Удалить", "Delete",
     "Удаляет все введённые символы",
     "Deletes all entered symbols",
-    PressSB_SetMask_Delete, DrawSB_SetMask_Delete, nullptr
+    nullptr, PressSB_SetMask_Delete, DrawSB_SetMask_Delete, nullptr
 )
 
 DEF_SMALL_BUTTON(sbSetMaskInsert, mspSetMask,
     "Вставить", "Insert",
     "Вставляет выбранный символ",
     "Inserts the chosen symbol",
-    PressSB_SetMask_Insert, DrawSB_SetMask_Insert, nullptr
+    nullptr, PressSB_SetMask_Insert, DrawSB_SetMask_Insert, nullptr
 )
 
 
@@ -416,21 +416,21 @@ DEF_SMALL_BUTTON(sbSetNameBackspace, mpSetName,
     "Backspace", "Backspace",
     "Удаляет последний символ",
     "Delete the last character",
-    PressSB_SetName_Backspace, DrawSB_SetName_Backspace, nullptr
+    nullptr, PressSB_SetName_Backspace, DrawSB_SetName_Backspace, nullptr
 )
 
 DEF_SMALL_BUTTON(sbSetNameDelete, mpSetName,
     "Удалить", "Delete",
     "Удаляет все введённые символы",
     "Deletes all entered characters",
-    PressSB_SetName_Delete, DrawSB_SetName_Delete, nullptr
+    nullptr, PressSB_SetName_Delete, DrawSB_SetName_Delete, nullptr
 )
 
 DEF_SMALL_BUTTON(sbSetNameInsert, mpSetName,
     "Вставить", "Insert",
     "Вводит очередной символ",
     "Print the next character",
-    PressSB_SetName_Insert, DrawSB_SetName_Insert, nullptr
+    nullptr, PressSB_SetName_Insert, DrawSB_SetName_Insert, nullptr
 )
 
 void DrawSB_MemExtNewFolder(int x, int y)
@@ -467,21 +467,21 @@ DEF_SMALL_BUTTON(sbFileManagerTab, mspFileManager,
     "Tab", "Tab",
     "Переход между каталогами и файлами",
     "The transition between the directories and files",
-    FM::PressTab, DrawSB_FM_Tab, nullptr
+    nullptr, FM::PressTab, DrawSB_FM_Tab, nullptr
 )
 
 DEF_SMALL_BUTTON(sbFileManagerLevelDown, mspFileManager,
     "Войти", "Enter",
     "Переход в выбранный каталог",
     "Transition to the chosen catalog",
-    FM::PressLevelDown, DrawSB_FM_LevelDown, nullptr
+    nullptr, FM::PressLevelDown, DrawSB_FM_LevelDown, nullptr
 )
 
 DEF_SMALL_BUTTON(sbFileManagerLevelUp, mspFileManager,
     "Выйти", "Leave",
     "Переход в родительский каталог",
     "Transition to the parental catalog",
-    FM::PressLevelUp, DrawSB_FM_LevelUp, nullptr
+    nullptr, FM::PressLevelUp, DrawSB_FM_LevelUp, nullptr
 )
 
 void DrawSB_MemInt_SaveToIntMemory(int x, int y)
@@ -630,7 +630,7 @@ DEF_SMALL_BUTTON(sbMemIntShowSignalAlways, mspMemInt,
     "Показывать всегда", "To show always",
     "Позволяет всегда показывать выбранный сохранённый сигнал поверх текущего",
     "Allows to show always the chosen kept signal over the current",
-    PressSB_MemInt_ShowSignalAlways, DrawSB_MemInt_ShowSignalAlways, &hintsMemIntShowSignalAlways
+    nullptr, PressSB_MemInt_ShowSignalAlways, DrawSB_MemInt_ShowSignalAlways, &hintsMemIntShowSignalAlways
 )
 
 
@@ -698,7 +698,7 @@ DEF_SMALL_BUTTON(sbMemIntModeShow, mspMemInt,
     "Вид сигнала", "Type of a signal",
     "Показывать записанный или текущий сигнал в режиме ВНУТР ЗУ",
     "Show recorded or current signal in mode Internal Memory",
-    PressSB_MemInt_ModeShow, DrawSB_MemInt_ModeShow, &hintsMemIntModeShow
+    nullptr, PressSB_MemInt_ModeShow, DrawSB_MemInt_ModeShow, &hintsMemIntModeShow
 )
 
 
@@ -718,7 +718,7 @@ DEF_SMALL_BUTTON(sbMemIntDelete, mspMemInt,
     "Удалить сигнал", "Delete signal",
     "Удалить сигнал",
     "Delete signal",
-    PressSB_MemInt_Delete, DrawSB_MemInt_Delete, nullptr
+    nullptr, PressSB_MemInt_Delete, DrawSB_MemInt_Delete, nullptr
 )
 
 
@@ -726,14 +726,14 @@ DEF_SMALL_BUTTON(sbMemIntSave, mspMemInt,
     "Сохранить", "Save",
     "Сохранить сигнал во внутреннем запоминующем устройстве",
     "To keep a signal in an internal memory",
-    PressSB_MemInt_SaveToIntMemory, DrawSB_MemInt_SaveToIntMemory, nullptr
+    nullptr, PressSB_MemInt_SaveToIntMemory, DrawSB_MemInt_SaveToIntMemory, nullptr
 )
 
 DEF_SMALL_BUTTON(sbMemIntSaveToFlash, mspMemInt,
     "Сохранить", "Save",
     "Сохраняет сигнал на флешку",
     "Save signal to flash drive",
-    PressSB_MemInt_SaveToFlashDrive, DrawSB_MemInt_SaveToFlashDrive, nullptr
+    nullptr, PressSB_MemInt_SaveToFlashDrive, DrawSB_MemInt_SaveToFlashDrive, nullptr
 )
 
 void PressSB_MemInt_Exit()
@@ -759,14 +759,14 @@ DEF_SMALL_BUTTON(sbExitSetName, mpSetName,     // Кнопк для выхода из режима зад
     EXIT_RU, EXIT_EN,
     "Отказ от сохранения",
     "Failure to save",
-    PressSB_SetName_Exit, DrawSB_Exit, nullptr
+    nullptr, PressSB_SetName_Exit, DrawSB_Exit, nullptr
 )
 
 extern const Page mspMemInt;
 
 DEF_SMALL_BUTTON(sbExitMemInt, mspMemInt,    // Кнопка для выхода из режима малых кнопок.
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
-    PressSB_MemInt_Exit, DrawSB_Exit, nullptr
+    nullptr, PressSB_MemInt_Exit, DrawSB_Exit, nullptr
 )
 
 
@@ -1047,7 +1047,7 @@ void OnPressMemoryLatest()
 
 DEF_SMALL_BUTTON(sbExitMemLast, mspMemLast,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
-    PressSB_MemLast_Exit, DrawSB_Exit, nullptr
+    nullptr, PressSB_MemLast_Exit, DrawSB_Exit, nullptr
 )
 
 // Память - Последние //////
@@ -1075,7 +1075,7 @@ static void PressSB_SetMask_Exit()
 
 DEF_SMALL_BUTTON(sbExitSetMask, mspSetMask,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
-    PressSB_SetMask_Exit, DrawSB_Exit, nullptr
+    nullptr, PressSB_SetMask_Exit, DrawSB_Exit, nullptr
 )
 
 // Память - ВНЕШН ЗУ - Маска //////////////////////////
@@ -1118,7 +1118,7 @@ DEF_SMALL_BUTTON(sbExitFileManager, mspFileManager,
     EXIT_RU, EXIT_EN,
     EXIT_ILLUSTRATION_RU,
     EXIT_ILLUSTRATION_EN,
-    PressSB_FM_Exit, DrawSB_Exit, nullptr
+    nullptr, PressSB_FM_Exit, DrawSB_Exit, nullptr
 )
 
 static const arrayItems itemsFileManager =

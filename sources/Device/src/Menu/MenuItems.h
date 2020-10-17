@@ -134,7 +134,7 @@ struct DataPage
 
 
 // Описывает страницу меню.
-class Page : public     Item
+class Page : public Item
 {
 public:
     Page(const DataItem *const data) : Item(data) {};

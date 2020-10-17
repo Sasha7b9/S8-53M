@@ -332,7 +332,7 @@ static void SetShiftCursPosT(Channel::E chan, int numCur, float delta)
 // КУРСОРЫ - УСТАНОВИТЬ - Выход ----------------------------------------------------------------------------------------------------------------------
 DEF_SMALL_BUTTON(sbSetExit, mspSet,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
-    PressSB_Cursors_Exit, DrawSB_Exit, nullptr
+    nullptr, PressSB_Cursors_Exit, DrawSB_Exit, nullptr
 )
 
 static void PressSB_Cursors_Exit(void)
@@ -351,7 +351,7 @@ DEF_SMALL_BUTTON(sbSetSource, mspSet,
     "Источник", "Source",
     "Выбор канала для курсорных измерений",
     "Channel choice for measurements",
-    PressSB_Cursors_Source, DrawSB_Cursors_Source, &hintsSetSource
+    nullptr, PressSB_Cursors_Source, DrawSB_Cursors_Source, &hintsSetSource
 )
 
 static void PressSB_Cursors_Source(void)
@@ -395,7 +395,7 @@ DEF_SMALL_BUTTON(sbSetU, mspSet,
     "Курсоры U", "Cursors U",
     "Выбор курсоров напряжения для индикации и управления",
     "Choice of cursors of voltage for indication and management",
-    PressSB_Cursors_U, DrawSB_Cursors_U, &hintsSetU
+    nullptr, PressSB_Cursors_U, DrawSB_Cursors_U, &hintsSetU
 )
 
 static void PressSB_Cursors_U(void)
@@ -495,7 +495,7 @@ DEF_SMALL_BUTTON(sbSetT, mspSet,
     "Курсоры T", "Cursors T",
     "Выбор курсоров времени для индикации и управления",
     "Choice of cursors of time for indication and management",
-    PressSB_Cursors_T, DrawSB_Cursors_T, &hintsSetT
+    nullptr, PressSB_Cursors_T, DrawSB_Cursors_T, &hintsSetT
 )
 
 static void PressSB_Cursors_T(void)
@@ -572,7 +572,7 @@ DEF_SMALL_BUTTON(sbSet100, mspSet,
     "100%", "100%",
     "Используется для процентных измерений. Нажатие помечает расстояние между активными курсорами как 100%",
     "It is used for percentage measurements. Pressing marks distance between active cursors as 100%",
-    PressSB_Cursors_100, DrawSB_Cursors_100, nullptr
+    nullptr, PressSB_Cursors_100, DrawSB_Cursors_100, nullptr
 )
 
 static void PressSB_Cursors_100(void)
@@ -607,7 +607,7 @@ DEF_SMALL_BUTTON(sbSetPointsPercents, mspSet,
     "Перемещение", "Movement",
     "Выбор шага перемещения курсоров - проценты или точки",
     "Choice of a step of movement of cursors - percent or points",
-    PressSB_Cursors_PointsPercents, DrawSB_Cursors_PointsPercents, &hintsSetPointsPercents
+    nullptr, PressSB_Cursors_PointsPercents, DrawSB_Cursors_PointsPercents, &hintsSetPointsPercents
 )
 
 static void PressSB_Cursors_PointsPercents(void)

@@ -1,6 +1,7 @@
 #include "Utils/GlobalFunctions.h"
 #include "Globals.h"
 #include "Menu/MenuItems.h"
+#include "Menu/Pages/HelpContent.h"
 #include "Definition.h"
 
 
@@ -39,76 +40,59 @@ void OnHelpRegSet(int)
 
 extern const Page mpHelp;
 
-const SmallButton sbHelpParagraphEnter
-(
-    &mpHelp, HelpContent_EnterParagraphIsActive,
+DEF_SMALL_BUTTON(sbHelpParagraphEnter, mpHelp,
     "Открыть", "Open",
     "Открывает раздел справки",
     "Opens the section of the reference",
-    HelpContent_EnterParagraph,
-    DrawSB_Help_ParagraphEnter
-);
+    HelpContent_EnterParagraphIsActive, HelpContent_EnterParagraph, DrawSB_Help_ParagraphEnter, nullptr
+)
 
-const SmallButton sbHelpParagraphLeave
-(
-    &mpHelp, HelpContent_LeaveParagraphIsActive,
+DEF_SMALL_BUTTON(sbHelpParagraphLeave, mpHelp,
     "Закрыть", "Close",
     "Закрывает раздел справки",
     "Closes the section of the reference",
-    HelpContent_LeaveParagraph,
-    DrawSB_Help_ParagraphLeave
-);
+    HelpContent_LeaveParagraphIsActive, HelpContent_LeaveParagraph, DrawSB_Help_ParagraphLeave, nullptr
+)
 
-const SmallButton sbHelpParagraphPrev
-(
-    &mpHelp, 0,
+DEF_SMALL_BUTTON(sbHelpParagraphPrev, mpHelp,
     "Предыдущий раздел", "Previous section",
     "Выбрать предыдущий раздел справки",
     "To choose the previous section of the reference",
-    HelpContent_PrevParagraph,
-    DrawSB_Help_ParagraphPrev
-);
+    nullptr, HelpContent_PrevParagraph, DrawSB_Help_ParagraphPrev, nullptr
+)
 
-const SmallButton sbHelpParagraphNext
-(
-    &mpHelp, 0,
+DEF_SMALL_BUTTON(sbHelpParagraphNext, mpHelp,
     "", "",
     "",
     "",
-    HelpContent_NextParagraph,
-    DrawSB_Help_ParagraphNext
-);
+    nullptr, HelpContent_NextParagraph, DrawSB_Help_ParagraphNext, nullptr
+)
 
 static void PressSB_Help_Exit()
 {
     Display::RemoveAddDrawFunction();
 }
 
-const SmallButton sbExitHelp
-(
-    &mpHelp,
-    COMMON_BEGIN_SB_EXIT,
-    PressSB_Help_Exit,
-    DrawSB_Exit
-);
+DEF_SMALL_BUTTON(sbExitHelp, mpHelp,
+    "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
+    nullptr, PressSB_Help_Exit, DrawSB_Exit, nullptr
+)
 
 static const arrayItems itemsHelp =
 {
-    (void*)&sbExitHelp,
-    (void*)&sbHelpParagraphEnter,
-    (void*)&sbHelpParagraphLeave,
-    (void*)0,
-    (void*)&sbHelpParagraphPrev,
-    (void*)&sbHelpParagraphNext    
 };
 
-static const Page mpHelp            // ПОМОЩЬ
-(
-    &mainPage, 0,
+DEF_PAGE_6(mpHelp, mainPage, NamePage::SB_Help,
     "ПОМОЩЬ", "HELP",
     "Открыть разделы помощи",
     "To open sections of the help",
-    NamePage::SB_Help, &itemsHelp, EmptyFuncVV, HelpContent_Draw, OnHelpRegSet
+    sbExitHelp,
+    sbHelpParagraphEnter,
+    sbHelpParagraphLeave,
+    Item::empty,
+    sbHelpParagraphPrev,
+    sbHelpParagraphNext,
+    nullptr, nullptr,  HelpContent_Draw, OnHelpRegSet
 );
 
 

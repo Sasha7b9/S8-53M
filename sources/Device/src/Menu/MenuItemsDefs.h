@@ -8,10 +8,10 @@ static const DataItem di##name = { TypeItem::Button, &keeper, funcActive, th##na
 static const Button name(&di##name);
 
 
-#define DEF_SMALL_BUTTON(name, keeper, titleRU, titleEN, hintRU, hintEN, funcPress, funcDraw, hintUGO)           \
+#define DEF_SMALL_BUTTON(name, keeper, titleRU, titleEN, hintRU, hintEN, funcActive, funcPress, funcDraw, hintUGO)           \
 static const DataSmallButton dsb##name = { funcPress, funcDraw, hintUGO };                                       \
 const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN };                                          \
-static const DataItem di##name = { TypeItem::SmallButton, &keeper, nullptr, th##name, &dsb##name};      \
+static const DataItem di##name = { TypeItem::SmallButton, &keeper, funcActive, th##name, &dsb##name};      \
 static const SmallButton name(&di##name);
 
 
@@ -49,8 +49,22 @@ static const MACaddress name(&di##name);
     curField, hours, minutes, seconds, month, day, year)    \
 static const DataTime dt##name = {&curField, &hours, &minutes, &seconds, &month, &day, &year};  \
 static const char *th##name[] = {titleRU, titleEN, hintRU, hintEN}; \
-static const DataItem di##name = { TypeItem::Time, &keeper, nullptr, th##name, &dt##name};  \
+static const DataItem di##name = { TypeItem::Time, (const Page *)&keeper, nullptr, th##name, &dt##name};  \
 static const TimeItem name(&di##name);
+
+
+#define DEF_PAGE_HELP(name, parent, type, titleRU, titleEN, hintRU, hintEN)   \
+static const DataPageHelp dph##name = { type, &parent, nullptr };    \
+static const char *th##name[] = {titleRU, titleEN, hintRU, hintEN}; \
+static const DataItem di##name = { TypeItem::Page, nullptr, nullptr, th##name, &dph##name}; \
+static const PageHelp name(&di##name);
+
+
+#define DEF_PAGE_HELP_2(name, parent, type, titleRU, titleEN, hintRU, hintEN, page1, page2)   \
+static const DataPageHelp dph##name = { type, &parent, {&page1, &page2} };    \
+static const char *th##name[] = {titleRU, titleEN, hintRU, hintEN}; \
+static const DataItem di##name = { TypeItem::Page, nullptr, nullptr, th##name, &dph##name}; \
+static const PageHelp name(&di##name);
 
 
 #define DEF_PAGE_2(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN,                                              \
