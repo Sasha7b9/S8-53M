@@ -142,6 +142,8 @@ public:
     void Draw(int x, int y);
     NamePage::E GetName() const;
     const DataPage *OwnData() const { return static_cast<const DataPage *>(data->ad); }
+
+    static Page empty;
 };
 
 

@@ -8,8 +8,8 @@ static const DataItem di##name = { TypeItem::Button, &keeper, funcActive, th##na
 static const Button name(&di##name);
 
 
-#define DEF_SMALL_BUTTON(name, keeper, titleRU, titleEN, hintRU, hintEN, funcPress, funcDraw)           \
-static const DataSmallButton dsb##name = { funcPress, funcDraw };                                       \
+#define DEF_SMALL_BUTTON(name, keeper, titleRU, titleEN, hintRU, hintEN, funcPress, funcDraw, hintUGO)           \
+static const DataSmallButton dsb##name = { funcPress, funcDraw, hintUGO };                                       \
 const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN };                                          \
 static const DataItem di##name = { TypeItem::SmallButton, &keeper, nullptr, th##name, &dsb##name};      \
 static const SmallButton name(&di##name);
