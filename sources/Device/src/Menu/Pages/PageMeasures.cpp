@@ -118,7 +118,7 @@ bool IsActiveButtonMeasuresFieldSet()
 extern const Page pMeasures;
 
 // ИЗМЕРЕНИЯ -> Количество
-DEF_CHOCIE_7( mcMeasuresNumber,
+DEF_CHOICE_7( mcMeasuresNumber,
     "Количество", "Number"
     ,
     "Устанавливает максимальное количество выводимых измерений:\n"
@@ -151,7 +151,7 @@ DEF_CHOCIE_7( mcMeasuresNumber,
 
 
 // ИЗМЕРЕНИЯ -> Каналы
-DEF_CHOCIE_3(mcMeasuresChannels,
+DEF_CHOICE_3(mcMeasuresChannels,
     "Каналы", "Channels",
     "По каким каналам выводить измерения",
     "Which channels to output measurement",
@@ -163,7 +163,7 @@ DEF_CHOCIE_3(mcMeasuresChannels,
 
 
 // ИЗМЕРЕНИЯ -> Показывать
-DEF_CHOCIE_2(mcMeasuresIsShow,
+DEF_CHOICE_2(mcMeasuresIsShow,
     "Показывать", "Show",
     "Выводить или не выводить измерения на экран",
     "Output or output measurements on screen",
@@ -174,7 +174,7 @@ DEF_CHOCIE_2(mcMeasuresIsShow,
 
 
 // ИЗМЕРЕНИЯ -> Вид
-DEF_CHOCIE_2(mcMeasuresSignal,
+DEF_CHOICE_2(mcMeasuresSignal,
     "Вид", "View",
     "Уменьшать или нет зону вывода сигнала для исключения перекрытия его результами измерений",
     "Decrease or no zone output signal to avoid overlapping of its measurement results",

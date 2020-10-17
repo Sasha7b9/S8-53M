@@ -65,63 +65,44 @@ static void OnChanged_Settings_AutoHide(bool autoHide);     // Вызывается при из
 // ДИСПЛЕЙ /////////////////////////
 extern const Page mainPage;
 
-static const arrayItems itemsDisplay =
-{
-    reinterpret_cast<void*>(const_cast<Choice *>(&mcMapping)),       // ДИСПЛЕЙ - Отображение
-    reinterpret_cast<void*>(const_cast<Page *>(&mspAccumulation)),   // ДИСПЛЕЙ - НАКОПЛЕНИЕ
-    reinterpret_cast<void*>(const_cast<Page *>(&mspAveraging)),      // ДИСПЛЕЙ - УСРЕДНЕНИЕ
-    reinterpret_cast<void*>(const_cast<Choice *>(&mcMinMax)),        // ДИСПЛЕЙ - Мин Макс
-    reinterpret_cast<void*>(const_cast<Choice *>(&mcSmoothing)),     // ДИСПЛЕЙ - Сглаживание
-    reinterpret_cast<void*>(const_cast<Choice *>(&mcRefreshFPS)),    // ДИСПЛЕЙ - Частота обновл
-    reinterpret_cast<void*>(const_cast<Page *>(&mspGrid)),           // ДИСПЛЕЙ - СЕТКА
-    reinterpret_cast<void*>(const_cast<Choice *>(&mcTypeShift)),     // ДИСПЛЕЙ - Смещение
-    reinterpret_cast<void*>(const_cast<Page *>(&mspSettings))        // ДИСПЛЕЙ - НАСТРОЙКИ
-    //(void*)&mcDisplMemoryWindow,  // ДИСПЛЕЙ - Окно памяти
-};
-
-const Page pDisplay                 // ДИСПЛЕЙ
-(
-    &mainPage, 0,
+DEF_PAGE_9(pDisplay,
     "ДИСПЛЕЙ", "DISPLAY",
     "Содержит настройки отображения дисплея.",
     "Contains settings of display of the Display::",
-    NamePage::Display, &itemsDisplay
-);
+    mcMapping,
+    mspAccumulation,
+    mspAveraging,
+    mcMinMax,
+    mcSmoothing,
+    mcRefreshFPS,
+    mspGrid,
+    mcTypeShift,
+    mspSettings,
+    mainPage, NamePage::Display, nullptr, nullptr, nullptr, nullptr
+)
 
 
 // ДИСПЛЕЙ - Отображение -----------------------------------------------------------------------------------------------------------------------------
-static const Choice mcMapping =
-{
-    TypeItem::Choice, &pDisplay, 0,
-    {
-        "Отображение", "View",
-        "Задаёт режим отображения сигнала.",
-        "Sets the display mode signal."
-    },
-    {
-        {"Вектор",  "Vector"},
-        {"Точки",   "Points"}
-    },
-    (int8*)&MODE_DRAW_SIGNAL
-};
+DEF_CHOICE_2(mcMapping,
+    "Отображение", "View",
+    "Задаёт режим отображения сигнала.",
+    "Sets the display mode signal.",
+    "Вектор", "Vector",
+    "Точки",  "Points",
+    (int8)MODE_DRAW_SIGNAL, pDisplay, nullptr, nullptr, nullptr
+)
 
 
 // ДИСПЛЕЙ - НАКОПЛЕНИЕ ////////////
-static const arrayItems itemsAccumulation =
-{
-    reinterpret_cast<void*>(const_cast<Choice *>(&mcAccumulation_Number)),  // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Количество
-    reinterpret_cast<void*>(const_cast<Choice *>(&mcAccumulation_Mode)),    // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Режим
-    reinterpret_cast<void*>(const_cast<Button *>(&mbAccumulation_Clear))    // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Очистить    
-};
-
-static const Page mspAccumulation
-(
-    &pDisplay, IsActive_Accumulation,
+DEF_PAGE_3(mspAccumulation,
     "НАКОПЛЕНИЕ", "ACCUMULATION",
     "Настройки режима отображения последних сигналов на экране.",
     "Mode setting signals to display the last screen.",
-    NamePage::DisplayAccumulation, &itemsAccumulation
-);
+    mcAccumulation_Number,
+    mcAccumulation_Mode,
+    mbAccumulation_Clear,
+    pDisplay, NamePage::DisplayAccumulation, IsActive_Accumulation, nullptr, nullptr, nullptr
+)
 
 static bool IsActive_Accumulation(void)
 {
@@ -129,69 +110,58 @@ static bool IsActive_Accumulation(void)
 }
 
 // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Количество -----------------------------------------------------------------------------------------------------------------
-static const Choice mcAccumulation_Number =
-{
-    TypeItem::ChoiceReg, &mspAccumulation, 0,
-    {
-        "Количество", "Number"
-        ,
-        "Задаёт максимальное количество последних сигналов на экране. Если в настройке \"Режим\" выбрано \"Бесконечность\", экран очищается только "
-        "нажатием кнопки \"Очистить\"."
-        "\"Бесконечность\" - каждое измерение остаётся на дисплее до тех пор, пока не будет нажата кнопка \"Очистить\"."
-        ,
-        "Sets the maximum quantity of the last signals on the screen. If in control \"Mode\" it is chosen \"Infinity\", the screen is cleared only "
-        "by pressing of the button \"Clear\"."
-        "\"Infinity\" - each measurement remains on the display until the button \"Clear\" is pressed."
-    },
-    {
-        {DISABLE_RU,        DISABLE_EN},
-        {"2",               "2"},
-        {"4",               "4"},
-        {"8",               "8"},
-        {"16",              "16"},
-        {"32",              "32"},
-        {"64",              "64"},
-        {"128",             "128"},
-        {"Бесконечность",   "Infinity"}
-    },
-    (int8*)&ENUM_ACCUM
-};
+DEF_CHOICE_9(mcAccumulation_Number,
+    "Количество", "Number"
+    ,
+    "Задаёт максимальное количество последних сигналов на экране. Если в настройке \"Режим\" выбрано \"Бесконечность\", экран очищается только "
+    "нажатием кнопки \"Очистить\"."
+    "\"Бесконечность\" - каждое измерение остаётся на дисплее до тех пор, пока не будет нажата кнопка \"Очистить\"."
+    ,
+    "Sets the maximum quantity of the last signals on the screen. If in control \"Mode\" it is chosen \"Infinity\", the screen is cleared only "
+    "by pressing of the button \"Clear\"."
+    "\"Infinity\" - each measurement remains on the display until the button \"Clear\" is pressed."
+    ,
+    DISABLE_RU,      DISABLE_EN,
+    "2",             "2",
+    "4",             "4",
+    "8",             "8",
+    "16",            "16",
+    "32",            "32",
+    "64",            "64",
+    "128",           "128",
+    "Бесконечность", "Infinity",
+    (int8)ENUM_ACCUM, mspAccumulation, nullptr, nullptr, nullptr
+)
 
 
 // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Режим ----------------------------------------------------------------------------------------------------------------------
-static const Choice mcAccumulation_Mode =
-{
-    TypeItem::Choice, &mspAccumulation, 0,
-    {
-        "Режим", "Mode"
-        ,
-        "1. \"Сбрасывать\" - после накопления заданного количества измерения происходит очистка дисплея. Этот режим удобен, когда памяти не хватает "
-        "для сохранения нужного количества измерений.\n"
-        "2. \"Не сбрасывать\" - на дисплей всегда выводится заданное или меньшее (в случае нехватки памяти) количество измерений. Недостатком является "
-        "меньшее быстродействие и невозможность накопления заданного количества измерений при недостатке памяти."
-        ,
-        "1. \"Dump\" - after accumulation of the set number of measurement there is a cleaning of the Display:: This mode is convenient when memory "
-        "isn't enough for preservation of the necessary number of measurements.\n"
-        "2. \"Not to dump\" - the number of measurements is always output to the display set or smaller (in case of shortage of memory). Shortcoming "
-        "is smaller speed and impossibility of accumulation of the set number of measurements at a lack of memory."
-    },
-    {
-        {"Не сбрасывать",   "Not to dump"},
-        {"Сбрасывать",      "Dump"}
-    },
-    (int8*)&MODE_ACCUM
-};
+DEF_CHOICE_2(mcAccumulation_Mode,
+    "Режим", "Mode"
+    ,
+    "1. \"Сбрасывать\" - после накопления заданного количества измерения происходит очистка дисплея. Этот режим удобен, когда памяти не хватает "
+    "для сохранения нужного количества измерений.\n"
+    "2. \"Не сбрасывать\" - на дисплей всегда выводится заданное или меньшее (в случае нехватки памяти) количество измерений. Недостатком является "
+    "меньшее быстродействие и невозможность накопления заданного количества измерений при недостатке памяти."
+    ,
+    "1. \"Dump\" - after accumulation of the set number of measurement there is a cleaning of the Display:: This mode is convenient when memory "
+    "isn't enough for preservation of the necessary number of measurements.\n"
+    "2. \"Not to dump\" - the number of measurements is always output to the display set or smaller (in case of shortage of memory). Shortcoming "
+    "is smaller speed and impossibility of accumulation of the set number of measurements at a lack of memory."
+    ,
+    "Не сбрасывать", "Not to dump",
+    "Сбрасывать",    "Dump",
+    (int8)MODE_ACCUM, mspAccumulation, nullptr, nullptr, nullptr
+)
 
 
 // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Очистить /
-static const Button mbAccumulation_Clear
-(
-    &mspAccumulation, IsActive_Accumulation_Clear,
+DEF_BUTTON(mbAccumulation_Clear,
     "Очистить", "Clear",
     "Очищает экран от накопленных сигналов.",
     "Clears the screen of the saved-up signals.",
-    OnPress_Accumulation_Clear
-);
+    mspAccumulation, IsActive_Accumulation_Clear, OnPress_Accumulation_Clear
+)
+
 
 static bool IsActive_Accumulation_Clear(void)
 {
@@ -205,20 +175,14 @@ void OnPress_Accumulation_Clear(void)
 
 
 // ДИСПЛЕЙ - УСРЕДНЕНИЕ ////////////
-static const arrayItems itemsAveraging =
-{
-    (void*)&mcAveraging_Number, // ДИСПЛЕЙ - УСРЕДНЕНИЕ - Количество
-    (void*)&mcAveraging_Mode    // ДИСПЛЕЙ - УСРЕДНЕНИЕ - Режим    
-};
-
-static const Page mspAveraging
-(
-    &pDisplay, IsActive_Averaging,
+DEF_PAGE_2(mspAveraging,
     "УСРЕДНЕНИЕ", "AVERAGE",
     "Настройки режима усреднения по последним измерениям.",
     "Settings of the mode of averaging on the last measurements.",
-    NamePage::DisplayAverage, &itemsAveraging
-);
+    mcAveraging_Number,
+    mcAveraging_Mode,
+    pDisplay, NamePage::DisplayAverage, IsActive_Averaging, nullptr, nullptr, nullptr
+)
 
 static bool IsActive_Averaging(void)
 {

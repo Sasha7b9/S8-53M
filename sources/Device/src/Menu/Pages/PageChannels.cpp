@@ -85,7 +85,7 @@ DEF_PAGE_5(pChanA,
 
 
 // КАНАЛ 1 - Вход ------------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOCIE_2(mcInputA,
+DEF_CHOICE_2(mcInputA,
     "Вход", "Input",
     chanInputRu,
     chanInputEn,
@@ -102,7 +102,7 @@ void OnChanged_InputA(bool)
 
 
 // КАНАЛ 1 - Связь -----------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOCIE_3(mcCoupleA,
+DEF_CHOICE_3(mcCoupleA,
     "Связь", "Couple",
     chanCoupleRu,
     chanCoupleEn,
@@ -120,7 +120,7 @@ void OnChanged_CoupleA(bool)
 
 
 // КАНАЛ 1 - Фильтр ----------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOCIE_2(mcFiltrA,
+DEF_CHOICE_2(mcFiltrA,
     "Фильтр", "Filtr",
     chanFiltrRu,
     chanFiltrEn,
@@ -137,7 +137,7 @@ void OnChanged_FiltrA(bool)
 
 
 // КАНАЛ 1 - Инверсия --------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOCIE_2(mcInverseA,
+DEF_CHOICE_2(mcInverseA,
     "Инверсия", "Inverse",
     chanInverseRu,
     chanInverseEn,
