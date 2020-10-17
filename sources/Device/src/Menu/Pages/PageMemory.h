@@ -1,6 +1,9 @@
 #pragma once
 
 
+class Page;
+
+
 class PageMemory
 {
 public:
@@ -36,6 +39,8 @@ public:
     };
 
     static void *GetPointer();
+
+    static const Page *self;
 };
 
 

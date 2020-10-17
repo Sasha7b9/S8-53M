@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "PageMemory.h"
+#include "Menu/Pages/PageMemory.h"
 #include "Menu/Pages/PageCursors.h"
 #include "PageHelp.h"
 #include "FPGA/FPGA.h"
@@ -116,27 +116,25 @@ extern const Page pTrig;
 
 static const arrayItems itemsMainPage =
 {
-    (void*)&pDisplay,
-    (void*)&pChanA,
-    (void*)&pChanB,
-    (void*)&pTrig,
-    (void*)&pTime,
-    PageCursors::GetPointer(),
-    PageMemory::GetPointer(),
-    (void*)&pMeasures,
-    (void*)&pService,
-    (void*)&mpHelp,
-    (void*)&pDebug
 };
 
-const Page mainPage
-(
-    0, 0,
+DEF_PAGE_11(mainPage, Page::empty, NamePage::MainPage,
     "лемч", "MENU",
     "",
     "",
-    NamePage::MainPage, &itemsMainPage
-);
+    pDisplay,
+    pChanA,
+    pChanB,
+    pTrig,
+    pTime,
+    PageCursors::self,
+    PageMemory::self,
+    pMeasures,
+    pService,
+    mpHelp,
+    pDebug,
+    nullptr, nullptr, nullptr, nullptr
+)
 
 
 

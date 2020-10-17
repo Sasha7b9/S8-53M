@@ -163,6 +163,8 @@ DEF_PAGE_5(pCursors, mainPage, NamePage::Cursors,
     nullptr, nullptr, nullptr, nullptr
 )
 
+const Page *PageCursors::self = &pCursors;
+
 void *PageCursors::GetPointer()
 {
     return (void *)&pCursors;

@@ -1186,7 +1186,7 @@ static void OnMemExtSetNameRegSet(int angle)
 
 DEF_PAGE_6(mpSetName, Page::empty, NamePage::SB_MemExtSetName,
     "", "",
-    "", 
+    "",
     "",
     sbExitSetName,
     sbSetNameDelete,
@@ -1208,6 +1208,9 @@ DEF_PAGE_4(pMemory, mainPage, NamePage::Memory,
     mspMemoryExt,
     nullptr, nullptr, nullptr, nullptr
 )
+
+
+const Page *PageMemory::self = &pMemory;
 
 
 void *PageMemory::GetPointer()

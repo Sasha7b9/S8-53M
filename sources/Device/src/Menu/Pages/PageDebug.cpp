@@ -117,144 +117,104 @@ void *PageDebug::SerialNumber::GetPointer()
 // ОТЛАДКА /////////////////////////
 static const arrayItems itemsDebug =
 {
-    (void *)&mcStats,            // ОТЛАДКА - Статистика
-    (void *)&mpConsole,          // ОТЛАДКА - КОНСОЛЬ
-    (void *)&mpADC,              // ОТЛАДКА - АЦП
-    (void *)&mpRandomizer,       // ОТЛАДКА - РАНД-ТОР
-    (void *)&mcSizeSettings,     // ОТЛАДКА - Размер настроек
-    (void *)&mbSaveFirmware,     // ОТЛАДКА - Сохр. прошивку
-    (void *)&bEraseData          // ОТЛАДКА - Стереть данные
     //(void*)&ppSerialNumber     // ОТЛАДКА - С/Н
     //(void*)&mspDebugInformation
 };
 
-const Page pDebug
-(
-    &mainPage, 0,
+DEF_PAGE_7(pDebug, mainPage, NamePage::Debug,
     "ОТЛАДКА", "DEBUG",
     "",
     "",
-    NamePage::Debug, &itemsDebug
+    mcStats,            // ОТЛАДКА - Статистика
+    mpConsole,          // ОТЛАДКА - КОНСОЛЬ
+    mpADC,              // ОТЛАДКА - АЦП
+    mpRandomizer,       // ОТЛАДКА - РАНД-ТОР
+    mcSizeSettings,     // ОТЛАДКА - Размер настроек
+    mbSaveFirmware,     // ОТЛАДКА - Сохр. прошивку
+    bEraseData,         // ОТЛАДКА - Стереть данные
+    nullptr, nullptr, nullptr, nullptr
 );
 
 // ОТЛАДКА - Статистика ------------------------------------------------------------------------------------------------------------------------------
-static const Choice mcStats =
-{
-    TypeItem::Choice, &pDebug, 0,
-    {
-        "Статистика", "Statistics",
-        "Показывать/не показывать время/кадр, кадров в секунду, количество сигналов с последними настройками в памяти/количество сохраняемых в памяти сигналов",
-        "To show/not to show a time/shot, frames per second, quantity of signals with the last settings in memory/quantity of the signals kept in memory"
-    },
-    {
-        "Не показывать",    "Hide",
-        "Показывать",       "Show"
-    },
-    (int8*)&SHOW_STATS
-};
+DEF_CHOICE_2(mcStats, pDebug,
+    "Статистика", "Statistics",
+     "Показывать/не показывать время/кадр, кадров в секунду, количество сигналов с последними настройками в памяти/количество сохраняемых в памяти сигналов",
+     "To show/not to show a time/shot, frames per second, quantity of signals with the last settings in memory/quantity of the signals kept in memory",
+     "Не показывать", "Hide",
+     "Показывать",    "Show",
+    (int8)SHOW_STATS, nullptr, nullptr, nullptr
+)
 
 
 // ОТЛАДКА - КОНСОЛЬ ///////////////
-static const arrayItems itemsConsole =
-{
-    (void*)&mgConsole_NumStrings,   // ОТЛАДКА - КОНСОЛЬ - Число строк
-    (void*)&mcConsole_SizeFont,     // ОТЛАДКА - КОНСОЛЬ - Размер шрифта
-    (void*)&mpConsole_Registers     // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ
-};
-
-static const Page mpConsole
-(
-    &pDebug, 0,
+DEF_PAGE_3(mpConsole, pDebug, NamePage::DebugConsole,
     "КОНСОЛЬ", "CONSOLE",
     "",
     "",
-    NamePage::DebugConsole, &itemsConsole
+    mgConsole_NumStrings,   // ОТЛАДКА - КОНСОЛЬ - Число строк
+    mcConsole_SizeFont,     // ОТЛАДКА - КОНСОЛЬ - Размер шрифта
+    mpConsole_Registers,    // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ
+    nullptr, nullptr, nullptr, nullptr
 );
 
 // ОТЛАДКА - КОНСОЛЬ - Число строк -------------------------------------------------------------------------------------------------------------------
-static const Governor mgConsole_NumStrings
-(
-    &mpConsole, 0,
+DEF_GOVERNOR(mgConsole_NumStrings, mpConsole,
     "Число строк", "Number strings",
     "",
     "",
-    &NUM_STRINGS,  0, 33
-);
+    NUM_STRINGS,  0, 33, nullptr, nullptr, nullptr
+)
 
 // ОТЛАДКА - КОНСОЛЬ - Размер шрифта -----------------------------------------------------------------------------------------------------------------
-static const Choice mcConsole_SizeFont =
-{
-    TypeItem::Choice, &mpConsole, 0,
-    {
-        "Размер шрифта", "Size font",
-        "",
-        ""
-    },
-    {
-        "5",    "5",
-        "8",    "8"
-    },
-    (int8*)&SIZE_FONT_CONSOLE
-};
+DEF_CHOICE_2(mcConsole_SizeFont, mpConsole,
+    "Размер шрифта", "Size font",
+     "",
+     "",
+     "5", "5",
+     "8", "8",
+    (int8)SIZE_FONT_CONSOLE, nullptr, nullptr, nullptr
+)
 
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ ////
-static const arrayItems itemsConsole_Registers =
-{
-    (void*)&mcConsole_Registers_ShowAll,    // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Показывать все
-    (void*)&mcConsole_Registers_RD_FL,      // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - RD_FL
-    (void*)&mcConsole_Registers_RShiftA,    // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - U см. 1к
-    (void*)&mcConsole_Registers_RShiftB,    // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - U см. 2к
-    (void*)&mcConsole_Registers_TrigLev,    // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - U синхр.
-    (void*)&mcConsole_Registers_RangeA,     // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - ВОЛЬТ/ДЕЛ 1
-    (void*)&mcConsole_Registers_RangeB,     // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - ВОЛЬТ/ДЕЛ 2
-    (void*)&mcConsole_Registers_TrigParam,  // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Парам. синхр.
-    (void*)&mcConsole_Registers_ChanParamA, // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Парам. кан. 1
-    (void*)&mcConsole_Registers_ChanParamB, // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Парам. кан. 2
-    (void*)&mcConsole_Registers_TBase,      // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - ВРЕМЯ/ДЕЛ
-    (void*)&mcConsole_Registers_tShift      // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Т см.
-};
-
-static const Page mpConsole_Registers
-(
-    &mpConsole, 0,
+DEF_PAGE_12(mpConsole_Registers, mpConsole, NamePage::DebugShowRegisters,
     "РЕГИСТРЫ", "REGISTERS",
     "",
     "",
-    NamePage::DebugShowRegisters, &itemsConsole_Registers
-);
+    mcConsole_Registers_ShowAll,    // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Показывать все
+    mcConsole_Registers_RD_FL,      // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - RD_FL
+    mcConsole_Registers_RShiftA,    // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - U см. 1к
+    mcConsole_Registers_RShiftB,    // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - U см. 2к
+    mcConsole_Registers_TrigLev,    // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - U синхр.
+    mcConsole_Registers_RangeA,     // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - ВОЛЬТ/ДЕЛ 1
+    mcConsole_Registers_RangeB,     // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - ВОЛЬТ/ДЕЛ 2
+    mcConsole_Registers_TrigParam,  // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Парам. синхр.
+    mcConsole_Registers_ChanParamA, // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Парам. кан. 1
+    mcConsole_Registers_ChanParamB, // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Парам. кан. 2
+    mcConsole_Registers_TBase,      // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - ВРЕМЯ/ДЕЛ
+    mcConsole_Registers_tShift,      // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Т см.
+    nullptr, nullptr, nullptr, nullptr
+)
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Показывать все -----------------------------------------------------------------------------------------------------
-static const Choice mcConsole_Registers_ShowAll =
-{
-    TypeItem::Choice, &mpConsole_Registers, 0,
-    {
-        "Показывать все", "Show all",
-        "Показывать все значения, засылаемые в регистры",
-        "To show all values transferred in registers"
-    },
-    {
-        "Нет",  "No",
-        "Да",   "Yes"
-    },
-    (int8*)&IS_SHOW_REGISTERS_ALL
-};
+DEF_CHOICE_2(mcConsole_Registers_ShowAll, mpConsole_Registers,
+    "Показывать все", "Show all",
+    "Показывать все значения, засылаемые в регистры",
+    "To show all values transferred in registers",
+    "Нет", "No",
+    "Да",  "Yes",
+    (int8)IS_SHOW_REGISTERS_ALL, nullptr, nullptr, nullptr
+)
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - RD_FL --------------------------------------------------------------------------------------------------------------
-static const Choice mcConsole_Registers_RD_FL =
-{
-    TypeItem::Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
-    {
-        "RD_FL", "RD_FL",
-        "",
-        ""
-    },
-    {
-        DISABLE_RU, DISABLE_EN,
-        ENABLE_RU,  ENABLE_EN
-    },
-    (int8*)&set.debug.showRegisters.flag
-};
+DEF_CHOICE_2(mcConsole_Registers_RD_FL, mpConsole_Registers, 
+    "RD_FL", "RD_FL",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU,  ENABLE_EN,
+    (int8)set.debug.showRegisters.flag, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+)
 
 static bool IsActive_Console_Registers_RD_FL(void)
 {
@@ -262,217 +222,138 @@ static bool IsActive_Console_Registers_RD_FL(void)
 }
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - U см. 1к -----------------------------------------------------------------------------------------------------------
-static const Choice mcConsole_Registers_RShiftA =
-{
-    TypeItem::Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
-    {
-        "U см. 1к", "U shift 1ch",
-        "",
-        ""
-    },
-    {
-        DISABLE_RU, DISABLE_EN,
-        ENABLE_RU,  ENABLE_EN
-    },
-    (int8*)&set.debug.showRegisters.rShiftA
-};
+DEF_CHOICE_2(mcConsole_Registers_RShiftA, mpConsole_Registers,
+    "U см. 1к", "U shift 1ch",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU,  ENABLE_EN,
+    (int8)set.debug.showRegisters.rShiftA, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+)
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - U см. 2к -----------------------------------------------------------------------------------------------------------
-static const Choice mcConsole_Registers_RShiftB =
-{
-    TypeItem::Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
-    {
-        "U см. 2к", "U shift 2ch",
-        "",
-        ""
-    },
-    {
-        DISABLE_RU, DISABLE_EN,
-        ENABLE_RU,  ENABLE_EN
-    },
-    (int8*)&set.debug.showRegisters.rShiftB
-};
+DEF_CHOICE_2(mcConsole_Registers_RShiftB, mpConsole_Registers,
+    "U см. 2к", "U shift 2ch",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU,  ENABLE_EN,
+    (int8)set.debug.showRegisters.rShiftB, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+)
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - U синхр. -----------------------------------------------------------------------------------------------------------
-static const Choice mcConsole_Registers_TrigLev =
-{
-    TypeItem::Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
-    {
-        "U синхр.", "U trig.",
-        "",
-        ""
-    },
-    {
-        DISABLE_RU, DISABLE_EN,
-        ENABLE_RU,  ENABLE_EN
-    },
-    (int8*)&set.debug.showRegisters.trigLev
-};
+DEF_CHOICE_2(mcConsole_Registers_TrigLev, mpConsole_Registers,
+    "U синхр.", "U trig.",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU,  ENABLE_EN,
+    (int8)set.debug.showRegisters.trigLev, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+)
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - ВОЛЬТ/ДЕЛ 1 --------------------------------------------------------------------------------------------------------
-static const Choice mcConsole_Registers_RangeA =
-{
-    TypeItem::Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
-    {
-        "ВОЛЬТ/ДЕЛ 1", "Range 1",
-        "",
-        ""
-    },
-    {
-        {DISABLE_RU,    DISABLE_EN},
-        {ENABLE_RU,     ENABLE_EN}
-    },
-    (int8*)&set.debug.showRegisters.range[0]
-};
+DEF_CHOICE_2(mcConsole_Registers_RangeA, mpConsole_Registers,
+    "ВОЛЬТ/ДЕЛ 1", "Range 1",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU,  ENABLE_EN,
+    (int8)set.debug.showRegisters.range[0], IsActive_Console_Registers_RD_FL, nullptr, nullptr
+)
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - ВОЛЬТ/ДЕЛ 2 --------------------------------------------------------------------------------------------------------
-static const Choice mcConsole_Registers_RangeB =
-{
-    TypeItem::Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
-    {
-        "ВОЛЬТ/ДЕЛ 2", "Range 2",
-        "",
-        ""
-    },
-    {
-        {DISABLE_RU,    DISABLE_EN},
-        {ENABLE_RU,     ENABLE_EN}
-    },
-    (int8*)&set.debug.showRegisters.range[1]
-};
+DEF_CHOICE_2(mcConsole_Registers_RangeB, mpConsole_Registers,
+    "ВОЛЬТ/ДЕЛ 2", "Range 2",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU,  ENABLE_EN,
+    (int8)set.debug.showRegisters.range[1], IsActive_Console_Registers_RD_FL, nullptr, nullptr
+)
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Парам. синхр. ------------------------------------------------------------------------------------------------------
-static const Choice mcConsole_Registers_TrigParam =
-{
-    TypeItem::Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
-    {
-        "Парам. синхр.", "Trig param",
-        "",
-        ""
-    },
-    {
-        {DISABLE_RU,    DISABLE_EN},
-        {ENABLE_RU,     ENABLE_EN}
-    },
-    (int8*)&set.debug.showRegisters.trigParam
-};
+DEF_CHOICE_2(mcConsole_Registers_TrigParam, mpConsole_Registers,
+    "Парам. синхр.", "Trig param",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU,  ENABLE_EN,
+    (int8)set.debug.showRegisters.trigParam, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+)
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Парам. кан. 1 ------------------------------------------------------------------------------------------------------
-static const Choice mcConsole_Registers_ChanParamA =
-{
-    TypeItem::Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
-    {
-        "Парам. кан. 1",  "Chan 1 param",
-        "",
-        ""
-    },
-    {
-        {DISABLE_RU,    DISABLE_EN},
-        {ENABLE_RU,     ENABLE_EN}
-    },
-    (int8*)&set.debug.showRegisters.chanParam[0]
-};
+DEF_CHOICE_2(mcConsole_Registers_ChanParamA, mpConsole_Registers,
+    "Парам. кан. 1",  "Chan 1 param",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU,  ENABLE_EN,
+    (int8)set.debug.showRegisters.chanParam[0], IsActive_Console_Registers_RD_FL, nullptr, nullptr
+)
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Парам. кан. 2 ------------------------------------------------------------------------------------------------------
-static const Choice mcConsole_Registers_ChanParamB =
-{
-    TypeItem::Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
-    {
-        "Парам. кан. 2", "Chan 2 param",
-        "",
-        ""
-    },
-    {
-        {DISABLE_RU,    DISABLE_EN},
-        {ENABLE_RU,     ENABLE_EN}
-    },
-    (int8*)&set.debug.showRegisters.chanParam[1]
-};
+DEF_CHOICE_2(mcConsole_Registers_ChanParamB, mpConsole_Registers,
+    "Парам. кан. 2", "Chan 2 param",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU,  ENABLE_EN,
+    (int8)set.debug.showRegisters.chanParam[1], IsActive_Console_Registers_RD_FL, nullptr, nullptr
+)
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - ВРЕМЯ/ДЕЛ ----------------------------------------------------------------------------------------------------------
-static const Choice mcConsole_Registers_TBase =
-{
-    TypeItem::Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
-    {
-        "ВРЕМЯ/ДЕЛ", "TBase",
-        "",
-        ""
-    },
-    {
-        {DISABLE_RU,    DISABLE_EN},
-        {ENABLE_RU,     ENABLE_EN}
-    },
-    (int8*)&set.debug.showRegisters.tBase
-};
+DEF_CHOICE_2(mcConsole_Registers_TBase, mpConsole_Registers,
+    "ВРЕМЯ/ДЕЛ", "TBase",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU,  ENABLE_EN,
+    (int8)set.debug.showRegisters.tBase, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+)
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Т см. --------------------------------------------------------------------------------------------------------------
-static const Choice mcConsole_Registers_tShift =
-{
-    TypeItem::Choice, &mpConsole_Registers, IsActive_Console_Registers_RD_FL,
-    {
-        "Т см.", "tShift",
-        "",
-        ""
-    },
-    {
-        {DISABLE_RU,    DISABLE_EN},
-        {ENABLE_RU,     ENABLE_EN}
-    },
-    (int8*)&set.debug.showRegisters.tShift
-};
+DEF_CHOICE_2(mcConsole_Registers_tShift, mpConsole_Registers,
+    "Т см.", "tShift",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU,  ENABLE_EN,
+    (int8)set.debug.showRegisters.tShift, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+)
 
 
 // ОТЛАДКА - АЦП ///////////////////
-static const arrayItems itemsADC =
-{
-    (void*)&mpADC_Balance,      // ОТЛАДКА - АЦП - БАЛАНС
-    (void*)&mpADC_Stretch,      // ОТЛАДКА - АЦП - РАСТЯЖКА
-    (void*)&mpADC_AltRShift     // ОТЛАДКА - АЦП - ДОП СМЕЩ
-    //, (void*)&mspDebugADCaltShift
-};
-
-static const Page mpADC
-(
-    &pDebug, 0,
+DEF_PAGE_3(mpADC, pDebug, NamePage::DebugADC,
     "АЦП", "ADC",
     "",
     "",
-    NamePage::DebugADC, &itemsADC
-);
+    mpADC_Balance,      // ОТЛАДКА - АЦП - БАЛАНС
+    mpADC_Stretch,      // ОТЛАДКА - АЦП - РАСТЯЖКА
+    mpADC_AltRShift,    // ОТЛАДКА - АЦП - ДОП СМЕЩ
+    nullptr, nullptr, nullptr, nullptr
+)
 
 // ОТЛАДКА - АЦП - БАЛАНС //////////
-static const arrayItems itemsADC_Balance =
-{
-    (void*)&mcADC_Balance_Mode,     // ОТЛАДКА - АЦП - БАЛАНС - Режим
-    (void*)&mgADC_Balance_ShiftA,   // ОТЛАДКА - АЦП - БАЛАНС - Смещение 1
-    (void*)&mgADC_Balance_ShiftB    // ОТЛАДКА - АЦП - БАЛАНС - Смещение 2
-};
-
-static const Page mpADC_Balance
-(
-    &mpADC, 0,
+DEF_PAGE_3(mpADC_Balance, mpADC, NamePage::DebugADCbalance,
     "БАЛАНС", "BALANCE",
     "",
     "",
-    NamePage::DebugADCbalance, &itemsADC_Balance
-);
+    mcADC_Balance_Mode,     // ОТЛАДКА - АЦП - БАЛАНС - Режим
+    mgADC_Balance_ShiftA,   // ОТЛАДКА - АЦП - БАЛАНС - Смещение 1
+    mgADC_Balance_ShiftB,   // ОТЛАДКА - АЦП - БАЛАНС - Смещение 2
+    nullptr, nullptr, nullptr, nullptr
+)
 
 // ОТЛАДКА - АЦП - БАЛАНС - Режим --------------------------------------------------------------------------------------------------------------------
-static const Choice mcADC_Balance_Mode =
-{
-    TypeItem::Choice, &mpADC_Balance, 0,
-    {
-        "Режим", "Mode",
-        "",
-        ""
-    },
-    {
-        {DISABLE_RU,    DISABLE_EN},
-        {"Реальный",    "Real"},
-        {"Ручной",      "Manual"}
-    },
-    (int8*)&BALANCE_ADC_TYPE, OnChanged_ADC_Balance_Mode, Draw_ADC_Balance_Mode
-};
+DEF_CHOICE_3(mcADC_Balance_Mode, mpADC_Balance,
+    "Режим", "Mode",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    "Реальный", "Real",
+    "Ручной",   "Manual",
+    (int8)BALANCE_ADC_TYPE, nullptr, OnChanged_ADC_Balance_Mode, Draw_ADC_Balance_Mode
+)
 
 static int16 shiftADCA;
 static int16 shiftADCB;
@@ -498,14 +379,12 @@ static void Draw_ADC_Balance_Mode(int, int)
 }
 
 // ОТЛАДКА - АЦП - БАЛАНС - Смещение 1 ---------------------------------------------------------------------------------------------------------------
-static const Governor mgADC_Balance_ShiftA
-(
-    &mpADC_Balance, IsActive_ADC_Balance_Shift,
+DEF_GOVERNOR(mgADC_Balance_ShiftA, mpADC_Balance, 
     "Смещение 1", "Offset 1",
     "",
     "",
-    &shiftADCA, -125, 125, OnChanged_ADC_Balance_ShiftA
-);
+    shiftADCA, -125, 125, IsActive_ADC_Balance_Shift, OnChanged_ADC_Balance_ShiftA, nullptr
+)
 
 static void OnChanged_ADC_Balance_ShiftA(void)
 {
@@ -519,14 +398,12 @@ static bool IsActive_ADC_Balance_Shift(void)
 }
 
 // ОТЛАДКА - АЦП - БАЛАНС - Смещение 2----------------------------------------------------------------------------------------------------------------
-static const Governor mgADC_Balance_ShiftB
-(
-    &mpADC_Balance, IsActive_ADC_Balance_Shift,
+DEF_GOVERNOR(mgADC_Balance_ShiftB, mpADC_Balance,
     "Смещение 2", "Offset 2",
     "",
     "",
-    &shiftADCB, -125, 125, OnChanged_ADC_Balance_ShiftB
-);
+    shiftADCB, -125, 125, IsActive_ADC_Balance_Shift, OnChanged_ADC_Balance_ShiftB, nullptr
+)
 
 static void OnChanged_ADC_Balance_ShiftB(void)
 {
@@ -538,36 +415,28 @@ static void OnChanged_ADC_Balance_ShiftB(void)
 // ОТЛАДКА - АЦП - РАСТЯЖКА ////////
 static const arrayItems itemsADC_Stretch =
 {
-    (void*)&mcADC_Stretch_Mode,     // ОТЛАДКА - АЦП - РАСТЯЖКА - Режим
-    (void*)&mgADC_Stretch_ADC_A,    // ОТЛАДКА - АЦП - РАСТЯЖКА - Коэфф. 1к
-    (void*)&mgADC_Stretch_ADC_B     // ОТЛАДКА - АЦП - РАСТЯЖКА - Коэфф. 2к    
 };
 
-static const Page mpADC_Stretch
-(
-    &mpADC, 0,
+DEF_PAGE_3(mpADC_Stretch, mpADC, NamePage::DebugADCstretch,
     "РАСТЯЖКА", "STRETCH",
     "",
     "",
-    NamePage::DebugADCstretch, &itemsADC_Stretch
-);
+    mcADC_Stretch_Mode,     // ОТЛАДКА - АЦП - РАСТЯЖКА - Режим
+    mgADC_Stretch_ADC_A,    // ОТЛАДКА - АЦП - РАСТЯЖКА - Коэфф. 1к
+    mgADC_Stretch_ADC_B,    // ОТЛАДКА - АЦП - РАСТЯЖКА - Коэфф. 2к    
+    nullptr, nullptr, nullptr, nullptr
+)
 
 // ОТЛАДКА - АЦП - РАСТЯЖКА - Режим ------------------------------------------------------------------------------------------------------------------
-static const Choice mcADC_Stretch_Mode =
-{
-    TypeItem::Choice, &mpADC_Stretch, 0,
-    {
-        "Режим", "Mode",
-        "",
-        ""
-    },
-    {
-        {DISABLE_RU,    DISABLE_EN},
-        {"Реальный",    "Real"},
-        {"Ручной",      "Manual"}
-    },
-    (int8*)&DEBUG_STRETCH_ADC_TYPE, OnChanged_ADC_Stretch_Mode
-};
+DEF_CHOICE_3(mcADC_Stretch_Mode, mpADC_Stretch,
+    "Режим", "Mode",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    "Реальный", "Real",
+    "Ручной",   "Manual",
+    (int8)DEBUG_STRETCH_ADC_TYPE, nullptr, OnChanged_ADC_Stretch_Mode, nullptr
+)
 
 static void OnChanged_ADC_Stretch_Mode(bool active)
 {
@@ -595,14 +464,12 @@ void LoadStretchADC(Channel::E chan)
 }
 
 // ОТЛАДКА - АЦП - РАСТЯЖКА - Коэфф. 1к --------------------------------------------------------------------------------------------------------------
-static const Governor mgADC_Stretch_ADC_A
-(
-    &mpADC_Stretch, IsActive_ADC_Stretch_ADC, 
+DEF_GOVERNOR(mgADC_Stretch_ADC_A, mpADC_Stretch,
     "Коэфф. 1к", "Koeff. 1ch",
     "",
     "",
-    &DEBUG_STRETCH_ADC_A, 0, 255, OnChanged_ADC_Stretch_ADC_A
-);
+    DEBUG_STRETCH_ADC_A, 0, 255, IsActive_ADC_Stretch_ADC, OnChanged_ADC_Stretch_ADC_A, nullptr
+)
 
 static bool IsActive_ADC_Stretch_ADC(void)
 {
@@ -616,14 +483,12 @@ static void OnChanged_ADC_Stretch_ADC_A(void)
 
 
 // ОТЛАДКА - АЦП - РАСТЯЖКА - Коэфф. 2к --------------------------------------------------------------------------------------------------------------
-static const Governor mgADC_Stretch_ADC_B
-(
-    &mpADC_Stretch, IsActive_ADC_Stretch_ADC,
+DEF_GOVERNOR(mgADC_Stretch_ADC_B, mpADC_Stretch,
     "Коэфф. 2к", "Koeff. 2ch",
     "",
     "",
-    &DEBUG_STRETCH_ADC_B, 0, 255, OnChanged_ADC_Stretch_ADC_B
-);
+    DEBUG_STRETCH_ADC_B, 0, 255, IsActive_ADC_Stretch_ADC, OnChanged_ADC_Stretch_ADC_B, nullptr
+)
 
 static void OnChanged_ADC_Stretch_ADC_B(void)
 {
@@ -631,34 +496,26 @@ static void OnChanged_ADC_Stretch_ADC_B(void)
 }
 
 // ОТЛАДКА - АЦП - ДОП СМЕЩ ////////
-static const arrayItems itemsADC_AltRShift =
-{
-    (void*)&mbADC_AltRShift_Reset,          // ОТЛАДКА - АЦП - ДОП СМЕЩ - Сброс
-    (void*)&mbADC_AltRShift_2mV_DC_A,       // ОТЛАДКА - АЦП - ДОП СМЕЩ - См 1к 2мВ пост
-    (void*)&mbADC_AltRShift_2mV_DC_B,       // ОТЛАДКА - АЦП - ДОП СМЕЩ - См 2к 2мВ пост
-    (void*)&mbADC_AltRShift_5mV_DC_A,       // ОТЛАДКА - АЦП - ДОП СМЕЩ - См 1к 5мВ пост
-    (void*)&mbADC_AltRShift_5mV_DC_B,       // ОТЛАДКА - АЦП - ДОП СМЕЩ - См 2к 5мВ пост
-    (void*)&mbADC_AltRShift_10mV_DC_A,      // ОТЛАДКА - АЦП - ДОП СМЕЩ - См 1к 10мВ пост
-    (void*)&mbADC_AltRShift_10mV_DC_B       // ОТЛАДКА - АЦП - ДОП СМЕЩ - См 2к 10мВ пост    
-};
-
-static const Page mpADC_AltRShift
-(
-    &mpADC, 0,
+DEF_PAGE_7(mpADC_AltRShift, mpADC, NamePage::DebugADCrShift,
     "ДОП СМЕЩ", "ADD RSHFIT",
     "",
     "",
-    NamePage::DebugADCrShift, &itemsADC_AltRShift
-);
+    mbADC_AltRShift_Reset,          // ОТЛАДКА - АЦП - ДОП СМЕЩ - Сброс
+    mbADC_AltRShift_2mV_DC_A,       // ОТЛАДКА - АЦП - ДОП СМЕЩ - См 1к 2мВ пост
+    mbADC_AltRShift_2mV_DC_B,       // ОТЛАДКА - АЦП - ДОП СМЕЩ - См 2к 2мВ пост
+    mbADC_AltRShift_5mV_DC_A,       // ОТЛАДКА - АЦП - ДОП СМЕЩ - См 1к 5мВ пост
+    mbADC_AltRShift_5mV_DC_B,       // ОТЛАДКА - АЦП - ДОП СМЕЩ - См 2к 5мВ пост
+    mbADC_AltRShift_10mV_DC_A,      // ОТЛАДКА - АЦП - ДОП СМЕЩ - См 1к 10мВ пост
+    mbADC_AltRShift_10mV_DC_B,      // ОТЛАДКА - АЦП - ДОП СМЕЩ - См 2к 10мВ пост
+    nullptr, nullptr, nullptr, nullptr
+)
 
 // ОТЛАДКА - АЦП - ДОП СМЕЩ - Сброс ------------------------------------------------------------------------------------------------------------------
-static const Button mbADC_AltRShift_Reset
-(
-    &mpADC_AltRShift, 0,
+DEF_BUTTON(mbADC_AltRShift_Reset, mpADC_AltRShift,
     "Сброс", "Reset",
     "", "",
-    OnPress_ADC_AltRShift_Reset
-);
+    nullptr, OnPress_ADC_AltRShift_Reset
+)
 
 static void OnPress_ADC_AltRShift_Reset(void)
 {
@@ -677,14 +534,12 @@ static void OnPress_ADC_AltRShift_Reset(void)
 }
 
 // ОТЛАДКА - АЦП - ДОП СМЕЩ - См 1к 2мВ пост ---------------------------------------------------------------------------------------------------------
-static const Governor mbADC_AltRShift_2mV_DC_A
-(
-    &mpADC_AltRShift, 0,
+DEF_GOVERNOR(mbADC_AltRShift_2mV_DC_A, mpADC_AltRShift,
     "См 1к 2мВ пост", "Shift 1ch 2mV DC",
     "",
     "",
-    &RSHIFT_ADD(Channel::A, Range::_2mV, ModeCouple::DC), -100, 100, OnChanged_ADC_AltRShift_A
-);
+    set.chan[Channel::A].rShiftAdd[Range::_2mV][ModeCouple::DC], -100, 100, nullptr, OnChanged_ADC_AltRShift_A, nullptr
+)
 
 static void OnChanged_ADC_AltRShift_A(void)
 {
@@ -692,14 +547,12 @@ static void OnChanged_ADC_AltRShift_A(void)
 }
 
 // ОТЛАДКА - АЦП - ДОП СМЕЩ - См 2к 2мВ пост ---------------------------------------------------------------------------------------------------------
-static const Governor mbADC_AltRShift_2mV_DC_B
-(
-    &mpADC_AltRShift, 0,
+DEF_GOVERNOR(mbADC_AltRShift_2mV_DC_B, mpADC_AltRShift,
     "См 2к 2мВ пост", "Shift 2ch 2mV DC",
     "",
     "",
-    &RSHIFT_ADD(Channel::B, Range::_2mV, ModeCouple::DC), -100, 100, OnChanged_ADC_AltRShift_B
-);
+    RSHIFT_ADD(Channel::B, Range::_2mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_B, nullptr
+)
 
 static void OnChanged_ADC_AltRShift_B(void)
 {
@@ -707,72 +560,56 @@ static void OnChanged_ADC_AltRShift_B(void)
 }
 
 // ОТЛАДКА - АЦП - ДОП СМЕЩ - См 1к 5мВ пост ---------------------------------------------------------------------------------------------------------
-static const Governor mbADC_AltRShift_5mV_DC_A
-(
-    &mpADC_AltRShift, 0,
+DEF_GOVERNOR(mbADC_AltRShift_5mV_DC_A, mpADC_AltRShift,
     "См 1к 5мВ пост", "Shift 1ch 5mV DC",
     "",
     "",
-    &RSHIFT_ADD(Channel::A, Range::_5mV, ModeCouple::DC), -100, 100, OnChanged_ADC_AltRShift_A
-);
+    RSHIFT_ADD(Channel::A, Range::_5mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_A, nullptr
+)
 
 // ОТЛАДКА - АЦП - ДОП СМЕЩ - См 2к 5мВ пост ---------------------------------------------------------------------------------------------------------
-static const Governor mbADC_AltRShift_5mV_DC_B
-(
-    &mpADC_AltRShift, 0,
+DEF_GOVERNOR(mbADC_AltRShift_5mV_DC_B, mpADC_AltRShift,
     "См 2к 5мВ пост", "Shift 2ch 5mV DC",
     "",
     "",
-    &RSHIFT_ADD(Channel::B, Range::_5mV, ModeCouple::DC), -100, 100, OnChanged_ADC_AltRShift_B
-);
+    RSHIFT_ADD(Channel::B, Range::_5mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_B, nullptr
+)
 
 // ОТЛАДКА - АЦП - ДОП СМЕЩ - См 1к 10мВ пост --------------------------------------------------------------------------------------------------------
-static const Governor mbADC_AltRShift_10mV_DC_A
-(
-    &mpADC_AltRShift, 0,
+DEF_GOVERNOR(mbADC_AltRShift_10mV_DC_A, mpADC_AltRShift,
     "См 1к 10мВ пост", "Shift 1ch 10mV DC",
     "",
     "",
-    &RSHIFT_ADD(Channel::A, Range::_10mV, ModeCouple::DC), -100, 100, OnChanged_ADC_AltRShift_A
-);
+    RSHIFT_ADD(Channel::A, Range::_10mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_A, nullptr
+)
 
 // ОТЛАДКА - АЦП - ДОП СМЕЩ - См 2к 10мВ пост --------------------------------------------------------------------------------------------------------
-static const Governor mbADC_AltRShift_10mV_DC_B
-(
-    &mpADC_AltRShift, 0,
+DEF_GOVERNOR(mbADC_AltRShift_10mV_DC_B, mpADC_AltRShift,
     "См 2к 10мВ пост", "Shift 2ch 10mV DC",
     "",
     "",
-    &RSHIFT_ADD(Channel::B, Range::_10mV, ModeCouple::DC), -100, 100, OnChanged_ADC_AltRShift_B
-);
+    RSHIFT_ADD(Channel::B, Range::_10mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_B, nullptr
+)
 
 
 // ОТЛАДКА - РАНД-ТОР //////////////
-static const arrayItems itemsRandomizer =
-{
-    (void*)&mgRandomizer_SamplesForGates,   // ОТЛАДКА - РАНД-ТОР - Выб-к/ворота
-    (void*)&mgRandomizer_AltTShift0,        // ОТЛАДКА - РАНД-ТОР - tShift доп.
-    (void*)&mgRandomizer_Average            // ОТЛАДКА - РАНД-ТОР - Усредн.
-};
-
-static const Page mpRandomizer
-(
-    &pDebug, 0,
+DEF_PAGE_3(mpRandomizer, pDebug, NamePage::DebugRandomizer,
     "РАНД-ТОР", "RANDOMIZER",
     "",
     "",
-    NamePage::DebugRandomizer, &itemsRandomizer
-);
+    mgRandomizer_SamplesForGates,   // ОТЛАДКА - РАНД-ТОР - Выб-к/ворота
+    mgRandomizer_AltTShift0,        // ОТЛАДКА - РАНД-ТОР - tShift доп.
+    mgRandomizer_Average,           // ОТЛАДКА - РАНД-ТОР - Усредн.
+    nullptr, nullptr, nullptr, nullptr
+)
 
 // ОТЛАДКА - РАНД-ТОР - Выб-к/ворота -----------------------------------------------------------------------------------------------------------------
-static const Governor mgRandomizer_SamplesForGates
-(
-    &mpRandomizer, 0,
+DEF_GOVERNOR(mgRandomizer_SamplesForGates, mpRandomizer,
     "Выб-к/ворота", "Samples/gates",
     "",
     "",
-    &NUM_MEAS_FOR_GATES, 1, 2500, OnChanged_Randomizer_SamplesForGates
-);
+    NUM_MEAS_FOR_GATES, 1, 2500, nullptr, OnChanged_Randomizer_SamplesForGates, nullptr
+)
 
 static void OnChanged_Randomizer_SamplesForGates(void)
 {
@@ -780,14 +617,12 @@ static void OnChanged_Randomizer_SamplesForGates(void)
 }
 
 // ОТЛАДКА - РАНД-ТОР - tShift доп. ------------------------------------------------------------------------------------------------------------------
-static const Governor mgRandomizer_AltTShift0
-(
-    &mpRandomizer, 0,
+DEF_GOVERNOR(mgRandomizer_AltTShift0, mpRandomizer,
     "tShift доп.", "tShift alt.",
     "",
     "",
-    &ADD_SHIFT_T0, 0, 510, OnChanged_Randomizer_AltTShift0
-);
+    ADD_SHIFT_T0, 0, 510, nullptr, OnChanged_Randomizer_AltTShift0, nullptr
+)
 
 static void OnChanged_Randomizer_AltTShift0(void)
 {
@@ -795,31 +630,24 @@ static void OnChanged_Randomizer_AltTShift0(void)
 }
 
 // ОТЛАДКА - РАНД-ТОР - Усредн. ----------------------------------------------------------------------------------------------------------------------
-static const Governor mgRandomizer_Average
-(
-    &mpRandomizer, 0,
+DEF_GOVERNOR(mgRandomizer_Average, mpRandomizer,
     "Усредн.", "Average",
     "",
     "",
-    &NUM_AVE_FOR_RAND, 1, 32
-);
+    NUM_AVE_FOR_RAND, 1, 32, nullptr, nullptr, nullptr
+)
 
 
 // ОТЛАДКА - Размер настроек  ------------------------------------------------------------------------------------------------------------------------
-static const Choice mcSizeSettings =
-{
-    TypeItem::Choice, &pDebug, 0,
-    {
-        "Размер настроек", "Size settings",
-        "Вывод размера структуры Settings",
-        "Show size of struct Settings"
-    },
-    {
-        {"Размер", "Size"},
-        {"Размер", "Size"}
-    },
-    0, 0, OnDraw_SizeSettings
-};
+static int8 size = 0;
+DEF_CHOICE_2(mcSizeSettings, pDebug,
+    "Размер настроек", "Size settings",
+    "Вывод размера структуры Settings",
+    "Show size of struct Settings",
+    "Размер", "Size",
+    "Размер", "Size",
+    size, nullptr, nullptr, OnDraw_SizeSettings
+)
 
 static void OnDraw_SizeSettings(int x, int y)
 {
@@ -828,14 +656,12 @@ static void OnDraw_SizeSettings(int x, int y)
 
 
 // ОТЛАДКА - Сохр. прошивку --------------------------------------------------------------------------------------------------------------------------
-static const Button mbSaveFirmware
-(
-    &pDebug, IsActive_SaveFirmware,
+DEF_BUTTON(mbSaveFirmware, pDebug,
     "Сохр. прошивку", "Save firmware",
     "Сохранение прошивки - секторов 5, 6, 7 общим объёмом 3 х 128 кБ, где хранится программа",
     "Saving firmware - sectors 5, 6, 7 with a total size of 3 x 128 kB, where the program is stored",
-    OnPress_SaveFirmware
-);
+    IsActive_SaveFirmware, OnPress_SaveFirmware
+)
 
 static bool IsActive_SaveFirmware()
 {
@@ -865,15 +691,12 @@ static void OnPress_SaveFirmware()
 }
 
 
-
-static const Button bEraseData
-(
-    &pDebug, EmptyFuncBV,
+DEF_BUTTON(bEraseData, pDebug,
     "Стереть данные", "Erase data",
     "Стирает сектора с данными",
     "Erases data sectors",
-    OnPress_EraseData
-);
+    nullptr, OnPress_EraseData
+)
 
 static void OnPress_EraseData()
 {
@@ -884,22 +707,20 @@ static void OnPress_EraseData()
 // ОТЛАДКА - С/Н ///////////////////
 static const arrayItems itemsSerialNumber =
 {
-    (void*)&bSerialNumber_Exit,     // ОТЛАДКА - С/Н - Выход
-    (void*)&bSerialNumber_Change,   // ОТЛАДКА - С/Н - Перейти
-    (void*)0,
-    (void*)0,
-    (void*)0,
-    (void*)&bSerialNumber_Save      // ОТЛАДКА - С/Н - Сохранить    
 };
 
-static const Page ppSerialNumber
-(
-    &pDebug, 0,
+DEF_PAGE_6(ppSerialNumber, pDebug, NamePage::SB_SerialNumber,
     "С/Н", "S/N",
     "Запись серийного номера в OTP-память. ВНИМАНИЕ!!! ОТP-память - память с однократной записью.",
     "Serial number recording in OTP-memory. ATTENTION!!! OTP memory is a one-time programming memory.",
-    NamePage::SB_SerialNumber, &itemsSerialNumber, OnPress_SerialNumber, 0, OnRegSet_SerialNumber
-);
+    bSerialNumber_Exit,     // ОТЛАДКА - С/Н - Выход
+    bSerialNumber_Change,   // ОТЛАДКА - С/Н - Перейти
+    Item::empty,
+    Item::empty,
+    Item::empty,
+    bSerialNumber_Save,      // ОТЛАДКА - С/Н - Сохранить    
+    nullptr, OnPress_SerialNumber, nullptr, OnRegSet_SerialNumber
+)
 
 static void OnPress_SerialNumber(void)
 {
@@ -987,13 +808,10 @@ static void OnRegSet_SerialNumber(int angle)
 }
 
 // ОТЛАДКА - С/Н - Выход -----------------------------------------------------------------------------------------------------------------------------
-static const SmallButton bSerialNumber_Exit
-(
-    &ppSerialNumber,
-    COMMON_BEGIN_SB_EXIT,
-    OnPress_SerialNumber_Exit,
-    DrawSB_Exit
-);
+DEF_SMALL_BUTTON(bSerialNumber_Exit, ppSerialNumber,
+    "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
+    OnPress_SerialNumber_Exit, DrawSB_Exit, nullptr
+)
 
 static void OnPress_SerialNumber_Exit(void)
 {
@@ -1002,15 +820,12 @@ static void OnPress_SerialNumber_Exit(void)
 }
 
 // ОТЛАДКА - С/Н - Вставить --------------------------------------------------------------------------------------------------------------------------
-static const SmallButton bSerialNumber_Change
-(
-    &ppSerialNumber, 0,
+DEF_SMALL_BUTTON(bSerialNumber_Change, ppSerialNumber,
     "Вставить", "Insert",
     "Вставляет выбраный символ",
     "Inserts the chosen symbol",
-    OnPress_SerialNumber_Change,
-    Draw_SerialNumber_Change
-);
+    OnPress_SerialNumber_Change, Draw_SerialNumber_Change, nullptr
+)
 
 static void OnPress_SerialNumber_Change(void)
 {
@@ -1028,15 +843,12 @@ static void Draw_SerialNumber_Change(int x, int y)
 }
 
 // ОТЛАДКА - С/Н - Сохранить -------------------------------------------------------------------------------------------------------------------------
-static const SmallButton bSerialNumber_Save
-(
-    &ppSerialNumber, 0,
+DEF_SMALL_BUTTON(bSerialNumber_Save, ppSerialNumber,
     "Сохранить", "Save",
     "Записывает серийный номер в OTP",
     "Records the serial number in OTP",
-    OnPress_SerialNumber_Save,
-    Draw_SerialNumber_Save
-);
+    OnPress_SerialNumber_Save, Draw_SerialNumber_Save, nullptr
+)
 
 static void OnPress_SerialNumber_Save(void)
 {
