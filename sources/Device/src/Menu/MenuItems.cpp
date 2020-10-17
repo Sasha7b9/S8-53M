@@ -17,6 +17,10 @@ struct TimeStructChoice
 static TimeStructChoice tsChoice;
 
 
+DataItem Item::emptyData = { TypeItem::None, nullptr, nullptr, nullptr, nullptr };
+Item Item::empty;
+Page Page::empty(&Item::emptyData);
+
 
 Item::Item(const DataItem *const _data) : data(_data)
 {
