@@ -2,7 +2,6 @@
 #include "Globals.h"
 #include "Menu/MenuItems.h"
 #include "Definition.h"
-#include "HelpContent.h"
 
 
 void DrawSB_Help_ParagraphEnter(int x, int y)

@@ -111,6 +111,8 @@ public:
     bool IsPressed() const;
 
     static DataItem emptyData;
+
+    static Item empty;
 };
 
 

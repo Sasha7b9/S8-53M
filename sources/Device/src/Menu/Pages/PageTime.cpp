@@ -25,43 +25,32 @@ extern const Page mainPage;
 
 
 // РАЗВЕРТКА ///////////////////
-static const arrayItems itemsTime =
-{
-    (void*)&mcSample,       // РАЗВЕРТКА - Выборка
-    (void*)&mcPeakDet,      // РАЗВЕРТКА - Пик дет
-    (void*)&mcTPos,         // РАЗВЕРТКА - To
-    (void*)&mcSelfRecorder, // РАЗВЕРТКА - Самописец
-    (void*)&mcDivRole       // РАЗВЕРТКА - Ф-ция ВР/ДЕЛ    
-};
-
-const Page pTime            // РАЗВЕРТКА
-(
-    &mainPage, 0,
+DEF_PAGE_5(pTime, mainPage, NamePage::Time,
     "РАЗВЕРТКА", "SCAN",
     "Содержит настройки развёртки.",
     "Contains scan settings.",
-    NamePage::Time, &itemsTime
-);
+    mcSample,
+    mcPeakDet,
+    mcTPos,
+    mcSelfRecorder,
+    mcDivRole,
+    nullptr, nullptr, nullptr, nullptr
+)
 
 // РАЗВЕРТКА - Выборка -------------------------------------------------------------------------------------------------------------------------------
-static const Choice mcSample =
-{
-    TypeItem::Choice, &pTime, IsActive_Sample,
-    {
-        "Выборка", "Sampling"
-        ,
-        "\"Реальная\" - \n"
-        "\"Эквивалентная\" -"
-        ,
-        "\"Real\" - \n"
-        "\"Equals\" - "
-    },
-    {
-        {"Реальное время",  "Real"},
-        {"Эквивалентная",   "Equals"}
-    },
-    (int8*)&SAMPLE_TYPE
-};
+DEF_CHOICE_2(mcSample, pTime,
+    "Выборка", "Sampling",
+    "\"Реальная\" - \n"
+    "\"Эквивалентная\" -"
+    ,
+    "\"Real\" - \n"
+    "\"Equals\" - "
+    ,
+    "Реальное время", "Real",
+    "Эквивалентная",  "Equals",
+    (int8)SAMPLE_TYPE, IsActive_Sample, nullptr, nullptr
+)
+
 
 static bool IsActive_Sample(void)
 {
@@ -69,21 +58,14 @@ static bool IsActive_Sample(void)
 }
 
 // РАЗВЕРТКА - Пик дет -------------------------------------------------------------------------------------------------------------------------------
-static const Choice mcPeakDet =
-{
-    TypeItem::Choice, &pTime, IsActive_PeakDet,
-    {
-        "Пик дет", "Pic deat",
-        "Включает/выключает пиковый детектор.",
-        "Turns on/off peak detector."
-    },
-    {
-        {DISABLE_RU,    DISABLE_EN},
-        {ENABLE_RU,     ENABLE_EN}
-        /* , {"Среднее",   "Average"} */
-    },
-    (int8*)&PEAKDET, OnChanged_PeakDet
-};
+DEF_CHOICE_2(mcPeakDet, pTime,
+    "Пик дет", "Pic deat",
+    "Включает/выключает пиковый детектор.",
+    "Turns on/off peak detector.",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU,  ENABLE_EN,
+    (int8)PEAKDET, IsActive_PeakDet, OnChanged_PeakDet, nullptr
+)
 
 static bool IsActive_PeakDet(void)
 {
@@ -133,21 +115,15 @@ void OnChanged_PeakDet(bool active)
 }
 
 // РАЗВЕРТКА - To ------------------------------------------------------------------------------------------------------------------------------------
-static const Choice mcTPos =
-{
-    TypeItem::Choice, &pTime, 0,
-    {
-        "\x7b", "\x7b",
-        "Задаёт точку привязки нулевого смещения по времени к экрану - левый край, центр, правый край.",
-        "Sets the anchor point nuleovgo time offset to the screen - the left edge, center, right edge."
-    },
-    {
-        {"Лево",    "Left"},
-        {"Центр",   "Center"},
-        {"Право",   "Right"}
-    },
-    (int8*)&SET_TPOS, OnChanged_TPos
-};
+DEF_CHOICE_3(mcTPos, pTime,
+    "\x7b", "\x7b",
+    "Задаёт точку привязки нулевого смещения по времени к экрану - левый край, центр, правый край.",
+    "Sets the anchor point nuleovgo time offset to the screen - the left edge, center, right edge.",
+    "Лево",  "Left",
+    "Центр", "Center",
+    "Право", "Right",
+    (int8)SET_TPOS, nullptr, OnChanged_TPos, nullptr
+)
 
 void OnChanged_TPos(bool active)
 {
@@ -156,20 +132,14 @@ void OnChanged_TPos(bool active)
 }
 
 // РАЗВЕРТКА - Самописец -----------------------------------------------------------------------------------------------------------------------------
-static const Choice mcSelfRecorder =
-{
-    TypeItem::Choice, &pTime, IsActive_SelfRecorder,
-    {
-        "Самописец", "Self-Recorder",
-        "Включает/выключает режим самописца. Этот режим доступен на развёртках 20мс/дел и более медленных.",
-        "Turn on/off the recorder. This mode is available for scanning 20ms/div and slower."
-    },
-    {
-        {DISABLE_RU,    DISABLE_EN},
-        {ENABLE_RU,     ENABLE_EN}
-    },
-    (int8*)&SET_SELFRECORDER
-};
+DEF_CHOICE_2(mcSelfRecorder, pTime,
+    "Самописец", "Self-Recorder",
+    "Включает/выключает режим самописца. Этот режим доступен на развёртках 20мс/дел и более медленных.",
+    "Turn on/off the recorder. This mode is available for scanning 20ms/div and slower.",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU,  ENABLE_EN,
+    (int8)SET_SELFRECORDER, IsActive_SelfRecorder, nullptr, nullptr
+)
 
 static bool IsActive_SelfRecorder(void)
 {
@@ -177,23 +147,18 @@ static bool IsActive_SelfRecorder(void)
 }
 
 // РАЗВЕРТКА - Ф-ция ВР/ДЕЛ --------------------------------------------------------------------------------------------------------------------------
-static const Choice mcDivRole =
-{
-    TypeItem::Choice, &pTime, 0,
-    {
-        "Ф-ция ВР/ДЕЛ", "Func Time/DIV"
-        ,
-        "Задаёт функцию для ручки ВРЕМЯ/ДЕЛ: в режиме сбора информации (ПУСК/СТОП в положении ПУСК):\n"
-        "1. \"Время\" - изменение смещения по времени.\n"
-        "2. \"Память\" - перемещение по памяти."
-        ,
-        "Sets the function to handle TIME/DIV: mode of collecting information (START/STOP to start position):\n"
-        "1. \"Time\" - change the time shift.\n"
-        "2. \"Memory\" - moving from memory."
-    },
-    {
-        {"Время",   "Time"},
-        {"Память",  "Memory"}
-    },
-    (int8*)&TIME_DIV_XPOS
-};
+DEF_CHOICE_2(mcDivRole, pTime,
+    "Ф-ция ВР/ДЕЛ", "Func Time/DIV"
+    ,
+    "Задаёт функцию для ручки ВРЕМЯ/ДЕЛ: в режиме сбора информации (ПУСК/СТОП в положении ПУСК):\n"
+    "1. \"Время\" - изменение смещения по времени.\n"
+    "2. \"Память\" - перемещение по памяти."
+    ,
+    "Sets the function to handle TIME/DIV: mode of collecting information (START/STOP to start position):\n"
+    "1. \"Time\" - change the time shift.\n"
+    "2. \"Memory\" - moving from memory."
+    ,
+    "Время",  "Time",
+    "Память", "Memory",
+    (int8)TIME_DIV_XPOS, nullptr, nullptr, nullptr
+)

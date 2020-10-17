@@ -70,18 +70,18 @@ void RotateRegMeasureSetField(int angle)
 
 extern const Page mspMeasTune;
 
-DEF_SMALL_BUTTON( sbMeasTuneSettings,
+DEF_SMALL_BUTTON( sbMeasTuneSettings, mspMeasTune,
     "Настройка", "Setup",
     "Позволяет выбрать необходимые измерения",
     "Allows to choose necessary measurements",
-    mspMeasTune, PressSB_MeasTune_Settings, DrawSB_MeasTune_Settings
+    PressSB_MeasTune_Settings, DrawSB_MeasTune_Settings
 )
 
-DEF_SMALL_BUTTON( sbMeasTuneMarkers,        // Включение / отключение маркера для режима измерений.
+DEF_SMALL_BUTTON( sbMeasTuneMarkers, mspMeasTune,                 // Включение / отключение маркера для режима измерений.
     "Маркер", "Marker",
     "Позволяет установить маркеры для визуального контроля измерений",
     "Allows to establish markers for visual control of measurements",
-    mspMeasTune, PressSB_MeasTune_Markers, DrawSB_MeasTune_Markers
+    PressSB_MeasTune_Markers, DrawSB_MeasTune_Markers
 )
 
 bool IsActiveChoiceMeasuresNumber()
@@ -118,7 +118,7 @@ bool IsActiveButtonMeasuresFieldSet()
 extern const Page pMeasures;
 
 // ИЗМЕРЕНИЯ -> Количество
-DEF_CHOICE_7( mcMeasuresNumber,
+DEF_CHOICE_7( mcMeasuresNumber, pMeasures,
     "Количество", "Number"
     ,
     "Устанавливает максимальное количество выводимых измерений:\n"
@@ -146,41 +146,41 @@ DEF_CHOICE_7( mcMeasuresNumber,
     "3x5", "3x5",
     "6x1", "6x1",
     "6x2", "6x2",
-    (int8)MEAS_NUM, pMeasures, IsActiveChoiceMeasuresNumber, nullptr, nullptr
+    (int8)MEAS_NUM, IsActiveChoiceMeasuresNumber, nullptr, nullptr
 )
 
 
 // ИЗМЕРЕНИЯ -> Каналы
-DEF_CHOICE_3(mcMeasuresChannels,
+DEF_CHOICE_3(mcMeasuresChannels, pMeasures,
     "Каналы", "Channels",
     "По каким каналам выводить измерения",
     "Which channels to output measurement",
     "1",       "1",
     "2",       "2",
     "1 и 2",   "1 and 2",
-    (int8)MEAS_SOURCE, pMeasures, IsActiveChoiceMeasuresChannels, nullptr, nullptr
+    (int8)MEAS_SOURCE, IsActiveChoiceMeasuresChannels, nullptr, nullptr
 )
 
 
 // ИЗМЕРЕНИЯ -> Показывать
-DEF_CHOICE_2(mcMeasuresIsShow,
+DEF_CHOICE_2(mcMeasuresIsShow, pMeasures,
     "Показывать", "Show",
     "Выводить или не выводить измерения на экран",
     "Output or output measurements on screen",
     "Нет", "No",
     "Да",  "Yes",
-    (int8)SHOW_MEASURES, pMeasures, nullptr, nullptr, nullptr
+    (int8)SHOW_MEASURES, nullptr, nullptr, nullptr
 )
 
 
 // ИЗМЕРЕНИЯ -> Вид
-DEF_CHOICE_2(mcMeasuresSignal,
+DEF_CHOICE_2(mcMeasuresSignal, pMeasures,
     "Вид", "View",
     "Уменьшать или нет зону вывода сигнала для исключения перекрытия его результами измерений",
     "Decrease or no zone output signal to avoid overlapping of its measurement results",
     "Как есть",    "As is",
     "Уменьшать",   "Reduce",
-    (int8)MODE_VIEW_SIGNALS, pMeasures, nullptr, nullptr, nullptr
+    (int8)MODE_VIEW_SIGNALS, nullptr, nullptr, nullptr
 )
 
 
@@ -222,50 +222,38 @@ static void PressSB_MeasTune_Exit()
 }
 
 
-DEF_SMALL_BUTTON(sbExitMeasTune,
+DEF_SMALL_BUTTON(sbExitMeasTune, mspMeasTune,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
-    mspMeasTune, PressSB_MeasTune_Exit, DrawSB_Exit
+    PressSB_MeasTune_Exit, DrawSB_Exit
 )
 
 
 // ИЗМЕРЕНИЯ - Настроить ////
-static const arrayItems itemsMeasTune =
-{
-    (void*)&sbExitMeasTune,
-    (void*)0,
-    (void*)0,
-    (void*)0,
-    (void*)&sbMeasTuneMarkers,
-    (void*)&sbMeasTuneSettings
-};
-
-static const Page mspMeasTune
-(
-    &pMeasures, IsActiveButtonMeasuresTune,
+DEF_PAGE_6(mspMeasTune, pMeasures, NamePage::SB_MeasTuneMeas,
     "НАСТРОИТЬ", "CONFIGURE",
     "Переход в режми точной настройки количества и видов измерений",
     "Transition to rezhm of exact control of quantity and types of measurements",
-    NamePage::SB_MeasTuneMeas, &itemsMeasTune, EmptyFuncVV, EmptyFuncVV, Measure::RotateRegSet
-);
+    sbExitMeasTune,
+    Item::empty,
+    Item::empty,
+    Item::empty,
+    sbMeasTuneMarkers,
+    sbMeasTuneSettings,
+    IsActiveButtonMeasuresTune, nullptr, nullptr, Measure::RotateRegSet
+)
 
 
 // ИЗМЕРЕНИЯ //////////////////////////
-static const arrayItems itemsMeasures =
-{
-    (void*)&mcMeasuresIsShow,
-    (void*)&mcMeasuresNumber,
-    (void*)&mcMeasuresChannels,
-    (void*)&mcMeasuresSignal,
-    (void*)&mspMeasTune    
-};
-
-const Page pMeasures            // ИЗМЕРЕНИЯ
-(
-    &mainPage, 0,
+DEF_PAGE_5(pMeasures, mainPage, NamePage::Measures,
     "ИЗМЕРЕНИЯ", "MEASURES",
     "Автоматические измерения",
     "Automatic measurements",
-    NamePage::Measures, &itemsMeasures
-);
+    mcMeasuresIsShow,
+    mcMeasuresNumber,
+    mcMeasuresChannels,
+    mcMeasuresSignal,
+    mspMeasTune,
+    nullptr, nullptr, nullptr, nullptr
+)
 
 void *PageMeasures::Tune::pointer = (void *)&mspMeasTune;

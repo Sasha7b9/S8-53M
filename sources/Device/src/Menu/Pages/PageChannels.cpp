@@ -9,12 +9,6 @@
 #include "Utils/GlobalFunctions.h"
 
 
-/** @addtogroup Menu
- *  @{
- *  @addtogroup PageChannels
- *  @{
- */
-
 extern const Page pChanA;
 extern const Page pChanB;
 
@@ -71,7 +65,7 @@ extern const Page mainPage;
 
 
 // КАНАЛ 1 /////////////////////////
-DEF_PAGE_5(pChanA,
+DEF_PAGE_5(pChanA, mainPage, NamePage::Channel0,
     "КАНАЛ 1", "CHANNEL 1",
     "Содержит настройки канала 1.",
     "Contains settings of the channel 1.",
@@ -80,18 +74,18 @@ DEF_PAGE_5(pChanA,
     mcFiltrA,
     mcInverseA,
     mcMultiplierA,
-    mainPage, NamePage::Channel0, nullptr, nullptr, nullptr, nullptr
+    nullptr, nullptr, nullptr, nullptr
 )
 
 
 // КАНАЛ 1 - Вход ------------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcInputA,
+DEF_CHOICE_2(mcInputA, pChanA,
     "Вход", "Input",
     chanInputRu,
     chanInputEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)SET_ENABLED_A, pChanA, nullptr, OnChanged_InputA, nullptr
+    (int8)SET_ENABLED_A, nullptr, OnChanged_InputA, nullptr
 )
 
 
@@ -102,14 +96,14 @@ void OnChanged_InputA(bool)
 
 
 // КАНАЛ 1 - Связь -----------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_3(mcCoupleA,
+DEF_CHOICE_3(mcCoupleA, pChanA,
     "Связь", "Couple",
     chanCoupleRu,
     chanCoupleEn,
-    "Пост",    "AC",
-    "Перем",   "DC",
-    "Земля",   "Ground",
-    (int8)SET_COUPLE_A, pChanA, nullptr, OnChanged_CoupleA, nullptr
+    "Пост",  "AC",
+    "Перем", "DC",
+    "Земля", "Ground",
+    (int8)SET_COUPLE_A, nullptr, OnChanged_CoupleA, nullptr
 )
 
 
@@ -120,13 +114,13 @@ void OnChanged_CoupleA(bool)
 
 
 // КАНАЛ 1 - Фильтр ----------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcFiltrA,
+DEF_CHOICE_2(mcFiltrA, pChanA,
     "Фильтр", "Filtr",
     chanFiltrRu,
     chanFiltrEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)SET_FILTR_A, pChanA, nullptr, OnChanged_FiltrA, nullptr
+    (int8)SET_FILTR_A, nullptr, OnChanged_FiltrA, nullptr
 )
 
 
@@ -137,13 +131,13 @@ void OnChanged_FiltrA(bool)
 
 
 // КАНАЛ 1 - Инверсия --------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcInverseA,
+DEF_CHOICE_2(mcInverseA, pChanA,
     "Инверсия", "Inverse",
     chanInverseRu,
     chanInverseEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)SET_INVERSE_A, pChanA, nullptr, OnChanged_InverseA, nullptr
+    (int8)SET_INVERSE_A, nullptr, OnChanged_InverseA, nullptr
 )
 
 
@@ -154,58 +148,39 @@ static void OnChanged_InverseA(bool)
 
 
 // КАНАЛ 1 - Множитель -------------------------------------------------------------------------------------------------------------------------------
-static const Choice mcMultiplierA =
-{
-    TypeItem::Choice, &pChanA, 0,
-    {
-        "Множитель", "Divider",
-        chanMultiplierRu,
-        chanMultiplierEn
-    },
-    {
-        {"х1",  "x1"},
-        {"x10", "x10"}
-    },
-    (int8*)&SET_DIVIDER(Channel::A)
-};
-
+DEF_CHOICE_2(mcMultiplierA, pChanA,
+    "Множитель", "Divider",
+    chanMultiplierRu,
+    chanMultiplierEn,
+    "х1",  "x1",
+    "x10", "x10",
+    (int8)SET_DIVIDER(Channel::A), nullptr, nullptr, nullptr
+)
 
 
 // КАНАЛ 2 /////////////////////////
-static const arrayItems itemsChanB =
-{
-    (void*)&mcInputB,       // КАНАЛ 2 - Вход
-    (void*)&mcCoupleB,      // КАНАЛ 2 - Связь
-    (void*)&mcFiltrB,       // КАНАЛ 2 - Фильтр
-    (void*)&mcInverseB,     // КАНАЛ 2 - Инверсия
-    (void*)&mcMultiplierB   // КАНАЛ 2 - Множитель
-};
-
-const Page pChanB
-(
-    &mainPage, 0,
+DEF_PAGE_5(pChanB, mainPage, NamePage::Channel1,
     "КАНАЛ 2", "CHANNEL 2",
     "Содержит настройки канала 2.",
     "Contains settings of the channel 2.",
-    NamePage::Channel1, &itemsChanB
-);
+    mcInputB,
+    mcCoupleB,
+    mcFiltrB,
+    mcInverseB,
+    mcMultiplierB,
+    nullptr, nullptr, nullptr, nullptr
+)
 
 
 // КАНАЛ 2 - Вход ------------------------------------------------------------------------------------------------------------------------------------
-static const Choice mcInputB =  // КАНАЛ 2
-{
-    TypeItem::Choice, &pChanB, 0,
-    {
-        "Вход", "Input",
-        chanInputRu,
-        chanInputEn
-    },
-    {
-        {DISABLE_RU,    DISABLE_EN},
-        {ENABLE_RU,     ENABLE_EN}
-    },
-    (int8*)&SET_ENABLED_B, OnChanged_InputB
-};
+DEF_CHOICE_2(mcInputB, pChanB,
+    "Вход", "Input",
+    chanInputRu,
+    chanInputEn,
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU,  ENABLE_EN,
+    (int8)SET_ENABLED_B, nullptr, OnChanged_InputB, nullptr
+)
 
 void OnChanged_InputB(bool)
 {
@@ -214,21 +189,15 @@ void OnChanged_InputB(bool)
 
 
 // КАНАЛ 2 - Связь -----------------------------------------------------------------------------------------------------------------------------------
-static const Choice mcCoupleB =
-{
-    TypeItem::Choice, &pChanB, 0,
-    {
-        "Связь", "Couple",
-        chanCoupleRu,
-        chanCoupleEn
-    },
-    {
-        {"Пост",    "AC"},
-        {"Перем",   "DC"},
-        {"Земля",   "Ground"}
-    },
-    (int8*)&SET_COUPLE_B, OnChanged_CoupleB
-};
+DEF_CHOICE_3(mcCoupleB, pChanB,
+    "Связь", "Couple",
+    chanCoupleRu,
+    chanCoupleEn,
+    "Пост",  "AC",
+    "Перем", "DC",
+    "Земля", "Ground",
+    (int8)SET_COUPLE_B, nullptr, OnChanged_CoupleB, nullptr
+)
 
 void OnChanged_CoupleB(bool)
 {
@@ -236,20 +205,14 @@ void OnChanged_CoupleB(bool)
 }
 
 // КАНАЛ 2 - Фильтр ----------------------------------------------------------------------------------------------------------------------------------
-static const Choice mcFiltrB =
-{
-    TypeItem::Choice, &pChanB, 0,
-    {
-        "Фильтр", "Filtr",
-        chanFiltrRu,
-        chanFiltrEn
-    },
-    {
-        {DISABLE_RU,    DISABLE_EN},
-        {ENABLE_RU,     ENABLE_EN}
-    },
-    (int8*)&SET_FILTR_B, OnChanged_FiltrB
-};
+DEF_CHOICE_2(mcFiltrB, pChanB,
+    "Фильтр", "Filtr",
+    chanFiltrRu,
+    chanFiltrEn,
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU,  ENABLE_EN,
+    (int8)SET_FILTR_B, nullptr, OnChanged_FiltrB, nullptr
+)
 
 void OnChanged_FiltrB(bool)
 {
@@ -258,20 +221,14 @@ void OnChanged_FiltrB(bool)
 
 
 // КАНАЛ 2 - Инверсия --------------------------------------------------------------------------------------------------------------------------------
-static const Choice mcInverseB =
-{
-    TypeItem::Choice, &pChanB, 0,
-    {
-        "Инверсия", "Inverse",
-        chanInverseRu,
-        chanInverseEn
-    },
-    {
-        {DISABLE_RU,    DISABLE_EN},
-        {ENABLE_RU,     ENABLE_EN}
-    },
-    (int8*)&SET_INVERSE_B, OnChanged_InverseB
-};
+DEF_CHOICE_2(mcInverseB, pChanB,
+    "Инверсия", "Inverse",
+    chanInverseRu,
+    chanInverseEn,
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU,  ENABLE_EN,
+    (int8)SET_INVERSE_B, nullptr, OnChanged_InverseB, nullptr
+)
 
 static void OnChanged_InverseB(bool)
 {
@@ -280,21 +237,11 @@ static void OnChanged_InverseB(bool)
 
 
 // КАНАЛ 2 - Множитель -------------------------------------------------------------------------------------------------------------------------------
-static const Choice mcMultiplierB =
-{
-    TypeItem::Choice, &pChanB, 0,
-    {
-        "Множитель", "Divider",
-        chanMultiplierRu,
-        chanMultiplierEn
-    },
-    {
-        {"х1",  "x1"},
-        {"x10", "x10"}
-    },
-    (int8*)&SET_DIVIDER(Channel::B)
-};
-
-
-/** @}  @}
- */
+DEF_CHOICE_2(mcMultiplierB, pChanB,
+    "Множитель", "Divider",
+    chanMultiplierRu,
+    chanMultiplierEn,
+    "х1",  "x1",
+    "x10", "x10",
+    (int8)SET_DIVIDER(Channel::B), nullptr, nullptr, nullptr
+)

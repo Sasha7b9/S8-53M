@@ -191,77 +191,55 @@ static bool IsActive_Averaging(void)
 
 
 // ДИСПЛЕЙ - УСРЕДНЕНИЕ - Количество -----------------------------------------------------------------------------------------------------------------
-static const Choice mcAveraging_Number =
-{
-    TypeItem::ChoiceReg, &mspAveraging, 0,
-    {
-        "Количество", "Number",
-        "Задаёт количество последних измерений, по которым производится усреднение.",
-        "Sets number of the last measurements on which averaging is made."
-    },
-    {
-        {DISABLE_RU,    DISABLE_EN},
-        {"2",           "2"},
-        {"4",           "4"},
-        {"8",           "8"},
-        {"16",          "16"},
-        {"32",          "32"},
-        {"64",          "64"},
-        {"128",         "128"},
-        {"256",         "256"},
-        {"512",         "512"}
-    },
-    (int8*)&ENUM_AVE
-};
-
+DEF_CHOICE_10(mcAveraging_Number,
+    "Количество", "Number",
+    "Задаёт количество последних измерений, по которым производится усреднение.",
+    "Sets number of the last measurements on which averaging is made.",
+    DISABLE_RU,    DISABLE_EN,
+    "2",           "2",
+    "4",           "4",
+    "8",           "8",
+    "16",          "16",
+    "32",          "32",
+    "64",          "64",
+    "128",         "128",
+    "256",         "256",
+    "512",         "512",
+    (int8)ENUM_AVE, mspAveraging, nullptr, nullptr, nullptr
+)
 
 // ДИСПЛЕЙ - УСРЕДНЕНИЕ - Режим ----------------------------------------------------------------------------------------------------------------------
-static const Choice mcAveraging_Mode =
-{
-    TypeItem::Choice, &mspAveraging, 0,
-    {
-        "Режим", "Mode"
-        ,
-        "1. \"Точно\" - точный режим усреднения, когда в расчёте участвуют только последние сигналы.\n"
-        "2. \"Приблизительно\" - приблизительный режим усреднения. Имеет смысл использовать, когда задано количество измерений большее, чем может "
-        "поместиться в памяти."
-        ,
-        "1. \"Accurately\" - the exact mode of averaging when only the last signals participate in calculation.\n"
-        "2. \"Around\" - approximate mode of averaging. It makes sense to use when the number of measurements bigger is set, than can be located in "
-        "memory."
-    },
-    {
-        {"Точно",           "Accurately"},
-        {"Приблизительно",  "Around"}
-    },
-    (int8*)&MODE_AVE
-};
+DEF_CHOICE_2(mcAveraging_Mode,
+    "Режим", "Mode"
+    ,
+    "1. \"Точно\" - точный режим усреднения, когда в расчёте участвуют только последние сигналы.\n"
+    "2. \"Приблизительно\" - приблизительный режим усреднения. Имеет смысл использовать, когда задано количество измерений большее, чем может "
+    "поместиться в памяти."
+    ,
+    "1. \"Accurately\" - the exact mode of averaging when only the last signals participate in calculation.\n"
+    "2. \"Around\" - approximate mode of averaging. It makes sense to use when the number of measurements bigger is set, than can be located in "
+    "memory.",
+    "Точно",          "Accurately",
+    "Приблизительно", "Around",
+    (int8)MODE_AVE, mspAveraging, nullptr, nullptr, nullptr
+)
 
 
 // ДИСПЛЕЙ - Мин Макс --------------------------------------------------------------------------------------------------------------------------------
-static const Choice mcMinMax =
-{
-    TypeItem::ChoiceReg, &pDisplay, IsActive_MinMax,
-    {
-        "Мин Макс", "Min Max"
-        ,
-        "Задаёт количество последних измерений, по которым строятся ограничительные линии, огибающие минимумы и максимумы измерений."
-        ,
-        "Sets number of the last measurements on which the limiting lines which are bending around minima and maxima of measurements are under "
-        "construction."
-    },
-    {
-        {DISABLE_RU,    DISABLE_EN},
-        {"2",           "2"},
-        {"4",           "4"},
-        {"8",           "8"},
-        {"16",          "16"},
-        {"32",          "32"},
-        {"64",          "64"},
-        {"128",         "128"}
-    },
-    (int8*)&ENUM_MIN_MAX, OnChanged_MinMax
-};
+DEF_CHOICE_8(mcMinMax,
+    "Мин Макс", "Min Max",
+    "Задаёт количество последних измерений, по которым строятся ограничительные линии, огибающие минимумы и максимумы измерений.",
+    "Sets number of the last measurements on which the limiting lines which are bending around minima and maxima of measurements are under construction.",
+    DISABLE_RU, DISABLE_EN,
+    "2",        "2",
+    "4",        "4",
+    "8",        "8",
+    "16",       "16",
+    "32",       "32",
+    "64",       "64",
+    "128",      "128",
+    (int8)ENUM_MIN_MAX, pDisplay, IsActive_MinMax, OnChanged_MinMax, nullptr
+)
 
 static bool IsActive_MinMax(void) //-V524
 {
@@ -284,48 +262,36 @@ static void OnChanged_MinMax(bool)
 
 
 // ДИСПЛЕЙ - Сглаживание -----------------------------------------------------------------------------------------------------------------------------
-static const Choice mcSmoothing =
-{
-    TypeItem::ChoiceReg, &pDisplay, 0,
-    {
-        "Сглаживание", "Smoothing",
-        "Устанавливает количество точек для расчёта сглаженного по соседним точкам сигнала.",
-        "Establishes quantity of points for calculation of the signal smoothed on the next points."
-    },
-    {
-        {DISABLE_RU,    DISABLE_EN},
-        {"2 точки",     "2 points"},
-        {"3 точки",     "3 points"},
-        {"4 точки",     "4 points"},
-        {"5 точек",     "5 points"},
-        {"6 точек",     "6 points"},
-        {"7 точек",     "7 points"},
-        {"8 точек",     "8 points"},
-        {"9 точек",     "9 points"},
-        {"10 точек",    "10 points"}
-    },
-    (int8*)&SMOOTHING
-};
+DEF_CHOICE_10(mcSmoothing,
+    "Сглаживание", "Smoothing",
+    "Устанавливает количество точек для расчёта сглаженного по соседним точкам сигнала.",
+    "Establishes quantity of points for calculation of the signal smoothed on the next points.",
+    DISABLE_RU, DISABLE_EN,
+    "2 точки",  "2 points",
+    "3 точки",  "3 points",
+    "4 точки",  "4 points",
+    "5 точек",  "5 points",
+    "6 точек",  "6 points",
+    "7 точек",  "7 points",
+    "8 точек",  "8 points",
+    "9 точек",  "9 points",
+    "10 точек", "10 points",
+    (int8)SMOOTHING, pDisplay, nullptr, nullptr, nullptr
+)
 
 
 // ДИСПЛЕЙ - Частота обновл --------------------------------------------------------------------------------------------------------------------------
-static const Choice mcRefreshFPS =
-{
-    TypeItem::Choice, &pDisplay, 0,
-    {
-        "Частота обновл", "Refresh rate",
-        "Задаёт максимальное число выводимых в секунду кадров.",
-        "Sets the maximum number of the shots removed in a second."
-    },
-    {
-        {"25",  "25"},
-        {"10",  "10"},
-        {"5",   "5"},
-        {"2",   "2"},
-        {"1",   "1"}
-    },
-    (int8*)&ENUM_SIGNALS_IN_SEC, OnChanged_RefreshFPS
-};
+DEF_CHOICE_5(mcRefreshFPS,
+    "Частота обновл", "Refresh rate",
+    "Задаёт максимальное число выводимых в секунду кадров.",
+    "Sets the maximum number of the shots removed in a second.",
+    "25", "25",
+    "10", "10",
+    "5",  "5",
+    "2",  "2",
+    "1",  "1",
+    (int8)ENUM_SIGNALS_IN_SEC, pDisplay, nullptr, OnChanged_RefreshFPS, nullptr
+)
 
 void OnChanged_RefreshFPS(bool)
 {
@@ -334,49 +300,37 @@ void OnChanged_RefreshFPS(bool)
 
 
 // ДИСПЛЕЙ - СЕТКА /////////////////
-static const arrayItems itemsGrid =
-{
-    (void*)&mcGrid_Type,        // ДИСПЛЕЙ - СЕТКА - Тип
-    (void*)&mgGrid_Brightness   // ДИСПЛЕЙ - СЕТКА - Яркость
-};
-
-static const Page mspGrid
-(
-    &pDisplay, 0,
+DEF_PAGE_2(mspGrid,
     "СЕТКА", "GRID",
     "Содержит настройки отображения координатной сетки.",
     "Contains settings of display of a coordinate Grid::",
-    NamePage::DisplayGrid, &itemsGrid
-);
+    mcGrid_Type,
+    mgGrid_Brightness,
+    pDisplay, NamePage::DisplayGrid, nullptr, nullptr, nullptr, nullptr
+)
 
 
 // ДИСПЛЕЙ - СЕТКА - Тип -----------------------------------------------------------------------------------------------------------------------------
-static const Choice mcGrid_Type =
-{
-    TypeItem::Choice, &mspGrid, 0,
-    {
-        "Тип", "Type",
-        "Выбор типа сетки.",
-        "Choice like Grid::"
-    },
-    {
-        {"Тип 1",   "Type 1"},
-        {"Тип 2",   "Type 2"},
-        {"Тип 3",   "Type 3"},
-        {"Тип 4",   "Type 4"}
-    },
-    (int8*)&TYPE_GRID
-};
+DEF_CHOICE_4(mcGrid_Type,
+    "Тип", "Type",
+    "Выбор типа сетки.",
+    "Choice like Grid.",
+    "Тип 1", "Type 1",
+    "Тип 2", "Type 2",
+    "Тип 3", "Type 3",
+    "Тип 4", "Type 4",
+    (int8)TYPE_GRID, mspGrid, nullptr, nullptr, nullptr
+)
+
 
 // ДИСПЛЕЙ - СЕТКА - Яркость -------------------------------------------------------------------------------------------------------------------------
-static const Governor mgGrid_Brightness
-(
-    &mspGrid, 0,
+DEF_GOVERNOR(mgGrid_Brightness,
     "Яркость", "Brightness",
     "Устанавливает яркость сетки.",
-    "Adjust the brightness of the Grid::",
-    &BRIGHTNESS_GRID, 0, 100, OnChanged_Grid_Brightness, BeforeDraw_Grid_Brightness
-);
+    "Adjust the brightness of the Grid.",
+    BRIGHTNESS_GRID, 0, 100, mspGrid, nullptr, OnChanged_Grid_Brightness, BeforeDraw_Grid_Brightness
+)
+
 
 ColorType colorTypeGrid = {0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::GRID};
 
@@ -393,67 +347,43 @@ static void BeforeDraw_Grid_Brightness(void)
 
 
 // ДИСПЛЕЙ - Смещение --------------------------------------------------------------------------------------------------------------------------------
-static const Choice mcTypeShift =
-{
-    TypeItem::Choice, &pDisplay, 0,
-    {
-        "Смещение", "Offset"
-        ,
-        "Задаёт режим удержания смещения по вертикали\n1. \"Напряжение\" - сохраняется напряжение смещения.\n2. \"Деления\" - сохраняется положение "
-        "смещения на экране."
-        ,
-        "Sets the mode of retaining the vertical displacement\n1. \"Voltage\" - saved dressing bias.\n2. \"Divisions\" - retained the position of "
-        "the offset on the screen."
-    },
-    {
-        {"Напряжение", "Voltage"},
-        {"Деления", "Divisions"}
-    },
-    (int8*)&LINKING_RSHIFT
-};
+DEF_CHOICE_2(mcTypeShift,
+    "Смещение", "Offset",
+    "Задаёт режим удержания смещения по вертикали\n1. \"Напряжение\" - сохраняется напряжение смещения.\n2. \"Деления\" - сохраняется положение смещения на экране.",
+    "Sets the mode of retaining the vertical displacement\n1. \"Voltage\" - saved dressing bias.\n2. \"Divisions\" - retained the position of the offset on the screen.",
+    "Напряжение", "Voltage",
+    "Деления",    "Divisions",
+    (int8)LINKING_RSHIFT, pDisplay, nullptr, nullptr, nullptr
+)
 
 
 // ДИСПЛЕЙ - НАСТРОЙКИ /////////////
-static const arrayItems itemsSettings =
-{
-    (void*)&mspSettings_Colors,                 // ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА
-    (void*)&mgSettings_Brightness,              // ДИСПЛЕЙ - НАСТРОЙКИ - Яркость
-    (void*)&mgSettings_Levels,                  // ДИСПЛЕЙ - НАСТРОЙКИ - Уровни
-    (void*)&mgSettings_TimeMessages,            // ДИСПЛЕЙ - НАСТРОЙКИ - Время
-    (void*)&mcSettings_ShowStringNavigation,    // ДИСПЛЕЙ - НАСТРОЙКИ - Строка меню
-    (void*)&mcSettings_ShowAltMarkers,          // ДИСПЛЕЙ - НАСТРОЙКИ - Доп. маркеры
-    (void*)&mcSettings_AutoHide                 // ДИСПЛЕЙ - НАСТРОЙКИ - Скрывать
-};
-
-static const Page mspSettings
-(
-    &pDisplay, 0,
+DEF_PAGE_7(mspSettings,
     "НАСТРОЙКИ", "SETTINGS",
     "Дополнительные настройки дисплея",
     "Additional display settings",
-    NamePage::ServiceDisplay, &itemsSettings
-);
+    mspSettings_Colors,
+    mgSettings_Brightness,
+    mgSettings_Levels,
+    mgSettings_TimeMessages,
+    mcSettings_ShowStringNavigation,
+    mcSettings_ShowAltMarkers,
+    mcSettings_AutoHide,
+    pDisplay, NamePage::ServiceDisplay, nullptr, nullptr, nullptr, nullptr
+)
 
 
 // ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА /////
-static const arrayItems itemsSettings_Colors =
-{
-    (void*)&mcSettings_Colors_Scheme,       // ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Цветовая схема
-    (void*)&mgcSettings_Colors_ChannelA,    // ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Канал 1
-    (void*)&mgcSettings_Colors_ChannelB,    // ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Канал 2
-    (void*)&mgcSettings_Colors_Grid,        // ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Сетка
-    //(void*)&mgcColorChannel0alt,          // TODO Это для дополнительного цвета первого канала - для накопления, например.
-    //(void*)&mgcColorChannel1alt,          // TODO Это для доп. цвета второго канала - для накопления, например.    
-};
-
-static const Page mspSettings_Colors
-(
-    &mspSettings, 0,
+DEF_PAGE_4(mspSettings_Colors, mspSettings, NamePage::ServiceDisplayColors,
     "ЦВЕТА", "COLORS",
     "Выбор цветов дисплея",
     "The choice of colors display",
-    NamePage::ServiceDisplayColors, &itemsSettings_Colors
-);
+    mcSettings_Colors_Scheme,
+    mgcSettings_Colors_ChannelA,
+    mgcSettings_Colors_ChannelB,
+    mgcSettings_Colors_Grid,
+    nullptr, nullptr, nullptr, nullptr
+)
 
 
 // ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Цветовая схема ------------------------------------------------------------------------------------------------------
