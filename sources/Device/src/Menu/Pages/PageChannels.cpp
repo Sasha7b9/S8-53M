@@ -85,7 +85,7 @@ DEF_CHOICE_2(mcInputA, pChanA,
     chanInputEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)SET_ENABLED_A, nullptr, OnChanged_InputA, nullptr
+    SET_ENABLED_A, nullptr, OnChanged_InputA, nullptr
 )
 
 
@@ -103,7 +103,7 @@ DEF_CHOICE_3(mcCoupleA, pChanA,
     "Пост",  "AC",
     "Перем", "DC",
     "Земля", "Ground",
-    (int8)SET_COUPLE_A, nullptr, OnChanged_CoupleA, nullptr
+    SET_COUPLE_A, nullptr, OnChanged_CoupleA, nullptr
 )
 
 
@@ -120,7 +120,7 @@ DEF_CHOICE_2(mcFiltrA, pChanA,
     chanFiltrEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)SET_FILTR_A, nullptr, OnChanged_FiltrA, nullptr
+    SET_FILTR_A, nullptr, OnChanged_FiltrA, nullptr
 )
 
 
@@ -137,7 +137,7 @@ DEF_CHOICE_2(mcInverseA, pChanA,
     chanInverseEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)SET_INVERSE_A, nullptr, OnChanged_InverseA, nullptr
+    SET_INVERSE_A, nullptr, OnChanged_InverseA, nullptr
 )
 
 
@@ -154,7 +154,7 @@ DEF_CHOICE_2(mcMultiplierA, pChanA,
     chanMultiplierEn,
     "х1",  "x1",
     "x10", "x10",
-    (int8)SET_DIVIDER(Channel::A), nullptr, nullptr, nullptr
+    SET_DIVIDER(Channel::A), nullptr, nullptr, nullptr
 )
 
 
@@ -179,7 +179,7 @@ DEF_CHOICE_2(mcInputB, pChanB,
     chanInputEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)SET_ENABLED_B, nullptr, OnChanged_InputB, nullptr
+    SET_ENABLED_B, nullptr, OnChanged_InputB, nullptr
 )
 
 void OnChanged_InputB(bool)
@@ -196,7 +196,7 @@ DEF_CHOICE_3(mcCoupleB, pChanB,
     "Пост",  "AC",
     "Перем", "DC",
     "Земля", "Ground",
-    (int8)SET_COUPLE_B, nullptr, OnChanged_CoupleB, nullptr
+    SET_COUPLE_B, nullptr, OnChanged_CoupleB, nullptr
 )
 
 void OnChanged_CoupleB(bool)
@@ -211,7 +211,7 @@ DEF_CHOICE_2(mcFiltrB, pChanB,
     chanFiltrEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)SET_FILTR_B, nullptr, OnChanged_FiltrB, nullptr
+    SET_FILTR_B, nullptr, OnChanged_FiltrB, nullptr
 )
 
 void OnChanged_FiltrB(bool)
@@ -227,7 +227,7 @@ DEF_CHOICE_2(mcInverseB, pChanB,
     chanInverseEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)SET_INVERSE_B, nullptr, OnChanged_InverseB, nullptr
+    SET_INVERSE_B, nullptr, OnChanged_InverseB, nullptr
 )
 
 static void OnChanged_InverseB(bool)
@@ -243,5 +243,5 @@ DEF_CHOICE_2(mcMultiplierB, pChanB,
     chanMultiplierEn,
     "х1",  "x1",
     "x10", "x10",
-    (int8)SET_DIVIDER(Channel::B), nullptr, nullptr, nullptr
+    SET_DIVIDER(Channel::B), nullptr, nullptr, nullptr
 )

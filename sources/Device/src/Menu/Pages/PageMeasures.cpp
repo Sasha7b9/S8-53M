@@ -146,7 +146,7 @@ DEF_CHOICE_7( mcMeasuresNumber, pMeasures,
     "3x5", "3x5",
     "6x1", "6x1",
     "6x2", "6x2",
-    (int8)MEAS_NUM, IsActiveChoiceMeasuresNumber, nullptr, nullptr
+    MEAS_NUM, IsActiveChoiceMeasuresNumber, nullptr, nullptr
 )
 
 
@@ -158,7 +158,7 @@ DEF_CHOICE_3(mcMeasuresChannels, pMeasures,
     "1",       "1",
     "2",       "2",
     "1 и 2",   "1 and 2",
-    (int8)MEAS_SOURCE, IsActiveChoiceMeasuresChannels, nullptr, nullptr
+    MEAS_SOURCE, IsActiveChoiceMeasuresChannels, nullptr, nullptr
 )
 
 
@@ -169,7 +169,7 @@ DEF_CHOICE_2(mcMeasuresIsShow, pMeasures,
     "Output or output measurements on screen",
     "Нет", "No",
     "Да",  "Yes",
-    (int8)SHOW_MEASURES, nullptr, nullptr, nullptr
+    SHOW_MEASURES, nullptr, nullptr, nullptr
 )
 
 
@@ -180,7 +180,7 @@ DEF_CHOICE_2(mcMeasuresSignal, pMeasures,
     "Decrease or no zone output signal to avoid overlapping of its measurement results",
     "Как есть",    "As is",
     "Уменьшать",   "Reduce",
-    (int8)MODE_VIEW_SIGNALS, nullptr, nullptr, nullptr
+    MODE_VIEW_SIGNALS, nullptr, nullptr, nullptr
 )
 
 

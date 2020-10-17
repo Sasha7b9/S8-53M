@@ -48,7 +48,7 @@ DEF_CHOICE_2(mcSample, pTime,
     ,
     "Реальное время", "Real",
     "Эквивалентная",  "Equals",
-    (int8)SAMPLE_TYPE, IsActive_Sample, nullptr, nullptr
+    SAMPLE_TYPE, IsActive_Sample, nullptr, nullptr
 )
 
 
@@ -64,7 +64,7 @@ DEF_CHOICE_2(mcPeakDet, pTime,
     "Turns on/off peak detector.",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)PEAKDET, IsActive_PeakDet, OnChanged_PeakDet, nullptr
+    PEAKDET, IsActive_PeakDet, OnChanged_PeakDet, nullptr
 )
 
 static bool IsActive_PeakDet(void)
@@ -122,7 +122,7 @@ DEF_CHOICE_3(mcTPos, pTime,
     "Лево",  "Left",
     "Центр", "Center",
     "Право", "Right",
-    (int8)SET_TPOS, nullptr, OnChanged_TPos, nullptr
+    SET_TPOS, nullptr, OnChanged_TPos, nullptr
 )
 
 void OnChanged_TPos(bool active)
@@ -138,7 +138,7 @@ DEF_CHOICE_2(mcSelfRecorder, pTime,
     "Turn on/off the recorder. This mode is available for scanning 20ms/div and slower.",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)SET_SELFRECORDER, IsActive_SelfRecorder, nullptr, nullptr
+    SET_SELFRECORDER, IsActive_SelfRecorder, nullptr, nullptr
 )
 
 static bool IsActive_SelfRecorder(void)
@@ -160,5 +160,5 @@ DEF_CHOICE_2(mcDivRole, pTime,
     ,
     "Время",  "Time",
     "Память", "Memory",
-    (int8)TIME_DIV_XPOS, nullptr, nullptr, nullptr
+    TIME_DIV_XPOS, nullptr, nullptr, nullptr
 )

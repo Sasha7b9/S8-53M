@@ -177,7 +177,7 @@ DEF_CHOICE_2(mcShow, pCursors,
     "Enable/disable cursors.",
     "Нет", "No",
     "Да",  "Yes",
-    (int8)CURS_SHOW, nullptr, nullptr, nullptr
+    CURS_SHOW, nullptr, nullptr, nullptr
 )
 
 
@@ -201,7 +201,7 @@ DEF_CHOICE_4(mcTrackingT1U1, pCursors,
     "Напряжение",     "Voltage",
     "Время",          "Time",
     "Напряж и время", "Volt and time",
-    (int8)CURS_LOOKMODE_0, nullptr, nullptr, nullptr
+    CURS_LOOKMODE_0, nullptr, nullptr, nullptr
 )
 
 
@@ -225,7 +225,7 @@ DEF_CHOICE_4(mcTrackingT2U2, pCursors,
     "Напряжение",      "Voltage",
     "Время",           "Time",
     "Напряж. и время", "Volt. and time",
-    (int8)CURS_LOOKMODE_1, nullptr, nullptr, nullptr
+    CURS_LOOKMODE_1, nullptr, nullptr, nullptr
 )
 
 
@@ -236,7 +236,7 @@ DEF_CHOICE_2(mcShowFreq, pCursors,
     "If you select \"Enable\" in the upper right corner displays the inverse of the distance between cursors time - frequency signal, a period equal to the distance between the time cursors.",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)CURSORS_SHOW_FREQ, nullptr, nullptr, nullptr
+    CURSORS_SHOW_FREQ, nullptr, nullptr, nullptr
 )
 
 

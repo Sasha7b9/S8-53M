@@ -115,12 +115,6 @@ void *PageDebug::SerialNumber::GetPointer()
 
 
 // ОТЛАДКА /////////////////////////
-static const arrayItems itemsDebug =
-{
-    //(void*)&ppSerialNumber     // ОТЛАДКА - С/Н
-    //(void*)&mspDebugInformation
-};
-
 DEF_PAGE_7(pDebug, mainPage, NamePage::Debug,
     "ОТЛАДКА", "DEBUG",
     "",
@@ -138,11 +132,11 @@ DEF_PAGE_7(pDebug, mainPage, NamePage::Debug,
 // ОТЛАДКА - Статистика ------------------------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_2(mcStats, pDebug,
     "Статистика", "Statistics",
-     "Показывать/не показывать время/кадр, кадров в секунду, количество сигналов с последними настройками в памяти/количество сохраняемых в памяти сигналов",
-     "To show/not to show a time/shot, frames per second, quantity of signals with the last settings in memory/quantity of the signals kept in memory",
-     "Не показывать", "Hide",
-     "Показывать",    "Show",
-    (int8)SHOW_STATS, nullptr, nullptr, nullptr
+    "Показывать/не показывать время/кадр, кадров в секунду, количество сигналов с последними настройками в памяти/количество сохраняемых в памяти сигналов",
+    "To show/not to show a time/shot, frames per second, quantity of signals with the last settings in memory/quantity of the signals kept in memory",
+    "Не показывать", "Hide",
+    "Показывать",    "Show",
+    SHOW_STATS, nullptr, nullptr, nullptr
 )
 
 
@@ -172,7 +166,7 @@ DEF_CHOICE_2(mcConsole_SizeFont, mpConsole,
      "",
      "5", "5",
      "8", "8",
-    (int8)SIZE_FONT_CONSOLE, nullptr, nullptr, nullptr
+    SIZE_FONT_CONSOLE, nullptr, nullptr, nullptr
 )
 
 
@@ -203,7 +197,7 @@ DEF_CHOICE_2(mcConsole_Registers_ShowAll, mpConsole_Registers,
     "To show all values transferred in registers",
     "Нет", "No",
     "Да",  "Yes",
-    (int8)IS_SHOW_REGISTERS_ALL, nullptr, nullptr, nullptr
+    IS_SHOW_REGISTERS_ALL, nullptr, nullptr, nullptr
 )
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - RD_FL --------------------------------------------------------------------------------------------------------------
@@ -213,7 +207,7 @@ DEF_CHOICE_2(mcConsole_Registers_RD_FL, mpConsole_Registers,
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)set.debug.showRegisters.flag, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+    set.debug.showRegisters.flag, IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
 static bool IsActive_Console_Registers_RD_FL(void)
@@ -228,7 +222,7 @@ DEF_CHOICE_2(mcConsole_Registers_RShiftA, mpConsole_Registers,
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)set.debug.showRegisters.rShiftA, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+    set.debug.showRegisters.rShiftA, IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - U см. 2к -----------------------------------------------------------------------------------------------------------
@@ -238,7 +232,7 @@ DEF_CHOICE_2(mcConsole_Registers_RShiftB, mpConsole_Registers,
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)set.debug.showRegisters.rShiftB, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+    set.debug.showRegisters.rShiftB, IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - U синхр. -----------------------------------------------------------------------------------------------------------
@@ -248,7 +242,7 @@ DEF_CHOICE_2(mcConsole_Registers_TrigLev, mpConsole_Registers,
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)set.debug.showRegisters.trigLev, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+    set.debug.showRegisters.trigLev, IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - ВОЛЬТ/ДЕЛ 1 --------------------------------------------------------------------------------------------------------
@@ -258,7 +252,7 @@ DEF_CHOICE_2(mcConsole_Registers_RangeA, mpConsole_Registers,
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)set.debug.showRegisters.range[0], IsActive_Console_Registers_RD_FL, nullptr, nullptr
+    set.debug.showRegisters.range[0], IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - ВОЛЬТ/ДЕЛ 2 --------------------------------------------------------------------------------------------------------
@@ -268,7 +262,7 @@ DEF_CHOICE_2(mcConsole_Registers_RangeB, mpConsole_Registers,
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)set.debug.showRegisters.range[1], IsActive_Console_Registers_RD_FL, nullptr, nullptr
+    set.debug.showRegisters.range[1], IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Парам. синхр. ------------------------------------------------------------------------------------------------------
@@ -278,7 +272,7 @@ DEF_CHOICE_2(mcConsole_Registers_TrigParam, mpConsole_Registers,
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)set.debug.showRegisters.trigParam, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+    set.debug.showRegisters.trigParam, IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Парам. кан. 1 ------------------------------------------------------------------------------------------------------
@@ -288,7 +282,7 @@ DEF_CHOICE_2(mcConsole_Registers_ChanParamA, mpConsole_Registers,
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)set.debug.showRegisters.chanParam[0], IsActive_Console_Registers_RD_FL, nullptr, nullptr
+    set.debug.showRegisters.chanParam[0], IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Парам. кан. 2 ------------------------------------------------------------------------------------------------------
@@ -298,7 +292,7 @@ DEF_CHOICE_2(mcConsole_Registers_ChanParamB, mpConsole_Registers,
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)set.debug.showRegisters.chanParam[1], IsActive_Console_Registers_RD_FL, nullptr, nullptr
+    set.debug.showRegisters.chanParam[1], IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - ВРЕМЯ/ДЕЛ ----------------------------------------------------------------------------------------------------------
@@ -308,7 +302,7 @@ DEF_CHOICE_2(mcConsole_Registers_TBase, mpConsole_Registers,
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)set.debug.showRegisters.tBase, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+    set.debug.showRegisters.tBase, IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Т см. --------------------------------------------------------------------------------------------------------------
@@ -318,7 +312,7 @@ DEF_CHOICE_2(mcConsole_Registers_tShift, mpConsole_Registers,
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)set.debug.showRegisters.tShift, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+    set.debug.showRegisters.tShift, IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
 
@@ -352,7 +346,7 @@ DEF_CHOICE_3(mcADC_Balance_Mode, mpADC_Balance,
     DISABLE_RU, DISABLE_EN,
     "Реальный", "Real",
     "Ручной",   "Manual",
-    (int8)BALANCE_ADC_TYPE, nullptr, OnChanged_ADC_Balance_Mode, Draw_ADC_Balance_Mode
+    BALANCE_ADC_TYPE, nullptr, OnChanged_ADC_Balance_Mode, Draw_ADC_Balance_Mode
 )
 
 static int16 shiftADCA;
@@ -413,10 +407,6 @@ static void OnChanged_ADC_Balance_ShiftB(void)
 
 
 // ОТЛАДКА - АЦП - РАСТЯЖКА ////////
-static const arrayItems itemsADC_Stretch =
-{
-};
-
 DEF_PAGE_3(mpADC_Stretch, mpADC, NamePage::DebugADCstretch,
     "РАСТЯЖКА", "STRETCH",
     "",
@@ -435,7 +425,7 @@ DEF_CHOICE_3(mcADC_Stretch_Mode, mpADC_Stretch,
     DISABLE_RU, DISABLE_EN,
     "Реальный", "Real",
     "Ручной",   "Manual",
-    (int8)DEBUG_STRETCH_ADC_TYPE, nullptr, OnChanged_ADC_Stretch_Mode, nullptr
+    DEBUG_STRETCH_ADC_TYPE, nullptr, OnChanged_ADC_Stretch_Mode, nullptr
 )
 
 static void OnChanged_ADC_Stretch_Mode(bool active)
@@ -705,10 +695,6 @@ static void OnPress_EraseData()
 
 
 // ОТЛАДКА - С/Н ///////////////////
-static const arrayItems itemsSerialNumber =
-{
-};
-
 DEF_PAGE_6(ppSerialNumber, pDebug, NamePage::SB_SerialNumber,
     "С/Н", "S/N",
     "Запись серийного номера в OTP-память. ВНИМАНИЕ!!! ОТP-память - память с однократной записью.",

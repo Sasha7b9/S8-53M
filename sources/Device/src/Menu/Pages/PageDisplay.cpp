@@ -89,7 +89,7 @@ DEF_CHOICE_2(mcMapping, pDisplay,
     "Sets the display mode signal.",
     "Вектор", "Vector",
     "Точки",  "Points",
-    (int8)MODE_DRAW_SIGNAL, nullptr, nullptr, nullptr
+    MODE_DRAW_SIGNAL, nullptr, nullptr, nullptr
 )
 
 
@@ -130,7 +130,7 @@ DEF_CHOICE_9(mcAccumulation_Number, mspAccumulation,
     "64",            "64",
     "128",           "128",
     "Бесконечность", "Infinity",
-    (int8)ENUM_ACCUM, nullptr, nullptr, nullptr
+    ENUM_ACCUM, nullptr, nullptr, nullptr
 )
 
 
@@ -150,7 +150,7 @@ DEF_CHOICE_2(mcAccumulation_Mode, mspAccumulation,
     ,
     "Не сбрасывать", "Not to dump",
     "Сбрасывать",    "Dump",
-    (int8)MODE_ACCUM, nullptr, nullptr, nullptr
+    MODE_ACCUM, nullptr, nullptr, nullptr
 )
 
 
@@ -205,7 +205,7 @@ DEF_CHOICE_10(mcAveraging_Number, mspAveraging,
     "128",         "128",
     "256",         "256",
     "512",         "512",
-    (int8)ENUM_AVE, nullptr, nullptr, nullptr
+    ENUM_AVE, nullptr, nullptr, nullptr
 )
 
 // ДИСПЛЕЙ - УСРЕДНЕНИЕ - Режим ----------------------------------------------------------------------------------------------------------------------
@@ -221,7 +221,7 @@ DEF_CHOICE_2(mcAveraging_Mode, mspAveraging,
     "memory.",
     "Точно",          "Accurately",
     "Приблизительно", "Around",
-    (int8)MODE_AVE, nullptr, nullptr, nullptr
+    MODE_AVE, nullptr, nullptr, nullptr
 )
 
 
@@ -238,7 +238,7 @@ DEF_CHOICE_8(mcMinMax, pDisplay,
     "32",       "32",
     "64",       "64",
     "128",      "128",
-    (int8)ENUM_MIN_MAX, IsActive_MinMax, OnChanged_MinMax, nullptr
+    ENUM_MIN_MAX, IsActive_MinMax, OnChanged_MinMax, nullptr
 )
 
 static bool IsActive_MinMax(void) //-V524
@@ -276,7 +276,7 @@ DEF_CHOICE_10(mcSmoothing, pDisplay,
     "8 точек",  "8 points",
     "9 точек",  "9 points",
     "10 точек", "10 points",
-    (int8)SMOOTHING, nullptr, nullptr, nullptr
+    SMOOTHING, nullptr, nullptr, nullptr
 )
 
 
@@ -290,7 +290,7 @@ DEF_CHOICE_5(mcRefreshFPS, pDisplay,
     "5",  "5",
     "2",  "2",
     "1",  "1",
-    (int8)ENUM_SIGNALS_IN_SEC, nullptr, OnChanged_RefreshFPS, nullptr
+    ENUM_SIGNALS_IN_SEC, nullptr, OnChanged_RefreshFPS, nullptr
 )
 
 void OnChanged_RefreshFPS(bool)
@@ -319,7 +319,7 @@ DEF_CHOICE_4(mcGrid_Type, mspGrid,
     "Тип 2", "Type 2",
     "Тип 3", "Type 3",
     "Тип 4", "Type 4",
-    (int8)TYPE_GRID, nullptr, nullptr, nullptr
+    TYPE_GRID, nullptr, nullptr, nullptr
 )
 
 
@@ -353,7 +353,7 @@ DEF_CHOICE_2(mcTypeShift, pDisplay,
     "Sets the mode of retaining the vertical displacement\n1. \"Voltage\" - saved dressing bias.\n2. \"Divisions\" - retained the position of the offset on the screen.",
     "Напряжение", "Voltage",
     "Деления",    "Divisions",
-    (int8)LINKING_RSHIFT, nullptr, nullptr, nullptr
+    LINKING_RSHIFT, nullptr, nullptr, nullptr
 )
 
 
@@ -393,7 +393,7 @@ DEF_CHOICE_2(mcSettings_Colors_Scheme, mspSettings_Colors,
     "Mode of operation of the calibrator",
     "Схема 1", "Scheme 1",
     "Схема 2", "Scheme 2",
-    (int8)COLOR_SCHEME, nullptr, nullptr, nullptr
+    COLOR_SCHEME, nullptr, nullptr, nullptr
 )
 
 static ColorType colorT1 = {0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::DATA_A};
@@ -465,7 +465,7 @@ DEF_CHOICE_2(mcSettings_ShowStringNavigation, mspSettings,
     "When choosing \nDisplay\n at the top left of the screen displays the full path to the current page menu",
     "Скрывать",   "Hide",
     "Показывать", "Show",
-    (int8)SHOW_STRING_NAVIGATION, nullptr, nullptr, nullptr
+    SHOW_STRING_NAVIGATION, nullptr, nullptr, nullptr
 )
 
 
@@ -486,7 +486,7 @@ DEF_CHOICE_3(mcSettings_ShowAltMarkers, mspSettings,
     "Скрывать",   "Hide",
     "Показывать", "Show",
     "Авто",       "Auto",
-    (int8)ALT_MARKERS, nullptr, OnChanged_Settings_ShowAltMarkers, nullptr
+    ALT_MARKERS, nullptr, OnChanged_Settings_ShowAltMarkers, nullptr
 )
 
 static void OnChanged_Settings_ShowAltMarkers(bool)
@@ -506,7 +506,7 @@ DEF_CHOICE_6(mcSettings_AutoHide, mspSettings,
     "Через 15 сек", "Through 15 s",
     "Через 30 сек", "Through 30 s",
     "Через 60 сек", "Through 60 s",
-    (int8)MENU_AUTO_HIDE, nullptr, OnChanged_Settings_AutoHide, nullptr
+    MENU_AUTO_HIDE, nullptr, OnChanged_Settings_AutoHide, nullptr
 )
 
 static void OnChanged_Settings_AutoHide(bool autoHide)

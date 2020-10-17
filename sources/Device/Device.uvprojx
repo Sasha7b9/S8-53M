@@ -1721,6 +1721,11 @@
               <FileType>8</FileType>
               <FilePath>.\src\Menu\MenuItemsLogic.cpp</FilePath>
             </File>
+            <File>
+              <FileName>MenuItemsDefs.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Menu\MenuItemsDefs.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3976,6 +3981,11 @@
               <FileName>MenuItemsLogic.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\MenuItemsLogic.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MenuItemsDefs.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Menu\MenuItemsDefs.h</FilePath>
             </File>
           </Files>
         </Group>

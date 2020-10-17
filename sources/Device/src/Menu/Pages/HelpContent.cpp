@@ -15,6 +15,9 @@
 using namespace Primitives;
 
 
+const PageHelp PageHelp::empty(&Item::emptyData);
+
+
 int currentParagraph = 0;   // ≈сли TypePage(currentPage) == TypePageHelp::Content, то указывает не текущий раздел оглавлени€
 const PageHelp *currentPage = &helpMain;
 

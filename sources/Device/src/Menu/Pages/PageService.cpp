@@ -186,7 +186,7 @@ DEF_CHOICE_3(cCalibrator_Mode, ppCalibrator,
     "Перем", "DC",
     "Пост",  "AC",
     "0В",    "OV",
-    (int8)CALIBRATOR, nullptr, OnChanged_Calibrator_Mode, nullptr
+    CALIBRATOR, nullptr, OnChanged_Calibrator_Mode, nullptr
 )
 
 static void OnChanged_Calibrator_Mode(bool)
@@ -528,7 +528,7 @@ DEF_CHOICE_2(cMath_FFT_Enable, pppMath_FFT,
     "Enables or disables the display of the spectrum",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)ENABLED_FFT, nullptr, nullptr, nullptr
+    ENABLED_FFT, nullptr, nullptr, nullptr
 )
 
 // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Шкала --------------------------------------------------------------------------------------------------------------
@@ -538,7 +538,7 @@ DEF_CHOICE_2(cMath_FFT_Scale, pppMath_FFT,
     "Sets the scale of the output spectrum - linear or logarithmic",
     "Логарифм", "Log",
     "Линейная", "Linear",
-    (int8)SCALE_FFT, nullptr, nullptr, nullptr
+    SCALE_FFT, nullptr, nullptr, nullptr
 )
 
 // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Источник -----------------------------------------------------------------------------------------------------------
@@ -549,7 +549,7 @@ DEF_CHOICE_3(cMath_FFT_Source, pppMath_FFT,
     "Канал 1",     "Channel 1",
     "Канал 2",     "Channel 2",
     "Канал 1 + 2", "Channel 1 + 2",
-    (int8)SOURCE_FFT, nullptr, nullptr, nullptr
+    SOURCE_FFT, nullptr, nullptr, nullptr
 )
 
 // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Окно ---------------------------------------------------------------------------------------------------------------
@@ -561,7 +561,7 @@ DEF_CHOICE_4(cMath_FFT_Window, pppMath_FFT,
     "Хэмминга",    "Hamming",
     "Блэкмена",    "Blackman",
     "Ханна",       "Hann",
-    (int8)WINDOW_FFT, nullptr, nullptr, nullptr
+    WINDOW_FFT, nullptr, nullptr, nullptr
 )
 
 // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ ------------------------------------------------------------------------------------------------------------
@@ -631,7 +631,7 @@ DEF_CHOICE_3(cMath_FFT_Limit, pppMath_FFT,
     "-40дБ", "-40dB",
     "-60дБ", "-60dB",
     "-80дБ", "-80dB",
-    (int8)FFT_MAX_DB, IsActive_Math_FFT_Limit, nullptr, nullptr
+    FFT_MAX_DB, IsActive_Math_FFT_Limit, nullptr, nullptr
 )
 
 static bool IsActive_Math_FFT_Limit(void)
@@ -668,7 +668,7 @@ DEF_CHOICE_2(cEthernet_Enable, ppEthernet,
     ,
     "Включено",  "Included",
     "Отключено", "Disconnected",
-    (int8)ETH_ENABLE, nullptr,  OnChanged_Ethernet_Enable, nullptr
+    ETH_ENABLE, nullptr,  OnChanged_Ethernet_Enable, nullptr
 )
 
 static void OnChanged_Ethernet_Enable(bool)
@@ -718,7 +718,7 @@ DEF_CHOICE_2(cSound, pService,
     "Inclusion/switching off of a sound",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)SOUND_ENABLED, nullptr, nullptr, nullptr
+    SOUND_ENABLED, nullptr, nullptr, nullptr
 )
 
 
@@ -729,7 +729,7 @@ DEF_CHOICE_2(cLang, pService,
     "Allows you to select the menu language",
     "Русский",    "Russian",
     "Английский", "English",
-    (int8)LANG, nullptr, nullptr, nullptr
+    LANG, nullptr, nullptr, nullptr
 )
 
 
@@ -768,7 +768,7 @@ DEF_CHOICE_2(cModeLongPressButtonTrig, pService,
     ,
     "Сброс уровня", "Reset trig level",
     "Автоуровень",  "Autolevel",
-    (int8)MODE_LONG_PRESS_TRIG, nullptr, nullptr, nullptr
+    MODE_LONG_PRESS_TRIG, nullptr, nullptr, nullptr
 )
 
 // СЕРВИС - ИНФОРМАЦИЯ -------------------------------------------------------------------------------------------------------------------------------

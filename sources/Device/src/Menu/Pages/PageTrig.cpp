@@ -58,7 +58,7 @@ DEF_CHOICE_3(mcMode, pTrig,
     "Авто ",       "Auto",
     "Ждущий",      "Wait",
     "Однократный", "Single",
-    (int8)START_MODE, nullptr, OnPress_Mode, nullptr
+    START_MODE, nullptr, OnPress_Mode, nullptr
 )
 
 void OnPress_Mode(bool)
@@ -79,7 +79,7 @@ DEF_CHOICE_3(mcSource, pTrig,
     "Канал 1", "Channel 1",
     "Канал 2", "Channel 2",
     "Внешний", "External",
-    (int8)TRIG_SOURCE, nullptr, OnChanged_Source, nullptr
+    TRIG_SOURCE, nullptr, OnChanged_Source, nullptr
 )
 
 static void OnChanged_Source(bool)
@@ -100,7 +100,7 @@ DEF_CHOICE_2(mcPolarity, pTrig,
     ,
     "Фронт", "Front",
     "Срез",  "Back",
-    (int8)TRIG_POLARITY, nullptr, OnChanged_Polarity, nullptr
+    TRIG_POLARITY, nullptr, OnChanged_Polarity, nullptr
 )
 
 static void OnChanged_Polarity(bool)
@@ -129,7 +129,7 @@ DEF_CHOICE_4(mcInput, pTrig,
     "АС",  "AC",
     "ФНЧ", "LPF",
     "ФВЧ", "HPF",
-    (int8)TRIG_INPUT, nullptr, OnChanged_Input, nullptr
+    TRIG_INPUT, nullptr, OnChanged_Input, nullptr
 )
 
 static void OnChanged_Input(bool)
@@ -163,7 +163,7 @@ DEF_CHOICE_2(mcAutoFind_Mode, mpAutoFind,
     ,
     "Ручной",         "Hand",
     "Автоматический", "Auto",
-    (int8)TRIG_MODE_FIND, nullptr, nullptr, nullptr
+    TRIG_MODE_FIND, nullptr, nullptr, nullptr
 )
 
 

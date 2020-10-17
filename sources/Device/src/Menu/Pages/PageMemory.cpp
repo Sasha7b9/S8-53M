@@ -786,6 +786,8 @@ static bool FuncActiveMemoryNumPoinst(void)
 }
 
 // ПАМЯТЬ - Точки
+int8 temp = 0;
+
 DEF_CHOICE_3(mcMemoryNumPoints, pMemory,
     "Точки", "Points"
     ,
@@ -798,7 +800,7 @@ DEF_CHOICE_3(mcMemoryNumPoints, pMemory,
     "281",  "281",
     "512",  "512",
     "1024", "1024",
-    (int8)ENUM_POINTS, FuncActiveMemoryNumPoinst, ChangeC_Memory_NumPoints, nullptr
+    ENUM_POINTS, FuncActiveMemoryNumPoinst, ChangeC_Memory_NumPoints, nullptr
 )
 
 // ПАМЯТЬ - ВНЕШН ЗУ /////
@@ -818,7 +820,7 @@ DEF_CHOICE_2(mcMemoryExtName, mspMemoryExt,
     ,
     "По маске", "Mask",
     "Вручную",  "Manually",
-    (int8)FILE_NAMING_MODE, nullptr, nullptr, nullptr
+    FILE_NAMING_MODE, nullptr, nullptr, nullptr
 )
 
     
@@ -829,7 +831,7 @@ DEF_CHOICE_2(mcMemoryExtAutoConnectFlash, mspMemoryExt,
     "If \"Enable\", when you connect an external drive is automatically transferred to the page MEMORY - Ext.Storage",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    (int8)FLASH_AUTOCONNECT, nullptr, nullptr, nullptr
+    FLASH_AUTOCONNECT, nullptr, nullptr, nullptr
 )
 
 
@@ -840,7 +842,7 @@ DEF_CHOICE_2(mcMemoryExtModeBtnMemory, mspMemoryExt,
     "",
     "Меню",       "Menu",
     "Сохранение", "Save",
-    (int8)MODE_BTN_MEMORY, nullptr, nullptr, nullptr
+    MODE_BTN_MEMORY, nullptr, nullptr, nullptr
 )
 
 
@@ -856,7 +858,7 @@ DEF_CHOICE_2(mcMemoryExtModeSave, mspMemoryExt,
     ,
     "Изображение", "Image",
     "Текст",       "Text",
-    (int8)MODE_SAVE_SIGNAL, nullptr, nullptr, nullptr
+    MODE_SAVE_SIGNAL, nullptr, nullptr, nullptr
 )
 
     
