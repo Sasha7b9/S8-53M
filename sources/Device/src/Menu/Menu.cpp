@@ -394,7 +394,7 @@ void Menu::ProcessingShortPressureButton()
                 if(page)
                 {
                     SetCurrentItem(page, true);
-                    OpenItem(page, true);
+                    page->Open(true);
                     ShowMenu(true);
                 }
             }
@@ -532,7 +532,7 @@ void Menu::ShortPress_Page(Item *item)
         return;
     }
     SetCurrentItem(page, true);
-    OpenItem((Page*)page, !ItemIsOpened((Page*)page));
+    ((Page*)page)->Open(!ItemIsOpened((Page*)page));
 }
 
 
@@ -590,7 +590,7 @@ void Menu::FuncOnLongPressItem(Item *item) //-V2009 //-V2558
     {
         SetCurrentItem(item, true);
     }
-    OpenItem(item, !ItemIsOpened(item));
+    item->Open(!ItemIsOpened(item));
 }
 
 
@@ -604,7 +604,7 @@ void Menu::FuncOnLongPressItemTime(Item *time)
     {
         ((TimeItem *)time)->SetNewTime();
     }
-    OpenItem(time, !ItemIsOpened(time));
+    time->Open(!ItemIsOpened(time));
     ((TimeItem *)time)->SetOpened();
 }
 
@@ -615,7 +615,7 @@ void Menu::ShortPress_Time(Item *time)
     {
         SetCurrentItem(time, true);
         ((TimeItem *)time)->SetOpened();
-        OpenItem(time, true);
+        time->Open(true);
     }
     else
     {

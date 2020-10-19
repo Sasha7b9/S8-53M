@@ -316,3 +316,11 @@ Page *Item::Keeper() const
     const Page *page = ((Page *)(this))->data->keeper;
     return (Page *)page;
 }
+
+
+void Item::Open(bool open) const
+{
+    Page *page = Keeper();
+    SetMenuPosActItem(page->GetName(), open ? (page->PosCurrentItem() | 0x80) : (page->PosCurrentItem() & 0x7f));
+}
+

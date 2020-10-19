@@ -118,6 +118,8 @@ public:
     TypeItem::E Type() const;
     // Возвращает адрес элемента, которому принадлежит элемент по адресу item.
     Page *Keeper() const;
+    // Открыть/закрыть элемент меню по адрему item.
+    void Open(bool open) const;
 
     static DataItem emptyData;
 

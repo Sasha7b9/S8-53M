@@ -62,8 +62,6 @@ public:
     // Закрыть открытый элемент меню.
     static void CloseOpenedItem();
 
-    static void OpenItem(const Item *item, bool open);          // Открыть/закрыть элемент меню по адрему item.
-
     static bool ItemIsOpened(const Item *item);                       // Возвращает true, если элемент меню по адрему item открыт.
 
     static void ChangeSubPage(const Page *page, int delta);
