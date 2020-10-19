@@ -7,6 +7,6 @@ public:
     class SerialNumber
     {
     public:
-        static void *GetPointer();
+        static Item *GetPointer();
     };
 };

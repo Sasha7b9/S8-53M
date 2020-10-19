@@ -299,7 +299,7 @@ char* Menu::StringNavigation(char buffer[100])
         buffer[0] = 0;
         const char *titles[10] = {0};
         int numTitle = 0;
-        void *item = OpenedItem();
+        Item *item = OpenedItem();
         if(IsMainPage(item))
         {
             return 0;
@@ -307,7 +307,7 @@ char* Menu::StringNavigation(char buffer[100])
         while(!IsMainPage(item))
         {
             titles[numTitle++] = TitleItem(item);
-            item = Keeper(item);
+            item = item->Keeper();
         }
         for(int i = 9; i >= 0; i--)
         {
@@ -390,7 +390,7 @@ void Menu::ProcessingShortPressureButton()
                     break;
                 }
 
-                const void *page = PageForButton(button);
+                const Item *page = PageForButton(button);
                 if(page)
                 {
                     SetCurrentItem(page, true);

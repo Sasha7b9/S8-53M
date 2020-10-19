@@ -1212,31 +1212,31 @@ void *PageMemory::GetPointer()
 }
 
 
-void *PageMemory::Latest::GetPointer()
+Item *PageMemory::Latest::GetPointer()
 {
-    return (void *)&mspMemLast;
+    return (Item *)&mspMemLast;
 }
 
 
-void *PageMemory::Internal::GetPointer()
+Item *PageMemory::Internal::GetPointer()
 {
-    return (void *)&mspMemInt;
+    return (Item *)&mspMemInt;
 }
 
 
-void *PageMemory::SetMask::GetPointer()
+Item *PageMemory::SetMask::GetPointer()
 {
-    return (void *)&mspSetMask;
+    return (Item *)&mspSetMask;
 }
 
 
-void *PageMemory::SetName::GetPointer()
+Item *PageMemory::SetName::GetPointer()
 {
-    return (void *)&mpSetName;
+    return (Item *)&mpSetName;
 }
 
 
-void *PageMemory::FileManager::GetPointer()
+Item *PageMemory::FileManager::GetPointer()
 {
-    return (void *)&mspFileManager;
+    return (Item *)&mspFileManager;
 }

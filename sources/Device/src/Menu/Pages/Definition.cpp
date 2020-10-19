@@ -134,7 +134,7 @@ DEF_PAGE_11(mainPage, Page::empty, NamePage::MainPage,
 
 
 
-const void *PageForButton(Key::E button)
+const Page *PageForButton(Key::E button)
 {
     static const void *pages[] = {  
         0,                          // Key::None
@@ -158,7 +158,7 @@ const void *PageForButton(Key::E button)
         0                           // B_Power
     };
 
-    return pages[button];
+    return reinterpret_cast<const Page *>(pages[button]);
 }
 
 

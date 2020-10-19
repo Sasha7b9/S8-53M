@@ -116,6 +116,8 @@ public:
     bool IsShade() const;
 
     TypeItem::E Type() const;
+    // Возвращает адрес элемента, которому принадлежит элемент по адресу item.
+    Page *Keeper() const;
 
     static DataItem emptyData;
 

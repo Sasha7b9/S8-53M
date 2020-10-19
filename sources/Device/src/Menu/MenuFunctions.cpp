@@ -15,11 +15,11 @@ bool Menu::CurrentItemIsOpened(NamePage::E namePage)
 }
 
 
-void Menu::SetCurrentItem(const void *item, bool active)
+void Menu::SetCurrentItem(const Item *item, bool active)
 {
     if(item != 0)
     {
-        Page *page = (Keeper(item));
+        Page *page = (item->Keeper());
         if(!active)
         {
             SetMenuPosActItem(page->OwnData()->name, 0x7f);
@@ -141,7 +141,7 @@ Item* Menu::RetLastOpened(Page *page, TypeItem::E *type)
 
 void Menu::CloseOpenedItem()
 {
-    void *item = OpenedItem();
+    Item *item = OpenedItem();
     if(TypeOpenedItem() == TypeItem::Page)
     {
         if (((const Page *)item)->IsSB())                                   // ƒл€ страницы малых кнопок
@@ -154,7 +154,7 @@ void Menu::CloseOpenedItem()
         }
         if(NEED_CLOSE_PAGE_SB == 1)
         {
-            NamePage::E namePage = Keeper(item)->OwnData()->name;
+            NamePage::E namePage = item->Keeper()->OwnData()->name;
             SetMenuPosActItem(namePage, MenuPosActItem(namePage) & 0x7f);   // —брасываем бит 7 - "закрываем" активный пункт страницы namePage
         }
         NEED_CLOSE_PAGE_SB = 1;
@@ -170,11 +170,11 @@ void Menu::CloseOpenedItem()
 }
 
 
-void Menu::OpenItem(const void *item, bool open)
+void Menu::OpenItem(const Item *item, bool open)
 {
     if(item)
     {
-        Page *page = Keeper(item);
+        Page *page = item->Keeper();
         SetMenuPosActItem(page->GetName(), open ? (page->PosCurrentItem() | 0x80) : (page->PosCurrentItem() & 0x7f));
     }
 }
@@ -183,19 +183,12 @@ void Menu::OpenItem(const void *item, bool open)
 bool Menu::ItemIsOpened(const Item *item)
 {
     TypeItem::E type = item->Type();
-    Page *page = Keeper(item);
+    Page *page = item->Keeper();
     if(type == TypeItem::Page)
     {
-        return CurrentItemIsOpened(Keeper(item)->GetName());
+        return CurrentItemIsOpened(item->Keeper()->GetName());
     }
     return (MenuPosActItem(page->OwnData()->name) & 0x80) != 0;
-}
-
-
-Page* Menu::Keeper(const void *item)
-{
-    const Page* page = ((Page*)(item))->data->keeper;
-    return (Page *)page;
 }
 
 
@@ -205,7 +198,7 @@ NamePage::E Menu::GetNameOpenedPage()
 }
 
 
-void Menu::OpenPageAndSetItCurrent(void *page)
+void Menu::OpenPageAndSetItCurrent(Item *page)
 {
     SetCurrentItem(page, true);
     OpenItem((Page *)page, !ItemIsOpened((Page *)page));

@@ -32,6 +32,6 @@ public:
     {
     public:
 
-        static void *GetPointer();
+        static Item *GetPointer();
     };
 };

@@ -781,9 +781,9 @@ DEF_PAGE_6(ppInformation, pService, NamePage::SB_Information,
     nullptr, OnPress_Information, nullptr, nullptr
 )
 
-void *PageService::Information::GetPointer()
+Item *PageService::Information::GetPointer()
 {
-    return (void *)&ppInformation;
+    return (Item *)&ppInformation;
 }
 
 static void OnPress_Information(void)

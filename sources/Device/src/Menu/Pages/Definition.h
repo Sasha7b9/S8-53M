@@ -6,7 +6,7 @@
 #define COMMON_BEGIN_SB_EXIT  "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu"
 
 
-const void* PageForButton(Key::E button);   // Возвращает страницу меню, которая должна открываться по нажатию кнопки button.
+const Page* PageForButton(Key::E button);   // Возвращает страницу меню, которая должна открываться по нажатию кнопки button.
 bool IsMainPage(const void *item);                        // Возвращает true, если item - адрес главной страницы меню.
 
 

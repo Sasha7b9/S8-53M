@@ -108,9 +108,9 @@ struct StructForSN
 
 extern const Page mainPage;
 
-void *PageDebug::SerialNumber::GetPointer()
+Item *PageDebug::SerialNumber::GetPointer()
 {
-    return (void *)&ppSerialNumber;
+    return (Item *)&ppSerialNumber;
 }
 
 

@@ -11,31 +11,31 @@ public:
     class Latest
     {
     public:
-        static void *GetPointer();
+        static Item *GetPointer();
     };
 
     class Internal
     {
     public:
-        static void *GetPointer();
+        static Item *GetPointer();
     };
 
     class SetMask
     {
     public:
-        static void *GetPointer();
+        static Item *GetPointer();
     };
 
     class SetName
     {
     public:
-        static void *GetPointer();
+        static Item *GetPointer();
     };
 
     class FileManager
     {
     public:
-        static void *GetPointer();
+        static Item *GetPointer();
     };
 
     static void *GetPointer();

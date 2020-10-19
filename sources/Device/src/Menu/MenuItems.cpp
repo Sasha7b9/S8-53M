@@ -301,11 +301,18 @@ bool Page::IsSB() const
 
 bool Item::IsShade() const
 {
-    return Menu::CurrentItemIsOpened(Menu::Keeper(this)->GetName()) && (this != Menu::OpenedItem());
+    return Menu::CurrentItemIsOpened(Keeper()->GetName()) && (this != Menu::OpenedItem());
 }
 
 
 int8 Page::PosCurrentItem() const
 {
     return MenuPosActItem(OwnData()->name) & 0x7f;
+}
+
+
+Page *Item::Keeper() const
+{
+    const Page *page = ((Page *)(this))->data->keeper;
+    return (Page *)page;
 }

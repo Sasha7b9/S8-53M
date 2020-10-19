@@ -42,13 +42,11 @@ public:
     // Возвращает true, если текущий элемент страницы с именем namePage открыт.
     static bool CurrentItemIsOpened(NamePage::E namePage);
     // Сделать/разделать текущим пункт страницы.
-    static void SetCurrentItem(const void *item, bool active);
-    // Возвращает адрес элемента, которому принадлежит элемент по адресу item.
-    static Page* Keeper(const void *item);
+    static void SetCurrentItem(const Item *item, bool active);
 
     static NamePage::E GetNameOpenedPage();
 
-    static void OpenPageAndSetItCurrent(void *page);
+    static void OpenPageAndSetItCurrent(Item *page);
 
     static bool ChangeOpenedItem(Item *item, int delta);
     // Уменьшает или увеличивает значение Governor, GovernorColor или Choice по адресу item в зависимости от знака delta
@@ -64,7 +62,7 @@ public:
     // Закрыть открытый элемент меню.
     static void CloseOpenedItem();
 
-    static void OpenItem(const void *item, bool open);          // Открыть/закрыть элемент меню по адрему item.
+    static void OpenItem(const Item *item, bool open);          // Открыть/закрыть элемент меню по адрему item.
 
     static bool ItemIsOpened(const Item *item);                       // Возвращает true, если элемент меню по адрему item открыт.
 

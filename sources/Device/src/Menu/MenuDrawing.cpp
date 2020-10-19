@@ -88,9 +88,9 @@ void Menu::Draw()
             {
                 DrawOpenedPage((Page *)item, 0, Grid::TOP);
             }
-            else if(Keeper(item) != &Page::empty)
+            else if(item->Keeper() != &Page::empty)
             {
-                DrawOpenedPage(Keeper(item), 0, Grid::TOP);
+                DrawOpenedPage(item->Keeper(), 0, Grid::TOP);
             }
         }
         else
@@ -364,7 +364,7 @@ void Menu::ResetItemsUnderButton()
 
 int Menu::ItemOpenedPosY(const Item *item)
 {
-    Page *page = Keeper(item);
+    Page *page = item->Keeper();
     int8 posCurItem = page->PosCurrentItem();
     int y = Grid::TOP + (posCurItem % MENU_ITEMS_ON_DISPLAY) * MI_HEIGHT + MP_TITLE_HEIGHT;
     if(y + HeightOpenedItem(item) > Grid::Bottom())
