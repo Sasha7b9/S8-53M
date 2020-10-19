@@ -299,7 +299,7 @@ void Menu::DrawOpenedPage(Page *page, int layer, int yTop)
     if (CurrentItemIsOpened(page->GetName()))
     {
         int8 posCurItem = PosCurrentItem(page);
-        void *item = GetItem(page, posCurItem);
+        Item *item = GetItem(page, posCurItem);
         for (int i = 0; i < 5; i++)
         {
             if (itemUnderButton[i + Key::F1] != item)
@@ -374,7 +374,7 @@ void Menu::ResetItemsUnderButton()
 }
 
 
-int Menu::ItemOpenedPosY(const void *item)
+int Menu::ItemOpenedPosY(const Item *item)
 {
     Page *page = Keeper(item);
     int8 posCurItem = PosCurrentItem(page);

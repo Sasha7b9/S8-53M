@@ -114,6 +114,8 @@ public:
     static DataItem emptyData;
 
     static Item empty;
+
+    TypeItem::E GetType() const;
 };
 
 

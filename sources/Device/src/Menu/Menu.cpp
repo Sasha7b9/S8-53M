@@ -449,7 +449,7 @@ void Menu::ProcessingRegulatorSet(void)
         return;
     }
 
-    if (MenuIsShown() || TypeMenuItem(OpenedItem()) != TypeItem::Page)
+    if (MenuIsShown() || OpenedItem()->GetType() != TypeItem::Page)
     {
         void *item = CurrentItem();
         TypeItem::E type = TypeMenuItem(item);

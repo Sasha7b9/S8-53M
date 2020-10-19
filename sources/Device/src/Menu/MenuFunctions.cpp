@@ -8,18 +8,18 @@
 extern const Page mainPage;
 
 
-TypeItem::E Menu::TypeMenuItem(const void *address) 
-{
-    if (address)
-    {
-        Item *item = (Item *)(address);
-        return item->data->type;
-    }
-    else
-    {
-        return TypeItem::None;
-    }
-}
+//TypeItem::E Menu::TypeMenuItem(const void *address) 
+//{
+//    if (address)
+//    {
+//        Item *item = (Item *)(address);
+//        return item->data->type;
+//    }
+//    else
+//    {
+//        return TypeItem::None;
+//    }
+//}
 
 
 bool Menu::CurrentItemIsOpened(NamePage::E namePage)
@@ -61,7 +61,7 @@ void Menu::SetCurrentItem(const void *item, bool active)
 
 TypeItem::E Menu::TypeOpenedItem()
 {
-    return TypeMenuItem(OpenedItem());
+    return OpenedItem()->GetType();
 }
 
 
@@ -93,7 +93,7 @@ void* Menu::CurrentItem()
 }
 
 
-int Menu::HeightOpenedItem(const void *item) 
+int Menu::HeightOpenedItem(const Item *item) 
 {
     TypeItem::E type = TypeMenuItem(item);
     if(type == TypeItem::Page)
