@@ -55,7 +55,7 @@ static void DrawHintItem(int x, int y, int width)
         {"",            ""},        // TypeItem::ChoiceReg
         {"Êíîïêà",      "Button"}   // TypeItem::SmallButton
     };
-    TypeItem::E type = Menu::TypeMenuItem(gItemHint);
+    TypeItem::E type = gItemHint->GetType();
     Language::E lang = set.common.lang;
     Page *item = (Page*)gItemHint;
 
@@ -78,13 +78,13 @@ static void DrawHintItem(int x, int y, int width)
 
 void Menu::Draw()
 {
-    if(MenuIsShown() || TypeMenuItem(OpenedItem()) != TypeItem::Page)
+    if(MenuIsShown() || OpenedItem()->GetType() != TypeItem::Page)
     {
         ResetItemsUnderButton();
-        void *item = OpenedItem();
+        Item *item = OpenedItem();
         if(MenuIsShown())
         {
-            if (TypeMenuItem(item) == TypeItem::Page)
+            if (item->GetType() == TypeItem::Page)
             {
                 DrawOpenedPage((Page *)item, 0, Grid::TOP);
             }
@@ -95,11 +95,11 @@ void Menu::Draw()
         }
         else
         {
-            if(TypeMenuItem(item) == TypeItem::Choice)
+            if(item->GetType() == TypeItem::Choice)
             {
                 ((Choice *)item)->Draw(CalculateX(0), Grid::TOP, true);
             }
-            else if(TypeMenuItem(item) == TypeItem::Governor)
+            else if(item->GetType() == TypeItem::Governor)
             {
                 ((Governor *)item)->Draw(CalculateX(0), Grid::TOP, true);
             }
@@ -154,7 +154,7 @@ void Menu::DrawTitlePage(Page *page, int layer, int yTop)
     }
     
     VLine().Draw(x, yTop, yTop + HeightOpenedItem(page), ColorBorderMenu(false));
-    bool condDrawRSet = NumSubPages(page) > 1 && TypeMenuItem(CurrentItem()) != TypeItem::ChoiceReg && TypeMenuItem(CurrentItem()) != TypeItem::Governor && TypeOpenedItem() == TypeItem::Page;
+    bool condDrawRSet = NumSubPages(page) > 1 && CurrentItem()->GetType() != TypeItem::ChoiceReg && CurrentItem()->GetType() != TypeItem::Governor && TypeOpenedItem() == TypeItem::Page;
     int delta = condDrawRSet ? -10 : 0;
     Color::E colorText = shade ? LightShadingTextColor() : Color::BLACK;
     x = Painter::DrawStringInCenterRectC(x, yTop, MP_TITLE_WIDTH + 2 + delta, MP_TITLE_HEIGHT, TitleItem(page), colorText);
@@ -283,7 +283,7 @@ void Menu::DrawItemsPage(const Page *page, int layer, int yTop)
     for(int posItem = posFirstItem; posItem <= posLastItem; posItem++)
     {
         Item *item = GetItem(page, posItem);
-        TypeItem::E type = TypeMenuItem(item);
+        TypeItem::E type = item->GetType();
         int top = yTop + MI_HEIGHT * count;
         funcOfDraw[type](item, CalculateX(layer), top);
         count++;
@@ -307,7 +307,7 @@ void Menu::DrawOpenedPage(Page *page, int layer, int yTop)
                 itemUnderButton[i + Key::F1] = 0;
             }
         }
-        TypeItem::E type = TypeMenuItem(item);
+        TypeItem::E type = item->GetType();
         if (type == TypeItem::Choice || type == TypeItem::ChoiceReg)
         {
             ((Choice *)item)->Draw(CalculateX(1), ItemOpenedPosY(item), true);

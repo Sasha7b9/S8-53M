@@ -46,7 +46,7 @@ public:
     static int NumSubPages(const Page *page);
 
     // Возвращает тип элемента меню по адресу address.
-    static TypeItem::E TypeMenuItem(const void *address);
+    //static TypeItem::E TypeMenuItem(const void *address);
 
     // Возвращает тип открытого элемента меню.
     static TypeItem::E TypeOpenedItem();
@@ -71,7 +71,7 @@ public:
 
     static bool ChangeOpenedItem(Item *item, int delta);
     // Уменьшает или увеличивает значение Governor, GovernorColor или Choice по адресу item в зависимости от знака delta
-    static void ChangeItem(void *item, int delta);
+    static void ChangeItem(Item *item, int delta);
     // Возвращает высоту в пикселях открытого элемента Choice или NamePage::E по адресу item.
     static int HeightOpenedItem(const Item *item);
     // Возвращает название элемента по адресу item, как оно выглядит на дисплее прибора.

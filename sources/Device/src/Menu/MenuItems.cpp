@@ -230,15 +230,15 @@ TypeItem::E Item::GetType() const
 }
 
 
-TypeItem::E Menu::TypeMenuItem(const void *address) 
-{
-    if (address)
-    {
-        Item *item = (Item *)(address);
-        return item->data->type;
-    }
-    else
-    {
-        return TypeItem::None;
-    }
-}
+//TypeItem::E Menu::TypeMenuItem(const void *address) 
+//{
+//    if (address)
+//    {
+//        Item *item = (Item *)(address);
+//        return item->data->type;
+//    }
+//    else
+//    {
+//        return TypeItem::None;
+//    }
+//}

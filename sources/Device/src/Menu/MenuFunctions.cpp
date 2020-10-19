@@ -300,7 +300,7 @@ bool Menu::ChangeOpenedItem(Item *item, int delta)
         return false;
     }
 
-    TypeItem::E type = TypeMenuItem(item);
+    TypeItem::E type = item->GetType();
 
     if (type == TypeItem::Page)
     {
@@ -327,9 +327,9 @@ bool Menu::ChangeOpenedItem(Item *item, int delta)
 }
 
 
-void Menu::ChangeItem(void *item, int delta)
+void Menu::ChangeItem(Item *item, int delta)
 {
-    TypeItem::E type = TypeMenuItem(item);
+    TypeItem::E type = item->GetType();
     if (type == TypeItem::Choice || type == TypeItem::ChoiceReg)
     {
         ((Choice *)item)->StartChange(delta);
@@ -357,7 +357,7 @@ void Menu::ShortPressOnPageItem(Page *page, int numItem)
 {
     const DataPage *own = page->OwnData();
 
-    if (TypeMenuItem(page) != TypeItem::Page)
+    if (page->GetType() != TypeItem::Page)
     {
         return;
     }

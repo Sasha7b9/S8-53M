@@ -6,6 +6,9 @@
 #include "common/Hardware/HAL/HAL_c.h"
 
 
+class Item;
+
+
 #define CLIENT_LAN_IS_CONNECTED     (gBF.clientLANisConnected)
 #define CABLE_LAN_IS_CONNECTED      (gBF.cableLANisConnected)
 #define CLIENT_VCP_IS_CONNECTED     (gBF.connectToHost)
@@ -210,9 +213,9 @@ struct DataSettings
 
 
 extern const char *gStringForHint;  // Строка подсказки, которую надо выводить в случае включённого режима подсказок.
-extern void* gItemHint;              // Item, подсказку для которого нужно выводить в случае включённого режима подсказок.
+extern Item* gItemHint;              // Item, подсказку для которого нужно выводить в случае включённого режима подсказок.
 
-void SetItemForHint(void *item);
+void SetItemForHint(Item *item);
 
 extern StateFPGA gStateFPGA;
 

@@ -84,10 +84,10 @@ StateFPGA gStateFPGA =
 };
 
 const char *gStringForHint = 0;
-void *gItemHint = 0;
+Item *gItemHint = 0;
 
 
-void SetItemForHint(void *item)
+void SetItemForHint(Item *item)
 {
     gStringForHint = 0;
     gItemHint = item;
