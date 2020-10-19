@@ -100,7 +100,7 @@ static const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN};            
 static Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, (Item*)&item4, (Item*)&item5, nullptr};                             \
 static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                 \
 static const DataItem di##name = { TypeItem::Page, &keeper, funcActive, th##name, &dp##name};           \
-static const Page name(&di##name);
+const Page name(&di##name);
 
 
 #define DEF_PAGE_6(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN,                                              \
@@ -120,7 +120,7 @@ static const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN};            
 static Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, (Item*)&item4, (Item*)&item5, (Item*)&item6, (Item*)&item7, nullptr};                             \
 static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                 \
 static const DataItem di##name = { TypeItem::Page, &keeper, funcActive, th##name, &dp##name};           \
-static const Page name(&di##name);
+const Page name(&di##name);
 
 
 #define DEF_PAGE_9(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN,                                              \
@@ -130,7 +130,7 @@ static const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN};            
 static Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, (Item*)&item4, (Item*)&item5, (Item*)&item6, (Item*)&item7, (Item*)&item8, (Item*)&item9, nullptr};                             \
 static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                 \
 static const DataItem di##name = { TypeItem::Page, &keeper, funcActive, th##name, &dp##name};           \
-static const Page name(&di##name);
+const Page name(&di##name);
 
 
 #define DEF_PAGE_10(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN,                                              \
@@ -140,7 +140,7 @@ static const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN};            
 static Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, (Item*)&item4, (Item*)&item5, (Item*)&item6, (Item*)&item7, (Item*)&item8, (Item*)&item9, (Item*)&item10, nullptr};                             \
 static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                 \
 static const DataItem di##name = { TypeItem::Page, &keeper, funcActive, th##name, &dp##name};           \
-static const Page name(&di##name);
+const Page name(&di##name);
 
 
 #define DEF_PAGE_11(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN,                                              \
@@ -150,7 +150,7 @@ static const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN};            
 static Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, (Item*)&item4, (Item*)&item5, (Item*)&item6, (Item*)&item7, (Item*)&item8, (Item*)&item9, (Item*)&item10, (Item*)&item11, nullptr};                             \
 static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                 \
 static const DataItem di##name = { TypeItem::Page, &keeper, funcActive, th##name, &dp##name};           \
-static const Page name(&di##name);
+const Page name(&di##name);
 
 
 #define DEF_PAGE_12(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN,                                              \
