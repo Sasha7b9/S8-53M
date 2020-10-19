@@ -640,10 +640,6 @@ static bool IsActive_Math_FFT_Limit(void)
 }
 
 // СЕРВИС - ETHERNET ///////////////
-static const arrayItems itemsEthernet =
-{
-};
-
 DEF_PAGE_5(ppEthernet, pService, NamePage::ServiceEthernet,
     "ETHERNET", "ETHERNET",
     "Настройки ethernet",

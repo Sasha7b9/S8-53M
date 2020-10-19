@@ -1053,10 +1053,6 @@ DEF_SMALL_BUTTON(sbExitMemLast, mspMemLast,
 )
 
 // Память - Последние //////
-static const arrayItems itemsMemLast =
-{
-};
-
 DEF_PAGE_6(mspMemLast, pMemory, NamePage::SB_MemLatest,
     "ПОСЛЕДНИЕ", "LATEST",
     "Переход в режим работы с последними полученными сигналами",
@@ -1122,11 +1118,6 @@ DEF_SMALL_BUTTON(sbExitFileManager, mspFileManager,
     EXIT_ILLUSTRATION_EN,
     nullptr, PressSB_FM_Exit, DrawSB_Exit, nullptr
 )
-
-static const arrayItems itemsFileManager =
-{
-
-};
 
 const void *pMspFileManager = (const void *)&mspFileManager;
 

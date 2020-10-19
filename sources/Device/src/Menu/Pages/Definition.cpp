@@ -114,10 +114,6 @@ extern const Page pTrig;
 
 
 
-static const arrayItems itemsMainPage =
-{
-};
-
 DEF_PAGE_11(mainPage, Page::empty, NamePage::MainPage,
     "лемч", "MENU",
     "",

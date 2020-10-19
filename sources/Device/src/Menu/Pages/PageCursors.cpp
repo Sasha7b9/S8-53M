@@ -147,10 +147,6 @@ void SetCursPosT(Channel::E chan, int numCur, float pos)
 extern const Page mainPage;
 
 // КУРСОРЫ /////////////////////////
-static const arrayItems itemsCursors =
-{
-};
-
 DEF_PAGE_5(pCursors, mainPage, NamePage::Cursors,
     "КУРСОРЫ", "CURSORS",
     "Курсорные измерения.",
@@ -241,10 +237,6 @@ DEF_CHOICE_2(mcShowFreq, pCursors,
 
 
 // КУРСОРЫ - УСТАНОВИТЬ ////////////
-static const arrayItems itemsSet =
-{
-};
-
 DEF_PAGE_6(mspSet, pCursors, NamePage::SB_Curs,
     "УСТАНОВИТЬ", "SET",
     "Переход в режим курсорных измерений",
