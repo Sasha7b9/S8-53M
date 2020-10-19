@@ -8,8 +8,6 @@ class Menu
 public:
     // Возвращает адрес элемента меню, соответствующего данной button.
     static Item* ItemUnderButton(Key::E button);
-    // Возвращает true, если элемент меню item затенён (находится не на самом верхнем слое. Как правило, это означает, что раскрыт раскрывающийся элемент меню вроде Choice или Governor.
-    static bool IsShade(const void *item);
 
     static bool IsPressed(const void* item);
 

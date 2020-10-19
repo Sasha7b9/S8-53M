@@ -298,3 +298,8 @@ bool Page::IsSB() const
     return OwnData()->name >= NamePage::SB_Curs;
 }
 
+
+bool Item::IsShade() const
+{
+    return Menu::CurrentItemIsOpened(Menu::Keeper(this)->GetName()) && (this != Menu::OpenedItem());
+}

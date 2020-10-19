@@ -222,7 +222,7 @@ void Formula::DrawLowPart(int x, int y, bool, bool shade) const
 void Governor::DrawClosed(int x, int y) const
 {
     bool pressed = IsPressed();
-    bool shade = Menu::IsShade(this) || !IsActive();
+    bool shade = IsShade() || !IsActive();
     DrawLowPart(x, y, pressed, shade);
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 }
@@ -230,7 +230,7 @@ void Governor::DrawClosed(int x, int y) const
 void IPaddress::DrawClosed(int x, int y) const
 {
     bool pressed = IsPressed();
-    bool shade = Menu::IsShade(this) || !IsActive();
+    bool shade = IsShade() || !IsActive();
     DrawLowPart(x, y, pressed, shade);
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 }
@@ -238,7 +238,7 @@ void IPaddress::DrawClosed(int x, int y) const
 void MACaddress::DrawClosed(int x, int y) const
 {
     bool pressed = Menu::IsPressed(this);
-    bool shade = Menu::IsShade(this) || !IsActive();
+    bool shade = IsShade() || !IsActive();
     DrawLowPart(x, y, pressed, shade);
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 }
@@ -246,7 +246,7 @@ void MACaddress::DrawClosed(int x, int y) const
 void Formula::DrawClosed(int x, int y) const
 {
     bool pressed = Menu::IsPressed(this);
-    bool shade = Menu::IsShade(this) || !IsActive();
+    bool shade = IsShade() || !IsActive();
     DrawLowPart(x, y, pressed, shade);
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 }
@@ -461,7 +461,7 @@ void GovernorColor::DrawOpened(int x, int y)
     Rectangle(MI_WIDTH + delta + 2, MI_HEIGHT + 2).Draw(x - 1, y - 1, Color::BLACK);
     Rectangle(MI_WIDTH + delta, MI_HEIGHT).Draw(x, y, ColorMenuTitle(false));
     Painter::DrawVolumeButton(x + 1, y + 1, MI_WIDTH_VALUE + 2 + delta, MI_HEIGHT_VALUE + 3, 2, ColorMenuItem(false), 
-        ColorMenuItemBrighter(), ColorMenuItemLessBright(), Menu::IsPressed(this), Menu::IsShade(this));
+        ColorMenuItemBrighter(), ColorMenuItemLessBright(), Menu::IsPressed(this), IsShade());
     HLine().Draw(y + MI_HEIGHT / 2 + 2, x, x + MI_WIDTH + delta, ColorMenuTitle(false));
     Painter::DrawStringInCenterRectC(x + (Menu::IsPressed(this) ? 2 : 1), y + (Menu::IsPressed(this) ? 2 : 1), MI_WIDTH + delta, MI_HEIGHT / 2 + 2, Menu::TitleItem(this), Color::WHITE);
     DrawValue(x + 1, y + 19, delta);
@@ -470,7 +470,7 @@ void GovernorColor::DrawOpened(int x, int y)
 void GovernorColor::DrawClosed(int x, int y)
 {
     Color_Init(OwnData()->colorType);
-    DrawGovernorChoiceColorFormulaHiPart(this, x, y, Menu::IsPressed(this), Menu::IsShade(this) || !IsActive(), true);
+    DrawGovernorChoiceColorFormulaHiPart(this, x, y, Menu::IsPressed(this), IsShade() || !IsActive(), true);
     Region(MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1).Fill(x + 2, y + 20, OwnData()->colorType->color);
 }
 
@@ -606,7 +606,7 @@ void MACaddress::DrawOpened(int x, int y)
 void Choice::DrawClosed(int x, int y) const
 {
     bool pressed = Menu::IsPressed(this);
-    bool shade = Menu::IsShade(this) || !IsActive();
+    bool shade = IsShade() || !IsActive();
         
     if (shade)
     {
@@ -654,7 +654,7 @@ void TimeItem::DrawClosed(int x, int y) const
     char buffer[20];
     
     bool pressed = Menu::IsPressed(this);
-    bool shade = Menu::IsShade(this);
+    bool shade = IsShade();
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 
     Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, shade ? Color::MenuTitleLessBright() : Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true, shade);
@@ -694,7 +694,7 @@ void TimeItem::Draw(int x, int y, bool opened) const
 void Button::Draw(int x, int y) const
 {
     bool pressed = Menu::IsPressed(this);
-    bool shade = Menu::IsShade(this) || !IsActive();
+    bool shade = IsShade() || !IsActive();
 
     HLine().Draw(y + 1, x, x + MI_WIDTH, ColorMenuTitle(shade));
     Color::E color = shade ? Color::MENU_SHADOW : Color::WHITE;
@@ -731,7 +731,7 @@ void SmallButton::Draw(int x, int y) const
 
 void Page::Draw(int x, int y)
 {
-    bool isShade = Menu::IsShade(this) || !IsActive();
+    bool isShade = IsShade() || !IsActive();
     bool isPressed = Menu::IsPressed(this);
     HLine().Draw(y + 1, x, x + MI_WIDTH, ColorBorderMenu(false));
     if (isShade)

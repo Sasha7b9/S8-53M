@@ -110,15 +110,16 @@ public:
     Item(const DataItem * const data = nullptr);
     // Возвращает true, если кнопка, соответствующая данному элементу меню, находится в нажатом положении.
     bool IsPressed() const;
-
     // Вовзращает true, если элемент меню item является ативным, т.е. может быть нажат.
     bool IsActive() const;
+    // Возвращает true, если элемент меню item затенён (находится не на самом верхнем слое. Как правило, это означает, что раскрыт раскрывающийся элемент меню вроде Choice или Governor.
+    bool IsShade() const;
+
+    TypeItem::E Type() const;
 
     static DataItem emptyData;
 
     static Item empty;
-
-    TypeItem::E Type() const;
 };
 
 

@@ -347,12 +347,6 @@ int Menu::CalculateX(int layer)
 }
 
 
-bool Menu::IsShade(const void* item)
-{
-    return CurrentItemIsOpened(Keeper(item)->GetName()) && (item != OpenedItem());
-}
-
-
 bool Menu::IsPressed(const void *item)
 {
     return item == ItemUnderKey();
