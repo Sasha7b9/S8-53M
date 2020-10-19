@@ -154,7 +154,7 @@ void Menu::DrawTitlePage(Page *page, int layer, int yTop)
     }
     
     VLine().Draw(x, yTop, yTop + HeightOpenedItem(page), ColorBorderMenu(false));
-    bool condDrawRSet = NumSubPages(page) > 1 && CurrentItem()->Type() != TypeItem::ChoiceReg && CurrentItem()->Type() != TypeItem::Governor && TypeOpenedItem() == TypeItem::Page;
+    bool condDrawRSet = page->NumSubPages() > 1 && CurrentItem()->Type() != TypeItem::ChoiceReg && CurrentItem()->Type() != TypeItem::Governor && TypeOpenedItem() == TypeItem::Page;
     int delta = condDrawRSet ? -10 : 0;
     Color::E colorText = shade ? LightShadingTextColor() : Color::BLACK;
     x = Painter::DrawStringInCenterRectC(x, yTop, MP_TITLE_WIDTH + 2 + delta, MP_TITLE_HEIGHT, TitleItem(page), colorText);

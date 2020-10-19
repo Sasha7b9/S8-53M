@@ -278,5 +278,10 @@ Item *Page::GetItem(int numElement) const
     const DataPage *own = OwnData();
 
     return own->items[numElement + (Menu::PageIsSB(this) ? 1 : 0)];
+}
 
+
+int Page::NumSubPages() const
+{
+    return (NumItems() - 1) / MENU_ITEMS_ON_DISPLAY + 1;
 }

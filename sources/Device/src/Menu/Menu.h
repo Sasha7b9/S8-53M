@@ -39,8 +39,6 @@ public:
 
     // Возвращает номер текущей подстранцы элемента по адресу page.
     static int NumCurrentSubPage(const Page *page);
-    // Dозвращает число подстраниц в странице по адресу page.
-    static int NumSubPages(const Page *page);
 
     // Возвращает тип открытого элемента меню.
     static TypeItem::E TypeOpenedItem();

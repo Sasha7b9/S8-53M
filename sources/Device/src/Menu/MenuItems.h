@@ -151,6 +151,8 @@ public:
     int NumItems() const;
     // Возвращает адрес элемента меню заданной страницы.
     Item *GetItem(int numElement) const;
+    // Dозвращает число подстраниц в странице по адресу page.
+    int NumSubPages() const;
 
     static Page empty;
 };
