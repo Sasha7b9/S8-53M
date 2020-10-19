@@ -19,7 +19,9 @@ static TimeStructChoice tsChoice;
 
 DataItem Item::emptyData = { TypeItem::None, nullptr, nullptr, nullptr, nullptr };
 Item Item::empty;
-Page Page::empty(&Item::emptyData);
+static const DataPage emptyDataPage = { NamePage::Empty, nullptr, nullptr, nullptr };
+static const DataItem emptyDataItem = { TypeItem::None, nullptr, nullptr, nullptr, &emptyDataPage };
+Page Page::empty(&emptyDataItem);
 
 
 Item::Item(const DataItem *const _data) : data(_data)

@@ -35,6 +35,7 @@ struct TypeItem { enum E
 // Здесь ID всех представленных в меню страниц
 struct NamePage { enum E
 {
+    Empty,
     Display,               // ДИСПЕЙ
     DisplayAccumulation,   // ДИСПЛЕЙ - НАКОПЛЕНИЕ
     DisplayAverage,        // ДИСПЛЕЙ - УСРЕДНЕНИЕ
