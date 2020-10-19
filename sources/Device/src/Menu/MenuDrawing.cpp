@@ -84,7 +84,14 @@ void Menu::Draw()
         void *item = OpenedItem();
         if(MenuIsShown())
         {
-            DrawOpenedPage(TypeMenuItem(item) == TypeItem::Page ? (Page *)item : Keeper(item), 0, Grid::TOP);
+            if (TypeMenuItem(item) == TypeItem::Page)
+            {
+                DrawOpenedPage((Page *)item, 0, Grid::TOP);
+            }
+            else if(Keeper(item) != &Page::empty)
+            {
+                DrawOpenedPage(Keeper(item), 0, Grid::TOP);
+            }
         }
         else
         {
