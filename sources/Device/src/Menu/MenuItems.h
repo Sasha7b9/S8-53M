@@ -115,7 +115,7 @@ public:
 
     static Item empty;
 
-    TypeItem::E GetType() const;
+    TypeItem::E Type() const;
 };
 
 

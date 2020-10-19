@@ -216,7 +216,7 @@ void Choice::ChangeValue(int delta)
 
 NamePage::E Page::GetName() const
 {
-    if (GetType() != TypeItem::Page)
+    if (Type() != TypeItem::Page)
     {
         return NamePage::NoPage;
     }
@@ -224,21 +224,7 @@ NamePage::E Page::GetName() const
 }
 
 
-TypeItem::E Item::GetType() const
+TypeItem::E Item::Type() const
 {
     return data->type;
 }
-
-
-//TypeItem::E Menu::TypeMenuItem(const void *address) 
-//{
-//    if (address)
-//    {
-//        Item *item = (Item *)(address);
-//        return item->data->type;
-//    }
-//    else
-//    {
-//        return TypeItem::None;
-//    }
-//}

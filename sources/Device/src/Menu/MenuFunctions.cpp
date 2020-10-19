@@ -61,7 +61,7 @@ void Menu::SetCurrentItem(const void *item, bool active)
 
 TypeItem::E Menu::TypeOpenedItem()
 {
-    return OpenedItem()->GetType();
+    return OpenedItem()->Type();
 }
 
 
@@ -95,7 +95,7 @@ Item* Menu::CurrentItem()
 
 int Menu::HeightOpenedItem(const Item *item) 
 {
-    TypeItem::E type = item->GetType();
+    TypeItem::E type = item->Type();
     if(type == TypeItem::Page)
     {
         int numItems = NumItemsInPage((const Page *)item) - NumCurrentSubPage((Page *)item) * MENU_ITEMS_ON_DISPLAY;
@@ -164,7 +164,7 @@ Item* Menu::RetLastOpened(Page *page, TypeItem::E *type)
     {
         int8 posActItem = PosCurrentItem(page);
         Item *item = GetItem(page, posActItem);
-        TypeItem::E typeLocal = GetItem(page, posActItem)->GetType();
+        TypeItem::E typeLocal = GetItem(page, posActItem)->Type();
         if(typeLocal == TypeItem::Page)
         {
             return RetLastOpened((Page *)item, type);
@@ -222,7 +222,7 @@ void Menu::OpenItem(const void *item, bool open)
 
 bool Menu::ItemIsOpened(const Item *item)
 {
-    TypeItem::E type = item->GetType();
+    TypeItem::E type = item->Type();
     Page *page = Keeper(item);
     if(type == TypeItem::Page)
     {
@@ -254,7 +254,7 @@ void Menu::OpenPageAndSetItCurrent(void *page)
 
 bool Menu::ItemIsActive(const Item *item)
 {
-    TypeItem::E type = item->GetType();
+    TypeItem::E type = item->Type();
 
     /** @todo Здесь оптимизировать через битовую маску */
 
@@ -300,7 +300,7 @@ bool Menu::ChangeOpenedItem(Item *item, int delta)
         return false;
     }
 
-    TypeItem::E type = item->GetType();
+    TypeItem::E type = item->Type();
 
     if (type == TypeItem::Page)
     {
@@ -329,7 +329,7 @@ bool Menu::ChangeOpenedItem(Item *item, int delta)
 
 void Menu::ChangeItem(Item *item, int delta)
 {
-    TypeItem::E type = item->GetType();
+    TypeItem::E type = item->Type();
     if (type == TypeItem::Choice || type == TypeItem::ChoiceReg)
     {
         ((Choice *)item)->StartChange(delta);
@@ -357,7 +357,7 @@ void Menu::ShortPressOnPageItem(Page *page, int numItem)
 {
     const DataPage *own = page->OwnData();
 
-    if (page->GetType() != TypeItem::Page)
+    if (page->Type() != TypeItem::Page)
     {
         return;
     }
