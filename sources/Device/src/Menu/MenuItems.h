@@ -149,6 +149,8 @@ public:
     NamePage::E GetName() const;
     // Возвращает количество элементов в странице по адресу page.
     int NumItems() const;
+    // Возвращает адрес элемента меню заданной страницы.
+    Item *GetItem(int numElement) const;
 
     static Page empty;
 };

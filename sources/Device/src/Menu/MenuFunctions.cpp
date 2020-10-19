@@ -8,20 +8,6 @@
 extern const Page mainPage;
 
 
-//TypeItem::E Menu::TypeMenuItem(const void *address) 
-//{
-//    if (address)
-//    {
-//        Item *item = (Item *)(address);
-//        return item->data->type;
-//    }
-//    else
-//    {
-//        return TypeItem::None;
-//    }
-//}
-
-
 bool Menu::CurrentItemIsOpened(NamePage::E namePage)
 {
     bool retValue = _GET_BIT(MenuPosActItem(namePage), 7) == 1;
@@ -48,7 +34,7 @@ void Menu::SetCurrentItem(const void *item, bool active)
         {
             for(int8 i = 0; i < page->NumItems(); i++)
             {
-                if(GetItem(page, i) == item)
+                if(page->GetItem(i) == item)
                 {
                     SetMenuPosActItem(page->OwnData()->name, i);
                     return;
@@ -72,14 +58,6 @@ Item* Menu::OpenedItem()
 }
 
 
-Item* Menu::GetItem(const Page *page, int numElement)
-{
-    const DataPage *own = page->OwnData();
-
-    return own->items[numElement + (PageIsSB(page) ? 1 : 0)];
-}
-
-
 Item* Menu::CurrentItem()
 {
     TypeItem::E type = TypeItem::None;
@@ -87,7 +65,7 @@ Item* Menu::CurrentItem()
     int8 pos = PosCurrentItem((const Page *)lastOpened);
     if(type == TypeItem::Page && pos != 0x7f)
     {
-        return GetItem((const Page *)lastOpened, pos);
+        return ((const Page *)lastOpened)->GetItem(pos);
     }
     return lastOpened;
 }
@@ -163,8 +141,8 @@ Item* Menu::RetLastOpened(Page *page, TypeItem::E *type)
     if(CurrentItemIsOpened(page->GetName()))
     {
         int8 posActItem = PosCurrentItem(page);
-        Item *item = GetItem(page, posActItem);
-        TypeItem::E typeLocal = GetItem(page, posActItem)->Type();
+        Item *item = page->GetItem(posActItem);
+        TypeItem::E typeLocal = page->GetItem(posActItem)->Type();
         if(typeLocal == TypeItem::Page)
         {
             return RetLastOpened((Page *)item, type);

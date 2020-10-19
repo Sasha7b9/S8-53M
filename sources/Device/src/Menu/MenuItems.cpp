@@ -246,7 +246,7 @@ int Page::NumItems() const
     {
         for (int i = 0; i < MAX_NUM_ITEMS_IN_PAGE; i++)
         {
-            if (Menu::GetItem(this, i) == 0)
+            if (GetItem(i) == 0)
             {
                 return i;
             }
@@ -270,4 +270,13 @@ bool Item::IsActive() const
     }
 
     return true;
+}
+
+
+Item *Page::GetItem(int numElement) const
+{
+    const DataPage *own = OwnData();
+
+    return own->items[numElement + (Menu::PageIsSB(this) ? 1 : 0)];
+
 }
