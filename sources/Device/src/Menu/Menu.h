@@ -49,11 +49,11 @@ public:
     // Возвращает тип открытого элемента меню.
     static TypeItem::E TypeOpenedItem();
     // Возвращает адрес открытого элемента меню.
-    static void *OpenedItem();
+    static Item *OpenedItem();
     // Возвращает адрес текущего элемента меню (текущим, как правило, является элемент, кнопка которого была нажата последней.
     static void *CurrentItem();
     // Возвращает адрес элемента меню заданной страницы.
-    static void *GetItem(const Page *page, int numElement);
+    static Item *GetItem(const Page *page, int numElement);
     // Возвращает true, если текущий элемент страницы с именем namePage открыт.
     static bool CurrentItemIsOpened(NamePage::E namePage);
     // Возвращает позицию текущего элемента странцы page.
@@ -155,7 +155,7 @@ private:
 
     static int ItemOpenedPosY(const void *item);
 
-    static void *RetLastOpened(Page *_page, TypeItem::E *_type);
+    static Item *RetLastOpened(Page *_page, TypeItem::E *_type);
     
     static void OpenFileManager();
     // Обработка события таймера автоматического сокрытия меню.

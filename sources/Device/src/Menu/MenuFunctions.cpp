@@ -65,14 +65,14 @@ TypeItem::E Menu::TypeOpenedItem()
 }
 
 
-void* Menu::OpenedItem()
+Item* Menu::OpenedItem()
 {
     TypeItem::E type = TypeItem::None;
     return RetLastOpened((Page*)&mainPage, &type);
 }
 
 
-void* Menu::GetItem(const Page *page, int numElement)
+Item* Menu::GetItem(const Page *page, int numElement)
 {
     const DataPage *own = page->OwnData();
 
@@ -158,12 +158,12 @@ int Menu::NumSubPages(const Page *page)
 }
 
 
-void* Menu::RetLastOpened(Page *page, TypeItem::E *type)
+Item* Menu::RetLastOpened(Page *page, TypeItem::E *type)
 {
     if(CurrentItemIsOpened(page->GetName()))
     {
         int8 posActItem = PosCurrentItem(page);
-        void *item = GetItem(page, posActItem);
+        Item *item = GetItem(page, posActItem);
         TypeItem::E typeLocal = TypeMenuItem(GetItem(page, posActItem));
         if(typeLocal == TypeItem::Page)
         {
