@@ -10,7 +10,15 @@ extern const Page mainPage;
 
 TypeItem::E Menu::TypeMenuItem(const void *address) 
 {
-    return address ? (*((TypeItem::E*)address)) : TypeItem::None;
+    if (address)
+    {
+        Item *item = (Item *)(address);
+        return item->data->type;
+    }
+    else
+    {
+        return TypeItem::None;
+    }
 }
 
 
