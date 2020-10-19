@@ -111,6 +111,9 @@ public:
     // Возвращает true, если кнопка, соответствующая данному элементу меню, находится в нажатом положении.
     bool IsPressed() const;
 
+    // Вовзращает true, если элемент меню item является ативным, т.е. может быть нажат.
+    bool IsActive() const;
+
     static DataItem emptyData;
 
     static Item empty;
@@ -141,10 +144,11 @@ class Page : public Item
 {
 public:
     Page(const DataItem *const data) : Item(data) {};
-
+    const DataPage *OwnData() const { return static_cast<const DataPage *>(data->ad); }
     void Draw(int x, int y);
     NamePage::E GetName() const;
-    const DataPage *OwnData() const { return static_cast<const DataPage *>(data->ad); }
+    // Возвращает количество элементов в странице по адресу page.
+    int NumItems() const;
 
     static Page empty;
 };

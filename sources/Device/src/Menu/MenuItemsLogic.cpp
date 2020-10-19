@@ -267,7 +267,7 @@ void GovernorColor::ChangeValue(int delta)
 
 void Governor::ShortPress()
 {
-    if (!Menu::ItemIsActive(this))
+    if (!IsActive())
     {
         return;
     }

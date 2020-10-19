@@ -46,7 +46,7 @@ void Menu::SetCurrentItem(const void *item, bool active)
         }
         else
         {
-            for(int8 i = 0; i < NumItemsInPage(page); i++)
+            for(int8 i = 0; i < page->NumItems(); i++)
             {
                 if(GetItem(page, i) == item)
                 {
@@ -98,7 +98,7 @@ int Menu::HeightOpenedItem(const Item *item)
     TypeItem::E type = item->Type();
     if(type == TypeItem::Page)
     {
-        int numItems = NumItemsInPage((const Page *)item) - NumCurrentSubPage((Page *)item) * MENU_ITEMS_ON_DISPLAY;
+        int numItems = ((const Page *)item)->NumItems() - NumCurrentSubPage((Page *)item) * MENU_ITEMS_ON_DISPLAY;
         LIMITATION(numItems, numItems, 0, MENU_ITEMS_ON_DISPLAY);
         return MP_TITLE_HEIGHT + MI_HEIGHT * numItems;
     } 
@@ -154,7 +154,7 @@ void Menu::ChangeSubPage(const Page *page, int delta)
 
 int Menu::NumSubPages(const Page *page)
 {
-    return (NumItemsInPage(page) - 1) / MENU_ITEMS_ON_DISPLAY + 1;
+    return (page->NumItems() - 1) / MENU_ITEMS_ON_DISPLAY + 1;
 }
 
 
@@ -249,47 +249,6 @@ void Menu::OpenPageAndSetItCurrent(void *page)
 {
     SetCurrentItem(page, true);
     OpenItem((Page *)page, !ItemIsOpened((Page *)page));
-}
-
-
-bool Menu::ItemIsActive(const Item *item)
-{
-    TypeItem::E type = item->Type();
-
-    /** @todo Здесь оптимизировать через битовую маску */
-
-    if (type == TypeItem::Choice || type == TypeItem::Page || type == TypeItem::Button || type == TypeItem::Governor || type == TypeItem::SmallButton)
-    {
-        pFuncBV func = ((Page*)(item))->data->funcOfActive;
-
-        return func ? func() : true;
-    }
-
-    return true;
-}
-
-
-int Menu::NumItemsInPage(const Page * const page) 
-{
-    if (page->OwnData()->name == NamePage::MainPage)
-    {
-        return (SHOW_DEBUG_MENU == 0) ? 10 : 11;
-    }
-    else if (PageIsSB(page))
-    {
-        return 5;
-    }
-    else
-    {
-        for (int i = 0; i < MAX_NUM_ITEMS_IN_PAGE; i++)
-        {
-            if (GetItem(page, i) == 0)
-            {
-                return i;
-            }
-        }
-    }
-    return 0;
 }
 
 

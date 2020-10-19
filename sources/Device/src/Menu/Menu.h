@@ -36,17 +36,11 @@ public:
     static char *StringNavigation(char buffer[100]);
 
     static void OpenItemTime();
-    // Вовзращает true, если элемент меню item является ативным, т.е. может быть нажат.
-    static bool ItemIsActive(const Item *item);
-    // Возвращает количество элементов в странице по адресу page.
-    static int NumItemsInPage(const Page * const page);
+
     // Возвращает номер текущей подстранцы элемента по адресу page.
     static int NumCurrentSubPage(const Page *page);
     // Dозвращает число подстраниц в странице по адресу page.
     static int NumSubPages(const Page *page);
-
-    // Возвращает тип элемента меню по адресу address.
-    //static TypeItem::E TypeMenuItem(const void *address);
 
     // Возвращает тип открытого элемента меню.
     static TypeItem::E TypeOpenedItem();

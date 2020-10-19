@@ -527,7 +527,7 @@ void Menu::ShortPress_Page(Item *item)
     {
         page->OwnData()->funcOnPress();
     }
-    if (!ItemIsActive(page))
+    if (!page->IsActive())
     {
         return;
     }
@@ -538,7 +538,7 @@ void Menu::ShortPress_Page(Item *item)
 
 void Menu::ShortPress_Choice(Item *choice)
 {
-    if (!ItemIsActive(choice))
+    if (!choice->IsActive())
     {
         ((Choice *)choice)->FuncOnChanged(false);
     }
@@ -556,7 +556,7 @@ void Menu::ShortPress_Choice(Item *choice)
 
 void Menu::ShortPress_ChoiceReg(Item *choice)
 {
-    if(!ItemIsActive(choice)) 
+    if(!choice->IsActive()) 
     {
         ((Choice *)choice)->FuncOnChanged(false);
     } 
@@ -575,7 +575,7 @@ void Menu::FuncOnLongPressItemButton(Item *button)
 
 void Menu::ShortPress_Button(Item *button)
 {
-    if(!ItemIsActive(button))
+    if(!button->IsActive())
     {
         return;
     }
@@ -644,7 +644,7 @@ void Menu::ShortPress_MAC(Item *item) //-V2009 //-V2558
 
 void Menu::ShortPress_GovernorColor(Item *governorColor)
 {
-    if(!ItemIsActive(governorColor))
+    if(!governorColor->IsActive())
     {
         return;
     }
@@ -726,7 +726,7 @@ void Menu::ExecuteFuncForLongPressureOnItem(Item *item)
         &Menu::ShortPress_SmallButton       // TypeItem::SmallButton
     };
 
-    if (ItemIsActive(item))
+    if (item->IsActive())
     {
         pFuncMenuVpItem func = longFunction[item->Type()];
         if (func)

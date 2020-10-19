@@ -222,7 +222,7 @@ void Formula::DrawLowPart(int x, int y, bool, bool shade) const
 void Governor::DrawClosed(int x, int y) const
 {
     bool pressed = IsPressed();
-    bool shade = Menu::IsShade(this) || !Menu::ItemIsActive(this);
+    bool shade = Menu::IsShade(this) || !IsActive();
     DrawLowPart(x, y, pressed, shade);
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 }
@@ -230,7 +230,7 @@ void Governor::DrawClosed(int x, int y) const
 void IPaddress::DrawClosed(int x, int y) const
 {
     bool pressed = IsPressed();
-    bool shade = Menu::IsShade(this) || !Menu::ItemIsActive(this);
+    bool shade = Menu::IsShade(this) || !IsActive();
     DrawLowPart(x, y, pressed, shade);
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 }
@@ -238,7 +238,7 @@ void IPaddress::DrawClosed(int x, int y) const
 void MACaddress::DrawClosed(int x, int y) const
 {
     bool pressed = Menu::IsPressed(this);
-    bool shade = Menu::IsShade(this) || !Menu::ItemIsActive(this);
+    bool shade = Menu::IsShade(this) || !IsActive();
     DrawLowPart(x, y, pressed, shade);
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 }
@@ -246,7 +246,7 @@ void MACaddress::DrawClosed(int x, int y) const
 void Formula::DrawClosed(int x, int y) const
 {
     bool pressed = Menu::IsPressed(this);
-    bool shade = Menu::IsShade(this) || !Menu::ItemIsActive(this);
+    bool shade = Menu::IsShade(this) || !IsActive();
     DrawLowPart(x, y, pressed, shade);
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 }
@@ -470,7 +470,7 @@ void GovernorColor::DrawOpened(int x, int y)
 void GovernorColor::DrawClosed(int x, int y)
 {
     Color_Init(OwnData()->colorType);
-    DrawGovernorChoiceColorFormulaHiPart(this, x, y, Menu::IsPressed(this), Menu::IsShade(this) || !Menu::ItemIsActive(this), true);
+    DrawGovernorChoiceColorFormulaHiPart(this, x, y, Menu::IsPressed(this), Menu::IsShade(this) || !IsActive(), true);
     Region(MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1).Fill(x + 2, y + 20, OwnData()->colorType->color);
 }
 
@@ -606,7 +606,7 @@ void MACaddress::DrawOpened(int x, int y)
 void Choice::DrawClosed(int x, int y) const
 {
     bool pressed = Menu::IsPressed(this);
-    bool shade = Menu::IsShade(this) || !Menu::ItemIsActive(this);
+    bool shade = Menu::IsShade(this) || !IsActive();
         
     if (shade)
     {
@@ -694,7 +694,7 @@ void TimeItem::Draw(int x, int y, bool opened) const
 void Button::Draw(int x, int y) const
 {
     bool pressed = Menu::IsPressed(this);
-    bool shade = Menu::IsShade(this) || !Menu::ItemIsActive(this);
+    bool shade = Menu::IsShade(this) || !IsActive();
 
     HLine().Draw(y + 1, x, x + MI_WIDTH, ColorMenuTitle(shade));
     Color::E color = shade ? Color::MENU_SHADOW : Color::WHITE;
@@ -709,7 +709,7 @@ void Button::Draw(int x, int y) const
 
 void SmallButton::Draw(int x, int y) const
 {
-    if (Menu::ItemIsActive(this))
+    if (IsActive())
     {
         if (Menu::IsPressed(this))
         {
@@ -731,7 +731,7 @@ void SmallButton::Draw(int x, int y) const
 
 void Page::Draw(int x, int y)
 {
-    bool isShade = Menu::IsShade(this) || !Menu::ItemIsActive(this);
+    bool isShade = Menu::IsShade(this) || !IsActive();
     bool isPressed = Menu::IsPressed(this);
     HLine().Draw(y + 1, x, x + MI_WIDTH, ColorBorderMenu(false));
     if (isShade)

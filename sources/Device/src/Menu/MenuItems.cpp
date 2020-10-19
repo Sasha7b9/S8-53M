@@ -114,7 +114,7 @@ void Choice::StartChange(int delta)
     {
         SetItemForHint(this);
     }
-    else if (!Menu::ItemIsActive(this))
+    else if (!IsActive())
     {
         FuncOnChanged(false);
     }
@@ -184,7 +184,7 @@ float Choice::Step() const
             CircleDecreaseInt8(own->cell, 0, static_cast<int8>(NumSubItems() - 1));
         }
         tsChoice.choice = 0;
-        FuncOnChanged(Menu::ItemIsActive(this));
+        FuncOnChanged(IsActive());
         Display::Redraw();
         tsChoice.inMoveDecrease = 0;
         tsChoice.inMoveIncrease = 0;
@@ -208,7 +208,7 @@ void Choice::ChangeValue(int delta)
         int8 value = static_cast<int8>((*own->cell == 0) ? (NumSubItems() - 1) : (*own->cell - 1));
         *own->cell = value;
     }
-    FuncOnChanged(Menu::ItemIsActive(this));
+    FuncOnChanged(IsActive());
     Sound::GovernorChangedValue();
     Display::Redraw();
 }
@@ -227,4 +227,47 @@ NamePage::E Page::GetName() const
 TypeItem::E Item::Type() const
 {
     return data->type;
+}
+
+
+
+
+int Page::NumItems() const
+{
+    if (OwnData()->name == NamePage::MainPage)
+    {
+        return (SHOW_DEBUG_MENU == 0) ? 10 : 11;
+    }
+    else if (Menu::PageIsSB(this))
+    {
+        return 5;
+    }
+    else
+    {
+        for (int i = 0; i < MAX_NUM_ITEMS_IN_PAGE; i++)
+        {
+            if (Menu::GetItem(this, i) == 0)
+            {
+                return i;
+            }
+        }
+    }
+    return 0;
+}
+
+
+bool Item::IsActive() const
+{
+    TypeItem::E type = Type();
+
+    /** @todo Здесь оптимизировать через битовую маску */
+
+    if (type == TypeItem::Choice || type == TypeItem::Page || type == TypeItem::Button || type == TypeItem::Governor || type == TypeItem::SmallButton)
+    {
+        pFuncBV func = ((Page *)(this))->data->funcOfActive;
+
+        return func ? func() : true;
+    }
+
+    return true;
 }
