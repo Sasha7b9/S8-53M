@@ -451,7 +451,7 @@ void Menu::ProcessingRegulatorSet(void)
 
     if (MenuIsShown() || OpenedItem()->GetType() != TypeItem::Page)
     {
-        void *item = CurrentItem();
+        Item *item = CurrentItem();
         TypeItem::E type = TypeMenuItem(item);
         if (TypeMenuItem(OpenedItem()) == TypeItem::Page && (type == TypeItem::ChoiceReg || type == TypeItem::Governor || type == TypeItem::IP || type == TypeItem::MAC))
         {

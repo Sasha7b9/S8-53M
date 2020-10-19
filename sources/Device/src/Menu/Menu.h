@@ -53,7 +53,7 @@ public:
     // Возвращает адрес открытого элемента меню.
     static Item *OpenedItem();
     // Возвращает адрес текущего элемента меню (текущим, как правило, является элемент, кнопка которого была нажата последней.
-    static void *CurrentItem();
+    static Item *CurrentItem();
     // Возвращает адрес элемента меню заданной страницы.
     static Item *GetItem(const Page *page, int numElement);
     // Возвращает true, если текущий элемент страницы с именем namePage открыт.
@@ -69,7 +69,7 @@ public:
 
     static void OpenPageAndSetItCurrent(void *page);
 
-    static bool ChangeOpenedItem(void *item, int delta);
+    static bool ChangeOpenedItem(Item *item, int delta);
     // Уменьшает или увеличивает значение Governor, GovernorColor или Choice по адресу item в зависимости от знака delta
     static void ChangeItem(void *item, int delta);
     // Возвращает высоту в пикселях открытого элемента Choice или NamePage::E по адресу item.

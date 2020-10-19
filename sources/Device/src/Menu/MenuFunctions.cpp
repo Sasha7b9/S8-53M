@@ -80,10 +80,10 @@ Item* Menu::GetItem(const Page *page, int numElement)
 }
 
 
-void* Menu::CurrentItem()
+Item* Menu::CurrentItem()
 {
     TypeItem::E type = TypeItem::None;
-    void *lastOpened = RetLastOpened((Page*)&mainPage, &type);
+    Item *lastOpened = RetLastOpened((Page*)&mainPage, &type);
     int8 pos = PosCurrentItem((const Page *)lastOpened);
     if(type == TypeItem::Page && pos != 0x7f)
     {
@@ -293,7 +293,7 @@ int Menu::NumItemsInPage(const Page * const page)
 }
 
 
-bool Menu::ChangeOpenedItem(void *item, int delta)
+bool Menu::ChangeOpenedItem(Item *item, int delta)
 {
     if (delta < 2 && delta > -2)
     {
