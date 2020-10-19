@@ -41,8 +41,6 @@ public:
     static Item *CurrentItem();
     // Возвращает true, если текущий элемент страницы с именем namePage открыт.
     static bool CurrentItemIsOpened(NamePage::E namePage);
-    // Возвращает позицию текущего элемента странцы page.
-    static int8 PosCurrentItem(const Page *page);
     // Сделать/разделать текущим пункт страницы.
     static void SetCurrentItem(const void *item, bool active);
     // Возвращает адрес элемента, которому принадлежит элемент по адресу item.

@@ -15,12 +15,6 @@ bool Menu::CurrentItemIsOpened(NamePage::E namePage)
 }
 
 
-int8 Menu::PosCurrentItem(const Page *page)
-{
-    return MenuPosActItem(page->OwnData()->name) & 0x7f;
-}
-
-
 void Menu::SetCurrentItem(const void *item, bool active)
 {
     if(item != 0)
@@ -62,7 +56,7 @@ Item* Menu::CurrentItem()
 {
     TypeItem::E type = TypeItem::None;
     Item *lastOpened = RetLastOpened((Page*)&mainPage, &type);
-    int8 pos = PosCurrentItem((const Page *)lastOpened);
+    int8 pos = ((const Page *)lastOpened)->PosCurrentItem();
     if(type == TypeItem::Page && pos != 0x7f)
     {
         return ((const Page *)lastOpened)->GetItem(pos);
@@ -128,7 +122,7 @@ Item* Menu::RetLastOpened(Page *page, TypeItem::E *type)
 {
     if(CurrentItemIsOpened(page->GetName()))
     {
-        int8 posActItem = PosCurrentItem(page);
+        int8 posActItem = page->PosCurrentItem();
         Item *item = page->GetItem(posActItem);
         TypeItem::E typeLocal = page->GetItem(posActItem)->Type();
         if(typeLocal == TypeItem::Page)
@@ -181,7 +175,7 @@ void Menu::OpenItem(const void *item, bool open)
     if(item)
     {
         Page *page = Keeper(item);
-        SetMenuPosActItem(page->GetName(), open ? (PosCurrentItem(page) | 0x80) : (PosCurrentItem(page) & 0x7f));
+        SetMenuPosActItem(page->GetName(), open ? (page->PosCurrentItem() | 0x80) : (page->PosCurrentItem() & 0x7f));
     }
 }
 

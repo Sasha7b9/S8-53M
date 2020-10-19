@@ -298,7 +298,7 @@ void Menu::DrawOpenedPage(Page *page, int layer, int yTop)
     DrawItemsPage(page, layer, yTop + MP_TITLE_HEIGHT);
     if (CurrentItemIsOpened(page->GetName()))
     {
-        int8 posCurItem = PosCurrentItem(page);
+        int8 posCurItem = page->PosCurrentItem();
         Item *item = page->GetItem(posCurItem);
         for (int i = 0; i < 5; i++)
         {
@@ -365,7 +365,7 @@ void Menu::ResetItemsUnderButton()
 int Menu::ItemOpenedPosY(const Item *item)
 {
     Page *page = Keeper(item);
-    int8 posCurItem = PosCurrentItem(page);
+    int8 posCurItem = page->PosCurrentItem();
     int y = Grid::TOP + (posCurItem % MENU_ITEMS_ON_DISPLAY) * MI_HEIGHT + MP_TITLE_HEIGHT;
     if(y + HeightOpenedItem(item) > Grid::Bottom())
     {

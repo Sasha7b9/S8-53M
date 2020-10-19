@@ -158,7 +158,8 @@ public:
     int NumCurrentSubPage() const;
 
     bool IsSB() const;
-
+    // Возвращает позицию текущего элемента странцы page.
+    int8 PosCurrentItem() const;
 
     static Page empty;
 };
