@@ -242,4 +242,3 @@ TypeItem::E Menu::TypeMenuItem(const void *address)
         return TypeItem::None;
     }
 }
-

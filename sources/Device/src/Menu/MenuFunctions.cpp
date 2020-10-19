@@ -222,7 +222,7 @@ void Menu::OpenItem(const void *item, bool open)
 
 bool Menu::ItemIsOpened(const Item *item)
 {
-    TypeItem::E type = TypeMenuItem(item);
+    TypeItem::E type = item->GetType();
     Page *page = Keeper(item);
     if(type == TypeItem::Page)
     {
@@ -252,9 +252,9 @@ void Menu::OpenPageAndSetItCurrent(void *page)
 }
 
 
-bool Menu::ItemIsActive(const void *item)
+bool Menu::ItemIsActive(const Item *item)
 {
-    TypeItem::E type = TypeMenuItem(item);
+    TypeItem::E type = item->GetType();
 
     /** @todo Здесь оптимизировать через битовую маску */
 
