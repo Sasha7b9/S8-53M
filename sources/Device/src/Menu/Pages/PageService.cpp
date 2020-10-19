@@ -678,7 +678,7 @@ static void OnChanged_Ethernet_Enable(bool)
 }
 
 // СЕРВИС - ETHERNET - IP адрес ----------------------------------------------------------------------------------------------------------------------
-DEF_IPADDRESS(structIP, ppEthernet,
+DEF_IPADDRESS(ipEthernet_IP, ppEthernet,
     "IP адрес", "IP-address",
     "Установка IP адреса",
     "Set of IP-address",
@@ -687,7 +687,7 @@ DEF_IPADDRESS(structIP, ppEthernet,
 
 // СЕРВИС - ETHERNET - Маска подсети -----------------------------------------------------------------------------------------------------------------
 static uint16 portMask = 0;
-DEF_IPADDRESS(structMask, ppEthernet,
+DEF_IPADDRESS(ipEthernet_Mask, ppEthernet,
     "Маска подсети", "Network mask",
     "Установка маски подсети",
     "Set of network mask",
@@ -696,7 +696,7 @@ DEF_IPADDRESS(structMask, ppEthernet,
 
 // СЕРВИС - ETHERNET - Шлюз --------------------------------------------------------------------------------------------------------------------------
 static uint16 portGateway = 0;
-DEF_IPADDRESS(structGateway, ppEthernet,
+DEF_IPADDRESS(ipEthernet_Gateway, ppEthernet,
     "Шлюз", "Gateway",
     "Установка адреса основного шлюза",
     "Set of gateway address",
