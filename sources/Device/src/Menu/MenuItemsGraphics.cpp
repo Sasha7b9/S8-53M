@@ -237,7 +237,7 @@ void IPaddress::DrawClosed(int x, int y) const
 
 void MACaddress::DrawClosed(int x, int y) const
 {
-    bool pressed = Menu::IsPressed(this);
+    bool pressed = IsPressed();
     bool shade = IsShade() || !IsActive();
     DrawLowPart(x, y, pressed, shade);
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
@@ -245,7 +245,7 @@ void MACaddress::DrawClosed(int x, int y) const
 
 void Formula::DrawClosed(int x, int y) const
 {
-    bool pressed = Menu::IsPressed(this);
+    bool pressed = IsPressed();
     bool shade = IsShade() || !IsActive();
     DrawLowPart(x, y, pressed, shade);
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
@@ -461,16 +461,16 @@ void GovernorColor::DrawOpened(int x, int y)
     Rectangle(MI_WIDTH + delta + 2, MI_HEIGHT + 2).Draw(x - 1, y - 1, Color::BLACK);
     Rectangle(MI_WIDTH + delta, MI_HEIGHT).Draw(x, y, ColorMenuTitle(false));
     Painter::DrawVolumeButton(x + 1, y + 1, MI_WIDTH_VALUE + 2 + delta, MI_HEIGHT_VALUE + 3, 2, ColorMenuItem(false), 
-        ColorMenuItemBrighter(), ColorMenuItemLessBright(), Menu::IsPressed(this), IsShade());
+        ColorMenuItemBrighter(), ColorMenuItemLessBright(), IsPressed(), IsShade());
     HLine().Draw(y + MI_HEIGHT / 2 + 2, x, x + MI_WIDTH + delta, ColorMenuTitle(false));
-    Painter::DrawStringInCenterRectC(x + (Menu::IsPressed(this) ? 2 : 1), y + (Menu::IsPressed(this) ? 2 : 1), MI_WIDTH + delta, MI_HEIGHT / 2 + 2, Menu::TitleItem(this), Color::WHITE);
+    Painter::DrawStringInCenterRectC(x + (IsPressed() ? 2 : 1), y + (IsPressed() ? 2 : 1), MI_WIDTH + delta, MI_HEIGHT / 2 + 2, Menu::TitleItem(this), Color::WHITE);
     DrawValue(x + 1, y + 19, delta);
 }
 
 void GovernorColor::DrawClosed(int x, int y)
 {
     Color_Init(OwnData()->colorType);
-    DrawGovernorChoiceColorFormulaHiPart(this, x, y, Menu::IsPressed(this), IsShade() || !IsActive(), true);
+    DrawGovernorChoiceColorFormulaHiPart(this, x, y, IsPressed(), IsShade() || !IsActive(), true);
     Region(MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1).Fill(x + 2, y + 20, OwnData()->colorType->color);
 }
 
@@ -492,7 +492,7 @@ void Choice::DrawOpened(int x, int y) const
 
     Rectangle(MP_TITLE_WIDTH + 2, height + 3).Draw(x - 1, y - 1, COLOR_BACK);
     
-    DrawGovernorChoiceColorFormulaHiPart(this, x - 1, y - 1, Menu::IsPressed(this), false, true);
+    DrawGovernorChoiceColorFormulaHiPart(this, x - 1, y - 1, IsPressed(), false, true);
     Rectangle(MP_TITLE_WIDTH + 1, height + 1).Draw(x - 1, y, ColorMenuTitle(false));
  
     HLine().Draw(y + MOI_HEIGHT_TITLE - 1, x, x + MOI_WIDTH);
@@ -517,7 +517,7 @@ void TimeItem::DrawOpened(int x, int y) const
     int width = MI_WIDTH_VALUE + 3;
     int height = 61;
     Rectangle(width + 2, height + 3).Draw(x - 1, y - 1, COLOR_BACK);
-    DrawGovernorChoiceColorFormulaHiPart(this, x - 1, y - 1, Menu::IsPressed(this), false, true);
+    DrawGovernorChoiceColorFormulaHiPart(this, x - 1, y - 1, IsPressed(), false, true);
 
     Rectangle(width + 1, height + 1).Draw(x - 1, y, ColorMenuTitle(false));
 
@@ -581,7 +581,7 @@ static void GovernorIpCommon_DrawOpened(const Item *item, int x, int y, int dWid
     Rectangle(MP_TITLE_WIDTH + 2 + dWidth, height + 3).Draw(x - 1, y - 1, COLOR_BACK);
     Rectangle(MP_TITLE_WIDTH + 1 + dWidth, height + 1).Draw(x - 1, y, ColorMenuTitle(false));
     HLine().Draw(y + MOI_HEIGHT_TITLE - 1, x, x + MOI_WIDTH + dWidth);
-    DrawGovernorChoiceColorFormulaHiPart(item, x - 1, y - 1, Menu::IsPressed(item), false, true);
+    DrawGovernorChoiceColorFormulaHiPart(item, x - 1, y - 1, item->IsPressed(), false, true);
     Painter::DrawVolumeButton(x, y + MOI_HEIGHT_TITLE, MOI_WIDTH - 1 + dWidth, height - MOI_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false, false);
 }
 
@@ -605,7 +605,7 @@ void MACaddress::DrawOpened(int x, int y)
 
 void Choice::DrawClosed(int x, int y) const
 {
-    bool pressed = Menu::IsPressed(this);
+    bool pressed = IsPressed();
     bool shade = IsShade() || !IsActive();
         
     if (shade)
@@ -653,7 +653,7 @@ void TimeItem::DrawClosed(int x, int y) const
 {
     char buffer[20];
     
-    bool pressed = Menu::IsPressed(this);
+    bool pressed = IsPressed();
     bool shade = IsShade();
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 
@@ -693,7 +693,7 @@ void TimeItem::Draw(int x, int y, bool opened) const
 
 void Button::Draw(int x, int y) const
 {
-    bool pressed = Menu::IsPressed(this);
+    bool pressed = IsPressed();
     bool shade = IsShade() || !IsActive();
 
     HLine().Draw(y + 1, x, x + MI_WIDTH, ColorMenuTitle(shade));
@@ -711,7 +711,7 @@ void SmallButton::Draw(int x, int y) const
 {
     if (IsActive())
     {
-        if (Menu::IsPressed(this))
+        if (IsPressed())
         {
             Region(WIDTH_SB, WIDTH_SB).Fill(x, y, COLOR_FILL);
             Color::SetCurrent(COLOR_BACK);
@@ -732,7 +732,7 @@ void SmallButton::Draw(int x, int y) const
 void Page::Draw(int x, int y)
 {
     bool isShade = IsShade() || !IsActive();
-    bool isPressed = Menu::IsPressed(this);
+    bool isPressed = IsPressed();
     HLine().Draw(y + 1, x, x + MI_WIDTH, ColorBorderMenu(false));
     if (isShade)
     {

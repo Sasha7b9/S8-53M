@@ -347,12 +347,6 @@ int Menu::CalculateX(int layer)
 }
 
 
-bool Menu::IsPressed(const void *item)
-{
-    return item == ItemUnderKey();
-}
-
-
 Item* Menu::ItemUnderButton(Key::E button)
 {
     return itemUnderButton[button];

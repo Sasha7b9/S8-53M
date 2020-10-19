@@ -9,8 +9,6 @@ public:
     // Возвращает адрес элемента меню, соответствующего данной button.
     static Item* ItemUnderButton(Key::E button);
 
-    static bool IsPressed(const void* item);
-
     static void Draw();
     // Функция должна вызываться в главном цикле.
     static void UpdateInput();
