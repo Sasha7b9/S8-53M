@@ -153,6 +153,11 @@ public:
     Item *GetItem(int numElement) const;
     // Dозвращает число подстраниц в странице по адресу page.
     int NumSubPages() const;
+    // ¬озвращает номер текущей подстранцы элемента по адресу page.
+    int NumCurrentSubPage() const;
+
+    bool IsSB() const;
+
 
     static Page empty;
 };

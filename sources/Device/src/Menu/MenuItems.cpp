@@ -238,7 +238,7 @@ int Page::NumItems() const
     {
         return (SHOW_DEBUG_MENU == 0) ? 10 : 11;
     }
-    else if (Menu::PageIsSB(this))
+    else if (IsSB())
     {
         return 5;
     }
@@ -277,7 +277,7 @@ Item *Page::GetItem(int numElement) const
 {
     const DataPage *own = OwnData();
 
-    return own->items[numElement + (Menu::PageIsSB(this) ? 1 : 0)];
+    return own->items[numElement + (IsSB() ? 1 : 0)];
 }
 
 
@@ -285,3 +285,16 @@ int Page::NumSubPages() const
 {
     return (NumItems() - 1) / MENU_ITEMS_ON_DISPLAY + 1;
 }
+
+
+int Page::NumCurrentSubPage() const
+{
+    return MenuCurrentSubPage(OwnData()->name);
+}
+
+
+bool Page::IsSB() const
+{
+    return OwnData()->name >= NamePage::SB_Curs;
+}
+

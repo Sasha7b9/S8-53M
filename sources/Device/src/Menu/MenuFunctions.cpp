@@ -76,7 +76,7 @@ int Menu::HeightOpenedItem(const Item *item)
     TypeItem::E type = item->Type();
     if(type == TypeItem::Page)
     {
-        int numItems = ((const Page *)item)->NumItems() - NumCurrentSubPage((Page *)item) * MENU_ITEMS_ON_DISPLAY;
+        int numItems = ((const Page *)item)->NumItems() - ((Page *)item)->NumCurrentSubPage() * MENU_ITEMS_ON_DISPLAY;
         LIMITATION(numItems, numItems, 0, MENU_ITEMS_ON_DISPLAY);
         return MP_TITLE_HEIGHT + MI_HEIGHT * numItems;
     } 
@@ -88,12 +88,6 @@ int Menu::HeightOpenedItem(const Item *item)
 }
 
 
-int Menu::NumCurrentSubPage(const Page *page)
-{
-    return MenuCurrentSubPage(page->OwnData()->name);
-}
-
-
 const char* Menu::TitleItem(const void *item) 
 {
     return TITLE((Page*)item);
@@ -102,7 +96,7 @@ const char* Menu::TitleItem(const void *item)
 
 int Menu::PosItemOnTop(const Page *page)
 {
-    return NumCurrentSubPage(page) * MENU_ITEMS_ON_DISPLAY;
+    return page->NumCurrentSubPage() * MENU_ITEMS_ON_DISPLAY;
 }
 
 
@@ -156,7 +150,7 @@ void Menu::CloseOpenedItem()
     void *item = OpenedItem();
     if(TypeOpenedItem() == TypeItem::Page)
     {
-        if (PageIsSB((const Page *)item))                                   // Для страницы малых кнопок
+        if (((const Page *)item)->IsSB())                                   // Для страницы малых кнопок
         {
             SmallButton *sb = SmallButonFromPage((Page *)item, 0);          // Выполняем функцию нажатия кнопки Key::Menu
             if (sb->OwnData()->funcOnPress)                                 // Если она есть
@@ -307,12 +301,6 @@ void Menu::ShortPressOnPageItem(Page *page, int numItem)
 Page* Menu::PagePointerFromName(NamePage::E)
 {
     return 0;
-}
-
-
-bool Menu::PageIsSB(const Page *page)
-{
-    return page->OwnData()->name >= NamePage::SB_Curs;
 }
 
 

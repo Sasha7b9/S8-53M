@@ -37,9 +37,6 @@ public:
 
     static void OpenItemTime();
 
-    // Возвращает номер текущей подстранцы элемента по адресу page.
-    static int NumCurrentSubPage(const Page *page);
-
     // Возвращает тип открытого элемента меню.
     static TypeItem::E TypeOpenedItem();
     // Возвращает адрес открытого элемента меню.
@@ -82,8 +79,6 @@ public:
     static void ShortPressOnPageItem(Page *page, int numItem);   // Вызывает функцию короткого нажатия кнопки над итемом numItem страницы page;
 
     static Page *PagePointerFromName(NamePage::E namePage);
-
-    static bool PageIsSB(const Page *page);
 
     static SmallButton *SmallButonFromPage(Page *page, int numButton);
 
