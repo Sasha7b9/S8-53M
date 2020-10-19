@@ -11,7 +11,7 @@
 using namespace Primitives;
 
 
-static void *itemUnderButton[Key::Count] = {0};
+static Item *itemUnderButton[Key::Count] = {0};
 
 
 Key::E GetFuncButtonFromY(int _y)
@@ -282,7 +282,7 @@ void Menu::DrawItemsPage(const Page *page, int layer, int yTop)
     int count = 0;
     for(int posItem = posFirstItem; posItem <= posLastItem; posItem++)
     {
-        void *item = GetItem(page, posItem);
+        Item *item = GetItem(page, posItem);
         TypeItem::E type = TypeMenuItem(item);
         int top = yTop + MI_HEIGHT * count;
         funcOfDraw[type](item, CalculateX(layer), top);
@@ -359,7 +359,7 @@ bool Menu::IsPressed(const void *item)
 }
 
 
-void* Menu::ItemUnderButton(Key::E button)
+Item* Menu::ItemUnderButton(Key::E button)
 {
     return itemUnderButton[button];
 }

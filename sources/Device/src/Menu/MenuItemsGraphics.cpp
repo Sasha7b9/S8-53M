@@ -11,7 +11,7 @@
 using namespace Primitives;
 
  
-void DrawGovernorChoiceColorFormulaHiPart(const void *item, int x, int y, bool pressed, bool shade, bool opened)
+void DrawGovernorChoiceColorFormulaHiPart(const Item *item, int x, int y, bool pressed, bool shade, bool opened)
 {
 
     int delta = pressed && !shade ? 1 : 0;
@@ -575,7 +575,7 @@ void TimeItem::DrawOpened(int x, int y) const
     }
 }
 
-static void GovernorIpCommon_DrawOpened(const void *item, int x, int y, int dWidth)
+static void GovernorIpCommon_DrawOpened(const Item *item, int x, int y, int dWidth)
 {
     int height = 34;
     Rectangle(MP_TITLE_WIDTH + 2 + dWidth, height + 3).Draw(x - 1, y - 1, COLOR_BACK);

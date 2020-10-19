@@ -95,7 +95,7 @@ void* Menu::CurrentItem()
 
 int Menu::HeightOpenedItem(const Item *item) 
 {
-    TypeItem::E type = TypeMenuItem(item);
+    TypeItem::E type = item->GetType();
     if(type == TypeItem::Page)
     {
         int numItems = NumItemsInPage((const Page *)item) - NumCurrentSubPage((Page *)item) * MENU_ITEMS_ON_DISPLAY;
@@ -164,7 +164,7 @@ Item* Menu::RetLastOpened(Page *page, TypeItem::E *type)
     {
         int8 posActItem = PosCurrentItem(page);
         Item *item = GetItem(page, posActItem);
-        TypeItem::E typeLocal = TypeMenuItem(GetItem(page, posActItem));
+        TypeItem::E typeLocal = GetItem(page, posActItem)->GetType();
         if(typeLocal == TypeItem::Page)
         {
             return RetLastOpened((Page *)item, type);
@@ -220,7 +220,7 @@ void Menu::OpenItem(const void *item, bool open)
 }
 
 
-bool Menu::ItemIsOpened(const void *item)
+bool Menu::ItemIsOpened(const Item *item)
 {
     TypeItem::E type = TypeMenuItem(item);
     Page *page = Keeper(item);

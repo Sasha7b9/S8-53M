@@ -35,7 +35,7 @@ static Key::E bufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {Key::None, Key::None,
 static const Key::E sampleBufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {Key::F5, Key::F4, Key::F3, Key::F2, Key::F1};
 
 
-static void ShortPress_Governor(void*);
+static void ShortPress_Governor(Item *);
 
 
 void Menu::UpdateInput()
@@ -364,7 +364,7 @@ void Menu::ProcessingShortPressureButton()
             }
             else if (MenuIsShown() && IsFunctionalButton(button))       // Если меню показано и нажата функциональная клавиша
             {
-                void *item = ItemUnderButton(button);
+                Item *item = ItemUnderButton(button);
                 if (SHOW_HELP_HINTS)
                 {
                     SetItemForHint(item);
@@ -434,7 +434,7 @@ void Menu::ProcessingLongPressureButton(void)
         }
         else if(MenuIsShown() && IsFunctionalButton(longPressureButton))
         {
-            void *item = ItemUnderButton(longPressureButton);
+            Item *item = ItemUnderButton(longPressureButton);
             ExecuteFuncForLongPressureOnItem(item);
         }
         longPressureButton = Key::None;
@@ -520,7 +520,7 @@ void Menu::ProcessingReleaseButton(void)
 }
 
 
-void Menu::ShortPress_Page(void *item)
+void Menu::ShortPress_Page(Item *item)
 {
     Page *page = (Page *)item;
     if (page->OwnData()->funcOnPress)
@@ -536,7 +536,7 @@ void Menu::ShortPress_Page(void *item)
 }
 
 
-void Menu::ShortPress_Choice(void *choice)
+void Menu::ShortPress_Choice(Item *choice)
 {
     if (!ItemIsActive(choice))
     {
@@ -554,7 +554,7 @@ void Menu::ShortPress_Choice(void *choice)
 }
 
 
-void Menu::ShortPress_ChoiceReg(void *choice)
+void Menu::ShortPress_ChoiceReg(Item *choice)
 {
     if(!ItemIsActive(choice)) 
     {
@@ -567,13 +567,13 @@ void Menu::ShortPress_ChoiceReg(void *choice)
 }
 
 
-void Menu::FuncOnLongPressItemButton(void *button)
+void Menu::FuncOnLongPressItemButton(Item *button)
 {
     ShortPress_Button(button);
 }
 
 
-void Menu::ShortPress_Button(void *button)
+void Menu::ShortPress_Button(Item *button)
 {
     if(!ItemIsActive(button))
     {
@@ -584,7 +584,7 @@ void Menu::ShortPress_Button(void *button)
 }
 
 
-void Menu::FuncOnLongPressItem(void *item) //-V2009 //-V2558
+void Menu::FuncOnLongPressItem(Item *item) //-V2009 //-V2558
 {
     if (CurrentItem() != item)
     {
@@ -594,7 +594,7 @@ void Menu::FuncOnLongPressItem(void *item) //-V2009 //-V2558
 }
 
 
-void Menu::FuncOnLongPressItemTime(void *time)
+void Menu::FuncOnLongPressItemTime(Item *time)
 {
     if (CurrentItem() != time)
     {
@@ -609,7 +609,7 @@ void Menu::FuncOnLongPressItemTime(void *time)
 }
 
 
-void Menu::ShortPress_Time(void *time)
+void Menu::ShortPress_Time(Item *time)
 {
     if(!ItemIsOpened(time))
     {
@@ -624,7 +624,7 @@ void Menu::ShortPress_Time(void *time)
 }
 
 
-void Menu::ShortPress_IP(void *item)
+void Menu::ShortPress_IP(Item *item)
 {
     if (OpenedItem() == item)
     {
@@ -633,7 +633,7 @@ void Menu::ShortPress_IP(void *item)
 }
 
 
-void Menu::ShortPress_MAC(void *item) //-V2009 //-V2558
+void Menu::ShortPress_MAC(Item *item) //-V2009 //-V2558
 {
     if (OpenedItem() == item)
     {
@@ -642,7 +642,7 @@ void Menu::ShortPress_MAC(void *item) //-V2009 //-V2558
 }
 
 
-void Menu::ShortPress_GovernorColor(void *governorColor)
+void Menu::ShortPress_GovernorColor(Item *governorColor)
 {
     if(!ItemIsActive(governorColor))
     {
@@ -660,7 +660,7 @@ void Menu::ShortPress_GovernorColor(void *governorColor)
 }
 
 
-void Menu::ShortPress_SmallButton(void *smallButton)
+void Menu::ShortPress_SmallButton(Item *smallButton)
 {
     SmallButton *sb = (SmallButton *)smallButton;
     if (sb)
@@ -675,11 +675,11 @@ void Menu::ShortPress_SmallButton(void *smallButton)
 }
 
 
-void Menu::ExecuteFuncForShortPressOnItem(void *item)
+void Menu::ExecuteFuncForShortPressOnItem(Item *item)
 {
-    typedef void(*pFuncMenuVpV)(void*);
+    typedef void(*pFuncMenuVpItem)(Item*);
 
-    static const pFuncMenuVpV shortFunction[TypeItem::Count] =
+    static const pFuncMenuVpItem shortFunction[TypeItem::Count] =
     {
         0,                                  // TypeItem::None
         &Menu::ShortPress_Choice,           // TypeItem::Choice
@@ -696,7 +696,7 @@ void Menu::ExecuteFuncForShortPressOnItem(void *item)
         &Menu::ShortPress_SmallButton       // TypeItem::SmallButton
     };
  
-    pFuncMenuVpV func = shortFunction[TypeMenuItem(item)];
+    pFuncMenuVpItem func = shortFunction[TypeMenuItem(item)];
 
     if (func)
     {
@@ -705,11 +705,11 @@ void Menu::ExecuteFuncForShortPressOnItem(void *item)
 }
 
 
-void Menu::ExecuteFuncForLongPressureOnItem(void *item)
+void Menu::ExecuteFuncForLongPressureOnItem(Item *item)
 {
-    typedef void(*pFuncMenuVpV)(void*);
+    typedef void(*pFuncMenuVpItem)(Item *);
 
-    static const pFuncMenuVpV longFunction[TypeItem::Count] =
+    static const pFuncMenuVpItem longFunction[TypeItem::Count] =
     {
         0,                                  // TypeItem::None
         &Menu::FuncOnLongPressItem,         // TypeItem::Choice
@@ -728,7 +728,7 @@ void Menu::ExecuteFuncForLongPressureOnItem(void *item)
 
     if (ItemIsActive(item))
     {
-        pFuncMenuVpV func = longFunction[TypeMenuItem(item)];
+        pFuncMenuVpItem func = longFunction[TypeMenuItem(item)];
         if (func)
         {
             (func)(item);
@@ -898,7 +898,7 @@ void Menu::OpenFileManager()
 }
 
 
-static void ShortPress_Governor(void *item)
+static void ShortPress_Governor(Item *item)
 {
     ((Governor *)item)->ShortPress();
 }

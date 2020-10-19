@@ -7,7 +7,7 @@ class Menu
 {
 public:
     // Возвращает адрес элемента меню, соответствующего данной button.
-    static void* ItemUnderButton(Key::E button);
+    static Item* ItemUnderButton(Key::E button);
     // Возвращает true, если элемент меню item затенён (находится не на самом верхнем слое. Как правило, это означает, что раскрыт раскрывающийся элемент меню вроде Choice или Governor.
     static bool IsShade(const void *item);
 
@@ -83,7 +83,7 @@ public:
 
     static void OpenItem(const void *item, bool open);          // Открыть/закрыть элемент меню по адрему item.
 
-    static bool ItemIsOpened(const void *item);                       // Возвращает true, если элемент меню по адрему item открыт.
+    static bool ItemIsOpened(const Item *item);                       // Возвращает true, если элемент меню по адрему item открыт.
 
     static void ChangeSubPage(const Page *page, int delta);
 
@@ -111,33 +111,33 @@ private:
     // Включить/выключить светодиод ручки УСТАНОВКА, если необходимо.
     static void SwitchSetLED();
     // Обработка короткого нажатия на элемент NamePage::E с адресом page.
-    static void ShortPress_Page(void *page);
+    static void ShortPress_Page(Item *page);
     // Обработка короткого нажатия на элемент Choice с адресом choice.
-    static void ShortPress_Choice(void *choice);
+    static void ShortPress_Choice(Item *choice);
 
-    static void ShortPress_Time(void *time);
+    static void ShortPress_Time(Item *time);
     // Обработка короткого нажатия на элемент Button с адресом button.
-    static void ShortPress_Button(void *button);
+    static void ShortPress_Button(Item *button);
     // Обработка короткого нажатия на элемент GovernorColor с адресом governorColor.
-    static void ShortPress_GovernorColor(void *governorColor);
+    static void ShortPress_GovernorColor(Item *governorColor);
 
-    static void ShortPress_IP(void *item);
+    static void ShortPress_IP(Item *item);
 
-    static void ShortPress_MAC(void *item);
+    static void ShortPress_MAC(Item *item);
 
-    static void ShortPress_ChoiceReg(void *choice);
+    static void ShortPress_ChoiceReg(Item *choice);
 
-    static void ShortPress_SmallButton(void *smallButton);
+    static void ShortPress_SmallButton(Item *smallButton);
     // Обработка длинного нажатия на элемент меню item.
-    static void FuncOnLongPressItem(void *item);
+    static void FuncOnLongPressItem(Item *item);
 
-    static void FuncOnLongPressItemTime(void *item);
+    static void FuncOnLongPressItemTime(Item *item);
     // Обработка длинного нажатия на элемент Button с адресом button.
-    static void FuncOnLongPressItemButton(void *button);
+    static void FuncOnLongPressItemButton(Item *button);
     // Возвращает функцию обработки короткого нажатия на элемент меню item.
-    static void ExecuteFuncForShortPressOnItem(void *item);
+    static void ExecuteFuncForShortPressOnItem(Item *item);
     // Возвращает функцию обработки длинного нажатия на элемент меню item.
-    static void ExecuteFuncForLongPressureOnItem(void *item);
+    static void ExecuteFuncForLongPressureOnItem(Item *item);
 
     static bool NeedForFireSetLED();
 
