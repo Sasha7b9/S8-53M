@@ -186,7 +186,7 @@ static void PressSB_MemExtSetNameSave()
 
 extern const Page mspMemLast;
 
-DEF_SMALL_BUTTON(sbMemLastPrev, mspMemLast,
+DEF_SMALL_BUTTON(sbMemLastPrev, &mspMemLast,
     "Предыдущий", "Previous",
     "Перейти к предыдущему сигналу",
     "Go to the previous signal",
@@ -194,7 +194,7 @@ DEF_SMALL_BUTTON(sbMemLastPrev, mspMemLast,
 )
 
 
-DEF_SMALL_BUTTON(sbMemLastNext, mspMemLast,
+DEF_SMALL_BUTTON(sbMemLastNext, &mspMemLast,
     "Следующий", "Next",
     "Перейти к следующему сигналу",
     "Go to the next signal",
@@ -210,14 +210,14 @@ void PressSB_MemLast_IntEnter()
     EXIT_FROM_INT_TO_LAST = 1;
 }
 
-DEF_SMALL_BUTTON(sbMemLastIntEnter, mspMemLast,
+DEF_SMALL_BUTTON(sbMemLastIntEnter, &mspMemLast,
     "Внутр ЗУ", "Internal storage",
     "Нажмите эту кнопку, чтобы сохранить сигнал во внутреннем запоминающем устройстве",
     "Press this button to keep a signal in an internal memory",
     nullptr, PressSB_MemLast_IntEnter, DrawSB_MemLast_IntEnter, nullptr
 )
 
-DEF_SMALL_BUTTON(sbMemLastSaveToFlash, mspMemLast,
+DEF_SMALL_BUTTON(sbMemLastSaveToFlash, &mspMemLast,
     "Сохранить", "Save",
     "Кнопка становится доступна при присоединённом внешнем ЗУ. Позволяет сохранить сигнал на внешем ЗУ",
     "Click this button to save the signal on the external FLASH",
@@ -227,7 +227,7 @@ DEF_SMALL_BUTTON(sbMemLastSaveToFlash, mspMemLast,
 
 extern const Page mpSetName;
 
-DEF_SMALL_BUTTON(sbSetNameSave, mpSetName,
+DEF_SMALL_BUTTON(sbSetNameSave, &mpSetName,
     "Сохранить", "Save",
     "Сохранение на флеш под заданным именем",
     "Saving to flashdrive with the specified name",
@@ -386,21 +386,21 @@ static void OnMemExtSetMaskRegSet(int angle)
 extern const Page mspSetMask;
 
 
-DEF_SMALL_BUTTON(sbSetMaskBackspace, mspSetMask,
+DEF_SMALL_BUTTON(sbSetMaskBackspace, &mspSetMask,
     "Backspace", "Backspace",
     "Удаляет последний введённый символ",
     "Deletes the last entered symbol",
     nullptr, PressSB_SetMask_Backspace, DrawSB_SetMask_Backspace, nullptr
 )
 
-DEF_SMALL_BUTTON(sbSetMaskDelete, mspSetMask,
+DEF_SMALL_BUTTON(sbSetMaskDelete, &mspSetMask,
     "Удалить", "Delete",
     "Удаляет все введённые символы",
     "Deletes all entered symbols",
     nullptr, PressSB_SetMask_Delete, DrawSB_SetMask_Delete, nullptr
 )
 
-DEF_SMALL_BUTTON(sbSetMaskInsert, mspSetMask,
+DEF_SMALL_BUTTON(sbSetMaskInsert, &mspSetMask,
     "Вставить", "Insert",
     "Вставляет выбранный символ",
     "Inserts the chosen symbol",
@@ -408,21 +408,21 @@ DEF_SMALL_BUTTON(sbSetMaskInsert, mspSetMask,
 )
 
 
-DEF_SMALL_BUTTON(sbSetNameBackspace, mpSetName,
+DEF_SMALL_BUTTON(sbSetNameBackspace, &mpSetName,
     "Backspace", "Backspace",
     "Удаляет последний символ",
     "Delete the last character",
     nullptr, PressSB_SetName_Backspace, DrawSB_SetName_Backspace, nullptr
 )
 
-DEF_SMALL_BUTTON(sbSetNameDelete, mpSetName,
+DEF_SMALL_BUTTON(sbSetNameDelete, &mpSetName,
     "Удалить", "Delete",
     "Удаляет все введённые символы",
     "Deletes all entered characters",
     nullptr, PressSB_SetName_Delete, DrawSB_SetName_Delete, nullptr
 )
 
-DEF_SMALL_BUTTON(sbSetNameInsert, mpSetName,
+DEF_SMALL_BUTTON(sbSetNameInsert, &mpSetName,
     "Вставить", "Insert",
     "Вводит очередной символ",
     "Print the next character",
@@ -459,21 +459,21 @@ static void DrawSB_FM_Tab(int x, int y)
 
 extern const Page mspFileManager;
 
-DEF_SMALL_BUTTON(sbFileManagerTab, mspFileManager,
+DEF_SMALL_BUTTON(sbFileManagerTab, &mspFileManager,
     "Tab", "Tab",
     "Переход между каталогами и файлами",
     "The transition between the directories and files",
     nullptr, FM::PressTab, DrawSB_FM_Tab, nullptr
 )
 
-DEF_SMALL_BUTTON(sbFileManagerLevelDown, mspFileManager,
+DEF_SMALL_BUTTON(sbFileManagerLevelDown, &mspFileManager,
     "Войти", "Enter",
     "Переход в выбранный каталог",
     "Transition to the chosen catalog",
     nullptr, FM::PressLevelDown, DrawSB_FM_LevelDown, nullptr
 )
 
-DEF_SMALL_BUTTON(sbFileManagerLevelUp, mspFileManager,
+DEF_SMALL_BUTTON(sbFileManagerLevelUp, &mspFileManager,
     "Выйти", "Leave",
     "Переход в родительский каталог",
     "Transition to the parental catalog",
@@ -622,7 +622,7 @@ static const arrayHints hintsMemIntShowSignalAlways =
                                           "the signal from internal memory is visible only in an operating mode with an internal memory"}
 };
 
-DEF_SMALL_BUTTON(sbMemIntShowSignalAlways, mspMemInt,
+DEF_SMALL_BUTTON(sbMemIntShowSignalAlways, &mspMemInt,
     "Показывать всегда", "To show always",
     "Позволяет всегда показывать выбранный сохранённый сигнал поверх текущего",
     "Allows to show always the chosen kept signal over the current",
@@ -690,7 +690,7 @@ static const arrayHints hintsMemIntModeShow =
     { DrawSB_MemInt_ModeShow_Both,   "на дисплее оба сигнала",        "on the display the both signals" }
 };
 
-DEF_SMALL_BUTTON(sbMemIntModeShow, mspMemInt,
+DEF_SMALL_BUTTON(sbMemIntModeShow, &mspMemInt,
     "Вид сигнала", "Type of a signal",
     "Показывать записанный или текущий сигнал в режиме ВНУТР ЗУ",
     "Show recorded or current signal in mode Internal Memory",
@@ -710,7 +710,7 @@ static void DrawSB_MemInt_Delete(int x, int y)
     Font::Set(TypeFont::_8);
 }
 
-DEF_SMALL_BUTTON(sbMemIntDelete, mspMemInt,
+DEF_SMALL_BUTTON(sbMemIntDelete, &mspMemInt,
     "Удалить сигнал", "Delete signal",
     "Удалить сигнал",
     "Delete signal",
@@ -718,14 +718,14 @@ DEF_SMALL_BUTTON(sbMemIntDelete, mspMemInt,
 )
 
 
-DEF_SMALL_BUTTON(sbMemIntSave, mspMemInt,
+DEF_SMALL_BUTTON(sbMemIntSave, &mspMemInt,
     "Сохранить", "Save",
     "Сохранить сигнал во внутреннем запоминующем устройстве",
     "To keep a signal in an internal memory",
     nullptr, PressSB_MemInt_SaveToIntMemory, DrawSB_MemInt_SaveToIntMemory, nullptr
 )
 
-DEF_SMALL_BUTTON(sbMemIntSaveToFlash, mspMemInt,
+DEF_SMALL_BUTTON(sbMemIntSaveToFlash, &mspMemInt,
     "Сохранить", "Save",
     "Сохраняет сигнал на флешку",
     "Save signal to flash drive",
@@ -750,7 +750,7 @@ void PressSB_MemInt_Exit()
 
 extern const Page mpSetName;
 
-DEF_SMALL_BUTTON(sbExitSetName, mpSetName,     // Кнопк для выхода из режима задания имени сохраняемому сигналу. Одновременно кнопка отказа от сохранения
+DEF_SMALL_BUTTON(sbExitSetName, &mpSetName,     // Кнопк для выхода из режима задания имени сохраняемому сигналу. Одновременно кнопка отказа от сохранения
     EXIT_RU, EXIT_EN,
     "Отказ от сохранения",
     "Failure to save",
@@ -759,7 +759,7 @@ DEF_SMALL_BUTTON(sbExitSetName, mpSetName,     // Кнопк для выхода из режима зад
 
 extern const Page mspMemInt;
 
-DEF_SMALL_BUTTON(sbExitMemInt, mspMemInt,    // Кнопка для выхода из режима малых кнопок.
+DEF_SMALL_BUTTON(sbExitMemInt, &mspMemInt,    // Кнопка для выхода из режима малых кнопок.
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
     nullptr, PressSB_MemInt_Exit, DrawSB_Exit, nullptr
 )
@@ -1042,7 +1042,7 @@ void OnPressMemoryLatest()
     MODE_WORK = ModeWork::Latest;
 }
 
-DEF_SMALL_BUTTON(sbExitMemLast, mspMemLast,
+DEF_SMALL_BUTTON(sbExitMemLast, &mspMemLast,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
     nullptr, PressSB_MemLast_Exit, DrawSB_Exit, nullptr
 )
@@ -1066,7 +1066,7 @@ static void PressSB_SetMask_Exit()
     Display::RemoveAddDrawFunction();
 }
 
-DEF_SMALL_BUTTON(sbExitSetMask, mspSetMask,
+DEF_SMALL_BUTTON(sbExitSetMask, &mspSetMask,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
     nullptr, PressSB_SetMask_Exit, DrawSB_Exit, nullptr
 )
@@ -1107,7 +1107,7 @@ static void PressSB_FM_Exit()
     Display::RemoveAddDrawFunction();
 }
 
-DEF_SMALL_BUTTON(sbExitFileManager, mspFileManager,
+DEF_SMALL_BUTTON(sbExitFileManager, &mspFileManager,
     EXIT_RU, EXIT_EN,
     EXIT_ILLUSTRATION_RU,
     EXIT_ILLUSTRATION_EN,

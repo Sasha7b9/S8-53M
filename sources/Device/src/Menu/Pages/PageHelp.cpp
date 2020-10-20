@@ -40,28 +40,28 @@ void OnHelpRegSet(int)
 
 extern const Page mpHelp;
 
-DEF_SMALL_BUTTON(sbHelpParagraphEnter, mpHelp,
+DEF_SMALL_BUTTON(sbHelpParagraphEnter, &mpHelp,
     "Открыть", "Open",
     "Открывает раздел справки",
     "Opens the section of the reference",
     HelpContent_EnterParagraphIsActive, HelpContent_EnterParagraph, DrawSB_Help_ParagraphEnter, nullptr
 )
 
-DEF_SMALL_BUTTON(sbHelpParagraphLeave, mpHelp,
+DEF_SMALL_BUTTON(sbHelpParagraphLeave, &mpHelp,
     "Закрыть", "Close",
     "Закрывает раздел справки",
     "Closes the section of the reference",
     HelpContent_LeaveParagraphIsActive, HelpContent_LeaveParagraph, DrawSB_Help_ParagraphLeave, nullptr
 )
 
-DEF_SMALL_BUTTON(sbHelpParagraphPrev, mpHelp,
+DEF_SMALL_BUTTON(sbHelpParagraphPrev, &mpHelp,
     "Предыдущий раздел", "Previous section",
     "Выбрать предыдущий раздел справки",
     "To choose the previous section of the reference",
     nullptr, HelpContent_PrevParagraph, DrawSB_Help_ParagraphPrev, nullptr
 )
 
-DEF_SMALL_BUTTON(sbHelpParagraphNext, mpHelp,
+DEF_SMALL_BUTTON(sbHelpParagraphNext, &mpHelp,
     "", "",
     "",
     "",
@@ -73,7 +73,7 @@ static void PressSB_Help_Exit()
     Display::RemoveAddDrawFunction();
 }
 
-DEF_SMALL_BUTTON(sbExitHelp, mpHelp,
+DEF_SMALL_BUTTON(sbExitHelp, &mpHelp,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
     nullptr, PressSB_Help_Exit, DrawSB_Exit, nullptr
 )

@@ -15,7 +15,6 @@
 using namespace Primitives;
 
 
-extern const SmallButton sbSetExit;                     // КУРСОРЫ - УСТАНОВИТЬ - Выход
 static void PressSB_Cursors_Exit();
 extern const SmallButton sbSetSource;                   // КУРСОРЫ - УСТАНОВИТЬ - Источник
 static void PressSB_Cursors_Source();
@@ -205,6 +204,16 @@ static void OnRotate_RegSet_Set(int angle)
     Sound::RegulatorShiftRotate();
 }
 
+static void PressSB_Cursors_Exit(void)
+{
+    Display::RemoveAddDrawFunction();
+}
+
+DEF_SMALL_BUTTON(sbSetExit, PageCursors::PageSet::self,
+    "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
+    nullptr, PressSB_Cursors_Exit, DrawSB_Exit, nullptr
+)
+
 DEF_PAGE_6(mspSet, PageCursors::self, NamePage::SB_Curs,
     "УСТАНОВИТЬ", "SET",
     "Переход в режим курсорных измерений",
@@ -294,25 +303,12 @@ static void SetShiftCursPosT(Channel::E chan, int numCur, float delta)
 }
 
 
-// КУРСОРЫ - УСТАНОВИТЬ - Выход ----------------------------------------------------------------------------------------------------------------------
-DEF_SMALL_BUTTON(sbSetExit, mspSet,
-    "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
-    nullptr, PressSB_Cursors_Exit, DrawSB_Exit, nullptr
-)
-
-static void PressSB_Cursors_Exit(void)
-{
-    Display::RemoveAddDrawFunction();
-}
-
-
-// КУРСОРЫ - УСТАНОВИТЬ - Источник ----------------------------------------------------------------------------------------------------------------------
 static const arrayHints hintsSetSource =
 {
     { DrawSB_Cursors_SourceA, "канал 1", "channel 1" }, { DrawSB_Cursors_SourceB, "канал 2", "channel 2" }
 };
 
-DEF_SMALL_BUTTON(sbSetSource, mspSet,
+DEF_SMALL_BUTTON(sbSetSource, &mspSet,
     "Источник", "Source",
     "Выбор канала для курсорных измерений",
     "Channel choice for measurements",
@@ -356,7 +352,7 @@ static const arrayHints hintsSetU =
                                     "cursors of tension are switched on, control of both cursors" }
 };
 
-DEF_SMALL_BUTTON(sbSetU, mspSet,
+DEF_SMALL_BUTTON(sbSetU, &mspSet,
     "Курсоры U", "Cursors U",
     "Выбор курсоров напряжения для индикации и управления",
     "Choice of cursors of voltage for indication and management",
@@ -456,7 +452,7 @@ static const arrayHints hintsSetT =
                                         "cursors of time are switched on, control of both cursors" }    
 };
 
-DEF_SMALL_BUTTON(sbSetT, mspSet,
+DEF_SMALL_BUTTON(sbSetT, &mspSet,
     "Курсоры T", "Cursors T",
     "Выбор курсоров времени для индикации и управления",
     "Choice of cursors of time for indication and management",
@@ -533,7 +529,7 @@ static void DrawSB_Cursors_T_Both_Enable(int x, int y)
 
 
 // КУРСОРЫ - УСТАНОВИТЬ - 100% -----------------------------------------------------------------------------------------------------------------------
-DEF_SMALL_BUTTON(sbSet100, mspSet,
+DEF_SMALL_BUTTON(sbSet100, &mspSet,
     "100%", "100%",
     "Используется для процентных измерений. Нажатие помечает расстояние между активными курсорами как 100%",
     "It is used for percentage measurements. Pressing marks distance between active cursors as 100%",
@@ -568,7 +564,7 @@ static const arrayHints hintsSetPointsPercents =
                                                 "the step of movement of the cursor is multiple to one pixel" }
 };
 
-DEF_SMALL_BUTTON(sbSetPointsPercents, mspSet,
+DEF_SMALL_BUTTON(sbSetPointsPercents, &mspSet,
     "Перемещение", "Movement",
     "Выбор шага перемещения курсоров - проценты или точки",
     "Choice of a step of movement of cursors - percent or points",

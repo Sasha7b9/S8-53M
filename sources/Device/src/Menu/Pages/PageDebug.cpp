@@ -793,7 +793,7 @@ static void OnRegSet_SerialNumber(int angle)
 }
 
 // ОТЛАДКА - С/Н - Выход -----------------------------------------------------------------------------------------------------------------------------
-DEF_SMALL_BUTTON(bSerialNumber_Exit, ppSerialNumber,
+DEF_SMALL_BUTTON(bSerialNumber_Exit, &ppSerialNumber,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
     nullptr, OnPress_SerialNumber_Exit, DrawSB_Exit, nullptr
 )
@@ -805,7 +805,7 @@ static void OnPress_SerialNumber_Exit(void)
 }
 
 // ОТЛАДКА - С/Н - Вставить --------------------------------------------------------------------------------------------------------------------------
-DEF_SMALL_BUTTON(bSerialNumber_Change, ppSerialNumber,
+DEF_SMALL_BUTTON(bSerialNumber_Change, &ppSerialNumber,
     "Вставить", "Insert",
     "Вставляет выбраный символ",
     "Inserts the chosen symbol",
@@ -828,7 +828,7 @@ static void Draw_SerialNumber_Change(int x, int y)
 }
 
 // ОТЛАДКА - С/Н - Сохранить -------------------------------------------------------------------------------------------------------------------------
-DEF_SMALL_BUTTON(bSerialNumber_Save, ppSerialNumber,
+DEF_SMALL_BUTTON(bSerialNumber_Save, &ppSerialNumber,
     "Сохранить", "Save",
     "Записывает серийный номер в OTP",
     "Records the serial number in OTP",

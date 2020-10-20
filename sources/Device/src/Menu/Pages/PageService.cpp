@@ -323,7 +323,7 @@ static void OnRegSet_Math_Function(int delta)
 }
 
 // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Выход -------------------------------------------------------------------------------------------------------------
-DEF_SMALL_BUTTON(sbMath_Function_Exit, pppMath_Function,
+DEF_SMALL_BUTTON(sbMath_Function_Exit, &pppMath_Function,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
     nullptr, nullptr, DrawSB_Exit, nullptr
 )
@@ -339,7 +339,7 @@ static const arrayHints hintsMath_Function_ModeDraw =
                                             "Signals and mathematical function are removed in one window"}
 };
 
-DEF_SMALL_BUTTON(sbMath_Function_ModeDraw, pppMath_Function,
+DEF_SMALL_BUTTON(sbMath_Function_ModeDraw, &pppMath_Function,
     "Экран", "Display",
     "Выбирает режим отображения математического сигнала",
     "Chooses the mode of display of a mathematical signal",
@@ -393,7 +393,7 @@ static const arrayHints hintsMath_Function_Type =
     { Draw_Math_Function_Type_Mul,      "Умножение",    "Multiplication" }
 };
 
-DEF_SMALL_BUTTON(sbMath_Function_Type, pppMath_Function,
+DEF_SMALL_BUTTON(sbMath_Function_Type, &pppMath_Function,
     "Вид", "Type",
     "Выбор математической функции",
     "Choice of mathematical function",
@@ -431,7 +431,7 @@ static const arrayHints hintsMath_Function_ModeRegSet =
     {Draw_Math_Function_ModeRegSet_RShift, "Управление смещением", "Management of shift"}
 };
 
-DEF_SMALL_BUTTON(sbMath_Function_ModeRegSet, pppMath_Function,
+DEF_SMALL_BUTTON(sbMath_Function_ModeRegSet, &pppMath_Function,
     "Режим ручки УСТАНОВКА", "Mode regulator SET",
     "Выбор режима ручки УСТАНОВКА - управление масштабом или смещением",
     "Choice mode regulcator УСТАНОВКА - management of scale or shift",
@@ -460,7 +460,7 @@ static void Draw_Math_Function_ModeRegSet_RShift(int x, int y)
 }
 
 // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Масштаб 1-го канала -----------------------------------------------------------------------------------------------
-DEF_SMALL_BUTTON(sbMath_Function_RangeA, pppMath_Function,
+DEF_SMALL_BUTTON(sbMath_Function_RangeA, &pppMath_Function,
     "Масштаб 1-го канала", "Scale of the 1st channel",
     "Берёт масштаб для математического сигнала из первого канала",
     "Takes scale for a mathematical signal from the first channel",
@@ -479,7 +479,7 @@ static void Draw_Math_Function_RangeA(int x, int y)
 }
 
 // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Масштаб 2-го канала -----------------------------------------------------------------------------------------------
-DEF_SMALL_BUTTON(sbMath_Function_RangeB, pppMath_Function,
+DEF_SMALL_BUTTON(sbMath_Function_RangeB, &pppMath_Function,
     "Масштаб 2-го канала", "Scale of the 2nd channel",
     "Берёт масштаб для математического сигнала из второго канала",
     "Takes scale for a mathematical signal from the second channel",
@@ -598,7 +598,7 @@ static void OnRegSet_Math_FFT_Cursors(int angle)
 }
 
 // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ - Выход ----------------------------------------------------------------------------------------------------
-DEF_SMALL_BUTTON(cMath_FFT_Cursors_Exit, ppppMath_FFT_Cursors,
+DEF_SMALL_BUTTON(cMath_FFT_Cursors_Exit, &ppppMath_FFT_Cursors,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
     nullptr, OnPress_Math_FFT_Cursors_Exit, DrawSB_Exit, nullptr
 )
@@ -609,7 +609,7 @@ static void OnPress_Math_FFT_Cursors_Exit(void)
 }
 
 // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ - Источник -------------------------------------------------------------------------------------------------
-DEF_SMALL_BUTTON(cMath_FFT_Cursors_Source, ppppMath_FFT_Cursors,
+DEF_SMALL_BUTTON(cMath_FFT_Cursors_Source, &ppppMath_FFT_Cursors,
     "Источник", "Source",
     "Выбор источника для расчёта спектра",
     "Source choice for calculation of a range",
@@ -834,7 +834,7 @@ static void Information_Draw(void)
 }
 
 // СЕРВИС - ИНФОРМАЦИЯ - Выход -----------------------------------------------------------------------------------------------------------------------
-DEF_SMALL_BUTTON(sbInformation_Exit, ppInformation,
+DEF_SMALL_BUTTON(sbInformation_Exit, &ppInformation,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
     nullptr, OnPress_Information_Exit, DrawSB_Exit, nullptr
 )

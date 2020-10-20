@@ -71,14 +71,14 @@ void RotateRegMeasureSetField(int angle)
 
 extern const Page mspMeasTune;
 
-DEF_SMALL_BUTTON( sbMeasTuneSettings, mspMeasTune,
+DEF_SMALL_BUTTON( sbMeasTuneSettings, &mspMeasTune,
     "Настройка", "Setup",
     "Позволяет выбрать необходимые измерения",
     "Allows to choose necessary measurements",
     nullptr, PressSB_MeasTune_Settings, DrawSB_MeasTune_Settings, nullptr
 )
 
-DEF_SMALL_BUTTON( sbMeasTuneMarkers, mspMeasTune,                 // Включение / отключение маркера для режима измерений.
+DEF_SMALL_BUTTON( sbMeasTuneMarkers, &mspMeasTune,                 // Включение / отключение маркера для режима измерений.
     "Маркер", "Marker",
     "Позволяет установить маркеры для визуального контроля измерений",
     "Allows to establish markers for visual control of measurements",
@@ -223,7 +223,7 @@ static void PressSB_MeasTune_Exit()
 }
 
 
-DEF_SMALL_BUTTON(sbExitMeasTune, mspMeasTune,
+DEF_SMALL_BUTTON(sbExitMeasTune, &mspMeasTune,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
     nullptr, PressSB_MeasTune_Exit, DrawSB_Exit, nullptr
 )
