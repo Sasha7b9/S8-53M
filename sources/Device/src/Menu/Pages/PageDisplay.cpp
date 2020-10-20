@@ -1,20 +1,11 @@
 #include "defines.h"
-#include "Menu/MenuItems.h"
-#include "Menu/Pages/Definition.h"
-#include "defines.h"
-#include "Menu/Menu.h"
-#include "Tables.h"
 #include "Display/Painter.h"
 #include "FPGA/FPGA.h"
-#include "Settings/SettingsTypes.h"
+#include "Menu/Menu.h"
+#include "Menu/MenuItems.h"
+#include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
-#include "Utils/GlobalFunctions.h"
 
-
-extern const Page pDisplay;
-
-
-extern const Choice mcMapping;                              //     ÄÈÑÏËÅÉ - Îòîáðàæåíèå
 
 extern const Page mspAccumulation;                          //     ÄÈÑÏËÅÉ - ÍÀÊÎÏËÅÍÈÅ
 static bool IsActive_Accumulation();                        // Àêòèâíà ëè ñòðàíèöà ÄÈÑÏËÅÉ-ÍÀÊÎÏËÅÍÈÅ
@@ -62,6 +53,14 @@ static void OnChanged_Settings_ShowAltMarkers(bool);
 extern const Choice mcSettings_AutoHide;                    // ÄÈÑÏËÅÉ - ÍÀÑÒÐÎÉÊÈ - Ñêðûâàòü
 static void OnChanged_Settings_AutoHide(bool autoHide);     // Âûçûâàåòñÿ ïðè èçìåíåíèè ÄÈÑÏËÅÉ-ÍÀÑÒÐÎÉÊÈ-Ñêðûâàòü
 
+DEF_CHOICE_2(mcMapping, PageDisplay::self,
+    "Îòîáðàæåíèå", "View",
+    "Çàäà¸ò ðåæèì îòîáðàæåíèÿ ñèãíàëà.",
+    "Sets the display mode signal.",
+    "Âåêòîð", "Vector",
+    "Òî÷êè", "Points",
+    MODE_DRAW_SIGNAL, nullptr, nullptr, nullptr
+)
 
 DEF_PAGE_9(pDisplay, PageMain::self, NamePage::Display,
     "ÄÈÑÏËÅÉ", "DISPLAY",
@@ -79,22 +78,8 @@ DEF_PAGE_9(pDisplay, PageMain::self, NamePage::Display,
     nullptr, nullptr, nullptr, nullptr
 )
 
-
 const Page *PageDisplay::self = &pDisplay;
 
-
-// ÄÈÑÏËÅÉ - Îòîáðàæåíèå -----------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcMapping, &pDisplay,
-    "Îòîáðàæåíèå", "View",
-    "Çàäà¸ò ðåæèì îòîáðàæåíèÿ ñèãíàëà.",
-    "Sets the display mode signal.",
-    "Âåêòîð", "Vector",
-    "Òî÷êè",  "Points",
-    MODE_DRAW_SIGNAL, nullptr, nullptr, nullptr
-)
-
-
-// ÄÈÑÏËÅÉ - ÍÀÊÎÏËÅÍÈÅ ////////////
 DEF_PAGE_3(mspAccumulation, pDisplay, NamePage::DisplayAccumulation,
     "ÍÀÊÎÏËÅÍÈÅ", "ACCUMULATION",
     "Íàñòðîéêè ðåæèìà îòîáðàæåíèÿ ïîñëåäíèõ ñèãíàëîâ íà ýêðàíå.",
@@ -110,7 +95,6 @@ static bool IsActive_Accumulation(void)
     return SET_TBASE > TBase::_50ns;
 }
 
-// ÄÈÑÏËÅÉ - ÍÀÊÎÏËÅÍÈÅ - Êîëè÷åñòâî -----------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_REG_9(mcAccumulation_Number, mspAccumulation,
     "Êîëè÷åñòâî", "Number"
     ,
@@ -164,7 +148,7 @@ DEF_BUTTON(mbAccumulation_Clear, &mspAccumulation,
 )
 
 
-static bool IsActive_Accumulation_Clear(void)
+static bool IsActive_Accumulation_Clear()
 {
     return ENUM_ACCUM_IS_INFINITY;
 }
@@ -242,7 +226,7 @@ DEF_CHOICE_REG_8(mcMinMax, pDisplay,
     ENUM_MIN_MAX, IsActive_MinMax, OnChanged_MinMax, nullptr
 )
 
-static bool IsActive_MinMax(void) //-V524
+static bool IsActive_MinMax() //-V524
 {
     return SET_TBASE > TBase::_50ns;
 }
@@ -436,7 +420,7 @@ DEF_GOVERNOR(mgSettings_Brightness, mspSettings,
     BRIGHTNESS, 0, 100, nullptr, OnChanged_Settings_Brightness, nullptr
 )
 
-static void OnChanged_Settings_Brightness(void)
+static void OnChanged_Settings_Brightness()
 {
     Painter::SetBrightnessDisplay(BRIGHTNESS);
 }
