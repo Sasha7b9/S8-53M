@@ -23,17 +23,6 @@ static int16 shiftADCB;
 
 
 
-extern const Page       mpADC_AltRShift;                    // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ
-extern const Button     mbADC_AltRShift_Reset;              // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñáğîñ
-static void       OnPress_ADC_AltRShift_Reset();
-extern const Governor   mbADC_AltRShift_2mV_DC_A;           // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 1ê 2ìÂ ïîñò
-static void     OnChanged_ADC_AltRShift_A();
-extern const Governor   mbADC_AltRShift_2mV_DC_B;           // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 2ê 2ìÂ ïîñò
-static void     OnChanged_ADC_AltRShift_B();
-extern const Governor   mbADC_AltRShift_5mV_DC_A;           // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 1ê 5ìÂ ïîñò
-extern const Governor   mbADC_AltRShift_5mV_DC_B;           // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 2ê 5ìÂ ïîñò
-extern const Governor   mbADC_AltRShift_10mV_DC_A;          // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 1ê 10ìÂ ïîñò
-extern const Governor   mbADC_AltRShift_10mV_DC_B;          // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 2ê 10ìÂ ïîñò
 extern const Page       mpRandomizer;                       // ÎÒËÀÄÊÀ - ĞÀÍÄ-ÒÎĞ
 extern const Governor   mgRandomizer_SamplesForGates;       // ÎÒËÀÄÊÀ - ĞÀÍÄ-ÒÎĞ - Âûá-ê/âîğîòà
 static void     OnChanged_Randomizer_SamplesForGates();
@@ -384,6 +373,94 @@ DEF_PAGE_3(mpADC_Stretch, PageDebug::PageADC::self, NamePage::DebugADCstretch,
     nullptr, nullptr, nullptr, nullptr
 )
 
+static void OnPress_ADC_AltRShift_Reset(void)
+{
+    for (int chan = 0; chan < 2; chan++)
+    {
+        for (int mode = 0; mode < 2; mode++)
+        {
+            for (int range = 0; range < Range::Count; range++)
+            {
+                RSHIFT_ADD(chan, range, mode) = 0;
+            }
+        }
+    }
+    FPGA::SetRShift(Channel::A, SET_RSHIFT_A);
+    FPGA::SetRShift(Channel::B, SET_RSHIFT_B);
+}
+
+DEF_BUTTON(mbADC_AltRShift_Reset, PageDebug::PageADC::PageAltRShift::self,
+    "Ñáğîñ", "Reset",
+    "", "",
+    nullptr, OnPress_ADC_AltRShift_Reset
+)
+
+static void OnChanged_ADC_AltRShift_A(void)
+{
+    FPGA::SetRShift(Channel::A, SET_RSHIFT_A);
+}
+
+DEF_GOVERNOR(mbADC_AltRShift_2mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
+    "Ñì 1ê 2ìÂ ïîñò", "Shift 1ch 2mV DC",
+    "",
+    "",
+    set.chan[Channel::A].rShiftAdd[Range::_2mV][ModeCouple::DC], -100, 100, nullptr, OnChanged_ADC_AltRShift_A, nullptr
+)
+
+static void OnChanged_ADC_AltRShift_B(void)
+{
+    FPGA::SetRShift(Channel::B, SET_RSHIFT_B);
+}
+
+DEF_GOVERNOR(mbADC_AltRShift_2mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
+    "Ñì 2ê 2ìÂ ïîñò", "Shift 2ch 2mV DC",
+    "",
+    "",
+    RSHIFT_ADD(Channel::B, Range::_2mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_B, nullptr
+)
+
+DEF_GOVERNOR(mbADC_AltRShift_5mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
+    "Ñì 1ê 5ìÂ ïîñò", "Shift 1ch 5mV DC",
+    "",
+    "",
+    RSHIFT_ADD(Channel::A, Range::_5mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_A, nullptr
+)
+
+DEF_GOVERNOR(mbADC_AltRShift_5mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
+    "Ñì 2ê 5ìÂ ïîñò", "Shift 2ch 5mV DC",
+    "",
+    "",
+    RSHIFT_ADD(Channel::B, Range::_5mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_B, nullptr
+)
+
+DEF_GOVERNOR(mbADC_AltRShift_10mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
+    "Ñì 1ê 10ìÂ ïîñò", "Shift 1ch 10mV DC",
+    "",
+    "",
+    RSHIFT_ADD(Channel::A, Range::_10mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_A, nullptr
+)
+
+DEF_GOVERNOR(mbADC_AltRShift_10mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
+    "Ñì 2ê 10ìÂ ïîñò", "Shift 2ch 10mV DC",
+    "",
+    "",
+    RSHIFT_ADD(Channel::B, Range::_10mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_B, nullptr
+)
+
+DEF_PAGE_7(mpADC_AltRShift, PageDebug::PageADC::self, NamePage::DebugADCrShift,
+    "ÄÎÏ ÑÌÅÙ", "ADD RSHFIT",
+    "",
+    "",
+    mbADC_AltRShift_Reset,          // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñáğîñ
+    mbADC_AltRShift_2mV_DC_A,       // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 1ê 2ìÂ ïîñò
+    mbADC_AltRShift_2mV_DC_B,       // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 2ê 2ìÂ ïîñò
+    mbADC_AltRShift_5mV_DC_A,       // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 1ê 5ìÂ ïîñò
+    mbADC_AltRShift_5mV_DC_B,       // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 2ê 5ìÂ ïîñò
+    mbADC_AltRShift_10mV_DC_A,      // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 1ê 10ìÂ ïîñò
+    mbADC_AltRShift_10mV_DC_B,      // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 2ê 10ìÂ ïîñò
+    nullptr, nullptr, nullptr, nullptr
+)
+
 DEF_PAGE_3(mpADC, PageDebug::self, NamePage::DebugADC,
     "ÀÖÏ", "ADC",
     "",
@@ -408,102 +485,7 @@ DEF_PAGE_7(pDebug, PageMain::self, NamePage::Debug,
     nullptr, nullptr, nullptr, nullptr
 );
 
-DEF_PAGE_7(mpADC_AltRShift, &mpADC, NamePage::DebugADCrShift,
-    "ÄÎÏ ÑÌÅÙ", "ADD RSHFIT",
-    "",
-    "",
-    mbADC_AltRShift_Reset,          // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñáğîñ
-    mbADC_AltRShift_2mV_DC_A,       // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 1ê 2ìÂ ïîñò
-    mbADC_AltRShift_2mV_DC_B,       // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 2ê 2ìÂ ïîñò
-    mbADC_AltRShift_5mV_DC_A,       // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 1ê 5ìÂ ïîñò
-    mbADC_AltRShift_5mV_DC_B,       // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 2ê 5ìÂ ïîñò
-    mbADC_AltRShift_10mV_DC_A,      // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 1ê 10ìÂ ïîñò
-    mbADC_AltRShift_10mV_DC_B,      // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 2ê 10ìÂ ïîñò
-    nullptr, nullptr, nullptr, nullptr
-)
 
-DEF_BUTTON(mbADC_AltRShift_Reset, &mpADC_AltRShift,
-    "Ñáğîñ", "Reset",
-    "", "",
-    nullptr, OnPress_ADC_AltRShift_Reset
-)
-
-static void OnPress_ADC_AltRShift_Reset(void)
-{
-    for(int chan = 0; chan < 2; chan++)
-    {
-        for(int mode = 0; mode < 2; mode++)
-        {
-            for(int range = 0; range < Range::Count; range++)
-            {
-                RSHIFT_ADD(chan, range, mode) = 0;
-            }
-        }
-    }
-    FPGA::SetRShift(Channel::A, SET_RSHIFT_A);
-    FPGA::SetRShift(Channel::B, SET_RSHIFT_B);
-}
-
-// ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 1ê 2ìÂ ïîñò ---------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mbADC_AltRShift_2mV_DC_A, &mpADC_AltRShift,
-    "Ñì 1ê 2ìÂ ïîñò", "Shift 1ch 2mV DC",
-    "",
-    "",
-    set.chan[Channel::A].rShiftAdd[Range::_2mV][ModeCouple::DC], -100, 100, nullptr, OnChanged_ADC_AltRShift_A, nullptr
-)
-
-static void OnChanged_ADC_AltRShift_A(void)
-{
-    FPGA::SetRShift(Channel::A, SET_RSHIFT_A);
-}
-
-// ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 2ê 2ìÂ ïîñò ---------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mbADC_AltRShift_2mV_DC_B, &mpADC_AltRShift,
-    "Ñì 2ê 2ìÂ ïîñò", "Shift 2ch 2mV DC",
-    "",
-    "",
-    RSHIFT_ADD(Channel::B, Range::_2mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_B, nullptr
-)
-
-static void OnChanged_ADC_AltRShift_B(void)
-{
-    FPGA::SetRShift(Channel::B, SET_RSHIFT_B);
-}
-
-// ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 1ê 5ìÂ ïîñò ---------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mbADC_AltRShift_5mV_DC_A, &mpADC_AltRShift,
-    "Ñì 1ê 5ìÂ ïîñò", "Shift 1ch 5mV DC",
-    "",
-    "",
-    RSHIFT_ADD(Channel::A, Range::_5mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_A, nullptr
-)
-
-// ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 2ê 5ìÂ ïîñò ---------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mbADC_AltRShift_5mV_DC_B, &mpADC_AltRShift,
-    "Ñì 2ê 5ìÂ ïîñò", "Shift 2ch 5mV DC",
-    "",
-    "",
-    RSHIFT_ADD(Channel::B, Range::_5mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_B, nullptr
-)
-
-// ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 1ê 10ìÂ ïîñò --------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mbADC_AltRShift_10mV_DC_A, &mpADC_AltRShift,
-    "Ñì 1ê 10ìÂ ïîñò", "Shift 1ch 10mV DC",
-    "",
-    "",
-    RSHIFT_ADD(Channel::A, Range::_10mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_A, nullptr
-)
-
-// ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 2ê 10ìÂ ïîñò --------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mbADC_AltRShift_10mV_DC_B, &mpADC_AltRShift,
-    "Ñì 2ê 10ìÂ ïîñò", "Shift 2ch 10mV DC",
-    "",
-    "",
-    RSHIFT_ADD(Channel::B, Range::_10mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_B, nullptr
-)
-
-
-// ÎÒËÀÄÊÀ - ĞÀÍÄ-ÒÎĞ //////////////
 DEF_PAGE_3(mpRandomizer, PageDebug::self, NamePage::DebugRandomizer,
     "ĞÀÍÄ-ÒÎĞ", "RANDOMIZER",
     "",
@@ -514,7 +496,6 @@ DEF_PAGE_3(mpRandomizer, PageDebug::self, NamePage::DebugRandomizer,
     nullptr, nullptr, nullptr, nullptr
 )
 
-// ÎÒËÀÄÊÀ - ĞÀÍÄ-ÒÎĞ - Âûá-ê/âîğîòà -----------------------------------------------------------------------------------------------------------------
 DEF_GOVERNOR(mgRandomizer_SamplesForGates, &mpRandomizer,
     "Âûá-ê/âîğîòà", "Samples/gates",
     "",
@@ -527,7 +508,6 @@ static void OnChanged_Randomizer_SamplesForGates(void)
     FPGA::SetNumberMeasuresForGates(NUM_MEAS_FOR_GATES);
 }
 
-// ÎÒËÀÄÊÀ - ĞÀÍÄ-ÒÎĞ - tShift äîï. ------------------------------------------------------------------------------------------------------------------
 DEF_GOVERNOR(mgRandomizer_AltTShift0, &mpRandomizer,
     "tShift äîï.", "tShift alt.",
     "",
@@ -540,7 +520,6 @@ static void OnChanged_Randomizer_AltTShift0(void)
     FPGA::SetDeltaTShift(ADD_SHIFT_T0);
 }
 
-// ÎÒËÀÄÊÀ - ĞÀÍÄ-ÒÎĞ - Óñğåäí. ----------------------------------------------------------------------------------------------------------------------
 DEF_GOVERNOR(mgRandomizer_Average, &mpRandomizer,
     "Óñğåäí.", "Average",
     "",
@@ -785,3 +764,4 @@ const Page *PageDebug::PageConsole::self = &mpConsole;
 const Page *PageDebug::PageADC::self = &mpADC;
 const Page *PageDebug::PageADC::PageBalance::self = &mpADC_Balance;
 const Page *PageDebug::PageADC::PageStretch::self = &mpADC_Stretch;
+const Page *PageDebug::PageADC::PageAltRShift::self = &mpADC_AltRShift;

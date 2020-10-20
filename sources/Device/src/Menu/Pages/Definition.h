@@ -87,6 +87,11 @@ struct PageDebug
         {
             static const Page *self;
         };
+
+        struct PageAltRShift
+        {
+            static const Page *self;
+        };
     };
 
     static const Page *self;
