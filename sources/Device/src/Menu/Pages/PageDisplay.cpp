@@ -7,13 +7,6 @@
 #include "Settings/Settings.h"
 
 
-extern const Page mspAccumulation;                          //     ДИСПЛЕЙ - НАКОПЛЕНИЕ
-static bool IsActive_Accumulation();                        // Активна ли страница ДИСПЛЕЙ-НАКОПЛЕНИЕ
-extern const Choice mcAccumulation_Number;                  // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Количество
-extern const Choice mcAccumulation_Mode;                    // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Режим
-extern const Button mbAccumulation_Clear;                   // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Очистить
-static bool IsActive_Accumulation_Clear();                  // Активна ли кнопка ДИСПЛЕЙ-НАКОПЛЕНИЕ-Очистить
-
 extern const Page mspAveraging;                             //     ДИСПЛЕЙ - УСРЕДНЕНИЕ
 static bool IsActive_Averaging();                           // Активна ли страница ДИСПЛЕЙ-УСРЕДНЕНИЕ
 extern const Choice mcAveraging_Number;                     // ДИСПЛЕЙ - УСРЕДНЕНИЕ - Количество
@@ -59,40 +52,12 @@ DEF_CHOICE_2(mcMapping, PageDisplay::self,
     MODE_DRAW_SIGNAL, nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_9(pDisplay, PageMain::self, NamePage::Display,
-    "ДИСПЛЕЙ", "DISPLAY",
-    "Содержит настройки отображения дисплея.",
-    "Contains settings of display of the Display::",
-    mcMapping,
-    mspAccumulation,
-    mspAveraging,
-    mcMinMax,
-    mcSmoothing,
-    mcRefreshFPS,
-    mspGrid,
-    mcTypeShift,
-    mspSettings,
-    nullptr, nullptr, nullptr, nullptr
-)
-
-const Page *PageDisplay::self = &pDisplay;
-
-DEF_PAGE_3(mspAccumulation, &pDisplay, NamePage::DisplayAccumulation,
-    "НАКОПЛЕНИЕ", "ACCUMULATION",
-    "Настройки режима отображения последних сигналов на экране.",
-    "Mode setting signals to display the last screen.",
-    mcAccumulation_Number,
-    mcAccumulation_Mode,
-    mbAccumulation_Clear,
-    IsActive_Accumulation, nullptr, nullptr, nullptr
-)
-
 static bool IsActive_Accumulation(void)
 {
     return SET_TBASE > TBase::_50ns;
 }
 
-DEF_CHOICE_REG_9(mcAccumulation_Number, mspAccumulation,
+DEF_CHOICE_REG_9(mcAccumulation_Number, PageDisplay::PageAccumulation::self,
     "Количество", "Number"
     ,
     "Задаёт максимальное количество последних сигналов на экране. Если в настройке \"Режим\" выбрано \"Бесконечность\", экран очищается только "
@@ -103,21 +68,19 @@ DEF_CHOICE_REG_9(mcAccumulation_Number, mspAccumulation,
     "by pressing of the button \"Clear\"."
     "\"Infinity\" - each measurement remains on the display until the button \"Clear\" is pressed."
     ,
-    DISABLE_RU,      DISABLE_EN,
-    "2",             "2",
-    "4",             "4",
-    "8",             "8",
-    "16",            "16",
-    "32",            "32",
-    "64",            "64",
-    "128",           "128",
+    DISABLE_RU, DISABLE_EN,
+    "2", "2",
+    "4", "4",
+    "8", "8",
+    "16", "16",
+    "32", "32",
+    "64", "64",
+    "128", "128",
     "Бесконечность", "Infinity",
     ENUM_ACCUM, nullptr, nullptr, nullptr
 )
 
-
-// ДИСПЛЕЙ - НАКОПЛЕНИЕ - Режим ----------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcAccumulation_Mode, &mspAccumulation,
+DEF_CHOICE_2(mcAccumulation_Mode, PageDisplay::PageAccumulation::self,
     "Режим", "Mode"
     ,
     "1. \"Сбрасывать\" - после накопления заданного количества измерения происходит очистка дисплея. Этот режим удобен, когда памяти не хватает "
@@ -131,33 +94,54 @@ DEF_CHOICE_2(mcAccumulation_Mode, &mspAccumulation,
     "is smaller speed and impossibility of accumulation of the set number of measurements at a lack of memory."
     ,
     "Не сбрасывать", "Not to dump",
-    "Сбрасывать",    "Dump",
+    "Сбрасывать", "Dump",
     MODE_ACCUM, nullptr, nullptr, nullptr
 )
-
-
-// ДИСПЛЕЙ - НАКОПЛЕНИЕ - Очистить /
-DEF_BUTTON(mbAccumulation_Clear, &mspAccumulation,
-    "Очистить", "Clear",
-    "Очищает экран от накопленных сигналов.",
-    "Clears the screen of the saved-up signals.",
-    IsActive_Accumulation_Clear, PageDisplay::OnPress_Accumulation_Clear
-)
-
 
 static bool IsActive_Accumulation_Clear()
 {
     return ENUM_ACCUM_IS_INFINITY;
 }
 
+DEF_BUTTON(mbAccumulation_Clear, PageDisplay::PageAccumulation::self,
+    "Очистить", "Clear",
+    "Очищает экран от накопленных сигналов.",
+    "Clears the screen of the saved-up signals.",
+    IsActive_Accumulation_Clear, PageDisplay::OnPress_Accumulation_Clear
+)
+
+DEF_PAGE_3(pageAccumulation, PageDisplay::self, NamePage::DisplayAccumulation,
+    "НАКОПЛЕНИЕ", "ACCUMULATION",
+    "Настройки режима отображения последних сигналов на экране.",
+    "Mode setting signals to display the last screen.",
+    mcAccumulation_Number,
+    mcAccumulation_Mode,
+    mbAccumulation_Clear,
+    IsActive_Accumulation, nullptr, nullptr, nullptr
+)
+
+DEF_PAGE_9(pageDisplay, PageMain::self, NamePage::Display,
+    "ДИСПЛЕЙ", "DISPLAY",
+    "Содержит настройки отображения дисплея.",
+    "Contains settings of display of the Display::",
+    mcMapping,
+    pageAccumulation,
+    mspAveraging,
+    mcMinMax,
+    mcSmoothing,
+    mcRefreshFPS,
+    mspGrid,
+    mcTypeShift,
+    mspSettings,
+    nullptr, nullptr, nullptr, nullptr
+)
+
 void PageDisplay::OnPress_Accumulation_Clear()
 {
     Display::Redraw();
 }
 
-
-// ДИСПЛЕЙ - УСРЕДНЕНИЕ ////////////
-DEF_PAGE_2(mspAveraging, &pDisplay, NamePage::DisplayAverage,
+DEF_PAGE_2(mspAveraging, PageDisplay::self, NamePage::DisplayAverage,
     "УСРЕДНЕНИЕ", "AVERAGE",
     "Настройки режима усреднения по последним измерениям.",
     "Settings of the mode of averaging on the last measurements.",
@@ -173,7 +157,7 @@ static bool IsActive_Averaging(void)
 
 
 // ДИСПЛЕЙ - УСРЕДНЕНИЕ - Количество -----------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_REG_10(mcAveraging_Number, mspAveraging,
+DEF_CHOICE_REG_10(mcAveraging_Number, &mspAveraging,
     "Количество", "Number",
     "Задаёт количество последних измерений, по которым производится усреднение.",
     "Sets number of the last measurements on which averaging is made.",
@@ -208,7 +192,7 @@ DEF_CHOICE_2(mcAveraging_Mode, &mspAveraging,
 
 
 // ДИСПЛЕЙ - Мин Макс --------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_REG_8(mcMinMax, pDisplay,
+DEF_CHOICE_REG_8(mcMinMax, PageDisplay::self,
     "Мин Макс", "Min Max",
     "Задаёт количество последних измерений, по которым строятся ограничительные линии, огибающие минимумы и максимумы измерений.",
     "Sets number of the last measurements on which the limiting lines which are bending around minima and maxima of measurements are under construction.",
@@ -230,21 +214,9 @@ static bool IsActive_MinMax() //-V524
 
 static void OnChanged_MinMax(bool)
 {
-    /*
-    int maxMeasures = DS_NumberAvailableEntries();  
-    int numMinMax = sDisplay_NumberMinMax();
-
-    if (maxMeasures < numMinMax)
-    {
-        Display::ShowWarningWithNumber(ExcessValues, maxMeasures);
-    }
-    */
 }
 
-
-
-// ДИСПЛЕЙ - Сглаживание -----------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_REG_10(mcSmoothing, pDisplay,
+DEF_CHOICE_REG_10(mcSmoothing, PageDisplay::self,
     "Сглаживание", "Smoothing",
     "Устанавливает количество точек для расчёта сглаженного по соседним точкам сигнала.",
     "Establishes quantity of points for calculation of the signal smoothed on the next points.",
@@ -261,9 +233,7 @@ DEF_CHOICE_REG_10(mcSmoothing, pDisplay,
     SMOOTHING, nullptr, nullptr, nullptr
 )
 
-
-// ДИСПЛЕЙ - Частота обновл --------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_5(mcRefreshFPS, pDisplay,
+DEF_CHOICE_5(mcRefreshFPS, PageDisplay::self,
     "Частота обновл", "Refresh rate",
     "Задаёт максимальное число выводимых в секунду кадров.",
     "Sets the maximum number of the shots removed in a second.",
@@ -280,8 +250,6 @@ void PageDisplay::OnChanged_RefreshFPS(bool)
     FPGA::SetNumSignalsInSec(ENumSignalsInSec::NumSignalsInS());
 }
 
-
-// ДИСПЛЕЙ - СЕТКА /////////////////
 DEF_PAGE_2(mspGrid, PageDisplay::self, NamePage::DisplayGrid,
     "СЕТКА", "GRID",
     "Содержит настройки отображения координатной сетки.",
@@ -291,8 +259,6 @@ DEF_PAGE_2(mspGrid, PageDisplay::self, NamePage::DisplayGrid,
     nullptr, nullptr, nullptr, nullptr
 )
 
-
-// ДИСПЛЕЙ - СЕТКА - Тип -----------------------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_4(mcGrid_Type, &mspGrid,
     "Тип", "Type",
     "Выбор типа сетки.",
@@ -304,15 +270,12 @@ DEF_CHOICE_4(mcGrid_Type, &mspGrid,
     TYPE_GRID, nullptr, nullptr, nullptr
 )
 
-
-// ДИСПЛЕЙ - СЕТКА - Яркость -------------------------------------------------------------------------------------------------------------------------
 DEF_GOVERNOR(mgGrid_Brightness, &mspGrid,
     "Яркость", "Brightness",
     "Устанавливает яркость сетки.",
     "Adjust the brightness of the Grid.",
     BRIGHTNESS_GRID, 0, 100, nullptr, PageDisplay::OnChanged_Grid_Brightness, BeforeDraw_Grid_Brightness
 )
-
 
 static ColorType cTypeGrid = {0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::GRID};
 
@@ -327,9 +290,7 @@ static void BeforeDraw_Grid_Brightness(void)
     BRIGHTNESS_GRID = (int16)(cTypeGrid.brightness * 100.0F);
 }
 
-
-// ДИСПЛЕЙ - Смещение --------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcTypeShift, &pDisplay,
+DEF_CHOICE_2(mcTypeShift, PageDisplay::self,
     "Смещение", "Offset",
     "Задаёт режим удержания смещения по вертикали\n1. \"Напряжение\" - сохраняется напряжение смещения.\n2. \"Деления\" - сохраняется положение смещения на экране.",
     "Sets the mode of retaining the vertical displacement\n1. \"Voltage\" - saved dressing bias.\n2. \"Divisions\" - retained the position of the offset on the screen.",
@@ -338,9 +299,7 @@ DEF_CHOICE_2(mcTypeShift, &pDisplay,
     LINKING_RSHIFT, nullptr, nullptr, nullptr
 )
 
-
-// ДИСПЛЕЙ - НАСТРОЙКИ /////////////
-DEF_PAGE_7(mspSettings, &pDisplay, NamePage::ServiceDisplay,
+DEF_PAGE_7(mspSettings, PageDisplay::self, NamePage::ServiceDisplay,
     "НАСТРОЙКИ", "SETTINGS",
     "Дополнительные настройки дисплея",
     "Additional display settings",
@@ -354,8 +313,6 @@ DEF_PAGE_7(mspSettings, &pDisplay, NamePage::ServiceDisplay,
     nullptr, nullptr, nullptr, nullptr
 )
 
-
-// ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА /////
 DEF_PAGE_4(mspSettings_Colors, &mspSettings, NamePage::ServiceDisplayColors,
     "ЦВЕТА", "COLORS",
     "Выбор цветов дисплея",
@@ -367,8 +324,6 @@ DEF_PAGE_4(mspSettings_Colors, &mspSettings, NamePage::ServiceDisplayColors,
     nullptr, nullptr, nullptr, nullptr
 )
 
-
-// ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Цветовая схема ------------------------------------------------------------------------------------------------------
 DEF_CHOICE_2(mcSettings_Colors_Scheme, &mspSettings_Colors,
     "Цветовая схема", "Color scheme",
     "Режим работы калибратора",
@@ -497,3 +452,5 @@ static void OnChanged_Settings_AutoHide(bool autoHide)
 }
 
 ColorType *PageDisplay::colorTypeGrid = &cTypeGrid;
+const Page *PageDisplay::self = &pageDisplay;
+const Page *PageDisplay::PageAccumulation::self = &pageAccumulation;

@@ -116,6 +116,11 @@ struct PageDisplay
     static void OnChanged_RefreshFPS(bool);
 
     static void OnChanged_Grid_Brightness();
+
+    struct PageAccumulation
+    {
+        static const Page *self;
+    };
 };
 
 
