@@ -84,8 +84,6 @@ private:
     // Обработка короткого нажатия на элемент GovernorColor с адресом governorColor.
     static void ShortPress_GovernorColor(Item *governorColor);
 
-    static void ShortPress_IP(Item *item);
-
     static void ShortPress_MAC(Item *item);
 
     static void ShortPress_ChoiceReg(Item *choice);

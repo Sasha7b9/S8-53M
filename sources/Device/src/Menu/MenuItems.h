@@ -303,6 +303,8 @@ public:
 
     // Возвращает номер текущего байта (4 - номер порта) и номер текущей позиции в байте.
     static void GetNumPosIPvalue(int *numIP, int *selPos);
+
+    virtual void ShortPress();
 };
 
 

@@ -430,3 +430,12 @@ void TimeItem::ShortPress()
         SelectNextPosition();
     }
 }
+
+
+void IPaddress::ShortPress()
+{
+    if (Menu::OpenedItem() == this)
+    {
+        NextPosition();
+    }
+}

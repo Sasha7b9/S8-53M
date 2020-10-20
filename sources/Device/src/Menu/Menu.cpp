@@ -561,15 +561,6 @@ void Menu::FuncOnLongPressItemTime(Item *time)
 }
 
 
-void Menu::ShortPress_IP(Item *item)
-{
-    if (OpenedItem() == item)
-    {
-        ((IPaddress*)item)->NextPosition();
-    }
-}
-
-
 void Menu::ShortPress_MAC(Item *item) //-V2009 //-V2558
 {
     if (OpenedItem() == item)
@@ -618,7 +609,8 @@ void Menu::ExecuteFuncForShortPressOnItem(Item *item)
 
     TypeItem::E type = item->Type();
 
-    if (type == TypeItem::Page || type == TypeItem::Choice || type == TypeItem::Button || type == TypeItem::Governor || type == TypeItem::Time)
+    if (type == TypeItem::Page || type == TypeItem::Choice || type == TypeItem::Button || type == TypeItem::Governor || type == TypeItem::Time ||
+        type == TypeItem::IP)
     {
         item->ShortPress();
         return;
@@ -632,7 +624,7 @@ void Menu::ExecuteFuncForShortPressOnItem(Item *item)
         nullptr,                            // TypeItem::Page
         nullptr,                            // TypeItem::Governor
         nullptr,                            // TypeItem::Time
-        &Menu::ShortPress_IP,               // TypeItem::IP
+        nullptr,                            // TypeItem::IP
         nullptr,                            // Item_SwitchButton
         &Menu::ShortPress_GovernorColor,    // TypeItem::GovernorColor
         nullptr,                            // Item_Formula
