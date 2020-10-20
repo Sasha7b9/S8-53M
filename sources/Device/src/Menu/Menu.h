@@ -81,10 +81,6 @@ private:
     static void ProcessingRegulatorSet();
     // Включить/выключить светодиод ручки УСТАНОВКА, если необходимо.
     static void SwitchSetLED();
-    // Обработка короткого нажатия на элемент NamePage::E с адресом page.
-    static void ShortPress_Page(Item *page);
-    // Обработка короткого нажатия на элемент Choice с адресом choice.
-    static void ShortPress_Choice(Item *choice);
 
     static void ShortPress_Governor(Item*);
 

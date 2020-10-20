@@ -125,6 +125,8 @@ public:
     // Возвращает true, если элемент меню по адрему item открыт.
     bool IsOpened() const;
 
+    virtual void ShortPress() {};
+
     static DataItem emptyData;
 
     static Item empty;
@@ -170,6 +172,8 @@ public:
     int8 PosCurrentItem() const;
 
     void ChangeSubPage(int delta) const;
+
+    virtual void ShortPress();
 
     static Page empty;
 };
@@ -430,6 +434,9 @@ public:
     void FuncForDraw(int x, int y) const;
 
     void Draw(int x, int y, bool opened) const;
+    // Обработка короткого нажатия
+    virtual void ShortPress();
+
 private:
     void DrawClosed(int x, int y) const;
 

@@ -517,40 +517,6 @@ void Menu::ProcessingReleaseButton(void)
 }
 
 
-void Menu::ShortPress_Page(Item *item)
-{
-    Page *page = (Page *)item;
-    if (page->OwnData()->funcOnPress)
-    {
-        page->OwnData()->funcOnPress();
-    }
-    if (!page->IsActive())
-    {
-        return;
-    }
-    page->SetCurrent(true);
-    ((Page*)page)->Open(!((Page*)page)->IsOpened());
-}
-
-
-void Menu::ShortPress_Choice(Item *choice)
-{
-    if (!choice->IsActive())
-    {
-        ((Choice *)choice)->FuncOnChanged(false);
-    }
-    else if (!choice->IsOpened())
-    {
-        choice->SetCurrent(CurrentItem() != choice);
-        ((Choice *)choice)->StartChange(1);
-    }
-    else
-    {
-        ((Choice *)choice)->ChangeValue(-1);
-    }
-}
-
-
 void Menu::ShortPress_ChoiceReg(Item *choice)
 {
     if(!choice->IsActive()) 
@@ -676,18 +642,26 @@ void Menu::ExecuteFuncForShortPressOnItem(Item *item)
 {
     typedef void(*pFuncMenuVpItem)(Item*);
 
+    TypeItem::E type = item->Type();
+
+    if (type == TypeItem::Page || type == TypeItem::Choice)
+    {
+        item->ShortPress();
+        return;
+    }
+
     static const pFuncMenuVpItem shortFunction[TypeItem::Count] =
     {
-        0,                                  // TypeItem::None
-        &Menu::ShortPress_Choice,           // TypeItem::Choice
+        nullptr,                            // TypeItem::None
+        nullptr,                            // TypeItem::Choice
         &Menu::ShortPress_Button,           // TypeItem::Button
-        &Menu::ShortPress_Page,             // TypeItem::Page
+        nullptr,                            // TypeItem::Page
         &Menu::ShortPress_Governor,         // TypeItem::Governor
         &Menu::ShortPress_Time,             // TypeItem::Time
         &Menu::ShortPress_IP,               // TypeItem::IP
-        0,                                  // Item_SwitchButton
+        nullptr,                            // Item_SwitchButton
         &Menu::ShortPress_GovernorColor,    // TypeItem::GovernorColor
-        0,                                  // Item_Formula
+        nullptr,                            // Item_Formula
         &Menu::ShortPress_MAC,              // TypeItem::MAC
         &Menu::ShortPress_ChoiceReg,        // TypeItem::ChoiceReg
         &Menu::ShortPress_SmallButton       // TypeItem::SmallButton

@@ -371,3 +371,36 @@ void Page::ChangeSubPage(int delta) const
         SetMenuCurrentSubPage(OwnData()->name, MenuCurrentSubPage(OwnData()->name) - 1);
     }
 }
+
+
+void Page::ShortPress()
+{
+    if (OwnData()->funcOnPress)
+    {
+        OwnData()->funcOnPress();
+    }
+    if (!IsActive())
+    {
+        return;
+    }
+    SetCurrent(true);
+    Open(!IsOpened());
+}
+
+
+void Choice::ShortPress()
+{
+    if (!IsActive())
+    {
+        FuncOnChanged(false);
+    }
+    else if (!IsOpened())
+    {
+        SetCurrent(Menu::CurrentItem() != this);
+        StartChange(1);
+    }
+    else
+    {
+        ChangeValue(-1);
+    }
+}
