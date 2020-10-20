@@ -1152,7 +1152,7 @@ void Processing::CountedToCurrentSettings()
         for (int i = 0; i < numPoints; i++)
         {
             float absValue = POINT_2_VOLTAGE(dataOut0[i], dataSet->range[0], dataSet->rShiftCh0);
-            int relValue = static_cast<int>((absValue + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) / voltsInPixel[range] + MIN_VALUE);
+            int relValue = static_cast<int>((absValue + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) / MathFPGA::voltsInPixel[range] + MIN_VALUE);
 
             if (relValue < MIN_VALUE)       { dataOut0[i] = MIN_VALUE; }
             else if (relValue > MAX_VALUE)  { dataOut0[i] = MAX_VALUE; }
@@ -1167,7 +1167,7 @@ void Processing::CountedToCurrentSettings()
         for (int i = 0; i < numPoints; i++)
         {
             float absValue = POINT_2_VOLTAGE(dataOut1[i], dataSet->range[1], dataSet->rShiftCh1);
-            int relValue = static_cast<int>((absValue + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) / voltsInPixel[range] + MIN_VALUE);
+            int relValue = static_cast<int>((absValue + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) / MathFPGA::voltsInPixel[range] + MIN_VALUE);
 
             if (relValue < MIN_VALUE)       { dataOut1[i] = MIN_VALUE; }
             else if (relValue > MAX_VALUE)  { dataOut1[i] = MAX_VALUE; }

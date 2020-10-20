@@ -2,15 +2,9 @@
 #include "Settings/SettingsTypes.h"
 
 
-#define MAX_VOLTAGE_ON_SCREEN(range) (tableScalesRange[(range)] * 5.0F)
+#define MAX_VOLTAGE_ON_SCREEN(range) (MathFPGA::tableScalesRange[(range)] * 5.0F)
 
-#define RSHIFT_2_ABS(rShift, range) (-((float)RShiftZero - (float)(rShift)) * absStepRShift[(uint)(range)])
-
-extern const float tableScalesRange[Range::Count];
-extern const float absStepRShift[]; //-V2504
-extern const float voltsInPixel[]; //-V2504
-extern const float absStepTShift[]; //-V2504
-
+#define RSHIFT_2_ABS(rShift, range) (-((float)RShiftZero - (float)(rShift)) * MathFPGA::absStepRShift[(uint)(range)])
 
 struct MathFPGA
 {
@@ -24,4 +18,9 @@ struct MathFPGA
     static uint8 GetMaxFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoint);
     static uint8 GetMinFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoint);
     static void  CalculateMathFunction(float *data0andResult, const float *data1, int numPoints);
+
+    static const float tableScalesRange[Range::Count];
+    static const float absStepRShift[]; //-V2504
+    static const float voltsInPixel[]; //-V2504
+    static const float absStepTShift[]; //-V2504
 };

@@ -6,7 +6,7 @@
 #include <cmath>
 
 
-const float tableScalesRange[Range::Count] = { 2e-3F, 5e-3F, 10e-3F, 20e-3F, 50e-3F, 100e-3F, 200e-3F, 500e-3F, 1.0F, 2.0F, 5.0F, 10.0F, 20.0F };
+const float MathFPGA::tableScalesRange[Range::Count] = { 2e-3F, 5e-3F, 10e-3F, 20e-3F, 50e-3F, 100e-3F, 200e-3F, 500e-3F, 1.0F, 2.0F, 5.0F, 10.0F, 20.0F };
 /*
 static const float tableScalesTBase[TBase::Count] =
     {2e-9, 5e-9, 10e-9, 20e-9, 50e-9, 100e-9, 200e-9, 500e-9,
@@ -34,7 +34,7 @@ const int voltsInPixelInt[] =   // Коэффициент 20000
 };
 
 
-const float absStepRShift[] =
+const float MathFPGA::absStepRShift[] =
 {
     2e-3F / 20 / STEP_RSHIFT,
     5e-3F / 20 / STEP_RSHIFT,
@@ -52,7 +52,7 @@ const float absStepRShift[] =
 };
 
 
-const float voltsInPixel[] =
+const float MathFPGA::voltsInPixel[] =
 {
     2e-3F / 20,      // 2mV
     5e-3F / 20,      // 5mV
@@ -69,7 +69,7 @@ const float voltsInPixel[] =
     20.0F / 20       // 20V
 };
 
-const float absStepTShift[] =
+const float MathFPGA::absStepTShift[] =
 {
     2e-9F / 20, 5e-9F / 20, 10e-9F / 20, 20e-9F / 20, 50e-9F / 20, 100e-9F / 20, 200e-9F / 20, 500e-9F / 20,
     1e-6F / 20, 2e-6F / 20, 5e-6F / 20, 10e-6F / 20, 20e-6F / 20,   50e-6F / 20, 100e-6F / 20, 200e-6F / 20, 500e-6F / 20,

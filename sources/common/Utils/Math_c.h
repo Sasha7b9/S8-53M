@@ -13,11 +13,11 @@
 #define LIMITATION_BOUND(var, min, max)     if((var) < (min)) { (min) = (var); }; if((var) > (max)) { (max) = (var); };
 
 #define POINT_2_VOLTAGE(value, range, rShift)   \
-                (((float)(value) - (float)MIN_VALUE) * voltsInPixel[(range)] - MAX_VOLTAGE_ON_SCREEN((range)) - RSHIFT_2_ABS((rShift), (range)))
+                (((float)(value) - (float)MIN_VALUE) * MathFPGA::voltsInPixel[(range)] - MAX_VOLTAGE_ON_SCREEN((range)) - RSHIFT_2_ABS((rShift), (range)))
 
-#define TSHIFT_2_ABS(tShift, tBase)  (absStepTShift[(tBase)] * (tShift) * 2.0F)
+#define TSHIFT_2_ABS(tShift, tBase)  (MathFPGA::absStepTShift[(tBase)] * (tShift) * 2.0F)
 
-#define TSHIFT_2_REL(tShiftAbs, tBase) ((tShiftAbs) / absStepTShift[(tBase)] / 2.0F)
+#define TSHIFT_2_REL(tShiftAbs, tBase) ((tShiftAbs) / MathFPGA::absStepTShift[(tBase)] / 2.0F)
 
 #define ROUND(x) (x += 0.5F, x)
 

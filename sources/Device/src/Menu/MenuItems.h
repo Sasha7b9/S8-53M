@@ -13,9 +13,6 @@ class SmallButton;
 #define MAX_NUM_CHOICE_SMALL_BUTTON 6   // Максимальное количество вариантов маленькой кнопки + 1
 
 
-extern int8 gCurDigit;
-
-
 // Разные виды пунктов меню
 struct TypeItem { enum E
 {
@@ -149,6 +146,9 @@ public:
     static DataItem emptyData;
 
     static Item empty;
+
+protected:
+    static int8 gCurDigit;
 };
 
 

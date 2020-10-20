@@ -5,7 +5,7 @@
 #include "Menu/Menu.h"
 #include "Utils/GlobalFunctions.h"
 
-int8 gCurDigit = 0;
+int8 Item::gCurDigit = 0;
 
 
 void Governor::StartChange(int delta)
