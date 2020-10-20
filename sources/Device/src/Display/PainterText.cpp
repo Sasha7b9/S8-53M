@@ -21,7 +21,7 @@ bool ByteFontNotEmpty(int eChar, int byte)
     if (eChar != prevChar)
     {
         prevChar = eChar;
-        bytes = font->symbol[prevChar].bytes;
+        bytes = Font::font->symbol[prevChar].bytes;
     }
     return bytes[byte] != 0;
 }
@@ -34,7 +34,7 @@ static bool BitInFontIsExist(int eChar, int numByte, int bit)
     static int prevNumByte = -1;
     if (prevNumByte != numByte || prevChar != eChar)
     {
-        prevByte = font->symbol[eChar].bytes[numByte];
+        prevByte = Font::font->symbol[eChar].bytes[numByte];
         prevChar = eChar;
         prevNumByte = numByte;
     }
@@ -57,8 +57,8 @@ int Painter::DrawTextOnBackground(int x, int y, const char *text, Color::E color
 
 int Painter::DrawCharWithLimitation(int eX, int eY, uchar symbol, int limitX, int limitY, int limitWidth, int limitHeight)
 {
-    int8 width = static_cast<int8>(font->symbol[symbol].width);
-    int8 height = static_cast<int8>(font->height);
+    int8 width = static_cast<int8>(Font::font->symbol[symbol].width);
+    int8 height = static_cast<int8>(Font::font->height);
 
     for (int b = 0; b < height; b++)
     {

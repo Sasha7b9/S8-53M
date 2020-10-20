@@ -19,7 +19,7 @@ bool ByteFontNotEmpty(int eChar, int byte)
     if (eChar != prevChar)
     {
         prevChar = eChar;
-        bytes = font->symbol[prevChar].bytes;
+        bytes = Font::font->symbol[prevChar].bytes;
     }
     return bytes[byte] != 0;
 }
@@ -32,7 +32,7 @@ static bool BitInFontIsExist(int eChar, int numByte, int bit)
     static int prevNumByte = -1;
     if (prevNumByte != numByte || prevChar != eChar)
     {
-        prevByte = font->symbol[eChar].bytes[numByte];
+        prevByte = Font::font->symbol[eChar].bytes[numByte];
         prevChar = eChar;
         prevNumByte = numByte;
     }
@@ -42,8 +42,8 @@ static bool BitInFontIsExist(int eChar, int numByte, int bit)
 
 static void DrawCharInColorDisplay(int eX, int eY, uchar symbol)
 {
-    int8 width = static_cast<int8>(font->symbol[symbol].width);
-    int8 height = (int8)font->height;
+    int8 width = static_cast<int8>(Font::font->symbol[symbol].width);
+    int8 height = (int8)Font::font->height;
 
     for (int b = 0; b < height; b++)
     {
@@ -67,8 +67,8 @@ static void DrawCharInColorDisplay(int eX, int eY, uchar symbol)
 
 static int DrawBigChar(int eX, int eY, int size, char symbol)
 {
-    int8 width = static_cast<int8>(font->symbol[symbol].width);
-    int8 height = (int8)font->height;
+    int8 width = static_cast<int8>(Font::font->symbol[symbol].width);
+    int8 height = (int8)Font::font->height;
 
     for (int b = 0; b < height; b++)
     {
@@ -554,8 +554,8 @@ int Painter::DrawTextInRectWithTransfers(int eX, int eY, int eWidth, int eHeight
 
 static int DrawBigCharInBuffer(int eX, int eY, int size, char symbol, uint8 buffer[320][240])
 {
-    int8 width = static_cast<int8>(font->symbol[symbol].width);
-    int8 height = (int8)font->height;
+    int8 width = static_cast<int8>(Font::font->symbol[symbol].width);
+    int8 height = (int8)Font::font->height;
 
     for (int b = 0; b < height; b++)
     {
