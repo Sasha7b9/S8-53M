@@ -59,7 +59,7 @@ struct PageCursors
 
 struct PageDebug
 {
-    struct SerialNumber
+    struct PageSerialNumber
     {
         static const Page *self;
     };

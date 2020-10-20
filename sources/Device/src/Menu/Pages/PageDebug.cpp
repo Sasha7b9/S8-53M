@@ -23,25 +23,6 @@ static int16 shiftADCB;
 static int8 size = 0;
 
 
-extern const Button     mbSaveFirmware;                     // ОТЛАДКА - Сохр. прошивку
-static bool      IsActive_SaveFirmware();
-static void       OnPress_SaveFirmware();
-extern const       Page ppSerialNumber;                     // ОТЛАДКА - С/Н
-static void       OnPress_SerialNumber();
-static void Draw_EnterSerialNumber();
-static void      OnRegSet_SerialNumber(int);
-extern const SmallButton bSerialNumber_Exit;                // ОТЛАДКА - С/Н - Выход
-static void       OnPress_SerialNumber_Exit();
-extern const SmallButton bSerialNumber_Change;              // ОТЛАДКА - С/Н - Перейти
-static void       OnPress_SerialNumber_Change();
-static void          Draw_SerialNumber_Change(int, int);
-extern const  SmallButton bSerialNumber_Save;               // ОТЛАДКА - С/Н - Сохранить
-static void        OnPress_SerialNumber_Save();
-static void           Draw_SerialNumber_Save(int, int);
-extern const       Button bEraseData;                       // ОТЛАДКА - Стереть данные
-static void       OnPress_EraseData();
-
-
 // В этой структуре будут храниться данные серийного номера при открытой странице ppSerialNumer
 struct StructForSN
 {
@@ -518,27 +499,6 @@ DEF_CHOICE_2(mcSizeSettings, PageDebug::self,
     size, nullptr, nullptr, OnDraw_SizeSettings
 )
 
-DEF_PAGE_7(pDebug, PageMain::self, NamePage::Debug,
-    "ОТЛАДКА", "DEBUG",
-    "",
-    "",
-    mcStats,            // ОТЛАДКА - Статистика
-    mpConsole,          // ОТЛАДКА - КОНСОЛЬ
-    mpADC,              // ОТЛАДКА - АЦП
-    mpRandomizer,       // ОТЛАДКА - РАНД-ТОР
-    mcSizeSettings,     // ОТЛАДКА - Размер настроек
-    mbSaveFirmware,     // ОТЛАДКА - Сохр. прошивку
-    bEraseData,         // ОТЛАДКА - Стереть данные
-    nullptr, nullptr, nullptr, nullptr
-);
-
-DEF_BUTTON(mbSaveFirmware, PageDebug::self,
-    "Сохр. прошивку", "Save firmware",
-    "Сохранение прошивки - секторов 5, 6, 7 общим объёмом 3 х 128 кБ, где хранится программа",
-    "Saving firmware - sectors 5, 6, 7 with a total size of 3 x 128 kB, where the program is stored",
-    IsActive_SaveFirmware, OnPress_SaveFirmware
-)
-
 static bool IsActive_SaveFirmware()
 {
     return FLASH_DRIVE_IS_CONNECTED == 1;
@@ -550,7 +510,7 @@ static void OnPress_SaveFirmware()
 
     FDrive::OpenNewFileForWrite("S8-53.bin", &structForWrite);
 
-    uint8 *address = (uint8*)0x08020000; //-V566
+    uint8 *address = (uint8 *)0x08020000; //-V566
     uint8 *endAddress = address + 128 * 1024 * 3;
 
     int sizeBlock = 512;
@@ -566,6 +526,17 @@ static void OnPress_SaveFirmware()
     Display::ShowWarningGood(Warning::FirmwareSaved);
 }
 
+DEF_BUTTON(mbSaveFirmware, PageDebug::self,
+    "Сохр. прошивку", "Save firmware",
+    "Сохранение прошивки - секторов 5, 6, 7 общим объёмом 3 х 128 кБ, где хранится программа",
+    "Saving firmware - sectors 5, 6, 7 with a total size of 3 x 128 kB, where the program is stored",
+    IsActive_SaveFirmware, OnPress_SaveFirmware
+)
+
+static void OnPress_EraseData()
+{
+    EPROM::EraseData();
+}
 
 DEF_BUTTON(bEraseData, PageDebug::self,
     "Стереть данные", "Erase data",
@@ -574,35 +545,80 @@ DEF_BUTTON(bEraseData, PageDebug::self,
     nullptr, OnPress_EraseData
 )
 
-static void OnPress_EraseData()
+DEF_PAGE_7(pageDebug, PageMain::self, NamePage::Debug,
+    "ОТЛАДКА", "DEBUG",
+    "",
+    "",
+    mcStats,            // ОТЛАДКА - Статистика
+    mpConsole,          // ОТЛАДКА - КОНСОЛЬ
+    mpADC,              // ОТЛАДКА - АЦП
+    mpRandomizer,       // ОТЛАДКА - РАНД-ТОР
+    mcSizeSettings,     // ОТЛАДКА - Размер настроек
+    mbSaveFirmware,     // ОТЛАДКА - Сохр. прошивку
+    bEraseData,         // ОТЛАДКА - Стереть данные
+    nullptr, nullptr, nullptr, nullptr
+);
+
+static void OnPress_SerialNumber_Exit(void)
 {
-    EPROM::EraseData();
+    Display::RemoveAddDrawFunction();
+    FREE_EXTRAMEM();
 }
 
-
-// ОТЛАДКА - С/Н ///////////////////
-DEF_PAGE_6(ppSerialNumber, &pDebug, NamePage::SB_SerialNumber,
-    "С/Н", "S/N",
-    "Запись серийного номера в OTP-память. ВНИМАНИЕ!!! ОТP-память - память с однократной записью.",
-    "Serial number recording in OTP-memory. ATTENTION!!! OTP memory is a one-time programming memory.",
-    bSerialNumber_Exit,     // ОТЛАДКА - С/Н - Выход
-    bSerialNumber_Change,   // ОТЛАДКА - С/Н - Перейти
-    Item::empty,
-    Item::empty,
-    Item::empty,
-    bSerialNumber_Save,      // ОТЛАДКА - С/Н - Сохранить    
-    nullptr, OnPress_SerialNumber, nullptr, OnRegSet_SerialNumber
+DEF_SMALL_BUTTON(bSerialNumber_Exit, PageDebug::PageSerialNumber::self,
+    "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
+    nullptr, OnPress_SerialNumber_Exit, DrawSB_Exit, nullptr
 )
 
-static void OnPress_SerialNumber(void)
+static void OnPress_SerialNumber_Change(void)
 {
-    PageDebug::SerialNumber::self->OpenAndSetItCurrent();
-    Display::SetAddDrawFunction(Draw_EnterSerialNumber);
-    MALLOC_EXTRAMEM(StructForSN, s);
-    s->number = 1; //-V522
-    s->year = 2017;
-    s->curDigt = 0;
+    ACCESS_EXTRAMEM(StructForSN, s);
+    ++s->curDigt;
+    s->curDigt %= 2;
+    Painter::ResetFlash();
 }
+
+static void Draw_SerialNumber_Change(int x, int y)
+{
+    Font::Set(TypeFont::_UGO2);
+    Painter::Draw4SymbolsInRect(x + 2, y + 2, SYMBOL_TAB);
+    Font::Set(TypeFont::_8);
+}
+
+DEF_SMALL_BUTTON(bSerialNumber_Change, PageDebug::PageSerialNumber::self,
+    "Вставить", "Insert",
+    "Вставляет выбраный символ",
+    "Inserts the chosen symbol",
+    nullptr, OnPress_SerialNumber_Change, Draw_SerialNumber_Change, nullptr
+)
+
+static void OnPress_SerialNumber_Save(void)
+{
+    ACCESS_EXTRAMEM(StructForSN, s);
+
+    char stringSN[20];
+
+    std::snprintf(stringSN, 19, "%02d %04d", s->number, s->year);
+
+    if (!HAL_OTP::SaveSerialNumber(stringSN))
+    {
+        Display::ShowWarningBad(Warning::FullyCompletedOTP);
+    }
+}
+
+static void Draw_SerialNumber_Save(int x, int y)
+{
+    Font::Set(TypeFont::_UGO2);
+    Painter::Draw4SymbolsInRect(x + 2, y + 1, SYMBOL_SAVE_TO_MEM);
+    Font::Set(TypeFont::_8);
+}
+
+DEF_SMALL_BUTTON(bSerialNumber_Save, PageDebug::PageSerialNumber::self,
+    "Сохранить", "Save",
+    "Записывает серийный номер в OTP",
+    "Records the serial number in OTP",
+    nullptr, OnPress_SerialNumber_Save, Draw_SerialNumber_Save, nullptr
+)
 
 static void Draw_EnterSerialNumber(void)
 {
@@ -660,9 +676,19 @@ static void Draw_EnterSerialNumber(void)
     Painter::DrawFormatText(x0 + deltaX, y0 + 100, COLOR_FILL, "Осталось места для %d попыток", allShots);
 }
 
+static void OnPress_SerialNumber(void)
+{
+    PageDebug::PageSerialNumber::self->OpenAndSetItCurrent();
+    Display::SetAddDrawFunction(Draw_EnterSerialNumber);
+    MALLOC_EXTRAMEM(StructForSN, s);
+    s->number = 1; //-V522
+    s->year = 2017;
+    s->curDigt = 0;
+}
+
 static void OnRegSet_SerialNumber(int angle)
 {
-    typedef int(*pFunc)(int*, int, int);
+    typedef int(*pFunc)(int *, int, int);
 
     pFunc p = angle > 0 ? CircleIncreaseInt : CircleDecreaseInt;
 
@@ -679,73 +705,21 @@ static void OnRegSet_SerialNumber(int angle)
     Sound::GovernorChangedValue();
 }
 
-// ОТЛАДКА - С/Н - Выход -----------------------------------------------------------------------------------------------------------------------------
-DEF_SMALL_BUTTON(bSerialNumber_Exit, &ppSerialNumber,
-    "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
-    nullptr, OnPress_SerialNumber_Exit, DrawSB_Exit, nullptr
+DEF_PAGE_6(ppSerialNumber, PageDebug::self, NamePage::SB_SerialNumber,
+    "С/Н", "S/N",
+    "Запись серийного номера в OTP-память. ВНИМАНИЕ!!! ОТP-память - память с однократной записью.",
+    "Serial number recording in OTP-memory. ATTENTION!!! OTP memory is a one-time programming memory.",
+    bSerialNumber_Exit,     // ОТЛАДКА - С/Н - Выход
+    bSerialNumber_Change,   // ОТЛАДКА - С/Н - Перейти
+    Item::empty,
+    Item::empty,
+    Item::empty,
+    bSerialNumber_Save,      // ОТЛАДКА - С/Н - Сохранить    
+    nullptr, OnPress_SerialNumber, nullptr, OnRegSet_SerialNumber
 )
 
-static void OnPress_SerialNumber_Exit(void)
-{
-    Display::RemoveAddDrawFunction();
-    FREE_EXTRAMEM();
-}
-
-// ОТЛАДКА - С/Н - Вставить --------------------------------------------------------------------------------------------------------------------------
-DEF_SMALL_BUTTON(bSerialNumber_Change, &ppSerialNumber,
-    "Вставить", "Insert",
-    "Вставляет выбраный символ",
-    "Inserts the chosen symbol",
-    nullptr, OnPress_SerialNumber_Change, Draw_SerialNumber_Change, nullptr
-)
-
-static void OnPress_SerialNumber_Change(void)
-{
-    ACCESS_EXTRAMEM(StructForSN, s);
-    ++s->curDigt;
-    s->curDigt %= 2;
-    Painter::ResetFlash();
-}
-
-static void Draw_SerialNumber_Change(int x, int y)
-{
-    Font::Set(TypeFont::_UGO2);
-    Painter::Draw4SymbolsInRect(x + 2, y + 2, SYMBOL_TAB);
-    Font::Set(TypeFont::_8);
-}
-
-// ОТЛАДКА - С/Н - Сохранить -------------------------------------------------------------------------------------------------------------------------
-DEF_SMALL_BUTTON(bSerialNumber_Save, &ppSerialNumber,
-    "Сохранить", "Save",
-    "Записывает серийный номер в OTP",
-    "Records the serial number in OTP",
-    nullptr, OnPress_SerialNumber_Save, Draw_SerialNumber_Save, nullptr
-)
-
-static void OnPress_SerialNumber_Save(void)
-{
-    ACCESS_EXTRAMEM(StructForSN, s);
-
-    char stringSN[20];
-
-    std::snprintf(stringSN, 19, "%02d %04d", s->number, s->year);
-
-    if (!HAL_OTP::SaveSerialNumber(stringSN))
-    {
-        Display::ShowWarningBad(Warning::FullyCompletedOTP);
-    }
-}
-
-static void Draw_SerialNumber_Save(int x, int y)
-{
-    Font::Set(TypeFont::_UGO2);
-    Painter::Draw4SymbolsInRect(x + 2, y + 1, SYMBOL_SAVE_TO_MEM);
-    Font::Set(TypeFont::_8);
-}
-
-
-const Page *PageDebug::SerialNumber::self = &ppSerialNumber;
-const Page *PageDebug::self = &pDebug;
+const Page *PageDebug::PageSerialNumber::self = &ppSerialNumber;
+const Page *PageDebug::self = &pageDebug;
 const Page *PageDebug::PageConsole::self = &mpConsole;
 const Page *PageDebug::PageADC::self = &mpADC;
 const Page *PageDebug::PageADC::PageBalance::self = &mpADC_Balance;
