@@ -15,11 +15,6 @@
 using namespace Primitives;
 
 
-extern const Choice mcTrackingT2U2;                     // КУРСОРЫ - Курсоры T2,U2
-
-extern const Choice mcShowFreq;                         // КУРОСРЫ - 1/dT
-
-extern const Page mspSet;                               // КУРСОРЫ - УСТАНОВИТЬ
 extern const SmallButton sbSetExit;                     // КУРСОРЫ - УСТАНОВИТЬ - Выход
 static void PressSB_Cursors_Exit();
 extern const SmallButton sbSetSource;                   // КУРСОРЫ - УСТАНОВИТЬ - Источник
@@ -67,9 +62,6 @@ static void SetCursPosT(Channel::E chan, int numCur, float pos);           // Ус
 
 #define MAX_POS_U   200
 #define MAX_POS_T   280
-
-void *PageCursors::PageSet::pointer = (void *)&mspSet;
-
 
 
 void SetCursSource(Channel::E chan)
@@ -169,23 +161,7 @@ DEF_CHOICE_4(mcTrackingT1U1, PageCursors::self,
     CURS_LOOKMODE_0, nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_5(pCursors, PageMain::self, NamePage::Cursors,
-    "КУРСОРЫ", "CURSORS",
-    "Курсорные измерения.",
-    "Cursor measurements.",
-    mcShow,             // КУРСОРЫ - Показывать
-    mcTrackingT1U1,     // КУРСОРЫ - Курсоры T1,U1
-    mcTrackingT2U2,     // КУРСОРЫ - Курсоры T2,U2
-    mcShowFreq,         // КУРОСРЫ - 1/dT
-    mspSet,              // КУРСОРЫ - УСТАНОВИТЬ
-    nullptr, nullptr, nullptr, nullptr
-)
-
-const Page *PageCursors::self = &pCursors;
-
-
-// КУРСОРЫ - Курсоры T2,U2 ---------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_4(mcTrackingT2U2, &pCursors,
+DEF_CHOICE_4(mcTrackingT2U2, PageCursors::self,
     "Слежение \x8f, \x9f", "Tracking \x8f, \x9f"
     ,
     "Задаёт режим слежения за вторым курсором времени и напряжения:\n"
@@ -200,21 +176,19 @@ DEF_CHOICE_4(mcTrackingT2U2, &pCursors,
     "3. \"Time\" - when manually changing the position of the cursor voltage cursors time automatically track changes in the signal.\n"
     "4. \"Volt and time\" - acts as one of the previous modes, depending on which was carried out last effect cursors."
     ,
-    DISABLE_RU,        DISABLE_EN,
-    "Напряжение",      "Voltage",
-    "Время",           "Time",
+    DISABLE_RU, DISABLE_EN,
+    "Напряжение", "Voltage",
+    "Время", "Time",
     "Напряж. и время", "Volt. and time",
     CURS_LOOKMODE_1, nullptr, nullptr, nullptr
 )
 
-
-// КУРОСРЫ - 1/dT ------------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcShowFreq, &pCursors,
+DEF_CHOICE_2(mcShowFreq, PageCursors::self,
     "1/dT", "1/dT",
     "Если выбрано \"Вкл\", в правом верхнем углу выводится величина, обратная расстоянию между курсорами времени - частота сигнала, один период которого равен расстоянию между временными курсорами.",
     "If you select \"Enable\" in the upper right corner displays the inverse of the distance between cursors time - frequency signal, a period equal to the distance between the time cursors.",
     DISABLE_RU, DISABLE_EN,
-    ENABLE_RU,  ENABLE_EN,
+    ENABLE_RU, ENABLE_EN,
     CURSORS_SHOW_FREQ, nullptr, nullptr, nullptr
 )
 
@@ -231,7 +205,7 @@ static void OnRotate_RegSet_Set(int angle)
     Sound::RegulatorShiftRotate();
 }
 
-DEF_PAGE_6(mspSet, &pCursors, NamePage::SB_Curs,
+DEF_PAGE_6(mspSet, PageCursors::self, NamePage::SB_Curs,
     "УСТАНОВИТЬ", "SET",
     "Переход в режим курсорных измерений",
     "Switch to cursor measures",
@@ -243,6 +217,24 @@ DEF_PAGE_6(mspSet, &pCursors, NamePage::SB_Curs,
     sbSetPointsPercents,    // КУРСОРЫ - УСТАНОВИТЬ - Перемещение
     nullptr, nullptr, nullptr, OnRotate_RegSet_Set
 )
+
+const Page *PageCursors::PageSet::self = &mspSet;
+
+
+DEF_PAGE_5(pCursors, PageMain::self, NamePage::Cursors,
+    "КУРСОРЫ", "CURSORS",
+    "Курсорные измерения.",
+    "Cursor measurements.",
+    mcShow,             // КУРСОРЫ - Показывать
+    mcTrackingT1U1,     // КУРСОРЫ - Курсоры T1,U1
+    mcTrackingT2U2,     // КУРСОРЫ - Курсоры T2,U2
+    mcShowFreq,         // КУРОСРЫ - 1/dT
+    mspSet,              // КУРСОРЫ - УСТАНОВИТЬ
+    nullptr, nullptr, nullptr, nullptr
+)
+
+const Page *PageCursors::self = &pCursors;
+
 
 static void MoveCursUonPercentsOrPoints(int delta)
 {

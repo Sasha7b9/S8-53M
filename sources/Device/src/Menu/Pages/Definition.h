@@ -56,7 +56,7 @@ public:
     class PageSet
     {
     public:
-        static void *pointer;
+        static const Page *self;
     };
 
     static const Page *self;
