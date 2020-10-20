@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "common/Log_c.h"
-#include "SCPI.h"
+#include "Menu/Pages/Definition.h"
+#include "VCP/SCPI/SCPI.h"
 #include "Settings/Settings.h"
 #include "Utils/Map.h"
 #include "VCP/VCP.h"
@@ -141,8 +142,6 @@ void SCPI::TBASE::PEACKDET(pUCHAR buffer)
 
 void SCPI::TBASE::TPOS(pUCHAR buffer)
 {
-    extern void OnChanged_TPos(bool active);
-
     static const MapElement map[] =
     {
         {"LEFT",   0},
@@ -152,7 +151,7 @@ void SCPI::TBASE::TPOS(pUCHAR buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (value < 3)      { SET_TPOS = (TPos::E)value; OnChanged_TPos(true); }
+        if (value < 3)      { SET_TPOS = (TPos::E)value; PageTime::OnChanged_TPos(true); }
         else if (4 == value)
         {
             SCPI_SEND(":TBASE:TPOS %s", map[SET_TPOS].key);

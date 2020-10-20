@@ -79,7 +79,7 @@ DEF_CHOICE_2(mcPeakDet, PageTime::self,
     PEAKDET, IsActive_PeakDet, OnChanged_PeakDet, nullptr
 )
 
-void OnChanged_TPos(bool active)
+void PageTime::OnChanged_TPos(bool active)
 {
     ChangeC_Memory_NumPoints(active);
     FPGA::SetTShift(TSHIFT);
@@ -92,7 +92,7 @@ DEF_CHOICE_3(mcTPos, PageTime::self,
     "Лево", "Left",
     "Центр", "Center",
     "Право", "Right",
-    SET_TPOS, nullptr, OnChanged_TPos, nullptr
+    SET_TPOS, nullptr, PageTime::OnChanged_TPos, nullptr
 )
 
 static bool IsActive_SelfRecorder(void)
