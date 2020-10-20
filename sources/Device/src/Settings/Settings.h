@@ -190,7 +190,6 @@ struct SettingsMenu
 
 
 
-void ShowMenu(bool show);                                           // Отобразить/скрыть меню.
 bool MenuIsMinimize();                                              // Если true - меню находится в дополнительном режиме.
 bool MenuPageDebugIsActive();                                       // Активна ли страница отладки.
 void SetMenuPageDebugActive(bool active);                           // Сделать/разделать активной страницу отладки.

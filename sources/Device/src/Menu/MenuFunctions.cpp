@@ -68,7 +68,7 @@ void Menu::CloseOpenedItem()
         NEED_CLOSE_PAGE_SB = 1;
         if(item == &mainPage)
         {
-            ShowMenu(false);
+            Menu::Show(false);
         }
     }
     else

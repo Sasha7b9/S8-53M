@@ -280,12 +280,6 @@ bool Settings::DebugModeEnable()
     return true;
 }
 
-void ShowMenu(bool show)
-{
-    set.menu.isShown = show ? 1U : 0U;
-    Menu::SetAutoHide(true);
-}
-
 bool MenuIsMinimize()
 {
     return Menu::OpenedItem()->Type() == TypeItem::Page && ((const Page *)Menu::OpenedItem())->GetName() >= NamePage::SB_Curs;

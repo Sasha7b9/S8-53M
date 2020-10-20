@@ -324,7 +324,7 @@ char* Menu::StringNavigation(char buffer[100])
 
 void Menu::OnTimerAutoHide()
 {
-    ShowMenu(false);
+    Menu::Show(false);
     Timer::Disable(TypeTimer::MenuAutoHide);
 }
 
@@ -351,7 +351,7 @@ void Menu::ProcessingShortPressureButton()
             {
                 if(!Menu::IsShown())
                 {
-                    ShowMenu(true);
+                    Menu::Show(true);
                 }
                 else
                 {
@@ -391,7 +391,7 @@ void Menu::ProcessingShortPressureButton()
                 {
                     page->SetCurrent(true);
                     page->Open(true);
-                    ShowMenu(true);
+                    Menu::Show(true);
                 }
             }
         } while(false);
@@ -426,7 +426,7 @@ void Menu::ProcessingLongPressureButton(void)
         }
         else if(longPressureButton == Key::Menu)
         {
-                ShowMenu(!Menu::IsShown());
+                Menu::Show(!Menu::IsShown());
         }
         else if(Menu::IsShown() && IsFunctionalButton(longPressureButton))
         {
@@ -679,4 +679,11 @@ void Menu::SetPosActItem(NamePage::E namePage, int8 pos)
 bool Menu::IsShown()
 {
     return set.menu.isShown;
+}
+
+
+void Menu::Show(bool show)
+{
+    set.menu.isShown = show ? 1U : 0U;
+    Menu::SetAutoHide(true);
 }

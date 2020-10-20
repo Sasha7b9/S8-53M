@@ -55,7 +55,8 @@ public:
     static void SetPosActItem(NamePage::E namePage, int8 pos);
     // Отображено ли меню на экране.
     static bool IsShown();
-
+    // Отобразить/скрыть меню.
+    static void Show(bool show);
 private:
     // Обработка короткого нажатия кнопки.
     static void ProcessingShortPressureButton();
