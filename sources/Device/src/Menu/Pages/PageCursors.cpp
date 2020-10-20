@@ -15,15 +15,6 @@
 using namespace Primitives;
 
 
-static void DrawSB_Cursors_SourceB(int x, int y);
-extern const SmallButton sbSetU;                        // КУРСОРЫ - УСТАНОВИТЬ - Курсоры U . Выбор курсора напряжения - курсор 1, курсор 2, оба курсора или отключены.
-static void PressSB_Cursors_U();
-static void DrawSB_Cursors_U(int x, int y);
-static void DrawSB_Cursors_U_Disable(int x, int y);
-static void DrawSB_Cursors_U_Upper(int x, int y);
-static void DrawSB_Cursors_U_Lower(int x, int y);
-static void DrawSB_Cursors_U_Both_Enable(int x, int y);
-static void DrawSB_Cursors_U_Both_Disable(int x, int y);
 extern const SmallButton sbSetT;                        // КУРСОРЫ - УСТАНОВИТЬ - Курсоры T . Выбор курсора времени - курсор 1, курсор 2, оба курсора или отключены.
 static void PressSB_Cursors_T();
 static void DrawSB_Cursors_T(int x, int y);
@@ -243,6 +234,97 @@ DEF_SMALL_BUTTON(sbSetSource, PageCursors::PageSet::self,
     nullptr, PressSB_Cursors_Source, DrawSB_Cursors_Source, &hintsSetSource
 )
 
+static void DrawSB_Cursors_U_Disable(int x, int y)
+{
+    Text("U").Draw(x + 7, y + 5);
+}
+
+static void DrawSB_Cursors_U_Both_Disable(int x, int y)
+{
+    DrawMenuCursVoltage(x + 7, y + 5, false, false);
+}
+
+static void DrawSB_Cursors_U_Upper(int x, int y)
+{
+    DrawMenuCursVoltage(x + 7, y + 5, true, false);
+}
+
+static void DrawSB_Cursors_U_Lower(int x, int y)
+{
+    DrawMenuCursVoltage(x + 7, y + 5, false, true);
+}
+
+static void DrawSB_Cursors_U_Both_Enable(int x, int y)
+{
+    DrawMenuCursVoltage(x + 7, y + 5, true, true);
+}
+
+
+static const arrayHints hintsSetU =
+{
+    { DrawSB_Cursors_U_Disable,     "курсоры напряжения выключены",
+                                    "cursors of tension are switched off" },
+    { DrawSB_Cursors_U_Both_Disable,"курсоры напряжения включены",
+                                    "cursors of tension are switched on" },
+    { DrawSB_Cursors_U_Upper,       "курсоры напряжения включены, управление верхним курсором",
+                                    "cursors of tension are switched on, control of the top cursor" },
+    { DrawSB_Cursors_U_Lower,       "курсоры напряжения включены, управление нижним курсором",
+                                    "cursors of tension are switched on, control of the lower cursor" },
+    { DrawSB_Cursors_U_Both_Enable, "курсоры напряжения включены, управление обоими курсорами",
+                                    "cursors of tension are switched on, control of both cursors" }
+};
+
+static void PressSB_Cursors_U(void)
+{
+    if (CURS_ACTIVE_IS_U || CURS_CNTRL_U_IS_DISABLE(CURS_SOURCE))
+    {
+        IncCursCntrlU(CURS_SOURCE);
+    }
+    CURS_ACTIVE = CursActive::U;
+}
+
+static void DrawSB_Cursors_U(int x, int y)
+{
+    CursCntrl::E cursCntrl = CURsU_CNTRL;
+    if (cursCntrl == CursCntrl::Disable)
+    {
+        DrawSB_Cursors_U_Disable(x, y);
+    }
+    else
+    {
+        if (!CURS_ACTIVE_IS_U)
+        {
+            DrawSB_Cursors_U_Both_Disable(x, y);
+        }
+        else
+        {
+            Channel::E source = CURS_SOURCE;
+            bool condTop = false, condDown = false;
+            CalculateConditions(static_cast<int16>(sCursors_GetCursPosU(source, 0)), static_cast<int16>(sCursors_GetCursPosU(source, 1)), cursCntrl, &condTop, &condDown);
+            if (condTop && condDown)
+            {
+                DrawSB_Cursors_U_Both_Enable(x, y);
+            }
+            else if (condTop)
+            {
+                DrawSB_Cursors_U_Upper(x, y);
+            }
+            else
+            {
+                DrawSB_Cursors_U_Lower(x, y);
+            }
+        }
+    }
+}
+
+
+DEF_SMALL_BUTTON(sbSetU, PageCursors::PageSet::self,
+    "Курсоры U", "Cursors U",
+    "Выбор курсоров напряжения для индикации и управления",
+    "Choice of cursors of voltage for indication and management",
+    nullptr, PressSB_Cursors_U, DrawSB_Cursors_U, &hintsSetU
+)
+
 DEF_PAGE_6(mspSet, PageCursors::self, NamePage::SB_Curs,
     "УСТАНОВИТЬ", "SET",
     "Переход в режим курсорных измерений",
@@ -331,108 +413,6 @@ static void SetShiftCursPosT(Channel::E chan, int numCur, float delta)
     CURS_POS_T(chan, numCur) = LimitationFloat(CURS_POS_T(chan, numCur) + delta, 0, MAX_POS_T);
 }
 
-
-// КУРСОРЫ - УСТАНОВИТЬ - Курсоры U ------------------------------------------------------------------------------------------------------------------
-static const arrayHints hintsSetU =
-{
-    { DrawSB_Cursors_U_Disable,     "курсоры напряжения выключены",
-                                    "cursors of tension are switched off" },
-    { DrawSB_Cursors_U_Both_Disable,"курсоры напряжения включены",
-                                    "cursors of tension are switched on" },
-    { DrawSB_Cursors_U_Upper,       "курсоры напряжения включены, управление верхним курсором",
-                                    "cursors of tension are switched on, control of the top cursor" },
-    { DrawSB_Cursors_U_Lower,       "курсоры напряжения включены, управление нижним курсором",
-                                    "cursors of tension are switched on, control of the lower cursor" },
-    { DrawSB_Cursors_U_Both_Enable, "курсоры напряжения включены, управление обоими курсорами",
-                                    "cursors of tension are switched on, control of both cursors" }
-};
-
-DEF_SMALL_BUTTON(sbSetU, &mspSet,
-    "Курсоры U", "Cursors U",
-    "Выбор курсоров напряжения для индикации и управления",
-    "Choice of cursors of voltage for indication and management",
-    nullptr, PressSB_Cursors_U, DrawSB_Cursors_U, &hintsSetU
-)
-
-static void PressSB_Cursors_U(void)
-{
-    if (CURS_ACTIVE_IS_U || CURS_CNTRL_U_IS_DISABLE(CURS_SOURCE))
-    {
-        IncCursCntrlU(CURS_SOURCE);
-    }
-    CURS_ACTIVE = CursActive::U;
-}
-
-static void DrawSB_Cursors_U(int x, int y)
-{
-    CursCntrl::E cursCntrl = CURsU_CNTRL;
-    if (cursCntrl == CursCntrl::Disable)
-    {
-       DrawSB_Cursors_U_Disable(x, y);
-    }
-    else
-    {
-        if (!CURS_ACTIVE_IS_U)
-        {
-            DrawSB_Cursors_U_Both_Disable(x, y);
-        }
-        else
-        {
-            Channel::E source = CURS_SOURCE;
-            bool condTop = false, condDown = false;
-            CalculateConditions(static_cast<int16>(sCursors_GetCursPosU(source, 0)), static_cast<int16>(sCursors_GetCursPosU(source, 1)), cursCntrl, &condTop, &condDown);
-            if (condTop && condDown)
-            {
-                DrawSB_Cursors_U_Both_Enable(x, y);
-            }
-            else if (condTop)
-            {
-                DrawSB_Cursors_U_Upper(x, y);
-            }
-            else
-            {
-                DrawSB_Cursors_U_Lower(x, y);
-            }
-        }
-        /*
-        if (set.cursors.lookMode[0] == CursLookMode::Voltage || set.cursors.lookMode[0] == CursLookMode::Both ||
-            set.cursors.lookMode[1] == CursLookMode::Voltage || set.cursors.lookMode[1] == CursLookMode::Both)
-        {
-            Font::Set(TypeFont::_5);
-            Painter::DrawChar(x + 10, y, 'c');
-            Font::Set(TypeFont::_8);
-        }
-        */
-    }
-}
-
-static void DrawSB_Cursors_U_Disable(int x, int y)
-{
-    Text("U").Draw(x + 7, y + 5);
-}
-
-static void DrawSB_Cursors_U_Upper(int x, int y)
-{
-    DrawMenuCursVoltage(x + 7, y + 5, true, false);
-}
-
-static void DrawSB_Cursors_U_Lower(int x, int y)
-{
-    DrawMenuCursVoltage(x + 7, y + 5, false, true);
-}
-
-static void DrawSB_Cursors_U_Both_Enable(int x, int y)
-{
-    DrawMenuCursVoltage(x + 7, y + 5, true, true);
-}
-
-static void DrawSB_Cursors_U_Both_Disable(int x, int y)
-{
-    DrawMenuCursVoltage(x + 7, y + 5, false, false);
-}
-
-
-// КУРСОРЫ - УСТАНОВИТЬ - Курсоры T ------------------------------------------------------------------------------------------------------------------
 static const arrayHints hintsSetT =
 {
     { DrawSB_Cursors_T_Disable,         "курсоры времени выключены",
