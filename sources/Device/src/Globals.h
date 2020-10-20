@@ -43,7 +43,6 @@ class Item;
 #define IN_MOVE_INCREASE            (gBF.inMoveIncrease)
 #define IN_MOVE_DECREASE            (gBF.inMoveDecrease)
 #define TIME_START_MS               (gBF.timeStartMS)
-#define PANEL_IS_RUNNING            (gBF.panelIsRunning)
 
 
 struct BitField
@@ -68,10 +67,6 @@ struct BitField
     uint FPGAcritiacalSituation     : 1;
     uint FPGAfirstAfterWrite        : 1;    // Используется в режиме рандомизатора. После записи любого параметра в альтеру
                                             // нужно не использовать первое считанное данное с АЦП, потому что оно завышено и портит ворота
-
-    // Панель
-    uint panelIsRunning             : 1;
-    
     // Governor
     uint inMoveIncrease             : 1;
     uint inMoveDecrease             : 1;

@@ -32,4 +32,6 @@ public:
     static bool ProcessingCommandFromPIC(uint16 command);
 
     static uint16 NextData();
+
+    static bool isRunning;
 };

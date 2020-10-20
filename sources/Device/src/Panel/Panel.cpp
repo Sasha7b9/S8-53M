@@ -5,8 +5,6 @@
 #include <cstring>
 
 
-
-
 #define MAX_DATA            20
 
 #define LED_CHAN0_ENABLE    129U
@@ -21,9 +19,8 @@ static Key::E pressedKey = Key::None;
 volatile static Key::E pressedButton = Key::None;         // Это используется для отслеживания нажатой кнопки при отключенной панели
 static uint16 dataTransmitted[MAX_DATA] = {0x00};
 static uint16 numDataForTransmitted = 0;
-//static uint timePrevPressButton = 0;
-//static uint timePrevReleaseButton = 0;
 
+bool Panel::isRunning = false;
 
 static void(*funcOnKeyDown[Key::Count])(void)    =
 {    
@@ -202,7 +199,7 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
         pressedButton = pressButton;
     }
 
-    if(PANEL_IS_RUNNING == 0)
+    if(!Panel::isRunning)
     {
         return true;
     }
@@ -331,12 +328,12 @@ uint16 Panel::NextData()
 
 void Panel::Disable()
 {
-    PANEL_IS_RUNNING = 0;
+    Panel::isRunning = false;
 }
 
 void Panel::Enable()
 {
-    PANEL_IS_RUNNING = 1;
+    Panel::isRunning = true;
 }
 
 

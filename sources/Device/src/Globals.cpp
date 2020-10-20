@@ -26,8 +26,6 @@ BitField gBF =
     1,  // FPGAcanReadData
     0,  // FPGAcritiacalSituation
     0,  // FPGAfirstAfterWrite
-
-    1,  // panelIsRunning
     
     // Governor
     0,
