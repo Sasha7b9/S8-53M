@@ -33,9 +33,6 @@ BitField gBF =
     0,
     0,
 
-    0,  // cableVCPisConnected
-    0,  // connectToHost
-
     // Flash drive
     0,  // flashDriveIsConnected
     1,  // cursorInDirs

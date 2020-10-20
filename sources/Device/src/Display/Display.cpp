@@ -16,6 +16,7 @@
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
 #include "Utils/ProcessingSignal.h"
+#include "VCP/VCP.h"
 #include <cmath>
 #include <cstdio>
 #include <cstring>
@@ -2099,9 +2100,9 @@ void Display::DrawLowPart()
         Painter::Draw4SymbolsInRectC(x + 87, Grid::Bottom() + 2, SYMBOL_ETHERNET, LAN::clientIsConnected ? COLOR_FILL : Color::FLASH_01);
     }
 
-    if ((CLIENT_VCP_IS_CONNECTED != 0) || (CABLE_VCP_IS_CONNECTED != 0))
+    if (VCP::connectToHost || VCP::cableIsConnected)
     {
-        Painter::Draw4SymbolsInRectC(x + 72, Grid::Bottom() + 2, SYMBOL_USB, CLIENT_VCP_IS_CONNECTED ? COLOR_FILL : Color::FLASH_01);
+        Painter::Draw4SymbolsInRectC(x + 72, Grid::Bottom() + 2, SYMBOL_USB, VCP::connectToHost ? COLOR_FILL : Color::FLASH_01);
     }
     
     Color::SetCurrent(COLOR_FILL);

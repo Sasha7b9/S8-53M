@@ -9,10 +9,6 @@
 class Item;
 
 
-#define CLIENT_VCP_IS_CONNECTED     (gBF.connectToHost)
-#define CABLE_VCP_IS_CONNECTED      (gBF.cableVCPisConnected)
-
-
 #define SETTINGS_IS_LOADED          (gBF.settingsLoaded)
 #define NEED_OPEN_FILE_MANAGER      (gBF.needOpenFileMananger)
 #define FLASH_DRIVE_IS_CONNECTED    (gBF.flashDriveIsConnected)
@@ -72,10 +68,6 @@ struct BitField
     uint inMoveDecrease             : 1;
     uint addressGovernor            : 32;
     uint timeStartMS                : 32;
-
-    // VCP
-    uint cableVCPisConnected        : 1;
-    uint connectToHost              : 1;
 
     // Flash drive
     uint flashDriveIsConnected      : 1;

@@ -11,6 +11,8 @@ public:
     static void SendFormatStringSynch(char *format, ...);      // Эта строка передаётся с завершающими символами \r\n.
     static void Flush();
     static void Update();
+    static bool cableIsConnected;
+    static bool connectToHost;
 
 private:
     static void SendDataAsinch(pUCHAR buffer, int size);

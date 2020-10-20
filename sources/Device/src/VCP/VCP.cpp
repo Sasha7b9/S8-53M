@@ -8,6 +8,8 @@
 
 
 uint VCP::lastTimeSend = 0;
+bool VCP::cableIsConnected = false;
+bool VCP::connectToHost = false;
 
 
 void VCP::Init()
@@ -45,7 +47,7 @@ void VCP::Flush()
 
 void VCP::SendDataSynch(pUCHAR buffer, int size)
 {
-    if (CLIENT_VCP_IS_CONNECTED == 0)
+    if (!VCP::connectToHost)
     {
         return;
     }
