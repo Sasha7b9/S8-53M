@@ -35,9 +35,6 @@ static Key::E bufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {Key::None, Key::None,
 static const Key::E sampleBufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {Key::F5, Key::F4, Key::F3, Key::F2, Key::F1};
 
 
-static void ShortPress_Governor(Item *);
-
-
 void Menu::UpdateInput()
 {
     ProcessingShortPressureButton();
@@ -685,7 +682,7 @@ void Menu::ExecuteFuncForShortPressOnItem(Item *item)
         &Menu::ShortPress_Choice,           // TypeItem::Choice
         &Menu::ShortPress_Button,           // TypeItem::Button
         &Menu::ShortPress_Page,             // TypeItem::Page
-        &ShortPress_Governor,         // TypeItem::Governor
+        &Menu::ShortPress_Governor,         // TypeItem::Governor
         &Menu::ShortPress_Time,             // TypeItem::Time
         &Menu::ShortPress_IP,               // TypeItem::IP
         0,                                  // Item_SwitchButton
@@ -898,7 +895,7 @@ void Menu::OpenFileManager()
 }
 
 
-static void ShortPress_Governor(Item *item)
+void Menu::ShortPress_Governor(Item *item)
 {
     ((Governor *)item)->ShortPress();
 }

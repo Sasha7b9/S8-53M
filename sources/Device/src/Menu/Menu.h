@@ -86,6 +86,8 @@ private:
     // Обработка короткого нажатия на элемент Choice с адресом choice.
     static void ShortPress_Choice(Item *choice);
 
+    static void ShortPress_Governor(Item*);
+
     static void ShortPress_Time(Item *time);
     // Обработка короткого нажатия на элемент Button с адресом button.
     static void ShortPress_Button(Item *button);
