@@ -10,7 +10,6 @@
 #include "Hardware/Timer.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
-#include "Menu/Pages/PageService.h"
 #include "Panel/Panel.h"
 #include "Settings/Settings.h"
 #include <cstdio>
@@ -113,6 +112,10 @@ DEF_PAGE_10(pService, PageMain::self, NamePage::Service,
     ppInformation,              // СЕРВИС - ИНФОРМАЦИЯ
     nullptr, nullptr, nullptr, nullptr
 );
+
+
+const Page *PageService::self = &pService;
+
 
 // СЕРВИС - Сброс настроек ---------------------------------------------------------------------------------------------------------------------------
 DEF_BUTTON(bResetSettings, pService,
@@ -553,7 +556,7 @@ DEF_CHOICE_3(cMath_FFT_Source, &pppMath_FFT,
 )
 
 // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Окно ---------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_4(cMath_FFT_Window, pppMath_FFT,
+DEF_CHOICE_4(cMath_FFT_Window, &pppMath_FFT,
     "Окно", "Window",
     "Задаёт окно для расчёта спектра",
     "Sets the window to calculate the spectrum",

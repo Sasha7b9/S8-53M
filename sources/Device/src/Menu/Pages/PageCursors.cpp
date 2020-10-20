@@ -6,7 +6,6 @@
 #include "Hardware/Sound.h"
 #include "Menu/MenuItems.h"
 #include "Menu/Pages/Definition.h"
-#include "Menu/Pages/PageCursors.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
 #include "Utils/ProcessingSignal.h"
@@ -15,8 +14,6 @@
 
 using namespace Primitives;
 
-
-extern const Choice mcTrackingT1U1;                     // КУРСОРЫ - Курсоры T1,U1
 
 extern const Choice mcTrackingT2U2;                     // КУРСОРЫ - Курсоры T2,U2
 
@@ -150,6 +147,28 @@ DEF_CHOICE_2(mcShow, PageCursors::self,
 )
 
 
+DEF_CHOICE_4(mcTrackingT1U1, PageCursors::self,
+    "Слежение \x8e, \x9e", "Tracking \x8e, \x9e"
+    ,
+    "Задаёт режим слежения за первым курсором времени и напряжения:\n"
+    "1. \"Откл\" - курсор времени и курсор напряжения устанавливаются вручную.\n"
+    "2. \"Напряжение\" - при ручном изменении положения курсора времени курсор напряжения автоматически отслеживают изменения сигнала.\n"
+    "3. \"Время\" - при ручном изменении положения курсора напряжения курсор времени автоматически отслеживают изменения сигнала.\n"
+    "4. \"Напряж и время\" - действует как один из предыдущих режимов, в зависимости от того, на какой курсор производилось последнее воздействие."
+    ,
+    "Sets the mode tracking for second cursor:\n"                   // WARN Перевод
+    "1. \"Disable\" - all cursors are set manually.\n"
+    "2. \"Voltage\" - when manually changing the position of the cursor time cursors voltage automatically track changes in the signal.\n"
+    "3. \"Time\" - when manually changing the position of the cursor voltage cursors time automatically track changes in the signal.\n"
+    "4. \"Volt and time\" - acts as one of the previous modes, depending on which was carried out last effect cursors."
+    ,
+    DISABLE_RU, DISABLE_EN,
+    "Напряжение", "Voltage",
+    "Время", "Time",
+    "Напряж и время", "Volt and time",
+    CURS_LOOKMODE_0, nullptr, nullptr, nullptr
+)
+
 DEF_PAGE_5(pCursors, PageMain::self, NamePage::Cursors,
     "КУРСОРЫ", "CURSORS",
     "Курсорные измерения.",
@@ -165,31 +184,8 @@ DEF_PAGE_5(pCursors, PageMain::self, NamePage::Cursors,
 const Page *PageCursors::self = &pCursors;
 
 
-DEF_CHOICE_4(mcTrackingT1U1, pCursors,
-    "Слежение \x8e, \x9e",  "Tracking \x8e, \x9e"
-    ,
-    "Задаёт режим слежения за первым курсором времени и напряжения:\n"
-    "1. \"Откл\" - курсор времени и курсор напряжения устанавливаются вручную.\n"
-    "2. \"Напряжение\" - при ручном изменении положения курсора времени курсор напряжения автоматически отслеживают изменения сигнала.\n"
-    "3. \"Время\" - при ручном изменении положения курсора напряжения курсор времени автоматически отслеживают изменения сигнала.\n"
-    "4. \"Напряж и время\" - действует как один из предыдущих режимов, в зависимости от того, на какой курсор производилось последнее воздействие."
-    ,
-    "Sets the mode tracking for second cursor:\n"                   // WARN Перевод
-    "1. \"Disable\" - all cursors are set manually.\n"
-    "2. \"Voltage\" - when manually changing the position of the cursor time cursors voltage automatically track changes in the signal.\n"
-    "3. \"Time\" - when manually changing the position of the cursor voltage cursors time automatically track changes in the signal.\n"
-    "4. \"Volt and time\" - acts as one of the previous modes, depending on which was carried out last effect cursors."
-    ,
-    DISABLE_RU,       DISABLE_EN,
-    "Напряжение",     "Voltage",
-    "Время",          "Time",
-    "Напряж и время", "Volt and time",
-    CURS_LOOKMODE_0, nullptr, nullptr, nullptr
-)
-
-
 // КУРСОРЫ - Курсоры T2,U2 ---------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_4(mcTrackingT2U2, pCursors,
+DEF_CHOICE_4(mcTrackingT2U2, &pCursors,
     "Слежение \x8f, \x9f", "Tracking \x8f, \x9f"
     ,
     "Задаёт режим слежения за вторым курсором времени и напряжения:\n"

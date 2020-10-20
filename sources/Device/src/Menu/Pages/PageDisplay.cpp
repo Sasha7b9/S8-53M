@@ -80,6 +80,9 @@ DEF_PAGE_9(pDisplay, PageMain::self, NamePage::Display,
 )
 
 
+const Page *PageDisplay::self = &pDisplay;
+
+
 // ДИСПЛЕЙ - Отображение -----------------------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_2(mcMapping, &pDisplay,
     "Отображение", "View",
@@ -309,7 +312,7 @@ DEF_PAGE_2(mspGrid, pDisplay, NamePage::DisplayGrid,
 
 
 // ДИСПЛЕЙ - СЕТКА - Тип -----------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_4(mcGrid_Type, mspGrid,
+DEF_CHOICE_4(mcGrid_Type, &mspGrid,
     "Тип", "Type",
     "Выбор типа сетки.",
     "Choice like Grid.",

@@ -7,7 +7,7 @@
 #include "Hardware/Hardware.h"
 #include "LAN/LAN.h"
 #include "Menu/Menu.h"
-#include "Menu/Pages/PageCursors.h"
+#include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
 #include "VCP/VCP.h"
 #include "Utils/ProcessingSignal.h"

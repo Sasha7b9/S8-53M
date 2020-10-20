@@ -1,6 +1,5 @@
 #include "defines.h"
 #include "Menu/Pages/PageMemory.h"
-#include "Menu/Pages/PageCursors.h"
 #include "PageHelp.h"
 #include "FPGA/FPGA.h"
 #include "common/Display/Colors_c.h"
@@ -99,10 +98,7 @@ void DrawSB_Exit(int x, int y)
 
 #include "PageHelp.cpp"
 
-extern const Page pDisplay;
 extern const Page pMeasures;
-extern const Page pDebug;
-extern const Page pService;
 extern const Page pTime;
 extern const Page pTrig;
 
@@ -112,17 +108,17 @@ DEF_PAGE_11(mainPage, Page::empty, NamePage::MainPage,
     "лемч", "MENU",
     "",
     "",
-    pDisplay,
+    *PageDisplay::self,
     *PageChannelA::self,
     *PageChannelB::self,
     pTrig,
     pTime,
-    PageCursors::self,
-    PageMemory::self,
+    *PageCursors::self,
+    *PageMemory::self,
     pMeasures,
-    pService,
+    *PageService::self,
     mpHelp,
-    pDebug,
+    *PageDebug::self,
     nullptr, nullptr, nullptr, nullptr
 )
 
@@ -143,11 +139,11 @@ const Page *PageForButton(Key::E button)
         (void *)&pTrig,             // Key::Trig
         (void *)PageCursors::self,  // Key::Cursors
         (void *)&pMeasures,         // Key::Measures
-        (void *)&pDisplay,          // Key::Display
+        (void *)PageDisplay::self,  // Key::Display
         0,                          // Key::Help
         0,                          // Key::Start
         PageMemory::GetPointer(),   // Key::Memory
-        (void *)&pService,          // Key::Service
+        (void *)PageService::self,  // Key::Service
         0,                          // Key::Menu
         0                           // B_Power
     };

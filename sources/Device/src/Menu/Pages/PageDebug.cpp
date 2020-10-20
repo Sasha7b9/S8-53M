@@ -10,7 +10,6 @@
 #include "Hardware/Sound.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
-#include "Menu/Pages/PageDebug.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
 #include <cstdio>
@@ -124,6 +123,10 @@ DEF_PAGE_7(pDebug, PageMain::self, NamePage::Debug,
     bEraseData,         // ОТЛАДКА - Стереть данные
     nullptr, nullptr, nullptr, nullptr
 );
+
+
+const Page *PageDebug::self = &pDebug;
+
 
 // ОТЛАДКА - Статистика ------------------------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_2(mcStats, &pDebug,

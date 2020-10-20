@@ -44,3 +44,77 @@ public:
     static void OnChanged_Couple(bool);
     static void OnChanged_Filtr(bool);
 };
+
+
+void  Cursors_Update();    // Вызываем эту функцию для каждого измерения, чтобы обновить положие курсоров, если они должны обновляться автоматически.
+
+
+class PageCursors
+{
+public:
+
+    class PageSet
+    {
+    public:
+        static void *pointer;
+    };
+
+    static const Page *self;
+};
+
+
+class PageDebug
+{
+public:
+    class SerialNumber
+    {
+    public:
+        static const Page *self;
+    };
+
+    static const Page *self;
+};
+
+
+class PageDisplay
+{
+public:
+    static const Page *self;
+};
+
+
+class PageService
+{
+public:
+
+    static const Page *self;
+
+    class Math
+    {
+    public:
+
+        class Function
+        {
+        public:
+            static void *GetPointer();
+        };
+
+        class FFT
+        {
+        public:
+
+            class Cursors
+            {
+            public:
+                static void *GetPointer();
+            };
+        };
+    };
+
+    class Information
+    {
+    public:
+
+        static const Page *self;
+    };
+};

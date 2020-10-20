@@ -1736,11 +1736,6 @@
               <FilePath>.\src\Menu\Pages\Definition.h</FilePath>
             </File>
             <File>
-              <FileName>PageCursors.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Menu\Pages\PageCursors.h</FilePath>
-            </File>
-            <File>
               <FileName>PageHelp.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Menu\Pages\PageHelp.h</FilePath>
@@ -1794,11 +1789,6 @@
               <FileName>PageChannels.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\PageChannels.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>PageDebug.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Menu\Pages\PageDebug.h</FilePath>
             </File>
             <File>
               <FileName>PageDisplay.cpp</FileName>
@@ -1865,11 +1855,6 @@
               <FileName>PageMeasures.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\PageMeasures.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>PageService.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Menu\Pages\PageService.h</FilePath>
             </File>
             <File>
               <FileName>PageService.cpp</FileName>
@@ -3996,11 +3981,6 @@
               <FilePath>.\src\Menu\Pages\Definition.h</FilePath>
             </File>
             <File>
-              <FileName>PageCursors.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Menu\Pages\PageCursors.h</FilePath>
-            </File>
-            <File>
               <FileName>PageHelp.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Menu\Pages\PageHelp.h</FilePath>
@@ -4054,11 +4034,6 @@
               <FileName>PageChannels.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\PageChannels.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>PageDebug.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Menu\Pages\PageDebug.h</FilePath>
             </File>
             <File>
               <FileName>PageDisplay.cpp</FileName>
@@ -4125,11 +4100,6 @@
               <FileName>PageMeasures.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\PageMeasures.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>PageService.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Menu\Pages\PageService.h</FilePath>
             </File>
             <File>
               <FileName>PageService.cpp</FileName>
