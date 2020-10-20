@@ -137,14 +137,16 @@ struct PageService
 {
     static const Page *self;
 
-    struct Math
+    struct PageMath
     {
-        struct Function
+        static const Page *self;
+
+        struct PageFunction
         {
             static const Page *self;
         };
 
-        struct FFT
+        struct PageFFT
         {
             struct Cursors
             {
@@ -153,10 +155,13 @@ struct PageService
         };
     };
 
-    class Information
+    struct PageInformation
     {
-    public:
+        static const Page *self;
+    };
 
+    struct PageCalibrator
+    {
         static const Page *self;
     };
 };

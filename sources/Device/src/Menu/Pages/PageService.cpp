@@ -18,15 +18,6 @@
 using namespace Primitives;
 
 
-extern const Button       bAutoSearch;                  // ÑÅÐÂÈÑ - Ïîèñê ñèãíàëà
-static void        OnPress_AutoSearch();
-extern const Page        ppCalibrator;                  // ÑÅÐÂÈÑ - ÊÀËÈÁÐÀÒÎÐ
-extern const Choice       cCalibrator_Mode;             // ÑÅÐÂÈÑ - ÊÀËÈÁÐÀÒÎÐ - Êàëèáðàòîð
-static void      OnChanged_Calibrator_Mode(bool active);
-extern const Button       cCalibrator_Calibrate;        // ÑÅÐÂÈÑ - ÊÀËÈÁÐÀÒÎÐ - Êàëèáðîâàòü
-static void        OnPress_Calibrator_Calibrate();
-extern const Page        ppMath;                        // ÑÅÐÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ
-extern const Page       pppMath_Function;               // ÑÅÐÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÔÓÍÊÖÈß
 static bool       IsActive_Math_Function();
 static void        OnPress_Math_Function();
 static void       OnRegSet_Math_Function(int delta);
@@ -126,6 +117,76 @@ DEF_BUTTON(bResetSettings, PageService::self,
     nullptr, OnPress_ResetSettings
 )
 
+static void OnPress_AutoSearch(void)
+{
+    FPGA::StartAutoFind();
+};
+
+DEF_BUTTON(bAutoSearch, PageService::self,
+    "Ïîèñê ñèãíàëà", "Find signal",
+    "Óñòàíàâëèâàåò îïòèìàëüíûå óñòàíîâêè îñöèëëîãðàôà äëÿ ñèãíàëà â êàíàëå 1",
+    "Sets optimal settings for the oscilloscope signal on channel 1",
+    nullptr, OnPress_AutoSearch
+)
+
+static void OnChanged_Calibrator_Mode(bool)
+{
+    FPGA::SetCalibratorMode(CALIBRATOR);
+}
+
+DEF_CHOICE_3(cCalibrator_Mode, PageService::PageCalibrator::self,
+    "Êàëèáðàòîð", "Calibrator",
+    "Ðåæèì ðàáîòû êàëèáðàòîðà",
+    "Mode of operation of the calibrator",
+    "Ïåðåì", "DC",
+    "Ïîñò", "AC",
+    "0Â", "OV",
+    CALIBRATOR, nullptr, OnChanged_Calibrator_Mode, nullptr
+)
+
+static void OnPress_Calibrator_Calibrate(void)
+{
+    gStateFPGA.needCalibration = true;
+}
+
+DEF_BUTTON(cCalibrator_Calibrate, PageService::PageCalibrator::self,
+    "Êàëèáðîâàòü", "Calibrate",
+    "Çàïóñê ïðîöåäóðû êàëèáðîâêè",
+    "Running the calibration procedure",
+    nullptr, OnPress_Calibrator_Calibrate
+)
+
+DEF_PAGE_2(ppCalibrator, PageService::self, NamePage::ServiceCalibrator,
+    "ÊÀËÈÁÐÀÒÎÐ", "CALIBRATOR",
+    "Óïðàâëåíèåì êàëèáðàòîðîì è êàëèáðîâêà îñöèëëîãðàôà",
+    "Item of the calibrator and calibration of an oscillograph",
+    cCalibrator_Mode,       // ÑÅÐÂÈÑ - ÊÀËÈÁÐÀÒÎÐ - Êàëèáðàòîð
+    cCalibrator_Calibrate,  // ÑÅÐÂÈÑ - ÊÀËÈÁÐÀÒÎÐ - Êàëèáðîâàòü
+    nullptr, nullptr, nullptr, nullptr
+)
+
+DEF_PAGE_6(pppMath_Function, PageService::PageMath::self, NamePage::SB_MathFunction,
+    "ÔÓÍÊÖÈß", "FUNCTION",
+    "Óñòàíîâêà è âûáîð ìàòåìàòè÷åñêîé ôóíêöèè - ñëîæåíèÿ èëè óìíîæåíèÿ",
+    "Installation and selection of mathematical functions - addition or multiplication",
+    sbMath_Function_Exit,       // ÑÅÐÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÔÓÍÊÖÈß - Âûõîä
+    sbMath_Function_ModeDraw,   // ÑÅÐÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÔÓÍÊÖÈß - Ýêðàí
+    sbMath_Function_Type,       // ÑÅÐÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÔÓÍÊÖÈß - Âèä
+    sbMath_Function_ModeRegSet, // ÑÅÐÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÔÓÍÊÖÈß - Ðåæèì ðó÷êè ÓÑÒÀÍÎÂÊÀ
+    sbMath_Function_RangeA,     // ÑÅÐÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÔÓÍÊÖÈß - Ìàñøòàá 1-ãî êàíàëà
+    sbMath_Function_RangeB,     // ÑÅÐÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÔÓÍÊÖÈß - Ìàñøòàá 2-ãî êàíàëà    
+    IsActive_Math_Function, OnPress_Math_Function, nullptr, OnRegSet_Math_Function
+);
+
+DEF_PAGE_2(ppMath, PageService::self, NamePage::Math,
+    "ÌÀÒÅÌÀÒÈÊÀ", "MATH",
+    "Ìàòåìàòè÷åñêèå ôóíêöèè è ÁÏÔ",
+    "Mathematical functions and FFT",
+    pppMath_Function,     // ÑÅÐÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÔÓÍÊÖÈß
+    pppMath_FFT,          // ÑÅÐÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÑÏÅÊÒÐ
+    nullptr, nullptr, nullptr, nullptr
+)
+
 DEF_PAGE_10(pService, PageMain::self, NamePage::Service,
     "ÑÅÐÂÈÑ", "SERVICE",
     "Äîïîëíèòåëüíûå íàñòðîéêè, êàëèáðîâêà, ïîèñê ñèãíàëà, ìàòåìàòè÷åñêèå ôóíêöèè",
@@ -142,80 +203,6 @@ DEF_PAGE_10(pService, PageMain::self, NamePage::Service,
     ppInformation,              // ÑÅÐÂÈÑ - ÈÍÔÎÐÌÀÖÈß
     nullptr, nullptr, nullptr, nullptr
 );
-
-const Page *PageService::self = &pService;
-
-DEF_BUTTON(bAutoSearch, PageService::self,
-    "Ïîèñê ñèãíàëà", "Find signal",
-    "Óñòàíàâëèâàåò îïòèìàëüíûå óñòàíîâêè îñöèëëîãðàôà äëÿ ñèãíàëà â êàíàëå 1",
-    "Sets optimal settings for the oscilloscope signal on channel 1",
-    nullptr, OnPress_AutoSearch
-)
-
-static void OnPress_AutoSearch(void)
-{
-    FPGA::StartAutoFind();
-};
-
-DEF_PAGE_2(ppCalibrator, PageService::self, NamePage::ServiceCalibrator,
-    "ÊÀËÈÁÐÀÒÎÐ", "CALIBRATOR",
-    "Óïðàâëåíèåì êàëèáðàòîðîì è êàëèáðîâêà îñöèëëîãðàôà",
-    "Item of the calibrator and calibration of an oscillograph",
-    cCalibrator_Mode,       // ÑÅÐÂÈÑ - ÊÀËÈÁÐÀÒÎÐ - Êàëèáðàòîð
-    cCalibrator_Calibrate,  // ÑÅÐÂÈÑ - ÊÀËÈÁÐÀÒÎÐ - Êàëèáðîâàòü
-    nullptr, nullptr, nullptr, nullptr
-)
-
-DEF_CHOICE_3(cCalibrator_Mode, &ppCalibrator,
-    "Êàëèáðàòîð",  "Calibrator",
-    "Ðåæèì ðàáîòû êàëèáðàòîðà",
-    "Mode of operation of the calibrator",
-    "Ïåðåì", "DC",
-    "Ïîñò",  "AC",
-    "0Â",    "OV",
-    CALIBRATOR, nullptr, OnChanged_Calibrator_Mode, nullptr
-)
-
-static void OnChanged_Calibrator_Mode(bool)
-{
-    FPGA::SetCalibratorMode(CALIBRATOR);
-}
-
-DEF_BUTTON(cCalibrator_Calibrate, &ppCalibrator,
-    "Êàëèáðîâàòü", "Calibrate",
-    "Çàïóñê ïðîöåäóðû êàëèáðîâêè",
-    "Running the calibration procedure",
-    nullptr, OnPress_Calibrator_Calibrate
-)
-
-static void OnPress_Calibrator_Calibrate(void)
-{
-    gStateFPGA.needCalibration = true;
-}
-
-DEF_PAGE_2(ppMath, PageService::self, NamePage::Math,
-    "ÌÀÒÅÌÀÒÈÊÀ", "MATH",
-    "Ìàòåìàòè÷åñêèå ôóíêöèè è ÁÏÔ",
-    "Mathematical functions and FFT",
-    pppMath_Function,     // ÑÅÐÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÔÓÍÊÖÈß
-    pppMath_FFT,          // ÑÅÐÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÑÏÅÊÒÐ
-    nullptr, nullptr, nullptr, nullptr
-)
-
-DEF_PAGE_6(pppMath_Function, &ppMath, NamePage::SB_MathFunction, 
-    "ÔÓÍÊÖÈß", "FUNCTION",
-    "Óñòàíîâêà è âûáîð ìàòåìàòè÷åñêîé ôóíêöèè - ñëîæåíèÿ èëè óìíîæåíèÿ",
-    "Installation and selection of mathematical functions - addition or multiplication",
-    sbMath_Function_Exit,       // ÑÅÐÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÔÓÍÊÖÈß - Âûõîä
-    sbMath_Function_ModeDraw,   // ÑÅÐÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÔÓÍÊÖÈß - Ýêðàí
-    sbMath_Function_Type,       // ÑÅÐÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÔÓÍÊÖÈß - Âèä
-    sbMath_Function_ModeRegSet, // ÑÅÐÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÔÓÍÊÖÈß - Ðåæèì ðó÷êè ÓÑÒÀÍÎÂÊÀ
-    sbMath_Function_RangeA,     // ÑÅÐÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÔÓÍÊÖÈß - Ìàñøòàá 1-ãî êàíàëà
-    sbMath_Function_RangeB,     // ÑÅÐÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÔÓÍÊÖÈß - Ìàñøòàá 2-ãî êàíàëà    
-    IsActive_Math_Function, OnPress_Math_Function, nullptr, OnRegSet_Math_Function
-);
-
-const Page *PageService::Math::Function::self = &pppMath_Function;
 
 static bool IsActive_Math_Function(void)
 {
@@ -547,8 +534,6 @@ DEF_PAGE_6(ppppMath_FFT_Cursors, &pppMath_FFT, NamePage::SB_MathCursorsFFT,
     IsActive_Math_FFT_Cursors, nullptr, nullptr, OnRegSet_Math_FFT_Cursors
 )
 
-const Page *PageService::Math::FFT::Cursors::self = &ppppMath_FFT_Cursors;
-
 static bool IsActive_Math_FFT_Cursors(void)
 {
     return ENABLED_FFT;
@@ -731,11 +716,9 @@ DEF_PAGE_6(ppInformation, &pService, NamePage::SB_Information,
     nullptr, OnPress_Information, nullptr, nullptr
 )
 
-const Page *PageService::Information::self = &ppInformation;
-
 static void OnPress_Information(void)
 {
-    PageService::Information::self->OpenAndSetItCurrent();
+    PageService::PageInformation::self->OpenAndSetItCurrent();
     Display::SetDrawMode(DrawMode::Hand, Information_Draw);
 }
 
@@ -789,3 +772,10 @@ static void OnPress_Information_Exit(void)
     Display::SetDrawMode(DrawMode::Auto, 0);
     Display::RemoveAddDrawFunction();
 }
+
+const Page *PageService::self = &pService;
+const Page *PageService::PageMath::self = &ppMath;
+const Page *PageService::PageMath::PageFunction::self = &pppMath_Function;
+const Page *PageService::PageMath::PageFFT::Cursors::self = &ppppMath_FFT_Cursors;
+const Page *PageService::PageCalibrator::self = &ppCalibrator;
+const Page *PageService::PageInformation::self = &ppInformation;
