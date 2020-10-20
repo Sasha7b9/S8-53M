@@ -50,7 +50,10 @@ public:
 
     static Item *itemUnderButton[Key::Count];
     // Возвращает позицию активного пункта на странице namePage.
-    static int PosActItem(NamePage::E namePage);
+    static int GetPosActItem(NamePage::E namePage);
+    // Установить позицию активного пункта на странице namePage.
+    static void SetPosActItem(NamePage::E namePage, int8 pos);
+
 
 private:
     // Обработка короткого нажатия кнопки.

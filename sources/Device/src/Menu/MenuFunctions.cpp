@@ -10,7 +10,7 @@ extern const Page mainPage;
 
 bool Menu::CurrentItemIsOpened(NamePage::E namePage)
 {
-    bool retValue = _GET_BIT(Menu::PosActItem(namePage), 7) == 1;
+    bool retValue = _GET_BIT(Menu::GetPosActItem(namePage), 7) == 1;
     return retValue;
 }
 
@@ -63,7 +63,7 @@ void Menu::CloseOpenedItem()
         if(NEED_CLOSE_PAGE_SB == 1)
         {
             NamePage::E namePage = item->Keeper()->OwnData()->name;
-            SetMenuPosActItem(namePage, PosActItem(namePage) & 0x7f);   // Сбрасываем бит 7 - "закрываем" активный пункт страницы namePage
+            SetPosActItem(namePage, GetPosActItem(namePage) & 0x7f);   // Сбрасываем бит 7 - "закрываем" активный пункт страницы namePage
         }
         NEED_CLOSE_PAGE_SB = 1;
         if(item == &mainPage)

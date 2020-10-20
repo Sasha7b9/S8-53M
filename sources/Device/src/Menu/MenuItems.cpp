@@ -308,7 +308,7 @@ bool Item::IsShade() const
 
 int8 Page::PosCurrentItem() const
 {
-    return Menu::PosActItem(OwnData()->name) & 0x7f;
+    return Menu::GetPosActItem(OwnData()->name) & 0x7f;
 }
 
 
@@ -322,7 +322,7 @@ Page *Item::Keeper() const
 void Item::Open(bool open) const
 {
     Page *page = Keeper();
-    SetMenuPosActItem(page->GetName(), open ? (page->PosCurrentItem() | 0x80) : (page->PosCurrentItem() & 0x7f));
+    Menu::SetPosActItem(page->GetName(), open ? (page->PosCurrentItem() | 0x80) : (page->PosCurrentItem() & 0x7f));
 }
 
 
@@ -331,7 +331,7 @@ void Item::SetCurrent(bool active) const
     Page* page = Keeper();
     if (!active)
     {
-        SetMenuPosActItem(page->OwnData()->name, 0x7f);
+        Menu::SetPosActItem(page->OwnData()->name, 0x7f);
     }
     else
     {
@@ -339,7 +339,7 @@ void Item::SetCurrent(bool active) const
         {
             if (page->GetItem(i) == this)
             {
-                SetMenuPosActItem(page->OwnData()->name, i);
+                Menu::SetPosActItem(page->OwnData()->name, i);
                 return;
             }
         }
@@ -355,7 +355,7 @@ bool Item::IsOpened() const
     {
         return Menu::CurrentItemIsOpened(page->GetName());
     }
-    return (Menu::PosActItem(page->OwnData()->name) & 0x80) != 0;
+    return (Menu::GetPosActItem(page->OwnData()->name) & 0x80) != 0;
 }
 
 

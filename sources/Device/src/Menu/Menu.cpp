@@ -664,7 +664,13 @@ void Menu::OpenFileManager()
 }
 
 
-int Menu::PosActItem(NamePage::E namePage)
+int Menu::GetPosActItem(NamePage::E namePage)
 {
     return set.menu.posActItem[namePage];
+}
+
+
+void Menu::SetPosActItem(NamePage::E namePage, int8 pos)
+{
+    set.menu.posActItem[namePage] = pos;
 }
