@@ -60,8 +60,6 @@ public:
     // Закрыть открытый элемент меню.
     static void CloseOpenedItem();
 
-    static bool ItemIsOpened(const Item *item);                       // Возвращает true, если элемент меню по адрему item открыт.
-
     static void ChangeSubPage(const Page *page, int delta);
 
     static void ShortPressOnPageItem(Page *page, int numItem);   // Вызывает функцию короткого нажатия кнопки над итемом numItem страницы page;

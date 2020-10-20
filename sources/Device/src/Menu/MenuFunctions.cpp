@@ -146,18 +146,6 @@ void Menu::CloseOpenedItem()
 }
 
 
-bool Menu::ItemIsOpened(const Item *item)
-{
-    TypeItem::E type = item->Type();
-    Page *page = item->Keeper();
-    if(type == TypeItem::Page)
-    {
-        return CurrentItemIsOpened(item->Keeper()->GetName());
-    }
-    return (MenuPosActItem(page->OwnData()->name) & 0x80) != 0;
-}
-
-
 NamePage::E Menu::GetNameOpenedPage()
 {
     return ((const Page *)OpenedItem())->GetName();
@@ -167,7 +155,7 @@ NamePage::E Menu::GetNameOpenedPage()
 void Menu::OpenPageAndSetItCurrent(Item *page)
 {
     page->SetCurrent(true);
-    ((Page *)page)->Open(!ItemIsOpened((Page *)page));
+    ((Page *)page)->Open(!((Page *)page)->IsOpened());
 }
 
 

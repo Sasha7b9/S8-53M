@@ -344,3 +344,15 @@ void Item::SetCurrent(bool active) const
         }
     }
 }
+
+
+bool Item::IsOpened() const
+{
+    TypeItem::E type = Type();
+    Page* page = Keeper();
+    if (type == TypeItem::Page)
+    {
+        return Menu::CurrentItemIsOpened(page->GetName());
+    }
+    return (MenuPosActItem(page->OwnData()->name) & 0x80) != 0;
+}

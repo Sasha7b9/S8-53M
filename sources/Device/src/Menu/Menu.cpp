@@ -532,7 +532,7 @@ void Menu::ShortPress_Page(Item *item)
         return;
     }
     page->SetCurrent(true);
-    ((Page*)page)->Open(!ItemIsOpened((Page*)page));
+    ((Page*)page)->Open(!((Page*)page)->IsOpened());
 }
 
 
@@ -542,7 +542,7 @@ void Menu::ShortPress_Choice(Item *choice)
     {
         ((Choice *)choice)->FuncOnChanged(false);
     }
-    else if (!ItemIsOpened(choice))
+    else if (!choice->IsOpened())
     {
         choice->SetCurrent(CurrentItem() != choice);
         ((Choice *)choice)->StartChange(1);
@@ -590,7 +590,7 @@ void Menu::FuncOnLongPressItem(Item *item) //-V2009 //-V2558
     {
         item->SetCurrent(true);
     }
-    item->Open(!ItemIsOpened(item));
+    item->Open(!item->IsOpened());
 }
 
 
@@ -600,18 +600,18 @@ void Menu::FuncOnLongPressItemTime(Item *time)
     {
         time->SetCurrent(true);
     }
-    if(ItemIsOpened(time) && *((TimeItem *)time)->OwnData()->curField == iSET)
+    if(time->IsOpened() && *((TimeItem *)time)->OwnData()->curField == iSET)
     {
         ((TimeItem *)time)->SetNewTime();
     }
-    time->Open(!ItemIsOpened(time));
+    time->Open(!time->IsOpened());
     ((TimeItem *)time)->SetOpened();
 }
 
 
 void Menu::ShortPress_Time(Item *time)
 {
-    if(!ItemIsOpened(time))
+    if(!time->IsOpened())
     {
         time->SetCurrent(true);
         ((TimeItem *)time)->SetOpened();

@@ -122,6 +122,8 @@ public:
     void Open(bool open) const;
     // Сделать/разделать текущим пункт страницы.
     void SetCurrent(bool active) const;
+    // Возвращает true, если элемент меню по адрему item открыт.
+    bool IsOpened() const;
 
     static DataItem emptyData;
 
