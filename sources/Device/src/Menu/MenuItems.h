@@ -3,6 +3,9 @@
 #include "common/Display/Colors_c.h"
 #include "Menu/MenuItemsDefs.h"
 
+
+class SmallButton;
+
                                             
 #define MAX_NUM_SUBITEMS_IN_CHOICE  12  // Максимальное количество вариантов выбора в элементе Choice.
 #define MAX_NUM_ITEMS_IN_PAGE       15  // Максимальное количество пунктов на странице.
@@ -198,7 +201,9 @@ public:
     void ShortPressOnItem(int numItem) const;
 
     void OpenAndSetItCurrent() const;
-
+    
+    SmallButton *SmallButonFrom(int numButton) const;
+    
     static Page empty;
 
 private:

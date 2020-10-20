@@ -46,8 +46,6 @@ public:
     // Закрыть открытый элемент меню.
     static void CloseOpenedItem();
 
-    static SmallButton *SmallButonFromPage(const Page *page, int numButton);
-
     static void ChangeStateFlashDrive();
 
     // Здесь хранится адрес элемента меню, соответствующего функциональной клавише [1..5], если она находится в нижнем положении, и 0, если ни одна кнопка не нажата.

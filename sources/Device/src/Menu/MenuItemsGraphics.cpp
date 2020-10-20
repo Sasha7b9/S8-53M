@@ -804,7 +804,7 @@ void Page::DrawTitle(int layer, int yTop)
     int x = CalculateX(layer);
     if (IsSB())
     {
-        Menu::SmallButonFromPage(this, 0)->Draw(LEFT_SB, yTop + 3);
+        SmallButonFrom(0)->Draw(LEFT_SB, yTop + 3);
         return;
     }
     int height = HeightOpened();

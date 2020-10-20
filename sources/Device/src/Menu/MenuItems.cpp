@@ -653,3 +653,11 @@ const char *Item::Title() const
 {
     return TITLE((Page *)this);
 }
+
+
+SmallButton *Page::SmallButonFrom(int numButton) const
+{
+    const DataPage *own = OwnData();
+
+    return (SmallButton *)(own->items)[numButton];
+}
