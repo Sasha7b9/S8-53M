@@ -163,11 +163,7 @@ static void PressSB_MemLast_SaveToFlash()
 static void PressSB_SetName_Exit()
 {
     Display::RemoveAddDrawFunction();
-    if (EXIT_FROM_SET_NAME_TO_DIS_MENU)
-    {
-        Menu::ShortPressOnPageItem(Menu::PagePointerFromName(NamePage::SB_MemExtSetName), 0);
-    }
-    else if (EXIT_FROM_SET_NAME_TO_LAST)
+    if (EXIT_FROM_SET_NAME_TO_LAST)
     {
         Menu::OpenPageAndSetItCurrent(PageMemory::Latest::GetPointer());
     }
@@ -749,7 +745,6 @@ void PressSB_MemInt_Exit()
     else
     {
         MODE_WORK = ModeWork::Direct;
-        Menu::ShortPressOnPageItem(Menu::PagePointerFromName(NamePage::SB_MemInt), 0);
     }
 }
 

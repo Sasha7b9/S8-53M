@@ -162,7 +162,7 @@ class Page : public Item
 public:
     Page(const DataItem *const data) : Item(data) {};
     const DataPage *OwnData() const { return static_cast<const DataPage *>(data->ad); }
-    void Draw(int x, int y, bool opened = false);
+    virtual void Draw(int x, int y, bool opened = false);
     NamePage::E GetName() const;
     // Возвращает количество элементов в странице по адресу page.
     int NumItems() const;

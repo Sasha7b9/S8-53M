@@ -221,12 +221,6 @@ void Menu::ShortPressOnPageItem(Page *page, int numItem)
 }
 
 
-Page* Menu::PagePointerFromName(NamePage::E)
-{
-    return 0;
-}
-
-
 SmallButton* Menu::SmallButonFromPage(Page *page, int numButton)
 {
     const DataPage *own = page->OwnData();

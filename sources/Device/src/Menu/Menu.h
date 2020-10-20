@@ -62,8 +62,6 @@ public:
 
     static void ShortPressOnPageItem(Page *page, int numItem);   // Вызывает функцию короткого нажатия кнопки над итемом numItem страницы page;
 
-    static Page *PagePointerFromName(NamePage::E namePage);
-
     static SmallButton *SmallButonFromPage(Page *page, int numButton);
 
     static void ChangeStateFlashDrive();
