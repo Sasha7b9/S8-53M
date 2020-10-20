@@ -390,18 +390,32 @@ void Page::ShortPress()
 
 void Choice::ShortPress()
 {
-    if (!IsActive())
+    if (Type() == TypeItem::Choice)
     {
-        FuncOnChanged(false);
-    }
-    else if (!IsOpened())
-    {
-        SetCurrent(Menu::CurrentItem() != this);
-        StartChange(1);
+        if (!IsActive())
+        {
+            FuncOnChanged(false);
+        }
+        else if (!IsOpened())
+        {
+            SetCurrent(Menu::CurrentItem() != this);
+            StartChange(1);
+        }
+        else
+        {
+            ChangeValue(-1);
+        }
     }
     else
     {
-        ChangeValue(-1);
+        if (!IsActive())
+        {
+            FuncOnChanged(false);
+        }
+        else if (Menu::OpenedItem() != this)
+        {
+            SetCurrent(Menu::CurrentItem() != this);
+        }
     }
 }
 
@@ -463,5 +477,16 @@ void MACaddress::ShortPress()
     if (Menu::OpenedItem() == this)
     {
         CircleIncreaseInt8(&gCurDigit, 0, 5);
+    }
+}
+
+
+void SmallButton::ShortPress()
+{
+    pFuncVV func = OwnData()->funcOnPress;
+    if (func)
+    {
+        func();
+        Menu::itemUnderKey = this;
     }
 }

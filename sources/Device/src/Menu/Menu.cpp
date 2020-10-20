@@ -26,9 +26,8 @@ static Key::E releaseButton = Key::None;
 static int angleRegSet = 0;
 
 static const int stepAngleRegSet = 2;
-// Здесь хранится адрес элемента меню, соответствующего функциональной клавише [1..5], если она находится в нижнем положении, и 0, если ни одна 
-// кнопка не нажата.
-static void* itemUnderKey = 0;
+
+Item *Menu::itemUnderKey = nullptr;
 
 #define SIZE_BUFFER_FOR_BUTTONS 5
 static Key::E bufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {Key::None, Key::None, Key::None, Key::None, Key::None};
@@ -517,19 +516,6 @@ void Menu::ProcessingReleaseButton(void)
 }
 
 
-void Menu::ShortPress_ChoiceReg(Item *choice)
-{
-    if(!choice->IsActive()) 
-    {
-        ((Choice *)choice)->FuncOnChanged(false);
-    } 
-    else if(OpenedItem() != choice) 
-    {
-        choice->SetCurrent(CurrentItem() != choice);
-    }
-}
-
-
 void Menu::FuncOnLongPressItemButton(Item *button)
 {
     ((Button *)button)->ShortPress();
@@ -561,21 +547,6 @@ void Menu::FuncOnLongPressItemTime(Item *time)
 }
 
 
-void Menu::ShortPress_SmallButton(Item *smallButton)
-{
-    SmallButton *sb = (SmallButton *)smallButton;
-    if (sb)
-    {
-        pFuncVV func = sb->OwnData()->funcOnPress;
-        if (func)
-        {
-            func();
-            itemUnderKey = smallButton;
-        }
-    }
-}
-
-
 void Menu::ExecuteFuncForShortPressOnItem(Item *item)
 {
     typedef void(*pFuncMenuVpItem)(Item*);
@@ -583,7 +554,7 @@ void Menu::ExecuteFuncForShortPressOnItem(Item *item)
     TypeItem::E type = item->Type();
 
     if (type == TypeItem::Page || type == TypeItem::Choice || type == TypeItem::Button || type == TypeItem::Governor || type == TypeItem::Time ||
-        type == TypeItem::IP || type == TypeItem::GovernorColor || type == TypeItem::MAC)
+        type == TypeItem::IP || type == TypeItem::GovernorColor || type == TypeItem::MAC || type == TypeItem::ChoiceReg || type == TypeItem::SmallButton)
     {
         item->ShortPress();
         return;
@@ -602,8 +573,8 @@ void Menu::ExecuteFuncForShortPressOnItem(Item *item)
         nullptr,                            // TypeItem::GovernorColor
         nullptr,                            // Item_Formula
         nullptr,                            // TypeItem::MAC
-        &Menu::ShortPress_ChoiceReg,        // TypeItem::ChoiceReg
-        &Menu::ShortPress_SmallButton       // TypeItem::SmallButton
+        nullptr,                            // TypeItem::ChoiceReg
+        nullptr       // TypeItem::SmallButton
     };
  
     pFuncMenuVpItem func = shortFunction[item->Type()];
@@ -619,21 +590,29 @@ void Menu::ExecuteFuncForLongPressureOnItem(Item *item)
 {
     typedef void(*pFuncMenuVpItem)(Item *);
 
+    TypeItem::E type = item->Type();
+
+    if (type == TypeItem::SmallButton)
+    {
+        item->ShortPress();
+        return;
+    }
+
     static const pFuncMenuVpItem longFunction[TypeItem::Count] =
     {
-        0,                                  // TypeItem::None
+        nullptr,                                  // TypeItem::None
         &Menu::FuncOnLongPressItem,         // TypeItem::Choice
         &Menu::FuncOnLongPressItemButton,   // TypeItem::Button
         &Menu::FuncOnLongPressItem,         // TypeItem::Page
         &Menu::FuncOnLongPressItem,         // TypeItem::Governor
         &Menu::FuncOnLongPressItemTime,     // TypeItem::Time
         &Menu::FuncOnLongPressItem,         // TypeItem::IP
-        0,                                  // Item_SwitchButton
+        nullptr,                                  // Item_SwitchButton
         &Menu::FuncOnLongPressItem,         // TypeItem::GovernorColor
-        0,                                  // Item_Formula
+        nullptr,                                  // Item_Formula
         &Menu::FuncOnLongPressItem,         // TypeItem::MAC
         &Menu::FuncOnLongPressItem,         // TypeItem::ChoiceReg
-        &Menu::ShortPress_SmallButton       // TypeItem::SmallButton
+        nullptr       // TypeItem::SmallButton
     };
 
     if (item->IsActive())

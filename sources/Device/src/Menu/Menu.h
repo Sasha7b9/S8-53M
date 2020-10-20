@@ -70,6 +70,10 @@ public:
     // Обработка длинного нажатия на элемент меню item.
     static void FuncOnLongPressItem(Item *item);
 
+    // Здесь хранится адрес элемента меню, соответствующего функциональной клавише [1..5], если она находится в нижнем положении, и 0, если ни одна кнопка не нажата.
+    static Item *itemUnderKey;
+
+
 private:
     // Обработка короткого нажатия кнопки.
     static void ProcessingShortPressureButton();
@@ -83,10 +87,6 @@ private:
     static void ProcessingRegulatorSet();
     // Включить/выключить светодиод ручки УСТАНОВКА, если необходимо.
     static void SwitchSetLED();
-
-    static void ShortPress_ChoiceReg(Item *choice);
-
-    static void ShortPress_SmallButton(Item *smallButton);
 
     static void FuncOnLongPressItemTime(Item *item);
     // Обработка длинного нажатия на элемент Button с адресом button.

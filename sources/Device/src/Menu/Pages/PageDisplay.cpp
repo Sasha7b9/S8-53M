@@ -110,7 +110,7 @@ static bool IsActive_Accumulation(void)
 }
 
 // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Количество -----------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_9(mcAccumulation_Number, mspAccumulation,
+DEF_CHOICE_REG_9(mcAccumulation_Number, mspAccumulation,
     "Количество", "Number"
     ,
     "Задаёт максимальное количество последних сигналов на экране. Если в настройке \"Режим\" выбрано \"Бесконечность\", экран очищается только "
@@ -191,7 +191,7 @@ static bool IsActive_Averaging(void)
 
 
 // ДИСПЛЕЙ - УСРЕДНЕНИЕ - Количество -----------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_10(mcAveraging_Number, mspAveraging,
+DEF_CHOICE_REG_10(mcAveraging_Number, mspAveraging,
     "Количество", "Number",
     "Задаёт количество последних измерений, по которым производится усреднение.",
     "Sets number of the last measurements on which averaging is made.",
@@ -226,7 +226,7 @@ DEF_CHOICE_2(mcAveraging_Mode, mspAveraging,
 
 
 // ДИСПЛЕЙ - Мин Макс --------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_8(mcMinMax, pDisplay,
+DEF_CHOICE_REG_8(mcMinMax, pDisplay,
     "Мин Макс", "Min Max",
     "Задаёт количество последних измерений, по которым строятся ограничительные линии, огибающие минимумы и максимумы измерений.",
     "Sets number of the last measurements on which the limiting lines which are bending around minima and maxima of measurements are under construction.",
@@ -262,7 +262,7 @@ static void OnChanged_MinMax(bool)
 
 
 // ДИСПЛЕЙ - Сглаживание -----------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_10(mcSmoothing, pDisplay,
+DEF_CHOICE_REG_10(mcSmoothing, pDisplay,
     "Сглаживание", "Smoothing",
     "Устанавливает количество точек для расчёта сглаженного по соседним точкам сигнала.",
     "Establishes quantity of points for calculation of the signal smoothed on the next points.",

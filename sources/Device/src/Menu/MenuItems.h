@@ -221,9 +221,11 @@ public:
 
     SmallButton(const DataItem *const data) : Item(data) {};
 
+    const DataSmallButton *OwnData() const { return static_cast<const DataSmallButton *>(data->ad); }
+
     void Draw(int x, int y) const;
 
-    const DataSmallButton *OwnData() const { return static_cast<const DataSmallButton *>(data->ad); }
+    virtual void ShortPress();
 };
 
 
