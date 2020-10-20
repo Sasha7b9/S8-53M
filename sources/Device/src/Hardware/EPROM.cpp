@@ -113,7 +113,7 @@ void EPROM::WriteAddressDataInRecord(RecordConfig *record)
 
 void EPROM::SaveSettings(bool verifyLoadede)
 {
-    if (!verifyLoadede && (SETTINGS_IS_LOADED == 0))
+    if (!verifyLoadede && !Settings::loaded)
     {
         return;
     }

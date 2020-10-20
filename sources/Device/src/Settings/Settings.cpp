@@ -9,6 +9,9 @@
 #include <cstring>
 
 
+bool Settings::loaded = false;
+
+
 static const Settings defaultSettings =
 {
     0,                              // size
@@ -268,7 +271,7 @@ void Settings::Load(bool _default)
     Menu::SetAutoHide(true);
     Display::ChangedRShiftMarkers();
 
-    SETTINGS_IS_LOADED = 1;
+    Settings::loaded = true;
 }
 
 void Settings::Save()
