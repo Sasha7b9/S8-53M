@@ -20,17 +20,9 @@ using namespace Primitives;
 
 static int16 shiftADCA;
 static int16 shiftADCB;
+static int8 size = 0;
 
 
-
-extern const Page       mpRandomizer;                       // ОТЛАДКА - РАНД-ТОР
-extern const Governor   mgRandomizer_SamplesForGates;       // ОТЛАДКА - РАНД-ТОР - Выб-к/ворота
-static void     OnChanged_Randomizer_SamplesForGates();
-extern const Governor   mgRandomizer_AltTShift0;            // ОТЛАДКА - РАНД-ТОР - tShift доп.
-static void     OnChanged_Randomizer_AltTShift0();
-extern const Governor   mgRandomizer_Average;               // ОТЛАДКА - РАНД-ТОР - Усредн.
-extern const Choice     mcSizeSettings;                     // ОТЛАДКА - Размер настроек
-static void        OnDraw_SizeSettings(int x, int y);
 extern const Button     mbSaveFirmware;                     // ОТЛАДКА - Сохр. прошивку
 static bool      IsActive_SaveFirmware();
 static void       OnPress_SaveFirmware();
@@ -471,6 +463,61 @@ DEF_PAGE_3(mpADC, PageDebug::self, NamePage::DebugADC,
     nullptr, nullptr, nullptr, nullptr
 )
 
+static void OnChanged_Randomizer_SamplesForGates(void)
+{
+    FPGA::SetNumberMeasuresForGates(NUM_MEAS_FOR_GATES);
+}
+
+DEF_GOVERNOR(mgRandomizer_SamplesForGates, PageDebug::PageRandomizer::self,
+    "Выб-к/ворота", "Samples/gates",
+    "",
+    "",
+    NUM_MEAS_FOR_GATES, 1, 2500, nullptr, OnChanged_Randomizer_SamplesForGates, nullptr
+)
+
+static void OnChanged_Randomizer_AltTShift0(void)
+{
+    FPGA::SetDeltaTShift(ADD_SHIFT_T0);
+}
+
+DEF_GOVERNOR(mgRandomizer_AltTShift0, PageDebug::PageRandomizer::self,
+    "tShift доп.", "tShift alt.",
+    "",
+    "",
+    ADD_SHIFT_T0, 0, 510, nullptr, OnChanged_Randomizer_AltTShift0, nullptr
+)
+
+DEF_GOVERNOR(mgRandomizer_Average, PageDebug::PageRandomizer::self,
+    "Усредн.", "Average",
+    "",
+    "",
+    NUM_AVE_FOR_RAND, 1, 32, nullptr, nullptr, nullptr
+)
+
+DEF_PAGE_3(mpRandomizer, PageDebug::self, NamePage::DebugRandomizer,
+    "РАНД-ТОР", "RANDOMIZER",
+    "",
+    "",
+    mgRandomizer_SamplesForGates,   // ОТЛАДКА - РАНД-ТОР - Выб-к/ворота
+    mgRandomizer_AltTShift0,        // ОТЛАДКА - РАНД-ТОР - tShift доп.
+    mgRandomizer_Average,           // ОТЛАДКА - РАНД-ТОР - Усредн.
+    nullptr, nullptr, nullptr, nullptr
+)
+
+static void OnDraw_SizeSettings(int x, int y)
+{
+    Painter::DrawFormatText(x + 5, y + 21, Color::BLACK, "Размер %d", sizeof(Settings));
+}
+
+DEF_CHOICE_2(mcSizeSettings, PageDebug::self,
+    "Размер настроек", "Size settings",
+    "Вывод размера структуры Settings",
+    "Show size of struct Settings",
+    "Размер", "Size",
+    "Размер", "Size",
+    size, nullptr, nullptr, OnDraw_SizeSettings
+)
+
 DEF_PAGE_7(pDebug, PageMain::self, NamePage::Debug,
     "ОТЛАДКА", "DEBUG",
     "",
@@ -485,67 +532,6 @@ DEF_PAGE_7(pDebug, PageMain::self, NamePage::Debug,
     nullptr, nullptr, nullptr, nullptr
 );
 
-
-DEF_PAGE_3(mpRandomizer, PageDebug::self, NamePage::DebugRandomizer,
-    "РАНД-ТОР", "RANDOMIZER",
-    "",
-    "",
-    mgRandomizer_SamplesForGates,   // ОТЛАДКА - РАНД-ТОР - Выб-к/ворота
-    mgRandomizer_AltTShift0,        // ОТЛАДКА - РАНД-ТОР - tShift доп.
-    mgRandomizer_Average,           // ОТЛАДКА - РАНД-ТОР - Усредн.
-    nullptr, nullptr, nullptr, nullptr
-)
-
-DEF_GOVERNOR(mgRandomizer_SamplesForGates, &mpRandomizer,
-    "Выб-к/ворота", "Samples/gates",
-    "",
-    "",
-    NUM_MEAS_FOR_GATES, 1, 2500, nullptr, OnChanged_Randomizer_SamplesForGates, nullptr
-)
-
-static void OnChanged_Randomizer_SamplesForGates(void)
-{
-    FPGA::SetNumberMeasuresForGates(NUM_MEAS_FOR_GATES);
-}
-
-DEF_GOVERNOR(mgRandomizer_AltTShift0, &mpRandomizer,
-    "tShift доп.", "tShift alt.",
-    "",
-    "",
-    ADD_SHIFT_T0, 0, 510, nullptr, OnChanged_Randomizer_AltTShift0, nullptr
-)
-
-static void OnChanged_Randomizer_AltTShift0(void)
-{
-    FPGA::SetDeltaTShift(ADD_SHIFT_T0);
-}
-
-DEF_GOVERNOR(mgRandomizer_Average, &mpRandomizer,
-    "Усредн.", "Average",
-    "",
-    "",
-    NUM_AVE_FOR_RAND, 1, 32, nullptr, nullptr, nullptr
-)
-
-
-// ОТЛАДКА - Размер настроек  ------------------------------------------------------------------------------------------------------------------------
-static int8 size = 0;
-DEF_CHOICE_2(mcSizeSettings, &pDebug,
-    "Размер настроек", "Size settings",
-    "Вывод размера структуры Settings",
-    "Show size of struct Settings",
-    "Размер", "Size",
-    "Размер", "Size",
-    size, nullptr, nullptr, OnDraw_SizeSettings
-)
-
-static void OnDraw_SizeSettings(int x, int y)
-{
-    Painter::DrawFormatText(x + 5, y + 21, Color::BLACK, "Размер %d", sizeof(Settings));
-}
-
-
-// ОТЛАДКА - Сохр. прошивку --------------------------------------------------------------------------------------------------------------------------
 DEF_BUTTON(mbSaveFirmware, PageDebug::self,
     "Сохр. прошивку", "Save firmware",
     "Сохранение прошивки - секторов 5, 6, 7 общим объёмом 3 х 128 кБ, где хранится программа",
@@ -765,3 +751,4 @@ const Page *PageDebug::PageADC::self = &mpADC;
 const Page *PageDebug::PageADC::PageBalance::self = &mpADC_Balance;
 const Page *PageDebug::PageADC::PageStretch::self = &mpADC_Stretch;
 const Page *PageDebug::PageADC::PageAltRShift::self = &mpADC_AltRShift;
+const Page *PageDebug::PageRandomizer::self = &mpRandomizer;

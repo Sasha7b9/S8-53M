@@ -94,6 +94,12 @@ struct PageDebug
         };
     };
 
+    struct PageRandomizer
+    {
+        static const Page *self;
+    };
+
+
     static const Page *self;
 };
 
