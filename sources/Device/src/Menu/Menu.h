@@ -67,6 +67,8 @@ public:
     static SmallButton *SmallButonFromPage(Page *page, int numButton);
 
     static void ChangeStateFlashDrive();
+    // Обработка длинного нажатия на элемент меню item.
+    static void FuncOnLongPressItem(Item *item);
 
 private:
     // Обработка короткого нажатия кнопки.
@@ -81,16 +83,12 @@ private:
     static void ProcessingRegulatorSet();
     // Включить/выключить светодиод ручки УСТАНОВКА, если необходимо.
     static void SwitchSetLED();
-    // Обработка короткого нажатия на элемент GovernorColor с адресом governorColor.
-    static void ShortPress_GovernorColor(Item *governorColor);
 
     static void ShortPress_MAC(Item *item);
 
     static void ShortPress_ChoiceReg(Item *choice);
 
     static void ShortPress_SmallButton(Item *smallButton);
-    // Обработка длинного нажатия на элемент меню item.
-    static void FuncOnLongPressItem(Item *item);
 
     static void FuncOnLongPressItemTime(Item *item);
     // Обработка длинного нажатия на элемент Button с адресом button.

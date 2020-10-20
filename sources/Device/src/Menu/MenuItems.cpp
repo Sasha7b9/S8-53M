@@ -439,3 +439,20 @@ void IPaddress::ShortPress()
         NextPosition();
     }
 }
+
+
+void GovernorColor::ShortPress()
+{
+    if (!IsActive())
+    {
+        return;
+    }
+    if (Menu::OpenedItem() == this)
+    {
+        CircleIncreaseInt8(&(OwnData()->colorType->currentField), 0, 3);
+    }
+    else
+    {
+        Menu::FuncOnLongPressItem(this);
+    }
+}

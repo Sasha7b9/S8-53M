@@ -387,12 +387,14 @@ class GovernorColor : public Item
 {
 public:
     GovernorColor(const DataItem *const data) : Item(data) {};
-    void Draw(int x, int y, bool opened);
 
+    const DataGovernorColor *OwnData() const { return static_cast<const DataGovernorColor *>(data->ad); }
+
+    void Draw(int x, int y, bool opened);
     // »зменить €ркость цвета в governor
     void ChangeValue(int delta);
 
-    const DataGovernorColor *OwnData() const { return static_cast<const DataGovernorColor *>(data->ad); }
+    virtual void ShortPress();
 
 private:
     void DrawOpened(int x, int y);

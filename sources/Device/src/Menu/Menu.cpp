@@ -570,24 +570,6 @@ void Menu::ShortPress_MAC(Item *item) //-V2009 //-V2558
 }
 
 
-void Menu::ShortPress_GovernorColor(Item *governorColor)
-{
-    if(!governorColor->IsActive())
-    {
-        return;
-    }
-    GovernorColor *governor = (GovernorColor*)governorColor;
-    if(OpenedItem() == governor)
-    {
-        CircleIncreaseInt8(&(governor->OwnData()->colorType->currentField), 0, 3);
-    }
-    else
-    {
-        FuncOnLongPressItem(governorColor);
-    }
-}
-
-
 void Menu::ShortPress_SmallButton(Item *smallButton)
 {
     SmallButton *sb = (SmallButton *)smallButton;
@@ -610,7 +592,7 @@ void Menu::ExecuteFuncForShortPressOnItem(Item *item)
     TypeItem::E type = item->Type();
 
     if (type == TypeItem::Page || type == TypeItem::Choice || type == TypeItem::Button || type == TypeItem::Governor || type == TypeItem::Time ||
-        type == TypeItem::IP)
+        type == TypeItem::IP || type == TypeItem::GovernorColor)
     {
         item->ShortPress();
         return;
@@ -626,7 +608,7 @@ void Menu::ExecuteFuncForShortPressOnItem(Item *item)
         nullptr,                            // TypeItem::Time
         nullptr,                            // TypeItem::IP
         nullptr,                            // Item_SwitchButton
-        &Menu::ShortPress_GovernorColor,    // TypeItem::GovernorColor
+        nullptr,    // TypeItem::GovernorColor
         nullptr,                            // Item_Formula
         &Menu::ShortPress_MAC,              // TypeItem::MAC
         &Menu::ShortPress_ChoiceReg,        // TypeItem::ChoiceReg
