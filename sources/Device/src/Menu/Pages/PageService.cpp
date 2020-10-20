@@ -18,11 +18,6 @@
 using namespace Primitives;
 
 
-static bool       IsActive_Math_Function();
-static void        OnPress_Math_Function();
-static void       OnRegSet_Math_Function(int delta);
-extern const SmallButton sbMath_Function_Exit;          // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Выход
-extern const SmallButton sbMath_Function_ModeDraw;      // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Экран
 static void        OnPress_Math_Function_ModeDraw();
 static void           Draw_Math_Function_ModeDraw(int x, int y);
 static void           Draw_Math_Function_ModeDraw_Disable(int x, int y);
@@ -165,49 +160,27 @@ DEF_PAGE_2(ppCalibrator, PageService::self, NamePage::ServiceCalibrator,
     nullptr, nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_6(pppMath_Function, PageService::PageMath::self, NamePage::SB_MathFunction,
-    "ФУНКЦИЯ", "FUNCTION",
-    "Установка и выбор математической функции - сложения или умножения",
-    "Installation and selection of mathematical functions - addition or multiplication",
-    sbMath_Function_Exit,       // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Выход
-    sbMath_Function_ModeDraw,   // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Экран
-    sbMath_Function_Type,       // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Вид
-    sbMath_Function_ModeRegSet, // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Режим ручки УСТАНОВКА
-    sbMath_Function_RangeA,     // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Масштаб 1-го канала
-    sbMath_Function_RangeB,     // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Масштаб 2-го канала    
-    IsActive_Math_Function, OnPress_Math_Function, nullptr, OnRegSet_Math_Function
-);
-
-DEF_PAGE_2(ppMath, PageService::self, NamePage::Math,
-    "МАТЕМАТИКА", "MATH",
-    "Математические функции и БПФ",
-    "Mathematical functions and FFT",
-    pppMath_Function,     // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ
-    pppMath_FFT,          // СЕРВИС - МАТЕМАТИКА - СПЕКТР
-    nullptr, nullptr, nullptr, nullptr
+DEF_SMALL_BUTTON(sbMath_Function_Exit, PageService::PageMath::PageFunction::self,
+    "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
+    nullptr, nullptr, DrawSB_Exit, nullptr
 )
 
-DEF_PAGE_10(pService, PageMain::self, NamePage::Service,
-    "СЕРВИС", "SERVICE",
-    "Дополнительные настройки, калибровка, поиск сигнала, математические функции",
-    "Additional settings, calibration, signal search, mathematical functions",
-    bResetSettings,             // СЕРВИС - Сброс настроек
-    bAutoSearch,                // СЕРВИС - Поиск сигнала
-    ppCalibrator,               // СЕРВИС - КАЛИБРАТОР
-    ppMath,                     // СЕРВИС - МАТЕМАТИКА
-    ppEthernet,                 // СЕРВИС - ETHERNET
-    cSound,                     // СЕРВИС - Звук
-    cLang,                      // СЕРВИС - Язык
-    tTime,                      // СЕРВИС - Время
-    cModeLongPressButtonTrig,   // СЕРВИС - Реж длит СИНХР
-    ppInformation,              // СЕРВИС - ИНФОРМАЦИЯ
-    nullptr, nullptr, nullptr, nullptr
-);
-
-static bool IsActive_Math_Function(void)
+static const arrayHints hintsMath_Function_ModeDraw =
 {
-    return !ENABLED_FFT;
-}
+    {Draw_Math_Function_ModeDraw_Disable,  "Вывод математической функции отключён",
+                                            "The conclusion of mathematical function is disconnected"},
+    {Draw_Math_Function_ModeDraw_Separate, "Сигналы и математическая функция выводятся в разных окнах",
+                                            "Signals and mathematical function are removed in different windows"},
+    {Draw_Math_Function_ModeDraw_Together, "Сигналы и математическая функция выводятся в одном окне",
+                                            "Signals and mathematical function are removed in one window"}
+};
+
+DEF_SMALL_BUTTON(sbMath_Function_ModeDraw, PageService::PageMath::PageFunction::self,
+    "Экран", "Display",
+    "Выбирает режим отображения математического сигнала",
+    "Chooses the mode of display of a mathematical signal",
+    nullptr, OnPress_Math_Function_ModeDraw, Draw_Math_Function_ModeDraw, &hintsMath_Function_ModeDraw
+)
 
 static void OnPress_Math_Function(void)
 {
@@ -215,6 +188,11 @@ static void OnPress_Math_Function(void)
     {
         Display::ShowWarningBad(Warning::ImpossibleEnableMathFunction);
     }
+}
+
+static bool IsActive_Math_Function(void)
+{
+    return !ENABLED_FFT;
 }
 
 static void OnRegSet_Math_Function(int delta)
@@ -287,27 +265,44 @@ static void OnRegSet_Math_Function(int delta)
     }
 }
 
-DEF_SMALL_BUTTON(sbMath_Function_Exit, &pppMath_Function,
-    "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
-    nullptr, nullptr, DrawSB_Exit, nullptr
+DEF_PAGE_6(pppMath_Function, PageService::PageMath::self, NamePage::SB_MathFunction,
+    "ФУНКЦИЯ", "FUNCTION",
+    "Установка и выбор математической функции - сложения или умножения",
+    "Installation and selection of mathematical functions - addition or multiplication",
+    sbMath_Function_Exit,       // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Выход
+    sbMath_Function_ModeDraw,   // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Экран
+    sbMath_Function_Type,       // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Вид
+    sbMath_Function_ModeRegSet, // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Режим ручки УСТАНОВКА
+    sbMath_Function_RangeA,     // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Масштаб 1-го канала
+    sbMath_Function_RangeB,     // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Масштаб 2-го канала    
+    IsActive_Math_Function, OnPress_Math_Function, nullptr, OnRegSet_Math_Function
+);
+
+DEF_PAGE_2(ppMath, PageService::self, NamePage::Math,
+    "МАТЕМАТИКА", "MATH",
+    "Математические функции и БПФ",
+    "Mathematical functions and FFT",
+    pppMath_Function,     // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ
+    pppMath_FFT,          // СЕРВИС - МАТЕМАТИКА - СПЕКТР
+    nullptr, nullptr, nullptr, nullptr
 )
 
-static const arrayHints hintsMath_Function_ModeDraw =
-{
-    {Draw_Math_Function_ModeDraw_Disable,  "Вывод математической функции отключён",
-                                            "The conclusion of mathematical function is disconnected"},
-    {Draw_Math_Function_ModeDraw_Separate, "Сигналы и математическая функция выводятся в разных окнах",
-                                            "Signals and mathematical function are removed in different windows"},
-    {Draw_Math_Function_ModeDraw_Together, "Сигналы и математическая функция выводятся в одном окне",
-                                            "Signals and mathematical function are removed in one window"}
-};
-
-DEF_SMALL_BUTTON(sbMath_Function_ModeDraw, &pppMath_Function,
-    "Экран", "Display",
-    "Выбирает режим отображения математического сигнала",
-    "Chooses the mode of display of a mathematical signal",
-    nullptr, OnPress_Math_Function_ModeDraw, Draw_Math_Function_ModeDraw, &hintsMath_Function_ModeDraw
-)
+DEF_PAGE_10(pService, PageMain::self, NamePage::Service,
+    "СЕРВИС", "SERVICE",
+    "Дополнительные настройки, калибровка, поиск сигнала, математические функции",
+    "Additional settings, calibration, signal search, mathematical functions",
+    bResetSettings,             // СЕРВИС - Сброс настроек
+    bAutoSearch,                // СЕРВИС - Поиск сигнала
+    ppCalibrator,               // СЕРВИС - КАЛИБРАТОР
+    ppMath,                     // СЕРВИС - МАТЕМАТИКА
+    ppEthernet,                 // СЕРВИС - ETHERNET
+    cSound,                     // СЕРВИС - Звук
+    cLang,                      // СЕРВИС - Язык
+    tTime,                      // СЕРВИС - Время
+    cModeLongPressButtonTrig,   // СЕРВИС - Реж длит СИНХР
+    ppInformation,              // СЕРВИС - ИНФОРМАЦИЯ
+    nullptr, nullptr, nullptr, nullptr
+);
 
 static void OnPress_Math_Function_ModeDraw(void)
 {
