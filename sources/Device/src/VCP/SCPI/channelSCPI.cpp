@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "common/Log_c.h"
+#include "Menu/Pages/Definition.h"
 #include "SCPI.h"
 #include "Settings/Settings.h"
 #include "Utils/Map.h"
@@ -55,14 +56,9 @@ void SCPI::CHANNEL::INPUT(pUCHAR buffer)
 
 
 
-extern void OnChanged_CoupleA(bool);
-extern void OnChanged_CoupleB(bool);
-
-
-
 void SCPI::CHANNEL::COUPLE(pUCHAR buffer)
 {
-    static const pFuncVB func[2] = {OnChanged_CoupleA, OnChanged_CoupleB};
+    static const pFuncVB func[2] = {PageChannelA::OnChanged_Couple, PageChannelB::OnChanged_Couple};
 
     static const MapElement map[] = 
     {
@@ -85,14 +81,9 @@ void SCPI::CHANNEL::COUPLE(pUCHAR buffer)
 
 
 
-extern void OnChanged_FiltrA(bool activate);
-extern void OnChanged_FiltrB(bool activate);
-
-
-
 void SCPI::CHANNEL::FILTR(pUCHAR buffer)
 {
-    static const pFuncVB func[2] = {OnChanged_FiltrA, OnChanged_FiltrB};
+    static const pFuncVB func[2] = {PageChannelA::OnChanged_Filtr, PageChannelB::OnChanged_Filtr};
 
     static const MapElement map[] =
     {

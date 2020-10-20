@@ -109,6 +109,7 @@ file(GLOB SRC                            src/main_win.cpp
                                 ../../common/Log_c.*)
 file(GLOB VCP               ../../Device/src/VCP/*.h
                             ../../Device/src/VCP/*.cpp)
+file(GLOB VCP_SCPI          ../../Device/src/VCP/SCPI/*)
 file(GLOB UTILS             ../../Device/src/Utils/*.h
                             ../../Device/src/Utils/*.cpp
                                 ../../common/Utils/*)
@@ -151,10 +152,11 @@ source_group(Resources      FILES ${RESOURCES})
 source_group(Settings       FILES ${SETTINGS})
 source_group(src            FILES ${SRC})
 source_group(VCP            FILES ${VCP})
+source_group(VCP\\SCPI      FILES ${VCP_SCPI})
 source_group(Utils          FILES ${UTILS})
 
 add_executable(S8-53M ${LIBS_CMSIS} ${LIBS_FATFS} ${LIBS_LWIP} ${LIBS_HAL} ${LIBS_USBH} ${DISPLAY} ${DISPLAY_FONT} ${LAN} ${FDRIVE} ${FPGA} ${GUI} ${GUI_CONTROLS} ${GUI_DIALOGS} ${GUI_VCP}
-                      ${HARDWARE} ${HARDWARE_HAL} ${MENU} ${MENU_PAGES} ${PANEL} ${RESOURCES} ${SETTINGS} ${SRC} ${VCP} ${UTILS})
+                      ${HARDWARE} ${HARDWARE_HAL} ${MENU} ${MENU_PAGES} ${PANEL} ${RESOURCES} ${SETTINGS} ${SRC} ${VCP} ${VCP_SCPI} ${UTILS})
 
 target_link_libraries(S8-53M ../../../ThirdParty/wxWidgets/generated/lib/vc_dll/wxbase31ud)
 target_link_libraries(S8-53M ../../../ThirdParty/wxWidgets/generated/lib/vc_dll/wxmsw31ud_core)

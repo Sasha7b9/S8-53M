@@ -51,7 +51,7 @@ DEF_CHOICE_2(mcInputA, PageChannelA::self,
     SET_ENABLED_A, nullptr, PageChannelA::OnChanged_Input, nullptr
 )
 
-static void OnChanged_CoupleA(bool)
+void PageChannelA::OnChanged_Couple(bool)
 {
     FPGA::SetModeCouple(Channel::A, SET_COUPLE_A);
 }
@@ -63,10 +63,10 @@ DEF_CHOICE_3(mcCoupleA, PageChannelA::self,
     "Пост", "AC",
     "Перем", "DC",
     "Земля", "Ground",
-    SET_COUPLE_A, nullptr, OnChanged_CoupleA, nullptr
+    SET_COUPLE_A, nullptr, PageChannelA::OnChanged_Couple, nullptr
 )
 
-static void OnChanged_FiltrA(bool)
+void PageChannelA::OnChanged_Filtr(bool)
 {
     FPGA::EnableChannelFiltr(Channel::A, SET_FILTR_A);
 }
@@ -77,7 +77,7 @@ DEF_CHOICE_2(mcFiltrA, PageChannelA::self,
     chanFiltrEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    SET_FILTR_A, nullptr, OnChanged_FiltrA, nullptr
+    SET_FILTR_A, nullptr, PageChannelA::OnChanged_Filtr, nullptr
 )
 
 static void OnChanged_InverseA(bool)
@@ -131,7 +131,7 @@ DEF_CHOICE_2(mcInputB, PageChannelB::self,
     SET_ENABLED_B, nullptr, PageChannelB::OnChanged_Input, nullptr
 )
 
-static void OnChanged_CoupleB(bool)
+void PageChannelB::OnChanged_Couple(bool)
 {
     FPGA::SetModeCouple(Channel::B, SET_COUPLE_B);
 }
@@ -143,10 +143,10 @@ DEF_CHOICE_3(mcCoupleB, PageChannelB::self,
     "Пост", "AC",
     "Перем", "DC",
     "Земля", "Ground",
-    SET_COUPLE_B, nullptr, OnChanged_CoupleB, nullptr
+    SET_COUPLE_B, nullptr, PageChannelB::OnChanged_Couple, nullptr
 )
 
-static void OnChanged_FiltrB(bool)
+void PageChannelB::OnChanged_Filtr(bool)
 {
     FPGA::EnableChannelFiltr(Channel::B, SET_FILTR_B);
 }
@@ -157,7 +157,7 @@ DEF_CHOICE_2(mcFiltrB, PageChannelB::self,
     chanFiltrEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    SET_FILTR_B, nullptr, OnChanged_FiltrB, nullptr
+    SET_FILTR_B, nullptr, PageChannelB::OnChanged_Filtr, nullptr
 )
 
 static void OnChanged_InverseB(bool)

@@ -3,6 +3,9 @@
 #include "Settings/SettingsCursors.h"
 
 
+class Page;
+
+
 #define COMMON_BEGIN_SB_EXIT  "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu"
 
 
@@ -21,6 +24,8 @@ class PageChannelA
 public:
     static const Page *self;
     static void OnChanged_Input(bool);
+    static void OnChanged_Couple(bool);
+    static void OnChanged_Filtr(bool);
 };
 
 
@@ -29,4 +34,6 @@ class PageChannelB
 public:
     static const Page *self;
     static void OnChanged_Input(bool);
+    static void OnChanged_Couple(bool);
+    static void OnChanged_Filtr(bool);
 };
