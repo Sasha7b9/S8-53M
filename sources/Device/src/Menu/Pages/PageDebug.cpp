@@ -19,16 +19,6 @@
 using namespace Primitives;
 
 
-extern const Choice     mcConsole_Registers_RShiftA;        // нркюдйю - йнмянкэ - пецхярпш - U ЯЛ. 1Й
-extern const Choice     mcConsole_Registers_RShiftB;        // нркюдйю - йнмянкэ - пецхярпш - U ЯЛ. 2Й
-extern const Choice     mcConsole_Registers_TrigLev;        // нркюдйю - йнмянкэ - пецхярпш - U ЯХМУП.
-extern const Choice     mcConsole_Registers_RangeA;         // нркюдйю - йнмянкэ - пецхярпш - бнкэр/дек 1
-extern const Choice     mcConsole_Registers_RangeB;         // нркюдйю - йнмянкэ - пецхярпш - бнкэр/дек 2
-extern const Choice     mcConsole_Registers_TrigParam;      // нркюдйю - йнмянкэ - пецхярпш - оЮПЮЛ. ЯХМУП.
-extern const Choice     mcConsole_Registers_ChanParamA;     // нркюдйю - йнмянкэ - пецхярпш - оЮПЮЛ. ЙЮМ. 1
-extern const Choice     mcConsole_Registers_ChanParamB;     // нркюдйю - йнмянкэ - пецхярпш - оЮПЮЛ. ЙЮМ. 2
-extern const Choice     mcConsole_Registers_TBase;          // нркюдйю - йнмянкэ - пецхярпш - бпелъ/дек
-extern const Choice     mcConsole_Registers_tShift;         // нркюдйю - йнмянкэ - пецхярпш - р ЯЛ.
 extern const Page       mpADC;                              // нркюдйю - южо
 extern const Page       mpADC_Balance;                      // нркюдйю - южо - аюкюмя
 extern const Choice     mcADC_Balance_Mode;                 // нркюдйю - южо - аюкюмя - пЕФХЛ
@@ -145,6 +135,96 @@ DEF_CHOICE_2(mcConsole_Registers_RD_FL, PageDebug::PageConsole::PageRegisters::s
     set.debug.showRegisters.flag, IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
+DEF_CHOICE_2(mcConsole_Registers_RShiftA, PageDebug::PageConsole::PageRegisters::self,
+    "U ЯЛ. 1Й", "U shift 1ch",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU, ENABLE_EN,
+    set.debug.showRegisters.rShiftA, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+)
+
+DEF_CHOICE_2(mcConsole_Registers_RShiftB, PageDebug::PageConsole::PageRegisters::self,
+    "U ЯЛ. 2Й", "U shift 2ch",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU, ENABLE_EN,
+    set.debug.showRegisters.rShiftB, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+)
+
+DEF_CHOICE_2(mcConsole_Registers_TrigLev, PageDebug::PageConsole::PageRegisters::self,
+    "U ЯХМУП.", "U trig.",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU, ENABLE_EN,
+    set.debug.showRegisters.trigLev, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+)
+
+DEF_CHOICE_2(mcConsole_Registers_RangeA, PageDebug::PageConsole::PageRegisters::self,
+    "бнкэр/дек 1", "Range 1",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU, ENABLE_EN,
+    set.debug.showRegisters.range[0], IsActive_Console_Registers_RD_FL, nullptr, nullptr
+)
+
+DEF_CHOICE_2(mcConsole_Registers_RangeB, PageDebug::PageConsole::PageRegisters::self,
+    "бнкэр/дек 2", "Range 2",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU, ENABLE_EN,
+    set.debug.showRegisters.range[1], IsActive_Console_Registers_RD_FL, nullptr, nullptr
+)
+
+DEF_CHOICE_2(mcConsole_Registers_TrigParam, PageDebug::PageConsole::PageRegisters::self,
+    "оЮПЮЛ. ЯХМУП.", "Trig param",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU, ENABLE_EN,
+    set.debug.showRegisters.trigParam, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+)
+
+DEF_CHOICE_2(mcConsole_Registers_ChanParamA, PageDebug::PageConsole::PageRegisters::self,
+    "оЮПЮЛ. ЙЮМ. 1", "Chan 1 param",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU, ENABLE_EN,
+    set.debug.showRegisters.chanParam[0], IsActive_Console_Registers_RD_FL, nullptr, nullptr
+)
+
+DEF_CHOICE_2(mcConsole_Registers_ChanParamB, PageDebug::PageConsole::PageRegisters::self,
+    "оЮПЮЛ. ЙЮМ. 2", "Chan 2 param",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU, ENABLE_EN,
+    set.debug.showRegisters.chanParam[1], IsActive_Console_Registers_RD_FL, nullptr, nullptr
+)
+
+DEF_CHOICE_2(mcConsole_Registers_TBase, PageDebug::PageConsole::PageRegisters::self,
+    "бпелъ/дек", "TBase",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU, ENABLE_EN,
+    set.debug.showRegisters.tBase, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+)
+
+DEF_CHOICE_2(mcConsole_Registers_tShift, PageDebug::PageConsole::PageRegisters::self,
+    "р ЯЛ.", "tShift",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU, ENABLE_EN,
+    set.debug.showRegisters.tShift, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+)
+
 DEF_PAGE_12(mpConsole_Registers, PageDebug::PageConsole::self, NamePage::DebugShowRegisters,
     "пецхярпш", "REGISTERS",
     "",
@@ -194,104 +274,6 @@ DEF_PAGE_7(pDebug, PageMain::self, NamePage::Debug,
 
 const Page *PageDebug::self = &pDebug;
 
-DEF_CHOICE_2(mcConsole_Registers_RShiftA, &mpConsole_Registers,
-    "U ЯЛ. 1Й", "U shift 1ch",
-    "",
-    "",
-    DISABLE_RU, DISABLE_EN,
-    ENABLE_RU,  ENABLE_EN,
-    set.debug.showRegisters.rShiftA, IsActive_Console_Registers_RD_FL, nullptr, nullptr
-)
-
-DEF_CHOICE_2(mcConsole_Registers_RShiftB, &mpConsole_Registers,
-    "U ЯЛ. 2Й", "U shift 2ch",
-    "",
-    "",
-    DISABLE_RU, DISABLE_EN,
-    ENABLE_RU,  ENABLE_EN,
-    set.debug.showRegisters.rShiftB, IsActive_Console_Registers_RD_FL, nullptr, nullptr
-)
-
-DEF_CHOICE_2(mcConsole_Registers_TrigLev, &mpConsole_Registers,
-    "U ЯХМУП.", "U trig.",
-    "",
-    "",
-    DISABLE_RU, DISABLE_EN,
-    ENABLE_RU,  ENABLE_EN,
-    set.debug.showRegisters.trigLev, IsActive_Console_Registers_RD_FL, nullptr, nullptr
-)
-
-DEF_CHOICE_2(mcConsole_Registers_RangeA, &mpConsole_Registers,
-    "бнкэр/дек 1", "Range 1",
-    "",
-    "",
-    DISABLE_RU, DISABLE_EN,
-    ENABLE_RU,  ENABLE_EN,
-    set.debug.showRegisters.range[0], IsActive_Console_Registers_RD_FL, nullptr, nullptr
-)
-
-// нркюдйю - йнмянкэ - пецхярпш - бнкэр/дек 2 --------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcConsole_Registers_RangeB, &mpConsole_Registers,
-    "бнкэр/дек 2", "Range 2",
-    "",
-    "",
-    DISABLE_RU, DISABLE_EN,
-    ENABLE_RU,  ENABLE_EN,
-    set.debug.showRegisters.range[1], IsActive_Console_Registers_RD_FL, nullptr, nullptr
-)
-
-// нркюдйю - йнмянкэ - пецхярпш - оЮПЮЛ. ЯХМУП. ------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcConsole_Registers_TrigParam, &mpConsole_Registers,
-    "оЮПЮЛ. ЯХМУП.", "Trig param",
-    "",
-    "",
-    DISABLE_RU, DISABLE_EN,
-    ENABLE_RU,  ENABLE_EN,
-    set.debug.showRegisters.trigParam, IsActive_Console_Registers_RD_FL, nullptr, nullptr
-)
-
-// нркюдйю - йнмянкэ - пецхярпш - оЮПЮЛ. ЙЮМ. 1 ------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcConsole_Registers_ChanParamA, &mpConsole_Registers,
-    "оЮПЮЛ. ЙЮМ. 1",  "Chan 1 param",
-    "",
-    "",
-    DISABLE_RU, DISABLE_EN,
-    ENABLE_RU,  ENABLE_EN,
-    set.debug.showRegisters.chanParam[0], IsActive_Console_Registers_RD_FL, nullptr, nullptr
-)
-
-// нркюдйю - йнмянкэ - пецхярпш - оЮПЮЛ. ЙЮМ. 2 ------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcConsole_Registers_ChanParamB, &mpConsole_Registers,
-    "оЮПЮЛ. ЙЮМ. 2", "Chan 2 param",
-    "",
-    "",
-    DISABLE_RU, DISABLE_EN,
-    ENABLE_RU,  ENABLE_EN,
-    set.debug.showRegisters.chanParam[1], IsActive_Console_Registers_RD_FL, nullptr, nullptr
-)
-
-// нркюдйю - йнмянкэ - пецхярпш - бпелъ/дек ----------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcConsole_Registers_TBase, &mpConsole_Registers,
-    "бпелъ/дек", "TBase",
-    "",
-    "",
-    DISABLE_RU, DISABLE_EN,
-    ENABLE_RU,  ENABLE_EN,
-    set.debug.showRegisters.tBase, IsActive_Console_Registers_RD_FL, nullptr, nullptr
-)
-
-// нркюдйю - йнмянкэ - пецхярпш - р ЯЛ. --------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcConsole_Registers_tShift, &mpConsole_Registers,
-    "р ЯЛ.", "tShift",
-    "",
-    "",
-    DISABLE_RU, DISABLE_EN,
-    ENABLE_RU,  ENABLE_EN,
-    set.debug.showRegisters.tShift, IsActive_Console_Registers_RD_FL, nullptr, nullptr
-)
-
-
-// нркюдйю - южо ///////////////////
 DEF_PAGE_3(mpADC, &pDebug, NamePage::DebugADC,
     "южо", "ADC",
     "",
