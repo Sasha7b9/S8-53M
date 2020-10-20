@@ -18,7 +18,7 @@ static const SmallButton name(&di##name);
 #define DEF_GOVERNOR(name, keeper, titleRU, titleEN, hintRU, hintEN, cell, min, max, funcActive, funcChange, funcBeforeDraw)                \
 static const DataGovernor dg##name = { &cell, min, max, funcChange, funcBeforeDraw };                                                       \
 static const char *th##name[] = {titleRU, titleEN, hintRU, hintEN};                                                                         \
-static const DataItem di##name = { TypeItem::Governor, &keeper, funcActive, th##name, &dg##name};                                           \
+static const DataItem di##name = { TypeItem::Governor, keeper, funcActive, th##name, &dg##name};                                            \
 static const Governor name(&di##name);
 
 
@@ -76,7 +76,7 @@ static const Page name(&di##name);
 static const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                                                                \
 static Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, nullptr};                                                                    \
 static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                                                              \
-static const DataItem di##name = { TypeItem::Page, &keeper, funcActive, th##name, &dp##name};                                                       \
+static const DataItem di##name = { TypeItem::Page, keeper, funcActive, th##name, &dp##name};                                                        \
 static const Page name(&di##name);
 
 
@@ -151,7 +151,7 @@ static const Page name(&di##name);
 static const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                    \
 static Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, (Item*)&item4, (Item*)&item5, (Item*)&item6, (Item*)&item7, (Item*)&item8, (Item*)&item9, (Item*)&item10, (Item*)&item11, (Item*)&item12, nullptr};                             \
 static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                 \
-static const DataItem di##name = { TypeItem::Page, &keeper, funcActive, th##name, &dp##name};           \
+static const DataItem di##name = { TypeItem::Page, keeper, funcActive, th##name, &dp##name};           \
 static const Page name(&di##name);
 
 

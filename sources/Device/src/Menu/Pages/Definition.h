@@ -64,6 +64,16 @@ struct PageDebug
         static const Page *self;
     };
 
+    struct PageConsole
+    {
+        static const Page *self;
+
+        struct PageRegisters
+        {
+            static const Page *self;
+        };
+    };
+
     static const Page *self;
 };
 

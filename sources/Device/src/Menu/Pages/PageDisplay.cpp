@@ -80,7 +80,7 @@ DEF_PAGE_9(pDisplay, PageMain::self, NamePage::Display,
 
 const Page *PageDisplay::self = &pDisplay;
 
-DEF_PAGE_3(mspAccumulation, pDisplay, NamePage::DisplayAccumulation,
+DEF_PAGE_3(mspAccumulation, &pDisplay, NamePage::DisplayAccumulation,
     "НАКОПЛЕНИЕ", "ACCUMULATION",
     "Настройки режима отображения последних сигналов на экране.",
     "Mode setting signals to display the last screen.",
@@ -309,7 +309,7 @@ DEF_CHOICE_4(mcGrid_Type, &mspGrid,
 
 
 // ДИСПЛЕЙ - СЕТКА - Яркость -------------------------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mgGrid_Brightness, mspGrid,
+DEF_GOVERNOR(mgGrid_Brightness, &mspGrid,
     "Яркость", "Brightness",
     "Устанавливает яркость сетки.",
     "Adjust the brightness of the Grid.",
@@ -413,7 +413,7 @@ DEF_GOVERNOR_COLOR(mgcSettings_Colors_Grid, mspSettings_Colors,
 
 
 // ДИСПЛЕЙ - НАСТРОЙКИ - Яркость ---------------------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mgSettings_Brightness, mspSettings,
+DEF_GOVERNOR(mgSettings_Brightness, &mspSettings,
     "Яркость", "Brightness",
     "Установка яркости свечения дисплея",
     "Setting the brightness of the display",
@@ -427,7 +427,7 @@ static void OnChanged_Settings_Brightness()
 
 
 // ДИСПЛЕЙ - НАСТРОЙКИ - Уровни ----------------------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mgSettings_Levels, mspSettings,
+DEF_GOVERNOR(mgSettings_Levels, &mspSettings,
     "Уровни", "Levels",
     "Задаёт время, в течение которого после поворота ручки сещения напряжения на экране остаётся вспомогательная метка уровня смещения",
     "Defines the time during which, after turning the handle visits to the voltage on the screen remains auxiliary label offset level",
@@ -435,7 +435,7 @@ DEF_GOVERNOR(mgSettings_Levels, mspSettings,
 )
 
 // ДИСПЛЕЙ - НАСТРОЙКИ - Время -----------------------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mgSettings_TimeMessages, mspSettings,
+DEF_GOVERNOR(mgSettings_TimeMessages, &mspSettings,
     "Время", "Time",
     "Установка времени, в течение которого сообщения будут находиться на экране",
     "Set the time during which the message will be on the screen",

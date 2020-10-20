@@ -19,14 +19,6 @@
 using namespace Primitives;
 
 
-extern const Choice     mcStats;                            // ОТЛАДКА - Статистика
-extern const Page       mpConsole;                          // ОТЛАДКА - КОНСОЛЬ
-extern const Governor   mgConsole_NumStrings;               // ОТЛАДКА - КОНСОЛЬ - Число строк
-extern const Choice     mcConsole_SizeFont;                 // ОТЛАДКА - КОНСОЛЬ - Размер шрифта
-extern const Page       mpConsole_Registers;                // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ
-extern const Choice     mcConsole_Registers_ShowAll;        // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Показывать все
-extern const Choice     mcConsole_Registers_RD_FL;          // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - RD_FL
-static bool      IsActive_Console_Registers_RD_FL();
 extern const Choice     mcConsole_Registers_RShiftA;        // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - U см. 1к
 extern const Choice     mcConsole_Registers_RShiftB;        // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - U см. 2к
 extern const Choice     mcConsole_Registers_TrigLev;        // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - U синхр.
@@ -105,69 +97,55 @@ struct StructForSN
 
 const Page *PageDebug::SerialNumber::self = &ppSerialNumber;
 
-
-// ОТЛАДКА /////////////////////////
-DEF_PAGE_7(pDebug, PageMain::self, NamePage::Debug,
-    "ОТЛАДКА", "DEBUG",
-    "",
-    "",
-    mcStats,            // ОТЛАДКА - Статистика
-    mpConsole,          // ОТЛАДКА - КОНСОЛЬ
-    mpADC,              // ОТЛАДКА - АЦП
-    mpRandomizer,       // ОТЛАДКА - РАНД-ТОР
-    mcSizeSettings,     // ОТЛАДКА - Размер настроек
-    mbSaveFirmware,     // ОТЛАДКА - Сохр. прошивку
-    bEraseData,         // ОТЛАДКА - Стереть данные
-    nullptr, nullptr, nullptr, nullptr
-);
-
-
-const Page *PageDebug::self = &pDebug;
-
-
-// ОТЛАДКА - Статистика ------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcStats, &pDebug,
+DEF_CHOICE_2(mcStats, PageDebug::self,
     "Статистика", "Statistics",
     "Показывать/не показывать время/кадр, кадров в секунду, количество сигналов с последними настройками в памяти/количество сохраняемых в памяти сигналов",
     "To show/not to show a time/shot, frames per second, quantity of signals with the last settings in memory/quantity of the signals kept in memory",
     "Не показывать", "Hide",
-    "Показывать",    "Show",
+    "Показывать", "Show",
     SHOW_STATS, nullptr, nullptr, nullptr
 )
 
-
-// ОТЛАДКА - КОНСОЛЬ ///////////////
-DEF_PAGE_3(mpConsole, pDebug, NamePage::DebugConsole,
-    "КОНСОЛЬ", "CONSOLE",
-    "",
-    "",
-    mgConsole_NumStrings,   // ОТЛАДКА - КОНСОЛЬ - Число строк
-    mcConsole_SizeFont,     // ОТЛАДКА - КОНСОЛЬ - Размер шрифта
-    mpConsole_Registers,    // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ
-    nullptr, nullptr, nullptr, nullptr
-);
-
-// ОТЛАДКА - КОНСОЛЬ - Число строк -------------------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mgConsole_NumStrings, mpConsole,
+DEF_GOVERNOR(mgConsole_NumStrings, PageDebug::PageConsole::self,
     "Число строк", "Number strings",
     "",
     "",
-    NUM_STRINGS,  0, 33, nullptr, nullptr, nullptr
+    NUM_STRINGS, 0, 33, nullptr, nullptr, nullptr
 )
 
-// ОТЛАДКА - КОНСОЛЬ - Размер шрифта -----------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcConsole_SizeFont, &mpConsole,
+DEF_CHOICE_2(mcConsole_SizeFont, PageDebug::PageConsole::self,
     "Размер шрифта", "Size font",
-     "",
-     "",
-     "5", "5",
-     "8", "8",
+    "",
+    "",
+    "5", "5",
+    "8", "8",
     SIZE_FONT_CONSOLE, nullptr, nullptr, nullptr
 )
 
+DEF_CHOICE_2(mcConsole_Registers_ShowAll, PageDebug::PageConsole::PageRegisters::self,
+    "Показывать все", "Show all",
+    "Показывать все значения, засылаемые в регистры",
+    "To show all values transferred in registers",
+    "Нет", "No",
+    "Да", "Yes",
+    IS_SHOW_REGISTERS_ALL, nullptr, nullptr, nullptr
+)
 
-// ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ ////
-DEF_PAGE_12(mpConsole_Registers, mpConsole, NamePage::DebugShowRegisters,
+static bool IsActive_Console_Registers_RD_FL(void)
+{
+    return !IS_SHOW_REGISTERS_ALL;
+}
+
+DEF_CHOICE_2(mcConsole_Registers_RD_FL, PageDebug::PageConsole::PageRegisters::self,
+    "RD_FL", "RD_FL",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU, ENABLE_EN,
+    set.debug.showRegisters.flag, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+)
+
+DEF_PAGE_12(mpConsole_Registers, PageDebug::PageConsole::self, NamePage::DebugShowRegisters,
     "РЕГИСТРЫ", "REGISTERS",
     "",
     "",
@@ -186,32 +164,36 @@ DEF_PAGE_12(mpConsole_Registers, mpConsole, NamePage::DebugShowRegisters,
     nullptr, nullptr, nullptr, nullptr
 )
 
-// ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Показывать все -----------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcConsole_Registers_ShowAll, &mpConsole_Registers,
-    "Показывать все", "Show all",
-    "Показывать все значения, засылаемые в регистры",
-    "To show all values transferred in registers",
-    "Нет", "No",
-    "Да",  "Yes",
-    IS_SHOW_REGISTERS_ALL, nullptr, nullptr, nullptr
-)
+const Page *PageDebug::PageConsole::PageRegisters::self = &mpConsole_Registers;
 
-// ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - RD_FL --------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcConsole_Registers_RD_FL, &mpConsole_Registers, 
-    "RD_FL", "RD_FL",
+DEF_PAGE_3(mpConsole, PageDebug::self, NamePage::DebugConsole,
+    "КОНСОЛЬ", "CONSOLE",
     "",
     "",
-    DISABLE_RU, DISABLE_EN,
-    ENABLE_RU,  ENABLE_EN,
-    set.debug.showRegisters.flag, IsActive_Console_Registers_RD_FL, nullptr, nullptr
-)
+    mgConsole_NumStrings,   // ОТЛАДКА - КОНСОЛЬ - Число строк
+    mcConsole_SizeFont,     // ОТЛАДКА - КОНСОЛЬ - Размер шрифта
+    mpConsole_Registers,    // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ
+    nullptr, nullptr, nullptr, nullptr
+);
 
-static bool IsActive_Console_Registers_RD_FL(void)
-{
-    return !IS_SHOW_REGISTERS_ALL;
-}
+const Page *PageDebug::PageConsole::self = &mpConsole;
 
-// ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - U см. 1к -----------------------------------------------------------------------------------------------------------
+DEF_PAGE_7(pDebug, PageMain::self, NamePage::Debug,
+    "ОТЛАДКА", "DEBUG",
+    "",
+    "",
+    mcStats,            // ОТЛАДКА - Статистика
+    mpConsole,          // ОТЛАДКА - КОНСОЛЬ
+    mpADC,              // ОТЛАДКА - АЦП
+    mpRandomizer,       // ОТЛАДКА - РАНД-ТОР
+    mcSizeSettings,     // ОТЛАДКА - Размер настроек
+    mbSaveFirmware,     // ОТЛАДКА - Сохр. прошивку
+    bEraseData,         // ОТЛАДКА - Стереть данные
+    nullptr, nullptr, nullptr, nullptr
+);
+
+const Page *PageDebug::self = &pDebug;
+
 DEF_CHOICE_2(mcConsole_Registers_RShiftA, &mpConsole_Registers,
     "U см. 1к", "U shift 1ch",
     "",
@@ -221,7 +203,6 @@ DEF_CHOICE_2(mcConsole_Registers_RShiftA, &mpConsole_Registers,
     set.debug.showRegisters.rShiftA, IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
-// ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - U см. 2к -----------------------------------------------------------------------------------------------------------
 DEF_CHOICE_2(mcConsole_Registers_RShiftB, &mpConsole_Registers,
     "U см. 2к", "U shift 2ch",
     "",
@@ -231,7 +212,6 @@ DEF_CHOICE_2(mcConsole_Registers_RShiftB, &mpConsole_Registers,
     set.debug.showRegisters.rShiftB, IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
-// ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - U синхр. -----------------------------------------------------------------------------------------------------------
 DEF_CHOICE_2(mcConsole_Registers_TrigLev, &mpConsole_Registers,
     "U синхр.", "U trig.",
     "",
@@ -241,7 +221,6 @@ DEF_CHOICE_2(mcConsole_Registers_TrigLev, &mpConsole_Registers,
     set.debug.showRegisters.trigLev, IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
-// ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - ВОЛЬТ/ДЕЛ 1 --------------------------------------------------------------------------------------------------------
 DEF_CHOICE_2(mcConsole_Registers_RangeA, &mpConsole_Registers,
     "ВОЛЬТ/ДЕЛ 1", "Range 1",
     "",
@@ -313,7 +292,7 @@ DEF_CHOICE_2(mcConsole_Registers_tShift, &mpConsole_Registers,
 
 
 // ОТЛАДКА - АЦП ///////////////////
-DEF_PAGE_3(mpADC, pDebug, NamePage::DebugADC,
+DEF_PAGE_3(mpADC, &pDebug, NamePage::DebugADC,
     "АЦП", "ADC",
     "",
     "",
@@ -324,7 +303,7 @@ DEF_PAGE_3(mpADC, pDebug, NamePage::DebugADC,
 )
 
 // ОТЛАДКА - АЦП - БАЛАНС //////////
-DEF_PAGE_3(mpADC_Balance, mpADC, NamePage::DebugADCbalance,
+DEF_PAGE_3(mpADC_Balance, &mpADC, NamePage::DebugADCbalance,
     "БАЛАНС", "BALANCE",
     "",
     "",
@@ -369,7 +348,7 @@ static void Draw_ADC_Balance_Mode(int, int)
 }
 
 // ОТЛАДКА - АЦП - БАЛАНС - Смещение 1 ---------------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mgADC_Balance_ShiftA, mpADC_Balance, 
+DEF_GOVERNOR(mgADC_Balance_ShiftA, &mpADC_Balance, 
     "Смещение 1", "Offset 1",
     "",
     "",
@@ -388,7 +367,7 @@ static bool IsActive_ADC_Balance_Shift(void)
 }
 
 // ОТЛАДКА - АЦП - БАЛАНС - Смещение 2----------------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mgADC_Balance_ShiftB, mpADC_Balance,
+DEF_GOVERNOR(mgADC_Balance_ShiftB, &mpADC_Balance,
     "Смещение 2", "Offset 2",
     "",
     "",
@@ -403,7 +382,7 @@ static void OnChanged_ADC_Balance_ShiftB(void)
 
 
 // ОТЛАДКА - АЦП - РАСТЯЖКА ////////
-DEF_PAGE_3(mpADC_Stretch, mpADC, NamePage::DebugADCstretch,
+DEF_PAGE_3(mpADC_Stretch, &mpADC, NamePage::DebugADCstretch,
     "РАСТЯЖКА", "STRETCH",
     "",
     "",
@@ -450,7 +429,7 @@ void LoadStretchADC(Channel::E chan)
 }
 
 // ОТЛАДКА - АЦП - РАСТЯЖКА - Коэфф. 1к --------------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mgADC_Stretch_ADC_A, mpADC_Stretch,
+DEF_GOVERNOR(mgADC_Stretch_ADC_A, &mpADC_Stretch,
     "Коэфф. 1к", "Koeff. 1ch",
     "",
     "",
@@ -469,7 +448,7 @@ static void OnChanged_ADC_Stretch_ADC_A(void)
 
 
 // ОТЛАДКА - АЦП - РАСТЯЖКА - Коэфф. 2к --------------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mgADC_Stretch_ADC_B, mpADC_Stretch,
+DEF_GOVERNOR(mgADC_Stretch_ADC_B, &mpADC_Stretch,
     "Коэфф. 2к", "Koeff. 2ch",
     "",
     "",
@@ -520,7 +499,7 @@ static void OnPress_ADC_AltRShift_Reset(void)
 }
 
 // ОТЛАДКА - АЦП - ДОП СМЕЩ - См 1к 2мВ пост ---------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mbADC_AltRShift_2mV_DC_A, mpADC_AltRShift,
+DEF_GOVERNOR(mbADC_AltRShift_2mV_DC_A, &mpADC_AltRShift,
     "См 1к 2мВ пост", "Shift 1ch 2mV DC",
     "",
     "",
@@ -533,7 +512,7 @@ static void OnChanged_ADC_AltRShift_A(void)
 }
 
 // ОТЛАДКА - АЦП - ДОП СМЕЩ - См 2к 2мВ пост ---------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mbADC_AltRShift_2mV_DC_B, mpADC_AltRShift,
+DEF_GOVERNOR(mbADC_AltRShift_2mV_DC_B, &mpADC_AltRShift,
     "См 2к 2мВ пост", "Shift 2ch 2mV DC",
     "",
     "",
@@ -546,7 +525,7 @@ static void OnChanged_ADC_AltRShift_B(void)
 }
 
 // ОТЛАДКА - АЦП - ДОП СМЕЩ - См 1к 5мВ пост ---------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mbADC_AltRShift_5mV_DC_A, mpADC_AltRShift,
+DEF_GOVERNOR(mbADC_AltRShift_5mV_DC_A, &mpADC_AltRShift,
     "См 1к 5мВ пост", "Shift 1ch 5mV DC",
     "",
     "",
@@ -554,7 +533,7 @@ DEF_GOVERNOR(mbADC_AltRShift_5mV_DC_A, mpADC_AltRShift,
 )
 
 // ОТЛАДКА - АЦП - ДОП СМЕЩ - См 2к 5мВ пост ---------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mbADC_AltRShift_5mV_DC_B, mpADC_AltRShift,
+DEF_GOVERNOR(mbADC_AltRShift_5mV_DC_B, &mpADC_AltRShift,
     "См 2к 5мВ пост", "Shift 2ch 5mV DC",
     "",
     "",
@@ -562,7 +541,7 @@ DEF_GOVERNOR(mbADC_AltRShift_5mV_DC_B, mpADC_AltRShift,
 )
 
 // ОТЛАДКА - АЦП - ДОП СМЕЩ - См 1к 10мВ пост --------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mbADC_AltRShift_10mV_DC_A, mpADC_AltRShift,
+DEF_GOVERNOR(mbADC_AltRShift_10mV_DC_A, &mpADC_AltRShift,
     "См 1к 10мВ пост", "Shift 1ch 10mV DC",
     "",
     "",
@@ -570,7 +549,7 @@ DEF_GOVERNOR(mbADC_AltRShift_10mV_DC_A, mpADC_AltRShift,
 )
 
 // ОТЛАДКА - АЦП - ДОП СМЕЩ - См 2к 10мВ пост --------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mbADC_AltRShift_10mV_DC_B, mpADC_AltRShift,
+DEF_GOVERNOR(mbADC_AltRShift_10mV_DC_B, &mpADC_AltRShift,
     "См 2к 10мВ пост", "Shift 2ch 10mV DC",
     "",
     "",
@@ -579,7 +558,7 @@ DEF_GOVERNOR(mbADC_AltRShift_10mV_DC_B, mpADC_AltRShift,
 
 
 // ОТЛАДКА - РАНД-ТОР //////////////
-DEF_PAGE_3(mpRandomizer, pDebug, NamePage::DebugRandomizer,
+DEF_PAGE_3(mpRandomizer, PageDebug::self, NamePage::DebugRandomizer,
     "РАНД-ТОР", "RANDOMIZER",
     "",
     "",
@@ -590,7 +569,7 @@ DEF_PAGE_3(mpRandomizer, pDebug, NamePage::DebugRandomizer,
 )
 
 // ОТЛАДКА - РАНД-ТОР - Выб-к/ворота -----------------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mgRandomizer_SamplesForGates, mpRandomizer,
+DEF_GOVERNOR(mgRandomizer_SamplesForGates, &mpRandomizer,
     "Выб-к/ворота", "Samples/gates",
     "",
     "",
@@ -603,7 +582,7 @@ static void OnChanged_Randomizer_SamplesForGates(void)
 }
 
 // ОТЛАДКА - РАНД-ТОР - tShift доп. ------------------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mgRandomizer_AltTShift0, mpRandomizer,
+DEF_GOVERNOR(mgRandomizer_AltTShift0, &mpRandomizer,
     "tShift доп.", "tShift alt.",
     "",
     "",
@@ -616,7 +595,7 @@ static void OnChanged_Randomizer_AltTShift0(void)
 }
 
 // ОТЛАДКА - РАНД-ТОР - Усредн. ----------------------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mgRandomizer_Average, mpRandomizer,
+DEF_GOVERNOR(mgRandomizer_Average, &mpRandomizer,
     "Усредн.", "Average",
     "",
     "",
