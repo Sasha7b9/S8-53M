@@ -74,6 +74,16 @@ struct PageDebug
         };
     };
 
+    struct PageADC
+    {
+        static const Page *self;
+
+        struct PageBalance
+        {
+            static const Page *self;
+        };
+    };
+
     static const Page *self;
 };
 

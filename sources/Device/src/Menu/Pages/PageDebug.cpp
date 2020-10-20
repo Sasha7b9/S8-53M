@@ -18,12 +18,11 @@
 
 using namespace Primitives;
 
+static int16 shiftADCA;
+static int16 shiftADCB;
 
-extern const Page       mpADC;                              // ОТЛАДКА - АЦП
-extern const Page       mpADC_Balance;                      // ОТЛАДКА - АЦП - БАЛАНС
-extern const Choice     mcADC_Balance_Mode;                 // ОТЛАДКА - АЦП - БАЛАНС - Режим
-static void     OnChanged_ADC_Balance_Mode(bool active);
-static void          Draw_ADC_Balance_Mode(int x, int y);
+
+
 extern const Governor   mgADC_Balance_ShiftA;               // ОТЛАДКА - АЦП - БАЛАНС - Смещение 1
 static bool      IsActive_ADC_Balance_Shift();
 static void     OnChanged_ADC_Balance_ShiftA();
@@ -84,8 +83,6 @@ struct StructForSN
     int curDigt;    // Соответственно, номером (0) или годом (1) управляет ручка УСТАНОВКА.
 };
 
-
-const Page *PageDebug::SerialNumber::self = &ppSerialNumber;
 
 DEF_CHOICE_2(mcStats, PageDebug::self,
     "Статистика", "Statistics",
@@ -256,7 +253,55 @@ DEF_PAGE_3(mpConsole, PageDebug::self, NamePage::DebugConsole,
     nullptr, nullptr, nullptr, nullptr
 );
 
-const Page *PageDebug::PageConsole::self = &mpConsole;
+static void Draw_ADC_Balance_Mode(int, int)
+{
+    int8 shift[2][3] =
+    {
+        {0, SET_BALANCE_ADC_A, static_cast<int8>(BALANCE_ADC_A)},
+        {0, SET_BALANCE_ADC_B, static_cast<int8>(BALANCE_ADC_B)}
+    };
+
+    shiftADCA = shift[0][BALANCE_ADC_TYPE];
+    shiftADCB = shift[1][BALANCE_ADC_TYPE];
+}
+
+static void OnChanged_ADC_Balance_Mode(bool)
+{
+    Draw_ADC_Balance_Mode(0, 0);
+
+    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)shiftADCA, false);
+    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)shiftADCB, false);
+}
+
+DEF_CHOICE_3(mcADC_Balance_Mode, PageDebug::PageADC::PageBalance::self,
+    "Режим", "Mode",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    "Реальный", "Real",
+    "Ручной", "Manual",
+    BALANCE_ADC_TYPE, nullptr, OnChanged_ADC_Balance_Mode, Draw_ADC_Balance_Mode
+)
+
+DEF_PAGE_3(mpADC_Balance, PageDebug::PageADC::self, NamePage::DebugADCbalance,
+    "БАЛАНС", "BALANCE",
+    "",
+    "",
+    mcADC_Balance_Mode,     // ОТЛАДКА - АЦП - БАЛАНС - Режим
+    mgADC_Balance_ShiftA,   // ОТЛАДКА - АЦП - БАЛАНС - Смещение 1
+    mgADC_Balance_ShiftB,   // ОТЛАДКА - АЦП - БАЛАНС - Смещение 2
+    nullptr, nullptr, nullptr, nullptr
+)
+
+DEF_PAGE_3(mpADC, PageDebug::self, NamePage::DebugADC,
+    "АЦП", "ADC",
+    "",
+    "",
+    mpADC_Balance,      // ОТЛАДКА - АЦП - БАЛАНС
+    mpADC_Stretch,      // ОТЛАДКА - АЦП - РАСТЯЖКА
+    mpADC_AltRShift,    // ОТЛАДКА - АЦП - ДОП СМЕЩ
+    nullptr, nullptr, nullptr, nullptr
+)
 
 DEF_PAGE_7(pDebug, PageMain::self, NamePage::Debug,
     "ОТЛАДКА", "DEBUG",
@@ -272,64 +317,6 @@ DEF_PAGE_7(pDebug, PageMain::self, NamePage::Debug,
     nullptr, nullptr, nullptr, nullptr
 );
 
-const Page *PageDebug::self = &pDebug;
-
-DEF_PAGE_3(mpADC, &pDebug, NamePage::DebugADC,
-    "АЦП", "ADC",
-    "",
-    "",
-    mpADC_Balance,      // ОТЛАДКА - АЦП - БАЛАНС
-    mpADC_Stretch,      // ОТЛАДКА - АЦП - РАСТЯЖКА
-    mpADC_AltRShift,    // ОТЛАДКА - АЦП - ДОП СМЕЩ
-    nullptr, nullptr, nullptr, nullptr
-)
-
-// ОТЛАДКА - АЦП - БАЛАНС //////////
-DEF_PAGE_3(mpADC_Balance, &mpADC, NamePage::DebugADCbalance,
-    "БАЛАНС", "BALANCE",
-    "",
-    "",
-    mcADC_Balance_Mode,     // ОТЛАДКА - АЦП - БАЛАНС - Режим
-    mgADC_Balance_ShiftA,   // ОТЛАДКА - АЦП - БАЛАНС - Смещение 1
-    mgADC_Balance_ShiftB,   // ОТЛАДКА - АЦП - БАЛАНС - Смещение 2
-    nullptr, nullptr, nullptr, nullptr
-)
-
-// ОТЛАДКА - АЦП - БАЛАНС - Режим --------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_3(mcADC_Balance_Mode, &mpADC_Balance,
-    "Режим", "Mode",
-    "",
-    "",
-    DISABLE_RU, DISABLE_EN,
-    "Реальный", "Real",
-    "Ручной",   "Manual",
-    BALANCE_ADC_TYPE, nullptr, OnChanged_ADC_Balance_Mode, Draw_ADC_Balance_Mode
-)
-
-static int16 shiftADCA;
-static int16 shiftADCB;
-
-static void OnChanged_ADC_Balance_Mode(bool)
-{
-    Draw_ADC_Balance_Mode(0, 0);
-
-    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)shiftADCA, false);
-    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)shiftADCB, false);
-}
-
-static void Draw_ADC_Balance_Mode(int, int)
-{
-    int8 shift[2][3] =
-    {
-        {0, SET_BALANCE_ADC_A, static_cast<int8>(BALANCE_ADC_A)},
-        {0, SET_BALANCE_ADC_B, static_cast<int8>(BALANCE_ADC_B)}
-    };
-
-    shiftADCA = shift[0][BALANCE_ADC_TYPE];
-    shiftADCB = shift[1][BALANCE_ADC_TYPE];
-}
-
-// ОТЛАДКА - АЦП - БАЛАНС - Смещение 1 ---------------------------------------------------------------------------------------------------------------
 DEF_GOVERNOR(mgADC_Balance_ShiftA, &mpADC_Balance, 
     "Смещение 1", "Offset 1",
     "",
@@ -348,7 +335,6 @@ static bool IsActive_ADC_Balance_Shift(void)
     return BALANCE_ADC_TYPE_IS_HAND;
 }
 
-// ОТЛАДКА - АЦП - БАЛАНС - Смещение 2----------------------------------------------------------------------------------------------------------------
 DEF_GOVERNOR(mgADC_Balance_ShiftB, &mpADC_Balance,
     "Смещение 2", "Offset 2",
     "",
@@ -363,7 +349,6 @@ static void OnChanged_ADC_Balance_ShiftB(void)
 }
 
 
-// ОТЛАДКА - АЦП - РАСТЯЖКА ////////
 DEF_PAGE_3(mpADC_Stretch, &mpADC, NamePage::DebugADCstretch,
     "РАСТЯЖКА", "STRETCH",
     "",
@@ -815,166 +800,8 @@ static void Draw_SerialNumber_Save(int x, int y)
 }
 
 
-
-/** @}  @}
- */
-
-        /*
-        static void OnChangeRShiftADC(bool active)
-        {
-            FPGA::SetRShift(Channel::A, SET_RSHIFT_A);
-            FPGA::SetRShift(Channel::B, SET_RSHIFT_B);
-        }
-
-        const Choice mcDebugADCrShiftMode =
-        {
-            TypeItem::Choice, &mpADC_AltRShift, {"Режим",      "Mode"},
-            {
-                "",
-                ""
-            },
-            EmptyFuncBV,
-            {                                    {DISABLE_RU,   DISABLE_EN},
-                                                 {"Реальный",   "Real"},
-                                                 {"Ручной",     "Hand"}
-            },
-            (int8*)&set.debug.rShiftADCtype, OnChangeRShiftADC
-        };
-
-        // ОТЛАДКА - АЦП - ДОП. СМЕЩЕНИЕ - Смещение 1к 2мВ
-        static TimeStructGovernor tsRShiftADC;
-        static bool IsActiveRShiftADC(void)
-        {
-            return set.debug.rShiftADCtype == RShiftADC_Hand;
-        }
-
-        static void OnChangeRShiftADC0(void)
-        {
-            FPGA::SetRShift(Channel::A, SET_RSHIFT_A);
-        }
-
-        const Governor mgDebugRShiftADC00 =
-        {
-            &mpADC_AltRShift,
-            {
-                "Смещ 1к 2мВ", "Shift 1ch"
-            },
-            {
-                "",
-                ""
-            },
-            IsActiveRShiftADC,
-            &set.debug.rShiftADC[0][0], -100, 100, &tsRShiftADC, OnChangeRShiftADC0
-        };
-
-        static TimeStructGovernor tsRShiftADC01;
-        const Governor mgDebugRShiftADC01 =
-        {
-            &mpADC_AltRShift,
-            {
-                "Смещ 1к 500мВ", "Shift 1ch 500mV"
-            },
-            {
-                "",
-                ""
-            },
-            IsActiveRShiftADC,
-            &set.debug.rShiftADC[1][0], -100, 100, &tsRShiftADC01, OnChangeRShiftADC0
-        };
-
-        static void OnChangeRShiftADC1(void)
-        {
-            FPGA::SetRShift(Channel::B, SET_RSHIFT_B);
-        }
-
-        // ОТЛАДКА - АЦП - ДОП. СМЕЩ. ПАМ.
-const Page mspDebugADCaltShift;
-
-// ОТЛАДКА - АЦП - ДОП. СМЕЩ. ПАМ. - Величина
-const Governor mgDebugADCaltShift =
-{
-    &mspDebugADCaltShift, 0,
-    {
-        "Величина", "Value",
-        "",
-        ""
-    },
-    &set.debug.altShift, -2, 2
-};
-
-// ОТЛАДКА - АЦП - ДОП СМЕЩ ПАМ //////
-const Page mspDebugADCaltShift =
-{
-    TypeItem::Page, &mpADC, 0,
-    {
-        "ДОП СМЕЩ ПАМ", "ALT SHIFT MEM",
-        "",
-        ""
-    },
-    NamePage::DebugADCaltShift,
-    {
-        (void*)&mgDebugADCaltShift
-    }
-};
-
-const Governor mgDebugInfoNumber =
-{
-    &mspDebugInformation,
-    {
-        "Номер", "Number"
-    },
-    {
-        "Установка номера серийного номера",
-        "Installation numbers of the serial number"
-    },
-    EmptyFuncBV,
-    &set.debug.infoNumber, 0, 100
-};
-
-const Governor mgDebugInfoYear =
-{
-    &mspDebugInformation,
-    {
-        "Год", "Year"
-    },
-    {
-        "Установка года серийного номера",
-        "Installation year serial number"
-    },
-    EmptyFuncBV,
-    &set.debug.infoYear, 2015, 2050
-};
-
-const Governor mgDebugInfoVersion =
-{
-    &mspDebugInformation,
-    {
-        "Версия", "Version"
-    },
-    {
-        "Установка номера версии",
-        "Setting the version number"
-    },
-    EmptyFuncBV,
-    &set.debug.infoVer, 10, 100
-};
-
-// ОТЛАДКА - ИНФОРМАЦИЯ /////////////////////
-const Page mspDebugInformation =
-{
-    TypeItem::Page, &pDebug,
-    {
-        "ИНФОРМАЦИЯ", "INFORMATION",
-    },
-    {
-        "Позволяет ввести информацию для меню СЕРВИС-ИНФОРМАЦИЯ",
-        "It allows you to enter information for SERVICE INFORMATION menu"
-    },
-    EmptyFuncBV, NamePage::DebugInformation,
-    {
-        (void*)&mgDebugInfoNumber,
-        (void*)&mgDebugInfoYear,
-        (void*)&mgDebugInfoVersion
-    }
-};
-*/
+const Page *PageDebug::SerialNumber::self = &ppSerialNumber;
+const Page *PageDebug::self = &pDebug;
+const Page *PageDebug::PageConsole::self = &mpConsole;
+const Page *PageDebug::PageADC::self = &mpADC;
+const Page *PageDebug::PageADC::PageBalance::self = &mpADC_Balance;
