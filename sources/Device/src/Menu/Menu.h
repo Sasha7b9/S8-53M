@@ -49,6 +49,8 @@ public:
     static Item *itemUnderKey;
 
     static Item *itemUnderButton[Key::Count];
+    // Возвращает позицию активного пункта на странице namePage.
+    static int PosActItem(NamePage::E namePage);
 
 private:
     // Обработка короткого нажатия кнопки.

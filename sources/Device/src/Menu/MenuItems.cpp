@@ -308,7 +308,7 @@ bool Item::IsShade() const
 
 int8 Page::PosCurrentItem() const
 {
-    return MenuPosActItem(OwnData()->name) & 0x7f;
+    return Menu::PosActItem(OwnData()->name) & 0x7f;
 }
 
 
@@ -355,7 +355,7 @@ bool Item::IsOpened() const
     {
         return Menu::CurrentItemIsOpened(page->GetName());
     }
-    return (MenuPosActItem(page->OwnData()->name) & 0x80) != 0;
+    return (Menu::PosActItem(page->OwnData()->name) & 0x80) != 0;
 }
 
 

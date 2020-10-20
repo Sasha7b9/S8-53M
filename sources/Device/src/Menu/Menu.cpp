@@ -662,3 +662,9 @@ void Menu::OpenFileManager()
         Display::Update(false);
     }
 }
+
+
+int Menu::PosActItem(NamePage::E namePage)
+{
+    return set.menu.posActItem[namePage];
+}

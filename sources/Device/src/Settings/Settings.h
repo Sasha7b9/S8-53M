@@ -190,7 +190,6 @@ struct SettingsMenu
 
 
 
-int8 MenuPosActItem(NamePage::E namePage);                          // ¬озвращает позицию активного пункта на странице namePage.
 void SetMenuPosActItem(NamePage::E namePage, int8 pos);             // ”становить позицию активного пункта на странице namePage.
 int8 MenuCurrentSubPage(NamePage::E namePage);                      // ¬озвращает номер текущей подстраницы страницы namePage.
 void SetMenuCurrentSubPage(NamePage::E namePage, int8 posSubPage);  // ”станавливает номер текущей подстраницы в странице namePage.

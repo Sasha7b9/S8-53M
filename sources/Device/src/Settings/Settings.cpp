@@ -280,11 +280,6 @@ bool Settings::DebugModeEnable()
     return true;
 }
 
-int8 MenuPosActItem(NamePage::E namePage)
-{
-    return set.menu.posActItem[namePage];
-}
-
 void SetMenuPosActItem(NamePage::E namePage, int8 pos)
 {
     set.menu.posActItem[namePage] = pos;
