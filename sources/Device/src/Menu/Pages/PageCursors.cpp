@@ -15,13 +15,6 @@
 using namespace Primitives;
 
 
-extern const SmallButton sbSetPointsPercents;           // КУРСОРЫ - УСТАНОВИТЬ - Перемещение . Переключение шага перемещения курсоров - по пикселям или по процентам.
-static void PressSB_Cursors_PointsPercents();
-static void DrawSB_Cursors_PointsPercents(int x, int y);
-static void DrawSB_Cursors_PointsPercents_Percents(int x, int y);
-static void DrawSB_Cursors_PointsPercents_Points(int x, int y);
-
-
 static void MoveCursUonPercentsOrPoints(int delta);
 static void MoveCursTonPercentsOrPoints(int delta);
 static void SetShiftCursPosU(Channel::E chan, int numCur, float delta);    // Изменить значение позиции курсора напряжения на delta точек
@@ -427,6 +420,50 @@ DEF_SMALL_BUTTON(sbSet100, PageCursors::PageSet::self,
     nullptr, PressSB_Cursors_100, DrawSB_Cursors_100, nullptr
 )
 
+static void DrawSB_Cursors_PointsPercents_Percents(int x, int y)
+{
+    Text("\x83").Draw(x + 6, y + 5);
+}
+
+static void DrawSB_Cursors_PointsPercents_Points(int x, int y)
+{
+    Font::Set(TypeFont::_5);
+    Text("тчк").Draw(x + 4, y + 3);
+    Font::Set(TypeFont::_8);
+}
+
+static const arrayHints hintsSetPointsPercents =
+{
+    { DrawSB_Cursors_PointsPercents_Percents,   "шаг перемещения курсоров кратен одному проценту",
+                                                "the step of movement of cursors is multiple to one percent" },
+    { DrawSB_Cursors_PointsPercents_Points,     "шаг перемещения курсора кратен одному пикселю",
+                                                "the step of movement of the cursor is multiple to one pixel" }
+};
+
+static void PressSB_Cursors_PointsPercents(void)
+{
+    CircleIncreaseInt8((int8 *)&CURS_MOVEMENT, 0, 1);
+}
+
+static void DrawSB_Cursors_PointsPercents(int x, int y)
+{
+    if (CURS_MOVEMENT_IS_PERCENTS)
+    {
+        DrawSB_Cursors_PointsPercents_Percents(x, y);
+    }
+    else
+    {
+        DrawSB_Cursors_PointsPercents_Points(x, y);
+    }
+}
+
+DEF_SMALL_BUTTON(sbSetPointsPercents, PageCursors::PageSet::self,
+    "Перемещение", "Movement",
+    "Выбор шага перемещения курсоров - проценты или точки",
+    "Choice of a step of movement of cursors - percent or points",
+    nullptr, PressSB_Cursors_PointsPercents, DrawSB_Cursors_PointsPercents, &hintsSetPointsPercents
+)
+
 DEF_PAGE_6(mspSet, PageCursors::self, NamePage::SB_Curs,
     "УСТАНОВИТЬ", "SET",
     "Переход в режим курсорных измерений",
@@ -513,48 +550,4 @@ static void MoveCursTonPercentsOrPoints(int delta)
 static void SetShiftCursPosT(Channel::E chan, int numCur, float delta)
 {
     CURS_POS_T(chan, numCur) = LimitationFloat(CURS_POS_T(chan, numCur) + delta, 0, MAX_POS_T);
-}
-
-static const arrayHints hintsSetPointsPercents =
-{
-    { DrawSB_Cursors_PointsPercents_Percents,   "шаг перемещения курсоров кратен одному проценту",
-                                                "the step of movement of cursors is multiple to one percent" },
-    { DrawSB_Cursors_PointsPercents_Points,     "шаг перемещения курсора кратен одному пикселю",
-                                                "the step of movement of the cursor is multiple to one pixel" }
-};
-
-DEF_SMALL_BUTTON(sbSetPointsPercents, &mspSet,
-    "Перемещение", "Movement",
-    "Выбор шага перемещения курсоров - проценты или точки",
-    "Choice of a step of movement of cursors - percent or points",
-    nullptr, PressSB_Cursors_PointsPercents, DrawSB_Cursors_PointsPercents, &hintsSetPointsPercents
-)
-
-static void PressSB_Cursors_PointsPercents(void)
-{
-    CircleIncreaseInt8((int8*)&CURS_MOVEMENT, 0, 1);
-}
-
-static void DrawSB_Cursors_PointsPercents(int x, int y)
-{
-    if (CURS_MOVEMENT_IS_PERCENTS)
-    {
-        DrawSB_Cursors_PointsPercents_Percents(x, y);
-    }
-    else
-    {
-        DrawSB_Cursors_PointsPercents_Points(x, y);
-    }
-}
-
-static void DrawSB_Cursors_PointsPercents_Percents(int x, int y)
-{
-    Text("\x83").Draw(x + 6, y + 5);
-}
-
-static void DrawSB_Cursors_PointsPercents_Points(int x, int y)
-{
-    Font::Set(TypeFont::_5);
-    Text("тчк").Draw(x + 4, y + 3);
-    Font::Set(TypeFont::_8);
 }
