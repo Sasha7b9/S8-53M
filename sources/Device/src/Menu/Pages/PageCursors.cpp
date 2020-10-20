@@ -16,10 +16,6 @@
 using namespace Primitives;
 
 
-extern const Page pCursors;
-
-extern const Choice mcShow;                             // КУРСОРЫ - Показывать
-
 extern const Choice mcTrackingT1U1;                     // КУРСОРЫ - Курсоры T1,U1
 
 extern const Choice mcTrackingT2U2;                     // КУРСОРЫ - Курсоры T2,U2
@@ -27,7 +23,6 @@ extern const Choice mcTrackingT2U2;                     // КУРСОРЫ - Курсоры T2,
 extern const Choice mcShowFreq;                         // КУРОСРЫ - 1/dT
 
 extern const Page mspSet;                               // КУРСОРЫ - УСТАНОВИТЬ
-static void OnRotate_RegSet_Set(int angle);             // Вращение ручки УСТАНОВКА на странице КУРСОРЫ-УСТАНОВИТЬ
 extern const SmallButton sbSetExit;                     // КУРСОРЫ - УСТАНОВИТЬ - Выход
 static void PressSB_Cursors_Exit();
 extern const SmallButton sbSetSource;                   // КУРСОРЫ - УСТАНОВИТЬ - Источник
@@ -145,10 +140,17 @@ void SetCursPosT(Channel::E chan, int numCur, float pos)
 }
 
 
-extern const Page mainPage;
+DEF_CHOICE_2(mcShow, PageCursors::self,
+    "Показывать", "Shown",
+    "Включает/отключает курсоры.",
+    "Enable/disable cursors.",
+    "Нет", "No",
+    "Да", "Yes",
+    CURS_SHOW, nullptr, nullptr, nullptr
+)
 
-// КУРСОРЫ /////////////////////////
-DEF_PAGE_5(pCursors, mainPage, NamePage::Cursors,
+
+DEF_PAGE_5(pCursors, PageMain::self, NamePage::Cursors,
     "КУРСОРЫ", "CURSORS",
     "Курсорные измерения.",
     "Cursor measurements.",
@@ -162,23 +164,7 @@ DEF_PAGE_5(pCursors, mainPage, NamePage::Cursors,
 
 const Page *PageCursors::self = &pCursors;
 
-void *PageCursors::GetPointer()
-{
-    return (void *)&pCursors;
-}
 
-// КУРСОРЫ - Показывать ------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcShow, &pCursors,
-    "Показывать", "Shown",
-    "Включает/отключает курсоры.",
-    "Enable/disable cursors.",
-    "Нет", "No",
-    "Да",  "Yes",
-    CURS_SHOW, nullptr, nullptr, nullptr
-)
-
-
-// КУРСОРЫ - Курсоры T1,U1 ---------------------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_4(mcTrackingT1U1, pCursors,
     "Слежение \x8e, \x9e",  "Tracking \x8e, \x9e"
     ,
@@ -236,8 +222,19 @@ DEF_CHOICE_2(mcShowFreq, &pCursors,
     CURSORS_SHOW_FREQ, nullptr, nullptr, nullptr
 )
 
+static void OnRotate_RegSet_Set(int angle)
+{
+    if (CURS_ACTIVE_IS_U)
+    {
+        MoveCursUonPercentsOrPoints(angle);
+    }
+    else
+    {
+        MoveCursTonPercentsOrPoints(angle);
+    }
+    Sound::RegulatorShiftRotate();
+}
 
-// КУРСОРЫ - УСТАНОВИТЬ ////////////
 DEF_PAGE_6(mspSet, pCursors, NamePage::SB_Curs,
     "УСТАНОВИТЬ", "SET",
     "Переход в режим курсорных измерений",
@@ -250,19 +247,6 @@ DEF_PAGE_6(mspSet, pCursors, NamePage::SB_Curs,
     sbSetPointsPercents,    // КУРСОРЫ - УСТАНОВИТЬ - Перемещение
     nullptr, nullptr, nullptr, OnRotate_RegSet_Set
 )
-
-static void OnRotate_RegSet_Set(int angle)
-{
-    if(CURS_ACTIVE_IS_U)
-    {
-        MoveCursUonPercentsOrPoints(angle);
-    }
-    else
-    {
-        MoveCursTonPercentsOrPoints(angle);
-    }
-    Sound::RegulatorShiftRotate();
-}
 
 static void MoveCursUonPercentsOrPoints(int delta)
 {

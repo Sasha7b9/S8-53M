@@ -25,7 +25,7 @@ extern const Page mainPage;
 
 
 // РАЗВЕРТКА ///////////////////
-DEF_PAGE_5(pTime, mainPage, NamePage::Time,
+DEF_PAGE_5(pTime, &mainPage, NamePage::Time,
     "РАЗВЕРТКА", "SCAN",
     "Содержит настройки развёртки.",
     "Contains scan settings.",

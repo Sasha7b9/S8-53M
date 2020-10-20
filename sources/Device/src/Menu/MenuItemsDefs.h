@@ -94,7 +94,7 @@ static const Page name(&di##name);
 static const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                                                                \
 static Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, (Item*)&item4, (Item*)&item5, nullptr};                                      \
 static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                                                              \
-static const DataItem di##name = { TypeItem::Page, &keeper, funcActive, th##name, &dp##name};                                                       \
+static const DataItem di##name = { TypeItem::Page, keeper, funcActive, th##name, &dp##name};                                                       \
 const Page name(&di##name);
 
 

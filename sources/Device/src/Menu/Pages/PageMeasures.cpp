@@ -246,7 +246,7 @@ DEF_PAGE_6(mspMeasTune, pMeasures, NamePage::SB_MeasTuneMeas,
 
 
 // ИЗМЕРЕНИЯ //////////////////////////
-DEF_PAGE_5(pMeasures, mainPage, NamePage::Measures,
+DEF_PAGE_5(pMeasures, &mainPage, NamePage::Measures,
     "ИЗМЕРЕНИЯ", "MEASURES",
     "Автоматические измерения",
     "Automatic measurements",

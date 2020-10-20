@@ -28,7 +28,7 @@ static void   OnPress_AutoFind_Search();
 extern const Page mainPage;
 
 // СИНХР ///////////////////////////
-DEF_PAGE_5(pTrig, mainPage, NamePage::Trig,
+DEF_PAGE_5(pTrig, &mainPage, NamePage::Trig,
     "СИНХР", "TRIG",
     "Содержит настройки синхронизации.",
     "Contains synchronization settings.",

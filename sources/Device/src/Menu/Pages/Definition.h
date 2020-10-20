@@ -19,6 +19,13 @@ void DrawMenuCursTime(int x, int y, bool left, bool right);
 void DrawSB_Exit(int x, int y);
 
 
+class PageMain
+{
+public:
+    static const Page *self;
+};
+
+
 class PageChannelA
 {
 public:

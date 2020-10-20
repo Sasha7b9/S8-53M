@@ -145,7 +145,7 @@ const Page *PageForButton(Key::E button)
         (void *)PageChannelB::self, // Key::ChannelB
         (void *)&pTime,             // Key::Time
         (void *)&pTrig,             // Key::Trig
-        PageCursors::GetPointer(),  // Key::Cursors
+        (void *)PageCursors::self,  // Key::Cursors
         (void *)&pMeasures,         // Key::Measures
         (void *)&pDisplay,          // Key::Display
         0,                          // Key::Help
@@ -159,6 +159,8 @@ const Page *PageForButton(Key::E button)
     return reinterpret_cast<const Page *>(pages[button]);
 }
 
+
+const Page *PageMain::self = &mainPage;
 
 
 bool IsMainPage(const void *item)

@@ -15,7 +15,5 @@ public:
         static void *pointer;
     };
 
-    static void *GetPointer();
-
     static const Page *self;
 };

@@ -641,7 +641,7 @@ static bool IsActive_Math_FFT_Limit(void)
 }
 
 // СЕРВИС - ETHERNET ///////////////
-DEF_PAGE_5(ppEthernet, pService, NamePage::ServiceEthernet,
+DEF_PAGE_5(ppEthernet, &pService, NamePage::ServiceEthernet,
     "ETHERNET", "ETHERNET",
     "Настройки ethernet",
     "Settings of ethernet",
