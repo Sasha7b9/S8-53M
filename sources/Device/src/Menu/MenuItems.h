@@ -138,6 +138,8 @@ public:
     void Change(int delta);
 
     bool ChangeOpened(int delta);
+    // Возвращает высоту в пикселях открытого элемента Choice или NamePage::E по адресу item.
+    int HeightOpened() const;
 
     static DataItem emptyData;
 

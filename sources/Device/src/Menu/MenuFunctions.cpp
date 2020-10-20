@@ -35,23 +35,6 @@ Item* Menu::CurrentItem()
 }
 
 
-int Menu::HeightOpenedItem(const Item *item) 
-{
-    TypeItem::E type = item->Type();
-    if(type == TypeItem::Page)
-    {
-        int numItems = ((const Page *)item)->NumItems() - ((Page *)item)->NumCurrentSubPage() * MENU_ITEMS_ON_DISPLAY;
-        LIMITATION(numItems, numItems, 0, MENU_ITEMS_ON_DISPLAY);
-        return MP_TITLE_HEIGHT + MI_HEIGHT * numItems;
-    } 
-    else if(type == TypeItem::Choice || type == TypeItem::ChoiceReg)
-    {
-        return MOI_HEIGHT_TITLE + ((Choice *)item)->NumSubItems() * MOSI_HEIGHT - 1;
-    }
-    return MI_HEIGHT;
-}
-
-
 const char* Menu::TitleItem(const void *item) 
 {
     return TITLE((Page*)item);

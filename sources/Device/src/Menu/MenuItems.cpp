@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "common/Utils/Math_c.h"
 #include "Hardware/Sound.h"
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
@@ -628,4 +629,21 @@ bool Item::ChangeOpened(int delta)
     }
 
     return true;
+}
+
+
+int Item::HeightOpened() const
+{
+    TypeItem::E type = Type();
+    if (type == TypeItem::Page)
+    {
+        int numItems = ((const Page *)this)->NumItems() - ((Page *)this)->NumCurrentSubPage() * MENU_ITEMS_ON_DISPLAY;
+        LIMITATION(numItems, numItems, 0, MENU_ITEMS_ON_DISPLAY);
+        return MP_TITLE_HEIGHT + MI_HEIGHT * numItems;
+    }
+    else if (type == TypeItem::Choice || type == TypeItem::ChoiceReg)
+    {
+        return MOI_HEIGHT_TITLE + ((Choice *)this)->NumSubItems() * MOSI_HEIGHT - 1;
+    }
+    return MI_HEIGHT;
 }

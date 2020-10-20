@@ -132,9 +132,9 @@ int Item::OpenedPosY() const
     Page *page = Keeper();
     int8 posCurItem = page->PosCurrentItem();
     int y = Grid::TOP + (posCurItem % MENU_ITEMS_ON_DISPLAY) * MI_HEIGHT + MP_TITLE_HEIGHT;
-    if(y + Menu::HeightOpenedItem(this) > Grid::Bottom())
+    if(y + HeightOpened() > Grid::Bottom())
     {
-        y = Grid::Bottom() - Menu::HeightOpenedItem(this) - 2;
+        y = Grid::Bottom() - HeightOpened() - 2;
     }
     return y + 1;
 }

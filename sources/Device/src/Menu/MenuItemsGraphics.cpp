@@ -508,7 +508,7 @@ void GovernorColor::Draw(int x, int y, bool opened)
 
 void Choice::DrawOpened(int x, int y) const
 {
-    int height = Menu::HeightOpenedItem(this);
+    int height = HeightOpened();
 
     Rectangle(MP_TITLE_WIDTH + 2, height + 3).Draw(x - 1, y - 1, COLOR_BACK);
     
@@ -807,7 +807,7 @@ void Page::DrawTitle(int layer, int yTop)
         Menu::SmallButonFromPage(this, 0)->Draw(LEFT_SB, yTop + 3);
         return;
     }
-    int height = Menu::HeightOpenedItem(this);
+    int height = HeightOpened();
     bool shade = Menu::CurrentItemIsOpened(GetName());
     Region(MP_TITLE_WIDTH + 2, height + 2).Fill(x - 1, yTop, COLOR_BACK);
     Rectangle(MP_TITLE_WIDTH + 1, height + 1).Draw(x, yTop, ColorBorderMenu(shade));
@@ -822,7 +822,7 @@ void Page::DrawTitle(int layer, int yTop)
         Painter::DrawVolumeButton(x + 1, yTop + 1, MP_TITLE_WIDTH - 1, MP_TITLE_HEIGHT - 1, 3, ColorMenuTitle(false), ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), shade, false);
     }
 
-    VLine().Draw(x, yTop, yTop + Menu::HeightOpenedItem(this), ColorBorderMenu(false));
+    VLine().Draw(x, yTop, yTop + HeightOpened(), ColorBorderMenu(false));
     bool condDrawRSet = NumSubPages() > 1 && Menu::CurrentItem()->Type() != TypeItem::ChoiceReg && Menu::CurrentItem()->Type() != TypeItem::Governor && Menu::OpenedItem()->Type() == TypeItem::Page;
     int delta = condDrawRSet ? -10 : 0;
     Color::E colorText = shade ? LightShadingTextColor() : Color::BLACK;
