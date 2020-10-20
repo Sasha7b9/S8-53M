@@ -85,12 +85,6 @@ private:
     // Включить/выключить светодиод ручки УСТАНОВКА, если необходимо.
     static void SwitchSetLED();
 
-    static void FuncOnLongPressItemTime(Item *item);
-    // Обработка длинного нажатия на элемент Button с адресом button.
-    static void FuncOnLongPressItemButton(Item *button);
-    // Возвращает функцию обработки длинного нажатия на элемент меню item.
-    static void ExecuteFuncForLongPressureOnItem(Item *item);
-
     static bool NeedForFireSetLED();
 
     static void DrawOpenedPage(Page *page, int layer, int yTop);

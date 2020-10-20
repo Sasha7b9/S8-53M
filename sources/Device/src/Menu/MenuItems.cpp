@@ -500,3 +500,24 @@ void Item::LongPress()
     }
     Open(!IsOpened());
 }
+
+
+void Button::LongPress()
+{
+    ShortPress();
+}
+
+
+void TimeItem::LongPress()
+{
+    if (Menu::CurrentItem() != this)
+    {
+        SetCurrent(true);
+    }
+    if (IsOpened() && *OwnData()->curField == iSET)
+    {
+        SetNewTime();
+    }
+    Open(!IsOpened());
+    SetOpened();
+}

@@ -196,6 +196,8 @@ public:
     void Draw(int x, int y) const;
     // Обработка короткого нажатия
     virtual void ShortPress();
+
+    virtual void LongPress();
 };
 
 
@@ -502,5 +504,7 @@ struct TimeItem : public Item
     void DrawOpened(int x, int y) const;
 
     virtual void ShortPress();
+
+    virtual void LongPress();
 };
 

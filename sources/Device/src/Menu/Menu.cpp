@@ -431,7 +431,10 @@ void Menu::ProcessingLongPressureButton(void)
         else if(MenuIsShown() && IsFunctionalButton(longPressureButton))
         {
             Item *item = ItemUnderButton(longPressureButton);
-            ExecuteFuncForLongPressureOnItem(item);
+            if (item->IsActive())
+            {
+                item->LongPress();
+            }
         }
         longPressureButton = Key::None;
     }
@@ -512,68 +515,6 @@ void Menu::ProcessingReleaseButton(void)
     {
         itemUnderKey = 0;
         releaseButton = Key::None;
-    }
-}
-
-
-void Menu::FuncOnLongPressItemButton(Item *button)
-{
-    ((Button *)button)->ShortPress();
-}
-
-
-void Menu::FuncOnLongPressItemTime(Item *time)
-{
-    if (CurrentItem() != time)
-    {
-        time->SetCurrent(true);
-    }
-    if(time->IsOpened() && *((TimeItem *)time)->OwnData()->curField == iSET)
-    {
-        ((TimeItem *)time)->SetNewTime();
-    }
-    time->Open(!time->IsOpened());
-    ((TimeItem *)time)->SetOpened();
-}
-
-
-void Menu::ExecuteFuncForLongPressureOnItem(Item *item)
-{
-    typedef void(*pFuncMenuVpItem)(Item *);
-
-    TypeItem::E type = item->Type();
-
-    if (type == TypeItem::SmallButton || type == TypeItem::Choice || type == TypeItem::Page || type == TypeItem::Governor || type == TypeItem::IP || type == TypeItem::GovernorColor ||
-        type == TypeItem::MAC || type == TypeItem::ChoiceReg)
-    {
-        item->LongPress();
-        return;
-    }
-
-    static const pFuncMenuVpItem longFunction[TypeItem::Count] =
-    {
-        nullptr,                                  // TypeItem::None
-        nullptr,         // TypeItem::Choice
-        &Menu::FuncOnLongPressItemButton,   // TypeItem::Button
-        nullptr,         // TypeItem::Page
-        nullptr,         // TypeItem::Governor
-        &Menu::FuncOnLongPressItemTime,     // TypeItem::Time
-        nullptr,         // TypeItem::IP
-        nullptr,                                  // Item_SwitchButton
-        nullptr,         // TypeItem::GovernorColor
-        nullptr,                                  // Item_Formula
-        nullptr,         // TypeItem::MAC
-        nullptr,         // TypeItem::ChoiceReg
-        nullptr       // TypeItem::SmallButton
-    };
-
-    if (item->IsActive())
-    {
-        pFuncMenuVpItem func = longFunction[item->Type()];
-        if (func)
-        {
-            (func)(item);
-        }
     }
 }
 
