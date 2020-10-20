@@ -15,14 +15,6 @@
 using namespace Primitives;
 
 
-extern const SmallButton sbSetT;                        // КУРСОРЫ - УСТАНОВИТЬ - Курсоры T . Выбор курсора времени - курсор 1, курсор 2, оба курсора или отключены.
-static void PressSB_Cursors_T();
-static void DrawSB_Cursors_T(int x, int y);
-static void DrawSB_Cursors_T_Disable(int x, int y);
-static void DrawSB_Cursors_T_Both_Disable(int x, int y);
-static void DrawSB_Cursors_T_Left(int x, int y);
-static void DrawSB_Cursors_T_Right(int x, int y);
-static void DrawSB_Cursors_T_Both_Enable(int x, int y);
 extern const SmallButton sbSet100;                      // КУРСОРЫ - УСТАНОВИТЬ - 100% . Установка 100 процентов в текущие места курсоров.
 static void DrawSB_Cursors_100(int x, int y);
 static void PressSB_Cursors_100();
@@ -259,7 +251,6 @@ static void DrawSB_Cursors_U_Both_Enable(int x, int y)
     DrawMenuCursVoltage(x + 7, y + 5, true, true);
 }
 
-
 static const arrayHints hintsSetU =
 {
     { DrawSB_Cursors_U_Disable,     "курсоры напряжения выключены",
@@ -323,6 +314,95 @@ DEF_SMALL_BUTTON(sbSetU, PageCursors::PageSet::self,
     "Выбор курсоров напряжения для индикации и управления",
     "Choice of cursors of voltage for indication and management",
     nullptr, PressSB_Cursors_U, DrawSB_Cursors_U, &hintsSetU
+)
+
+static void DrawSB_Cursors_T_Disable(int x, int y)
+{
+    Text("T").Draw(x + 7, y + 5);
+}
+
+static void DrawSB_Cursors_T_Both_Disable(int x, int y)
+{
+    DrawMenuCursTime(x, y, false, false);
+}
+
+static void DrawSB_Cursors_T_Left(int x, int y)
+{
+    DrawMenuCursTime(x, y, true, false);
+}
+
+static void DrawSB_Cursors_T_Right(int x, int y)
+{
+    DrawMenuCursTime(x, y, false, true);
+}
+
+static void DrawSB_Cursors_T_Both_Enable(int x, int y)
+{
+    DrawMenuCursTime(x, y, true, true);
+}
+
+static const arrayHints hintsSetT =
+{
+    { DrawSB_Cursors_T_Disable,         "курсоры времени выключены",
+                                        "cursors of time are switched off" },
+    { DrawSB_Cursors_T_Both_Disable,    "курсоры времени включены",
+                                        "cursors of time are switched on" },
+    { DrawSB_Cursors_T_Left,            "курсоры времени включены, управление левым курсором",
+                                        "cursors of time are switched on, control of the left cursor" },
+    { DrawSB_Cursors_T_Right,           "курсоры времени включены, управление правым курсором",
+                                        "cursors of time are switched on, control of the right cursor" },
+    { DrawSB_Cursors_T_Both_Enable,     "курсоры времени включены, управление обоими курсорами",
+                                        "cursors of time are switched on, control of both cursors" }
+};
+
+static void PressSB_Cursors_T(void)
+{
+    if (CURS_ACTIVE_IS_T || CURS_CNTRL_T_IS_DISABLE(CURS_SOURCE))
+    {
+        IncCursCntrlT(CURS_SOURCE);
+    }
+    CURS_ACTIVE = CursActive::T;
+}
+
+static void DrawSB_Cursors_T(int x, int y)
+{
+    Channel::E source = CURS_SOURCE;
+    CursCntrl::E cursCntrl = CURS_CNTRL_T(source);
+    if (cursCntrl == CursCntrl::Disable)
+    {
+        DrawSB_Cursors_T_Disable(x, y);
+    }
+    else
+    {
+        if (!CURS_ACTIVE_IS_T)
+        {
+            DrawSB_Cursors_T_Both_Disable(x, y);
+        }
+        else
+        {
+            bool condLeft = false, condDown = false;
+            CalculateConditions(static_cast<int16>(CURS_POS_T0(source)), static_cast<int16>(CURS_POS_T1(source)), cursCntrl, &condLeft, &condDown);
+            if (condLeft && condDown)
+            {
+                DrawSB_Cursors_T_Both_Enable(x, y);
+            }
+            else if (condLeft)
+            {
+                DrawSB_Cursors_T_Left(x, y);
+            }
+            else
+            {
+                DrawSB_Cursors_T_Right(x, y);
+            }
+        }
+    }
+}
+
+DEF_SMALL_BUTTON(sbSetT, PageCursors::PageSet::self,
+    "Курсоры T", "Cursors T",
+    "Выбор курсоров времени для индикации и управления",
+    "Choice of cursors of time for indication and management",
+    nullptr, PressSB_Cursors_T, DrawSB_Cursors_T, &hintsSetT
 )
 
 DEF_PAGE_6(mspSet, PageCursors::self, NamePage::SB_Curs,
@@ -413,97 +493,6 @@ static void SetShiftCursPosT(Channel::E chan, int numCur, float delta)
     CURS_POS_T(chan, numCur) = LimitationFloat(CURS_POS_T(chan, numCur) + delta, 0, MAX_POS_T);
 }
 
-static const arrayHints hintsSetT =
-{
-    { DrawSB_Cursors_T_Disable,         "курсоры времени выключены",
-                                        "cursors of time are switched off" },
-    { DrawSB_Cursors_T_Both_Disable,    "курсоры времени включены",
-                                        "cursors of time are switched on" },
-    { DrawSB_Cursors_T_Left,            "курсоры времени включены, управление левым курсором",
-                                        "cursors of time are switched on, control of the left cursor" },
-    { DrawSB_Cursors_T_Right,           "курсоры времени включены, управление правым курсором",
-                                        "cursors of time are switched on, control of the right cursor" },
-    { DrawSB_Cursors_T_Both_Enable,     "курсоры времени включены, управление обоими курсорами",
-                                        "cursors of time are switched on, control of both cursors" }    
-};
-
-DEF_SMALL_BUTTON(sbSetT, &mspSet,
-    "Курсоры T", "Cursors T",
-    "Выбор курсоров времени для индикации и управления",
-    "Choice of cursors of time for indication and management",
-    nullptr, PressSB_Cursors_T, DrawSB_Cursors_T, &hintsSetT
-)
-
-static void PressSB_Cursors_T(void)
-{
-    if (CURS_ACTIVE_IS_T || CURS_CNTRL_T_IS_DISABLE(CURS_SOURCE))
-    {
-        IncCursCntrlT(CURS_SOURCE);
-    }
-    CURS_ACTIVE = CursActive::T;
-}
-
-static void DrawSB_Cursors_T(int x, int y)
-{
-    Channel::E source = CURS_SOURCE;
-    CursCntrl::E cursCntrl = CURS_CNTRL_T(source);
-    if (cursCntrl == CursCntrl::Disable)
-    {
-        DrawSB_Cursors_T_Disable(x, y);
-    }
-    else
-    {
-        if (!CURS_ACTIVE_IS_T)
-        {
-            DrawSB_Cursors_T_Both_Disable(x, y);
-        }
-        else
-        {
-            bool condLeft = false, condDown = false;
-            CalculateConditions(static_cast<int16>(CURS_POS_T0(source)), static_cast<int16>(CURS_POS_T1(source)), cursCntrl, &condLeft, &condDown);
-            if (condLeft && condDown)
-            {
-                DrawSB_Cursors_T_Both_Enable(x, y);
-            }
-            else if (condLeft)
-            {
-                DrawSB_Cursors_T_Left(x, y);
-            }
-            else
-            {
-                DrawSB_Cursors_T_Right(x, y);
-            }
-        }
-    }
-}
-
-static void DrawSB_Cursors_T_Disable(int x, int y)
-{
-    Text("T").Draw(x + 7, y + 5);
-}
-
-static void DrawSB_Cursors_T_Both_Disable(int x, int y)
-{
-    DrawMenuCursTime(x, y, false, false);
-}
-
-static void DrawSB_Cursors_T_Left(int x, int y)
-{
-    DrawMenuCursTime(x, y, true, false);
-}
-
-static void DrawSB_Cursors_T_Right(int x, int y)
-{
-    DrawMenuCursTime(x, y, false, true);
-}
-
-static void DrawSB_Cursors_T_Both_Enable(int x, int y)
-{
-    DrawMenuCursTime(x, y, true, true);
-}
-
-
-// КУРСОРЫ - УСТАНОВИТЬ - 100% -----------------------------------------------------------------------------------------------------------------------
 DEF_SMALL_BUTTON(sbSet100, &mspSet,
     "100%", "100%",
     "Используется для процентных измерений. Нажатие помечает расстояние между активными курсорами как 100%",
