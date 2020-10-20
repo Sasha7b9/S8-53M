@@ -48,11 +48,11 @@ void DrawGovernorChoiceColorFormulaHiPart(const Item *item, int x, int y, bool p
 
     if (shade)
     {
-        Region(width + 2, MI_HEIGHT_VALUE + 3).Fill(x + 1, y + 2, ColorMenuItem(false));
+        Region(width + 2, MI_HEIGHT_VALUE + 3).Fill(x + 1, y + 2, Color::MenuItem(false));
     }
     else
     {
-        Painter::DrawVolumeButton(x + 1, y + 2, width + 2, MI_HEIGHT_VALUE + 3, 2, ColorMenuItem(false), ColorMenuItemBrighter(), ColorMenuItemLessBright(), pressed, shade);
+        Painter::DrawVolumeButton(x + 1, y + 2, width + 2, MI_HEIGHT_VALUE + 3, 2, Color::MenuItem(false), ColorMenuItemBrighter(), ColorMenuItemLessBright(), pressed, shade);
     }
 
     Text(item->Title()).Draw(x + 6 + delta, y + 6 + delta, color);
@@ -108,7 +108,7 @@ void Governor::DrawLowPart(int x, int y, bool, bool shade) const
         ColorMenuItemBrighter(), ColorMenuItemLessBright(), true, shade);
     if(shade)
     {
-        colorTextDown = ColorMenuItem(false);
+        colorTextDown = Color::MenuItem(false);
     }
 
     x = Text("\x80").Draw(x + 4, y + 21, colorTextDown);
@@ -154,7 +154,7 @@ void IPaddress::DrawLowPart(int x, int y, bool, bool shade) const
     Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true, shade);
     if (shade)
     {
-        colorTextDown = ColorMenuItem(false);
+        colorTextDown = Color::MenuItem(false);
     }
 
     const DataIPaddress *own = OwnData();
@@ -180,7 +180,7 @@ void MACaddress::DrawLowPart(int x, int y, bool, bool shade) const
     Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true, shade);
     if (shade)
     {
-        colorTextDown = ColorMenuItem(false);
+        colorTextDown = Color::MenuItem(false);
     }
 
     const DataMACaddress *own = OwnData();
@@ -234,7 +234,7 @@ void Formula::DrawLowPart(int x, int y, bool, bool shade) const
     Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true, shade);
     if (shade)
     {
-        colorTextDown = ColorMenuItem(false);
+        colorTextDown = Color::MenuItem(false);
     }
     Color::SetCurrent(colorTextDown);
     WriteText(x + 6, y + 21, false);
@@ -481,7 +481,7 @@ void GovernorColor::DrawOpened(int x, int y)
     Color_Init(OwnData()->colorType);
     Rectangle(MI_WIDTH + delta + 2, MI_HEIGHT + 2).Draw(x - 1, y - 1, Color::BLACK);
     Rectangle(MI_WIDTH + delta, MI_HEIGHT).Draw(x, y, Color::MenuTitle(false));
-    Painter::DrawVolumeButton(x + 1, y + 1, MI_WIDTH_VALUE + 2 + delta, MI_HEIGHT_VALUE + 3, 2, ColorMenuItem(false), 
+    Painter::DrawVolumeButton(x + 1, y + 1, MI_WIDTH_VALUE + 2 + delta, MI_HEIGHT_VALUE + 3, 2, Color::MenuItem(false), 
         ColorMenuItemBrighter(), ColorMenuItemLessBright(), IsPressed(), IsShade());
     HLine().Draw(y + MI_HEIGHT / 2 + 2, x, x + MI_WIDTH + delta, Color::MenuTitle(false));
     Painter::DrawStringInCenterRectC(x + (IsPressed() ? 2 : 1), y + (IsPressed() ? 2 : 1), MI_WIDTH + delta, MI_HEIGHT / 2 + 2, Title(), Color::WHITE);
@@ -719,8 +719,8 @@ void Button::Draw(int x, int y, bool)
 
     HLine().Draw(y + 1, x, x + MI_WIDTH, Color::MenuTitle(shade));
     Color::E color = shade ? Color::MENU_SHADOW : Color::WHITE;
-    Region(MI_WIDTH - 2, MI_HEIGHT - 2).Fill(x + 1, y + 2, ColorMenuItem(false));
-    Painter::DrawVolumeButton(x + 4, y + 5, MI_WIDTH - 8, MI_HEIGHT - 8, 3, ColorMenuItem(false), ColorMenuItemBrighter(), 
+    Region(MI_WIDTH - 2, MI_HEIGHT - 2).Fill(x + 1, y + 2, Color::MenuItem(false));
+    Painter::DrawVolumeButton(x + 4, y + 5, MI_WIDTH - 8, MI_HEIGHT - 8, 3, Color::MenuItem(false), ColorMenuItemBrighter(), 
                             ColorMenuItemLessBright(), pressed, shade);
 
     int delta = (pressed && (!shade)) ? 2 : 1;
@@ -761,7 +761,7 @@ void Page::Draw(int x, int y, bool)
     }
     else
     {
-        Painter::DrawVolumeButton(x + 1, y + 2, MI_WIDTH - 2, MI_HEIGHT - 2, 2, ColorMenuItem(isShade), ColorMenuItemBrighter(), ColorMenuItemLessBright(), isPressed, isShade);
+        Painter::DrawVolumeButton(x + 1, y + 2, MI_WIDTH - 2, MI_HEIGHT - 2, 2, Color::MenuItem(isShade), ColorMenuItemBrighter(), ColorMenuItemLessBright(), isPressed, isShade);
     }
     Color::E colorText = isShade ? LightShadingTextColor() : Color::BLACK;
     int delta = 0;

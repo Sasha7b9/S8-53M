@@ -39,13 +39,13 @@ struct Color {
     static Color::E MenuTitleLessBright();
     static Color::E Trig();
     static Color::E MenuTitle(bool inShade);
+    static Color::E MenuItem(bool inShade);
 
 private:
     static Color::E current;
 };
 
 
-Color::E ColorMenuItem(bool inShade);      // Цвет элемента меню.
 Color::E ColorBorderMenu(bool inShade);    // Цвет окантовки меню.
 Color::E ColorContrast(Color::E color);       // Возвращает цвет, контрастный к color. Может быть белым или чёрным.
 Color::E LightShadingTextColor();      // Светлый цвет в тени.
