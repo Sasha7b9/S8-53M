@@ -19,9 +19,6 @@
 using namespace Primitives;
 
 
-extern const Page pDebug;
-
-
 extern const Choice     mcStats;                            // ОТЛАДКА - Статистика
 extern const Page       mpConsole;                          // ОТЛАДКА - КОНСОЛЬ
 extern const Governor   mgConsole_NumStrings;               // ОТЛАДКА - КОНСОЛЬ - Число строк

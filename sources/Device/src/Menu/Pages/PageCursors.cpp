@@ -15,11 +15,6 @@
 using namespace Primitives;
 
 
-static void PressSB_Cursors_Exit();
-extern const SmallButton sbSetSource;                   // КУРСОРЫ - УСТАНОВИТЬ - Источник
-static void PressSB_Cursors_Source();
-static void DrawSB_Cursors_Source(int x, int y);
-static void DrawSB_Cursors_SourceA(int x, int y);
 static void DrawSB_Cursors_SourceB(int x, int y);
 extern const SmallButton sbSetU;                        // КУРСОРЫ - УСТАНОВИТЬ - Курсоры U . Выбор курсора напряжения - курсор 1, курсор 2, оба курсора или отключены.
 static void PressSB_Cursors_U();
@@ -214,6 +209,40 @@ DEF_SMALL_BUTTON(sbSetExit, PageCursors::PageSet::self,
     nullptr, PressSB_Cursors_Exit, DrawSB_Exit, nullptr
 )
 
+static void DrawSB_Cursors_SourceA(int x, int y)
+{
+    Text("1").Draw(x + 7, y + 5);
+}
+
+static void DrawSB_Cursors_SourceB(int x, int y)
+{
+    Text("2").Draw(x + 7, y + 5);
+}
+
+static const arrayHints hintsSetSource =
+{
+    { DrawSB_Cursors_SourceA, "канал 1", "channel 1" }, { DrawSB_Cursors_SourceB, "канал 2", "channel 2" }
+};
+
+static void PressSB_Cursors_Source(void)
+{
+    Channel::E source = CURS_SOURCE_A ? Channel::B : Channel::A;
+    SetCursSource(source);
+}
+
+static void DrawSB_Cursors_Source(int x, int y)
+{
+    CURS_SOURCE_A ? DrawSB_Cursors_SourceA(x, y) : DrawSB_Cursors_SourceB(x, y);
+}
+
+
+DEF_SMALL_BUTTON(sbSetSource, PageCursors::PageSet::self,
+    "Источник", "Source",
+    "Выбор канала для курсорных измерений",
+    "Channel choice for measurements",
+    nullptr, PressSB_Cursors_Source, DrawSB_Cursors_Source, &hintsSetSource
+)
+
 DEF_PAGE_6(mspSet, PageCursors::self, NamePage::SB_Curs,
     "УСТАНОВИТЬ", "SET",
     "Переход в режим курсорных измерений",
@@ -300,40 +329,6 @@ static void MoveCursTonPercentsOrPoints(int delta)
 static void SetShiftCursPosT(Channel::E chan, int numCur, float delta)
 {
     CURS_POS_T(chan, numCur) = LimitationFloat(CURS_POS_T(chan, numCur) + delta, 0, MAX_POS_T);
-}
-
-
-static const arrayHints hintsSetSource =
-{
-    { DrawSB_Cursors_SourceA, "канал 1", "channel 1" }, { DrawSB_Cursors_SourceB, "канал 2", "channel 2" }
-};
-
-DEF_SMALL_BUTTON(sbSetSource, &mspSet,
-    "Источник", "Source",
-    "Выбор канала для курсорных измерений",
-    "Channel choice for measurements",
-    nullptr, PressSB_Cursors_Source, DrawSB_Cursors_Source, &hintsSetSource
-)
-
-static void PressSB_Cursors_Source(void)
-{
-    Channel::E source = CURS_SOURCE_A ? Channel::B : Channel::A;
-    SetCursSource(source);
-}
-
-static void DrawSB_Cursors_Source(int x, int y)
-{
-    CURS_SOURCE_A ? DrawSB_Cursors_SourceA(x, y) : DrawSB_Cursors_SourceB(x, y);
-}
-
-static void DrawSB_Cursors_SourceA(int x, int y)
-{
-    Text("1").Draw(x + 7, y + 5);
-}
-
-static void DrawSB_Cursors_SourceB(int x, int y)
-{
-    Text("2").Draw(x + 7, y + 5);
 }
 
 
