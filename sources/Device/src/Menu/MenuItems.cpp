@@ -324,3 +324,23 @@ void Item::Open(bool open) const
     SetMenuPosActItem(page->GetName(), open ? (page->PosCurrentItem() | 0x80) : (page->PosCurrentItem() & 0x7f));
 }
 
+
+void Item::SetCurrent(bool active) const
+{
+    Page* page = Keeper();
+    if (!active)
+    {
+        SetMenuPosActItem(page->OwnData()->name, 0x7f);
+    }
+    else
+    {
+        for (int8 i = 0; i < page->NumItems(); i++)
+        {
+            if (page->GetItem(i) == this)
+            {
+                SetMenuPosActItem(page->OwnData()->name, i);
+                return;
+            }
+        }
+    }
+}

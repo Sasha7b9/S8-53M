@@ -120,6 +120,8 @@ public:
     Page *Keeper() const;
     // Открыть/закрыть элемент меню по адрему item.
     void Open(bool open) const;
+    // Сделать/разделать текущим пункт страницы.
+    void SetCurrent(bool active) const;
 
     static DataItem emptyData;
 

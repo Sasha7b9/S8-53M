@@ -15,30 +15,6 @@ bool Menu::CurrentItemIsOpened(NamePage::E namePage)
 }
 
 
-void Menu::SetCurrentItem(const Item *item, bool active)
-{
-    if(item != 0)
-    {
-        Page *page = (item->Keeper());
-        if(!active)
-        {
-            SetMenuPosActItem(page->OwnData()->name, 0x7f);
-        }
-        else
-        {
-            for(int8 i = 0; i < page->NumItems(); i++)
-            {
-                if(page->GetItem(i) == item)
-                {
-                    SetMenuPosActItem(page->OwnData()->name, i);
-                    return;
-                }
-            }
-        }
-    }
-}
-
-
 TypeItem::E Menu::TypeOpenedItem()
 {
     return OpenedItem()->Type();
@@ -190,7 +166,7 @@ NamePage::E Menu::GetNameOpenedPage()
 
 void Menu::OpenPageAndSetItCurrent(Item *page)
 {
-    SetCurrentItem(page, true);
+    page->SetCurrent(true);
     ((Page *)page)->Open(!ItemIsOpened((Page *)page));
 }
 

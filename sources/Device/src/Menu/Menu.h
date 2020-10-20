@@ -41,8 +41,6 @@ public:
     static Item *CurrentItem();
     // Возвращает true, если текущий элемент страницы с именем namePage открыт.
     static bool CurrentItemIsOpened(NamePage::E namePage);
-    // Сделать/разделать текущим пункт страницы.
-    static void SetCurrentItem(const Item *item, bool active);
 
     static NamePage::E GetNameOpenedPage();
 

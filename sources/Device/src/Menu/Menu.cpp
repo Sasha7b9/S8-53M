@@ -393,7 +393,7 @@ void Menu::ProcessingShortPressureButton()
                 const Item *page = PageForButton(button);
                 if(page)
                 {
-                    SetCurrentItem(page, true);
+                    page->SetCurrent(true);
                     page->Open(true);
                     ShowMenu(true);
                 }
@@ -531,7 +531,7 @@ void Menu::ShortPress_Page(Item *item)
     {
         return;
     }
-    SetCurrentItem(page, true);
+    page->SetCurrent(true);
     ((Page*)page)->Open(!ItemIsOpened((Page*)page));
 }
 
@@ -544,7 +544,7 @@ void Menu::ShortPress_Choice(Item *choice)
     }
     else if (!ItemIsOpened(choice))
     {
-        SetCurrentItem(choice, CurrentItem() != choice);       
+        choice->SetCurrent(CurrentItem() != choice);
         ((Choice *)choice)->StartChange(1);
     }
     else
@@ -562,7 +562,7 @@ void Menu::ShortPress_ChoiceReg(Item *choice)
     } 
     else if(OpenedItem() != choice) 
     {
-        SetCurrentItem(choice, CurrentItem() != choice);
+        choice->SetCurrent(CurrentItem() != choice);
     }
 }
 
@@ -579,7 +579,7 @@ void Menu::ShortPress_Button(Item *button)
     {
         return;
     }
-    SetCurrentItem(button, true);
+    button->SetCurrent(true);
     ((Button*)button)->OwnData()->funcOnPress();
 }
 
@@ -588,7 +588,7 @@ void Menu::FuncOnLongPressItem(Item *item) //-V2009 //-V2558
 {
     if (CurrentItem() != item)
     {
-        SetCurrentItem(item, true);
+        item->SetCurrent(true);
     }
     item->Open(!ItemIsOpened(item));
 }
@@ -598,7 +598,7 @@ void Menu::FuncOnLongPressItemTime(Item *time)
 {
     if (CurrentItem() != time)
     {
-        SetCurrentItem(time, true);
+        time->SetCurrent(true);
     }
     if(ItemIsOpened(time) && *((TimeItem *)time)->OwnData()->curField == iSET)
     {
@@ -613,7 +613,7 @@ void Menu::ShortPress_Time(Item *time)
 {
     if(!ItemIsOpened(time))
     {
-        SetCurrentItem(time, true);
+        time->SetCurrent(true);
         ((TimeItem *)time)->SetOpened();
         time->Open(true);
     }
