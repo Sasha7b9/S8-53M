@@ -13,7 +13,6 @@ extern const Choice mcAccumulation_Number;                  // ДИСПЛЕЙ - НАКОПЛЕ
 extern const Choice mcAccumulation_Mode;                    // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Режим
 extern const Button mbAccumulation_Clear;                   // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Очистить
 static bool IsActive_Accumulation_Clear();                  // Активна ли кнопка ДИСПЛЕЙ-НАКОПЛЕНИЕ-Очистить
-void OnPress_Accumulation_Clear();                          // Обработка нажатия ДИСПЛЕЙ-НАКОПЛЕНИЕ-Очистить
 
 extern const Page mspAveraging;                             //     ДИСПЛЕЙ - УСРЕДНЕНИЕ
 static bool IsActive_Averaging();                           // Активна ли страница ДИСПЛЕЙ-УСРЕДНЕНИЕ
@@ -144,7 +143,7 @@ DEF_BUTTON(mbAccumulation_Clear, &mspAccumulation,
     "Очистить", "Clear",
     "Очищает экран от накопленных сигналов.",
     "Clears the screen of the saved-up signals.",
-    IsActive_Accumulation_Clear, OnPress_Accumulation_Clear
+    IsActive_Accumulation_Clear, PageDisplay::OnPress_Accumulation_Clear
 )
 
 
@@ -153,7 +152,7 @@ static bool IsActive_Accumulation_Clear()
     return ENUM_ACCUM_IS_INFINITY;
 }
 
-void OnPress_Accumulation_Clear(void)
+void PageDisplay::OnPress_Accumulation_Clear()
 {
     Display::Redraw();
 }

@@ -2,6 +2,7 @@
 #include "globals.h"
 #include "common/Log_c.h"
 #include "Display/Painter.h"
+#include "Menu/Pages/Definition.h"
 #include "VCP/VCP.h"
 #include "VCP/SCPI/SCPI.h"
 #include "Settings/Settings.h"
@@ -90,9 +91,6 @@ void SCPI::DISPLAY::MAPPING(pUCHAR buffer)
 
 
 
-extern void OnPress_Accumulation_Clear();
-
-
 void SCPI::DISPLAY::ACCUM_NUMBER(pUCHAR buffer)
 {
     static const MapElement map[] =
@@ -141,7 +139,7 @@ void SCPI::DISPLAY::ACCUM_MODE(pUCHAR buffer)
 
 void SCPI::DISPLAY::ACCUM_CLEAR(pUCHAR )
 {
-    OnPress_Accumulation_Clear();
+    PageDisplay::OnPress_Accumulation_Clear();
 }
 
 
