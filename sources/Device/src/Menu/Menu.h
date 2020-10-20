@@ -91,8 +91,6 @@ private:
     static void FuncOnLongPressItemTime(Item *item);
     // Обработка длинного нажатия на элемент Button с адресом button.
     static void FuncOnLongPressItemButton(Item *button);
-    // Возвращает функцию обработки короткого нажатия на элемент меню item.
-    static void ExecuteFuncForShortPressOnItem(Item *item);
     // Возвращает функцию обработки длинного нажатия на элемент меню item.
     static void ExecuteFuncForLongPressureOnItem(Item *item);
 

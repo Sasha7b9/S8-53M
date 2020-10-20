@@ -367,7 +367,7 @@ void Menu::ProcessingShortPressureButton()
                 }
                 else
                 {
-                    ExecuteFuncForShortPressOnItem(item);
+                    item->ShortPress();
                 }
             }
             else                                                        // Если меню не показано.
@@ -544,45 +544,6 @@ void Menu::FuncOnLongPressItemTime(Item *time)
     }
     time->Open(!time->IsOpened());
     ((TimeItem *)time)->SetOpened();
-}
-
-
-void Menu::ExecuteFuncForShortPressOnItem(Item *item)
-{
-    typedef void(*pFuncMenuVpItem)(Item*);
-
-    TypeItem::E type = item->Type();
-
-    if (type == TypeItem::Page || type == TypeItem::Choice || type == TypeItem::Button || type == TypeItem::Governor || type == TypeItem::Time ||
-        type == TypeItem::IP || type == TypeItem::GovernorColor || type == TypeItem::MAC || type == TypeItem::ChoiceReg || type == TypeItem::SmallButton)
-    {
-        item->ShortPress();
-        return;
-    }
-
-    static const pFuncMenuVpItem shortFunction[TypeItem::Count] =
-    {
-        nullptr,                            // TypeItem::None
-        nullptr,                            // TypeItem::Choice
-        nullptr,                            // TypeItem::Button
-        nullptr,                            // TypeItem::Page
-        nullptr,                            // TypeItem::Governor
-        nullptr,                            // TypeItem::Time
-        nullptr,                            // TypeItem::IP
-        nullptr,                            // Item_SwitchButton
-        nullptr,                            // TypeItem::GovernorColor
-        nullptr,                            // Item_Formula
-        nullptr,                            // TypeItem::MAC
-        nullptr,                            // TypeItem::ChoiceReg
-        nullptr       // TypeItem::SmallButton
-    };
- 
-    pFuncMenuVpItem func = shortFunction[item->Type()];
-
-    if (func)
-    {
-        (func)(item);
-    }
 }
 
 
