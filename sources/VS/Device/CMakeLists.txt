@@ -74,7 +74,8 @@ file(GLOB LAN               ../../Device/src/LAN/LAN.h
                                          src/LAN/LAN_win.cpp
                             ../../Device/src/LAN/SocketTCP.h
                             ../../Device/src/LAN/SocketTCP.cpp)
-file(GLOB FDRIVE            ../../Device/src/FDrive/*)
+file(GLOB FDRIVE            ../../Device/src/FDrive/*.h
+                                         src/FDrive/FDrive_win.cpp)
 file(GLOB FPGA              ../../Device/src/FPGA/FPGA.h
                             ../../Device/src/FPGA/FPGA_Settings.cpp
                             ../../Device/src/FPGA/MathFPGA.*

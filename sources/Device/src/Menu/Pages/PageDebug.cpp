@@ -723,7 +723,7 @@ static void Draw_EnterSerialNumber(void)
     int width = Grid::Width() - 80;
     int height = 160;
 
-    Rectangle(width, height).Draw(x0, y0, COLOR_FILL);
+    Primitives::Rectangle(width, height).Draw(x0, y0, COLOR_FILL);
     Region(width - 2, height - 2).Fill(x0 + 1, y0 + 1, COLOR_BACK);
 
     int deltaX = 10;
