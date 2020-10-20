@@ -480,10 +480,10 @@ void GovernorColor::DrawOpened(int x, int y)
     x -= delta;
     Color_Init(OwnData()->colorType);
     Rectangle(MI_WIDTH + delta + 2, MI_HEIGHT + 2).Draw(x - 1, y - 1, Color::BLACK);
-    Rectangle(MI_WIDTH + delta, MI_HEIGHT).Draw(x, y, ColorMenuTitle(false));
+    Rectangle(MI_WIDTH + delta, MI_HEIGHT).Draw(x, y, Color::MenuTitle(false));
     Painter::DrawVolumeButton(x + 1, y + 1, MI_WIDTH_VALUE + 2 + delta, MI_HEIGHT_VALUE + 3, 2, ColorMenuItem(false), 
         ColorMenuItemBrighter(), ColorMenuItemLessBright(), IsPressed(), IsShade());
-    HLine().Draw(y + MI_HEIGHT / 2 + 2, x, x + MI_WIDTH + delta, ColorMenuTitle(false));
+    HLine().Draw(y + MI_HEIGHT / 2 + 2, x, x + MI_WIDTH + delta, Color::MenuTitle(false));
     Painter::DrawStringInCenterRectC(x + (IsPressed() ? 2 : 1), y + (IsPressed() ? 2 : 1), MI_WIDTH + delta, MI_HEIGHT / 2 + 2, Title(), Color::WHITE);
     DrawValue(x + 1, y + 19, delta);
 }
@@ -514,7 +514,7 @@ void Choice::DrawOpened(int x, int y) const
     Rectangle(MP_TITLE_WIDTH + 2, height + 3).Draw(x - 1, y - 1, COLOR_BACK);
     
     DrawGovernorChoiceColorFormulaHiPart(this, x - 1, y - 1, IsPressed(), false, true);
-    Rectangle(MP_TITLE_WIDTH + 1, height + 1).Draw(x - 1, y, ColorMenuTitle(false));
+    Rectangle(MP_TITLE_WIDTH + 1, height + 1).Draw(x - 1, y, Color::MenuTitle(false));
  
     HLine().Draw(y + MOI_HEIGHT_TITLE - 1, x, x + MOI_WIDTH);
     Painter::DrawVolumeButton(x, y + MOI_HEIGHT_TITLE, MOI_WIDTH - 1, height - MOI_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false, false);
@@ -540,7 +540,7 @@ void TimeItem::DrawOpened(int x, int y) const
     Rectangle(width + 2, height + 3).Draw(x - 1, y - 1, COLOR_BACK);
     DrawGovernorChoiceColorFormulaHiPart(this, x - 1, y - 1, IsPressed(), false, true);
 
-    Rectangle(width + 1, height + 1).Draw(x - 1, y, ColorMenuTitle(false));
+    Rectangle(width + 1, height + 1).Draw(x - 1, y, Color::MenuTitle(false));
 
     HLine().Draw(y + MOI_HEIGHT_TITLE - 1, x, x + MOI_WIDTH);
     Painter::DrawVolumeButton(x, y + MOI_HEIGHT_TITLE, MOI_WIDTH - 1, height - MOI_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false, false);
@@ -600,7 +600,7 @@ static void GovernorIpCommon_DrawOpened(const Item *item, int x, int y, int dWid
 {
     int height = 34;
     Rectangle(MP_TITLE_WIDTH + 2 + dWidth, height + 3).Draw(x - 1, y - 1, COLOR_BACK);
-    Rectangle(MP_TITLE_WIDTH + 1 + dWidth, height + 1).Draw(x - 1, y, ColorMenuTitle(false));
+    Rectangle(MP_TITLE_WIDTH + 1 + dWidth, height + 1).Draw(x - 1, y, Color::MenuTitle(false));
     HLine().Draw(y + MOI_HEIGHT_TITLE - 1, x, x + MOI_WIDTH + dWidth);
     DrawGovernorChoiceColorFormulaHiPart(item, x - 1, y - 1, item->IsPressed(), false, true);
     Painter::DrawVolumeButton(x, y + MOI_HEIGHT_TITLE, MOI_WIDTH - 1 + dWidth, height - MOI_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false, false);
@@ -717,7 +717,7 @@ void Button::Draw(int x, int y, bool)
     bool pressed = IsPressed();
     bool shade = IsShade() || !IsActive();
 
-    HLine().Draw(y + 1, x, x + MI_WIDTH, ColorMenuTitle(shade));
+    HLine().Draw(y + 1, x, x + MI_WIDTH, Color::MenuTitle(shade));
     Color::E color = shade ? Color::MENU_SHADOW : Color::WHITE;
     Region(MI_WIDTH - 2, MI_HEIGHT - 2).Fill(x + 1, y + 2, ColorMenuItem(false));
     Painter::DrawVolumeButton(x + 4, y + 5, MI_WIDTH - 8, MI_HEIGHT - 8, 3, ColorMenuItem(false), ColorMenuItemBrighter(), 
@@ -820,7 +820,7 @@ void Page::DrawTitle(int layer, int yTop)
     }
     else
     {
-        Painter::DrawVolumeButton(x + 1, yTop + 1, MP_TITLE_WIDTH - 1, MP_TITLE_HEIGHT - 1, 3, ColorMenuTitle(false), ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), shade, false);
+        Painter::DrawVolumeButton(x + 1, yTop + 1, MP_TITLE_WIDTH - 1, MP_TITLE_HEIGHT - 1, 3, Color::MenuTitle(false), ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), shade, false);
     }
 
     VLine().Draw(x, yTop, yTop + HeightOpened(), ColorBorderMenu(false));

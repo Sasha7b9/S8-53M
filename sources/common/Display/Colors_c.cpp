@@ -29,7 +29,7 @@ Color::E Color::Cursors(Channel::E chan)
 }
 
 
-Color::E ColorMenuTitle(bool inShade)
+Color::E Color::MenuTitle(bool inShade)
 {
     return inShade ? Color::MENU_ITEM : Color::MENU_TITLE;
 }
@@ -56,7 +56,7 @@ Color::E ColorMenuItem(bool inShade)
 
 Color::E ColorBorderMenu(bool inShade)
 {
-    return ColorMenuTitle(inShade);
+    return Color::MenuTitle(inShade);
 }
 
 
@@ -75,7 +75,7 @@ Color::E ColorContrast(Color::E color)
 
 Color::E LightShadingTextColor()
 {
-    return ColorMenuTitle(false);
+    return Color::MenuTitle(false);
 }
 
 
