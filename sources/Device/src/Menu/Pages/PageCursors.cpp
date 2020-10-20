@@ -15,9 +15,6 @@
 using namespace Primitives;
 
 
-extern const SmallButton sbSet100;                      // КУРСОРЫ - УСТАНОВИТЬ - 100% . Установка 100 процентов в текущие места курсоров.
-static void DrawSB_Cursors_100(int x, int y);
-static void PressSB_Cursors_100();
 extern const SmallButton sbSetPointsPercents;           // КУРСОРЫ - УСТАНОВИТЬ - Перемещение . Переключение шага перемещения курсоров - по пикселям или по процентам.
 static void PressSB_Cursors_PointsPercents();
 static void DrawSB_Cursors_PointsPercents(int x, int y);
@@ -405,6 +402,31 @@ DEF_SMALL_BUTTON(sbSetT, PageCursors::PageSet::self,
     nullptr, PressSB_Cursors_T, DrawSB_Cursors_T, &hintsSetT
 )
 
+static void PressSB_Cursors_100(void)
+{
+    SetCursPos100(CURS_SOURCE);
+}
+
+static void SetCursPos100(Channel::E chan)
+{
+    DELTA_U100(chan) = std::fabsf(CURS_POS_U0(chan) - CURS_POS_U1(chan));
+    DELTA_T100(chan) = std::fabsf(CURS_POS_T0(chan) - CURS_POS_T1(chan));
+}
+
+static void DrawSB_Cursors_100(int x, int y)
+{
+    Font::Set(TypeFont::_5);
+    Text("100%").Draw(x + 2, y + 3);
+    Font::Set(TypeFont::_8);
+}
+
+DEF_SMALL_BUTTON(sbSet100, PageCursors::PageSet::self,
+    "100%", "100%",
+    "Используется для процентных измерений. Нажатие помечает расстояние между активными курсорами как 100%",
+    "It is used for percentage measurements. Pressing marks distance between active cursors as 100%",
+    nullptr, PressSB_Cursors_100, DrawSB_Cursors_100, nullptr
+)
+
 DEF_PAGE_6(mspSet, PageCursors::self, NamePage::SB_Curs,
     "УСТАНОВИТЬ", "SET",
     "Переход в режим курсорных измерений",
@@ -493,33 +515,6 @@ static void SetShiftCursPosT(Channel::E chan, int numCur, float delta)
     CURS_POS_T(chan, numCur) = LimitationFloat(CURS_POS_T(chan, numCur) + delta, 0, MAX_POS_T);
 }
 
-DEF_SMALL_BUTTON(sbSet100, &mspSet,
-    "100%", "100%",
-    "Используется для процентных измерений. Нажатие помечает расстояние между активными курсорами как 100%",
-    "It is used for percentage measurements. Pressing marks distance between active cursors as 100%",
-    nullptr, PressSB_Cursors_100, DrawSB_Cursors_100, nullptr
-)
-
-static void PressSB_Cursors_100(void)
-{
-    SetCursPos100(CURS_SOURCE);
-}
-
-static void SetCursPos100(Channel::E chan)
-{
-    DELTA_U100(chan) = std::fabsf(CURS_POS_U0(chan) - CURS_POS_U1(chan));
-    DELTA_T100(chan) = std::fabsf(CURS_POS_T0(chan) - CURS_POS_T1(chan));
-}
-
-static void DrawSB_Cursors_100(int x, int y)
-{
-    Font::Set(TypeFont::_5);
-    Text("100%").Draw(x + 2, y + 3);
-    Font::Set(TypeFont::_8);
-}
-
-
-// КУРСОРЫ - УСТАНОВИТЬ - Перемещение ----------------------------------------------------------------------------------------------------------------
 static const arrayHints hintsSetPointsPercents =
 {
     { DrawSB_Cursors_PointsPercents_Percents,   "шаг перемещения курсоров кратен одному проценту",
