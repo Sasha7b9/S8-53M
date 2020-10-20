@@ -32,6 +32,6 @@ public:
     {
     public:
 
-        static Item *GetPointer();
+        static const Page *self;
     };
 };

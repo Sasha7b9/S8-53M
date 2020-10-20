@@ -191,6 +191,8 @@ public:
     // Вызывает функцию короткого нажатия кнопки над итемом numItem страницы page;
     void ShortPressOnItem(int numItem) const;
 
+    void OpenAndSetItCurrent() const;
+
     static Page empty;
 
 private:

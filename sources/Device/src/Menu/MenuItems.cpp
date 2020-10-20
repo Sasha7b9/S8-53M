@@ -588,3 +588,10 @@ void Page::ShortPressOnItem(int numItem) const
         }
     }
 }
+
+
+void Page::OpenAndSetItCurrent() const
+{
+    SetCurrent(true);
+    Open(!IsOpened());
+}

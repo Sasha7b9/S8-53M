@@ -6,12 +6,11 @@
 class Menu
 {
 public:
-    // Возвращает адрес элемента меню, соответствующего данной button.
-    static Item* ItemUnderButton(Key::E button);
-
     static void Draw();
     // Функция должна вызываться в главном цикле.
     static void UpdateInput();
+    // Возвращает адрес элемента меню, соответствующего данной button.
+    static Item *ItemUnderButton(Key::E button);
     // Функция обработки короткого нажатия кнопки (менее 0.5 сек.).
     static void ShortPressureButton(Key::E button);
     // Функция обработки длинного нажатия кнопки (более 0.5 сек.).
@@ -27,12 +26,11 @@ public:
     // Установить время автоматического сокрытия меню в соответствии с установками.
     static void SetAutoHide(bool active);
     // Возвращает адрес пункта меню, находящегося под нажатой в данный момент кнопкой.
-    static void *ItemUnderKey();
+    static Item *ItemUnderKey();
     // Возвращает путь к текущему пункту меню в текстовом виде, готовом к выводу на экран.
     static char *StringNavigation(char buffer[100]);
 
     static void OpenItemTime();
-
     // Возвращает адрес открытого элемента меню.
     static Item *OpenedItem();
     // Возвращает адрес текущего элемента меню (текущим, как правило, является элемент, кнопка которого была нажата последней.
@@ -41,8 +39,6 @@ public:
     static bool CurrentItemIsOpened(NamePage::E namePage);
 
     static NamePage::E GetNameOpenedPage();
-
-    static void OpenPageAndSetItCurrent(Item *page);
 
     static bool ChangeOpenedItem(Item *item, int delta);
     // Возвращает высоту в пикселях открытого элемента Choice или NamePage::E по адресу item.

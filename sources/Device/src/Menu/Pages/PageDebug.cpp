@@ -108,10 +108,8 @@ struct StructForSN
 
 extern const Page mainPage;
 
-Item *PageDebug::SerialNumber::GetPointer()
-{
-    return (Item *)&ppSerialNumber;
-}
+
+const Page *PageDebug::SerialNumber::self = &ppSerialNumber;
 
 
 // ÎÒËÀÄÊÀ /////////////////////////
@@ -710,7 +708,7 @@ DEF_PAGE_6(ppSerialNumber, pDebug, NamePage::SB_SerialNumber,
 
 static void OnPress_SerialNumber(void)
 {
-    Menu::OpenPageAndSetItCurrent(PageDebug::SerialNumber::GetPointer());
+    PageDebug::SerialNumber::self->OpenAndSetItCurrent();
     Display::SetAddDrawFunction(Draw_EnterSerialNumber);
     MALLOC_EXTRAMEM(StructForSN, s);
     s->number = 1; //-V522

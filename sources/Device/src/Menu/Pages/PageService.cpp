@@ -763,7 +763,7 @@ DEF_CHOICE_2(cModeLongPressButtonTrig, pService,
     "- Automatically detect and install the trigger level"
     ,
     "Сброс уровня", "Reset trig level",
-    "Автоуровень",  "Autolevel",
+    "Автоуровень", "Autolevel",
     MODE_LONG_PRESS_TRIG, nullptr, nullptr, nullptr
 )
 
@@ -781,14 +781,12 @@ DEF_PAGE_6(ppInformation, pService, NamePage::SB_Information,
     nullptr, OnPress_Information, nullptr, nullptr
 )
 
-Item *PageService::Information::GetPointer()
-{
-    return (Item *)&ppInformation;
-}
+const Page *PageService::Information::self = &ppInformation;
+
 
 static void OnPress_Information(void)
 {
-    Menu::OpenPageAndSetItCurrent(PageService::Information::GetPointer());
+    PageService::Information::self->OpenAndSetItCurrent();
     Display::SetDrawMode(DrawMode::Hand, Information_Draw);
 }
 

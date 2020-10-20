@@ -265,7 +265,7 @@ void Menu::RotateRegSetLeft(void)
 };
 
 
-void* Menu::ItemUnderKey(void)
+Item* Menu::ItemUnderKey(void)
 {
     return itemUnderKey;
 };

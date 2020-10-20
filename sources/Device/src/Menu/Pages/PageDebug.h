@@ -7,6 +7,6 @@ public:
     class SerialNumber
     {
     public:
-        static Item *GetPointer();
+        static const Page *self;
     };
 };

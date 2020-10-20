@@ -107,13 +107,6 @@ NamePage::E Menu::GetNameOpenedPage()
 }
 
 
-void Menu::OpenPageAndSetItCurrent(Item *page)
-{
-    page->SetCurrent(true);
-    ((Page *)page)->Open(!((Page *)page)->IsOpened());
-}
-
-
 bool Menu::ChangeOpenedItem(Item *item, int delta)
 {
     if (delta < 2 && delta > -2)
