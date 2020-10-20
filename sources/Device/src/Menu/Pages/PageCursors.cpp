@@ -4,7 +4,7 @@
 #include "common/Display/Font/Font_c.h"
 #include "common/Utils/Math_c.h"
 #include "Hardware/Sound.h"
-#include "Menu/Menu.h"
+#include "Menu/MenuItems.h"
 #include "Menu/Pages/Definition.h"
 #include "Menu/Pages/PageCursors.h"
 #include "Settings/Settings.h"
