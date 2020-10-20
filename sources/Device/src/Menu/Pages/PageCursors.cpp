@@ -20,7 +20,6 @@ static void MoveCursTonPercentsOrPoints(int delta);
 static void SetShiftCursPosU(Channel::E chan, int numCur, float delta);    // »зменить значение позиции курсора напр€жени€ на delta точек
 static void SetShiftCursPosT(Channel::E chan, int numCurs, float delta);   // »зменить значение позиции курсора времени на delta точек
 static void SetCursPos100(Channel::E chan);                                // «апомнить позиции курсоров, соответствующие 100%.
-//static void SetCursSource(Channel chann);                               // ”становить источник курсорных измерений.
 static void IncCursCntrlU(Channel::E chan);                                // ¬ыбрать следующий курсор.
 static void IncCursCntrlT(Channel::E chan);                                // ¬ыбрать следующий курсор.
 static void SetCursPosU(Channel::E chan, int numCur, float pos);           // ”становить позицию курсора напр€жени€.
