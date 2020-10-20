@@ -154,26 +154,6 @@ bool Menu::ChangeOpenedItem(Item *item, int delta)
 }
 
 
-void Menu::ShortPressOnPageItem(const Page *page, int numItem)
-{
-    const DataPage *own = page->OwnData();
-
-    if (page->Type() != TypeItem::Page)
-    {
-        return;
-    }
-    NamePage::E namePage = own->name;
-    if (namePage >= NamePage::SB_Curs)
-    {
-        SmallButton *sb = (SmallButton*)(own->items)[numItem];
-        if (sb && own->funcOnPress)
-        {
-            own->funcOnPress();
-        }
-    }
-}
-
-
 SmallButton* Menu::SmallButonFromPage(const Page *page, int numButton)
 {
     const DataPage *own = page->OwnData();

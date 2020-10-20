@@ -188,6 +188,8 @@ public:
     void DrawOpened(int layer, int yTop);
 
     Item *RetLastOpened(TypeItem::E *_type);
+    // Вызывает функцию короткого нажатия кнопки над итемом numItem страницы page;
+    void ShortPressOnItem(int numItem) const;
 
     static Page empty;
 

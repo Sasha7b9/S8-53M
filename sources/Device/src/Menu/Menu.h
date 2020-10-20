@@ -58,8 +58,6 @@ public:
     // Закрыть открытый элемент меню.
     static void CloseOpenedItem();
 
-    static void ShortPressOnPageItem(const Page *page, int numItem);   // Вызывает функцию короткого нажатия кнопки над итемом numItem страницы page;
-
     static SmallButton *SmallButonFromPage(const Page *page, int numButton);
 
     static void ChangeStateFlashDrive();

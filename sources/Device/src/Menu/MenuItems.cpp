@@ -568,3 +568,23 @@ void Item::Change(int delta)
         ((GovernorColor *)this)->ChangeValue(delta);
     }
 }
+
+
+void Page::ShortPressOnItem(int numItem) const
+{
+    const DataPage *own = OwnData();
+
+    if (Type() != TypeItem::Page)
+    {
+        return;
+    }
+    NamePage::E namePage = own->name;
+    if (namePage >= NamePage::SB_Curs)
+    {
+        SmallButton *sb = (SmallButton *)(own->items)[numItem];
+        if (sb && own->funcOnPress)
+        {
+            own->funcOnPress();
+        }
+    }
+}

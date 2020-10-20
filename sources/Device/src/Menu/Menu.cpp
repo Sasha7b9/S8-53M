@@ -525,7 +525,7 @@ void Menu::ChangeStateFlashDrive()
     {
         if(GetNameOpenedPage() == NamePage::SB_FileManager)
         {
-            ShortPressOnPageItem((Page *)OpenedItem(), 0);
+            ((Page *)OpenedItem())->ShortPressOnItem(0);
         }
     }
     else if(FLASH_AUTOCONNECT)
