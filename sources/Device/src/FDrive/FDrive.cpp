@@ -1,6 +1,9 @@
 #include "defines.h"
-#include "FDrive/FDrive.h"
 #include "common/Hardware/HAL/HAL_c.h"
+#include "FDrive/FDrive.h"
+#include "Menu/Menu.h"
+#include "Settings/Settings.h"
+#include "Settings/SettingsMemory.h"
 #include <usbh_diskio.h>
 
 
@@ -367,4 +370,20 @@ bool FDrive::CloseFile(StructForWrite *structForWrite)
 //    f_utime(structForWrite->name, &fno);
 
     return true;
+}
+
+
+void FDrive::ChangeState()
+{
+    if (FLASH_DRIVE_IS_CONNECTED == 0)
+    {
+        if (Menu::GetNameOpenedPage() == NamePage::SB_FileManager)
+        {
+            ((Page *)Menu::OpenedItem())->ShortPressOnItem(0);
+        }
+    }
+    else if (FLASH_AUTOCONNECT)
+    {
+        NEED_OPEN_FILE_MANAGER = 1;
+    }
 }

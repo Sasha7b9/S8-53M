@@ -519,22 +519,6 @@ void Menu::ProcessingReleaseButton(void)
 }
 
 
-void Menu::ChangeStateFlashDrive()
-{
-    if(FLASH_DRIVE_IS_CONNECTED == 0)
-    {
-        if(GetNameOpenedPage() == NamePage::SB_FileManager)
-        {
-            ((Page *)OpenedItem())->ShortPressOnItem(0);
-        }
-    }
-    else if(FLASH_AUTOCONNECT)
-    {
-        NEED_OPEN_FILE_MANAGER = 1;
-    }
-}
-
-
 extern const Page pService;
 
 

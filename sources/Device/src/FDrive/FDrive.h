@@ -53,4 +53,6 @@ public:
     static bool CloseFile(StructForWrite *structForWrite);
 
     static bool AppendStringToFile(const char* string);
+
+    static void ChangeState();
 };
