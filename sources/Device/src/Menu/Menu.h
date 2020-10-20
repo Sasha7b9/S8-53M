@@ -68,8 +68,6 @@ public:
 
     static void ChangeStateFlashDrive();
 
-    static int CalculateX(int layer);
-
     static int ItemOpenedPosY(const Item *item);
 
     static void DrawPagesUGO(const Page *page, int right, int bottom);

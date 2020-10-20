@@ -131,6 +131,8 @@ public:
 
     virtual void Draw(int, int, bool = false) {};
 
+    int CalculateX(int layer) const;
+
     static DataItem emptyData;
 
     static Item empty;

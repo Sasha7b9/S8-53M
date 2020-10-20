@@ -79,11 +79,11 @@ void Menu::Draw()
         {
             if(item->Type() == TypeItem::Choice)
             {
-                ((Choice *)item)->Draw(CalculateX(0), Grid::TOP, true);
+                ((Choice *)item)->Draw(item->CalculateX(0), Grid::TOP, true);
             }
             else if(item->Type() == TypeItem::Governor)
             {
-                ((Governor *)item)->Draw(CalculateX(0), Grid::TOP, true);
+                ((Governor *)item)->Draw(item->CalculateX(0), Grid::TOP, true);
             }
         }
     }
@@ -135,12 +135,6 @@ void Menu::DrawPagesUGO(const Page *page, int right, int bottom)
             Rectangle(size, size).Draw(x, top);
         }
     }
-}
-
-
-int Menu::CalculateX(int layer)
-{
-    return MP_X - layer * Grid::DELTA / 4;
 }
 
 

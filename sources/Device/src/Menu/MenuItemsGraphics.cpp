@@ -789,7 +789,7 @@ void Page::DrawOpened(int layer, int yTop)
             }
         }
 
-        item->Draw(Menu::CalculateX(1), Menu::ItemOpenedPosY(this), true);
+        item->Draw(CalculateX(1), Menu::ItemOpenedPosY(this), true);
     }
 
     if (OwnData()->funcOnDraw)
@@ -801,7 +801,7 @@ void Page::DrawOpened(int layer, int yTop)
 
 void Page::DrawTitle(int layer, int yTop)
 {
-    int x = Menu::CalculateX(layer);
+    int x = CalculateX(layer);
     if (IsSB())
     {
         Menu::SmallButonFromPage(this, 0)->Draw(LEFT_SB, yTop + 3);
@@ -837,7 +837,7 @@ void Page::DrawTitle(int layer, int yTop)
     delta = 0;
 
     Color::SetCurrent(colorText);
-    Menu::DrawPagesUGO(this, Menu::CalculateX(layer) + MP_TITLE_WIDTH - 3 + delta, yTop + MP_TITLE_HEIGHT - 2 + delta);
+    Menu::DrawPagesUGO(this, CalculateX(layer) + MP_TITLE_WIDTH - 3 + delta, yTop + MP_TITLE_HEIGHT - 2 + delta);
 }
 
 
@@ -851,7 +851,7 @@ void Page::DrawItems(int layer, int yTop) const
     {
         Item *item = GetItem(posItem);
         int top = yTop + MI_HEIGHT * count;
-        item->Draw(Menu::CalculateX(layer), top);
+        item->Draw(CalculateX(layer), top);
         count++;
         Menu::itemUnderButton[GetFuncButtonFromY(top)] = item;
     }
@@ -861,4 +861,10 @@ void Page::DrawItems(int layer, int yTop) const
 void Governor::Draw(int x, int y)
 {
     Draw(x, y, false);
+}
+
+
+int Item::CalculateX(int layer) const
+{
+    return MP_X - layer * Grid::DELTA / 4;
 }
