@@ -4,6 +4,7 @@
 
 
 class Page;
+struct ColorType;
 
 
 #define COMMON_BEGIN_SB_EXIT  "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu"
@@ -108,7 +109,13 @@ struct PageDisplay
 {
     static const Page *self;
 
+    static ColorType *colorTypeGrid;
+
     static void OnPress_Accumulation_Clear();
+
+    static void OnChanged_RefreshFPS(bool);
+
+    static void OnChanged_Grid_Brightness();
 };
 
 

@@ -26,12 +26,10 @@ static void OnChanged_MinMax(bool active);                  // Реакция на измене
 extern const Choice mcSmoothing;                            //     ДИСПЛЕЙ - Сглаживание
 
 extern const Choice mcRefreshFPS;                           //     ДИСПЛЕЙ - Частота обновл
-void OnChanged_RefreshFPS(bool active);                     // Реакция на изменение ДИСПЛЕЙ-Частота обновл
 extern const Page mspGrid;                                  //     ДИСПЛЕЙ - СЕТКА
 
 extern const Choice mcGrid_Type;                            //     ДИСПЛЕЙ - СЕТКА - Тип
 extern const Governor mgGrid_Brightness;                    // ДИСПЛЕЙ - СЕТКА - Яркость
-void OnChanged_Grid_Brightness();                           // Реакция на изменение ДИСПЛЕЙ-СЕТКА-Яркость
 static void BeforeDraw_Grid_Brightness();                   // Вызывается перед изменением ДИСПЛЕЙ-СЕТКА-Яркость
 
 extern const Choice mcTypeShift;                            //     ДИСПЛЕЙ - Смещение
@@ -274,10 +272,10 @@ DEF_CHOICE_5(mcRefreshFPS, pDisplay,
     "5",  "5",
     "2",  "2",
     "1",  "1",
-    ENUM_SIGNALS_IN_SEC, nullptr, OnChanged_RefreshFPS, nullptr
+    ENUM_SIGNALS_IN_SEC, nullptr, PageDisplay::OnChanged_RefreshFPS, nullptr
 )
 
-void OnChanged_RefreshFPS(bool)
+void PageDisplay::OnChanged_RefreshFPS(bool)
 {
     FPGA::SetNumSignalsInSec(ENumSignalsInSec::NumSignalsInS());
 }
@@ -312,21 +310,21 @@ DEF_GOVERNOR(mgGrid_Brightness, &mspGrid,
     "Яркость", "Brightness",
     "Устанавливает яркость сетки.",
     "Adjust the brightness of the Grid.",
-    BRIGHTNESS_GRID, 0, 100, nullptr, OnChanged_Grid_Brightness, BeforeDraw_Grid_Brightness
+    BRIGHTNESS_GRID, 0, 100, nullptr, PageDisplay::OnChanged_Grid_Brightness, BeforeDraw_Grid_Brightness
 )
 
 
-ColorType colorTypeGrid = {0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::GRID};
+static ColorType cTypeGrid = {0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::GRID};
 
-void OnChanged_Grid_Brightness(void)
+void PageDisplay::OnChanged_Grid_Brightness(void)
 {
-    Color_SetBrightness(&colorTypeGrid, BRIGHTNESS_GRID / 1e2F);
+    Color_SetBrightness(&cTypeGrid, BRIGHTNESS_GRID / 1e2F);
 }
 
 static void BeforeDraw_Grid_Brightness(void)
 {
-    Color_Init(&colorTypeGrid);
-    BRIGHTNESS_GRID = (int16)(colorTypeGrid.brightness * 100.0F);
+    Color_Init(&cTypeGrid);
+    BRIGHTNESS_GRID = (int16)(cTypeGrid.brightness * 100.0F);
 }
 
 
@@ -407,7 +405,7 @@ DEF_GOVERNOR_COLOR(mgcSettings_Colors_Grid, mspSettings_Colors,
     "Сетка", "Grid",
     "Устанавливает цвет сетки",
     "Sets the grid color",
-    colorTypeGrid, nullptr
+    cTypeGrid, nullptr
 )
 
 
@@ -498,21 +496,4 @@ static void OnChanged_Settings_AutoHide(bool autoHide)
     Menu::SetAutoHide(autoHide);
 }
 
-
-// ДИСПЛЕЙ - Окно памяти ///////////
-/*
-static const Choice mcDisplMemoryWindow =
-{
-    TypeItem::Choice, &pDisplay, 0,
-    {
-        "Окно памяти", "Window memory",
-        "1. \"Стандартное\" - в верхней части экрана выводится содержимое памяти.\n2. \"Упрощённое\" - выводится положение видимого окна в памяти.",
-        "1. \"Standard\" - in the top part of the screen memory contents are removed.\n2. \"Simplified\" - shows the position of the visible window in memory."
-    },
-    {
-        {"Упрощённое",  "Simplified"},
-        {"Стандартное", "Standard"}
-    },
-    (int8*)&set.display.showFullMemoryWindow
-};
-*/
+ColorType *PageDisplay::colorTypeGrid = &cTypeGrid;

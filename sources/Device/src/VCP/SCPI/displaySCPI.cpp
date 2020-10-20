@@ -250,10 +250,6 @@ void SCPI::DISPLAY::FILTR(pUCHAR buffer)
 
 
 
-extern void OnChanged_RefreshFPS(bool active);
-
-
-
 void SCPI::DISPLAY::FPS(pUCHAR buffer)
 {
     static const MapElement map[] =
@@ -267,7 +263,7 @@ void SCPI::DISPLAY::FPS(pUCHAR buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (value < 5) { ENUM_SIGNALS_IN_SEC = (ENumSignalsInSec::E)value; OnChanged_RefreshFPS(true); }
+        if (value < 5) { ENUM_SIGNALS_IN_SEC = (ENumSignalsInSec::E)value; PageDisplay::OnChanged_RefreshFPS(true); }
         else if (5 == value)
         {
             SCPI_SEND(":DISPLAY:FPS %s", map[ENUM_SIGNALS_IN_SEC].key);
@@ -298,17 +294,13 @@ void SCPI::DISPLAY::WINDOW(pUCHAR buffer)
 
 
 
-extern void OnChanged_Grid_Brightness();
-
-
-
 void SCPI::DISPLAY::GRID_BRIGHTNESS(pUCHAR buffer)
 {
     int intVal = 0;
     if (SCPI::FirstIsInt(buffer, &intVal, 0, 100))
     {
         BRIGHTNESS_GRID = (int16)intVal;
-        Display::RunAfterDraw(OnChanged_Grid_Brightness);
+        Display::RunAfterDraw(PageDisplay::OnChanged_Grid_Brightness);
     }
     else
     {
@@ -321,9 +313,8 @@ void SCPI::DISPLAY::GRID_BRIGHTNESS(pUCHAR buffer)
         ENTER_ANALYSIS
             if (0 == value)
             {
-                extern ColorType colorTypeGrid;
-                Color_Init(&colorTypeGrid);
-                SCPI_SEND(":DISPLAY:GRID:BRIGHTNESS %d", (int)(colorTypeGrid.brightness * 100.0F));
+                Color_Init(PageDisplay::colorTypeGrid);
+                SCPI_SEND(":DISPLAY:GRID:BRIGHTNESS %d", (int)(PageDisplay::colorTypeGrid->brightness * 100.0F));
             }
         LEAVE_ANALYSIS
     }
