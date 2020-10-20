@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "SCPI.h"
 #include "common/Log_c.h"
+#include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
 #include "Utils/Map.h"
 #include "Utils/GlobalFunctions.h"
@@ -30,11 +31,6 @@ ENTER_PARSE_FUNC(SCPI::ProcessTRIG)
 LEAVE_PARSE_FUNC
 
 
-
-extern void OnPress_Mode(bool active);
-
-
-
 void SCPI::TRIGGER::MODE(pUCHAR buffer)
 {
     static const MapElement map[] =
@@ -46,9 +42,9 @@ void SCPI::TRIGGER::MODE(pUCHAR buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (0 == value)         { START_MODE = StartMode::Auto; OnPress_Mode(true); }
-        else if (1 == value)    { START_MODE = StartMode::Wait; OnPress_Mode(true); }
-        else if (2 == value)    { START_MODE = StartMode::Single; OnPress_Mode(true); }
+        if (0 == value)         { START_MODE = StartMode::Auto; PageTrig::OnPress_Mode(true); }
+        else if (1 == value)    { START_MODE = StartMode::Wait; PageTrig::OnPress_Mode(true); }
+        else if (2 == value)    { START_MODE = StartMode::Single; PageTrig::OnPress_Mode(true); }
         else if (3 == value)
         {
             SCPI_SEND(":TRIGGER:MODE %s", map[START_MODE].key);

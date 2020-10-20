@@ -165,6 +165,8 @@ struct PageTrig
 {
     static const Page *self;
 
+    static void OnPress_Mode(bool);
+
     struct PageAutoFind
     {
         static const Page *self;

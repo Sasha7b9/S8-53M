@@ -6,7 +6,7 @@
 #include "Utils/GlobalFunctions.h"
 
 
-void OnPress_Mode(bool)
+void PageTrig::OnPress_Mode(bool)
 {
     FPGA::Stop(false);
     if (!START_MODE_IS_SINGLE)
@@ -31,7 +31,7 @@ DEF_CHOICE_3(mcMode, PageTrig::self,
     "Авто ", "Auto",
     "Ждущий", "Wait",
     "Однократный", "Single",
-    START_MODE, nullptr, OnPress_Mode, nullptr
+    START_MODE, nullptr, PageTrig::OnPress_Mode, nullptr
 )
 
 static void OnChanged_Source(bool)
