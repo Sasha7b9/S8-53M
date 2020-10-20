@@ -112,4 +112,6 @@ private:
     static int DrawPartWord(char *word, int x, int y, int xRight, bool draw);
 
     static bool GetHeightTextWithTransfers(int left, int top, int right, const char *text, int *height);
+
+    static StateTransmit::E stateTransmit;
 };

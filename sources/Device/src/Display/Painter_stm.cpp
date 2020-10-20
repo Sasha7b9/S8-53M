@@ -6,7 +6,6 @@
 using namespace Primitives;
 
 
-extern StateTransmit::E stateTransmit;
 extern bool noFonts;
 
 
