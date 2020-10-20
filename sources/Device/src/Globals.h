@@ -35,7 +35,6 @@ class Item;
 #define FPGA_TEMPORARY_PAUSE        (gBF.FPGAtemporaryPause)
 #define FPGA_IN_PROCESS_READ        (gBF.FPGAinProcessingOfRead)
 #define FPGA_FIRST_AFTER_WRITE      (gBF.FPGAfirstAfterWrite)
-#define SOUND_IS_BEEP               (gBF.soundIsBeep)
 #define SOUND_WARN_IS_BEEP          (gBF.soundWarnIsBeep)
 #define BUTTON_IS_PRESSED           (gBF.buttonIsPressed)
 #define NEED_REDRAW_FILEMANAGER     (gBF.needRedrawFileManager)
@@ -73,7 +72,6 @@ struct BitField
                                             // нужно не использовать первое считанное данное с АЦП, потому что оно завышено и портит ворота
 
     // Звук
-    uint soundIsBeep                : 1;
     uint soundWarnIsBeep            : 1;
     uint buttonIsPressed            : 1;    // Когда запускается звук нажатой кнопки, устанавливается этот флаг, чтобы знать, проигрывать ли знак 
                                             // отпускания

@@ -26,4 +26,6 @@ public:
     static void WarnBeepBad();
 
     static void WarnBeepGood();
+
+    static bool isBeep;
 };

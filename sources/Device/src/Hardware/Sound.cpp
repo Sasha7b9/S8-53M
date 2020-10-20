@@ -19,11 +19,13 @@ static float amplitude = 0.0F;
 static TypeWave::E typeWave = TypeWave::Sine;
 
 
+bool Sound::isBeep = false;
+
 
 static void Stop(void)
 {
     HAL_DAC::StopDMA();
-    SOUND_IS_BEEP = 0;
+    Sound::isBeep = false;
     SOUND_WARN_IS_BEEP = 0;
 }
 
@@ -50,7 +52,7 @@ void Sound_Beep(TypeWave::E typeWave_, float frequency_, float amplitude_, int d
 
     Stop();
     
-    SOUND_IS_BEEP = 1;
+    Sound::isBeep = true;
 
     HAL_DAC::StartDMA(points, POINTS_IN_PERIOD);
 

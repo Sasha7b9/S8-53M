@@ -27,7 +27,6 @@ BitField gBF =
     0,  // FPGAcritiacalSituation
     0,  // FPGAfirstAfterWrite
 
-    0,  // soundIsBeep
     0,  // soundWarnIsBeep
     0,  // buttonIsPressed
     
