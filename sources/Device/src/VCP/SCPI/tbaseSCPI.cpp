@@ -120,8 +120,6 @@ void SCPI::TBASE::SAMPLING(pUCHAR buffer)
 
 void SCPI::TBASE::PEACKDET(pUCHAR buffer)
 {
-    extern void OnChanged_PeakDet(bool active);  // \todo Вообще-то это нехорошо, как нехорошо и дублировать. Надо бы подумать.
-
     static const MapElement map[] =
     {
         {"ON",  0},
@@ -130,7 +128,7 @@ void SCPI::TBASE::PEACKDET(pUCHAR buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (value < 2) { PEAKDET = (value == 0) ? PeackDetMode::Disable : PeackDetMode::Enable; OnChanged_PeakDet(true); } // WARN SCPI для пикового детектора переделать
+        if (value < 2) { PEAKDET = (value == 0) ? PeackDetMode::Disable : PeackDetMode::Enable; PageTime::OnChanged_PeakDet(true); } // WARN SCPI для пикового детектора переделать
         else if (2 == value)
         {
             SCPI_SEND(":TBASE:PEACKDET %s", PEAKDET ? "ON" : "OFF");

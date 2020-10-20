@@ -28,7 +28,7 @@ static bool IsActive_PeakDet(void)
     return (SET_TBASE >= MIN_TBASE_PEC_DEAT);
 }
 
-void OnChanged_PeakDet(bool active)
+void PageTime::OnChanged_PeakDet(bool active)
 {
     if (active)
     {
@@ -76,7 +76,7 @@ DEF_CHOICE_2(mcPeakDet, PageTime::self,
     "Turns on/off peak detector.",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    PEAKDET, IsActive_PeakDet, OnChanged_PeakDet, nullptr
+    PEAKDET, IsActive_PeakDet, PageTime::OnChanged_PeakDet, nullptr
 )
 
 void PageTime::OnChanged_TPos(bool active)

@@ -160,6 +160,8 @@ struct PageTime
     static const Page *self;
 
     static void OnChanged_TPos(bool);
+
+    static void OnChanged_PeakDet(bool);
 };
 
 
