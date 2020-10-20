@@ -126,6 +126,8 @@ public:
     bool IsOpened() const;
 
     virtual void ShortPress() {};
+    // Обработка длинного нажатия на элемент меню item.
+    virtual void LongPress();
 
     static DataItem emptyData;
 

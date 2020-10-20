@@ -522,16 +522,6 @@ void Menu::FuncOnLongPressItemButton(Item *button)
 }
 
 
-void Menu::FuncOnLongPressItem(Item *item) //-V2009 //-V2558
-{
-    if (CurrentItem() != item)
-    {
-        item->SetCurrent(true);
-    }
-    item->Open(!item->IsOpened());
-}
-
-
 void Menu::FuncOnLongPressItemTime(Item *time)
 {
     if (CurrentItem() != time)
@@ -553,26 +543,27 @@ void Menu::ExecuteFuncForLongPressureOnItem(Item *item)
 
     TypeItem::E type = item->Type();
 
-    if (type == TypeItem::SmallButton)
+    if (type == TypeItem::SmallButton || type == TypeItem::Choice || type == TypeItem::Page || type == TypeItem::Governor || type == TypeItem::IP || type == TypeItem::GovernorColor ||
+        type == TypeItem::MAC || type == TypeItem::ChoiceReg)
     {
-        item->ShortPress();
+        item->LongPress();
         return;
     }
 
     static const pFuncMenuVpItem longFunction[TypeItem::Count] =
     {
         nullptr,                                  // TypeItem::None
-        &Menu::FuncOnLongPressItem,         // TypeItem::Choice
+        nullptr,         // TypeItem::Choice
         &Menu::FuncOnLongPressItemButton,   // TypeItem::Button
-        &Menu::FuncOnLongPressItem,         // TypeItem::Page
-        &Menu::FuncOnLongPressItem,         // TypeItem::Governor
+        nullptr,         // TypeItem::Page
+        nullptr,         // TypeItem::Governor
         &Menu::FuncOnLongPressItemTime,     // TypeItem::Time
-        &Menu::FuncOnLongPressItem,         // TypeItem::IP
+        nullptr,         // TypeItem::IP
         nullptr,                                  // Item_SwitchButton
-        &Menu::FuncOnLongPressItem,         // TypeItem::GovernorColor
+        nullptr,         // TypeItem::GovernorColor
         nullptr,                                  // Item_Formula
-        &Menu::FuncOnLongPressItem,         // TypeItem::MAC
-        &Menu::FuncOnLongPressItem,         // TypeItem::ChoiceReg
+        nullptr,         // TypeItem::MAC
+        nullptr,         // TypeItem::ChoiceReg
         nullptr       // TypeItem::SmallButton
     };
 

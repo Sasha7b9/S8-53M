@@ -467,7 +467,7 @@ void GovernorColor::ShortPress()
     }
     else
     {
-        Menu::FuncOnLongPressItem(this);
+        LongPress();
     }
 }
 
@@ -489,4 +489,14 @@ void SmallButton::ShortPress()
         func();
         Menu::itemUnderKey = this;
     }
+}
+
+
+void Item::LongPress()
+{
+    if (Menu::CurrentItem() != this)
+    {
+        SetCurrent(true);
+    }
+    Open(!IsOpened());
 }

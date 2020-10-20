@@ -67,9 +67,6 @@ public:
     static SmallButton *SmallButonFromPage(Page *page, int numButton);
 
     static void ChangeStateFlashDrive();
-    // Обработка длинного нажатия на элемент меню item.
-    static void FuncOnLongPressItem(Item *item);
-
     // Здесь хранится адрес элемента меню, соответствующего функциональной клавише [1..5], если она находится в нижнем положении, и 0, если ни одна кнопка не нажата.
     static Item *itemUnderKey;
 
