@@ -2,6 +2,7 @@
 #include "common/Display/Primitives_c.h"
 #include "common/Utils/Math_c.h"
 #include "Display/Grid.h"
+#include "Display/Painter.h"
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"

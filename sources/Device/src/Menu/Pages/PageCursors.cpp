@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "common/Display/Primitives_c.h"
 #include "common/Display/Text_c.h"
+#include "common/Display/Font/Font_c.h"
 #include "common/Utils/Math_c.h"
 #include "Hardware/Sound.h"
 #include "Menu/Menu.h"

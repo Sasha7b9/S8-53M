@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "common/Utils/Math_c.h"
+#include "Display/Painter.h"
 #include "FPGA/FPGA.h"
 #include "Hardware/EPROM.H"
 #include "Menu/Menu.h"

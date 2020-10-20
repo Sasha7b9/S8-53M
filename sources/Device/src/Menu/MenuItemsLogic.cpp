@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "common/Utils/Math_c.h"
+#include "Display/Painter.h"
 #include "Hardware/Sound.h"
 #include "Menu/Menu.h"
 #include "Utils/GlobalFunctions.h"

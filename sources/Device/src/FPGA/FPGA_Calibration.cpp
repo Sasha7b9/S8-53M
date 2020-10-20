@@ -3,6 +3,7 @@
 #include "common/Display/Text_c.h"
 #include "Display/Display.h"
 #include "Display/DisplayPrimitives.h"
+#include "Display/Painter.h"
 #include "FPGA/FPGA.h"
 #include "Hardware/Timer.h"
 #include "Panel/Panel.h"

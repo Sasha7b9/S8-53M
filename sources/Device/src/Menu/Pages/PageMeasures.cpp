@@ -1,5 +1,7 @@
 #include "defines.h"
 #include "common/Utils/Math_c.h"
+#include "common/Display/Font/Font_c.h"
+#include "Display/Painter.h"
 #include "Menu/MenuItems.h"
 #include "Menu/Pages/Definition.h"
 #include "Menu/Pages/PageMeasures.h"
