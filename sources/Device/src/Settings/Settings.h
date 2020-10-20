@@ -190,7 +190,6 @@ struct SettingsMenu
 
 
 
-void SetMenuCurrentSubPage(NamePage::E namePage, int posSubPage);  // Устанавливает номер текущей подстраницы в странице namePage.
 bool MenuIsShown();                                                 // Отображено ли меню на экране.
 void ShowMenu(bool show);                                           // Отобразить/скрыть меню.
 bool MenuIsMinimize();                                              // Если true - меню находится в дополнительном режиме.

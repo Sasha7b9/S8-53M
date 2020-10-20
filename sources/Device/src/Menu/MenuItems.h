@@ -203,6 +203,9 @@ public:
     SmallButton *SmallButonFrom(int numButton) const;
     // Возвращает номер текущей подстраницы страницы namePage.
     int GetCurrentSubPage() const;
+    // Устанавливает номер текущей подстраницы в странице namePage.
+    void SetCurrentSubPage(int posSubPage) const;
+
     
     static Page empty;
 

@@ -358,12 +358,12 @@ void Page::ChangeSubPage(int delta) const
     if (delta > 0 && GetCurrentSubPage() < NumSubPages() - 1)
     {
         Sound::RegulatorSwitchRotate();
-        SetMenuCurrentSubPage(OwnData()->name, GetCurrentSubPage() + 1);
+        SetCurrentSubPage(GetCurrentSubPage() + 1);
     }
     else if (delta < 0 && GetCurrentSubPage() > 0)
     {
         Sound::RegulatorSwitchRotate();
-        SetMenuCurrentSubPage(OwnData()->name, GetCurrentSubPage() - 1);
+        SetCurrentSubPage(GetCurrentSubPage() - 1);
     }
 }
 
@@ -660,4 +660,10 @@ SmallButton *Page::SmallButonFrom(int numButton) const
 int Page::GetCurrentSubPage() const
 {
     return set.menu.currentSubPage[OwnData()->name];
+}
+
+
+void Page::SetCurrentSubPage(int posSubPage) const
+{
+    set.menu.currentSubPage[OwnData()->name] = static_cast<int8>(posSubPage);
 }
