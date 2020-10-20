@@ -26,7 +26,7 @@
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
-//extern const Diskio_drvTypeDef  USBH_Driver;
+extern const Diskio_drvTypeDef  USBH_Driver;
 
 #endif /* __USBH_DISKIO_H */
 

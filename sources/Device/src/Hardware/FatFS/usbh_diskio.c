@@ -44,18 +44,18 @@ DRESULT USBH_read (BYTE, BYTE*, DWORD, UINT);
   DRESULT USBH_ioctl (BYTE, BYTE, void*);
 #endif /* _USE_IOCTL == 1 */
 
-//const Diskio_drvTypeDef  USBH_Driver =
-//{
-//  USBH_initialize,
-//  USBH_status,
-//  USBH_read,
-//#if  _USE_WRITE == 1
-//  USBH_write,
-//#endif /* _USE_WRITE == 1 */
-//#if  _USE_IOCTL == 1
-//  USBH_ioctl,
-//#endif /* _USE_IOCTL == 1 */
-//};
+const Diskio_drvTypeDef  USBH_Driver =
+{
+  USBH_initialize,
+  USBH_status,
+  USBH_read,
+#if  _USE_WRITE == 1
+  USBH_write,
+#endif /* _USE_WRITE == 1 */
+#if  _USE_IOCTL == 1
+  USBH_ioctl,
+#endif /* _USE_IOCTL == 1 */
+};
 
 /* Private functions ---------------------------------------------------------*/
 
