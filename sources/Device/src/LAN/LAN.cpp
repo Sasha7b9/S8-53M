@@ -22,6 +22,9 @@ static void Netif_Config();
 static struct netif gnetif;
 
 
+bool LAN::cableLANisConnected = false;
+
+
 static void FuncConnect(void)
 {
 }

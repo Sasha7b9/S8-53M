@@ -2,6 +2,9 @@
 #include "LAN/LAN.h"
 
 
+bool LAN::cableLANisConnected = false;
+
+
 void LAN::Init()
 {
 

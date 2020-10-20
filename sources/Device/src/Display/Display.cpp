@@ -12,6 +12,7 @@
 #include "FPGA/Storage.h"
 #include "Hardware/Sound.h"
 #include "Hardware/Timer.h"
+#include "LAN/LAN.h"
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
 #include "Utils/ProcessingSignal.h"
@@ -2093,7 +2094,7 @@ void Display::DrawLowPart()
     }
 
     // Ethernet
-    if (((CLIENT_LAN_IS_CONNECTED != 0) || (CABLE_LAN_IS_CONNECTED != 0)) && gTimerMS > 2000)
+    if (((CLIENT_LAN_IS_CONNECTED != 0) || LAN::cableLANisConnected) && gTimerMS > 2000)
     {
         Painter::Draw4SymbolsInRectC(x + 87, Grid::Bottom() + 2, SYMBOL_ETHERNET, CLIENT_LAN_IS_CONNECTED ? COLOR_FILL : Color::FLASH_01);
     }
