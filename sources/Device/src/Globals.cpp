@@ -8,7 +8,6 @@ void *extraMEM = 0;
 
 BitField gBF =
 {
-    0,  // ethTimeLastEthifInput
     0,  // cableEthIsConnected
     0,  // ethIsConnected
 
