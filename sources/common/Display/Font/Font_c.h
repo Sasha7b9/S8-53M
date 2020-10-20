@@ -31,9 +31,9 @@ struct Font
 
     static const Font *font;
     static const Font *fonts[TypeFont::_Count];
-};
 
-extern const uchar font5display[3080];
-extern const uchar font8display[3080];
-extern const uchar fontUGOdisplay[3080];
-extern const uchar fontUGO2display[3080];
+    static const uchar font5display[3080];
+    static const uchar font8display[3080];
+    static const uchar fontUGOdisplay[3080];
+    static const uchar fontUGO2display[3080];
+};

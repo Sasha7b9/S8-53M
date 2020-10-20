@@ -1,4 +1,4 @@
-const uint8 font5display[3080] = {
+const uint8 Font::font5display[3080] = {
 /* Orient = 0x00, FontID = 0x00 */ 0x00, 0x00,
 /* First character ID */           0x00, 0x00,
 /* Last  character ID */           0xff, 0xff,
