@@ -26,6 +26,7 @@ const char *titleHint[4] = { "", "", "", "" };
 static const DataItem emptyDataItem = { TypeItem::None, nullptr, nullptr, titleHint, &emptyDataPage };
 Page Page::empty(&emptyDataItem);
 
+bool Governor::inMoveIncrease = false;
 
 Item::Item(const DataItem *const _data) : data(_data)
 {

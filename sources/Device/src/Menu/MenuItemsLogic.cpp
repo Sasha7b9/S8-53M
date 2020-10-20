@@ -11,7 +11,7 @@ int8 Item::gCurDigit = 0;
 void Governor::StartChange(int delta)
 {
     Sound::GovernorChangedValue();
-    if (delta > 0 && ADDRESS_GOVERNOR == reinterpret_cast<uint>(this) && (IN_MOVE_INCREASE != 0))
+    if (delta > 0 && ADDRESS_GOVERNOR == reinterpret_cast<uint>(this) && inMoveIncrease)
     {
         *OwnData()->cell = NextValue();
     }
@@ -23,7 +23,7 @@ void Governor::StartChange(int delta)
     {
         TIME_START_MS = gTimerMS;   
     }
-    IN_MOVE_INCREASE = (delta > 0) ? 1U : 0U;
+    inMoveIncrease = (delta > 0);
     IN_MOVE_DECREASE = (delta < 0) ? 1U : 0U;
 }
 
@@ -121,7 +121,7 @@ float Governor::Step() const
         if (delta < -numLines)
         {
             IN_MOVE_DECREASE = 0;
-            IN_MOVE_INCREASE = 0;
+            inMoveIncrease = false;
             *OwnData()->cell = PrevValue();
             if (OwnData()->funcOfChanged)
             {
@@ -131,7 +131,7 @@ float Governor::Step() const
         }
         return delta;
     }
-    if (ADDRESS_GOVERNOR == reinterpret_cast<uint>(this) && (IN_MOVE_INCREASE != 0))
+    if (ADDRESS_GOVERNOR == reinterpret_cast<uint>(this) && inMoveIncrease)
     {
         float delta = speed * (gTimerMS - TIME_START_MS);
         if (delta == 0.0F) //-V550 //-V2550
@@ -141,7 +141,7 @@ float Governor::Step() const
         if (delta > numLines)
         {
             IN_MOVE_DECREASE = 0;
-            IN_MOVE_INCREASE = 0;
+            inMoveIncrease = false;
             *OwnData()->cell = NextValue();
             if(OwnData()->funcOfChanged)
             {

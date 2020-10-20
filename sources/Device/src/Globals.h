@@ -36,7 +36,6 @@ class Item;
 #define SHOW_HELP_HINTS             (gBF.showHelpHints)
 #define SHOW_DEBUG_MENU             (gBF.showDebugMenu)
 #define ADDRESS_GOVERNOR            (gBF.addressGovernor)
-#define IN_MOVE_INCREASE            (gBF.inMoveIncrease)
 #define IN_MOVE_DECREASE            (gBF.inMoveDecrease)
 #define TIME_START_MS               (gBF.timeStartMS)
 
@@ -64,7 +63,6 @@ struct BitField
     uint FPGAfirstAfterWrite        : 1;    // Используется в режиме рандомизатора. После записи любого параметра в альтеру
                                             // нужно не использовать первое считанное данное с АЦП, потому что оно завышено и портит ворота
     // Governor
-    uint inMoveIncrease             : 1;
     uint inMoveDecrease             : 1;
     uint addressGovernor            : 32;
     uint timeStartMS                : 32;
