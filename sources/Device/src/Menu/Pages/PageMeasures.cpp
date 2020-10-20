@@ -153,7 +153,7 @@ DEF_CHOICE_7( mcMeasuresNumber, pMeasures,
 
 
 // ИЗМЕРЕНИЯ -> Каналы
-DEF_CHOICE_3(mcMeasuresChannels, pMeasures,
+DEF_CHOICE_3(mcMeasuresChannels, &pMeasures,
     "Каналы", "Channels",
     "По каким каналам выводить измерения",
     "Which channels to output measurement",
@@ -165,7 +165,7 @@ DEF_CHOICE_3(mcMeasuresChannels, pMeasures,
 
 
 // ИЗМЕРЕНИЯ -> Показывать
-DEF_CHOICE_2(mcMeasuresIsShow, pMeasures,
+DEF_CHOICE_2(mcMeasuresIsShow, &pMeasures,
     "Показывать", "Show",
     "Выводить или не выводить измерения на экран",
     "Output or output measurements on screen",
@@ -176,7 +176,7 @@ DEF_CHOICE_2(mcMeasuresIsShow, pMeasures,
 
 
 // ИЗМЕРЕНИЯ -> Вид
-DEF_CHOICE_2(mcMeasuresSignal, pMeasures,
+DEF_CHOICE_2(mcMeasuresSignal, &pMeasures,
     "Вид", "View",
     "Уменьшать или нет зону вывода сигнала для исключения перекрытия его результами измерений",
     "Decrease or no zone output signal to avoid overlapping of its measurement results",

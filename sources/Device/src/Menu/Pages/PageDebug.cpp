@@ -129,7 +129,7 @@ DEF_PAGE_7(pDebug, mainPage, NamePage::Debug,
 );
 
 // ОТЛАДКА - Статистика ------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcStats, pDebug,
+DEF_CHOICE_2(mcStats, &pDebug,
     "Статистика", "Statistics",
     "Показывать/не показывать время/кадр, кадров в секунду, количество сигналов с последними настройками в памяти/количество сохраняемых в памяти сигналов",
     "To show/not to show a time/shot, frames per second, quantity of signals with the last settings in memory/quantity of the signals kept in memory",
@@ -159,7 +159,7 @@ DEF_GOVERNOR(mgConsole_NumStrings, mpConsole,
 )
 
 // ОТЛАДКА - КОНСОЛЬ - Размер шрифта -----------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcConsole_SizeFont, mpConsole,
+DEF_CHOICE_2(mcConsole_SizeFont, &mpConsole,
     "Размер шрифта", "Size font",
      "",
      "",
@@ -190,7 +190,7 @@ DEF_PAGE_12(mpConsole_Registers, mpConsole, NamePage::DebugShowRegisters,
 )
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Показывать все -----------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcConsole_Registers_ShowAll, mpConsole_Registers,
+DEF_CHOICE_2(mcConsole_Registers_ShowAll, &mpConsole_Registers,
     "Показывать все", "Show all",
     "Показывать все значения, засылаемые в регистры",
     "To show all values transferred in registers",
@@ -200,7 +200,7 @@ DEF_CHOICE_2(mcConsole_Registers_ShowAll, mpConsole_Registers,
 )
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - RD_FL --------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcConsole_Registers_RD_FL, mpConsole_Registers, 
+DEF_CHOICE_2(mcConsole_Registers_RD_FL, &mpConsole_Registers, 
     "RD_FL", "RD_FL",
     "",
     "",
@@ -215,7 +215,7 @@ static bool IsActive_Console_Registers_RD_FL(void)
 }
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - U см. 1к -----------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcConsole_Registers_RShiftA, mpConsole_Registers,
+DEF_CHOICE_2(mcConsole_Registers_RShiftA, &mpConsole_Registers,
     "U см. 1к", "U shift 1ch",
     "",
     "",
@@ -225,7 +225,7 @@ DEF_CHOICE_2(mcConsole_Registers_RShiftA, mpConsole_Registers,
 )
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - U см. 2к -----------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcConsole_Registers_RShiftB, mpConsole_Registers,
+DEF_CHOICE_2(mcConsole_Registers_RShiftB, &mpConsole_Registers,
     "U см. 2к", "U shift 2ch",
     "",
     "",
@@ -235,7 +235,7 @@ DEF_CHOICE_2(mcConsole_Registers_RShiftB, mpConsole_Registers,
 )
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - U синхр. -----------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcConsole_Registers_TrigLev, mpConsole_Registers,
+DEF_CHOICE_2(mcConsole_Registers_TrigLev, &mpConsole_Registers,
     "U синхр.", "U trig.",
     "",
     "",
@@ -245,7 +245,7 @@ DEF_CHOICE_2(mcConsole_Registers_TrigLev, mpConsole_Registers,
 )
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - ВОЛЬТ/ДЕЛ 1 --------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcConsole_Registers_RangeA, mpConsole_Registers,
+DEF_CHOICE_2(mcConsole_Registers_RangeA, &mpConsole_Registers,
     "ВОЛЬТ/ДЕЛ 1", "Range 1",
     "",
     "",
@@ -255,7 +255,7 @@ DEF_CHOICE_2(mcConsole_Registers_RangeA, mpConsole_Registers,
 )
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - ВОЛЬТ/ДЕЛ 2 --------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcConsole_Registers_RangeB, mpConsole_Registers,
+DEF_CHOICE_2(mcConsole_Registers_RangeB, &mpConsole_Registers,
     "ВОЛЬТ/ДЕЛ 2", "Range 2",
     "",
     "",
@@ -265,7 +265,7 @@ DEF_CHOICE_2(mcConsole_Registers_RangeB, mpConsole_Registers,
 )
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Парам. синхр. ------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcConsole_Registers_TrigParam, mpConsole_Registers,
+DEF_CHOICE_2(mcConsole_Registers_TrigParam, &mpConsole_Registers,
     "Парам. синхр.", "Trig param",
     "",
     "",
@@ -275,7 +275,7 @@ DEF_CHOICE_2(mcConsole_Registers_TrigParam, mpConsole_Registers,
 )
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Парам. кан. 1 ------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcConsole_Registers_ChanParamA, mpConsole_Registers,
+DEF_CHOICE_2(mcConsole_Registers_ChanParamA, &mpConsole_Registers,
     "Парам. кан. 1",  "Chan 1 param",
     "",
     "",
@@ -285,7 +285,7 @@ DEF_CHOICE_2(mcConsole_Registers_ChanParamA, mpConsole_Registers,
 )
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Парам. кан. 2 ------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcConsole_Registers_ChanParamB, mpConsole_Registers,
+DEF_CHOICE_2(mcConsole_Registers_ChanParamB, &mpConsole_Registers,
     "Парам. кан. 2", "Chan 2 param",
     "",
     "",
@@ -295,7 +295,7 @@ DEF_CHOICE_2(mcConsole_Registers_ChanParamB, mpConsole_Registers,
 )
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - ВРЕМЯ/ДЕЛ ----------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcConsole_Registers_TBase, mpConsole_Registers,
+DEF_CHOICE_2(mcConsole_Registers_TBase, &mpConsole_Registers,
     "ВРЕМЯ/ДЕЛ", "TBase",
     "",
     "",
@@ -305,7 +305,7 @@ DEF_CHOICE_2(mcConsole_Registers_TBase, mpConsole_Registers,
 )
 
 // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ - Т см. --------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcConsole_Registers_tShift, mpConsole_Registers,
+DEF_CHOICE_2(mcConsole_Registers_tShift, &mpConsole_Registers,
     "Т см.", "tShift",
     "",
     "",
@@ -338,7 +338,7 @@ DEF_PAGE_3(mpADC_Balance, mpADC, NamePage::DebugADCbalance,
 )
 
 // ОТЛАДКА - АЦП - БАЛАНС - Режим --------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_3(mcADC_Balance_Mode, mpADC_Balance,
+DEF_CHOICE_3(mcADC_Balance_Mode, &mpADC_Balance,
     "Режим", "Mode",
     "",
     "",
@@ -417,7 +417,7 @@ DEF_PAGE_3(mpADC_Stretch, mpADC, NamePage::DebugADCstretch,
 )
 
 // ОТЛАДКА - АЦП - РАСТЯЖКА - Режим ------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_3(mcADC_Stretch_Mode, mpADC_Stretch,
+DEF_CHOICE_3(mcADC_Stretch_Mode, &mpADC_Stretch,
     "Режим", "Mode",
     "",
     "",
@@ -629,7 +629,7 @@ DEF_GOVERNOR(mgRandomizer_Average, mpRandomizer,
 
 // ОТЛАДКА - Размер настроек  ------------------------------------------------------------------------------------------------------------------------
 static int8 size = 0;
-DEF_CHOICE_2(mcSizeSettings, pDebug,
+DEF_CHOICE_2(mcSizeSettings, &pDebug,
     "Размер настроек", "Size settings",
     "Вывод размера структуры Settings",
     "Show size of struct Settings",

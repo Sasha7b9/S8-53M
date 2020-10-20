@@ -168,7 +168,7 @@ void *PageCursors::GetPointer()
 }
 
 // КУРСОРЫ - Показывать ------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcShow, pCursors,
+DEF_CHOICE_2(mcShow, &pCursors,
     "Показывать", "Shown",
     "Включает/отключает курсоры.",
     "Enable/disable cursors.",
@@ -227,7 +227,7 @@ DEF_CHOICE_4(mcTrackingT2U2, pCursors,
 
 
 // КУРОСРЫ - 1/dT ------------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcShowFreq, pCursors,
+DEF_CHOICE_2(mcShowFreq, &pCursors,
     "1/dT", "1/dT",
     "Если выбрано \"Вкл\", в правом верхнем углу выводится величина, обратная расстоянию между курсорами времени - частота сигнала, один период которого равен расстоянию между временными курсорами.",
     "If you select \"Enable\" in the upper right corner displays the inverse of the distance between cursors time - frequency signal, a period equal to the distance between the time cursors.",

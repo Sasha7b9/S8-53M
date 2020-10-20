@@ -785,7 +785,7 @@ static bool FuncActiveMemoryNumPoinst(void)
 // ПАМЯТЬ - Точки
 int8 temp = 0;
 
-DEF_CHOICE_3(mcMemoryNumPoints, pMemory,
+DEF_CHOICE_3(mcMemoryNumPoints, &pMemory,
     "Точки", "Points"
     ,
     "Выбор количества отсчётов для сохраняемых сигналов. "
@@ -804,7 +804,7 @@ DEF_CHOICE_3(mcMemoryNumPoints, pMemory,
 extern const Page mspMemoryExt;
 
 // ПАМЯТЬ - ВНЕШН ЗУ - Имя файла
-DEF_CHOICE_2(mcMemoryExtName, mspMemoryExt,
+DEF_CHOICE_2(mcMemoryExtName, &mspMemoryExt,
     "Имя файла", "File name"
     ,
     "Задаёт режим наименования файлов при сохранении на внешний накопитель:\n"
@@ -822,7 +822,7 @@ DEF_CHOICE_2(mcMemoryExtName, mspMemoryExt,
 
     
 // ПАМЯТЬ - ВНЕШН ЗУ - Автоподключение
-DEF_CHOICE_2(mcMemoryExtAutoConnectFlash, mspMemoryExt,
+DEF_CHOICE_2(mcMemoryExtAutoConnectFlash, &mspMemoryExt,
     "Автоподкл.", "AutoConnect",
     "Eсли \"Вкл\", при подключении внешнего накопителя происходит автоматический переход на страницу ПАМЯТЬ - Внешн ЗУ",
     "If \"Enable\", when you connect an external drive is automatically transferred to the page MEMORY - Ext.Storage",
@@ -833,7 +833,7 @@ DEF_CHOICE_2(mcMemoryExtAutoConnectFlash, mspMemoryExt,
 
 
 // ПАМЯТЬ - ВНЕШН ЗУ - Реж кн ПАМЯТЬ
-DEF_CHOICE_2(mcMemoryExtModeBtnMemory, mspMemoryExt,
+DEF_CHOICE_2(mcMemoryExtModeBtnMemory, &mspMemoryExt,
     "Реж кн ПАМЯТЬ", "Mode btn MEMORY",
     "",
     "",
@@ -844,7 +844,7 @@ DEF_CHOICE_2(mcMemoryExtModeBtnMemory, mspMemoryExt,
 
 
 // ПАМЯТЬ - ВНЕШН ЗУ - Сохранять как
-DEF_CHOICE_2(mcMemoryExtModeSave, mspMemoryExt,
+DEF_CHOICE_2(mcMemoryExtModeSave, &mspMemoryExt,
     "Сохранять как", "Save as"
     ,
     "Если выбран вариант \"Изображение\", сигнал будет сохранён в текущем каталоге в графическом файле с расширением BMP\n"

@@ -104,8 +104,6 @@ extern const Page mainPage;
 #include "PageHelp.cpp"
 
 extern const Page pDisplay;
-extern const Page pChanA;
-extern const Page pChanB;
 extern const Page pMeasures;
 extern const Page pDebug;
 extern const Page pService;
@@ -119,8 +117,8 @@ DEF_PAGE_11(mainPage, Page::empty, NamePage::MainPage,
     "",
     "",
     pDisplay,
-    pChanA,
-    pChanB,
+    *PageChannelA::self,
+    *PageChannelB::self,
     pTrig,
     pTime,
     PageCursors::self,
@@ -143,8 +141,8 @@ const Page *PageForButton(Key::E button)
         0,                          // Key::F3
         0,                          // Key::F4
         0,                          // Key::F5
-        (void *)&pChanA,            // Key::ChannelA
-        (void *)&pChanB,            // Key::ChannelB
+        (void *)PageChannelA::self, // Key::ChannelA
+        (void *)PageChannelB::self, // Key::ChannelB
         (void *)&pTime,             // Key::Time
         (void *)&pTrig,             // Key::Trig
         PageCursors::GetPointer(),  // Key::Cursors

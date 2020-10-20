@@ -11,9 +11,6 @@
 #include <cstring>
 
 
-extern void OnChanged_InputA(bool active);
-extern void OnChanged_InputB(bool active);
-                                                
 // Если произошло короткое нажатие кнопки, то здесь хранится имя этой кнопки до обработки этого  нажатия.
 static Key::E shortPressureButton = Key::None;
 // Если произошло длинное нажатие кнопки, то здесь хранится имя этой кнопки до обработки этого нажатия.
@@ -376,13 +373,13 @@ void Menu::ProcessingShortPressureButton()
                 if(button == Key::ChannelA && name == NamePage::Channel0)
                 {
                     SET_ENABLED_A = !sChannel_Enabled(Channel::A);
-                    OnChanged_InputA(true);
+                    PageChannelA::OnChanged_Input(true);
                     break;
                 }
                 if(button == Key::ChannelB && name == NamePage::Channel1)
                 {
                     SET_ENABLED_B = !sChannel_Enabled(Channel::B);
-                    OnChanged_InputB(true);
+                    PageChannelB::OnChanged_Input(true);
                     break;
                 }
 

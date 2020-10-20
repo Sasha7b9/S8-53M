@@ -14,3 +14,19 @@ void DrawMenuCursVoltage(int x, int y, bool top, bool bottom);
 void CalculateConditions(int16 pos0, int16 pos1, CursCntrl::E cursCntrl, bool *cond0, bool *cond1);    // Рассчитывает условия отрисовки УГО малых кнопок управления выбором курсорами.
 void DrawMenuCursTime(int x, int y, bool left, bool right);
 void DrawSB_Exit(int x, int y);
+
+
+class PageChannelA
+{
+public:
+    static const Page *self;
+    static void OnChanged_Input(bool);
+};
+
+
+class PageChannelB
+{
+public:
+    static const Page *self;
+    static void OnChanged_Input(bool);
+};

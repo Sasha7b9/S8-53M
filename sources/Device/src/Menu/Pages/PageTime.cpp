@@ -38,7 +38,7 @@ DEF_PAGE_5(pTime, mainPage, NamePage::Time,
 )
 
 // РАЗВЕРТКА - Выборка -------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcSample, pTime,
+DEF_CHOICE_2(mcSample, &pTime,
     "Выборка", "Sampling",
     "\"Реальная\" - \n"
     "\"Эквивалентная\" -"
@@ -58,7 +58,7 @@ static bool IsActive_Sample(void)
 }
 
 // РАЗВЕРТКА - Пик дет -------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcPeakDet, pTime,
+DEF_CHOICE_2(mcPeakDet, &pTime,
     "Пик дет", "Pic deat",
     "Включает/выключает пиковый детектор.",
     "Turns on/off peak detector.",
@@ -115,7 +115,7 @@ void OnChanged_PeakDet(bool active)
 }
 
 // РАЗВЕРТКА - To ------------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_3(mcTPos, pTime,
+DEF_CHOICE_3(mcTPos, &pTime,
     "\x7b", "\x7b",
     "Задаёт точку привязки нулевого смещения по времени к экрану - левый край, центр, правый край.",
     "Sets the anchor point nuleovgo time offset to the screen - the left edge, center, right edge.",
@@ -132,7 +132,7 @@ void OnChanged_TPos(bool active)
 }
 
 // РАЗВЕРТКА - Самописец -----------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcSelfRecorder, pTime,
+DEF_CHOICE_2(mcSelfRecorder, &pTime,
     "Самописец", "Self-Recorder",
     "Включает/выключает режим самописца. Этот режим доступен на развёртках 20мс/дел и более медленных.",
     "Turn on/off the recorder. This mode is available for scanning 20ms/div and slower.",
@@ -147,7 +147,7 @@ static bool IsActive_SelfRecorder(void)
 }
 
 // РАЗВЕРТКА - Ф-ция ВР/ДЕЛ --------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcDivRole, pTime,
+DEF_CHOICE_2(mcDivRole, &pTime,
     "Ф-ция ВР/ДЕЛ", "Func Time/DIV"
     ,
     "Задаёт функцию для ручки ВРЕМЯ/ДЕЛ: в режиме сбора информации (ПУСК/СТОП в положении ПУСК):\n"

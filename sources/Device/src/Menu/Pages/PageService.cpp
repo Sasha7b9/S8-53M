@@ -180,7 +180,7 @@ DEF_PAGE_2(ppCalibrator, pService, NamePage::ServiceCalibrator,
 )
 
 // СЕРВИС - КАЛИБРАТОР - Калибратор ------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_3(cCalibrator_Mode, ppCalibrator,
+DEF_CHOICE_3(cCalibrator_Mode, &ppCalibrator,
     "Калибратор",  "Calibrator",
     "Режим работы калибратора",
     "Mode of operation of the calibrator",
@@ -523,7 +523,7 @@ static void OnPress_Math_FFT(void)
 }
 
 // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Отображение --------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(cMath_FFT_Enable, pppMath_FFT,
+DEF_CHOICE_2(cMath_FFT_Enable, &pppMath_FFT,
     "Отображение", "Display",
     "Включает и выключает отображение спектра",
     "Enables or disables the display of the spectrum",
@@ -533,7 +533,7 @@ DEF_CHOICE_2(cMath_FFT_Enable, pppMath_FFT,
 )
 
 // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Шкала --------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(cMath_FFT_Scale, pppMath_FFT,
+DEF_CHOICE_2(cMath_FFT_Scale, &pppMath_FFT,
     "Шкала", "Scale",
     "Задаёт масштаб вывода спектра - линейный или логарифмический",
     "Sets the scale of the output spectrum - linear or logarithmic",
@@ -543,7 +543,7 @@ DEF_CHOICE_2(cMath_FFT_Scale, pppMath_FFT,
 )
 
 // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Источник -----------------------------------------------------------------------------------------------------------
-DEF_CHOICE_3(cMath_FFT_Source, pppMath_FFT,
+DEF_CHOICE_3(cMath_FFT_Source, &pppMath_FFT,
     "Источник", "Source",
     "Выбор источника для расчёта спектра",
     "Selecting the source for the calculation of the spectrum",
@@ -625,7 +625,7 @@ static void Draw_Math_FFT_Cursors_Source(int x, int y)
 }
 
 // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Диапазон -----------------------------------------------------------------------------------------------------------
-DEF_CHOICE_3(cMath_FFT_Limit, pppMath_FFT,
+DEF_CHOICE_3(cMath_FFT_Limit, &pppMath_FFT,
     "Диапазон", "Range",
     "Здесь можно задать предел наблюдения за мощностью спектра",
     "Here you can set the limit of monitoring the power spectrum",
@@ -654,7 +654,7 @@ DEF_PAGE_5(ppEthernet, pService, NamePage::ServiceEthernet,
 )
 
 // СЕРВИС - ETHERNET - Ethernet ----------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(cEthernet_Enable, ppEthernet,
+DEF_CHOICE_2(cEthernet_Enable, &ppEthernet,
     "Ethernet", "Ethernet"
     ,
     "Чтобы задействовать ethernet, выберите \"Включено\" и выключите прибор.\n"
@@ -709,7 +709,7 @@ DEF_MACADDRESS(macEthernet_MAC, ppEthernet,
 )
 
 // СЕРВИС - Звук -------------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(cSound, pService,
+DEF_CHOICE_2(cSound, &pService,
     "Звук", "Sound",
     "Включение/выключение звука",
     "Inclusion/switching off of a sound",
@@ -720,7 +720,7 @@ DEF_CHOICE_2(cSound, pService,
 
 
 // СЕРВИС - Язык -------------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(cLang, pService,
+DEF_CHOICE_2(cLang, &pService,
     "Язык", "Language",
     "Позволяет выбрать язык меню",
     "Allows you to select the menu language",
@@ -754,7 +754,7 @@ DEF_TIME(tTime, pService,
 )
 
 // СЕРВИС - Реж длит СИНХР ---------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(cModeLongPressButtonTrig, pService,
+DEF_CHOICE_2(cModeLongPressButtonTrig, &pService,
     "Реж длит СИНХР", "Mode long СИНХР"
     ,
     "Устанавливает действия для длительного нажатия кнопки СИНХР:\n\"Сброс уровня\" - установка уровня синхронизации в ноль,\n\"Автоуровень\" "

@@ -83,7 +83,7 @@ DEF_PAGE_9(pDisplay, mainPage, NamePage::Display,
 
 
 // ДИСПЛЕЙ - Отображение -----------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcMapping, pDisplay,
+DEF_CHOICE_2(mcMapping, &pDisplay,
     "Отображение", "View",
     "Задаёт режим отображения сигнала.",
     "Sets the display mode signal.",
@@ -135,7 +135,7 @@ DEF_CHOICE_REG_9(mcAccumulation_Number, mspAccumulation,
 
 
 // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Режим ----------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcAccumulation_Mode, mspAccumulation,
+DEF_CHOICE_2(mcAccumulation_Mode, &mspAccumulation,
     "Режим", "Mode"
     ,
     "1. \"Сбрасывать\" - после накопления заданного количества измерения происходит очистка дисплея. Этот режим удобен, когда памяти не хватает "
@@ -209,7 +209,7 @@ DEF_CHOICE_REG_10(mcAveraging_Number, mspAveraging,
 )
 
 // ДИСПЛЕЙ - УСРЕДНЕНИЕ - Режим ----------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcAveraging_Mode, mspAveraging,
+DEF_CHOICE_2(mcAveraging_Mode, &mspAveraging,
     "Режим", "Mode"
     ,
     "1. \"Точно\" - точный режим усреднения, когда в расчёте участвуют только последние сигналы.\n"
@@ -347,7 +347,7 @@ static void BeforeDraw_Grid_Brightness(void)
 
 
 // ДИСПЛЕЙ - Смещение --------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcTypeShift, pDisplay,
+DEF_CHOICE_2(mcTypeShift, &pDisplay,
     "Смещение", "Offset",
     "Задаёт режим удержания смещения по вертикали\n1. \"Напряжение\" - сохраняется напряжение смещения.\n2. \"Деления\" - сохраняется положение смещения на экране.",
     "Sets the mode of retaining the vertical displacement\n1. \"Voltage\" - saved dressing bias.\n2. \"Divisions\" - retained the position of the offset on the screen.",
@@ -387,7 +387,7 @@ DEF_PAGE_4(mspSettings_Colors, mspSettings, NamePage::ServiceDisplayColors,
 
 
 // ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Цветовая схема ------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcSettings_Colors_Scheme, mspSettings_Colors,
+DEF_CHOICE_2(mcSettings_Colors_Scheme, &mspSettings_Colors,
     "Цветовая схема", "Color scheme",
     "Режим работы калибратора",
     "Mode of operation of the calibrator",
@@ -459,7 +459,7 @@ DEF_GOVERNOR(mgSettings_TimeMessages, mspSettings,
 
 
 // ДИСПЛЕЙ - НАСТРОЙКИ - Строка меню -----------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcSettings_ShowStringNavigation, mspSettings,
+DEF_CHOICE_2(mcSettings_ShowStringNavigation, &mspSettings,
     "Строка меню", "Path menu",
     "При выборе \nПоказывать\n слева вверху экрана выводится полный путь до текущей страницы меню",
     "When choosing \nDisplay\n at the top left of the screen displays the full path to the current page menu",
@@ -470,7 +470,7 @@ DEF_CHOICE_2(mcSettings_ShowStringNavigation, mspSettings,
 
 
 // ДИСПЛЕЙ - НАСТРОЙКИ - Доп. маркеры ----------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_3(mcSettings_ShowAltMarkers, mspSettings,
+DEF_CHOICE_3(mcSettings_ShowAltMarkers, &mspSettings,
     "Доп. маркеры", "Alt. markers"
     ,
     "Устанавливает режим отображения дополнительных маркеров уровней смещения и синхронизации:\n"
