@@ -134,6 +134,8 @@ public:
     int CalculateX(int layer) const;
 
     int OpenedPosY() const;
+    // Уменьшает или увеличивает значение Governor, GovernorColor или Choice по адресу item в зависимости от знака delta
+    void Change(int delta);
 
     static DataItem emptyData;
 

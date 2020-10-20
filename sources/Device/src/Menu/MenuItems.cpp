@@ -542,3 +542,29 @@ Item *Page::RetLastOpened(TypeItem::E *type)
     *type = TypeItem::Page;
     return this;
 }
+
+
+void Item::Change(int delta)
+{
+    TypeItem::E type = Type();
+    if (type == TypeItem::Choice || type == TypeItem::ChoiceReg)
+    {
+        ((Choice *)this)->StartChange(delta);
+    }
+    else if (type == TypeItem::Governor)
+    {
+        Governor *governor = (Governor *)this;
+        if (Menu::OpenedItem() != governor)
+        {
+            governor->StartChange(delta);
+        }
+        else
+        {
+            governor->ChangeValue(delta);
+        }
+    }
+    else if (type == TypeItem::GovernorColor)
+    {
+        ((GovernorColor *)this)->ChangeValue(delta);
+    }
+}

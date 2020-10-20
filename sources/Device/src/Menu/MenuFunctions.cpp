@@ -154,32 +154,6 @@ bool Menu::ChangeOpenedItem(Item *item, int delta)
 }
 
 
-void Menu::ChangeItem(Item *item, int delta)
-{
-    TypeItem::E type = item->Type();
-    if (type == TypeItem::Choice || type == TypeItem::ChoiceReg)
-    {
-        ((Choice *)item)->StartChange(delta);
-    }
-    else if (type == TypeItem::Governor)
-    {
-        Governor *governor = (Governor*)item;
-        if (OpenedItem() != governor)
-        {
-            governor->StartChange(delta);
-        }
-        else
-        {
-            governor->ChangeValue(delta);
-        }
-    }
-    else if (type == TypeItem::GovernorColor)
-    {
-        ((GovernorColor *)item)->ChangeValue(delta);
-    }
-}
-
-
 void Menu::ShortPressOnPageItem(const Page *page, int numItem)
 {
     const DataPage *own = page->OwnData();

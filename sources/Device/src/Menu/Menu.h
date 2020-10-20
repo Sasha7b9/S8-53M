@@ -47,8 +47,6 @@ public:
     static void OpenPageAndSetItCurrent(Item *page);
 
     static bool ChangeOpenedItem(Item *item, int delta);
-    // ”меньшает или увеличивает значение Governor, GovernorColor или Choice по адресу item в зависимости от знака delta
-    static void ChangeItem(Item *item, int delta);
     // ¬озвращает высоту в пиксел€х открытого элемента Choice или NamePage::E по адресу item.
     static int HeightOpenedItem(const Item *item);
     // ¬озвращает название элемента по адресу item, как оно выгл€дит на дисплее прибора.

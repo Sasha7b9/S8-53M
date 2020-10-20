@@ -456,7 +456,7 @@ void Menu::ProcessingRegulatorSet(void)
         {
             if (angleRegSet > stepAngleRegSet || angleRegSet < -stepAngleRegSet)
             {
-                ChangeItem(item, angleRegSet);
+                item->Change(angleRegSet);
                 angleRegSet = 0;
             }
             return;
@@ -479,7 +479,7 @@ void Menu::ProcessingRegulatorSet(void)
             }
             else if (type == TypeItem::GovernorColor)
             {
-                ChangeItem(item, angleRegSet);
+                item->Change(angleRegSet);
             }
             else if (type == TypeItem::Time)
             {
