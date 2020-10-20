@@ -465,7 +465,7 @@ void Menu::ProcessingRegulatorSet(void)
         {
             item = OpenedItem();
             type = item->Type();
-            if (MenuIsMinimize())
+            if (Menu::IsMinimize())
             {
                 CurrentPageSBregSet(angleRegSet);
             }
@@ -686,4 +686,10 @@ void Menu::Show(bool show)
 {
     set.menu.isShown = show ? 1U : 0U;
     Menu::SetAutoHide(true);
+}
+
+
+bool Menu::IsMinimize()
+{
+    return Menu::OpenedItem()->Type() == TypeItem::Page && ((const Page *)Menu::OpenedItem())->GetName() >= NamePage::SB_Curs;
 }

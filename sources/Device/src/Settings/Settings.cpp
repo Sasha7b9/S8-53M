@@ -280,11 +280,6 @@ bool Settings::DebugModeEnable()
     return true;
 }
 
-bool MenuIsMinimize()
-{
-    return Menu::OpenedItem()->Type() == TypeItem::Page && ((const Page *)Menu::OpenedItem())->GetName() >= NamePage::SB_Curs;
-}
-
 bool MenuPageDebugIsActive()
 {
     return set.menu.pageDebugActive;
@@ -306,7 +301,7 @@ void CurrentPageSBregSet(int angle)
 
 //const SmallButton* GetSmallButton(Key::E button)
 //{
-//    if(MenuIsMinimize() && button >= Key::Menu)
+//    if(Menu::IsMinimize() && button >= Key::Menu)
 //    {
 //        Page *page = (Page *)Menu::OpenedItem();
 //        SmallButton *sb = (SmallButton *)(*page->OwnData()->items)[button - Key::Menu];

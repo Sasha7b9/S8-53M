@@ -57,6 +57,9 @@ public:
     static bool IsShown();
     // Отобразить/скрыть меню.
     static void Show(bool show);
+    // Если true - меню находится в дополнительном режиме.
+    static bool IsMinimize();
+
 private:
     // Обработка короткого нажатия кнопки.
     static void ProcessingShortPressureButton();

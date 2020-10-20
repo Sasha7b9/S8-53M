@@ -466,7 +466,7 @@ void Display::DRAW_SPECTRUM(pUCHAR data, int numPoints, Channel::E channel)
     Math::PointsRelToVoltage(data, numPoints, gDSet->range[channel], channel == Channel::A ? static_cast<int16>(gDSet->rShiftCh0) : static_cast<int16>(gDSet->rShiftCh1), dataR);
     Math::CalculateFFT(dataR, numPoints, spectrum, &freq0, &density0, &freq1, &density1, &y0, &y1);
     DrawSpectrumChannel(spectrum, Color::Channel(channel));
-    if (!Menu::IsShown() || MenuIsMinimize())
+    if (!Menu::IsShown() || Menu::IsMinimize())
     {
         int s = 2;
 
@@ -1307,13 +1307,13 @@ void Display::DrawGridSpectrum()
         {
             int y = static_cast<int>(Grid::MathTop() + i * scale);
             HLine().Draw(y, Grid::Left(), Grid::Left() + 256, ColorGrid());
-            if (!MenuIsMinimize())
+            if (!Menu::IsMinimize())
             {
                 Color::SetCurrent(COLOR_FILL);
                 Text(strs[i]).Draw(3, y - 4);
             }
         }
-        if (!MenuIsMinimize())
+        if (!Menu::IsMinimize())
         {
             Color::SetCurrent(COLOR_FILL);
             Text("Да").Draw(5, Grid::MathTop() + 1);
@@ -1327,7 +1327,7 @@ void Display::DrawGridSpectrum()
         {
             int y = static_cast<int>(Grid::MathTop() + i * scale);
             HLine().Draw(y, Grid::Left(), Grid::Left() + 256, ColorGrid());
-            if (!MenuIsMinimize())
+            if (!Menu::IsMinimize())
             {
                 Text(strs[i]).Draw(5, y - 4, COLOR_FILL);
             }
@@ -1490,7 +1490,7 @@ void Display::DrawGrid(int left, int top, int width, int height)
         HLine().Draw(top, 1, left - 2);
         HLine().Draw(top, right + 2, Display::WIDTH - 2);
 
-        if (!MenuIsMinimize() || !Menu::IsShown())
+        if (!Menu::IsMinimize() || !Menu::IsShown())
         {
             VLine().Draw(1, top + 2, bottom - 2);
             VLine().Draw(318, top + 2, bottom - 2);
@@ -1553,7 +1553,7 @@ void Display::DrawScaleLine(int x, bool forTrigLev)
 
 void Display::DrawCursorsWindow()
 {
-    if((!MenuIsMinimize() || !Menu::IsShown()) && (DRAW_RSHIFT_MARKERS != 0))
+    if((!Menu::IsMinimize() || !Menu::IsShown()) && (DRAW_RSHIFT_MARKERS != 0))
     {
         DrawScaleLine(2, false);
     }
@@ -1601,7 +1601,7 @@ void Display::DrawCursorTrigLevel()
     Char(simbols[TRIG_SOURCE]).Draw(x + 5, y - 9, COLOR_BACK);
     Font::Set(TypeFont::_8);
 
-    if ((DRAW_RSHIFT_MARKERS != 0) && !MenuIsMinimize())
+    if ((DRAW_RSHIFT_MARKERS != 0) && !Menu::IsMinimize())
     {
         DrawScaleLine(Display::WIDTH - 11, true);
         int left = Grid::Right() + 9;
@@ -1667,7 +1667,7 @@ void Display::DrawCursorRShift(Channel::E chan)
 
     Font::Set(TypeFont::_5);
 
-    if((!MenuIsMinimize() || !Menu::IsShown()) && DRAW_RSHIFT_MARKERS_IS_TRUE)
+    if((!Menu::IsMinimize() || !Menu::IsShown()) && DRAW_RSHIFT_MARKERS_IS_TRUE)
     {
         float scaleFull = (float)Grid::ChannelHeight() / (RShiftMax - RShiftMin) * (sService_MathEnabled() ? 0.9F : 0.91F);
         float yFull = Grid::ChannelCenterHeight() - scaleFull * (rShift - RShiftZero);

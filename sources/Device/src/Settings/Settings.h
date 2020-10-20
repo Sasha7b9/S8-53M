@@ -190,7 +190,6 @@ struct SettingsMenu
 
 
 
-bool MenuIsMinimize();                                              // Если true - меню находится в дополнительном режиме.
 bool MenuPageDebugIsActive();                                       // Активна ли страница отладки.
 void SetMenuPageDebugActive(bool active);                           // Сделать/разделать активной страницу отладки.
 void CurrentPageSBregSet(int angle);                                // Повернуть ручку УСТАНОВКА на текущей странице малых кнопок.

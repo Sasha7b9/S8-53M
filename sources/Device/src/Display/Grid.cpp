@@ -18,13 +18,13 @@ int Grid::Delta()
 
 int Grid::Left(void)
 {
-    return (MenuIsMinimize() && Menu::IsShown() ? 9 : 20) + Measure::GetDeltaGridLeft();
+    return (Menu::IsMinimize() && Menu::IsShown() ? 9 : 20) + Measure::GetDeltaGridLeft();
 }
 
 
 int Grid::Right(void)
 {
-    return ((MenuIsMinimize() && Menu::IsShown()) ? 9 : 20) + 280;
+    return ((Menu::IsMinimize() && Menu::IsShown()) ? 9 : 20) + 280;
 }
 
 
