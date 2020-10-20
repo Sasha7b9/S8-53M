@@ -201,7 +201,7 @@ void Menu::ChangeItem(Item *item, int delta)
 }
 
 
-void Menu::ShortPressOnPageItem(Page *page, int numItem)
+void Menu::ShortPressOnPageItem(const Page *page, int numItem)
 {
     const DataPage *own = page->OwnData();
 
@@ -221,7 +221,7 @@ void Menu::ShortPressOnPageItem(Page *page, int numItem)
 }
 
 
-SmallButton* Menu::SmallButonFromPage(Page *page, int numButton)
+SmallButton* Menu::SmallButonFromPage(const Page *page, int numButton)
 {
     const DataPage *own = page->OwnData();
 

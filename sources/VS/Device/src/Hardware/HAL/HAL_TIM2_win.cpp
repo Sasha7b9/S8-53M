@@ -5,7 +5,7 @@
 
 uint HAL_TIM2::GetTicks()
 {
-    return static_cast<uint>(clock());
+    return TimeMS();
 }
 
 
