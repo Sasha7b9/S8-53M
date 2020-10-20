@@ -85,8 +85,6 @@ private:
     static void ShortPress_Governor(Item*);
 
     static void ShortPress_Time(Item *time);
-    // Обработка короткого нажатия на элемент Button с адресом button.
-    static void ShortPress_Button(Item *button);
     // Обработка короткого нажатия на элемент GovernorColor с адресом governorColor.
     static void ShortPress_GovernorColor(Item *governorColor);
 

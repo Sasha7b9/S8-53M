@@ -532,18 +532,7 @@ void Menu::ShortPress_ChoiceReg(Item *choice)
 
 void Menu::FuncOnLongPressItemButton(Item *button)
 {
-    ShortPress_Button(button);
-}
-
-
-void Menu::ShortPress_Button(Item *button)
-{
-    if(!button->IsActive())
-    {
-        return;
-    }
-    button->SetCurrent(true);
-    ((Button*)button)->OwnData()->funcOnPress();
+    ((Button *)button)->ShortPress();
 }
 
 
@@ -644,7 +633,7 @@ void Menu::ExecuteFuncForShortPressOnItem(Item *item)
 
     TypeItem::E type = item->Type();
 
-    if (type == TypeItem::Page || type == TypeItem::Choice)
+    if (type == TypeItem::Page || type == TypeItem::Choice || type == TypeItem::Button)
     {
         item->ShortPress();
         return;
@@ -654,7 +643,7 @@ void Menu::ExecuteFuncForShortPressOnItem(Item *item)
     {
         nullptr,                            // TypeItem::None
         nullptr,                            // TypeItem::Choice
-        &Menu::ShortPress_Button,           // TypeItem::Button
+        nullptr,                            // TypeItem::Button
         nullptr,                            // TypeItem::Page
         &Menu::ShortPress_Governor,         // TypeItem::Governor
         &Menu::ShortPress_Time,             // TypeItem::Time

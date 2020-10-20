@@ -192,6 +192,8 @@ public:
     Button(const DataItem *const data) : Item(data) {};
     const DataButton *OwnData() const { return static_cast<const DataButton *>(data->ad); }
     void Draw(int x, int y) const;
+    // Обработка короткого нажатия
+    virtual void ShortPress();
 };
 
 

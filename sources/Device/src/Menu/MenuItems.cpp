@@ -404,3 +404,14 @@ void Choice::ShortPress()
         ChangeValue(-1);
     }
 }
+
+
+void Button::ShortPress()
+{
+    if (!IsActive())
+    {
+        return;
+    }
+    SetCurrent(true);
+    OwnData()->funcOnPress();
+}
