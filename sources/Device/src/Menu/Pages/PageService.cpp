@@ -18,9 +18,6 @@
 using namespace Primitives;
 
 
-extern const Page pService;
-
-
 extern const Button       bResetSettings;               // СЕРВИС - Сброс настроек
 static void        OnPress_ResetSettings();
 static void FuncDraw();

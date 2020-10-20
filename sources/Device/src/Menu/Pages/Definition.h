@@ -19,16 +19,14 @@ void DrawMenuCursTime(int x, int y, bool left, bool right);
 void DrawSB_Exit(int x, int y);
 
 
-class PageMain
+struct PageMain
 {
-public:
     static const Page *self;
 };
 
 
-class PageChannelA
+struct PageChannelA
 {
-public:
     static const Page *self;
     static void OnChanged_Input(bool);
     static void OnChanged_Couple(bool);
@@ -36,9 +34,8 @@ public:
 };
 
 
-class PageChannelB
+struct PageChannelB
 {
-public:
     static const Page *self;
     static void OnChanged_Input(bool);
     static void OnChanged_Couple(bool);
@@ -49,13 +46,10 @@ public:
 void  Cursors_Update();    // Вызываем эту функцию для каждого измерения, чтобы обновить положие курсоров, если они должны обновляться автоматически.
 
 
-class PageCursors
+struct PageCursors
 {
-public:
-
-    class PageSet
+    struct PageSet
     {
-    public:
         static const Page *self;
     };
 
@@ -63,12 +57,10 @@ public:
 };
 
 
-class PageDebug
+struct PageDebug
 {
-public:
-    class SerialNumber
+    struct SerialNumber
     {
-    public:
         static const Page *self;
     };
 
@@ -76,21 +68,18 @@ public:
 };
 
 
-class PageDisplay
+struct PageDisplay
 {
-public:
     static const Page *self;
 };
 
 
-class PageMeasures
+struct PageMeasures
 {
-public:
     static const Page *self;
 
-    class Tune
+    struct Tune
     {
-    public:
         static void *pointer;
     };
 
@@ -99,29 +88,21 @@ public:
 };
 
 
-class PageService
+struct PageService
 {
-public:
-
     static const Page *self;
 
-    class Math
+    struct Math
     {
-    public:
-
-        class Function
+        struct Function
         {
-        public:
             static const Page *self;
         };
 
-        class FFT
+        struct FFT
         {
-        public:
-
-            class Cursors
+            struct Cursors
             {
-            public:
                 static const Page *self;
             };
         };
@@ -136,65 +117,54 @@ public:
 };
 
 
-class PageTime
+struct PageTime
 {
-public:
     static const Page *self;
 };
 
 
-class PageTrig
+struct PageTrig
 {
-public:
     static const Page *self;
 
-    class PageAutoFind
+    struct PageAutoFind
     {
-    public:
         static const Page *self;
     };
 };
 
 
-class PageHelp
+struct PageHelp
 {
-public:
     static const Page *self;
 };
 
 
 
-class PageMemory
+struct PageMemory
 {
-public:
-
-    class Latest
+    struct Latest
     {
-    public:
         static const Page *self;
     };
 
-    class Internal
+    struct Internal
     {
-    public:
         static const Page *self;
     };
 
-    class SetMask
+    struct SetMask
     {
-    public:
         static const Page *self;
     };
 
-    class SetName
+    struct SetName
     {
-    public:
         static const Page *self;
     };
 
-    class FileManager
+    struct FileManager
     {
-    public:
         static const Page *self;
     };
 
