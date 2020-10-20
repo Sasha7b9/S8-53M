@@ -23,9 +23,6 @@ static int16 shiftADCB;
 
 
 
-extern const Governor   mgADC_Balance_ShiftA;               // ОТЛАДКА - АЦП - БАЛАНС - Смещение 1
-static bool      IsActive_ADC_Balance_Shift();
-static void     OnChanged_ADC_Balance_ShiftA();
 extern const Governor   mgADC_Balance_ShiftB;               // ОТЛАДКА - АЦП - БАЛАНС - Смещение 2
 static void     OnChanged_ADC_Balance_ShiftB();
 extern const Page       mpADC_Stretch;                      // ОТЛАДКА - АЦП - РАСТЯЖКА
@@ -283,6 +280,24 @@ DEF_CHOICE_3(mcADC_Balance_Mode, PageDebug::PageADC::PageBalance::self,
     BALANCE_ADC_TYPE, nullptr, OnChanged_ADC_Balance_Mode, Draw_ADC_Balance_Mode
 )
 
+static void OnChanged_ADC_Balance_ShiftA(void)
+{
+    BALANCE_ADC_A = shiftADCA;
+    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)BALANCE_ADC_A, false);
+}
+
+static bool IsActive_ADC_Balance_Shift(void)
+{
+    return BALANCE_ADC_TYPE_IS_HAND;
+}
+
+DEF_GOVERNOR(mgADC_Balance_ShiftA, PageDebug::PageADC::PageBalance::self,
+    "Смещение 1", "Offset 1",
+    "",
+    "",
+    shiftADCA, -125, 125, IsActive_ADC_Balance_Shift, OnChanged_ADC_Balance_ShiftA, nullptr
+)
+
 DEF_PAGE_3(mpADC_Balance, PageDebug::PageADC::self, NamePage::DebugADCbalance,
     "БАЛАНС", "BALANCE",
     "",
@@ -316,24 +331,6 @@ DEF_PAGE_7(pDebug, PageMain::self, NamePage::Debug,
     bEraseData,         // ОТЛАДКА - Стереть данные
     nullptr, nullptr, nullptr, nullptr
 );
-
-DEF_GOVERNOR(mgADC_Balance_ShiftA, &mpADC_Balance, 
-    "Смещение 1", "Offset 1",
-    "",
-    "",
-    shiftADCA, -125, 125, IsActive_ADC_Balance_Shift, OnChanged_ADC_Balance_ShiftA, nullptr
-)
-
-static void OnChanged_ADC_Balance_ShiftA(void)
-{
-    BALANCE_ADC_A = shiftADCA;
-    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)BALANCE_ADC_A, false);
-}
-
-static bool IsActive_ADC_Balance_Shift(void)
-{
-    return BALANCE_ADC_TYPE_IS_HAND;
-}
 
 DEF_GOVERNOR(mgADC_Balance_ShiftB, &mpADC_Balance,
     "Смещение 2", "Offset 2",
