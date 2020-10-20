@@ -18,10 +18,6 @@
 using namespace Primitives;
 
 
-extern const Button       bResetSettings;               // СЕРВИС - Сброс настроек
-static void        OnPress_ResetSettings();
-static void FuncDraw();
-static void OnTimerDraw();
 extern const Button       bAutoSearch;                  // СЕРВИС - Поиск сигнала
 static void        OnPress_AutoSearch();
 extern const Page        ppCalibrator;                  // СЕРВИС - КАЛИБРАТОР
@@ -91,36 +87,20 @@ static void Information_Draw();
 extern const SmallButton sbInformation_Exit;             // СЕРВИС - ИНФОРМАЦИЯ - Выход
 static void        OnPress_Information_Exit();
 
+static void FuncDraw(void)
+{
+    Painter::BeginScene(COLOR_BACK);
 
-// СЕРВИС //////////////////////////
-DEF_PAGE_10(pService, PageMain::self, NamePage::Service,
-    "СЕРВИС", "SERVICE",
-    "Дополнительные настройки, калибровка, поиск сигнала, математические функции",
-    "Additional settings, calibration, signal search, mathematical functions",
-    bResetSettings,             // СЕРВИС - Сброс настроек
-    bAutoSearch,                // СЕРВИС - Поиск сигнала
-    ppCalibrator,               // СЕРВИС - КАЛИБРАТОР
-    ppMath,                     // СЕРВИС - МАТЕМАТИКА
-    ppEthernet,                 // СЕРВИС - ETHERNET
-    cSound,                     // СЕРВИС - Звук
-    cLang,                      // СЕРВИС - Язык
-    tTime,                      // СЕРВИС - Время
-    cModeLongPressButtonTrig,   // СЕРВИС - Реж длит СИНХР
-    ppInformation,              // СЕРВИС - ИНФОРМАЦИЯ
-    nullptr, nullptr, nullptr, nullptr
-);
+    Painter::DrawTextInRectWithTransfersC(30, 110, 300, 200, "Подтвердите сброс настроек нажатием кнопки ПУСК/СТОП.\n"
+        "Нажмите любую другую кнопку, если сброс не нужен.", COLOR_FILL);
 
+    Painter::EndScene();
+}
 
-const Page *PageService::self = &pService;
-
-
-// СЕРВИС - Сброс настроек ---------------------------------------------------------------------------------------------------------------------------
-DEF_BUTTON(bResetSettings, PageService::self,
-    "Сброс настроек", "Reset settings",
-    "Сброс настроек на настройки по умолчанию",
-    "Reset to default settings",
-    nullptr, OnPress_ResetSettings
-)
+static void OnTimerDraw(void)
+{
+    Display::Update();
+}
 
 static void OnPress_ResetSettings(void)
 {
@@ -139,23 +119,32 @@ static void OnPress_ResetSettings(void)
     Panel::Enable();
 }
 
-static void FuncDraw(void)
-{
-    Painter::BeginScene(COLOR_BACK);
+DEF_BUTTON(bResetSettings, PageService::self,
+    "Сброс настроек", "Reset settings",
+    "Сброс настроек на настройки по умолчанию",
+    "Reset to default settings",
+    nullptr, OnPress_ResetSettings
+)
 
-    Painter::DrawTextInRectWithTransfersC(30, 110, 300, 200, "Подтвердите сброс настроек нажатием кнопки ПУСК/СТОП.\n"
-                                         "Нажмите любую другую кнопку, если сброс не нужен.", COLOR_FILL);
+DEF_PAGE_10(pService, PageMain::self, NamePage::Service,
+    "СЕРВИС", "SERVICE",
+    "Дополнительные настройки, калибровка, поиск сигнала, математические функции",
+    "Additional settings, calibration, signal search, mathematical functions",
+    bResetSettings,             // СЕРВИС - Сброс настроек
+    bAutoSearch,                // СЕРВИС - Поиск сигнала
+    ppCalibrator,               // СЕРВИС - КАЛИБРАТОР
+    ppMath,                     // СЕРВИС - МАТЕМАТИКА
+    ppEthernet,                 // СЕРВИС - ETHERNET
+    cSound,                     // СЕРВИС - Звук
+    cLang,                      // СЕРВИС - Язык
+    tTime,                      // СЕРВИС - Время
+    cModeLongPressButtonTrig,   // СЕРВИС - Реж длит СИНХР
+    ppInformation,              // СЕРВИС - ИНФОРМАЦИЯ
+    nullptr, nullptr, nullptr, nullptr
+);
 
-    Painter::EndScene();
-}
+const Page *PageService::self = &pService;
 
-static void OnTimerDraw(void)
-{
-    Display::Update();
-}
-
-
-// СЕРВИС - Поиск сигнала ----------------------------------------------------------------------------------------------------------------------------
 DEF_BUTTON(bAutoSearch, PageService::self,
     "Поиск сигнала", "Find signal",
     "Устанавливает оптимальные установки осциллографа для сигнала в канале 1",
@@ -168,7 +157,6 @@ static void OnPress_AutoSearch(void)
     FPGA::StartAutoFind();
 };
 
-// СЕРВИС - КАЛИБРАТОР /////////////
 DEF_PAGE_2(ppCalibrator, PageService::self, NamePage::ServiceCalibrator,
     "КАЛИБРАТОР", "CALIBRATOR",
     "Управлением калибратором и калибровка осциллографа",
@@ -178,7 +166,6 @@ DEF_PAGE_2(ppCalibrator, PageService::self, NamePage::ServiceCalibrator,
     nullptr, nullptr, nullptr, nullptr
 )
 
-// СЕРВИС - КАЛИБРАТОР - Калибратор ------------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_3(cCalibrator_Mode, &ppCalibrator,
     "Калибратор",  "Calibrator",
     "Режим работы калибратора",
@@ -194,7 +181,6 @@ static void OnChanged_Calibrator_Mode(bool)
     FPGA::SetCalibratorMode(CALIBRATOR);
 }
 
-// СЕРВИС - КАЛИБРАТОР - Калибровать -----------------------------------------------------------------------------------------------------------------
 DEF_BUTTON(cCalibrator_Calibrate, &ppCalibrator,
     "Калибровать", "Calibrate",
     "Запуск процедуры калибровки",
@@ -207,7 +193,6 @@ static void OnPress_Calibrator_Calibrate(void)
     gStateFPGA.needCalibration = true;
 }
 
-// СЕРВИС - МАТЕМАТИКА /////////////
 DEF_PAGE_2(ppMath, PageService::self, NamePage::Math,
     "МАТЕМАТИКА", "MATH",
     "Математические функции и БПФ",
@@ -217,7 +202,6 @@ DEF_PAGE_2(ppMath, PageService::self, NamePage::Math,
     nullptr, nullptr, nullptr, nullptr
 )
 
-// СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ ///
 DEF_PAGE_6(pppMath_Function, &ppMath, NamePage::SB_MathFunction, 
     "ФУНКЦИЯ", "FUNCTION",
     "Установка и выбор математической функции - сложения или умножения",
@@ -230,7 +214,6 @@ DEF_PAGE_6(pppMath_Function, &ppMath, NamePage::SB_MathFunction,
     sbMath_Function_RangeB,     // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Масштаб 2-го канала    
     IsActive_Math_Function, OnPress_Math_Function, nullptr, OnRegSet_Math_Function
 );
-
 
 const Page *PageService::Math::Function::self = &pppMath_Function;
 
@@ -317,13 +300,11 @@ static void OnRegSet_Math_Function(int delta)
     }
 }
 
-// СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Выход -------------------------------------------------------------------------------------------------------------
 DEF_SMALL_BUTTON(sbMath_Function_Exit, &pppMath_Function,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
     nullptr, nullptr, DrawSB_Exit, nullptr
 )
 
-// СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Экран -------------------------------------------------------------------------------------------------------------
 static const arrayHints hintsMath_Function_ModeDraw =
 {
     {Draw_Math_Function_ModeDraw_Disable,  "Вывод математической функции отключён",
@@ -381,7 +362,6 @@ static void Draw_Math_Function_ModeDraw_Together(int x, int y)
     Rectangle(13, 9).Draw(x + 3, y + 5);
 }
 
-// СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Вид ---------------------------------------------------------------------------------------------------------------
 static const arrayHints hintsMath_Function_Type =
 {
     { Draw_Math_Function_Type_Sum,      "Сложение",     "Addition"       },
@@ -419,7 +399,6 @@ static void Draw_Math_Function_Type_Mul(int x, int y)
     Font::Set(TypeFont::_8);
 }
 
-// СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Режим ручки УСТАНОВКА ---------------------------------------------------------------------------------------------
 static const arrayHints hintsMath_Function_ModeRegSet =
 {
     {Draw_Math_Function_ModeRegSet_Range,  "Управление масштабом", "Management of scale"},
@@ -454,7 +433,6 @@ static void Draw_Math_Function_ModeRegSet_RShift(int x, int y)
     Text(LANG_RU ? "См" : "Shif").Draw(x + 5 - (LANG_EN ? 3 : 0), y + 5);
 }
 
-// СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Масштаб 1-го канала -----------------------------------------------------------------------------------------------
 DEF_SMALL_BUTTON(sbMath_Function_RangeA, &pppMath_Function,
     "Масштаб 1-го канала", "Scale of the 1st channel",
     "Берёт масштаб для математического сигнала из первого канала",
@@ -473,7 +451,6 @@ static void Draw_Math_Function_RangeA(int x, int y)
     Char('1').Draw(x + 8, y + 5);
 }
 
-// СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Масштаб 2-го канала -----------------------------------------------------------------------------------------------
 DEF_SMALL_BUTTON(sbMath_Function_RangeB, &pppMath_Function,
     "Масштаб 2-го канала", "Scale of the 2nd channel",
     "Берёт масштаб для математического сигнала из второго канала",
@@ -492,7 +469,6 @@ static void Draw_Math_Function_RangeB(int x, int y)
     Char('2').Draw(x + 8, y + 5);
 }
 
-// СЕРВИС - МАТЕМАТИКА - СПЕКТР ////
 DEF_PAGE_6(pppMath_FFT, &ppMath, NamePage::MathFFT,
     "СПЕКТР", "SPECTRUM",
     "Отображение спектра входного сигнала",
@@ -519,7 +495,6 @@ static void OnPress_Math_FFT(void)
     }
 }
 
-// СЕРВИС - МАТЕМАТИКА - СПЕКТР - Отображение --------------------------------------------------------------------------------------------------------
 DEF_CHOICE_2(cMath_FFT_Enable, &pppMath_FFT,
     "Отображение", "Display",
     "Включает и выключает отображение спектра",
@@ -529,7 +504,6 @@ DEF_CHOICE_2(cMath_FFT_Enable, &pppMath_FFT,
     ENABLED_FFT, nullptr, nullptr, nullptr
 )
 
-// СЕРВИС - МАТЕМАТИКА - СПЕКТР - Шкала --------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_2(cMath_FFT_Scale, &pppMath_FFT,
     "Шкала", "Scale",
     "Задаёт масштаб вывода спектра - линейный или логарифмический",
@@ -539,7 +513,6 @@ DEF_CHOICE_2(cMath_FFT_Scale, &pppMath_FFT,
     SCALE_FFT, nullptr, nullptr, nullptr
 )
 
-// СЕРВИС - МАТЕМАТИКА - СПЕКТР - Источник -----------------------------------------------------------------------------------------------------------
 DEF_CHOICE_3(cMath_FFT_Source, &pppMath_FFT,
     "Источник", "Source",
     "Выбор источника для расчёта спектра",
@@ -550,7 +523,6 @@ DEF_CHOICE_3(cMath_FFT_Source, &pppMath_FFT,
     SOURCE_FFT, nullptr, nullptr, nullptr
 )
 
-// СЕРВИС - МАТЕМАТИКА - СПЕКТР - Окно ---------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_4(cMath_FFT_Window, &pppMath_FFT,
     "Окно", "Window",
     "Задаёт окно для расчёта спектра",
@@ -562,7 +534,6 @@ DEF_CHOICE_4(cMath_FFT_Window, &pppMath_FFT,
     WINDOW_FFT, nullptr, nullptr, nullptr
 )
 
-// СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ ------------------------------------------------------------------------------------------------------------
 DEF_PAGE_6(ppppMath_FFT_Cursors, &pppMath_FFT, NamePage::SB_MathCursorsFFT,
     "КУРСОРЫ", "CURSORS",
     "Включает курсоры для измерения параметров спектра",
@@ -589,7 +560,6 @@ static void OnRegSet_Math_FFT_Cursors(int angle)
     Sound::RegulatorShiftRotate();
 }
 
-// СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ - Выход ----------------------------------------------------------------------------------------------------
 DEF_SMALL_BUTTON(cMath_FFT_Cursors_Exit, &ppppMath_FFT_Cursors,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
     nullptr, OnPress_Math_FFT_Cursors_Exit, DrawSB_Exit, nullptr
@@ -600,7 +570,6 @@ static void OnPress_Math_FFT_Cursors_Exit(void)
     Display::RemoveAddDrawFunction();
 }
 
-// СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ - Источник -------------------------------------------------------------------------------------------------
 DEF_SMALL_BUTTON(cMath_FFT_Cursors_Source, &ppppMath_FFT_Cursors,
     "Источник", "Source",
     "Выбор источника для расчёта спектра",
@@ -618,7 +587,6 @@ static void Draw_Math_FFT_Cursors_Source(int x, int y)
     Text(FFT_CUR_CURSOR_IS_0 ? "1" : "2").Draw(x + 7, y + 5);
 }
 
-// СЕРВИС - МАТЕМАТИКА - СПЕКТР - Диапазон -----------------------------------------------------------------------------------------------------------
 DEF_CHOICE_3(cMath_FFT_Limit, &pppMath_FFT,
     "Диапазон", "Range",
     "Здесь можно задать предел наблюдения за мощностью спектра",
@@ -634,7 +602,6 @@ static bool IsActive_Math_FFT_Limit(void)
     return SCALE_FFT_IS_LOG;
 }
 
-// СЕРВИС - ETHERNET ///////////////
 DEF_PAGE_5(ppEthernet, &pService, NamePage::ServiceEthernet,
     "ETHERNET", "ETHERNET",
     "Настройки ethernet",
@@ -647,7 +614,6 @@ DEF_PAGE_5(ppEthernet, &pService, NamePage::ServiceEthernet,
     nullptr, nullptr, nullptr, nullptr
 )
 
-// СЕРВИС - ETHERNET - Ethernet ----------------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_2(cEthernet_Enable, &ppEthernet,
     "Ethernet", "Ethernet"
     ,
@@ -668,7 +634,6 @@ static void OnChanged_Ethernet_Enable(bool)
     Display::ShowWarningGood(Warning::NeedRebootDevice1);
 }
 
-// СЕРВИС - ETHERNET - IP адрес ----------------------------------------------------------------------------------------------------------------------
 DEF_IPADDRESS(ipEthernet_IP, ppEthernet,
     "IP адрес", "IP-address",
     "Установка IP адреса",
@@ -676,7 +641,6 @@ DEF_IPADDRESS(ipEthernet_IP, ppEthernet,
     IP_ADDR0, IP_ADDR1, IP_ADDR2, IP_ADDR3, PORT_ETH, OnChanged_Ethernet_Enable
 )
 
-// СЕРВИС - ETHERNET - Маска подсети -----------------------------------------------------------------------------------------------------------------
 static uint16 portMask = 0;
 DEF_IPADDRESS(ipEthernet_Mask, ppEthernet,
     "Маска подсети", "Network mask",
@@ -685,7 +649,6 @@ DEF_IPADDRESS(ipEthernet_Mask, ppEthernet,
     NETMASK_ADDR0, NETMASK_ADDR1, NETMASK_ADDR2, NETMASK_ADDR3, portMask, OnChanged_Ethernet_Enable
 )
 
-// СЕРВИС - ETHERNET - Шлюз --------------------------------------------------------------------------------------------------------------------------
 static uint16 portGateway = 0;
 DEF_IPADDRESS(ipEthernet_Gateway, ppEthernet,
     "Шлюз", "Gateway",
@@ -694,7 +657,6 @@ DEF_IPADDRESS(ipEthernet_Gateway, ppEthernet,
     GW_ADDR0, GW_ADDR1, GW_ADDR2, GW_ADDR3, portGateway, OnChanged_Ethernet_Enable
 )
 
-// СЕРВИС - ETHERNET - Физ адрес ---------------------------------------------------------------------------------------------------------------------
 DEF_MACADDRESS(macEthernet_MAC, ppEthernet,
     "Физ адрес", "MAC-address",
     "Установка физического адреса",
@@ -702,7 +664,6 @@ DEF_MACADDRESS(macEthernet_MAC, ppEthernet,
     MAC_ADDR0, MAC_ADDR1, MAC_ADDR2, MAC_ADDR3, MAC_ADDR4, MAC_ADDR5, OnChanged_Ethernet_Enable
 )
 
-// СЕРВИС - Звук -------------------------------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_2(cSound, &pService,
     "Звук", "Sound",
     "Включение/выключение звука",
@@ -712,8 +673,6 @@ DEF_CHOICE_2(cSound, &pService,
     SOUND_ENABLED, nullptr, nullptr, nullptr
 )
 
-
-// СЕРВИС - Язык -------------------------------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_2(cLang, &pService,
     "Язык", "Language",
     "Позволяет выбрать язык меню",
@@ -723,8 +682,6 @@ DEF_CHOICE_2(cLang, &pService,
     LANG, nullptr, nullptr, nullptr
 )
 
-
-// СЕРВИС - Время ------------------------------------------------------------------------------------------------------------------------------------
 static int8 dServicetime = 0;
 static int8 hours = 0, minutes = 0, secondes = 0, year = 0, month = 0, day = 0;
 DEF_TIME(tTime, pService,
@@ -747,7 +704,6 @@ DEF_TIME(tTime, pService,
     dServicetime, hours, minutes, secondes, month, day, year
 )
 
-// СЕРВИС - Реж длит СИНХР ---------------------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_2(cModeLongPressButtonTrig, &pService,
     "Реж длит СИНХР", "Mode long СИНХР"
     ,
@@ -762,7 +718,6 @@ DEF_CHOICE_2(cModeLongPressButtonTrig, &pService,
     MODE_LONG_PRESS_TRIG, nullptr, nullptr, nullptr
 )
 
-// СЕРВИС - ИНФОРМАЦИЯ -------------------------------------------------------------------------------------------------------------------------------
 DEF_PAGE_6(ppInformation, &pService, NamePage::SB_Information,
     "ИНФОРМАЦИЯ", "INFORMATION",
     "Выводит на экран идентификационные данные осциллографа",
@@ -777,7 +732,6 @@ DEF_PAGE_6(ppInformation, &pService, NamePage::SB_Information,
 )
 
 const Page *PageService::Information::self = &ppInformation;
-
 
 static void OnPress_Information(void)
 {
@@ -825,7 +779,6 @@ static void Information_Draw(void)
     Painter::EndScene();
 }
 
-// СЕРВИС - ИНФОРМАЦИЯ - Выход -----------------------------------------------------------------------------------------------------------------------
 DEF_SMALL_BUTTON(sbInformation_Exit, &ppInformation,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
     nullptr, OnPress_Information_Exit, DrawSB_Exit, nullptr
