@@ -415,3 +415,18 @@ void Button::ShortPress()
     SetCurrent(true);
     OwnData()->funcOnPress();
 }
+
+
+void TimeItem::ShortPress()
+{
+    if (!IsOpened())
+    {
+        SetCurrent(true);
+        SetOpened();
+        Open(true);
+    }
+    else
+    {
+        SelectNextPosition();
+    }
+}

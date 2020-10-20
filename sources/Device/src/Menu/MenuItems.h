@@ -245,7 +245,7 @@ public:
     Governor(const DataItem *const data) : Item(data) {};
     void Draw(int x, int y, bool opened) const;
     // Обработка короткого нажатия на элемент Governor с адресом governor.
-    void ShortPress();
+    virtual void ShortPress();
     void StartChange(int detla);        // Запускает процессс анимации инкремента или декремента элемента меню типа Governor (в зависимости от знака delta)
     float Step() const;                 // Рассчитывате следующий кадр анимации.
     void  ChangeValue(int delta);       // Изменяет значение в текущей позиции при раскрытом элементе
@@ -490,5 +490,7 @@ struct TimeItem : public Item
     void DrawClosed(int x, int y) const;
 
     void DrawOpened(int x, int y) const;
+
+    virtual void ShortPress();
 };
 
