@@ -40,6 +40,9 @@ DEF_PAGE_5(pTrig, PageMain::self, NamePage::Trig,
 )
 
 
+const Page *PageTrig::self = &pTrig;
+
+
 // СИНХР - Режим -------------------------------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_3(mcMode, &pTrig,
     "Режим", "Mode"

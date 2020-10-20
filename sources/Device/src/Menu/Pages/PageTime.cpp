@@ -35,6 +35,9 @@ DEF_PAGE_5(pTime, PageMain::self, NamePage::Time,
     nullptr, nullptr, nullptr, nullptr
 )
 
+const Page *PageTime::self = &pTime;
+
+
 // РАЗВЕРТКА - Выборка -------------------------------------------------------------------------------------------------------------------------------
 DEF_CHOICE_2(mcSample, &pTime,
     "Выборка", "Sampling",

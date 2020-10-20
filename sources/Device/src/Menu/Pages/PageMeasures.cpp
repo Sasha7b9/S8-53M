@@ -4,7 +4,6 @@
 #include "Display/Painter.h"
 #include "Menu/MenuItems.h"
 #include "Menu/Pages/Definition.h"
-#include "Menu/Pages/PageMeasures.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
 #include "Utils/Measures.h"
@@ -256,5 +255,7 @@ DEF_PAGE_5(pMeasures, PageMain::self, NamePage::Measures,
     mspMeasTune,
     nullptr, nullptr, nullptr, nullptr
 )
+
+const Page *PageMeasures::self = &pMeasures;
 
 void *PageMeasures::Tune::pointer = (void *)&mspMeasTune;

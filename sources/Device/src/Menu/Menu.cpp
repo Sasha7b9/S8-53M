@@ -4,7 +4,6 @@
 #include "Hardware/Timer.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
-#include "Menu/Pages/PageMeasures.h"
 #include "Menu/Pages/PageMemory.h"
 #include "Panel/Panel.h"
 #include "Settings/Settings.h"
@@ -514,9 +513,6 @@ void Menu::ProcessingReleaseButton(void)
         releaseButton = Key::None;
     }
 }
-
-
-extern const Page pService;
 
 
 void Menu::OpenItemTime(void)

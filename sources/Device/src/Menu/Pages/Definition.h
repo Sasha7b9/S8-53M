@@ -83,6 +83,22 @@ public:
 };
 
 
+class PageMeasures
+{
+public:
+    static const Page *self;
+
+    class Tune
+    {
+    public:
+        static void *pointer;
+    };
+
+    // Если true, то активен выбор типа измерений для выбора на странице ИЗМЕРЕНИЯ-НАСТРОИТЬ
+    static bool choiceMeasuresIsActive;
+};
+
+
 class PageService
 {
 public:
@@ -117,4 +133,18 @@ public:
 
         static const Page *self;
     };
+};
+
+
+class PageTime
+{
+public:
+    static const Page *self;
+};
+
+
+class PageTrig
+{
+public:
+    static const Page *self;
 };

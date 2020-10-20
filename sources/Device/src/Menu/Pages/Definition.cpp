@@ -98,11 +98,6 @@ void DrawSB_Exit(int x, int y)
 
 #include "PageHelp.cpp"
 
-extern const Page pMeasures;
-extern const Page pTime;
-extern const Page pTrig;
-
-
 
 DEF_PAGE_11(mainPage, Page::empty, NamePage::MainPage,
     "лемч", "MENU",
@@ -111,11 +106,11 @@ DEF_PAGE_11(mainPage, Page::empty, NamePage::MainPage,
     *PageDisplay::self,
     *PageChannelA::self,
     *PageChannelB::self,
-    pTrig,
-    pTime,
+    *PageTrig::self,
+    *PageTime::self,
     *PageCursors::self,
     *PageMemory::self,
-    pMeasures,
+    *PageMeasures::self,
     *PageService::self,
     mpHelp,
     *PageDebug::self,
@@ -135,10 +130,10 @@ const Page *PageForButton(Key::E button)
         0,                          // Key::F5
         (void *)PageChannelA::self, // Key::ChannelA
         (void *)PageChannelB::self, // Key::ChannelB
-        (void *)&pTime,             // Key::Time
-        (void *)&pTrig,             // Key::Trig
+        (void *)PageTime::self,     // Key::Time
+        (void *)PageTrig::self,     // Key::Trig
         (void *)PageCursors::self,  // Key::Cursors
-        (void *)&pMeasures,         // Key::Measures
+        (void *)PageMeasures::self, // Key::Measures
         (void *)PageDisplay::self,  // Key::Display
         0,                          // Key::Help
         0,                          // Key::Start
