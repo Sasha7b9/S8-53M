@@ -82,8 +82,6 @@ private:
     // Включить/выключить светодиод ручки УСТАНОВКА, если необходимо.
     static void SwitchSetLED();
 
-    static void ShortPress_Governor(Item*);
-
     static void ShortPress_Time(Item *time);
     // Обработка короткого нажатия на элемент GovernorColor с адресом governorColor.
     static void ShortPress_GovernorColor(Item *governorColor);

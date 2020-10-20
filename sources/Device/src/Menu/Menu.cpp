@@ -633,7 +633,7 @@ void Menu::ExecuteFuncForShortPressOnItem(Item *item)
 
     TypeItem::E type = item->Type();
 
-    if (type == TypeItem::Page || type == TypeItem::Choice || type == TypeItem::Button)
+    if (type == TypeItem::Page || type == TypeItem::Choice || type == TypeItem::Button || type == TypeItem::Governor)
     {
         item->ShortPress();
         return;
@@ -645,7 +645,7 @@ void Menu::ExecuteFuncForShortPressOnItem(Item *item)
         nullptr,                            // TypeItem::Choice
         nullptr,                            // TypeItem::Button
         nullptr,                            // TypeItem::Page
-        &Menu::ShortPress_Governor,         // TypeItem::Governor
+        nullptr,                            // TypeItem::Governor
         &Menu::ShortPress_Time,             // TypeItem::Time
         &Menu::ShortPress_IP,               // TypeItem::IP
         nullptr,                            // Item_SwitchButton
@@ -855,10 +855,4 @@ void Menu::OpenFileManager()
         UpdateInput();
         Display::Update(false);
     }
-}
-
-
-void Menu::ShortPress_Governor(Item *item)
-{
-    ((Governor *)item)->ShortPress();
 }
