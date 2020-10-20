@@ -11,25 +11,7 @@
 using namespace Primitives;
 
 
-static Item *itemUnderButton[Key::Count] = {0};
-
-
-Key::E GetFuncButtonFromY(int _y)
-{
-    int y = Grid::TOP + Grid::Height() / 12;
-    int step = Grid::Height() / 6;
-    Key::E button = Key::None;
-    for(int i = 0; i < 6; i++)
-    {
-        if(_y < y)
-        {
-            return button;
-        }
-        ++button;
-        y += step;
-    }
-    return  Key::F5;
-}
+Item *Menu::itemUnderButton[Key::Count];
 
 
 static void DrawHintItem(int x, int y, int width)
@@ -86,11 +68,11 @@ void Menu::Draw()
         {
             if (item->Type() == TypeItem::Page)
             {
-                DrawOpenedPage((Page *)item, 0, Grid::TOP);
+                ((Page *)item)->DrawOpened(0, Grid::TOP);
             }
             else if(item->Keeper() != &Page::empty)
             {
-                DrawOpenedPage(item->Keeper(), 0, Grid::TOP);
+                item->Keeper()->DrawOpened(0, Grid::TOP);
             }
         }
         else
@@ -130,48 +112,6 @@ void Menu::Draw()
 }
 
 
-void Menu::DrawTitlePage(Page *page, int layer, int yTop)
-{
-    int x = CalculateX(layer);
-    if (page->IsSB())
-    {
-        SmallButonFromPage(page, 0)->Draw(LEFT_SB, yTop + 3);
-        return;
-    }
-    int height = HeightOpenedItem(page);
-    bool shade = CurrentItemIsOpened(page->GetName());
-    Region(MP_TITLE_WIDTH + 2, height + 2).Fill(x - 1, yTop, COLOR_BACK);
-    Rectangle(MP_TITLE_WIDTH + 1, height + 1).Draw(x, yTop, ColorBorderMenu(shade));
-
-    if (shade)
-    {
-        Region(MP_TITLE_WIDTH - 1, MP_TITLE_HEIGHT - 1).Fill(x + 1, yTop + 1, Color::MenuTitleLessBright());
-        Region(MP_TITLE_WIDTH - 7, MP_TITLE_HEIGHT - 7).Fill(x + 4, yTop + 4, Color::MENU_TITLE_DARK);
-    }
-    else
-    {
-        Painter::DrawVolumeButton(x + 1, yTop + 1, MP_TITLE_WIDTH - 1, MP_TITLE_HEIGHT - 1, 3, ColorMenuTitle(false), ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), shade, false);
-    }
-    
-    VLine().Draw(x, yTop, yTop + HeightOpenedItem(page), ColorBorderMenu(false));
-    bool condDrawRSet = page->NumSubPages() > 1 && CurrentItem()->Type() != TypeItem::ChoiceReg && CurrentItem()->Type() != TypeItem::Governor && TypeOpenedItem() == TypeItem::Page;
-    int delta = condDrawRSet ? -10 : 0;
-    Color::E colorText = shade ? LightShadingTextColor() : Color::BLACK;
-    x = Painter::DrawStringInCenterRectC(x, yTop, MP_TITLE_WIDTH + 2 + delta, MP_TITLE_HEIGHT, TitleItem(page), colorText);
-    if(condDrawRSet)
-    {
-        Painter::Draw4SymbolsInRectC(x + 4, yTop + 11, GetSymbolForGovernor(page->NumCurrentSubPage()), colorText);
-    }
-
-    itemUnderButton[GetFuncButtonFromY(yTop)] = page;
-
-    delta = 0;
-    
-    Color::SetCurrent(colorText);
-    DrawPagesUGO(page, CalculateX(layer) + MP_TITLE_WIDTH - 3 + delta, yTop + MP_TITLE_HEIGHT - 2 + delta);
-}
-
-
 void Menu::DrawPagesUGO(const Page *page, int right, int bottom)
 {
     int size = 4;
@@ -194,149 +134,6 @@ void Menu::DrawPagesUGO(const Page *page, int right, int bottom)
         {
             Rectangle(size, size).Draw(x, top);
         }
-    }
-}
-
-
-static void DrawGovernor(void* item, int x, int y)
-{
-    ((Governor *)item)->Draw(x, y, false);
-}
-
-
-static void DrawIPaddress(void* item, int x, int y)
-{
-    ((IPaddress *)item)->Draw(x, y, false);
-}
-
-
-static void DrawMACaddress(void* item, int x, int y)
-{
-    ((MACaddress *)item)->Draw(x, y, false);
-}
-
-
-static void DrawFormula(void* item, int x, int y)
-{
-    ((Formula *)item)->Draw(x, y, false);
-}
-
-
-static void DrawChoice(void *item, int x, int y)
-{
-    ((Choice *)item)->Draw(x, y, false);
-}
-
-
-static void DrawSmallButton(void *item, int, int y)
-{
-    ((SmallButton *)item)->Draw(LEFT_SB, y + 7);
-}
-
-
-static void DrawTime(void *item, int x, int y)
-{
-    ((TimeItem *)item)->Draw(x, y, false);
-}
-
-
-static void DrawGovernorColor(void *item, int x, int y)
-{
-    ((GovernorColor *)item)->Draw(x, y, false);
-}
-
-
-static void DrawButton(void *item, int x, int y)
-{
-    ((Button *)item)->Draw(x, y);
-}
-
-
-static void DrawPage(void *item, int x, int y)
-{
-    ((Page *)item)->Draw(x, y);
-}
-
-
-void Menu::DrawItemsPage(const Page *page, int layer, int yTop)
-{
-    void (*funcOfDraw[TypeItem::Count])(void*, int, int) = 
-    {  
-        EmptyFuncpVII,      // TypeItem::None
-        DrawChoice,         // TypeItem::Choice
-        DrawButton,         // TypeItem::Button
-        DrawPage,           // TypeItem::Page
-        DrawGovernor,       // TypeItem::Governor
-        DrawTime,           // TypeItem::Time
-        DrawIPaddress,      // TypeItem::IP
-        EmptyFuncpVII,      // Item_SwitchButton
-        DrawGovernorColor,  // TypeItem::GovernorColor
-        DrawFormula,        // Item_Formula
-        DrawMACaddress,     // Item_Mac
-        DrawChoice,         // TypeItem::ChoiceReg
-        DrawSmallButton     // TypeItem::SmallButton
-    };
-    int posFirstItem = PosItemOnTop(page);
-    int posLastItem = posFirstItem + MENU_ITEMS_ON_DISPLAY - 1;
-    LIMITATION(posLastItem, posLastItem, 0, page->NumItems() - 1);
-    int count = 0;
-    for(int posItem = posFirstItem; posItem <= posLastItem; posItem++)
-    {
-        Item *item = page->GetItem(posItem);
-        TypeItem::E type = item->Type();
-        int top = yTop + MI_HEIGHT * count;
-        funcOfDraw[type](item, CalculateX(layer), top);
-        count++;
-        itemUnderButton[GetFuncButtonFromY(top)] = item;
-    }
-}
-
-
-void Menu::DrawOpenedPage(Page *page, int layer, int yTop)
-{
-    DrawTitlePage(page, layer, yTop);
-    DrawItemsPage(page, layer, yTop + MP_TITLE_HEIGHT);
-    if (CurrentItemIsOpened(page->GetName()))
-    {
-        int8 posCurItem = page->PosCurrentItem();
-        Item *item = page->GetItem(posCurItem);
-        for (int i = 0; i < 5; i++)
-        {
-            if (itemUnderButton[i + Key::F1] != item)
-            {
-                itemUnderButton[i + Key::F1] = 0;
-            }
-        }
-        TypeItem::E type = item->Type();
-        if (type == TypeItem::Choice || type == TypeItem::ChoiceReg)
-        {
-            ((Choice *)item)->Draw(CalculateX(1), ItemOpenedPosY(item), true);
-        }
-        else if (type == TypeItem::Governor)
-        {
-            ((Governor *)item)->Draw(CalculateX(1), ItemOpenedPosY(item), true);
-        }
-        else if (type == TypeItem::GovernorColor)
-        {
-            ((GovernorColor *)item)->Draw(CalculateX(1), ItemOpenedPosY(item), true);
-        }
-        else if (type == TypeItem::Time)
-        {
-            ((TimeItem *)item)->Draw(CalculateX(1), ItemOpenedPosY(item), true);
-        }
-        else if (type == TypeItem::IP)
-        {
-            ((IPaddress *)item)->Draw(CalculateX(1), ItemOpenedPosY(item), true);
-        }
-        else if (type == TypeItem::MAC)
-        {
-            ((MACaddress *)item)->Draw(CalculateX(1), ItemOpenedPosY(item), true);
-        }
-    }
-
-    if (page->OwnData()->funcOnDraw)
-    {
-        page->OwnData()->funcOnDraw();
     }
 }
 

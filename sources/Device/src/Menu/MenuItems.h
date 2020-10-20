@@ -129,6 +129,8 @@ public:
     // Обработка длинного нажатия на элемент меню item.
     virtual void LongPress();
 
+    virtual void Draw(int, int, bool = false) {};
+
     static DataItem emptyData;
 
     static Item empty;
@@ -158,7 +160,7 @@ class Page : public Item
 public:
     Page(const DataItem *const data) : Item(data) {};
     const DataPage *OwnData() const { return static_cast<const DataPage *>(data->ad); }
-    void Draw(int x, int y);
+    void Draw(int x, int y, bool opened = false);
     NamePage::E GetName() const;
     // Возвращает количество элементов в странице по адресу page.
     int NumItems() const;
@@ -177,7 +179,13 @@ public:
 
     virtual void ShortPress();
 
+    void DrawOpened(int layer, int yTop);
+
     static Page empty;
+
+private:
+    void DrawTitle(int layer, int yTop);
+    void DrawItems(int layer, int yTop) const;
 };
 
 
@@ -193,7 +201,7 @@ class Button : public Item
 public:
     Button(const DataItem *const data) : Item(data) {};
     const DataButton *OwnData() const { return static_cast<const DataButton *>(data->ad); }
-    void Draw(int x, int y) const;
+    virtual void Draw(int x, int y, bool opened = false);
     // Обработка короткого нажатия
     virtual void ShortPress();
 
@@ -227,7 +235,7 @@ public:
 
     const DataSmallButton *OwnData() const { return static_cast<const DataSmallButton *>(data->ad); }
 
-    void Draw(int x, int y) const;
+    virtual void Draw(int x, int y, bool opened = false);
 
     virtual void ShortPress();
 };
@@ -249,7 +257,7 @@ class Governor : public Item
 public:
 
     Governor(const DataItem *const data) : Item(data) {};
-    void Draw(int x, int y, bool opened) const;
+    const DataGovernor *OwnData() const { return static_cast<const DataGovernor *>(data->ad); }
     // Обработка короткого нажатия на элемент Governor с адресом governor.
     virtual void ShortPress();
     void StartChange(int detla);        // Запускает процессс анимации инкремента или декремента элемента меню типа Governor (в зависимости от знака delta)
@@ -257,7 +265,9 @@ public:
     void  ChangeValue(int delta);       // Изменяет значение в текущей позиции при раскрытом элементе
     int16 NextValue() const;            // Возвращает следующее большее значение, которое может принять governor.
     int16 PrevValue() const;            // Возвращает следующее меньшее значение, которое может принять governor.
-    const DataGovernor *OwnData() const { return static_cast<const DataGovernor *>(data->ad); }
+
+    virtual void Draw(int x, int y, bool opened = false);
+    void Draw(int x, int y);
 
 private:
     void DrawOpened(int x, int y) const;
@@ -291,7 +301,7 @@ public:
 
     const DataIPaddress *OwnData() const { return static_cast<const DataIPaddress *>(data->ad); }
 
-    void Draw(int x, int y, bool opened);
+    virtual void Draw(int x, int y, bool opened = false);
 
     // При открытом элементе переставляет курсор на следующую позицию
     void NextPosition() const;
@@ -333,7 +343,7 @@ public:
 
     const DataMACaddress *OwnData() const { return static_cast<const DataMACaddress *>(data->ad); }
 
-    void Draw(int x, int y, bool opened);
+    virtual void Draw(int x, int y, bool opened = false);
 
     void ChangeValue(int delta);
 
@@ -377,7 +387,7 @@ class Formula : public Item
 public:
     Formula(const DataItem *const data) : Item(data) {};
     const DataFormula *OwnData() const { return reinterpret_cast<const DataFormula *>(data->ad); }
-    void Draw(int x, int y, bool opened) const;
+    virtual void Draw(int x, int y, bool opened = false);
 private:
     void DrawClosed(int x, int y) const;
     void DrawLowPart(int x, int y, bool, bool shade) const;
@@ -398,7 +408,7 @@ public:
 
     const DataGovernorColor *OwnData() const { return static_cast<const DataGovernorColor *>(data->ad); }
 
-    void Draw(int x, int y, bool opened);
+    virtual void Draw(int x, int y, bool opened = false);
     // Изменить яркость цвета в governor
     void ChangeValue(int delta);
 
@@ -447,7 +457,7 @@ public:
 
     void FuncForDraw(int x, int y) const;
 
-    void Draw(int x, int y, bool opened) const;
+    virtual void Draw(int x, int y, bool opened = false);
     // Обработка короткого нажатия
     virtual void ShortPress();
 
@@ -487,7 +497,7 @@ struct TimeItem : public Item
 
     const DataTime *OwnData() const { return static_cast<const DataTime *>(data->ad); }
 
-    void Draw(int x, int y, bool opened) const;
+    virtual void Draw(int x, int y, bool opened = false);
 
     void SetOpened();
 

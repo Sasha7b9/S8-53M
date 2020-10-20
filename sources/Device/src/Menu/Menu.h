@@ -67,9 +67,17 @@ public:
     static SmallButton *SmallButonFromPage(Page *page, int numButton);
 
     static void ChangeStateFlashDrive();
+
+    static int CalculateX(int layer);
+
+    static int ItemOpenedPosY(const Item *item);
+
+    static void DrawPagesUGO(const Page *page, int right, int bottom);
+
     // Здесь хранится адрес элемента меню, соответствующего функциональной клавише [1..5], если она находится в нижнем положении, и 0, если ни одна кнопка не нажата.
     static Item *itemUnderKey;
 
+    static Item *itemUnderButton[Key::Count];
 
 private:
     // Обработка короткого нажатия кнопки.
@@ -87,19 +95,7 @@ private:
 
     static bool NeedForFireSetLED();
 
-    static void DrawOpenedPage(Page *page, int layer, int yTop);
-
-    static void DrawTitlePage(Page *page, int layer, int yTop);
-
-    static void DrawItemsPage(const Page *page, int layer, int yTop);
-
-    static void DrawPagesUGO(const Page *page, int right, int bottom);
-
-    static int CalculateX(int layer);
-
     static void ResetItemsUnderButton();
-
-    static int ItemOpenedPosY(const Item *item);
 
     static Item *RetLastOpened(Page *_page, TypeItem::E *_type);
     

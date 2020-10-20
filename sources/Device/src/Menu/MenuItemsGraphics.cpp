@@ -1,6 +1,8 @@
 #include "defines.h"
 #include "common/Display/Primitives_c.h"
 #include "common/Display/Text_c.h"
+#include "common/Utils/Math_c.h"
+#include "Display/Grid.h"
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
@@ -9,6 +11,24 @@
 
 
 using namespace Primitives;
+
+
+Key::E GetFuncButtonFromY(int _y)
+{
+    int y = Grid::TOP + Grid::Height() / 12;
+    int step = Grid::Height() / 6;
+    Key::E button = Key::None;
+    for (int i = 0; i < 6; i++)
+    {
+        if (_y < y)
+        {
+            return button;
+        }
+        ++button;
+        y += step;
+    }
+    return  Key::F5;
+}
 
  
 void DrawGovernorChoiceColorFormulaHiPart(const Item *item, int x, int y, bool pressed, bool shade, bool opened)
@@ -366,7 +386,7 @@ void MACaddress::DrawValue(int x, int y)
     }
 }
 
-void Governor::Draw(int x, int y, bool opened) const
+void Governor::Draw(int x, int y, bool opened)
 {
     if (OwnData()->funcBeforeDraw)
     {
@@ -406,7 +426,7 @@ void MACaddress::Draw(int x, int y, bool opened)
     }
 }
 
-void Formula::Draw(int x, int y, bool opened) const
+void Formula::Draw(int x, int y, bool opened)
 {
     if (opened)
     {
@@ -637,7 +657,7 @@ void Choice::DrawClosed(int x, int y) const
     FuncForDraw(x, y);
 }
 
-void Choice::Draw(int x, int y, bool opened) const
+void Choice::Draw(int x, int y, bool opened)
 {
     if(opened)
     {
@@ -679,7 +699,7 @@ void TimeItem::DrawClosed(int x, int y) const
     Text(Int2String((int)time.year, false, 2, buffer)).Draw(x + startX + 2 * deltaField + 2 * deltaSeparator, y);
 }
 
-void TimeItem::Draw(int x, int y, bool opened) const
+void TimeItem::Draw(int x, int y, bool opened)
 {
     if(opened)
     {
@@ -691,7 +711,7 @@ void TimeItem::Draw(int x, int y, bool opened) const
     }
 }
 
-void Button::Draw(int x, int y) const
+void Button::Draw(int x, int y, bool)
 {
     bool pressed = IsPressed();
     bool shade = IsShade() || !IsActive();
@@ -707,7 +727,7 @@ void Button::Draw(int x, int y) const
     Painter::DrawStringInCenterRectC(x + delta, y + delta, MI_WIDTH, MI_HEIGHT, Menu::TitleItem(this), color);
 }
 
-void SmallButton::Draw(int x, int y) const
+void SmallButton::Draw(int x, int y, bool)
 {
     if (IsActive())
     {
@@ -729,7 +749,7 @@ void SmallButton::Draw(int x, int y) const
     }
 }
 
-void Page::Draw(int x, int y)
+void Page::Draw(int x, int y, bool)
 {
     bool isShade = IsShade() || !IsActive();
     bool isPressed = IsPressed();
@@ -750,4 +770,95 @@ void Page::Draw(int x, int y)
         delta = 1;
     }
     Painter::DrawStringInCenterRectC(x + delta, y + delta, MI_WIDTH, MI_HEIGHT, Menu::TitleItem(this), colorText);
+}
+
+
+void Page::DrawOpened(int layer, int yTop)
+{
+    DrawTitle(layer, yTop);
+    DrawItems(layer, yTop + MP_TITLE_HEIGHT);
+    if (Menu::CurrentItemIsOpened(GetName()))
+    {
+        int8 posCurItem = PosCurrentItem();
+        Item *item = GetItem(posCurItem);
+        for (int i = 0; i < 5; i++)
+        {
+            if (Menu::itemUnderButton[i + Key::F1] != item)
+            {
+                Menu::itemUnderButton[i + Key::F1] = 0;
+            }
+        }
+
+        item->Draw(Menu::CalculateX(1), Menu::ItemOpenedPosY(this), true);
+    }
+
+    if (OwnData()->funcOnDraw)
+    {
+        OwnData()->funcOnDraw();
+    }
+}
+
+
+void Page::DrawTitle(int layer, int yTop)
+{
+    int x = Menu::CalculateX(layer);
+    if (IsSB())
+    {
+        Menu::SmallButonFromPage(this, 0)->Draw(LEFT_SB, yTop + 3);
+        return;
+    }
+    int height = Menu::HeightOpenedItem(this);
+    bool shade = Menu::CurrentItemIsOpened(GetName());
+    Region(MP_TITLE_WIDTH + 2, height + 2).Fill(x - 1, yTop, COLOR_BACK);
+    Rectangle(MP_TITLE_WIDTH + 1, height + 1).Draw(x, yTop, ColorBorderMenu(shade));
+
+    if (shade)
+    {
+        Region(MP_TITLE_WIDTH - 1, MP_TITLE_HEIGHT - 1).Fill(x + 1, yTop + 1, Color::MenuTitleLessBright());
+        Region(MP_TITLE_WIDTH - 7, MP_TITLE_HEIGHT - 7).Fill(x + 4, yTop + 4, Color::MENU_TITLE_DARK);
+    }
+    else
+    {
+        Painter::DrawVolumeButton(x + 1, yTop + 1, MP_TITLE_WIDTH - 1, MP_TITLE_HEIGHT - 1, 3, ColorMenuTitle(false), ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), shade, false);
+    }
+
+    VLine().Draw(x, yTop, yTop + Menu::HeightOpenedItem(this), ColorBorderMenu(false));
+    bool condDrawRSet = NumSubPages() > 1 && Menu::CurrentItem()->Type() != TypeItem::ChoiceReg && Menu::CurrentItem()->Type() != TypeItem::Governor && Menu::TypeOpenedItem() == TypeItem::Page;
+    int delta = condDrawRSet ? -10 : 0;
+    Color::E colorText = shade ? LightShadingTextColor() : Color::BLACK;
+    x = Painter::DrawStringInCenterRectC(x, yTop, MP_TITLE_WIDTH + 2 + delta, MP_TITLE_HEIGHT, Menu::TitleItem(this), colorText);
+    if (condDrawRSet)
+    {
+        Painter::Draw4SymbolsInRectC(x + 4, yTop + 11, GetSymbolForGovernor(NumCurrentSubPage()), colorText);
+    }
+
+    Menu::itemUnderButton[GetFuncButtonFromY(yTop)] = this;
+
+    delta = 0;
+
+    Color::SetCurrent(colorText);
+    Menu::DrawPagesUGO(this, Menu::CalculateX(layer) + MP_TITLE_WIDTH - 3 + delta, yTop + MP_TITLE_HEIGHT - 2 + delta);
+}
+
+
+void Page::DrawItems(int layer, int yTop) const
+{
+    int posFirstItem = Menu::PosItemOnTop(this);
+    int posLastItem = posFirstItem + MENU_ITEMS_ON_DISPLAY - 1;
+    LIMITATION(posLastItem, posLastItem, 0, NumItems() - 1);
+    int count = 0;
+    for (int posItem = posFirstItem; posItem <= posLastItem; posItem++)
+    {
+        Item *item = GetItem(posItem);
+        int top = yTop + MI_HEIGHT * count;
+        item->Draw(Menu::CalculateX(layer), top);
+        count++;
+        Menu::itemUnderButton[GetFuncButtonFromY(top)] = item;
+    }
+}
+
+
+void Governor::Draw(int x, int y)
+{
+    Draw(x, y, false);
 }
