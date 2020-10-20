@@ -68,8 +68,6 @@ public:
 
     static int ItemOpenedPosY(const Item *item);
 
-    static void DrawPagesUGO(const Page *page, int right, int bottom);
-
     // Здесь хранится адрес элемента меню, соответствующего функциональной клавише [1..5], если она находится в нижнем положении, и 0, если ни одна кнопка не нажата.
     static Item *itemUnderKey;
 

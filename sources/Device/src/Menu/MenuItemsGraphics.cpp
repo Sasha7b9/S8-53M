@@ -837,7 +837,7 @@ void Page::DrawTitle(int layer, int yTop)
     delta = 0;
 
     Color::SetCurrent(colorText);
-    Menu::DrawPagesUGO(this, CalculateX(layer) + MP_TITLE_WIDTH - 3 + delta, yTop + MP_TITLE_HEIGHT - 2 + delta);
+    DrawPagesUGO(CalculateX(layer) + MP_TITLE_WIDTH - 3 + delta, yTop + MP_TITLE_HEIGHT - 2 + delta);
 }
 
 
@@ -867,4 +867,30 @@ void Governor::Draw(int x, int y)
 int Item::CalculateX(int layer) const
 {
     return MP_X - layer * Grid::DELTA / 4;
+}
+
+
+void Page::DrawPagesUGO(int right, int bottom) const
+{
+    int size = 4;
+    int delta = 2;
+
+    int allPages = (NumItems() - 1) / MENU_ITEMS_ON_DISPLAY + 1;
+    int currentPage = NumCurrentSubPage();
+
+    int left = right - (size + 1) * allPages - delta + (3 - allPages);
+    int top = bottom - size - delta;
+
+    for (int p = 0; p < allPages; p++)
+    {
+        int x = left + p * (size + 2);
+        if (p == currentPage)
+        {
+            Region(size, size).Fill(x, top);
+        }
+        else
+        {
+            Rectangle(size, size).Draw(x, top);
+        }
+    }
 }

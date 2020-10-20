@@ -112,32 +112,6 @@ void Menu::Draw()
 }
 
 
-void Menu::DrawPagesUGO(const Page *page, int right, int bottom)
-{
-    int size = 4;
-    int delta = 2;
-    
-    int allPages = (page->NumItems() - 1) / MENU_ITEMS_ON_DISPLAY + 1;
-    int currentPage = page->NumCurrentSubPage();
-
-    int left = right - (size + 1) * allPages - delta + (3 - allPages);
-    int top = bottom - size - delta;
-
-    for(int p = 0; p < allPages; p++)
-    {
-        int x = left + p * (size + 2);
-        if(p == currentPage)
-        {
-            Region(size, size).Fill(x, top);
-        }
-        else
-        {
-            Rectangle(size, size).Draw(x, top);
-        }
-    }
-}
-
-
 Item* Menu::ItemUnderButton(Key::E button)
 {
     return itemUnderButton[button];

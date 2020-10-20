@@ -188,6 +188,7 @@ public:
 private:
     void DrawTitle(int layer, int yTop);
     void DrawItems(int layer, int yTop) const;
+    void DrawPagesUGO(int right, int bottom) const;
 };
 
 
