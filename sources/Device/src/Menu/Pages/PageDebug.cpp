@@ -497,7 +497,7 @@ DEF_PAGE_7(mpADC_AltRShift, &mpADC, NamePage::DebugADCrShift,
 )
 
 // ОТЛАДКА - АЦП - ДОП СМЕЩ - Сброс ------------------------------------------------------------------------------------------------------------------
-DEF_BUTTON(mbADC_AltRShift_Reset, mpADC_AltRShift,
+DEF_BUTTON(mbADC_AltRShift_Reset, &mpADC_AltRShift,
     "Сброс", "Reset",
     "", "",
     nullptr, OnPress_ADC_AltRShift_Reset
@@ -642,7 +642,7 @@ static void OnDraw_SizeSettings(int x, int y)
 
 
 // ОТЛАДКА - Сохр. прошивку --------------------------------------------------------------------------------------------------------------------------
-DEF_BUTTON(mbSaveFirmware, pDebug,
+DEF_BUTTON(mbSaveFirmware, PageDebug::self,
     "Сохр. прошивку", "Save firmware",
     "Сохранение прошивки - секторов 5, 6, 7 общим объёмом 3 х 128 кБ, где хранится программа",
     "Saving firmware - sectors 5, 6, 7 with a total size of 3 x 128 kB, where the program is stored",
@@ -677,7 +677,7 @@ static void OnPress_SaveFirmware()
 }
 
 
-DEF_BUTTON(bEraseData, pDebug,
+DEF_BUTTON(bEraseData, PageDebug::self,
     "Стереть данные", "Erase data",
     "Стирает сектора с данными",
     "Erases data sectors",

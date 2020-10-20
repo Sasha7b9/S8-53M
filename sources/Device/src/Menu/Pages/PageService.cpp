@@ -118,7 +118,7 @@ const Page *PageService::self = &pService;
 
 
 // СЕРВИС - Сброс настроек ---------------------------------------------------------------------------------------------------------------------------
-DEF_BUTTON(bResetSettings, pService,
+DEF_BUTTON(bResetSettings, PageService::self,
     "Сброс настроек", "Reset settings",
     "Сброс настроек на настройки по умолчанию",
     "Reset to default settings",
@@ -159,7 +159,7 @@ static void OnTimerDraw(void)
 
 
 // СЕРВИС - Поиск сигнала ----------------------------------------------------------------------------------------------------------------------------
-DEF_BUTTON(bAutoSearch, pService,
+DEF_BUTTON(bAutoSearch, PageService::self,
     "Поиск сигнала", "Find signal",
     "Устанавливает оптимальные установки осциллографа для сигнала в канале 1",
     "Sets optimal settings for the oscilloscope signal on channel 1",
@@ -172,7 +172,7 @@ static void OnPress_AutoSearch(void)
 };
 
 // СЕРВИС - КАЛИБРАТОР /////////////
-DEF_PAGE_2(ppCalibrator, pService, NamePage::ServiceCalibrator,
+DEF_PAGE_2(ppCalibrator, PageService::self, NamePage::ServiceCalibrator,
     "КАЛИБРАТОР", "CALIBRATOR",
     "Управлением калибратором и калибровка осциллографа",
     "Item of the calibrator and calibration of an oscillograph",
@@ -198,7 +198,7 @@ static void OnChanged_Calibrator_Mode(bool)
 }
 
 // СЕРВИС - КАЛИБРАТОР - Калибровать -----------------------------------------------------------------------------------------------------------------
-DEF_BUTTON(cCalibrator_Calibrate, ppCalibrator,
+DEF_BUTTON(cCalibrator_Calibrate, &ppCalibrator,
     "Калибровать", "Calibrate",
     "Запуск процедуры калибровки",
     "Running the calibration procedure",
@@ -211,7 +211,7 @@ static void OnPress_Calibrator_Calibrate(void)
 }
 
 // СЕРВИС - МАТЕМАТИКА /////////////
-DEF_PAGE_2(ppMath, pService, NamePage::Math,
+DEF_PAGE_2(ppMath, PageService::self, NamePage::Math,
     "МАТЕМАТИКА", "MATH",
     "Математические функции и БПФ",
     "Mathematical functions and FFT",

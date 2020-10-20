@@ -4,14 +4,14 @@
 #define DEF_BUTTON(name, keeper, titleRU, titleEN, hintRU, hintEN, funcActive, funcPress)                                                   \
 static const DataButton db##name = { funcPress };                                                                                           \
 static const char *th##name[] = {titleRU, titleEN, hintRU, hintEN};                                                                         \
-static const DataItem di##name = { TypeItem::Button, &keeper, funcActive, th##name, &db##name};                                             \
+static const DataItem di##name = { TypeItem::Button, keeper, funcActive, th##name, &db##name};                                              \
 static const Button name(&di##name);
 
 
 #define DEF_SMALL_BUTTON(name, keeper, titleRU, titleEN, hintRU, hintEN, funcActive, funcPress, funcDraw, hintUGO)                          \
 static const DataSmallButton dsb##name = { funcPress, funcDraw, hintUGO };                                                                  \
 const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN };                                                                              \
-static const DataItem di##name = { TypeItem::SmallButton, keeper, funcActive, th##name, &dsb##name};                                       \
+static const DataItem di##name = { TypeItem::SmallButton, keeper, funcActive, th##name, &dsb##name};                                        \
 static const SmallButton name(&di##name);
 
 
@@ -68,7 +68,7 @@ static const PageHelp name(&di##name);
 static const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                                                        \
 static Item *i##name[] = {(Item*)&item1, (Item*)&item2, nullptr};                                                                           \
 static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                                                      \
-static const DataItem di##name = { TypeItem::Page, &keeper, funcActive, th##name, &dp##name};                                               \
+static const DataItem di##name = { TypeItem::Page, keeper, funcActive, th##name, &dp##name};                                                \
 static const Page name(&di##name);
 
 

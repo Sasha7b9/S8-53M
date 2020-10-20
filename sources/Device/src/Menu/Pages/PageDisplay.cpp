@@ -156,7 +156,7 @@ DEF_CHOICE_2(mcAccumulation_Mode, &mspAccumulation,
 
 
 // ДИСПЛЕЙ - НАКОПЛЕНИЕ - Очистить /
-DEF_BUTTON(mbAccumulation_Clear, mspAccumulation,
+DEF_BUTTON(mbAccumulation_Clear, &mspAccumulation,
     "Очистить", "Clear",
     "Очищает экран от накопленных сигналов.",
     "Clears the screen of the saved-up signals.",
@@ -176,7 +176,7 @@ void OnPress_Accumulation_Clear(void)
 
 
 // ДИСПЛЕЙ - УСРЕДНЕНИЕ ////////////
-DEF_PAGE_2(mspAveraging, pDisplay, NamePage::DisplayAverage,
+DEF_PAGE_2(mspAveraging, &pDisplay, NamePage::DisplayAverage,
     "УСРЕДНЕНИЕ", "AVERAGE",
     "Настройки режима усреднения по последним измерениям.",
     "Settings of the mode of averaging on the last measurements.",
@@ -301,7 +301,7 @@ void OnChanged_RefreshFPS(bool)
 
 
 // ДИСПЛЕЙ - СЕТКА /////////////////
-DEF_PAGE_2(mspGrid, pDisplay, NamePage::DisplayGrid,
+DEF_PAGE_2(mspGrid, PageDisplay::self, NamePage::DisplayGrid,
     "СЕТКА", "GRID",
     "Содержит настройки отображения координатной сетки.",
     "Contains settings of display of a coordinate Grid::",

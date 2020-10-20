@@ -1,50 +1,21 @@
 #include "defines.h"
+#include "FPGA/FPGA.h"
 #include "Menu/MenuItems.h"
 #include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
-#include "FPGA/FPGA.h"
-#include "Settings/Settings.h"
-#include "Utils/GlobalFunctions.h"
 
 
-extern const Page pTrig;
+void OnPress_Mode(bool)
+{
+    FPGA::Stop(false);
+    if (!START_MODE_IS_SINGLE)
+    {
+        FPGA::Start();
+    }
+}
 
-
-
-extern const Choice mcMode;                     // СИНХР - Режим
-void          OnPress_Mode(bool active);
-extern const Choice mcSource;                   // СИНХР - Источник
-static void OnChanged_Source(bool active);
-extern const Choice mcPolarity;                 // СИНХР - Полярность
-static void OnChanged_Polarity(bool active);
-extern const Choice mcInput;                    // СИНХР - Вход
-static void OnChanged_Input(bool active);
-extern const Page   mpAutoFind;                 // СИНХР - ПОИСК
-extern const Choice mcAutoFind_Mode;            // СИНХР - ПОИСК - Режим
-extern const Button mbAutoFind_Search;          // СИНХР - ПОИСК - Найти
-static bool  IsActive_AutoFind_Search();
-static void   OnPress_AutoFind_Search();
-
-// СИНХР ///////////////////////////
-DEF_PAGE_5(pTrig, PageMain::self, NamePage::Trig,
-    "СИНХР", "TRIG",
-    "Содержит настройки синхронизации.",
-    "Contains synchronization settings.",
-    mcMode,
-    mcSource,
-    mcPolarity,
-    mcInput,
-    mpAutoFind,
-    nullptr, nullptr, nullptr, nullptr
-)
-
-
-const Page *PageTrig::self = &pTrig;
-
-
-// СИНХР - Режим -------------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_3(mcMode, &pTrig,
+DEF_CHOICE_3(mcMode, PageTrig::self,
     "Режим", "Mode"
     ,
     "Задаёт режим запуска:\n"
@@ -57,24 +28,18 @@ DEF_CHOICE_3(mcMode, &pTrig,
     "2. \"Standby\" - the launch takes place at the level of synchronization.\n"
     "3. \"Single\" - the launch takes place on reaching the trigger levelonce. For the next measurement is necessary to press the START/STOP."
     ,
-    "Авто ",       "Auto",
-    "Ждущий",      "Wait",
+    "Авто ", "Auto",
+    "Ждущий", "Wait",
     "Однократный", "Single",
     START_MODE, nullptr, OnPress_Mode, nullptr
 )
 
-void OnPress_Mode(bool)
+static void OnChanged_Source(bool)
 {
-    FPGA::Stop(false);
-    if (!START_MODE_IS_SINGLE)
-    {
-        FPGA::Start();
-    }
+    FPGA::SetTrigSource(TRIG_SOURCE);
 }
 
-
-// СИНХР - Источник ----------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_3(mcSource, &pTrig,
+DEF_CHOICE_3(mcSource, PageTrig::self,
     "Источник", "Source",
     "Выбор источника сигнала синхронизации.",
     "Synchronization signal source choice.",
@@ -84,14 +49,12 @@ DEF_CHOICE_3(mcSource, &pTrig,
     TRIG_SOURCE, nullptr, OnChanged_Source, nullptr
 )
 
-static void OnChanged_Source(bool)
+static void OnChanged_Polarity(bool)
 {
-    FPGA::SetTrigSource(TRIG_SOURCE);
+    FPGA::SetTrigPolarity(TRIG_POLARITY);
 }
 
-
-// СИНХР - Полярность --------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcPolarity, &pTrig,
+DEF_CHOICE_2(mcPolarity, PageTrig::self,
     "Полярность", "Polarity"
     ,
     "1. \"Фронт\" - запуск происходит по фронту синхроимпульса.\n"
@@ -101,18 +64,16 @@ DEF_CHOICE_2(mcPolarity, &pTrig,
     "2. \"Back\" - start happens on a clock pulse cut."
     ,
     "Фронт", "Front",
-    "Срез",  "Back",
+    "Срез", "Back",
     TRIG_POLARITY, nullptr, OnChanged_Polarity, nullptr
 )
 
-static void OnChanged_Polarity(bool)
+static void OnChanged_Input(bool)
 {
-    FPGA::SetTrigPolarity(TRIG_POLARITY);
+    FPGA::SetTrigInput(TRIG_INPUT);
 }
 
-
-// СИНХР - Вход --------------------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_4(mcInput, &pTrig,
+DEF_CHOICE_4(mcInput, PageTrig::self,
     "Вход", "Input"
     ,
     "Выбор связи с источником синхронизации:\n"
@@ -127,32 +88,14 @@ DEF_CHOICE_4(mcInput, &pTrig,
     "3. \"LPF\" - low-pass filter.\n"
     "4. \"HPF\" - high-pass filter frequency."
     ,
-    "ПС",  "Full",
-    "АС",  "AC",
+    "ПС", "Full",
+    "АС", "AC",
     "ФНЧ", "LPF",
     "ФВЧ", "HPF",
     TRIG_INPUT, nullptr, OnChanged_Input, nullptr
 )
 
-static void OnChanged_Input(bool)
-{
-    FPGA::SetTrigInput(TRIG_INPUT);
-}
-
-
-// СИНХР - ПОИСК -------------------------------------------------------------------------------------------------------------------------------------
-DEF_PAGE_2(mpAutoFind, pTrig, NamePage::TrigAuto,
-    "ПОИСК", "SEARCH",
-    "Управление автоматическим поиском уровня синхронизации.",
-    "Office of the automatic search the trigger level.",
-    mcAutoFind_Mode,
-    mbAutoFind_Search,
-    nullptr, nullptr, nullptr, nullptr
-)
-
-
-// СИНХР - ПОИСК - Режим -----------------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcAutoFind_Mode, &mpAutoFind,
+DEF_CHOICE_2(mcAutoFind_Mode, PageTrig::PageAutoFind::self,
     "Режим", "Mode"
     ,
     "Выбор режима автоматического поиска синхронизации:\n"
@@ -163,20 +106,10 @@ DEF_CHOICE_2(mcAutoFind_Mode, &mpAutoFind,
     "1. \"Hand\" - search is run on pressing of the button \"Find\" or on deduction during 0.5s the СИНХР button if it is established \"SERVICE\x99Mode long СИНХР\x99\x41utolevel\".\n"
     "2. \"Auto\" - the search is automatically."
     ,
-    "Ручной",         "Hand",
+    "Ручной", "Hand",
     "Автоматический", "Auto",
     TRIG_MODE_FIND, nullptr, nullptr, nullptr
 )
-
-
-// СИНХР - ПОИСК - Найти -----------------------------------------------------------------------------------------------------------------------------
-DEF_BUTTON(mbAutoFind_Search, mpAutoFind,
-    "Найти", "Search",
-    "Производит поиск уровня синхронизации.",
-    "Runs for search synchronization level.",
-    IsActive_AutoFind_Search, OnPress_AutoFind_Search
-)
-
 
 static bool IsActive_AutoFind_Search(void)
 {
@@ -187,3 +120,35 @@ static void OnPress_AutoFind_Search(void)
 {
     FPGA::FindAndSetTrigLevel();
 }
+
+DEF_BUTTON(mbAutoFind_Search, PageTrig::PageAutoFind::self,
+    "Найти", "Search",
+    "Производит поиск уровня синхронизации.",
+    "Runs for search synchronization level.",
+    IsActive_AutoFind_Search, OnPress_AutoFind_Search
+)
+
+DEF_PAGE_2(mpAutoFind, PageTrig::self, NamePage::TrigAuto,
+    "ПОИСК", "SEARCH",
+    "Управление автоматическим поиском уровня синхронизации.",
+    "Office of the automatic search the trigger level.",
+    mcAutoFind_Mode,
+    mbAutoFind_Search,
+    nullptr, nullptr, nullptr, nullptr
+)
+
+const Page *PageTrig::PageAutoFind::self = &mpAutoFind;
+
+DEF_PAGE_5(pTrig, PageMain::self, NamePage::Trig,
+    "СИНХР", "TRIG",
+    "Содержит настройки синхронизации.",
+    "Contains synchronization settings.",
+    mcMode,
+    mcSource,
+    mcPolarity,
+    mcInput,
+    mpAutoFind,
+    nullptr, nullptr, nullptr, nullptr
+)
+
+const Page *PageTrig::self = &pTrig;

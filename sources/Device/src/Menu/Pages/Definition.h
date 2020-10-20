@@ -147,6 +147,12 @@ class PageTrig
 {
 public:
     static const Page *self;
+
+    class PageAutoFind
+    {
+    public:
+        static const Page *self;
+    };
 };
 
 
