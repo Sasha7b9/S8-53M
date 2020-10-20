@@ -456,3 +456,12 @@ void GovernorColor::ShortPress()
         Menu::FuncOnLongPressItem(this);
     }
 }
+
+
+void MACaddress::ShortPress()
+{
+    if (Menu::OpenedItem() == this)
+    {
+        CircleIncreaseInt8(&gCurDigit, 0, 5);
+    }
+}

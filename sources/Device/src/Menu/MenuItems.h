@@ -338,6 +338,8 @@ public:
     void DrawOpened(int x, int y);
 
     void DrawClosed(int x, int y) const;
+
+    virtual void ShortPress();
 };
 
 // Описывает элемент меню для установки коэффициентов и знаков математической формулы

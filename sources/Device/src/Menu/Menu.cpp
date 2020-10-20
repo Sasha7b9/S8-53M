@@ -561,15 +561,6 @@ void Menu::FuncOnLongPressItemTime(Item *time)
 }
 
 
-void Menu::ShortPress_MAC(Item *item) //-V2009 //-V2558
-{
-    if (OpenedItem() == item)
-    {
-        CircleIncreaseInt8(&gCurDigit, 0, 5);
-    }
-}
-
-
 void Menu::ShortPress_SmallButton(Item *smallButton)
 {
     SmallButton *sb = (SmallButton *)smallButton;
@@ -592,7 +583,7 @@ void Menu::ExecuteFuncForShortPressOnItem(Item *item)
     TypeItem::E type = item->Type();
 
     if (type == TypeItem::Page || type == TypeItem::Choice || type == TypeItem::Button || type == TypeItem::Governor || type == TypeItem::Time ||
-        type == TypeItem::IP || type == TypeItem::GovernorColor)
+        type == TypeItem::IP || type == TypeItem::GovernorColor || type == TypeItem::MAC)
     {
         item->ShortPress();
         return;
@@ -608,9 +599,9 @@ void Menu::ExecuteFuncForShortPressOnItem(Item *item)
         nullptr,                            // TypeItem::Time
         nullptr,                            // TypeItem::IP
         nullptr,                            // Item_SwitchButton
-        nullptr,    // TypeItem::GovernorColor
+        nullptr,                            // TypeItem::GovernorColor
         nullptr,                            // Item_Formula
-        &Menu::ShortPress_MAC,              // TypeItem::MAC
+        nullptr,                            // TypeItem::MAC
         &Menu::ShortPress_ChoiceReg,        // TypeItem::ChoiceReg
         &Menu::ShortPress_SmallButton       // TypeItem::SmallButton
     };

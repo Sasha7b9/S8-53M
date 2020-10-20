@@ -84,8 +84,6 @@ private:
     // Включить/выключить светодиод ручки УСТАНОВКА, если необходимо.
     static void SwitchSetLED();
 
-    static void ShortPress_MAC(Item *item);
-
     static void ShortPress_ChoiceReg(Item *choice);
 
     static void ShortPress_SmallButton(Item *smallButton);
