@@ -78,7 +78,7 @@ const float absStepTShift[] =
 };
 
 
-int Math::RShift2Rel(float rShiftAbs, Range::E range)
+int MathFPGA::RShift2Rel(float rShiftAbs, Range::E range)
 {
     int retValue = static_cast<int>(RShiftZero + rShiftAbs / absStepRShift[range]);
     if (retValue < RShiftMin)
@@ -93,13 +93,13 @@ int Math::RShift2Rel(float rShiftAbs, Range::E range)
 };
 
 
-float Math::VoltageCursor(float shiftCurU, Range::E range, int16 rShift)
+float MathFPGA::VoltageCursor(float shiftCurU, Range::E range, int16 rShift)
 {
     return MAX_VOLTAGE_ON_SCREEN(range) - shiftCurU * voltsInPixel[range] - RSHIFT_2_ABS(rShift, range);
 }
 
 
-void Math::PointsRelToVoltage(pUCHAR points, int numPoints, Range::E range, int16 rShift, float* voltage)
+void MathFPGA::PointsRelToVoltage(pUCHAR points, int numPoints, Range::E range, int16 rShift, float* voltage)
 {
     int voltInPixel = voltsInPixelInt[range];
     float maxVoltsOnScreen = MAX_VOLTAGE_ON_SCREEN(range);
@@ -113,7 +113,7 @@ void Math::PointsRelToVoltage(pUCHAR points, int numPoints, Range::E range, int1
 }
 
 
-void Math::PointsVoltageToRel(const float* voltage, int numPoints, Range::E range, int16 rShift, uint8* points)
+void MathFPGA::PointsVoltageToRel(const float* voltage, int numPoints, Range::E range, int16 rShift, uint8* points)
 {
     float maxVoltOnScreen = MAX_VOLTAGE_ON_SCREEN(range);
     float rShiftAbs = RSHIFT_2_ABS(rShift, range);
@@ -141,7 +141,7 @@ void Math::PointsVoltageToRel(const float* voltage, int numPoints, Range::E rang
 }
 
 
-uint8 Math::VoltageToPoint(float voltage, Range::E range, int16 rShift)
+uint8 MathFPGA::VoltageToPoint(float voltage, Range::E range, int16 rShift)
 {
     int relValue = static_cast<int>((voltage + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) / voltsInPixel[range] + MIN_VALUE);
     LIMITATION(relValue, relValue, 0, 255);
@@ -149,7 +149,7 @@ uint8 Math::VoltageToPoint(float voltage, Range::E range, int16 rShift)
 }
 
 
-float Math::TimeCursor(float shiftCurT, TBase::E tBase)
+float MathFPGA::TimeCursor(float shiftCurT, TBase::E tBase)
 {
     return shiftCurT * absStepTShift[tBase];
 }
@@ -245,7 +245,7 @@ static void Normalize(float* data, int)
 }
 
 
-void Math::CalculateFFT(float* dataR, int numPoints, float* result, float* freq0, float* density0, float* freq1, float* density1, int* y0, int* y1)
+void MathFPGA::CalculateFFT(float* dataR, int numPoints, float* result, float* freq0, float* density0, float* freq1, float* density1, int* y0, int* y1)
 {
     float scale = 1.0F / absStepTShift[SET_TBASE] / 1024.0F;
 
@@ -396,7 +396,7 @@ void Math::CalculateFFT(float* dataR, int numPoints, float* result, float* freq0
 }
 
 
-uint8 Math::GetMaxFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoint)
+uint8 MathFPGA::GetMaxFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoint)
 {
     uint8 max = Math::GetMaxFromArray(data, firstPoint, lastPoint);
     if (max >= MAX_VALUE)
@@ -407,7 +407,7 @@ uint8 Math::GetMaxFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPo
 }
 
 
-uint8 Math::GetMinFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoint)
+uint8 MathFPGA::GetMinFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoint)
 {
     uint8 min = Math::GetMinFromArray(data, firstPoint, lastPoint);
     if (min < MIN_VALUE || min >= MAX_VALUE)
@@ -418,7 +418,7 @@ uint8 Math::GetMinFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPo
 }
 
 
-void Math::CalculateMathFunction(float* data0andResult, const float* data1, int numPoints)
+void MathFPGA::CalculateMathFunction(float* data0andResult, const float* data1, int numPoints)
 {
     if (MATH_FUNC_IS_SUM)
     {

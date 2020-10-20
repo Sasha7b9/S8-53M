@@ -282,7 +282,7 @@ float Processing::CalculateVoltageRMS(Channel::E chan)
 
     if(MEAS_MARKED == Measure::VoltageRMS)
     {
-        markerHor[chan][0] = Math::VoltageToPoint(std::sqrtf(rms / period), dataSet->range[chan], rShift);
+        markerHor[chan][0] = MathFPGA::VoltageToPoint(std::sqrtf(rms / period), dataSet->range[chan], rShift);
     }
 
     return std::sqrtf(rms / period) * VALUE_MULTIPLIER(chan);
@@ -738,7 +738,7 @@ float Processing::CalculateMaxRel(Channel::E chan)
 
     if(!maxIsCalculating[chan])
     {
-        uint8 val = Math::GetMaxFromArrayWithErrorCode(dataIn[chan], firstP, lastP);
+        uint8 val = MathFPGA::GetMaxFromArrayWithErrorCode(dataIn[chan], firstP, lastP);
         max[chan] = val == ERROR_VALUE_UINT8 ? ERROR_VALUE_FLOAT : val;
         maxIsCalculating[chan] = true;
     }
@@ -752,7 +752,7 @@ float Processing::CalculateMinRel(Channel::E chan)
 
     if (!minIsCalculating[chan])
     {
-        uint8 val = Math::GetMinFromArrayWithErrorCode(dataIn[chan], firstP, lastP);
+        uint8 val = MathFPGA::GetMinFromArrayWithErrorCode(dataIn[chan], firstP, lastP);
         min[chan] = val == ERROR_VALUE_UINT8 ? ERROR_VALUE_FLOAT : val;
         minIsCalculating[chan] = true;
     }

@@ -54,7 +54,7 @@ uint8 GetSampleSinusWave(Channel::E channel, int numSample_)
 {
     float dT = numSample_ * TSHIFT_2_ABS(1, SET_TBASE);
     float voltage = ampl[channel] * std::sin(2 * M_PI * freq[channel] * dT + angle[channel]) + NewNoiseValue(channel);
-    return Math::VoltageToPoint(voltage, SET_RANGE(channel), SET_RSHIFT(channel));
+    return MathFPGA::VoltageToPoint(voltage, SET_RANGE(channel), SET_RSHIFT(channel));
 }
 
 float NewNoiseValue(Channel::E channel)
