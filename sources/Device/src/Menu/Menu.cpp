@@ -588,7 +588,7 @@ bool Menu::NeedForFireSetLED()    // Возвращает true, если лампочка УСТАНОВКА до
         return true;
     }
 
-    TypeItem::E typeOpenedItem = TypeOpenedItem();
+    TypeItem::E typeOpenedItem = OpenedItem()->Type();
     if (typeOpenedItem == TypeItem::Choice       ||
         (typeOpenedItem == TypeItem::Page && ((Page *)OpenedItem())->NumSubPages() > 1)
         )

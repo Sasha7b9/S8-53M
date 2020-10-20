@@ -15,12 +15,6 @@ bool Menu::CurrentItemIsOpened(NamePage::E namePage)
 }
 
 
-TypeItem::E Menu::TypeOpenedItem()
-{
-    return OpenedItem()->Type();
-}
-
-
 Item* Menu::OpenedItem()
 {
     TypeItem::E type = TypeItem::None;
@@ -79,7 +73,7 @@ bool Menu::IsFunctionalButton(Key::E button)
 void Menu::CloseOpenedItem()
 {
     Item *item = OpenedItem();
-    if(TypeOpenedItem() == TypeItem::Page)
+    if(OpenedItem()->Type() == TypeItem::Page)
     {
         if (((const Page *)item)->IsSB())                                   // Для страницы малых кнопок
         {

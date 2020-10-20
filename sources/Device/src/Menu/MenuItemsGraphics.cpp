@@ -823,7 +823,7 @@ void Page::DrawTitle(int layer, int yTop)
     }
 
     VLine().Draw(x, yTop, yTop + Menu::HeightOpenedItem(this), ColorBorderMenu(false));
-    bool condDrawRSet = NumSubPages() > 1 && Menu::CurrentItem()->Type() != TypeItem::ChoiceReg && Menu::CurrentItem()->Type() != TypeItem::Governor && Menu::TypeOpenedItem() == TypeItem::Page;
+    bool condDrawRSet = NumSubPages() > 1 && Menu::CurrentItem()->Type() != TypeItem::ChoiceReg && Menu::CurrentItem()->Type() != TypeItem::Governor && Menu::OpenedItem()->Type() == TypeItem::Page;
     int delta = condDrawRSet ? -10 : 0;
     Color::E colorText = shade ? LightShadingTextColor() : Color::BLACK;
     x = Painter::DrawStringInCenterRectC(x, yTop, MP_TITLE_WIDTH + 2 + delta, MP_TITLE_HEIGHT, Menu::TitleItem(this), colorText);
