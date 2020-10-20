@@ -27,6 +27,7 @@ static const DataItem emptyDataItem = { TypeItem::None, nullptr, nullptr, titleH
 Page Page::empty(&emptyDataItem);
 
 bool Governor::inMoveIncrease = false;
+bool Governor::inMoveDecrease = false;
 
 Item::Item(const DataItem *const _data) : data(_data)
 {

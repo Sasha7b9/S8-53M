@@ -30,7 +30,6 @@ BitField gBF =
     // Governor
     0,
     0,
-    0,
 
     // Flash drive
     0,  // flashDriveIsConnected

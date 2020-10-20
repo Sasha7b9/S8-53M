@@ -308,6 +308,7 @@ private:
     void DrawLowPart(int x, int y, bool, bool shade) const;
 
     static bool inMoveIncrease;
+    static bool inMoveDecrease;
 };
 
 
