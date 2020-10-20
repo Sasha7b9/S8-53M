@@ -27,10 +27,6 @@ BitField gBF =
     0,  // FPGAcritiacalSituation
     0,  // FPGAfirstAfterWrite
     
-    // Governor
-    0,
-    0,
-
     // Flash drive
     0,  // flashDriveIsConnected
     1,  // cursorInDirs

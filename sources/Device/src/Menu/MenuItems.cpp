@@ -28,6 +28,8 @@ Page Page::empty(&emptyDataItem);
 
 bool Governor::inMoveIncrease = false;
 bool Governor::inMoveDecrease = false;
+Item *Governor::address = 0;
+uint Governor::timeStartMS = 0;
 
 Item::Item(const DataItem *const _data) : data(_data)
 {
