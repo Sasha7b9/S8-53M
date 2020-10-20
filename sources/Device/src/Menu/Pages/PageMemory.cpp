@@ -13,7 +13,6 @@
 #include "Menu/FileManager.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
-#include "Menu/Pages/PageMemory.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
 #include <cstring>
@@ -1199,12 +1198,6 @@ DEF_PAGE_4(pMemory, PageMain::self, NamePage::Memory,
 
 
 const Page *PageMemory::self = &pMemory;
-
-
-void *PageMemory::GetPointer()
-{
-    return (void *)&pMemory;
-}
 
 
 const Page *PageMemory::Latest::self = &mspMemLast;

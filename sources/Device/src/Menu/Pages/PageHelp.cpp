@@ -96,8 +96,4 @@ DEF_PAGE_6(mpHelp, PageMain::self, NamePage::SB_Help,
 );
 
 
-
-void *PageHelp::GetPointer()
-{
-    return (void *)&mpHelp;
-}
+const Page *PageHelp::self = &mpHelp;

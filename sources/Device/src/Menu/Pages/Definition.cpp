@@ -1,6 +1,4 @@
 #include "defines.h"
-#include "Menu/Pages/PageMemory.h"
-#include "PageHelp.h"
 #include "FPGA/FPGA.h"
 #include "common/Display/Colors_c.h"
 #include "Display/Display.h"
@@ -137,7 +135,7 @@ const Page *PageForButton(Key::E button)
         (void *)PageDisplay::self,  // Key::Display
         0,                          // Key::Help
         0,                          // Key::Start
-        PageMemory::GetPointer(),   // Key::Memory
+        (void *)PageMemory::self,   // Key::Memory
         (void *)PageService::self,  // Key::Service
         0,                          // Key::Menu
         0                           // B_Power

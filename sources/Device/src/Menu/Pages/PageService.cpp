@@ -234,10 +234,8 @@ DEF_PAGE_6(pppMath_Function, &ppMath, NamePage::SB_MathFunction,
     IsActive_Math_Function, OnPress_Math_Function, nullptr, OnRegSet_Math_Function
 );
 
-void *PageService::Math::Function::GetPointer()
-{
-    return (void *)&pppMath_Function;
-}
+
+const Page *PageService::Math::Function::self = &pppMath_Function;
 
 static bool IsActive_Math_Function(void)
 {
@@ -581,10 +579,7 @@ DEF_PAGE_6(ppppMath_FFT_Cursors, &pppMath_FFT, NamePage::SB_MathCursorsFFT,
     IsActive_Math_FFT_Cursors, nullptr, nullptr, OnRegSet_Math_FFT_Cursors
 )
 
-void *PageService::Math::FFT::Cursors::GetPointer()
-{
-    return (void *)&ppppMath_FFT_Cursors;
-}
+const Page *PageService::Math::FFT::Cursors::self = &ppppMath_FFT_Cursors;
 
 static bool IsActive_Math_FFT_Cursors(void)
 {

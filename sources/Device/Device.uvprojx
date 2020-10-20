@@ -1736,16 +1736,6 @@
               <FilePath>.\src\Menu\Pages\Definition.h</FilePath>
             </File>
             <File>
-              <FileName>PageHelp.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Menu\Pages\PageHelp.h</FilePath>
-            </File>
-            <File>
-              <FileName>PageMemory.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Menu\Pages\PageMemory.h</FilePath>
-            </File>
-            <File>
               <FileName>HelpContent.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Menu\Pages\HelpContent.h</FilePath>
@@ -3974,16 +3964,6 @@
               <FileName>Definition.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Menu\Pages\Definition.h</FilePath>
-            </File>
-            <File>
-              <FileName>PageHelp.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Menu\Pages\PageHelp.h</FilePath>
-            </File>
-            <File>
-              <FileName>PageMemory.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Menu\Pages\PageMemory.h</FilePath>
             </File>
             <File>
               <FileName>HelpContent.h</FileName>
