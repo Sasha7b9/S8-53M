@@ -88,9 +88,7 @@ private:
     static bool NeedForFireSetLED();
 
     static void ResetItemsUnderButton();
-
-    static Item *RetLastOpened(Page *_page, TypeItem::E *_type);
-    
+   
     static void OpenFileManager();
     // Обработка события таймера автоматического сокрытия меню.
     static void OnTimerAutoHide();

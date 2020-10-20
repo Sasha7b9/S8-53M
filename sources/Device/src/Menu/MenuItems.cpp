@@ -521,3 +521,24 @@ void TimeItem::LongPress()
     Open(!IsOpened());
     SetOpened();
 }
+
+
+Item *Page::RetLastOpened(TypeItem::E *type)
+{
+    if (Menu::CurrentItemIsOpened(GetName()))
+    {
+        int8 posActItem = PosCurrentItem();
+        Item *item = GetItem(posActItem);
+        TypeItem::E typeLocal = GetItem(posActItem)->Type();
+        if (typeLocal == TypeItem::Page)
+        {
+            return ((Page *)item)->RetLastOpened(type);
+        }
+        else
+        {
+            return item;
+        }
+    }
+    *type = TypeItem::Page;
+    return this;
+}

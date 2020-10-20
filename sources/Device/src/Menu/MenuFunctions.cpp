@@ -24,14 +24,14 @@ TypeItem::E Menu::TypeOpenedItem()
 Item* Menu::OpenedItem()
 {
     TypeItem::E type = TypeItem::None;
-    return RetLastOpened((Page*)&mainPage, &type);
+    return ((Page*)&mainPage)->RetLastOpened(&type);
 }
 
 
 Item* Menu::CurrentItem()
 {
     TypeItem::E type = TypeItem::None;
-    Item *lastOpened = RetLastOpened((Page*)&mainPage, &type);
+    Item *lastOpened = ((Page*)&mainPage)->RetLastOpened(&type);
     int8 pos = ((const Page *)lastOpened)->PosCurrentItem();
     if(type == TypeItem::Page && pos != 0x7f)
     {
@@ -73,27 +73,6 @@ int Menu::PosItemOnTop(const Page *page)
 bool Menu::IsFunctionalButton(Key::E button)
 {
     return (button >= Key::F1) && (button <= Key::F5);
-}
-
-
-Item* Menu::RetLastOpened(Page *page, TypeItem::E *type)
-{
-    if(CurrentItemIsOpened(page->GetName()))
-    {
-        int8 posActItem = page->PosCurrentItem();
-        Item *item = page->GetItem(posActItem);
-        TypeItem::E typeLocal = page->GetItem(posActItem)->Type();
-        if(typeLocal == TypeItem::Page)
-        {
-            return RetLastOpened((Page *)item, type);
-        }
-        else
-        {
-            return item;
-        }
-    }
-    *type = TypeItem::Page;
-    return page;
 }
 
 

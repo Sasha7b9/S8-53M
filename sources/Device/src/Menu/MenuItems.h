@@ -185,6 +185,8 @@ public:
 
     void DrawOpened(int layer, int yTop);
 
+    Item *RetLastOpened(TypeItem::E *_type);
+
     static Page empty;
 
 private:
