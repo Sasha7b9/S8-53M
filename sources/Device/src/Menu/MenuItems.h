@@ -169,6 +169,8 @@ public:
     // Возвращает позицию текущего элемента странцы page.
     int8 PosCurrentItem() const;
 
+    void ChangeSubPage(int delta) const;
+
     static Page empty;
 };
 

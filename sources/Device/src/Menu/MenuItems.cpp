@@ -356,3 +356,18 @@ bool Item::IsOpened() const
     }
     return (MenuPosActItem(page->OwnData()->name) & 0x80) != 0;
 }
+
+
+void Page::ChangeSubPage(int delta) const
+{
+    if (delta > 0 && MenuCurrentSubPage(OwnData()->name) < NumSubPages() - 1)
+    {
+        Sound::RegulatorSwitchRotate();
+        SetMenuCurrentSubPage(OwnData()->name, MenuCurrentSubPage(OwnData()->name) + 1);
+    }
+    else if (delta < 0 && MenuCurrentSubPage(OwnData()->name) > 0)
+    {
+        Sound::RegulatorSwitchRotate();
+        SetMenuCurrentSubPage(OwnData()->name, MenuCurrentSubPage(OwnData()->name) - 1);
+    }
+}

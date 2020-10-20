@@ -60,8 +60,6 @@ public:
     // Закрыть открытый элемент меню.
     static void CloseOpenedItem();
 
-    static void ChangeSubPage(const Page *page, int delta);
-
     static void ShortPressOnPageItem(Page *page, int numItem);   // Вызывает функцию короткого нажатия кнопки над итемом numItem страницы page;
 
     static Page *PagePointerFromName(NamePage::E namePage);
