@@ -23,17 +23,6 @@ static int16 shiftADCB;
 
 
 
-extern const Governor   mgADC_Balance_ShiftB;               // Œ“À¿ƒ ¿ - ¿÷œ - ¡¿À¿Õ— - —ÏÂ˘ÂÌËÂ 2
-static void     OnChanged_ADC_Balance_ShiftB();
-extern const Page       mpADC_Stretch;                      // Œ“À¿ƒ ¿ - ¿÷œ - –¿—“ﬂ∆ ¿
-extern const Choice     mcADC_Stretch_Mode;                 // Œ“À¿ƒ ¿ - ¿÷œ - –¿—“ﬂ∆ ¿ - –ÂÊËÏ
-static void     OnChanged_ADC_Stretch_Mode(bool active);
-void LoadStretchADC(Channel::E chan);
-extern const Governor   mgADC_Stretch_ADC_A;                // Œ“À¿ƒ ¿ - ¿÷œ - –¿—“ﬂ∆ ¿ -  Ó˝ÙÙ. 1Í
-static bool      IsActive_ADC_Stretch_ADC();
-static void     OnChanged_ADC_Stretch_ADC_A();
-extern const Governor   mgADC_Stretch_ADC_B;                // Œ“À¿ƒ ¿ - ¿÷œ - –¿—“ﬂ∆ ¿ -  Ó˝ÙÙ. 2Í
-static void     OnChanged_ADC_Stretch_ADC_B();
 extern const Page       mpADC_AltRShift;                    // Œ“À¿ƒ ¿ - ¿÷œ - ƒŒœ —Ã≈Ÿ
 extern const Button     mbADC_AltRShift_Reset;              // Œ“À¿ƒ ¿ - ¿÷œ - ƒŒœ —Ã≈Ÿ - —·ÓÒ
 static void       OnPress_ADC_AltRShift_Reset();
@@ -298,6 +287,19 @@ DEF_GOVERNOR(mgADC_Balance_ShiftA, PageDebug::PageADC::PageBalance::self,
     shiftADCA, -125, 125, IsActive_ADC_Balance_Shift, OnChanged_ADC_Balance_ShiftA, nullptr
 )
 
+static void OnChanged_ADC_Balance_ShiftB(void)
+{
+    BALANCE_ADC_B = shiftADCB;
+    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)BALANCE_ADC_B, false);
+}
+
+DEF_GOVERNOR(mgADC_Balance_ShiftB, PageDebug::PageADC::PageBalance::self,
+    "—ÏÂ˘ÂÌËÂ 2", "Offset 2",
+    "",
+    "",
+    shiftADCB, -125, 125, IsActive_ADC_Balance_Shift, OnChanged_ADC_Balance_ShiftB, nullptr
+)
+
 DEF_PAGE_3(mpADC_Balance, PageDebug::PageADC::self, NamePage::DebugADCbalance,
     "¡¿À¿Õ—", "BALANCE",
     "",
@@ -305,6 +307,80 @@ DEF_PAGE_3(mpADC_Balance, PageDebug::PageADC::self, NamePage::DebugADCbalance,
     mcADC_Balance_Mode,     // Œ“À¿ƒ ¿ - ¿÷œ - ¡¿À¿Õ— - –ÂÊËÏ
     mgADC_Balance_ShiftA,   // Œ“À¿ƒ ¿ - ¿÷œ - ¡¿À¿Õ— - —ÏÂ˘ÂÌËÂ 1
     mgADC_Balance_ShiftB,   // Œ“À¿ƒ ¿ - ¿÷œ - ¡¿À¿Õ— - —ÏÂ˘ÂÌËÂ 2
+    nullptr, nullptr, nullptr, nullptr
+)
+
+void LoadStretchADC(Channel::E chan)
+{
+    if (DEBUG_STRETCH_ADC_TYPE_IS_DISABLED)
+    {
+        FPGA::WriteToHardware(chan == Channel::A ? WR_CAL_A : WR_CAL_B, 0x80, true);
+    }
+    else if (DEBUG_STRETCH_ADC_TYPE_IS_HAND)
+    {
+        FPGA::WriteToHardware(chan == Channel::A ? WR_CAL_A : WR_CAL_B, (uint8)DEBUG_STRETCH_ADC(chan), true);
+    }
+    else if (DEBUG_STRETCH_ADC_TYPE_IS_SETTINGS)
+    {
+        FPGA::LoadKoeffCalibration(chan);
+    }
+}
+
+static void OnChanged_ADC_Stretch_Mode(bool active)
+{
+    if (active)
+    {
+        LoadStretchADC(Channel::A);
+        LoadStretchADC(Channel::B);
+    }
+}
+
+DEF_CHOICE_3(mcADC_Stretch_Mode, PageDebug::PageADC::PageStretch::self,
+    "–ÂÊËÏ", "Mode",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    "–Â‡Î¸Ì˚È", "Real",
+    "–Û˜ÌÓÈ", "Manual",
+    DEBUG_STRETCH_ADC_TYPE, nullptr, OnChanged_ADC_Stretch_Mode, nullptr
+)
+
+static void OnChanged_ADC_Stretch_ADC_A(void)
+{
+    FPGA::WriteToHardware(WR_CAL_A, (uint8)DEBUG_STRETCH_ADC_A, true);
+}
+
+static bool IsActive_ADC_Stretch_ADC(void)
+{
+    return DEBUG_STRETCH_ADC_TYPE_IS_HAND;
+}
+
+DEF_GOVERNOR(mgADC_Stretch_ADC_A, PageDebug::PageADC::PageStretch::self,
+    " Ó˝ÙÙ. 1Í", "Koeff. 1ch",
+    "",
+    "",
+    DEBUG_STRETCH_ADC_A, 0, 255, IsActive_ADC_Stretch_ADC, OnChanged_ADC_Stretch_ADC_A, nullptr
+)
+
+static void OnChanged_ADC_Stretch_ADC_B(void)
+{
+    FPGA::WriteToHardware(WR_CAL_B, (uint8)DEBUG_STRETCH_ADC_B, true);
+}
+
+DEF_GOVERNOR(mgADC_Stretch_ADC_B, PageDebug::PageADC::PageStretch::self,
+    " Ó˝ÙÙ. 2Í", "Koeff. 2ch",
+    "",
+    "",
+    DEBUG_STRETCH_ADC_B, 0, 255, IsActive_ADC_Stretch_ADC, OnChanged_ADC_Stretch_ADC_B, nullptr
+)
+
+DEF_PAGE_3(mpADC_Stretch, PageDebug::PageADC::self, NamePage::DebugADCstretch,
+    "–¿—“ﬂ∆ ¿", "STRETCH",
+    "",
+    "",
+    mcADC_Stretch_Mode,     // Œ“À¿ƒ ¿ - ¿÷œ - –¿—“ﬂ∆ ¿ - –ÂÊËÏ
+    mgADC_Stretch_ADC_A,    // Œ“À¿ƒ ¿ - ¿÷œ - –¿—“ﬂ∆ ¿ -  Ó˝ÙÙ. 1Í
+    mgADC_Stretch_ADC_B,    // Œ“À¿ƒ ¿ - ¿÷œ - –¿—“ﬂ∆ ¿ -  Ó˝ÙÙ. 2Í    
     nullptr, nullptr, nullptr, nullptr
 )
 
@@ -332,99 +408,6 @@ DEF_PAGE_7(pDebug, PageMain::self, NamePage::Debug,
     nullptr, nullptr, nullptr, nullptr
 );
 
-DEF_GOVERNOR(mgADC_Balance_ShiftB, &mpADC_Balance,
-    "—ÏÂ˘ÂÌËÂ 2", "Offset 2",
-    "",
-    "",
-    shiftADCB, -125, 125, IsActive_ADC_Balance_Shift, OnChanged_ADC_Balance_ShiftB, nullptr
-)
-
-static void OnChanged_ADC_Balance_ShiftB(void)
-{
-    BALANCE_ADC_B = shiftADCB;
-    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)BALANCE_ADC_B, false);
-}
-
-
-DEF_PAGE_3(mpADC_Stretch, &mpADC, NamePage::DebugADCstretch,
-    "–¿—“ﬂ∆ ¿", "STRETCH",
-    "",
-    "",
-    mcADC_Stretch_Mode,     // Œ“À¿ƒ ¿ - ¿÷œ - –¿—“ﬂ∆ ¿ - –ÂÊËÏ
-    mgADC_Stretch_ADC_A,    // Œ“À¿ƒ ¿ - ¿÷œ - –¿—“ﬂ∆ ¿ -  Ó˝ÙÙ. 1Í
-    mgADC_Stretch_ADC_B,    // Œ“À¿ƒ ¿ - ¿÷œ - –¿—“ﬂ∆ ¿ -  Ó˝ÙÙ. 2Í    
-    nullptr, nullptr, nullptr, nullptr
-)
-
-// Œ“À¿ƒ ¿ - ¿÷œ - –¿—“ﬂ∆ ¿ - –ÂÊËÏ ------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_3(mcADC_Stretch_Mode, &mpADC_Stretch,
-    "–ÂÊËÏ", "Mode",
-    "",
-    "",
-    DISABLE_RU, DISABLE_EN,
-    "–Â‡Î¸Ì˚È", "Real",
-    "–Û˜ÌÓÈ",   "Manual",
-    DEBUG_STRETCH_ADC_TYPE, nullptr, OnChanged_ADC_Stretch_Mode, nullptr
-)
-
-static void OnChanged_ADC_Stretch_Mode(bool active)
-{
-    if(active)
-    {
-        LoadStretchADC(Channel::A);
-        LoadStretchADC(Channel::B);
-    }
-}
-
-void LoadStretchADC(Channel::E chan)
-{
-    if(DEBUG_STRETCH_ADC_TYPE_IS_DISABLED)
-    {
-        FPGA::WriteToHardware(chan == Channel::A ? WR_CAL_A : WR_CAL_B, 0x80, true);
-    }
-    else if(DEBUG_STRETCH_ADC_TYPE_IS_HAND)
-    {
-        FPGA::WriteToHardware(chan == Channel::A ? WR_CAL_A : WR_CAL_B, (uint8)DEBUG_STRETCH_ADC(chan), true);
-    }
-    else if(DEBUG_STRETCH_ADC_TYPE_IS_SETTINGS)
-    {
-        FPGA::LoadKoeffCalibration(chan);
-    }
-}
-
-// Œ“À¿ƒ ¿ - ¿÷œ - –¿—“ﬂ∆ ¿ -  Ó˝ÙÙ. 1Í --------------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mgADC_Stretch_ADC_A, &mpADC_Stretch,
-    " Ó˝ÙÙ. 1Í", "Koeff. 1ch",
-    "",
-    "",
-    DEBUG_STRETCH_ADC_A, 0, 255, IsActive_ADC_Stretch_ADC, OnChanged_ADC_Stretch_ADC_A, nullptr
-)
-
-static bool IsActive_ADC_Stretch_ADC(void)
-{
-    return DEBUG_STRETCH_ADC_TYPE_IS_HAND;
-}
-
-static void OnChanged_ADC_Stretch_ADC_A(void)
-{
-    FPGA::WriteToHardware(WR_CAL_A, (uint8)DEBUG_STRETCH_ADC_A, true);
-}
-
-
-// Œ“À¿ƒ ¿ - ¿÷œ - –¿—“ﬂ∆ ¿ -  Ó˝ÙÙ. 2Í --------------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mgADC_Stretch_ADC_B, &mpADC_Stretch,
-    " Ó˝ÙÙ. 2Í", "Koeff. 2ch",
-    "",
-    "",
-    DEBUG_STRETCH_ADC_B, 0, 255, IsActive_ADC_Stretch_ADC, OnChanged_ADC_Stretch_ADC_B, nullptr
-)
-
-static void OnChanged_ADC_Stretch_ADC_B(void)
-{
-    FPGA::WriteToHardware(WR_CAL_B, (uint8)DEBUG_STRETCH_ADC_B, true);
-}
-
-// Œ“À¿ƒ ¿ - ¿÷œ - ƒŒœ —Ã≈Ÿ ////////
 DEF_PAGE_7(mpADC_AltRShift, &mpADC, NamePage::DebugADCrShift,
     "ƒŒœ —Ã≈Ÿ", "ADD RSHFIT",
     "",
@@ -439,7 +422,6 @@ DEF_PAGE_7(mpADC_AltRShift, &mpADC, NamePage::DebugADCrShift,
     nullptr, nullptr, nullptr, nullptr
 )
 
-// Œ“À¿ƒ ¿ - ¿÷œ - ƒŒœ —Ã≈Ÿ - —·ÓÒ ------------------------------------------------------------------------------------------------------------------
 DEF_BUTTON(mbADC_AltRShift_Reset, &mpADC_AltRShift,
     "—·ÓÒ", "Reset",
     "", "",
@@ -802,3 +784,4 @@ const Page *PageDebug::self = &pDebug;
 const Page *PageDebug::PageConsole::self = &mpConsole;
 const Page *PageDebug::PageADC::self = &mpADC;
 const Page *PageDebug::PageADC::PageBalance::self = &mpADC_Balance;
+const Page *PageDebug::PageADC::PageStretch::self = &mpADC_Stretch;
