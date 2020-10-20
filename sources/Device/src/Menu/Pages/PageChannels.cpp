@@ -1,13 +1,8 @@
 #include "defines.h"
-#include "common/Log_c.h"
-#include "Settings/SettingsTypes.h"
-#include "Menu/MenuItems.h"
+#include "FPGA/FPGA.h"
 #include "Menu/Pages/Definition.h"
 #include "Panel/Panel.h"
-#include "FPGA/FPGA.h"
-#include "Display/Display.h"
 #include "Settings/Settings.h"
-#include "Utils/GlobalFunctions.h"
 
 
 extern const char chanInputRu[] =   "1. \"¬кл\" - выводить сигнал на экран.\n"
