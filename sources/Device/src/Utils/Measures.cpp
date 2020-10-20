@@ -4,7 +4,7 @@
 #include "Display/Grid.h"
 #include "Display/Painter.h"
 #include "Hardware/Sound.h"
-#include "Menu/Pages/PageMeasures.h"
+#include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
 #include "Utils/Measures.h"
 
