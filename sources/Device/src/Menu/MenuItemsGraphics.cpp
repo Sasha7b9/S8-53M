@@ -789,7 +789,7 @@ void Page::DrawOpened(int layer, int yTop)
             }
         }
 
-        item->Draw(CalculateX(1), Menu::ItemOpenedPosY(this), true);
+        item->Draw(CalculateX(1), OpenedPosY(), true);
     }
 
     if (OwnData()->funcOnDraw)

@@ -133,6 +133,8 @@ public:
 
     int CalculateX(int layer) const;
 
+    int OpenedPosY() const;
+
     static DataItem emptyData;
 
     static Item empty;

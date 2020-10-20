@@ -127,14 +127,14 @@ void Menu::ResetItemsUnderButton()
 }
 
 
-int Menu::ItemOpenedPosY(const Item *item)
+int Item::OpenedPosY() const
 {
-    Page *page = item->Keeper();
+    Page *page = Keeper();
     int8 posCurItem = page->PosCurrentItem();
     int y = Grid::TOP + (posCurItem % MENU_ITEMS_ON_DISPLAY) * MI_HEIGHT + MP_TITLE_HEIGHT;
-    if(y + HeightOpenedItem(item) > Grid::Bottom())
+    if(y + Menu::HeightOpenedItem(this) > Grid::Bottom())
     {
-        y = Grid::Bottom() - HeightOpenedItem(item) - 2;
+        y = Grid::Bottom() - Menu::HeightOpenedItem(this) - 2;
     }
     return y + 1;
 }
