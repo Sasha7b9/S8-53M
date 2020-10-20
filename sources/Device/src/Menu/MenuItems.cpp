@@ -1,6 +1,6 @@
 #include "defines.h"
+#include "common/Hardware/Sound_c.h"
 #include "common/Utils/Math_c.h"
-#include "Hardware/Sound.h"
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"

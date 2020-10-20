@@ -4,7 +4,7 @@
 #include "VCP/VCP.h"
 #include "VCP/SCPI/SCPI.h"
 #include "common/Log_c.h"
-#include "Hardware/Timer.h"
+#include "common/Hardware/Timer_c.h"
 #include "common/Hardware/HAL/HAL_c.h"
 
 

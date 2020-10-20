@@ -84,8 +84,8 @@ file(GLOB FPGA              ../../Device/src/FPGA/FPGA.h
 file(GLOB HARDWARE          ../../Device/src/Hardware/EPROM.h
                                          src/Hardware/EPROM_win.cpp
                             ../../Device/src/Hardware/Hardware.*
-                            ../../Device/src/Hardware/Sound.*
-                            ../../Device/src/Hardware/Timer.*)
+                                ../../common/Hardware/Sound_c.*
+                                ../../common/Hardware/Timer_c.*)
 file(GLOB HARDWARE_HAL          ../../common/Hardware/HAL/HAL.h
                                 ../../common/Hardware/HAL/HAL_PINS.h
                                 ../../common/Hardware/HAL/HAL_PINS_c.cpp

@@ -3,6 +3,9 @@
 #include "common/Keyboard/Controls_c.h"
 
 
+#define SOUND_ENABLED       (set.service.soundEnabled)          // SettingsService.soundEnabled
+
+
 // Настройки изображения
 struct SettingsDisplay
 {
@@ -126,7 +129,7 @@ struct SettingsMath
 struct SettingsService
 {
     bool              screenWelcomeEnable;    // Будет ли показываться экран приглашения при включении прибора.
-    bool              soundEnable;            // Включены ли звуки.
+    bool              soundEnabled;           // Включены ли звуки.
     int8              IPaddress;              // IP-адрес (временно)
     CalibratorMode::E calibrator;             // Режим работы калибратора.
     ColorScheme::E    colorScheme;            //

@@ -4,7 +4,7 @@
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/Storage.h"
-#include "Hardware/Timer.h"
+#include "common/Hardware/Timer_c.h"
 #include "Panel/Panel.h"
 #include "Settings/Settings.h"
 #include "Utils/ProcessingSignal.h"

@@ -2,7 +2,7 @@
 #include "Globals.h"
 #include "LAN/SocketTCP.h"
 #include "main.h"
-#include "Hardware/Timer.h"
+#include "common/Hardware/Timer_c.h"
 #include "LAN/LAN.h"
 #include "common/Hardware/HAL/HAL_c.h"
 #include "ethernetif.h"

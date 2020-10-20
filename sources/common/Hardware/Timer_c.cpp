@@ -1,14 +1,13 @@
 #include "defines.h"
 #include "common/Log_c.h"
-#include "Hardware/Timer.h"
-
+#include "common/Hardware/Timer_c.h"
+#include "common/Hardware/HAL/HAL_c.h"
 
 
 static void (*f[TypeTimer::Count])() = {0};
 static int reactionTimeMS[TypeTimer::Count] = {0};
 static int currentTimeMS[TypeTimer::Count] = {0};
 static bool isRun[TypeTimer::Count] = {false};
-
 
 
 void Timer::PauseOnTicks(uint numTicks)

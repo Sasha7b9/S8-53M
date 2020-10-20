@@ -19,7 +19,7 @@
 #include "common/Display/Primitives_c.h"
 #include "common/Utils/Math_c.h"
 #include "Display/Painter.h"
-#include "Hardware/Timer.h"
+#include "common/Hardware/Timer_c.h"
 #include "Menu/Menu.h"
 #include "Panel/Panel.h"
 

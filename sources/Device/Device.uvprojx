@@ -1059,29 +1059,29 @@
               <FilePath>.\src\Hardware\Hardware.h</FilePath>
             </File>
             <File>
-              <FileName>Sound.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\Sound.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Sound.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\Sound.h</FilePath>
-            </File>
-            <File>
               <FileName>Hardware.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\Hardware.cpp</FilePath>
             </File>
             <File>
-              <FileName>Timer.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\Timer.h</FilePath>
+              <FileName>Sound_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\Sound_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>Timer.cpp</FileName>
+              <FileName>Sound_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\Sound_c.h</FilePath>
+            </File>
+            <File>
+              <FileName>Timer_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Hardware\Timer.cpp</FilePath>
+              <FilePath>..\common\Hardware\Timer_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Timer_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\Timer_c.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -3290,29 +3290,29 @@
               <FilePath>.\src\Hardware\Hardware.h</FilePath>
             </File>
             <File>
-              <FileName>Sound.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\Sound.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Sound.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\Sound.h</FilePath>
-            </File>
-            <File>
               <FileName>Hardware.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\Hardware.cpp</FilePath>
             </File>
             <File>
-              <FileName>Timer.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\Timer.h</FilePath>
+              <FileName>Sound_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\Sound_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>Timer.cpp</FileName>
+              <FileName>Sound_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\Sound_c.h</FilePath>
+            </File>
+            <File>
+              <FileName>Timer_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Hardware\Timer.cpp</FilePath>
+              <FilePath>..\common\Hardware\Timer_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Timer_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\Timer_c.h</FilePath>
             </File>
           </Files>
         </Group>

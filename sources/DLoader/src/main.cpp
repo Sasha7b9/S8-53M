@@ -5,7 +5,7 @@
 #include "Settings/Settings.h"
 #include "Display/Painter.h"
 #include "Display/Display.h"
-#include "Hardware/Timer.h"
+#include "common/Hardware/Timer_c.h"
 #include "Panel/Panel.h"
 #include "common/Hardware/HAL/HAL_c.h"
 #include <cstdlib>
@@ -29,13 +29,13 @@ int main(void)
 
     Settings_Load();
 
-    Timer_PauseOnTime(250);
+    HAL_TIM2::Delay(250);
 
     ms->state = State::Start;
 
     Display::Init();
 
-    Timer_Enable(TypeTimer::Temp, 10, Display::Update);
+    Timer::Enable(TypeTimer::Temp, 10, Display::Update);
 
     uint timeStart = HAL_TIM2::TimeMS();
 
@@ -81,14 +81,14 @@ int main(void)
     }
     else if (ms->state == State::WrongFlash) // Диск не удалось примонтировать
     {
-        Timer_PauseOnTime(5000);
+        HAL_TIM2::Delay(5000);
     }
 
     ms->state = State::Ok;
 
     HAL_SPI1::DeInit();
 
-    Timer_Disable(TypeTimer::Temp);
+    Timer::Disable(TypeTimer::Temp);
 
     while (Display::IsRun())
     {

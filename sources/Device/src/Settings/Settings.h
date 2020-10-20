@@ -16,6 +16,8 @@
 #include "SettingsMath.h"
 
 
+#define SOUND_ENABLED       (set.service.soundEnabled)          // SettingsService.soundEnabled
+
 #define RSHIFT_ADD(ch, range, closed) set.chan[ch].rShiftAdd[range][closed]
 
 

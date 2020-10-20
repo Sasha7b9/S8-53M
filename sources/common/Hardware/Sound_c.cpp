@@ -1,6 +1,7 @@
 #include "defines.h"
-#include "Hardware/Sound.h"
-#include "Hardware/Timer.h"
+#include "common/Hardware/Sound_c.h"
+#include "common/Hardware/HAL/HAL_c.h"
+#include "common/Hardware/Timer_c.h"
 #include "Settings/Settings.h"
 #include <cmath>
 
@@ -20,19 +21,21 @@ static TypeWave::E typeWave = TypeWave::Sine;
 
 
 bool Sound::isBeep = false;
+bool Sound::warnIsBeep = false;
+bool Sound::buttonIsPressed = false;
 
 
 static void Stop(void)
 {
     HAL_DAC::StopDMA();
     Sound::isBeep = false;
-    SOUND_WARN_IS_BEEP = 0;
+    Sound::warnIsBeep = false;
 }
 
 
 void Sound_Beep(TypeWave::E typeWave_, float frequency_, float amplitude_, int duration)
 {
-    if (SOUND_WARN_IS_BEEP)
+    if (Sound::warnIsBeep)
     {
         return;
     }
@@ -63,16 +66,16 @@ void Sound_Beep(TypeWave::E typeWave_, float frequency_, float amplitude_, int d
 void Sound::ButtonPress(void)
 {
     Sound_Beep(TypeWave::Sine, 2000.0F, 0.5F, 50);
-    BUTTON_IS_PRESSED = 1;
+    Sound::buttonIsPressed = true;
 }
 
 
 void Sound::ButtonRelease(void)
 {
-    if (BUTTON_IS_PRESSED)
+    if (buttonIsPressed)
     {
         Sound_Beep(TypeWave::Sine, 1000.0F, 0.25F, 50);
-        BUTTON_IS_PRESSED = 0;
+        buttonIsPressed = false;
     }
 }
 
@@ -80,36 +83,36 @@ void Sound::ButtonRelease(void)
 void Sound::GovernorChangedValue(void)
 {
     Sound_Beep(TypeWave::Sine, 1000.0F, 0.5F, 50);
-    BUTTON_IS_PRESSED = 0;
+    buttonIsPressed = false;
 }
 
 
 void Sound::RegulatorShiftRotate(void)
 {
     Sound_Beep(TypeWave::Sine, 1.0F, 0.35F, 3);
-    BUTTON_IS_PRESSED = 0;
+    buttonIsPressed = false;
 }
 
 
 void Sound::RegulatorSwitchRotate(void)
 {
     Sound_Beep(TypeWave::Triangle, 2500.0F, 0.5F, 25);
-    BUTTON_IS_PRESSED = 0;
+    buttonIsPressed = false;
 }
 
 
 void Sound::WarnBeepBad(void)
 {
     Sound_Beep(TypeWave::Meandr, 250.0F, 1.0F, 500);
-    SOUND_WARN_IS_BEEP = 1;
-    BUTTON_IS_PRESSED = 0;
+    warnIsBeep = true;
+    buttonIsPressed = false;
 }
 
 
 void Sound::WarnBeepGood(void)
 {
     Sound_Beep(TypeWave::Triangle, 1000.0F, 0.5F, 250);
-    BUTTON_IS_PRESSED = 0;
+    buttonIsPressed = false;
 }
 
 

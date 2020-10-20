@@ -8,7 +8,7 @@
 #include "Utils/GlobalFunctions.h"
 #include "common/Utils/Math_c.h"
 #include "Settings/Settings.h"
-#include "Hardware/Timer.h"
+#include "common/Hardware/Timer_c.h"
 #include "common/Hardware/HAL/HAL_c.h"
 
 

@@ -352,7 +352,7 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
-            <ClangAsOpt>13</ClangAsOpt>
+            <ClangAsOpt>4</ClangAsOpt>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define></Define>
@@ -613,6 +613,21 @@
               <FileType>1</FileType>
               <FilePath>..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_usb.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_hal_dac.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dac.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_hal_dma_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_hal_dac_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dac_ex.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -669,14 +684,24 @@
               <FilePath>.\src\Hardware\Hardware.h</FilePath>
             </File>
             <File>
-              <FileName>Timer.cpp</FileName>
+              <FileName>Sound_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Hardware\Timer.cpp</FilePath>
+              <FilePath>..\common\Hardware\Sound_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>Timer.h</FileName>
+              <FileName>Sound_c.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Hardware\Timer.h</FilePath>
+              <FilePath>..\common\Hardware\Sound_c.h</FilePath>
+            </File>
+            <File>
+              <FileName>Timer_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\Timer_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Timer_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\Timer_c.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -790,6 +815,11 @@
               <FilePath>..\common\Hardware\HAL\HAL_c.h</FilePath>
             </File>
             <File>
+              <FileName>HAL_EPROM_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_EPROM_c.cpp</FilePath>
+            </File>
+            <File>
               <FileName>HAL_PINS_c.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_PINS_c.h</FilePath>
@@ -798,11 +828,6 @@
               <FileName>HAL_PINS_c.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_PINS_c.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_EPROM_c.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_EPROM_c.cpp</FilePath>
             </File>
             <File>
               <FileName>HAL_FSMC_c.cpp</FileName>
@@ -818,6 +843,16 @@
               <FileName>HAL_TIM2_c.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_TIM2_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_DAC_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_DAC_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_TIM7_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_TIM7_c.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -1058,11 +1093,6 @@
               <FileName>Settings.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Settings\Settings.h</FilePath>
-            </File>
-            <File>
-              <FileName>cSettingsTypes.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Settings\cSettingsTypes.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1459,7 +1489,7 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
-            <ClangAsOpt>13</ClangAsOpt>
+            <ClangAsOpt>4</ClangAsOpt>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define></Define>
@@ -1720,6 +1750,21 @@
               <FileType>1</FileType>
               <FilePath>..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_ll_usb.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_hal_dac.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dac.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_hal_dma_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_hal_dac_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dac_ex.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1776,14 +1821,24 @@
               <FilePath>.\src\Hardware\Hardware.h</FilePath>
             </File>
             <File>
-              <FileName>Timer.cpp</FileName>
+              <FileName>Sound_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Hardware\Timer.cpp</FilePath>
+              <FilePath>..\common\Hardware\Sound_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>Timer.h</FileName>
+              <FileName>Sound_c.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Hardware\Timer.h</FilePath>
+              <FilePath>..\common\Hardware\Sound_c.h</FilePath>
+            </File>
+            <File>
+              <FileName>Timer_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\Timer_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Timer_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\Timer_c.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1897,6 +1952,11 @@
               <FilePath>..\common\Hardware\HAL\HAL_c.h</FilePath>
             </File>
             <File>
+              <FileName>HAL_EPROM_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_EPROM_c.cpp</FilePath>
+            </File>
+            <File>
               <FileName>HAL_PINS_c.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_PINS_c.h</FilePath>
@@ -1905,11 +1965,6 @@
               <FileName>HAL_PINS_c.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_PINS_c.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_EPROM_c.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_EPROM_c.cpp</FilePath>
             </File>
             <File>
               <FileName>HAL_FSMC_c.cpp</FileName>
@@ -1925,6 +1980,16 @@
               <FileName>HAL_TIM2_c.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_TIM2_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_DAC_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_DAC_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_TIM7_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_TIM7_c.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -2165,11 +2230,6 @@
               <FileName>Settings.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Settings\Settings.h</FilePath>
-            </File>
-            <File>
-              <FileName>cSettingsTypes.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Settings\cSettingsTypes.h</FilePath>
             </File>
           </Files>
         </Group>

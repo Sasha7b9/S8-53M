@@ -5,7 +5,7 @@
 #include "Display/DisplayPrimitives.h"
 #include "Display/Painter.h"
 #include "FPGA/FPGA.h"
-#include "Hardware/Timer.h"
+#include "common/Hardware/Timer_c.h"
 #include "Panel/Panel.h"
 #include "Settings/Settings.h"
 #include <cstdio>

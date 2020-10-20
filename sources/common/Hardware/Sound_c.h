@@ -28,4 +28,6 @@ public:
     static void WarnBeepGood();
 
     static bool isBeep;
+    static bool warnIsBeep;
+    static bool buttonIsPressed;
 };

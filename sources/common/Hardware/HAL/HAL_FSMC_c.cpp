@@ -3,7 +3,7 @@
 #include "Hardware/Hardware.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
-#include "Hardware/Timer.h"
+#include "common/Hardware/Timer_c.h"
 #include <stm32f4xx_hal.h>
 
 

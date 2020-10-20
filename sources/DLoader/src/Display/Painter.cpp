@@ -1,7 +1,7 @@
 #include "defines.h"
 #include "common/Display/Primitives_c.h"
 #include "Display/Painter.h"
-#include "Hardware/Timer.h"
+#include "common/Hardware/Timer_c.h"
 
 
 using namespace Primitives;
@@ -68,7 +68,7 @@ static void OnTimerFlashDisplay(void)
 
 void Painter::ResetFlash(void)
 {
-    Timer_Enable(TypeTimer::FlashDisplay, 400, OnTimerFlashDisplay);
+    Timer::Enable(TypeTimer::FlashDisplay, 400, OnTimerFlashDisplay);
     inverseColors = false;
 }
 

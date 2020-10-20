@@ -1,8 +1,6 @@
 #pragma once
 
 
-#define SOUND_ENABLED       (set.service.soundEnabled)          // SettingsService.soundEnabled
-
 #define CALIBRATOR          (set.service.calibrator)            // SettingsService.calibrator
 #define CALIBRATOR_IS_FREQ  (CALIBRATOR == CalibratorMode::Freq)
 #define CALIBRATOR_IS_DC    (CALIBRATOR == CalibratorMode::DC)
