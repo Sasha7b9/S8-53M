@@ -59,6 +59,8 @@ public:
     static void Show(bool show);
     // Если true - меню находится в дополнительном режиме.
     static bool IsMinimize();
+    // Повернуть ручку УСТАНОВКА на текущей странице малых кнопок.
+    static void CurrentPageSBregSet(int angle);
 
 private:
     // Обработка короткого нажатия кнопки.

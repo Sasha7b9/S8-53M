@@ -280,32 +280,6 @@ bool Settings::DebugModeEnable()
     return true;
 }
 
-void SetMenuPageDebugActive(bool active)
-{
-    set.menu.pageDebugActive = active;
-}
-
-void CurrentPageSBregSet(int angle)
-{
-    Page *page = (Page *)Menu::OpenedItem();
-    if (page->OwnData()->funcRegSetSB)
-    {
-        page->OwnData()->funcRegSetSB(angle);
-    }
-}
-
-//const SmallButton* GetSmallButton(Key::E button)
-//{
-//    if(Menu::IsMinimize() && button >= Key::Menu)
-//    {
-//        Page *page = (Page *)Menu::OpenedItem();
-//        SmallButton *sb = (SmallButton *)(*page->OwnData()->items)[button - Key::Menu];
-//        return sb;
-//    }
-//    return nullptr;
-//}
-
-
 Range::E& operator++(Range::E &range)
 {
     range = (Range::E)((int)range + 1);

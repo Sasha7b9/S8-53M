@@ -693,3 +693,13 @@ bool Menu::IsMinimize()
 {
     return Menu::OpenedItem()->Type() == TypeItem::Page && ((const Page *)Menu::OpenedItem())->GetName() >= NamePage::SB_Curs;
 }
+
+
+void Menu::CurrentPageSBregSet(int angle)
+{
+    Page *page = (Page *)Menu::OpenedItem();
+    if (page->OwnData()->funcRegSetSB)
+    {
+        page->OwnData()->funcRegSetSB(angle);
+    }
+}
