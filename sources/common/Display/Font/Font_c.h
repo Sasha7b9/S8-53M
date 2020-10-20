@@ -29,10 +29,9 @@ struct Font
     static int GetLengthSymbol(uchar symbol);
     static void Set(TypeFont::E typeFont);
 
-    static  const Font *font;
+    static const Font *font;
+    static const Font *fonts[TypeFont::_Count];
 };
-
-extern const Font *fonts[TypeFont::_Count];
 
 extern const uchar font5display[3080];
 extern const uchar font8display[3080];
