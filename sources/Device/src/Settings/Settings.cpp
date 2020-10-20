@@ -280,11 +280,6 @@ bool Settings::DebugModeEnable()
     return true;
 }
 
-bool MenuPageDebugIsActive()
-{
-    return set.menu.pageDebugActive;
-}
-
 void SetMenuPageDebugActive(bool active)
 {
     set.menu.pageDebugActive = active;
