@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "Menu/MenuItems.h"
+#include "Menu/Pages/Definition.h"
 #include "defines.h"
 #include "Menu/Menu.h"
 #include "Tables.h"
@@ -62,10 +63,7 @@ extern const Choice mcSettings_AutoHide;                    // ДИСПЛЕЙ - НАСТРОЙ
 static void OnChanged_Settings_AutoHide(bool autoHide);     // Вызывается при изменении ДИСПЛЕЙ-НАСТРОЙКИ-Скрывать
 
 
-// ДИСПЛЕЙ /////////////////////////
-extern const Page mainPage;
-
-DEF_PAGE_9(pDisplay, mainPage, NamePage::Display,
+DEF_PAGE_9(pDisplay, PageMain::self, NamePage::Display,
     "ДИСПЛЕЙ", "DISPLAY",
     "Содержит настройки отображения дисплея.",
     "Contains settings of display of the Display::",
@@ -358,7 +356,7 @@ DEF_CHOICE_2(mcTypeShift, &pDisplay,
 
 
 // ДИСПЛЕЙ - НАСТРОЙКИ /////////////
-DEF_PAGE_7(mspSettings, pDisplay, NamePage::ServiceDisplay,
+DEF_PAGE_7(mspSettings, &pDisplay, NamePage::ServiceDisplay,
     "НАСТРОЙКИ", "SETTINGS",
     "Дополнительные настройки дисплея",
     "Additional display settings",
@@ -374,7 +372,7 @@ DEF_PAGE_7(mspSettings, pDisplay, NamePage::ServiceDisplay,
 
 
 // ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА /////
-DEF_PAGE_4(mspSettings_Colors, mspSettings, NamePage::ServiceDisplayColors,
+DEF_PAGE_4(mspSettings_Colors, &mspSettings, NamePage::ServiceDisplayColors,
     "ЦВЕТА", "COLORS",
     "Выбор цветов дисплея",
     "The choice of colors display",

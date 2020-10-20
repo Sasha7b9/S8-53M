@@ -82,7 +82,7 @@ static const arrayItems itemsHelp =
 {
 };
 
-DEF_PAGE_6(mpHelp, mainPage, NamePage::SB_Help,
+DEF_PAGE_6(mpHelp, PageMain::self, NamePage::SB_Help,
     "ѕќћќў№", "HELP",
     "ќткрыть разделы помощи",
     "To open sections of the help",

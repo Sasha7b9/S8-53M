@@ -2,10 +2,8 @@
 #include "common/Utils/Math_c.h"
 #include "Hardware/Sound.h"
 #include "Menu/Menu.h"
+#include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
-
-
-extern const Page mainPage;
 
 
 bool Menu::CurrentItemIsOpened(NamePage::E namePage)
@@ -18,14 +16,14 @@ bool Menu::CurrentItemIsOpened(NamePage::E namePage)
 Item* Menu::OpenedItem()
 {
     TypeItem::E type = TypeItem::None;
-    return ((Page*)&mainPage)->RetLastOpened(&type);
+    return const_cast<Page *>(PageMain::self)->RetLastOpened(&type);
 }
 
 
 Item* Menu::CurrentItem()
 {
     TypeItem::E type = TypeItem::None;
-    Item *lastOpened = ((Page*)&mainPage)->RetLastOpened(&type);
+    Item *lastOpened = ((Page *)PageMain::self)->RetLastOpened(&type);
     int8 pos = ((const Page *)lastOpened)->PosCurrentItem();
     if(type == TypeItem::Page && pos != 0x7f)
     {
@@ -66,7 +64,7 @@ void Menu::CloseOpenedItem()
             SetPosActItem(namePage, GetPosActItem(namePage) & 0x7f);   // Сбрасываем бит 7 - "закрываем" активный пункт страницы namePage
         }
         NEED_CLOSE_PAGE_SB = 1;
-        if(item == &mainPage)
+        if(item == PageMain::self)
         {
             Menu::Show(false);
         }

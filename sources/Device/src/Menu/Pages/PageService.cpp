@@ -95,10 +95,9 @@ static void Information_Draw();
 extern const SmallButton sbInformation_Exit;             // СЕРВИС - ИНФОРМАЦИЯ - Выход
 static void        OnPress_Information_Exit();
 
-extern const Page mainPage;
 
 // СЕРВИС //////////////////////////
-DEF_PAGE_10(pService, mainPage, NamePage::Service,
+DEF_PAGE_10(pService, PageMain::self, NamePage::Service,
     "СЕРВИС", "SERVICE",
     "Дополнительные настройки, калибровка, поиск сигнала, математические функции",
     "Additional settings, calibration, signal search, mathematical functions",
@@ -219,7 +218,7 @@ DEF_PAGE_2(ppMath, pService, NamePage::Math,
 )
 
 // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ ///
-DEF_PAGE_6(pppMath_Function, ppMath, NamePage::SB_MathFunction, 
+DEF_PAGE_6(pppMath_Function, &ppMath, NamePage::SB_MathFunction, 
     "ФУНКЦИЯ", "FUNCTION",
     "Установка и выбор математической функции - сложения или умножения",
     "Installation and selection of mathematical functions - addition or multiplication",
@@ -496,7 +495,7 @@ static void Draw_Math_Function_RangeB(int x, int y)
 }
 
 // СЕРВИС - МАТЕМАТИКА - СПЕКТР ////
-DEF_PAGE_6(pppMath_FFT, ppMath, NamePage::MathFFT,
+DEF_PAGE_6(pppMath_FFT, &ppMath, NamePage::MathFFT,
     "СПЕКТР", "SPECTRUM",
     "Отображение спектра входного сигнала",
     "Mapping the input signal spectrum",
@@ -566,7 +565,7 @@ DEF_CHOICE_4(cMath_FFT_Window, pppMath_FFT,
 )
 
 // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ ------------------------------------------------------------------------------------------------------------
-DEF_PAGE_6(ppppMath_FFT_Cursors, pppMath_FFT, NamePage::SB_MathCursorsFFT,
+DEF_PAGE_6(ppppMath_FFT_Cursors, &pppMath_FFT, NamePage::SB_MathCursorsFFT,
     "КУРСОРЫ", "CURSORS",
     "Включает курсоры для измерения параметров спектра",
     "Includes cursors to measure the parameters of the spectrum",
@@ -769,7 +768,7 @@ DEF_CHOICE_2(cModeLongPressButtonTrig, &pService,
 )
 
 // СЕРВИС - ИНФОРМАЦИЯ -------------------------------------------------------------------------------------------------------------------------------
-DEF_PAGE_6(ppInformation, pService, NamePage::SB_Information,
+DEF_PAGE_6(ppInformation, &pService, NamePage::SB_Information,
     "ИНФОРМАЦИЯ", "INFORMATION",
     "Выводит на экран идентификационные данные осциллографа",
     "Displays identification data of the oscilloscope",

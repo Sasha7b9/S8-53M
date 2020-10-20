@@ -107,14 +107,11 @@ struct StructForSN
 };
 
 
-extern const Page mainPage;
-
-
 const Page *PageDebug::SerialNumber::self = &ppSerialNumber;
 
 
 // ОТЛАДКА /////////////////////////
-DEF_PAGE_7(pDebug, mainPage, NamePage::Debug,
+DEF_PAGE_7(pDebug, PageMain::self, NamePage::Debug,
     "ОТЛАДКА", "DEBUG",
     "",
     "",
@@ -485,7 +482,7 @@ static void OnChanged_ADC_Stretch_ADC_B(void)
 }
 
 // ОТЛАДКА - АЦП - ДОП СМЕЩ ////////
-DEF_PAGE_7(mpADC_AltRShift, mpADC, NamePage::DebugADCrShift,
+DEF_PAGE_7(mpADC_AltRShift, &mpADC, NamePage::DebugADCrShift,
     "ДОП СМЕЩ", "ADD RSHFIT",
     "",
     "",
@@ -694,7 +691,7 @@ static void OnPress_EraseData()
 
 
 // ОТЛАДКА - С/Н ///////////////////
-DEF_PAGE_6(ppSerialNumber, pDebug, NamePage::SB_SerialNumber,
+DEF_PAGE_6(ppSerialNumber, &pDebug, NamePage::SB_SerialNumber,
     "С/Н", "S/N",
     "Запись серийного номера в OTP-память. ВНИМАНИЕ!!! ОТP-память - память с однократной записью.",
     "Serial number recording in OTP-memory. ATTENTION!!! OTP memory is a one-time programming memory.",

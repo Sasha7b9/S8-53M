@@ -2,6 +2,7 @@
 #include "common/Utils/Math_c.h"
 #include "FPGA/FPGA.h"
 #include "Menu/MenuItems.h"
+#include "Menu/Pages/Definition.h"
 #include "Menu/Pages/PageMemory.h"
 #include "Settings/Settings.h"
 
@@ -21,11 +22,8 @@ static bool  IsActive_SelfRecorder();
 extern const Choice mcDivRole;          // РАЗВЕРТКА - Ф-ция ВР/ДЕЛ
 
 
-extern const Page mainPage;
-
-
 // РАЗВЕРТКА ///////////////////
-DEF_PAGE_5(pTime, &mainPage, NamePage::Time,
+DEF_PAGE_5(pTime, PageMain::self, NamePage::Time,
     "РАЗВЕРТКА", "SCAN",
     "Содержит настройки развёртки.",
     "Contains scan settings.",

@@ -97,10 +97,6 @@ void DrawSB_Exit(int x, int y)
 
 
 
-extern const Page mainPage;
-
-//#include "PageTrig.c"
-//#include "PageTime.c"
 #include "PageHelp.cpp"
 
 extern const Page pDisplay;

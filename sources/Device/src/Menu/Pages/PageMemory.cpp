@@ -24,8 +24,6 @@ using namespace Primitives;
 
 extern const Page pMemory;
 
-extern const Page mainPage;
-
 static void DrawSetMask();  // Эта функция рисует, когда выбран режим задания маски.
 static void DrawSetName();  // Эта функция рисует, когда нужно задать имя файла для сохранения
 
@@ -1050,7 +1048,7 @@ DEF_SMALL_BUTTON(sbExitMemLast, mspMemLast,
 )
 
 // Память - Последние //////
-DEF_PAGE_6(mspMemLast, pMemory, NamePage::SB_MemLatest,
+DEF_PAGE_6(mspMemLast, &pMemory, NamePage::SB_MemLatest,
     "ПОСЛЕДНИЕ", "LATEST",
     "Переход в режим работы с последними полученными сигналами",
     "Transition to an operating mode with the last received signals",
@@ -1074,7 +1072,7 @@ DEF_SMALL_BUTTON(sbExitSetMask, mspSetMask,
 )
 
 // Память - ВНЕШН ЗУ - Маска //////////////////////////
-DEF_PAGE_6(mspSetMask, mspMemoryExt, NamePage::SB_MemExtSetMask,
+DEF_PAGE_6(mspSetMask, &mspMemoryExt, NamePage::SB_MemExtSetMask,
     "МАСКА", "MASK",
     "Режим ввода маски для автоматического именования файлов",
     "Input mode mask for automatic file naming",
@@ -1118,7 +1116,7 @@ DEF_SMALL_BUTTON(sbExitFileManager, mspFileManager,
 
 const void *pMspFileManager = (const void *)&mspFileManager;
 
-DEF_PAGE_6(mspFileManager, mspMemoryExt, NamePage::SB_FileManager,
+DEF_PAGE_6(mspFileManager, &mspMemoryExt, NamePage::SB_FileManager,
     "КАТАЛОГ", "DIRECTORY",
     "Открывает доступ к файловой системе подключенного накопителя",
     "Provides access to the file system of the connected drive",
@@ -1132,7 +1130,7 @@ DEF_PAGE_6(mspFileManager, mspMemoryExt, NamePage::SB_FileManager,
 );
 
 // ПАМЯТЬ - ВНЕШН ЗУ ///////
-DEF_PAGE_6(mspMemoryExt, pMemory, NamePage::MemoryExt,
+DEF_PAGE_6(mspMemoryExt, &pMemory, NamePage::MemoryExt,
     "ВНЕШН ЗУ", "EXT STORAGE",
     "Работа с внешним запоминающим устройством.",
     "Work with external storage device.",
@@ -1155,7 +1153,7 @@ void OnPressMemoryInt()
     EPROM::GetData(CURRENT_NUM_INT_SIGNAL, &gDSmemInt, &gData0memInt, &gData1memInt);
 }
 
-DEF_PAGE_6(mspMemInt, pMemory, NamePage::SB_MemInt,
+DEF_PAGE_6(mspMemInt, &pMemory, NamePage::SB_MemInt,
     "ВНУТР ЗУ", "INT STORAGE",
     "Переход в режим работы с внутренней памятью",
     "Transition to an operating mode with internal memory",
@@ -1174,7 +1172,7 @@ static void OnMemExtSetNameRegSet(int angle)
     OnMemExtSetMaskNameRegSet(angle, sizeof(symbolsAlphaBet) / 4 - 7);
 }
 
-DEF_PAGE_6(mpSetName, Page::empty, NamePage::SB_MemExtSetName,
+DEF_PAGE_6(mpSetName, &Page::empty, NamePage::SB_MemExtSetName,
     "", "",
     "",
     "",
@@ -1188,7 +1186,7 @@ DEF_PAGE_6(mpSetName, Page::empty, NamePage::SB_MemExtSetName,
 )
 
 // ПАМЯТЬ ///////////////////
-DEF_PAGE_4(pMemory, mainPage, NamePage::Memory,
+DEF_PAGE_4(pMemory, PageMain::self, NamePage::Memory,
     "ПАМЯТЬ", "MEMORY",
     "Работа с внешней и внутренней памятью.",
     "Working with external and internal memory.",

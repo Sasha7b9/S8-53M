@@ -235,7 +235,7 @@ static void OnRotate_RegSet_Set(int angle)
     Sound::RegulatorShiftRotate();
 }
 
-DEF_PAGE_6(mspSet, pCursors, NamePage::SB_Curs,
+DEF_PAGE_6(mspSet, &pCursors, NamePage::SB_Curs,
     "УСТАНОВИТЬ", "SET",
     "Переход в режим курсорных измерений",
     "Switch to cursor measures",

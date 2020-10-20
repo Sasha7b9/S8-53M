@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "Menu/MenuItems.h"
+#include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
 #include "FPGA/FPGA.h"
@@ -25,10 +26,8 @@ extern const Button mbAutoFind_Search;          // СИНХР - ПОИСК - Найти
 static bool  IsActive_AutoFind_Search();
 static void   OnPress_AutoFind_Search();
 
-extern const Page mainPage;
-
 // СИНХР ///////////////////////////
-DEF_PAGE_5(pTrig, &mainPage, NamePage::Trig,
+DEF_PAGE_5(pTrig, PageMain::self, NamePage::Trig,
     "СИНХР", "TRIG",
     "Содержит настройки синхронизации.",
     "Contains synchronization settings.",

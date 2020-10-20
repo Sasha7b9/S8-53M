@@ -10,7 +10,6 @@
 #include "Utils/Measures.h"
 
 extern const Page pMeasures;
-extern const Page mainPage;
 
 static CursCntrl::E GetMeasuresCursCntrlActive();       // Каким курсором из активной пары сейчас происходит управление.
 bool PageMeasures::choiceMeasuresIsActive = false;
@@ -231,7 +230,7 @@ DEF_SMALL_BUTTON(sbExitMeasTune, mspMeasTune,
 
 
 // ИЗМЕРЕНИЯ - Настроить ////
-DEF_PAGE_6(mspMeasTune, pMeasures, NamePage::SB_MeasTuneMeas,
+DEF_PAGE_6(mspMeasTune, &pMeasures, NamePage::SB_MeasTuneMeas,
     "НАСТРОИТЬ", "CONFIGURE",
     "Переход в режми точной настройки количества и видов измерений",
     "Transition to rezhm of exact control of quantity and types of measurements",
@@ -246,7 +245,7 @@ DEF_PAGE_6(mspMeasTune, pMeasures, NamePage::SB_MeasTuneMeas,
 
 
 // ИЗМЕРЕНИЯ //////////////////////////
-DEF_PAGE_5(pMeasures, &mainPage, NamePage::Measures,
+DEF_PAGE_5(pMeasures, PageMain::self, NamePage::Measures,
     "ИЗМЕРЕНИЯ", "MEASURES",
     "Автоматические измерения",
     "Automatic measurements",
