@@ -463,7 +463,7 @@ DEF_SMALL_BUTTON(sbSetPointsPercents, PageCursors::PageSet::self,
     nullptr, PressSB_Cursors_PointsPercents, DrawSB_Cursors_PointsPercents, &hintsSetPointsPercents
 )
 
-DEF_PAGE_6(mspSet, PageCursors::self, NamePage::SB_Curs,
+DEF_PAGE_6(pageSet, PageCursors::self, NamePage::SB_Curs,
     "УСТАНОВИТЬ", "SET",
     "Переход в режим курсорных измерений",
     "Switch to cursor measures",
@@ -476,10 +476,7 @@ DEF_PAGE_6(mspSet, PageCursors::self, NamePage::SB_Curs,
     nullptr, nullptr, nullptr, OnRotate_RegSet_Set
 )
 
-const Page *PageCursors::PageSet::self = &mspSet;
-
-
-DEF_PAGE_5(pCursors, PageMain::self, NamePage::Cursors,
+DEF_PAGE_5(pageCursors, PageMain::self, NamePage::Cursors,
     "КУРСОРЫ", "CURSORS",
     "Курсорные измерения.",
     "Cursor measurements.",
@@ -487,12 +484,9 @@ DEF_PAGE_5(pCursors, PageMain::self, NamePage::Cursors,
     mcTrackingT1U1,     // КУРСОРЫ - Курсоры T1,U1
     mcTrackingT2U2,     // КУРСОРЫ - Курсоры T2,U2
     mcShowFreq,         // КУРОСРЫ - 1/dT
-    mspSet,              // КУРСОРЫ - УСТАНОВИТЬ
+    pageSet,            // КУРСОРЫ - УСТАНОВИТЬ
     nullptr, nullptr, nullptr, nullptr
 )
-
-const Page *PageCursors::self = &pCursors;
-
 
 static void MoveCursUonPercentsOrPoints(int delta)
 {
@@ -550,3 +544,6 @@ static void SetShiftCursPosT(Channel::E chan, int numCur, float delta)
 {
     CURS_POS_T(chan, numCur) = LimitationFloat(CURS_POS_T(chan, numCur) + delta, 0, MAX_POS_T);
 }
+
+const Page *PageCursors::self = &pageCursors;
+const Page *PageCursors::PageSet::self = &pageSet;

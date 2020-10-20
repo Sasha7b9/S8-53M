@@ -96,7 +96,7 @@ DEF_CHOICE_2(mcMultiplierA, PageChannelA::self,
     SET_DIVIDER(Channel::A), nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_5(pChanA, PageMain::self, NamePage::Channel0,
+DEF_PAGE_5(pageChanA, PageMain::self, NamePage::Channel0,
     "КАНАЛ 1", "CHANNEL 1",
     "Содержит настройки канала 1.",
     "Contains settings of the channel 1.",
@@ -107,8 +107,6 @@ DEF_PAGE_5(pChanA, PageMain::self, NamePage::Channel0,
     mcMultiplierA,
     nullptr, nullptr, nullptr, nullptr
 )
-
-const Page *PageChannelA::self = &pChanA;
 
 void PageChannelB::OnChanged_Input(bool)
 {
@@ -176,7 +174,7 @@ DEF_CHOICE_2(mcMultiplierB, PageChannelB::self,
     SET_DIVIDER(Channel::B), nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_5(pChanB, PageMain::self, NamePage::Channel1,
+DEF_PAGE_5(pageChanB, PageMain::self, NamePage::Channel1,
     "КАНАЛ 2", "CHANNEL 2",
     "Содержит настройки канала 2.",
     "Contains settings of the channel 2.",
@@ -188,4 +186,5 @@ DEF_PAGE_5(pChanB, PageMain::self, NamePage::Channel1,
     nullptr, nullptr, nullptr, nullptr
 )
 
-const Page *PageChannelB::self = &pChanB;
+const Page *PageChannelA::self = &pageChanA;
+const Page *PageChannelB::self = &pageChanB;
