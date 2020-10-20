@@ -288,12 +288,6 @@ int Page::NumSubPages() const
 }
 
 
-int Page::NumCurrentSubPage() const
-{
-    return MenuCurrentSubPage(OwnData()->name);
-}
-
-
 bool Page::IsSB() const
 {
     return OwnData()->name >= NamePage::SB_Curs;
@@ -361,15 +355,15 @@ bool Item::IsOpened() const
 
 void Page::ChangeSubPage(int delta) const
 {
-    if (delta > 0 && MenuCurrentSubPage(OwnData()->name) < NumSubPages() - 1)
+    if (delta > 0 && GetCurrentSubPage() < NumSubPages() - 1)
     {
         Sound::RegulatorSwitchRotate();
-        SetMenuCurrentSubPage(OwnData()->name, MenuCurrentSubPage(OwnData()->name) + 1);
+        SetMenuCurrentSubPage(OwnData()->name, GetCurrentSubPage() + 1);
     }
-    else if (delta < 0 && MenuCurrentSubPage(OwnData()->name) > 0)
+    else if (delta < 0 && GetCurrentSubPage() > 0)
     {
         Sound::RegulatorSwitchRotate();
-        SetMenuCurrentSubPage(OwnData()->name, MenuCurrentSubPage(OwnData()->name) - 1);
+        SetMenuCurrentSubPage(OwnData()->name, GetCurrentSubPage() - 1);
     }
 }
 
@@ -637,7 +631,7 @@ int Item::HeightOpened() const
     TypeItem::E type = Type();
     if (type == TypeItem::Page)
     {
-        int numItems = ((const Page *)this)->NumItems() - ((Page *)this)->NumCurrentSubPage() * MENU_ITEMS_ON_DISPLAY;
+        int numItems = ((const Page *)this)->NumItems() - ((Page *)this)->GetCurrentSubPage() * MENU_ITEMS_ON_DISPLAY;
         LIMITATION(numItems, numItems, 0, MENU_ITEMS_ON_DISPLAY);
         return MP_TITLE_HEIGHT + MI_HEIGHT * numItems;
     }
@@ -660,4 +654,10 @@ SmallButton *Page::SmallButonFrom(int numButton) const
     const DataPage *own = OwnData();
 
     return (SmallButton *)(own->items)[numButton];
+}
+
+
+int Page::GetCurrentSubPage() const
+{
+    return set.menu.currentSubPage[OwnData()->name];
 }

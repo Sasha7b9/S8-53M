@@ -280,14 +280,9 @@ bool Settings::DebugModeEnable()
     return true;
 }
 
-int8 MenuCurrentSubPage(NamePage::E namePage)
+void SetMenuCurrentSubPage(NamePage::E namePage, int posSubPage)
 {
-    return set.menu.currentSubPage[namePage];
-}
-
-void SetMenuCurrentSubPage(NamePage::E namePage, int8 posSubPage)
-{
-    set.menu.currentSubPage[namePage] = posSubPage;
+    set.menu.currentSubPage[namePage] = static_cast<int8>(posSubPage);
 }
 
 bool MenuIsShown()

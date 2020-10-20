@@ -829,7 +829,7 @@ void Page::DrawTitle(int layer, int yTop)
     x = Painter::DrawStringInCenterRectC(x, yTop, MP_TITLE_WIDTH + 2 + delta, MP_TITLE_HEIGHT, Title(), colorText);
     if (condDrawRSet)
     {
-        Painter::Draw4SymbolsInRectC(x + 4, yTop + 11, GetSymbolForGovernor(NumCurrentSubPage()), colorText);
+        Painter::Draw4SymbolsInRectC(x + 4, yTop + 11, GetSymbolForGovernor(GetCurrentSubPage()), colorText);
     }
 
     Menu::itemUnderButton[GetFuncButtonFromY(yTop)] = this;
@@ -876,7 +876,7 @@ void Page::DrawPagesUGO(int right, int bottom) const
     int delta = 2;
 
     int allPages = (NumItems() - 1) / MENU_ITEMS_ON_DISPLAY + 1;
-    int currentPage = NumCurrentSubPage();
+    int currentPage = GetCurrentSubPage();
 
     int left = right - (size + 1) * allPages - delta + (3 - allPages);
     int top = bottom - size - delta;

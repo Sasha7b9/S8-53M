@@ -54,7 +54,6 @@ public:
     // Установить позицию активного пункта на странице namePage.
     static void SetPosActItem(NamePage::E namePage, int8 pos);
 
-
 private:
     // Обработка короткого нажатия кнопки.
     static void ProcessingShortPressureButton();

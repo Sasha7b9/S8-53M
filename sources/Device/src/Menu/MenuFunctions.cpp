@@ -37,7 +37,7 @@ Item* Menu::CurrentItem()
 
 int Menu::PosItemOnTop(const Page *page)
 {
-    return page->NumCurrentSubPage() * MENU_ITEMS_ON_DISPLAY;
+    return page->GetCurrentSubPage() * MENU_ITEMS_ON_DISPLAY;
 }
 
 

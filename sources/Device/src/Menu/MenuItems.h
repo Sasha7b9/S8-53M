@@ -183,8 +183,6 @@ public:
     Item *GetItem(int numElement) const;
     // Dозвращает число подстраниц в странице по адресу page.
     int NumSubPages() const;
-    // Возвращает номер текущей подстранцы элемента по адресу page.
-    int NumCurrentSubPage() const;
 
     bool IsSB() const;
     // Возвращает позицию текущего элемента странцы page.
@@ -203,6 +201,8 @@ public:
     void OpenAndSetItCurrent() const;
     
     SmallButton *SmallButonFrom(int numButton) const;
+    // Возвращает номер текущей подстраницы страницы namePage.
+    int GetCurrentSubPage() const;
     
     static Page empty;
 
