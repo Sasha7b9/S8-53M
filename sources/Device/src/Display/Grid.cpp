@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "Display/Grid.h"
+#include "Menu/Menu.h"
 #include "Settings/Settings.h"
 
 
@@ -17,13 +18,13 @@ int Grid::Delta()
 
 int Grid::Left(void)
 {
-    return (MenuIsMinimize() && MenuIsShown() ? 9 : 20) + Measure::GetDeltaGridLeft();
+    return (MenuIsMinimize() && Menu::IsShown() ? 9 : 20) + Measure::GetDeltaGridLeft();
 }
 
 
 int Grid::Right(void)
 {
-    return ((MenuIsMinimize() && MenuIsShown()) ? 9 : 20) + 280;
+    return ((MenuIsMinimize() && Menu::IsShown()) ? 9 : 20) + 280;
 }
 
 
@@ -83,7 +84,7 @@ int Grid::FullCenterHeight(void)
 
 int Grid::WidthInCells(void)
 {
-    return MenuIsShown() ? 10 : 14;
+    return Menu::IsShown() ? 10 : 14;
 }
 
 

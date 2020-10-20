@@ -217,7 +217,7 @@ void Menu::PressButton(Key::E button)
         return;
     }
 
-    if (!MenuIsShown())
+    if (!Menu::IsShown())
     {
         for (int i = SIZE_BUFFER_FOR_BUTTONS - 1; i > 0; i--)
         {
@@ -273,7 +273,7 @@ Item* Menu::ItemUnderKey(void)
 
 void Menu::SetAutoHide(bool)
 {
-    if(!MenuIsShown())
+    if(!Menu::IsShown())
     {
         return;
     }
@@ -290,7 +290,7 @@ void Menu::SetAutoHide(bool)
 
 char* Menu::StringNavigation(char buffer[100])
 {
-    if(SHOW_STRING_NAVIGATION && MenuIsShown())
+    if(SHOW_STRING_NAVIGATION && Menu::IsShown())
     {
         buffer[0] = 0;
         const char *titles[10] = {0};
@@ -335,7 +335,7 @@ void Menu::ProcessingShortPressureButton()
     {
         if (shortPressureButton == Key::Memory && MODE_BTN_MEMORY_IS_SAVE && FLASH_DRIVE_IS_CONNECTED == 1)
         {
-            EXIT_FROM_SET_NAME_TO = MenuIsShown() ? RETURN_TO_MAIN_MENU : RETURN_TO_DISABLE_MENU;
+            EXIT_FROM_SET_NAME_TO = Menu::IsShown() ? RETURN_TO_MAIN_MENU : RETURN_TO_DISABLE_MENU;
             Memory_SaveSignalToFlashDrive();
             shortPressureButton = Key::None;
             return;
@@ -349,7 +349,7 @@ void Menu::ProcessingShortPressureButton()
         {
             if(button == Key::Menu)                                   // Если нажата кнопка МЕНЮ и мы не находимся в режме настройки измерений.
             {
-                if(!MenuIsShown())
+                if(!Menu::IsShown())
                 {
                     ShowMenu(true);
                 }
@@ -358,7 +358,7 @@ void Menu::ProcessingShortPressureButton()
                     CloseOpenedItem();
                 }
             }
-            else if (MenuIsShown() && IsFunctionalButton(button))       // Если меню показано и нажата функциональная клавиша
+            else if (Menu::IsShown() && IsFunctionalButton(button))       // Если меню показано и нажата функциональная клавиша
             {
                 Item *item = ItemUnderButton(button);
                 if (SHOW_HELP_HINTS)
@@ -426,9 +426,9 @@ void Menu::ProcessingLongPressureButton(void)
         }
         else if(longPressureButton == Key::Menu)
         {
-                ShowMenu(!MenuIsShown());
+                ShowMenu(!Menu::IsShown());
         }
-        else if(MenuIsShown() && IsFunctionalButton(longPressureButton))
+        else if(Menu::IsShown() && IsFunctionalButton(longPressureButton))
         {
             Item *item = ItemUnderButton(longPressureButton);
             if (item->IsActive())
@@ -448,7 +448,7 @@ void Menu::ProcessingRegulatorSet(void)
         return;
     }
 
-    if (MenuIsShown() || OpenedItem()->Type() != TypeItem::Page)
+    if (Menu::IsShown() || OpenedItem()->Type() != TypeItem::Page)
     {
         Item *item = CurrentItem();
         TypeItem::E type = item->Type();
@@ -542,7 +542,7 @@ void Menu::OpenItemTime(void)
 
 bool Menu::NeedForFireSetLED()    // Возвращает true, если лампочка УСТАНОВКА должна гореть
 {
-    if (!MenuIsShown())
+    if (!Menu::IsShown())
     {
         return false;
     }
@@ -615,7 +615,7 @@ void Menu::OpenFileManager()
         Display::Update(false);
     }
 
-    if (!MenuIsShown())
+    if (!Menu::IsShown())
     {
         ShortPressureButton(Key::Menu);
         UpdateInput();
@@ -673,4 +673,10 @@ int Menu::GetPosActItem(NamePage::E namePage)
 void Menu::SetPosActItem(NamePage::E namePage, int8 pos)
 {
     set.menu.posActItem[namePage] = pos;
+}
+
+
+bool Menu::IsShown()
+{
+    return set.menu.isShown;
 }

@@ -53,6 +53,8 @@ public:
     static int GetPosActItem(NamePage::E namePage);
     // Установить позицию активного пункта на странице namePage.
     static void SetPosActItem(NamePage::E namePage, int8 pos);
+    // Отображено ли меню на экране.
+    static bool IsShown();
 
 private:
     // Обработка короткого нажатия кнопки.

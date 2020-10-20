@@ -280,11 +280,6 @@ bool Settings::DebugModeEnable()
     return true;
 }
 
-bool MenuIsShown()
-{
-    return set.menu.isShown;
-}
-
 void ShowMenu(bool show)
 {
     set.menu.isShown = show ? 1U : 0U;

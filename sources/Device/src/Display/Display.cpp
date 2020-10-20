@@ -466,7 +466,7 @@ void Display::DRAW_SPECTRUM(pUCHAR data, int numPoints, Channel::E channel)
     Math::PointsRelToVoltage(data, numPoints, gDSet->range[channel], channel == Channel::A ? static_cast<int16>(gDSet->rShiftCh0) : static_cast<int16>(gDSet->rShiftCh1), dataR);
     Math::CalculateFFT(dataR, numPoints, spectrum, &freq0, &density0, &freq1, &density1, &y0, &y1);
     DrawSpectrumChannel(spectrum, Color::Channel(channel));
-    if (!MenuIsShown() || MenuIsMinimize())
+    if (!Menu::IsShown() || MenuIsMinimize())
     {
         int s = 2;
 
@@ -1490,7 +1490,7 @@ void Display::DrawGrid(int left, int top, int width, int height)
         HLine().Draw(top, 1, left - 2);
         HLine().Draw(top, right + 2, Display::WIDTH - 2);
 
-        if (!MenuIsMinimize() || !MenuIsShown())
+        if (!MenuIsMinimize() || !Menu::IsShown())
         {
             VLine().Draw(1, top + 2, bottom - 2);
             VLine().Draw(318, top + 2, bottom - 2);
@@ -1553,7 +1553,7 @@ void Display::DrawScaleLine(int x, bool forTrigLev)
 
 void Display::DrawCursorsWindow()
 {
-    if((!MenuIsMinimize() || !MenuIsShown()) && (DRAW_RSHIFT_MARKERS != 0))
+    if((!MenuIsMinimize() || !Menu::IsShown()) && (DRAW_RSHIFT_MARKERS != 0))
     {
         DrawScaleLine(2, false);
     }
@@ -1667,7 +1667,7 @@ void Display::DrawCursorRShift(Channel::E chan)
 
     Font::Set(TypeFont::_5);
 
-    if((!MenuIsMinimize() || !MenuIsShown()) && DRAW_RSHIFT_MARKERS_IS_TRUE)
+    if((!MenuIsMinimize() || !Menu::IsShown()) && DRAW_RSHIFT_MARKERS_IS_TRUE)
     {
         float scaleFull = (float)Grid::ChannelHeight() / (RShiftMax - RShiftMin) * (sService_MathEnabled() ? 0.9F : 0.91F);
         float yFull = Grid::ChannelCenterHeight() - scaleFull * (rShift - RShiftZero);
