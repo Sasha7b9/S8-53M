@@ -595,3 +595,37 @@ void Page::OpenAndSetItCurrent() const
     SetCurrent(true);
     Open(!IsOpened());
 }
+
+
+bool Item::ChangeOpened(int delta)
+{
+    if (delta < 2 && delta > -2)
+    {
+        return false;
+    }
+
+    TypeItem::E type = Type();
+
+    if (type == TypeItem::Page)
+    {
+        ((const Page *)this)->ChangeSubPage(delta);
+    }
+    else if (type == TypeItem::IP)
+    {
+        ((IPaddress *)this)->ChangeValue(delta);
+    }
+    else if (type == TypeItem::MAC)
+    {
+        ((MACaddress *)this)->ChangeValue(delta);
+    }
+    else if (type == TypeItem::ChoiceReg || type == TypeItem::Choice)
+    {
+        ((Choice *)this)->ChangeValue(delta);
+    }
+    else if (type == TypeItem::Governor)
+    {
+        ((Governor *)this)->ChangeValue(delta);
+    }
+
+    return true;
+}

@@ -137,6 +137,8 @@ public:
     // Уменьшает или увеличивает значение Governor, GovernorColor или Choice по адресу item в зависимости от знака delta
     void Change(int delta);
 
+    bool ChangeOpened(int delta);
+
     static DataItem emptyData;
 
     static Item empty;

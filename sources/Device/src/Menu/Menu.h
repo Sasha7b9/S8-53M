@@ -39,8 +39,6 @@ public:
     static bool CurrentItemIsOpened(NamePage::E namePage);
 
     static NamePage::E GetNameOpenedPage();
-
-    static bool ChangeOpenedItem(Item *item, int delta);
     // Возвращает высоту в пикселях открытого элемента Choice или NamePage::E по адресу item.
     static int HeightOpenedItem(const Item *item);
     // Возвращает название элемента по адресу item, как оно выглядит на дисплее прибора.

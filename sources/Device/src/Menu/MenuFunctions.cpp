@@ -107,40 +107,6 @@ NamePage::E Menu::GetNameOpenedPage()
 }
 
 
-bool Menu::ChangeOpenedItem(Item *item, int delta)
-{
-    if (delta < 2 && delta > -2)
-    {
-        return false;
-    }
-
-    TypeItem::E type = item->Type();
-
-    if (type == TypeItem::Page)
-    {
-        ((const Page *)item)->ChangeSubPage(delta);
-    }
-    else if (type == TypeItem::IP)
-    {
-        ((IPaddress *)item)->ChangeValue(delta);
-    }
-    else if (type == TypeItem::MAC)
-    {
-        ((MACaddress *)item)->ChangeValue(delta);
-    }
-    else if (type == TypeItem::ChoiceReg || type == TypeItem::Choice)
-    {
-        ((Choice *)item)->ChangeValue(delta);
-    }
-    else if (type == TypeItem::Governor)
-    {
-        ((Governor *)item)->ChangeValue(delta);
-    }
-    
-    return true;
-}
-
-
 SmallButton* Menu::SmallButonFromPage(const Page *page, int numButton)
 {
     const DataPage *own = page->OwnData();
