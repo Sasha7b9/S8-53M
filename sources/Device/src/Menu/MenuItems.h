@@ -140,6 +140,8 @@ public:
     bool ChangeOpened(int delta);
     // Возвращает высоту в пикселях открытого элемента Choice или NamePage::E по адресу item.
     int HeightOpened() const;
+    // Возвращает название элемента по адресу item, как оно выглядит на дисплее прибора.
+    const char *Title() const;
 
     static DataItem emptyData;
 

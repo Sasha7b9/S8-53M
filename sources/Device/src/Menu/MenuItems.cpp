@@ -647,3 +647,9 @@ int Item::HeightOpened() const
     }
     return MI_HEIGHT;
 }
+
+
+const char *Item::Title() const
+{
+    return TITLE((Page *)this);
+}

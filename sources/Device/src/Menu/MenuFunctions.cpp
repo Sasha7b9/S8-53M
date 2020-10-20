@@ -35,12 +35,6 @@ Item* Menu::CurrentItem()
 }
 
 
-const char* Menu::TitleItem(const void *item) 
-{
-    return TITLE((Page*)item);
-}
-
-
 int Menu::PosItemOnTop(const Page *page)
 {
     return page->NumCurrentSubPage() * MENU_ITEMS_ON_DISPLAY;

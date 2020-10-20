@@ -39,8 +39,6 @@ public:
     static bool CurrentItemIsOpened(NamePage::E namePage);
 
     static NamePage::E GetNameOpenedPage();
-    // Возвращает название элемента по адресу item, как оно выглядит на дисплее прибора.
-    static const char* TitleItem(const void *item);
     // Возвращает позицию первого элемента страницы по адресу page на экране. Если текущая подстраница 0, это будет 0, если текущая подстраница 1, это будет 5 и т.д.
     static int PosItemOnTop(const Page *page);
     // Возвращает true, если button - функциональная клавиша [1..5].

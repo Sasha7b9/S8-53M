@@ -54,7 +54,7 @@ void DrawGovernorChoiceColorFormulaHiPart(const Item *item, int x, int y, bool p
         Painter::DrawVolumeButton(x + 1, y + 2, width + 2, MI_HEIGHT_VALUE + 3, 2, ColorMenuItem(false), ColorMenuItemBrighter(), ColorMenuItemLessBright(), pressed, shade);
     }
 
-    Text(Menu::TitleItem(item)).Draw(x + 6 + delta, y + 6 + delta, color);
+    Text(item->Title()).Draw(x + 6 + delta, y + 6 + delta, color);
     
     TypeItem::E type = item->Type();
 
@@ -483,7 +483,7 @@ void GovernorColor::DrawOpened(int x, int y)
     Painter::DrawVolumeButton(x + 1, y + 1, MI_WIDTH_VALUE + 2 + delta, MI_HEIGHT_VALUE + 3, 2, ColorMenuItem(false), 
         ColorMenuItemBrighter(), ColorMenuItemLessBright(), IsPressed(), IsShade());
     HLine().Draw(y + MI_HEIGHT / 2 + 2, x, x + MI_WIDTH + delta, ColorMenuTitle(false));
-    Painter::DrawStringInCenterRectC(x + (IsPressed() ? 2 : 1), y + (IsPressed() ? 2 : 1), MI_WIDTH + delta, MI_HEIGHT / 2 + 2, Menu::TitleItem(this), Color::WHITE);
+    Painter::DrawStringInCenterRectC(x + (IsPressed() ? 2 : 1), y + (IsPressed() ? 2 : 1), MI_WIDTH + delta, MI_HEIGHT / 2 + 2, Title(), Color::WHITE);
     DrawValue(x + 1, y + 19, delta);
 }
 
@@ -724,7 +724,7 @@ void Button::Draw(int x, int y, bool)
 
     int delta = (pressed && (!shade)) ? 2 : 1;
     
-    Painter::DrawStringInCenterRectC(x + delta, y + delta, MI_WIDTH, MI_HEIGHT, Menu::TitleItem(this), color);
+    Painter::DrawStringInCenterRectC(x + delta, y + delta, MI_WIDTH, MI_HEIGHT, Title(), color);
 }
 
 void SmallButton::Draw(int x, int y, bool)
@@ -769,7 +769,7 @@ void Page::Draw(int x, int y, bool)
         colorText = COLOR_FILL;
         delta = 1;
     }
-    Painter::DrawStringInCenterRectC(x + delta, y + delta, MI_WIDTH, MI_HEIGHT, Menu::TitleItem(this), colorText);
+    Painter::DrawStringInCenterRectC(x + delta, y + delta, MI_WIDTH, MI_HEIGHT, Title(), colorText);
 }
 
 
@@ -826,7 +826,7 @@ void Page::DrawTitle(int layer, int yTop)
     bool condDrawRSet = NumSubPages() > 1 && Menu::CurrentItem()->Type() != TypeItem::ChoiceReg && Menu::CurrentItem()->Type() != TypeItem::Governor && Menu::OpenedItem()->Type() == TypeItem::Page;
     int delta = condDrawRSet ? -10 : 0;
     Color::E colorText = shade ? LightShadingTextColor() : Color::BLACK;
-    x = Painter::DrawStringInCenterRectC(x, yTop, MP_TITLE_WIDTH + 2 + delta, MP_TITLE_HEIGHT, Menu::TitleItem(this), colorText);
+    x = Painter::DrawStringInCenterRectC(x, yTop, MP_TITLE_WIDTH + 2 + delta, MP_TITLE_HEIGHT, Title(), colorText);
     if (condDrawRSet)
     {
         Painter::Draw4SymbolsInRectC(x + 4, yTop + 11, GetSymbolForGovernor(NumCurrentSubPage()), colorText);
