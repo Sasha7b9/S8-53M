@@ -26,7 +26,7 @@
     {                                                   \
         VCP::SendFormatStringAsynch(__VA_ARGS__);       \
     }                                                   \
-    if (CLIENT_LAN_IS_CONNECTED)                        \
+    if (LAN::clientIsConnected)                         \
     {                                                   \
         TCPSocket::SendFormatString(__VA_ARGS__);       \
     }

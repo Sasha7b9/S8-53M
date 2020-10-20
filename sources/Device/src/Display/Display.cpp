@@ -2094,9 +2094,9 @@ void Display::DrawLowPart()
     }
 
     // Ethernet
-    if (((CLIENT_LAN_IS_CONNECTED != 0) || LAN::cableLANisConnected) && gTimerMS > 2000)
+    if ((LAN::clientIsConnected || LAN::cableIsConnected) && gTimerMS > 2000)
     {
-        Painter::Draw4SymbolsInRectC(x + 87, Grid::Bottom() + 2, SYMBOL_ETHERNET, CLIENT_LAN_IS_CONNECTED ? COLOR_FILL : Color::FLASH_01);
+        Painter::Draw4SymbolsInRectC(x + 87, Grid::Bottom() + 2, SYMBOL_ETHERNET, LAN::clientIsConnected ? COLOR_FILL : Color::FLASH_01);
     }
 
     if ((CLIENT_VCP_IS_CONNECTED != 0) || (CABLE_VCP_IS_CONNECTED != 0))

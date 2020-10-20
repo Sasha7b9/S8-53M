@@ -1,12 +1,14 @@
 #include "defines.h"
-#include "SCPI.h"
 #include "common/Log_c.h"
+#include "FPGA/FPGA.h"
+#include "LAN/LAN.h"
 #include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
 #include "Utils/Map.h"
 #include "Utils/GlobalFunctions.h"
 #include "VCP/VCP.h"
-#include "FPGA/FPGA.h"
+#include "VCP/SCPI/SCPI.h"
+
 
 
 /*

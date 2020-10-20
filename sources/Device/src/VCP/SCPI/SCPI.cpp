@@ -1,8 +1,9 @@
 #include "defines.h"
 #include "common/Log_c.h"
-#include "SCPI.h"
+#include "LAN/LAN.h"
 #include "Utils/Strings.h"
 #include "Utils/GlobalFunctions.h"
+#include "VCP/SCPI/SCPI.h"
 #include <ctype.h>
 #include <cstring>
 #include <cstdlib>

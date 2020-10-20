@@ -2,8 +2,8 @@
 #include "LAN/LAN.h"
 
 
-bool LAN::cableLANisConnected = false;
-
+bool LAN::cableIsConnected = false;
+bool LAN::clientIsConnected = false;
 
 void LAN::Init()
 {

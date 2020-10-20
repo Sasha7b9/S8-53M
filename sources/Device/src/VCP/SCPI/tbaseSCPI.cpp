@@ -1,12 +1,12 @@
 #include "defines.h"
 #include "common/Log_c.h"
+#include "FPGA/FPGA.h"
+#include "LAN/LAN.h"
 #include "Menu/Pages/Definition.h"
-#include "VCP/SCPI/SCPI.h"
 #include "Settings/Settings.h"
 #include "Utils/Map.h"
 #include "VCP/VCP.h"
-#include "FPGA/FPGA.h"
-
+#include "VCP/SCPI/SCPI.h"
 
 
 ENTER_PARSE_FUNC(SCPI::ProcessTBASE)

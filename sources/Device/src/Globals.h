@@ -9,7 +9,6 @@
 class Item;
 
 
-#define CLIENT_LAN_IS_CONNECTED     (gBF.clientLANisConnected)
 #define CLIENT_VCP_IS_CONNECTED     (gBF.connectToHost)
 #define CABLE_VCP_IS_CONNECTED      (gBF.cableVCPisConnected)
 
@@ -52,9 +51,6 @@ class Item;
 
 struct BitField
 {
-    // Ethernet
-    uint clientLANisConnected       : 1;    // Если 1, то подсоединён клиент
-
     // Для рисования : Display::c
     uint showLevelRShift0           : 1;    // Нужно ли рисовать горизонтальную линию уровня смещения первого канала
     uint showLevelRShift1           : 1;
