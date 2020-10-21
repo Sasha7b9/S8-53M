@@ -51,14 +51,14 @@ static const TimeItem name(&di##name);
 
 
 #define DEF_PAGE_HELP(name, parent, type, titleRU, titleEN, hintRU, hintEN)                                                                 \
-static const DataPageHelp dph##name = { type, &parent, nullptr };                                                                           \
+static const DataPageHelp dph##name = { type, parent, nullptr };                                                                           \
 static const char *th##name[] = {titleRU, titleEN, hintRU, hintEN};                                                                         \
 static const DataItem di##name = { TypeItem::Page, nullptr, nullptr, th##name, &dph##name};                                                 \
 static const PageHelpItem name(&di##name);
 
 
 #define DEF_PAGE_HELP_2(name, parent, type, titleRU, titleEN, hintRU, hintEN, page1, page2)                                                 \
-static const DataPageHelp dph##name = { type, &parent, {&page1, &page2} };                                                                  \
+static const DataPageHelp dph##name = { type, parent, {&page1, &page2} };                                                                  \
 static const char *th##name[] = {titleRU, titleEN, hintRU, hintEN};                                                                         \
 static const DataItem di##name = { TypeItem::Page, nullptr, nullptr, th##name, &dph##name};                                                 \
 static const PageHelpItem name(&di##name);

@@ -22,7 +22,7 @@ const PageHelpItem PageHelpItem::empty(&Item::emptyData);
 
 
 int currentParagraph = 0;   // ≈сли TypePage(currentPage) == TypePageHelp::Content, то указывает не текущий раздел оглавлени€
-const PageHelpItem *currentPage = &helpMain;
+const PageHelpItem *currentPage = PageHelpContent::PageMain::self;
 
 
 static const int WIDTH = 295;

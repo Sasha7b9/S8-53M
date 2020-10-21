@@ -31,10 +31,7 @@ public:
     static const PageHelpItem empty;
 };
 
-extern const PageHelpItem helpMenu;
-
-
-DEF_PAGE_HELP(helpMenuCommon, helpMenu, TypePageHelp::Description, //-V1043
+DEF_PAGE_HELP(helpMenuCommon, PageHelpContent::PageMain::PageMenu::self, TypePageHelp::Description, //-V1043
     "Общее описание принципов меню", "General description of the principles of the menu"
     ,
     "Кнопки на панели управления имеют два типа нажатия - короткое, длительностью менее 0.5 сек и длинное, длительностьи более 0.5 сек. "
@@ -56,22 +53,20 @@ DEF_PAGE_HELP(helpMenuCommon, helpMenu, TypePageHelp::Description, //-V1043
     ""    
 )
 
-DEF_PAGE_HELP(helpMenuControls, helpMenu, TypePageHelp::Description, //-V1043
+DEF_PAGE_HELP(helpMenuControls, PageHelpContent::PageMain::PageMenu::self, TypePageHelp::Description, //-V1043
     "Описание органов управлениея", "Description of the controls"
     ,
     "",
     ""
 )
 
-extern const PageHelpItem helpMain;
-
-DEF_PAGE_HELP(helpSCPI, helpMain, TypePageHelp::Description, //-V1043
+DEF_PAGE_HELP(helpSCPI, PageHelpContent::PageMain::self, TypePageHelp::Description, //-V1043
     "Работа с SCPI", "Working with SCPI",
     "",
     ""
 )
 
-DEF_PAGE_HELP_2(helpMenu, helpMain, TypePageHelp::Content, //-V1043
+DEF_PAGE_HELP_2(helpMenu, PageHelpContent::PageMain::self, TypePageHelp::Content, //-V1043
     "Работа с меню", "Working with menus",
     "",
     "",
@@ -79,7 +74,7 @@ DEF_PAGE_HELP_2(helpMenu, helpMain, TypePageHelp::Content, //-V1043
     helpMenuControls
 )
 
-DEF_PAGE_HELP_2(helpMain, PageHelpItem::empty, TypePageHelp::Content, //-V1043
+DEF_PAGE_HELP_2(helpMain, &PageHelpItem::empty, TypePageHelp::Content, //-V1043
     "ПОМОЩЬ", "HELP",
     "",
     "",
@@ -89,3 +84,4 @@ DEF_PAGE_HELP_2(helpMain, PageHelpItem::empty, TypePageHelp::Content, //-V1043
 
 
 const PageHelpItem *PageHelpContent::PageMain::self = &helpMain;
+const PageHelpItem *PageHelpContent::PageMain::PageMenu::self = &helpMenu;

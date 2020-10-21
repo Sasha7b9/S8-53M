@@ -12,6 +12,11 @@ struct PageHelpContent
     struct PageMain
     {
         static const PageHelpItem *self;
+
+        struct PageMenu
+        {
+            static const PageHelpItem *self;
+        };
     };
 };
 
