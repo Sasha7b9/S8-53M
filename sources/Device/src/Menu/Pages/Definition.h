@@ -4,6 +4,7 @@
 
 
 class Page;
+class PageHelpItem;
 struct ColorType;
 
 
@@ -199,6 +200,11 @@ struct PageHelpContent
 {
     static const char *stringForHint;   // Строка подсказки, которую надо выводить в случае включённого режима подсказок.
     static Item *itemHint;              // Item, подсказку для которого нужно выводить в случае включённого режима подсказок.
+
+    struct PageMain
+    {
+        static const PageHelpItem *self;
+    };
 };
 
 

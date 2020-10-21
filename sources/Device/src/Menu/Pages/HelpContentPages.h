@@ -1,5 +1,6 @@
 #pragma once
 #include "Menu/MenuItems.h"
+#include "Menu/Pages/Definition.h"
 
 
 struct TypePageHelp { enum E
@@ -85,3 +86,6 @@ DEF_PAGE_HELP_2(helpMain, PageHelpItem::empty, TypePageHelp::Content, //-V1043
     helpMenu,
     helpSCPI
 )
+
+
+const PageHelpItem *PageHelpContent::PageMain::self = &helpMain;
