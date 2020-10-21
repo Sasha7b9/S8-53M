@@ -168,9 +168,6 @@ struct DataSettings
 };
 
 
-extern const char *gStringForHint;  // Строка подсказки, которую надо выводить в случае включённого режима подсказок.
-extern Item* gItemHint;              // Item, подсказку для которого нужно выводить в случае включённого режима подсказок.
-
 void SetItemForHint(Item *item);
 
 extern StateFPGA gStateFPGA;

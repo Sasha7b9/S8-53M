@@ -1097,7 +1097,7 @@ void Display::DrawHiRightPart()
         if (TRIG_ENABLE)
         {
             Region(Grid::TOP - 3, Grid::TOP - 7).Fill(x, 1 + y);
-            Text(set.common.lang == Language::Russian ? "СИ" : "Tr").Draw(x + 3, 3 + y, COLOR_BACK);
+            Text(LANG_RU ? "СИ" : "Tr").Draw(x + 3, 3 + y, COLOR_BACK);
         }
     }
 
@@ -1114,8 +1114,8 @@ void Display::DrawHiRightPart()
         x += 18;
         HLine().Draw(x, 1, Grid::TOP - 2, COLOR_FILL);
         x += 2;
-        Text(set.common.lang == Language::Russian ? "режим" : "mode").Draw(set.common.lang == Language::Russian ? x : x + 3, -1);
-        Painter::DrawStringInCenterRect(x + 1, 9, 25, 8, strings_[MODE_WORK][set.common.lang]);
+        Text(LANG_RU ? "режим" : "mode").Draw(LANG_RU ? x : x + 3, -1);
+        Painter::DrawStringInCenterRect(x + 1, 9, 25, 8, strings_[MODE_WORK][LANG]);
     }
     else
     {
@@ -1924,7 +1924,7 @@ void Display::WriteTextVoltage(Channel::E chan, int x, int y)
 
         char buffer[100] = {0};
 
-        std::sprintf(buffer, "%s\xa5%s\xa5%s", (chan == Channel::A) ? ((set.common.lang == Language::Russian) ? "1к" : "1c") : ((set.common.lang == Language::Russian) ? "2к" : "2c"), couple[modeCouple],
+        std::sprintf(buffer, "%s\xa5%s\xa5%s", (chan == Channel::A) ? (LANG_RU ? "1к" : "1c") : (LANG_RU ? "2к" : "2c"), couple[modeCouple],
             sChannel_Range2String(range, multiplier));
 
         Text(buffer).Draw(x + 1, y, colorDraw);

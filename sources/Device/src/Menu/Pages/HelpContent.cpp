@@ -8,18 +8,21 @@
 #include "Utils/GlobalFunctions.h"
 #include "common/Utils/Math_c.h"
 #include "Settings/Settings.h"
+#include "Menu/Pages/Definition.h"
 #include "common/Hardware/Timer_c.h"
 #include "common/Hardware/HAL/HAL_c.h"
 
 
 using namespace Primitives;
 
+const char *PageHelpContent::stringForHint = 0;
+Item *PageHelpContent::itemHint = 0;
 
-const PageHelp PageHelp::empty(&Item::emptyData);
+const PageHelpItem PageHelpItem::empty(&Item::emptyData);
 
 
 int currentParagraph = 0;   // ≈сли TypePage(currentPage) == TypePageHelp::Content, то указывает не текущий раздел оглавлени€
-const PageHelp *currentPage = &helpMain;
+const PageHelpItem *currentPage = &helpMain;
 
 
 static const int WIDTH = 295;
@@ -90,7 +93,7 @@ void HelpContent_Draw()
     Painter::DrawFormatText(2, 230, COLOR_FILL, "%d", gTimerMS - startTime);
 }
 
-static int NumParagraphs(const PageHelp *page)
+static int NumParagraphs(const PageHelpItem *page)
 {
     int retValue = 0;
     while(page->OwnData()->pages[retValue])
@@ -120,7 +123,7 @@ void HelpContent_EnterParagraph()
 {
     if(currentPage->OwnData()->type == TypePageHelp::Content)
     {
-        currentPage = (const PageHelp *)currentPage->OwnData()->pages[currentParagraph];
+        currentPage = (const PageHelpItem *)currentPage->OwnData()->pages[currentParagraph];
     }
     currentParagraph = 0;
 }
@@ -130,7 +133,7 @@ void HelpContent_LeaveParagraph()
     currentParagraph = 0;
     if(currentPage->OwnData()->parent)
     {
-        currentPage = (const PageHelp *)currentPage->OwnData()->parent;
+        currentPage = (const PageHelpItem *)currentPage->OwnData()->parent;
     }
 }
 

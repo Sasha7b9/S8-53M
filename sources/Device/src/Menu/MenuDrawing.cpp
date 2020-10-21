@@ -4,6 +4,7 @@
 #include "Display/Grid.h"
 #include "Display/Painter.h"
 #include "Menu/Menu.h"
+#include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
 #include <cstdio>
@@ -17,7 +18,7 @@ Item *Menu::itemUnderButton[Key::Count];
 
 static void DrawHintItem(int x, int y, int width)
 {
-    if (!gItemHint)
+    if (!PageHelpContent::itemHint)
     {
         return;
     }
@@ -38,13 +39,12 @@ static void DrawHintItem(int x, int y, int width)
         {"",            ""},        // TypeItem::ChoiceReg
         {"Êíîïêà",      "Button"}   // TypeItem::SmallButton
     };
-    TypeItem::E type = gItemHint->Type();
-    Language::E lang = set.common.lang;
-    Page *item = (Page*)gItemHint;
+    TypeItem::E type = PageHelpContent::itemHint->Type();
+    Page *item = (Page*)PageHelpContent::itemHint;
 
     const int SIZE = 100;
     char title[SIZE];
-    std::snprintf(title, SIZE, "%s \"%s\"", names[type][lang], TITLE(item));
+    std::snprintf(title, SIZE, "%s \"%s\"", names[type][LANG], TITLE(item));
 
     if (item->data->type == TypeItem::SmallButton)
     {
@@ -101,11 +101,11 @@ void Menu::Draw()
                          "To disable this mode, press the button HELP and hold it for 0.5s.",
                          COLOR_BACK, COLOR_FILL);
         y += LANG_RU ? 49 : 40;
-        if (gStringForHint)
+        if (PageHelpContent::stringForHint)
         {
-            Painter::DrawTextInBoundedRectWithTransfers(x, y, width - 1, gStringForHint, COLOR_BACK, COLOR_FILL);
+            Painter::DrawTextInBoundedRectWithTransfers(x, y, width - 1, PageHelpContent::stringForHint, COLOR_BACK, COLOR_FILL);
         }
-        else if (gItemHint)
+        else if (PageHelpContent::itemHint)
         {
             DrawHintItem(x, y, width - 1);
         }

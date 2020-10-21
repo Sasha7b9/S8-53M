@@ -2,6 +2,7 @@
 #include "Globals.h"
 #include "Display/DisplayTypes.h"
 #include "Display/Grid.h"
+#include "Menu/Pages/Definition.h"
 
 
 void *extraMEM = 0;
@@ -63,14 +64,10 @@ StateFPGA gStateFPGA =
     StateCalibration::None
 };
 
-const char *gStringForHint = 0;
-Item *gItemHint = 0;
-
-
 void SetItemForHint(Item *item)
 {
-    gStringForHint = 0;
-    gItemHint = item;
+    PageHelpContent::stringForHint = 0;
+    PageHelpContent::itemHint = item;
 }
 
 uint8           *gData0 = 0;

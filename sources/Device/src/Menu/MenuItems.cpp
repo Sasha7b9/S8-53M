@@ -99,7 +99,7 @@ int Choice::NumSubItems() const
     int i = 0;
     for (; i < MAX_NUM_SUBITEMS_IN_CHOICE; i++)
     {
-        if (OwnData()->names[i][set.common.lang] == 0)
+        if (OwnData()->names[i][LANG] == 0)
         {
             return i;
         }

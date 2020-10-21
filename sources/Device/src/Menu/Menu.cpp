@@ -53,8 +53,8 @@ void Menu::ShortPressureButton(Key::E button)
         if(button == Key::Help)
         {
             SHOW_HELP_HINTS++;
-            gStringForHint = 0;
-            gItemHint = 0;
+            PageHelpContent::stringForHint = 0;
+            PageHelpContent::itemHint = 0;
         }
         shortPressureButton = button;
     }
@@ -76,7 +76,7 @@ void Menu::ProcessButtonForHint(Key::E button)
 {
     if (button == Key::Menu)
     {
-        gStringForHint = set.common.lang == Language::Russian ?
+        PageHelpContent::stringForHint = LANG_RU ?
             "Кнопка МЕНЮ выполняет следующие функции:\n"
             "1. При закрытом меню нажатие либо нажатие с удержанием в течение 0.5с открывает меню.\n"
             "2. При открытом меню удержание кнопки в течение 0.5с закрывает меню.\n"
@@ -100,21 +100,21 @@ void Menu::ProcessButtonForHint(Key::E button)
 
     } else if (button == Key::Cursors)
     {
-        gStringForHint = LANG_RU ? 
+        PageHelpContent::stringForHint = LANG_RU ?
             "Кнопка КУРСОРЫ открывает меню курсорных измерений."
             :
             "КУРСОРЫ button to open the menu cursor measurements.";
     }
     else if (button == Key::Display)
     {
-        gStringForHint = LANG_RU ?
+        PageHelpContent::stringForHint = LANG_RU ?
             "Кнопка ДИСПЛЕЙ открывает меню настроек дисплея."
             :
             "DISPLAY button opens the display settings menu.";
     }
     else if (button == Key::Memory)
     {
-        gStringForHint = LANG_RU ?
+        PageHelpContent::stringForHint = LANG_RU ?
             "1. При настройке \"ПАМЯТЬ\x99ВНЕШН ЗУ\x99Реж кн ПАМЯТЬ\x99Меню\" открывает меню работы с памятью.\n"
             "2. При настройке \"ПАМЯТь\x99ВНЕШН ЗУ\x99Реж кн ПАМЯТЬ\x99Сохранение\" сохраняет сигнал на флеш-диск."
             :
@@ -123,14 +123,14 @@ void Menu::ProcessButtonForHint(Key::E button)
     }
     else if (button == Key::Measures)
     {
-        gStringForHint = LANG_RU ?
+        PageHelpContent::stringForHint = LANG_RU ?
             "Кнопка ИЗМЕР открывает меню автоматических измерений."
             :
             "ИЗМЕР button opens a menu of automatic measurements.";
     }
     else if (button == Key::Help)
     {
-        gStringForHint = LANG_RU ?
+        PageHelpContent::stringForHint = LANG_RU ?
             "1. Кнопка ПОМОЩЬ открывает меню помощи.\n"
             "2. Нажатие и удержание кнопки ПОМОЩЬ в течение 0.5с включает и отключает режим вывода подсказок."
             :
@@ -139,21 +139,21 @@ void Menu::ProcessButtonForHint(Key::E button)
     }
     else if (button == Key::Service)
     {
-        gStringForHint = LANG_RU ?
+        PageHelpContent::stringForHint = LANG_RU ?
             "Кнопка СЕРВИС открывает меню сервисных возможностей."
             :
             "СЕРВИС button opens a menu of service options.";
     }
     else if (button == Key::Start)
     {
-        gStringForHint = LANG_RU ?
+        PageHelpContent::stringForHint = LANG_RU ?
             "Кнопка ПУСК/СTOП запускает и останавливает процесс сбора информации."
             :
             "ПУСК/СTOП button starts and stops the process of gathering information.";
     }
     else if (button == Key::ChannelA)
     {
-        gStringForHint = LANG_RU ?
+        PageHelpContent::stringForHint = LANG_RU ?
             "1. Кнопка КАНАЛ1 открывает меню настроек канала 1.\n"
             "2. Нажатие и удержание кнопки КАНАЛ1 в течение 0.5с устанавливает смещение канала 1 по вертикали 0В."
             :
@@ -162,7 +162,7 @@ void Menu::ProcessButtonForHint(Key::E button)
     }
     else if (button == Key::ChannelB)
     {
-        gStringForHint = LANG_RU ?
+        PageHelpContent::stringForHint = LANG_RU ?
             "1. Кнопка КАНАЛ2 открывает меню настроек канала 2.\n"
             "2. Нажатие и удержание кнопки КАНАЛ2 в течение 0.5с устанавливает смещение канала 2 по вертикали 0В."
             :
@@ -171,7 +171,7 @@ void Menu::ProcessButtonForHint(Key::E button)
     }
     else if (button == Key::Time)
     {
-        gStringForHint = LANG_RU ?
+        PageHelpContent::stringForHint = LANG_RU ?
             "1. Кнопка РАЗВ открывает меню настроек развертки.\n"
             "2. Нажатие и удержание кнопки РАЗВ в течение 0.5с устанавливает смещение по горизонтали 0с."
             :
@@ -180,7 +180,7 @@ void Menu::ProcessButtonForHint(Key::E button)
     }
     else if (button == Key::Synchronization)
     {
-        gStringForHint = LANG_RU ?
+        PageHelpContent::stringForHint = LANG_RU ?
             "1. Кнопка СИНХР открывает меню настроек синхронизации.\n"
             "2. Нажатие и удержание в течение 0.5с кнопки СИНХР при настройке \"СЕРВИС\x99Реж длит СИНХР\x99Автоуровень\" производит автоматическую настройку уровня синхронизации.\n"
             "3. Нажатие и удержание в течение 0.5с кнопки СИНХР при настройке \"СЕРВИС\x99Реж длит СИНХР\x99Сброс уровня\" устанавливает уровень синхронизации 0В."

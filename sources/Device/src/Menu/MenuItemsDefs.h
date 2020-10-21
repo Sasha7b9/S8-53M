@@ -54,14 +54,14 @@ static const TimeItem name(&di##name);
 static const DataPageHelp dph##name = { type, &parent, nullptr };                                                                           \
 static const char *th##name[] = {titleRU, titleEN, hintRU, hintEN};                                                                         \
 static const DataItem di##name = { TypeItem::Page, nullptr, nullptr, th##name, &dph##name};                                                 \
-static const PageHelp name(&di##name);
+static const PageHelpItem name(&di##name);
 
 
 #define DEF_PAGE_HELP_2(name, parent, type, titleRU, titleEN, hintRU, hintEN, page1, page2)                                                 \
 static const DataPageHelp dph##name = { type, &parent, {&page1, &page2} };                                                                  \
 static const char *th##name[] = {titleRU, titleEN, hintRU, hintEN};                                                                         \
 static const DataItem di##name = { TypeItem::Page, nullptr, nullptr, th##name, &dph##name};                                                 \
-static const PageHelp name(&di##name);
+static const PageHelpItem name(&di##name);
 
 
 #define DEF_PAGE_2(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN, item1, item2, funcActive, funcPress, funcDraw, funcRegSet)     \

@@ -195,6 +195,13 @@ struct PageTrig
 };
 
 
+struct PageHelpContent
+{
+    static const char *stringForHint;   // Строка подсказки, которую надо выводить в случае включённого режима подсказок.
+    static Item *itemHint;              // Item, подсказку для которого нужно выводить в случае включённого режима подсказок.
+};
+
+
 struct PageHelp
 {
     static const Page *self;
@@ -241,4 +248,3 @@ struct PageMemory
 void ChangeC_Memory_NumPoints(bool active);
 void OnPressMemoryExtFileManager();
 void Memory_SaveSignalToFlashDrive();
-extern const void *pMspFileManager;

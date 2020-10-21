@@ -13,24 +13,24 @@ struct TypePageHelp { enum E
 
 /** @todo Избавиться от рудимента funcNotUsed */
 
-class PageHelp;
+class PageHelpItem;
 
 struct DataPageHelp
 {
     TypePageHelp::E type;
-    const PageHelp *parent;
-    const PageHelp *pages[MAX_PAGES];   // Массив содержит адреса ссылаемых страниц в случае TypePageHelp::Content
+    const PageHelpItem *parent;
+    const PageHelpItem *pages[MAX_PAGES];   // Массив содержит адреса ссылаемых страниц в случае TypePageHelp::Content
 };
 
-class PageHelp : public Item
+class PageHelpItem : public Item
 {
 public:
-    PageHelp(const DataItem *const data) : Item(data) {}
+    PageHelpItem(const DataItem *const data) : Item(data) {}
     const DataPageHelp *OwnData() const { return static_cast<const DataPageHelp *>(data->ad); }
-    static const PageHelp empty;
+    static const PageHelpItem empty;
 };
 
-extern const PageHelp helpMenu;
+extern const PageHelpItem helpMenu;
 
 
 DEF_PAGE_HELP(helpMenuCommon, helpMenu, TypePageHelp::Description, //-V1043
@@ -62,7 +62,7 @@ DEF_PAGE_HELP(helpMenuControls, helpMenu, TypePageHelp::Description, //-V1043
     ""
 )
 
-extern const PageHelp helpMain;
+extern const PageHelpItem helpMain;
 
 DEF_PAGE_HELP(helpSCPI, helpMain, TypePageHelp::Description, //-V1043
     "Работа с SCPI", "Working with SCPI",
@@ -78,7 +78,7 @@ DEF_PAGE_HELP_2(helpMenu, helpMain, TypePageHelp::Content, //-V1043
     helpMenuControls
 )
 
-DEF_PAGE_HELP_2(helpMain, PageHelp::empty, TypePageHelp::Content, //-V1043
+DEF_PAGE_HELP_2(helpMain, PageHelpItem::empty, TypePageHelp::Content, //-V1043
     "ПОМОЩЬ", "HELP",
     "",
     "",

@@ -55,7 +55,7 @@ bool sChannel_Enabled(Channel::E chan)
 
 const char* sChannel_Range2String(Range::E range, Divider::E multiplier)
 {
-    return ranges[range].name[set.common.lang][multiplier];
+    return ranges[range].name[LANG][multiplier];
 }
 
 

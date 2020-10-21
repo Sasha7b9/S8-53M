@@ -526,7 +526,7 @@ void Painter::DrawHintsForSmallButton(int x, int y, int width, void *smallButton
     {
         Rectangle(WIDTH_SB, WIDTH_SB).Draw(x, y);
         structHelp->funcDrawUGO(x, y);
-        int yNew = DrawTextInRectWithTransfers(x + 23, y + 1, width - 30, 20, structHelp->helpUGO[set.common.lang]);
+        int yNew = DrawTextInRectWithTransfers(x + 23, y + 1, width - 30, 20, structHelp->helpUGO[LANG]);
         y = ((yNew - y) < 22) ? (y + 22) : yNew;
         structHelp++;
     }

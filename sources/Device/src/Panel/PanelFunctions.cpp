@@ -2,6 +2,7 @@
 #include "common/Hardware/Sound_c.h"
 #include "FPGA/FPGA.h"
 #include "Menu/Menu.h"
+#include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
 #include "common/Hardware/Timer_c.h"
 
@@ -11,8 +12,8 @@ static const uint MIN_TIME = 500;
 void HelpLong(void)
 {
     SHOW_HELP_HINTS++;
-    gStringForHint = 0;
-    gItemHint = 0;
+    PageHelpContent::stringForHint = 0;
+    PageHelpContent::itemHint = 0;
 }
 
 void Channel0Long(void)
