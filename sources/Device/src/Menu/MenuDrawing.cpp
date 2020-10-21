@@ -4,7 +4,7 @@
 #include "Display/Grid.h"
 #include "Display/Painter.h"
 #include "Menu/Menu.h"
-#include "Menu/Pages/Definition.h"
+#include "Menu/Pages/HelpContent.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
 #include <cstdio>

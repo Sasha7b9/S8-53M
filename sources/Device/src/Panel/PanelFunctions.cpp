@@ -2,7 +2,7 @@
 #include "common/Hardware/Sound_c.h"
 #include "FPGA/FPGA.h"
 #include "Menu/Menu.h"
-#include "Menu/Pages/Definition.h"
+#include "Menu/Pages/HelpContent.h"
 #include "Settings/Settings.h"
 #include "common/Hardware/Timer_c.h"
 

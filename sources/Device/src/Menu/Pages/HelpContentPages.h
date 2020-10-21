@@ -1,6 +1,6 @@
 #pragma once
 #include "Menu/MenuItems.h"
-#include "Menu/Pages/Definition.h"
+#include "Menu/Pages/HelpContent.h"
 
 
 struct TypePageHelp { enum E
