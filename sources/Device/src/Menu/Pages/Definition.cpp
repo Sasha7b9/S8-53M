@@ -105,7 +105,7 @@ DEF_PAGE_11(mainPage, Page::empty, NamePage::MainPage,
     *PageMemory::self,
     *PageMeasures::self,
     *PageService::self,
-    mpHelp,
+    *PageHelp::self,
     *PageDebug::self,
     nullptr, nullptr, nullptr, nullptr
 )
