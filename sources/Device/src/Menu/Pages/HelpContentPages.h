@@ -74,7 +74,7 @@ DEF_PAGE_HELP_2(helpMenu, PageHelpContent::PageMain::self, TypePageHelp::Content
     helpMenuControls
 )
 
-DEF_PAGE_HELP_2(helpMain, &PageHelpItem::empty, TypePageHelp::Content, //-V1043
+DEF_PAGE_HELP_2(pageHelpMain, &PageHelpItem::empty, TypePageHelp::Content, //-V1043
     "онлныэ", "HELP",
     "",
     "",
@@ -83,5 +83,5 @@ DEF_PAGE_HELP_2(helpMain, &PageHelpItem::empty, TypePageHelp::Content, //-V1043
 )
 
 
-const PageHelpItem *PageHelpContent::PageMain::self = &helpMain;
+const PageHelpItem *PageHelpContent::PageMain::self = &pageHelpMain;
 const PageHelpItem *PageHelpContent::PageMain::PageMenu::self = &helpMenu;
