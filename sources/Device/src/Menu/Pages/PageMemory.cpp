@@ -795,11 +795,7 @@ DEF_CHOICE_3(mcMemoryNumPoints, &pMemory,
     ENUM_POINTS, FuncActiveMemoryNumPoinst, ChangeC_Memory_NumPoints, nullptr
 )
 
-// ПАМЯТЬ - ВНЕШН ЗУ /////
-extern const Page mspMemoryExt;
-
-// ПАМЯТЬ - ВНЕШН ЗУ - Имя файла
-DEF_CHOICE_2(mcMemoryExtName, &mspMemoryExt,
+DEF_CHOICE_2(mcMemoryExtName, PageMemory::PageExternal::self,
     "Имя файла", "File name"
     ,
     "Задаёт режим наименования файлов при сохранении на внешний накопитель:\n"
@@ -817,7 +813,7 @@ DEF_CHOICE_2(mcMemoryExtName, &mspMemoryExt,
 
     
 // ПАМЯТЬ - ВНЕШН ЗУ - Автоподключение
-DEF_CHOICE_2(mcMemoryExtAutoConnectFlash, &mspMemoryExt,
+DEF_CHOICE_2(mcMemoryExtAutoConnectFlash, PageMemory::PageExternal::self,
     "Автоподкл.", "AutoConnect",
     "Eсли \"Вкл\", при подключении внешнего накопителя происходит автоматический переход на страницу ПАМЯТЬ - Внешн ЗУ",
     "If \"Enable\", when you connect an external drive is automatically transferred to the page MEMORY - Ext.Storage",
@@ -828,7 +824,7 @@ DEF_CHOICE_2(mcMemoryExtAutoConnectFlash, &mspMemoryExt,
 
 
 // ПАМЯТЬ - ВНЕШН ЗУ - Реж кн ПАМЯТЬ
-DEF_CHOICE_2(mcMemoryExtModeBtnMemory, &mspMemoryExt,
+DEF_CHOICE_2(mcMemoryExtModeBtnMemory, PageMemory::PageExternal::self,
     "Реж кн ПАМЯТЬ", "Mode btn MEMORY",
     "",
     "",
@@ -839,7 +835,7 @@ DEF_CHOICE_2(mcMemoryExtModeBtnMemory, &mspMemoryExt,
 
 
 // ПАМЯТЬ - ВНЕШН ЗУ - Сохранять как
-DEF_CHOICE_2(mcMemoryExtModeSave, &mspMemoryExt,
+DEF_CHOICE_2(mcMemoryExtModeSave, PageMemory::PageExternal::self,
     "Сохранять как", "Save as"
     ,
     "Если выбран вариант \"Изображение\", сигнал будет сохранён в текущем каталоге в графическом файле с расширением BMP\n"
@@ -1044,7 +1040,6 @@ DEF_SMALL_BUTTON(sbExitMemLast, &mspMemLast,
     nullptr, PressSB_MemLast_Exit, DrawSB_Exit, nullptr
 )
 
-// Память - Последние //////
 DEF_PAGE_6(mspMemLast, &pMemory, NamePage::SB_MemLatest,
     "ПОСЛЕДНИЕ", "LATEST",
     "Переход в режим работы с последними полученными сигналами",
@@ -1068,8 +1063,7 @@ DEF_SMALL_BUTTON(sbExitSetMask, &mspSetMask,
     nullptr, PressSB_SetMask_Exit, DrawSB_Exit, nullptr
 )
 
-// Память - ВНЕШН ЗУ - Маска //////////////////////////
-DEF_PAGE_6(mspSetMask, &mspMemoryExt, NamePage::SB_MemExtSetMask,
+DEF_PAGE_6(mspSetMask, PageMemory::PageExternal::self, NamePage::SB_MemExtSetMask,
     "МАСКА", "MASK",
     "Режим ввода маски для автоматического именования файлов",
     "Input mode mask for automatic file naming",
@@ -1082,7 +1076,6 @@ DEF_PAGE_6(mspSetMask, &mspMemoryExt, NamePage::SB_MemExtSetMask,
     IsActiveMemoryExtSetMask, OnPressMemoryExtMask, nullptr, OnMemExtSetMaskRegSet
 )
 
-// ПАМЯТЬ - ВНЕШН ЗУ - Каталог /////////////////////
 void OnPressMemoryExtFileManager()
 {
     if(FLASH_DRIVE_IS_CONNECTED)
@@ -1113,7 +1106,7 @@ DEF_SMALL_BUTTON(sbExitFileManager, &mspFileManager,
 
 const void *pMspFileManager = (const void *)&mspFileManager;
 
-DEF_PAGE_6(mspFileManager, &mspMemoryExt, NamePage::SB_FileManager,
+DEF_PAGE_6(mspFileManager, PageMemory::PageExternal::self, NamePage::SB_FileManager,
     "КАТАЛОГ", "DIRECTORY",
     "Открывает доступ к файловой системе подключенного накопителя",
     "Provides access to the file system of the connected drive",
@@ -1126,8 +1119,7 @@ DEF_PAGE_6(mspFileManager, &mspMemoryExt, NamePage::SB_FileManager,
     FuncOfActiveExtMemFolder, OnPressMemoryExtFileManager, EmptyFuncVV, FM::RotateRegSet
 );
 
-// ПАМЯТЬ - ВНЕШН ЗУ ///////
-DEF_PAGE_6(mspMemoryExt, &pMemory, NamePage::MemoryExt,
+DEF_PAGE_6(pageMemoryExt, &pMemory, NamePage::MemoryExt,
     "ВНЕШН ЗУ", "EXT STORAGE",
     "Работа с внешним запоминающим устройством.",
     "Work with external storage device.",
@@ -1140,9 +1132,6 @@ DEF_PAGE_6(mspMemoryExt, &pMemory, NamePage::MemoryExt,
     nullptr, nullptr, nullptr, nullptr
 );
 
-// ПАМЯТЬ - Внутр ЗУ 
-
-// Нажатие ПАМЯТЬ - Внутр ЗУ
 void OnPressMemoryInt()
 {
     PageMemory::Internal::self->OpenAndSetItCurrent();
@@ -1190,7 +1179,7 @@ DEF_PAGE_4(pMemory, PageMain::self, NamePage::Memory,
     mcMemoryNumPoints,
     mspMemLast,
     mspMemInt,
-    mspMemoryExt,
+    pageMemoryExt,
     nullptr, nullptr, nullptr, nullptr
 )
 
@@ -1200,6 +1189,7 @@ const Page *PageMemory::self = &pMemory;
 
 const Page *PageMemory::Latest::self = &mspMemLast;
 const Page *PageMemory::Internal::self = &mspMemInt;
+const Page *PageMemory::PageExternal::self = &pageMemoryExt;
 const Page *PageMemory::SetMask::self = &mspSetMask;
 const Page *PageMemory::SetName::self = &mpSetName;
 const Page *PageMemory::FileManager::self = &mspFileManager;
