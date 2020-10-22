@@ -72,41 +72,6 @@ static int DrawBigChar(int eX, int eY, int size, char symbol)
 }
 
 
-int Painter::DrawStringInCenterRect(int eX, int , int width, int , const char *text)
-{
-    int lenght = Font::GetLengthText(text);
-    int x = eX + (width - lenght) / 2;
-    return x;
-}
-
-
-int Painter::DrawStringInCenterRectC(int x, int y, int width, int height, const char *text, Color::E color)
-{
-    Color::SetCurrent(color);
-    return Painter::DrawStringInCenterRect(x, y, width, height, text);
-}
-
-
-void Painter::DrawStringInCenterRectOnBackgroundC(int x, int y, int width, int height, const char *text, Color::E colorText, int widthBorder, Color::E colorBackground)
-{
-    int lenght = Font::GetLengthText(text);
-    int eX = Painter::DrawStringInCenterRectC(x, y, width, height, text, colorBackground);
-    int w = lenght + widthBorder * 2 - 2;
-    int h = 7 + widthBorder * 2 - 1;
-    Region(w, h).Fill(eX - lenght - widthBorder, y - widthBorder + 1);
-    Painter::DrawStringInCenterRectC(x, y, width, height, text, colorText);
-}
-
-
-int Painter::DrawStringInCenterRectAndBoundItC(int x, int y, int width, int height, const char *text, Color::E colorBackground, Color::E colorFill)
-{
-    Rectangle(width, height).Draw(x, y, colorFill);
-    Region(width - 2, height - 2).Fill(x + 1, y + 1, colorBackground);
-    Color::SetCurrent(colorFill);
-    return Painter::DrawStringInCenterRect(x, y, width, height, text);
-}
-
-
 static int GetLenghtSubString(char *text)
 {
     int retValue = 0;
