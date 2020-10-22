@@ -1062,7 +1062,7 @@ void OnPressMemoryExtFileManager()
     {
         PageMemory::PageFileManager::self->OpenAndSetItCurrent();
         Display::SetDrawMode(DrawMode::Hand, FM::Draw);
-        NEED_REDRAW_FILEMANAGER = 1;
+        FM::needRedrawFileManager = 1;
     }
 }
 

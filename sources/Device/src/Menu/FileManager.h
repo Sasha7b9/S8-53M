@@ -19,6 +19,10 @@ public:
 
     static void PressTab(void);
 
+    static uint needRedrawFileManager;  // Если 1, то файл-менеджер нуждается в полной перерисовке
+                                        // Если 2, то перерисовать только каталоги
+                                        // Если 3, то перерисовать только файлы
+
 private:
     
     static bool FileIsExist(const char name[255]);

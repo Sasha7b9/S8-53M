@@ -9,7 +9,6 @@ void *extraMEM = 0;
 
 BitField gBF =
 {
-    // FPGA
     0,  // FPGAtrigAutoFind
     0,  // FPGAautoFindInProgress
     0,  // FPGAtemporaryPause
@@ -17,16 +16,10 @@ BitField gBF =
     1,  // FPGAcanReadData
     0,  // FPGAcritiacalSituation
     0,  // FPGAfirstAfterWrite
-    
-    // Flash drive
     0,  // flashDriveIsConnected
     1,  // cursorInDirs
-    1,  // needRedrawFileManager
-
     0,  // showHelpHints
-
     0,  // showDebugMenu
-
     0,  // needOpenFileManager
     0,  // needClosePageSB
     0   // needResetSettings

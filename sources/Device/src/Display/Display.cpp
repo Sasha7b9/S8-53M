@@ -51,7 +51,7 @@ static bool showLevelRShiftB = false;
 static bool showLevelTrigLev = false;    // Ќужно ли рисовать горизонтальную линию уровн€ смещени€ уровн€ синхронизации
 static bool trigEnable = false;
 static bool drawRShiftMarkers = false;
-static int topMeasures = Grid::Bottom();
+int Display::topMeasures = Grid::Bottom();
 static bool needFinishDraw = true;      // ≈сли 1, то дисплей нуждаетс€ в перерисовке
 static uint numDrawingSignals = 0;      // „исло нарисованных сигналов дл€ режима накоплени€
 

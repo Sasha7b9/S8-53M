@@ -28,6 +28,7 @@ static int numCurFile = 0;          // Номер подсвеченного файла
 static int numDirs = 0;
 static int numFiles = 0;
 
+uint FM::needRedrawFileManager = true;
 
 void FM::Init(void)
 {
@@ -159,7 +160,7 @@ void FM::DrawNameCurrentDir(int left, int top)
 
 void FM::Draw(void)
 {
-    if (NEED_REDRAW_FILEMANAGER == 0)
+    if (needRedrawFileManager == 0)
     {
         return;
     }
@@ -169,7 +170,7 @@ void FM::Draw(void)
     int width = 297;
     int left2col = width / 2;
 
-    if (NEED_REDRAW_FILEMANAGER == 1)
+    if (needRedrawFileManager == 1)
     {
         Painter::BeginScene(COLOR_BACK);
         Menu::Draw();
@@ -180,25 +181,25 @@ void FM::Draw(void)
         HLine().Draw(top + 15, 0, width);
     }
 
-    if (NEED_REDRAW_FILEMANAGER != 3)
+    if (needRedrawFileManager != 3)
     {
         DrawDirs(left + 3, top + 18);
     }
 
-    if (NEED_REDRAW_FILEMANAGER != 2)
+    if (needRedrawFileManager != 2)
     {
         DrawFiles(left2col + 3, top + 18);
     }
 
     Painter::EndScene();
 
-    NEED_REDRAW_FILEMANAGER = 0;
+    needRedrawFileManager = 0;
 }
 
 
 void FM::PressTab(void)
 {
-    NEED_REDRAW_FILEMANAGER = 1;
+    needRedrawFileManager = 1;
 
     if (CURSORS_IN_DIRS)
     {
@@ -219,7 +220,7 @@ void FM::PressTab(void)
 
 void FM::PressLevelDown(void)
 {
-    NEED_REDRAW_FILEMANAGER = 1;
+    needRedrawFileManager = 1;
     if (CURSORS_IN_DIRS == 0)
     {
         return;
@@ -246,7 +247,7 @@ void FM::PressLevelDown(void)
 
 void FM::PressLevelUp(void)
 {
-    NEED_REDRAW_FILEMANAGER = 1;
+    needRedrawFileManager = 1;
     if (std::strlen(currentDir) == 1)
     {
         return;
@@ -343,12 +344,12 @@ void FM::RotateRegSet(int angle)
     if (CURSORS_IN_DIRS)
     {
         angle > 0 ? DecCurrentDir() : IncCurrentDir();
-        NEED_REDRAW_FILEMANAGER = 2;
+        needRedrawFileManager = 2;
     }
     else
     {
         angle > 0 ? DecCurrentFile() : IncCurrentFile();
-        NEED_REDRAW_FILEMANAGER = 3;
+        needRedrawFileManager = 3;
     }
 }
 

@@ -20,7 +20,6 @@ class Item;
 #define FPGA_TEMPORARY_PAUSE        (gBF.FPGAtemporaryPause)
 #define FPGA_IN_PROCESS_READ        (gBF.FPGAinProcessingOfRead)
 #define FPGA_FIRST_AFTER_WRITE      (gBF.FPGAfirstAfterWrite)
-#define NEED_REDRAW_FILEMANAGER     (gBF.needRedrawFileManager)
 #define CURSORS_IN_DIRS             (gBF.cursorInDirs)
 #define SHOW_HELP_HINTS             (gBF.showHelpHints)
 #define SHOW_DEBUG_MENU             (gBF.showDebugMenu)
@@ -28,7 +27,6 @@ class Item;
 
 struct BitField
 {
-    // FPGA
     uint FPGAtrigAutoFind           : 1;    // Установленное в 1 значение означает, что нужно производить автоматический поиск синхронизации, если 
                                             // выбрана соответствующая настройка.
     uint FPGAautoFindInProgress     : 1;
@@ -38,17 +36,10 @@ struct BitField
     uint FPGAcritiacalSituation     : 1;
     uint FPGAfirstAfterWrite        : 1;    // Используется в режиме рандомизатора. После записи любого параметра в альтеру
                                             // нужно не использовать первое считанное данное с АЦП, потому что оно завышено и портит ворота
-    // Flash drive
     uint flashDriveIsConnected      : 1;
     uint cursorInDirs               : 1;    // Если 1, то ручка УСТАНОВКА перемещает по каталогам
-    uint needRedrawFileManager      : 2;    // Если 1, то файл-менеджер нуждается в полной перерисовке
-                                            // Если 2, то перерисовать только каталоги
-                                            // Если 3, то перерисовать только файлы
-
     uint showHelpHints              : 1;    // Если 1, то при нажатии кнопки вместо выполнения её фунции выводится подсказка о её назначении
-
     uint showDebugMenu              : 1;
-    
     uint needOpenFileMananger       : 1;    // Если 1, то нужно открыть файловый менеджер (сработало автоподключение)
     uint needClosePageSB            : 1;    // Если 1, нужно закрывать страницу малых кнопок
     uint needResetSettings          : 1;    // Если 1, то необходим сброс настроек
