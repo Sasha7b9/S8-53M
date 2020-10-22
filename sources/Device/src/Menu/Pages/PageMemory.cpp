@@ -498,7 +498,7 @@ static void SaveSignalToIntMemory(void)
     {
         if (gDSet != 0)
         {
-            EPROM::SaveData(PageMemory::PageInternal::currentSignal, gDSet, gData0, gData1);
+            EPROM::SaveData(PageMemory::PageInternal::currentSignal, gDSet, Storage::dataA, gData1);
             EPROM::GetData(PageMemory::PageInternal::currentSignal, &gDSet, &gData0memInt, &gData1memInt);
             Display::ShowWarningGood(Warning::SignalIsSaved);
         }

@@ -17,7 +17,7 @@ uint8  Storage::limitUp[NumChannels][FPGA_MAX_POINTS];
 uint8  Storage::limitDown[NumChannels][FPGA_MAX_POINTS];
 DataSettings *Storage::firstElem = 0;
 DataSettings *Storage::lastElem = 0;
-
+uint8 *Storage::dataA = nullptr;
 
 
 void Storage::PrintElement(DataSettings *dp)
@@ -147,14 +147,14 @@ void Storage::CalculateLimits(pUCHAR data0, pUCHAR data1, const DataSettings *ds
      
         for(int numData = 0; numData < allDatas; numData++)
         {
-            pUCHAR dataA = GetData(Channel::A, numData);
-            pUCHAR dataB = GetData(Channel::B, numData);
+            pUCHAR dA = GetData(Channel::A, numData);
+            pUCHAR dB = GetData(Channel::B, numData);
             for(uint i = 0; i < numElements; i++)
             {
-                if(dataA[i] < limitDown[0][i])  { limitDown[0][i] = dataA[i]; }
-                if(dataA[i] > limitUp[0][i])    { limitUp[0][i] = dataA[i];   }
-                if(dataB[i] < limitDown[1][i])  { limitDown[1][i] = dataB[i]; }
-                if(dataB[i] > limitUp[1][i])    { limitUp[1][i] = dataB[i];   }
+                if(dA[i] < limitDown[0][i])  { limitDown[0][i] = dA[i]; }
+                if(dA[i] > limitUp[0][i])    { limitUp[0][i] = dA[i];   }
+                if(dB[i] < limitDown[1][i])  { limitDown[1][i] = dB[i]; }
+                if(dB[i] > limitUp[1][i])    { limitUp[1][i] = dB[i];   }
             }
         }
     }

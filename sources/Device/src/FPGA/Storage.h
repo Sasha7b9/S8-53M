@@ -28,6 +28,9 @@ public:
     static uint8* GetLimitation(Channel::E chan, int direction);                                      
 
     static int NumberAvailableEntries();
+
+    static uint8 *dataA;    // ”казатель на данные первого канала, который надо рисовать на экране
+
 private:
 
     static void CalculateSums(void);

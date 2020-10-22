@@ -515,7 +515,7 @@ void Display::DrawSpectrum()
 
         if (SOURCE_FFT_IS_A)
         {
-            DRAW_SPECTRUM(gData0, numPoints, Channel::A);
+            DRAW_SPECTRUM(Storage::dataA, numPoints, Channel::A);
         }
         else if (SOURCE_FFT_IS_B)
         {
@@ -526,11 +526,11 @@ void Display::DrawSpectrum()
             if (LAST_AFFECTED_CHANNEL_IS_A)
             {
                 DRAW_SPECTRUM(gData1, numPoints, Channel::B);
-                DRAW_SPECTRUM(gData0, numPoints, Channel::A);
+                DRAW_SPECTRUM(Storage::dataA, numPoints, Channel::A);
             }
             else
             {
-                DRAW_SPECTRUM(gData0, numPoints, Channel::A);
+                DRAW_SPECTRUM(Storage::dataA, numPoints, Channel::A);
                 DRAW_SPECTRUM(gData1, numPoints, Channel::B);
             }
         }
@@ -907,7 +907,7 @@ void Display::DrawMemoryWindow()
     
     if(MODE_WORK_IS_DIRECT || MODE_WORK_IS_LATEST)
     {
-        dat0 = gData0;
+        dat0 = Storage::dataA;
         dat1 = gData1;
         ds = gDSet;
     }
@@ -947,7 +947,7 @@ void Display::DrawMemoryWindow()
 
     if (showFull)
     {
-        if (gData0 || gData1 || (!dataP2PIsEmpty))
+        if (Storage::dataA || gData1 || (!dataP2PIsEmpty))
         {
             int startI = shiftInMemory;
             int endI = startI + 281;
