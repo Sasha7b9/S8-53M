@@ -478,7 +478,7 @@ void Display::DRAW_SPECTRUM(pUCHAR data, int numPoints, Channel::E channel)
     int y0 = 0;
     int y1 = 0;
 
-    MathFPGA::PointsRelToVoltage(data, numPoints, gDSet->range[channel], channel == Channel::A ? static_cast<int16>(gDSet->rShiftCh0) : static_cast<int16>(gDSet->rShiftCh1), dataR);
+    MathFPGA::PointsRelToVoltage(data, numPoints, Storage::set->range[channel], channel == Channel::A ? static_cast<int16>(Storage::set->rShiftCh0) : static_cast<int16>(Storage::set->rShiftCh1), dataR);
     MathFPGA::CalculateFFT(dataR, numPoints, spectrum, &freq0, &density0, &freq1, &density1, &y0, &y1);
     DrawSpectrumChannel(spectrum, Color::Channel(channel));
     if (!Menu::IsShown() || Menu::IsMinimize())
@@ -546,13 +546,13 @@ void Display::DrawBothChannels(uint8 *data0, uint8 *data1)
 {
 	if (LAST_AFFECTED_CHANNEL_IS_B)
     {
-        DrawDataChannel(data0, Channel::A, gDSet, Grid::TOP, Grid::ChannelBottom());
-        DrawDataChannel(data1, Channel::B, gDSet, Grid::TOP, Grid::ChannelBottom());
+        DrawDataChannel(data0, Channel::A, Storage::set, Grid::TOP, Grid::ChannelBottom());
+        DrawDataChannel(data1, Channel::B, Storage::set, Grid::TOP, Grid::ChannelBottom());
     }
     else
     {
-        DrawDataChannel(data1, Channel::B, gDSet, Grid::TOP, Grid::ChannelBottom());
-        DrawDataChannel(data0, Channel::A, gDSet, Grid::TOP, Grid::ChannelBottom());
+        DrawDataChannel(data1, Channel::B, Storage::set, Grid::TOP, Grid::ChannelBottom());
+        DrawDataChannel(data0, Channel::A, Storage::set, Grid::TOP, Grid::ChannelBottom());
     }
 }
 
@@ -661,17 +661,17 @@ void Display::DrawDataMinMax()
     MODE_DRAW_SIGNAL = ModeDrawSignal::Lines;
     if (LAST_AFFECTED_CHANNEL_IS_B)
     {
-        DrawDataChannel(Storage::GetLimitation(Channel::A, 0), Channel::A, gDSet, Grid::TOP, Grid::ChannelBottom());
-        DrawDataChannel(Storage::GetLimitation(Channel::A, 1), Channel::A, gDSet, Grid::TOP, Grid::ChannelBottom());
-        DrawDataChannel(Storage::GetLimitation(Channel::B, 0), Channel::B, gDSet, Grid::TOP, Grid::ChannelBottom());
-        DrawDataChannel(Storage::GetLimitation(Channel::B, 1), Channel::B, gDSet, Grid::TOP, Grid::ChannelBottom());
+        DrawDataChannel(Storage::GetLimitation(Channel::A, 0), Channel::A, Storage::set, Grid::TOP, Grid::ChannelBottom());
+        DrawDataChannel(Storage::GetLimitation(Channel::A, 1), Channel::A, Storage::set, Grid::TOP, Grid::ChannelBottom());
+        DrawDataChannel(Storage::GetLimitation(Channel::B, 0), Channel::B, Storage::set, Grid::TOP, Grid::ChannelBottom());
+        DrawDataChannel(Storage::GetLimitation(Channel::B, 1), Channel::B, Storage::set, Grid::TOP, Grid::ChannelBottom());
     }
     else
     {
-        DrawDataChannel(Storage::GetLimitation(Channel::B, 0), Channel::B, gDSet, Grid::TOP, Grid::ChannelBottom());
-        DrawDataChannel(Storage::GetLimitation(Channel::B, 1), Channel::B, gDSet, Grid::TOP, Grid::ChannelBottom());
-        DrawDataChannel(Storage::GetLimitation(Channel::A, 0), Channel::A, gDSet, Grid::TOP, Grid::ChannelBottom());
-        DrawDataChannel(Storage::GetLimitation(Channel::A, 1), Channel::A, gDSet, Grid::TOP, Grid::ChannelBottom());
+        DrawDataChannel(Storage::GetLimitation(Channel::B, 0), Channel::B, Storage::set, Grid::TOP, Grid::ChannelBottom());
+        DrawDataChannel(Storage::GetLimitation(Channel::B, 1), Channel::B, Storage::set, Grid::TOP, Grid::ChannelBottom());
+        DrawDataChannel(Storage::GetLimitation(Channel::A, 0), Channel::A, Storage::set, Grid::TOP, Grid::ChannelBottom());
+        DrawDataChannel(Storage::GetLimitation(Channel::A, 1), Channel::A, Storage::set, Grid::TOP, Grid::ChannelBottom());
     }
     MODE_DRAW_SIGNAL = modeDrawSignalOld;
 }
@@ -909,7 +909,7 @@ void Display::DrawMemoryWindow()
     {
         dat0 = Storage::dataA;
         dat1 = Storage::dataB;
-        ds = gDSet;
+        ds = Storage::set;
     }
 
     if(ds == nullptr)
@@ -988,7 +988,7 @@ void Display::DrawMemoryWindow()
 
     // Маркер tShift
     float scale = (float)(rightX - leftX + 1) / ((float)sMemory_GetNumPoints(false) - (sMemory_GetNumPoints(false) == 281 ? 1 : 0));
-    float xShift = 1 + (sTime_TPosInPoints((PeackDetMode::E)gDSet->peakDet, (int)gDSet->length1channel, SET_TPOS) - sTime_TShiftInPoints((PeackDetMode::E)gDSet->peakDet)) * scale;
+    float xShift = 1 + (sTime_TPosInPoints((PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel, SET_TPOS) - sTime_TShiftInPoints((PeackDetMode::E)Storage::set->peakDet)) * scale;
     
     if(xShift < leftX - 2)
     {
@@ -1701,13 +1701,13 @@ void Display::DrawCursorTShift()
     int lastPoint = 0;
     SettingsDisplay::PointsOnDisplay(&firstPoint, &lastPoint);
 
-    if (gDSet == nullptr)
+    if (Storage::set == nullptr)
     {
         return;
     }
 
     // Рисуем TPos
-    int shiftTPos = sTime_TPosInPoints((PeackDetMode::E)gDSet->peakDet, (int)gDSet->length1channel, SET_TPOS) - SHIFT_IN_MEMORY;
+    int shiftTPos = sTime_TPosInPoints((PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel, SET_TPOS) - SHIFT_IN_MEMORY;
     float scale = static_cast<float>((lastPoint - firstPoint) / Grid::Width());
     int gridLeft = Grid::Left();
     int x = static_cast<int>(gridLeft + shiftTPos * scale - 3);
@@ -1717,7 +1717,7 @@ void Display::DrawCursorTShift()
     };
 
     // Рисуем tShift
-    int shiftTShift = sTime_TPosInPoints((PeackDetMode::E)gDSet->peakDet, (int)gDSet->length1channel, SET_TPOS) - sTime_TShiftInPoints((PeackDetMode::E)gDSet->peakDet);
+    int shiftTShift = sTime_TPosInPoints((PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel, SET_TPOS) - sTime_TShiftInPoints((PeackDetMode::E)Storage::set->peakDet);
     if(IntInRange(shiftTShift, firstPoint, lastPoint))
     {
         x = gridLeft + shiftTShift - firstPoint - 3;
@@ -1911,7 +1911,7 @@ void Display::WriteTextVoltage(Channel::E chan, int x, int y)
 
     if (!MODE_WORK_IS_DIRECT)
     {
-        DataSettings *ds = MODE_WORK_IS_DIRECT ? gDSet : gDSmemInt;
+        DataSettings *ds = MODE_WORK_IS_DIRECT ? Storage::set : gDSmemInt;
         if (ds != 0)
         {
             inverse = (chan == Channel::A) ? ds->inverseCh0 : ds->inverseCh1;

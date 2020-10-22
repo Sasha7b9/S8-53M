@@ -157,7 +157,7 @@ struct OutputRegisters
 
 #define SHOW_STATS                          (set.debug.showStats)
 
-#define NUM_AVE_FOR_RAND                    (set.debug.numAveForRand)
+#define NUM_AVE_FOR_RAND                    (::set.debug.numAveForRand)
 
 
 // Отладочные настройки.

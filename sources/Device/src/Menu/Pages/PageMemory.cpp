@@ -496,10 +496,10 @@ static void SaveSignalToIntMemory(void)
     }
     else                                // Иначе сохраняем текущий сигнал
     {
-        if (gDSet != 0)
+        if (Storage::set != 0)
         {
-            EPROM::SaveData(PageMemory::PageInternal::currentSignal, gDSet, Storage::dataA, Storage::dataB);
-            EPROM::GetData(PageMemory::PageInternal::currentSignal, &gDSet, &gData0memInt, &gData1memInt);
+            EPROM::SaveData(PageMemory::PageInternal::currentSignal, Storage::set, Storage::dataA, Storage::dataB);
+            EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::set, &gData0memInt, &gData1memInt);
             Display::ShowWarningGood(Warning::SignalIsSaved);
         }
     }

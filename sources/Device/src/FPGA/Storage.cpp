@@ -19,6 +19,7 @@ DataSettings *Storage::firstElem = 0;
 DataSettings *Storage::lastElem = 0;
 uint8 *Storage::dataA = nullptr;
 uint8 *Storage::dataB = nullptr;
+DataSettings *Storage::set = nullptr;
 
 
 void Storage::PrintElement(DataSettings *dp)

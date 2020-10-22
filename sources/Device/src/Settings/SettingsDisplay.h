@@ -33,7 +33,7 @@
 
 #define MODE_AVE                    (set.display.modeAve)                       // SettingsDisplay.modeAve
 
-#define ENUM_MIN_MAX                (set.display.enumMinMax)                    // SettingsDisplay.enumMinMax
+#define ENUM_MIN_MAX                (::set.display.enumMinMax)                  // SettingsDisplay.enumMinMax
 #define NUM_MIN_MAX                 (1 << ENUM_MIN_MAX)                         // Количество измерений сигналов для расчёта минимумов и максимумов.
 
 #define SMOOTHING                   (set.display.smoothing)                     // SettingsDisplay.smoothing
