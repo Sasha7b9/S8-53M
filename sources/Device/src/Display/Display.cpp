@@ -166,7 +166,7 @@ void Display::DrawMarkersForMeasure(float scale, Channel::E chan)
         int pos = Processing::GetMarkerHorizontal(chan, numMarker);
         if(pos != ERROR_VALUE_INT && pos > 0 && pos < 200)
         {
-            Painter::DrawDashedHLine(Grid::FullBottom() - static_cast<int>(pos * scale), Grid::Left(), Grid::Right(), 3, 2, 0);
+            DashedHLine(3, 2).Draw(Grid::FullBottom() - static_cast<int>(pos * scale), Grid::Left(), Grid::Right(), 0);
         }
 
         pos = Processing::GetMarkerVertical(chan, numMarker);
@@ -1673,7 +1673,7 @@ void Display::DrawCursorRShift(Channel::E chan)
         Char(SYMBOL_RSHIFT_NORMAL).Draw(static_cast<int>(x - 8), static_cast<int>(y - 4), Color::Channel(chan));
         if(((chan == Channel::A) ? showLevelRShiftA : showLevelRShiftB) && MODE_WORK_IS_DIRECT) //-V2570
         {
-            Painter::DrawDashedHLine(static_cast<int>(y), Grid::Left(), Grid::Right(), 7, 3, 0);
+            DashedHLine(7, 3).Draw(static_cast<int>(y), Grid::Left(), Grid::Right(), 0);
         }
     }
 
@@ -1738,12 +1738,12 @@ void Display::DrawHorizontalCursor(int y, int xTearing)
     y += Grid::TOP;
     if(xTearing == -1)
     {
-        Painter::DrawDashedHLine(y, Grid::Left() + 2, Grid::Right() - 1, 1, 1, 0);
+        DashedHLine(1, 1).Draw(y, Grid::Left() + 2, Grid::Right() - 1, 0);
     }
     else
     {
-        Painter::DrawDashedHLine(y, Grid::Left() + 2, xTearing - 2, 1, 1, 0);
-        Painter::DrawDashedHLine(y, xTearing + 2, Grid::Right() - 1, 1, 1, 0);
+        DashedHLine(1, 1).Draw(y, Grid::Left() + 2, xTearing - 2, 0);
+        DashedHLine(1, 1).Draw(y, xTearing + 2, Grid::Right() - 1, 0);
     }
     Primitives::Rectangle(2, 2).Draw(Grid::Left() - 1, y - 1);
     Primitives::Rectangle(2, 2).Draw(Grid::Right() - 1, y - 1);

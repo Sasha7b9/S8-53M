@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "common/Log_c.h"
 #include "Display/Painter.h"
 #include "common/Display/Primitives_c.h"
 
@@ -49,5 +50,30 @@ void Primitives::Line::Draw(int x0, int y0, int x1, int y1, Color::E color)
     else if (y0 == y1)
     {
         HLine().Draw(y0, x0, x1);
+    }
+}
+
+
+void Primitives::DashedHLine::Draw(int y, int x0, int x1, int deltaStart)
+{
+    if (deltaStart < 0 || deltaStart >= (fill + empty))
+    {
+        LOG_ERROR("Неправильный аргумент deltaStart = %d", deltaStart);
+        return;
+    }
+    int x = x0;
+    if (deltaStart != 0)                // Если линию нужно рисовать не с начала штриха
+    {
+        x += (fill + empty - deltaStart);
+        if (deltaStart < fill)     // Если начало линии приходится на штрих
+        {
+            HLine().Draw(y, x0, x - 1);
+        }
+    }
+
+    while (x < x1)
+    {
+        HLine().Draw(y, x, x + fill - 1);
+        x += (fill + empty);
     }
 }

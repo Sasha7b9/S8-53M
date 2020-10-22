@@ -89,31 +89,6 @@ void Painter::DrawDashedVLine(int x, int y0, int y1, int deltaFill, int deltaEmt
 }
 
 
-void Painter::DrawDashedHLine(int y, int x0, int x1, int deltaFill, int deltaEmpty, int deltaStart)
-{
-    if (deltaStart < 0 || deltaStart >= (deltaFill + deltaEmpty))
-    {
-        LOG_ERROR("Неправильный аргумент deltaStart = %d", deltaStart);
-        return;
-    }
-    int x = x0;
-    if (deltaStart != 0)                // Если линию нужно рисовать не с начала штриха
-    {
-        x += (deltaFill + deltaEmpty - deltaStart);
-        if (deltaStart < deltaFill)     // Если начало линии приходится на штрих
-        {
-            HLine().Draw(y, x0, x - 1);
-        }
-    }
-
-    while (x < x1)
-    {
-        HLine().Draw(y, x, x + deltaFill - 1);
-        x += (deltaFill + deltaEmpty);
-    }
-}
-
-
 void Painter::DrawVolumeButton(int x, int y, int width, int height, int thickness, Color::E normal, Color::E bright, Color::E dark, bool isPressed, bool inShade)
 {
     if (inShade)
