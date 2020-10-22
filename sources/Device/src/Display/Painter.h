@@ -30,8 +30,6 @@ public:
     static void SetBrightnessDisplay(int16 brightness);
 
     static uint16 ReduceBrightness(uint16 colorValue, float newBrightness);
-    // Нарисовать массив вертикальных линий. Линии рисуются одна за другой. y0y1 - массив вертикальных координат.
-    static void DrawVLineArray(int x, int numLines, uint8 *y0y1, Color::E color);
     // modeLines - true - точками, false - точками
     static void DrawSignal(int x, uint8 data[281], bool modeLines);
 

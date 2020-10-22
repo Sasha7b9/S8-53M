@@ -107,11 +107,6 @@ int NumberColorsInSceneCol(void)
 }
 
 
-void Painter::DrawVLineArray(int , int , uint8 *, Color::E )
-{
-}
-
-
 void Painter::DrawSignal(int , uint8 [281], bool )
 {
 }

@@ -125,4 +125,12 @@ namespace Primitives
         int fill;
         int empty;
     };
+
+    // Ќарисовать массив вертикальных линий. Ћинии рисуютс€ одна за другой. y0y1 - массив вертикальных координат.
+    class VLineArray
+    {
+    public:
+        void Draw(int x, int numLines, uint8 *y0y1, Color::E color = Color::Count);
+    private:
+    };
 }

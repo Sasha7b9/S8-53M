@@ -102,3 +102,9 @@ void Primitives::DashedVLine::Draw(int x, int y0, int y1, int deltaStart)
         y += (fill + empty);
     }
 }
+
+
+void Primitives::VLineArray::Draw(int , int , uint8 *, Color::E color)
+{
+    Color::SetCurrent(color);
+}

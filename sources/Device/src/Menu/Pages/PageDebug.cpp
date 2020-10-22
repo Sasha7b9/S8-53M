@@ -683,7 +683,7 @@ static void OnPress_SerialNumber(void)
     s->number = 1; //-V522
     s->year = 2017;
     s->curDigt = 0;
-}
+} //-V773
 
 static void OnRegSet_SerialNumber(int angle)
 {

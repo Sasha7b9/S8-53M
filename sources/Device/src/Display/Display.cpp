@@ -872,12 +872,12 @@ void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channe
     }
 	if(width < 256)
     {
-		Painter::DrawVLineArray(x, width, points, Color::Channel(chan));
+        VLineArray().Draw(x, width, points, Color::Channel(chan));
 	}
     else
     {
-		Painter::DrawVLineArray(x, 255, points, Color::Channel(chan));
-		Painter::DrawVLineArray(x + 255, width - 255, points + 255 * 2, Color::Channel(chan));
+        VLineArray().Draw(x, 255, points, Color::Channel(chan));
+        VLineArray().Draw(x + 255, width - 255, points + 255 * 2, Color::Channel(chan));
 	}
 }
 
