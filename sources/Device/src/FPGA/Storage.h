@@ -37,6 +37,8 @@ public:
     static uint8 *dataIntB;
     static DataSettings *dsInt;
     
+    static uint8 *dataLastA;
+    static uint8 *dataLastB;
     static DataSettings *dsLast;
 
 private:

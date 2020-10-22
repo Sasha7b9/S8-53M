@@ -26,6 +26,8 @@ uint8 *Storage::dataIntA = nullptr;
 uint8 *Storage::dataIntB = nullptr;
 DataSettings *Storage::dsInt = nullptr;
 
+uint8 *Storage::dataLastA = nullptr;
+uint8 *Storage::dataLastB = nullptr;
 DataSettings *Storage::dsLast = nullptr;
 
 

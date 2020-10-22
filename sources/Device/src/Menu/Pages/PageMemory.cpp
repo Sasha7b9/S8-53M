@@ -489,7 +489,7 @@ static void SaveSignalToIntMemory(void)
     {
         if  (Storage::dsLast != 0)
         {                               // то сохраняем сигнал из последних
-            EPROM::SaveData(PageMemory::PageInternal::currentSignal, Storage::dsLast, gData0memLast, gData1memLast);
+            EPROM::SaveData(PageMemory::PageInternal::currentSignal, Storage::dsLast, Storage::dataLastA, Storage::dataLastB);
             EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
             Display::ShowWarningGood(Warning::SignalIsSaved);
         }

@@ -71,10 +71,10 @@ static void ProcessingSignal()
     }
     else if (MODE_WORK_IS_LATEST)
     {
-        data0 = &gData0memLast;
-        data1 = &gData1memLast;
+        data0 = &Storage::dataLastA;
+        data1 = &Storage::dataLastB;
         ds = &Storage::dsLast;
-        Storage::GetDataFromEnd(PageMemory::PageLatest::currentSignal, &Storage::dsLast, &gData0memLast, &gData1memLast);
+        Storage::GetDataFromEnd(PageMemory::PageLatest::currentSignal, &Storage::dsLast, &Storage::dataLastA, &Storage::dataLastB);
     }
     else if (MODE_WORK_IS_MEMINT)
     {
