@@ -295,7 +295,7 @@ static void DrawValueWithSelectedPosition(int x, int y, int value, int numDigits
         }
         if (hLine)
         {
-            Painter::DrawLineC(x, y + 9, x + 3, y + 9, Color::FILL);
+            Line().Draw(x, y + 9, x + 3, y + 9, Color::FILL);
         }
         x -= 6;
     }

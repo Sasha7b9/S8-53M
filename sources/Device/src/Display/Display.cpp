@@ -1558,7 +1558,7 @@ void Display::DrawScaleLine(int x, bool forTrigLev)
     };
     for(int i = 0; i < 5; i++)
     {
-        Painter::DrawLineC(x + 1, levels[i], x2 - 1, levels[i], Color::FILL);
+        Line().Draw(x + 1, levels[i], x2 - 1, levels[i], Color::FILL);
     }
 }
 
@@ -1723,12 +1723,12 @@ void Display::DrawCursorTShift()
     else if(shiftTShift < firstPoint)
     {
         Painter::Draw2SymbolsC(gridLeft + 1, Grid::TOP, SYMBOL_TSHIFT_LEFT_1, SYMBOL_TSHIFT_LEFT_2, Color::BACK, Color::FILL);
-        Painter::DrawLineC(Grid::Left() + 9, Grid::TOP + 1, Grid::Left() + 9, Grid::TOP + 7, Color::BACK);
+        Line().Draw(Grid::Left() + 9, Grid::TOP + 1, Grid::Left() + 9, Grid::TOP + 7, Color::BACK);
     }
     else if(shiftTShift > lastPoint)
     {
         Painter::Draw2SymbolsC(Grid::Right() - 8, Grid::TOP, SYMBOL_TSHIFT_RIGHT_1, SYMBOL_TSHIFT_RIGHT_2, Color::BACK, Color::FILL);
-        Painter::DrawLineC(Grid::Right() - 9, Grid::TOP + 1, Grid::Right() - 9, Grid::TOP + 7, Color::BACK);
+        Line().Draw(Grid::Right() - 9, Grid::TOP + 1, Grid::Right() - 9, Grid::TOP + 7, Color::BACK);
     }
 }
 

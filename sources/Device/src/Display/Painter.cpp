@@ -15,10 +15,9 @@ using namespace Primitives;
 
 static bool inverseColors = false;
 static Color::E currentColor = Color::NUM;
-
 StateTransmit::E Painter::stateTransmit = StateTransmit::Free;
-
 bool Painter::noFonts = false;
+static int numberColorsUsed = 0;
 
 
 void Painter::SendFrame(bool first, bool noFonts_)
@@ -112,17 +111,6 @@ void Painter::DrawDashedHLine(int y, int x0, int x1, int deltaFill, int deltaEmp
         HLine().Draw(y, x, x + deltaFill - 1);
         x += (deltaFill + deltaEmpty);
     }
-}
-
-
-static int numberColorsUsed = 0;
-
-
-
-void Painter::DrawLineC(int x0, int y0, int x1, int y1, Color::E color)
-{
-    Color::SetCurrent(color);
-    Line().Draw(x0, y0, x1, y1);
 }
 
 

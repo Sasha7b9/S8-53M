@@ -99,6 +99,6 @@ namespace Primitives
     class Line
     {
     public:
-        void Draw(int x0, int y0, int x1, int y1);
+        void Draw(int x0, int y0, int x1, int y1, Color::E color = Color::NUM);
     };
 }

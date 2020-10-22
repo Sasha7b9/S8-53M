@@ -38,8 +38,10 @@ void Primitives::HPointLine::Draw(int y, int x0, int x1)
 }
 
 
-void Primitives::Line::Draw(int x0, int y0, int x1, int y1)
+void Primitives::Line::Draw(int x0, int y0, int x1, int y1, Color::E color)
 {
+    Color::SetCurrent(color);
+
     if (x0 == x1)
     {
         HLine().Draw(x0, y0, y1);
