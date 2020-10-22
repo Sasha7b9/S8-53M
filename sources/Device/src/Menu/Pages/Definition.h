@@ -122,6 +122,11 @@ struct PageDisplay
     {
         static const Page *self;
     };
+
+    struct PageAveraging
+    {
+        static const Page *self;
+    };
 };
 
 
