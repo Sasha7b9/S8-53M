@@ -202,7 +202,7 @@ static const Choice name(&di##name);
 static const char *names##name[] = {nameRu1, nameEn1, nameRu2, nameEn2, nameRu3, nameEn3, nameRu4, nameEn4, nameRu5, nameEn5, nameRu6, nameEn6, nameRu7, nameEn7, nullptr};     \
 static const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                                                                                            \
 static const DataChoice dc##name = {names##name, (int8 *)&cell, funcChanged, funcDraw};                                                                                         \
-static const DataItem di##name = { TypeItem::Choice, &keeper, funcActive, th##name, &dc##name};                                                                                 \
+static const DataItem di##name = { TypeItem::Choice, keeper, funcActive, th##name, &dc##name};                                                                                  \
 static const Choice name(&di##name);
 
 

@@ -8,8 +8,6 @@
 #include "Utils/GlobalFunctions.h"
 #include "Utils/Measures.h"
 
-extern const Page pMeasures;
-
 static CursCntrl::E GetMeasuresCursCntrlActive();       // Каким курсором из активной пары сейчас происходит управление.
 bool PageMeasures::choiceMeasuresIsActive = false;
 
@@ -68,16 +66,14 @@ void RotateRegMeasureSetField(int angle)
     }
 }
 
-extern const Page mspMeasTune;
-
-DEF_SMALL_BUTTON( sbMeasTuneSettings, &mspMeasTune,
+DEF_SMALL_BUTTON( sbMeasTuneSettings, PageMeasures::PageTune::self,
     "Настройка", "Setup",
     "Позволяет выбрать необходимые измерения",
     "Allows to choose necessary measurements",
     nullptr, PressSB_MeasTune_Settings, DrawSB_MeasTune_Settings, nullptr
 )
 
-DEF_SMALL_BUTTON( sbMeasTuneMarkers, &mspMeasTune,                 // Включение / отключение маркера для режима измерений.
+DEF_SMALL_BUTTON( sbMeasTuneMarkers, PageMeasures::PageTune::self,                 // Включение / отключение маркера для режима измерений.
     "Маркер", "Marker",
     "Позволяет установить маркеры для визуального контроля измерений",
     "Allows to establish markers for visual control of measurements",
@@ -114,11 +110,7 @@ bool IsActiveButtonMeasuresFieldSet()
     return MEAS_FIELD_IS_HAND;
 }
 
-// ИЗМЕРЕНИЯ
-extern const Page pMeasures;
-
-// ИЗМЕРЕНИЯ -> Количество
-DEF_CHOICE_7( mcMeasuresNumber, pMeasures,
+DEF_CHOICE_7( mcMeasuresNumber, PageMeasures::self,
     "Количество", "Number"
     ,
     "Устанавливает максимальное количество выводимых измерений:\n"
@@ -151,7 +143,7 @@ DEF_CHOICE_7( mcMeasuresNumber, pMeasures,
 
 
 // ИЗМЕРЕНИЯ -> Каналы
-DEF_CHOICE_3(mcMeasuresChannels, &pMeasures,
+DEF_CHOICE_3(mcMeasuresChannels, PageMeasures::self,
     "Каналы", "Channels",
     "По каким каналам выводить измерения",
     "Which channels to output measurement",
@@ -163,7 +155,7 @@ DEF_CHOICE_3(mcMeasuresChannels, &pMeasures,
 
 
 // ИЗМЕРЕНИЯ -> Показывать
-DEF_CHOICE_2(mcMeasuresIsShow, &pMeasures,
+DEF_CHOICE_2(mcMeasuresIsShow, PageMeasures::self,
     "Показывать", "Show",
     "Выводить или не выводить измерения на экран",
     "Output or output measurements on screen",
@@ -174,7 +166,7 @@ DEF_CHOICE_2(mcMeasuresIsShow, &pMeasures,
 
 
 // ИЗМЕРЕНИЯ -> Вид
-DEF_CHOICE_2(mcMeasuresSignal, &pMeasures,
+DEF_CHOICE_2(mcMeasuresSignal, PageMeasures::self,
     "Вид", "View",
     "Уменьшать или нет зону вывода сигнала для исключения перекрытия его результами измерений",
     "Decrease or no zone output signal to avoid overlapping of its measurement results",
@@ -222,14 +214,13 @@ static void PressSB_MeasTune_Exit()
 }
 
 
-DEF_SMALL_BUTTON(sbExitMeasTune, &mspMeasTune,
+DEF_SMALL_BUTTON(sbExitMeasTune, PageMeasures::PageTune::self,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
     nullptr, PressSB_MeasTune_Exit, DrawSB_Exit, nullptr
 )
 
 
-// ИЗМЕРЕНИЯ - Настроить ////
-DEF_PAGE_6(mspMeasTune, &pMeasures, NamePage::SB_MeasTuneMeas,
+DEF_PAGE_6(pageMeasTune, PageMeasures::PageTune::self, NamePage::SB_MeasTuneMeas,
     "НАСТРОИТЬ", "CONFIGURE",
     "Переход в режми точной настройки количества и видов измерений",
     "Transition to rezhm of exact control of quantity and types of measurements",
@@ -242,9 +233,7 @@ DEF_PAGE_6(mspMeasTune, &pMeasures, NamePage::SB_MeasTuneMeas,
     IsActiveButtonMeasuresTune, nullptr, nullptr, Measure::RotateRegSet
 )
 
-
-// ИЗМЕРЕНИЯ //////////////////////////
-DEF_PAGE_5(pMeasures, PageMain::self, NamePage::Measures,
+DEF_PAGE_5(pageMeasures, PageMain::self, NamePage::Measures,
     "ИЗМЕРЕНИЯ", "MEASURES",
     "Автоматические измерения",
     "Automatic measurements",
@@ -252,10 +241,9 @@ DEF_PAGE_5(pMeasures, PageMain::self, NamePage::Measures,
     mcMeasuresNumber,
     mcMeasuresChannels,
     mcMeasuresSignal,
-    mspMeasTune,
+    *PageMeasures::PageTune::self,
     nullptr, nullptr, nullptr, nullptr
 )
 
-const Page *PageMeasures::self = &pMeasures;
-
-void *PageMeasures::Tune::pointer = (void *)&mspMeasTune;
+const Page *PageMeasures::self = &pageMeasures;
+const Page *PageMeasures::PageTune::self = &pageMeasTune;

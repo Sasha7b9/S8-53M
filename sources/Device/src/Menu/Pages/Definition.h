@@ -149,9 +149,9 @@ struct PageMeasures
 {
     static const Page *self;
 
-    struct Tune
+    struct PageTune
     {
-        static void *pointer;
+        static const Page *self;
     };
 
     // Если true, то активен выбор типа измерений для выбора на странице ИЗМЕРЕНИЯ-НАСТРОИТЬ
