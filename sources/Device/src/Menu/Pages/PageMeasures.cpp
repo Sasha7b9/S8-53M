@@ -8,8 +8,17 @@
 #include "Utils/GlobalFunctions.h"
 #include "Utils/Measures.h"
 
-static CursCntrl::E GetMeasuresCursCntrlActive();       // Каким курсором из активной пары сейчас происходит управление.
 bool PageMeasures::choiceMeasuresIsActive = false;
+
+// Каким курсором в данный момент происходит управление
+static CursCntrl::E GetMeasuresCursCntrlActive()
+{
+    if (MEAS_CURS_ACTIVE_IS_T)
+    {
+        return MEAS_CURS_CNTRL_T;
+    }
+    return MEAS_CURS_CNTRL_U;
+}
 
 void DrawSB_MeasTune_Settings(int x, int y)
 {
@@ -141,8 +150,6 @@ DEF_CHOICE_7( mcMeasuresNumber, PageMeasures::self,
     MEAS_NUM, IsActiveChoiceMeasuresNumber, nullptr, nullptr
 )
 
-
-// ИЗМЕРЕНИЯ -> Каналы
 DEF_CHOICE_3(mcMeasuresChannels, PageMeasures::self,
     "Каналы", "Channels",
     "По каким каналам выводить измерения",
@@ -153,8 +160,6 @@ DEF_CHOICE_3(mcMeasuresChannels, PageMeasures::self,
     MEAS_SOURCE, IsActiveChoiceMeasuresChannels, nullptr, nullptr
 )
 
-
-// ИЗМЕРЕНИЯ -> Показывать
 DEF_CHOICE_2(mcMeasuresIsShow, PageMeasures::self,
     "Показывать", "Show",
     "Выводить или не выводить измерения на экран",
@@ -164,8 +169,6 @@ DEF_CHOICE_2(mcMeasuresIsShow, PageMeasures::self,
     SHOW_MEASURES, nullptr, nullptr, nullptr
 )
 
-
-// ИЗМЕРЕНИЯ -> Вид
 DEF_CHOICE_2(mcMeasuresSignal, PageMeasures::self,
     "Вид", "View",
     "Уменьшать или нет зону вывода сигнала для исключения перекрытия его результами измерений",
@@ -174,39 +177,6 @@ DEF_CHOICE_2(mcMeasuresSignal, PageMeasures::self,
     "Уменьшать",   "Reduce",
     MODE_VIEW_SIGNALS, nullptr, nullptr, nullptr
 )
-
-
-/**********************************************************************************************************************************************************/
-// ИЗМЕРЕНИЯ -> ЗОНА
-extern const Page mspMeasuresField;
-
-// ИЗМЕРЕНИЯ -> ЗОНА -> Область
-/*
-const Choice mcMeasuresFieldType =
-{
-    TypeItem::Choice, &mspMeasuresField, 0,
-    {
-        "Область", "Field",
-        "Выбор области, из которой будут браться значения для автоматических измерений",
-        "Select an area from which the values will be taken for automatic measurements"
-    },
-    {   
-        {"Экран",   "Screen"},
-        {"Память",  "Memorye"},
-        {"Курсоры", "Cursors"}
-    },
-    (int8*)&MEAS_FIELD
-};
-*/
-
-CursCntrl::E GetMeasuresCursCntrlActive()
-{
-    if(MEAS_CURS_ACTIVE_IS_T)
-    {
-        return MEAS_CURS_CNTRL_T;
-    }
-    return MEAS_CURS_CNTRL_U;
-}
 
 static void PressSB_MeasTune_Exit()
 {
@@ -219,8 +189,7 @@ DEF_SMALL_BUTTON(sbExitMeasTune, PageMeasures::PageTune::self,
     nullptr, PressSB_MeasTune_Exit, DrawSB_Exit, nullptr
 )
 
-
-DEF_PAGE_6(pageMeasTune, PageMeasures::PageTune::self, NamePage::SB_MeasTuneMeas,
+DEF_PAGE_6(pageTune, PageMeasures::PageTune::self, NamePage::SB_MeasTuneMeas,
     "НАСТРОИТЬ", "CONFIGURE",
     "Переход в режми точной настройки количества и видов измерений",
     "Transition to rezhm of exact control of quantity and types of measurements",
@@ -246,4 +215,4 @@ DEF_PAGE_5(pageMeasures, PageMain::self, NamePage::Measures,
 )
 
 const Page *PageMeasures::self = &pageMeasures;
-const Page *PageMeasures::PageTune::self = &pageMeasTune;
+const Page *PageMeasures::PageTune::self = &pageTune;
