@@ -4,6 +4,15 @@
 #include "Settings/SettingsTrig.h"
 #include "Settings/SettingsService.h"
 
+
+struct StateFPGA
+{
+    bool needCalibration;				        // Установленное в true значение означает, что необходимо произвести калибровку.
+    StateWorkFPGA::E stateWorkBeforeCalibration;
+    StateCalibration::E stateCalibration;          // Текущее состояние калибровки. Используется в процессе калибровки.
+};
+
+
 class FPGA
 {
 public:
@@ -95,6 +104,8 @@ public:
     static void ProcedureCalibration();
 
     static StateWorkFPGA::E CurrentStateWork();
+
+    static StateFPGA state;
 
 private:
     // Загрузить настройки в аппаратную часть из глобальной структуры SSettings.

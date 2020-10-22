@@ -7,13 +7,6 @@
 
 void *extraMEM = 0;
 
-StateFPGA gStateFPGA = 
-{
-    false,
-    StateWorkFPGA::Stop,
-    StateCalibration::None
-};
-
 void SetItemForHint(Item *item)
 {
     PageHelpContent::stringForHint = 0;

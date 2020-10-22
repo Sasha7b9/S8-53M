@@ -26,6 +26,13 @@ static const int Kr[] = {n / 2, n / 5, n / 10, n / 20, n / 50};
 
 static DataSettings ds;
 
+StateFPGA FPGA::state =
+{
+    false,
+    StateWorkFPGA::Stop,
+    StateCalibration::None
+};
+
 
 static uint8 dataRel0[FPGA_MAX_POINTS] = {0};   // Буфер используется для чтения данных первого канала.
 static uint8 dataRel1[FPGA_MAX_POINTS] = {0};   // Буфер используется для чтения данных второго канала.
@@ -167,10 +174,10 @@ void FPGA::Update(void)
 {
     ReadFlag();
 
-    if (gStateFPGA.needCalibration)              // Если вошли в режим калибровки -
+    if (state.needCalibration)              // Если вошли в режим калибровки -
     {
         FPGA::ProcedureCalibration();            // выполняем её.
-        gStateFPGA.needCalibration = false;
+        state.needCalibration = false;
     }
     if (temporaryPause)
     {
@@ -628,7 +635,7 @@ void ReadPoint(void)
 
 void FPGA::SaveState(void)
 {
-    gStateFPGA.stateWorkBeforeCalibration = stateWork;
+    FPGA::state.stateWorkBeforeCalibration = stateWork;
     storingSettings = set;
 }
 
@@ -658,9 +665,9 @@ void FPGA::RestoreState(void)
         }
     }
     FPGA::LoadSettings();
-    if(gStateFPGA.stateWorkBeforeCalibration != StateWorkFPGA::Stop)
+    if(state.stateWorkBeforeCalibration != StateWorkFPGA::Stop)
     {
-        gStateFPGA.stateWorkBeforeCalibration = StateWorkFPGA::Stop;
+        state.stateWorkBeforeCalibration = StateWorkFPGA::Stop;
         FPGA::OnPressStartStop();
     }
 }

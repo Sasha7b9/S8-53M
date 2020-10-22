@@ -92,7 +92,7 @@ DEF_CHOICE_3(cCalibrator_Mode, PageService::PageCalibrator::self,
 
 static void OnPress_Calibrator_Calibrate(void)
 {
-    gStateFPGA.needCalibration = true;
+    FPGA::state.needCalibration = true;
 }
 
 DEF_BUTTON(cCalibrator_Calibrate, PageService::PageCalibrator::self,

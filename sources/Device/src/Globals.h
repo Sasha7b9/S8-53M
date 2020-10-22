@@ -37,13 +37,6 @@ struct StateWorkFPGA { enum E
 };};
 
 
-struct StateFPGA
-{
-    bool needCalibration;				        // Установленное в true значение означает, что необходимо произвести калибровку.
-    StateWorkFPGA::E stateWorkBeforeCalibration;
-    StateCalibration::E stateCalibration;          // Текущее состояние калибровки. Используется в процессе калибровки.
-};
-
 struct DataSettings
 {
     void*         addrNext;               // Адрес следующей записи.
@@ -72,8 +65,6 @@ struct DataSettings
 
 
 void SetItemForHint(Item *item);
-
-extern StateFPGA gStateFPGA;
 
 extern uint8        *gData0;    // Указатель на данные первого канала, который надо рисовать на экране
 extern uint8        *gData1;    // Указатель на данные второго канала, который надо рисовать на экране
