@@ -508,13 +508,3 @@ void Painter::Draw2SymbolsC(int x, int y, char symbol1, char symbol2, Color::E c
     Char(symbol1).Draw(x, y, color1);
     Char(symbol2).Draw(x, y, color2);
 }
-
-
-void Painter::Draw10SymbolsInRect(int x, int y, char eChar)
-{
-    for (int i = 0; i < 5; i++)
-    {
-        Char(static_cast<char>(eChar + i)).Draw(x + 8 * i, y);
-        Char(static_cast<char>(eChar + i + 16)).Draw(x + 8 * i, y + 8);
-    }
-}
