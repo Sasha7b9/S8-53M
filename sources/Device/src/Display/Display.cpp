@@ -49,6 +49,7 @@ static pFuncVV funcAfterDraw    = 0;
 static bool showLevelRShiftA = false;    // Нужно ли рисовать горизонтальную линию уровня смещения первого канала
 static bool showLevelRShiftB = false;
 static bool showLevelTrigLev = false;    // Нужно ли рисовать горизонтальную линию уровня смещения уровня синхронизации
+static bool trigEnable = false;
 
 
 void Display::DrawStringNavigation() 
@@ -1098,7 +1099,7 @@ void Display::DrawHiRightPart()
 
         x += 2;
 
-        if (TRIG_ENABLE)
+        if (trigEnable)
         {
             Region(Grid::TOP - 3, Grid::TOP - 7).Fill(x, 1 + y);
             Text(LANG_RU ? "СИ" : "Tr").Draw(x + 3, 3 + y, COLOR_BACK);
@@ -2190,7 +2191,7 @@ void Display::DisableShowLevelTrigLev()
 
 void Display::EnableTrigLabel(bool enable)
 {
-    TRIG_ENABLE = enable ? 1U : 0U;
+    trigEnable = enable;
 }
 
 

@@ -16,7 +16,6 @@ class Item;
 #define NEED_RESET_SETTINGS         (gBF.needResetSettings)
 #define NEED_FINISH_REDRAW          (gBF.needFinishDraw)
 #define NUM_DRAWING_SIGNALS         (gBF.numDrawingSignals)
-#define TRIG_ENABLE                 (gBF.trigEnable)
 #define DRAW_RSHIFT_MARKERS         (gBF.drawRShiftMarkers)
 #define DRAW_RSHIFT_MARKERS_IS_TRUE (DRAW_RSHIFT_MARKERS != 0)
 #define TOP_MEASURES                (gBF.topMeasures)
@@ -36,7 +35,6 @@ class Item;
 struct BitField
 {
     // Для рисования : Display::c
-    uint trigEnable                 : 1;
     uint drawRShiftMarkers          : 1;
     uint needFinishDraw             : 1;    // Если 1, то дисплей нуждается в перерисовке
     uint framesElapsed              : 1;
