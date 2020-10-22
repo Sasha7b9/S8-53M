@@ -21,15 +21,9 @@ int numPoints = 0;
 Vector array[SIZE_ARRAY];
 
 
-
 static void DrawProgressBar(uint dT);
 static void DrawBigMNIPI(void);
 static void InitPoints(void);
-
-
-extern Color::E gColorGrid;
-extern Color::E gColorChan[4];
-
 
 
 void Display::Init(void)
