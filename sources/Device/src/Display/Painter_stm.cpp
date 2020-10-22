@@ -6,9 +6,6 @@
 using namespace Primitives;
 
 
-extern bool noFonts;
-
-
 void Painter::BeginScene(Color::E color)
 {
     if (stateTransmit == StateTransmit::NeedForTransmitFirst || stateTransmit == StateTransmit::NeedForTransmitSecond)

@@ -99,6 +99,8 @@ public:
 
     static void CalculateCurrentColor();
 
+    static bool noFonts;
+
 private:
 
     static void RunDisplay();

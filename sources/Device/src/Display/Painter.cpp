@@ -16,7 +16,7 @@ static Color::E currentColor = Color::NUM;
 
 StateTransmit::E Painter::stateTransmit = StateTransmit::Free;
 
-bool noFonts = false;
+bool Painter::noFonts = false;
 
 
 void Painter::SendFrame(bool first, bool noFonts_)
