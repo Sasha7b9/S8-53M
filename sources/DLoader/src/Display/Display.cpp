@@ -1,12 +1,16 @@
 #include "defines.h"
 #include "main.h"
 #include "common/Display/Colors_c.h"
+#include "common/Display/Primitives_c.h"
 #include "common/Hardware/HAL/HAL_c.h"
 #include "common/Utils/Math_c.h"
 #include "Display/Display.h"
 #include "Display/Painter.h"
 #include "Settings/Settings.h"
 #include <cmath>
+
+
+using namespace Primitives;
 
 
 struct Vector
@@ -57,7 +61,7 @@ void DrawButton(int x, int y, const char *text)
 {
     int width = 25;
     int height = 20;
-    Painter::DrawRectangle(x, y, width, height);
+    Rectangle(width, height).Draw(x, y);
     Painter::DrawStringInCenterRect(x, y, width + 2, height - 1, text);
 }
 
@@ -77,7 +81,7 @@ void Display::Update(void)
     {
         Painter::BeginScene(Color::BACK);
         Painter::SetColor(Color::FILL);
-        Painter::DrawRectangle(0, 0, 319, 239);
+        Rectangle(319, 239).Draw(0, 0);
         DrawBigMNIPI();
         Painter::SetColor(Color::WHITE);
         Painter::DrawStringInCenterRect(0, 180, 320, 20, "Для получения помощи нажмите и удерживайте кнопку ПОМОЩЬ");
@@ -111,11 +115,8 @@ void Display::Update(void)
         int width = static_cast<int>(static_cast<float>(fullWidth) * MainStruct::ms->percentUpdate);
 
         Painter::FillRegion(20, 130, width, height);
-        Painter::DrawRectangle(20, 130, fullWidth, height);
+        Rectangle(fullWidth, height).Draw(20, 130);
     }
-
-    //DrawFrames();
-    //DrawSeconds();
 
     Painter::EndScene();
     MainStruct::ms->display.isRun = false;
@@ -151,7 +152,7 @@ void DrawProgressBar(uint dT)
     Painter::DrawStringInCenterRect(X, y0 + dH, WIDTH, 10, "Идёт поиск программного обеспечения");
     Painter::DrawStringInCenterRect(X, y0 + 2 * dH, WIDTH, 10, "Подождите...");
 
-    Painter::DrawRectangle(X, Y, WIDTH, HEIGHT);
+    Rectangle(WIDTH, HEIGHT).Draw(X, Y);
     Painter::FillRegion(X, Y, static_cast<int>(MainStruct::ms->display.value), HEIGHT);
 }
 

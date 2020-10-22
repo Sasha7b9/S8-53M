@@ -41,18 +41,6 @@ void Painter::ResetFlash(void)
 }
 
 
-void Painter::DrawRectangle(int x, int y, int width, int height)
-{
-    Painter::DrawHLine(y, x, x + width);
-    Painter::DrawVLine(x, y, y + height);
-    Painter::DrawHLine(y + height, x, x + width);
-    if (x + width < SCREEN_WIDTH)
-    {
-        Painter::DrawVLine(x + width, y, y + height);
-    }
-}
-
-
 void Painter::DrawDashedVLine(int x, int y0, int y1, int deltaFill, int deltaEmtpy, int deltaStart)
 {
     if (deltaStart < 0 || deltaStart >= (deltaFill + deltaEmtpy))
@@ -87,41 +75,7 @@ void Painter::LoadFont(TypeFont::E)
 }
 
 
-void Painter::DrawDashedHLine(int y, int x0, int x1, int deltaFill, int deltaEmpty, int deltaStart)
-{
-    if (deltaStart < 0 || deltaStart >= (deltaFill + deltaEmpty))
-    {
-        return;
-    }
-    int x = x0;
-    if (deltaStart != 0)                // Если линию нужно рисовать не с начала штриха
-    {
-        x += (deltaFill + deltaEmpty - deltaStart);
-        if (deltaStart < deltaFill)     // Если начало линии приходится на штрих
-        {
-            Painter::DrawHLine(y, x0, x - 1);
-        }
-    }
-
-    while (x < x1)
-    {
-        Painter::DrawHLine(y, x, x + deltaFill - 1);
-        x += (deltaFill + deltaEmpty);
-    }
-}
-
-
-void Painter::SendToDisplay(uint8 *, int)
-{
-}
-
-
 void Painter::SetColor(Color::E)
-{
-}
-
-
-void Painter::DrawHLine(int, int, int)
 {
 }
 
@@ -160,52 +114,8 @@ void Painter::DrawMultiHPointLine(int , int , uint8 *, int , int , Color::E )
 }
 
 
-void Painter::DrawLine(int x0, int y0, int x1, int y1)
-{
-    if (x0 == x1)
-    {
-        Painter::DrawVLine(x0, y0, y1);
-    }
-    else if (y0 == y1)
-    {
-        Painter::DrawHLine(y0, x0, x1);
-    }
-}
-
-
 void Painter::FillRegion(int , int , int , int )
 {
-}
-
-
-void Painter::DrawVolumeButton(int x, int y, int width, int height, int thickness, Color::E normal, Color::E bright, Color::E dark, bool isPressed, bool inShade)
-{
-    if (inShade)
-    {
-        thickness = 1;
-    }
-    Region(width - thickness * 2, height - thickness * 2).Fill(x + thickness, y + thickness, normal);
-
-    if (isPressed || inShade)
-    {
-        for (int i = 0; i < thickness; i++)
-        {
-            HLine().Draw(y + i, x + i, x + width - i, dark);
-            Painter::DrawVLine(x + i, y + 1 + i, y + height - i);
-            VLine().Draw(x + width - i, y + 1 + i, y + height - i, bright);
-            Painter::DrawHLine(y + height - i, x + 1 + i, x + width - i);
-        }
-    }
-    else
-    {
-        for (int i = 0; i < thickness; i++)
-        {
-            HLine().Draw(y + i, x + i, x + width - i, bright);
-            Painter::DrawVLine(x + i, y + 1 + i, y + height - i);
-            VLine().Draw(x + width - i, y + 1 + i, y + height - i, dark);
-            Painter::DrawHLine(y + height - i, x + 1 + i, x + width - i);
-        }
-    }
 }
 
 

@@ -8,8 +8,6 @@ namespace Painter
 {
     void SetPoint(int, int);
     
-    void SendToDisplay(uint8 *bytes, int numBytes);
-
     void BeginScene(Color::E color);
 
     void EndScene(void);
@@ -19,8 +17,6 @@ namespace Painter
     void SetColor(Color::E color);
 
     void LoadPalette(int num);
-
-    static void DrawHLine(int y, int x0, int x1);
 
     static void DrawVLine(int x, int y0, int y1);
 
@@ -32,18 +28,10 @@ namespace Painter
 
     void DrawMultiHPointLine(int numLines, int x, uint8 *y, int delta, int count, Color::E color);
 
-    void DrawLine(int x0, int y0, int x1, int y1);
-    // –исует прерывистую горизонтальную линию. dFill - длина штриха, dEmpty - расст. между штрихами
-    // Ћини€ всегда начинаетс€ со штриха. dStart указывает смещение первой рисуемой точки относительно начала штриха.
-    void DrawDashedHLine(int y, int x0, int x1, int dFill, int dEmpty, int dStart);
     // –исует прерывистую вертикальную линию.
     void DrawDashedVLine(int x, int y0, int y1, int dFill, int dEmpty, int dStart);
 
-    void DrawRectangle(int x, int y, int width, int height);
-
     void FillRegion(int x, int y, int width, int height);
-
-    void DrawVolumeButton(int x, int y, int width, int height, int thickness, Color::E normal, Color::E bright, Color::E dark, bool isPressed, bool inShade);
 
     void SetBrightnessDisplay(int16 brightness);  // ”становить €ркость диспле€.
     
