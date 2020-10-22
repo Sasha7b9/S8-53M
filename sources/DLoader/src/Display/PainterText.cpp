@@ -321,7 +321,7 @@ void Painter::DrawStringInCenterRectOnBackgroundC(int x, int y, int width, int h
     int eX = Painter::DrawStringInCenterRectC(x, y, width, height, text, colorBackground);
     int w = lenght + widthBorder * 2 - 2;
     int h = 7 + widthBorder * 2 - 1;
-    Painter::FillRegion(eX - lenght - widthBorder, y - widthBorder + 1, w, h);
+    Region(w, h).Fill(eX - lenght - widthBorder, y - widthBorder + 1);
     Painter::DrawStringInCenterRectC(x, y, width, height, text, colorText);
 }
 

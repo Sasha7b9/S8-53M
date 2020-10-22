@@ -28,11 +28,6 @@ namespace Painter
 
     void DrawMultiHPointLine(int numLines, int x, uint8 *y, int delta, int count, Color::E color);
 
-    // Рисует прерывистую вертикальную линию.
-    void DrawDashedVLine(int x, int y0, int y1, int dFill, int dEmpty, int dStart);
-
-    void FillRegion(int x, int y, int width, int height);
-
     void SetBrightnessDisplay(int16 brightness);  // Установить яркость дисплея.
     
     // Нарисовать массив вертикальных линий. Линии рисуются одна за другой. y0y1 - массив вертикальных координат

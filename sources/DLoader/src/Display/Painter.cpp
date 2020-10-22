@@ -41,30 +41,6 @@ void Painter::ResetFlash(void)
 }
 
 
-void Painter::DrawDashedVLine(int x, int y0, int y1, int deltaFill, int deltaEmtpy, int deltaStart)
-{
-    if (deltaStart < 0 || deltaStart >= (deltaFill + deltaEmtpy))
-    {
-        return;
-    }
-    int y = y0;
-    if (deltaStart != 0)                 // Если линию нужно рисовать не с начала штриха
-    {
-        y += (deltaFill + deltaEmtpy - deltaStart);
-        if (deltaStart < deltaFill)     // Если начало линии приходится на штрих
-        {
-            Painter::DrawVLine(x, y0, y - 1);
-        }
-    }
-
-    while (y < y1)
-    {
-        Painter::DrawVLine(x, y, y + deltaFill - 1);
-        y += (deltaFill + deltaEmtpy);
-    }
-}
-
-
 void Painter::SetFont(TypeFont::E)
 {
 }
@@ -76,11 +52,6 @@ void Painter::LoadFont(TypeFont::E)
 
 
 void Painter::SetColor(Color::E)
-{
-}
-
-
-void Painter::DrawVLine(int, int, int)
 {
 }
 
@@ -110,11 +81,6 @@ void Painter::DrawMultiVPointLine(int , int , uint16 *, int , int , Color::E )
 
 
 void Painter::DrawMultiHPointLine(int , int , uint8 *, int , int , Color::E )
-{
-}
-
-
-void Painter::FillRegion(int , int , int , int )
 {
 }
 

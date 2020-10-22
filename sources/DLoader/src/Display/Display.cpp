@@ -114,7 +114,7 @@ void Display::Update(void)
         int fullWidth = 280;
         int width = static_cast<int>(static_cast<float>(fullWidth) * MainStruct::ms->percentUpdate);
 
-        Painter::FillRegion(20, 130, width, height);
+        Region(width, height).Fill(20, 130);
         Rectangle(fullWidth, height).Draw(20, 130);
     }
 
@@ -153,7 +153,7 @@ void DrawProgressBar(uint dT)
     Painter::DrawStringInCenterRect(X, y0 + 2 * dH, WIDTH, 10, "Подождите...");
 
     Rectangle(WIDTH, HEIGHT).Draw(X, Y);
-    Painter::FillRegion(X, Y, static_cast<int>(MainStruct::ms->display.value), HEIGHT);
+    Region(static_cast<int>(MainStruct::ms->display.value), HEIGHT).Fill(X, Y);
 }
 
 
