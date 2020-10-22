@@ -378,24 +378,21 @@ static void OnMemExtSetMaskRegSet(int angle)
     OnMemExtSetMaskNameRegSet(angle, sizeof(symbolsAlphaBet) / 4);
 }
 
-extern const Page mspSetMask;
-
-
-DEF_SMALL_BUTTON(sbSetMaskBackspace, &mspSetMask,
+DEF_SMALL_BUTTON(sbSetMaskBackspace, PageMemory::PageSetMask::self,
     "Backspace", "Backspace",
     "Удаляет последний введённый символ",
     "Deletes the last entered symbol",
     nullptr, PressSB_SetMask_Backspace, DrawSB_SetMask_Backspace, nullptr
 )
 
-DEF_SMALL_BUTTON(sbSetMaskDelete, &mspSetMask,
+DEF_SMALL_BUTTON(sbSetMaskDelete, PageMemory::PageSetMask::self,
     "Удалить", "Delete",
     "Удаляет все введённые символы",
     "Deletes all entered symbols",
     nullptr, PressSB_SetMask_Delete, DrawSB_SetMask_Delete, nullptr
 )
 
-DEF_SMALL_BUTTON(sbSetMaskInsert, &mspSetMask,
+DEF_SMALL_BUTTON(sbSetMaskInsert, PageMemory::PageSetMask::self,
     "Вставить", "Insert",
     "Вставляет выбранный символ",
     "Inserts the chosen symbol",
@@ -759,7 +756,7 @@ DEF_SMALL_BUTTON(sbExitMemInt, PageMemory::PageInternal::self,    // Кнопка для 
 // Нажатие ПАМЯТЬ - ВНЕШН ЗУ - Маска
 void OnPressMemoryExtMask(void)
 {
-    PageMemory::SetMask::self->OpenAndSetItCurrent();
+    PageMemory::PageSetMask::self->OpenAndSetItCurrent();
     Display::SetAddDrawFunction(DrawSetMask);
 }
 
@@ -992,7 +989,7 @@ void Memory_SaveSignalToFlashDrive()
     {
         if (FILE_NAMING_MODE_IS_HAND)
         {
-            PageMemory::SetName::self->OpenAndSetItCurrent();
+            PageMemory::PageSetName::self->OpenAndSetItCurrent();
             Display::SetAddDrawFunction(DrawSetName);
         }
         else
@@ -1049,7 +1046,7 @@ static void PressSB_SetMask_Exit()
     Display::RemoveAddDrawFunction();
 }
 
-DEF_SMALL_BUTTON(sbExitSetMask, &mspSetMask,
+DEF_SMALL_BUTTON(sbExitSetMask, PageMemory::PageSetMask::self,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
     nullptr, PressSB_SetMask_Exit, DrawSB_Exit, nullptr
 )
@@ -1110,7 +1107,7 @@ DEF_PAGE_6(mspFileManager, PageMemory::PageExternal::self, NamePage::SB_FileMana
     FuncOfActiveExtMemFolder, OnPressMemoryExtFileManager, EmptyFuncVV, FM::RotateRegSet
 );
 
-DEF_PAGE_6(pageMemoryExt, PageMemory::self, NamePage::MemoryExt,
+DEF_PAGE_6(pageExternal, PageMemory::self, NamePage::MemoryExt,
     "ВНЕШН ЗУ", "EXT STORAGE",
     "Работа с внешним запоминающим устройством.",
     "Work with external storage device.",
@@ -1169,14 +1166,14 @@ DEF_PAGE_4(pageMemory, PageMain::self, NamePage::Memory,
     mcMemoryNumPoints,
     *PageMemory::PageLatest::self,
     *PageMemory::PageInternal::self,
-    pageMemoryExt,
+    *PageMemory::PageExternal::self ,
     nullptr, nullptr, nullptr, nullptr
 )
 
 const Page *PageMemory::self = &pageMemory;
 const Page *PageMemory::PageLatest::self = &pageLatest;
 const Page *PageMemory::PageInternal::self = &pageInternal;
-const Page *PageMemory::PageExternal::self = &pageMemoryExt;
-const Page *PageMemory::SetMask::self = &mspSetMask;
-const Page *PageMemory::SetName::self = &mpSetName;
+const Page *PageMemory::PageExternal::self = &pageExternal;
+const Page *PageMemory::PageSetMask::self = &mspSetMask;
+const Page *PageMemory::PageSetName::self = &mpSetName;
 const Page *PageMemory::FileManager::self = &mspFileManager;

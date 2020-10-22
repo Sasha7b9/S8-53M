@@ -240,12 +240,12 @@ struct PageMemory
         static const Page *self;
     };
 
-    struct SetMask
+    struct PageSetMask
     {
         static const Page *self;
     };
 
-    struct SetName
+    struct PageSetName
     {
         static const Page *self;
     };
