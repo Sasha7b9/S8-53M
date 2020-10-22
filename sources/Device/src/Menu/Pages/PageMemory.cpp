@@ -25,6 +25,8 @@ int16 PageMemory::PageLatest::currentSignal = 0;
 int8 PageMemory::PageInternal::currentSignal = 0;
 bool PageMemory::PageInternal::showAlways = false;
 
+static bool runningFPGAbeforeSmallButtons = false;    // Здесь сохраняется информация о том, работала ли ПЛИС перед переходом в режим работы с памятью
+
 static void DrawSetMask();  // Эта функция рисует, когда выбран режим задания маски.
 static void DrawSetName();  // Эта функция рисует, когда нужно задать имя файла для сохранения
 
@@ -1002,10 +1004,10 @@ void Memory_SaveSignalToFlashDrive()
 static void PressSB_MemLast_Exit()
 {
     MODE_WORK = ModeWork::Direct;
-    if (RUN_FPGA_AFTER_SMALL_BUTTONS)
+    if (runningFPGAbeforeSmallButtons)
     {
         FPGA::Start();
-        RUN_FPGA_AFTER_SMALL_BUTTONS = 0;
+        runningFPGAbeforeSmallButtons = false;
     }
     Display::RemoveAddDrawFunction();
 }
@@ -1014,7 +1016,7 @@ static void PressSB_MemLast_Exit()
 void OnPressMemoryLatest()
 {
     PageMemory::PageLatest::currentSignal = 0;
-    RUN_FPGA_AFTER_SMALL_BUTTONS = FPGA::IsRunning() ? 1U : 0U;
+    runningFPGAbeforeSmallButtons = FPGA::IsRunning();
     FPGA::Stop(false);
     MODE_WORK = ModeWork::Latest;
 }

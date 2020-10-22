@@ -4,6 +4,7 @@
 #include "common/Display/Text_c.h"
 #include "common/Display/Font/Font_c.h"
 #include "common/Hardware/Sound_c.h"
+#include "common/Hardware/Timer_c.h"
 #include "common/Utils/Math_c.h"
 #include "Display/Display.h"
 #include "Display/Painter.h"
@@ -12,18 +13,15 @@
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/MathFPGA.h"
 #include "FPGA/Storage.h"
-#include "common/Hardware/Timer_c.h"
 #include "LAN/LAN.h"
 #include "Menu/Menu.h"
+#include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
 #include "Utils/ProcessingSignal.h"
-#include "Menu/Pages/Definition.h"
 #include "VCP/VCP.h"
-#include <cmath>
 #include <cstdio>
 #include <cstring>
 #include <limits>
-
 
 using namespace Primitives;
 

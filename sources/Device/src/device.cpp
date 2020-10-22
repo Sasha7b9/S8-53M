@@ -9,8 +9,8 @@
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
-#include "VCP/VCP.h"
 #include "Utils/ProcessingSignal.h"
+#include "VCP/VCP.h"
 
 
 bool Device::needResetSettings = false;
