@@ -7,22 +7,6 @@
 #include "Settings/Settings.h"
 
 
-extern const Page mspSettings;                              //     ДИСПЛЕЙ - НАСТРОЙКИ
-extern const Page mspSettings_Colors;                       // ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА
-extern const Choice mcSettings_Colors_Scheme;               // ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Цветовая схема
-extern const GovernorColor mgcSettings_Colors_ChannelA;     // ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Канал 1
-extern const GovernorColor mgcSettings_Colors_ChannelB;     // ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Канал 2
-extern const GovernorColor mgcSettings_Colors_Grid;         // ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Сетка
-extern const Governor mgSettings_Brightness;                // ДИСПЛЕЙ - НАСТРОЙКИ - Яркость
-static void OnChanged_Settings_Brightness();                // Вызыватеся при изменении ДИСПЛЕЙ-НАСТРОЙКИ-Яркость
-extern const Governor mgSettings_Levels;                    // ДИСПЛЕЙ - НАСТРОЙКИ - Уровни
-extern const Governor mgSettings_TimeMessages;              // ДИСПЛЕЙ - НАСТРОЙКИ - Время
-extern const Choice mcSettings_ShowStringNavigation;        // ДИСПЛЕЙ - НАСТРОЙКИ - Строка меню
-extern const Choice mcSettings_ShowAltMarkers;              // ДИСПЛЕЙ - НАСТРОЙКИ - Доп. маркеры
-static void OnChanged_Settings_ShowAltMarkers(bool);
-extern const Choice mcSettings_AutoHide;                    // ДИСПЛЕЙ - НАСТРОЙКИ - Скрывать
-static void OnChanged_Settings_AutoHide(bool autoHide);     // Вызывается при изменении ДИСПЛЕЙ-НАСТРОЙКИ-Скрывать
-
 DEF_CHOICE_2(mcMapping, PageDisplay::self,
     "Отображение", "View",
     "Задаёт режим отображения сигнала.",
@@ -179,7 +163,7 @@ DEF_PAGE_9(pageDisplay, PageMain::self, NamePage::Display,
     mcRefreshFPS,
     *PageDisplay::PageGrid::self,
     mcTypeShift,
-    mspSettings,
+    *PageDisplay::PageSettings::self,
     nullptr, nullptr, nullptr, nullptr
 )
 
@@ -274,11 +258,88 @@ DEF_PAGE_2(pageGrid, PageDisplay::self, NamePage::DisplayGrid,
     nullptr, nullptr, nullptr, nullptr
 )
 
+static void OnChanged_Settings_Brightness()
+{
+    Painter::SetBrightnessDisplay(BRIGHTNESS);
+}
+
+DEF_GOVERNOR(mgSettings_Brightness, PageDisplay::PageSettings::self,
+    "Яркость", "Brightness",
+    "Установка яркости свечения дисплея",
+    "Setting the brightness of the display",
+    BRIGHTNESS, 0, 100, nullptr, OnChanged_Settings_Brightness, nullptr
+)
+
+DEF_GOVERNOR(mgSettings_Levels, PageDisplay::PageSettings::self,
+    "Уровни", "Levels",
+    "Задаёт время, в течение которого после поворота ручки сещения напряжения на экране остаётся вспомогательная метка уровня смещения",
+    "Defines the time during which, after turning the handle visits to the voltage on the screen remains auxiliary label offset level",
+    TIME_SHOW_LEVELS, 0, 125, nullptr, nullptr, nullptr
+)
+
+DEF_GOVERNOR(mgSettings_TimeMessages, PageDisplay::PageSettings::self,
+    "Время", "Time",
+    "Установка времени, в течение которого сообщения будут находиться на экране",
+    "Set the time during which the message will be on the screen",
+    TIME_MESSAGES, 1, 99, nullptr, nullptr, nullptr
+)
+
+DEF_CHOICE_2(mcSettings_ShowStringNavigation, PageDisplay::PageSettings::self,
+    "Строка меню", "Path menu",
+    "При выборе \nПоказывать\n слева вверху экрана выводится полный путь до текущей страницы меню",
+    "When choosing \nDisplay\n at the top left of the screen displays the full path to the current page menu",
+    "Скрывать", "Hide",
+    "Показывать", "Show",
+    SHOW_STRING_NAVIGATION, nullptr, nullptr, nullptr
+)
+
+static void OnChanged_Settings_ShowAltMarkers(bool)
+{
+    Display::ChangedRShiftMarkers();
+}
+
+DEF_CHOICE_3(mcSettings_ShowAltMarkers, PageDisplay::PageSettings::self,
+    "Доп. маркеры", "Alt. markers"
+    ,
+    "Устанавливает режим отображения дополнительных маркеров уровней смещения и синхронизации:\n"
+    "\"Скрывать\" - дополнительные маркеры не показываются,\n"
+    "\"Показывать\" - дополнительные маркеры показываются всегда,\n"
+    "\"Авто\" - дополнительные маркеры показываются в течение 5 сек после поворота ручки смещения канала по напряжению или уровня синхронизации"
+    ,
+    "Sets the display mode of additional markers levels of displacement and synchronization:\n"
+    "\"Hide\" - additional markers are not shown,\n"
+    "\"Show\" - additional markers are shown always,\n"
+    "\"Auto\" - additional markers are displayed for 5 seconds after turning the handle channel offset voltage or trigger level"
+    ,
+    "Скрывать", "Hide",
+    "Показывать", "Show",
+    "Авто", "Auto",
+    ALT_MARKERS, nullptr, OnChanged_Settings_ShowAltMarkers, nullptr
+)
+
+static void OnChanged_Settings_AutoHide(bool autoHide)
+{
+    Menu::SetAutoHide(autoHide);
+}
+
+DEF_CHOICE_6(mcSettings_AutoHide, PageDisplay::PageSettings::self,
+    "Скрывать", "Hide",
+    "Установка после последнего нажатия кнопки или поворота ручки, по истечении которого меню автоматически убирается с экрана",
+    "Installation after the last keystroke or turning the handle, after which the menu will automatically disappear",
+    "Никогда", "Never",
+    "Через 5 сек", "Through 5 s",
+    "Через 10 сек", "Through 10 s",
+    "Через 15 сек", "Through 15 s",
+    "Через 30 сек", "Through 30 s",
+    "Через 60 сек", "Through 60 s",
+    MENU_AUTO_HIDE, nullptr, OnChanged_Settings_AutoHide, nullptr
+)
+
 DEF_PAGE_7(mspSettings, PageDisplay::self, NamePage::ServiceDisplay,
     "НАСТРОЙКИ", "SETTINGS",
     "Дополнительные настройки дисплея",
     "Additional display settings",
-    mspSettings_Colors,
+    *PageDisplay::PageSettings::PageColors::self,
     mgSettings_Brightness,
     mgSettings_Levels,
     mgSettings_TimeMessages,
@@ -286,6 +347,40 @@ DEF_PAGE_7(mspSettings, PageDisplay::self, NamePage::ServiceDisplay,
     mcSettings_ShowAltMarkers,
     mcSettings_AutoHide,
     nullptr, nullptr, nullptr, nullptr
+)
+
+DEF_CHOICE_2(mcSettings_Colors_Scheme, PageDisplay::PageSettings::PageColors::self,
+    "Цветовая схема", "Color scheme",
+    "Режим работы калибратора",
+    "Mode of operation of the calibrator",
+    "Схема 1", "Scheme 1",
+    "Схема 2", "Scheme 2",
+    COLOR_SCHEME, nullptr, nullptr, nullptr
+)
+
+static ColorType colorT1 = { 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::DATA_A };
+
+DEF_GOVERNOR_COLOR(mgcSettings_Colors_ChannelA, PageDisplay::PageSettings::PageColors::self,
+    "Канал 1", "Channel 1",
+    "",
+    "",
+    colorT1, nullptr
+)
+
+static ColorType colorT2 = { 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::DATA_B };
+
+DEF_GOVERNOR_COLOR(mgcSettings_Colors_ChannelB, PageDisplay::PageSettings::PageColors::self,
+    "Канал 2", "Channel 2",
+    "",
+    "",
+    colorT2, nullptr
+)
+
+DEF_GOVERNOR_COLOR(mgcSettings_Colors_Grid, PageDisplay::PageSettings::PageColors::self,
+    "Сетка", "Grid",
+    "Устанавливает цвет сетки",
+    "Sets the grid color",
+    cTypeGrid, nullptr
 )
 
 DEF_PAGE_4(mspSettings_Colors, &mspSettings, NamePage::ServiceDisplayColors,
@@ -299,135 +394,10 @@ DEF_PAGE_4(mspSettings_Colors, &mspSettings, NamePage::ServiceDisplayColors,
     nullptr, nullptr, nullptr, nullptr
 )
 
-DEF_CHOICE_2(mcSettings_Colors_Scheme, &mspSettings_Colors,
-    "Цветовая схема", "Color scheme",
-    "Режим работы калибратора",
-    "Mode of operation of the calibrator",
-    "Схема 1", "Scheme 1",
-    "Схема 2", "Scheme 2",
-    COLOR_SCHEME, nullptr, nullptr, nullptr
-)
-
-static ColorType colorT1 = {0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::DATA_A};
-
-// ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Канал 1 -------------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR_COLOR(mgcSettings_Colors_ChannelA, mspSettings_Colors,
-    "Канал 1", "Channel 1",
-    "",
-    "",
-    colorT1, nullptr
-)
-
-
-static ColorType colorT2 = {0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::DATA_B};
-
-// ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Канал 2 -------------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR_COLOR(mgcSettings_Colors_ChannelB, mspSettings_Colors,
-    "Канал 2", "Channel 2",
-    "",
-    "",
-    colorT2, nullptr
-)
-
-
-// ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Сетка ---------------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR_COLOR(mgcSettings_Colors_Grid, mspSettings_Colors,
-    "Сетка", "Grid",
-    "Устанавливает цвет сетки",
-    "Sets the grid color",
-    cTypeGrid, nullptr
-)
-
-
-// ДИСПЛЕЙ - НАСТРОЙКИ - Яркость ---------------------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mgSettings_Brightness, &mspSettings,
-    "Яркость", "Brightness",
-    "Установка яркости свечения дисплея",
-    "Setting the brightness of the display",
-    BRIGHTNESS, 0, 100, nullptr, OnChanged_Settings_Brightness, nullptr
-)
-
-static void OnChanged_Settings_Brightness()
-{
-    Painter::SetBrightnessDisplay(BRIGHTNESS);
-}
-
-
-// ДИСПЛЕЙ - НАСТРОЙКИ - Уровни ----------------------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mgSettings_Levels, &mspSettings,
-    "Уровни", "Levels",
-    "Задаёт время, в течение которого после поворота ручки сещения напряжения на экране остаётся вспомогательная метка уровня смещения",
-    "Defines the time during which, after turning the handle visits to the voltage on the screen remains auxiliary label offset level",
-    TIME_SHOW_LEVELS, 0, 125, nullptr, nullptr, nullptr
-)
-
-// ДИСПЛЕЙ - НАСТРОЙКИ - Время -----------------------------------------------------------------------------------------------------------------------
-DEF_GOVERNOR(mgSettings_TimeMessages, &mspSettings,
-    "Время", "Time",
-    "Установка времени, в течение которого сообщения будут находиться на экране",
-    "Set the time during which the message will be on the screen",
-    TIME_MESSAGES, 1, 99, nullptr, nullptr, nullptr
-)
-
-
-// ДИСПЛЕЙ - НАСТРОЙКИ - Строка меню -----------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_2(mcSettings_ShowStringNavigation, &mspSettings,
-    "Строка меню", "Path menu",
-    "При выборе \nПоказывать\n слева вверху экрана выводится полный путь до текущей страницы меню",
-    "When choosing \nDisplay\n at the top left of the screen displays the full path to the current page menu",
-    "Скрывать",   "Hide",
-    "Показывать", "Show",
-    SHOW_STRING_NAVIGATION, nullptr, nullptr, nullptr
-)
-
-
-// ДИСПЛЕЙ - НАСТРОЙКИ - Доп. маркеры ----------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_3(mcSettings_ShowAltMarkers, &mspSettings,
-    "Доп. маркеры", "Alt. markers"
-    ,
-    "Устанавливает режим отображения дополнительных маркеров уровней смещения и синхронизации:\n"
-    "\"Скрывать\" - дополнительные маркеры не показываются,\n"
-    "\"Показывать\" - дополнительные маркеры показываются всегда,\n"
-    "\"Авто\" - дополнительные маркеры показываются в течение 5 сек после поворота ручки смещения канала по напряжению или уровня синхронизации"
-    ,
-    "Sets the display mode of additional markers levels of displacement and synchronization:\n"
-    "\"Hide\" - additional markers are not shown,\n"
-    "\"Show\" - additional markers are shown always,\n"
-    "\"Auto\" - additional markers are displayed for 5 seconds after turning the handle channel offset voltage or trigger level"
-    ,
-    "Скрывать",   "Hide",
-    "Показывать", "Show",
-    "Авто",       "Auto",
-    ALT_MARKERS, nullptr, OnChanged_Settings_ShowAltMarkers, nullptr
-)
-
-static void OnChanged_Settings_ShowAltMarkers(bool)
-{
-    Display::ChangedRShiftMarkers();
-}
-
-
-// ДИСПЛЕЙ - НАСТРОЙКИ - Скрывать --------------------------------------------------------------------------------------------------------------------
-DEF_CHOICE_6(mcSettings_AutoHide, mspSettings,
-    "Скрывать", "Hide",
-    "Установка после последнего нажатия кнопки или поворота ручки, по истечении которого меню автоматически убирается с экрана",
-    "Installation after the last keystroke or turning the handle, after which the menu will automatically disappear",
-    "Никогда",      "Never",
-    "Через 5 сек",  "Through 5 s",
-    "Через 10 сек", "Through 10 s",
-    "Через 15 сек", "Through 15 s",
-    "Через 30 сек", "Through 30 s",
-    "Через 60 сек", "Through 60 s",
-    MENU_AUTO_HIDE, nullptr, OnChanged_Settings_AutoHide, nullptr
-)
-
-static void OnChanged_Settings_AutoHide(bool autoHide)
-{
-    Menu::SetAutoHide(autoHide);
-}
-
 ColorType *PageDisplay::colorTypeGrid = &cTypeGrid;
 const Page *PageDisplay::self = &pageDisplay;
 const Page *PageDisplay::PageAccumulation::self = &pageAccumulation;
 const Page *PageDisplay::PageAveraging::self = &pageAveraging;
 const Page *PageDisplay::PageGrid::self = &pageGrid;
+const Page *PageDisplay::PageSettings::self = &mspSettings;
+const Page *PageDisplay::PageSettings::PageColors::self = &mspSettings_Colors;

@@ -132,6 +132,16 @@ struct PageDisplay
     {
         static const Page *self;
     };
+
+    struct PageSettings
+    {
+        static const Page *self;
+
+        struct PageColors
+        {
+            static const Page *self;
+        };
+    };
 };
 
 
