@@ -3,6 +3,12 @@
 #include "Settings/SettingsCursors.h"
 
 
+#define RETURN_TO_MAIN_MENU             0U
+#define RETURN_TO_LAST_MEM              1U
+#define RETURN_TO_INT_MEM               2U
+#define RETURN_TO_DISABLE_MENU          3U
+
+
 class Page;
 class PageHelpItem;
 struct ColorType;

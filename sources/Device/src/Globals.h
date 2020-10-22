@@ -6,36 +6,6 @@
 #include "common/Hardware/HAL/HAL_c.h"
 
 
-class Item;
-
-
-#define RETURN_TO_MAIN_MENU             0U
-#define RETURN_TO_LAST_MEM              1U
-#define RETURN_TO_INT_MEM               2U
-#define RETURN_TO_DISABLE_MENU          3U
-
-
-struct StateCalibration { enum E
-{
-    None,
-    ADCinProgress,
-    RShift0start,
-    RShift0inProgress,
-    RShift1start,
-    RShift1inProgress,
-    ErrorCalibration0,
-    ErrorCalibration1
-};};
-
-struct StateWorkFPGA { enum E
-{
-    Stop,    // СТОП - не занимается считыванием информации.
-    Wait,    // Ждёт поступления синхроимпульса.
-    Work,    // Идёт работа.
-    Pause    // Это состояние, когда временно приостановлен прибор, например, для чтения данных или для записи значений регистров.
-};};
-
-
 struct DataSettings
 {
     void*         addrNext;               // Адрес следующей записи.

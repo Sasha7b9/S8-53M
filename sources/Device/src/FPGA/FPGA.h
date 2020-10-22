@@ -5,6 +5,25 @@
 #include "Settings/SettingsService.h"
 
 
+struct StateWorkFPGA { enum E {
+    Stop,    // СТОП - не занимается считыванием информации.
+    Wait,    // Ждёт поступления синхроимпульса.
+    Work,    // Идёт работа.
+    Pause    // Это состояние, когда временно приостановлен прибор, например, для чтения данных или для записи значений регистров.
+};};
+
+struct StateCalibration { enum E {
+    None,
+    ADCinProgress,
+    RShift0start,
+    RShift0inProgress,
+    RShift1start,
+    RShift1inProgress,
+    ErrorCalibration0,
+    ErrorCalibration1
+};};
+
+
 struct StateFPGA
 {
     bool needCalibration;				        // Установленное в true значение означает, что необходимо произвести калибровку.
