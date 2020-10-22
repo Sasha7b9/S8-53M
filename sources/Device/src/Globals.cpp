@@ -7,9 +7,6 @@
 
 void *extraMEM = 0;
 
-GMemory gMemory = { 0 };
-
-
 StateFPGA gStateFPGA = 
 {
     false,

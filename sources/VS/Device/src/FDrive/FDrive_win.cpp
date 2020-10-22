@@ -3,6 +3,7 @@
 
 
 bool FDrive::isConnected = false;
+bool FDrive::needOpenFileMananger = false;
 
 
 void FDrive::Init()

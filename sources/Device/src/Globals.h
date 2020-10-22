@@ -9,24 +9,10 @@
 class Item;
 
 
-#define NEED_SAVE_TO_DRIVE              (gMemory.needForSaveToFlashDrive)
-
 #define RETURN_TO_MAIN_MENU             0U
 #define RETURN_TO_LAST_MEM              1U
 #define RETURN_TO_INT_MEM               2U
 #define RETURN_TO_DISABLE_MENU          3U
-#define EXIT_FROM_SET_NAME_TO_MAIN_MENU (PageMemory::exitFromModeSetNameTo == RETURN_TO_MAIN_MENU)
-#define EXIT_FROM_SET_NAME_TO_LAST      (PageMemory::exitFromModeSetNameTo == RETURN_TO_LAST_MEM)
-#define EXIT_FROM_SET_NAME_TO_INT       (PageMemory::exitFromModeSetNameTo == RETURN_TO_INT_MEM)
-#define EXIT_FROM_SET_NAME_TO_DIS_MENU  (PageMemory::exitFromModeSetNameTo == RETURN_TO_DISABLE_MENU)
-
-struct GMemory
-{
-    uint    needForSaveToFlashDrive         : 1;    // Если 1, то нужно сохранить после отрисовки на флешку.
-};
-
-
-extern GMemory gMemory;
 
 
 struct StateCalibration { enum E

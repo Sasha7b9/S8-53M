@@ -19,6 +19,7 @@
 #include "Settings/Settings.h"
 #include "Utils/ProcessingSignal.h"
 #include "VCP/VCP.h"
+#include <cmath>
 #include <cstdio>
 #include <cstring>
 #include <limits>
@@ -1266,13 +1267,13 @@ void Display::Update(bool endScene)
 
     Painter::EndScene(endScene);
 
-    if (NEED_SAVE_TO_DRIVE)
+    if (PageMemory::needForSaveToFlashDrive)
     {
         if (Painter::SaveScreenToFlashDrive())
         {
             Display::ShowWarningGood(Warning::FileIsSaved);
         }
-        NEED_SAVE_TO_DRIVE = 0;
+        PageMemory::needForSaveToFlashDrive = false;
     }
 
     if (funcAfterDraw)

@@ -21,10 +21,12 @@
 
 using namespace Primitives;
 
+
 int16 PageMemory::PageLatest::currentSignal = 0;
 int8 PageMemory::PageInternal::currentSignal = 0;
 bool PageMemory::PageInternal::showAlways = false;
 uint PageMemory::exitFromModeSetNameTo = false;
+bool PageMemory::needForSaveToFlashDrive = false;
 
 static bool runningFPGAbeforeSmallButtons = false;      // Здесь сохраняется информация о том, работала ли ПЛИС перед переходом в режим работы с памятью
 static uint exitFromIntToLast = 0;                      // Если 1, то выходить из страницы внутренней памяти нужно не стандартно, а в меню последних
@@ -167,11 +169,11 @@ static void PressSB_MemLast_SaveToFlash()
 static void PressSB_SetName_Exit()
 {
     Display::RemoveAddDrawFunction();
-    if (EXIT_FROM_SET_NAME_TO_LAST)
+    if (PageMemory::exitFromModeSetNameTo == RETURN_TO_LAST_MEM)
     {
         PageMemory::PageLatest::self->OpenAndSetItCurrent();
     }
-    else if (EXIT_FROM_SET_NAME_TO_INT)
+    else if (PageMemory::exitFromModeSetNameTo == RETURN_TO_INT_MEM)
     {
         PageMemory::PageInternal::self->OpenAndSetItCurrent();
     }
@@ -184,7 +186,7 @@ static void PressSB_MemExtSetNameSave()
     if (FDrive::isConnected)
     {
         PressSB_SetName_Exit();
-        NEED_SAVE_TO_DRIVE = 1;
+        PageMemory::needForSaveToFlashDrive = true;
     }
 }
 
@@ -993,7 +995,7 @@ void Memory_SaveSignalToFlashDrive()
         }
         else
         {
-            NEED_SAVE_TO_DRIVE = 1;
+            PageMemory::needForSaveToFlashDrive = true;
         }
     }
     else
