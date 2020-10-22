@@ -22,6 +22,7 @@
 using namespace Primitives;
 
 int16 PageMemory::PageLatest::currentSignal = 0;
+int8 PageMemory::PageInternal::currentSignal = 0;
 
 static void DrawSetMask();  // Эта функция рисует, когда выбран режим задания маски.
 static void DrawSetName();  // Эта функция рисует, когда нужно задать имя файла для сохранения
@@ -203,7 +204,7 @@ void PressSB_MemLast_IntEnter()
 {
     PageMemory::PageInternal::self->OpenAndSetItCurrent();
     MODE_WORK = ModeWork::MemInt;
-    EPROM::GetData(CURRENT_NUM_INT_SIGNAL, &gDSmemInt, &gData0memInt, &gData1memInt);
+    EPROM::GetData(PageMemory::PageInternal::currentSignal, &gDSmemInt, &gData0memInt, &gData1memInt);
     EXIT_FROM_INT_TO_LAST = 1;
 }
 
@@ -482,8 +483,8 @@ static void SaveSignalToIntMemory(void)
     {
         if  (gDSmemLast != 0)
         {                               // то сохраняем сигнал из последних
-            EPROM::SaveData(CURRENT_NUM_INT_SIGNAL, gDSmemLast, gData0memLast, gData1memLast);
-            EPROM::GetData(CURRENT_NUM_INT_SIGNAL, &gDSmemInt, &gData0memInt, &gData1memInt);
+            EPROM::SaveData(PageMemory::PageInternal::currentSignal, gDSmemLast, gData0memLast, gData1memLast);
+            EPROM::GetData(PageMemory::PageInternal::currentSignal, &gDSmemInt, &gData0memInt, &gData1memInt);
             Display::ShowWarningGood(Warning::SignalIsSaved);
         }
     }
@@ -491,8 +492,8 @@ static void SaveSignalToIntMemory(void)
     {
         if (gDSet != 0)
         {
-            EPROM::SaveData(CURRENT_NUM_INT_SIGNAL, gDSet, gData0, gData1);
-            EPROM::GetData(CURRENT_NUM_INT_SIGNAL, &gDSet, &gData0memInt, &gData1memInt);
+            EPROM::SaveData(PageMemory::PageInternal::currentSignal, gDSet, gData0, gData1);
+            EPROM::GetData(PageMemory::PageInternal::currentSignal, &gDSet, &gData0memInt, &gData1memInt);
             Display::ShowWarningGood(Warning::SignalIsSaved);
         }
     }
@@ -521,9 +522,9 @@ static void DrawMemoryWave(int num, bool exist)
     int x = Grid::Left() + 2 + num * 12;
     int y = Grid::FullBottom() - 10;
     int width = 12;
-    Region(width, 10).Fill(x, y, num == CURRENT_NUM_INT_SIGNAL ? Color::FLASH_10 : COLOR_BACK);
+    Region(width, 10).Fill(x, y, (num == PageMemory::PageInternal::currentSignal) ? Color::FLASH_10 : COLOR_BACK);
     Primitives::Rectangle(width, 10).Draw(x, y, COLOR_FILL);
-    Color::SetCurrent(num == CURRENT_NUM_INT_SIGNAL ? Color::FLASH_01 : COLOR_FILL);
+    Color::SetCurrent((num == PageMemory::PageInternal::currentSignal) ? Color::FLASH_01 : COLOR_FILL);
     if (exist)
     {
         Text(Int2String(num + 1, false, 2, buffer)).Draw(x + 2, y + 1);
@@ -559,13 +560,13 @@ static void FuncOnRegSetMemInt(int delta)
     Sound::RegulatorSwitchRotate();
     if (delta < 0)
     {
-        CircleDecreaseInt8(&CURRENT_NUM_INT_SIGNAL, 0, MAX_NUM_SAVED_WAVES - 1);
+        CircleDecreaseInt8(&PageMemory::PageInternal::currentSignal, 0, MAX_NUM_SAVED_WAVES - 1);
     }
     else if (delta > 0)
     {
-        CircleIncreaseInt8(&CURRENT_NUM_INT_SIGNAL, 0, MAX_NUM_SAVED_WAVES - 1);
+        CircleIncreaseInt8(&PageMemory::PageInternal::currentSignal, 0, MAX_NUM_SAVED_WAVES - 1);
     }
-    EPROM::GetData(CURRENT_NUM_INT_SIGNAL, &gDSmemInt, &gData0memInt, &gData1memInt);
+    EPROM::GetData(PageMemory::PageInternal::currentSignal, &gDSmemInt, &gData0memInt, &gData1memInt);
     Painter::ResetFlash();
 }
 
@@ -686,7 +687,7 @@ DEF_SMALL_BUTTON(sbMemIntModeShow, PageMemory::PageInternal::self,
 
 static void PressSB_MemInt_Delete()
 {
-    EPROM::DeleteData(CURRENT_NUM_INT_SIGNAL);
+    EPROM::DeleteData(PageMemory::PageInternal::currentSignal);
 }
 
 static void DrawSB_MemInt_Delete(int x, int y)
@@ -720,7 +721,7 @@ DEF_SMALL_BUTTON(sbMemIntSaveToFlash, PageMemory::PageInternal::self,
 
 void PressSB_MemInt_Exit()
 {
-    EPROM::GetData(CURRENT_NUM_INT_SIGNAL, &gDSmemInt, &gData0memInt, &gData1memInt);
+    EPROM::GetData(PageMemory::PageInternal::currentSignal, &gDSmemInt, &gData0memInt, &gData1memInt);
     if (EXIT_FROM_INT_TO_LAST)
     {
         PageMemory::PageLatest::self->OpenAndSetItCurrent();
@@ -1116,7 +1117,7 @@ void OnPressMemoryInt()
 {
     PageMemory::PageInternal::self->OpenAndSetItCurrent();
     MODE_WORK = ModeWork::MemInt;
-    EPROM::GetData(CURRENT_NUM_INT_SIGNAL, &gDSmemInt, &gData0memInt, &gData1memInt);
+    EPROM::GetData(PageMemory::PageInternal::currentSignal, &gDSmemInt, &gData0memInt, &gData1memInt);
 }
 
 DEF_PAGE_6(pageInternal, PageMemory::self, NamePage::SB_MemInt,

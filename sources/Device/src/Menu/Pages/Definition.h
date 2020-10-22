@@ -242,6 +242,8 @@ struct PageMemory
 
     struct PageInternal
     {
+        static int8  currentSignal;     // Текущий номер сигнала, сохранённого в ППЗУ
+
         static const Page *self;
     };
 
