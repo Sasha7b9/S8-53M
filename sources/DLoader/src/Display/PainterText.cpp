@@ -119,7 +119,7 @@ int Painter::DrawChar(int x, int y, char symbol)
 
 int Painter::DrawCharC(int x, int y, char symbol, Color::E color)
 {
-    Painter::SetColor(color);
+    Color::SetCurrent(color);
     return Painter::DrawChar(x, y, symbol);
 }
 
@@ -310,7 +310,7 @@ int Painter::DrawStringInCenterRect(int eX, int , int width, int , const char *t
 
 int Painter::DrawStringInCenterRectC(int x, int y, int width, int height, const char *text, Color::E color)
 {
-    Painter::SetColor(color);
+    Color::SetCurrent(color);
     return Painter::DrawStringInCenterRect(x, y, width, height, text);
 }
 
@@ -330,7 +330,7 @@ int Painter::DrawStringInCenterRectAndBoundItC(int x, int y, int width, int heig
 {
     Rectangle(width, height).Draw(x, y, colorFill);
     Region(width - 2, height - 2).Fill(x + 1, y + 1, colorBackground);
-    Painter::SetColor(colorFill);
+    Color::SetCurrent(colorFill);
     return Painter::DrawStringInCenterRect(x, y, width, height, text);
 }
 

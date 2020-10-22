@@ -14,8 +14,6 @@ namespace Painter
 
     void ResetFlash(void);
 
-    void SetColor(Color::E color);
-
     void LoadPalette(int num);
 
     static void DrawVLine(int x, int y0, int y1);

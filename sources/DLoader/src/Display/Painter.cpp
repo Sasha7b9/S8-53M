@@ -51,11 +51,6 @@ void Painter::LoadFont(TypeFont::E)
 }
 
 
-void Painter::SetColor(Color::E)
-{
-}
-
-
 void Painter::DrawVPointLine(int, int, int, float, Color::E)
 {
 }

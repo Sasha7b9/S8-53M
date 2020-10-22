@@ -75,15 +75,15 @@ void Display::Update(void)
 
     Painter::BeginScene(Color::BLACK);
 
-    Painter::SetColor(Color::WHITE);
+    Color::SetCurrent(Color::WHITE);
 
     if (MainStruct::ms->state == State::Start || MainStruct::ms->state == State::Ok)
     {
         Painter::BeginScene(Color::BACK);
-        Painter::SetColor(Color::FILL);
+        Color::SetCurrent(Color::FILL);
         Rectangle(319, 239).Draw(0, 0);
         DrawBigMNIPI();
-        Painter::SetColor(Color::WHITE);
+        Color::SetCurrent(Color::WHITE);
         Painter::DrawStringInCenterRect(0, 180, 320, 20, "Для получения помощи нажмите и удерживайте кнопку ПОМОЩЬ");
         Painter::DrawStringInCenterRect(0, 205, 320, 20, "Отдел маркетинга: тел./факс. 8-017-270-02-00");
         Painter::DrawStringInCenterRect(0, 220, 320, 20, "Разработчики: e-mail: mnipi-24(@)tut.by, тел. 8-017-270-02-23");
@@ -178,7 +178,7 @@ static void DrawBigMNIPI(void)
 
     int numColor = 0;
     LIMITATION(numColor, static_cast<int>(static_cast<float>(time) / (float)TIME_WAIT * 13.0F), 0, 13);
-    Painter::SetColor((Color::E)(numColor + 2));
+    Color::SetCurrent((Color::E)(numColor + 2));
 
     float amplitude = 3.0F - (static_cast<float>(time) / (TIME_WAIT / 2.0F)) * 3;
     LIMIT_BELOW(amplitude, 0.0F);
