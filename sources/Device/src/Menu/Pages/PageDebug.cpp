@@ -260,7 +260,7 @@ DEF_GOVERNOR(mgADC_Balance_ShiftB, PageDebug::PageADC::PageBalance::self,
     shiftADCB, -125, 125, IsActive_ADC_Balance_Shift, OnChanged_ADC_Balance_ShiftB, nullptr
 )
 
-DEF_PAGE_3(mpADC_Balance, PageDebug::PageADC::self, NamePage::DebugADCbalance,
+DEF_PAGE_3(pageBalanceADC, PageDebug::PageADC::self, NamePage::DebugADCbalance,
     "¡¿À¿Õ—", "BALANCE",
     "",
     "",
@@ -436,9 +436,9 @@ DEF_PAGE_3(pageADC, PageDebug::self, NamePage::DebugADC,
     "¿÷œ", "ADC",
     "",
     "",
-    mpADC_Balance,      // Œ“À¿ƒ ¿ - ¿÷œ - ¡¿À¿Õ—
-    mpADC_Stretch,      // Œ“À¿ƒ ¿ - ¿÷œ - –¿—“ﬂ∆ ¿
-    mpADC_AltRShift,    // Œ“À¿ƒ ¿ - ¿÷œ - ƒŒœ —Ã≈Ÿ
+    *PageDebug::PageADC::PageBalance::self,     // Œ“À¿ƒ ¿ - ¿÷œ - ¡¿À¿Õ—
+    mpADC_Stretch,                              // Œ“À¿ƒ ¿ - ¿÷œ - –¿—“ﬂ∆ ¿
+    mpADC_AltRShift,                            // Œ“À¿ƒ ¿ - ¿÷œ - ƒŒœ —Ã≈Ÿ
     nullptr, nullptr, nullptr, nullptr
 )
 
@@ -721,7 +721,7 @@ const Page *PageDebug::self = &pageDebug;
 const Page *PageDebug::PageConsole::self = &pageConsole;
 const Page *PageDebug::PageConsole::PageRegisters::self = &pageRegisters;
 const Page *PageDebug::PageADC::self = &pageADC;
-const Page *PageDebug::PageADC::PageBalance::self = &mpADC_Balance;
+const Page *PageDebug::PageADC::PageBalance::self = &pageBalanceADC;
 const Page *PageDebug::PageADC::PageStretch::self = &mpADC_Stretch;
 const Page *PageDebug::PageADC::PageAltRShift::self = &mpADC_AltRShift;
 const Page *PageDebug::PageRandomizer::self = &mpRandomizer;
