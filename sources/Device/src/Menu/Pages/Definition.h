@@ -163,6 +163,11 @@ struct PageService
 {
     static const Page *self;
 
+    struct PageEthernet
+    {
+        static const Page * self;
+    };
+
     struct PageMath
     {
         static const Page *self;

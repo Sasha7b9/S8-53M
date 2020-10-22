@@ -38,7 +38,6 @@ static void        OnPress_Math_FFT_Cursors_Source();
 static void           Draw_Math_FFT_Cursors_Source(int x, int y);
 extern const Choice       cMath_FFT_Limit;              // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Диапазон
 static bool       IsActive_Math_FFT_Limit();
-extern const Page        ppEthernet;                    // СЕРВИС - ETHERNET
 extern const Choice       cEthernet_Enable;             // СЕРВИС - ETHERNET - Ethernet
 static void      OnChanged_Ethernet_Enable(bool active);
 extern const IPaddress   ipEthernet_IP;                 // СЕРВИС - ETHERNET - IP адрес
@@ -405,7 +404,7 @@ DEF_PAGE_10(pageService, PageMain::self, NamePage::Service,
     bAutoSearch,                        // СЕРВИС - Поиск сигнала
     *PageService::PageCalibrator::self, // СЕРВИС - КАЛИБРАТОР
     *PageService::PageMath::self,       // СЕРВИС - МАТЕМАТИКА
-    ppEthernet,                         // СЕРВИС - ETHERNET
+    *PageService::PageEthernet::self,   // СЕРВИС - ETHERNET
     cSound,                             // СЕРВИС - Звук
     cLang,                              // СЕРВИС - Язык
     tTime,                              // СЕРВИС - Время
@@ -563,7 +562,7 @@ static bool IsActive_Math_FFT_Limit(void)
     return SCALE_FFT_IS_LOG;
 }
 
-DEF_PAGE_5(ppEthernet, PageService::self, NamePage::ServiceEthernet,
+DEF_PAGE_5(pageEthernet, PageService::self, NamePage::ServiceEthernet,
     "ETHERNET", "ETHERNET",
     "Настройки ethernet",
     "Settings of ethernet",
@@ -575,7 +574,7 @@ DEF_PAGE_5(ppEthernet, PageService::self, NamePage::ServiceEthernet,
     nullptr, nullptr, nullptr, nullptr
 )
 
-DEF_CHOICE_2(cEthernet_Enable, &ppEthernet,
+DEF_CHOICE_2(cEthernet_Enable, PageService::PageEthernet::self,
     "Ethernet", "Ethernet"
     ,
     "Чтобы задействовать ethernet, выберите \"Включено\" и выключите прибор.\n"
@@ -595,7 +594,7 @@ static void OnChanged_Ethernet_Enable(bool)
     Display::ShowWarningGood(Warning::NeedRebootDevice1);
 }
 
-DEF_IPADDRESS(ipEthernet_IP, ppEthernet,
+DEF_IPADDRESS(ipEthernet_IP, PageService::PageEthernet::self,
     "IP адрес", "IP-address",
     "Установка IP адреса",
     "Set of IP-address",
@@ -603,7 +602,7 @@ DEF_IPADDRESS(ipEthernet_IP, ppEthernet,
 )
 
 static uint16 portMask = 0;
-DEF_IPADDRESS(ipEthernet_Mask, ppEthernet,
+DEF_IPADDRESS(ipEthernet_Mask, PageService::PageEthernet::self,
     "Маска подсети", "Network mask",
     "Установка маски подсети",
     "Set of network mask",
@@ -611,14 +610,14 @@ DEF_IPADDRESS(ipEthernet_Mask, ppEthernet,
 )
 
 static uint16 portGateway = 0;
-DEF_IPADDRESS(ipEthernet_Gateway, ppEthernet,
+DEF_IPADDRESS(ipEthernet_Gateway, PageService::PageEthernet::self,
     "Шлюз", "Gateway",
     "Установка адреса основного шлюза",
     "Set of gateway address",
     GW_ADDR0, GW_ADDR1, GW_ADDR2, GW_ADDR3, portGateway, OnChanged_Ethernet_Enable
 )
 
-DEF_MACADDRESS(macEthernet_MAC, ppEthernet,
+DEF_MACADDRESS(macEthernet_MAC, PageService::PageEthernet::self,
     "Физ адрес", "MAC-address",
     "Установка физического адреса",
     "Set of MAC-address",
@@ -750,6 +749,7 @@ static void OnPress_Information_Exit(void)
 }
 
 const Page *PageService::self = &pageService;
+const Page *PageService::PageEthernet::self = &pageEthernet;
 const Page *PageService::PageMath::self = &pageMath;
 const Page *PageService::PageMath::PageFunction::self = &pageMathFunction;
 const Page *PageService::PageMath::PageFFT::self = &pageFFT;

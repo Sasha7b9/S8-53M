@@ -32,14 +32,14 @@ static const GovernorColor name(&di##name);
 #define DEF_IPADDRESS(name, keeper, titleRU, titleEN, hintRU, hintEN, ip0, ip1, ip2, ip3, port, funcOnChanged)                              \
 static const DataIPaddress dip##name = {&ip0, &ip1, &ip2, &ip3, funcOnChanged, &port};                                                      \
 static const char *th##name[] = {titleRU, titleEN, hintRU, hintEN};                                                                         \
-static const DataItem di##name = { TypeItem::IP, &keeper, nullptr, th##name, &dip##name};                                                   \
+static const DataItem di##name = { TypeItem::IP, keeper, nullptr, th##name, &dip##name};                                                    \
 static const IPaddress name(&di##name);
 
 
 #define DEF_MACADDRESS(name, keeper, titleRU, titleEN, hintRU, hintEN, mac0, mac1, mac2, mac3, mac4, mac5, funcOnChanged)                   \
 static const DataMACaddress dmac##name = {&mac0, &mac1, &mac2, &mac3, &mac4, &mac5, funcOnChanged};                                         \
 static const char *th##name[] = {titleRU, titleEN, hintRU, hintEN};                                                                         \
-static const DataItem di##name = { TypeItem::MAC, &keeper, nullptr, th##name, &dmac##name};                                                 \
+static const DataItem di##name = { TypeItem::MAC, keeper, nullptr, th##name, &dmac##name};                                                  \
 static const MACaddress name(&di##name);
 
 
