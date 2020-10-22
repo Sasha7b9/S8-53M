@@ -126,15 +126,6 @@ void Painter::DrawLineC(int x0, int y0, int x1, int y1, Color::E color)
 }
 
 
-void Painter::DrawHPointLine(int y, int x0, int x1, float delta)
-{
-    for (int x = x0; x <= x1; x += static_cast<int>(delta))
-    {
-        Point().Draw(x, y);
-    }
-}
-
-
 void Painter::DrawLine(int x0, int y0, int x1, int y1)
 {
     if (x0 == x1)

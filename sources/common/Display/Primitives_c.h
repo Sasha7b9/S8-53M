@@ -85,4 +85,13 @@ namespace Primitives
     private:
         float delta;
     };
+
+    class HPointLine
+    {
+    public:
+        HPointLine(float d) : delta(d) { }
+        void Draw(int y, int x0, int x1);
+    private:
+        float delta;
+    };
 }
