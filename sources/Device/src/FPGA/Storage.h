@@ -37,6 +37,7 @@ public:
     static uint8 *dataIntB;
     static DataSettings *dsInt;
     
+    static DataSettings *dsLast;
 
 private:
 

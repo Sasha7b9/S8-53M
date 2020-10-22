@@ -63,7 +63,6 @@ struct DataSettings
 };
 
 
-extern DataSettings *gDSmemLast;
 extern uint8        *gData0memLast;
 extern uint8        *gData1memLast;
 

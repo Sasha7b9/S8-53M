@@ -9,4 +9,3 @@ void *extraMEM = 0;
 
 uint8           *gData0memLast = 0;
 uint8           *gData1memLast = 0;
-DataSettings    *gDSmemLast = 0;

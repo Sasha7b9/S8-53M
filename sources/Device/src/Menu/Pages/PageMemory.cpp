@@ -487,9 +487,9 @@ static void SaveSignalToIntMemory(void)
 {
     if (exitFromIntToLast)          // Если перешли во ВНУТР ЗУ из ПОСЛЕДНИЕ
     {
-        if  (gDSmemLast != 0)
+        if  (Storage::dsLast != 0)
         {                               // то сохраняем сигнал из последних
-            EPROM::SaveData(PageMemory::PageInternal::currentSignal, gDSmemLast, gData0memLast, gData1memLast);
+            EPROM::SaveData(PageMemory::PageInternal::currentSignal, Storage::dsLast, gData0memLast, gData1memLast);
             EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
             Display::ShowWarningGood(Warning::SignalIsSaved);
         }

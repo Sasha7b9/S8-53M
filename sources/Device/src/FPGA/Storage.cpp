@@ -26,6 +26,8 @@ uint8 *Storage::dataIntA = nullptr;
 uint8 *Storage::dataIntB = nullptr;
 DataSettings *Storage::dsInt = nullptr;
 
+DataSettings *Storage::dsLast = nullptr;
+
 
 void Storage::PrintElement(DataSettings *dp)
 {
