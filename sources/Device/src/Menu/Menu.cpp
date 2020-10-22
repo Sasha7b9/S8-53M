@@ -57,7 +57,7 @@ void Menu::ShortPressureButton(Key::E button)
     {
         if(button == Key::Help)
         {
-            showHelpHints = !showHelpHints;
+            showHelpHints = true;
             PageHelpContent::stringForHint = 0;
             PageHelpContent::itemHint = 0;
         }

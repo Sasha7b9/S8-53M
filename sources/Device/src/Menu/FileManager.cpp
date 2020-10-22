@@ -32,7 +32,7 @@ static int numFiles = 0;
 static bool cursorInDirs = false;    // Если true, то ручка УСТАНОВКА перемещает по каталогам
 
 
-uint FM::needRedrawFileManager = true;
+uint FM::needRedrawFileManager = 0;
 
 void FM::Init(void)
 {

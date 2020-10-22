@@ -25,11 +25,11 @@ using namespace Primitives;
 int16 PageMemory::PageLatest::currentSignal = 0;
 int8 PageMemory::PageInternal::currentSignal = 0;
 bool PageMemory::PageInternal::showAlways = false;
-uint PageMemory::exitFromModeSetNameTo = false;
+uint PageMemory::exitFromModeSetNameTo = 0;
 bool PageMemory::needForSaveToFlashDrive = false;
 
 static bool runningFPGAbeforeSmallButtons = false;      // Здесь сохраняется информация о том, работала ли ПЛИС перед переходом в режим работы с памятью
-static uint exitFromIntToLast = 0;                      // Если 1, то выходить из страницы внутренней памяти нужно не стандартно, а в меню последних
+static bool exitFromIntToLast = false;                  // Если 1, то выходить из страницы внутренней памяти нужно не стандартно, а в меню последних
 
 
 static void DrawSetMask();  // Эта функция рисует, когда выбран режим задания маски.
