@@ -7,9 +7,6 @@
 
 void *extraMEM = 0;
 
-BitField gBF = { 0 };
-
-
 GMemory gMemory =
 {
     0,  // currentNumLatestSignal

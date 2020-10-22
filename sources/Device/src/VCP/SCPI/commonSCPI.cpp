@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "common/Hardware/HAL/HAL_c.h"
+#include "device.h"
 #include "Hardware/Hardware.h"
 #include "LAN/LAN.h"
 #include "VCP/VCP.h"
@@ -31,7 +32,7 @@ void SCPI::COMMON::STOP(pUCHAR )
 
 void SCPI::COMMON::RESET(pUCHAR )
 {
-    NEED_RESET_SETTINGS = 1;
+    Device::needResetSettings = true;
 }
 
 

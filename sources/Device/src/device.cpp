@@ -13,6 +13,7 @@
 #include "Utils/ProcessingSignal.h"
 
 
+bool Device::needResetSettings = false;
 
 static void ProcessingSignal();
 
@@ -32,10 +33,10 @@ void Device::Init()
 
 void Device::Update()
 {
-    if (NEED_RESET_SETTINGS)
+    if (Device::needResetSettings)
     {
         Settings::Load(true);
-        NEED_RESET_SETTINGS = 0;
+        Device::needResetSettings = false;
     }
 
     HAL_TIM2::StartMultiMeasurement();      // —брос таймера дл€ замера длительности временных интервалов в течение одной итерации цикла.

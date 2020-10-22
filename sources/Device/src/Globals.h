@@ -9,17 +9,6 @@
 class Item;
 
 
-#define NEED_RESET_SETTINGS         (gBF.needResetSettings)
-
-
-struct BitField
-{
-    uint needResetSettings          : 1;    // Если 1, то необходим сброс настроек
-};
-
-
-extern BitField gBF;
-
 #define CURRENT_NUM_LATEST_SIGNAL       (gMemory.currentNumLatestSignal)
 #define CURRENT_NUM_INT_SIGNAL          (gMemory.currentNumIntSignal)
 #define EXIT_FROM_INT_TO_LAST           (gMemory.exitFromIntToLast)
