@@ -48,6 +48,7 @@ static pFuncVV funcAfterDraw    = 0;
 
 static bool showLevelRShiftA = false;    // Ќужно ли рисовать горизонтальную линию уровн€ смещени€ первого канала
 static bool showLevelRShiftB = false;
+static bool showLevelTrigLev = false;    // Ќужно ли рисовать горизонтальную линию уровн€ смещени€ уровн€ синхронизации
 
 
 void Display::DrawStringNavigation() 
@@ -96,7 +97,7 @@ void Display::RotateTrigLev()
 {
     if (TIME_SHOW_LEVELS)
     {
-        SHOW_LEVEL_TRIGLEV = 1;
+        showLevelTrigLev = true;
         Timer::Enable(TypeTimer::ShowLevelTrigLev, TIME_SHOW_LEVELS * 1000, FuncOnTimerDisableShowLevelTrigLev);
     }
     Display::Redraw();
@@ -1278,7 +1279,7 @@ void Display::Update(bool endScene)
 
 void Display::WriteValueTrigLevel()
 {
-    if ((SHOW_LEVEL_TRIGLEV != 0) && MODE_WORK_IS_DIRECT)
+    if (showLevelTrigLev && MODE_WORK_IS_DIRECT)
     {
         float trigLev = RSHIFT_2_ABS(TRIG_LEVEL_SOURCE, SET_RANGE(TRIG_SOURCE));     // WARN «десь дл€ внешней синхронизации неправильно рассчитываетс€ уровень.
         TrigSource::E trigSource = TRIG_SOURCE;
@@ -2182,7 +2183,7 @@ void Display::DisableShowLevelRShiftB()
 
 void Display::DisableShowLevelTrigLev()
 {
-    SHOW_LEVEL_TRIGLEV = 0;
+    showLevelTrigLev = false;
     Timer::Disable(TypeTimer::ShowLevelTrigLev);
 }
 

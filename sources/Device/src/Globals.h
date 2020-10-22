@@ -15,7 +15,6 @@ class Item;
 #define AUTO_FIND_IN_PROGRESS       (gBF.FPGAautoFindInProgress)
 #define NEED_RESET_SETTINGS         (gBF.needResetSettings)
 #define NEED_FINISH_REDRAW          (gBF.needFinishDraw)
-#define SHOW_LEVEL_TRIGLEV          (gBF.showLevelTrigLev)
 #define NUM_DRAWING_SIGNALS         (gBF.numDrawingSignals)
 #define TRIG_ENABLE                 (gBF.trigEnable)
 #define DRAW_RSHIFT_MARKERS         (gBF.drawRShiftMarkers)
@@ -37,7 +36,6 @@ class Item;
 struct BitField
 {
     // Для рисования : Display::c
-    uint showLevelTrigLev           : 1;    // Нужно ли рисовать горизонтальную линию уровня смещения уровня синхронизации
     uint trigEnable                 : 1;
     uint drawRShiftMarkers          : 1;
     uint needFinishDraw             : 1;    // Если 1, то дисплей нуждается в перерисовке
