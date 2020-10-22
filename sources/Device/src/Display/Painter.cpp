@@ -65,12 +65,6 @@ void InverseColor(Color::E *color)
 }
 
 
-static void OnTimerFlashDisplay()
-{
-    inverseColors = !inverseColors;
-}
-
-
 void Painter::DrawDashedVLine(int x, int y0, int y1, int deltaFill, int deltaEmtpy, int deltaStart)
 {
     if (deltaStart < 0 || deltaStart >= (deltaFill + deltaEmtpy))
