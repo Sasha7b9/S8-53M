@@ -19,10 +19,6 @@ public:
 
     static void Init();
 
-    static void SendToDisplay(uint8 *bytes, int numBytes);
-
-    static void SendToVCP(pUCHAR pointer, int size);
-
     static void BeginScene(Color::E color);
 
     static void EndScene(bool endScene = true);

@@ -2,7 +2,6 @@
 #include "common/Hardware/HAL/HAL_c.h"
 
 
-uint8 * const HAL_FSMC::ADDR_CDISPLAY = 0;
 uint8 *const HAL_FSMC::ADDR_FPGA = 0;
 
 

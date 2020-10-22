@@ -132,30 +132,6 @@ static int numberColorsUsed = 0;
 
 
 
-void Painter::SendToVCP(pUCHAR pointer, int size)
-{
-    if(stateTransmit == StateTransmit::InProcess)
-    {
-        VCP::SendDataSynch(pointer, size);
-        TCPSocket::Send((const char *)pointer, (uint)size);
-    }
-}
-
-
-void Painter::SendToDisplay(uint8 *bytes, int numBytes)
-{
-    for (int i = 0; i < numBytes; i += 4)
-    {
-        while (Pin::DisplayReady.Read() == 0) { };
-        Timer::PauseOnTicks(100);
-        *HAL_FSMC::ADDR_CDISPLAY = *bytes++;
-        *HAL_FSMC::ADDR_CDISPLAY = *bytes++;
-        *HAL_FSMC::ADDR_CDISPLAY = *bytes++;
-        *HAL_FSMC::ADDR_CDISPLAY = *bytes++;
-    }
-}
-
-
 void Painter::SetPalette(Color::E )
 {
 }
