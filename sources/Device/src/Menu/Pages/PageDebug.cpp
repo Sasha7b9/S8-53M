@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "common/Display/Text_c.h"
 #include "common/Display/Primitives_c.h"
 #include "common/Hardware/Sound_c.h"
 #include "common/Hardware/HAL/HAL_c.h"
@@ -580,7 +581,7 @@ static void OnPress_SerialNumber_Change(void)
 static void Draw_SerialNumber_Change(int x, int y)
 {
     Font::Set(TypeFont::_UGO2);
-    Painter::Draw4SymbolsInRect(x + 2, y + 2, SYMBOL_TAB);
+    Char(SYMBOL_TAB).Draw4SymbolsInRect(x + 2, y + 2);
     Font::Set(TypeFont::_8);
 }
 
@@ -608,7 +609,7 @@ static void OnPress_SerialNumber_Save(void)
 static void Draw_SerialNumber_Save(int x, int y)
 {
     Font::Set(TypeFont::_UGO2);
-    Painter::Draw4SymbolsInRect(x + 2, y + 1, SYMBOL_SAVE_TO_MEM);
+    Char(SYMBOL_SAVE_TO_MEM).Draw4SymbolsInRect(x + 2, y + 1);
     Font::Set(TypeFont::_8);
 }
 

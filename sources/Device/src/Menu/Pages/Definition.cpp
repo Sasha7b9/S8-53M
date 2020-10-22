@@ -1,12 +1,13 @@
 #include "defines.h"
-#include "FPGA/FPGA.h"
 #include "common/Display/Colors_c.h"
+#include "common/Display/Primitives_c.h"
+#include "common/Display/Text_c.h"
 #include "Display/Display.h"
 #include "Display/Painter.h"
-#include "common/Display/Primitives_c.h"
+#include "FPGA/FPGA.h"
+#include "Panel/Panel.h"
 #include "Settings/Settings.h"
 #include "Settings/SettingsTypes.h"
-#include "Panel/Panel.h"
 
 
 using namespace Primitives;
@@ -82,7 +83,7 @@ void DrawMenuCursVoltage(int x, int y, bool top, bool bottom)
 void DrawSB_Exit(int x, int y)
 {
     Font::Set(TypeFont::_UGO2);
-    Painter::Draw4SymbolsInRect(x + 2, y + 1, '\x2e');
+    Char('\x2e').Draw4SymbolsInRect(x + 2, y + 1);
     Font::Set(TypeFont::_8);
 }
 

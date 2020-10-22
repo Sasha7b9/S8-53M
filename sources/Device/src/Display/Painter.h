@@ -64,10 +64,6 @@ public:
 
     static void Draw2SymbolsC(int x, int y, char symbol1, char symbol2, Color::E color1, Color::E color2);
 
-    static void Draw4SymbolsInRect(int x, int y, char eChar);
-
-    static void Draw4SymbolsInRectC(int x, int y, char eChar, Color::E color);
-
     static void Draw10SymbolsInRect(int x, int y, char eChar);
     // Пишет текст с переносами.
     static int DrawTextInRectWithTransfers(int x, int y, int width, int height, const char *text);

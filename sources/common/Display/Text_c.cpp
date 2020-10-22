@@ -242,3 +242,15 @@ void Text::DrawBig(int eX, int eY, int size)
         x += size;
     }
 }
+
+
+void Char::Draw4SymbolsInRect(int x, int y, Color::E color)
+{
+    Color::SetCurrent(color);
+
+    for (int i = 0; i < 2; i++)
+    {
+        Char(static_cast<char>(symbol + i)).Draw(x + 8 * i, y);
+        Char(static_cast<char>(symbol + i + 16)).Draw(x + 8 * i, y + 8);
+    }
+}

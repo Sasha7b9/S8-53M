@@ -1144,7 +1144,7 @@ void Display::DrawHiRightPart()
         y = 1;
         if (FPGA::CurrentStateWork() == StateWorkFPGA::Work)
         {
-            Painter::Draw4SymbolsInRect(x, 1, SYMBOL_PLAY);
+            Char(SYMBOL_PLAY).Draw4SymbolsInRect(x, 1);
         }
         else if (FPGA::CurrentStateWork() == StateWorkFPGA::Stop)
         {
@@ -2099,18 +2099,18 @@ void Display::DrawLowPart()
     // Флешка
     if (FDrive::isConnected)
     {
-        Painter::Draw4SymbolsInRect(x + 57, Grid::Bottom() + 2, SYMBOL_FLASH_DRIVE);
+        Char(SYMBOL_FLASH_DRIVE).Draw4SymbolsInRect(x + 57, Grid::Bottom() + 2);
     }
 
     // Ethernet
     if ((LAN::clientIsConnected || LAN::cableIsConnected) && gTimerMS > 2000)
     {
-        Painter::Draw4SymbolsInRectC(x + 87, Grid::Bottom() + 2, SYMBOL_ETHERNET, LAN::clientIsConnected ? Color::FILL : Color::FLASH_01);
+        Char(SYMBOL_ETHERNET).Draw4SymbolsInRect(x + 87, Grid::Bottom() + 2, LAN::clientIsConnected ? Color::FILL : Color::FLASH_01);
     }
 
     if (VCP::connectToHost || VCP::cableIsConnected)
     {
-        Painter::Draw4SymbolsInRectC(x + 72, Grid::Bottom() + 2, SYMBOL_USB, VCP::connectToHost ? Color::FILL : Color::FLASH_01);
+        Char(SYMBOL_USB).Draw4SymbolsInRect(x + 72, Grid::Bottom() + 2, VCP::connectToHost ? Color::FILL : Color::FLASH_01);
     }
     
     Color::SetCurrent(Color::FILL);

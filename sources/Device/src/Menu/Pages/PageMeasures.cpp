@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "common/Utils/Math_c.h"
+#include "common/Display/Text_c.h"
 #include "common/Display/Font/Font_c.h"
 #include "Display/Painter.h"
 #include "Menu/MenuItems.h"
@@ -23,7 +24,7 @@ static CursCntrl::E GetMeasuresCursCntrlActive()
 void DrawSB_MeasTune_Settings(int x, int y)
 {
     Font::Set(TypeFont::_UGO2);
-    Painter::Draw4SymbolsInRect(x + 2, y + 1, '\x62');
+    Char('\x62').Draw4SymbolsInRect(x + 2, y + 1);
     Font::Set(TypeFont::_8);
 }
 
@@ -35,7 +36,7 @@ void PressSB_MeasTune_Settings()
 void DrawSB_MeasTune_Markers(int x, int y)
 {
     Font::Set(TypeFont::_UGO2);
-    Painter::Draw4SymbolsInRect(x + 2, y + 2, '\x60');
+    Char('\x60').Draw(x + 2, y + 2);
     Font::Set(TypeFont::_8);
 }
 

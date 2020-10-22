@@ -93,7 +93,7 @@ void DrawGovernorChoiceColorFormulaHiPart(const Item *item, int x, int y, bool p
             }
         }
 
-        Painter::Draw4SymbolsInRectC(x + MI_WIDTH - 13, y + 5 + (item->IsOpened() ? 0 : 15), symbol, IS_COLOR_SCHEME_WHITE_LETTERS ? Color::BACK : Color::FILL);
+        Char(symbol).Draw4SymbolsInRect(x + MI_WIDTH - 13, y + 5 + (item->IsOpened() ? 0 : 15), IS_COLOR_SCHEME_WHITE_LETTERS ? Color::BACK : Color::FILL);
     }
 }
 
@@ -831,7 +831,7 @@ void Page::DrawTitle(int layer, int yTop)
     x = Painter::DrawStringInCenterRectC(x, yTop, MP_TITLE_WIDTH + 2 + delta, MP_TITLE_HEIGHT, Title(), colorText);
     if (condDrawRSet)
     {
-        Painter::Draw4SymbolsInRectC(x + 4, yTop + 11, GetSymbolForGovernor(GetCurrentSubPage()), colorText);
+        Char(GetSymbolForGovernor(GetCurrentSubPage())).Draw4SymbolsInRect(x + 4, yTop + 11, colorText);
     }
 
     Menu::itemUnderButton[GetFuncButtonFromY(yTop)] = this;

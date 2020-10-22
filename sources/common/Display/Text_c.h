@@ -8,6 +8,7 @@ class Char
 public:
     Char(char s) : symbol(s) {}
     int Draw(int x, int y, Color::E color = Color::Count);
+    void Draw4SymbolsInRect(int x, int y, Color::E color = Color::Count);
 private:
     char symbol;
 };
