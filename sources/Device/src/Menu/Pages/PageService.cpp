@@ -18,20 +18,6 @@
 using namespace Primitives;
 
 
-static void        OnPress_Math_Function_RangeA();
-static void           Draw_Math_Function_RangeA(int x, int y);
-extern const SmallButton sbMath_Function_RangeB;        // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Масштаб 2-го канала
-static void        OnPress_Math_Function_RangeB();
-static void           Draw_Math_Function_RangeB(int x, int y);
-static void        OnPress_Math_FFT();
-static bool       IsActive_Math_FFT();
-extern const Choice       cMath_FFT_Enable;             // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Отображение
-extern const Choice       cMath_FFT_Scale;              // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Шкала
-extern const Choice       cMath_FFT_Source;             // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Источник
-extern const Choice       cMath_FFT_Window;             // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Окно
-static bool       IsActive_Math_FFT_Cursors();
-static void       OnRegSet_Math_FFT_Cursors(int angle);
-extern const SmallButton  cMath_FFT_Cursors_Exit;        // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ - Выход
 static void        OnPress_Math_FFT_Cursors_Exit();
 extern const SmallButton  cMath_FFT_Cursors_Source;      // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ - Источник
 static void        OnPress_Math_FFT_Cursors_Source();
@@ -356,13 +342,6 @@ DEF_SMALL_BUTTON(sbMath_Function_ModeRegSet, PageService::PageMath::PageFunction
     nullptr, OnPress_Math_Function_ModeRegSet, Draw_Math_Function_ModeRegSet, &hintsMath_Function_ModeRegSet
 )
 
-DEF_SMALL_BUTTON(sbMath_Function_RangeA, PageService::PageMath::PageFunction::self,
-    "Масштаб 1-го канала", "Scale of the 1st channel",
-    "Берёт масштаб для математического сигнала из первого канала",
-    "Takes scale for a mathematical signal from the first channel",
-    nullptr, OnPress_Math_Function_RangeA, Draw_Math_Function_RangeA, nullptr
-)
-
 static void OnPress_Math_Function_RangeA(void)
 {
     SET_RANGE_MATH = SET_RANGE_A;
@@ -373,6 +352,31 @@ static void Draw_Math_Function_RangeA(int x, int y)
 {
     Char('1').Draw(x + 8, y + 5);
 }
+
+DEF_SMALL_BUTTON(sbMath_Function_RangeA, PageService::PageMath::PageFunction::self,
+    "Масштаб 1-го канала", "Scale of the 1st channel",
+    "Берёт масштаб для математического сигнала из первого канала",
+    "Takes scale for a mathematical signal from the first channel",
+    nullptr, OnPress_Math_Function_RangeA, Draw_Math_Function_RangeA, nullptr
+)
+
+static void OnPress_Math_Function_RangeB(void)
+{
+    SET_RANGE_MATH = SET_RANGE_B;
+    MATH_MULTIPLIER = SET_DIVIDER_B;
+}
+
+static void Draw_Math_Function_RangeB(int x, int y)
+{
+    Char('2').Draw(x + 8, y + 5);
+}
+
+DEF_SMALL_BUTTON(sbMath_Function_RangeB, PageService::PageMath::PageFunction::self,
+    "Масштаб 2-го канала", "Scale of the 2nd channel",
+    "Берёт масштаб для математического сигнала из второго канала",
+    "Takes scale for a mathematical signal from the second channel",
+    nullptr, OnPress_Math_Function_RangeB, Draw_Math_Function_RangeB, nullptr
+)
 
 DEF_PAGE_6(pageMathFunction, PageService::PageMath::self, NamePage::SB_MathFunction,
     "ФУНКЦИЯ", "FUNCTION",
@@ -411,58 +415,14 @@ DEF_PAGE_10(pageService, PageMain::self, NamePage::Service,
     cModeLongPressButtonTrig,           // СЕРВИС - Реж длит СИНХР
     *PageService::PageCalibrator::self, // СЕРВИС - ИНФОРМАЦИЯ
     nullptr, nullptr, nullptr, nullptr
-);
-
-DEF_SMALL_BUTTON(sbMath_Function_RangeB, PageService::PageMath::PageFunction::self,
-    "Масштаб 2-го канала", "Scale of the 2nd channel",
-    "Берёт масштаб для математического сигнала из второго канала",
-    "Takes scale for a mathematical signal from the second channel",
-    nullptr, OnPress_Math_Function_RangeB, Draw_Math_Function_RangeB, nullptr
 )
-
-static void OnPress_Math_Function_RangeB(void)
-{
-    SET_RANGE_MATH = SET_RANGE_B;
-    MATH_MULTIPLIER = SET_DIVIDER_B;
-}
-
-static void Draw_Math_Function_RangeB(int x, int y)
-{
-    Char('2').Draw(x + 8, y + 5);
-}
-
-DEF_PAGE_6(pageFFT, PageService::PageMath::self, NamePage::MathFFT,
-    "СПЕКТР", "SPECTRUM",
-    "Отображение спектра входного сигнала",
-    "Mapping the input signal spectrum",
-    cMath_FFT_Enable,                                   // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Отображение
-    cMath_FFT_Scale,                                    // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Шкала
-    cMath_FFT_Source,                                   // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Источник
-    cMath_FFT_Window,                                   // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Окно
-    PageService::PageMath::PageFFT::PageCursors::self,  // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ
-    cMath_FFT_Limit,                                    // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Диапазон
-    IsActive_Math_FFT, OnPress_Math_FFT, nullptr, nullptr
-)
-
-static bool IsActive_Math_FFT(void)
-{
-    return DISABLED_DRAW_MATH;
-}
-
-static void OnPress_Math_FFT(void)
-{
-    if (!IsActive_Math_FFT())
-    {
-        Display::ShowWarningBad(Warning::ImpossibleEnableFFT);
-    }
-}
 
 DEF_CHOICE_2(cMath_FFT_Enable, PageService::PageMath::PageFFT::self,
     "Отображение", "Display",
     "Включает и выключает отображение спектра",
     "Enables or disables the display of the spectrum",
     DISABLE_RU, DISABLE_EN,
-    ENABLE_RU,  ENABLE_EN,
+    ENABLE_RU, ENABLE_EN,
     ENABLED_FFT, nullptr, nullptr, nullptr
 )
 
@@ -479,8 +439,8 @@ DEF_CHOICE_3(cMath_FFT_Source, PageService::PageMath::PageFFT::self,
     "Источник", "Source",
     "Выбор источника для расчёта спектра",
     "Selecting the source for the calculation of the spectrum",
-    "Канал 1",     "Channel 1",
-    "Канал 2",     "Channel 2",
+    "Канал 1", "Channel 1",
+    "Канал 2", "Channel 2",
     "Канал 1 + 2", "Channel 1 + 2",
     SOURCE_FFT, nullptr, nullptr, nullptr
 )
@@ -490,23 +450,46 @@ DEF_CHOICE_4(cMath_FFT_Window, PageService::PageMath::PageFFT::self,
     "Задаёт окно для расчёта спектра",
     "Sets the window to calculate the spectrum",
     "Прямоугольн", "Rectangle",
-    "Хэмминга",    "Hamming",
-    "Блэкмена",    "Blackman",
-    "Ханна",       "Hann",
+    "Хэмминга", "Hamming",
+    "Блэкмена", "Blackman",
+    "Ханна", "Hann",
     WINDOW_FFT, nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_6(pageCursorsFFT, PageService::PageMath::PageFFT::self, NamePage::SB_MathCursorsFFT,
-    "КУРСОРЫ", "CURSORS",
-    "Включает курсоры для измерения параметров спектра",
-    "Includes cursors to measure the parameters of the spectrum",
-    cMath_FFT_Cursors_Exit,     // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ - Выход
-    cMath_FFT_Cursors_Source,   // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ - Источник
-    Item::empty,
-    Item::empty,
-    Item::empty,
-    Item::empty,
-    IsActive_Math_FFT_Cursors, nullptr, nullptr, OnRegSet_Math_FFT_Cursors
+static bool IsActive_Math_FFT(void)
+{
+    return DISABLED_DRAW_MATH;
+}
+
+static void OnPress_Math_FFT(void)
+{
+    if (!IsActive_Math_FFT())
+    {
+        Display::ShowWarningBad(Warning::ImpossibleEnableFFT);
+    }
+}
+
+DEF_PAGE_6(pageFFT, PageService::PageMath::self, NamePage::MathFFT,
+    "СПЕКТР", "SPECTRUM",
+    "Отображение спектра входного сигнала",
+    "Mapping the input signal spectrum",
+    cMath_FFT_Enable,                                   // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Отображение
+    cMath_FFT_Scale,                                    // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Шкала
+    cMath_FFT_Source,                                   // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Источник
+    cMath_FFT_Window,                                   // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Окно
+    PageService::PageMath::PageFFT::PageCursors::self,  // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ
+    cMath_FFT_Limit,                                    // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Диапазон
+    IsActive_Math_FFT, OnPress_Math_FFT, nullptr, nullptr
+)
+
+static void OnPress_Math_FFT_Cursors_Exit(void)
+{
+    Display::RemoveAddDrawFunction();
+}
+
+DEF_SMALL_BUTTON(cMath_FFT_Cursors_Exit, PageService::PageMath::PageFFT::PageCursors::self,
+    "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
+    nullptr, OnPress_Math_FFT_Cursors_Exit, DrawSB_Exit, nullptr
 )
 
 static bool IsActive_Math_FFT_Cursors(void)
@@ -520,15 +503,18 @@ static void OnRegSet_Math_FFT_Cursors(int angle)
     Sound::RegulatorShiftRotate();
 }
 
-DEF_SMALL_BUTTON(cMath_FFT_Cursors_Exit, PageService::PageMath::PageFFT::PageCursors::self,
-    "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
-    nullptr, OnPress_Math_FFT_Cursors_Exit, DrawSB_Exit, nullptr
+DEF_PAGE_6(pageCursorsFFT, PageService::PageMath::PageFFT::self, NamePage::SB_MathCursorsFFT,
+    "КУРСОРЫ", "CURSORS",
+    "Включает курсоры для измерения параметров спектра",
+    "Includes cursors to measure the parameters of the spectrum",
+    cMath_FFT_Cursors_Exit,     // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ - Выход
+    cMath_FFT_Cursors_Source,   // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ - Источник
+    Item::empty,
+    Item::empty,
+    Item::empty,
+    Item::empty,
+    IsActive_Math_FFT_Cursors, nullptr, nullptr, OnRegSet_Math_FFT_Cursors
 )
-
-static void OnPress_Math_FFT_Cursors_Exit(void)
-{
-    Display::RemoveAddDrawFunction();
-}
 
 DEF_SMALL_BUTTON(cMath_FFT_Cursors_Source, PageService::PageMath::PageFFT::PageCursors::self,
     "Источник", "Source",
