@@ -53,7 +53,7 @@ void Device::Update()
 static void ProcessingSignal()
 {
     uint8 **data0 = &Storage::dataA;
-    uint8 **data1 = &gData1;
+    uint8 **data1 = &Storage::dataB;
     DataSettings **ds = &gDSet;
 
     int first = 0;
@@ -62,11 +62,11 @@ static void ProcessingSignal()
 
     if (MODE_WORK_IS_DIRECT)
     {
-        Storage::GetDataFromEnd(0, &gDSet, &Storage::dataA, &gData1);
+        Storage::GetDataFromEnd(0, &gDSet, &Storage::dataA, &Storage::dataB);
         if (ENumAveraging::NumAverages() != 1 || sTime_RandomizeModeEnabled())
         {
             Storage::dataA = Storage::GetAverageData(Channel::A);
-            gData1 = Storage::GetAverageData(Channel::B);
+            Storage::dataB = Storage::GetAverageData(Channel::B);
         }
     }
     else if (MODE_WORK_IS_LATEST)
@@ -88,7 +88,7 @@ static void ProcessingSignal()
     {
         if (!MODE_SHOW_MEMINT_IS_SAVED)
         {
-            Processing::SetSignal(Storage::dataA, gData1, gDSet, first, last);
+            Processing::SetSignal(Storage::dataA, Storage::dataB, gDSet, first, last);
         }
     }
     else
