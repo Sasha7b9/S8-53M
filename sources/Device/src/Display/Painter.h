@@ -37,9 +37,6 @@ public:
 
     static bool SaveScreenToFlashDrive();
 
-    // Выводит текст на прямоугольнике цвета colorBackgound
-    static int DrawTextOnBackground(int x, int y, const char *text, Color::E colorBackground);
-
     static int DrawTextWithLimitationC(int x, int y, const char* text, Color::E color, int limitX, int limitY, int limitWidth, int limitHeight);
     // Возвращает нижнюю координату прямоугольника.
     static int DrawTextInBoundedRectWithTransfers(int x, int y, int width, const char *text, Color::E colorBackground, Color::E colorFill);

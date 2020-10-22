@@ -42,19 +42,6 @@ static bool BitInFontIsExist(int eChar, int numByte, int bit)
 }
 
 
-int Painter::DrawTextOnBackground(int x, int y, const char *text, Color::E colorBackground)
-{
-    int width = Font::GetLengthText(text);
-    int height = Font::GetSize();
-
-    Color::E colorText = Color::GetCurrent();
-    Region(width, height).Fill(x - 1, y, colorBackground);
-    Color::SetCurrent(colorText);
-
-    return Text(text).Draw(x, y);
-}
-
-
 int Painter::DrawCharWithLimitation(int eX, int eY, uchar symbol, int limitX, int limitY, int limitWidth, int limitHeight)
 {
     int8 width = static_cast<int8>(Font::font->symbol[symbol].width);
