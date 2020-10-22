@@ -38,20 +38,6 @@ void Painter::LoadFont(TypeFont::E)
 }
 
 
-void Painter::DrawVPointLine(int, int, int, float, Color::E)
-{
-}
-
-
-void Painter::DrawHPointLine(int y, int x0, int x1, float delta)
-{
-    for (int x = x0; x <= x1; x += static_cast<int>(delta))
-    {
-        Painter::SetPoint(x, y);
-    }
-}
-
-
 void Painter::SetPoint(int, int )
 {
 }
@@ -75,16 +61,6 @@ void Painter::SetBrightnessDisplay(int16)
 int NumberColorsInSceneCol()
 {
     return numberColorsUsed;
-}
-
-
-void Painter::DrawVLineArray(int , int , uint8 *, Color::E )
-{
-}
-
-
-void Painter::DrawSignal(int , uint8 [281], bool )
-{
 }
 
 
