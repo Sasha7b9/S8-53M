@@ -128,7 +128,7 @@ DEF_BUTTON(mbAutoFind_Search, PageTrig::PageAutoFind::self,
     IsActive_AutoFind_Search, OnPress_AutoFind_Search
 )
 
-DEF_PAGE_2(mpAutoFind, PageTrig::self, NamePage::TrigAuto,
+DEF_PAGE_2(pageAutoFind, PageTrig::self, NamePage::TrigAuto,
     "ПОИСК", "SEARCH",
     "Управление автоматическим поиском уровня синхронизации.",
     "Office of the automatic search the trigger level.",
@@ -137,9 +137,7 @@ DEF_PAGE_2(mpAutoFind, PageTrig::self, NamePage::TrigAuto,
     nullptr, nullptr, nullptr, nullptr
 )
 
-const Page *PageTrig::PageAutoFind::self = &mpAutoFind;
-
-DEF_PAGE_5(pTrig, PageMain::self, NamePage::Trig,
+DEF_PAGE_5(pageTrig, PageMain::self, NamePage::Trig,
     "СИНХР", "TRIG",
     "Содержит настройки синхронизации.",
     "Contains synchronization settings.",
@@ -147,8 +145,9 @@ DEF_PAGE_5(pTrig, PageMain::self, NamePage::Trig,
     mcSource,
     mcPolarity,
     mcInput,
-    mpAutoFind,
+    PageTrig::PageAutoFind::self,
     nullptr, nullptr, nullptr, nullptr
 )
 
-const Page *PageTrig::self = &pTrig;
+const Page *PageTrig::self = &pageTrig;
+const Page *PageTrig::PageAutoFind::self = &pageAutoFind;

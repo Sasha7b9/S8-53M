@@ -335,7 +335,7 @@ DEF_CHOICE_6(mcSettings_AutoHide, PageDisplay::PageSettings::self,
     MENU_AUTO_HIDE, nullptr, OnChanged_Settings_AutoHide, nullptr
 )
 
-DEF_PAGE_7(mspSettings, PageDisplay::self, NamePage::ServiceDisplay,
+DEF_PAGE_7(pageSettings, PageDisplay::self, NamePage::ServiceDisplay,
     "НАСТРОЙКИ", "SETTINGS",
     "Дополнительные настройки дисплея",
     "Additional display settings",
@@ -383,7 +383,7 @@ DEF_GOVERNOR_COLOR(mgcSettings_Colors_Grid, PageDisplay::PageSettings::PageColor
     cTypeGrid, nullptr
 )
 
-DEF_PAGE_4(mspSettings_Colors, &mspSettings, NamePage::ServiceDisplayColors,
+DEF_PAGE_4(pageColors, PageDisplay::PageSettings::self, NamePage::ServiceDisplayColors,
     "ЦВЕТА", "COLORS",
     "Выбор цветов дисплея",
     "The choice of colors display",
@@ -399,5 +399,5 @@ const Page *PageDisplay::self = &pageDisplay;
 const Page *PageDisplay::PageAccumulation::self = &pageAccumulation;
 const Page *PageDisplay::PageAveraging::self = &pageAveraging;
 const Page *PageDisplay::PageGrid::self = &pageGrid;
-const Page *PageDisplay::PageSettings::self = &mspSettings;
-const Page *PageDisplay::PageSettings::PageColors::self = &mspSettings_Colors;
+const Page *PageDisplay::PageSettings::self = &pageSettings;
+const Page *PageDisplay::PageSettings::PageColors::self = &pageColors;
