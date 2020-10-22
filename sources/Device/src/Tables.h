@@ -40,19 +40,18 @@ struct WarningWithNumber { enum E
 };};
 
 
-ENumSignalsInSec::E Tables_NumSignalsInSecToENUM(int enumSignalsInSec);
+struct Tables
+{
+    static ENumSignalsInSec::E NumSignalsInSecToENUM(int enumSignalsInSec);
+    static int ENUMtoNumSignalsInSec(ENumSignalsInSec::E enumSignalsInSec);
+    static const char *GetWarning(Warning::E warning);
+    static const char *GetTBaseString(TBase::E tBase);
+    static const char *GetTBaseStringEN(TBase::E tBase);
+    static const char *RangeNameFromValue(Range::E range);
+    // Возвращает номер канала от 1 до 2
+    static int GetNumChannel(Channel::E chan);
+};
 
-int Tables_ENUMtoNumSignalsInSec(ENumSignalsInSec::E enumSignalsInSec);
-
-const char* Tables_GetWarning(Warning::E warning);
-
-const char* Tables_GetTBaseString(TBase::E tBase);
-
-const char* Tables_GetTBaseStringEN(TBase::E tBase);
-
-const char* Tables_RangeNameFromValue(Range::E range);
-// Возвращает номер канала от 1 до 2
-int Tables_GetNumChannel(Channel::E chan);
 
 extern const char* symbolsAlphaBet[0x48];
 // Выводит строку из таблицы symbolsAlphaBet

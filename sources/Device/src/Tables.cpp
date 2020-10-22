@@ -64,7 +64,7 @@ const char* symbolsAlphaBet[0x48] =
 };
 
 
-ENumSignalsInSec::E Tables_NumSignalsInSecToENUM(int enumSignalsInSec)
+ENumSignalsInSec::E Tables::NumSignalsInSecToENUM(int enumSignalsInSec)
 {
     if(enumSignalsInSec == 1)
     {
@@ -91,7 +91,7 @@ ENumSignalsInSec::E Tables_NumSignalsInSecToENUM(int enumSignalsInSec)
 }
 
 
-int Tables_ENUMtoNumSignalsInSec(ENumSignalsInSec::E enumSignalsInSec)
+int Tables::ENUMtoNumSignalsInSec(ENumSignalsInSec::E enumSignalsInSec)
 {
     static const int fps[] = {25, 10, 5, 2, 1};
     if(enumSignalsInSec <= ENumSignalsInSec::_1)
@@ -103,7 +103,7 @@ int Tables_ENUMtoNumSignalsInSec(ENumSignalsInSec::E enumSignalsInSec)
 }
 
 
-const char* Tables_GetWarning(Warning::E warning)
+const char* Tables::GetWarning(Warning::E warning)
 {
     static const char *warnings[Warning::Count][2] =
     {
@@ -139,19 +139,19 @@ const char* Tables_GetWarning(Warning::E warning)
 }
 
 
-const char* Tables_GetTBaseString(TBase::E tBase)
+const char* Tables::GetTBaseString(TBase::E tBase)
 {
     return tBases[tBase].name[LANG];
 }
 
 
-const char* Tables_GetTBaseStringEN(TBase::E tBase)
+const char* Tables::GetTBaseStringEN(TBase::E tBase)
 {
     return tBases[tBase].name[Language::English];
 }
 
 
-const char* Tables_RangeNameFromValue(Range::E range)
+const char* Tables::RangeNameFromValue(Range::E range)
 {
     static const char* names[Range::Count] =
     {
@@ -173,7 +173,7 @@ const char* Tables_RangeNameFromValue(Range::E range)
 }
 
 
-int Tables_GetNumChannel(Channel::E chan)
+int Tables::GetNumChannel(Channel::E chan)
 {
     return (chan == Channel::A) ? 1 : 2;
 }

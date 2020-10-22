@@ -1985,7 +1985,7 @@ void Display::DrawLowPart()
         }
     }
 
-    std::sprintf(buffer, "ð\xa5%s", Tables_GetTBaseString(tBase));
+    std::sprintf(buffer, "ð\xa5%s", Tables::GetTBaseString(tBase));
     Text(buffer).Draw(x, y0);
 
     buffer[0] = 0;
@@ -2520,7 +2520,7 @@ void Display::ClearFromWarnings()
 void Display::ShowWarningBad(Warning::E warning)
 {
     Painter::ResetFlash();
-    ShowWarn(Tables_GetWarning(warning));
+    ShowWarn(Tables::GetWarning(warning));
     Sound::WarnBeepBad();
 }
 
@@ -2529,7 +2529,7 @@ void Display::ShowWarningBad(Warning::E warning)
 void Display::ShowWarningGood(Warning::E warning)
 {
     Painter::ResetFlash();
-    ShowWarn(Tables_GetWarning(warning));
+    ShowWarn(Tables::GetWarning(warning));
     Sound::WarnBeepGood();
 }
 
