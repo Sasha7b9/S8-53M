@@ -50,7 +50,6 @@ extern const Choice       cSound;                       // СЕРВИС - Звук
 extern const Choice       cLang;                        // СЕРВИС - Язык
 extern const TimeItem     tTime;                        // СЕРВИС - Время
 extern const Choice       cModeLongPressButtonTrig;     // СЕРВИС - Реж длит СИНХР
-extern const Page        ppInformation;                 // СЕРВИС - ИНФОРМАЦИЯ
 static void        OnPress_Information();
 static void Information_Draw();
 extern const SmallButton sbInformation_Exit;             // СЕРВИС - ИНФОРМАЦИЯ - Выход
@@ -134,7 +133,7 @@ DEF_BUTTON(cCalibrator_Calibrate, PageService::PageCalibrator::self,
     nullptr, OnPress_Calibrator_Calibrate
 )
 
-DEF_PAGE_2(ppCalibrator, PageService::self, NamePage::ServiceCalibrator,
+DEF_PAGE_2(pageCalibrator, PageService::self, NamePage::ServiceCalibrator,
     "КАЛИБРАТОР", "CALIBRATOR",
     "Управлением калибратором и калибровка осциллографа",
     "Item of the calibrator and calibration of an oscillograph",
@@ -403,16 +402,16 @@ DEF_PAGE_10(pageService, PageMain::self, NamePage::Service,
     "СЕРВИС", "SERVICE",
     "Дополнительные настройки, калибровка, поиск сигнала, математические функции",
     "Additional settings, calibration, signal search, mathematical functions",
-    bResetSettings,                 // СЕРВИС - Сброс настроек
-    bAutoSearch,                    // СЕРВИС - Поиск сигнала
-    ppCalibrator,                   // СЕРВИС - КАЛИБРАТОР
-    PageService::PageMath::self,    // СЕРВИС - МАТЕМАТИКА
-    ppEthernet,                     // СЕРВИС - ETHERNET
-    cSound,                         // СЕРВИС - Звук
-    cLang,                          // СЕРВИС - Язык
-    tTime,                          // СЕРВИС - Время
-    cModeLongPressButtonTrig,       // СЕРВИС - Реж длит СИНХР
-    ppInformation,                  // СЕРВИС - ИНФОРМАЦИЯ
+    bResetSettings,                     // СЕРВИС - Сброс настроек
+    bAutoSearch,                        // СЕРВИС - Поиск сигнала
+    *PageService::PageCalibrator::self, // СЕРВИС - КАЛИБРАТОР
+    *PageService::PageMath::self,       // СЕРВИС - МАТЕМАТИКА
+    ppEthernet,                         // СЕРВИС - ETHERNET
+    cSound,                             // СЕРВИС - Звук
+    cLang,                              // СЕРВИС - Язык
+    tTime,                              // СЕРВИС - Время
+    cModeLongPressButtonTrig,           // СЕРВИС - Реж длит СИНХР
+    *PageService::PageCalibrator::self, // СЕРВИС - ИНФОРМАЦИЯ
     nullptr, nullptr, nullptr, nullptr
 );
 
@@ -681,7 +680,7 @@ DEF_CHOICE_2(cModeLongPressButtonTrig, PageService::self,
     MODE_LONG_PRESS_TRIG, nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_6(ppInformation, PageService::self, NamePage::SB_Information,
+DEF_PAGE_6(pageInformation, PageService::self, NamePage::SB_Information,
     "ИНФОРМАЦИЯ", "INFORMATION",
     "Выводит на экран идентификационные данные осциллографа",
     "Displays identification data of the oscilloscope",
@@ -740,7 +739,7 @@ static void Information_Draw(void)
     Painter::EndScene();
 }
 
-DEF_SMALL_BUTTON(sbInformation_Exit, &ppInformation,
+DEF_SMALL_BUTTON(sbInformation_Exit, PageService::PageCalibrator::self,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
     nullptr, OnPress_Information_Exit, DrawSB_Exit, nullptr
 )
@@ -755,5 +754,5 @@ const Page *PageService::self = &pageService;
 const Page *PageService::PageMath::self = &pageMath;
 const Page *PageService::PageMath::PageFunction::self = &pageMathFunction;
 const Page *PageService::PageMath::PageFFT::PageCursors::self = &pageCursorsFFT;
-const Page *PageService::PageCalibrator::self = &ppCalibrator;
-const Page *PageService::PageInformation::self = &ppInformation;
+const Page *PageService::PageCalibrator::self = &pageCalibrator;
+const Page *PageService::PageInformation::self = &pageInformation;
