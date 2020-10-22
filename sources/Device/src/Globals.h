@@ -16,7 +16,6 @@ class Item;
 #define NEED_RESET_SETTINGS         (gBF.needResetSettings)
 #define FPGA_CAN_READ_DATA          (gBF.FPGAcanReadData)
 #define FPGA_CRITICAL_SITUATION     (gBF.FPGAcritiacalSituation)
-#define TRIG_AUTO_FIND              (gBF.FPGAtrigAutoFind)
 #define FPGA_TEMPORARY_PAUSE        (gBF.FPGAtemporaryPause)
 #define FPGA_IN_PROCESS_READ        (gBF.FPGAinProcessingOfRead)
 #define FPGA_FIRST_AFTER_WRITE      (gBF.FPGAfirstAfterWrite)
@@ -27,8 +26,6 @@ class Item;
 
 struct BitField
 {
-    uint FPGAtrigAutoFind           : 1;    // ”становленное в 1 значение означает, что нужно производить автоматический поиск синхронизации, если 
-                                            // выбрана соответствующа€ настройка.
     uint FPGAautoFindInProgress     : 1;
     uint FPGAtemporaryPause         : 1;
     uint FPGAinProcessingOfRead     : 1;

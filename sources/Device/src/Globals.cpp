@@ -9,7 +9,6 @@ void *extraMEM = 0;
 
 BitField gBF =
 {
-    0,  // FPGAtrigAutoFind
     0,  // FPGAautoFindInProgress
     0,  // FPGAtemporaryPause
     0,  // FPGAinProcessingOfRead

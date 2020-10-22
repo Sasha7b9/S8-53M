@@ -32,6 +32,8 @@ static uint8 dataRel1[FPGA_MAX_POINTS] = {0};   // Буфер используется для чтения
 
 static Settings storingSettings;                // Здесь нужно уменьшить необходимый размер памяти - сохранять настройки только альтеры
 static uint timeStart = 0;
+static bool trigAutoFind = false;    // Установленное в 1 значение означает, что нужно производить автоматический поиск синхронизации, если выбрана соответствующая настройка.
+
 
 // Функция вызывается, когда можно считывать очередной сигнал.
 static void OnTimerCanReadData();
@@ -108,7 +110,7 @@ bool FPGA::ProcessingData(void)
             if (gTimerMS - timeStart > 500)
             {
                 SwitchingTrig();
-                TRIG_AUTO_FIND = 1;
+                trigAutoFind = true;
                 FPGA_CRITICAL_SITUATION = 0;
             }
             else if (_GET_BIT(flag, BIT_TRIG))
@@ -452,10 +454,10 @@ void FPGA::DataRead(bool necessaryShift, bool saveToStorage)
 
         Storage::AddData(dataRel0, dataRel1, ds);
 
-        if (TRIG_MODE_FIND_IS_AUTO && (TRIG_AUTO_FIND == 1))
+        if (TRIG_MODE_FIND_IS_AUTO && trigAutoFind)
         {
             FPGA::FindAndSetTrigLevel();
-            TRIG_AUTO_FIND = 0;
+            trigAutoFind = false;
         }
     }
     FPGA_IN_PROCESS_READ = 0;
