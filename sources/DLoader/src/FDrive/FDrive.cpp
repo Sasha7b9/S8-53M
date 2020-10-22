@@ -30,11 +30,11 @@ static bool GetNextNameFile(char *nameFileOut, StructForReadDir *s);
 
 void FDrive_Init(void)
 {
-    ms->drive.state = StateDisk::Idle;
-    ms->drive.connection = 0;
-    ms->drive.active = 0;
+    MainStruct::ms->drive.state = StateDisk::Idle;
+    MainStruct::ms->drive.connection = 0;
+    MainStruct::ms->drive.active = 0;
 
-//    if (FATFS_LinkDriver(&USBH_Driver, ms->drive.USBDISKPath) == FR_OK)
+//    if (FATFS_LinkDriver(&USBH_Driver, MainStruct::ms->drive.USBDISKPath) == FR_OK)
 //    {
 //        USBH_StatusTypeDef res = USBH_Init(&handleUSBH, USBH_UserProcess, 0);
 //        res = USBH_RegisterClass(&handleUSBH, USBH_MSC_CLASS);
@@ -51,16 +51,16 @@ void FDrive_Init(void)
 //            break;
 //
 //        case HOST_USER_CLASS_ACTIVE:
-//            ms->drive.active++;
-//            ms->drive.state = StateDisk_Start;
+//            MainStruct::ms->drive.active++;
+//            MainStruct::ms->drive.state = StateDisk_Start;
 //            break;
 //
 //        case HOST_USER_CLASS_SELECTED:
 //            break;
 //
 //        case HOST_USER_CONNECTION:
-//            ms->drive.connection++;
-//            ms->state = State::Mount;
+//            MainStruct::ms->drive.connection++;
+//            MainStruct::ms->state = State::Mount;
 //            f_mount(NULL, (TCHAR const*)"", 0);
 //            break;
 //
@@ -76,15 +76,15 @@ void FDrive_Init(void)
 bool FDrive_Update(void)
 {
     USBH_Process(reinterpret_cast<USBH_HandleTypeDef *>(HAL_USBH::handle));
-    if (ms->drive.state == StateDisk::Start)
+    if (MainStruct::ms->drive.state == StateDisk::Start)
     {
-        if (f_mount(&(ms->drive.USBDISKFatFS), (TCHAR const*)ms->drive.USBDISKPath, 0) == FR_OK)
+        if (f_mount(&(MainStruct::ms->drive.USBDISKFatFS), (TCHAR const*)MainStruct::ms->drive.USBDISKPath, 0) == FR_OK)
         {
             return true;
         }
         else
         {
-            ms->state = State::WrongFlash;
+            MainStruct::ms->state = State::WrongFlash;
             return false;
         }
     }
@@ -216,7 +216,7 @@ static bool GetNextNameFile(char *nameFileOut, StructForReadDir *s)
 
 int FDrive_OpenFileForRead(const char *fileName)
 {
-    if (f_open(&ms->drive.file, fileName, FA_READ) == FR_OK)
+    if (f_open(&MainStruct::ms->drive.file, fileName, FA_READ) == FR_OK)
     {
 //        return (int)ms->drive.file.fsize;
     }
@@ -227,7 +227,7 @@ int FDrive_OpenFileForRead(const char *fileName)
 int FDrive_ReadFromFile(int numBytes, uint8 *buffer)
 {
     uint readed = 0;
-    if (f_read(&ms->drive.file, buffer, static_cast<uint>(numBytes), &readed) == FR_OK)
+    if (f_read(&MainStruct::ms->drive.file, buffer, static_cast<uint>(numBytes), &readed) == FR_OK)
     {
         return (int)readed;
     }
@@ -237,5 +237,5 @@ int FDrive_ReadFromFile(int numBytes, uint8 *buffer)
 
 void FDrive_CloseOpenedFile(void)
 {
-    f_close(&ms->drive.file);
+    f_close(&MainStruct::ms->drive.file);
 }

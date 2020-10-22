@@ -28,10 +28,10 @@ static void InitPoints(void);
 
 void Display::Init(void)
 {
-    ms->display.value = 0.0F;
-    ms->display.isRun = false;
-    ms->display.timePrev = 0;
-    ms->display.direction = 10.0F;
+    MainStruct::ms->display.value = 0.0F;
+    MainStruct::ms->display.isRun = false;
+    MainStruct::ms->display.timePrev = 0;
+    MainStruct::ms->display.direction = 10.0F;
 
     for (int i = 0; i < 14; i++)
     {
@@ -64,16 +64,16 @@ void DrawButton(int x, int y, const char *text)
 
 void Display::Update(void)
 {
-    ms->display.isRun = true;
+    MainStruct::ms->display.isRun = true;
 
-    uint dT = HAL_TIM2::TimeMS() - ms->display.timePrev;
-    ms->display.timePrev = HAL_TIM2::TimeMS();
+    uint dT = HAL_TIM2::TimeMS() - MainStruct::ms->display.timePrev;
+    MainStruct::ms->display.timePrev = HAL_TIM2::TimeMS();
 
     Painter::BeginScene(Color::BLACK);
 
     Painter::SetColor(Color::WHITE);
 
-    if (ms->state == State::Start || ms->state == State::Ok)
+    if (MainStruct::ms->state == State::Start || MainStruct::ms->state == State::Ok)
     {
         Painter::BeginScene(Color::BACK);
         Painter::SetColor(Color::FILL);
@@ -84,16 +84,16 @@ void Display::Update(void)
         Painter::DrawStringInCenterRect(0, 205, 320, 20, "Отдел маркетинга: тел./факс. 8-017-270-02-00");
         Painter::DrawStringInCenterRect(0, 220, 320, 20, "Разработчики: e-mail: mnipi-24(@)tut.by, тел. 8-017-270-02-23");
     }
-    else if (ms->state == State::Mount)
+    else if (MainStruct::ms->state == State::Mount)
     {
         DrawProgressBar(dT);
     }
-    else if (ms->state == State::WrongFlash)
+    else if (MainStruct::ms->state == State::WrongFlash)
     {
         Painter::DrawStringInCenterRectC(0, 0, 320, 200, "НЕ УДАЛОСЬ ПРОЧИТАТЬ ДИСК", Color::FLASH_10);
         Painter::DrawStringInCenterRectC(0, 20, 320, 200, "УБЕДИТЕСЬ, ЧТО ФАЙЛОВАЯ СИСТЕМА FAT32", Color::WHITE);
     }
-    else if (ms->state == State::RequestAction)
+    else if (MainStruct::ms->state == State::RequestAction)
     {
         Painter::DrawStringInCenterRect(0, 0, 320, 200, "Обнаружено программное обеспечение");
         Painter::DrawStringInCenterRect(0, 20, 320, 200, "Установить его?");
@@ -101,14 +101,14 @@ void Display::Update(void)
         DrawButton(290, 55, "ДА");
         DrawButton(290, 195, "НЕТ");
     }
-    else if (ms->state == State::Upgrade)
+    else if (MainStruct::ms->state == State::Upgrade)
     {
         Painter::DrawStringInCenterRect(0, 0, 320, 190, "Подождите завершения");
         Painter::DrawStringInCenterRect(0, 0, 320, 220, "установки программного обеспечения");
 
         int height = 30;
         int fullWidth = 280;
-        int width = static_cast<int>(static_cast<float>(fullWidth) * ms->percentUpdate);
+        int width = static_cast<int>(static_cast<float>(fullWidth) * MainStruct::ms->percentUpdate);
 
         Painter::FillRegion(20, 130, width, height);
         Painter::DrawRectangle(20, 130, fullWidth, height);
@@ -118,7 +118,7 @@ void Display::Update(void)
     //DrawSeconds();
 
     Painter::EndScene();
-    ms->display.isRun = false;
+    MainStruct::ms->display.isRun = false;
 }
 
 
@@ -129,19 +129,19 @@ void DrawProgressBar(uint dT)
     const int X = 10;
     const int Y = 200;
 
-    float step = static_cast<float>(dT) / ms->display.direction;
+    float step = static_cast<float>(dT) / MainStruct::ms->display.direction;
 
-    ms->display.value += step;
+    MainStruct::ms->display.value += step;
 
-    if (ms->display.direction > 0.0F && ms->display.value > WIDTH)
+    if (MainStruct::ms->display.direction > 0.0F && MainStruct::ms->display.value > WIDTH)
     {
-        ms->display.direction = -ms->display.direction;
-        ms->display.value -= step;
+        MainStruct::ms->display.direction = -MainStruct::ms->display.direction;
+        MainStruct::ms->display.value -= step;
     }
-    else if (ms->display.direction < 0.0F && ms->display.value < 0)
+    else if (MainStruct::ms->display.direction < 0.0F && MainStruct::ms->display.value < 0)
     {
-        ms->display.direction = -ms->display.direction;
-        ms->display.value -= step;
+        MainStruct::ms->display.direction = -MainStruct::ms->display.direction;
+        MainStruct::ms->display.value -= step;
     }
 
     int dH = 15;
@@ -152,13 +152,13 @@ void DrawProgressBar(uint dT)
     Painter::DrawStringInCenterRect(X, y0 + 2 * dH, WIDTH, 10, "Подождите...");
 
     Painter::DrawRectangle(X, Y, WIDTH, HEIGHT);
-    Painter::FillRegion(X, Y, static_cast<int>(ms->display.value), HEIGHT);
+    Painter::FillRegion(X, Y, static_cast<int>(MainStruct::ms->display.value), HEIGHT);
 }
 
 
 bool Display::IsRun(void)
 {
-    return ms->display.isRun;
+    return MainStruct::ms->display.isRun;
 }
 
 

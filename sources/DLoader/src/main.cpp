@@ -14,7 +14,7 @@
 
 #define FILE_NAME "S8-53.bin"
 
-MainStruct *ms; //-V707
+MainStruct *MainStruct::ms = nullptr;
 
 void Upgrade(void);
 
@@ -22,8 +22,8 @@ void Upgrade(void);
 
 int main(void)
 {
-    ms = static_cast<MainStruct *>(malloc(sizeof(MainStruct)));
-    ms->percentUpdate = 0.0F; //-V522
+    MainStruct::ms = static_cast<MainStruct *>(malloc(sizeof(MainStruct)));
+    MainStruct::ms->percentUpdate = 0.0F; //-V522
 
     Hardware_Init();
 
@@ -31,7 +31,7 @@ int main(void)
 
     HAL_TIM2::Delay(250);
 
-    ms->state = State::Start;
+    MainStruct::ms->state = State::Start;
 
     Display::Init();
 
@@ -45,46 +45,46 @@ int main(void)
     {
     }
 
-    if (((ms->drive.connection != 0) && (ms->drive.active == 0)) ||  // ≈сли флеша подключена, но в активное состо€ние почему-то не перешла
-        ((ms->drive.active != 0) && (ms->state != State::Mount)))     // или перешла в активное состо€ние, по почему-то не запустилс€ процесс монтировани€
+    if (((MainStruct::ms->drive.connection != 0) && (MainStruct::ms->drive.active == 0)) ||  // ≈сли флеша подключена, но в активное состо€ние почему-то не перешла
+        ((MainStruct::ms->drive.active != 0) && (MainStruct::ms->state != State::Mount)))     // или перешла в активное состо€ние, по почему-то не запустилс€ процесс монтировани€
     {
-        free(ms);
+        free(MainStruct::ms);
         HAL::SystemReset();
     }
 
-    if (ms->state == State::Mount)                           // Ёто означает, что диск удачно примонтирован
+    if (MainStruct::ms->state == State::Mount)                           // Ёто означает, что диск удачно примонтирован
     {
         if (FDrive_FileExist(FILE_NAME))                    // ≈сли на диске обнаружена прошивка
         {
-            ms->state = State::RequestAction;
+            MainStruct::ms->state = State::RequestAction;
 
             while (1) //-V2530
             {
                 Key::E button = Panel::PressedButton();
                 if (button == Key::F1)
                 {
-                    ms->state = State::Upgrade;
+                    MainStruct::ms->state = State::Upgrade;
                     Upgrade();
                     break;
                 }
                 else if (button == Key::F5)
                 {
-                    ms->state = State::Ok;
+                    MainStruct::ms->state = State::Ok;
                     break;
                 }
             }
         }
         else
         {
-            ms->state = State::NotFile;
+            MainStruct::ms->state = State::NotFile;
         }
     }
-    else if (ms->state == State::WrongFlash) // ƒиск не удалось примонтировать
+    else if (MainStruct::ms->state == State::WrongFlash) // ƒиск не удалось примонтировать
     {
         HAL_TIM2::Delay(5000);
     }
 
-    ms->state = State::Ok;
+    MainStruct::ms->state = State::Ok;
 
     HAL_SPI1::DeInit();
 
@@ -98,7 +98,7 @@ int main(void)
 
     HAL::DeInit();
 
-    free(ms);
+    free(MainStruct::ms);
 
     HAL::JumpToApplication();
     
@@ -126,7 +126,7 @@ void Upgrade(void)
         size -= readedBytes;
         address += readedBytes;
 
-        ms->percentUpdate = 1.0F - static_cast<float>(size) / static_cast<float>(fullSize);
+        MainStruct::ms->percentUpdate = 1.0F - static_cast<float>(size) / static_cast<float>(fullSize);
     }
 
     FDrive_CloseOpenedFile();
