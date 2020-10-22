@@ -50,6 +50,7 @@ static bool showLevelRShiftA = false;    // Ќужно ли рисовать горизонтальную лин
 static bool showLevelRShiftB = false;
 static bool showLevelTrigLev = false;    // Ќужно ли рисовать горизонтальную линию уровн€ смещени€ уровн€ синхронизации
 static bool trigEnable = false;
+static bool drawRShiftMarkers = false;
 
 
 void Display::DrawStringNavigation() 
@@ -1562,7 +1563,7 @@ void Display::DrawScaleLine(int x, bool forTrigLev)
 
 void Display::DrawCursorsWindow()
 {
-    if((!Menu::IsMinimize() || !Menu::IsShown()) && (DRAW_RSHIFT_MARKERS != 0))
+    if((!Menu::IsMinimize() || !Menu::IsShown()) && drawRShiftMarkers)
     {
         DrawScaleLine(2, false);
     }
@@ -1610,7 +1611,7 @@ void Display::DrawCursorTrigLevel()
     Char(simbols[TRIG_SOURCE]).Draw(x + 5, y - 9, COLOR_BACK);
     Font::Set(TypeFont::_8);
 
-    if ((DRAW_RSHIFT_MARKERS != 0) && !Menu::IsMinimize())
+    if (drawRShiftMarkers && !Menu::IsMinimize())
     {
         DrawScaleLine(Display::WIDTH - 11, true);
         int left = Grid::Right() + 9;
@@ -1676,7 +1677,7 @@ void Display::DrawCursorRShift(Channel::E chan)
 
     Font::Set(TypeFont::_5);
 
-    if((!Menu::IsMinimize() || !Menu::IsShown()) && DRAW_RSHIFT_MARKERS_IS_TRUE)
+    if((!Menu::IsMinimize() || !Menu::IsShown()) && drawRShiftMarkers)
     {
         float scaleFull = (float)Grid::ChannelHeight() / (RShiftMax - RShiftMin) * (sService_MathEnabled() ? 0.9F : 0.91F);
         float yFull = Grid::ChannelCenterHeight() - scaleFull * (rShift - RShiftZero);
@@ -2262,7 +2263,7 @@ void Display::ShiftScreen(int delta)
 
 void Display::ChangedRShiftMarkers()
 {
-    DRAW_RSHIFT_MARKERS = ALT_MARKERS_HIDE ? 0U : 1U;
+    drawRShiftMarkers = ALT_MARKERS_HIDE;
     Timer::Enable(TypeTimer::RShiftMarkersAutoHide, 5000, FuncOnTimerRShiftMarkersAutoHide);
 }
 
@@ -2274,7 +2275,7 @@ void Display::FuncOnTimerRShiftMarkersAutoHide()
 
 void Display::OnRShiftMarkersAutoHide()
 {
-    DRAW_RSHIFT_MARKERS = 0;
+    drawRShiftMarkers = false;
     Timer::Disable(TypeTimer::RShiftMarkersAutoHide);
 }
 
