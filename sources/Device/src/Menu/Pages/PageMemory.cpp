@@ -23,6 +23,7 @@ using namespace Primitives;
 
 int16 PageMemory::PageLatest::currentSignal = 0;
 int8 PageMemory::PageInternal::currentSignal = 0;
+bool PageMemory::PageInternal::showAlways = false;
 
 static void DrawSetMask();  // Эта функция рисует, когда выбран режим задания маски.
 static void DrawSetName();  // Эта функция рисует, когда нужно задать имя файла для сохранения
@@ -586,7 +587,7 @@ static void DrawSB_MemInt_ShowSignalAllways_No(int x, int y)
 
 static void DrawSB_MemInt_ShowSignalAlways(int x, int y)
 {
-    if (INT_SHOW_ALWAYS == 0)
+    if (!PageMemory::PageInternal::showAlways)
     {
         DrawSB_MemInt_ShowSignalAllways_No(x, y);
     }
@@ -598,7 +599,7 @@ static void DrawSB_MemInt_ShowSignalAlways(int x, int y)
 
 static void PressSB_MemInt_ShowSignalAlways()
 {
-    INT_SHOW_ALWAYS = (INT_SHOW_ALWAYS == 0) ? 1U : 0U;
+    PageMemory::PageInternal::showAlways = !PageMemory::PageInternal::showAlways;
 }
 
 static const arrayHints hintsMemIntShowSignalAlways =

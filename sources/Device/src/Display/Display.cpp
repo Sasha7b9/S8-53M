@@ -17,6 +17,7 @@
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
 #include "Utils/ProcessingSignal.h"
+#include "Menu/Pages/Definition.h"
 #include "VCP/VCP.h"
 #include <cmath>
 #include <cstdio>
@@ -715,7 +716,7 @@ void Display::DrawData()
         }
         else
         {
-            if (INT_SHOW_ALWAYS)
+            if (PageMemory::PageInternal::showAlways)
             {
                 DrawDataMemInt();
             }
