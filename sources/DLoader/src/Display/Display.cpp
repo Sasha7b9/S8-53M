@@ -196,7 +196,7 @@ static void DrawBigMNIPI(void)
         int y = array[i].y;
         if (x > 0 && x < 319 && y > 0 && y < 239)
         {
-            Painter::SetPoint(x, y);
+            Point().Draw(x, y);
         }
     }
 }

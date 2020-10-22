@@ -61,7 +61,7 @@ static int DrawBigChar(int eX, int eY, int size, char symbol)
                     {
                         for (int j = 0; j < size; j++)
                         {
-                            Painter::SetPoint(x + i, y + j);
+                            Point().Draw(x + i, y + j);
                         }
                     }
                 }

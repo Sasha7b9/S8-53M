@@ -7,7 +7,6 @@
 using namespace Primitives;
 
 
-static bool inverseColors = false;
 static int numberColorsUsed = 0;
 
 
@@ -34,26 +33,6 @@ void Painter::SetFont(TypeFont::E)
 
 
 void Painter::LoadFont(TypeFont::E)
-{
-}
-
-
-void Painter::SetPoint(int, int )
-{
-}
-
-
-void Painter::DrawMultiVPointLine(int , int , uint16 *, int , int , Color::E ) 
-{
-}
-
-
-void Painter::DrawMultiHPointLine(int , int , uint8 *, int , int , Color::E )
-{
-}
-
-
-void Painter::SetBrightnessDisplay(int16)
 {
 }
 
@@ -102,12 +81,6 @@ void Get8Points(int , int , uint8 [4])
 uint8 Get2Points(int, int)
 {
     return 0;
-}
-
-
-void Painter::DrawCharHardCol(int , int , char )
-{
-
 }
 
 
