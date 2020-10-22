@@ -18,22 +18,6 @@
 using namespace Primitives;
 
 
-static void        OnPress_Math_Function_ModeDraw();
-static void           Draw_Math_Function_ModeDraw(int x, int y);
-static void           Draw_Math_Function_ModeDraw_Disable(int x, int y);
-static void           Draw_Math_Function_ModeDraw_Separate(int x, int y);
-static void           Draw_Math_Function_ModeDraw_Together(int x, int y);
-extern const SmallButton sbMath_Function_Type;          // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Вид
-static void        OnPress_Math_Function_Type();
-static void           Draw_Math_Function_Type(int x, int y);
-static void           Draw_Math_Function_Type_Sum(int x, int y);
-static void           Draw_Math_Function_Type_Mul(int x, int y);
-extern const SmallButton sbMath_Function_ModeRegSet;    // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Режим ручки УСТАНОВКА
-static void        OnPress_Math_Function_ModeRegSet();
-static void           Draw_Math_Function_ModeRegSet(int x, int y);
-static void           Draw_Math_Function_ModeRegSet_Range(int x, int y);
-static void           Draw_Math_Function_ModeRegSet_RShift(int x, int y);
-extern const SmallButton sbMath_Function_RangeA;        // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Масштаб 1-го канала
 static void        OnPress_Math_Function_RangeA();
 static void           Draw_Math_Function_RangeA(int x, int y);
 extern const SmallButton sbMath_Function_RangeB;        // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Масштаб 2-го канала
@@ -165,6 +149,23 @@ DEF_SMALL_BUTTON(sbMath_Function_Exit, PageService::PageMath::PageFunction::self
     nullptr, nullptr, DrawSB_Exit, nullptr
 )
 
+static void Draw_Math_Function_ModeDraw_Disable(int x, int y)
+{
+    Text(LANG_RU ? "Вык" : "Dis").Draw(x + 2 + (LANG_RU ? 2 : 0), y + 5);
+}
+
+static void Draw_Math_Function_ModeDraw_Separate(int x, int y)
+{
+    Rectangle(13, 9).Draw(x + 3, y + 5);
+    HLine().Draw(y + 9, x + 3, x + 16);
+    HLine().Draw(y + 10, x + 3, x + 16);
+}
+
+static void Draw_Math_Function_ModeDraw_Together(int x, int y)
+{
+    Rectangle(13, 9).Draw(x + 3, y + 5);
+}
+
 static const arrayHints hintsMath_Function_ModeDraw =
 {
     {Draw_Math_Function_ModeDraw_Disable,  "Вывод математической функции отключён",
@@ -174,6 +175,29 @@ static const arrayHints hintsMath_Function_ModeDraw =
     {Draw_Math_Function_ModeDraw_Together, "Сигналы и математическая функция выводятся в одном окне",
                                             "Signals and mathematical function are removed in one window"}
 };
+
+static void OnPress_Math_Function_ModeDraw(void)
+{
+    if (ENABLED_FFT)
+    {
+        Display::ShowWarningBad(Warning::ImpossibleEnableMathFunction);
+    }
+    else
+    {
+        CircleIncreaseInt8((int8 *)&MODE_DRAW_MATH, 0, 2);
+    }
+}
+
+static void Draw_Math_Function_ModeDraw(int x, int y)
+{
+    static const pFuncVII funcs[3] =
+    {
+        Draw_Math_Function_ModeDraw_Disable,
+        Draw_Math_Function_ModeDraw_Separate,
+        Draw_Math_Function_ModeDraw_Together
+    };
+    funcs[MODE_DRAW_MATH](x, y);
+}
 
 DEF_SMALL_BUTTON(sbMath_Function_ModeDraw, PageService::PageMath::PageFunction::self,
     "Экран", "Display",
@@ -265,7 +289,96 @@ static void OnRegSet_Math_Function(int delta)
     }
 }
 
-DEF_PAGE_6(pppMath_Function, PageService::PageMath::self, NamePage::SB_MathFunction,
+static void OnPress_Math_Function_Type(void)
+{
+    CircleIncreaseInt8((int8 *)&MATH_FUNC, 0, 1);
+}
+
+static void Draw_Math_Function_Type_Sum(int x, int y)
+{
+    HLine().Draw(y + 9, x + 4, x + 14);
+    HLine().Draw(x + 9, y + 4, y + 14);
+}
+
+static void Draw_Math_Function_Type_Mul(int x, int y)
+{
+    Font::Set(TypeFont::_UGO2);
+    Painter::Draw4SymbolsInRect(x + 4, y + 3, SYMBOL_MATH_FUNC_MUL);
+    Font::Set(TypeFont::_8);
+}
+
+static void Draw_Math_Function_Type(int x, int y)
+{
+    const pFuncVII funcs[2] = { Draw_Math_Function_Type_Sum, Draw_Math_Function_Type_Mul };
+    funcs[MATH_FUNC](x, y);
+}
+
+static const arrayHints hintsMath_Function_Type =
+{
+    { Draw_Math_Function_Type_Sum,      "Сложение",     "Addition"       },
+    { Draw_Math_Function_Type_Mul,      "Умножение",    "Multiplication" }
+};
+
+DEF_SMALL_BUTTON(sbMath_Function_Type, PageService::PageMath::PageFunction::self,
+    "Вид", "Type",
+    "Выбор математической функции",
+    "Choice of mathematical function",
+    nullptr, OnPress_Math_Function_Type, Draw_Math_Function_Type, &hintsMath_Function_Type
+)
+
+static void OnPress_Math_Function_ModeRegSet(void)
+{
+    CircleIncreaseInt8((int8 *)&MATH_MODE_REG_SET, 0, 1);
+}
+
+static void Draw_Math_Function_ModeRegSet_Range(int x, int y)
+{
+    Char(LANG_RU ? 'M' : 'S').Draw(x + 7, y + 5);
+}
+
+static void Draw_Math_Function_ModeRegSet_RShift(int x, int y)
+{
+    Text(LANG_RU ? "См" : "Shif").Draw(x + 5 - (LANG_EN ? 3 : 0), y + 5);
+}
+
+static void Draw_Math_Function_ModeRegSet(int x, int y)
+{
+    const pFuncVII funcs[2] = { Draw_Math_Function_ModeRegSet_Range, Draw_Math_Function_ModeRegSet_RShift };
+    funcs[MATH_MODE_REG_SET](x, y);
+}
+
+static const arrayHints hintsMath_Function_ModeRegSet =
+{
+    {Draw_Math_Function_ModeRegSet_Range,  "Управление масштабом", "Management of scale"},
+    {Draw_Math_Function_ModeRegSet_RShift, "Управление смещением", "Management of shift"}
+};
+
+DEF_SMALL_BUTTON(sbMath_Function_ModeRegSet, PageService::PageMath::PageFunction::self,
+    "Режим ручки УСТАНОВКА", "Mode regulator SET",
+    "Выбор режима ручки УСТАНОВКА - управление масштабом или смещением",
+    "Choice mode regulcator УСТАНОВКА - management of scale or shift",
+    nullptr, OnPress_Math_Function_ModeRegSet, Draw_Math_Function_ModeRegSet, &hintsMath_Function_ModeRegSet
+)
+
+DEF_SMALL_BUTTON(sbMath_Function_RangeA, PageService::PageMath::PageFunction::self,
+    "Масштаб 1-го канала", "Scale of the 1st channel",
+    "Берёт масштаб для математического сигнала из первого канала",
+    "Takes scale for a mathematical signal from the first channel",
+    nullptr, OnPress_Math_Function_RangeA, Draw_Math_Function_RangeA, nullptr
+)
+
+static void OnPress_Math_Function_RangeA(void)
+{
+    SET_RANGE_MATH = SET_RANGE_A;
+    MATH_MULTIPLIER = SET_DIVIDER_A;
+}
+
+static void Draw_Math_Function_RangeA(int x, int y)
+{
+    Char('1').Draw(x + 8, y + 5);
+}
+
+DEF_PAGE_6(pageMathFunction, PageService::PageMath::self, NamePage::SB_MathFunction,
     "ФУНКЦИЯ", "FUNCTION",
     "Установка и выбор математической функции - сложения или умножения",
     "Installation and selection of mathematical functions - addition or multiplication",
@@ -282,8 +395,8 @@ DEF_PAGE_2(ppMath, PageService::self, NamePage::Math,
     "МАТЕМАТИКА", "MATH",
     "Математические функции и БПФ",
     "Mathematical functions and FFT",
-    pppMath_Function,     // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ
-    pppMath_FFT,          // СЕРВИС - МАТЕМАТИКА - СПЕКТР
+    *PageService::PageMath::PageFunction::self,     // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ
+    pppMath_FFT,                                    // СЕРВИС - МАТЕМАТИКА - СПЕКТР
     nullptr, nullptr, nullptr, nullptr
 )
 
@@ -304,136 +417,7 @@ DEF_PAGE_10(pService, PageMain::self, NamePage::Service,
     nullptr, nullptr, nullptr, nullptr
 );
 
-static void OnPress_Math_Function_ModeDraw(void)
-{
-    if (ENABLED_FFT)
-    {
-        Display::ShowWarningBad(Warning::ImpossibleEnableMathFunction);
-    }
-    else
-    {
-        CircleIncreaseInt8((int8*)&MODE_DRAW_MATH, 0, 2);
-    }
-}
-
-static void Draw_Math_Function_ModeDraw(int x, int y)
-{
-    static const pFuncVII funcs[3] =
-    {
-        Draw_Math_Function_ModeDraw_Disable,
-        Draw_Math_Function_ModeDraw_Separate,
-        Draw_Math_Function_ModeDraw_Together
-    };
-    funcs[MODE_DRAW_MATH](x, y);
-}
-
-static void Draw_Math_Function_ModeDraw_Disable(int x, int y)
-{
-    Text(LANG_RU ? "Вык" : "Dis").Draw(x + 2 + (LANG_RU ? 2 : 0), y + 5);
-}
-
-static void Draw_Math_Function_ModeDraw_Separate(int x, int y)
-{
-    Rectangle(13, 9).Draw(x + 3, y + 5);
-    HLine().Draw(y + 9, x + 3, x + 16);
-    HLine().Draw(y + 10, x + 3, x + 16);
-}
-
-static void Draw_Math_Function_ModeDraw_Together(int x, int y)
-{
-    Rectangle(13, 9).Draw(x + 3, y + 5);
-}
-
-static const arrayHints hintsMath_Function_Type =
-{
-    { Draw_Math_Function_Type_Sum,      "Сложение",     "Addition"       },
-    { Draw_Math_Function_Type_Mul,      "Умножение",    "Multiplication" }
-};
-
-DEF_SMALL_BUTTON(sbMath_Function_Type, &pppMath_Function,
-    "Вид", "Type",
-    "Выбор математической функции",
-    "Choice of mathematical function",
-    nullptr, OnPress_Math_Function_Type, Draw_Math_Function_Type, &hintsMath_Function_Type
-)
-
-static void OnPress_Math_Function_Type(void)
-{
-    CircleIncreaseInt8((int8*)&MATH_FUNC, 0, 1);
-}
-
-static void Draw_Math_Function_Type(int x, int y)
-{
-    const pFuncVII funcs[2] = {Draw_Math_Function_Type_Sum, Draw_Math_Function_Type_Mul};
-    funcs[MATH_FUNC](x, y);
-}
-
-static void Draw_Math_Function_Type_Sum(int x, int y)
-{
-    HLine().Draw(y + 9, x + 4, x + 14);
-    HLine().Draw(x + 9, y + 4, y + 14);
-}
-
-static void Draw_Math_Function_Type_Mul(int x, int y)
-{
-    Font::Set(TypeFont::_UGO2);
-    Painter::Draw4SymbolsInRect(x + 4, y + 3, SYMBOL_MATH_FUNC_MUL);
-    Font::Set(TypeFont::_8);
-}
-
-static const arrayHints hintsMath_Function_ModeRegSet =
-{
-    {Draw_Math_Function_ModeRegSet_Range,  "Управление масштабом", "Management of scale"},
-    {Draw_Math_Function_ModeRegSet_RShift, "Управление смещением", "Management of shift"}
-};
-
-DEF_SMALL_BUTTON(sbMath_Function_ModeRegSet, &pppMath_Function,
-    "Режим ручки УСТАНОВКА", "Mode regulator SET",
-    "Выбор режима ручки УСТАНОВКА - управление масштабом или смещением",
-    "Choice mode regulcator УСТАНОВКА - management of scale or shift",
-    nullptr, OnPress_Math_Function_ModeRegSet, Draw_Math_Function_ModeRegSet, &hintsMath_Function_ModeRegSet
-)
-
-static void OnPress_Math_Function_ModeRegSet(void)
-{
-    CircleIncreaseInt8((int8*)&MATH_MODE_REG_SET, 0, 1);
-}
-
-static void Draw_Math_Function_ModeRegSet(int x, int y)
-{
-    const pFuncVII funcs[2] = {Draw_Math_Function_ModeRegSet_Range, Draw_Math_Function_ModeRegSet_RShift};
-    funcs[MATH_MODE_REG_SET](x, y);
-}
-
-static void Draw_Math_Function_ModeRegSet_Range(int x, int y)
-{
-    Char(LANG_RU ? 'M' : 'S').Draw(x + 7, y + 5);
-}
-
-static void Draw_Math_Function_ModeRegSet_RShift(int x, int y)
-{
-    Text(LANG_RU ? "См" : "Shif").Draw(x + 5 - (LANG_EN ? 3 : 0), y + 5);
-}
-
-DEF_SMALL_BUTTON(sbMath_Function_RangeA, &pppMath_Function,
-    "Масштаб 1-го канала", "Scale of the 1st channel",
-    "Берёт масштаб для математического сигнала из первого канала",
-    "Takes scale for a mathematical signal from the first channel",
-    nullptr, OnPress_Math_Function_RangeA, Draw_Math_Function_RangeA, nullptr
-)
-
-static void OnPress_Math_Function_RangeA(void)
-{
-    SET_RANGE_MATH = SET_RANGE_A;
-    MATH_MULTIPLIER = SET_DIVIDER_A;
-}
-
-static void Draw_Math_Function_RangeA(int x, int y)
-{
-    Char('1').Draw(x + 8, y + 5);
-}
-
-DEF_SMALL_BUTTON(sbMath_Function_RangeB, &pppMath_Function,
+DEF_SMALL_BUTTON(sbMath_Function_RangeB, PageService::PageMath::PageFunction::self,
     "Масштаб 2-го канала", "Scale of the 2nd channel",
     "Берёт масштаб для математического сигнала из второго канала",
     "Takes scale for a mathematical signal from the second channel",
@@ -770,7 +754,7 @@ static void OnPress_Information_Exit(void)
 
 const Page *PageService::self = &pService;
 const Page *PageService::PageMath::self = &ppMath;
-const Page *PageService::PageMath::PageFunction::self = &pppMath_Function;
+const Page *PageService::PageMath::PageFunction::self = &pageMathFunction;
 const Page *PageService::PageMath::PageFFT::Cursors::self = &ppppMath_FFT_Cursors;
 const Page *PageService::PageCalibrator::self = &ppCalibrator;
 const Page *PageService::PageInformation::self = &ppInformation;
