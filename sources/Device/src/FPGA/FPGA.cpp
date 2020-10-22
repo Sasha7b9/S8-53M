@@ -34,7 +34,7 @@ static Settings storingSettings;                // Здесь нужно уменьшить необход
 static uint timeStart = 0;
 static bool trigAutoFind = false;    // Установленное в 1 значение означает, что нужно производить автоматический поиск синхронизации, если выбрана соответствующая настройка.
 static bool autoFindInProgress = false;
-
+static bool temporaryPause = false;
 
 
 // Функция вызывается, когда можно считывать очередной сигнал.
@@ -168,7 +168,7 @@ void FPGA::Update(void)
         FPGA::ProcedureCalibration();            // выполняем её.
         gStateFPGA.needCalibration = false;
     }
-    if (FPGA_TEMPORARY_PAUSE)
+    if (temporaryPause)
     {
         return;
     }
@@ -1111,14 +1111,14 @@ TBase::E FPGA::FindTBase(Channel::E)
 
 void StopTemporaryPause(void)
 {
-    FPGA_TEMPORARY_PAUSE = 0;
+    temporaryPause = false;
     Timer::Disable(TypeTimer::TemporaryPauseFPGA);
 }
 
 
 void FPGA::TemporaryPause(void)
 {
-    FPGA_TEMPORARY_PAUSE = 1;
+    temporaryPause = true;
     Timer::Enable(TypeTimer::TemporaryPauseFPGA, 500, StopTemporaryPause);
 }
 

@@ -15,7 +15,6 @@ class Item;
 #define NEED_RESET_SETTINGS         (gBF.needResetSettings)
 #define FPGA_CAN_READ_DATA          (gBF.FPGAcanReadData)
 #define FPGA_CRITICAL_SITUATION     (gBF.FPGAcritiacalSituation)
-#define FPGA_TEMPORARY_PAUSE        (gBF.FPGAtemporaryPause)
 #define FPGA_IN_PROCESS_READ        (gBF.FPGAinProcessingOfRead)
 #define FPGA_FIRST_AFTER_WRITE      (gBF.FPGAfirstAfterWrite)
 #define CURSORS_IN_DIRS             (gBF.cursorInDirs)
@@ -25,7 +24,6 @@ class Item;
 
 struct BitField
 {
-    uint FPGAtemporaryPause         : 1;
     uint FPGAinProcessingOfRead     : 1;
     uint FPGAcanReadData            : 1;
     uint FPGAcritiacalSituation     : 1;
