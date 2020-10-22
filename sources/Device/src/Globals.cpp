@@ -9,7 +9,6 @@ void *extraMEM = 0;
 
 BitField gBF =
 {
-    1,  // cursorInDirs
     0,  // showHelpHints
     0,  // showDebugMenu
     0,  // needOpenFileManager

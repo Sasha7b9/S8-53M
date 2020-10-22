@@ -28,6 +28,9 @@ static int numCurFile = 0;          // Номер подсвеченного файла
 static int numDirs = 0;
 static int numFiles = 0;
 
+static bool cursorInDirs = false;    // Если true, то ручка УСТАНОВКА перемещает по каталогам
+
+
 uint FM::needRedrawFileManager = true;
 
 void FM::Init(void)
@@ -81,12 +84,12 @@ void FM::DrawDirs(int x, int y)
     y += 12;
     if (FDrive::GetNameDir(currentDir, numFirstDir, nameDir, &sfrd))
     {
-        DrawLongString(x, y, nameDir, (CURSORS_IN_DIRS != 0) && (numFirstDir == numCurDir));
+        DrawLongString(x, y, nameDir, cursorInDirs && (numFirstDir == numCurDir));
         int drawingDirs = 0;
         while (drawingDirs < (RECS_ON_PAGE - 1) && FDrive::GetNextNameDir(nameDir, &sfrd))
         {
             drawingDirs++;
-            DrawLongString(x, y + drawingDirs * 9, nameDir, (CURSORS_IN_DIRS != 0) && ( numFirstDir + drawingDirs == numCurDir));
+            DrawLongString(x, y + drawingDirs * 9, nameDir, cursorInDirs && ( numFirstDir + drawingDirs == numCurDir));
         }
     }
 }
@@ -100,12 +103,12 @@ void FM::DrawFiles(int x, int y)
     y += 12;
     if (FDrive::GetNameFile(currentDir, numFirstFile, nameFile, &sfrd))
     {
-        DrawLongString(x, y, nameFile, CURSORS_IN_DIRS == 0 && (numFirstFile == numCurFile));
+        DrawLongString(x, y, nameFile, !cursorInDirs && (numFirstFile == numCurFile));
         int drawingFiles = 0;
         while (drawingFiles < (RECS_ON_PAGE - 1) && FDrive::GetNextNameFile(nameFile, &sfrd))
         {
             drawingFiles++;
-            DrawLongString(x, y + drawingFiles * 9, nameFile, CURSORS_IN_DIRS == 0 && (numFirstFile + drawingFiles == numCurFile));
+            DrawLongString(x, y + drawingFiles * 9, nameFile, !cursorInDirs && (numFirstFile + drawingFiles == numCurFile));
         }
     }
 }
@@ -201,18 +204,18 @@ void FM::PressTab(void)
 {
     needRedrawFileManager = 1;
 
-    if (CURSORS_IN_DIRS)
+    if (cursorInDirs)
     {
         if (numFiles != 0)
         {
-            CURSORS_IN_DIRS = 0;
+            cursorInDirs = false;
         }
     }
     else
     {
         if (numDirs != 0)
         {
-            CURSORS_IN_DIRS = 1;
+            cursorInDirs = true;
         }
     }
 }
@@ -221,7 +224,7 @@ void FM::PressTab(void)
 void FM::PressLevelDown(void)
 {
     needRedrawFileManager = 1;
-    if (CURSORS_IN_DIRS == 0)
+    if (!cursorInDirs)
     {
         return;
     }
@@ -262,7 +265,7 @@ void FM::PressLevelUp(void)
     numFirstFile = 0;
     numCurDir = 0;
     numCurFile = 0;
-    CURSORS_IN_DIRS = 1;
+    cursorInDirs = true;
 }
 
 
@@ -341,7 +344,7 @@ void FM::DecCurrentFile(void)
 void FM::RotateRegSet(int angle)
 {
     Sound::RegulatorSwitchRotate();
-    if (CURSORS_IN_DIRS)
+    if (cursorInDirs)
     {
         angle > 0 ? DecCurrentDir() : IncCurrentDir();
         needRedrawFileManager = 2;
