@@ -170,7 +170,7 @@ DEF_CHOICE_2(mcConsole_Registers_tShift, PageDebug::PageConsole::PageRegisters::
     set.debug.showRegisters.tShift, IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
-DEF_PAGE_12(mpConsole_Registers, PageDebug::PageConsole::self, NamePage::DebugShowRegisters,
+DEF_PAGE_12(pageRegisters, PageDebug::PageConsole::self, NamePage::DebugShowRegisters,
     "РЕГИСТРЫ", "REGISTERS",
     "",
     "",
@@ -189,15 +189,13 @@ DEF_PAGE_12(mpConsole_Registers, PageDebug::PageConsole::self, NamePage::DebugSh
     nullptr, nullptr, nullptr, nullptr
 )
 
-const Page *PageDebug::PageConsole::PageRegisters::self = &mpConsole_Registers;
-
-DEF_PAGE_3(mpConsole, PageDebug::self, NamePage::DebugConsole,
+DEF_PAGE_3(pageConsole, PageDebug::self, NamePage::DebugConsole,
     "КОНСОЛЬ", "CONSOLE",
     "",
     "",
-    mgConsole_NumStrings,   // ОТЛАДКА - КОНСОЛЬ - Число строк
-    mcConsole_SizeFont,     // ОТЛАДКА - КОНСОЛЬ - Размер шрифта
-    mpConsole_Registers,    // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ
+    mgConsole_NumStrings,                           // ОТЛАДКА - КОНСОЛЬ - Число строк
+    mcConsole_SizeFont,                             // ОТЛАДКА - КОНСОЛЬ - Размер шрифта
+    *PageDebug::PageConsole::PageRegisters::self,   // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ
     nullptr, nullptr, nullptr, nullptr
 );
 
@@ -434,7 +432,7 @@ DEF_PAGE_7(mpADC_AltRShift, PageDebug::PageADC::self, NamePage::DebugADCrShift,
     nullptr, nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_3(mpADC, PageDebug::self, NamePage::DebugADC,
+DEF_PAGE_3(pageADC, PageDebug::self, NamePage::DebugADC,
     "АЦП", "ADC",
     "",
     "",
@@ -549,13 +547,13 @@ DEF_PAGE_7(pageDebug, PageMain::self, NamePage::Debug,
     "ОТЛАДКА", "DEBUG",
     "",
     "",
-    mcStats,            // ОТЛАДКА - Статистика
-    mpConsole,          // ОТЛАДКА - КОНСОЛЬ
-    mpADC,              // ОТЛАДКА - АЦП
-    mpRandomizer,       // ОТЛАДКА - РАНД-ТОР
-    mcSizeSettings,     // ОТЛАДКА - Размер настроек
-    mbSaveFirmware,     // ОТЛАДКА - Сохр. прошивку
-    bEraseData,         // ОТЛАДКА - Стереть данные
+    mcStats,                        // ОТЛАДКА - Статистика
+    *PageDebug::PageConsole::self,  // ОТЛАДКА - КОНСОЛЬ
+    *PageDebug::PageADC::self,      // ОТЛАДКА - АЦП
+    mpRandomizer,                   // ОТЛАДКА - РАНД-ТОР
+    mcSizeSettings,                 // ОТЛАДКА - Размер настроек
+    mbSaveFirmware,                 // ОТЛАДКА - Сохр. прошивку
+    bEraseData,                     // ОТЛАДКА - Стереть данные
     nullptr, nullptr, nullptr, nullptr
 );
 
@@ -705,7 +703,7 @@ static void OnRegSet_SerialNumber(int angle)
     Sound::GovernorChangedValue();
 }
 
-DEF_PAGE_6(ppSerialNumber, PageDebug::self, NamePage::SB_SerialNumber,
+DEF_PAGE_6(pageSerialNumber, PageDebug::self, NamePage::SB_SerialNumber,
     "С/Н", "S/N",
     "Запись серийного номера в OTP-память. ВНИМАНИЕ!!! ОТP-память - память с однократной записью.",
     "Serial number recording in OTP-memory. ATTENTION!!! OTP memory is a one-time programming memory.",
@@ -718,10 +716,11 @@ DEF_PAGE_6(ppSerialNumber, PageDebug::self, NamePage::SB_SerialNumber,
     nullptr, OnPress_SerialNumber, nullptr, OnRegSet_SerialNumber
 )
 
-const Page *PageDebug::PageSerialNumber::self = &ppSerialNumber;
+const Page *PageDebug::PageSerialNumber::self = &pageSerialNumber;
 const Page *PageDebug::self = &pageDebug;
-const Page *PageDebug::PageConsole::self = &mpConsole;
-const Page *PageDebug::PageADC::self = &mpADC;
+const Page *PageDebug::PageConsole::self = &pageConsole;
+const Page *PageDebug::PageConsole::PageRegisters::self = &pageRegisters;
+const Page *PageDebug::PageADC::self = &pageADC;
 const Page *PageDebug::PageADC::PageBalance::self = &mpADC_Balance;
 const Page *PageDebug::PageADC::PageStretch::self = &mpADC_Stretch;
 const Page *PageDebug::PageADC::PageAltRShift::self = &mpADC_AltRShift;
