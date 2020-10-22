@@ -77,3 +77,28 @@ void Primitives::DashedHLine::Draw(int y, int x0, int x1, int deltaStart)
         x += (fill + empty);
     }
 }
+
+
+void Primitives::DashedVLine::Draw(int x, int y0, int y1, int deltaStart)
+{
+    if (deltaStart < 0 || deltaStart >= (fill + empty))
+    {
+        LOG_ERROR("Неправильный аргумент deltaStart = %d", deltaStart);
+        return;
+    }
+    int y = y0;
+    if (deltaStart != 0)                 // Если линию нужно рисовать не с начала штриха
+    {
+        y += (fill + empty - deltaStart);
+        if (deltaStart < fill)     // Если начало линии приходится на штрих
+        {
+            HLine().Draw(x, y0, y - 1);
+        }
+    }
+
+    while (y < y1)
+    {
+        HLine().Draw(x, y, y + fill - 1);
+        y += (fill + empty);
+    }
+}

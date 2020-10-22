@@ -172,7 +172,7 @@ void Display::DrawMarkersForMeasure(float scale, Channel::E chan)
         pos = Processing::GetMarkerVertical(chan, numMarker);
         if (pos != ERROR_VALUE_INT && pos > 0 && pos < Grid::Right())
         {
-            Painter::DrawDashedVLine(Grid::Left() + static_cast<int>(pos * scale), Grid::TOP, Grid::FullBottom(), 3, 2, 0);
+            DashedVLine(3, 2).Draw(Grid::Left() + static_cast<int>(pos * scale), Grid::TOP, Grid::FullBottom(), 0);
         }
        
     }
@@ -1755,12 +1755,12 @@ void Display::DrawVerticalCursor(int x, int yTearing)
     x += Grid::Left();
     if(yTearing == -1)
     {
-        Painter::DrawDashedVLine(x, Grid::TOP + 2, Grid::ChannelBottom() - 1, 1, 1, 0);
+        DashedVLine(1, 1).Draw(x, Grid::TOP + 2, Grid::ChannelBottom() - 1, 0);
     }
     else
     {
-        Painter::DrawDashedVLine(x, Grid::TOP + 2, yTearing - 2, 1, 1, 0);
-        Painter::DrawDashedVLine(x, yTearing + 2, Grid::ChannelBottom() - 1, 1, 1, 0);
+        DashedVLine(1, 1).Draw(x, Grid::TOP + 2, yTearing - 2, 0);
+        DashedVLine(1, 1).Draw(x, yTearing + 2, Grid::ChannelBottom() - 1, 0);
     }
     Primitives::Rectangle(2, 2).Draw(x - 1, Grid::TOP - 1);
     Primitives::Rectangle(2, 2).Draw(x - 1, Grid::ChannelBottom() - 1);

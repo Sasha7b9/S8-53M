@@ -64,31 +64,6 @@ void InverseColor(Color::E *color)
 }
 
 
-void Painter::DrawDashedVLine(int x, int y0, int y1, int deltaFill, int deltaEmtpy, int deltaStart)
-{
-    if (deltaStart < 0 || deltaStart >= (deltaFill + deltaEmtpy))
-    {
-        LOG_ERROR("Неправильный аргумент deltaStart = %d", deltaStart);
-        return;
-    }
-    int y = y0;
-    if (deltaStart != 0)                 // Если линию нужно рисовать не с начала штриха
-    {
-        y += (deltaFill + deltaEmtpy - deltaStart);
-        if (deltaStart < deltaFill)     // Если начало линии приходится на штрих
-        {
-            HLine().Draw(x, y0, y - 1);
-        }
-    }
-
-    while (y < y1)
-    {
-        HLine().Draw(x, y, y + deltaFill - 1);
-        y += (deltaFill + deltaEmtpy);
-    }
-}
-
-
 void Painter::DrawVolumeButton(int x, int y, int width, int height, int thickness, Color::E normal, Color::E bright, Color::E dark, bool isPressed, bool inShade)
 {
     if (inShade)

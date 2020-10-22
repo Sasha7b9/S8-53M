@@ -103,13 +103,24 @@ namespace Primitives
     };
 
 
-    // \brief Рисует прерывистую горизонтальную линию. dFill - длина штриха, dEmpty - расст. между штрихами.
-    // Линия всегда начинается со штриха. dStart указывает смещение первой рисуемой точки относительно начала штриха.
+    // Рисует прерывистую горизонтальную линию. dFill - длина штриха, dEmpty - расст. между штрихами. Линия всегда начинается со штриха. dStart указывает смещение первой рисуемой точки
+    // относительно начала штриха.
     class DashedHLine
     {
     public:
         DashedHLine(int dFill, int dEmpty) : fill(dFill), empty(dEmpty) { }
         void Draw(int y, int x0, int x1, int dStart);
+    private:
+        int fill;
+        int empty;
+    };
+
+    //  Рисует прерывистую вертикальную линию.
+    class DashedVLine
+    {
+    public:
+        DashedVLine(int dFill, int dEmpty) : fill(dFill), empty(dEmpty) { }
+        void Draw(int x, int y0, int y1, int dStart);
     private:
         int fill;
         int empty;

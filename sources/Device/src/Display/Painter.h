@@ -25,9 +25,6 @@ public:
     // По умолчанию запрашиваем первый фрейм с шрифтами
     static void SendFrame(bool first, bool noFonts = false);
 
-    //  Рисует прерывистую вертикальную линию.
-    static void DrawDashedVLine(int x, int y0, int y1, int dFill, int dEmpty, int dStart);
-
     static void DrawVolumeButton(int x, int y, int width, int height, int thickness, Color::E normal, Color::E bright, Color::E dark, bool isPressed, bool inShade);
     // Установить яркость дисплея.
     static void SetBrightnessDisplay(int16 brightness);
