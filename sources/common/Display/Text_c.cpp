@@ -1,7 +1,7 @@
 #include "defines.h"
+#include "common/Display/Painter_c.h"
 #include "common/Display/Primitives_c.h"
 #include "common/Display/Text_c.h"
-#include "Display/Painter.h"
 #include <cstring>
 
 

@@ -1,5 +1,4 @@
 #include "defines.h"
-#include "Display/DisplayTypes.h"
 #include "common/Display/Font/Font_c.h"
 
 #include "font8display.inc"

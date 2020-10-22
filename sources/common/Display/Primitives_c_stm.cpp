@@ -1,7 +1,7 @@
 #include "defines.h"
-#include "Display/Display.h"
-#include "Display/Painter.h"
+#include "common/Display/Painter_c.h"
 #include "common/Display/Primitives_c.h"
+#include "Display/Display.h"
 
 
 void Primitives::Point::Draw(int, int)

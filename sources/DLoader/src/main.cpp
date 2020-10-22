@@ -3,7 +3,6 @@
 #include "FDrive/FDrive.h"
 #include "Hardware/Hardware.h"
 #include "Settings/Settings.h"
-#include "Display/Painter.h"
 #include "Display/Display.h"
 #include "common/Hardware/Timer_c.h"
 #include "Panel/Panel.h"

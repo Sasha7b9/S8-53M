@@ -1,5 +1,5 @@
 #pragma once
-#include "Display/DisplayTypes.h"
+#include "common/Display/DisplayTypes_c.h"
 #include "Tables.h"
 
 

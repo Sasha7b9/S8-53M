@@ -5,7 +5,6 @@
 #include "common/Hardware/Sound_c.h"
 #include "common/Utils/Math_c.h"
 #include "Display/Grid.h"
-#include "Display/Painter.h"
 #include "Display/Symbols.h"
 #include "FDrive/FDrive.h"
 #include "FPGA/FPGA.h"

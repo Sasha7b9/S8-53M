@@ -1,5 +1,4 @@
 #include "defines.h"
-#include "Display/Painter.h"
 #include "common/Display/Primitives_c.h"
 #include "common/Display/Font/Font_c.h"
 

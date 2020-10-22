@@ -1,6 +1,6 @@
 #include "defines.h"
 #include "common/Log_c.h"
-#include "Display/Painter.h"
+#include "common/Display/Painter_c.h"
 #include "LAN/LAN.h"
 #include "Menu/Pages/Definition.h"
 #include "VCP/VCP.h"

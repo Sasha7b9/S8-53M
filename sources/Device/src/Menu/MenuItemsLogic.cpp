@@ -2,7 +2,6 @@
 #include "common/Hardware/Sound_c.h"
 #include "common/Hardware/HAL/HAL_c.h"
 #include "common/Utils/Math_c.h"
-#include "Display/Painter.h"
 #include "Menu/Menu.h"
 #include "Utils/GlobalFunctions.h"
 

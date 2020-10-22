@@ -910,39 +910,9 @@
           <GroupName>Display</GroupName>
           <Files>
             <File>
-              <FileName>Display.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\Display.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Display.h</FileName>
+              <FileName>Colors_c.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Display\Display.h</FilePath>
-            </File>
-            <File>
-              <FileName>DisplayTypes.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\DisplayTypes.h</FilePath>
-            </File>
-            <File>
-              <FileName>Painter.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\Painter.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Painter.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\Painter.h</FilePath>
-            </File>
-            <File>
-              <FileName>PainterText.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\PainterText.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>PainterText.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\PainterText.h</FilePath>
+              <FilePath>..\common\Display\Colors_c.h</FilePath>
             </File>
             <File>
               <FileName>Colors_c.cpp</FileName>
@@ -950,19 +920,49 @@
               <FilePath>..\common\Display\Colors_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>Colors_c.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Display\Colors_c.h</FilePath>
-            </File>
-            <File>
               <FileName>Colors_c_stm.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Display\Colors_c_stm.cpp</FilePath>
             </File>
             <File>
-              <FileName>Primitives_c.cpp</FileName>
+              <FileName>Display.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\Display.h</FilePath>
+            </File>
+            <File>
+              <FileName>Display.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Display\Primitives_c.cpp</FilePath>
+              <FilePath>.\src\Display\Display.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>DisplayTypes_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\DisplayTypes_c.h</FilePath>
+            </File>
+            <File>
+              <FileName>PainterText.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\PainterText.h</FilePath>
+            </File>
+            <File>
+              <FileName>PainterText.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\PainterText.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Painter_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\Painter_c.h</FilePath>
+            </File>
+            <File>
+              <FileName>Painter_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Painter_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Painter_c_stm.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Painter_c_stm.cpp</FilePath>
             </File>
             <File>
               <FileName>Primitives_c.h</FileName>
@@ -970,19 +970,24 @@
               <FilePath>..\common\Display\Primitives_c.h</FilePath>
             </File>
             <File>
+              <FileName>Primitives_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Primitives_c.cpp</FilePath>
+            </File>
+            <File>
               <FileName>Primitives_c_stm.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Display\Primitives_c_stm.cpp</FilePath>
             </File>
             <File>
-              <FileName>Text_c.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Text_c.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Text_c.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Display\Text_c.h</FilePath>
+            </File>
+            <File>
+              <FileName>Text_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Text_c.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -2047,39 +2052,9 @@
           <GroupName>Display</GroupName>
           <Files>
             <File>
-              <FileName>Display.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\Display.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Display.h</FileName>
+              <FileName>Colors_c.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Display\Display.h</FilePath>
-            </File>
-            <File>
-              <FileName>DisplayTypes.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\DisplayTypes.h</FilePath>
-            </File>
-            <File>
-              <FileName>Painter.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\Painter.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Painter.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\Painter.h</FilePath>
-            </File>
-            <File>
-              <FileName>PainterText.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\PainterText.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>PainterText.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\PainterText.h</FilePath>
+              <FilePath>..\common\Display\Colors_c.h</FilePath>
             </File>
             <File>
               <FileName>Colors_c.cpp</FileName>
@@ -2087,19 +2062,49 @@
               <FilePath>..\common\Display\Colors_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>Colors_c.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Display\Colors_c.h</FilePath>
-            </File>
-            <File>
               <FileName>Colors_c_stm.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Display\Colors_c_stm.cpp</FilePath>
             </File>
             <File>
-              <FileName>Primitives_c.cpp</FileName>
+              <FileName>Display.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\Display.h</FilePath>
+            </File>
+            <File>
+              <FileName>Display.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Display\Primitives_c.cpp</FilePath>
+              <FilePath>.\src\Display\Display.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>DisplayTypes_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\DisplayTypes_c.h</FilePath>
+            </File>
+            <File>
+              <FileName>PainterText.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\PainterText.h</FilePath>
+            </File>
+            <File>
+              <FileName>PainterText.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\PainterText.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Painter_c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\Painter_c.h</FilePath>
+            </File>
+            <File>
+              <FileName>Painter_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Painter_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Painter_c_stm.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Painter_c_stm.cpp</FilePath>
             </File>
             <File>
               <FileName>Primitives_c.h</FileName>
@@ -2107,19 +2112,24 @@
               <FilePath>..\common\Display\Primitives_c.h</FilePath>
             </File>
             <File>
+              <FileName>Primitives_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Primitives_c.cpp</FilePath>
+            </File>
+            <File>
               <FileName>Primitives_c_stm.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Display\Primitives_c_stm.cpp</FilePath>
             </File>
             <File>
-              <FileName>Text_c.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Text_c.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Text_c.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Display\Text_c.h</FilePath>
+            </File>
+            <File>
+              <FileName>Text_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Text_c.cpp</FilePath>
             </File>
           </Files>
         </Group>

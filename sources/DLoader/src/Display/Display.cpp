@@ -1,11 +1,12 @@
 #include "defines.h"
 #include "main.h"
 #include "common/Display/Colors_c.h"
+#include "common/Display/Painter_c.h"
 #include "common/Display/Primitives_c.h"
+#include "common/Display/Text_c.h"
 #include "common/Hardware/HAL/HAL_c.h"
 #include "common/Utils/Math_c.h"
 #include "Display/Display.h"
-#include "Display/Painter.h"
 #include "Settings/Settings.h"
 #include <cmath>
 
@@ -47,7 +48,7 @@ void Display::Init(void)
 
     Color::ResetFlash();
 
-    Painter::SetFont(TypeFont::_8);
+    Font::Set(TypeFont::_8);
     
     InitPoints();
 }
@@ -58,7 +59,7 @@ void DrawButton(int x, int y, const char *text)
     int width = 25;
     int height = 20;
     Rectangle(width, height).Draw(x, y);
-    Painter::DrawStringInCenterRect(x, y, width + 2, height - 1, text);
+    Text(text).DrawInCenterRect(x, y, width + 2, height - 1);
 }
 
 
@@ -80,9 +81,9 @@ void Display::Update(void)
         Rectangle(319, 239).Draw(0, 0);
         DrawBigMNIPI();
         Color::SetCurrent(Color::WHITE);
-        Painter::DrawStringInCenterRect(0, 180, 320, 20, "Для получения помощи нажмите и удерживайте кнопку ПОМОЩЬ");
-        Painter::DrawStringInCenterRect(0, 205, 320, 20, "Отдел маркетинга: тел./факс. 8-017-270-02-00");
-        Painter::DrawStringInCenterRect(0, 220, 320, 20, "Разработчики: e-mail: mnipi-24(@)tut.by, тел. 8-017-270-02-23");
+        Text("Для получения помощи нажмите и удерживайте кнопку ПОМОЩЬ").DrawInCenterRect(0, 180, 320, 20);
+        Text("Отдел маркетинга: тел./факс. 8-017-270-02-00").DrawInCenterRect(0, 205, 320, 20);
+        Text("Разработчики: e-mail: mnipi-24(@)tut.by, тел. 8-017-270-02-23").DrawInCenterRect(0, 220, 320, 20);
     }
     else if (MainStruct::ms->state == State::Mount)
     {
@@ -90,21 +91,21 @@ void Display::Update(void)
     }
     else if (MainStruct::ms->state == State::WrongFlash)
     {
-        Painter::DrawStringInCenterRectC(0, 0, 320, 200, "НЕ УДАЛОСЬ ПРОЧИТАТЬ ДИСК", Color::FLASH_10);
-        Painter::DrawStringInCenterRectC(0, 20, 320, 200, "УБЕДИТЕСЬ, ЧТО ФАЙЛОВАЯ СИСТЕМА FAT32", Color::WHITE);
+        Text("НЕ УДАЛОСЬ ПРОЧИТАТЬ ДИСК").DrawInCenterRect(0, 0, 320, 200, Color::FLASH_10);
+        Text("УБЕДИТЕСЬ, ЧТО ФАЙЛОВАЯ СИСТЕМА FAT32").DrawInCenterRect(0, 20, 320, 200, Color::WHITE);
     }
     else if (MainStruct::ms->state == State::RequestAction)
     {
-        Painter::DrawStringInCenterRect(0, 0, 320, 200, "Обнаружено программное обеспечение");
-        Painter::DrawStringInCenterRect(0, 20, 320, 200, "Установить его?");
+        Text("Обнаружено программное обеспечение").DrawInCenterRect(0, 0, 320, 200);
+        Text("Установить его?").DrawInCenterRect(0, 20, 320, 200);
 
         DrawButton(290, 55, "ДА");
         DrawButton(290, 195, "НЕТ");
     }
     else if (MainStruct::ms->state == State::Upgrade)
     {
-        Painter::DrawStringInCenterRect(0, 0, 320, 190, "Подождите завершения");
-        Painter::DrawStringInCenterRect(0, 0, 320, 220, "установки программного обеспечения");
+        Text("Подождите завершения").DrawInCenterRect(0, 0, 320, 190);
+        Text("установки программного обеспечения").DrawInCenterRect(0, 0, 320, 220);
 
         int height = 30;
         int fullWidth = 280;
@@ -144,9 +145,9 @@ void DrawProgressBar(uint dT)
     int dH = 15;
     int y0 = 50;
 
-    Painter::DrawStringInCenterRectC(X, y0, WIDTH, 10, "Обнаружен USB-диск.", Color::WHITE);
-    Painter::DrawStringInCenterRect(X, y0 + dH, WIDTH, 10, "Идёт поиск программного обеспечения");
-    Painter::DrawStringInCenterRect(X, y0 + 2 * dH, WIDTH, 10, "Подождите...");
+    Text("Обнаружен USB-диск.").DrawInCenterRect(X, y0, WIDTH, 10, Color::WHITE);
+    Text("Идёт поиск программного обеспечения").DrawInCenterRect(X, y0 + dH, WIDTH, 10);
+    Text("Подождите...").DrawInCenterRect(X, y0 + 2 * dH, WIDTH, 10);
 
     Rectangle(WIDTH, HEIGHT).Draw(X, Y);
     Region(static_cast<int>(MainStruct::ms->display.value), HEIGHT).Fill(X, Y);
@@ -206,7 +207,7 @@ static void InitPoints(void)
 {
     uint8 buffer[320][240];
 
-    Painter::DrawBigTextInBuffer(31, 70, 9, "МНИПИ", buffer);
+    //Painter::DrawBigTextInBuffer(31, 70, 9, "МНИПИ", buffer);
 
     for (int x = 0; x < 320; x++)
     {

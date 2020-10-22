@@ -1,5 +1,4 @@
 #pragma once
-#include "DisplayTypes.h"
 #include "common/Display/Font/Font_c.h"
 
 

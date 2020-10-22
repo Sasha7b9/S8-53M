@@ -1,6 +1,6 @@
 #include "defines.h"
+#include "common/Display/Painter_c.h"
 #include "Display/Display.h"
-#include "Display/Painter.h"
 
 
 void Display::Init()

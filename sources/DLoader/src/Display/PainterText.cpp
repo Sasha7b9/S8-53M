@@ -3,8 +3,6 @@
 #include "common/Display/Text_c.h"
 #include "common/Display/Font/Font_c.h"
 #include "Display/PainterText.h"
-#include "DisplayTypes.h"
-#include "Painter.h"
 #include <cstring>
 #include <cstdarg>
 #include <cstdio>

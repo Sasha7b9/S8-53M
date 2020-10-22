@@ -1,7 +1,6 @@
 #include "defines.h"
 #include "Application.h"
 #include "ConsoleSCPI.h"
-#include "Display/Painter.h"
 #include "GUI/Dialogs/TuneGeneratorDialog.h"
 #include "Settings/Settings.h"
 #include <ctime>
