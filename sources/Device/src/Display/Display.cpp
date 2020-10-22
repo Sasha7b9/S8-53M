@@ -563,7 +563,7 @@ void Display::DrawDataMemInt()
     if(Storage::dsInt != 0)
      {
         DrawDataChannel(Storage::dataIntA, Channel::A, Storage::dsInt, Grid::TOP, Grid::ChannelBottom());
-        DrawDataChannel(gData1memInt, Channel::B, Storage::dsInt, Grid::TOP, Grid::ChannelBottom());
+        DrawDataChannel(Storage::dataIntB, Channel::B, Storage::dsInt, Grid::TOP, Grid::ChannelBottom());
     }
 }
 
@@ -902,7 +902,7 @@ void Display::DrawChannelInWindowMemory(int timeWindowRectWidth, int xVert0, int
 void Display::DrawMemoryWindow()
 {
     uint8 *dat0 = Storage::dataIntA;
-    uint8 *dat1 = gData1memInt;
+    uint8 *dat1 = Storage::dataIntB;
     DataSettings *ds = Storage::dsInt;
     
     if(MODE_WORK_IS_DIRECT || MODE_WORK_IS_LATEST)

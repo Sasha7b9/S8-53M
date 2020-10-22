@@ -33,9 +33,10 @@ public:
     static uint8 *dataB;            // Указатель на данные второго канала, который надо рисовать на экране
     static DataSettings *set;       // Указатель на параметры рисуемых сигналов
 
-    static DataSettings *dsInt;
     static uint8 *dataIntA;         // Здесь данные из ППЗУ, которые должны выводиться на экран
-
+    static uint8 *dataIntB;
+    static DataSettings *dsInt;
+    
 
 private:
 

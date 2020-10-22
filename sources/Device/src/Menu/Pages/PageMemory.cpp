@@ -210,7 +210,7 @@ void PressSB_MemLast_IntEnter()
 {
     PageMemory::PageInternal::self->OpenAndSetItCurrent();
     MODE_WORK = ModeWork::MemInt;
-    EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &gData1memInt);
+    EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
     exitFromIntToLast = true;
 }
 
@@ -490,7 +490,7 @@ static void SaveSignalToIntMemory(void)
         if  (gDSmemLast != 0)
         {                               // то сохраняем сигнал из последних
             EPROM::SaveData(PageMemory::PageInternal::currentSignal, gDSmemLast, gData0memLast, gData1memLast);
-            EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &gData1memInt);
+            EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
             Display::ShowWarningGood(Warning::SignalIsSaved);
         }
     }
@@ -499,7 +499,7 @@ static void SaveSignalToIntMemory(void)
         if (Storage::set != 0)
         {
             EPROM::SaveData(PageMemory::PageInternal::currentSignal, Storage::set, Storage::dataA, Storage::dataB);
-            EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::set, &Storage::dataIntA, &gData1memInt);
+            EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::set, &Storage::dataIntA, &Storage::dataIntB);
             Display::ShowWarningGood(Warning::SignalIsSaved);
         }
     }
@@ -572,7 +572,7 @@ static void FuncOnRegSetMemInt(int delta)
     {
         CircleIncreaseInt8(&PageMemory::PageInternal::currentSignal, 0, MAX_NUM_SAVED_WAVES - 1);
     }
-    EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &gData1memInt);
+    EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
     Painter::ResetFlash();
 }
 
@@ -727,7 +727,7 @@ DEF_SMALL_BUTTON(sbMemIntSaveToFlash, PageMemory::PageInternal::self,
 
 void PressSB_MemInt_Exit()
 {
-    EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &gData1memInt);
+    EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
     if (exitFromIntToLast)
     {
         PageMemory::PageLatest::self->OpenAndSetItCurrent();
@@ -1123,7 +1123,7 @@ void OnPressMemoryInt()
 {
     PageMemory::PageInternal::self->OpenAndSetItCurrent();
     MODE_WORK = ModeWork::MemInt;
-    EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &gData1memInt);
+    EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
 }
 
 DEF_PAGE_6(pageInternal, PageMemory::self, NamePage::SB_MemInt,
