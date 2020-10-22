@@ -127,6 +127,11 @@ struct PageDisplay
     {
         static const Page *self;
     };
+
+    struct PageGrid
+    {
+        static const Page *self;
+    };
 };
 
 

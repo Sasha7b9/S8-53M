@@ -7,21 +7,6 @@
 #include "Settings/Settings.h"
 
 
-extern const Choice mcMinMax;                               //     ДИСПЛЕЙ - Мин Макс
-static bool IsActive_MinMax();                              // Активна ли настройка ДИСПЛЕЙ-Мин Макс
-static void OnChanged_MinMax(bool active);                  // Реакция на изменение ДИСПЛЕЙ-Мим Макс
-
-extern const Choice mcSmoothing;                            //     ДИСПЛЕЙ - Сглаживание
-
-extern const Choice mcRefreshFPS;                           //     ДИСПЛЕЙ - Частота обновл
-extern const Page mspGrid;                                  //     ДИСПЛЕЙ - СЕТКА
-
-extern const Choice mcGrid_Type;                            //     ДИСПЛЕЙ - СЕТКА - Тип
-extern const Governor mgGrid_Brightness;                    // ДИСПЛЕЙ - СЕТКА - Яркость
-static void BeforeDraw_Grid_Brightness();                   // Вызывается перед изменением ДИСПЛЕЙ-СЕТКА-Яркость
-
-extern const Choice mcTypeShift;                            //     ДИСПЛЕЙ - Смещение
-
 extern const Page mspSettings;                              //     ДИСПЛЕЙ - НАСТРОЙКИ
 extern const Page mspSettings_Colors;                       // ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА
 extern const Choice mcSettings_Colors_Scheme;               // ДИСПЛЕЙ - НАСТРОЙКИ - ЦВЕТА - Цветовая схема
@@ -115,6 +100,73 @@ DEF_PAGE_3(pageAccumulation, PageDisplay::self, NamePage::DisplayAccumulation,
     IsActive_Accumulation, nullptr, nullptr, nullptr
 )
 
+static bool IsActive_MinMax() //-V524
+{
+    return SET_TBASE > TBase::_50ns;
+}
+
+static void OnChanged_MinMax(bool)
+{
+}
+
+DEF_CHOICE_REG_8(mcMinMax, PageDisplay::self,
+    "Мин Макс", "Min Max",
+    "Задаёт количество последних измерений, по которым строятся ограничительные линии, огибающие минимумы и максимумы измерений.",
+    "Sets number of the last measurements on which the limiting lines which are bending around minima and maxima of measurements are under construction.",
+    DISABLE_RU, DISABLE_EN,
+    "2", "2",
+    "4", "4",
+    "8", "8",
+    "16", "16",
+    "32", "32",
+    "64", "64",
+    "128", "128",
+    ENUM_MIN_MAX, IsActive_MinMax, OnChanged_MinMax, nullptr
+)
+
+DEF_CHOICE_REG_10(mcSmoothing, PageDisplay::self,
+    "Сглаживание", "Smoothing",
+    "Устанавливает количество точек для расчёта сглаженного по соседним точкам сигнала.",
+    "Establishes quantity of points for calculation of the signal smoothed on the next points.",
+    DISABLE_RU, DISABLE_EN,
+    "2 точки", "2 points",
+    "3 точки", "3 points",
+    "4 точки", "4 points",
+    "5 точек", "5 points",
+    "6 точек", "6 points",
+    "7 точек", "7 points",
+    "8 точек", "8 points",
+    "9 точек", "9 points",
+    "10 точек", "10 points",
+    SMOOTHING, nullptr, nullptr, nullptr
+)
+
+void PageDisplay::OnChanged_RefreshFPS(bool)
+{
+    FPGA::SetNumSignalsInSec(ENumSignalsInSec::NumSignalsInS());
+}
+
+DEF_CHOICE_5(mcRefreshFPS, PageDisplay::self,
+    "Частота обновл", "Refresh rate",
+    "Задаёт максимальное число выводимых в секунду кадров.",
+    "Sets the maximum number of the shots removed in a second.",
+    "25", "25",
+    "10", "10",
+    "5", "5",
+    "2", "2",
+    "1", "1",
+    ENUM_SIGNALS_IN_SEC, nullptr, PageDisplay::OnChanged_RefreshFPS, nullptr
+)
+
+DEF_CHOICE_2(mcTypeShift, PageDisplay::self,
+    "Смещение", "Offset",
+    "Задаёт режим удержания смещения по вертикали\n1. \"Напряжение\" - сохраняется напряжение смещения.\n2. \"Деления\" - сохраняется положение смещения на экране.",
+    "Sets the mode of retaining the vertical displacement\n1. \"Voltage\" - saved dressing bias.\n2. \"Divisions\" - retained the position of the offset on the screen.",
+    "Напряжение", "Voltage",
+    "Деления", "Divisions",
+    LINKING_RSHIFT, nullptr, nullptr, nullptr
+)
+
 DEF_PAGE_9(pageDisplay, PageMain::self, NamePage::Display,
     "ДИСПЛЕЙ", "DISPLAY",
     "Содержит настройки отображения дисплея.",
@@ -125,7 +177,7 @@ DEF_PAGE_9(pageDisplay, PageMain::self, NamePage::Display,
     mcMinMax,
     mcSmoothing,
     mcRefreshFPS,
-    mspGrid,
+    *PageDisplay::PageGrid::self,
     mcTypeShift,
     mspSettings,
     nullptr, nullptr, nullptr, nullptr
@@ -182,74 +234,7 @@ DEF_PAGE_2(pageAveraging, PageDisplay::self, NamePage::DisplayAverage,
     IsActive_Averaging, nullptr, nullptr, nullptr
 )
 
-DEF_CHOICE_REG_8(mcMinMax, PageDisplay::self,
-    "Мин Макс", "Min Max",
-    "Задаёт количество последних измерений, по которым строятся ограничительные линии, огибающие минимумы и максимумы измерений.",
-    "Sets number of the last measurements on which the limiting lines which are bending around minima and maxima of measurements are under construction.",
-    DISABLE_RU, DISABLE_EN,
-    "2",        "2",
-    "4",        "4",
-    "8",        "8",
-    "16",       "16",
-    "32",       "32",
-    "64",       "64",
-    "128",      "128",
-    ENUM_MIN_MAX, IsActive_MinMax, OnChanged_MinMax, nullptr
-)
-
-static bool IsActive_MinMax() //-V524
-{
-    return SET_TBASE > TBase::_50ns;
-}
-
-static void OnChanged_MinMax(bool)
-{
-}
-
-DEF_CHOICE_REG_10(mcSmoothing, PageDisplay::self,
-    "Сглаживание", "Smoothing",
-    "Устанавливает количество точек для расчёта сглаженного по соседним точкам сигнала.",
-    "Establishes quantity of points for calculation of the signal smoothed on the next points.",
-    DISABLE_RU, DISABLE_EN,
-    "2 точки",  "2 points",
-    "3 точки",  "3 points",
-    "4 точки",  "4 points",
-    "5 точек",  "5 points",
-    "6 точек",  "6 points",
-    "7 точек",  "7 points",
-    "8 точек",  "8 points",
-    "9 точек",  "9 points",
-    "10 точек", "10 points",
-    SMOOTHING, nullptr, nullptr, nullptr
-)
-
-DEF_CHOICE_5(mcRefreshFPS, PageDisplay::self,
-    "Частота обновл", "Refresh rate",
-    "Задаёт максимальное число выводимых в секунду кадров.",
-    "Sets the maximum number of the shots removed in a second.",
-    "25", "25",
-    "10", "10",
-    "5",  "5",
-    "2",  "2",
-    "1",  "1",
-    ENUM_SIGNALS_IN_SEC, nullptr, PageDisplay::OnChanged_RefreshFPS, nullptr
-)
-
-void PageDisplay::OnChanged_RefreshFPS(bool)
-{
-    FPGA::SetNumSignalsInSec(ENumSignalsInSec::NumSignalsInS());
-}
-
-DEF_PAGE_2(mspGrid, PageDisplay::self, NamePage::DisplayGrid,
-    "СЕТКА", "GRID",
-    "Содержит настройки отображения координатной сетки.",
-    "Contains settings of display of a coordinate Grid::",
-    mcGrid_Type,
-    mgGrid_Brightness,
-    nullptr, nullptr, nullptr, nullptr
-)
-
-DEF_CHOICE_4(mcGrid_Type, &mspGrid,
+DEF_CHOICE_4(mcGrid_Type, PageDisplay::PageGrid::self,
     "Тип", "Type",
     "Выбор типа сетки.",
     "Choice like Grid.",
@@ -260,14 +245,7 @@ DEF_CHOICE_4(mcGrid_Type, &mspGrid,
     TYPE_GRID, nullptr, nullptr, nullptr
 )
 
-DEF_GOVERNOR(mgGrid_Brightness, &mspGrid,
-    "Яркость", "Brightness",
-    "Устанавливает яркость сетки.",
-    "Adjust the brightness of the Grid.",
-    BRIGHTNESS_GRID, 0, 100, nullptr, PageDisplay::OnChanged_Grid_Brightness, BeforeDraw_Grid_Brightness
-)
-
-static ColorType cTypeGrid = {0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::GRID};
+static ColorType cTypeGrid = { 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::GRID };
 
 void PageDisplay::OnChanged_Grid_Brightness(void)
 {
@@ -280,13 +258,20 @@ static void BeforeDraw_Grid_Brightness(void)
     BRIGHTNESS_GRID = (int16)(cTypeGrid.brightness * 100.0F);
 }
 
-DEF_CHOICE_2(mcTypeShift, PageDisplay::self,
-    "Смещение", "Offset",
-    "Задаёт режим удержания смещения по вертикали\n1. \"Напряжение\" - сохраняется напряжение смещения.\n2. \"Деления\" - сохраняется положение смещения на экране.",
-    "Sets the mode of retaining the vertical displacement\n1. \"Voltage\" - saved dressing bias.\n2. \"Divisions\" - retained the position of the offset on the screen.",
-    "Напряжение", "Voltage",
-    "Деления",    "Divisions",
-    LINKING_RSHIFT, nullptr, nullptr, nullptr
+DEF_GOVERNOR(mgGrid_Brightness, PageDisplay::PageGrid::self,
+    "Яркость", "Brightness",
+    "Устанавливает яркость сетки.",
+    "Adjust the brightness of the Grid.",
+    BRIGHTNESS_GRID, 0, 100, nullptr, PageDisplay::OnChanged_Grid_Brightness, BeforeDraw_Grid_Brightness
+)
+
+DEF_PAGE_2(pageGrid, PageDisplay::self, NamePage::DisplayGrid,
+    "СЕТКА", "GRID",
+    "Содержит настройки отображения координатной сетки.",
+    "Contains settings of display of a coordinate Grid::",
+    mcGrid_Type,
+    mgGrid_Brightness,
+    nullptr, nullptr, nullptr, nullptr
 )
 
 DEF_PAGE_7(mspSettings, PageDisplay::self, NamePage::ServiceDisplay,
@@ -445,3 +430,4 @@ ColorType *PageDisplay::colorTypeGrid = &cTypeGrid;
 const Page *PageDisplay::self = &pageDisplay;
 const Page *PageDisplay::PageAccumulation::self = &pageAccumulation;
 const Page *PageDisplay::PageAveraging::self = &pageAveraging;
+const Page *PageDisplay::PageGrid::self = &pageGrid;
