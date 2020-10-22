@@ -9,7 +9,6 @@
 class Item;
 
 
-#define EXIT_FROM_INT_TO_LAST           (gMemory.exitFromIntToLast)
 #define NEED_SAVE_TO_DRIVE              (gMemory.needForSaveToFlashDrive)
 
 #define EXIT_FROM_SET_NAME_TO           (gMemory.exitFromModeSetNameTo)
@@ -24,7 +23,6 @@ class Item;
 
 struct GMemory
 {
-    uint    exitFromIntToLast               : 1;    // Если 1, то выходить из страницы внутренней памяти нужно не стандартно, а в меню последних
     uint    exitFromModeSetNameTo           : 2;    // Куда возвращаться из окна установки имени при сохранении : 0 - в основное меню, 1 - в окно 
                                                     // последних, 2 - в окно Внутр ЗУ, 3 - в основно окно в выключенным меню
     uint    needForSaveToFlashDrive         : 1;    // Если 1, то нужно сохранить после отрисовки на флешку.

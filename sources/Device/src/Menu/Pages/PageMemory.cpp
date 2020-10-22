@@ -25,7 +25,9 @@ int16 PageMemory::PageLatest::currentSignal = 0;
 int8 PageMemory::PageInternal::currentSignal = 0;
 bool PageMemory::PageInternal::showAlways = false;
 
-static bool runningFPGAbeforeSmallButtons = false;    // Здесь сохраняется информация о том, работала ли ПЛИС перед переходом в режим работы с памятью
+static bool runningFPGAbeforeSmallButtons = false;      // Здесь сохраняется информация о том, работала ли ПЛИС перед переходом в режим работы с памятью
+static bool exitFromIntToLast = false;                  // Если 1, то выходить из страницы внутренней памяти нужно не стандартно, а в меню последних
+
 
 static void DrawSetMask();  // Эта функция рисует, когда выбран режим задания маски.
 static void DrawSetName();  // Эта функция рисует, когда нужно задать имя файла для сохранения
@@ -208,7 +210,7 @@ void PressSB_MemLast_IntEnter()
     PageMemory::PageInternal::self->OpenAndSetItCurrent();
     MODE_WORK = ModeWork::MemInt;
     EPROM::GetData(PageMemory::PageInternal::currentSignal, &gDSmemInt, &gData0memInt, &gData1memInt);
-    EXIT_FROM_INT_TO_LAST = 1;
+    exitFromIntToLast = true;
 }
 
 DEF_SMALL_BUTTON(sbMemLastIntEnter, PageMemory::PageLatest::self,
@@ -482,7 +484,7 @@ void DrawSB_MemInt_SaveToIntMemory(int x, int y)
 
 static void SaveSignalToIntMemory(void)
 {
-    if (EXIT_FROM_INT_TO_LAST)          // Если перешли во ВНУТР ЗУ из ПОСЛЕДНИЕ
+    if (exitFromIntToLast)          // Если перешли во ВНУТР ЗУ из ПОСЛЕДНИЕ
     {
         if  (gDSmemLast != 0)
         {                               // то сохраняем сигнал из последних
@@ -725,11 +727,11 @@ DEF_SMALL_BUTTON(sbMemIntSaveToFlash, PageMemory::PageInternal::self,
 void PressSB_MemInt_Exit()
 {
     EPROM::GetData(PageMemory::PageInternal::currentSignal, &gDSmemInt, &gData0memInt, &gData1memInt);
-    if (EXIT_FROM_INT_TO_LAST)
+    if (exitFromIntToLast)
     {
         PageMemory::PageLatest::self->OpenAndSetItCurrent();
         MODE_WORK = ModeWork::Latest;
-        EXIT_FROM_INT_TO_LAST = 0;
+        exitFromIntToLast = false;
         Menu::needClosePageSB = false;
     }
     else
