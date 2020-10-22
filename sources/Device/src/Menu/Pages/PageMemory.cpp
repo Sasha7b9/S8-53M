@@ -849,7 +849,7 @@ void DrawSetName()
     // Рисуем большие буквы английского алфавита
     while (symbolsAlphaBet[index][0] != ' ')
     {
-        DrawStr(index, x0 + deltaX + position * 7, y0 + deltaY0);
+        Tables::DrawStr(index, x0 + deltaX + position * 7, y0 + deltaY0);
         index++;
         position++;
     }
@@ -858,7 +858,7 @@ void DrawSetName()
     position = 0;
     while (symbolsAlphaBet[index][0] != 'a')
     {
-        DrawStr(index, x0 + deltaX + 50 + position * 7, y0 + deltaY0 + deltaY);
+        Tables::DrawStr(index, x0 + deltaX + 50 + position * 7, y0 + deltaY0 + deltaY);
         index++;
         position++;
     }
@@ -867,7 +867,7 @@ void DrawSetName()
     position = 0;
     while (symbolsAlphaBet[index][0] != '%')
     {
-        DrawStr(index, x0 + deltaX + position * 7, y0 + deltaY0 + deltaY * 2);
+        Tables::DrawStr(index, x0 + deltaX + position * 7, y0 + deltaY0 + deltaY * 2);
         index++;
         position++;
     }
@@ -925,7 +925,7 @@ void DrawSetMask()
     // Рисуем большие буквы английского алфавита
     while(symbolsAlphaBet[index][0] != ' ')
     {
-        DrawStr(index, x0 + deltaX + position * 7, y0 + deltaY0);
+        Tables::DrawStr(index, x0 + deltaX + position * 7, y0 + deltaY0);
         index++;
         position++;
     }
@@ -934,7 +934,7 @@ void DrawSetMask()
     position = 0;
     while(symbolsAlphaBet[index][0] != 'a')
     {
-        DrawStr(index, x0 + deltaX + 50 + position * 7, y0 + deltaY0 + deltaY);
+        Tables::DrawStr(index, x0 + deltaX + 50 + position * 7, y0 + deltaY0 + deltaY);
         index++;
         position++;
     }
@@ -943,7 +943,7 @@ void DrawSetMask()
     position = 0;
     while(symbolsAlphaBet[index][0] != '%')
     {
-        DrawStr(index, x0 + deltaX + position * 7, y0 + deltaY0 + deltaY * 2);
+        Tables::DrawStr(index, x0 + deltaX + position * 7, y0 + deltaY0 + deltaY * 2);
         index++;
         position++;
     }
@@ -952,7 +952,7 @@ void DrawSetMask()
     position = 0;
     while (index < (sizeof(symbolsAlphaBet) / 4))
     {
-        DrawStr(index, x0 + deltaX + 26 + position * 20, y0 + deltaY0 + deltaY * 3);
+        Tables::DrawStr(index, x0 + deltaX + 26 + position * 20, y0 + deltaY0 + deltaY * 3);
         index++;
         position++;
     }

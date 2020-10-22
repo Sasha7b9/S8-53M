@@ -50,9 +50,9 @@ struct Tables
     static const char *RangeNameFromValue(Range::E range);
     // Возвращает номер канала от 1 до 2
     static int GetNumChannel(Channel::E chan);
+    // Выводит строку из таблицы symbolsAlphaBet
+    static void DrawStr(int index, int x, int y);
 };
 
 
 extern const char* symbolsAlphaBet[0x48];
-// Выводит строку из таблицы symbolsAlphaBet
-void DrawStr(int index, int x, int y);

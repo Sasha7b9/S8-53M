@@ -179,7 +179,7 @@ int Tables::GetNumChannel(Channel::E chan)
 }
 
 
-void DrawStr(int index, int x, int y)
+void Tables::DrawStr(int index, int x, int y)
 {
     const char *str = symbolsAlphaBet[index];
     if (index == INDEX_SYMBOL)
