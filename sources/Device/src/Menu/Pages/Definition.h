@@ -235,6 +235,8 @@ struct PageMemory
 {
     struct PageLatest
     {
+        static int16 currentSignal;     // Текущий номер последнего сигнала в режиме ПАМЯТЬ - Последние
+
         static const Page *self;
     };
 

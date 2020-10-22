@@ -21,6 +21,7 @@
 
 using namespace Primitives;
 
+int16 PageMemory::PageLatest::currentSignal = 0;
 
 static void DrawSetMask();  // Эта функция рисует, когда выбран режим задания маски.
 static void DrawSetName();  // Эта функция рисует, когда нужно задать имя файла для сохранения
@@ -85,12 +86,12 @@ void PressSB_MemLastSelect()
 
 void PressSB_MemLast_Next()
 {
-    CircleIncreaseInt16(&CURRENT_NUM_LATEST_SIGNAL, 0, static_cast<int16>(Storage::AllDatas() - 1));
+    CircleIncreaseInt16(&PageMemory::PageLatest::currentSignal, 0, static_cast<int16>(Storage::AllDatas() - 1));
 }
 
 void PressSB_MemLast_Prev()
 {
-    CircleDecreaseInt16(&CURRENT_NUM_LATEST_SIGNAL, 0, static_cast<int16>(Storage::AllDatas() - 1));
+    CircleDecreaseInt16(&PageMemory::PageLatest::currentSignal, 0, static_cast<int16>(Storage::AllDatas() - 1));
 }
 
 static void RotateSB_MemLast(int angle)
@@ -117,7 +118,7 @@ static void FuncDrawingAdditionSPageMemoryLast()
     int height = 10;
     Region(width, height).Fill(Grid::Right() - width, Grid::TOP, COLOR_BACK);
     Primitives::Rectangle(width, height).Draw(Grid::Right() - width, Grid::TOP, COLOR_FILL);
-    Text(Int2String(CURRENT_NUM_LATEST_SIGNAL + 1, false, 3, buffer)).Draw(Grid::Right() - width + 2, Grid::TOP + 1);
+    Text(Int2String(PageMemory::PageLatest::currentSignal + 1, false, 3, buffer)).Draw(Grid::Right() - width + 2, Grid::TOP + 1);
     Text("/").Draw(Grid::Right() - width + 17, Grid::TOP + 1);
     Text(Int2String(Storage::AllDatas(), false, 3, buffer)).Draw(Grid::Right() - width + 23, Grid::TOP + 1);
 }
@@ -1010,7 +1011,7 @@ static void PressSB_MemLast_Exit()
 // Нажатие ПАМЯТЬ - Последние.
 void OnPressMemoryLatest()
 {
-    CURRENT_NUM_LATEST_SIGNAL = 0;
+    PageMemory::PageLatest::currentSignal = 0;
     RUN_FPGA_AFTER_SMALL_BUTTONS = FPGA::IsRunning() ? 1U : 0U;
     FPGA::Stop(false);
     MODE_WORK = ModeWork::Latest;

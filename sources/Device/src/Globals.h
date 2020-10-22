@@ -9,7 +9,6 @@
 class Item;
 
 
-#define CURRENT_NUM_LATEST_SIGNAL       (gMemory.currentNumLatestSignal)
 #define CURRENT_NUM_INT_SIGNAL          (gMemory.currentNumIntSignal)
 #define EXIT_FROM_INT_TO_LAST           (gMemory.exitFromIntToLast)
 #define RUN_FPGA_AFTER_SMALL_BUTTONS    (gMemory.runningFPGAbeforeSmallButtons)
@@ -28,7 +27,6 @@ class Item;
 
 struct GMemory
 {
-    int16   currentNumLatestSignal;                 // Текущий номер последнего сигнала в режиме ПАМЯТЬ - Последние
     int8    currentNumIntSignal;                    // Текущий номер сигнала, сохранённого в ППЗУ
     uint    showAlways                      : 1;    // Если 1, то показывать всегда выбранный в режиме "Внутр. ЗУ" сигнал
     uint    runningFPGAbeforeSmallButtons   : 1;    // Здесь сохраняется информация о том, работала ли ПЛИС перед переходом в режим работы с памятью

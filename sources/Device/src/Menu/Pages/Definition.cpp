@@ -11,7 +11,6 @@
 
 using namespace Primitives;
 
-
 void CalculateConditions(int16 pos0, int16 pos1, CursCntrl::E cursCntrl, bool *cond0, bool *cond1)
 {
     bool zeroLessFirst = pos0 < pos1;
