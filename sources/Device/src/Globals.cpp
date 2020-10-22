@@ -9,7 +9,6 @@ void *extraMEM = 0;
 
 BitField gBF =
 {
-    0,  // FPGAinProcessingOfRead
     1,  // FPGAcanReadData
     0,  // FPGAcritiacalSituation
     0,  // FPGAfirstAfterWrite

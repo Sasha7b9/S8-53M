@@ -35,6 +35,8 @@ static uint timeStart = 0;
 static bool trigAutoFind = false;    // Установленное в 1 значение означает, что нужно производить автоматический поиск синхронизации, если выбрана соответствующая настройка.
 static bool autoFindInProgress = false;
 static bool temporaryPause = false;
+static bool inProcessingOfRead = false;
+
 
 
 // Функция вызывается, когда можно считывать очередной сигнал.
@@ -372,7 +374,7 @@ void FPGA::ReadRealMode(bool necessaryShift)
         uint8 *p0max = p0min + 512;
         uint8 *p1min = p1;
         uint8 *p1max = p1min + 512;
-        while ((p0max < endP) && (FPGA_IN_PROCESS_READ == 1))
+        while ((p0max < endP) && inProcessingOfRead)
         {
             uint8 data = *RD_ADC_B2;
             *p1max++ = data;
@@ -386,7 +388,7 @@ void FPGA::ReadRealMode(bool necessaryShift)
     }
     else
     {
-        while ((p0 < endP) && (FPGA_IN_PROCESS_READ == 1))
+        while ((p0 < endP) && inProcessingOfRead)
         {
             *p1++ = *RD_ADC_B2;
             *p1++ = *RD_ADC_B1;
@@ -433,7 +435,7 @@ void FPGA::ReadRealMode(bool necessaryShift)
 void FPGA::DataRead(bool necessaryShift, bool saveToStorage) 
 {
     Panel::EnableLEDTrig(false);
-    FPGA_IN_PROCESS_READ = 1;
+    inProcessingOfRead = true;
     if(static_cast<TBase::E>(ds.tBase) < TBase::_100ns)
     {
         ReadRandomizeMode();
@@ -462,7 +464,7 @@ void FPGA::DataRead(bool necessaryShift, bool saveToStorage)
             trigAutoFind = false;
         }
     }
-    FPGA_IN_PROCESS_READ = 0;
+    inProcessingOfRead = false;
 }
 
 
@@ -582,10 +584,10 @@ void FPGA::WriteToHardware(uint8 * const address, uint8 value, bool restart)
     FPGA_FIRST_AFTER_WRITE = 1;
     if(restart)
     {
-        if(FPGA_IN_PROCESS_READ)
+        if(inProcessingOfRead)
         {
             FPGA::Stop(true);
-            FPGA_IN_PROCESS_READ = 0;
+            inProcessingOfRead = false;
             HAL_FSMC::Write(address, value);
             FPGA::Start();
         }
