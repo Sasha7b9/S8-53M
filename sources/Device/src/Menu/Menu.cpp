@@ -42,9 +42,9 @@ void Menu::UpdateInput()
     ProcessingReleaseButton();
     SwitchSetLED();
     
-    if(NEED_OPEN_FILE_MANAGER)
+    if(FDrive::needOpenFileMananger)
     {
-        NEED_OPEN_FILE_MANAGER = 0;
+        FDrive::needOpenFileMananger = false;
         OpenFileManager();       
     }
 };

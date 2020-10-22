@@ -58,4 +58,5 @@ public:
     static void ChangeState();
 
     static bool isConnected;
+    static bool needOpenFileMananger;    // Если 1, то нужно открыть файловый менеджер (сработало автоподключение)
 };

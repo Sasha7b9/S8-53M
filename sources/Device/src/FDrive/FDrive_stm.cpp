@@ -15,6 +15,7 @@ static FATFS USBDISKFatFs;
 static char USBDISKPath[4];
 
 bool FDrive::isConnected = false;
+bool FDrive::needOpenFileMananger = false;
 
 
 static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8 id);
@@ -378,6 +379,6 @@ void FDrive::ChangeState()
     }
     else if (FLASH_AUTOCONNECT)
     {
-        NEED_OPEN_FILE_MANAGER = 1;
+        needOpenFileMananger = true;
     }
 }
