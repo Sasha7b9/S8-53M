@@ -408,7 +408,6 @@ bool TCPSocket::Send(const char *buffer, uint length)
         struct pbuf *tcpBuffer = pbuf_alloc(PBUF_RAW, static_cast<uint16>(length), PBUF_POOL);
         tcpBuffer->flags = 1;
         pbuf_take(tcpBuffer, buffer, static_cast<uint16>(length));
-        transmitBytes += length;
         struct State *ss = static_cast<struct State*>(mem_malloc(sizeof(struct State)));
         ss->p = tcpBuffer;
         ::Send(pcbClient, ss);
