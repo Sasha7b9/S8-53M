@@ -44,8 +44,6 @@ public:
 
     static int DrawStringInCenterRectAndBoundItC(int x, int y, int width, int height, const char *text, Color::E colorBackground, Color::E colorFill);
 
-    static void DrawHintsForSmallButton(int x, int y, int width, void *smallButton);
-
     static void Draw2SymbolsC(int x, int y, char symbol1, char symbol2, Color::E color1, Color::E color2);
 
     static void CalculateCurrentColor();
@@ -57,10 +55,6 @@ private:
     static void RunDisplay();
 
     static Color::E GetColor(int x, int y);
-
-    static void Get8Points(int x, int y, uint8 buffer[4]);
-
-    static int DrawPartWord(char *word, int x, int y, int xRight, bool draw);
 
     static StateTransmit::E stateTransmit;
 };

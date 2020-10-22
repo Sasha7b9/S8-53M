@@ -121,11 +121,6 @@ Color::E Painter::GetColor(int , int )
 }
 
 
-void Painter::Get8Points(int , int , uint8 [4])
-{
-}
-
-
 uint8 Get2Points(int , int )
 {
     return 0;

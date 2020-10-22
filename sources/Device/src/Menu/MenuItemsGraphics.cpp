@@ -896,3 +896,21 @@ void Page::DrawPagesUGO(int right, int bottom) const
         }
     }
 }
+
+
+void SmallButton::DrawHints(int x, int y, int width)
+{
+    Region(width, 239 - y).Fill(x, y, Color::BACK);
+    Rectangle(width, 239 - y).Draw(x, y, Color::FILL);
+    const StructHelpSmallButton *structHelp = &(*OwnData()->hintUGO)[0];
+    x += 3;
+    y += 3;
+    while (structHelp->funcDrawUGO)
+    {
+        Rectangle(WIDTH_SB, WIDTH_SB).Draw(x, y);
+        structHelp->funcDrawUGO(x, y);
+        int yNew = Text(structHelp->helpUGO[LANG]).DrawInRectWithTransfers(x + 23, y + 1, width - 30, 20);
+        y = ((yNew - y) < 22) ? (y + 22) : yNew;
+        structHelp++;
+    }
+}

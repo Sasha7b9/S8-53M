@@ -62,25 +62,6 @@ int Painter::DrawStringInCenterRectAndBoundItC(int x, int y, int width, int heig
 }
 
 
-void Painter::DrawHintsForSmallButton(int x, int y, int width, void *smallButton)
-{
-    SmallButton *sb = static_cast<SmallButton*>(smallButton);
-    Region(width, 239 - y).Fill(x, y, Color::BACK);
-    Rectangle(width, 239 - y).Draw(x, y, Color::FILL);
-    const StructHelpSmallButton *structHelp = &(*sb->OwnData()->hintUGO)[0];
-    x += 3;
-    y += 3;
-    while (structHelp->funcDrawUGO)
-    {
-        Rectangle(WIDTH_SB, WIDTH_SB).Draw(x, y);
-        structHelp->funcDrawUGO(x, y);
-        int yNew = Text(structHelp->helpUGO[LANG]).DrawInRectWithTransfers(x + 23, y + 1, width - 30, 20);
-        y = ((yNew - y) < 22) ? (y + 22) : yNew;
-        structHelp++;
-    }
-}
-
-
 void Painter::Draw2SymbolsC(int x, int y, char symbol1, char symbol2, Color::E color1, Color::E color2)
 {
     Char(symbol1).Draw(x, y, color1);

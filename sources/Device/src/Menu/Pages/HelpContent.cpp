@@ -66,19 +66,6 @@ void PageHelpContent::Draw()
     Region(WIDTH, 237).Fill(1, 1);
     Rectangle(WIDTH + 2, 239).Draw(0, 0, Color::FILL);
 
-    /*
-    uint16 *addr1 = (uint16*)(0x08000000 + (rand() % 65535));
-    uint8 *addr2 = (uint8*)(0x08000000 + (rand() % 65535));
-
-    Color::SetCurrent(Color::FILL);
-    for (int i = 0; i < 10000; i++)
-    {
-        Painter::SetPoint((*addr1) % WIDTH, Math_LimitationInt(*addr2, 0, 239));
-        addr1++;
-        addr2++;
-    }
-    */
-
     if(currentPage->OwnData()->type == TypePageHelp::Content)
     {
         DrawPageContent();

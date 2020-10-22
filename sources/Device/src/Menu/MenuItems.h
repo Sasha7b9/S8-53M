@@ -265,6 +265,8 @@ public:
     virtual void Draw(int x, int y, bool opened = false);
 
     virtual void ShortPress();
+
+    void DrawHints(int x, int y, int width);
 };
 
 

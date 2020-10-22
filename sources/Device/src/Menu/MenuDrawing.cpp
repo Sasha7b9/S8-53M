@@ -55,7 +55,7 @@ static void DrawHintItem(int x, int y, int width)
     y = Text(HINT(item)).DrawInBoundedRectWithTransfers(x, y + 15, width, Color::BACK, Color::FILL);
     if (item->data->type == TypeItem::SmallButton)
     {
-        Painter::DrawHintsForSmallButton(x, y, width, reinterpret_cast<SmallButton*>(item));
+        reinterpret_cast<SmallButton *>(item)->DrawHints(x, y, width);
     }
 }
 
