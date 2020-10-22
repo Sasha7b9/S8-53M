@@ -219,16 +219,12 @@ DEF_SMALL_BUTTON(sbMemLastSaveToFlash, PageMemory::PageLatest::self,
     nullptr, PressSB_MemLast_SaveToFlash, DrawSB_MemLast_SaveToFlash, nullptr
 )
 
-
-extern const Page mpSetName;
-
-DEF_SMALL_BUTTON(sbSetNameSave, &mpSetName,
+DEF_SMALL_BUTTON(sbSetNameSave, PageMemory::PageSetName::self,
     "Сохранить", "Save",
     "Сохранение на флеш под заданным именем",
     "Saving to flashdrive with the specified name",
     nullptr, PressSB_MemExtSetNameSave, DrawSB_MemExtSetNameSave, nullptr
 )
-
 
 void DrawSB_SetMask_Backspace(int x, int y)
 {
@@ -400,21 +396,21 @@ DEF_SMALL_BUTTON(sbSetMaskInsert, PageMemory::PageSetMask::self,
 )
 
 
-DEF_SMALL_BUTTON(sbSetNameBackspace, &mpSetName,
+DEF_SMALL_BUTTON(sbSetNameBackspace, PageMemory::PageSetName::self,
     "Backspace", "Backspace",
     "Удаляет последний символ",
     "Delete the last character",
     nullptr, PressSB_SetName_Backspace, DrawSB_SetName_Backspace, nullptr
 )
 
-DEF_SMALL_BUTTON(sbSetNameDelete, &mpSetName,
+DEF_SMALL_BUTTON(sbSetNameDelete, PageMemory::PageSetName::self,
     "Удалить", "Delete",
     "Удаляет все введённые символы",
     "Deletes all entered characters",
     nullptr, PressSB_SetName_Delete, DrawSB_SetName_Delete, nullptr
 )
 
-DEF_SMALL_BUTTON(sbSetNameInsert, &mpSetName,
+DEF_SMALL_BUTTON(sbSetNameInsert, PageMemory::PageSetName::self,
     "Вставить", "Insert",
     "Вводит очередной символ",
     "Print the next character",
@@ -449,23 +445,21 @@ static void DrawSB_FM_Tab(int x, int y)
     Font::Set(TypeFont::_8);
 }
 
-extern const Page mspFileManager;
-
-DEF_SMALL_BUTTON(sbFileManagerTab, &mspFileManager,
+DEF_SMALL_BUTTON(sbFileManagerTab, PageMemory::PageFileManager::self,
     "Tab", "Tab",
     "Переход между каталогами и файлами",
     "The transition between the directories and files",
     nullptr, FM::PressTab, DrawSB_FM_Tab, nullptr
 )
 
-DEF_SMALL_BUTTON(sbFileManagerLevelDown, &mspFileManager,
+DEF_SMALL_BUTTON(sbFileManagerLevelDown, PageMemory::PageFileManager::self,
     "Войти", "Enter",
     "Переход в выбранный каталог",
     "Transition to the chosen catalog",
     nullptr, FM::PressLevelDown, DrawSB_FM_LevelDown, nullptr
 )
 
-DEF_SMALL_BUTTON(sbFileManagerLevelUp, &mspFileManager,
+DEF_SMALL_BUTTON(sbFileManagerLevelUp, PageMemory::PageFileManager::self,
     "Выйти", "Leave",
     "Переход в родительский каталог",
     "Transition to the parental catalog",
@@ -738,9 +732,7 @@ void PressSB_MemInt_Exit()
     }
 }
 
-extern const Page mpSetName;
-
-DEF_SMALL_BUTTON(sbExitSetName, &mpSetName,     // Кнопк для выхода из режима задания имени сохраняемому сигналу. Одновременно кнопка отказа от сохранения
+DEF_SMALL_BUTTON(sbExitSetName, PageMemory::PageSetName::self,     // Кнопк для выхода из режима задания имени сохраняемому сигналу. Одновременно кнопка отказа от сохранения
     EXIT_RU, EXIT_EN,
     "Отказ от сохранения",
     "Failure to save",
@@ -1051,7 +1043,7 @@ DEF_SMALL_BUTTON(sbExitSetMask, PageMemory::PageSetMask::self,
     nullptr, PressSB_SetMask_Exit, DrawSB_Exit, nullptr
 )
 
-DEF_PAGE_6(mspSetMask, PageMemory::PageExternal::self, NamePage::SB_MemExtSetMask,
+DEF_PAGE_6(pageSetMask, PageMemory::PageExternal::self, NamePage::SB_MemExtSetMask,
     "МАСКА", "MASK",
     "Режим ввода маски для автоматического именования файлов",
     "Input mode mask for automatic file naming",
@@ -1068,7 +1060,7 @@ void OnPressMemoryExtFileManager()
 {
     if(FLASH_DRIVE_IS_CONNECTED)
     {
-        PageMemory::FileManager::self->OpenAndSetItCurrent();
+        PageMemory::PageFileManager::self->OpenAndSetItCurrent();
         Display::SetDrawMode(DrawMode::Hand, FM::Draw);
         NEED_REDRAW_FILEMANAGER = 1;
     }
@@ -1085,16 +1077,14 @@ static void PressSB_FM_Exit()
     Display::RemoveAddDrawFunction();
 }
 
-DEF_SMALL_BUTTON(sbExitFileManager, &mspFileManager,
+DEF_SMALL_BUTTON(sbExitFileManager, PageMemory::PageFileManager::self,
     EXIT_RU, EXIT_EN,
     EXIT_ILLUSTRATION_RU,
     EXIT_ILLUSTRATION_EN,
     nullptr, PressSB_FM_Exit, DrawSB_Exit, nullptr
 )
 
-const void *pMspFileManager = (const void *)&mspFileManager;
-
-DEF_PAGE_6(mspFileManager, PageMemory::PageExternal::self, NamePage::SB_FileManager,
+DEF_PAGE_6(pageFileManager, PageMemory::PageExternal::self, NamePage::SB_FileManager,
     "КАТАЛОГ", "DIRECTORY",
     "Открывает доступ к файловой системе подключенного накопителя",
     "Provides access to the file system of the connected drive",
@@ -1111,9 +1101,9 @@ DEF_PAGE_6(pageExternal, PageMemory::self, NamePage::MemoryExt,
     "ВНЕШН ЗУ", "EXT STORAGE",
     "Работа с внешним запоминающим устройством.",
     "Work with external storage device.",
-    mspFileManager,
+    *PageMemory::PageFileManager::self,
     mcMemoryExtName,
-    mspSetMask,
+    *PageMemory::PageSetMask::self,
     mcMemoryExtModeSave,
     mcMemoryExtModeBtnMemory,
     mcMemoryExtAutoConnectFlash,
@@ -1146,7 +1136,7 @@ static void OnMemExtSetNameRegSet(int angle)
     OnMemExtSetMaskNameRegSet(angle, sizeof(symbolsAlphaBet) / 4 - 7);
 }
 
-DEF_PAGE_6(mpSetName, &Page::empty, NamePage::SB_MemExtSetName,
+DEF_PAGE_6(pageSetName, &Page::empty, NamePage::SB_MemExtSetName,
     "", "",
     "",
     "",
@@ -1174,6 +1164,6 @@ const Page *PageMemory::self = &pageMemory;
 const Page *PageMemory::PageLatest::self = &pageLatest;
 const Page *PageMemory::PageInternal::self = &pageInternal;
 const Page *PageMemory::PageExternal::self = &pageExternal;
-const Page *PageMemory::PageSetMask::self = &mspSetMask;
-const Page *PageMemory::PageSetName::self = &mpSetName;
-const Page *PageMemory::FileManager::self = &mspFileManager;
+const Page *PageMemory::PageSetMask::self = &pageSetMask;
+const Page *PageMemory::PageSetName::self = &pageSetName;
+const Page *PageMemory::PageFileManager::self = &pageFileManager;

@@ -250,7 +250,7 @@ struct PageMemory
         static const Page *self;
     };
 
-    struct FileManager
+    struct PageFileManager
     {
         static const Page *self;
     };
