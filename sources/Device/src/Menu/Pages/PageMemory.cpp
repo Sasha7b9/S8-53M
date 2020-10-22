@@ -162,7 +162,7 @@ static void PressSB_SetName_Exit()
     Display::RemoveAddDrawFunction();
     if (EXIT_FROM_SET_NAME_TO_LAST)
     {
-        PageMemory::Latest::self->OpenAndSetItCurrent();
+        PageMemory::PageLatest::self->OpenAndSetItCurrent();
     }
     else if (EXIT_FROM_SET_NAME_TO_INT)
     {
@@ -181,9 +181,7 @@ static void PressSB_MemExtSetNameSave()
     }
 }
 
-extern const Page mspMemLast;
-
-DEF_SMALL_BUTTON(sbMemLastPrev, &mspMemLast,
+DEF_SMALL_BUTTON(sbMemLastPrev, PageMemory::PageLatest::self,
     "Предыдущий", "Previous",
     "Перейти к предыдущему сигналу",
     "Go to the previous signal",
@@ -191,7 +189,7 @@ DEF_SMALL_BUTTON(sbMemLastPrev, &mspMemLast,
 )
 
 
-DEF_SMALL_BUTTON(sbMemLastNext, &mspMemLast,
+DEF_SMALL_BUTTON(sbMemLastNext, PageMemory::PageLatest::self,
     "Следующий", "Next",
     "Перейти к следующему сигналу",
     "Go to the next signal",
@@ -207,14 +205,14 @@ void PressSB_MemLast_IntEnter()
     EXIT_FROM_INT_TO_LAST = 1;
 }
 
-DEF_SMALL_BUTTON(sbMemLastIntEnter, &mspMemLast,
+DEF_SMALL_BUTTON(sbMemLastIntEnter, PageMemory::PageLatest::self,
     "Внутр ЗУ", "Internal storage",
     "Нажмите эту кнопку, чтобы сохранить сигнал во внутреннем запоминающем устройстве",
     "Press this button to keep a signal in an internal memory",
     nullptr, PressSB_MemLast_IntEnter, DrawSB_MemLast_IntEnter, nullptr
 )
 
-DEF_SMALL_BUTTON(sbMemLastSaveToFlash, &mspMemLast,
+DEF_SMALL_BUTTON(sbMemLastSaveToFlash, PageMemory::PageLatest::self,
     "Сохранить", "Save",
     "Кнопка становится доступна при присоединённом внешнем ЗУ. Позволяет сохранить сигнал на внешем ЗУ",
     "Click this button to save the signal on the external FLASH",
@@ -734,7 +732,7 @@ void PressSB_MemInt_Exit()
     EPROM::GetData(CURRENT_NUM_INT_SIGNAL, &gDSmemInt, &gData0memInt, &gData1memInt);
     if (EXIT_FROM_INT_TO_LAST)
     {
-        PageMemory::Latest::self->OpenAndSetItCurrent();
+        PageMemory::PageLatest::self->OpenAndSetItCurrent();
         MODE_WORK = ModeWork::Latest;
         EXIT_FROM_INT_TO_LAST = 0;
         NEED_CLOSE_PAGE_SB = 0;
@@ -1035,12 +1033,12 @@ void OnPressMemoryLatest()
     MODE_WORK = ModeWork::Latest;
 }
 
-DEF_SMALL_BUTTON(sbExitMemLast, &mspMemLast,
+DEF_SMALL_BUTTON(sbExitMemLast, PageMemory::PageLatest::self,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
     nullptr, PressSB_MemLast_Exit, DrawSB_Exit, nullptr
 )
 
-DEF_PAGE_6(mspMemLast, &pMemory, NamePage::SB_MemLatest,
+DEF_PAGE_6(pageLatest, &pMemory, NamePage::SB_MemLatest,
     "ПОСЛЕДНИЕ", "LATEST",
     "Переход в режим работы с последними полученными сигналами",
     "Transition to an operating mode with the last received signals",
@@ -1171,23 +1169,19 @@ DEF_PAGE_6(mpSetName, &Page::empty, NamePage::SB_MemExtSetName,
     nullptr, nullptr, nullptr, OnMemExtSetNameRegSet
 )
 
-// ПАМЯТЬ ///////////////////
 DEF_PAGE_4(pMemory, PageMain::self, NamePage::Memory,
     "ПАМЯТЬ", "MEMORY",
     "Работа с внешней и внутренней памятью.",
     "Working with external and internal memory.",
     mcMemoryNumPoints,
-    mspMemLast,
+    pageLatest,
     mspMemInt,
     pageMemoryExt,
     nullptr, nullptr, nullptr, nullptr
 )
 
-
 const Page *PageMemory::self = &pMemory;
-
-
-const Page *PageMemory::Latest::self = &mspMemLast;
+const Page *PageMemory::PageLatest::self = &pageLatest;
 const Page *PageMemory::Internal::self = &mspMemInt;
 const Page *PageMemory::PageExternal::self = &pageMemoryExt;
 const Page *PageMemory::SetMask::self = &mspSetMask;

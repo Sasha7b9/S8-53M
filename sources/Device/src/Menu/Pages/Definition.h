@@ -225,7 +225,7 @@ struct PageHelp
 
 struct PageMemory
 {
-    struct Latest
+    struct PageLatest
     {
         static const Page *self;
     };
