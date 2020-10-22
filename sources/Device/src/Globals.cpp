@@ -9,7 +9,6 @@ void *extraMEM = 0;
 
 BitField gBF =
 {
-    1,  // FPGAcanReadData
     0,  // FPGAcritiacalSituation
     0,  // FPGAfirstAfterWrite
     0,  // flashDriveIsConnected

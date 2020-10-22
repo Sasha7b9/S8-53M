@@ -36,7 +36,7 @@ static bool trigAutoFind = false;    // Установленное в 1 значение означает, что
 static bool autoFindInProgress = false;
 static bool temporaryPause = false;
 static bool inProcessingOfRead = false;
-
+static bool canReadData = true;
 
 
 // Функция вызывается, когда можно считывать очередной сигнал.
@@ -69,7 +69,7 @@ void FPGA::SetNumSignalsInSec(int numSigInSec)
 
 void OnTimerCanReadData(void)
 {
-    FPGA_CAN_READ_DATA = 1;
+    canReadData = 1;
 }
 
 
@@ -181,8 +181,7 @@ void FPGA::Update(void)
 		return;
 	}
 
-    //if(((FPGA_CAN_READ_DATA == 0) && !sTime_RandomizeModeEnabled()) || (stateWork == StateWorkFPGA::Stop))
-    if((FPGA_CAN_READ_DATA == 0) || (stateWork == StateWorkFPGA::Stop))
+    if(!canReadData || (stateWork == StateWorkFPGA::Stop))
     {
         return;
     }
@@ -194,7 +193,7 @@ void FPGA::Update(void)
 
     ProcessingData();
 
-    FPGA_CAN_READ_DATA = 0;
+    canReadData = false;
 }
 
 
