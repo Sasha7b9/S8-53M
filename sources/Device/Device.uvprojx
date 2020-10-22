@@ -1063,9 +1063,14 @@
               <FilePath>.\src\Hardware\Hardware.cpp</FilePath>
             </File>
             <File>
-              <FileName>Sound_c.cpp</FileName>
+              <FileName>RAM.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\RAM.h</FilePath>
+            </File>
+            <File>
+              <FileName>RAM.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\Sound_c.cpp</FilePath>
+              <FilePath>.\src\Hardware\RAM.cpp</FilePath>
             </File>
             <File>
               <FileName>Sound_c.h</FileName>
@@ -1073,14 +1078,19 @@
               <FilePath>..\common\Hardware\Sound_c.h</FilePath>
             </File>
             <File>
-              <FileName>Timer_c.cpp</FileName>
+              <FileName>Sound_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\Timer_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\Sound_c.cpp</FilePath>
             </File>
             <File>
               <FileName>Timer_c.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Hardware\Timer_c.h</FilePath>
+            </File>
+            <File>
+              <FileName>Timer_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\Timer_c.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -1389,11 +1399,6 @@
               <FileName>Tables.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Tables.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Globals.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Globals.cpp</FilePath>
             </File>
             <File>
               <FileName>Log_c.cpp</FileName>
@@ -3283,9 +3288,14 @@
               <FilePath>.\src\Hardware\Hardware.cpp</FilePath>
             </File>
             <File>
-              <FileName>Sound_c.cpp</FileName>
+              <FileName>RAM.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Hardware\RAM.h</FilePath>
+            </File>
+            <File>
+              <FileName>RAM.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\Sound_c.cpp</FilePath>
+              <FilePath>.\src\Hardware\RAM.cpp</FilePath>
             </File>
             <File>
               <FileName>Sound_c.h</FileName>
@@ -3293,14 +3303,19 @@
               <FilePath>..\common\Hardware\Sound_c.h</FilePath>
             </File>
             <File>
-              <FileName>Timer_c.cpp</FileName>
+              <FileName>Sound_c.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\Timer_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\Sound_c.cpp</FilePath>
             </File>
             <File>
               <FileName>Timer_c.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Hardware\Timer_c.h</FilePath>
+            </File>
+            <File>
+              <FileName>Timer_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\Timer_c.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -3609,11 +3624,6 @@
               <FileName>Tables.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Tables.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Globals.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Globals.cpp</FilePath>
             </File>
             <File>
               <FileName>Log_c.cpp</FileName>

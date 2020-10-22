@@ -8,6 +8,7 @@
 #include "FDrive/FDrive.h"
 #include "FPGA/FPGA.h"
 #include "Hardware/EPROM.h"
+#include "Hardware/RAM.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
