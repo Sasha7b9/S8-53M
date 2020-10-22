@@ -46,6 +46,8 @@ static pFuncVV funcOnHand       = 0;
 static pFuncVV funcAdditionDraw = 0;
 static pFuncVV funcAfterDraw    = 0;
 
+static bool showLevelRShift0 = false;    // Нужно ли рисовать горизонтальную линию уровня смещения первого канала
+
 
 void Display::DrawStringNavigation() 
 {
@@ -68,7 +70,7 @@ void Display::RotateRShift(Channel::E chan)
     LAST_AFFECTED_CHANNEL = chan;
     if(TIME_SHOW_LEVELS)
     {
-        if (chan == Channel::A) { SHOW_LEVEL_RSHIFT_0 = 1; }
+        if (chan == Channel::A) { showLevelRShift0 = true; }
         else                    { SHOW_LEVEL_RSHIFT_1 = 1; }
         Timer::Enable((chan == Channel::A) ? TypeTimer::ShowLevelRShift0 : TypeTimer::ShowLevelRShift1, TIME_SHOW_LEVELS  * 1000, (chan == Channel::A) ? FuncOnTimerDisableShowLevelRShiftA :
                      FuncOnTimerDisableShowLevelRShiftB);
@@ -1663,7 +1665,7 @@ void Display::DrawCursorRShift(Channel::E chan)
     else
     {
         Char(SYMBOL_RSHIFT_NORMAL).Draw(static_cast<int>(x - 8), static_cast<int>(y - 4), Color::Channel(chan));
-        if(((chan == Channel::A) ? (SHOW_LEVEL_RSHIFT_0 == 1) : (SHOW_LEVEL_RSHIFT_1 == 1)) && MODE_WORK_IS_DIRECT) //-V2570
+        if(((chan == Channel::A) ? showLevelRShift0 : (SHOW_LEVEL_RSHIFT_1 == 1)) && MODE_WORK_IS_DIRECT) //-V2570
         {
             Painter::DrawDashedHLine(static_cast<int>(y), Grid::Left(), Grid::Right(), 7, 3, 0);
         }
@@ -2165,7 +2167,7 @@ void Display::DrawTimeForFrame(uint timeTicks)
 
 void Display::DisableShowLevelRShiftA()
 {
-    SHOW_LEVEL_RSHIFT_0 = 0;
+    showLevelRShift0 = false;
     Timer::Disable(TypeTimer::ShowLevelRShift0);
 }
 
