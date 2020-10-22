@@ -58,12 +58,12 @@ void Menu::CloseOpenedItem()
                 sb->OwnData()->funcOnPress();
             }
         }
-        if(NEED_CLOSE_PAGE_SB == 1)
+        if(Menu::needClosePageSB)
         {
             NamePage::E namePage = item->Keeper()->OwnData()->name;
             SetPosActItem(namePage, GetPosActItem(namePage) & 0x7f);   // Сбрасываем бит 7 - "закрываем" активный пункт страницы namePage
         }
-        NEED_CLOSE_PAGE_SB = 1;
+        Menu::needClosePageSB = true;
         if(item == PageMain::self)
         {
             Menu::Show(false);

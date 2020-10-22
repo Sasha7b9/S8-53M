@@ -27,6 +27,7 @@ static const int stepAngleRegSet = 2;
 Item *Menu::itemUnderKey = nullptr;
 bool Menu::showHelpHints = false;
 bool Menu::showDebugMenu = false;
+bool Menu::needClosePageSB = false;
 
 #define SIZE_BUFFER_FOR_BUTTONS 5
 static Key::E bufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {Key::None, Key::None, Key::None, Key::None, Key::None};

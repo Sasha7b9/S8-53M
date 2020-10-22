@@ -9,13 +9,11 @@
 class Item;
 
 
-#define NEED_CLOSE_PAGE_SB          (gBF.needClosePageSB)
 #define NEED_RESET_SETTINGS         (gBF.needResetSettings)
 
 
 struct BitField
 {
-    uint needClosePageSB            : 1;    // Если 1, нужно закрывать страницу малых кнопок
     uint needResetSettings          : 1;    // Если 1, то необходим сброс настроек
 };
 
