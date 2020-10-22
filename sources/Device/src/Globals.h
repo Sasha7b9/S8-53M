@@ -13,7 +13,6 @@ class Item;
 #define FLASH_DRIVE_IS_CONNECTED    (gBF.flashDriveIsConnected)
 #define NEED_CLOSE_PAGE_SB          (gBF.needClosePageSB)
 #define NEED_RESET_SETTINGS         (gBF.needResetSettings)
-#define FPGA_FIRST_AFTER_WRITE      (gBF.FPGAfirstAfterWrite)
 #define CURSORS_IN_DIRS             (gBF.cursorInDirs)
 #define SHOW_HELP_HINTS             (gBF.showHelpHints)
 #define SHOW_DEBUG_MENU             (gBF.showDebugMenu)
@@ -21,8 +20,6 @@ class Item;
 
 struct BitField
 {
-    uint FPGAfirstAfterWrite        : 1;    // Используется в режиме рандомизатора. После записи любого параметра в альтеру
-                                            // нужно не использовать первое считанное данное с АЦП, потому что оно завышено и портит ворота
     uint flashDriveIsConnected      : 1;
     uint cursorInDirs               : 1;    // Если 1, то ручка УСТАНОВКА перемещает по каталогам
     uint showHelpHints              : 1;    // Если 1, то при нажатии кнопки вместо выполнения её фунции выводится подсказка о её назначении

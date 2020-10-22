@@ -32,12 +32,13 @@ static uint8 dataRel1[FPGA_MAX_POINTS] = {0};   // Буфер используется для чтения
 
 static Settings storingSettings;                // Здесь нужно уменьшить необходимый размер памяти - сохранять настройки только альтеры
 static uint timeStart = 0;
-static bool trigAutoFind = false;    // Установленное в 1 значение означает, что нужно производить автоматический поиск синхронизации, если выбрана соответствующая настройка.
+static bool trigAutoFind = false;               // Установленное в 1 значение означает, что нужно производить автоматический поиск синхронизации, если выбрана соответствующая настройка.
 static bool autoFindInProgress = false;
 static bool temporaryPause = false;
 static bool inProcessingOfRead = false;
 static bool canReadData = true;
 static bool criticalSituation = false;
+static bool firstAfterWrite = false;            // Используется в режиме рандомизатора. После записи любого параметра в альтеру нужно не использовать первое считанное данное с АЦП, потому что оно завышено и портит ворота
 
 
 // Функция вызывается, когда можно считывать очередной сигнал.
@@ -476,9 +477,9 @@ void FPGA::SetAdditionShift(int shift)
 
 bool FPGA::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
 {   
-    if(FPGA_FIRST_AFTER_WRITE)
+    if(firstAfterWrite)
     {
-        FPGA_FIRST_AFTER_WRITE = 0;
+        firstAfterWrite = false;
         return false;
     }
     
@@ -581,7 +582,7 @@ int FPGA::CalculateShift(void)            // \todo Не забыть восстановить функци
 
 void FPGA::WriteToHardware(uint8 * const address, uint8 value, bool restart)
 {
-    FPGA_FIRST_AFTER_WRITE = 1;
+    firstAfterWrite = true;
     if(restart)
     {
         if(inProcessingOfRead)
