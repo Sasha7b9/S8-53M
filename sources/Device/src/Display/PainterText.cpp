@@ -476,32 +476,15 @@ int Painter::DrawFormatText(int x, int y, Color::E color, char *text, ...)
 }
 
 
-int Painter::DrawStringInCenterRect(int eX, int eY, int width, int eHeight, const char *text)
-{
-    int lenght = Font::GetLengthText(text);
-    int height = Font::GetHeightSymbol();
-    int x = eX + (width - lenght) / 2;
-    int y = eY + (eHeight - height) / 2;
-    return Text(text).Draw(x, y);
-}
-
-
-int Painter::DrawStringInCenterRectC(int x, int y, int width, int height, const char *text, Color::E color)
-{
-    Color::SetCurrent(color);
-    return DrawStringInCenterRect(x, y, width, height, text);
-}
-
-
 void Painter::DrawStringInCenterRectOnBackgroundC(int x, int y, int width, int height, const char *text, Color::E colorText, int widthBorder, 
                                                  Color::E colorBackground)
 {
     int lenght = Font::GetLengthText(text);
-    int eX = DrawStringInCenterRectC(x, y, width, height, text, colorBackground);
+    int eX = Text(text).DrawInCenterRect(x, y, width, height, colorBackground);
     int w = lenght + widthBorder * 2 - 2;
     int h = 7 + widthBorder * 2 - 1;
     Region(w, h).Fill(eX - lenght - widthBorder, y - widthBorder);
-    DrawStringInCenterRectC(x, y, width, height, text, colorText);
+    Text(text).DrawInCenterRect(x, y, width, height, colorText);
 }
 
 
@@ -510,7 +493,7 @@ int Painter::DrawStringInCenterRectAndBoundItC(int x, int y, int width, int heig
     Rectangle(width, height).Draw(x, y, colorFill);
     Region(width - 2, height - 2).Fill(x + 1, y + 1, colorBackground);
     Color::SetCurrent(colorFill);
-    return DrawStringInCenterRect(x, y, width, height, text);
+    return Text(text).DrawInCenterRect(x, y, width, height);
 }
 
 

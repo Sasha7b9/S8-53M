@@ -22,6 +22,8 @@ public:
     int Draw(int x, int y, Color::E color = Color::Count);
     void DrawInRect(int x, int y, int width, int height);
     void DrawBig(int x, int y, int size);
+    int DrawInCenterRect(int x, int y, int width, int height, Color::E color = Color::Count);
+
 private:
     String text;
     int DrawChar(int x, int y, uint8 symbol);

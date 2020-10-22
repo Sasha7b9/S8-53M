@@ -1,16 +1,13 @@
 #include "defines.h"
-#include "HelpContentPages.h"
-#include "HelpContent.h"
-#include "Display/Painter.h"
 #include "common/Display/Primitives_c.h"
-#include "Display/Grid.h"
-#include "common/Display/Font/Font_c.h"
-#include "Utils/GlobalFunctions.h"
-#include "common/Utils/Math_c.h"
-#include "Settings/Settings.h"
-#include "Menu/Pages/Definition.h"
-#include "common/Hardware/Timer_c.h"
+#include "common/Display/Text_c.h"
 #include "common/Hardware/HAL/HAL_c.h"
+#include "Display/Grid.h"
+#include "Display/Painter.h"
+#include "Menu/Pages/HelpContent.h"
+#include "Menu/Pages/HelpContentPages.h"
+#include "Settings/Settings.h"
+#include "Utils/GlobalFunctions.h"
 
 
 using namespace Primitives;
@@ -31,7 +28,7 @@ static const int WIDTH = 295;
 static void DrawPageContent()
 {
     int y = 50;
-    Painter::DrawStringInCenterRect(0, y, WIDTH, 10, TITLE(currentPage));
+    Text(TITLE(currentPage)).DrawInCenterRect(0, y, WIDTH, 10);
 
     int numPage = 0;
 
@@ -47,7 +44,7 @@ static void DrawPageContent()
         }
         else
         {
-            Painter::DrawStringInCenterRectC(0, y, WIDTH, 10, title, Color::FILL);
+            Text(title).DrawInCenterRect(0, y, WIDTH, 10, Color::FILL);
         }
         y += 16;
         numPage++;
@@ -56,7 +53,7 @@ static void DrawPageContent()
 
 static void DrawPageDescription()
 {
-    Painter::DrawStringInCenterRect(0, 3, WIDTH, 10, TITLE(currentPage));
+    Text(TITLE(currentPage)).DrawInCenterRect(0, 3, WIDTH, 10);
     Painter::DrawTextInRectWithTransfers(2, 15, WIDTH - 5, 240, HINT(currentPage));
 }
 

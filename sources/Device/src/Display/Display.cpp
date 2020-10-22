@@ -1127,7 +1127,7 @@ void Display::DrawHiRightPart()
         HLine().Draw(x, 1, Grid::TOP - 2, Color::FILL);
         x += 2;
         Text(LANG_RU ? "режим" : "mode").Draw(LANG_RU ? x : x + 3, -1);
-        Painter::DrawStringInCenterRect(x + 1, 9, 25, 8, strings_[MODE_WORK][LANG]);
+        Text(strings_[MODE_WORK][LANG]).DrawInCenterRect(x + 1, 9, 25, 8);
     }
     else
     {

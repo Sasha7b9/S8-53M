@@ -48,9 +48,6 @@ public:
 
     static int DrawFormatText(int x, int y, Color::E color, char *text, ...);
 
-    static int DrawStringInCenterRect(int x, int y, int width, int height, const char *text);
-
-    static int DrawStringInCenterRectC(int x, int y, int width, int height, const char *text, Color::E color);
     // Пишет строку текста в центре области(x, y, width, height)цветом ColorText на прямоугольнике с шириной бордюра widthBorder цвета colorBackground.
     static void DrawStringInCenterRectOnBackgroundC(int x, int y, int width, int height, const char *text, Color::E colorText, int widthBorder, Color::E colorBackground);
 

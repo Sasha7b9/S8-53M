@@ -2,6 +2,7 @@
 
 
 class PageHelpItem;
+class Item;
 
 
 struct PageHelpContent

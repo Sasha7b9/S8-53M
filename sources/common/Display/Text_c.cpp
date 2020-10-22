@@ -254,3 +254,15 @@ void Char::Draw4SymbolsInRect(int x, int y, Color::E color)
         Char(static_cast<char>(symbol + i + 16)).Draw(x + 8 * i, y + 8);
     }
 }
+
+
+int Text::DrawInCenterRect(int eX, int eY, int width, int eHeight, Color::E color)
+{
+    Color::SetCurrent(color);
+
+    int lenght = Font::GetLengthText(text.c_str());
+    int height = Font::GetHeightSymbol();
+    int x = eX + (width - lenght) / 2;
+    int y = eY + (eHeight - height) / 2;
+    return Draw(x, y);
+}
