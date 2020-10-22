@@ -18,26 +18,11 @@
 using namespace Primitives;
 
 
-static void        OnPress_Math_FFT_Cursors_Exit();
-extern const SmallButton  cMath_FFT_Cursors_Source;      // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ - Источник
-static void        OnPress_Math_FFT_Cursors_Source();
-static void           Draw_Math_FFT_Cursors_Source(int x, int y);
-extern const Choice       cMath_FFT_Limit;              // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Диапазон
-static bool       IsActive_Math_FFT_Limit();
-extern const Choice       cEthernet_Enable;             // СЕРВИС - ETHERNET - Ethernet
-static void      OnChanged_Ethernet_Enable(bool active);
-extern const IPaddress   ipEthernet_IP;                 // СЕРВИС - ETHERNET - IP адрес
-extern const IPaddress   ipEthernet_Mask;               // СЕРВИС - ETHERNET - Маска подсети
-extern const IPaddress   ipEthernet_Gateway;            // СЕРВИС - ETHERNET - Шлюз
-extern const MACaddress macEthernet_MAC;                // СЕРВИС - ETHERNET - Физ адрес
-extern const Choice       cSound;                       // СЕРВИС - Звук
-extern const Choice       cLang;                        // СЕРВИС - Язык
-extern const TimeItem     tTime;                        // СЕРВИС - Время
-extern const Choice       cModeLongPressButtonTrig;     // СЕРВИС - Реж длит СИНХР
-static void        OnPress_Information();
-static void Information_Draw();
-extern const SmallButton sbInformation_Exit;             // СЕРВИС - ИНФОРМАЦИЯ - Выход
-static void        OnPress_Information_Exit();
+static int8 dServicetime = 0;
+static int8 hours = 0, minutes = 0, secondes = 0, year = 0, month = 0, day = 0;
+static uint16 portMask = 0;
+static uint16 portGateway = 0;
+
 
 static void FuncDraw(void)
 {
@@ -400,6 +385,58 @@ DEF_PAGE_2(pageMath, PageService::self, NamePage::Math,
     nullptr, nullptr, nullptr, nullptr
 )
 
+DEF_CHOICE_2(cSound, PageService::self,
+    "Звук", "Sound",
+    "Включение/выключение звука",
+    "Inclusion/switching off of a sound",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU, ENABLE_EN,
+    SOUND_ENABLED, nullptr, nullptr, nullptr
+)
+
+DEF_CHOICE_2(cLang, PageService::self,
+    "Язык", "Language",
+    "Позволяет выбрать язык меню",
+    "Allows you to select the menu language",
+    "Русский", "Russian",
+    "Английский", "English",
+    LANG, nullptr, nullptr, nullptr
+)
+
+DEF_TIME(tTime, PageService::self,
+    "Время", "Time"
+    ,
+    "Установка текущего времени.\nПорядок работы:\n"
+    "Нажать на элемент меню \"Время\". Откроется меню установки текущего времени. Короткими нажатиями кнопки на цифровой клавиатуре, соответсвующей "
+    "элементу управления \"Время\", выделить часы, минуты, секунды, год, месяц, или число. Выделенный элемент обозначается мигающей областью. "
+    "Вращением ручки УСТАНОВКА установить необходимое значение. Затем выделить пункт \"Сохранить\", нажать и удреживать более 0.5 сек кнопку на панели "
+    "управления. Меню установки текущего временя закроется с сохранением нового текущего времени. Нажатие длительное удержание кнопки на любом другом элементе "
+    "приведёт к закрытию меню установки текущего времени без сохранения нового текущего времени"
+    ,
+    "Setting the current time. \nPoryadok work:\n"
+    "Click on the menu item \"Time\".The menu set the current time.By briefly pressing the button on the numeric keypad of conformity "
+    "Item \"Time\", highlight the hours, minutes, seconds, year, month, or a number.The selected item is indicated by a flashing area. "
+    "Turn the setting knob to set the desired value. Then highlight \"Save\", press and udrezhivat more than 0.5 seconds, the button on the panel "
+    "Item. Menu Setting the current time will be closed to the conservation of the new current time. Pressing a button on the prolonged retention of any other element "
+    "will lead to the closure of the current time setting menu without saving the new current time"
+    ,
+    dServicetime, hours, minutes, secondes, month, day, year
+)
+
+DEF_CHOICE_2(cModeLongPressButtonTrig, PageService::self,
+    "Реж длит СИНХР", "Mode long СИНХР"
+    ,
+    "Устанавливает действия для длительного нажатия кнопки СИНХР:\n\"Сброс уровня\" - установка уровня синхронизации в ноль,\n\"Автоуровень\" "
+    "- автоматическое определение и установка уровня синхронизации"
+    ,
+    "Sets the action for long press CLOCK:\n\"Reset trig lvl\" - to set the trigger level to zero, \n\"Auto level\""
+    "- Automatically detect and install the trigger level"
+    ,
+    "Сброс уровня", "Reset trig level",
+    "Автоуровень", "Autolevel",
+    MODE_LONG_PRESS_TRIG, nullptr, nullptr, nullptr
+)
+
 DEF_PAGE_10(pageService, PageMain::self, NamePage::Service,
     "СЕРВИС", "SERVICE",
     "Дополнительные настройки, калибровка, поиск сигнала, математические функции",
@@ -469,6 +506,21 @@ static void OnPress_Math_FFT(void)
     }
 }
 
+static bool IsActive_Math_FFT_Limit(void)
+{
+    return SCALE_FFT_IS_LOG;
+}
+
+DEF_CHOICE_3(cMath_FFT_Limit, PageService::PageMath::PageFFT::self,
+    "Диапазон", "Range",
+    "Здесь можно задать предел наблюдения за мощностью спектра",
+    "Here you can set the limit of monitoring the power spectrum",
+    "-40дБ", "-40dB",
+    "-60дБ", "-60dB",
+    "-80дБ", "-80dB",
+    FFT_MAX_DB, IsActive_Math_FFT_Limit, nullptr, nullptr
+)
+
 DEF_PAGE_6(pageFFT, PageService::PageMath::self, NamePage::MathFFT,
     "СПЕКТР", "SPECTRUM",
     "Отображение спектра входного сигнала",
@@ -503,6 +555,23 @@ static void OnRegSet_Math_FFT_Cursors(int angle)
     Sound::RegulatorShiftRotate();
 }
 
+static void OnPress_Math_FFT_Cursors_Source(void)
+{
+    FFT_CUR_CURSOR = (uint8)((FFT_CUR_CURSOR + 1) % 2);
+}
+
+static void Draw_Math_FFT_Cursors_Source(int x, int y)
+{
+    Text(FFT_CUR_CURSOR_IS_0 ? "1" : "2").Draw(x + 7, y + 5);
+}
+
+DEF_SMALL_BUTTON(cMath_FFT_Cursors_Source, PageService::PageMath::PageFFT::PageCursors::self,
+    "Источник", "Source",
+    "Выбор источника для расчёта спектра",
+    "Source choice for calculation of a range",
+    nullptr, OnPress_Math_FFT_Cursors_Source, Draw_Math_FFT_Cursors_Source, nullptr
+)
+
 DEF_PAGE_6(pageCursorsFFT, PageService::PageMath::PageFFT::self, NamePage::SB_MathCursorsFFT,
     "КУРСОРЫ", "CURSORS",
     "Включает курсоры для измерения параметров спектра",
@@ -516,49 +585,11 @@ DEF_PAGE_6(pageCursorsFFT, PageService::PageMath::PageFFT::self, NamePage::SB_Ma
     IsActive_Math_FFT_Cursors, nullptr, nullptr, OnRegSet_Math_FFT_Cursors
 )
 
-DEF_SMALL_BUTTON(cMath_FFT_Cursors_Source, PageService::PageMath::PageFFT::PageCursors::self,
-    "Источник", "Source",
-    "Выбор источника для расчёта спектра",
-    "Source choice for calculation of a range",
-    nullptr, OnPress_Math_FFT_Cursors_Source, Draw_Math_FFT_Cursors_Source, nullptr
-)
-
-static void OnPress_Math_FFT_Cursors_Source(void)
+static void OnChanged_Ethernet_Enable(bool)
 {
-    FFT_CUR_CURSOR = (uint8)((FFT_CUR_CURSOR + 1) % 2);
+    Display::ShowWarningGood(Warning::NeedRebootDevice2);
+    Display::ShowWarningGood(Warning::NeedRebootDevice1);
 }
-
-static void Draw_Math_FFT_Cursors_Source(int x, int y)
-{
-    Text(FFT_CUR_CURSOR_IS_0 ? "1" : "2").Draw(x + 7, y + 5);
-}
-
-DEF_CHOICE_3(cMath_FFT_Limit, PageService::PageMath::PageFFT::self,
-    "Диапазон", "Range",
-    "Здесь можно задать предел наблюдения за мощностью спектра",
-    "Here you can set the limit of monitoring the power spectrum",
-    "-40дБ", "-40dB",
-    "-60дБ", "-60dB",
-    "-80дБ", "-80dB",
-    FFT_MAX_DB, IsActive_Math_FFT_Limit, nullptr, nullptr
-)
-
-static bool IsActive_Math_FFT_Limit(void)
-{
-    return SCALE_FFT_IS_LOG;
-}
-
-DEF_PAGE_5(pageEthernet, PageService::self, NamePage::ServiceEthernet,
-    "ETHERNET", "ETHERNET",
-    "Настройки ethernet",
-    "Settings of ethernet",
-    cEthernet_Enable,       // СЕРВИС - ETHERNET - Ethernet
-    ipEthernet_IP,          // СЕРВИС - ETHERNET - IP адрес
-    ipEthernet_Mask,        // СЕРВИС - ETHERNET - Маска подсети
-    ipEthernet_Gateway,     // СЕРВИС - ETHERNET - Шлюз
-    macEthernet_MAC,        // СЕРВИС - ETHERNET - Физ адрес
-    nullptr, nullptr, nullptr, nullptr
-)
 
 DEF_CHOICE_2(cEthernet_Enable, PageService::PageEthernet::self,
     "Ethernet", "Ethernet"
@@ -569,16 +600,10 @@ DEF_CHOICE_2(cEthernet_Enable, PageService::PageEthernet::self,
     "To involve ethernet, choose \"Included\" and switch off the device.\n"
     "To disconnect ethernet, choose \"Disconnected\" and switch off the device."
     ,
-    "Включено",  "Included",
+    "Включено", "Included",
     "Отключено", "Disconnected",
-    ETH_ENABLE, nullptr,  OnChanged_Ethernet_Enable, nullptr
+    ETH_ENABLE, nullptr, OnChanged_Ethernet_Enable, nullptr
 )
-
-static void OnChanged_Ethernet_Enable(bool)
-{
-    Display::ShowWarningGood(Warning::NeedRebootDevice2);
-    Display::ShowWarningGood(Warning::NeedRebootDevice1);
-}
 
 DEF_IPADDRESS(ipEthernet_IP, PageService::PageEthernet::self,
     "IP адрес", "IP-address",
@@ -587,7 +612,7 @@ DEF_IPADDRESS(ipEthernet_IP, PageService::PageEthernet::self,
     IP_ADDR0, IP_ADDR1, IP_ADDR2, IP_ADDR3, PORT_ETH, OnChanged_Ethernet_Enable
 )
 
-static uint16 portMask = 0;
+
 DEF_IPADDRESS(ipEthernet_Mask, PageService::PageEthernet::self,
     "Маска подсети", "Network mask",
     "Установка маски подсети",
@@ -595,7 +620,6 @@ DEF_IPADDRESS(ipEthernet_Mask, PageService::PageEthernet::self,
     NETMASK_ADDR0, NETMASK_ADDR1, NETMASK_ADDR2, NETMASK_ADDR3, portMask, OnChanged_Ethernet_Enable
 )
 
-static uint16 portGateway = 0;
 DEF_IPADDRESS(ipEthernet_Gateway, PageService::PageEthernet::self,
     "Шлюз", "Gateway",
     "Установка адреса основного шлюза",
@@ -610,78 +634,28 @@ DEF_MACADDRESS(macEthernet_MAC, PageService::PageEthernet::self,
     MAC_ADDR0, MAC_ADDR1, MAC_ADDR2, MAC_ADDR3, MAC_ADDR4, MAC_ADDR5, OnChanged_Ethernet_Enable
 )
 
-DEF_CHOICE_2(cSound, PageService::self,
-    "Звук", "Sound",
-    "Включение/выключение звука",
-    "Inclusion/switching off of a sound",
-    DISABLE_RU, DISABLE_EN,
-    ENABLE_RU,  ENABLE_EN,
-    SOUND_ENABLED, nullptr, nullptr, nullptr
+DEF_PAGE_5(pageEthernet, PageService::self, NamePage::ServiceEthernet,
+    "ETHERNET", "ETHERNET",
+    "Настройки ethernet",
+    "Settings of ethernet",
+    cEthernet_Enable,       // СЕРВИС - ETHERNET - Ethernet
+    ipEthernet_IP,          // СЕРВИС - ETHERNET - IP адрес
+    ipEthernet_Mask,        // СЕРВИС - ETHERNET - Маска подсети
+    ipEthernet_Gateway,     // СЕРВИС - ETHERNET - Шлюз
+    macEthernet_MAC,        // СЕРВИС - ETHERNET - Физ адрес
+    nullptr, nullptr, nullptr, nullptr
 )
 
-DEF_CHOICE_2(cLang, PageService::self,
-    "Язык", "Language",
-    "Позволяет выбрать язык меню",
-    "Allows you to select the menu language",
-    "Русский",    "Russian",
-    "Английский", "English",
-    LANG, nullptr, nullptr, nullptr
-)
-
-static int8 dServicetime = 0;
-static int8 hours = 0, minutes = 0, secondes = 0, year = 0, month = 0, day = 0;
-DEF_TIME(tTime, PageService::self,
-    "Время", "Time"
-    ,
-    "Установка текущего времени.\nПорядок работы:\n"
-    "Нажать на элемент меню \"Время\". Откроется меню установки текущего времени. Короткими нажатиями кнопки на цифровой клавиатуре, соответсвующей "
-    "элементу управления \"Время\", выделить часы, минуты, секунды, год, месяц, или число. Выделенный элемент обозначается мигающей областью. "
-    "Вращением ручки УСТАНОВКА установить необходимое значение. Затем выделить пункт \"Сохранить\", нажать и удреживать более 0.5 сек кнопку на панели "
-    "управления. Меню установки текущего временя закроется с сохранением нового текущего времени. Нажатие длительное удержание кнопки на любом другом элементе "
-    "приведёт к закрытию меню установки текущего времени без сохранения нового текущего времени"
-    ,
-    "Setting the current time. \nPoryadok work:\n"
-    "Click on the menu item \"Time\".The menu set the current time.By briefly pressing the button on the numeric keypad of conformity "
-    "Item \"Time\", highlight the hours, minutes, seconds, year, month, or a number.The selected item is indicated by a flashing area. "
-    "Turn the setting knob to set the desired value. Then highlight \"Save\", press and udrezhivat more than 0.5 seconds, the button on the panel "
-    "Item. Menu Setting the current time will be closed to the conservation of the new current time. Pressing a button on the prolonged retention of any other element "
-    "will lead to the closure of the current time setting menu without saving the new current time"
-    ,
-    dServicetime, hours, minutes, secondes, month, day, year
-)
-
-DEF_CHOICE_2(cModeLongPressButtonTrig, PageService::self,
-    "Реж длит СИНХР", "Mode long СИНХР"
-    ,
-    "Устанавливает действия для длительного нажатия кнопки СИНХР:\n\"Сброс уровня\" - установка уровня синхронизации в ноль,\n\"Автоуровень\" "
-    "- автоматическое определение и установка уровня синхронизации"
-    ,
-    "Sets the action for long press CLOCK:\n\"Reset trig lvl\" - to set the trigger level to zero, \n\"Auto level\""
-    "- Automatically detect and install the trigger level"
-    ,
-    "Сброс уровня", "Reset trig level",
-    "Автоуровень", "Autolevel",
-    MODE_LONG_PRESS_TRIG, nullptr, nullptr, nullptr
-)
-
-DEF_PAGE_6(pageInformation, PageService::self, NamePage::SB_Information,
-    "ИНФОРМАЦИЯ", "INFORMATION",
-    "Выводит на экран идентификационные данные осциллографа",
-    "Displays identification data of the oscilloscope",
-    sbInformation_Exit, // СЕРВИС - ИНФОРМАЦИЯ - Выход
-    Item::empty,
-    Item::empty,
-    Item::empty,
-    Item::empty,
-    Item::empty,
-    nullptr, OnPress_Information, nullptr, nullptr
-)
-
-static void OnPress_Information(void)
+static void OnPress_Information_Exit(void)
 {
-    PageService::PageInformation::self->OpenAndSetItCurrent();
-    Display::SetDrawMode(DrawMode::Hand, Information_Draw);
+    Display::SetDrawMode(DrawMode::Auto, 0);
+    Display::RemoveAddDrawFunction();
 }
+
+DEF_SMALL_BUTTON(sbInformation_Exit, PageService::PageCalibrator::self,
+    "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
+    nullptr, OnPress_Information_Exit, DrawSB_Exit, nullptr
+)
 
 static void Information_Draw(void)
 {
@@ -697,18 +671,10 @@ static void Information_Draw(void)
     y += dY;
 
     char buffer[100];
-    /*
-    OTP_GetSerialNumber(buffer);
-    if (buffer[0])
-    {
-        Painter::DrawFormatText(x, y, COLOR_FILL, lang == Russian ? "C/Н : %s" : "S/N : %s", buffer);
-        y += dY;
-    }
-    */
 
     Text(LANG_RU ? "Программное обеспечение:" : "Software:").Draw(x, y);
     y += dY;
-    std::sprintf(buffer, (const char*)(LANG_RU ? "версия %s" : "version %s"), NUM_VER);
+    std::sprintf(buffer, (const char *)(LANG_RU ? "версия %s" : "version %s"), NUM_VER);
     Text(buffer).Draw(x, y);
     y += dY;
 
@@ -723,16 +689,24 @@ static void Information_Draw(void)
     Painter::EndScene();
 }
 
-DEF_SMALL_BUTTON(sbInformation_Exit, PageService::PageCalibrator::self,
-    "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
-    nullptr, OnPress_Information_Exit, DrawSB_Exit, nullptr
-)
-
-static void OnPress_Information_Exit(void)
+static void OnPress_Information(void)
 {
-    Display::SetDrawMode(DrawMode::Auto, 0);
-    Display::RemoveAddDrawFunction();
+    PageService::PageInformation::self->OpenAndSetItCurrent();
+    Display::SetDrawMode(DrawMode::Hand, Information_Draw);
 }
+
+DEF_PAGE_6(pageInformation, PageService::self, NamePage::SB_Information,
+    "ИНФОРМАЦИЯ", "INFORMATION",
+    "Выводит на экран идентификационные данные осциллографа",
+    "Displays identification data of the oscilloscope",
+    sbInformation_Exit, // СЕРВИС - ИНФОРМАЦИЯ - Выход
+    Item::empty,
+    Item::empty,
+    Item::empty,
+    Item::empty,
+    Item::empty,
+    nullptr, OnPress_Information, nullptr, nullptr
+)
 
 const Page *PageService::self = &pageService;
 const Page *PageService::PageEthernet::self = &pageEthernet;
