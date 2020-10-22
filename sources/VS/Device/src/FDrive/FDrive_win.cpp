@@ -2,6 +2,9 @@
 #include "FDrive/FDrive.h"
 
 
+bool FDrive::isConnected = false;
+
+
 void FDrive::Init()
 {
 
