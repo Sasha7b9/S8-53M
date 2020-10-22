@@ -29,6 +29,9 @@ public:
     // Выводит текст на прямоугольнике цвета colorBackgound
     int DrawOnBackground(int x, int y, Color::E colorBackground);
     int DrawWithLimitation(int x, int y, Color::E color, int limitX, int limitY, int limitWidth, int limitHeight);
+    // Возвращает нижнюю координату прямоугольника.
+    int DrawInBoundedRectWithTransfers(int x, int y, int width, Color::E colorBackground, Color::E colorFill);
+    int DrawInRectWithTransfers(int x, int y, int width, int height, Color::E color = Color::Count);
 
 private:
     String text;

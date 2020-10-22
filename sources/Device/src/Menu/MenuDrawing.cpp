@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "common/Display/Painter_c.h"
 #include "common/Display/Primitives_c.h"
+#include "common/Display/Text_c.h"
 #include "common/Utils/Math_c.h"
 #include "Display/Grid.h"
 #include "Menu/Menu.h"
@@ -51,7 +52,7 @@ static void DrawHintItem(int x, int y, int width)
         y -= 9;
     }
     Painter::DrawStringInCenterRectAndBoundItC(x, y, width, 15, title, Color::BACK, Color::FILL);
-    y = Painter::DrawTextInBoundedRectWithTransfers(x, y + 15, width, HINT(item), Color::BACK, Color::FILL);
+    y = Text(HINT(item)).DrawInBoundedRectWithTransfers(x, y + 15, width, Color::BACK, Color::FILL);
     if (item->data->type == TypeItem::SmallButton)
     {
         Painter::DrawHintsForSmallButton(x, y, width, reinterpret_cast<SmallButton*>(item));
@@ -94,16 +95,17 @@ void Menu::Draw()
         int x = 1;
         int y = 0;
         int width = Menu::IsMinimize() ? 289 : 220;
-        Painter::DrawTextInBoundedRectWithTransfers(x, y, width - 1,
-            LANG_RU ?    "Включён режим подсказок. В этом режиме при нажатии на кнопку на экран выводится информация о её назначении. "
-                         "Чтобы выключить этот режим, нажмите кнопку ПОМОЩЬ и удерживайте её в течение 0.5с." : 
-                         "Mode is activated hints. In this mode, pressing the button displays the information on its purpose. "
-                         "To disable this mode, press the button HELP and hold it for 0.5s.",
-                         Color::BACK, Color::FILL);
+
+        Text(LANG_RU ? "Включён режим подсказок. В этом режиме при нажатии на кнопку на экран выводится информация о её назначении. "
+            "Чтобы выключить этот режим, нажмите кнопку ПОМОЩЬ и удерживайте её в течение 0.5с."
+            :
+            "Mode is activated hints. In this mode, pressing the button displays the information on its purpose. "
+            "To disable this mode, press the button HELP and hold it for 0.5s.").DrawInBoundedRectWithTransfers(x, y, width - 1, Color::BACK, Color::FILL);
+
         y += LANG_RU ? 49 : 40;
         if (PageHelpContent::stringForHint)
         {
-            Painter::DrawTextInBoundedRectWithTransfers(x, y, width - 1, PageHelpContent::stringForHint, Color::BACK, Color::FILL);
+            Text(PageHelpContent::stringForHint).DrawInBoundedRectWithTransfers(x, y, width - 1, Color::BACK, Color::FILL);
         }
         else if (PageHelpContent::itemHint)
         {
