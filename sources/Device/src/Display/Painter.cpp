@@ -14,7 +14,7 @@ using namespace Primitives;
 
 
 static bool inverseColors = false;
-static Color::E currentColor = Color::NUM;
+static Color::E currentColor = Color::Count;
 StateTransmit::E Painter::stateTransmit = StateTransmit::Free;
 bool Painter::noFonts = false;
 static int numberColorsUsed = 0;

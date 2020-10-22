@@ -185,7 +185,7 @@ bool String::Allocate(int size)
 
 int String::Draw(int x, int y, Color::E color) const
 {
-    if (color != Color::NUM)
+    if (color != Color::Count)
     {
         Color::SetCurrent(color);
     }

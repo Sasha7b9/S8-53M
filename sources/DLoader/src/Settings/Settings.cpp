@@ -158,7 +158,7 @@ Settings set;
 
 void LoadDefaultColors(void)
 {
-    for (int color = 0; color < Color::NUM; color++)
+    for (int color = 0; color < Color::Count; color++)
     {
         set.display.colors[color] = defaultSettings.display.colors[color];
     }

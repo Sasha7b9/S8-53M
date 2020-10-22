@@ -6,7 +6,7 @@
 #include "Utils/GlobalFunctions.h"
 
 
-Color::E Color::current = Color::NUM;
+Color::E Color::current = Color::Count;
 
 Color::E Color::FILL = Color::WHITE;
 Color::E Color::BACK = Color::BLACK;
@@ -232,7 +232,7 @@ static const char* colorNames[] =
     "Color::MENU_ITEM_DARK",
     "Color::MENU_ITEM_BRIGHT",
     "Color::MENU_SHADOW",
-    "Color::NUM",
+    "Color::Count",
     "Color::FLASH_10",
     "Color::FLASH_01",
     "SET_INVERSE"
@@ -242,7 +242,7 @@ static const char* colorNames[] =
 
 const char* NameColorFromValue(uint16 colorValue)
 {
-    for (int i = 0; i < Color::NUM; i++)
+    for (int i = 0; i < Color::Count; i++)
     {
         if (set.display.colors[(Color::E)i] == colorValue)
         {

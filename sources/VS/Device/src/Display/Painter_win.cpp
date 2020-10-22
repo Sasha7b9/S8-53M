@@ -113,7 +113,7 @@ void Painter::EndScene(bool)
 
 void Color::SetCurrent(Color::E c)
 {
-    if (c == Color::NUM)
+    if (c == Color::Count)
     {
         return;
     }

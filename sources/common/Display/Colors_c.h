@@ -22,7 +22,7 @@ struct Color {
         EMPTY,
         EMPTY_A,
         EMPTY_B,
-        NUM,
+        Count,
         FLASH_10,
         FLASH_01,
         SET_INVERSE

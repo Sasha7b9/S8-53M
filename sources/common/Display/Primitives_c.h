@@ -14,7 +14,7 @@ namespace Primitives
     {
     public:
         Region(int w, int h) : width(w), height(h) { }
-        void Fill(int x, int y, Color::E color = Color::NUM);
+        void Fill(int x, int y, Color::E color = Color::Count);
 
     private:
         int width;
@@ -25,7 +25,7 @@ namespace Primitives
     {
     public:
         Rectangle(int w, int h) : width(w), height(h) { }
-        void Draw(int x, int y, Color::E color = Color::NUM);
+        void Draw(int x, int y, Color::E color = Color::Count);
     private:
         int width;
         int height;
@@ -35,14 +35,14 @@ namespace Primitives
     {
     public:
         HLine() { };
-        void Draw(int y, int x1, int x2, Color::E color = Color::NUM);
+        void Draw(int y, int x1, int x2, Color::E color = Color::Count);
     };
 
     class VLine
     {
     public:
         VLine() { };
-        void Draw(int x, int y0, int y1, Color::E color = Color::NUM);
+        void Draw(int x, int y0, int y1, Color::E color = Color::Count);
     };
 
     // numLines вертикальных линий, состоящих из count точек каждая с расстоянием между точками delta. Горизонтальная координата
@@ -51,7 +51,7 @@ namespace Primitives
     {
     public:
         MultiVPointLine(int _numLines, uint16 *_x0, int _delta, int _count) : numLines(_numLines), x0(_x0), delta(_delta), count(_count) { }
-        void Draw(int y0, Color::E color = Color::NUM);
+        void Draw(int y0, Color::E color = Color::Count);
     private:
         int numLines;
         uint16 *x0;
@@ -67,7 +67,7 @@ namespace Primitives
     {
     public:
         MultiHPointLine(int _numLines, const uint8 *_y, int _delta, int _count) : numLines(_numLines), y(_y), delta(_delta), count(_count) { }
-        void Draw(int x, Color::E color = Color::NUM);
+        void Draw(int x, Color::E color = Color::Count);
     private:
         int numLines;
         const uint8 *y;
@@ -81,7 +81,7 @@ namespace Primitives
     {
     public:
         VPointLine(float d) : delta(d) { }
-        void Draw(int x, int y0, int y1, Color::E color = Color::NUM);
+        void Draw(int x, int y0, int y1, Color::E color = Color::Count);
     private:
         float delta;
     };
@@ -99,7 +99,7 @@ namespace Primitives
     class Line
     {
     public:
-        void Draw(int x0, int y0, int x1, int y1, Color::E color = Color::NUM);
+        void Draw(int x0, int y0, int x1, int y1, Color::E color = Color::Count);
     };
 
 
