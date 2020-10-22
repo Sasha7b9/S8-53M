@@ -334,7 +334,7 @@ DEF_GOVERNOR(mgADC_Stretch_ADC_B, PageDebug::PageADC::PageStretch::self,
     DEBUG_STRETCH_ADC_B, 0, 255, IsActive_ADC_Stretch_ADC, OnChanged_ADC_Stretch_ADC_B, nullptr
 )
 
-DEF_PAGE_3(mpADC_Stretch, PageDebug::PageADC::self, NamePage::DebugADCstretch,
+DEF_PAGE_3(pageStretchADC, PageDebug::PageADC::self, NamePage::DebugADCstretch,
     "ĞÀÑÒßÆÊÀ", "STRETCH",
     "",
     "",
@@ -418,7 +418,7 @@ DEF_GOVERNOR(mbADC_AltRShift_10mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
     RSHIFT_ADD(Channel::B, Range::_10mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_B, nullptr
 )
 
-DEF_PAGE_7(mpADC_AltRShift, PageDebug::PageADC::self, NamePage::DebugADCrShift,
+DEF_PAGE_7(pageAltShiftADC, PageDebug::PageADC::self, NamePage::DebugADCrShift,
     "ÄÎÏ ÑÌÅÙ", "ADD RSHFIT",
     "",
     "",
@@ -437,8 +437,8 @@ DEF_PAGE_3(pageADC, PageDebug::self, NamePage::DebugADC,
     "",
     "",
     *PageDebug::PageADC::PageBalance::self,     // ÎÒËÀÄÊÀ - ÀÖÏ - ÁÀËÀÍÑ
-    mpADC_Stretch,                              // ÎÒËÀÄÊÀ - ÀÖÏ - ĞÀÑÒßÆÊÀ
-    mpADC_AltRShift,                            // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ
+    *PageDebug::PageADC::PageStretch::self,     // ÎÒËÀÄÊÀ - ÀÖÏ - ĞÀÑÒßÆÊÀ
+    *PageDebug::PageADC::PageAltRShift::self,   // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ
     nullptr, nullptr, nullptr, nullptr
 )
 
@@ -473,7 +473,7 @@ DEF_GOVERNOR(mgRandomizer_Average, PageDebug::PageRandomizer::self,
     NUM_AVE_FOR_RAND, 1, 32, nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_3(mpRandomizer, PageDebug::self, NamePage::DebugRandomizer,
+DEF_PAGE_3(pageRandomizer, PageDebug::self, NamePage::DebugRandomizer,
     "ĞÀÍÄ-ÒÎĞ", "RANDOMIZER",
     "",
     "",
@@ -547,13 +547,13 @@ DEF_PAGE_7(pageDebug, PageMain::self, NamePage::Debug,
     "ÎÒËÀÄÊÀ", "DEBUG",
     "",
     "",
-    mcStats,                        // ÎÒËÀÄÊÀ - Ñòàòèñòèêà
-    *PageDebug::PageConsole::self,  // ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ
-    *PageDebug::PageADC::self,      // ÎÒËÀÄÊÀ - ÀÖÏ
-    mpRandomizer,                   // ÎÒËÀÄÊÀ - ĞÀÍÄ-ÒÎĞ
-    mcSizeSettings,                 // ÎÒËÀÄÊÀ - Ğàçìåğ íàñòğîåê
-    mbSaveFirmware,                 // ÎÒËÀÄÊÀ - Ñîõğ. ïğîøèâêó
-    bEraseData,                     // ÎÒËÀÄÊÀ - Ñòåğåòü äàííûå
+    mcStats,                            // ÎÒËÀÄÊÀ - Ñòàòèñòèêà
+    *PageDebug::PageConsole::self,      // ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ
+    *PageDebug::PageADC::self,          // ÎÒËÀÄÊÀ - ÀÖÏ
+    *PageDebug::PageRandomizer::self,   // ÎÒËÀÄÊÀ - ĞÀÍÄ-ÒÎĞ
+    mcSizeSettings,                     // ÎÒËÀÄÊÀ - Ğàçìåğ íàñòğîåê
+    mbSaveFirmware,                     // ÎÒËÀÄÊÀ - Ñîõğ. ïğîøèâêó
+    bEraseData,                         // ÎÒËÀÄÊÀ - Ñòåğåòü äàííûå
     nullptr, nullptr, nullptr, nullptr
 );
 
@@ -722,6 +722,6 @@ const Page *PageDebug::PageConsole::self = &pageConsole;
 const Page *PageDebug::PageConsole::PageRegisters::self = &pageRegisters;
 const Page *PageDebug::PageADC::self = &pageADC;
 const Page *PageDebug::PageADC::PageBalance::self = &pageBalanceADC;
-const Page *PageDebug::PageADC::PageStretch::self = &mpADC_Stretch;
-const Page *PageDebug::PageADC::PageAltRShift::self = &mpADC_AltRShift;
-const Page *PageDebug::PageRandomizer::self = &mpRandomizer;
+const Page *PageDebug::PageADC::PageStretch::self = &pageStretchADC;
+const Page *PageDebug::PageADC::PageAltRShift::self = &pageAltShiftADC;
+const Page *PageDebug::PageRandomizer::self = &pageRandomizer;

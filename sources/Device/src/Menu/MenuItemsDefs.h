@@ -74,7 +74,7 @@ static const Page name(&di##name);
 
 #define DEF_PAGE_3(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN, item1, item2, item3, funcActive, funcPress, funcDraw, funcRegSet)      \
 static const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                                                                \
-static Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, nullptr};                                                                    \
+static Item *i##name[] = {(Item *)&item1, (Item *)&item2, (Item *)&item3, nullptr};                                                                 \
 static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                                                              \
 static const DataItem di##name = { TypeItem::Page, keeper, funcActive, th##name, &dp##name};                                                        \
 static const Page name(&di##name);
