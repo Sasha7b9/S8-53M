@@ -37,6 +37,14 @@ static Pin pinETH_RXD1;
 static Pin pinETH_TXD0;
 static Pin pinETH_TXD1;
 
+Pin Pin::G1;
+Pin Pin::G2;
+Pin Pin::G3;
+Pin Pin::G5;
+Pin Pin::G7;
+Pin Pin::LED;
+Pin Pin::DisplayReady;
+
 
 void HAL_PINS::Init()
 {

@@ -61,6 +61,10 @@ struct PageCursors
 
 struct PageDebug
 {
+    static const Page *self;
+
+    static void LoadStretchADC(Channel::E);
+
     struct PageSerialNumber
     {
         static const Page *self;
@@ -100,9 +104,6 @@ struct PageDebug
     {
         static const Page *self;
     };
-
-
-    static const Page *self;
 };
 
 

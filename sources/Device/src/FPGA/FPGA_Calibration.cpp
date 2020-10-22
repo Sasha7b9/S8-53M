@@ -6,6 +6,7 @@
 #include "Display/Painter.h"
 #include "FPGA/FPGA.h"
 #include "common/Hardware/Timer_c.h"
+#include "Menu/Pages/Definition.h"
 #include "Panel/Panel.h"
 #include "Settings/Settings.h"
 #include <cstdio>
@@ -45,8 +46,6 @@ static uint startTimeChan0 = 0;                     // Время начала калибровки п
 static uint startTimeChan1 = 0;                     // Время начала калибровки второго канала.
 
 static float koeffCalibrationOld[2];
-
-extern void LoadStretchADC(Channel::E chan);
 
 
 static void OnTimerDraw(void)
@@ -119,7 +118,7 @@ void FPGA::ProcedureCalibration(void)
 				gStateFPGA.stateCalibration = StateCalibration::ErrorCalibration0;
 				Panel::WaitPressingButton();
                 DEBUG_STRETCH_ADC_TYPE = StretchADCtype::Hand;
-                LoadStretchADC(Channel::A);
+                PageDebug::LoadStretchADC(Channel::A);
             }
             else
             {
@@ -155,7 +154,7 @@ void FPGA::ProcedureCalibration(void)
 				gStateFPGA.stateCalibration = StateCalibration::ErrorCalibration1;
 				Panel::WaitPressingButton();
                 DEBUG_STRETCH_ADC_TYPE = StretchADCtype::Hand;
-                LoadStretchADC(Channel::B);
+                PageDebug::LoadStretchADC(Channel::B);
 			}
             else
             {
