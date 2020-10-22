@@ -707,3 +707,15 @@ int Text::DrawInRectWithTransfers(int eX, int eY, int eWidth, int eHeight, Color
 
     return y;
 }
+
+
+void Text::DrawInCenterRectOnBackground(int x, int y, int width, int height, Color::E colorText, int widthBorder,
+    Color::E colorBackground)
+{
+    int lenght = Font::GetLengthText(text.c_str());
+    int eX = DrawInCenterRect(x, y, width, height, colorBackground);
+    int w = lenght + widthBorder * 2 - 2;
+    int h = 7 + widthBorder * 2 - 1;
+    Region(w, h).Fill(eX - lenght - widthBorder, y - widthBorder);
+    DrawInCenterRect(x, y, width, height, colorText);
+}

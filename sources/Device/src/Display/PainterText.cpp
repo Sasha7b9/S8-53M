@@ -41,18 +41,6 @@ int Painter::DrawFormatText(int x, int y, Color::E color, char *text, ...)
 }
 
 
-void Painter::DrawStringInCenterRectOnBackgroundC(int x, int y, int width, int height, const char *text, Color::E colorText, int widthBorder, 
-                                                 Color::E colorBackground)
-{
-    int lenght = Font::GetLengthText(text);
-    int eX = Text(text).DrawInCenterRect(x, y, width, height, colorBackground);
-    int w = lenght + widthBorder * 2 - 2;
-    int h = 7 + widthBorder * 2 - 1;
-    Region(w, h).Fill(eX - lenght - widthBorder, y - widthBorder);
-    Text(text).DrawInCenterRect(x, y, width, height, colorText);
-}
-
-
 int Painter::DrawStringInCenterRectAndBoundItC(int x, int y, int width, int height, const char *text, Color::E colorBackground, Color::E colorFill)
 {
     Rectangle(width, height).Draw(x, y, colorFill);

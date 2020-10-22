@@ -40,7 +40,7 @@ static void DrawPageContent()
         const char *title = TITLE(page);
         if(currentParagraph == numPage)
         {
-            Painter::DrawStringInCenterRectOnBackgroundC(0, y, WIDTH, 10, title, Color::BACK, 2, Color::FILL);
+            Text(title).DrawInCenterRectOnBackground(0, y, WIDTH, 10, Color::BACK, 2, Color::FILL);
         }
         else
         {
