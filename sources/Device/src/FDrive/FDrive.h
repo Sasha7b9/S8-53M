@@ -56,4 +56,6 @@ public:
     static bool AppendStringToFile(const char* string);
 
     static void ChangeState();
+
+    static bool isConnected;
 };

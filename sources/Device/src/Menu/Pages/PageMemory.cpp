@@ -7,6 +7,7 @@
 #include "Display/Grid.h"
 #include "Display/Painter.h"
 #include "Display/Symbols.h"
+#include "FDrive/FDrive.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/Storage.h"
 #include "Hardware/EPROM.h"
@@ -130,7 +131,7 @@ void DrawSB_MemLast_IntEnter(int x, int y)
 
 void DrawSB_MemLast_SaveToFlash(int x, int y)
 {
-    if (FLASH_DRIVE_IS_CONNECTED)
+    if (FDrive::isConnected)
     {
         Font::Set(TypeFont::_UGO2);
         Painter::Draw4SymbolsInRect(x + 2, y + 1, '\x42');
@@ -140,7 +141,7 @@ void DrawSB_MemLast_SaveToFlash(int x, int y)
 
 static void DrawSB_MemExtSetNameSave(int x, int y)
 {
-    if (FLASH_DRIVE_IS_CONNECTED)
+    if (FDrive::isConnected)
     {
         Font::Set(TypeFont::_UGO2);
         Painter::Draw4SymbolsInRect(x + 2, y + 1, '\x42');
@@ -174,7 +175,7 @@ static void PressSB_SetName_Exit()
 
 static void PressSB_MemExtSetNameSave()
 {
-    if (FLASH_DRIVE_IS_CONNECTED)
+    if (FDrive::isConnected)
     {
         PressSB_SetName_Exit();
         NEED_SAVE_TO_DRIVE = 1;
@@ -504,7 +505,7 @@ void PressSB_MemInt_SaveToIntMemory()
 
 void DrawSB_MemInt_SaveToFlashDrive(int x, int y) //-V524
 {
-    if (FLASH_DRIVE_IS_CONNECTED)
+    if (FDrive::isConnected)
     {
         Font::Set(TypeFont::_UGO2);
         Painter::Draw4SymbolsInRect(x + 2, y + 1, '\x42');
@@ -977,7 +978,7 @@ void DrawSetMask()
 
 void Memory_SaveSignalToFlashDrive()
 {
-    if (FLASH_DRIVE_IS_CONNECTED)
+    if (FDrive::isConnected)
     {
         if (FILE_NAMING_MODE_IS_HAND)
         {
@@ -1058,7 +1059,7 @@ DEF_PAGE_6(pageSetMask, PageMemory::PageExternal::self, NamePage::SB_MemExtSetMa
 
 void OnPressMemoryExtFileManager()
 {
-    if(FLASH_DRIVE_IS_CONNECTED)
+    if(FDrive::isConnected)
     {
         PageMemory::PageFileManager::self->OpenAndSetItCurrent();
         Display::SetDrawMode(DrawMode::Hand, FM::Draw);
@@ -1068,7 +1069,7 @@ void OnPressMemoryExtFileManager()
 
 bool FuncOfActiveExtMemFolder()
 {
-    return FLASH_DRIVE_IS_CONNECTED == 1;
+    return FDrive::isConnected;
 }
 
 static void PressSB_FM_Exit()

@@ -14,6 +14,8 @@
 static FATFS USBDISKFatFs;
 static char USBDISKPath[4];
 
+bool FDrive::isConnected = false;
+
 
 static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8 id);
 
@@ -43,7 +45,7 @@ void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
         case HOST_USER_SELECT_CONFIGURATION:
             break;
         case HOST_USER_CLASS_ACTIVE:
-            FLASH_DRIVE_IS_CONNECTED = 1;
+            FDrive::isConnected = true;
             FM::Init();
             FDrive::ChangeState();
             if (f_mount(&USBDISKFatFs, (TCHAR const*)USBDISKPath, 0) != FR_OK)
@@ -57,7 +59,7 @@ void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
             f_mount(NULL, (TCHAR const*)"", 0);
             break;
         case HOST_USER_DISCONNECTION:
-            FLASH_DRIVE_IS_CONNECTED = 0;
+            FDrive::isConnected = false;
             FDrive::ChangeState();
             break;
         default:
@@ -367,7 +369,7 @@ bool FDrive::CloseFile(StructForWrite *structForWrite)
 
 void FDrive::ChangeState()
 {
-    if (FLASH_DRIVE_IS_CONNECTED == 0)
+    if (!isConnected)
     {
         if (Menu::GetNameOpenedPage() == NamePage::SB_FileManager)
         {

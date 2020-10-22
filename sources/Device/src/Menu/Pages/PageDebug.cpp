@@ -499,7 +499,7 @@ DEF_CHOICE_2(mcSizeSettings, PageDebug::self,
 
 static bool IsActive_SaveFirmware()
 {
-    return FLASH_DRIVE_IS_CONNECTED == 1;
+    return FDrive::isConnected;
 }
 
 static void OnPress_SaveFirmware()

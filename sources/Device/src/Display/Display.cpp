@@ -8,6 +8,7 @@
 #include "Display/Display.h"
 #include "Display/Painter.h"
 #include "Display/Symbols.h"
+#include "FDrive/FDrive.h"
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/MathFPGA.h"
 #include "FPGA/Storage.h"
@@ -2099,7 +2100,7 @@ void Display::DrawLowPart()
     Font::Set(TypeFont::_UGO2);
 
     // Флешка
-    if (FLASH_DRIVE_IS_CONNECTED)
+    if (FDrive::isConnected)
     {
         Painter::Draw4SymbolsInRect(x + 57, Grid::Bottom() + 2, SYMBOL_FLASH_DRIVE);
     }
