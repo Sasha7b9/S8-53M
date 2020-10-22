@@ -560,10 +560,10 @@ void Display::DrawBothChannels(uint8 *data0, uint8 *data1)
 
 void Display::DrawDataMemInt()
 {
-    if(gDSmemInt != 0)
+    if(Storage::dsInt != 0)
      {
-        DrawDataChannel(gData0memInt, Channel::A, gDSmemInt, Grid::TOP, Grid::ChannelBottom());
-        DrawDataChannel(gData1memInt, Channel::B, gDSmemInt, Grid::TOP, Grid::ChannelBottom());
+        DrawDataChannel(gData0memInt, Channel::A, Storage::dsInt, Grid::TOP, Grid::ChannelBottom());
+        DrawDataChannel(gData1memInt, Channel::B, Storage::dsInt, Grid::TOP, Grid::ChannelBottom());
     }
 }
 
@@ -745,7 +745,7 @@ void Display::DrawTime(int x, int y)
     
     if (MODE_WORK_IS_MEMINT || MODE_WORK_IS_LATEST)
     {
-        DataSettings *ds = MODE_WORK_IS_MEMINT ? gDSmemInt : gDSmemLast;
+        DataSettings *ds = MODE_WORK_IS_MEMINT ? Storage::dsInt : gDSmemLast;
 
         if (ds != 0)
         {
@@ -903,7 +903,7 @@ void Display::DrawMemoryWindow()
 {
     uint8 *dat0 = gData0memInt;
     uint8 *dat1 = gData1memInt;
-    DataSettings *ds = gDSmemInt;
+    DataSettings *ds = Storage::dsInt;
     
     if(MODE_WORK_IS_DIRECT || MODE_WORK_IS_LATEST)
     {
@@ -1911,7 +1911,7 @@ void Display::WriteTextVoltage(Channel::E chan, int x, int y)
 
     if (!MODE_WORK_IS_DIRECT)
     {
-        DataSettings *ds = MODE_WORK_IS_DIRECT ? Storage::set : gDSmemInt;
+        DataSettings *ds = MODE_WORK_IS_DIRECT ? Storage::set : Storage::dsInt;
         if (ds != 0)
         {
             inverse = (chan == Channel::A) ? ds->inverseCh0 : ds->inverseCh1;
@@ -1988,7 +1988,7 @@ void Display::DrawLowPart()
 
     if (!MODE_WORK_IS_DIRECT)
     {
-        DataSettings *ds = MODE_WORK_IS_LATEST ? gDSmemLast : gDSmemInt;
+        DataSettings *ds = MODE_WORK_IS_LATEST ? gDSmemLast : Storage::dsInt;
         if (ds != 0)
         {
             tBase = ds->tBase;

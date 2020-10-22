@@ -80,8 +80,8 @@ static void ProcessingSignal()
     {
         data0 = &gData0memInt;
         data1 = &gData1memInt;
-        ds = &gDSmemInt;
-        EPROM::GetData(PageMemory::PageInternal::currentSignal, &gDSmemInt, &gData0memInt, &gData1memInt);
+        ds = &Storage::dsInt;
+        EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &gData0memInt, &gData1memInt);
     }
 
     if (MODE_WORK_IS_MEMINT)

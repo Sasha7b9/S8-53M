@@ -63,7 +63,6 @@ struct DataSettings
 };
 
 
-extern DataSettings *gDSmemInt;       //--
 extern uint8        *gData0memInt;    // | Здесь данные из ППЗУ, которые должны выводиться на экран
 extern uint8        *gData1memInt;    //-/
 

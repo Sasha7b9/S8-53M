@@ -17,9 +17,12 @@ uint8  Storage::limitUp[NumChannels][FPGA_MAX_POINTS];
 uint8  Storage::limitDown[NumChannels][FPGA_MAX_POINTS];
 DataSettings *Storage::firstElem = 0;
 DataSettings *Storage::lastElem = 0;
+
 uint8 *Storage::dataA = nullptr;
 uint8 *Storage::dataB = nullptr;
 DataSettings *Storage::set = nullptr;
+
+DataSettings *Storage::dsInt = nullptr;
 
 
 void Storage::PrintElement(DataSettings *dp)

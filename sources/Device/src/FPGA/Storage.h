@@ -33,6 +33,9 @@ public:
     static uint8 *dataB;    // ”казатель на данные второго канала, который надо рисовать на экране
     static DataSettings *set;     // ”казатель на параметры рисуемых сигналов
 
+    static DataSettings *dsInt;
+
+
 private:
 
     static void CalculateSums(void);
