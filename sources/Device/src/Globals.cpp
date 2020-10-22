@@ -7,14 +7,7 @@
 
 void *extraMEM = 0;
 
-BitField gBF =
-{
-    0,  // showHelpHints
-    0,  // showDebugMenu
-    0,  // needOpenFileManager
-    0,  // needClosePageSB
-    0   // needResetSettings
-};
+BitField gBF = { 0 };
 
 
 GMemory gMemory =

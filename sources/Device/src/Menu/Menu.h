@@ -62,6 +62,9 @@ public:
     // Повернуть ручку УСТАНОВКА на текущей странице малых кнопок.
     static void CurrentPageSBregSet(int angle);
 
+    static bool showHelpHints;    // Если 1, то при нажатии кнопки вместо выполнения её фунции выводится подсказка о её назначении
+
+
 private:
     // Обработка короткого нажатия кнопки.
     static void ProcessingShortPressureButton();

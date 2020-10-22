@@ -11,7 +11,7 @@ static const uint MIN_TIME = 500;
 
 void HelpLong(void)
 {
-    SHOW_HELP_HINTS++;
+    Menu::showHelpHints = !Menu::showHelpHints;
     PageHelpContent::stringForHint = 0;
     PageHelpContent::itemHint = 0;
 }

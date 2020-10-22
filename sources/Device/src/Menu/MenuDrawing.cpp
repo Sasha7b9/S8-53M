@@ -89,7 +89,7 @@ void Menu::Draw()
         }
     }
 
-    if (SHOW_HELP_HINTS)
+    if (Menu::showHelpHints)
     {
         int x = 1;
         int y = 0;

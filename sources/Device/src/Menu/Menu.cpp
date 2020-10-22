@@ -25,6 +25,7 @@ static int angleRegSet = 0;
 static const int stepAngleRegSet = 2;
 
 Item *Menu::itemUnderKey = nullptr;
+bool Menu::showHelpHints = false;
 
 #define SIZE_BUFFER_FOR_BUTTONS 5
 static Key::E bufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {Key::None, Key::None, Key::None, Key::None, Key::None};
@@ -50,11 +51,11 @@ void Menu::UpdateInput()
 
 void Menu::ShortPressureButton(Key::E button)
 {
-    if (SHOW_HELP_HINTS == 0)
+    if (!showHelpHints)
     {
         if(button == Key::Help)
         {
-            SHOW_HELP_HINTS++;
+            showHelpHints = !showHelpHints;
             PageHelpContent::stringForHint = 0;
             PageHelpContent::itemHint = 0;
         }
@@ -66,7 +67,7 @@ void Menu::ShortPressureButton(Key::E button)
 
 void Menu::LongPressureButton(Key::E button)
 {
-    if (SHOW_HELP_HINTS == 0)
+    if (!showHelpHints)
     {
         longPressureButton = button;
         Display::Redraw();
@@ -208,7 +209,7 @@ void Menu::ProcessButtonForHint(Key::E button)
 void Menu::PressButton(Key::E button)
 {
     Sound::ButtonPress();
-    if (SHOW_HELP_HINTS)
+    if (showHelpHints)
     {
         ProcessButtonForHint(button);
         return;
@@ -235,7 +236,7 @@ void Menu::PressButton(Key::E button)
 void Menu::ReleaseButton(Key::E button)
 {
     Sound::ButtonRelease();
-    if (SHOW_HELP_HINTS == 0)
+    if (!showHelpHints)
     {
         releaseButton = button;
     }
@@ -244,7 +245,7 @@ void Menu::ReleaseButton(Key::E button)
 
 void Menu::RotateRegSetRight(void)
 {   
-    if (SHOW_HELP_HINTS == 0)
+    if (!showHelpHints)
     {
         angleRegSet++;
         Display::Redraw();
@@ -254,7 +255,7 @@ void Menu::RotateRegSetRight(void)
 
 void Menu::RotateRegSetLeft(void)
 {
-    if (SHOW_HELP_HINTS == 0)
+    if (!showHelpHints)
     {
         angleRegSet--;
         Display::Redraw();
@@ -358,7 +359,7 @@ void Menu::ProcessingShortPressureButton()
             else if (Menu::IsShown() && IsFunctionalButton(button))       // Если меню показано и нажата функциональная клавиша
             {
                 Item *item = ItemUnderButton(button);
-                if (SHOW_HELP_HINTS)
+                if (showHelpHints)
                 {
                     SetItemForHint(item);
                 }

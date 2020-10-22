@@ -12,13 +12,11 @@ class Item;
 #define NEED_OPEN_FILE_MANAGER      (gBF.needOpenFileMananger)
 #define NEED_CLOSE_PAGE_SB          (gBF.needClosePageSB)
 #define NEED_RESET_SETTINGS         (gBF.needResetSettings)
-#define SHOW_HELP_HINTS             (gBF.showHelpHints)
 #define SHOW_DEBUG_MENU             (gBF.showDebugMenu)
 
 
 struct BitField
 {
-    uint showHelpHints              : 1;    // Если 1, то при нажатии кнопки вместо выполнения её фунции выводится подсказка о её назначении
     uint showDebugMenu              : 1;
     uint needOpenFileMananger       : 1;    // Если 1, то нужно открыть файловый менеджер (сработало автоподключение)
     uint needClosePageSB            : 1;    // Если 1, нужно закрывать страницу малых кнопок

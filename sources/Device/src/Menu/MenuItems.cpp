@@ -115,7 +115,7 @@ void Choice::StartChange(int delta)
         return;
     }
     Sound::GovernorChangedValue();
-    if (SHOW_HELP_HINTS)
+    if (Menu::showHelpHints)
     {
         SetItemForHint(this);
     }
