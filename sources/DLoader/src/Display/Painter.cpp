@@ -8,7 +8,6 @@ using namespace Primitives;
 
 
 static bool inverseColors = false;
-static Color::E currentColor = Color::NUM;
 static int numberColorsUsed = 0;
 
 
@@ -21,33 +20,6 @@ struct StateTransmit { enum E
 };};
 
 static StateTransmit::E stateTransmit = StateTransmit::Free;
-
-
-void CalculateCurrentColor(void)
-{
-    if (currentColor == Color::FLASH_10)
-    {
-        Painter::SetColor(inverseColors ? Color::BACK : Color::FILL);
-    }
-    else if (currentColor == Color::FLASH_01)
-    {
-        Painter::SetColor(inverseColors ? Color::FILL : Color::BACK);
-    }
-}
-
-
-void CalculateColor(uint8 *color)
-{
-    currentColor = static_cast<Color::E>(*color);
-    if (*color == Color::FLASH_10)
-    {
-        *color = static_cast<uint8>(inverseColors ? Color::BACK : Color::FILL);
-    }
-    else if (*color == Color::FLASH_01)
-    {
-        *color = static_cast<uint8>(inverseColors ? Color::FILL : Color::BACK);
-    }
-}
 
 
 void InverseColor(Color::E *color)

@@ -98,9 +98,6 @@ static int DrawBigChar(int eX, int eY, int size, char symbol)
 }
 
 
-extern void CalculateCurrentColor(void);
-
-
 int Painter::DrawChar(int x, int y, char symbol)
 {
     CalculateCurrentColor();
