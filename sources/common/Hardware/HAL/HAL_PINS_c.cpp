@@ -37,15 +37,6 @@ static Pin pinETH_RXD1;
 static Pin pinETH_TXD0;
 static Pin pinETH_TXD1;
 
-Pin pinG1;
-Pin pinG2;
-Pin pinG3;
-Pin pinG5;
-Pin pinG7;
-
-Pin pinLED;
-Pin pinDisplayReady;
-
 
 void HAL_PINS::Init()
 {
@@ -84,13 +75,13 @@ void HAL_PINS::Init()
     pinETH_TXD1  .Init(PinMode::_ETH, PinPort::_G, PinPin::_14);
     pinETH_TXD3  .Init(PinMode::_ETH, PinPort::_B, PinPin::_8);
 
-    pinG1.Init(PinMode::_Output, PinPort::_G, PinPin::_1);
-    pinG2.Init(PinMode::_Output, PinPort::_G, PinPin::_2);
-    pinG3.Init(PinMode::_Output, PinPort::_G, PinPin::_3);
-    pinG5.Init(PinMode::_Output, PinPort::_G, PinPin::_5);
-    pinG7.Init(PinMode::_Output, PinPort::_G, PinPin::_7);
-    pinLED.Init(PinMode::_Output, PinPort::_G, PinPin::_12);
-    pinDisplayReady.Init(PinMode::_Input, PinPort::_G, PinPin::_11);
+    Pin::G1.Init(PinMode::_Output, PinPort::_G, PinPin::_1);
+    Pin::G2.Init(PinMode::_Output, PinPort::_G, PinPin::_2);
+    Pin::G3.Init(PinMode::_Output, PinPort::_G, PinPin::_3);
+    Pin::G5.Init(PinMode::_Output, PinPort::_G, PinPin::_5);
+    Pin::G7.Init(PinMode::_Output, PinPort::_G, PinPin::_7);
+    Pin::LED.Init(PinMode::_Output, PinPort::_G, PinPin::_12);
+    Pin::DisplayReady.Init(PinMode::_Input, PinPort::_G, PinPin::_11);
 }
 
 

@@ -1174,9 +1174,9 @@ void FPGA::FindAndSetTrigLevel(void)
 }
 
 
-#define CLC_HI              pinG2.Set();
-#define CLC_LOW             pinG2.Reset();
-#define DATA_SET(x)         pinG3.Write(x);
+#define CLC_HI      Pin::G2.Set();
+#define CLC_LOW     Pin::G2.Reset();
+#define DATA_SET(x) Pin::G3.Write(x);
 
 
 void FPGA::WriteToAnalog(TypeWriteAnalog::E type, uint data)
@@ -1209,14 +1209,14 @@ void FPGA::WriteToAnalog(TypeWriteAnalog::E type, uint data)
         LOG_WRITE("полная запись в аналоговую часть = %s", str);
     }
 
-    pinG5.Reset();
+    Pin::G5.Reset();
     for (int i = 23; i >= 0; i--)
     {
         DATA_SET((data & (1 << i)) ? 1 : 0);
         CLC_HI
         CLC_LOW
     }
-    pinG5.Set();
+    Pin::G5.Set();
 }
 
 
@@ -1237,12 +1237,12 @@ void FPGA::WriteToDAC(TypeWriteDAC::E type, uint16 data)
         LOG_WRITE("trigLev = %s", Bin2String16(data, buffer));
     }
 
-    pinG7.Reset();
+    Pin::G7.Reset();
     for (int i = 15; i >= 0; i--)
     {
         DATA_SET((data & (1 << i)) ? 1 : 0);
         CLC_HI
         CLC_LOW
     }
-    pinG7.Set();
+    Pin::G7.Set();
 }

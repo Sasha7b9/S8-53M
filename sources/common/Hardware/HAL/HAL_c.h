@@ -2,15 +2,6 @@
 #include "common/Hardware/HAL/HAL_PINS_c.h"
 
 
-extern Pin pinG1;
-extern Pin pinG2;
-extern Pin pinG3;
-extern Pin pinG5;
-extern Pin pinG7;
-
-extern Pin pinLED;
-extern Pin pinDisplayReady;
-
 struct PackedTime
 {
     uint hours : 5;

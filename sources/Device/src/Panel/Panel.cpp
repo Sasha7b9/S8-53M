@@ -348,7 +348,7 @@ void Panel::Init()
 
 void Panel::EnableLEDRegSet(bool enable)
 {
-    pinLED.Write(enable ? 1 : 0);
+    Pin::LED.Write(enable ? 1 : 0);
 }
 
 Key::E Panel::WaitPressingButton()

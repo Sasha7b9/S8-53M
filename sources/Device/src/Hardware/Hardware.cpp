@@ -16,7 +16,7 @@ void Hardware::Init(void)
 
     FDrive::Init();
     
-    pinG1.Reset();      // PG1 - когда равен 1, чтение дисплея, в остальных случаях 0
+    Pin::G1.Reset();      // PG1 - когда равен 1, чтение дисплея, в остальных случаях 0
 }
 
 #ifdef __cplusplus

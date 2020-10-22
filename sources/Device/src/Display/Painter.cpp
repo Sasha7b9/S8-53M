@@ -144,7 +144,7 @@ void Painter::SendToDisplay(uint8 *bytes, int numBytes)
 {
     for (int i = 0; i < numBytes; i += 4)
     {
-        while (pinDisplayReady.Read() == 0) { };
+        while (Pin::DisplayReady.Read() == 0) { };
         Timer::PauseOnTicks(100);
         *HAL_FSMC::ADDR_CDISPLAY = *bytes++;
         *HAL_FSMC::ADDR_CDISPLAY = *bytes++;

@@ -57,6 +57,14 @@ struct Pin
     void Reset();
     uint Read();
 
+    static Pin G1;
+    static Pin G2;
+    static Pin G3;
+    static Pin G5;
+    static Pin G7;
+    static Pin LED;
+    static Pin DisplayReady;
+
 private:
     void *port;
     uint16 pin;
