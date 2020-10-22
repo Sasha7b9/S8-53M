@@ -12,7 +12,6 @@ class Item;
 #define NEED_OPEN_FILE_MANAGER      (gBF.needOpenFileMananger)
 #define FLASH_DRIVE_IS_CONNECTED    (gBF.flashDriveIsConnected)
 #define NEED_CLOSE_PAGE_SB          (gBF.needClosePageSB)
-#define AUTO_FIND_IN_PROGRESS       (gBF.FPGAautoFindInProgress)
 #define NEED_RESET_SETTINGS         (gBF.needResetSettings)
 #define FPGA_CAN_READ_DATA          (gBF.FPGAcanReadData)
 #define FPGA_CRITICAL_SITUATION     (gBF.FPGAcritiacalSituation)
@@ -26,7 +25,6 @@ class Item;
 
 struct BitField
 {
-    uint FPGAautoFindInProgress     : 1;
     uint FPGAtemporaryPause         : 1;
     uint FPGAinProcessingOfRead     : 1;
     uint FPGAcanReadData            : 1;

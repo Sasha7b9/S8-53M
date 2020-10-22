@@ -33,6 +33,8 @@ static uint8 dataRel1[FPGA_MAX_POINTS] = {0};   // Буфер используется для чтения
 static Settings storingSettings;                // Здесь нужно уменьшить необходимый размер памяти - сохранять настройки только альтеры
 static uint timeStart = 0;
 static bool trigAutoFind = false;    // Установленное в 1 значение означает, что нужно производить автоматический поиск синхронизации, если выбрана соответствующая настройка.
+static bool autoFindInProgress = false;
+
 
 
 // Функция вызывается, когда можно считывать очередной сигнал.
@@ -171,7 +173,7 @@ void FPGA::Update(void)
         return;
     }
 
-	if(AUTO_FIND_IN_PROGRESS)
+	if(autoFindInProgress)
     {
 		AutoFind();
 		return;
@@ -841,7 +843,7 @@ void FPGA::SetNumberMeasuresForGates(int number)
 
 void FPGA::StartAutoFind(void)
 {
-	AUTO_FIND_IN_PROGRESS = 1;
+    autoFindInProgress = true;
 }
 
 
@@ -926,7 +928,7 @@ void FPGA::AutoFind(void)
     Init();
     Start();
     
-    AUTO_FIND_IN_PROGRESS = 0;
+    autoFindInProgress = true;
 }
 
 
