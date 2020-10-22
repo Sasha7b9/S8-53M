@@ -7,7 +7,6 @@
 
 void *extraMEM = 0;
 
-uint8           *gData0memInt = 0;
 uint8           *gData1memInt = 0;
 
 uint8           *gData0memLast = 0;

@@ -29,11 +29,12 @@ public:
 
     static int NumberAvailableEntries();
 
-    static uint8 *dataA;    // ”казатель на данные первого канала, который надо рисовать на экране
-    static uint8 *dataB;    // ”казатель на данные второго канала, который надо рисовать на экране
-    static DataSettings *set;     // ”казатель на параметры рисуемых сигналов
+    static uint8 *dataA;            // ”казатель на данные первого канала, который надо рисовать на экране
+    static uint8 *dataB;            // ”казатель на данные второго канала, который надо рисовать на экране
+    static DataSettings *set;       // ”казатель на параметры рисуемых сигналов
 
     static DataSettings *dsInt;
+    static uint8 *dataIntA;         // «десь данные из ѕѕ«”, которые должны выводитьс€ на экран
 
 
 private:
