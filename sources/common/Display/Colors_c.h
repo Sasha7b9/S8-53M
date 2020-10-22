@@ -40,6 +40,7 @@ struct Color {
     static Color::E Trig();
     static Color::E MenuTitle(bool inShade);
     static Color::E MenuItem(bool inShade);
+    static Color::E FILL;
 
 private:
     static Color::E current;

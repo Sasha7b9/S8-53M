@@ -12,7 +12,6 @@ static Color::E currentColor = Color::NUM;
 static int numberColorsUsed = 0;
 
 
-Color::E gColorFill;
 Color::E gColorBack;
 
 
@@ -31,11 +30,11 @@ void CalculateCurrentColor(void)
 {
     if (currentColor == Color::FLASH_10)
     {
-        Painter::SetColor(inverseColors ? gColorBack : gColorFill);
+        Painter::SetColor(inverseColors ? gColorBack : Color::FILL);
     }
     else if (currentColor == Color::FLASH_01)
     {
-        Painter::SetColor(inverseColors ? gColorFill : gColorBack);
+        Painter::SetColor(inverseColors ? Color::FILL : gColorBack);
     }
 }
 
@@ -45,11 +44,11 @@ void CalculateColor(uint8 *color)
     currentColor = static_cast<Color::E>(*color);
     if (*color == Color::FLASH_10)
     {
-        *color = static_cast<uint8>(inverseColors ? gColorBack : gColorFill);
+        *color = static_cast<uint8>(inverseColors ? gColorBack : Color::FILL);
     }
     else if (*color == Color::FLASH_01)
     {
-        *color = static_cast<uint8>(inverseColors ? gColorFill : gColorBack);
+        *color = static_cast<uint8>(inverseColors ? Color::FILL : gColorBack);
     }
 }
 

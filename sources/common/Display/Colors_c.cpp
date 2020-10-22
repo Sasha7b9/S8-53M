@@ -8,6 +8,7 @@
 
 Color::E Color::current = Color::NUM;
 
+Color::E Color::FILL = Color::WHITE;
 
 static void SetColor(const ColorType *colorType)
 {
