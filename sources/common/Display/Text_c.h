@@ -28,6 +28,7 @@ public:
     void DrawRelativelyRight(int xRight, int y, Color::E color = Color::Count);
     // Выводит текст на прямоугольнике цвета colorBackgound
     int DrawOnBackground(int x, int y, Color::E colorBackground);
+    int DrawWithLimitation(int x, int y, Color::E color, int limitX, int limitY, int limitWidth, int limitHeight);
 
 private:
     String text;

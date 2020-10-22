@@ -129,13 +129,13 @@ void Governor::DrawLowPart(int x, int y, bool, bool shade) const
             int limHeight = MI_HEIGHT_VALUE - 1;
             if(delta > 0.0F)
             {
-                x = Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - delta), Int2String(*own->cell, false, 1, buffer), Color::BACK, limX, limY, limWidth, limHeight);
-                Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 + 10 - delta), Int2String(NextValue(), false, 1, buffer), Color::BACK, limX, limY, limWidth, limHeight);
+                x = Text(Int2String(*own->cell, false, 1, buffer)).DrawWithLimitation(drawX, static_cast<int>(y + 21 - delta), Color::BACK, limX, limY, limWidth, limHeight);
+                Text(Int2String(NextValue(), false, 1, buffer)).DrawWithLimitation(drawX, static_cast<int>(y + 21 + 10 - delta), Color::BACK, limX, limY, limWidth, limHeight);
             }
             if(delta < 0.0F)
             {
-                x = Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - delta), Int2String(*own->cell, false, 1, buffer), Color::BACK, limX, limY, limWidth, limHeight);
-                Painter::DrawTextWithLimitationC(drawX, static_cast<int>(y + 21 - 10 - delta), Int2String(PrevValue(), false, 1, buffer), Color::BACK, limX, limY, limWidth, limHeight);
+                x = Text(Int2String(*own->cell, false, 1, buffer)).DrawWithLimitation(drawX, static_cast<int>(y + 21 - delta), Color::BACK, limX, limY, limWidth, limHeight);
+                Text(Int2String(PrevValue(), false, 1, buffer)).DrawWithLimitation(drawX, static_cast<int>(y + 21 - 10 - delta), Color::BACK, limX, limY, limWidth, limHeight);
             }
         }
     }
@@ -648,9 +648,9 @@ void Choice::DrawClosed(int x, int y) const
     }
     else
     {
-        Painter::DrawTextWithLimitationC(x + 4, static_cast<int>(y + 21 - deltaY), NameCurrentSubItem(), colorText, x, y + 19, MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1);
+        Text(NameCurrentSubItem()).DrawWithLimitation(x + 4, static_cast<int>(y + 21 - deltaY), colorText, x, y + 19, MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1);
         HLine().Draw(static_cast<int>(y + (deltaY > 0 ? 31 : 19) - deltaY), x + 3, x + MI_WIDTH_VALUE + 1, Color::BLACK);
-        Painter::DrawTextWithLimitationC(x + 4, static_cast<int>(y + (deltaY > 0 ? 33 : 9) - deltaY), deltaY > 0 ? NameNextSubItem() : NamePrevSubItem(), colorText, x, y + 19, MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1);
+        Text(deltaY > 0 ? NameNextSubItem() : NamePrevSubItem()).DrawWithLimitation(x + 4, static_cast<int>(y + (deltaY > 0 ? 33 : 9) - deltaY), colorText, x, y + 19, MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1);
     }
     HLine().Draw(y + MI_HEIGHT + 1, x, x + MI_WIDTH, ColorBorderMenu(false));
 

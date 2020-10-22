@@ -27,65 +27,6 @@ bool ByteFontNotEmpty(int eChar, int byte)
 }
 
 
-static bool BitInFontIsExist(int eChar, int numByte, int bit)
-{
-    static uint8 prevByte = 0;      // WARN здесь точно статики нужны?
-    static int prevChar = -1;
-    static int prevNumByte = -1;
-    if (prevNumByte != numByte || prevChar != eChar)
-    {
-        prevByte = Font::font->symbol[eChar].bytes[numByte];
-        prevChar = eChar;
-        prevNumByte = numByte;
-    }
-    return prevByte & (1 << bit);
-}
-
-
-int Painter::DrawCharWithLimitation(int eX, int eY, uchar symbol, int limitX, int limitY, int limitWidth, int limitHeight)
-{
-    int8 width = static_cast<int8>(Font::font->symbol[symbol].width);
-    int8 height = static_cast<int8>(Font::font->height);
-
-    for (int b = 0; b < height; b++)
-    {
-        if (ByteFontNotEmpty(symbol, b))
-        {
-            int x = eX;
-            int y = eY + b + 9 - height;
-            int endBit = 8 - width;
-            for (int bit = 7; bit >= endBit; bit--)
-            {
-                if (BitInFontIsExist(symbol, b, bit))
-                {
-                    if ((x >= limitX) && (x <= (limitX + limitWidth)) && (y >= limitY) && (y <= limitY + limitHeight))
-                    {
-                        Point().Draw(x, y);
-                    }
-                }
-                x++;
-            }
-        }
-    }
-
-    return eX + width + 1;
-}
-
-
-int Painter::DrawTextWithLimitationC(int x, int y, const char* text, Color::E color, int limitX, int limitY, int limitWidth, int limitHeight)
-{
-    Color::SetCurrent(color);
-    int retValue = x;
-    while (*text)
-    {
-        x = DrawCharWithLimitation(x, y, static_cast<uint8>(*text), limitX, limitY, limitWidth, limitHeight);
-        retValue += Font::GetLengthSymbol(static_cast<uint8>(*text));
-        text++;
-    }
-    return retValue + 1;
-}
-
-
 static bool IsLetter(char symbol)
 {
     static const bool isLetter[256] =

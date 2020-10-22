@@ -62,7 +62,7 @@ void FM::DrawLongString(int x, int y, const char *string, bool hightlight)
     }
     else
     {
-        Painter::DrawTextWithLimitationC(x, y, string, color, x, y, WIDTH_COL, 10);
+        Text(string).DrawWithLimitation(x, y, color, x, y, WIDTH_COL, 10);
         Text("...").Draw(x + WIDTH_COL + 3, y);
     }
 }

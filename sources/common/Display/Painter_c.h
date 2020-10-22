@@ -37,7 +37,6 @@ public:
 
     static bool SaveScreenToFlashDrive();
 
-    static int DrawTextWithLimitationC(int x, int y, const char* text, Color::E color, int limitX, int limitY, int limitWidth, int limitHeight);
     // Возвращает нижнюю координату прямоугольника.
     static int DrawTextInBoundedRectWithTransfers(int x, int y, int width, const char *text, Color::E colorBackground, Color::E colorFill);
 
@@ -68,8 +67,6 @@ private:
     static Color::E GetColor(int x, int y);
 
     static void Get8Points(int x, int y, uint8 buffer[4]);
-
-    static int DrawCharWithLimitation(int eX, int eY, uchar symbol, int limitX, int limitY, int limitWidth, int limitHeight);
 
     static int DrawPartWord(char *word, int x, int y, int xRight, bool draw);
 

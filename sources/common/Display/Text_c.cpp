@@ -5,6 +5,9 @@
 #include <cstring>
 
 
+using namespace Primitives;
+
+
 static bool ByteFontNotEmpty(int eChar, int byte)
 {
     static const uint8 *bytes = 0;
@@ -297,4 +300,51 @@ void Char::Draw10SymbolsInRect(int x, int y)
         Char(static_cast<char>(symbol + i)).Draw(x + 8 * i, y);
         Char(static_cast<char>(symbol + i + 16)).Draw(x + 8 * i, y + 8);
     }
+}
+
+
+static int DrawCharWithLimitation(int eX, int eY, uchar symbol, int limitX, int limitY, int limitWidth, int limitHeight)
+{
+    int8 width = static_cast<int8>(Font::font->symbol[symbol].width);
+    int8 height = static_cast<int8>(Font::font->height);
+
+    for (int b = 0; b < height; b++)
+    {
+        if (ByteFontNotEmpty(symbol, b))
+        {
+            int x = eX;
+            int y = eY + b + 9 - height;
+            int endBit = 8 - width;
+            for (int bit = 7; bit >= endBit; bit--)
+            {
+                if (BitInFontIsExist(symbol, b, bit))
+                {
+                    if ((x >= limitX) && (x <= (limitX + limitWidth)) && (y >= limitY) && (y <= limitY + limitHeight))
+                    {
+                        Point().Draw(x, y);
+                    }
+                }
+                x++;
+            }
+        }
+    }
+
+    return eX + width + 1;
+}
+
+
+int Text::DrawWithLimitation(int x, int y, Color::E color, int limitX, int limitY, int limitWidth, int limitHeight)
+{
+    Color::SetCurrent(color);
+    int retValue = x;
+
+    char *t = text.c_str();
+
+    while (*t)
+    {
+        x = DrawCharWithLimitation(x, y, static_cast<uint8>(*t), limitX, limitY, limitWidth, limitHeight);
+        retValue += Font::GetLengthSymbol(static_cast<uint8>(*t));
+        t++;
+    }
+    return retValue + 1;
 }
