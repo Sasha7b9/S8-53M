@@ -27,12 +27,6 @@ public:
 
     static void ResetFlash();
 
-    static void LoadPalette();
-
-    static void SetPalette(Color::E color);
-
-    static void DrawVPointLine(int x, int y0, int y1, float delta, Color::E color);
-
     static void DrawHPointLine(int y, int x0, int x1, float delta);
 
     static void DrawLine(int x0, int y0, int x1, int y1);

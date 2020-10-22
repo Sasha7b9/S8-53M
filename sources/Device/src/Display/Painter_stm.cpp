@@ -14,7 +14,6 @@ void Painter::BeginScene(Color::E color)
         stateTransmit = StateTransmit::InProcess;
         if (needForLoadFontsAndPalette)
         {
-            LoadPalette();
             if (!noFonts)                // Если был запрос на загрузку шрифтов
             {
             }

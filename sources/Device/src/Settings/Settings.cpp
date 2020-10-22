@@ -264,8 +264,6 @@ void Settings::Load(bool _default)
         BALANCE_ADC_TYPE = balanceType;
     }
 
-    Painter::LoadPalette();
-
     Panel::EnableLEDChannel0(sChannel_Enabled(Channel::A));
     Panel::EnableLEDChannel1(sChannel_Enabled(Channel::B));
     Menu::SetAutoHide(true);

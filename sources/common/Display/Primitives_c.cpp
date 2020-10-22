@@ -21,3 +21,9 @@ void Primitives::MultiHPointLine::DrawHPointLine(int x, int y, int count, int de
         x += delta;
     }
 }
+
+
+void Primitives::VPointLine::Draw(int , int , int , Color::E )
+{
+
+}

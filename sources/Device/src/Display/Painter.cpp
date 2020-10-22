@@ -132,20 +132,10 @@ static int numberColorsUsed = 0;
 
 
 
-void Painter::SetPalette(Color::E )
-{
-}
-
-
 void Painter::DrawLineC(int x0, int y0, int x1, int y1, Color::E color)
 {
     Color::SetCurrent(color);
     DrawLine(x0, y0, x1, y1);
-}
-
-
-void Painter::DrawVPointLine(int , int , int , float , Color::E )
-{
 }
 
 
@@ -221,15 +211,6 @@ void Painter::DrawVLineArray(int , int , uint8 *, Color::E )
 
 void Painter::DrawSignal(int , uint8 [281], bool )
 {
-}
-
-
-void Painter::LoadPalette(void)
-{
-    for (int i = 0; i < Color::NUM; i++)
-    {
-        SetPalette((Color::E)i);
-    }
 }
 
 

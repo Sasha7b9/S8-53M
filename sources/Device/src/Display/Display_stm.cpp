@@ -17,6 +17,4 @@ void Display::Init()
     Painter::ResetFlash();
 
     Font::Set(TypeFont::_8);
-
-    Painter::LoadPalette();
 }

@@ -76,4 +76,13 @@ namespace Primitives
         // Нарисовать одну горизонтальную лиинию из count точек c расстоянием delta между соседнимит точками
         static void DrawHPointLine(int x, int y, int count, int delta);
     };
+
+    class VPointLine
+    {
+    public:
+        VPointLine(float d) : delta(d) { }
+        void Draw(int x, int y0, int y1, Color::E color = Color::NUM);
+    private:
+        float delta;
+    };
 }

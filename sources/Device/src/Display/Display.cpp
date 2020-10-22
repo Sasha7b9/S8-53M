@@ -1487,7 +1487,7 @@ void Display::DrawGridType3(int left, int top, int right, int bottom, int center
     Painter::DrawHPointLine(centerY, left + stepX, right, static_cast<float>(stepX));
     uint8 masY[6] = {(uint8)(top + 1), (uint8)(top + 2), (uint8)(centerY - 1), (uint8)(centerY + 1), (uint8)(bottom - 2), (uint8)(bottom - 1)};
     MultiHPointLine(6, masY, deltaX, (right - top) / deltaX).Draw(left + deltaX, Color::GRID);
-    Painter::DrawVPointLine(centerX, top + stepY, bottom, static_cast<float>(stepY), Color::GRID);
+    VPointLine(static_cast<float>(stepY)).Draw(centerX, top + stepY, bottom, Color::GRID);
     uint16 masX[6] = {(uint16)(left + 1), (uint16)(left + 2), (uint16)(centerX - 1), (uint16)(centerX + 1), (uint16)(right - 2), (uint16)(right - 1)};
     MultiVPointLine(6, masX, deltaY, (bottom - top) / deltaY).Draw(top + deltaY, Color::GRID);
 }
