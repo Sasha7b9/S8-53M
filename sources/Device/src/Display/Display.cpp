@@ -51,6 +51,7 @@ static bool showLevelRShiftB = false;
 static bool showLevelTrigLev = false;    // Ќужно ли рисовать горизонтальную линию уровн€ смещени€ уровн€ синхронизации
 static bool trigEnable = false;
 static bool drawRShiftMarkers = false;
+static int topMeasures = Grid::Bottom();
 
 
 void Display::DrawStringNavigation() 
@@ -1809,7 +1810,7 @@ void Display::DrawMeasures()
 {
     if(!SHOW_MEASURES)
     {
-        TOP_MEASURES = Grid::Bottom();
+        Display::topMeasures = Grid::Bottom();
         return;
     }
 
@@ -1847,7 +1848,7 @@ void Display::DrawMeasures()
             {
                 Region(dX, dY).Fill(x, y, COLOR_BACK);
                 Rectangle(dX, dY).Draw(x, y, COLOR_FILL);
-                TOP_MEASURES = Math::MinFrom2Int(TOP_MEASURES, y);
+                topMeasures = Math::MinFrom2Int(topMeasures, y);
             }
             if(active)
             {

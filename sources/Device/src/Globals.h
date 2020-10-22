@@ -16,7 +16,6 @@ class Item;
 #define NEED_RESET_SETTINGS         (gBF.needResetSettings)
 #define NEED_FINISH_REDRAW          (gBF.needFinishDraw)
 #define NUM_DRAWING_SIGNALS         (gBF.numDrawingSignals)
-#define TOP_MEASURES                (gBF.topMeasures)
 #define FRAMES_ELAPSED              (gBF.framesElapsed)
 #define FPGA_CAN_READ_DATA          (gBF.FPGAcanReadData)
 #define FPGA_CRITICAL_SITUATION     (gBF.FPGAcritiacalSituation)
@@ -58,8 +57,6 @@ struct BitField
 
     uint showDebugMenu              : 1;
     
-    int topMeasures                 : 9;    // Верх таблицы вывода измерений. Это значение нужно для нормального вывода сообщений на экран - чтобы 
-                                            // они ничего не перекрывали
     uint needOpenFileMananger       : 1;    // Если 1, то нужно открыть файловый менеджер (сработало автоподключение)
     uint needClosePageSB            : 1;    // Если 1, нужно закрывать страницу малых кнопок
     uint needResetSettings          : 1;    // Если 1, то необходим сброс настроек

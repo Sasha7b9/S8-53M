@@ -32,8 +32,6 @@ BitField gBF =
 
     0,  // showDebugMenu
 
-    Grid::Bottom(), // topMeasures
- 
     0,  // needOpenFileManager
     0,  // needClosePageSB
     0   // needResetSettings
