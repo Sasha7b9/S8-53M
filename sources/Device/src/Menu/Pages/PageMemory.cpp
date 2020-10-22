@@ -24,9 +24,10 @@ using namespace Primitives;
 int16 PageMemory::PageLatest::currentSignal = 0;
 int8 PageMemory::PageInternal::currentSignal = 0;
 bool PageMemory::PageInternal::showAlways = false;
+uint PageMemory::exitFromModeSetNameTo = false;
 
 static bool runningFPGAbeforeSmallButtons = false;      // Здесь сохраняется информация о том, работала ли ПЛИС перед переходом в режим работы с памятью
-static bool exitFromIntToLast = false;                  // Если 1, то выходить из страницы внутренней памяти нужно не стандартно, а в меню последних
+static uint exitFromIntToLast = 0;                      // Если 1, то выходить из страницы внутренней памяти нужно не стандартно, а в меню последних
 
 
 static void DrawSetMask();  // Эта функция рисует, когда выбран режим задания маски.
@@ -156,11 +157,9 @@ static void DrawSB_MemExtSetNameSave(int x, int y)
     }
 }
 
-//const PageSB pageSBmemExtSetName;
-
 static void PressSB_MemLast_SaveToFlash()
 {
-    EXIT_FROM_SET_NAME_TO = RETURN_TO_LAST_MEM;
+    PageMemory::exitFromModeSetNameTo = RETURN_TO_LAST_MEM;
     Memory_SaveSignalToFlashDrive();
 }
 
@@ -176,7 +175,7 @@ static void PressSB_SetName_Exit()
     {
         PageMemory::PageInternal::self->OpenAndSetItCurrent();
     }
-    EXIT_FROM_SET_NAME_TO = RETURN_TO_DISABLE_MENU;
+    PageMemory::exitFromModeSetNameTo = RETURN_TO_DISABLE_MENU;
 }
 
 
@@ -556,7 +555,7 @@ static void FuncAdditionDrawingSPageMemoryInt()
 
 void PressSB_MemInt_SaveToFlashDrive()
 {
-    EXIT_FROM_SET_NAME_TO = RETURN_TO_INT_MEM;
+    PageMemory::exitFromModeSetNameTo = RETURN_TO_INT_MEM;
     Memory_SaveSignalToFlashDrive();
 }
 
@@ -999,7 +998,7 @@ void Memory_SaveSignalToFlashDrive()
     }
     else
     {
-        EXIT_FROM_SET_NAME_TO = RETURN_TO_MAIN_MENU;
+        PageMemory::exitFromModeSetNameTo = RETURN_TO_MAIN_MENU;
     }
 }
 

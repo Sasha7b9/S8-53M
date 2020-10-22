@@ -233,6 +233,9 @@ struct PageHelp
 
 struct PageMemory
 {
+    static uint exitFromModeSetNameTo;    // Куда возвращаться из окна установки имени при сохранении : 0 - в основное меню, 1 - в окно 
+                                                // последних, 2 - в окно Внутр ЗУ, 3 - в основно окно в выключенным меню
+
     struct PageLatest
     {
         static int16 currentSignal;     // Текущий номер последнего сигнала в режиме ПАМЯТЬ - Последние
