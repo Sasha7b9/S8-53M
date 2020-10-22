@@ -241,14 +241,14 @@ void FuncAttScreen(void)
 
                 for (int i = 0; i < Range::Count; i++)
                 {
-                    Painter::DrawFormatText(95 + i * 16 + dX, 55 + dY, Color::FILL, "%d", RSHIFT_ADD(Channel::A, i, 0));
-                    Painter::DrawFormatText(95 + i * 16 + dX, 65 + dY, Color::FILL, "%d", RSHIFT_ADD(Channel::A, i, 1));
-                    Painter::DrawFormatText(95 + i * 16 + dX, 80 + dY, Color::FILL, "%d", RSHIFT_ADD(Channel::B, i, 0));
-                    Painter::DrawFormatText(95 + i * 16 + dX, 90 + dY, Color::FILL, "%d", RSHIFT_ADD(Channel::B, i, 1));
+                    Text("%d", RSHIFT_ADD(Channel::A, i, 0)).Draw(95 + i * 16 + dX, 55 + dY, Color::FILL);
+                    Text("%d", RSHIFT_ADD(Channel::A, i, 1)).Draw(95 + i * 16 + dX, 65 + dY, Color::FILL);
+                    Text("%d", RSHIFT_ADD(Channel::B, i, 0)).Draw(95 + i * 16 + dX, 80 + dY, Color::FILL);
+                    Text("%d", RSHIFT_ADD(Channel::B, i, 1)).Draw(95 + i * 16 + dX, 90 + dY, Color::FILL);
                 }
                 
-                Painter::DrawFormatText(10 + dX, 110 + dY, Color::FILL, "Коэффициент калибровки 1к : %f, %d", STRETCH_ADC_A, (int)(STRETCH_ADC_A * 0x80));
-                Painter::DrawFormatText(10 + dX, 130 + dY, Color::FILL, "Коэфффициент калибровки 2к : %f, %d", STRETCH_ADC_B, (int)(STRETCH_ADC_B * 0x80));
+                Text("Коэффициент калибровки 1к : %f, %d", STRETCH_ADC_A, (int)(STRETCH_ADC_A * 0x80)).Draw(10 + dX, 110 + dY, Color::FILL);
+                Text("Коэфффициент калибровки 2к : %f, %d", STRETCH_ADC_B, (int)(STRETCH_ADC_B * 0x80)).Draw(10 + dX, 130 + dY, Color::FILL);
 
                 DrawParametersChannel(Channel::A, 10 + dX, 150 + dY, false);
                 DrawParametersChannel(Channel::B, 10 + dX, 200 + dY, false);

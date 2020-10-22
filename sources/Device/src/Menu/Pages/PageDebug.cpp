@@ -487,7 +487,7 @@ DEF_PAGE_3(pageRandomizer, PageDebug::self, NamePage::DebugRandomizer,
 
 static void OnDraw_SizeSettings(int x, int y)
 {
-    Painter::DrawFormatText(x + 5, y + 21, Color::BLACK, "Размер %d", sizeof(Settings));
+    Text("Размер %d", sizeof(Settings)).Draw(x + 5, y + 21, Color::BLACK);
 }
 
 DEF_CHOICE_2(mcSizeSettings, PageDebug::self,
@@ -671,9 +671,9 @@ static void Draw_EnterSerialNumber(void)
 
     int allShots = HAL_OTP::GetSerialNumber(buffer);
 
-    Painter::DrawFormatText(x0 + deltaX, y0 + 130, Color::FILL, "Текущий сохранённый номер %s", buffer[0] == 0 ? "-- ----" : buffer);
+    Text("Текущий сохранённый номер %s", buffer[0] == 0 ? "-- ----" : buffer).Draw(x0 + deltaX, y0 + 130, Color::FILL);
 
-    Painter::DrawFormatText(x0 + deltaX, y0 + 100, Color::FILL, "Осталось места для %d попыток", allShots);
+    Text("Осталось места для %d попыток", allShots).Draw(x0 + deltaX, y0 + 100, Color::FILL);
 }
 
 static void OnPress_SerialNumber(void)

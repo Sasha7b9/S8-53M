@@ -74,7 +74,7 @@ void PageHelpContent::Draw()
     {
         DrawPageDescription();
     }
-    Painter::DrawFormatText(2, 230, Color::FILL, "%d", gTimerMS - startTime);
+    Text("%d", gTimerMS - startTime).Draw(2, 230, Color::FILL);
 }
 
 static int NumParagraphs(const PageHelpItem *page)

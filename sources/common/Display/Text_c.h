@@ -19,7 +19,7 @@ private:
 class Text
 {
 public:
-    Text(char *t) : text(t) {}
+    Text(char *format, ...);
     Text(pString t) : text(t) {};
     int Draw(int x, int y, Color::E color = Color::Count);
     void DrawInRect(int x, int y, int width, int height);

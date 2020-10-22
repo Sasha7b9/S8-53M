@@ -3,7 +3,11 @@
 #include "common/Display/Primitives_c.h"
 #include "common/Display/Text_c.h"
 #include "common/Utils/Math_c.h"
+#include <cstdarg>
 #include <cstring>
+#include <cstdlib>
+#include <cstdio>
+
 
 
 using namespace Primitives;
@@ -727,4 +731,17 @@ int Text::DrawInCenterRectAndBoundIt(int x, int y, int width, int height, Color:
     Region(width - 2, height - 2).Fill(x + 1, y + 1, colorBackground);
     Color::SetCurrent(colorFill);
     return DrawInCenterRect(x, y, width, height);
+}
+
+Text::Text(char *format, ...)
+{
+#undef SIZE_BUFFER
+#define SIZE_BUFFER 200
+    char buffer[SIZE_BUFFER];
+    std::va_list args;
+    va_start(args, format);
+    std::vsprintf(buffer, format, args);
+    va_end(args);
+    text = String(buffer);
+#undef SIZE_BUFFER
 }

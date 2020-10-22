@@ -679,7 +679,7 @@ static void Information_Draw(void)
     Text(buffer).Draw(x, y);
     y += dY;
 
-    Painter::DrawFormatText(x, y, Color::FILL, "CRC32 : %X", HAL_CRC::Calculate());
+    Text("CRC32 : %X", HAL_CRC::Calculate()).Draw(x, y, Color::FILL);
 
     dY = -10;
     Text("Для получения помощи нажмите и удерживайте кнопку ПОМОЩЬ").DrawInCenterRect(0, 190 + dY, 320, 20);
