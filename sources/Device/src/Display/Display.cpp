@@ -52,7 +52,9 @@ static bool showLevelTrigLev = false;    // Ќужно ли рисовать горизонтальную лин
 static bool trigEnable = false;
 static bool drawRShiftMarkers = false;
 static int topMeasures = Grid::Bottom();
-static bool needFinishDraw = true;    // ≈сли 1, то дисплей нуждаетс€ в перерисовке
+static bool needFinishDraw = true;      // ≈сли 1, то дисплей нуждаетс€ в перерисовке
+static uint numDrawingSignals = 0;      // „исло нарисованных сигналов дл€ режима накоплени€
+
 
 
 void Display::DrawStringNavigation() 
@@ -637,7 +639,7 @@ void Display::DrawDataInModeNormal()
         DrawBothChannels(0, 0);
         if (prevAddr == 0 || prevAddr != ds->addrPrev)
         {
-            NUM_DRAWING_SIGNALS++;
+            numDrawingSignals++;
             prevAddr = ds->addrPrev;
         }
     }
@@ -1195,9 +1197,9 @@ bool Display::NeedForClearScreen()
         return true;
     }
 
-    if (MODE_ACCUM_IS_RESET && (NUM_DRAWING_SIGNALS >= static_cast<uint>(numAccum))) //-V560
+    if (MODE_ACCUM_IS_RESET && (numDrawingSignals >= static_cast<uint>(numAccum))) //-V560
     {
-        NUM_DRAWING_SIGNALS = 0;
+        numDrawingSignals = 0;
         return true;
     }
     return false;

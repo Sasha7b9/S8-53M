@@ -14,8 +14,6 @@ class Item;
 #define NEED_CLOSE_PAGE_SB          (gBF.needClosePageSB)
 #define AUTO_FIND_IN_PROGRESS       (gBF.FPGAautoFindInProgress)
 #define NEED_RESET_SETTINGS         (gBF.needResetSettings)
-#define NUM_DRAWING_SIGNALS         (gBF.numDrawingSignals)
-#define FRAMES_ELAPSED              (gBF.framesElapsed)
 #define FPGA_CAN_READ_DATA          (gBF.FPGAcanReadData)
 #define FPGA_CRITICAL_SITUATION     (gBF.FPGAcritiacalSituation)
 #define TRIG_AUTO_FIND              (gBF.FPGAtrigAutoFind)
@@ -30,9 +28,6 @@ class Item;
 
 struct BitField
 {
-    uint framesElapsed              : 1;
-    uint numDrawingSignals          : 8;    // „исло нарисованных сигналов дл€ режима накоплени€
-
     // FPGA
     uint FPGAtrigAutoFind           : 1;    // ”становленное в 1 значение означает, что нужно производить автоматический поиск синхронизации, если 
                                             // выбрана соответствующа€ настройка.
