@@ -10,6 +10,7 @@
 #include "Display/Painter.h"
 #include "Display/Symbols.h"
 #include "FDrive/FDrive.h"
+#include "FPGA/DataSettings.h"
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/MathFPGA.h"
 #include "FPGA/Storage.h"

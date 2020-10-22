@@ -1,5 +1,6 @@
 #pragma once
 
+struct DataSettings;
 
 #define MAX_NUM_SAVED_WAVES 23  // Пока ограничено количеством квадратиков, которые можно вывести в одну линию внизу сетки
 

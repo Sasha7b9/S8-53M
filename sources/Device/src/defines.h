@@ -88,6 +88,3 @@ struct StructRelAbs
 #define M_PI                3.14159265358979323846F
 
 void HardwareErrorHandler(const char *file, const char *function, int line);
-
-
-#include "globals.h"

@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "common/Display/Primitives_c.h"
 #include "common/Display/Text_c.h"
+#include "common/Hardware/HAL/HAL_c.h"
 #include "common/Utils/Math_c.h"
 #include "Display/Grid.h"
 #include "Display/Painter.h"

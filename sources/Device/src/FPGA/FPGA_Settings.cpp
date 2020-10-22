@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "common/Hardware/HAL/HAL_c.h"
 #include "common/Utils/Math_c.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/MathFPGA.h"

@@ -1,6 +1,5 @@
 #include "defines.h"
 #include "main.h"
-#include "Globals.h"
 #include "VCP/VCP.h"
 #include "VCP/SCPI/SCPI.h"
 #include "common/Log_c.h"

@@ -1,4 +1,5 @@
-#pragma once 
+#pragma once
+#include "common/Keyboard/Controls_c.h"
 
 
 class Panel

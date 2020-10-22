@@ -3,6 +3,7 @@
 #include "common/Display/Text_c.h"
 #include "common/Display/Font/Font_c.h"
 #include "common/Hardware/Sound_c.h"
+#include "common/Hardware/HAL/HAL_c.h"
 #include "common/Utils/Math_c.h"
 #include "Display/Painter.h"
 #include "FDrive/FDrive.h"

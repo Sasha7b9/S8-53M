@@ -1,21 +1,15 @@
 #include "defines.h"
-#include "Globals.h"
-#include "LAN/SocketTCP.h"
-#include "main.h"
-#include "common/Hardware/Timer_c.h"
-#include "LAN/LAN.h"
 #include "common/Hardware/HAL/HAL_c.h"
-#include "ethernetif.h"
+#include "LAN/LAN.h"
+#include "Settings/Settings.h"
 #include "VCP/SCPI/SCPI.h"
-#include "common/Log_c.h"
+#include <cstring>
+#include <ethernetif.h>
 #include <lwip/init.h>
 #include <lwip/ip_addr.h>
 #include <lwip/netif.h>
 #include <lwip/timeouts.h>
 #include <netif/etharp.h>
-
-
-
 
 static void Netif_Config();
 

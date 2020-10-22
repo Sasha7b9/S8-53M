@@ -5,6 +5,9 @@
 #include "Settings/SettingsService.h"
 
 
+struct DataSettings;
+
+
 struct StateWorkFPGA { enum E {
     Stop,    // СТОП - не занимается считыванием информации.
     Wait,    // Ждёт поступления синхроимпульса.

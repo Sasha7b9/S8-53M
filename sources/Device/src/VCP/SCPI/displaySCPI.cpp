@@ -1,5 +1,4 @@
 #include "defines.h"
-#include "globals.h"
 #include "common/Log_c.h"
 #include "Display/Painter.h"
 #include "LAN/LAN.h"

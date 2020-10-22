@@ -1,5 +1,4 @@
 #pragma once
-#include "Globals.h"
 #include "VCP/VCP.h"
 #include "LAN/SocketTCP.h"
 

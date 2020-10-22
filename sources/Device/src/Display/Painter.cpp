@@ -1,9 +1,11 @@
 #include "defines.h"
 #include "common/Log_c.h"
 #include "common/Display/Primitives_c.h"
+#include "common/Hardware/Timer_c.h"
+#include "common/Hardware/HAL/HAL_c.h"
+#include "common/Hardware/HAL/HAL_PINS_c.h"
 #include "common/Utils/Math_c.h"
 #include "Display/Painter.h"
-#include "common/Hardware/Timer_c.h"
 #include "LAN/SocketTCP.h"
 #include "VCP/VCP.h"
 

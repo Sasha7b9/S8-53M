@@ -1,10 +1,11 @@
 #include "common/Log_c.h"
 #include "common/Hardware/Sound_c.h"
+#include "common/Hardware/Timer_c.h"
+#include "common/Hardware/HAL/HAL_c.h"
 #include "FPGA/FPGA.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/HelpContent.h"
 #include "Settings/Settings.h"
-#include "common/Hardware/Timer_c.h"
 
 static const uint MIN_TIME = 500;
 
