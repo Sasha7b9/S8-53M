@@ -767,9 +767,6 @@ void OnPressMemoryExtMask(void)
     Display::SetAddDrawFunction(DrawSetMask);
 }
 
-// ПАМЯТЬ
-extern const Page pMemory;
-
 static bool FuncActiveMemoryNumPoinst(void)
 {
     return PEAKDET_IS_DISABLE;
@@ -778,7 +775,7 @@ static bool FuncActiveMemoryNumPoinst(void)
 // ПАМЯТЬ - Точки
 int8 temp = 0;
 
-DEF_CHOICE_3(mcMemoryNumPoints, &pMemory,
+DEF_CHOICE_3(mcMemoryNumPoints, PageMemory::self,
     "Точки", "Points"
     ,
     "Выбор количества отсчётов для сохраняемых сигналов. "
@@ -1038,7 +1035,7 @@ DEF_SMALL_BUTTON(sbExitMemLast, PageMemory::PageLatest::self,
     nullptr, PressSB_MemLast_Exit, DrawSB_Exit, nullptr
 )
 
-DEF_PAGE_6(pageLatest, &pMemory, NamePage::SB_MemLatest,
+DEF_PAGE_6(pageLatest, PageMemory::self, NamePage::SB_MemLatest,
     "ПОСЛЕДНИЕ", "LATEST",
     "Переход в режим работы с последними полученными сигналами",
     "Transition to an operating mode with the last received signals",
@@ -1117,7 +1114,7 @@ DEF_PAGE_6(mspFileManager, PageMemory::PageExternal::self, NamePage::SB_FileMana
     FuncOfActiveExtMemFolder, OnPressMemoryExtFileManager, EmptyFuncVV, FM::RotateRegSet
 );
 
-DEF_PAGE_6(pageMemoryExt, &pMemory, NamePage::MemoryExt,
+DEF_PAGE_6(pageMemoryExt, PageMemory::self, NamePage::MemoryExt,
     "ВНЕШН ЗУ", "EXT STORAGE",
     "Работа с внешним запоминающим устройством.",
     "Work with external storage device.",
@@ -1137,7 +1134,7 @@ void OnPressMemoryInt()
     EPROM::GetData(CURRENT_NUM_INT_SIGNAL, &gDSmemInt, &gData0memInt, &gData1memInt);
 }
 
-DEF_PAGE_6(mspMemInt, &pMemory, NamePage::SB_MemInt,
+DEF_PAGE_6(mspMemInt, PageMemory::self, NamePage::SB_MemInt,
     "ВНУТР ЗУ", "INT STORAGE",
     "Переход в режим работы с внутренней памятью",
     "Transition to an operating mode with internal memory",
@@ -1169,18 +1166,18 @@ DEF_PAGE_6(mpSetName, &Page::empty, NamePage::SB_MemExtSetName,
     nullptr, nullptr, nullptr, OnMemExtSetNameRegSet
 )
 
-DEF_PAGE_4(pMemory, PageMain::self, NamePage::Memory,
+DEF_PAGE_4(pageMemory, PageMain::self, NamePage::Memory,
     "ПАМЯТЬ", "MEMORY",
     "Работа с внешней и внутренней памятью.",
     "Working with external and internal memory.",
     mcMemoryNumPoints,
-    pageLatest,
+    *PageMemory::PageLatest::self,
     mspMemInt,
     pageMemoryExt,
     nullptr, nullptr, nullptr, nullptr
 )
 
-const Page *PageMemory::self = &pMemory;
+const Page *PageMemory::self = &pageMemory;
 const Page *PageMemory::PageLatest::self = &pageLatest;
 const Page *PageMemory::Internal::self = &mspMemInt;
 const Page *PageMemory::PageExternal::self = &pageMemoryExt;
