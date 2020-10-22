@@ -41,6 +41,7 @@ struct Color {
     static Color::E MenuTitle(bool inShade);
     static Color::E MenuItem(bool inShade);
     static Color::E FILL;
+    static Color::E BACK;
 
 private:
     static Color::E current;

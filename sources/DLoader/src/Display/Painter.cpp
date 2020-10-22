@@ -12,9 +12,6 @@ static Color::E currentColor = Color::NUM;
 static int numberColorsUsed = 0;
 
 
-Color::E gColorBack;
-
-
 struct StateTransmit { enum E
 {
     Free,
@@ -30,11 +27,11 @@ void CalculateCurrentColor(void)
 {
     if (currentColor == Color::FLASH_10)
     {
-        Painter::SetColor(inverseColors ? gColorBack : Color::FILL);
+        Painter::SetColor(inverseColors ? Color::BACK : Color::FILL);
     }
     else if (currentColor == Color::FLASH_01)
     {
-        Painter::SetColor(inverseColors ? Color::FILL : gColorBack);
+        Painter::SetColor(inverseColors ? Color::FILL : Color::BACK);
     }
 }
 
@@ -44,11 +41,11 @@ void CalculateColor(uint8 *color)
     currentColor = static_cast<Color::E>(*color);
     if (*color == Color::FLASH_10)
     {
-        *color = static_cast<uint8>(inverseColors ? gColorBack : Color::FILL);
+        *color = static_cast<uint8>(inverseColors ? Color::BACK : Color::FILL);
     }
     else if (*color == Color::FLASH_01)
     {
-        *color = static_cast<uint8>(inverseColors ? Color::FILL : gColorBack);
+        *color = static_cast<uint8>(inverseColors ? Color::FILL : Color::BACK);
     }
 }
 

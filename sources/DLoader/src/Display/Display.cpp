@@ -27,7 +27,6 @@ static void DrawBigMNIPI(void);
 static void InitPoints(void);
 
 
-extern Color::E gColorBack;
 extern Color::E gColorGrid;
 extern Color::E gColorChan[4];
 
@@ -39,8 +38,6 @@ void Display::Init(void)
     ms->display.isRun = false;
     ms->display.timePrev = 0;
     ms->display.direction = 10.0F;
-
-    gColorBack = Color::BLACK;
 
     for (int i = 0; i < 14; i++)
     {
@@ -84,7 +81,7 @@ void Display::Update(void)
 
     if (ms->state == State::Start || ms->state == State::Ok)
     {
-        Painter::BeginScene(gColorBack);
+        Painter::BeginScene(Color::BACK);
         Painter::SetColor(Color::FILL);
         Painter::DrawRectangle(0, 0, 319, 239);
         DrawBigMNIPI();
