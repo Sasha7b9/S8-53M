@@ -12,10 +12,6 @@ namespace Painter
 
     void EndScene(void);
 
-    void ResetFlash(void);
-
-    void LoadPalette(int num);
-
     static void DrawVLine(int x, int y0, int y1);
 
     void DrawVPointLine(int x, int y0, int y1, float delta, Color::E color);

@@ -45,11 +45,7 @@ void Display::Init(void)
         set.display.colors[i + 2] = MAKE_COLOR((int)red, (int)green, (int)blue);
     }
 
-    Painter::ResetFlash();
-
-    Painter::LoadPalette(0);
-    Painter::LoadPalette(1);
-    Painter::LoadPalette(2);
+    Color::ResetFlash();
 
     Painter::SetFont(TypeFont::_8);
     

@@ -28,19 +28,6 @@ void InverseColor(Color::E *color)
 }
 
 
-static void OnTimerFlashDisplay(void)
-{
-    inverseColors = !inverseColors;
-}
-
-
-void Painter::ResetFlash(void)
-{
-    Timer::Enable(TypeTimer::FlashDisplay, 400, OnTimerFlashDisplay);
-    inverseColors = false;
-}
-
-
 void Painter::SetFont(TypeFont::E)
 {
 }
@@ -101,20 +88,6 @@ void Painter::DrawSignal(int , uint8 [281], bool )
 }
 
 
-void Painter::LoadPalette(int num)
-{
-    int min[] = {0, 5, 10};
-    int max[] = {4, 9, 15};
-
-    int i = min[num];
-    int a = max[num];
-
-    for (; i <= a; i++)
-    {
-    }
-}
-
-
 void Painter::BeginScene(Color::E color)
 {
     if (stateTransmit == StateTransmit::NeedForTransmitFirst || stateTransmit == StateTransmit::NeedForTransmitSecond)
@@ -123,9 +96,6 @@ void Painter::BeginScene(Color::E color)
         stateTransmit = StateTransmit::InProcess;
         if(needForLoadFontsAndPalette) 
         {
-            Painter::LoadPalette(0);
-            Painter::LoadPalette(1);
-            Painter::LoadPalette(2);
             Painter::LoadFont(TypeFont::_5);
             Painter::LoadFont(TypeFont::_8);
             Painter::LoadFont(TypeFont::_UGO);
