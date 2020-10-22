@@ -52,9 +52,6 @@ Color::E ColorBorderMenu(bool inShade);    // Цвет окантовки меню.
 Color::E ColorContrast(Color::E color);       // Возвращает цвет, контрастный к color. Может быть белым или чёрным.
 Color::E LightShadingTextColor();      // Светлый цвет в тени.
 
-#define ColorGrid() Color::GRID
-
-
 // Чуть менее светлый цвет, чем цвет элемента меню. Используется для создания эффекта объёма.
 #define ColorMenuItemLessBright()   Color::MENU_ITEM_DARK
 // Чуть более светлый цвет, чем цвет заголовка страницы. Используется для создания эффекта объёма.

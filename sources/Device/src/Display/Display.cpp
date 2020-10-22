@@ -368,7 +368,7 @@ void Display::DrawDataChannel(uint8 *data, Channel::E chan, DataSettings *ds, in
         /*
         if (set.display.numAveraging > ENumAveraging::_1)
         {
-            Color::SetCurrent(ColorGrid());
+            Color::SetCurrent(Color::GRID);
             DrawSignalLined(DS_GetData(chan, 0), ds, firstPoint, lastPoint, minY, maxY, scaleY, scaleX, calculateFiltr);    // WARN
         }
         Color::SetCurrent(ColorChannel(chan));
@@ -1321,7 +1321,7 @@ void Display::DrawGridSpectrum()
         for (int i = 1; i < numParts; i++)
         {
             int y = static_cast<int>(Grid::MathTop() + i * scale);
-            HLine().Draw(y, Grid::Left(), Grid::Left() + 256, ColorGrid());
+            HLine().Draw(y, Grid::Left(), Grid::Left() + 256, Color::GRID);
             if (!Menu::IsMinimize())
             {
                 Color::SetCurrent(Color::FILL);
@@ -1341,7 +1341,7 @@ void Display::DrawGridSpectrum()
         for (int i = 1; i < 5; i++)
         {
             int y = static_cast<int>(Grid::MathTop() + i * scale);
-            HLine().Draw(y, Grid::Left(), Grid::Left() + 256, ColorGrid());
+            HLine().Draw(y, Grid::Left(), Grid::Left() + 256, Color::GRID);
             if (!Menu::IsMinimize())
             {
                 Text(strs[i]).Draw(5, y - 4, Color::FILL);
@@ -1435,7 +1435,7 @@ void Display::DrawGridType1(int left, int top, int right, int bottom, float cent
     }
     masX[16] = (uint16)(right - 1);
 
-    MultiVPointLine(17, masX, static_cast<int>(stepY), CalculateCountV()).Draw(static_cast<int>(top + stepY), ColorGrid());
+    MultiVPointLine(17, masX, static_cast<int>(stepY), CalculateCountV()).Draw(static_cast<int>(top + stepY), Color::GRID);
 
     uint8 mas[13];
     mas[0] = (uint8)(top + 1);
@@ -1453,7 +1453,7 @@ void Display::DrawGridType1(int left, int top, int right, int bottom, float cent
     }
     mas[12] = (uint8)(bottom - 1);
 
-    MultiHPointLine(13, mas, static_cast<int>(stepX), CalculateCountH()).Draw(static_cast<int>(left + stepX), ColorGrid());
+    MultiHPointLine(13, mas, static_cast<int>(stepX), CalculateCountH()).Draw(static_cast<int>(left + stepX), Color::GRID);
 }
 
 
@@ -1467,7 +1467,7 @@ void Display::DrawGridType2(int left, int top, int right, int bottom, int deltaX
         masX[i] = (uint16)(left + deltaX * i);
     }
     masX[14] = (uint16)(right - 1);
-    MultiVPointLine(15, masX, stepY, CalculateCountV()).Draw(top + stepY, ColorGrid());
+    MultiVPointLine(15, masX, stepY, CalculateCountV()).Draw(top + stepY, Color::GRID);
 
     uint8 mas[11];
     mas[0] = (uint8)(top + 1);
@@ -1476,7 +1476,7 @@ void Display::DrawGridType2(int left, int top, int right, int bottom, int deltaX
         mas[i] = (uint8)(top + deltaY * i);
     }
     mas[10] = (uint8)(bottom - 1);
-    MultiHPointLine(11, mas, stepX, CalculateCountH()).Draw(left + stepX, ColorGrid());
+    MultiHPointLine(11, mas, stepX, CalculateCountH()).Draw(left + stepX, Color::GRID);
 }
 
 
@@ -1485,10 +1485,10 @@ void Display::DrawGridType3(int left, int top, int right, int bottom, int center
 {
     Painter::DrawHPointLine(centerY, left + stepX, right, static_cast<float>(stepX));
     uint8 masY[6] = {(uint8)(top + 1), (uint8)(top + 2), (uint8)(centerY - 1), (uint8)(centerY + 1), (uint8)(bottom - 2), (uint8)(bottom - 1)};
-    MultiHPointLine(6, masY, deltaX, (right - top) / deltaX).Draw(left + deltaX, ColorGrid());
-    Painter::DrawVPointLine(centerX, top + stepY, bottom, static_cast<float>(stepY), ColorGrid());
+    MultiHPointLine(6, masY, deltaX, (right - top) / deltaX).Draw(left + deltaX, Color::GRID);
+    Painter::DrawVPointLine(centerX, top + stepY, bottom, static_cast<float>(stepY), Color::GRID);
     uint16 masX[6] = {(uint16)(left + 1), (uint16)(left + 2), (uint16)(centerX - 1), (uint16)(centerX + 1), (uint16)(right - 2), (uint16)(right - 1)};
-    MultiVPointLine(6, masX, deltaY, (bottom - top) / deltaY).Draw(top + deltaY, ColorGrid());
+    MultiVPointLine(6, masX, deltaY, (bottom - top) / deltaY).Draw(top + deltaY, Color::GRID);
 }
 
 
@@ -1520,7 +1520,7 @@ void Display::DrawGrid(int left, int top, int width, int height)
     int centerX = left + width / 2;
     int centerY = top + height / 2;
 
-    Color::SetCurrent(ColorGrid());
+    Color::SetCurrent(Color::GRID);
     if (TYPE_GRID_IS_1)
     {
         DrawGridType1(left, top, right, bottom, static_cast<float>(centerX), static_cast<float>(centerY), deltaX, deltaY, stepX, stepY);
