@@ -61,7 +61,7 @@ static void DrawPageDescription()
 }
 
 
-void HelpContent_Draw()
+void PageHelpContent::Draw()
 {
     uint startTime = gTimerMS;
     Region(319 - Grid::Right(), 20).Fill(Grid::Right(), 0, COLOR_BACK);
@@ -103,7 +103,7 @@ static int NumParagraphs(const PageHelpItem *page)
     return retValue;
 }
 
-void HelpContent_NextParagraph()
+void PageHelpContent::NextParagraph()
 {
     if(currentPage->OwnData()->type == TypePageHelp::Content)
     {
@@ -111,7 +111,7 @@ void HelpContent_NextParagraph()
     }
 }
 
-void HelpContent_PrevParagraph()
+void PageHelpContent::PrevParagraph()
 {
     if(currentPage->OwnData()->type == TypePageHelp::Content)
     {
@@ -119,7 +119,7 @@ void HelpContent_PrevParagraph()
     }
 }
 
-void HelpContent_EnterParagraph()
+void PageHelpContent::EnterParagraph()
 {
     if(currentPage->OwnData()->type == TypePageHelp::Content)
     {
@@ -128,7 +128,7 @@ void HelpContent_EnterParagraph()
     currentParagraph = 0;
 }
 
-void HelpContent_LeaveParagraph()
+void PageHelpContent::LeaveParagraph()
 {
     currentParagraph = 0;
     if(currentPage->OwnData()->parent)
@@ -137,12 +137,12 @@ void HelpContent_LeaveParagraph()
     }
 }
 
-bool HelpContent_LeaveParagraphIsActive()
+bool PageHelpContent::LeaveParagraphIsActive()
 {
     return currentPage->OwnData()->parent != 0;
 }
 
-bool HelpContent_EnterParagraphIsActive()
+bool PageHelpContent::EnterParagraphIsActive()
 {
     return currentPage->OwnData()->type == TypePageHelp::Content;
 }

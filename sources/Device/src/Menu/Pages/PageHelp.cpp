@@ -42,28 +42,28 @@ DEF_SMALL_BUTTON(sbHelpParagraphEnter, PageHelp::self,
     "Открыть", "Open",
     "Открывает раздел справки",
     "Opens the section of the reference",
-    HelpContent_EnterParagraphIsActive, HelpContent_EnterParagraph, DrawSB_Help_ParagraphEnter, nullptr
+    PageHelpContent::EnterParagraphIsActive, PageHelpContent::EnterParagraph, DrawSB_Help_ParagraphEnter, nullptr
 )
 
 DEF_SMALL_BUTTON(sbHelpParagraphLeave, PageHelp::self,
     "Закрыть", "Close",
     "Закрывает раздел справки",
     "Closes the section of the reference",
-    HelpContent_LeaveParagraphIsActive, HelpContent_LeaveParagraph, DrawSB_Help_ParagraphLeave, nullptr
+    PageHelpContent::LeaveParagraphIsActive, PageHelpContent::LeaveParagraph, DrawSB_Help_ParagraphLeave, nullptr
 )
 
 DEF_SMALL_BUTTON(sbHelpParagraphPrev, PageHelp::self,
     "Предыдущий раздел", "Previous section",
     "Выбрать предыдущий раздел справки",
     "To choose the previous section of the reference",
-    nullptr, HelpContent_PrevParagraph, DrawSB_Help_ParagraphPrev, nullptr
+    nullptr, PageHelpContent::PrevParagraph, DrawSB_Help_ParagraphPrev, nullptr
 )
 
 DEF_SMALL_BUTTON(sbHelpParagraphNext, PageHelp::self,
     "", "",
     "",
     "",
-    nullptr, HelpContent_NextParagraph, DrawSB_Help_ParagraphNext, nullptr
+    nullptr, PageHelpContent::NextParagraph, DrawSB_Help_ParagraphNext, nullptr
 )
 
 static void PressSB_Help_Exit()
@@ -90,7 +90,7 @@ DEF_PAGE_6(pageHelp, PageMain::self, NamePage::SB_Help,
     Item::empty,
     sbHelpParagraphPrev,
     sbHelpParagraphNext,
-    nullptr, nullptr,  HelpContent_Draw, OnHelpRegSet
+    nullptr, nullptr,  PageHelpContent::Draw, OnHelpRegSet
 );
 
 
