@@ -5,6 +5,8 @@
 
 static int additionShift = 0;
 
+StateFPGA FPGA::state;
+
 
 void FPGA::WriteToDAC(TypeWriteDAC::E, uint16)
 {

@@ -229,7 +229,7 @@ void FuncAttScreen(void)
 #define dX 20
 #define dY -15
     
-    switch(state.stateCalibration)
+    switch(FPGA::state.stateCalibration)
     {
         case StateCalibration::None:
         {
