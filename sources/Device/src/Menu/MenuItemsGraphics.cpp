@@ -640,7 +640,7 @@ void Choice::DrawClosed(int x, int y) const
     }
 
     float deltaY = Step();
-    Color::E colorText = shade ? LightShadingTextColor() : Color::BACK;
+    Color::E colorText = shade ? Color::LightShadingText() : Color::BACK;
     Color::SetCurrent(colorText);
     if(deltaY == 0.0F) //-V2550 //-V550
     {
@@ -764,7 +764,7 @@ void Page::Draw(int x, int y, bool)
     {
         Painter::DrawVolumeButton(x + 1, y + 2, MI_WIDTH - 2, MI_HEIGHT - 2, 2, Color::MenuItem(isShade), ColorMenuItemBrighter(), ColorMenuItemLessBright(), isPressed, isShade);
     }
-    Color::E colorText = isShade ? LightShadingTextColor() : Color::BLACK;
+    Color::E colorText = isShade ? Color::LightShadingText() : Color::BLACK;
     int delta = 0;
     if(isPressed && (!isShade))
     {
@@ -827,7 +827,7 @@ void Page::DrawTitle(int layer, int yTop)
     VLine().Draw(x, yTop, yTop + HeightOpened(), Color::BorderMenu(false));
     bool condDrawRSet = NumSubPages() > 1 && Menu::CurrentItem()->Type() != TypeItem::ChoiceReg && Menu::CurrentItem()->Type() != TypeItem::Governor && Menu::OpenedItem()->Type() == TypeItem::Page;
     int delta = condDrawRSet ? -10 : 0;
-    Color::E colorText = shade ? LightShadingTextColor() : Color::BLACK;
+    Color::E colorText = shade ? Color::LightShadingText() : Color::BLACK;
     x = Text(Title()).DrawInCenterRect(x, yTop, MP_TITLE_WIDTH + 2 + delta, MP_TITLE_HEIGHT, colorText);
     if (condDrawRSet)
     {

@@ -69,7 +69,7 @@ Color::E Color::BorderMenu(bool inShade)
 
 
 
-Color::E ColorContrast(Color::E color)
+Color::E Color::Contrast(Color::E color)
 {
     uint16 colorValue = set.display.colors[color];
     if (R_FROM_COLOR(colorValue) > 16 || G_FROM_COLOR(colorValue) > 32 || B_FROM_COLOR(colorValue) > 16)    //-V112
@@ -81,7 +81,7 @@ Color::E ColorContrast(Color::E color)
 
 
 
-Color::E LightShadingTextColor()
+Color::E Color::LightShadingText()
 {
     return Color::MenuTitle(false);
 }

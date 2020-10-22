@@ -41,7 +41,9 @@ struct Color {
     static Color::E Trig();
     static Color::E MenuTitle(bool inShade);
     static Color::E MenuItem(bool inShade);
-    static Color::E BorderMenu(bool inShade);    // Цвет окантовки меню.
+    static Color::E BorderMenu(bool inShade);       // Цвет окантовки меню.
+    static Color::E Contrast(Color::E color);       // Возвращает цвет, контрастный к color. Может быть белым или чёрным.
+    static Color::E LightShadingText();             // Светлый цвет в тени.
     static Color::E FILL;
     static Color::E BACK;
 
@@ -49,9 +51,6 @@ private:
     static Color::E current;
 };
 
-
-Color::E ColorContrast(Color::E color);       // Возвращает цвет, контрастный к color. Может быть белым или чёрным.
-Color::E LightShadingTextColor();      // Светлый цвет в тени.
 
 // Чуть менее светлый цвет, чем цвет элемента меню. Используется для создания эффекта объёма.
 #define ColorMenuItemLessBright()   Color::MENU_ITEM_DARK
