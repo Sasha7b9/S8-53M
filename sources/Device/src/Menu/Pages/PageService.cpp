@@ -30,7 +30,6 @@ extern const Choice       cMath_FFT_Enable;             // СЕРВИС - МАТЕМАТИКА -
 extern const Choice       cMath_FFT_Scale;              // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Шкала
 extern const Choice       cMath_FFT_Source;             // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Источник
 extern const Choice       cMath_FFT_Window;             // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Окно
-extern const Page      ppppMath_FFT_Cursors;            // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ
 static bool       IsActive_Math_FFT_Cursors();
 static void       OnRegSet_Math_FFT_Cursors(int angle);
 extern const SmallButton  cMath_FFT_Cursors_Exit;        // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ - Выход
@@ -439,12 +438,12 @@ DEF_PAGE_6(pppMath_FFT, PageService::PageMath::self, NamePage::MathFFT,
     "СПЕКТР", "SPECTRUM",
     "Отображение спектра входного сигнала",
     "Mapping the input signal spectrum",
-    cMath_FFT_Enable,       // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Отображение
-    cMath_FFT_Scale,        // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Шкала
-    cMath_FFT_Source,       // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Источник
-    cMath_FFT_Window,       // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Окно
-    ppppMath_FFT_Cursors,   // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ
-    cMath_FFT_Limit,        // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Диапазон
+    cMath_FFT_Enable,                                   // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Отображение
+    cMath_FFT_Scale,                                    // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Шкала
+    cMath_FFT_Source,                                   // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Источник
+    cMath_FFT_Window,                                   // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Окно
+    PageService::PageMath::PageFFT::PageCursors::self,  // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ
+    cMath_FFT_Limit,                                    // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Диапазон
     IsActive_Math_FFT, OnPress_Math_FFT, nullptr, nullptr
 )
 
@@ -500,7 +499,7 @@ DEF_CHOICE_4(cMath_FFT_Window, &pppMath_FFT,
     WINDOW_FFT, nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_6(ppppMath_FFT_Cursors, &pppMath_FFT, NamePage::SB_MathCursorsFFT,
+DEF_PAGE_6(pageCursorsFFT, &pppMath_FFT, NamePage::SB_MathCursorsFFT,
     "КУРСОРЫ", "CURSORS",
     "Включает курсоры для измерения параметров спектра",
     "Includes cursors to measure the parameters of the spectrum",
@@ -524,7 +523,7 @@ static void OnRegSet_Math_FFT_Cursors(int angle)
     Sound::RegulatorShiftRotate();
 }
 
-DEF_SMALL_BUTTON(cMath_FFT_Cursors_Exit, &ppppMath_FFT_Cursors,
+DEF_SMALL_BUTTON(cMath_FFT_Cursors_Exit, PageService::PageMath::PageFFT::PageCursors::self,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
     nullptr, OnPress_Math_FFT_Cursors_Exit, DrawSB_Exit, nullptr
 )
@@ -534,7 +533,7 @@ static void OnPress_Math_FFT_Cursors_Exit(void)
     Display::RemoveAddDrawFunction();
 }
 
-DEF_SMALL_BUTTON(cMath_FFT_Cursors_Source, &ppppMath_FFT_Cursors,
+DEF_SMALL_BUTTON(cMath_FFT_Cursors_Source, PageService::PageMath::PageFFT::PageCursors::self,
     "Источник", "Source",
     "Выбор источника для расчёта спектра",
     "Source choice for calculation of a range",
@@ -755,6 +754,6 @@ static void OnPress_Information_Exit(void)
 const Page *PageService::self = &pageService;
 const Page *PageService::PageMath::self = &pageMath;
 const Page *PageService::PageMath::PageFunction::self = &pageMathFunction;
-const Page *PageService::PageMath::PageFFT::Cursors::self = &ppppMath_FFT_Cursors;
+const Page *PageService::PageMath::PageFFT::PageCursors::self = &pageCursorsFFT;
 const Page *PageService::PageCalibrator::self = &ppCalibrator;
 const Page *PageService::PageInformation::self = &ppInformation;

@@ -174,7 +174,7 @@ struct PageService
 
         struct PageFFT
         {
-            struct Cursors
+            struct PageCursors
             {
                 static const Page *self;
             };
