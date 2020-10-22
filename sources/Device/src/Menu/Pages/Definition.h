@@ -230,7 +230,7 @@ struct PageMemory
         static const Page *self;
     };
 
-    struct Internal
+    struct PageInternal
     {
         static const Page *self;
     };

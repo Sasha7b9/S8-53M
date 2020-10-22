@@ -166,7 +166,7 @@ static void PressSB_SetName_Exit()
     }
     else if (EXIT_FROM_SET_NAME_TO_INT)
     {
-        PageMemory::Internal::self->OpenAndSetItCurrent();
+        PageMemory::PageInternal::self->OpenAndSetItCurrent();
     }
     EXIT_FROM_SET_NAME_TO = RETURN_TO_DISABLE_MENU;
 }
@@ -199,7 +199,7 @@ DEF_SMALL_BUTTON(sbMemLastNext, PageMemory::PageLatest::self,
 
 void PressSB_MemLast_IntEnter()
 {
-    PageMemory::Internal::self->OpenAndSetItCurrent();
+    PageMemory::PageInternal::self->OpenAndSetItCurrent();
     MODE_WORK = ModeWork::MemInt;
     EPROM::GetData(CURRENT_NUM_INT_SIGNAL, &gDSmemInt, &gData0memInt, &gData1memInt);
     EXIT_FROM_INT_TO_LAST = 1;
@@ -607,8 +607,6 @@ static void PressSB_MemInt_ShowSignalAlways()
     INT_SHOW_ALWAYS = (INT_SHOW_ALWAYS == 0) ? 1U : 0U;
 }
 
-extern const Page mspMemInt;
-
 static const arrayHints hintsMemIntShowSignalAlways =
 {
     {DrawSB_MemInt_ShowSignalAllways_Yes, "показывать выбранный сигнал из внутренней памяти поверх текущего",
@@ -617,7 +615,7 @@ static const arrayHints hintsMemIntShowSignalAlways =
                                           "the signal from internal memory is visible only in an operating mode with an internal memory"}
 };
 
-DEF_SMALL_BUTTON(sbMemIntShowSignalAlways, &mspMemInt,
+DEF_SMALL_BUTTON(sbMemIntShowSignalAlways, PageMemory::PageInternal::self,
     "Показывать всегда", "To show always",
     "Позволяет всегда показывать выбранный сохранённый сигнал поверх текущего",
     "Allows to show always the chosen kept signal over the current",
@@ -685,7 +683,7 @@ static const arrayHints hintsMemIntModeShow =
     { DrawSB_MemInt_ModeShow_Both,   "на дисплее оба сигнала",        "on the display the both signals" }
 };
 
-DEF_SMALL_BUTTON(sbMemIntModeShow, &mspMemInt,
+DEF_SMALL_BUTTON(sbMemIntModeShow, PageMemory::PageInternal::self,
     "Вид сигнала", "Type of a signal",
     "Показывать записанный или текущий сигнал в режиме ВНУТР ЗУ",
     "Show recorded or current signal in mode Internal Memory",
@@ -705,7 +703,7 @@ static void DrawSB_MemInt_Delete(int x, int y)
     Font::Set(TypeFont::_8);
 }
 
-DEF_SMALL_BUTTON(sbMemIntDelete, &mspMemInt,
+DEF_SMALL_BUTTON(sbMemIntDelete, PageMemory::PageInternal::self,
     "Удалить сигнал", "Delete signal",
     "Удалить сигнал",
     "Delete signal",
@@ -713,14 +711,14 @@ DEF_SMALL_BUTTON(sbMemIntDelete, &mspMemInt,
 )
 
 
-DEF_SMALL_BUTTON(sbMemIntSave, &mspMemInt,
+DEF_SMALL_BUTTON(sbMemIntSave, PageMemory::PageInternal::self,
     "Сохранить", "Save",
     "Сохранить сигнал во внутреннем запоминующем устройстве",
     "To keep a signal in an internal memory",
     nullptr, PressSB_MemInt_SaveToIntMemory, DrawSB_MemInt_SaveToIntMemory, nullptr
 )
 
-DEF_SMALL_BUTTON(sbMemIntSaveToFlash, &mspMemInt,
+DEF_SMALL_BUTTON(sbMemIntSaveToFlash, PageMemory::PageInternal::self,
     "Сохранить", "Save",
     "Сохраняет сигнал на флешку",
     "Save signal to flash drive",
@@ -752,9 +750,7 @@ DEF_SMALL_BUTTON(sbExitSetName, &mpSetName,     // Кнопк для выхода из режима за
     nullptr, PressSB_SetName_Exit, DrawSB_Exit, nullptr
 )
 
-extern const Page mspMemInt;
-
-DEF_SMALL_BUTTON(sbExitMemInt, &mspMemInt,    // Кнопка для выхода из режима малых кнопок.
+DEF_SMALL_BUTTON(sbExitMemInt, PageMemory::PageInternal::self,    // Кнопка для выхода из режима малых кнопок.
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
     nullptr, PressSB_MemInt_Exit, DrawSB_Exit, nullptr
 )
@@ -1129,12 +1125,12 @@ DEF_PAGE_6(pageMemoryExt, PageMemory::self, NamePage::MemoryExt,
 
 void OnPressMemoryInt()
 {
-    PageMemory::Internal::self->OpenAndSetItCurrent();
+    PageMemory::PageInternal::self->OpenAndSetItCurrent();
     MODE_WORK = ModeWork::MemInt;
     EPROM::GetData(CURRENT_NUM_INT_SIGNAL, &gDSmemInt, &gData0memInt, &gData1memInt);
 }
 
-DEF_PAGE_6(mspMemInt, PageMemory::self, NamePage::SB_MemInt,
+DEF_PAGE_6(pageInternal, PageMemory::self, NamePage::SB_MemInt,
     "ВНУТР ЗУ", "INT STORAGE",
     "Переход в режим работы с внутренней памятью",
     "Transition to an operating mode with internal memory",
@@ -1172,14 +1168,14 @@ DEF_PAGE_4(pageMemory, PageMain::self, NamePage::Memory,
     "Working with external and internal memory.",
     mcMemoryNumPoints,
     *PageMemory::PageLatest::self,
-    mspMemInt,
+    *PageMemory::PageInternal::self,
     pageMemoryExt,
     nullptr, nullptr, nullptr, nullptr
 )
 
 const Page *PageMemory::self = &pageMemory;
 const Page *PageMemory::PageLatest::self = &pageLatest;
-const Page *PageMemory::Internal::self = &mspMemInt;
+const Page *PageMemory::PageInternal::self = &pageInternal;
 const Page *PageMemory::PageExternal::self = &pageMemoryExt;
 const Page *PageMemory::SetMask::self = &mspSetMask;
 const Page *PageMemory::SetName::self = &mpSetName;
