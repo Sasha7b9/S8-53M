@@ -745,3 +745,10 @@ Text::Text(char *format, ...)
     text = String(buffer);
 #undef SIZE_BUFFER
 }
+
+
+void Char::Draw2Symbols(int x, int y, char symbol2, Color::E color1, Color::E color2)
+{
+    Char(symbol).Draw(x, y, color1);
+    Char(symbol2).Draw(x, y, color2);
+}

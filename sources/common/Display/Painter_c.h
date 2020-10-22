@@ -37,8 +37,6 @@ public:
 
     static bool SaveScreenToFlashDrive();
 
-    static void Draw2SymbolsC(int x, int y, char symbol1, char symbol2, Color::E color1, Color::E color2);
-
     static void CalculateCurrentColor();
 
     static bool noFonts;

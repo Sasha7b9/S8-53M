@@ -1487,11 +1487,6 @@
               <FilePath>..\common\Display\Painter_c_stm.cpp</FilePath>
             </File>
             <File>
-              <FileName>PainterText.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\PainterText.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Primitives_c.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Display\Primitives_c.h</FilePath>
@@ -3711,11 +3706,6 @@
               <FileName>Painter_c_stm.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Display\Painter_c_stm.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>PainterText.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\PainterText.cpp</FilePath>
             </File>
             <File>
               <FileName>Primitives_c.h</FileName>
