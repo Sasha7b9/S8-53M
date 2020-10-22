@@ -46,7 +46,7 @@ static const MACaddress name(&di##name);
 #define DEF_TIME(name, keeper, titleRU, titleEN, hintRU, hintEN, curField, hours, minutes, seconds, month, day, year)                       \
 static const DataTime dt##name = {&curField, &hours, &minutes, &seconds, &month, &day, &year};                                              \
 static const char *th##name[] = {titleRU, titleEN, hintRU, hintEN};                                                                         \
-static const DataItem di##name = { TypeItem::Time, (const Page *)&keeper, nullptr, th##name, &dt##name};                                    \
+static const DataItem di##name = { TypeItem::Time, (const Page *)keeper, nullptr, th##name, &dt##name};                                     \
 static const TimeItem name(&di##name);
 
 

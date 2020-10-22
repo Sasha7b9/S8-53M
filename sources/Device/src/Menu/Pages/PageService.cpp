@@ -391,7 +391,7 @@ DEF_PAGE_6(pageMathFunction, PageService::PageMath::self, NamePage::SB_MathFunct
     IsActive_Math_Function, OnPress_Math_Function, nullptr, OnRegSet_Math_Function
 );
 
-DEF_PAGE_2(ppMath, PageService::self, NamePage::Math,
+DEF_PAGE_2(pageMath, PageService::self, NamePage::Math,
     "МАТЕМАТИКА", "MATH",
     "Математические функции и БПФ",
     "Mathematical functions and FFT",
@@ -400,20 +400,20 @@ DEF_PAGE_2(ppMath, PageService::self, NamePage::Math,
     nullptr, nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_10(pService, PageMain::self, NamePage::Service,
+DEF_PAGE_10(pageService, PageMain::self, NamePage::Service,
     "СЕРВИС", "SERVICE",
     "Дополнительные настройки, калибровка, поиск сигнала, математические функции",
     "Additional settings, calibration, signal search, mathematical functions",
-    bResetSettings,             // СЕРВИС - Сброс настроек
-    bAutoSearch,                // СЕРВИС - Поиск сигнала
-    ppCalibrator,               // СЕРВИС - КАЛИБРАТОР
-    ppMath,                     // СЕРВИС - МАТЕМАТИКА
-    ppEthernet,                 // СЕРВИС - ETHERNET
-    cSound,                     // СЕРВИС - Звук
-    cLang,                      // СЕРВИС - Язык
-    tTime,                      // СЕРВИС - Время
-    cModeLongPressButtonTrig,   // СЕРВИС - Реж длит СИНХР
-    ppInformation,              // СЕРВИС - ИНФОРМАЦИЯ
+    bResetSettings,                 // СЕРВИС - Сброс настроек
+    bAutoSearch,                    // СЕРВИС - Поиск сигнала
+    ppCalibrator,                   // СЕРВИС - КАЛИБРАТОР
+    PageService::PageMath::self,    // СЕРВИС - МАТЕМАТИКА
+    ppEthernet,                     // СЕРВИС - ETHERNET
+    cSound,                         // СЕРВИС - Звук
+    cLang,                          // СЕРВИС - Язык
+    tTime,                          // СЕРВИС - Время
+    cModeLongPressButtonTrig,       // СЕРВИС - Реж длит СИНХР
+    ppInformation,                  // СЕРВИС - ИНФОРМАЦИЯ
     nullptr, nullptr, nullptr, nullptr
 );
 
@@ -435,7 +435,7 @@ static void Draw_Math_Function_RangeB(int x, int y)
     Char('2').Draw(x + 8, y + 5);
 }
 
-DEF_PAGE_6(pppMath_FFT, &ppMath, NamePage::MathFFT,
+DEF_PAGE_6(pppMath_FFT, PageService::PageMath::self, NamePage::MathFFT,
     "СПЕКТР", "SPECTRUM",
     "Отображение спектра входного сигнала",
     "Mapping the input signal spectrum",
@@ -566,7 +566,7 @@ static bool IsActive_Math_FFT_Limit(void)
     return SCALE_FFT_IS_LOG;
 }
 
-DEF_PAGE_5(ppEthernet, &pService, NamePage::ServiceEthernet,
+DEF_PAGE_5(ppEthernet, PageService::self, NamePage::ServiceEthernet,
     "ETHERNET", "ETHERNET",
     "Настройки ethernet",
     "Settings of ethernet",
@@ -628,7 +628,7 @@ DEF_MACADDRESS(macEthernet_MAC, ppEthernet,
     MAC_ADDR0, MAC_ADDR1, MAC_ADDR2, MAC_ADDR3, MAC_ADDR4, MAC_ADDR5, OnChanged_Ethernet_Enable
 )
 
-DEF_CHOICE_2(cSound, &pService,
+DEF_CHOICE_2(cSound, PageService::self,
     "Звук", "Sound",
     "Включение/выключение звука",
     "Inclusion/switching off of a sound",
@@ -637,7 +637,7 @@ DEF_CHOICE_2(cSound, &pService,
     SOUND_ENABLED, nullptr, nullptr, nullptr
 )
 
-DEF_CHOICE_2(cLang, &pService,
+DEF_CHOICE_2(cLang, PageService::self,
     "Язык", "Language",
     "Позволяет выбрать язык меню",
     "Allows you to select the menu language",
@@ -648,7 +648,7 @@ DEF_CHOICE_2(cLang, &pService,
 
 static int8 dServicetime = 0;
 static int8 hours = 0, minutes = 0, secondes = 0, year = 0, month = 0, day = 0;
-DEF_TIME(tTime, pService,
+DEF_TIME(tTime, PageService::self,
     "Время", "Time"
     ,
     "Установка текущего времени.\nПорядок работы:\n"
@@ -668,7 +668,7 @@ DEF_TIME(tTime, pService,
     dServicetime, hours, minutes, secondes, month, day, year
 )
 
-DEF_CHOICE_2(cModeLongPressButtonTrig, &pService,
+DEF_CHOICE_2(cModeLongPressButtonTrig, PageService::self,
     "Реж длит СИНХР", "Mode long СИНХР"
     ,
     "Устанавливает действия для длительного нажатия кнопки СИНХР:\n\"Сброс уровня\" - установка уровня синхронизации в ноль,\n\"Автоуровень\" "
@@ -682,7 +682,7 @@ DEF_CHOICE_2(cModeLongPressButtonTrig, &pService,
     MODE_LONG_PRESS_TRIG, nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_6(ppInformation, &pService, NamePage::SB_Information,
+DEF_PAGE_6(ppInformation, PageService::self, NamePage::SB_Information,
     "ИНФОРМАЦИЯ", "INFORMATION",
     "Выводит на экран идентификационные данные осциллографа",
     "Displays identification data of the oscilloscope",
@@ -752,8 +752,8 @@ static void OnPress_Information_Exit(void)
     Display::RemoveAddDrawFunction();
 }
 
-const Page *PageService::self = &pService;
-const Page *PageService::PageMath::self = &ppMath;
+const Page *PageService::self = &pageService;
+const Page *PageService::PageMath::self = &pageMath;
 const Page *PageService::PageMath::PageFunction::self = &pageMathFunction;
 const Page *PageService::PageMath::PageFFT::Cursors::self = &ppppMath_FFT_Cursors;
 const Page *PageService::PageCalibrator::self = &ppCalibrator;
