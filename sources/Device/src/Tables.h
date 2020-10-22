@@ -52,7 +52,5 @@ struct Tables
     static int GetNumChannel(Channel::E chan);
     // Выводит строку из таблицы symbolsAlphaBet
     static void DrawStr(int index, int x, int y);
+    static const char *symbolsAlphaBet[0x48];
 };
-
-
-extern const char* symbolsAlphaBet[0x48];

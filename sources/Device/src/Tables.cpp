@@ -53,7 +53,7 @@ static const TBaseStruct tBases[TBase::Count] =
 };
 
 // Таблица символов алфавита и спецсимволов для ввода текста
-const char* symbolsAlphaBet[0x48] =
+const char *Tables::symbolsAlphaBet[0x48] =
 {
     /* 0x00 */ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", /* 0x19 */
     /* 0x1a */ " ", "_", "-", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", /* 0x26 */

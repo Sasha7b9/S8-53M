@@ -307,7 +307,7 @@ void PressSB_SetMask_Insert()
     }
     if (index < 0x41)
     {
-        FILE_NAME_MASK[size] = symbolsAlphaBet[index][0];
+        FILE_NAME_MASK[size] = Tables::symbolsAlphaBet[index][0];
         FILE_NAME_MASK[size + 1] = '\0';
     }
     else
@@ -345,7 +345,7 @@ void PressSB_SetName_Insert()
     int size = static_cast<int>(std::strlen(FILE_NAME));
     if (size < MAX_SYMBOLS_IN_FILE_NAME - 1)
     {
-        FILE_NAME[size] = symbolsAlphaBet[INDEX_SYMBOL][0];
+        FILE_NAME[size] = Tables::symbolsAlphaBet[INDEX_SYMBOL][0];
         FILE_NAME[size + 1] = '\0';
     }
 }
@@ -371,7 +371,7 @@ void OnMemExtSetMaskNameRegSet(int angle, int maxIndex)
 
 static void OnMemExtSetMaskRegSet(int angle)
 {
-    OnMemExtSetMaskNameRegSet(angle, sizeof(symbolsAlphaBet) / 4);
+    OnMemExtSetMaskNameRegSet(angle, sizeof(Tables::symbolsAlphaBet) / 4);
 }
 
 DEF_SMALL_BUTTON(sbSetMaskBackspace, PageMemory::PageSetMask::self,
@@ -847,7 +847,7 @@ void DrawSetName()
     int deltaY = 12;
 
     // Рисуем большие буквы английского алфавита
-    while (symbolsAlphaBet[index][0] != ' ')
+    while (Tables::symbolsAlphaBet[index][0] != ' ')
     {
         Tables::DrawStr(index, x0 + deltaX + position * 7, y0 + deltaY0);
         index++;
@@ -856,7 +856,7 @@ void DrawSetName()
 
     // Теперь рисуем цифры и пробел
     position = 0;
-    while (symbolsAlphaBet[index][0] != 'a')
+    while (Tables::symbolsAlphaBet[index][0] != 'a')
     {
         Tables::DrawStr(index, x0 + deltaX + 50 + position * 7, y0 + deltaY0 + deltaY);
         index++;
@@ -865,7 +865,7 @@ void DrawSetName()
 
     // Теперь рисуем малые буквы алфавита
     position = 0;
-    while (symbolsAlphaBet[index][0] != '%')
+    while (Tables::symbolsAlphaBet[index][0] != '%')
     {
         Tables::DrawStr(index, x0 + deltaX + position * 7, y0 + deltaY0 + deltaY * 2);
         index++;
@@ -898,7 +898,7 @@ static void DrawFileMask(int x, int y)
             }
             else
             {
-                x = Text(symbolsAlphaBet[*ch + 0x40]).Draw(x, y);
+                x = Text(Tables::symbolsAlphaBet[*ch + 0x40]).Draw(x, y);
             }
         }
         ch++;
@@ -923,7 +923,7 @@ void DrawSetMask()
     int deltaY = 12;
 
     // Рисуем большие буквы английского алфавита
-    while(symbolsAlphaBet[index][0] != ' ')
+    while(Tables::symbolsAlphaBet[index][0] != ' ')
     {
         Tables::DrawStr(index, x0 + deltaX + position * 7, y0 + deltaY0);
         index++;
@@ -932,7 +932,7 @@ void DrawSetMask()
     
     // Теперь рисуем цифры и пробел
     position = 0;
-    while(symbolsAlphaBet[index][0] != 'a')
+    while(Tables::symbolsAlphaBet[index][0] != 'a')
     {
         Tables::DrawStr(index, x0 + deltaX + 50 + position * 7, y0 + deltaY0 + deltaY);
         index++;
@@ -941,7 +941,7 @@ void DrawSetMask()
 
     // Теперь рисуем малые буквы алфавита
     position = 0;
-    while(symbolsAlphaBet[index][0] != '%')
+    while(Tables::symbolsAlphaBet[index][0] != '%')
     {
         Tables::DrawStr(index, x0 + deltaX + position * 7, y0 + deltaY0 + deltaY * 2);
         index++;
@@ -950,7 +950,7 @@ void DrawSetMask()
 
     // Теперь рисуем спецсимволы
     position = 0;
-    while (index < (sizeof(symbolsAlphaBet) / 4))
+    while (index < (sizeof(Tables::symbolsAlphaBet) / 4))
     {
         Tables::DrawStr(index, x0 + deltaX + 26 + position * 20, y0 + deltaY0 + deltaY * 3);
         index++;
@@ -1133,7 +1133,7 @@ DEF_PAGE_6(pageInternal, PageMemory::self, NamePage::SB_MemInt,
 // Страница вызывается при выбранном ручном режиме задания имени файла перед сохранением на флешку ///////////////
 static void OnMemExtSetNameRegSet(int angle)
 {
-    OnMemExtSetMaskNameRegSet(angle, sizeof(symbolsAlphaBet) / 4 - 7);
+    OnMemExtSetMaskNameRegSet(angle, sizeof(Tables::symbolsAlphaBet) / 4 - 7);
 }
 
 DEF_PAGE_6(pageSetName, &Page::empty, NamePage::SB_MemExtSetName,
