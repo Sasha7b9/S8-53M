@@ -45,7 +45,7 @@ void DrawGovernorChoiceColorFormulaHiPart(const Item *item, int x, int y, bool p
     }
 
     Color::E color = shade ? Color::MenuTitleLessBright() : (IS_COLOR_SCHEME_WHITE_LETTERS ? Color::WHITE : Color::BLACK);
-    HLine().Draw(y + 1, x, x + width + 3, ColorBorderMenu(false));
+    HLine().Draw(y + 1, x, x + width + 3, Color::BorderMenu(false));
 
     if (shade)
     {
@@ -652,7 +652,7 @@ void Choice::DrawClosed(int x, int y) const
         HLine().Draw(static_cast<int>(y + (deltaY > 0 ? 31 : 19) - deltaY), x + 3, x + MI_WIDTH_VALUE + 1, Color::BLACK);
         Text(deltaY > 0 ? NameNextSubItem() : NamePrevSubItem()).DrawWithLimitation(x + 4, static_cast<int>(y + (deltaY > 0 ? 33 : 9) - deltaY), colorText, x, y + 19, MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1);
     }
-    HLine().Draw(y + MI_HEIGHT + 1, x, x + MI_WIDTH, ColorBorderMenu(false));
+    HLine().Draw(y + MI_HEIGHT + 1, x, x + MI_WIDTH, Color::BorderMenu(false));
 
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, pressed, shade, false);
 
@@ -755,7 +755,7 @@ void Page::Draw(int x, int y, bool)
 {
     bool isShade = IsShade() || !IsActive();
     bool isPressed = IsPressed();
-    HLine().Draw(y + 1, x, x + MI_WIDTH, ColorBorderMenu(false));
+    HLine().Draw(y + 1, x, x + MI_WIDTH, Color::BorderMenu(false));
     if (isShade)
     {
         Region(MI_WIDTH - 2, MI_HEIGHT - 2).Fill(x + 1, y + 2, Color::MenuTitleLessBright());
@@ -812,7 +812,7 @@ void Page::DrawTitle(int layer, int yTop)
     int height = HeightOpened();
     bool shade = Menu::CurrentItemIsOpened(GetName());
     Region(MP_TITLE_WIDTH + 2, height + 2).Fill(x - 1, yTop, Color::BACK);
-    Rectangle(MP_TITLE_WIDTH + 1, height + 1).Draw(x, yTop, ColorBorderMenu(shade));
+    Rectangle(MP_TITLE_WIDTH + 1, height + 1).Draw(x, yTop, Color::BorderMenu(shade));
 
     if (shade)
     {
@@ -824,7 +824,7 @@ void Page::DrawTitle(int layer, int yTop)
         Painter::DrawVolumeButton(x + 1, yTop + 1, MP_TITLE_WIDTH - 1, MP_TITLE_HEIGHT - 1, 3, Color::MenuTitle(false), ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), shade, false);
     }
 
-    VLine().Draw(x, yTop, yTop + HeightOpened(), ColorBorderMenu(false));
+    VLine().Draw(x, yTop, yTop + HeightOpened(), Color::BorderMenu(false));
     bool condDrawRSet = NumSubPages() > 1 && Menu::CurrentItem()->Type() != TypeItem::ChoiceReg && Menu::CurrentItem()->Type() != TypeItem::Governor && Menu::OpenedItem()->Type() == TypeItem::Page;
     int delta = condDrawRSet ? -10 : 0;
     Color::E colorText = shade ? LightShadingTextColor() : Color::BLACK;

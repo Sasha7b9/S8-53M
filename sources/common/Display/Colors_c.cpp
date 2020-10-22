@@ -62,7 +62,7 @@ Color::E Color::MenuItem(bool inShade)
 
 
 
-Color::E ColorBorderMenu(bool inShade)
+Color::E Color::BorderMenu(bool inShade)
 {
     return Color::MenuTitle(inShade);
 }
