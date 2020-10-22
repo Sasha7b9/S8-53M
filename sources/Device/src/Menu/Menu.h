@@ -63,7 +63,7 @@ public:
     static void CurrentPageSBregSet(int angle);
 
     static bool showHelpHints;    // Если 1, то при нажатии кнопки вместо выполнения её фунции выводится подсказка о её назначении
-
+    static bool showDebugMenu;
 
 private:
     // Обработка короткого нажатия кнопки.

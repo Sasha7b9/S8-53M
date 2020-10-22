@@ -26,6 +26,7 @@ static const int stepAngleRegSet = 2;
 
 Item *Menu::itemUnderKey = nullptr;
 bool Menu::showHelpHints = false;
+bool Menu::showDebugMenu = false;
 
 #define SIZE_BUFFER_FOR_BUTTONS 5
 static Key::E bufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {Key::None, Key::None, Key::None, Key::None, Key::None};
@@ -225,7 +226,7 @@ void Menu::PressButton(Key::E button)
       
         if (std::memcmp(bufferForButtons, sampleBufferForButtons, SIZE_BUFFER_FOR_BUTTONS * sizeof(Key::E)) == 0)
         {
-            SHOW_DEBUG_MENU = 1;
+            showDebugMenu = true;
             Display::ShowWarningGood(Warning::MenuDebugEnabled);
         }
     }

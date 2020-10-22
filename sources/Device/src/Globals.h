@@ -12,12 +12,10 @@ class Item;
 #define NEED_OPEN_FILE_MANAGER      (gBF.needOpenFileMananger)
 #define NEED_CLOSE_PAGE_SB          (gBF.needClosePageSB)
 #define NEED_RESET_SETTINGS         (gBF.needResetSettings)
-#define SHOW_DEBUG_MENU             (gBF.showDebugMenu)
 
 
 struct BitField
 {
-    uint showDebugMenu              : 1;
     uint needOpenFileMananger       : 1;    // Если 1, то нужно открыть файловый менеджер (сработало автоподключение)
     uint needClosePageSB            : 1;    // Если 1, нужно закрывать страницу малых кнопок
     uint needResetSettings          : 1;    // Если 1, то необходим сброс настроек
