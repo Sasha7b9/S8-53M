@@ -23,7 +23,6 @@ static void           Draw_Math_Function_RangeA(int x, int y);
 extern const SmallButton sbMath_Function_RangeB;        // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ - Масштаб 2-го канала
 static void        OnPress_Math_Function_RangeB();
 static void           Draw_Math_Function_RangeB(int x, int y);
-extern const Page       pppMath_FFT;                    // СЕРВИС - МАТЕМАТИКА - СПЕКТР
 static void        OnPress_Math_FFT();
 static bool       IsActive_Math_FFT();
 extern const Choice       cMath_FFT_Enable;             // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Отображение
@@ -394,7 +393,7 @@ DEF_PAGE_2(pageMath, PageService::self, NamePage::Math,
     "Математические функции и БПФ",
     "Mathematical functions and FFT",
     *PageService::PageMath::PageFunction::self,     // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ
-    pppMath_FFT,                                    // СЕРВИС - МАТЕМАТИКА - СПЕКТР
+    *PageService::PageMath::PageFFT::self,          // СЕРВИС - МАТЕМАТИКА - СПЕКТР
     nullptr, nullptr, nullptr, nullptr
 )
 
@@ -433,7 +432,7 @@ static void Draw_Math_Function_RangeB(int x, int y)
     Char('2').Draw(x + 8, y + 5);
 }
 
-DEF_PAGE_6(pppMath_FFT, PageService::PageMath::self, NamePage::MathFFT,
+DEF_PAGE_6(pageFFT, PageService::PageMath::self, NamePage::MathFFT,
     "СПЕКТР", "SPECTRUM",
     "Отображение спектра входного сигнала",
     "Mapping the input signal spectrum",
@@ -459,7 +458,7 @@ static void OnPress_Math_FFT(void)
     }
 }
 
-DEF_CHOICE_2(cMath_FFT_Enable, &pppMath_FFT,
+DEF_CHOICE_2(cMath_FFT_Enable, PageService::PageMath::PageFFT::self,
     "Отображение", "Display",
     "Включает и выключает отображение спектра",
     "Enables or disables the display of the spectrum",
@@ -468,7 +467,7 @@ DEF_CHOICE_2(cMath_FFT_Enable, &pppMath_FFT,
     ENABLED_FFT, nullptr, nullptr, nullptr
 )
 
-DEF_CHOICE_2(cMath_FFT_Scale, &pppMath_FFT,
+DEF_CHOICE_2(cMath_FFT_Scale, PageService::PageMath::PageFFT::self,
     "Шкала", "Scale",
     "Задаёт масштаб вывода спектра - линейный или логарифмический",
     "Sets the scale of the output spectrum - linear or logarithmic",
@@ -477,7 +476,7 @@ DEF_CHOICE_2(cMath_FFT_Scale, &pppMath_FFT,
     SCALE_FFT, nullptr, nullptr, nullptr
 )
 
-DEF_CHOICE_3(cMath_FFT_Source, &pppMath_FFT,
+DEF_CHOICE_3(cMath_FFT_Source, PageService::PageMath::PageFFT::self,
     "Источник", "Source",
     "Выбор источника для расчёта спектра",
     "Selecting the source for the calculation of the spectrum",
@@ -487,7 +486,7 @@ DEF_CHOICE_3(cMath_FFT_Source, &pppMath_FFT,
     SOURCE_FFT, nullptr, nullptr, nullptr
 )
 
-DEF_CHOICE_4(cMath_FFT_Window, &pppMath_FFT,
+DEF_CHOICE_4(cMath_FFT_Window, PageService::PageMath::PageFFT::self,
     "Окно", "Window",
     "Задаёт окно для расчёта спектра",
     "Sets the window to calculate the spectrum",
@@ -498,7 +497,7 @@ DEF_CHOICE_4(cMath_FFT_Window, &pppMath_FFT,
     WINDOW_FFT, nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_6(pageCursorsFFT, &pppMath_FFT, NamePage::SB_MathCursorsFFT,
+DEF_PAGE_6(pageCursorsFFT, PageService::PageMath::PageFFT::self, NamePage::SB_MathCursorsFFT,
     "КУРСОРЫ", "CURSORS",
     "Включает курсоры для измерения параметров спектра",
     "Includes cursors to measure the parameters of the spectrum",
@@ -549,7 +548,7 @@ static void Draw_Math_FFT_Cursors_Source(int x, int y)
     Text(FFT_CUR_CURSOR_IS_0 ? "1" : "2").Draw(x + 7, y + 5);
 }
 
-DEF_CHOICE_3(cMath_FFT_Limit, &pppMath_FFT,
+DEF_CHOICE_3(cMath_FFT_Limit, PageService::PageMath::PageFFT::self,
     "Диапазон", "Range",
     "Здесь можно задать предел наблюдения за мощностью спектра",
     "Here you can set the limit of monitoring the power spectrum",
@@ -753,6 +752,7 @@ static void OnPress_Information_Exit(void)
 const Page *PageService::self = &pageService;
 const Page *PageService::PageMath::self = &pageMath;
 const Page *PageService::PageMath::PageFunction::self = &pageMathFunction;
+const Page *PageService::PageMath::PageFFT::self = &pageFFT;
 const Page *PageService::PageMath::PageFFT::PageCursors::self = &pageCursorsFFT;
 const Page *PageService::PageCalibrator::self = &pageCalibrator;
 const Page *PageService::PageInformation::self = &pageInformation;
