@@ -52,6 +52,7 @@ static bool showLevelTrigLev = false;    // Ќужно ли рисовать горизонтальную лин
 static bool trigEnable = false;
 static bool drawRShiftMarkers = false;
 static int topMeasures = Grid::Bottom();
+static bool needFinishDraw = true;    // ≈сли 1, то дисплей нуждаетс€ в перерисовке
 
 
 void Display::DrawStringNavigation() 
@@ -115,7 +116,7 @@ void Display::FuncOnTimerDisableShowLevelTrigLev()
 
 void Display::Redraw(void)
 {
-    NEED_FINISH_REDRAW = 1;
+    needFinishDraw = true;
 }
 
 
@@ -1188,9 +1189,9 @@ bool Display::NeedForClearScreen()
         return true;
     }
 
-    if (NEED_FINISH_REDRAW)
+    if (needFinishDraw)
     {
-        NEED_FINISH_REDRAW = 0;
+        needFinishDraw = false;
         return true;
     }
 
