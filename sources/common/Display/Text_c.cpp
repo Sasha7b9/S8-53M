@@ -266,3 +266,12 @@ int Text::DrawInCenterRect(int eX, int eY, int width, int eHeight, Color::E colo
     int y = eY + (eHeight - height) / 2;
     return Draw(x, y);
 }
+
+
+void Text::DrawRelativelyRight(int xRight, int y, Color::E color)
+{
+    Color::SetCurrent(color);
+
+    int lenght = Font::GetLengthText(text.c_str());
+    Draw(xRight - lenght, y);
+}

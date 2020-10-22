@@ -23,6 +23,7 @@ public:
     void DrawInRect(int x, int y, int width, int height);
     void DrawBig(int x, int y, int size);
     int DrawInCenterRect(int x, int y, int width, int height, Color::E color = Color::Count);
+    void DrawRelativelyRight(int xRight, int y, Color::E color = Color::Count);
 
 private:
     String text;

@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "common/Display/Primitives_c.h"
+#include "common/Display/Text_c.h"
 #include "common/Hardware/Sound_c.h"
 #include "common/Utils/Math_c.h"
 #include "Display/Grid.h"
@@ -264,7 +265,7 @@ void Measure::DrawPageChoice()
             Color::SetCurrent(active ? Color::FLASH_01 : Color::FILL);
             Painter::Draw10SymbolsInRect(x0 + 2, y0 + 1, Measure::GetChar(meas));
             Font::Set(TypeFont::_5);
-            Painter::DrawTextRelativelyRightC(x0 + dX, y0 + 12, measures[meas].name, active ? Color::FLASH_01 : Color::FILL);
+            Text(measures[meas].name).DrawRelativelyRight(x0 + dX, y0 + 12, active ? Color::FLASH_01 : Color::FILL);
             Font::Set(TypeFont::_UGO);
             ++meas;
         }

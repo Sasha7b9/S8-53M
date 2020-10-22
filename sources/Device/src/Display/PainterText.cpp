@@ -516,20 +516,6 @@ void Painter::DrawHintsForSmallButton(int x, int y, int width, void *smallButton
 }
 
 
-void Painter::DrawTextRelativelyRight(int xRight, int y, const char *text)
-{
-    int lenght = Font::GetLengthText(text);
-    Text(text).Draw(xRight - lenght, y);
-}
-
-
-void Painter::DrawTextRelativelyRightC(int xRight, int y, const char *text, Color::E color)
-{
-    Color::SetCurrent(color);
-    DrawTextRelativelyRight(xRight, y, text);
-}
-
-
 void Painter::Draw2SymbolsC(int x, int y, char symbol1, char symbol2, Color::E color1, Color::E color2)
 {
     Char(symbol1).Draw(x, y, color1);

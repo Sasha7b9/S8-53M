@@ -1957,7 +1957,7 @@ void Display::WriteStringAndNumber(pCHAR text, int x, int y, int number)
     {
         std::sprintf(buffer, "%d", number);
     }
-    Painter::DrawTextRelativelyRight(x + 41, y, buffer);
+    Text(buffer).DrawRelativelyRight(x + 41, y);
 }
 
 

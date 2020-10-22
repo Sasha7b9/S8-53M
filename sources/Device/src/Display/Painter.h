@@ -55,10 +55,6 @@ public:
 
     static void DrawHintsForSmallButton(int x, int y, int width, void *smallButton);
 
-    static void DrawTextRelativelyRight(int xRight, int y, const char *text);
-
-    static void DrawTextRelativelyRightC(int xRight, int y, const char *text, Color::E color);
-
     static void Draw2SymbolsC(int x, int y, char symbol1, char symbol2, Color::E color1, Color::E color2);
 
     static void Draw10SymbolsInRect(int x, int y, char eChar);
