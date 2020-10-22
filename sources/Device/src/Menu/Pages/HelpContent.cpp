@@ -43,11 +43,11 @@ static void DrawPageContent()
         const char *title = TITLE(page);
         if(currentParagraph == numPage)
         {
-            Painter::DrawStringInCenterRectOnBackgroundC(0, y, WIDTH, 10, title, COLOR_BACK, 2, COLOR_FILL);
+            Painter::DrawStringInCenterRectOnBackgroundC(0, y, WIDTH, 10, title, Color::BACK, 2, Color::FILL);
         }
         else
         {
-            Painter::DrawStringInCenterRectC(0, y, WIDTH, 10, title, COLOR_FILL);
+            Painter::DrawStringInCenterRectC(0, y, WIDTH, 10, title, Color::FILL);
         }
         y += 16;
         numPage++;
@@ -64,16 +64,16 @@ static void DrawPageDescription()
 void PageHelpContent::Draw()
 {
     uint startTime = gTimerMS;
-    Region(319 - Grid::Right(), 20).Fill(Grid::Right(), 0, COLOR_BACK);
+    Region(319 - Grid::Right(), 20).Fill(Grid::Right(), 0, Color::BACK);
     Region(319 - Grid::Right(), 21).Fill(Grid::Right(), 219);
     Region(WIDTH, 237).Fill(1, 1);
-    Rectangle(WIDTH + 2, 239).Draw(0, 0, COLOR_FILL);
+    Rectangle(WIDTH + 2, 239).Draw(0, 0, Color::FILL);
 
     /*
     uint16 *addr1 = (uint16*)(0x08000000 + (rand() % 65535));
     uint8 *addr2 = (uint8*)(0x08000000 + (rand() % 65535));
 
-    Color::SetCurrent(COLOR_FILL);
+    Color::SetCurrent(Color::FILL);
     for (int i = 0; i < 10000; i++)
     {
         Painter::SetPoint((*addr1) % WIDTH, Math_LimitationInt(*addr2, 0, 239));
@@ -90,7 +90,7 @@ void PageHelpContent::Draw()
     {
         DrawPageDescription();
     }
-    Painter::DrawFormatText(2, 230, COLOR_FILL, "%d", gTimerMS - startTime);
+    Painter::DrawFormatText(2, 230, Color::FILL, "%d", gTimerMS - startTime);
 }
 
 static int NumParagraphs(const PageHelpItem *page)

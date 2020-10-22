@@ -52,8 +52,6 @@ Color::E ColorBorderMenu(bool inShade);    // Цвет окантовки меню.
 Color::E ColorContrast(Color::E color);       // Возвращает цвет, контрастный к color. Может быть белым или чёрным.
 Color::E LightShadingTextColor();      // Светлый цвет в тени.
 
-#define COLOR_BACK Color::BLACK
-#define COLOR_FILL Color::WHITE
 #define ColorGrid() Color::GRID
 
 

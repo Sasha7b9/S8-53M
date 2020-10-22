@@ -625,8 +625,8 @@ static void Draw_EnterSerialNumber(void)
     int width = Grid::Width() - 80;
     int height = 160;
 
-    Primitives::Rectangle(width, height).Draw(x0, y0, COLOR_FILL);
-    Region(width - 2, height - 2).Fill(x0 + 1, y0 + 1, COLOR_BACK);
+    Primitives::Rectangle(width, height).Draw(x0, y0, Color::FILL);
+    Region(width - 2, height - 2).Fill(x0 + 1, y0 + 1, Color::BACK);
 
     int deltaX = 10;
 
@@ -637,8 +637,8 @@ static void Draw_EnterSerialNumber(void)
     char buffer[20];
     std::snprintf(buffer, 19, "%02d", s->number);
 
-    Color::E colorText = COLOR_FILL;
-    Color::E colorBackground = COLOR_BACK;
+    Color::E colorText = Color::FILL;
+    Color::E colorBackground = Color::BACK;
 
     if (selNumber)
     {
@@ -656,8 +656,8 @@ static void Draw_EnterSerialNumber(void)
 
     if (selNumber)
     {
-        colorText = COLOR_FILL;
-        colorBackground = COLOR_BACK;
+        colorText = Color::FILL;
+        colorBackground = Color::BACK;
     }
 
     std::snprintf(buffer, 19, "%04d", s->year);
@@ -669,9 +669,9 @@ static void Draw_EnterSerialNumber(void)
 
     int allShots = HAL_OTP::GetSerialNumber(buffer);
 
-    Painter::DrawFormatText(x0 + deltaX, y0 + 130, COLOR_FILL, "Текущий сохранённый номер %s", buffer[0] == 0 ? "-- ----" : buffer);
+    Painter::DrawFormatText(x0 + deltaX, y0 + 130, Color::FILL, "Текущий сохранённый номер %s", buffer[0] == 0 ? "-- ----" : buffer);
 
-    Painter::DrawFormatText(x0 + deltaX, y0 + 100, COLOR_FILL, "Осталось места для %d попыток", allShots);
+    Painter::DrawFormatText(x0 + deltaX, y0 + 100, Color::FILL, "Осталось места для %d попыток", allShots);
 }
 
 static void OnPress_SerialNumber(void)

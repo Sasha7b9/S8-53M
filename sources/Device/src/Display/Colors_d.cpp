@@ -10,5 +10,5 @@ Color::E Color::Trig()
     {
         return Color::Channel((Channel::E)trigChan);
     }
-    return COLOR_FILL;
+    return Color::FILL;
 }

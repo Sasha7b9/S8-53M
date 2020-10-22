@@ -34,11 +34,11 @@ void Painter::CalculateCurrentColor()
 {
     if (currentColor == Color::FLASH_10)
     {
-        Color::SetCurrent(inverseColors ? COLOR_BACK : COLOR_FILL);
+        Color::SetCurrent(inverseColors ? Color::BACK : Color::FILL);
     }
     else if (currentColor == Color::FLASH_01)
     {
-        Color::SetCurrent(inverseColors ? COLOR_FILL : COLOR_BACK);
+        Color::SetCurrent(inverseColors ? Color::FILL : Color::BACK);
     }
 }
 
@@ -48,11 +48,11 @@ void CalculateColor(uint8 *color)
     currentColor = (Color::E)*color;
     if (*color == Color::FLASH_10)
     {
-        *color = static_cast<uint8>(inverseColors ? COLOR_BACK : COLOR_FILL);
+        *color = static_cast<uint8>(inverseColors ? Color::BACK : Color::FILL);
     }
     else if (*color == Color::FLASH_01)
     {
-        *color = static_cast<uint8>(inverseColors ? COLOR_FILL : COLOR_BACK);
+        *color = static_cast<uint8>(inverseColors ? Color::FILL : Color::BACK);
     }
 }
 

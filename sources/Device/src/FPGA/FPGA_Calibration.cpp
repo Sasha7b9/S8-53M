@@ -224,7 +224,7 @@ void FuncAttScreen(void)
     int16 y = 10;
     Display::Clear();
     
-    Color::SetCurrent(COLOR_FILL);
+    Color::SetCurrent(Color::FILL);
     
 #define dX 20
 #define dY -15
@@ -240,14 +240,14 @@ void FuncAttScreen(void)
 
                 for (int i = 0; i < Range::Count; i++)
                 {
-                    Painter::DrawFormatText(95 + i * 16 + dX, 55 + dY, COLOR_FILL, "%d", RSHIFT_ADD(Channel::A, i, 0));
-                    Painter::DrawFormatText(95 + i * 16 + dX, 65 + dY, COLOR_FILL, "%d", RSHIFT_ADD(Channel::A, i, 1));
-                    Painter::DrawFormatText(95 + i * 16 + dX, 80 + dY, COLOR_FILL, "%d", RSHIFT_ADD(Channel::B, i, 0));
-                    Painter::DrawFormatText(95 + i * 16 + dX, 90 + dY, COLOR_FILL, "%d", RSHIFT_ADD(Channel::B, i, 1));
+                    Painter::DrawFormatText(95 + i * 16 + dX, 55 + dY, Color::FILL, "%d", RSHIFT_ADD(Channel::A, i, 0));
+                    Painter::DrawFormatText(95 + i * 16 + dX, 65 + dY, Color::FILL, "%d", RSHIFT_ADD(Channel::A, i, 1));
+                    Painter::DrawFormatText(95 + i * 16 + dX, 80 + dY, Color::FILL, "%d", RSHIFT_ADD(Channel::B, i, 0));
+                    Painter::DrawFormatText(95 + i * 16 + dX, 90 + dY, Color::FILL, "%d", RSHIFT_ADD(Channel::B, i, 1));
                 }
                 
-                Painter::DrawFormatText(10 + dX, 110 + dY, COLOR_FILL, "Коэффициент калибровки 1к : %f, %d", STRETCH_ADC_A, (int)(STRETCH_ADC_A * 0x80));
-                Painter::DrawFormatText(10 + dX, 130 + dY, COLOR_FILL, "Коэфффициент калибровки 2к : %f, %d", STRETCH_ADC_B, (int)(STRETCH_ADC_B * 0x80));
+                Painter::DrawFormatText(10 + dX, 110 + dY, Color::FILL, "Коэффициент калибровки 1к : %f, %d", STRETCH_ADC_A, (int)(STRETCH_ADC_A * 0x80));
+                Painter::DrawFormatText(10 + dX, 130 + dY, Color::FILL, "Коэфффициент калибровки 2к : %f, %d", STRETCH_ADC_B, (int)(STRETCH_ADC_B * 0x80));
 
                 DrawParametersChannel(Channel::A, 10 + dX, 150 + dY, false);
                 DrawParametersChannel(Channel::B, 10 + dX, 200 + dY, false);
@@ -307,7 +307,7 @@ void FuncAttScreen(void)
 
 void DrawParametersChannel(Channel::E chan, int eX, int eY, bool inProgress)
 {
-    Color::SetCurrent(COLOR_FILL);
+    Color::SetCurrent(Color::FILL);
     if(inProgress)
     {
         Text(chan == 0 ? "КАНАЛ 1" : "КАНАЛ 2").Draw(eX, eY + 4);

@@ -50,8 +50,8 @@ static void DrawHintItem(int x, int y, int width)
     {
         y -= 9;
     }
-    Painter::DrawStringInCenterRectAndBoundItC(x, y, width, 15, title, COLOR_BACK, COLOR_FILL);
-    y = Painter::DrawTextInBoundedRectWithTransfers(x, y + 15, width, HINT(item), COLOR_BACK, COLOR_FILL);
+    Painter::DrawStringInCenterRectAndBoundItC(x, y, width, 15, title, Color::BACK, Color::FILL);
+    y = Painter::DrawTextInBoundedRectWithTransfers(x, y + 15, width, HINT(item), Color::BACK, Color::FILL);
     if (item->data->type == TypeItem::SmallButton)
     {
         Painter::DrawHintsForSmallButton(x, y, width, reinterpret_cast<SmallButton*>(item));
@@ -99,11 +99,11 @@ void Menu::Draw()
                          "„тобы выключить этот режим, нажмите кнопку ѕќћќў№ и удерживайте еЄ в течение 0.5с." : 
                          "Mode is activated hints. In this mode, pressing the button displays the information on its purpose. "
                          "To disable this mode, press the button HELP and hold it for 0.5s.",
-                         COLOR_BACK, COLOR_FILL);
+                         Color::BACK, Color::FILL);
         y += LANG_RU ? 49 : 40;
         if (PageHelpContent::stringForHint)
         {
-            Painter::DrawTextInBoundedRectWithTransfers(x, y, width - 1, PageHelpContent::stringForHint, COLOR_BACK, COLOR_FILL);
+            Painter::DrawTextInBoundedRectWithTransfers(x, y, width - 1, PageHelpContent::stringForHint, Color::BACK, Color::FILL);
         }
         else if (PageHelpContent::itemHint)
         {

@@ -47,12 +47,12 @@ void FM::DrawLongString(int x, int y, const char *string, bool hightlight)
 {
     int length = Font::GetLengthText(string);
 
-    Color::E color = COLOR_FILL;
+    Color::E color = Color::FILL;
     if (hightlight)
     {
         Region(WIDTH_COL + 9, 8).Fill(x - 1, y, color);
 
-        color = COLOR_BACK;
+        color = Color::BACK;
     }
 
     if (length <= WIDTH_COL)
@@ -69,8 +69,8 @@ void FM::DrawLongString(int x, int y, const char *string, bool hightlight)
 
 void FM::DrawHat(int x, int y, char *string, int num1, int num2)
 {
-    Region(WIDTH_COL + 9, RECS_ON_PAGE * 9 + 11).Fill(x - 1, y, COLOR_BACK);
-    Painter::DrawFormatText(x + 60, y, COLOR_FILL, string, num1, num2);
+    Region(WIDTH_COL + 9, RECS_ON_PAGE * 9 + 11).Fill(x - 1, y, Color::BACK);
+    Painter::DrawFormatText(x + 60, y, Color::FILL, string, num1, num2);
     HLine().Draw(y + 10, x + 2, x + 140);
 }
 
@@ -135,7 +135,7 @@ bool FM::FileIsExist(const char name[255])
 
 void FM::DrawNameCurrentDir(int left, int top)
 {
-    Color::SetCurrent(COLOR_FILL);
+    Color::SetCurrent(Color::FILL);
     int length = Font::GetLengthText(currentDir);
     if (length < 277)
     {
@@ -175,12 +175,12 @@ void FM::Draw(void)
 
     if (needRedrawFileManager == 1)
     {
-        Painter::BeginScene(COLOR_BACK);
+        Painter::BeginScene(Color::BACK);
         Menu::Draw();
-        Primitives::Rectangle(width, 239).Draw(1, 0, COLOR_FILL);
+        Primitives::Rectangle(width, 239).Draw(1, 0, Color::FILL);
         FDrive::GetNumDirsAndFiles(currentDir, &numDirs, &numFiles);
         DrawNameCurrentDir(left + 1, top + 2);
-        HLine().Draw(left2col, top + 16, 239, COLOR_FILL);
+        HLine().Draw(left2col, top + 16, 239, Color::FILL);
         HLine().Draw(top + 15, 0, width);
     }
 

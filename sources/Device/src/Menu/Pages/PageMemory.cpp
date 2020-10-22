@@ -125,8 +125,8 @@ static void FuncDrawingAdditionSPageMemoryLast()
     
     int width = 40;
     int height = 10;
-    Region(width, height).Fill(Grid::Right() - width, Grid::TOP, COLOR_BACK);
-    Primitives::Rectangle(width, height).Draw(Grid::Right() - width, Grid::TOP, COLOR_FILL);
+    Region(width, height).Fill(Grid::Right() - width, Grid::TOP, Color::BACK);
+    Primitives::Rectangle(width, height).Draw(Grid::Right() - width, Grid::TOP, Color::FILL);
     Text(Int2String(PageMemory::PageLatest::currentSignal + 1, false, 3, buffer)).Draw(Grid::Right() - width + 2, Grid::TOP + 1);
     Text("/").Draw(Grid::Right() - width + 17, Grid::TOP + 1);
     Text(Int2String(Storage::AllDatas(), false, 3, buffer)).Draw(Grid::Right() - width + 23, Grid::TOP + 1);
@@ -528,9 +528,9 @@ static void DrawMemoryWave(int num, bool exist)
     int x = Grid::Left() + 2 + num * 12;
     int y = Grid::FullBottom() - 10;
     int width = 12;
-    Region(width, 10).Fill(x, y, (num == PageMemory::PageInternal::currentSignal) ? Color::FLASH_10 : COLOR_BACK);
-    Primitives::Rectangle(width, 10).Draw(x, y, COLOR_FILL);
-    Color::SetCurrent((num == PageMemory::PageInternal::currentSignal) ? Color::FLASH_01 : COLOR_FILL);
+    Region(width, 10).Fill(x, y, (num == PageMemory::PageInternal::currentSignal) ? Color::FLASH_10 : Color::BACK);
+    Primitives::Rectangle(width, 10).Draw(x, y, Color::FILL);
+    Color::SetCurrent((num == PageMemory::PageInternal::currentSignal) ? Color::FLASH_01 : Color::FILL);
     if (exist)
     {
         Text(Int2String(num + 1, false, 2, buffer)).Draw(x + 2, y + 1);
@@ -846,8 +846,8 @@ void DrawSetName()
     int width = Grid::Width() - 80;
     int height = 80;
 
-    Primitives::Rectangle(width, height).Draw(x0, y0, COLOR_FILL);
-    Region(width - 2, height - 2).Fill(x0 + 1, y0 + 1, COLOR_BACK);
+    Primitives::Rectangle(width, height).Draw(x0, y0, Color::FILL);
+    Region(width - 2, height - 2).Fill(x0 + 1, y0 + 1, Color::BACK);
 
     int index = 0;
     int position = 0;
@@ -881,7 +881,7 @@ void DrawSetName()
         position++;
     }
 
-    int x = Text(FILE_NAME).Draw(x0 + deltaX, y0 + 65, COLOR_FILL);
+    int x = Text(FILE_NAME).Draw(x0 + deltaX, y0 + 65, Color::FILL);
     Region(5, 8).Fill(x, y0 + 65, Color::FLASH_10);
 }
 
@@ -889,7 +889,7 @@ static void DrawFileMask(int x, int y)
 {
     char *ch = FILE_NAME_MASK;
 
-    Color::SetCurrent(COLOR_FILL);
+    Color::SetCurrent(Color::FILL);
     while (*ch != '\0')
     {
         if (*ch >= 32)
@@ -922,8 +922,8 @@ void DrawSetMask()
     int width = Grid::Width() - 80;
     int height = 160;
 
-    Primitives::Rectangle(width, height).Draw(x0, y0, COLOR_FILL);
-    Region(width - 2, height - 2).Fill(x0 + 1, y0 + 1, COLOR_BACK);
+    Primitives::Rectangle(width, height).Draw(x0, y0, Color::FILL);
+    Region(width - 2, height - 2).Fill(x0 + 1, y0 + 1, Color::BACK);
 
     int index = 0;
     int position = 0;
@@ -977,7 +977,7 @@ void DrawSetMask()
     };
 
     deltaY--;
-    Color::SetCurrent(COLOR_FILL);
+    Color::SetCurrent(Color::FILL);
     for(int i = 0; i < sizeof(strings) / 4; i++)
     {
         Text(strings[i]).Draw(x0 + deltaX, y0 + 100 + deltaY * i);

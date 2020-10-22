@@ -26,10 +26,10 @@ static uint16 portGateway = 0;
 
 static void FuncDraw(void)
 {
-    Painter::BeginScene(COLOR_BACK);
+    Painter::BeginScene(Color::BACK);
 
     Painter::DrawTextInRectWithTransfersC(30, 110, 300, 200, "Подтвердите сброс настроек нажатием кнопки ПУСК/СТОП.\n"
-        "Нажмите любую другую кнопку, если сброс не нужен.", COLOR_FILL);
+        "Нажмите любую другую кнопку, если сброс не нужен.", Color::FILL);
 
     Painter::EndScene();
 }
@@ -663,7 +663,7 @@ static void Information_Draw(void)
     int x = 100;
     int dY = 20;
     int y = 20;
-    Rectangle(319, 239).Draw(0, 0, COLOR_FILL);
+    Rectangle(319, 239).Draw(0, 0, Color::FILL);
     y += dY;
     Text(LANG_RU ? "ИНФОРМАЦИЯ" : "INFORMATION").Draw(x, y);
     y += dY;
@@ -678,7 +678,7 @@ static void Information_Draw(void)
     Text(buffer).Draw(x, y);
     y += dY;
 
-    Painter::DrawFormatText(x, y, COLOR_FILL, "CRC32 : %X", HAL_CRC::Calculate());
+    Painter::DrawFormatText(x, y, Color::FILL, "CRC32 : %X", HAL_CRC::Calculate());
 
     dY = -10;
     Painter::DrawStringInCenterRect(0, 190 + dY, 320, 20, "Для получения помощи нажмите и удерживайте кнопку ПОМОЩЬ");

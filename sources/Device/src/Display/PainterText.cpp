@@ -517,8 +517,8 @@ int Painter::DrawStringInCenterRectAndBoundItC(int x, int y, int width, int heig
 void Painter::DrawHintsForSmallButton(int x, int y, int width, void *smallButton)
 {
     SmallButton *sb = static_cast<SmallButton*>(smallButton);
-    Region(width, 239 - y).Fill(x, y, COLOR_BACK);
-    Rectangle(width, 239 - y).Draw(x, y, COLOR_FILL);
+    Region(width, 239 - y).Fill(x, y, Color::BACK);
+    Rectangle(width, 239 - y).Draw(x, y, Color::FILL);
     const StructHelpSmallButton *structHelp = &(*sb->OwnData()->hintUGO)[0];
     x += 3;
     y += 3;
