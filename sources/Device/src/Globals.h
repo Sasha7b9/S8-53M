@@ -13,7 +13,6 @@ class Item;
 #define FLASH_DRIVE_IS_CONNECTED    (gBF.flashDriveIsConnected)
 #define NEED_CLOSE_PAGE_SB          (gBF.needClosePageSB)
 #define NEED_RESET_SETTINGS         (gBF.needResetSettings)
-#define FPGA_CRITICAL_SITUATION     (gBF.FPGAcritiacalSituation)
 #define FPGA_FIRST_AFTER_WRITE      (gBF.FPGAfirstAfterWrite)
 #define CURSORS_IN_DIRS             (gBF.cursorInDirs)
 #define SHOW_HELP_HINTS             (gBF.showHelpHints)
@@ -22,7 +21,6 @@ class Item;
 
 struct BitField
 {
-    uint FPGAcritiacalSituation     : 1;
     uint FPGAfirstAfterWrite        : 1;    // Используется в режиме рандомизатора. После записи любого параметра в альтеру
                                             // нужно не использовать первое считанное данное с АЦП, потому что оно завышено и портит ворота
     uint flashDriveIsConnected      : 1;

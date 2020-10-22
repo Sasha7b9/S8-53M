@@ -37,6 +37,7 @@ static bool autoFindInProgress = false;
 static bool temporaryPause = false;
 static bool inProcessingOfRead = false;
 static bool canReadData = true;
+static bool criticalSituation = false;
 
 
 // Функция вызывается, когда можно считывать очередной сигнал.
@@ -89,7 +90,7 @@ void FPGA::Start(void)
     FillDataPointer(&ds);
     timeStart = gTimerMS;
     stateWork = StateWorkFPGA::Wait;
-    FPGA_CRITICAL_SITUATION = 0;
+    criticalSituation = false;
 }
 
 
@@ -109,17 +110,17 @@ bool FPGA::ProcessingData(void)
    for (int i = 0; i < num; i++)
    {
         uint8 flag = ReadFlag();
-        if (FPGA_CRITICAL_SITUATION)
+        if (criticalSituation)
         {
             if (gTimerMS - timeStart > 500)
             {
                 SwitchingTrig();
                 trigAutoFind = true;
-                FPGA_CRITICAL_SITUATION = 0;
+                criticalSituation = false;
             }
             else if (_GET_BIT(flag, BIT_TRIG))
             {
-                FPGA_CRITICAL_SITUATION = 0;
+                criticalSituation = false;
             }
         }
         else if (_GET_BIT(flag, BIT_DATA_READY))
@@ -149,7 +150,7 @@ bool FPGA::ProcessingData(void)
             {
                 if (START_MODE_IS_AUTO)
                 {
-                    FPGA_CRITICAL_SITUATION = 1;
+                    criticalSituation = true;
                 }
                 timeStart = gTimerMS;
             }
