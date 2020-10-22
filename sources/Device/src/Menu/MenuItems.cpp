@@ -2,6 +2,7 @@
 #include "common/Hardware/Sound_c.h"
 #include "common/Utils/Math_c.h"
 #include "Menu/Menu.h"
+#include "Menu/Pages/HelpContent.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
 
@@ -117,7 +118,7 @@ void Choice::StartChange(int delta)
     Sound::GovernorChangedValue();
     if (Menu::showHelpHints)
     {
-        SetItemForHint(this);
+        PageHelpContent::SetItemForHint(this);
     }
     else if (!IsActive())
     {

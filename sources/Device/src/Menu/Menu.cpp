@@ -363,7 +363,7 @@ void Menu::ProcessingShortPressureButton()
                 Item *item = ItemUnderButton(button);
                 if (showHelpHints)
                 {
-                    SetItemForHint(item);
+                    PageHelpContent::SetItemForHint(item);
                 }
                 else
                 {

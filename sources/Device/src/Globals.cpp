@@ -7,12 +7,6 @@
 
 void *extraMEM = 0;
 
-void SetItemForHint(Item *item)
-{
-    PageHelpContent::stringForHint = 0;
-    PageHelpContent::itemHint = item;
-}
-
 uint8           *gData0 = 0;
 uint8           *gData1 = 0;
 DataSettings    *gDSet = 0;

@@ -64,8 +64,6 @@ struct DataSettings
 };
 
 
-void SetItemForHint(Item *item);
-
 extern uint8        *gData0;    // ”казатель на данные первого канала, который надо рисовать на экране
 extern uint8        *gData1;    // ”казатель на данные второго канала, который надо рисовать на экране
 extern DataSettings *gDSet;     // ”казатель на параметры рисуемых сигналов

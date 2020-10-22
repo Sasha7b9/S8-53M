@@ -17,6 +17,8 @@ struct PageHelpContent
     static bool LeaveParagraphIsActive();
     static bool EnterParagraphIsActive();
 
+    static void SetItemForHint(Item *item);
+
     struct PageMain
     {
         static const PageHelpItem *self;

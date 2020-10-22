@@ -146,3 +146,9 @@ bool PageHelpContent::EnterParagraphIsActive()
 {
     return currentPage->OwnData()->type == TypePageHelp::Content;
 }
+
+void PageHelpContent::SetItemForHint(Item *item)
+{
+    stringForHint = 0;
+    itemHint = item;
+}
