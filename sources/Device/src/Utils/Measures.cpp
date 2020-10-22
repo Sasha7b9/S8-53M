@@ -178,7 +178,7 @@ void Measure::RotateRegSet(int angle)
             posOnPageChoice = 0;
         }
         MEASURE(posActive) = (Measure::E)posOnPageChoice;
-        Painter::ResetFlash();
+        Color::ResetFlash();
     }
     else
     {

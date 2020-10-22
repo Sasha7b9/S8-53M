@@ -71,13 +71,6 @@ static void OnTimerFlashDisplay()
 }
 
 
-void Painter::ResetFlash()
-{
-    Timer::Enable(TypeTimer::FlashDisplay, 400, OnTimerFlashDisplay);
-    inverseColors = false;
-}
-
-
 void Painter::DrawDashedVLine(int x, int y0, int y1, int deltaFill, int deltaEmtpy, int deltaStart)
 {
     if (deltaStart < 0 || deltaStart >= (deltaFill + deltaEmtpy))

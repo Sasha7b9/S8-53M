@@ -1480,8 +1480,6 @@ void Display::DrawGridType2(int left, int top, int right, int bottom, int deltaX
     MultiHPointLine(11, mas, stepX, CalculateCountH()).Draw(left + stepX, Color::GRID);
 }
 
-
-
 void Display::DrawGridType3(int left, int top, int right, int bottom, int centerX, int centerY, int deltaX, int deltaY, int stepX, int stepY)
 {
     Painter::DrawHPointLine(centerY, left + stepX, right, static_cast<float>(stepX));
@@ -1491,8 +1489,6 @@ void Display::DrawGridType3(int left, int top, int right, int bottom, int center
     uint16 masX[6] = {(uint16)(left + 1), (uint16)(left + 2), (uint16)(centerX - 1), (uint16)(centerX + 1), (uint16)(right - 2), (uint16)(right - 1)};
     MultiVPointLine(6, masX, deltaY, (bottom - top) / deltaY).Draw(top + deltaY, Color::GRID);
 }
-
-
 
 void Display::DrawGrid(int left, int top, int width, int height)
 {
@@ -2531,7 +2527,7 @@ void Display::ClearFromWarnings()
 
 void Display::ShowWarningBad(Warning::E warning)
 {
-    Painter::ResetFlash();
+    Color::ResetFlash();
     ShowWarn(Tables::GetWarning(warning));
     Sound::WarnBeepBad();
 }
@@ -2540,7 +2536,7 @@ void Display::ShowWarningBad(Warning::E warning)
 
 void Display::ShowWarningGood(Warning::E warning)
 {
-    Painter::ResetFlash();
+    Color::ResetFlash();
     ShowWarn(Tables::GetWarning(warning));
     Sound::WarnBeepGood();
 }

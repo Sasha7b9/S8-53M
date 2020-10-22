@@ -210,7 +210,7 @@ void TimeItem::SetNewTime() const
 void TimeItem::SelectNextPosition()
 {
     CircleIncreaseInt8(OwnData()->curField, 0, 7);
-    Painter::ResetFlash();
+    Color::ResetFlash();
 }
 
 void TimeItem::IncCurrentPosition() const

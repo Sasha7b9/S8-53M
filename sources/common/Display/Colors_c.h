@@ -29,6 +29,7 @@ struct Color {
     };
 
     static uint FromSettings(Color::E);
+    static void ResetFlash();
 
     static void SetCurrent(Color::E color);
     static Color::E GetCurrent() { return current; };

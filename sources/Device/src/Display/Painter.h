@@ -25,8 +25,6 @@ public:
     // По умолчанию запрашиваем первый фрейм с шрифтами
     static void SendFrame(bool first, bool noFonts = false);
 
-    static void ResetFlash();
-
     static void DrawHPointLine(int y, int x0, int x1, float delta);
 
     static void DrawLine(int x0, int y0, int x1, int y1);

@@ -11,6 +11,12 @@ Color::E Color::current = Color::NUM;
 Color::E Color::FILL = Color::WHITE;
 Color::E Color::BACK = Color::BLACK;
 
+
+void Color::ResetFlash()
+{
+
+}
+
 static void SetColor(const ColorType *colorType)
 {
     set.display.colors[colorType->color] = MAKE_COLOR((int)colorType->red, (int)colorType->green, (int)colorType->blue);
