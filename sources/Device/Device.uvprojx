@@ -2068,11 +2068,6 @@
               <FilePath>.\src\Utils\Map.h</FilePath>
             </File>
             <File>
-              <FileName>Generator.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Generator.h</FilePath>
-            </File>
-            <File>
               <FileName>GlobalFunctions.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Utils\GlobalFunctions.h</FilePath>
@@ -2111,11 +2106,6 @@
               <FileName>TablesWindow.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Utils\TablesWindow.h</FilePath>
-            </File>
-            <File>
-              <FileName>Generator.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Generator.cpp</FilePath>
             </File>
             <File>
               <FileName>GlobalFunctions.cpp</FileName>
@@ -4298,11 +4288,6 @@
               <FilePath>.\src\Utils\Map.h</FilePath>
             </File>
             <File>
-              <FileName>Generator.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Generator.h</FilePath>
-            </File>
-            <File>
               <FileName>GlobalFunctions.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Utils\GlobalFunctions.h</FilePath>
@@ -4341,11 +4326,6 @@
               <FileName>TablesWindow.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Utils\TablesWindow.h</FilePath>
-            </File>
-            <File>
-              <FileName>Generator.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Generator.cpp</FilePath>
             </File>
             <File>
               <FileName>GlobalFunctions.cpp</FileName>
