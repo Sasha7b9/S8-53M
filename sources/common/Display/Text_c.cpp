@@ -719,3 +719,12 @@ void Text::DrawInCenterRectOnBackground(int x, int y, int width, int height, Col
     Region(w, h).Fill(eX - lenght - widthBorder, y - widthBorder);
     DrawInCenterRect(x, y, width, height, colorText);
 }
+
+
+int Text::DrawInCenterRectAndBoundIt(int x, int y, int width, int height, Color::E colorBackground, Color::E colorFill)
+{
+    Rectangle(width, height).Draw(x, y, colorFill);
+    Region(width - 2, height - 2).Fill(x + 1, y + 1, colorBackground);
+    Color::SetCurrent(colorFill);
+    return DrawInCenterRect(x, y, width, height);
+}

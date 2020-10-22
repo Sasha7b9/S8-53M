@@ -34,6 +34,7 @@ public:
     int DrawInRectWithTransfers(int x, int y, int width, int height, Color::E color = Color::Count);
     // Пишет строку текста в центре области(x, y, width, height)цветом ColorText на прямоугольнике с шириной бордюра widthBorder цвета colorBackground.
     void DrawInCenterRectOnBackground(int x, int y, int width, int height, Color::E colorText, int widthBorder, Color::E colorBackground);
+    int DrawInCenterRectAndBoundIt(int x, int y, int width, int height, Color::E colorBackground, Color::E colorFill);
 
 private:
     String text;

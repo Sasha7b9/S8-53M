@@ -41,15 +41,6 @@ int Painter::DrawFormatText(int x, int y, Color::E color, char *text, ...)
 }
 
 
-int Painter::DrawStringInCenterRectAndBoundItC(int x, int y, int width, int height, const char *text, Color::E colorBackground, Color::E colorFill)
-{
-    Rectangle(width, height).Draw(x, y, colorFill);
-    Region(width - 2, height - 2).Fill(x + 1, y + 1, colorBackground);
-    Color::SetCurrent(colorFill);
-    return Text(text).DrawInCenterRect(x, y, width, height);
-}
-
-
 void Painter::Draw2SymbolsC(int x, int y, char symbol1, char symbol2, Color::E color1, Color::E color2)
 {
     Char(symbol1).Draw(x, y, color1);

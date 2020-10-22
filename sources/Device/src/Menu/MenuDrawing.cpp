@@ -51,7 +51,7 @@ static void DrawHintItem(int x, int y, int width)
     {
         y -= 9;
     }
-    Painter::DrawStringInCenterRectAndBoundItC(x, y, width, 15, title, Color::BACK, Color::FILL);
+    Text(title).DrawInCenterRectAndBoundIt(x, y, width, 15, Color::BACK, Color::FILL);
     y = Text(HINT(item)).DrawInBoundedRectWithTransfers(x, y + 15, width, Color::BACK, Color::FILL);
     if (item->data->type == TypeItem::SmallButton)
     {
