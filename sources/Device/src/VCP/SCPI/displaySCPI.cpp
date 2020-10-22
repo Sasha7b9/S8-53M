@@ -67,7 +67,7 @@ void SCPI::DISPLAY::AUTOSEND(pUCHAR buffer)
     ENTER_ANALYSIS
         if (1 == value)      { Painter::SendFrame(true);  }
         else if (2 == value) { Painter::SendFrame(false); }
-        else if (3 == value) { Painter::SendFrame(true, true); }
+        else if (3 == value) { Painter::SendFrame(true); }
     LEAVE_ANALYSIS
 }
 

@@ -4,15 +4,6 @@
 #include "common/Display/Font/Font_c.h"
 
 
-struct StateTransmit { enum E
-{
-    Free,
-    NeedForTransmitFirst,  // Это когда нужно передать первый кадр - передаются шрифты
-    NeedForTransmitSecond, // Это когда нужно передать второй и последующий кадры - шрифты не передаются
-    InProcess
-};};
-
-
 class Painter 
 {
 public:
@@ -23,7 +14,7 @@ public:
 
     static void EndScene(bool endScene = true);
     // По умолчанию запрашиваем первый фрейм с шрифтами
-    static void SendFrame(bool first, bool noFonts = false);
+    static void SendFrame(bool noFonts = false);
 
     static void DrawVolumeButton(int x, int y, int width, int height, int thickness, Color::E normal, Color::E bright, Color::E dark, bool isPressed, bool inShade);
     // Установить яркость дисплея.
@@ -46,6 +37,4 @@ private:
     static void RunDisplay();
 
     static Color::E GetColor(int x, int y);
-
-    static StateTransmit::E stateTransmit;
 };

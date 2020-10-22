@@ -13,19 +13,13 @@ using namespace Primitives;
 
 static bool inverseColors = false;
 static Color::E currentColor = Color::Count;
-StateTransmit::E Painter::stateTransmit = StateTransmit::Free;
 bool Painter::noFonts = false;
 static int numberColorsUsed = 0;
 
 
-void Painter::SendFrame(bool first, bool noFonts_)
+void Painter::SendFrame(bool noFonts_)
 {
     noFonts = noFonts_;
-
-    if (stateTransmit == StateTransmit::Free)
-    {
-        stateTransmit = (first ? StateTransmit::NeedForTransmitFirst : StateTransmit::NeedForTransmitSecond);
-    }
 }
 
 
