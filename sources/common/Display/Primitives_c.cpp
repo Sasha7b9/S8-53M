@@ -36,3 +36,16 @@ void Primitives::HPointLine::Draw(int y, int x0, int x1)
         Point().Draw(x, y);
     }
 }
+
+
+void Primitives::Line::Draw(int x0, int y0, int x1, int y1)
+{
+    if (x0 == x1)
+    {
+        HLine().Draw(x0, y0, y1);
+    }
+    else if (y0 == y1)
+    {
+        HLine().Draw(y0, x0, x1);
+    }
+}

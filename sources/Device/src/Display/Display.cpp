@@ -1003,19 +1003,19 @@ void Display::DrawMemoryWindow()
     if(xShift == leftX - 2) //-V2550 //-V550
     {
         xShift = static_cast<float>(leftX - 2);
-        Painter::DrawLine(static_cast<int>(xShift) + 3, 5, static_cast<int>(xShift) + 3, 7);
-        Painter::DrawLine(static_cast<int>(xShift) + 1, 6, static_cast<int>(xShift) + 2, 6);
+        Line().Draw(static_cast<int>(xShift) + 3, 5, static_cast<int>(xShift) + 3, 7);
+        Line().Draw(static_cast<int>(xShift) + 1, 6, static_cast<int>(xShift) + 2, 6);
     }
     else if(xShift > rightX - 1)
     {
         xShift = static_cast<float>(rightX - 2);
-        Painter::DrawLine(static_cast<int>(xShift) + 1, 5, static_cast<int>(xShift) + 1, 7);
-        Painter::DrawLine(static_cast<int>(xShift) + 2, 6, static_cast<int>(xShift) + 3, 6);
+        Line().Draw(static_cast<int>(xShift) + 1, 5, static_cast<int>(xShift) + 1, 7);
+        Line().Draw(static_cast<int>(xShift) + 2, 6, static_cast<int>(xShift) + 3, 6);
     }
     else
     {
-        Painter::DrawLine(static_cast<int>(xShift) + 1, 5, static_cast<int>(xShift) + 3, 5);
-        Painter::DrawLine(static_cast<int>(xShift) + 2, 6, static_cast<int>(xShift) + 2, 7);
+        Line().Draw(static_cast<int>(xShift) + 1, 5, static_cast<int>(xShift) + 3, 5);
+        Line().Draw(static_cast<int>(xShift) + 2, 6, static_cast<int>(xShift) + 2, 7);
     }
 }
 

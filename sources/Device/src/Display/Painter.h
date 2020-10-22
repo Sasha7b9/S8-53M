@@ -25,8 +25,6 @@ public:
     // По умолчанию запрашиваем первый фрейм с шрифтами
     static void SendFrame(bool first, bool noFonts = false);
 
-    static void DrawLine(int x0, int y0, int x1, int y1);
-
     static void DrawLineC(int x0, int y0, int x1, int y1, Color::E color);
     // \brief Рисует прерывистую горизонтальную линию. dFill - длина штриха, dEmpty - расст. между штрихами.
     // Линия всегда начинается со штриха. dStart указывает смещение первой рисуемой точки относительно начала штриха.

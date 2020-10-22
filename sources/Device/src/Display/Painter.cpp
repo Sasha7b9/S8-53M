@@ -122,20 +122,7 @@ static int numberColorsUsed = 0;
 void Painter::DrawLineC(int x0, int y0, int x1, int y1, Color::E color)
 {
     Color::SetCurrent(color);
-    DrawLine(x0, y0, x1, y1);
-}
-
-
-void Painter::DrawLine(int x0, int y0, int x1, int y1)
-{
-    if (x0 == x1)
-    {
-        HLine().Draw(x0, y0, y1);
-    }
-    else if (y0 == y1)
-    {
-        HLine().Draw(y0, x0, x1);
-    }
+    Line().Draw(x0, y0, x1, y1);
 }
 
 
