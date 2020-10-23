@@ -160,10 +160,10 @@ static void (*funculatorRight[Key::Count])(void) =
 
 
 
-Key::E ButtonIsRelease(uint16 command)
+Key::E ButtonIsRelease(uint16 code)
 {
-    Key::E key = Key::FromCode(command);
-    Action::E action = Action::FromCode(command);
+    Key::E key = Key::FromCode(code);
+    Action::E action = Action::FromCode(code);
 
     if (Key::IsButton(key) && (action == Action::Up))
     {
@@ -173,10 +173,11 @@ Key::E ButtonIsRelease(uint16 command)
     return Key::None;
 }
 
-Key::E ButtonIsPress(uint16 command)
+
+Key::E ButtonIsPress(uint16 code)
 {
-    Key::E key = Key::FromCode(command);
-    Action::E action = Action::FromCode(command);
+    Key::E key = Key::FromCode(code);
+    Action::E action = Action::FromCode(code);
 
     if (Key::IsButton(key) && (action == Action::Down))
     {
@@ -186,10 +187,25 @@ Key::E ButtonIsPress(uint16 command)
     return Key::None;
 }
 
-Key::E RegulatorLeft(uint16 command)
+
+Key::E ButtonIsLong(uint16 code)
 {
-    Key::E key = Key::FromCode(command);
-    Action::E action = Action::FromCode(command);
+    Key::E key = Key::FromCode(code);
+    Action::E action = Action::FromCode(code);
+
+    if (Key::IsButton(key) && (action == Action::Long))
+    {
+        return key;
+    }
+
+    return Key::None;
+}
+
+
+Key::E RegulatorLeft(uint16 code)
+{
+    Key::E key = Key::FromCode(code);
+    Action::E action = Action::FromCode(code);
 
     if (Key::IsGovernor(key) && (action == Action::RotateLeft))
     {
@@ -199,10 +215,11 @@ Key::E RegulatorLeft(uint16 command)
     return Key::None;
 }
 
-Key::E RegulatorRight(uint16 command)
+
+Key::E RegulatorRight(uint16 code)
 {
-    Key::E key = Key::FromCode(command);
-    Action::E action = Action::FromCode(command);
+    Key::E key = Key::FromCode(code);
+    Action::E action = Action::FromCode(code);
 
     if (Key::IsGovernor(key) && (action == Action::RotateRight))
     {
@@ -212,12 +229,14 @@ Key::E RegulatorRight(uint16 command)
     return Key::None;
 }
 
-bool Panel::ProcessingCommandFromPIC(uint16 command)
+
+bool Panel::ProcessingCommandFromPIC(uint16 code)
 {
-    Key::E releaseButton = ButtonIsRelease(command);
-    Key::E pressButton = ButtonIsPress(command);
-    Key::E regLeft = RegulatorLeft(command);
-    Key::E regRight = RegulatorRight(command);
+    Key::E releaseButton = ButtonIsRelease(code);
+    Key::E pressButton = ButtonIsPress(code);
+    Key::E longButton = ButtonIsLong(code);
+    Key::E regLeft = RegulatorLeft(code);
+    Key::E regRight = RegulatorRight(code);
 
     if (pressButton != Key::None)
     {
@@ -244,6 +263,11 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
         funcOnKeyDown[pressButton]();
         Menu::PressButton(pressButton);
         pressedKey = pressButton;
+    }
+    else if (longButton != Key::None)
+    {
+        funcOnLongPressure[longButton]();
+        pressedKey = Key::None;
     }
     else if(regLeft != Key::None)
     {
