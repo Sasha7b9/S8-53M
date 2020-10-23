@@ -40,8 +40,6 @@ public:
     static Item *CurrentItem();
 
     static NamePage::E GetNameOpenedPage();
-    // Возвращает позицию первого элемента страницы по адресу page на экране. Если текущая подстраница 0, это будет 0, если текущая подстраница 1, это будет 5 и т.д.
-    static int PosItemOnTop(const Page *page);
 
     // Закрыть открытый элемент меню.
     static void CloseOpenedItem();

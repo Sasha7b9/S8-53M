@@ -687,3 +687,9 @@ int Page::GetPosActItem() const
 {
     return set.menu.posActItem[OwnData()->name];
 }
+
+
+int Page::PosItemOnTop() const
+{
+    return GetCurrentSubPage() * Menu::ITEMS_ON_DISPLAY;
+}

@@ -26,12 +26,6 @@ Item* Menu::CurrentItem()
 }
 
 
-int Menu::PosItemOnTop(const Page *page)
-{
-    return page->GetCurrentSubPage() * Menu::ITEMS_ON_DISPLAY;
-}
-
-
 void Menu::CloseOpenedItem()
 {
     Item *item = OpenedItem();
