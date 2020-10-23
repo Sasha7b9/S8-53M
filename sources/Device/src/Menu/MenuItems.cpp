@@ -318,7 +318,7 @@ Page *Item::Keeper() const
 void Item::Open(bool open) const
 {
     Page *page = Keeper();
-    Menu::SetPosActItem(page->GetName(), open ? (page->PosCurrentItem() | 0x80) : (page->PosCurrentItem() & 0x7f));
+    page->SetPosActItem(open ? (page->PosCurrentItem() | 0x80) : (page->PosCurrentItem() & 0x7f));
 }
 
 
@@ -327,7 +327,7 @@ void Item::SetCurrent(bool active) const
     Page* page = Keeper();
     if (!active)
     {
-        Menu::SetPosActItem(page->OwnData()->name, 0x7f);
+        page->SetPosActItem(0x7f);
     }
     else
     {
@@ -335,7 +335,7 @@ void Item::SetCurrent(bool active) const
         {
             if (page->GetItem(i) == this)
             {
-                Menu::SetPosActItem(page->OwnData()->name, i);
+                page->SetPosActItem(i);
                 return;
             }
         }
@@ -674,4 +674,10 @@ void Page::SetCurrentSubPage(int posSubPage) const
 bool Page::CurrentItemIsOpened()
 {
     return _GET_BIT(Menu::GetPosActItem(GetName()), 7) == 1;
+}
+
+
+void Page::SetPosActItem(int8 pos)
+{
+    set.menu.posActItem[GetName()] = pos;
 }

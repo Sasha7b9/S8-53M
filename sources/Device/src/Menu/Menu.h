@@ -52,8 +52,6 @@ public:
     static Item *itemUnderButton[Key::Count];
     // Возвращает позицию активного пункта на странице namePage.
     static int GetPosActItem(NamePage::E namePage);
-    // Установить позицию активного пункта на странице namePage.
-    static void SetPosActItem(NamePage::E namePage, int8 pos);
     // Отображено ли меню на экране.
     static bool IsShown();
     // Отобразить/скрыть меню.

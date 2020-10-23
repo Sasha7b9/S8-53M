@@ -667,12 +667,6 @@ int Menu::GetPosActItem(NamePage::E namePage)
 }
 
 
-void Menu::SetPosActItem(NamePage::E namePage, int8 pos)
-{
-    set.menu.posActItem[namePage] = pos;
-}
-
-
 bool Menu::IsShown()
 {
     return set.menu.isShown;

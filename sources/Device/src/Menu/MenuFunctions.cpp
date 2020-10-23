@@ -53,8 +53,7 @@ void Menu::CloseOpenedItem()
         }
         if(Menu::needClosePageSB)
         {
-            NamePage::E namePage = item->Keeper()->OwnData()->name;
-            SetPosActItem(namePage, GetPosActItem(namePage) & 0x7f);   // Сбрасываем бит 7 - "закрываем" активный пункт страницы namePage
+            item->Keeper()->SetPosActItem(GetPosActItem(item->Keeper()->OwnData()->name) & 0x7f);   // Сбрасываем бит 7 - "закрываем" активный пункт страницы namePage
         }
         Menu::needClosePageSB = true;
         if(item == PageMain::self)

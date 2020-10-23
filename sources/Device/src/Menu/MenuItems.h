@@ -200,6 +200,9 @@ public:
     // ¬озвращает true, если текущий элемент страницы с именем namePage открыт.
     bool CurrentItemIsOpened();
 
+    // ”становить позицию активного пункта на странице namePage.
+    void SetPosActItem(int8 pos);
+
     static Page empty;
 
 private:
