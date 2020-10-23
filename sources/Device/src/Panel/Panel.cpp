@@ -20,7 +20,7 @@ volatile static Key::E pressedButton = Key::None;         // Это используется дл
 static uint16 dataTransmitted[MAX_DATA] = {0x00};
 static uint16 numDataForTransmitted = 0;
 
-bool Panel::isRunning = false;
+bool Panel::isRunning = true;
 
 static void(*funcOnKeyDown[Key::Count])(void)    =
 {    
