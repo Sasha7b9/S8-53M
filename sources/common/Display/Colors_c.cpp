@@ -37,9 +37,9 @@ Color::E Color::Cursors(Channel::E chan)
 }
 
 
-Color::E Color::MenuTitle(bool inShade)
+Color::E Color::MenuTitle()
 {
-    return inShade ? Color::MENU_ITEM : Color::MENU_TITLE;
+    return Color::MENU_TITLE;
 }
 
 
@@ -55,16 +55,16 @@ Color::E Color::MenuTitleLessBright()
 }
 
 
-Color::E Color::MenuItem(bool inShade)
+Color::E Color::MenuItem()
 {
-    return inShade ? Color::MENU_ITEM_DARK : Color::MENU_ITEM;
+    return Color::MENU_ITEM;
 }
 
 
 
-Color::E Color::BorderMenu(bool inShade)
+Color::E Color::BorderMenu()
 {
-    return Color::MenuTitle(inShade);
+    return Color::MenuTitle();
 }
 
 
@@ -83,7 +83,7 @@ Color::E Color::Contrast(Color::E color)
 
 Color::E Color::LightShadingText()
 {
-    return Color::MenuTitle(false);
+    return Color::MenuTitle();
 }
 
 

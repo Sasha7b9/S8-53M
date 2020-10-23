@@ -109,8 +109,6 @@ public:
     bool IsPressed() const;
     // Вовзращает true, если элемент меню item является ативным, т.е. может быть нажат.
     bool IsActive() const;
-    // Возвращает true, если элемент меню item затенён (находится не на самом верхнем слое. Как правило, это означает, что раскрыт раскрывающийся элемент меню вроде Choice или Governor.
-    bool IsShade() const;
 
     TypeItem::E Type() const;
     // Возвращает адрес элемента, которому принадлежит элемент по адресу item.
@@ -315,7 +313,7 @@ private:
     int  NumDigits() const;
     // При открытом элементе переставляет курсор на следующую позицию
     void NextPosition();
-    void DrawLowPart(int x, int y, bool, bool shade) const;
+    void DrawLowPart(int x, int y) const;
 
     static bool inMoveIncrease;
     static bool inMoveDecrease;
@@ -349,7 +347,7 @@ public:
     // Изменяет значение в текущей позиции при открытом элементе
     void ChangeValue(int delta);
 
-    void DrawLowPart(int x, int y, bool, bool shade) const;
+    void DrawLowPart(int x, int y) const;
 
     void DrawValue(int x, int y);
 
@@ -387,7 +385,7 @@ public:
 
     void ChangeValue(int delta);
 
-    void DrawLowPart(int x, int y, bool, bool shade) const;
+    void DrawLowPart(int x, int y) const;
 
     void DrawValue(int x, int y);
 
@@ -430,7 +428,7 @@ public:
     virtual void Draw(int x, int y, bool opened = false);
 private:
     void DrawClosed(int x, int y) const;
-    void DrawLowPart(int x, int y, bool, bool shade) const;
+    void DrawLowPart(int x, int y) const;
     void WriteText(int x, int y, bool) const;
 };
 

@@ -296,12 +296,6 @@ bool Page::IsSB() const
 }
 
 
-bool Item::IsShade() const
-{
-    return Keeper()->CurrentItemIsOpened() && (this != Menu::OpenedItem());
-}
-
-
 int8 Page::PosCurrentItem() const
 {
     return GetPosActItem() & 0x7f;
@@ -685,9 +679,9 @@ void Page::SetPosActItem(int8 pos)
 
 int Page::GetPosActItem() const
 {
-    const DataPage *data = OwnData();
+    const DataPage *d = OwnData();
 
-    NamePage::E name = data->name;
+    NamePage::E name = d->name;
 
     return set.menu.posActItem[name];
 }

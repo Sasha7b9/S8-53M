@@ -56,16 +56,11 @@ void InverseColor(Color::E *color)
 }
 
 
-void Painter::DrawVolumeButton(int x, int y, int width, int height, int thickness, Color::E normal, Color::E bright, Color::E dark, bool isPressed, bool inShade)
+void Painter::DrawVolumeButton(int x, int y, int width, int height, int thickness, Color::E normal, Color::E bright, Color::E dark, bool isPressed)
 {
-    if (inShade)
-    {
-        thickness = 1;
-    }
-
     Region(width - thickness * 2, height - thickness * 2).Fill(x + thickness, y + thickness, normal);
 
-    if (isPressed || inShade)
+    if (isPressed)
     {
         for (int i = 0; i < thickness; i++)
         {

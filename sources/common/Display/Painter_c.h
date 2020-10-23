@@ -14,7 +14,7 @@ public:
     // По умолчанию запрашиваем первый фрейм с шрифтами
     static void SendFrame(bool noFonts = false);
 
-    static void DrawVolumeButton(int x, int y, int width, int height, int thickness, Color::E normal, Color::E bright, Color::E dark, bool isPressed, bool inShade);
+    static void DrawVolumeButton(int x, int y, int width, int height, int thickness, Color::E normal, Color::E bright, Color::E dark, bool isPressed);
     // Установить яркость дисплея.
     static void SetBrightnessDisplay(int16 brightness);
 
