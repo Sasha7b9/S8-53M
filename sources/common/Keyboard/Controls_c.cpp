@@ -90,3 +90,9 @@ uint16 Action::ToCode(Action::E action)
 {
     return static_cast<uint16>(action << 5);
 }
+
+
+bool Key::IsFunctionalButton(Key::E key)
+{
+    return (key >= Key::F1) && (key <= Key::F5);
+}

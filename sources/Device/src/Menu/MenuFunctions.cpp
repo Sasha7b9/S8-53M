@@ -32,12 +32,6 @@ int Menu::PosItemOnTop(const Page *page)
 }
 
 
-bool Menu::IsFunctionalButton(Key::E button)
-{
-    return (button >= Key::F1) && (button <= Key::F5);
-}
-
-
 void Menu::CloseOpenedItem()
 {
     Item *item = OpenedItem();
