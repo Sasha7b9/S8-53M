@@ -53,8 +53,6 @@ static bool needStopTimerLong = false;
 // Здесь имя нажатой кнопки
 static Key::E pressedKey = Key::None;
 
-// Создаёт окно приложения. Возвращает хэндл виджета для отрисовки
-static void CreateFrame();
 // Создаёт все кнопки
 static void CreateButtons(Frame *frame);
 // Создаёт одну кнопку
@@ -125,11 +123,11 @@ void Color::SetCurrent(Color::E c)
 
 void Display::Init()
 {
-    CreateFrame();
+    Application::CreateFrame();
 }
 
 
-static void CreateFrame()
+void Application::CreateFrame()
 {
     Frame *frame = new Frame("");
 
