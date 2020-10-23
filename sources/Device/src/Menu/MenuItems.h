@@ -106,6 +106,8 @@ public:
     static const int TITLE_WIDTH = 79;
     static const int TITLE_HEIGHT = 34;
     static const int HEIGHT = 33;
+    static const int HEIGHT_VALUE = 13;
+    static const int OPENED_HEIGHT = 14;
 
     const DataItem *data;
 

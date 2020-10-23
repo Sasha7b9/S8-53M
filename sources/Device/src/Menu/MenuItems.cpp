@@ -633,7 +633,7 @@ int Item::HeightOpened() const
     }
     else if (type == TypeItem::Choice || type == TypeItem::ChoiceReg)
     {
-        return MOI_HEIGHT_TITLE + ((Choice *)this)->NumSubItems() * MOSI_HEIGHT - 1;
+        return MOI_HEIGHT_TITLE + ((Choice *)this)->NumSubItems() * Item::OPENED_HEIGHT - 1;
     }
     return Item::HEIGHT;
 }

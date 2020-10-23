@@ -47,7 +47,7 @@ void DrawGovernorChoiceColorFormulaHiPart(const Item *item, int x, int y, bool p
     Color::E color = IS_COLOR_SCHEME_WHITE_LETTERS ? Color::WHITE : Color::BLACK;
     HLine().Draw(y + 1, x, x + width + 3, Color::BorderMenu());
 
-    Painter::DrawVolumeButton(x + 1, y + 2, width + 2, MI_HEIGHT_VALUE + 3, 2, Color::MenuItem(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), pressed);
+    Painter::DrawVolumeButton(x + 1, y + 2, width + 2, Item::HEIGHT_VALUE + 3, 2, Color::MenuItem(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), pressed);
 
     Text(item->Title()).Draw(x + 6 + delta, y + 6 + delta, color);
     
@@ -98,7 +98,7 @@ void Governor::DrawLowPart(int x, int y) const
     
     Color::E colorTextDown = Color::BACK;
 
-    Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, Color::MenuField(), 
+    Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, Item::HEIGHT_VALUE + 3, 2, Color::MenuField(), 
         ColorMenuItemBrighter(), ColorMenuItemLessBright(), true);
 
     x = Text("\x80").Draw(x + 4, y + 21, colorTextDown);
@@ -115,7 +115,7 @@ void Governor::DrawLowPart(int x, int y) const
             int limX = x + 1;
             int limY = y + 19;
             int limWidth = MI_WIDTH_VALUE;
-            int limHeight = MI_HEIGHT_VALUE - 1;
+            int limHeight = Item::HEIGHT_VALUE - 1;
             if(delta > 0.0F)
             {
                 x = Text(Int2String(*own->cell, false, 1, buffer)).DrawWithLimitation(drawX, static_cast<int>(y + 21 - delta), Color::BACK, limX, limY, limWidth, limHeight);
@@ -141,7 +141,7 @@ void IPaddress::DrawLowPart(int x, int y) const
 
     Color::E colorTextDown = Color::BACK;
 
-    Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true);
+    Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, Item::HEIGHT_VALUE + 3, 2, Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true);
 
     const DataIPaddress *own = OwnData();
 
@@ -163,7 +163,7 @@ void MACaddress::DrawLowPart(int x, int y) const
 
     Color::E colorTextDown = Color::BACK;
 
-    Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true);
+    Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, Item::HEIGHT_VALUE + 3, 2, Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true);
 
     const DataMACaddress *own = OwnData();
 
@@ -213,7 +213,7 @@ void Formula::DrawLowPart(int x, int y) const
 {
     Color::E colorTextDown = Color::BACK;
 
-    Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true);
+    Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, Item::HEIGHT_VALUE + 3, 2, Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true);
 
     Color::SetCurrent(colorTextDown);
     WriteText(x + 6, y + 21, false);
@@ -452,7 +452,7 @@ void GovernorColor::DrawOpened(int x, int y)
     Color_Init(OwnData()->colorType);
     Rectangle(MI_WIDTH + delta + 2, Item::HEIGHT + 2).Draw(x - 1, y - 1, Color::BLACK);
     Rectangle(MI_WIDTH + delta, Item::HEIGHT).Draw(x, y, Color::MenuTitle());
-    Painter::DrawVolumeButton(x + 1, y + 1, MI_WIDTH_VALUE + 2 + delta, MI_HEIGHT_VALUE + 3, 2, Color::MenuItem(), 
+    Painter::DrawVolumeButton(x + 1, y + 1, MI_WIDTH_VALUE + 2 + delta, Item::HEIGHT_VALUE + 3, 2, Color::MenuItem(), 
         ColorMenuItemBrighter(), ColorMenuItemLessBright(), IsPressed());
     HLine().Draw(y + Item::HEIGHT / 2 + 2, x, x + MI_WIDTH + delta, Color::MenuTitle());
     Text(Title()).DrawInCenterRect(x + (IsPressed() ? 2 : 1), y + (IsPressed() ? 2 : 1), MI_WIDTH + delta, Item::HEIGHT / 2 + 2, Color::WHITE);
@@ -463,7 +463,7 @@ void GovernorColor::DrawClosed(int x, int y)
 {
     Color_Init(OwnData()->colorType);
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, IsPressed(), true);
-    Region(MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1).Fill(x + 2, y + 20, OwnData()->colorType->color);
+    Region(MI_WIDTH_VALUE, Item::HEIGHT_VALUE - 1).Fill(x + 2, y + 20, OwnData()->colorType->color);
 }
 
 void GovernorColor::Draw(int x, int y, bool opened)
@@ -492,11 +492,11 @@ void Choice::DrawOpened(int x, int y) const
     int index = *((int8*)OwnData()->cell);
     for(int i = 0; i < NumSubItems(); i++)
     {
-        int yItem = y + MOI_HEIGHT_TITLE + i * MOSI_HEIGHT + 1;
+        int yItem = y + MOI_HEIGHT_TITLE + i * Item::OPENED_HEIGHT + 1;
         bool pressed = i == index;
         if(pressed)
         {
-            Painter::DrawVolumeButton(x + 1, yItem, MOI_WIDTH - 2 , MOSI_HEIGHT - 2, 2, Color::MenuField(), ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), pressed);
+            Painter::DrawVolumeButton(x + 1, yItem, MOI_WIDTH - 2 , Item::OPENED_HEIGHT - 2, 2, Color::MenuField(), ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), pressed);
         }
         Text(NameSubItem(i)).Draw(x + 4, yItem + 2, pressed ? Color::BLACK : Color::MenuField());
     }
@@ -597,7 +597,7 @@ void MACaddress::DrawOpened(int x, int y)
 
 void Choice::DrawClosed(int x, int y) const
 {
-    Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true);
+    Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, Item::HEIGHT_VALUE + 3, 2, Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true);
 
     float deltaY = Step();
     Color::E colorText = Color::BACK;
@@ -608,9 +608,9 @@ void Choice::DrawClosed(int x, int y) const
     }
     else
     {
-        Text(NameCurrentSubItem()).DrawWithLimitation(x + 4, static_cast<int>(y + 21 - deltaY), colorText, x, y + 19, MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1);
+        Text(NameCurrentSubItem()).DrawWithLimitation(x + 4, static_cast<int>(y + 21 - deltaY), colorText, x, y + 19, MI_WIDTH_VALUE, Item::HEIGHT_VALUE - 1);
         HLine().Draw(static_cast<int>(y + (deltaY > 0 ? 31 : 19) - deltaY), x + 3, x + MI_WIDTH_VALUE + 1, Color::BLACK);
-        Text(deltaY > 0 ? NameNextSubItem() : NamePrevSubItem()).DrawWithLimitation(x + 4, static_cast<int>(y + (deltaY > 0 ? 33 : 9) - deltaY), colorText, x, y + 19, MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1);
+        Text(deltaY > 0 ? NameNextSubItem() : NamePrevSubItem()).DrawWithLimitation(x + 4, static_cast<int>(y + (deltaY > 0 ? 33 : 9) - deltaY), colorText, x, y + 19, MI_WIDTH_VALUE, Item::HEIGHT_VALUE - 1);
     }
     HLine().Draw(y + Item::HEIGHT + 1, x, x + MI_WIDTH, Color::BorderMenu());
 
@@ -637,7 +637,7 @@ void TimeItem::DrawClosed(int x, int y) const
     
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, IsPressed(), false);
 
-    Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, MI_HEIGHT_VALUE + 3, 2, Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true);
+    Painter::DrawVolumeButton(x + 1, y + 17, MI_WIDTH_VALUE + 2, Item::HEIGHT_VALUE + 3, 2, Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true);
     //int delta = 0;
 
     int deltaField = 10;
