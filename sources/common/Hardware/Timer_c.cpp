@@ -46,9 +46,9 @@ uint Timer::LogPointMS(char *name)
 }
 
 
-void Timer::Enable(TypeTimer::E type, int timeInMS, void(*eF)())
+void Timer::Enable(TypeTimer::E type, int timeInMS, pFuncVV func)
 {
-    f[type] = eF;
+    f[type] = func;
     reactionTimeMS[type] = timeInMS;
     currentTimeMS[type] = timeInMS - 1;
     isRun[type] = true;
