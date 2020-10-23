@@ -1,9 +1,14 @@
 #pragma once
-#include "common/Display/DisplayTypes_c.h"
 #include "Tables.h"
 
 
 struct DataSettings;
+
+struct DrawMode { enum E
+{
+    Auto,
+    Hand
+};};
 
 
 class Display

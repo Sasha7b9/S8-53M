@@ -1437,11 +1437,6 @@
               <FilePath>.\src\Display\Display.cpp</FilePath>
             </File>
             <File>
-              <FileName>DisplayTypes_c.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Display\DisplayTypes_c.h</FilePath>
-            </File>
-            <File>
               <FileName>Display_stm.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Display\Display_stm.cpp</FilePath>
@@ -3595,11 +3590,6 @@
               <FileName>Display.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Display\Display.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>DisplayTypes_c.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Display\DisplayTypes_c.h</FilePath>
             </File>
             <File>
               <FileName>Display_stm.cpp</FileName>
