@@ -1,6 +1,14 @@
 #include "defines.h"
+#include "common/Log_c.h"
+#include "common/Hardware/Sound_c.h"
+#include "common/Hardware/Timer_c.h"
+#include "common/Hardware/HAL/HAL_c.h"
+#include "FPGA/FPGA.h"
+#include "Menu/Menu.h"
+#include "Menu/Pages/HelpContent.h"
 #include "Panel/Panel.h"
-#include "Panel/PanelFunctions.cpp"
+#include "Settings/Settings.h"
+#include "Utils/GlobalFunctions.h"
 #include <cstdio>
 #include <cstring>
 
@@ -14,6 +22,8 @@
 #define LED_TRIG_ENABLE     131
 #define LED_TRIG_DISABLE    3
 #define POWER_OFF           4
+
+static const uint MIN_TIME = 500;
 
 static Key::E pressedKey = Key::None;
 volatile static Key::E pressedButton = Key::None;         // Это используется для отслеживания нажатой кнопки при отключенной панели
@@ -37,9 +47,24 @@ static void F4Long();
 static void F5Long();
 static void MenuLong();
 static void RShiftLeftA();
+static void RShiftRightA();
+static void RShiftLeftB();
+static void RShiftRightB();
+static void TrigLevLeft();
+static void TrigLevRight();
+static void TShiftLeft();
+static void TShiftRight();
+static void RangeLeftA();
+static void RangeRightA();
+static void RangeLeftB();
+static void RangeRightB();
+static void TBaseLeft();
+static void TBaseRight();
+static void SetLeft();
+static void SetRight();
 
 
-static void(*funcOnKeyDown[Key::Count])(void)    =
+static void(*funcOnKeyDown[Key::Count])(void) =
 {    
     0,
     EmptyFuncVV,    // Key::F1
@@ -62,7 +87,7 @@ static void(*funcOnKeyDown[Key::Count])(void)    =
     PowerDown       // B_Power
 };
 
-static void (*funcOnKeyUp[Key::Count])(void)    =
+static void (*funcOnKeyUp[Key::Count])(void) =
 {
     0,
     EmptyFuncVV,    // Key::F1
@@ -469,8 +494,304 @@ static void F5Long()
 }
 
 
+static bool CanChangeRShiftOrTrigLev(TrigSource::E channel, int16 rShift)
+{
+    static uint time[3] = { 0, 0, 0 };
+    if (rShift == RShiftZero)
+    {
+        time[channel] = gTimerMS;
+        return true;
+    }
+    else if (time[channel] == 0)
+    {
+        return true;
+    }
+    else if (gTimerMS - time[channel] > MIN_TIME)
+    {
+        time[channel] = 0;
+        return true;
+    }
+    return false;
+}
+
+
+int CalculateCount(int *prevTime)
+{
+    uint time = gTimerMS;
+    uint delta = time - *prevTime;
+    *prevTime = (int)time;
+
+    if (delta > 75)
+    {
+        return 1;
+    }
+    else if (delta > 50)
+    {
+        return 2;
+    }
+    else if (delta > 25)
+    {
+        return 3;
+    }
+    return 4;
+}
+
+
+static void ChangeRShift(int *prevTime, void(*f)(Channel::E, int16), Channel::E chan, int16 relStep)
+{
+    if (ENUM_ACCUM_IS_NONE)
+    {
+        FPGA::TemporaryPause();
+    }
+    int count = CalculateCount(prevTime);
+    int rShiftOld = SET_RSHIFT(chan);
+    int rShift = SET_RSHIFT(chan) + relStep * count;
+    if ((rShiftOld > RShiftZero && rShift < RShiftZero) || (rShiftOld < RShiftZero && rShift > RShiftZero))
+    {
+        rShift = RShiftZero;
+    }
+    if (CanChangeRShiftOrTrigLev((TrigSource::E)chan, (int16)rShift))
+    {
+        Sound::RegulatorShiftRotate();
+        f(chan, (int16)rShift);
+    }
+}
+
+
+static void SetRShift(Channel::E ch, int16 rShift)
+{
+    FPGA::SetRShift(ch, rShift);
+}
+
+
 static void RShiftLeftA()
 {
     static int prevTime = 0;
     ChangeRShift(&prevTime, SetRShift, Channel::A, -STEP_RSHIFT);
+}
+
+
+static void RShiftRightA()
+{
+    static int prevTime = 0;
+    ChangeRShift(&prevTime, SetRShift, Channel::A, +STEP_RSHIFT);
+}
+
+
+static void RShiftLeftB()
+{
+    static int prevTime = 0;
+    ChangeRShift(&prevTime, SetRShift, Channel::B, -STEP_RSHIFT);
+}
+
+
+static void RShiftRightB()
+{
+    static int prevTime = 0;
+    ChangeRShift(&prevTime, SetRShift, Channel::B, +STEP_RSHIFT);
+}
+
+
+static void ChangeTrigLev(int *prevTime, void(*f)(TrigSource::E, int16), TrigSource::E trigSource, int16 relStep)
+{
+    int count = CalculateCount(prevTime);
+    int trigLevOld = TRIG_LEVEL(trigSource);
+    int trigLev = TRIG_LEVEL(trigSource) + relStep * count;
+    if ((trigLevOld > TrigLevZero && trigLev < TrigLevZero) || (trigLevOld < TrigLevZero && trigLev > TrigLevZero))
+    {
+        trigLev = TrigLevZero;
+    }
+    if (CanChangeRShiftOrTrigLev(trigSource, (int16)trigLev))
+    {
+        Sound::RegulatorShiftRotate();
+        f(trigSource, (int16)trigLev);
+    }
+}
+
+
+static void SetTrigLev(TrigSource::E ch, int16 trigLev)
+{
+    FPGA::SetTrigLev(ch, trigLev);
+}
+
+
+static void TrigLevLeft()
+{
+    static int prevTime = 0;
+    ChangeTrigLev(&prevTime, SetTrigLev, TRIG_SOURCE, -STEP_RSHIFT);
+}
+
+
+static void TrigLevRight()
+{
+    static int prevTime = 0;
+    ChangeTrigLev(&prevTime, SetTrigLev, TRIG_SOURCE, +STEP_RSHIFT);
+}
+
+
+static void SetTShift(int tShift)
+{
+    FPGA::SetTShift(tShift);
+}
+
+
+static void ShiftScreen(int shift)
+{
+    Display::ShiftScreen(shift);
+}
+
+
+static void ChangeShiftScreen(int *prevTime, void(*f)(int), int16 relStep)
+{
+    int count = CalculateCount(prevTime);
+    float step = static_cast<float>(relStep * count);
+    if (step < 0)
+    {
+        if (step > -1)
+        {
+            step = -1;
+        }
+    }
+    else if (step < 1)
+    {
+        step = 1;
+    }
+    f(static_cast<int>(step));
+}
+
+
+static bool CanChangeTShift(int16 tShift)
+{
+    static uint time = 0;
+    if (tShift == 0)
+    {
+        time = gTimerMS;
+        return true;
+    }
+    else if (time == 0)
+    {
+        return true;
+    }
+    else if (gTimerMS - time > MIN_TIME)
+    {
+        time = 0;
+        return true;
+    }
+    return false;
+}
+
+
+static void ChangeTShift(int *prevTime, void(*f)(int), int16 relStep)
+{
+    int count = CalculateCount(prevTime);
+    int tShiftOld = TSHIFT;
+    float step = static_cast<float>(relStep * count);
+    if (step < 0)
+    {
+        if (step > -1)
+        {
+            step = -1;
+        }
+    }
+    else
+    {
+        if (step < 1)
+        {
+            step = 1;
+        }
+    }
+
+    int16 tShift = static_cast<int16>(TSHIFT + step);
+    if (((tShiftOld > 0) && (tShift < 0)) || (tShiftOld < 0 && tShift > 0))
+    {
+        tShift = 0;
+    }
+    if (CanChangeTShift(tShift))
+    {
+        Sound::RegulatorShiftRotate();
+        f(tShift);
+    }
+}
+
+
+static void XShift(int delta)
+{
+    static int prevTime = 0;
+    if (!FPGA::IsRunning() || TIME_DIV_XPOS_IS_SHIFT_IN_MEMORY)
+    {
+        if (!ENUM_POINTS_IS_281)
+        {
+            ChangeShiftScreen(&prevTime, ShiftScreen, static_cast<int16>(2 * delta));
+        }
+    }
+    else
+    {
+        ChangeTShift(&prevTime, SetTShift, (int16)delta);
+    }
+}
+
+
+static void TShiftLeft()
+{
+    XShift(-1);
+}
+
+
+static void TShiftRight()
+{
+    XShift(1);
+}
+
+
+static void RangeLeftA()
+{
+    Sound::RegulatorSwitchRotate();
+    FPGA::RangeIncrease(Channel::A);
+}
+
+
+static void RangeRightA()
+{
+    Sound::RegulatorSwitchRotate();
+    FPGA::RangeDecrease(Channel::A);
+}
+
+
+static void RangeLeftB()
+{
+    Sound::RegulatorSwitchRotate();
+    FPGA::RangeIncrease(Channel::B);
+}
+
+
+static void RangeRightB()
+{
+    Sound::RegulatorSwitchRotate();
+    FPGA::RangeDecrease(Channel::B);
+}
+
+
+static void TBaseLeft()
+{
+    Sound::RegulatorSwitchRotate();
+    FPGA::TBaseIncrease();
+}
+
+
+static void TBaseRight()
+{
+    Sound::RegulatorSwitchRotate();
+    FPGA::TBaseDecrease();
+}
+
+
+static void SetLeft()
+{
+    Menu::RotateRegSetLeft();
+}
+
+
+static void SetRight()
+{
+    Menu::RotateRegSetRight();
 }

@@ -118,7 +118,7 @@ file(GLOB VCP_SCPI             src/VCP/SCPI/*.h
 file(GLOB VCP_SCPI_UTILS       src/VCP/SCPI/Utils/*)
 
 set_source_files_properties(${LIBS_FATFS} ${LIBS_HAL} ${LIBS_USBH}
-                            src/Panel/PanelFunctions.cpp src/Menu/Pages/PageHelp.cpp
+                            src/Menu/Pages/PageHelp.cpp
                             PROPERTIES HEADER_FILE_ONLY TRUE)
 
 source_group(libs\\vs_keil\\ARMCLANG FILES ${VS_KEIL_ARMCLANG})
