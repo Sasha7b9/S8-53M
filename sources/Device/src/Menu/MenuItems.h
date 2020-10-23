@@ -6,10 +6,10 @@
 
 class SmallButton;
 
+
+#define MAX_NUM_CHOICE_SMALL_BUTTON 6    // Максимальное количество вариантов маленькой кнопки + 1
+
                                             
-#define MAX_NUM_CHOICE_SMALL_BUTTON 6   // Максимальное количество вариантов маленькой кнопки + 1
-
-
 // Разные виды пунктов меню
 struct TypeItem { enum E
 {

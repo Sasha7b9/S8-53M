@@ -1,13 +1,13 @@
 #pragma once
 #include "common/Keyboard/Controls_c.h"
-#include "MenuItems.h"
+#include "Menu/MenuItems.h"
 
 
 class Menu
 {
 public:
 
-    static const int ITEMS_ON_DISPLAY = 5;  // Сколько пунктов меню помещается на экране по вертикали.
+    static const int ITEMS_ON_DISPLAY = 5;     // Сколько пунктов меню помещается на экране по вертикали.
 
     static void Draw();
     // Функция должна вызываться в главном цикле.
