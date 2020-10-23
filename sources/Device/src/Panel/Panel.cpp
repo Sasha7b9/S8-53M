@@ -64,7 +64,7 @@ static void SetLeft();
 static void SetRight();
 
 
-static void(*funcOnKeyDown[Key::Count])(void) =
+static void(*funcOnKeyDown[Key::Count])() =
 {    
     0,
     EmptyFuncVV,    // Key::F1
@@ -87,7 +87,7 @@ static void(*funcOnKeyDown[Key::Count])(void) =
     PowerDown       // B_Power
 };
 
-static void (*funcOnKeyUp[Key::Count])(void) =
+static void (*funcOnKeyUp[Key::Count])() =
 {
     0,
     EmptyFuncVV,    // Key::F1
@@ -110,7 +110,7 @@ static void (*funcOnKeyUp[Key::Count])(void) =
     EmptyFuncVV     // B_Power
 };
 
-static void (*funcOnLongPressure[Key::Count])(void)    =
+static void (*funcOnLongPressure[Key::Count])()    =
 {
     0,
     F1Long,         // Key::F1
@@ -133,7 +133,7 @@ static void (*funcOnLongPressure[Key::Count])(void)    =
     EmptyFuncVV     // B_Power
 };
 
-static void (*funculatorLeft[Key::Count])(void)    =
+static void (*funculatorLeft[Key::Count])()    =
 {
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     RangeLeftA,     // R_Range0
@@ -145,7 +145,7 @@ static void (*funculatorLeft[Key::Count])(void)    =
     TrigLevLeft,    // R_TrigLev
     SetLeft         // Key::Setting
 };
-static void (*funculatorRight[Key::Count])(void) =
+static void (*funculatorRight[Key::Count])() =
 {
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     RangeRightA,    // R_Range0

@@ -14,13 +14,13 @@ HAL_StatusTypeDef HAL_FLASH_Program(uint32_t, uint32_t, uint64_t)
 }
 
 
-HAL_StatusTypeDef HAL_FLASH_Unlock(void)
+HAL_StatusTypeDef HAL_FLASH_Unlock()
 {
     return HAL_ERROR;
 }
 
 
-HAL_StatusTypeDef HAL_FLASH_Lock(void)
+HAL_StatusTypeDef HAL_FLASH_Lock()
 {
     return HAL_ERROR;
 }

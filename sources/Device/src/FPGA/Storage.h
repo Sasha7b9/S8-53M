@@ -43,7 +43,7 @@ public:
 
 private:
 
-    static void CalculateSums(void);
+    static void CalculateSums();
     // ¬озвращает количество свободной пам€ти в байтах
     static int MemoryFree();
     // ¬ычисл€ет, сколько пам€ти трубуетс€, чтобы сохранить измерени€ с настройками dp

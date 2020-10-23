@@ -245,7 +245,7 @@ void Menu::ReleaseButton(Key::E button)
 };
 
 
-void Menu::RotateRegSetRight(void)
+void Menu::RotateRegSetRight()
 {   
     if (!showHelpHints)
     {
@@ -255,7 +255,7 @@ void Menu::RotateRegSetRight(void)
 };
 
 
-void Menu::RotateRegSetLeft(void)
+void Menu::RotateRegSetLeft()
 {
     if (!showHelpHints)
     {
@@ -265,7 +265,7 @@ void Menu::RotateRegSetLeft(void)
 };
 
 
-Item* Menu::ItemUnderKey(void)
+Item* Menu::ItemUnderKey()
 {
     return itemUnderKey;
 };
@@ -401,7 +401,7 @@ void Menu::ProcessingShortPressureButton()
 }
 
 
-void Menu::ProcessingLongPressureButton(void)
+void Menu::ProcessingLongPressureButton()
 {
     if(longPressureButton != Key::None)
     {
@@ -441,7 +441,7 @@ void Menu::ProcessingLongPressureButton(void)
 }
 
 
-void Menu::ProcessingRegulatorSet(void)
+void Menu::ProcessingRegulatorSet()
 {
     if (angleRegSet == 0)
     {
@@ -492,7 +492,7 @@ void Menu::ProcessingRegulatorSet(void)
 }
 
 
-void Menu::ProcessingPressButton(void)
+void Menu::ProcessingPressButton()
 {
     if (pressButton == Key::Start && !MODE_WORK_IS_LATEST)
     {
@@ -509,7 +509,7 @@ void Menu::ProcessingPressButton(void)
 }
 
 
-void Menu::ProcessingReleaseButton(void)
+void Menu::ProcessingReleaseButton()
 {
     if(releaseButton >= Key::F1 && releaseButton <= Key::F5 || pressButton == Key::Menu)
     {
@@ -519,7 +519,7 @@ void Menu::ProcessingReleaseButton(void)
 }
 
 
-void Menu::OpenItemTime(void)
+void Menu::OpenItemTime()
 {
     Display::ShowWarningGood(Warning::TimeNotSet);
     Menu::ShortPressureButton(Key::Service);
@@ -581,7 +581,7 @@ bool Menu::NeedForFireSetLED()    // Возвращает true, если лампочка УСТАНОВКА до
 }
 
 
-void Menu::SwitchSetLED(void)
+void Menu::SwitchSetLED()
 {
     static bool first = true;
     static bool prevState = false;  // true - горит, false - не горит

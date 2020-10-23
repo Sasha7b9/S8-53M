@@ -61,7 +61,7 @@ void Timer::Disable(TypeTimer::E type)
 }
 
 
-void Timer::Update1ms(void)
+void Timer::Update1ms()
 {
     for(int num = 0; num < TypeTimer::Count; num++)
     {

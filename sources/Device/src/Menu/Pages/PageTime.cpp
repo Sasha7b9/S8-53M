@@ -6,7 +6,7 @@
 #include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
 
-static bool IsActive_Sample(void)
+static bool IsActive_Sample()
 {
     return sTime_RandomizeModeEnabled();
 }
@@ -24,7 +24,7 @@ DEF_CHOICE_2(mcSample, PageTime::self,
     SAMPLE_TYPE, IsActive_Sample, nullptr, nullptr
 )
 
-static bool IsActive_PeakDet(void)
+static bool IsActive_PeakDet()
 {
     return (SET_TBASE >= MIN_TBASE_PEC_DEAT);
 }
@@ -96,7 +96,7 @@ DEF_CHOICE_3(mcTPos, PageTime::self,
     SET_TPOS, nullptr, PageTime::OnChanged_TPos, nullptr
 )
 
-static bool IsActive_SelfRecorder(void)
+static bool IsActive_SelfRecorder()
 {
     return SET_TBASE >= MIN_TBASE_P2P;
 }

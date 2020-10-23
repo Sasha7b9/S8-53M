@@ -34,7 +34,7 @@ static bool cursorInDirs = false;    // Если true, то ручка УСТАНОВКА перемещает
 
 uint FM::needRedrawFileManager = 0;
 
-void FM::Init(void)
+void FM::Init()
 {
     std::strcpy(currentDir, "\\");
     numFirstDir = 0;
@@ -162,7 +162,7 @@ void FM::DrawNameCurrentDir(int left, int top)
 }
 
 
-void FM::Draw(void)
+void FM::Draw()
 {
     if (needRedrawFileManager == 0)
     {
@@ -201,7 +201,7 @@ void FM::Draw(void)
 }
 
 
-void FM::PressTab(void)
+void FM::PressTab()
 {
     needRedrawFileManager = 1;
 
@@ -222,7 +222,7 @@ void FM::PressTab(void)
 }
 
 
-void FM::PressLevelDown(void)
+void FM::PressLevelDown()
 {
     needRedrawFileManager = 1;
     if (!cursorInDirs)
@@ -249,7 +249,7 @@ void FM::PressLevelDown(void)
 }
 
 
-void FM::PressLevelUp(void)
+void FM::PressLevelUp()
 {
     needRedrawFileManager = 1;
     if (std::strlen(currentDir) == 1)
@@ -270,7 +270,7 @@ void FM::PressLevelUp(void)
 }
 
 
-void FM::IncCurrentDir(void)
+void FM::IncCurrentDir()
 {
     if (numDirs > 1)
     {
@@ -288,7 +288,7 @@ void FM::IncCurrentDir(void)
 }
 
 
-void FM::DecCurrentDir(void)
+void FM::DecCurrentDir()
 {
     if (numDirs > 1)
     {
@@ -306,7 +306,7 @@ void FM::DecCurrentDir(void)
 }
 
 
-void FM::IncCurrentFile(void)
+void FM::IncCurrentFile()
 {
     if (numFiles > 1)
     {
@@ -324,7 +324,7 @@ void FM::IncCurrentFile(void)
 }
 
 
-void FM::DecCurrentFile(void)
+void FM::DecCurrentFile()
 {
     if (numFiles > 1)
     {

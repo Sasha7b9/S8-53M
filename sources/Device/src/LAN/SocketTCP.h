@@ -7,7 +7,7 @@ static const int    DEFAULT_PORT = 7,
 
 struct TCPSocket
 {
-    static bool Init(void (*funcConnect)(void), void (*funcReciever)(const char* buffer, uint length));
+    static bool Init(void (*funcConnect)(), void (*funcReciever)(const char* buffer, uint length));
 
     static bool Send(const char* buffer, uint length);
 

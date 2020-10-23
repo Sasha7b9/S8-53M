@@ -16,7 +16,7 @@ DEF_CHOICE_2(mcMapping, PageDisplay::self,
     MODE_DRAW_SIGNAL, nullptr, nullptr, nullptr
 )
 
-static bool IsActive_Accumulation(void)
+static bool IsActive_Accumulation()
 {
     return SET_TBASE > TBase::_50ns;
 }
@@ -204,7 +204,7 @@ DEF_CHOICE_2(mcAveraging_Mode, PageDisplay::PageAveraging::self,
     MODE_AVE, nullptr, nullptr, nullptr
 )
 
-static bool IsActive_Averaging(void)
+static bool IsActive_Averaging()
 {
     return true;
 }
@@ -231,12 +231,12 @@ DEF_CHOICE_4(mcGrid_Type, PageDisplay::PageGrid::self,
 
 static ColorType cTypeGrid = { 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::GRID };
 
-void PageDisplay::OnChanged_Grid_Brightness(void)
+void PageDisplay::OnChanged_Grid_Brightness()
 {
     Color_SetBrightness(&cTypeGrid, BRIGHTNESS_GRID / 1e2F);
 }
 
-static void BeforeDraw_Grid_Brightness(void)
+static void BeforeDraw_Grid_Brightness()
 {
     Color_Init(&cTypeGrid);
     BRIGHTNESS_GRID = (int16)(cTypeGrid.brightness * 100.0F);

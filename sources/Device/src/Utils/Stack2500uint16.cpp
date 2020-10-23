@@ -71,7 +71,7 @@ void Stack_MinMaxLast(int number, uint16 *min, uint16 *max) {
     *max = maxV;
 }
 
-int Size(void) {
+int Size() {
     if(empty) {
         return 0;
     }

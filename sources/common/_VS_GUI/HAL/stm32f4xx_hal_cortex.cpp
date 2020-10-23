@@ -14,7 +14,7 @@ void HAL_NVIC_EnableIRQ(IRQn_Type)
 }
 
 
-void HAL_NVIC_SystemReset(void)
+void HAL_NVIC_SystemReset()
 {
 
 }

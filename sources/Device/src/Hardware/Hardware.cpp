@@ -9,7 +9,7 @@
 extern "C" {
 #endif
     
-void Hardware::Init(void)
+void Hardware::Init()
 {
     HAL::Init();
 

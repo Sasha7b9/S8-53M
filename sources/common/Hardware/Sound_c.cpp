@@ -25,7 +25,7 @@ bool Sound::warnIsBeep = false;
 bool Sound::buttonIsPressed = false;
 
 
-static void Stop(void)
+static void Stop()
 {
     HAL_DAC::StopDMA();
     Sound::isBeep = false;
@@ -63,14 +63,14 @@ void Sound_Beep(TypeWave::E typeWave_, float frequency_, float amplitude_, int d
 }
 
 
-void Sound::ButtonPress(void)
+void Sound::ButtonPress()
 {
     Sound_Beep(TypeWave::Sine, 2000.0F, 0.5F, 50);
     Sound::buttonIsPressed = true;
 }
 
 
-void Sound::ButtonRelease(void)
+void Sound::ButtonRelease()
 {
     if (buttonIsPressed)
     {
@@ -80,28 +80,28 @@ void Sound::ButtonRelease(void)
 }
 
 
-void Sound::GovernorChangedValue(void)
+void Sound::GovernorChangedValue()
 {
     Sound_Beep(TypeWave::Sine, 1000.0F, 0.5F, 50);
     buttonIsPressed = false;
 }
 
 
-void Sound::RegulatorShiftRotate(void)
+void Sound::RegulatorShiftRotate()
 {
     Sound_Beep(TypeWave::Sine, 1.0F, 0.35F, 3);
     buttonIsPressed = false;
 }
 
 
-void Sound::RegulatorSwitchRotate(void)
+void Sound::RegulatorSwitchRotate()
 {
     Sound_Beep(TypeWave::Triangle, 2500.0F, 0.5F, 25);
     buttonIsPressed = false;
 }
 
 
-void Sound::WarnBeepBad(void)
+void Sound::WarnBeepBad()
 {
     Sound_Beep(TypeWave::Meandr, 250.0F, 1.0F, 500);
     warnIsBeep = true;
@@ -109,14 +109,14 @@ void Sound::WarnBeepBad(void)
 }
 
 
-void Sound::WarnBeepGood(void)
+void Sound::WarnBeepGood()
 {
     Sound_Beep(TypeWave::Triangle, 1000.0F, 0.5F, 250);
     buttonIsPressed = false;
 }
 
 
-void SetWave(void)
+void SetWave()
 {
     HAL_TIM7::Config(0, CalculatePeriodForTIM());
 
@@ -135,13 +135,13 @@ void SetWave(void)
 }
 
 
-uint16 CalculatePeriodForTIM(void)
+uint16 CalculatePeriodForTIM()
 {
     return static_cast<uint16>(120e6F / frequency / POINTS_IN_PERIOD);
 }
 
 
-void CalculateSine(void)
+void CalculateSine()
 {
     for (int i = 0; i < POINTS_IN_PERIOD; i++)
     {
@@ -152,7 +152,7 @@ void CalculateSine(void)
 }
 
 
-void CalculateMeandr(void)
+void CalculateMeandr()
 {
     for (int i = 0; i < POINTS_IN_PERIOD / 2; i++)
     {
@@ -165,7 +165,7 @@ void CalculateMeandr(void)
 }
 
 
-void CalculateTriangle(void)
+void CalculateTriangle()
 {
     float k = 255.0 / POINTS_IN_PERIOD;
     for (int i = 0; i < POINTS_IN_PERIOD; i++)

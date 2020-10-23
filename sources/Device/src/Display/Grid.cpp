@@ -16,55 +16,55 @@ int Grid::Delta()
 }
 
 
-int Grid::Left(void)
+int Grid::Left()
 {
     return (Menu::IsMinimize() && Menu::IsShown() ? 9 : 20) + Measure::GetDeltaGridLeft();
 }
 
 
-int Grid::Right(void)
+int Grid::Right()
 {
     return ((Menu::IsMinimize() && Menu::IsShown()) ? 9 : 20) + 280;
 }
 
 
-int Grid::ChannelBottom(void)
+int Grid::ChannelBottom()
 {
     return (SettingsDisplay::IsSeparate()) ? (Grid::TOP + Height() / 2) : FullBottom();
 }
 
 
-int Grid::SignalWidth(void)
+int Grid::SignalWidth()
 {
     return Width();
 }
 
 
-int Grid::ChannelHeight(void)
+int Grid::ChannelHeight()
 {
     return (SettingsDisplay::IsSeparate()) ? FullHeight() / 2 : FullHeight();
 }
 
 
-int Grid::ChannelCenterHeight(void)
+int Grid::ChannelCenterHeight()
 {
     return (Grid::TOP + ChannelBottom()) / 2;
 }
 
 
-int Grid::FullBottom(void)
+int Grid::FullBottom()
 {
     return Grid::Bottom() - Measure::GetDeltaGridBottom();
 }
 
 
-int Grid::FullHeight(void)
+int Grid::FullHeight()
 {
     return FullBottom() - Grid::TOP;
 }
 
 
-int Grid::Width(void)
+int Grid::Width()
 {
     return Right() - Left();
 }
@@ -76,39 +76,39 @@ int Grid::Height()
 }
 
 
-int Grid::FullCenterHeight(void)
+int Grid::FullCenterHeight()
 {
     return (FullBottom() + Grid::TOP) / 2;
 }
 
 
-int Grid::WidthInCells(void)
+int Grid::WidthInCells()
 {
     return Menu::IsShown() ? 10 : 14;
 }
 
 
-float Grid::DeltaY(void)
+float Grid::DeltaY()
 {
     float delta = (FullBottom() - Grid::TOP) / 10.0F;
     return SettingsDisplay::IsSeparate() ? (delta / 2.0F) : delta;
 }
 
 
-float Grid::DeltaX(void)
+float Grid::DeltaX()
 {
     float delta = (Right() - Left()) / 14.0F;
     return delta;
 }
 
 
-int Grid::MathTop(void)
+int Grid::MathTop()
 {
     return MathBottom() - MathHeight();
 }
 
 
-int Grid::MathHeight(void)
+int Grid::MathHeight()
 {
     if (ENABLED_FFT || MODE_DRAW_MATH_IS_SEPARATE)
     {
@@ -118,13 +118,13 @@ int Grid::MathHeight(void)
 }
 
 
-int Grid::MathBottom(void)
+int Grid::MathBottom()
 {
     return FullBottom();
 }
 
 
-int Grid::BottomMessages(void)
+int Grid::BottomMessages()
 {
     int retValue = FullBottom();
     if (MODE_WORK_IS_MEMINT)

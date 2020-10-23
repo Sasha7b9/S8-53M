@@ -70,7 +70,7 @@ static const TBaseMaskStruct masksTBase[TBase::Count] =
 
 
 
-void FPGA::LoadSettings(void)
+void FPGA::LoadSettings()
 {
     LoadKoeffCalibration(Channel::A);
     LoadKoeffCalibration(Channel::B);
@@ -214,7 +214,7 @@ void FPGA::SetTBase(TBase::E tBase)
 };
 
 
-void FPGA::LoadTBase(void)
+void FPGA::LoadTBase()
 {
     TBase::E tBase = SET_TBASE;
     uint8 mask = PEAKDET ? masksTBase[tBase].maskPeackDet : masksTBase[tBase].maskNorm;
@@ -223,7 +223,7 @@ void FPGA::LoadTBase(void)
 }
 
 
-void FPGA::TBaseDecrease(void)
+void FPGA::TBaseDecrease()
 {
     if ((PEAKDET != PeackDetMode::Disable) && SET_TBASE <= MIN_TBASE_PEC_DEAT)
     {
@@ -251,7 +251,7 @@ void FPGA::TBaseDecrease(void)
 }
 
 
-void FPGA::TBaseIncrease(void)
+void FPGA::TBaseIncrease()
 {
     if (SET_TBASE < (TBase::Count - 1))
     {
@@ -343,7 +343,7 @@ void FPGA::SetTrigLev(TrigSource::E chan, int16 trigLev)
 };
 
 
-void FPGA::LoadTrigLev(void)
+void FPGA::LoadTrigLev()
 {
     uint16 data = 0xa000;
     uint16 trigLev = (uint16)TRIG_LEVEL_SOURCE;
@@ -395,7 +395,7 @@ void FPGA::SetCalibratorMode(CalibratorMode::E calibratorMode)
 }
 
 
-void FPGA::LoadRegUPR(void)
+void FPGA::LoadRegUPR()
 {
     uint8 data = 0;
     if (sTime_RandomizeModeEnabled())
@@ -425,7 +425,7 @@ void FPGA::LoadKoeffCalibration(Channel::E chan)
 }
 
 
-void FPGA::LoadTShift(void)
+void FPGA::LoadTShift()
 {
     static const int16 k[TBase::Count] = {50, 20, 10, 5, 2};
     int16 tShift = TSHIFT - sTime_TShiftMin() + 1;
@@ -509,7 +509,7 @@ void FPGA::SetTrigPolarity(TrigPolarity::E polarity)
 }
 
 
-void FPGA::LoadTrigPolarity(void)
+void FPGA::LoadTrigPolarity()
 {
     WriteToHardware(WR_TRIG_F, TRIG_POLARITY_IS_FRONT ? 0x01U : 0x00U, true);
 }

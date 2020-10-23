@@ -2,7 +2,7 @@
 #include <stm32f4xx_hal.h>
 
 
-void HAL_PWR_EnableBkUpAccess(void)
+void HAL_PWR_EnableBkUpAccess()
 {
 
 }

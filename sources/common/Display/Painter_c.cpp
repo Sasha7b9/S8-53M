@@ -93,7 +93,7 @@ void Painter::SetBrightnessDisplay(int16 )
 }
 
 
-int NumberColorsInSceneCol(void)
+int NumberColorsInSceneCol()
 {
     return numberColorsUsed;
 }
@@ -138,7 +138,7 @@ uint16 Painter::ReduceBrightness(uint16 colorValue, float newBrightness)
 }
 
 
-bool Painter::SaveScreenToFlashDrive(void)
+bool Painter::SaveScreenToFlashDrive()
 {
     return true;
 }

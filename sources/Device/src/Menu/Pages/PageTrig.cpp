@@ -111,12 +111,12 @@ DEF_CHOICE_2(mcAutoFind_Mode, PageTrig::PageAutoFind::self,
     TRIG_MODE_FIND, nullptr, nullptr, nullptr
 )
 
-static bool IsActive_AutoFind_Search(void)
+static bool IsActive_AutoFind_Search()
 {
     return TRIG_MODE_FIND_IS_HAND;
 }
 
-static void OnPress_AutoFind_Search(void)
+static void OnPress_AutoFind_Search()
 {
     FPGA::FindAndSetTrigLevel();
 }

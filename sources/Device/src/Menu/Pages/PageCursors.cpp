@@ -171,7 +171,7 @@ static void OnRotate_RegSet_Set(int angle)
     Sound::RegulatorShiftRotate();
 }
 
-static void PressSB_Cursors_Exit(void)
+static void PressSB_Cursors_Exit()
 {
     Display::RemoveAddDrawFunction();
 }
@@ -196,7 +196,7 @@ static const arrayHints hintsSetSource =
     { DrawSB_Cursors_SourceA, "канал 1", "channel 1" }, { DrawSB_Cursors_SourceB, "канал 2", "channel 2" }
 };
 
-static void PressSB_Cursors_Source(void)
+static void PressSB_Cursors_Source()
 {
     Channel::E source = CURS_SOURCE_A ? Channel::B : Channel::A;
     SetCursSource(source);
@@ -254,7 +254,7 @@ static const arrayHints hintsSetU =
                                     "cursors of tension are switched on, control of both cursors" }
 };
 
-static void PressSB_Cursors_U(void)
+static void PressSB_Cursors_U()
 {
     if (CURS_ACTIVE_IS_U || CURS_CNTRL_U_IS_DISABLE(CURS_SOURCE))
     {
@@ -344,7 +344,7 @@ static const arrayHints hintsSetT =
                                         "cursors of time are switched on, control of both cursors" }
 };
 
-static void PressSB_Cursors_T(void)
+static void PressSB_Cursors_T()
 {
     if (CURS_ACTIVE_IS_T || CURS_CNTRL_T_IS_DISABLE(CURS_SOURCE))
     {
@@ -394,7 +394,7 @@ DEF_SMALL_BUTTON(sbSetT, PageCursors::PageSet::self,
     nullptr, PressSB_Cursors_T, DrawSB_Cursors_T, &hintsSetT
 )
 
-static void PressSB_Cursors_100(void)
+static void PressSB_Cursors_100()
 {
     SetCursPos100(CURS_SOURCE);
 }
@@ -439,7 +439,7 @@ static const arrayHints hintsSetPointsPercents =
                                                 "the step of movement of the cursor is multiple to one pixel" }
 };
 
-static void PressSB_Cursors_PointsPercents(void)
+static void PressSB_Cursors_PointsPercents()
 {
     CircleIncreaseInt8((int8 *)&CURS_MOVEMENT, 0, 1);
 }

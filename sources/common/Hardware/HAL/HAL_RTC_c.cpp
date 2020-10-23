@@ -80,7 +80,7 @@ void HAL_RTC::Init()
 }
 
 
-PackedTime HAL_RTC::GetPackedTime(void)
+PackedTime HAL_RTC::GetPackedTime()
 {
     PackedTime time;
 

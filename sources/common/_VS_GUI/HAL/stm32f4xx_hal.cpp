@@ -19,7 +19,7 @@ HAL_StatusTypeDef HAL_DeInit()
 }
 
 
-__weak uint32_t HAL_GetTick(void)
+__weak uint32_t HAL_GetTick()
 {
     return 0;
 }
