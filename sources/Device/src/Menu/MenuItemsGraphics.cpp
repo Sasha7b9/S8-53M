@@ -86,7 +86,7 @@ void DrawGovernorChoiceColorFormulaHiPart(const Item *item, int x, int y, bool p
             }
         }
 
-        Char(symbol).Draw4SymbolsInRect(x + MI_WIDTH - 13, y + 5 + (item->IsOpened() ? 0 : 15), IS_COLOR_SCHEME_WHITE_LETTERS ? Color::BACK : Color::FILL);
+        Char(symbol).Draw4SymbolsInRect(x + Item::WIDTH - 13, y + 5 + (item->IsOpened() ? 0 : 15), IS_COLOR_SCHEME_WHITE_LETTERS ? Color::BACK : Color::FILL);
     }
 }
 
@@ -342,7 +342,7 @@ void MACaddress::DrawValue(int x, int y)
         gCurDigit = 0;
     }
     uint8 *bytes = OwnData()->mac0;
-    x += MOI_WIDTH - 14;
+    x += Item::OPENED_WIDTH - 14;
     y++;
     for (int num = 5; num >= 0; num--)
     {
@@ -430,7 +430,7 @@ void GovernorColor::DrawValue(int x, int y, int delta)
 
     int vals[4] = { static_cast<int>(ct->brightness * 100), blue, green, red };
 
-    Region(MI_WIDTH + delta - 2, Item::HEIGHT / 2 - 3).Fill(x, y, Color::BLACK);
+    Region(Item::WIDTH + delta - 2, Item::HEIGHT / 2 - 3).Fill(x, y, Color::BLACK);
     x += 92;
     
     for(int i = 0; i < 4; i++)
@@ -450,12 +450,12 @@ void GovernorColor::DrawOpened(int x, int y)
     static const int delta = 43;
     x -= delta;
     Color_Init(OwnData()->colorType);
-    Rectangle(MI_WIDTH + delta + 2, Item::HEIGHT + 2).Draw(x - 1, y - 1, Color::BLACK);
-    Rectangle(MI_WIDTH + delta, Item::HEIGHT).Draw(x, y, Color::MenuTitle());
+    Rectangle(Item::WIDTH + delta + 2, Item::HEIGHT + 2).Draw(x - 1, y - 1, Color::BLACK);
+    Rectangle(Item::WIDTH + delta, Item::HEIGHT).Draw(x, y, Color::MenuTitle());
     Painter::DrawVolumeButton(x + 1, y + 1, Item::WIDTH_VALUE + 2 + delta, Item::HEIGHT_VALUE + 3, 2, Color::MenuItem(), 
         ColorMenuItemBrighter(), ColorMenuItemLessBright(), IsPressed());
-    HLine().Draw(y + Item::HEIGHT / 2 + 2, x, x + MI_WIDTH + delta, Color::MenuTitle());
-    Text(Title()).DrawInCenterRect(x + (IsPressed() ? 2 : 1), y + (IsPressed() ? 2 : 1), MI_WIDTH + delta, Item::HEIGHT / 2 + 2, Color::WHITE);
+    HLine().Draw(y + Item::HEIGHT / 2 + 2, x, x + Item::WIDTH + delta, Color::MenuTitle());
+    Text(Title()).DrawInCenterRect(x + (IsPressed() ? 2 : 1), y + (IsPressed() ? 2 : 1), Item::WIDTH + delta, Item::HEIGHT / 2 + 2, Color::WHITE);
     DrawValue(x + 1, y + 19, delta);
 }
 
@@ -487,8 +487,8 @@ void Choice::DrawOpened(int x, int y) const
     DrawGovernorChoiceColorFormulaHiPart(this, x - 1, y - 1, IsPressed(), true);
     Rectangle(Item::TITLE_WIDTH + 1, height + 1).Draw(x - 1, y, Color::MenuTitle());
  
-    HLine().Draw(y + Item::OPENED_HEIGHT_TITLE - 1, x, x + MOI_WIDTH);
-    Painter::DrawVolumeButton(x, y + Item::OPENED_HEIGHT_TITLE, MOI_WIDTH - 1, height - Item::OPENED_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false);
+    HLine().Draw(y + Item::OPENED_HEIGHT_TITLE - 1, x, x + Item::OPENED_WIDTH);
+    Painter::DrawVolumeButton(x, y + Item::OPENED_HEIGHT_TITLE, Item::OPENED_WIDTH - 1, height - Item::OPENED_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false);
     int index = *((int8*)OwnData()->cell);
     for(int i = 0; i < NumSubItems(); i++)
     {
@@ -496,7 +496,7 @@ void Choice::DrawOpened(int x, int y) const
         bool pressed = i == index;
         if(pressed)
         {
-            Painter::DrawVolumeButton(x + 1, yItem, MOI_WIDTH - 2 , Item::OPENED_HEIGHT - 2, 2, Color::MenuField(), ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), pressed);
+            Painter::DrawVolumeButton(x + 1, yItem, Item::OPENED_WIDTH - 2 , Item::OPENED_HEIGHT - 2, 2, Color::MenuField(), ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), pressed);
         }
         Text(NameSubItem(i)).Draw(x + 4, yItem + 2, pressed ? Color::BLACK : Color::MenuField());
     }
@@ -513,8 +513,8 @@ void TimeItem::DrawOpened(int x, int y) const
 
     Rectangle(width + 1, height + 1).Draw(x - 1, y, Color::MenuTitle());
 
-    HLine().Draw(y + Item::OPENED_HEIGHT_TITLE - 1, x, x + MOI_WIDTH);
-    Painter::DrawVolumeButton(x, y + Item::OPENED_HEIGHT_TITLE, MOI_WIDTH - 1, height - Item::OPENED_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false);
+    HLine().Draw(y + Item::OPENED_HEIGHT_TITLE - 1, x, x + Item::OPENED_WIDTH);
+    Painter::DrawVolumeButton(x, y + Item::OPENED_HEIGHT_TITLE, Item::OPENED_WIDTH - 1, height - Item::OPENED_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false);
 
     int y0 = 21;
     int y1 = 31;
@@ -572,9 +572,9 @@ static void GovernorIpCommon_DrawOpened(const Item *item, int x, int y, int dWid
     int height = 34;
     Rectangle(Item::TITLE_WIDTH + 2 + dWidth, height + 3).Draw(x - 1, y - 1, Color::BACK);
     Rectangle(Item::TITLE_WIDTH + 1 + dWidth, height + 1).Draw(x - 1, y, Color::MenuTitle());
-    HLine().Draw(y + Item::OPENED_HEIGHT_TITLE - 1, x, x + MOI_WIDTH + dWidth);
+    HLine().Draw(y + Item::OPENED_HEIGHT_TITLE - 1, x, x + Item::OPENED_WIDTH + dWidth);
     DrawGovernorChoiceColorFormulaHiPart(item, x - 1, y - 1, item->IsPressed(), true);
-    Painter::DrawVolumeButton(x, y + Item::OPENED_HEIGHT_TITLE, MOI_WIDTH - 1 + dWidth, height - Item::OPENED_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false);
+    Painter::DrawVolumeButton(x, y + Item::OPENED_HEIGHT_TITLE, Item::OPENED_WIDTH - 1 + dWidth, height - Item::OPENED_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false);
 }
 
 void Governor::DrawOpened(int x, int y) const
@@ -612,7 +612,7 @@ void Choice::DrawClosed(int x, int y) const
         HLine().Draw(static_cast<int>(y + (deltaY > 0 ? 31 : 19) - deltaY), x + 3, x + Item::WIDTH_VALUE + 1, Color::BLACK);
         Text(deltaY > 0 ? NameNextSubItem() : NamePrevSubItem()).DrawWithLimitation(x + 4, static_cast<int>(y + (deltaY > 0 ? 33 : 9) - deltaY), colorText, x, y + 19, Item::WIDTH_VALUE, Item::HEIGHT_VALUE - 1);
     }
-    HLine().Draw(y + Item::HEIGHT + 1, x, x + MI_WIDTH, Color::BorderMenu());
+    HLine().Draw(y + Item::HEIGHT + 1, x, x + Item::WIDTH, Color::BorderMenu());
 
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, IsPressed(), false);
 
@@ -675,14 +675,14 @@ void Button::Draw(int x, int y, bool)
 {
     bool pressed = IsPressed();
 
-    HLine().Draw(y + 1, x, x + MI_WIDTH, Color::MenuTitle());
+    HLine().Draw(y + 1, x, x + Item::WIDTH, Color::MenuTitle());
     Color::E color = Color::WHITE;
-    Region(MI_WIDTH - 2, Item::HEIGHT - 2).Fill(x + 1, y + 2, Color::MenuItem());
-    Painter::DrawVolumeButton(x + 4, y + 5, MI_WIDTH - 8, Item::HEIGHT - 8, 3, Color::MenuItem(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), pressed);
+    Region(Item::WIDTH - 2, Item::HEIGHT - 2).Fill(x + 1, y + 2, Color::MenuItem());
+    Painter::DrawVolumeButton(x + 4, y + 5, Item::WIDTH - 8, Item::HEIGHT - 8, 3, Color::MenuItem(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), pressed);
 
     int delta = 2;
     
-    Text(Title()).DrawInCenterRect(x + delta, y + delta, MI_WIDTH, Item::HEIGHT, color);
+    Text(Title()).DrawInCenterRect(x + delta, y + delta, Item::WIDTH, Item::HEIGHT, color);
 }
 
 void SmallButton::Draw(int x, int y, bool)
@@ -710,8 +710,8 @@ void SmallButton::Draw(int x, int y, bool)
 void Page::Draw(int x, int y, bool)
 {
     bool isPressed = IsPressed();
-    HLine().Draw(y + 1, x, x + MI_WIDTH, Color::BorderMenu());
-    Painter::DrawVolumeButton(x + 1, y + 2, MI_WIDTH - 2, Item::HEIGHT - 2, 2, Color::MenuItem(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), isPressed);
+    HLine().Draw(y + 1, x, x + Item::WIDTH, Color::BorderMenu());
+    Painter::DrawVolumeButton(x + 1, y + 2, Item::WIDTH - 2, Item::HEIGHT - 2, 2, Color::MenuItem(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), isPressed);
     Color::E colorText = Color::BLACK;
     int delta = 0;
     if(isPressed)
@@ -719,7 +719,7 @@ void Page::Draw(int x, int y, bool)
         colorText = Color::FILL;
         delta = 1;
     }
-    Text(Title()).DrawInCenterRect(x + delta, y + delta, MI_WIDTH, Item::HEIGHT, colorText);
+    Text(Title()).DrawInCenterRect(x + delta, y + delta, Item::WIDTH, Item::HEIGHT, colorText);
 }
 
 

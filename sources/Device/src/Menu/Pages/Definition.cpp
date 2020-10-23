@@ -30,7 +30,7 @@ int CalculateYforCurs(int y, bool top)
 
 int CalculateXforCurs(int x, bool left)
 {
-    return left ? x + MI_WIDTH - 20 : x + MI_WIDTH - 5;
+    return left ? x + Item::WIDTH - 20 : x + Item::WIDTH - 5;
 }
 
 

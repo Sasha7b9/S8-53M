@@ -106,10 +106,12 @@ public:
     static const int TITLE_WIDTH = 79;
     static const int TITLE_HEIGHT = 34;
     static const int HEIGHT = 33;
+    static const int WIDTH = TITLE_WIDTH + 1;
     static const int HEIGHT_VALUE = 13;
     static const int OPENED_HEIGHT = 14;
+    static const int OPENED_WIDTH = TITLE_WIDTH;
     static const int OPENED_HEIGHT_TITLE = 19;
-    static const int WIDTH_VALUE = MI_WIDTH - 4;
+    static const int WIDTH_VALUE = WIDTH - 4;
 
 
     const DataItem *data;
