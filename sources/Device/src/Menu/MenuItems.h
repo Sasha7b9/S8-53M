@@ -108,6 +108,7 @@ public:
     static const int HEIGHT = 33;
     static const int HEIGHT_VALUE = 13;
     static const int OPENED_HEIGHT = 14;
+    static const int OPENED_HEIGHT_TITLE = 19;
 
     const DataItem *data;
 
@@ -268,6 +269,8 @@ struct DataSmallButton
 class SmallButton : public Item
 {
 public:
+
+    static const int WIDTH = 19;
 
     SmallButton(const DataItem *const data) : Item(data) {};
 
