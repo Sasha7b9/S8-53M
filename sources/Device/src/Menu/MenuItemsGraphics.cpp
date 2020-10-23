@@ -742,7 +742,7 @@ void Page::DrawOpened(int yTop)
     else
     {
         DrawTitle(yTop);
-        DrawItems(yTop + MP_TITLE_HEIGHT);
+        DrawItems(yTop + Item::TITLE_HEIGHT);
     }
 
     if (OwnData()->funcOnDraw)
@@ -767,19 +767,19 @@ void Page::DrawTitle(int yTop)
     
     if (shade)
     {
-        Region(Item::TITLE_WIDTH - 1, MP_TITLE_HEIGHT - 1).Fill(x + 1, yTop + 1, Color::MenuTitleLessBright());
-        Region(Item::TITLE_WIDTH - 7, MP_TITLE_HEIGHT - 7).Fill(x + 4, yTop + 4, Color::MENU_TITLE_DARK);
+        Region(Item::TITLE_WIDTH - 1, Item::TITLE_HEIGHT - 1).Fill(x + 1, yTop + 1, Color::MenuTitleLessBright());
+        Region(Item::TITLE_WIDTH - 7, Item::TITLE_HEIGHT - 7).Fill(x + 4, yTop + 4, Color::MENU_TITLE_DARK);
     }
     else
     {
-        Painter::DrawVolumeButton(x + 1, yTop + 1, Item::TITLE_WIDTH - 1, MP_TITLE_HEIGHT - 1, 3, Color::MenuTitle(), ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false);
+        Painter::DrawVolumeButton(x + 1, yTop + 1, Item::TITLE_WIDTH - 1, Item::TITLE_HEIGHT - 1, 3, Color::MenuTitle(), ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false);
     }
     
     VLine().Draw(x, yTop, yTop + HeightOpened(), Color::BorderMenu());
     bool condDrawRSet = NumSubPages() > 1 && Menu::CurrentItem()->Type() != TypeItem::ChoiceReg && Menu::CurrentItem()->Type() != TypeItem::Governor && Menu::OpenedItem()->Type() == TypeItem::Page;
     int delta = condDrawRSet ? -10 : 0;
     Color::E colorText = shade ? Color::LightShadingText() : Color::BLACK;
-    x = Text(Title()).DrawInCenterRect(x, yTop, Item::TITLE_WIDTH + 2 + delta, MP_TITLE_HEIGHT, colorText);
+    x = Text(Title()).DrawInCenterRect(x, yTop, Item::TITLE_WIDTH + 2 + delta, Item::TITLE_HEIGHT, colorText);
     if (condDrawRSet)
     {
         Char(GetSymbolForGovernor(GetCurrentSubPage())).Draw4SymbolsInRect(x + 4, yTop + 11, colorText);
@@ -790,7 +790,7 @@ void Page::DrawTitle(int yTop)
     delta = 0;
     
     Color::SetCurrent(colorText);
-    DrawPagesUGO(MP_X + Item::TITLE_WIDTH - 3 + delta, yTop + MP_TITLE_HEIGHT - 2 + delta);
+    DrawPagesUGO(MP_X + Item::TITLE_WIDTH - 3 + delta, yTop + Item::TITLE_HEIGHT - 2 + delta);
 }
 
 

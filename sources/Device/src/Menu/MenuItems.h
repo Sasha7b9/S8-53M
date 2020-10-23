@@ -104,7 +104,7 @@ class Item
 public:
 
     static const int TITLE_WIDTH = 79;
-
+    static const int TITLE_HEIGHT = 34;
 
     const DataItem *data;
 

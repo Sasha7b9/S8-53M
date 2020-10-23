@@ -3,7 +3,6 @@
 
 #define MP_Y                    ((Grid::TOP) + 1)
 #define MP_X                    (Grid::Right() - Item::TITLE_WIDTH - 1)
-#define MP_TITLE_HEIGHT         34
 #define MI_HEIGHT               33
 #define MI_WIDTH                (Item::TITLE_WIDTH + 1)
 #define MI_HEIGHT_VALUE         13
