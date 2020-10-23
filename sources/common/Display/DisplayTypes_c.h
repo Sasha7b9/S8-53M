@@ -1,8 +1,6 @@
 #pragma once
 
 
-#define MP_Y                    ((Grid::TOP) + 1)
-#define MP_X                    (Grid::Right() - Item::TITLE_WIDTH - 1)
 #define MOI_WIDTH_D_IP          34      /* Увеличение ширины открытого ip-адреса в случае наличия порта */
 
 struct DrawMode { enum E

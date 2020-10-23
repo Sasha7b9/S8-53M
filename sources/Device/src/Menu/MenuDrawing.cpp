@@ -81,11 +81,11 @@ void Menu::Draw()
         {
             if(item->Type() == TypeItem::Choice)
             {
-                ((Choice *)item)->Draw(MP_X, Grid::TOP, true);
+                ((Choice *)item)->Draw(Page::X(), Grid::TOP, true);
             }
             else if(item->Type() == TypeItem::Governor)
             {
-                ((Governor *)item)->Draw(MP_X, Grid::TOP, true);
+                ((Governor *)item)->Draw(Page::X(), Grid::TOP, true);
             }
         }
     }

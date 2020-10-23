@@ -1,6 +1,7 @@
 #pragma once
-#include "Display/Display.h"
 #include "common/Display/Colors_c.h"
+#include "Display/Display.h"
+#include "Display/Grid.h"
 #include "Menu/MenuItemsDefs.h"
 
 
@@ -176,6 +177,9 @@ struct DataPage
 class Page : public Item
 {
 public:
+
+    static const int Y = Grid::TOP + 1;
+    inline static int X() { return Grid::Right() - Item::TITLE_WIDTH - 1; };
     Page(const DataItem *const data) : Item(data) {};
     const DataPage *OwnData() const { return static_cast<const DataPage *>(data->ad); }
     virtual void Draw(int x, int y, bool opened = false);

@@ -737,7 +737,7 @@ void Page::DrawOpened(int yTop)
             }
         }
 
-        item->Draw(MP_X, OpenedPosY(), true);
+        item->Draw(Page::X(), OpenedPosY(), true);
     }
     else
     {
@@ -754,7 +754,7 @@ void Page::DrawOpened(int yTop)
 
 void Page::DrawTitle(int yTop)
 {
-    int x = MP_X;
+    int x = Page::X();
     if (IsSB())
     {
         SmallButonFrom(0)->Draw(SmallButton::LEFT, yTop + 3);
@@ -790,7 +790,7 @@ void Page::DrawTitle(int yTop)
     delta = 0;
     
     Color::SetCurrent(colorText);
-    DrawPagesUGO(MP_X + Item::TITLE_WIDTH - 3 + delta, yTop + Item::TITLE_HEIGHT - 2 + delta);
+    DrawPagesUGO(Page::X() + Item::TITLE_WIDTH - 3 + delta, yTop + Item::TITLE_HEIGHT - 2 + delta);
 }
 
 
@@ -804,7 +804,7 @@ void Page::DrawItems(int yTop) const
     {
         Item *item = GetItem(posItem);
         int top = yTop + Item::HEIGHT * count;
-        item->Draw(MP_X, top);
+        item->Draw(Page::X(), top);
         count++;
         Menu::itemUnderButton[GetFuncButtonFromY(top)] = item;
     }
