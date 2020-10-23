@@ -109,6 +109,8 @@ public:
     static const int HEIGHT_VALUE = 13;
     static const int OPENED_HEIGHT = 14;
     static const int OPENED_HEIGHT_TITLE = 19;
+    static const int WIDTH_VALUE = MI_WIDTH - 4;
+
 
     const DataItem *data;
 
@@ -271,6 +273,7 @@ class SmallButton : public Item
 public:
 
     static const int WIDTH = 19;
+    static const int LEFT = 299;
 
     SmallButton(const DataItem *const data) : Item(data) {};
 
