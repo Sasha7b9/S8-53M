@@ -10,87 +10,7 @@
 static const uint MIN_TIME = 500;
 
 
-void HelpLong(void)
-{
-    Menu::showHelpHints = !Menu::showHelpHints;
-    PageHelpContent::stringForHint = 0;
-    PageHelpContent::itemHint = 0;
-}
 
-void Channel0Long(void)
-{
-    Menu::LongPressureButton(Key::ChannelA);
-}
-
-void Channel1Long(void)
-{
-    Menu::LongPressureButton(Key::ChannelB);
-}
-
-void TimeLong(void)
-{
-    Menu::LongPressureButton(Key::Time);
-}
-
-void TrigLong(void)
-{
-    if (MODE_LONG_PRESS_TRIG_IS_LEVEL0)
-    {
-        Menu::LongPressureButton(Key::Synchronization);
-    }
-    else
-    {
-        FPGA::FindAndSetTrigLevel();
-    }
-}
-
-void StartDown()                        // Key::Start
-{
-    if (MODE_WORK_IS_DIRECT)
-    {
-        Menu::PressButton(Key::Start);
-    }
-}
-
-void PowerDown()                        // B_Power
-{
-    ((Page *)Menu::OpenedItem())->ShortPressOnItem(0);
-    Settings::Save();
-    Log_DisconnectLoggerUSB();
-    Panel::TransmitData(0x04);           // Посылаем команду выключения
-}
-
-void MenuLong() 
-{
-    Menu::LongPressureButton(Key::Menu);
-}
-
-void F1Long()
-{
-    Menu::LongPressureButton(Key::F1);
-}
-
-void F2Long()
-{
-    Menu::LongPressureButton(Key::F2);
-}
-
-void F3Long()
-{
-    Menu::LongPressureButton(Key::F3);
-}
-
-void F4Long()
-{
-    Menu::LongPressureButton(Key::F4);
-}
-
-void F5Long()
-{
-    Menu::LongPressureButton(Key::F5);
-}
-
-//****************************************************************************************************************
 int CalculateCount(int *prevTime)
 {
     uint time = gTimerMS;
@@ -241,12 +161,6 @@ void ChangeShiftScreen(int *prevTime, void(*f)(int), int16 relStep)
 static void SetRShift(Channel::E ch, int16 rShift)
 {
     FPGA::SetRShift(ch, rShift);
-}
-
-void RShiftLeftA()
-{
-    static int prevTime = 0;
-    ChangeRShift(&prevTime, SetRShift, Channel::A, -STEP_RSHIFT);
 }
 
 void RShiftRightA()

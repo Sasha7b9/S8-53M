@@ -22,6 +22,23 @@ static uint16 numDataForTransmitted = 0;
 
 bool Panel::isRunning = true;
 
+
+static void HelpLong();
+static void ChannelLongA();
+static void ChannelLongB();
+static void TimeLong();
+static void TrigLong();
+static void StartDown();
+static void PowerDown();
+static void F1Long();
+static void F2Long();
+static void F3Long();
+static void F4Long();
+static void F5Long();
+static void MenuLong();
+static void RShiftLeftA();
+
+
 static void(*funcOnKeyDown[Key::Count])(void)    =
 {    
     0,
@@ -76,8 +93,8 @@ static void (*funcOnLongPressure[Key::Count])(void)    =
     F3Long,         // Key::F3
     F4Long,         // Key::F4
     F5Long,         // Key::F5
-    Channel0Long,   // Key::ChannelA
-    Channel1Long,   // Key::ChannelB
+    ChannelLongA,   // Key::ChannelA
+    ChannelLongB,   // Key::ChannelB
     TimeLong,       // Key::Time
     TrigLong,       // B_Sinchro
     EmptyFuncVV,    // Key::Cursors
@@ -356,4 +373,104 @@ Key::E Panel::WaitPressingButton()
     pressedButton = Key::None;
     while (pressedButton == Key::None) {};
     return pressedButton;
+}
+
+
+static void HelpLong()
+{
+    Menu::showHelpHints = !Menu::showHelpHints;
+    PageHelpContent::stringForHint = 0;
+    PageHelpContent::itemHint = 0;
+}
+
+
+static void ChannelLongA()
+{
+    Menu::LongPressureButton(Key::ChannelA);
+}
+
+
+static void ChannelLongB()
+{
+    Menu::LongPressureButton(Key::ChannelB);
+}
+
+
+static void TimeLong()
+{
+    Menu::LongPressureButton(Key::Time);
+}
+
+
+static void TrigLong()
+{
+    if (MODE_LONG_PRESS_TRIG_IS_LEVEL0)
+    {
+        Menu::LongPressureButton(Key::Synchronization);
+    }
+    else
+    {
+        FPGA::FindAndSetTrigLevel();
+    }
+}
+
+
+static void StartDown()
+{
+    if (MODE_WORK_IS_DIRECT)
+    {
+        Menu::PressButton(Key::Start);
+    }
+}
+
+
+static void PowerDown()
+{
+    ((Page *)Menu::OpenedItem())->ShortPressOnItem(0);
+    Settings::Save();
+    Log_DisconnectLoggerUSB();
+    Panel::TransmitData(0x04);           // Посылаем команду выключения
+}
+
+
+static void MenuLong()
+{
+    Menu::LongPressureButton(Key::Menu);
+}
+
+
+static void F1Long()
+{
+    Menu::LongPressureButton(Key::F1);
+}
+
+
+static void F2Long()
+{
+    Menu::LongPressureButton(Key::F2);
+}
+
+
+static void F3Long()
+{
+    Menu::LongPressureButton(Key::F3);
+}
+
+
+static void F4Long()
+{
+    Menu::LongPressureButton(Key::F4);
+}
+
+
+static void F5Long()
+{
+    Menu::LongPressureButton(Key::F5);
+}
+
+
+static void RShiftLeftA()
+{
+    static int prevTime = 0;
+    ChangeRShift(&prevTime, SetRShift, Channel::A, -STEP_RSHIFT);
 }
