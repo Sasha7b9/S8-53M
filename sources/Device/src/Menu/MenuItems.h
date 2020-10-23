@@ -102,6 +102,10 @@ struct DataItem
 class Item
 {
 public:
+
+    static const int TITLE_WIDTH = 79;
+
+
     const DataItem *data;
 
     Item(const DataItem * const data = nullptr);

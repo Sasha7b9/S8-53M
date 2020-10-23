@@ -482,10 +482,10 @@ void Choice::DrawOpened(int x, int y) const
 {
     int height = HeightOpened();
 
-    Rectangle(MP_TITLE_WIDTH + 2, height + 3).Draw(x - 1, y - 1, Color::BACK);
+    Rectangle(Item::TITLE_WIDTH + 2, height + 3).Draw(x - 1, y - 1, Color::BACK);
     
     DrawGovernorChoiceColorFormulaHiPart(this, x - 1, y - 1, IsPressed(), true);
-    Rectangle(MP_TITLE_WIDTH + 1, height + 1).Draw(x - 1, y, Color::MenuTitle());
+    Rectangle(Item::TITLE_WIDTH + 1, height + 1).Draw(x - 1, y, Color::MenuTitle());
  
     HLine().Draw(y + MOI_HEIGHT_TITLE - 1, x, x + MOI_WIDTH);
     Painter::DrawVolumeButton(x, y + MOI_HEIGHT_TITLE, MOI_WIDTH - 1, height - MOI_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false);
@@ -570,8 +570,8 @@ void TimeItem::DrawOpened(int x, int y) const
 static void GovernorIpCommon_DrawOpened(const Item *item, int x, int y, int dWidth)
 {
     int height = 34;
-    Rectangle(MP_TITLE_WIDTH + 2 + dWidth, height + 3).Draw(x - 1, y - 1, Color::BACK);
-    Rectangle(MP_TITLE_WIDTH + 1 + dWidth, height + 1).Draw(x - 1, y, Color::MenuTitle());
+    Rectangle(Item::TITLE_WIDTH + 2 + dWidth, height + 3).Draw(x - 1, y - 1, Color::BACK);
+    Rectangle(Item::TITLE_WIDTH + 1 + dWidth, height + 1).Draw(x - 1, y, Color::MenuTitle());
     HLine().Draw(y + MOI_HEIGHT_TITLE - 1, x, x + MOI_WIDTH + dWidth);
     DrawGovernorChoiceColorFormulaHiPart(item, x - 1, y - 1, item->IsPressed(), true);
     Painter::DrawVolumeButton(x, y + MOI_HEIGHT_TITLE, MOI_WIDTH - 1 + dWidth, height - MOI_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false);
@@ -762,24 +762,24 @@ void Page::DrawTitle(int yTop)
     }
     int height = HeightOpened();
     bool shade = CurrentItemIsOpened();
-    Region(MP_TITLE_WIDTH + 2, height + 2).Fill(x - 1, yTop, Color::BACK);
-    Rectangle(MP_TITLE_WIDTH + 1, height + 1).Draw(x, yTop, Color::BorderMenu());
+    Region(Item::TITLE_WIDTH + 2, height + 2).Fill(x - 1, yTop, Color::BACK);
+    Rectangle(Item::TITLE_WIDTH + 1, height + 1).Draw(x, yTop, Color::BorderMenu());
     
     if (shade)
     {
-        Region(MP_TITLE_WIDTH - 1, MP_TITLE_HEIGHT - 1).Fill(x + 1, yTop + 1, Color::MenuTitleLessBright());
-        Region(MP_TITLE_WIDTH - 7, MP_TITLE_HEIGHT - 7).Fill(x + 4, yTop + 4, Color::MENU_TITLE_DARK);
+        Region(Item::TITLE_WIDTH - 1, MP_TITLE_HEIGHT - 1).Fill(x + 1, yTop + 1, Color::MenuTitleLessBright());
+        Region(Item::TITLE_WIDTH - 7, MP_TITLE_HEIGHT - 7).Fill(x + 4, yTop + 4, Color::MENU_TITLE_DARK);
     }
     else
     {
-        Painter::DrawVolumeButton(x + 1, yTop + 1, MP_TITLE_WIDTH - 1, MP_TITLE_HEIGHT - 1, 3, Color::MenuTitle(), ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false);
+        Painter::DrawVolumeButton(x + 1, yTop + 1, Item::TITLE_WIDTH - 1, MP_TITLE_HEIGHT - 1, 3, Color::MenuTitle(), ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false);
     }
     
     VLine().Draw(x, yTop, yTop + HeightOpened(), Color::BorderMenu());
     bool condDrawRSet = NumSubPages() > 1 && Menu::CurrentItem()->Type() != TypeItem::ChoiceReg && Menu::CurrentItem()->Type() != TypeItem::Governor && Menu::OpenedItem()->Type() == TypeItem::Page;
     int delta = condDrawRSet ? -10 : 0;
     Color::E colorText = shade ? Color::LightShadingText() : Color::BLACK;
-    x = Text(Title()).DrawInCenterRect(x, yTop, MP_TITLE_WIDTH + 2 + delta, MP_TITLE_HEIGHT, colorText);
+    x = Text(Title()).DrawInCenterRect(x, yTop, Item::TITLE_WIDTH + 2 + delta, MP_TITLE_HEIGHT, colorText);
     if (condDrawRSet)
     {
         Char(GetSymbolForGovernor(GetCurrentSubPage())).Draw4SymbolsInRect(x + 4, yTop + 11, colorText);
@@ -790,7 +790,7 @@ void Page::DrawTitle(int yTop)
     delta = 0;
     
     Color::SetCurrent(colorText);
-    DrawPagesUGO(MP_X + MP_TITLE_WIDTH - 3 + delta, yTop + MP_TITLE_HEIGHT - 2 + delta);
+    DrawPagesUGO(MP_X + Item::TITLE_WIDTH - 3 + delta, yTop + MP_TITLE_HEIGHT - 2 + delta);
 }
 
 
