@@ -42,8 +42,6 @@ static wxBitmap bitmapScreen(Display::WIDTH, Display::HEIGHT);
 // Здесь будем рисовать
 wxMemoryDC memDC;
 
-// Здесь хранятся указатели на кнопки
-static wxButton *buttons[Key::Count] = { nullptr };
 static GovernorGUI *governors[Key::Count] = { nullptr };
 // Цвета
 static uint colors[256];
@@ -142,107 +140,9 @@ void Application::CreateFrame()
 }
 
 
-void Application::CreateButtons(Frame *frame)
-{
-    int width = 58;
-    int height = 25;
-
-    wxSize size = { width, height };
-
-    for (int i = 0; i < 5; i++)
-    {
-        Key::E keys[5] =
-        {
-            Key::F1, Key::F2, Key::F3, Key::F4, Key::F5
-        };
-
-        CreateButton(keys[i], frame, { 640, 167 + (height + 29) * i }, size);
-    }
-
-    for (int row = 0; row < 2; row++)
-    {
-        Key::E keys[2][3] =
-        {
-            { Key::Cursors,  Key::Display, Key::Memory },
-            { Key::Measures, Key::Help,    Key::Service }
-        };
-
-        for (int col = 0; col < 3; col++)
-        {
-            CreateButton(keys[row][col], frame, { 845 + col * (width + 5), 45 + 55 * row }, size);
-        }
-    }
-
-    CreateButton(Key::Start, frame, { 1047, 71 }, size);
-
-    for (int i = 0; i < 4; i++)
-    {
-        Key::E keys[4] = { Key::ChannelA, Key::ChannelB, Key::Time, Key::Synchronization };
-
-        int x[4] = { 760, 882, 1030, 1150 };
-
-        CreateButton(keys[i], frame, { x[i], 197 }, size);
-    }
-
-    CreateButton(Key::Menu, frame, { 640, 102 }, size);
-
-    CreateButton(Key::Power, frame, { 1150, 43 }, size);
-}
-
-
-void Application::CreateGovernors(Frame *frame)
-{
-    int x0 = 750;
-
-    CreateGovernor(Key::Setting, frame, { x0, 53 });
-
-    for (int row = 0; row < 2; row++)
-    {
-        for (int col = 0; col < 2; col++)
-        {
-            Key::E keys[2][2] =
-            {
-                { Key::RShiftA, Key::RShiftB },
-                { Key::RangeA,  Key::RangeB }
-            };
-
-            CreateGovernor(keys[row][col], frame, { x0 + col * 133, 250 + row * 120 });
-        }
-    }
-
-    for (int row = 0; row < 2; row++)
-    {
-        for (int col = 0; col < 2; col++)
-        {
-            Key::E keys[2][2] =
-            {
-                { Key::TShift, Key::TrigLev},
-                { Key::TBase,  Key::None}
-            };
-
-            if (keys[row][col] != Key::None)
-            {
-                CreateGovernor(keys[row][col], frame, { 1030 + col * 125, 250 + row * 120 });
-            }
-        }
-    }
-}
-
-
 void Application::CreateGovernor(Key::E key, Frame *frame, const wxPoint &pos)
 {
     governors[key] = new GovernorGUI(frame, pos, key);
-}
-
-
-void Application::CreateButton(Key::E key, Frame *frame, const wxPoint &pos, const wxSize &size)
-{
-    wxButton *button = new wxButton(frame, static_cast<wxWindowID>(key), "", /*Key(key).Name(), */ pos, size);
-
-    button->Connect(static_cast<wxWindowID>(key), wxEVT_LEFT_DOWN, wxCommandEventHandler(Frame::OnDown));
-    button->Connect(static_cast<wxWindowID>(key), wxEVT_LEFT_UP, wxCommandEventHandler(Frame::OnUp));
-
-    buttons[key] = button;
 }
 
 
