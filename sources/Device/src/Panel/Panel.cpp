@@ -381,8 +381,6 @@ void Panel::Enable()
 
 void Panel::Init()
 {
-
-
     // Лампочка УСТАНОВКА  pinLED
 
     Panel::EnableLEDRegSet(false);

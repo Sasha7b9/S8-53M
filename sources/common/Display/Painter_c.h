@@ -8,8 +8,6 @@ class Painter
 {
 public:
 
-    static void Init();
-
     static void BeginScene(Color::E color);
 
     static void EndScene(bool endScene = true);

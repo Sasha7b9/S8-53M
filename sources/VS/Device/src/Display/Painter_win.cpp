@@ -88,12 +88,6 @@ public:
 static Screen *screen = nullptr;
 
 
-void Painter::Init()
-{
-    CreateFrame();
-}
-
-
 void Painter::BeginScene(Color::E color)
 {
     memDC.SelectObject(bitmapScreen);
