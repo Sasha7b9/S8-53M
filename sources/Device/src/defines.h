@@ -87,4 +87,9 @@ struct StructRelAbs
 #define ERROR_STRING_VALUE  "--.--"
 #define M_PI                3.14159265358979323846F
 
+#define EXIT_RU "Выход"
+#define EXIT_EN "Exit"
+#define EXIT_ILLUSTRATION_RU "Кнопка для выхода в предыдущее меню"
+#define EXIT_ILLUSTRATION_EN "Button for return to previous menu"
+
 void HardwareErrorHandler(const char *file, const char *function, int line);

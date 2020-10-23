@@ -271,7 +271,7 @@ static void Draw_Math_Function_Type_Sum(int x, int y)
 static void Draw_Math_Function_Type_Mul(int x, int y)
 {
     Font::Set(TypeFont::UGO2);
-    Char(SYMBOL_MATH_FUNC_MUL).Draw4SymbolsInRect(x + 4, y + 3);
+    Char(Symbol::UGO2::MATH_FUNC_MUL).Draw4SymbolsInRect(x + 4, y + 3);
     Font::Set(TypeFont::S8);
 }
 

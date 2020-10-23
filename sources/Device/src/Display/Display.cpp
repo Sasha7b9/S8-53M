@@ -2110,7 +2110,7 @@ void Display::DrawLowPart()
 
     if (VCP::connectToHost || VCP::cableIsConnected)
     {
-        Char(Symbol::S8::USB).Draw4SymbolsInRect(x + 72, Grid::Bottom() + 2, VCP::connectToHost ? Color::FILL : Color::FLASH_01);
+        Char(Symbol::UGO2::USB).Draw4SymbolsInRect(x + 72, Grid::Bottom() + 2, VCP::connectToHost ? Color::FILL : Color::FLASH_01);
     }
     
     Color::SetCurrent(Color::FILL);
