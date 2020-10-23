@@ -625,14 +625,14 @@ DEF_SMALL_BUTTON(sbMemIntShowSignalAlways, PageMemory::PageInternal::self,
 static void DrawSB_MemInt_ModeShow_Direct(int x, int y)
 {
     Font::Set(TypeFont::_UGO2);
-    Char(SYMBOL_MEM_INT_SHOW_DIRECT).Draw4SymbolsInRect(x + 2, y + 1);
+    Char(Symbol::UGO2::MEM_INT_SHOW_DIRECT).Draw4SymbolsInRect(x + 2, y + 1);
     Font::Set(TypeFont::_8);
 }
 
 static void DrawSB_MemInt_ModeShow_Saved(int x, int y)
 {
     Font::Set(TypeFont::_UGO2);
-    Char(SYMBOL_MEM_INT_SHOW_SAVED).Draw4SymbolsInRect(x + 2, y + 1);
+    Char(Symbol::UGO2::MEM_INT_SHOW_SAVED).Draw4SymbolsInRect(x + 2, y + 1);
     Font::Set(TypeFont::_8);
 }
 

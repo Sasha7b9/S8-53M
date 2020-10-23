@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "common/Display/Font/Font_c.h"
 #include "Display/Symbols.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
@@ -427,10 +428,10 @@ char GetSymbolForGovernor(int value)
 {
     static const char chars[] =
     {
-        SYMBOL_GOVERNOR_SHIFT_0,
-        SYMBOL_GOVERNOR_SHIFT_1,
-        SYMBOL_GOVERNOR_SHIFT_2,
-        SYMBOL_GOVERNOR_SHIFT_3
+        Symbol::_8::GOVERNOR_SHIFT_0,
+        Symbol::_8::GOVERNOR_SHIFT_1,
+        Symbol::_8::GOVERNOR_SHIFT_2,
+        Symbol::_8::GOVERNOR_SHIFT_3
     };
     while(value < 0)
     {
