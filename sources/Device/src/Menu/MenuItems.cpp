@@ -99,14 +99,11 @@ const char *Choice::NamePrevSubItem() const
 int Choice::NumSubItems() const
 {
     int i = 0;
-    for (; i < MAX_NUM_SUBITEMS_IN_CHOICE; i++)
+    while (OwnData()->names[i] != nullptr)
     {
-        if (OwnData()->names[i][LANG] == 0)
-        {
-            return i;
-        }
+        i++;
     }
-    return i;
+    return i / 2;
 }
 
 
