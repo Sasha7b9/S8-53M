@@ -580,9 +580,9 @@ static void OnPress_SerialNumber_Change(void)
 
 static void Draw_SerialNumber_Change(int x, int y)
 {
-    Font::Set(TypeFont::_UGO2);
+    Font::Set(TypeFont::UGO2);
     Char(Symbol::UGO2::TAB).Draw4SymbolsInRect(x + 2, y + 2);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
 }
 
 DEF_SMALL_BUTTON(bSerialNumber_Change, PageDebug::PageSerialNumber::self,
@@ -608,9 +608,9 @@ static void OnPress_SerialNumber_Save(void)
 
 static void Draw_SerialNumber_Save(int x, int y)
 {
-    Font::Set(TypeFont::_UGO2);
-    Char(SYMBOL_SAVE_TO_MEM).Draw4SymbolsInRect(x + 2, y + 1);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::UGO2);
+    Char(Symbol::UGO2::SAVE_TO_MEM).Draw4SymbolsInRect(x + 2, y + 1);
+    Font::Set(TypeFont::S8);
 }
 
 DEF_SMALL_BUTTON(bSerialNumber_Save, PageDebug::PageSerialNumber::self,

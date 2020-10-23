@@ -7,5 +7,5 @@ void Display::Init()
 {
     Color::ResetFlash();
 
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
 }

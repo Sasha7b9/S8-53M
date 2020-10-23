@@ -48,7 +48,7 @@ void Display::Init(void)
 
     Color::ResetFlash();
 
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
     
     InitPoints();
 }

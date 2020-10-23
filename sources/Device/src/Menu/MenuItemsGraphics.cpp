@@ -314,11 +314,11 @@ void Governor::DrawValue(int x, int y) const
     {
         value = -value;
     }
-    Font::Set(TypeFont::_5);
+    Font::Set(TypeFont::S5);
     bool sign = own->minValue < 0;
     Text(Int2String(own->maxValue, sign, 1, buffer)).Draw(x + 55, y - 5, Color::FILL);
     Text(Int2String(own->minValue, sign, 1, buffer)).Draw(x + 55, y + 2);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
 
     DrawValueWithSelectedPosition(startX, y, value, NumDigits(), gCurDigit, true, true);
 

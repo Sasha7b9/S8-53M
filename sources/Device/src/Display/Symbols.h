@@ -1,9 +1,6 @@
 #pragma once
 
 
-#define SYMBOL_SAVE_TO_MEM          '\x2c'
-#define SYMBOL_SAVE
-
 #define SYMBOL_MATH_FUNC_MUL        '\x8a'  /* люрелюрхйю-тсмйжхъ-слмнфемхе */
 
 #define EXIT_RU "бШУНД"

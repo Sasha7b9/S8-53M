@@ -40,6 +40,7 @@ struct Symbol
         static const char BACKSPACE = '\x20';
         static const char DEL = '\x22';                 // ÂÍÅØÍ ÇÓ-ÌÀÑÊÀ-ÓÄÀËÈÒÜ
         static const char INSERT = '\x26';              // ÂÍÅØÍ ÇÓ-ÈÌß-ÂÑÒÀÂÈÒÜ
+        static const char SAVE_TO_MEM = '\x2c';
         static const char TAB = '\x6e';
     };
 };
@@ -47,12 +48,12 @@ struct Symbol
 
 struct TypeFont { enum E
 {
-	_5,
-	_8,
-	_UGO,
-	_UGO2,
-	_Count,
-	_None
+	S5,
+	S8,
+	UGO,
+	UGO2,
+	Count,
+	None
 };};
 
 struct Font
@@ -67,7 +68,7 @@ struct Font
     static void Set(TypeFont::E typeFont);
 
     static const Font *font;
-    static const Font *fonts[TypeFont::_Count];
+    static const Font *fonts[TypeFont::Count];
 
     static const uchar font5display[3080];
     static const uchar font8display[3080];

@@ -407,9 +407,9 @@ static void SetCursPos100(Channel::E chan)
 
 static void DrawSB_Cursors_100(int x, int y)
 {
-    Font::Set(TypeFont::_5);
+    Font::Set(TypeFont::S5);
     Text("100%").Draw(x + 2, y + 3);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
 }
 
 DEF_SMALL_BUTTON(sbSet100, PageCursors::PageSet::self,
@@ -426,9 +426,9 @@ static void DrawSB_Cursors_PointsPercents_Percents(int x, int y)
 
 static void DrawSB_Cursors_PointsPercents_Points(int x, int y)
 {
-    Font::Set(TypeFont::_5);
+    Font::Set(TypeFont::S5);
     Text("ò÷ê").Draw(x + 4, y + 3);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
 }
 
 static const arrayHints hintsSetPointsPercents =

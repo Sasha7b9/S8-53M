@@ -68,23 +68,23 @@ bool IsActiveMemoryExtSetMask()
 
 void DrawSB_MemLastSelect(int x, int y)
 {
-    Font::Set(TypeFont::_UGO2);
+    Font::Set(TypeFont::UGO2);
     Char(set.memory.strMemoryLast.isActiveModeSelect ? '\x2a' : '\x28').Draw4SymbolsInRect(x + 3, y + 2);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
 }
 
 void DrawSB_MemLast_Prev(int x, int y)
 {
-    Font::Set(TypeFont::_UGO2);
+    Font::Set(TypeFont::UGO2);
     Char('\x20').Draw4SymbolsInRect(x + 2, y + 2);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
 }
 
 void DrawSB_MemLast_Next(int x, int y)
 {
-    Font::Set(TypeFont::_UGO2);
+    Font::Set(TypeFont::UGO2);
     Char('\x64').Draw4SymbolsInRect(x + 2, y + 2);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
 }
 
 void PressSB_MemLastSelect()
@@ -133,18 +133,18 @@ static void FuncDrawingAdditionSPageMemoryLast()
 
 void DrawSB_MemLast_IntEnter(int x, int y)
 {
-    Font::Set(TypeFont::_UGO2);
+    Font::Set(TypeFont::UGO2);
     Char('\x40').Draw4SymbolsInRect(x + 2, y + 1);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
 }
 
 void DrawSB_MemLast_SaveToFlash(int x, int y)
 {
     if (FDrive::isConnected)
     {
-        Font::Set(TypeFont::_UGO2);
+        Font::Set(TypeFont::UGO2);
         Char('\x42').Draw4SymbolsInRect(x + 2, y + 1);
-        Font::Set(TypeFont::_8);
+        Font::Set(TypeFont::S8);
     }
 }
 
@@ -152,9 +152,9 @@ static void DrawSB_MemExtSetNameSave(int x, int y)
 {
     if (FDrive::isConnected)
     {
-        Font::Set(TypeFont::_UGO2);
+        Font::Set(TypeFont::UGO2);
         Char('\x42').Draw4SymbolsInRect(x + 2, y + 1);
-        Font::Set(TypeFont::_8);
+        Font::Set(TypeFont::S8);
     }
 }
 
@@ -236,16 +236,16 @@ DEF_SMALL_BUTTON(sbSetNameSave, PageMemory::PageSetName::self,
 
 void DrawSB_SetMask_Backspace(int x, int y)
 {
-    Font::Set(TypeFont::_UGO2);
+    Font::Set(TypeFont::UGO2);
     Char(Symbol::UGO2::BACKSPACE).Draw4SymbolsInRect(x + 2, y + 1);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
 }
 
 void DrawSB_SetName_Backspace(int x, int y) //-V524
 {
-    Font::Set(TypeFont::_UGO2);
+    Font::Set(TypeFont::UGO2);
     Char(Symbol::UGO2::BACKSPACE).Draw4SymbolsInRect(x + 2, y + 1);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
 }
 
 void PressSB_SetMask_Backspace()
@@ -276,9 +276,9 @@ void PressSB_SetName_Backspace()
 
 void DrawSB_SetMask_Delete(int x, int y)
 {
-    Font::Set(TypeFont::_UGO2);
+    Font::Set(TypeFont::UGO2);
     Char(Symbol::UGO2::DEL).Draw4SymbolsInRect(x + 2, y + 1);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
 }
 
 void PressSB_SetMask_Delete()
@@ -288,9 +288,9 @@ void PressSB_SetMask_Delete()
 
 void DrawSB_SetName_Delete(int x, int y) //-V524
 {
-    Font::Set(TypeFont::_UGO2);
+    Font::Set(TypeFont::UGO2);
     Char(Symbol::UGO2::DEL).Draw4SymbolsInRect(x + 2, y + 1);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
 }
 
 void PressSB_SetName_Delete()
@@ -300,9 +300,9 @@ void PressSB_SetName_Delete()
 
 void DrawSB_SetMask_Insert(int x, int y)
 {
-    Font::Set(TypeFont::_UGO2);
+    Font::Set(TypeFont::UGO2);
     Char(Symbol::UGO2::INSERT).Draw4SymbolsInRect(x + 2, y + 2);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
 }
 
 void PressSB_SetMask_Insert()
@@ -343,9 +343,9 @@ void PressSB_SetMask_Insert()
 
 void DrawSB_SetName_Insert(int x, int y) //-V524
 {
-    Font::Set(TypeFont::_UGO2);
+    Font::Set(TypeFont::UGO2);
     Char('\x26').Draw4SymbolsInRect(x + 2, y + 2);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
 }
 
 void PressSB_SetName_Insert()
@@ -427,30 +427,30 @@ DEF_SMALL_BUTTON(sbSetNameInsert, PageMemory::PageSetName::self,
 
 void DrawSB_MemExtNewFolder(int x, int y)
 {
-    Font::Set(TypeFont::_UGO2);
+    Font::Set(TypeFont::UGO2);
     Char('\x46').Draw4SymbolsInRect(x + 1, y);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
 }
 
 void DrawSB_FM_LevelDown(int x, int y)
 {
-    Font::Set(TypeFont::_UGO2);
+    Font::Set(TypeFont::UGO2);
     Char('\x4a').Draw4SymbolsInRect(x + 2, y + 2);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
 }
 
 void DrawSB_FM_LevelUp(int x, int y)
 {
-    Font::Set(TypeFont::_UGO2);
+    Font::Set(TypeFont::UGO2);
     Char('\x48').Draw4SymbolsInRect(x + 2, y + 1);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
 }
 
 static void DrawSB_FM_Tab(int x, int y)
 {
-    Font::Set(TypeFont::_UGO2);
+    Font::Set(TypeFont::UGO2);
     Char('\x6e').Draw4SymbolsInRect(x + 2, y + 1);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
 }
 
 DEF_SMALL_BUTTON(sbFileManagerTab, PageMemory::PageFileManager::self,
@@ -476,9 +476,9 @@ DEF_SMALL_BUTTON(sbFileManagerLevelUp, PageMemory::PageFileManager::self,
 
 void DrawSB_MemInt_SaveToIntMemory(int x, int y)
 {
-    Font::Set(TypeFont::_UGO2);
-    Char(SYMBOL_SAVE_TO_MEM).Draw4SymbolsInRect(x + 2, y + 1);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::UGO2);
+    Char(Symbol::UGO2::SAVE_TO_MEM).Draw4SymbolsInRect(x + 2, y + 1);
+    Font::Set(TypeFont::S8);
 }
 
 
@@ -514,9 +514,9 @@ void DrawSB_MemInt_SaveToFlashDrive(int x, int y) //-V524
 {
     if (FDrive::isConnected)
     {
-        Font::Set(TypeFont::_UGO2);
+        Font::Set(TypeFont::UGO2);
         Char('\x42').Draw4SymbolsInRect(x + 2, y + 1);
-        Font::Set(TypeFont::_8);
+        Font::Set(TypeFont::S8);
     }
 }
 
@@ -577,16 +577,16 @@ static void FuncOnRegSetMemInt(int delta)
 
 static void DrawSB_MemInt_ShowSignalAllways_Yes(int x, int y)
 {
-    Font::Set(TypeFont::_UGO2);
+    Font::Set(TypeFont::UGO2);
     Char('\x66').Draw4SymbolsInRect(x + 2, y + 1);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
 }
 
 static void DrawSB_MemInt_ShowSignalAllways_No(int x, int y)
 {
-    Font::Set(TypeFont::_UGO2);
+    Font::Set(TypeFont::UGO2);
     Char('\x68').Draw4SymbolsInRect(x + 2, y + 1);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
 }
 
 static void DrawSB_MemInt_ShowSignalAlways(int x, int y)
@@ -624,16 +624,16 @@ DEF_SMALL_BUTTON(sbMemIntShowSignalAlways, PageMemory::PageInternal::self,
 
 static void DrawSB_MemInt_ModeShow_Direct(int x, int y)
 {
-    Font::Set(TypeFont::_UGO2);
+    Font::Set(TypeFont::UGO2);
     Char(Symbol::UGO2::MEM_INT_SHOW_DIRECT).Draw4SymbolsInRect(x + 2, y + 1);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
 }
 
 static void DrawSB_MemInt_ModeShow_Saved(int x, int y)
 {
-    Font::Set(TypeFont::_UGO2);
+    Font::Set(TypeFont::UGO2);
     Char(Symbol::UGO2::MEM_INT_SHOW_SAVED).Draw4SymbolsInRect(x + 2, y + 1);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
 }
 
 static void DrawSB_MemInt_ModeShow_Both(int x, int y)
@@ -697,9 +697,9 @@ static void PressSB_MemInt_Delete()
 
 static void DrawSB_MemInt_Delete(int x, int y)
 {
-    Font::Set(TypeFont::_UGO2);
+    Font::Set(TypeFont::UGO2);
     Char(Symbol::UGO2::DEL).Draw4SymbolsInRect(x + 2, y + 1);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
 }
 
 DEF_SMALL_BUTTON(sbMemIntDelete, PageMemory::PageInternal::self,

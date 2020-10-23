@@ -82,9 +82,9 @@ void DrawMenuCursVoltage(int x, int y, bool top, bool bottom)
 
 void DrawSB_Exit(int x, int y)
 {
-    Font::Set(TypeFont::_UGO2);
+    Font::Set(TypeFont::UGO2);
     Char('\x2e').Draw4SymbolsInRect(x + 2, y + 1);
-    Font::Set(TypeFont::_8);
+    Font::Set(TypeFont::S8);
 }
 
 
