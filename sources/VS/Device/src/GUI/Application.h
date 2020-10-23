@@ -1,8 +1,11 @@
 #pragma once
+#include "common/Keyboard/Controls_c.h"
 #pragma warning(push, 0)
 #include <wx/wx.h>
 #pragma warning(pop)
 
+
+class Frame;
 
 
 class Application : public wxApp
@@ -17,6 +20,16 @@ public:
 private:
 
     wxLocale locale;
+
+    // Создаёт все кнопки
+    static void CreateButtons(Frame *frame);
+
+    static void CreateGovernors(Frame *frame);
+
+    // Создаёт одну кнопку
+    static void CreateButton(Key::E key, Frame *frame, const wxPoint &pos, const wxSize &size);
+
+    static void CreateGovernor(Key::E key, Frame *frame, const wxPoint &pos);
 };
 
 

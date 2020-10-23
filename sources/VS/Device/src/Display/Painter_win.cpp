@@ -53,14 +53,6 @@ static bool needStopTimerLong = false;
 // Здесь имя нажатой кнопки
 static Key::E pressedKey = Key::None;
 
-// Создаёт все кнопки
-static void CreateButtons(Frame *frame);
-// Создаёт одну кнопку
-static void CreateButton(Key::E key, Frame *frame, const wxPoint &pos, const wxSize &size);
-
-static void CreateGovernors(Frame *frame);
-
-static void CreateGovernor(Key::E key, Frame *frame, const wxPoint &pos);
 
 class Screen : public wxPanel
 {
@@ -150,7 +142,7 @@ void Application::CreateFrame()
 }
 
 
-static void CreateButtons(Frame *frame)
+void Application::CreateButtons(Frame *frame)
 {
     int width = 58;
     int height = 25;
@@ -198,7 +190,7 @@ static void CreateButtons(Frame *frame)
 }
 
 
-static void CreateGovernors(Frame *frame)
+void Application::CreateGovernors(Frame *frame)
 {
     int x0 = 750;
 
@@ -237,13 +229,13 @@ static void CreateGovernors(Frame *frame)
 }
 
 
-static void CreateGovernor(Key::E key, Frame *frame, const wxPoint &pos)
+void Application::CreateGovernor(Key::E key, Frame *frame, const wxPoint &pos)
 {
     governors[key] = new GovernorGUI(frame, pos, key);
 }
 
 
-static void CreateButton(Key::E key, Frame *frame, const wxPoint &pos, const wxSize &size)
+void Application::CreateButton(Key::E key, Frame *frame, const wxPoint &pos, const wxSize &size)
 {
     wxButton *button = new wxButton(frame, static_cast<wxWindowID>(key), "", /*Key(key).Name(), */ pos, size);
 
