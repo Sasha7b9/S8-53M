@@ -212,21 +212,6 @@ Key::E RegulatorRight(uint16 command)
     return Key::None;
 }
 
-void OnTimerPressedKey()
-{
-    if(pressedKey != Key::None)
-    {
-        void (*func)(void) = funcOnLongPressure[pressedKey];
-        Menu::ReleaseButton(pressedKey);
-        if(func != 0)
-        {
-            func();
-        }
-        pressedKey = Key::None;
-    }
-    Timer::Disable(TypeTimer::PressKey);
-}
-
 bool Panel::ProcessingCommandFromPIC(uint16 command)
 {
     Key::E releaseButton = ButtonIsRelease(command);
@@ -259,7 +244,6 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
         funcOnKeyDown[pressButton]();
         Menu::PressButton(pressButton);
         pressedKey = pressButton;
-        Timer::Enable(TypeTimer::PressKey, 500, OnTimerPressedKey);
     }
     else if(regLeft != Key::None)
     {
