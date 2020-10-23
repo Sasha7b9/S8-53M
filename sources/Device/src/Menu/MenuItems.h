@@ -138,6 +138,8 @@ public:
     // Возвращает название элемента по адресу item, как оно выглядит на дисплее прибора.
     const char *Title() const;
 
+    bool IsPage() const { return Type() == TypeItem::Page; }
+
     static DataItem emptyData;
 
     static Item empty;
@@ -208,6 +210,8 @@ public:
 
     // Возвращает позицию первого элемента страницы по адресу page на экране. Если текущая подстраница 0, это будет 0, если текущая подстраница 1, это будет 5 и т.д.
     int PosItemOnTop() const;
+
+    bool IsExist() const { return (this != &Page::empty); }
 
     static Page empty;
 

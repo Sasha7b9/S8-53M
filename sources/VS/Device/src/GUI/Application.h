@@ -14,7 +14,7 @@ public:
     virtual bool OnInit() wxOVERRIDE;
     virtual int OnExit() wxOVERRIDE;
 
-    // Создаёт окно приложения. Возвращает хэндл виджета для отрисовки
+    // Создаёт окно приложения
     static void CreateFrame();
 
     static void Init();

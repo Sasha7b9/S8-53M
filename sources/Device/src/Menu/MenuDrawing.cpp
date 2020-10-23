@@ -68,11 +68,11 @@ void Menu::Draw()
         Item *item = OpenedItem();
         if(Menu::IsShown())
         {
-            if (item->Type() == TypeItem::Page)
+            if (item->IsPage())
             {
                 ((Page *)item)->DrawOpened(Grid::TOP);
             }
-            else if(item->Keeper() != &Page::empty)
+            else if(item->Keeper()->IsExist())
             {
                 item->Keeper()->DrawOpened(Grid::TOP);
             }

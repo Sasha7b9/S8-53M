@@ -777,8 +777,6 @@ void Page::Draw(int x, int y, bool)
 
 void Page::DrawOpened(int yTop)
 {
-    DrawTitle(yTop);
-    DrawItems(yTop + MP_TITLE_HEIGHT);
     if (CurrentItemIsOpened())
     {
         int8 posCurItem = PosCurrentItem();
@@ -792,6 +790,11 @@ void Page::DrawOpened(int yTop)
         }
 
         item->Draw(MP_X, OpenedPosY(), true);
+    }
+    else
+    {
+        DrawTitle(yTop);
+        DrawItems(yTop + MP_TITLE_HEIGHT);
     }
 
     if (OwnData()->funcOnDraw)
@@ -813,7 +816,7 @@ void Page::DrawTitle(int yTop)
     bool shade = CurrentItemIsOpened();
     Region(MP_TITLE_WIDTH + 2, height + 2).Fill(x - 1, yTop, Color::BACK);
     Rectangle(MP_TITLE_WIDTH + 1, height + 1).Draw(x, yTop, Color::BorderMenu(shade));
-
+    
     if (shade)
     {
         Region(MP_TITLE_WIDTH - 1, MP_TITLE_HEIGHT - 1).Fill(x + 1, yTop + 1, Color::MenuTitleLessBright());
@@ -823,7 +826,7 @@ void Page::DrawTitle(int yTop)
     {
         Painter::DrawVolumeButton(x + 1, yTop + 1, MP_TITLE_WIDTH - 1, MP_TITLE_HEIGHT - 1, 3, Color::MenuTitle(false), ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), shade, false);
     }
-
+    
     VLine().Draw(x, yTop, yTop + HeightOpened(), Color::BorderMenu(false));
     bool condDrawRSet = NumSubPages() > 1 && Menu::CurrentItem()->Type() != TypeItem::ChoiceReg && Menu::CurrentItem()->Type() != TypeItem::Governor && Menu::OpenedItem()->Type() == TypeItem::Page;
     int delta = condDrawRSet ? -10 : 0;
@@ -833,11 +836,11 @@ void Page::DrawTitle(int yTop)
     {
         Char(GetSymbolForGovernor(GetCurrentSubPage())).Draw4SymbolsInRect(x + 4, yTop + 11, colorText);
     }
-
+    
     Menu::itemUnderButton[GetFuncButtonFromY(yTop)] = this;
-
+    
     delta = 0;
-
+    
     Color::SetCurrent(colorText);
     DrawPagesUGO(MP_X + MP_TITLE_WIDTH - 3 + delta, yTop + MP_TITLE_HEIGHT - 2 + delta);
 }

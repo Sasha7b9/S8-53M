@@ -685,7 +685,11 @@ void Page::SetPosActItem(int8 pos)
 
 int Page::GetPosActItem() const
 {
-    return set.menu.posActItem[OwnData()->name];
+    const DataPage *data = OwnData();
+
+    NamePage::E name = data->name;
+
+    return set.menu.posActItem[name];
 }
 
 
