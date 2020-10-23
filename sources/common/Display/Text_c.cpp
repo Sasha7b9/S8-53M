@@ -733,17 +733,12 @@ int Text::DrawInCenterRectAndBoundIt(int x, int y, int width, int height, Color:
     return DrawInCenterRect(x, y, width, height);
 }
 
-Text::Text(char *format, ...)
+Text::Text(char *format, ...) : text("")
 {
-#undef SIZE_BUFFER
-#define SIZE_BUFFER 200
-    char buffer[SIZE_BUFFER];
     std::va_list args;
     va_start(args, format);
-    std::vsprintf(buffer, format, args);
+    text.Set(TypeConversionString::None, format, args);
     va_end(args);
-    text = String(buffer);
-#undef SIZE_BUFFER
 }
 
 
