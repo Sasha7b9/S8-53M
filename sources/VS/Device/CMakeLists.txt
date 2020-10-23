@@ -64,7 +64,6 @@ file(GLOB DISPLAY           ../../Device/src/Display/Colors.*
                             ../../Device/src/Display/Grid.*
                             ../../Device/src/Display/Painter.*
                             ../../Device/src/Display/PainterText.cpp
-                            ../../Device/src/Display/Symbols.h
                                 ../../common/Display/Colors_c.*
                                 ../../common/Display/DisplayTypes_c.h
                                 ../../common/Display/Painter_c.*

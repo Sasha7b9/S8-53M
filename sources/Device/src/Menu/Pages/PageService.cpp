@@ -7,7 +7,6 @@
 #include "common/Hardware/Timer_c.h"
 #include "common/Hardware/HAL/HAL_c.h"
 #include "common/Utils/Math_c.h"
-#include "Display/Symbols.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/MathFPGA.h"
 #include "Menu/Menu.h"

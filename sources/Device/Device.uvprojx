@@ -1497,11 +1497,6 @@
               <FilePath>..\common\Display\Primitives_c_stm.cpp</FilePath>
             </File>
             <File>
-              <FileName>Symbols.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\Symbols.h</FilePath>
-            </File>
-            <File>
               <FileName>Text_c.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Display\Text_c.cpp</FilePath>
@@ -3660,11 +3655,6 @@
               <FileName>Primitives_c_stm.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Display\Primitives_c_stm.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Symbols.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\Symbols.h</FilePath>
             </File>
             <File>
               <FileName>Text_c.cpp</FileName>

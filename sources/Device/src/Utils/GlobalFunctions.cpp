@@ -1,6 +1,5 @@
 #include "defines.h"
 #include "common/Display/Font/Font_c.h"
-#include "Display/Symbols.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
 #include <cmath>

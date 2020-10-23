@@ -8,7 +8,6 @@
 #include "common/Hardware/Timer_c.h"
 #include "common/Utils/Math_c.h"
 #include "Display/Display.h"
-#include "Display/Symbols.h"
 #include "FDrive/FDrive.h"
 #include "FPGA/DataSettings.h"
 #include "FPGA/FPGA_Types.h"
