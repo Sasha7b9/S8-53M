@@ -354,6 +354,8 @@ class  IPaddress : public Item
 {
 public:
 
+    static const int OPENED_WIDTH = 34;      // Увеличение ширины открытого ip-адреса в случае наличия порта
+
     IPaddress(const DataItem *const data) : Item(data) {};
 
     const DataIPaddress *OwnData() const { return static_cast<const DataIPaddress *>(data->ad); }

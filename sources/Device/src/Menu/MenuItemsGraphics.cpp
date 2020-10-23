@@ -41,7 +41,7 @@ void DrawGovernorChoiceColorFormulaHiPart(const Item *item, int x, int y, bool p
 
     if (item->Type() == TypeItem::IP && opened && ((IPaddress*)item)->OwnData()->port != 0)
     {
-        width += MOI_WIDTH_D_IP;
+        width += IPaddress::OPENED_WIDTH;
     }
 
     Color::E color = IS_COLOR_SCHEME_WHITE_LETTERS ? Color::WHITE : Color::BLACK;
@@ -378,7 +378,7 @@ void IPaddress::Draw(int x, int y, bool opened)
 {
     if (opened)
     {
-        DrawOpened(x - (OwnData()->port == 0 ? 0 : MOI_WIDTH_D_IP), y);
+        DrawOpened(x - (OwnData()->port == 0 ? 0 : IPaddress::OPENED_WIDTH), y);
     }
     else
     {
@@ -585,7 +585,7 @@ void Governor::DrawOpened(int x, int y) const
 
 void IPaddress::DrawOpened(int x, int y)
 {
-    GovernorIpCommon_DrawOpened(this, x, y, (OwnData()->port == 0) ? 0 : MOI_WIDTH_D_IP);
+    GovernorIpCommon_DrawOpened(this, x, y, (OwnData()->port == 0) ? 0 : IPaddress::OPENED_WIDTH);
     DrawValue(x, y + 22);
 }
 
