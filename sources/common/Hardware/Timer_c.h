@@ -30,17 +30,17 @@ public:
     // Функция вызывается по прерыванию системного таймера для работы таймеров. Увеличивает внутренее время таймеров на 1мс.
     static void Update1ms();
     // Функция вызывается по прерыванию системного таймера для работы таймеров. Увеличивает внутреннее время таймеров на 10мс.
-    static void Update10ms();
+//    static void Update10ms();
          
     static void Enable(TypeTimer::E type, int timeInMS, pFuncVV);
     // Остановить таймер.
     static void Disable(TypeTimer::E type);
     // Приостановить таймер. Запустить снова можно функцией Timer_Continue().
-    static void Pause(TypeTimer::E type);
+//    static void Pause(TypeTimer::E type);
     // Продолжить работу таймера, ранее приостановленного функцией Timer_Pause().
-    static void Continue(TypeTimer::E type);
+//    static void Continue(TypeTimer::E type);
     // С помощью этой функции можно узнать, работает ли таймер.
-    static bool IsRun(TypeTimer::E type);
+//    static bool IsRun(TypeTimer::E type);
     // Устанавливает стартовую точку логгирования. Далее вызовы Timer_LogPoint засекают временные интервалы от это точки.
     static void StartLogging();
     
