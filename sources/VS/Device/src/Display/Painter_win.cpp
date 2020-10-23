@@ -1,7 +1,6 @@
 #include "defines.h"
 #pragma warning(push, 0)
 #include "GUI/Application.h"
-#include "GUI/Controls/Governor.h"
 
 #define uint    unsigned int
 #define int8    signed char
@@ -42,11 +41,6 @@ wxMemoryDC memDC;
 
 // ÷вета
 static uint colors[256];
-
-static bool needStartTimerLong = false;
-static bool needStopTimerLong = false;
-// «десь им€ нажатой кнопки
-static Key::E pressedKey = Key::None;
 
 
 class Screen : public wxPanel
@@ -134,60 +128,4 @@ void Application::CreateFrame()
     CreateGovernors(frame);
 
     frame->Show(true);
-}
-
-
-void Frame::OnDown(wxCommandEvent &event)
-{
-    Key::E key = static_cast<Key::E>(event.GetId());
-
-    event.Skip();
-
-    int code = Key::ToCode(key) | Action::ToCode(Action::Down);
-
-    Panel::ProcessingCommandFromPIC(static_cast<uint16>(code));
-
-    needStartTimerLong = true;
-
-    pressedKey = key;
-}
-
-
-void Frame::OnUp(wxCommandEvent &event)
-{
-    Key::E key = static_cast<Key::E>(event.GetId());
-
-    event.Skip();
-
-    int code = Key::ToCode(key) | Action::ToCode(Action::Up);
-
-    Panel::ProcessingCommandFromPIC(static_cast<uint16>(code));
-
-    needStopTimerLong = true;
-
-    pressedKey = Key::None;
-}
-
-
-void Frame::OnTimerLong(wxTimerEvent&)
-{
-//    BufferButtons::Push(KeyEvent(pressedKey, TypePress::Long));
-
-    pressedKey = Key::None;
-}
-
-
-void Frame::HandlerEvents()
-{
-    if (needStartTimerLong)
-    {
-        timerLongPress.StartOnce(500);
-        needStartTimerLong = false;
-    }
-
-    if (needStopTimerLong)
-    {
-        timerLongPress.Stop();
-        needStopTimerLong = false;
-    }
 }

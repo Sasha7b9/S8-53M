@@ -1,12 +1,20 @@
 #include "defines.h"
 #include "GUI/Application.h"
 #include "GUI/Controls/Governor.h"
+#include "Panel/Panel.h"
 
 
 // Здесь хранятся указатели на кнопки
 static wxButton *buttons[Key::Count] = { nullptr };
 
 static GovernorGUI *governors[Key::Count] = { nullptr };
+
+static bool needStartTimerLong = false;
+
+// Здесь имя нажатой кнопки
+static Key::E pressedKey = Key::None;
+
+static bool needStopTimerLong = false;
 
 
 void Application::CreateButtons(Frame *frame)
@@ -110,4 +118,60 @@ void Application::CreateGovernors(Frame *frame)
 void Application::CreateGovernor(Key::E key, Frame *frame, const wxPoint &pos)
 {
     governors[key] = new GovernorGUI(frame, pos, key);
+}
+
+
+void Frame::OnDown(wxCommandEvent &event)
+{
+    Key::E key = static_cast<Key::E>(event.GetId());
+
+    event.Skip();
+
+    int code = Key::ToCode(key) | Action::ToCode(Action::Down);
+
+    Panel::ProcessingCommandFromPIC(static_cast<uint16>(code));
+
+    needStartTimerLong = true;
+
+    pressedKey = key;
+}
+
+
+void Frame::OnUp(wxCommandEvent &event)
+{
+    Key::E key = static_cast<Key::E>(event.GetId());
+
+    event.Skip();
+
+    int code = Key::ToCode(key) | Action::ToCode(Action::Up);
+
+    Panel::ProcessingCommandFromPIC(static_cast<uint16>(code));
+
+    needStopTimerLong = true;
+
+    pressedKey = Key::None;
+}
+
+
+void Frame::OnTimerLong(wxTimerEvent &)
+{
+    //    BufferButtons::Push(KeyEvent(pressedKey, TypePress::Long));
+
+    pressedKey = Key::None;
+}
+
+
+void Frame::HandlerEvents()
+{
+    if (needStartTimerLong)
+    {
+        timerLongPress.StartOnce(500);
+        needStartTimerLong = false;
+    }
+
+    if (needStopTimerLong)
+    {
+        timerLongPress.Stop();
+        needStopTimerLong = false;
+    }
 }
