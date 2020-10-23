@@ -117,7 +117,7 @@ void Display::FuncOnTimerDisableShowLevelTrigLev()
 }
 
 
-void Display::Redraw(void)
+void Display::Redraw()
 {
     needFinishDraw = true;
 }

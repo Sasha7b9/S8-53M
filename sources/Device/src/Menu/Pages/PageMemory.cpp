@@ -481,7 +481,7 @@ void DrawSB_MemInt_SaveToIntMemory(int x, int y)
 }
 
 
-static void SaveSignalToIntMemory(void)
+static void SaveSignalToIntMemory()
 {
     if (exitFromIntToLast)          // Åñëè ïåðåøëè âî ÂÍÓÒÐ ÇÓ èç ÏÎÑËÅÄÍÈÅ
     {
@@ -753,13 +753,13 @@ DEF_SMALL_BUTTON(sbExitMemInt, PageMemory::PageInternal::self,    // Êíîïêà äëÿ 
 
 
 // Íàæàòèå ÏÀÌßÒÜ - ÂÍÅØÍ ÇÓ - Ìàñêà
-void OnPressMemoryExtMask(void)
+void OnPressMemoryExtMask()
 {
     PageMemory::PageSetMask::self->OpenAndSetItCurrent();
     Display::SetAddDrawFunction(DrawSetMask);
 }
 
-static bool FuncActiveMemoryNumPoinst(void)
+static bool FuncActiveMemoryNumPoinst()
 {
     return PEAKDET_IS_DISABLE;
 }

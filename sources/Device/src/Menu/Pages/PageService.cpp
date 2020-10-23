@@ -25,7 +25,7 @@ static uint16 portMask = 0;
 static uint16 portGateway = 0;
 
 
-static void FuncDraw(void)
+static void FuncDraw()
 {
     Painter::BeginScene(Color::BACK);
 
@@ -34,12 +34,12 @@ static void FuncDraw(void)
     Painter::EndScene();
 }
 
-static void OnTimerDraw(void)
+static void OnTimerDraw()
 {
     Display::Update();
 }
 
-static void OnPress_ResetSettings(void)
+static void OnPress_ResetSettings()
 {
     Panel::Disable();
     Display::SetDrawMode(DrawMode::Hand, FuncDraw);
@@ -63,7 +63,7 @@ DEF_BUTTON(bResetSettings, PageService::self,
     nullptr, OnPress_ResetSettings
 )
 
-static void OnPress_AutoSearch(void)
+static void OnPress_AutoSearch()
 {
     FPGA::StartAutoFind();
 };
@@ -90,7 +90,7 @@ DEF_CHOICE_3(cCalibrator_Mode, PageService::PageCalibrator::self,
     CALIBRATOR, nullptr, OnChanged_Calibrator_Mode, nullptr
 )
 
-static void OnPress_Calibrator_Calibrate(void)
+static void OnPress_Calibrator_Calibrate()
 {
     FPGA::state.needCalibration = true;
 }
@@ -143,7 +143,7 @@ static const arrayHints hintsMath_Function_ModeDraw =
                                             "Signals and mathematical function are removed in one window"}
 };
 
-static void OnPress_Math_Function_ModeDraw(void)
+static void OnPress_Math_Function_ModeDraw()
 {
     if (ENABLED_FFT)
     {
@@ -173,7 +173,7 @@ DEF_SMALL_BUTTON(sbMath_Function_ModeDraw, PageService::PageMath::PageFunction::
     nullptr, OnPress_Math_Function_ModeDraw, Draw_Math_Function_ModeDraw, &hintsMath_Function_ModeDraw
 )
 
-static void OnPress_Math_Function(void)
+static void OnPress_Math_Function()
 {
     if (ENABLED_FFT)
     {
@@ -181,7 +181,7 @@ static void OnPress_Math_Function(void)
     }
 }
 
-static bool IsActive_Math_Function(void)
+static bool IsActive_Math_Function()
 {
     return !ENABLED_FFT;
 }
@@ -256,7 +256,7 @@ static void OnRegSet_Math_Function(int delta)
     }
 }
 
-static void OnPress_Math_Function_Type(void)
+static void OnPress_Math_Function_Type()
 {
     CircleIncreaseInt8((int8 *)&MATH_FUNC, 0, 1);
 }
@@ -293,7 +293,7 @@ DEF_SMALL_BUTTON(sbMath_Function_Type, PageService::PageMath::PageFunction::self
     nullptr, OnPress_Math_Function_Type, Draw_Math_Function_Type, &hintsMath_Function_Type
 )
 
-static void OnPress_Math_Function_ModeRegSet(void)
+static void OnPress_Math_Function_ModeRegSet()
 {
     CircleIncreaseInt8((int8 *)&MATH_MODE_REG_SET, 0, 1);
 }
@@ -327,7 +327,7 @@ DEF_SMALL_BUTTON(sbMath_Function_ModeRegSet, PageService::PageMath::PageFunction
     nullptr, OnPress_Math_Function_ModeRegSet, Draw_Math_Function_ModeRegSet, &hintsMath_Function_ModeRegSet
 )
 
-static void OnPress_Math_Function_RangeA(void)
+static void OnPress_Math_Function_RangeA()
 {
     SET_RANGE_MATH = SET_RANGE_A;
     MATH_MULTIPLIER = SET_DIVIDER_A;
@@ -345,7 +345,7 @@ DEF_SMALL_BUTTON(sbMath_Function_RangeA, PageService::PageMath::PageFunction::se
     nullptr, OnPress_Math_Function_RangeA, Draw_Math_Function_RangeA, nullptr
 )
 
-static void OnPress_Math_Function_RangeB(void)
+static void OnPress_Math_Function_RangeB()
 {
     SET_RANGE_MATH = SET_RANGE_B;
     MATH_MULTIPLIER = SET_DIVIDER_B;
@@ -493,12 +493,12 @@ DEF_CHOICE_4(cMath_FFT_Window, PageService::PageMath::PageFFT::self,
     WINDOW_FFT, nullptr, nullptr, nullptr
 )
 
-static bool IsActive_Math_FFT(void)
+static bool IsActive_Math_FFT()
 {
     return DISABLED_DRAW_MATH;
 }
 
-static void OnPress_Math_FFT(void)
+static void OnPress_Math_FFT()
 {
     if (!IsActive_Math_FFT())
     {
@@ -506,7 +506,7 @@ static void OnPress_Math_FFT(void)
     }
 }
 
-static bool IsActive_Math_FFT_Limit(void)
+static bool IsActive_Math_FFT_Limit()
 {
     return SCALE_FFT_IS_LOG;
 }
@@ -534,7 +534,7 @@ DEF_PAGE_6(pageFFT, PageService::PageMath::self, NamePage::MathFFT,
     IsActive_Math_FFT, OnPress_Math_FFT, nullptr, nullptr
 )
 
-static void OnPress_Math_FFT_Cursors_Exit(void)
+static void OnPress_Math_FFT_Cursors_Exit()
 {
     Display::RemoveAddDrawFunction();
 }
@@ -544,7 +544,7 @@ DEF_SMALL_BUTTON(cMath_FFT_Cursors_Exit, PageService::PageMath::PageFFT::PageCur
     nullptr, OnPress_Math_FFT_Cursors_Exit, DrawSB_Exit, nullptr
 )
 
-static bool IsActive_Math_FFT_Cursors(void)
+static bool IsActive_Math_FFT_Cursors()
 {
     return ENABLED_FFT;
 }
@@ -555,7 +555,7 @@ static void OnRegSet_Math_FFT_Cursors(int angle)
     Sound::RegulatorShiftRotate();
 }
 
-static void OnPress_Math_FFT_Cursors_Source(void)
+static void OnPress_Math_FFT_Cursors_Source()
 {
     FFT_CUR_CURSOR = (uint8)((FFT_CUR_CURSOR + 1) % 2);
 }
@@ -646,7 +646,7 @@ DEF_PAGE_5(pageEthernet, PageService::self, NamePage::ServiceEthernet,
     nullptr, nullptr, nullptr, nullptr
 )
 
-static void OnPress_Information_Exit(void)
+static void OnPress_Information_Exit()
 {
     Display::SetDrawMode(DrawMode::Auto, 0);
     Display::RemoveAddDrawFunction();
@@ -657,7 +657,7 @@ DEF_SMALL_BUTTON(sbInformation_Exit, PageService::PageCalibrator::self,
     nullptr, OnPress_Information_Exit, DrawSB_Exit, nullptr
 )
 
-static void Information_Draw(void)
+static void Information_Draw()
 {
     Painter::BeginScene(Color::BLACK);
     int x = 100;
@@ -689,7 +689,7 @@ static void Information_Draw(void)
     Painter::EndScene();
 }
 
-static void OnPress_Information(void)
+static void OnPress_Information()
 {
     PageService::PageInformation::self->OpenAndSetItCurrent();
     Display::SetDrawMode(DrawMode::Hand, Information_Draw);

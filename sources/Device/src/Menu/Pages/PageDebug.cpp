@@ -67,7 +67,7 @@ DEF_CHOICE_2(mcConsole_Registers_ShowAll, PageDebug::PageConsole::PageRegisters:
     IS_SHOW_REGISTERS_ALL, nullptr, nullptr, nullptr
 )
 
-static bool IsActive_Console_Registers_RD_FL(void)
+static bool IsActive_Console_Registers_RD_FL()
 {
     return !IS_SHOW_REGISTERS_ALL;
 }
@@ -230,13 +230,13 @@ DEF_CHOICE_3(mcADC_Balance_Mode, PageDebug::PageADC::PageBalance::self,
     BALANCE_ADC_TYPE, nullptr, OnChanged_ADC_Balance_Mode, Draw_ADC_Balance_Mode
 )
 
-static void OnChanged_ADC_Balance_ShiftA(void)
+static void OnChanged_ADC_Balance_ShiftA()
 {
     BALANCE_ADC_A = shiftADCA;
     FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)BALANCE_ADC_A, false);
 }
 
-static bool IsActive_ADC_Balance_Shift(void)
+static bool IsActive_ADC_Balance_Shift()
 {
     return BALANCE_ADC_TYPE_IS_HAND;
 }
@@ -248,7 +248,7 @@ DEF_GOVERNOR(mgADC_Balance_ShiftA, PageDebug::PageADC::PageBalance::self,
     shiftADCA, -125, 125, IsActive_ADC_Balance_Shift, OnChanged_ADC_Balance_ShiftA, nullptr
 )
 
-static void OnChanged_ADC_Balance_ShiftB(void)
+static void OnChanged_ADC_Balance_ShiftB()
 {
     BALANCE_ADC_B = shiftADCB;
     FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)BALANCE_ADC_B, false);
@@ -306,12 +306,12 @@ DEF_CHOICE_3(mcADC_Stretch_Mode, PageDebug::PageADC::PageStretch::self,
     DEBUG_STRETCH_ADC_TYPE, nullptr, OnChanged_ADC_Stretch_Mode, nullptr
 )
 
-static void OnChanged_ADC_Stretch_ADC_A(void)
+static void OnChanged_ADC_Stretch_ADC_A()
 {
     FPGA::WriteToHardware(WR_CAL_A, (uint8)DEBUG_STRETCH_ADC_A, true);
 }
 
-static bool IsActive_ADC_Stretch_ADC(void)
+static bool IsActive_ADC_Stretch_ADC()
 {
     return DEBUG_STRETCH_ADC_TYPE_IS_HAND;
 }
@@ -323,7 +323,7 @@ DEF_GOVERNOR(mgADC_Stretch_ADC_A, PageDebug::PageADC::PageStretch::self,
     DEBUG_STRETCH_ADC_A, 0, 255, IsActive_ADC_Stretch_ADC, OnChanged_ADC_Stretch_ADC_A, nullptr
 )
 
-static void OnChanged_ADC_Stretch_ADC_B(void)
+static void OnChanged_ADC_Stretch_ADC_B()
 {
     FPGA::WriteToHardware(WR_CAL_B, (uint8)DEBUG_STRETCH_ADC_B, true);
 }
@@ -345,7 +345,7 @@ DEF_PAGE_3(pageStretchADC, PageDebug::PageADC::self, NamePage::DebugADCstretch,
     nullptr, nullptr, nullptr, nullptr
 )
 
-static void OnPress_ADC_AltRShift_Reset(void)
+static void OnPress_ADC_AltRShift_Reset()
 {
     for (int chan = 0; chan < 2; chan++)
     {
@@ -367,7 +367,7 @@ DEF_BUTTON(mbADC_AltRShift_Reset, PageDebug::PageADC::PageAltRShift::self,
     nullptr, OnPress_ADC_AltRShift_Reset
 )
 
-static void OnChanged_ADC_AltRShift_A(void)
+static void OnChanged_ADC_AltRShift_A()
 {
     FPGA::SetRShift(Channel::A, SET_RSHIFT_A);
 }
@@ -379,7 +379,7 @@ DEF_GOVERNOR(mbADC_AltRShift_2mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
     set.chan[Channel::A].rShiftAdd[Range::_2mV][ModeCouple::DC], -100, 100, nullptr, OnChanged_ADC_AltRShift_A, nullptr
 )
 
-static void OnChanged_ADC_AltRShift_B(void)
+static void OnChanged_ADC_AltRShift_B()
 {
     FPGA::SetRShift(Channel::B, SET_RSHIFT_B);
 }
@@ -443,7 +443,7 @@ DEF_PAGE_3(pageADC, PageDebug::self, NamePage::DebugADC,
     nullptr, nullptr, nullptr, nullptr
 )
 
-static void OnChanged_Randomizer_SamplesForGates(void)
+static void OnChanged_Randomizer_SamplesForGates()
 {
     FPGA::SetNumberMeasuresForGates(NUM_MEAS_FOR_GATES);
 }
@@ -455,7 +455,7 @@ DEF_GOVERNOR(mgRandomizer_SamplesForGates, PageDebug::PageRandomizer::self,
     NUM_MEAS_FOR_GATES, 1, 2500, nullptr, OnChanged_Randomizer_SamplesForGates, nullptr
 )
 
-static void OnChanged_Randomizer_AltTShift0(void)
+static void OnChanged_Randomizer_AltTShift0()
 {
     FPGA::SetDeltaTShift(ADD_SHIFT_T0);
 }
@@ -558,7 +558,7 @@ DEF_PAGE_7(pageDebug, PageMain::self, NamePage::Debug,
     nullptr, nullptr, nullptr, nullptr
 );
 
-static void OnPress_SerialNumber_Exit(void)
+static void OnPress_SerialNumber_Exit()
 {
     Display::RemoveAddDrawFunction();
     FREE_EXTRAMEM();
@@ -569,7 +569,7 @@ DEF_SMALL_BUTTON(bSerialNumber_Exit, PageDebug::PageSerialNumber::self,
     nullptr, OnPress_SerialNumber_Exit, DrawSB_Exit, nullptr
 )
 
-static void OnPress_SerialNumber_Change(void)
+static void OnPress_SerialNumber_Change()
 {
     ACCESS_EXTRAMEM(StructForSN, s);
     ++s->curDigt;
@@ -591,7 +591,7 @@ DEF_SMALL_BUTTON(bSerialNumber_Change, PageDebug::PageSerialNumber::self,
     nullptr, OnPress_SerialNumber_Change, Draw_SerialNumber_Change, nullptr
 )
 
-static void OnPress_SerialNumber_Save(void)
+static void OnPress_SerialNumber_Save()
 {
     ACCESS_EXTRAMEM(StructForSN, s);
 
@@ -619,7 +619,7 @@ DEF_SMALL_BUTTON(bSerialNumber_Save, PageDebug::PageSerialNumber::self,
     nullptr, OnPress_SerialNumber_Save, Draw_SerialNumber_Save, nullptr
 )
 
-static void Draw_EnterSerialNumber(void)
+static void Draw_EnterSerialNumber()
 {
     int x0 = Grid::Left() + 40;
     int y0 = Grid::TOP + 20;
@@ -675,7 +675,7 @@ static void Draw_EnterSerialNumber(void)
     Text("Осталось места для %d попыток", allShots).Draw(x0 + deltaX, y0 + 100, Color::FILL);
 }
 
-static void OnPress_SerialNumber(void)
+static void OnPress_SerialNumber()
 {
     PageDebug::PageSerialNumber::self->OpenAndSetItCurrent();
     Display::SetAddDrawFunction(Draw_EnterSerialNumber);
