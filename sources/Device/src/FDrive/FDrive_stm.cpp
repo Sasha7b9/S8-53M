@@ -104,7 +104,6 @@ void FDrive::GetNumDirsAndFiles(const char* fullPath, int *numDirs, int *numFile
 
     if (f_opendir(&dir, nameDir) == FR_OK)
     {
-        int numReadingElements = 0;
         bool alreadyNull = false;
         while (true)
         {
@@ -121,7 +120,6 @@ void FDrive::GetNumDirsAndFiles(const char* fullPath, int *numDirs, int *numFile
                 alreadyNull = true;
                 continue;
             }
-            numReadingElements++;
             char *fn = fno.fname;
             if (fn[0] != '.')
             {

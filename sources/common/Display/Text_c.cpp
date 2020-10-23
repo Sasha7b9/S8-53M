@@ -742,7 +742,7 @@ Text::Text(char *format, ...) : text("")
 }
 
 
-void Char::Draw2Symbols(int x, int y, char symbol2, Color::E color1, Color::E color2)
+void Char::Draw2SymbolsInPosition(int x, int y, char symbol2, Color::E color1, Color::E color2)
 {
     Char(symbol).Draw(x, y, color1);
     Char(symbol2).Draw(x, y, color2);

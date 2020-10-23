@@ -1710,7 +1710,7 @@ void Display::DrawCursorTShift()
     int x = static_cast<int>(gridLeft + shiftTPos * scale - 3);
     if (IntInRange(x + 3, gridLeft, Grid::Right() + 1))
     {
-        Char(SYMBOL_TPOS_2).Draw2Symbols(x, Grid::TOP - 1, SYMBOL_TPOS_3, Color::BACK, Color::FILL);
+        Char(SYMBOL_TPOS_2).Draw2SymbolsInPosition(x, Grid::TOP - 1, SYMBOL_TPOS_3, Color::BACK, Color::FILL);
     };
 
     // Рисуем tShift
@@ -1718,16 +1718,16 @@ void Display::DrawCursorTShift()
     if(IntInRange(shiftTShift, firstPoint, lastPoint))
     {
         x = gridLeft + shiftTShift - firstPoint - 3;
-        Char(SYMBOL_TSHIFT_NORM_1).Draw2Symbols(x, Grid::TOP - 1, SYMBOL_TSHIFT_NORM_2, Color::BACK, Color::FILL);
+        Char(SYMBOL_TSHIFT_NORM_1).Draw2SymbolsInPosition(x, Grid::TOP - 1, SYMBOL_TSHIFT_NORM_2, Color::BACK, Color::FILL);
     }
     else if(shiftTShift < firstPoint)
     {
-        Char(SYMBOL_TSHIFT_LEFT_1).Draw2Symbols(gridLeft + 1, Grid::TOP, SYMBOL_TSHIFT_LEFT_2, Color::BACK, Color::FILL);
+        Char(SYMBOL_TSHIFT_LEFT_1).Draw2SymbolsInPosition(gridLeft + 1, Grid::TOP, SYMBOL_TSHIFT_LEFT_2, Color::BACK, Color::FILL);
         Line().Draw(Grid::Left() + 9, Grid::TOP + 1, Grid::Left() + 9, Grid::TOP + 7, Color::BACK);
     }
     else if(shiftTShift > lastPoint)
     {
-        Char(SYMBOL_TSHIFT_RIGHT_1).Draw2Symbols(Grid::Right() - 8, Grid::TOP, SYMBOL_TSHIFT_RIGHT_2, Color::BACK, Color::FILL);
+        Char(SYMBOL_TSHIFT_RIGHT_1).Draw2SymbolsInPosition(Grid::Right() - 8, Grid::TOP, SYMBOL_TSHIFT_RIGHT_2, Color::BACK, Color::FILL);
         Line().Draw(Grid::Right() - 9, Grid::TOP + 1, Grid::Right() - 9, Grid::TOP + 7, Color::BACK);
     }
 }
