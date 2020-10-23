@@ -1,7 +1,6 @@
 #include "defines.h"
-#include "Strings.h"
-#include "Map.h"
-
+#include "VCP/SCPI/Utils/MapSCPI.h"
+#include "VCP/SCPI/Utils/StringsSCPI.h"
 
 
 uint8 GetValueFromMap(const MapElement *map, Word *eKey)

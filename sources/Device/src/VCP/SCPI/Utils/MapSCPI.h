@@ -1,7 +1,5 @@
 #pragma once
-
-
-#include "Strings.h"
+#include "VCP/SCPI/Utils/StringsSCPI.h"
 
 
 struct MapElement

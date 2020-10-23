@@ -3,12 +3,11 @@
 #include "common/Display/Painter_c.h"
 #include "LAN/LAN.h"
 #include "Menu/Pages/Definition.h"
-#include "VCP/VCP.h"
-#include "VCP/SCPI/SCPI.h"
 #include "Settings/Settings.h"
 #include "Utils/GlobalFunctions.h"
-#include "Utils/Map.h"
-
+#include "VCP/VCP.h"
+#include "VCP/SCPI/SCPI.h"
+#include "VCP/SCPI/Utils/MapSCPI.h"
 
 
 ENTER_PARSE_FUNC(SCPI::ProcessDISPLAY)

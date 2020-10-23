@@ -185,7 +185,6 @@
             <uocXRam>0</uocXRam>
             <RvdsVP>2</RvdsVP>
             <RvdsMve>0</RvdsMve>
-            <RvdsCdeCp>0</RvdsCdeCp>
             <hadIRAM2>1</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
@@ -352,7 +351,7 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
-            <ClangAsOpt>4</ClangAsOpt>
+            <uClangAs>0</uClangAs>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define></Define>
@@ -1370,7 +1369,7 @@
                     <NoWarn>2</NoWarn>
                     <uSurpInc>2</uSurpInc>
                     <useXO>2</useXO>
-                    <ClangAsOpt>0</ClangAsOpt>
+                    <uClangAs>2</uClangAs>
                     <VariousControls>
                       <MiscControls></MiscControls>
                       <Define></Define>
@@ -2059,16 +2058,6 @@
           <GroupName>Utils</GroupName>
           <Files>
             <File>
-              <FileName>Strings.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Strings.h</FilePath>
-            </File>
-            <File>
-              <FileName>Map.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Map.h</FilePath>
-            </File>
-            <File>
               <FileName>GlobalFunctions.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Utils\GlobalFunctions.h</FilePath>
@@ -2114,11 +2103,6 @@
               <FilePath>.\src\Utils\GlobalFunctions.cpp</FilePath>
             </File>
             <File>
-              <FileName>Map.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Map.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Measures.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Utils\Measures.cpp</FilePath>
@@ -2127,11 +2111,6 @@
               <FileName>ProcessingSignal.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Utils\ProcessingSignal.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Strings.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Strings.cpp</FilePath>
             </File>
             <File>
               <FileName>Math_c.cpp</FileName>
@@ -2222,6 +2201,31 @@
               <FileName>trigSCPI.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\VCP\SCPI\trigSCPI.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>VCP/SCPI/Utils</GroupName>
+          <Files>
+            <File>
+              <FileName>MapSCPI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\VCP\SCPI\Utils\MapSCPI.h</FilePath>
+            </File>
+            <File>
+              <FileName>MapSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\VCP\SCPI\Utils\MapSCPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>StringsSCPI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\VCP\SCPI\Utils\StringsSCPI.h</FilePath>
+            </File>
+            <File>
+              <FileName>StringsSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\VCP\SCPI\Utils\StringsSCPI.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -2406,7 +2410,6 @@
             <uocXRam>0</uocXRam>
             <RvdsVP>2</RvdsVP>
             <RvdsMve>0</RvdsMve>
-            <RvdsCdeCp>0</RvdsCdeCp>
             <hadIRAM2>1</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
@@ -2573,7 +2576,7 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
-            <ClangAsOpt>4</ClangAsOpt>
+            <uClangAs>0</uClangAs>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define></Define>
@@ -3591,7 +3594,7 @@
                     <NoWarn>2</NoWarn>
                     <uSurpInc>2</uSurpInc>
                     <useXO>2</useXO>
-                    <ClangAsOpt>0</ClangAsOpt>
+                    <uClangAs>2</uClangAs>
                     <VariousControls>
                       <MiscControls></MiscControls>
                       <Define></Define>
@@ -4280,16 +4283,6 @@
           <GroupName>Utils</GroupName>
           <Files>
             <File>
-              <FileName>Strings.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Strings.h</FilePath>
-            </File>
-            <File>
-              <FileName>Map.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Map.h</FilePath>
-            </File>
-            <File>
               <FileName>GlobalFunctions.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Utils\GlobalFunctions.h</FilePath>
@@ -4335,11 +4328,6 @@
               <FilePath>.\src\Utils\GlobalFunctions.cpp</FilePath>
             </File>
             <File>
-              <FileName>Map.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Map.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Measures.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Utils\Measures.cpp</FilePath>
@@ -4348,11 +4336,6 @@
               <FileName>ProcessingSignal.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Utils\ProcessingSignal.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Strings.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Strings.cpp</FilePath>
             </File>
             <File>
               <FileName>Math_c.cpp</FileName>
@@ -4443,6 +4426,31 @@
               <FileName>trigSCPI.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\VCP\SCPI\trigSCPI.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>VCP/SCPI/Utils</GroupName>
+          <Files>
+            <File>
+              <FileName>MapSCPI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\VCP\SCPI\Utils\MapSCPI.h</FilePath>
+            </File>
+            <File>
+              <FileName>MapSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\VCP\SCPI\Utils\MapSCPI.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>StringsSCPI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\VCP\SCPI\Utils\StringsSCPI.h</FilePath>
+            </File>
+            <File>
+              <FileName>StringsSCPI.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\VCP\SCPI\Utils\StringsSCPI.cpp</FilePath>
             </File>
           </Files>
         </Group>

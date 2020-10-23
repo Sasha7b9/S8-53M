@@ -113,7 +113,9 @@ file(GLOB UTILS                src/Utils/*
                          ../common/Utils/*)
 file(GLOB VCP                  src/VCP/*.h
                                src/VCP/*.cpp)
-file(GLOB VCP_SCPI             src/VCP/SCPI/*)
+file(GLOB VCP_SCPI             src/VCP/SCPI/*.h
+                               src/VCP/SCPI/*.cpp)
+file(GLOB VCP_SCPI_UTILS       src/VCP/SCPI/Utils/*)
 
 set_source_files_properties(${LIBS_FATFS} ${LIBS_HAL} ${LIBS_USBH}
                             src/Panel/PanelFunctions.cpp src/Menu/Pages/PageHelp.cpp
@@ -146,7 +148,8 @@ source_group(Settings                FILES ${SETTINGS})
 source_group(Utils                   FILES ${UTILS})
 source_group(VCP                     FILES ${VCP})
 source_group(VCP\\SCPI               FILES ${VCP_SCPI})
+source_group(VCP\\SCPI\\Utils        FILES ${VCP_SCPI_UTILS})
 
 add_library(Device ${VS_KEIL_CMSIS} ${VS_KEIL_ARMCLANG} ${VS_KEIL_FATFS} ${LIBS_CMSIS} ${LIBS_FATFS} ${LIBS_HAL} ${LIBS_LWIP} ${LIBS_USBH} ${HARDWARE}
                    ${HARDWARE_CMSIS} ${HARDWARE_FATFS} ${HARDWARE_HAL} ${HARDWARE_LWIP} ${HARDWARE_USBD} ${HARDWARE_USBH} ${SRC} ${DISPLAY} 
-                   ${DISPLAY_FONT} ${FDRIVE} ${FPGA} ${LAN} ${MENU} ${MENU_PAGES} ${PANEL} ${SETTINGS} ${UTILS} ${VCP} ${VCP_SCPI})
+                   ${DISPLAY_FONT} ${FDRIVE} ${FPGA} ${LAN} ${MENU} ${MENU_PAGES} ${PANEL} ${SETTINGS} ${UTILS} ${VCP} ${VCP_SCPI} ${VCP_SCPI_UTILS})

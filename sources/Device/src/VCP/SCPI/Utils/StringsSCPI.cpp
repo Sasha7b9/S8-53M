@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "Strings.h"
+#include "VCP/SCPI/Utils/StringsSCPI.h"
 #include <ctype.h>
 
 
