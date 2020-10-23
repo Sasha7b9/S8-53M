@@ -203,6 +203,9 @@ public:
     // ”становить позицию активного пункта на странице namePage.
     void SetPosActItem(int8 pos);
 
+    // ¬озвращает позицию активного пункта на странице namePage.
+    int GetPosActItem() const;
+
     static Page empty;
 
 private:

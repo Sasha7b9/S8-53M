@@ -304,7 +304,7 @@ bool Item::IsShade() const
 
 int8 Page::PosCurrentItem() const
 {
-    return Menu::GetPosActItem(OwnData()->name) & 0x7f;
+    return GetPosActItem() & 0x7f;
 }
 
 
@@ -351,7 +351,7 @@ bool Item::IsOpened() const
     {
         return page->CurrentItemIsOpened();
     }
-    return (Menu::GetPosActItem(page->OwnData()->name) & 0x80) != 0;
+    return (page->GetPosActItem() & 0x80) != 0;
 }
 
 
@@ -673,11 +673,17 @@ void Page::SetCurrentSubPage(int posSubPage) const
 
 bool Page::CurrentItemIsOpened()
 {
-    return _GET_BIT(Menu::GetPosActItem(GetName()), 7) == 1;
+    return _GET_BIT(GetPosActItem(), 7) == 1;
 }
 
 
 void Page::SetPosActItem(int8 pos)
 {
-    set.menu.posActItem[GetName()] = pos;
+    set.menu.posActItem[OwnData()->name] = pos;
+}
+
+
+int Page::GetPosActItem() const
+{
+    return set.menu.posActItem[OwnData()->name];
 }

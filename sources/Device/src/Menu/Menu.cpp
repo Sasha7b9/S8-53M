@@ -661,12 +661,6 @@ void Menu::OpenFileManager()
 }
 
 
-int Menu::GetPosActItem(NamePage::E namePage)
-{
-    return set.menu.posActItem[namePage];
-}
-
-
 bool Menu::IsShown()
 {
     return set.menu.isShown;
