@@ -75,10 +75,6 @@ DEF_SMALL_BUTTON(sbExitHelp, PageHelp::self,
     nullptr, PressSB_Help_Exit, DrawSB_Exit, nullptr
 )
 
-static const arrayItems itemsHelp =
-{
-};
-
 DEF_PAGE_6(pageHelp, PageMain::self, NamePage::SB_Help,
     "ѕќћќў№", "HELP",
     "ќткрыть разделы помощи",

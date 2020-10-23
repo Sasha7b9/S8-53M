@@ -248,15 +248,14 @@ int Page::NumItems() const
     }
     else
     {
-        for (int i = 0; i < MAX_NUM_ITEMS_IN_PAGE; i++)
+        for (int i = 0; ; i++)
         {
-            if (GetItem(i) == 0)
+            if (GetItem(i) == nullptr)
             {
                 return i;
             }
         }
     }
-    return 0;
 }
 
 

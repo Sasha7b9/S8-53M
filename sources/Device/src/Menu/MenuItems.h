@@ -7,8 +7,7 @@
 class SmallButton;
 
                                             
-#define MAX_NUM_SUBITEMS_IN_CHOICE  12  // Максимальное количество вариантов выбора в элементе Choice.
-#define MAX_NUM_ITEMS_IN_PAGE       15  // Максимальное количество пунктов на странице.
+//#define MAX_NUM_ITEMS_IN_PAGE       15  // Максимальное количество пунктов на странице.
 #define MENU_ITEMS_ON_DISPLAY       5   // Сколько пунктов меню помещается на экране по вертикали.
 #define MAX_NUM_CHOICE_SMALL_BUTTON 6   // Максимальное количество вариантов маленькой кнопки + 1
 
@@ -154,10 +153,6 @@ protected:
 
 #define TITLE(item) ((item)->data->titleHint[LANG])
 #define HINT(item) ((item)->data->titleHint[2 + LANG])
-
-typedef void * pVOID;
-typedef pVOID arrayItems[MAX_NUM_ITEMS_IN_PAGE];
-
 
 struct DataPage
 {
