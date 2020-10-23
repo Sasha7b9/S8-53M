@@ -1,11 +1,6 @@
 #pragma once
 
 
-#define SYMBOL_BACKSPACE            '\x20'
-#define SYMBOL_DELETE               '\x22'  /* бмеьм гс-люяйю-сдюкхрэ */
-#define SYMBOL_INSERT               '\x26'  /* бмеьм гс-хлъ-бярюбхрэ */
-#define SYMBOL_TAB                  '\x6e'
-
 #define SYMBOL_SAVE_TO_MEM          '\x2c'
 #define SYMBOL_SAVE
 

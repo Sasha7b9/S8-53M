@@ -985,7 +985,7 @@ void Display::DrawMemoryWindow()
 
     // Маркер TPos
     Region(6, 6).Fill(x0 - 3, 9, Color::BACK);
-    Char(Symbol::_8::TPOS_1).Draw(x0 - 3, 9, Color::FILL);
+    Char(Symbol::S8::TPOS_1).Draw(x0 - 3, 9, Color::FILL);
 
     // Маркер tShift
     float scale = (float)(rightX - leftX + 1) / ((float)sMemory_GetNumPoints(false) - (sMemory_GetNumPoints(false) == 281 ? 1 : 0));
@@ -1144,7 +1144,7 @@ void Display::DrawHiRightPart()
         y = 1;
         if (FPGA::CurrentStateWork() == StateWorkFPGA::Work)
         {
-            Char(Symbol::_8::PLAY).Draw4SymbolsInRect(x, 1);
+            Char(Symbol::S8::PLAY).Draw4SymbolsInRect(x, 1);
         }
         else if (FPGA::CurrentStateWork() == StateWorkFPGA::Stop)
         {
@@ -1590,21 +1590,21 @@ void Display::DrawCursorTrigLevel()
     Color::SetCurrent(Color::Trig());
     if(y > Grid::ChannelBottom())
     {
-        Char(Symbol::_8::TRIG_LEV_LOWER).Draw(x + 3, Grid::ChannelBottom() - 11);;
+        Char(Symbol::S8::TRIG_LEV_LOWER).Draw(x + 3, Grid::ChannelBottom() - 11);;
         Point().Draw(x + 5, Grid::ChannelBottom() - 2);
         y = Grid::ChannelBottom() - 7;
         x--;
     }
     else if(y < Grid::TOP)
     {
-        Char(Symbol::_8::TRIG_LEV_ABOVE).Draw(x + 3, Grid::TOP + 2);
+        Char(Symbol::S8::TRIG_LEV_ABOVE).Draw(x + 3, Grid::TOP + 2);
         Point().Draw(x + 5, Grid::TOP + 2);
         y = Grid::TOP + 7;
         x--;
     }
     else
     {
-        Char(Symbol::_8::TRIG_LEV_NORMAL).Draw(x + 1, y - 4);
+        Char(Symbol::S8::TRIG_LEV_NORMAL).Draw(x + 1, y - 4);
     }
     Font::Set(TypeFont::_5);
 
@@ -1640,7 +1640,7 @@ void Display::DrawCursorRShift(Channel::E chan)
         int rShift = SET_RSHIFT_MATH;
         float scale = (float)Grid::MathHeight() / 960;
         float y = (Grid::MathTop() + Grid::MathBottom()) / 2.0F - scale * (rShift - RShiftZero);
-        Char(Symbol::_8::RSHIFT_NORMAL).Draw(static_cast<int>(x - 9), static_cast<int>(y - 4), Color::FILL);
+        Char(Symbol::S8::RSHIFT_NORMAL).Draw(static_cast<int>(x - 9), static_cast<int>(y - 4), Color::FILL);
         Char('m').Draw(static_cast<int>(x - 8), static_cast<int>(y - 5), Color::BACK);
         return;
     }
@@ -1656,21 +1656,21 @@ void Display::DrawCursorRShift(Channel::E chan)
 
     if(y > Grid::ChannelBottom())
     {
-        Char(Symbol::_8::RSHIFT_LOWER).Draw(static_cast<int>(x - 7), Grid::ChannelBottom() - 11, Color::Channel(chan));
+        Char(Symbol::S8::RSHIFT_LOWER).Draw(static_cast<int>(x - 7), Grid::ChannelBottom() - 11, Color::Channel(chan));
         Point().Draw(static_cast<int>(x - 5), Grid::ChannelBottom() - 2);
         y = static_cast<float>(Grid::ChannelBottom() - 7);
         x++;
     }
     else if(y < Grid::TOP)
     {
-        Char(Symbol::_8::RSHIFT_ABOVE).Draw(static_cast<int>(x - 7), Grid::TOP + 2, Color::Channel(chan));
+        Char(Symbol::S8::RSHIFT_ABOVE).Draw(static_cast<int>(x - 7), Grid::TOP + 2, Color::Channel(chan));
         Point().Draw(static_cast<int>(x - 5), Grid::TOP + 2);
         y = Grid::TOP + 7;
         x++;
     }
     else
     {
-        Char(Symbol::_8::RSHIFT_NORMAL).Draw(static_cast<int>(x - 8), static_cast<int>(y - 4), Color::Channel(chan));
+        Char(Symbol::S8::RSHIFT_NORMAL).Draw(static_cast<int>(x - 8), static_cast<int>(y - 4), Color::Channel(chan));
         if(((chan == Channel::A) ? showLevelRShiftA : showLevelRShiftB) && MODE_WORK_IS_DIRECT) //-V2570
         {
             DashedHLine(7, 3).Draw(static_cast<int>(y), Grid::Left(), Grid::Right(), 0);
@@ -1710,7 +1710,7 @@ void Display::DrawCursorTShift()
     int x = static_cast<int>(gridLeft + shiftTPos * scale - 3);
     if (IntInRange(x + 3, gridLeft, Grid::Right() + 1))
     {
-        Char(Symbol::_8::TPOS_2).Draw2SymbolsInPosition(x, Grid::TOP - 1, Symbol::_8::TPOS_3, Color::BACK, Color::FILL);
+        Char(Symbol::S8::TPOS_2).Draw2SymbolsInPosition(x, Grid::TOP - 1, Symbol::S8::TPOS_3, Color::BACK, Color::FILL);
     };
 
     // Рисуем tShift
@@ -1718,16 +1718,16 @@ void Display::DrawCursorTShift()
     if(IntInRange(shiftTShift, firstPoint, lastPoint))
     {
         x = gridLeft + shiftTShift - firstPoint - 3;
-        Char(Symbol::_8::TSHIFT_NORM_1).Draw2SymbolsInPosition(x, Grid::TOP - 1, Symbol::_8::TSHIFT_NORM_2, Color::BACK, Color::FILL);
+        Char(Symbol::S8::TSHIFT_NORM_1).Draw2SymbolsInPosition(x, Grid::TOP - 1, Symbol::S8::TSHIFT_NORM_2, Color::BACK, Color::FILL);
     }
     else if(shiftTShift < firstPoint)
     {
-        Char(Symbol::_8::TSHIFT_LEFT_1).Draw2SymbolsInPosition(gridLeft + 1, Grid::TOP, Symbol::_8::TSHIFT_LEFT_2, Color::BACK, Color::FILL);
+        Char(Symbol::S8::TSHIFT_LEFT_1).Draw2SymbolsInPosition(gridLeft + 1, Grid::TOP, Symbol::S8::TSHIFT_LEFT_2, Color::BACK, Color::FILL);
         Line().Draw(Grid::Left() + 9, Grid::TOP + 1, Grid::Left() + 9, Grid::TOP + 7, Color::BACK);
     }
     else if(shiftTShift > lastPoint)
     {
-        Char(Symbol::_8::TSHIFT_RIGHT_1).Draw2SymbolsInPosition(Grid::Right() - 8, Grid::TOP, Symbol::_8::TSHIFT_RIGHT_2, Color::BACK, Color::FILL);
+        Char(Symbol::S8::TSHIFT_RIGHT_1).Draw2SymbolsInPosition(Grid::Right() - 8, Grid::TOP, Symbol::S8::TSHIFT_RIGHT_2, Color::BACK, Color::FILL);
         Line().Draw(Grid::Right() - 9, Grid::TOP + 1, Grid::Right() - 9, Grid::TOP + 7, Color::BACK);
     }
 }
@@ -2099,18 +2099,18 @@ void Display::DrawLowPart()
     // Флешка
     if (FDrive::isConnected)
     {
-        Char(Symbol::_8::FLASH_DRIVE).Draw4SymbolsInRect(x + 57, Grid::Bottom() + 2);
+        Char(Symbol::S8::FLASH_DRIVE).Draw4SymbolsInRect(x + 57, Grid::Bottom() + 2);
     }
 
     // Ethernet
     if ((LAN::clientIsConnected || LAN::cableIsConnected) && gTimerMS > 2000)
     {
-        Char(Symbol::_8::ETHERNET).Draw4SymbolsInRect(x + 87, Grid::Bottom() + 2, LAN::clientIsConnected ? Color::FILL : Color::FLASH_01);
+        Char(Symbol::S8::ETHERNET).Draw4SymbolsInRect(x + 87, Grid::Bottom() + 2, LAN::clientIsConnected ? Color::FILL : Color::FLASH_01);
     }
 
     if (VCP::connectToHost || VCP::cableIsConnected)
     {
-        Char(Symbol::_8::USB).Draw4SymbolsInRect(x + 72, Grid::Bottom() + 2, VCP::connectToHost ? Color::FILL : Color::FLASH_01);
+        Char(Symbol::S8::USB).Draw4SymbolsInRect(x + 72, Grid::Bottom() + 2, VCP::connectToHost ? Color::FILL : Color::FLASH_01);
     }
     
     Color::SetCurrent(Color::FILL);

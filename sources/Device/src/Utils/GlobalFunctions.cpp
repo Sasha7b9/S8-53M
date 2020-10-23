@@ -428,10 +428,10 @@ char GetSymbolForGovernor(int value)
 {
     static const char chars[] =
     {
-        Symbol::_8::GOVERNOR_SHIFT_0,
-        Symbol::_8::GOVERNOR_SHIFT_1,
-        Symbol::_8::GOVERNOR_SHIFT_2,
-        Symbol::_8::GOVERNOR_SHIFT_3
+        Symbol::S8::GOVERNOR_SHIFT_0,
+        Symbol::S8::GOVERNOR_SHIFT_1,
+        Symbol::S8::GOVERNOR_SHIFT_2,
+        Symbol::S8::GOVERNOR_SHIFT_3
     };
     while(value < 0)
     {

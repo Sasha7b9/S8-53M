@@ -6,7 +6,7 @@ struct Symbol
     uchar width;
     uchar bytes[8];
 
-    struct _8
+    struct S8
     {
         static const char FLASH_DRIVE = '\x80';         // Символ флешки внизу экрана
         static const char ETHERNET = '\x82';            // Символ Ethernet внизу экрана
@@ -35,8 +35,12 @@ struct Symbol
 
     struct UGO2
     {
-        static const char MEM_INT_SHOW_DIRECT = '\x6a';     // Кнопка рисовать текущий сигнал в режиме ВНУТР ЗУ
-        static const char MEM_INT_SHOW_SAVED = '\x6c';      // Кнопка рисовать записанный сигнал в режиме ВНУТР ЗУ
+        static const char MEM_INT_SHOW_DIRECT = '\x6a'; // Кнопка рисовать текущий сигнал в режиме ВНУТР ЗУ
+        static const char MEM_INT_SHOW_SAVED = '\x6c';  // Кнопка рисовать записанный сигнал в режиме ВНУТР ЗУ
+        static const char BACKSPACE = '\x20';
+        static const char DEL = '\x22';                 // ВНЕШН ЗУ-МАСКА-УДАЛИТЬ
+        static const char INSERT = '\x26';              // ВНЕШН ЗУ-ИМЯ-ВСТАВИТЬ
+        static const char TAB = '\x6e';
     };
 };
 

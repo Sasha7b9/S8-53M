@@ -237,14 +237,14 @@ DEF_SMALL_BUTTON(sbSetNameSave, PageMemory::PageSetName::self,
 void DrawSB_SetMask_Backspace(int x, int y)
 {
     Font::Set(TypeFont::_UGO2);
-    Char(SYMBOL_BACKSPACE).Draw4SymbolsInRect(x + 2, y + 1);
+    Char(Symbol::UGO2::BACKSPACE).Draw4SymbolsInRect(x + 2, y + 1);
     Font::Set(TypeFont::_8);
 }
 
 void DrawSB_SetName_Backspace(int x, int y) //-V524
 {
     Font::Set(TypeFont::_UGO2);
-    Char(SYMBOL_BACKSPACE).Draw4SymbolsInRect(x + 2, y + 1);
+    Char(Symbol::UGO2::BACKSPACE).Draw4SymbolsInRect(x + 2, y + 1);
     Font::Set(TypeFont::_8);
 }
 
@@ -277,7 +277,7 @@ void PressSB_SetName_Backspace()
 void DrawSB_SetMask_Delete(int x, int y)
 {
     Font::Set(TypeFont::_UGO2);
-    Char(SYMBOL_DELETE).Draw4SymbolsInRect(x + 2, y + 1);
+    Char(Symbol::UGO2::DEL).Draw4SymbolsInRect(x + 2, y + 1);
     Font::Set(TypeFont::_8);
 }
 
@@ -289,7 +289,7 @@ void PressSB_SetMask_Delete()
 void DrawSB_SetName_Delete(int x, int y) //-V524
 {
     Font::Set(TypeFont::_UGO2);
-    Char(SYMBOL_DELETE).Draw4SymbolsInRect(x + 2, y + 1);
+    Char(Symbol::UGO2::DEL).Draw4SymbolsInRect(x + 2, y + 1);
     Font::Set(TypeFont::_8);
 }
 
@@ -301,7 +301,7 @@ void PressSB_SetName_Delete()
 void DrawSB_SetMask_Insert(int x, int y)
 {
     Font::Set(TypeFont::_UGO2);
-    Char(SYMBOL_INSERT).Draw4SymbolsInRect(x + 2, y + 2);
+    Char(Symbol::UGO2::INSERT).Draw4SymbolsInRect(x + 2, y + 2);
     Font::Set(TypeFont::_8);
 }
 
@@ -698,7 +698,7 @@ static void PressSB_MemInt_Delete()
 static void DrawSB_MemInt_Delete(int x, int y)
 {
     Font::Set(TypeFont::_UGO2);
-    Char(SYMBOL_DELETE).Draw4SymbolsInRect(x + 2, y + 1);
+    Char(Symbol::UGO2::DEL).Draw4SymbolsInRect(x + 2, y + 1);
     Font::Set(TypeFont::_8);
 }
 

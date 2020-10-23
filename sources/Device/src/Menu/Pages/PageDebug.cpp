@@ -581,7 +581,7 @@ static void OnPress_SerialNumber_Change(void)
 static void Draw_SerialNumber_Change(int x, int y)
 {
     Font::Set(TypeFont::_UGO2);
-    Char(SYMBOL_TAB).Draw4SymbolsInRect(x + 2, y + 2);
+    Char(Symbol::UGO2::TAB).Draw4SymbolsInRect(x + 2, y + 2);
     Font::Set(TypeFont::_8);
 }
 
