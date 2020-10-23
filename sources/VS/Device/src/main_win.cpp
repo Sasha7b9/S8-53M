@@ -1,11 +1,12 @@
 #include "defines.h"
 #include "device.h"
+#include "GUI/Application.h"
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
 
 
 
-void init()
+void Application::Init()
 {
     Device::Init();
     Menu::Show(true);
@@ -13,7 +14,7 @@ void init()
 
 
 
-void update()
+void Application::Update()
 {
     Device::Update();
 }

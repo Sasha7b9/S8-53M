@@ -15,10 +15,6 @@
 #undef main
 
 
-extern void update();
-extern void init();
-
-
 #define FILE_CONFIG wxT("config.ini")
 
 
@@ -60,7 +56,7 @@ bool Application::OnInit()
         return false;
     }
 
-    init();
+    Application::Init();
 
     locale.Init(locale.GetSystemLanguage());
 
@@ -184,7 +180,7 @@ Frame::Frame(const wxString& title)
 
 void Frame::OnTimer(wxTimerEvent&)
 {
-    update();
+    Application::Update();
 
     HandlerEvents();
 

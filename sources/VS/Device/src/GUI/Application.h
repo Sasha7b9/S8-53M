@@ -17,6 +17,10 @@ public:
     // Создаёт окно приложения. Возвращает хэндл виджета для отрисовки
     static void CreateFrame();
 
+    static void Init();
+
+    static void Update();
+
 private:
 
     wxLocale locale;
