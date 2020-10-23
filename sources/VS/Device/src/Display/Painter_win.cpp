@@ -31,7 +31,6 @@
 
 using namespace Primitives;
 
-wxMemoryDC memDC;                                               // «десь будем рисовать
 static uint colors[256];                                        // ÷вета
 static wxBitmap bitmapScreen(Display::WIDTH, Display::HEIGHT);
 
@@ -62,9 +61,9 @@ static Screen *screen = nullptr;
 
 void Painter::BeginScene(Color::E color)
 {
-    memDC.SelectObject(bitmapScreen);
+    Application::memDC.SelectObject(bitmapScreen);
     wxBrush brush({ 0, 0, 0 }, wxTRANSPARENT);
-    memDC.SetBrush(brush);
+    Application::memDC.SetBrush(brush);
     Color::SetCurrent(color);
     Region(Display::WIDTH, Display::HEIGHT).Fill(0, 0, color);
 }
@@ -72,7 +71,7 @@ void Painter::BeginScene(Color::E color)
 
 void Painter::EndScene(bool)
 {
-    memDC.SelectObject(wxNullBitmap);
+    Application::memDC.SelectObject(wxNullBitmap);
     screen->Refresh();
 }
 
@@ -91,7 +90,7 @@ void Color::SetCurrent(Color::E c)
     uint8 g = (colorValue >> 8) & 0xFF;
     uint8 r = (colorValue >> 16) & 0xFF;
     wxColour color = wxColour(r, g, b);
-    memDC.SetPen(wxPen(color));
+    Application::memDC.SetPen(wxPen(color));
 }
 
 

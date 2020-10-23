@@ -21,6 +21,8 @@ public:
 
     static void Update();
 
+    static wxMemoryDC memDC;
+
 private:
 
     wxLocale locale;

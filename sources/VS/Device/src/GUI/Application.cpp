@@ -34,6 +34,7 @@ enum
 
 static Frame *frame = nullptr;
 
+wxMemoryDC Application::memDC;                                               // Здесь будем рисовать
 
 wxIMPLEMENT_APP_NO_MAIN(Application);
 
