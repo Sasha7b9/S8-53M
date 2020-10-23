@@ -229,8 +229,6 @@ void OnTimerPressedKey()
 
 bool Panel::ProcessingCommandFromPIC(uint16 command)
 {
-    static int allRecData = 0;
-
     Key::E releaseButton = ButtonIsRelease(command);
     Key::E pressButton = ButtonIsPress(command);
     Key::E regLeft = RegulatorLeft(command);
@@ -244,16 +242,6 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
     if(!Panel::isRunning)
     {
         return true;
-    }
-
-    if(command != 0)
-    {
-        allRecData++;
-    }
-    else
-    {
-        allRecData++;
-        allRecData--;
     }
 
     if(releaseButton != Key::None)
@@ -282,21 +270,6 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
         funculatorRight[regRight]();
     }
 
-    if ((command > Key::Setting && command < (Key::None + 1 + 128)) || (command > (Key::Setting + 128)))
-    {
-        if(Settings::DebugModeEnable())
-        {
-            static int errRecData = 0;
-            errRecData++;
-            float percent = (float)errRecData / allRecData * 100.0F;
-            char buffer[100];
-            buffer[0] = 0;
-            std::sprintf(buffer, "%5.3f", percent);
-            std::strcat(buffer, "%");
-            LOG_ERROR("Ошибок SPI - %s %d/%d, command = %d", buffer, errRecData, allRecData, (int)command);
-        }
-        return false;
-    }
     return true;
 }
 

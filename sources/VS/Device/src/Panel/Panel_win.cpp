@@ -155,7 +155,9 @@ void Frame::OnUp(wxCommandEvent &event)
 
 void Frame::OnTimerLong(wxTimerEvent &)
 {
-    //    BufferButtons::Push(KeyEvent(pressedKey, TypePress::Long));
+    int code = Key::ToCode(pressedKey) | Action::ToCode(Action::Long);
+
+    Panel::ProcessingCommandFromPIC(static_cast<uint16>(code));
 
     pressedKey = Key::None;
 }

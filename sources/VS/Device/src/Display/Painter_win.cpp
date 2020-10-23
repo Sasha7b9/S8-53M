@@ -17,11 +17,7 @@
 
 #include "common/Display/Painter_c.h"
 #include "common/Display/Primitives_c.h"
-#include "common/Utils/Math_c.h"
-#include "common/Hardware/Timer_c.h"
-#include "Menu/Menu.h"
-#include "Panel/Panel.h"
-
+#include "Display/Display.h"
 
 #undef uint   
 #undef int8   
@@ -35,12 +31,9 @@
 
 using namespace Primitives;
 
+wxMemoryDC memDC;                                               // «десь будем рисовать
+static uint colors[256];                                        // ÷вета
 static wxBitmap bitmapScreen(Display::WIDTH, Display::HEIGHT);
-// «десь будем рисовать
-wxMemoryDC memDC;
-
-// ÷вета
-static uint colors[256];
 
 
 class Screen : public wxPanel
