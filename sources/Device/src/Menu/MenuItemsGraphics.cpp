@@ -430,7 +430,7 @@ void GovernorColor::DrawValue(int x, int y, int delta)
 
     int vals[4] = { static_cast<int>(ct->brightness * 100), blue, green, red };
 
-    Region(MI_WIDTH + delta - 2, MI_HEIGHT / 2 - 3).Fill(x, y, Color::BLACK);
+    Region(MI_WIDTH + delta - 2, Item::HEIGHT / 2 - 3).Fill(x, y, Color::BLACK);
     x += 92;
     
     for(int i = 0; i < 4; i++)
@@ -450,12 +450,12 @@ void GovernorColor::DrawOpened(int x, int y)
     static const int delta = 43;
     x -= delta;
     Color_Init(OwnData()->colorType);
-    Rectangle(MI_WIDTH + delta + 2, MI_HEIGHT + 2).Draw(x - 1, y - 1, Color::BLACK);
-    Rectangle(MI_WIDTH + delta, MI_HEIGHT).Draw(x, y, Color::MenuTitle());
+    Rectangle(MI_WIDTH + delta + 2, Item::HEIGHT + 2).Draw(x - 1, y - 1, Color::BLACK);
+    Rectangle(MI_WIDTH + delta, Item::HEIGHT).Draw(x, y, Color::MenuTitle());
     Painter::DrawVolumeButton(x + 1, y + 1, MI_WIDTH_VALUE + 2 + delta, MI_HEIGHT_VALUE + 3, 2, Color::MenuItem(), 
         ColorMenuItemBrighter(), ColorMenuItemLessBright(), IsPressed());
-    HLine().Draw(y + MI_HEIGHT / 2 + 2, x, x + MI_WIDTH + delta, Color::MenuTitle());
-    Text(Title()).DrawInCenterRect(x + (IsPressed() ? 2 : 1), y + (IsPressed() ? 2 : 1), MI_WIDTH + delta, MI_HEIGHT / 2 + 2, Color::WHITE);
+    HLine().Draw(y + Item::HEIGHT / 2 + 2, x, x + MI_WIDTH + delta, Color::MenuTitle());
+    Text(Title()).DrawInCenterRect(x + (IsPressed() ? 2 : 1), y + (IsPressed() ? 2 : 1), MI_WIDTH + delta, Item::HEIGHT / 2 + 2, Color::WHITE);
     DrawValue(x + 1, y + 19, delta);
 }
 
@@ -612,7 +612,7 @@ void Choice::DrawClosed(int x, int y) const
         HLine().Draw(static_cast<int>(y + (deltaY > 0 ? 31 : 19) - deltaY), x + 3, x + MI_WIDTH_VALUE + 1, Color::BLACK);
         Text(deltaY > 0 ? NameNextSubItem() : NamePrevSubItem()).DrawWithLimitation(x + 4, static_cast<int>(y + (deltaY > 0 ? 33 : 9) - deltaY), colorText, x, y + 19, MI_WIDTH_VALUE, MI_HEIGHT_VALUE - 1);
     }
-    HLine().Draw(y + MI_HEIGHT + 1, x, x + MI_WIDTH, Color::BorderMenu());
+    HLine().Draw(y + Item::HEIGHT + 1, x, x + MI_WIDTH, Color::BorderMenu());
 
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, IsPressed(), false);
 
@@ -677,12 +677,12 @@ void Button::Draw(int x, int y, bool)
 
     HLine().Draw(y + 1, x, x + MI_WIDTH, Color::MenuTitle());
     Color::E color = Color::WHITE;
-    Region(MI_WIDTH - 2, MI_HEIGHT - 2).Fill(x + 1, y + 2, Color::MenuItem());
-    Painter::DrawVolumeButton(x + 4, y + 5, MI_WIDTH - 8, MI_HEIGHT - 8, 3, Color::MenuItem(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), pressed);
+    Region(MI_WIDTH - 2, Item::HEIGHT - 2).Fill(x + 1, y + 2, Color::MenuItem());
+    Painter::DrawVolumeButton(x + 4, y + 5, MI_WIDTH - 8, Item::HEIGHT - 8, 3, Color::MenuItem(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), pressed);
 
     int delta = 2;
     
-    Text(Title()).DrawInCenterRect(x + delta, y + delta, MI_WIDTH, MI_HEIGHT, color);
+    Text(Title()).DrawInCenterRect(x + delta, y + delta, MI_WIDTH, Item::HEIGHT, color);
 }
 
 void SmallButton::Draw(int x, int y, bool)
@@ -711,7 +711,7 @@ void Page::Draw(int x, int y, bool)
 {
     bool isPressed = IsPressed();
     HLine().Draw(y + 1, x, x + MI_WIDTH, Color::BorderMenu());
-    Painter::DrawVolumeButton(x + 1, y + 2, MI_WIDTH - 2, MI_HEIGHT - 2, 2, Color::MenuItem(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), isPressed);
+    Painter::DrawVolumeButton(x + 1, y + 2, MI_WIDTH - 2, Item::HEIGHT - 2, 2, Color::MenuItem(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), isPressed);
     Color::E colorText = Color::BLACK;
     int delta = 0;
     if(isPressed)
@@ -719,7 +719,7 @@ void Page::Draw(int x, int y, bool)
         colorText = Color::FILL;
         delta = 1;
     }
-    Text(Title()).DrawInCenterRect(x + delta, y + delta, MI_WIDTH, MI_HEIGHT, colorText);
+    Text(Title()).DrawInCenterRect(x + delta, y + delta, MI_WIDTH, Item::HEIGHT, colorText);
 }
 
 
@@ -803,7 +803,7 @@ void Page::DrawItems(int yTop) const
     for (int posItem = posFirstItem; posItem <= posLastItem; posItem++)
     {
         Item *item = GetItem(posItem);
-        int top = yTop + MI_HEIGHT * count;
+        int top = yTop + Item::HEIGHT * count;
         item->Draw(MP_X, top);
         count++;
         Menu::itemUnderButton[GetFuncButtonFromY(top)] = item;

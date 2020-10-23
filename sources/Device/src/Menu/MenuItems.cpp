@@ -629,13 +629,13 @@ int Item::HeightOpened() const
     {
         int numItems = ((const Page *)this)->NumItems() - ((Page *)this)->GetCurrentSubPage() * Menu::ITEMS_ON_DISPLAY;
         LIMITATION(numItems, numItems, 0, Menu::ITEMS_ON_DISPLAY);
-        return Item::TITLE_HEIGHT + MI_HEIGHT * numItems;
+        return Item::TITLE_HEIGHT + Item::HEIGHT * numItems;
     }
     else if (type == TypeItem::Choice || type == TypeItem::ChoiceReg)
     {
         return MOI_HEIGHT_TITLE + ((Choice *)this)->NumSubItems() * MOSI_HEIGHT - 1;
     }
-    return MI_HEIGHT;
+    return Item::HEIGHT;
 }
 
 
