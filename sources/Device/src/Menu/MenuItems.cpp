@@ -286,7 +286,7 @@ Item *Page::GetItem(int numElement) const
 
 int Page::NumSubPages() const
 {
-    return (NumItems() - 1) / MENU_ITEMS_ON_DISPLAY + 1;
+    return (NumItems() - 1) / Menu::ITEMS_ON_DISPLAY + 1;
 }
 
 
@@ -633,8 +633,8 @@ int Item::HeightOpened() const
     TypeItem::E type = Type();
     if (type == TypeItem::Page)
     {
-        int numItems = ((const Page *)this)->NumItems() - ((Page *)this)->GetCurrentSubPage() * MENU_ITEMS_ON_DISPLAY;
-        LIMITATION(numItems, numItems, 0, MENU_ITEMS_ON_DISPLAY);
+        int numItems = ((const Page *)this)->NumItems() - ((Page *)this)->GetCurrentSubPage() * Menu::ITEMS_ON_DISPLAY;
+        LIMITATION(numItems, numItems, 0, Menu::ITEMS_ON_DISPLAY);
         return MP_TITLE_HEIGHT + MI_HEIGHT * numItems;
     }
     else if (type == TypeItem::Choice || type == TypeItem::ChoiceReg)

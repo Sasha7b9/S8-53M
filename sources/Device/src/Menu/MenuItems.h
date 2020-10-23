@@ -7,8 +7,6 @@
 class SmallButton;
 
                                             
-//#define MAX_NUM_ITEMS_IN_PAGE       15  // Максимальное количество пунктов на странице.
-#define MENU_ITEMS_ON_DISPLAY       5   // Сколько пунктов меню помещается на экране по вертикали.
 #define MAX_NUM_CHOICE_SMALL_BUTTON 6   // Максимальное количество вариантов маленькой кнопки + 1
 
 

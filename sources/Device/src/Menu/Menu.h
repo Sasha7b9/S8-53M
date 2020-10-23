@@ -6,6 +6,9 @@
 class Menu
 {
 public:
+
+    static const int ITEMS_ON_DISPLAY = 5;  // Сколько пунктов меню помещается на экране по вертикали.
+
     static void Draw();
     // Функция должна вызываться в главном цикле.
     static void UpdateInput();

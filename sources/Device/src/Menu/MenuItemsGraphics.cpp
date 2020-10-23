@@ -846,7 +846,7 @@ void Page::DrawTitle(int layer, int yTop)
 void Page::DrawItems(int layer, int yTop) const
 {
     int posFirstItem = Menu::PosItemOnTop(this);
-    int posLastItem = posFirstItem + MENU_ITEMS_ON_DISPLAY - 1;
+    int posLastItem = posFirstItem + Menu::ITEMS_ON_DISPLAY - 1;
     LIMITATION(posLastItem, posLastItem, 0, NumItems() - 1);
     int count = 0;
     for (int posItem = posFirstItem; posItem <= posLastItem; posItem++)
@@ -877,7 +877,7 @@ void Page::DrawPagesUGO(int right, int bottom) const
     int size = 4;
     int delta = 2;
 
-    int allPages = (NumItems() - 1) / MENU_ITEMS_ON_DISPLAY + 1;
+    int allPages = (NumItems() - 1) / Menu::ITEMS_ON_DISPLAY + 1;
     int currentPage = GetCurrentSubPage();
 
     int left = right - (size + 1) * allPages - delta + (3 - allPages);
