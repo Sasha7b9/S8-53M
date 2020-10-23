@@ -1,9 +1,12 @@
 #include "defines.h"
 #include "GUI/Application.h"
+#include "GUI/Controls/Governor.h"
 
 
 // Здесь хранятся указатели на кнопки
 static wxButton *buttons[Key::Count] = { nullptr };
+
+static GovernorGUI *governors[Key::Count] = { nullptr };
 
 
 void Application::CreateButtons(Frame *frame)
@@ -101,4 +104,10 @@ void Application::CreateGovernors(Frame *frame)
             }
         }
     }
+}
+
+
+void Application::CreateGovernor(Key::E key, Frame *frame, const wxPoint &pos)
+{
+    governors[key] = new GovernorGUI(frame, pos, key);
 }

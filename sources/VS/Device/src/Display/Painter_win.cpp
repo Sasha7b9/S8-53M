@@ -34,15 +34,12 @@
 #undef pString
 
 
-
-
 using namespace Primitives;
 
 static wxBitmap bitmapScreen(Display::WIDTH, Display::HEIGHT);
 // «десь будем рисовать
 wxMemoryDC memDC;
 
-static GovernorGUI *governors[Key::Count] = { nullptr };
 // ÷вета
 static uint colors[256];
 
@@ -137,12 +134,6 @@ void Application::CreateFrame()
     CreateGovernors(frame);
 
     frame->Show(true);
-}
-
-
-void Application::CreateGovernor(Key::E key, Frame *frame, const wxPoint &pos)
-{
-    governors[key] = new GovernorGUI(frame, pos, key);
 }
 
 
