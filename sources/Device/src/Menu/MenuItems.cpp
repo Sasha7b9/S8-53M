@@ -298,7 +298,7 @@ bool Page::IsSB() const
 
 bool Item::IsShade() const
 {
-    return Menu::CurrentItemIsOpened(Keeper()->GetName()) && (this != Menu::OpenedItem());
+    return Keeper()->CurrentItemIsOpened() && (this != Menu::OpenedItem());
 }
 
 
@@ -349,7 +349,7 @@ bool Item::IsOpened() const
     Page* page = Keeper();
     if (type == TypeItem::Page)
     {
-        return Menu::CurrentItemIsOpened(page->GetName());
+        return page->CurrentItemIsOpened();
     }
     return (Menu::GetPosActItem(page->OwnData()->name) & 0x80) != 0;
 }
@@ -522,7 +522,7 @@ void TimeItem::LongPress()
 
 Item *Page::RetLastOpened(TypeItem::E *type)
 {
-    if (Menu::CurrentItemIsOpened(GetName()))
+    if (CurrentItemIsOpened())
     {
         int8 posActItem = PosCurrentItem();
         Item *item = GetItem(posActItem);
@@ -668,4 +668,10 @@ int Page::GetCurrentSubPage() const
 void Page::SetCurrentSubPage(int posSubPage) const
 {
     set.menu.currentSubPage[OwnData()->name] = static_cast<int8>(posSubPage);
+}
+
+
+bool Page::CurrentItemIsOpened()
+{
+    return _GET_BIT(Menu::GetPosActItem(GetName()), 7) == 1;
 }

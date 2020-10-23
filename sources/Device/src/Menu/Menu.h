@@ -38,8 +38,6 @@ public:
     static Item *OpenedItem();
     // Возвращает адрес текущего элемента меню (текущим, как правило, является элемент, кнопка которого была нажата последней.
     static Item *CurrentItem();
-    // Возвращает true, если текущий элемент страницы с именем namePage открыт.
-    static bool CurrentItemIsOpened(NamePage::E namePage);
 
     static NamePage::E GetNameOpenedPage();
     // Возвращает позицию первого элемента страницы по адресу page на экране. Если текущая подстраница 0, это будет 0, если текущая подстраница 1, это будет 5 и т.д.

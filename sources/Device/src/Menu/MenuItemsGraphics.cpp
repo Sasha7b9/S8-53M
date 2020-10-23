@@ -779,7 +779,7 @@ void Page::DrawOpened(int yTop)
 {
     DrawTitle(yTop);
     DrawItems(yTop + MP_TITLE_HEIGHT);
-    if (Menu::CurrentItemIsOpened(GetName()))
+    if (CurrentItemIsOpened())
     {
         int8 posCurItem = PosCurrentItem();
         Item *item = GetItem(posCurItem);
@@ -810,7 +810,7 @@ void Page::DrawTitle(int yTop)
         return;
     }
     int height = HeightOpened();
-    bool shade = Menu::CurrentItemIsOpened(GetName());
+    bool shade = CurrentItemIsOpened();
     Region(MP_TITLE_WIDTH + 2, height + 2).Fill(x - 1, yTop, Color::BACK);
     Rectangle(MP_TITLE_WIDTH + 1, height + 1).Draw(x, yTop, Color::BorderMenu(shade));
 

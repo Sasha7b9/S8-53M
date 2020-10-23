@@ -197,7 +197,9 @@ public:
     // ”станавливает номер текущей подстраницы в странице namePage.
     void SetCurrentSubPage(int posSubPage) const;
 
-    
+    // ¬озвращает true, если текущий элемент страницы с именем namePage открыт.
+    bool CurrentItemIsOpened();
+
     static Page empty;
 
 private:

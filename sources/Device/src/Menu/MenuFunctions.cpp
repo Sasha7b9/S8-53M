@@ -6,13 +6,6 @@
 #include "Settings/Settings.h"
 
 
-bool Menu::CurrentItemIsOpened(NamePage::E namePage)
-{
-    bool retValue = _GET_BIT(Menu::GetPosActItem(namePage), 7) == 1;
-    return retValue;
-}
-
-
 Item* Menu::OpenedItem()
 {
     TypeItem::E type = TypeItem::None;
