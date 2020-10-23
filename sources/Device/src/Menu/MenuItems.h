@@ -128,8 +128,6 @@ public:
 
     virtual void Draw(int, int, bool = false) {};
 
-    int CalculateX(int layer) const;
-
     int OpenedPosY() const;
     // Уменьшает или увеличивает значение Governor, GovernorColor или Choice по адресу item в зависимости от знака delta
     void Change(int delta);
@@ -185,7 +183,7 @@ public:
 
     virtual void ShortPress();
 
-    void DrawOpened(int layer, int yTop);
+    void DrawOpened(int yTop);
 
     Item *RetLastOpened(TypeItem::E *_type);
     // Вызывает функцию короткого нажатия кнопки над итемом numItem страницы page;
@@ -203,8 +201,8 @@ public:
     static Page empty;
 
 private:
-    void DrawTitle(int layer, int yTop);
-    void DrawItems(int layer, int yTop) const;
+    void DrawTitle(int yTop);
+    void DrawItems(int yTop) const;
     void DrawPagesUGO(int right, int bottom) const;
 };
 

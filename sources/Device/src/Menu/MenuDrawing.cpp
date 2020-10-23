@@ -70,22 +70,22 @@ void Menu::Draw()
         {
             if (item->Type() == TypeItem::Page)
             {
-                ((Page *)item)->DrawOpened(0, Grid::TOP);
+                ((Page *)item)->DrawOpened(Grid::TOP);
             }
             else if(item->Keeper() != &Page::empty)
             {
-                item->Keeper()->DrawOpened(0, Grid::TOP);
+                item->Keeper()->DrawOpened(Grid::TOP);
             }
         }
         else
         {
             if(item->Type() == TypeItem::Choice)
             {
-                ((Choice *)item)->Draw(item->CalculateX(0), Grid::TOP, true);
+                ((Choice *)item)->Draw(MP_X, Grid::TOP, true);
             }
             else if(item->Type() == TypeItem::Governor)
             {
-                ((Governor *)item)->Draw(item->CalculateX(0), Grid::TOP, true);
+                ((Governor *)item)->Draw(MP_X, Grid::TOP, true);
             }
         }
     }

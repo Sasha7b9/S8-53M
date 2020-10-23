@@ -775,10 +775,10 @@ void Page::Draw(int x, int y, bool)
 }
 
 
-void Page::DrawOpened(int layer, int yTop)
+void Page::DrawOpened(int yTop)
 {
-    DrawTitle(layer, yTop);
-    DrawItems(layer, yTop + MP_TITLE_HEIGHT);
+    DrawTitle(yTop);
+    DrawItems(yTop + MP_TITLE_HEIGHT);
     if (Menu::CurrentItemIsOpened(GetName()))
     {
         int8 posCurItem = PosCurrentItem();
@@ -791,7 +791,7 @@ void Page::DrawOpened(int layer, int yTop)
             }
         }
 
-        item->Draw(CalculateX(1), OpenedPosY(), true);
+        item->Draw(MP_X, OpenedPosY(), true);
     }
 
     if (OwnData()->funcOnDraw)
@@ -801,9 +801,9 @@ void Page::DrawOpened(int layer, int yTop)
 }
 
 
-void Page::DrawTitle(int layer, int yTop)
+void Page::DrawTitle(int yTop)
 {
-    int x = CalculateX(layer);
+    int x = MP_X;
     if (IsSB())
     {
         SmallButonFrom(0)->Draw(LEFT_SB, yTop + 3);
@@ -839,11 +839,11 @@ void Page::DrawTitle(int layer, int yTop)
     delta = 0;
 
     Color::SetCurrent(colorText);
-    DrawPagesUGO(CalculateX(layer) + MP_TITLE_WIDTH - 3 + delta, yTop + MP_TITLE_HEIGHT - 2 + delta);
+    DrawPagesUGO(MP_X + MP_TITLE_WIDTH - 3 + delta, yTop + MP_TITLE_HEIGHT - 2 + delta);
 }
 
 
-void Page::DrawItems(int layer, int yTop) const
+void Page::DrawItems(int yTop) const
 {
     int posFirstItem = Menu::PosItemOnTop(this);
     int posLastItem = posFirstItem + Menu::ITEMS_ON_DISPLAY - 1;
@@ -853,7 +853,7 @@ void Page::DrawItems(int layer, int yTop) const
     {
         Item *item = GetItem(posItem);
         int top = yTop + MI_HEIGHT * count;
-        item->Draw(CalculateX(layer), top);
+        item->Draw(MP_X, top);
         count++;
         Menu::itemUnderButton[GetFuncButtonFromY(top)] = item;
     }
@@ -863,12 +863,6 @@ void Page::DrawItems(int layer, int yTop) const
 void Governor::Draw(int x, int y)
 {
     Draw(x, y, false);
-}
-
-
-int Item::CalculateX(int layer) const
-{
-    return MP_X - layer * Grid::DELTA / 4;
 }
 
 
