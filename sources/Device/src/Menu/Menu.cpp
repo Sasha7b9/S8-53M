@@ -345,7 +345,7 @@ void Menu::ProcessingShortPressureButton()
 
         Key::E button = shortPressureButton;
 
-        do //-V2530
+        do
         {
             if(button == Key::Menu)                                   // Если нажата кнопка МЕНЮ и мы не находимся в режме настройки измерений.
             {
@@ -373,28 +373,28 @@ void Menu::ProcessingShortPressureButton()
             else                                                        // Если меню не показано.
             {
                 NamePage::E name = ((const Page *)OpenedItem())->GetName();
-                if(button == Key::ChannelA && name == NamePage::Channel0)
+                if(button == Key::ChannelA && name == NamePage::ChannelA)
                 {
                     SET_ENABLED_A = !sChannel_Enabled(Channel::A);
                     PageChannelA::OnChanged_Input(true);
-                    break;
                 }
-                if(button == Key::ChannelB && name == NamePage::Channel1)
+                else if(button == Key::ChannelB && name == NamePage::ChannelB)
                 {
                     SET_ENABLED_B = !sChannel_Enabled(Channel::B);
                     PageChannelB::OnChanged_Input(true);
-                    break;
                 }
-
-                const Item *page = PageForButton(button);
-                if(page)
+                else
                 {
-                    page->SetCurrent(true);
-                    page->Open(true);
-                    Menu::Show(true);
+                    const Item *page = PageForButton(button);
+                    if (page)
+                    {
+                        page->SetCurrent(true);
+                        page->Open(true);
+                        Menu::Show(true);
+                    }
                 }
             }
-        } while(false);
+        } while (false);
 
         shortPressureButton = Key::None;
     }

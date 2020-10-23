@@ -25,7 +25,7 @@ static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8 id);
 
 void FDrive::Init(void)
 {
-    if(FATFS_LinkDriver(&USBH_Driver, USBDISKPath) == FR_OK) 
+    if(FATFS_LinkDriver(&USBH_Driver, USBDISKPath) == FR_OK)  //-V2001
     {
         USBH_Init(reinterpret_cast<USBH_HandleTypeDef *>(&HAL_USBH::handle), USBH_UserProcess, 0);
         USBH_RegisterClass(reinterpret_cast<USBH_HandleTypeDef *>(&HAL_USBH::handle), USBH_MSC_CLASS);
@@ -65,6 +65,7 @@ void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
             FDrive::ChangeState();
             break;
         default:
+            // здесь ничего
             break;
     }
 }
@@ -76,7 +77,7 @@ bool FDrive::AppendStringToFile(const char*)
 }
 
 
-void WriteToFile(FIL *file, char *string)
+void WriteToFile(FIL *file, const char *string)
 {
     //    uint bytesWritten;
     f_open(file, "list.txt", FA_OPEN_EXISTING);
@@ -169,12 +170,12 @@ bool FDrive::GetNameDir(const char *fullPath, int numDir, char *nameDirOut, Stru
                 alreadyNull = true;
             }
             char *fn = pFNO->fname;
-            if (numDir == numDirs && (pFNO->fattrib & AM_DIR))
+            if (numDir == numDirs && ((pFNO->fattrib & AM_DIR) != 0))
             {
                 strcpy(nameDirOut, fn);
                 return true;
             }
-            if ((pFNO->fattrib & AM_DIR) && (pFNO->fname[0] != '.'))
+            if (((pFNO->fattrib & AM_DIR) != 0) && (pFNO->fname[0] != '.'))
             {
                 numDirs++;
             }

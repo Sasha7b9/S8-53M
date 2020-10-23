@@ -49,6 +49,7 @@ int main(void)
     {
         free(MainStruct::ms);
         HAL::SystemReset();
+        return 0;
     }
 
     if (MainStruct::ms->state == State::Mount)                           // Это означает, что диск удачно примонтирован

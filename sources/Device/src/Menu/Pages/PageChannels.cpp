@@ -96,7 +96,7 @@ DEF_CHOICE_2(mcMultiplierA, PageChannelA::self,
     SET_DIVIDER(Channel::A), nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_5(pageChanA, PageMain::self, NamePage::Channel0,
+DEF_PAGE_5(pageChanA, PageMain::self, NamePage::ChannelA,
     "КАНАЛ 1", "CHANNEL 1",
     "Содержит настройки канала 1.",
     "Contains settings of the channel 1.",
@@ -174,7 +174,7 @@ DEF_CHOICE_2(mcMultiplierB, PageChannelB::self,
     SET_DIVIDER(Channel::B), nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_5(pageChanB, PageMain::self, NamePage::Channel1,
+DEF_PAGE_5(pageChanB, PageMain::self, NamePage::ChannelB,
     "КАНАЛ 2", "CHANNEL 2",
     "Содержит настройки канала 2.",
     "Contains settings of the channel 2.",

@@ -20,7 +20,7 @@ static float amplitude = 0.0F;
 static TypeWave::E typeWave = TypeWave::Sine;
 
 
-bool Sound::isBeep = false;
+volatile bool Sound::isBeep = false;
 bool Sound::warnIsBeep = false;
 bool Sound::buttonIsPressed = false;
 

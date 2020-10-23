@@ -67,7 +67,6 @@ void Display::Update(void)
 {
     MainStruct::ms->display.isRun = true;
 
-    uint dT = HAL_TIM2::TimeMS() - MainStruct::ms->display.timePrev;
     MainStruct::ms->display.timePrev = HAL_TIM2::TimeMS();
 
     Painter::BeginScene(Color::BLACK);
@@ -87,6 +86,7 @@ void Display::Update(void)
     }
     else if (MainStruct::ms->state == State::Mount)
     {
+        uint dT = HAL_TIM2::TimeMS() - MainStruct::ms->display.timePrev;
         DrawProgressBar(dT);
     }
     else if (MainStruct::ms->state == State::WrongFlash)
@@ -205,20 +205,20 @@ static void DrawBigMNIPI(void)
 
 static void InitPoints(void)
 {
-    uint8 buffer[320][240];
-
-    //Painter::DrawBigTextInBuffer(31, 70, 9, "ÃÕ»œ»", buffer);
-
-    for (int x = 0; x < 320; x++)
-    {
-        for (int y = 0; y < 240; y++)
-        {
-            if (buffer[x][y])
-            {
-                array[numPoints].x = static_cast<uint16>(x);
-                array[numPoints].y = static_cast<uint8>(y);
-                numPoints++;
-            }
-        }
-    }
+//    uint8 buffer[320][240];
+//
+//    //Painter::DrawBigTextInBuffer(31, 70, 9, "ÃÕ»œ»", buffer);
+//
+//    for (int x = 0; x < 320; x++)
+//    {
+//        for (int y = 0; y < 240; y++)
+//        {
+//            if (buffer[x][y])
+//            {
+//                array[numPoints].x = static_cast<uint16>(x);
+//                array[numPoints].y = static_cast<uint8>(y);
+//                numPoints++;
+//            }
+//        }
+//    }
 }

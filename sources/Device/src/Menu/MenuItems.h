@@ -51,8 +51,8 @@ struct NamePage { enum E
     DebugInformation,      // Œ“À¿ƒ ¿ - »Õ‘Œ–Ã¿÷»ﬂ
     DebugSound,            // Œ“À¿ƒ ¿ - «¬” 
     DebugAltera,           // Œ“À¿ƒ ¿ - ¿À‹“≈–¿
-    Channel0,              //  ¿Õ¿À 1
-    Channel1,              //  ¿Õ¿À 2
+    ChannelA,              //  ¿Õ¿À 1
+    ChannelB,              //  ¿Õ¿À 2
     Cursors,               //  ”–—Œ–€
     Trig,                  // —»Õ’–.
     Memory,                // œ¿Ãﬂ“‹

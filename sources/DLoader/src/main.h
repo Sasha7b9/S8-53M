@@ -49,7 +49,7 @@ struct MainStruct
     FDrive drive;
     Display display;
     float percentUpdate;
-    State::E state;
+    volatile State::E state;
 
     // Данная структура используется во всех модулях программы для уменьшения расхода ОЗУ
     // Память для деё должна быть выделена с помощью malloc в начале программы и возвращена в момент перехода на основную программу
