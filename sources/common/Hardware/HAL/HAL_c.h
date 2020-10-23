@@ -119,13 +119,6 @@ private:
     static void *handle;    // RTC_HandleTypeDef
 };
 
-struct HAL_SPI1
-{
-    static void Init();
-    static void DeInit();
-    static void *handle;    // SPI_HandleTypeDef
-};
-
 struct HAL_SRAM
 {
     static void Init();

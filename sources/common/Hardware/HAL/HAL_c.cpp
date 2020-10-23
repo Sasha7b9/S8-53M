@@ -70,8 +70,6 @@ void HAL::Init()
 
     HAL_TIM2::Init();
 
-    HAL_SPI1::Init();
-
     HAL_ETH::Init();
 
     HAL_HCD::Init();

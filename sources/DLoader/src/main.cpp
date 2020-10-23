@@ -85,8 +85,6 @@ int main(void)
 
     MainStruct::ms->state = State::Ok;
 
-    HAL_SPI1::DeInit();
-
     Timer::Disable(TypeTimer::Temp);
 
     while (Display::IsRun())

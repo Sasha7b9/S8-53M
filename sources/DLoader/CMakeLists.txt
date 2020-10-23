@@ -65,31 +65,37 @@ file(GLOB LIBS_USBH      ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Li
                          ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_bot.*
                          ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_scsi.*)
                          
-file(GLOB HARDWARE       src/Hardware/*.h
-                         src/Hardware/*.cpp
+file(GLOB HARDWARE             src/Hardware/*.h
+                               src/Hardware/*.cpp
                          ../common/Hardware/Sound_c.*
                          ../common/Hardware/Timer_c.*)
-file(GLOB HARDWARE_CMSIS src/Hardware/CMSIS/*)
-file(GLOB HARDWARE_FATFS src/Hardware/FatFS/*)
-file(GLOB HARDWARE_HAL   src/Hardware/HAL/*
+file(GLOB HARDWARE_CMSIS       src/Hardware/CMSIS/*)
+file(GLOB HARDWARE_FATFS       src/Hardware/FatFS/*)
+file(GLOB HARDWARE_HAL         src/Hardware/HAL/*
                          ../common/Hardware/HAL/HAL_c.h
                          ../common/Hardware/HAL/HAL_c.cpp
                          ../common/Hardware/HAL/HAL_PINS_c.h
                          ../common/Hardware/HAL/HAL_EPROM_c.cpp
                          ../common/Hardware/HAL/HAL_FSMC_c.cpp
                          ../common/Hardware/HAL/HAL_PINS_c.cpp
-                         ../common/Hardware/HAL/HAL_SPI1_c.cpp
                          ../common/Hardware/HAL/HAL_TIM2_c.cpp
                          ../common/Hardware/HAL/HAL_TIM6_c.cpp
                          ../common/Hardware/HAL/HAL_TIM7_c.cpp)
-file(GLOB HARDWARE_USBH  src/Hardware/USBH/*)
-file(GLOB SRC            src/*.h src/*.cpp)
-file(GLOB DISPLAY        src/Display/*.h src/Display/*.cpp ../common/Display/*.h ../common/Display/*.cpp)
+file(GLOB HARDWARE_USBH        src/Hardware/USBH/*)
+file(GLOB SRC                  src/*.h
+                               src/*.cpp)
+file(GLOB DISPLAY              src/Display/*.h
+                               src/Display/*.cpp
+                         ../common/Display/*.h
+                         ../common/Display/*.cpp)
 file(GLOB DISPLAY_FONT   ../common/Display/Font/*)
-file(GLOB FDRIVE         src/FDrive/*)
-file(GLOB PANEL          src/Panel/* ../common/Keyboard/*)
-file(GLOB SETTINGS       src/Settings/* ../common/Settings/cSettingsTypes.h)
-file(GLOB UTILS          src/Utils/* ../common/Utils/*)
+file(GLOB FDRIVE               src/FDrive/*)
+file(GLOB PANEL                src/Panel/*
+                         ../common/Keyboard/*)
+file(GLOB SETTINGS             src/Settings/*
+                         ../common/Settings/cSettingsTypes.h)
+file(GLOB UTILS                src/Utils/*
+                         ../common/Utils/*)
 
 set_source_files_properties(${LIBS_FATFS} ${LIBS_HAL} ${LIBS_USBH} PROPERTIES HEADER_FILE_ONLY TRUE)
 

@@ -73,20 +73,6 @@ void ADC_IRQHandler(void)
 }
 
 
-// This interrupt call soft NSS for spi (see Hardware::SPIforPanel.c::PanelInit() and HAL_GPIO_EXTI_Callback().
-void EXTI0_IRQHandler(void)
-{
-    HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0);
-}
-
-
-// See Hardware::SPIforPanel.c::HAL_SPI_RxCpltCallback().
-void SPI1_IRQHandler(void)
-{
-    HAL_SPI_IRQHandler(reinterpret_cast<SPI_HandleTypeDef *>(HAL_SPI1::handle));
-}
-
-
 void OTG_HS_IRQHandler(void)
 {
     HAL_HCD_IRQHandler(reinterpret_cast<HCD_HandleTypeDef *>(HAL_HCD::handle));

@@ -28,17 +28,20 @@ add_compile_options(/wd5220)
 file(GLOB VS_KEIL_ARMCLANG ../common/vs_keil/ARMCLANG/*)
 file(GLOB VS_KEIL_CMSIS    ../common/vs_keil/CMSIS/core_cm0plus.h)
 
-file(GLOB LIBS_CMSIS     ../common/STM32Cube_L0/Drivers/CMSIS/Device/ST/STM32L0xx/Include/*
-                         ../common/STM32Cube_L0/Drivers/CMSIS/Include/*)
+file(GLOB LIBS_CMSIS       ../common/STM32Cube_L0/Drivers/CMSIS/Device/ST/STM32L0xx/Include/*
+                           ../common/STM32Cube_L0/Drivers/CMSIS/Include/*)
 
-file(GLOB LIBS_HAL       ../common/STM32Cube_L0/Drivers/STM32L0xx_HAL_Driver/Inc/*.h
-                         ../common/STM32Cube_L0/Drivers/STM32L0xx_HAL_Driver/Src/*.c)
+file(GLOB LIBS_HAL         ../common/STM32Cube_L0/Drivers/STM32L0xx_HAL_Driver/Inc/*.h
+                           ../common/STM32Cube_L0/Drivers/STM32L0xx_HAL_Driver/Src/*.c)
 
-file(GLOB SRC            src/*.h src/*.c src/*.cpp)
-file(GLOB HARDWARE_CMSIS src/Hardware/CMSIS/*)
-file(GLOB HARDWARE_HAL   src/Hardware/HAL/*)
-file(GLOB INTERFACE      src/Interface/*)
-file(GLOB KEYBOARD       src/Keyboard/* ../common/Keyboard/*)
+file(GLOB SRC                    src/*.h
+                                 src/*.c
+                                 src/*.cpp)
+file(GLOB HARDWARE_CMSIS         src/Hardware/CMSIS/*)
+file(GLOB HARDWARE_HAL           src/Hardware/HAL/*)
+file(GLOB INTERFACE              src/Interface/*)
+file(GLOB KEYBOARD               src/Keyboard/*
+                           ../common/Keyboard/*)
 
 set_source_files_properties(${LIBS_HAL} PROPERTIES HEADER_FILE_ONLY TRUE)
 
