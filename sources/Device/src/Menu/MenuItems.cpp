@@ -26,7 +26,8 @@ static Item *itemsPage[] = { &Item::empty, nullptr };
 static const DataPage emptyDataPage = { NamePage::Empty, &itemsPage[0], nullptr, nullptr };
 const char *titleHint[4] = { "", "", "", "" };
 static const DataItem emptyDataItem = { TypeItem::None, nullptr, nullptr, titleHint, &emptyDataPage };
-Page Page::empty(&emptyDataItem);
+static int8 subPageEmpty = 0;
+Page Page::empty(&emptyDataItem, &subPageEmpty);
 
 bool Governor::inMoveIncrease = false;
 bool Governor::inMoveDecrease = false;

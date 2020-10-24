@@ -180,7 +180,7 @@ public:
 
     static const int Y = Grid::TOP + 1;
     inline static int X() { return Grid::Right() - Item::TITLE_WIDTH - 1; };
-    Page(const DataItem *const data) : Item(data) {};
+    Page(const DataItem *const data, int8 *subPage) : Item(data), currentSubPage(subPage) {};
     const DataPage *OwnData() const { return static_cast<const DataPage *>(data->ad); }
     virtual void Draw(int x, int y, bool opened = false);
     NamePage::E GetName() const;
@@ -230,6 +230,7 @@ public:
     static Page empty;
 
 private:
+    int8 *currentSubPage;                               // ”казатель на номер текущей подстраницы
     void DrawTitle(int yTop);
     void DrawItems(int yTop) const;
     void DrawPagesUGO(int right, int bottom) const;
