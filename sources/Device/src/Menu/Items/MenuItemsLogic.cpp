@@ -300,7 +300,7 @@ char Item::GetSymbolForGovernor() const
     }
     else if (IsChoiceReg() || (IsOpened() && IsChoice()))
     {
-        return chars[*ReinterpretToChoice()->OwnData()->cell];
+        return chars[Item::positionGovernor];
     }
     else if (IsTime())
     {

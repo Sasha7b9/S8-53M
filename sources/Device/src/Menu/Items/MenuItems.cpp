@@ -36,6 +36,8 @@ bool Governor::inMoveDecrease = false;
 Item *Governor::address = 0;
 uint Governor::timeStartMS = 0;
 
+uint8 Item::positionGovernor = 0;
+
 Item::Item(const DataItem *const _data) : data(_data)
 {
     if (data == nullptr)
@@ -201,8 +203,28 @@ float Choice::Step() const
 }
 
 
+void Item::CalculatePositionGovernor(int delta)
+{
+    if (IsChoice() || IsChoiceReg())
+    {
+        if (delta < 0)
+        {
+            if (positionGovernor == 0) { positionGovernor = Item::NUM_STATES_GOVERNOR - 1; }
+            else                       { positionGovernor--; }
+        }
+        else
+        {
+            positionGovernor++;
+            positionGovernor %= Item::NUM_STATES_GOVERNOR;
+        }
+    }
+}
+
+
 void Choice::ChangeValue(int delta)
 {
+    CalculatePositionGovernor(delta);
+
     const DataChoice *own = OwnData();
 
     if (delta < 0)
@@ -215,6 +237,7 @@ void Choice::ChangeValue(int delta)
         int8 value = static_cast<int8>((*own->cell == 0) ? (NumSubItems() - 1) : (*own->cell - 1));
         *own->cell = value;
     }
+
     FuncOnChanged(IsActive());
     Sound::GovernorChangedValue();
     Display::Redraw();

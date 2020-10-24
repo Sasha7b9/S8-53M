@@ -24,7 +24,7 @@ public:
     static const int OPENED_WIDTH = TITLE_WIDTH;
     static const int OPENED_HEIGHT_TITLE = 19;
     static const int WIDTH_VALUE = WIDTH - 4;
-
+    static const int NUM_STATES_GOVERNOR = 4;       //  оличество положений ручки говернора
 
     const DataItem *data;
 
@@ -68,6 +68,8 @@ public:
     // ¬озвращает изображение регул€тора, соответствующее его текущему положению.
     char GetSymbolForGovernor() const;
 
+    void CalculatePositionGovernor(int delta);
+
     bool IsPage() const          { return data->type == TypeItem::Page; }
     bool IsChoice() const        { return data->type == TypeItem::Choice; }
     bool IsChoiceReg() const     { return data->type == TypeItem::ChoiceReg; }
@@ -98,4 +100,5 @@ public:
 
 protected:
     static int8 gCurDigit;
+    static uint8 positionGovernor;   // «десь хранитс€ позици€ говернора
 };
