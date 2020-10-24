@@ -56,33 +56,6 @@ void InverseColor(Color::E *color)
 }
 
 
-void Painter::DrawVolumeButton(int x, int y, int width, int height, int thickness, Color::E normal, Color::E bright, Color::E dark, bool isPressed)
-{
-    Region(width - thickness * 2, height - thickness * 2).Fill(x + thickness, y + thickness, normal);
-
-    if (isPressed)
-    {
-        for (int i = 0; i < thickness; i++)
-        {
-            HLine().Draw(y + i, x + i, x + width - i, dark);
-            VLine().Draw(x + i, y + 1 + i, y + height - i);
-            VLine().Draw(x + width - i, y + 1 + i, y + height - i, bright);
-            HLine().Draw(y + height - i, x + 1 + i, x + width - i);
-        }
-    }
-    else
-    {
-        for (int i = 0; i < thickness; i++)
-        {
-            HLine().Draw(y + i, x + i, x + width - i, bright);
-            VLine().Draw(x + i, y + 1 + i, y + height - i);
-            VLine().Draw(x + width - i, y + 1 + i, y + height - i, dark);
-            HLine().Draw(y + height - i, x + 1 + i, x + width - i);
-        }
-    }
-}
-
-
 void Painter::SetBrightnessDisplay(int16 )
 {
 }

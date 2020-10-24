@@ -158,6 +158,8 @@ public:
 
     static Item empty;
 
+    void DrawVolumeButton(int x, int y, int width, int height, int thickness, Color::E normal, Color::E bright, Color::E dark, bool isPressed) const;
+
 protected:
     static int8 gCurDigit;
 };
