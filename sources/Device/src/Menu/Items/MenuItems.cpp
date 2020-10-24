@@ -409,7 +409,7 @@ void Choice::ShortPress()
         }
         else if (!IsOpened())
         {
-            SetCurrent(Menu::CurrentItem() != this);
+            SetCurrent(!Menu::IsCurrentItem(this));
             StartChange(1);
         }
         else
@@ -425,7 +425,7 @@ void Choice::ShortPress()
         }
         else if (Menu::OpenedItem() != this)
         {
-            SetCurrent(Menu::CurrentItem() != this);
+            SetCurrent(!Menu::IsCurrentItem(this));
         }
     }
 }
@@ -505,7 +505,7 @@ void SmallButton::ShortPress()
 
 void Item::LongPress()
 {
-    if (Menu::CurrentItem() != this)
+    if (!Menu::IsCurrentItem(this))
     {
         SetCurrent(true);
     }
@@ -521,7 +521,7 @@ void Button::LongPress()
 
 void TimeItem::LongPress()
 {
-    if (Menu::CurrentItem() != this)
+    if (!Menu::IsCurrentItem(this))
     {
         SetCurrent(true);
     }
