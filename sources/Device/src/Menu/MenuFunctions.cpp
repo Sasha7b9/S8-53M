@@ -20,7 +20,7 @@ Item* Menu::CurrentItem()
     int8 pos = ((const Page *)lastOpened)->GetPositionActItem();
     if(type == TypeItem::Page && pos != -1)
     {
-        return ((const Page *)lastOpened)->GetItem(pos);
+        return lastOpened->ReinterpretToPage()->GetItem(pos);
     }
     return lastOpened;
 }
@@ -37,10 +37,10 @@ void Menu::CloseOpenedItem()
     Item *item = OpenedItem();
     if(item->IsPage())
     {
-        if (((const Page *)item)->IsPageSB())                                   // Для страницы малых кнопок
+        if (((const Page *)item)->IsPageSB())                                       // Для страницы малых кнопок
         {
-            SmallButton *sb = item->ReinterpretToPage()->SmallButonFrom(0);          // Выполняем функцию нажатия кнопки Key::Menu
-            if (sb->OwnData()->funcOnPress)                                 // Если она есть
+            SmallButton *sb = item->ReinterpretToPage()->SmallButonFrom(0);         // Выполняем функцию нажатия кнопки Key::Menu
+            if (sb->OwnData()->funcOnPress)                                         // Если она есть
             {
                 sb->OwnData()->funcOnPress();
             }
@@ -70,5 +70,5 @@ bool Menu::IsOpenedItem(const Item *item)
 
 NamePage::E Menu::GetNameOpenedPage()
 {
-    return((const Page *)OpenedItem())->GetName();
+    return OpenedItem()->ReinterpretToPage()->GetName();
 }
