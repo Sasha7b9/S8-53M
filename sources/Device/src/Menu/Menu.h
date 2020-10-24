@@ -7,6 +7,27 @@ class Menu
 {
 public:
 
+    struct Event
+    {
+        // Функция обработки короткого нажатия кнопки (менее 0.5 сек.).
+        static void ShortPressureButton(Key::E button);
+
+        // Функция обработки длинного нажатия кнопки (более 0.5 сек.).
+        static void LongPressureButton(Key::E button);
+
+        // Функция вызывается, когда кнопка переходит из отжатого в нажатое положение.
+        static void PressButton(Key::E button);
+
+        // Функция вызывается, когда кнопка переходит из нажатого в отжатое положение.
+        static void ReleaseButton(Key::E button);
+
+        // Функция обработки поворота ручки УСТАНОВКА вправо.
+        static void RotateRegSetRight();
+
+        // Функция обработки поворота ручки УСТАНОВКА влево.
+        static void RotateRegSetLeft();
+    };
+
     static const int ITEMS_ON_DISPLAY = 5;     // Сколько пунктов меню помещается на экране по вертикали.
 
     static void Draw();
@@ -16,28 +37,6 @@ public:
 
     // Возвращает адрес элемента меню, соответствующего данной button.
     static Item *ItemUnderButton(Key::E button);
-
-    struct Event
-    {
-        // Функция обработки короткого нажатия кнопки (менее 0.5 сек.).
-        static void ShortPressureButton(Key::E button);
-
-        // Функция обработки длинного нажатия кнопки (более 0.5 сек.).
-        static void LongPressureButton(Key::E button);
-
-    };
-
-    // Функция вызывается, когда кнопка переходит из отжатого в нажатое положение.
-    static void PressButton(Key::E button);
-
-    // Функция вызывается, когда кнопка переходит из нажатого в отжатое положение.
-    static void ReleaseButton(Key::E button);
-
-    // Функция обработки поворота ручки УСТАНОВКА вправо.
-    static void RotateRegSetRight();
-
-    // Функция обработки поворота ручки УСТАНОВКА влево.
-    static void RotateRegSetLeft();
 
     // Установить время автоматического сокрытия меню в соответствии с установками.
     static void SetAutoHide(bool active);

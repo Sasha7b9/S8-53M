@@ -208,7 +208,7 @@ void Menu::ProcessButtonForHint(Key::E button)
 }
 
 
-void Menu::PressButton(Key::E button)
+void Menu::Event::PressButton(Key::E button)
 {
     Sound::ButtonPress();
     if (showHelpHints)
@@ -235,7 +235,7 @@ void Menu::PressButton(Key::E button)
 };
 
 
-void Menu::ReleaseButton(Key::E button)
+void Menu::Event::ReleaseButton(Key::E button)
 {
     Sound::ButtonRelease();
     if (!showHelpHints)
@@ -245,7 +245,7 @@ void Menu::ReleaseButton(Key::E button)
 };
 
 
-void Menu::RotateRegSetRight()
+void Menu::Event::RotateRegSetRight()
 {   
     if (!showHelpHints)
     {
@@ -255,7 +255,7 @@ void Menu::RotateRegSetRight()
 };
 
 
-void Menu::RotateRegSetLeft()
+void Menu::Event::RotateRegSetLeft()
 {
     if (!showHelpHints)
     {
@@ -525,7 +525,7 @@ void Menu::OpenItemTime()
     Display::Update();
     for (int i = 0; i < 2; i++)
     {
-        Menu::RotateRegSetRight();
+        Menu::Event::RotateRegSetRight();
         Menu::UpdateInput();
         Display::Update();
     }
@@ -615,7 +615,7 @@ void Menu::OpenFileManager()
 
     for (int i = 0; i < 5 * stepAngleRegSet + 1; i++)
     {
-        RotateRegSetLeft();
+        Event::RotateRegSetLeft();
         UpdateInput();
         Display::Update(false);
     }
@@ -624,7 +624,7 @@ void Menu::OpenFileManager()
 
     for (int i = 0; i < 2 * stepAngleRegSet + 1; i++)
     {
-        RotateRegSetRight();
+        Event::RotateRegSetRight();
         UpdateInput();
         Display::Update(false);
     }
@@ -641,7 +641,7 @@ void Menu::OpenFileManager()
 
     for (int i = 0; i < stepAngleRegSet + 1; i++)
     {
-        RotateRegSetLeft();
+        Event::RotateRegSetLeft();
         UpdateInput();
         Display::Update(false);
     }

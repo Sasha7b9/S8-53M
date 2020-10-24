@@ -250,7 +250,7 @@ bool Panel::ProcessingCommandFromPIC(uint16 code)
 
     if(releaseButton != Key::None)
     {
-        Menu::ReleaseButton(releaseButton);
+        Menu::Event::ReleaseButton(releaseButton);
         funcOnKeyUp[releaseButton]();
         if(pressedKey != Key::None)
         {
@@ -261,7 +261,7 @@ bool Panel::ProcessingCommandFromPIC(uint16 code)
     else if(pressButton != Key::None)
     {
         funcOnKeyDown[pressButton]();
-        Menu::PressButton(pressButton);
+        Menu::Event::PressButton(pressButton);
         pressedKey = pressButton;
     }
     else if (longButton != Key::None)
@@ -423,7 +423,7 @@ static void StartDown()
 {
     if (MODE_WORK_IS_DIRECT)
     {
-        Menu::PressButton(Key::Start);
+        Menu::Event::PressButton(Key::Start);
     }
 }
 
@@ -766,11 +766,11 @@ static void TBaseRight()
 
 static void SetLeft()
 {
-    Menu::RotateRegSetLeft();
+    Menu::Event::RotateRegSetLeft();
 }
 
 
 static void SetRight()
 {
-    Menu::RotateRegSetRight();
+    Menu::Event::RotateRegSetRight();
 }
