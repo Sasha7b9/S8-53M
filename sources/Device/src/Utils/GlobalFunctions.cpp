@@ -423,22 +423,6 @@ void SortInt(int *value0, int *value1)
     }
 }
 
-char GetSymbolForGovernor(int value)
-{
-    static const char chars[] =
-    {
-        Symbol::S8::GOVERNOR_SHIFT_0,
-        Symbol::S8::GOVERNOR_SHIFT_1,
-        Symbol::S8::GOVERNOR_SHIFT_2,
-        Symbol::S8::GOVERNOR_SHIFT_3
-    };
-    while(value < 0)
-    {
-        value += 4;
-    }
-    return chars[value % 4];
-}
-
 void EmptyFuncVV() { }
 
 void EmptyFuncVI(int) { }

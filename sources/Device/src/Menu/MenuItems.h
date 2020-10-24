@@ -165,6 +165,8 @@ public:
 
     void DrawVolumeButton(int x, int y, int width, int height, int thickness, Color::E normal, Color::E bright, Color::E dark, bool isPressed) const;
 
+    static char GetSymbolForGovernor(int value);                        // Возвращает изображение регулятора, соответствующее его текущему положению.
+
 protected:
     static int8 gCurDigit;
 };
