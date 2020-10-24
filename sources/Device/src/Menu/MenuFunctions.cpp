@@ -6,19 +6,17 @@
 #include "Settings/Settings.h"
 
 
-Item* Menu::OpenedItem()
+const Item* Menu::OpenedItem()
 {
-    TypeItem::E type = TypeItem::None;
-    return const_cast<Page *>(PageMain::self)->RetLastOpened(&type);
+    return PageMain::self->RetLastOpened();
 }
 
 
-Item* Menu::CurrentItem()
+const Item* Menu::CurrentItem()
 {
-    TypeItem::E type = TypeItem::None;
-    Item *lastOpened = ((Page *)PageMain::self)->RetLastOpened(&type);
+    const Item *lastOpened = PageMain::self->RetLastOpened();
     int8 pos = ((const Page *)lastOpened)->GetPositionActItem();
-    if(type == TypeItem::Page && pos != -1)
+    if(lastOpened->IsPage() && pos != -1)
     {
         return lastOpened->ReinterpretToPage()->GetItem(pos);
     }
@@ -34,7 +32,7 @@ bool Menu::IsCurrentItem(const Item *item)
 
 void Menu::CloseOpenedItem()
 {
-    Item *item = OpenedItem();
+    const Item *item = OpenedItem();
     if(item->IsPage())
     {
         if (((const Page *)item)->IsPageSB())                                       // Для страницы малых кнопок

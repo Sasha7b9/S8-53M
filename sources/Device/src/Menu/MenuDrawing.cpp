@@ -61,7 +61,7 @@ void Menu::Draw()
 {
     if(Menu::IsShown() || !OpenedItem()->IsPage())
     {
-        Item *item = OpenedItem();
+        const Item *item = OpenedItem();
         if(Menu::IsShown())
         {
             if (item->IsPage())

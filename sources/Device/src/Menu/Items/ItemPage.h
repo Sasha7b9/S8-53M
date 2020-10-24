@@ -41,7 +41,7 @@ public:
 
     void DrawOpened(int yTop);
 
-    Item *RetLastOpened(TypeItem::E *_type);
+    const Item *RetLastOpened() const;
     // Вызывает функцию короткого нажатия кнопки над итемом numItem страницы page;
     void ShortPressOnItem(int numItem) const;
 
@@ -53,8 +53,8 @@ public:
     // Устанавливает номер текущей подстраницы в странице namePage.
     void SetCurrentSubPage(int posSubPage) const;
 
-    // Возвращает true, если текущий элемент страницы с именем namePage открыт.
-    bool CurrentItemIsOpened();
+    // Возвращает true, если текущий элемент страницы открыт
+    bool CurrentItemIsOpened() const;
 
     // Установить позицию активного пункта на странице namePage.
     void SetPositionActItem(int8 pos);
@@ -69,9 +69,7 @@ public:
     // Возвращает позицию первого элемента страницы по адресу page на экране. Если текущая подстраница 0, это будет 0, если текущая подстраница 1, это будет 5 и т.д.
     int PosItemOnTop() const;
 
-    bool IsExist() const {
-        return (this != &Page::empty);
-    }
+    bool IsExist() const { return (this != &Page::empty); }
 
     static Page empty;
 

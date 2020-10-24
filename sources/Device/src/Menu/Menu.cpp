@@ -294,7 +294,7 @@ char* Menu::StringNavigation(char buffer[100])
         buffer[0] = 0;
         const char *titles[10] = {0};
         int numTitle = 0;
-        Item *item = OpenedItem();
+        const Item *item = OpenedItem();
         if(IsMainPage(item))
         {
             return 0;
@@ -449,7 +449,7 @@ void Menu::ProcessingRegulatorSet()
 
     if (IsShown() || !OpenedItem()->IsPage())
     {
-        Item *item = CurrentItem();
+        const Item *item = CurrentItem();
         if (OpenedItem()->IsPage() && (item->IsChoiceReg() || item->IsGovernor() || item->IsIP() || item->IsMAC()))
         {
             if (angleRegSet > stepAngleRegSet || angleRegSet < -stepAngleRegSet)

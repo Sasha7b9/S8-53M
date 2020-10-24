@@ -533,27 +533,26 @@ void TimeItem::LongPress()
 }
 
 
-Item *Page::RetLastOpened(TypeItem::E *type)
+const Item *Page::RetLastOpened() const
 {
     if (CurrentItemIsOpened())
     {
-        int8 actItem = GetPositionActItem();
-        Item *item = GetItem(actItem);
-        if (GetItem(actItem)->IsPage())
+        int8 pActItem = GetPositionActItem();
+        Item *item = GetItem(pActItem);
+        if (GetItem(pActItem)->IsPage())
         {
-            return ((Page *)item)->RetLastOpened(type);
+            return ((Page *)item)->RetLastOpened();
         }
         else
         {
             return item;
         }
     }
-    *type = TypeItem::Page;
     return this;
 }
 
 
-void Item::Change(int delta)
+void Item::Change(int delta) const
 {
     if (IsChoice() || IsChoiceReg())
     {
@@ -605,7 +604,7 @@ void Page::OpenAndSetItCurrent() const
 }
 
 
-bool Item::ChangeOpened(int delta)
+bool Item::ChangeOpened(int delta) const
 {
     if (delta < 2 && delta > -2)
     {
@@ -679,7 +678,7 @@ void Page::SetCurrentSubPage(int posSubPage) const
 }
 
 
-bool Page::CurrentItemIsOpened()
+bool Page::CurrentItemIsOpened() const
 {
     return *actItemIsOpened;
 }

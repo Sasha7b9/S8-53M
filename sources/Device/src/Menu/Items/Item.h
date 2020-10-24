@@ -3,11 +3,11 @@
 
 struct DataItem
 {
-    TypeItem::E  type;
-    const Page  *keeper;
-    pFuncBV      funcOfActive;
-    const char **titleHint;
-    const void  *ad;
+    TypeItem::E  type;          // Тип итема
+    const Page  *keeper;        // Этой странице принадлежит итем
+    pFuncBV      funcOfActive;  // Если функция возвращает true, то итем активен
+    const char **titleHint;     // Массив с названиями и подсказками для итема
+    const void  *ad;            // Указатель на специфические для каждого типа итема данные
 };
 
 
@@ -53,9 +53,9 @@ public:
     int OpenedPosY() const;
 
     // Уменьшает или увеличивает значение Governor, GovernorColor или Choice по адресу item в зависимости от знака delta
-    void Change(int delta);
+    void Change(int delta) const;
 
-    bool ChangeOpened(int delta);
+    bool ChangeOpened(int delta) const;
 
     // Возвращает высоту в пикселях открытого элемента Choice или NamePage::E по адресу item.
     int HeightOpened() const;
