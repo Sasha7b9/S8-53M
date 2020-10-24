@@ -57,30 +57,16 @@ static void DrawGovernorChoiceColorFormulaHiPart(const Item *item, int x, int y,
 
         if (item->IsGovernor())
         {
-            symbol = Item::GetSymbolForGovernor(*((Governor*)item)->OwnData()->cell);
+            symbol = item->GetSymbolForGovernor();
             Governor::address = const_cast<Item *>(item);
         }
         else if (item->IsChoiceReg() || (item->IsOpened() && item->IsChoice()))
         {
-            symbol = Item::GetSymbolForGovernor(*((Choice*)item)->OwnData()->cell);
+            symbol = item->GetSymbolForGovernor();
         }
         else if (item->IsTime())
         {
-            const DataTime *own = item->ReinterpretToTime()->OwnData();
-            if ((Menu::OpenedItem() == item) && (*own->curField != iEXIT) && (*own->curField != iSET))
-            {
-                int8 values[7] =
-                {
-                    0,
-                    *own->day,
-                    *own->month,
-                    *own->year,
-                    *own->hours,
-                    *own->minutes,
-                    *own->seconds
-                };
-                symbol = Item::GetSymbolForGovernor(values[*own->curField]);
-            }
+            symbol = item->GetSymbolForGovernor();
         }
 
         Char(symbol).Draw4SymbolsInRect(x + Item::WIDTH - 13, y + 5 + (item->IsOpened() ? 0 : 15), IS_COLOR_SCHEME_WHITE_LETTERS ? Color::BACK : Color::FILL);
@@ -792,7 +778,7 @@ void Page::DrawTitle(int yTop)
     x = Text(Title()).DrawInCenterRect(x, yTop, Item::TITLE_WIDTH + 2 + delta, Item::TITLE_HEIGHT, colorText);
     if (NeedDrawRegSet(this))
     {
-        Char(GetSymbolForGovernor(GetCurrentSubPage())).Draw4SymbolsInRect(x + 4, yTop + 11, colorText);
+        Char(GetSymbolForGovernor()).Draw4SymbolsInRect(x + 4, yTop + 11, colorText);
     }
     
     Menu::itemUnderButton[GetFuncButtonFromY(yTop)] = this;

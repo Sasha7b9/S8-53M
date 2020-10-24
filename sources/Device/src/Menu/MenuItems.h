@@ -7,6 +7,8 @@
 
 class SmallButton;
 class TimeItem;
+class Governor;
+class Choice;
 
 
 #define MAX_NUM_CHOICE_SMALL_BUTTON 6    // Максимальное количество вариантов маленькой кнопки + 1
@@ -157,7 +159,10 @@ public:
     bool IsIP() const        { return data->type == TypeItem::IP; }
     bool IsTime() const      { return data->type == TypeItem::Time; }
 
-    const TimeItem *ReinterpretToTime() const { return (TimeItem *)(this); }
+    const TimeItem *ReinterpretToTime() const     { return (TimeItem *)this; }
+    const Governor *ReinterpretToGovernor() const { return (Governor *)this; }
+    const Choice *ReinterpretToChoice() const     { return (Choice *)this; }
+    const Page *ReinterpretToPage() const         { return (Page *)this; }
 
     static DataItem emptyData;
 
@@ -165,7 +170,7 @@ public:
 
     void DrawVolumeButton(int x, int y, int width, int height, int thickness, Color::E normal, Color::E bright, Color::E dark, bool isPressed) const;
 
-    static char GetSymbolForGovernor(int value);                        // Возвращает изображение регулятора, соответствующее его текущему положению.
+    char GetSymbolForGovernor() const;                        // Возвращает изображение регулятора, соответствующее его текущему положению.
 
 protected:
     static int8 gCurDigit;

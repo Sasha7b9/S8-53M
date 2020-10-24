@@ -284,7 +284,7 @@ void Governor::ShortPress()
 }
 
 
-char Item::GetSymbolForGovernor(int value)
+char Item::GetSymbolForGovernor() const
 {
     static const char chars[] =
     {
@@ -293,9 +293,37 @@ char Item::GetSymbolForGovernor(int value)
         Symbol::S8::GOVERNOR_SHIFT_2,
         Symbol::S8::GOVERNOR_SHIFT_3
     };
-    while (value < 0)
+
+    if (IsGovernor())
     {
-        value += 4;
+        return chars[*ReinterpretToGovernor()->OwnData()->cell];
     }
-    return chars[value % 4];
+    else if (IsChoiceReg() || (IsOpened() && IsChoice()))
+    {
+        return chars[*ReinterpretToChoice()->OwnData()->cell];
+    }
+    else if (IsTime())
+    {
+        const DataTime *own = ReinterpretToTime()->OwnData();
+        if (Menu::IsOpenedItem(this) && (*own->curField != iEXIT) && (*own->curField != iSET))
+        {
+            int8 values[7] =
+            {
+                0,
+                *own->day,
+                *own->month,
+                *own->year,
+                *own->hours,
+                *own->minutes,
+                *own->seconds
+            };
+            return chars[values[*own->curField]];
+        }
+    }
+    else if (IsPage())
+    {
+        return chars[ReinterpretToPage()->GetCurrentSubPage()];
+    }
+
+    return Symbol::S8::GOVERNOR_SHIFT_0;
 }
