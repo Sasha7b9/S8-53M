@@ -51,7 +51,7 @@ void Menu::UpdateInput()
 };
 
 
-void Menu::ShortPressureButton(Key::E button)
+void Menu::Event::ShortPressureButton(Key::E button)
 {
     if (!showHelpHints)
     {
@@ -520,7 +520,7 @@ void Menu::ProcessingReleaseButton()
 void Menu::OpenItemTime()
 {
     Display::ShowWarningGood(Warning::TimeNotSet);
-    Menu::ShortPressureButton(Key::Service);
+    Menu::Event::ShortPressureButton(Key::Service);
     Menu::UpdateInput();
     Display::Update();
     for (int i = 0; i < 2; i++)
@@ -529,7 +529,7 @@ void Menu::OpenItemTime()
         Menu::UpdateInput();
         Display::Update();
     }
-    Menu::ShortPressureButton(Key::F4);
+    Menu::Event::ShortPressureButton(Key::F4);
     Menu::UpdateInput();
     Display::Update();
 }
@@ -601,14 +601,14 @@ void Menu::OpenFileManager()
     angleRegSet = 0;
     for (int i = 0; i < 10; i++)
     {
-        ShortPressureButton(Key::Menu);
+        Event::ShortPressureButton(Key::Menu);
         UpdateInput();
         Display::Update(false);
     }
 
     if (!Menu::IsShown())
     {
-        ShortPressureButton(Key::Menu);
+        Event::ShortPressureButton(Key::Menu);
         UpdateInput();
         Display::Update(false);
     }
@@ -631,11 +631,11 @@ void Menu::OpenFileManager()
 
     angleRegSet = 0;
 
-    ShortPressureButton(Key::F2);
+    Event::ShortPressureButton(Key::F2);
     UpdateInput();
     Display::Update(false);
 
-    ShortPressureButton(Key::F4);
+    Event::ShortPressureButton(Key::F4);
     UpdateInput();
     Display::Update(false);
 
@@ -648,7 +648,7 @@ void Menu::OpenFileManager()
 
     for (int i = 0; i < 2; i++)
     {
-        ShortPressureButton(Key::F1);
+        Event::ShortPressureButton(Key::F1);
         UpdateInput();
         Display::Update(false);
     }

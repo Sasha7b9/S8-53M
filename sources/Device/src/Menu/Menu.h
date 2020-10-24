@@ -10,33 +10,49 @@ public:
     static const int ITEMS_ON_DISPLAY = 5;     // Сколько пунктов меню помещается на экране по вертикали.
 
     static void Draw();
+
     // Функция должна вызываться в главном цикле.
     static void UpdateInput();
+
     // Возвращает адрес элемента меню, соответствующего данной button.
     static Item *ItemUnderButton(Key::E button);
-    // Функция обработки короткого нажатия кнопки (менее 0.5 сек.).
-    static void ShortPressureButton(Key::E button);
+
+    struct Event
+    {
+        // Функция обработки короткого нажатия кнопки (менее 0.5 сек.).
+        static void ShortPressureButton(Key::E button);
+    };
+
     // Функция обработки длинного нажатия кнопки (более 0.5 сек.).
     static void LongPressureButton(Key::E button);
+
     // Функция вызывается, когда кнопка переходит из отжатого в нажатое положение.
     static void PressButton(Key::E button);
+
     // Функция вызывается, когда кнопка переходит из нажатого в отжатое положение.
     static void ReleaseButton(Key::E button);
+
     // Функция обработки поворота ручки УСТАНОВКА вправо.
     static void RotateRegSetRight();
+
     // Функция обработки поворота ручки УСТАНОВКА влево.
     static void RotateRegSetLeft();
+
     // Установить время автоматического сокрытия меню в соответствии с установками.
     static void SetAutoHide(bool active);
+
     // Возвращает адрес пункта меню, находящегося под нажатой в данный момент кнопкой.
     static Item *ItemUnderKey();
+
     // Возвращает путь к текущему пункту меню в текстовом виде, готовом к выводу на экран.
     static char *StringNavigation(char buffer[100]);
 
     static void OpenItemTime();
+
     // Возвращает адрес открытого элемента меню.
     static Item *OpenedItem();
     static bool IsOpenedItem(const Item *item);
+
     // Возвращает адрес текущего элемента меню (текущим, как правило, является элемент, кнопка которого была нажата последней.
     static Item *CurrentItem();
     static bool IsCurrentItem(const Item *item);
@@ -45,16 +61,16 @@ public:
 
     // Закрыть открытый элемент меню.
     static void CloseOpenedItem();
-    // Здесь хранится адрес элемента меню, соответствующего функциональной клавише [1..5], если она находится в нижнем положении, и 0, если ни одна кнопка не нажата.
-    static Item *itemUnderKey;
 
-    static Item *itemUnderButton[Key::Count];
     // Отображено ли меню на экране.
     static bool IsShown();
+
     // Отобразить/скрыть меню.
     static void Show(bool show);
+
     // Если true - меню находится в дополнительном режиме.
     static bool IsMinimize();
+
     // Повернуть ручку УСТАНОВКА на текущей странице малых кнопок.
     static void CurrentPageSBregSet(int angle);
 
@@ -62,17 +78,29 @@ public:
     static bool showDebugMenu;
     static bool needClosePageSB;    // Если 1, нужно закрывать страницу малых кнопок
 
+    // Здесь хранится адрес элемента меню, соответствующего функциональной клавише [1..5], если она находится в нижнем положении, и 0, если ни одна кнопка не нажата.
+    static Item *itemUnderKey;
+
+    static Item *itemUnderButton[Key::Count];
+
+
 private:
+
     // Обработка короткого нажатия кнопки.
     static void ProcessingShortPressureButton();
+
     // Обработка длинного нажатия кнопки.
     static void ProcessingLongPressureButton();
+
     // Обработка опускания кнопки вниз.
     static void ProcessingPressButton();
+
     // Обработка поднятия кнопки вверх.
     static void ProcessingReleaseButton();
+
     // Обработка поворота ручки УСТАНОВКА.
     static void ProcessingRegulatorSet();
+
     // Включить/выключить светодиод ручки УСТАНОВКА, если необходимо.
     static void SwitchSetLED();
 
@@ -81,6 +109,7 @@ private:
     static void ResetItemsUnderButton();
    
     static void OpenFileManager();
+
     // Обработка события таймера автоматического сокрытия меню.
     static void OnTimerAutoHide();
     

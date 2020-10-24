@@ -254,7 +254,7 @@ bool Panel::ProcessingCommandFromPIC(uint16 code)
         funcOnKeyUp[releaseButton]();
         if(pressedKey != Key::None)
         {
-            Menu::ShortPressureButton(releaseButton);
+            Menu::Event::ShortPressureButton(releaseButton);
             pressedKey = Key::None;
         }
     }
