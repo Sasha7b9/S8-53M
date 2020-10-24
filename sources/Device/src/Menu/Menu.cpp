@@ -67,7 +67,7 @@ void Menu::Event::ShortPressureButton(Key::E button)
 
 
 
-void Menu::LongPressureButton(Key::E button)
+void Menu::Event::LongPressureButton(Key::E button)
 {
     if (!showHelpHints)
     {

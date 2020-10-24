@@ -21,10 +21,11 @@ public:
     {
         // Функция обработки короткого нажатия кнопки (менее 0.5 сек.).
         static void ShortPressureButton(Key::E button);
-    };
 
-    // Функция обработки длинного нажатия кнопки (более 0.5 сек.).
-    static void LongPressureButton(Key::E button);
+        // Функция обработки длинного нажатия кнопки (более 0.5 сек.).
+        static void LongPressureButton(Key::E button);
+
+    };
 
     // Функция вызывается, когда кнопка переходит из отжатого в нажатое положение.
     static void PressButton(Key::E button);
