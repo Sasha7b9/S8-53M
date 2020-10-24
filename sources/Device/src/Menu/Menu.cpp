@@ -560,9 +560,7 @@ bool Menu::NeedForFireSetLED()    // Возвращает true, если лампочка УСТАНОВКА до
         return true;
     }
     
-    TypeItem::E typeCurrentItem = CurrentItem()->Type();
-    if (typeCurrentItem == TypeItem::Governor    ||
-        typeCurrentItem == TypeItem::ChoiceReg)
+    if (CurrentItem()->IsGovernor() || CurrentItem()->IsChoiceReg())
     {
         return true;
     }
