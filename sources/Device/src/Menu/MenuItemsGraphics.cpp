@@ -741,6 +741,9 @@ void Page::DrawOpened(int yTop)
     }
     else
     {
+        Page *page = this;
+        page = page;
+
         DrawTitle(yTop);
         DrawItems(yTop + Item::TITLE_HEIGHT);
     }
@@ -752,10 +755,21 @@ void Page::DrawOpened(int yTop)
 }
 
 
+// Нужно ли рисовать значок говернора
+static bool NeedDrawRegSet(Page *page)
+{
+    return page->NumSubPages() > 1 &&
+        !Menu::CurrentItem()->IsChoiceReg() &&
+        !Menu::CurrentItem()->IsGovernor() &&
+        Menu::CurrentItem()->IsPage();
+
+}
+
+
 void Page::DrawTitle(int yTop)
 {
     int x = Page::X();
-    if (IsSB())
+    if (IsPageSB())
     {
         SmallButonFrom(0)->Draw(SmallButton::LEFT, yTop + 3);
         return;
@@ -776,11 +790,13 @@ void Page::DrawTitle(int yTop)
     }
     
     VLine().Draw(x, yTop, yTop + HeightOpened(), Color::BorderMenu());
-    bool condDrawRSet = NumSubPages() > 1 && Menu::CurrentItem()->Type() != TypeItem::ChoiceReg && Menu::CurrentItem()->Type() != TypeItem::Governor && Menu::OpenedItem()->Type() == TypeItem::Page;
-    int delta = condDrawRSet ? -10 : 0;
+
+
+    int delta = NeedDrawRegSet(this) ? -10 : 0;
+
     Color::E colorText = shade ? Color::LightShadingText() : Color::BLACK;
     x = Text(Title()).DrawInCenterRect(x, yTop, Item::TITLE_WIDTH + 2 + delta, Item::TITLE_HEIGHT, colorText);
-    if (condDrawRSet)
+    if (NeedDrawRegSet(this))
     {
         Char(GetSymbolForGovernor(GetCurrentSubPage())).Draw4SymbolsInRect(x + 4, yTop + 11, colorText);
     }

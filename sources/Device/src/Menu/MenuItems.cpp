@@ -243,7 +243,7 @@ int Page::NumItems() const
     {
         return !Menu::showDebugMenu ? 10 : 11;
     }
-    else if (IsSB())
+    else if (IsPageSB())
     {
         return 5;
     }
@@ -279,9 +279,7 @@ bool Item::IsActive() const
 
 Item *Page::GetItem(int numElement) const
 {
-    const DataPage *own = OwnData();
-
-    return own->items[numElement + (IsSB() ? 1 : 0)];
+    return OwnData()->items[numElement + (IsPageSB() ? 1 : 0)];
 }
 
 
@@ -291,7 +289,7 @@ int Page::NumSubPages() const
 }
 
 
-bool Page::IsSB() const
+bool Page::IsPageSB() const
 {
     return OwnData()->name >= NamePage::SB_Curs;
 }

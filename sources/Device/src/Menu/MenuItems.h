@@ -149,7 +149,9 @@ public:
     // Возвращает название элемента по адресу item, как оно выглядит на дисплее прибора.
     const char *Title() const;
 
-    bool IsPage() const { return Type() == TypeItem::Page; }
+    bool IsPage() const      { return Type() == TypeItem::Page; }
+    bool IsChoiceReg() const { return Type() == TypeItem::ChoiceReg; }
+    bool IsGovernor() const  { return Type() == TypeItem::Governor; }
 
     static DataItem emptyData;
 
@@ -191,7 +193,7 @@ public:
     // Dозвращает число подстраниц в странице по адресу page.
     int NumSubPages() const;
 
-    bool IsSB() const;
+    bool IsPageSB() const;
 
     void ChangeSubPage(int delta) const;
 
