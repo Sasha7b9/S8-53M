@@ -39,7 +39,7 @@ void Menu::CloseOpenedItem()
     {
         if (((const Page *)item)->IsPageSB())                                   // Для страницы малых кнопок
         {
-            SmallButton *sb = ((Page *)item)->SmallButonFrom(0);          // Выполняем функцию нажатия кнопки Key::Menu
+            SmallButton *sb = item->ReinterpretToPage()->SmallButonFrom(0);          // Выполняем функцию нажатия кнопки Key::Menu
             if (sb->OwnData()->funcOnPress)                                 // Если она есть
             {
                 sb->OwnData()->funcOnPress();
@@ -70,5 +70,5 @@ bool Menu::IsOpenedItem(const Item *item)
 
 NamePage::E Menu::GetNameOpenedPage()
 {
-    return ((const Page *)OpenedItem())->GetName();
+    return((const Page *)OpenedItem())->GetName();
 }
