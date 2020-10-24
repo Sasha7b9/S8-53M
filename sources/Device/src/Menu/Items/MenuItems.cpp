@@ -262,11 +262,7 @@ int Page::NumItems() const
 
 bool Item::IsActive() const
 {
-    TypeItem::E type = Type();
-
-    /** @todo Здесь оптимизировать через битовую маску */
-
-    if (type == TypeItem::Choice || type == TypeItem::Page || type == TypeItem::Button || type == TypeItem::Governor || type == TypeItem::SmallButton)
+    if (IsChoice() || IsPage() || IsButton() || IsGovernor() || IsSmallButton())
     {
         pFuncBV func = ((Page *)(this))->data->funcOfActive;
 
@@ -641,7 +637,7 @@ int Item::HeightOpened() const
 }
 
 
-const char *Item::Title() const
+pString Item::Title() const
 {
     return TITLE((Page *)this);
 }
