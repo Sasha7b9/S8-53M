@@ -51,25 +51,22 @@ static void DrawGovernorChoiceColorFormulaHiPart(const Item *item, int x, int y,
 
     Text(item->Title()).Draw(x + 6 + delta, y + 6 + delta, color);
     
-    TypeItem::E type = item->Type();
-
     if(Menu::IsCurrentItem(item))
     {
         char symbol = 0;
 
-        if (type == TypeItem::Governor)
+        if (item->IsGovernor())
         {
             symbol = GetSymbolForGovernor(*((Governor*)item)->OwnData()->cell);
             Governor::address = const_cast<Item *>(item);
         }
-        else if (type == TypeItem::ChoiceReg || (item->IsOpened() && type == TypeItem::Choice))
+        else if (item->IsChoiceReg() || (item->IsOpened() && item->IsChoice()))
         {
             symbol = GetSymbolForGovernor(*((Choice*)item)->OwnData()->cell);
         }
-        else if (type == TypeItem::Time)
+        else if (item->IsTime())
         {
-            TimeItem *time = (TimeItem *)item;
-            const DataTime *own = time->OwnData();
+            const DataTime *own = item->ReinterpretToTime()->OwnData();
             if ((Menu::OpenedItem() == item) && (*own->curField != iEXIT) && (*own->curField != iSET))
             {
                 int8 values[7] =

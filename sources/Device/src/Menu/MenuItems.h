@@ -6,6 +6,7 @@
 
 
 class SmallButton;
+class TimeItem;
 
 
 #define MAX_NUM_CHOICE_SMALL_BUTTON 6    // Максимальное количество вариантов маленькой кнопки + 1
@@ -149,10 +150,14 @@ public:
     // Возвращает название элемента по адресу item, как оно выглядит на дисплее прибора.
     const char *Title() const;
 
-    bool IsPage() const      { return Type() == TypeItem::Page; }
-    bool IsChoiceReg() const { return Type() == TypeItem::ChoiceReg; }
-    bool IsGovernor() const  { return Type() == TypeItem::Governor; }
-    bool IsIP() const        { return Type() == TypeItem::IP; }
+    bool IsPage() const      { return data->type == TypeItem::Page; }
+    bool IsChoice() const    { return data->type == TypeItem::Choice; }
+    bool IsChoiceReg() const { return data->type == TypeItem::ChoiceReg; }
+    bool IsGovernor() const  { return data->type == TypeItem::Governor; }
+    bool IsIP() const        { return data->type == TypeItem::IP; }
+    bool IsTime() const      { return data->type == TypeItem::Time; }
+
+    const TimeItem *ReinterpretToTime() const { return (TimeItem *)(this); }
 
     static DataItem emptyData;
 
@@ -561,8 +566,9 @@ struct DataTime
 
 
 // Устанавливает и показывает время.
-struct TimeItem : public Item
+class TimeItem : public Item
 {
+public:
     TimeItem(const DataItem *const data) : Item(data) {};
 
     const DataTime *OwnData() const { return static_cast<const DataTime *>(data->ad); }
