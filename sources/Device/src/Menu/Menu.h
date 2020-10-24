@@ -38,6 +38,7 @@ public:
     static Item *OpenedItem();
     // Возвращает адрес текущего элемента меню (текущим, как правило, является элемент, кнопка которого была нажата последней.
     static Item *CurrentItem();
+    static bool IsCurrentItem(const Item *item);
 
     static NamePage::E GetNameOpenedPage();
 

@@ -152,6 +152,7 @@ public:
     bool IsPage() const      { return Type() == TypeItem::Page; }
     bool IsChoiceReg() const { return Type() == TypeItem::ChoiceReg; }
     bool IsGovernor() const  { return Type() == TypeItem::Governor; }
+    bool IsIP() const        { return Type() == TypeItem::IP; }
 
     static DataItem emptyData;
 

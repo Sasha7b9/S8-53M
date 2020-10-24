@@ -33,13 +33,13 @@ Key::E GetFuncButtonFromY(int _y)
 }
 
  
-void DrawGovernorChoiceColorFormulaHiPart(const Item *item, int x, int y, bool pressed, bool opened)
+static void DrawGovernorChoiceColorFormulaHiPart(const Item *item, int x, int y, bool pressed, bool opened)
 {
 
     int delta = pressed ? 1 : 0;
     int width = Item::WIDTH_VALUE;
 
-    if (item->Type() == TypeItem::IP && opened && ((IPaddress*)item)->OwnData()->port != 0)
+    if (item->IsIP() && opened && ((IPaddress*)item)->OwnData()->port != 0)
     {
         width += IPaddress::OPENED_WIDTH;
     }
@@ -53,7 +53,7 @@ void DrawGovernorChoiceColorFormulaHiPart(const Item *item, int x, int y, bool p
     
     TypeItem::E type = item->Type();
 
-    if(Menu::CurrentItem() == item)
+    if(Menu::IsCurrentItem(item))
     {
         char symbol = 0;
 
