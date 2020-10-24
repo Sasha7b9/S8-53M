@@ -1,5 +1,5 @@
 #include "Utils/GlobalFunctions.h"
-#include "Menu/MenuItems.h"
+#include "Menu/Items/MenuItems.h"
 #include "Menu/Pages/HelpContent.h"
 #include "Definition.h"
 

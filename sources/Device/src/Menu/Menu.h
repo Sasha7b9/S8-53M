@@ -1,6 +1,6 @@
 #pragma once
 #include "common/Keyboard/Controls_c.h"
-#include "Menu/MenuItems.h"
+#include "Menu/Items/MenuItems.h"
 
 
 class Menu

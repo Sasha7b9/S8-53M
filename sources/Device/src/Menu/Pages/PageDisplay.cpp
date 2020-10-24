@@ -2,7 +2,6 @@
 #include "common/Display/Painter_c.h"
 #include "FPGA/FPGA.h"
 #include "Menu/Menu.h"
-#include "Menu/MenuItems.h"
 #include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
 

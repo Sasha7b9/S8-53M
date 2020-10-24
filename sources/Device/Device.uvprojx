@@ -1672,16 +1672,6 @@
               <FilePath>.\src\Menu\Menu.h</FilePath>
             </File>
             <File>
-              <FileName>MenuItems.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\MenuItems.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>MenuItems.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Menu\MenuItems.h</FilePath>
-            </File>
-            <File>
               <FileName>MenuFunctions.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\MenuFunctions.cpp</FilePath>
@@ -1696,20 +1686,35 @@
               <FileType>8</FileType>
               <FilePath>.\src\Menu\FileManager.cpp</FilePath>
             </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Menu/Items</GroupName>
+          <Files>
             <File>
-              <FileName>MenuItemsGraphics.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\MenuItemsGraphics.cpp</FilePath>
+              <FileName>MenuItems.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Menu\Items\MenuItems.h</FilePath>
             </File>
             <File>
-              <FileName>MenuItemsLogic.cpp</FileName>
+              <FileName>MenuItems.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Menu\MenuItemsLogic.cpp</FilePath>
+              <FilePath>.\src\Menu\Items\MenuItems.cpp</FilePath>
             </File>
             <File>
               <FileName>MenuItemsDefs.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Menu\MenuItemsDefs.h</FilePath>
+              <FilePath>.\src\Menu\Items\MenuItemsDefs.h</FilePath>
+            </File>
+            <File>
+              <FileName>MenuItemsGraphics.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Items\MenuItemsGraphics.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MenuItemsLogic.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Items\MenuItemsLogic.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -3827,16 +3832,6 @@
               <FilePath>.\src\Menu\Menu.h</FilePath>
             </File>
             <File>
-              <FileName>MenuItems.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\MenuItems.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>MenuItems.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Menu\MenuItems.h</FilePath>
-            </File>
-            <File>
               <FileName>MenuFunctions.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\MenuFunctions.cpp</FilePath>
@@ -3851,20 +3846,35 @@
               <FileType>8</FileType>
               <FilePath>.\src\Menu\FileManager.cpp</FilePath>
             </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Menu/Items</GroupName>
+          <Files>
             <File>
-              <FileName>MenuItemsGraphics.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\MenuItemsGraphics.cpp</FilePath>
+              <FileName>MenuItems.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Menu\Items\MenuItems.h</FilePath>
             </File>
             <File>
-              <FileName>MenuItemsLogic.cpp</FileName>
+              <FileName>MenuItems.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Menu\MenuItemsLogic.cpp</FilePath>
+              <FilePath>.\src\Menu\Items\MenuItems.cpp</FilePath>
             </File>
             <File>
               <FileName>MenuItemsDefs.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Menu\MenuItemsDefs.h</FilePath>
+              <FilePath>.\src\Menu\Items\MenuItemsDefs.h</FilePath>
+            </File>
+            <File>
+              <FileName>MenuItemsGraphics.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Items\MenuItemsGraphics.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MenuItemsLogic.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Items\MenuItemsLogic.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -4323,5 +4333,14 @@
     <components/>
     <files/>
   </RTE>
+
+  <LayerInfo>
+    <Layers>
+      <Layer>
+        <LayName>Device</LayName>
+        <LayPrjMark>1</LayPrjMark>
+      </Layer>
+    </Layers>
+  </LayerInfo>
 
 </Project>

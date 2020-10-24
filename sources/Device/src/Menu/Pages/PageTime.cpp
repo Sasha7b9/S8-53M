@@ -2,7 +2,6 @@
 #include "common/Hardware/HAL/HAL_c.h"
 #include "common/Utils/Math_c.h"
 #include "FPGA/FPGA.h"
-#include "Menu/MenuItems.h"
 #include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
 

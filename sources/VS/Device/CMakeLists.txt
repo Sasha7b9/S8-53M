@@ -101,6 +101,7 @@ file(GLOB HARDWARE_HAL          ../../common/Hardware/HAL/HAL.h
                                          src/Hardware/HAL/*.cpp)
 file(GLOB MENU              ../../Device/src/Menu/*.h
                             ../../Device/src/Menu/*.cpp)
+file(GLOB MENU_ITEMS        ../../Device/src/Menu/Items/*)
 file(GLOB MENU_PAGES        ../../Device/src/Menu/Pages/*)
 file(GLOB PANEL             ../../Device/src/Panel/*
                                          src/Panel/*
@@ -152,6 +153,7 @@ source_group(GUI\\VCP         FILES ${GUI_VCP})
 source_group(Hardware         FILES ${HARDWARE})
 source_group(Hardware\\HAL    FILES ${HARDWARE_HAL})
 source_group(Menu             FILES ${MENU})
+source_group(Menu\\Items      FILES ${MENU_ITEMS})
 source_group(Menu\\Pages      FILES ${MENU_PAGES})
 source_group(Panel            FILES ${PANEL})
 source_group(Resources        FILES ${RESOURCES})
@@ -163,7 +165,7 @@ source_group(VCP\\SCPI\\Utils FILES ${VCP_SCPI_UTILS})
 source_group(Utils            FILES ${UTILS})
 
 add_executable(S8-53M ${LIBS_CMSIS} ${LIBS_FATFS} ${LIBS_LWIP} ${LIBS_HAL} ${LIBS_USBH} ${DISPLAY} ${DISPLAY_FONT} ${LAN} ${FDRIVE} ${FPGA} ${GUI} ${GUI_CONTROLS} ${GUI_DIALOGS} ${GUI_VCP}
-                      ${HARDWARE} ${HARDWARE_HAL} ${MENU} ${MENU_PAGES} ${PANEL} ${RESOURCES} ${SETTINGS} ${SRC} ${VCP} ${VCP_SCPI} ${VCP_SCPI_UTILS} ${UTILS})
+                      ${HARDWARE} ${HARDWARE_HAL} ${MENU} ${MENU_ITEMS} ${MENU_PAGES} ${PANEL} ${RESOURCES} ${SETTINGS} ${SRC} ${VCP} ${VCP_SCPI} ${VCP_SCPI_UTILS} ${UTILS})
 
 target_link_libraries(S8-53M ../../../ThirdParty/wxWidgets/generated/lib/vc_dll/wxbase31ud)
 target_link_libraries(S8-53M ../../../ThirdParty/wxWidgets/generated/lib/vc_dll/wxmsw31ud_core)

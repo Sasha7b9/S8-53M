@@ -104,6 +104,7 @@ file(GLOB FPGA                 src/FPGA/*)
 file(GLOB LAN                  src/LAN/*)
 file(GLOB MENU                 src/Menu/*.h
                                src/Menu/*.cpp)
+file(GLOB MENU_ITEMS           src/Menu/Items/*)
 file(GLOB MENU_PAGES           src/Menu/Pages/*)
 file(GLOB PANEL                src/Panel/*
                          ../common/Keyboard/Controls_c.*)
@@ -142,6 +143,7 @@ source_group(FDrive                  FILES ${FDRIVE})
 source_group(FPGA                    FILES ${FPGA})
 source_group(LAN                     FILES ${LAN})
 source_group(Menu                    FILES ${MENU})
+source_group(Menu\\Items             FILES ${MENU_ITEMS})
 source_group(Menu\\Pages             FILES ${MENU_PAGES})
 source_group(Panel                   FILES ${PANEL})
 source_group(Settings                FILES ${SETTINGS})
@@ -152,4 +154,4 @@ source_group(VCP\\SCPI\\Utils        FILES ${VCP_SCPI_UTILS})
 
 add_library(Device ${VS_KEIL_CMSIS} ${VS_KEIL_ARMCLANG} ${VS_KEIL_FATFS} ${LIBS_CMSIS} ${LIBS_FATFS} ${LIBS_HAL} ${LIBS_LWIP} ${LIBS_USBH} ${HARDWARE}
                    ${HARDWARE_CMSIS} ${HARDWARE_FATFS} ${HARDWARE_HAL} ${HARDWARE_LWIP} ${HARDWARE_USBD} ${HARDWARE_USBH} ${SRC} ${DISPLAY} 
-                   ${DISPLAY_FONT} ${FDRIVE} ${FPGA} ${LAN} ${MENU} ${MENU_PAGES} ${PANEL} ${SETTINGS} ${UTILS} ${VCP} ${VCP_SCPI} ${VCP_SCPI_UTILS})
+                   ${DISPLAY_FONT} ${FDRIVE} ${FPGA} ${LAN} ${MENU} ${MENU_ITEMS} ${MENU_PAGES} ${PANEL} ${SETTINGS} ${UTILS} ${VCP} ${VCP_SCPI} ${VCP_SCPI_UTILS})
