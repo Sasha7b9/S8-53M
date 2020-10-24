@@ -69,8 +69,8 @@ static const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN};            
 static Item *i##name[] = {(Item*)&item1, (Item*)&item2, nullptr};                                                                           \
 static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                                                      \
 static const DataItem di##name = { TypeItem::Page, keeper, funcActive, th##name, &dp##name};                                                \
-static int8 subPage##name;                                                                                                                  \
-static const Page name(&di##name, &subPage##name);
+static int8 subPage##name = 0; static int8 actItem##name = -1; static bool actItemIsOpened##name = false;                                           \
+static const Page name(&di##name, &subPage##name, &actItem##name, &actItemIsOpened##name);
 
 
 #define DEF_PAGE_3(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN, item1, item2, item3, funcActive, funcPress, funcDraw, funcRegSet)      \
@@ -78,8 +78,8 @@ static const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN};            
 static Item *i##name[] = {(Item *)&item1, (Item *)&item2, (Item *)&item3, nullptr};                                                                 \
 static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                                                              \
 static const DataItem di##name = { TypeItem::Page, keeper, funcActive, th##name, &dp##name};                                                        \
-static int8 subPage##name;                                                                                                                          \
-static const Page name(&di##name, &subPage##name);
+static int8 subPage##name = 0; static int8 actItem##name = -1; static bool actItemIsOpened##name = false;                                           \
+static const Page name(&di##name, &subPage##name, &actItem##name, &actItemIsOpened##name);
 
 
 #define DEF_PAGE_4(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN,                                                                        \
@@ -88,8 +88,8 @@ static const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN};            
 static Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, (Item*)&item4, nullptr};                                                     \
 static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                                                              \
 static const DataItem di##name = { TypeItem::Page, keeper, funcActive, th##name, &dp##name};                                                        \
-static int8 subPage##name;                                                                                                                          \
-static const Page name(&di##name, &subPage##name);
+static int8 subPage##name = 0; static int8 actItem##name = -1; static bool actItemIsOpened##name = false;                                           \
+static const Page name(&di##name, &subPage##name, &actItem##name, &actItemIsOpened##name);
 
 
 #define DEF_PAGE_5(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN,                                                                        \
@@ -98,8 +98,8 @@ static const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN};            
 static Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, (Item*)&item4, (Item*)&item5, nullptr};                                      \
 static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                                                              \
 static const DataItem di##name = { TypeItem::Page, keeper, funcActive, th##name, &dp##name};                                                        \
-static int8 subPage##name;                                                                                                                          \
-const Page name(&di##name, &subPage##name);
+static int8 subPage##name = 0; static int8 actItem##name = -1; static bool actItemIsOpened##name = false;                                           \
+static const Page name(&di##name, &subPage##name, &actItem##name, &actItemIsOpened##name);
 
 
 #define DEF_PAGE_6(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN, item1, item2, item3, item4, item5, item6,                              \
@@ -108,8 +108,8 @@ static const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN};            
 static Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, (Item*)&item4, (Item*)&item5, (Item*)&item6, nullptr};                       \
 static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                                                              \
 static const DataItem di##name = { TypeItem::Page, keeper, funcActive, th##name, &dp##name};                                                        \
-static int8 subPage##name;                                                                                                                          \
-static const Page name(&di##name, &subPage##name);
+static int8 subPage##name = 0; static int8 actItem##name = -1; static bool actItemIsOpened##name = false;                                           \
+static const Page name(&di##name, &subPage##name, &actItem##name, &actItemIsOpened##name);
 
 
 #define DEF_PAGE_7(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN, item1, item2, item3, item4, item5, item6, item7,                       \
@@ -118,8 +118,8 @@ static const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN};            
 static Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, (Item*)&item4, (Item*)&item5, (Item*)&item6, (Item*)&item7, nullptr};        \
 static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                                                              \
 static const DataItem di##name = { TypeItem::Page, keeper, funcActive, th##name, &dp##name};                                                        \
-static int8 subPage##name;                                                                                                                          \
-static const Page name(&di##name, &subPage##name);
+static int8 subPage##name = 0; static int8 actItem##name = -1; static bool actItemIsOpened##name = false;                                           \
+static const Page name(&di##name, &subPage##name, &actItem##name, &actItemIsOpened##name);
 
 
 #define DEF_PAGE_9(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN, item1, item2, item3, item4, item5, item6, item7, item8, item9,                                     \
@@ -128,8 +128,8 @@ static const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN};            
 static Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, (Item*)&item4, (Item*)&item5, (Item*)&item6, (Item*)&item7, (Item*)&item8, (Item*)&item9, nullptr};      \
 static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                                                                                          \
 static const DataItem di##name = { TypeItem::Page, keeper, funcActive, th##name, &dp##name};                                                                                    \
-static int8 subPage##name;                                                                                                                                                      \
-static const Page name(&di##name, &subPage##name);
+static int8 subPage##name = 0; static int8 actItem##name = -1; static bool actItemIsOpened##name = false;                                                                       \
+static const Page name(&di##name, &subPage##name, &actItem##name, &actItemIsOpened##name);
 
 
 #define DEF_PAGE_10(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN,                                                                                                               \
@@ -138,8 +138,8 @@ static const char *th##name[4] = {titleRU, titleEN, hintRU, hintEN};            
 static Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, (Item*)&item4, (Item*)&item5, (Item*)&item6, (Item*)&item7, (Item*)&item8, (Item*)&item9, (Item*)&item10, nullptr};  \
 static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                                                                                                      \
 static const DataItem di##name = { TypeItem::Page, keeper, funcActive, th##name, &dp##name};                                                                                                \
-static int8 subPage##name;                                                                                                                                                                  \
-static const Page name(&di##name, &subPage##name);
+static int8 subPage##name = 0; static int8 actItem##name = -1; static bool actItemIsOpened##name = false;                                                                                   \
+static const Page name(&di##name, &subPage##name, &actItem##name, &actItemIsOpened##name);
 
 
 #define DEF_PAGE_11(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN,                                                                                                               \
@@ -149,8 +149,8 @@ static Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, (Item*)&i
                             (Item*)&item7, (Item*)&item8, (Item*)&item9, (Item*)&item10, (Item*)&item11, nullptr};                                                                          \
 static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                                                                                                      \
 static const DataItem di##name = { TypeItem::Page, &keeper, funcActive, th##name, &dp##name};                                                                                               \
-static int8 subPage##name;                                                                                                                                                                  \
-static const Page name(&di##name, &subPage##name);
+static int8 subPage##name = 0; static int8 actItem##name = -1; static bool actItemIsOpened##name = false;                                                                                   \
+static const Page name(&di##name, &subPage##name, &actItem##name, &actItemIsOpened##name);
 
 
 #define DEF_PAGE_12(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN,                                                                                                               \
@@ -160,8 +160,8 @@ static Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, (Item*)&i
                             (Item*)&item7, (Item*)&item8, (Item*)&item9, (Item*)&item10, (Item*)&item11, (Item*)&item12, nullptr};                                                          \
 static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                                                                                                      \
 static const DataItem di##name = { TypeItem::Page, keeper, funcActive, th##name, &dp##name};                                                                                                \
-static int8 subPage##name;                                                                                                                                                                  \
-static const Page name(&di##name, &subPage##name);
+static int8 subPage##name = 0; static int8 actItem##name = -1; static bool actItemIsOpened##name = false;                                                                                   \
+static const Page name(&di##name, &subPage##name, &actItem##name, &actItemIsOpened##name);
 
 
 #define DEF_CHOICE_2(name, keeper, titleRU, titleEN, hintRU, hintEN, nameRu1, nameEn1, nameRu2, nameEn2, cell, funcActive, funcChanged, funcDraw)   \

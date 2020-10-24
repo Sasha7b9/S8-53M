@@ -27,7 +27,9 @@ static const DataPage emptyDataPage = { NamePage::Empty, &itemsPage[0], nullptr,
 const char *titleHint[4] = { "", "", "", "" };
 static const DataItem emptyDataItem = { TypeItem::None, nullptr, nullptr, titleHint, &emptyDataPage };
 static int8 subPageEmpty = 0;
-Page Page::empty(&emptyDataItem, &subPageEmpty);
+static int8 actItemEmpty = -1;
+static bool actItemIsOpenedEmpty = false;
+Page Page::empty(&emptyDataItem, &subPageEmpty, &actItemEmpty, &actItemIsOpenedEmpty);
 
 bool Governor::inMoveIncrease = false;
 bool Governor::inMoveDecrease = false;
@@ -519,9 +521,9 @@ Item *Page::RetLastOpened(TypeItem::E *type)
 {
     if (CurrentItemIsOpened())
     {
-        int8 posActItem = PosCurrentItem();
-        Item *item = GetItem(posActItem);
-        TypeItem::E typeLocal = GetItem(posActItem)->Type();
+        int8 actItem = PosCurrentItem();
+        Item *item = GetItem(actItem);
+        TypeItem::E typeLocal = GetItem(actItem)->Type();
         if (typeLocal == TypeItem::Page)
         {
             return ((Page *)item)->RetLastOpened(type);
