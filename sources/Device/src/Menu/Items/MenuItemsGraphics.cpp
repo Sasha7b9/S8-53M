@@ -84,7 +84,7 @@ void Governor::DrawLowPart(int x, int y) const
     DrawVolumeButton(x + 1, y + 17, Item::WIDTH_VALUE + 2, Item::HEIGHT_VALUE + 3, 2, Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true);
 
     x = Text("\x80").Draw(x + 4, y + 21, colorTextDown);
-    if(Menu::OpenedItem() != this)
+    if(!Menu::IsOpenedItem(this))
     {
         float delta = Step();
         if(delta == 0.0F) //-V2550 //-V550
@@ -129,7 +129,7 @@ void IPaddress::DrawLowPart(int x, int y) const
 
     std::sprintf(buffer, "%03d.%03d.%03d.%03d", *own->ip0, *own->ip1, *own->ip2, *own->ip3);
 
-    if (Menu::OpenedItem() != this)
+    if (!Menu::IsOpenedItem(this))
     {
         Text(buffer).Draw(x + 4, y + 21, colorTextDown);
     }
@@ -151,7 +151,7 @@ void MACaddress::DrawLowPart(int x, int y) const
 
     std::sprintf(buffer, "%02X.%02X.%02X.%02X.%02X.%02X", *own->mac0, *own->mac1, *own->mac2, *own->mac3, *own->mac4, *own->mac5);
 
-    if (Menu::OpenedItem() != this)
+    if (!Menu::IsOpenedItem(this))
     {
 
         Text(buffer).Draw(x + 4, y + 21, colorTextDown);

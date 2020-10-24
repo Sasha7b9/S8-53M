@@ -448,7 +448,7 @@ void Menu::ProcessingRegulatorSet()
         return;
     }
 
-    if (Menu::IsShown() || OpenedItem()->Type() != TypeItem::Page)
+    if (Menu::IsShown() || !OpenedItem()->IsPage())
     {
         Item *item = CurrentItem();
         if (OpenedItem()->IsPage() && (item->IsChoiceReg() || item->IsGovernor() || item->IsIP() || item->IsMAC()))
@@ -670,13 +670,13 @@ void Menu::Show(bool show)
 
 bool Menu::IsMinimize()
 {
-    return Menu::OpenedItem()->IsPage() && ((const Page *)Menu::OpenedItem())->GetName() >= NamePage::SB_Curs;
+    return OpenedItem()->IsPage() && ((const Page *)Menu::OpenedItem())->GetName() >= NamePage::SB_Curs;
 }
 
 
 void Menu::CurrentPageSBregSet(int angle)
 {
-    Page *page = (Page *)Menu::OpenedItem();
+    const Page *page = OpenedItem()->ReinterpretToPage();
     if (page->OwnData()->funcRegSetSB)
     {
         page->OwnData()->funcRegSetSB(angle);

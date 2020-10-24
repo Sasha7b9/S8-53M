@@ -167,7 +167,7 @@ int16 Governor::PrevValue() const
 
 void Governor::NextPosition()
 {
-    if (Menu::OpenedItem() == this)
+    if (Menu::IsOpenedItem(this))
     {
         CircleIncreaseInt8(&gCurDigit, 0, static_cast<int8>(NumDigits()) - 1);
     }
@@ -273,7 +273,7 @@ void Governor::ShortPress()
     {
         return;
     }
-    if (Menu::OpenedItem() == this)
+    if (Menu::IsOpenedItem(this))
     {
         NextPosition();
     }

@@ -423,7 +423,7 @@ void Choice::ShortPress()
         {
             FuncOnChanged(false);
         }
-        else if (Menu::OpenedItem() != this)
+        else if (!Menu::IsOpenedItem(this))
         {
             SetCurrent(!Menu::IsCurrentItem(this));
         }
@@ -459,7 +459,7 @@ void TimeItem::ShortPress()
 
 void IPaddress::ShortPress()
 {
-    if (Menu::OpenedItem() == this)
+    if (Menu::IsOpenedItem(this))
     {
         NextPosition();
     }
@@ -472,7 +472,7 @@ void GovernorColor::ShortPress()
     {
         return;
     }
-    if (Menu::OpenedItem() == this)
+    if (Menu::IsOpenedItem(this))
     {
         CircleIncreaseInt8(&(OwnData()->colorType->currentField), 0, 3);
     }
@@ -485,7 +485,7 @@ void GovernorColor::ShortPress()
 
 void MACaddress::ShortPress()
 {
-    if (Menu::OpenedItem() == this)
+    if (Menu::IsOpenedItem(this))
     {
         CircleIncreaseInt8(&gCurDigit, 0, 5);
     }
@@ -563,7 +563,7 @@ void Item::Change(int delta)
     else if (IsGovernor())
     {
         Governor *governor = (Governor *)this;
-        if (Menu::OpenedItem() != governor)
+        if (!Menu::IsOpenedItem(governor))
         {
             governor->StartChange(delta);
         }
