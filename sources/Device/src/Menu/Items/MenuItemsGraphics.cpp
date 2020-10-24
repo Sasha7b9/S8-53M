@@ -709,14 +709,6 @@ void Page::DrawOpened(int yTop)
     {
         int8 posCurItem = GetPositionActItem();
         Item *item = GetItem(posCurItem);
-        for (int i = 0; i < 5; i++)
-        {
-            if (Menu::itemUnderButton[i + Key::F1] != item)
-            {
-                Menu::itemUnderButton[i + Key::F1] = 0;
-            }
-        }
-
         item->Draw(Page::X(), OpenedPosY(), true);
     }
     else
@@ -781,8 +773,6 @@ void Page::DrawTitle(int yTop)
         Char(GetSymbolForGovernor()).Draw4SymbolsInRect(x + 4, yTop + 11, colorText);
     }
     
-    Menu::itemUnderButton[GetFuncButtonFromY(yTop)] = this;
-    
     delta = 0;
     
     Color::SetCurrent(colorText);
@@ -802,7 +792,6 @@ void Page::DrawItems(int yTop) const
         int top = yTop + Item::HEIGHT * count;
         item->Draw(Page::X(), top);
         count++;
-        Menu::itemUnderButton[GetFuncButtonFromY(top)] = item;
     }
 }
 

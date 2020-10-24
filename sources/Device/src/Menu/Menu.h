@@ -78,12 +78,6 @@ public:
     static bool showDebugMenu;
     static bool needClosePageSB;    // Если 1, нужно закрывать страницу малых кнопок
 
-    // Здесь хранится адрес элемента меню, соответствующего функциональной клавише [1..5], если она находится в нижнем положении, и 0, если ни одна кнопка не нажата.
-    static Item *itemUnderKey;
-
-    static Item *itemUnderButton[Key::Count];
-
-
 private:
 
     // Обработка короткого нажатия кнопки.
@@ -106,8 +100,6 @@ private:
 
     static bool NeedForFireSetLED();
 
-    static void ResetItemsUnderButton();
-   
     static void OpenFileManager();
 
     // Обработка события таймера автоматического сокрытия меню.

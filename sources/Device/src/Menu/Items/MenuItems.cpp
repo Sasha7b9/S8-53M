@@ -498,7 +498,6 @@ void SmallButton::ShortPress()
     if (func)
     {
         func();
-        Menu::itemUnderKey = this;
     }
 }
 

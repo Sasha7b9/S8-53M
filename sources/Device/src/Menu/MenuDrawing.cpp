@@ -14,9 +14,6 @@
 using namespace Primitives;
 
 
-Item *Menu::itemUnderButton[Key::Count];
-
-
 static void DrawHintItem(int x, int y, int width)
 {
     if (!PageHelpContent::itemHint)
@@ -64,7 +61,6 @@ void Menu::Draw()
 {
     if(Menu::IsShown() || !OpenedItem()->IsPage())
     {
-        ResetItemsUnderButton();
         Item *item = OpenedItem();
         if(Menu::IsShown())
         {
@@ -115,18 +111,9 @@ void Menu::Draw()
 }
 
 
-Item* Menu::ItemUnderButton(Key::E button)
+Item* Menu::ItemUnderButton(Key::E)
 {
-    return itemUnderButton[button];
-}
-
-
-void Menu::ResetItemsUnderButton()
-{
-    for(int i = 0; i < Key::Count; i++)
-    {
-        itemUnderButton[i] = 0;
-    }
+    return nullptr;
 }
 
 

@@ -24,7 +24,6 @@ static int angleRegSet = 0;
 
 static const int stepAngleRegSet = 2;
 
-Item *Menu::itemUnderKey = nullptr;
 bool Menu::showHelpHints = false;
 bool Menu::showDebugMenu = false;
 bool Menu::needClosePageSB = false;
@@ -267,7 +266,7 @@ void Menu::Event::RotateRegSetLeft()
 
 Item* Menu::ItemUnderKey()
 {
-    return itemUnderKey;
+    return nullptr;
 };
 
 
@@ -496,13 +495,7 @@ void Menu::ProcessingPressButton()
     {
         FPGA::OnPressStartStop();
     } 
-    else if((pressButton >= Key::F1 && pressButton <= Key::F5) || pressButton == Key::Menu)
-    {
-        if (pressButton != Key::Menu)
-        {
-            itemUnderKey = ItemUnderButton(pressButton);
-        }
-    }
+
     pressButton = Key::None;
 }
 
@@ -511,7 +504,6 @@ void Menu::ProcessingReleaseButton()
 {
     if(releaseButton >= Key::F1 && releaseButton <= Key::F5 || pressButton == Key::Menu)
     {
-        itemUnderKey = 0;
         releaseButton = Key::None;
     }
 }
