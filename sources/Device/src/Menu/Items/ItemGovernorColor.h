@@ -16,14 +16,14 @@ public:
         return static_cast<const DataGovernorColor *>(data->ad);
     }
 
-    virtual void Draw(int x, int y, bool opened = false);
+    virtual void Draw(int x, int y, bool opened = false) const;
     // »зменить €ркость цвета в governor
     void ChangeValue(int delta);
 
     virtual void ShortPress();
 
 private:
-    void DrawOpened(int x, int y);
-    void DrawClosed(int x, int y);
-    void DrawValue(int x, int y, int delta);
+    void DrawOpened(int x, int y) const;
+    void DrawClosed(int x, int y) const;
+    void DrawValue(int x, int y, int delta) const;
 };

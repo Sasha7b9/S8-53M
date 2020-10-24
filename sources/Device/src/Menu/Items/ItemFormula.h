@@ -32,7 +32,7 @@ public:
     const DataFormula *OwnData() const {
         return reinterpret_cast<const DataFormula *>(data->ad);
     }
-    virtual void Draw(int x, int y, bool opened = false);
+    virtual void Draw(int x, int y, bool opened = false) const;
 private:
     void DrawClosed(int x, int y) const;
     void DrawLowPart(int x, int y) const;

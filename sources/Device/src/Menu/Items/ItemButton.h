@@ -15,7 +15,7 @@ public:
     const DataButton *OwnData() const {
         return static_cast<const DataButton *>(data->ad);
     }
-    virtual void Draw(int x, int y, bool opened = false);
+    virtual void Draw(int x, int y, bool opened = false) const;
     // Обработка короткого нажатия
     virtual void ShortPress();
 

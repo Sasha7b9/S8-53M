@@ -280,7 +280,7 @@ void Governor::DrawValue(int x, int y) const
     }
 }
 
-void IPaddress::DrawValue(int x, int y)
+void IPaddress::DrawValue(int x, int y) const
 {
     const DataIPaddress *own = OwnData();
 
@@ -317,7 +317,7 @@ void IPaddress::DrawValue(int x, int y)
     }
 }
 
-void MACaddress::DrawValue(int x, int y)
+void MACaddress::DrawValue(int x, int y) const
 {
     if (gCurDigit > 5)
     {
@@ -340,7 +340,7 @@ void MACaddress::DrawValue(int x, int y)
     }
 }
 
-void Governor::Draw(int x, int y, bool opened)
+void Governor::Draw(int x, int y, bool opened) const
 {
     if (OwnData()->funcBeforeDraw)
     {
@@ -356,7 +356,7 @@ void Governor::Draw(int x, int y, bool opened)
     }
 }
 
-void IPaddress::Draw(int x, int y, bool opened)
+void IPaddress::Draw(int x, int y, bool opened) const
 {
     if (opened)
     {
@@ -368,7 +368,7 @@ void IPaddress::Draw(int x, int y, bool opened)
     }
 }
 
-void MACaddress::Draw(int x, int y, bool opened)
+void MACaddress::Draw(int x, int y, bool opened) const
 {
     if (opened)
     {
@@ -380,7 +380,7 @@ void MACaddress::Draw(int x, int y, bool opened)
     }
 }
 
-void Formula::Draw(int x, int y, bool opened)
+void Formula::Draw(int x, int y, bool opened) const
 {
     if (opened)
     {
@@ -392,7 +392,7 @@ void Formula::Draw(int x, int y, bool opened)
     }
 }
 
-void GovernorColor::DrawValue(int x, int y, int delta)
+void GovernorColor::DrawValue(int x, int y, int delta) const
 {
     const DataGovernorColor *own = OwnData();
 
@@ -427,7 +427,7 @@ void GovernorColor::DrawValue(int x, int y, int delta)
     
 }
 
-void GovernorColor::DrawOpened(int x, int y)
+void GovernorColor::DrawOpened(int x, int y) const
 {
     static const int delta = 43;
     x -= delta;
@@ -440,14 +440,14 @@ void GovernorColor::DrawOpened(int x, int y)
     DrawValue(x + 1, y + 19, delta);
 }
 
-void GovernorColor::DrawClosed(int x, int y)
+void GovernorColor::DrawClosed(int x, int y) const
 {
     Color_Init(OwnData()->colorType);
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, IsPressed(), true);
     Region(Item::WIDTH_VALUE, Item::HEIGHT_VALUE - 1).Fill(x + 2, y + 20, OwnData()->colorType->color);
 }
 
-void GovernorColor::Draw(int x, int y, bool opened)
+void GovernorColor::Draw(int x, int y, bool opened) const
 {
     if(opened)
     {
@@ -564,13 +564,13 @@ void Governor::DrawOpened(int x, int y) const
     DrawValue(x, y + 22);
 }
 
-void IPaddress::DrawOpened(int x, int y)
+void IPaddress::DrawOpened(int x, int y) const
 {
     GovernorIpCommon_DrawOpened(this, x, y, (OwnData()->port == 0) ? 0 : IPaddress::OPENED_WIDTH);
     DrawValue(x, y + 22);
 }
 
-void MACaddress::DrawOpened(int x, int y)
+void MACaddress::DrawOpened(int x, int y) const
 {
     GovernorIpCommon_DrawOpened(this, x, y, 0);
     DrawValue(x, y + 22);
@@ -600,7 +600,7 @@ void Choice::DrawClosed(int x, int y) const
     FuncForDraw(x, y);
 }
 
-void Choice::Draw(int x, int y, bool opened)
+void Choice::Draw(int x, int y, bool opened) const
 {
     if(opened)
     {
@@ -639,7 +639,7 @@ void TimeItem::DrawClosed(int x, int y) const
     Text(Int2String((int)time.year, false, 2, buffer)).Draw(x + startX + 2 * deltaField + 2 * deltaSeparator, y);
 }
 
-void TimeItem::Draw(int x, int y, bool opened)
+void TimeItem::Draw(int x, int y, bool opened) const
 {
     if(opened)
     {
@@ -651,7 +651,7 @@ void TimeItem::Draw(int x, int y, bool opened)
     }
 }
 
-void Button::Draw(int x, int y, bool)
+void Button::Draw(int x, int y, bool) const
 {
     bool pressed = IsPressed();
 
@@ -665,7 +665,7 @@ void Button::Draw(int x, int y, bool)
     Text(Title()).DrawInCenterRect(x + delta, y + delta, Item::WIDTH, Item::HEIGHT, color);
 }
 
-void SmallButton::Draw(int x, int y, bool)
+void SmallButton::Draw(int x, int y, bool) const
 {
     if (IsActive())
     {
@@ -687,7 +687,7 @@ void SmallButton::Draw(int x, int y, bool)
     }
 }
 
-void Page::Draw(int x, int y, bool)
+void Page::Draw(int x, int y, bool) const
 {
     bool isPressed = IsPressed();
     HLine().Draw(y + 1, x, x + Item::WIDTH, Color::BorderMenu());
@@ -708,7 +708,7 @@ void Page::DrawOpened(int yTop)
     if (CurrentItemIsOpened())
     {
         int8 posCurItem = GetPositionActItem();
-        Item *item = GetItem(posCurItem);
+        const Item *item = GetItem(posCurItem);
         item->Draw(Page::X(), OpenedPosY(), true);
     }
     else
@@ -788,7 +788,7 @@ void Page::DrawItems(int yTop) const
     int count = 0;
     for (int posItem = posFirstItem; posItem <= posLastItem; posItem++)
     {
-        Item *item = GetItem(posItem);
+        const Item *item = GetItem(posItem);
         int top = yTop + Item::HEIGHT * count;
         item->Draw(Page::X(), top);
         count++;

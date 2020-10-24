@@ -23,7 +23,7 @@ public:
         return static_cast<const DataIPaddress *>(data->ad);
     }
 
-    virtual void Draw(int x, int y, bool opened = false);
+    virtual void Draw(int x, int y, bool opened = false) const;
 
     // ѕри открытом элементе переставл€ет курсор на следующую позицию
     void NextPosition() const;
@@ -33,11 +33,11 @@ public:
 
     void DrawLowPart(int x, int y) const;
 
-    void DrawValue(int x, int y);
+    void DrawValue(int x, int y) const;
 
     void DrawClosed(int x, int y) const;
 
-    void DrawOpened(int x, int y);
+    void DrawOpened(int x, int y) const;
 
     // ¬озвращает номер текущего байта (4 - номер порта) и номер текущей позиции в байте.
     static void GetNumPosIPvalue(int *numIP, int *selPos);

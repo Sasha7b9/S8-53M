@@ -22,7 +22,7 @@ static TimeStructChoice tsChoice;
 
 DataItem Item::emptyData = { TypeItem::None, nullptr, nullptr, nullptr, nullptr };
 Item Item::empty;
-static Item *itemsPage[] = { &Item::empty, nullptr };
+static const Item *itemsPage[] = { &Item::empty, nullptr };
 static const DataPage emptyDataPage = { NamePage::Empty, &itemsPage[0], nullptr, nullptr };
 const char *titleHint[4] = { "", "", "", "" };
 static const DataItem emptyDataItem = { TypeItem::None, nullptr, nullptr, titleHint, &emptyDataPage };
@@ -296,7 +296,7 @@ bool Item::IsActive() const
 }
 
 
-Item *Page::GetItem(int numElement) const
+const Item *Page::GetItem(int numElement) const
 {
     return OwnData()->items[numElement + (IsPageSB() ? 1 : 0)];
 }
@@ -538,7 +538,7 @@ const Item *Page::RetLastOpened() const
     if (CurrentItemIsOpened())
     {
         int8 pActItem = GetPositionActItem();
-        Item *item = GetItem(pActItem);
+        const Item *item = GetItem(pActItem);
         if (GetItem(pActItem)->IsPage())
         {
             return ((Page *)item)->RetLastOpened();

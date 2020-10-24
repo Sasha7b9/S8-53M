@@ -22,15 +22,15 @@ public:
         return static_cast<const DataMACaddress *>(data->ad);
     }
 
-    virtual void Draw(int x, int y, bool opened = false);
+    virtual void Draw(int x, int y, bool opened = false) const;
 
     void ChangeValue(int delta);
 
     void DrawLowPart(int x, int y) const;
 
-    void DrawValue(int x, int y);
+    void DrawValue(int x, int y) const;
 
-    void DrawOpened(int x, int y);
+    void DrawOpened(int x, int y) const;
 
     void DrawClosed(int x, int y) const;
 

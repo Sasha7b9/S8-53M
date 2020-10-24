@@ -39,7 +39,7 @@ public:
 
     void FuncForDraw(int x, int y) const;
 
-    virtual void Draw(int x, int y, bool opened = false);
+    virtual void Draw(int x, int y, bool opened = false) const;
     // Обработка короткого нажатия
     virtual void ShortPress();
 

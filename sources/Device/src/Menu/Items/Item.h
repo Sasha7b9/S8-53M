@@ -96,7 +96,7 @@ public:
     // Обработка длинного нажатия на элемент меню item.
     virtual void LongPress();
 
-    virtual void Draw(int, int, bool = false) {};
+    virtual void Draw(int, int, bool = false) const {};
 
 protected:
     static int8 gCurDigit;

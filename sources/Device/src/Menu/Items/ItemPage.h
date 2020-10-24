@@ -4,7 +4,7 @@
 struct DataPage
 {
     NamePage::E  name;
-    Item **items;
+    const Item **items;
     pFuncVV      funcOnPress;
     pFuncVV      funcOnDraw;
     pFuncVI      funcRegSetSB;
@@ -24,12 +24,12 @@ public:
     const DataPage *OwnData() const {
         return static_cast<const DataPage *>(data->ad);
     }
-    virtual void Draw(int x, int y, bool opened = false);
+    virtual void Draw(int x, int y, bool opened = false) const;
     NamePage::E GetName() const;
     // Возвращает количество элементов в странице по адресу page.
     int NumItems() const;
     // Возвращает адрес элемента меню заданной страницы.
-    Item *GetItem(int numElement) const;
+    const Item *GetItem(int numElement) const;
     // Dозвращает число подстраниц в странице по адресу page.
     int NumSubPages() const;
 

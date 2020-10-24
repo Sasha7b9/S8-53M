@@ -28,7 +28,7 @@ public:
     int16 NextValue() const;            // Возвращает следующее большее значение, которое может принять governor.
     int16 PrevValue() const;            // Возвращает следующее меньшее значение, которое может принять governor.
 
-    virtual void Draw(int x, int y, bool opened = false);
+    virtual void Draw(int x, int y, bool opened = false) const;
     void Draw(int x, int y);
 
     static Item *address;
