@@ -79,11 +79,11 @@ void Menu::Draw()
         }
         else
         {
-            if(item->Type() == TypeItem::Choice)
+            if(item->IsChoice())
             {
                 ((Choice *)item)->Draw(Page::X(), Grid::TOP, true);
             }
-            else if(item->Type() == TypeItem::Governor)
+            else if(item->IsGovernor())
             {
                 ((Governor *)item)->Draw(Page::X(), Grid::TOP, true);
             }

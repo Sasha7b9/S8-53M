@@ -378,7 +378,7 @@ void Page::ShortPress()
 
 void Choice::ShortPress()
 {
-    if (Type() == TypeItem::Choice)
+    if (IsChoice())
     {
         if (!IsActive())
         {
@@ -533,12 +533,11 @@ Item *Page::RetLastOpened(TypeItem::E *type)
 
 void Item::Change(int delta)
 {
-    TypeItem::E type = Type();
-    if (type == TypeItem::Choice || type == TypeItem::ChoiceReg)
+    if (IsChoice() || IsChoiceReg())
     {
         ((Choice *)this)->StartChange(delta);
     }
-    else if (type == TypeItem::Governor)
+    else if (IsGovernor())
     {
         Governor *governor = (Governor *)this;
         if (Menu::OpenedItem() != governor)
@@ -550,7 +549,7 @@ void Item::Change(int delta)
             governor->ChangeValue(delta);
         }
     }
-    else if (type == TypeItem::GovernorColor)
+    else if (IsGovernorColor())
     {
         ((GovernorColor *)this)->ChangeValue(delta);
     }
