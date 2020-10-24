@@ -35,7 +35,7 @@ bool Menu::IsCurrentItem(const Item *item)
 void Menu::CloseOpenedItem()
 {
     Item *item = OpenedItem();
-    if(OpenedItem()->Type() == TypeItem::Page)
+    if(item->IsPage())
     {
         if (((const Page *)item)->IsPageSB())                                   // Для страницы малых кнопок
         {

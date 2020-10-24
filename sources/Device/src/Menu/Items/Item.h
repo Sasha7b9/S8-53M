@@ -68,14 +68,16 @@ public:
     // Возвращает изображение регулятора, соответствующее его текущему положению.
     char GetSymbolForGovernor() const;
 
-    bool IsPage() const        { return data->type == TypeItem::Page; }
-    bool IsChoice() const      { return data->type == TypeItem::Choice; }
-    bool IsChoiceReg() const   { return data->type == TypeItem::ChoiceReg; }
-    bool IsGovernor() const    { return data->type == TypeItem::Governor; }
-    bool IsButton() const      { return data->type == TypeItem::Button; }
-    bool IsSmallButton() const { return data->type == TypeItem::SmallButton; }
-    bool IsIP() const          { return data->type == TypeItem::IP; }
-    bool IsTime() const        { return data->type == TypeItem::Time; }
+    bool IsPage() const          { return data->type == TypeItem::Page; }
+    bool IsChoice() const        { return data->type == TypeItem::Choice; }
+    bool IsChoiceReg() const     { return data->type == TypeItem::ChoiceReg; }
+    bool IsGovernor() const      { return data->type == TypeItem::Governor; }
+    bool IsGovernorColor() const { return data->type == TypeItem::GovernorColor; }
+    bool IsButton() const        { return data->type == TypeItem::Button; }
+    bool IsSmallButton() const   { return data->type == TypeItem::SmallButton; }
+    bool IsIP() const            { return data->type == TypeItem::IP; }
+    bool IsMAC() const           { return data->type == TypeItem::MAC; }
+    bool IsTime() const          { return data->type == TypeItem::Time; }
 
     const TimeItem *ReinterpretToTime()     const { return (TimeItem *)this; }
     const Governor *ReinterpretToGovernor() const { return (Governor *)this; }

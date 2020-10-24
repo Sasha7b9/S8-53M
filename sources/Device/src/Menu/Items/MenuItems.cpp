@@ -336,9 +336,8 @@ void Item::SetCurrent(bool active) const
 
 bool Item::IsOpened() const
 {
-    TypeItem::E type = Type();
     Page* page = Keeper();
-    if (type == TypeItem::Page)
+    if (IsPage())
     {
         return page->CurrentItemIsOpened();
     }
@@ -518,8 +517,7 @@ Item *Page::RetLastOpened(TypeItem::E *type)
     {
         int8 actItem = GetPositionActItem();
         Item *item = GetItem(actItem);
-        TypeItem::E typeLocal = GetItem(actItem)->Type();
-        if (typeLocal == TypeItem::Page)
+        if (GetItem(actItem)->IsPage())
         {
             return ((Page *)item)->RetLastOpened(type);
         }
@@ -593,25 +591,23 @@ bool Item::ChangeOpened(int delta)
         return false;
     }
 
-    TypeItem::E type = Type();
-
-    if (type == TypeItem::Page)
+    if (IsPage())
     {
         ((const Page *)this)->ChangeSubPage(delta);
     }
-    else if (type == TypeItem::IP)
+    else if (IsIP())
     {
         ((IPaddress *)this)->ChangeValue(delta);
     }
-    else if (type == TypeItem::MAC)
+    else if (IsMAC())
     {
         ((MACaddress *)this)->ChangeValue(delta);
     }
-    else if (type == TypeItem::ChoiceReg || type == TypeItem::Choice)
+    else if (IsChoiceReg() || IsChoice())
     {
         ((Choice *)this)->ChangeValue(delta);
     }
-    else if (type == TypeItem::Governor)
+    else if (IsGovernor())
     {
         ((Governor *)this)->ChangeValue(delta);
     }
@@ -622,15 +618,14 @@ bool Item::ChangeOpened(int delta)
 
 int Item::HeightOpened() const
 {
-    TypeItem::E type = Type();
-    if (type == TypeItem::Page)
+    if (IsPage())
     {
         int numItems = ((const Page *)this)->NumItems() - ((Page *)this)->GetCurrentSubPage() * Menu::ITEMS_ON_DISPLAY;
         LIMITATION(numItems, numItems, 0, Menu::ITEMS_ON_DISPLAY);
         return Item::TITLE_HEIGHT + Item::HEIGHT * numItems;
     }
-    else if (type == TypeItem::Choice || type == TypeItem::ChoiceReg)
-    {
+    else if (IsChoice() || IsChoiceReg())
+    { 
         return Item::OPENED_HEIGHT_TITLE + ((Choice *)this)->NumSubItems() * Item::OPENED_HEIGHT - 1;
     }
     return Item::HEIGHT;

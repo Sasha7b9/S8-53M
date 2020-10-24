@@ -451,8 +451,7 @@ void Menu::ProcessingRegulatorSet()
     if (Menu::IsShown() || OpenedItem()->Type() != TypeItem::Page)
     {
         Item *item = CurrentItem();
-        TypeItem::E type = item->Type();
-        if (OpenedItem()->Type() == TypeItem::Page && (type == TypeItem::ChoiceReg || type == TypeItem::Governor || type == TypeItem::IP || type == TypeItem::MAC))
+        if (OpenedItem()->IsPage() && (item->IsChoiceReg() || item->IsGovernor() || item->IsIP() || item->IsMAC()))
         {
             if (angleRegSet > stepAngleRegSet || angleRegSet < -stepAngleRegSet)
             {
@@ -464,12 +463,11 @@ void Menu::ProcessingRegulatorSet()
         else
         {
             item = OpenedItem();
-            type = item->Type();
             if (Menu::IsMinimize())
             {
                 CurrentPageSBregSet(angleRegSet);
             }
-            else if (type == TypeItem::Page || type == TypeItem::IP || type == TypeItem::MAC || type == TypeItem::Choice || type == TypeItem::ChoiceReg || type == TypeItem::Governor)
+            else if (item->IsPage() || item->IsIP() || item->IsMAC() || item->IsChoice() || item->IsChoiceReg() || item->IsGovernor())
             {
                 if (item->ChangeOpened(angleRegSet))
                 {
@@ -477,11 +475,11 @@ void Menu::ProcessingRegulatorSet()
                 }
                 return;
             }
-            else if (type == TypeItem::GovernorColor)
+            else if (item->IsGovernorColor())
             {
                 item->Change(angleRegSet);
             }
-            else if (type == TypeItem::Time)
+            else if (item->IsTime())
             {
                 angleRegSet > 0 ? ((TimeItem *)item)->IncCurrentPosition() : ((TimeItem *)item)->DecCurrentPosition();
             }
@@ -569,10 +567,8 @@ bool Menu::NeedForFireSetLED()    // Возвращает true, если лампочка УСТАНОВКА до
         return true;
     }
 
-    TypeItem::E typeOpenedItem = OpenedItem()->Type();
-    if (typeOpenedItem == TypeItem::Choice       ||
-        (typeOpenedItem == TypeItem::Page && ((Page *)OpenedItem())->NumSubPages() > 1)
-        )
+    if (OpenedItem()->IsChoice()  ||
+        (OpenedItem()->IsPage() && (OpenedItem()->ReinterpretToPage()->NumSubPages() > 1)))
     {
         return true;
     }
@@ -676,7 +672,7 @@ void Menu::Show(bool show)
 
 bool Menu::IsMinimize()
 {
-    return Menu::OpenedItem()->Type() == TypeItem::Page && ((const Page *)Menu::OpenedItem())->GetName() >= NamePage::SB_Curs;
+    return Menu::OpenedItem()->IsPage() && ((const Page *)Menu::OpenedItem())->GetName() >= NamePage::SB_Curs;
 }
 
 
