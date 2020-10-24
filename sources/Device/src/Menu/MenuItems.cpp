@@ -656,13 +656,13 @@ SmallButton *Page::SmallButonFrom(int numButton) const
 
 int Page::GetCurrentSubPage() const
 {
-    return set.menu.currentSubPage[OwnData()->name];
+    return *currentSubPage;
 }
 
 
 void Page::SetCurrentSubPage(int posSubPage) const
 {
-    set.menu.currentSubPage[OwnData()->name] = static_cast<int8>(posSubPage);
+    *currentSubPage = (int8)posSubPage;
 }
 
 

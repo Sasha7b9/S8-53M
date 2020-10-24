@@ -198,32 +198,31 @@ static const Settings defaultSettings =
     // menu
     {
         {0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f},
-        {   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    0},
         true,
         0
     },
     // debug
     {
-        0,                      // numStrings
-        0,                      // размер шрифта - 5
-        0,                      // consoleInPause
-        BalanceADCtype::Settings,    // balanceADC
-        {0, 5},                 // shiftADC
-        StretchADCtype::Settings,    // stretch
-        {128, 128},             // stretchADC
+        0,                          // numStrings
+        0,                          // размер шрифта - 5
+        0,                          // consoleInPause
+        BalanceADCtype::Settings,   // balanceADC
+        {0, 5},                     // shiftADC
+        StretchADCtype::Settings,   // stretch
+        {128, 128},                 // stretchADC
 //      RShiftADC_Settings,
-        1000,                   // numMeasuresForGates
-        0,                      // shiftT0
-        false,                  // showStats
-        6,                      // numAveForRand
-        false,                  // view altera writting data
-        false,                  // view all altera writting data
-        0,                      // alt shift
+        1000,                       // numMeasuresForGates
+        0,                          // shiftT0
+        false,                      // showStats
+        6,                          // numAveForRand
+        false,                      // view altera writting data
+        false,                      // view all altera writting data
+        0,                          // alt shift
         {
-            false,              // показывать ли флаг готовности
-            false,              // rShift0
-            false,              // rShift1
-            false               // trigLev
+            false,                  // показывать ли флаг готовности
+            false,                  // rShift0
+            false,                  // rShift1
+            false                   // trigLev
         }
     }
 };
