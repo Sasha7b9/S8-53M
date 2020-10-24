@@ -84,7 +84,7 @@ void Display::RotateRShift(Channel::E chan)
         Timer::Enable((chan == Channel::A) ? TypeTimer::ShowLevelRShift0 : TypeTimer::ShowLevelRShift1, TIME_SHOW_LEVELS  * 1000, (chan == Channel::A) ? FuncOnTimerDisableShowLevelRShiftA :
                      FuncOnTimerDisableShowLevelRShiftB);
     };
-    Display::Redraw();
+    Redraw();
 };
 
 
@@ -96,7 +96,7 @@ void Display::FuncOnTimerDisableShowLevelRShiftA()
 
 void Display::FuncOnTimerDisableShowLevelRShiftB()
 {
-    Display::DisableShowLevelRShiftB();
+    DisableShowLevelRShiftB();
 }
 
 
@@ -107,13 +107,13 @@ void Display::RotateTrigLev()
         showLevelTrigLev = true;
         Timer::Enable(TypeTimer::ShowLevelTrigLev, TIME_SHOW_LEVELS * 1000, FuncOnTimerDisableShowLevelTrigLev);
     }
-    Display::Redraw();
+    Redraw();
 }
 
 
 void Display::FuncOnTimerDisableShowLevelTrigLev()
 {
-    Display::DisableShowLevelTrigLev();
+    DisableShowLevelTrigLev();
 }
 
 
@@ -1271,7 +1271,7 @@ void Display::Update(bool endScene)
     {
         if (Painter::SaveScreenToFlashDrive())
         {
-            Display::ShowWarningGood(Warning::FileIsSaved);
+            ShowWarningGood(Warning::FileIsSaved);
         }
         PageMemory::needForSaveToFlashDrive = false;
     }
@@ -1499,7 +1499,7 @@ void Display::DrawGrid(int left, int top, int width, int height)
     if (top == Grid::TOP)
     {
         HLine().Draw(top, 1, left - 2);
-        HLine().Draw(top, right + 2, Display::WIDTH - 2);
+        HLine().Draw(top, right + 2, WIDTH - 2);
 
         if (!Menu::IsMinimize() || !Menu::IsShown())
         {
@@ -1614,7 +1614,7 @@ void Display::DrawCursorTrigLevel()
 
     if (drawRShiftMarkers && !Menu::IsMinimize())
     {
-        DrawScaleLine(Display::WIDTH - 11, true);
+        DrawScaleLine(WIDTH - 11, true);
         int left = Grid::Right() + 9;
         int height = Grid::ChannelHeight() - 2 * DELTA;
         int shiftFullMin = RShiftMin + TrigLevMin;
@@ -1810,7 +1810,7 @@ void Display::DrawMeasures()
 {
     if(!SHOW_MEASURES)
     {
-        Display::topMeasures = Grid::Bottom();
+        topMeasures = Grid::Bottom();
         return;
     }
 
@@ -1963,8 +1963,8 @@ void Display::WriteStringAndNumber(pCHAR text, int x, int y, int number)
 
 void Display::DrawLowPart()
 {
-    int y0 = Display::HEIGHT - 19;
-    int y1 = Display::HEIGHT - 10;
+    int y0 = HEIGHT - 19;
+    int y1 = HEIGHT - 10;
     int x = -1;
 
     HLine().Draw(Grid::ChannelBottom(), 1, Grid::Left() - Measure::GetDeltaGridLeft() - 2, Color::FILL);
@@ -1974,7 +1974,7 @@ void Display::DrawLowPart()
 
     WriteTextVoltage(Channel::B, x + 2, y1);
 
-    VLine().Draw(x + 95, Grid::Bottom() + 2, Display::HEIGHT - 2, Color::FILL);
+    VLine().Draw(x + 95, Grid::Bottom() + 2, HEIGHT - 2, Color::FILL);
 
     x += 98;
     char buffer[100] = {0};
@@ -2050,10 +2050,10 @@ void Display::DrawLowPart()
         Text(buffer).Draw(x + 63, y1);
     }
     
-    VLine().Draw(x + 79, Grid::Bottom() + 2, Display::HEIGHT - 2, Color::FILL);
+    VLine().Draw(x + 79, Grid::Bottom() + 2, HEIGHT - 2, Color::FILL);
 
-    HLine().Draw(Grid::Bottom(), Grid::Right() + 2, Display::WIDTH - 2);
-    HLine().Draw(Grid::ChannelBottom(), Grid::Right() + 2, Display::WIDTH - 2);
+    HLine().Draw(Grid::Bottom(), Grid::Right() + 2, WIDTH - 2);
+    HLine().Draw(Grid::ChannelBottom(), Grid::Right() + 2, WIDTH - 2);
 
     x += 82;
     y0 = y0 - 3;
@@ -2069,7 +2069,7 @@ void Display::DrawLowPart()
     }
 
     x += 42;
-    VLine().Draw(x, Grid::Bottom() + 2, Display::HEIGHT - 2);
+    VLine().Draw(x, Grid::Bottom() + 2, HEIGHT - 2);
 
     Font::Set(TypeFont::S8);
 
@@ -2091,7 +2091,7 @@ void Display::DrawLowPart()
 
     DrawTime(x + 3, Grid::Bottom() + 11);
 
-    HLine().Draw(x + 55, Grid::Bottom() + 2, Display::HEIGHT - 2);
+    HLine().Draw(x + 55, Grid::Bottom() + 2, HEIGHT - 2);
 
     Font::Set(TypeFont::UGO2);
 
@@ -2252,7 +2252,7 @@ void Display::RemoveAddDrawFunction()
 
 void Display::Clear()
 {
-    Region(Display::WIDTH - 1, Display::HEIGHT - 2).Fill(0, 0, Color::BACK);
+    Region(WIDTH - 1, HEIGHT - 2).Fill(0, 0, Color::BACK);
 }
 
 
@@ -2270,7 +2270,7 @@ void Display::ChangedRShiftMarkers()
 
 void Display::FuncOnTimerRShiftMarkersAutoHide()
 {
-    Display::OnRShiftMarkersAutoHide();
+    OnRShiftMarkersAutoHide();
 }
 
 
