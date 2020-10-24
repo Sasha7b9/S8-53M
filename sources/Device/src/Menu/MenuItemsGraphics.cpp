@@ -727,7 +727,7 @@ void Page::DrawOpened(int yTop)
 {
     if (CurrentItemIsOpened())
     {
-        int8 posCurItem = PosCurrentItem();
+        int8 posCurItem = GetPositionActItem();
         Item *item = GetItem(posCurItem);
         for (int i = 0; i < 5; i++)
         {

@@ -192,8 +192,6 @@ public:
     int NumSubPages() const;
 
     bool IsSB() const;
-    // ¬озвращает позицию текущего элемента странцы page.
-    int8 PosCurrentItem() const;
 
     void ChangeSubPage(int delta) const;
 
@@ -217,10 +215,14 @@ public:
     bool CurrentItemIsOpened();
 
     // ”становить позицию активного пункта на странице namePage.
-    void SetPosActItem(int8 pos);
+    void SetPositionActItem(int8 pos);
 
     // ¬озвращает позицию активного пункта на странице namePage.
-    int GetPosActItem() const;
+    int8 GetPositionActItem() const;
+
+    void CloseOpenedItem();
+
+    void OpenActItem();
 
     // ¬озвращает позицию первого элемента страницы по адресу page на экране. ≈сли текуща€ подстраница 0, это будет 0, если текуща€ подстраница 1, это будет 5 и т.д.
     int PosItemOnTop() const;

@@ -237,8 +237,6 @@ TypeItem::E Item::Type() const
 }
 
 
-
-
 int Page::NumItems() const
 {
     if (OwnData()->name == NamePage::MainPage)
@@ -299,12 +297,6 @@ bool Page::IsSB() const
 }
 
 
-int8 Page::PosCurrentItem() const
-{
-    return GetPosActItem() & 0x7f;
-}
-
-
 Page *Item::Keeper() const
 {
     const Page *page = ((Page *)(this))->data->keeper;
@@ -315,7 +307,15 @@ Page *Item::Keeper() const
 void Item::Open(bool open) const
 {
     Page *page = Keeper();
-    page->SetPosActItem(open ? (page->PosCurrentItem() | 0x80) : (page->PosCurrentItem() & 0x7f));
+
+    if (open)
+    {
+        page->OpenActItem();
+    }
+    else
+    {
+        page->CloseOpenedItem();
+    }
 }
 
 
@@ -324,7 +324,7 @@ void Item::SetCurrent(bool active) const
     Page* page = Keeper();
     if (!active)
     {
-        page->SetPosActItem(0x7f);
+        page->SetPositionActItem(-1);
     }
     else
     {
@@ -332,7 +332,7 @@ void Item::SetCurrent(bool active) const
         {
             if (page->GetItem(i) == this)
             {
-                page->SetPosActItem(i);
+                page->SetPositionActItem(i);
                 return;
             }
         }
@@ -348,7 +348,8 @@ bool Item::IsOpened() const
     {
         return page->CurrentItemIsOpened();
     }
-    return (page->GetPosActItem() & 0x80) != 0;
+
+    return page->CurrentItemIsOpened();
 }
 
 
@@ -521,7 +522,7 @@ Item *Page::RetLastOpened(TypeItem::E *type)
 {
     if (CurrentItemIsOpened())
     {
-        int8 actItem = PosCurrentItem();
+        int8 actItem = GetPositionActItem();
         Item *item = GetItem(actItem);
         TypeItem::E typeLocal = GetItem(actItem)->Type();
         if (typeLocal == TypeItem::Page)
@@ -670,23 +671,34 @@ void Page::SetCurrentSubPage(int posSubPage) const
 
 bool Page::CurrentItemIsOpened()
 {
-    return _GET_BIT(GetPosActItem(), 7) == 1;
+    return *actItemIsOpened;
 }
 
 
-void Page::SetPosActItem(int8 pos)
+void Page::SetPositionActItem(int8 pos)
 {
-    set.menu.posActItem[OwnData()->name] = pos;
+    *posActItem = pos;
 }
 
 
-int Page::GetPosActItem() const
+void Page::CloseOpenedItem()
 {
-    const DataPage *d = OwnData();
+    *actItemIsOpened = false;
+}
 
-    NamePage::E name = d->name;
 
-    return set.menu.posActItem[name];
+void Page::OpenActItem()
+{
+    if (*posActItem >= 0)
+    {
+        *actItemIsOpened = true;
+    }
+}
+
+
+int8 Page::GetPositionActItem() const
+{
+    return *posActItem;
 }
 
 

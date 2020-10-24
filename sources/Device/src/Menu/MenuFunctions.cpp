@@ -17,7 +17,7 @@ Item* Menu::CurrentItem()
 {
     TypeItem::E type = TypeItem::None;
     Item *lastOpened = ((Page *)PageMain::self)->RetLastOpened(&type);
-    int8 pos = ((const Page *)lastOpened)->PosCurrentItem();
+    int8 pos = ((const Page *)lastOpened)->GetPositionActItem();
     if(type == TypeItem::Page && pos != 0x7f)
     {
         return ((const Page *)lastOpened)->GetItem(pos);
@@ -41,8 +41,7 @@ void Menu::CloseOpenedItem()
         }
         if(Menu::needClosePageSB)
         {
-            Page *page = item->Keeper();
-            page->SetPosActItem(page->GetPosActItem() & 0x7f);   // Сбрасываем бит 7 - "закрываем" активный пункт страницы namePage
+            item->Keeper()->CloseOpenedItem();
         }
         Menu::needClosePageSB = true;
         if(item == PageMain::self)
