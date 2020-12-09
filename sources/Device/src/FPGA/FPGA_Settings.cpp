@@ -170,8 +170,8 @@ void FPGA::SetRange(Channel::E chan, Range::E range) //-V2506
         {
             float rShiftAbs = RSHIFT_2_ABS(SET_RSHIFT(chan), SET_RANGE(chan));
             float trigLevAbs = RSHIFT_2_ABS(TRIG_LEVEL(chan), SET_RANGE(chan));
-            SET_RSHIFT(chan) = (int16)MathFPGA::RShift2Rel(rShiftAbs, range);
-            TRIG_LEVEL(chan) = (int16)MathFPGA::RShift2Rel(trigLevAbs, range);
+            SET_RSHIFT(chan) = (int16)MathFPGA::RShift2Rel(rShiftAbs, range); //-V2533
+            TRIG_LEVEL(chan) = (int16)MathFPGA::RShift2Rel(trigLevAbs, range); //-V2533
         }
         LoadRange(chan);
     }
@@ -312,7 +312,7 @@ void FPGA::LoadRShift(Channel::E chan)
     rShift = (uint16)(delta + RShiftZero);
 
     rShift = (uint16)(RShiftMax + RShiftMin - rShift);
-    WriteToDAC(chan == Channel::A ? TypeWriteDAC::RShiftA : TypeWriteDAC::RShiftB, (uint16)(mask[chan] | (rShift << 2)));
+    WriteToDAC(chan == Channel::A ? TypeWriteDAC::RShiftA : TypeWriteDAC::RShiftB, (uint16)(mask[chan] | (rShift << 2))); //-V2533
 }
 
 
@@ -368,7 +368,7 @@ void FPGA::SetTShift(int tShift) //-V2506
         Display::ShowWarningBad(Warning::LimitSweep_TShift);
     }
 
-    sTime_SetTShift((int16)tShift);
+    sTime_SetTShift((int16)tShift); //-V2533
     LoadTShift();
     Display::Redraw();
 };
@@ -439,14 +439,14 @@ void FPGA::LoadTShift()
     int additionShift = (k[tBase] == 0) ? 0 : ((tShiftOld % k[tBase]) * 2);
 
     FPGA::SetAdditionShift(additionShift);
-    uint16 post = (uint16)tShift;
-    post = (uint16)(~post);
-    WriteToHardware(WR_POST_LOW, (uint8)post, true);
-    WriteToHardware(WR_POST_HI, (uint8)(post >> 8), true);
-    uint16 pred = (uint16)((tShift > 511) ? 1023 : (511 - post));
-    pred = (uint16)((~(pred - 1)) & 0x1ff);
-    WriteToHardware(WR_PRED_LOW, (uint8)pred, true);
-    WriteToHardware(WR_PRED_HI, (uint8)(pred >> 8), true);
+    uint16 post = (uint16)tShift; //-V2533
+    post = (uint16)(~post); //-V2533
+    WriteToHardware(WR_POST_LOW, (uint8)post, true); //-V2533
+    WriteToHardware(WR_POST_HI, (uint8)(post >> 8), true); //-V2533
+    uint16 pred = (uint16)((tShift > 511) ? 1023 : (511 - post)); //-V2533
+    pred = (uint16)((~(pred - 1)) & 0x1ff); //-V2533
+    WriteToHardware(WR_PRED_LOW, (uint8)pred, true); //-V2533
+    WriteToHardware(WR_PRED_HI, (uint8)(pred >> 8), true); //-V2533
 }
 
 

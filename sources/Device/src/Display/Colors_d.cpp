@@ -8,7 +8,7 @@ Color::E Color::Trig() //-V2506
     TrigSource::E trigChan = TRIG_SOURCE;
     if (trigChan == TrigSource::A || trigChan == TrigSource::B)
     {
-        return Color::Channel((Channel::E)trigChan);
+        return Color::Channel((Channel::E)trigChan); //-V2533
     }
     return Color::FILL;
 }

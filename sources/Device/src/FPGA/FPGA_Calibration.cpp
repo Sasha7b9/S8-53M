@@ -133,9 +133,9 @@ void FPGA::ProcedureCalibration(void)
                 {
                     if (!(mode == 0 && (range == Range::_2mV || range == Range::_5mV || range == Range::_10mV)))
                     {
-                        FPGA::SetModeCouple(Channel::A, (ModeCouple::E)mode);
+                        FPGA::SetModeCouple(Channel::A, (ModeCouple::E)mode); //-V2533
                         RSHIFT_ADD(Channel::A, range, mode) = 0;
-                        RSHIFT_ADD(Channel::A, range, mode) = CalculateAdditionRShift(Channel::A, (Range::E)range);
+                        RSHIFT_ADD(Channel::A, range, mode) = CalculateAdditionRShift(Channel::A, (Range::E)range); //-V2533
                     }
                 }
             }
@@ -169,9 +169,9 @@ void FPGA::ProcedureCalibration(void)
                 {
                     if (!(mode == 0 && (range == Range::_2mV || range == Range::_5mV || range == Range::_10mV)))
                     {
-                        FPGA::SetModeCouple(Channel::B, (ModeCouple::E)mode);
+                        FPGA::SetModeCouple(Channel::B, (ModeCouple::E)mode); //-V2533
                         RSHIFT_ADD(Channel::B, range, mode) = 0;
-                        RSHIFT_ADD(Channel::B, range, mode) = CalculateAdditionRShift(Channel::B, (Range::E)range);
+                        RSHIFT_ADD(Channel::B, range, mode) = CalculateAdditionRShift(Channel::B, (Range::E)range); //-V2533
                     }
                 }
             }
@@ -350,8 +350,8 @@ float CalculateDeltaADC(Channel::E chan, float *avgADC1, float *avgADC2, float *
     bar->passedTime = 0;
     bar->fullTime = 0;
 
-    FPGA::SetTrigSource((TrigSource::E)chan);
-    FPGA::SetTrigLev((TrigSource::E)chan, TrigLevZero);
+    FPGA::SetTrigSource((TrigSource::E)chan); //-V2533
+    FPGA::SetTrigLev((TrigSource::E)chan, TrigLevZero); //-V2533
 
     pUCHAR address1 = chan == Channel::A ? RD_ADC_A1 : RD_ADC_B1;
     pUCHAR address2 = chan == Channel::A ? RD_ADC_A2 : RD_ADC_B2;
@@ -384,7 +384,7 @@ float CalculateDeltaADC(Channel::E chan, float *avgADC1, float *avgADC2, float *
         }
         
         bar->passedTime = static_cast<float>(gTimerMS - *startTime);
-        bar->fullTime = bar->passedTime * (float)numCicles / (cicle + 1);
+        bar->fullTime = bar->passedTime * (float)numCicles / (cicle + 1); //-V2533
     }
 
     *avgADC1 /= (FPGA_MAX_POINTS * numCicles);
@@ -414,7 +414,7 @@ int16 CalculateAdditionRShift(Channel::E chan, Range::E range) //-V2506
     FPGA::SetTBase(TBase::_200us);
     FPGA::SetTrigSource(chan == Channel::A ? TrigSource::A : TrigSource::B);
     FPGA::SetTrigPolarity(TrigPolarity::Front);
-    FPGA::SetTrigLev((TrigSource::E)chan, TrigLevZero);
+    FPGA::SetTrigLev((TrigSource::E)chan, TrigLevZero); //-V2533
 
     FPGA::WriteToHardware(WR_UPR, BINARY_U8(00000000), false);   // Устанавливаем выход калибратора в ноль //-V2501
 
@@ -461,7 +461,7 @@ int16 CalculateAdditionRShift(Channel::E chan, Range::E range) //-V2506
         }
     }
 
-    float aveValue = (float)sum / numPoints;
+    float aveValue = (float)sum / numPoints; //-V2533
     int16 retValue = static_cast<int16>(-(aveValue - AVE_VALUE) * 2);
 
     if(retValue < - 100 || retValue > 100)
@@ -478,8 +478,8 @@ float CalculateKoeffCalibration(Channel::E chan) //-V2506
 
     FPGA::SetRShift(chan, RShiftZero - 40 * 4);
     FPGA::SetModeCouple(chan, ModeCouple::DC);
-    FPGA::SetTrigSource((TrigSource::E)chan);
-    FPGA::SetTrigLev((TrigSource::E)chan, TrigLevZero + 40 * 4);
+    FPGA::SetTrigSource((TrigSource::E)chan); //-V2533
+    FPGA::SetTrigLev((TrigSource::E)chan, TrigLevZero + 40 * 4); //-V2533
     
     int numMeasures = 16;
     int sumMIN = 0;
@@ -544,8 +544,8 @@ float CalculateKoeffCalibration(Channel::E chan) //-V2506
         }
     }
 
-    float aveMin = (float)sumMIN / (float)numMIN;
-    float aveMax = (float)sumMAX / (float)numMAX;
+    float aveMin = (float)sumMIN / (float)numMIN; //-V2533
+    float aveMax = (float)sumMAX / (float)numMAX; //-V2533
 
     float retValue = 160.0F / (aveMax - aveMin);
 

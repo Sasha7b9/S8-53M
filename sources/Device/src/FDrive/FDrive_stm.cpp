@@ -50,7 +50,7 @@ void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
             FDrive::isConnected = true;
             FM::Init();
             FDrive::ChangeState();
-            if (f_mount(&USBDISKFatFs, (TCHAR const*)USBDISKPath, 0) != FR_OK)
+            if (f_mount(&USBDISKFatFs, (TCHAR const*)USBDISKPath, 0) != FR_OK) //-V2533
             {
                 //LOG_ERROR("Не могу примонтировать диск");
             }
@@ -58,7 +58,7 @@ void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
         case HOST_USER_CLASS_SELECTED:
             break;
         case HOST_USER_CONNECTION:
-            f_mount(NULL, (TCHAR const*)"", 0);
+            f_mount(NULL, (TCHAR const*)"", 0); //-V2533
             break;
         case HOST_USER_DISCONNECTION:
             FDrive::isConnected = false;
@@ -327,13 +327,13 @@ bool FDrive::WriteToFile(uint8* data, int sizeData, StructForWrite *structForWri
             dataToCopy = SIZE_FLASH_TEMP_BUFFER - structForWrite->sizeData;
         }
         sizeData -= dataToCopy;
-        memcpy(structForWrite->tempBuffer + structForWrite->sizeData, data, (uint)dataToCopy);
+        memcpy(structForWrite->tempBuffer + structForWrite->sizeData, data, (uint)dataToCopy); //-V2533
         data += dataToCopy;
         structForWrite->sizeData += dataToCopy;
         if (structForWrite->sizeData == SIZE_FLASH_TEMP_BUFFER)
         {
             uint wr = 0;
-            if (f_write(&structForWrite->fileObj, structForWrite->tempBuffer, (uint)structForWrite->sizeData, &wr) != FR_OK || (uint)structForWrite->sizeData != wr)
+            if (f_write(&structForWrite->fileObj, structForWrite->tempBuffer, (uint)structForWrite->sizeData, &wr) != FR_OK || (uint)structForWrite->sizeData != wr) //-V2533
             {
                 return false;
             }
@@ -350,7 +350,7 @@ bool FDrive::CloseFile(StructForWrite *structForWrite) //-V2506
     if (structForWrite->sizeData != 0)
     {
         uint wr = 0;
-        if (f_write(&structForWrite->fileObj, structForWrite->tempBuffer, (uint)structForWrite->sizeData, &wr) != FR_OK || (uint)structForWrite->sizeData != wr)
+        if (f_write(&structForWrite->fileObj, structForWrite->tempBuffer, (uint)structForWrite->sizeData, &wr) != FR_OK || (uint)structForWrite->sizeData != wr) //-V2533
         {
             f_close(&structForWrite->fileObj);
             return false;
@@ -360,8 +360,8 @@ bool FDrive::CloseFile(StructForWrite *structForWrite) //-V2506
 
     FILINFO fno;
     PackedTime time = HAL_RTC::GetPackedTime();
-    fno.fdate = (WORD)(((time.year + 20) * 512) | (time.month * 32) | time.day);
-    fno.ftime = (WORD)((time.hours * 2048) | (time.minutes * 32) | (time.seconds / 2));
+    fno.fdate = (WORD)(((time.year + 20) * 512) | (time.month * 32) | time.day); //-V2533
+    fno.ftime = (WORD)((time.hours * 2048) | (time.minutes * 32) | (time.seconds / 2)); //-V2533
     f_utime(structForWrite->name, &fno);
 
     return true;
@@ -374,7 +374,7 @@ void FDrive::ChangeState()
     {
         if (Menu::GetNameOpenedPage() == NamePage::SB_FileManager)
         {
-            ((Page *)Menu::OpenedItem())->ShortPressOnItem(0);
+            ((Page *)Menu::OpenedItem())->ShortPressOnItem(0); //-V2533
         }
     }
     else if (FLASH_AUTOCONNECT) //-V2516

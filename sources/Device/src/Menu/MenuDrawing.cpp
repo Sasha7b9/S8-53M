@@ -38,7 +38,7 @@ static void DrawHintItem(int x, int y, int width) //-V2506
         {"Êíîïêà",      "Button"}   // TypeItem::SmallButton
     };
     TypeItem::E type = PageHelpContent::itemHint->Type();
-    Page *item = (Page*)PageHelpContent::itemHint;
+    Page *item = (Page*)PageHelpContent::itemHint; //-V2533
 
     const int SIZE = 100;
     char title[SIZE];

@@ -292,7 +292,7 @@ static err_t low_level_output(struct netif *, struct pbuf *p)
 {
   err_t errval;
   struct pbuf *q;
-  uint8_t *buffer = (uint8_t *)(EthHandle.TxDesc->Buffer1Addr);
+  uint8_t *buffer = (uint8_t *)(EthHandle.TxDesc->Buffer1Addr); //-V2533
   __IO ETH_DMADescTypeDef *DmaTxDesc;
   uint32_t framelength = 0;
   uint32_t bufferoffset = 0;
@@ -306,7 +306,7 @@ static err_t low_level_output(struct netif *, struct pbuf *p)
   for(q = p; q != NULL; q = q->next) //-V2530
   {
     /* Is this buffer available? If not, goto error */
-    if((DmaTxDesc->Status & ETH_DMATXDESC_OWN) != (uint32_t)RESET)
+    if((DmaTxDesc->Status & ETH_DMATXDESC_OWN) != (uint32_t)RESET) //-V2533
     {
       errval = ERR_USE;
       goto error;
@@ -320,19 +320,19 @@ static err_t low_level_output(struct netif *, struct pbuf *p)
     while( (byteslefttocopy + bufferoffset) > ETH_TX_BUF_SIZE )
     {
       /* Copy data to Tx buffer*/
-      memcpy( (uint8_t*)((uint8_t*)buffer + bufferoffset), (uint8_t*)((uint8_t*)q->payload + payloadoffset), (ETH_TX_BUF_SIZE - bufferoffset) );
+      memcpy( (uint8_t*)((uint8_t*)buffer + bufferoffset), (uint8_t*)((uint8_t*)q->payload + payloadoffset), (ETH_TX_BUF_SIZE - bufferoffset) ); //-V2533
       
       /* Point to next descriptor */
-      DmaTxDesc = (ETH_DMADescTypeDef *)(DmaTxDesc->Buffer2NextDescAddr);
+      DmaTxDesc = (ETH_DMADescTypeDef *)(DmaTxDesc->Buffer2NextDescAddr); //-V2533
       
       /* Check if the buffer is available */
-      if((DmaTxDesc->Status & ETH_DMATXDESC_OWN) != (uint32_t)RESET)
+      if((DmaTxDesc->Status & ETH_DMATXDESC_OWN) != (uint32_t)RESET) //-V2533
       {
         errval = ERR_USE;
         goto error;
       }
       
-      buffer = (uint8_t *)(DmaTxDesc->Buffer1Addr);
+      buffer = (uint8_t *)(DmaTxDesc->Buffer1Addr); //-V2533
       
       byteslefttocopy = byteslefttocopy - (ETH_TX_BUF_SIZE - bufferoffset);
       payloadoffset = payloadoffset + (ETH_TX_BUF_SIZE - bufferoffset);
@@ -341,7 +341,7 @@ static err_t low_level_output(struct netif *, struct pbuf *p)
     }
     
     /* Copy the remaining bytes */
-    memcpy( (uint8_t*)((uint8_t*)buffer + bufferoffset), (uint8_t*)((uint8_t*)q->payload + payloadoffset), byteslefttocopy );
+    memcpy( (uint8_t*)((uint8_t*)buffer + bufferoffset), (uint8_t*)((uint8_t*)q->payload + payloadoffset), byteslefttocopy ); //-V2533
     bufferoffset = bufferoffset + byteslefttocopy;
     framelength = framelength + byteslefttocopy;
   }
@@ -354,7 +354,7 @@ static err_t low_level_output(struct netif *, struct pbuf *p)
 error:
   
   /* When Transmit Underflow flag is set, clear it and issue a Transmit Poll Demand to resume transmission */
-  if ((EthHandle.Instance->DMASR & ETH_DMASR_TUS) != (uint32_t)RESET)
+  if ((EthHandle.Instance->DMASR & ETH_DMASR_TUS) != (uint32_t)RESET) //-V2533
   {
     /* Clear TUS ETHERNET DMA flag */
     EthHandle.Instance->DMASR = ETH_DMASR_TUS;
@@ -390,8 +390,8 @@ static struct pbuf * low_level_input(struct netif *) //-V2506
     }
 
     /* Obtain the size of the packet and put it into the "len" variable. */
-    len = (uint16_t)EthHandle.RxFrameInfos.length;
-    buffer = (uint8_t *)EthHandle.RxFrameInfos.buffer;
+    len = (uint16_t)EthHandle.RxFrameInfos.length; //-V2533
+    buffer = (uint8_t *)EthHandle.RxFrameInfos.buffer; //-V2533
 
     if (len > 0)
     {
@@ -414,11 +414,11 @@ static struct pbuf * low_level_input(struct netif *) //-V2506
             while ((byteslefttocopy + bufferoffset) > ETH_RX_BUF_SIZE)
             {
                 /* Copy data to pbuf */
-                memcpy((uint8_t *)((uint8_t *)q->payload + payloadoffset), (uint8_t *)((uint8_t *)buffer + bufferoffset), (ETH_RX_BUF_SIZE - bufferoffset));
+                memcpy((uint8_t *)((uint8_t *)q->payload + payloadoffset), (uint8_t *)((uint8_t *)buffer + bufferoffset), (ETH_RX_BUF_SIZE - bufferoffset)); //-V2533
 
                 /* Point to next descriptor */
-                dmarxdesc = (ETH_DMADescTypeDef *)(dmarxdesc->Buffer2NextDescAddr);
-                buffer = (uint8_t *)(dmarxdesc->Buffer1Addr);
+                dmarxdesc = (ETH_DMADescTypeDef *)(dmarxdesc->Buffer2NextDescAddr); //-V2533
+                buffer = (uint8_t *)(dmarxdesc->Buffer1Addr); //-V2533
 
                 byteslefttocopy = byteslefttocopy - (ETH_RX_BUF_SIZE - bufferoffset);
                 payloadoffset = payloadoffset + (ETH_RX_BUF_SIZE - bufferoffset);
@@ -426,7 +426,7 @@ static struct pbuf * low_level_input(struct netif *) //-V2506
             }
 
             /* Copy remaining data in pbuf */
-            memcpy((uint8_t *)((uint8_t *)q->payload + payloadoffset), (uint8_t *)((uint8_t *)buffer + bufferoffset), byteslefttocopy);
+            memcpy((uint8_t *)((uint8_t *)q->payload + payloadoffset), (uint8_t *)((uint8_t *)buffer + bufferoffset), byteslefttocopy); //-V2533
             bufferoffset = bufferoffset + byteslefttocopy;
         }
     }
@@ -438,14 +438,14 @@ static struct pbuf * low_level_input(struct netif *) //-V2506
     for (i = 0; i < EthHandle.RxFrameInfos.SegCount; i++)
     {
         dmarxdesc->Status |= ETH_DMARXDESC_OWN;
-        dmarxdesc = (ETH_DMADescTypeDef *)(dmarxdesc->Buffer2NextDescAddr);
+        dmarxdesc = (ETH_DMADescTypeDef *)(dmarxdesc->Buffer2NextDescAddr); //-V2533
     }
 
     /* Clear Segment_Count */
     EthHandle.RxFrameInfos.SegCount = 0;
 
     /* When Rx Buffer unavailable flag is set: clear it and resume reception */
-    if ((EthHandle.Instance->DMASR & ETH_DMASR_RBUS) != (uint32_t)RESET)
+    if ((EthHandle.Instance->DMASR & ETH_DMASR_RBUS) != (uint32_t)RESET) //-V2533
     {
         /* Clear RBUS ETHERNET DMA flag */
         EthHandle.Instance->DMASR = ETH_DMASR_RBUS;
@@ -549,13 +549,13 @@ void ethernetif_set_link(struct netif *netif)
   HAL_ETH_ReadPHYRegister(&EthHandle, PHY_MISR, &regvalue);
   
   /* Check whether the link interrupt has occurred or not */
-  if((regvalue & PHY_LINK_INTERRUPT) != (uint16_t)RESET)
+  if((regvalue & PHY_LINK_INTERRUPT) != (uint16_t)RESET) //-V2533
   {
     /* Read PHY_SR*/
     HAL_ETH_ReadPHYRegister(&EthHandle, PHY_SR, &regvalue);
     
     /* Check whether the link is up or down*/
-    if((regvalue & PHY_LINK_STATUS)!= (uint16_t)RESET)
+    if((regvalue & PHY_LINK_STATUS)!= (uint16_t)RESET) //-V2533
     {
       netif_set_link_up(netif);
     }
@@ -606,7 +606,7 @@ void ethernetif_update_config(struct netif *netif)
       HAL_ETH_ReadPHYRegister(&EthHandle, PHY_SR, &regvalue);
       
       /* Configure the MAC with the Duplex Mode fixed by the auto-negotiation process */
-      if((regvalue & PHY_DUPLEX_STATUS) != (uint32_t)RESET)
+      if((regvalue & PHY_DUPLEX_STATUS) != (uint32_t)RESET) //-V2533
       {
         /* Set Ethernet duplex mode to Full-duplex following the auto-negotiation */
         EthHandle.Init.DuplexMode = ETH_MODE_FULLDUPLEX;  
@@ -636,8 +636,8 @@ void ethernetif_update_config(struct netif *netif)
       assert_param(IS_ETH_DUPLEX_MODE(EthHandle.Init.DuplexMode));
       
       /* Set MAC Speed and Duplex Mode to PHY */
-      HAL_ETH_WritePHYRegister(&EthHandle, PHY_BCR, (uint32_t)((uint16_t)(EthHandle.Init.DuplexMode >> 3) |
-                                                     (uint16_t)(EthHandle.Init.Speed >> 1))); 
+      HAL_ETH_WritePHYRegister(&EthHandle, PHY_BCR, (uint32_t)((uint16_t)(EthHandle.Init.DuplexMode >> 3) | //-V2533
+                                                     (uint16_t)(EthHandle.Init.Speed >> 1)));  //-V2533
     }
 
     /* ETHERNET MAC Re-Configuration */
