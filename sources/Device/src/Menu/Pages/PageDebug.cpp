@@ -216,8 +216,8 @@ static void OnChanged_ADC_Balance_Mode(bool)
 {
     Draw_ADC_Balance_Mode(0, 0);
 
-    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)shiftADCA, false);
-    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)shiftADCB, false);
+    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)shiftADCA, false); //-V2533
+    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)shiftADCB, false); //-V2533
 }
 
 DEF_CHOICE_3(mcADC_Balance_Mode, PageDebug::PageADC::PageBalance::self,
@@ -509,7 +509,7 @@ static void OnPress_SaveFirmware()
 
     FDrive::OpenNewFileForWrite("S8-53.bin", &structForWrite);
 
-    uint8 *address = (uint8 *)0x08020000; //-V566
+    uint8 *address = (uint8 *)0x08020000; //-V566 //-V2533
     uint8 *endAddress = address + 128 * 1024 * 3;
 
     int sizeBlock = 512;

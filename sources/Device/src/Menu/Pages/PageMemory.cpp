@@ -334,7 +334,7 @@ void PressSB_SetMask_Insert() //-V2506
         }
         else
         {
-            FILE_NAME_MASK[size] = (int8)index;
+            FILE_NAME_MASK[size] = (int8)index; //-V2533
             FILE_NAME_MASK[size + 1] = '\0';
         }
     }
@@ -899,7 +899,7 @@ static void DrawFileMask(int x, int y)
             if (*ch == 0x07)
             {
                 x = Char('%').Draw(x, y);
-                x = Char((char)(0x30 | *(ch + 1))).Draw(x, y);
+                x = Char((char)(0x30 | *(ch + 1))).Draw(x, y); //-V2533
                 x = Char('N').Draw(x, y);
                 ch++;
             }

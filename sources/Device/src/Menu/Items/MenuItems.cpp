@@ -287,7 +287,7 @@ bool Item::IsActive() const //-V2506
 {
     if (IsChoice() || IsPage() || IsButton() || IsGovernor() || IsSmallButton())
     {
-        pFuncBV func = ((Page *)(this))->data->funcOfActive;
+        pFuncBV func = ((Page *)(this))->data->funcOfActive; //-V2533
 
         return func ? func() : true;
     }
@@ -316,8 +316,8 @@ bool Page::IsPageSB() const
 
 Page *Item::Keeper() const
 {
-    const Page *page = ((Page *)(this))->data->keeper;
-    return (Page *)page;
+    const Page *page = ((Page *)(this))->data->keeper; //-V2533
+    return (Page *)page; //-V2533
 }
 
 
@@ -542,7 +542,7 @@ const Item *Page::RetLastOpened() const //-V2506
         const Item *item = GetItem(pActItem);
         if (GetItem(pActItem)->IsPage())
         {
-            return ((Page *)item)->RetLastOpened();
+            return ((Page *)item)->RetLastOpened(); //-V2533
         }
         else
         {
@@ -557,11 +557,11 @@ void Item::Change(int delta) const
 {
     if (IsChoice() || IsChoiceReg())
     {
-        ((Choice *)this)->StartChange(delta);
+        ((Choice *)this)->StartChange(delta); //-V2533
     }
     else if (IsGovernor())
     {
-        Governor *governor = (Governor *)this;
+        Governor *governor = (Governor *)this; //-V2533
         if (!Menu::IsOpenedItem(governor))
         {
             governor->StartChange(delta);
@@ -573,7 +573,7 @@ void Item::Change(int delta) const
     }
     else if (IsGovernorColor()) //-V2516
     {
-        ((GovernorColor *)this)->ChangeValue(delta);
+        ((GovernorColor *)this)->ChangeValue(delta); //-V2533
     }
 }
 
@@ -589,7 +589,7 @@ void Page::ShortPressOnItem(int numItem) const //-V2506
     NamePage::E namePage = own->name;
     if (namePage >= NamePage::SB_Curs)
     {
-        SmallButton *sb = (SmallButton *)(own->items)[numItem];
+        SmallButton *sb = (SmallButton *)(own->items)[numItem]; //-V2533
         if (sb && own->funcOnPress)
         {
             own->funcOnPress();
@@ -614,23 +614,23 @@ bool Item::ChangeOpened(int delta) const //-V2506
 
     if (IsPage())
     {
-        ((const Page *)this)->ChangeSubPage(delta);
+        ((const Page *)this)->ChangeSubPage(delta); //-V2533
     }
     else if (IsIP())
     {
-        ((IPaddress *)this)->ChangeValue(delta);
+        ((IPaddress *)this)->ChangeValue(delta); //-V2533
     }
     else if (IsMAC())
     {
-        ((MACaddress *)this)->ChangeValue(delta);
+        ((MACaddress *)this)->ChangeValue(delta); //-V2533
     }
     else if (IsChoiceReg() || IsChoice())
     {
-        ((Choice *)this)->ChangeValue(delta);
+        ((Choice *)this)->ChangeValue(delta); //-V2533
     }
     else if (IsGovernor()) //-V2516
     {
-        ((Governor *)this)->ChangeValue(delta);
+        ((Governor *)this)->ChangeValue(delta); //-V2533
     }
 
     return true;
@@ -641,13 +641,13 @@ int Item::HeightOpened() const //-V2506
 {
     if (IsPage())
     {
-        int numItems = ((const Page *)this)->NumItems() - ((Page *)this)->GetCurrentSubPage() * Menu::ITEMS_ON_DISPLAY;
+        int numItems = ((const Page *)this)->NumItems() - ((Page *)this)->GetCurrentSubPage() * Menu::ITEMS_ON_DISPLAY; //-V2533
         LIMITATION(numItems, numItems, 0, Menu::ITEMS_ON_DISPLAY); //-V2516
         return Item::TITLE_HEIGHT + Item::HEIGHT * numItems;
     }
     else if (IsChoice() || IsChoiceReg()) //-V2516
     { 
-        return Item::OPENED_HEIGHT_TITLE + ((Choice *)this)->NumSubItems() * Item::OPENED_HEIGHT - 1;
+        return Item::OPENED_HEIGHT_TITLE + ((Choice *)this)->NumSubItems() * Item::OPENED_HEIGHT - 1; //-V2533
     }
     return Item::HEIGHT;
 }
@@ -655,7 +655,7 @@ int Item::HeightOpened() const //-V2506
 
 pString Item::Title() const
 {
-    return TITLE((Page *)this);
+    return TITLE((Page *)this); //-V2533
 }
 
 
@@ -663,7 +663,7 @@ SmallButton *Page::SmallButonFrom(int numButton) const
 {
     const DataPage *own = OwnData();
 
-    return (SmallButton *)(own->items)[numButton];
+    return (SmallButton *)(own->items)[numButton]; //-V2533
 }
 
 
@@ -675,7 +675,7 @@ int Page::GetCurrentSubPage() const
 
 void Page::SetCurrentSubPage(int posSubPage) const
 {
-    *currentSubPage = (int8)posSubPage;
+    *currentSubPage = (int8)posSubPage; //-V2533
 }
 
 

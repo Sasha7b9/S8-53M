@@ -39,7 +39,7 @@ static void DrawGovernorChoiceColorFormulaHiPart(const Item *item, int x, int y,
     int delta = pressed ? 1 : 0;
     int width = Item::WIDTH_VALUE;
 
-    if (item->IsIP() && opened && ((IPaddress*)item)->OwnData()->port != 0)
+    if (item->IsIP() && opened && ((IPaddress*)item)->OwnData()->port != 0) //-V2533
     {
         width += IPaddress::OPENED_WIDTH;
     }
@@ -178,7 +178,7 @@ void Formula::WriteText(int x, int y, bool) const //-V2506
     {
        Char(koeff1 < 0 ? '-' : '+').Draw(x, y);
     }
-    Char((char)(koeff1 + 0x30)).Draw(x + 5, y);
+    Char((char)(koeff1 + 0x30)).Draw(x + 5, y); //-V2533
     Char('*').Draw(x + 10, y);
     Text("K1").Draw(x + 14, y);
     Char(funcIsMul ? '*' : '+').Draw(x + 27, y);
@@ -186,7 +186,7 @@ void Formula::WriteText(int x, int y, bool) const //-V2506
     {
        Char(koeff2 < 0 ? '-' : '+').Draw(x + 30, y);
     }
-    Char((char)(koeff2 + 0x30)).Draw(x + 39, y);
+    Char((char)(koeff2 + 0x30)).Draw(x + 39, y); //-V2533
     Char('*').Draw(x + 44, y);
     Text("K2").Draw(x + 48, y);
 }
@@ -328,7 +328,7 @@ void MACaddress::DrawValue(int x, int y) const
     y++;
     for (int num = 5; num >= 0; num--)
     {
-        int value = (int)(*(bytes + num));
+        int value = (int)(*(bytes + num)); //-V2533
         if (gCurDigit == num)
         {
             Region(10, 8).Fill(x - 1, y, Color::FILL);
@@ -470,7 +470,7 @@ void Choice::DrawOpened(int x, int y) const
  
     HLine().Draw(y + Item::OPENED_HEIGHT_TITLE - 1, x, x + Item::OPENED_WIDTH);
     DrawVolumeButton(x, y + Item::OPENED_HEIGHT_TITLE, Item::OPENED_WIDTH - 1, height - Item::OPENED_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false);
-    int index = *((int8*)OwnData()->cell);
+    int index = *((int8*)OwnData()->cell); //-V2533
     for(int i = 0; i < NumSubItems(); i++)
     {
         int yItem = y + Item::OPENED_HEIGHT_TITLE + i * Item::OPENED_HEIGHT + 1;
@@ -625,18 +625,18 @@ void TimeItem::DrawClosed(int x, int y) const
     int startX = 3;
     y += 21;
     PackedTime time = HAL_RTC::GetPackedTime();
-    Text(Int2String((int)time.hours, false, 2, buffer)).Draw(x + startX, y, Color::BACK);
+    Text(Int2String((int)time.hours, false, 2, buffer)).Draw(x + startX, y, Color::BACK); //-V2533
     Text(":").Draw(x + startX + deltaField, y);
-    Text(Int2String((int)time.minutes, false, 2, buffer)).Draw(x + startX + deltaField + deltaSeparator, y);
+    Text(Int2String((int)time.minutes, false, 2, buffer)).Draw(x + startX + deltaField + deltaSeparator, y); //-V2533
     Text(":").Draw(x + startX + 2 * deltaField + deltaSeparator, y);
-    Text(Int2String((int)time.seconds, false, 2, buffer)).Draw(x + startX + 2 * deltaField + 2 * deltaSeparator, y);
+    Text(Int2String((int)time.seconds, false, 2, buffer)).Draw(x + startX + 2 * deltaField + 2 * deltaSeparator, y); //-V2533
 
     startX = 44;
-    Text(Int2String((int)time.day, false, 2, buffer)).Draw(x + startX, y);
+    Text(Int2String((int)time.day, false, 2, buffer)).Draw(x + startX, y); //-V2533
     Text(":").Draw(x + startX + deltaField, y);
-    Text(Int2String((int)time.month, false, 2, buffer)).Draw(x + startX + deltaField + deltaSeparator, y);
+    Text(Int2String((int)time.month, false, 2, buffer)).Draw(x + startX + deltaField + deltaSeparator, y); //-V2533
     Text(":").Draw(x + startX + 2 * deltaField + deltaSeparator, y);
-    Text(Int2String((int)time.year, false, 2, buffer)).Draw(x + startX + 2 * deltaField + 2 * deltaSeparator, y);
+    Text(Int2String((int)time.year, false, 2, buffer)).Draw(x + startX + 2 * deltaField + 2 * deltaSeparator, y); //-V2533
 }
 
 void TimeItem::Draw(int x, int y, bool opened) const

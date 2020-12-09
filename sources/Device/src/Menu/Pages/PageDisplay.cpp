@@ -238,7 +238,7 @@ void PageDisplay::OnChanged_Grid_Brightness()
 static void BeforeDraw_Grid_Brightness()
 {
     Color_Init(&cTypeGrid);
-    BRIGHTNESS_GRID = (int16)(cTypeGrid.brightness * 100.0F);
+    BRIGHTNESS_GRID = (int16)(cTypeGrid.brightness * 100.0F); //-V2533
 }
 
 DEF_GOVERNOR(mgGrid_Brightness, PageDisplay::PageGrid::self,

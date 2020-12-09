@@ -209,7 +209,7 @@ float Processing::CalculateVoltageVybrosPlus(Channel::E chan) //-V2506
         markerHor[chan][1] = static_cast<int>(maxSteady);
     }
 
-    int16 rShift = chan == Channel::A ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1;
+    int16 rShift = chan == Channel::A ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1; //-V2533
     return std::fabsf(POINT_2_VOLTAGE(maxSteady, dataSet->range[chan], rShift) - POINT_2_VOLTAGE(max, dataSet->range[chan], rShift)) * VALUE_MULTIPLIER(chan);
 }
 
