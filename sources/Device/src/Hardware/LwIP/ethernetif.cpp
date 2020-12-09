@@ -211,7 +211,7 @@ static void low_level_init(struct netif *netif)
   uint32_t regvalue = 0;
   static uint8_t macaddress[6]= { MAC_ADDR0, MAC_ADDR1, MAC_ADDR2, MAC_ADDR3, MAC_ADDR4, MAC_ADDR5 };
 
-  EthHandle.Instance = ETH;  
+  EthHandle.Instance = ETH;   //-V2571
   EthHandle.Init.MACAddr = macaddress;
   EthHandle.Init.AutoNegotiation = ETH_AUTONEGOTIATION_ENABLE;
   EthHandle.Init.Speed = ETH_SPEED_100M;
@@ -292,7 +292,7 @@ static err_t low_level_output(struct netif *, struct pbuf *p)
 {
   err_t errval;
   struct pbuf *q;
-  uint8_t *buffer = (uint8_t *)(EthHandle.TxDesc->Buffer1Addr); //-V2533
+  uint8_t *buffer = (uint8_t *)(EthHandle.TxDesc->Buffer1Addr); //-V2533 //-V2571
   __IO ETH_DMADescTypeDef *DmaTxDesc;
   uint32_t framelength = 0;
   uint32_t bufferoffset = 0;
@@ -320,10 +320,10 @@ static err_t low_level_output(struct netif *, struct pbuf *p)
     while( (byteslefttocopy + bufferoffset) > ETH_TX_BUF_SIZE )
     {
       /* Copy data to Tx buffer*/
-      memcpy( (uint8_t*)((uint8_t*)buffer + bufferoffset), (uint8_t*)((uint8_t*)q->payload + payloadoffset), (ETH_TX_BUF_SIZE - bufferoffset) ); //-V2533 //-V2563
+      memcpy( (uint8_t*)((uint8_t*)buffer + bufferoffset), (uint8_t*)((uint8_t*)q->payload + payloadoffset), (ETH_TX_BUF_SIZE - bufferoffset) ); //-V2533 //-V2563 //-V2571
       
       /* Point to next descriptor */
-      DmaTxDesc = (ETH_DMADescTypeDef *)(DmaTxDesc->Buffer2NextDescAddr); //-V2533
+      DmaTxDesc = (ETH_DMADescTypeDef *)(DmaTxDesc->Buffer2NextDescAddr); //-V2533 //-V2571
       
       /* Check if the buffer is available */
       if((DmaTxDesc->Status & ETH_DMATXDESC_OWN) != (uint32_t)RESET) //-V2533
@@ -332,7 +332,7 @@ static err_t low_level_output(struct netif *, struct pbuf *p)
         goto error;
       }
       
-      buffer = (uint8_t *)(DmaTxDesc->Buffer1Addr); //-V2533
+      buffer = (uint8_t *)(DmaTxDesc->Buffer1Addr); //-V2533 //-V2571
       
       byteslefttocopy = byteslefttocopy - (ETH_TX_BUF_SIZE - bufferoffset);
       payloadoffset = payloadoffset + (ETH_TX_BUF_SIZE - bufferoffset);
@@ -341,7 +341,7 @@ static err_t low_level_output(struct netif *, struct pbuf *p)
     }
     
     /* Copy the remaining bytes */
-    memcpy( (uint8_t*)((uint8_t*)buffer + bufferoffset), (uint8_t*)((uint8_t*)q->payload + payloadoffset), byteslefttocopy ); //-V2533 //-V2563
+    memcpy( (uint8_t*)((uint8_t*)buffer + bufferoffset), (uint8_t*)((uint8_t*)q->payload + payloadoffset), byteslefttocopy ); //-V2533 //-V2563 //-V2571
     bufferoffset = bufferoffset + byteslefttocopy;
     framelength = framelength + byteslefttocopy;
   }
@@ -391,7 +391,7 @@ static struct pbuf * low_level_input(struct netif *) //-V2506
 
     /* Obtain the size of the packet and put it into the "len" variable. */
     len = (uint16_t)EthHandle.RxFrameInfos.length; //-V2533
-    buffer = (uint8_t *)EthHandle.RxFrameInfos.buffer; //-V2533
+    buffer = (uint8_t *)EthHandle.RxFrameInfos.buffer; //-V2533 //-V2571
 
     if (len > 0)
     {
@@ -414,11 +414,11 @@ static struct pbuf * low_level_input(struct netif *) //-V2506
             while ((byteslefttocopy + bufferoffset) > ETH_RX_BUF_SIZE)
             {
                 /* Copy data to pbuf */
-                memcpy((uint8_t *)((uint8_t *)q->payload + payloadoffset), (uint8_t *)((uint8_t *)buffer + bufferoffset), (ETH_RX_BUF_SIZE - bufferoffset)); //-V2533 //-V2563
+                memcpy((uint8_t *)((uint8_t *)q->payload + payloadoffset), (uint8_t *)((uint8_t *)buffer + bufferoffset), (ETH_RX_BUF_SIZE - bufferoffset)); //-V2533 //-V2563 //-V2571
 
                 /* Point to next descriptor */
-                dmarxdesc = (ETH_DMADescTypeDef *)(dmarxdesc->Buffer2NextDescAddr); //-V2533
-                buffer = (uint8_t *)(dmarxdesc->Buffer1Addr); //-V2533
+                dmarxdesc = (ETH_DMADescTypeDef *)(dmarxdesc->Buffer2NextDescAddr); //-V2533 //-V2571
+                buffer = (uint8_t *)(dmarxdesc->Buffer1Addr); //-V2533 //-V2571
 
                 byteslefttocopy = byteslefttocopy - (ETH_RX_BUF_SIZE - bufferoffset);
                 payloadoffset = payloadoffset + (ETH_RX_BUF_SIZE - bufferoffset);
@@ -426,7 +426,7 @@ static struct pbuf * low_level_input(struct netif *) //-V2506
             }
 
             /* Copy remaining data in pbuf */
-            memcpy((uint8_t *)((uint8_t *)q->payload + payloadoffset), (uint8_t *)((uint8_t *)buffer + bufferoffset), byteslefttocopy); //-V2533 //-V2563
+            memcpy((uint8_t *)((uint8_t *)q->payload + payloadoffset), (uint8_t *)((uint8_t *)buffer + bufferoffset), byteslefttocopy); //-V2533 //-V2563 //-V2571
             bufferoffset = bufferoffset + byteslefttocopy;
         }
     }
@@ -438,7 +438,7 @@ static struct pbuf * low_level_input(struct netif *) //-V2506
     for (i = 0; i < EthHandle.RxFrameInfos.SegCount; i++)
     {
         dmarxdesc->Status |= ETH_DMARXDESC_OWN;
-        dmarxdesc = (ETH_DMADescTypeDef *)(dmarxdesc->Buffer2NextDescAddr); //-V2533
+        dmarxdesc = (ETH_DMADescTypeDef *)(dmarxdesc->Buffer2NextDescAddr); //-V2533 //-V2571
     }
 
     /* Clear Segment_Count */

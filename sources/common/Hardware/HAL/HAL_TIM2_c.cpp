@@ -8,7 +8,7 @@ void HAL_TIM2::Init()
     // Таймер для тиков
     TIM_HandleTypeDef handleTIM2 =
     {
-        TIM2,
+        TIM2, //-V2571
         {
             0,
             TIM_COUNTERMODE_UP,
@@ -25,15 +25,15 @@ void HAL_TIM2::Init()
 
 uint HAL_TIM2::GetTicks()
 {
-    return TIM2->CNT;
+    return TIM2->CNT; //-V2571
 }
 
 
 void HAL_TIM2::StartMultiMeasurement()
 {
-    TIM2->CR1 &= (uint)~TIM_CR1_CEN;
-    TIM2->CNT = 0;
-    TIM2->CR1 |= TIM_CR1_CEN;
+    TIM2->CR1 &= (uint)~TIM_CR1_CEN; //-V2571
+    TIM2->CNT = 0; //-V2571
+    TIM2->CR1 |= TIM_CR1_CEN; //-V2571
 }
 
 

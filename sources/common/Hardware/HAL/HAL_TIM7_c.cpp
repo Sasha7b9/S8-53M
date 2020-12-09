@@ -7,7 +7,7 @@ void HAL_TIM7::Config(uint16 prescaler, uint16 period)
 {
     static TIM_HandleTypeDef htim =
     {
-        TIM7,
+        TIM7, //-V2571
         {
             0,
             TIM_COUNTERMODE_UP,

@@ -27,7 +27,7 @@ class PageHelpItem : public Item
 {
 public:
     PageHelpItem(const DataItem *const data) : Item(data) {}
-    const DataPageHelp *OwnData() const { return static_cast<const DataPageHelp *>(data->ad); }
+    const DataPageHelp *OwnData() const { return static_cast<const DataPageHelp *>(data->ad); } //-V2571
     static const PageHelpItem empty;
 };
 

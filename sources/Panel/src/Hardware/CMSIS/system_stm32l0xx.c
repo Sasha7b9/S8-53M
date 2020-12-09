@@ -135,25 +135,25 @@
 void SystemInit (void)
 {
 /*!< Set MSION bit */
-  RCC->CR |= (uint32_t)0x00000100U;
+  RCC->CR |= (uint32_t)0x00000100U; //-V2571
 
   /*!< Reset SW[1:0], HPRE[3:0], PPRE1[2:0], PPRE2[2:0], MCOSEL[2:0] and MCOPRE[2:0] bits */
-  RCC->CFGR &= (uint32_t) 0x88FF400CU;
+  RCC->CFGR &= (uint32_t) 0x88FF400CU; //-V2571
 
   /*!< Reset HSION, HSIDIVEN, HSEON, CSSON and PLLON bits */
-  RCC->CR &= (uint32_t)0xFEF6FFF6U;
+  RCC->CR &= (uint32_t)0xFEF6FFF6U; //-V2571
 
   /*!< Reset HSI48ON  bit */
-  RCC->CRRCR &= (uint32_t)0xFFFFFFFEU;
+  RCC->CRRCR &= (uint32_t)0xFFFFFFFEU; //-V2571
 
   /*!< Reset HSEBYP bit */
-  RCC->CR &= (uint32_t)0xFFFBFFFFU;
+  RCC->CR &= (uint32_t)0xFFFBFFFFU; //-V2571
 
   /*!< Reset PLLSRC, PLLMUL[3:0] and PLLDIV[1:0] bits */
-  RCC->CFGR &= (uint32_t)0xFF02FFFFU;
+  RCC->CFGR &= (uint32_t)0xFF02FFFFU; //-V2571
 
   /*!< Disable all interrupts */
-  RCC->CIER = 0x00000000U;
+  RCC->CIER = 0x00000000U; //-V2571
 
   /* Configure the Vector Table location add offset address ------------------*/
 #ifdef VECT_TAB_SRAM
@@ -206,16 +206,16 @@ void SystemCoreClockUpdate (void)
   uint32_t tmp = 0U, pllmul = 0U, plldiv = 0U, pllsource = 0U, msirange = 0U;
 
   /* Get SYSCLK source -------------------------------------------------------*/
-  tmp = RCC->CFGR & RCC_CFGR_SWS;
+  tmp = RCC->CFGR & RCC_CFGR_SWS; //-V2571
 
   switch (tmp)
   {
     case 0x00U:  /* MSI used as system clock */
-      msirange = (RCC->ICSCR & RCC_ICSCR_MSIRANGE) >> RCC_ICSCR_MSIRANGE_Pos;
+      msirange = (RCC->ICSCR & RCC_ICSCR_MSIRANGE) >> RCC_ICSCR_MSIRANGE_Pos; //-V2571
       SystemCoreClock = (32768U * (1U << (msirange + 1U)));
       break;
     case 0x04U:  /* HSI used as system clock */
-      if ((RCC->CR & RCC_CR_HSIDIVF) != 0U)
+      if ((RCC->CR & RCC_CR_HSIDIVF) != 0U) //-V2571
       {
         SystemCoreClock = HSI_VALUE / 4U;
       }
@@ -229,17 +229,17 @@ void SystemCoreClockUpdate (void)
       break;
     default:  /* PLL used as system clock */
       /* Get PLL clock source and multiplication factor ----------------------*/
-      pllmul = RCC->CFGR & RCC_CFGR_PLLMUL;
-      plldiv = RCC->CFGR & RCC_CFGR_PLLDIV;
+      pllmul = RCC->CFGR & RCC_CFGR_PLLMUL; //-V2571
+      plldiv = RCC->CFGR & RCC_CFGR_PLLDIV; //-V2571
       pllmul = PLLMulTable[(pllmul >> RCC_CFGR_PLLMUL_Pos)];
       plldiv = (plldiv >> RCC_CFGR_PLLDIV_Pos) + 1U;
 
-      pllsource = RCC->CFGR & RCC_CFGR_PLLSRC;
+      pllsource = RCC->CFGR & RCC_CFGR_PLLSRC; //-V2571
 
       if (pllsource == 0x00U)
       {
         /* HSI oscillator clock selected as PLL clock entry */
-        if ((RCC->CR & RCC_CR_HSIDIVF) != 0U)
+        if ((RCC->CR & RCC_CR_HSIDIVF) != 0U) //-V2571
         {
           SystemCoreClock = (((HSI_VALUE / 4U) * pllmul) / plldiv);
         }
@@ -257,7 +257,7 @@ void SystemCoreClockUpdate (void)
   }
   /* Compute HCLK clock frequency --------------------------------------------*/
   /* Get HCLK prescaler */
-  tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> RCC_CFGR_HPRE_Pos)];
+  tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> RCC_CFGR_HPRE_Pos)]; //-V2571
   /* HCLK clock frequency */
   SystemCoreClock >>= tmp;
 }

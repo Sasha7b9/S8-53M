@@ -246,9 +246,9 @@ static void Get_SerialNum(void)
 {
     uint32_t deviceserial0, deviceserial1, deviceserial2;
 
-    deviceserial0 = *reinterpret_cast<uint32_t *>(DEVICE_ID1); //-V566
-    deviceserial1 = *reinterpret_cast<uint32_t *>(DEVICE_ID2); //-V566
-    deviceserial2 = *reinterpret_cast<uint32_t *>(DEVICE_ID3); //-V566
+    deviceserial0 = *reinterpret_cast<uint32_t *>(DEVICE_ID1); //-V566 //-V2571
+    deviceserial1 = *reinterpret_cast<uint32_t *>(DEVICE_ID2); //-V566 //-V2571
+    deviceserial2 = *reinterpret_cast<uint32_t *>(DEVICE_ID3); //-V566 //-V2571
 
     deviceserial0 += deviceserial2;
 

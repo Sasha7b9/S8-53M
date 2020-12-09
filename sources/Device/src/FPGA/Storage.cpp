@@ -537,7 +537,7 @@ void Storage::RemoveFirstElement()
 
 DataSettings* Storage::NextElem(DataSettings *elem)
 {
-    return (DataSettings*)elem->addrNext; //-V2533
+    return (DataSettings*)elem->addrNext; //-V2533 //-V2571
 }
 
 
@@ -549,7 +549,7 @@ DataSettings* Storage::FromEnd(int indexFromEnd) //-V2506
     }
     int index = indexFromEnd;
     DataSettings *retValue = lastElem;
-    while(index != 0 && ((retValue = (DataSettings *)retValue->addrPrev) != 0)) //-V2561 //-V2533
+    while(index != 0 && ((retValue = (DataSettings *)retValue->addrPrev) != 0)) //-V2561 //-V2533 //-V2571
     {
         index--;
     }

@@ -58,7 +58,7 @@ void SysTick_Handler(void)
 
 void OTG_HS_IRQHandler(void)
 {
-    HAL_HCD_IRQHandler(reinterpret_cast<HCD_HandleTypeDef *>(HAL_HCD::handle));
+    HAL_HCD_IRQHandler(reinterpret_cast<HCD_HandleTypeDef *>(HAL_HCD::handle)); //-V2571
 }
 
 #ifdef __cplusplus

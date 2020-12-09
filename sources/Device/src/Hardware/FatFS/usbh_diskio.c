@@ -197,7 +197,7 @@ DRESULT USBH_ioctl(BYTE lun, BYTE cmd, void *buff)
     case GET_SECTOR_COUNT:
         if (USBH_MSC_GetLUNInfo(&hUSB_Host, lun, &info) == USBH_OK)
         {
-            *(DWORD *)buff = info.capacity.block_nbr;
+            *(DWORD *)buff = info.capacity.block_nbr; //-V2571
             res = RES_OK;
         }
         break;
@@ -206,7 +206,7 @@ DRESULT USBH_ioctl(BYTE lun, BYTE cmd, void *buff)
     case GET_SECTOR_SIZE:
         if (USBH_MSC_GetLUNInfo(&hUSB_Host, lun, &info) == USBH_OK)
         {
-            *(DWORD *)buff = info.capacity.block_size;
+            *(DWORD *)buff = info.capacity.block_size; //-V2571
             res = RES_OK;
         }
         break;
@@ -216,7 +216,7 @@ DRESULT USBH_ioctl(BYTE lun, BYTE cmd, void *buff)
 
         if (USBH_MSC_GetLUNInfo(&hUSB_Host, lun, &info) == USBH_OK)
         {
-            *(DWORD *)buff = (DWORD)(info.capacity.block_size / (uint16_t)USB_DEFAULT_BLOCK_SIZE);
+            *(DWORD *)buff = (DWORD)(info.capacity.block_size / (uint16_t)USB_DEFAULT_BLOCK_SIZE); //-V2571
             res = RES_OK;
         }
         break;

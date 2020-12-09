@@ -23,31 +23,31 @@ void HAL::Init()
 
     SystemClock_Config();
 
-    __SYSCFG_CLK_ENABLE();
+    __SYSCFG_CLK_ENABLE(); //-V2571
 
-    __GPIOA_CLK_ENABLE();
-    __GPIOB_CLK_ENABLE();
-    __GPIOC_CLK_ENABLE();
-    __GPIOD_CLK_ENABLE();
-    __GPIOE_CLK_ENABLE();
-    __GPIOF_CLK_ENABLE();
-    __GPIOG_CLK_ENABLE();
-    __GPIOH_CLK_ENABLE();
-    __GPIOI_CLK_ENABLE();
+    __GPIOA_CLK_ENABLE(); //-V2571
+    __GPIOB_CLK_ENABLE(); //-V2571
+    __GPIOC_CLK_ENABLE(); //-V2571
+    __GPIOD_CLK_ENABLE(); //-V2571
+    __GPIOE_CLK_ENABLE(); //-V2571
+    __GPIOF_CLK_ENABLE(); //-V2571
+    __GPIOG_CLK_ENABLE(); //-V2571
+    __GPIOH_CLK_ENABLE(); //-V2571
+    __GPIOI_CLK_ENABLE(); //-V2571
 
-    __ADC3_CLK_ENABLE();
-    __CRC_CLK_ENABLE();
-    __DAC_CLK_ENABLE();         // Для бикалки
-    __DMA1_CLK_ENABLE();        // Для DAC1 (бикалка)
-    __ETH_CLK_ENABLE();
-    __PWR_CLK_ENABLE();
-    __SPI1_CLK_ENABLE();
-    __SYSCFG_CLK_ENABLE();
-    __TIM2_CLK_ENABLE();        // Для тиков
-    __TIM6_CLK_ENABLE();        // Для отсчёта миллисекунд
-    __TIM7_CLK_ENABLE();        // Для DAC1 (бикалка)
-    __USB_OTG_FS_CLK_ENABLE();
-    __USB_OTG_HS_CLK_ENABLE();
+    __ADC3_CLK_ENABLE(); //-V2571
+    __CRC_CLK_ENABLE(); //-V2571
+    __DAC_CLK_ENABLE();         // Для бикалки //-V2571
+    __DMA1_CLK_ENABLE();        // Для DAC1 (бикалка) //-V2571
+    __ETH_CLK_ENABLE(); //-V2571
+    __PWR_CLK_ENABLE(); //-V2571
+    __SPI1_CLK_ENABLE(); //-V2571
+    __SYSCFG_CLK_ENABLE(); //-V2571
+    __TIM2_CLK_ENABLE();        // Для тиков //-V2571
+    __TIM6_CLK_ENABLE();        // Для отсчёта миллисекунд //-V2571
+    __TIM7_CLK_ENABLE();        // Для DAC1 (бикалка) //-V2571
+    __USB_OTG_FS_CLK_ENABLE(); //-V2571
+    __USB_OTG_HS_CLK_ENABLE(); //-V2571
 
     HAL_PINS::Init();
 
@@ -158,8 +158,8 @@ void HAL::JumpToApplication()
 
     __disable_irq();
     // Теперь переходим на основную программу
-    JumpToApplication = (pFunction)(*(__IO uint *)(MAIN_PROGRAM_START_ADDRESS + 4)); //-V566
-    __set_MSP(*(__IO uint *)MAIN_PROGRAM_START_ADDRESS); //-V566
+    JumpToApplication = (pFunction)(*(__IO uint *)(MAIN_PROGRAM_START_ADDRESS + 4)); //-V566 //-V2571
+    __set_MSP(*(__IO uint *)MAIN_PROGRAM_START_ADDRESS); //-V566 //-V2571
     __enable_irq();
     JumpToApplication();
 }

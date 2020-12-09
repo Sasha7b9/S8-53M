@@ -509,7 +509,7 @@ static void OnPress_SaveFirmware()
 
     FDrive::OpenNewFileForWrite("S8-53.bin", &structForWrite);
 
-    uint8 *address = (uint8 *)0x08020000; //-V566 //-V2533
+    uint8 *address = (uint8 *)0x08020000; //-V566 //-V2533 //-V2571
     uint8 *endAddress = address + 128 * 1024 * 3; //-V2563
 
     int sizeBlock = 512;
@@ -571,7 +571,7 @@ DEF_SMALL_BUTTON(bSerialNumber_Exit, PageDebug::PageSerialNumber::self,
 
 static void OnPress_SerialNumber_Change()
 {
-    ACCESS_EXTRAMEM(StructForSN, s);
+    ACCESS_EXTRAMEM(StructForSN, s); //-V2571
     ++s->curDigt;
     s->curDigt %= 2;
     Color::ResetFlash();
@@ -593,7 +593,7 @@ DEF_SMALL_BUTTON(bSerialNumber_Change, PageDebug::PageSerialNumber::self,
 
 static void OnPress_SerialNumber_Save()
 {
-    ACCESS_EXTRAMEM(StructForSN, s);
+    ACCESS_EXTRAMEM(StructForSN, s); //-V2571
 
     char stringSN[20];
 
@@ -631,7 +631,7 @@ static void Draw_EnterSerialNumber()
 
     int deltaX = 10;
 
-    ACCESS_EXTRAMEM(StructForSN, s);
+    ACCESS_EXTRAMEM(StructForSN, s); //-V2571
 
     bool selNumber = s->curDigt == 0;
 
@@ -679,7 +679,7 @@ static void OnPress_SerialNumber()
 {
     PageDebug::PageSerialNumber::self->OpenAndSetItCurrent();
     Display::SetAddDrawFunction(Draw_EnterSerialNumber);
-    MALLOC_EXTRAMEM(StructForSN, s); //-V2511
+    MALLOC_EXTRAMEM(StructForSN, s); //-V2511 //-V2571
     s->number = 1; //-V522
     s->year = 2017;
     s->curDigt = 0;
@@ -691,7 +691,7 @@ static void OnRegSet_SerialNumber(int angle)
 
     pFunc p = angle > 0 ? CircleIncreaseInt : CircleDecreaseInt;
 
-    ACCESS_EXTRAMEM(StructForSN, s);
+    ACCESS_EXTRAMEM(StructForSN, s); //-V2571
 
     if (s->curDigt == 0)
     {

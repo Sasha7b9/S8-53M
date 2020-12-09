@@ -101,7 +101,7 @@ err_t CallbackOnSent(void *_arg, struct tcp_pcb *_tpcb, u16_t _len)
 {
     struct State *ss;
     LWIP_UNUSED_ARG(_len);
-    ss = static_cast<struct State*>(_arg);
+    ss = static_cast<struct State*>(_arg); //-V2571
 
     if (ss->p != NULL)
     {
@@ -131,7 +131,7 @@ void SendAnswer(void *_arg, struct tcp_pcb *_tpcb)
     struct pbuf *tcpBuffer = pbuf_alloc(PBUF_RAW, static_cast<uint16>(std::strlen(policy)), PBUF_POOL); //-V2513
     tcpBuffer->flags = 1;
     pbuf_take(tcpBuffer, policy, static_cast<uint16>(std::strlen(policy))); //-V2513
-    struct State *s = static_cast<struct State *>(_arg);
+    struct State *s = static_cast<struct State *>(_arg); //-V2571
     s->p = tcpBuffer;
     Send(_tpcb, s);
 }
@@ -143,7 +143,7 @@ err_t CallbackOnRecieve(void *_arg, struct tcp_pcb *_tpcb, struct pbuf *_p, err_
     err_t ret_err;
 
     LWIP_ASSERT("arg != NULL", _arg != NULL);
-    struct State *ss = static_cast<struct State*>(_arg);
+    struct State *ss = static_cast<struct State*>(_arg); //-V2571
 
     if (_p == NULL)
     {
@@ -199,7 +199,7 @@ err_t CallbackOnRecieve(void *_arg, struct tcp_pcb *_tpcb, struct pbuf *_p, err_
             //ss->p = _p;
             //tcp_sent(_tpcb, CallbackOnSent);
             //Send(_tpcb, ss);
-            SocketFuncReciever(static_cast<char*>(_p->payload), _p->len);
+            SocketFuncReciever(static_cast<char*>(_p->payload), _p->len); //-V2571
 
             u8_t freed = 0;
             do
@@ -244,7 +244,7 @@ void CallbackOnError(void *_arg, err_t _err)
 {
     struct State *ss;
     LWIP_UNUSED_ARG(_err);
-    ss = static_cast<struct State *>(_arg);
+    ss = static_cast<struct State *>(_arg); //-V2571
 
     pcbClient = 0;
 
@@ -262,7 +262,7 @@ void CallbackOnError(void *_arg, err_t _err)
 err_t CallbackOnPoll(void *_arg, struct tcp_pcb *_tpcb)
 {
     err_t ret_err;
-    struct State *ss = static_cast<struct State *>(_arg);
+    struct State *ss = static_cast<struct State *>(_arg); //-V2571
     if (ss != NULL)
     {
         if (ss->p != NULL)
@@ -306,7 +306,7 @@ err_t CallbackOnAccept(void *_arg, struct tcp_pcb *_newPCB, err_t _err)
         new pcbs of higher priority. */
     tcp_setprio(_newPCB, TCP_PRIO_MIN);
 
-    s = static_cast<struct State*>(mem_malloc(sizeof(struct State)));
+    s = static_cast<struct State*>(mem_malloc(sizeof(struct State))); //-V2571
 
     if (s)
     {
@@ -408,7 +408,7 @@ bool TCPSocket::Send(const char *buffer, uint length)
         struct pbuf *tcpBuffer = pbuf_alloc(PBUF_RAW, static_cast<uint16>(length), PBUF_POOL);
         tcpBuffer->flags = 1;
         pbuf_take(tcpBuffer, buffer, static_cast<uint16>(length));
-        struct State *ss = static_cast<struct State*>(mem_malloc(sizeof(struct State)));
+        struct State *ss = static_cast<struct State*>(mem_malloc(sizeof(struct State))); //-V2571
         ss->p = tcpBuffer;
         ::Send(pcbClient, ss);
         mem_free(ss);
