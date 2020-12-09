@@ -39,7 +39,7 @@ void sChannel_SetRange(Channel::E chan, Range::E range)
 }
 
 
-bool sChannel_Enabled(Channel::E chan)
+bool sChannel_Enabled(Channel::E chan) //-V2506
 {
     if (chan == Channel::Math)
     {

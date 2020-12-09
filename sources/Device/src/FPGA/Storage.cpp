@@ -143,7 +143,7 @@ void Storage::CalculateLimits(pUCHAR data0, pUCHAR data1, const DataSettings *ds
     else
     {
         int allDatas = NumElementsWithSameSettings();
-        LIMITATION(allDatas, allDatas, 1, NUM_MIN_MAX);
+        LIMITATION(allDatas, allDatas, 1, NUM_MIN_MAX); //-V2516
         
         if(NumElementsWithSameSettings() >= NUM_MIN_MAX)
         {
@@ -398,7 +398,7 @@ uint8* Storage::GetLimitation(Channel::E chan, int direction)
     {
         retValue = &(limitDown[chan][0]);
     }
-    else if(direction == 1)
+    else if(direction == 1) //-V2516
     {
         retValue = &(limitUp[chan][0]);
     }
@@ -496,7 +496,7 @@ int Storage::MemoryFree() //-V2506
             return (uint8*)firstElem - beginPool;
         }
     }
-    else if (lastElem < firstElem)
+    else if (lastElem < firstElem) //-V2516
     {
         return (uint8*)firstElem - (uint8*)lastElem - SizeElem(lastElem);
     }

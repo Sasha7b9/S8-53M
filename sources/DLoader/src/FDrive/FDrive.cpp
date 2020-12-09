@@ -106,21 +106,21 @@ bool FDrive_FileExist(const char *fileName) //-V2506
 {
     char nameFile[255];
     char file[255];
-    strcpy(file, fileName);
+    strcpy(file, fileName); //-V2513
     ToLower(file);
     StructForReadDir strd;
 
     if (GetNameFile("\\", 0, nameFile, &strd))
     {
         ToLower(nameFile);
-        if (strcmp(file, nameFile) == 0)
+        if (strcmp(file, nameFile) == 0) //-V2513
         {
             return true;
         }
         while (GetNextNameFile(nameFile, &strd))
         {
             ToLower(nameFile);
-            if (strcmp(file, nameFile) == 0)
+            if (strcmp(file, nameFile) == 0) //-V2513
             {
                 return true;
             }

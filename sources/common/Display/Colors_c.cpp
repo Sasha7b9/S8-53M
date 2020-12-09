@@ -156,7 +156,7 @@ void Color_BrightnessChange(ColorType *colorType, int delta) //-V2506
 
     int sign = Math::Sign(delta);
 
-    LIMITATION(colorType->brightness, colorType->brightness + sign * 0.01F, 0.0F, 1.0F);
+    LIMITATION(colorType->brightness, colorType->brightness + sign * 0.01F, 0.0F, 1.0F); //-V2516
 
     colorType->red += sign * colorType->stepRed;
     colorType->green += sign * colorType->stepGreen;

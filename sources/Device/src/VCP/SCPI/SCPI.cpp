@@ -128,7 +128,7 @@ void SCPI::ParseNewCommand(uint8 *buf)
 
 
 
-void SCPI::ProcessingCommand(const StructCommand *commands, uint8 *buffer) 
+void SCPI::ProcessingCommand(const StructCommand *commands, uint8 *buffer)  //-V2506
 {
     int sizeNameCommand = FindNumSymbolsInCommand(buffer);
     if (sizeNameCommand == 0) 
@@ -171,16 +171,16 @@ static int FindNumSymbolsInCommand(pUCHAR buffer)
 
 
 
-bool SCPI::FirstIsInt(pUCHAR buffer, int *value, int min, int max)
+bool SCPI::FirstIsInt(pUCHAR buffer, int *value, int min, int max) //-V2506
 {
     Word param;
     if (GetWord(buffer, &param, 0))
     {
-        char *n = reinterpret_cast<char *>(std::malloc(static_cast<uint>(param.numSymbols + 1)));
+        char *n = reinterpret_cast<char *>(std::malloc(static_cast<uint>(param.numSymbols + 1))); //-V2511
         std::memcpy(n, param.address, static_cast<uint>(param.numSymbols)); //-V575
         n[param.numSymbols] = '\0';
         bool res = String2Int(n, value) && *value >= min && *value <= max;
-        std::free(n);
+        std::free(n); //-V2511
         return res;
     }
     return false;

@@ -54,7 +54,7 @@ char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
 
     if (value == ERROR_VALUE_FLOAT) //-V2550 //-V550
     {
-        std::strcat(bufferOut, ERROR_STRING_VALUE);
+        std::strcat(bufferOut, ERROR_STRING_VALUE); //-V2513
         return bufferOut;
     }
 
@@ -100,9 +100,9 @@ char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
     }
 
     bool signExist = alwaysSign || value < 0;
-    while ((uint)std::strlen(bufferOut) < (uint)numDigits + (signExist ? 2 : 1))
+    while ((uint)std::strlen(bufferOut) < (uint)numDigits + (signExist ? 2 : 1)) //-V2513
     {
-        std::strcat(bufferOut, "0");
+        std::strcat(bufferOut, "0"); //-V2513
     }
 
     return bufferOut;
@@ -114,7 +114,7 @@ char* Int2String(int value, bool alwaysSign, int numMinFields, char buffer[20])
 {
     char format[20] = "%";
     std::sprintf(&(format[1]), "0%d", numMinFields);
-    std::strcat(format, "d");
+    std::strcat(format, "d"); //-V2513
     if (alwaysSign && value >= 0)
     {
         buffer[0] = '+';
@@ -136,7 +136,7 @@ bool String2Int(char *str, int *value) //-V2506
     {
         str++;
     }
-    int length = static_cast<int>(std::strlen(str));
+    int length = static_cast<int>(std::strlen(str)); //-V2513
     if (length == 0)
     {
         return false;
@@ -187,8 +187,8 @@ char* Float2Db(float value, int numDigits, char bufferOut[20])
 {
     bufferOut[0] = 0;
     char buffer[20];
-    std::strcat(bufferOut, Float2String(value, false, numDigits, buffer));
-    std::strcat(bufferOut, "Да");
+    std::strcat(bufferOut, Float2String(value, false, numDigits, buffer)); //-V2513
+    std::strcat(bufferOut, "Да"); //-V2513
     return bufferOut;
 }
 

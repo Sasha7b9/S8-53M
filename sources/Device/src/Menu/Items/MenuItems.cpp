@@ -135,7 +135,7 @@ void Choice::StartChange(int delta) //-V2506
         {
             tsChoice.inMoveIncrease = 1;
         }
-        else if (delta < 0)
+        else if (delta < 0) //-V2516
         {
             tsChoice.inMoveDecrease = 1;
         }
@@ -182,7 +182,7 @@ float Choice::Step() const //-V2506
             }
             CircleIncreaseInt8(own->cell, 0, static_cast<int8>(NumSubItems() - 1));
         }
-        else if (tsChoice.inMoveDecrease == 1)
+        else if (tsChoice.inMoveDecrease == 1) //-V2516
         {
             delta = -delta;
 
@@ -377,7 +377,7 @@ void Page::ChangeSubPage(int delta) const
         Sound::RegulatorSwitchRotate();
         SetCurrentSubPage(GetCurrentSubPage() + 1);
     }
-    else if (delta < 0 && GetCurrentSubPage() > 0)
+    else if (delta < 0 && GetCurrentSubPage() > 0) //-V2516
     {
         Sound::RegulatorSwitchRotate();
         SetCurrentSubPage(GetCurrentSubPage() - 1);
@@ -424,7 +424,7 @@ void Choice::ShortPress()
         {
             FuncOnChanged(false);
         }
-        else if (!Menu::IsOpenedItem(this))
+        else if (!Menu::IsOpenedItem(this)) //-V2516
         {
             SetCurrent(!Menu::IsCurrentItem(this));
         }
@@ -571,7 +571,7 @@ void Item::Change(int delta) const
             governor->ChangeValue(delta);
         }
     }
-    else if (IsGovernorColor())
+    else if (IsGovernorColor()) //-V2516
     {
         ((GovernorColor *)this)->ChangeValue(delta);
     }
@@ -628,7 +628,7 @@ bool Item::ChangeOpened(int delta) const //-V2506
     {
         ((Choice *)this)->ChangeValue(delta);
     }
-    else if (IsGovernor())
+    else if (IsGovernor()) //-V2516
     {
         ((Governor *)this)->ChangeValue(delta);
     }
@@ -642,7 +642,7 @@ int Item::HeightOpened() const //-V2506
     if (IsPage())
     {
         int numItems = ((const Page *)this)->NumItems() - ((Page *)this)->GetCurrentSubPage() * Menu::ITEMS_ON_DISPLAY;
-        LIMITATION(numItems, numItems, 0, Menu::ITEMS_ON_DISPLAY);
+        LIMITATION(numItems, numItems, 0, Menu::ITEMS_ON_DISPLAY); //-V2516
         return Item::TITLE_HEIGHT + Item::HEIGHT * numItems;
     }
     else if (IsChoice() || IsChoiceReg())

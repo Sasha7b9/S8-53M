@@ -278,12 +278,12 @@ void FPGA::SetRShift(Channel::E chan, int16 rShift) //-V2506
         Display::ShowWarningBad(chan == Channel::A ? Warning::LimitChan1_RShift : Warning::LimitChan2_RShift);
     }
 
-    LIMITATION(rShift, rShift, RShiftMin, RShiftMax);
+    LIMITATION(rShift, rShift, RShiftMin, RShiftMax); //-V2516
     if (rShift > RShiftZero)
     {
         rShift &= 0xfffe;                                            // ƒелаем кратным двум, т.к. у нас 800 значений на 400 точек
     }
-    else if (rShift < RShiftZero)
+    else if (rShift < RShiftZero) //-V2516
     {
         rShift = (rShift + 1) & 0xfffe;
     }
@@ -323,13 +323,13 @@ void FPGA::SetTrigLev(TrigSource::E chan, int16 trigLev)
     {
         Display::ShowWarningBad(Warning::LimitSweep_Level);
     }
-    LIMITATION(trigLev, trigLev, TrigLevMin, TrigLevMax);
+    LIMITATION(trigLev, trigLev, TrigLevMin, TrigLevMax); //-V2516
 
     if (trigLev > TrigLevZero)
     {
         trigLev &= 0xfffe;
     }
-    else if (trigLev < TrigLevZero)
+    else if (trigLev < TrigLevZero) //-V2516
     {
         trigLev = (trigLev + 1) & 0xfffe;
     }
@@ -364,7 +364,7 @@ void FPGA::SetTShift(int tShift) //-V2506
 
     if (tShift < sTime_TShiftMin() || tShift > TShiftMax)
     {
-        LIMITATION(tShift, tShift, sTime_TShiftMin(), TShiftMax);
+        LIMITATION(tShift, tShift, sTime_TShiftMin(), TShiftMax); //-V2516
         Display::ShowWarningBad(Warning::LimitSweep_TShift);
     }
 
@@ -410,7 +410,7 @@ void FPGA::LoadRegUPR()
     {
         _SET_BIT(data, 2);
     }
-    else if (CALIBRATOR_IS_DC)
+    else if (CALIBRATOR_IS_DC) //-V2516
     {
         _SET_BIT(data, 3);
     }

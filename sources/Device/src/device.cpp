@@ -77,7 +77,7 @@ static void ProcessingSignal()
         ds = &Storage::dsLast;
         Storage::GetDataFromEnd(PageMemory::PageLatest::currentSignal, &Storage::dsLast, &Storage::dataLastA, &Storage::dataLastB);
     }
-    else if (MODE_WORK_IS_MEMINT)
+    else if (MODE_WORK_IS_MEMINT) //-V2516
     {
         data0 = &Storage::dataIntA;
         data1 = &Storage::dataIntB;

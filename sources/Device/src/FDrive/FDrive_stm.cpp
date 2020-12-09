@@ -97,8 +97,8 @@ void FDrive::GetNumDirsAndFiles(const char* fullPath, int *numDirs, int *numFile
     
 
     char nameDir[_MAX_LFN + 1];
-    memcpy(nameDir, fullPath, strlen(fullPath));
-    nameDir[strlen(fullPath)] = '\0';
+    memcpy(nameDir, fullPath, strlen(fullPath)); //-V2513
+    nameDir[strlen(fullPath)] = '\0'; //-V2513
 
     fno.fsize = _MAX_LFN + 1;
 
@@ -140,8 +140,8 @@ void FDrive::GetNumDirsAndFiles(const char* fullPath, int *numDirs, int *numFile
 
 bool FDrive::GetNameDir(const char *fullPath, int numDir, char *nameDirOut, StructForReadDir *s) //-V2506
 {
-    memcpy(s->nameDir, fullPath, strlen(fullPath));
-    s->nameDir[strlen(fullPath)] = '\0';
+    memcpy(s->nameDir, fullPath, strlen(fullPath)); //-V2513
+    s->nameDir[strlen(fullPath)] = '\0'; //-V2513
 
     DIR *pDir = &s->dir;
     if (f_opendir(pDir, s->nameDir) == FR_OK)
@@ -170,7 +170,7 @@ bool FDrive::GetNameDir(const char *fullPath, int numDir, char *nameDirOut, Stru
             char *fn = pFNO->fname;
             if (numDir == numDirs && ((pFNO->fattrib & AM_DIR) != 0))
             {
-                strcpy(nameDirOut, fn);
+                strcpy(nameDirOut, fn); //-V2513
                 return true;
             }
             if (((pFNO->fattrib & AM_DIR) != 0) && (pFNO->fname[0] != '.'))
@@ -211,7 +211,7 @@ bool FDrive::GetNextNameDir(char *nameDirOut, StructForReadDir *s) //-V2506
             char *fn = pFNO->fname;
             if (pFNO->fattrib & AM_DIR)
             {
-                strcpy(nameDirOut, fn);
+                strcpy(nameDirOut, fn); //-V2513
                 return true;
             }
         }
@@ -227,8 +227,8 @@ void FDrive::CloseCurrentDir(StructForReadDir *s)
 
 bool FDrive::GetNameFile(const char *fullPath, int numFile, char *nameFileOut, StructForReadDir *s) //-V2506
 {
-    memcpy(s->nameDir, fullPath, strlen(fullPath));
-    s->nameDir[strlen(fullPath)] = '\0';
+    memcpy(s->nameDir, fullPath, strlen(fullPath)); //-V2513
+    s->nameDir[strlen(fullPath)] = '\0'; //-V2513
 
     DIR *pDir = &s->dir;
     FILINFO *pFNO = &s->fno;
@@ -257,7 +257,7 @@ bool FDrive::GetNameFile(const char *fullPath, int numFile, char *nameFileOut, S
             char *fn = pFNO->fname;
             if (numFile == numFiles && (pFNO->fattrib & AM_DIR) == 0)
             {
-                strcpy(nameFileOut, fn);
+                strcpy(nameFileOut, fn); //-V2513
                 return true;
             }
             if ((pFNO->fattrib & AM_DIR) == 0 && (pFNO->fname[0] != '.'))
@@ -297,7 +297,7 @@ bool FDrive::GetNextNameFile(char *nameFileOut, StructForReadDir *s) //-V2506
             char *fn = pFNO->fname;
             if ((pFNO->fattrib & AM_DIR) == 0 && pFNO->fname[0] != '.')
             {
-                strcpy(nameFileOut, fn);
+                strcpy(nameFileOut, fn); //-V2513
                 return true;
             }
         }
@@ -311,7 +311,7 @@ bool FDrive::OpenNewFileForWrite(const char* fullPathToFile, StructForWrite *str
     {
         return false;
     }
-    strcpy(structForWrite->name, fullPathToFile);
+    strcpy(structForWrite->name, fullPathToFile); //-V2513
     structForWrite->sizeData = 0;
     return true;
 }
@@ -377,7 +377,7 @@ void FDrive::ChangeState()
             ((Page *)Menu::OpenedItem())->ShortPressOnItem(0);
         }
     }
-    else if (FLASH_AUTOCONNECT)
+    else if (FLASH_AUTOCONNECT) //-V2516
     {
         needOpenFileMananger = true;
     }

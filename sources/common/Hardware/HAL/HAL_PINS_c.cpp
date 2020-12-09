@@ -168,7 +168,7 @@ void Pin::Init(PinMode::E mode, PinPort::E _port, PinPin::E _pin)
         isGPIO.Speed = GPIO_SPEED_FAST;
         isGPIO.Alternate = GPIO_AF5_SPI1;
     }
-    else if (mode == PinMode::_SPI1_NSS)
+    else if (mode == PinMode::_SPI1_NSS) //-V2516
     {
         isGPIO.Mode = GPIO_MODE_IT_RISING;
     }

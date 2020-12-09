@@ -21,7 +21,7 @@ void Upgrade(void);
 
 int main(void) //-V2506
 {
-    MainStruct::ms = static_cast<MainStruct *>(malloc(sizeof(MainStruct)));
+    MainStruct::ms = static_cast<MainStruct *>(malloc(sizeof(MainStruct))); //-V2511
     MainStruct::ms->percentUpdate = 0.0F; //-V522
 
     Hardware_Init();
@@ -47,7 +47,7 @@ int main(void) //-V2506
     if (((MainStruct::ms->drive.connection != 0) && (MainStruct::ms->drive.active == 0)) ||  // Если флеша подключена, но в активное состояние почему-то не перешла
         ((MainStruct::ms->drive.active != 0) && (MainStruct::ms->state != State::Mount)))     // или перешла в активное состояние, по почему-то не запустился процесс монтирования
     {
-        free(MainStruct::ms);
+        free(MainStruct::ms); //-V2511
         HAL::SystemReset();
         return 0;
     }
@@ -67,7 +67,7 @@ int main(void) //-V2506
                     Upgrade();
                     break;
                 }
-                else if (button == Key::F5)
+                else if (button == Key::F5) //-V2516
                 {
                     MainStruct::ms->state = State::Ok;
                     break;
@@ -79,7 +79,7 @@ int main(void) //-V2506
             MainStruct::ms->state = State::NotFile;
         }
     }
-    else if (MainStruct::ms->state == State::WrongFlash) // Диск не удалось примонтировать
+    else if (MainStruct::ms->state == State::WrongFlash) // Диск не удалось примонтировать //-V2516
     {
         HAL_TIM2::Delay(5000);
     }
@@ -96,7 +96,7 @@ int main(void) //-V2506
 
     HAL::DeInit();
 
-    free(MainStruct::ms);
+    free(MainStruct::ms); //-V2511
 
     HAL::JumpToApplication();
     

@@ -16,7 +16,7 @@ char SU::ToUpper(char symbol) //-V2506
     {
         return static_cast<char>(s - 0x20);
     }
-    else if (s >= 0xf0)
+    else if (s >= 0xf0) //-V2516
     {
         return static_cast<char>(s - 0x20);
     }
@@ -33,7 +33,7 @@ char SU::ToLower(char symbol) //-V2506
     {
         return static_cast<char>(s + 0x20);
     }
-    else if (s >= 0xc0 && s < 0xE0)
+    else if (s >= 0xc0 && s < 0xE0) //-V2516
     {
         return static_cast<char>(s + 0x20);
     }

@@ -156,7 +156,7 @@ void SCPI::CHANNEL::RANGE(pUCHAR buffer)
 
 
 
-void SCPI::CHANNEL::OFFSET(pUCHAR buffer)
+void SCPI::CHANNEL::OFFSET(pUCHAR buffer) //-V2506
 {
     static const MapElement map[] =
     {

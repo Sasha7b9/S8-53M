@@ -18,7 +18,7 @@ void sTime_SetTShift(int16 shift)
 }
 
 
-int sTime_TPosInPoints(PeackDetMode::E peakDet, int numPoints, TPos::E tPos)
+int sTime_TPosInPoints(PeackDetMode::E peakDet, int numPoints, TPos::E tPos) //-V2506
 {
     if (peakDet == PeackDetMode::Disable)
     {
@@ -49,7 +49,7 @@ int sTime_TShiftInPoints(PeackDetMode::E peakDet)
 }
 
 
-int16 sTime_TShiftMin()
+int16 sTime_TShiftMin() //-V2506
 {
     static const int16 m[3][3] = {{-511, -441, -371},
     {-511, -383, -255},

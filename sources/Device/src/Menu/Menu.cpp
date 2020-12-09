@@ -308,10 +308,10 @@ char* Menu::StringNavigation(char buffer[100]) //-V2506
         {
             if(titles[i])
             {
-                std::strcat(buffer, titles[i]);
+                std::strcat(buffer, titles[i]); //-V2513
                 if(i != 0)
                 {
-                    std::strcat(buffer, " - ");
+                    std::strcat(buffer, " - "); //-V2513
                 }
             }
         }
@@ -427,7 +427,7 @@ void Menu::ProcessingLongPressureButton()
         {
                 Show(!IsShown());
         }
-        else if(IsShown() && Key::IsFunctionalButton(longPressureButton))
+        else if(IsShown() && Key::IsFunctionalButton(longPressureButton)) //-V2516
         {
             Item *item = ItemUnderButton(longPressureButton);
             if (item->IsActive())
@@ -478,7 +478,7 @@ void Menu::ProcessingRegulatorSet() //-V2506
             {
                 item->Change(angleRegSet);
             }
-            else if (item->IsTime())
+            else if (item->IsTime()) //-V2516
             {
                 angleRegSet > 0 ? ((TimeItem *)item)->IncCurrentPosition() : ((TimeItem *)item)->DecCurrentPosition();
             }
@@ -580,7 +580,7 @@ void Menu::SwitchSetLED()
         Panel::EnableLEDRegSet(state);
         prevState = state;
     }
-    else if (prevState != state)
+    else if (prevState != state) //-V2516
     {
         Panel::EnableLEDRegSet(state);
         prevState = state;

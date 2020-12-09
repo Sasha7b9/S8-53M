@@ -210,7 +210,7 @@ void Display::DrawSignalLined(pUCHAR data, const DataSettings *ds, int startPoin
             {
                 int index = i - startPoint;
                 int y = calculateFiltr ? Math::CalculateFiltr(data, i, numPoints, numSmoothing) : data[i];
-                CONVERT_DATA_TO_DISPLAY(dataCD[index], y);
+                CONVERT_DATA_TO_DISPLAY(dataCD[index], y); //-V2516
             }
         }
     }
@@ -229,21 +229,21 @@ void Display::DrawSignalLined(pUCHAR data, const DataSettings *ds, int startPoin
                 int yMin = yMinNext;
                 if (yMin == -1)
                 {
-                    CONVERT_DATA_TO_DISPLAY(yMin, data[i + shift]);
+                    CONVERT_DATA_TO_DISPLAY(yMin, data[i + shift]); //-V2516
                 }
                 int yMax = yMaxNext;
                 if (yMax == -1)
                 {
-                    CONVERT_DATA_TO_DISPLAY(yMax, data[i]);
+                    CONVERT_DATA_TO_DISPLAY(yMax, data[i]); //-V2516
                 }
 
-                CONVERT_DATA_TO_DISPLAY(yMaxNext, data[i + 1]);
+                CONVERT_DATA_TO_DISPLAY(yMaxNext, data[i + 1]); //-V2516
                 if (yMaxNext < yMin)
                 {
                     yMin = yMaxNext + 1;
                 }
 
-                CONVERT_DATA_TO_DISPLAY(yMinNext, data[i + shift + 1]);
+                CONVERT_DATA_TO_DISPLAY(yMinNext, data[i + shift + 1]); //-V2516
                 if (yMinNext > yMax)
                 {
                     yMax = yMinNext - 1;
@@ -260,13 +260,13 @@ void Display::DrawSignalLined(pUCHAR data, const DataSettings *ds, int startPoin
         for(int i = 0; i < _numPoints; i++)
         {
             int index = endPoint - startPoint + i;
-            CONVERT_DATA_TO_DISPLAY(dataCD[index], MIN_VALUE);
+            CONVERT_DATA_TO_DISPLAY(dataCD[index], MIN_VALUE); //-V2516
         }
     }
 
     if(ds->peakDet == PeackDetMode::Disable)
     {
-        CONVERT_DATA_TO_DISPLAY(dataCD[280], data[endPoint]);
+        CONVERT_DATA_TO_DISPLAY(dataCD[280], data[endPoint]); //-V2516
         Painter::DrawSignal(Grid::Left(), dataCD, true);
     }
 }
@@ -285,7 +285,7 @@ void Display::DrawSignalPointed(pUCHAR data, const DataSettings *ds, int startPo
         for (int i = startPoint; i < endPoint; i++)
         {
             int index = i - startPoint;
-            CONVERT_DATA_TO_DISPLAY(dataCD[index], Math::CalculateFiltr(data, i, numPoints, numSmoothing));
+            CONVERT_DATA_TO_DISPLAY(dataCD[index], Math::CalculateFiltr(data, i, numPoints, numSmoothing)); //-V2516
         }
         Painter::DrawSignal(Grid::Left(), dataCD, false);
 
@@ -298,7 +298,7 @@ void Display::DrawSignalPointed(pUCHAR data, const DataSettings *ds, int startPo
             for (int i = startPoint; i < endPoint; i++)
             {
                 int index = i - startPoint;
-                CONVERT_DATA_TO_DISPLAY(dataCD[index], Math::CalculateFiltr(data, i, numPoints, numSmoothing));
+                CONVERT_DATA_TO_DISPLAY(dataCD[index], Math::CalculateFiltr(data, i, numPoints, numSmoothing)); //-V2516
             }
             Painter::DrawSignal(Grid::Left(), dataCD, false);
         }
@@ -309,7 +309,7 @@ void Display::DrawSignalPointed(pUCHAR data, const DataSettings *ds, int startPo
         {
             int index = i - startPoint;
             int dat = 0;
-            CONVERT_DATA_TO_DISPLAY(dat, Math::CalculateFiltr(data, i, numPoints, numSmoothing));
+            CONVERT_DATA_TO_DISPLAY(dat, Math::CalculateFiltr(data, i, numPoints, numSmoothing)); //-V2516
             Point().Draw(Grid::Left() + static_cast<int>(index * scaleX), dat);
         }
     }
@@ -356,7 +356,7 @@ void Display::DrawDataChannel(uint8 *data, Channel::E chan, DataSettings *ds, in
         {
             LOG_TRACE
         }
-        else if(lastPoint > lastP2Pdata)
+        else if(lastPoint > lastP2Pdata) //-V2516
         {
             lastPoint = lastP2Pdata;
         }
@@ -634,7 +634,7 @@ void Display::DrawDataInModeNormal()
     Processing::GetData(&data0, &data1, &ds);
 
     int16 numSignals = (int16)Storage::NumElementsWithSameSettings();
-    LIMITATION(numSignals, numSignals, 1, NUM_ACCUM);
+    LIMITATION(numSignals, numSignals, 1, NUM_ACCUM); //-V2516
     if (numSignals == 1 || ENUM_ACCUM_IS_INFINITY || MODE_ACCUM_IS_RESET || sTime_RandomizeModeEnabled())
     {
         DrawBothChannels(0, 0);
@@ -1149,7 +1149,7 @@ void Display::DrawHiRightPart()
         {
             Region(10, 10).Fill(x + 3, y + 3);
         }
-        else if (FPGA::CurrentStateWork() == StateWorkFPGA::Wait)
+        else if (FPGA::CurrentStateWork() == StateWorkFPGA::Wait) //-V2516
         {
             int w = 4;
             int h = 14;
@@ -1297,9 +1297,9 @@ void Display::WriteValueTrigLevel()
             trigLev += rShiftAbs;
         }
         char buffer[20];
-        std::strcpy(buffer, LANG_RU ? "Óð ñèíõð = " : "Trig lvl = ");
+        std::strcpy(buffer, LANG_RU ? "Óð ñèíõð = " : "Trig lvl = "); //-V2513
         char bufForVolt[20];
-        std::strcat(buffer, Voltage2String(trigLev, true, bufForVolt));
+        std::strcat(buffer, Voltage2String(trigLev, true, bufForVolt)); //-V2513
         int width = 96;
         int x = (Grid::Width() - width) / 2 + Grid::Left();
         int y = Grid::BottomMessages() - 20;
@@ -1334,7 +1334,7 @@ void Display::DrawGridSpectrum()
             Text("äÁ").Draw(5, Grid::MathTop() + 1);
         }
     }
-    else if (SCALE_FFT_IS_LINEAR)
+    else if (SCALE_FFT_IS_LINEAR) //-V2516
     {
         static const char *strs[] = {"1.0", "0.8", "0.6", "0.4", "0.2"};
         float scale = (float)Grid::MathHeight() / 5;
@@ -1525,7 +1525,7 @@ void Display::DrawGrid(int left, int top, int width, int height)
     {
         DrawGridType2(left, top, right, bottom, static_cast<int>(deltaX), static_cast<int>(deltaY), static_cast<int>(stepX), static_cast<int>(stepY));
     }
-    else if (TYPE_GRID_IS_3)
+    else if (TYPE_GRID_IS_3) //-V2516
     {
         DrawGridType3(left, top, right, bottom, centerX, centerY, static_cast<int>(deltaX), static_cast<int>(deltaY), static_cast<int>(stepX), static_cast<int>(stepY));
     }
@@ -1724,7 +1724,7 @@ void Display::DrawCursorTShift() //-V2506
         Char(Symbol::S8::TSHIFT_LEFT_1).Draw2SymbolsInPosition(gridLeft + 1, Grid::TOP, Symbol::S8::TSHIFT_LEFT_2, Color::BACK, Color::FILL);
         Line().Draw(Grid::Left() + 9, Grid::TOP + 1, Grid::Left() + 9, Grid::TOP + 7, Color::BACK);
     }
-    else if(shiftTShift > lastPoint)
+    else if(shiftTShift > lastPoint) //-V2516
     {
         Char(Symbol::S8::TSHIFT_RIGHT_1).Draw2SymbolsInPosition(Grid::Right() - 8, Grid::TOP, Symbol::S8::TSHIFT_RIGHT_2, Color::BACK, Color::FILL);
         Line().Draw(Grid::Right() - 9, Grid::TOP + 1, Grid::Right() - 9, Grid::TOP + 7, Color::BACK);
@@ -2080,11 +2080,11 @@ void Display::DrawLowPart()
         float freq = FPGA::GetFreq();
         if (freq == -1.0F) //-V550 //-V2550
         {
-            std::strcat(mesFreq, "******");
+            std::strcat(mesFreq, "******"); //-V2513
         }
         else
         {
-            std::strcat(mesFreq, Freq2String(freq, false, buf));
+            std::strcat(mesFreq, Freq2String(freq, false, buf)); //-V2513
         }
         Text(mesFreq).Draw(x + 3, Grid::Bottom() + 2);
     }
@@ -2162,10 +2162,10 @@ void Display::DrawTimeForFrame(uint timeTicks) //-V2506
 
     char message[20] = {0};
     std::sprintf(message, "%d", Storage::NumElementsWithSameSettings());
-    std::strcat(message, "/");
+    std::strcat(message, "/"); //-V2513
     char numAvail[10] = {0};
     std::sprintf(numAvail, "%d", Storage::NumberAvailableEntries());
-    std::strcat(message, numAvail);
+    std::strcat(message, numAvail); //-V2513
     Text(message).Draw(Grid::Left() + 50, Grid::FullBottom() - 9);
 }
 
@@ -2258,7 +2258,7 @@ void Display::Clear()
 
 void Display::ShiftScreen(int delta)
 {
-    LIMITATION(SHIFT_IN_MEMORY, static_cast<int16>(SHIFT_IN_MEMORY + delta), 0, static_cast<int16>(sMemory_GetNumPoints(false) - 282));
+    LIMITATION(SHIFT_IN_MEMORY, static_cast<int16>(SHIFT_IN_MEMORY + delta), 0, static_cast<int16>(sMemory_GetNumPoints(false) - 282)); //-V2516
 }
 
 
@@ -2301,7 +2301,7 @@ int Display::CalculateFreeSize() //-V2506
     {
         return SIZE_BUFFER_FOR_STRINGS;
     }
-    return static_cast<int>(SIZE_BUFFER_FOR_STRINGS - (strings[firstEmptyString - 1] - bufferForStrings) - std::strlen(strings[firstEmptyString - 1]) - 1);
+    return static_cast<int>(SIZE_BUFFER_FOR_STRINGS - (strings[firstEmptyString - 1] - bufferForStrings) - std::strlen(strings[firstEmptyString - 1]) - 1); //-V2513
 }
 
 
@@ -2311,7 +2311,7 @@ void Display::DeleteFirstString() //-V2506
     {
         return;
     }
-    int delta = static_cast<int>(std::strlen(strings[0])) + 1;
+    int delta = static_cast<int>(std::strlen(strings[0])) + 1; //-V2513
     int numStrings = FirstEmptyString();
     for(int i = 1; i < numStrings; i++)
     {
@@ -2338,8 +2338,8 @@ void Display::AddString(const char *string) //-V2506
     static int num = 0;
     char buffer[100];
     std::sprintf(buffer, "%d\x11", num++);
-    std::strcat(buffer, string);
-    int size = static_cast<int>(std::strlen(buffer)) + 1;
+    std::strcat(buffer, string); //-V2513
+    int size = static_cast<int>(std::strlen(buffer)) + 1; //-V2513
     while(CalculateFreeSize() < size)
     {
         DeleteFirstString();
@@ -2347,14 +2347,14 @@ void Display::AddString(const char *string) //-V2506
     if(!strings[0])
     {
         strings[0] = bufferForStrings;
-        std::strcpy(strings[0], buffer);
+        std::strcpy(strings[0], buffer); //-V2513
     }
     else
     {
         char *addressLastString = strings[FirstEmptyString() - 1];
-        char *address = addressLastString + std::strlen(addressLastString) + 1;
+        char *address = addressLastString + std::strlen(addressLastString) + 1; //-V2513
         strings[FirstEmptyString()] = address;
-        std::strcpy(address, buffer);
+        std::strcpy(address, buffer); //-V2513
     }
 }
 
@@ -2391,7 +2391,7 @@ void Display::OneStringUp()
     if(!CONSOLE_IN_PAUSE)
     {
     }
-    else if(lastStringForPause > NUM_STRINGS - 1)
+    else if(lastStringForPause > NUM_STRINGS - 1) //-V2516
     {
         lastStringForPause--;
     }
@@ -2404,7 +2404,7 @@ void Display::OneStringDown()
     if(!CONSOLE_IN_PAUSE)
     {
     }
-    else if(lastStringForPause < FirstEmptyString() - 1)
+    else if(lastStringForPause < FirstEmptyString() - 1) //-V2516
     {
         lastStringForPause++;
     }
@@ -2468,7 +2468,7 @@ void Display::ShowWarn(const char *message)
             timeWarnings[i] = gTimerMS;
             alreadyStored = true;
         }
-        else if (warnings[i] == message)
+        else if (warnings[i] == message) //-V2516
         {
             timeWarnings[i] = gTimerMS;
             return;

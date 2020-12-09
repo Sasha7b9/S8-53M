@@ -85,7 +85,7 @@ int MathFPGA::RShift2Rel(float rShiftAbs, Range::E range)
     {
         retValue = RShiftMin;
     }
-    else if (retValue > RShiftMax)
+    else if (retValue > RShiftMax) //-V2516
     {
         retValue = RShiftMax;
     }
@@ -131,7 +131,7 @@ void MathFPGA::PointsVoltageToRel(const float* voltage, int numPoints, Range::E 
             points[i] = 0;
             continue;
         }
-        else if (value > 255)
+        else if (value > 255) //-V2516
         {
             points[i] = 255;
             continue;
@@ -144,7 +144,7 @@ void MathFPGA::PointsVoltageToRel(const float* voltage, int numPoints, Range::E 
 uint8 MathFPGA::VoltageToPoint(float voltage, Range::E range, int16 rShift)
 {
     int relValue = static_cast<int>((voltage + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) / voltsInPixel[range] + MIN_VALUE);
-    LIMITATION(relValue, relValue, 0, 255);
+    LIMITATION(relValue, relValue, 0, 255); //-V2516
     return (uint8)relValue;
 }
 
@@ -216,7 +216,7 @@ static void MultiplyToWindow(float* data, int numPoints)
             data[i] *= a0 - a1 * std::cos(2 * 3.1415926F * i / (numPoints - 1)) + a2 * std::cos(4 * 3.1415926F * i / (numPoints - 1));
         }
     }
-    else if (WINDOW_FFT_IS_HANN)
+    else if (WINDOW_FFT_IS_HANN) //-V2516
     {
         for (int i = 0; i < numPoints; i++)
         {
@@ -271,7 +271,7 @@ void MathFPGA::CalculateFFT(float* dataR, int numPoints, float* result, float* f
     {
         logN = 9;
     }
-    else if (numPoints == 1024)
+    else if (numPoints == 1024) //-V2516
     {
         logN = 10;
     }
@@ -375,7 +375,7 @@ void MathFPGA::CalculateFFT(float* dataR, int numPoints, float* result, float* f
             {
                 *density0 = result[i];
             }
-            else if (i == FFT_POS_CURSOR_1)
+            else if (i == FFT_POS_CURSOR_1) //-V2516
             {
                 *density1 = result[i];
             }
@@ -430,7 +430,7 @@ void MathFPGA::CalculateMathFunction(float* data0andResult, const float* data1, 
             data0andResult++;
         }
     }
-    else if (MATH_FUNC_IS_MUL)
+    else if (MATH_FUNC_IS_MUL) //-V2516
     {
         int delta = data1 - data0andResult;
         float* end = &data0andResult[numPoints];

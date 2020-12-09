@@ -131,7 +131,7 @@ int Grid::BottomMessages() //-V2506
     {
         retValue -= 12;
     }
-    else if (SHOW_MEASURES)
+    else if (SHOW_MEASURES) //-V2516
     {
         retValue = Display::topMeasures;
         if (MEAS_NUM_IS_6_1 || MEAS_NUM_IS_6_2 || MEAS_NUM_IS_1)

@@ -6,7 +6,7 @@
 #include "VCP/SCPI/Utils/StringsSCPI.h"
 
 
-void SCPI::CONTROL::KEY(pUCHAR buffer)
+void SCPI::CONTROL::KEY(pUCHAR buffer) //-V2506
 {
     static const MapElement keys[] =
     {
@@ -64,7 +64,7 @@ void SCPI::CONTROL::KEY(pUCHAR buffer)
 }
 
 
-void SCPI::CONTROL::GOVERNOR(pUCHAR buffer)
+void SCPI::CONTROL::GOVERNOR(pUCHAR buffer) //-V2506
 {
     static const MapElement governors[] =
     {

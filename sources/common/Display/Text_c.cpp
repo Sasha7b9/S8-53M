@@ -240,7 +240,7 @@ static int DrawBigChar(int eX, int eY, int size, char symbol)
 
 void Text::DrawBig(int eX, int eY, int size)
 {
-    int numSymbols = static_cast<int>(std::strlen(text.c_str()));
+    int numSymbols = static_cast<int>(std::strlen(text.c_str())); //-V2513
 
     int x = eX;
 
@@ -446,8 +446,8 @@ static bool FindNextTransfer(const char *letters, int8 *lettersInSyllable) //-V2
 #define VOWEL       0   // Гласная
 #define CONSONANT   1   // Согласная
 
-    * lettersInSyllable = static_cast<int8>(std::strlen(letters)); //-V1029
-    if (std::strlen(letters) <= 3) //-V1051
+    * lettersInSyllable = static_cast<int8>(std::strlen(letters)); //-V1029 //-V2513
+    if (std::strlen(letters) <= 3) //-V1051 //-V2513
     {
         return false;
     }
@@ -463,7 +463,7 @@ static bool FindNextTransfer(const char *letters, int8 *lettersInSyllable) //-V2
 
     bool consonant[20];
 
-    uint size = std::strlen(letters);
+    uint size = std::strlen(letters); //-V2513
     for (uint i = 0; i < size; i++)
     {
         consonant[i] = IsConsonant(letters[i]);
@@ -479,7 +479,7 @@ static bool FindNextTransfer(const char *letters, int8 *lettersInSyllable) //-V2
         *lettersInSyllable = 2;
         return true;
     }
-    if (std::strlen(letters) < 5)
+    if (std::strlen(letters) < 5) //-V2513
     {
         return false;
     }
@@ -488,7 +488,7 @@ static bool FindNextTransfer(const char *letters, int8 *lettersInSyllable) //-V2
         *lettersInSyllable = 3;
         return true;
     }
-    if (std::strlen(letters) < 6)
+    if (std::strlen(letters) < 6) //-V2513
     {
         return false;
     }
@@ -517,12 +517,12 @@ static int8 *BreakWord(char *word)
         num++;
     }
     lengthSyllables[num + 1] = 0;
-    if (std::strcmp(word, "структуру") == 0)
+    if (std::strcmp(word, "структуру") == 0) //-V2513
     {
         int8 lengths[] = { 5, 2, 2, 0 };
         std::memcpy(lengthSyllables, lengths, 4);
     }
-    else if (std::strcmp(word, "соответствующей") == 0)
+    else if (std::strcmp(word, "соответствующей") == 0) //-V2513 //-V2516
     {
         int8 lenghts[] = { 4, 3, 4, 5, 3, 0 };
         std::memcpy(lengthSyllables, lenghts, 6);
@@ -571,7 +571,7 @@ static int DrawPartWord(char *word, int x, int y, int xRight, bool draw) //-V250
             {
                 Text(subString).Draw(x, y);
             }
-            return static_cast<int>(std::strlen(subString)) - 1;
+            return static_cast<int>(std::strlen(subString)) - 1; //-V2513
         }
     }
 
@@ -583,7 +583,7 @@ static int DrawPartWord(char *word, int x, int y, int xRight, bool draw) //-V250
 static bool GetHeightTextWithTransfers(int left, int top, int right, const char *text, int *height)
 {
     char buffer[20];
-    int numSymb = static_cast<int>(std::strlen(text));
+    int numSymb = static_cast<int>(std::strlen(text)); //-V2513
 
     int y = top - 1;
     int x = left;
@@ -632,7 +632,7 @@ static bool GetHeightTextWithTransfers(int left, int top, int right, const char 
         y += 9;
     }
 
-    LIMITATION(*height, y - top + 4, 0, 239);
+    LIMITATION(*height, y - top + 4, 0, 239); //-V2516
 
     return curSymbol == numSymb;
 }

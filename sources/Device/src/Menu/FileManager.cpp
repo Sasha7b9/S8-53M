@@ -36,7 +36,7 @@ uint FM::needRedrawFileManager = 0;
 
 void FM::Init()
 {
-    std::strcpy(currentDir, "\\");
+    std::strcpy(currentDir, "\\"); //-V2513
     numFirstDir = 0;
     numFirstFile = 0;
     numCurDir = 0;
@@ -124,7 +124,7 @@ bool FM::FileIsExist(const char name[255]) //-V2506
     {
         while(FDrive::GetNextNameFile(nameFile, &sfrd))
         {
-            if(std::strcmp(name + 2, nameFile) == 0)
+            if(std::strcmp(name + 2, nameFile) == 0) //-V2513
             {
                 return true;
             }
@@ -233,11 +233,11 @@ void FM::PressLevelDown() //-V2506
     StructForReadDir sfrd;
     if (FDrive::GetNameDir(currentDir, numCurDir, nameDir, &sfrd))
     {
-        if (std::strlen(currentDir) + std::strlen(nameDir) < 250)
+        if (std::strlen(currentDir) + std::strlen(nameDir) < 250) //-V2513
         {
             FDrive::CloseCurrentDir(&sfrd);
-            std::strcat(currentDir, "\\");
-            std::strcat(currentDir, nameDir);
+            std::strcat(currentDir, "\\"); //-V2513
+            std::strcat(currentDir, nameDir); //-V2513
             numFirstDir = 0;
             numFirstFile = 0;
             numCurDir = 0;
@@ -252,11 +252,11 @@ void FM::PressLevelDown() //-V2506
 void FM::PressLevelUp() //-V2506
 {
     needRedrawFileManager = 1;
-    if (std::strlen(currentDir) == 1)
+    if (std::strlen(currentDir) == 1) //-V2513
     {
         return;
     }
-    char *pointer = currentDir + std::strlen(currentDir);
+    char *pointer = currentDir + std::strlen(currentDir); //-V2513
     while (*pointer != '\\')
     {
         pointer--;
@@ -296,7 +296,7 @@ void FM::DecCurrentDir()
         if (numCurDir < 0)
         {
             numCurDir = numDirs - 1;
-            LIMITATION(numFirstDir, numDirs - RECS_ON_PAGE, 0, numCurDir);
+            LIMITATION(numFirstDir, numDirs - RECS_ON_PAGE, 0, numCurDir); //-V2516
         }
         if (numCurDir < numFirstDir)
         {
@@ -332,7 +332,7 @@ void FM::DecCurrentFile()
         if (numCurFile < 0)
         {
             numCurFile = numFiles - 1;
-            LIMITATION(numFirstFile, numFiles - RECS_ON_PAGE, 0, numCurFile);
+            LIMITATION(numFirstFile, numFiles - RECS_ON_PAGE, 0, numCurFile); //-V2516
         }
         if (numCurFile < numFirstFile)
         {
@@ -365,10 +365,10 @@ bool FM::GetNameForNewFile(char name[255]) //-V2506
 
 LabelNextNumber:
 
-    std::strcpy(name, currentDir);
-    std::strcat(name, "\\");
+    std::strcpy(name, currentDir); //-V2513
+    std::strcat(name, "\\"); //-V2513
 
-    int size = static_cast<int>(std::strlen(FILE_NAME));
+    int size = static_cast<int>(std::strlen(FILE_NAME)); //-V2513
     if (size == 0)
     {
         return false;
@@ -376,10 +376,10 @@ LabelNextNumber:
 
     if (FILE_NAMING_MODE_IS_HAND)
     {
-        LIMITATION(size, size, 1, 95);
-        std::strcat(name, FILE_NAME);
-        std::strcat(name, ".");
-        std::strcat(name, MODE_SAVE_SIGNAL_IS_BMP ? "bmp" : "txt");
+        LIMITATION(size, size, 1, 95); //-V2516
+        std::strcat(name, FILE_NAME); //-V2513
+        std::strcat(name, "."); //-V2513
+        std::strcat(name, MODE_SAVE_SIGNAL_IS_BMP ? "bmp" : "txt"); //-V2513
         return true;
     }
     else
@@ -407,16 +407,16 @@ LabelNextNumber:
             {
                 if (*ch == 0x07)    // ≈сли здесь надо записать пор€дковый номер
                 {
-                    std::strcpy(wr, Int2String(number, false, *(ch + 1), buffer));
-                    wr += std::strlen(buffer);
+                    std::strcpy(wr, Int2String(number, false, *(ch + 1), buffer)); //-V2513
+                    wr += std::strlen(buffer); //-V2513
                     ch++;
                 }
                 else
                 {
                     if (*ch >= 0x01 && *ch <= 0x06)
                     {
-                        std::strcpy(wr, Int2String((int)values[*ch], false, 2, buffer));
-                        wr += std::strlen(buffer);
+                        std::strcpy(wr, Int2String((int)values[*ch], false, 2, buffer)); //-V2513
+                        wr += std::strlen(buffer); //-V2513
                     }
                 }
             }
@@ -426,7 +426,7 @@ LabelNextNumber:
         *wr = '.';
         *(wr + 1) = '\0';
 
-        std::strcat(name, MODE_SAVE_SIGNAL_IS_BMP ? "bmp" : "txt");
+        std::strcat(name, MODE_SAVE_SIGNAL_IS_BMP ? "bmp" : "txt"); //-V2513
 
         if(FileIsExist(name))
         {

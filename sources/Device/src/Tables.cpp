@@ -82,7 +82,7 @@ ENumSignalsInSec::E Tables::NumSignalsInSecToENUM(int enumSignalsInSec) //-V2506
     {
         return ENumSignalsInSec::_10;
     }
-    else if(enumSignalsInSec == 25)
+    else if(enumSignalsInSec == 25) //-V2516
     {
         return ENumSignalsInSec::_25;
     }

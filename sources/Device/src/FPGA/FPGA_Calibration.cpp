@@ -524,7 +524,7 @@ float CalculateKoeffCalibration(Channel::E chan) //-V2506
                 numMAX++;
                 sumMAX += val0;
             }
-            else if(val0 < AVE_VALUE - 60)
+            else if(val0 < AVE_VALUE - 60) //-V2516
             {
                 numMIN++;
                 sumMIN += val0;
@@ -536,7 +536,7 @@ float CalculateKoeffCalibration(Channel::E chan) //-V2506
                 numMAX++;
                 sumMAX += val1;
             }
-            else if(val1 < AVE_VALUE - 60)
+            else if(val1 < AVE_VALUE - 60) //-V2516
             {
                 numMIN++;
                 sumMIN += val1;

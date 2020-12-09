@@ -29,7 +29,7 @@ void Painter::CalculateCurrentColor()
     {
         Color::SetCurrent(inverseColors ? Color::BACK : Color::FILL);
     }
-    else if (currentColor == Color::FLASH_01)
+    else if (currentColor == Color::FLASH_01) //-V2516
     {
         Color::SetCurrent(inverseColors ? Color::FILL : Color::BACK);
     }
@@ -43,7 +43,7 @@ void CalculateColor(uint8 *color)
     {
         *color = static_cast<uint8>(inverseColors ? Color::BACK : Color::FILL);
     }
-    else if (*color == Color::FLASH_01)
+    else if (*color == Color::FLASH_01) //-V2516
     {
         *color = static_cast<uint8>(inverseColors ? Color::FILL : Color::BACK);
     }
@@ -97,11 +97,11 @@ void Painter::DrawPicture(int , int , int , int , uint8 *)
 uint16 Painter::ReduceBrightness(uint16 colorValue, float newBrightness)
 {
     int red = static_cast<int>(R_FROM_COLOR(colorValue) * newBrightness);
-    LIMITATION(red, red, 0, 31);
+    LIMITATION(red, red, 0, 31); //-V2516
     int green = static_cast<int>(G_FROM_COLOR(colorValue) * newBrightness);
-    LIMITATION(green, green, 0, 63);
+    LIMITATION(green, green, 0, 63); //-V2516
     int blue = static_cast<int>(B_FROM_COLOR(colorValue) * newBrightness);
-    LIMITATION(blue, blue, 0, 31);
+    LIMITATION(blue, blue, 0, 31); //-V2516
     return MAKE_COLOR(red, green, blue);
 }
 

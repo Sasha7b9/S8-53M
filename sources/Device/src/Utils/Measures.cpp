@@ -74,7 +74,7 @@ char Measure::GetChar(Measure::E measure)
     return measures[measure].UGO;
 }
 
-int Measure::GetDY()
+int Measure::GetDY() //-V2506
 {
     if(MEAS_SOURCE_IS_A_B)
     {
@@ -100,7 +100,7 @@ Measure::E Measure::Type(int row, int col)
     return MEASURE(numMeasure);
 }
 
-int Measure::GetTopTable()
+int Measure::GetTopTable() //-V2506
 {
     if(MEAS_NUM_IS_6_2 || MEAS_NUM_IS_6_1)
     {
@@ -121,7 +121,7 @@ int Measure::NumRows()
     return rows[MEAS_NUM];
 }
 
-int Measure::GetDeltaGridLeft()
+int Measure::GetDeltaGridLeft() //-V2506
 {
     if(SHOW_MEASURES && MODE_VIEW_SIGNALS_IS_COMPRESS)
     {
@@ -137,7 +137,7 @@ int Measure::GetDeltaGridLeft()
     return 0;
 }
 
-int Measure::GetDeltaGridBottom()
+int Measure::GetDeltaGridBottom() //-V2506
 {
     if(SHOW_MEASURES && MODE_VIEW_SIGNALS_IS_COMPRESS)
     {
@@ -157,7 +157,7 @@ int Measure::GetDeltaGridBottom()
     return 0;
 }
 
-void Measure::RotateRegSet(int angle)
+void Measure::RotateRegSet(int angle) //-V2506
 {
     static const int8 step = 3;
     static int8 currentAngle = 0;
@@ -232,7 +232,7 @@ void Measure::ShortPressOnSmallButonMarker()
     }
 }
 
-void Measure::DrawPageChoice()
+void Measure::DrawPageChoice() //-V2506
 {
     if(!PageMeasures::choiceMeasuresIsActive)
     {

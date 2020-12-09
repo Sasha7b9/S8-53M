@@ -561,7 +561,7 @@ DEF_PAGE_7(pageDebug, PageMain::self, NamePage::Debug,
 static void OnPress_SerialNumber_Exit()
 {
     Display::RemoveAddDrawFunction();
-    FREE_EXTRAMEM();
+    FREE_EXTRAMEM(); //-V2511
 }
 
 DEF_SMALL_BUTTON(bSerialNumber_Exit, PageDebug::PageSerialNumber::self,
@@ -679,7 +679,7 @@ static void OnPress_SerialNumber()
 {
     PageDebug::PageSerialNumber::self->OpenAndSetItCurrent();
     Display::SetAddDrawFunction(Draw_EnterSerialNumber);
-    MALLOC_EXTRAMEM(StructForSN, s);
+    MALLOC_EXTRAMEM(StructForSN, s); //-V2511
     s->number = 1; //-V522
     s->year = 2017;
     s->curDigt = 0;

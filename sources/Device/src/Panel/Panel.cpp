@@ -639,7 +639,7 @@ static void ChangeShiftScreen(int *prevTime, void(*f)(int), int16 relStep)
 }
 
 
-static bool CanChangeTShift(int16 tShift)
+static bool CanChangeTShift(int16 tShift) //-V2506
 {
     static uint time = 0;
     if (tShift == 0)

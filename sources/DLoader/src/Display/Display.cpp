@@ -102,7 +102,7 @@ void Display::Update(void)
         DrawButton(290, 55, "ДА");
         DrawButton(290, 195, "НЕТ");
     }
-    else if (MainStruct::ms->state == State::Upgrade)
+    else if (MainStruct::ms->state == State::Upgrade) //-V2516
     {
         Text("Подождите завершения").DrawInCenterRect(0, 0, 320, 190);
         Text("установки программного обеспечения").DrawInCenterRect(0, 0, 320, 220);
@@ -136,7 +136,7 @@ void DrawProgressBar(uint dT)
         MainStruct::ms->display.direction = -MainStruct::ms->display.direction;
         MainStruct::ms->display.value -= step;
     }
-    else if (MainStruct::ms->display.direction < 0.0F && MainStruct::ms->display.value < 0)
+    else if (MainStruct::ms->display.direction < 0.0F && MainStruct::ms->display.value < 0) //-V2516
     {
         MainStruct::ms->display.direction = -MainStruct::ms->display.direction;
         MainStruct::ms->display.value -= step;
@@ -174,7 +174,7 @@ static void DrawBigMNIPI(void)
     uint time = HAL_TIM2::TimeMS() - startTime;
 
     int numColor = 0;
-    LIMITATION(numColor, static_cast<int>(static_cast<float>(time) / (float)TIME_WAIT * 13.0F), 0, 13);
+    LIMITATION(numColor, static_cast<int>(static_cast<float>(time) / (float)TIME_WAIT * 13.0F), 0, 13); //-V2516
     Color::SetCurrent((Color::E)(numColor + 2));
 
     float amplitude = 3.0F - (static_cast<float>(time) / (TIME_WAIT / 2.0F)) * 3;
