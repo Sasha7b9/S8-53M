@@ -74,7 +74,7 @@ void HAL_EPROM::WriteBufferBytes(uint address, pUCHAR buffer, int size)
     HAL_FLASH_Unlock();
     for (int i = 0; i < size; i++)
     {
-        if (HAL_FLASH_Program(TYPEPROGRAM_BYTE, address, static_cast<uint64_t>(buffer[i])) != HAL_OK)
+        if (HAL_FLASH_Program(TYPEPROGRAM_BYTE, address, static_cast<uint64_t>(buffer[i])) != HAL_OK) //-V2563
         {
             HAL::Error();
         }

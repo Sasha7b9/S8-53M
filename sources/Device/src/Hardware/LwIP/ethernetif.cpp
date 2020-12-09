@@ -320,7 +320,7 @@ static err_t low_level_output(struct netif *, struct pbuf *p)
     while( (byteslefttocopy + bufferoffset) > ETH_TX_BUF_SIZE )
     {
       /* Copy data to Tx buffer*/
-      memcpy( (uint8_t*)((uint8_t*)buffer + bufferoffset), (uint8_t*)((uint8_t*)q->payload + payloadoffset), (ETH_TX_BUF_SIZE - bufferoffset) ); //-V2533
+      memcpy( (uint8_t*)((uint8_t*)buffer + bufferoffset), (uint8_t*)((uint8_t*)q->payload + payloadoffset), (ETH_TX_BUF_SIZE - bufferoffset) ); //-V2533 //-V2563
       
       /* Point to next descriptor */
       DmaTxDesc = (ETH_DMADescTypeDef *)(DmaTxDesc->Buffer2NextDescAddr); //-V2533
@@ -341,7 +341,7 @@ static err_t low_level_output(struct netif *, struct pbuf *p)
     }
     
     /* Copy the remaining bytes */
-    memcpy( (uint8_t*)((uint8_t*)buffer + bufferoffset), (uint8_t*)((uint8_t*)q->payload + payloadoffset), byteslefttocopy ); //-V2533
+    memcpy( (uint8_t*)((uint8_t*)buffer + bufferoffset), (uint8_t*)((uint8_t*)q->payload + payloadoffset), byteslefttocopy ); //-V2533 //-V2563
     bufferoffset = bufferoffset + byteslefttocopy;
     framelength = framelength + byteslefttocopy;
   }
@@ -414,7 +414,7 @@ static struct pbuf * low_level_input(struct netif *) //-V2506
             while ((byteslefttocopy + bufferoffset) > ETH_RX_BUF_SIZE)
             {
                 /* Copy data to pbuf */
-                memcpy((uint8_t *)((uint8_t *)q->payload + payloadoffset), (uint8_t *)((uint8_t *)buffer + bufferoffset), (ETH_RX_BUF_SIZE - bufferoffset)); //-V2533
+                memcpy((uint8_t *)((uint8_t *)q->payload + payloadoffset), (uint8_t *)((uint8_t *)buffer + bufferoffset), (ETH_RX_BUF_SIZE - bufferoffset)); //-V2533 //-V2563
 
                 /* Point to next descriptor */
                 dmarxdesc = (ETH_DMADescTypeDef *)(dmarxdesc->Buffer2NextDescAddr); //-V2533
@@ -426,7 +426,7 @@ static struct pbuf * low_level_input(struct netif *) //-V2506
             }
 
             /* Copy remaining data in pbuf */
-            memcpy((uint8_t *)((uint8_t *)q->payload + payloadoffset), (uint8_t *)((uint8_t *)buffer + bufferoffset), byteslefttocopy); //-V2533
+            memcpy((uint8_t *)((uint8_t *)q->payload + payloadoffset), (uint8_t *)((uint8_t *)buffer + bufferoffset), byteslefttocopy); //-V2533 //-V2563
             bufferoffset = bufferoffset + byteslefttocopy;
         }
     }

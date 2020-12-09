@@ -209,7 +209,7 @@ void Display::DrawSignalLined(pUCHAR data, const DataSettings *ds, int startPoin
             if (x0 >= gridLeft && x0 <= gridRight)
             {
                 int index = i - startPoint;
-                int y = calculateFiltr ? Math::CalculateFiltr(data, i, numPoints, numSmoothing) : data[i];
+                int y = calculateFiltr ? Math::CalculateFiltr(data, i, numPoints, numSmoothing) : data[i]; //-V2563
                 CONVERT_DATA_TO_DISPLAY(dataCD[index], y); //-V2516
             }
         }
@@ -229,21 +229,21 @@ void Display::DrawSignalLined(pUCHAR data, const DataSettings *ds, int startPoin
                 int yMin = yMinNext;
                 if (yMin == -1)
                 {
-                    CONVERT_DATA_TO_DISPLAY(yMin, data[i + shift]); //-V2516
+                    CONVERT_DATA_TO_DISPLAY(yMin, data[i + shift]); //-V2516 //-V2563
                 }
                 int yMax = yMaxNext;
                 if (yMax == -1)
                 {
-                    CONVERT_DATA_TO_DISPLAY(yMax, data[i]); //-V2516
+                    CONVERT_DATA_TO_DISPLAY(yMax, data[i]); //-V2516 //-V2563
                 }
 
-                CONVERT_DATA_TO_DISPLAY(yMaxNext, data[i + 1]); //-V2516
+                CONVERT_DATA_TO_DISPLAY(yMaxNext, data[i + 1]); //-V2516 //-V2563
                 if (yMaxNext < yMin)
                 {
                     yMin = yMaxNext + 1;
                 }
 
-                CONVERT_DATA_TO_DISPLAY(yMinNext, data[i + shift + 1]); //-V2516
+                CONVERT_DATA_TO_DISPLAY(yMinNext, data[i + shift + 1]); //-V2516 //-V2563
                 if (yMinNext > yMax)
                 {
                     yMax = yMinNext - 1;
@@ -266,7 +266,7 @@ void Display::DrawSignalLined(pUCHAR data, const DataSettings *ds, int startPoin
 
     if(ds->peakDet == PeackDetMode::Disable)
     {
-        CONVERT_DATA_TO_DISPLAY(dataCD[280], data[endPoint]); //-V2516
+        CONVERT_DATA_TO_DISPLAY(dataCD[280], data[endPoint]); //-V2516 //-V2563
         Painter::DrawSignal(Grid::Left(), dataCD, true);
     }
 }
@@ -429,7 +429,7 @@ void Display::DrawSpectrumChannel(const float *spectrum, Color::E color)
 	int gridHeight = Grid::MathHeight();
     for (int i = 0; i < 256; i++) 
     {
-        HLine().Draw(gridLeft + i, gridBottom, gridBottom - static_cast<int>(gridHeight * spectrum[i]));
+        HLine().Draw(gridLeft + i, gridBottom, gridBottom - static_cast<int>(gridHeight * spectrum[i])); //-V2563
     }
 }
 
@@ -805,12 +805,12 @@ void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channe
         {
             float firstElem = col * elemsInColumn;
             float lastElem = firstElem + elemsInColumn - 1;
-            min[col] = data[(int)firstElem]; //-V2533
-            max[col] = data[(int)firstElem + 1]; //-V2533
+            min[col] = data[(int)firstElem]; //-V2533 //-V2563
+            max[col] = data[(int)firstElem + 1]; //-V2533 //-V2563
             for (int elem = static_cast<int>(firstElem) + 2; elem <= lastElem; elem += 2)
             {
-                SET_MIN_IF_LESS(data[elem], min[col]);
-                SET_MAX_IF_LARGER(data[elem + 1], max[col]);
+                SET_MIN_IF_LESS(data[elem], min[col]); //-V2563
+                SET_MAX_IF_LARGER(data[elem + 1], max[col]); //-V2563
             }
         }
     }
@@ -823,7 +823,7 @@ void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channe
         {
             int firstElem = static_cast<int>(col * elemsInColumn);
             int lastElem = firstElem + static_cast<int>(elemsInColumn) - 1;
-            *iMin = data[firstElem];
+            *iMin = data[firstElem]; //-V2563
             *iMax = data[firstElem];
             for (int elem = firstElem + 1; elem <= lastElem; elem++)
             {

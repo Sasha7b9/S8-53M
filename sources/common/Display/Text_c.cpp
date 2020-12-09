@@ -24,7 +24,7 @@ static bool ByteFontNotEmpty(int eChar, int byte)
         bytes = Font::font->symbol[prevChar].bytes;
     }
 
-    return bytes[byte] != 0;
+    return bytes[byte] != 0; //-V2563
 }
 
 
@@ -197,10 +197,10 @@ void Text::DrawInRect(int x, int y, int width, int)
         }
         int numSymbols = 0;
         numSymbols = DrawSubString(x, y, t);
-        t += numSymbols;
+        t += numSymbols; //-V2563
         x += length;
         x = DrawSpaces(x, y, t, &numSymbols);
-        t += numSymbols;
+        t += numSymbols; //-V2563
     }
 }
 
@@ -429,7 +429,7 @@ static bool CompareArrays(const bool *array1, const bool *array2, int numElems) 
 {
     for (int i = 0; i < numElems; i++)
     {
-        if (array1[i] != array2[i])
+        if (array1[i] != array2[i]) //-V2563
         {
             return false;
         }
@@ -466,7 +466,7 @@ static bool FindNextTransfer(const char *letters, int8 *lettersInSyllable) //-V2
     uint size = std::strlen(letters); //-V2513
     for (uint i = 0; i < size; i++)
     {
-        consonant[i] = IsConsonant(letters[i]);
+        consonant[i] = IsConsonant(letters[i]); //-V2563
     }
 
     if (CompareArrays(template1, consonant, 3))
@@ -513,7 +513,7 @@ static int8 *BreakWord(char *word)
     char *position = word;
     while (FindNextTransfer(position, &(lengthSyllables[num])))
     {
-        position += lengthSyllables[num];
+        position += lengthSyllables[num]; //-V2563
         num++;
     }
     lengthSyllables[num + 1] = 0;
@@ -537,7 +537,7 @@ static char *PartWordForTransfer(char *word, const int8 *lengthSyllables, int, i
     int length = 0;
     for (int i = 0; i <= numSyllable; i++)
     {
-        length += lengthSyllables[i];
+        length += lengthSyllables[i]; //-V2563
     }
     std::memcpy(static_cast<void *>(buffer), static_cast<void *>(word), static_cast<uint>(length));
     buffer[length] = '-';
@@ -595,11 +595,11 @@ static bool GetHeightTextWithTransfers(int left, int top, int right, const char 
         while (x < right - 1 && curSymbol < numSymb)
         {
             int length = 0;
-            char *word = GetWord(text + curSymbol, &length, buffer);
+            char *word = GetWord(text + curSymbol, &length, buffer); //-V2563
 
             if (length <= 1)                            // Нет буквенных символов или один, т.е. слово не найдено
             {
-                char symbol = text[curSymbol++];
+                char symbol = text[curSymbol++]; //-V2563
                 if (symbol == '\n')
                 {
                     x = right;
@@ -672,7 +672,7 @@ int Text::DrawInRectWithTransfers(int eX, int eY, int eWidth, int eHeight, Color
         while (x < right - 1 && curSymbol < numSymb)
         {
             int length = 0;
-            char *word = GetWord(text.c_str() + curSymbol, &length, buffer);
+            char *word = GetWord(text.c_str() + curSymbol, &length, buffer); //-V2563
 
             if (length <= 1)                            // Нет буквенных символов или один, т.е. слово не найдено
             {
