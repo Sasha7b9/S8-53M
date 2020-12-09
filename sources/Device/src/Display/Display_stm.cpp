@@ -4,11 +4,15 @@
 #include "Display/Display.h"
 
 
+static uint8 front[Display::WIDTH * Display::HEIGHT];
+static uint8 back[Display::WIDTH * Display::HEIGHT];
+
+
 void Display::Init()
 {
     Color::ResetFlash();
 
     Font::Set(TypeFont::S8);
 
-    HAL_LTDC::Init()
+    HAL_LTDC::Init((uint)front, (uint)back);
 }
