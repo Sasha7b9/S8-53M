@@ -259,7 +259,7 @@ void Frame::OnPaint(wxPaintEvent& event)
 void Frame::SetPositionAndSize()
 {
     float k = 1.0F;
-    wxSize size = { static_cast<int>(1236 * (int)k), static_cast<int>(505 * (int)k) }; //-V2564
+    wxSize size = { static_cast<int>(1236.0F * k), static_cast<int>(505.0F * k) };
 
     SetClientSize(size);
     SetMinClientSize(size);
