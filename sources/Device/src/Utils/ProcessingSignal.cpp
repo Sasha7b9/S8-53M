@@ -225,7 +225,7 @@ float Processing::CalculateVoltageVybrosMinus(Channel::E chan) //-V2506
         markerHor[chan][1] = static_cast<int>(minSteady);
     }
 
-    int16 rShift = chan == Channel::A ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1;
+    int16 rShift = chan == Channel::A ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1; //-V2533
     return std::fabsf(POINT_2_VOLTAGE(minSteady, dataSet->range[chan], rShift) - POINT_2_VOLTAGE(min, dataSet->range[chan], rShift)) * VALUE_MULTIPLIER(chan);
 }
 
@@ -257,7 +257,7 @@ float Processing::CalculateVoltageAverage(Channel::E chan) //-V2506
         sum += *data++;
     }
 
-    uint8 aveRel = static_cast<uint8>((float)sum / period);
+    uint8 aveRel = static_cast<uint8>((float)sum / period); //-V2533
 
     if(MEAS_MARKED == Measure::VoltageAverage)
     {
@@ -274,10 +274,10 @@ float Processing::CalculateVoltageRMS(Channel::E chan) //-V2506
     EXIT_IF_ERROR_INT(period);
 
     float rms = 0.0F;
-    int16 rShift = chan == Channel::A ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1;
+    int16 rShift = chan == Channel::A ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1; //-V2533
     for(int i = firstP; i < firstP + period; i++)
     {
-        float volts = POINT_2_VOLTAGE(dataIn[chan][i], dataSet->range[chan], rShift);
+        float volts = POINT_2_VOLTAGE(dataIn[chan][i], dataSet->range[chan], rShift); //-V2533
         rms +=  volts * volts;
     }
 
@@ -614,7 +614,7 @@ float Processing::CalculateMinSteadyRel(Channel::E chan)
                     numSums++;
                 }
             }
-            min[chan] = (float)sum / numSums;
+            min[chan] = (float)sum / numSums; //-V2533
             int numMin = numSums; //-V2551
 
             float pic = CalculatePicRel(chan);
@@ -650,7 +650,7 @@ float Processing::CalculateMinSteadyRel(Channel::E chan)
                         }
                     }
                 }
-                min[chan] = (numDeleted > numMin / 2.0F) ? CalculateMinRel(chan) : (float)sum / numSums;
+                min[chan] = (numDeleted > numMin / 2.0F) ? CalculateMinRel(chan) : (float)sum / numSums; //-V2533
             }
         }
         minSteadyIsCalculating[chan] = true;
@@ -686,7 +686,7 @@ float Processing::CalculateMaxSteadyRel(Channel::E chan)
                     numSums++;
                 }
             }
-            max[chan] = (float)sum / numSums;
+            max[chan] = (float)sum / numSums; //-V2533
 
             float pic = CalculatePicRel(chan);
 
@@ -724,7 +724,7 @@ float Processing::CalculateMaxSteadyRel(Channel::E chan)
                         }
                     }
                 }
-                max[chan] = (numDeleted > numMax / 2) ? CalculateMaxRel(chan) : (float)sum / numSums;
+                max[chan] = (numDeleted > numMax / 2) ? CalculateMaxRel(chan) : (float)sum / numSums; //-V2533
             }
         }
         maxSteadyIsCalculating[chan] = true;
@@ -898,7 +898,7 @@ void Processing::SetSignal(pUCHAR data0, pUCHAR data1, DataSettings *ds, int _fi
     
     int numSmoothing = Smoothing::NumPoints();
 
-    int length = (int)ds->length1channel * (ds->peakDet == PeackDetMode::Disable ? 1 : 2);
+    int length = (int)ds->length1channel * (ds->peakDet == PeackDetMode::Disable ? 1 : 2); //-V2533
 
     Math::CalculateFiltrArray(data0, &dataIn[Channel::A][0], length, numSmoothing);
     Math::CalculateFiltrArray(data1, &dataIn[Channel::B][0], length, numSmoothing);
@@ -926,7 +926,7 @@ float Processing::GetCursU(Channel::E chan, float posCurT)
     SettingsDisplay::PointsOnDisplay(&first, &last);
 
     float retValue;
-    LIMITATION(retValue, static_cast<float>(200.0F - (dataIn[chan])[first + (int)posCurT] + MIN_VALUE), 0.0F, 200.0F); //-V2516
+    LIMITATION(retValue, static_cast<float>(200.0F - (dataIn[chan])[first + (int)posCurT] + MIN_VALUE), 0.0F, 200.0F); //-V2516 //-V2533
     return retValue;
 }
 
@@ -1029,7 +1029,7 @@ void Processing::InterpolationSinX_X(uint8 data[FPGA_MAX_POINTS], TBase::E tBase
     }
 
     float deltaX = PI;
-    float stepX0 = PI / (float)delta;
+    float stepX0 = PI / (float)delta; //-V2533
     float x0 = PI - stepX0;
     int num = 0;
     
@@ -1071,7 +1071,7 @@ void Processing::InterpolationSinX_X(uint8 data[FPGA_MAX_POINTS], TBase::E tBase
                     value += signedData[n] * sinX / x;
                     sinX = -sinX;
                 }
-                data[i] = (uint8)value;
+                data[i] = (uint8)value; //-V2533
             }
         }
     }
@@ -1129,7 +1129,7 @@ void Processing::CountedToCurrentSettings()
     std::memset(dataOut0, 0, FPGA_MAX_POINTS);
     std::memset(dataOut1, 0, FPGA_MAX_POINTS);
     
-    int numPoints = (int)dataSet->length1channel * (dataSet->peakDet == PeackDetMode::Disable ? 1 : 2);
+    int numPoints = (int)dataSet->length1channel * (dataSet->peakDet == PeackDetMode::Disable ? 1 : 2); //-V2533
 
     int16 dataTShift = dataSet->tShift;
     int16 curTShift = TSHIFT;
@@ -1152,12 +1152,12 @@ void Processing::CountedToCurrentSettings()
 
         for (int i = 0; i < numPoints; i++)
         {
-            float absValue = POINT_2_VOLTAGE(dataOut0[i], dataSet->range[0], dataSet->rShiftCh0);
+            float absValue = POINT_2_VOLTAGE(dataOut0[i], dataSet->range[0], dataSet->rShiftCh0); //-V2533
             int relValue = static_cast<int>((absValue + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) / MathFPGA::voltsInPixel[range] + MIN_VALUE);
 
             if (relValue < MIN_VALUE)       { dataOut0[i] = MIN_VALUE; }
             else if (relValue > MAX_VALUE)  { dataOut0[i] = MAX_VALUE; }
-            else                            { dataOut0[i] = (uint8)relValue; }
+            else                            { dataOut0[i] = (uint8)relValue; } //-V2533
         }
     }
     if (dataSet->enableCh1 == 1 && (dataSet->range[1] != SET_RANGE_B || dataSet->rShiftCh1 != (uint)SET_RSHIFT_B))
@@ -1167,12 +1167,12 @@ void Processing::CountedToCurrentSettings()
 
         for (int i = 0; i < numPoints; i++)
         {
-            float absValue = POINT_2_VOLTAGE(dataOut1[i], dataSet->range[1], dataSet->rShiftCh1);
+            float absValue = POINT_2_VOLTAGE(dataOut1[i], dataSet->range[1], dataSet->rShiftCh1); //-V2533
             int relValue = static_cast<int>((absValue + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) / MathFPGA::voltsInPixel[range] + MIN_VALUE);
 
             if (relValue < MIN_VALUE)       { dataOut1[i] = MIN_VALUE; }
             else if (relValue > MAX_VALUE)  { dataOut1[i] = MAX_VALUE; }
-            else                            { dataOut1[i] = (uint8)relValue; }
+            else                            { dataOut1[i] = (uint8)relValue; } //-V2533
         }
     }
 }

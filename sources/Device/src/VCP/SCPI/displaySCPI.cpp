@@ -107,7 +107,7 @@ void SCPI::DISPLAY::ACCUM_NUMBER(pUCHAR buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (value <= 7)         { ENUM_ACCUM = (ENumAccumulation::E)value; }
+        if (value <= 7)         { ENUM_ACCUM = (ENumAccumulation::E)value; } //-V2533
         else if (8 == value)    { ENUM_ACCUM = ENumAccumulation::Infinity; }
         else if (9 == value) //-V2516
         {
@@ -127,7 +127,7 @@ void SCPI::DISPLAY::ACCUM_MODE(pUCHAR buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (value <= 1) { MODE_ACCUM = (ModeAccumulation::E)value; }
+        if (value <= 1) { MODE_ACCUM = (ModeAccumulation::E)value; } //-V2533
         else if (2 == value) //-V2516
         {
             SCPI_SEND(":DISPLAY:ACCUMULATION:MODE %s", map[MODE_ACCUM].key);
@@ -161,7 +161,7 @@ void SCPI::DISPLAY::AVERAGE_NUMBER(pUCHAR buffer)
     };
 
     ENTER_ANALYSIS
-        if (value <= 9) { ENUM_AVE = (ENumAveraging::E)value; }
+        if (value <= 9) { ENUM_AVE = (ENumAveraging::E)value; } //-V2533
         else if (10 == value) //-V2516
         {
             SCPI_SEND(":DISPLAY:AVERAGE:NUMBER %s", map[ENUM_AVE].key);
@@ -181,7 +181,7 @@ void SCPI::DISPLAY::AVERAGE_MODE(pUCHAR buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (value <= 1) { MODE_AVE = (ModeAveraging::E)value; }
+        if (value <= 1) { MODE_AVE = (ModeAveraging::E)value; } //-V2533
         else if (2 == value) //-V2516
         {
             SCPI_SEND(":DISPLAY:AVARAGE:MODE %s", map[MODE_AVE].key);
@@ -208,7 +208,7 @@ void SCPI::DISPLAY::MINMAX(pUCHAR buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (value <= 7)         { ENUM_MIN_MAX = (ENumMinMax::E)value; }
+        if (value <= 7)         { ENUM_MIN_MAX = (ENumMinMax::E)value; } //-V2533
         else if (8 == value)    { ENUM_MIN_MAX = ENumMinMax::_1; }
         else if (9 == value) //-V2516
         {
@@ -238,7 +238,7 @@ void SCPI::DISPLAY::FILTR(pUCHAR buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (value <= 9)         { SMOOTHING = (Smoothing::E)value; }
+        if (value <= 9)         { SMOOTHING = (Smoothing::E)value; } //-V2533
         else if (10 == value)   { SMOOTHING = Smoothing::Disable; }
         else if (11 == value) //-V2516
         {
@@ -262,7 +262,7 @@ void SCPI::DISPLAY::FPS(pUCHAR buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (value < 5) { ENUM_SIGNALS_IN_SEC = (ENumSignalsInSec::E)value; PageDisplay::OnChanged_RefreshFPS(true); }
+        if (value < 5) { ENUM_SIGNALS_IN_SEC = (ENumSignalsInSec::E)value; PageDisplay::OnChanged_RefreshFPS(true); } //-V2533
         else if (5 == value) //-V2516
         {
             SCPI_SEND(":DISPLAY:FPS %s", map[ENUM_SIGNALS_IN_SEC].key);
@@ -298,7 +298,7 @@ void SCPI::DISPLAY::GRID_BRIGHTNESS(pUCHAR buffer)
     int intVal = 0;
     if (SCPI::FirstIsInt(buffer, &intVal, 0, 100))
     {
-        BRIGHTNESS_GRID = (int16)intVal;
+        BRIGHTNESS_GRID = (int16)intVal; //-V2533
         Display::RunAfterDraw(PageDisplay::OnChanged_Grid_Brightness);
     }
     else
@@ -313,7 +313,7 @@ void SCPI::DISPLAY::GRID_BRIGHTNESS(pUCHAR buffer)
             if (0 == value)
             {
                 Color_Init(PageDisplay::colorTypeGrid);
-                SCPI_SEND(":DISPLAY:GRID:BRIGHTNESS %d", (int)(PageDisplay::colorTypeGrid->brightness * 100.0F));
+                SCPI_SEND(":DISPLAY:GRID:BRIGHTNESS %d", (int)(PageDisplay::colorTypeGrid->brightness * 100.0F)); //-V2533
             }
         LEAVE_ANALYSIS
     }
@@ -334,7 +334,7 @@ void SCPI::DISPLAY::GRID_TYPE(pUCHAR buffer)
     };
 
     ENTER_ANALYSIS
-        if (value <= 3) { TYPE_GRID = (TypeGrid::E)value; }
+        if (value <= 3) { TYPE_GRID = (TypeGrid::E)value; } //-V2533
         else if (4 == value) //-V2516
         {
             SCPI_SEND(":DISPLAY:GRID:TYPE %s", map[TYPE_GRID].key);

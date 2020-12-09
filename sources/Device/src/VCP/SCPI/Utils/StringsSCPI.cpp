@@ -36,7 +36,7 @@ bool GetWord(pUCHAR string, Word *word, const int numWord) //-V2506
     {
         if (currentWord == numWord)
         {
-            word->address = (uint8*)string;
+            word->address = (uint8*)string; //-V2533
             ChooseSymbols(&string);
             word->numSymbols = static_cast<int8>(string - word->address);
             
@@ -44,7 +44,7 @@ bool GetWord(pUCHAR string, Word *word, const int numWord) //-V2506
             int numSymbols = word->numSymbols;
             for (int i = 0; i < numSymbols; i++)
             {
-                *pointer = (uint8)toupper((int8)*pointer);
+                *pointer = (uint8)toupper((int8)*pointer); //-V2533
                 pointer++;
             }
             return true;
@@ -64,7 +64,7 @@ bool GetWord(pUCHAR string, Word *word, const int numWord) //-V2506
 bool WordEqualZeroString(Word *word, char* string) //-V2506
 {
     char *ch = string;
-    char *w = (char*)(word->address);
+    char *w = (char*)(word->address); //-V2533
 
     while (*ch != 0)
     {
