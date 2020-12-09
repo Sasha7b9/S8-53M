@@ -89,5 +89,5 @@ const char* NameColor(Color::E color);
 #define R_FROM_COLOR(color) (((uint16)(color) >> 11) & (uint16)0x1f)
 #define G_FROM_COLOR(color) (((uint16)(color) >> 5) & (uint16)0x3f)
 #define B_FROM_COLOR(color) ((uint16)(color) & 0x1f)
-#define COLOR(i) set.display.colors[i];
+#define COLOR(i) set.display.colors[i]
 

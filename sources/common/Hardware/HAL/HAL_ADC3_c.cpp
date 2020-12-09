@@ -39,7 +39,7 @@ void HAL_ADC3::Init()
 
     if (HAL_ADC_Init(&hADC) != HAL_OK)
     {
-        HAL::Error();
+        ERROR_HANDLER();
     }
 
     ADC_ChannelConfTypeDef sConfig;
@@ -51,12 +51,12 @@ void HAL_ADC3::Init()
 
     if (HAL_ADC_ConfigChannel(&hADC, &sConfig) != HAL_OK)
     {
-        HAL::Error();
+        ERROR_HANDLER();
     }
 
     if (HAL_ADC_Start_IT(&hADC) != HAL_OK)
     {
-        HAL::Error();
+        ERROR_HANDLER();
     }
 }
 

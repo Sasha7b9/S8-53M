@@ -6,6 +6,7 @@
 #include "common/Hardware/HAL/HAL_c.h"
 #include "common/Hardware/HAL/HAL_PINS_c.h"
 #include "common/Utils/Math_c.h"
+#include "Settings/Settings.h"
 
 
 using namespace Primitives;
@@ -109,4 +110,10 @@ uint16 Painter::ReduceBrightness(uint16 colorValue, float newBrightness)
 bool Painter::SaveScreenToFlashDrive()
 {
     return true;
+}
+
+
+void Painter::LoadPalette()
+{
+    HAL_LTDC::SetColors(&COLOR(0), Color::Count);
 }

@@ -95,7 +95,7 @@ static void SystemClock_Config()
     if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
     {
         // Initialization Error
-        HAL::Error();
+        ERROR_HANDLER();
     }
     // Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2 clocks dividers
     RCC_ClkInitStruct.ClockType = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
@@ -106,7 +106,7 @@ static void SystemClock_Config()
     if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_3) != HAL_OK)
     {
         // Initialization Error
-        HAL::Error();
+        ERROR_HANDLER();
     }
 }
 
@@ -125,14 +125,6 @@ void HAL_ETH::Init()
 {
     /* Output HSE clock (25MHz) on MCO pin (PA8) to clock the PHY */
     HAL_RCC_MCOConfig(RCC_MCO1, RCC_MCO1SOURCE_HSE, RCC_MCODIV_1);
-}
-
-
-void HAL::Error()
-{
-    while(1)
-    {
-    }
 }
 
 
@@ -162,4 +154,17 @@ void HAL::JumpToApplication()
     __set_MSP(*(__IO uint *)MAIN_PROGRAM_START_ADDRESS); //-V566 //-V2571
     __enable_irq();
     JumpToApplication();
+}
+
+
+void HAL::ErrorHandler(const char *f, int l)
+{
+    volatile const char *file = f;
+    volatile int line = l;
+
+    while (true)
+    {
+        file = file;
+        line = line;
+    }
 }

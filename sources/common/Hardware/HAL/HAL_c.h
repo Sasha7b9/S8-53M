@@ -43,15 +43,17 @@ struct PackedTime
 #define SIZE_SECTOR_SETTINGS    (128 * 1024)
 
 
+#define ERROR_HANDLER() HAL::ErrorHandler(__FILE__, __LINE__)
+
 
 struct HAL
 {
     static void Init();
     static void DeInit();
-    static void Error();
     static void SystemReset();
     // Функция используется в загрузчике для перехода на основную программу
     static void JumpToApplication();
+    static void ErrorHandler(const char *file, int line);
 };
 
 struct HAL_PINS
@@ -112,7 +114,7 @@ struct HAL_LTDC
 {
     static void Init(uint frontBuffer, uint backBuffer);
 
-    static void SetColors(uint *clut, uint numColors);
+    static void SetColors(uint16 *clut, uint numColors);
 
     static void ToggleBuffers();
 

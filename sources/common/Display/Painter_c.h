@@ -30,6 +30,8 @@ public:
 
     static bool noFonts;
 
+    static void LoadPalette();
+
 private:
 
     static void RunDisplay();
