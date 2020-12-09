@@ -108,7 +108,7 @@ void IPaddress::GetNumPosIPvalue(int *numIP, int *selPos)
 
 }
 
-float Governor::Step() const
+float Governor::Step() const //-V2506
 {
     static const float speed = 0.05F;
     static const int numLines = 10;
@@ -267,7 +267,7 @@ void GovernorColor::ChangeValue(int delta)
 }
 
 
-void Governor::ShortPress()
+void Governor::ShortPress() //-V2506
 {
     if (!IsActive())
     {
@@ -284,7 +284,7 @@ void Governor::ShortPress()
 }
 
 
-char Item::GetSymbolForGovernor() const
+char Item::GetSymbolForGovernor() const //-V2506
 {
     static const char chars[] =
     {

@@ -108,7 +108,7 @@ int Grid::MathTop()
 }
 
 
-int Grid::MathHeight()
+int Grid::MathHeight() //-V2506
 {
     if (ENABLED_FFT || MODE_DRAW_MATH_IS_SEPARATE)
     {
@@ -124,7 +124,7 @@ int Grid::MathBottom()
 }
 
 
-int Grid::BottomMessages()
+int Grid::BottomMessages() //-V2506
 {
     int retValue = FullBottom();
     if (MODE_WORK_IS_MEMINT)

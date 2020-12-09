@@ -25,7 +25,7 @@ bool HAL_OTP::SaveSerialNumber(char *serialNumber) //-V2506
 }
 
 
-int HAL_OTP::GetSerialNumber(char buffer[17])
+int HAL_OTP::GetSerialNumber(char buffer[17]) //-V2506
 {
     // \todo улучшить - нельз€ разбрасыватьс€ байтами.  ажда€ запись должна занимать столько места, сколько в ней символов, а не 16, как сейчас.
 

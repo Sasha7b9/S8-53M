@@ -10,7 +10,7 @@
 bool PageMeasures::choiceMeasuresIsActive = false;
 
 // Каким курсором в данный момент происходит управление
-static CursCntrl::E GetMeasuresCursCntrlActive()
+static CursCntrl::E GetMeasuresCursCntrlActive() //-V2506
 {
     if (MEAS_CURS_ACTIVE_IS_T)
     {

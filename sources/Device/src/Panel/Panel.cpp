@@ -160,7 +160,7 @@ static void (*funculatorRight[Key::Count])() =
 
 
 
-Key::E ButtonIsRelease(uint16 code)
+Key::E ButtonIsRelease(uint16 code) //-V2506
 {
     Key::E key = Key::FromCode(code);
     Action::E action = Action::FromCode(code);
@@ -174,7 +174,7 @@ Key::E ButtonIsRelease(uint16 code)
 }
 
 
-Key::E ButtonIsPress(uint16 code)
+Key::E ButtonIsPress(uint16 code) //-V2506
 {
     Key::E key = Key::FromCode(code);
     Action::E action = Action::FromCode(code);
@@ -188,7 +188,7 @@ Key::E ButtonIsPress(uint16 code)
 }
 
 
-Key::E ButtonIsLong(uint16 code)
+Key::E ButtonIsLong(uint16 code) //-V2506
 {
     Key::E key = Key::FromCode(code);
     Action::E action = Action::FromCode(code);
@@ -202,7 +202,7 @@ Key::E ButtonIsLong(uint16 code)
 }
 
 
-Key::E RegulatorLeft(uint16 code)
+Key::E RegulatorLeft(uint16 code) //-V2506
 {
     Key::E key = Key::FromCode(code);
     Action::E action = Action::FromCode(code);
@@ -216,7 +216,7 @@ Key::E RegulatorLeft(uint16 code)
 }
 
 
-Key::E RegulatorRight(uint16 code)
+Key::E RegulatorRight(uint16 code) //-V2506
 {
     Key::E key = Key::FromCode(code);
     Action::E action = Action::FromCode(code);
@@ -230,7 +230,7 @@ Key::E RegulatorRight(uint16 code)
 }
 
 
-bool Panel::ProcessingCommandFromPIC(uint16 code)
+bool Panel::ProcessingCommandFromPIC(uint16 code) //-V2506
 {
     Key::E releaseButton = ButtonIsRelease(code);
     Key::E pressButton = ButtonIsPress(code);
@@ -339,7 +339,7 @@ void Panel::TransmitData(uint16 data)
     }
 }
 
-uint16 Panel::NextData()
+uint16 Panel::NextData() //-V2506
 {
     if (numDataForTransmitted > 0)
     {
@@ -473,7 +473,7 @@ static void F5Long()
 }
 
 
-static bool CanChangeRShiftOrTrigLev(TrigSource::E channel, int16 rShift)
+static bool CanChangeRShiftOrTrigLev(TrigSource::E channel, int16 rShift) //-V2506
 {
     static uint time[3] = { 0, 0, 0 };
     if (rShift == RShiftZero)
@@ -494,7 +494,7 @@ static bool CanChangeRShiftOrTrigLev(TrigSource::E channel, int16 rShift)
 }
 
 
-int CalculateCount(int *prevTime)
+int CalculateCount(int *prevTime) //-V2506
 {
     uint time = gTimerMS;
     uint delta = time - *prevTime;

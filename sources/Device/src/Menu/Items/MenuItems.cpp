@@ -67,7 +67,7 @@ const char *Choice::NameCurrentSubItem() const
 }
 
 
-const char *Choice::NameNextSubItem() const
+const char *Choice::NameNextSubItem() const //-V2506
 {
     const DataChoice *own = OwnData();
 
@@ -84,7 +84,7 @@ const char *Choice::NameNextSubItem() const
 }
 
 
-const char *Choice::NamePrevSubItem() const
+const char *Choice::NamePrevSubItem() const //-V2506
 {
     const DataChoice *own = OwnData();
 
@@ -112,7 +112,7 @@ int Choice::NumSubItems() const
 }
 
 
-void Choice::StartChange(int delta)
+void Choice::StartChange(int delta) //-V2506
 {
     if (tsChoice.choice != 0)
     {
@@ -161,7 +161,7 @@ void Choice::FuncForDraw(int x, int y) const
 }
 
 
-float Choice::Step() const
+float Choice::Step() const //-V2506
 {
     const DataChoice *own = OwnData();
 
@@ -244,7 +244,7 @@ void Choice::ChangeValue(int delta)
 }
 
 
-NamePage::E Page::GetName() const
+NamePage::E Page::GetName() const //-V2506
 {
     if (Type() != TypeItem::Page)
     {
@@ -260,7 +260,7 @@ TypeItem::E Item::Type() const
 }
 
 
-int Page::NumItems() const
+int Page::NumItems() const //-V2506
 {
     if (OwnData()->name == NamePage::MainPage)
     {
@@ -283,7 +283,7 @@ int Page::NumItems() const
 }
 
 
-bool Item::IsActive() const
+bool Item::IsActive() const //-V2506
 {
     if (IsChoice() || IsPage() || IsButton() || IsGovernor() || IsSmallButton())
     {
@@ -357,7 +357,7 @@ void Item::SetCurrent(bool active) const
 }
 
 
-bool Item::IsOpened() const
+bool Item::IsOpened() const //-V2506
 {
     Page* page = Keeper();
 
@@ -385,7 +385,7 @@ void Page::ChangeSubPage(int delta) const
 }
 
 
-void Page::ShortPress()
+void Page::ShortPress() //-V2506
 {
     if (OwnData()->funcOnPress)
     {
@@ -432,7 +432,7 @@ void Choice::ShortPress()
 }
 
 
-void Button::ShortPress()
+void Button::ShortPress() //-V2506
 {
     if (!IsActive())
     {
@@ -467,7 +467,7 @@ void IPaddress::ShortPress()
 }
 
 
-void GovernorColor::ShortPress()
+void GovernorColor::ShortPress() //-V2506
 {
     if (!IsActive())
     {
@@ -534,7 +534,7 @@ void TimeItem::LongPress()
 }
 
 
-const Item *Page::RetLastOpened() const
+const Item *Page::RetLastOpened() const //-V2506
 {
     if (CurrentItemIsOpened())
     {
@@ -578,7 +578,7 @@ void Item::Change(int delta) const
 }
 
 
-void Page::ShortPressOnItem(int numItem) const
+void Page::ShortPressOnItem(int numItem) const //-V2506
 {
     const DataPage *own = OwnData();
 
@@ -605,7 +605,7 @@ void Page::OpenAndSetItCurrent() const
 }
 
 
-bool Item::ChangeOpened(int delta) const
+bool Item::ChangeOpened(int delta) const //-V2506
 {
     if (delta < 2 && delta > -2)
     {
@@ -637,7 +637,7 @@ bool Item::ChangeOpened(int delta) const
 }
 
 
-int Item::HeightOpened() const
+int Item::HeightOpened() const //-V2506
 {
     if (IsPage())
     {

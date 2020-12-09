@@ -102,7 +102,7 @@ PackedTime HAL_RTC::GetPackedTime()
 }
 
 
-bool HAL_RTC::SetTimeAndData(int8 day, int8 month, int8 year, int8 hours, int8 minutes, int8 seconds)
+bool HAL_RTC::SetTimeAndData(int8 day, int8 month, int8 year, int8 hours, int8 minutes, int8 seconds) //-V2506
 {
     RTC_DateTypeDef dateStruct =
     {

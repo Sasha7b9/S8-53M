@@ -14,7 +14,7 @@
 using namespace Primitives;
 
 
-static void DrawHintItem(int x, int y, int width)
+static void DrawHintItem(int x, int y, int width) //-V2506
 {
     if (!PageHelpContent::itemHint)
     {

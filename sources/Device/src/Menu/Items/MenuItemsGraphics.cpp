@@ -15,7 +15,7 @@
 using namespace Primitives;
 
 
-Key::E GetFuncButtonFromY(int _y)
+Key::E GetFuncButtonFromY(int _y) //-V2506
 {
     int y = Grid::TOP + Grid::Height() / 12;
     int step = Grid::Height() / 6;
@@ -162,7 +162,7 @@ void MACaddress::DrawLowPart(int x, int y) const
     }
 }
 
-void Formula::WriteText(int x, int y, bool) const
+void Formula::WriteText(int x, int y, bool) const //-V2506
 {
     const DataFormula *own = OwnData();
 
@@ -735,7 +735,7 @@ static bool NeedDrawRegSet(const Page *page)
 }
 
 
-void Page::DrawTitle(int yTop)
+void Page::DrawTitle(int yTop) //-V2506
 {
     int x = Page::X();
     if (IsPageSB())
