@@ -108,6 +108,20 @@ struct HAL_FSMC
 };
 
 
+struct HAL_LTDC
+{
+    static void Init(uint frontBuffer, uint backBuffer);
+
+    static void SetColors(uint *clut, uint numColors);
+
+    static void ToggleBuffers();
+
+private:
+
+    static void SetBuffers(uint frontBuffer, uint backBuffer);
+};
+
+
 struct HAL_RTC
 {
 public:

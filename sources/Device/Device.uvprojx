@@ -1179,6 +1179,11 @@
               <FilePath>..\common\Hardware\HAL\HAL_FSMC_c.cpp</FilePath>
             </File>
             <File>
+              <FileName>HAL_LTDC_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_LTDC_c.cpp</FilePath>
+            </File>
+            <File>
               <FileName>HAL_OTP_c.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_OTP_c.cpp</FilePath>
@@ -3337,6 +3342,11 @@
               <FileName>HAL_FSMC_c.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_FSMC_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_LTDC_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_LTDC_c.cpp</FilePath>
             </File>
             <File>
               <FileName>HAL_OTP_c.cpp</FileName>
