@@ -4,8 +4,8 @@
 #include "Display/Display.h"
 
 
-static uint8 front[2 * 2] __attribute__((section("CCM_DATA")));
-static uint8 back[Display::WIDTH * Display::HEIGHT];
+static uint8 front[Display::WIDTH * Display::HEIGHT / 2] __attribute__((section("CCM_DATA")));
+static uint8 back[Display::WIDTH * Display::HEIGHT / 2];
 
 
 void Display::Init()
