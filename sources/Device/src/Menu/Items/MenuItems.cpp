@@ -317,7 +317,7 @@ bool Page::IsPageSB() const
 Page *Item::Keeper() const
 {
     const Page *page = ((Page *)(this))->data->keeper; //-V2533
-    return (Page *)page; //-V2533
+    return (Page *)page; //-V2533 //-V2567
 }
 
 
@@ -542,7 +542,7 @@ const Item *Page::RetLastOpened() const //-V2506
         const Item *item = GetItem(pActItem);
         if (GetItem(pActItem)->IsPage())
         {
-            return ((Page *)item)->RetLastOpened(); //-V2533
+            return ((Page *)item)->RetLastOpened(); //-V2533 //-V2567
         }
         else
         {
@@ -589,7 +589,7 @@ void Page::ShortPressOnItem(int numItem) const //-V2506
     NamePage::E namePage = own->name;
     if (namePage >= NamePage::SB_Curs)
     {
-        SmallButton *sb = (SmallButton *)(own->items)[numItem]; //-V2533 //-V2563
+        SmallButton *sb = (SmallButton *)(own->items)[numItem]; //-V2533 //-V2563 //-V2567
         if (sb && own->funcOnPress)
         {
             own->funcOnPress();
@@ -663,7 +663,7 @@ SmallButton *Page::SmallButonFrom(int numButton) const
 {
     const DataPage *own = OwnData();
 
-    return (SmallButton *)(own->items)[numButton]; //-V2533 //-V2563
+    return (SmallButton *)(own->items)[numButton]; //-V2533 //-V2563 //-V2567
 }
 
 

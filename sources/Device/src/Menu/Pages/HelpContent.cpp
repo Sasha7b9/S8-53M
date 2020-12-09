@@ -36,7 +36,7 @@ static void DrawPageContent()
 
     while(currentPage->OwnData()->pages[numPage])
     {
-        Page *page = (Page*)currentPage->OwnData()->pages[numPage]; //-V2533
+        Page *page = (Page*)currentPage->OwnData()->pages[numPage]; //-V2533 //-V2567
         const char *title = TITLE(page); //-V2563
         if(currentParagraph == numPage)
         {

@@ -124,7 +124,7 @@ Pin::Pin(PinPort::E _port, PinPin::E _pin)
         GPIO_PIN_15
     };
 
-    port = const_cast<GPIO_TypeDef *>(ports[_port]);
+    port = const_cast<GPIO_TypeDef *>(ports[_port]); //-V2567
     pin = pins[_pin];
 }
 

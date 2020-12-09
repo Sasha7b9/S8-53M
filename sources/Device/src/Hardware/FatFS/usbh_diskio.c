@@ -141,7 +141,7 @@ DRESULT USBH_write(BYTE lun, const BYTE *buff, DWORD sector, UINT count)
     DRESULT res = RES_ERROR;
     MSC_LUNTypeDef info;
 
-    if (USBH_MSC_Write(&hUSB_Host, lun, sector, (BYTE *)buff, count) == USBH_OK)
+    if (USBH_MSC_Write(&hUSB_Host, lun, sector, (BYTE *)buff, count) == USBH_OK) //-V2567
     {
         res = RES_OK;
     }

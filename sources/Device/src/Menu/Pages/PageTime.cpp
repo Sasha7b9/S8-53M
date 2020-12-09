@@ -125,7 +125,7 @@ DEF_CHOICE_2(mcDivRole, PageTime::self,
     TIME_DIV_XPOS, nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_5(pageTime, PageMain::self, NamePage::Time,
+DEF_PAGE_5(pageTime, PageMain::self, NamePage::Time, //-V2567
     "РАЗВЕРТКА", "SCAN",
     "Содержит настройки развёртки.",
     "Contains scan settings.",

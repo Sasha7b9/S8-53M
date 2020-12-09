@@ -39,7 +39,7 @@ static void DrawGovernorChoiceColorFormulaHiPart(const Item *item, int x, int y,
     int delta = pressed ? 1 : 0;
     int width = Item::WIDTH_VALUE;
 
-    if (item->IsIP() && opened && ((IPaddress*)item)->OwnData()->port != 0) //-V2533
+    if (item->IsIP() && opened && ((IPaddress*)item)->OwnData()->port != 0) //-V2533 //-V2567
     {
         width += IPaddress::OPENED_WIDTH;
     }
@@ -58,7 +58,7 @@ static void DrawGovernorChoiceColorFormulaHiPart(const Item *item, int x, int y,
         if (item->IsGovernor())
         {
             symbol = item->GetSymbolForGovernor();
-            Governor::address = const_cast<Item *>(item);
+            Governor::address = const_cast<Item *>(item); //-V2567
         }
         else if (item->IsChoiceReg() || (item->IsOpened() && item->IsChoice()))
         {
@@ -470,7 +470,7 @@ void Choice::DrawOpened(int x, int y) const
  
     HLine().Draw(y + Item::OPENED_HEIGHT_TITLE - 1, x, x + Item::OPENED_WIDTH);
     DrawVolumeButton(x, y + Item::OPENED_HEIGHT_TITLE, Item::OPENED_WIDTH - 1, height - Item::OPENED_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false);
-    int index = *((int8*)OwnData()->cell); //-V2533
+    int index = *((int8*)OwnData()->cell); //-V2533 //-V2567
     for(int i = 0; i < NumSubItems(); i++)
     {
         int yItem = y + Item::OPENED_HEIGHT_TITLE + i * Item::OPENED_HEIGHT + 1;

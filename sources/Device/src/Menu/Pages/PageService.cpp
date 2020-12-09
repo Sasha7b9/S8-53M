@@ -102,7 +102,7 @@ DEF_BUTTON(cCalibrator_Calibrate, PageService::PageCalibrator::self,
     nullptr, OnPress_Calibrator_Calibrate
 )
 
-DEF_PAGE_2(pageCalibrator, PageService::self, NamePage::ServiceCalibrator,
+DEF_PAGE_2(pageCalibrator, PageService::self, NamePage::ServiceCalibrator, //-V2567
     "КАЛИБРАТОР", "CALIBRATOR",
     "Управлением калибратором и калибровка осциллографа",
     "Item of the calibrator and calibration of an oscillograph",
@@ -363,7 +363,7 @@ DEF_SMALL_BUTTON(sbMath_Function_RangeB, PageService::PageMath::PageFunction::se
     nullptr, OnPress_Math_Function_RangeB, Draw_Math_Function_RangeB, nullptr
 )
 
-DEF_PAGE_6(pageMathFunction, PageService::PageMath::self, NamePage::SB_MathFunction,
+DEF_PAGE_6(pageMathFunction, PageService::PageMath::self, NamePage::SB_MathFunction, //-V2567
     "ФУНКЦИЯ", "FUNCTION",
     "Установка и выбор математической функции - сложения или умножения",
     "Installation and selection of mathematical functions - addition or multiplication",
@@ -376,7 +376,7 @@ DEF_PAGE_6(pageMathFunction, PageService::PageMath::self, NamePage::SB_MathFunct
     IsActive_Math_Function, OnPress_Math_Function, nullptr, OnRegSet_Math_Function
 );
 
-DEF_PAGE_2(pageMath, PageService::self, NamePage::Math,
+DEF_PAGE_2(pageMath, PageService::self, NamePage::Math, //-V2567
     "МАТЕМАТИКА", "MATH",
     "Математические функции и БПФ",
     "Mathematical functions and FFT",
@@ -437,7 +437,7 @@ DEF_CHOICE_2(cModeLongPressButtonTrig, PageService::self,
     MODE_LONG_PRESS_TRIG, nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_10(pageService, PageMain::self, NamePage::Service,
+DEF_PAGE_10(pageService, PageMain::self, NamePage::Service, //-V2567
     "СЕРВИС", "SERVICE",
     "Дополнительные настройки, калибровка, поиск сигнала, математические функции",
     "Additional settings, calibration, signal search, mathematical functions",
@@ -521,7 +521,7 @@ DEF_CHOICE_3(cMath_FFT_Limit, PageService::PageMath::PageFFT::self,
     FFT_MAX_DB, IsActive_Math_FFT_Limit, nullptr, nullptr
 )
 
-DEF_PAGE_6(pageFFT, PageService::PageMath::self, NamePage::MathFFT,
+DEF_PAGE_6(pageFFT, PageService::PageMath::self, NamePage::MathFFT, //-V2567
     "СПЕКТР", "SPECTRUM",
     "Отображение спектра входного сигнала",
     "Mapping the input signal spectrum",
@@ -572,7 +572,7 @@ DEF_SMALL_BUTTON(cMath_FFT_Cursors_Source, PageService::PageMath::PageFFT::PageC
     nullptr, OnPress_Math_FFT_Cursors_Source, Draw_Math_FFT_Cursors_Source, nullptr
 )
 
-DEF_PAGE_6(pageCursorsFFT, PageService::PageMath::PageFFT::self, NamePage::SB_MathCursorsFFT,
+DEF_PAGE_6(pageCursorsFFT, PageService::PageMath::PageFFT::self, NamePage::SB_MathCursorsFFT, //-V2567
     "КУРСОРЫ", "CURSORS",
     "Включает курсоры для измерения параметров спектра",
     "Includes cursors to measure the parameters of the spectrum",
@@ -634,7 +634,7 @@ DEF_MACADDRESS(macEthernet_MAC, PageService::PageEthernet::self,
     MAC_ADDR0, MAC_ADDR1, MAC_ADDR2, MAC_ADDR3, MAC_ADDR4, MAC_ADDR5, OnChanged_Ethernet_Enable
 )
 
-DEF_PAGE_5(pageEthernet, PageService::self, NamePage::ServiceEthernet,
+DEF_PAGE_5(pageEthernet, PageService::self, NamePage::ServiceEthernet, //-V2567
     "ETHERNET", "ETHERNET",
     "Настройки ethernet",
     "Settings of ethernet",
@@ -695,7 +695,7 @@ static void OnPress_Information()
     Display::SetDrawMode(DrawMode::Hand, Information_Draw);
 }
 
-DEF_PAGE_6(pageInformation, PageService::self, NamePage::SB_Information,
+DEF_PAGE_6(pageInformation, PageService::self, NamePage::SB_Information, //-V2567
     "ИНФОРМАЦИЯ", "INFORMATION",
     "Выводит на экран идентификационные данные осциллографа",
     "Displays identification data of the oscilloscope",

@@ -171,7 +171,7 @@ DEF_CHOICE_2(mcConsole_Registers_tShift, PageDebug::PageConsole::PageRegisters::
     set.debug.showRegisters.tShift, IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
-DEF_PAGE_12(pageRegisters, PageDebug::PageConsole::self, NamePage::DebugShowRegisters,
+DEF_PAGE_12(pageRegisters, PageDebug::PageConsole::self, NamePage::DebugShowRegisters, //-V2567
     "РЕГИСТРЫ", "REGISTERS",
     "",
     "",
@@ -190,7 +190,7 @@ DEF_PAGE_12(pageRegisters, PageDebug::PageConsole::self, NamePage::DebugShowRegi
     nullptr, nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_3(pageConsole, PageDebug::self, NamePage::DebugConsole,
+DEF_PAGE_3(pageConsole, PageDebug::self, NamePage::DebugConsole, //-V2567
     "КОНСОЛЬ", "CONSOLE",
     "",
     "",
@@ -261,7 +261,7 @@ DEF_GOVERNOR(mgADC_Balance_ShiftB, PageDebug::PageADC::PageBalance::self,
     shiftADCB, -125, 125, IsActive_ADC_Balance_Shift, OnChanged_ADC_Balance_ShiftB, nullptr
 )
 
-DEF_PAGE_3(pageBalanceADC, PageDebug::PageADC::self, NamePage::DebugADCbalance,
+DEF_PAGE_3(pageBalanceADC, PageDebug::PageADC::self, NamePage::DebugADCbalance, //-V2567
     "БАЛАНС", "BALANCE",
     "",
     "",
@@ -335,7 +335,7 @@ DEF_GOVERNOR(mgADC_Stretch_ADC_B, PageDebug::PageADC::PageStretch::self,
     DEBUG_STRETCH_ADC_B, 0, 255, IsActive_ADC_Stretch_ADC, OnChanged_ADC_Stretch_ADC_B, nullptr
 )
 
-DEF_PAGE_3(pageStretchADC, PageDebug::PageADC::self, NamePage::DebugADCstretch,
+DEF_PAGE_3(pageStretchADC, PageDebug::PageADC::self, NamePage::DebugADCstretch, //-V2567
     "РАСТЯЖКА", "STRETCH",
     "",
     "",
@@ -419,7 +419,7 @@ DEF_GOVERNOR(mbADC_AltRShift_10mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
     RSHIFT_ADD(Channel::B, Range::_10mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_B, nullptr
 )
 
-DEF_PAGE_7(pageAltShiftADC, PageDebug::PageADC::self, NamePage::DebugADCrShift,
+DEF_PAGE_7(pageAltShiftADC, PageDebug::PageADC::self, NamePage::DebugADCrShift, //-V2567
     "ДОП СМЕЩ", "ADD RSHFIT",
     "",
     "",
@@ -433,7 +433,7 @@ DEF_PAGE_7(pageAltShiftADC, PageDebug::PageADC::self, NamePage::DebugADCrShift,
     nullptr, nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_3(pageADC, PageDebug::self, NamePage::DebugADC,
+DEF_PAGE_3(pageADC, PageDebug::self, NamePage::DebugADC, //-V2567
     "АЦП", "ADC",
     "",
     "",
@@ -474,7 +474,7 @@ DEF_GOVERNOR(mgRandomizer_Average, PageDebug::PageRandomizer::self,
     NUM_AVE_FOR_RAND, 1, 32, nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_3(pageRandomizer, PageDebug::self, NamePage::DebugRandomizer,
+DEF_PAGE_3(pageRandomizer, PageDebug::self, NamePage::DebugRandomizer, //-V2567
     "РАНД-ТОР", "RANDOMIZER",
     "",
     "",
@@ -544,7 +544,7 @@ DEF_BUTTON(bEraseData, PageDebug::self,
     nullptr, OnPress_EraseData
 )
 
-DEF_PAGE_7(pageDebug, PageMain::self, NamePage::Debug,
+DEF_PAGE_7(pageDebug, PageMain::self, NamePage::Debug, //-V2567
     "ОТЛАДКА", "DEBUG",
     "",
     "",
@@ -704,7 +704,7 @@ static void OnRegSet_SerialNumber(int angle)
     Sound::GovernorChangedValue();
 }
 
-DEF_PAGE_6(pageSerialNumber, PageDebug::self, NamePage::SB_SerialNumber,
+DEF_PAGE_6(pageSerialNumber, PageDebug::self, NamePage::SB_SerialNumber, //-V2567
     "С/Н", "S/N",
     "Запись серийного номера в OTP-память. ВНИМАНИЕ!!! ОТP-память - память с однократной записью.",
     "Serial number recording in OTP-memory. ATTENTION!!! OTP memory is a one-time programming memory.",

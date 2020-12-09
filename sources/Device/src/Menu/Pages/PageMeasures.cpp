@@ -188,7 +188,7 @@ DEF_SMALL_BUTTON(sbExitMeasTune, PageMeasures::PageTune::self,
     nullptr, PressSB_MeasTune_Exit, DrawSB_Exit, nullptr
 )
 
-DEF_PAGE_6(pageTune, PageMeasures::PageTune::self, NamePage::SB_MeasTuneMeas,
+DEF_PAGE_6(pageTune, PageMeasures::PageTune::self, NamePage::SB_MeasTuneMeas, //-V2567
     "НАСТРОИТЬ", "CONFIGURE",
     "Переход в режми точной настройки количества и видов измерений",
     "Transition to rezhm of exact control of quantity and types of measurements",
@@ -201,7 +201,7 @@ DEF_PAGE_6(pageTune, PageMeasures::PageTune::self, NamePage::SB_MeasTuneMeas,
     IsActiveButtonMeasuresTune, nullptr, nullptr, Measure::RotateRegSet
 )
 
-DEF_PAGE_5(pageMeasures, PageMain::self, NamePage::Measures,
+DEF_PAGE_5(pageMeasures, PageMain::self, NamePage::Measures, //-V2567
     "ИЗМЕРЕНИЯ", "MEASURES",
     "Автоматические измерения",
     "Automatic measurements",
