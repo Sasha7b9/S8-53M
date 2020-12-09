@@ -81,12 +81,12 @@ bool WordEqualZeroString(Word *word, char* string) //-V2506
 
 bool ChooseSymbols(pUCHAR *string) //-V2506
 {
-    if (SYMBOL(string) == 0x0d && SYMBOL(string + 1) == 0x0a)
+    if (SYMBOL(string) == 0x0d && SYMBOL(string + 1) == 0x0a) //-V2563
     {
         return false;
     }
 
-    while (SYMBOL(string) != ' ' && SYMBOL(string) != 0x0d && SYMBOL(string + 1) != 0x0a)
+    while (SYMBOL(string) != ' ' && SYMBOL(string) != 0x0d && SYMBOL(string + 1) != 0x0a) //-V2563
     {
         (*string)++;
     }
@@ -96,7 +96,7 @@ bool ChooseSymbols(pUCHAR *string) //-V2506
 
 bool ChooseSpaces(pUCHAR *string) //-V2506
 {
-    if (SYMBOL(string) == 0x0d && SYMBOL(string + 1) == 0x0a)
+    if (SYMBOL(string) == 0x0d && SYMBOL(string + 1) == 0x0a) //-V2563
     {
         return false;
     }
@@ -115,7 +115,7 @@ bool EqualsStrings(pCHAR str1, pCHAR str2, int size) //-V2506
 {
     for (int i = 0; i < size; i++)
     {
-        if (str1[i] != str2[i])
+        if (str1[i] != str2[i]) //-V2563
         {
             return false;
         }

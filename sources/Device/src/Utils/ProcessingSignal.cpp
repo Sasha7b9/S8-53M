@@ -357,7 +357,7 @@ int Processing::CalculatePeriodAccurately(Channel::E chan) //-V2506
             {
                 EXIT_FROM_PERIOD_ACCURACY
             }
-            *sum = *(sum - 1) + point;
+            *sum = *(sum - 1) + point; //-V2563
             sum++;
         }
 
@@ -374,7 +374,7 @@ int Processing::CalculatePeriodAccurately(Channel::E chan) //-V2506
             int *pSums = &sums[firstP + 1];
             for(int start = 1; start < maxStart; start++)
             {
-                int nextSum = *(pSums + nextPeriod) - (*pSums);
+                int nextSum = *(pSums + nextPeriod) - (*pSums); //-V2563
                 pSums++;
 
                 int nextDelta = nextSum - s;
@@ -429,7 +429,7 @@ float Processing::FindIntersectionWithHorLine(Channel::E chan, int numIntersecti
     {
         while((num < numIntersection) && (x < compValue))
         {
-            if(data[x] < yLine && data[x + 1] >= yLine)
+            if(data[x] < yLine && data[x + 1] >= yLine) //-V2563
             {
                 num++;
             }
@@ -440,7 +440,7 @@ float Processing::FindIntersectionWithHorLine(Channel::E chan, int numIntersecti
     {
         while((num < numIntersection) && (x < compValue))
         {
-            if(data[x] > yLine && data[x + 1] <= yLine)
+            if(data[x] > yLine && data[x + 1] <= yLine) //-V2563
             {
                 num++;
             }
@@ -453,7 +453,7 @@ float Processing::FindIntersectionWithHorLine(Channel::E chan, int numIntersecti
     {
         return ERROR_VALUE_FLOAT;
     }
-    return Math::GetIntersectionWithHorizontalLine(x, data[x], x + 1, data[x + 1], yLine);
+    return Math::GetIntersectionWithHorizontalLine(x, data[x], x + 1, data[x + 1], yLine); //-V2563
 }
 
 float Processing::CalculateDurationPlus(Channel::E chan) //-V2506

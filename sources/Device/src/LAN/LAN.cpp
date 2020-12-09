@@ -29,8 +29,8 @@ static void FuncConnect(void)
 char *GetStringFromBuffer(const char *buffer, uint length, char *string)
 {
     std::memcpy(string, buffer, (size_t)length); //-V2533
-    string[length] = 'E';
-    string[length + 1] = '\0';
+    string[length] = 'E'; //-V2563
+    string[length + 1] = '\0'; //-V2563
     return string;
 }
 

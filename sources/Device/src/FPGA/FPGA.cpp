@@ -105,8 +105,8 @@ void FPGA::Start(void)
 
 void FPGA::SwitchingTrig(void)
 {
-    HAL_FSMC::Write(WR_TRIG_F, TRIG_POLARITY_IS_FRONT ? 0x00U : 0x01U);
-    HAL_FSMC::Write(WR_TRIG_F, TRIG_POLARITY_IS_FRONT ? 0x01U : 0x00U);
+    HAL_FSMC::Write(WR_TRIG_F, TRIG_POLARITY_IS_FRONT ? 0x00U : 0x01U); //-V2563
+    HAL_FSMC::Write(WR_TRIG_F, TRIG_POLARITY_IS_FRONT ? 0x01U : 0x00U); //-V2563
 }
 
 
@@ -229,7 +229,7 @@ void FPGA::OnPressStartStop(void)
 void FPGA::Stop(bool pause) 
 {
     Timer::Disable(TypeTimer::P2P);
-    HAL_FSMC::Write(WR_STOP, 1);
+    HAL_FSMC::Write(WR_STOP, 1); //-V2563
     stateWork = pause ? StateWorkFPGA::Pause : StateWorkFPGA::Stop;
 }
 
@@ -301,9 +301,9 @@ void FPGA::ReadRandomizeMode(void) //-V2506
 
     while (pData0 < &dataRel0[FPGA_MAX_POINTS])
     {
-        volatile uint8 data10 = *RD_ADC_B2; //-V2551
+        volatile uint8 data10 = *RD_ADC_B2; //-V2551 //-V2563
         //uint8 data11 = *RD_ADC_B1;
-        volatile uint8 data00 = *RD_ADC_A2; //-V2551
+        volatile uint8 data00 = *RD_ADC_A2; //-V2551 //-V2563
         //uint8 data01 = *RD_ADC_A1;
 
         /*
@@ -315,7 +315,7 @@ void FPGA::ReadRandomizeMode(void) //-V2506
                 WRITE_AND_OR_INVERSE(pData0, data00, Channel::A);
             }
 
-            uint8 *addr = pData0 + addShiftMem;
+            uint8 *addr = pData0 + addShiftMem; //-V2563
             if (addr >= first0 && addr <= last0)
             {
 //                WRITE_AND_OR_INVERSE(addr, data01, Channel::A);
@@ -325,7 +325,7 @@ void FPGA::ReadRandomizeMode(void) //-V2506
             {
                 WRITE_AND_OR_INVERSE(pData1, data10, Channel::B);
             }
-            addr = pData1 + addShiftMem;
+            addr = pData1 + addShiftMem; //-V2563
             if (addr >= first1 && addr <= last1)
             {
 //                WRITE_AND_OR_INVERSE(addr, data11, Channel::B);
@@ -359,8 +359,8 @@ void FPGA::ReadRandomizeMode(void) //-V2506
         }
         */
 
-        pData0 += step;
-        pData1 += step;
+        pData0 += step; //-V2563
+        pData1 += step; //-V2563
     }
 
     if (START_MODE_IS_SINGLE || SAMPLE_TYPE_IS_REAL)
@@ -380,18 +380,18 @@ void FPGA::ReadRealMode(bool necessaryShift)
     if (ds.peakDet != PeackDetMode::Disable)
     {
         uint8 *p0min = p0;
-        uint8 *p0max = p0min + 512;
+        uint8 *p0max = p0min + 512; //-V2563
         uint8 *p1min = p1;
-        uint8 *p1max = p1min + 512;
+        uint8 *p1max = p1min + 512; //-V2563
         while ((p0max < endP) && inProcessingOfRead)
         {
-            uint8 data = *RD_ADC_B2;
+            uint8 data = *RD_ADC_B2; //-V2563
             *p1max++ = data;
-            data = *RD_ADC_B1;
+            data = *RD_ADC_B1; //-V2563
             *p1min++ = data;
-            data = *RD_ADC_A2;
+            data = *RD_ADC_A2; //-V2563
             *p0min++ = data;
-            data = *RD_ADC_A1;
+            data = *RD_ADC_A1; //-V2563
             *p0max++ = data;
         }
     }
@@ -399,11 +399,11 @@ void FPGA::ReadRealMode(bool necessaryShift)
     {
         while ((p0 < endP) && inProcessingOfRead)
         {
-            *p1++ = *RD_ADC_B2;
-            *p1++ = *RD_ADC_B1;
-            uint8 data = *RD_ADC_A2;
+            *p1++ = *RD_ADC_B2; //-V2563
+            *p1++ = *RD_ADC_B1; //-V2563
+            uint8 data = *RD_ADC_A2; //-V2563
             *p0++ = data;
-            data = *RD_ADC_A1;
+            data = *RD_ADC_A1; //-V2563
             *p0++ = data;
         }
 
@@ -625,10 +625,10 @@ void ReadPoint(void)
 {
     if(_GET_BIT(ReadFlag(), BIT_POINT_READY))
     {
-        uint8 dataB1 = *RD_ADC_B1;
-        uint8 dataB2 = *RD_ADC_B2;
-        uint8 dataA1 = *RD_ADC_A1;
-        uint8 dataA2 = *RD_ADC_A2;
+        uint8 dataB1 = *RD_ADC_B1; //-V2563
+        uint8 dataB2 = *RD_ADC_B2; //-V2563
+        uint8 dataA1 = *RD_ADC_A1; //-V2563
+        uint8 dataA2 = *RD_ADC_A2; //-V2563
         Display::AddPoints(dataA2, dataA1, dataB2, dataB1);
     }
 }
@@ -680,9 +680,9 @@ static bool readPeriod = false;     // Установленный в true флаг означает, что ч
 static BitSet32 ReadRegFreq(void)
 {
     BitSet32 fr;
-    fr.byte[0] = HAL_FSMC::Read(RD_ADDR_FREQ_LOW);
-    fr.byte[1] = HAL_FSMC::Read(RD_ADDR_FREQ_MID);
-    fr.byte[2] = HAL_FSMC::Read(RD_ADDR_FREQ_HI);
+    fr.byte[0] = HAL_FSMC::Read(RD_ADDR_FREQ_LOW); //-V2563
+    fr.byte[1] = HAL_FSMC::Read(RD_ADDR_FREQ_MID); //-V2563
+    fr.byte[2] = HAL_FSMC::Read(RD_ADDR_FREQ_HI); //-V2563
     fr.byte[3] = 0;
     return fr;
 }
@@ -691,10 +691,10 @@ static BitSet32 ReadRegFreq(void)
 static BitSet32 ReadRegPeriod(void)
 {
     BitSet32 period;
-    period.byte[0] = HAL_FSMC::Read(RD_ADDR_PERIOD_LOW_LOW);
-    period.byte[1] = HAL_FSMC::Read(RD_ADDR_PERIOD_LOW);
-    period.byte[2] = HAL_FSMC::Read(RD_ADDR_PERIOD_MID);
-    period.byte[3] = HAL_FSMC::Read(RD_ADDR_PERIOD_HI);
+    period.byte[0] = HAL_FSMC::Read(RD_ADDR_PERIOD_LOW_LOW); //-V2563
+    period.byte[1] = HAL_FSMC::Read(RD_ADDR_PERIOD_LOW); //-V2563
+    period.byte[2] = HAL_FSMC::Read(RD_ADDR_PERIOD_MID); //-V2563
+    period.byte[3] = HAL_FSMC::Read(RD_ADDR_PERIOD_HI); //-V2563
     return period;
 }
 
@@ -758,7 +758,7 @@ void ReadPeriod(void)
 
 static uint8 ReadFlag(void)
 {
-    uint8 flag = HAL_FSMC::Read(RD_FL);
+    uint8 flag = HAL_FSMC::Read(RD_FL); //-V2563
     if(!readPeriod) 
     {
         if(_GET_BIT(flag, BIT_FREQ_READY)) 
@@ -777,9 +777,9 @@ static uint8 ReadFlag(void)
 
 static float CalculateFreqFromCounterFreq(void) //-V2506
 {
-    while (_GET_BIT(HAL_FSMC::Read(RD_FL), BIT_FREQ_READY) == 0) {};
+    while (_GET_BIT(HAL_FSMC::Read(RD_FL), BIT_FREQ_READY) == 0) {}; //-V2563
     ReadRegFreq();
-    while (_GET_BIT(HAL_FSMC::Read(RD_FL), BIT_FREQ_READY) == 0) {};
+    while (_GET_BIT(HAL_FSMC::Read(RD_FL), BIT_FREQ_READY) == 0) {}; //-V2563
     BitSet32 fr = ReadRegFreq();
     if (fr.word >= 5)
     {
@@ -792,10 +792,10 @@ static float CalculateFreqFromCounterFreq(void) //-V2506
 static float CalculateFreqFromCounterPeriod(void) //-V2506
 {
     uint time = gTimerMS;
-    while (gTimerMS - time < 1000 && _GET_BIT(HAL_FSMC::Read(RD_FL), BIT_PERIOD_READY) == 0) {};
+    while (gTimerMS - time < 1000 && _GET_BIT(HAL_FSMC::Read(RD_FL), BIT_PERIOD_READY) == 0) {}; //-V2563
     ReadRegPeriod();
     time = gTimerMS;
-    while (gTimerMS - time < 1000 && _GET_BIT(HAL_FSMC::Read(RD_FL), BIT_PERIOD_READY) == 0) {};
+    while (gTimerMS - time < 1000 && _GET_BIT(HAL_FSMC::Read(RD_FL), BIT_PERIOD_READY) == 0) {}; //-V2563
     BitSet32 period = ReadRegPeriod();
     if (period.word > 0 && (gTimerMS - time < 1000))
     {
@@ -840,7 +840,7 @@ void FPGA::InverseDataIsNecessary(Channel::E chan, uint8 *data)
     {
         for (int i = 0; i < FPGA_MAX_POINTS; i++)
         {
-            data[i] = (uint8)((int)(2 * AVE_VALUE) - LimitationUInt8(data[i], MIN_VALUE, MAX_VALUE));
+            data[i] = (uint8)((int)(2 * AVE_VALUE) - LimitationUInt8(data[i], MIN_VALUE, MAX_VALUE)); //-V2563
         }
     }
 }
@@ -1004,33 +1004,33 @@ Range::E FPGA::AccurateFindRange(Channel::E chan) //-V2506
 
         for (int i = 0; i < 50; i++)
         {
-            while (_GET_BIT(HAL_FSMC::Read(RD_FL), BIT_POINT_READY) == 0) {};
-            HAL_FSMC::Read(RD_ADC_B2);
-            HAL_FSMC::Read(RD_ADC_B1);
-            HAL_FSMC::Read(RD_ADC_A2);
-            HAL_FSMC::Read(RD_ADC_A1);
+            while (_GET_BIT(HAL_FSMC::Read(RD_FL), BIT_POINT_READY) == 0) {}; //-V2563
+            HAL_FSMC::Read(RD_ADC_B2); //-V2563
+            HAL_FSMC::Read(RD_ADC_B1); //-V2563
+            HAL_FSMC::Read(RD_ADC_A2); //-V2563
+            HAL_FSMC::Read(RD_ADC_A1); //-V2563
         }
 
         if (chan == Channel::A)
         {
             for (int i = 0; i < 100; i += 2)
             {
-                while (_GET_BIT(HAL_FSMC::Read(RD_FL), BIT_POINT_READY) == 0) {};
-                HAL_FSMC::Read(RD_ADC_B2);
-                HAL_FSMC::Read(RD_ADC_B1);
-                buffer[i] = HAL_FSMC::Read(RD_ADC_A2);
-                buffer[i + 1] = HAL_FSMC::Read(RD_ADC_A1);
+                while (_GET_BIT(HAL_FSMC::Read(RD_FL), BIT_POINT_READY) == 0) {}; //-V2563
+                HAL_FSMC::Read(RD_ADC_B2); //-V2563
+                HAL_FSMC::Read(RD_ADC_B1); //-V2563
+                buffer[i] = HAL_FSMC::Read(RD_ADC_A2); //-V2563
+                buffer[i + 1] = HAL_FSMC::Read(RD_ADC_A1); //-V2563
             }
         }
         else
         {
             for (int i = 0; i < 100; i += 2)
             {
-                while (_GET_BIT(HAL_FSMC::Read(RD_FL), BIT_POINT_READY) == 0) {};
-                buffer[i] = HAL_FSMC::Read(RD_ADC_B2);
-                buffer[i + 1] = HAL_FSMC::Read(RD_ADC_B1);
-                HAL_FSMC::Read(RD_ADC_A2);
-                HAL_FSMC::Read(RD_ADC_A1);
+                while (_GET_BIT(HAL_FSMC::Read(RD_FL), BIT_POINT_READY) == 0) {}; //-V2563
+                buffer[i] = HAL_FSMC::Read(RD_ADC_B2); //-V2563
+                buffer[i + 1] = HAL_FSMC::Read(RD_ADC_B1); //-V2563
+                HAL_FSMC::Read(RD_ADC_A2); //-V2563
+                HAL_FSMC::Read(RD_ADC_A1); //-V2563
             }
         }
 

@@ -57,7 +57,7 @@ void IPaddress::ChangeValue(int delta)
     if (numByte < 4)
     {
         uint8 *bytes = OwnData()->ip0;
-        oldValue = bytes[numByte];
+        oldValue = bytes[numByte]; //-V2563
     }
     else
     {
@@ -75,7 +75,7 @@ void IPaddress::ChangeValue(int delta)
         }
         else
         {
-            OwnData()->ip0[numByte] = static_cast<uint8>(newValue);
+            OwnData()->ip0[numByte] = static_cast<uint8>(newValue); //-V2563
         }
         Sound::GovernorChangedValue();
         Display::ShowWarningGood(Warning::NeedRebootDevice2);
@@ -85,7 +85,7 @@ void IPaddress::ChangeValue(int delta)
 
 void MACaddress::ChangeValue(int delta)
 {
-    uint8 *value = OwnData()->mac0 + gCurDigit;
+    uint8 *value = OwnData()->mac0 + gCurDigit; //-V2563
     *value += delta > 0 ? 1 : -1;
     Sound::GovernorChangedValue();
     Display::ShowWarningGood(Warning::NeedRebootDevice2);

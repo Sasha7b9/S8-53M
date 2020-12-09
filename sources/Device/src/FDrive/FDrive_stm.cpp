@@ -327,8 +327,8 @@ bool FDrive::WriteToFile(uint8* data, int sizeData, StructForWrite *structForWri
             dataToCopy = SIZE_FLASH_TEMP_BUFFER - structForWrite->sizeData;
         }
         sizeData -= dataToCopy;
-        memcpy(structForWrite->tempBuffer + structForWrite->sizeData, data, (uint)dataToCopy); //-V2533
-        data += dataToCopy;
+        memcpy(structForWrite->tempBuffer + structForWrite->sizeData, data, (uint)dataToCopy); //-V2533 //-V2563
+        data += dataToCopy; //-V2563
         structForWrite->sizeData += dataToCopy;
         if (structForWrite->sizeData == SIZE_FLASH_TEMP_BUFFER)
         {

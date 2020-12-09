@@ -42,14 +42,14 @@ static void DrawHintItem(int x, int y, int width) //-V2506
 
     const int SIZE = 100;
     char title[SIZE];
-    std::snprintf(title, SIZE, "%s \"%s\"", names[type][LANG], TITLE(item));
+    std::snprintf(title, SIZE, "%s \"%s\"", names[type][LANG], TITLE(item)); //-V2563
 
     if (item->IsSmallButton())
     {
         y -= 9;
     }
     Text(title).DrawInCenterRectAndBoundIt(x, y, width, 15, Color::BACK, Color::FILL);
-    y = Text(HINT(item)).DrawInBoundedRectWithTransfers(x, y + 15, width, Color::BACK, Color::FILL);
+    y = Text(HINT(item)).DrawInBoundedRectWithTransfers(x, y + 15, width, Color::BACK, Color::FILL); //-V2563
     if (item->IsSmallButton())
     {
         reinterpret_cast<SmallButton *>(item)->DrawHints(x, y, width);

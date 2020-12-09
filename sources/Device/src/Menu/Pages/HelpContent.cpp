@@ -28,7 +28,7 @@ static const int WIDTH = 295;
 static void DrawPageContent()
 {
     int y = 50;
-    Text(TITLE(currentPage)).DrawInCenterRect(0, y, WIDTH, 10);
+    Text(TITLE(currentPage)).DrawInCenterRect(0, y, WIDTH, 10); //-V2563
 
     int numPage = 0;
 
@@ -37,7 +37,7 @@ static void DrawPageContent()
     while(currentPage->OwnData()->pages[numPage])
     {
         Page *page = (Page*)currentPage->OwnData()->pages[numPage]; //-V2533
-        const char *title = TITLE(page);
+        const char *title = TITLE(page); //-V2563
         if(currentParagraph == numPage)
         {
             Text(title).DrawInCenterRectOnBackground(0, y, WIDTH, 10, Color::BACK, 2, Color::FILL);
@@ -53,8 +53,8 @@ static void DrawPageContent()
 
 static void DrawPageDescription()
 {
-    Text(TITLE(currentPage)).DrawInCenterRect(0, 3, WIDTH, 10);
-    Text(HINT(currentPage)).DrawInRectWithTransfers(2, 15, WIDTH - 5, 240);
+    Text(TITLE(currentPage)).DrawInCenterRect(0, 3, WIDTH, 10); //-V2563
+    Text(HINT(currentPage)).DrawInRectWithTransfers(2, 15, WIDTH - 5, 240); //-V2563
 }
 
 

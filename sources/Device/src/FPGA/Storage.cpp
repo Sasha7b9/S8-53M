@@ -73,8 +73,8 @@ void Storage::CalculateAroundAverage(uint8 *data0, uint8 *data1, const DataSetti
     {
         for (int i = 0; i < size; i++)
         {
-            aveData0[i] = data0[i];
-            aveData1[i] = data1[i];
+            aveData0[i] = data0[i]; //-V2563
+            aveData1[i] = data1[i]; //-V2563
         }
     }
     else
@@ -88,8 +88,8 @@ void Storage::CalculateAroundAverage(uint8 *data0, uint8 *data1, const DataSetti
         float numAveDataInv = 1.0F / numAveDataF;
         float* aData0 = &aveData0[0];
         float* aData1 = &aveData1[0];
-        uint8* d0 = &data0[0];
-        uint8* d1 = &data1[0];
+        uint8* d0 = &data0[0]; //-V2563
+        uint8* d1 = &data1[0]; //-V2563
         float* endData = &aveData0[size];
 
         do 
@@ -134,10 +134,10 @@ void Storage::CalculateLimits(pUCHAR data0, pUCHAR data1, const DataSettings *ds
     {
         for(uint i = 0; i < numElements; i++)
         {
-            limitDown[0][i] = data0[i];
-            limitUp[0][i] = data0[i];
-            limitDown[1][i] = data1[i];
-            limitUp[1][i] = data1[i];
+            limitDown[0][i] = data0[i]; //-V2563
+            limitUp[0][i] = data0[i]; //-V2563
+            limitDown[1][i] = data1[i]; //-V2563
+            limitUp[1][i] = data1[i]; //-V2563
         }
     }
     else
@@ -149,10 +149,10 @@ void Storage::CalculateLimits(pUCHAR data0, pUCHAR data1, const DataSettings *ds
         {
             for(uint i = 0; i < numElements; i++)
             {
-                limitDown[0][i] = data0[i];
-                limitUp[0][i] = data0[i];
-                limitDown[1][i] = data1[i];
-                limitUp[1][i] = data1[i];
+                limitDown[0][i] = data0[i]; //-V2563
+                limitUp[0][i] = data0[i]; //-V2563
+                limitDown[1][i] = data1[i]; //-V2563
+                limitUp[1][i] = data1[i]; //-V2563
             }
             allDatas--;
         }
@@ -163,10 +163,10 @@ void Storage::CalculateLimits(pUCHAR data0, pUCHAR data1, const DataSettings *ds
             pUCHAR dB = GetData(Channel::B, numData);
             for(uint i = 0; i < numElements; i++)
             {
-                if(dA[i] < limitDown[0][i])  { limitDown[0][i] = dA[i]; }
-                if(dA[i] > limitUp[0][i])    { limitUp[0][i] = dA[i];   }
-                if(dB[i] < limitDown[1][i])  { limitDown[1][i] = dB[i]; }
-                if(dB[i] > limitUp[1][i])    { limitUp[1][i] = dB[i];   }
+                if(dA[i] < limitDown[0][i])  { limitDown[0][i] = dA[i]; } //-V2563
+                if(dA[i] > limitUp[0][i])    { limitUp[0][i] = dA[i];   } //-V2563
+                if(dB[i] < limitDown[1][i])  { limitDown[1][i] = dB[i]; } //-V2563
+                if(dB[i] > limitUp[1][i])    { limitUp[1][i] = dB[i];   } //-V2563
             }
         }
     }
@@ -197,8 +197,8 @@ void Storage::CalculateSums()
 
     for(uint i = 0; i < numPoints; i++)
     {
-        sum[0][i] = data0[i];
-        sum[1][i] = data1[i];
+        sum[0][i] = data0[i]; //-V2563
+        sum[1][i] = data1[i]; //-V2563
     }
     if(numAveragings > 1)
     {
@@ -212,8 +212,8 @@ void Storage::CalculateSums()
             GetDataFromEnd(i, &ds, &data0, &data1);
             for(uint point = 0; point < numPoints; point++)
             {
-                sum[0][point] += data0[point];
-                sum[1][point] += data1[point];
+                sum[0][point] += data0[point]; //-V2563
+                sum[1][point] += data1[point]; //-V2563
             }
         }
     }
@@ -329,13 +329,13 @@ bool Storage::CopyData(DataSettings *ds, Channel::E chan, uint8 datatImportRel[2
     }
     uint8* pointer = (chan == Channel::A) ? (&datatImportRel[0][0]) : (&datatImportRel[1][0]);
 
-    uint8* address = ((uint8*)ds + sizeof(DataSettings)); //-V2533
+    uint8* address = ((uint8*)ds + sizeof(DataSettings)); //-V2533 //-V2563
 
     uint length = ds->length1channel * (ds->peakDet == PeackDetMode::Disable ? 1 : 2);
 
     if(chan == Channel::B && ds->enableCh0 == 1)
     {
-        address += length;
+        address += length; //-V2563
     }
 
     std::memcpy(pointer, address, length);
@@ -440,8 +440,8 @@ void Storage::PushData(DataSettings *dp, pUCHAR data0, pUCHAR data1)
     }
     else
     {
-        addrRecord = (uint8*)lastElem + SizeElem(lastElem); //-V2533
-        if(addrRecord + SizeElem(dp) > endPool)
+        addrRecord = (uint8*)lastElem + SizeElem(lastElem); //-V2533 //-V2563
+        if(addrRecord + SizeElem(dp) > endPool) //-V2563
         {
             addrRecord = beginPool;
         }
@@ -452,24 +452,24 @@ void Storage::PushData(DataSettings *dp, pUCHAR data0, pUCHAR data1)
 
     lastElem = (DataSettings*)addrRecord; //-V2533
 
-    COPY_AND_INCREASE(addrRecord, dp, sizeof(DataSettings));
+    COPY_AND_INCREASE(addrRecord, dp, sizeof(DataSettings)); //-V2563
 
     uint length = dp->length1channel;
 
     if(dp->enableCh0 == 1)
     {
-        COPY_AND_INCREASE(addrRecord, data0, length);
+        COPY_AND_INCREASE(addrRecord, data0, length); //-V2563
         if (dp->peakDet != PeackDetMode::Disable)
         {
-            COPY_AND_INCREASE(addrRecord, data0 + 512, length);
+            COPY_AND_INCREASE(addrRecord, data0 + 512, length); //-V2563
         }
     }
     if(dp->enableCh1 == 1)
     {
-        COPY_AND_INCREASE(addrRecord, data1, length);
+        COPY_AND_INCREASE(addrRecord, data1, length); //-V2563
         if (dp->peakDet != PeackDetMode::Disable)
         {
-            COPY_AND_INCREASE(addrRecord, data1 + 512, length);
+            COPY_AND_INCREASE(addrRecord, data1 + 512, length); //-V2563
         }
     }
 }

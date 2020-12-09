@@ -62,15 +62,15 @@ void VCP::SendDataSynch(pUCHAR buffer, int size) //-V2506
             int reqBytes = SIZE_BUFFER_VCP - sizeBuffer;
             LIMITATION(reqBytes, reqBytes, 0, size); //-V2516
             HAL_USBD::Wait();
-            std::memcpy(buffSend + sizeBuffer, buffer, static_cast<uint>(reqBytes));
+            std::memcpy(buffSend + sizeBuffer, buffer, static_cast<uint>(reqBytes)); //-V2563
             HAL_USBD::Transmit(buffSend, SIZE_BUFFER_VCP);
             size -= reqBytes;
-            buffer += reqBytes;
+            buffer += reqBytes; //-V2563
             sizeBuffer = 0;
         }
         else
         {
-            std::memcpy(buffSend + sizeBuffer, buffer, static_cast<uint>(size));
+            std::memcpy(buffSend + sizeBuffer, buffer, static_cast<uint>(size)); //-V2563
             sizeBuffer += size;
             size = 0;
         }

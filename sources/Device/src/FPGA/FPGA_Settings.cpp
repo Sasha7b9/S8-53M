@@ -88,21 +88,21 @@ void FPGA::LoadSettings()
     switch(BALANCE_ADC_TYPE) 
     {
         case BalanceADCtype::Settings:
-            WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)SET_BALANCE_ADC_A, false);
-            WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)SET_BALANCE_ADC_B, false);
+            WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)SET_BALANCE_ADC_A, false); //-V2563
+            WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)SET_BALANCE_ADC_B, false); //-V2563
             break;
         case BalanceADCtype::Hand:
             SetPeackDetMode(PEAKDET);
             SetTBase(SET_TBASE);
             if (PEAKDET)
             {
-                WriteToHardware(WR_ADD_RSHIFT_DAC1, 3, false);     // Почему-то при пиковом детекторе смещение появляется. Вот его и компенсируем.
-                WriteToHardware(WR_ADD_RSHIFT_DAC2, 3, false);
+                WriteToHardware(WR_ADD_RSHIFT_DAC1, 3, false);     // Почему-то при пиковом детекторе смещение появляется. Вот его и компенсируем. //-V2563
+                WriteToHardware(WR_ADD_RSHIFT_DAC2, 3, false); //-V2563
             }
             else
             {
-                WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)BALANCE_ADC_A, false);
-                WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)BALANCE_ADC_B, false);
+                WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)BALANCE_ADC_A, false); //-V2563
+                WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)BALANCE_ADC_B, false); //-V2563
             }
             break;
         case BalanceADCtype::Disable:
@@ -218,7 +218,7 @@ void FPGA::LoadTBase()
 {
     TBase::E tBase = SET_TBASE;
     uint8 mask = PEAKDET ? masksTBase[tBase].maskPeackDet : masksTBase[tBase].maskNorm;
-    FPGA::WriteToHardware(WR_RAZVERTKA, mask, true);
+    FPGA::WriteToHardware(WR_RAZVERTKA, mask, true); //-V2563
     ADD_SHIFT_T0 = deltaTShift[tBase];
 }
 
@@ -415,13 +415,13 @@ void FPGA::LoadRegUPR()
         _SET_BIT(data, 3);
     }
 
-    FPGA::WriteToHardware(WR_UPR, data, true);
+    FPGA::WriteToHardware(WR_UPR, data, true); //-V2563
 }
 
 
 void FPGA::LoadKoeffCalibration(Channel::E chan)
 {
-    FPGA::WriteToHardware(chan == Channel::A ? WR_CAL_A : WR_CAL_B, static_cast<uint8>(STRETCH_ADC(chan) * 0x80), false);
+    FPGA::WriteToHardware(chan == Channel::A ? WR_CAL_A : WR_CAL_B, static_cast<uint8>(STRETCH_ADC(chan) * 0x80), false); //-V2563
 }
 
 
@@ -441,12 +441,12 @@ void FPGA::LoadTShift()
     FPGA::SetAdditionShift(additionShift);
     uint16 post = (uint16)tShift; //-V2533
     post = (uint16)(~post); //-V2533
-    WriteToHardware(WR_POST_LOW, (uint8)post, true); //-V2533
-    WriteToHardware(WR_POST_HI, (uint8)(post >> 8), true); //-V2533
+    WriteToHardware(WR_POST_LOW, (uint8)post, true); //-V2533 //-V2563
+    WriteToHardware(WR_POST_HI, (uint8)(post >> 8), true); //-V2533 //-V2563
     uint16 pred = (uint16)((tShift > 511) ? 1023 : (511 - post)); //-V2533
     pred = (uint16)((~(pred - 1)) & 0x1ff); //-V2533
-    WriteToHardware(WR_PRED_LOW, (uint8)pred, true); //-V2533
-    WriteToHardware(WR_PRED_HI, (uint8)(pred >> 8), true); //-V2533
+    WriteToHardware(WR_PRED_LOW, (uint8)pred, true); //-V2533 //-V2563
+    WriteToHardware(WR_PRED_HI, (uint8)(pred >> 8), true); //-V2533 //-V2563
 }
 
 
@@ -511,7 +511,7 @@ void FPGA::SetTrigPolarity(TrigPolarity::E polarity)
 
 void FPGA::LoadTrigPolarity()
 {
-    WriteToHardware(WR_TRIG_F, TRIG_POLARITY_IS_FRONT ? 0x01U : 0x00U, true);
+    WriteToHardware(WR_TRIG_F, TRIG_POLARITY_IS_FRONT ? 0x01U : 0x00U, true); //-V2563
 }
 
 

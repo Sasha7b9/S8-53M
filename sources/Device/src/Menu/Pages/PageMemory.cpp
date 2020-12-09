@@ -314,7 +314,7 @@ void PressSB_SetMask_Insert() //-V2506
     }
     if (index < 0x41)
     {
-        FILE_NAME_MASK[size] = Tables::symbolsAlphaBet[index][0];
+        FILE_NAME_MASK[size] = Tables::symbolsAlphaBet[index][0]; //-V2563
         FILE_NAME_MASK[size + 1] = '\0';
     }
     else
@@ -352,7 +352,7 @@ void PressSB_SetName_Insert()
     int size = static_cast<int>(std::strlen(FILE_NAME)); //-V2513
     if (size < MAX_SYMBOLS_IN_FILE_NAME - 1)
     {
-        FILE_NAME[size] = Tables::symbolsAlphaBet[INDEX_SYMBOL][0];
+        FILE_NAME[size] = Tables::symbolsAlphaBet[INDEX_SYMBOL][0]; //-V2563
         FILE_NAME[size + 1] = '\0';
     }
 }
@@ -854,7 +854,7 @@ void DrawSetName()
     int deltaY = 12;
 
     // Рисуем большие буквы английского алфавита
-    while (Tables::symbolsAlphaBet[index][0] != ' ')
+    while (Tables::symbolsAlphaBet[index][0] != ' ') //-V2563
     {
         Tables::DrawStr(index, x0 + deltaX + position * 7, y0 + deltaY0);
         index++;
@@ -863,7 +863,7 @@ void DrawSetName()
 
     // Теперь рисуем цифры и пробел
     position = 0;
-    while (Tables::symbolsAlphaBet[index][0] != 'a')
+    while (Tables::symbolsAlphaBet[index][0] != 'a') //-V2563
     {
         Tables::DrawStr(index, x0 + deltaX + 50 + position * 7, y0 + deltaY0 + deltaY);
         index++;
@@ -872,7 +872,7 @@ void DrawSetName()
 
     // Теперь рисуем малые буквы алфавита
     position = 0;
-    while (Tables::symbolsAlphaBet[index][0] != '%')
+    while (Tables::symbolsAlphaBet[index][0] != '%') //-V2563
     {
         Tables::DrawStr(index, x0 + deltaX + position * 7, y0 + deltaY0 + deltaY * 2);
         index++;
@@ -899,7 +899,7 @@ static void DrawFileMask(int x, int y)
             if (*ch == 0x07)
             {
                 x = Char('%').Draw(x, y);
-                x = Char((char)(0x30 | *(ch + 1))).Draw(x, y); //-V2533
+                x = Char((char)(0x30 | *(ch + 1))).Draw(x, y); //-V2533 //-V2563
                 x = Char('N').Draw(x, y);
                 ch++;
             }
@@ -930,7 +930,7 @@ void DrawSetMask()
     int deltaY = 12;
 
     // Рисуем большие буквы английского алфавита
-    while(Tables::symbolsAlphaBet[index][0] != ' ')
+    while(Tables::symbolsAlphaBet[index][0] != ' ') //-V2563
     {
         Tables::DrawStr(index, x0 + deltaX + position * 7, y0 + deltaY0);
         index++;
@@ -939,7 +939,7 @@ void DrawSetMask()
     
     // Теперь рисуем цифры и пробел
     position = 0;
-    while(Tables::symbolsAlphaBet[index][0] != 'a')
+    while(Tables::symbolsAlphaBet[index][0] != 'a') //-V2563
     {
         Tables::DrawStr(index, x0 + deltaX + 50 + position * 7, y0 + deltaY0 + deltaY);
         index++;
@@ -948,7 +948,7 @@ void DrawSetMask()
 
     // Теперь рисуем малые буквы алфавита
     position = 0;
-    while(Tables::symbolsAlphaBet[index][0] != '%')
+    while(Tables::symbolsAlphaBet[index][0] != '%') //-V2563
     {
         Tables::DrawStr(index, x0 + deltaX + position * 7, y0 + deltaY0 + deltaY * 2);
         index++;

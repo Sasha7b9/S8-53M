@@ -216,8 +216,8 @@ static void OnChanged_ADC_Balance_Mode(bool)
 {
     Draw_ADC_Balance_Mode(0, 0);
 
-    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)shiftADCA, false); //-V2533
-    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)shiftADCB, false); //-V2533
+    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)shiftADCA, false); //-V2533 //-V2563
+    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)shiftADCB, false); //-V2533 //-V2563
 }
 
 DEF_CHOICE_3(mcADC_Balance_Mode, PageDebug::PageADC::PageBalance::self,
@@ -233,7 +233,7 @@ DEF_CHOICE_3(mcADC_Balance_Mode, PageDebug::PageADC::PageBalance::self,
 static void OnChanged_ADC_Balance_ShiftA()
 {
     BALANCE_ADC_A = shiftADCA;
-    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)BALANCE_ADC_A, false);
+    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)BALANCE_ADC_A, false); //-V2563
 }
 
 static bool IsActive_ADC_Balance_Shift()
@@ -251,7 +251,7 @@ DEF_GOVERNOR(mgADC_Balance_ShiftA, PageDebug::PageADC::PageBalance::self,
 static void OnChanged_ADC_Balance_ShiftB()
 {
     BALANCE_ADC_B = shiftADCB;
-    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)BALANCE_ADC_B, false);
+    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)BALANCE_ADC_B, false); //-V2563
 }
 
 DEF_GOVERNOR(mgADC_Balance_ShiftB, PageDebug::PageADC::PageBalance::self,
@@ -275,11 +275,11 @@ void PageDebug::LoadStretchADC(Channel::E chan)
 {
     if (DEBUG_STRETCH_ADC_TYPE_IS_DISABLED)
     {
-        FPGA::WriteToHardware(chan == Channel::A ? WR_CAL_A : WR_CAL_B, 0x80, true);
+        FPGA::WriteToHardware(chan == Channel::A ? WR_CAL_A : WR_CAL_B, 0x80, true); //-V2563
     }
     else if (DEBUG_STRETCH_ADC_TYPE_IS_HAND)
     {
-        FPGA::WriteToHardware(chan == Channel::A ? WR_CAL_A : WR_CAL_B, (uint8)DEBUG_STRETCH_ADC(chan), true);
+        FPGA::WriteToHardware(chan == Channel::A ? WR_CAL_A : WR_CAL_B, (uint8)DEBUG_STRETCH_ADC(chan), true); //-V2563
     }
     else if (DEBUG_STRETCH_ADC_TYPE_IS_SETTINGS) //-V2516
     {
@@ -308,7 +308,7 @@ DEF_CHOICE_3(mcADC_Stretch_Mode, PageDebug::PageADC::PageStretch::self,
 
 static void OnChanged_ADC_Stretch_ADC_A()
 {
-    FPGA::WriteToHardware(WR_CAL_A, (uint8)DEBUG_STRETCH_ADC_A, true);
+    FPGA::WriteToHardware(WR_CAL_A, (uint8)DEBUG_STRETCH_ADC_A, true); //-V2563
 }
 
 static bool IsActive_ADC_Stretch_ADC()
@@ -325,7 +325,7 @@ DEF_GOVERNOR(mgADC_Stretch_ADC_A, PageDebug::PageADC::PageStretch::self,
 
 static void OnChanged_ADC_Stretch_ADC_B()
 {
-    FPGA::WriteToHardware(WR_CAL_B, (uint8)DEBUG_STRETCH_ADC_B, true);
+    FPGA::WriteToHardware(WR_CAL_B, (uint8)DEBUG_STRETCH_ADC_B, true); //-V2563
 }
 
 DEF_GOVERNOR(mgADC_Stretch_ADC_B, PageDebug::PageADC::PageStretch::self,
@@ -510,14 +510,14 @@ static void OnPress_SaveFirmware()
     FDrive::OpenNewFileForWrite("S8-53.bin", &structForWrite);
 
     uint8 *address = (uint8 *)0x08020000; //-V566 //-V2533
-    uint8 *endAddress = address + 128 * 1024 * 3;
+    uint8 *endAddress = address + 128 * 1024 * 3; //-V2563
 
     int sizeBlock = 512;
 
     while (address < endAddress)
     {
         FDrive::WriteToFile(address, sizeBlock, &structForWrite);
-        address += sizeBlock;
+        address += sizeBlock; //-V2563
     }
 
     FDrive::CloseFile(&structForWrite);
