@@ -736,7 +736,7 @@ int Text::DrawInCenterRectAndBoundIt(int x, int y, int width, int height, Color:
 Text::Text(char *format, ...) : text("")
 {
     std::va_list args;
-    va_start(args, format);
+    va_start(args, format); //-V2563 //-V2567 //-V2571
     text.Set(TypeConversionString::None, format, args); //-V510
     va_end(args);
 }

@@ -76,7 +76,7 @@ void Painter::EndScene(bool)
 }
 
 
-void Color::SetCurrent(Color::E c)
+void Color::SetCurrent(Color::E c) //-V2506
 {
     if (c == Color::Count)
     {

@@ -50,7 +50,7 @@ int main(int argc, char **argv)
 
 
 
-bool Application::OnInit()
+bool Application::OnInit() //-V2506
 {
     if (!wxApp::OnInit())
     {
@@ -108,24 +108,27 @@ void Frame::LoadSettings()
 
     wxConfigBase *config = wxConfigBase::Get(false);
 
-    config->SetPath(wxT("Cenerator/A"));
+    if (config)
+    {
+        config->SetPath(wxT("Cenerator/A"));
 
-    config->Read(wxT("frequency"), &TuneGeneratorDialog::frequency[0], TuneGeneratorDialog::frequency[0]);
-    config->Read(wxT("amplitude"), &TuneGeneratorDialog::amplitude[0], TuneGeneratorDialog::amplitude[0]);
-    config->Read(wxT("offset"), &TuneGeneratorDialog::offset[0], TuneGeneratorDialog::offset[0]);
+        config->Read(wxT("frequency"), &TuneGeneratorDialog::frequency[0], TuneGeneratorDialog::frequency[0]);
+        config->Read(wxT("amplitude"), &TuneGeneratorDialog::amplitude[0], TuneGeneratorDialog::amplitude[0]);
+        config->Read(wxT("offset"), &TuneGeneratorDialog::offset[0], TuneGeneratorDialog::offset[0]);
 
-    config->SetPath(wxT("../B"));
-    config->Read(wxT("frequency"), &TuneGeneratorDialog::frequency[1], TuneGeneratorDialog::frequency[1]);
-    config->Read(wxT("amplitude"), &TuneGeneratorDialog::amplitude[1], TuneGeneratorDialog::amplitude[1]);
-    config->Read(wxT("offset"), &TuneGeneratorDialog::offset[1], TuneGeneratorDialog::offset[1]);
+        config->SetPath(wxT("../B"));
+        config->Read(wxT("frequency"), &TuneGeneratorDialog::frequency[1], TuneGeneratorDialog::frequency[1]);
+        config->Read(wxT("amplitude"), &TuneGeneratorDialog::amplitude[1], TuneGeneratorDialog::amplitude[1]);
+        config->Read(wxT("offset"), &TuneGeneratorDialog::offset[1], TuneGeneratorDialog::offset[1]);
 
-    config->SetPath(wxT("../../ConsoleSCPI"));
-    wxRect rect;
-    config->Read(wxT("x"), &rect.x, ConsoleSCPI::Self()->GetPosition().x);
-    config->Read(wxT("y"), &rect.y, ConsoleSCPI::Self()->GetPosition().y);
-    config->Read(wxT("width"), &rect.width, ConsoleSCPI::Self()->GetSize().x);
-    config->Read(wxT("height"), &rect.height, ConsoleSCPI::Self()->GetSize().y);
-    ConsoleSCPI::Self()->SetSize(rect);
+        config->SetPath(wxT("../../ConsoleSCPI"));
+        wxRect rect;
+        config->Read(wxT("x"), &rect.x, ConsoleSCPI::Self()->GetPosition().x);
+        config->Read(wxT("y"), &rect.y, ConsoleSCPI::Self()->GetPosition().y);
+        config->Read(wxT("width"), &rect.width, ConsoleSCPI::Self()->GetSize().x);
+        config->Read(wxT("height"), &rect.height, ConsoleSCPI::Self()->GetSize().y);
+        ConsoleSCPI::Self()->SetSize(rect);
+    }
 
     delete wxConfigBase::Set(nullptr);
 }
@@ -198,7 +201,7 @@ void Frame::DrawFPS()
 
     if (clock() - prevTime > 1000)
     {
-        float fps = static_cast<float>(count) / (clock() - prevTime) * 1000.0F;
+        float fps = static_cast<float>(count) / static_cast<float>(clock() - prevTime) * 1000.0F; //-V2564
 
         char buffer[100];
         sprintf(buffer, "fps %f", fps);
@@ -256,7 +259,7 @@ void Frame::OnPaint(wxPaintEvent& event)
 void Frame::SetPositionAndSize()
 {
     float k = 1.0F;
-    wxSize size = { static_cast<int>(1236 * k), static_cast<int>(505 * k) };
+    wxSize size = { static_cast<int>(1236 * (int)k), static_cast<int>(505 * (int)k) }; //-V2564
 
     SetClientSize(size);
     SetMinClientSize(size);
