@@ -165,13 +165,13 @@ void Display::DrawMarkersForMeasure(float scale, Channel::E chan) //-V2506
         int pos = Processing::GetMarkerHorizontal(chan, numMarker);
         if(pos != ERROR_VALUE_INT && pos > 0 && pos < 200)
         {
-            DashedHLine(3, 2).Draw(Grid::FullBottom() - static_cast<int>(pos * scale), Grid::Left(), Grid::Right(), 0);
+            DashedHLine(3, 2).Draw(Grid::FullBottom() - static_cast<int>(pos * scale), Grid::Left(), Grid::Right(), 0); //-V2564
         }
 
         pos = Processing::GetMarkerVertical(chan, numMarker);
         if (pos != ERROR_VALUE_INT && pos > 0 && pos < Grid::Right())
         {
-            DashedVLine(3, 2).Draw(Grid::Left() + static_cast<int>(pos * scale), Grid::TOP, Grid::FullBottom(), 0);
+            DashedVLine(3, 2).Draw(Grid::Left() + static_cast<int>(pos * scale), Grid::TOP, Grid::FullBottom(), 0); //-V2564
         }
        
     }
@@ -205,12 +205,12 @@ void Display::DrawSignalLined(pUCHAR data, const DataSettings *ds, int startPoin
     {
         for (int i = startPoint; i < endPoint; i++)
         {
-            float x0 = gridLeft + (i - startPoint) * scaleX;
-            if (x0 >= gridLeft && x0 <= gridRight)
+            float x0 = gridLeft + (i - startPoint) * scaleX; //-V2564
+            if (x0 >= gridLeft && x0 <= gridRight) //-V2564
             {
                 int index = i - startPoint;
                 int y = calculateFiltr ? Math::CalculateFiltr(data, i, numPoints, numSmoothing) : data[i]; //-V2563
-                CONVERT_DATA_TO_DISPLAY(dataCD[index], y); //-V2516
+                CONVERT_DATA_TO_DISPLAY(dataCD[index], y); //-V2516 //-V2564
             }
         }
     }
@@ -223,27 +223,27 @@ void Display::DrawSignalLined(pUCHAR data, const DataSettings *ds, int startPoin
        
         for (int i = startPoint; i < endPoint; i++)
         {
-            float x = gridLeft + (i - startPoint) * scaleX;
-            if (x >= gridLeft && x <= gridRight)
+            float x = gridLeft + (i - startPoint) * scaleX; //-V2564
+            if (x >= gridLeft && x <= gridRight) //-V2564
             {
                 int yMin = yMinNext;
                 if (yMin == -1)
                 {
-                    CONVERT_DATA_TO_DISPLAY(yMin, data[i + shift]); //-V2516 //-V2563
+                    CONVERT_DATA_TO_DISPLAY(yMin, data[i + shift]); //-V2516 //-V2563 //-V2564
                 }
                 int yMax = yMaxNext;
                 if (yMax == -1)
                 {
-                    CONVERT_DATA_TO_DISPLAY(yMax, data[i]); //-V2516 //-V2563
+                    CONVERT_DATA_TO_DISPLAY(yMax, data[i]); //-V2516 //-V2563 //-V2564
                 }
 
-                CONVERT_DATA_TO_DISPLAY(yMaxNext, data[i + 1]); //-V2516 //-V2563
+                CONVERT_DATA_TO_DISPLAY(yMaxNext, data[i + 1]); //-V2516 //-V2563 //-V2564
                 if (yMaxNext < yMin)
                 {
                     yMin = yMaxNext + 1;
                 }
 
-                CONVERT_DATA_TO_DISPLAY(yMinNext, data[i + shift + 1]); //-V2516 //-V2563
+                CONVERT_DATA_TO_DISPLAY(yMinNext, data[i + shift + 1]); //-V2516 //-V2563 //-V2564
                 if (yMinNext > yMax)
                 {
                     yMax = yMinNext - 1;
@@ -260,13 +260,13 @@ void Display::DrawSignalLined(pUCHAR data, const DataSettings *ds, int startPoin
         for(int i = 0; i < _numPoints; i++)
         {
             int index = endPoint - startPoint + i;
-            CONVERT_DATA_TO_DISPLAY(dataCD[index], MIN_VALUE); //-V2516
+            CONVERT_DATA_TO_DISPLAY(dataCD[index], MIN_VALUE); //-V2516 //-V2564
         }
     }
 
     if(ds->peakDet == PeackDetMode::Disable)
     {
-        CONVERT_DATA_TO_DISPLAY(dataCD[280], data[endPoint]); //-V2516 //-V2563
+        CONVERT_DATA_TO_DISPLAY(dataCD[280], data[endPoint]); //-V2516 //-V2563 //-V2564
         Painter::DrawSignal(Grid::Left(), dataCD, true);
     }
 }
@@ -285,7 +285,7 @@ void Display::DrawSignalPointed(pUCHAR data, const DataSettings *ds, int startPo
         for (int i = startPoint; i < endPoint; i++)
         {
             int index = i - startPoint;
-            CONVERT_DATA_TO_DISPLAY(dataCD[index], Math::CalculateFiltr(data, i, numPoints, numSmoothing)); //-V2516
+            CONVERT_DATA_TO_DISPLAY(dataCD[index], Math::CalculateFiltr(data, i, numPoints, numSmoothing)); //-V2516 //-V2564
         }
         Painter::DrawSignal(Grid::Left(), dataCD, false);
 
@@ -298,7 +298,7 @@ void Display::DrawSignalPointed(pUCHAR data, const DataSettings *ds, int startPo
             for (int i = startPoint; i < endPoint; i++)
             {
                 int index = i - startPoint;
-                CONVERT_DATA_TO_DISPLAY(dataCD[index], Math::CalculateFiltr(data, i, numPoints, numSmoothing)); //-V2516
+                CONVERT_DATA_TO_DISPLAY(dataCD[index], Math::CalculateFiltr(data, i, numPoints, numSmoothing)); //-V2516 //-V2564
             }
             Painter::DrawSignal(Grid::Left(), dataCD, false);
         }
@@ -309,8 +309,8 @@ void Display::DrawSignalPointed(pUCHAR data, const DataSettings *ds, int startPo
         {
             int index = i - startPoint;
             int dat = 0;
-            CONVERT_DATA_TO_DISPLAY(dat, Math::CalculateFiltr(data, i, numPoints, numSmoothing)); //-V2516
-            Point().Draw(Grid::Left() + static_cast<int>(index * scaleX), dat);
+            CONVERT_DATA_TO_DISPLAY(dat, Math::CalculateFiltr(data, i, numPoints, numSmoothing)); //-V2516 //-V2564
+            Point().Draw(Grid::Left() + static_cast<int>(index * scaleX), dat); //-V2564
         }
     }
 }
@@ -339,8 +339,8 @@ void Display::DrawDataChannel(uint8 *data, Channel::E chan, DataSettings *ds, in
         return;
     }
 
-    float scaleY = static_cast<float>(maxY - minY) / (MAX_VALUE - MIN_VALUE);
-    float scaleX = Grid::Width() / 280.0F;
+    float scaleY = static_cast<float>(maxY - minY) / (MAX_VALUE - MIN_VALUE); //-V2564
+    float scaleX = Grid::Width() / 280.0F; //-V2564
 
     if(SHOW_MEASURES)
     {
@@ -429,7 +429,7 @@ void Display::DrawSpectrumChannel(const float *spectrum, Color::E color)
 	int gridHeight = Grid::MathHeight();
     for (int i = 0; i < 256; i++) 
     {
-        HLine().Draw(gridLeft + i, gridBottom, gridBottom - static_cast<int>(gridHeight * spectrum[i])); //-V2563
+        HLine().Draw(gridLeft + i, gridBottom, gridBottom - static_cast<int>(gridHeight * spectrum[i])); //-V2563 //-V2564
     }
 }
 
@@ -803,11 +803,11 @@ void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channe
     {
         for (int col = 0; col < width; col++)
         {
-            float firstElem = col * elemsInColumn;
-            float lastElem = firstElem + elemsInColumn - 1;
+            float firstElem = col * elemsInColumn; //-V2564
+            float lastElem = firstElem + elemsInColumn - 1; //-V2564
             min[col] = data[(int)firstElem]; //-V2533 //-V2563
             max[col] = data[(int)firstElem + 1]; //-V2533 //-V2563
-            for (int elem = static_cast<int>(firstElem) + 2; elem <= lastElem; elem += 2)
+            for (int elem = static_cast<int>(firstElem) + 2; elem <= lastElem; elem += 2) //-V2564
             {
                 SET_MIN_IF_LESS(data[elem], min[col]); //-V2563
                 SET_MAX_IF_LARGER(data[elem + 1], max[col]); //-V2563
@@ -821,7 +821,7 @@ void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channe
 
         for (int col = 0; col < width; col++, iMin++, iMax++) //-V2528
         {
-            int firstElem = static_cast<int>(col * elemsInColumn);
+            int firstElem = static_cast<int>(col * elemsInColumn); //-V2564
             int lastElem = firstElem + static_cast<int>(elemsInColumn) - 1;
             *iMin = data[firstElem]; //-V2563
             *iMax = data[firstElem]; //-V2563
@@ -836,11 +836,11 @@ void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channe
     {
         for (int col = 0; col < width; col++)
         {
-            float firstElem = col * elemsInColumn;
-            float lastElem = firstElem + elemsInColumn - 1;
+            float firstElem = col * elemsInColumn; //-V2564
+            float lastElem = firstElem + elemsInColumn - 1; //-V2564
             min[col] = data[(int)firstElem]; //-V2533 //-V2563
             max[col] = data[(int)firstElem + shiftForPeakDet]; //-V2533 //-V2563
-            for (int elem = static_cast<int>(firstElem) + 1; elem <= lastElem; elem++)
+            for (int elem = static_cast<int>(firstElem) + 1; elem <= lastElem; elem++) //-V2564
             {
                 SET_MIN_IF_LESS(data[elem], min[col]); //-V2563
                 SET_MAX_IF_LARGER(data[elem + shiftForPeakDet], max[col]); //-V2563
@@ -857,8 +857,8 @@ void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channe
 #define NUM_POINTS (300 * 2)
     uint8 points[NUM_POINTS];
 
-    points[0] = static_cast<uint8>(ORDINATE(max[0]));
-    points[1] = static_cast<uint8>(ORDINATE(min[0]));
+    points[0] = static_cast<uint8>(ORDINATE(max[0])); //-V2564
+    points[1] = static_cast<uint8>(ORDINATE(min[0])); //-V2564
 
 
 
@@ -866,8 +866,8 @@ void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channe
     {
         int value0 = min[i] > max[i - 1] ? max[i - 1] : min[i];
         int value1 = max[i] < min[i - 1] ? min[i - 1] : max[i];
-        points[i * 2] = static_cast<uint8>(ORDINATE(value1));
-        points[i * 2 + 1] = static_cast<uint8>(ORDINATE(value0));
+        points[i * 2] = static_cast<uint8>(ORDINATE(value1)); //-V2564
+        points[i * 2 + 1] = static_cast<uint8>(ORDINATE(value0)); //-V2564
     }
 	if(width < 256)
     {
@@ -929,13 +929,13 @@ void Display::DrawMemoryWindow() //-V2506
         rightX = 68;
     }
 
-    int timeWindowRectWidth = static_cast<int>((rightX - leftX) * (282.0F / sMemory_GetNumPoints(false)));
-    float scaleX = (float)(rightX - leftX + 1) / sMemory_GetNumPoints(false); //-V2533
+    int timeWindowRectWidth = static_cast<int>((rightX - leftX) * (282.0F / sMemory_GetNumPoints(false))); //-V2564
+    float scaleX = (float)(rightX - leftX + 1) / sMemory_GetNumPoints(false); //-V2533 //-V2564
 
     int16 shiftInMemory = SHIFT_IN_MEMORY;
     
-    const int xVert0 = static_cast<int>(leftX + shiftInMemory * scaleX);
-    const int xVert1 = leftX + static_cast<int>(shiftInMemory * scaleX) + timeWindowRectWidth;
+    const int xVert0 = static_cast<int>(leftX + shiftInMemory * scaleX); //-V2564
+    const int xVert1 = leftX + static_cast<int>(shiftInMemory * scaleX) + timeWindowRectWidth; //-V2564
     bool showFull = set.display.showFullMemoryWindow;
     Primitives::Rectangle(xVert1 - xVert0, bottom - top - (showFull ? 0 : 2)).Draw(xVert0, top + (showFull ? 0 : 1), Color::FILL);
 
@@ -987,25 +987,25 @@ void Display::DrawMemoryWindow() //-V2506
     Char(Symbol::S8::TPOS_1).Draw(x0 - 3, 9, Color::FILL);
 
     // Маркер tShift
-    float scale = (float)(rightX - leftX + 1) / ((float)sMemory_GetNumPoints(false) - (sMemory_GetNumPoints(false) == 281 ? 1 : 0)); //-V2533
-    float xShift = 1 + (sTime_TPosInPoints((PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel, SET_TPOS) - sTime_TShiftInPoints((PeackDetMode::E)Storage::set->peakDet)) * scale; //-V2533
+    float scale = (float)(rightX - leftX + 1) / ((float)sMemory_GetNumPoints(false) - (sMemory_GetNumPoints(false) == 281 ? 1 : 0)); //-V2533 //-V2564
+    float xShift = 1 + (sTime_TPosInPoints((PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel, SET_TPOS) - sTime_TShiftInPoints((PeackDetMode::E)Storage::set->peakDet)) * scale; //-V2533 //-V2564
     
-    if(xShift < leftX - 2)
+    if(xShift < leftX - 2) //-V2564
     {
         xShift = static_cast<float>(leftX - 2);
     }
 
-    Region(6, 6).Fill(static_cast<int>(xShift - 1), 3, Color::BACK);
+    Region(6, 6).Fill(static_cast<int>(xShift - 1), 3, Color::BACK); //-V2564
     Region(4, 4).Fill(static_cast<int>(xShift), 4, Color::FILL);
     Color::SetCurrent(Color::BACK);
 
-    if(xShift == leftX - 2) //-V2550 //-V550
+    if(xShift == leftX - 2) //-V2550 //-V550 //-V2564
     {
         xShift = static_cast<float>(leftX - 2);
         Line().Draw(static_cast<int>(xShift) + 3, 5, static_cast<int>(xShift) + 3, 7);
         Line().Draw(static_cast<int>(xShift) + 1, 6, static_cast<int>(xShift) + 2, 6);
     }
-    else if(xShift > rightX - 1)
+    else if(xShift > rightX - 1) //-V2564
     {
         xShift = static_cast<float>(rightX - 2);
         Line().Draw(static_cast<int>(xShift) + 1, 5, static_cast<int>(xShift) + 1, 7);
@@ -1317,10 +1317,10 @@ void Display::DrawGridSpectrum()
         static const int nums[] = {4, 6, 8};
         static const char *strs[] = {"0", "-10", "-20", "-30", "-40", "-50", "-60", "-70"};
         int numParts = nums[FFT_MAX_DB];
-        float scale = (float)Grid::MathHeight() / numParts; //-V2533
+        float scale = (float)Grid::MathHeight() / numParts; //-V2533 //-V2564
         for (int i = 1; i < numParts; i++)
         {
-            int y = static_cast<int>(Grid::MathTop() + i * scale);
+            int y = static_cast<int>(Grid::MathTop() + i * scale); //-V2564
             HLine().Draw(y, Grid::Left(), Grid::Left() + 256, Color::GRID);
             if (!Menu::IsMinimize())
             {
@@ -1337,10 +1337,10 @@ void Display::DrawGridSpectrum()
     else if (SCALE_FFT_IS_LINEAR) //-V2516
     {
         static const char *strs[] = {"1.0", "0.8", "0.6", "0.4", "0.2"};
-        float scale = (float)Grid::MathHeight() / 5; //-V2533
+        float scale = (float)Grid::MathHeight() / 5; //-V2533 //-V2564
         for (int i = 1; i < 5; i++)
         {
-            int y = static_cast<int>(Grid::MathTop() + i * scale);
+            int y = static_cast<int>(Grid::MathTop() + i * scale); //-V2564
             HLine().Draw(y, Grid::Left(), Grid::Left() + 256, Color::GRID);
             if (!Menu::IsMinimize())
             {
@@ -1423,25 +1423,25 @@ void Display::DrawGridType1(int left, int top, int right, int bottom, float cent
     masX[0] = (uint16)(left + 1); //-V2533
     for (int i = 1; i < 7; i++)
     {
-        masX[i] = static_cast<uint16>(left + deltaX * i);
+        masX[i] = static_cast<uint16>(left + deltaX * i); //-V2564
     }
     for (int i = 7; i < 10; i++)
     {
-        masX[i] = static_cast<uint16>(centerX - 8 + i);
+        masX[i] = static_cast<uint16>(centerX - 8 + i); //-V2564
     }
     for (int i = 10; i < 16; i++)
     {
-        masX[i] = static_cast<uint16>(centerX + deltaX * (i - 9));
+        masX[i] = static_cast<uint16>(centerX + deltaX * (i - 9)); //-V2564
     }
     masX[16] = (uint16)(right - 1); //-V2533
 
-    MultiVPointLine(17, masX, static_cast<int>(stepY), CalculateCountV()).Draw(static_cast<int>(top + stepY), Color::GRID);
+    MultiVPointLine(17, masX, static_cast<int>(stepY), CalculateCountV()).Draw(static_cast<int>(top + stepY), Color::GRID); //-V2564
 
     uint8 mas[13];
     mas[0] = (uint8)(top + 1); //-V2533
     for (int i = 1; i < 5; i++)
     {
-        mas[i] = static_cast<uint8>(top + deltaY * i);
+        mas[i] = static_cast<uint8>(top + deltaY * i); //-V2564
     }
     for (int i = 5; i < 8; i++)
     {
