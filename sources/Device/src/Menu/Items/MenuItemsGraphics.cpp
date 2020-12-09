@@ -713,9 +713,6 @@ void Page::DrawOpened(int yTop)
     }
     else
     {
-        Page *page = this;
-        page = page;
-
         DrawTitle(yTop);
         DrawItems(yTop + Item::TITLE_HEIGHT);
     }
@@ -728,7 +725,7 @@ void Page::DrawOpened(int yTop)
 
 
 // Нужно ли рисовать значок говернора
-static bool NeedDrawRegSet(Page *page)
+static bool NeedDrawRegSet(const Page *page)
 {
     return page->NumSubPages() > 1 &&
         !Menu::CurrentItem()->IsChoiceReg() &&
@@ -776,7 +773,7 @@ void Page::DrawTitle(int yTop)
     delta = 0;
     
     Color::SetCurrent(colorText);
-    DrawPagesUGO(Page::X() + Item::TITLE_WIDTH - 3 + delta, yTop + Item::TITLE_HEIGHT - 2 + delta);
+    DrawPagesUGO(Page::X() + Item::TITLE_WIDTH - 3 + delta, yTop + Item::TITLE_HEIGHT - 2 + delta); //-V2007
 }
 
 

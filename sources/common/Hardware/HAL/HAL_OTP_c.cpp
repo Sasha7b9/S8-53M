@@ -4,7 +4,7 @@
 #include <stm32f4xx_hal.h>
 
 
-bool HAL_OTP::SaveSerialNumber(char *serialNumber)
+bool HAL_OTP::SaveSerialNumber(char *serialNumber) //-V2506
 {
     // Находим первую пустую строку длиной 16 байт в области OPT, начиная с начала.
     uint8 *address = reinterpret_cast<uint8 *>(FLASH_OTP_BASE); //-V566

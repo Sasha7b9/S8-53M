@@ -360,12 +360,13 @@ void Item::SetCurrent(bool active) const
 bool Item::IsOpened() const
 {
     Page* page = Keeper();
+
     if (IsPage())
     {
         return page->CurrentItemIsOpened();
     }
 
-    return page->CurrentItemIsOpened();
+    return page->CurrentItemIsOpened(); //-V523
 }
 
 

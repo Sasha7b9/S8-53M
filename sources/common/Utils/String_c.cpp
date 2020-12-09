@@ -41,7 +41,7 @@ String::String(char symbol) : buffer(nullptr)
 }
 
 
-String::String(pCHAR format, ...) : buffer(nullptr)
+String::String(pCHAR format, ...) : buffer(nullptr) //-V2506
 {
     Set(TypeConversionString::None, "");
 
@@ -100,7 +100,7 @@ void String::Set(TypeConversionString::E conv, pCHAR format, ...)
 }
 
 
-void String::Append(pCHAR str)
+void String::Append(pCHAR str) //-V2506
 {
     if (!str || *str == '\0')
     {
@@ -118,7 +118,7 @@ void String::Append(pCHAR str)
 }
 
 
-void String::Append(pCHAR str, int numSymbols)
+void String::Append(pCHAR str, int numSymbols) //-V2506
 {
     if (!str || *str == '\0')
     {
@@ -169,7 +169,7 @@ char *String::c_str() const
 }
 
 
-bool String::Allocate(int size)
+bool String::Allocate(int size) //-V2506
 {
     std::free(buffer);
     buffer = static_cast<char *>(std::malloc(static_cast<uint>(size)));
@@ -242,7 +242,7 @@ void String::RemoveFromEnd()
 }
 
 
-int String::Size() const
+int String::Size() const //-V2506
 {
     if (buffer == nullptr)
     {
@@ -253,7 +253,7 @@ int String::Size() const
 }
 
 
-char &String::operator[](int i) const
+char &String::operator[](int i) const //-V2506
 {
     static char result = 0;
 

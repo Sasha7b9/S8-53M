@@ -54,7 +54,7 @@ void Primitives::Line::Draw(int x0, int y0, int x1, int y1, Color::E color)
 }
 
 
-void Primitives::DashedHLine::Draw(int y, int x0, int x1, int deltaStart)
+void Primitives::DashedHLine::Draw(int y, int x0, int x1, int deltaStart) //-V2506
 {
     if (deltaStart < 0 || deltaStart >= (fill + empty))
     {
@@ -79,7 +79,7 @@ void Primitives::DashedHLine::Draw(int y, int x0, int x1, int deltaStart)
 }
 
 
-void Primitives::DashedVLine::Draw(int x, int y0, int y1, int deltaStart)
+void Primitives::DashedVLine::Draw(int x, int y0, int y1, int deltaStart) //-V2506
 {
     if (deltaStart < 0 || deltaStart >= (fill + empty))
     {

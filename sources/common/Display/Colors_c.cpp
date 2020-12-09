@@ -69,7 +69,7 @@ Color::E Color::BorderMenu()
 
 
 
-Color::E Color::Contrast(Color::E color)
+Color::E Color::Contrast(Color::E color) //-V2506
 {
     uint16 colorValue = set.display.colors[color];
     if (R_FROM_COLOR(colorValue) > 16 || G_FROM_COLOR(colorValue) > 32 || B_FROM_COLOR(colorValue) > 16)    //-V112
@@ -81,7 +81,7 @@ Color::E Color::Contrast(Color::E color)
 
 
 
-Color::E Color::LightShadingText()
+Color::E Color::LightShadingText() //-V524
 {
     return Color::MenuTitle();
 }
@@ -147,7 +147,7 @@ void Color_SetBrightness(ColorType *colorType, float brightness)
 
 
 
-void Color_BrightnessChange(ColorType *colorType, int delta)
+void Color_BrightnessChange(ColorType *colorType, int delta) //-V2506
 {
     if ((delta > 0 && colorType->brightness == 1.0F) || (delta < 0 && colorType->brightness == 0.0F)) //-V2550 //-V550
     {
@@ -240,7 +240,7 @@ static const char* colorNames[] =
 
 
 
-const char* NameColorFromValue(uint16 colorValue)
+const char* NameColorFromValue(uint16 colorValue) //-V2506
 {
     for (int i = 0; i < Color::Count; i++)
     {

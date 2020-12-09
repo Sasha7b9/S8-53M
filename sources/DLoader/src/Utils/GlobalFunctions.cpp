@@ -47,7 +47,7 @@ static int NumDigitsInIntPart(float value)
 
 
 
-char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[20])
+char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[20]) //-V2506
 {
     bufferOut[0] = 0;
     char *pBuffer = bufferOut;
@@ -86,7 +86,7 @@ char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
 
     std::sprintf(pBuffer, format, std::fabsf(value));
 
-    float val = (float)std::atof(pBuffer);
+    float val = (float)std::atof(pBuffer); //-V2508
 
     if (NumDigitsInIntPart(val) != numDigitsInInt)
     {
@@ -129,7 +129,7 @@ char* Int2String(int value, bool alwaysSign, int numMinFields, char buffer[20])
 
 
 
-bool String2Int(char *str, int *value)
+bool String2Int(char *str, int *value) //-V2506
 {
     int sign = str[0] == '-' ? -1 : 1;
     if (str[0] < '0' || str[0] > '9')

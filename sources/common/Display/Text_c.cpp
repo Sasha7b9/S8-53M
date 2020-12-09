@@ -425,7 +425,7 @@ static bool IsConsonant(char symbol)
 }
 
 
-static bool CompareArrays(const bool *array1, const bool *array2, int numElems)
+static bool CompareArrays(const bool *array1, const bool *array2, int numElems) //-V2506
 {
     for (int i = 0; i < numElems; i++)
     {
@@ -440,7 +440,7 @@ static bool CompareArrays(const bool *array1, const bool *array2, int numElems)
 
 // Находит следующий перенос. C letters начинается часть слово, где нужно найти перенос, в lettersInSyllable будет записано число букв в найденном 
 // слоге. Если слово закончилось, функция возвращает false
-static bool FindNextTransfer(const char *letters, int8 *lettersInSyllable)
+static bool FindNextTransfer(const char *letters, int8 *lettersInSyllable) //-V2506
 {
 
 #define VOWEL       0   // Гласная
@@ -547,7 +547,7 @@ static char *PartWordForTransfer(char *word, const int8 *lengthSyllables, int, i
 
 
 // Если draw == false, то рисовать символ не надо, фунция используется только для вычислений
-static int DrawPartWord(char *word, int x, int y, int xRight, bool draw)
+static int DrawPartWord(char *word, int x, int y, int xRight, bool draw) //-V2506
 {
     int8 *lengthSyllables = BreakWord(word);
     int numSyllabels = 0;
@@ -737,7 +737,7 @@ Text::Text(char *format, ...) : text("")
 {
     std::va_list args;
     va_start(args, format);
-    text.Set(TypeConversionString::None, format, args);
+    text.Set(TypeConversionString::None, format, args); //-V510
     va_end(args);
 }
 

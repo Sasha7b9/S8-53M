@@ -43,14 +43,14 @@ typedef void    (*pFuncpCU8)(pUCHAR );
 #define _CLEAR_BIT(value, bit) ((value) &= (~(1 << (bit))))
 
 // Объединение размером 32 бита
-union BitSet32
+union BitSet32 //-V2514
 {
     uint  word;
     uint8 byte[4]; //-V112
 };
 
 // Объединение размером 64 бита
-typedef union
+typedef union //-V2514
 {
     long long unsigned int  dword;
     unsigned int            word[2];

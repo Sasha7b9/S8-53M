@@ -6,7 +6,7 @@
 #include <cmath>
 
 
-int Math::MinFrom2Int(int val0, int val1)
+int Math::MinFrom2Int(int val0, int val1) //-V2506
 {
     if (val0 < val1)
     {
@@ -16,7 +16,7 @@ int Math::MinFrom2Int(int val0, int val1)
 }
 
 
-float Math::GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, int yHorLine)
+float Math::GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, int yHorLine) //-V2506
 {
     if(y0 == y1)
     {
@@ -68,7 +68,7 @@ float Math::RandFloat(float min, float max)
 }
 
 
-int8 Math_AddInt8WithLimitation(int8 value, int8 delta, int8, int8 max)
+int8 Math_AddInt8WithLimitation(int8 value, int8 delta, int8, int8 max) //-V2506
 {
     int8 retValue = value + delta;
     if (retValue < 0)
@@ -83,7 +83,7 @@ int8 Math_AddInt8WithLimitation(int8 value, int8 delta, int8, int8 max)
 }
 
 
-int Math::Sign(int value)
+int Math::Sign(int value) //-V2506
 {
     if (value > 0)
     {
@@ -182,22 +182,22 @@ uint8 Math::GetMaxFromArray(pUCHAR data, int firstPoint, int lastPoint)
     if (value >= max) { return max; }   \
     return value;
 
-int LimitationInt(int value, int min, int max)
+int LimitationInt(int value, int min, int max) //-V2506
 {
     LIMIT
 }
 
-uint8 LimitationUInt8(uint8 value, uint8 min, uint8 max)
+uint8 LimitationUInt8(uint8 value, uint8 min, uint8 max) //-V2506
 {
     LIMIT
 }
 
-float LimitationFloat(float value, float min, float max)
+float LimitationFloat(float value, float min, float max) //-V2506
 {
     LIMIT
 }
 
-uint8 Math::CalculateFiltr(pUCHAR data, int x, int numPoints, int numSmoothing)
+uint8 Math::CalculateFiltr(pUCHAR data, int x, int numPoints, int numSmoothing) //-V2506
 {
     if (numSmoothing < 2)
     {
