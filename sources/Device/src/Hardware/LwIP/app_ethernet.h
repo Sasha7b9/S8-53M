@@ -44,7 +44,7 @@
   */
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __APP_ETHERNET_H
-#define __APP_ETHERNET_H
+#define __APP_ETHERNET_H //-V2573
 
 #ifdef __cplusplus
  extern "C" {

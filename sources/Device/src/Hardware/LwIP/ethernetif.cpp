@@ -46,7 +46,7 @@
 
 #ifdef WIN32
 #define LWIP_HAVE_INT64 0
-#define __ALIGN_BEGIN
+#define __ALIGN_BEGIN //-V2573
 #endif
 
 #include <stm32f4xx_hal.h>

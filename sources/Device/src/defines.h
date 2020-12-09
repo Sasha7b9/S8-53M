@@ -1,8 +1,8 @@
 #pragma once
 
 #ifdef WIN32
-#define __attribute__(x)
-#define __packed__
+#define __attribute__(x) //-V2573
+#define __packed__ //-V2573
 #else
 #define nullptr 0 //-V1059
 #endif
@@ -26,7 +26,7 @@ typedef const char       *const pString;
 #define DEBUG
 
 #ifndef __IO
-#define __IO volatile
+#define __IO volatile //-V2573
 #endif
 
 typedef void    (*pFuncVV)();
@@ -38,9 +38,9 @@ typedef char*   (*pFuncCFBC)(float, bool, char*);
 typedef void    (*pFuncpU8)(uint8*);
 typedef void    (*pFuncpCU8)(pUCHAR );
 
-#define _GET_BIT(value, bit) (((value) >> (bit)) & 0x01)
-#define _SET_BIT(value, bit) ((value) |= (1 << (bit)))
-#define _CLEAR_BIT(value, bit) ((value) &= (~(1 << (bit))))
+#define _GET_BIT(value, bit) (((value) >> (bit)) & 0x01) //-V2573
+#define _SET_BIT(value, bit) ((value) |= (1 << (bit))) //-V2573
+#define _CLEAR_BIT(value, bit) ((value) &= (~(1 << (bit)))) //-V2573
 
 // Объединение размером 32 бита
 union BitSet32 //-V2514

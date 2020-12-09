@@ -5,7 +5,7 @@ struct PinMode { enum E
 {
     Input,
     Output,
-    _SPI2
+    _SPI2 //-V2573
 };};
 
 struct PinPort { enum E

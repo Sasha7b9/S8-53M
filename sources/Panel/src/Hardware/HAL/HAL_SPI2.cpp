@@ -7,7 +7,7 @@ void HAL_SPI2::Init()
 {
     SPI_HandleTypeDef handleSPI2 =
     {
-        SPI2,
+        SPI2, //-V2571
         {
             SPI_MODE_MASTER,
             SPI_DIRECTION_2LINES,

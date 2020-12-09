@@ -44,7 +44,7 @@
   */
 
 #ifndef __ETHERNETIF_H__
-#define __ETHERNETIF_H__
+#define __ETHERNETIF_H__ //-V2573
 
 
 #include "lwip/err.h"

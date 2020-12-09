@@ -45,10 +45,10 @@
   ******************************************************************************
   */
 #ifndef __LWIPOPTS_H__
-#define __LWIPOPTS_H__
+#define __LWIPOPTS_H__ //-V2573
 
 #ifdef WIN32
-#define __attribute__(x)
+#define __attribute__(x) //-V2573
 #ifndef LWIP_HAVE_INT64
 #define LWIP_HAVE_INT64 0
 #endif

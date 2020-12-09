@@ -2,7 +2,7 @@
 
 
 #ifdef WIN32
-#define __MODULE__ ""
+#define __MODULE__ "" //-V2573
 #endif
 
 

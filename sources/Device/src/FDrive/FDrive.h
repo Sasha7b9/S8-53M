@@ -8,7 +8,7 @@
 #include <ff.h>
 
 #ifdef _MS_VS
-#define _WIN32
+#define _WIN32 //-V2573
 #endif
 
 #define SIZE_FLASH_TEMP_BUFFER 512
