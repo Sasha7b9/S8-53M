@@ -3,3 +3,6 @@
 #include <stm32f4xx_hal.h>
 
 
+void HAL_LTDC::Init(uint frontBuffer, uint backBuffer)
+{
+}
