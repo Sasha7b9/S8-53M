@@ -57,10 +57,10 @@ void PageTime::OnChanged_PeakDet(bool active)
             ENUM_POINTS = set.time.oldNumPoints;
             ChangeC_Memory_NumPoints(true);
         }
-        else if (PEAKDET_IS_ENABLE)
+        else if (PEAKDET_IS_ENABLE) //-V2516
         {
             int centerX = SHIFT_IN_MEMORY + Grid::Width() / 2;
-            LIMITATION(SHIFT_IN_MEMORY, static_cast<int16>(centerX / 2 - Grid::Width() / 2), 0, static_cast<int16>(sMemory_GetNumPoints(false) - Grid::Width()));
+            LIMITATION(SHIFT_IN_MEMORY, static_cast<int16>(centerX / 2 - Grid::Width() / 2), 0, static_cast<int16>(sMemory_GetNumPoints(false) - Grid::Width())); //-V2516
             ChangeC_Memory_NumPoints(true);
         }
     }

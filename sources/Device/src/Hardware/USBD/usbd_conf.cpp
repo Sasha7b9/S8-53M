@@ -37,9 +37,9 @@ void HAL_PCD_MspDeInit(PCD_HandleTypeDef *)
 void HAL_PCD_SetupStageCallback(PCD_HandleTypeDef *hpcd)
 {
 
-    USBD_LL_SetupStage((USBD_HandleTypeDef *)hpcd->pData, (uint8_t *)hpcd->Setup);
+    USBD_LL_SetupStage((USBD_HandleTypeDef *)hpcd->pData, (uint8_t *)hpcd->Setup); //-V2533
 
-    USBD_HandleTypeDef *pdev = (USBD_HandleTypeDef*)(hpcd->pData);  //
+    USBD_HandleTypeDef *pdev = (USBD_HandleTypeDef*)(hpcd->pData);  // //-V2533
     USBD_SetupReqTypedef request = pdev->request;                   //
                                                                     //
     static uint16 prevLength = 7;                                   //
@@ -68,7 +68,7 @@ void HAL_PCD_SetupStageCallback(PCD_HandleTypeDef *hpcd)
   */
 void HAL_PCD_DataOutStageCallback(PCD_HandleTypeDef *hpcd, uint8_t epnum)
 {
-    USBD_LL_DataOutStage((USBD_HandleTypeDef *)hpcd->pData, epnum, hpcd->OUT_ep[epnum].xfer_buff);
+    USBD_LL_DataOutStage((USBD_HandleTypeDef *)hpcd->pData, epnum, hpcd->OUT_ep[epnum].xfer_buff); //-V2533
 }
 
 

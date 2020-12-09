@@ -51,7 +51,7 @@ pString Key::Name() const
 
 Key::E &operator++(Key::E &right)
 {
-    right = (Key::E)((int)right + 1);
+    right = (Key::E)((int)right + 1); //-V2533
     return right;
 }
 

@@ -19,7 +19,7 @@ void Color::ResetFlash()
 
 static void SetColor(const ColorType *colorType)
 {
-    set.display.colors[colorType->color] = MAKE_COLOR((int)colorType->red, (int)colorType->green, (int)colorType->blue);
+    set.display.colors[colorType->color] = MAKE_COLOR((int)colorType->red, (int)colorType->green, (int)colorType->blue); //-V2533
 }
 
 
@@ -127,7 +127,7 @@ static void ColorType_SetBrightness(ColorType *colorType)
 
 void Color_SetBrightness(ColorType *colorType, float brightness)
 {
-    int delta = (int)((brightness + 0.0005F) * 100.0F) - (int)(colorType->brightness * 100.0F);
+    int delta = (int)((brightness + 0.0005F) * 100.0F) - (int)(colorType->brightness * 100.0F); //-V2533
 
     if (delta > 0)
     {
@@ -207,7 +207,7 @@ void Color_ComponentChange(ColorType *colorType, int delta)
     if (index >= 1 && index <= 3)
     {
         float *pointers[4] = { 0, &colorType->blue, &colorType->green, &colorType->red };
-        AddLimitationFloat(pointers[index], (float)Math::Sign(delta), 0.0F, maxs[index]);
+        AddLimitationFloat(pointers[index], (float)Math::Sign(delta), 0.0F, maxs[index]); //-V2533
     }
 
     SetColor(colorType);
@@ -244,7 +244,7 @@ const char* NameColorFromValue(uint16 colorValue) //-V2506
 {
     for (int i = 0; i < Color::Count; i++)
     {
-        if (set.display.colors[(Color::E)i] == colorValue)
+        if (set.display.colors[(Color::E)i] == colorValue) //-V2533
         {
             return colorNames[i];
         }

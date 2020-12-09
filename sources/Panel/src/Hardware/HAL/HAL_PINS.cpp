@@ -148,7 +148,7 @@ void Pin::Init(PinMode::E mode)
     {
         isGPIO.Mode = GPIO_MODE_OUTPUT_PP;
     }
-    else if (mode == PinMode::_SPI2)
+    else if (mode == PinMode::_SPI2) //-V2516
     {
         isGPIO.Mode = GPIO_MODE_AF_PP;
         isGPIO.Alternate = GPIO_AF0_SPI2;

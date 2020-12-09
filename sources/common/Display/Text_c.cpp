@@ -107,7 +107,7 @@ int Text::Draw(int x, int y, Color::E color)
 
     while (*pointer != '\0')
     {
-        x = DrawChar(x, y, (uint8)(*pointer)) + 1;
+        x = DrawChar(x, y, (uint8)(*pointer)) + 1; //-V2533
         pointer++;
     }
 
@@ -117,8 +117,8 @@ int Text::Draw(int x, int y, Color::E color)
 
 int Text::DrawChar(int eX, int eY, uint8 symbol)
 {
-    int8 width = (int8)Font::font->symbol[symbol].width;
-    int8 height = (int8)Font::font->height;
+    int8 width = (int8)Font::font->symbol[symbol].width; //-V2533
+    int8 height = (int8)Font::font->height; //-V2533
 
     for (int b = 0; b < height; b++)
     {

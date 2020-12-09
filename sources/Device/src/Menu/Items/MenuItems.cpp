@@ -645,7 +645,7 @@ int Item::HeightOpened() const //-V2506
         LIMITATION(numItems, numItems, 0, Menu::ITEMS_ON_DISPLAY); //-V2516
         return Item::TITLE_HEIGHT + Item::HEIGHT * numItems;
     }
-    else if (IsChoice() || IsChoiceReg())
+    else if (IsChoice() || IsChoiceReg()) //-V2516
     { 
         return Item::OPENED_HEIGHT_TITLE + ((Choice *)this)->NumSubItems() * Item::OPENED_HEIGHT - 1;
     }

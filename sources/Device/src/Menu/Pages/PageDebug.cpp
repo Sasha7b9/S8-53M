@@ -281,7 +281,7 @@ void PageDebug::LoadStretchADC(Channel::E chan)
     {
         FPGA::WriteToHardware(chan == Channel::A ? WR_CAL_A : WR_CAL_B, (uint8)DEBUG_STRETCH_ADC(chan), true);
     }
-    else if (DEBUG_STRETCH_ADC_TYPE_IS_SETTINGS)
+    else if (DEBUG_STRETCH_ADC_TYPE_IS_SETTINGS) //-V2516
     {
         FPGA::LoadKoeffCalibration(chan);
     }

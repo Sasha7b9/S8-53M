@@ -43,7 +43,7 @@ void Display::Init(void)
         float red = static_cast<float>(i) / 14.0F * 31.0F + 0.5F;
         float green = static_cast<float>(i) / 14.0F * 63.0F + 0.5F;
         float blue = static_cast<float>(i) / 14.0F * 31.0F + 0.5F;
-        set.display.colors[i + 2] = MAKE_COLOR((int)red, (int)green, (int)blue);
+        set.display.colors[i + 2] = MAKE_COLOR((int)red, (int)green, (int)blue); //-V2533
     }
 
     Color::ResetFlash();
@@ -175,7 +175,7 @@ static void DrawBigMNIPI(void)
 
     int numColor = 0;
     LIMITATION(numColor, static_cast<int>(static_cast<float>(time) / (float)TIME_WAIT * 13.0F), 0, 13); //-V2516
-    Color::SetCurrent((Color::E)(numColor + 2));
+    Color::SetCurrent((Color::E)(numColor + 2)); //-V2533
 
     float amplitude = 3.0F - (static_cast<float>(time) / (TIME_WAIT / 2.0F)) * 3;
     LIMIT_BELOW(amplitude, 0.0F);

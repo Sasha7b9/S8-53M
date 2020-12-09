@@ -38,7 +38,7 @@ void Painter::CalculateCurrentColor()
 
 void CalculateColor(uint8 *color)
 {
-    currentColor = (Color::E)*color;
+    currentColor = (Color::E)*color; //-V2533
     if (*color == Color::FLASH_10)
     {
         *color = static_cast<uint8>(inverseColors ? Color::BACK : Color::FILL);

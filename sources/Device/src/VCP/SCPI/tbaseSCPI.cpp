@@ -62,7 +62,7 @@ void SCPI::TBASE::RANGE(pUCHAR buffer)
     };
     ENTER_ANALYSIS
         if (TBase::Count > value) { FPGA::SetTBase((TBase::E)value); }
-        else if (255 == value) //-V547
+        else if (255 == value) //-V547 //-V2516
         {
             SCPI_SEND(":TBASE:SET_RANGE %s", Tables::GetTBaseStringEN(SET_TBASE));
         }
@@ -109,7 +109,7 @@ void SCPI::TBASE::SAMPLING(pUCHAR buffer)
     };
     ENTER_ANALYSIS
         if (value < 2) { SAMPLE_TYPE = (SampleType::E)value; }
-        else if (2 == value)
+        else if (2 == value) //-V2516
         {
             SCPI_SEND(":TBASE:SAMPLING %s", map[SAMPLE_TYPE].key);
         }
@@ -129,7 +129,7 @@ void SCPI::TBASE::PEACKDET(pUCHAR buffer)
     };
     ENTER_ANALYSIS
         if (value < 2) { PEAKDET = (value == 0) ? PeackDetMode::Disable : PeackDetMode::Enable; PageTime::OnChanged_PeakDet(true); } // WARN SCPI для пикового детектора переделать
-        else if (2 == value)
+        else if (2 == value) //-V2516
         {
             SCPI_SEND(":TBASE:PEACKDET %s", PEAKDET ? "ON" : "OFF");
         }
@@ -150,7 +150,7 @@ void SCPI::TBASE::TPOS(pUCHAR buffer)
     };
     ENTER_ANALYSIS
         if (value < 3)      { SET_TPOS = (TPos::E)value; PageTime::OnChanged_TPos(true); }
-        else if (4 == value)
+        else if (4 == value) //-V2516
         {
             SCPI_SEND(":TBASE:TPOS %s", map[SET_TPOS].key);
         }
@@ -170,7 +170,7 @@ void SCPI::TBASE::SELFRECORDER(pUCHAR buffer)
     };
     ENTER_ANALYSIS
         if (value < 2) { SET_SELFRECORDER = (value == 0); }
-        else if (2 == value)
+        else if (2 == value) //-V2516
         {
             SCPI_SEND(":TBASE:SELFRECORDER %s", SET_SELFRECORDER ? "ON" : "OFF");
         }
@@ -190,7 +190,7 @@ void SCPI::TBASE::FUNCTIMEDIV(pUCHAR buffer)
     };
     ENTER_ANALYSIS
         if (value < 2) { TIME_DIV_XPOS = (FunctionTime::E)value; }
-        else if (2 == value)
+        else if (2 == value) //-V2516
         {
             SCPI_SEND(":TBASE:FUNCTIMEDIV %s", map[TIME_DIV_XPOS].key);
         }

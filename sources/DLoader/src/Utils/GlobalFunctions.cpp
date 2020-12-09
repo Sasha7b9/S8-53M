@@ -74,11 +74,11 @@ char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
 
     char format[] = "%4.2f\0\0";
 
-    format[1] = (char)numDigits + 0x30;
+    format[1] = (char)numDigits + 0x30; //-V2533
 
     int numDigitsInInt = NumDigitsInIntPart(value);
 
-    format[3] = (char)((numDigits - numDigitsInInt) + 0x30);
+    format[3] = (char)((numDigits - numDigitsInInt) + 0x30); //-V2533
     if (numDigits == numDigitsInInt)
     {
         format[5] = '.';
@@ -86,12 +86,12 @@ char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
 
     std::sprintf(pBuffer, format, std::fabsf(value));
 
-    float val = (float)std::atof(pBuffer); //-V2508
+    float val = (float)std::atof(pBuffer); //-V2508 //-V2533
 
     if (NumDigitsInIntPart(val) != numDigitsInInt)
     {
         numDigitsInInt = NumDigitsInIntPart(val);
-        format[3] = (char)((numDigits - numDigitsInInt) + 0x30);
+        format[3] = (char)((numDigits - numDigitsInInt) + 0x30); //-V2533
         if (numDigits == numDigitsInInt)
         {
             format[5] = '.';
@@ -100,7 +100,7 @@ char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
     }
 
     bool signExist = alwaysSign || value < 0;
-    while ((uint)std::strlen(bufferOut) < (uint)numDigits + (signExist ? 2 : 1)) //-V2513
+    while ((uint)std::strlen(bufferOut) < (uint)numDigits + (signExist ? 2 : 1)) //-V2513 //-V2533
     {
         std::strcat(bufferOut, "0"); //-V2513
     }
@@ -405,7 +405,7 @@ char* IntToStrCat(char *_buffer, int _value)
 
     while (_value > 0)
     {
-        buffer[pointer] = (char)(_value % 10);
+        buffer[pointer] = (char)(_value % 10); //-V2533
         _value /= 10;
         pointer--;
     }

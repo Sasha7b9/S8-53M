@@ -50,7 +50,7 @@ void ChangeC_Memory_NumPoints(bool)
         {
             SHIFT_IN_MEMORY = static_cast<int16>(sMemory_GetNumPoints(false) / 2 - Grid::Width() / 2);
         }
-        else if(SET_TPOS_IS_RIGHT)
+        else if(SET_TPOS_IS_RIGHT) //-V2516
         {
             SHIFT_IN_MEMORY = static_cast<int16>(sMemory_GetNumPoints(false) - Grid::Width() - 2);
         }
@@ -171,7 +171,7 @@ static void PressSB_SetName_Exit()
     {
         PageMemory::PageLatest::self->OpenAndSetItCurrent();
     }
-    else if (PageMemory::exitFromModeSetNameTo == RETURN_TO_INT_MEM)
+    else if (PageMemory::exitFromModeSetNameTo == RETURN_TO_INT_MEM) //-V2516
     {
         PageMemory::PageInternal::self->OpenAndSetItCurrent();
     }
@@ -566,7 +566,7 @@ static void FuncOnRegSetMemInt(int delta)
     {
         CircleDecreaseInt8(&PageMemory::PageInternal::currentSignal, 0, MAX_NUM_SAVED_WAVES - 1);
     }
-    else if (delta > 0)
+    else if (delta > 0) //-V2516
     {
         CircleIncreaseInt8(&PageMemory::PageInternal::currentSignal, 0, MAX_NUM_SAVED_WAVES - 1);
     }
@@ -663,7 +663,7 @@ static void DrawSB_MemInt_ModeShow(int x, int y)
     {
         DrawSB_MemInt_ModeShow_Saved(x, y);
     }
-    else if (mode == ModeShowIntMem::Both)
+    else if (mode == ModeShowIntMem::Both) //-V2516
     {
         DrawSB_MemInt_ModeShow_Both(x, y);
     }

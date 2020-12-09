@@ -388,7 +388,7 @@ int Processing::CalculatePeriodAccurately(Channel::E chan) //-V2506
                     maxDelta = delta + 1;
                     break;
                 }
-                else if(nextDelta > maxDelta)
+                else if(nextDelta > maxDelta) //-V2516
                 {
                     maxDelta = nextDelta;
                 }
@@ -642,7 +642,7 @@ float Processing::CalculateMinSteadyRel(Channel::E chan)
                                 ++numDeleted;
                             }
                         }
-                        else if (d - _min > value)
+                        else if (d - _min > value) //-V2516
                         {
                             sum -= d;
                             --numSums;
@@ -716,7 +716,7 @@ float Processing::CalculateMaxSteadyRel(Channel::E chan)
                                 numDeleted++;
                             }
                         }
-                        else if (_max - d > value)
+                        else if (_max - d > value) //-V2516
                         {
                             sum -= d;
                             numSums--;
@@ -926,7 +926,7 @@ float Processing::GetCursU(Channel::E chan, float posCurT)
     SettingsDisplay::PointsOnDisplay(&first, &last);
 
     float retValue;
-    LIMITATION(retValue, static_cast<float>(200.0F - (dataIn[chan])[first + (int)posCurT] + MIN_VALUE), 0.0F, 200.0F);
+    LIMITATION(retValue, static_cast<float>(200.0F - (dataIn[chan])[first + (int)posCurT] + MIN_VALUE), 0.0F, 200.0F); //-V2516
     return retValue;
 }
 

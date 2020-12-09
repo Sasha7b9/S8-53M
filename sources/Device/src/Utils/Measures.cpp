@@ -129,7 +129,7 @@ int Measure::GetDeltaGridLeft() //-V2506
         {
             return Measure::GetDX();
         }
-        else if(MEAS_NUM_IS_6_2)
+        else if(MEAS_NUM_IS_6_2) //-V2516
         {
             return Measure::GetDX() * 2;
         }
@@ -149,7 +149,7 @@ int Measure::GetDeltaGridBottom() //-V2506
         {
             return Measure::GetDY() * 2;
         }
-        else if(MEAS_NUM_IS_3_5)
+        else if(MEAS_NUM_IS_3_5) //-V2516
         {
             return Measure::GetDY() * 3;
         }
@@ -174,7 +174,7 @@ void Measure::RotateRegSet(int angle) //-V2506
         {
             posOnPageChoice = Measure::Count - 1;
         }
-        else if (posOnPageChoice == Measure::Count)
+        else if (posOnPageChoice == Measure::Count) //-V2516
         {
             posOnPageChoice = 0;
         }
@@ -196,7 +196,7 @@ void Measure::RotateRegSet(int angle) //-V2506
                 row = Measure::NumRows() - 1;
             }
         }
-        else if (col == Measure::NumCols())
+        else if (col == Measure::NumCols()) //-V2516
         {
             col = 0;
             row++;
