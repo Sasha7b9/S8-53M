@@ -73,7 +73,7 @@ private:
     
     static void CalculateAroundAverage(uint8 *data0, uint8 *data1, const DataSettings *dss);
     // Количество отведённой для измерений памяти.
-    static const int SIZE_POOL = (30 * 1024);
+    static const int SIZE_POOL = (10 * 1024);
     // Здесь хранятся данные.
     static uint8 pool[SIZE_POOL];
     // Адрес начала памяти для хранения
