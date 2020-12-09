@@ -169,14 +169,14 @@ float Choice::Step() const //-V2506
     static const int numLines = 12;
     if (tsChoice.choice == this)
     {
-        float delta = speed * (gTimerMS - tsChoice.timeStartMS);
+        float delta = speed * (gTimerMS - tsChoice.timeStartMS); //-V2564
         if (delta == 0.0F) //-V2550 //-V550
         {
             delta = 0.001F; // Таймер в несколько первых кадров может показать, что прошло 0 мс, но мы возвращаем большее число, потому что ноль будет говорить о том, что движения нет
         }
         if (tsChoice.inMoveIncrease == 1)
         {
-            if (delta <= numLines)
+            if (delta <= numLines) //-V2564
             {
                 return delta;
             }
@@ -186,7 +186,7 @@ float Choice::Step() const //-V2506
         {
             delta = -delta;
 
-            if (delta >= -numLines)
+            if (delta >= -numLines) //-V2564
             {
                 return delta;
             }

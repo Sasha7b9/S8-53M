@@ -36,51 +36,51 @@ const int voltsInPixelInt[] =   // Коэффициент 20000
 
 const float MathFPGA::absStepRShift[] =
 {
-    2e-3F / 20 / STEP_RSHIFT,
-    5e-3F / 20 / STEP_RSHIFT,
-    10e-3F / 20 / STEP_RSHIFT,
-    20e-3F / 20 / STEP_RSHIFT,
-    50e-3F / 20 / STEP_RSHIFT,
-    100e-3F / 20 / STEP_RSHIFT,
-    200e-3F / 20 / STEP_RSHIFT,
-    500e-3F / 20 / STEP_RSHIFT,
-    1.0F / 20 / STEP_RSHIFT,
-    2.0F / 20 / STEP_RSHIFT,
-    5.0F / 20 / STEP_RSHIFT,
-    10.0F / 20 / STEP_RSHIFT,
-    20.0F / 20 / STEP_RSHIFT
+    2e-3F / 20 / STEP_RSHIFT, //-V2564
+    5e-3F / 20 / STEP_RSHIFT, //-V2564
+    10e-3F / 20 / STEP_RSHIFT, //-V2564
+    20e-3F / 20 / STEP_RSHIFT, //-V2564
+    50e-3F / 20 / STEP_RSHIFT, //-V2564
+    100e-3F / 20 / STEP_RSHIFT, //-V2564
+    200e-3F / 20 / STEP_RSHIFT, //-V2564
+    500e-3F / 20 / STEP_RSHIFT, //-V2564
+    1.0F / 20 / STEP_RSHIFT, //-V2564
+    2.0F / 20 / STEP_RSHIFT, //-V2564
+    5.0F / 20 / STEP_RSHIFT, //-V2564
+    10.0F / 20 / STEP_RSHIFT, //-V2564
+    20.0F / 20 / STEP_RSHIFT //-V2564
 };
 
 
 const float MathFPGA::voltsInPixel[] =
 {
-    2e-3F / 20,      // 2mV
-    5e-3F / 20,      // 5mV
-    10e-3F / 20,     // 10mV
-    20e-3F / 20,     // 20mV
-    50e-3F / 20,     // 50mV
-    100e-3F / 20,    // 100mV
-    200e-3F / 20,    // 200mV
-    500e-3F / 20,    // 500mV
-    1.0F / 20,       // 1V
-    2.0F / 20,       // 2V
-    5.0F / 20,       // 5V
-    10.0F / 20,      // 10V
-    20.0F / 20       // 20V
+    2e-3F / 20,      // 2mV //-V2564
+    5e-3F / 20,      // 5mV //-V2564
+    10e-3F / 20,     // 10mV //-V2564
+    20e-3F / 20,     // 20mV //-V2564
+    50e-3F / 20,     // 50mV //-V2564
+    100e-3F / 20,    // 100mV //-V2564
+    200e-3F / 20,    // 200mV //-V2564
+    500e-3F / 20,    // 500mV //-V2564
+    1.0F / 20,       // 1V //-V2564
+    2.0F / 20,       // 2V //-V2564
+    5.0F / 20,       // 5V //-V2564
+    10.0F / 20,      // 10V //-V2564
+    20.0F / 20       // 20V //-V2564
 };
 
 const float MathFPGA::absStepTShift[] =
 {
-    2e-9F / 20, 5e-9F / 20, 10e-9F / 20, 20e-9F / 20, 50e-9F / 20, 100e-9F / 20, 200e-9F / 20, 500e-9F / 20,
-    1e-6F / 20, 2e-6F / 20, 5e-6F / 20, 10e-6F / 20, 20e-6F / 20,   50e-6F / 20, 100e-6F / 20, 200e-6F / 20, 500e-6F / 20,
-    1e-3F / 20, 2e-3F / 20, 5e-3F / 20, 10e-3F / 20, 20e-3F / 20,   50e-3F / 20, 100e-3F / 20, 200e-3F / 20, 500e-3F / 20,
-    1.0F / 20, 2.0F / 20, 5.0F / 20, 10.0F / 20
+    2e-9F / 20, 5e-9F / 20, 10e-9F / 20, 20e-9F / 20, 50e-9F / 20, 100e-9F / 20, 200e-9F / 20, 500e-9F / 20, //-V2564
+    1e-6F / 20, 2e-6F / 20, 5e-6F / 20, 10e-6F / 20, 20e-6F / 20,   50e-6F / 20, 100e-6F / 20, 200e-6F / 20, 500e-6F / 20, //-V2564
+    1e-3F / 20, 2e-3F / 20, 5e-3F / 20, 10e-3F / 20, 20e-3F / 20,   50e-3F / 20, 100e-3F / 20, 200e-3F / 20, 500e-3F / 20, //-V2564
+    1.0F / 20, 2.0F / 20, 5.0F / 20, 10.0F / 20 //-V2564
 };
 
 
 int MathFPGA::RShift2Rel(float rShiftAbs, Range::E range)
 {
-    int retValue = static_cast<int>(RShiftZero + rShiftAbs / absStepRShift[range]);
+    int retValue = static_cast<int>(RShiftZero + rShiftAbs / absStepRShift[range]); //-V2564
     if (retValue < RShiftMin)
     {
         retValue = RShiftMin;
@@ -104,7 +104,7 @@ void MathFPGA::PointsRelToVoltage(pUCHAR points, int numPoints, Range::E range, 
     int voltInPixel = voltsInPixelInt[range];
     float maxVoltsOnScreen = MAX_VOLTAGE_ON_SCREEN(range);
     float rShiftAbs = RSHIFT_2_ABS(rShift, range); //-V2533
-    int diff = static_cast<int>((MIN_VALUE * voltInPixel) + (maxVoltsOnScreen + rShiftAbs) * 20e3F);
+    int diff = static_cast<int>((MIN_VALUE * voltInPixel) + (maxVoltsOnScreen + rShiftAbs) * 20e3F); //-V2564
     float koeff = 1.0F / 20e3F;
     for (int i = 0; i < numPoints; i++)
     {
@@ -121,7 +121,7 @@ void MathFPGA::PointsVoltageToRel(const float* voltage, int numPoints, Range::E 
 
     float add = maxVoltOnScreen + rShiftAbs;
 
-    float delta = add * voltInPixel + MIN_VALUE;
+    float delta = add * voltInPixel + MIN_VALUE; //-V2564
 
     for (int i = 0; i < numPoints; i++)
     {
@@ -143,7 +143,7 @@ void MathFPGA::PointsVoltageToRel(const float* voltage, int numPoints, Range::E 
 
 uint8 MathFPGA::VoltageToPoint(float voltage, Range::E range, int16 rShift)
 {
-    int relValue = static_cast<int>((voltage + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) / voltsInPixel[range] + MIN_VALUE);
+    int relValue = static_cast<int>((voltage + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) / voltsInPixel[range] + MIN_VALUE); //-V2564
     LIMITATION(relValue, relValue, 0, 255); //-V2516
     return (uint8)relValue; //-V2533
 }
@@ -202,7 +202,7 @@ static void MultiplyToWindow(float* data, int numPoints)
     {
         for (int i = 0; i < numPoints; i++)
         {
-            data[i] *= 0.53836F - 0.46164F * std::cos(2 * 3.1415926F * i / (numPoints - 1)); //-V2563
+            data[i] *= 0.53836F - 0.46164F * std::cos(2 * 3.1415926F * i / (numPoints - 1)); //-V2563 //-V2564
         }
     }
     else if (WINDOW_FFT_IS_BLACKMAN)
@@ -213,14 +213,14 @@ static void MultiplyToWindow(float* data, int numPoints)
         float a2 = alpha / 2.0F;
         for (int i = 0; i < numPoints; i++)
         {
-            data[i] *= a0 - a1 * std::cos(2 * 3.1415926F * i / (numPoints - 1)) + a2 * std::cos(4 * 3.1415926F * i / (numPoints - 1)); //-V2563
+            data[i] *= a0 - a1 * std::cos(2 * 3.1415926F * i / (numPoints - 1)) + a2 * std::cos(4 * 3.1415926F * i / (numPoints - 1)); //-V2563 //-V2564
         }
     }
     else if (WINDOW_FFT_IS_HANN) //-V2516
     {
         for (int i = 0; i < numPoints; i++)
         {
-            data[i] *= 0.5F * (1.0F - std::cos(2.0F * 3.1415926F * i / (numPoints - 1.0F))); //-V2563
+            data[i] *= 0.5F * (1.0F - std::cos(2.0F * 3.1415926F * i / (numPoints - 1.0F))); //-V2563 //-V2564
         }
     }
 #endif
@@ -249,14 +249,14 @@ void MathFPGA::CalculateFFT(float* dataR, int numPoints, float* result, float* f
 {
     float scale = 1.0F / absStepTShift[SET_TBASE] / 1024.0F;
 
-    float K = 1024.0F / numPoints;
+    float K = 1024.0F / numPoints; //-V2564
 
-    *freq0 = scale * FFT_POS_CURSOR_0 * K;
-    *freq1 = scale * FFT_POS_CURSOR_1 * K;
+    *freq0 = scale * FFT_POS_CURSOR_0 * K; //-V2564
+    *freq1 = scale * FFT_POS_CURSOR_1 * K; //-V2564
     if (PEAKDET)
     {
-        *freq0 *= 2;
-        *freq1 *= 2;
+        *freq0 *= 2; //-V2564
+        *freq1 *= 2; //-V2564
     }
 
     for (int i = 0; i < numPoints; i++)
@@ -367,7 +367,7 @@ void MathFPGA::CalculateFFT(float* dataR, int numPoints, float* result, float* f
         for (int i = 0; i < 256; i++)
         {
 #ifdef DEBUG
-            result[i] = 20 * std::log10f(result[i]); //-V2563
+            result[i] = 20 * std::log10f(result[i]); //-V2563 //-V2564
 #else
             result[i] = Log10[(int)(result[i] * 10000)];
 #endif
@@ -391,8 +391,8 @@ void MathFPGA::CalculateFFT(float* dataR, int numPoints, float* result, float* f
         *density0 = result[FFT_POS_CURSOR_0]; //-V2563
         *density1 = result[FFT_POS_CURSOR_1]; //-V2563
     }
-    *y0 = static_cast<int>(Grid::MathBottom() - result[FFT_POS_CURSOR_0] * Grid::MathHeight()); //-V2563
-    *y1 = static_cast<int>(Grid::MathBottom() - result[FFT_POS_CURSOR_1] * Grid::MathHeight()); //-V2563
+    *y0 = static_cast<int>(Grid::MathBottom() - result[FFT_POS_CURSOR_0] * Grid::MathHeight()); //-V2563 //-V2564
+    *y1 = static_cast<int>(Grid::MathBottom() - result[FFT_POS_CURSOR_1] * Grid::MathHeight()); //-V2563 //-V2564
 }
 
 

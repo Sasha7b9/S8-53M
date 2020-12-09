@@ -1445,15 +1445,15 @@ void Display::DrawGridType1(int left, int top, int right, int bottom, float cent
     }
     for (int i = 5; i < 8; i++)
     {
-        mas[i] = static_cast<uint8>(centerY - 6 + i);
+        mas[i] = static_cast<uint8>(centerY - 6 + i); //-V2564
     }
     for (int i = 8; i < 12; i++)
     {
-        mas[i] = static_cast<uint8>(centerY + deltaY * (i - 7));
+        mas[i] = static_cast<uint8>(centerY + deltaY * (i - 7)); //-V2564
     }
     mas[12] = (uint8)(bottom - 1); //-V2533
 
-    MultiHPointLine(13, mas, static_cast<int>(stepX), CalculateCountH()).Draw(static_cast<int>(left + stepX), Color::GRID);
+    MultiHPointLine(13, mas, static_cast<int>(stepX), CalculateCountH()).Draw(static_cast<int>(left + stepX), Color::GRID); //-V2564
 }
 
 
@@ -1508,10 +1508,10 @@ void Display::DrawGrid(int left, int top, int width, int height)
         }
     }
 
-    float deltaX = Grid::DeltaX() *(float)width / width; //-V2533
-    float deltaY = Grid::DeltaY() * (float)height / height; //-V2533
-    float stepX = deltaX / 5;
-    float stepY = deltaY / 5;
+    float deltaX = Grid::DeltaX() *(float)width / width; //-V2533 //-V2564
+    float deltaY = Grid::DeltaY() * (float)height / height; //-V2533 //-V2564
+    float stepX = deltaX / 5; //-V2564
+    float stepY = deltaY / 5; //-V2564
     
     int centerX = left + width / 2;
     int centerY = top + height / 2;
@@ -1579,9 +1579,9 @@ void Display::DrawCursorTrigLevel() //-V2506
         return;
     }
     int trigLev = TRIG_LEVEL(chan) + (SET_RSHIFT(chan) - RShiftZero);
-    float scale = 1.0F / ((TrigLevMax - TrigLevMin) / 2.0F / Grid::ChannelHeight());
-    int y0 = static_cast<int>((Grid::TOP + Grid::ChannelBottom()) / 2 + scale * (TrigLevZero - TrigLevMin));
-    int y = static_cast<int>(y0 - scale * (trigLev - TrigLevMin));
+    float scale = 1.0F / ((TrigLevMax - TrigLevMin) / 2.0F / Grid::ChannelHeight()); //-V2564
+    int y0 = static_cast<int>((Grid::TOP + Grid::ChannelBottom()) / 2 + scale * (TrigLevZero - TrigLevMin)); //-V2564
+    int y = static_cast<int>(y0 - scale * (trigLev - TrigLevMin)); //-V2564
 
     y = (y - Grid::ChannelCenterHeight()) + Grid::ChannelCenterHeight();
 
@@ -1619,9 +1619,9 @@ void Display::DrawCursorTrigLevel() //-V2506
         int height = Grid::ChannelHeight() - 2 * DELTA;
         int shiftFullMin = RShiftMin + TrigLevMin;
         int shiftFullMax = RShiftMax + TrigLevMax;
-        scale = (float)height / (shiftFullMax - shiftFullMin); //-V2533
+        scale = (float)height / (shiftFullMax - shiftFullMin); //-V2533 //-V2564
         int shiftFull = TRIG_LEVEL_SOURCE + (TRIG_SOURCE_IS_EXT ? 0 : SET_RSHIFT(chan));
-        int yFull = static_cast<int>(Grid::TOP + DELTA + height - scale * (shiftFull - RShiftMin - TrigLevMin) - 4);
+        int yFull = static_cast<int>(Grid::TOP + DELTA + height - scale * (shiftFull - RShiftMin - TrigLevMin) - 4); //-V2564
         Region(4, 6).Fill(left + 2, yFull + 1, Color::Trig());
         Font::Set(TypeFont::S5);
         Char(simbols[TRIG_SOURCE]).Draw(left + 3, yFull - 5, Color::BACK);
@@ -1637,10 +1637,10 @@ void Display::DrawCursorRShift(Channel::E chan) //-V2506
     if (chan == Channel::Math)
     {
         int rShift = SET_RSHIFT_MATH;
-        float scale = (float)Grid::MathHeight() / 960; //-V2533
-        float y = (Grid::MathTop() + Grid::MathBottom()) / 2.0F - scale * (rShift - RShiftZero);
-        Char(Symbol::S8::RSHIFT_NORMAL).Draw(static_cast<int>(x - 9), static_cast<int>(y - 4), Color::FILL);
-        Char('m').Draw(static_cast<int>(x - 8), static_cast<int>(y - 5), Color::BACK);
+        float scale = (float)Grid::MathHeight() / 960; //-V2533 //-V2564
+        float y = (Grid::MathTop() + Grid::MathBottom()) / 2.0F - scale * (rShift - RShiftZero); //-V2564
+        Char(Symbol::S8::RSHIFT_NORMAL).Draw(static_cast<int>(x - 9), static_cast<int>(y - 4), Color::FILL); //-V2564
+        Char('m').Draw(static_cast<int>(x - 8), static_cast<int>(y - 5), Color::BACK); //-V2564
         return;
     }
     if(!sChannel_Enabled(chan))
@@ -1650,26 +1650,26 @@ void Display::DrawCursorRShift(Channel::E chan) //-V2506
 
     int rShift = SET_RSHIFT(chan);
  
-    float scale = Grid::ChannelHeight() / (STEP_RSHIFT * 200.0F);
-    float y = Grid::ChannelCenterHeight() - scale * (rShift - RShiftZero);
+    float scale = Grid::ChannelHeight() / (STEP_RSHIFT * 200.0F); //-V2564
+    float y = Grid::ChannelCenterHeight() - scale * (rShift - RShiftZero); //-V2564
 
-    if(y > Grid::ChannelBottom())
+    if(y > Grid::ChannelBottom()) //-V2564
     {
-        Char(Symbol::S8::RSHIFT_LOWER).Draw(static_cast<int>(x - 7), Grid::ChannelBottom() - 11, Color::Channel(chan));
-        Point().Draw(static_cast<int>(x - 5), Grid::ChannelBottom() - 2);
+        Char(Symbol::S8::RSHIFT_LOWER).Draw(static_cast<int>(x - 7), Grid::ChannelBottom() - 11, Color::Channel(chan)); //-V2564
+        Point().Draw(static_cast<int>(x - 5), Grid::ChannelBottom() - 2); //-V2564
         y = static_cast<float>(Grid::ChannelBottom() - 7);
         x++;
     }
-    else if(y < Grid::TOP)
+    else if(y < Grid::TOP) //-V2564
     {
-        Char(Symbol::S8::RSHIFT_ABOVE).Draw(static_cast<int>(x - 7), Grid::TOP + 2, Color::Channel(chan));
-        Point().Draw(static_cast<int>(x - 5), Grid::TOP + 2);
-        y = Grid::TOP + 7;
+        Char(Symbol::S8::RSHIFT_ABOVE).Draw(static_cast<int>(x - 7), Grid::TOP + 2, Color::Channel(chan)); //-V2564
+        Point().Draw(static_cast<int>(x - 5), Grid::TOP + 2); //-V2564
+        y = Grid::TOP + 7; //-V2564
         x++;
     }
     else
     {
-        Char(Symbol::S8::RSHIFT_NORMAL).Draw(static_cast<int>(x - 8), static_cast<int>(y - 4), Color::Channel(chan));
+        Char(Symbol::S8::RSHIFT_NORMAL).Draw(static_cast<int>(x - 8), static_cast<int>(y - 4), Color::Channel(chan)); //-V2564
         if(((chan == Channel::A) ? showLevelRShiftA : showLevelRShiftB) && MODE_WORK_IS_DIRECT) //-V2570
         {
             DashedHLine(7, 3).Draw(static_cast<int>(y), Grid::Left(), Grid::Right(), 0);
@@ -1680,13 +1680,13 @@ void Display::DrawCursorRShift(Channel::E chan) //-V2506
 
     if((!Menu::IsMinimize() || !Menu::IsShown()) && drawRShiftMarkers)
     {
-        float scaleFull = (float)Grid::ChannelHeight() / (RShiftMax - RShiftMin) * (sService_MathEnabled() ? 0.9F : 0.91F); //-V2533
-        float yFull = Grid::ChannelCenterHeight() - scaleFull * (rShift - RShiftZero);
+        float scaleFull = (float)Grid::ChannelHeight() / (RShiftMax - RShiftMin) * (sService_MathEnabled() ? 0.9F : 0.91F); //-V2533 //-V2564
+        float yFull = Grid::ChannelCenterHeight() - scaleFull * (rShift - RShiftZero); //-V2564
 
-        Region(4, 6).Fill(4, static_cast<int>(yFull - 3), Color::Channel(chan));
-        Char(chan == Channel::A ? '1' : '2').Draw(5, static_cast<int>(yFull - 9), Color::BACK);
+        Region(4, 6).Fill(4, static_cast<int>(yFull - 3), Color::Channel(chan)); //-V2564
+        Char(chan == Channel::A ? '1' : '2').Draw(5, static_cast<int>(yFull - 9), Color::BACK); //-V2564
     }
-    Char(chan == Channel::A ? '1' : '2').Draw(static_cast<int>(x - 7), static_cast<int>(y - 9), Color::BACK);
+    Char(chan == Channel::A ? '1' : '2').Draw(static_cast<int>(x - 7), static_cast<int>(y - 9), Color::BACK); //-V2564
     Font::Set(TypeFont::S8);
 }
 
@@ -1706,7 +1706,7 @@ void Display::DrawCursorTShift() //-V2506
     int shiftTPos = sTime_TPosInPoints((PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel, SET_TPOS) - SHIFT_IN_MEMORY; //-V2533
     float scale = static_cast<float>((lastPoint - firstPoint) / Grid::Width());
     int gridLeft = Grid::Left();
-    int x = static_cast<int>(gridLeft + shiftTPos * scale - 3);
+    int x = static_cast<int>(gridLeft + shiftTPos * scale - 3); //-V2564
     if (IntInRange(x + 3, gridLeft, Grid::Right() + 1))
     {
         Char(Symbol::S8::TPOS_2).Draw2SymbolsInPosition(x, Grid::TOP - 1, Symbol::S8::TPOS_3, Color::BACK, Color::FILL);
@@ -1781,10 +1781,10 @@ void Display::DrawCursors()
 
         if (bothCursors)
         {
-            x0 = static_cast<int>(Grid::Left() + CURS_POS_T0(source));
-            x1 = static_cast<int>(Grid::Left() + CURS_POS_T1(source));
-            y0 = static_cast<int>(Grid::TOP + sCursors_GetCursPosU(source, 0));
-            y1 = static_cast<int>(Grid::TOP + sCursors_GetCursPosU(source, 1));
+            x0 = static_cast<int>(Grid::Left() + CURS_POS_T0(source)); //-V2564
+            x1 = static_cast<int>(Grid::Left() + CURS_POS_T1(source)); //-V2564
+            y0 = static_cast<int>(Grid::TOP + sCursors_GetCursPosU(source, 0)); //-V2564
+            y1 = static_cast<int>(Grid::TOP + sCursors_GetCursPosU(source, 1)); //-V2564
 
             Primitives::Rectangle(4, 4).Draw(x0 - 2, y0 - 2);
             Primitives::Rectangle(4, 4).Draw(x1 - 2, y1 - 2);
@@ -2145,12 +2145,12 @@ void Display::DrawTimeForFrame(uint timeTicks) //-V2506
         timeMSstartCalculation = gTimerMS;
         first = false;
     }
-    numMS += timeTicks / 120000.0F;
+    numMS += timeTicks / 120000.0F; //-V2564
     numFrames++;
     
     if((gTimerMS - timeMSstartCalculation) >= 500)
     {
-        std::sprintf(buffer, "%.1fms/%d", numMS / numFrames, numFrames * 2);
+        std::sprintf(buffer, "%.1fms/%d", numMS / numFrames, numFrames * 2); //-V2564
         timeMSstartCalculation = gTimerMS;
         numMS = 0.0F;
         numFrames = 0;

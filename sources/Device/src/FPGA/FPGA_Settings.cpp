@@ -201,7 +201,7 @@ void FPGA::SetTBase(TBase::E tBase) //-V2506
     }
     if (tBase < TBase::Count)
     {
-        float tShiftAbsOld = TSHIFT_2_ABS(TSHIFT, SET_TBASE);
+        float tShiftAbsOld = TSHIFT_2_ABS(TSHIFT, SET_TBASE); //-V2564
         sTime_SetTBase(tBase);
         LoadTBase();
         FPGA::SetTShift(static_cast<int>(TSHIFT_2_REL(tShiftAbsOld, SET_TBASE)));
@@ -421,7 +421,7 @@ void FPGA::LoadRegUPR()
 
 void FPGA::LoadKoeffCalibration(Channel::E chan)
 {
-    FPGA::WriteToHardware(chan == Channel::A ? WR_CAL_A : WR_CAL_B, static_cast<uint8>(STRETCH_ADC(chan) * 0x80), false); //-V2563
+    FPGA::WriteToHardware(chan == Channel::A ? WR_CAL_A : WR_CAL_B, static_cast<uint8>(STRETCH_ADC(chan) * 0x80), false); //-V2563 //-V2564
 }
 
 
@@ -452,7 +452,7 @@ void FPGA::LoadTShift()
 
 const char *FPGA::GetTShiftString(int16 tShiftRel, char buffer[20])
 {
-    float tShiftVal = TSHIFT_2_ABS(tShiftRel, SET_TBASE);
+    float tShiftVal = TSHIFT_2_ABS(tShiftRel, SET_TBASE); //-V2564
     return Time2String(tShiftVal, true, buffer);
 }
 

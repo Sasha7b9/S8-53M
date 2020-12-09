@@ -100,13 +100,13 @@ void Governor::DrawLowPart(int x, int y) const
             int limHeight = Item::HEIGHT_VALUE - 1;
             if(delta > 0.0F)
             {
-                x = Text(Int2String(*own->cell, false, 1, buffer)).DrawWithLimitation(drawX, static_cast<int>(y + 21 - delta), Color::BACK, limX, limY, limWidth, limHeight);
-                Text(Int2String(NextValue(), false, 1, buffer)).DrawWithLimitation(drawX, static_cast<int>(y + 21 + 10 - delta), Color::BACK, limX, limY, limWidth, limHeight);
+                x = Text(Int2String(*own->cell, false, 1, buffer)).DrawWithLimitation(drawX, static_cast<int>(y + 21 - delta), Color::BACK, limX, limY, limWidth, limHeight); //-V2564
+                Text(Int2String(NextValue(), false, 1, buffer)).DrawWithLimitation(drawX, static_cast<int>(y + 21 + 10 - delta), Color::BACK, limX, limY, limWidth, limHeight); //-V2564
             }
             if(delta < 0.0F)
             {
-                x = Text(Int2String(*own->cell, false, 1, buffer)).DrawWithLimitation(drawX, static_cast<int>(y + 21 - delta), Color::BACK, limX, limY, limWidth, limHeight);
-                Text(Int2String(PrevValue(), false, 1, buffer)).DrawWithLimitation(drawX, static_cast<int>(y + 21 - 10 - delta), Color::BACK, limX, limY, limWidth, limHeight);
+                x = Text(Int2String(*own->cell, false, 1, buffer)).DrawWithLimitation(drawX, static_cast<int>(y + 21 - delta), Color::BACK, limX, limY, limWidth, limHeight); //-V2564
+                Text(Int2String(PrevValue(), false, 1, buffer)).DrawWithLimitation(drawX, static_cast<int>(y + 21 - 10 - delta), Color::BACK, limX, limY, limWidth, limHeight); //-V2564
             }
         }
     }
@@ -410,7 +410,7 @@ void GovernorColor::DrawValue(int x, int y, int delta) const
         Color_Init(ct);
     }
 
-    int vals[4] = { static_cast<int>(ct->brightness * 100), blue, green, red };
+    int vals[4] = { static_cast<int>(ct->brightness * 100), blue, green, red }; //-V2564
 
     Region(Item::WIDTH + delta - 2, Item::HEIGHT / 2 - 3).Fill(x, y, Color::BLACK);
     x += 92;
@@ -589,9 +589,9 @@ void Choice::DrawClosed(int x, int y) const
     }
     else
     {
-        Text(NameCurrentSubItem()).DrawWithLimitation(x + 4, static_cast<int>(y + 21 - deltaY), colorText, x, y + 19, Item::WIDTH_VALUE, Item::HEIGHT_VALUE - 1);
-        HLine().Draw(static_cast<int>(y + (deltaY > 0 ? 31 : 19) - deltaY), x + 3, x + Item::WIDTH_VALUE + 1, Color::BLACK);
-        Text(deltaY > 0 ? NameNextSubItem() : NamePrevSubItem()).DrawWithLimitation(x + 4, static_cast<int>(y + (deltaY > 0 ? 33 : 9) - deltaY), colorText, x, y + 19, Item::WIDTH_VALUE, Item::HEIGHT_VALUE - 1);
+        Text(NameCurrentSubItem()).DrawWithLimitation(x + 4, static_cast<int>(y + 21 - deltaY), colorText, x, y + 19, Item::WIDTH_VALUE, Item::HEIGHT_VALUE - 1); //-V2564
+        HLine().Draw(static_cast<int>(y + (deltaY > 0 ? 31 : 19) - deltaY), x + 3, x + Item::WIDTH_VALUE + 1, Color::BLACK); //-V2564
+        Text(deltaY > 0 ? NameNextSubItem() : NamePrevSubItem()).DrawWithLimitation(x + 4, static_cast<int>(y + (deltaY > 0 ? 33 : 9) - deltaY), colorText, x, y + 19, Item::WIDTH_VALUE, Item::HEIGHT_VALUE - 1); //-V2564
     }
     HLine().Draw(y + Item::HEIGHT + 1, x, x + Item::WIDTH, Color::BorderMenu());
 
