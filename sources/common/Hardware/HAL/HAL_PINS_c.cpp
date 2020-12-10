@@ -174,22 +174,19 @@ void HAL_PINS::Init()
     PinLTDC(A, 4).Init();       // VSYNC
     PinLTDC(C, 6).Init();       // HSYNC
     PinLTDC(E, 13).Init();      // DE
-    PinLTDC(E, 14).Init();      // CKL
-
+    PinLTDC(E, 14).Init();      // CLK
     PinLTDC(C, 10).Init();      // R2
     PinLTDC(B, 0).Init();       // R3
     PinLTDC(A, 11).Init();      // R4
     PinLTDC(A, 12).Init();      // R5
     PinLTDC(B, 1).Init();       // R6
     PinLTDC(E, 15).Init();      // R7
-
     PinLTDC(A, 6).Init();       // G2
     PinLTDC(E, 11).Init();      // G3
     PinLTDC(B, 10).Init();      // G4
     PinLTDC(B, 11).Init();      // G5
     PinLTDC(C, 7).Init();       // G6
     PinLTDC(D, 3).Init();       // G7
-
     PinLTDC(D, 6).Init();       // B2
     PinLTDC(D, 10).Init();      // B3
     PinLTDC(E, 12).Init();      // B4
@@ -198,9 +195,7 @@ void HAL_PINS::Init()
     PinLTDC(B, 9).Init();       // B7
 
     Pin(PinMode::_Output, PinPort::_A, PinPin::_5).Set();       // Включаем подсветку дисплея
-
     Pin(PinMode::_Output, PinPort::_C, PinPin::_11).Reset();    // Выбор горизонтальной ориентации дисплея R/L
-
     Pin(PinMode::_Output, PinPort::_C, PinPin::_12).Set();      // Выбор вертикальной ориентации дисплея U/D
 }
 
