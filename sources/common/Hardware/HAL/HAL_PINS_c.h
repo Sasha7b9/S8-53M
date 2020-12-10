@@ -12,7 +12,8 @@ struct PinMode { enum E
     _OTG_HS_FS, //-V2573
     _OTG_FS,    //-V2573
     _SPI1,      //-V2573
-    _FMC        //-V2573
+    _FMC,       //-V2573
+    _LTDC       //-V2573
 };};
 
 struct PinPort { enum E

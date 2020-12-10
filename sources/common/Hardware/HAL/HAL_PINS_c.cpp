@@ -71,6 +71,12 @@ struct PinOTG_FS : public Pin
 };
 
 
+struct PinLTDC : public Pin
+{
+    PinLTDC(int port, int pin) : Pin(PinMode::_LTDC, static_cast<PinPort::E>(port), static_cast<PinPin::E>(pin)) { }
+};
+
+
 Pin Pin::G2(PinMode::_Output, PinPort::_G, PinPin::_2);
 Pin Pin::G3(PinMode::_Output, PinPort::_G, PinPin::_3);
 Pin Pin::G5(PinMode::_Output, PinPort::_G, PinPin::_5);
@@ -164,6 +170,38 @@ void HAL_PINS::Init()
     PinFMC(D, 13).Init();       // A18
     PinFMC(D, 3).Init();        // A19
     PinFMC(D, 4).Init();        // A20
+
+    PinLTDC(A, 4).Init();       // VSYNC
+    PinLTDC(C, 6).Init();       // HSYNC
+    PinLTDC(E, 13).Init();      // DE
+    PinLTDC(E, 14).Init();      // CKL
+
+    PinLTDC(C, 10).Init();      // R2
+    PinLTDC(B, 0).Init();       // R3
+    PinLTDC(A, 11).Init();      // R4
+    PinLTDC(A, 12).Init();      // R5
+    PinLTDC(B, 1).Init();       // R6
+    PinLTDC(E, 15).Init();      // R7
+
+    PinLTDC(A, 6).Init();       // G2
+    PinLTDC(E, 11).Init();      // G3
+    PinLTDC(B, 10).Init();      // G4
+    PinLTDC(B, 11).Init();      // G5
+    PinLTDC(C, 7).Init();       // G6
+    PinLTDC(D, 3).Init();       // G7
+
+    PinLTDC(D, 6).Init();       // B2
+    PinLTDC(D, 10).Init();      // B3
+    PinLTDC(E, 12).Init();      // B4
+    PinLTDC(A, 3).Init();       // B5
+    PinLTDC(B, 8).Init();       // B6
+    PinLTDC(B, 9).Init();       // B7
+
+    Pin(PinMode::_Output, PinPort::_A, PinPin::_5).Set();       // Включаем подсветку дисплея
+
+    Pin(PinMode::_Output, PinPort::_C, PinPin::_11).Reset();    // Выбор горизонтальной ориентации дисплея R/L
+
+    Pin(PinMode::_Output, PinPort::_C, PinPin::_12).Set();      // Выбор вертикальной ориентации дисплея U/D
 }
 
 
@@ -225,11 +263,17 @@ void Pin::Init()
             isGPIO.Alternate = GPIO_AF5_SPI1;
         }
     }
-    else if (mode == PinMode::_FMC) //-V2516
+    else if (mode == PinMode::_FMC)
     {
         isGPIO.Mode = GPIO_MODE_AF_PP;
         isGPIO.Speed = GPIO_SPEED_FREQ_HIGH;
         isGPIO.Alternate = GPIO_AF12_FMC;
+    }
+    else if (mode == PinMode::_LTDC) //-V2516
+    {
+        isGPIO.Mode = GPIO_MODE_AF_PP;
+        isGPIO.Speed = GPIO_SPEED_FREQ_LOW;
+        isGPIO.Alternate = GPIO_AF9_LTDC;
     }
 
     HAL_GPIO_Init(reinterpret_cast<GPIO_TypeDef *>(const_cast<GPIO_TypeDef *>(ports[port])), &isGPIO); //-V2571 //-V2567
