@@ -2,6 +2,21 @@
 #include "common/Hardware/HAL/HAL_c.h"
 #include <stm32f4xx_hal.h>
 
+
+enum Port
+{
+    A,
+    B,
+    C,
+    D,
+    E,
+    F,
+    G,
+    H,
+    I
+};
+
+
 static Pin pinADC3_IT;
 static Pin pinADC3_OUT;
 static Pin pinDAC;
@@ -19,23 +34,23 @@ static Pin pinSPI1_MISO;
 static Pin pinSPI1_MOSI;
 static Pin pinSPI1_NSS;
 
-static Pin pinETH_CRS;
-static Pin pinETH_MDIO;
-static Pin pinETH_COL;
-static Pin pinETH_RX_DV;
-static Pin pinETH_RXD2;
-static Pin pinETH_RXD3;
-static Pin pinETH_TXD3;
-static Pin pinETH_RX_ER;
-static Pin pinETH_TX_EN;
-static Pin pinETH_MDC;
-static Pin pinETH_TXD2;
-static Pin pinETH_TX_CLK;
-static Pin pinETH_RX_CLK;
-static Pin pinETH_RXD0;
-static Pin pinETH_RXD1;
-static Pin pinETH_TXD0;
-static Pin pinETH_TXD1;
+static PinETH pinCRS   (H, 2);
+static PinETH pinMDIO  (A, 2);
+static PinETH pinCOL   (H, 3);
+static PinETH pinRX_DV (A, 7);
+static PinETH pinRXD2  (H, 6);
+static PinETH pinRXD3  (B, 1);
+static PinETH pinTXD3  (B, 8);
+static PinETH pinRX_ER (I, 10);
+static PinETH pinTX_EN (B, 11);
+static PinETH pinMDC   (C, 1);
+static PinETH pinTXD2  (C, 2);
+static PinETH pinTX_CLK(C, 3);
+static PinETH pinRX_CLK(A, 1);
+static PinETH pinRXD0  (C, 4);
+static PinETH pinRXD1  (C, 5);
+static PinETH pinTXD0  (B, 12);
+static PinETH pinTXD1  (G, 14);
 
 static PinFMC pinNOE(D, 4);
 static PinFMC pinNWE(D, 5);
@@ -107,24 +122,6 @@ void HAL_PINS::Init()
     pinSPI1_MISO  .Init(PinMode::_SPI1,      PinPort::_A, PinPin::_6);
     pinSPI1_MOSI  .Init(PinMode::_SPI1,      PinPort::_B, PinPin::_5);
     pinSPI1_NSS   .Init(PinMode::_SPI1_NSS,  PinPort::_G, PinPin::_0);
-
-    pinETH_RX_ER .Init(PinMode::_ETH, PinPort::_I, PinPin::_10);
-    pinETH_MDC   .Init(PinMode::_ETH, PinPort::_C, PinPin::_1);
-    pinETH_TXD2  .Init(PinMode::_ETH, PinPort::_C, PinPin::_2);
-    pinETH_TX_CLK.Init(PinMode::_ETH, PinPort::_C, PinPin::_3);
-    pinETH_RX_CLK.Init(PinMode::_ETH, PinPort::_A, PinPin::_1);
-    pinETH_MDIO  .Init(PinMode::_ETH, PinPort::_A, PinPin::_2);
-    pinETH_CRS   .Init(PinMode::_ETH, PinPort::_H, PinPin::_2);
-    pinETH_COL   .Init(PinMode::_ETH, PinPort::_H, PinPin::_3);
-    pinETH_RX_DV .Init(PinMode::_ETH, PinPort::_A, PinPin::_7);
-    pinETH_RXD0  .Init(PinMode::_ETH, PinPort::_C, PinPin::_4);
-    pinETH_RXD1  .Init(PinMode::_ETH, PinPort::_C, PinPin::_5);
-    pinETH_RXD3  .Init(PinMode::_ETH, PinPort::_B, PinPin::_1);
-    pinETH_TX_EN .Init(PinMode::_ETH, PinPort::_B, PinPin::_11);
-    pinETH_RXD2  .Init(PinMode::_ETH, PinPort::_H, PinPin::_6);
-    pinETH_TXD0  .Init(PinMode::_ETH, PinPort::_B, PinPin::_12);
-    pinETH_TXD1  .Init(PinMode::_ETH, PinPort::_G, PinPin::_14);
-    pinETH_TXD3  .Init(PinMode::_ETH, PinPort::_B, PinPin::_8);
 
     Pin::G1.Init(PinMode::_Output, PinPort::_G, PinPin::_1);
     Pin::G2.Init(PinMode::_Output, PinPort::_G, PinPin::_2);
@@ -229,6 +226,12 @@ void Pin::Init(PinMode::E mode, PinPort::E _port, PinPin::E _pin)
 PinFMC::PinFMC(int port, int pin) : Pin()
 {
     Init(PinMode::_FMC, (PinPort::E)port, (PinPin::E)pin); //-V2533
+}
+
+
+PinETH::PinETH(int port, int pin) : Pin()
+{
+    Init(PinMode::_ETH, (PinPort::E)port, (PinPin::E)pin);
 }
 
 

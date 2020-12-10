@@ -1,20 +1,6 @@
 #pragma once
 
 
-enum Port
-{
-    A,
-    B,
-    C,
-    D,
-    E,
-    F,
-    G,
-    H,
-    I
-};
-
-
 struct PinMode { enum E
 {
     _Input,     //-V2573
@@ -89,4 +75,10 @@ private:
 struct PinFMC : public Pin
 {
     PinFMC(int port, int pin);
+};
+
+
+struct PinETH : public Pin
+{
+    PinETH(int port, int pin);
 };
