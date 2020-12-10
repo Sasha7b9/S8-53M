@@ -401,7 +401,7 @@ void GovernorColor::DrawValue(int x, int y, int delta) const
     ColorType *ct = own->colorType;
     int8 field = ct->currentField;
     char *texts[4] = {"ßð", "Ñí", "Çë", "Êð"};
-    uint16 color = set.display.colors[ct->color];
+    uint color = set.display.colors[ct->color];
     int red = R_FROM_COLOR(color);
     int green = G_FROM_COLOR(color);
     int blue = B_FROM_COLOR(color);

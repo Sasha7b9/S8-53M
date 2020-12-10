@@ -14,7 +14,7 @@ struct SettingsDisplay
     int16               timeMessages;               // Время в секундах, на которое сообщение остаётся на экране
     int16               brightness;                 // Яркость дисплея (только для цветного)
     int16               brightnessGrid;             // Яркость сетки от 0 до 100
-    uint16              colors[16];
+    uint                colors[16];
     ModeDrawSignal::E   modeDrawSignal;             // Режим отрисовки сигнала
     TypeGrid::E         typeGrid;                   // Тип сетки
     ENumAccumulation::E enumAccumulation;           // Число накоплений сигнала на экране

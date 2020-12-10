@@ -71,7 +71,7 @@ Color::E Color::BorderMenu()
 
 Color::E Color::Contrast(Color::E color) //-V2506
 {
-    uint16 colorValue = set.display.colors[color];
+    uint colorValue = set.display.colors[color];
     if (R_FROM_COLOR(colorValue) > 16 || G_FROM_COLOR(colorValue) > 32 || B_FROM_COLOR(colorValue) > 16)    //-V112
     {
         return Color::BLACK;
@@ -90,7 +90,7 @@ Color::E Color::LightShadingText() //-V524
 
 void Color_Log(Color::E color)
 {
-    uint16 colorValue = set.display.colors[color];
+    uint colorValue = set.display.colors[color];
     LOG_WRITE("%s   r=%d, g=%d, b=%d", NameColor(color), R_FROM_COLOR(colorValue), G_FROM_COLOR(colorValue), B_FROM_COLOR(colorValue));
 }
 
@@ -180,7 +180,7 @@ void Color_Init(ColorType *colorType)
     {
         colorType->alreadyUsed = true;                  // Признак того, что начальные установки уже произведены
 
-        uint16 colorValue = set.display.colors[colorType->color];
+        uint colorValue = set.display.colors[colorType->color];
 
         colorType->red = (float)R_FROM_COLOR(colorValue);
         colorType->green = (float)G_FROM_COLOR(colorValue);

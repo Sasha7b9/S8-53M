@@ -38,6 +38,7 @@
 #define HAL_TIM_MODULE_ENABLED
 #define HAL_LTDC_MODULE_ENABLED
 #define HAL_DMA2D_MODULE_ENABLED
+#define HAL_SRAM_MODULE_ENABLED
 
 /* ########################## HSE/HSI Values adaptation ##################### */
 /**

@@ -11,7 +11,7 @@ public:
 #ifdef DEBUG
     static const int SIZE_POOL = (59 * 1024);
 #else
-    static const int SIZE_POOL = (60 * 1024);
+    static const int SIZE_POOL = (59 * 1024);
 #endif
 
     // Удаление всех сохранённых измерений

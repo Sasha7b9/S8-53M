@@ -100,13 +100,20 @@ struct HAL_ETH
 
 struct HAL_FSMC 
 {
-    static uint8 * const ADDR_FPGA;  // Адрес записи в аппаратные регистры.
+    static uint8 * const ADDR_FPGA;     // Адрес записи в альтеру
+    static uint8 * const ADDR_RAM;      // Адрес записи в RAM
     static uint8 * const ADDR_NULL;
+
     static void    Init(void);
 
-    static uint8   Read(uint8 const * const address);
+    static uint8   Read(pUCHAR const address);
 
     static void    Write(uint8 * const address, uint8 value);
+
+private:
+    
+    static void InitRAM();
+    static void InitFPGA();
 };
 
 

@@ -13,7 +13,7 @@ void HardwareErrorHandler(const char *, const char *, int)
 
 uint Color::FromSettings(Color::E col)
 {
-    uint16 col16 = set.display.colors[col];
+    uint col16 = set.display.colors[col];
 
     uint b = (uint)((col16 & 0x1f) / 31.0F * 255.0F); //-V2533 //-V2564
     LIMIT_ABOVE(b, 255);
