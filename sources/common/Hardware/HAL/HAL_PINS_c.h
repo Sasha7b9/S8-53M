@@ -25,7 +25,8 @@ struct PinPort { enum E
     _F, //-V2573
     _G, //-V2573
     _H, //-V2573
-    _I //-V2573
+    _I, //-V2573
+    Count
 };};
 
 struct PinPin { enum E
@@ -51,7 +52,8 @@ struct PinPin { enum E
 
 struct Pin
 {
-    void Init(PinMode::E mode, PinPort::E port, PinPin::E pin);
+    Pin(PinMode::E _mode, PinPort::E _port, PinPin::E _pin) : port(_port), pin(_pin), mode(_mode) {};
+    void Init();
     void Write(int state);
     void Set();
     void Reset();
@@ -65,6 +67,7 @@ struct Pin
     static Pin DisplayReady;
 
 private:
-    void *port;
-    uint16 pin;
+    PinPort::E port;
+    PinPin::E  pin;
+    PinMode::E mode;
 };
