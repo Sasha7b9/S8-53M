@@ -23,31 +23,32 @@ void HAL::Init()
 
     SystemClock_Config();
 
-    __SYSCFG_CLK_ENABLE(); //-V2571
+    __SYSCFG_CLK_ENABLE();      //-V2571
 
-    __GPIOA_CLK_ENABLE(); //-V2571
-    __GPIOB_CLK_ENABLE(); //-V2571
-    __GPIOC_CLK_ENABLE(); //-V2571
-    __GPIOD_CLK_ENABLE(); //-V2571
-    __GPIOE_CLK_ENABLE(); //-V2571
-    __GPIOF_CLK_ENABLE(); //-V2571
-    __GPIOG_CLK_ENABLE(); //-V2571
-    __GPIOH_CLK_ENABLE(); //-V2571
-    __GPIOI_CLK_ENABLE(); //-V2571
+    __GPIOA_CLK_ENABLE();       //-V2571
+    __GPIOB_CLK_ENABLE();       //-V2571
+    __GPIOC_CLK_ENABLE();       //-V2571
+    __GPIOD_CLK_ENABLE();       //-V2571
+    __GPIOE_CLK_ENABLE();       //-V2571
+    __GPIOF_CLK_ENABLE();       //-V2571
+    __GPIOG_CLK_ENABLE();       //-V2571
+    __GPIOH_CLK_ENABLE();       //-V2571
+    __GPIOI_CLK_ENABLE();       //-V2571
 
-    __ADC3_CLK_ENABLE(); //-V2571
-    __CRC_CLK_ENABLE(); //-V2571
-    __DAC_CLK_ENABLE();         // Для бикалки //-V2571
-    __DMA1_CLK_ENABLE();        // Для DAC1 (бикалка) //-V2571
-    __ETH_CLK_ENABLE(); //-V2571
-    __PWR_CLK_ENABLE(); //-V2571
-    __SPI1_CLK_ENABLE(); //-V2571
-    __SYSCFG_CLK_ENABLE(); //-V2571
-    __TIM2_CLK_ENABLE();        // Для тиков //-V2571
-    __TIM6_CLK_ENABLE();        // Для отсчёта миллисекунд //-V2571
-    __TIM7_CLK_ENABLE();        // Для DAC1 (бикалка) //-V2571
-    __USB_OTG_FS_CLK_ENABLE(); //-V2571
-    __USB_OTG_HS_CLK_ENABLE(); //-V2571
+    __ADC3_CLK_ENABLE();        //-V2571
+    __CRC_CLK_ENABLE();         //-V2571
+    __DAC_CLK_ENABLE();         //-V2571 Для бикалки 
+    __DMA1_CLK_ENABLE();        //-V2571 Для DAC1 (бикалка)
+    __ETH_CLK_ENABLE();         //-V2571
+    __FMC_CLK_ENABLE();         //-V2571
+    __PWR_CLK_ENABLE();         //-V2571
+    __SPI1_CLK_ENABLE();        //-V2571
+    __SYSCFG_CLK_ENABLE();      //-V2571
+    __TIM2_CLK_ENABLE();        //-V2571 Для тиков
+    __TIM6_CLK_ENABLE();        //-V2571 Для отсчёта миллисекунд
+    __TIM7_CLK_ENABLE();        //-V2571 Для DAC1 (бикалка)
+    __USB_OTG_FS_CLK_ENABLE();  //-V2571
+    __USB_OTG_HS_CLK_ENABLE();  //-V2571
 
     HAL_PINS::Init();
 
@@ -61,8 +62,6 @@ void HAL::Init()
     HAL_RTC::Init();
 
     HAL_TIM6::Init();
-
-    HAL_SRAM::Init();
 
 #endif
 

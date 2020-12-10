@@ -1,18 +1,33 @@
 #pragma once
 
 
+enum Port
+{
+    A,
+    B,
+    C,
+    D,
+    E,
+    F,
+    G,
+    H,
+    I
+};
+
+
 struct PinMode { enum E
 {
-    _Input, //-V2573
-    _Output, //-V2573
-    _ADC3_OUT, //-V2573
-    _ADC3_IT, //-V2573
-    _DAC, //-V2573
-    _ETH, //-V2573
+    _Input,     //-V2573
+    _Output,    //-V2573
+    _ADC3_OUT,  //-V2573
+    _ADC3_IT,   //-V2573
+    _DAC,       //-V2573
+    _ETH,       //-V2573
     _OTG_HS_FS, //-V2573
-    _OTG_FS, //-V2573
-    _SPI1, //-V2573
-    _SPI1_NSS //-V2573
+    _OTG_FS,    //-V2573
+    _SPI1,      //-V2573
+    _SPI1_NSS,  //-V2573
+    _FMC        //-V2573
 };};
 
 struct PinPort { enum E
@@ -57,7 +72,7 @@ struct Pin
     void Reset();
     uint Read();
 
-    static Pin G1;
+    static Pin G1;      //  огда равен 1, чтение диспле€, в остальных случа€х 0
     static Pin G2;
     static Pin G3;
     static Pin G5;
@@ -68,4 +83,10 @@ struct Pin
 private:
     void *port;
     uint16 pin;
+};
+
+
+struct PinFMC : public Pin
+{
+    PinFMC(int port, int pin);
 };

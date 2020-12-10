@@ -142,10 +142,6 @@ private:
     static void *handle;    // RTC_HandleTypeDef
 };
 
-struct HAL_SRAM
-{
-    static void Init();
-};
 
 struct HAL_HCD
 {

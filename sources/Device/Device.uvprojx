@@ -1229,11 +1229,6 @@
               <FilePath>..\common\Hardware\HAL\HAL_RTC_c.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_SRAM_c.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_SRAM_c.cpp</FilePath>
-            </File>
-            <File>
               <FileName>HAL_TIM2_c.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_TIM2_c.cpp</FilePath>
@@ -3407,11 +3402,6 @@
               <FileName>HAL_RTC_c.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_RTC_c.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_SRAM_c.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_SRAM_c.cpp</FilePath>
             </File>
             <File>
               <FileName>HAL_TIM2_c.cpp</FileName>

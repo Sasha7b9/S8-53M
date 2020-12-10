@@ -38,49 +38,6 @@ void HAL_FSMC::Write(uint8 * const address, uint8 value)
 
 void HAL_FSMC::Init()
 {
-    __HAL_RCC_FMC_CLK_ENABLE(); //-V2571
-    __HAL_RCC_GPIOD_CLK_ENABLE(); //-V2571
-    __HAL_RCC_GPIOE_CLK_ENABLE(); //-V2571
-    __HAL_RCC_GPIOF_CLK_ENABLE(); //-V2571
-    __HAL_RCC_GPIOG_CLK_ENABLE(); //-V2571
-
-
-    //           NOE          NWE          NE1
-    is.Pin = GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_7;
-    HAL_GPIO_Init(GPIOD, &is); //-V2571
-
-    //           NE2
-    is.Pin = GPIO_PIN_9;
-    HAL_GPIO_Init(GPIOG, &is); //-V2571
-
-    //           D2           D3           D0            D1
-    is.Pin = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_14 | GPIO_PIN_15;
-    HAL_GPIO_Init(GPIOD, &is); //-V2571
-
-    //           D4           D5           D6           D7            D8            D9            D10           D11           D12
-    is.Pin = GPIO_PIN_7 | GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15;
-    HAL_GPIO_Init(GPIOE, &is); //-V2571
-
-    //           D13          D14          D15
-    is.Pin = GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10;
-    HAL_GPIO_Init(GPIOD, &is); //-V2571
-
-    //           A0           A1           A2           A3           A4           A5           A6            A7            A8            A9
-    is.Pin = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15;
-    HAL_GPIO_Init(GPIOF, &is); //-V2571
-
-    //           A10          A11         A12           A13          A14         A15
-    is.Pin = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5;
-    HAL_GPIO_Init(GPIOG, &is); //-V2571
-
-    //           A16          A17            A18
-    is.Pin = GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13;
-    HAL_GPIO_Init(GPIOD, &is); //-V2571
-
-    //           A19          A20
-    is.Pin = GPIO_PIN_3 | GPIO_PIN_4;
-    HAL_GPIO_Init(GPIOD, &is); //-V2571
-
     InitFPGA();
 
     InitRAM();

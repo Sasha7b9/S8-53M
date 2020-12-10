@@ -37,6 +37,49 @@ static Pin pinETH_RXD1;
 static Pin pinETH_TXD0;
 static Pin pinETH_TXD1;
 
+static PinFMC pinNOE(D, 4);
+static PinFMC pinNWE(D, 5);
+static PinFMC pinNE1(D, 7);
+static PinFMC pinNE2(G, 9);
+static PinFMC pinD0 (D, 14);
+static PinFMC pinD1 (D, 15);
+static PinFMC pinD2 (D, 0);
+static PinFMC pinD3 (D, 1);
+static PinFMC pinD4 (E, 7);
+static PinFMC pinD5 (E, 8);
+static PinFMC pinD6 (E, 9);
+static PinFMC pinD7 (E, 10);
+static PinFMC pinD8 (E, 11);
+static PinFMC pinD9 (E, 12);
+static PinFMC pinD10(E, 13);
+static PinFMC pinD11(E, 14);
+static PinFMC pinD12(E, 15);
+static PinFMC pinD13(D, 8);
+static PinFMC pinD14(D, 9);
+static PinFMC pinD15(D, 10);
+static PinFMC pinA0 (F, 0);
+static PinFMC pinA1 (F, 1);
+static PinFMC pinA2 (F, 2);
+static PinFMC pinA3 (F, 3);
+static PinFMC pinA4 (F, 4);
+static PinFMC pinA5 (F, 5);
+static PinFMC pinA6 (F, 12);
+static PinFMC pinA7 (F, 13);
+static PinFMC pinA8 (F, 14);
+static PinFMC pinA9 (F, 15);
+static PinFMC pinA10(G, 0);
+static PinFMC pinA11(G, 1);
+static PinFMC pinA12(G, 2);
+static PinFMC pinA13(G, 3);
+static PinFMC pinA14(G, 4);
+static PinFMC pinA15(G, 5);
+static PinFMC pinA16(D, 11);
+static PinFMC pinA17(D, 12);
+static PinFMC pinA18(D, 13);
+static PinFMC pinA19(D, 3);
+static PinFMC pinA20(D, 4);
+
+
 Pin Pin::G1;
 Pin Pin::G2;
 Pin Pin::G3;
@@ -172,8 +215,20 @@ void Pin::Init(PinMode::E mode, PinPort::E _port, PinPin::E _pin)
     {
         isGPIO.Mode = GPIO_MODE_IT_RISING;
     }
+    else if (mode == PinMode::_FMC)
+    {
+        isGPIO.Mode = GPIO_MODE_AF_PP;
+        isGPIO.Speed = GPIO_SPEED_FREQ_HIGH;
+        isGPIO.Alternate = GPIO_AF12_FMC;
+    }
 
     HAL_GPIO_Init(reinterpret_cast<GPIO_TypeDef *>(port), &isGPIO); //-V2571
+}
+
+
+PinFMC::PinFMC(int port, int pin) : Pin()
+{
+    Init(PinMode::_FMC, (PinPort::E)port, (PinPin::E)pin); //-V2533
 }
 
 
