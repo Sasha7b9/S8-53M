@@ -71,84 +71,6 @@ struct PinOTG_FS : public Pin
 };
 
 
-static Pin pinADC3_IT(PinMode::_ADC3_IT, PinPort::_C, PinPin::_11);
-static Pin pinADC3_OUT(PinMode::_ADC3_OUT, PinPort::_F, PinPin::_6);
-static Pin pinDAC(PinMode::_DAC, PinPort::_A, PinPin::_4);
-
-static PinOTG_HS pinOTG_HS_DP(B, 15);
-static PinOTG_HS pinOTG_HS_DM(B, 14);
-static PinOTG_HS pinOTG_HS_VBUS(B, 13);
-
-static PinOTG_FS pinOTG_FS_DP(A, 12);
-static PinOTG_FS pinOTG_FS_DM(A, 11);
-static PinOTG_FS pinOTG_FS_VBUS(A, 9);
-
-static PinSPI1 pinSPI1_SCK(A, 5);
-static PinSPI1 pinSPI1_MISO(A, 6);
-static PinSPI1 pinSPI1_MOSI(B, 5);
-static PinSPI1 pinSPI1_NSS(G, 0);
-
-static PinETH pinCRS(H, 2);
-static PinETH pinMDIO(A, 2);
-static PinETH pinCOL(H, 3);
-static PinETH pinRX_DV(A, 7);
-static PinETH pinRXD2(H, 6);
-static PinETH pinRXD3(B, 1);
-static PinETH pinTXD3(B, 8);
-static PinETH pinRX_ER(I, 10);
-static PinETH pinTX_EN(B, 11);
-static PinETH pinMDC(C, 1);
-static PinETH pinTXD2(C, 2);
-static PinETH pinTX_CLK(C, 3);
-static PinETH pinRX_CLK(A, 1);
-static PinETH pinRXD0(C, 4);
-static PinETH pinRXD1(C, 5);
-static PinETH pinTXD0(B, 12);
-static PinETH pinTXD1(G, 14);
-
-static PinFMC pinNOE(D, 4);
-static PinFMC pinNWE(D, 5);
-static PinFMC pinNE1(D, 7);
-static PinFMC pinNE2(G, 9);
-static PinFMC pinD0(D, 14);
-static PinFMC pinD1(D, 15);
-static PinFMC pinD2(D, 0);
-static PinFMC pinD3(D, 1);
-static PinFMC pinD4(E, 7);
-static PinFMC pinD5(E, 8);
-static PinFMC pinD6(E, 9);
-static PinFMC pinD7(E, 10);
-static PinFMC pinD8(E, 11);
-static PinFMC pinD9(E, 12);
-static PinFMC pinD10(E, 13);
-static PinFMC pinD11(E, 14);
-static PinFMC pinD12(E, 15);
-static PinFMC pinD13(D, 8);
-static PinFMC pinD14(D, 9);
-static PinFMC pinD15(D, 10);
-static PinFMC pinA0(F, 0);
-static PinFMC pinA1(F, 1);
-static PinFMC pinA2(F, 2);
-static PinFMC pinA3(F, 3);
-static PinFMC pinA4(F, 4);
-static PinFMC pinA5(F, 5);
-static PinFMC pinA6(F, 12);
-static PinFMC pinA7(F, 13);
-static PinFMC pinA8(F, 14);
-static PinFMC pinA9(F, 15);
-static PinFMC pinA10(G, 0);
-static PinFMC pinA11(G, 1);
-static PinFMC pinA12(G, 2);
-static PinFMC pinA13(G, 3);
-static PinFMC pinA14(G, 4);
-static PinFMC pinA15(G, 5);
-static PinFMC pinA16(D, 11);
-static PinFMC pinA17(D, 12);
-static PinFMC pinA18(D, 13);
-static PinFMC pinA19(D, 3);
-static PinFMC pinA20(D, 4);
-
-
 Pin Pin::G2(PinMode::_Output, PinPort::_G, PinPin::_2);
 Pin Pin::G3(PinMode::_Output, PinPort::_G, PinPin::_3);
 Pin Pin::G5(PinMode::_Output, PinPort::_G, PinPin::_5);
@@ -165,6 +87,83 @@ void HAL_PINS::Init()
     Pin::G7.Init();
     Pin::LED.Init();
     Pin::DisplayReady.Init();
+
+    Pin(PinMode::_ADC3_IT, PinPort::_C, PinPin::_11).Init();    // ADC3 IT
+    Pin(PinMode::_ADC3_OUT, PinPort::_F, PinPin::_6).Init();    // ADC3 OUT
+    Pin(PinMode::_DAC, PinPort::_A, PinPin::_4).Init();         // DAC
+
+    PinOTG_HS(B, 15).Init();    // DP
+    PinOTG_HS(B, 14).Init();    // DM
+    PinOTG_HS(B, 13).Init();    // VBUS
+
+    PinOTG_FS(A, 12).Init();    // DP
+    PinOTG_FS(A, 11).Init();    // DM
+    PinOTG_FS(A, 9).Init();     // VBUS
+
+    PinSPI1(A, 5).Init();       // SCK
+    PinSPI1(A, 6).Init();       // MISO
+    PinSPI1(B, 5).Init();       // MOSI
+    PinSPI1(G, 0).Init();       // NSS
+
+    PinETH(H, 2).Init();        // CRS
+    PinETH(A, 2).Init();        // MDIO
+    PinETH(H, 3).Init();        // COL
+    PinETH(A, 7).Init();        // RX_DV
+    PinETH(H, 6).Init();        // RXD2
+    PinETH(B, 1).Init();        // RXD3
+    PinETH(B, 8).Init();        // TXD3
+    PinETH(I, 10).Init();       // RX_ER
+    PinETH(B, 11).Init();       // TX_EN
+    PinETH(C, 1).Init();        // MDC
+    PinETH(C, 2).Init();        // TXD2
+    PinETH(C, 3).Init();        // TX_CLK
+    PinETH(A, 1).Init();        // RX_CLK
+    PinETH(C, 4).Init();        // RXD0
+    PinETH(C, 5).Init();        // RXD1
+    PinETH(B, 12).Init();       // TXD0
+    PinETH(G, 14).Init();       // TXD1
+
+    PinFMC(D, 4).Init();        // NOE
+    PinFMC(D, 5).Init();        // NWE
+    PinFMC(D, 7).Init();        // NE1
+    PinFMC(G, 9).Init();        // NE2
+    PinFMC(D, 14).Init();       // D0
+    PinFMC(D, 15).Init();       // D1
+    PinFMC(D, 0).Init();        // D2
+    PinFMC(D, 1).Init();        // D3
+    PinFMC(E, 7).Init();        // D4
+    PinFMC(E, 8).Init();        // D5
+    PinFMC(E, 9).Init();        // D6
+    PinFMC(E, 10).Init();       // D7
+    PinFMC(E, 11).Init();       // D8
+    PinFMC(E, 12).Init();       // D9
+    PinFMC(E, 13).Init();       // D10
+    PinFMC(E, 14).Init();       // D11
+    PinFMC(E, 15).Init();       // D12
+    PinFMC(D, 8).Init();        // D13
+    PinFMC(D, 9).Init();        // D14
+    PinFMC(D, 10).Init();       // D15
+    PinFMC(F, 0).Init();        // A0
+    PinFMC(F, 1).Init();        // A1
+    PinFMC(F, 2).Init();        // A2
+    PinFMC(F, 3).Init();        // A3
+    PinFMC(F, 4).Init();        // A4
+    PinFMC(F, 5).Init();        // A5
+    PinFMC(F, 12).Init();       // A6
+    PinFMC(F, 13).Init();       // A7
+    PinFMC(F, 14).Init();       // A8
+    PinFMC(F, 15).Init();       // A9
+    PinFMC(G, 0).Init();        // A10
+    PinFMC(G, 1).Init();        // A11
+    PinFMC(G, 2).Init();        // A12
+    PinFMC(G, 3).Init();        // A13
+    PinFMC(G, 4).Init();        // A14
+    PinFMC(G, 5).Init();        // A15
+    PinFMC(D, 11).Init();       // A16
+    PinFMC(D, 12).Init();       // A17
+    PinFMC(D, 13).Init();       // A18
+    PinFMC(D, 3).Init();        // A19
+    PinFMC(D, 4).Init();        // A20
 }
 
 
@@ -233,7 +232,7 @@ void Pin::Init()
         isGPIO.Alternate = GPIO_AF12_FMC;
     }
 
-    HAL_GPIO_Init(reinterpret_cast<GPIO_TypeDef *>(const_cast<GPIO_TypeDef *>(ports[port])), &isGPIO); //-V2571
+    HAL_GPIO_Init(reinterpret_cast<GPIO_TypeDef *>(const_cast<GPIO_TypeDef *>(ports[port])), &isGPIO); //-V2571 //-V2567
 }
 
 
