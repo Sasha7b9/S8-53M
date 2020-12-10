@@ -6,6 +6,14 @@
 class Storage
 {
 public:
+    
+    // Количество отведённой для измерений памяти.
+#ifdef DEBUG
+    static const int SIZE_POOL = (59 * 1024);
+#else
+    static const int SIZE_POOL = (60 * 1024);
+#endif
+
     // Удаление всех сохранённых измерений
     static void Clear();
     // Добавить считанные данные. При этом настройками считаются текущие настройки прибора.
@@ -72,12 +80,6 @@ private:
     static void PrintElement(DataSettings *dp);
     
     static void CalculateAroundAverage(uint8 *data0, uint8 *data1, const DataSettings *dss);
-    // Количество отведённой для измерений памяти.
-#ifdef DEBUG
-    static const int SIZE_POOL = (55 * 1024);
-#else
-    static const int SIZE_POOL = (60 * 1024);
-#endif
     // Здесь хранятся данные.
     static uint8 pool[SIZE_POOL];
     // Адрес начала памяти для хранения
