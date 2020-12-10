@@ -115,5 +115,5 @@ bool Painter::SaveScreenToFlashDrive()
 
 void Painter::LoadPalette()
 {
-    HAL_LTDC::SetColors(&COLOR(0), Color::Count);
+    HAL_LTDC::SetColors();
 }
