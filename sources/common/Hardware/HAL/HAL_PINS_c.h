@@ -12,7 +12,6 @@ struct PinMode { enum E
     _OTG_HS_FS, //-V2573
     _OTG_FS,    //-V2573
     _SPI1,      //-V2573
-    _SPI1_NSS,  //-V2573
     _FMC        //-V2573
 };};
 
@@ -68,16 +67,4 @@ struct Pin
 private:
     void *port;
     uint16 pin;
-};
-
-
-struct PinFMC : public Pin
-{
-    PinFMC(int port, int pin);
-};
-
-
-struct PinETH : public Pin
-{
-    PinETH(int port, int pin);
 };

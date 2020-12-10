@@ -17,6 +17,24 @@ enum Port
 };
 
 
+struct PinFMC : public Pin
+{
+    PinFMC(int port, int pin);
+};
+
+
+struct PinETH : public Pin
+{
+    PinETH(int port, int pin);
+};
+
+
+struct PinSPI1 : public Pin
+{
+    PinSPI1(int port, int pin);
+};
+
+
 static Pin pinADC3_IT;
 static Pin pinADC3_OUT;
 static Pin pinDAC;
@@ -29,10 +47,10 @@ static Pin pinOTG_FS_DP;
 static Pin pinOTG_FS_DM;
 static Pin pinOTG_FS_VBUS;
 
-static Pin pinSPI1_SCK;
-static Pin pinSPI1_MISO;
-static Pin pinSPI1_MOSI;
-static Pin pinSPI1_NSS;
+static PinSPI1 pinSPI1_SCK (A, 5);
+static PinSPI1 pinSPI1_MISO(A, 6);
+static PinSPI1 pinSPI1_MOSI(B, 5);
+static PinSPI1 pinSPI1_NSS (G, 0);
 
 static PinETH pinCRS   (H, 2);
 static PinETH pinMDIO  (A, 2);
@@ -117,11 +135,6 @@ void HAL_PINS::Init()
     pinOTG_FS_DM  .Init(PinMode::_OTG_FS,    PinPort::_A, PinPin::_11);
     pinOTG_FS_VBUS.Init(PinMode::_OTG_FS,    PinPort::_A, PinPin::_9);
 
-    pinSPI1_SCK   .Init(PinMode::_SPI1,      PinPort::_A, PinPin::_5);
-    pinSPI1_MISO  .Init(PinMode::_SPI1,      PinPort::_A, PinPin::_6);
-    pinSPI1_MOSI  .Init(PinMode::_SPI1,      PinPort::_B, PinPin::_5);
-    pinSPI1_NSS   .Init(PinMode::_SPI1_NSS,  PinPort::_G, PinPin::_0);
-
     Pin::G2.Init(PinMode::_Output, PinPort::_G, PinPin::_2);
     Pin::G3.Init(PinMode::_Output, PinPort::_G, PinPin::_3);
     Pin::G5.Init(PinMode::_Output, PinPort::_G, PinPin::_5);
@@ -202,13 +215,16 @@ void Pin::Init(PinMode::E mode, PinPort::E _port, PinPin::E _pin)
     }
     else if (mode == PinMode::_SPI1)
     {
-        isGPIO.Mode = GPIO_MODE_AF_PP;
-        isGPIO.Speed = GPIO_SPEED_FAST;
-        isGPIO.Alternate = GPIO_AF5_SPI1;
-    }
-    else if (mode == PinMode::_SPI1_NSS) //-V2516
-    {
-        isGPIO.Mode = GPIO_MODE_IT_RISING;
+        if (_pin == PinPin::_0)
+        {
+            isGPIO.Mode = GPIO_MODE_IT_RISING;
+        }
+        else
+        {
+            isGPIO.Mode = GPIO_MODE_AF_PP;
+            isGPIO.Speed = GPIO_SPEED_FAST;
+            isGPIO.Alternate = GPIO_AF5_SPI1;
+        }
     }
     else if (mode == PinMode::_FMC)
     {
@@ -230,6 +246,11 @@ PinFMC::PinFMC(int port, int pin) : Pin()
 PinETH::PinETH(int port, int pin) : Pin()
 {
     Init(PinMode::_ETH, (PinPort::E)port, (PinPin::E)pin);
+}
+
+PinSPI1::PinSPI1(int port, int pin) : Pin()
+{
+    Init(PinMode::_SPI1, (PinPort::E)port, (PinPin::E)pin);
 }
 
 
