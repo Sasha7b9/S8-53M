@@ -20,7 +20,7 @@ include_directories(../..
                     ../../ThirdParty/wxWidgets/include
                     ../../ThirdParty/wxWidgets/generated/lib/vc_dll/mswud
                     )
-add_definitions(-DSTM32F437xx -DWXUSINGDLL -DGUI -DDEVICE)
+add_definitions(-DSTM32F429xx -DWXUSINGDLL -DGUI -DDEVICE)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -MP -Wall")
 
