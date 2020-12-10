@@ -157,14 +157,12 @@ void HAL::JumpToApplication()
 }
 
 
-void HAL::ErrorHandler(const char *f, int l)
+void HAL::ErrorHandler(const char *file, int line)
 {
-    volatile const char *file = f;
-    volatile int line = l;
+    UNUSED(file);
+    UNUSED(line);
 
     while (true)
     {
-        file = file;
-        line = line;
     }
 }

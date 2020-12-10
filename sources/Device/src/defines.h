@@ -22,9 +22,6 @@ typedef const char             *pCHAR;
 typedef const uint8            *pUCHAR;
 typedef const char       *const pString;
 
-
-#define DEBUG
-
 #ifndef __IO
 #define __IO volatile //-V2573
 #endif
@@ -50,11 +47,11 @@ union BitSet32 //-V2514
 };
 
 // Объединение размером 64 бита
-typedef union //-V2514
+union BitSet64 //-V2514
 {
     long long unsigned int  dword;
     unsigned int            word[2];
-} BitSet64;
+} ;
 
 struct StructRelAbs
 {

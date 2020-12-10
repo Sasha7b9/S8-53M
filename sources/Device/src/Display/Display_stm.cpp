@@ -14,5 +14,5 @@ void Display::Init()
 
     Font::Set(TypeFont::S8);
 
-    HAL_LTDC::Init((uint)front, (uint)back);
+    HAL_LTDC::Init(front, back);
 }

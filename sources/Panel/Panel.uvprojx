@@ -893,7 +893,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>USE_HAL_DRIVER,STM32L063xx</Define>
+              <Define>USE_HAL_DRIVER,STM32L063xx, DEBUG</Define>
               <Undefine></Undefine>
               <IncludePath>.\src;..\..\sources;.\src\Hardware\HAL;..\common\STM32Cube_L0\Drivers\CMSIS\Device\ST\STM32L0xx\Include;..\common\STM32Cube_L0\Drivers\CMSIS\Include;..\common\STM32Cube_L0\Drivers\STM32L0xx_HAL_Driver\Inc</IncludePath>
             </VariousControls>

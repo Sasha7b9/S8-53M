@@ -14,8 +14,9 @@ void HAL::Init()
 }
 
 
-void HAL::Error()
+void HAL::ErrorHandler(const char *, int )
 {
+
     while (1)
     {
     }

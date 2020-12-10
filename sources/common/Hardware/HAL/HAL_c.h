@@ -112,7 +112,7 @@ struct HAL_FSMC
 
 struct HAL_LTDC
 {
-    static void Init(uint frontBuffer, uint backBuffer);
+    static void Init(uint8 *frontBuffer, uint8 *backBuffer);
 
     static void SetColors(uint16 *clut, uint numColors);
 
@@ -120,7 +120,7 @@ struct HAL_LTDC
 
 private:
 
-    static void SetBuffers(uint frontBuffer, uint backBuffer);
+    static void SetBuffers(uint8 *frontBuffer, uint8 *backBuffer);
 };
 
 

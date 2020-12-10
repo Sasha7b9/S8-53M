@@ -160,44 +160,8 @@ float MathFPGA::TimeCursor(float shiftCurT, TBase::E tBase)
     Количество отсчётов должно быть 2**N
 */
 
-#ifndef DEBUG
-#include "TablesWindow.h"
-#include "TablesLog.h"
-
-static float const* Koeff(int numPoints)
-{
-    float const* tables[3][4] = {
-        {koeffsNorm256, koeffsHamming256, koeffsBlack256, koeffsHann256},
-        {koeffsNorm512, koeffsHamming512, koeffsBlack512, koeffsHann512},
-        {koeffsNorm1024, koeffsHamming1024, koeffsBlack1024, koeffsHann1024},
-    };
-
-    int row = 0;
-    if (numPoints == 512)
-    {
-        row = 1;
-    }
-    else if (numPoints == 1024)
-    {
-        row = 2;
-    }
-
-    return tables[row][PageServiceMath_GetWindowFFT()];
-}
-
-#endif
-
-
 static void MultiplyToWindow(float* data, int numPoints)
 {
-#ifndef DEBUG
-    float const* koeff = Koeff(numPoints);
-
-    for (int i = 0; i < numPoints; i++)
-    {
-        data[i] *= koeff[i];
-    }
-#else
     if (WINDOW_FFT_IS_HAMMING)
     {
         for (int i = 0; i < numPoints; i++)
@@ -223,7 +187,6 @@ static void MultiplyToWindow(float* data, int numPoints)
             data[i] *= 0.5F * (1.0F - std::cos(2.0F * 3.1415926F * i / (numPoints - 1.0F))); //-V2563 //-V2564
         }
     }
-#endif
 }
 
 
@@ -366,11 +329,8 @@ void MathFPGA::CalculateFFT(float* dataR, int numPoints, float* result, float* f
 
         for (int i = 0; i < 256; i++)
         {
-#ifdef DEBUG
             result[i] = 20 * std::log10f(result[i]); //-V2563 //-V2564
-#else
-            result[i] = Log10[(int)(result[i] * 10000)];
-#endif
+
             if (i == FFT_POS_CURSOR_0)
             {
                 *density0 = result[i]; //-V2563

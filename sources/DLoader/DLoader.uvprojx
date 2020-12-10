@@ -628,6 +628,26 @@
               <FileType>1</FileType>
               <FilePath>..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dac_ex.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_hal_dma2d.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma2d.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_hal_ltdc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_ltdc.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_hal_dma2d.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma2d.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_hal_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_ltdc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -848,6 +868,11 @@
               <FileName>HAL_TIM7_c.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_TIM7_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_LTDC_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_LTDC_c.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -1464,7 +1489,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls>--cpp</MiscControls>
-              <Define>USE_HAL_DRIVER, STM32F429xx, __cplusplus, LOADER</Define>
+              <Define>USE_HAL_DRIVER, STM32F429xx, __cplusplus, LOADER, DEBUG</Define>
               <Undefine></Undefine>
               <IncludePath>.\src;.\src\libs;.\src\Hardware\FatFS;.\src\Hardware\HAL;.\src\Hardware\USBH;..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\common\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\common\STM32Cube_F4\Drivers\CMSIS\Include;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc;..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src;..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\drivers;..</IncludePath>
             </VariousControls>
@@ -1755,6 +1780,26 @@
               <FileType>1</FileType>
               <FilePath>..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dac_ex.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_hal_dma2d.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma2d.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_hal_ltdc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_ltdc.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_hal_dma2d.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma2d.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_hal_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_ltdc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1975,6 +2020,11 @@
               <FileName>HAL_TIM7_c.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_TIM7_c.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_LTDC_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_LTDC_c.cpp</FilePath>
             </File>
           </Files>
         </Group>

@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "common/Display/Painter_c.h"
 #include "common/Display/Primitives_c.h"
+#include "common/Hardware/HAL/HAL_c.h"
 
 
 using namespace Primitives;
@@ -14,4 +15,5 @@ void Painter::BeginScene(Color::E color)
 
 void Painter::EndScene(bool)
 {
+    HAL_LTDC::ToggleBuffers();
 }
