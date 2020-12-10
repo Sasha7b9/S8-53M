@@ -16,8 +16,6 @@ void Hardware::Init()
     Panel::Init();
 
     FDrive::Init();
-    
-    Pin::G1.Reset();
 }
 
 #ifdef __cplusplus

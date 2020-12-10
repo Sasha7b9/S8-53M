@@ -10,33 +10,23 @@
 static const uint ADDR_BANK = 0x60000000;
 
 
-uint8 * const HAL_FSMC::ADDR_FPGA = (reinterpret_cast<uint8 *>(ADDR_BANK + 0x00c80000));  // Адрес записи в аппаратные регистры. //-V566 //-V2571
-uint8 * const HAL_FSMC::ADDR_NULL = (reinterpret_cast<uint8 *>(ADDR_BANK + 0x00a00000)); //-V566 //-V2571
+uint8 * const HAL_FMC::ADDR_FPGA = (reinterpret_cast<uint8 *>(ADDR_BANK + 0x00c80000));  // Адрес записи в аппаратные регистры. //-V566 //-V2571
+uint8 * const HAL_FMC::ADDR_NULL = (reinterpret_cast<uint8 *>(ADDR_BANK + 0x00a00000)); //-V566 //-V2571
 
 
-static GPIO_InitTypeDef is =
-{
-    GPIO_PIN_0,
-    GPIO_MODE_AF_PP,
-    GPIO_PULLUP,
-    GPIO_SPEED_FREQ_VERY_HIGH,
-    GPIO_AF12_FMC
-};
-
-
-uint8 HAL_FSMC::Read(pUCHAR const address)
+uint8 HAL_FMC::Read(pUCHAR const address)
 {
     return(*(address));
 }
 
 
-void HAL_FSMC::Write(uint8 * const address, uint8 value)
+void HAL_FMC::Write(uint8 * const address, uint8 value)
 {
     *address = value;
 }
 
 
-void HAL_FSMC::Init()
+void HAL_FMC::Init()
 {
     InitFPGA();
 
@@ -44,7 +34,7 @@ void HAL_FSMC::Init()
 }
 
 
-void HAL_FSMC::InitFPGA()
+void HAL_FMC::InitFPGA()
 {
     static SRAM_HandleTypeDef gSramHandle =
     {
@@ -92,7 +82,7 @@ void HAL_FSMC::InitFPGA()
 }
 
 
-void HAL_FSMC::InitRAM()
+void HAL_FMC::InitRAM()
 {
     static SRAM_HandleTypeDef gSramHandle =
     {

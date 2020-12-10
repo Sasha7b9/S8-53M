@@ -93,8 +93,8 @@ void FPGA::ProcedureCalibration(void)
         FPGA::SetRShift(Channel::B, RShiftZero);
         FPGA::SetModeCouple(Channel::A, ModeCouple::GND);
         FPGA::SetModeCouple(Channel::B, ModeCouple::GND);
-        HAL_FSMC::Write(WR_ADD_RSHIFT_DAC1, 0); //-V2563
-        HAL_FSMC::Write(WR_ADD_RSHIFT_DAC2, 0); //-V2563
+        HAL_FMC::Write(WR_ADD_RSHIFT_DAC1, 0); //-V2563
+        HAL_FMC::Write(WR_ADD_RSHIFT_DAC2, 0); //-V2563
 
         deltaADCPercentsOld[0] = CalculateDeltaADC(Channel::A, &avrADC1old[Channel::A], &avrADC2old[Channel::A], &deltaADCold[Channel::A]);
         deltaADCPercentsOld[1] = CalculateDeltaADC(Channel::B, &avrADC1old[Channel::B], &avrADC2old[Channel::B], &deltaADCold[Channel::B]);
@@ -184,8 +184,8 @@ void FPGA::ProcedureCalibration(void)
 
     SET_BALANCE_ADC_A = shiftADC0;
     SET_BALANCE_ADC_B = shiftADC1;
-    HAL_FSMC::Write(WR_ADD_RSHIFT_DAC1, (uint8)SET_BALANCE_ADC_A); //-V2563
-    HAL_FSMC::Write(WR_ADD_RSHIFT_DAC2, (uint8)SET_BALANCE_ADC_B); //-V2563
+    HAL_FMC::Write(WR_ADD_RSHIFT_DAC1, (uint8)SET_BALANCE_ADC_A); //-V2563
+    HAL_FMC::Write(WR_ADD_RSHIFT_DAC2, (uint8)SET_BALANCE_ADC_B); //-V2563
 
     FPGA::SetRShift(Channel::A, SET_RSHIFT_A);
     FPGA::SetRShift(Channel::B, SET_RSHIFT_B);
@@ -359,27 +359,27 @@ float CalculateDeltaADC(Channel::E chan, float *avgADC1, float *avgADC2, float *
     static const int numCicles = 10;
     for(int cicle = 0; cicle < numCicles; cicle++)
     {
-        HAL_FSMC::Write(WR_START, 1);
-        while(_GET_BIT(HAL_FSMC::Read(RD_FL), 2) == 0) {}; //-V2563
+        HAL_FMC::Write(WR_START, 1);
+        while(_GET_BIT(HAL_FMC::Read(RD_FL), 2) == 0) {}; //-V2563
         FPGA::SwitchingTrig();
-        while(_GET_BIT(HAL_FSMC::Read(RD_FL), 0) == 0) {}; //-V2563
-        HAL_FSMC::Write(WR_STOP, 1); //-V2563
+        while(_GET_BIT(HAL_FMC::Read(RD_FL), 0) == 0) {}; //-V2563
+        HAL_FMC::Write(WR_STOP, 1); //-V2563
 
         for(int i = 0; i < FPGA_MAX_POINTS; i++)
         {
             if(chan == Channel::A)
             {
-                *avgADC1 += HAL_FSMC::Read(address1); //-V2564
-                *avgADC2 += HAL_FSMC::Read(address2); //-V2564
-                HAL_FSMC::Read(RD_ADC_B1); //-V2563
-                HAL_FSMC::Read(RD_ADC_B2); //-V2563
+                *avgADC1 += HAL_FMC::Read(address1); //-V2564
+                *avgADC2 += HAL_FMC::Read(address2); //-V2564
+                HAL_FMC::Read(RD_ADC_B1); //-V2563
+                HAL_FMC::Read(RD_ADC_B2); //-V2563
             }
             else
             {
-                HAL_FSMC::Read(RD_ADC_A1); //-V2563
-                HAL_FSMC::Read(RD_ADC_A2); //-V2563
-                *avgADC1 += HAL_FSMC::Read(address1); //-V2564
-                *avgADC2 += HAL_FSMC::Read(address2); //-V2564
+                HAL_FMC::Read(RD_ADC_A1); //-V2563
+                HAL_FMC::Read(RD_ADC_A2); //-V2563
+                *avgADC1 += HAL_FMC::Read(address1); //-V2564
+                *avgADC2 += HAL_FMC::Read(address2); //-V2564
             }
         }
         
@@ -402,8 +402,8 @@ void AlignmentADC(void)
     SET_BALANCE_ADC_A = shiftADC0;
     shiftADC1 = static_cast<int8>((deltaADCold[1] > 0.0F) ? (deltaADCold[1] + 0.5F) : (deltaADCold[1] - 0.5F));
     SET_BALANCE_ADC_B = shiftADC1;
-    HAL_FSMC::Write(WR_ADD_RSHIFT_DAC1, (uint8)SET_BALANCE_ADC_A); //-V2563
-    HAL_FSMC::Write(WR_ADD_RSHIFT_DAC2, (uint8)SET_BALANCE_ADC_B); //-V2563
+    HAL_FMC::Write(WR_ADD_RSHIFT_DAC1, (uint8)SET_BALANCE_ADC_A); //-V2563
+    HAL_FMC::Write(WR_ADD_RSHIFT_DAC2, (uint8)SET_BALANCE_ADC_B); //-V2563
 }
 
 
@@ -431,8 +431,8 @@ int16 CalculateAdditionRShift(Channel::E chan, Range::E range) //-V2506
         uint startTime = gTimerMS;
         const uint timeWait = 100;
 
-        HAL_FSMC::Write(WR_START, 1);
-        while(_GET_BIT(HAL_FSMC::Read(RD_FL), 2) == 0 && (gTimerMS - startTime < timeWait)) {}; //-V2563
+        HAL_FMC::Write(WR_START, 1);
+        while(_GET_BIT(HAL_FMC::Read(RD_FL), 2) == 0 && (gTimerMS - startTime < timeWait)) {}; //-V2563
         if(gTimerMS - startTime > timeWait)                 // Если прошло слишком много времени - 
         {
             return ERROR_VALUE_INT16;                       // выход с ошибкой.
@@ -442,21 +442,21 @@ int16 CalculateAdditionRShift(Channel::E chan, Range::E range) //-V2506
 
         startTime = gTimerMS;
 
-        while(_GET_BIT(HAL_FSMC::Read(RD_FL), 0) == 0 && (gTimerMS - startTime < timeWait)) {}; //-V2563
+        while(_GET_BIT(HAL_FMC::Read(RD_FL), 0) == 0 && (gTimerMS - startTime < timeWait)) {}; //-V2563
         if(gTimerMS - startTime > timeWait)                 // Если прошло слишком много времени - 
         {
             return ERROR_VALUE_INT16;                       // выход с ошибкой.
         }
 
-        HAL_FSMC::Write(WR_STOP, 1); //-V2563
+        HAL_FMC::Write(WR_STOP, 1); //-V2563
 
         uint8 *addressRead1 = chan == Channel::A ? RD_ADC_A1 : RD_ADC_B1; //-V2563
         uint8 *addressRead2 = chan == Channel::A ? RD_ADC_A2 : RD_ADC_B2; //-V2563
 
         for(int j = 0; j < FPGA_MAX_POINTS; j += 2)
         {
-            sum += HAL_FSMC::Read(addressRead1);
-            sum += HAL_FSMC::Read(addressRead2);
+            sum += HAL_FMC::Read(addressRead1);
+            sum += HAL_FMC::Read(addressRead2);
             numPoints += 2;
         }
     }
@@ -495,8 +495,8 @@ float CalculateKoeffCalibration(Channel::E chan) //-V2506
         while(gTimerMS - startTime < 20) {}
         startTime = gTimerMS;
 
-        HAL_FSMC::Write(WR_START, 1);
-        while(_GET_BIT(HAL_FSMC::Read(RD_FL), 2) == 0 && (gTimerMS - startTime > timeWait)) {}; //-V2563
+        HAL_FMC::Write(WR_START, 1);
+        while(_GET_BIT(HAL_FMC::Read(RD_FL), 2) == 0 && (gTimerMS - startTime > timeWait)) {}; //-V2563
         if(gTimerMS - startTime > timeWait)
         {
             return ERROR_VALUE_FLOAT;
@@ -505,20 +505,20 @@ float CalculateKoeffCalibration(Channel::E chan) //-V2506
         FPGA::SwitchingTrig();
         startTime = gTimerMS;
 
-        while(_GET_BIT(HAL_FSMC::Read(RD_FL), 0) == 0 && (gTimerMS - startTime > timeWait)) {}; //-V2563
+        while(_GET_BIT(HAL_FMC::Read(RD_FL), 0) == 0 && (gTimerMS - startTime > timeWait)) {}; //-V2563
         if(gTimerMS - startTime > timeWait)
         {
             return ERROR_VALUE_FLOAT;
         }
 
-        HAL_FSMC::Write(WR_STOP, 1); //-V2563
+        HAL_FMC::Write(WR_STOP, 1); //-V2563
 
         uint8 *addressRead1 = chan == Channel::A ? RD_ADC_A1 : RD_ADC_B1; //-V2563
         uint8 *addressRead2 = chan == Channel::A ? RD_ADC_A2 : RD_ADC_B2; //-V2563
 
         for(int j = 0; j < FPGA_MAX_POINTS; j += 2)
         {
-            uint8 val0 = HAL_FSMC::Read(addressRead1);
+            uint8 val0 = HAL_FMC::Read(addressRead1);
             if(val0 > AVE_VALUE + 60)
             {
                 numMAX++;
@@ -530,7 +530,7 @@ float CalculateKoeffCalibration(Channel::E chan) //-V2506
                 sumMIN += val0;
             }
 
-            uint8 val1 = HAL_FSMC::Read(addressRead2);
+            uint8 val1 = HAL_FMC::Read(addressRead2);
             if(val1 > AVE_VALUE + 60)
             {
                 numMAX++;

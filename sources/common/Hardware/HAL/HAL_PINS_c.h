@@ -58,7 +58,6 @@ struct Pin
     void Reset();
     uint Read();
 
-    static Pin G1;      //  огда равен 1, чтение диспле€, в остальных случа€х 0
     static Pin G2;
     static Pin G3;
     static Pin G5;

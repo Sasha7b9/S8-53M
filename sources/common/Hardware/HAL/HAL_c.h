@@ -98,7 +98,7 @@ struct HAL_ETH
 };
 
 
-struct HAL_FSMC 
+struct HAL_FMC 
 {
     static uint8 * const ADDR_FPGA;     // Адрес записи в альтеру
     static uint8 * const ADDR_RAM;      // Адрес записи в RAM

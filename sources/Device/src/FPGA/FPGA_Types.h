@@ -58,39 +58,39 @@
 #define FPGA_MAX_POINTS_FOR_CALCULATE 900
 
 
-#define WR_START        (HAL_FSMC::ADDR_FPGA)                 //    Запуск цикла измерения. Для запуска нужно записать 1.
-#define WR_RAZVERTKA    (HAL_FSMC::ADDR_FPGA + 4)             //    Установка частоты синхронизации. Используется в LoadTBase().
-#define WR_PRED_LOW     (HAL_FSMC::ADDR_FPGA + 5)             //    Младший байт величины предзапуска. Используется совместно с WR_PRED_HI, WR_POST_LOW, WR_POST_HI для загрузки смещения по времени в ПЛИС. Используется в LoadTShift().
-#define WR_PRED_HI      (HAL_FSMC::ADDR_FPGA + 6)             //    Старший байт величины предзапуска. Используется совместно с WR_PRED_LOW, WR_POST_LOW, WR_POST_HI для загрузки смещения по времени в ПЛИС. Используется в LoadTShift().
-#define WR_POST_LOW     (HAL_FSMC::ADDR_FPGA + 7)             //    Младший байт величины послезапуска. Используется совместно с WR_PRED_LOW, WR_PRED_HI, WR_PRED_POST для загрузки смещения по времени в ПЛИС. Используется в LoadTShift().
-#define WR_POST_HI      (HAL_FSMC::ADDR_FPGA + 8)             //    Cтарший байт величины послезапуска. Используется совместно с WR_PRED_LOW, WR_PRED_HI, WR_POST_LOW для загрузки смещения по времени в ПЛИС. Используется в LoadTShift().
+#define WR_START        (HAL_FMC::ADDR_FPGA)                 //    Запуск цикла измерения. Для запуска нужно записать 1.
+#define WR_RAZVERTKA    (HAL_FMC::ADDR_FPGA + 4)             //    Установка частоты синхронизации. Используется в LoadTBase().
+#define WR_PRED_LOW     (HAL_FMC::ADDR_FPGA + 5)             //    Младший байт величины предзапуска. Используется совместно с WR_PRED_HI, WR_POST_LOW, WR_POST_HI для загрузки смещения по времени в ПЛИС. Используется в LoadTShift().
+#define WR_PRED_HI      (HAL_FMC::ADDR_FPGA + 6)             //    Старший байт величины предзапуска. Используется совместно с WR_PRED_LOW, WR_POST_LOW, WR_POST_HI для загрузки смещения по времени в ПЛИС. Используется в LoadTShift().
+#define WR_POST_LOW     (HAL_FMC::ADDR_FPGA + 7)             //    Младший байт величины послезапуска. Используется совместно с WR_PRED_LOW, WR_PRED_HI, WR_PRED_POST для загрузки смещения по времени в ПЛИС. Используется в LoadTShift().
+#define WR_POST_HI      (HAL_FMC::ADDR_FPGA + 8)             //    Cтарший байт величины послезапуска. Используется совместно с WR_PRED_LOW, WR_PRED_HI, WR_POST_LOW для загрузки смещения по времени в ПЛИС. Используется в LoadTShift().
                                                     /**     @brief Выбор фронта/спада импульса синхронизации и режимов AUTO/RUN.
                                                             @verbatim
                                                             D0 - фронт/спад,\n
                                                             D1 - AUTO/RUN.\n
                                                             Используется в LoadTrigPolarity(). 
                                                             @endverbatim */
-#define WR_TRIG_F       (HAL_FSMC::ADDR_FPGA + 9)
-#define WR_CAL_A        (HAL_FSMC::ADDR_FPGA + 12)            //    Калибровочный коэффициент канала 1.
-#define WR_CAL_B        (HAL_FSMC::ADDR_FPGA + 13)            //    Калибровочный коэффициент канала 2.
+#define WR_TRIG_F       (HAL_FMC::ADDR_FPGA + 9)
+#define WR_CAL_A        (HAL_FMC::ADDR_FPGA + 12)            //    Калибровочный коэффициент канала 1.
+#define WR_CAL_B        (HAL_FMC::ADDR_FPGA + 13)            //    Калибровочный коэффициент канала 2.
                                                     /**     @brief Управление калибратором, пиковым детектором и рандомизатором.
                                                             @verbatim
                                                             D0 - нужно устанавливать в 1 при рандомизаторных развёртках для прореживания частоты,\n
                                                             D1 - пиковый детектор вкл./откл. Режим пикового д
                                                             D2, D3 - калибратор : D2 == 1 - 1кГц, D3 == 1 - пост, D2 == 0, D3 == 0 - ОВ
                                                             @endverbatim */
-#define WR_UPR          (HAL_FSMC::ADDR_FPGA + 14)
+#define WR_UPR          (HAL_FMC::ADDR_FPGA + 14)
                                                     /** @brief Принудительное завершение цикла измерения. 
                                                         @verbatim
                                                         Для того, чтобы изменить режим работы ПЛИС, когда идёт цикл измерений, сначала нужно заслать по адресу WR_STOP 1, потом новые установки, а затем снова дать команду WR_START.
                                                         @endverbatim */
-#define WR_STOP          (HAL_FSMC::ADDR_FPGA + 15)            
+#define WR_STOP          (HAL_FMC::ADDR_FPGA + 15)            
 
 
-#define RD_ADC_A1       (HAL_FSMC::ADDR_FPGA + 0x10)          //    Чтение из памяти АЦП канала 1 1-го байта.
-#define RD_ADC_A2       (HAL_FSMC::ADDR_FPGA + 0x11)          //    Чтение из памяти АЦП канала 1 2-го байта.
-#define RD_ADC_B1       (HAL_FSMC::ADDR_FPGA + 0x12)          //    Чтение из памяти АЦП канала 2 1-го байта.
-#define RD_ADC_B2       (HAL_FSMC::ADDR_FPGA + 0x13)          //    Чтение из памяти АЦП канала 2 2-го байта.
+#define RD_ADC_A1       (HAL_FMC::ADDR_FPGA + 0x10)          //    Чтение из памяти АЦП канала 1 1-го байта.
+#define RD_ADC_A2       (HAL_FMC::ADDR_FPGA + 0x11)          //    Чтение из памяти АЦП канала 1 2-го байта.
+#define RD_ADC_B1       (HAL_FMC::ADDR_FPGA + 0x12)          //    Чтение из памяти АЦП канала 2 1-го байта.
+#define RD_ADC_B2       (HAL_FMC::ADDR_FPGA + 0x13)          //    Чтение из памяти АЦП канала 2 2-го байта.
                                                     /**     @brief Чтение установленных флагов.
                                                             @verbatim
                                                             D0 - флаг готовности данных,\n
@@ -101,7 +101,7 @@
                                                             D5 - завершение измерения периода,\n
                                                             D6 - признак того, что нужно смещать сигналы на 1 точку в сторону. 
                                                             @endverbatim */
-#define RD_FL           (HAL_FSMC::ADDR_FPGA + 0x16)
+#define RD_FL           (HAL_FMC::ADDR_FPGA + 0x16)
 #define BIT_DATA_READY          0
 #define BIT_TRIG                1
 #define BIT_POINT_READY         3
@@ -110,20 +110,20 @@
 #define BIT_SIGN_SHIFT_POINT    6
 
 
-#define RD_LAST_RECORD_LOW  (HAL_FSMC::ADDR_FPGA + 0x17)      //    Младший байт адреса последней записи. Старший находится в RD_LAST_RECORD_HI. Используется в режиме поточечного вывода, чтобы не считывать все точки, когда пользователю не нужно 1024. Это ускоряет работу.
-#define RD_LAST_RECORD_HI   (HAL_FSMC::ADDR_FPGA + 0x18)      //    Старший байт адреса последней записи. Младший находится в RD_LAST_RECORD_LOW. Используется в режиме поточечного вывода, чтобы не считывать все точки, когда пользователю не нужно 1024. Это ускоряет работу.
-#define WR_ADD_RSHIFT_DAC2  (HAL_FSMC::ADDR_FPGA + 0x1b)      //    Дополнительное смещение АЦП 2-го канал. Т.к. один канал считывают два АЦП поочерёдно и они разбалансированы, необходимо сюда записывать значение для компенсацип разбалансировки.
-#define WR_ADD_RSHIFT_DAC1  (HAL_FSMC::ADDR_FPGA + 0x1c)      //    Дополнительное смещение АЦП 1-го канал. Т.к. один канал считывают два АЦП поочерёдно и они разбалансированы, необходимо сюда записывать значение для компенсацип разбалансировки.
+#define RD_LAST_RECORD_LOW  (HAL_FMC::ADDR_FPGA + 0x17)      //    Младший байт адреса последней записи. Старший находится в RD_LAST_RECORD_HI. Используется в режиме поточечного вывода, чтобы не считывать все точки, когда пользователю не нужно 1024. Это ускоряет работу.
+#define RD_LAST_RECORD_HI   (HAL_FMC::ADDR_FPGA + 0x18)      //    Старший байт адреса последней записи. Младший находится в RD_LAST_RECORD_LOW. Используется в режиме поточечного вывода, чтобы не считывать все точки, когда пользователю не нужно 1024. Это ускоряет работу.
+#define WR_ADD_RSHIFT_DAC2  (HAL_FMC::ADDR_FPGA + 0x1b)      //    Дополнительное смещение АЦП 2-го канал. Т.к. один канал считывают два АЦП поочерёдно и они разбалансированы, необходимо сюда записывать значение для компенсацип разбалансировки.
+#define WR_ADD_RSHIFT_DAC1  (HAL_FMC::ADDR_FPGA + 0x1c)      //    Дополнительное смещение АЦП 1-го канал. Т.к. один канал считывают два АЦП поочерёдно и они разбалансированы, необходимо сюда записывать значение для компенсацип разбалансировки.
 
-#define RD_ADDR_PERIOD_LOW_LOW  (HAL_FSMC::ADDR_FPGA + 0x19)  //    0-й байт замеренного значения частоты. Признак того, что счёт частоты завершён, находится в D4 RD_FL.
-#define RD_ADDR_PERIOD_LOW      (HAL_FSMC::ADDR_FPGA + 0x1a)  //    1-й байт замеренного значения частоты. Признак того, что счёт частоты завершён, находится в D4 RD_FL.
-#define RD_ADDR_PERIOD_MID      (HAL_FSMC::ADDR_FPGA + 0x1b)  //    2-й байт замеренного значения частоты. Признак того, что счёт частоты завершён, находится в D4 RD_FL.
-#define RD_ADDR_PERIOD_HI       (HAL_FSMC::ADDR_FPGA + 0x1c)  //    3-й байт замеренного значения частоты. Признак того, что счёт частоты завершён, находится в D4 RD_FL.
+#define RD_ADDR_PERIOD_LOW_LOW  (HAL_FMC::ADDR_FPGA + 0x19)  //    0-й байт замеренного значения частоты. Признак того, что счёт частоты завершён, находится в D4 RD_FL.
+#define RD_ADDR_PERIOD_LOW      (HAL_FMC::ADDR_FPGA + 0x1a)  //    1-й байт замеренного значения частоты. Признак того, что счёт частоты завершён, находится в D4 RD_FL.
+#define RD_ADDR_PERIOD_MID      (HAL_FMC::ADDR_FPGA + 0x1b)  //    2-й байт замеренного значения частоты. Признак того, что счёт частоты завершён, находится в D4 RD_FL.
+#define RD_ADDR_PERIOD_HI       (HAL_FMC::ADDR_FPGA + 0x1c)  //    3-й байт замеренного значения частоты. Признак того, что счёт частоты завершён, находится в D4 RD_FL.
 
 
-#define RD_ADDR_FREQ_LOW    (HAL_FSMC::ADDR_FPGA + 0x1d)      //    0-й байт замеренного значения периода. Признак того, что счёт периода завершён, находится в D5 RD_FL.
-#define RD_ADDR_FREQ_MID    (HAL_FSMC::ADDR_FPGA + 0x1e)      //    1-й байт замеренного значения периода. Признак того, что счёт периода завершён, находится в D5 RD_FL.
-#define RD_ADDR_FREQ_HI     (HAL_FSMC::ADDR_FPGA + 0x1f)      //    2-й байт замеренного значения периода. Признак того, что счёт периода завершён, находится в D5 RD_FL.
+#define RD_ADDR_FREQ_LOW    (HAL_FMC::ADDR_FPGA + 0x1d)      //    0-й байт замеренного значения периода. Признак того, что счёт периода завершён, находится в D5 RD_FL.
+#define RD_ADDR_FREQ_MID    (HAL_FMC::ADDR_FPGA + 0x1e)      //    1-й байт замеренного значения периода. Признак того, что счёт периода завершён, находится в D5 RD_FL.
+#define RD_ADDR_FREQ_HI     (HAL_FMC::ADDR_FPGA + 0x1f)      //    2-й байт замеренного значения периода. Признак того, что счёт периода завершён, находится в D5 RD_FL.
 
 struct TypeWriteAnalog { enum E
 {

@@ -845,6 +845,11 @@
               <FilePath>..\common\Hardware\HAL\HAL_EPROM_c.cpp</FilePath>
             </File>
             <File>
+              <FileName>HAL_FMC_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_FMC_c.cpp</FilePath>
+            </File>
+            <File>
               <FileName>HAL_PINS_c.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_PINS_c.h</FilePath>
@@ -853,11 +858,6 @@
               <FileName>HAL_PINS_c.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_PINS_c.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_FSMC_c.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_FSMC_c.cpp</FilePath>
             </File>
             <File>
               <FileName>HAL_TIM2_c.cpp</FileName>
@@ -1997,6 +1997,11 @@
               <FilePath>..\common\Hardware\HAL\HAL_EPROM_c.cpp</FilePath>
             </File>
             <File>
+              <FileName>HAL_FMC_c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_FMC_c.cpp</FilePath>
+            </File>
+            <File>
               <FileName>HAL_PINS_c.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_PINS_c.h</FilePath>
@@ -2005,11 +2010,6 @@
               <FileName>HAL_PINS_c.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_PINS_c.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_FSMC_c.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_FSMC_c.cpp</FilePath>
             </File>
             <File>
               <FileName>HAL_TIM2_c.cpp</FileName>

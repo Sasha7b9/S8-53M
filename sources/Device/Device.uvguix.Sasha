@@ -6,7 +6,7 @@
   <Header>### uVision Project, (C) Keil Software</Header>
 
   <PrjGuiSettings>
-    <LastAddFilePath>D:\Projects\stm32\S8-53M\sources\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc</LastAddFilePath>
+    <LastAddFilePath>D:\Projects\stm32\S8-53M\sources\common\Hardware\HAL</LastAddFilePath>
   </PrjGuiSettings>
 
   <ViewPool/>

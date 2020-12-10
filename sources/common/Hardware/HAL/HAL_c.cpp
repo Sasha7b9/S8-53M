@@ -65,7 +65,7 @@ void HAL::Init()
 
 #endif
 
-    HAL_FSMC::Init();
+    HAL_FMC::Init();
 
     HAL_TIM2::Init();
 

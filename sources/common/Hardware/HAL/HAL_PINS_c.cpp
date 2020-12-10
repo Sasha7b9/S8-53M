@@ -95,7 +95,6 @@ static PinFMC pinA19(D, 3);
 static PinFMC pinA20(D, 4);
 
 
-Pin Pin::G1;
 Pin Pin::G2;
 Pin Pin::G3;
 Pin Pin::G5;
@@ -123,7 +122,6 @@ void HAL_PINS::Init()
     pinSPI1_MOSI  .Init(PinMode::_SPI1,      PinPort::_B, PinPin::_5);
     pinSPI1_NSS   .Init(PinMode::_SPI1_NSS,  PinPort::_G, PinPin::_0);
 
-    Pin::G1.Init(PinMode::_Output, PinPort::_G, PinPin::_1);
     Pin::G2.Init(PinMode::_Output, PinPort::_G, PinPin::_2);
     Pin::G3.Init(PinMode::_Output, PinPort::_G, PinPin::_3);
     Pin::G5.Init(PinMode::_Output, PinPort::_G, PinPin::_5);

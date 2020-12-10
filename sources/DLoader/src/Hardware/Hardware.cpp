@@ -10,6 +10,4 @@
 void Hardware_Init() 
 {
     HAL::Init();
-
-    Pin::G1.Reset();
 }
