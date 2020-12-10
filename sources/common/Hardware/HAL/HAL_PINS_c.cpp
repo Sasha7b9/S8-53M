@@ -35,17 +35,29 @@ struct PinSPI1 : public Pin
 };
 
 
+struct PinOTG_HS : public Pin
+{
+    PinOTG_HS(int port, int pin);
+};
+
+
+struct PinOTG_FS : public Pin
+{
+    PinOTG_FS(int port, int pin);
+};
+
+
 static Pin pinADC3_IT;
 static Pin pinADC3_OUT;
 static Pin pinDAC;
 
-static Pin pinOTG_HS_DP;
-static Pin pinOTG_HS_DM;
-static Pin pinOTG_HS_VBUS;
+static PinOTG_HS pinOTG_HS_DP  (B, 15);
+static PinOTG_HS pinOTG_HS_DM  (B, 14);
+static PinOTG_HS pinOTG_HS_VBUS(B, 13);
 
-static Pin pinOTG_FS_DP;
-static Pin pinOTG_FS_DM;
-static Pin pinOTG_FS_VBUS;
+static PinOTG_FS pinOTG_FS_DP  (A, 12);
+static PinOTG_FS pinOTG_FS_DM  (A, 11);
+static PinOTG_FS pinOTG_FS_VBUS(A, 9);
 
 static PinSPI1 pinSPI1_SCK (A, 5);
 static PinSPI1 pinSPI1_MISO(A, 6);
@@ -126,14 +138,6 @@ void HAL_PINS::Init()
     pinADC3_OUT   .Init(PinMode::_ADC3_OUT,  PinPort::_F, PinPin::_6);
     pinADC3_IT    .Init(PinMode::_ADC3_IT,   PinPort::_C, PinPin::_11);
     pinDAC        .Init(PinMode::_DAC,       PinPort::_A, PinPin::_4);
-
-    pinOTG_HS_DP  .Init(PinMode::_OTG_HS_FS, PinPort::_B, PinPin::_15);
-    pinOTG_HS_DM  .Init(PinMode::_OTG_HS_FS, PinPort::_B, PinPin::_14);
-    pinOTG_HS_VBUS.Init(PinMode::_OTG_HS_FS, PinPort::_B, PinPin::_13);
-
-    pinOTG_FS_DP  .Init(PinMode::_OTG_FS,    PinPort::_A, PinPin::_12);
-    pinOTG_FS_DM  .Init(PinMode::_OTG_FS,    PinPort::_A, PinPin::_11);
-    pinOTG_FS_VBUS.Init(PinMode::_OTG_FS,    PinPort::_A, PinPin::_9);
 
     Pin::G2.Init(PinMode::_Output, PinPort::_G, PinPin::_2);
     Pin::G3.Init(PinMode::_Output, PinPort::_G, PinPin::_3);
@@ -248,9 +252,22 @@ PinETH::PinETH(int port, int pin) : Pin()
     Init(PinMode::_ETH, (PinPort::E)port, (PinPin::E)pin);
 }
 
+
 PinSPI1::PinSPI1(int port, int pin) : Pin()
 {
     Init(PinMode::_SPI1, (PinPort::E)port, (PinPin::E)pin);
+}
+
+
+PinOTG_HS::PinOTG_HS(int port, int pin) : Pin()
+{
+    Init(PinMode::_OTG_HS_FS, (PinPort::E)port, (PinPin::E)pin);
+}
+
+
+PinOTG_FS::PinOTG_FS(int port, int pin) : Pin()
+{
+    Init(PinMode::_OTG_FS, (PinPort::E)port, (PinPin::E)pin);
 }
 
 
