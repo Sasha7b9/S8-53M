@@ -17,7 +17,7 @@ public:
     // ”становить €ркость диспле€.
     static void SetBrightnessDisplay(int16 brightness);
 
-    static uint16 ReduceBrightness(uint16 colorValue, float newBrightness);
+    static uint ReduceBrightness(uint colorValue, float newBrightness);
 
     // modeLines - true - точками, false - точками
     static void DrawSignal(int x, uint8 data[281], bool modeLines);

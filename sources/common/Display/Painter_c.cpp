@@ -95,7 +95,7 @@ void Painter::DrawPicture(int , int , int , int , uint8 *)
 }
 
 
-uint16 Painter::ReduceBrightness(uint16 colorValue, float newBrightness)
+uint Painter::ReduceBrightness(uint colorValue, float newBrightness)
 {
     int red = static_cast<int>(R_FROM_COLOR(colorValue) * newBrightness); //-V2564
     LIMITATION(red, red, 0, 31); //-V2516
