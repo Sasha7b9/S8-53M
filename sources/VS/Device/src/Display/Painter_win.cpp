@@ -1,6 +1,7 @@
 #include "defines.h"
 #pragma warning(push, 0)
 #include "GUI/Application.h"
+#include "Settings/Settings.h"
 
 #define uint    unsigned int
 #define int8    signed char
@@ -85,10 +86,12 @@ void Color::SetCurrent(Color::E c) //-V2506
 
     current = c;
 
-    uint colorValue = Color::FromSettings(c);
-    uint8 b = colorValue & 0xFF;
-    uint8 g = (colorValue >> 8) & 0xFF;
-    uint8 r = (colorValue >> 16) & 0xFF;
+    uint colorValue = COLOR(c);
+
+    uint8 b = B_FROM_COLOR(colorValue);
+    uint8 g = G_FROM_COLOR(colorValue);
+    uint8 r = R_FROM_COLOR(colorValue);
+
     wxColour color = wxColour(r, g, b);
     Application::memDC.SetPen(wxPen(color));
 }
