@@ -105,14 +105,14 @@ void Display::Init()
 
 void Application::CreateFrame()
 {
-    Frame *frame = new Frame("");
+    Frame *frame = new Frame(""); //-V2511
 
-    wxBoxSizer *sizer = new wxBoxSizer(wxHORIZONTAL);
-    wxBoxSizer* vSizer = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer *sizer = new wxBoxSizer(wxHORIZONTAL); //-V2511
+    wxBoxSizer* vSizer = new wxBoxSizer(wxVERTICAL); //-V2511
     sizer->AddSpacer(0);
     vSizer->AddSpacer(20);
     sizer->Add(vSizer);
-    screen = new Screen(frame);
+    screen = new Screen(frame); //-V2511
 
     vSizer->Add(screen);
 

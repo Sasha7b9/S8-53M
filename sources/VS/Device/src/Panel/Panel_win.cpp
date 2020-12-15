@@ -67,7 +67,7 @@ void Application::CreateButtons(Frame *frame)
 
 void Application::CreateButton(Key::E key, Frame *frame, const wxPoint &pos, const wxSize &size)
 {
-    wxButton *button = new wxButton(frame, static_cast<wxWindowID>(key), "", /*Key(key).Name(), */ pos, size);
+    wxButton *button = new wxButton(frame, static_cast<wxWindowID>(key), "", /*Key(key).Name(), */ pos, size); //-V2511
 
     button->Connect(static_cast<wxWindowID>(key), wxEVT_LEFT_DOWN, wxCommandEventHandler(Frame::OnDown));
     button->Connect(static_cast<wxWindowID>(key), wxEVT_LEFT_UP, wxCommandEventHandler(Frame::OnUp));
@@ -117,7 +117,7 @@ void Application::CreateGovernors(Frame *frame)
 
 void Application::CreateGovernor(Key::E key, Frame *frame, const wxPoint &pos)
 {
-    governors[key] = new GovernorGUI(frame, pos, key);
+    governors[key] = new GovernorGUI(frame, pos, key); //-V2511
 }
 
 

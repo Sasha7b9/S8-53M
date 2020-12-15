@@ -24,9 +24,9 @@ static ConsoleSCPI *self = nullptr;
 
 ConsoleSCPI::ConsoleSCPI(wxFrame *parent) : wxFrame(parent, wxID_ANY, wxT("SCPI"))
 {
-    text = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, { 600, 300 }, wxTE_MULTILINE | wxTE_READONLY);
+    text = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, { 600, 300 }, wxTE_MULTILINE | wxTE_READONLY); //-V2511
 
-    line = new wxTextCtrl(this, ID_LINE, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
+    line = new wxTextCtrl(this, ID_LINE, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER); //-V2511
     line->SetFocus();
 
     wxFont font(11, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false, wxT("Courier New"));
@@ -98,7 +98,7 @@ ConsoleSCPI *ConsoleSCPI::Self()
 {
     if (!self)
     {
-        self = new ConsoleSCPI(nullptr);
+        self = new ConsoleSCPI(nullptr); //-V2511
     }
 
     return self;
