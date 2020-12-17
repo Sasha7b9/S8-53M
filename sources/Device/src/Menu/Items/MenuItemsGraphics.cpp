@@ -47,7 +47,7 @@ static void DrawGovernorChoiceColorFormulaHiPart(const Item *item, int x, int y,
     Color color = IS_COLOR_SCHEME_WHITE_LETTERS ? Color::WHITE : Color::BLACK;
     HLine().Draw(y + 1, x, x + width + 3, Color::BorderMenu());
 
-    item->DrawVolumeButton(x + 1, y + 2, width + 2, Item::HEIGHT_VALUE + 3, 2, Color::MenuItem(), Color::MenuItemBrighter(), Color::MenuItemLessBright(), pressed);
+    item->DrawVolumeButton(x + 1, y + 2, width + 2, Item::HEIGHT_VALUE + 3, 2, Color::MENU_ITEM, Color::MenuItemBrighter(), Color::MenuItemLessBright(), pressed);
 
     Text(item->Title()).Draw(x + 6 + delta, y + 6 + delta, color);
     
@@ -434,7 +434,7 @@ void GovernorColor::DrawOpened(int x, int y) const
     Color_Init(OwnData()->colorType);
     Rectangle(Item::WIDTH + delta + 2, Item::HEIGHT + 2).Draw(x - 1, y - 1, Color::BLACK);
     Rectangle(Item::WIDTH + delta, Item::HEIGHT).Draw(x, y, Color::MENU_TITLE);
-    DrawVolumeButton(x + 1, y + 1, Item::WIDTH_VALUE + 2 + delta, Item::HEIGHT_VALUE + 3, 2, Color::MenuItem(), Color::MenuItemBrighter(), Color::MenuItemLessBright(), IsPressed());
+    DrawVolumeButton(x + 1, y + 1, Item::WIDTH_VALUE + 2 + delta, Item::HEIGHT_VALUE + 3, 2, Color::MENU_ITEM, Color::MenuItemBrighter(), Color::MenuItemLessBright(), IsPressed());
     HLine().Draw(y + Item::HEIGHT / 2 + 2, x, x + Item::WIDTH + delta, Color::MENU_TITLE);
     Text(Title()).DrawInCenterRect(x + (IsPressed() ? 2 : 1), y + (IsPressed() ? 2 : 1), Item::WIDTH + delta, Item::HEIGHT / 2 + 2, Color::WHITE);
     DrawValue(x + 1, y + 19, delta);
@@ -657,8 +657,8 @@ void Button::Draw(int x, int y, bool) const
 
     HLine().Draw(y + 1, x, x + Item::WIDTH, Color::MENU_TITLE);
     Color color = Color::WHITE;
-    Region(Item::WIDTH - 2, Item::HEIGHT - 2).Fill(x + 1, y + 2, Color::MenuItem());
-    DrawVolumeButton(x + 4, y + 5, Item::WIDTH - 8, Item::HEIGHT - 8, 3, Color::MenuItem(), Color::MenuItemBrighter(), Color::MenuItemLessBright(), pressed);
+    Region(Item::WIDTH - 2, Item::HEIGHT - 2).Fill(x + 1, y + 2, Color::MENU_ITEM);
+    DrawVolumeButton(x + 4, y + 5, Item::WIDTH - 8, Item::HEIGHT - 8, 3, Color::MENU_ITEM, Color::MenuItemBrighter(), Color::MenuItemLessBright(), pressed);
 
     int delta = 2;
     
@@ -691,7 +691,7 @@ void Page::Draw(int x, int y, bool) const
 {
     bool isPressed = IsPressed();
     HLine().Draw(y + 1, x, x + Item::WIDTH, Color::BorderMenu());
-    DrawVolumeButton(x + 1, y + 2, Item::WIDTH - 2, Item::HEIGHT - 2, 2, Color::MenuItem(), Color::MenuItemBrighter(), Color::MenuItemLessBright(), isPressed);
+    DrawVolumeButton(x + 1, y + 2, Item::WIDTH - 2, Item::HEIGHT - 2, 2, Color::MENU_ITEM, Color::MenuItemBrighter(), Color::MenuItemLessBright(), isPressed);
     Color colorText = Color::BLACK;
     int delta = 0;
     if(isPressed)

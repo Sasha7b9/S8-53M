@@ -57,8 +57,6 @@ struct Color
 
     static Color Trig();
 
-    static Color MenuItem()            { return Color::MENU_ITEM; }
-
     // ÷вет окантовки меню.
     static Color BorderMenu()          { return Color::MENU_TITLE; }
 
