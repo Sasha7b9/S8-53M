@@ -34,18 +34,30 @@ struct Color {
     static void ResetFlash();
 
     void SetAsCurrent();
+
     static Color GetCurrent() { return current; };
     static Color Channel(Channel::E chan);
     static Color Cursors(Channel::E cnan);
     static Color MenuField();
+
+
+    // Чуть менее светлый цвет, чем цвет элемента меню. Используется для создания эффекта объёма.
+    static Color MenuItemLessBright()  {  return Color::MENU_ITEM_DARK;  }
+    
     // Чуть менее светлый цвет, чем цвет заголовка страницы. Используется для создания эффекта объёма.
     static Color MenuTitleLessBright();
     static Color Trig();
     static Color MenuTitle();
     static Color MenuItem();
-    static Color BorderMenu();                   // Цвет окантовки меню.
-    static Color Contrast(const Color &color);       // Возвращает цвет, контрастный к color. Может быть белым или чёрным.
-    static Color LightShadingText();             // Светлый цвет в тени.
+
+    // Цвет окантовки меню.
+    static Color BorderMenu();
+
+    // Возвращает цвет, контрастный к color. Может быть белым или чёрным.
+    static Color Contrast(const Color &color);
+
+    // Светлый цвет в тени.
+    static Color LightShadingText();
     static Color FILL;
     static Color BACK;
 
@@ -58,8 +70,6 @@ private:
 };
 
 
-// Чуть менее светлый цвет, чем цвет элемента меню. Используется для создания эффекта объёма.
-#define ColorMenuItemLessBright()   Color::MENU_ITEM_DARK
 // Чуть более светлый цвет, чем цвет заголовка страницы. Используется для создания эффекта объёма.
 #define ColorMenuTitleBrighter()    Color::MENU_TITLE_BRIGHT
 // Чуть более светлый цвет, чем цвет элемента меню. Используется для создания эффекта объёма.
@@ -82,7 +92,7 @@ struct ColorType
     bool    alreadyUsed;
 };
 
-void Color_Log(const Color &color);           // Вывести в лог значение цвета.
+
 void Color_BrightnessChange(ColorType *colorType, int delta);
 void Color_SetBrightness(ColorType *colorType, float brightness);
 void Color_Init(ColorType *colorType);
