@@ -49,9 +49,6 @@ public:
 
     static void OpenItemTime();
 
-    // Возвращает адрес открытого элемента меню.
-    static const Item *OpenedItem();
-
     // Возвращает адрес текущего элемента меню (текущим, как правило, является элемент, кнопка которого была нажата последней.
     static const Item *CurrentItem();
     static bool IsCurrentItem(const Item *item);

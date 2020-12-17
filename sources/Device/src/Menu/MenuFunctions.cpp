@@ -6,12 +6,6 @@
 #include "Settings/Settings.h"
 
 
-const Item* Menu::OpenedItem()
-{
-    return PageMain::self->RetLastOpened();
-}
-
-
 const Item* Menu::CurrentItem()
 {
     const Item *lastOpened = PageMain::self->RetLastOpened();
@@ -32,7 +26,7 @@ bool Menu::IsCurrentItem(const Item *item)
 
 void Menu::CloseOpenedItem()
 {
-    const Item *item = OpenedItem();
+    const Item *item = Item::Opened();
     if(item->IsPage())
     {
         if (((const Page *)item)->IsPageSB())                                       // Для страницы малых кнопок //-V2533
@@ -62,5 +56,5 @@ void Menu::CloseOpenedItem()
 
 NamePage::E Menu::GetNameOpenedPage()
 {
-    return OpenedItem()->ReinterpretToPage()->GetName();
+    return Item::Opened()->ReinterpretToPage()->GetName();
 }

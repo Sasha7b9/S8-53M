@@ -430,7 +430,7 @@ static void StartDown()
 
 static void PowerDown()
 {
-    ((Page *)Menu::OpenedItem())->ShortPressOnItem(0); //-V2533 //-V2567
+    ((Page *)Item::Opened())->ShortPressOnItem(0); //-V2533 //-V2567
     Settings::Save();
     Log_DisconnectLoggerUSB();
     Panel::TransmitData(0x04);           // Посылаем команду выключения

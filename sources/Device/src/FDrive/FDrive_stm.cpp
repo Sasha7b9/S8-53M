@@ -374,7 +374,7 @@ void FDrive::ChangeState()
     {
         if (Menu::GetNameOpenedPage() == NamePage::SB_FileManager)
         {
-            ((Page *)Menu::OpenedItem())->ShortPressOnItem(0); //-V2533 //-V2567
+            ((Page *)Item::Opened())->ShortPressOnItem(0); //-V2533 //-V2567
         }
     }
     else if (FLASH_AUTOCONNECT) //-V2516

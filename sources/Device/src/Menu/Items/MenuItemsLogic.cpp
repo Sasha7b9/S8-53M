@@ -4,6 +4,7 @@
 #include "common/Hardware/HAL/HAL_c.h"
 #include "common/Utils/Math_c.h"
 #include "Menu/Menu.h"
+#include "Menu/Pages/Definition.h"
 #include "Utils/GlobalFunctions.h"
 
 int8 Item::gCurDigit = 0;
@@ -326,4 +327,10 @@ char Item::GetSymbolForGovernor() const
     }
 
     return Symbol::S8::GOVERNOR_SHIFT_0;
+}
+
+
+const Item *Item::Opened()
+{
+    return PageMain::self->RetLastOpened();
 }

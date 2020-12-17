@@ -59,9 +59,9 @@ static void DrawHintItem(int x, int y, int width)
 
 void Menu::Draw()
 {
-    if(Menu::IsShown() || !OpenedItem()->IsPage())
+    if(Menu::IsShown() || !Item::Opened()->IsPage())
     {
-        const Item *item = OpenedItem();
+        const Item *item = Item::Opened();
         if(Menu::IsShown())
         {
             if (item->IsPage())

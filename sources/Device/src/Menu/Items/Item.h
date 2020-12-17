@@ -70,6 +70,9 @@ public:
 
     void CalculatePositionGovernor(int delta);
 
+    // Возвращает открытый элемент меню
+    static const Item *Opened();
+
     bool IsPage() const          { return data->type == TypeItem::Page; }
     bool IsChoice() const        { return data->type == TypeItem::Choice; }
     bool IsChoiceReg() const     { return data->type == TypeItem::ChoiceReg; }

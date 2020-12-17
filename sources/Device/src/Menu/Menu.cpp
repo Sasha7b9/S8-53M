@@ -294,7 +294,7 @@ char* Menu::StringNavigation(char buffer[100])
         buffer[0] = 0;
         const char *titles[10] = {0};
         int numTitle = 0;
-        const Item *item = OpenedItem();
+        const Item *item = Item::Opened();
         if(IsMainPage(item))
         {
             return 0;
@@ -371,7 +371,7 @@ void Menu::ProcessingShortPressureButton()
             }
             else                                                        // Если меню не показано.
             {
-                NamePage::E name = ((const Page *)OpenedItem())->GetName(); //-V2533
+                NamePage::E name = ((const Page *)Item::Opened())->GetName(); //-V2533
                 if(button == Key::ChannelA && name == NamePage::ChannelA)
                 {
                     SET_ENABLED_A = !sChannel_Enabled(Channel::A);
@@ -447,10 +447,10 @@ void Menu::ProcessingRegulatorSet()
         return;
     }
 
-    if (IsShown() || !OpenedItem()->IsPage())
+    if (IsShown() || !Item::Opened()->IsPage())
     {
         const Item *item = CurrentItem();
-        if (OpenedItem()->IsPage() && (item->IsChoiceReg() || item->IsGovernor() || item->IsIP() || item->IsMAC()))
+        if (Item::Opened()->IsPage() && (item->IsChoiceReg() || item->IsGovernor() || item->IsIP() || item->IsMAC()))
         {
             if (angleRegSet > stepAngleRegSet || angleRegSet < -stepAngleRegSet)
             {
@@ -461,7 +461,7 @@ void Menu::ProcessingRegulatorSet()
         }
         else
         {
-            item = OpenedItem();
+            item = Item::Opened();
             if (IsMinimize())
             {
                 CurrentPageSBregSet(angleRegSet);
@@ -557,8 +557,8 @@ bool Menu::NeedForFireSetLED()    // Возвращает true, если лампочка УСТАНОВКА до
         return true;
     }
 
-    if (OpenedItem()->IsChoice()  ||
-        (OpenedItem()->IsPage() && (OpenedItem()->ReinterpretToPage()->NumSubPages() > 1)))
+    if (Item::Opened()->IsChoice()  ||
+        (Item::Opened()->IsPage() && (Item::Opened()->ReinterpretToPage()->NumSubPages() > 1)))
     {
         return true;
     }
@@ -662,13 +662,13 @@ void Menu::Show(bool show)
 
 bool Menu::IsMinimize()
 {
-    return OpenedItem()->IsPage() && ((const Page *)OpenedItem())->GetName() >= NamePage::SB_Curs; //-V2533
+    return Item::Opened()->IsPage() && ((const Page *)Item::Opened())->GetName() >= NamePage::SB_Curs; //-V2533
 }
 
 
 void Menu::CurrentPageSBregSet(int angle)
 {
-    const Page *page = OpenedItem()->ReinterpretToPage();
+    const Page *page = Item::Opened()->ReinterpretToPage();
     if (page->OwnData()->funcRegSetSB)
     {
         page->OwnData()->funcRegSetSB(angle);
