@@ -98,13 +98,13 @@ void Painter::DrawPicture(int , int , int , int , uint8 *)
 
 uint Painter::ReduceBrightness(uint colorValue, float newBrightness)
 {
-    uint8 red = static_cast<uint8>(R_FROM_COLOR(colorValue) * newBrightness); //-V2564
+    int red = static_cast<int>(R_FROM_COLOR(colorValue) * newBrightness); //-V2564
     LIMITATION(red, red, 0, 31); //-V2516
-    uint8 green = static_cast<uint8>(G_FROM_COLOR(colorValue) * newBrightness); //-V2564
+    int green = static_cast<int>(G_FROM_COLOR(colorValue) * newBrightness); //-V2564
     LIMITATION(green, green, 0, 63); //-V2516
-    uint8 blue = static_cast<uint8>(B_FROM_COLOR(colorValue) * newBrightness); //-V2564
+    int blue = static_cast<int>(B_FROM_COLOR(colorValue) * newBrightness); //-V2564
     LIMITATION(blue, blue, 0, 31); //-V2516
-    return Color::Make(red, green, blue);
+    return Color::Make((uint8)red, (uint8)green, (uint8)blue);
 }
 
 

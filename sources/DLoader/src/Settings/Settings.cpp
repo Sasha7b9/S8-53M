@@ -13,22 +13,22 @@ static const Settings defaultSettings =
         100,                        // brightness
         20,                         // brightnessGrid
         {
-            MAKE_COLOR(0, 0, 0),
-            MAKE_COLOR(31, 63, 31),
-            MAKE_COLOR(15, 31, 15),
-            MAKE_COLOR(1, 50, 31),
-            MAKE_COLOR(0, 63, 0),
-            MAKE_COLOR(26, 54, 26),
-            MAKE_COLOR(31, 44, 0),
-            MAKE_COLOR(15, 22, 0),
-            MAKE_COLOR(31, 63, 0),
-            MAKE_COLOR(26, 34, 0),
-            MAKE_COLOR(13, 17, 0),
-            MAKE_COLOR(31, 51, 0),
-            MAKE_COLOR(0, 0, 0),
-            MAKE_COLOR(0, 0, 0),
-            MAKE_COLOR(1, 40, 25),
-            MAKE_COLOR(0, 51, 0)
+            Color::Make(0, 0, 0),
+            Color::Make(31, 63, 31),
+            Color::Make(15, 31, 15),
+            Color::Make(1, 50, 31),
+            Color::Make(0, 63, 0),
+            Color::Make(26, 54, 26),
+            Color::Make(31, 44, 0),
+            Color::Make(15, 22, 0),
+            Color::Make(31, 63, 0),
+            Color::Make(26, 34, 0),
+            Color::Make(13, 17, 0),
+            Color::Make(31, 51, 0),
+            Color::Make(0, 0, 0),
+            Color::Make(0, 0, 0),
+            Color::Make(1, 40, 25),
+            Color::Make(0, 51, 0)
         },
         ModeDrawSignal::Lines,      // modeDrawSignal
         TypeGrid::_1,               // typeGrid
