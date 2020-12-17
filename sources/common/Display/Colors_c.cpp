@@ -115,42 +115,42 @@ void Color_SetBrightness(ColorType *colorType, float brightness)
     {
         for (int i = 0; i < delta; i++)
         {
-            Color_BrightnessChange(colorType, 1);
+            colorType->BrightnessChange(1);
         }
     }
     else
     {
         for (int i = 0; i < -delta; i++)
         {
-            Color_BrightnessChange(colorType, -1);
+            colorType->BrightnessChange(-1);
         }
     }
 }
 
 
 
-void Color_BrightnessChange(ColorType *colorType, int delta) //-V2506
+void ColorType::BrightnessChange(int delta) //-V2506
 {
-    if ((delta > 0 && colorType->brightness == 1.0F) || (delta < 0 && colorType->brightness == 0.0F)) //-V2550 //-V550
+    if ((delta > 0 && brightness == 1.0F) || (delta < 0 && brightness == 0.0F)) //-V2550 //-V550
     {
         return;
     }
 
     int sign = Math::Sign(delta);
 
-    LIMITATION(colorType->brightness, colorType->brightness + sign * 0.01F, 0.0F, 1.0F); //-V2516 //-V2564
+    LIMITATION(brightness, brightness + sign * 0.01F, 0.0F, 1.0F); //-V2516 //-V2564
 
-    colorType->red += sign * colorType->stepRed; //-V2564
-    colorType->green += sign * colorType->stepGreen; //-V2564
-    colorType->blue += sign * colorType->stepBlue; //-V2564
+    red += sign * stepRed; //-V2564
+    green += sign * stepGreen; //-V2564
+    blue += sign * stepBlue; //-V2564
 
-    SetColor(colorType);
+    SetColor(this);
 
-    if (colorType->stepRed < 0.01F && colorType->stepGreen < 0.01F && colorType->stepBlue < 0.01F)
+    if (stepRed < 0.01F && stepGreen < 0.01F && stepBlue < 0.01F)
     {
-        colorType->stepRed = 0.31F;
-        colorType->stepGreen = 0.63F;
-        colorType->stepBlue = 0.31F;
+        stepRed = 0.31F;
+        stepGreen = 0.63F;
+        stepBlue = 0.31F;
     }
 }
 

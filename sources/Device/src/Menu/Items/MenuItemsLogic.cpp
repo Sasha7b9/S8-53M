@@ -258,7 +258,7 @@ void GovernorColor::ChangeValue(int delta)
     ColorType *ct = OwnData()->colorType;
     if (ct->currentField == 0)
     {
-        Color_BrightnessChange(ct, delta);
+        ct->BrightnessChange(delta);
     }
     else
     {
