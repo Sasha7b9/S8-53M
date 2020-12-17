@@ -72,19 +72,12 @@ Color Color::Contrast(const Color &color)
 }
 
 
-
-Color Color::LightShadingText() //-V524
-{
-    return Color::MENU_TITLE;
-}
-
-
-
 void Color_Log(Color color)
 {
     uint colorValue = set.display.colors[color.value];
     LOG_WRITE("%s   r=%d, g=%d, b=%d", NameColor(color), R_FROM_COLOR(colorValue), G_FROM_COLOR(colorValue), B_FROM_COLOR(colorValue));
 }
+
 
 /*
     Алгоритм изменения яркости.
@@ -96,9 +89,6 @@ void Color_Log(Color color)
     2. При изменнении яркости на 1% менять интенсивность каждого канала на Шаг, расчитанный в предыдущем пункте.
     3. При изменения интенсивности цветового канала пересчитывать яркость и шаг изменения каждого канала.
 */
-
-
-
 static void ColorType_CalcSteps(ColorType *colorType)
 {
     colorType->stepRed = colorType->red / (colorType->brightness * 100.0F);
