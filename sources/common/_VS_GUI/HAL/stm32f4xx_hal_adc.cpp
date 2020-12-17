@@ -4,13 +4,13 @@
 
 HAL_StatusTypeDef HAL_ADC_Init(ADC_HandleTypeDef *)
 {
-    return HAL_ERROR;
+    return HAL_OK;
 }
 
 
 HAL_StatusTypeDef HAL_ADC_Start_IT(ADC_HandleTypeDef *)
 {
-    return HAL_ERROR;
+    return HAL_OK;
 }
 
 
@@ -22,5 +22,5 @@ uint32_t HAL_ADC_GetValue(ADC_HandleTypeDef *)
 
 HAL_StatusTypeDef HAL_ADC_ConfigChannel(ADC_HandleTypeDef *, ADC_ChannelConfTypeDef *)
 {
-    return HAL_ERROR;
+    return HAL_OK;
 }

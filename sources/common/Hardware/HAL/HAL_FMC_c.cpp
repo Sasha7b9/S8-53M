@@ -36,6 +36,7 @@ void HAL_FMC::Init()
 
 void HAL_FMC::InitFPGA()
 {
+#ifndef WIN32
     static SRAM_HandleTypeDef gSramHandle =
     {
         FMC_NORSRAM_DEVICE, //-V2571
@@ -79,6 +80,7 @@ void HAL_FMC::InitFPGA()
     hsram->Extended->BWTR[hsram->Init.NSBank] = 0x0FFFFFFFU;
 
     __FMC_NORSRAM_ENABLE(hsram->Instance, hsram->Init.NSBank);
+#endif
 }
 
 

@@ -91,8 +91,9 @@ file(GLOB HARDWARE          ../../Device/src/Hardware/EPROM.h
                             ../../Device/src/Hardware/RAM.*
                                 ../../common/Hardware/Sound_c.*
                                 ../../common/Hardware/Timer_c.*)
-file(GLOB HARDWARE_HAL          ../../common/Hardware/HAL/HAL_c.h
+file(GLOB HARDWARE_HAL          ../../common/Hardware/HAL/HAL_c.*
                                 ../../common/Hardware/HAL/HAL_PINS_c.*
+                                ../../common/Hardware/HAL/HAL_ADC3_c.cpp
                                 ../../common/Hardware/HAL/HAL_CRC_c.cpp
                                 ../../common/Hardware/HAL/HAL_DAC_c.cpp
                                 ../../common/Hardware/HAL/HAL_EPROM_c.cpp
@@ -101,10 +102,9 @@ file(GLOB HARDWARE_HAL          ../../common/Hardware/HAL/HAL_c.h
                                 ../../common/Hardware/HAL/HAL_OTP_c.cpp
                                 ../../common/Hardware/HAL/HAL_RTC_c.cpp
                                 ../../common/Hardware/HAL/HAL_TIM2_c.cpp
+                                ../../common/Hardware/HAL/HAL_TIM6_c.cpp
                                 ../../common/Hardware/HAL/HAL_TIM7_c.cpp
-                                ../../common/Hardware/HAL/HAL_USBD_c.cpp
-                                         src/Hardware/*.h
-                                         src/Hardware/HAL/*.cpp)
+                                ../../common/Hardware/HAL/HAL_USBD_c.cpp)
 file(GLOB HARDWARE_USBD     ../../Device/src/Hardware/USBD/usbd_desc.cpp
                             ../../Device/src/Hardware/USBD/usbd_cdc_interface.*)
 file(GLOB MENU              ../../Device/src/Menu/*.h
