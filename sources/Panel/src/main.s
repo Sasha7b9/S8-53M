@@ -1,16 +1,16 @@
+    EXPORT main
+        
+    IMPORT _ZN3HAL4InitEv
+    IMPORT _ZN8Keyboard4InitEv
+    IMPORT _ZN8Keyboard6UpdateEv
+    IMPORT _ZN9Interface6UpdateEv
+
     THUMB
 
     AREA ||i.main||, CODE, READONLY, ALIGN=1
 
 main    PROC
-    
-    EXPORT main
-    
-    IMPORT _ZN3HAL4InitEv
-    IMPORT _ZN8Keyboard4InitEv
-    IMPORT _ZN8Keyboard6UpdateEv
-    IMPORT _ZN9Interface6UpdateEv
-    
+   
     BL       _ZN3HAL4InitEv             ; HAL::Init()
     BL       _ZN8Keyboard4InitEv        ; Keyboard::Init()
 L1_10
