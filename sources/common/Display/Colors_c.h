@@ -56,7 +56,7 @@ struct Color
     bool operator==(const Color &rhs) { return (index == rhs.index); }
     bool operator!=(const Color &rhs) { return (index != rhs.index); }
 
-    static uint Make(uint8 r, uint8 g, uint8 b)  { return (reinterpret_cast<uint>(((b)) + (((g)) << 8) + ((reinterpret_cast<uint>(r)) << 16))); }
+    static uint Make(uint8 r, uint8 g, uint8 b)  { return (static_cast<uint>(((b)) + (((g)) << 8) + (((r)) << 16))); }
 
 private:
 

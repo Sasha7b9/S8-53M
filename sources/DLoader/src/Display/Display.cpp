@@ -176,7 +176,7 @@ static void DrawBigMNIPI(void)
     int numColor = 0;
     LIMITATION(numColor, static_cast<int>(static_cast<float>(time) / (float)TIME_WAIT * 13.0F), 0, 13); //-V2516
 
-    Color((uint8)(numColor + 2)).SetAsCurrent();
+    Color(static_cast<uint8>(numColor + 2)).SetAsCurrent();
 
     float amplitude = 3.0F - (static_cast<float>(time) / (TIME_WAIT / 2.0F)) * 3; //-V2564
     LIMIT_BELOW(amplitude, 0.0F);

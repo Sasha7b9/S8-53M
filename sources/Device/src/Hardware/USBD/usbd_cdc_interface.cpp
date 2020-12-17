@@ -21,10 +21,10 @@ static USBD_CDC_LineCodingTypeDef LineCoding =
 static uint8 UserRxBuffer[APP_RX_DATA_SIZE];/* Received Data over USB are stored in this buffer */
 
 
-static int8 CDC_Itf_Init     ();
-static int8 CDC_Itf_DeInit   ();
-static int8 CDC_Itf_Control  (uint8 cmd, uint8* pbuf, uint16 length);
-static int8 CDC_Itf_Receive  (uint8* pbuf, uint *Len);
+static int8_t CDC_Itf_Init     ();
+static int8_t CDC_Itf_DeInit   ();
+static int8_t CDC_Itf_Control  (uint8_t cmd, uint8_t* pbuf, uint16_t length);
+static int8_t CDC_Itf_Receive  (uint8_t* pbuf, uint32_t *Len);
 
 
 USBD_CDC_ItfTypeDef USBD_CDC_fops = 
@@ -46,7 +46,7 @@ static void SetAttributeConnected()
 
 
 
-static int8 CDC_Itf_Init(void)
+static int8_t CDC_Itf_Init(void)
 {
     USBD_CDC_SetRxBuffer(reinterpret_cast<USBD_HandleTypeDef *>(HAL_USBD::handle), UserRxBuffer); //-V2571
     Timer::Enable(TypeTimer::Temp, 100, SetAttributeConnected);    // GOVNOCODE Задержка введена для того, чтобы не было ложных срабатываний в 
@@ -55,7 +55,7 @@ static int8 CDC_Itf_Init(void)
 
 
 
-static int8 CDC_Itf_DeInit(void)
+static int8_t CDC_Itf_DeInit(void)
 {
     VCP::cableIsConnected = false;
     VCP::connectToHost = false;
@@ -65,7 +65,7 @@ static int8 CDC_Itf_DeInit(void)
 
 
 
-static int8 CDC_Itf_Control (uint8 cmd, uint8 *pbuf, uint16)
+static int8_t CDC_Itf_Control (uint8_t cmd, uint8_t *pbuf, uint16_t)
 { 
     switch (cmd)
     {
@@ -125,7 +125,7 @@ static int8 CDC_Itf_Control (uint8 cmd, uint8 *pbuf, uint16)
 
 
 
-static int8 CDC_Itf_Receive(uint8* buffer, uint *length) //-V2009 //-V2558
+static int8_t CDC_Itf_Receive(uint8_t * buffer, uint32_t *length) //-V2009 //-V2558
 {
     SCPI::AddNewData(buffer, *length);
 
