@@ -57,12 +57,10 @@ struct Color
 
     static Color Trig();
 
-    static Color MenuTitle()           { return Color::MENU_TITLE; }
-
     static Color MenuItem()            { return Color::MENU_ITEM; }
 
     // Цвет окантовки меню.
-    static Color BorderMenu()          { return Color::MenuTitle(); }
+    static Color BorderMenu()          { return Color::MENU_TITLE; }
 
     // Возвращает цвет, контрастный к color. Может быть белым или чёрным.
     static Color Contrast(const Color &color);

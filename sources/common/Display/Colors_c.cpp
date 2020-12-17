@@ -75,7 +75,7 @@ Color Color::Contrast(const Color &color)
 
 Color Color::LightShadingText() //-V524
 {
-    return Color::MenuTitle();
+    return Color::MENU_TITLE;
 }
 
 

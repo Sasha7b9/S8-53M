@@ -433,9 +433,9 @@ void GovernorColor::DrawOpened(int x, int y) const
     x -= delta;
     Color_Init(OwnData()->colorType);
     Rectangle(Item::WIDTH + delta + 2, Item::HEIGHT + 2).Draw(x - 1, y - 1, Color::BLACK);
-    Rectangle(Item::WIDTH + delta, Item::HEIGHT).Draw(x, y, Color::MenuTitle());
+    Rectangle(Item::WIDTH + delta, Item::HEIGHT).Draw(x, y, Color::MENU_TITLE);
     DrawVolumeButton(x + 1, y + 1, Item::WIDTH_VALUE + 2 + delta, Item::HEIGHT_VALUE + 3, 2, Color::MenuItem(), Color::MenuItemBrighter(), Color::MenuItemLessBright(), IsPressed());
-    HLine().Draw(y + Item::HEIGHT / 2 + 2, x, x + Item::WIDTH + delta, Color::MenuTitle());
+    HLine().Draw(y + Item::HEIGHT / 2 + 2, x, x + Item::WIDTH + delta, Color::MENU_TITLE);
     Text(Title()).DrawInCenterRect(x + (IsPressed() ? 2 : 1), y + (IsPressed() ? 2 : 1), Item::WIDTH + delta, Item::HEIGHT / 2 + 2, Color::WHITE);
     DrawValue(x + 1, y + 19, delta);
 }
@@ -466,7 +466,7 @@ void Choice::DrawOpened(int x, int y) const
     Rectangle(Item::TITLE_WIDTH + 2, height + 3).Draw(x - 1, y - 1, Color::BACK);
     
     DrawGovernorChoiceColorFormulaHiPart(this, x - 1, y - 1, IsPressed(), true);
-    Rectangle(Item::TITLE_WIDTH + 1, height + 1).Draw(x - 1, y, Color::MenuTitle());
+    Rectangle(Item::TITLE_WIDTH + 1, height + 1).Draw(x - 1, y, Color::MENU_TITLE);
  
     HLine().Draw(y + Item::OPENED_HEIGHT_TITLE - 1, x, x + Item::OPENED_WIDTH);
     DrawVolumeButton(x, y + Item::OPENED_HEIGHT_TITLE, Item::OPENED_WIDTH - 1, height - Item::OPENED_HEIGHT_TITLE, 1, Color::BLACK, Color::MenuTitleBrighter(), Color::MenuTitleLessBright(), false);
@@ -492,7 +492,7 @@ void TimeItem::DrawOpened(int x, int y) const
     Rectangle(width + 2, height + 3).Draw(x - 1, y - 1, Color::BACK);
     DrawGovernorChoiceColorFormulaHiPart(this, x - 1, y - 1, IsPressed(), true);
 
-    Rectangle(width + 1, height + 1).Draw(x - 1, y, Color::MenuTitle());
+    Rectangle(width + 1, height + 1).Draw(x - 1, y, Color::MENU_TITLE);
 
     HLine().Draw(y + Item::OPENED_HEIGHT_TITLE - 1, x, x + Item::OPENED_WIDTH);
     DrawVolumeButton(x, y + Item::OPENED_HEIGHT_TITLE, Item::OPENED_WIDTH - 1, height - Item::OPENED_HEIGHT_TITLE, 1, Color::BLACK, Color::MenuTitleBrighter(), Color::MenuTitleLessBright(), false);
@@ -552,7 +552,7 @@ static void GovernorIpCommon_DrawOpened(const Item *item, int x, int y, int dWid
 {
     int height = 34;
     Rectangle(Item::TITLE_WIDTH + 2 + dWidth, height + 3).Draw(x - 1, y - 1, Color::BACK);
-    Rectangle(Item::TITLE_WIDTH + 1 + dWidth, height + 1).Draw(x - 1, y, Color::MenuTitle());
+    Rectangle(Item::TITLE_WIDTH + 1 + dWidth, height + 1).Draw(x - 1, y, Color::MENU_TITLE);
     HLine().Draw(y + Item::OPENED_HEIGHT_TITLE - 1, x, x + Item::OPENED_WIDTH + dWidth);
     DrawGovernorChoiceColorFormulaHiPart(item, x - 1, y - 1, item->IsPressed(), true);
     item->DrawVolumeButton(x, y + Item::OPENED_HEIGHT_TITLE, Item::OPENED_WIDTH - 1 + dWidth, height - Item::OPENED_HEIGHT_TITLE, 1, Color::BLACK, Color::MenuTitleBrighter(), Color::MenuTitleLessBright(), false);
@@ -655,7 +655,7 @@ void Button::Draw(int x, int y, bool) const
 {
     bool pressed = IsPressed();
 
-    HLine().Draw(y + 1, x, x + Item::WIDTH, Color::MenuTitle());
+    HLine().Draw(y + 1, x, x + Item::WIDTH, Color::MENU_TITLE);
     Color color = Color::WHITE;
     Region(Item::WIDTH - 2, Item::HEIGHT - 2).Fill(x + 1, y + 2, Color::MenuItem());
     DrawVolumeButton(x + 4, y + 5, Item::WIDTH - 8, Item::HEIGHT - 8, 3, Color::MenuItem(), Color::MenuItemBrighter(), Color::MenuItemLessBright(), pressed);
@@ -755,7 +755,7 @@ void Page::DrawTitle(int yTop) //-V2506
     }
     else
     {
-        DrawVolumeButton(x + 1, yTop + 1, Item::TITLE_WIDTH - 1, Item::TITLE_HEIGHT - 1, 3, Color::MenuTitle(), Color::MenuTitleBrighter(), Color::MenuTitleLessBright(), false);
+        DrawVolumeButton(x + 1, yTop + 1, Item::TITLE_WIDTH - 1, Item::TITLE_HEIGHT - 1, 3, Color::MENU_TITLE, Color::MenuTitleBrighter(), Color::MenuTitleLessBright(), false);
     }
     
     VLine().Draw(x, yTop, yTop + HeightOpened(), Color::BorderMenu());
