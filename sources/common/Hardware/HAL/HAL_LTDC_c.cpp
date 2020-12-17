@@ -37,16 +37,11 @@ void HAL_LTDC::Init(uint8 *front, uint8 *back)
 
     SetBuffers(front, back);
 
-    COLOR(Color::BLACK)  = 0x00000000U;
-    COLOR(Color::WHITE)  = 0xffffffffU;
-    COLOR(Color::GRID)   = 0xa0a0a0a0U;
-    COLOR(Color::DATA_A) = 0x00ffff00U;
-
-    Painter::LoadPalette();
+    LoadPalette();
 }
 
 
-void HAL_LTDC::SetColors()
+void HAL_LTDC::LoadPalette()
 {
     HAL_LTDC_ConfigCLUT(&handleLTDC, set.display.colors, Color::Count, 0);
 

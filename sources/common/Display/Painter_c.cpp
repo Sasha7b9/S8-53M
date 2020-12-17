@@ -111,9 +111,3 @@ bool Painter::SaveScreenToFlashDrive()
 {
     return true;
 }
-
-
-void Painter::LoadPalette()
-{
-    HAL_LTDC::SetColors();
-}

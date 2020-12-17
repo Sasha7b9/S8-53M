@@ -2,7 +2,7 @@
 #include "common/Hardware/HAL/HAL_c.h"
 
 
-void HAL_LTDC::SetColors()
+void HAL_LTDC::LoadPalette()
 {
 
 }

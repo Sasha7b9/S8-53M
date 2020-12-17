@@ -24,7 +24,6 @@ void HAL::Init()
 
     HAL_PINS::Init();
 
-
 #ifdef DEVICE
 
     HAL_ADC3::Init();

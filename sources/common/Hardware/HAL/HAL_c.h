@@ -124,7 +124,7 @@ struct HAL_LTDC
 {
     static void Init(uint8 *frontBuffer, uint8 *backBuffer);
 
-    static void SetColors();
+    static void LoadPalette();
 
     static void ToggleBuffers();
 
