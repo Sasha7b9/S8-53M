@@ -41,9 +41,9 @@ void Color::ResetFlash()
 
 }
 
-static void SetColor(const ColorType *colorType)
+void ColorType::Set()
 {
-    set.display.colors[colorType->color] = MAKE_COLOR((int)colorType->red, (int)colorType->green, (int)colorType->blue); //-V2533
+    set.display.colors[color] = MAKE_COLOR((int)red, (int)green, (int)blue); //-V2533
 }
 
 
@@ -137,7 +137,7 @@ void ColorType::BrightnessChange(int delta) //-V2506
     green += sign * stepGreen; //-V2564
     blue += sign * stepBlue; //-V2564
 
-    SetColor(this);
+    Set();
 
     if (stepRed < 0.01F && stepGreen < 0.01F && stepBlue < 0.01F)
     {
@@ -185,7 +185,7 @@ void ColorType::ComponentChange(int delta)
         AddLimitationFloat(pointers[index], (float)Math::Sign(delta), 0.0F, maxs[index]); //-V2533
     }
 
-    SetColor(this);
+    Set();
 
     SetBrightness();
 }

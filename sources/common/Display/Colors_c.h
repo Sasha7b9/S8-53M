@@ -83,10 +83,11 @@ struct ColorType
     void BrightnessChange(int delta);
     void SetBrightness(float brightness);
     void ComponentChange(int delta);
-    void CalcSteps();
 
-//private:
+private:
     void SetBrightness();
+    void Set();
+    void CalcSteps();
 };
 
 
