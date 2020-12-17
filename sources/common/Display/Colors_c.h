@@ -80,10 +80,11 @@ struct ColorType
     bool    alreadyUsed;
 
     void BrightnessChange(int delta);
+    void SetBrightness(float brightness);
 };
 
 
-void Color_SetBrightness(ColorType *colorType, float brightness);
+
 void Color_Init(ColorType *colorType);
 void Color_ComponentChange(ColorType *colorType, int delta);
 

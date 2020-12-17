@@ -107,22 +107,22 @@ static void ColorType_SetBrightness(ColorType *colorType)
 
 
 
-void Color_SetBrightness(ColorType *colorType, float brightness)
+void ColorType::SetBrightness(float br)
 {
-    int delta = (int)((brightness + 0.0005F) * 100.0F) - (int)(colorType->brightness * 100.0F); //-V2533
+    int delta = (int)((br + 0.0005F) * 100.0F) - (int)(brightness * 100.0F); //-V2533
 
     if (delta > 0)
     {
         for (int i = 0; i < delta; i++)
         {
-            colorType->BrightnessChange(1);
+            BrightnessChange(1);
         }
     }
     else
     {
         for (int i = 0; i < -delta; i++)
         {
-            colorType->BrightnessChange(-1);
+            BrightnessChange(-1);
         }
     }
 }

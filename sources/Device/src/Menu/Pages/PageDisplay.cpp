@@ -232,7 +232,7 @@ static ColorType cTypeGrid = { 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::
 
 void PageDisplay::OnChanged_Grid_Brightness()
 {
-    Color_SetBrightness(&cTypeGrid, BRIGHTNESS_GRID / 1e2F); //-V2564
+    cTypeGrid.SetBrightness(BRIGHTNESS_GRID / 1e2F);
 }
 
 static void BeforeDraw_Grid_Brightness()
