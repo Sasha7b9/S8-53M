@@ -98,6 +98,7 @@ file(GLOB HARDWARE_HAL          ../../common/Hardware/HAL/HAL_c.h
                                 ../../common/Hardware/HAL/HAL_LTDC_c.cpp
                                 ../../common/Hardware/HAL/HAL_OTP_c.cpp
                                 ../../common/Hardware/HAL/HAL_RTC_c.cpp
+                                ../../common/Hardware/HAL/HAL_TIM2_c.cpp
                                 ../../common/Hardware/HAL/HAL_TIM7_c.cpp
                                          src/Hardware/*.h
                                          src/Hardware/HAL/*.cpp)
