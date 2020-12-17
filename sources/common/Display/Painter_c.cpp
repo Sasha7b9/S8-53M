@@ -13,7 +13,7 @@ using namespace Primitives;
 
 
 static bool inverseColors = false;
-static Color::E currentColor = Color::Count;
+static Color currentColor = Color::Count;
 bool Painter::noFonts = false;
 static int numberColorsUsed = 0;
 
@@ -28,30 +28,31 @@ void Painter::CalculateCurrentColor()
 {
     if (currentColor == Color::FLASH_10)
     {
-        Color::SetCurrent(inverseColors ? Color::BACK : Color::FILL);
+        inverseColors ? Color::BACK.SetAsCurrent() : Color::FILL.SetAsCurrent();
     }
     else if (currentColor == Color::FLASH_01) //-V2516
     {
-        Color::SetCurrent(inverseColors ? Color::FILL : Color::BACK);
+        inverseColors ? Color::FILL.SetAsCurrent() : Color::BACK.SetAsCurrent();
     }
 }
 
 
 void CalculateColor(uint8 *color)
 {
-    currentColor = (Color::E)*color; //-V2533
-    if (*color == Color::FLASH_10)
+    currentColor.value = *color; //-V2533
+
+    if (*color == Color::FLASH_10.value)
     {
-        *color = static_cast<uint8>(inverseColors ? Color::BACK : Color::FILL);
+        *color = static_cast<uint8>(inverseColors ? Color::BACK.value : Color::FILL.value);
     }
-    else if (*color == Color::FLASH_01) //-V2516
+    else if (*color == Color::FLASH_01.value) //-V2516
     {
-        *color = static_cast<uint8>(inverseColors ? Color::FILL : Color::BACK);
+        *color = static_cast<uint8>(inverseColors ? Color::FILL.value : Color::BACK.value);
     }
 }
 
 
-void InverseColor(Color::E *color)
+void InverseColor(Color *color)
 {
     *color = (*color == Color::BLACK) ? Color::WHITE : Color::BLACK;
 }
@@ -78,7 +79,7 @@ void Painter::RunDisplay()
 }
 
 
-Color::E Painter::GetColor(int , int )
+Color Painter::GetColor(int , int )
 {
     return Color::WHITE;
 }

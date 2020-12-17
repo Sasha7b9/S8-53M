@@ -24,7 +24,7 @@ void Primitives::MultiHPointLine::DrawHPointLine(int x, int y, int count, int de
 }
 
 
-void Primitives::VPointLine::Draw(int , int , int , Color::E )
+void Primitives::VPointLine::Draw(int , int , int , Color )
 {
 
 }
@@ -39,9 +39,9 @@ void Primitives::HPointLine::Draw(int y, int x0, int x1)
 }
 
 
-void Primitives::Line::Draw(int x0, int y0, int x1, int y1, Color::E color)
+void Primitives::Line::Draw(int x0, int y0, int x1, int y1, Color color)
 {
-    Color::SetCurrent(color);
+    color.SetAsCurrent();
 
     if (x0 == x1)
     {
@@ -104,7 +104,7 @@ void Primitives::DashedVLine::Draw(int x, int y0, int y1, int deltaStart) //-V25
 }
 
 
-void Primitives::VLineArray::Draw(int , int , uint8 *, Color::E color)
+void Primitives::VLineArray::Draw(int , int , uint8 *, Color color)
 {
-    Color::SetCurrent(color);
+    color.SetAsCurrent();
 }

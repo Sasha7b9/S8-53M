@@ -228,7 +228,7 @@ DEF_CHOICE_4(mcGrid_Type, PageDisplay::PageGrid::self,
     TYPE_GRID, nullptr, nullptr, nullptr
 )
 
-static ColorType cTypeGrid = { 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::GRID };
+static ColorType cTypeGrid = { 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::GRID.value };
 
 void PageDisplay::OnChanged_Grid_Brightness()
 {
@@ -357,7 +357,7 @@ DEF_CHOICE_2(mcSettings_Colors_Scheme, PageDisplay::PageSettings::PageColors::se
     COLOR_SCHEME, nullptr, nullptr, nullptr
 )
 
-static ColorType colorT1 = { 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::DATA_A };
+static ColorType colorT1 = { 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::DATA_A.value };
 
 DEF_GOVERNOR_COLOR(mgcSettings_Colors_ChannelA, PageDisplay::PageSettings::PageColors::self,
     "Канал 1", "Channel 1",
@@ -366,7 +366,7 @@ DEF_GOVERNOR_COLOR(mgcSettings_Colors_ChannelA, PageDisplay::PageSettings::PageC
     colorT1, nullptr
 )
 
-static ColorType colorT2 = { 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::DATA_B };
+static ColorType colorT2 = { 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::DATA_B.value };
 
 DEF_GOVERNOR_COLOR(mgcSettings_Colors_ChannelB, PageDisplay::PageSettings::PageColors::self,
     "Канал 2", "Channel 2",

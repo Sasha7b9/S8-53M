@@ -225,7 +225,7 @@ void FuncAttScreen(void)
     int16 y = 10;
     Display::Clear();
     
-    Color::SetCurrent(Color::FILL);
+    Color::FILL.SetAsCurrent();
     
 #define dX 20
 #define dY -15
@@ -308,7 +308,7 @@ void FuncAttScreen(void)
 
 void DrawParametersChannel(Channel::E chan, int eX, int eY, bool inProgress)
 {
-    Color::SetCurrent(Color::FILL);
+    Color::FILL.SetAsCurrent();
     if(inProgress)
     {
         Text(chan == 0 ? " ¿Õ¿À 1" : " ¿Õ¿À 2").Draw(eX, eY + 4);

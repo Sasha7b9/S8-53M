@@ -26,7 +26,7 @@ public:
 
     char *c_str() const;
     // Отобразить текст на экране в заданнх координатах
-    int Draw(int x, int y, Color::E color = Color::Count) const;
+    int Draw(int x, int y, Color color = Color::Count) const;
 
     static pString _ERROR; //-V2573
 

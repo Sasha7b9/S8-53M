@@ -6,10 +6,34 @@
 #include "Utils/GlobalFunctions.h"
 
 
-Color::E Color::current = Color::Count;
+static const uint8 NUM_COLORS = 16;
 
-Color::E Color::FILL = Color::WHITE;
-Color::E Color::BACK = Color::BLACK;
+
+Color Color::BLACK(0);
+Color Color::WHITE(1);
+Color Color::GRID(2);
+Color Color::DATA_A(3);
+Color Color::DATA_B(4);
+Color Color::MENU_FIELD(5);
+Color Color::MENU_TITLE(6);
+Color Color::MENU_TITLE_DARK(7);
+Color Color::MENU_TITLE_BRIGHT(8);
+Color Color::MENU_ITEM(9);
+Color Color::MENU_ITEM_DARK(10);
+Color Color::MENU_ITEM_BRIGHT(11);
+Color Color::MENU_SHADOW(12);
+Color Color::EMPTY(13);
+Color Color::EMPTY_A(14);
+Color Color::EMPTY_B(15);
+Color Color::Count(NUM_COLORS);
+
+Color Color::FLASH_10(NUM_COLORS + 1);
+Color Color::FLASH_01(NUM_COLORS + 2);
+
+Color Color::current = Color::Count;
+
+Color Color::FILL = Color::WHITE;
+Color Color::BACK = Color::BLACK;
 
 
 void Color::ResetFlash()
@@ -23,55 +47,55 @@ static void SetColor(const ColorType *colorType)
 }
 
 
-Color::E Color::Channel(Channel::E chan)
+Color Color::Channel(Channel::E chan)
 {
-    static const Color::E colors[4] = { Color::DATA_A, Color::DATA_B, Color::WHITE, Color::WHITE };
+    static const Color colors[4] = { Color::DATA_A, Color::DATA_B, Color::WHITE, Color::WHITE };
     return colors[chan];
 }
 
 
-Color::E Color::Cursors(Channel::E chan)
+Color Color::Cursors(Channel::E chan)
 {
-    static const Color::E colors[4] = { Color::DATA_A, Color::DATA_B, Color::WHITE, Color::WHITE };
+    static const Color colors[4] = { Color::DATA_A, Color::DATA_B, Color::WHITE, Color::WHITE };
     return colors[chan];
 }
 
 
-Color::E Color::MenuTitle()
+Color Color::MenuTitle()
 {
     return Color::MENU_TITLE;
 }
 
 
-Color::E Color::MenuField()
+Color Color::MenuField()
 {
     return Color::MENU_FIELD;
 }
 
 
-Color::E Color::MenuTitleLessBright()
+Color Color::MenuTitleLessBright()
 {
     return Color::MENU_TITLE_DARK;
 }
 
 
-Color::E Color::MenuItem()
+Color Color::MenuItem()
 {
     return Color::MENU_ITEM;
 }
 
 
 
-Color::E Color::BorderMenu()
+Color Color::BorderMenu()
 {
     return Color::MenuTitle();
 }
 
 
 
-Color::E Color::Contrast(Color::E color) //-V2506
+Color Color::Contrast(const Color &color)
 {
-    uint colorValue = set.display.colors[color];
+    uint colorValue = set.display.colors[color.value];
     if (R_FROM_COLOR(colorValue) > 16 || G_FROM_COLOR(colorValue) > 32 || B_FROM_COLOR(colorValue) > 16)    //-V112
     {
         return Color::BLACK;
@@ -81,16 +105,16 @@ Color::E Color::Contrast(Color::E color) //-V2506
 
 
 
-Color::E Color::LightShadingText() //-V524
+Color Color::LightShadingText() //-V524
 {
     return Color::MenuTitle();
 }
 
 
 
-void Color_Log(Color::E color)
+void Color_Log(Color color)
 {
-    uint colorValue = set.display.colors[color];
+    uint colorValue = set.display.colors[color.value];
     LOG_WRITE("%s   r=%d, g=%d, b=%d", NameColor(color), R_FROM_COLOR(colorValue), G_FROM_COLOR(colorValue), B_FROM_COLOR(colorValue));
 }
 
@@ -240,21 +264,7 @@ static const char* colorNames[] =
 
 
 
-const char* NameColorFromValue(uint16 colorValue) //-V2506
+const char* NameColor(const Color &color)
 {
-    for (int i = 0; i < Color::Count; i++)
-    {
-        if (set.display.colors[(Color::E)i] == colorValue) //-V2533
-        {
-            return colorNames[i];
-        }
-    }
-    return "Sorry, this color is not in the palette";
-}
-
-
-
-const char* NameColor(Color::E color)
-{
-    return colorNames[color];
+    return colorNames[color.value];
 }

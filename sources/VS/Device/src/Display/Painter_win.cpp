@@ -60,12 +60,12 @@ public:
 static Screen *screen = nullptr;
 
 
-void Painter::BeginScene(Color::E color)
+void Painter::BeginScene(Color color)
 {
     Application::memDC.SelectObject(bitmapScreen);
     wxBrush brush({ 0, 0, 0 }, wxTRANSPARENT);
     Application::memDC.SetBrush(brush);
-    Color::SetCurrent(color);
+    color.SetAsCurrent();
     Region(Display::WIDTH, Display::HEIGHT).Fill(0, 0, color);
 }
 
@@ -77,16 +77,16 @@ void Painter::EndScene(bool)
 }
 
 
-void Color::SetCurrent(Color::E c) //-V2506
+void Color::SetAsCurrent() //-V2506
 {
-    if (c == Color::Count)
+    if (value == Color::Count.value)
     {
         return;
     }
 
-    current = c;
+    current.value = value;
 
-    uint colorValue = COLOR(c);
+    uint colorValue = COLOR(value);
 
     uint8 b = B_FROM_COLOR(colorValue);
     uint8 g = G_FROM_COLOR(colorValue);

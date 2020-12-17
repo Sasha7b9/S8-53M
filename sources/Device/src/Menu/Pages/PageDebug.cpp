@@ -638,8 +638,8 @@ static void Draw_EnterSerialNumber()
     char buffer[20];
     std::snprintf(buffer, 19, "%02d", s->number);
 
-    Color::E colorText = Color::FILL;
-    Color::E colorBackground = Color::BACK;
+    Color colorText = Color::FILL;
+    Color colorBackground = Color::BACK;
 
     if (selNumber)
     {
@@ -649,7 +649,7 @@ static void Draw_EnterSerialNumber()
 
     int y = y0 + 50;
 
-    Color::SetCurrent(colorText);
+    colorText.SetAsCurrent();
     int x = Text(buffer).DrawOnBackground(x0 + deltaX, y, colorBackground);
 
     colorText = Color::FLASH_01;
@@ -663,7 +663,7 @@ static void Draw_EnterSerialNumber()
 
     std::snprintf(buffer, 19, "%04d", s->year);
 
-    Color::SetCurrent(colorText);
+    colorText.SetAsCurrent();
     Text(buffer).DrawOnBackground(x + 5, y, colorBackground);
 
     // Теперь выведем информацию об оставшемся месте в OTP-памяти для записи

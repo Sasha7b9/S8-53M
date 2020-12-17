@@ -165,7 +165,7 @@ private:
     static void DrawSignalPointed(pUCHAR data, const DataSettings *ds, int startPoint, int endPoint, int minY, int maxY, float scaleY, 
         float scaleX);
     
-    static void DrawSpectrumChannel(const float *spectrum, Color::E color);
+    static void DrawSpectrumChannel(const float *spectrum, Color color);
     
     static void DrawStringInRectangle(int x, int y, char const *text);
     

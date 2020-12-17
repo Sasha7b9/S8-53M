@@ -182,11 +182,11 @@ bool String::Allocate(int size) //-V2506
 }
 
 
-int String::Draw(int x, int y, Color::E color) const
+int String::Draw(int x, int y, Color color) const
 {
     if (color != Color::Count)
     {
-        Color::SetCurrent(color);
+        color.SetAsCurrent();
     }
 
     return Text(c_str()).Draw(x, y);

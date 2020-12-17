@@ -10,15 +10,15 @@ void Primitives::Point::Draw(int, int)
 }
 
 
-void Primitives::VLine::Draw(int, int, int, Color::E)
+void Primitives::VLine::Draw(int, int, int, Color)
 {
 
 }
 
 
-void Primitives::MultiVPointLine::Draw(int y, Color::E color)
+void Primitives::MultiVPointLine::Draw(int y, Color color)
 {
-    Color::SetCurrent(color);
+    color.SetAsCurrent();
 
     for (int i = 0; i < numLines; i++)
     {
@@ -27,9 +27,9 @@ void Primitives::MultiVPointLine::Draw(int y, Color::E color)
 }
 
 
-void Primitives::Rectangle::Draw(int x, int y, Color::E color)
+void Primitives::Rectangle::Draw(int x, int y, Color color)
 {
-    Color::SetCurrent(color);
+    color.SetAsCurrent();
 
     HLine().Draw(y, x, x + width);
     VLine().Draw(x, y, y + height);
@@ -41,9 +41,9 @@ void Primitives::Rectangle::Draw(int x, int y, Color::E color)
 }
 
 
-void Primitives::MultiHPointLine::Draw(int x, Color::E color)
+void Primitives::MultiHPointLine::Draw(int x, Color color)
 {
-    Color::SetCurrent(color);
+    color.SetAsCurrent();
 
     for (int i = 0; i < numLines; i++)
     {
@@ -52,13 +52,13 @@ void Primitives::MultiHPointLine::Draw(int x, Color::E color)
 }
 
 
-void Primitives::Region::Fill(int, int, Color::E)
+void Primitives::Region::Fill(int, int, Color)
 {
 
 }
 
 
-void Primitives::HLine::Draw(int, int, int, Color::E)
+void Primitives::HLine::Draw(int, int, int, Color)
 {
 
 }

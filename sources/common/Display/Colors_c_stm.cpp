@@ -2,6 +2,7 @@
 #include "common/Display/Colors_c.h"
 
 
-void Color::SetCurrent(Color::E)
+void Color::SetAsCurrent()
 {
+
 }

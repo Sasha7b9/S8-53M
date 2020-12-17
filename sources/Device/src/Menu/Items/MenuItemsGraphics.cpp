@@ -44,7 +44,7 @@ static void DrawGovernorChoiceColorFormulaHiPart(const Item *item, int x, int y,
         width += IPaddress::OPENED_WIDTH;
     }
 
-    Color::E color = IS_COLOR_SCHEME_WHITE_LETTERS ? Color::WHITE : Color::BLACK;
+    Color color = IS_COLOR_SCHEME_WHITE_LETTERS ? Color::WHITE : Color::BLACK;
     HLine().Draw(y + 1, x, x + width + 3, Color::BorderMenu());
 
     item->DrawVolumeButton(x + 1, y + 2, width + 2, Item::HEIGHT_VALUE + 3, 2, Color::MenuItem(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), pressed);
@@ -79,7 +79,7 @@ void Governor::DrawLowPart(int x, int y) const
 
     const DataGovernor *own = OwnData();
     
-    Color::E colorTextDown = Color::BACK;
+    Color colorTextDown = Color::BACK;
 
     DrawVolumeButton(x + 1, y + 17, Item::WIDTH_VALUE + 2, Item::HEIGHT_VALUE + 3, 2, Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true);
 
@@ -121,7 +121,7 @@ void IPaddress::DrawLowPart(int x, int y) const
 {
     char buffer[20];
 
-    Color::E colorTextDown = Color::BACK;
+    Color colorTextDown = Color::BACK;
 
     DrawVolumeButton(x + 1, y + 17, Item::WIDTH_VALUE + 2, Item::HEIGHT_VALUE + 3, 2, Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true);
 
@@ -143,7 +143,7 @@ void MACaddress::DrawLowPart(int x, int y) const
 {
     char buffer[20];
 
-    Color::E colorTextDown = Color::BACK;
+    Color colorTextDown = Color::BACK;
 
     DrawVolumeButton(x + 1, y + 17, Item::WIDTH_VALUE + 2, Item::HEIGHT_VALUE + 3, 2, Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true);
 
@@ -193,11 +193,11 @@ void Formula::WriteText(int x, int y, bool) const //-V2506
 
 void Formula::DrawLowPart(int x, int y) const
 {
-    Color::E colorTextDown = Color::BACK;
+    Color colorTextDown = Color::BACK;
 
     DrawVolumeButton(x + 1, y + 17, Item::WIDTH_VALUE + 2, Item::HEIGHT_VALUE + 3, 2, Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true);
 
-    Color::SetCurrent(colorTextDown);
+    colorTextDown.SetAsCurrent();
     WriteText(x + 6, y + 21, false);
 }
 
@@ -417,8 +417,8 @@ void GovernorColor::DrawValue(int x, int y, int delta) const
     
     for(int i = 0; i < 4; i++)
     {
-        Color::E colorBack = (field == i) ? Color::WHITE : Color::BLACK;
-        Color::E colorDraw = (field == i) ? Color::BLACK : Color::WHITE;
+        Color colorBack = (field == i) ? Color::WHITE : Color::BLACK;
+        Color colorDraw = (field == i) ? Color::BLACK : Color::WHITE;
         Region(29, 10).Fill(x - 1, y + 1, colorBack);
         Text(texts[i]).Draw(x, y + 2, colorDraw);
         Text(Int2String(vals[i], false, 1, buffer)).Draw(x + 14, y + 2);
@@ -581,8 +581,8 @@ void Choice::DrawClosed(int x, int y) const
     DrawVolumeButton(x + 1, y + 17, Item::WIDTH_VALUE + 2, Item::HEIGHT_VALUE + 3, 2, Color::MenuField(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), true);
 
     float deltaY = Step();
-    Color::E colorText = Color::BACK;
-    Color::SetCurrent(colorText);
+    Color colorText = Color::BACK;
+    colorText.SetAsCurrent();
     if(deltaY == 0.0F) //-V2550 //-V550
     {
         Text(NameCurrentSubItem()).Draw(x + 4, y + 21);
@@ -656,7 +656,7 @@ void Button::Draw(int x, int y, bool) const
     bool pressed = IsPressed();
 
     HLine().Draw(y + 1, x, x + Item::WIDTH, Color::MenuTitle());
-    Color::E color = Color::WHITE;
+    Color color = Color::WHITE;
     Region(Item::WIDTH - 2, Item::HEIGHT - 2).Fill(x + 1, y + 2, Color::MenuItem());
     DrawVolumeButton(x + 4, y + 5, Item::WIDTH - 8, Item::HEIGHT - 8, 3, Color::MenuItem(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), pressed);
 
@@ -672,12 +672,12 @@ void SmallButton::Draw(int x, int y, bool) const
         if (IsPressed())
         {
             Region(SmallButton::WIDTH, SmallButton::WIDTH).Fill(x, y, Color::FILL);
-            Color::SetCurrent(Color::BACK);
+            Color::BACK.SetAsCurrent();
         }
         else
         {
             Rectangle(SmallButton::WIDTH, SmallButton::WIDTH).Draw(x, y, Color::FILL);
-            Color::SetCurrent(Color::FILL);
+            Color::FILL.SetAsCurrent();
         }
         OwnData()->funcOnDraw(x, y);
     }
@@ -692,7 +692,7 @@ void Page::Draw(int x, int y, bool) const
     bool isPressed = IsPressed();
     HLine().Draw(y + 1, x, x + Item::WIDTH, Color::BorderMenu());
     DrawVolumeButton(x + 1, y + 2, Item::WIDTH - 2, Item::HEIGHT - 2, 2, Color::MenuItem(), ColorMenuItemBrighter(), ColorMenuItemLessBright(), isPressed);
-    Color::E colorText = Color::BLACK;
+    Color colorText = Color::BLACK;
     int delta = 0;
     if(isPressed)
     {
@@ -763,7 +763,7 @@ void Page::DrawTitle(int yTop) //-V2506
 
     int delta = NeedDrawRegSet(this) ? -10 : 0;
 
-    Color::E colorText = shade ? Color::LightShadingText() : Color::BLACK;
+    Color colorText = shade ? Color::LightShadingText() : Color::BLACK;
     x = Text(Title()).DrawInCenterRect(x, yTop, Item::TITLE_WIDTH + 2 + delta, Item::TITLE_HEIGHT, colorText);
     if (NeedDrawRegSet(this))
     {
@@ -772,7 +772,7 @@ void Page::DrawTitle(int yTop) //-V2506
     
     delta = 0;
     
-    Color::SetCurrent(colorText);
+    colorText.SetAsCurrent();
     DrawPagesUGO(Page::X() + Item::TITLE_WIDTH - 3 + delta, yTop + Item::TITLE_HEIGHT - 2 + delta); //-V2007
 }
 
@@ -843,7 +843,7 @@ void SmallButton::DrawHints(int x, int y, int width)
 }
 
 
-void Item::DrawVolumeButton(int x, int y, int width, int height, int thickness, Color::E normal, Color::E bright, Color::E dark, bool isPressed) const
+void Item::DrawVolumeButton(int x, int y, int width, int height, int thickness, Color normal, Color bright, Color dark, bool isPressed) const
 {
     Region(width - thickness * 2, height - thickness * 2).Fill(x + thickness, y + thickness, normal);
 

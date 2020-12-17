@@ -17,9 +17,9 @@ void Primitives::Point::Draw(int x, int y)
 }
 
 
-void Primitives::Region::Fill(int x, int y, Color::E color)
+void Primitives::Region::Fill(int x, int y, Color color)
 {
-    Color::SetCurrent(color);
+    color.SetAsCurrent();
     wxBrush brush = Application::memDC.GetBrush();
     wxPen pen = Application::memDC.GetPen();
     Application::memDC.SetBrush(wxBrush(pen.GetColour()));
@@ -28,32 +28,32 @@ void Primitives::Region::Fill(int x, int y, Color::E color)
 }
 
 
-void Primitives::Rectangle::Draw(int x, int y, Color::E color)
+void Primitives::Rectangle::Draw(int x, int y, Color color)
 {
-    Color::SetCurrent(color);
+    color.SetAsCurrent();
 
     Application::memDC.DrawRectangle({ x, y, width + 1, height + 1 });
 }
 
 
-void Primitives::HLine::Draw(int y, int x1, int x2, Color::E color)
+void Primitives::HLine::Draw(int y, int x1, int x2, Color color)
 {
-    Color::SetCurrent(color);
+    color.SetAsCurrent();
 
     Application::memDC.DrawLine({ x1, y }, { x2, y });
 }
 
 
-void Primitives::VLine::Draw(int x, int y0, int y1, Color::E color)
+void Primitives::VLine::Draw(int x, int y0, int y1, Color color)
 {
-    Color::SetCurrent(color);
+    color.SetAsCurrent();
     Application::memDC.DrawLine({ x, y0 }, { x, y1 });
 }
 
 
-void Primitives::MultiVPointLine::Draw(int y, Color::E color)
+void Primitives::MultiVPointLine::Draw(int y, Color color)
 {
-    Color::SetCurrent(color);
+    color.SetAsCurrent();
 
     for (int i = 0; i < numLines; i++)
     {
@@ -62,9 +62,9 @@ void Primitives::MultiVPointLine::Draw(int y, Color::E color)
 }
 
 
-void Primitives::MultiHPointLine::Draw(int x, Color::E color)
+void Primitives::MultiHPointLine::Draw(int x, Color color)
 {
-    Color::SetCurrent(color);
+    color.SetAsCurrent();
 
     for (int i = 0; i < numLines; i++)
     {

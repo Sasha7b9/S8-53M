@@ -77,9 +77,9 @@ static void DrawCharHardCol(int x, int y, char symbol)
 }
 
 
-int Char::Draw(int x, int y, Color::E color)
+int Char::Draw(int x, int y, Color color)
 {
-    Color::SetCurrent(color);
+    color.SetAsCurrent();
 
     Painter::CalculateCurrentColor();
 
@@ -99,9 +99,9 @@ int Char::Draw(int x, int y, Color::E color)
 }
 
 
-int Text::Draw(int x, int y, Color::E color)
+int Text::Draw(int x, int y, Color color)
 {
-    Color::SetCurrent(color);
+    color.SetAsCurrent();
 
     char *pointer = text.c_str();
 
@@ -252,9 +252,9 @@ void Text::DrawBig(int eX, int eY, int size)
 }
 
 
-void Char::Draw4SymbolsInRect(int x, int y, Color::E color)
+void Char::Draw4SymbolsInRect(int x, int y, Color color)
 {
-    Color::SetCurrent(color);
+    color.SetAsCurrent();
 
     for (int i = 0; i < 2; i++)
     {
@@ -264,9 +264,9 @@ void Char::Draw4SymbolsInRect(int x, int y, Color::E color)
 }
 
 
-int Text::DrawInCenterRect(int eX, int eY, int width, int eHeight, Color::E color)
+int Text::DrawInCenterRect(int eX, int eY, int width, int eHeight, Color color)
 {
-    Color::SetCurrent(color);
+    color.SetAsCurrent();
 
     int lenght = Font::GetLengthText(text.c_str());
     int height = Font::GetHeightSymbol();
@@ -276,23 +276,23 @@ int Text::DrawInCenterRect(int eX, int eY, int width, int eHeight, Color::E colo
 }
 
 
-void Text::DrawRelativelyRight(int xRight, int y, Color::E color)
+void Text::DrawRelativelyRight(int xRight, int y, Color color)
 {
-    Color::SetCurrent(color);
+    color.SetAsCurrent();
 
     int lenght = Font::GetLengthText(text.c_str());
     Draw(xRight - lenght, y);
 }
 
 
-int Text::DrawOnBackground(int x, int y, Color::E colorBackground)
+int Text::DrawOnBackground(int x, int y, Color colorBackground)
 {
     int width = Font::GetLengthText(text.c_str());
     int height = Font::GetSize();
 
-    Color::E colorText = Color::GetCurrent();
+    Color colorText = Color::GetCurrent();
     Primitives::Region(width, height).Fill(x - 1, y, colorBackground);
-    Color::SetCurrent(colorText);
+    colorText.SetAsCurrent();
 
     return Draw(x, y);
 }
@@ -338,9 +338,9 @@ static int DrawCharWithLimitation(int eX, int eY, uchar symbol, int limitX, int 
 }
 
 
-int Text::DrawWithLimitation(int x, int y, Color::E color, int limitX, int limitY, int limitWidth, int limitHeight)
+int Text::DrawWithLimitation(int x, int y, Color color, int limitX, int limitY, int limitWidth, int limitHeight)
 {
-    Color::SetCurrent(color);
+    color.SetAsCurrent();
     int retValue = x;
 
     char *t = text.c_str();
@@ -638,7 +638,7 @@ static bool GetHeightTextWithTransfers(int left, int top, int right, const char 
 }
 
 
-int Text::DrawInBoundedRectWithTransfers(int x, int y, int width, Color::E colorBackground, Color::E colorFill)
+int Text::DrawInBoundedRectWithTransfers(int x, int y, int width, Color colorBackground, Color colorFill)
 {
     int height = 0;
     GetHeightTextWithTransfers(x + 3, y + 3, x + width - 8, text.c_str(), &height);
@@ -650,9 +650,9 @@ int Text::DrawInBoundedRectWithTransfers(int x, int y, int width, Color::E color
 }
 
 
-int Text::DrawInRectWithTransfers(int eX, int eY, int eWidth, int eHeight, Color::E color)
+int Text::DrawInRectWithTransfers(int eX, int eY, int eWidth, int eHeight, Color color)
 {
-    Color::SetCurrent(color);
+    color.SetAsCurrent();
 
     int top = eY;
     int left = eX;
@@ -713,8 +713,8 @@ int Text::DrawInRectWithTransfers(int eX, int eY, int eWidth, int eHeight, Color
 }
 
 
-void Text::DrawInCenterRectOnBackground(int x, int y, int width, int height, Color::E colorText, int widthBorder,
-    Color::E colorBackground)
+void Text::DrawInCenterRectOnBackground(int x, int y, int width, int height, Color colorText, int widthBorder,
+    Color colorBackground)
 {
     int lenght = Font::GetLengthText(text.c_str());
     int eX = DrawInCenterRect(x, y, width, height, colorBackground);
@@ -725,11 +725,11 @@ void Text::DrawInCenterRectOnBackground(int x, int y, int width, int height, Col
 }
 
 
-int Text::DrawInCenterRectAndBoundIt(int x, int y, int width, int height, Color::E colorBackground, Color::E colorFill)
+int Text::DrawInCenterRectAndBoundIt(int x, int y, int width, int height, Color colorBackground, Color colorFill)
 {
     Rectangle(width, height).Draw(x, y, colorFill);
     Region(width - 2, height - 2).Fill(x + 1, y + 1, colorBackground);
-    Color::SetCurrent(colorFill);
+    colorFill.SetAsCurrent();
     return DrawInCenterRect(x, y, width, height);
 }
 
@@ -742,7 +742,7 @@ Text::Text(char *format, ...) : text("")
 }
 
 
-void Char::Draw2SymbolsInPosition(int x, int y, char symbol2, Color::E color1, Color::E color2)
+void Char::Draw2SymbolsInPosition(int x, int y, char symbol2, Color color1, Color color2)
 {
     Char(symbol).Draw(x, y, color1);
     Char(symbol2).Draw(x, y, color2);

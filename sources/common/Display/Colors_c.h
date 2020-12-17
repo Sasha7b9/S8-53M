@@ -4,50 +4,57 @@
 
 // Тип цвета
 struct Color {
-    enum E
-    {
-        BLACK,
-        WHITE,
-        GRID,
-        DATA_A,
-        DATA_B,
-        MENU_FIELD,
-        MENU_TITLE,
-        MENU_TITLE_DARK,
-        MENU_TITLE_BRIGHT,
-        MENU_ITEM,
-        MENU_ITEM_DARK,
-        MENU_ITEM_BRIGHT,
-        MENU_SHADOW,
-        EMPTY,
-        EMPTY_A,
-        EMPTY_B,
-        Count,
-        FLASH_10,
-        FLASH_01,
-        SET_INVERSE
-    };
+    static Color BLACK;
+    static Color WHITE;
+    static Color GRID;
+    static Color DATA_A;
+    static Color DATA_B;
+    static Color MENU_FIELD;
+    static Color MENU_TITLE;
+    static Color MENU_TITLE_DARK;
+    static Color MENU_TITLE_BRIGHT;
+    static Color MENU_ITEM;
+    static Color MENU_ITEM_DARK;
+    static Color MENU_ITEM_BRIGHT;
+    static Color MENU_SHADOW;
+    static Color EMPTY;
+    static Color EMPTY_A;
+    static Color EMPTY_B;
+
+    static Color Count;
+
+    static Color FLASH_10;
+    static Color FLASH_01;
+    static Color SET_INVERSE;
+
+    uint8 value;
+
+    Color(uint8 v) : value(v) {}
 
     static void ResetFlash();
 
-    static void SetCurrent(Color::E color);
-    static Color::E GetCurrent() { return current; };
-    static Color::E Channel(Channel::E chan);
-    static Color::E Cursors(Channel::E cnan);
-    static Color::E MenuField();
+    void SetAsCurrent();
+    static Color GetCurrent() { return current; };
+    static Color Channel(Channel::E chan);
+    static Color Cursors(Channel::E cnan);
+    static Color MenuField();
     // Чуть менее светлый цвет, чем цвет заголовка страницы. Используется для создания эффекта объёма.
-    static Color::E MenuTitleLessBright();
-    static Color::E Trig();
-    static Color::E MenuTitle();
-    static Color::E MenuItem();
-    static Color::E BorderMenu();                   // Цвет окантовки меню.
-    static Color::E Contrast(Color::E color);       // Возвращает цвет, контрастный к color. Может быть белым или чёрным.
-    static Color::E LightShadingText();             // Светлый цвет в тени.
-    static Color::E FILL;
-    static Color::E BACK;
+    static Color MenuTitleLessBright();
+    static Color Trig();
+    static Color MenuTitle();
+    static Color MenuItem();
+    static Color BorderMenu();                   // Цвет окантовки меню.
+    static Color Contrast(const Color &color);       // Возвращает цвет, контрастный к color. Может быть белым или чёрным.
+    static Color LightShadingText();             // Светлый цвет в тени.
+    static Color FILL;
+    static Color BACK;
+
+    bool operator==(const Color &rhs) { return (value == rhs.value); }
+    bool operator!=(const Color &rhs) { return (value != rhs.value); }
 
 private:
-    static Color::E current;
+
+    static Color current;
 };
 
 
@@ -70,20 +77,19 @@ struct ColorType
     float   stepGreen;
     float   stepBlue;
     float   brightness;
-    Color::E color;
+    uint8   color;
     int8    currentField;
     bool    alreadyUsed;
 };
 
-void Color_Log(Color::E color);           // Вывести в лог значение цвета.
+void Color_Log(const Color &color);           // Вывести в лог значение цвета.
 void Color_BrightnessChange(ColorType *colorType, int delta);
 void Color_SetBrightness(ColorType *colorType, float brightness);
 void Color_Init(ColorType *colorType);
 void Color_ComponentChange(ColorType *colorType, int delta);
 
 
-const char* NameColorFromValue(uint16 colorValue);
-const char* NameColor(Color::E color);
+const char* NameColor(const Color &color);
 #define MAKE_COLOR(r, g, b) ((uint)(((b)) + (((g)) << 8) + (((uint)(r)) << 16)))
 #define R_FROM_COLOR(color) (((uint)(color) >> 16) & (uint)0xFF)
 #define G_FROM_COLOR(color) (((uint)(color) >> 8) & (uint)0xFF)

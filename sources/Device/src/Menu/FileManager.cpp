@@ -48,7 +48,7 @@ void FM::DrawLongString(int x, int y, const char *string, bool hightlight)
 {
     int length = Font::GetLengthText(string);
 
-    Color::E color = Color::FILL;
+    Color color = Color::FILL;
     if (hightlight)
     {
         Region(WIDTH_COL + 9, 8).Fill(x - 1, y, color);
@@ -136,7 +136,7 @@ bool FM::FileIsExist(const char name[255]) //-V2506
 
 void FM::DrawNameCurrentDir(int left, int top) //-V2506
 {
-    Color::SetCurrent(Color::FILL);
+    Color::FILL.SetAsCurrent();
     int length = Font::GetLengthText(currentDir);
     if (length < 277)
     {

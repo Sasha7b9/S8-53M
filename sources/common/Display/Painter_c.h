@@ -7,7 +7,7 @@ class Painter
 {
 public:
 
-    static void BeginScene(Color::E color);
+    static void BeginScene(Color color);
 
     static void EndScene(bool endScene = true);
 
@@ -34,5 +34,5 @@ private:
 
     static void RunDisplay();
 
-    static Color::E GetColor(int x, int y);
+    static Color GetColor(int x, int y);
 };

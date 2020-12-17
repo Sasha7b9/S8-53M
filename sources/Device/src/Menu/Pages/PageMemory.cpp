@@ -528,7 +528,7 @@ static void DrawMemoryWave(int num, bool exist)
     int width = 12;
     Region(width, 10).Fill(x, y, (num == PageMemory::PageInternal::currentSignal) ? Color::FLASH_10 : Color::BACK);
     Primitives::Rectangle(width, 10).Draw(x, y, Color::FILL);
-    Color::SetCurrent((num == PageMemory::PageInternal::currentSignal) ? Color::FLASH_01 : Color::FILL);
+    ((num == PageMemory::PageInternal::currentSignal) ? Color::FLASH_01 : Color::FILL).SetAsCurrent();
     if (exist)
     {
         Text(Int2String(num + 1, false, 2, buffer)).Draw(x + 2, y + 1);
@@ -887,7 +887,7 @@ static void DrawFileMask(int x, int y)
 {
     char *ch = FILE_NAME_MASK;
 
-    Color::SetCurrent(Color::FILL);
+    Color::FILL.SetAsCurrent();
     while (*ch != '\0')
     {
         if (*ch >= 32)
@@ -975,7 +975,7 @@ void DrawSetMask()
     };
 
     deltaY--;
-    Color::SetCurrent(Color::FILL);
+    Color::FILL.SetAsCurrent();
     for(int i = 0; i < sizeof(strings) / 4; i++)
     {
         Text(strings[i]).Draw(x0 + deltaX, y0 + 100 + deltaY * i);
