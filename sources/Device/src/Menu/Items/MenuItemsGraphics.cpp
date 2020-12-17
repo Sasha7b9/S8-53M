@@ -407,7 +407,7 @@ void GovernorColor::DrawValue(int x, int y, int delta) const
     int blue = (int)B_FROM_COLOR(color);
     if(!ct->alreadyUsed)
     {
-        Color_Init(ct);
+        ct->Init();
     }
 
     int vals[4] = { static_cast<int>(ct->brightness * 100), blue, green, red }; //-V2564
@@ -431,7 +431,7 @@ void GovernorColor::DrawOpened(int x, int y) const
 {
     static const int delta = 43;
     x -= delta;
-    Color_Init(OwnData()->colorType);
+    OwnData()->colorType->Init();
     Rectangle(Item::WIDTH + delta + 2, Item::HEIGHT + 2).Draw(x - 1, y - 1, Color::BLACK);
     Rectangle(Item::WIDTH + delta, Item::HEIGHT).Draw(x, y, Color::MENU_TITLE);
     DrawVolumeButton(x + 1, y + 1, Item::WIDTH_VALUE + 2 + delta, Item::HEIGHT_VALUE + 3, 2, Color::MENU_ITEM, Color::MENU_ITEM_BRIGHT, Color::MENU_ITEM_DARK, IsPressed());
@@ -442,7 +442,7 @@ void GovernorColor::DrawOpened(int x, int y) const
 
 void GovernorColor::DrawClosed(int x, int y) const
 {
-    Color_Init(OwnData()->colorType);
+    OwnData()->colorType->Init();
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, IsPressed(), true);
     Region(Item::WIDTH_VALUE, Item::HEIGHT_VALUE - 1).Fill(x + 2, y + 20, OwnData()->colorType->color);
 }

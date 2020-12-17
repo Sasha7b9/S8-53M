@@ -79,13 +79,14 @@ struct ColorType
     int8    currentField;
     bool    alreadyUsed;
 
+    void Init();
     void BrightnessChange(int delta);
     void SetBrightness(float brightness);
 };
 
 
 
-void Color_Init(ColorType *colorType);
+
 void Color_ComponentChange(ColorType *colorType, int delta);
 
 

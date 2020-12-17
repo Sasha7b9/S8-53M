@@ -237,7 +237,7 @@ void PageDisplay::OnChanged_Grid_Brightness()
 
 static void BeforeDraw_Grid_Brightness()
 {
-    Color_Init(&cTypeGrid);
+    cTypeGrid.Init();
     BRIGHTNESS_GRID = (int16)(cTypeGrid.brightness * 100.0F); //-V2533
 }
 

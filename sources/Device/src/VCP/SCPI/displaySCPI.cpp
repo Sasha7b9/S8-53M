@@ -312,7 +312,7 @@ void SCPI::DISPLAY::GRID_BRIGHTNESS(pUCHAR buffer)
         ENTER_ANALYSIS
             if (0 == value)
             {
-                Color_Init(PageDisplay::colorTypeGrid);
+                PageDisplay::colorTypeGrid->Init();
                 SCPI_SEND(":DISPLAY:GRID:BRIGHTNESS %d", (int)(PageDisplay::colorTypeGrid->brightness * 100.0F)); //-V2533
             }
         LEAVE_ANALYSIS

@@ -156,25 +156,25 @@ void ColorType::BrightnessChange(int delta) //-V2506
 
 
 
-void Color_Init(ColorType *colorType)
+void ColorType::Init()
 {
-    if (!colorType->alreadyUsed)
+    if (!alreadyUsed)
     {
-        colorType->alreadyUsed = true;                  // Признак того, что начальные установки уже произведены
+        alreadyUsed = true;                  // Признак того, что начальные установки уже произведены
 
-        uint colorValue = set.display.colors[colorType->color];
+        uint colorValue = set.display.colors[color];
 
-        colorType->red = (float)R_FROM_COLOR(colorValue);
-        colorType->green = (float)G_FROM_COLOR(colorValue);
-        colorType->blue = (float)B_FROM_COLOR(colorValue);
+        red = (float)R_FROM_COLOR(colorValue);
+        green = (float)G_FROM_COLOR(colorValue);
+        blue = (float)B_FROM_COLOR(colorValue);
 
-        ColorType_SetBrightness(colorType);
+        ColorType_SetBrightness(this);
 
-        if (colorType->red == 0.0F && colorType->green == 0.0F && colorType->blue == 0.0F) //-V2550 //-V550
+        if (red == 0.0F && green == 0.0F && blue == 0.0F) //-V2550 //-V550
         {
-            colorType->stepRed = 0.31F;
-            colorType->stepGreen = 0.63F;
-            colorType->stepBlue = 0.31F;
+            stepRed = 0.31F;
+            stepGreen = 0.63F;
+            stepBlue = 0.31F;
         }
     }
 }
