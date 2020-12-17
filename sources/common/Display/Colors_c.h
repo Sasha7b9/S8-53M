@@ -82,16 +82,11 @@ struct ColorType
     void Init();
     void BrightnessChange(int delta);
     void SetBrightness(float brightness);
+    void ComponentChange(int delta);
 
 //private:
     void SetBrightness();
 };
-
-
-
-
-void Color_ComponentChange(ColorType *colorType, int delta);
-
 
 const char* NameColor(const Color &color);
 #define MAKE_COLOR(r, g, b) ((uint)(((b)) + (((g)) << 8) + (((uint)(r)) << 16)))
@@ -99,4 +94,3 @@ const char* NameColor(const Color &color);
 #define G_FROM_COLOR(color) (((uint)(color) >> 8) & (uint)0xFF)
 #define B_FROM_COLOR(color) ((uint)(color) & 0xFF)
 #define COLOR(i) set.display.colors[i]
-

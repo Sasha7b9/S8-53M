@@ -262,7 +262,7 @@ void GovernorColor::ChangeValue(int delta)
     }
     else
     {
-        Color_ComponentChange(ct, delta);
+        ct->ComponentChange(delta);
     }
 }
 

@@ -181,20 +181,20 @@ void ColorType::Init()
 
 
 
-void Color_ComponentChange(ColorType *colorType, int delta)
+void ColorType::ComponentChange(int delta)
 {
     static const float maxs[4] = {0.0F, 31.0F, 63.0F, 31.0F};
-    int8 index = colorType->currentField;
+    int8 index = currentField;
 
     if (index >= 1 && index <= 3)
     {
-        float *pointers[4] = { 0, &colorType->blue, &colorType->green, &colorType->red };
+        float *pointers[4] = { 0, &blue, &green, &red };
         AddLimitationFloat(pointers[index], (float)Math::Sign(delta), 0.0F, maxs[index]); //-V2533
     }
 
-    SetColor(colorType);
+    SetColor(this);
 
-    colorType->SetBrightness();
+    SetBrightness();
 }
 
 
