@@ -5,10 +5,10 @@
 #include "FPGA/FPGA.h"
 #include "FPGA/Storage.h"
 #include "Hardware/EPROM.h"
-#include "Hardware/Hardware.h"
 #include "LAN/LAN.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
+#include "Panel/Panel.h"
 #include "Settings/Settings.h"
 #include "Utils/ProcessingSignal.h"
 #include "VCP/VCP.h"
@@ -21,7 +21,9 @@ static void ProcessingSignal();
 
 void Device::Init()
 {
-    Hardware::Init();
+    HAL::Init();
+    Panel::Init();
+    FDrive::Init();
     VCP::Init();
     Settings::Load(false);
     FPGA::Init();

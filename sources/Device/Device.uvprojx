@@ -1079,16 +1079,6 @@
               <FilePath>.\src\Hardware\EPROM.cpp</FilePath>
             </File>
             <File>
-              <FileName>Hardware.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\Hardware.h</FilePath>
-            </File>
-            <File>
-              <FileName>Hardware.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\Hardware.cpp</FilePath>
-            </File>
-            <File>
               <FileName>RAM.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\RAM.h</FilePath>
@@ -3252,16 +3242,6 @@
               <FileName>EPROM.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\EPROM.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Hardware.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\Hardware.h</FilePath>
-            </File>
-            <File>
-              <FileName>Hardware.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\Hardware.cpp</FilePath>
             </File>
             <File>
               <FileName>RAM.h</FileName>

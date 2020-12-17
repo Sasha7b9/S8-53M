@@ -87,7 +87,6 @@ file(GLOB FPGA              ../../Device/src/FPGA/FPGA.h
                                          src/FPGA/FPGA_win.cpp)
 file(GLOB HARDWARE          ../../Device/src/Hardware/EPROM.h
                                          src/Hardware/EPROM_win.cpp
-                            ../../Device/src/Hardware/Hardware.*
                             ../../Device/src/Hardware/RAM.*
                                 ../../common/Hardware/Sound_c.*
                                 ../../common/Hardware/Timer_c.*)
