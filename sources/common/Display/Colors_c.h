@@ -89,7 +89,7 @@ struct ColorType
     void SetBrightness();
 };
 
-const char* NameColor(const Color &color);
+
 #define MAKE_COLOR(r, g, b) ((uint)(((b)) + (((g)) << 8) + (((uint)(r)) << 16)))
 #define R_FROM_COLOR(color) (((uint)(color) >> 16) & (uint)0xFF)
 #define G_FROM_COLOR(color) (((uint)(color) >> 8) & (uint)0xFF)

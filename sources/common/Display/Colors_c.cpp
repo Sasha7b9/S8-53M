@@ -212,10 +212,3 @@ static const char* colorNames[] =
     "Color::FLASH_01",
     "SET_INVERSE"
 };
-
-
-
-const char* NameColor(const Color &color)
-{
-    return colorNames[color.value];
-}
