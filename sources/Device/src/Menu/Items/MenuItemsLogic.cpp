@@ -167,7 +167,7 @@ int16 Governor::PrevValue() const
 
 void Governor::NextPosition()
 {
-    if (Menu::IsOpenedItem(this))
+    if (IsOpened())
     {
         CircleIncreaseInt8(&gCurDigit, 0, static_cast<int8>(NumDigits()) - 1);
     }
@@ -273,7 +273,7 @@ void Governor::ShortPress()
     {
         return;
     }
-    if (Menu::IsOpenedItem(this))
+    if (IsOpened())
     {
         NextPosition();
     }
@@ -305,7 +305,7 @@ char Item::GetSymbolForGovernor() const
     else if (IsTime())
     {
         const DataTime *own = ReinterpretToTime()->OwnData();
-        if (Menu::IsOpenedItem(this) && (*own->curField != iEXIT) && (*own->curField != iSET))
+        if (IsOpened() && (*own->curField != iEXIT) && (*own->curField != iSET))
         {
             int8 values[7] =
             {

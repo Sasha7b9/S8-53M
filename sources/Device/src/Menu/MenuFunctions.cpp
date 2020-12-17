@@ -60,12 +60,6 @@ void Menu::CloseOpenedItem()
 }
 
 
-bool Menu::IsOpenedItem(const Item *item)
-{
-    return (item == OpenedItem());
-}
-
-
 NamePage::E Menu::GetNameOpenedPage()
 {
     return OpenedItem()->ReinterpretToPage()->GetName();

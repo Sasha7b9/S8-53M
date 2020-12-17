@@ -51,7 +51,6 @@ public:
 
     // Возвращает адрес открытого элемента меню.
     static const Item *OpenedItem();
-    static bool IsOpenedItem(const Item *item);
 
     // Возвращает адрес текущего элемента меню (текущим, как правило, является элемент, кнопка которого была нажата последней.
     static const Item *CurrentItem();
