@@ -15,7 +15,7 @@ struct Color
     static Color MENU_TITLE_DARK;
     static Color MENU_TITLE_BRIGHT;
     static Color MENU_ITEM;
-    static Color MENU_ITEM_DARK;
+    static Color MENU_ITEM_DARK;        // Чуть менее светлый цвет, чем цвет элемента меню. Используется для создания эффекта объёма.
     static Color MENU_ITEM_BRIGHT;      // Чуть более светлый цвет, чем цвет элемента меню. Используется для создания эффекта объёма.
     static Color MENU_SHADOW;
     static Color EMPTY;
@@ -41,10 +41,6 @@ struct Color
     static Color GetCurrent() { return current; };
     static Color Channel(Channel::E chan);
     static Color Cursors(Channel::E cnan);
-
-
-    // Чуть менее светлый цвет, чем цвет элемента меню. Используется для создания эффекта объёма.
-    static Color MenuItemLessBright()  { return Color::MENU_ITEM_DARK; }
 
     // Чуть менее светлый цвет, чем цвет заголовка страницы. Используется для создания эффекта объёма.
     static Color MenuTitleLessBright() { return Color::MENU_TITLE_DARK; }
