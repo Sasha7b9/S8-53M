@@ -25,6 +25,8 @@ struct Color {
 
     static Color FLASH_10;
     static Color FLASH_01;
+    static Color FILL;
+    static Color BACK;
     static Color SET_INVERSE;
 
     uint8 value;
@@ -45,10 +47,16 @@ struct Color {
     static Color MenuItemLessBright()  {  return Color::MENU_ITEM_DARK;  }
     
     // Чуть менее светлый цвет, чем цвет заголовка страницы. Используется для создания эффекта объёма.
-    static Color MenuTitleLessBright();
+    static Color MenuTitleLessBright() { return Color::MENU_TITLE_DARK; }
+
+    // Чуть более светлый цвет, чем цвет заголовка страницы. Используется для создания эффекта объёма.
+    static Color MenuTitleBrighter()   { return Color::MENU_TITLE_BRIGHT; }
+
     static Color Trig();
+
     static Color MenuTitle();
-    static Color MenuItem();
+
+    static Color MenuItem()           { return Color::MENU_ITEM; }
 
     // Цвет окантовки меню.
     static Color BorderMenu();
@@ -58,8 +66,6 @@ struct Color {
 
     // Светлый цвет в тени.
     static Color LightShadingText();
-    static Color FILL;
-    static Color BACK;
 
     bool operator==(const Color &rhs) { return (value == rhs.value); }
     bool operator!=(const Color &rhs) { return (value != rhs.value); }
@@ -70,8 +76,6 @@ private:
 };
 
 
-// Чуть более светлый цвет, чем цвет заголовка страницы. Используется для создания эффекта объёма.
-#define ColorMenuTitleBrighter()    Color::MENU_TITLE_BRIGHT
 // Чуть более светлый цвет, чем цвет элемента меню. Используется для создания эффекта объёма.
 #define ColorMenuItemBrighter()     Color::MENU_ITEM_BRIGHT
 // Тёмный цвет в тени.

@@ -469,7 +469,7 @@ void Choice::DrawOpened(int x, int y) const
     Rectangle(Item::TITLE_WIDTH + 1, height + 1).Draw(x - 1, y, Color::MenuTitle());
  
     HLine().Draw(y + Item::OPENED_HEIGHT_TITLE - 1, x, x + Item::OPENED_WIDTH);
-    DrawVolumeButton(x, y + Item::OPENED_HEIGHT_TITLE, Item::OPENED_WIDTH - 1, height - Item::OPENED_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false);
+    DrawVolumeButton(x, y + Item::OPENED_HEIGHT_TITLE, Item::OPENED_WIDTH - 1, height - Item::OPENED_HEIGHT_TITLE, 1, Color::BLACK, Color::MenuTitleBrighter(), Color::MenuTitleLessBright(), false);
     int index = *((int8*)OwnData()->cell); //-V2533 //-V2567
     for(int i = 0; i < NumSubItems(); i++)
     {
@@ -477,7 +477,7 @@ void Choice::DrawOpened(int x, int y) const
         bool pressed = i == index;
         if(pressed)
         {
-            DrawVolumeButton(x + 1, yItem, Item::OPENED_WIDTH - 2 , Item::OPENED_HEIGHT - 2, 2, Color::MenuField(), ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), pressed);
+            DrawVolumeButton(x + 1, yItem, Item::OPENED_WIDTH - 2 , Item::OPENED_HEIGHT - 2, 2, Color::MenuField(), Color::MenuTitleBrighter(), Color::MenuTitleLessBright(), pressed);
         }
         Text(NameSubItem(i)).Draw(x + 4, yItem + 2, pressed ? Color::BLACK : Color::MenuField());
     }
@@ -495,7 +495,7 @@ void TimeItem::DrawOpened(int x, int y) const
     Rectangle(width + 1, height + 1).Draw(x - 1, y, Color::MenuTitle());
 
     HLine().Draw(y + Item::OPENED_HEIGHT_TITLE - 1, x, x + Item::OPENED_WIDTH);
-    DrawVolumeButton(x, y + Item::OPENED_HEIGHT_TITLE, Item::OPENED_WIDTH - 1, height - Item::OPENED_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false);
+    DrawVolumeButton(x, y + Item::OPENED_HEIGHT_TITLE, Item::OPENED_WIDTH - 1, height - Item::OPENED_HEIGHT_TITLE, 1, Color::BLACK, Color::MenuTitleBrighter(), Color::MenuTitleLessBright(), false);
 
     int y0 = 21;
     int y1 = 31;
@@ -555,7 +555,7 @@ static void GovernorIpCommon_DrawOpened(const Item *item, int x, int y, int dWid
     Rectangle(Item::TITLE_WIDTH + 1 + dWidth, height + 1).Draw(x - 1, y, Color::MenuTitle());
     HLine().Draw(y + Item::OPENED_HEIGHT_TITLE - 1, x, x + Item::OPENED_WIDTH + dWidth);
     DrawGovernorChoiceColorFormulaHiPart(item, x - 1, y - 1, item->IsPressed(), true);
-    item->DrawVolumeButton(x, y + Item::OPENED_HEIGHT_TITLE, Item::OPENED_WIDTH - 1 + dWidth, height - Item::OPENED_HEIGHT_TITLE, 1, Color::BLACK, ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false);
+    item->DrawVolumeButton(x, y + Item::OPENED_HEIGHT_TITLE, Item::OPENED_WIDTH - 1 + dWidth, height - Item::OPENED_HEIGHT_TITLE, 1, Color::BLACK, Color::MenuTitleBrighter(), Color::MenuTitleLessBright(), false);
 }
 
 void Governor::DrawOpened(int x, int y) const
@@ -755,7 +755,7 @@ void Page::DrawTitle(int yTop) //-V2506
     }
     else
     {
-        DrawVolumeButton(x + 1, yTop + 1, Item::TITLE_WIDTH - 1, Item::TITLE_HEIGHT - 1, 3, Color::MenuTitle(), ColorMenuTitleBrighter(), Color::MenuTitleLessBright(), false);
+        DrawVolumeButton(x + 1, yTop + 1, Item::TITLE_WIDTH - 1, Item::TITLE_HEIGHT - 1, 3, Color::MenuTitle(), Color::MenuTitleBrighter(), Color::MenuTitleLessBright(), false);
     }
     
     VLine().Draw(x, yTop, yTop + HeightOpened(), Color::BorderMenu());

@@ -73,19 +73,6 @@ Color Color::MenuField()
 }
 
 
-Color Color::MenuTitleLessBright()
-{
-    return Color::MENU_TITLE_DARK;
-}
-
-
-Color Color::MenuItem()
-{
-    return Color::MENU_ITEM;
-}
-
-
-
 Color Color::BorderMenu()
 {
     return Color::MenuTitle();
