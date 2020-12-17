@@ -98,11 +98,11 @@ static void ColorType_CalcSteps(ColorType *colorType)
 
 
 
-static void ColorType_SetBrightness(ColorType *colorType)
+void ColorType::SetBrightness()
 {
-    colorType->brightness = MaxFloat(colorType->red / 31.0F, colorType->green / 63.0F, colorType->blue / 31.0F);
+    brightness = MaxFloat(red / 31.0F, green / 63.0F, blue / 31.0F);
 
-    ColorType_CalcSteps(colorType);
+    ColorType_CalcSteps(this);
 }
 
 
@@ -168,7 +168,7 @@ void ColorType::Init()
         green = (float)G_FROM_COLOR(colorValue);
         blue = (float)B_FROM_COLOR(colorValue);
 
-        ColorType_SetBrightness(this);
+        SetBrightness();
 
         if (red == 0.0F && green == 0.0F && blue == 0.0F) //-V2550 //-V550
         {
@@ -194,7 +194,7 @@ void Color_ComponentChange(ColorType *colorType, int delta)
 
     SetColor(colorType);
 
-    ColorType_SetBrightness(colorType);
+    colorType->SetBrightness();
 }
 
 

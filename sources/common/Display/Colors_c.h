@@ -82,6 +82,9 @@ struct ColorType
     void Init();
     void BrightnessChange(int delta);
     void SetBrightness(float brightness);
+
+//private:
+    void SetBrightness();
 };
 
 
