@@ -9,16 +9,15 @@
 
     AREA ||i.main||, CODE, READONLY, ALIGN=1
 
-main    PROC
+main PROC
    
-    BL       _ZN3HAL4InitEv             ; HAL::Init()
-    BL       _ZN8Keyboard4InitEv        ; Keyboard::Init()
+    BL  _ZN3HAL4InitEv             ; HAL::Init()
+    BL  _ZN8Keyboard4InitEv        ; Keyboard::Init()
 L1_10
-    BL       _ZN8Keyboard6UpdateEv      ; Keyboard::Update()
-    BL       _ZN9Interface6UpdateEv     ; Interface::Update()
-    B        L1_10
+    BL  _ZN8Keyboard6UpdateEv      ; Keyboard::Update()
+    BL  _ZN9Interface6UpdateEv     ; Interface::Update()
+    B   L1_10
     ENDP
-
 
     AREA ||.ARM.exidx||, LINKORDER=||i.main||, DATA, READONLY, SECTYPE={SHT_ARM_EXIDX}, ALIGN=2
 
