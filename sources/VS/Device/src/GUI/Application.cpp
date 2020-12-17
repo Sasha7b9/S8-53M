@@ -50,7 +50,7 @@ int main(int argc, char **argv)
 
 
 
-bool Application::OnInit() //-V2506
+bool Application::OnInit()
 {
     if (!wxApp::OnInit())
     {

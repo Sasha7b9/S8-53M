@@ -19,7 +19,7 @@ void Upgrade(void);
 
 
 
-int main(void) //-V2506
+int main(void)
 {
     MainStruct::ms = static_cast<MainStruct *>(malloc(sizeof(MainStruct))); //-V2511
     MainStruct::ms->percentUpdate = 0.0F; //-V522

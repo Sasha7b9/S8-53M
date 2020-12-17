@@ -77,7 +77,7 @@ void Painter::EndScene(bool)
 }
 
 
-void Color::SetAsCurrent() //-V2506
+void Color::SetAsCurrent()
 {
     if (index == Color::Count.index)
     {

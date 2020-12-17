@@ -192,7 +192,7 @@ void ConsoleSCPI::History::Add(const wxString &txt)
 }
 
 
-wxString ConsoleSCPI::History::Next() //-V2506
+wxString ConsoleSCPI::History::Next()
 {
     if (history.size() == 0)
     {
@@ -211,7 +211,7 @@ wxString ConsoleSCPI::History::Next() //-V2506
 }
 
 
-wxString ConsoleSCPI::History::Prev() //-V2506
+wxString ConsoleSCPI::History::Prev()
 {
     if (history.size() == 0)
     {

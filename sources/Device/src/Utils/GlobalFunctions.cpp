@@ -42,7 +42,7 @@ static int NumDigitsInIntPart(float value)
     return numDigitsInInt;
 }
 
-char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[20]) //-V2506
+char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[20])
 {
     bufferOut[0] = 0;
     char *pBuffer = bufferOut;
@@ -120,7 +120,7 @@ char* Int2String(int value, bool alwaysSign, int numMinFields, char buffer[20])
     return buffer;
 }
 
-bool String2Int(char *str, int *value)   //-V2506
+bool String2Int(char *str, int *value)  
 {
     int sign = str[0] == '-' ? -1 : 1; //-V2563
     if (str[0] < '0' || str[0] > '9') //-V2563
@@ -175,7 +175,7 @@ char* Hex8toString(uint8 value, char buffer[3])
     return buffer;
 }
 
-char* Voltage2String(float voltage, bool alwaysSign, char buffer[20]) //-V2506
+char* Voltage2String(float voltage, bool alwaysSign, char buffer[20])
 {
     buffer[0] = 0;
     char *suffix;
@@ -212,7 +212,7 @@ char* Voltage2String(float voltage, bool alwaysSign, char buffer[20]) //-V2506
     return buffer;
 }
 
-char* Time2String(float time, bool alwaysSign, char buffer[20]) //-V2506
+char* Time2String(float time, bool alwaysSign, char buffer[20])
 {
     buffer[0] = 0;
     char *suffix = 0;
@@ -254,7 +254,7 @@ char* Phase2String(float phase, bool, char bufferOut[20])
     return bufferOut;
 }
 
-char *  Freq2String(float freq, bool, char bufferOut[20]) //-V2506
+char *  Freq2String(float freq, bool, char bufferOut[20])
 {
     bufferOut[0] = 0;
     char *suffix = 0;

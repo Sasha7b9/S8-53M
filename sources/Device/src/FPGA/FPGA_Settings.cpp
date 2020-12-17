@@ -157,7 +157,7 @@ void FPGA::SetAttribChannelsAndTrig(TypeWriteAnalog::E type)
 }
 
 
-void FPGA::SetRange(Channel::E chan, Range::E range) //-V2506
+void FPGA::SetRange(Channel::E chan, Range::E range)
 {
     if (!sChannel_Enabled(chan))
     {
@@ -193,7 +193,7 @@ void FPGA::LoadRange(Channel::E chan)
 }
 
 
-void FPGA::SetTBase(TBase::E tBase) //-V2506
+void FPGA::SetTBase(TBase::E tBase)
 {
     if (!sChannel_Enabled(Channel::A) && !sChannel_Enabled(Channel::B))
     {
@@ -223,7 +223,7 @@ void FPGA::LoadTBase()
 }
 
 
-void FPGA::TBaseDecrease() //-V2506
+void FPGA::TBaseDecrease()
 {
     if ((PEAKDET != PeackDetMode::Disable) && SET_TBASE <= MIN_TBASE_PEC_DEAT)
     {
@@ -265,7 +265,7 @@ void FPGA::TBaseIncrease()
 }
 
 
-void FPGA::SetRShift(Channel::E chan, int16 rShift) //-V2506
+void FPGA::SetRShift(Channel::E chan, int16 rShift)
 {
     if (!sChannel_Enabled(chan))
     {
@@ -355,7 +355,7 @@ void FPGA::LoadTrigLev()
 }
 
 
-void FPGA::SetTShift(int tShift) //-V2506
+void FPGA::SetTShift(int tShift)
 {
     if (!sChannel_Enabled(Channel::A) && !sChannel_Enabled(Channel::B))
     {

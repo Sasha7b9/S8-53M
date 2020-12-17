@@ -171,7 +171,7 @@ bool FPGA::ProcessingData(void)
 }
 
 
-void FPGA::Update(void) //-V2506
+void FPGA::Update(void)
 {
     ReadFlag();
 
@@ -259,7 +259,7 @@ static uint8 InverseIfNecessary(uint8 data, Channel::E chan)
 */
 
 
-void FPGA::ReadRandomizeMode(void) //-V2506
+void FPGA::ReadRandomizeMode(void)
 {
     int Tsm = CalculateShift();
     if (Tsm == NULL_TSHIFT)
@@ -483,7 +483,7 @@ void FPGA::SetAdditionShift(int shift)
 }
 
 
-bool FPGA::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax) //-V2506
+bool FPGA::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
 {   
     if(firstAfterWrite)
     {
@@ -548,7 +548,7 @@ bool FPGA::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax) //-V2506
 }
 
 
-int FPGA::CalculateShift(void)            // \todo Не забыть восстановить функцию //-V2506
+int FPGA::CalculateShift(void)            // \todo Не забыть восстановить функцию
 {
     uint16 rand = HAL_ADC3::GetValue();
     //LOG_WRITE("rand = %d", (int)rand);
@@ -705,7 +705,7 @@ static float FreqCounterToValue(const BitSet32 *fr)
 }
 
 
-static float PeriodCounterToValue(const BitSet32 *period) //-V2506
+static float PeriodCounterToValue(const BitSet32 *period)
 {
     if (period->word == 0)
     {
@@ -775,7 +775,7 @@ static uint8 ReadFlag(void)
 }
 
 
-static float CalculateFreqFromCounterFreq(void) //-V2506
+static float CalculateFreqFromCounterFreq(void)
 {
     while (_GET_BIT(HAL_FMC::Read(RD_FL), BIT_FREQ_READY) == 0) {}; //-V2563
     ReadRegFreq();
@@ -789,7 +789,7 @@ static float CalculateFreqFromCounterFreq(void) //-V2506
 }
 
 
-static float CalculateFreqFromCounterPeriod(void) //-V2506
+static float CalculateFreqFromCounterPeriod(void)
 {
     uint time = gTimerMS;
     while (gTimerMS - time < 1000 && _GET_BIT(HAL_FMC::Read(RD_FL), BIT_PERIOD_READY) == 0) {}; //-V2563
@@ -818,7 +818,7 @@ void FPGA::ClearData(void)
 }
 
 
-bool FPGA::AllPointsRandomizer(void) //-V2506
+bool FPGA::AllPointsRandomizer(void)
 {
     if(SET_TBASE < TBase::_100ns) 
     {
@@ -891,7 +891,7 @@ uint8 FPGA::CalculateMaxWithout255(const uint8 buffer[100])
 }
 
 
-TBase::E CalculateTBase(float freq_) //-V2506
+TBase::E CalculateTBase(float freq_)
 {
     if     (freq_ >= 100e6F)  { return TBase::_2ns;   }
     else if(freq_ >= 40e6F)   { return TBase::_5ns;   }
@@ -943,7 +943,7 @@ void FPGA::AutoFind(void)
 }
 
 
-bool FPGA::FindWave(Channel::E chan) //-V2506
+bool FPGA::FindWave(Channel::E chan)
 {
     Settings settings = set;    // Сохраняем предыдущие настройки
 
@@ -973,7 +973,7 @@ bool FPGA::FindWave(Channel::E chan) //-V2506
 }
 
 
-Range::E FPGA::AccurateFindRange(Channel::E chan) //-V2506
+Range::E FPGA::AccurateFindRange(Channel::E chan)
 {
     /*
     Алгоритм поиска.
@@ -1065,7 +1065,7 @@ Range::E FPGA::AccurateFindRange(Channel::E chan) //-V2506
 }
 
 
-TBase::E FPGA::AccurateFindTBase(Channel::E chan) //-V2506
+TBase::E FPGA::AccurateFindTBase(Channel::E chan)
 {
     for (int i = 0; i < 5; i++)
     {
@@ -1081,7 +1081,7 @@ TBase::E FPGA::AccurateFindTBase(Channel::E chan) //-V2506
 }
 
 
-TBase::E FPGA::FindTBase(Channel::E) //-V2506
+TBase::E FPGA::FindTBase(Channel::E)
 {
     SetTrigInput(TrigInput::Full);
     HAL_TIM2::Delay(10);
@@ -1157,7 +1157,7 @@ void FPGA::FillDataPointer(DataSettings *dp)
 }
 
 
-void FPGA::FindAndSetTrigLevel(void) //-V2506
+void FPGA::FindAndSetTrigLevel(void)
 {
     TrigSource::E trigSource = TRIG_SOURCE;
     if (Storage::AllDatas() == 0 || TRIG_SOURCE_IS_EXT)

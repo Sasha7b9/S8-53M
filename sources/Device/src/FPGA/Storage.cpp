@@ -101,7 +101,7 @@ void Storage::CalculateAroundAverage(uint8 *data0, uint8 *data1, const DataSetti
 }
 
 
-void Storage::AddData(uint8 *data0, uint8 *data1, DataSettings dss) //-V2506
+void Storage::AddData(uint8 *data0, uint8 *data1, DataSettings dss)
 {
     dss.time = HAL_RTC::GetPackedTime();
 
@@ -284,7 +284,7 @@ DataSettings* Storage::GetSettingsDataFromEnd(int fromEnd)
 }
 
 
-bool Storage::GetDataFromEnd(int fromEnd, DataSettings **ds, uint8 **data0, uint8 **data1) //-V2506
+bool Storage::GetDataFromEnd(int fromEnd, DataSettings **ds, uint8 **data0, uint8 **data1)
 {
     static uint8 dataImportRel[2][FPGA_MAX_POINTS];
 
@@ -308,7 +308,7 @@ bool Storage::GetDataFromEnd(int fromEnd, DataSettings **ds, uint8 **data0, uint
 }
 
 
-uint8* Storage::GetData(Channel::E chan, int fromEnd) //-V2506
+uint8* Storage::GetData(Channel::E chan, int fromEnd)
 {
     static uint8 dataImportRel[2][FPGA_MAX_POINTS];
     DataSettings* dp = FromEnd(fromEnd);
@@ -321,7 +321,7 @@ uint8* Storage::GetData(Channel::E chan, int fromEnd) //-V2506
 }
 
 
-bool Storage::CopyData(DataSettings *ds, Channel::E chan, uint8 datatImportRel[2][FPGA_MAX_POINTS]) //-V2506
+bool Storage::CopyData(DataSettings *ds, Channel::E chan, uint8 datatImportRel[2][FPGA_MAX_POINTS])
 {
     if((chan == Channel::A && ds->enableCh0 == 0) || (chan == Channel::B && ds->enableCh1 == 0))
     {
@@ -344,7 +344,7 @@ bool Storage::CopyData(DataSettings *ds, Channel::E chan, uint8 datatImportRel[2
 }
 
 
-uint8* Storage::GetAverageData(Channel::E chan) //-V2506
+uint8* Storage::GetAverageData(Channel::E chan)
 {
     static uint8 data[NumChannels][FPGA_MAX_POINTS];
     
@@ -407,7 +407,7 @@ uint8* Storage::GetLimitation(Channel::E chan, int direction)
 }
 
 
-int Storage::NumberAvailableEntries() //-V2506
+int Storage::NumberAvailableEntries()
 {
     if(firstElem == 0)
     {
@@ -475,7 +475,7 @@ void Storage::PushData(DataSettings *dp, pUCHAR data0, pUCHAR data1)
 }
 
 
-int Storage::MemoryFree() //-V2506
+int Storage::MemoryFree()
 {
     if (firstElem == 0)
     {
@@ -541,7 +541,7 @@ DataSettings* Storage::NextElem(DataSettings *elem)
 }
 
 
-DataSettings* Storage::FromEnd(int indexFromEnd) //-V2506
+DataSettings* Storage::FromEnd(int indexFromEnd)
 {
     if(firstElem == 0)
     {

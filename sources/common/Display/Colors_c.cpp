@@ -64,7 +64,7 @@ Color Color::Cursors(Channel::E chan)
 Color Color::Contrast(const Color &color)
 {
     uint colorValue = set.display.colors[color.index];
-    if (R_FROM_COLOR(colorValue) > 16 || G_FROM_COLOR(colorValue) > 32 || B_FROM_COLOR(colorValue) > 16)    //-V112
+    if (R_FROM_COLOR(colorValue) > 128 || G_FROM_COLOR(colorValue) > 128 || B_FROM_COLOR(colorValue) > 128)    //-V112
     {
         return Color::BLACK;
     }
@@ -122,7 +122,7 @@ void ColorType::SetBrightness(float br)
 
 
 
-void ColorType::BrightnessChange(int delta) //-V2506
+void ColorType::BrightnessChange(int delta)
 {
     if ((delta > 0 && brightness == 1.0F) || (delta < 0 && brightness == 0.0F)) //-V2550 //-V550
     {

@@ -4,7 +4,7 @@
 #include <stm32f4xx_hal.h>
 
 
-bool HAL_OTP::SaveSerialNumber(char *serialNumber) //-V2506
+bool HAL_OTP::SaveSerialNumber(char *serialNumber)
 {
     // Ќаходим первую пустую строку длиной 16 байт в области OPT, начина€ с начала.
     uint8 *address = reinterpret_cast<uint8 *>(FLASH_OTP_BASE); //-V566 //-V2571
@@ -25,7 +25,7 @@ bool HAL_OTP::SaveSerialNumber(char *serialNumber) //-V2506
 }
 
 
-int HAL_OTP::GetSerialNumber(char buffer[17]) //-V2506
+int HAL_OTP::GetSerialNumber(char buffer[17])
 {
     // \todo улучшить - нельз€ разбрасыватьс€ байтами.  ажда€ запись должна занимать столько места, сколько в ней символов, а не 16, как сейчас.
 

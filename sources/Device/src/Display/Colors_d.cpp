@@ -3,7 +3,7 @@
 #include "Settings/Settings.h"
 
 
-Color Color::Trig() //-V2506
+Color Color::Trig()
 {
     TrigSource::E trigChan = TRIG_SOURCE;
     if (trigChan == TrigSource::A || trigChan == TrigSource::B)

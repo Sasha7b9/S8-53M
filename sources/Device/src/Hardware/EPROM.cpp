@@ -43,7 +43,7 @@ void EPROM::PrepareSectorForData()
 }
 
 
-bool EPROM::LoadSettings(void) //-V2506
+bool EPROM::LoadSettings(void)
 {
     /*
         1. Проверка на первое включение. Выполняется тем, что в первом слове сектора настроек хранится MAX_UINT, если настройки ещё не сохранялись.
@@ -113,7 +113,7 @@ void EPROM::WriteAddressDataInRecord(RecordConfig *record)
 }
 
 
-void EPROM::SaveSettings(bool verifyLoadede) //-V2506
+void EPROM::SaveSettings(bool verifyLoadede)
 {
     if (!verifyLoadede && !Settings::loaded)
     {
@@ -148,7 +148,7 @@ bool EPROM::TheFirstInclusion()
 }
 
 
-RecordConfig* EPROM::RecordConfigForRead() //-V2506
+RecordConfig* EPROM::RecordConfigForRead()
 {
     if (!TheFirstInclusion())
     {
@@ -172,7 +172,7 @@ bool EPROM::RecordExist()
 }
 
 
-RecordConfig *EPROM::FirstEmptyRecord() //-V2506
+RecordConfig *EPROM::FirstEmptyRecord()
 {
     RecordConfig *record = FirstRecord();
     int numRecord = 0;
@@ -190,7 +190,7 @@ RecordConfig *EPROM::FirstEmptyRecord() //-V2506
 }
 
 
-uint EPROM::CalculatFreeMemory() //-V2506
+uint EPROM::CalculatFreeMemory()
 {
     if (!RecordExist())
     {
@@ -397,7 +397,7 @@ void EPROM::SaveData(int num, DataSettings *ds, uint8 *data0, uint8 *data1)
 }
 
 
-bool EPROM::GetData(int num, DataSettings **ds, uint8 **data0, uint8 **data1) //-V2506
+bool EPROM::GetData(int num, DataSettings **ds, uint8 **data0, uint8 **data1)
 {
     uint addrDataInfo = FindActualDataInfo();
     if (READ_WORD(addrDataInfo + 4 * num) == 0) //-V2571

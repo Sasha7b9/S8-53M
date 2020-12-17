@@ -64,7 +64,7 @@ const char *Tables::symbolsAlphaBet[0x48] =
 };
 
 
-ENumSignalsInSec::E Tables::NumSignalsInSecToENUM(int enumSignalsInSec) //-V2506
+ENumSignalsInSec::E Tables::NumSignalsInSecToENUM(int enumSignalsInSec)
 {
     if(enumSignalsInSec == 1)
     {
@@ -91,7 +91,7 @@ ENumSignalsInSec::E Tables::NumSignalsInSecToENUM(int enumSignalsInSec) //-V2506
 }
 
 
-int Tables::ENUMtoNumSignalsInSec(ENumSignalsInSec::E enumSignalsInSec) //-V2506
+int Tables::ENUMtoNumSignalsInSec(ENumSignalsInSec::E enumSignalsInSec)
 {
     static const int fps[] = {25, 10, 5, 2, 1};
     if(enumSignalsInSec <= ENumSignalsInSec::_1)

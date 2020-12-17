@@ -186,7 +186,7 @@ static bool IsActive_Math_Function()
     return !ENABLED_FFT;
 }
 
-static void OnRegSet_Math_Function(int delta) //-V2506
+static void OnRegSet_Math_Function(int delta)
 {
     if (DISABLED_DRAW_MATH)
     {

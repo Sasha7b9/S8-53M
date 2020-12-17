@@ -115,7 +115,7 @@ void FM::DrawFiles(int x, int y)
 }
 
 
-bool FM::FileIsExist(const char name[255]) //-V2506
+bool FM::FileIsExist(const char name[255])
 {
     char nameFile[255];
     FDrive::GetNumDirsAndFiles(currentDir, &numDirs, &numFiles);
@@ -134,7 +134,7 @@ bool FM::FileIsExist(const char name[255]) //-V2506
 }
 
 
-void FM::DrawNameCurrentDir(int left, int top) //-V2506
+void FM::DrawNameCurrentDir(int left, int top)
 {
     Color::FILL.SetAsCurrent();
     int length = Font::GetLengthText(currentDir);
@@ -162,7 +162,7 @@ void FM::DrawNameCurrentDir(int left, int top) //-V2506
 }
 
 
-void FM::Draw() //-V2506
+void FM::Draw()
 {
     if (needRedrawFileManager == 0)
     {
@@ -222,7 +222,7 @@ void FM::PressTab()
 }
 
 
-void FM::PressLevelDown() //-V2506
+void FM::PressLevelDown()
 {
     needRedrawFileManager = 1;
     if (!cursorInDirs)
@@ -249,7 +249,7 @@ void FM::PressLevelDown() //-V2506
 }
 
 
-void FM::PressLevelUp() //-V2506
+void FM::PressLevelUp()
 {
     needRedrawFileManager = 1;
     if (std::strlen(currentDir) == 1) //-V2513
@@ -358,7 +358,7 @@ void FM::RotateRegSet(int angle)
 }
 
 
-bool FM::GetNameForNewFile(char name[255]) //-V2506
+bool FM::GetNameForNewFile(char name[255])
 {
     char buffer[20];
     int number = 1;

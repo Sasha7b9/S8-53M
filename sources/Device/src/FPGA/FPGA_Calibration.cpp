@@ -407,7 +407,7 @@ void AlignmentADC(void)
 }
 
 
-int16 CalculateAdditionRShift(Channel::E chan, Range::E range) //-V2506
+int16 CalculateAdditionRShift(Channel::E chan, Range::E range)
 {
     FPGA::SetRange(chan, range);
     FPGA::SetRShift(chan, RShiftZero);
@@ -472,7 +472,7 @@ int16 CalculateAdditionRShift(Channel::E chan, Range::E range) //-V2506
 }
 
 
-float CalculateKoeffCalibration(Channel::E chan) //-V2506
+float CalculateKoeffCalibration(Channel::E chan)
 {
     FPGA::WriteToHardware(WR_UPR, BINARY_U8(00000100), false); //-V2501 //-V2563
 

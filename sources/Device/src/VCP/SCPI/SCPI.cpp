@@ -128,7 +128,7 @@ void SCPI::ParseNewCommand(uint8 *buf)
 
 
 
-void SCPI::ProcessingCommand(const StructCommand *commands, uint8 *buffer)  //-V2506
+void SCPI::ProcessingCommand(const StructCommand *commands, uint8 *buffer) 
 {
     int sizeNameCommand = FindNumSymbolsInCommand(buffer);
     if (sizeNameCommand == 0) 
@@ -171,7 +171,7 @@ static int FindNumSymbolsInCommand(pUCHAR buffer)
 
 
 
-bool SCPI::FirstIsInt(pUCHAR buffer, int *value, int min, int max) //-V2506
+bool SCPI::FirstIsInt(pUCHAR buffer, int *value, int min, int max)
 {
     Word param;
     if (GetWord(buffer, &param, 0))

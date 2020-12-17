@@ -26,7 +26,7 @@ int GetNumWordsInString(pUCHAR )
     return 0;
 }
 
-bool GetWord(pUCHAR string, Word *word, const int numWord) //-V2506
+bool GetWord(pUCHAR string, Word *word, const int numWord)
 {
     ChooseSpaces(&string);
 
@@ -61,7 +61,7 @@ bool GetWord(pUCHAR string, Word *word, const int numWord) //-V2506
     }
 }
 
-bool WordEqualZeroString(Word *word, char* string) //-V2506
+bool WordEqualZeroString(Word *word, char* string)
 {
     char *ch = string;
     char *w = (char*)(word->address); //-V2533
@@ -79,7 +79,7 @@ bool WordEqualZeroString(Word *word, char* string) //-V2506
 
 #define  SYMBOL(x) (*(*(x)))
 
-bool ChooseSymbols(pUCHAR *string) //-V2506
+bool ChooseSymbols(pUCHAR *string)
 {
     if (SYMBOL(string) == 0x0d && SYMBOL(string + 1) == 0x0a) //-V2563
     {
@@ -94,7 +94,7 @@ bool ChooseSymbols(pUCHAR *string) //-V2506
     return true;
 }
 
-bool ChooseSpaces(pUCHAR *string) //-V2506
+bool ChooseSpaces(pUCHAR *string)
 {
     if (SYMBOL(string) == 0x0d && SYMBOL(string + 1) == 0x0a) //-V2563
     {
@@ -111,7 +111,7 @@ bool ChooseSpaces(pUCHAR *string) //-V2506
 
 #undef SYMBOL
 
-bool EqualsStrings(pCHAR str1, pCHAR str2, int size) //-V2506
+bool EqualsStrings(pCHAR str1, pCHAR str2, int size)
 {
     for (int i = 0; i < size; i++)
     {
@@ -123,7 +123,7 @@ bool EqualsStrings(pCHAR str1, pCHAR str2, int size) //-V2506
     return true;
 }
 
-bool EqualsZeroStrings(char *str1, char *str2) //-V2506
+bool EqualsZeroStrings(char *str1, char *str2)
 {
     while ((*str1) == (*str2))
     {

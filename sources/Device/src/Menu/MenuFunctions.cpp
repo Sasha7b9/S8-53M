@@ -12,7 +12,7 @@ const Item* Menu::OpenedItem()
 }
 
 
-const Item* Menu::CurrentItem() //-V2506
+const Item* Menu::CurrentItem()
 {
     const Item *lastOpened = PageMain::self->RetLastOpened();
     int8 pos = ((const Page *)lastOpened)->GetPositionActItem(); //-V2533

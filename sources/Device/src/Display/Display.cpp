@@ -123,7 +123,7 @@ void Display::Redraw()
 }
 
 
-bool Display::ChannelNeedForDraw(pUCHAR data, Channel::E chan, const DataSettings *ds) //-V2506
+bool Display::ChannelNeedForDraw(pUCHAR data, Channel::E chan, const DataSettings *ds)
 {
     if (!data)
     {
@@ -153,7 +153,7 @@ bool Display::ChannelNeedForDraw(pUCHAR data, Channel::E chan, const DataSetting
 
 
 
-void Display::DrawMarkersForMeasure(float scale, Channel::E chan) //-V2506
+void Display::DrawMarkersForMeasure(float scale, Channel::E chan)
 {
     if (chan == Channel::Math)
     {
@@ -186,7 +186,7 @@ void Display::DrawMarkersForMeasure(float scale, Channel::E chan) //-V2506
 
 
 
-void Display::DrawSignalLined(pUCHAR data, const DataSettings *ds, int startPoint, int endPoint, int minY, int maxY, float scaleY, float scaleX,  //-V2506
+void Display::DrawSignalLined(pUCHAR data, const DataSettings *ds, int startPoint, int endPoint, int minY, int maxY, float scaleY, float scaleX, 
     bool calculateFiltr)
 {
     if (endPoint < startPoint)
@@ -318,7 +318,7 @@ void Display::DrawSignalPointed(pUCHAR data, const DataSettings *ds, int startPo
 
 
 // ≈сли data == 0, то данные брать из GetData
-void Display::DrawDataChannel(uint8 *data, Channel::E chan, DataSettings *ds, int minY, int maxY) //-V2506
+void Display::DrawDataChannel(uint8 *data, Channel::E chan, DataSettings *ds, int minY, int maxY)
 {
     bool calculateFiltr = true;
     if (data == 0)
@@ -382,7 +382,7 @@ void Display::DrawDataChannel(uint8 *data, Channel::E chan, DataSettings *ds, in
 }
 
 
-void Display::DrawMath() //-V2506
+void Display::DrawMath()
 {
     if (DISABLED_DRAW_MATH || Storage::GetData(Channel::A, 0) == 0 || Storage::GetData(Channel::B, 0) == 0)
     {
@@ -462,7 +462,7 @@ void Display::WriteParametersFFT(Channel::E chan, float freq0, float density0, f
 
 
 
-void Display::DRAW_SPECTRUM(pUCHAR data, int numPoints, Channel::E channel) //-V2506
+void Display::DRAW_SPECTRUM(pUCHAR data, int numPoints, Channel::E channel)
 {
     if (!sChannel_Enabled(channel))
     {
@@ -496,7 +496,7 @@ void Display::DRAW_SPECTRUM(pUCHAR data, int numPoints, Channel::E channel) //-V
 }
 
 
-void Display::DrawSpectrum() //-V2506
+void Display::DrawSpectrum()
 {
     if (!ENABLED_FFT)
     {
@@ -732,7 +732,7 @@ void Display::DrawData()
 }
 
 
-void Display::DrawTime(int x, int y) //-V2506
+void Display::DrawTime(int x, int y)
 {
     int dField = 10;
     int dSeparator = 2;
@@ -786,7 +786,7 @@ void Display::DrawHiPart()
 
 
 // shiftForPeakDet - если рисуем информацию с пикового детектора - то через shiftForPeakDet точек расположена иниформаци€ о максимумах.
-void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channel::E chan, int shiftForPeakDet) //-V2506
+void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channel::E chan, int shiftForPeakDet)
 {
     if(numElems == 0)
     {
@@ -899,7 +899,7 @@ void Display::DrawChannelInWindowMemory(int timeWindowRectWidth, int xVert0, int
 
 
 
-void Display::DrawMemoryWindow() //-V2506
+void Display::DrawMemoryWindow()
 {
     uint8 *dat0 = Storage::dataIntA;
     uint8 *dat1 = Storage::dataIntB;
@@ -1183,7 +1183,7 @@ void Display::DrawCursorsRShift()
 
 
 
-bool Display::NeedForClearScreen() //-V2506
+bool Display::NeedForClearScreen()
 {
     int numAccum = NUM_ACCUM;
 
@@ -1207,7 +1207,7 @@ bool Display::NeedForClearScreen() //-V2506
 }
 
 
-void Display::Update(bool endScene) //-V2506
+void Display::Update(bool endScene)
 {
 	uint timeStart = gTimerTics;
     if (funcOnHand != 0)
@@ -1376,7 +1376,7 @@ void Display::DrawFullGrid()
 
 
 
-int Display::CalculateCountV() //-V2506
+int Display::CalculateCountV()
 {
     if (MODE_VIEW_SIGNALS_IS_COMPRESS)
     {
@@ -1399,7 +1399,7 @@ int Display::CalculateCountV() //-V2506
 
 
 
-int Display::CalculateCountH() //-V2506
+int Display::CalculateCountH()
 {
     if (MODE_VIEW_SIGNALS_IS_COMPRESS)
     {
@@ -1536,7 +1536,7 @@ void Display::DrawGrid(int left, int top, int width, int height)
 #define  DELTA 5
 
 
-void Display::DrawScaleLine(int x, bool forTrigLev) //-V2506
+void Display::DrawScaleLine(int x, bool forTrigLev)
 {
     if(ALT_MARKERS_HIDE)
     {
@@ -1571,7 +1571,7 @@ void Display::DrawCursorsWindow()
 }
 
 
-void Display::DrawCursorTrigLevel() //-V2506
+void Display::DrawCursorTrigLevel()
 {
     TrigSource::E chan = TRIG_SOURCE;
     if (chan == TrigSource::Ext)
@@ -1630,7 +1630,7 @@ void Display::DrawCursorTrigLevel() //-V2506
 }
 
 
-void Display::DrawCursorRShift(Channel::E chan) //-V2506
+void Display::DrawCursorRShift(Channel::E chan)
 {
     float x = static_cast<float>(Grid::Right() - Grid::Width() - Measure::GetDeltaGridLeft());
 
@@ -1691,7 +1691,7 @@ void Display::DrawCursorRShift(Channel::E chan) //-V2506
 }
 
 
-void Display::DrawCursorTShift() //-V2506
+void Display::DrawCursorTShift()
 {
     int firstPoint = 0;
     int lastPoint = 0;
@@ -1806,7 +1806,7 @@ void Display::DrawCursors()
 }
 
 
-void Display::DrawMeasures() //-V2506
+void Display::DrawMeasures()
 {
     if(!SHOW_MEASURES)
     {
@@ -2129,7 +2129,7 @@ void Display::DrawLowPart()
 }
 
 
-void Display::DrawTimeForFrame(uint timeTicks) //-V2506
+void Display::DrawTimeForFrame(uint timeTicks)
 {
     if(!SHOW_STATS)
     {
@@ -2281,7 +2281,7 @@ void Display::OnRShiftMarkersAutoHide()
 }
 
 
-int Display::FirstEmptyString() //-V2506
+int Display::FirstEmptyString()
 {
     for(int i = 0; i < MAX_NUM_STRINGS; i++)
     {
@@ -2294,7 +2294,7 @@ int Display::FirstEmptyString() //-V2506
 }
 
 
-int Display::CalculateFreeSize() //-V2506
+int Display::CalculateFreeSize()
 {
     int firstEmptyString = FirstEmptyString();
     if(firstEmptyString == 0)
@@ -2305,7 +2305,7 @@ int Display::CalculateFreeSize() //-V2506
 }
 
 
-void Display::DeleteFirstString() //-V2506
+void Display::DeleteFirstString()
 {
     if(FirstEmptyString() < 2)
     {
@@ -2329,7 +2329,7 @@ void Display::DeleteFirstString() //-V2506
 
 
 
-void Display::AddString(const char *string) //-V2506
+void Display::AddString(const char *string)
 {
     if(CONSOLE_IN_PAUSE)
     {

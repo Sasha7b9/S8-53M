@@ -304,7 +304,7 @@ void DrawSB_SetMask_Insert(int x, int y)
     Font::Set(TypeFont::S8);
 }
 
-void PressSB_SetMask_Insert() //-V2506
+void PressSB_SetMask_Insert()
 {
     int index = INDEX_SYMBOL;
     int size = static_cast<int>(std::strlen(FILE_NAME_MASK)); //-V2513

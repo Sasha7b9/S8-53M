@@ -147,7 +147,7 @@ void SCPI::TRIGGER::FIND(pUCHAR buffer)
 
 
 
-void SCPI::TRIGGER::OFFSET(pUCHAR buffer) //-V2506
+void SCPI::TRIGGER::OFFSET(pUCHAR buffer)
 {
     static const MapElement map[] =
     {

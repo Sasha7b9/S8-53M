@@ -71,7 +71,7 @@ void SCPI::TBASE::RANGE(pUCHAR buffer)
 
 
 
-void SCPI::TBASE::OFFSET(pUCHAR buffer) //-V2506
+void SCPI::TBASE::OFFSET(pUCHAR buffer)
 {
     static const MapElement map[] =
     {

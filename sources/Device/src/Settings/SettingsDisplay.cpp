@@ -9,7 +9,7 @@ int ENumSignalsInSec::NumSignalsInS()
 }
 
 
-int Smoothing::NumPoints() //-V2506
+int Smoothing::NumPoints()
 {
     if (SMOOTHING_IS_DISABLE)
     {
@@ -43,7 +43,7 @@ bool SettingsDisplay::IsSeparate()
 }
 
 
-ModeAveraging::E ModeAveraging::Current() //-V2506
+ModeAveraging::E ModeAveraging::Current()
 {
     if (sTime_RandomizeModeEnabled())
     {
@@ -53,7 +53,7 @@ ModeAveraging::E ModeAveraging::Current() //-V2506
 }
 
 
-int ENumAveraging::NumAverages() //-V2506
+int ENumAveraging::NumAverages()
 {
     if (sTime_RandomizeModeEnabled() && (NUM_AVE_FOR_RAND >= NUM_AVE))
     {

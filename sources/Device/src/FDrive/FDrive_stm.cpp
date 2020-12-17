@@ -138,7 +138,7 @@ void FDrive::GetNumDirsAndFiles(const char* fullPath, int *numDirs, int *numFile
 }
 
 
-bool FDrive::GetNameDir(const char *fullPath, int numDir, char *nameDirOut, StructForReadDir *s) //-V2506
+bool FDrive::GetNameDir(const char *fullPath, int numDir, char *nameDirOut, StructForReadDir *s)
 {
     memcpy(s->nameDir, fullPath, strlen(fullPath)); //-V2513
     s->nameDir[strlen(fullPath)] = '\0'; //-V2513
@@ -183,7 +183,7 @@ bool FDrive::GetNameDir(const char *fullPath, int numDir, char *nameDirOut, Stru
 }
 
 
-bool FDrive::GetNextNameDir(char *nameDirOut, StructForReadDir *s) //-V2506
+bool FDrive::GetNextNameDir(char *nameDirOut, StructForReadDir *s)
 {
     DIR *pDir = &s->dir;
     FILINFO *pFNO = &s->fno;
@@ -225,7 +225,7 @@ void FDrive::CloseCurrentDir(StructForReadDir *s)
 }
 
 
-bool FDrive::GetNameFile(const char *fullPath, int numFile, char *nameFileOut, StructForReadDir *s) //-V2506
+bool FDrive::GetNameFile(const char *fullPath, int numFile, char *nameFileOut, StructForReadDir *s)
 {
     memcpy(s->nameDir, fullPath, strlen(fullPath)); //-V2513
     s->nameDir[strlen(fullPath)] = '\0'; //-V2513
@@ -270,7 +270,7 @@ bool FDrive::GetNameFile(const char *fullPath, int numFile, char *nameFileOut, S
 }
 
 
-bool FDrive::GetNextNameFile(char *nameFileOut, StructForReadDir *s) //-V2506
+bool FDrive::GetNextNameFile(char *nameFileOut, StructForReadDir *s)
 {
     FILINFO *pFNO = &s->fno;
     bool alreadyNull = false;
@@ -305,7 +305,7 @@ bool FDrive::GetNextNameFile(char *nameFileOut, StructForReadDir *s) //-V2506
 }
 
 
-bool FDrive::OpenNewFileForWrite(const char* fullPathToFile, StructForWrite *structForWrite) //-V2506
+bool FDrive::OpenNewFileForWrite(const char* fullPathToFile, StructForWrite *structForWrite)
 {
     if (f_open(&structForWrite->fileObj, fullPathToFile, FA_CREATE_ALWAYS | FA_WRITE) != FR_OK)
     {
@@ -317,7 +317,7 @@ bool FDrive::OpenNewFileForWrite(const char* fullPathToFile, StructForWrite *str
 }
 
 
-bool FDrive::WriteToFile(uint8* data, int sizeData, StructForWrite *structForWrite) //-V2506
+bool FDrive::WriteToFile(uint8* data, int sizeData, StructForWrite *structForWrite)
 {
     while (sizeData > 0)
     {
@@ -345,7 +345,7 @@ bool FDrive::WriteToFile(uint8* data, int sizeData, StructForWrite *structForWri
 }
 
 
-bool FDrive::CloseFile(StructForWrite *structForWrite) //-V2506
+bool FDrive::CloseFile(StructForWrite *structForWrite)
 {
     if (structForWrite->sizeData != 0)
     {

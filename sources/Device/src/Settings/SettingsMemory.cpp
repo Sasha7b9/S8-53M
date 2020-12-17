@@ -3,7 +3,7 @@
 #include "Settings/Settings.h"
 
 
-int sMemory_GetNumPoints(bool forCalculate) //-V2506
+int sMemory_GetNumPoints(bool forCalculate)
 {
     static const int numPoints[3][3] =
     {
@@ -21,7 +21,7 @@ int sMemory_GetNumPoints(bool forCalculate) //-V2506
 }
 
 
-ENUM_POINTS_FPGA::E sMemory_IntNumPoints2FPGA_NUM_POINTS(int numPoints) //-V2506
+ENUM_POINTS_FPGA::E sMemory_IntNumPoints2FPGA_NUM_POINTS(int numPoints)
 {
     if (numPoints == 1024)
     {

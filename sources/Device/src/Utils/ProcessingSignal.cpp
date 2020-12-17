@@ -71,7 +71,7 @@ static bool picIsCalculating[2] = {false, false};
 #define EXIT_IF_ERRORS_FLOAT(x, y)  if(std::fabsf((x) - ERROR_VALUE_FLOAT) < 1e-10F || std::fabsf((y) - ERROR_VALUE_FLOAT) < 1e-10F)  { return ERROR_VALUE_FLOAT; }
 #define EXIT_IF_ERROR_INT(x)        if((x) == ERROR_VALUE_INT)                                                                        { return ERROR_VALUE_FLOAT; }
 
-void Processing::CalculateMeasures() //-V2506
+void Processing::CalculateMeasures()
 {
     if(!SHOW_MEASURES || !dataSet)
     {
@@ -127,7 +127,7 @@ void Processing::CalculateMeasures() //-V2506
     }
 }
 
-float Processing::CalculateVoltageMax(Channel::E chan) //-V2506
+float Processing::CalculateVoltageMax(Channel::E chan)
 {
     float max = CalculateMaxRel(chan);
     
@@ -140,7 +140,7 @@ float Processing::CalculateVoltageMax(Channel::E chan) //-V2506
     return POINT_2_VOLTAGE(max, dataSet->range[chan], chan == Channel::A ? dataSet->rShiftCh0 : dataSet->rShiftCh1) * VALUE_MULTIPLIER(chan); //-V2564
 }
 
-float Processing::CalculateVoltageMin(Channel::E chan) //-V2506
+float Processing::CalculateVoltageMin(Channel::E chan)
 {
     float min = CalculateMinRel(chan);
     EXIT_IF_ERROR_FLOAT(min); //-V2550 //-V550
@@ -152,7 +152,7 @@ float Processing::CalculateVoltageMin(Channel::E chan) //-V2506
     return POINT_2_VOLTAGE(min, dataSet->range[chan], chan == Channel::A ? dataSet->rShiftCh0 : dataSet->rShiftCh1) * VALUE_MULTIPLIER(chan); //-V2564
 }
 
-float Processing::CalculateVoltagePic(Channel::E chan) //-V2506
+float Processing::CalculateVoltagePic(Channel::E chan)
 {
     float max = CalculateVoltageMax(chan);
     float min = CalculateVoltageMin(chan);
@@ -167,7 +167,7 @@ float Processing::CalculateVoltagePic(Channel::E chan) //-V2506
     return max - min;
 }
 
-float Processing::CalculateVoltageMinSteady(Channel::E chan) //-V2506
+float Processing::CalculateVoltageMinSteady(Channel::E chan)
 {
     float min = CalculateMinSteadyRel(chan);
     EXIT_IF_ERROR_FLOAT(min); //-V2550 //-V550
@@ -179,7 +179,7 @@ float Processing::CalculateVoltageMinSteady(Channel::E chan) //-V2506
     return (POINT_2_VOLTAGE(min, dataSet->range[chan], chan == Channel::A ? dataSet->rShiftCh0 : dataSet->rShiftCh1) * VALUE_MULTIPLIER(chan)); //-V2564
 }
 
-float Processing::CalculateVoltageMaxSteady(Channel::E chan) //-V2506
+float Processing::CalculateVoltageMaxSteady(Channel::E chan)
 {
     float max = CalculateMaxSteadyRel(chan);
 
@@ -196,7 +196,7 @@ float Processing::CalculateVoltageMaxSteady(Channel::E chan) //-V2506
     return (POINT_2_VOLTAGE(max, range, rShift) * VALUE_MULTIPLIER(chan)); //-V2564
 }
 
-float Processing::CalculateVoltageVybrosPlus(Channel::E chan) //-V2506
+float Processing::CalculateVoltageVybrosPlus(Channel::E chan)
 {
     float max = CalculateMaxRel(chan);
     float maxSteady = CalculateMaxSteadyRel(chan);
@@ -213,7 +213,7 @@ float Processing::CalculateVoltageVybrosPlus(Channel::E chan) //-V2506
     return std::fabsf(POINT_2_VOLTAGE(maxSteady, dataSet->range[chan], rShift) - POINT_2_VOLTAGE(max, dataSet->range[chan], rShift)) * VALUE_MULTIPLIER(chan); //-V2564
 }
 
-float Processing::CalculateVoltageVybrosMinus(Channel::E chan) //-V2506
+float Processing::CalculateVoltageVybrosMinus(Channel::E chan)
 {
     float min = CalculateMinRel(chan);
     float minSteady = CalculateMinSteadyRel(chan);
@@ -229,7 +229,7 @@ float Processing::CalculateVoltageVybrosMinus(Channel::E chan) //-V2506
     return std::fabsf(POINT_2_VOLTAGE(minSteady, dataSet->range[chan], rShift) - POINT_2_VOLTAGE(min, dataSet->range[chan], rShift)) * VALUE_MULTIPLIER(chan); //-V2564
 }
 
-float Processing::CalculateVoltageAmpl(Channel::E chan) //-V2506
+float Processing::CalculateVoltageAmpl(Channel::E chan)
 {
     float max = CalculateVoltageMaxSteady(chan);
     float min = CalculateVoltageMinSteady(chan);
@@ -244,7 +244,7 @@ float Processing::CalculateVoltageAmpl(Channel::E chan) //-V2506
     return max - min;
 }
 
-float Processing::CalculateVoltageAverage(Channel::E chan) //-V2506
+float Processing::CalculateVoltageAverage(Channel::E chan)
 {
     int period = CalculatePeriodAccurately(chan);
 
@@ -267,7 +267,7 @@ float Processing::CalculateVoltageAverage(Channel::E chan) //-V2506
     return (POINT_2_VOLTAGE(aveRel, dataSet->range[chan], chan == Channel::A ? dataSet->rShiftCh0 : dataSet->rShiftCh1) * VALUE_MULTIPLIER(chan)); //-V2564
 }
 
-float Processing::CalculateVoltageRMS(Channel::E chan) //-V2506
+float Processing::CalculateVoltageRMS(Channel::E chan)
 {
     int period = CalculatePeriodAccurately(chan);
 
@@ -289,7 +289,7 @@ float Processing::CalculateVoltageRMS(Channel::E chan) //-V2506
     return std::sqrtf(rms / period) * VALUE_MULTIPLIER(chan); //-V2564
 }
 
-float Processing::CalculatePeriod(Channel::E chan) //-V2506
+float Processing::CalculatePeriod(Channel::E chan)
 {
     static float period[2] = {0.0F, 0.0F};
 
@@ -327,7 +327,7 @@ float Processing::CalculatePeriod(Channel::E chan) //-V2506
     periodAccurateIsCalculating[chan] = true;   \
     return period[chan];
 
-int Processing::CalculatePeriodAccurately(Channel::E chan) //-V2506
+int Processing::CalculatePeriodAccurately(Channel::E chan)
 {
     static int period[2];
 
@@ -417,7 +417,7 @@ float Processing::CalculateFreq(Channel::E chan)
     return period == ERROR_VALUE_FLOAT ? ERROR_VALUE_FLOAT : 1.0F / period; //-V2550 //-V550
 }
 
-float Processing::FindIntersectionWithHorLine(Channel::E chan, int numIntersection, bool downToUp, uint8 yLine) //-V2506
+float Processing::FindIntersectionWithHorLine(Channel::E chan, int numIntersection, bool downToUp, uint8 yLine)
 {
     int num = 0;
     int x = firstP;
@@ -456,7 +456,7 @@ float Processing::FindIntersectionWithHorLine(Channel::E chan, int numIntersecti
     return Math::GetIntersectionWithHorizontalLine(x, data[x], x + 1, data[x + 1], yLine); //-V2563
 }
 
-float Processing::CalculateDurationPlus(Channel::E chan) //-V2506
+float Processing::CalculateDurationPlus(Channel::E chan)
 {
     float aveValue = CalculateAverageRel(chan);
     EXIT_IF_ERROR_FLOAT(aveValue); //-V2550 //-V550
@@ -476,7 +476,7 @@ float Processing::CalculateDurationPlus(Channel::E chan) //-V2506
     return TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
 }
 
-float Processing::CalculateDurationMinus(Channel::E chan) //-V2506
+float Processing::CalculateDurationMinus(Channel::E chan)
 {
     float aveValue = CalculateAverageRel(chan);
     EXIT_IF_ERROR_FLOAT(aveValue);
@@ -496,7 +496,7 @@ float Processing::CalculateDurationMinus(Channel::E chan) //-V2506
     return TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
 }
 
-float Processing::CalculateTimeNarastaniya(Channel::E chan)                    // WARN Здесь, возможно, нужно увеличить точность - брать не целые значени расстояний между отсчётами по времени, а рассчитывать пересечения линий //-V2506
+float Processing::CalculateTimeNarastaniya(Channel::E chan)                    // WARN Здесь, возможно, нужно увеличить точность - брать не целые значени расстояний между отсчётами по времени, а рассчитывать пересечения линий
 {
     float maxSteady = CalculateMaxSteadyRel(chan);
     float minSteady = CalculateMinSteadyRel(chan);
@@ -532,7 +532,7 @@ float Processing::CalculateTimeNarastaniya(Channel::E chan)                    /
     return retValue;
 }
 
-float Processing::CalculateTimeSpada(Channel::E chan)                          // WARN Аналогично времени нарастания //-V2506
+float Processing::CalculateTimeSpada(Channel::E chan)                          // WARN Аналогично времени нарастания
 {
     float maxSteady = CalculateMaxSteadyRel(chan);
     float minSteady = CalculateMinSteadyRel(chan);
@@ -568,7 +568,7 @@ float Processing::CalculateTimeSpada(Channel::E chan)                          /
     return retValue;
 }
 
-float Processing::CalculateSkvaznostPlus(Channel::E chan) //-V2506
+float Processing::CalculateSkvaznostPlus(Channel::E chan)
 {
     float period = CalculatePeriod(chan);
     float duration = CalculateDurationPlus(chan);
@@ -578,7 +578,7 @@ float Processing::CalculateSkvaznostPlus(Channel::E chan) //-V2506
     return period / duration;
 }
 
-float Processing::CalculateSkvaznostMinus(Channel::E chan) //-V2506
+float Processing::CalculateSkvaznostMinus(Channel::E chan)
 {
     float period = CalculatePeriod(chan);
     float duration = CalculateDurationMinus(chan);
@@ -789,7 +789,7 @@ float Processing::CalculatePicRel(Channel::E chan)
     return pic[chan];
 }
 
-float Processing::CalculateDelayPlus(Channel::E chan) //-V2506
+float Processing::CalculateDelayPlus(Channel::E chan)
 {
     float period0 = CalculatePeriod(Channel::A);
     float period1 = CalculatePeriod(Channel::B);
@@ -825,7 +825,7 @@ float Processing::CalculateDelayPlus(Channel::E chan) //-V2506
     return TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
 }
 
-float Processing::CalculateDelayMinus(Channel::E chan) //-V2506
+float Processing::CalculateDelayMinus(Channel::E chan)
 {
     float period0 = CalculatePeriod(Channel::A);
     float period1 = CalculatePeriod(Channel::B);
@@ -862,7 +862,7 @@ float Processing::CalculateDelayMinus(Channel::E chan) //-V2506
     return TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
 }
 
-float Processing::CalculatePhazaPlus(Channel::E chan) //-V2506
+float Processing::CalculatePhazaPlus(Channel::E chan)
 {
     float delay = CalculateDelayPlus(chan);
     float period = CalculatePeriod(chan);
@@ -873,7 +873,7 @@ float Processing::CalculatePhazaPlus(Channel::E chan) //-V2506
     return delay / period * 360.0F;
 }
 
-float Processing::CalculatePhazaMinus(Channel::E chan) //-V2506
+float Processing::CalculatePhazaMinus(Channel::E chan)
 {
     float delay = CalculateDelayMinus(chan);
     float period = CalculatePeriod(chan);
@@ -884,7 +884,7 @@ float Processing::CalculatePhazaMinus(Channel::E chan) //-V2506
     return delay / period * 360.0F; 
 }
 
-void Processing::SetSignal(pUCHAR data0, pUCHAR data1, DataSettings *ds, int _firstPoint, int _lastPoint) //-V2506
+void Processing::SetSignal(pUCHAR data0, pUCHAR data1, DataSettings *ds, int _firstPoint, int _lastPoint)
 {
     firstP = _firstPoint;
     lastP = _lastPoint;
@@ -930,7 +930,7 @@ float Processing::GetCursU(Channel::E chan, float posCurT)
     return retValue;
 }
 
-float Processing::GetCursT(Channel::E chan, float posCurU, int numCur) //-V2506
+float Processing::GetCursT(Channel::E chan, float posCurU, int numCur)
 {
     int firstPoint = 0;
     int lastPoint = 0;
@@ -1084,7 +1084,7 @@ void Processing::InterpolationSinX_X(uint8 data[FPGA_MAX_POINTS], TBase::E tBase
     }
 }
 
-char* Processing::GetStringMeasure(Measure::E measure, Channel::E chan, char buffer[20]) //-V2506
+char* Processing::GetStringMeasure(Measure::E measure, Channel::E chan, char buffer[20])
 {
     if (!SET_ENABLED(chan))
     {

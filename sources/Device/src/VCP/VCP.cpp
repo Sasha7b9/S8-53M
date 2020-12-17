@@ -46,7 +46,7 @@ void VCP::Flush()
     sizeBuffer = 0;
 }
 
-void VCP::SendDataSynch(pUCHAR buffer, int size) //-V2506
+void VCP::SendDataSynch(pUCHAR buffer, int size)
 {
     if (!VCP::connectToHost)
     {

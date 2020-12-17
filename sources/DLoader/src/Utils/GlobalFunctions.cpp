@@ -47,7 +47,7 @@ static int NumDigitsInIntPart(float value)
 
 
 
-char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[20]) //-V2506
+char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[20])
 {
     bufferOut[0] = 0;
     char *pBuffer = bufferOut;
@@ -129,7 +129,7 @@ char* Int2String(int value, bool alwaysSign, int numMinFields, char buffer[20])
 
 
 
-bool String2Int(char *str, int *value) //-V2506
+bool String2Int(char *str, int *value)
 {
     int sign = str[0] == '-' ? -1 : 1; //-V2563
     if (str[0] < '0' || str[0] > '9') //-V2563

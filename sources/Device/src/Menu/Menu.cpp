@@ -207,7 +207,7 @@ void Menu::ProcessButtonForHint(Key::E button)
 }
 
 
-void Menu::Event::PressButton(Key::E button) //-V2506
+void Menu::Event::PressButton(Key::E button)
 {
     Sound::ButtonPress();
     if (showHelpHints)
@@ -270,7 +270,7 @@ Item* Menu::ItemUnderKey()
 };
 
 
-void Menu::SetAutoHide(bool) //-V2506
+void Menu::SetAutoHide(bool)
 {
     if(!IsShown())
     {
@@ -287,7 +287,7 @@ void Menu::SetAutoHide(bool) //-V2506
 }
 
 
-char* Menu::StringNavigation(char buffer[100]) //-V2506
+char* Menu::StringNavigation(char buffer[100])
 {
     if(SHOW_STRING_NAVIGATION && IsShown())
     {
@@ -328,7 +328,7 @@ void Menu::OnTimerAutoHide()
 }
 
 
-void Menu::ProcessingShortPressureButton() //-V2506
+void Menu::ProcessingShortPressureButton()
 {
     if(shortPressureButton != Key::None)
     {
@@ -440,7 +440,7 @@ void Menu::ProcessingLongPressureButton()
 }
 
 
-void Menu::ProcessingRegulatorSet() //-V2506
+void Menu::ProcessingRegulatorSet()
 {
     if (angleRegSet == 0)
     {
@@ -527,7 +527,7 @@ void Menu::OpenItemTime()
 }
 
 
-bool Menu::NeedForFireSetLED()    // Возвращает true, если лампочка УСТАНОВКА должна гореть //-V2506
+bool Menu::NeedForFireSetLED()    // Возвращает true, если лампочка УСТАНОВКА должна гореть
 {
     if (!IsShown())
     {

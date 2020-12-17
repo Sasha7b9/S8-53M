@@ -4,7 +4,7 @@
 #include <cstdlib>
 
 
-char SU::ToUpper(char symbol) //-V2506
+char SU::ToUpper(char symbol)
 {
     uint8 s = static_cast<uint8>(symbol);
 
@@ -25,7 +25,7 @@ char SU::ToUpper(char symbol) //-V2506
 }
 
 
-char SU::ToLower(char symbol) //-V2506
+char SU::ToLower(char symbol)
 {
     uint8 s = static_cast<uint8>(symbol);
 

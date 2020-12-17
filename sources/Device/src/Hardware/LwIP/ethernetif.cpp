@@ -267,7 +267,7 @@ error:
   * @return a pbuf filled with the received packet (including MAC header)
   *         NULL on memory error
   */
-static struct pbuf * low_level_input(struct netif *) //-V2506
+static struct pbuf * low_level_input(struct netif *)
 {
     struct pbuf *p = NULL;
     struct pbuf *q;
@@ -358,7 +358,7 @@ static struct pbuf * low_level_input(struct netif *) //-V2506
   *
   * @param netif the lwip network interface structure for this ethernetif
   */
-void ethernetif_input(struct netif *netif) //-V2506
+void ethernetif_input(struct netif *netif)
 {
     err_t err;
     struct pbuf *p;

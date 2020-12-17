@@ -3,7 +3,7 @@
 #include "VCP/SCPI/Utils/StringsSCPI.h"
 
 
-uint8 GetValueFromMap(const MapElement *map, Word *eKey) //-V2506
+uint8 GetValueFromMap(const MapElement *map, Word *eKey)
 {
     int numKey = 0;
     char *key = map[numKey].key; //-V2563
