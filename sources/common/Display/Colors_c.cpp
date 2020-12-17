@@ -43,7 +43,7 @@ void Color::ResetFlash()
 
 void ColorType::Set()
 {
-    set.display.colors[color] = MAKE_COLOR((int)red, (int)green, (int)blue); //-V2533
+    set.display.colors[color] = Color::Make((uint8)red, (uint8)green, (uint8)blue); //-V2533
 }
 
 

@@ -56,6 +56,8 @@ struct Color
     bool operator==(const Color &rhs) { return (value == rhs.value); }
     bool operator!=(const Color &rhs) { return (value != rhs.value); }
 
+    static uint Make(uint8 r, uint8 g, uint8 b)  { return ((uint)(((b)) + (((g)) << 8) + (((uint)(r)) << 16))); }
+
 private:
 
     static Color current;
@@ -91,7 +93,6 @@ private:
 };
 
 
-#define MAKE_COLOR(r, g, b) ((uint)(((b)) + (((g)) << 8) + (((uint)(r)) << 16)))
 #define R_FROM_COLOR(color) (((uint)(color) >> 16) & (uint)0xFF)
 #define G_FROM_COLOR(color) (((uint)(color) >> 8) & (uint)0xFF)
 #define B_FROM_COLOR(color) ((uint)(color) & 0xFF)
