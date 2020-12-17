@@ -79,14 +79,14 @@ void Painter::EndScene(bool)
 
 void Color::SetAsCurrent() //-V2506
 {
-    if (value == Color::Count.value)
+    if (index == Color::Count.index)
     {
         return;
     }
 
-    current.value = value;
+    current.index = index;
 
-    uint colorValue = COLOR(value);
+    uint colorValue = COLOR(index);
 
     uint8 b = B_FROM_COLOR(colorValue);
     uint8 g = G_FROM_COLOR(colorValue);
