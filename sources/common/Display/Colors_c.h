@@ -64,10 +64,6 @@ private:
 };
 
 
-// Тёмный цвет в тени.
-#define DarkShadingTextColor()      Color::MENU_TITLE_DARK
-
-
 struct ColorType
 {
     float   red;
