@@ -3,7 +3,8 @@
 
 
 // Тип цвета
-struct Color {
+struct Color
+{
     static Color BLACK;
     static Color WHITE;
     static Color GRID;
@@ -40,26 +41,28 @@ struct Color {
     static Color GetCurrent() { return current; };
     static Color Channel(Channel::E chan);
     static Color Cursors(Channel::E cnan);
-    static Color MenuField();
 
 
     // Чуть менее светлый цвет, чем цвет элемента меню. Используется для создания эффекта объёма.
-    static Color MenuItemLessBright()  {  return Color::MENU_ITEM_DARK;  }
-    
+    static Color MenuItemLessBright()  { return Color::MENU_ITEM_DARK; }
+
     // Чуть менее светлый цвет, чем цвет заголовка страницы. Используется для создания эффекта объёма.
     static Color MenuTitleLessBright() { return Color::MENU_TITLE_DARK; }
 
     // Чуть более светлый цвет, чем цвет заголовка страницы. Используется для создания эффекта объёма.
     static Color MenuTitleBrighter()   { return Color::MENU_TITLE_BRIGHT; }
 
+    // Чуть более светлый цвет, чем цвет элемента меню. Используется для создания эффекта объёма.
+    static Color MenuItemBrighter()    { return Color::MENU_ITEM_BRIGHT; }
+
     static Color Trig();
 
-    static Color MenuTitle();
+    static Color MenuTitle()           { return Color::MENU_TITLE; }
 
-    static Color MenuItem()           { return Color::MENU_ITEM; }
+    static Color MenuItem()            { return Color::MENU_ITEM; }
 
     // Цвет окантовки меню.
-    static Color BorderMenu();
+    static Color BorderMenu()          { return Color::MenuTitle(); }
 
     // Возвращает цвет, контрастный к color. Может быть белым или чёрным.
     static Color Contrast(const Color &color);
@@ -76,8 +79,6 @@ private:
 };
 
 
-// Чуть более светлый цвет, чем цвет элемента меню. Используется для создания эффекта объёма.
-#define ColorMenuItemBrighter()     Color::MENU_ITEM_BRIGHT
 // Тёмный цвет в тени.
 #define DarkShadingTextColor()      Color::MENU_TITLE_DARK
 

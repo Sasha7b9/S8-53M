@@ -61,25 +61,6 @@ Color Color::Cursors(Channel::E chan)
 }
 
 
-Color Color::MenuTitle()
-{
-    return Color::MENU_TITLE;
-}
-
-
-Color Color::MenuField()
-{
-    return Color::MENU_FIELD;
-}
-
-
-Color Color::BorderMenu()
-{
-    return Color::MenuTitle();
-}
-
-
-
 Color Color::Contrast(const Color &color)
 {
     uint colorValue = set.display.colors[color.value];
