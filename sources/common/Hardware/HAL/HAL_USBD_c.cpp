@@ -1,3 +1,4 @@
+#define _STL_COMPILER_PREPROCESSOR 0
 #include "defines.h"
 #include "common/Hardware/HAL/HAL_c.h"
 #include "Hardware/USBD/usbd_desc.h"

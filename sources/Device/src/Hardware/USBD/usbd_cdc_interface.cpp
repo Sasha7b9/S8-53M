@@ -1,3 +1,4 @@
+#define _STL_COMPILER_PREPROCESSOR 0
 #include "defines.h"
 #include "main.h"
 #include "VCP/VCP.h"

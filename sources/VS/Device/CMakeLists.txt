@@ -15,6 +15,7 @@ include_directories(../..
                     ../../common/STM32Cube_F4/Middlewares/Third_Party/LwIP/src/include
                     ../../common/STM32Cube_F4/Middlewares/Third_Party/LwIP/system
                     ../../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc
+                    ../../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc
                     ../../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Core/Inc
                     ../../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc
                     ../../ThirdParty/wxWidgets/include
@@ -57,6 +58,7 @@ file(GLOB LIBS_FATFS        ../../common/STM32Cube_F4/Middlewares/Third_Party/Fa
 file(GLOB LIBS_LWIP         ../../common/_VS_GUI/LwIP/*)
 file(GLOB LIBS_HAL          ../../common/_VS_GUI/HAL/*)
 file(GLOB LIBS_USBH         ../../common/_VS_GUI/USBH/*)
+file(GLOB LIBS_USBD         ../../common/_VS_GUI/USBD/*)
 file(GLOB DISPLAY           ../../Device/src/Display/Colors.*
                             ../../Device/src/Display/Colors_d.cpp
                             ../../Device/src/Display/Display.*
@@ -100,8 +102,11 @@ file(GLOB HARDWARE_HAL          ../../common/Hardware/HAL/HAL_c.h
                                 ../../common/Hardware/HAL/HAL_RTC_c.cpp
                                 ../../common/Hardware/HAL/HAL_TIM2_c.cpp
                                 ../../common/Hardware/HAL/HAL_TIM7_c.cpp
+                                ../../common/Hardware/HAL/HAL_USBD_c.cpp
                                          src/Hardware/*.h
                                          src/Hardware/HAL/*.cpp)
+file(GLOB HARDWARE_USBD     ../../Device/src/Hardware/USBD/usbd_desc.cpp
+                            ../../Device/src/Hardware/USBD/usbd_cdc_interface.*)
 file(GLOB MENU              ../../Device/src/Menu/*.h
                             ../../Device/src/Menu/*.cpp)
 file(GLOB MENU_ITEMS        ../../Device/src/Menu/Items/*)
@@ -143,6 +148,7 @@ source_group(libs\\CMSIS      FILES ${LIBS_CMSIS})
 source_group(libs\\FatFS      FILES ${LIBS_FATFS})
 source_group(libs\\LwIP       FILES ${LIBS_LWIP})
 source_group(libs\\HAL        FILES ${LIBS_HAL})
+source_group(libs\\USBD       FILES ${LIBS_USBD})
 source_group(libs\\USBH       FILES ${LIBS_USBH})
 source_group(Display          FILES ${DISPLAY})
 source_group(Display\\Font    FILES ${DISPLAY_FONT})
@@ -155,6 +161,7 @@ source_group(GUI\\Dialogs     FILES ${GUI_DIALOGS})
 source_group(GUI\\VCP         FILES ${GUI_VCP})
 source_group(Hardware         FILES ${HARDWARE})
 source_group(Hardware\\HAL    FILES ${HARDWARE_HAL})
+source_group(Hardware\\USBD   FILES ${HARDWARE_USBD})
 source_group(Menu             FILES ${MENU})
 source_group(Menu\\Items      FILES ${MENU_ITEMS})
 source_group(Menu\\Pages      FILES ${MENU_PAGES})
@@ -167,8 +174,9 @@ source_group(VCP\\SCPI        FILES ${VCP_SCPI})
 source_group(VCP\\SCPI\\Utils FILES ${VCP_SCPI_UTILS})
 source_group(Utils            FILES ${UTILS})
 
-add_executable(S8-53M ${LIBS_CMSIS} ${LIBS_FATFS} ${LIBS_LWIP} ${LIBS_HAL} ${LIBS_USBH} ${DISPLAY} ${DISPLAY_FONT} ${LAN} ${FDRIVE} ${FPGA} ${GUI} ${GUI_CONTROLS} ${GUI_DIALOGS} ${GUI_VCP}
-                      ${HARDWARE} ${HARDWARE_HAL} ${MENU} ${MENU_ITEMS} ${MENU_PAGES} ${PANEL} ${RESOURCES} ${SETTINGS} ${SRC} ${VCP} ${VCP_SCPI} ${VCP_SCPI_UTILS} ${UTILS})
+add_executable(S8-53M ${LIBS_CMSIS} ${LIBS_FATFS} ${LIBS_LWIP} ${LIBS_HAL} ${LIBS_USBD} ${LIBS_USBH} ${DISPLAY} ${DISPLAY_FONT} ${LAN} ${FDRIVE} ${FPGA} ${GUI} ${GUI_CONTROLS}
+          ${GUI_DIALOGS} ${GUI_VCP}  ${HARDWARE} ${HARDWARE_HAL} ${HARDWARE_USBD} ${MENU} ${MENU_ITEMS} ${MENU_PAGES} ${PANEL} ${RESOURCES} ${SETTINGS} ${SRC} ${VCP} ${VCP_SCPI}
+          ${VCP_SCPI_UTILS} ${UTILS})
 
 target_link_libraries(S8-53M ../../../ThirdParty/wxWidgets/generated/lib/vc_dll/wxbase31ud)
 target_link_libraries(S8-53M ../../../ThirdParty/wxWidgets/generated/lib/vc_dll/wxmsw31ud_core)

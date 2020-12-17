@@ -5,6 +5,10 @@
 
 #include <stdint.h>
 
+#ifndef UNUSED
+#define UNUSED(x) (void)x
+#endif
+
 #ifndef __IO
 #define __IO
 #endif
@@ -12,7 +16,7 @@
 void NVIC_SystemReset();
 void NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority);
 inline void __disable_irq() {};
-inline void __set_MSP(uint32_t) {};
+inline void __set_MSP(uint32_t msp) { UNUSED(msp); };
 inline void __enable_irq() {};
 
 

@@ -46,6 +46,9 @@
   */
 
   /* Includes ------------------------------------------------------------------*/
+
+#define _STL_COMPILER_PREPROCESSOR 0
+
 #include "usbd_core.h"
 #include "usbd_desc.h"
 #include "usbd_conf.h"
