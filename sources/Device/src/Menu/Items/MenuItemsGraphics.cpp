@@ -121,8 +121,6 @@ void IPaddress::DrawLowPart(int x, int y) const
 {
     char buffer[20];
 
-    Color colorTextDown = Color::BACK;
-
     DrawVolumeButton(x + 1, y + 17, Item::WIDTH_VALUE + 2, Item::HEIGHT_VALUE + 3, 2, Color::MENU_FIELD, Color::MENU_ITEM_BRIGHT, Color::MENU_ITEM_DARK, true);
 
     const DataIPaddress *own = OwnData();
@@ -131,7 +129,7 @@ void IPaddress::DrawLowPart(int x, int y) const
 
     if (!Menu::IsOpenedItem(this))
     {
-        Text(buffer).Draw(x + 4, y + 21, colorTextDown);
+        Text(buffer).Draw(x + 4, y + 21, Color::BACK);
     }
     else
     {
@@ -143,8 +141,6 @@ void MACaddress::DrawLowPart(int x, int y) const
 {
     char buffer[20];
 
-    Color colorTextDown = Color::BACK;
-
     DrawVolumeButton(x + 1, y + 17, Item::WIDTH_VALUE + 2, Item::HEIGHT_VALUE + 3, 2, Color::MENU_FIELD, Color::MENU_ITEM_BRIGHT, Color::MENU_ITEM_DARK, true);
 
     const DataMACaddress *own = OwnData();
@@ -154,7 +150,7 @@ void MACaddress::DrawLowPart(int x, int y) const
     if (!Menu::IsOpenedItem(this))
     {
 
-        Text(buffer).Draw(x + 4, y + 21, colorTextDown);
+        Text(buffer).Draw(x + 4, y + 21, Color::BACK);
     }
     else
     {

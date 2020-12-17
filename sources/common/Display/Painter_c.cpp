@@ -104,7 +104,7 @@ uint Painter::ReduceBrightness(uint colorValue, float newBrightness)
     LIMITATION(green, green, 0, 63); //-V2516
     int blue = static_cast<int>(B_FROM_COLOR(colorValue) * newBrightness); //-V2564
     LIMITATION(blue, blue, 0, 31); //-V2516
-    return Color::Make((uint8)red, (uint8)green, (uint8)blue);
+    return Color::Make(static_cast<uint8>(red), static_cast<uint8>(green), static_cast<uint8>(blue));
 }
 
 

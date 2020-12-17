@@ -1842,7 +1842,6 @@ void Display::DrawMeasures()
             int x = x0 + dX * elem;
             int y = y0 + str * dY;
             bool active = Measure::IsActive(str, elem) && Menu::GetNameOpenedPage() == NamePage::SB_MeasTuneMeas;
-            Color color = active ? Color::BACK : Color::FILL;
             Measure::E meas = Measure::Type(str, elem);
             if(meas != Measure::None)
             {
@@ -1857,7 +1856,7 @@ void Display::DrawMeasures()
             if(meas != Measure::None)
             {
                 char buffer[20];
-                Text(Measure::Name(str, elem)).Draw(x + 4, y + 2, color);
+                Text(Measure::Name(str, elem)).Draw(x + 4, y + 2, active ? Color::BACK : Color::FILL);
                 if(meas == MEAS_MARKED)
                 {
                     Region(dX - 2, 9).Fill(x + 1, y + 1, active ? Color::BACK : Color::FILL);
@@ -1896,7 +1895,6 @@ void Display::WriteTextVoltage(Channel::E chan, int x, int y)
         "\x91",
         "\x90"
     };
-    Color color = Color::Channel(chan);
 
     bool inverse = SET_INVERSE(chan);
     ModeCouple::E modeCouple = SET_COUPLE(chan);
@@ -1921,7 +1919,9 @@ void Display::WriteTextVoltage(Channel::E chan, int x, int y)
 
     if(enable)
     {
+        Color color = Color::Channel(chan);
         Color colorDraw = inverse ? Color::WHITE : color;
+
         if(inverse)
         {
             const int widthField = 91;
