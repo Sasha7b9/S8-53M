@@ -43,7 +43,7 @@ void HAL_LTDC::Init(uint8 *front, uint8 *back)
 
 void HAL_LTDC::LoadPalette()
 {
-    HAL_LTDC_ConfigCLUT(&handleLTDC, set.display.colors, Color::Count.value, 0);
+    HAL_LTDC_ConfigCLUT(&handleLTDC, set.display.colors, Color::Count.index, 0);
 
     HAL_LTDC_EnableCLUT(&handleLTDC, 0);
 }

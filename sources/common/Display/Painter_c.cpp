@@ -39,15 +39,15 @@ void Painter::CalculateCurrentColor()
 
 void CalculateColor(uint8 *color)
 {
-    currentColor.value = *color; //-V2533
+    currentColor.index = *color; //-V2533
 
-    if (*color == Color::FLASH_10.value)
+    if (*color == Color::FLASH_10.index)
     {
-        *color = static_cast<uint8>(inverseColors ? Color::BACK.value : Color::FILL.value);
+        *color = static_cast<uint8>(inverseColors ? Color::BACK.index : Color::FILL.index);
     }
-    else if (*color == Color::FLASH_01.value) //-V2516
+    else if (*color == Color::FLASH_01.index) //-V2516
     {
-        *color = static_cast<uint8>(inverseColors ? Color::FILL.value : Color::BACK.value);
+        *color = static_cast<uint8>(inverseColors ? Color::FILL.index : Color::BACK.index);
     }
 }
 

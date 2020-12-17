@@ -4,5 +4,5 @@
 
 void Color::SetAsCurrent()
 {
-    current = value;
+    current = index;
 }

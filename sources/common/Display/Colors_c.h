@@ -30,9 +30,9 @@ struct Color
     static Color BACK;
     static Color SET_INVERSE;
 
-    uint8 value;
+    uint8 index;
 
-    Color(uint8 v) : value(v) {}
+    Color(uint8 i) : index(i) {}
 
     static void ResetFlash();
 
@@ -53,8 +53,8 @@ struct Color
     // Светлый цвет в тени.
     static Color LightShadingText()   { return Color::MENU_TITLE; }
 
-    bool operator==(const Color &rhs) { return (value == rhs.value); }
-    bool operator!=(const Color &rhs) { return (value != rhs.value); }
+    bool operator==(const Color &rhs) { return (index == rhs.index); }
+    bool operator!=(const Color &rhs) { return (index != rhs.index); }
 
     static uint Make(uint8 r, uint8 g, uint8 b)  { return ((uint)(((b)) + (((g)) << 8) + (((uint)(r)) << 16))); }
 
