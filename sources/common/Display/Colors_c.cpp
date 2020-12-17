@@ -72,13 +72,6 @@ Color Color::Contrast(const Color &color)
 }
 
 
-void Color_Log(Color color)
-{
-    uint colorValue = set.display.colors[color.value];
-    LOG_WRITE("%s   r=%d, g=%d, b=%d", NameColor(color), R_FROM_COLOR(colorValue), G_FROM_COLOR(colorValue), B_FROM_COLOR(colorValue));
-}
-
-
 /*
     Алгоритм изменения яркости.
     1. Инициализация.
@@ -89,11 +82,11 @@ void Color_Log(Color color)
     2. При изменнении яркости на 1% менять интенсивность каждого канала на Шаг, расчитанный в предыдущем пункте.
     3. При изменения интенсивности цветового канала пересчитывать яркость и шаг изменения каждого канала.
 */
-static void ColorType_CalcSteps(ColorType *colorType)
+void ColorType::CalcSteps()
 {
-    colorType->stepRed = colorType->red / (colorType->brightness * 100.0F);
-    colorType->stepGreen = colorType->green / (colorType->brightness * 100.0F);
-    colorType->stepBlue = colorType->blue / (colorType->brightness * 100.0F);
+    stepRed = red / (brightness * 100.0F);
+    stepGreen = green / (brightness * 100.0F);
+    stepBlue = blue / (brightness * 100.0F);
 }
 
 
@@ -102,7 +95,7 @@ void ColorType::SetBrightness()
 {
     brightness = MaxFloat(red / 31.0F, green / 63.0F, blue / 31.0F);
 
-    ColorType_CalcSteps(this);
+    CalcSteps();
 }
 
 
