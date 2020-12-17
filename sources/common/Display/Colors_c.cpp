@@ -189,26 +189,3 @@ void ColorType::ComponentChange(int delta)
 
     SetBrightness();
 }
-
-
-
-static const char* colorNames[] =
-{
-    "Color::BLACK",
-    "Color::WHITE",
-    "Color::GRID",
-    "Color::DATA_A",
-    "COLOR_DATA_B",
-    "Color::MENU_FIELD",
-    "COLOR_MENU_TITLE",
-    "COLOM_MENU_TITLE_DARK",
-    "Color::MENU_TITLE_BRIGHT",
-    "COLOR_MENU_ITEM",
-    "Color::MENU_ITEM_DARK",
-    "Color::MENU_ITEM_BRIGHT",
-    "Color::MENU_SHADOW",
-    "Color::Count",
-    "Color::FLASH_10",
-    "Color::FLASH_01",
-    "SET_INVERSE"
-};
