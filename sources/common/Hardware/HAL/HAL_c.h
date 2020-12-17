@@ -54,6 +54,9 @@ struct HAL
     // Функция используется в загрузчике для перехода на основную программу
     static void JumpToApplication();
     static void ErrorHandler(const char *file, int line);
+private:
+    static void EnablePeripherals();
+    static void ConfigSystemClock();
 };
 
 struct HAL_PINS
