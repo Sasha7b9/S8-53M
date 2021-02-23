@@ -15,6 +15,8 @@ public:
         // Возвращает true, если буфер пуст
         static bool IsEmpty();
 
+        static int NumEvents();
+
         // Возвращает следующий орган управления, если таковой имеется
         static KeyboardEvent GetNextEvent();
     };

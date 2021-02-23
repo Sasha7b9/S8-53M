@@ -42,16 +42,15 @@ int Buffer::pointer = 0;
 
 struct KeyStruct
 {
-    KeyStruct(Key::E k) : key(k), timePress(0U) { }
-    // Возвращает true, если нопка наодится в нажатом положении
-    bool IsPressed() const { return (timePress != 0); }
-    // Вовзращате true, если произошло длинное нажатие
-    bool HappenedLongPressed() const { return (timePress == UINT_MAX); }
+    KeyStruct(Key::E k) : key(k), timePress(0U), happendLongPressed(false) { }
 
     bool IsValid() const { return (key != Key::None); }
+
     void Process(uint time, bool pressed);
+
     Key::E key;
-    uint   timePress;   // Время нажатия кнопки
+    uint   timePress;               // Время нажатия кнопки. Если 0 - кнопка не нажата
+    bool   happendLongPressed;      // Если true, то случилось длинное нажатие кнопки
 };
 
 
@@ -104,6 +103,13 @@ void Keyboard::Init()
     {
         SET_SL(i);
     }
+
+    do 
+    {
+        Update();
+        Buffer::GetNextEvent();
+
+    } while (!Buffer::IsEmpty());
 }
 
 
@@ -116,9 +122,9 @@ void Keyboard::Update()
         for (int rl = 0; rl < NUM_RL; rl++)
         {
             SET_SL(sl);
-            bool pressed = (READ_RL(rl) == 0);
+//            bool pressed = (READ_RL(rl) == 0);
+            keys[sl][rl].Process(time, (READ_RL(rl) == 0));
             RESET_SL(sl);
-            keys[sl][rl].Process(time, pressed);
         }
     }
 
@@ -133,29 +139,22 @@ void KeyStruct::Process(uint time, bool pressed)
 {
     if (IsValid())
     {
-        if (IsPressed() && !HappenedLongPressed())          // Если клавиша находится в нажатом положении
+        if (timePress == 0)                                 // Если кнопка находится в ненажатом положении
+        {
+            if (pressed)
+            {
+                timePress = time;
+                Buffer::AppendEvent(key, Action::Down);
+            }
+        }
+        else
         {
             uint delta = time - timePress;
-            if (delta > 500)                                // Если прошло более 500 мс с момента нажатия -
+
+            if (delta > 100 && !pressed)
             {
-                timePress = UINT_MAX;
-                Buffer::AppendEvent(key, Action::Long);     // это будет длинное нажатие
+                timePress = 0;
             }
-            else if (delta > 100 &&                         // Если прошло более 100 мс с момента нажатия //-V2516
-                     !pressed)                              // и сейчас кнопка находится в отжатом состоянии
-            {
-                timePress = UINT_MAX;                       // То учитываем это в массиве
-                Buffer::AppendEvent(key, Action::Up);       // И сохраняем отпускание кнопки в буфере команд
-            }
-        }
-        else if (pressed && !HappenedLongPressed())         // Если кнопка нажата
-        {
-            timePress = time;                               // то сохраняем время её нажатия
-            Buffer::AppendEvent(key, Action::Down);
-        }
-        else if (!pressed && HappenedLongPressed()) //-V2516
-        {
-            timePress = 0;
         }
     }
 }
@@ -189,6 +188,9 @@ void GovernorStruct::Process()
 
 void Buffer::AppendEvent(Key::E key, Action::E action)
 {
+    key = key;
+    action = action;
+
     commands[pointer].key = key;
     commands[pointer].action = action;
     pointer++;
@@ -198,6 +200,12 @@ void Buffer::AppendEvent(Key::E key, Action::E action)
 bool Keyboard::Buffer::IsEmpty()
 {
     return ::Buffer::IsEmpty();
+}
+
+
+int Keyboard::Buffer::NumEvents()
+{
+    return ::Buffer::pointer;
 }
 
 
