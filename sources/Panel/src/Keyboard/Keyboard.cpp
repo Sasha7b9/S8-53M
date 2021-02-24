@@ -61,7 +61,7 @@ static KeyStruct keys[NUM_SL][NUM_RL] =
      {Key::Time,            Key::None,     Key::None,    Key::TBase,   Key::None,   Key::None,    Key::TShift,  Key::F2},    // SL2
      {Key::Synchronization, Key::None,     Key::None,    Key::TrigLev, Key::Start,  Key::None,    Key::None,    Key::F3},    // SL3
      {Key::Cursors,         Key::Measures, Key::Display, Key::Help,    Key::Memory, Key::Service, Key::None,    Key::F4},    // SL4
-     {Key::None,            Key::None,     Key::None,    Key::Setting, Key::None,   Key::None,    Key::None,    Key::F5}};   // SL5
+     {Key::Power,           Key::None,     Key::None,    Key::Setting, Key::None,   Key::None,    Key::None,    Key::F5}};   // SL5
 
 static Pin *sls[NUM_SL] = { &pinSL0, &pinSL1, &pinSL2, &pinSL3, &pinSL4, &pinSL5 };
 static Pin *rls[NUM_RL] = { &pinRL0, &pinRL1, &pinRL2, &pinRL3, &pinRL4, &pinRL5, &pinRL6, &pinRL7 };
@@ -119,13 +119,14 @@ void Keyboard::Update()
 
     for (int sl = 0; sl < NUM_SL; sl++)
     {
+        RESET_SL(sl);
+
         for (int rl = 0; rl < NUM_RL; rl++)
         {
-            SET_SL(sl);
-//            bool pressed = (READ_RL(rl) == 0);
             keys[sl][rl].Process(time, (READ_RL(rl) == 0));
-            RESET_SL(sl);
         }
+
+        SET_SL(sl);
     }
 
     for (int i = 0; i < NUM_GOVERNORS; i++)

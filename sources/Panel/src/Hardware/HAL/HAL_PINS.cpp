@@ -134,7 +134,7 @@ void Pin::Init(PinMode::E mode)
     {
         GPIO_PIN_0,
         GPIO_MODE_INPUT,
-        GPIO_PULLDOWN,
+        GPIO_PULLUP,
         GPIO_SPEED_FREQ_VERY_HIGH
     };
 
@@ -146,7 +146,7 @@ void Pin::Init(PinMode::E mode)
     }
     else if (mode == PinMode::Output)
     {
-        isGPIO.Mode = GPIO_MODE_OUTPUT_OD;
+        isGPIO.Mode = GPIO_MODE_OUTPUT_PP;
     }
     else if (mode == PinMode::_SPI2) //-V2516
     {
