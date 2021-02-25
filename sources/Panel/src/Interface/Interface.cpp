@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "Hardware/LEDS.h"
 #include "Hardware/HAL/HAL.h"
 #include "Interface/Interface.h"
 #include "Keyboard/Keyboard.h"

@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "Hardware/LEDS.h"
 #include "Hardware/HAL/HAL.h"
 #include "Keyboard/Keyboard.h"
 #include <limits>
@@ -110,6 +111,11 @@ void Keyboard::Init()
         Buffer::GetNextEvent();
 
     } while (!Buffer::IsEmpty());
+
+    led_ChannelA.Disable();
+    led_ChannelB.Disable();
+    led_Trig.Disable();
+    led_Set.Disable();
 }
 
 
