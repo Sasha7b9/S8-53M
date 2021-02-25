@@ -21,9 +21,9 @@ extern PinRL6 pinRL6;
 extern PinRL7 pinRL7;
 
 extern PinRC0_ChannelA pinRC0_ChannelA;
-extern PinRC1 pinRC1;
-extern PinRC2 pinRC2;
-extern PinRC3 pinRC3;
+extern PinRC1_ChannelB pinRC1_ChannelB;
+extern PinRC2_Trig pinRC2_Trig;
+extern PinRC3_Set pinRC3_Set;
 
 extern PinON pinON;
 

@@ -32,9 +32,9 @@ PinRL6 pinRL6;
 PinRL7 pinRL7;
 
 PinRC0_ChannelA pinRC0_ChannelA;
-PinRC1 pinRC1;
-PinRC2 pinRC2;
-PinRC3 pinRC3;
+PinRC1_ChannelB pinRC1_ChannelB;
+PinRC2_Trig     pinRC2_Trig;
+PinRC3_Set      pinRC3_Set;
 
 PinON pinON;
 
@@ -56,9 +56,9 @@ PinRL6::PinRL6() : Pin(PinPort::B, PinPin::_6) { }
 PinRL7::PinRL7() : Pin(PinPort::B, PinPin::_7) { }
 
 PinRC0_ChannelA::PinRC0_ChannelA() : Pin(PinPort::A, PinPin::_10) { }
-PinRC1::PinRC1() : Pin(PinPort::A, PinPin::_11) { }
-PinRC2::PinRC2() : Pin(PinPort::A, PinPin::_9) { }
-PinRC3::PinRC3() : Pin(PinPort::A, PinPin::_12) { }
+PinRC1_ChannelB::PinRC1_ChannelB() : Pin(PinPort::A, PinPin::_11) { }
+PinRC2_Trig::PinRC2_Trig() : Pin(PinPort::A, PinPin::_9) { }
+PinRC3_Set::PinRC3_Set() : Pin(PinPort::A, PinPin::_12) { }
 
 PinON::PinON() : Pin(PinPort::A, PinPin::_8) { }
 
@@ -88,9 +88,12 @@ void HAL_PINS::Init()
 
     pinRC0_ChannelA.Init(PinMode::Output);
     pinRC0_ChannelA.Set();
-    pinRC1.Init(PinMode::Output);
-    pinRC2.Init(PinMode::Output);
-    pinRC3.Init(PinMode::Output);
+    pinRC1_ChannelB.Init(PinMode::Output);
+    pinRC1_ChannelB.Set();
+    pinRC2_Trig.Init(PinMode::Output);
+    pinRC2_Trig.Set();
+    pinRC3_Set.Init(PinMode::Output);
+    pinRC3_Set.Reset();
 
     pinON.Init(PinMode::Output);
     pinON.Reset();
