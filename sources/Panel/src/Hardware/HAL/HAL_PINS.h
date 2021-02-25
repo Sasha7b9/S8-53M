@@ -65,7 +65,7 @@ struct PinRL5 : public Pin { PinRL5(); };
 struct PinRL6 : public Pin { PinRL6(); };
 struct PinRL7 : public Pin { PinRL7(); };
 
-struct PinRC0 : public Pin { PinRC0(); };
+struct PinRC0_ChannelA : public Pin { PinRC0_ChannelA(); };
 struct PinRC1 : public Pin { PinRC1(); };
 struct PinRC2 : public Pin { PinRC2(); };
 struct PinRC3 : public Pin { PinRC3(); };

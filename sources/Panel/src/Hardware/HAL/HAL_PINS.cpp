@@ -31,7 +31,7 @@ PinRL5 pinRL5;
 PinRL6 pinRL6;
 PinRL7 pinRL7;
 
-PinRC0 pinRC0;
+PinRC0_ChannelA pinRC0_ChannelA;
 PinRC1 pinRC1;
 PinRC2 pinRC2;
 PinRC3 pinRC3;
@@ -55,7 +55,7 @@ PinRL5::PinRL5() : Pin(PinPort::B, PinPin::_5) { }
 PinRL6::PinRL6() : Pin(PinPort::B, PinPin::_6) { }
 PinRL7::PinRL7() : Pin(PinPort::B, PinPin::_7) { }
 
-PinRC0::PinRC0() : Pin(PinPort::A, PinPin::_10) { }
+PinRC0_ChannelA::PinRC0_ChannelA() : Pin(PinPort::A, PinPin::_10) { }
 PinRC1::PinRC1() : Pin(PinPort::A, PinPin::_11) { }
 PinRC2::PinRC2() : Pin(PinPort::A, PinPin::_9) { }
 PinRC3::PinRC3() : Pin(PinPort::A, PinPin::_12) { }
@@ -86,7 +86,8 @@ void HAL_PINS::Init()
     pinSL4.Init(PinMode::Output);
     pinSL5.Init(PinMode::Output);
 
-    pinRC0.Init(PinMode::Output);
+    pinRC0_ChannelA.Init(PinMode::Output);
+    pinRC0_ChannelA.Set();
     pinRC1.Init(PinMode::Output);
     pinRC2.Init(PinMode::Output);
     pinRC3.Init(PinMode::Output);
