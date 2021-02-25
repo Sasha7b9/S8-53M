@@ -92,6 +92,7 @@ void HAL_PINS::Init()
     pinRC3.Init(PinMode::Output);
 
     pinON.Init(PinMode::Output);
+    pinON.Reset();
 
     pinSPI2_SCK.Init(PinMode::_SPI2);
     pinSPI2_NSS.Init(PinMode::_SPI2);

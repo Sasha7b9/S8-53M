@@ -14,9 +14,6 @@ int main(void)
     {
         Keyboard::Update();
 
-        while (!Keyboard::Buffer::IsEmpty())
-        {
-            Keyboard::Buffer::GetNextEvent();
-        }
+        Interface::Update();
     }
 }

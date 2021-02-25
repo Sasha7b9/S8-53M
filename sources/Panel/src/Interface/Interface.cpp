@@ -12,7 +12,18 @@ void Interface::Update()
 {
     while (!Keyboard::Buffer::IsEmpty())
     {
-        SendKeyboardEvent(Keyboard::Buffer::GetNextEvent());
+        if (pinON.Read() == 0)
+        {
+            KeyboardEvent event = Keyboard::Buffer::GetNextEvent();
+            if (event.key == Key::Power)
+            {
+                pinON.Set();
+            }
+        }
+        else
+        {
+            SendKeyboardEvent(Keyboard::Buffer::GetNextEvent());
+        }
     }
 }
 
