@@ -16,8 +16,8 @@
 
 #pragma warning(pop)
 
-#include "common/Display/Painter_c.h"
-#include "common/Display/Primitives_c.h"
+#include "common/Display/Painter_.h"
+#include "common/Display/Primitives_.h"
 #include "Display/Display.h"
 
 #undef uint   

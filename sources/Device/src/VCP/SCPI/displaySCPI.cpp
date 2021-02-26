@@ -1,6 +1,6 @@
 #include "defines.h"
-#include "common/Log_c.h"
-#include "common/Display/Painter_c.h"
+#include "common/Log_.h"
+#include "common/Display/Painter_.h"
 #include "LAN/LAN.h"
 #include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"

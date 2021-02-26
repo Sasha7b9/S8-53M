@@ -1,6 +1,6 @@
 #include "defines.h"
-#include "common/Log_c.h"
-#include "common/Utils/Math_c.h"
+#include "common/Log_.h"
+#include "common/Utils/Math_.h"
 #include "FPGA/DataSettings.h"
 #include "FPGA/Storage.h"
 #include "Settings/Settings.h"

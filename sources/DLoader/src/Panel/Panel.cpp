@@ -1,6 +1,6 @@
 #include "defines.h"
-#include "common/Hardware/HAL/HAL_c.h"
-#include "common/Keyboard/Controls_c.h"
+#include "common/Hardware/HAL/HAL_.h"
+#include "common/Keyboard/Controls_.h"
 #include "Panel/Panel.h"
 
 

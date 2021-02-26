@@ -1,5 +1,5 @@
 #pragma once
-#include "common/Display/Colors_c.h"
+#include "common/Display/Colors_.h"
 #include "Display/Display.h"
 #include "Display/Grid.h"
 #include "Menu/Items/MenuItemsDefs.h"

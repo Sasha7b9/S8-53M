@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "common/Display/Painter_c.h"
+#include "common/Display/Painter_.h"
 #include "FPGA/FPGA.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"

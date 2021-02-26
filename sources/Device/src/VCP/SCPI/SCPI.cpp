@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "common/Log_c.h"
+#include "common/Log_.h"
 #include "LAN/LAN.h"
 #include "Utils/GlobalFunctions.h"
 #include "VCP/SCPI/SCPI.h"

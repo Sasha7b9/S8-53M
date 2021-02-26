@@ -1,5 +1,5 @@
 #pragma once
-#include "common/Settings/SettingsTypes_c.h"
+#include "common/Settings/SettingsTypes_.h"
 
 const char *RangeName(Range::E range);
 

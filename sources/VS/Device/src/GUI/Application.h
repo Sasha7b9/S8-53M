@@ -1,5 +1,5 @@
 #pragma once
-#include "common/Keyboard/Controls_c.h"
+#include "common/Keyboard/Controls_.h"
 #pragma warning(push, 0)
 #include <wx/wx.h>
 #pragma warning(pop)

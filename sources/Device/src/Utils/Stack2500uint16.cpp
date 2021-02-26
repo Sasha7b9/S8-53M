@@ -1,7 +1,7 @@
 #include "defines.h"
 #include "Stack2500uint16.h"
-#include "common/Log_c.h"
-#include "common/Hardware/Timer_c.h"
+#include "common/Log_.h"
+#include "common/Hardware/Timer_.h"
 
 /*
 static const int NUM_ELEMENTS = 2500;

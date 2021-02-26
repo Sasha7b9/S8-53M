@@ -1,6 +1,6 @@
 #pragma once
 #include "FPGA_Types.h"
-#include "common/Keyboard/Controls_c.h"
+#include "common/Keyboard/Controls_.h"
 #include "Settings/SettingsTrig.h"
 #include "Settings/SettingsService.h"
 

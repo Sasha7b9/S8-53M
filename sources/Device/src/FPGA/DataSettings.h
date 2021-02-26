@@ -1,9 +1,9 @@
 #pragma once
-#include "common/Keyboard/Controls_c.h"
+#include "common/Keyboard/Controls_.h"
 #include "Settings/SettingsTypes.h"
 #include "Settings/SettingsChannel.h"
 #include "Settings/SettingsTime.h"
-#include "common/Hardware/HAL/HAL_c.h"
+#include "common/Hardware/HAL/HAL_.h"
 
 
 struct DataSettings

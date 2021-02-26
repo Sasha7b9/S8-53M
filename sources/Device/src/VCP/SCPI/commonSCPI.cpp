@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "common/Hardware/HAL/HAL_c.h"
+#include "common/Hardware/HAL/HAL_.h"
 #include "device.h"
 #include "LAN/LAN.h"
 #include "VCP/VCP.h"

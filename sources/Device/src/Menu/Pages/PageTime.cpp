@@ -1,6 +1,6 @@
 #include "defines.h"
-#include "common/Hardware/HAL/HAL_c.h"
-#include "common/Utils/Math_c.h"
+#include "common/Hardware/HAL/HAL_.h"
+#include "common/Utils/Math_.h"
 #include "FPGA/FPGA.h"
 #include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"

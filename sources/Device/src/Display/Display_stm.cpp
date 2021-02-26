@@ -1,6 +1,6 @@
 #include "defines.h"
-#include "common/Display/Painter_c.h"
-#include "common/Hardware/HAL/HAL_c.h"
+#include "common/Display/Painter_.h"
+#include "common/Hardware/HAL/HAL_.h"
 #include "Display/Display.h"
 
 

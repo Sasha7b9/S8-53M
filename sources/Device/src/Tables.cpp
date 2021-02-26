@@ -1,9 +1,9 @@
 #include "defines.h"
 #include "Tables.h"
-#include "common/Log_c.h"
-#include "common/Display/Primitives_c.h"
-#include "common/Display/Text_c.h"
-#include "common/Display/Font/Font_c.h"
+#include "common/Log_.h"
+#include "common/Display/Primitives_.h"
+#include "common/Display/Text_.h"
+#include "common/Display/Font/Font_.h"
 #include "Settings/Settings.h"
 
 

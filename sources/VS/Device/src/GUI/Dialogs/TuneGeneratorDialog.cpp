@@ -1,6 +1,6 @@
 #include "defines.h"
 #include "GUI/Dialogs/TuneGeneratorDialog.h"
-#include "common/Utils/StringUtils_c.h"
+#include "common/Utils/StringUtils_.h"
 
 
 enum

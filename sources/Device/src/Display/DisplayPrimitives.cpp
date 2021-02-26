@@ -1,7 +1,7 @@
 #include "defines.h"
-#include "common/Display/Colors_c.h"
-#include "common/Display/Primitives_c.h"
-#include "common/Display/Text_c.h"
+#include "common/Display/Colors_.h"
+#include "common/Display/Primitives_.h"
+#include "common/Display/Text_.h"
 #include "Display/DisplayPrimitives.h"
 #include <cstdio> 
 

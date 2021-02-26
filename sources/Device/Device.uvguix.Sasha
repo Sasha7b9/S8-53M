@@ -6,7 +6,7 @@
   <Header>### uVision Project, (C) Keil Software</Header>
 
   <PrjGuiSettings>
-    <LastAddFilePath>D:\Projects\stm32\S8-53M\sources\common\Hardware\HAL</LastAddFilePath>
+    <LastAddFilePath>D:\Projects\stm32\S8-53M\sources\common\Keyboard</LastAddFilePath>
   </PrjGuiSettings>
 
   <ViewPool/>
@@ -15,17 +15,17 @@
     <View>
       <WinId>38003</WinId>
       <ViewName>Registers</ViewName>
-      <TableColWidths>184 184</TableColWidths>
+      <TableColWidths>177 178</TableColWidths>
     </View>
     <View>
       <WinId>346</WinId>
       <ViewName>Code Coverage</ViewName>
-      <TableColWidths>868 802</TableColWidths>
+      <TableColWidths>868 160</TableColWidths>
     </View>
     <View>
       <WinId>204</WinId>
       <ViewName>Performance Analyzer</ViewName>
-      <TableColWidths>1028 154 154 334</TableColWidths>
+      <TableColWidths>1028</TableColWidths>
     </View>
   </SECTreeCtrl>
 
@@ -70,7 +70,7 @@
       <WinId>466</WinId>
       <ViewName>Source Browser - *** Not Enabled ***</ViewName>
       <UserString>500</UserString>
-      <TableColWidths>166</TableColWidths>
+      <TableColWidths>300</TableColWidths>
     </View>
   </TreeListPane>
 
@@ -101,10 +101,10 @@
         <yPos>-1</yPos>
       </MaxPosition>
       <NormalPosition>
-        <Top>535</Top>
-        <Left>37</Left>
-        <Right>1523</Right>
-        <Bottom>1084</Bottom>
+        <Top>482</Top>
+        <Left>549</Left>
+        <Right>2035</Right>
+        <Bottom>1003</Bottom>
       </NormalPosition>
     </WindowPosition>
     <MDIClientArea>

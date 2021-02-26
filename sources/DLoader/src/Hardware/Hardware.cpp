@@ -1,7 +1,7 @@
 #include "defines.h"
-#include "common/Hardware/Timer_c.h"
-#include "common/Hardware/HAL/HAL_c.h"
-#include "common/Hardware/HAL/HAL_PINS_c.h"
+#include "common/Hardware/Timer_.h"
+#include "common/Hardware/HAL/HAL_.h"
+#include "common/Hardware/HAL/HAL_PINS_.h"
 #include "Hardware/Hardware.h"
 #include "Panel/Panel.h"
 

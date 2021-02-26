@@ -1089,24 +1089,24 @@
               <FilePath>.\src\Hardware\RAM.cpp</FilePath>
             </File>
             <File>
-              <FileName>Sound_c.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Hardware\Sound_c.h</FilePath>
-            </File>
-            <File>
-              <FileName>Sound_c.cpp</FileName>
+              <FileName>Sound_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\Sound_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\Sound_.cpp</FilePath>
             </File>
             <File>
-              <FileName>Timer_c.h</FileName>
+              <FileName>Sound_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Hardware\Timer_c.h</FilePath>
+              <FilePath>..\common\Hardware\Sound_.h</FilePath>
             </File>
             <File>
-              <FileName>Timer_c.cpp</FileName>
+              <FileName>Timer_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\Timer_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\Timer_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Timer_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\Timer_.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1159,84 +1159,84 @@
               <FilePath>.\src\Hardware\HAL\HAL_IT.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_ADC3_c.cpp</FileName>
+              <FileName>HAL_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_ADC3_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_c.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_c.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_c.h</FileName>
+              <FileName>HAL_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_c.h</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_.h</FilePath>
             </File>
             <File>
-              <FileName>HAL_CRC_c.cpp</FileName>
+              <FileName>HAL_ADC3_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_CRC_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_ADC3_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_DAC_c.cpp</FileName>
+              <FileName>HAL_CRC_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_DAC_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_CRC_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_EPROM_c.cpp</FileName>
+              <FileName>HAL_DAC_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_EPROM_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_DAC_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_FMC_c.cpp</FileName>
+              <FileName>HAL_EPROM_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_FMC_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_EPROM_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_LTDC_c.cpp</FileName>
+              <FileName>HAL_FMC_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_LTDC_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_FMC_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_OTP_c.cpp</FileName>
+              <FileName>HAL_LTDC_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_OTP_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_LTDC_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_PINS_c.cpp</FileName>
+              <FileName>HAL_OTP_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_PINS_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_OTP_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_PINS_c.h</FileName>
+              <FileName>HAL_PINS_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_PINS_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_PINS_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_PINS_c.h</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_PINS_.h</FilePath>
             </File>
             <File>
-              <FileName>HAL_RTC_c.cpp</FileName>
+              <FileName>HAL_RTC_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_RTC_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_RTC_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_TIM2_c.cpp</FileName>
+              <FileName>HAL_TIM2_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_TIM2_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_TIM2_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_TIM6_c.cpp</FileName>
+              <FileName>HAL_TIM6_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_TIM6_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_TIM6_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_TIM7_c.cpp</FileName>
+              <FileName>HAL_TIM7_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_TIM7_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_TIM7_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_USBD_c.cpp</FileName>
+              <FileName>HAL_USBD_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_USBD_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_USBD_.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -1407,35 +1407,20 @@
               <FilePath>.\src\Tables.cpp</FilePath>
             </File>
             <File>
-              <FileName>Log_c.cpp</FileName>
+              <FileName>Log_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Log_c.cpp</FilePath>
+              <FilePath>..\common\Log_.cpp</FilePath>
             </File>
             <File>
-              <FileName>Log_c.h</FileName>
+              <FileName>Log_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Log_c.h</FilePath>
+              <FilePath>..\common\Log_.h</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
           <GroupName>Display</GroupName>
           <Files>
-            <File>
-              <FileName>Colors_c.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Display\Colors_c.h</FilePath>
-            </File>
-            <File>
-              <FileName>Colors_c.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Colors_c.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Colors_c_stm.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Colors_c_stm.cpp</FilePath>
-            </File>
             <File>
               <FileName>Colors_d.cpp</FileName>
               <FileType>8</FileType>
@@ -1477,44 +1462,59 @@
               <FilePath>.\src\Display\Grid.cpp</FilePath>
             </File>
             <File>
-              <FileName>Painter_c.h</FileName>
+              <FileName>Colors_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Colors_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Colors_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Display\Painter_c.h</FilePath>
+              <FilePath>..\common\Display\Colors_.h</FilePath>
             </File>
             <File>
-              <FileName>Painter_c.cpp</FileName>
+              <FileName>Colors_stm_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Display\Painter_c.cpp</FilePath>
+              <FilePath>..\common\Display\Colors_stm_.cpp</FilePath>
             </File>
             <File>
-              <FileName>Painter_c_stm.cpp</FileName>
+              <FileName>Painter_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Display\Painter_c_stm.cpp</FilePath>
+              <FilePath>..\common\Display\Painter_.cpp</FilePath>
             </File>
             <File>
-              <FileName>Primitives_c.h</FileName>
+              <FileName>Painter_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Display\Primitives_c.h</FilePath>
+              <FilePath>..\common\Display\Painter_.h</FilePath>
             </File>
             <File>
-              <FileName>Primitives_c.cpp</FileName>
+              <FileName>Painter_stm_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Display\Primitives_c.cpp</FilePath>
+              <FilePath>..\common\Display\Painter_stm_.cpp</FilePath>
             </File>
             <File>
-              <FileName>Primitives_c_stm.cpp</FileName>
+              <FileName>Primitives_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Display\Primitives_c_stm.cpp</FilePath>
+              <FilePath>..\common\Display\Primitives_.cpp</FilePath>
             </File>
             <File>
-              <FileName>Text_c.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Text_c.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Text_c.h</FileName>
+              <FileName>Primitives_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Display\Text_c.h</FilePath>
+              <FilePath>..\common\Display\Primitives_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Primitives_stm_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Primitives_stm_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Text_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Text_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Text_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\Text_.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1562,14 +1562,14 @@
               <FilePath>..\common\Display\Font\fontUGOdisplay.inc</FilePath>
             </File>
             <File>
-              <FileName>Font_c.cpp</FileName>
+              <FileName>Font_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Display\Font\Font_c.cpp</FilePath>
+              <FilePath>..\common\Display\Font\Font_.cpp</FilePath>
             </File>
             <File>
-              <FileName>Font_c.h</FileName>
+              <FileName>Font_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Display\Font\Font_c.h</FilePath>
+              <FilePath>..\common\Display\Font\Font_.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1878,14 +1878,14 @@
               <FilePath>.\src\Panel\Panel.cpp</FilePath>
             </File>
             <File>
-              <FileName>Controls_c.cpp</FileName>
+              <FileName>Controls_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Keyboard\Controls_c.cpp</FilePath>
+              <FilePath>..\common\Keyboard\Controls_.cpp</FilePath>
             </File>
             <File>
-              <FileName>Controls_c.h</FileName>
+              <FileName>Controls_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Keyboard\Controls_c.h</FilePath>
+              <FilePath>..\common\Keyboard\Controls_.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2053,34 +2053,34 @@
               <FilePath>.\src\Utils\ProcessingSignal.cpp</FilePath>
             </File>
             <File>
-              <FileName>Math_c.cpp</FileName>
+              <FileName>Math_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Utils\Math_c.cpp</FilePath>
+              <FilePath>..\common\Utils\Math_.cpp</FilePath>
             </File>
             <File>
-              <FileName>Math_c.h</FileName>
+              <FileName>Math_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Utils\Math_c.h</FilePath>
+              <FilePath>..\common\Utils\Math_.h</FilePath>
             </File>
             <File>
-              <FileName>String_c.cpp</FileName>
+              <FileName>String_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Utils\String_c.cpp</FilePath>
+              <FilePath>..\common\Utils\String_.cpp</FilePath>
             </File>
             <File>
-              <FileName>String_c.h</FileName>
+              <FileName>String_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Utils\String_c.h</FilePath>
+              <FilePath>..\common\Utils\String_.h</FilePath>
             </File>
             <File>
-              <FileName>StringUtils_c.cpp</FileName>
+              <FileName>StringUtils_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Utils\StringUtils_c.cpp</FilePath>
+              <FilePath>..\common\Utils\StringUtils_.cpp</FilePath>
             </File>
             <File>
-              <FileName>StringUtils_c.h</FileName>
+              <FileName>StringUtils_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Utils\StringUtils_c.h</FilePath>
+              <FilePath>..\common\Utils\StringUtils_.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -3254,24 +3254,24 @@
               <FilePath>.\src\Hardware\RAM.cpp</FilePath>
             </File>
             <File>
-              <FileName>Sound_c.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Hardware\Sound_c.h</FilePath>
-            </File>
-            <File>
-              <FileName>Sound_c.cpp</FileName>
+              <FileName>Sound_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\Sound_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\Sound_.cpp</FilePath>
             </File>
             <File>
-              <FileName>Timer_c.h</FileName>
+              <FileName>Sound_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Hardware\Timer_c.h</FilePath>
+              <FilePath>..\common\Hardware\Sound_.h</FilePath>
             </File>
             <File>
-              <FileName>Timer_c.cpp</FileName>
+              <FileName>Timer_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\Timer_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\Timer_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Timer_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\Timer_.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -3324,84 +3324,84 @@
               <FilePath>.\src\Hardware\HAL\HAL_IT.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_ADC3_c.cpp</FileName>
+              <FileName>HAL_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_ADC3_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_c.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_c.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_c.h</FileName>
+              <FileName>HAL_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_c.h</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_.h</FilePath>
             </File>
             <File>
-              <FileName>HAL_CRC_c.cpp</FileName>
+              <FileName>HAL_ADC3_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_CRC_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_ADC3_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_DAC_c.cpp</FileName>
+              <FileName>HAL_CRC_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_DAC_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_CRC_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_EPROM_c.cpp</FileName>
+              <FileName>HAL_DAC_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_EPROM_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_DAC_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_FMC_c.cpp</FileName>
+              <FileName>HAL_EPROM_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_FMC_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_EPROM_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_LTDC_c.cpp</FileName>
+              <FileName>HAL_FMC_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_LTDC_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_FMC_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_OTP_c.cpp</FileName>
+              <FileName>HAL_LTDC_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_OTP_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_LTDC_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_PINS_c.cpp</FileName>
+              <FileName>HAL_OTP_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_PINS_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_OTP_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_PINS_c.h</FileName>
+              <FileName>HAL_PINS_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_PINS_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_PINS_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_PINS_c.h</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_PINS_.h</FilePath>
             </File>
             <File>
-              <FileName>HAL_RTC_c.cpp</FileName>
+              <FileName>HAL_RTC_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_RTC_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_RTC_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_TIM2_c.cpp</FileName>
+              <FileName>HAL_TIM2_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_TIM2_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_TIM2_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_TIM6_c.cpp</FileName>
+              <FileName>HAL_TIM6_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_TIM6_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_TIM6_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_TIM7_c.cpp</FileName>
+              <FileName>HAL_TIM7_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_TIM7_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_TIM7_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_USBD_c.cpp</FileName>
+              <FileName>HAL_USBD_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_USBD_c.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_USBD_.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -3572,35 +3572,20 @@
               <FilePath>.\src\Tables.cpp</FilePath>
             </File>
             <File>
-              <FileName>Log_c.cpp</FileName>
+              <FileName>Log_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Log_c.cpp</FilePath>
+              <FilePath>..\common\Log_.cpp</FilePath>
             </File>
             <File>
-              <FileName>Log_c.h</FileName>
+              <FileName>Log_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Log_c.h</FilePath>
+              <FilePath>..\common\Log_.h</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
           <GroupName>Display</GroupName>
           <Files>
-            <File>
-              <FileName>Colors_c.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Display\Colors_c.h</FilePath>
-            </File>
-            <File>
-              <FileName>Colors_c.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Colors_c.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Colors_c_stm.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Colors_c_stm.cpp</FilePath>
-            </File>
             <File>
               <FileName>Colors_d.cpp</FileName>
               <FileType>8</FileType>
@@ -3642,44 +3627,59 @@
               <FilePath>.\src\Display\Grid.cpp</FilePath>
             </File>
             <File>
-              <FileName>Painter_c.h</FileName>
+              <FileName>Colors_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Colors_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Colors_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Display\Painter_c.h</FilePath>
+              <FilePath>..\common\Display\Colors_.h</FilePath>
             </File>
             <File>
-              <FileName>Painter_c.cpp</FileName>
+              <FileName>Colors_stm_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Display\Painter_c.cpp</FilePath>
+              <FilePath>..\common\Display\Colors_stm_.cpp</FilePath>
             </File>
             <File>
-              <FileName>Painter_c_stm.cpp</FileName>
+              <FileName>Painter_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Display\Painter_c_stm.cpp</FilePath>
+              <FilePath>..\common\Display\Painter_.cpp</FilePath>
             </File>
             <File>
-              <FileName>Primitives_c.h</FileName>
+              <FileName>Painter_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Display\Primitives_c.h</FilePath>
+              <FilePath>..\common\Display\Painter_.h</FilePath>
             </File>
             <File>
-              <FileName>Primitives_c.cpp</FileName>
+              <FileName>Painter_stm_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Display\Primitives_c.cpp</FilePath>
+              <FilePath>..\common\Display\Painter_stm_.cpp</FilePath>
             </File>
             <File>
-              <FileName>Primitives_c_stm.cpp</FileName>
+              <FileName>Primitives_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Display\Primitives_c_stm.cpp</FilePath>
+              <FilePath>..\common\Display\Primitives_.cpp</FilePath>
             </File>
             <File>
-              <FileName>Text_c.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Text_c.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Text_c.h</FileName>
+              <FileName>Primitives_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Display\Text_c.h</FilePath>
+              <FilePath>..\common\Display\Primitives_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Primitives_stm_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Primitives_stm_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Text_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Text_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Text_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\Text_.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -3727,14 +3727,14 @@
               <FilePath>..\common\Display\Font\fontUGOdisplay.inc</FilePath>
             </File>
             <File>
-              <FileName>Font_c.cpp</FileName>
+              <FileName>Font_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Display\Font\Font_c.cpp</FilePath>
+              <FilePath>..\common\Display\Font\Font_.cpp</FilePath>
             </File>
             <File>
-              <FileName>Font_c.h</FileName>
+              <FileName>Font_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Display\Font\Font_c.h</FilePath>
+              <FilePath>..\common\Display\Font\Font_.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -4043,14 +4043,14 @@
               <FilePath>.\src\Panel\Panel.cpp</FilePath>
             </File>
             <File>
-              <FileName>Controls_c.cpp</FileName>
+              <FileName>Controls_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Keyboard\Controls_c.cpp</FilePath>
+              <FilePath>..\common\Keyboard\Controls_.cpp</FilePath>
             </File>
             <File>
-              <FileName>Controls_c.h</FileName>
+              <FileName>Controls_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Keyboard\Controls_c.h</FilePath>
+              <FilePath>..\common\Keyboard\Controls_.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -4218,34 +4218,34 @@
               <FilePath>.\src\Utils\ProcessingSignal.cpp</FilePath>
             </File>
             <File>
-              <FileName>Math_c.cpp</FileName>
+              <FileName>Math_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Utils\Math_c.cpp</FilePath>
+              <FilePath>..\common\Utils\Math_.cpp</FilePath>
             </File>
             <File>
-              <FileName>Math_c.h</FileName>
+              <FileName>Math_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Utils\Math_c.h</FilePath>
+              <FilePath>..\common\Utils\Math_.h</FilePath>
             </File>
             <File>
-              <FileName>String_c.cpp</FileName>
+              <FileName>String_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Utils\String_c.cpp</FilePath>
+              <FilePath>..\common\Utils\String_.cpp</FilePath>
             </File>
             <File>
-              <FileName>String_c.h</FileName>
+              <FileName>String_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Utils\String_c.h</FilePath>
+              <FilePath>..\common\Utils\String_.h</FilePath>
             </File>
             <File>
-              <FileName>StringUtils_c.cpp</FileName>
+              <FileName>StringUtils_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Utils\StringUtils_c.cpp</FilePath>
+              <FilePath>..\common\Utils\StringUtils_.cpp</FilePath>
             </File>
             <File>
-              <FileName>StringUtils_c.h</FileName>
+              <FileName>StringUtils_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Utils\StringUtils_c.h</FilePath>
+              <FilePath>..\common\Utils\StringUtils_.h</FilePath>
             </File>
           </Files>
         </Group>

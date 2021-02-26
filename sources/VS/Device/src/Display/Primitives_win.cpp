@@ -1,6 +1,6 @@
 #include "defines.h"
-#include "common/Display/Primitives_c.h"
-#include "common/Display/Font/Font_c.h"
+#include "common/Display/Primitives_.h"
+#include "common/Display/Font/Font_.h"
 #include "GUI/Application.h"
 
 #pragma warning(push, 0)

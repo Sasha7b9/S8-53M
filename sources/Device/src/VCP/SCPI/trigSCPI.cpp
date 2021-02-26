@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "common/Log_c.h"
+#include "common/Log_.h"
 #include "FPGA/FPGA.h"
 #include "LAN/LAN.h"
 #include "Menu/Pages/Definition.h"

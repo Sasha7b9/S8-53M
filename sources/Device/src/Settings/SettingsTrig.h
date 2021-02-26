@@ -1,5 +1,5 @@
 #pragma once
-#include "common/Settings/SettingsTypes_c.h"
+#include "common/Settings/SettingsTypes_.h"
 
 
 #define START_MODE              (set.trig.startMode)                    // SettingsTrig.startMode
