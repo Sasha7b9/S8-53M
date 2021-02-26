@@ -50,7 +50,7 @@ static void SendKeyboardEvent(KeyboardEvent event)
 {
     uint8 message[3] = { 0xFF, static_cast<uint8>(event.key), static_cast<uint8>(event.action) };
 
-    HAL_SPI2::Send(message, 3);
+    HAL_SPI2::Transmit(message, 3);
 }
 
 
