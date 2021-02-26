@@ -136,13 +136,22 @@ private:
 
 struct HAL_RTC
 {
-public:
     static void Init();
+
     static bool SetTimeAndData(int8 day, int8 month, int8 year, int8 hours, int8 minutes, int8 seconds);
+
     static PackedTime GetPackedTime();
 
 private:
     static void *handle;    // RTC_HandleTypeDef
+};
+
+
+struct HAL_SPI1
+{
+public:
+
+    static void Init();
 };
 
 

@@ -23,13 +23,13 @@ void Device::Init()
 {
     HAL::Init();
     Panel::Init();
-    FDrive::Init();
-    VCP::Init();
-    Settings::Load(false);
-    FPGA::Init();
+//    FDrive::Init();
+//    VCP::Init();
+//    Settings::Load(false);
+//    FPGA::Init();
     HAL_TIM2::Delay(250);
-    FPGA::OnPressStartStop();
-    LAN::Init();
+//    FPGA::OnPressStartStop();
+//    LAN::Init();
     Display::Init();
 }
 

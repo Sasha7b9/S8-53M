@@ -26,23 +26,26 @@ void HAL::Init()
 
 #ifdef DEVICE
 
-    HAL_ADC3::Init();
+    HAL_SPI1::Init();
 
-    HAL_DAC::Init();
-
-    HAL_RTC::Init();
-
-    HAL_TIM6::Init();
+//    HAL_ADC3::Init();
+//
+//    HAL_DAC::Init();
+//
+//    HAL_RTC::Init();
+//
+//    HAL_TIM6::Init();
 
 #endif
 
-    HAL_FMC::Init();
+//    HAL_FMC::Init();
+
 
     HAL_TIM2::Init();
 
-    HAL_ETH::Init();
+//    HAL_ETH::Init();
 
-    HAL_HCD::Init();
+//    HAL_HCD::Init();
 
     HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
 }
