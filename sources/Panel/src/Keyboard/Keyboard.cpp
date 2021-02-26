@@ -146,23 +146,49 @@ void KeyStruct::Process(uint time, bool pressed)
 {
     if (IsValid())
     {
-        if (timePress == 0)                                 // Если кнопка находится в ненажатом положении
-        {
-            if (pressed)
-            {
-                timePress = time;
-                Buffer::AppendEvent(key, Action::Down);
-            }
-        }
-        else
+        if (timePress != 0 && !happendLongPressed)          // Если клавиша находится в нажатом положении
         {
             uint delta = time - timePress;
-
-            if (delta > 100 && !pressed)
+            if (delta > 500)                                // Если прошло более 500 мс с момента нажатия -
             {
-                timePress = 0;
+                happendLongPressed = true;
+                Buffer::AppendEvent(key, Action::Long);     // это будет длинное нажатие
+            }
+            else if (delta > 100 &&                         // Если прошло более 100 мс с момента нажатия //-V2516
+                !pressed)                                   // и сейчас кнопка находится в отжатом состоянии
+            {
+                timePress = 0;                              // То учитываем это в массиве
+                Buffer::AppendEvent(key, Action::Up);       // И сохраняем отпускание кнопки в буфере команд
             }
         }
+        else if (pressed && !happendLongPressed)            // Если кнопка нажата
+        {
+            timePress = time;                               // то сохраняем время её нажатия
+            Buffer::AppendEvent(key, Action::Down);
+        }
+        else if (!pressed && happendLongPressed) //-V2516
+        {
+            timePress = 0;
+        }
+
+
+//        if (timePress == 0)                                 // Если кнопка находится в ненажатом положении
+//        {
+//            if (pressed)
+//            {
+//                timePress = time;
+//                Buffer::AppendEvent(key, Action::Down);
+//            } 
+//        }
+//        else
+//        {
+//            uint delta = time - timePress;
+//
+//            if (delta > 100 && !pressed)
+//            {
+//                timePress = 0;
+//            }
+//        }
     }
 }
 
