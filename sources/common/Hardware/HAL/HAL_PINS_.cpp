@@ -171,13 +171,13 @@ void HAL_PINS::Init()
 //    PinFMC(D, 3).Init();        // A19
 //    PinFMC(D, 4).Init();        // A20
 
-    Pin(PinMode::_DAC1, PinPort::_A, PinPin::_4).Init();    // PWM
+    Pin(PinMode::_DAC1, PinPort::_A, PinPin::_4).Init();        // PWM
     Pin(PinMode::_Output, PinPort::_G, PinPin::_13).Reset();    // ¬ыбор горизонтальной ориентации диспле€ R/L
     Pin(PinMode::_Output, PinPort::_G, PinPin::_10).Set();      // ¬ыбор вертикальной ориентации диспле€ U/D
-    PinLTDC(I, 9).Init();       // VSYNC
-    PinLTDC(G, 7).Init();       // CLK
-    PinLTDC(F, 10).Init();      // DE
-    PinLTDC(C, 6).Init();       // HSYNC
+    PinLTDC(I, 9).Init();       // VSYNC    11
+    PinLTDC(C, 6).Init();       // HSYNC    115
+    PinLTDC(G, 7).Init();       // CLK      111
+    PinLTDC(F, 10).Init();      // DE       28
 
     PinLTDC(H, 8).Init();       // R2
     PinLTDC(B, 0).Init();       // R3

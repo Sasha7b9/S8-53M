@@ -43,9 +43,15 @@ void HAL_LTDC::Init(uint8 *front, uint8 *back)
 
 void HAL_LTDC::LoadPalette()
 {
-    HAL_LTDC_ConfigCLUT(&handleLTDC, set.display.colors, Color::Count.index, 0);
+    if (HAL_LTDC_ConfigCLUT(&handleLTDC, set.display.colors, Color::Count.index, 0) != HAL_OK)
+    {
+        ERROR_HANDLER();
+    }
 
-    HAL_LTDC_EnableCLUT(&handleLTDC, 0);
+    if (HAL_LTDC_EnableCLUT(&handleLTDC, 0) != HAL_OK)
+    {
+        ERROR_HANDLER();
+    }
 }
 
 
@@ -60,7 +66,7 @@ void HAL_LTDC::SetBuffers(uint8 *front, uint8 *back)
     pLayerCfg.WindowX1 = 320;
     pLayerCfg.WindowY0 = 0;
     pLayerCfg.WindowY1 = 240;
-    pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_L8;
+    pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_AL44;
     pLayerCfg.Alpha = 255;
     pLayerCfg.Alpha0 = 255;
     pLayerCfg.BlendingFactor1 = LTDC_BLENDING_FACTOR1_CA;
@@ -84,14 +90,14 @@ void HAL_LTDC::ToggleBuffers()
     DMA2D_HandleTypeDef hDMA2D;
 
     hDMA2D.Init.Mode = DMA2D_M2M;
-    hDMA2D.Init.ColorMode = DMA2D_INPUT_L8;
+    hDMA2D.Init.ColorMode = DMA2D_INPUT_AL44;
     hDMA2D.Init.OutputOffset = 0;
 
     hDMA2D.XferCpltCallback = nullptr;
 
     hDMA2D.LayerCfg[1].AlphaMode = DMA2D_NO_MODIF_ALPHA;
     hDMA2D.LayerCfg[1].InputAlpha = 0xFF;
-    hDMA2D.LayerCfg[1].InputColorMode = DMA2D_INPUT_L8;
+    hDMA2D.LayerCfg[1].InputColorMode = DMA2D_INPUT_AL44;
     hDMA2D.LayerCfg[1].InputOffset = 0;
 
     hDMA2D.Instance = DMA2D; //-V2571
@@ -100,7 +106,7 @@ void HAL_LTDC::ToggleBuffers()
     {
         if (HAL_DMA2D_ConfigLayer(&hDMA2D, 1) == HAL_OK)
         {
-            if (HAL_DMA2D_Start(&hDMA2D, backBuffer, frontBuffer, 320, 240) == HAL_OK)
+            if (HAL_DMA2D_Start(&hDMA2D, backBuffer, frontBuffer, 160, 240) == HAL_OK)
             {
                 HAL_DMA2D_PollForTransfer(&hDMA2D, 100);
             }
