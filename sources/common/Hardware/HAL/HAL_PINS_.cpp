@@ -277,23 +277,23 @@ void Pin::Init()
 
 void Pin::Write(int state)
 {
-    HAL_GPIO_WritePin(reinterpret_cast<GPIO_TypeDef *>(port), pins[pin], static_cast<GPIO_PinState>(state)); //-V2571
+    HAL_GPIO_WritePin((GPIO_TypeDef *)ports[port], pins[pin], static_cast<GPIO_PinState>(state)); //-V2571
 }
 
 
 void Pin::Set()
 {
-    HAL_GPIO_WritePin(reinterpret_cast<GPIO_TypeDef *>(port), pins[pin], GPIO_PIN_SET); //-V2571
+    HAL_GPIO_WritePin((GPIO_TypeDef *)ports[port], pins[pin], GPIO_PIN_SET); //-V2571
 }
 
 
 void Pin::Reset()
 {
-    HAL_GPIO_WritePin(reinterpret_cast<GPIO_TypeDef *>(port), pins[pin], GPIO_PIN_RESET); //-V2571
+    HAL_GPIO_WritePin((GPIO_TypeDef *)ports[port], pins[pin], GPIO_PIN_RESET); //-V2571
 }
 
 
 uint Pin::Read()
 {
-    return HAL_GPIO_ReadPin(reinterpret_cast<GPIO_TypeDef *>(port), pins[pin]); //-V2571
+    return HAL_GPIO_ReadPin((GPIO_TypeDef *)ports[port], pins[pin]); //-V2571
 }
