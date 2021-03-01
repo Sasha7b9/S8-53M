@@ -87,6 +87,16 @@ struct HAL_DAC1
     static void *handle;    // DAC_HandleTypeDef
 };
 
+
+// »спользуетс€ дл€ управлени€ €ркостью диспле€
+struct HAL_DAC2
+{
+    static void Init();
+    // «начение value от 0 до 100
+    static void SetValue(int value);
+};
+
+
 struct HAL_EPROM
 {
     static void ClearFlags();

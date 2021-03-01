@@ -1179,9 +1179,9 @@
               <FilePath>..\common\Hardware\HAL\HAL_CRC_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_DAC_.cpp</FileName>
+              <FileName>HAL_DAC1_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_DAC_.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_DAC1_.cpp</FilePath>
             </File>
             <File>
               <FileName>HAL_EPROM_.cpp</FileName>
@@ -3349,9 +3349,9 @@
               <FilePath>..\common\Hardware\HAL\HAL_CRC_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_DAC_.cpp</FileName>
+              <FileName>HAL_DAC1_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_DAC_.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_DAC1_.cpp</FilePath>
             </File>
             <File>
               <FileName>HAL_EPROM_.cpp</FileName>
