@@ -34,7 +34,7 @@ void HAL_DAC1::Init()
 
     HAL_DAC_Start(&handle, DAC1_CHANNEL_1);
 
-    SetValue(50);
+    SetValue(100);
 }
 
 
