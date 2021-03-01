@@ -22,8 +22,6 @@ void Display::Init()
     HAL_DAC1::Init();
 
     HAL_LTDC::Init(front, back);
-
-    HAL_LTDC::LoadPalette();
 }
 
 
