@@ -171,8 +171,8 @@ void HAL_PINS::Init()
 //    PinFMC(D, 3).Init();        // A19
 //    PinFMC(D, 4).Init();        // A20
 
-//    Pin(PinMode::_DAC1, PinPort::_A, PinPin::_4).Init();    // PWM
-    Pin(PinMode::_Output, PinPort::_A, PinPin::_5).Set();       // Включаем подсветку дисплея
+    Pin(PinMode::_DAC1, PinPort::_A, PinPin::_4).Init();    // PWM
+//    Pin(PinMode::_Output, PinPort::_A, PinPin::_5).Set();       // Включаем подсветку дисплея
     Pin(PinMode::_Output, PinPort::_G, PinPin::_13).Reset();    // Выбор горизонтальной ориентации дисплея R/L
     Pin(PinMode::_Output, PinPort::_G, PinPin::_10).Set();      // Выбор вертикальной ориентации дисплея U/D
     PinLTDC(I, 9).Init();       // VSYNC
