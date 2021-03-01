@@ -1252,12 +1252,14 @@ void FPGA::WriteToDAC(TypeWriteDAC::E type, uint16 data)
         LOG_WRITE("trigLev = %s", Bin2String16(data, buffer));
     }
 
-    Pin::G7.Reset();
+//    Pin::G7.Reset();
+
     for (int i = 15; i >= 0; i--)
     {
         DATA_SET((data & (1 << i)) ? 1 : 0);
         CLC_HI
         CLC_LOW
     }
-    Pin::G7.Set();
+
+//    Pin::G7.Set();
 }

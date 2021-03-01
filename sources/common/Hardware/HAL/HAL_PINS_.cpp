@@ -80,9 +80,10 @@ struct PinLTDC : public Pin
 Pin Pin::G2(PinMode::_Output, PinPort::_G, PinPin::_2);
 Pin Pin::G3(PinMode::_Output, PinPort::_G, PinPin::_3);
 Pin Pin::G5(PinMode::_Output, PinPort::_G, PinPin::_5);
-Pin Pin::G7(PinMode::_Output, PinPort::_G, PinPin::_7);
 Pin Pin::LED(PinMode::_Output, PinPort::_G, PinPin::_12);
 Pin Pin::DisplayReady(PinMode::_Input, PinPort::_G, PinPin::_11);
+
+Pin Pin::Temp(PinMode::_Output, PinPort::_I, PinPin::_9);
 
 
 void HAL_PINS::Init()
@@ -90,7 +91,6 @@ void HAL_PINS::Init()
     Pin::G2.Init();
     Pin::G3.Init();
     Pin::G5.Init();
-    Pin::G7.Init();
     Pin::LED.Init();
     Pin::DisplayReady.Init();
 
@@ -111,23 +111,23 @@ void HAL_PINS::Init()
     PinSPI1(B, 5).Init();       // MOSI
     PinSPI1(G, 0).Init();       // NSS
 
-    PinETH(H, 2).Init();        // CRS
-    PinETH(A, 2).Init();        // MDIO
-    PinETH(H, 3).Init();        // COL
-    PinETH(A, 7).Init();        // RX_DV
-    PinETH(H, 6).Init();        // RXD2
-    PinETH(B, 1).Init();        // RXD3
-    PinETH(B, 8).Init();        // TXD3
-    PinETH(I, 10).Init();       // RX_ER
-    PinETH(B, 11).Init();       // TX_EN
-    PinETH(C, 1).Init();        // MDC
-    PinETH(C, 2).Init();        // TXD2
-    PinETH(C, 3).Init();        // TX_CLK
-    PinETH(A, 1).Init();        // RX_CLK
-    PinETH(C, 4).Init();        // RXD0
-    PinETH(C, 5).Init();        // RXD1
-    PinETH(B, 12).Init();       // TXD0
-    PinETH(G, 14).Init();       // TXD1
+//    PinETH(H, 2).Init();        // CRS
+//    PinETH(A, 2).Init();        // MDIO
+//    PinETH(H, 3).Init();        // COL
+//    PinETH(A, 7).Init();        // RX_DV
+//    PinETH(H, 6).Init();        // RXD2
+//    PinETH(B, 1).Init();        // RXD3
+//    PinETH(B, 8).Init();        // TXD3
+//    PinETH(I, 10).Init();       // RX_ER
+//    PinETH(B, 11).Init();       // TX_EN
+//    PinETH(C, 1).Init();        // MDC
+//    PinETH(C, 2).Init();        // TXD2
+//    PinETH(C, 3).Init();        // TX_CLK
+//    PinETH(A, 1).Init();        // RX_CLK
+//    PinETH(C, 4).Init();        // RXD0
+//    PinETH(C, 5).Init();        // RXD1
+//    PinETH(B, 12).Init();       // TXD0
+//    PinETH(G, 14).Init();       // TXD1
 
 //    PinFMC(D, 4).Init();        // NOE
 //    PinFMC(D, 5).Init();        // NWE
@@ -176,6 +176,8 @@ void HAL_PINS::Init()
     Pin pinPWM(PinMode::_Output, PinPort::_A, PinPin::_4);
     pinPWM.Init();
     pinPWM.Set();
+
+    //    Pin::Temp.Init();
 
     Pin(PinMode::_Output, PinPort::_G, PinPin::_13).Reset();    // ¬ыбор горизонтальной ориентации диспле€ R/L
     Pin(PinMode::_Output, PinPort::_G, PinPin::_10).Set();      // ¬ыбор вертикальной ориентации диспле€ U/D
@@ -271,9 +273,10 @@ void Pin::Init()
     }
     else if (mode == PinMode::_LTDC) //-V2516
     {
+        isGPIO.Pull = GPIO_NOPULL;
         isGPIO.Mode = GPIO_MODE_AF_PP;
         isGPIO.Speed = GPIO_SPEED_FREQ_LOW;
-        isGPIO.Alternate = GPIO_AF9_LTDC;
+        isGPIO.Alternate = GPIO_AF14_LTDC;
     }
 
     HAL_GPIO_Init(reinterpret_cast<GPIO_TypeDef *>(const_cast<GPIO_TypeDef *>(ports[port])), &isGPIO); //-V2571 //-V2567

@@ -64,9 +64,10 @@ struct Pin
     static Pin G2;
     static Pin G3;
     static Pin G5;
-    static Pin G7;
     static Pin LED;
     static Pin DisplayReady;
+
+    static Pin Temp;
 
 private:
     PinPort::E port;
