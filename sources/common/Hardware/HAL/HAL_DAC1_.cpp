@@ -4,10 +4,10 @@
 
 
 static DAC_HandleTypeDef handleDAC = { DAC }; //-V2571
-void *HAL_DAC1::handle = &handleDAC;
+void *HAL_DAC0::handle = &handleDAC;
 
 
-void HAL_DAC1::Init()
+void HAL_DAC0::Init()
 {
     static DMA_HandleTypeDef hdmaDAC1 =
     {
@@ -49,13 +49,13 @@ void HAL_DAC1::Init()
 }
 
 
-void HAL_DAC1::StartDMA(uint8 *points, int numPoints)
+void HAL_DAC0::StartDMA(uint8 *points, int numPoints)
 {
     HAL_DAC_Start_DMA(&handleDAC, DAC_CHANNEL_1, reinterpret_cast<uint32_t *>(points), static_cast<uint>(numPoints), DAC_ALIGN_8B_R);
 }
 
 
-void HAL_DAC1::StopDMA()
+void HAL_DAC0::StopDMA()
 {
     HAL_DAC_Stop_DMA(&handleDAC, DAC_CHANNEL_1);
 }

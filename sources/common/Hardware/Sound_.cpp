@@ -27,7 +27,7 @@ bool Sound::buttonIsPressed = false;
 
 static void Stop()
 {
-    HAL_DAC1::StopDMA();
+    HAL_DAC0::StopDMA();
     Sound::isBeep = false;
     Sound::warnIsBeep = false;
 }
@@ -57,7 +57,7 @@ void Sound_Beep(TypeWave::E typeWave_, float frequency_, float amplitude_, int d
     
     Sound::isBeep = true;
 
-    HAL_DAC1::StartDMA(points, POINTS_IN_PERIOD);
+    HAL_DAC0::StartDMA(points, POINTS_IN_PERIOD);
 
     Timer::Enable(TypeTimer::StopSound, duration, Stop);
 }

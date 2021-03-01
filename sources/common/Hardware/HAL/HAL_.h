@@ -79,7 +79,7 @@ struct HAL_CRC
 };
 
 // Для звука
-struct HAL_DAC1
+struct HAL_DAC0
 {
     static void Init();
     static void StartDMA(uint8 *points, int numPoints);
