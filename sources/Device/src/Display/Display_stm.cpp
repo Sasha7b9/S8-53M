@@ -19,7 +19,11 @@ void Display::Init()
 
     Font::Set(TypeFont::S8);
 
+    HAL_DAC2::Init();
+
     HAL_LTDC::Init(front, back);
+
+    HAL_LTDC::LoadPalette();
 }
 
 

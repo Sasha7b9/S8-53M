@@ -1,3 +1,4 @@
+// 2021/03/01 10:48:35 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
 
 #define LIMIT_BELOW(x, min)         if(x < min) { x = min; }
