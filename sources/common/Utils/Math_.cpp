@@ -6,6 +6,9 @@
 #include <cmath>
 
 
+template void Math::Swap<int>(int *, int *);
+
+
 int Math::MinFrom2Int(int val0, int val1)
 {
     if (val0 < val1)
@@ -273,4 +276,11 @@ void Math::CalculateFiltrArray(pUCHAR dataIn, uint8 *dataOut, int numPoints, int
             dataOut[i] = (uint8)(sum / count); //-V2533 //-V2563
         }
     }
+}
+
+
+template<class T>
+void Math::Swap(T *value0, T *value1)
+{
+    T temp = *value0; *value0 = *value1; *value1 = temp;
 }

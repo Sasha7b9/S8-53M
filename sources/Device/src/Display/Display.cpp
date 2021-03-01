@@ -1209,6 +1209,15 @@ bool Display::NeedForClearScreen()
 
 void Display::Update(bool endScene)
 {
+    Painter::BeginScene(Color::WHITE);
+
+    Region(100, 100).Fill(10, 10, Color::BLACK);
+
+    Painter::EndScene();
+
+    return;
+    
+    
 	uint timeStart = gTimerTics;
     if (funcOnHand != 0)
     {

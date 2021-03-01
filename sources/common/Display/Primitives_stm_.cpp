@@ -2,6 +2,7 @@
 #include "common/Display/Painter_.h"
 #include "common/Display/Primitives_.h"
 #include "Display/Display.h"
+#include "common/Utils/Math_.h"
 
 
 void Primitives::Point::Draw(int, int)
@@ -52,13 +53,10 @@ void Primitives::MultiHPointLine::Draw(int x, Color color)
 }
 
 
-void Primitives::Region::Fill(int, int, Color)
+void Primitives::Region::Fill(int x, int y, Color color)
 {
-
-}
-
-
-void Primitives::HLine::Draw(int, int, int, Color)
-{
-
+    for (int i = y; i <= y + height; i++)
+    {
+        HLine().Draw(i, x, x + width, color);
+    }
 }

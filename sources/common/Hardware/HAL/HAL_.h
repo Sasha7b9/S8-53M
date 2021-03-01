@@ -78,7 +78,8 @@ struct HAL_CRC
     static uint Calculate(uint address = 0x08020000, uint numBytes = 128 * 1024 * 3 / 4);
 };
 
-struct HAL_DAC
+// Для звука
+struct HAL_DAC1
 {
     static void Init();
     static void StartDMA(uint8 *points, int numPoints);

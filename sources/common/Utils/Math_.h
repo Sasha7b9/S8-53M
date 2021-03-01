@@ -46,6 +46,9 @@ namespace Math
     int     FabsInt(int value);
     uint8   CalculateFiltr(pUCHAR data, int x, int numPoints, int numSmoothing);
     void    CalculateFiltrArray(pUCHAR dataIn, uint8* dataOut, int numPoints, int numSmoothing);
+
+    // Обменивает местами содержимое памяти по адресам value0 и value1
+    template<class T> void Swap(T *value0, T *value1);
 }
 
 

@@ -21,6 +21,9 @@ public:
 
     static void Init();
 
+    static uint8 *GetBuffer();
+    static uint8 *GetBufferEnd();
+
     static void Update(bool endScene = true);
 
     static void RotateRShift(Channel::E channel);
