@@ -64,6 +64,7 @@ struct HAL_PINS
     static void Init();
 };
 
+
 // АЦП рандомизатора
 struct HAL_ADC3
 {
@@ -72,19 +73,11 @@ struct HAL_ADC3
     static void *handle;    // ADC_HandleTypeDef
 };
 
+
 struct HAL_CRC
 {
     static void Init();
     static uint Calculate(uint address = 0x08020000, uint numBytes = 128 * 1024 * 3 / 4);
-};
-
-// Для звука
-struct HAL_DAC0
-{
-    static void Init();
-    static void StartDMA(uint8 *points, int numPoints);
-    static void StopDMA();
-    static void *handle;    // DAC_HandleTypeDef
 };
 
 
@@ -97,6 +90,16 @@ struct HAL_DAC1
 };
 
 
+// Для звука
+struct HAL_DAC2
+{
+    static void Init();
+    static void StartDMA(uint8 *points, int numPoints);
+    static void StopDMA();
+    static void *handle;    // DAC_HandleTypeDef
+};
+
+
 struct HAL_EPROM
 {
     static void ClearFlags();
@@ -105,6 +108,7 @@ struct HAL_EPROM
     static void WriteWord(uint address, uint word);
     static void WriteBufferBytes(uint address, pUCHAR buffer, int size);
 };
+
 
 struct HAL_ETH
 {
