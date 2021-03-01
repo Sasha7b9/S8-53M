@@ -21,6 +21,7 @@
 #include "VCP/VCP.h"
 #include <cmath>
 #include <cstdio>
+#include <cstdlib>
 #include <cstring>
 #include <limits>
 

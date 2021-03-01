@@ -45,17 +45,17 @@ void HAL_DAC2::Init()
 
     HAL_DAC_Init(&handleDAC);
 
-    HAL_DAC_ConfigChannel(&handleDAC, &config, DAC_CHANNEL_1);
+    HAL_DAC_ConfigChannel(&handleDAC, &config, DAC_CHANNEL_2);
 }
 
 
 void HAL_DAC2::StartDMA(uint8 *points, int numPoints)
 {
-    HAL_DAC_Start_DMA(&handleDAC, DAC_CHANNEL_1, reinterpret_cast<uint32_t *>(points), static_cast<uint>(numPoints), DAC_ALIGN_8B_R);
+    HAL_DAC_Start_DMA(&handleDAC, DAC_CHANNEL_2, reinterpret_cast<uint32_t *>(points), static_cast<uint>(numPoints), DAC_ALIGN_8B_R);
 }
 
 
 void HAL_DAC2::StopDMA()
 {
-    HAL_DAC_Stop_DMA(&handleDAC, DAC_CHANNEL_1);
+    HAL_DAC_Stop_DMA(&handleDAC, DAC_CHANNEL_2);
 }
