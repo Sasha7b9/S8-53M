@@ -89,7 +89,7 @@ struct HAL_DAC0
 
 
 // »спользуетс€ дл€ управлени€ €ркостью диспле€
-struct HAL_DAC2
+struct HAL_DAC1
 {
     static void Init();
     // «начение value от 0 до 100

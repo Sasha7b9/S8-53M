@@ -7,7 +7,7 @@
 static DAC_HandleTypeDef handle = { DAC }; //-V2571
 
 
-void HAL_DAC2::Init()
+void HAL_DAC1::Init()
 {
     RCC->APB1ENR |= RCC_APB1ENR_DACEN;      // Включаем ЦАП //-V2571
 
@@ -45,7 +45,7 @@ void HAL_DAC2::Init()
 }
 
 
-void HAL_DAC2::SetValue(int value)
+void HAL_DAC1::SetValue(int value)
 {
     HAL_DAC_SetValue(&handle, DAC1_CHANNEL_2, DAC_ALIGN_8B_R, static_cast<uint>(value));
 }
