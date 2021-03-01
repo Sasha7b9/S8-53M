@@ -3,17 +3,18 @@
 
 struct PinMode { enum E
 {
-    _Input,     //-V2573
-    _Output,    //-V2573
-    _ADC3_OUT,  //-V2573
-    _ADC3_IT,   //-V2573
-    _DAC,       //-V2573
-    _ETH,       //-V2573
-    _OTG_HS_FS, //-V2573
-    _OTG_FS,    //-V2573
-    _SPI1,      //-V2573
-    _FMC,       //-V2573
-    _LTDC       //-V2573
+    _Input,
+    _Output,
+    _ADC3_OUT,
+    _ADC3_IT,
+    _DAC1,
+    _DAC2,
+    _ETH,
+    _OTG_HS_FS,
+    _OTG_FS,
+    _SPI1,
+    _FMC,
+    _LTDC
 };};
 
 struct PinPort { enum E

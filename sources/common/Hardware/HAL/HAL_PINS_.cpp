@@ -96,7 +96,7 @@ void HAL_PINS::Init()
 
     Pin(PinMode::_ADC3_IT, PinPort::_C, PinPin::_11).Init();    // ADC3 IT
     Pin(PinMode::_ADC3_OUT, PinPort::_F, PinPin::_6).Init();    // ADC3 OUT
-    Pin(PinMode::_DAC, PinPort::_A, PinPin::_4).Init();         // DAC
+    Pin(PinMode::_DAC2, PinPort::_A, PinPin::_5).Init();        // DAC звука
 
     PinOTG_HS(B, 15).Init();    // DP
     PinOTG_HS(B, 14).Init();    // DM
@@ -171,33 +171,32 @@ void HAL_PINS::Init()
 //    PinFMC(D, 3).Init();        // A19
 //    PinFMC(D, 4).Init();        // A20
 
+//    Pin(PinMode::_DAC1, PinPort::_A, PinPin::_4).Init();    // PWM
+    Pin(PinMode::_Output, PinPort::_A, PinPin::_5).Set();       // Включаем подсветку дисплея
+    Pin(PinMode::_Output, PinPort::_G, PinPin::_13).Reset();    // Выбор горизонтальной ориентации дисплея R/L
+    Pin(PinMode::_Output, PinPort::_G, PinPin::_10).Set();      // Выбор вертикальной ориентации дисплея U/D
     PinLTDC(I, 9).Init();       // VSYNC
-    PinLTDC(F, 10).Init();      // DE
-    PinLTDC(A, 3).Init();       // B5
-
     PinLTDC(C, 6).Init();       // HSYNC
-    PinLTDC(E, 14).Init();      // CLK
-    PinLTDC(C, 10).Init();      // R2
+    PinLTDC(G, 7).Init();       // CLK
+    PinLTDC(F, 10).Init();      // DE
+    PinLTDC(H, 8).Init();       // R2
     PinLTDC(B, 0).Init();       // R3
-    PinLTDC(A, 11).Init();      // R4
-    PinLTDC(A, 12).Init();      // R5
-    PinLTDC(B, 1).Init();       // R6
-    PinLTDC(E, 15).Init();      // R7
+    PinLTDC(H, 10).Init();      // R4
+    PinLTDC(H, 11).Init();      // R5
+    PinLTDC(H, 12).Init();      // R6
+    PinLTDC(G, 6).Init();       // R7
     PinLTDC(A, 6).Init();       // G2
     PinLTDC(E, 11).Init();      // G3
-    PinLTDC(B, 10).Init();      // G4
-    PinLTDC(B, 11).Init();      // G5
+    PinLTDC(H, 14).Init();      // G4
+    PinLTDC(I, 0).Init();       // G5
     PinLTDC(C, 7).Init();       // G6
     PinLTDC(D, 3).Init();       // G7
     PinLTDC(D, 6).Init();       // B2
-    PinLTDC(D, 10).Init();      // B3
-    PinLTDC(E, 12).Init();      // B4
-    PinLTDC(B, 8).Init();       // B6
+    PinLTDC(G, 11).Init();      // B3
+    PinLTDC(G, 12).Init();      // B4
     PinLTDC(B, 9).Init();       // B7
-
-    Pin(PinMode::_Output, PinPort::_A, PinPin::_5).Set();       // Включаем подсветку дисплея
-    Pin(PinMode::_Output, PinPort::_C, PinPin::_11).Reset();    // Выбор горизонтальной ориентации дисплея R/L
-    Pin(PinMode::_Output, PinPort::_C, PinPin::_12).Set();      // Выбор вертикальной ориентации дисплея U/D
+    PinLTDC(I, 6).Init();       // B6
+    PinLTDC(B, 9).Init();       // B5
 }
 
 
@@ -224,7 +223,7 @@ void Pin::Init()
     {
         isGPIO.Mode = GPIO_MODE_IT_RISING;
     }
-    else if (mode == PinMode::_DAC)
+    else if (mode == PinMode::_DAC2)
     {
         isGPIO.Mode = GPIO_MODE_ANALOG;
     }

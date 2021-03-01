@@ -18,15 +18,6 @@ void HAL_DAC1::Init()
 
     HAL_NVIC_SetPriority(EXTI9_5_IRQn, 2, 0);
 
-    // Инициализируем ЦАП
-    GPIO_InitTypeDef _gpio =
-    {
-        GPIO_PIN_4,
-        GPIO_MODE_ANALOG,
-        GPIO_NOPULL
-    };
-    HAL_GPIO_Init(GPIOA, &_gpio); //-V2571
-
     if (HAL_DAC_Init(&handle) != HAL_OK)
     {
         ERROR_HANDLER();
