@@ -80,6 +80,8 @@ struct KeyboardEvent
 
     // true, если функциональная клавиша
     bool IsFunctional() const;
+
+    bool IsRotate() const { return (action == Action::RotateRight) || (action == Action::RotateLeft); }
     
     bool operator==(const KeyboardEvent &rhl) const
     {

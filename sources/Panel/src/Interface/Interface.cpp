@@ -17,19 +17,21 @@ static void TurnOffLEDS();
 
 void Interface::Update()
 {
+    bool turnOff = false;
+
+    if (Keyboard::Buffer::IsEmpty())
+    {
+        turnOff = true;
+    }
+
     while (!Keyboard::Buffer::IsEmpty())
     {
         KeyboardEvent event = Keyboard::Buffer::GetNextEvent();
 
-        if (event.action == Action::Down)
-        {
-            TurnOffLEDS();
-        }
-        else
+        if (event.action == Action::Down || event.IsRotate())
         {
             TurnOnLEDS();
         }
-
 
         if (pinON.Read() == 0)
         {
@@ -43,6 +45,11 @@ void Interface::Update()
             SendKeyboardEvent(Keyboard::Buffer::GetNextEvent());
         }
     }
+
+    if (turnOff)
+    {
+        TurnOffLEDS();
+    }
 }
 
 
@@ -54,17 +61,26 @@ static void SendKeyboardEvent(KeyboardEvent event)
 }
 
 
+static uint timeOff = uint(-1);
+
 static void TurnOnLEDS()
 {
     led_ChannelA.Enable();
     led_ChannelB.Enable();
     led_Trig.Enable();
     led_Set.Enable();
+
+    timeOff = HAL_TIM::TimeMS() + 100;
 }
 
 
 static void TurnOffLEDS()
 {
+    if (HAL_TIM::TimeMS() < timeOff)
+    {
+        return;
+    }
+
     led_ChannelA.Disable();
     led_ChannelB.Disable();
     led_Trig.Disable();
