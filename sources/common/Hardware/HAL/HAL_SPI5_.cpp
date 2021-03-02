@@ -4,7 +4,7 @@
 #include <stm32f4xx_hal.h>
 
 
-static SPI_HandleTypeDef handle =                                   // Для связи с панелью
+static SPI_HandleTypeDef handle =       // Для связи с панелью
 {
     SPI1, //-V2571
     {
@@ -30,4 +30,6 @@ static SPI_HandleTypeDef handle =                                   // Для связи
 void HAL_SPI5::Init()
 {
     HAL_PINS::InitSPI5();
+
+    HAL_SPI_Init(&handle);
 }

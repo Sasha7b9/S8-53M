@@ -532,7 +532,7 @@ static USBH_StatusTypeDef USBH_MSC_SOFProcess(USBH_HandleTypeDef *phost)
 {
   /* Prevent unused argument(s) compilation warning */
   UNUSED(phost);
-  
+
   return USBH_OK;
 }
 /**

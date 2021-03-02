@@ -1515,7 +1515,6 @@ dhcp_parse_reply(struct pbuf *p, struct dhcp *dhcp)
   int parse_file_as_options = 0;
   int parse_sname_as_options = 0;
   struct dhcp_msg *msg_in;
-  msg_in = msg_in;
 #if LWIP_DHCP_BOOTP_FILE
   int file_overloaded = 0;
 #endif

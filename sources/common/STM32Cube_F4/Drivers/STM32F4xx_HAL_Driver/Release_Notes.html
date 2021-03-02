@@ -34,6 +34,8 @@
 
 
 
+
+
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <link rel="File-List" href="Release_Notes_for_STM32F45x_StdPeriph_Driver_files/filelist.xml">
 <link rel="Edit-Time-Data" href="Release_Notes_for_STM32F45x_StdPeriph_Driver_files/editdata.mso"><!--[if !mso]>
@@ -946,7 +948,80 @@ ul
 <tbody><tr><td style="padding: 0in;" valign="top">
         <h2 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><a name="History"></a><span style="font-size: 12pt; color: white;">Update History</span></h2>
             
-                  <h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; margin-right: 500pt; width: 274px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.7.8 / 12-February-2020</span></h3>
+                  
+                  <h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; margin-right: 500pt; width: 274px;"><span style="font-size: 10pt; font-family: Arial; color: white;">VV1.7.10 / 22-October-2020</span></h3>
+
+
+            
+                  
+                  <p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b style=""><u><span style="font-size: 10pt; font-family: Verdana; color: black;">Main
+Changes</span></u></b></p>
+
+
+            
+            
+
+                  <span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US"></span>
+                  
+                  <ul style="margin-top: 0cm;" type="disc">
+<li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US">General updates to fix known defects.</span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">HAL/LL I2C </span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">update</span></li>
+                  </ul>
+                  <span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US"></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US"></span>
+                  
+
+
+
+                  <ul style="margin-top: 0cm;" type="disc">
+<ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US"><span style="">&nbsp; </span>Update to fix hardfault issue with HAL_I2C_Mem_Write_DMA() API:<o:p></o:p></span></li></ul><ul><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US"><span style="">&nbsp;
+Abort the right ongoing DMA transfer when memory write access request
+operation failed: fix typo “hdmarx” replaced by “hdmatx”</span><br>
+</span></li></ul></ul>
+                  </ul>
+                  <h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; margin-right: 500pt; width: 274px;"><span style="font-size: 10pt; font-family: Arial; color: white;">1.7.9 / 14-August-2020</span></h3>
+
+
+            
+                  <p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b style=""><u><span style="font-size: 10pt; font-family: Verdana; color: black;">Main
+Changes</span></u></b></p>
+
+            
+            
+
+                  <span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US"></span>
+                  <ul style="margin-top: 0cm;" type="disc"><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US">General updates to fix known defects and
+     enhancements implementation</span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">HAL/LL I2C </span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">update</span></li></ul><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US"></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US"></span>
+                  
+
+
+
+<ul style="margin-top: 0cm;" type="disc"><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US"><span style="">&nbsp; </span>Update
+     HAL_I2C_ER_IRQHandler() API to fix acknowledge failure issue with I2C
+     memory IT processes<o:p></o:p></span></li></ul><ul><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US"><span style="">&nbsp; </span>Add stop
+     condition generation when NACK occurs.<o:p></o:p></span></li></ul></ul><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US"><span style="">&nbsp; </span>Update
+     I2C_DMAXferCplt(), I2C_DMAError() and I2C_DMAAbort() APIs to fix hardfault
+     issue when hdmatx and hdmarx parameters in i2c handle aren't initialized
+     (NULL pointer).<o:p></o:p></span></li></ul><ul><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US"><span style="">&nbsp; </span>Add
+     additional check on hi2c-&gt;hdmtx and hi2c-&gt;hdmarx before resetting
+     DMA Tx/Rx complete callbacks<o:p></o:p></span></li></ul></ul><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US"><span style="">&nbsp; </span>Update
+     Sequential transfer APIs to adjust xfermode condition.<o:p></o:p></span></li></ul><ul><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US"><span style="">&nbsp; </span>Replace
+     hi2c-&gt;XferCount &lt; MAX_NBYTE_SIZE by hi2c-&gt;XferCount &lt;=
+     MAX_NBYTE_SIZE which corresponds to a case without reload</span><span style="font-size: 10pt; font-family: &quot;Arial&quot;,sans-serif; color: rgb(0, 32, 82);" lang="EN-US"><o:p>&nbsp;</o:p></span><span style="font-family: Symbol;"></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"></span><span style=""></span></li></ul></ul></ul>
+
+
+
+
+
+<ul style="margin-top: 0cm;" type="disc"><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US"><span style="">&nbsp;</span></span><span style=""><span style=""></span></span><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">HAL/LL USB </span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">update</span></li><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;"></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US">&nbsp;&nbsp;Bug fix:
+     USB_ReadPMA() and USB_WritePMA() by ensuring 16-bits access to USB PMA
+     memory<o:p></o:p></span></li></ul><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US"><span style=""></span>&nbsp;&nbsp;Bug fix:
+     correct USB RX count calculation<o:p></o:p></span></li></ul><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US"><span style="">&nbsp; </span>Fix USB
+     Bulk transfer double buffer mode<o:p></o:p></span></li></ul><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US"><span style="">&nbsp; </span>Remove
+     register keyword from USB defined macros as no more supported by C++
+     compiler<o:p></o:p></span></li></ul><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US"><span style="">&nbsp; </span>Minor
+     rework on USBD_Start() and USBD_Stop() APIs: stopping device will be
+     handled by HAL_PCD_DeInit() API.<o:p></o:p></span></li></ul><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US"><span style="">&nbsp; </span>Remove
+     non used API for USB device mode.<o:p></o:p></span></li></ul></ul>
+<h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; margin-right: 500pt; width: 274px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.7.8 / 12-February-2020</span></h3>
 
             
                   <p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b style=""><u><span style="font-size: 10pt; font-family: Verdana; color: black;">Main

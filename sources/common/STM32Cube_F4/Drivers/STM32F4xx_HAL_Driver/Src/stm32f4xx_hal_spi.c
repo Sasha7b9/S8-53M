@@ -3781,8 +3781,7 @@ static void SPI_AbortRx_ISR(SPI_HandleTypeDef *hspi)
   CLEAR_BIT(hspi->Instance->CR2, (SPI_CR2_TXEIE | SPI_CR2_RXNEIE | SPI_CR2_ERRIE));
 
   /* Read CRC to flush Data Register */
-  uint32_t value = READ_REG(hspi->Instance->DR);
-  value++;
+  READ_REG(hspi->Instance->DR);
 
   hspi->State = HAL_SPI_STATE_ABORT;
 }

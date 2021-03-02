@@ -618,7 +618,6 @@ tcp_abandon(struct tcp_pcb *pcb, int reset)
       tcp_rst(pcb, seqno, ackno, &pcb->local_ip, &pcb->remote_ip, local_port, pcb->remote_port);
     }
     last_state = pcb->state;
-    last_state = last_state;
     tcp_free(pcb);
     TCP_EVENT_ERR(last_state, errf, errf_arg, ERR_ABRT);
   }
@@ -1402,7 +1401,6 @@ tcp_slowtmr_start:
 
       err_arg = pcb->callback_arg;
       last_state = pcb->state;
-      last_state = last_state;
       pcb2 = pcb;
       pcb = pcb->next;
       tcp_free(pcb2);
