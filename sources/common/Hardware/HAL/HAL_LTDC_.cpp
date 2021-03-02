@@ -27,7 +27,7 @@ void HAL_LTDC::Init(uint8 *front, uint8 *back)
     handleLTDC.Init.AccumulatedActiveH = 253;
     handleLTDC.Init.TotalWidth = 408;
     handleLTDC.Init.TotalHeigh = 263;
-    handleLTDC.Init.Backcolor.Blue = 255;
+    handleLTDC.Init.Backcolor.Blue = 0;
     handleLTDC.Init.Backcolor.Green = 0;
     handleLTDC.Init.Backcolor.Red = 0;
 
@@ -68,14 +68,14 @@ void HAL_LTDC::SetBuffers(uint8 *front, uint8 *back)
     pLayerCfg.WindowY0 = 0;
     pLayerCfg.WindowY1 = 240;
     pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_L8;
-    pLayerCfg.Alpha = 0xd0;
-    pLayerCfg.Alpha0 = 0x80;
+    pLayerCfg.Alpha = 0xFF;
+    pLayerCfg.Alpha0 = 0xFF;
     pLayerCfg.BlendingFactor1 = LTDC_BLENDING_FACTOR1_CA;
     pLayerCfg.BlendingFactor2 = LTDC_BLENDING_FACTOR2_CA;
     pLayerCfg.FBStartAdress = frontBuffer;
     pLayerCfg.ImageWidth = 320;
     pLayerCfg.ImageHeight = 240;
-    pLayerCfg.Backcolor.Blue = 0x80;
+    pLayerCfg.Backcolor.Blue = 0;
     pLayerCfg.Backcolor.Green = 0;
     pLayerCfg.Backcolor.Red = 0;
 
@@ -97,7 +97,7 @@ void HAL_LTDC::ToggleBuffers()
     hDMA2D.XferCpltCallback = nullptr;
 
     hDMA2D.LayerCfg[1].AlphaMode = DMA2D_NO_MODIF_ALPHA;
-    hDMA2D.LayerCfg[1].InputAlpha = 0x80;
+    hDMA2D.LayerCfg[1].InputAlpha = 0xFF;
     hDMA2D.LayerCfg[1].InputColorMode = LTDC_PIXEL_FORMAT_L8;
     hDMA2D.LayerCfg[1].InputOffset = 0;
 
