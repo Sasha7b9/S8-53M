@@ -1244,7 +1244,7 @@ void Display::Update(bool endScene)
 {
     static uint prev_time = 0;
 
-    if (HAL_TIM2::TimeMS() - prev_time < 10)
+    if (HAL_TIM2::TimeMS() - prev_time < 5)
     {
         return;
     }
@@ -1260,7 +1260,7 @@ void Display::Update(bool endScene)
 
     Display::BeginScene(Color::GRID);
 
-    Region(40, 40).Fill(x, y, Color::Channel(Channel::B));
+    Region(40, 40).Fill(x, y, Color::BLACK);
     
     uint time = HAL_TIM2::TimeMS() - start;
     
