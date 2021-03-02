@@ -179,8 +179,8 @@ void HAL_PINS::Init()
 
     //    Pin::Temp.Init();
 
-    Pin(PinMode::_Output, PinPort::_G, PinPin::_13).Reset();    // ¬ыбор горизонтальной ориентации диспле€ R/L
-    Pin(PinMode::_Output, PinPort::_G, PinPin::_10).Set();      // ¬ыбор вертикальной ориентации диспле€ U/D
+    Pin(PinMode::_Output, PinPort::_G, PinPin::_13).Set();    // ¬ыбор горизонтальной ориентации диспле€ R/L
+    Pin(PinMode::_Output, PinPort::_G, PinPin::_10).Reset();      // ¬ыбор вертикальной ориентации диспле€ U/D
     PinLTDC(I, 9).Init();       // VSYNC    11
     PinLTDC(C, 6).Init();       // HSYNC    115
     PinLTDC(G, 7).Init();       // CLK      111
