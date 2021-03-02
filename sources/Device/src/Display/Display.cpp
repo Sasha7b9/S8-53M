@@ -1218,7 +1218,7 @@ void Display::Update(bool endScene)
     bool white = (counter % 2) == 0;
 
     uint8 iWhite = 0;
-    uint8 iBlack = 0x11;
+    uint8 iBlack = 0x1;
 
     Fill(white ? iWhite : iBlack);
 
