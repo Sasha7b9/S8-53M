@@ -7,11 +7,10 @@
 #include <cstdlib>
 
 
-static const int BUFFER_WIDTH = Display::WIDTH / 2;
-static const int SIZE_BUFFER = BUFFER_WIDTH * Display::HEIGHT;
+static const int SIZE_BUFFER = Display::WIDTH * Display::HEIGHT;
 
 static uint8 front[SIZE_BUFFER];  /* __attribute__((section("CCM_DATA"))); */
-static uint8 back[SIZE_BUFFER];
+//static uint8 back[SIZE_BUFFER];
 
 
 void Display::Init()
@@ -22,7 +21,7 @@ void Display::Init()
 
     HAL_DAC1::Init();
 
-    HAL_LTDC::Init(front, back);
+    HAL_LTDC::Init(front, front);
 }
 
 
@@ -40,13 +39,13 @@ void Display::Fill(uint8 value)
 
 uint8 *Display::GetBuffer()
 {
-    return back;
+    return front;
 }
 
 
 uint8 *Display::GetBufferEnd()
 {
-    return back + SIZE_BUFFER;
+    return front + SIZE_BUFFER;
 }
 
 
@@ -63,7 +62,7 @@ void Primitives::HLine::Draw(int y, int x0, int x1, Color color)
         Math::Swap(&x0, &x1);
     }
 
-    uint8 *address = Display::GetBuffer() + x0 + y * BUFFER_WIDTH; //-V2563
+    uint8 *address = Display::GetBuffer() + x0 + y * Display::WIDTH; //-V2563
     uint8 *end = Display::GetBufferEnd();
 
     uint8 value = Color::GetCurrent().index;
