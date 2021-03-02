@@ -3,8 +3,8 @@
 #include <ctype.h>
 
 
-static bool ChooseSymbols(pUCHAR *string);    // Возвращает false, если выбор невозможен - строка кончилась.
-static bool ChooseSpaces(pUCHAR *string);     // Возвращает false, если выбор невозможен - строка кончилась.
+//static bool ChooseSymbols(pUCHAR *string);    // Возвращает false, если выбор невозможен - строка кончилась.
+//static bool ChooseSpaces(pUCHAR *string);     // Возвращает false, если выбор невозможен - строка кончилась.
 
 
 int GetNumWordsInString(pUCHAR )
@@ -28,37 +28,39 @@ int GetNumWordsInString(pUCHAR )
 
 bool GetWord(pUCHAR string, Word *word, const int numWord)
 {
-    ChooseSpaces(&string);
+//    ChooseSpaces(&string);
+//
+//    int currentWord = 0;
+//
+//    while (true)
+//    {
+//        if (currentWord == numWord)
+//        {
+//            word->address = (uint8*)string; //-V2533
+//            ChooseSymbols(&string);
+//            word->numSymbols = static_cast<int8>(string - word->address);
+//            
+//            uint8 *pointer = word->address;
+//            int numSymbols = word->numSymbols;
+//            for (int i = 0; i < numSymbols; i++)
+//            {
+//                *pointer = (uint8)toupper((int8)*pointer); //-V2533
+//                pointer++;
+//            }
+//            return true;
+//        }
+//        if (ChooseSymbols(&string))
+//        {
+//            currentWord++;
+//        }
+//        else
+//        {
+//            return false;
+//        }
+//        ChooseSpaces(&string);
+//    }
 
-    int currentWord = 0;
-
-    while (true)
-    {
-        if (currentWord == numWord)
-        {
-            word->address = (uint8*)string; //-V2533
-            ChooseSymbols(&string);
-            word->numSymbols = static_cast<int8>(string - word->address);
-            
-            uint8 *pointer = word->address;
-            int numSymbols = word->numSymbols;
-            for (int i = 0; i < numSymbols; i++)
-            {
-                *pointer = (uint8)toupper((int8)*pointer); //-V2533
-                pointer++;
-            }
-            return true;
-        }
-        if (ChooseSymbols(&string))
-        {
-            currentWord++;
-        }
-        else
-        {
-            return false;
-        }
-        ChooseSpaces(&string);
-    }
+    return false;
 }
 
 bool WordEqualZeroString(Word *word, char* string)
@@ -79,35 +81,35 @@ bool WordEqualZeroString(Word *word, char* string)
 
 #define  SYMBOL(x) (*(*(x)))
 
-bool ChooseSymbols(pUCHAR *string)
-{
-    if (SYMBOL(string) == 0x0d && SYMBOL(string + 1) == 0x0a) //-V2563
-    {
-        return false;
-    }
+//bool ChooseSymbols(pUCHAR *string)
+//{
+//    if (SYMBOL(string) == 0x0d && SYMBOL(string + 1) == 0x0a) //-V2563
+//    {
+//        return false;
+//    }
+//
+//    while (SYMBOL(string) != ' ' && SYMBOL(string) != 0x0d && SYMBOL(string + 1) != 0x0a) //-V2563
+//    {
+//        (*string)++;
+//    }
+//
+//    return true;
+//}
 
-    while (SYMBOL(string) != ' ' && SYMBOL(string) != 0x0d && SYMBOL(string + 1) != 0x0a) //-V2563
-    {
-        (*string)++;
-    }
-
-    return true;
-}
-
-bool ChooseSpaces(pUCHAR *string)
-{
-    if (SYMBOL(string) == 0x0d && SYMBOL(string + 1) == 0x0a) //-V2563
-    {
-        return false;
-    }
-
-    while (SYMBOL(string) == ' ')
-    {
-        (*string)++;
-    }
-
-    return true;
-}
+//bool ChooseSpaces(pUCHAR *string)
+//{
+//    if (SYMBOL(string) == 0x0d && SYMBOL(string + 1) == 0x0a) //-V2563
+//    {
+//        return false;
+//    }
+//
+//    while (SYMBOL(string) == ' ')
+//    {
+//        (*string)++;
+//    }
+//
+//    return true;
+//}
 
 #undef SYMBOL
 
