@@ -1210,18 +1210,32 @@ bool Display::NeedForClearScreen()
 
 static void CalculateCoord(int &x, int &y)
 {
-    x++;
+    int width = 40;
 
-    if (x > 200)
+    static int dirX = 1;
+    x += dirX;
+
+    if (x > 320 - width)
     {
-        x = 0;
+        dirX = -dirX;
     }
 
-    y++;
-
-    if (y > 200)
+    if (x < 0)
     {
-        y = 0;
+        dirX = -dirX;
+    }
+
+    static int dirY = 1;
+    y += dirY;
+
+    if (y > 240 - width)
+    {
+        dirY = -dirY;
+    }
+
+    if (y < 0)
+    {
+        dirY = -dirY;
     }
 }
 
@@ -1230,7 +1244,7 @@ void Display::Update(bool endScene)
 {
     static uint prev_time = 0;
 
-    if (HAL_TIM2::TimeMS() - prev_time < 100)
+    if (HAL_TIM2::TimeMS() - prev_time < 10)
     {
         return;
     }
