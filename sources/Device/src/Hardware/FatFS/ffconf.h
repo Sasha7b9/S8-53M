@@ -322,11 +322,13 @@
 //#endif
 //
 #if !defined(ff_malloc)
+#include <stdlib.h>
 #define ff_malloc malloc
 #endif
 //
-//#if !defined(ff_free)
-//#define ff_free free
-//#endif
+#if !defined(ff_free)
+#include <stdlib.h>
+#define ff_free free
+#endif
 //#endif
 /*--- End of configuration options ---*/

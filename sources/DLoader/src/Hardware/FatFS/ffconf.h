@@ -321,6 +321,7 @@
 #endif
 
 #if !defined(ff_free)
+#include <stdlib.h>
 #define ff_free free
 #endif
 #endif
