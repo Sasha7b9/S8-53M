@@ -321,9 +321,9 @@
 //#include <stdlib.h>
 //#endif
 //
-//#if !defined(ff_malloc)
-//#define ff_malloc malloc
-//#endif
+#if !defined(ff_malloc)
+#define ff_malloc malloc
+#endif
 //
 //#if !defined(ff_free)
 //#define ff_free free

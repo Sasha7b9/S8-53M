@@ -316,6 +316,7 @@
 #endif
 
 #if !defined(ff_malloc)
+#include <stdlib.h>
 #define ff_malloc malloc
 #endif
 
