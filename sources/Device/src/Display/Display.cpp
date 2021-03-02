@@ -2209,14 +2209,14 @@ void Display::AddPoints(uint8 data00, uint8 data01, uint8 data10, uint8 data11)
 
 
 
-void Display::SetDrawMode(DrawMode::E mode, pFuncVV func)
+void Display::SetDrawMode(DrawMode::E /*mode*/, pFuncVV /*func*/)
 {
 //    funcOnHand = (mode == DrawMode::Auto) ? 0 : func;
 }
 
 
 
-void Display::SetAddDrawFunction(pFuncVV func)
+void Display::SetAddDrawFunction(pFuncVV /*func*/)
 {
 //    funcAdditionDraw = func;
 }
@@ -2545,7 +2545,7 @@ void Display::DrawWarnings()
 }
 
 
-void Display::RunAfterDraw(pFuncVV func)
+void Display::RunAfterDraw(pFuncVV /*func*/)
 {
 //    funcAfterDraw = func;
 }

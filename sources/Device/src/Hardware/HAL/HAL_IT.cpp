@@ -90,21 +90,6 @@ void SysTick_Handler(void)
 //    HAL_PCD_IRQHandler(reinterpret_cast<PCD_HandleTypeDef *>(HAL_HCD::handle)); //-V2571
 //}
 
-
-void LTDC_IRQHandler(void)
-{
-    HAL_LTDC_IRQHandler((LTDC_HandleTypeDef *)HAL_LTDC::handle);
-}
-
-
-
-void LTDC_ER_IRQHandler(void)
-{
-    HAL_LTDC_IRQHandler((LTDC_HandleTypeDef *)HAL_LTDC::handle);
-
-}
-
-
 #ifdef __cplusplus
 }
 #endif
