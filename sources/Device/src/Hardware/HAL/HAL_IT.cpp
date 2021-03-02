@@ -67,6 +67,12 @@ void SysTick_Handler(void)
 }
 
 
+void SPI5_IRQHandler()
+{
+    HAL_SPI_IRQHandler((SPI_HandleTypeDef *)HAL_SPI5::handle);
+}
+
+
 //void ADC_IRQHandler(void)
 //{
 //    HAL_ADC_IRQHandler(reinterpret_cast<ADC_HandleTypeDef *>(HAL_ADC3::handle)); //-V2571

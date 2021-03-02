@@ -193,6 +193,8 @@ struct HAL_SPI5
 public:
 
     static void Init();
+
+    static void *handle;       // SPI_HandleTypeDef
 };
 
 
