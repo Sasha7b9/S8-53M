@@ -5,7 +5,6 @@
 #include "common/Hardware/Sound_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "Display/Grid.h"
-#include "FDrive/FDrive.h"
 #include "FPGA/FPGA.h"
 #include "Hardware/EPROM.h"
 #include "Hardware/RAM.h"
@@ -500,29 +499,11 @@ DEF_CHOICE_2(mcSizeSettings, PageDebug::self,
 
 static bool IsActive_SaveFirmware()
 {
-    return FDrive::isConnected;
+    return false;
 }
 
 static void OnPress_SaveFirmware()
 {
-    StructForWrite structForWrite;
-
-    FDrive::OpenNewFileForWrite("S8-53.bin", &structForWrite);
-
-    uint8 *address = (uint8 *)0x08020000; //-V566 //-V2533 //-V2571
-    uint8 *endAddress = address + 128 * 1024 * 3; //-V2563
-
-    int sizeBlock = 512;
-
-    while (address < endAddress)
-    {
-        FDrive::WriteToFile(address, sizeBlock, &structForWrite);
-        address += sizeBlock; //-V2563
-    }
-
-    FDrive::CloseFile(&structForWrite);
-
-    Display::ShowWarningGood(Warning::FirmwareSaved);
 }
 
 DEF_BUTTON(mbSaveFirmware, PageDebug::self,

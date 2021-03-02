@@ -1,6 +1,5 @@
 #include "defines.h"
 #include "common/Hardware/Sound_.h"
-#include "FDrive/FDrive.h"
 #include "FPGA/FPGA.h"
 #include "common/Hardware/Timer_.h"
 #include "Menu/Menu.h"
@@ -41,12 +40,6 @@ void Menu::UpdateInput()
     ProcessingPressButton();
     ProcessingReleaseButton();
     SwitchSetLED();
-    
-    if(FDrive::needOpenFileMananger)
-    {
-        FDrive::needOpenFileMananger = false;
-        OpenFileManager();       
-    }
 };
 
 
@@ -332,7 +325,7 @@ void Menu::ProcessingShortPressureButton()
 {
     if(shortPressureButton != Key::None)
     {
-        if (shortPressureButton == Key::Memory && MODE_BTN_MEMORY_IS_SAVE && FDrive::isConnected)
+        if (shortPressureButton == Key::Memory && MODE_BTN_MEMORY_IS_SAVE)
         {
             PageMemory::exitFromModeSetNameTo = IsShown() ? RETURN_TO_MAIN_MENU : RETURN_TO_DISABLE_MENU;
             Memory_SaveSignalToFlashDrive();

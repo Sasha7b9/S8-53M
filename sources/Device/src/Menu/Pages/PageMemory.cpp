@@ -5,7 +5,6 @@
 #include "common/Hardware/Sound_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Grid.h"
-#include "FDrive/FDrive.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/Storage.h"
 #include "Hardware/EPROM.h"
@@ -139,22 +138,10 @@ void DrawSB_MemLast_IntEnter(int x, int y)
 
 void DrawSB_MemLast_SaveToFlash(int x, int y)
 {
-    if (FDrive::isConnected)
-    {
-        Font::Set(TypeFont::UGO2);
-        Char('\x42').Draw4SymbolsInRect(x + 2, y + 1);
-        Font::Set(TypeFont::S8);
-    }
 }
 
 static void DrawSB_MemExtSetNameSave(int x, int y)
 {
-    if (FDrive::isConnected)
-    {
-        Font::Set(TypeFont::UGO2);
-        Char('\x42').Draw4SymbolsInRect(x + 2, y + 1);
-        Font::Set(TypeFont::S8);
-    }
 }
 
 static void PressSB_MemLast_SaveToFlash()
@@ -181,11 +168,6 @@ static void PressSB_SetName_Exit()
 
 static void PressSB_MemExtSetNameSave()
 {
-    if (FDrive::isConnected)
-    {
-        PressSB_SetName_Exit();
-        PageMemory::needForSaveToFlashDrive = true;
-    }
 }
 
 DEF_SMALL_BUTTON(sbMemLastPrev, PageMemory::PageLatest::self,
@@ -511,12 +493,6 @@ void PressSB_MemInt_SaveToIntMemory()
 
 void DrawSB_MemInt_SaveToFlashDrive(int x, int y) //-V524
 {
-    if (FDrive::isConnected)
-    {
-        Font::Set(TypeFont::UGO2);
-        Char('\x42').Draw4SymbolsInRect(x + 2, y + 1);
-        Font::Set(TypeFont::S8);
-    }
 }
 
 static void DrawMemoryWave(int num, bool exist)
@@ -984,22 +960,6 @@ void DrawSetMask()
 
 void Memory_SaveSignalToFlashDrive()
 {
-    if (FDrive::isConnected)
-    {
-        if (FILE_NAMING_MODE_IS_HAND)
-        {
-            PageMemory::PageSetName::self->OpenAndSetItCurrent();
-            Display::SetAddDrawFunction(DrawSetName);
-        }
-        else
-        {
-            PageMemory::needForSaveToFlashDrive = true;
-        }
-    }
-    else
-    {
-        PageMemory::exitFromModeSetNameTo = RETURN_TO_MAIN_MENU;
-    }
 }
 
 static void PressSB_MemLast_Exit()
@@ -1065,17 +1025,11 @@ DEF_PAGE_6(pageSetMask, PageMemory::PageExternal::self, NamePage::SB_MemExtSetMa
 
 void OnPressMemoryExtFileManager()
 {
-    if(FDrive::isConnected)
-    {
-        PageMemory::PageFileManager::self->OpenAndSetItCurrent();
-        Display::SetDrawMode(DrawMode::Hand, FM::Draw);
-        FM::needRedrawFileManager = 1;
-    }
 }
 
 bool FuncOfActiveExtMemFolder()
 {
-    return FDrive::isConnected;
+    return false;
 }
 
 static void PressSB_FM_Exit()

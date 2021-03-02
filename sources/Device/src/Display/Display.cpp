@@ -8,7 +8,6 @@
 #include "common/Hardware/Timer_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Display.h"
-#include "FDrive/FDrive.h"
 #include "FPGA/DataSettings.h"
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/MathFPGA.h"
@@ -43,10 +42,6 @@ static int                      lastStringForPause = -1;
 #define NUM_WARNINGS            10
 static const char               *warnings[NUM_WARNINGS] = {0};      // Здесь предупреждающие сообщения.
 static uint                     timeWarnings[NUM_WARNINGS] = {0};   // Здесь время, когда предупреждающее сообщение поступило на экран.
-
-static pFuncVV funcOnHand       = 0;
-static pFuncVV funcAdditionDraw = 0;
-static pFuncVV funcAfterDraw    = 0;
 
 static bool showLevelRShiftA = false;    // Нужно ли рисовать горизонтальную линию уровня смещения первого канала
 static bool showLevelRShiftB = false;
@@ -1254,91 +1249,13 @@ void Display::Update(bool endScene)
 
     CalculateCoord(x, y);
 
-    //Painter::BeginScene(Color::BLACK);
-    
-    Painter::BeginScene(Color(0));
+    Painter::BeginScene(Color::GRID);
 
-    Region(40, 40).Fill(x, y, Color(1));
+    Region(40, 40).Fill(x, y, Color::BLACK);
 
 //    Painter::EndScene();
 
     prev_time = HAL_TIM2::TimeMS();
-
-    return;
-    
-    
-	uint timeStart = gTimerTics;
-    if (funcOnHand != 0)
-    {
-        funcOnHand();
-        return;
-    }
-
-    bool needClear = NeedForClearScreen();
-
-    if (needClear)
-    {
-        Painter::BeginScene(Color::BACK);
-        DrawMemoryWindow();
-        DrawFullGrid();
-    }
-
-    DrawData();
-
-    if (needClear)
-    {
-        DrawMath();
-        DrawSpectrum();
-        DrawCursors();
-        DrawHiPart();
-        DrawLowPart();
-        DrawCursorsWindow();
-        DrawCursorTrigLevel();
-        DrawCursorsRShift();
-        DrawMeasures();
-        DrawStringNavigation();
-        DrawCursorTShift();
-    }
-    
-    Menu::Draw();
-
-    if (needClear)
-    {
-        DrawWarnings();
-
-        if (funcAdditionDraw)
-        {
-            funcAdditionDraw();
-        }
-    }
-
-    DrawConsole();
-
-    if (needClear)    
-    {
-        WriteValueTrigLevel();
-    }
-
-    DrawTimeForFrame(gTimerTics - timeStart);
-
-    Color::FILL.SetAsCurrent();
-
-    Painter::EndScene(endScene);
-
-    if (PageMemory::needForSaveToFlashDrive)
-    {
-        if (Painter::SaveScreenToFlashDrive())
-        {
-            ShowWarningGood(Warning::FileIsSaved);
-        }
-        PageMemory::needForSaveToFlashDrive = false;
-    }
-
-    if (funcAfterDraw)
-    {
-        funcAfterDraw();
-        funcAfterDraw = 0;
-    }
 }
 
 
@@ -2153,12 +2070,6 @@ void Display::DrawLowPart()
 
     Font::Set(TypeFont::UGO2);
 
-    // Флешка
-    if (FDrive::isConnected)
-    {
-        Char(Symbol::S8::FLASH_DRIVE).Draw4SymbolsInRect(x + 57, Grid::Bottom() + 2);
-    }
-
     // Ethernet
     if ((LAN::clientIsConnected || LAN::cableIsConnected) && gTimerMS > 2000)
     {
@@ -2291,20 +2202,17 @@ void Display::AddPoints(uint8 data00, uint8 data01, uint8 data10, uint8 data11)
 
 void Display::SetDrawMode(DrawMode::E mode, pFuncVV func)
 {
-    funcOnHand = (mode == DrawMode::Auto) ? 0 : func;
 }
 
 
 
 void Display::SetAddDrawFunction(pFuncVV func)
 {
-    funcAdditionDraw = func;
 }
 
 
 void Display::RemoveAddDrawFunction()
 {
-    funcAdditionDraw = 0;
 }
 
 
@@ -2627,5 +2535,4 @@ void Display::DrawWarnings()
 
 void Display::RunAfterDraw(pFuncVV func)
 {
-    funcAfterDraw = func;
 }

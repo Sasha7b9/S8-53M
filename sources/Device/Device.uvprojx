@@ -411,36 +411,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>libs/FatFS</GroupName>
-          <Files>
-            <File>
-              <FileName>diskio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\diskio.c</FilePath>
-            </File>
-            <File>
-              <FileName>ff.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff.c</FilePath>
-            </File>
-            <File>
-              <FileName>ff_gen_drv.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff_gen_drv.c</FilePath>
-            </File>
-            <File>
-              <FileName>unicode.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\option\unicode.c</FilePath>
-            </File>
-            <File>
-              <FileName>syscall.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\option\syscall.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>libs/HAL</GroupName>
           <Files>
             <File>
@@ -1126,26 +1096,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Hardware/FatFS</GroupName>
-          <Files>
-            <File>
-              <FileName>ffconf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\FatFS\ffconf.h</FilePath>
-            </File>
-            <File>
-              <FileName>usbh_diskio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\Hardware\FatFS\usbh_diskio.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbh_diskio.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\FatFS\usbh_diskio.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>Hardware/HAL</GroupName>
           <Files>
             <File>
@@ -1580,21 +1530,6 @@
               <FileName>Font_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Display\Font\Font_.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>FDrive</GroupName>
-          <Files>
-            <File>
-              <FileName>FDrive.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\FDrive\FDrive.h</FilePath>
-            </File>
-            <File>
-              <FileName>FDrive_stm.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\FDrive\FDrive_stm.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -2536,7 +2471,7 @@
             </VariousControls>
           </Aads>
           <LDads>
-            <umfTarg>1</umfTarg>
+            <umfTarg>0</umfTarg>
             <Ropi>0</Ropi>
             <Rwpi>0</Rwpi>
             <noStLib>0</noStLib>
@@ -2582,36 +2517,6 @@
               <FileName>mpu_armv7.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\STM32Cube_F4\Drivers\CMSIS\Include\mpu_armv7.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>libs/FatFS</GroupName>
-          <Files>
-            <File>
-              <FileName>diskio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\diskio.c</FilePath>
-            </File>
-            <File>
-              <FileName>ff.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff.c</FilePath>
-            </File>
-            <File>
-              <FileName>ff_gen_drv.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\ff_gen_drv.c</FilePath>
-            </File>
-            <File>
-              <FileName>unicode.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\option\unicode.c</FilePath>
-            </File>
-            <File>
-              <FileName>syscall.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\option\syscall.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3301,26 +3206,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Hardware/FatFS</GroupName>
-          <Files>
-            <File>
-              <FileName>ffconf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\FatFS\ffconf.h</FilePath>
-            </File>
-            <File>
-              <FileName>usbh_diskio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\Hardware\FatFS\usbh_diskio.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbh_diskio.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\FatFS\usbh_diskio.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>Hardware/HAL</GroupName>
           <Files>
             <File>
@@ -3755,21 +3640,6 @@
               <FileName>Font_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Display\Font\Font_.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>FDrive</GroupName>
-          <Files>
-            <File>
-              <FileName>FDrive.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\FDrive\FDrive.h</FilePath>
-            </File>
-            <File>
-              <FileName>FDrive_stm.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\FDrive\FDrive_stm.cpp</FilePath>
             </File>
           </Files>
         </Group>

@@ -1,7 +1,6 @@
 #include "defines.h"
 #include "device.h"
 #include "common/Hardware/HAL/HAL_.h"
-#include "FDrive/FDrive.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/Storage.h"
 #include "Hardware/EPROM.h"
@@ -23,7 +22,6 @@ void Device::Init()
 {
     HAL::Init();
     Panel::Init();
-    FDrive::Init();
 //    VCP::Init();
 //    Settings::Load(false);
 //    FPGA::Init();
