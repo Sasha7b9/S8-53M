@@ -5,6 +5,7 @@
 #include "common/Utils/Math_.h"
 #include "Display/Display.h"
 #include <cstdlib>
+#include <cstring>
 
 
 static const int SIZE_BUFFER = Display::WIDTH * Display::HEIGHT;
@@ -25,15 +26,9 @@ void Display::Init()
 }
 
 
-void Display::Fill(uint8 value)
+void Display::BeginScene(const Color &color)
 {
-    uint8 *address = GetBuffer();
-
-    while (address < GetBufferEnd())
-    {
-        *address = value;
-        address++;
-    }
+    std::memset(front, color.index, SIZE_BUFFER);
 }
 
 

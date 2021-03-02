@@ -1253,14 +1253,18 @@ void Display::Update(bool endScene)
     static int y = 0;
 
     CalculateCoord(x, y);
-
-    //Painter::BeginScene(Color::BLACK);
     
-    Painter::BeginScene(Color(0));
+    uint start = HAL_TIM2::TimeMS();
 
-    Region(40, 40).Fill(x, y, Color(1));
+//    Painter::BeginScene(Color::GRID);
 
-//    Painter::EndScene();
+    Display::BeginScene(Color::GRID);
+
+    Region(40, 40).Fill(x, y, Color::Channel(Channel::B));
+    
+    uint time = HAL_TIM2::TimeMS() - start;
+    
+    time = time;
 
     prev_time = HAL_TIM2::TimeMS();
 
