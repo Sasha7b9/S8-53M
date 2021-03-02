@@ -1,6 +1,14 @@
 #pragma once
 
 
+struct HAL_PINS
+{
+    static void Init();
+
+    static void InitSPI2();
+};
+
+
 struct PinMode { enum E
 {
     Input,

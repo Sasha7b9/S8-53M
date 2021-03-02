@@ -2,17 +2,6 @@
 #include "Hardware/HAL/HAL.h"
 #include <stm32l0xx_hal.h>
 
-struct PinSPI2_SCK : public Pin  { PinSPI2_SCK();  };
-struct PinSPI2_NSS : public Pin  { PinSPI2_NSS();  };
-struct PinSPI2_MISO : public Pin { PinSPI2_MISO(); };
-struct PinSPI2_MOSI : public Pin { PinSPI2_MOSI(); };
-
-// К этим пинам нет доступа из проиграммы
-static PinSPI2_SCK  pinSPI2_SCK;
-static PinSPI2_NSS  pinSPI2_NSS;
-static PinSPI2_MISO pinSPI2_MISO;
-static PinSPI2_MOSI pinSPI2_MOSI;
-
 
 // Этими пинами можно управлять во время исполнения программы
 PinSL0 pinSL0;
@@ -62,10 +51,21 @@ PinRC3_Set::PinRC3_Set() : Pin(PinPort::A, PinPin::_12) { }
 
 PinON::PinON() : Pin(PinPort::A, PinPin::_8) { }
 
-PinSPI2_SCK::PinSPI2_SCK() : Pin(PinPort::B, PinPin::_10) { }
-PinSPI2_NSS::PinSPI2_NSS() : Pin(PinPort::B, PinPin::_12) { }
-PinSPI2_MISO::PinSPI2_MISO() : Pin(PinPort::B, PinPin::_14) { }
-PinSPI2_MOSI::PinSPI2_MOSI() : Pin(PinPort::B, PinPin::_15) { }
+
+
+
+void HAL_PINS::InitSPI2()
+{
+    Pin pinSCK(PinPort::B, PinPin::_10);
+    Pin pinNSS(PinPort::B, PinPin::_12);
+    Pin pinMISO(PinPort::B, PinPin::_14);
+    Pin pinMOSI(PinPort::B, PinPin::_15);
+
+    pinSCK.Init(PinMode::_SPI2);
+    pinNSS.Init(PinMode::_SPI2);
+    pinMISO.Init(PinMode::_SPI2);
+    pinMOSI.Init(PinMode::_SPI2);
+}
 
 
 void HAL_PINS::Init()
@@ -93,11 +93,6 @@ void HAL_PINS::Init()
 
     pinON.Init(PinMode::Output);
     pinON.Reset();
-
-    pinSPI2_SCK.Init(PinMode::_SPI2);
-    pinSPI2_NSS.Init(PinMode::_SPI2);
-    pinSPI2_MISO.Init(PinMode::_SPI2);
-    pinSPI2_MOSI.Init(PinMode::_SPI2);
 }
 
 

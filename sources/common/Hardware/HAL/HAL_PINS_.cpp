@@ -290,6 +290,12 @@ void Pin::Init()
             isGPIO.Alternate = GPIO_AF5_SPI1;
         }
     }
+    else if (mode == PinMode::_SPI5)
+    {
+        isGPIO.Mode = GPIO_MODE_AF_PP;
+        isGPIO.Speed = GPIO_SPEED_FAST;
+        isGPIO.Alternate = GPIO_AF5_SPI5;
+    }
     else if (mode == PinMode::_FMC)
     {
         isGPIO.Mode = GPIO_MODE_AF_PP;

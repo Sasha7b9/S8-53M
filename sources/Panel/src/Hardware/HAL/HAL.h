@@ -18,6 +18,7 @@ extern PinRL3 pinRL3;
 extern PinRL4 pinRL4;
 extern PinRL5 pinRL5;
 extern PinRL6 pinRL6;
+
 extern PinRL7 pinRL7;
 
 extern PinRC0_ChannelA pinRC0_ChannelA;
@@ -34,10 +35,6 @@ struct HAL
     static void ErrorHandler();
 };
 
-struct HAL_PINS
-{
-    static void Init();
-};
 
 struct HAL_SPI2
 {
@@ -45,6 +42,7 @@ struct HAL_SPI2
 
     static bool Transmit(uint8 *buffer, int size);
 };
+
 
 struct HAL_TIM
 {

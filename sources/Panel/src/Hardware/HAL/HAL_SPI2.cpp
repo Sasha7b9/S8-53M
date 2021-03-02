@@ -24,6 +24,8 @@ static SPI_HandleTypeDef handleSPI2 =
 
 void HAL_SPI2::Init()
 {
+    HAL_PINS::InitSPI2();
+
     HAL_SPI_Init(&handleSPI2);
 }
 
