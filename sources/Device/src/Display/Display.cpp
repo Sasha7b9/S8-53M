@@ -1210,18 +1210,17 @@ bool Display::NeedForClearScreen()
 
 void Display::Update(bool endScene)
 {
-//    if (Pin::Temp.Read())
-//    {
-//        Pin::Temp.Reset();
-//    }
-//    else
-//    {
-//        Pin::Temp.Set();
-//    }
+    static int counter = 0;
+    counter++;
 
-    Painter::BeginScene(Color::WHITE);
+//    Painter::BeginScene(Color::BLACK);
+    
+    bool white = (counter % 2) == 0;
 
-    Region(100, 100).Fill(10, 10, Color::BLACK);
+    uint8 iWhite = 0;
+    uint8 iBlack = 0x11;
+
+    Fill(white ? iWhite : iBlack);
 
     Painter::EndScene();
 

@@ -4,6 +4,7 @@
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Display.h"
+#include <cstdlib>
 
 
 static const int BUFFER_WIDTH = Display::WIDTH / 2;
@@ -19,9 +20,21 @@ void Display::Init()
 
     Font::Set(TypeFont::S8);
 
-//    HAL_DAC1::Init();
+    HAL_DAC1::Init();
 
     HAL_LTDC::Init(front, back);
+}
+
+
+void Display::Fill(uint8 value)
+{
+    uint8 *address = GetBuffer();
+
+    while (address < GetBufferEnd())
+    {
+        *address = value;
+        address++;
+    }
 }
 
 

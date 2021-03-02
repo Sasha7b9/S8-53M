@@ -91,18 +91,18 @@ void OTG_FS_IRQHandler()
 }
 
 
-void LTDC_IRQHandler(void)
-{
-    HAL_LTDC_IRQHandler((LTDC_HandleTypeDef *)HAL_LTDC::handle);
-}
-
-
-
-void LTDC_ER_IRQHandler(void)
-{
-    HAL_LTDC_IRQHandler((LTDC_HandleTypeDef *)HAL_LTDC::handle);
-
-}
+//void LTDC_IRQHandler(void)
+//{
+//    HAL_LTDC_IRQHandler((LTDC_HandleTypeDef *)HAL_LTDC::handle);
+//}
+//
+//
+//
+//void LTDC_ER_IRQHandler(void)
+//{
+//    HAL_LTDC_IRQHandler((LTDC_HandleTypeDef *)HAL_LTDC::handle);
+//
+//}
 
 
 #ifdef __cplusplus

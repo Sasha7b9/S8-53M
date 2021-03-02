@@ -91,14 +91,14 @@ void HAL_LTDC::ToggleBuffers()
     DMA2D_HandleTypeDef hDMA2D;
 
     hDMA2D.Init.Mode = DMA2D_M2M;
-    hDMA2D.Init.ColorMode = DMA2D_INPUT_AL44;
+    hDMA2D.Init.ColorMode = LTDC_PIXEL_FORMAT_AL44;
     hDMA2D.Init.OutputOffset = 0;
 
     hDMA2D.XferCpltCallback = nullptr;
 
     hDMA2D.LayerCfg[1].AlphaMode = DMA2D_NO_MODIF_ALPHA;
     hDMA2D.LayerCfg[1].InputAlpha = 0xFF;
-    hDMA2D.LayerCfg[1].InputColorMode = DMA2D_INPUT_AL44;
+    hDMA2D.LayerCfg[1].InputColorMode = LTDC_PIXEL_FORMAT_AL44;
     hDMA2D.LayerCfg[1].InputOffset = 0;
 
     hDMA2D.Instance = DMA2D; //-V2571
@@ -107,7 +107,7 @@ void HAL_LTDC::ToggleBuffers()
     {
         if (HAL_DMA2D_ConfigLayer(&hDMA2D, 1) == HAL_OK)
         {
-            if (HAL_DMA2D_Start(&hDMA2D, backBuffer, frontBuffer, 320, 240) == HAL_OK)
+            if (HAL_DMA2D_Start(&hDMA2D, backBuffer, frontBuffer, 160, 240) == HAL_OK)
             {
                 if (HAL_DMA2D_PollForTransfer(&hDMA2D, 100) != HAL_OK)
                 {

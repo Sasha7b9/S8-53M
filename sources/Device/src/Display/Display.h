@@ -23,6 +23,7 @@ public:
 
     static uint8 *GetBuffer();
     static uint8 *GetBufferEnd();
+    static void Fill(uint8);
 
     static void Update(bool endScene = true);
 

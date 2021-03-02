@@ -171,11 +171,11 @@ void HAL_PINS::Init()
 //    PinFMC(D, 3).Init();        // A19
 //    PinFMC(D, 4).Init();        // A20
 
-//    Pin(PinMode::_DAC1, PinPort::_A, PinPin::_4).Init();        // PWM
+    Pin(PinMode::_DAC1, PinPort::_A, PinPin::_4).Init();        // PWM
 
-    Pin pinPWM(PinMode::_Output, PinPort::_A, PinPin::_4);
-    pinPWM.Init();
-    pinPWM.Set();
+//    Pin pinPWM(PinMode::_Output, PinPort::_A, PinPin::_4);
+//    pinPWM.Init();
+//    pinPWM.Set();
 
     //    Pin::Temp.Init();
 
