@@ -143,6 +143,8 @@ struct HAL_LTDC
 
     static void ToggleBuffers();
 
+    static void *handle;            // LTDC_HandleTypeDef
+
 private:
 
     static void SetBuffers(uint8 *frontBuffer, uint8 *backBuffer);

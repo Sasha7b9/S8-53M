@@ -106,7 +106,10 @@ void HAL::EnablePeripherals()
     __TIM7_CLK_ENABLE();        //-V2571 Для DAC1 (бикалка)
     __USB_OTG_FS_CLK_ENABLE();  //-V2571
     __USB_OTG_HS_CLK_ENABLE();  //-V2571
+    __HAL_RCC_DMA2D_CLK_ENABLE(); //-V2571
+    __HAL_RCC_LTDC_CLK_ENABLE();
 #endif
+
 }
 
 

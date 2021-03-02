@@ -7,6 +7,7 @@
 
 
 static LTDC_HandleTypeDef handleLTDC;
+void *HAL_LTDC::handle = &handleLTDC;
 static uint frontBuffer = 0;
 static uint backBuffer = 0;
 
