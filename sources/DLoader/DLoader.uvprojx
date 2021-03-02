@@ -885,11 +885,6 @@
               <FilePath>..\common\Hardware\HAL\HAL_EPROM_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_DAC_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_DAC_.cpp</FilePath>
-            </File>
-            <File>
               <FileName>HAL_TIM7_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_TIM7_.cpp</FilePath>
@@ -903,6 +898,21 @@
               <FileName>HAL_RTC_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_RTC_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_DAC2_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_DAC2_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_SPI1.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_SPI1.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_SPI5_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_SPI5_.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -2052,11 +2062,6 @@
               <FilePath>..\common\Hardware\HAL\HAL_EPROM_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_DAC_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_DAC_.cpp</FilePath>
-            </File>
-            <File>
               <FileName>HAL_TIM7_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_TIM7_.cpp</FilePath>
@@ -2070,6 +2075,21 @@
               <FileName>HAL_RTC_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_RTC_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_DAC2_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_DAC2_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_SPI1.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_SPI1.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_SPI5_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_SPI5_.cpp</FilePath>
             </File>
           </Files>
         </Group>

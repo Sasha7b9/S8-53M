@@ -12,14 +12,14 @@
 
 
 
-static FATFS USBDISKFatFs;
-static char USBDISKPath[4];
+//static FATFS USBDISKFatFs;
+//static char USBDISKPath[4];
 
 bool FDrive::isConnected = false;
 bool FDrive::needOpenFileMananger = false;
 
 
-static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8 id);
+//static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8 id);
 
 
 

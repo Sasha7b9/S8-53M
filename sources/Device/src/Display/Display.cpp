@@ -44,9 +44,9 @@ static int                      lastStringForPause = -1;
 static const char               *warnings[NUM_WARNINGS] = {0};      // «десь предупреждающие сообщени€.
 static uint                     timeWarnings[NUM_WARNINGS] = {0};   // «десь врем€, когда предупреждающее сообщение поступило на экран.
 
-static pFuncVV funcOnHand       = 0;
-static pFuncVV funcAdditionDraw = 0;
-static pFuncVV funcAfterDraw    = 0;
+//static pFuncVV funcOnHand       = 0;
+//static pFuncVV funcAdditionDraw = 0;
+//static pFuncVV funcAfterDraw    = 0;
 
 static bool showLevelRShiftA = false;    // Ќужно ли рисовать горизонтальную линию уровн€ смещени€ первого канала
 static bool showLevelRShiftB = false;
@@ -2211,20 +2211,20 @@ void Display::AddPoints(uint8 data00, uint8 data01, uint8 data10, uint8 data11)
 
 void Display::SetDrawMode(DrawMode::E mode, pFuncVV func)
 {
-    funcOnHand = (mode == DrawMode::Auto) ? 0 : func;
+//    funcOnHand = (mode == DrawMode::Auto) ? 0 : func;
 }
 
 
 
 void Display::SetAddDrawFunction(pFuncVV func)
 {
-    funcAdditionDraw = func;
+//    funcAdditionDraw = func;
 }
 
 
 void Display::RemoveAddDrawFunction()
 {
-    funcAdditionDraw = 0;
+//    funcAdditionDraw = 0;
 }
 
 
@@ -2547,5 +2547,5 @@ void Display::DrawWarnings()
 
 void Display::RunAfterDraw(pFuncVV func)
 {
-    funcAfterDraw = func;
+//    funcAfterDraw = func;
 }

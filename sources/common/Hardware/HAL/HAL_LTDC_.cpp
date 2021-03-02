@@ -84,17 +84,17 @@ void HAL_LTDC::SetBuffers(uint8 *front, uint8 *back)
     LTDC_LayerCfgTypeDef pLayerCfg;
 
     pLayerCfg.WindowX0 = 0;
-    pLayerCfg.WindowX1 = Display::WIDTH;
+    pLayerCfg.WindowX1 = 320;
     pLayerCfg.WindowY0 = 0;
-    pLayerCfg.WindowY1 = Display::HEIGHT;
+    pLayerCfg.WindowY1 = 240;
     pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_L8;
     pLayerCfg.Alpha = 0xFF;
     pLayerCfg.Alpha0 = 0xFF;
     pLayerCfg.BlendingFactor1 = LTDC_BLENDING_FACTOR1_CA;
     pLayerCfg.BlendingFactor2 = LTDC_BLENDING_FACTOR2_CA;
     pLayerCfg.FBStartAdress = frontBuffer;
-    pLayerCfg.ImageWidth = Display::WIDTH;
-    pLayerCfg.ImageHeight = Display::HEIGHT;
+    pLayerCfg.ImageWidth = 320;
+    pLayerCfg.ImageHeight = 240;
     pLayerCfg.Backcolor.Blue = 0;
     pLayerCfg.Backcolor.Green = 0;
     pLayerCfg.Backcolor.Red = 0;
