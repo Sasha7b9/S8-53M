@@ -26,7 +26,7 @@ int GetNumWordsInString(pUCHAR )
     return 0;
 }
 
-bool GetWord(pUCHAR string, Word *word, const int numWord)
+bool GetWord(pUCHAR /*string*/, Word * /*word*/, const int /*numWord*/)
 {
 //    ChooseSpaces(&string);
 //
