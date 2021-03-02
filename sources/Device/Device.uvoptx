@@ -431,7 +431,7 @@
           <Type>0</Type>
           <LineNumber>5</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134314056</Address>
+          <Address>134314064</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -445,7 +445,7 @@
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>1243</LineNumber>
+          <LineNumber>1245</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>134288276</Address>
           <ByteObject>0</ByteObject>
@@ -456,7 +456,23 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>&lt;1&gt;.\src\Display\Display.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\S8_53M\src/Display/Display.cpp\1243</Expression>
+          <Expression>\\S8_53M\src/Display/Display.cpp\1245</Expression>
+        </Bp>
+        <Bp>
+          <Number>2</Number>
+          <Type>0</Type>
+          <LineNumber>1243</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>&lt;1&gt;.\src\Display\Display.cpp</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -484,6 +500,11 @@
           <count>4</count>
           <WinNumber>1</WinNumber>
           <ItemText>color</ItemText>
+        </Ww>
+        <Ww>
+          <count>5</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>value</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
@@ -2924,7 +2945,7 @@
 
   <Group>
     <GroupName>Display</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

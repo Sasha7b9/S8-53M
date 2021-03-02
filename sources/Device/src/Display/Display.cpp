@@ -1240,9 +1240,11 @@ void Display::Update(bool endScene)
 
     CalculateCoord(x, y);
 
-    Painter::BeginScene(Color::BLACK);
+    //Painter::BeginScene(Color::BLACK);
+    
+    Painter::BeginScene(Color(0));
 
-    Region(40, 40).Fill(x, y, Color::WHITE);
+    Region(40, 40).Fill(x, y, Color(1));
 
 //    Painter::EndScene();
 
