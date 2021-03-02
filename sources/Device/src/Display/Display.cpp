@@ -1208,19 +1208,35 @@ bool Display::NeedForClearScreen()
 }
 
 
+static void CalculateCoord(int &x, int &y)
+{
+    x++;
+
+    if (x > 200)
+    {
+        x = 0;
+    }
+
+    y++;
+
+    if (y > 200)
+    {
+        y = 0;
+    }
+}
+
+
 void Display::Update(bool endScene)
 {
-    static int counter = 0;
-    counter++;
 
-//    Painter::BeginScene(Color::BLACK);
-    
-    bool white = (counter % 2) == 0;
+    static int x = 0;
+    static int y = 0;
 
-    uint8 iWhite = 0;
-    uint8 iBlack = 0x1;
+    CalculateCoord(x, y);
 
-    Fill(white ? iWhite : iBlack);
+    Painter::BeginScene(Color::BLACK);
+
+    Region(40, 40).Fill(x, y, Color::WHITE);
 
     Painter::EndScene();
 

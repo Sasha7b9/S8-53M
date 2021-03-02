@@ -34,6 +34,8 @@ struct Color
 
     Color(uint8 i) : index(i) {}
 
+    Color(const Color &col) : index(col.index) {}
+
     static void ResetFlash();
 
     void SetAsCurrent();
