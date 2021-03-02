@@ -1134,11 +1134,6 @@
               <FilePath>.\src\Hardware\FatFS\ffconf.h</FilePath>
             </File>
             <File>
-              <FileName>usbh_diskio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\Hardware\FatFS\usbh_diskio.c</FilePath>
-            </File>
-            <File>
               <FileName>usbh_diskio.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\FatFS\usbh_diskio.h</FilePath>
@@ -3307,11 +3302,6 @@
               <FileName>ffconf.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\FatFS\ffconf.h</FilePath>
-            </File>
-            <File>
-              <FileName>usbh_diskio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\Hardware\FatFS\usbh_diskio.c</FilePath>
             </File>
             <File>
               <FileName>usbh_diskio.h</FileName>

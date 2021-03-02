@@ -25,12 +25,12 @@ static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8 id);
 
 void FDrive::Init(void)
 {
-    if(FATFS_LinkDriver(&USBH_Driver, USBDISKPath) == FR_OK)  //-V2001
-    {
-        USBH_Init(reinterpret_cast<USBH_HandleTypeDef *>(&HAL_USBH::handle), USBH_UserProcess, 0);
-        USBH_RegisterClass(reinterpret_cast<USBH_HandleTypeDef *>(&HAL_USBH::handle), USBH_MSC_CLASS);
-        USBH_Start(reinterpret_cast<USBH_HandleTypeDef *>(&HAL_USBH::handle));
-    }
+//    if(FATFS_LinkDriver(&USBH_Driver, USBDISKPath) == FR_OK)  //-V2001
+//    {
+//        USBH_Init(reinterpret_cast<USBH_HandleTypeDef *>(&HAL_USBH::handle), USBH_UserProcess, 0);
+//        USBH_RegisterClass(reinterpret_cast<USBH_HandleTypeDef *>(&HAL_USBH::handle), USBH_MSC_CLASS);
+//        USBH_Start(reinterpret_cast<USBH_HandleTypeDef *>(&HAL_USBH::handle));
+//    }
 }
 
 
