@@ -49,7 +49,7 @@ uint8 *Display::GetBufferEnd()
 }
 
 
-void Primitives::HLine::Draw(int y, int x0, int x1, Color color)
+void Primitives::HLine::Draw(int y, int x0, int x1, const Color &color)
 {
     color.SetAsCurrent();
 

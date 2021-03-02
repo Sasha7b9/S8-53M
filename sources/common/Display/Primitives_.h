@@ -14,7 +14,7 @@ namespace Primitives
     {
     public:
         Region(int w, int h) : width(w), height(h) { }
-        void Fill(int x, int y, Color color = Color::Count);
+        void Fill(int x, int y, const Color &color = Color::Count);
 
     private:
         int width;
@@ -35,7 +35,7 @@ namespace Primitives
     {
     public:
         HLine() { };
-        void Draw(int y, int x1, int x2, Color color = Color::Count);
+        void Draw(int y, int x1, int x2, const Color &color = Color::Count);
     };
 
     class VLine

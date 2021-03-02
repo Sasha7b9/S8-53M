@@ -9,7 +9,7 @@
 static const uint8 NUM_COLORS = 16;
 
 
-Color Color::BLACK(0);
+const Color Color::BLACK(0);
 Color Color::WHITE(1);
 Color Color::GRID(2);
 Color Color::DATA_A(3);
@@ -30,10 +30,10 @@ Color Color::Count(NUM_COLORS);
 Color Color::FLASH_10(NUM_COLORS + 1);
 Color Color::FLASH_01(NUM_COLORS + 2);
 
-Color Color::current = Color::Count;
+Color Color::current = Color::WHITE;
 
-Color Color::FILL = Color::WHITE;
-Color Color::BACK = Color::BLACK;
+Color Color::FILL(Color::WHITE.index);
+Color Color::BACK(Color::BLACK.index);
 
 
 void Color::ResetFlash()

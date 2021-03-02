@@ -53,7 +53,7 @@ void Primitives::MultiHPointLine::Draw(int x, Color color)
 }
 
 
-void Primitives::Region::Fill(int x, int y, Color color)
+void Primitives::Region::Fill(int x, int y, const Color &color)
 {
     for (int i = y; i <= y + height; i++)
     {

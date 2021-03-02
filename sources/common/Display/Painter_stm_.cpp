@@ -7,9 +7,9 @@
 using namespace Primitives;
 
 
-void Painter::BeginScene(Color color)
+void Painter::BeginScene(const Color &color)
 {
-    Region(319, 239).Fill(0, 0, color);
+    Region(300, 200).Fill(0, 0, color);
 }
 
 

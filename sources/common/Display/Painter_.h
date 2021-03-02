@@ -7,7 +7,7 @@ class Painter
 {
 public:
 
-    static void BeginScene(Color color);
+    static void BeginScene(const Color &color);
 
     static void EndScene(bool endScene = true);
 

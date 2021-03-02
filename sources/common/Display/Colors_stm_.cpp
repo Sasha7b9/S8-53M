@@ -2,7 +2,7 @@
 #include "common/Display/Colors_.h"
 
 
-void Color::SetAsCurrent()
+void Color::SetAsCurrent() const
 {
     current = index;
 }

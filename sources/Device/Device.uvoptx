@@ -429,41 +429,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>96</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134238282</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\Hardware\HAL\HAL_IT.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\S8_53M\src/Hardware/HAL/HAL_IT.cpp\96</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>103</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134238266</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\Hardware\HAL\HAL_IT.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\S8_53M\src/Hardware/HAL/HAL_IT.cpp\103</Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
           <LineNumber>5</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134327588</Address>
+          <Address>134314056</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -473,6 +441,22 @@
           <Filename>&lt;1&gt;.\src\main.cpp</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\S8_53M\src/main.cpp\5</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>1243</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134288276</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>&lt;1&gt;.\src\Display\Display.cpp</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\S8_53M\src/Display/Display.cpp\1243</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -485,6 +469,21 @@
           <count>1</count>
           <WinNumber>1</WinNumber>
           <ItemText>GPIO_PIN_RESET</ItemText>
+        </Ww>
+        <Ww>
+          <count>2</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>value</ItemText>
+        </Ww>
+        <Ww>
+          <count>3</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>color</ItemText>
+        </Ww>
+        <Ww>
+          <count>4</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>color</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>

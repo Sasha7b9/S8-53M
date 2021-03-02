@@ -5,7 +5,7 @@
 // Тип цвета
 struct Color
 {
-    static Color BLACK;
+    static const Color BLACK;
     static Color WHITE;
     static Color GRID;
     static Color DATA_A;
@@ -38,9 +38,9 @@ struct Color
 
     static void ResetFlash();
 
-    void SetAsCurrent();
+    void SetAsCurrent() const;
 
-    static Color GetCurrent() { return current; };
+    static Color GetCurrent() { return Color(current); };
     static Color Channel(Channel::E chan);
     static Color Cursors(Channel::E cnan);
 

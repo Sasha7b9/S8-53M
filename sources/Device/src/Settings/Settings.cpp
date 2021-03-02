@@ -24,7 +24,7 @@ static const Settings defaultSettings =
         100,                        // brightness
         20,                         // brightnessGrid
         {
-            Color::Make(0x00, 0x00, 0x00),   // Color::BLACK = 0x00,
+            Color::Make(0xFF, 0x00, 0x00),   // Color::BLACK = 0x00,
             Color::Make(0xFF, 0xFF, 0xFF),   // Color::WHITE = 0x01,
             Color::Make(0x80, 0x80, 0x80),   // Color::GRID = 0x02,
             Color::Make(0x01, 0xCA, 0xFF),   // Color::DATA_A = 0x03,
