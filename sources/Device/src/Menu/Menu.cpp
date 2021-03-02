@@ -595,21 +595,21 @@ void Menu::OpenFileManager()
     {
         Event::ShortPressureButton(Key::Menu);
         UpdateInput();
-        Display::Update(false);
+        Display::Update();
     }
 
     if (!IsShown())
     {
         Event::ShortPressureButton(Key::Menu);
         UpdateInput();
-        Display::Update(false);
+        Display::Update();
     }
 
     for (int i = 0; i < 5 * stepAngleRegSet + 1; i++)
     {
         Event::RotateRegSetLeft();
         UpdateInput();
-        Display::Update(false);
+        Display::Update();
     }
 
     angleRegSet = 0;
@@ -618,31 +618,31 @@ void Menu::OpenFileManager()
     {
         Event::RotateRegSetRight();
         UpdateInput();
-        Display::Update(false);
+        Display::Update();
     }
 
     angleRegSet = 0;
 
     Event::ShortPressureButton(Key::F2);
     UpdateInput();
-    Display::Update(false);
+    Display::Update();
 
     Event::ShortPressureButton(Key::F4);
     UpdateInput();
-    Display::Update(false);
+    Display::Update();
 
     for (int i = 0; i < stepAngleRegSet + 1; i++)
     {
         Event::RotateRegSetLeft();
         UpdateInput();
-        Display::Update(false);
+        Display::Update();
     }
 
     for (int i = 0; i < 2; i++)
     {
         Event::ShortPressureButton(Key::F1);
         UpdateInput();
-        Display::Update(false);
+        Display::Update();
     }
 }
 

@@ -59,6 +59,12 @@ struct PinSPI1 : public Pin
 };
 
 
+struct PinSPI5 : public Pin
+{
+    PinSPI5(int port, int pin) : Pin(PinMode::_SPI5, (PinPort::E)port, (PinPin::E)pin) { }
+};
+
+
 struct PinOTG_HS : public Pin
 {
     PinOTG_HS(int port, int pin) : Pin(PinMode::_OTG_HS_FS, static_cast<PinPort::E>(port), static_cast<PinPin::E>(pin)) { }
@@ -86,6 +92,24 @@ Pin Pin::DisplayReady(PinMode::_Input, PinPort::_G, PinPin::_11);
 Pin Pin::Temp(PinMode::_Output, PinPort::_I, PinPin::_9);
 
 
+void HAL_PINS::InitSPI1()
+{
+    PinSPI1(A, 5).Init();   // SCK
+    PinSPI1(A, 6).Init();   // MISO
+    PinSPI1(B, 5).Init();   // MOSI
+    PinSPI1(G, 0).Init();   // NSS
+}
+
+
+void HAL_PINS::InitSPI5()
+{
+    PinSPI5(F, 6).Init();   // 24 NSS
+    PinSPI5(F, 7).Init();   // 25 SCK
+    PinSPI5(F, 8).Init();   // 26 MISO
+    PinSPI5(F, 9).Init();   // 27 MOSI
+}
+
+
 void HAL_PINS::Init()
 {
     Pin::G2.Init();
@@ -105,11 +129,6 @@ void HAL_PINS::Init()
     PinOTG_FS(A, 12).Init();    // DP
     PinOTG_FS(A, 11).Init();    // DM
     PinOTG_FS(A, 9).Init();     // VBUS
-
-    PinSPI1(A, 5).Init();       // SCK
-    PinSPI1(A, 6).Init();       // MISO
-    PinSPI1(B, 5).Init();       // MOSI
-    PinSPI1(G, 0).Init();       // NSS
 
 //    PinETH(H, 2).Init();        // CRS
 //    PinETH(A, 2).Init();        // MDIO

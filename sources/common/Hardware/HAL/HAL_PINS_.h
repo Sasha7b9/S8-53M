@@ -1,6 +1,15 @@
 #pragma once
 
 
+struct HAL_PINS
+{
+    static void Init();
+
+    static void InitSPI1();
+    static void InitSPI5();
+};
+
+
 struct PinMode { enum E
 {
     _Input,
@@ -13,6 +22,7 @@ struct PinMode { enum E
     _OTG_HS_FS,
     _OTG_FS,
     _SPI1,
+    _SPI5,
     _FMC,
     _LTDC
 };};
@@ -54,7 +64,7 @@ struct PinPin { enum E
 
 struct Pin
 {
-    Pin(PinMode::E _mode, PinPort::E _port, PinPin::E _pin) : port(_port), pin(_pin), mode(_mode) {};
+    Pin(PinMode::E _mode, PinPort::E _port, PinPin::E _pin) : port(_port), pin(_pin), mode(_mode) { };
     void Init();
     void Write(int state);
     void Set();

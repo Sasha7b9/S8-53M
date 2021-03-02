@@ -59,11 +59,6 @@ private:
     static void ConfigSystemClock();
 };
 
-struct HAL_PINS
-{
-    static void Init();
-};
-
 
 // АЦП рандомизатора
 struct HAL_ADC3
@@ -135,6 +130,13 @@ private:
 };
 
 
+struct HAL_HCD
+{
+    static void Init();
+    static void *handle;    // HCD_HandleTypeDef
+};
+
+
 struct HAL_LTDC
 {
     static void Init(uint8 *frontBuffer, uint8 *backBuffer);
@@ -148,6 +150,21 @@ struct HAL_LTDC
 private:
 
     static void SetBuffers(uint8 *frontBuffer, uint8 *backBuffer);
+};
+
+
+struct HAL_OTP
+{
+    static bool SaveSerialNumber(char *serialNumber);
+
+    // Функция возвращает число свободных мест для записи. Если 0, то места в OTP уже не осталось. 
+    static int GetSerialNumber(char buffer[17]);
+};
+
+
+struct HAL_PCD
+{
+    static void *handle;    // PCD_HandleTypeDef
 };
 
 
@@ -172,24 +189,14 @@ public:
 };
 
 
-struct HAL_HCD
+// Для связи с панелью
+struct HAL_SPI5
 {
+public:
+
     static void Init();
-    static void *handle;    // HCD_HandleTypeDef
 };
 
-struct HAL_OTP
-{
-    static bool SaveSerialNumber(char *serialNumber);
-    
-    // Функция возвращает число свободных мест для записи. Если 0, то места в OTP уже не осталось. 
-    static int GetSerialNumber(char buffer[17]);
-};
-
-struct HAL_PCD
-{
-    static void *handle;    // PCD_HandleTypeDef
-};
 
 struct HAL_TIM2
 {
@@ -206,15 +213,18 @@ struct HAL_TIM2
     static void Delay(uint timeMS);
 };
 
+
 struct HAL_TIM6
 {
     static void Init();
 };
 
+
 struct HAL_TIM7
 {
     static void Config(uint16 prescaler, uint16 period);
 };
+
 
 struct HAL_USBD
 {

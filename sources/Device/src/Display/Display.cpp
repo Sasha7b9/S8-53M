@@ -1240,7 +1240,7 @@ static void CalculateCoord(int &x, int &y)
 }
 
 
-void Display::Update(bool endScene)
+void Display::Update()
 {
     static uint prev_time = 0;
 
@@ -1259,82 +1259,6 @@ void Display::Update(bool endScene)
     Region(40, 40).Fill(x, y, Color::BLACK);
     
     prev_time = HAL_TIM2::TimeMS();
-
-    return;
-    
-    
-	uint timeStart = gTimerTics;
-    if (funcOnHand != 0)
-    {
-        funcOnHand();
-        return;
-    }
-
-    bool needClear = NeedForClearScreen();
-
-    if (needClear)
-    {
-        Painter::BeginScene(Color::BACK);
-        DrawMemoryWindow();
-        DrawFullGrid();
-    }
-
-    DrawData();
-
-    if (needClear)
-    {
-        DrawMath();
-        DrawSpectrum();
-        DrawCursors();
-        DrawHiPart();
-        DrawLowPart();
-        DrawCursorsWindow();
-        DrawCursorTrigLevel();
-        DrawCursorsRShift();
-        DrawMeasures();
-        DrawStringNavigation();
-        DrawCursorTShift();
-    }
-    
-    Menu::Draw();
-
-    if (needClear)
-    {
-        DrawWarnings();
-
-        if (funcAdditionDraw)
-        {
-            funcAdditionDraw();
-        }
-    }
-
-    DrawConsole();
-
-    if (needClear)    
-    {
-        WriteValueTrigLevel();
-    }
-
-    DrawTimeForFrame(gTimerTics - timeStart);
-
-    Color::FILL.SetAsCurrent();
-
-    Painter::EndScene(endScene);
-
-    if (PageMemory::needForSaveToFlashDrive)
-    {
-        if (Painter::SaveScreenToFlashDrive())
-        {
-            ShowWarningGood(Warning::FileIsSaved);
-        }
-        PageMemory::needForSaveToFlashDrive = false;
-    }
-
-    if (funcAfterDraw)
-    {
-        funcAfterDraw();
-        funcAfterDraw = 0;
-    }
 }
 
 

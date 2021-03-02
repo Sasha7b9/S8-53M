@@ -24,9 +24,9 @@ void HAL::Init()
 
     HAL_PINS::Init();
 
-#ifdef DEVICE
-
     HAL_SPI1::Init();
+
+    HAL_SPI5::Init();
 
 //    HAL_ADC3::Init();
 //
@@ -35,8 +35,6 @@ void HAL::Init()
 //    HAL_RTC::Init();
 //
 //    HAL_TIM6::Init();
-
-#endif
 
 //    HAL_FMC::Init();
 
