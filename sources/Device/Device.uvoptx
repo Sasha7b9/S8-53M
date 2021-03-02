@@ -429,9 +429,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>114</LineNumber>
+          <LineNumber>118</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134304656</Address>
+          <Address>134304380</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -440,7 +440,7 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>&lt;1&gt;..\common\Hardware\HAL\HAL_LTDC_.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\S8_53M\../common/Hardware/HAL/HAL_LTDC_.cpp\114</Expression>
+          <Expression>\\S8_53M\../common/Hardware/HAL/HAL_LTDC_.cpp\118</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -2317,7 +2317,7 @@
 
   <Group>
     <GroupName>Hardware/HAL</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

@@ -10,7 +10,7 @@
 static const int BUFFER_WIDTH = Display::WIDTH / 2;
 static const int SIZE_BUFFER = BUFFER_WIDTH * Display::HEIGHT;
 
-static uint8 front[SIZE_BUFFER] __attribute__((section("CCM_DATA")));
+static uint8 front[SIZE_BUFFER];  /* __attribute__((section("CCM_DATA"))); */
 static uint8 back[SIZE_BUFFER];
 
 

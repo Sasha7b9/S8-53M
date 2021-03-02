@@ -111,6 +111,10 @@ void HAL_LTDC::ToggleBuffers()
             {
                 if (HAL_DMA2D_PollForTransfer(&hDMA2D, 100) != HAL_OK)
                 {
+                    uint error_code = hDMA2D.ErrorCode;
+
+                    error_code = error_code;
+
                     ERROR_HANDLER();
                 }
             }
