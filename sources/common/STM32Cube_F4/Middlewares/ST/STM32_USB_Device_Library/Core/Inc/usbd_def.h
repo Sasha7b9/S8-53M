@@ -21,6 +21,10 @@
 #ifndef __USBD_DEF_H
 #define __USBD_DEF_H
 
+#ifdef WIN32
+#pragma warning(push, 0)
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -406,6 +410,11 @@ __STATIC_INLINE uint16_t SWAPBYTE(uint8_t *addr)
 
 #ifdef __cplusplus
 }
+#endif
+
+
+#ifdef WIN32
+#pragma warning(pop)
 #endif
 
 #endif /* __USBD_DEF_H */

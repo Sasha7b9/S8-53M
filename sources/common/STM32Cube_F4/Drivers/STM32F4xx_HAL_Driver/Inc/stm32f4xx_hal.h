@@ -22,6 +22,10 @@
 #ifndef __STM32F4xx_HAL_H
 #define __STM32F4xx_HAL_H
 
+#ifdef WIN32
+#pragma warning(push, 0)
+#endif
+
 #ifdef __cplusplus
  extern "C" {
 #endif
@@ -291,6 +295,10 @@ void HAL_DisableMemorySwappingBank(void);
   
 #ifdef __cplusplus
 }
+#endif
+
+#ifdef WIN32
+#pragma warning(pop)
 #endif
 
 #endif /* __STM32F4xx_HAL_H */
