@@ -35,4 +35,7 @@ public:
     static uint16 NextData();
 
     static bool isRunning;
+
+    // Эта функция должна вызываться из приёмной фунции SPI5
+    static void CallbackOnReciveSPI5(uint8 *data, int size);
 };

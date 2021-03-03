@@ -1,6 +1,7 @@
 // 2021/03/02 14:09:12 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "Panel/Panel.h"
 #include <stm32f4xx_hal.h>
 
 
@@ -30,7 +31,8 @@ static SPI_HandleTypeDef handleSPI5 =       // Для связи с панелью
 void *HAL_SPI5::handle = &handleSPI5;
 
 
-static uint8 buffer[10];
+#define SIZE_PACKET 6
+static uint8 buffer[SIZE_PACKET];
 
 
 void HAL_SPI5::Init()
@@ -44,12 +46,7 @@ void HAL_SPI5::Init()
     HAL_NVIC_SetPriority(SPI5_IRQn, 0, 1);
     HAL_NVIC_EnableIRQ(SPI5_IRQn);
 
-    HAL_SPI_Receive_IT(&handleSPI5, buffer, 10);
-}
-
-
-void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *)
-{
+    HAL_SPI_Receive_IT(&handleSPI5, buffer, SIZE_PACKET);
 }
 
 
@@ -57,14 +54,17 @@ void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
 {
     if (hspi == &handleSPI5)
     {
-        HAL_SPI_Receive_IT(&handleSPI5, buffer, 10);
+        HAL_SPI_Receive_IT(&handleSPI5, buffer, SIZE_PACKET);
     }
 }
+
 
 void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi)
 {
     if (hspi == &handleSPI5)
     {
-        HAL_SPI_Receive_IT(&handleSPI5, buffer, 10);
+        Panel::CallbackOnReciveSPI5(buffer, SIZE_PACKET);
+
+        HAL_SPI_Receive_IT(&handleSPI5, buffer, SIZE_PACKET);
     }
 }
