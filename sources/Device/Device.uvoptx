@@ -286,7 +286,7 @@
         <LExpSel>0</LExpSel>
       </OPTXL>
       <OPTFL>
-        <tvExp>0</tvExp>
+        <tvExp>1</tvExp>
         <tvExpOptDlg>0</tvExpOptDlg>
         <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
@@ -365,39 +365,7 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>54</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134282510</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;..\common\Hardware\HAL\HAL_SPI5_.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\S8_53M\../common/Hardware/HAL/HAL_SPI5_.cpp\54</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>63</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134282526</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;..\common\Hardware\HAL\HAL_SPI5_.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\S8_53M\../common/Hardware/HAL/HAL_SPI5_.cpp\63</Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>72</LineNumber>
+          <LineNumber>77</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>134282542</Address>
           <ByteObject>0</ByteObject>
@@ -408,23 +376,7 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>&lt;1&gt;..\common\Hardware\HAL\HAL_SPI5_.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\S8_53M\../common/Hardware/HAL/HAL_SPI5_.cpp\72</Expression>
-        </Bp>
-        <Bp>
-          <Number>3</Number>
-          <Type>0</Type>
-          <LineNumber>81</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134282558</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;..\common\Hardware\HAL\HAL_SPI5_.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\S8_53M\../common/Hardware/HAL/HAL_SPI5_.cpp\81</Expression>
+          <Expression>\\S8_53M\../common/Hardware/HAL/HAL_SPI5_.cpp\77</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>

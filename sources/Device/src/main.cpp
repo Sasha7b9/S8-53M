@@ -8,8 +8,6 @@ int main(void)
     
     while(1)
     {
-        HAL_SPI5::Test();
-        
         Device::Update();
     }
 }

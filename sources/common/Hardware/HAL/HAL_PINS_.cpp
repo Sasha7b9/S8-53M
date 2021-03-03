@@ -59,12 +59,6 @@ struct PinSPI1 : public Pin
 };
 
 
-struct PinSPI5 : public Pin
-{
-    PinSPI5(int port, int pin) : Pin(PinMode::_SPI5, (PinPort::E)port, (PinPin::E)pin) { }
-};
-
-
 struct PinOTG_HS : public Pin
 {
     PinOTG_HS(int port, int pin) : Pin(PinMode::_OTG_HS_FS, static_cast<PinPort::E>(port), static_cast<PinPin::E>(pin)) { }
@@ -101,23 +95,17 @@ void HAL_PINS::InitSPI1()
 }
 
 
-Pin pinSPI5_NSS(PinMode::_Output, PinPort::_F, PinPin::_6);
-Pin pinSPI5_SCK(PinMode::_Output, PinPort::_F, PinPin::_7);
-Pin pinSPI5_MISO(PinMode::_Output, PinPort::_F, PinPin::_8);
-Pin pinSPI5_MOSI(PinMode::_Output, PinPort::_F, PinPin::_9);
-
-
 void HAL_PINS::InitSPI5()
 {
-//    PinSPI5(F, 6).Init();   // 24 NSS
-//    PinSPI5(F, 7).Init();   // 25 SCK
-//    PinSPI5(F, 8).Init();   // 26 MISO
-//    PinSPI5(F, 9).Init();   // 27 MOSI
-    
-    pinSPI5_NSS.Init();
-    pinSPI5_SCK.Init();
-    pinSPI5_MISO.Init();
-    pinSPI5_MOSI.Init();
+    Pin pinNSS (PinMode::_SPI5, PinPort::_F, PinPin::_6);   // 24 NSS
+    Pin pinSCK (PinMode::_SPI5, PinPort::_F, PinPin::_7);   // 25 SCK
+    Pin pinMISO(PinMode::_SPI5, PinPort::_F, PinPin::_8);   // 26 MISO
+    Pin pinMOSI(PinMode::_SPI5, PinPort::_F, PinPin::_9);   // 27 MOSI
+
+    pinNSS.Init();
+    pinSCK.Init();
+    pinMISO.Init();
+    pinMOSI.Init();
 }
 
 
