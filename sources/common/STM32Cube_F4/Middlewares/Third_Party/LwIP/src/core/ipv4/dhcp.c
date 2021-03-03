@@ -82,8 +82,6 @@
 
 #include <string.h>
 
-#pragma diag_suppress 550
-
 #ifdef LWIP_HOOK_FILENAME
 #include LWIP_HOOK_FILENAME
 #endif

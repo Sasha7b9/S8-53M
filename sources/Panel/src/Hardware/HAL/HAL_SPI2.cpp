@@ -15,7 +15,7 @@ static SPI_HandleTypeDef handleSPI2 =
         SPI_NSS_SOFT,                   // Для мастера этот параметр ни на что не влияет
         SPI_BAUDRATEPRESCALER_32,       // Период CLK - 1 мкс, длительность импульса - 0.5 мкс
         SPI_FIRSTBIT_MSB,
-        SPI_TIMODE_DISABLE,
+        SPI_TIMODE_DISABLED,
         SPI_CRCCALCULATION_DISABLED,
         7
     },
