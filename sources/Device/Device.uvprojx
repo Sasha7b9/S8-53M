@@ -1149,9 +1149,9 @@
               <FilePath>.\src\Hardware\HAL\stm32f4xx_hal_conf.h</FilePath>
             </File>
             <File>
-              <FileName>HAL_IT.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_IT.cpp</FilePath>
+              <FileName>HAL_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_.h</FilePath>
             </File>
             <File>
               <FileName>HAL_.cpp</FileName>
@@ -1159,9 +1159,9 @@
               <FilePath>..\common\Hardware\HAL\HAL_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_.h</FilePath>
+              <FileName>HAL_IT.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HAL\HAL_IT.cpp</FilePath>
             </File>
             <File>
               <FileName>HAL_ADC3_.cpp</FileName>
@@ -1219,9 +1219,9 @@
               <FilePath>..\common\Hardware\HAL\HAL_RTC_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_SPI1.cpp</FileName>
+              <FileName>HAL_SPI1_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_SPI1.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_SPI1_.cpp</FilePath>
             </File>
             <File>
               <FileName>HAL_SPI5_.cpp</FileName>
@@ -3324,9 +3324,9 @@
               <FilePath>.\src\Hardware\HAL\stm32f4xx_hal_conf.h</FilePath>
             </File>
             <File>
-              <FileName>HAL_IT.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL_IT.cpp</FilePath>
+              <FileName>HAL_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_.h</FilePath>
             </File>
             <File>
               <FileName>HAL_.cpp</FileName>
@@ -3334,9 +3334,9 @@
               <FilePath>..\common\Hardware\HAL\HAL_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_.h</FilePath>
+              <FileName>HAL_IT.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HAL\HAL_IT.cpp</FilePath>
             </File>
             <File>
               <FileName>HAL_ADC3_.cpp</FileName>
@@ -3394,9 +3394,9 @@
               <FilePath>..\common\Hardware\HAL\HAL_RTC_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_SPI1.cpp</FileName>
+              <FileName>HAL_SPI1_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_SPI1.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_SPI1_.cpp</FilePath>
             </File>
             <File>
               <FileName>HAL_SPI5_.cpp</FileName>
