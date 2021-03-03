@@ -12,8 +12,8 @@ static SPI_HandleTypeDef handleSPI2 =
         SPI_DATASIZE_8BIT,
         SPI_POLARITY_HIGH,
         SPI_PHASE_2EDGE,
-        SPI_NSS_HARD_OUTPUT,
-        SPI_BAUDRATEPRESCALER_32,
+        SPI_NSS_SOFT,                   // Для мастера этот параметр ни на что не влияет
+        SPI_BAUDRATEPRESCALER_32,       // Период CLK - 1 мкс, длительность импульса - 0.5 мкс
         SPI_FIRSTBIT_MSB,
         SPI_TIMODE_DISABLE,
         SPI_CRCCALCULATION_DISABLED,
@@ -21,9 +21,6 @@ static SPI_HandleTypeDef handleSPI2 =
     },
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, HAL_UNLOCKED, HAL_SPI_STATE_RESET, 0
 };
-
-
-void *HAL_SPI2::handle = &handleSPI2;
 
 
 void HAL_SPI2::Init()
@@ -36,7 +33,15 @@ void HAL_SPI2::Init()
 
 bool HAL_SPI2::Transmit(uint8 *buffer, int size)
 {
-    return HAL_SPI_Transmit(&handleSPI2, buffer, (uint16)size, 100) == HAL_OK;
+    extern Pin pinSPI2_NSS;
+
+    pinSPI2_NSS.Reset();
+
+    bool result = HAL_SPI_Transmit(&handleSPI2, buffer, (uint16)size, 100) == HAL_OK;
+
+    pinSPI2_NSS.Set();
+
+    return result;
 }
 
 

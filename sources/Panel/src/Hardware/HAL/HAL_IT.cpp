@@ -39,12 +39,6 @@ void SysTick_Handler(void)
 }
 
 
-void SPI2_IRQHandler()
-{
-    HAL_SPI_IRQHandler((SPI_HandleTypeDef *)HAL_SPI2::handle);
-}
-
-
 #ifdef __cplusplus
 }
 #endif

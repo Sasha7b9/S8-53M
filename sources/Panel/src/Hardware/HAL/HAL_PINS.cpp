@@ -52,17 +52,21 @@ PinRC3_Set::PinRC3_Set() : Pin(PinPort::A, PinPin::_12) { }
 PinON::PinON() : Pin(PinPort::A, PinPin::_8) { }
 
 
+Pin pinSPI2_NSS(PinPort::B, PinPin::_12);    // 25
+
+
 void HAL_PINS::InitSPI2()
 {
     Pin pinSCK(PinPort::B, PinPin::_10);    // 21
-    Pin pinNSS(PinPort::B, PinPin::_12);    // 25
     Pin pinMISO(PinPort::B, PinPin::_14);   // 27
     Pin pinMOSI(PinPort::B, PinPin::_15);   // 28
 
     pinSCK.Init(PinMode::_SPI2);
-    pinNSS.Init(PinMode::_SPI2);
     pinMISO.Init(PinMode::_SPI2);
     pinMOSI.Init(PinMode::_SPI2);
+
+    pinSPI2_NSS.Init(PinMode::_Output);
+    pinSPI2_NSS.Set();
 }
 
 
