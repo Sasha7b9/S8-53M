@@ -49,6 +49,7 @@
 #define __ALIGN_BEGIN //-V2573
 #endif
 
+#include "defines.h"
 #include <stm32f4xx_hal.h>
 #include "lwip/timeouts.h"
 #include "lwip/tcpip.h"

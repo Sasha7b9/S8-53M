@@ -1,8 +1,11 @@
 #pragma once
 
 #ifdef WIN32
-#define __attribute__(x) //-V2573
-#define __packed__ //-V2573
+#define __attribute__(x)
+#define __packed__
+#define __STATIC_INLINE inline
+#define __RBIT(VAL) 0
+#define __CLZ(x) 0
 #else
 #define nullptr 0 //-V1059
 #endif
