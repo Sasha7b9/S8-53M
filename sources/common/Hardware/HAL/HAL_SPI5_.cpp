@@ -13,7 +13,7 @@ static SPI_HandleTypeDef handleSPI5 =       // Для связи с панелью
         SPI_DATASIZE_8BIT,              // Init.DataSize
         SPI_POLARITY_LOW,               // Init.CLKPolarity
         SPI_PHASE_2EDGE,                // Init.CLKPhase
-        SPI_NSS_HARD_INPUT,             // Init.NSS
+        SPI_NSS_HARD_OUTPUT,            // Init.NSS
         SPI_BAUDRATEPRESCALER_32,       // Init.BaudRatePrescaler
         SPI_FIRSTBIT_MSB,               // Init.FirstBit
         SPI_TIMODE_DISABLED,            // Init.TIMode
@@ -34,7 +34,52 @@ void HAL_SPI5::Init()
 {
     HAL_PINS::InitSPI5();
 
-    HAL_SPI_Init(&handleSPI5);
+//    HAL_SPI_Init(&handleSPI5);
+}
+
+
+void HAL_SPI5::Test()
+{
+    extern Pin pinSPI5_NSS;
+    extern Pin pinSPI5_SCK;
+    extern Pin pinSPI5_MISO;
+    extern Pin pinSPI5_MOSI;
+    
+    if(pinSPI5_NSS.Read() == 0)
+    {
+        int i = 0;
+    }
+    else
+    {
+        int i = 0;
+    }
+
+    if(pinSPI5_SCK.Read() == 0)
+    {
+        int i = 0;
+    }
+    else
+    {
+        int i = 0;
+    }
+
+    if(pinSPI5_MISO.Read() == 0)
+    {
+        int i = 0;
+    }
+    else
+    {
+        int i = 0;
+    }
+
+    if(pinSPI5_MOSI.Read() == 0)
+    {
+        int i = 0;
+    }
+    else
+    {
+        int i = 0;
+    }
 }
 
 

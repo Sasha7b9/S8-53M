@@ -11,8 +11,8 @@ struct HAL_PINS
 
 struct PinMode { enum E
 {
-    Input,
-    Output,
+    _Input,
+    _Output,
     _SPI2 //-V2573
 };};
 

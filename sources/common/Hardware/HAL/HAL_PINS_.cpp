@@ -101,12 +101,23 @@ void HAL_PINS::InitSPI1()
 }
 
 
+Pin pinSPI5_NSS(PinMode::_Output, PinPort::_F, PinPin::_6);
+Pin pinSPI5_SCK(PinMode::_Output, PinPort::_F, PinPin::_7);
+Pin pinSPI5_MISO(PinMode::_Output, PinPort::_F, PinPin::_8);
+Pin pinSPI5_MOSI(PinMode::_Output, PinPort::_F, PinPin::_9);
+
+
 void HAL_PINS::InitSPI5()
 {
-    PinSPI5(F, 6).Init();   // 24 NSS
-    PinSPI5(F, 7).Init();   // 25 SCK
-    PinSPI5(F, 8).Init();   // 26 MISO
-    PinSPI5(F, 9).Init();   // 27 MOSI
+//    PinSPI5(F, 6).Init();   // 24 NSS
+//    PinSPI5(F, 7).Init();   // 25 SCK
+//    PinSPI5(F, 8).Init();   // 26 MISO
+//    PinSPI5(F, 9).Init();   // 27 MOSI
+    
+    pinSPI5_NSS.Init();
+    pinSPI5_SCK.Init();
+    pinSPI5_MISO.Init();
+    pinSPI5_MOSI.Init();
 }
 
 

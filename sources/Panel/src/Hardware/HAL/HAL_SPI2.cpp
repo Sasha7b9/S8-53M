@@ -5,13 +5,13 @@
 
 static SPI_HandleTypeDef handleSPI2 =
 {
-    SPI2, //-V2571
+    SPI2,
     {
         SPI_MODE_MASTER,
         SPI_DIRECTION_2LINES,
         SPI_DATASIZE_8BIT,
-        SPI_POLARITY_LOW,
-        SPI_PHASE_1EDGE,
+        SPI_POLARITY_HIGH,
+        SPI_PHASE_2EDGE,
         SPI_NSS_HARD_OUTPUT,
         SPI_BAUDRATEPRESCALER_32,
         SPI_FIRSTBIT_MSB,
@@ -22,16 +22,8 @@ static SPI_HandleTypeDef handleSPI2 =
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, HAL_UNLOCKED, HAL_SPI_STATE_RESET, 0
 };
 
-extern Pin pinSPI2_SCK;
-extern Pin pinSPI2_NSS;
-extern Pin pinSPI2_MISO;
-extern Pin pinSPI2_MOSI;
 
-
-Pin *HAL_SPI2::pinSCK = &pinSPI2_SCK;
-Pin *HAL_SPI2::pinNSS = &pinSPI2_NSS;
-Pin *HAL_SPI2::pinMISO = &pinSPI2_MISO;
-Pin *HAL_SPI2::pinMOSI = &pinSPI2_MOSI;
+void *HAL_SPI2::handle = &handleSPI2;
 
 
 void HAL_SPI2::Init()
@@ -45,4 +37,22 @@ void HAL_SPI2::Init()
 bool HAL_SPI2::Transmit(uint8 *buffer, int size)
 {
     return HAL_SPI_Transmit(&handleSPI2, buffer, (uint16)size, 100) == HAL_OK;
+}
+
+
+void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
+{
+    if (hspi == &handleSPI2)
+    {
+
+    }
+}
+
+
+void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
+{
+    if (hspi == &handleSPI2)
+    {
+
+    }
 }

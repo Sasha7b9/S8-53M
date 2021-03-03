@@ -42,7 +42,7 @@ void Interface::Update()
         }
         else
         {
-            SendKeyboardEvent(Keyboard::Buffer::GetNextEvent());
+            SendKeyboardEvent(event);
         }
     }
 

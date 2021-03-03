@@ -41,6 +41,8 @@ struct HAL_SPI2
     static void Init();
 
     static bool Transmit(uint8 *buffer, int size);
+
+    static void *handle;        // SPI_HandleTypeDef
     
     static Pin *pinSCK;
     static Pin *pinNSS;

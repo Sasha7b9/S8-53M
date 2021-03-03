@@ -194,6 +194,8 @@ public:
 
     static void Init();
 
+    static void Test();
+
     static void *handle;       // SPI_HandleTypeDef
 };
 
