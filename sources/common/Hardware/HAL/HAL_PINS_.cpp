@@ -95,7 +95,7 @@ void HAL_PINS::InitSPI1()
 }
 
 
-void HAL_PINS::InitSPI5()
+void HAL_PINS::SPI5_::Init()
 {
     Pin pinNSS (PinMode::_Input, PinPort::_F, PinPin::_6);   // 24 NSS
     Pin pinSCK (PinMode::_SPI5, PinPort::_F, PinPin::_7);   // 25 SCK

@@ -6,7 +6,7 @@
 
 static SPI_HandleTypeDef handleSPI5 =       // Для связи с панелью
 {
-    SPI1, //-V2571
+    SPI5, //-V2571
     {
         SPI_MODE_SLAVE,                 // Init.Mode
         SPI_DIRECTION_2LINES,           // Init.Direction
@@ -34,7 +34,7 @@ void HAL_SPI5::Init()
 {
     __SPI5_CLK_ENABLE();
 
-    HAL_PINS::InitSPI5();
+    HAL_PINS::SPI5_::Init();
 
     HAL_SPI_Init(&handleSPI5);
 

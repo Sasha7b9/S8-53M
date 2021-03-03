@@ -6,7 +6,10 @@ struct HAL_PINS
     static void Init();
 
     static void InitSPI1();
-    static void InitSPI5();
+    struct SPI5_
+    {
+        static void Init();
+    };
 };
 
 
