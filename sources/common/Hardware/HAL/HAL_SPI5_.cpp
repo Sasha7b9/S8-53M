@@ -38,29 +38,17 @@ void HAL_SPI5::Init()
 
     HAL_SPI_Init(&handleSPI5);
 
-//    GPIO_InitTypeDef is =
-//    {
-//        GPIO_PIN_6,
-//        GPIO_MODE_IT_RISING,
-//        GPIO_PULLUP
-//    };
-//    HAL_GPIO_Init(GPIOF, &is);
-
     HAL_NVIC_SetPriority(SPI5_IRQn, 0, 1);
     HAL_NVIC_EnableIRQ(SPI5_IRQn);
 
-    static uint8 data[3];
+    static uint8 buffer[10];
 
-    HAL_SPI_Receive_IT(&handleSPI5, data, 3);
+    HAL_SPI_Receive_IT(&handleSPI5, buffer, 3);
 }
 
 
-void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
+void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *)
 {
-    if (hspi == &handleSPI5)
-    {
-
-    }
 }
 
 
@@ -68,14 +56,20 @@ void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
 {
     if (hspi == &handleSPI5)
     {
+        static uint8 buffer[10];
 
+        HAL_SPI_Receive_IT(&handleSPI5, buffer, 3);
     }
 }
 
 void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi)
 {
+    static uint8 buffer[10];
+
     if (hspi == &handleSPI5)
     {
+        HAL_SPI_Receive(&handleSPI5, buffer, 3, 1);
 
+        HAL_SPI_Receive_IT(&handleSPI5, buffer, 3);
     }
 }
