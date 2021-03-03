@@ -22,6 +22,18 @@ static SPI_HandleTypeDef handleSPI2 =
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, HAL_UNLOCKED, HAL_SPI_STATE_RESET, 0
 };
 
+extern Pin pinSPI2_SCK;
+extern Pin pinSPI2_NSS;
+extern Pin pinSPI2_MISO;
+extern Pin pinSPI2_MOSI;
+
+
+Pin *HAL_SPI2::pinSCK = &pinSPI2_SCK;
+Pin *HAL_SPI2::pinNSS = &pinSPI2_NSS;
+Pin *HAL_SPI2::pinMISO = &pinSPI2_MISO;
+Pin *HAL_SPI2::pinMOSI = &pinSPI2_MOSI;
+
+
 void HAL_SPI2::Init()
 {
     HAL_PINS::InitSPI2();

@@ -52,19 +52,29 @@ PinRC3_Set::PinRC3_Set() : Pin(PinPort::A, PinPin::_12) { }
 PinON::PinON() : Pin(PinPort::A, PinPin::_8) { }
 
 
+Pin pinSPI2_SCK(PinPort::B, PinPin::_10);
+Pin pinSPI2_NSS(PinPort::B, PinPin::_12);
+Pin pinSPI2_MISO(PinPort::B, PinPin::_14);
+Pin pinSPI2_MOSI(PinPort::B, PinPin::_15);
 
 
 void HAL_PINS::InitSPI2()
 {
-    Pin pinSCK(PinPort::B, PinPin::_10);
-    Pin pinNSS(PinPort::B, PinPin::_12);
-    Pin pinMISO(PinPort::B, PinPin::_14);
-    Pin pinMOSI(PinPort::B, PinPin::_15);
+//    Pin pinSCK(PinPort::B, PinPin::_10);
+//    Pin pinNSS(PinPort::B, PinPin::_12);
+//    Pin pinMISO(PinPort::B, PinPin::_14);
+//    Pin pinMOSI(PinPort::B, PinPin::_15);
 
-    pinSCK.Init(PinMode::_SPI2);
-    pinNSS.Init(PinMode::_SPI2);
-    pinMISO.Init(PinMode::_SPI2);
-    pinMOSI.Init(PinMode::_SPI2);
+//    pinSPI2_SCK.Init(PinMode::_SPI2);
+//    pinSPI2_NSS.Init(PinMode::_SPI2);
+//    pinSPI2_MISO.Init(PinMode::_SPI2);
+//    pinSPI2_MOSI.Init(PinMode::_SPI2);
+    
+     pinSPI2_SCK.Init(PinMode::Output);
+     pinSPI2_NSS.Init(PinMode::Output);
+    pinSPI2_MISO.Init(PinMode::Output);
+    pinSPI2_MOSI.Init(PinMode::Output);
+
 }
 
 
