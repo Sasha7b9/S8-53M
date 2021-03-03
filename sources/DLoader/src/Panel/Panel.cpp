@@ -1,6 +1,6 @@
 #include "defines.h"
 #include "common/Hardware/HAL/HAL_.h"
-#include "common/Keyboard/Controls_.h"
+//#include "common/Keyboard/Controls_.h"
 #include "Panel/Panel.h"
 
 
@@ -53,6 +53,11 @@ bool Panel::ProcessingCommandFromPIC(uint16 command)
     return true;
 }
 
+
+void Panel::CallbackOnReceiveSPI5(uint8 * /*data*/, int /*size*/)
+{
+
+}
 
 
 static Key::E ButtonIsPress(uint16 command)

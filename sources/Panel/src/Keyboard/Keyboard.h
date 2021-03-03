@@ -1,5 +1,5 @@
 #pragma once
-#include "common/Keyboard/Controls_.h"
+#include "common/Panel/Controls_.h"
 
 
 struct Keyboard

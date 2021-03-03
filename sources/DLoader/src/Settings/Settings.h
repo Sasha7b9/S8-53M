@@ -1,6 +1,6 @@
 #pragma once
 #include "common/Settings/SettingsTypes_.h"
-#include "common/Keyboard/Controls_.h"
+//#include "common/Keyboard/Controls_.h"
 
 
 #define SOUND_ENABLED       (set.service.soundEnabled)          // SettingsService.soundEnabled

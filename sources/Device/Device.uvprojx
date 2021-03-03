@@ -1878,6 +1878,16 @@
           <GroupName>Panel</GroupName>
           <Files>
             <File>
+              <FileName>Controls_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Panel\Controls_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Controls_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Panel\Controls_.cpp</FilePath>
+            </File>
+            <File>
               <FileName>Panel.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Panel\Panel.h</FilePath>
@@ -1886,16 +1896,6 @@
               <FileName>Panel.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Panel\Panel.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Controls_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Keyboard\Controls_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Controls_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Keyboard\Controls_.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -4053,6 +4053,16 @@
           <GroupName>Panel</GroupName>
           <Files>
             <File>
+              <FileName>Controls_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Panel\Controls_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Controls_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Panel\Controls_.cpp</FilePath>
+            </File>
+            <File>
               <FileName>Panel.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Panel\Panel.h</FilePath>
@@ -4061,16 +4071,6 @@
               <FileName>Panel.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Panel\Panel.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Controls_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Keyboard\Controls_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Controls_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Keyboard\Controls_.h</FilePath>
             </File>
           </Files>
         </Group>

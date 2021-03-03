@@ -597,6 +597,16 @@
           <GroupName>Keyboard</GroupName>
           <Files>
             <File>
+              <FileName>Controls_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Panel\Controls_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Controls_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Panel\Controls_.cpp</FilePath>
+            </File>
+            <File>
               <FileName>Keyboard.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Keyboard\Keyboard.h</FilePath>
@@ -605,16 +615,6 @@
               <FileName>Keyboard.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Keyboard\Keyboard.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Controls_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Keyboard\Controls_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Controls_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Keyboard\Controls_.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1211,6 +1211,16 @@
           <GroupName>Keyboard</GroupName>
           <Files>
             <File>
+              <FileName>Controls_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Panel\Controls_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Controls_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Panel\Controls_.cpp</FilePath>
+            </File>
+            <File>
               <FileName>Keyboard.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Keyboard\Keyboard.h</FilePath>
@@ -1219,16 +1229,6 @@
               <FileName>Keyboard.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Keyboard\Keyboard.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Controls_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Keyboard\Controls_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Controls_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Keyboard\Controls_.h</FilePath>
             </File>
           </Files>
         </Group>

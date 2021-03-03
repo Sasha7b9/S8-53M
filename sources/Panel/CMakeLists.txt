@@ -45,7 +45,7 @@ file(GLOB HARDWARE_CMSIS         src/Hardware/CMSIS/*.*)
 file(GLOB HARDWARE_HAL           src/Hardware/HAL/*.*)
 file(GLOB INTERFACE              src/Interface/*.*)
 file(GLOB KEYBOARD               src/Keyboard/*.*
-                           ../common/Keyboard/*.*)
+                           ../common/Panel/*.*)
 
 set_source_files_properties(${LIBS_HAL} PROPERTIES HEADER_FILE_ONLY TRUE)
 

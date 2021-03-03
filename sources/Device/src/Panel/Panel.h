@@ -1,5 +1,5 @@
 #pragma once
-#include "common/Keyboard/Controls_.h"
+#include "common/Panel/Controls_.h"
 
 
 class Panel
@@ -37,5 +37,5 @@ public:
     static bool isRunning;
 
     // Эта функция должна вызываться из приёмной фунции SPI5
-    static void CallbackOnReciveSPI5(uint8 *data, int size);
+    static void CallbackOnReceiveSPI5(uint8 *data, int size);
 };
