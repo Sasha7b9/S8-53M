@@ -23,3 +23,9 @@ __weak uint32_t HAL_GetTick()
 {
     return 0;
 }
+
+
+void HAL_NVIC_SetPriorityGrouping(uint32_t)
+{
+
+}

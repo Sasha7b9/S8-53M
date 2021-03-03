@@ -17,7 +17,7 @@ void Primitives::Point::Draw(int x, int y)
 }
 
 
-void Primitives::Region::Fill(int x, int y, Color color)
+void Primitives::Region::Fill(int x, int y, const Color &color)
 {
     color.SetAsCurrent();
     wxBrush brush = Application::memDC.GetBrush();
@@ -36,7 +36,7 @@ void Primitives::Rectangle::Draw(int x, int y, Color color)
 }
 
 
-void Primitives::HLine::Draw(int y, int x1, int x2, Color color)
+void Primitives::HLine::Draw(int y, int x1, int x2, const Color &color)
 {
     color.SetAsCurrent();
 

@@ -76,8 +76,7 @@ file(GLOB DISPLAY           ../../Device/src/Display/Colors.*
                                 ../../common/Display/Painter_.*
                                 ../../common/Display/Primitives_.*
                                 ../../common/Display/Text_.*
-                                         src/Display/Painter_win.cpp
-                                         src/Display/Primitives_win.cpp)
+                                         src/Display/*.*)
 file(GLOB DISPLAY_FONT          ../../common/Display/Font/*.*)
 file(GLOB LAN               ../../Device/src/LAN/LAN.h
                                          src/LAN/LAN_win.cpp
@@ -99,12 +98,14 @@ file(GLOB HARDWARE_HAL          ../../common/Hardware/HAL/HAL_.*
                                 ../../common/Hardware/HAL/HAL_PINS_.*
                                 ../../common/Hardware/HAL/HAL_ADC3_.cpp
                                 ../../common/Hardware/HAL/HAL_CRC_.cpp
-                                ../../common/Hardware/HAL/HAL_DAC_.cpp
+                                ../../common/Hardware/HAL/HAL_DAC2_.cpp
                                 ../../common/Hardware/HAL/HAL_EPROM_.cpp
                                 ../../common/Hardware/HAL/HAL_FMC_.cpp
                                 ../../common/Hardware/HAL/HAL_LTDC_.cpp
                                 ../../common/Hardware/HAL/HAL_OTP_.cpp
                                 ../../common/Hardware/HAL/HAL_RTC_.cpp
+                                ../../common/Hardware/HAL/HAL_SPI1_.cpp
+                                ../../common/Hardware/HAL/HAL_SPI5_.cpp
                                 ../../common/Hardware/HAL/HAL_TIM2_.cpp
                                 ../../common/Hardware/HAL/HAL_TIM6_.cpp
                                 ../../common/Hardware/HAL/HAL_TIM7_.cpp
@@ -115,9 +116,9 @@ file(GLOB MENU              ../../Device/src/Menu/*.h
                             ../../Device/src/Menu/*.cpp)
 file(GLOB MENU_ITEMS        ../../Device/src/Menu/Items/*.*)
 file(GLOB MENU_PAGES        ../../Device/src/Menu/Pages/*.*)
-file(GLOB PANEL             ../../Device/src/Panel/*.*
-                                         src/Panel/*.*
-                                ../../common/Keyboard/*.*)
+file(GLOB PANEL                 ../../common/Panel/Controls_.*
+                            ../../Device/src/Panel/*.*
+                                         src/Panel/*.*)
 file(GLOB SETTINGS          ../../Device/src/Settings/*.*)
 file(GLOB SRC                            src/main_win.cpp
                             ../../Device/src/defines.*

@@ -60,7 +60,7 @@ public:
 static Screen *screen = nullptr;
 
 
-void Painter::BeginScene(Color color)
+void Painter::BeginScene(const Color &color)
 {
     Application::memDC.SelectObject(bitmapScreen);
     wxBrush brush({ 0, 0, 0 }, wxTRANSPARENT);
@@ -77,7 +77,7 @@ void Painter::EndScene(bool)
 }
 
 
-void Color::SetAsCurrent()
+void Color::SetAsCurrent() const
 {
     if (index == Color::Count.index)
     {
