@@ -365,9 +365,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>75</LineNumber>
+          <LineNumber>72</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134233988</Address>
+          <Address>134233644</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -376,39 +376,23 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>&lt;1&gt;..\common\Hardware\HAL\HAL_SPI5_.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\S8_53M\../common/Hardware/HAL/HAL_SPI5_.cpp\75</Expression>
+          <Expression>\\S8_53M\../common/Hardware/HAL/HAL_SPI5_.cpp\72</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>61</LineNumber>
+          <LineNumber>60</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
+          <Address>134232846</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
+          <BreakIfRCount>1</BreakIfRCount>
           <Filename>&lt;1&gt;..\common\Hardware\HAL\HAL_SPI5_.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>73</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>&lt;1&gt;..\common\Hardware\HAL\HAL_SPI5_.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
+          <Expression>\\S8_53M\../common/Hardware/HAL/HAL_SPI5_.cpp\60</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -447,7 +431,7 @@
         <Mm>
           <WinNumber>1</WinNumber>
           <SubType>0</SubType>
-          <ItemText>buffer[10]</ItemText>
+          <ItemText>buffer</ItemText>
           <AccSizeX>0</AccSizeX>
         </Mm>
       </MemoryWindow1>

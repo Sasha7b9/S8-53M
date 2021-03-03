@@ -97,7 +97,7 @@ void HAL_PINS::InitSPI1()
 
 void HAL_PINS::SPI5_::Init()
 {
-    Pin pinNSS (PinMode::_Input, PinPort::_F, PinPin::_6);   // 24 NSS
+    Pin pinNSS (PinMode::_Input, PinPort::_F, PinPin::_6);  // 24 NSS
     Pin pinSCK (PinMode::_SPI5, PinPort::_F, PinPin::_7);   // 25 SCK
     Pin pinMISO(PinMode::_SPI5, PinPort::_F, PinPin::_8);   // 26 MISO
     Pin pinMOSI(PinMode::_SPI5, PinPort::_F, PinPin::_9);   // 27 MOSI
@@ -285,14 +285,14 @@ void Pin::Init()
         else
         {
             isGPIO.Mode = GPIO_MODE_AF_PP;
-            isGPIO.Speed = GPIO_SPEED_FAST;
+            isGPIO.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
             isGPIO.Alternate = GPIO_AF5_SPI1;
         }
     }
     else if (mode == PinMode::_SPI5)
     {
         isGPIO.Mode = GPIO_MODE_AF_PP;
-        isGPIO.Speed = GPIO_SPEED_FAST;
+        isGPIO.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
         isGPIO.Alternate = GPIO_AF5_SPI5;
     }
     else if (mode == PinMode::_FMC)
