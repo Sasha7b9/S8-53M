@@ -1034,6 +1034,11 @@
               <FileType>5</FileType>
               <FilePath>..\common\Display\Text_.h</FilePath>
             </File>
+            <File>
+              <FileName>Primitives_l.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\Primitives_l.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2210,6 +2215,11 @@
               <FileName>Text_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Display\Text_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Primitives_l.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\Primitives_l.cpp</FilePath>
             </File>
           </Files>
         </Group>
