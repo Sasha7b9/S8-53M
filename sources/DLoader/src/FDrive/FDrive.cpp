@@ -75,7 +75,7 @@ void FDrive_Init(void)
 
 bool FDrive_Update(void)
 {
-    USBH_Process(reinterpret_cast<USBH_HandleTypeDef *>(HAL_USBH::handle)); //-V2571
+    USBH_Process(reinterpret_cast<USBH_HandleTypeDef *>(HAL_USBH::handle));
     if (MainStruct::ms->drive.state == StateDisk::Start)
     {
         if (f_mount(&(MainStruct::ms->drive.USBDISKFatFS), (TCHAR const*)MainStruct::ms->drive.USBDISKPath, 0) == FR_OK) //-V2533

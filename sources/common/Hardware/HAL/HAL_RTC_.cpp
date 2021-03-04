@@ -24,7 +24,7 @@
 
 static RTC_HandleTypeDef handleRTC =
 {
-    RTC, //-V2571
+    RTC,
     {
         RTC_HOURFORMAT_24,          // HourFormat
         RTC_ASYNCH_PREDIV,          // AsynchPrediv

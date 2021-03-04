@@ -6,7 +6,7 @@
 
 static TIM_HandleTypeDef handleTIM6 =
 {
-    TIM6, //-V2571
+    TIM6,
     {
         119,                    // Init.Prescaler
         TIM_COUNTERMODE_UP,     // Init.CounterMode

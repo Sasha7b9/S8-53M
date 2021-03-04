@@ -17,7 +17,7 @@ enum Port
 };
 
 
-static const GPIO_TypeDef *ports[PinPort::Count] = { GPIOA, GPIOB, GPIOC, GPIOD, GPIOE, GPIOF, GPIOG, GPIOH, GPIOI }; //-V2571
+static const GPIO_TypeDef *ports[PinPort::Count] = { GPIOA, GPIOB, GPIOC, GPIOD, GPIOE, GPIOF, GPIOG, GPIOH, GPIOI };
 
 static const uint16 pins[16] =
 {
@@ -98,8 +98,8 @@ void HAL_PINS::FMC_::Init()
     PinFMC(D, 5).Init();        // 147 NWE
     PinFMC(D, 7).Init();        // 151 NE1
     PinFMC(G, 9).Init();        // 152 NE2
-    PinFMC(D, 14).Init();       //     D0
-    PinFMC(D, 15).Init();       //     D1
+    PinFMC(D, 14).Init();       // 104 D0
+    PinFMC(D, 15).Init();       // 105 D1
     PinFMC(D, 0).Init();        // 142 D2
     PinFMC(D, 1).Init();        // 143 D3
     PinFMC(E, 7).Init();        //  68 D4
@@ -111,30 +111,29 @@ void HAL_PINS::FMC_::Init()
     PinFMC(E, 13).Init();       //  76 D10
     PinFMC(E, 14).Init();       //  77 D11
     PinFMC(E, 15).Init();       //  78 D12
-    PinFMC(D, 8).Init();        //     D13
-    PinFMC(D, 9).Init();        //     D14
-    PinFMC(D, 10).Init();       //     D15
-    PinFMC(F, 0).Init();        //     A0
-    PinFMC(F, 1).Init();        //     A1
-    PinFMC(F, 2).Init();        //     A2
-    PinFMC(F, 3).Init();        //     A3
-    PinFMC(F, 4).Init();        //     A4
-    PinFMC(F, 5).Init();        //     A5
-    PinFMC(F, 12).Init();       //     A6
-    PinFMC(F, 13).Init();       //     A7
+    PinFMC(D, 8).Init();        //  96 D13
+    PinFMC(D, 9).Init();        //  97 D14
+    PinFMC(D, 10).Init();       //  98 D15
+    PinFMC(F, 0).Init();        //  16 A0
+    PinFMC(F, 1).Init();        //  17 A1
+    PinFMC(F, 2).Init();        //  18 A2
+    PinFMC(F, 3).Init();        //  19 A3
+    PinFMC(F, 4).Init();        //  20 A4
+    PinFMC(F, 5).Init();        //  21 A5
+    PinFMC(F, 12).Init();       //  60 A6
+    PinFMC(F, 13).Init();       //  63 A7
     PinFMC(F, 14).Init();       //  64 A8
     PinFMC(F, 15).Init();       //  65 A9
     PinFMC(G, 0).Init();        //  66 A10
     PinFMC(G, 1).Init();        //  67 A11
-    PinFMC(G, 2).Init();        //     A12
-    PinFMC(G, 3).Init();        //     A13
-    PinFMC(G, 4).Init();        //     A14
-    PinFMC(G, 5).Init();        //     A15
-    PinFMC(D, 11).Init();       //     A16
-    PinFMC(D, 12).Init();       //     A17
-    PinFMC(D, 13).Init();       //     A18
-    PinFMC(D, 3).Init();        //     A19
-    PinFMC(D, 4).Init();        //     A20
+    PinFMC(G, 2).Init();        // 106 A12
+    PinFMC(G, 3).Init();        // 107 A13
+    PinFMC(G, 4).Init();        // 108 A14
+    PinFMC(G, 5).Init();        // 109 A15
+    PinFMC(D, 11).Init();       //  99 A16
+    PinFMC(D, 12).Init();       // 100 A17
+    PinFMC(D, 13).Init();       // 101 A18
+    PinFMC(E, 3).Init();        //   2 A19
 }
 
 
@@ -318,29 +317,29 @@ void Pin::Init()
         isGPIO.Alternate = GPIO_AF14_LTDC;
     }
 
-    HAL_GPIO_Init(reinterpret_cast<GPIO_TypeDef *>(const_cast<GPIO_TypeDef *>(ports[port])), &isGPIO); //-V2571 //-V2567
+    HAL_GPIO_Init(reinterpret_cast<GPIO_TypeDef *>(const_cast<GPIO_TypeDef *>(ports[port])), &isGPIO); //-V2567
 }
 
 
 void Pin::Write(int state)
 {
-    HAL_GPIO_WritePin((GPIO_TypeDef *)ports[port], pins[pin], static_cast<GPIO_PinState>(state)); //-V2571
+    HAL_GPIO_WritePin((GPIO_TypeDef *)ports[port], pins[pin], static_cast<GPIO_PinState>(state));
 }
 
 
 void Pin::Set()
 {
-    HAL_GPIO_WritePin((GPIO_TypeDef *)ports[port], pins[pin], GPIO_PIN_SET); //-V2571
+    HAL_GPIO_WritePin((GPIO_TypeDef *)ports[port], pins[pin], GPIO_PIN_SET);
 }
 
 
 void Pin::Reset()
 {
-    HAL_GPIO_WritePin((GPIO_TypeDef *)ports[port], pins[pin], GPIO_PIN_RESET); //-V2571
+    HAL_GPIO_WritePin((GPIO_TypeDef *)ports[port], pins[pin], GPIO_PIN_RESET);
 }
 
 
 uint Pin::Read()
 {
-    return HAL_GPIO_ReadPin((GPIO_TypeDef *)ports[port], pins[pin]); //-V2571
+    return HAL_GPIO_ReadPin((GPIO_TypeDef *)ports[port], pins[pin]);
 }

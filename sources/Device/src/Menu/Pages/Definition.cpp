@@ -136,7 +136,7 @@ const Page *PageForButton(Key::E button)
         0                           // B_Power
     };
 
-    return reinterpret_cast<const Page *>(pages[button]); //-V2571
+    return reinterpret_cast<const Page *>(pages[button]);
 }
 
 

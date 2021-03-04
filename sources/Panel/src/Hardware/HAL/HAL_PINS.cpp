@@ -100,7 +100,7 @@ void HAL_PINS::Init()
 
 Pin::Pin(PinPort::E _port, PinPin::E _pin)
 {
-    static const GPIO_TypeDef *ports[2] = { GPIOA, GPIOB }; //-V2571
+    static const GPIO_TypeDef *ports[2] = { GPIOA, GPIOB };
 
     static const uint16 pins[16] =
     {
@@ -158,23 +158,23 @@ void Pin::Init(PinMode::E mode)
 
 void Pin::Write(uint state)
 {
-    HAL_GPIO_WritePin(reinterpret_cast<GPIO_TypeDef *>(port), pin, static_cast<GPIO_PinState>(state)); //-V2571
+    HAL_GPIO_WritePin(reinterpret_cast<GPIO_TypeDef *>(port), pin, static_cast<GPIO_PinState>(state));
 }
 
 
 void Pin::Set()
 {
-    HAL_GPIO_WritePin(reinterpret_cast<GPIO_TypeDef *>(port), pin, GPIO_PIN_SET); //-V2571
+    HAL_GPIO_WritePin(reinterpret_cast<GPIO_TypeDef *>(port), pin, GPIO_PIN_SET);
 }
 
 
 void Pin::Reset()
 {
-    HAL_GPIO_WritePin(reinterpret_cast<GPIO_TypeDef *>(port), pin, GPIO_PIN_RESET); //-V2571
+    HAL_GPIO_WritePin(reinterpret_cast<GPIO_TypeDef *>(port), pin, GPIO_PIN_RESET);
 }
 
 
 uint Pin::Read()
 {
-    return HAL_GPIO_ReadPin(reinterpret_cast<GPIO_TypeDef *>(port), pin); //-V2571
+    return HAL_GPIO_ReadPin(reinterpret_cast<GPIO_TypeDef *>(port), pin);
 }

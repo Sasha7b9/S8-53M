@@ -208,7 +208,7 @@ void DHCP_Process(struct netif *netif)
         }
         else
         {
-            dhcp = (struct dhcp *)netif_get_client_data(netif, LWIP_NETIF_CLIENT_DATA_INDEX_DHCP); //-V2571
+            dhcp = (struct dhcp *)netif_get_client_data(netif, LWIP_NETIF_CLIENT_DATA_INDEX_DHCP);
 
             /* DHCP timeout */
             if (dhcp->tries > MAX_DHCP_TRIES)

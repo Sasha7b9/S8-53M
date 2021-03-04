@@ -81,19 +81,19 @@ void DMA1_Stream5_IRQHandler()
 
 //void ADC_IRQHandler(void)
 //{
-//    HAL_ADC_IRQHandler(reinterpret_cast<ADC_HandleTypeDef *>(HAL_ADC3::handle)); //-V2571
+//    HAL_ADC_IRQHandler(reinterpret_cast<ADC_HandleTypeDef *>(HAL_ADC3::handle));
 //}
 //
 //
 //void OTG_HS_IRQHandler(void)
 //{
-//    HAL_HCD_IRQHandler(reinterpret_cast<HCD_HandleTypeDef *>(HAL_HCD::handle)); //-V2571
+//    HAL_HCD_IRQHandler(reinterpret_cast<HCD_HandleTypeDef *>(HAL_HCD::handle));
 //}
 //
 //
 //void OTG_FS_IRQHandler()
 //{
-//    HAL_PCD_IRQHandler(reinterpret_cast<PCD_HandleTypeDef *>(HAL_HCD::handle)); //-V2571
+//    HAL_PCD_IRQHandler(reinterpret_cast<PCD_HandleTypeDef *>(HAL_HCD::handle));
 //}
 
 #ifdef __cplusplus

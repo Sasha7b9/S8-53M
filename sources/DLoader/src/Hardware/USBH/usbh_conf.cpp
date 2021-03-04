@@ -64,7 +64,7 @@ static HCD_HandleTypeDef handleHCD;
     */
 void HAL_HCD_SOF_Callback(HCD_HandleTypeDef *hhcd)
 {
-    USBH_LL_IncTimer(reinterpret_cast<USBH_HandleTypeDef *>(hhcd->pData)); //-V2571
+    USBH_LL_IncTimer(reinterpret_cast<USBH_HandleTypeDef *>(hhcd->pData));
 }
 
 /**
@@ -74,7 +74,7 @@ void HAL_HCD_SOF_Callback(HCD_HandleTypeDef *hhcd)
   */
 void HAL_HCD_Connect_Callback(HCD_HandleTypeDef *hhcd)
 {
-    USBH_LL_Connect(reinterpret_cast<USBH_HandleTypeDef *>(hhcd->pData)); //-V2571
+    USBH_LL_Connect(reinterpret_cast<USBH_HandleTypeDef *>(hhcd->pData));
 }
 
 /**
@@ -84,7 +84,7 @@ void HAL_HCD_Connect_Callback(HCD_HandleTypeDef *hhcd)
   */
 void HAL_HCD_Disconnect_Callback(HCD_HandleTypeDef *hhcd)
 {
-    USBH_LL_Disconnect(reinterpret_cast<USBH_HandleTypeDef *>(hhcd->pData)); //-V2571
+    USBH_LL_Disconnect(reinterpret_cast<USBH_HandleTypeDef *>(hhcd->pData));
 }
 
 /**
@@ -94,7 +94,7 @@ void HAL_HCD_Disconnect_Callback(HCD_HandleTypeDef *hhcd)
   */
 void HAL_HCD_PortEnabled_Callback(HCD_HandleTypeDef *hhcd)
 {
-    USBH_LL_PortEnabled(reinterpret_cast<USBH_HandleTypeDef *>(hhcd->pData)); //-V2571
+    USBH_LL_PortEnabled(reinterpret_cast<USBH_HandleTypeDef *>(hhcd->pData));
 }
 
 
@@ -105,7 +105,7 @@ void HAL_HCD_PortEnabled_Callback(HCD_HandleTypeDef *hhcd)
   */
 void HAL_HCD_PortDisabled_Callback(HCD_HandleTypeDef *hhcd)
 {
-    USBH_LL_PortDisabled(reinterpret_cast<USBH_HandleTypeDef *>(hhcd->pData)); //-V2571
+    USBH_LL_PortDisabled(reinterpret_cast<USBH_HandleTypeDef *>(hhcd->pData));
 }
 
 /**
@@ -132,7 +132,7 @@ void HAL_HCD_HC_NotifyURBChange_Callback(HCD_HandleTypeDef *, uint8_t, HCD_URBSt
 USBH_StatusTypeDef USBH_LL_Init(USBH_HandleTypeDef *phost)
 {
     /* Set the LL driver parameters */
-    handleHCD.Instance = USB_OTG_FS; //-V2571
+    handleHCD.Instance = USB_OTG_FS;
     handleHCD.Init.Host_channels = 11;
     handleHCD.Init.dma_enable = 0;
     handleHCD.Init.low_power_enable = 0;
@@ -157,7 +157,7 @@ USBH_StatusTypeDef USBH_LL_Init(USBH_HandleTypeDef *phost)
   */
 USBH_StatusTypeDef USBH_LL_DeInit(USBH_HandleTypeDef *phost)
 {
-    HAL_HCD_DeInit(reinterpret_cast<HCD_HandleTypeDef *>(phost->pData)); //-V2571
+    HAL_HCD_DeInit(reinterpret_cast<HCD_HandleTypeDef *>(phost->pData));
     return USBH_OK;
 }
 
@@ -168,7 +168,7 @@ USBH_StatusTypeDef USBH_LL_DeInit(USBH_HandleTypeDef *phost)
   */
 USBH_StatusTypeDef USBH_LL_Start(USBH_HandleTypeDef *phost)
 {
-    HAL_HCD_Start(reinterpret_cast<HCD_HandleTypeDef *>(phost->pData)); //-V2571
+    HAL_HCD_Start(reinterpret_cast<HCD_HandleTypeDef *>(phost->pData));
     return USBH_OK;
 }
 
@@ -179,7 +179,7 @@ USBH_StatusTypeDef USBH_LL_Start(USBH_HandleTypeDef *phost)
   */
 USBH_StatusTypeDef USBH_LL_Stop(USBH_HandleTypeDef *phost)
 {
-    HAL_HCD_Stop(reinterpret_cast<HCD_HandleTypeDef *>(phost->pData)); //-V2571
+    HAL_HCD_Stop(reinterpret_cast<HCD_HandleTypeDef *>(phost->pData));
     return USBH_OK;
 }
 
@@ -192,7 +192,7 @@ USBH_SpeedTypeDef USBH_LL_GetSpeed(USBH_HandleTypeDef *phost)
 {
     USBH_SpeedTypeDef speed = USBH_SPEED_FULL;
 
-    switch (HAL_HCD_GetCurrentSpeed(reinterpret_cast<HCD_HandleTypeDef *>(phost->pData))) //-V2571
+    switch (HAL_HCD_GetCurrentSpeed(reinterpret_cast<HCD_HandleTypeDef *>(phost->pData)))
     {
     case 0:
         speed = USBH_SPEED_HIGH;
@@ -219,7 +219,7 @@ USBH_SpeedTypeDef USBH_LL_GetSpeed(USBH_HandleTypeDef *phost)
   */
 USBH_StatusTypeDef USBH_LL_ResetPort(USBH_HandleTypeDef *phost)
 {
-    HAL_HCD_ResetPort(reinterpret_cast<HCD_HandleTypeDef *>(phost->pData)); //-V2571
+    HAL_HCD_ResetPort(reinterpret_cast<HCD_HandleTypeDef *>(phost->pData));
     return USBH_OK;
 }
 
@@ -231,7 +231,7 @@ USBH_StatusTypeDef USBH_LL_ResetPort(USBH_HandleTypeDef *phost)
   */
 uint32_t USBH_LL_GetLastXferSize(USBH_HandleTypeDef *phost, uint8_t pipe)
 {
-    return HAL_HCD_HC_GetXferCount(reinterpret_cast<HCD_HandleTypeDef *>(phost->pData), pipe); //-V2571
+    return HAL_HCD_HC_GetXferCount(reinterpret_cast<HCD_HandleTypeDef *>(phost->pData), pipe);
 }
 
 /**
@@ -253,7 +253,7 @@ USBH_StatusTypeDef USBH_LL_OpenPipe(USBH_HandleTypeDef *phost,
                                     uint8_t ep_type,
                                     uint16_t mps)
 {
-    HAL_HCD_HC_Init(reinterpret_cast<HCD_HandleTypeDef *>(phost->pData), //-V2571
+    HAL_HCD_HC_Init(reinterpret_cast<HCD_HandleTypeDef *>(phost->pData),
                     pipe,
                     epnum,
                     dev_address,
@@ -271,7 +271,7 @@ USBH_StatusTypeDef USBH_LL_OpenPipe(USBH_HandleTypeDef *phost,
   */
 USBH_StatusTypeDef USBH_LL_ClosePipe(USBH_HandleTypeDef *phost, uint8_t pipe)
 {
-    HAL_HCD_HC_Halt(reinterpret_cast<HCD_HandleTypeDef *>(phost->pData), pipe); //-V2571
+    HAL_HCD_HC_Halt(reinterpret_cast<HCD_HandleTypeDef *>(phost->pData), pipe);
     return USBH_OK;
 }
 
@@ -311,7 +311,7 @@ USBH_StatusTypeDef USBH_LL_SubmitURB(USBH_HandleTypeDef *phost,
                                      uint16_t length,
                                      uint8_t do_ping)
 {
-    HAL_HCD_HC_SubmitRequest(reinterpret_cast<HCD_HandleTypeDef *>(phost->pData), //-V2571
+    HAL_HCD_HC_SubmitRequest(reinterpret_cast<HCD_HandleTypeDef *>(phost->pData),
                              pipe,
                              direction,
                              ep_type,
@@ -338,7 +338,7 @@ USBH_StatusTypeDef USBH_LL_SubmitURB(USBH_HandleTypeDef *phost,
   */
 USBH_URBStateTypeDef USBH_LL_GetURBState(USBH_HandleTypeDef *phost, uint8_t pipe)
 {
-    return (USBH_URBStateTypeDef)HAL_HCD_HC_GetURBState(reinterpret_cast<HCD_HandleTypeDef *>(phost->pData), pipe); //-V2533 //-V2571
+    return (USBH_URBStateTypeDef)HAL_HCD_HC_GetURBState(reinterpret_cast<HCD_HandleTypeDef *>(phost->pData), pipe); //-V2533
 }
 
 /**
@@ -354,11 +354,11 @@ USBH_StatusTypeDef USBH_LL_DriverVBUS(USBH_HandleTypeDef *, uint8_t state)
 {
     if (state == 0)
     {
-        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_SET); //-V2571
+        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_SET);
     }
     else
     {
-        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_RESET); //-V2571
+        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_RESET);
     }
 
     HAL_Delay(200);

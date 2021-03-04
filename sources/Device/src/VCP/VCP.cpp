@@ -97,7 +97,7 @@ void VCP::SendFormatStringAsynch(char *format, ...)
     static const int SIZE_BUFFER = 200;
     static char buffer[SIZE_BUFFER];
     std::va_list args;
-    va_start(args, format); //-V2563 //-V2567 //-V2571
+    va_start(args, format); //-V2563 //-V2567
     std::vsprintf(buffer, format, args);
     va_end(args);
     std::strcat(buffer, "\n"); //-V2513
@@ -108,7 +108,7 @@ void VCP::SendFormatStringSynch(char *format, ...) {
     static const int SIZE_BUFFER = 200;
     char buffer[SIZE_BUFFER];
     std::va_list args;
-    va_start(args, format); //-V2563 //-V2567 //-V2571
+    va_start(args, format); //-V2563 //-V2567
     std::vsprintf(buffer, format, args);
     va_end(args);
     std::strcat(buffer, "\n"); //-V2513

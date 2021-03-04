@@ -13,7 +13,7 @@ static uint backBuffer = 0;
 
 void HAL_LTDC::Init(uint8 *front, uint8 *back)
 {
-    handleLTDC.Instance = LTDC; //-V2571
+    handleLTDC.Instance = LTDC;
     handleLTDC.Init.HSPolarity = LTDC_HSPOLARITY_AL;
     handleLTDC.Init.VSPolarity = LTDC_VSPOLARITY_AL;
     handleLTDC.Init.DEPolarity = LTDC_DEPOLARITY_AL;
@@ -77,8 +77,8 @@ void HAL_LTDC::LoadPalette()
 
 void HAL_LTDC::SetBuffers(uint8 *front, uint8 *back)
 {
-    frontBuffer = reinterpret_cast<uint>(front); //-V2571
-    backBuffer = reinterpret_cast<uint>(back); //-V2571
+    frontBuffer = reinterpret_cast<uint>(front);
+    backBuffer = reinterpret_cast<uint>(back);
 
     LTDC_LayerCfgTypeDef pLayerCfg;
 
@@ -120,7 +120,7 @@ void HAL_LTDC::ToggleBuffers()
     hDMA2D.LayerCfg[1].InputColorMode = LTDC_PIXEL_FORMAT_L8;
     hDMA2D.LayerCfg[1].InputOffset = 0;
 
-    hDMA2D.Instance = DMA2D; //-V2571
+    hDMA2D.Instance = DMA2D;
 
     if (HAL_DMA2D_Init(&hDMA2D) == HAL_OK)
     {

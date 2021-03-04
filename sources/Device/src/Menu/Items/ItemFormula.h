@@ -30,7 +30,7 @@ class Formula : public Item
 public:
     Formula(const DataItem *const data) : Item(data) {};
     const DataFormula *OwnData() const {
-        return reinterpret_cast<const DataFormula *>(data->ad); //-V2571
+        return reinterpret_cast<const DataFormula *>(data->ad);
     }
     virtual void Draw(int x, int y, bool opened = false) const;
 private:

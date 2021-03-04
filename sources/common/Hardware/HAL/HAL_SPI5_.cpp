@@ -7,7 +7,7 @@
 
 static SPI_HandleTypeDef handleSPI5 =       // Для связи с панелью
 {
-    SPI5, //-V2571
+    SPI5,
     {
         SPI_MODE_SLAVE,                 // Init.Mode
         SPI_DIRECTION_2LINES,           // Init.Direction

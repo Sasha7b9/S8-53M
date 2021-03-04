@@ -22,7 +22,7 @@ public:
     };
     Page(const DataItem *const data, int8 *subPage, int8 *actItem, bool *opened) : Item(data), currentSubPage(subPage), posActItem(actItem), actItemIsOpened(opened) {};
     const DataPage *OwnData() const {
-        return static_cast<const DataPage *>(data->ad); //-V2571
+        return static_cast<const DataPage *>(data->ad);
     }
     virtual void Draw(int x, int y, bool opened = false) const;
     NamePage::E GetName() const;

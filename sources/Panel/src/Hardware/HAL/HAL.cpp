@@ -10,11 +10,11 @@ void HAL::Init()
 {
     HAL_Init();
 
-    __HAL_RCC_SYSCFG_CLK_ENABLE(); //-V2571
-    __HAL_RCC_PWR_CLK_ENABLE(); //-V2571
-    __HAL_RCC_GPIOA_CLK_ENABLE(); //-V2571
-    __HAL_RCC_GPIOB_CLK_ENABLE(); //-V2571
-    __HAL_RCC_SPI2_CLK_ENABLE(); //-V2571
+    __HAL_RCC_SYSCFG_CLK_ENABLE();
+    __HAL_RCC_PWR_CLK_ENABLE();
+    __HAL_RCC_GPIOA_CLK_ENABLE();
+    __HAL_RCC_GPIOB_CLK_ENABLE();
+    __HAL_RCC_SPI2_CLK_ENABLE();
 
     SystemClock_Config();
 
@@ -27,7 +27,7 @@ void HAL::Init()
 static void SystemClock_Config()
 {
     // Configure the main internal regulator output voltage
-    __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1); //-V2571
+    __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
 
     // Initializes the RCC Oscillators according to the specified parameters in the RCC_OscInitTypeDef structure.
     RCC_OscInitTypeDef RCC_OscInitStruct = { 0 };

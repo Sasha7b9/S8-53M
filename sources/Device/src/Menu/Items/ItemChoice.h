@@ -16,7 +16,7 @@ public:
     Choice(const DataItem *const data) : Item(data) {};
 
     const DataChoice *OwnData() const {
-        return static_cast<const DataChoice *>(data->ad); //-V2571
+        return static_cast<const DataChoice *>(data->ad);
     }
 
     const char *NameSubItem(int i) const;

@@ -68,11 +68,11 @@ bool EPROM::LoadSettings(void)
         PrepareSectorForData();
     }
     
-    if(READ_WORD(ADDR_SECTOR_SETTINGS) == 0x12345) //-V2571
+    if(READ_WORD(ADDR_SECTOR_SETTINGS) == 0x12345)
     {
         EraseSector(ADDR_SECTOR_SETTINGS);
     }
-    else if (READ_WORD(ADDR_SECTOR_SETTINGS) == MARK_OF_FILLED)                             // Если старый алгоритм хранения настроек //-V2571
+    else if (READ_WORD(ADDR_SECTOR_SETTINGS) == MARK_OF_FILLED)                             // Если старый алгоритм хранения настроек
     {
         RecordConfig *record = RecordConfigForRead();
         if (record->sizeData + record->addrData >= (ADDR_SECTOR_SETTINGS + SIZE_SECTOR_SETTINGS))   // Если последние сохранённые настройки выходят
@@ -87,16 +87,16 @@ bool EPROM::LoadSettings(void)
     {
         uint addressPrev = 0;
         uint address = ADDR_SECTOR_SETTINGS;
-        while (READ_WORD(address) != MAX_UINT)  // Пока по этому адресу есть значение, отличное от (-1) (сюда производилась запись) //-V2571
+        while (READ_WORD(address) != MAX_UINT)  // Пока по этому адресу есть значение, отличное от (-1) (сюда производилась запись)
         {
             addressPrev = address;              // сохраняем этот адрес
-            address += READ_WORD(address);      // И переходим к следующему прибавлением значения, хранящегося по этому адресу (первый элемент //-V2571
+            address += READ_WORD(address);      // И переходим к следующему прибавлением значения, хранящегося по этому адресу (первый элемент
         }                                       // структуры Settings - её размер. Все настройки хранятся последовательно в памяти, одна структура
                                                 // за другой
         
         if (addressPrev != 0)                   // Если по этому адресу что-то записано
         {
-            std::memcpy(&set, reinterpret_cast<const void *>(addressPrev), static_cast<uint>(READ_WORD(addressPrev)));    // Счтываем сохранённые настройки //-V2571
+            std::memcpy(&set, reinterpret_cast<const void *>(addressPrev), static_cast<uint>(READ_WORD(addressPrev)));    // Счтываем сохранённые настройки
             return true;
         }
     }
@@ -109,7 +109,7 @@ void EPROM::WriteAddressDataInRecord(RecordConfig *record)
 {
     uint address = (record == FirstRecord()) ? ADDR_FIRST_SET : (record - 1)->addrData + (record - 1)->sizeData; //-V2563
 
-    HAL_EPROM::WriteWord(reinterpret_cast<uint>(&record->addrData), address); //-V2571
+    HAL_EPROM::WriteWord(reinterpret_cast<uint>(&record->addrData), address);
 }
 
 
@@ -126,9 +126,9 @@ void EPROM::SaveSettings(bool verifyLoadede)
 
     uint address = ADDR_SECTOR_SETTINGS;                                        // Находим первый свободный байт
 
-    while (READ_WORD(address) != MAX_UINT) //-V2571
+    while (READ_WORD(address) != MAX_UINT)
     {
-        address += READ_WORD(address); //-V2571
+        address += READ_WORD(address);
     }
                                                                                 // В этой точке address указывает на первый незаписанный байт
 
@@ -144,7 +144,7 @@ void EPROM::SaveSettings(bool verifyLoadede)
 
 bool EPROM::TheFirstInclusion()
 {
-    return READ_WORD(ADDR_SECTOR_SETTINGS) == MAX_UINT; //-V2571
+    return READ_WORD(ADDR_SECTOR_SETTINGS) == MAX_UINT;
 }
 
 
@@ -162,13 +162,13 @@ RecordConfig* EPROM::RecordConfigForRead()
 
 RecordConfig *EPROM::FirstRecord()
 {
-    return (RecordConfig*)ADDR_ARRAY_POINTERS; //-V2571
+    return (RecordConfig*)ADDR_ARRAY_POINTERS;
 }
 
 
 bool EPROM::RecordExist()
 {
-    return READ_WORD(ADDR_ARRAY_POINTERS) != MAX_UINT; //-V2571
+    return READ_WORD(ADDR_ARRAY_POINTERS) != MAX_UINT;
 }
 
 
@@ -212,9 +212,9 @@ uint EPROM::FindAddressNextDataInfo()
 {
     uint addressNextInfo = startDataInfo + MAX_NUM_SAVED_WAVES * 4;
 
-    while (*(reinterpret_cast<uint*>(addressNextInfo)) != 0xffffffffU) //-V2571
+    while (*(reinterpret_cast<uint*>(addressNextInfo)) != 0xffffffffU)
     {
-        addressNextInfo = *(reinterpret_cast<uint*>(addressNextInfo)) + MAX_NUM_SAVED_WAVES * 4; //-V2571
+        addressNextInfo = *(reinterpret_cast<uint*>(addressNextInfo)) + MAX_NUM_SAVED_WAVES * 4;
     }
 
     return addressNextInfo;
@@ -233,7 +233,7 @@ void EPROM::GetDataInfo(bool existData[MAX_NUM_SAVED_WAVES])
 
     for (int i = 0; i < MAX_NUM_SAVED_WAVES; i++)
     {
-        existData[i] = READ_WORD(address + i * 4) != 0; //-V2571
+        existData[i] = READ_WORD(address + i * 4) != 0;
     }
 }
 
@@ -241,7 +241,7 @@ void EPROM::GetDataInfo(bool existData[MAX_NUM_SAVED_WAVES])
 bool EPROM::ExistData(int num)
 {
     uint address = FindActualDataInfo();
-    return READ_WORD(address + num * 4) != 0; //-V2571
+    return READ_WORD(address + num * 4) != 0;
 }
 
 
@@ -288,29 +288,29 @@ void EPROM::CompactMemory()
     uint dataInfoRel = FindActualDataInfo() - ADDR_SECTOR_DATA_MAIN;
 
     EraseSector(ADDR_SECTOR_DATA_HELP);
-    HAL_EPROM::WriteBufferBytes(ADDR_SECTOR_DATA_HELP, reinterpret_cast<uint8*>(ADDR_SECTOR_DATA_MAIN), 1024 * 128); //-V566 //-V2571
+    HAL_EPROM::WriteBufferBytes(ADDR_SECTOR_DATA_HELP, reinterpret_cast<uint8*>(ADDR_SECTOR_DATA_MAIN), 1024 * 128); //-V566
     PrepareSectorForData();
 
     uint addressDataInfo = ADDR_SECTOR_DATA_HELP + dataInfoRel;
 
     for (int i = 0; i < MAX_NUM_SAVED_WAVES; i++)
     {
-        uint addrDataOld = READ_WORD(addressDataInfo + i * 4); //-V2571
+        uint addrDataOld = READ_WORD(addressDataInfo + i * 4);
         if (addrDataOld != 0)
         {
             uint addrDataNew = addrDataOld + 1024 * 128;
-            DataSettings *ds = reinterpret_cast<DataSettings*>(addrDataNew); //-V2571
+            DataSettings *ds = reinterpret_cast<DataSettings*>(addrDataNew);
             addrDataNew += sizeof(DataSettings);
             uint8 *data0 = 0;
             uint8 *data1 = 0;
             if (ds->enableCh0 == 1)
             {
-                data0 = reinterpret_cast<uint8*>(addrDataNew); //-V2571
+                data0 = reinterpret_cast<uint8*>(addrDataNew);
                 addrDataNew += ds->length1channel;
             }
             if (ds->enableCh1 == 1)
             {
-                data1 = reinterpret_cast<uint8*>(addrDataNew); //-V2571
+                data1 = reinterpret_cast<uint8*>(addrDataNew);
             }
             EPROM::SaveData(i, ds, data0, data1);
         }
@@ -391,7 +391,7 @@ void EPROM::SaveData(int num, DataSettings *ds, uint8 *data0, uint8 *data1)
         }
         else
         {
-            HAL_EPROM::WriteWord(addressForWrite, READ_WORD(addrDataInfo + i * 4)); //-V2571
+            HAL_EPROM::WriteWord(addressForWrite, READ_WORD(addrDataInfo + i * 4));
         }
     }
 }
@@ -400,7 +400,7 @@ void EPROM::SaveData(int num, DataSettings *ds, uint8 *data0, uint8 *data1)
 bool EPROM::GetData(int num, DataSettings **ds, uint8 **data0, uint8 **data1)
 {
     uint addrDataInfo = FindActualDataInfo();
-    if (READ_WORD(addrDataInfo + 4 * num) == 0) //-V2571
+    if (READ_WORD(addrDataInfo + 4 * num) == 0)
     {
         *ds = 0;
         *data0 = 0;
@@ -408,12 +408,12 @@ bool EPROM::GetData(int num, DataSettings **ds, uint8 **data0, uint8 **data1)
         return false;
     }
 
-    uint addrDS = READ_WORD(addrDataInfo + 4 * num); //-V2571
+    uint addrDS = READ_WORD(addrDataInfo + 4 * num);
 
     uint addrData0 = 0;
     uint addrData1 = 0;
 
-    *ds = reinterpret_cast<DataSettings*>(addrDS); //-V2571
+    *ds = reinterpret_cast<DataSettings*>(addrDS);
     
     if ((*ds)->enableCh0 == 1)
     {
@@ -432,8 +432,8 @@ bool EPROM::GetData(int num, DataSettings **ds, uint8 **data0, uint8 **data1)
         }
     }
 
-    *data0 = reinterpret_cast<uint8*>(addrData0); //-V2571
-    *data1 = reinterpret_cast<uint8*>(addrData1); //-V2571
+    *data0 = reinterpret_cast<uint8*>(addrData0);
+    *data1 = reinterpret_cast<uint8*>(addrData1);
     
     return true;
 }

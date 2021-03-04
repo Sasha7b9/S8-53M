@@ -23,7 +23,7 @@ void HAL_ADC3::Init()
     HAL_NVIC_SetPriority(ADC_IRQn, 5, 0);
     HAL_NVIC_EnableIRQ(ADC_IRQn);
     
-    hADC.Instance = ADC3; //-V2571
+    hADC.Instance = ADC3;
     hADC.Init.ClockPrescaler = ADC_CLOCKPRESCALER_PCLK_DIV2;
     hADC.Init.Resolution = ADC_RESOLUTION12b;
     hADC.Init.DataAlign = ADC_DATAALIGN_RIGHT;

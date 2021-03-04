@@ -3,7 +3,7 @@
 #include <stm32f4xx_hal.h>
 
 
-static DAC_HandleTypeDef handleDAC = { DAC }; //-V2571
+static DAC_HandleTypeDef handleDAC = { DAC };
 void *HAL_DAC2::handle = &handleDAC;
 
 
@@ -16,7 +16,7 @@ void HAL_DAC2::Init()
 
     static DMA_HandleTypeDef hdmaDAC2 =
     {
-        DMA1_Stream5, //-V2571
+        DMA1_Stream5,
         {
             DMA_CHANNEL_7,
             DMA_MEMORY_TO_PERIPH,
