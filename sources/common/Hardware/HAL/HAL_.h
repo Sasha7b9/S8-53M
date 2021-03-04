@@ -116,11 +116,8 @@ struct HAL_FMC
 {
     static uint8 * const ADDR_FPGA;     // Адрес записи в альтеру
     static uint8 * const ADDR_RAM;      // Адрес записи в RAM
-    static uint8 * const ADDR_NULL;
 
     static void Init(void);
-
-    static void Test();
 
     static uint8 Read(pUCHAR const address);
 

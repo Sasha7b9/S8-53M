@@ -11,8 +11,6 @@ int main(void)
     while(1)
     {
         // Device::Update();
-        // Panel::Draw();
-
-        HAL_FMC::Test();
+        Panel::Draw();
     }
 }

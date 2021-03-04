@@ -365,18 +365,18 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>623</LineNumber>
+          <LineNumber>147</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134226862</Address>
+          <Address>134282106</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dac.c</Filename>
+          <Filename>&lt;1&gt;..\common\Hardware\HAL\HAL_FMC_.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\S8_53M\../common/STM32Cube_F4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dac.c\623</Expression>
+          <Expression>\\S8_53M\../common/Hardware/HAL/HAL_FMC_.cpp\147</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -410,6 +410,11 @@
           <WinNumber>1</WinNumber>
           <ItemText>value</ItemText>
         </Ww>
+        <Ww>
+          <count>6</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>time,0x0A</ItemText>
+        </Ww>
       </WatchWindow1>
       <MemoryWindow1>
         <Mm>
@@ -423,7 +428,7 @@
         <Mm>
           <WinNumber>2</WinNumber>
           <SubType>0</SubType>
-          <ItemText>buffer</ItemText>
+          <ItemText>answer</ItemText>
           <AccSizeX>0</AccSizeX>
         </Mm>
       </MemoryWindow2>

@@ -4,13 +4,12 @@
 #include "Utils/GlobalFunctions.h"
 #include "common/Hardware/Timer_.h"
 #include <stm32f4xx_hal.h>
+#include <cstdlib>
 
 
 static const uint ADDR_BANK = 0x60000000;
-
-uint8 *const HAL_FMC::ADDR_RAM   = (reinterpret_cast<uint8 *>(ADDR_BANK + 0x00c80000));
-uint8 * const HAL_FMC::ADDR_FPGA = (reinterpret_cast<uint8 *>(ADDR_BANK + 0x00c80000));  // Адрес записи в аппаратные регистры.
-uint8 * const HAL_FMC::ADDR_NULL = (reinterpret_cast<uint8 *>(ADDR_BANK + 0x00a00000));
+uint8 * const HAL_FMC::ADDR_FPGA = (reinterpret_cast<uint8 *>(ADDR_BANK + 0x00000000));  // Адрес записи в аппаратные регистры.
+uint8 * const HAL_FMC::ADDR_RAM  = (reinterpret_cast<uint8 *>(ADDR_BANK + 0x04000000));
 
 
 uint8 HAL_FMC::Read(pUCHAR const address)
@@ -115,37 +114,17 @@ void HAL_FMC::InitRAM()
 
     static const FMC_NORSRAM_TimingTypeDef sramTiming =
     {
-        0,                 // FSMC_AddressSetupTime
-        0,                 // FSMC_AddressHoldTime
-        6,                 // FSMC_DataSetupTime   При значении 9 32кБ записываются в RAM за 1000мкс. Уменьшение
+        1,                 // FSMC_AddressSetupTime
+        1,                 // FSMC_AddressHoldTime
+        2,                 // FSMC_DataSetupTime   При значении 9 32кБ записываются в RAM за 1000мкс. Уменьшение
                            // на одну единцу уменьшает этот параметр на 90 мкс. Если 3 - 32кБ запишутся за 460 мкс.
-        0,                 // FSMC_BusTurnAroundDuration
-        0,                 // FSMC_CLKDivision
-        0,                 // FSMC_DataLatency
+        1,                 // FSMC_BusTurnAroundDuration
+        1,                 // FSMC_CLKDivision
+        1,                 // FSMC_DataLatency
         FMC_ACCESS_MODE_C  // FSMC_AccessMode
     };
 
     FMC_NORSRAM_TimingTypeDef *timing = const_cast<FMC_NORSRAM_TimingTypeDef *>(&sramTiming); //-V2567
 
     HAL_SRAM_Init(&gSramHandle, timing, timing);
-}
-
-
-void HAL_FMC::Test()
-{
-    uint8 *address = (uint8 *)0x60000000;
-
-    uint8 value = 0xfa;
-
-    while (address < (uint8 *)((uint)(-1)))
-    {
-        *address = value;
-
-        if (*address == value)
-        {
-            value = value;
-        }
-    }
-
-    value = value;
 }
