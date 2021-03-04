@@ -27,7 +27,7 @@ void HAL_FMC::Write(uint8 * const address, uint8 value)
 
 void HAL_FMC::Init()
 {
-    InitFPGA();
+//    InitFPGA();
 
     InitRAM();
 }
@@ -85,6 +85,13 @@ void HAL_FMC::InitFPGA()
 
 void HAL_FMC::InitRAM()
 {
+    // RAM состоит из 1МБ памяти
+    // ША - A0...A18, ШД - D0...D15
+
+    __FMC_CLK_ENABLE();
+
+    HAL_PINS::FMC_::Init();
+
     static SRAM_HandleTypeDef gSramHandle =
     {
         FMC_NORSRAM_DEVICE, //-V2571

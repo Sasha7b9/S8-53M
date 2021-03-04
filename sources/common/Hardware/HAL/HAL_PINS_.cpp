@@ -92,6 +92,52 @@ void HAL_PINS::DAC2_::Init()
 }
 
 
+void HAL_PINS::FMC_::Init()
+{
+    PinFMC(D, 4).Init();        // 146 NOE
+    PinFMC(D, 5).Init();        // 147 NWE
+    PinFMC(D, 7).Init();        // 151 NE1
+    PinFMC(G, 9).Init();        // 152 NE2
+    PinFMC(D, 14).Init();       //     D0
+    PinFMC(D, 15).Init();       //     D1
+    PinFMC(D, 0).Init();        // 142 D2
+    PinFMC(D, 1).Init();        // 143 D3
+    PinFMC(E, 7).Init();        //  68 D4
+    PinFMC(E, 8).Init();        //  69 D5
+    PinFMC(E, 9).Init();        //  70 D6
+    PinFMC(E, 10).Init();       //  73 D7
+    PinFMC(E, 11).Init();       //  74 D8
+    PinFMC(E, 12).Init();       //  75 D9
+    PinFMC(E, 13).Init();       //  76 D10
+    PinFMC(E, 14).Init();       //  77 D11
+    PinFMC(E, 15).Init();       //  78 D12
+    PinFMC(D, 8).Init();        //     D13
+    PinFMC(D, 9).Init();        //     D14
+    PinFMC(D, 10).Init();       //     D15
+    PinFMC(F, 0).Init();        //     A0
+    PinFMC(F, 1).Init();        //     A1
+    PinFMC(F, 2).Init();        //     A2
+    PinFMC(F, 3).Init();        //     A3
+    PinFMC(F, 4).Init();        //     A4
+    PinFMC(F, 5).Init();        //     A5
+    PinFMC(F, 12).Init();       //     A6
+    PinFMC(F, 13).Init();       //     A7
+    PinFMC(F, 14).Init();       //  64 A8
+    PinFMC(F, 15).Init();       //  65 A9
+    PinFMC(G, 0).Init();        //  66 A10
+    PinFMC(G, 1).Init();        //  67 A11
+    PinFMC(G, 2).Init();        //     A12
+    PinFMC(G, 3).Init();        //     A13
+    PinFMC(G, 4).Init();        //     A14
+    PinFMC(G, 5).Init();        //     A15
+    PinFMC(D, 11).Init();       //     A16
+    PinFMC(D, 12).Init();       //     A17
+    PinFMC(D, 13).Init();       //     A18
+    PinFMC(D, 3).Init();        //     A19
+    PinFMC(D, 4).Init();        //     A20
+}
+
+
 void HAL_PINS::SPI1_::Init()
 {
     PinSPI1(A, 5).Init();   // SCK
@@ -151,48 +197,6 @@ void HAL_PINS::Init()
 //    PinETH(C, 5).Init();        // RXD1
 //    PinETH(B, 12).Init();       // TXD0
 //    PinETH(G, 14).Init();       // TXD1
-
-//    PinFMC(D, 4).Init();        // NOE
-//    PinFMC(D, 5).Init();        // NWE
-//    PinFMC(D, 7).Init();        // NE1
-//    PinFMC(G, 9).Init();        // NE2
-//    PinFMC(D, 14).Init();       // D0
-//    PinFMC(D, 15).Init();       // D1
-//    PinFMC(D, 0).Init();        // D2
-//    PinFMC(D, 1).Init();        // D3
-//    PinFMC(E, 7).Init();        // D4
-//    PinFMC(E, 8).Init();        // D5
-//    PinFMC(E, 9).Init();        // D6
-//    PinFMC(E, 10).Init();       // D7
-//    PinFMC(E, 11).Init();       // D8
-//    PinFMC(E, 12).Init();       // D9
-//    PinFMC(E, 13).Init();       // D10
-//    PinFMC(E, 14).Init();       // D11
-//    PinFMC(E, 15).Init();       // D12
-//    PinFMC(D, 8).Init();        // D13
-//    PinFMC(D, 9).Init();        // D14
-//    PinFMC(D, 10).Init();       // D15
-//    PinFMC(F, 0).Init();        // A0
-//    PinFMC(F, 1).Init();        // A1
-//    PinFMC(F, 2).Init();        // A2
-//    PinFMC(F, 3).Init();        // A3
-//    PinFMC(F, 4).Init();        // A4
-//    PinFMC(F, 5).Init();        // A5
-//    PinFMC(F, 12).Init();       // A6
-//    PinFMC(F, 13).Init();       // A7
-//    PinFMC(F, 14).Init();       // A8
-//    PinFMC(F, 15).Init();       // A9
-//    PinFMC(G, 0).Init();        // A10
-//    PinFMC(G, 1).Init();        // A11
-//    PinFMC(G, 2).Init();        // A12
-//    PinFMC(G, 3).Init();        // A13
-//    PinFMC(G, 4).Init();        // A14
-//    PinFMC(G, 5).Init();        // A15
-//    PinFMC(D, 11).Init();       // A16
-//    PinFMC(D, 12).Init();       // A17
-//    PinFMC(D, 13).Init();       // A18
-//    PinFMC(D, 3).Init();        // A19
-//    PinFMC(D, 4).Init();        // A20
 
     Pin(PinMode::_DAC1, PinPort::_A, PinPin::_4).Init();        // PWM
 

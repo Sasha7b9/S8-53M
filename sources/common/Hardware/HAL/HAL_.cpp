@@ -38,7 +38,7 @@ void HAL::Init()
 //
 //    HAL_TIM6::Init();
 
-//    HAL_FMC::Init();
+    HAL_FMC::Init();
 
 
     HAL_TIM2::Init();

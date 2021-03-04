@@ -111,6 +111,7 @@ struct HAL_ETH
 };
 
 
+// Используется для связи с FPGA и RAM
 struct HAL_FMC 
 {
     static uint8 * const ADDR_FPGA;     // Адрес записи в альтеру

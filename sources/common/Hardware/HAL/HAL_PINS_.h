@@ -5,11 +5,13 @@ namespace HAL_PINS
 {
     void Init();
 
-    namespace DAC2_ { void Init(); };
+    namespace DAC2_ { void Init(); }
+
+    namespace FMC_  { void Init(); }
 
     namespace SPI1_ { void Init(); }
 
-    namespace SPI5_ { void Init(); };
+    namespace SPI5_ { void Init(); }
 };
 
 
