@@ -106,8 +106,8 @@ file(GLOB MENU                 src/Menu/*.h
                                src/Menu/*.cpp)
 file(GLOB MENU_ITEMS           src/Menu/Items/*)
 file(GLOB MENU_PAGES           src/Menu/Pages/*)
-file(GLOB PANEL                src/Panel/*
-                         ../common/Keyboard/Controls_c.*)
+file(GLOB PANEL          ../common/Panel/*.*
+                               src/Panel/*)
 file(GLOB SETTINGS             src/Settings/*
                          ../common/Settings/cSettingsTypes.h)
 file(GLOB UTILS                src/Utils/*

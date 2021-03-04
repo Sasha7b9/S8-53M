@@ -38,4 +38,6 @@ public:
 
     // Эта функция должна вызываться из приёмной фунции SPI5
     static void CallbackOnReceiveSPI5(uint8 *data, int size);
+
+    static void Draw();
 };

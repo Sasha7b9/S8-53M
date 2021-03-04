@@ -1,6 +1,8 @@
 #include "defines.h"
 #include "device.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "Panel/Panel.h"
+
 
 int main(void)
 {    
@@ -8,6 +10,7 @@ int main(void)
     
     while(1)
     {
-        Device::Update();
+        //Device::Update();
+        Panel::Draw();
     }
 }

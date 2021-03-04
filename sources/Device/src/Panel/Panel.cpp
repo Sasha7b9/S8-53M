@@ -774,10 +774,3 @@ static void SetRight()
 {
     Menu::Event::RotateRegSetRight();
 }
-
-
-void Panel::CallbackOnReceiveSPI5(uint8 * /*data*/, int /*size*/)
-{
-
-}
-

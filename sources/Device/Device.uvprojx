@@ -1897,6 +1897,11 @@
               <FileType>8</FileType>
               <FilePath>.\src\Panel\Panel.cpp</FilePath>
             </File>
+            <File>
+              <FileName>Panel_view.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Panel\Panel_view.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4071,6 +4076,11 @@
               <FileName>Panel.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Panel\Panel.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Panel_view.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Panel\Panel_view.cpp</FilePath>
             </File>
           </Files>
         </Group>

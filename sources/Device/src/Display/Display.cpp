@@ -1242,23 +1242,25 @@ static void CalculateCoord(int &x, int &y)
 
 void Display::Update()
 {
-    static uint prev_time = 0;
+    return;
 
-    if (HAL_TIM2::TimeMS() - prev_time < 10)
-    {
-        return;
-    }
-
-    static int x = 0;
-    static int y = 0;
-
-    CalculateCoord(x, y);
-    
-    Display::BeginScene(Color::GRID);
-
-    Region(40, 40).Fill(x, y, Color::BLACK);
-    
-    prev_time = HAL_TIM2::TimeMS();
+//    static uint prev_time = 0;
+//
+//    if (HAL_TIM2::TimeMS() - prev_time < 10)
+//    {
+//        return;
+//    }
+//
+//    static int x = 0;
+//    static int y = 0;
+//
+//    CalculateCoord(x, y);
+//    
+//    Display::BeginScene(Color::GRID);
+//
+//    Region(40, 40).Fill(x, y, Color::BLACK);
+//    
+//    prev_time = HAL_TIM2::TimeMS();
 }
 
 

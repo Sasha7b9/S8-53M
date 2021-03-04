@@ -25,7 +25,7 @@ namespace Primitives
     {
     public:
         Rectangle(int w, int h) : width(w), height(h) { }
-        void Draw(int x, int y, Color color = Color::Count);
+        void Draw(int x, int y, const Color &color = Color::Count);
     private:
         int width;
         int height;

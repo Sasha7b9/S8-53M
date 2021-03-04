@@ -28,7 +28,7 @@ void Primitives::MultiVPointLine::Draw(int y, Color color)
 }
 
 
-void Primitives::Rectangle::Draw(int x, int y, Color color)
+void Primitives::Rectangle::Draw(int x, int y, const Color &color)
 {
     color.SetAsCurrent();
 
