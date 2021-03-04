@@ -85,7 +85,7 @@ struct HAL_DAC1
 };
 
 
-// Для звука
+// Динамик
 struct HAL_DAC2
 {
     static void Init();

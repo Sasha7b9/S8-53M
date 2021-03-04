@@ -1,15 +1,15 @@
 #pragma once
 
 
-struct HAL_PINS
+namespace HAL_PINS
 {
-    static void Init();
+    void Init();
 
-    static void InitSPI1();
-    struct SPI5_
-    {
-        static void Init();
-    };
+    namespace DAC2_ { void Init(); };
+
+    namespace SPI1_ { void Init(); }
+
+    namespace SPI5_ { void Init(); };
 };
 
 
@@ -20,7 +20,7 @@ struct PinMode { enum E
     _ADC3_OUT,
     _ADC3_IT,
     _DAC1,
-    _DAC2,
+    _DAC2,              // Динамик
     _ETH,
     _OTG_HS_FS,
     _OTG_FS,

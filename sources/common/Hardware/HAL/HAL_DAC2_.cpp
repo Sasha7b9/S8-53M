@@ -9,6 +9,10 @@ void *HAL_DAC2::handle = &handleDAC;
 
 void HAL_DAC2::Init()
 {
+    __DAC_CLK_ENABLE();
+
+    HAL_PINS::DAC2_::Init();
+
     static DMA_HandleTypeDef hdmaDAC1 =
     {
         DMA1_Stream5, //-V2571

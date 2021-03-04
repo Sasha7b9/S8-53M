@@ -1208,36 +1208,36 @@ bool Display::NeedForClearScreen()
 }
 
 
-static void CalculateCoord(int &x, int &y)
-{
-    int width = 40;
-
-    static int dirX = 1;
-    x += dirX;
-
-    if (x > 320 - width)
-    {
-        dirX = -dirX;
-    }
-
-    if (x < 0)
-    {
-        dirX = -dirX;
-    }
-
-    static int dirY = 1;
-    y += dirY;
-
-    if (y > 240 - width)
-    {
-        dirY = -dirY;
-    }
-
-    if (y < 0)
-    {
-        dirY = -dirY;
-    }
-}
+//static void CalculateCoord(int &x, int &y)
+//{
+//    int width = 40;
+//
+//    static int dirX = 1;
+//    x += dirX;
+//
+//    if (x > 320 - width)
+//    {
+//        dirX = -dirX;
+//    }
+//
+//    if (x < 0)
+//    {
+//        dirX = -dirX;
+//    }
+//
+//    static int dirY = 1;
+//    y += dirY;
+//
+//    if (y > 240 - width)
+//    {
+//        dirY = -dirY;
+//    }
+//
+//    if (y < 0)
+//    {
+//        dirY = -dirY;
+//    }
+//}
 
 
 void Display::Update()

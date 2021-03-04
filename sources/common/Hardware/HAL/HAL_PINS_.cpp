@@ -86,7 +86,13 @@ Pin Pin::DisplayReady(PinMode::_Input, PinPort::_G, PinPin::_11);
 Pin Pin::Temp(PinMode::_Output, PinPort::_I, PinPin::_9);
 
 
-void HAL_PINS::InitSPI1()
+void HAL_PINS::DAC2_::Init()
+{
+    Pin(PinMode::_DAC2, PinPort::_A, PinPin::_5).Init();    // 51 - динамик
+}
+
+
+void HAL_PINS::SPI1_::Init()
 {
     PinSPI1(A, 5).Init();   // SCK
     PinSPI1(A, 6).Init();   // MISO
@@ -119,7 +125,6 @@ void HAL_PINS::Init()
 
     Pin(PinMode::_ADC3_IT, PinPort::_C, PinPin::_11).Init();    // ADC3 IT
     Pin(PinMode::_ADC3_OUT, PinPort::_F, PinPin::_6).Init();    // ADC3 OUT
-    Pin(PinMode::_DAC2, PinPort::_A, PinPin::_5).Init();        // DAC звука
 
     PinOTG_HS(B, 15).Init();    // DP
     PinOTG_HS(B, 14).Init();    // DM

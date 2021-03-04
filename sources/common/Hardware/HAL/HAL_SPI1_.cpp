@@ -6,5 +6,5 @@
 
 void HAL_SPI1::Init()
 {
-    HAL_PINS::InitSPI1();
+    HAL_PINS::SPI1_::Init();
 }
