@@ -65,8 +65,7 @@ void HAL_DAC2::Init()
 
 void HAL_DAC2::StartDMA(uint8 *points, int numPoints)
 {
-    if (HAL_DAC_Start_DMA(&handleDAC, DAC_CHANNEL_2, reinterpret_cast<uint32_t *>(points),
-        static_cast<uint>(numPoints), DAC_ALIGN_8B_R) != HAL_OK)
+    if (HAL_DAC_Start_DMA(&handleDAC, DAC_CHANNEL_2, (uint32_t *)points,(uint)numPoints, DAC_ALIGN_8B_R) != HAL_OK)
     {
         ERROR_HANDLER();
     }
