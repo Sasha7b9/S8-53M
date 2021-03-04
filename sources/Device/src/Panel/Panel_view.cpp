@@ -2,6 +2,7 @@
 #include "defines.h"
 #include "Display/Display.h"
 #include "common/Display/Primitives_.h"
+#include "common/Hardware/Sound_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "Panel/Panel.h"
 
@@ -19,6 +20,21 @@ static bool keys[Key::Count] =
 void Panel::CallbackOnReceiveSPI5(uint8 *data, int /*size*/)
 {
     uint8 key = data[1];
+
+    uint8 action = data[2];
+
+    if (action == 0)
+    {
+        Sound::ButtonPress();
+    }
+    else if (action == 1 || action == 2)
+    {
+        Sound::ButtonRelease();
+    }
+    else if (action == 3 || action == 4)
+    {
+        Sound::RegulatorShiftRotate();
+    }
 
     if (key < Key::Count)
     {

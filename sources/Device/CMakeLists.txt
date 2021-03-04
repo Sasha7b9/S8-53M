@@ -82,8 +82,8 @@ file(GLOB LIBS_USBH      ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Li
 
 file(GLOB HARDWARE             src/Hardware/*.h
                                src/Hardware/*.cpp
-                         ../common/Hardware/Sound_c.*
-                         ../common/Hardware/Timer_c.*)
+                         ../common/Hardware/Sound_.*
+                         ../common/Hardware/Timer_.*)
 file(GLOB HARDWARE_CMSIS       src/Hardware/CMSIS/*)
 file(GLOB HARDWARE_FATFS       src/Hardware/FatFS/*)
 file(GLOB HARDWARE_HAL         src/Hardware/HAL/*
