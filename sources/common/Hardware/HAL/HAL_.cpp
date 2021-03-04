@@ -30,6 +30,8 @@ void HAL::Init()
 
 //    HAL_ADC3::Init();
 //
+    HAL_TIM7::Init();
+
     HAL_DAC2::Init();
 //
 //    HAL_RTC::Init();

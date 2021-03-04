@@ -13,7 +13,7 @@ void HAL_DAC2::Init()
 
     HAL_PINS::DAC2_::Init();
 
-    static DMA_HandleTypeDef hdmaDAC1 =
+    static DMA_HandleTypeDef hdmaDAC2 =
     {
         DMA1_Stream5, //-V2571
         {
@@ -32,9 +32,12 @@ void HAL_DAC2::Init()
         }
     };
 
-    HAL_DMA_Init(&hdmaDAC1);
+    if (HAL_DMA_Init(&hdmaDAC2) != HAL_OK)
+    {
+        ERROR_HANDLER();
+    }
 
-    __HAL_LINKDMA(&handleDAC, DMA_Handle1, hdmaDAC1);
+    __HAL_LINKDMA(&handleDAC, DMA_Handle1, hdmaDAC2);
 
     HAL_NVIC_SetPriority(DMA1_Stream5_IRQn, 7, 0);
     HAL_NVIC_EnableIRQ(DMA1_Stream5_IRQn);
@@ -47,19 +50,31 @@ void HAL_DAC2::Init()
 
     HAL_DAC_DeInit(&handleDAC);
 
-    HAL_DAC_Init(&handleDAC);
+    if (HAL_DAC_Init(&handleDAC) != HAL_OK)
+    {
+        ERROR_HANDLER();
+    }
 
-    HAL_DAC_ConfigChannel(&handleDAC, &config, DAC_CHANNEL_2);
+    if (HAL_DAC_ConfigChannel(&handleDAC, &config, DAC_CHANNEL_2) != HAL_OK)
+    {
+        ERROR_HANDLER();
+    }
 }
 
 
 void HAL_DAC2::StartDMA(uint8 *points, int numPoints)
 {
-    HAL_DAC_Start_DMA(&handleDAC, DAC_CHANNEL_2, reinterpret_cast<uint32_t *>(points), static_cast<uint>(numPoints), DAC_ALIGN_8B_R);
+    if (HAL_DAC_Start_DMA(&handleDAC, DAC_CHANNEL_2, reinterpret_cast<uint32_t *>(points), static_cast<uint>(numPoints), DAC_ALIGN_8B_R) != HAL_OK)
+    {
+        ERROR_HANDLER();
+    }
 }
 
 
 void HAL_DAC2::StopDMA()
 {
-    HAL_DAC_Stop_DMA(&handleDAC, DAC_CHANNEL_2);
+    if (HAL_DAC_Stop_DMA(&handleDAC, DAC_CHANNEL_2) != HAL_OK)
+    {
+        ERROR_HANDLER();
+    }
 }

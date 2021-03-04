@@ -220,8 +220,11 @@ struct HAL_TIM6
 };
 
 
+// Вспомогательный таймер для DAC2
 struct HAL_TIM7
 {
+    static void Init();
+
     static void Config(uint16 prescaler, uint16 period);
 };
 

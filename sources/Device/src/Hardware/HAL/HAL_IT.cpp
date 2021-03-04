@@ -73,6 +73,12 @@ void SPI5_IRQHandler()
 }
 
 
+void DMA1_Stream5_IRQHandler()
+{
+    HAL_DMA_IRQHandler(((DAC_HandleTypeDef *)HAL_DAC2::handle)->DMA_Handle1);
+}
+
+
 //void ADC_IRQHandler(void)
 //{
 //    HAL_ADC_IRQHandler(reinterpret_cast<ADC_HandleTypeDef *>(HAL_ADC3::handle)); //-V2571
@@ -82,12 +88,6 @@ void SPI5_IRQHandler()
 //void OTG_HS_IRQHandler(void)
 //{
 //    HAL_HCD_IRQHandler(reinterpret_cast<HCD_HandleTypeDef *>(HAL_HCD::handle)); //-V2571
-//}
-//
-//
-//void DMA1_Stream5_IRQHandler()
-//{
-//    HAL_DMA_IRQHandler(reinterpret_cast<DAC_HandleTypeDef *>(HAL_DAC2::handle)->DMA_Handle1); //-V2571
 //}
 //
 //
