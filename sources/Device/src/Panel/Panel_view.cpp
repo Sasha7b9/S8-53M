@@ -45,15 +45,6 @@ void Panel::CallbackOnReceiveSPI5(uint8 *data, int /*size*/)
 
 void Panel::Draw()
 {
-    static uint prev = HAL_TIM2::TimeMS();
-
-    if (HAL_TIM2::TimeMS() < prev + 50)
-    {
-        return;
-    }
-
-    prev = HAL_TIM2::TimeMS();
-
     Display::BeginScene(Color::WHITE);
 
     int x0 = 10;

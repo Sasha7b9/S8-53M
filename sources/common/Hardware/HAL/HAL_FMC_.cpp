@@ -8,17 +8,28 @@
 
 
 static const uint ADDR_BANK = 0x60000000;
-uint8 * const HAL_FMC::ADDR_FPGA = (reinterpret_cast<uint8 *>(ADDR_BANK + 0x00000000));  // Адрес записи в аппаратные регистры.
-uint8 * const HAL_FMC::ADDR_RAM  = (reinterpret_cast<uint8 *>(ADDR_BANK + 0x04000000));
+static const uint ADDR_RAM = ADDR_BANK + 0x04000000;
 
 
-uint8 HAL_FMC::Read(pUCHAR const address)
+uint16 * const HAL_FMC::ADDR_FPGA = (uint16 *)(ADDR_BANK + 0x00000000);  // Адрес записи в аппаратные регистры.
+
+uint16 *const HAL_FMC::ADDR_RAM_DISPLAY_BACK = (uint16 *)(ADDR_RAM);
+
+uint16 *const HAL_FMC::ADDR_RAM_DISPLAY_FRONT = (uint16 *)(ADDR_RAM + 320 * 240);
+
+uint16 *const HAL_FMC::ADDR_RAM_BEGIN = (uint16 *)(ADDR_RAM + 320 * 240 * 2);
+
+uint16 *const HAL_FMC::ADDR_RAM_END = (uint16 *)(ADDR_RAM + 1024 * 1024);
+
+
+
+uint16 HAL_FMC::Read(uint16 * const address)
 {
     return(*(address));
 }
 
 
-void HAL_FMC::Write(uint8 * const address, uint8 value)
+void HAL_FMC::Write(uint16 * const address, uint16 value)
 {
     *address = value;
 }

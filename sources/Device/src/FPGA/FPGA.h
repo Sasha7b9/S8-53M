@@ -46,8 +46,8 @@ public:
     static void Update();
     // Запись в регистр ПЛИС нового значения.
     static void WriteToHardware				        
-                            (uint8 * const address,    // адрес регистра.
-                                uint8 value,    // записываемое значение.
+                            (uint16 * const address,    // адрес регистра.
+                                uint16 value,    // записываемое значение.
                                 bool restart    // true означает, что после записи нужно запусить режим измерений, если до этого прибор не находился в режиме паузы.
                             );
 
@@ -162,7 +162,7 @@ private:
 
     static int CalculateShift();
     // Инвертирует данные.
-    static void InverseDataIsNecessary(Channel::E chan, uint8 *data);
+    static void InverseDataIsNecessary(Channel::E chan, uint16 *data);
 
     static void AutoFind();
 

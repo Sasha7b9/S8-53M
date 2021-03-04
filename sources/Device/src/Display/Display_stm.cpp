@@ -10,8 +10,8 @@
 
 static const int SIZE_BUFFER = Display::WIDTH * Display::HEIGHT;
 
-static uint8 front[SIZE_BUFFER];  /* __attribute__((section("CCM_DATA"))); */
-//static uint8 back[SIZE_BUFFER];
+static uint8 *front = (uint8 *)HAL_FMC::ADDR_RAM_DISPLAY_FRONT;
+static uint8 *back = (uint8 *)HAL_FMC::ADDR_RAM_DISPLAY_BACK;
 
 
 void Display::Init()

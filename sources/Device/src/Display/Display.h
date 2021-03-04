@@ -38,7 +38,7 @@ public:
     // Функция должна вызываться для очистки поточечной памяти. Вызывается при изменении масштаба по напряжению.
     static void ResetP2Ppoints(bool empty);
     // Добавляет точки в режиме поточечного вывода и самописца data00, data01 - для первого канала; data10, data11 - для второго канала
-    static void AddPoints(uint8 data00, uint8 data01, uint8 data10, uint8 data11);
+    static void AddPoints(uint16 data00, uint16 data01, uint16 data10, uint16 data11);
 
     static void ShowWarningBad(Warning::E warning);
 

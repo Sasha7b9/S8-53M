@@ -35,8 +35,8 @@ StateFPGA FPGA::state =
 };
 
 
-static uint8 dataRel0[FPGA_MAX_POINTS] = {0};   // Буфер используется для чтения данных первого канала.
-static uint8 dataRel1[FPGA_MAX_POINTS] = {0};   // Буфер используется для чтения данных второго канала.
+static uint16 dataRel0[FPGA_MAX_POINTS] = {0};   // Буфер используется для чтения данных первого канала.
+static uint16 dataRel1[FPGA_MAX_POINTS] = {0};   // Буфер используется для чтения данных второго канала.
 
 static Settings storingSettings;                // Здесь нужно уменьшить необходимый размер памяти - сохранять настройки только альтеры
 static uint timeStart = 0;
@@ -240,12 +240,12 @@ bool FPGA::IsRunning(void)
 }
 
 
-#define WRITE_AND_OR_INVERSE(addr, data, ch)                                                      \
-    if(SET_INVERSE(ch))                                                                   \
-    {                                                                                               \
-        data = (uint8)((int)(2 * AVE_VALUE) - LimitationUInt8(data, MIN_VALUE, MAX_VALUE));    \
-    }                                                                                               \
-    *addr = data;
+#define WRITE_AND_OR_INVERSE(addr, data, ch)
+//    if(SET_INVERSE(ch))                                                                   \
+//    {                                                                                               \
+//        data = (uint8)((int)(2 * AVE_VALUE) - LimitationUInt8(data, MIN_VALUE, MAX_VALUE));    \
+//    }                                                                                               \
+//    *addr = (uint16)data;
 
 /*
 static uint8 InverseIfNecessary(uint8 data, Channel::E chan)
@@ -275,15 +275,15 @@ void FPGA::ReadRandomizeMode(void)
         index += step;        // WARN
     }
 
-    uint8 *pData0 = &dataRel0[index];
-    pUCHAR const pData0Last = &dataRel0[FPGA_MAX_POINTS - 1];
-    uint8 *pData1 = &dataRel1[index];
-    pUCHAR const pData1Last = &dataRel1[FPGA_MAX_POINTS - 1];
+    uint16 *pData0 = &dataRel0[index];
+    uint16 * const pData0Last = &dataRel0[FPGA_MAX_POINTS - 1];
+    uint16 *pData1 = &dataRel1[index];
+    uint16 * const pData1Last = &dataRel1[FPGA_MAX_POINTS - 1];
 
-    pUCHAR const first0 = &dataRel0[0];
-    pUCHAR const last0 = pData0Last;
-    pUCHAR const first1 = &dataRel1[0];
-    pUCHAR const last1 = pData1Last;
+    uint16 * const first0 = &dataRel0[0];
+    uint16 * const last0 = pData0Last;
+    uint16 * const first1 = &dataRel1[0];
+    uint16 * const last1 = pData1Last;
 
     int numAve = NUM_AVE_FOR_RAND;
 
@@ -301,9 +301,9 @@ void FPGA::ReadRandomizeMode(void)
 
     while (pData0 < &dataRel0[FPGA_MAX_POINTS])
     {
-        volatile uint8 data10 = *RD_ADC_B2; //-V2551 //-V2563
+//        volatile uint16 data10 = *RD_ADC_B2; //-V2551 //-V2563
         //uint8 data11 = *RD_ADC_B1;
-        volatile uint8 data00 = *RD_ADC_A2; //-V2551 //-V2563
+//        volatile uint16 data00 = *RD_ADC_A2; //-V2551 //-V2563
         //uint8 data01 = *RD_ADC_A1;
 
         /*
@@ -315,7 +315,7 @@ void FPGA::ReadRandomizeMode(void)
                 WRITE_AND_OR_INVERSE(pData0, data00, Channel::A);
             }
 
-            uint8 *addr = pData0 + addShiftMem; //-V2563
+            uint16 *addr = pData0 + addShiftMem; //-V2563
             if (addr >= first0 && addr <= last0)
             {
 //                WRITE_AND_OR_INVERSE(addr, data01, Channel::A);
@@ -373,19 +373,19 @@ void FPGA::ReadRandomizeMode(void)
 
 void FPGA::ReadRealMode(bool necessaryShift)
 {
-    uint8 *p0 = &dataRel0[0];
-    uint8 *p1 = &dataRel1[0];
-    uint8 *endP = &dataRel0[FPGA_MAX_POINTS];
+    uint16 *p0 = &dataRel0[0];
+    uint16 *p1 = &dataRel1[0];
+    uint16 *endP = &dataRel0[FPGA_MAX_POINTS];
 
     if (ds.peakDet != PeackDetMode::Disable)
     {
-        uint8 *p0min = p0;
-        uint8 *p0max = p0min + 512; //-V2563
-        uint8 *p1min = p1;
-        uint8 *p1max = p1min + 512; //-V2563
+        uint16 *p0min = p0;
+        uint16 *p0max = p0min + 512; //-V2563
+        uint16 *p1min = p1;
+        uint16 *p1max = p1min + 512; //-V2563
         while ((p0max < endP) && inProcessingOfRead)
         {
-            uint8 data = *RD_ADC_B2; //-V2563
+            uint16 data = *RD_ADC_B2; //-V2563
             *p1max++ = data;
             data = *RD_ADC_B1; //-V2563
             *p1min++ = data;
@@ -401,7 +401,7 @@ void FPGA::ReadRealMode(bool necessaryShift)
         {
             *p1++ = *RD_ADC_B2; //-V2563
             *p1++ = *RD_ADC_B1; //-V2563
-            uint8 data = *RD_ADC_A2; //-V2563
+            uint16 data = *RD_ADC_A2; //-V2563
             *p0++ = data;
             data = *RD_ADC_A1; //-V2563
             *p0++ = data;
@@ -588,7 +588,7 @@ int FPGA::CalculateShift(void)            // \todo Не забыть восстановить функци
 }
 
 
-void FPGA::WriteToHardware(uint8 * const address, uint8 value, bool restart)
+void FPGA::WriteToHardware(uint16 * const address, uint16 value, bool restart)
 {
     firstAfterWrite = true;
     if(restart)
@@ -625,10 +625,10 @@ void ReadPoint(void)
 {
     if(_GET_BIT(ReadFlag(), BIT_POINT_READY))
     {
-        uint8 dataB1 = *RD_ADC_B1; //-V2563
-        uint8 dataB2 = *RD_ADC_B2; //-V2563
-        uint8 dataA1 = *RD_ADC_A1; //-V2563
-        uint8 dataA2 = *RD_ADC_A2; //-V2563
+        uint16 dataB1 = *RD_ADC_B1; //-V2563
+        uint16 dataB2 = *RD_ADC_B2; //-V2563
+        uint16 dataA1 = *RD_ADC_A1; //-V2563
+        uint16 dataA2 = *RD_ADC_A2; //-V2563
         Display::AddPoints(dataA2, dataA1, dataB2, dataB1);
     }
 }

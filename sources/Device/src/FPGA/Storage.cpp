@@ -101,7 +101,7 @@ void Storage::CalculateAroundAverage(uint8 *data0, uint8 *data1, const DataSetti
 }
 
 
-void Storage::AddData(uint8 *data0, uint8 *data1, DataSettings dss)
+void Storage::AddData(uint16 *data0, uint16 *data1, DataSettings dss)
 {
     dss.time = HAL_RTC::GetPackedTime();
 

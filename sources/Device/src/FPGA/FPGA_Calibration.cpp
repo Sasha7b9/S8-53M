@@ -353,8 +353,8 @@ float CalculateDeltaADC(Channel::E chan, float *avgADC1, float *avgADC2, float *
     FPGA::SetTrigSource((TrigSource::E)chan); //-V2533
     FPGA::SetTrigLev((TrigSource::E)chan, TrigLevZero); //-V2533
 
-    pUCHAR address1 = chan == Channel::A ? RD_ADC_A1 : RD_ADC_B1; //-V2563
-    pUCHAR address2 = chan == Channel::A ? RD_ADC_A2 : RD_ADC_B2; //-V2563
+    uint16 *address1 = chan == Channel::A ? RD_ADC_A1 : RD_ADC_B1; //-V2563
+    uint16 *address2 = chan == Channel::A ? RD_ADC_A2 : RD_ADC_B2; //-V2563
 
     static const int numCicles = 10;
     for(int cicle = 0; cicle < numCicles; cicle++)
