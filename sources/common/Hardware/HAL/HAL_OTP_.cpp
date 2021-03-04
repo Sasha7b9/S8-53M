@@ -7,15 +7,15 @@
 bool HAL_OTP::SaveSerialNumber(char *serialNumber)
 {
     // Находим первую пустую строку длиной 16 байт в области OPT, начиная с начала.
-    uint8 *address = reinterpret_cast<uint8 *>(FLASH_OTP_BASE); //-V566
+    uint8 *address = reinterpret_cast<uint8 *>(FLASH_OTP_BASE);
 
     while ((*address) != 0xff &&                // *address != 0xff означает, что запись в эту строку уже производилась
-           address < reinterpret_cast<uint8 *>(FLASH_OTP_END) - 16) //-V566 //-V2563
+           address < reinterpret_cast<uint8 *>(FLASH_OTP_END) - 16) //-V2563
     {
         address += 16; //-V2563
     }
 
-    if (address < reinterpret_cast<uint8 *>(FLASH_OTP_END) - 16) //-V566 //-V2563
+    if (address < reinterpret_cast<uint8 *>(FLASH_OTP_END) - 16) //-V2563
     {
         HAL_EPROM::WriteBufferBytes(reinterpret_cast<uint>(address), reinterpret_cast<uint8 *>(serialNumber), static_cast<int>(std::strlen(serialNumber)) + 1); //-V2513
         return true;
@@ -31,12 +31,12 @@ int HAL_OTP::GetSerialNumber(char buffer[17])
 
     const int allShotsMAX = 512 / 16;   // Максимальное число записей в OPT серийного номера.
 
-    uint8 *address = reinterpret_cast<uint8 *>(FLASH_OTP_END) - 15; //-V566 //-V2563
+    uint8 *address = reinterpret_cast<uint8 *>(FLASH_OTP_END) - 15; //-V2563
 
     do
     {
         address -= 16; //-V2563
-    } while ((*address == 0xff) && (address > reinterpret_cast<uint8 *>(FLASH_OTP_BASE))); //-V566
+    } while ((*address == 0xff) && (address > reinterpret_cast<uint8 *>(FLASH_OTP_BASE)));
 
     if (*address == 0xff)   // Не нашли строки с информацией, дойдя до начального адреса OTP
     {
@@ -46,5 +46,5 @@ int HAL_OTP::GetSerialNumber(char buffer[17])
 
     std::strcpy(buffer, reinterpret_cast<char *>(address)); //-V2513
 
-    return allShotsMAX - (address - reinterpret_cast<uint8 *>(FLASH_OTP_BASE)) / 16 - 1; //-V566
+    return allShotsMAX - (address - reinterpret_cast<uint8 *>(FLASH_OTP_BASE)) / 16 - 1;
 }
