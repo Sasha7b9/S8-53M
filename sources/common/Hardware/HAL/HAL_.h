@@ -118,11 +118,13 @@ struct HAL_FMC
     static uint8 * const ADDR_RAM;      // Адрес записи в RAM
     static uint8 * const ADDR_NULL;
 
-    static void    Init(void);
+    static void Init(void);
 
-    static uint8   Read(pUCHAR const address);
+    static void Test();
 
-    static void    Write(uint8 * const address, uint8 value);
+    static uint8 Read(pUCHAR const address);
+
+    static void  Write(uint8 * const address, uint8 value);
 
 private:
     

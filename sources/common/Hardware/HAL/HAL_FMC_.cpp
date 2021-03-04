@@ -8,7 +8,7 @@
 
 static const uint ADDR_BANK = 0x60000000;
 
-
+uint8 *const HAL_FMC::ADDR_RAM   = (reinterpret_cast<uint8 *>(ADDR_BANK + 0x00c80000));
 uint8 * const HAL_FMC::ADDR_FPGA = (reinterpret_cast<uint8 *>(ADDR_BANK + 0x00c80000));  // Адрес записи в аппаратные регистры.
 uint8 * const HAL_FMC::ADDR_NULL = (reinterpret_cast<uint8 *>(ADDR_BANK + 0x00a00000));
 
@@ -128,4 +128,24 @@ void HAL_FMC::InitRAM()
     FMC_NORSRAM_TimingTypeDef *timing = const_cast<FMC_NORSRAM_TimingTypeDef *>(&sramTiming); //-V2567
 
     HAL_SRAM_Init(&gSramHandle, timing, timing);
+}
+
+
+void HAL_FMC::Test()
+{
+    uint8 *address = (uint8 *)0x60000000;
+
+    uint8 value = 0xfa;
+
+    while (address < (uint8 *)((uint)(-1)))
+    {
+        *address = value;
+
+        if (*address == value)
+        {
+            value = value;
+        }
+    }
+
+    value = value;
 }
