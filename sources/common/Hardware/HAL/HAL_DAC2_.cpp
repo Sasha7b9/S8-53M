@@ -10,6 +10,7 @@ void *HAL_DAC2::handle = &handleDAC;
 void HAL_DAC2::Init()
 {
     __DAC_CLK_ENABLE();
+    __DMA1_CLK_ENABLE();
 
     HAL_PINS::DAC2_::Init();
 
@@ -64,7 +65,8 @@ void HAL_DAC2::Init()
 
 void HAL_DAC2::StartDMA(uint8 *points, int numPoints)
 {
-    if (HAL_DAC_Start_DMA(&handleDAC, DAC_CHANNEL_2, reinterpret_cast<uint32_t *>(points), static_cast<uint>(numPoints), DAC_ALIGN_8B_R) != HAL_OK)
+    if (HAL_DAC_Start_DMA(&handleDAC, DAC_CHANNEL_2, reinterpret_cast<uint32_t *>(points),
+        static_cast<uint>(numPoints), DAC_ALIGN_8B_R) != HAL_OK)
     {
         ERROR_HANDLER();
     }
