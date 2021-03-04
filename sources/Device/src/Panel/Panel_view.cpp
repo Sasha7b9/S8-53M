@@ -18,9 +18,11 @@ static bool keys[Key::Count] =
 
 void Panel::CallbackOnReceiveSPI5(uint8 *data, int /*size*/)
 {
-    if (data[1] < Key::Count)
+    uint8 key = data[1];
+
+    if (key < Key::Count)
     {
-        keys[data[1]] = true;
+        keys[key] = true;
     }
 }
 
