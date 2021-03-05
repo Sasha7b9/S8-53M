@@ -43,7 +43,7 @@ void Display::Init(void)
         float red = static_cast<float>(i) / 14.0F * 31.0F + 0.5F;
         float green = static_cast<float>(i) / 14.0F * 63.0F + 0.5F;
         float blue = static_cast<float>(i) / 14.0F * 31.0F + 0.5F;
-        set.display.colors[i + 2] = Color::Make((uint8)red, (uint8)green, (uint8)blue); //-V2533
+        set.display.colors[i + 2] = Color::Make((uint8)red, (uint8)green, (uint8)blue);
     }
 
     Color::ResetFlash();

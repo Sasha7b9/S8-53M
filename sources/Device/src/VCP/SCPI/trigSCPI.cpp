@@ -159,7 +159,7 @@ void SCPI::TRIGGER::OFFSET(pUCHAR buffer)
     if (SCPI::FirstIsInt(buffer, &intVal, -240, 240))
     {
         int trigLev = RShiftZero + 2 * intVal;
-        FPGA::SetTrigLev(TRIG_SOURCE, (int16)trigLev); //-V2533
+        FPGA::SetTrigLev(TRIG_SOURCE, (int16)trigLev);
         return;
     }
 

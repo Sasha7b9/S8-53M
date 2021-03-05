@@ -70,7 +70,7 @@ static Key::E ButtonIsPress(uint16 command)
     {
         if(HAL_TIM2::TimeMS() - timePrevPressButton > 100)
         {
-            button = (Key::E)(command & 0x7f); //-V2533
+            button = (Key::E)(command & 0x7f);
             timePrevPressButton = HAL_TIM2::TimeMS();
         }
     }

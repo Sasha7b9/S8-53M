@@ -38,7 +38,7 @@ static void DrawHintItem(int x, int y, int width)
         {"Êíîïêà",      "Button"}   // TypeItem::SmallButton
     };
     TypeItem::E type = PageHelpContent::itemHint->Type();
-    Page *item = (Page*)PageHelpContent::itemHint; //-V2533
+    Page *item = (Page*)PageHelpContent::itemHint;
 
     const int SIZE = 100;
     char title[SIZE];
@@ -66,7 +66,7 @@ void Menu::Draw()
         {
             if (item->IsPage())
             {
-                ((Page *)item)->DrawOpened(Grid::TOP); //-V2533
+                ((Page *)item)->DrawOpened(Grid::TOP);
             }
             else if(item->Keeper()->IsExist()) //-V2516
             {
@@ -77,11 +77,11 @@ void Menu::Draw()
         {
             if(item->IsChoice())
             {
-                ((Choice *)item)->Draw(Page::X(), Grid::TOP, true); //-V2533
+                ((Choice *)item)->Draw(Page::X(), Grid::TOP, true);
             }
             else if(item->IsGovernor()) //-V2516
             {
-                ((Governor *)item)->Draw(Page::X(), Grid::TOP, true); //-V2533
+                ((Governor *)item)->Draw(Page::X(), Grid::TOP, true);
             }
         }
     }

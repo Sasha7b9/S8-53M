@@ -371,7 +371,7 @@ void Menu::ProcessingShortPressureButton()
             }
             else                                                        // Если меню не показано.
             {
-                NamePage::E name = ((const Page *)Item::Opened())->GetName(); //-V2533
+                NamePage::E name = ((const Page *)Item::Opened())->GetName();
                 if(button == Key::ChannelA && name == NamePage::ChannelA)
                 {
                     SET_ENABLED_A = !sChannel_Enabled(Channel::A);
@@ -480,7 +480,7 @@ void Menu::ProcessingRegulatorSet()
             }
             else if (item->IsTime()) //-V2516
             {
-                angleRegSet > 0 ? ((TimeItem *)item)->IncCurrentPosition() : ((TimeItem *)item)->DecCurrentPosition(); //-V2533
+                angleRegSet > 0 ? ((TimeItem *)item)->IncCurrentPosition() : ((TimeItem *)item)->DecCurrentPosition();
             }
         }
     }
@@ -662,7 +662,7 @@ void Menu::Show(bool show)
 
 bool Menu::IsMinimize()
 {
-    return Item::Opened()->IsPage() && ((const Page *)Item::Opened())->GetName() >= NamePage::SB_Curs; //-V2533
+    return Item::Opened()->IsPage() && ((const Page *)Item::Opened())->GetName() >= NamePage::SB_Curs;
 }
 
 

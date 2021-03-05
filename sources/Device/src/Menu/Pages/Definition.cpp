@@ -121,17 +121,17 @@ const Page *PageForButton(Key::E button)
         0,                          // Key::F3
         0,                          // Key::F4
         0,                          // Key::F5
-        (void *)PageChannelA::self, // Key::ChannelA //-V2533
-        (void *)PageChannelB::self, // Key::ChannelB //-V2533
-        (void *)PageTime::self,     // Key::Time //-V2533
-        (void *)PageTrig::self,     // Key::Trig //-V2533
-        (void *)PageCursors::self,  // Key::Cursors //-V2533
-        (void *)PageMeasures::self, // Key::Measures //-V2533
-        (void *)PageDisplay::self,  // Key::Display //-V2533
+        (void *)PageChannelA::self, // Key::ChannelA
+        (void *)PageChannelB::self, // Key::ChannelB
+        (void *)PageTime::self,     // Key::Time
+        (void *)PageTrig::self,     // Key::Trig
+        (void *)PageCursors::self,  // Key::Cursors
+        (void *)PageMeasures::self, // Key::Measures
+        (void *)PageDisplay::self,  // Key::Display
         0,                          // Key::Help
         0,                          // Key::Start
-        (void *)PageMemory::self,   // Key::Memory //-V2533
-        (void *)PageService::self,  // Key::Service //-V2533
+        (void *)PageMemory::self,   // Key::Memory
+        (void *)PageService::self,  // Key::Service
         0,                          // Key::Menu
         0                           // B_Power
     };

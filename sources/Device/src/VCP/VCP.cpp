@@ -84,12 +84,12 @@ void SendData(pUCHAR , int)
 
 void VCP::SendStringAsinch(char *data)
 {
-    SendDataAsinch((uint8*)data, static_cast<int>(std::strlen(data))); //-V2513 //-V2533
+    SendDataAsinch((uint8*)data, static_cast<int>(std::strlen(data))); //-V2513
 }
 
 void VCP::SendStringSynch(char *data)
 {
-    SendDataSynch((uint8*)data, static_cast<int>(std::strlen(data))); //-V2513 //-V2533
+    SendDataSynch((uint8*)data, static_cast<int>(std::strlen(data))); //-V2513
 }
 
 void VCP::SendFormatStringAsynch(char *format, ...)
@@ -101,7 +101,7 @@ void VCP::SendFormatStringAsynch(char *format, ...)
     std::vsprintf(buffer, format, args);
     va_end(args);
     std::strcat(buffer, "\n"); //-V2513
-    SendDataAsinch((uint8*)buffer, static_cast<int>(std::strlen(buffer))); //-V2513 //-V2533
+    SendDataAsinch((uint8*)buffer, static_cast<int>(std::strlen(buffer))); //-V2513
 }
 
 void VCP::SendFormatStringSynch(char *format, ...) {
@@ -112,7 +112,7 @@ void VCP::SendFormatStringSynch(char *format, ...) {
     std::vsprintf(buffer, format, args);
     va_end(args);
     std::strcat(buffer, "\n"); //-V2513
-    SendDataSynch((uint8*)buffer, static_cast<int>(std::strlen(buffer))); //-V2513 //-V2533
+    SendDataSynch((uint8*)buffer, static_cast<int>(std::strlen(buffer))); //-V2513
 }
 
 

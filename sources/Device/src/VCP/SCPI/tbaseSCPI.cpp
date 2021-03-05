@@ -27,41 +27,41 @@ void SCPI::TBASE::RANGE(pUCHAR buffer)
 {
     static const MapElement map[] = 
     {
-        {"2ns",     (uint8)TBase::_2ns}, //-V2533
-        {"5ns",     (uint8)TBase::_5ns}, //-V2533
-        {"10ns",    (uint8)TBase::_10ns}, //-V2533
-        {"20ns",    (uint8)TBase::_20ns}, //-V2533
-        {"50ns",    (uint8)TBase::_50ns}, //-V2533
-        {"100ns",   (uint8)TBase::_100ns}, //-V2533
-        {"200ns",   (uint8)TBase::_200ns}, //-V2533
-        {"500ns",   (uint8)TBase::_500ns}, //-V2533
-        {"1us",     (uint8)TBase::_1us}, //-V2533
-        {"2us",     (uint8)TBase::_2us}, //-V2533
-        {"5us",     (uint8)TBase::_5us}, //-V2533
-        {"10us",    (uint8)TBase::_10us}, //-V2533
-        {"20us",    (uint8)TBase::_20us}, //-V2533
-        {"50us",    (uint8)TBase::_50us}, //-V2533
-        {"100us",   (uint8)TBase::_100us}, //-V2533
-        {"200us",   (uint8)TBase::_200us}, //-V2533
-        {"500us",   (uint8)TBase::_500us}, //-V2533
-        {"1ms",     (uint8)TBase::_1ms}, //-V2533
-        {"2ms",     (uint8)TBase::_2ms}, //-V2533
-        {"5ms",     (uint8)TBase::_5ms}, //-V2533
-        {"10ms",    (uint8)TBase::_10ms}, //-V2533
-        {"20ms",    (uint8)TBase::_20ms}, //-V2533
-        {"50ms",    (uint8)TBase::_50ms}, //-V2533
-        {"100ms",   (uint8)TBase::_100ms}, //-V2533
-        {"200ms",   (uint8)TBase::_200ms}, //-V2533
-        {"500ms",   (uint8)TBase::_500ms}, //-V2533
-        {"1s",      (uint8)TBase::_1s}, //-V2533
-        {"2s",      (uint8)TBase::_2s}, //-V2533
-        {"5s",      (uint8)TBase::_5s}, //-V2533
-        {"10s",     (uint8)TBase::_10s}, //-V2533
+        {"2ns",     (uint8)TBase::_2ns},
+        {"5ns",     (uint8)TBase::_5ns},
+        {"10ns",    (uint8)TBase::_10ns},
+        {"20ns",    (uint8)TBase::_20ns},
+        {"50ns",    (uint8)TBase::_50ns},
+        {"100ns",   (uint8)TBase::_100ns},
+        {"200ns",   (uint8)TBase::_200ns},
+        {"500ns",   (uint8)TBase::_500ns},
+        {"1us",     (uint8)TBase::_1us},
+        {"2us",     (uint8)TBase::_2us},
+        {"5us",     (uint8)TBase::_5us},
+        {"10us",    (uint8)TBase::_10us},
+        {"20us",    (uint8)TBase::_20us},
+        {"50us",    (uint8)TBase::_50us},
+        {"100us",   (uint8)TBase::_100us},
+        {"200us",   (uint8)TBase::_200us},
+        {"500us",   (uint8)TBase::_500us},
+        {"1ms",     (uint8)TBase::_1ms},
+        {"2ms",     (uint8)TBase::_2ms},
+        {"5ms",     (uint8)TBase::_5ms},
+        {"10ms",    (uint8)TBase::_10ms},
+        {"20ms",    (uint8)TBase::_20ms},
+        {"50ms",    (uint8)TBase::_50ms},
+        {"100ms",   (uint8)TBase::_100ms},
+        {"200ms",   (uint8)TBase::_200ms},
+        {"500ms",   (uint8)TBase::_500ms},
+        {"1s",      (uint8)TBase::_1s},
+        {"2s",      (uint8)TBase::_2s},
+        {"5s",      (uint8)TBase::_5s},
+        {"10s",     (uint8)TBase::_10s},
         {"?",       255},
         {0}
     };
     ENTER_ANALYSIS
-        if (TBase::Count > value) { FPGA::SetTBase((TBase::E)value); } //-V2533
+        if (TBase::Count > value) { FPGA::SetTBase((TBase::E)value); }
         else if (255 == value) //-V547 //-V2516
         {
             SCPI_SEND(":TBASE:SET_RANGE %s", Tables::GetTBaseStringEN(SET_TBASE));
@@ -108,7 +108,7 @@ void SCPI::TBASE::SAMPLING(pUCHAR buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (value < 2) { SAMPLE_TYPE = (SampleType::E)value; } //-V2533
+        if (value < 2) { SAMPLE_TYPE = (SampleType::E)value; }
         else if (2 == value) //-V2516
         {
             SCPI_SEND(":TBASE:SAMPLING %s", map[SAMPLE_TYPE].key);
@@ -149,7 +149,7 @@ void SCPI::TBASE::TPOS(pUCHAR buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (value < 3)      { SET_TPOS = (TPos::E)value; PageTime::OnChanged_TPos(true); } //-V2533
+        if (value < 3)      { SET_TPOS = (TPos::E)value; PageTime::OnChanged_TPos(true); }
         else if (4 == value) //-V2516
         {
             SCPI_SEND(":TBASE:TPOS %s", map[SET_TPOS].key);
@@ -189,7 +189,7 @@ void SCPI::TBASE::FUNCTIMEDIV(pUCHAR buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (value < 2) { TIME_DIV_XPOS = (FunctionTime::E)value; } //-V2533
+        if (value < 2) { TIME_DIV_XPOS = (FunctionTime::E)value; }
         else if (2 == value) //-V2516
         {
             SCPI_SEND(":TBASE:FUNCTIMEDIV %s", map[TIME_DIV_XPOS].key);

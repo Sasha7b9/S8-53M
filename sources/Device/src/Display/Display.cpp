@@ -634,7 +634,7 @@ void Display::DrawDataInModeNormal()
     DataSettings *ds = 0;
     Processing::GetData(&data0, &data1, &ds);
 
-    int16 numSignals = (int16)Storage::NumElementsWithSameSettings(); //-V2533
+    int16 numSignals = (int16)Storage::NumElementsWithSameSettings();
     LIMITATION(numSignals, numSignals, 1, NUM_ACCUM); //-V2516
     if (numSignals == 1 || ENUM_ACCUM_IS_INFINITY || MODE_ACCUM_IS_RESET || sTime_RandomizeModeEnabled())
     {
@@ -757,11 +757,11 @@ void Display::DrawTime(int x, int y)
             time.seconds = ds->time.seconds;
             time.month = ds->time.month;
             time.year = ds->time.year;
-            Text(Int2String((int)time.day, false, 2, buffer)).Draw(x, y); //-V2533
+            Text(Int2String((int)time.day, false, 2, buffer)).Draw(x, y);
             Text(":").Draw(x + dField, y);
-            Text(Int2String((int)time.month, false, 2, buffer)).Draw(x + dField + dSeparator, y); //-V2533
+            Text(Int2String((int)time.month, false, 2, buffer)).Draw(x + dField + dSeparator, y);
             Text(":").Draw(x + 2 * dField + dSeparator, y);
-            Text(Int2String((int)time.year + 2000, false, 4, buffer)).Draw(x + 2 * dField + 2 * dSeparator, y); //-V2533
+            Text(Int2String((int)time.year + 2000, false, 4, buffer)).Draw(x + 2 * dField + 2 * dSeparator, y);
             y += 9;
         }
         else
@@ -771,11 +771,11 @@ void Display::DrawTime(int x, int y)
     }
     
     
-    Text(Int2String((int)time.hours, false, 2, buffer)).Draw(x, y); //-V2533
+    Text(Int2String((int)time.hours, false, 2, buffer)).Draw(x, y);
     Text(":").Draw(x + dField, y);
-    Text(Int2String((int)time.minutes, false, 2, buffer)).Draw(x + dField + dSeparator, y); //-V2533
+    Text(Int2String((int)time.minutes, false, 2, buffer)).Draw(x + dField + dSeparator, y);
     Text(":").Draw(x + 2 * dField + dSeparator, y);
-    Text(Int2String((int)time.seconds, false, 2, buffer)).Draw(x + 2 * dField + 2 * dSeparator, y); //-V2533
+    Text(Int2String((int)time.seconds, false, 2, buffer)).Draw(x + 2 * dField + 2 * dSeparator, y);
 }
 
 
@@ -795,7 +795,7 @@ void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channe
     }
 
     width--;
-    float elemsInColumn = (float)numElems / (float)width; //-V2533
+    float elemsInColumn = (float)numElems / (float)width;
     uint8 min[300];
     uint8 max[300];
 
@@ -806,8 +806,8 @@ void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channe
         {
             float firstElem = col * elemsInColumn; //-V2564
             float lastElem = firstElem + elemsInColumn - 1; //-V2564
-            min[col] = data[(int)firstElem]; //-V2533 //-V2563
-            max[col] = data[(int)firstElem + 1]; //-V2533 //-V2563
+            min[col] = data[(int)firstElem]; //-V2563
+            max[col] = data[(int)firstElem + 1]; //-V2563
             for (int elem = static_cast<int>(firstElem) + 2; elem <= lastElem; elem += 2) //-V2564
             {
                 SET_MIN_IF_LESS(data[elem], min[col]); //-V2563
@@ -839,8 +839,8 @@ void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channe
         {
             float firstElem = col * elemsInColumn; //-V2564
             float lastElem = firstElem + elemsInColumn - 1; //-V2564
-            min[col] = data[(int)firstElem]; //-V2533 //-V2563
-            max[col] = data[(int)firstElem + shiftForPeakDet]; //-V2533 //-V2563
+            min[col] = data[(int)firstElem]; //-V2563
+            max[col] = data[(int)firstElem + shiftForPeakDet]; //-V2563
             for (int elem = static_cast<int>(firstElem) + 1; elem <= lastElem; elem++) //-V2564
             {
                 SET_MIN_IF_LESS(data[elem], min[col]); //-V2563
@@ -851,7 +851,7 @@ void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channe
 
     int bottom = 16;
     int height = 14;
-    float scale = (float)height / (float)(MAX_VALUE - MIN_VALUE); //-V2533
+    float scale = (float)height / (float)(MAX_VALUE - MIN_VALUE);
 
 #define ORDINATE(x) bottom - scale * LimitationInt((x) - MIN_VALUE, 0, 200)
 
@@ -931,7 +931,7 @@ void Display::DrawMemoryWindow()
     }
 
     int timeWindowRectWidth = static_cast<int>((rightX - leftX) * (282.0F / sMemory_GetNumPoints(false))); //-V2564
-    float scaleX = (float)(rightX - leftX + 1) / sMemory_GetNumPoints(false); //-V2533 //-V2564
+    float scaleX = (float)(rightX - leftX + 1) / sMemory_GetNumPoints(false); //-V2564
 
     int16 shiftInMemory = SHIFT_IN_MEMORY;
     
@@ -958,7 +958,7 @@ void Display::DrawMemoryWindow()
             pUCHAR dataFirst = LAST_AFFECTED_CHANNEL_IS_A ? dat1 : dat0;
             pUCHAR dataSecond = LAST_AFFECTED_CHANNEL_IS_A ? dat0 : dat1;
 
-            int shiftForPeakDet = ds->peakDet == PeackDetMode::Disable ? 0 : (int)ds->length1channel; //-V2533
+            int shiftForPeakDet = ds->peakDet == PeackDetMode::Disable ? 0 : (int)ds->length1channel;
 
             if (ChannelNeedForDraw(dataFirst, chanFirst, ds))
             {
@@ -988,8 +988,8 @@ void Display::DrawMemoryWindow()
     Char(Symbol::S8::TPOS_1).Draw(x0 - 3, 9, Color::FILL);
 
     // Маркер tShift
-    float scale = (float)(rightX - leftX + 1) / ((float)sMemory_GetNumPoints(false) - (sMemory_GetNumPoints(false) == 281 ? 1 : 0)); //-V2533 //-V2564
-    float xShift = 1 + (sTime_TPosInPoints((PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel, SET_TPOS) - sTime_TShiftInPoints((PeackDetMode::E)Storage::set->peakDet)) * scale; //-V2533 //-V2564
+    float scale = (float)(rightX - leftX + 1) / ((float)sMemory_GetNumPoints(false) - (sMemory_GetNumPoints(false) == 281 ? 1 : 0)); //-V2564
+    float xShift = 1 + (sTime_TPosInPoints((PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel, SET_TPOS) - sTime_TShiftInPoints((PeackDetMode::E)Storage::set->peakDet)) * scale; //-V2564
     
     if(xShift < leftX - 2) //-V2564
     {
@@ -1302,7 +1302,7 @@ void Display::WriteValueTrigLevel()
         if (TRIG_INPUT_IS_AC && trigSource <= TrigSource::B)
         {
             int16 rShift = SET_RSHIFT(trigSource);
-            float rShiftAbs = RSHIFT_2_ABS(rShift, SET_RANGE(trigSource)); //-V2533
+            float rShiftAbs = RSHIFT_2_ABS(rShift, SET_RANGE(trigSource));
             trigLev += rShiftAbs;
         }
         char buffer[20];
@@ -1326,7 +1326,7 @@ void Display::DrawGridSpectrum()
         static const int nums[] = {4, 6, 8};
         static const char *strs[] = {"0", "-10", "-20", "-30", "-40", "-50", "-60", "-70"};
         int numParts = nums[FFT_MAX_DB];
-        float scale = (float)Grid::MathHeight() / numParts; //-V2533 //-V2564
+        float scale = (float)Grid::MathHeight() / numParts; //-V2564
         for (int i = 1; i < numParts; i++)
         {
             int y = static_cast<int>(Grid::MathTop() + i * scale); //-V2564
@@ -1346,7 +1346,7 @@ void Display::DrawGridSpectrum()
     else if (SCALE_FFT_IS_LINEAR) //-V2516
     {
         static const char *strs[] = {"1.0", "0.8", "0.6", "0.4", "0.2"};
-        float scale = (float)Grid::MathHeight() / 5; //-V2533 //-V2564
+        float scale = (float)Grid::MathHeight() / 5; //-V2564
         for (int i = 1; i < 5; i++)
         {
             int y = static_cast<int>(Grid::MathTop() + i * scale); //-V2564
@@ -1429,7 +1429,7 @@ int Display::CalculateCountH()
 void Display::DrawGridType1(int left, int top, int right, int bottom, float centerX, float centerY, float deltaX, float deltaY, float stepX, float stepY)
 {
     uint16 masX[17];
-    masX[0] = (uint16)(left + 1); //-V2533
+    masX[0] = (uint16)(left + 1);
     for (int i = 1; i < 7; i++)
     {
         masX[i] = static_cast<uint16>(left + deltaX * i); //-V2564
@@ -1442,12 +1442,12 @@ void Display::DrawGridType1(int left, int top, int right, int bottom, float cent
     {
         masX[i] = static_cast<uint16>(centerX + deltaX * (i - 9)); //-V2564
     }
-    masX[16] = (uint16)(right - 1); //-V2533
+    masX[16] = (uint16)(right - 1);
 
     MultiVPointLine(17, masX, static_cast<int>(stepY), CalculateCountV()).Draw(static_cast<int>(top + stepY), Color::GRID); //-V2564
 
     uint8 mas[13];
-    mas[0] = (uint8)(top + 1); //-V2533
+    mas[0] = (uint8)(top + 1);
     for (int i = 1; i < 5; i++)
     {
         mas[i] = static_cast<uint8>(top + deltaY * i); //-V2564
@@ -1460,7 +1460,7 @@ void Display::DrawGridType1(int left, int top, int right, int bottom, float cent
     {
         mas[i] = static_cast<uint8>(centerY + deltaY * (i - 7)); //-V2564
     }
-    mas[12] = (uint8)(bottom - 1); //-V2533
+    mas[12] = (uint8)(bottom - 1);
 
     MultiHPointLine(13, mas, static_cast<int>(stepX), CalculateCountH()).Draw(static_cast<int>(left + stepX), Color::GRID); //-V2564
 }
@@ -1470,31 +1470,31 @@ void Display::DrawGridType1(int left, int top, int right, int bottom, float cent
 void Display::DrawGridType2(int left, int top, int right, int bottom, int deltaX, int deltaY, int stepX, int stepY)
 { 
     uint16 masX[15];
-    masX[0] = (uint16)(left + 1); //-V2533
+    masX[0] = (uint16)(left + 1);
     for (int i = 1; i < 14; i++)
     {
-        masX[i] = (uint16)(left + deltaX * i); //-V2533
+        masX[i] = (uint16)(left + deltaX * i);
     }
-    masX[14] = (uint16)(right - 1); //-V2533
+    masX[14] = (uint16)(right - 1);
     MultiVPointLine(15, masX, stepY, CalculateCountV()).Draw(top + stepY, Color::GRID);
 
     uint8 mas[11];
-    mas[0] = (uint8)(top + 1); //-V2533
+    mas[0] = (uint8)(top + 1);
     for (int i = 1; i < 10; i++)
     {
-        mas[i] = (uint8)(top + deltaY * i); //-V2533
+        mas[i] = (uint8)(top + deltaY * i);
     }
-    mas[10] = (uint8)(bottom - 1); //-V2533
+    mas[10] = (uint8)(bottom - 1);
     MultiHPointLine(11, mas, stepX, CalculateCountH()).Draw(left + stepX, Color::GRID);
 }
 
 void Display::DrawGridType3(int left, int top, int right, int bottom, int centerX, int centerY, int deltaX, int deltaY, int stepX, int stepY)
 {
     HPointLine(static_cast<float>(stepX)).Draw(centerY, left + stepX, right);
-    uint8 masY[6] = {(uint8)(top + 1), (uint8)(top + 2), (uint8)(centerY - 1), (uint8)(centerY + 1), (uint8)(bottom - 2), (uint8)(bottom - 1)}; //-V2533
+    uint8 masY[6] = {(uint8)(top + 1), (uint8)(top + 2), (uint8)(centerY - 1), (uint8)(centerY + 1), (uint8)(bottom - 2), (uint8)(bottom - 1)};
     MultiHPointLine(6, masY, deltaX, (right - top) / deltaX).Draw(left + deltaX, Color::GRID);
     VPointLine(static_cast<float>(stepY)).Draw(centerX, top + stepY, bottom, Color::GRID);
-    uint16 masX[6] = {(uint16)(left + 1), (uint16)(left + 2), (uint16)(centerX - 1), (uint16)(centerX + 1), (uint16)(right - 2), (uint16)(right - 1)}; //-V2533
+    uint16 masX[6] = {(uint16)(left + 1), (uint16)(left + 2), (uint16)(centerX - 1), (uint16)(centerX + 1), (uint16)(right - 2), (uint16)(right - 1)};
     MultiVPointLine(6, masX, deltaY, (bottom - top) / deltaY).Draw(top + deltaY, Color::GRID);
 }
 
@@ -1517,8 +1517,8 @@ void Display::DrawGrid(int left, int top, int width, int height)
         }
     }
 
-    float deltaX = Grid::DeltaX() *(float)width / width; //-V2533 //-V2564
-    float deltaY = Grid::DeltaY() * (float)height / height; //-V2533 //-V2564
+    float deltaX = Grid::DeltaX() *(float)width / width; //-V2564
+    float deltaY = Grid::DeltaY() * (float)height / height; //-V2564
     float stepX = deltaX / 5; //-V2564
     float stepY = deltaY / 5; //-V2564
     
@@ -1628,7 +1628,7 @@ void Display::DrawCursorTrigLevel()
         int height = Grid::ChannelHeight() - 2 * DELTA;
         int shiftFullMin = RShiftMin + TrigLevMin;
         int shiftFullMax = RShiftMax + TrigLevMax;
-        scale = (float)height / (shiftFullMax - shiftFullMin); //-V2533 //-V2564
+        scale = (float)height / (shiftFullMax - shiftFullMin); //-V2564
         int shiftFull = TRIG_LEVEL_SOURCE + (TRIG_SOURCE_IS_EXT ? 0 : SET_RSHIFT(chan));
         int yFull = static_cast<int>(Grid::TOP + DELTA + height - scale * (shiftFull - RShiftMin - TrigLevMin) - 4); //-V2564
         Region(4, 6).Fill(left + 2, yFull + 1, Color::Trig());
@@ -1646,7 +1646,7 @@ void Display::DrawCursorRShift(Channel::E chan)
     if (chan == Channel::Math)
     {
         int rShift = SET_RSHIFT_MATH;
-        float scale = (float)Grid::MathHeight() / 960; //-V2533 //-V2564
+        float scale = (float)Grid::MathHeight() / 960; //-V2564
         float y = (Grid::MathTop() + Grid::MathBottom()) / 2.0F - scale * (rShift - RShiftZero); //-V2564
         Char(Symbol::S8::RSHIFT_NORMAL).Draw(static_cast<int>(x - 9), static_cast<int>(y - 4), Color::FILL); //-V2564
         Char('m').Draw(static_cast<int>(x - 8), static_cast<int>(y - 5), Color::BACK); //-V2564
@@ -1689,7 +1689,7 @@ void Display::DrawCursorRShift(Channel::E chan)
 
     if((!Menu::IsMinimize() || !Menu::IsShown()) && drawRShiftMarkers)
     {
-        float scaleFull = (float)Grid::ChannelHeight() / (RShiftMax - RShiftMin) * (sService_MathEnabled() ? 0.9F : 0.91F); //-V2533 //-V2564
+        float scaleFull = (float)Grid::ChannelHeight() / (RShiftMax - RShiftMin) * (sService_MathEnabled() ? 0.9F : 0.91F); //-V2564
         float yFull = Grid::ChannelCenterHeight() - scaleFull * (rShift - RShiftZero); //-V2564
 
         Region(4, 6).Fill(4, static_cast<int>(yFull - 3), Color::Channel(chan)); //-V2564
@@ -1712,7 +1712,7 @@ void Display::DrawCursorTShift()
     }
 
     // Рисуем TPos
-    int shiftTPos = sTime_TPosInPoints((PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel, SET_TPOS) - SHIFT_IN_MEMORY; //-V2533
+    int shiftTPos = sTime_TPosInPoints((PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel, SET_TPOS) - SHIFT_IN_MEMORY;
     float scale = static_cast<float>((lastPoint - firstPoint) / Grid::Width());
     int gridLeft = Grid::Left();
     int x = static_cast<int>(gridLeft + shiftTPos * scale - 3); //-V2564
@@ -1722,7 +1722,7 @@ void Display::DrawCursorTShift()
     };
 
     // Рисуем tShift
-    int shiftTShift = sTime_TPosInPoints((PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel, SET_TPOS) - sTime_TShiftInPoints((PeackDetMode::E)Storage::set->peakDet); //-V2533
+    int shiftTShift = sTime_TPosInPoints((PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel, SET_TPOS) - sTime_TShiftInPoints((PeackDetMode::E)Storage::set->peakDet);
     if(IntInRange(shiftTShift, firstPoint, lastPoint))
     {
         x = gridLeft + shiftTShift - firstPoint - 3;
@@ -1946,7 +1946,7 @@ void Display::WriteTextVoltage(Channel::E chan, int x, int y)
         Text(buffer).Draw(x + 1, y, colorDraw);
 
         char bufferTemp[20];
-        std::sprintf(buffer, "\xa5%s", sChannel_RShift2String((int16)rShift, range, multiplier, bufferTemp)); //-V2533
+        std::sprintf(buffer, "\xa5%s", sChannel_RShift2String((int16)rShift, range, multiplier, bufferTemp));
         Text(buffer).Draw(x + 46, y);
     }
 }

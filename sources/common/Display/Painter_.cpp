@@ -39,7 +39,7 @@ void Painter::CalculateCurrentColor()
 
 void CalculateColor(uint8 *color)
 {
-    currentColor.index = *color; //-V2533
+    currentColor.index = *color;
 
     if (*color == Color::FLASH_10.index)
     {

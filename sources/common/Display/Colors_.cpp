@@ -39,7 +39,7 @@ void Color::ResetFlash()
 
 void ColorType::Set()
 {
-    set.display.colors[color] = Color::Make((uint8)red, (uint8)green, (uint8)blue); //-V2533
+    set.display.colors[color] = Color::Make((uint8)red, (uint8)green, (uint8)blue);
 }
 
 
@@ -98,7 +98,7 @@ void ColorType::SetBrightness()
 
 void ColorType::SetBrightness(float br)
 {
-    int delta = (int)((br + 0.0005F) * 100.0F) - (int)(brightness * 100.0F); //-V2533
+    int delta = (int)((br + 0.0005F) * 100.0F) - (int)(brightness * 100.0F);
 
     if (delta > 0)
     {
@@ -178,7 +178,7 @@ void ColorType::ComponentChange(int delta)
     if (index >= 1 && index <= 3)
     {
         float *pointers[4] = { 0, &blue, &green, &red };
-        AddLimitationFloat(pointers[index], (float)Math::Sign(delta), 0.0F, maxs[index]); //-V2533
+        AddLimitationFloat(pointers[index], (float)Math::Sign(delta), 0.0F, maxs[index]);
     }
 
     Set();

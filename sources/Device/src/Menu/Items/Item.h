@@ -84,10 +84,10 @@ public:
     bool IsMAC() const           { return data->type == TypeItem::MAC; }
     bool IsTime() const          { return data->type == TypeItem::Time; }
 
-    const TimeItem *ReinterpretToTime()     const { return (TimeItem *)this; } //-V2533
-    const Governor *ReinterpretToGovernor() const { return (Governor *)this; } //-V2533
-    const Choice *ReinterpretToChoice()     const { return (Choice *)this; } //-V2533
-    const Page *ReinterpretToPage()         const { return (Page *)this; } //-V2533
+    const TimeItem *ReinterpretToTime()     const { return (TimeItem *)this; }
+    const Governor *ReinterpretToGovernor() const { return (Governor *)this; }
+    const Choice *ReinterpretToChoice()     const { return (Choice *)this; }
+    const Page *ReinterpretToPage()         const { return (Page *)this; }
 
     static DataItem emptyData;
 

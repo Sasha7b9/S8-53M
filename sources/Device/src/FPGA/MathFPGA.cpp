@@ -103,7 +103,7 @@ void MathFPGA::PointsRelToVoltage(pUCHAR points, int numPoints, Range::E range, 
 {
     int voltInPixel = voltsInPixelInt[range];
     float maxVoltsOnScreen = MAX_VOLTAGE_ON_SCREEN(range);
-    float rShiftAbs = RSHIFT_2_ABS(rShift, range); //-V2533
+    float rShiftAbs = RSHIFT_2_ABS(rShift, range);
     int diff = static_cast<int>((MIN_VALUE * voltInPixel) + (maxVoltsOnScreen + rShiftAbs) * 20e3F); //-V2564
     float koeff = 1.0F / 20e3F;
     for (int i = 0; i < numPoints; i++)
@@ -116,7 +116,7 @@ void MathFPGA::PointsRelToVoltage(pUCHAR points, int numPoints, Range::E range, 
 void MathFPGA::PointsVoltageToRel(const float* voltage, int numPoints, Range::E range, int16 rShift, uint8* points)
 {
     float maxVoltOnScreen = MAX_VOLTAGE_ON_SCREEN(range);
-    float rShiftAbs = RSHIFT_2_ABS(rShift, range); //-V2533
+    float rShiftAbs = RSHIFT_2_ABS(rShift, range);
     float voltInPixel = 1.0F / voltsInPixel[range];
 
     float add = maxVoltOnScreen + rShiftAbs;
@@ -136,7 +136,7 @@ void MathFPGA::PointsVoltageToRel(const float* voltage, int numPoints, Range::E 
             points[i] = 255; //-V2563
             continue;
         }
-        points[i] = (uint8)value; //-V2533 //-V2563
+        points[i] = (uint8)value; //-V2563
     }
 }
 
@@ -145,7 +145,7 @@ uint8 MathFPGA::VoltageToPoint(float voltage, Range::E range, int16 rShift)
 {
     int relValue = static_cast<int>((voltage + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) / voltsInPixel[range] + MIN_VALUE); //-V2564
     LIMITATION(relValue, relValue, 0, 255); //-V2516
-    return (uint8)relValue; //-V2533
+    return (uint8)relValue;
 }
 
 

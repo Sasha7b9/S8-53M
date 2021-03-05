@@ -69,7 +69,7 @@ char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
 
     char format[] = "%4.2f\0\0";
 
-    format[1] = (char)numDigits + 0x30; //-V2533
+    format[1] = (char)numDigits + 0x30;
 
     int numDigitsInInt = NumDigitsInIntPart(value);
 
@@ -163,9 +163,9 @@ char*    Bin2String(uint8 value, char buffer[9])
 char*   Bin2String16(uint16 value, char valBuffer[19])
 {
     char buffer[9];
-    std::strcpy(valBuffer, Bin2String((uint8)(value >> 8), buffer)); //-V2513 //-V2533
+    std::strcpy(valBuffer, Bin2String((uint8)(value >> 8), buffer)); //-V2513
     valBuffer[8] = ' ';
-    std::strcpy(valBuffer + 9, Bin2String((uint8)value, buffer)); //-V2513 //-V2533 //-V2563
+    std::strcpy(valBuffer + 9, Bin2String((uint8)value, buffer)); //-V2513 //-V2563
     return valBuffer;
 }
 
@@ -452,7 +452,7 @@ void IntToStrCat(char *_buffer, int _value)
 
     while(_value > 0)
     {
-        buffer[pointer] = (int8)(_value % 10); //-V2533
+        buffer[pointer] = (int8)(_value % 10);
         _value /= 10;
         pointer--;
     }

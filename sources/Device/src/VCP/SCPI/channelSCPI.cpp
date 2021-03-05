@@ -28,7 +28,7 @@ ENTER_PARSE_FUNC(SCPI::ProcessCHANNEL)
         {0}
     };
 
-    chan = (char)(*(buffer - 2)) == '1' ? Channel::A : Channel::B; //-V2533 //-V2563
+    chan = (char)(*(buffer - 2)) == '1' ? Channel::A : Channel::B; //-V2563
 
     SCPI::ProcessingCommand(commands, const_cast<uint8 *>(buffer));
 }
@@ -129,25 +129,25 @@ void SCPI::CHANNEL::RANGE(pUCHAR buffer)
 {
     static const MapElement map[] = 
     {
-        {"2MV",   (uint8)Range::_2mV}, //-V2533
-        {"5MV",   (uint8)Range::_5mV}, //-V2533
-        {"10MV",  (uint8)Range::_10mV}, //-V2533
-        {"20MV",  (uint8)Range::_20mV}, //-V2533
-        {"50MV",  (uint8)Range::_50mV}, //-V2533
-        {"100MV", (uint8)Range::_100mV}, //-V2533
-        {"200MV", (uint8)Range::_200mV}, //-V2533
-        {"500MV", (uint8)Range::_500mV}, //-V2533
-        {"1V",    (uint8)Range::_1V}, //-V2533
-        {"2V",    (uint8)Range::_2V}, //-V2533
-        {"5V",    (uint8)Range::_5V}, //-V2533
-        {"10V",   (uint8)Range::_10V}, //-V2533
-        {"20V",   (uint8)Range::_20V}, //-V2533
-        {"?",     (uint8)Range::Count}, //-V2533
+        {"2MV",   (uint8)Range::_2mV},
+        {"5MV",   (uint8)Range::_5mV},
+        {"10MV",  (uint8)Range::_10mV},
+        {"20MV",  (uint8)Range::_20mV},
+        {"50MV",  (uint8)Range::_50mV},
+        {"100MV", (uint8)Range::_100mV},
+        {"200MV", (uint8)Range::_200mV},
+        {"500MV", (uint8)Range::_500mV},
+        {"1V",    (uint8)Range::_1V},
+        {"2V",    (uint8)Range::_2V},
+        {"5V",    (uint8)Range::_5V},
+        {"10V",   (uint8)Range::_10V},
+        {"20V",   (uint8)Range::_20V},
+        {"?",     (uint8)Range::Count},
         {0}
     };
     ENTER_ANALYSIS
-        if (value <= (uint8)Range::_20V)      { FPGA::SetRange(chan, (Range::E)value); } //-V2533
-        else if (value == (uint8)Range::Count) //-V2516 //-V2533
+        if (value <= (uint8)Range::_20V)      { FPGA::SetRange(chan, (Range::E)value); }
+        else if (value == (uint8)Range::Count) //-V2516
         {
             SCPI_SEND(":CHANNEL%d:SET_RANGE %s", Tables::GetNumChannel(chan), map[SET_RANGE(chan)].key);
         }
@@ -167,7 +167,7 @@ void SCPI::CHANNEL::OFFSET(pUCHAR buffer)
     if (SCPI::FirstIsInt(buffer, &intVal, -240, 240))
     {
         int rShift = RShiftZero + 2 * intVal;
-        FPGA::SetRShift(chan, (int16)rShift); //-V2533
+        FPGA::SetRShift(chan, (int16)rShift);
         return;
     }
     ENTER_ANALYSIS

@@ -155,7 +155,7 @@ static void Get_SerialNum();
 uint8_t *USBD_VCP_DeviceDescriptor(USBD_SpeedTypeDef, uint16_t *length)
 {
     *length = sizeof(USBD_DeviceDesc);
-    return (uint8_t *)USBD_DeviceDesc; //-V2533
+    return (uint8_t *)USBD_DeviceDesc;
 }
 
 /**
@@ -167,7 +167,7 @@ uint8_t *USBD_VCP_DeviceDescriptor(USBD_SpeedTypeDef, uint16_t *length)
 uint8_t *USBD_VCP_LangIDStrDescriptor(USBD_SpeedTypeDef, uint16_t *length)
 {
     *length = sizeof(USBD_LangIDDesc);
-    return (uint8_t *)USBD_LangIDDesc; //-V2533
+    return (uint8_t *)USBD_LangIDDesc;
 }
 
 /**
@@ -214,7 +214,7 @@ uint8_t *USBD_VCP_SerialStrDescriptor(USBD_SpeedTypeDef, uint16_t *length)
     /* Update the serial number string descriptor with the data from the unique ID*/
     Get_SerialNum();
 
-    return (uint8_t *)USBD_StringSerial; //-V2533
+    return (uint8_t *)USBD_StringSerial;
 }
 
 /**

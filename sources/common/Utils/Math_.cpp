@@ -27,7 +27,7 @@ float Math::GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, in
         return static_cast<float>(x1);
     }
 
-    return (yHorLine - y0) / ((float)(y1 - y0) / (float)(x1 - x0)) + x0; //-V2533 //-V2564
+    return (yHorLine - y0) / ((float)(y1 - y0) / (float)(x1 - x0)) + x0; //-V2564
 }
 
 bool Math::FloatsIsEquals(float value0, float value1, float epsilonPart)
@@ -234,7 +234,7 @@ uint8 Math::CalculateFiltr(pUCHAR data, int x, int numPoints, int numSmoothing)
         }
     }
 
-    return (uint8)(sum / count); //-V2533
+    return (uint8)(sum / count);
 }
 
 void Math::CalculateFiltrArray(pUCHAR dataIn, uint8 *dataOut, int numPoints, int numSmoothing)
@@ -274,7 +274,7 @@ void Math::CalculateFiltrArray(pUCHAR dataIn, uint8 *dataOut, int numPoints, int
                 }
             }
 
-            dataOut[i] = (uint8)(sum / count); //-V2533 //-V2563
+            dataOut[i] = (uint8)(sum / count); //-V2563
         }
     }
 }

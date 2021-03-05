@@ -209,7 +209,7 @@ float Processing::CalculateVoltageVybrosPlus(Channel::E chan)
         markerHor[chan][1] = static_cast<int>(maxSteady);
     }
 
-    int16 rShift = chan == Channel::A ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1; //-V2533
+    int16 rShift = chan == Channel::A ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1;
     return std::fabsf(POINT_2_VOLTAGE(maxSteady, dataSet->range[chan], rShift) - POINT_2_VOLTAGE(max, dataSet->range[chan], rShift)) * VALUE_MULTIPLIER(chan); //-V2564
 }
 
@@ -225,7 +225,7 @@ float Processing::CalculateVoltageVybrosMinus(Channel::E chan)
         markerHor[chan][1] = static_cast<int>(minSteady);
     }
 
-    int16 rShift = chan == Channel::A ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1; //-V2533
+    int16 rShift = chan == Channel::A ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1;
     return std::fabsf(POINT_2_VOLTAGE(minSteady, dataSet->range[chan], rShift) - POINT_2_VOLTAGE(min, dataSet->range[chan], rShift)) * VALUE_MULTIPLIER(chan); //-V2564
 }
 
@@ -257,7 +257,7 @@ float Processing::CalculateVoltageAverage(Channel::E chan)
         sum += *data++;
     }
 
-    uint8 aveRel = static_cast<uint8>((float)sum / period); //-V2533 //-V2564
+    uint8 aveRel = static_cast<uint8>((float)sum / period); //-V2564
 
     if(MEAS_MARKED == Measure::VoltageAverage)
     {
@@ -274,10 +274,10 @@ float Processing::CalculateVoltageRMS(Channel::E chan)
     EXIT_IF_ERROR_INT(period);
 
     float rms = 0.0F;
-    int16 rShift = chan == Channel::A ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1; //-V2533
+    int16 rShift = chan == Channel::A ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1;
     for(int i = firstP; i < firstP + period; i++)
     {
-        float volts = POINT_2_VOLTAGE(dataIn[chan][i], dataSet->range[chan], rShift); //-V2533
+        float volts = POINT_2_VOLTAGE(dataIn[chan][i], dataSet->range[chan], rShift);
         rms +=  volts * volts;
     }
 
@@ -614,7 +614,7 @@ float Processing::CalculateMinSteadyRel(Channel::E chan)
                     numSums++;
                 }
             }
-            min[chan] = (float)sum / numSums; //-V2533 //-V2564
+            min[chan] = (float)sum / numSums; //-V2564
             int numMin = numSums; //-V2551
 
             float pic = CalculatePicRel(chan);
@@ -650,7 +650,7 @@ float Processing::CalculateMinSteadyRel(Channel::E chan)
                         }
                     }
                 }
-                min[chan] = (numDeleted > numMin / 2.0F) ? CalculateMinRel(chan) : (float)sum / numSums; //-V2533 //-V2564
+                min[chan] = (numDeleted > numMin / 2.0F) ? CalculateMinRel(chan) : (float)sum / numSums; //-V2564
             }
         }
         minSteadyIsCalculating[chan] = true;
@@ -686,7 +686,7 @@ float Processing::CalculateMaxSteadyRel(Channel::E chan)
                     numSums++;
                 }
             }
-            max[chan] = (float)sum / numSums; //-V2533 //-V2564
+            max[chan] = (float)sum / numSums; //-V2564
 
             float pic = CalculatePicRel(chan);
 
@@ -724,7 +724,7 @@ float Processing::CalculateMaxSteadyRel(Channel::E chan)
                         }
                     }
                 }
-                max[chan] = (numDeleted > numMax / 2) ? CalculateMaxRel(chan) : (float)sum / numSums; //-V2533 //-V2564
+                max[chan] = (numDeleted > numMax / 2) ? CalculateMaxRel(chan) : (float)sum / numSums; //-V2564
             }
         }
         maxSteadyIsCalculating[chan] = true;
@@ -898,7 +898,7 @@ void Processing::SetSignal(pUCHAR data0, pUCHAR data1, DataSettings *ds, int _fi
     
     int numSmoothing = Smoothing::NumPoints();
 
-    int length = (int)ds->length1channel * (ds->peakDet == PeackDetMode::Disable ? 1 : 2); //-V2533
+    int length = (int)ds->length1channel * (ds->peakDet == PeackDetMode::Disable ? 1 : 2);
 
     Math::CalculateFiltrArray(data0, &dataIn[Channel::A][0], length, numSmoothing);
     Math::CalculateFiltrArray(data1, &dataIn[Channel::B][0], length, numSmoothing);
@@ -926,7 +926,7 @@ float Processing::GetCursU(Channel::E chan, float posCurT)
     SettingsDisplay::PointsOnDisplay(&first, &last);
 
     float retValue;
-    LIMITATION(retValue, static_cast<float>(200.0F - (dataIn[chan])[first + (int)posCurT] + MIN_VALUE), 0.0F, 200.0F); //-V2516 //-V2533 //-V2564
+    LIMITATION(retValue, static_cast<float>(200.0F - (dataIn[chan])[first + (int)posCurT] + MIN_VALUE), 0.0F, 200.0F); //-V2516 //-V2564
     return retValue;
 }
 
@@ -1029,7 +1029,7 @@ void Processing::InterpolationSinX_X(uint16 data[FPGA_MAX_POINTS], TBase::E tBas
     }
 
     float deltaX = PI;
-    float stepX0 = PI / (float)delta; //-V2533
+    float stepX0 = PI / (float)delta;
     float x0 = PI - stepX0;
     int num = 0;
     
@@ -1071,7 +1071,7 @@ void Processing::InterpolationSinX_X(uint16 data[FPGA_MAX_POINTS], TBase::E tBas
                     value += signedData[n] * sinX / x; //-V2564
                     sinX = -sinX;
                 }
-                data[i] = (uint8)value; //-V2533
+                data[i] = (uint8)value;
             }
         }
     }
@@ -1129,7 +1129,7 @@ void Processing::CountedToCurrentSettings()
     std::memset(dataOut0, 0, FPGA_MAX_POINTS);
     std::memset(dataOut1, 0, FPGA_MAX_POINTS);
     
-    int numPoints = (int)dataSet->length1channel * (dataSet->peakDet == PeackDetMode::Disable ? 1 : 2); //-V2533
+    int numPoints = (int)dataSet->length1channel * (dataSet->peakDet == PeackDetMode::Disable ? 1 : 2);
 
     int16 dataTShift = dataSet->tShift;
     int16 curTShift = TSHIFT;
@@ -1152,12 +1152,12 @@ void Processing::CountedToCurrentSettings()
 
         for (int i = 0; i < numPoints; i++)
         {
-            float absValue = POINT_2_VOLTAGE(dataOut0[i], dataSet->range[0], dataSet->rShiftCh0); //-V2533
+            float absValue = POINT_2_VOLTAGE(dataOut0[i], dataSet->range[0], dataSet->rShiftCh0);
             int relValue = static_cast<int>((absValue + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) / MathFPGA::voltsInPixel[range] + MIN_VALUE); //-V2564
 
             if (relValue < MIN_VALUE)       { dataOut0[i] = MIN_VALUE; }
             else if (relValue > MAX_VALUE)  { dataOut0[i] = MAX_VALUE; }
-            else                            { dataOut0[i] = (uint8)relValue; } //-V2533
+            else                            { dataOut0[i] = (uint8)relValue; }
         }
     }
     if (dataSet->enableCh1 == 1 && (dataSet->range[1] != SET_RANGE_B || dataSet->rShiftCh1 != (uint)SET_RSHIFT_B))
@@ -1167,12 +1167,12 @@ void Processing::CountedToCurrentSettings()
 
         for (int i = 0; i < numPoints; i++)
         {
-            float absValue = POINT_2_VOLTAGE(dataOut1[i], dataSet->range[1], dataSet->rShiftCh1); //-V2533
+            float absValue = POINT_2_VOLTAGE(dataOut1[i], dataSet->range[1], dataSet->rShiftCh1);
             int relValue = static_cast<int>((absValue + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) / MathFPGA::voltsInPixel[range] + MIN_VALUE); //-V2564
 
             if (relValue < MIN_VALUE)       { dataOut1[i] = MIN_VALUE; }
             else if (relValue > MAX_VALUE)  { dataOut1[i] = MAX_VALUE; }
-            else                            { dataOut1[i] = (uint8)relValue; } //-V2533
+            else                            { dataOut1[i] = (uint8)relValue; }
         }
     }
 }

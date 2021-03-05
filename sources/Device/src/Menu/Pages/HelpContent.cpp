@@ -36,7 +36,7 @@ static void DrawPageContent()
 
     while(currentPage->OwnData()->pages[numPage])
     {
-        Page *page = (Page*)currentPage->OwnData()->pages[numPage]; //-V2533
+        Page *page = (Page*)currentPage->OwnData()->pages[numPage];
         const char *title = TITLE(page); //-V2563
         if(currentParagraph == numPage)
         {
@@ -107,7 +107,7 @@ void PageHelpContent::EnterParagraph()
 {
     if(currentPage->OwnData()->type == TypePageHelp::Content)
     {
-        currentPage = (const PageHelpItem *)currentPage->OwnData()->pages[currentParagraph]; //-V2533
+        currentPage = (const PageHelpItem *)currentPage->OwnData()->pages[currentParagraph];
     }
     currentParagraph = 0;
 }
@@ -117,7 +117,7 @@ void PageHelpContent::LeaveParagraph()
     currentParagraph = 0;
     if(currentPage->OwnData()->parent)
     {
-        currentPage = (const PageHelpItem *)currentPage->OwnData()->parent; //-V2533
+        currentPage = (const PageHelpItem *)currentPage->OwnData()->parent;
     }
 }
 

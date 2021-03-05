@@ -48,7 +48,7 @@ void Storage::PrintElement(DataSettings *dp)
 void Storage::Clear()
 {
     firstElem = 0;
-    lastElem = (DataSettings*)beginPool; //-V2533
+    lastElem = (DataSettings*)beginPool;
     lastElem->addrNext = 0;
     lastElem->addrPrev = 0;
     ClearLimitsAndSums();
@@ -68,7 +68,7 @@ void Storage::ClearLimitsAndSums()
 void Storage::CalculateAroundAverage(uint16 *data0, uint16 *data1, const DataSettings *dss)
 {
     int numAveData = NumElementsWithCurrentSettings();
-    int size = (int)(dss->length1channel * (dss->peakDet == PeackDetMode::Disable ? 1 : 2)); //-V2533
+    int size = (int)(dss->length1channel * (dss->peakDet == PeackDetMode::Disable ? 1 : 2));
     if (numAveData == 1)
     {
         for (int i = 0; i < size; i++)
@@ -94,8 +94,8 @@ void Storage::CalculateAroundAverage(uint16 *data0, uint16 *data1, const DataSet
 
         do 
         {
-            *aData0++ = ((*aData0) * numAveDataFless + (float)(*d0++)) * numAveDataInv; //-V567 //-V2533
-            *aData1++ = ((*aData1) * numAveDataFless + (float)(*d1++)) * numAveDataInv; //-V567 //-V2533
+            *aData0++ = ((*aData0) * numAveDataFless + (float)(*d0++)) * numAveDataInv; //-V567
+            *aData1++ = ((*aData1) * numAveDataFless + (float)(*d1++)) * numAveDataInv; //-V567
         } while (aData0 != endData);
     }
 }
@@ -329,7 +329,7 @@ bool Storage::CopyData(DataSettings *ds, Channel::E chan, uint8 datatImportRel[2
     }
     uint8* pointer = (chan == Channel::A) ? (&datatImportRel[0][0]) : (&datatImportRel[1][0]);
 
-    uint8* address = ((uint8*)ds + sizeof(DataSettings)); //-V2533 //-V2563
+    uint8* address = ((uint8*)ds + sizeof(DataSettings)); //-V2563
 
     uint length = ds->length1channel * (ds->peakDet == PeackDetMode::Disable ? 1 : 2);
 
@@ -372,7 +372,7 @@ uint8* Storage::GetAverageData(Channel::E chan)
         
         for (uint i = 0; i < numPoints; i++)
         {
-            data[chan][i] = (uint8)(floatAveData[i]); //-V2533
+            data[chan][i] = (uint8)(floatAveData[i]);
         }
         return &data[chan][0];
     }
@@ -433,14 +433,14 @@ void Storage::PushData(DataSettings *dp, uint16 * data0, uint16 * data1)
     uint8* addrRecord = 0;
     if(firstElem == 0)
     {
-        firstElem = (DataSettings*)beginPool; //-V2533
+        firstElem = (DataSettings*)beginPool;
         addrRecord = beginPool;
         dp->addrPrev = 0;
         dp->addrNext = 0;
     }
     else
     {
-        addrRecord = (uint8*)lastElem + SizeElem(lastElem); //-V2533 //-V2563
+        addrRecord = (uint8*)lastElem + SizeElem(lastElem); //-V2563
         if(addrRecord + SizeElem(dp) > endPool) //-V2563
         {
             addrRecord = beginPool;
@@ -450,7 +450,7 @@ void Storage::PushData(DataSettings *dp, uint16 * data0, uint16 * data1)
         dp->addrNext = 0;
     }
 
-    lastElem = (DataSettings*)addrRecord; //-V2533
+    lastElem = (DataSettings*)addrRecord;
 
     COPY_AND_INCREASE(addrRecord, dp, sizeof(DataSettings)); //-V2563
 
@@ -483,22 +483,22 @@ int Storage::MemoryFree()
     }
     else if (firstElem == lastElem)
     {
-        return (endPool - (uint8*)firstElem - (int)SizeElem(firstElem)); //-V2533
+        return (endPool - (uint8*)firstElem - (int)SizeElem(firstElem));
     }
     else if (firstElem < lastElem)
     {
-        if ((uint8*)firstElem == beginPool) //-V2533
+        if ((uint8*)firstElem == beginPool)
         {
-            return (endPool - (uint8*)lastElem - SizeElem(lastElem)); //-V2533
+            return (endPool - (uint8*)lastElem - SizeElem(lastElem));
         }
         else
         {
-            return (uint8*)firstElem - beginPool; //-V2533
+            return (uint8*)firstElem - beginPool;
         }
     }
     else if (lastElem < firstElem) //-V2516
     {
-        return (uint8*)firstElem - (uint8*)lastElem - SizeElem(lastElem); //-V2533
+        return (uint8*)firstElem - (uint8*)lastElem - SizeElem(lastElem);
     }
     return 0;
 }
@@ -537,7 +537,7 @@ void Storage::RemoveFirstElement()
 
 DataSettings* Storage::NextElem(DataSettings *elem)
 {
-    return (DataSettings*)elem->addrNext; //-V2533
+    return (DataSettings*)elem->addrNext;
 }
 
 
@@ -549,7 +549,7 @@ DataSettings* Storage::FromEnd(int indexFromEnd)
     }
     int index = indexFromEnd;
     DataSettings *retValue = lastElem;
-    while(index != 0 && ((retValue = (DataSettings *)retValue->addrPrev) != 0)) //-V2561 //-V2533
+    while(index != 0 && ((retValue = (DataSettings *)retValue->addrPrev) != 0)) //-V2561
     {
         index--;
     }

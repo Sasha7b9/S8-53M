@@ -246,18 +246,18 @@ void Settings::Load(bool /*_default*/)
 //        uint16 rShiftAddA[Range::Count][2];
 //        uint16 rshiftAddB[Range::Count][2];
 //
-//        std::memcpy((void *)rShiftAddA, (void *)&RSHIFT_ADD(Channel::A, 0, 0), 2 * Range::Count * 2); // Сначала сохраняем несбрасываемые настройки //-V2533
-//        std::memcpy((void *)rshiftAddB, (void *)&RSHIFT_ADD(Channel::B, 0, 0), 2 * Range::Count * 2); //-V2533
+//        std::memcpy((void *)rShiftAddA, (void *)&RSHIFT_ADD(Channel::A, 0, 0), 2 * Range::Count * 2); // Сначала сохраняем несбрасываемые настройки
+//        std::memcpy((void *)rshiftAddB, (void *)&RSHIFT_ADD(Channel::B, 0, 0), 2 * Range::Count * 2);
 //
 //        int16  balanceADC0 = BALANCE_ADC_A;
 //        int16  balanceADC1 = BALANCE_ADC_B;
 //        int16  numAverageForRand = NUM_AVE_FOR_RAND;
 //        BalanceADCtype::E balanceType = BALANCE_ADC_TYPE;
 //
-//        std::memcpy((void*)&set, (void*)(&defaultSettings), sizeof(set));                // Потом заполняем значениями по умолчанию //-V2533
+//        std::memcpy((void*)&set, (void*)(&defaultSettings), sizeof(set));                // Потом заполняем значениями по умолчанию
 //
-//        std::memcpy((void *)&RSHIFT_ADD(Channel::A, 0, 0), (void *)rShiftAddA, 2 * Range::Count * 2);  // И восстанавливаем несбрасываемые настройки //-V2533
-//        std::memcpy((void *)&RSHIFT_ADD(Channel::B, 0, 0), (void *)rshiftAddB, 2 * Range::Count * 2); //-V2533
+//        std::memcpy((void *)&RSHIFT_ADD(Channel::A, 0, 0), (void *)rShiftAddA, 2 * Range::Count * 2);  // И восстанавливаем несбрасываемые настройки
+//        std::memcpy((void *)&RSHIFT_ADD(Channel::B, 0, 0), (void *)rshiftAddB, 2 * Range::Count * 2);
 //
 //        BALANCE_ADC_A = balanceADC0;
 //        BALANCE_ADC_B = balanceADC1;
@@ -285,7 +285,7 @@ bool Settings::DebugModeEnable()
 
 Range::E& operator++(Range::E &range)
 {
-    range = (Range::E)((int)range + 1); //-V2533
+    range = (Range::E)((int)range + 1);
     return range;
 
 }
@@ -293,6 +293,6 @@ Range::E& operator++(Range::E &range)
 
 Range::E& operator--(Range::E &range)
 {
-    range = (Range::E)((int)range - 1); //-V2533
+    range = (Range::E)((int)range - 1);
     return range;
 }

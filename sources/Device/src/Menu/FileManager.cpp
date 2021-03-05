@@ -415,7 +415,7 @@ LabelNextNumber:
                 {
                     if (*ch >= 0x01 && *ch <= 0x06)
                     {
-                        std::strcpy(wr, Int2String((int)values[*ch], false, 2, buffer)); //-V2513 //-V2533
+                        std::strcpy(wr, Int2String((int)values[*ch], false, 2, buffer)); //-V2513
                         wr += std::strlen(buffer); //-V2513 //-V2563
                     }
                 }

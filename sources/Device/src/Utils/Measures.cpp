@@ -161,14 +161,14 @@ void Measure::RotateRegSet(int angle)
 {
     static const int8 step = 3;
     static int8 currentAngle = 0;
-    currentAngle += (int8)angle; //-V2533
+    currentAngle += (int8)angle;
     if (currentAngle < step && currentAngle > -step)
     {
         return;
     }
     if (PageMeasures::choiceMeasuresIsActive)
     {
-        posOnPageChoice += (int8)Math::Sign(currentAngle); //-V2533
+        posOnPageChoice += (int8)Math::Sign(currentAngle);
         Sound::RegulatorSwitchRotate();
         if (posOnPageChoice < 0)
         {
@@ -178,7 +178,7 @@ void Measure::RotateRegSet(int angle)
         {
             posOnPageChoice = 0;
         }
-        MEASURE(posActive) = (Measure::E)posOnPageChoice; //-V2533
+        MEASURE(posActive) = (Measure::E)posOnPageChoice;
         Color::ResetFlash();
     }
     else
@@ -276,6 +276,6 @@ void Measure::DrawPageChoice()
 
 Measure::E& operator++(Measure::E &measure)
 {
-    measure = (Measure::E)((int)measure + 1); //-V2533
+    measure = (Measure::E)((int)measure + 1);
     return measure;
 }

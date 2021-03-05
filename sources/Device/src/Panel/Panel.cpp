@@ -430,7 +430,7 @@ static void StartDown()
 
 static void PowerDown()
 {
-    ((Page *)Item::Opened())->ShortPressOnItem(0); //-V2533
+    ((Page *)Item::Opened())->ShortPressOnItem(0);
     Settings::Save();
 //\    Log_DisconnectLoggerUSB();
     Panel::TransmitData(0x04);           // Посылаем команду выключения
@@ -498,7 +498,7 @@ int CalculateCount(int *prevTime)
 {
     uint time = gTimerMS;
     uint delta = time - *prevTime;
-    *prevTime = (int)time; //-V2533
+    *prevTime = (int)time;
 
     if (delta > 75)
     {
@@ -529,10 +529,10 @@ static void ChangeRShift(int *prevTime, void(*f)(Channel::E, int16), Channel::E 
     {
         rShift = RShiftZero;
     }
-    if (CanChangeRShiftOrTrigLev((TrigSource::E)chan, (int16)rShift)) //-V2533
+    if (CanChangeRShiftOrTrigLev((TrigSource::E)chan, (int16)rShift))
     {
         Sound::RegulatorShiftRotate();
-        f(chan, (int16)rShift); //-V2533
+        f(chan, (int16)rShift);
     }
 }
 
@@ -580,10 +580,10 @@ static void ChangeTrigLev(int *prevTime, void(*f)(TrigSource::E, int16), TrigSou
     {
         trigLev = TrigLevZero;
     }
-    if (CanChangeRShiftOrTrigLev(trigSource, (int16)trigLev)) //-V2533
+    if (CanChangeRShiftOrTrigLev(trigSource, (int16)trigLev))
     {
         Sound::RegulatorShiftRotate();
-        f(trigSource, (int16)trigLev); //-V2533
+        f(trigSource, (int16)trigLev);
     }
 }
 
@@ -705,7 +705,7 @@ static void XShift(int delta)
     }
     else
     {
-        ChangeTShift(&prevTime, SetTShift, (int16)delta); //-V2533
+        ChangeTShift(&prevTime, SetTShift, (int16)delta);
     }
 }
 

@@ -78,7 +78,7 @@ bool FDrive_Update(void)
     USBH_Process(reinterpret_cast<USBH_HandleTypeDef *>(HAL_USBH::handle));
     if (MainStruct::ms->drive.state == StateDisk::Start)
     {
-        if (f_mount(&(MainStruct::ms->drive.USBDISKFatFS), (TCHAR const*)MainStruct::ms->drive.USBDISKPath, 0) == FR_OK) //-V2533
+        if (f_mount(&(MainStruct::ms->drive.USBDISKFatFS), (TCHAR const*)MainStruct::ms->drive.USBDISKPath, 0) == FR_OK)
         {
             return true;
         }
@@ -229,7 +229,7 @@ int FDrive_ReadFromFile(int numBytes, uint8 *buffer)
     uint readed = 0;
     if (f_read(&MainStruct::ms->drive.file, buffer, static_cast<uint>(numBytes), &readed) == FR_OK)
     {
-        return (int)readed; //-V2533
+        return (int)readed;
     }
     return -1;
 }
