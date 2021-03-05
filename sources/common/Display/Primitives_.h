@@ -71,7 +71,7 @@ namespace Primitives
     {
     public:
         MultiHPointLine(int _numLines, const uint8 *_y, int _delta, int _count) : numLines(_numLines), y(_y), delta(_delta), count(_count) { }
-        void Draw(int x, Color color = Color::Count);
+        void Draw(int x, const Color &color = Color::Count);
     private:
         int numLines;
         const uint8 *y;

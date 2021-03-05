@@ -79,7 +79,7 @@ void Primitives::Rectangle::Draw(int x, int y, const Color &color)
 }
 
 
-void Primitives::MultiHPointLine::Draw(int x, Color color)
+void Primitives::MultiHPointLine::Draw(int x, const Color &color)
 {
     color.SetAsCurrent();
 
@@ -92,8 +92,15 @@ void Primitives::MultiHPointLine::Draw(int x, Color color)
 
 void Primitives::Region::Fill(int x, int y, const Color &color)
 {
-    for (int i = y; i <= y + height; i++)
+    color.SetAsCurrent();
+
+    if (width == 0 || height == 0)
     {
-        HLine().Draw(i, x, x + width, color);
+        return;
+    }
+
+    for (int i = y; i <= y + height - 1; i++)
+    {
+        HLine().Draw(i, x, x + width - 1, color);
     }
 }

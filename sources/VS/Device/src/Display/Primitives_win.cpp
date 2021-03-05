@@ -62,7 +62,7 @@ void Primitives::MultiVPointLine::Draw(int y, Color color)
 }
 
 
-void Primitives::MultiHPointLine::Draw(int x, Color color)
+void Primitives::MultiHPointLine::Draw(int x, const Color &color)
 {
     color.SetAsCurrent();
 
