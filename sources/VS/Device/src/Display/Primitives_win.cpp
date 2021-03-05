@@ -44,7 +44,7 @@ void Primitives::HLine::Draw(int y, int x1, int x2, const Color &color)
 }
 
 
-void Primitives::VLine::Draw(int x, int y0, int y1, Color color)
+void Primitives::VLine::Draw(int x, int y0, int y1, const Color &color)
 {
     color.SetAsCurrent();
     Application::memDC.DrawLine({ x, y0 }, { x, y1 });
