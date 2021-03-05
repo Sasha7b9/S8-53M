@@ -43,27 +43,7 @@ void HAL_LTDC::Init(uint8 *front, uint8 *back)
 
 void HAL_LTDC::LoadPalette()
 {
-    static uint colors[16] =
-    {
-        Color::Make(0x00, 0x00, 0x00),   // Color::BLACK = 0x00,
-        Color::Make(0xFF, 0xFF, 0xFF),   // Color::WHITE = 0x01,
-        Color::Make(0x80, 0x80, 0x80),   // Color::GRID = 0x02,
-        Color::Make(0x01, 0xCA, 0xFF),   // Color::DATA_A = 0x03,
-        Color::Make(0x00, 0xFF, 0x00),   // COLOR_DATA_B = 0x04,
-        Color::Make(0xD5, 0xDA, 0xD5),   // Color::MENU_FIELD = 0x05,
-        Color::Make(0xFF, 0xB2, 0x00),   // COLOR_MENU_TITLE = 0x06,
-        Color::Make(0x7B, 0x59, 0x00),   // Color::MENU_TITLE_DARK = 0x07,
-        Color::Make(0xFF, 0xFF, 0x00),   // Color::MENU_TITLE_BRIGHT = 0x08,
-        Color::Make(0x69, 0x89, 0x00),   // COLOR_MENU_ITEM = 0x09,
-        Color::Make(0x6B, 0x45, 0x00),   // Color::MENU_ITEM_DARK = 0x0a,
-        Color::Make(0xFF, 0xCE, 0x00),   // Color::MENU_ITEM_BRIGHT = 0x0b,
-        Color::Make(0x00, 0x00, 0x00),   // Color::MENU_SHADOW = 0x0c,
-        Color::Make(0x00, 0x00, 0x00),   // COLOR_EMPTY = 0x0d,
-        Color::Make(0x08, 0xA2, 0xCE),   // COLOR_EMPTY_A = 0x0e,
-        Color::Make(0x00, 0xCE, 0x00)    // COLOR_EMPTY_B = 0x0f,
-    };
-
-    if (HAL_LTDC_ConfigCLUT(&handleLTDC, colors, 16, 0) != HAL_OK)
+    if (HAL_LTDC_ConfigCLUT(&handleLTDC, set.display.colors, Color::Count, 0) != HAL_OK)
     {
         ERROR_HANDLER();
     }

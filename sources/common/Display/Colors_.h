@@ -22,7 +22,7 @@ struct Color
     static Color EMPTY_A;
     static Color EMPTY_B;
 
-    static Color Count;
+    static const int Count = 16;
 
     static Color FLASH_10;
     static Color FLASH_01;

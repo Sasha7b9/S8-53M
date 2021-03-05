@@ -79,7 +79,7 @@ void Display::EndFrame()
 
 void Color::SetAsCurrent() const
 {
-    if (index == Color::Count.index)
+    if (index == Color::Count)
     {
         return;
     }

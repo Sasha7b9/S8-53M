@@ -6,9 +6,6 @@
 #include "Utils/GlobalFunctions.h"
 
 
-static const uint8 NUM_COLORS = 16;
-
-
 const Color Color::BLACK(0);
 Color Color::WHITE(1);
 Color Color::GRID(2);
@@ -25,10 +22,9 @@ Color Color::MENU_SHADOW(12);
 Color Color::EMPTY(13);
 Color Color::EMPTY_A(14);
 Color Color::EMPTY_B(15);
-Color Color::Count(NUM_COLORS);
 
-Color Color::FLASH_10(NUM_COLORS + 1);
-Color Color::FLASH_01(NUM_COLORS + 2);
+Color Color::FLASH_10(Color::Count + 1);
+Color Color::FLASH_01(Color::Count + 2);
 
 Color Color::current = Color::WHITE;
 
