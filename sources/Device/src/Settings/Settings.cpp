@@ -200,7 +200,7 @@ static const Settings defaultSettings =
     // menu
     {
         true,
-        0
+        1
     },
     // debug
     {
@@ -231,7 +231,7 @@ static const Settings defaultSettings =
 Settings set;
 
 
-void Settings::Load(bool _default)
+void Settings::Load(bool /*_default*/)
 {
     set = defaultSettings;
 

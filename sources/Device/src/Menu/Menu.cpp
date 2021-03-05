@@ -649,7 +649,7 @@ void Menu::OpenFileManager()
 
 bool Menu::IsShown()
 {
-    return set.menu.isShown;
+    return (set.menu.isShown == 1);
 }
 
 
