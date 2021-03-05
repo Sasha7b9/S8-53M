@@ -122,31 +122,11 @@ void HAL_LTDC::ToggleBuffers()
 
     hDMA2D.Instance = DMA2D;
 
-    if (HAL_DMA2D_Init(&hDMA2D) == HAL_OK)
-    {
-        if (HAL_DMA2D_ConfigLayer(&hDMA2D, 1) == HAL_OK)
-        {
-            if (HAL_DMA2D_Start(&hDMA2D, backBuffer, frontBuffer, 160, 240) == HAL_OK)
-            {
-                if (HAL_DMA2D_PollForTransfer(&hDMA2D, 100) != HAL_OK)
-                {
-                    uint error_code = hDMA2D.ErrorCode;
+    if (HAL_DMA2D_Init(&hDMA2D) != HAL_OK)                                     { ERROR_HANDLER(); }
 
-                    error_code = error_code;
+    if (HAL_DMA2D_ConfigLayer(&hDMA2D, 1) != HAL_OK)                           { ERROR_HANDLER(); }
 
-                    ERROR_HANDLER();
-                }
-            }
-            
-            frontBuffer = frontBuffer;
-        }
-        else
-        {
-            ERROR_HANDLER();
-        }
-    }
-    else
-    {
-        ERROR_HANDLER();
-    }
+    if (HAL_DMA2D_Start(&hDMA2D, backBuffer, frontBuffer, 160, 240) != HAL_OK) { ERROR_HANDLER(); }
+
+    if (HAL_DMA2D_PollForTransfer(&hDMA2D, 100) != HAL_OK)                     { ERROR_HANDLER(); }
 }
