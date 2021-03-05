@@ -13,6 +13,8 @@ static const int SIZE_BUFFER = Display::WIDTH * Display::HEIGHT;
 static uint8 *front = (uint8 *)HAL_FMC::ADDR_RAM_DISPLAY_FRONT;
 static uint8 back[240][320];
 
+uint8 *display_back_buffer = &back[0][0];
+
 
 void Display::Init()
 {
@@ -58,22 +60,16 @@ void Primitives::HLine::Draw(int y, int x0, int x1, const Color &color)
     if (x1 < 0) { x1 = 0; }
     if (y < 0) { y = 0; }
 
+    if (x0 >= Display::WIDTH) { x0 = Display::WIDTH - 1; }
+
+    if (x1 >= Display::WIDTH) { x1 = Display::WIDTH - 1; }
+
     if (x0 > x1)
     {
         Math::Swap(&x0, &x1);
     }
 
-    uint8 *address = Display::GetBuffer() + x0 + y * Display::WIDTH; //-V2563
-    uint8 *end = Display::GetBufferEnd();
+    uint8 *start = &back[y][x0];
 
-    uint8 value = Color::GetCurrent().index;
-
-    for (int x = x0; x <= x1; ++x)
-    {
-        if (address >= end)
-        {
-            break;
-        }
-        *address++ = value;
-    }
+    std::memset(start, Color::GetCurrent().index, x1 - x0);
 }

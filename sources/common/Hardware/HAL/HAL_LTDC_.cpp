@@ -106,7 +106,7 @@ void HAL_LTDC::ToggleBuffers()
 
     if (HAL_DMA2D_ConfigLayer(&hDMA2D, 1) != HAL_OK)                           { ERROR_HANDLER(); }
 
-    if (HAL_DMA2D_Start(&hDMA2D, backBuffer, frontBuffer, 160, 240) != HAL_OK) { ERROR_HANDLER(); }
+    if (HAL_DMA2D_Start(&hDMA2D, backBuffer, frontBuffer, 320, 240) != HAL_OK) { ERROR_HANDLER(); }
 
     if (HAL_DMA2D_PollForTransfer(&hDMA2D, 100) != HAL_OK)                     { ERROR_HANDLER(); }
 }

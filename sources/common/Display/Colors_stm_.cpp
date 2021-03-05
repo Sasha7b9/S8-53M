@@ -4,5 +4,8 @@
 
 void Color::SetAsCurrent() const
 {
-    current = index;
+    if (index != Count)
+    {
+        current = index;
+    }
 }
