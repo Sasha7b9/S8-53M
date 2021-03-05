@@ -59,7 +59,7 @@ private:
     // Удалить первое (самое старое) измерение
     static void RemoveFirstElement();
     // Сохранить данные
-    static void PushData(DataSettings *dp, pUCHAR data0, pUCHAR data1);
+    static void PushData(DataSettings *dp, uint16 * data0, uint16 * data1);
     // Возвращает указатель на измерение, следующее за elem
     static DataSettings* NextElem(DataSettings *elem);
     // Возвращает указатель на данные, отстоящие на indexFromEnd oт последнего сохранённого
@@ -79,7 +79,7 @@ private:
 
     static void PrintElement(DataSettings *dp);
     
-    static void CalculateAroundAverage(uint8 *data0, uint8 *data1, const DataSettings *dss);
+    static void CalculateAroundAverage(uint16 *data0, uint16 *data1, const DataSettings *dss);
     // Здесь хранятся данные.
     static uint8 pool[SIZE_POOL];
     // Адрес начала памяти для хранения

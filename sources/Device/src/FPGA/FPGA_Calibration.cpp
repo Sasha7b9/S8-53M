@@ -450,8 +450,8 @@ int16 CalculateAdditionRShift(Channel::E chan, Range::E range)
 
         HAL_FMC::Write(WR_STOP, 1); //-V2563
 
-        uint8 *addressRead1 = chan == Channel::A ? RD_ADC_A1 : RD_ADC_B1; //-V2563
-        uint8 *addressRead2 = chan == Channel::A ? RD_ADC_A2 : RD_ADC_B2; //-V2563
+        uint16 *addressRead1 = chan == Channel::A ? RD_ADC_A1 : RD_ADC_B1; //-V2563
+        uint16 *addressRead2 = chan == Channel::A ? RD_ADC_A2 : RD_ADC_B2; //-V2563
 
         for(int j = 0; j < FPGA_MAX_POINTS; j += 2)
         {
@@ -513,12 +513,12 @@ float CalculateKoeffCalibration(Channel::E chan)
 
         HAL_FMC::Write(WR_STOP, 1); //-V2563
 
-        uint8 *addressRead1 = chan == Channel::A ? RD_ADC_A1 : RD_ADC_B1; //-V2563
-        uint8 *addressRead2 = chan == Channel::A ? RD_ADC_A2 : RD_ADC_B2; //-V2563
+        uint16 *addressRead1 = chan == Channel::A ? RD_ADC_A1 : RD_ADC_B1; //-V2563
+        uint16 *addressRead2 = chan == Channel::A ? RD_ADC_A2 : RD_ADC_B2; //-V2563
 
         for(int j = 0; j < FPGA_MAX_POINTS; j += 2)
         {
-            uint8 val0 = HAL_FMC::Read(addressRead1);
+            uint8 val0 = (uint8)HAL_FMC::Read(addressRead1);
             if(val0 > AVE_VALUE + 60)
             {
                 numMAX++;
@@ -530,7 +530,7 @@ float CalculateKoeffCalibration(Channel::E chan)
                 sumMIN += val0;
             }
 
-            uint8 val1 = HAL_FMC::Read(addressRead2);
+            uint8 val1 = (uint8)HAL_FMC::Read(addressRead2);
             if(val1 > AVE_VALUE + 60)
             {
                 numMAX++;

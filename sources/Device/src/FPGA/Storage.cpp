@@ -65,7 +65,7 @@ void Storage::ClearLimitsAndSums()
 }
 
 
-void Storage::CalculateAroundAverage(uint8 *data0, uint8 *data1, const DataSettings *dss)
+void Storage::CalculateAroundAverage(uint16 *data0, uint16 *data1, const DataSettings *dss)
 {
     int numAveData = NumElementsWithCurrentSettings();
     int size = (int)(dss->length1channel * (dss->peakDet == PeackDetMode::Disable ? 1 : 2)); //-V2533
@@ -88,8 +88,8 @@ void Storage::CalculateAroundAverage(uint8 *data0, uint8 *data1, const DataSetti
         float numAveDataInv = 1.0F / numAveDataF;
         float* aData0 = &aveData0[0];
         float* aData1 = &aveData1[0];
-        uint8* d0 = &data0[0]; //-V2563
-        uint8* d1 = &data1[0]; //-V2563
+        uint16* d0 = &data0[0]; //-V2563
+        uint16* d1 = &data1[0]; //-V2563
         float* endData = &aveData0[size];
 
         do 
@@ -126,7 +126,7 @@ int Storage::AllDatas()
 }
 
 
-void Storage::CalculateLimits(pUCHAR data0, pUCHAR data1, const DataSettings *dss)
+void Storage::CalculateLimits(uint16 * data0, uint16 * data1, const DataSettings *dss)
 {
     uint numElements = dss->length1channel * (dss->peakDet == PeackDetMode::Disable ? 1 : 2);
 
@@ -134,10 +134,10 @@ void Storage::CalculateLimits(pUCHAR data0, pUCHAR data1, const DataSettings *ds
     {
         for(uint i = 0; i < numElements; i++)
         {
-            limitDown[0][i] = data0[i]; //-V2563
-            limitUp[0][i] = data0[i]; //-V2563
-            limitDown[1][i] = data1[i]; //-V2563
-            limitUp[1][i] = data1[i]; //-V2563
+            limitDown[0][i] = (uint8)data0[i]; //-V2563
+            limitUp[0][i] = (uint8)data0[i]; //-V2563
+            limitDown[1][i] = (uint8)data1[i]; //-V2563
+            limitUp[1][i] = (uint8)data1[i]; //-V2563
         }
     }
     else
@@ -149,10 +149,10 @@ void Storage::CalculateLimits(pUCHAR data0, pUCHAR data1, const DataSettings *ds
         {
             for(uint i = 0; i < numElements; i++)
             {
-                limitDown[0][i] = data0[i]; //-V2563
-                limitUp[0][i] = data0[i]; //-V2563
-                limitDown[1][i] = data1[i]; //-V2563
-                limitUp[1][i] = data1[i]; //-V2563
+                limitDown[0][i] = (uint8)data0[i]; //-V2563
+                limitUp[0][i] = (uint8)data0[i]; //-V2563
+                limitDown[1][i] = (uint8)data1[i]; //-V2563
+                limitUp[1][i] = (uint8)data1[i]; //-V2563
             }
             allDatas--;
         }
@@ -422,7 +422,7 @@ int Storage::NumberAvailableEntries()
     address += (length);
 
 
-void Storage::PushData(DataSettings *dp, pUCHAR data0, pUCHAR data1)
+void Storage::PushData(DataSettings *dp, uint16 * data0, uint16 * data1)
 {
     int required = SizeElem(dp);
     while(MemoryFree() < required)

@@ -2186,7 +2186,7 @@ void Display::ResetP2Ppoints(bool empty)
 }
 
 
-void Display::AddPoints(uint8 data00, uint8 data01, uint8 data10, uint8 data11)
+void Display::AddPoints(uint16 data00, uint16 data01, uint16 data10, uint16 data11)
 {
     dataP2PIsEmpty = false;
     if (SET_SELFRECORDER)

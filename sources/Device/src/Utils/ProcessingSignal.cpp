@@ -986,7 +986,7 @@ float Processing::GetCursT(Channel::E chan, float posCurU, int numCur)
     return 0;
 }
 
-void Processing::InterpolationSinX_X(uint8 data[FPGA_MAX_POINTS], TBase::E tBase)
+void Processing::InterpolationSinX_X(uint16 data[FPGA_MAX_POINTS], TBase::E tBase)
 {
 /*
      Последовательности x в sin(x)
