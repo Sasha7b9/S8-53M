@@ -1242,25 +1242,53 @@ bool Display::NeedForClearScreen()
 
 void Display::Update()
 {
-    return;
+    uint timeStart = gTimerTics;
 
-//    static uint prev_time = 0;
-//
-//    if (HAL_TIM2::TimeMS() - prev_time < 10)
-//    {
-//        return;
-//    }
-//
-//    static int x = 0;
-//    static int y = 0;
-//
-//    CalculateCoord(x, y);
-//    
-//    Display::BeginScene(Color::GRID);
-//
-//    Region(40, 40).Fill(x, y, Color::BLACK);
-//    
-//    prev_time = HAL_TIM2::TimeMS();
+    bool needClear = NeedForClearScreen();
+
+    if (needClear)
+    {
+        BeginFrame(Color::BACK);
+        DrawMemoryWindow();
+        DrawFullGrid();
+    }
+
+    DrawData();
+
+    if (needClear)
+    {
+        DrawMath();
+        DrawSpectrum();
+        DrawCursors();
+        DrawHiPart();
+        DrawLowPart();
+        DrawCursorsWindow();
+        DrawCursorTrigLevel();
+        DrawCursorsRShift();
+        DrawMeasures();
+        DrawStringNavigation();
+        DrawCursorTShift();
+    }
+
+    Menu::Draw();
+
+    if (needClear)
+    {
+        DrawWarnings();
+    }
+
+    DrawConsole();
+
+    if (needClear)
+    {
+        WriteValueTrigLevel();
+    }
+
+    DrawTimeForFrame(gTimerTics - timeStart);
+
+    Color::FILL.SetAsCurrent();
+
+    EndFrame();
 }
 
 
