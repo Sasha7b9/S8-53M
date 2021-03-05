@@ -1240,6 +1240,26 @@ bool Display::NeedForClearScreen()
 //}
 
 
+static void DrawIndicator()
+{
+    static int x = 0;
+    static int dx = 1;
+
+    Region(10, 10).Fill(x, 0, Color::FILL);
+
+    x += dx;
+
+    if (x > 310)
+    {
+        dx = -1;
+    }
+    else if (x < 0)
+    {
+        dx = 1;
+    }
+}
+
+
 void Display::Update()
 {
     uint timeStart = gTimerTics;
@@ -1271,6 +1291,8 @@ void Display::Update()
     }
 
     Menu::Draw();
+
+    DrawIndicator();
 
     if (needClear)
     {

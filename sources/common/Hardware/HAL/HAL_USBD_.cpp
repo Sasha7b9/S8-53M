@@ -14,9 +14,9 @@ void *HAL_USBD::handle = &handleUSBD;
 void HAL_USBD::Init()
 {
     USBD_Init(&handleUSBD, &VCP_Desc, 0);
-    USBD_RegisterClass(&handleUSBD, &USBD_CDC);
-    USBD_CDC_RegisterInterface(&handleUSBD, &USBD_CDC_fops);
-    USBD_Start(&handleUSBD);
+//    USBD_RegisterClass(&handleUSBD, &USBD_CDC);
+//    USBD_CDC_RegisterInterface(&handleUSBD, &USBD_CDC_fops);
+//    USBD_Start(&handleUSBD);
 }
 
 
