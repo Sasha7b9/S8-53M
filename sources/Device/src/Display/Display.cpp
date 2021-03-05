@@ -1248,14 +1248,13 @@ void Display::Update()
 //
 //    if (needClear)
 //    {
-        BeginFrame(Color::WHITE);
+        BeginFrame(Color::BLACK);
 //        DrawMemoryWindow();
 //        DrawFullGrid();
+    
+        HLine().Draw(0, 0, 0, Color::WHITE);
+        HLine().Draw(1, 0, 1, Color::WHITE);
 
-        for (int i = 0; i < 10; i++)
-        {
-            Primitives::HLine().Draw(i * 10 + 10, 10, 100, Color::WHITE);
-        }
 //    }
 //
 //    DrawData();
@@ -1275,7 +1274,7 @@ void Display::Update()
 //        DrawCursorTShift();
 //    }
 
-//    Menu::Draw();
+    Menu::Draw();
 
 //    if (needClear)
 //    {

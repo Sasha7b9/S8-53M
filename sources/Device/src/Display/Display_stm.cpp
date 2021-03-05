@@ -71,5 +71,5 @@ void Primitives::HLine::Draw(int y, int x0, int x1, const Color &color)
 
     uint8 *start = &back[y][x0];
 
-    std::memset(start, Color::GetCurrent().index, x1 - x0);
+    std::memset(start, Color::GetCurrent().index, x1 - x0 + 1);
 }
