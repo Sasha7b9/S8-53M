@@ -66,7 +66,7 @@ String::String(pCHAR format, ...) : buffer(nullptr)
     {
         std::strcpy(buffer, "Буфер слишком мал"); //-V2513
     }
-    else if (Allocate(static_cast<int>(std::strlen(buf) + 1))) //-V2513 //-V2516
+    else if (Allocate(static_cast<int>(std::strlen(buf) + 1))) //-V2513
     {
         std::strcpy(buffer, buf); //-V2513
     }
@@ -91,7 +91,7 @@ void String::Set(TypeConversionString::E conv, pCHAR format, ...)
         {
             std::strcpy(buffer, "Буфер слишком мал"); //-V2513
         }
-        else if(Allocate(static_cast<int>(std::strlen(buf) + 1))) //-V2513 //-V2516
+        else if(Allocate(static_cast<int>(std::strlen(buf) + 1))) //-V2513
         {
             std::strcpy(buffer, buf); //-V2513
             Conversion(conv);

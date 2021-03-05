@@ -154,7 +154,7 @@ void KeyStruct::Process(uint time, bool pressed)
                 happendLongPressed = true;
                 Buffer::AppendEvent(key, Action::Long);     // это будет длинное нажатие
             }
-            else if (delta > 100 &&                         // Если прошло более 100 мс с момента нажатия //-V2516
+            else if (delta > 100 &&                         // Если прошло более 100 мс с момента нажатия
                 !pressed)                                   // и сейчас кнопка находится в отжатом состоянии
             {
                 timePress = 0;                              // То учитываем это в массиве
@@ -166,7 +166,7 @@ void KeyStruct::Process(uint time, bool pressed)
             timePress = time;                               // то сохраняем время её нажатия
             Buffer::AppendEvent(key, Action::Down);
         }
-        else if (!pressed && happendLongPressed) //-V2516
+        else if (!pressed && happendLongPressed)
         {
             timePress = 0;
         }
@@ -211,7 +211,7 @@ void GovernorStruct::Process()
         Buffer::AppendEvent(key, Action::RotateLeft);
         prevStateIsSame = false;
     }
-    else if (prevStateIsSame && !stateLeft && stateRight) //-V2516
+    else if (prevStateIsSame && !stateLeft && stateRight)
     {
         Buffer::AppendEvent(key, Action::RotateRight);
         prevStateIsSame = false;

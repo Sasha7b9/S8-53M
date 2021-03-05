@@ -127,7 +127,7 @@ bool FPGA::ProcessingData(void)
                 trigAutoFind = true;
                 criticalSituation = false;
             }
-            else if (_GET_BIT(flag, BIT_TRIG)) //-V2516
+            else if (_GET_BIT(flag, BIT_TRIG))
             {
                 criticalSituation = false;
             }
@@ -412,7 +412,7 @@ void FPGA::ReadRealMode(bool necessaryShift)
         {
             shift = CalculateShift();
         }
-        else if (necessaryShift) //-V2516
+        else if (necessaryShift)
         {
             //shift = set.debug.altShift;       WARN Остановились на жёстком задании дополнительного смещения. На PageDebug выбор закомментирован, можно включить при необходимости
             shift = -1;
@@ -916,7 +916,7 @@ TBase::E CalculateTBase(float freq_)
     else if(freq_ >= 20.0F)  { return TBase::_10ms;  }
     else if(freq_ >= 10.0F)  { return TBase::_20ms;  }
     else if(freq_ >= 4.0F)   { return TBase::_50ms;  }
-    else if(freq_ >= 2.0F)   { return TBase::_100ms; } //-V2516
+    else if(freq_ >= 2.0F)   { return TBase::_100ms; }
     return TBase::_200ms;
 }
 
@@ -1219,7 +1219,7 @@ void FPGA::WriteToAnalog(TypeWriteAnalog::E type, uint data)
     {
         LOG_WRITE("парам. кан. 2 = %s", str);
     }
-    else if (type == TypeWriteAnalog::All && (IS_SHOW_REG_TRIGPARAM || IS_SHOW_REG_RANGE_A || IS_SHOW_REG_RANGE_B || IS_SHOW_REG_PARAM_A || IS_SHOW_REG_PARAM_B)) //-V560 //-V501 //-V2516
+    else if (type == TypeWriteAnalog::All && (IS_SHOW_REG_TRIGPARAM || IS_SHOW_REG_RANGE_A || IS_SHOW_REG_RANGE_B || IS_SHOW_REG_PARAM_A || IS_SHOW_REG_PARAM_B)) //-V560 //-V501
     {
         LOG_WRITE("полная запись в аналоговую часть = %s", str);
     }
@@ -1247,7 +1247,7 @@ void FPGA::WriteToDAC(TypeWriteDAC::E type, uint16 data)
     {
         LOG_WRITE("rShfit 1 = %s", Bin2String16(data, buffer));
     }
-    else if (type == TypeWriteDAC::TrigLev && IS_SHOW_REG_TRIGLEV) //-V2516
+    else if (type == TypeWriteDAC::TrigLev && IS_SHOW_REG_TRIGLEV)
     {
         LOG_WRITE("trigLev = %s", Bin2String16(data, buffer));
     }

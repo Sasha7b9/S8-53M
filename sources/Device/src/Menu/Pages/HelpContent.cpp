@@ -70,7 +70,7 @@ void PageHelpContent::Draw()
     {
         DrawPageContent();
     }
-    else if(currentPage->OwnData()->type == TypePageHelp::Description) //-V2516
+    else if(currentPage->OwnData()->type == TypePageHelp::Description)
     {
         DrawPageDescription();
     }

@@ -47,7 +47,7 @@ void Primitives::Line::Draw(int x0, int y0, int x1, int y1, Color color)
     {
         HLine().Draw(x0, y0, y1);
     }
-    else if (y0 == y1) //-V2516
+    else if (y0 == y1)
     {
         HLine().Draw(y0, x0, x1);
     }

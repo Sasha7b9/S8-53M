@@ -81,7 +81,7 @@ void Device::Update()
 //        ds = &Storage::dsLast;
 //        Storage::GetDataFromEnd(PageMemory::PageLatest::currentSignal, &Storage::dsLast, &Storage::dataLastA, &Storage::dataLastB);
 //    }
-//    else if (MODE_WORK_IS_MEMINT) //-V2516
+//    else if (MODE_WORK_IS_MEMINT)
 //    {
 //        data0 = &Storage::dataIntA;
 //        data1 = &Storage::dataIntB;

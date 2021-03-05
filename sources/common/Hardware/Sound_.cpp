@@ -130,7 +130,7 @@ void SetWave()
     {
         CalculateMeandr();
     }
-    else if(typeWave == TypeWave::Triangle) //-V2516
+    else if(typeWave == TypeWave::Triangle)
     {
         CalculateTriangle();
     }

@@ -427,7 +427,7 @@ void Menu::ProcessingLongPressureButton()
         {
                 Show(!IsShown());
         }
-        else if(IsShown() && Key::IsFunctionalButton(longPressureButton)) //-V2516
+        else if(IsShown() && Key::IsFunctionalButton(longPressureButton))
         {
             Item *item = ItemUnderButton(longPressureButton);
             if (item->IsActive())
@@ -478,7 +478,7 @@ void Menu::ProcessingRegulatorSet()
             {
                 item->Change(angleRegSet);
             }
-            else if (item->IsTime()) //-V2516
+            else if (item->IsTime())
             {
                 angleRegSet > 0 ? ((TimeItem *)item)->IncCurrentPosition() : ((TimeItem *)item)->DecCurrentPosition();
             }
@@ -580,7 +580,7 @@ void Menu::SwitchSetLED()
         Panel::EnableLEDRegSet(state);
         prevState = state;
     }
-    else if (prevState != state) //-V2516
+    else if (prevState != state)
     {
         Panel::EnableLEDRegSet(state);
         prevState = state;

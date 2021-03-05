@@ -32,7 +32,7 @@ void Governor::StartChange(int delta)
 void Governor::ChangeValue(int delta)
 {
     int16 oldValue = *OwnData()->cell;
-    LIMITATION(*OwnData()->cell, //-V2516
+    LIMITATION(*OwnData()->cell,
                 static_cast<int16>(oldValue + Math::Sign(delta) * Math::Pow10(gCurDigit)),
                 static_cast<int16>(OwnData()->minValue),
                 static_cast<int16>(OwnData()->maxValue));
@@ -66,7 +66,7 @@ void IPaddress::ChangeValue(int delta)
     }
 
     int newValue = oldValue + Math::Sign(delta) * Math::Pow10(numPos);
-    LIMITATION(newValue, newValue, 0, numByte == 4 ? 65535 : 255); //-V2516
+    LIMITATION(newValue, newValue, 0, numByte == 4 ? 65535 : 255);
 
     if (oldValue != newValue)
     {
@@ -321,7 +321,7 @@ char Item::GetSymbolForGovernor() const
             return chars[values[*own->curField]];
         }
     }
-    else if (IsPage()) //-V2516
+    else if (IsPage())
     {
         return chars[ReinterpretToPage()->GetCurrentSubPage()];
     }

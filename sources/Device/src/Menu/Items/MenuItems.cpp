@@ -135,7 +135,7 @@ void Choice::StartChange(int delta)
         {
             tsChoice.inMoveIncrease = 1;
         }
-        else if (delta < 0) //-V2516
+        else if (delta < 0)
         {
             tsChoice.inMoveDecrease = 1;
         }
@@ -182,7 +182,7 @@ float Choice::Step() const
             }
             CircleIncreaseInt8(own->cell, 0, static_cast<int8>(NumSubItems() - 1));
         }
-        else if (tsChoice.inMoveDecrease == 1) //-V2516
+        else if (tsChoice.inMoveDecrease == 1)
         {
             delta = -delta;
 
@@ -377,7 +377,7 @@ void Page::ChangeSubPage(int delta) const
         Sound::RegulatorSwitchRotate();
         SetCurrentSubPage(GetCurrentSubPage() + 1);
     }
-    else if (delta < 0 && GetCurrentSubPage() > 0) //-V2516
+    else if (delta < 0 && GetCurrentSubPage() > 0)
     {
         Sound::RegulatorSwitchRotate();
         SetCurrentSubPage(GetCurrentSubPage() - 1);
@@ -424,7 +424,7 @@ void Choice::ShortPress()
         {
             FuncOnChanged(false);
         }
-        else if (!IsOpened()) //-V2516
+        else if (!IsOpened())
         {
             SetCurrent(!Menu::IsCurrentItem(this));
         }
@@ -571,7 +571,7 @@ void Item::Change(int delta) const
             governor->ChangeValue(delta);
         }
     }
-    else if (IsGovernorColor()) //-V2516
+    else if (IsGovernorColor())
     {
         ((GovernorColor *)this)->ChangeValue(delta);
     }
@@ -628,7 +628,7 @@ bool Item::ChangeOpened(int delta) const
     {
         ((Choice *)this)->ChangeValue(delta);
     }
-    else if (IsGovernor()) //-V2516
+    else if (IsGovernor())
     {
         ((Governor *)this)->ChangeValue(delta);
     }
@@ -642,10 +642,10 @@ int Item::HeightOpened() const
     if (IsPage())
     {
         int numItems = ((const Page *)this)->NumItems() - ((Page *)this)->GetCurrentSubPage() * Menu::ITEMS_ON_DISPLAY;
-        LIMITATION(numItems, numItems, 0, Menu::ITEMS_ON_DISPLAY); //-V2516
+        LIMITATION(numItems, numItems, 0, Menu::ITEMS_ON_DISPLAY);
         return Item::TITLE_HEIGHT + Item::HEIGHT * numItems;
     }
-    else if (IsChoice() || IsChoiceReg()) //-V2516
+    else if (IsChoice() || IsChoiceReg())
     { 
         return Item::OPENED_HEIGHT_TITLE + ((Choice *)this)->NumSubItems() * Item::OPENED_HEIGHT - 1;
     }

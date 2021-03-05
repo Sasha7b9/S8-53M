@@ -47,7 +47,7 @@ void SCPI::CHANNEL::INPUT(pUCHAR buffer)
     ENTER_ANALYSIS
         if (0 == value)         { SET_ENABLED(chan) = true; }
         else if (1 == value)    { SET_ENABLED(chan) = false; }
-        else if (2 == value) //-V2516
+        else if (2 == value)
         {
             SCPI_SEND(":CHANNEL%d:INPUT %s", Tables::GetNumChannel(chan), sChannel_Enabled(chan) ? "ON" : "OFF");
         }
@@ -72,7 +72,7 @@ void SCPI::CHANNEL::COUPLE(pUCHAR buffer)
         if (0 == value)         { SET_COUPLE(chan) = ModeCouple::DC; func[chan](true); }
         else if (1 == value)    { SET_COUPLE(chan) = ModeCouple::AC; func[chan](true); }
         else if (2 == value)    { SET_COUPLE(chan) = ModeCouple::GND; func[chan](true); }
-        else if (3 == value) //-V2516
+        else if (3 == value)
         {
             SCPI_SEND(":CHANNEL%d:COUPLING %s", Tables::GetNumChannel(chan), map[SET_COUPLE(chan)].key);
         }
@@ -95,7 +95,7 @@ void SCPI::CHANNEL::FILTR(pUCHAR buffer)
     ENTER_ANALYSIS
         if (0 == value)         { SET_FILTR(chan) = true; func[chan](true); }
         else if (1 == value)    { SET_FILTR(chan) = false; func[chan](true); }
-        else if (2 == value) //-V2516
+        else if (2 == value)
         {
             SCPI_SEND(":CHANNEL%d:FILTR %s", Tables::GetNumChannel(chan), SET_FILTR(chan) ? "ON" : "OFF");
         }
@@ -116,7 +116,7 @@ void SCPI::CHANNEL::INVERSE(pUCHAR buffer)
     ENTER_ANALYSIS
         if (0 == value)         { SET_INVERSE(chan) = true; }
         else if (1 == value)    { SET_INVERSE(chan) = false; }
-        else if (2 == value) //-V2516
+        else if (2 == value)
         {
             SCPI_SEND(":CHANNEL%d:SET_INVERSE %s", Tables::GetNumChannel(chan), SET_INVERSE(chan) ? "ON" : "OFF");
         }
@@ -147,7 +147,7 @@ void SCPI::CHANNEL::RANGE(pUCHAR buffer)
     };
     ENTER_ANALYSIS
         if (value <= (uint8)Range::_20V)      { FPGA::SetRange(chan, (Range::E)value); }
-        else if (value == (uint8)Range::Count) //-V2516
+        else if (value == (uint8)Range::Count)
         {
             SCPI_SEND(":CHANNEL%d:SET_RANGE %s", Tables::GetNumChannel(chan), map[SET_RANGE(chan)].key);
         }
@@ -193,7 +193,7 @@ void SCPI::CHANNEL::FACTOR(pUCHAR buffer)
     ENTER_ANALYSIS
         if (value == 0)         { SET_DIVIDER(chan) = Divider::_1; }
         else if (value == 1)    { SET_DIVIDER(chan) = Divider::_10; }
-        else if (value == 2) //-V2516
+        else if (value == 2)
         {
             SCPI_SEND(":CHANNEL%d:PROBE %s", Tables::GetNumChannel(chan), map[SET_DIVIDER(chan)].key);
         }

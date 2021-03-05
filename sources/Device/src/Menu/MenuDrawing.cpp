@@ -68,7 +68,7 @@ void Menu::Draw()
             {
                 ((Page *)item)->DrawOpened(Grid::TOP);
             }
-            else if(item->Keeper()->IsExist()) //-V2516
+            else if(item->Keeper()->IsExist())
             {
                 item->Keeper()->DrawOpened(Grid::TOP);
             }
@@ -79,7 +79,7 @@ void Menu::Draw()
             {
                 ((Choice *)item)->Draw(Page::X(), Grid::TOP, true);
             }
-            else if(item->IsGovernor()) //-V2516
+            else if(item->IsGovernor())
             {
                 ((Governor *)item)->Draw(Page::X(), Grid::TOP, true);
             }
@@ -103,7 +103,7 @@ void Menu::Draw()
         {
             Text(PageHelpContent::stringForHint).DrawInBoundedRectWithTransfers(x, y, width - 1, Color::BACK, Color::FILL);
         }
-        else if (PageHelpContent::itemHint) //-V2516
+        else if (PageHelpContent::itemHint)
         {
             DrawHintItem(x, y, width - 1);
         }

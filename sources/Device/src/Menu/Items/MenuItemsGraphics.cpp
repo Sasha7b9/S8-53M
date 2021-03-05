@@ -64,7 +64,7 @@ static void DrawGovernorChoiceColorFormulaHiPart(const Item *item, int x, int y,
         {
             symbol = item->GetSymbolForGovernor();
         }
-        else if (item->IsTime()) //-V2516
+        else if (item->IsTime())
         {
             symbol = item->GetSymbolForGovernor();
         }
@@ -237,7 +237,7 @@ static void DrawValueWithSelectedPosition(int x, int y, int value, int numDigits
         {
             Char(static_cast<char>(rest + 48)).Draw(x, y, selPos == i ? Color::BACK : Color::FILL);
         }
-        else if (fillNull) //-V2516
+        else if (fillNull)
         {
             Char('0').Draw(x, y, selPos == i ? Color::BACK : Color::FILL);
         }
@@ -777,7 +777,7 @@ void Page::DrawItems(int yTop) const
 {
     int posFirstItem = PosItemOnTop();
     int posLastItem = posFirstItem + Menu::ITEMS_ON_DISPLAY - 1;
-    LIMITATION(posLastItem, posLastItem, 0, NumItems() - 1); //-V2516
+    LIMITATION(posLastItem, posLastItem, 0, NumItems() - 1);
     int count = 0;
     for (int posItem = posFirstItem; posItem <= posLastItem; posItem++)
     {

@@ -273,7 +273,7 @@ bool Panel::ProcessingCommandFromPIC(uint16 code)
     {
         funculatorLeft[regLeft](); //-V557
     }
-    else if(regRight != Key::None) //-V2516
+    else if(regRight != Key::None)
     {
         funculatorRight[regRight]();
     }
@@ -317,7 +317,7 @@ void Panel::EnableLEDTrig(bool enable)
             Display::EnableTrigLabel(true);
             fired = true;
         }
-        else if(gTimerMS - timeEnable > 100) //-V2516
+        else if(gTimerMS - timeEnable > 100)
         {
             Panel::TransmitData(LED_TRIG_DISABLE);
             Display::EnableTrigLabel(false);
@@ -485,7 +485,7 @@ static bool CanChangeRShiftOrTrigLev(TrigSource::E channel, int16 rShift)
     {
         return true;
     }
-    else if (gTimerMS - time[channel] > MIN_TIME) //-V2516
+    else if (gTimerMS - time[channel] > MIN_TIME)
     {
         time[channel] = 0;
         return true;
@@ -508,7 +508,7 @@ int CalculateCount(int *prevTime)
     {
         return 2;
     }
-    else if (delta > 25) //-V2516
+    else if (delta > 25)
     {
         return 3;
     }
@@ -631,7 +631,7 @@ static void ChangeShiftScreen(int *prevTime, void(*f)(int), int16 relStep)
             step = -1; //-V2564
         }
     }
-    else if (step < 1) //-V2516 //-V2564
+    else if (step < 1) //-V2564
     {
         step = 1; //-V2564
     }
@@ -651,7 +651,7 @@ static bool CanChangeTShift(int16 tShift)
     {
         return true;
     }
-    else if (gTimerMS - time > MIN_TIME) //-V2516
+    else if (gTimerMS - time > MIN_TIME)
     {
         time = 0;
         return true;

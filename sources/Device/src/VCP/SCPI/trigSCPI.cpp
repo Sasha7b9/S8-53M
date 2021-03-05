@@ -46,7 +46,7 @@ void SCPI::TRIGGER::MODE(pUCHAR buffer)
         if (0 == value)         { START_MODE = StartMode::Auto; PageTrig::OnPress_Mode(true); }
         else if (1 == value)    { START_MODE = StartMode::Wait; PageTrig::OnPress_Mode(true); }
         else if (2 == value)    { START_MODE = StartMode::Single; PageTrig::OnPress_Mode(true); }
-        else if (3 == value) //-V2516
+        else if (3 == value)
         {
             SCPI_SEND(":TRIGGER:MODE %s", map[START_MODE].key);
         }
@@ -69,7 +69,7 @@ void SCPI::TRIGGER::SOURCE(pUCHAR buffer)
         if (0 == value)         { FPGA::SetTrigSource(TrigSource::A); }
         else if (1 == value)    { FPGA::SetTrigSource(TrigSource::B); }
         else if (2 == value)    { FPGA::SetTrigSource(TrigSource::Ext); }
-        else if (3 == value) //-V2516
+        else if (3 == value)
         {
             SCPI_SEND(":TRIGGER:SOUCRE %s", map[START_MODE].key);
         }
@@ -90,7 +90,7 @@ void SCPI::TRIGGER::POLARITY(pUCHAR buffer)
     ENTER_ANALYSIS
         if (0 == value)         { FPGA::SetTrigPolarity(TrigPolarity::Front); }
         else if (1 == value)    { FPGA::SetTrigPolarity(TrigPolarity::Back); }
-        else if (2 == value) //-V2516
+        else if (2 == value)
         {
             SCPI_SEND(":TRIGGER:POLARITY %s", map[TRIG_POLARITY].key);
         }
@@ -115,7 +115,7 @@ void SCPI::TRIGGER::INPUT(pUCHAR buffer)
         else if (1 == value)    { FPGA::SetTrigInput(TrigInput::AC); }
         else if (2 == value)    { FPGA::SetTrigInput(TrigInput::LPF); }
         else if (3 == value)    { FPGA::SetTrigInput(TrigInput::HPF); }
-        else if (4 == value) //-V2516
+        else if (4 == value)
         {
             SCPI_SEND(":TRIGGER:INPUT %s", map[TRIG_INPUT].key);
         }
@@ -138,7 +138,7 @@ void SCPI::TRIGGER::FIND(pUCHAR buffer)
         if (0 == value)         { TRIG_MODE_FIND = TrigModeFind::Hand; }
         else if (1 == value)    { TRIG_MODE_FIND = TrigModeFind::Auto; }
         else if (2 == value)    { FPGA::FindAndSetTrigLevel(); }
-        else if (3 == value) //-V2516
+        else if (3 == value)
         {
             SCPI_SEND(":TRIGGER:FIND %s", map[TRIG_MODE_FIND].key);
         }

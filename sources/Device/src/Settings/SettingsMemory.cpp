@@ -27,7 +27,7 @@ ENUM_POINTS_FPGA::E sMemory_IntNumPoints2FPGA_NUM_POINTS(int numPoints)
     {
         return ENUM_POINTS_FPGA::_1024;
     }
-    else if (numPoints == 512) //-V2516
+    else if (numPoints == 512)
     {
         return ENUM_POINTS_FPGA::_512;
     }

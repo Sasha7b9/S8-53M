@@ -296,7 +296,7 @@ void FM::DecCurrentDir()
         if (numCurDir < 0)
         {
             numCurDir = numDirs - 1;
-            LIMITATION(numFirstDir, numDirs - RECS_ON_PAGE, 0, numCurDir); //-V2516
+            LIMITATION(numFirstDir, numDirs - RECS_ON_PAGE, 0, numCurDir);
         }
         if (numCurDir < numFirstDir)
         {
@@ -332,7 +332,7 @@ void FM::DecCurrentFile()
         if (numCurFile < 0)
         {
             numCurFile = numFiles - 1;
-            LIMITATION(numFirstFile, numFiles - RECS_ON_PAGE, 0, numCurFile); //-V2516
+            LIMITATION(numFirstFile, numFiles - RECS_ON_PAGE, 0, numCurFile);
         }
         if (numCurFile < numFirstFile)
         {
@@ -376,7 +376,7 @@ LabelNextNumber:
 
     if (FILE_NAMING_MODE_IS_HAND)
     {
-        LIMITATION(size, size, 1, 95); //-V2516
+        LIMITATION(size, size, 1, 95);
         std::strcat(name, FILE_NAME); //-V2513
         std::strcat(name, "."); //-V2513
         std::strcat(name, MODE_SAVE_SIGNAL_IS_BMP ? "bmp" : "txt"); //-V2513

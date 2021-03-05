@@ -143,7 +143,7 @@ void Storage::CalculateLimits(uint16 * data0, uint16 * data1, const DataSettings
     else
     {
         int allDatas = NumElementsWithSameSettings();
-        LIMITATION(allDatas, allDatas, 1, NUM_MIN_MAX); //-V2516
+        LIMITATION(allDatas, allDatas, 1, NUM_MIN_MAX);
         
         if(NumElementsWithSameSettings() >= NUM_MIN_MAX)
         {
@@ -398,7 +398,7 @@ uint8* Storage::GetLimitation(Channel::E chan, int direction)
     {
         retValue = &(limitDown[chan][0]);
     }
-    else if(direction == 1) //-V2516
+    else if(direction == 1)
     {
         retValue = &(limitUp[chan][0]);
     }
@@ -496,7 +496,7 @@ int Storage::MemoryFree()
             return (uint8*)firstElem - beginPool;
         }
     }
-    else if (lastElem < firstElem) //-V2516
+    else if (lastElem < firstElem)
     {
         return (uint8*)firstElem - (uint8*)lastElem - SizeElem(lastElem);
     }

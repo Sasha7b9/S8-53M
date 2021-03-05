@@ -522,7 +522,7 @@ static int8 *BreakWord(char *word)
         int8 lengths[] = { 5, 2, 2, 0 };
         std::memcpy(lengthSyllables, lengths, 4);
     }
-    else if (std::strcmp(word, "соответствующей") == 0) //-V2513 //-V2516
+    else if (std::strcmp(word, "соответствующей") == 0) //-V2513
     {
         int8 lenghts[] = { 4, 3, 4, 5, 3, 0 };
         std::memcpy(lengthSyllables, lenghts, 6);
@@ -632,7 +632,7 @@ static bool GetHeightTextWithTransfers(int left, int top, int right, const char 
         y += 9;
     }
 
-    LIMITATION(*height, y - top + 4, 0, 239); //-V2516
+    LIMITATION(*height, y - top + 4, 0, 239);
 
     return curSymbol == numSymb;
 }

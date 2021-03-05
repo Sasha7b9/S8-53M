@@ -67,7 +67,7 @@ int main(void)
                     Upgrade();
                     break;
                 }
-                else if (button == Key::F5) //-V2516
+                else if (button == Key::F5)
                 {
                     MainStruct::ms->state = State::Ok;
                     break;
@@ -79,7 +79,7 @@ int main(void)
             MainStruct::ms->state = State::NotFile;
         }
     }
-    else if (MainStruct::ms->state == State::WrongFlash) // Диск не удалось примонтировать //-V2516
+    else if (MainStruct::ms->state == State::WrongFlash) // Диск не удалось примонтировать
     {
         HAL_TIM2::Delay(5000);
     }

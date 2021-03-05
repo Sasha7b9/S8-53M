@@ -211,7 +211,7 @@ static void OnRegSet_Math_Function(int delta)
                 SET_RSHIFT_MATH = rShift;
             }
         }
-        else if (delta < 0) //-V2516
+        else if (delta < 0)
         {
             if (rShift > RShiftMin)
             {
@@ -243,7 +243,7 @@ static void OnRegSet_Math_Function(int delta)
             }
             sum = 0;
         }
-        else if (sum < -2) //-V2516
+        else if (sum < -2)
         {
             if (SET_RANGE_MATH > 0)
             {

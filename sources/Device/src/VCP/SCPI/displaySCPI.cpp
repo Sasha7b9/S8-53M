@@ -66,7 +66,7 @@ void SCPI::DISPLAY::AUTOSEND(pUCHAR buffer)
     ENTER_ANALYSIS
         if (1 == value)      { Painter::SendFrame(true);  }
         else if (2 == value) { Painter::SendFrame(false); }
-        else if (3 == value) { Painter::SendFrame(true); } //-V2516
+        else if (3 == value) { Painter::SendFrame(true); }
     LEAVE_ANALYSIS
 }
 
@@ -84,7 +84,7 @@ void SCPI::DISPLAY::MAPPING(pUCHAR buffer)
     ENTER_ANALYSIS
         if (1 == value)         { MODE_DRAW_SIGNAL = ModeDrawSignal::Points; }
         else if (2 == value)    { MODE_DRAW_SIGNAL = ModeDrawSignal::Lines; }
-        else if (3 == value)    { SCPI_SEND(":DISPLAY:MAPPING %s", MODE_DRAW_IS_SIGNAL_LINES ? "LINES" : "POINTS"); } //-V2516
+        else if (3 == value)    { SCPI_SEND(":DISPLAY:MAPPING %s", MODE_DRAW_IS_SIGNAL_LINES ? "LINES" : "POINTS"); }
     LEAVE_ANALYSIS
 }
 
@@ -109,7 +109,7 @@ void SCPI::DISPLAY::ACCUM_NUMBER(pUCHAR buffer)
     ENTER_ANALYSIS
         if (value <= 7)         { ENUM_ACCUM = (ENumAccumulation::E)value; }
         else if (8 == value)    { ENUM_ACCUM = ENumAccumulation::Infinity; }
-        else if (9 == value) //-V2516
+        else if (9 == value)
         {
             SCPI_SEND(":DISPLAY:ACCUMULATION:NUMBER %s", map[ENUM_ACCUM].key);
         }
@@ -128,7 +128,7 @@ void SCPI::DISPLAY::ACCUM_MODE(pUCHAR buffer)
     };
     ENTER_ANALYSIS
         if (value <= 1) { MODE_ACCUM = (ModeAccumulation::E)value; }
-        else if (2 == value) //-V2516
+        else if (2 == value)
         {
             SCPI_SEND(":DISPLAY:ACCUMULATION:MODE %s", map[MODE_ACCUM].key);
         }
@@ -162,7 +162,7 @@ void SCPI::DISPLAY::AVERAGE_NUMBER(pUCHAR buffer)
 
     ENTER_ANALYSIS
         if (value <= 9) { ENUM_AVE = (ENumAveraging::E)value; }
-        else if (10 == value) //-V2516
+        else if (10 == value)
         {
             SCPI_SEND(":DISPLAY:AVERAGE:NUMBER %s", map[ENUM_AVE].key);
         }
@@ -182,7 +182,7 @@ void SCPI::DISPLAY::AVERAGE_MODE(pUCHAR buffer)
     };
     ENTER_ANALYSIS
         if (value <= 1) { MODE_AVE = (ModeAveraging::E)value; }
-        else if (2 == value) //-V2516
+        else if (2 == value)
         {
             SCPI_SEND(":DISPLAY:AVARAGE:MODE %s", map[MODE_AVE].key);
         }
@@ -210,7 +210,7 @@ void SCPI::DISPLAY::MINMAX(pUCHAR buffer)
     ENTER_ANALYSIS
         if (value <= 7)         { ENUM_MIN_MAX = (ENumMinMax::E)value; }
         else if (8 == value)    { ENUM_MIN_MAX = ENumMinMax::_1; }
-        else if (9 == value) //-V2516
+        else if (9 == value)
         {
             SCPI_SEND(":DISPLAY:MINMAX %s", map[ENUM_MIN_MAX].key);
         }
@@ -240,7 +240,7 @@ void SCPI::DISPLAY::FILTR(pUCHAR buffer)
     ENTER_ANALYSIS
         if (value <= 9)         { SMOOTHING = (Smoothing::E)value; }
         else if (10 == value)   { SMOOTHING = Smoothing::Disable; }
-        else if (11 == value) //-V2516
+        else if (11 == value)
         {
             SCPI_SEND(":DISPLAY:FILTR %s", map[SMOOTHING].key);
         }
@@ -263,7 +263,7 @@ void SCPI::DISPLAY::FPS(pUCHAR buffer)
     };
     ENTER_ANALYSIS
         if (value < 5) { ENUM_SIGNALS_IN_SEC = (ENumSignalsInSec::E)value; PageDisplay::OnChanged_RefreshFPS(true); }
-        else if (5 == value) //-V2516
+        else if (5 == value)
         {
             SCPI_SEND(":DISPLAY:FPS %s", map[ENUM_SIGNALS_IN_SEC].key);
         }
@@ -284,7 +284,7 @@ void SCPI::DISPLAY::WINDOW(pUCHAR buffer)
     ENTER_ANALYSIS
         if (value == 0) { set.display.showFullMemoryWindow = true; }
         else if (1 == value) { set.display.showFullMemoryWindow = false; }
-        else if (2 == value) //-V2516
+        else if (2 == value)
         {
             SCPI_SEND(":DISPLAY:WINDOW %s", set.display.showFullMemoryWindow ? "STANDARD" : "SIMPLE");
         }
@@ -335,7 +335,7 @@ void SCPI::DISPLAY::GRID_TYPE(pUCHAR buffer)
 
     ENTER_ANALYSIS
         if (value <= 3) { TYPE_GRID = (TypeGrid::E)value; }
-        else if (4 == value) //-V2516
+        else if (4 == value)
         {
             SCPI_SEND(":DISPLAY:GRID:TYPE %s", map[TYPE_GRID].key);
         }

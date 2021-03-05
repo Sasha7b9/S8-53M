@@ -309,7 +309,7 @@ void Pin::Init()
         isGPIO.Speed = GPIO_SPEED_FREQ_HIGH;
         isGPIO.Alternate = GPIO_AF12_FMC;
     }
-    else if (mode == PinMode::_LTDC) //-V2516
+    else if (mode == PinMode::_LTDC)
     {
         isGPIO.Pull = GPIO_NOPULL;
         isGPIO.Mode = GPIO_MODE_AF_PP;
