@@ -38,7 +38,7 @@ char *GetStringFromBuffer(const char *buffer, uint length, char *string)
 
 static void FuncReceiver(const char *buffer, uint length)
 {
-    SCPI::AddNewData((uint8 *)buffer, length); //-V2533 //-V2567
+    SCPI::AddNewData((uint8 *)buffer, length); //-V2533
 }
 
 

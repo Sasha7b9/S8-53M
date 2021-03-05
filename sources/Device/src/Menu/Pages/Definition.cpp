@@ -92,7 +92,7 @@ void DrawSB_Exit(int x, int y)
 #include "PageHelp.cpp"
 
 
-DEF_PAGE_11(mainPage, Page::empty, NamePage::MainPage, //-V2567
+DEF_PAGE_11(mainPage, Page::empty, NamePage::MainPage,
     "лемч", "MENU",
     "",
     "",
@@ -121,17 +121,17 @@ const Page *PageForButton(Key::E button)
         0,                          // Key::F3
         0,                          // Key::F4
         0,                          // Key::F5
-        (void *)PageChannelA::self, // Key::ChannelA //-V2533 //-V2567
-        (void *)PageChannelB::self, // Key::ChannelB //-V2533 //-V2567
-        (void *)PageTime::self,     // Key::Time //-V2533 //-V2567
-        (void *)PageTrig::self,     // Key::Trig //-V2533 //-V2567
-        (void *)PageCursors::self,  // Key::Cursors //-V2533 //-V2567
-        (void *)PageMeasures::self, // Key::Measures //-V2533 //-V2567
-        (void *)PageDisplay::self,  // Key::Display //-V2533 //-V2567
+        (void *)PageChannelA::self, // Key::ChannelA //-V2533
+        (void *)PageChannelB::self, // Key::ChannelB //-V2533
+        (void *)PageTime::self,     // Key::Time //-V2533
+        (void *)PageTrig::self,     // Key::Trig //-V2533
+        (void *)PageCursors::self,  // Key::Cursors //-V2533
+        (void *)PageMeasures::self, // Key::Measures //-V2533
+        (void *)PageDisplay::self,  // Key::Display //-V2533
         0,                          // Key::Help
         0,                          // Key::Start
-        (void *)PageMemory::self,   // Key::Memory //-V2533 //-V2567
-        (void *)PageService::self,  // Key::Service //-V2533 //-V2567
+        (void *)PageMemory::self,   // Key::Memory //-V2533
+        (void *)PageService::self,  // Key::Service //-V2533
         0,                          // Key::Menu
         0                           // B_Power
     };

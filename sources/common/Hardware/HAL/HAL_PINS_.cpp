@@ -317,7 +317,7 @@ void Pin::Init()
         isGPIO.Alternate = GPIO_AF14_LTDC;
     }
 
-    HAL_GPIO_Init(reinterpret_cast<GPIO_TypeDef *>(const_cast<GPIO_TypeDef *>(ports[port])), &isGPIO); //-V2567
+    HAL_GPIO_Init(reinterpret_cast<GPIO_TypeDef *>(const_cast<GPIO_TypeDef *>(ports[port])), &isGPIO);
 }
 
 

@@ -254,7 +254,7 @@ void Settings::Load(bool /*_default*/)
 //        int16  numAverageForRand = NUM_AVE_FOR_RAND;
 //        BalanceADCtype::E balanceType = BALANCE_ADC_TYPE;
 //
-//        std::memcpy((void*)&set, (void*)(&defaultSettings), sizeof(set));                // Потом заполняем значениями по умолчанию //-V2533 //-V2567
+//        std::memcpy((void*)&set, (void*)(&defaultSettings), sizeof(set));                // Потом заполняем значениями по умолчанию //-V2533
 //
 //        std::memcpy((void *)&RSHIFT_ADD(Channel::A, 0, 0), (void *)rShiftAddA, 2 * Range::Count * 2);  // И восстанавливаем несбрасываемые настройки //-V2533
 //        std::memcpy((void *)&RSHIFT_ADD(Channel::B, 0, 0), (void *)rshiftAddB, 2 * Range::Count * 2); //-V2533

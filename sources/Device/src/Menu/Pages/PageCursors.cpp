@@ -462,7 +462,7 @@ DEF_SMALL_BUTTON(sbSetPointsPercents, PageCursors::PageSet::self,
     nullptr, PressSB_Cursors_PointsPercents, DrawSB_Cursors_PointsPercents, &hintsSetPointsPercents
 )
 
-DEF_PAGE_6(pageSet, PageCursors::self, NamePage::SB_Curs, //-V2567
+DEF_PAGE_6(pageSet, PageCursors::self, NamePage::SB_Curs,
     "УСТАНОВИТЬ", "SET",
     "Переход в режим курсорных измерений",
     "Switch to cursor measures",
@@ -475,7 +475,7 @@ DEF_PAGE_6(pageSet, PageCursors::self, NamePage::SB_Curs, //-V2567
     nullptr, nullptr, nullptr, OnRotate_RegSet_Set
 )
 
-DEF_PAGE_5(pageCursors, PageMain::self, NamePage::Cursors, //-V2567
+DEF_PAGE_5(pageCursors, PageMain::self, NamePage::Cursors,
     "КУРСОРЫ", "CURSORS",
     "Курсорные измерения.",
     "Cursor measurements.",

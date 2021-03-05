@@ -75,7 +75,7 @@ DEF_SMALL_BUTTON(sbExitHelp, PageHelp::self,
     nullptr, PressSB_Help_Exit, DrawSB_Exit, nullptr
 )
 
-DEF_PAGE_6(pageHelp, PageMain::self, NamePage::SB_Help, //-V2567
+DEF_PAGE_6(pageHelp, PageMain::self, NamePage::SB_Help,
     "ѕќћќў№", "HELP",
     "ќткрыть разделы помощи",
     "To open sections of the help",

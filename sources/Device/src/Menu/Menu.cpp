@@ -480,7 +480,7 @@ void Menu::ProcessingRegulatorSet()
             }
             else if (item->IsTime()) //-V2516
             {
-                angleRegSet > 0 ? ((TimeItem *)item)->IncCurrentPosition() : ((TimeItem *)item)->DecCurrentPosition(); //-V2533 //-V2567
+                angleRegSet > 0 ? ((TimeItem *)item)->IncCurrentPosition() : ((TimeItem *)item)->DecCurrentPosition(); //-V2533
             }
         }
     }

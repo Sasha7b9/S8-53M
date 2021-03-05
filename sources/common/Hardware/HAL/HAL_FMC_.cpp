@@ -78,7 +78,7 @@ void HAL_FMC::InitFPGA()
     };
 
     SRAM_HandleTypeDef *hsram = &gSramHandle;
-    FMC_NORSRAM_TimingTypeDef *Timing = const_cast<FMC_NORSRAM_TimingTypeDef *>(&sramTiming); //-V2567
+    FMC_NORSRAM_TimingTypeDef *Timing = const_cast<FMC_NORSRAM_TimingTypeDef *>(&sramTiming);
 
     FMC_NORSRAM_Init(hsram->Instance, &(hsram->Init));
 
@@ -133,7 +133,7 @@ void HAL_FMC::InitRAM()
         FMC_ACCESS_MODE_C  // FSMC_AccessMode
     };
 
-    FMC_NORSRAM_TimingTypeDef *timing = const_cast<FMC_NORSRAM_TimingTypeDef *>(&sramTiming); //-V2567
+    FMC_NORSRAM_TimingTypeDef *timing = const_cast<FMC_NORSRAM_TimingTypeDef *>(&sramTiming);
 
     HAL_SRAM_Init(&gSramHandle, timing, timing);
 }

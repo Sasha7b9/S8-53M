@@ -73,7 +73,7 @@ DEF_BUTTON(mbAccumulation_Clear, PageDisplay::PageAccumulation::self,
     IsActive_Accumulation_Clear, PageDisplay::OnPress_Accumulation_Clear
 )
 
-DEF_PAGE_3(pageAccumulation, PageDisplay::self, NamePage::DisplayAccumulation, //-V2567
+DEF_PAGE_3(pageAccumulation, PageDisplay::self, NamePage::DisplayAccumulation,
     "НАКОПЛЕНИЕ", "ACCUMULATION",
     "Настройки режима отображения последних сигналов на экране.",
     "Mode setting signals to display the last screen.",
@@ -150,7 +150,7 @@ DEF_CHOICE_2(mcTypeShift, PageDisplay::self,
     LINKING_RSHIFT, nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_9(pageDisplay, PageMain::self, NamePage::Display, //-V2567
+DEF_PAGE_9(pageDisplay, PageMain::self, NamePage::Display,
     "ДИСПЛЕЙ", "DISPLAY",
     "Содержит настройки отображения дисплея.",
     "Contains settings of display of the Display::",
@@ -208,7 +208,7 @@ static bool IsActive_Averaging()
     return true;
 }
 
-DEF_PAGE_2(pageAveraging, PageDisplay::self, NamePage::DisplayAverage, //-V2567
+DEF_PAGE_2(pageAveraging, PageDisplay::self, NamePage::DisplayAverage,
     "УСРЕДНЕНИЕ", "AVERAGE",
     "Настройки режима усреднения по последним измерениям.",
     "Settings of the mode of averaging on the last measurements.",
@@ -248,7 +248,7 @@ DEF_GOVERNOR(mgGrid_Brightness, PageDisplay::PageGrid::self,
     BRIGHTNESS_GRID, 0, 100, nullptr, PageDisplay::OnChanged_Grid_Brightness, BeforeDraw_Grid_Brightness
 )
 
-DEF_PAGE_2(pageGrid, PageDisplay::self, NamePage::DisplayGrid, //-V2567
+DEF_PAGE_2(pageGrid, PageDisplay::self, NamePage::DisplayGrid,
     "СЕТКА", "GRID",
     "Содержит настройки отображения координатной сетки.",
     "Contains settings of display of a coordinate Grid::",
@@ -334,7 +334,7 @@ DEF_CHOICE_6(mcSettings_AutoHide, PageDisplay::PageSettings::self,
     MENU_AUTO_HIDE, nullptr, OnChanged_Settings_AutoHide, nullptr
 )
 
-DEF_PAGE_7(pageSettings, PageDisplay::self, NamePage::ServiceDisplay, //-V2567
+DEF_PAGE_7(pageSettings, PageDisplay::self, NamePage::ServiceDisplay,
     "НАСТРОЙКИ", "SETTINGS",
     "Дополнительные настройки дисплея",
     "Additional display settings",
@@ -382,7 +382,7 @@ DEF_GOVERNOR_COLOR(mgcSettings_Colors_Grid, PageDisplay::PageSettings::PageColor
     cTypeGrid, nullptr
 )
 
-DEF_PAGE_4(pageColors, PageDisplay::PageSettings::self, NamePage::ServiceDisplayColors, //-V2567
+DEF_PAGE_4(pageColors, PageDisplay::PageSettings::self, NamePage::ServiceDisplayColors,
     "ЦВЕТА", "COLORS",
     "Выбор цветов дисплея",
     "The choice of colors display",
