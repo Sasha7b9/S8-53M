@@ -5,15 +5,40 @@
 #include "common/Utils/Math_.h"
 
 
+extern uint8 *display_back_buffer;
+
+
 void Primitives::Point::Draw(int, int)
 {
 
 }
 
 
-void Primitives::VLine::Draw(int, int, int, Color)
+void Primitives::VLine::Draw(int x, int y0, int y1, const Color &color)
 {
+    color.SetAsCurrent();
 
+    Math::Limitation(&x, 0, Display::WIDTH - 1);
+    Math::Limitation(&y0, 0, Display::HEIGHT - 1);
+    Math::Limitation(&y1, 0, Display::HEIGHT - 1);
+
+    if (y1 < y0)
+    {
+        Math::Swap(&y0, &y1);
+    }
+
+    uint8 *address = display_back_buffer + Display::WIDTH * y0 + x;
+
+    int counter = y1 - y0 + 1;
+
+    uint8 value = Color::GetCurrent().index;
+
+    do 
+    {
+        *address = value;
+        address += Display::WIDTH;
+
+    } while (--counter > 0);
 }
 
 

@@ -56,13 +56,9 @@ void Primitives::HLine::Draw(int y, int x0, int x1, const Color &color)
 {
     color.SetAsCurrent();
 
-    if (x0 < 0) { x0 = 0; }
-    if (x1 < 0) { x1 = 0; }
-    if (y < 0) { y = 0; }
-
-    if (x0 >= Display::WIDTH) { x0 = Display::WIDTH - 1; }
-
-    if (x1 >= Display::WIDTH) { x1 = Display::WIDTH - 1; }
+    Math::Limitation(&y, 0, Display::HEIGHT - 1);
+    Math::Limitation(&x0, 0, Display::WIDTH - 1);
+    Math::Limitation(&x1, 0, Display::WIDTH - 1);
 
     if (x0 > x1)
     {
@@ -71,5 +67,5 @@ void Primitives::HLine::Draw(int y, int x0, int x1, const Color &color)
 
     uint8 *start = &back[y][x0];
 
-    std::memset(start, Color::GetCurrent().index, x1 - x0 + 1);
+    std::memset(start, Color::GetCurrent().index, (uint)(x1 - x0 + 1));
 }

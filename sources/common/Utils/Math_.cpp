@@ -7,6 +7,7 @@
 
 
 template void Math::Swap<int>(int *, int *);
+template void Math::Limitation<int>(int *, int, int);
 
 
 int Math::MinFrom2Int(int val0, int val1)
@@ -283,4 +284,18 @@ template<class T>
 void Math::Swap(T *value0, T *value1)
 {
     T temp = *value0; *value0 = *value1; *value1 = temp;
+}
+
+
+template<class T>
+void Math::Limitation(T *value, T min, T max)
+{
+    if(*value < min)
+    {
+        *value = min;
+    }
+    else if(*value > max)
+    {
+        *value = max;
+    }
 }

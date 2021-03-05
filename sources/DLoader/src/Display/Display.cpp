@@ -29,6 +29,8 @@ Vector array[SIZE_ARRAY];
 static void DrawProgressBar(uint dT);
 static void DrawBigMNIPI(void);
 
+uint8 *display_back_buffer = nullptr;
+
 void Display::Init(void)
 {
     MainStruct::ms->display.value = 0.0F;

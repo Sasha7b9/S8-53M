@@ -1250,11 +1250,7 @@ void Display::Update()
 //    {
         BeginFrame(Color::BLACK);
 //        DrawMemoryWindow();
-//        DrawFullGrid();
-    
-        HLine().Draw(0, 0, 0, Color::WHITE);
-        HLine().Draw(1, 0, 1, Color::WHITE);
-
+        DrawFullGrid();
 //    }
 //
 //    DrawData();

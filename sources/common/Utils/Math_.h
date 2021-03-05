@@ -50,6 +50,7 @@ namespace Math
 
     // Обменивает местами содержимое памяти по адресам value0 и value1
     template<class T> void Swap(T *value0, T *value1);
+    template<class T> void Limitation(T *value, T min, T max);
 }
 
 

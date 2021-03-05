@@ -42,7 +42,7 @@ namespace Primitives
     {
     public:
         VLine() { };
-        void Draw(int x, int y0, int y1, Color color = Color::Count);
+        void Draw(int x, int y0, int y1, const Color &color = Color::Count);
     };
 
     // numLines вертикальных линий, состоящих из count точек каждая с расстоянием между точками delta. Горизонтальная координата
