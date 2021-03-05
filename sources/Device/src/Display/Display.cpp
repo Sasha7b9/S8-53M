@@ -2198,11 +2198,11 @@ void Display::AddPoints(uint16 data00, uint16 data01, uint16 data10, uint16 data
         }
     }
 
-    dataP2P_0[lastP2Pdata] = data00;
-    dataP2P_1[lastP2Pdata++] = data10;
+    dataP2P_0[lastP2Pdata] = (uint8)data00;
+    dataP2P_1[lastP2Pdata++] = (uint8)data10;
     
-    dataP2P_0[lastP2Pdata] = data01;
-    dataP2P_1[lastP2Pdata++] = data11;
+    dataP2P_0[lastP2Pdata] = (uint8)data01;
+    dataP2P_1[lastP2Pdata++] = (uint8)data11;
     if (!SET_SELFRECORDER && lastP2Pdata >= NUM_P2P_POINTS)
     {
         lastP2Pdata = 0;

@@ -60,7 +60,7 @@ public:
 static Screen *screen = nullptr;
 
 
-void Painter::BeginScene(const Color &color)
+void Display::BeginFrame(const Color &color)
 {
     Application::memDC.SelectObject(bitmapScreen);
     wxBrush brush({ 0, 0, 0 }, wxTRANSPARENT);
@@ -70,7 +70,7 @@ void Painter::BeginScene(const Color &color)
 }
 
 
-void Painter::EndScene(bool)
+void Display::EndFrame()
 {
     Application::memDC.SelectObject(wxNullBitmap);
     screen->Refresh();

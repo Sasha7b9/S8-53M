@@ -200,7 +200,7 @@ static void DrawBigMNIPI(void)
 }
 
 
-void Display::BeginFrame(const Color &color)
+void Display::BeginFrame(const Color & /*color*/)
 {
 
 }

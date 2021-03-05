@@ -1011,7 +1011,7 @@ void Processing::InterpolationSinX_X(uint16 data[FPGA_MAX_POINTS], TBase::E tBas
     {
         if (data[pos] > 0)
         {
-            signedData[numSignedPoints] = data[pos];
+            signedData[numSignedPoints] = (uint8)data[pos];
             numSignedPoints++;
         }
     }

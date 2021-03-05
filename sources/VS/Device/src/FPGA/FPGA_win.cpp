@@ -86,7 +86,7 @@ void FPGA::OnPressStartStop()
 }
 
 
-void FPGA::WriteToHardware(uint8 *const, uint8, bool)
+void FPGA::WriteToHardware(uint16 *const, uint16, bool)
 {
 
 }
