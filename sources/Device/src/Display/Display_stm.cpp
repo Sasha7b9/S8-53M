@@ -11,7 +11,7 @@
 static const int SIZE_BUFFER = Display::WIDTH * Display::HEIGHT;
 
 static uint8 *front = (uint8 *)HAL_FMC::ADDR_RAM_DISPLAY_FRONT;
-static uint8 *back = (uint8 *)HAL_FMC::ADDR_RAM_DISPLAY_BACK;
+static uint8 back[240][320];
 
 
 void Display::Init()
@@ -22,25 +22,31 @@ void Display::Init()
 
     HAL_DAC1::Init();
 
-    HAL_LTDC::Init(front, front);
+    HAL_LTDC::Init(front, &back[0][0]);
 }
 
 
 void Display::BeginScene(const Color &color)
 {
-    std::memset(front, color.index, SIZE_BUFFER);
+    std::memset(back, color.index, SIZE_BUFFER);
+}
+
+
+void Display::EndScene()
+{
+    HAL_LTDC::ToggleBuffers();
 }
 
 
 uint8 *Display::GetBuffer()
 {
-    return front;
+    return &back[0][0];
 }
 
 
 uint8 *Display::GetBufferEnd()
 {
-    return front + SIZE_BUFFER;
+    return GetBuffer() + SIZE_BUFFER;
 }
 
 

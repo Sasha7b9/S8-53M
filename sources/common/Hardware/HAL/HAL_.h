@@ -116,8 +116,6 @@ struct HAL_FMC
 {
     static uint16 * const ADDR_FPGA;                // Адрес записи в альтеру
 
-    static uint16 * const ADDR_RAM_DISPLAY_BACK;    // Задний буфер для дисплея. Находится в RAM и не может использо-
-                                                    // ваться для других целей
     static uint16 * const ADDR_RAM_DISPLAY_FRONT;   // Видимое изображение дисплея. Находится в RAM и не может исполь-
                                                     // зоваться для других целей
     static uint16 * const ADDR_RAM_BEGIN;           // Первый свободный адрес в RAM.

@@ -15,5 +15,5 @@ void Painter::BeginScene(const Color &color)
 
 void Painter::EndScene(bool)
 {
-    HAL_LTDC::ToggleBuffers();
+    
 }

@@ -165,22 +165,6 @@
           <ExecCommand></ExecCommand>
           <Expression>\\S8_53M\src/Hardware/HAL/HAL_IT.cpp\72</Expression>
         </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>14</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134302884</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\main.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\S8_53M\src/main.cpp\14</Expression>
-        </Bp>
       </Breakpoint>
       <MemoryWindow1>
         <Mm>
@@ -381,18 +365,18 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>147</LineNumber>
+          <LineNumber>71</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134282106</Address>
+          <Address>134278864</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;..\common\Hardware\HAL\HAL_FMC_.cpp</Filename>
+          <Filename>&lt;1&gt;.\src\Panel\Panel_view.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\S8_53M\../common/Hardware/HAL/HAL_FMC_.cpp\147</Expression>
+          <Expression>\\S8_53M\src/Panel/Panel_view.cpp\71</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>

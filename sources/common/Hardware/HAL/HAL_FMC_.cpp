@@ -13,11 +13,9 @@ static const uint ADDR_RAM = ADDR_BANK + 0x04000000;
 
 uint16 * const HAL_FMC::ADDR_FPGA = (uint16 *)(ADDR_BANK + 0x00000000);  // Адрес записи в аппаратные регистры.
 
-uint16 *const HAL_FMC::ADDR_RAM_DISPLAY_BACK = (uint16 *)(ADDR_RAM);
+uint16 *const HAL_FMC::ADDR_RAM_DISPLAY_FRONT = (uint16 *)(ADDR_RAM);
 
-uint16 *const HAL_FMC::ADDR_RAM_DISPLAY_FRONT = (uint16 *)(ADDR_RAM + 320 * 240);
-
-uint16 *const HAL_FMC::ADDR_RAM_BEGIN = (uint16 *)(ADDR_RAM + 320 * 240 * 2);
+uint16 *const HAL_FMC::ADDR_RAM_BEGIN = (uint16 *)(ADDR_RAM + 320 * 240);
 
 uint16 *const HAL_FMC::ADDR_RAM_END = (uint16 *)(ADDR_RAM + 1024 * 1024);
 

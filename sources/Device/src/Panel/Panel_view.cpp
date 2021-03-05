@@ -1,6 +1,7 @@
 // 2021/03/04 8:23:11 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "Display/Display.h"
+#include "common/Display/Painter_.h"
 #include "common/Display/Primitives_.h"
 #include "common/Hardware/Sound_.h"
 #include "common/Hardware/HAL/HAL_.h"
@@ -63,4 +64,6 @@ void Panel::Draw()
             Rectangle(i * 5, height).Draw(x0, y0 + (height + 2) * i, Color::BLACK);
         }
     }
+
+    Display::EndScene();
 }
