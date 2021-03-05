@@ -3,16 +3,16 @@
 #include "common/Hardware/HAL/HAL_.h"
 #include "Display/Display.h"
 #include "FDrive/FDrive.h"
-//#include "FPGA/FPGA.h"
-//#include "FPGA/Storage.h"
-//#include "Hardware/EPROM.h"
-//#include "LAN/LAN.h"
-//#include "Menu/Menu.h"
-//#include "Menu/Pages/Definition.h"
+#include "FPGA/FPGA.h"
+#include "FPGA/Storage.h"
+#include "Hardware/EPROM.h"
+#include "LAN/LAN.h"
+#include "Menu/Menu.h"
+#include "Menu/Pages/Definition.h"
 #include "Panel/Panel.h"
-//#include "Settings/Settings.h"
-//#include "Utils/ProcessingSignal.h"
-//#include "VCP/VCP.h"
+#include "Settings/Settings.h"
+#include "Utils/ProcessingSignal.h"
+#include "VCP/VCP.h"
 
 
 bool Device::needResetSettings = false;
@@ -27,7 +27,7 @@ void Device::Init()
     FDrive::Init();
 //    VCP::Init();
 //    Settings::Load(false);
-//    FPGA::Init();
+    FPGA::Init();
     HAL_TIM2::Delay(250);
 //    FPGA::OnPressStartStop();
 //    LAN::Init();
@@ -47,7 +47,7 @@ void Device::Update()
 
 //    FDrive::Update();
 //    LAN::Update(0);
-//    FPGA::Update();                      // Обновляем аппаратную часть.
+    FPGA::Update();                      // Обновляем аппаратную часть.
 //    ProcessingSignal();
     Display::Update();                   // Рисуем экран.
 //    Menu::UpdateInput();                 // Обновляем состояние меню
