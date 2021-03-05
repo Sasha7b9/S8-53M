@@ -751,7 +751,8 @@ void Page::DrawTitle(int yTop)
     }
     else
     {
-        DrawVolumeButton(x + 1, yTop + 1, Item::TITLE_WIDTH - 1, Item::TITLE_HEIGHT - 1, 3, Color::MENU_TITLE, Color::MENU_TITLE_BRIGHT, Color::MENU_TITLE_DARK, false);
+        DrawVolumeButton(x + 1, yTop + 1, Item::TITLE_WIDTH - 1, Item::TITLE_HEIGHT - 1, 3, Color::MENU_TITLE,
+            Color::MENU_TITLE_BRIGHT, Color::MENU_TITLE_DARK, false);
     }
     
     VLine().Draw(x, yTop, yTop + HeightOpened(), Color::BorderMenu());

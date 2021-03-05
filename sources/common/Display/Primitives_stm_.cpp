@@ -21,7 +21,11 @@ void Primitives::VLine::Draw(int x, int y0, int y1, const Color &color)
 {
     color.SetAsCurrent();
 
-    BoundingX(x);
+    if (x < 0 || x >= Display::WIDTH)
+    {
+        return;
+    }
+
     BoundingY(y0);
     BoundingY(y1);
 
@@ -60,13 +64,18 @@ void Primitives::Rectangle::Draw(int x, int y, const Color &color)
 {
     color.SetAsCurrent();
 
-    HLine().Draw(y, x, x + width);
-    VLine().Draw(x, y, y + height);
-    HLine().Draw(y + height, x, x + width);
-    if (x + width < Display::WIDTH)
+    if (width == 0 || height == 0)
     {
-        HLine().Draw(x + width, y, y + height);
+        return;
     }
+
+    int dx = x + width - 1;
+    int dy = y + height - 1;
+
+    HLine().Draw(y, x, dx);
+    HLine().Draw(dy, x, dx);
+    VLine().Draw(x, y, dy);
+    VLine().Draw(dx, y, dy);
 }
 
 

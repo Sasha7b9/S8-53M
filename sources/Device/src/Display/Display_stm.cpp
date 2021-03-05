@@ -56,7 +56,11 @@ void Primitives::HLine::Draw(int y, int x0, int x1, const Color &color)
 {
     color.SetAsCurrent();
 
-    BoundingY(y);
+    if (y < 0 || y >= Display::HEIGHT)
+    {
+        return;
+    }
+
     BoundingX(x0);
     BoundingX(x1);
 

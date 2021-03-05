@@ -1242,52 +1242,51 @@ bool Display::NeedForClearScreen()
 
 void Display::Update()
 {
-//    uint timeStart = gTimerTics;
-//
-//    bool needClear = NeedForClearScreen();
-//
-//    if (needClear)
-//    {
+    uint timeStart = gTimerTics;
+
+    bool needClear = NeedForClearScreen();
+
+    if (needClear)
+    {
         BeginFrame(Color::BLACK);
-//    
-//        DrawMemoryWindow();
-//        DrawFullGrid();
-//    }
-//
-//    DrawData();
-//
-//    if (needClear)
-//    {
-//        DrawMath();
-//        DrawSpectrum();
-//        DrawCursors();
-//        DrawHiPart();
-//        DrawLowPart();
-//        DrawCursorsWindow();
-//        DrawCursorTrigLevel();
-//        DrawCursorsRShift();
-//        DrawMeasures();
-//        DrawStringNavigation();
-//        DrawCursorTShift();
-//    }
+        DrawMemoryWindow();
+        DrawFullGrid();
+    }
+
+    DrawData();
+
+    if (needClear)
+    {
+        DrawMath();
+        DrawSpectrum();
+        DrawCursors();
+        DrawHiPart();
+        DrawLowPart();
+        DrawCursorsWindow();
+        DrawCursorTrigLevel();
+        DrawCursorsRShift();
+        DrawMeasures();
+        DrawStringNavigation();
+        DrawCursorTShift();
+    }
 
     Menu::Draw();
 
-//    if (needClear)
-//    {
-//        DrawWarnings();
-//    }
-//
-//    DrawConsole();
-//
-//    if (needClear)
-//    {
-//        WriteValueTrigLevel();
-//    }
-//
-//    DrawTimeForFrame(gTimerTics - timeStart);
-//
-//    Color::FILL.SetAsCurrent();
+    if (needClear)
+    {
+        DrawWarnings();
+    }
+
+    DrawConsole();
+
+    if (needClear)
+    {
+        WriteValueTrigLevel();
+    }
+
+    DrawTimeForFrame(gTimerTics - timeStart);
+
+    Color::FILL.SetAsCurrent();
 
     EndFrame();
 }
