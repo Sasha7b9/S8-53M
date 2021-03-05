@@ -28,8 +28,6 @@ Vector array[SIZE_ARRAY];
 
 static void DrawProgressBar(uint dT);
 static void DrawBigMNIPI(void);
-static void InitPoints(void);
-
 
 void Display::Init(void)
 {
@@ -49,8 +47,6 @@ void Display::Init(void)
     Color::ResetFlash();
 
     Font::Set(TypeFont::S8);
-    
-    InitPoints();
 }
 
 
@@ -69,13 +65,13 @@ void Display::Update(void)
 
     MainStruct::ms->display.timePrev = HAL_TIM2::TimeMS();
 
-    Painter::BeginScene(Color::BLACK);
+    BeginFrame(Color::BLACK);
 
     Color::WHITE.SetAsCurrent();
 
     if (MainStruct::ms->state == State::Start || MainStruct::ms->state == State::Ok)
     {
-        Painter::BeginScene(Color::BACK);
+        Display::BeginFrame(Color::BACK);
         Color::FILL.SetAsCurrent();
         Rectangle(319, 239).Draw(0, 0);
         DrawBigMNIPI();
@@ -115,7 +111,7 @@ void Display::Update(void)
         Rectangle(fullWidth, height).Draw(20, 130);
     }
 
-    Painter::EndScene();
+    Display::EndFrame();
     MainStruct::ms->display.isRun = false;
 }
 
@@ -204,22 +200,13 @@ static void DrawBigMNIPI(void)
 }
 
 
-static void InitPoints(void)
+void Display::BeginFrame(const Color &color)
 {
-//    uint8 buffer[320][240];
-//
-//    //Painter::DrawBigTextInBuffer(31, 70, 9, "ÃÕ»œ»", buffer);
-//
-//    for (int x = 0; x < 320; x++)
-//    {
-//        for (int y = 0; y < 240; y++)
-//        {
-//            if (buffer[x][y])
-//            {
-//                array[numPoints].x = static_cast<uint16>(x);
-//                array[numPoints].y = static_cast<uint8>(y);
-//                numPoints++;
-//            }
-//        }
-//    }
+
+}
+
+
+void Display::EndFrame()
+{
+
 }

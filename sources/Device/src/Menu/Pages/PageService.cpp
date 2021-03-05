@@ -27,11 +27,11 @@ static uint16 portGateway = 0;
 
 static void FuncDraw()
 {
-    Painter::BeginScene(Color::BACK);
+    Display::BeginFrame(Color::BACK);
 
     Text("Подтвердите сброс настроек нажатием кнопки ПУСК/СТОП.\nНажмите любую другую кнопку, если сброс не нужен.").DrawInRectWithTransfers(30, 110, 300, 200, Color::FILL);
 
-    Painter::EndScene();
+    Painter::SendFrame();
 }
 
 static void OnTimerDraw()
@@ -659,7 +659,7 @@ DEF_SMALL_BUTTON(sbInformation_Exit, PageService::PageCalibrator::self,
 
 static void Information_Draw()
 {
-    Painter::BeginScene(Color::BLACK);
+    Display::BeginFrame(Color::BLACK);
     int x = 100;
     int dY = 20;
     int y = 20;
@@ -686,7 +686,7 @@ static void Information_Draw()
     Text("Разработчики: e-mail: mnipi-24(@)tut.by, тел. 8-017-270-02-23").DrawInCenterRect(0, 220 + dY, 320, 20);
 
     Menu::Draw();
-    Painter::EndScene();
+    Display::EndFrame();
 }
 
 static void OnPress_Information()

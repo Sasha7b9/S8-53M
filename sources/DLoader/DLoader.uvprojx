@@ -990,11 +990,6 @@
               <FilePath>..\common\Display\Painter_.h</FilePath>
             </File>
             <File>
-              <FileName>Painter_stm_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Painter_stm_.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Colors_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Display\Colors_.cpp</FilePath>
@@ -2170,11 +2165,6 @@
               <FileName>Painter_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Display\Painter_.h</FilePath>
-            </File>
-            <File>
-              <FileName>Painter_stm_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Painter_stm_.cpp</FilePath>
             </File>
             <File>
               <FileName>Colors_.cpp</FileName>

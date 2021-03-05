@@ -26,13 +26,13 @@ void Display::Init()
 }
 
 
-void Display::BeginScene(const Color &color)
+void Display::BeginFrame(const Color &color)
 {
     std::memset(back, color.index, SIZE_BUFFER);
 }
 
 
-void Display::EndScene()
+void Display::EndFrame()
 {
     HAL_LTDC::ToggleBuffers();
 }

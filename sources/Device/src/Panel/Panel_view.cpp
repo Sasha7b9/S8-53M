@@ -46,7 +46,7 @@ void Panel::CallbackOnReceiveSPI5(uint8 *data, int /*size*/)
 
 void Panel::Draw()
 {
-    Display::BeginScene(Color::WHITE);
+    Display::BeginFrame(Color::WHITE);
 
     int x0 = 10;
     int y0 = 10;
@@ -65,5 +65,5 @@ void Panel::Draw()
         }
     }
 
-    Display::EndScene();
+    Display::EndFrame();
 }

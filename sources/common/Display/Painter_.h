@@ -7,10 +7,6 @@ class Painter
 {
 public:
 
-    static void BeginScene(const Color &color);
-
-    static void EndScene(bool endScene = true);
-
     // По умолчанию запрашиваем первый фрейм с шрифтами
     static void SendFrame(bool noFonts = false);
 

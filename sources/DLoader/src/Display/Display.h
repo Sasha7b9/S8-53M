@@ -1,6 +1,9 @@
 #pragma once
 
 
+struct Color;
+
+
 class Display
 {
 public:
@@ -11,6 +14,10 @@ public:
     static void Update(void);
 
     static bool IsRun(void);
+
+    static void BeginFrame(const Color &color);
+
+    static void EndFrame();
 
     bool isRun;
     float value;

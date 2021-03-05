@@ -176,7 +176,7 @@ void FM::Draw()
 
     if (needRedrawFileManager == 1)
     {
-        Painter::BeginScene(Color::BACK);
+        Display::BeginFrame(Color::BACK);
         Menu::Draw();
         Primitives::Rectangle(width, 239).Draw(1, 0, Color::FILL);
         FDrive::GetNumDirsAndFiles(currentDir, &numDirs, &numFiles);
@@ -195,7 +195,7 @@ void FM::Draw()
         DrawFiles(left2col + 3, top + 18);
     }
 
-    Painter::EndScene();
+    Display::EndFrame();
 
     needRedrawFileManager = 0;
 }

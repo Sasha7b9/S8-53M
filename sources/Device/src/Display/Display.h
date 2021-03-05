@@ -24,8 +24,8 @@ public:
 
     static uint8 *GetBuffer();
     static uint8 *GetBufferEnd();
-    static void BeginScene(const Color &color);
-    static void EndScene();
+    static void BeginFrame(const Color &color);
+    static void EndFrame();
 
     static void Update();
 

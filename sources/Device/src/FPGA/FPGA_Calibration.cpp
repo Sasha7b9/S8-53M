@@ -213,7 +213,7 @@ void FPGA::ProcedureCalibration(void)
 
 void FuncAttScreen(void)
 {
-    Painter::BeginScene(Color::BLACK);
+    Display::BeginFrame(Color::BLACK);
 
     static bool first = true;
     static uint startTime = 0;
@@ -302,7 +302,7 @@ void FuncAttScreen(void)
     std::sprintf(buffer, "%.1f", (gTimerMS - startTime) / 1000.0F); //-V2564
     Text(buffer).Draw(0, 0, Color::BLACK);
 
-    Painter::EndScene();
+    Painter::SendFrame();
 }
 
 
