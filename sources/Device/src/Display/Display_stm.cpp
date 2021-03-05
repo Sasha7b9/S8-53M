@@ -56,9 +56,9 @@ void Primitives::HLine::Draw(int y, int x0, int x1, const Color &color)
 {
     color.SetAsCurrent();
 
-    Math::Limitation(&y, 0, Display::HEIGHT - 1);
-    Math::Limitation(&x0, 0, Display::WIDTH - 1);
-    Math::Limitation(&x1, 0, Display::WIDTH - 1);
+    BoundingY(y);
+    BoundingX(x0);
+    BoundingX(x1);
 
     if (x0 > x1)
     {

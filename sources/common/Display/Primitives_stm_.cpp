@@ -8,9 +8,12 @@
 extern uint8 *display_back_buffer;
 
 
-void Primitives::Point::Draw(int, int)
+void Primitives::Point::Draw(int x, int y)
 {
+    BoundingX(x);
+    BoundingY(y);
 
+    *(display_back_buffer + Display::WIDTH * y + x) = Color::GetCurrent().index;
 }
 
 
@@ -18,9 +21,9 @@ void Primitives::VLine::Draw(int x, int y0, int y1, const Color &color)
 {
     color.SetAsCurrent();
 
-    Math::Limitation(&x, 0, Display::WIDTH - 1);
-    Math::Limitation(&y0, 0, Display::HEIGHT - 1);
-    Math::Limitation(&y1, 0, Display::HEIGHT - 1);
+    BoundingX(x);
+    BoundingY(y0);
+    BoundingY(y1);
 
     if (y1 < y0)
     {

@@ -1,9 +1,13 @@
 #pragma once
+#include "Display/Display.h"
 #include "common/Utils/String_.h"
 
 
 namespace Primitives
 {
+    inline void BoundingX(int &x) { if (x < 0) x = 0; if (x >= Display::WIDTH) x = Display::WIDTH - 1; }
+    inline void BoundingY(int &y) { if (y < 0) y = 0; if (y >= Display::HEIGHT) y = Display::HEIGHT - 1; }
+
     class Point
     {
     public:

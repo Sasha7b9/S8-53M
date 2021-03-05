@@ -1249,6 +1249,7 @@ void Display::Update()
 //    if (needClear)
 //    {
         BeginFrame(Color::BLACK);
+    
 //        DrawMemoryWindow();
         DrawFullGrid();
 //    }
