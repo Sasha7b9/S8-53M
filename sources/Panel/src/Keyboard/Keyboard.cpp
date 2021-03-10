@@ -170,25 +170,6 @@ void KeyStruct::Process(uint time, bool pressed)
         {
             timePress = 0;
         }
-
-
-//        if (timePress == 0)                                 // Если кнопка находится в ненажатом положении
-//        {
-//            if (pressed)
-//            {
-//                timePress = time;
-//                Buffer::AppendEvent(key, Action::Down);
-//            } 
-//        }
-//        else
-//        {
-//            uint delta = time - timePress;
-//
-//            if (delta > 100 && !pressed)
-//            {
-//                timePress = 0;
-//            }
-//        }
     }
 }
 
