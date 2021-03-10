@@ -100,7 +100,7 @@ static const pFuncVV funcOnKeyDown[Key::Count] =
 
 static const pFuncVV funcOnKeyUp[Key::Count] =
 {
-    0,
+    EmptyFuncVV,    // Key::None
     EmptyFuncVV,    // Key::F1
     EmptyFuncVV,    // Key::F2
     EmptyFuncVV,    // Key::F3
@@ -131,7 +131,7 @@ static const pFuncVV funcOnKeyUp[Key::Count] =
 
 static const pFuncVV funcOnLongPressure[Key::Count] =
 {
-    0,
+    EmptyFuncVV,    // Key::None
     F1Long,         // Key::F1
     F2Long,         // Key::F2
     F3Long,         // Key::F3
@@ -162,7 +162,25 @@ static const pFuncVV funcOnLongPressure[Key::Count] =
 
 static const pFuncVV funculatorLeft[Key::Count] =
 {
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    EmptyFuncVV,    // Key::None
+    EmptyFuncVV,    // Key::F1
+    EmptyFuncVV,    // Key::F2
+    EmptyFuncVV,    // Key::F3
+    EmptyFuncVV,    // Key::F4
+    EmptyFuncVV,    // Key::F5
+    EmptyFuncVV,    // Key::ChannelA
+    EmptyFuncVV,    // Key::ChannelB
+    EmptyFuncVV,    // Key::Time
+    EmptyFuncVV,    // Key::Trig
+    EmptyFuncVV,    // Key::Cursors
+    EmptyFuncVV,    // Key::Measures
+    EmptyFuncVV,    // Key::Display
+    EmptyFuncVV,    // Key::Help
+    EmptyFuncVV,    // Key::Start
+    EmptyFuncVV,    // Key::Memory
+    EmptyFuncVV,    // Key::Service
+    EmptyFuncVV,    // Key::Menu
+    EmptyFuncVV,    // Key::Power
     RangeLeftA,     // Key::RangeA
     RangeLeftB,     // Key::RangeB
     RShiftLeftA,    // Key::RShiftA
@@ -174,7 +192,25 @@ static const pFuncVV funculatorLeft[Key::Count] =
 };
 static const pFuncVV funculatorRight[Key::Count] =
 {
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    EmptyFuncVV,    // Key::None
+    EmptyFuncVV,    // Key::F1
+    EmptyFuncVV,    // Key::F2
+    EmptyFuncVV,    // Key::F3
+    EmptyFuncVV,    // Key::F4
+    EmptyFuncVV,    // Key::F5
+    EmptyFuncVV,    // Key::ChannelA
+    EmptyFuncVV,    // Key::ChannelB
+    EmptyFuncVV,    // Key::Time
+    EmptyFuncVV,    // Key::Trig
+    EmptyFuncVV,    // Key::Cursors
+    EmptyFuncVV,    // Key::Measures
+    EmptyFuncVV,    // Key::Display
+    EmptyFuncVV,    // Key::Help
+    EmptyFuncVV,    // Key::Start
+    EmptyFuncVV,    // Key::Memory
+    EmptyFuncVV,    // Key::Service
+    EmptyFuncVV,    // Key::Menu
+    EmptyFuncVV,    // Key::Power
     RangeRightA,    // Key::RangeA
     RangeRightB,    // Key::RangeB
     RShiftRightA,   // Key::RShiftA
