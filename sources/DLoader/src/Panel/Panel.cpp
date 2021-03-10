@@ -15,13 +15,7 @@
 #define POWER_OFF           4
 
 
-
 static Key::E pressedButton = Key::None;
-
-
-
-static Key::E ButtonIsPress(uint16 command);
-
 
 
 Key::E Panel::PressedButton(void)
@@ -36,44 +30,7 @@ uint16 Panel::NextData()
 }
 
 
-bool Panel::ProcessingCommandFromPIC(uint16 command)
-{
-    if(command)
-    {
-        Key::E prButton = ButtonIsPress(command);
-        if(prButton)
-        {
-            pressedButton = prButton;
-        }
-        else
-        {
-            pressedButton = Key::None;
-        }
-    }
-    return true;
-}
-
-
 void Panel::CallbackOnReceiveSPI5(uint8 * /*data*/, int /*size*/)
 {
 
-}
-
-
-static Key::E ButtonIsPress(uint16 command)
-{
-    Key::E button = Key::None;
-
-    static uint timePrevPressButton = 0;
-
-    if(command < (Key::Count | 0x80) && command > (Key::None | 0x80))
-    {
-        if(HAL_TIM2::TimeMS() - timePrevPressButton > 100)
-        {
-            button = (Key::E)(command & 0x7f);
-            timePrevPressButton = HAL_TIM2::TimeMS();
-        }
-    }
-
-    return button;
 }
