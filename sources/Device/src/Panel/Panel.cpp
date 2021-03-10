@@ -163,48 +163,6 @@ static void (*funculatorRight[Key::Count])() =
 
 
 
-Key::E ButtonIsLong(uint16 code)
-{
-    Key::E key = Key::FromCode(code);
-    Action::E action = Action::FromCode(code);
-
-    if (Key::IsButton(key) && (action == Action::Long))
-    {
-        return key;
-    }
-
-    return Key::None;
-}
-
-
-Key::E RegulatorLeft(uint16 code)
-{
-    Key::E key = Key::FromCode(code);
-    Action::E action = Action::FromCode(code);
-
-    if (Key::IsGovernor(key) && (action == Action::RotateLeft))
-    {
-        return key;
-    }
-
-    return Key::None;
-}
-
-
-Key::E RegulatorRight(uint16 code)
-{
-    Key::E key = Key::FromCode(code);
-    Action::E action = Action::FromCode(code);
-
-    if (Key::IsGovernor(key) && (action == Action::RotateRight))
-    {
-        return key;
-    }
-
-    return Key::None;
-}
-
-
 void Panel::Update()
 {
     while (queue.Size() != 0 && queue[0] != 0xFF)
@@ -231,11 +189,6 @@ void Panel::Update()
         return;
     }
 
-/*
-Key::E longButton = ButtonIsLong(code);
-Key::E regLeft = RegulatorLeft(code);
-Key::E regRight = RegulatorRight(code);
-*/
     if (action.IsUp())
     {
         Menu::Event::ReleaseButton(key);
