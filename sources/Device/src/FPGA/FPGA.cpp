@@ -73,7 +73,7 @@ void FPGA::Init(void)
 
 void FPGA::SetNumSignalsInSec(int numSigInSec) 
 {
-    Timer::Enable(TypeTimer::NumSignalsInSec, static_cast<int>(1000.F / numSigInSec), OnTimerCanReadData); //-V2564
+    Timer::Enable(TypeTimer::NumSignalsInSec, static_cast<int>(1000.F / numSigInSec), OnTimerCanReadData);
 }
 
 
@@ -524,8 +524,8 @@ bool FPGA::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
             //LOG_WRITE("min %u, max %u, rand %d", *eMin, *eMax, rand);
             return true;
         }
-        minGate = min; //-V2564
-        maxGate = max; //-V2564
+        minGate = min;
+        maxGate = max;
         numElements = 0;
         min = 0xffff;
         max = 0;
@@ -533,8 +533,8 @@ bool FPGA::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
 
     if(numElements == numValues)
     {
-        minGate = 0.9F * minGate + 0.1F * min; //-V2564
-        maxGate = 0.9F * maxGate + 0.1F * max; //-V2564
+        minGate = 0.9F * minGate + 0.1F * min;
+        maxGate = 0.9F * maxGate + 0.1F * max;
         //LOG_WRITE("%.0F ... %.0F, min = %u, max = %u", minGate, maxGate, min, max);
         numElements = 0;
         min = 0xffff;
@@ -573,8 +573,8 @@ int FPGA::CalculateShift(void)            // \todo Не забыть восстановить функци
 
     if (sTime_RandomizeModeEnabled())
     {
-        float tin = static_cast<float>(rand - min) / (max - min) * 10e-9F; //-V2564
-        int retValue = static_cast<int>(tin / 10e-9F * Kr[SET_TBASE]); //-V2564
+        float tin = static_cast<float>(rand - min) / (max - min) * 10e-9F;
+        int retValue = static_cast<int>(tin / 10e-9F * Kr[SET_TBASE]);
         return retValue;
     }
 
@@ -701,7 +701,7 @@ static BitSet32 ReadRegPeriod(void)
 
 static float FreqCounterToValue(const BitSet32 *fr)
 {
-    return fr->word * 10.0F; //-V2564
+    return fr->word * 10.0F;
 }
 
 
@@ -711,7 +711,7 @@ static float PeriodCounterToValue(const BitSet32 *period)
     {
         return 0.0F;
     }
-    return 10e6F / period->word; //-V2564
+    return 10e6F / period->word;
 }
 
 
@@ -1183,7 +1183,7 @@ void FPGA::FindAndSetTrigLevel(void)
 
     static const float scale = (float)(TrigLevMax - TrigLevZero) / (float)(MAX_VALUE - AVE_VALUE) / 2.4F;
 
-    int16 trigLev = static_cast<int16>(TrigLevZero + scale * (static_cast<int>(aveValue) - AVE_VALUE) - (SET_RSHIFT(chanTrig) - RShiftZero)); //-V2564
+    int16 trigLev = static_cast<int16>(TrigLevZero + scale * (static_cast<int>(aveValue) - AVE_VALUE) - (SET_RSHIFT(chanTrig) - RShiftZero));
 
     FPGA::SetTrigLev(trigSource, trigLev);
 }

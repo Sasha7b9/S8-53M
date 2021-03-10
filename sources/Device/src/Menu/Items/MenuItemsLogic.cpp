@@ -115,12 +115,12 @@ float Governor::Step() const
     static const int numLines = 10;
     if ((address == this) && inMoveDecrease)
     {
-        float delta = -speed * (gTimerMS - timeStartMS); //-V2564
+        float delta = -speed * (gTimerMS - timeStartMS);
         if (delta == 0.0F) //-V2550 //-V550
         {
             return -0.001F;
         }
-        if (delta < -numLines) //-V2564
+        if (delta < -numLines)
         {
             inMoveDecrease = false;
             inMoveIncrease = false;
@@ -135,12 +135,12 @@ float Governor::Step() const
     }
     if ((address == this) && inMoveIncrease)
     {
-        float delta = speed * (gTimerMS - timeStartMS); //-V2564
+        float delta = speed * (gTimerMS - timeStartMS);
         if (delta == 0.0F) //-V550 //-V2550
         {
             return 0.001F;
         }
-        if (delta > numLines) //-V2564
+        if (delta > numLines)
         {
             inMoveDecrease = false;
             inMoveIncrease = false;

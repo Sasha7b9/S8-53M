@@ -83,14 +83,14 @@ void Cursors_Update()
 
 void SetCursPosU(Channel::E chan, int numCur, float pos)
 {
-    CURS_POS_U(chan, numCur) = LimitationFloat(pos, 0, MAX_POS_U); //-V2564
+    CURS_POS_U(chan, numCur) = LimitationFloat(pos, 0, MAX_POS_U);
 }
 
 
 
 void SetCursPosT(Channel::E chan, int numCur, float pos)
 {
-    CURS_POS_T(chan, numCur) = LimitationFloat(pos, 0, MAX_POS_T); //-V2564
+    CURS_POS_T(chan, numCur) = LimitationFloat(pos, 0, MAX_POS_T);
 }
 
 
@@ -513,7 +513,7 @@ static void MoveCursUonPercentsOrPoints(int delta)
 
 static void SetShiftCursPosU(Channel::E chan, int numCur, float delta)
 {
-    CURS_POS_U(chan, numCur) = LimitationFloat(CURS_POS_U(chan, numCur) - delta, 0, MAX_POS_U); //-V2564
+    CURS_POS_U(chan, numCur) = LimitationFloat(CURS_POS_U(chan, numCur) - delta, 0, MAX_POS_U);
 }
 
 static void MoveCursTonPercentsOrPoints(int delta)
@@ -541,7 +541,7 @@ static void MoveCursTonPercentsOrPoints(int delta)
 
 static void SetShiftCursPosT(Channel::E chan, int numCur, float delta)
 {
-    CURS_POS_T(chan, numCur) = LimitationFloat(CURS_POS_T(chan, numCur) + delta, 0, MAX_POS_T); //-V2564
+    CURS_POS_T(chan, numCur) = LimitationFloat(CURS_POS_T(chan, numCur) + delta, 0, MAX_POS_T);
 }
 
 const Page *PageCursors::self = &pageCursors;

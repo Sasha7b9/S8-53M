@@ -90,14 +90,14 @@ int Grid::WidthInCells()
 
 float Grid::DeltaY()
 {
-    float delta = (FullBottom() - Grid::TOP) / 10.0F; //-V2564
+    float delta = (FullBottom() - Grid::TOP) / 10.0F;
     return SettingsDisplay::IsSeparate() ? (delta / 2.0F) : delta;
 }
 
 
 float Grid::DeltaX()
 {
-    float delta = (Right() - Left()) / 14.0F; //-V2564
+    float delta = (Right() - Left()) / 14.0F;
     return delta;
 }
 

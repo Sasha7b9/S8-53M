@@ -73,8 +73,8 @@ void Storage::CalculateAroundAverage(uint16 *data0, uint16 *data1, const DataSet
     {
         for (int i = 0; i < size; i++)
         {
-            aveData0[i] = data0[i]; //-V2564
-            aveData1[i] = data1[i]; //-V2564
+            aveData0[i] = data0[i];
+            aveData1[i] = data1[i];
         }
     }
     else

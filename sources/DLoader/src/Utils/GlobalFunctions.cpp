@@ -21,19 +21,19 @@ static int NumDigitsInIntPart(float value)
     float fabsValue = std::fabsf(value);
 
     int numDigitsInInt = 0;
-    if (fabsValue >= 10000) //-V2564
+    if (fabsValue >= 10000)
     {
         numDigitsInInt = 5;
     }
-    else if (fabsValue >= 1000) //-V2564
+    else if (fabsValue >= 1000)
     {
         numDigitsInInt = 4;
     }
-    else if (fabsValue >= 100) //-V2564
+    else if (fabsValue >= 100)
     {
         numDigitsInInt = 3;
     }
-    else if (fabsValue >= 10) //-V2564
+    else if (fabsValue >= 10)
     {
         numDigitsInInt = 2;
     }
@@ -60,7 +60,7 @@ char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
 
     if (!alwaysSign)
     {
-        if (value < 0) //-V2564
+        if (value < 0)
         {
             *pBuffer = '-';
             pBuffer++;
@@ -68,7 +68,7 @@ char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
     }
     else
     {
-        *pBuffer = value < 0 ? '-' : '+'; //-V2564
+        *pBuffer = value < 0 ? '-' : '+';
         pBuffer++;
     }
 
@@ -99,7 +99,7 @@ char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
         std::sprintf(pBuffer, format, value);
     }
 
-    bool signExist = alwaysSign || value < 0; //-V2564
+    bool signExist = alwaysSign || value < 0;
     while ((uint)std::strlen(bufferOut) < (uint)numDigits + (signExist ? 2 : 1)) //-V2513
     {
         std::strcat(bufferOut, "0"); //-V2513

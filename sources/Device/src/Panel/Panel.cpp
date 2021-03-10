@@ -644,16 +644,16 @@ static void ChangeShiftScreen(int *prevTime, void(*f)(int), int16 relStep)
 {
     int count = CalculateCount(prevTime);
     float step = static_cast<float>(relStep * count);
-    if (step < 0) //-V2564
+    if (step < 0)
     {
-        if (step > -1) //-V2564
+        if (step > -1)
         {
-            step = -1; //-V2564
+            step = -1;
         }
     }
-    else if (step < 1) //-V2564
+    else if (step < 1)
     {
-        step = 1; //-V2564
+        step = 1;
     }
     f(static_cast<int>(step));
 }
@@ -685,22 +685,22 @@ static void ChangeTShift(int *prevTime, void(*f)(int), int16 relStep)
     int count = CalculateCount(prevTime);
     int tShiftOld = TSHIFT;
     float step = static_cast<float>(relStep * count);
-    if (step < 0) //-V2564
+    if (step < 0)
     {
-        if (step > -1) //-V2564
+        if (step > -1)
         {
-            step = -1; //-V2564
+            step = -1;
         }
     }
     else
     {
-        if (step < 1) //-V2564
+        if (step < 1)
         {
-            step = 1; //-V2564
+            step = 1;
         }
     }
 
-    int16 tShift = static_cast<int16>(TSHIFT + step); //-V2564
+    int16 tShift = static_cast<int16>(TSHIFT + step);
     if (((tShiftOld > 0) && (tShift < 0)) || (tShiftOld < 0 && tShift > 0))
     {
         tShift = 0;

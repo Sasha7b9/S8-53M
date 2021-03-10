@@ -139,7 +139,7 @@ void SetWave()
 
 uint16 CalculatePeriodForTIM()
 {
-    return static_cast<uint16>(120e6F / frequency / POINTS_IN_PERIOD); //-V2564
+    return static_cast<uint16>(120e6F / frequency / POINTS_IN_PERIOD);
 }
 
 
@@ -147,9 +147,9 @@ void CalculateSine()
 {
     for (int i = 0; i < POINTS_IN_PERIOD; i++)
     {
-        float step = 2.0F * 3.1415926F / (POINTS_IN_PERIOD - 1); //-V2564
+        float step = 2.0F * 3.1415926F / (POINTS_IN_PERIOD - 1);
         float value = (std::sin(static_cast<float>(i) * step) + 1.0F) / 2.0F;
-        points[i] = static_cast<uint8>(value * amplitude * 255); //-V2564
+        points[i] = static_cast<uint8>(value * amplitude * 255);
     }
 }
 
@@ -158,7 +158,7 @@ void CalculateMeandr()
 {
     for (int i = 0; i < POINTS_IN_PERIOD / 2; i++)
     {
-        points[i] = static_cast<uint8>(255 * amplitude); //-V2564
+        points[i] = static_cast<uint8>(255 * amplitude);
     }
     for (int i = POINTS_IN_PERIOD / 2; i < POINTS_IN_PERIOD; i++)
     {
@@ -169,9 +169,9 @@ void CalculateMeandr()
 
 void CalculateTriangle()
 {
-    float k = 255.0 / POINTS_IN_PERIOD; //-V2564
+    float k = 255.0 / POINTS_IN_PERIOD;
     for (int i = 0; i < POINTS_IN_PERIOD; i++)
     {
-        points[i] = static_cast<uint8>(k * i * amplitude); //-V2564
+        points[i] = static_cast<uint8>(k * i * amplitude);
     }
 }

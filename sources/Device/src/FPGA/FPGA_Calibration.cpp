@@ -69,10 +69,10 @@ void FPGA::ProcedureCalibration(void)
     koeffCalibrationOld[Channel::A] = STRETCH_ADC_A;
     koeffCalibrationOld[Channel::B] = STRETCH_ADC_B;
 
-    bar0.fullTime = 0; //-V2564
-    bar0.passedTime = 0; //-V2564
-    bar1.fullTime = 0; //-V2564
-    bar1.passedTime = 0; //-V2564
+    bar0.fullTime = 0;
+    bar0.passedTime = 0;
+    bar1.fullTime = 0;
+    bar1.passedTime = 0;
 
     FPGA::SaveState();                               // Сохраняем текущее состояние.
     Panel::Disable();                                // Отлкючаем панель управления.
@@ -247,8 +247,8 @@ void FuncAttScreen(void)
                     Text("%d", RSHIFT_ADD(Channel::B, i, 1)).Draw(95 + i * 16 + dX, 90 + dY, Color::FILL);
                 }
                 
-                Text("Коэффициент калибровки 1к : %f, %d", STRETCH_ADC_A, (int)(STRETCH_ADC_A * 0x80)).Draw(10 + dX, 110 + dY, Color::FILL); //-V2564
-                Text("Коэфффициент калибровки 2к : %f, %d", STRETCH_ADC_B, (int)(STRETCH_ADC_B * 0x80)).Draw(10 + dX, 130 + dY, Color::FILL); //-V2564
+                Text("Коэффициент калибровки 1к : %f, %d", STRETCH_ADC_A, (int)(STRETCH_ADC_A * 0x80)).Draw(10 + dX, 110 + dY, Color::FILL);
+                Text("Коэфффициент калибровки 2к : %f, %d", STRETCH_ADC_B, (int)(STRETCH_ADC_B * 0x80)).Draw(10 + dX, 130 + dY, Color::FILL);
 
                 DrawParametersChannel(Channel::A, 10 + dX, 150 + dY, false);
                 DrawParametersChannel(Channel::B, 10 + dX, 200 + dY, false);
@@ -299,7 +299,7 @@ void FuncAttScreen(void)
     }
     */
     char buffer[100];
-    std::sprintf(buffer, "%.1f", (gTimerMS - startTime) / 1000.0F); //-V2564
+    std::sprintf(buffer, "%.1f", (gTimerMS - startTime) / 1000.0F);
     Text(buffer).Draw(0, 0, Color::BLACK);
 
     Painter::SendFrame();
@@ -326,8 +326,8 @@ void DrawParametersChannel(Channel::E chan, int eX, int eY, bool inProgress)
         int y = eY + (inProgress ? 110 : 0);
         Text("Отклонение от нуля:").Draw(x, y);
         char buffer[100] = {0};
-        std::sprintf(buffer, "АЦП1 = %.2f/%.2f, АЦП2 = %.2f/%.2f, d = %.2f/%.2f", avrADC1old[chan] - AVE_VALUE, avrADC1[chan] - AVE_VALUE, //-V2564
-                                                                             avrADC2old[chan] - AVE_VALUE, avrADC2[chan] - AVE_VALUE, //-V2564
+        std::sprintf(buffer, "АЦП1 = %.2f/%.2f, АЦП2 = %.2f/%.2f, d = %.2f/%.2f", avrADC1old[chan] - AVE_VALUE, avrADC1[chan] - AVE_VALUE,
+                                                                             avrADC2old[chan] - AVE_VALUE, avrADC2[chan] - AVE_VALUE,
                                                                              deltaADCold[chan], deltaADC[chan]);
         y += 10;
         Text(buffer).Draw(x, y);
@@ -347,8 +347,8 @@ float CalculateDeltaADC(Channel::E chan, float *avgADC1, float *avgADC2, float *
     *startTime = gTimerMS;
     
     ProgressBar *bar = (chan == Channel::A) ? &bar0 : &bar1;
-    bar->passedTime = 0; //-V2564
-    bar->fullTime = 0; //-V2564
+    bar->passedTime = 0;
+    bar->fullTime = 0;
 
     FPGA::SetTrigSource((TrigSource::E)chan);
     FPGA::SetTrigLev((TrigSource::E)chan, TrigLevZero);
@@ -369,8 +369,8 @@ float CalculateDeltaADC(Channel::E chan, float *avgADC1, float *avgADC2, float *
         {
             if(chan == Channel::A)
             {
-                *avgADC1 += HAL_FMC::Read(address1); //-V2564
-                *avgADC2 += HAL_FMC::Read(address2); //-V2564
+                *avgADC1 += HAL_FMC::Read(address1);
+                *avgADC2 += HAL_FMC::Read(address2);
                 HAL_FMC::Read(RD_ADC_B1);
                 HAL_FMC::Read(RD_ADC_B2);
             }
@@ -378,21 +378,21 @@ float CalculateDeltaADC(Channel::E chan, float *avgADC1, float *avgADC2, float *
             {
                 HAL_FMC::Read(RD_ADC_A1);
                 HAL_FMC::Read(RD_ADC_A2);
-                *avgADC1 += HAL_FMC::Read(address1); //-V2564
-                *avgADC2 += HAL_FMC::Read(address2); //-V2564
+                *avgADC1 += HAL_FMC::Read(address1);
+                *avgADC2 += HAL_FMC::Read(address2);
             }
         }
         
         bar->passedTime = static_cast<float>(gTimerMS - *startTime);
-        bar->fullTime = bar->passedTime * (float)numCicles / (cicle + 1); //-V2564
+        bar->fullTime = bar->passedTime * (float)numCicles / (cicle + 1);
     }
 
-    *avgADC1 /= (FPGA_MAX_POINTS * numCicles); //-V2564
-    *avgADC2 /= (FPGA_MAX_POINTS * numCicles); //-V2564
+    *avgADC1 /= (FPGA_MAX_POINTS * numCicles);
+    *avgADC2 /= (FPGA_MAX_POINTS * numCicles);
 
     *delta = *avgADC1 - *avgADC2;
 
-    return ((*avgADC1) - (*avgADC2)) / 255.0F * 100; //-V2564
+    return ((*avgADC1) - (*avgADC2)) / 255.0F * 100;
 }
 
 
@@ -461,8 +461,8 @@ int16 CalculateAdditionRShift(Channel::E chan, Range::E range)
         }
     }
 
-    float aveValue = (float)sum / numPoints; //-V2564
-    int16 retValue = static_cast<int16>(-(aveValue - AVE_VALUE) * 2); //-V2564
+    float aveValue = (float)sum / numPoints;
+    int16 retValue = static_cast<int16>(-(aveValue - AVE_VALUE) * 2);
 
     if(retValue < - 100 || retValue > 100)
     {

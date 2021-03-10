@@ -27,7 +27,7 @@ float Math::GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, in
         return static_cast<float>(x1);
     }
 
-    return (yHorLine - y0) / ((float)(y1 - y0) / (float)(x1 - x0)) + x0; //-V2564
+    return (yHorLine - y0) / ((float)(y1 - y0) / (float)(x1 - x0)) + x0;
 }
 
 bool Math::FloatsIsEquals(float value0, float value1, float epsilonPart)
@@ -68,7 +68,7 @@ int Math::MinInt(int val1, int val2)
 float Math::RandFloat(float min, float max)
 {
     float delta = max - min;
-    return min + ((std::rand() / (float)RAND_MAX) * delta); //-V2564
+    return min + ((std::rand() / (float)RAND_MAX) * delta);
 }
 
 
