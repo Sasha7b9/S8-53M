@@ -169,6 +169,7 @@ void KeyStruct::Process(uint time, bool pressed)
         else if (!pressed && happendLongPressed)
         {
             timePress = 0;
+            happendLongPressed = false;
         }
     }
 }
