@@ -83,14 +83,22 @@ PackedTime HAL_RTC::GetPackedTime()
     PackedTime time;
 
     RTC_TimeTypeDef isTime;
-    HAL_RTC_GetTime(reinterpret_cast<RTC_HandleTypeDef *>(&handle), &isTime, FORMAT_BIN);
+    
+    if (HAL_RTC_GetTime(reinterpret_cast<RTC_HandleTypeDef *>(&handle), &isTime, FORMAT_BIN) != HAL_OK)
+    {
+        ERROR_HANDLER();
+    }
 
     time.hours = isTime.Hours;
     time.minutes = isTime.Minutes;
     time.seconds = isTime.Seconds;
 
     RTC_DateTypeDef isDate;
-    HAL_RTC_GetDate(reinterpret_cast<RTC_HandleTypeDef *>(&handle), &isDate, FORMAT_BIN);
+
+    if (HAL_RTC_GetDate(reinterpret_cast<RTC_HandleTypeDef *>(&handle), &isDate, FORMAT_BIN) != HAL_OK)
+    {
+        ERROR_HANDLER();
+    }
 
     time.year = isDate.Year;
     time.month = isDate.Month;
@@ -112,6 +120,8 @@ bool HAL_RTC::SetTimeAndData(int8 day, int8 month, int8 year, int8 hours, int8 m
 
     if (HAL_RTC_SetDate(reinterpret_cast<RTC_HandleTypeDef *>(&handle), &dateStruct, FORMAT_BIN) != HAL_OK)
     {
+        ERROR_HANDLER();
+
         return false;
     };
 
@@ -127,6 +137,8 @@ bool HAL_RTC::SetTimeAndData(int8 day, int8 month, int8 year, int8 hours, int8 m
 
     if (HAL_RTC_SetTime(reinterpret_cast<RTC_HandleTypeDef *>(&handle), &timeStruct, FORMAT_BIN) != HAL_OK)
     {
+        ERROR_HANDLER();
+
         return false;
     };
 

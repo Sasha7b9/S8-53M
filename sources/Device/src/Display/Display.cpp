@@ -42,7 +42,8 @@ static int                      lastStringForPause = -1;
 
 #define NUM_WARNINGS            10
 static const char               *warnings[NUM_WARNINGS] = {0};      // Здесь предупреждающие сообщения.
-static uint                     timeWarnings[NUM_WARNINGS] = {0};   // Здесь время, когда предупреждающее сообщение поступило на экран.
+static uint                     timeWarnings[NUM_WARNINGS] = {0};   // Здесь время, когда предупреждающее сообщение
+                                                                    // поступило на экран.
 
 //static pFuncVV funcOnHand       = 0;
 //static pFuncVV funcAdditionDraw = 0;
@@ -82,8 +83,9 @@ void Display::RotateRShift(Channel::E chan)
     {
         if (chan == Channel::A) { showLevelRShiftA = true; }
         else                    { showLevelRShiftB = true; }
-        Timer::Enable((chan == Channel::A) ? TypeTimer::ShowLevelRShift0 : TypeTimer::ShowLevelRShift1, TIME_SHOW_LEVELS  * 1000, (chan == Channel::A) ? FuncOnTimerDisableShowLevelRShiftA :
-                     FuncOnTimerDisableShowLevelRShiftB);
+        Timer::Enable((chan == Channel::A) ? TypeTimer::ShowLevelRShift0 : TypeTimer::ShowLevelRShift1,
+            TIME_SHOW_LEVELS  * 1000, (chan == Channel::A) ? FuncOnTimerDisableShowLevelRShiftA :
+            FuncOnTimerDisableShowLevelRShiftB);
     };
     Redraw();
 };
