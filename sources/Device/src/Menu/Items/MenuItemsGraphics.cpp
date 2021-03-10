@@ -791,6 +791,7 @@ void Page::DrawItems(int yTop) const
     for (int posItem = posFirstItem; posItem <= posLastItem; posItem++)
     {
         const Item *item = GetItem(posItem);
+        itemUnderButton[count] = (Item *)item;
         int top = yTop + Item::HEIGHT * count;
         item->Draw(Page::X(), top);
         count++;
@@ -800,7 +801,7 @@ void Page::DrawItems(int yTop) const
 
 Item *Menu::ItemUnderButton(Key::E key)
 {
-    return (key <= Key::F5) ? itemUnderButton[key] : &Item::empty;
+    return (key <= Key::F5) ? itemUnderButton[key - 1] : &Item::empty;
 }
 
 
