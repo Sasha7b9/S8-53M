@@ -38,6 +38,4 @@ public:
     static uint16 NextData();
 
     static bool isRunning;
-
-    static void Draw();
 };

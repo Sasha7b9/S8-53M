@@ -181,7 +181,7 @@ static const Settings defaultSettings =
     // service
     {
         true,                       // screenWelcomeEnable
-        true,                       // soundEnable
+        false,                      // soundEnable
         CalibratorMode::Freq,       // calibratorEnable
         0,                          // IP-адрес (временно)  WARN
         ColorScheme::WhiteLetters   // colorScheme
@@ -204,7 +204,7 @@ static const Settings defaultSettings =
     },
     // debug
     {
-        0,                          // numStrings
+        30,                          // numStrings
         0,                          // размер шрифта - 5
         0,                          // consoleInPause
         BalanceADCtype::Settings,   // balanceADC

@@ -6,3 +6,4 @@ double atof(const char *);
 int rand(void);
 void *malloc(unsigned int size);
 void free(void *);
+char *itoa(int value);
