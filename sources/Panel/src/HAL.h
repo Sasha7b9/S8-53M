@@ -1,5 +1,5 @@
 #pragma once
-#include "Hardware/HAL/HAL_PINS.h"
+#include "HAL_PINS.h"
 
 
 #define TIME_MS HAL_TIM::TimeMS()       /* Количество миллисекунд с момента запуска */

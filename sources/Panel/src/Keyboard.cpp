@@ -1,7 +1,7 @@
 #include "defines.h"
-#include "Hardware/LEDS.h"
-#include "Hardware/HAL/HAL.h"
-#include "Keyboard/Keyboard.h"
+#include "LEDS.h"
+#include "HAL.h"
+#include "Keyboard.h"
 #include <limits>
 
 
@@ -202,9 +202,6 @@ void GovernorStruct::Process()
 
 void Buffer::AppendEvent(Key::E key, Action::E action)
 {
-    key = key;
-    action = action;
-
     commands[pointer].key = key;
     commands[pointer].action = action;
     pointer++;

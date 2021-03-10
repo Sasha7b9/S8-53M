@@ -1,7 +1,7 @@
 #include "defines.h"
-#include "Hardware/HAL/HAL.h"
-#include "Interface/Interface.h"
-#include "Keyboard/Keyboard.h"
+#include "HAL.h"
+#include "Interface.h"
+#include "Keyboard.h"
 
 
 int main(void)

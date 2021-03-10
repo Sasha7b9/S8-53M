@@ -1,6 +1,6 @@
 // 2021/02/25 8:24:14 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
-#include "Hardware/HAL/HAL.h"
+#include "HAL.h"
 
 
 struct Pin;

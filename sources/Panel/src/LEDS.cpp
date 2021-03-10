@@ -1,6 +1,6 @@
 // 2021/02/25 8:24:03 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
-#include "Hardware/LEDS.h"
+#include "LEDS.h"
 
 
 LED_ChannelA led_ChannelA;

@@ -38,27 +38,13 @@ file(GLOB LIBS_HAL         ../common/STM32Cube_L0/Drivers/STM32L0xx_HAL_Driver/I
                            ../common/STM32Cube_L0/Drivers/STM32L0xx_HAL_Driver/Src/*.c)
 
 file(GLOB SRC                    src/*.h
-                                 src/*.c
-                                 src/*.cpp)
-file(GLOB HARDWARE               src/Hardware/*.*)
-file(GLOB HARDWARE_CMSIS         src/Hardware/CMSIS/*.*)
-file(GLOB HARDWARE_HAL           src/Hardware/HAL/*.*)
-file(GLOB INTERFACE              src/Interface/*.*)
-file(GLOB KEYBOARD               src/Keyboard/*.*
+                                 src/*.cpp
                            ../common/Panel/*.*)
 
 set_source_files_properties(${LIBS_HAL} PROPERTIES HEADER_FILE_ONLY TRUE)
 
 source_group(libs\\vs_keil\\ARMCLANG FILES ${VS_KEIL_ARMCLANG})
 source_group(libs\\vs_keil\\CMSIS    FILES ${VS_KEIL_CMSIS})
-source_group(libs\\CMSIS             FILES ${LIBS_CMSIS})
-source_group(libs\\HAL               FILES ${LIBS_HAL})
 source_group(src                     FILES ${SRC})
-source_group(Hardware                FILES ${HARDWARE})
-source_group(Hardware\\CMSIS         FILES ${HARDWARE_CMSIS})
-source_group(Hardware\\HAL           FILES ${HARDWARE_HAL})
-source_group(Interface               FILES ${INTERFACE})
-source_group(Keyboard                FILES ${KEYBOARD})
 
-add_library(Panel ${VS_KEIL_ARMCLANG} ${VS_KEIL_CMSIS} ${LIBS_CMSIS} ${LIBS_HAL} ${SRC}
-                  ${HARDWARE} ${HARDWARE_CMSIS} ${HARDWARE_HAL} ${INTERFACE} ${KEYBOARD})
+add_library(Panel ${VS_KEIL_ARMCLANG} ${VS_KEIL_CMSIS} ${SRC})

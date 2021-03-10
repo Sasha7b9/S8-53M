@@ -1,8 +1,8 @@
 #include "defines.h"
-#include "Hardware/LEDS.h"
-#include "Hardware/HAL/HAL.h"
-#include "Interface/Interface.h"
-#include "Keyboard/Keyboard.h"
+#include "LEDS.h"
+#include "HAL.h"
+#include "Interface.h"
+#include "Keyboard.h"
 
 
 // ѕосылает следующее событие клавиатуры в SPI
