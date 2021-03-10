@@ -51,7 +51,7 @@ void Device::Update()
 //    ProcessingSignal();
     Panel::Update();
     Display::Update();                   // Рисуем экран.
-    Menu::UpdateInput();                 // Обновляем состояние меню
+    Menu::Update();                 // Обновляем состояние меню
 //    VCP::Update();
 }
 

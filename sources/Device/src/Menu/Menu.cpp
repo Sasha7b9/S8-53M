@@ -33,7 +33,7 @@ static Key::E bufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {Key::None, Key::None,
 static const Key::E sampleBufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {Key::F5, Key::F4, Key::F3, Key::F2, Key::F1};
 
 
-void Menu::UpdateInput()
+void Menu::Update()
 {
     ProcessingShortPressureButton();
     ProcessingLongPressureButton();
@@ -513,16 +513,16 @@ void Menu::OpenItemTime()
 {
     Display::ShowWarningGood(Warning::TimeNotSet);
     Event::ShortPressureButton(Key::Service);
-    UpdateInput();
+    Update();
     Display::Update();
     for (int i = 0; i < 2; i++)
     {
         Event::RotateRegSetRight();
-        UpdateInput();
+        Update();
         Display::Update();
     }
     Event::ShortPressureButton(Key::F4);
-    UpdateInput();
+    Update();
     Display::Update();
 }
 
@@ -594,21 +594,21 @@ void Menu::OpenFileManager()
     for (int i = 0; i < 10; i++)
     {
         Event::ShortPressureButton(Key::Menu);
-        UpdateInput();
+        Update();
         Display::Update();
     }
 
     if (!IsShown())
     {
         Event::ShortPressureButton(Key::Menu);
-        UpdateInput();
+        Update();
         Display::Update();
     }
 
     for (int i = 0; i < 5 * stepAngleRegSet + 1; i++)
     {
         Event::RotateRegSetLeft();
-        UpdateInput();
+        Update();
         Display::Update();
     }
 
@@ -617,31 +617,31 @@ void Menu::OpenFileManager()
     for (int i = 0; i < 2 * stepAngleRegSet + 1; i++)
     {
         Event::RotateRegSetRight();
-        UpdateInput();
+        Update();
         Display::Update();
     }
 
     angleRegSet = 0;
 
     Event::ShortPressureButton(Key::F2);
-    UpdateInput();
+    Update();
     Display::Update();
 
     Event::ShortPressureButton(Key::F4);
-    UpdateInput();
+    Update();
     Display::Update();
 
     for (int i = 0; i < stepAngleRegSet + 1; i++)
     {
         Event::RotateRegSetLeft();
-        UpdateInput();
+        Update();
         Display::Update();
     }
 
     for (int i = 0; i < 2; i++)
     {
         Event::ShortPressureButton(Key::F1);
-        UpdateInput();
+        Update();
         Display::Update();
     }
 }
