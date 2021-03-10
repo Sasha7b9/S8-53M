@@ -89,9 +89,16 @@ void HAL_PINS::Init()
     pinSL5.Init(PinMode::_Output);
 
     pinRC0_ChannelA.Init(PinMode::_Output);
+    pinRC0_ChannelA.Reset();
+
     pinRC1_ChannelB.Init(PinMode::_Output);
+    pinRC1_ChannelB.Reset();
+
     pinRC2_Trig.Init(PinMode::_Output);
+    pinRC2_Trig.Reset();
+
     pinRC3_Set.Init(PinMode::_Output);
+    pinRC3_Set.Reset();
 
     pinPower.Init(PinMode::_Output);
     pinPower.Reset();

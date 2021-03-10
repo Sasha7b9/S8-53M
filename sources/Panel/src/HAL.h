@@ -18,7 +18,6 @@ extern PinRL3 pinRL3;
 extern PinRL4 pinRL4;
 extern PinRL5 pinRL5;
 extern PinRL6 pinRL6;
-
 extern PinRL7 pinRL7;
 
 extern PinRC0_ChannelA pinRC0_ChannelA;
