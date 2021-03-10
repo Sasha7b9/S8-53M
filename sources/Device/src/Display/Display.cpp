@@ -189,8 +189,8 @@ void Display::DrawMarkersForMeasure(float scale, Channel::E chan)
 
 
 
-void Display::DrawSignalLined(pUCHAR data, const DataSettings *ds, int startPoint, int endPoint, int minY, int maxY, float scaleY, float scaleX, 
-    bool calculateFiltr)
+void Display::DrawSignalLined(pUCHAR data, const DataSettings *ds, int startPoint, int endPoint, int minY, int maxY,
+    float scaleY, float scaleX, bool calculateFiltr)
 {
     if (endPoint < startPoint)
     {
@@ -276,7 +276,8 @@ void Display::DrawSignalLined(pUCHAR data, const DataSettings *ds, int startPoin
 
 
 
-void Display::DrawSignalPointed(pUCHAR data, const DataSettings *ds, int startPoint, int endPoint, int minY, int maxY, float scaleY, float scaleX)
+void Display::DrawSignalPointed(pUCHAR data, const DataSettings *ds, int startPoint, int endPoint, int minY, int maxY,
+    float scaleY, float scaleX)
 {
     int numPoints = sMemory_GetNumPoints(false);
     int numSmoothing = Smoothing::NumPoints();
@@ -372,7 +373,8 @@ void Display::DrawDataChannel(uint8 *data, Channel::E chan, DataSettings *ds, in
         if (set.display.numAveraging > ENumAveraging::_1)
         {
             Color::GRID.SetAsCurrent();
-            DrawSignalLined(DS_GetData(chan, 0), ds, firstPoint, lastPoint, minY, maxY, scaleY, scaleX, calculateFiltr);    // WARN
+            DrawSignalLined(DS_GetData(chan, 0), ds, firstPoint, lastPoint, minY, maxY, scaleY, scaleX, calculateFiltr);
+            // WARN
         }
         Color::SetCurrent(ColorChannel(chan));
         */
@@ -400,13 +402,16 @@ void Display::DrawMath()
     float dataAbs0[FPGA_MAX_POINTS];
     float dataAbs1[FPGA_MAX_POINTS];
 
-    MathFPGA::PointsRelToVoltage(dataRel0, static_cast<int>(ds->length1channel), ds->range[Channel::A], static_cast<int16>(ds->rShiftCh0), dataAbs0);
-    MathFPGA::PointsRelToVoltage(dataRel1, static_cast<int>(ds->length1channel), ds->range[Channel::B], static_cast<int16>(ds->rShiftCh1), dataAbs1);
+    MathFPGA::PointsRelToVoltage(dataRel0, static_cast<int>(ds->length1channel), ds->range[Channel::A],
+        static_cast<int16>(ds->rShiftCh0), dataAbs0);
+    MathFPGA::PointsRelToVoltage(dataRel1, static_cast<int>(ds->length1channel), ds->range[Channel::B],
+        static_cast<int16>(ds->rShiftCh1), dataAbs1);
 
     MathFPGA::CalculateMathFunction(dataAbs0, dataAbs1, static_cast<int>(ds->length1channel));
     
     uint8 points[FPGA_MAX_POINTS];
-    MathFPGA::PointsVoltageToRel(dataAbs0, static_cast<int>(ds->length1channel), SET_RANGE_MATH, SET_RSHIFT_MATH, points);
+    MathFPGA::PointsVoltageToRel(dataAbs0, static_cast<int>(ds->length1channel), SET_RANGE_MATH, SET_RSHIFT_MATH,
+        points);
 
     DrawDataChannel(points, Channel::Math, ds, Grid::MathTop(), Grid::MathBottom());
 
@@ -416,10 +421,12 @@ void Display::DrawMath()
     Primitives::Rectangle(w, h).Draw(Grid::Left(), Grid::MathTop() + delta, Color::FILL);
     Region(w - 2, h - 2).Fill(Grid::Left() + 1, Grid::MathTop() + 1 + delta, Color::BACK);
     Divider::E multiplier = MATH_MULTIPLIER;
-    Text(sChannel_Range2String(SET_RANGE_MATH, multiplier)).Draw(Grid::Left() + 2, Grid::MathTop() + 1 + delta, Color::FILL);
+    Text(sChannel_Range2String(SET_RANGE_MATH, multiplier)).Draw(Grid::Left() + 2, Grid::MathTop() + 1 + delta,
+        Color::FILL);
     Text(":").Draw(Grid::Left() + 25, Grid::MathTop() + 1 + delta);
     char buffer[20];
-    Text(sChannel_RShift2String(SET_RSHIFT_MATH, SET_RANGE_MATH, multiplier, buffer)).Draw(Grid::Left() + 27, Grid::MathTop() + 1 + delta);
+    Text(sChannel_RShift2String(SET_RSHIFT_MATH, SET_RANGE_MATH, multiplier, buffer)).Draw(Grid::Left() + 27,
+        Grid::MathTop() + 1 + delta);
 }
 
 
@@ -481,7 +488,10 @@ void Display::DRAW_SPECTRUM(pUCHAR data, int numPoints, Channel::E channel)
     int y0 = 0;
     int y1 = 0;
 
-    MathFPGA::PointsRelToVoltage(data, numPoints, Storage::set->range[channel], channel == Channel::A ? static_cast<int16>(Storage::set->rShiftCh0) : static_cast<int16>(Storage::set->rShiftCh1), dataR);
+    MathFPGA::PointsRelToVoltage(data, numPoints, Storage::set->range[channel], channel == Channel::A ?
+        static_cast<int16>(Storage::set->rShiftCh0) :
+        static_cast<int16>(Storage::set->rShiftCh1), dataR);
+
     MathFPGA::CalculateFFT(dataR, numPoints, spectrum, &freq0, &density0, &freq1, &density1, &y0, &y1);
     DrawSpectrumChannel(spectrum, Color::Channel(channel));
     if (!Menu::IsShown() || Menu::IsMinimize())
@@ -664,17 +674,25 @@ void Display::DrawDataMinMax()
     MODE_DRAW_SIGNAL = ModeDrawSignal::Lines;
     if (LAST_AFFECTED_CHANNEL_IS_B)
     {
-        DrawDataChannel(Storage::GetLimitation(Channel::A, 0), Channel::A, Storage::set, Grid::TOP, Grid::ChannelBottom());
-        DrawDataChannel(Storage::GetLimitation(Channel::A, 1), Channel::A, Storage::set, Grid::TOP, Grid::ChannelBottom());
-        DrawDataChannel(Storage::GetLimitation(Channel::B, 0), Channel::B, Storage::set, Grid::TOP, Grid::ChannelBottom());
-        DrawDataChannel(Storage::GetLimitation(Channel::B, 1), Channel::B, Storage::set, Grid::TOP, Grid::ChannelBottom());
+        DrawDataChannel(Storage::GetLimitation(Channel::A, 0), Channel::A, Storage::set, Grid::TOP,
+            Grid::ChannelBottom());
+        DrawDataChannel(Storage::GetLimitation(Channel::A, 1), Channel::A, Storage::set, Grid::TOP,
+            Grid::ChannelBottom());
+        DrawDataChannel(Storage::GetLimitation(Channel::B, 0), Channel::B, Storage::set, Grid::TOP,
+            Grid::ChannelBottom());
+        DrawDataChannel(Storage::GetLimitation(Channel::B, 1), Channel::B, Storage::set, Grid::TOP,
+            Grid::ChannelBottom());
     }
     else
     {
-        DrawDataChannel(Storage::GetLimitation(Channel::B, 0), Channel::B, Storage::set, Grid::TOP, Grid::ChannelBottom());
-        DrawDataChannel(Storage::GetLimitation(Channel::B, 1), Channel::B, Storage::set, Grid::TOP, Grid::ChannelBottom());
-        DrawDataChannel(Storage::GetLimitation(Channel::A, 0), Channel::A, Storage::set, Grid::TOP, Grid::ChannelBottom());
-        DrawDataChannel(Storage::GetLimitation(Channel::A, 1), Channel::A, Storage::set, Grid::TOP, Grid::ChannelBottom());
+        DrawDataChannel(Storage::GetLimitation(Channel::B, 0), Channel::B, Storage::set, Grid::TOP,
+            Grid::ChannelBottom());
+        DrawDataChannel(Storage::GetLimitation(Channel::B, 1), Channel::B, Storage::set, Grid::TOP,
+            Grid::ChannelBottom());
+        DrawDataChannel(Storage::GetLimitation(Channel::A, 0), Channel::A, Storage::set, Grid::TOP,
+            Grid::ChannelBottom());
+        DrawDataChannel(Storage::GetLimitation(Channel::A, 1), Channel::A, Storage::set, Grid::TOP,
+            Grid::ChannelBottom());
     }
     MODE_DRAW_SIGNAL = modeDrawSignalOld;
 }
@@ -788,7 +806,8 @@ void Display::DrawHiPart()
 }
 
 
-// shiftForPeakDet - если рисуем информацию с пикового детектора - то через shiftForPeakDet точек расположена иниформаци€ о максимумах.
+// shiftForPeakDet - если рисуем информацию с пикового детектора - то через shiftForPeakDet точек расположена
+// иниформаци€ о максимумах.
 void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channel::E chan, int shiftForPeakDet)
 {
     if(numElems == 0)
@@ -885,8 +904,10 @@ void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channe
 
 
 
-// shiftForPeakDet - если рисуем информацию с пикового детектора - то через shiftForPeakDet точек расположена иниформаци€ о максимумах.
-void Display::DrawChannelInWindowMemory(int timeWindowRectWidth, int xVert0, int xVert1, int startI, int endI, pUCHAR data, int rightX, Channel::E chan, int shiftForPeakDet)
+// shiftForPeakDet - если рисуем информацию с пикового детектора - то через shiftForPeakDet точек расположена
+// иниформаци€ о максимумах.
+void Display::DrawChannelInWindowMemory(int timeWindowRectWidth, int xVert0, int xVert1, int startI, int endI,
+    pUCHAR data, int rightX, Channel::E chan, int shiftForPeakDet)
 {
     if(data == dataP2P_0 && data == dataP2P_1)
     {
@@ -894,9 +915,12 @@ void Display::DrawChannelInWindowMemory(int timeWindowRectWidth, int xVert0, int
     }
     else
     {
-        DrawDataInRect(1,          xVert0 - 1,              &(data[0]),        startI,                             chan, shiftForPeakDet);
-        DrawDataInRect(xVert0 + 2, timeWindowRectWidth - 2, &(data[startI]),   281,                                chan, shiftForPeakDet);
-        DrawDataInRect(xVert1 + 2, rightX - xVert1 + 2,     &(data[endI + 1]), sMemory_GetNumPoints(false) - endI, chan, shiftForPeakDet);
+        DrawDataInRect(1,          xVert0 - 1,              &(data[0]),        startI,                             chan,
+            shiftForPeakDet);
+        DrawDataInRect(xVert0 + 2, timeWindowRectWidth - 2, &(data[startI]),   281,                                chan,
+            shiftForPeakDet);
+        DrawDataInRect(xVert1 + 2, rightX - xVert1 + 2,     &(data[endI + 1]), sMemory_GetNumPoints(false) - endI, chan,
+            shiftForPeakDet);
     }
 }
 
@@ -940,7 +964,8 @@ void Display::DrawMemoryWindow()
     const int xVert0 = static_cast<int>(leftX + shiftInMemory * scaleX);
     const int xVert1 = leftX + static_cast<int>(shiftInMemory * scaleX) + timeWindowRectWidth;
     bool showFull = set.display.showFullMemoryWindow;
-    Primitives::Rectangle(xVert1 - xVert0, bottom - top - (showFull ? 0 : 2)).Draw(xVert0, top + (showFull ? 0 : 1), Color::FILL);
+    Primitives::Rectangle(xVert1 - xVert0, bottom - top - (showFull ? 0 : 2)).Draw(xVert0, top + (showFull ? 0 : 1),
+        Color::FILL);
 
     if(!dataP2PIsEmpty)
     {
@@ -964,11 +989,13 @@ void Display::DrawMemoryWindow()
 
             if (ChannelNeedForDraw(dataFirst, chanFirst, ds))
             {
-                DrawChannelInWindowMemory(timeWindowRectWidth, xVert0, xVert1, startI, endI, dataFirst, rightX, chanFirst, shiftForPeakDet);
+                DrawChannelInWindowMemory(timeWindowRectWidth, xVert0, xVert1, startI, endI, dataFirst, rightX,
+                    chanFirst, shiftForPeakDet);
             }
             if (ChannelNeedForDraw(dataSecond, chanSecond, ds))
             {
-                DrawChannelInWindowMemory(timeWindowRectWidth, xVert0, xVert1, startI, endI, dataSecond, rightX, chanSecond, shiftForPeakDet);
+                DrawChannelInWindowMemory(timeWindowRectWidth, xVert0, xVert1, startI, endI, dataSecond, rightX,
+                    chanSecond, shiftForPeakDet);
             }
         }
     }
@@ -990,7 +1017,9 @@ void Display::DrawMemoryWindow()
     Char(Symbol::S8::TPOS_1).Draw(x0 - 3, 9, Color::FILL);
 
     // ћаркер tShift
-    float scale = (float)(rightX - leftX + 1) / ((float)sMemory_GetNumPoints(false) - (sMemory_GetNumPoints(false) == 281 ? 1 : 0));
+    float scale = (float)(rightX - leftX + 1) /
+        ((float)sMemory_GetNumPoints(false) - (sMemory_GetNumPoints(false) == 281 ? 1 : 0));
+
     float xShift = 1 + (sTime_TPosInPoints((PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel, SET_TPOS) - sTime_TShiftInPoints((PeackDetMode::E)Storage::set->peakDet)) * scale;
     
     if(xShift < leftX - 2)
