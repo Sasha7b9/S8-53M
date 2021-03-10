@@ -111,12 +111,6 @@ void Menu::Draw()
 }
 
 
-Item* Menu::ItemUnderButton(Key::E)
-{
-    return nullptr; 
-}
-
-
 int Item::OpenedPosY() const
 {
     Page *page = Keeper();

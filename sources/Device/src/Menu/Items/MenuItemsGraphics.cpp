@@ -774,8 +774,16 @@ void Page::DrawTitle(int yTop)
 }
 
 
+static Item *itemUnderButton[6];
+
+
 void Page::DrawItems(int yTop) const
 {
+    for (int i = 0; i < 6; i++)
+    {
+        itemUnderButton[i] = &Item::empty;
+    }
+
     int posFirstItem = PosItemOnTop();
     int posLastItem = posFirstItem + Menu::ITEMS_ON_DISPLAY - 1;
     LIMITATION(posLastItem, posLastItem, 0, NumItems() - 1);
@@ -787,6 +795,12 @@ void Page::DrawItems(int yTop) const
         item->Draw(Page::X(), top);
         count++;
     }
+}
+
+
+Item *Menu::ItemUnderButton(Key::E key)
+{
+    return (key <= Key::F5) ? itemUnderButton[key] : &Item::empty;
 }
 
 
