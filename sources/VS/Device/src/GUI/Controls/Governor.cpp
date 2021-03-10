@@ -117,7 +117,7 @@ void GovernorGUI::FuncChange(int delta)
 
     angleFull -= delta * stepDegree; //-V2564
 
-    int code = keyCode | Action::ToCode((delta < 0) ? Action::RotateRight : Action::RotateLeft);
+//    int code = keyCode | Action::ToCode((delta < 0) ? Action::RotateRight : Action::RotateLeft);
 
     if (keyCode == Key::Setting)
     {
@@ -131,7 +131,7 @@ void GovernorGUI::FuncChange(int delta)
 
     while (delta > 0)
     {
-        Panel::ProcessingCommandFromPIC(static_cast<uint16>(code));
+///        Panel::ProcessingCommandFromPIC(static_cast<uint16>(code));
         delta--;
     }
 }

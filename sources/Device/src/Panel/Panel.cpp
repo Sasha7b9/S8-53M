@@ -163,20 +163,6 @@ static void (*funculatorRight[Key::Count])() =
 
 
 
-Key::E ButtonIsRelease(uint16 code)
-{
-    Key::E key = Key::FromCode(code);
-    Action::E action = Action::FromCode(code);
-
-    if (Key::IsButton(key) && (action == Action::Up))
-    {
-        return key;
-    }
-
-    return Key::None;
-}
-
-
 Key::E ButtonIsPress(uint16 code)
 {
     Key::E key = Key::FromCode(code);
@@ -260,7 +246,6 @@ void Panel::Update()
     }
 
 /*
-Key::E releaseButton = ButtonIsRelease(code);
 Key::E pressButton = ButtonIsPress(code);
 Key::E longButton = ButtonIsLong(code);
 Key::E regLeft = RegulatorLeft(code);

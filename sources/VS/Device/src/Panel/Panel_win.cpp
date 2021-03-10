@@ -127,9 +127,9 @@ void Frame::OnDown(wxCommandEvent &event)
 
     event.Skip();
 
-    int code = Key::ToCode(key) | Action::ToCode(Action::Down);
+//    int code = Key::ToCode(key) | Action::ToCode(Action::Down);
 
-    Panel::ProcessingCommandFromPIC(static_cast<uint16>(code));
+//    Panel::ProcessingCommandFromPIC(static_cast<uint16>(code));
 
     needStartTimerLong = true;
 
@@ -139,13 +139,13 @@ void Frame::OnDown(wxCommandEvent &event)
 
 void Frame::OnUp(wxCommandEvent &event)
 {
-    Key::E key = static_cast<Key::E>(event.GetId());
+//    Key::E key = static_cast<Key::E>(event.GetId());
 
     event.Skip();
 
-    int code = Key::ToCode(key) | Action::ToCode(Action::Up);
+//    int code = Key::ToCode(key) | Action::ToCode(Action::Up);
 
-    Panel::ProcessingCommandFromPIC(static_cast<uint16>(code));
+//    Panel::ProcessingCommandFromPIC(static_cast<uint16>(code));
 
     needStopTimerLong = true;
 
@@ -155,9 +155,9 @@ void Frame::OnUp(wxCommandEvent &event)
 
 void Frame::OnTimerLong(wxTimerEvent &)
 {
-    int code = Key::ToCode(pressedKey) | Action::ToCode(Action::Long);
+//    int code = Key::ToCode(pressedKey) | Action::ToCode(Action::Long);
 
-    Panel::ProcessingCommandFromPIC(static_cast<uint16>(code));
+//    Panel::ProcessingCommandFromPIC(static_cast<uint16>(code));
 
     pressedKey = Key::None;
 }

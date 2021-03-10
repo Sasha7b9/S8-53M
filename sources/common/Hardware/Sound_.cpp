@@ -35,8 +35,6 @@ static void Stop()
 
 void Sound_Beep(TypeWave::E typeWave_, float frequency_, float amplitude_, int duration)
 {
-    return;
-    
     if (Sound::warnIsBeep)
     {
         return;
@@ -44,7 +42,7 @@ void Sound_Beep(TypeWave::E typeWave_, float frequency_, float amplitude_, int d
 
     if (!SOUND_ENABLED)
     {
-//        return;
+        return;
     }
 
     if (frequency != frequency_ || amplitude != amplitude_ || typeWave != typeWave_) //-V2550 //-V550
