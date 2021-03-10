@@ -69,7 +69,7 @@ static void SetRight();
 
 static void(*funcOnKeyDown[Key::Count])() =
 {    
-    0,
+    EmptyFuncVV,    // Key::None
     EmptyFuncVV,    // Key::F1
     EmptyFuncVV,    // Key::F2
     EmptyFuncVV,    // Key::F3
@@ -78,7 +78,7 @@ static void(*funcOnKeyDown[Key::Count])() =
     EmptyFuncVV,    // Key::ChannelA
     EmptyFuncVV,    // Key::ChannelB
     EmptyFuncVV,    // Key::Time
-    EmptyFuncVV,    // B_Sinchro
+    EmptyFuncVV,    // Key::Trig
     EmptyFuncVV,    // Key::Cursors
     EmptyFuncVV,    // Key::Measures
     EmptyFuncVV,    // Key::Display
@@ -87,7 +87,15 @@ static void(*funcOnKeyDown[Key::Count])() =
     EmptyFuncVV,    // Key::Memory                                         
     EmptyFuncVV,    // Key::Service
     EmptyFuncVV,    // Key::Menu
-    PowerDown       // B_Power
+    PowerDown,      // Key::Power
+    EmptyFuncVV,    // Key::RangeA
+    EmptyFuncVV,    // Key::RangeB
+    EmptyFuncVV,    // Key::RShiftA
+    EmptyFuncVV,    // Key::RShiftB
+    EmptyFuncVV,    // Key::TBase
+    EmptyFuncVV,    // Key::TShift
+    EmptyFuncVV,    // Key::TrigLev
+    EmptyFuncVV     // Key::Setting
 };
 
 static void (*funcOnKeyUp[Key::Count])() =
@@ -101,7 +109,7 @@ static void (*funcOnKeyUp[Key::Count])() =
     EmptyFuncVV,    // Key::ChannelA
     EmptyFuncVV,    // Key::ChannelB
     EmptyFuncVV,    // Key::Time
-    EmptyFuncVV,    // B_Sinchro
+    EmptyFuncVV,    // Key::Trig
     EmptyFuncVV,    // Key::Cursors
     EmptyFuncVV,    // Key::Measures
     EmptyFuncVV,    // Key::Display
@@ -370,7 +378,7 @@ static void TrigLong()
 {
     if (MODE_LONG_PRESS_TRIG_IS_LEVEL0)
     {
-        Menu::Event::LongPressureButton(Key::Synchronization);
+        Menu::Event::LongPressureButton(Key::Trig);
     }
     else
     {

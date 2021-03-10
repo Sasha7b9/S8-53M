@@ -3,33 +3,33 @@
 
 struct Key { enum E
 {
-        None,               // 
-        F1,                 // 1
-        F2,                 // 2
-        F3,                 // 3
-        F4,                 // 4
-        F5,                 // 5
-        ChannelA,           // йюмюк 1
-        ChannelB,           // йюмюк 2
-        Time,               // пюгб
-        Synchronization,    // яхмуп
-        Cursors,            // йспянпш
-        Measures,           // хглеп
-        Display,            // дхяокеи
-        Help,               // онлныэ
-        Start,              // осяй/ярно
-        Memory,             // оюлърэ
-        Service,            // яепбхя
-        Menu,               // лемч
-        Power,              // бшйк
-        RangeA,             // бнкэр/дек 1
-        RangeB,             // бнкэр/дек 2
-        RShiftA,            // 
-        RShiftB,            // 
-        TBase,              // бпелъ/дек
-        TShift,             // 
-        TrigLev,            // спнбемэ
-        Setting,            // сярюмнбйю
+        None,       // 
+        F1,         // 1
+        F2,         // 2
+        F3,         // 3
+        F4,         // 4
+        F5,         // 5
+        ChannelA,   // йюмюк 1
+        ChannelB,   // йюмюк 2
+        Time,       // пюгб
+        Trig,       // яхмуп
+        Cursors,    // йспянпш
+        Measures,   // хглеп
+        Display,    // дхяокеи
+        Help,       // онлныэ
+        Start,      // осяй/ярно
+        Memory,     // оюлърэ
+        Service,    // яепбхя
+        Menu,       // лемч
+        Power,      // бшйк
+        RangeA,     // бнкэр/дек 1
+        RangeB,     // бнкэр/дек 2
+        RShiftA,    // 
+        RShiftB,    // 
+        TBase,      // бпелъ/дек
+        TShift,     // 
+        TrigLev,    // спнбемэ
+        Setting,    // сярюмнбйю
         Count
     };
 

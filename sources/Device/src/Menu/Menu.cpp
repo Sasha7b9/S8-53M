@@ -182,7 +182,7 @@ void Menu::ProcessButtonForHint(Key::E button)
             "1. РАЗВ button open the settings menu sweep.\n"
             "2. Pressing and holding the button РАЗВ for 0.5s Is the offset horizontal 0s.";
     }
-    else if (button == Key::Synchronization)
+    else if (button == Key::Trig)
     {
         PageHelpContent::stringForHint = LANG_RU ?
             "1. Кнопка СИНХР открывает меню настроек синхронизации.\n"
@@ -411,7 +411,7 @@ void Menu::ProcessingLongPressureButton()
         {
             FPGA::SetTShift(0);
         }
-        else if(longPressureButton == Key::Synchronization)
+        else if(longPressureButton == Key::Trig)
         {
             FPGA::SetTrigLev(TRIG_SOURCE, TrigLevZero);
         }
