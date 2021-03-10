@@ -54,7 +54,7 @@ void SCPI::CONTROL::KEY(pUCHAR buffer)
                     code += 128;
                 }
                 //LOG_WRITE("to panel %d", code);
-                Panel::ProcessingCommandFromPIC(code);
+//                Panel::ProcessingCommandFromPIC(code);
                 return;
             }
             numKey++;
@@ -95,7 +95,7 @@ void SCPI::CONTROL::GOVERNOR(pUCHAR buffer)
                     code += 128;
                 }
                 //LOG_WRITE("to panel %d", code);
-                Panel::ProcessingCommandFromPIC(code);
+//                Panel::ProcessingCommandFromPIC(code);
                 return;
             }
             numGov++;

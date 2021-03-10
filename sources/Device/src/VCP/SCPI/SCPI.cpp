@@ -137,19 +137,19 @@ void SCPI::ProcessingCommand(const StructCommand *commands, uint8 *buffer)
     }
     for (int i = 0; i < sizeNameCommand; i++)
     {
-        buffer[i] = static_cast<uint8>(toupper(static_cast<int8>(buffer[i]))); //-V2563
+        buffer[i] = static_cast<uint8>(toupper(static_cast<int8>(buffer[i])));
     }
     int numCommand = -1;
     char *name = 0;
     do 
     {
         numCommand++;   
-        name = commands[numCommand].name; //-V2563
+        name = commands[numCommand].name;
     } while (name != 0 && (!EqualsStrings(reinterpret_cast<char*>(buffer), name, sizeNameCommand)));
 
     if (name != 0) 
     {
-        commands[numCommand].func(buffer + sizeNameCommand + 1); //-V2563
+        commands[numCommand].func(buffer + sizeNameCommand + 1);
     }
     else
     {
@@ -162,7 +162,7 @@ void SCPI::ProcessingCommand(const StructCommand *commands, uint8 *buffer)
 static int FindNumSymbolsInCommand(pUCHAR buffer)
 {
     int pos = 0;
-    while ((buffer[pos] != ':') && (buffer[pos] != ' ') && (buffer[pos] != '\x0d')) //-V2563
+    while ((buffer[pos] != ':') && (buffer[pos] != ' ') && (buffer[pos] != '\x0d'))
     {
         pos++;
     }
@@ -176,11 +176,11 @@ bool SCPI::FirstIsInt(pUCHAR buffer, int *value, int min, int max)
     Word param;
     if (GetWord(buffer, &param, 0))
     {
-        char *n = reinterpret_cast<char *>(std::malloc(static_cast<uint>(param.numSymbols + 1))); //-V2511
+        char *n = reinterpret_cast<char *>(std::malloc(static_cast<uint>(param.numSymbols + 1)));
         std::memcpy(n, param.address, static_cast<uint>(param.numSymbols)); //-V575
-        n[param.numSymbols] = '\0'; //-V2563
+        n[param.numSymbols] = '\0';
         bool res = String2Int(n, value) && *value >= min && *value <= max;
-        std::free(n); //-V2511
+        std::free(n);
         return res;
     }
     return false;

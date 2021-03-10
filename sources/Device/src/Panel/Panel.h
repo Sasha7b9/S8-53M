@@ -8,6 +8,8 @@ public:
 
     static void Init();
 
+    static void Update();
+
     static void EnableLEDRegSet(bool enable);
 
     // Включить/выключить светодиод КАНАЛ 1.
@@ -30,14 +32,12 @@ public:
     // Ожидать нажатие клавиши.
     static Key::E WaitPressingButton();
 
-    static bool ProcessingCommandFromPIC(uint16 command);
+    // Эта функция должна вызываться из приёмной фунции SPI5
+    static void CallbackOnReceiveSPI5(uint8 *data, int size);
 
     static uint16 NextData();
 
     static bool isRunning;
-
-    // Эта функция должна вызываться из приёмной фунции SPI5
-    static void CallbackOnReceiveSPI5(uint8 *data, int size);
 
     static void Draw();
 };

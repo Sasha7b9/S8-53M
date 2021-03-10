@@ -62,15 +62,15 @@ void VCP::SendDataSynch(pUCHAR buffer, int size)
             int reqBytes = SIZE_BUFFER_VCP - sizeBuffer;
             LIMITATION(reqBytes, reqBytes, 0, size);
             HAL_USBD::Wait();
-            std::memcpy(buffSend + sizeBuffer, buffer, static_cast<uint>(reqBytes)); //-V2563
+            std::memcpy(buffSend + sizeBuffer, buffer, static_cast<uint>(reqBytes));
             HAL_USBD::Transmit(buffSend, SIZE_BUFFER_VCP);
             size -= reqBytes;
-            buffer += reqBytes; //-V2563
+            buffer += reqBytes;
             sizeBuffer = 0;
         }
         else
         {
-            std::memcpy(buffSend + sizeBuffer, buffer, static_cast<uint>(size)); //-V2563
+            std::memcpy(buffSend + sizeBuffer, buffer, static_cast<uint>(size));
             sizeBuffer += size;
             size = 0;
         }
@@ -97,7 +97,7 @@ void VCP::SendFormatStringAsynch(char *format, ...)
     static const int SIZE_BUFFER = 200;
     static char buffer[SIZE_BUFFER];
     std::va_list args;
-    va_start(args, format); //-V2563
+    va_start(args, format);
     std::vsprintf(buffer, format, args);
     va_end(args);
     std::strcat(buffer, "\n"); //-V2513
@@ -108,7 +108,7 @@ void VCP::SendFormatStringSynch(char *format, ...) {
     static const int SIZE_BUFFER = 200;
     char buffer[SIZE_BUFFER];
     std::va_list args;
-    va_start(args, format); //-V2563
+    va_start(args, format);
     std::vsprintf(buffer, format, args);
     va_end(args);
     std::strcat(buffer, "\n"); //-V2513

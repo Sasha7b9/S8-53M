@@ -84,13 +84,13 @@ file(GLOB HARDWARE             src/Hardware/*.h
                                src/Hardware/*.cpp
                          ../common/Hardware/Sound_.*
                          ../common/Hardware/Timer_.*)
-file(GLOB HARDWARE_CMSIS       src/Hardware/CMSIS/*)
-file(GLOB HARDWARE_FATFS       src/Hardware/FatFS/*)
-file(GLOB HARDWARE_HAL         src/Hardware/HAL/*
-                         ../common/Hardware/HAL/*)
-file(GLOB HARDWARE_LWIP        src/Hardware/LwIP/*)
-file(GLOB HARDWARE_USBD        src/Hardware/USBD/*)
-file(GLOB HARDWARE_USBH        src/Hardware/USBH/*)
+file(GLOB HARDWARE_CMSIS       src/Hardware/CMSIS/*.*)
+file(GLOB HARDWARE_FATFS       src/Hardware/FatFS/*.*)
+file(GLOB HARDWARE_HAL         src/Hardware/HAL/*.*
+                         ../common/Hardware/HAL/*.*)
+file(GLOB HARDWARE_LWIP        src/Hardware/LwIP/*.*)
+file(GLOB HARDWARE_USBD        src/Hardware/USBD/*.*)
+file(GLOB HARDWARE_USBH        src/Hardware/USBH/*.*)
 file(GLOB SRC                  src/*.h
                                src/*.cpp
                                ../common/Log.*)
@@ -98,25 +98,25 @@ file(GLOB DISPLAY              src/Display/*.h
                                src/Display/*.cpp
                                ../common/Display/*.h
                                ../common/Display/*.cpp)
-file(GLOB DISPLAY_FONT   ../common/Display/Font/*)
-file(GLOB FDRIVE               src/FDr ive/*)
-file(GLOB FPGA                 src/FPGA/*)
-file(GLOB LAN                  src/LAN/*)
+file(GLOB DISPLAY_FONT   ../common/Display/Font/*.*)
+file(GLOB FDRIVE               src/FDr ive/*.*)
+file(GLOB FPGA                 src/FPGA/*.*)
+file(GLOB LAN                  src/LAN/*.*)
 file(GLOB MENU                 src/Menu/*.h
                                src/Menu/*.cpp)
-file(GLOB MENU_ITEMS           src/Menu/Items/*)
-file(GLOB MENU_PAGES           src/Menu/Pages/*)
+file(GLOB MENU_ITEMS           src/Menu/Items/*.*)
+file(GLOB MENU_PAGES           src/Menu/Pages/*.*)
 file(GLOB PANEL          ../common/Panel/*.*
-                               src/Panel/*)
-file(GLOB SETTINGS             src/Settings/*
+                               src/Panel/*.*)
+file(GLOB SETTINGS             src/Settings/*.*
                          ../common/Settings/cSettingsTypes.h)
-file(GLOB UTILS                src/Utils/*
-                         ../common/Utils/*)
+file(GLOB UTILS                src/Utils/*.*
+                         ../common/Utils/*.*)
 file(GLOB VCP                  src/VCP/*.h
                                src/VCP/*.cpp)
 file(GLOB VCP_SCPI             src/VCP/SCPI/*.h
                                src/VCP/SCPI/*.cpp)
-file(GLOB VCP_SCPI_UTILS       src/VCP/SCPI/Utils/*)
+file(GLOB VCP_SCPI_UTILS       src/VCP/SCPI/Utils/*.*)
 
 set_source_files_properties(${LIBS_FATFS} ${LIBS_HAL} ${LIBS_USBH} ${HARDWARE_CMSIS}
                             src/Menu/Pages/PageHelp.cpp

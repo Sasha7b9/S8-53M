@@ -1892,11 +1892,6 @@
               <FileType>8</FileType>
               <FilePath>.\src\Panel\Panel.cpp</FilePath>
             </File>
-            <File>
-              <FileName>Panel_view.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Panel\Panel_view.cpp</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -2018,34 +2013,14 @@
           <GroupName>Utils</GroupName>
           <Files>
             <File>
-              <FileName>GlobalFunctions.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\GlobalFunctions.h</FilePath>
-            </File>
-            <File>
-              <FileName>Measures.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Measures.h</FilePath>
-            </File>
-            <File>
-              <FileName>ProcessingSignal.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\ProcessingSignal.h</FilePath>
-            </File>
-            <File>
-              <FileName>Stack2500uint16.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Stack2500uint16.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Stack2500uint16.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Stack2500uint16.h</FilePath>
-            </File>
-            <File>
               <FileName>CreateTables.py</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Utils\CreateTables.py</FilePath>
+            </File>
+            <File>
+              <FileName>GlobalFunctions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Utils\GlobalFunctions.h</FilePath>
             </File>
             <File>
               <FileName>GlobalFunctions.cpp</FileName>
@@ -2053,14 +2028,9 @@
               <FilePath>.\src\Utils\GlobalFunctions.cpp</FilePath>
             </File>
             <File>
-              <FileName>Measures.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Measures.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>ProcessingSignal.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\ProcessingSignal.cpp</FilePath>
+              <FileName>Math_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\Math_.h</FilePath>
             </File>
             <File>
               <FileName>Math_.cpp</FileName>
@@ -2068,14 +2038,44 @@
               <FilePath>..\common\Utils\Math_.cpp</FilePath>
             </File>
             <File>
-              <FileName>Math_.h</FileName>
+              <FileName>Measures.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Utils\Math_.h</FilePath>
+              <FilePath>.\src\Utils\Measures.h</FilePath>
             </File>
             <File>
-              <FileName>String_.cpp</FileName>
+              <FileName>Measures.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Utils\String_.cpp</FilePath>
+              <FilePath>.\src\Utils\Measures.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ProcessingSignal.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Utils\ProcessingSignal.h</FilePath>
+            </File>
+            <File>
+              <FileName>ProcessingSignal.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Utils\ProcessingSignal.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Queue_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\Queue_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Queue_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\Queue_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Stack2500uint16.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Utils\Stack2500uint16.h</FilePath>
+            </File>
+            <File>
+              <FileName>Stack2500uint16.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Utils\Stack2500uint16.cpp</FilePath>
             </File>
             <File>
               <FileName>String_.h</FileName>
@@ -2083,14 +2083,19 @@
               <FilePath>..\common\Utils\String_.h</FilePath>
             </File>
             <File>
-              <FileName>StringUtils_.cpp</FileName>
+              <FileName>String_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Utils\StringUtils_.cpp</FilePath>
+              <FilePath>..\common\Utils\String_.cpp</FilePath>
             </File>
             <File>
               <FileName>StringUtils_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Utils\StringUtils_.h</FilePath>
+            </File>
+            <File>
+              <FileName>StringUtils_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\StringUtils_.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -4067,11 +4072,6 @@
               <FileType>8</FileType>
               <FilePath>.\src\Panel\Panel.cpp</FilePath>
             </File>
-            <File>
-              <FileName>Panel_view.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Panel\Panel_view.cpp</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -4193,34 +4193,14 @@
           <GroupName>Utils</GroupName>
           <Files>
             <File>
-              <FileName>GlobalFunctions.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\GlobalFunctions.h</FilePath>
-            </File>
-            <File>
-              <FileName>Measures.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Measures.h</FilePath>
-            </File>
-            <File>
-              <FileName>ProcessingSignal.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\ProcessingSignal.h</FilePath>
-            </File>
-            <File>
-              <FileName>Stack2500uint16.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Stack2500uint16.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Stack2500uint16.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Stack2500uint16.h</FilePath>
-            </File>
-            <File>
               <FileName>CreateTables.py</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Utils\CreateTables.py</FilePath>
+            </File>
+            <File>
+              <FileName>GlobalFunctions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Utils\GlobalFunctions.h</FilePath>
             </File>
             <File>
               <FileName>GlobalFunctions.cpp</FileName>
@@ -4228,14 +4208,9 @@
               <FilePath>.\src\Utils\GlobalFunctions.cpp</FilePath>
             </File>
             <File>
-              <FileName>Measures.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Measures.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>ProcessingSignal.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\ProcessingSignal.cpp</FilePath>
+              <FileName>Math_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\Math_.h</FilePath>
             </File>
             <File>
               <FileName>Math_.cpp</FileName>
@@ -4243,14 +4218,44 @@
               <FilePath>..\common\Utils\Math_.cpp</FilePath>
             </File>
             <File>
-              <FileName>Math_.h</FileName>
+              <FileName>Measures.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Utils\Math_.h</FilePath>
+              <FilePath>.\src\Utils\Measures.h</FilePath>
             </File>
             <File>
-              <FileName>String_.cpp</FileName>
+              <FileName>Measures.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Utils\String_.cpp</FilePath>
+              <FilePath>.\src\Utils\Measures.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ProcessingSignal.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Utils\ProcessingSignal.h</FilePath>
+            </File>
+            <File>
+              <FileName>ProcessingSignal.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Utils\ProcessingSignal.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Queue_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\Queue_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Queue_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\Queue_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Stack2500uint16.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Utils\Stack2500uint16.h</FilePath>
+            </File>
+            <File>
+              <FileName>Stack2500uint16.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Utils\Stack2500uint16.cpp</FilePath>
             </File>
             <File>
               <FileName>String_.h</FileName>
@@ -4258,14 +4263,19 @@
               <FilePath>..\common\Utils\String_.h</FilePath>
             </File>
             <File>
-              <FileName>StringUtils_.cpp</FileName>
+              <FileName>String_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Utils\StringUtils_.cpp</FilePath>
+              <FilePath>..\common\Utils\String_.cpp</FilePath>
             </File>
             <File>
               <FileName>StringUtils_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Utils\StringUtils_.h</FilePath>
+            </File>
+            <File>
+              <FileName>StringUtils_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\StringUtils_.cpp</FilePath>
             </File>
           </Files>
         </Group>

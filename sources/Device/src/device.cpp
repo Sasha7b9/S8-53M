@@ -24,8 +24,8 @@ void Device::Init()
 {
     HAL::Init();
     Panel::Init();
-    FDrive::Init();
-    VCP::Init();
+//  FDrive::Init();
+//    VCP::Init();
 //    Settings::Load(false);
     FPGA::Init();
     HAL_TIM2::Delay(250);
@@ -49,8 +49,9 @@ void Device::Update()
 //    LAN::Update(0);
     FPGA::Update();                      // Обновляем аппаратную часть.
 //    ProcessingSignal();
+    Panel::Update();
     Display::Update();                   // Рисуем экран.
-//    Menu::UpdateInput();                 // Обновляем состояние меню
+    Menu::UpdateInput();                 // Обновляем состояние меню
 //    VCP::Update();
 }
 

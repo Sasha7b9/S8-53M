@@ -298,7 +298,7 @@ void IPaddress::DrawValue(int x, int y) const
 
     for (int i = 0; i < 4; i++)
     {
-        DrawValueWithSelectedPosition(x, y, bytes[i], 3, numIP == i ? selPos : -1, false, true); //-V2563
+        DrawValueWithSelectedPosition(x, y, bytes[i], 3, numIP == i ? selPos : -1, false, true);
         if (i != 3)
         {
             Char('.').Draw(x + 5, y, Color::FILL);
@@ -324,7 +324,7 @@ void MACaddress::DrawValue(int x, int y) const
     y++;
     for (int num = 5; num >= 0; num--)
     {
-        int value = (int)(*(bytes + num)); //-V2563
+        int value = (int)(*(bytes + num));
         if (gCurDigit == num)
         {
             Region(10, 8).Fill(x - 1, y, Color::FILL);

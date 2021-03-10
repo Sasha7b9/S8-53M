@@ -278,16 +278,16 @@ static void IntToUnicode(uint32_t value, uint8_t *pbuf, uint8_t len)
     {
         if (((value >> 28)) < 0xA)
         {
-            pbuf[2 * idx] = (value >> 28) + '0'; //-V2563
+            pbuf[2 * idx] = (value >> 28) + '0';
         }
         else
         {
-            pbuf[2 * idx] = (value >> 28) + 'A' - 10; //-V2563
+            pbuf[2 * idx] = (value >> 28) + 'A' - 10;
         }
 
         value = value << 4;
 
-        pbuf[2 * idx + 1] = 0; //-V2563
+        pbuf[2 * idx + 1] = 0;
     }
 }
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

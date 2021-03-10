@@ -107,7 +107,7 @@ bool EPROM::LoadSettings(void)
 
 void EPROM::WriteAddressDataInRecord(RecordConfig *record)
 {
-    uint address = (record == FirstRecord()) ? ADDR_FIRST_SET : (record - 1)->addrData + (record - 1)->sizeData; //-V2563
+    uint address = (record == FirstRecord()) ? ADDR_FIRST_SET : (record - 1)->addrData + (record - 1)->sizeData;
 
     HAL_EPROM::WriteWord(reinterpret_cast<uint>(&record->addrData), address);
 }
@@ -204,7 +204,7 @@ uint EPROM::CalculatFreeMemory()
         return 0;
     }
 
-    return SIZE_MEMORY - (firstEmptyRecord - 1)->addrData - (firstEmptyRecord - 1)->sizeData - 4; //-V2563
+    return SIZE_MEMORY - (firstEmptyRecord - 1)->addrData - (firstEmptyRecord - 1)->sizeData - 4;
 }
 
 

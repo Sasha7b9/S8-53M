@@ -210,7 +210,7 @@ void Display::DrawSignalLined(pUCHAR data, const DataSettings *ds, int startPoin
             if (x0 >= gridLeft && x0 <= gridRight) //-V2564
             {
                 int index = i - startPoint;
-                int y = calculateFiltr ? Math::CalculateFiltr(data, i, numPoints, numSmoothing) : data[i]; //-V2563
+                int y = calculateFiltr ? Math::CalculateFiltr(data, i, numPoints, numSmoothing) : data[i];
                 CONVERT_DATA_TO_DISPLAY(dataCD[index], y); //-V2564
             }
         }
@@ -230,21 +230,21 @@ void Display::DrawSignalLined(pUCHAR data, const DataSettings *ds, int startPoin
                 int yMin = yMinNext;
                 if (yMin == -1)
                 {
-                    CONVERT_DATA_TO_DISPLAY(yMin, data[i + shift]); //-V2563 //-V2564
+                    CONVERT_DATA_TO_DISPLAY(yMin, data[i + shift]); //-V2564
                 }
                 int yMax = yMaxNext;
                 if (yMax == -1)
                 {
-                    CONVERT_DATA_TO_DISPLAY(yMax, data[i]); //-V2563 //-V2564
+                    CONVERT_DATA_TO_DISPLAY(yMax, data[i]); //-V2564
                 }
 
-                CONVERT_DATA_TO_DISPLAY(yMaxNext, data[i + 1]); //-V2563 //-V2564
+                CONVERT_DATA_TO_DISPLAY(yMaxNext, data[i + 1]); //-V2564
                 if (yMaxNext < yMin)
                 {
                     yMin = yMaxNext + 1;
                 }
 
-                CONVERT_DATA_TO_DISPLAY(yMinNext, data[i + shift + 1]); //-V2563 //-V2564
+                CONVERT_DATA_TO_DISPLAY(yMinNext, data[i + shift + 1]); //-V2564
                 if (yMinNext > yMax)
                 {
                     yMax = yMinNext - 1;
@@ -267,7 +267,7 @@ void Display::DrawSignalLined(pUCHAR data, const DataSettings *ds, int startPoin
 
     if(ds->peakDet == PeackDetMode::Disable)
     {
-        CONVERT_DATA_TO_DISPLAY(dataCD[280], data[endPoint]); //-V2563 //-V2564
+        CONVERT_DATA_TO_DISPLAY(dataCD[280], data[endPoint]); //-V2564
         Painter::DrawSignal(Grid::Left(), dataCD, true);
     }
 }
@@ -430,7 +430,7 @@ void Display::DrawSpectrumChannel(const float *spectrum, Color color)
 	int gridHeight = Grid::MathHeight();
     for (int i = 0; i < 256; i++) 
     {
-        HLine().Draw(gridLeft + i, gridBottom, gridBottom - static_cast<int>(gridHeight * spectrum[i])); //-V2563 //-V2564
+        HLine().Draw(gridLeft + i, gridBottom, gridBottom - static_cast<int>(gridHeight * spectrum[i])); //-V2564
     }
 }
 
@@ -806,12 +806,12 @@ void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channe
         {
             float firstElem = col * elemsInColumn; //-V2564
             float lastElem = firstElem + elemsInColumn - 1; //-V2564
-            min[col] = data[(int)firstElem]; //-V2563
-            max[col] = data[(int)firstElem + 1]; //-V2563
+            min[col] = data[(int)firstElem];
+            max[col] = data[(int)firstElem + 1];
             for (int elem = static_cast<int>(firstElem) + 2; elem <= lastElem; elem += 2) //-V2564
             {
-                SET_MIN_IF_LESS(data[elem], min[col]); //-V2563
-                SET_MAX_IF_LARGER(data[elem + 1], max[col]); //-V2563
+                SET_MIN_IF_LESS(data[elem], min[col]);
+                SET_MAX_IF_LARGER(data[elem + 1], max[col]);
             }
         }
     }
@@ -824,12 +824,12 @@ void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channe
         {
             int firstElem = static_cast<int>(col * elemsInColumn); //-V2564
             int lastElem = firstElem + static_cast<int>(elemsInColumn) - 1;
-            *iMin = data[firstElem]; //-V2563
-            *iMax = data[firstElem]; //-V2563
+            *iMin = data[firstElem];
+            *iMax = data[firstElem];
             for (int elem = firstElem + 1; elem <= lastElem; elem++)
             {
-                SET_MIN_IF_LESS(data[elem], *iMin); //-V2563
-                SET_MAX_IF_LARGER(data[elem], *iMax); //-V2563
+                SET_MIN_IF_LESS(data[elem], *iMin);
+                SET_MAX_IF_LARGER(data[elem], *iMax);
             }
         }
     }
@@ -839,12 +839,12 @@ void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channe
         {
             float firstElem = col * elemsInColumn; //-V2564
             float lastElem = firstElem + elemsInColumn - 1; //-V2564
-            min[col] = data[(int)firstElem]; //-V2563
-            max[col] = data[(int)firstElem + shiftForPeakDet]; //-V2563
+            min[col] = data[(int)firstElem];
+            max[col] = data[(int)firstElem + shiftForPeakDet];
             for (int elem = static_cast<int>(firstElem) + 1; elem <= lastElem; elem++) //-V2564
             {
-                SET_MIN_IF_LESS(data[elem], min[col]); //-V2563
-                SET_MAX_IF_LARGER(data[elem + shiftForPeakDet], max[col]); //-V2563
+                SET_MIN_IF_LESS(data[elem], min[col]);
+                SET_MAX_IF_LARGER(data[elem + shiftForPeakDet], max[col]);
             }
         }
     }
@@ -877,7 +877,7 @@ void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channe
     else
     {
         VLineArray().Draw(x, 255, points, Color::Channel(chan));
-        VLineArray().Draw(x + 255, width - 255, points + 255 * 2, Color::Channel(chan)); //-V2563
+        VLineArray().Draw(x + 255, width - 255, points + 255 * 2, Color::Channel(chan));
 	}
 }
 
@@ -892,9 +892,9 @@ void Display::DrawChannelInWindowMemory(int timeWindowRectWidth, int xVert0, int
     }
     else
     {
-        DrawDataInRect(1,          xVert0 - 1,              &(data[0]),        startI,                             chan, shiftForPeakDet); //-V2563
-        DrawDataInRect(xVert0 + 2, timeWindowRectWidth - 2, &(data[startI]),   281,                                chan, shiftForPeakDet); //-V2563
-        DrawDataInRect(xVert1 + 2, rightX - xVert1 + 2,     &(data[endI + 1]), sMemory_GetNumPoints(false) - endI, chan, shiftForPeakDet); //-V2563
+        DrawDataInRect(1,          xVert0 - 1,              &(data[0]),        startI,                             chan, shiftForPeakDet);
+        DrawDataInRect(xVert0 + 2, timeWindowRectWidth - 2, &(data[startI]),   281,                                chan, shiftForPeakDet);
+        DrawDataInRect(xVert1 + 2, rightX - xVert1 + 2,     &(data[endI + 1]), sMemory_GetNumPoints(false) - endI, chan, shiftForPeakDet);
     }
 }
 
@@ -2063,8 +2063,8 @@ void Display::DrawLowPart()
     {
         std::sprintf(buffer, "\xa5\x10%s\x10\xa5\x10%s\x10\xa5\x10", couple[TRIG_INPUT], polar[TRIG_POLARITY]);
         Text(buffer).Draw(x + 18, y1);
-        Char(filtr[TRIG_INPUT][0]).Draw(x + 45, y1); //-V2563
-        Char(filtr[TRIG_INPUT][1]).Draw(x + 53, y1); //-V2563
+        Char(filtr[TRIG_INPUT][0]).Draw(x + 45, y1);
+        Char(filtr[TRIG_INPUT][1]).Draw(x + 53, y1);
     }
 
     buffer[0] = '\0';
@@ -2243,8 +2243,8 @@ void Display::AddPoints(uint16 data00, uint16 data01, uint16 data10, uint16 data
     {
         if (lastP2Pdata == NUM_P2P_POINTS)
         {
-            std::memcpy(dataP2P_0, dataP2P_0 + 2, NUM_P2P_POINTS - 2); //-V743 //-V2563
-            std::memcpy(dataP2P_1, dataP2P_1 + 2, NUM_P2P_POINTS - 2); //-V743 //-V2563
+            std::memcpy(dataP2P_0, dataP2P_0 + 2, NUM_P2P_POINTS - 2); //-V743
+            std::memcpy(dataP2P_1, dataP2P_1 + 2, NUM_P2P_POINTS - 2); //-V743
         }
     }
 
@@ -2345,7 +2345,7 @@ void Display::DeleteFirstString()
     int numStrings = FirstEmptyString();
     for(int i = 1; i < numStrings; i++)
     {
-        strings[i - 1] = strings[i] - delta; //-V2563
+        strings[i - 1] = strings[i] - delta;
     }
     for(int i = numStrings - 1; i < MAX_NUM_STRINGS; i++)
     {
@@ -2382,7 +2382,7 @@ void Display::AddString(const char *string)
     else
     {
         char *addressLastString = strings[FirstEmptyString() - 1];
-        char *address = addressLastString + std::strlen(addressLastString) + 1; //-V2513 //-V2563
+        char *address = addressLastString + std::strlen(addressLastString) + 1; //-V2513
         strings[FirstEmptyString()] = address;
         std::strcpy(address, buffer); //-V2513
     }

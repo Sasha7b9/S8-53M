@@ -111,7 +111,7 @@ char* Int2String(int value, bool alwaysSign, int numMinFields, char buffer[20])
     if(alwaysSign && value >= 0)
     {
         buffer[0] = '+';
-        std::sprintf(buffer + 1, format, value); //-V2563
+        std::sprintf(buffer + 1, format, value);
     }
     else
     {
@@ -122,8 +122,8 @@ char* Int2String(int value, bool alwaysSign, int numMinFields, char buffer[20])
 
 bool String2Int(char *str, int *value)  
 {
-    int sign = str[0] == '-' ? -1 : 1; //-V2563
-    if (str[0] < '0' || str[0] > '9') //-V2563
+    int sign = str[0] == '-' ? -1 : 1;
+    if (str[0] < '0' || str[0] > '9')
     {
         str++;
     }
@@ -136,7 +136,7 @@ bool String2Int(char *str, int *value)
     int pow = 1;
     for(int i = length - 1; i >= 0; i--)
     {
-        int val = str[i] & (~(0x30)); //-V2563
+        int val = str[i] & (~(0x30));
         if(val < 0 || val > 9)
         {
             return false;
@@ -165,13 +165,13 @@ char*   Bin2String16(uint16 value, char valBuffer[19])
     char buffer[9];
     std::strcpy(valBuffer, Bin2String((uint8)(value >> 8), buffer)); //-V2513
     valBuffer[8] = ' ';
-    std::strcpy(valBuffer + 9, Bin2String((uint8)value, buffer)); //-V2513 //-V2563
+    std::strcpy(valBuffer + 9, Bin2String((uint8)value, buffer)); //-V2513
     return valBuffer;
 }
 
 char* Hex8toString(uint8 value, char buffer[3])
 {
-    std::sprintf(value < 16 ? (buffer[0] = '0', buffer + 1) :  (buffer), "%x", value); //-V2528 //-V2563
+    std::sprintf(value < 16 ? (buffer[0] = '0', buffer + 1) :  (buffer), "%x", value); //-V2528
     return buffer;
 }
 

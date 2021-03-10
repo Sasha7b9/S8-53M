@@ -3,6 +3,7 @@
 #include "common/Hardware/Sound_.h"
 #include "common/Hardware/Timer_.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "common/Utils/Queue_.h"
 #include "FPGA/FPGA.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/HelpContent.h"
@@ -29,8 +30,10 @@ static Key::E pressedKey = Key::None;
 volatile static Key::E pressedButton = Key::None;         // Это используется для отслеживания нажатой кнопки при отключенной панели
 static uint16 dataTransmitted[MAX_DATA] = {0x00};
 static uint16 numDataForTransmitted = 0;
-
 bool Panel::isRunning = true;
+
+
+static Queue <uint8>queue;
 
 
 static void HelpLong();
@@ -230,55 +233,77 @@ Key::E RegulatorRight(uint16 code)
 }
 
 
-bool Panel::ProcessingCommandFromPIC(uint16 code)
+void Panel::Update()
 {
-    Key::E releaseButton = ButtonIsRelease(code);
-    Key::E pressButton = ButtonIsPress(code);
-    Key::E longButton = ButtonIsLong(code);
-    Key::E regLeft = RegulatorLeft(code);
-    Key::E regRight = RegulatorRight(code);
-
-    if (pressButton != Key::None)
+    while (queue.Size() != 0 && queue[0] != 0xFF)
     {
-        pressedButton = pressButton;
+        queue.Front();
     }
 
-    if(!Panel::isRunning)
+    if (queue.Size() < 3)
     {
-        return true;
+        return;
     }
 
-    if(releaseButton != Key::None)
+    queue.Front();
+    Key::E key = (Key::E)queue.Front();
+    Action action(queue.Front());
+
+    if (action.IsDown())
     {
-        Menu::Event::ReleaseButton(releaseButton);
-        funcOnKeyUp[releaseButton]();
-        if(pressedKey != Key::None)
+        pressedButton = key;
+    }
+
+    if (!Panel::isRunning)
+    {
+        return;
+    }
+
+/*
+Key::E releaseButton = ButtonIsRelease(code);
+Key::E pressButton = ButtonIsPress(code);
+Key::E longButton = ButtonIsLong(code);
+Key::E regLeft = RegulatorLeft(code);
+Key::E regRight = RegulatorRight(code);
+*/
+    if (action.IsUp())
+    {
+        Menu::Event::ReleaseButton(key);
+        funcOnKeyUp[key]();
+        if (pressedKey != Key::None)
         {
-            Menu::Event::ShortPressureButton(releaseButton);
+            Menu::Event::ShortPressureButton(key);
             pressedKey = Key::None;
         }
     }
-    else if(pressButton != Key::None)
+    else if (action.IsDown())
     {
-        funcOnKeyDown[pressButton]();
-        Menu::Event::PressButton(pressButton);
-        pressedKey = pressButton;
+        funcOnKeyDown[key]();
+        Menu::Event::PressButton(key);
+        pressedKey = key;
     }
-    else if (longButton != Key::None)
+    else if (action.IsLong())
     {
-        funcOnLongPressure[longButton]();
+        funcOnLongPressure[key]();
         pressedKey = Key::None;
     }
-    else if(regLeft != Key::None)
+    else if (action.IsRotateLeft())
     {
-        funculatorLeft[regLeft](); //-V557
+        funculatorLeft[key]();
     }
-    else if(regRight != Key::None)
+    else if (action.IsRotateRight())
     {
-        funculatorRight[regRight]();
+        funculatorRight[key]();
     }
+}
 
-    return true;
+
+void Panel::CallbackOnReceiveSPI5(uint8 *data, int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        queue.Push(*data++);
+    }
 }
 
 void Panel::EnableLEDChannel0(bool enable)

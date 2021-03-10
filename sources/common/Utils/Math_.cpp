@@ -138,7 +138,7 @@ uint8 Math::GetMinFromArray(pUCHAR data, int firstPoint, int lastPoint)
 #define MIN_IF_LESS if(d < min) { min = d; }
 
     uint8 min = 255;
-    pUCHAR pointer = &data[firstPoint]; //-V2563
+    pUCHAR pointer = &data[firstPoint];
 
     for (int i = firstPoint; i < lastPoint; i += 2)
     {
@@ -163,7 +163,7 @@ uint8 Math::GetMaxFromArray(pUCHAR data, int firstPoint, int lastPoint)
 #define MAX_IF_ABOVE if(d > max) { max = d; }
 
     uint8 max = 0;
-    pUCHAR pointer = &data[firstPoint]; //-V2563
+    pUCHAR pointer = &data[firstPoint];
 
     for (int i = firstPoint; i < lastPoint; i += 2)
     {
@@ -205,11 +205,11 @@ uint8 Math::CalculateFiltr(pUCHAR data, int x, int numPoints, int numSmoothing)
 {
     if (numSmoothing < 2)
     {
-        return data[x]; //-V2563
+        return data[x];
     }
 
     int count = 1;
-    int sum = data[x]; //-V2563
+    int sum = data[x];
     int startDelta = 1;
 
     int endDelta = numSmoothing / 2;
@@ -218,8 +218,8 @@ uint8 Math::CalculateFiltr(pUCHAR data, int x, int numPoints, int numSmoothing)
     {
         if (((x - delta) >= 0) && ((x + delta) < (numPoints)))
         {
-            sum += data[x - delta]; //-V2563
-            sum += data[x + delta]; //-V2563
+            sum += data[x - delta];
+            sum += data[x + delta];
             count += 2;
         }
     }
@@ -229,7 +229,7 @@ uint8 Math::CalculateFiltr(pUCHAR data, int x, int numPoints, int numSmoothing)
         int delta = numSmoothing / 2;
         if ((x + delta) < numPoints)
         {
-            sum += data[x + delta]; //-V2563
+            sum += data[x + delta];
             count++;
         }
     }
@@ -253,14 +253,14 @@ void Math::CalculateFiltrArray(pUCHAR dataIn, uint8 *dataOut, int numPoints, int
         for (int i = 0; i < numPoints; i++)
         {
             int count = 1;
-            int sum = dataIn[i]; //-V2563
+            int sum = dataIn[i];
 
             for (int delta = startDelta; delta <= endDelta; delta++)
             {
                 if (((i - delta) >= 0) && ((i + delta) < (numPoints)))
                 {
-                    sum += dataIn[i - delta]; //-V2563
-                    sum += dataIn[i + delta]; //-V2563
+                    sum += dataIn[i - delta];
+                    sum += dataIn[i + delta];
                     count += 2;
                 }
             }
@@ -269,12 +269,12 @@ void Math::CalculateFiltrArray(pUCHAR dataIn, uint8 *dataOut, int numPoints, int
             {
                 if ((i + d) < numPoints)
                 {
-                    sum += dataIn[i + d]; //-V2563
+                    sum += dataIn[i + d];
                     count++;
                 }
             }
 
-            dataOut[i] = (uint8)(sum / count); //-V2563
+            dataOut[i] = (uint8)(sum / count);
         }
     }
 }

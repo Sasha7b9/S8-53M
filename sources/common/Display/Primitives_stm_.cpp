@@ -55,7 +55,7 @@ void Primitives::MultiVPointLine::Draw(int y, Color color)
 
     for (int i = 0; i < numLines; i++)
     {
-        DrawVPointLine(x0[i], y, count, delta); //-V2563
+        DrawVPointLine(x0[i], y, count, delta);
     }
 }
 
@@ -85,7 +85,7 @@ void Primitives::MultiHPointLine::Draw(int x, const Color &color)
 
     for (int i = 0; i < numLines; i++)
     {
-        DrawHPointLine(x, y[i], count, delta); //-V2563
+        DrawHPointLine(x, y[i], count, delta);
     }
 }
 

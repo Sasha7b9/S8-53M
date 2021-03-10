@@ -31,7 +31,7 @@ static SPI_HandleTypeDef handleSPI5 =       // Для связи с панелью
 void *HAL_SPI5::handle = &handleSPI5;
 
 
-#define SIZE_PACKET 3
+#define SIZE_PACKET 1
 static uint8 buffer[SIZE_PACKET];
 
 

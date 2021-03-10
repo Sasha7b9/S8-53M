@@ -124,7 +124,7 @@ bool FM::FileIsExist(const char name[255])
     {
         while(FDrive::GetNextNameFile(nameFile, &sfrd))
         {
-            if(std::strcmp(name + 2, nameFile) == 0) //-V2513 //-V2563
+            if(std::strcmp(name + 2, nameFile) == 0) //-V2513
             {
                 return true;
             }
@@ -144,14 +144,14 @@ void FM::DrawNameCurrentDir(int left, int top)
     }
     else
     {
-        char *pointer = currentDir + 2; //-V2563
+        char *pointer = currentDir + 2;
         while (length > 277)
         {
-            while (*pointer != '\\' && pointer < currentDir + 255) //-V2563
+            while (*pointer != '\\' && pointer < currentDir + 255)
             {
                 pointer++;
             }
-            if (pointer >= currentDir + 255) //-V2563
+            if (pointer >= currentDir + 255)
             {
                 return;
             }
@@ -256,7 +256,7 @@ void FM::PressLevelUp()
     {
         return;
     }
-    char *pointer = currentDir + std::strlen(currentDir); //-V2513 //-V2563
+    char *pointer = currentDir + std::strlen(currentDir); //-V2513
     while (*pointer != '\\')
     {
         pointer--;
@@ -407,8 +407,8 @@ LabelNextNumber:
             {
                 if (*ch == 0x07)    // ≈сли здесь надо записать пор€дковый номер
                 {
-                    std::strcpy(wr, Int2String(number, false, *(ch + 1), buffer)); //-V2513 //-V2563
-                    wr += std::strlen(buffer); //-V2513 //-V2563
+                    std::strcpy(wr, Int2String(number, false, *(ch + 1), buffer)); //-V2513
+                    wr += std::strlen(buffer); //-V2513
                     ch++;
                 }
                 else
@@ -416,7 +416,7 @@ LabelNextNumber:
                     if (*ch >= 0x01 && *ch <= 0x06)
                     {
                         std::strcpy(wr, Int2String((int)values[*ch], false, 2, buffer)); //-V2513
-                        wr += std::strlen(buffer); //-V2513 //-V2563
+                        wr += std::strlen(buffer); //-V2513
                     }
                 }
             }
@@ -424,7 +424,7 @@ LabelNextNumber:
         }
 
         *wr = '.';
-        *(wr + 1) = '\0'; //-V2563
+        *(wr + 1) = '\0';
 
         std::strcat(name, MODE_SAVE_SIGNAL_IS_BMP ? "bmp" : "txt"); //-V2513
 

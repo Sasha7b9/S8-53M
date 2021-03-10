@@ -55,7 +55,7 @@ bool Item::IsPressed() const
 
 const char *Choice::NameSubItem(int i) const
 {
-    return OwnData()->names[(i * 2) + LANG]; //-V2563
+    return OwnData()->names[(i * 2) + LANG];
 }
 
 
@@ -104,7 +104,7 @@ const char *Choice::NamePrevSubItem() const
 int Choice::NumSubItems() const
 {
     int i = 0;
-    while (OwnData()->names[i] != nullptr) //-V2563
+    while (OwnData()->names[i] != nullptr)
     {
         i++;
     }
@@ -298,7 +298,7 @@ bool Item::IsActive() const
 
 const Item *Page::GetItem(int numElement) const
 {
-    return OwnData()->items[numElement + (IsPageSB() ? 1 : 0)]; //-V2563
+    return OwnData()->items[numElement + (IsPageSB() ? 1 : 0)];
 }
 
 
@@ -589,7 +589,7 @@ void Page::ShortPressOnItem(int numItem) const
     NamePage::E namePage = own->name;
     if (namePage >= NamePage::SB_Curs)
     {
-        SmallButton *sb = (SmallButton *)(own->items)[numItem]; //-V2563
+        SmallButton *sb = (SmallButton *)(own->items)[numItem];
         if (sb && own->funcOnPress)
         {
             own->funcOnPress();
@@ -655,7 +655,7 @@ int Item::HeightOpened() const
 
 pString Item::Title() const
 {
-    return TITLE((Page *)this); //-V2563
+    return TITLE((Page *)this);
 }
 
 
@@ -663,7 +663,7 @@ SmallButton *Page::SmallButonFrom(int numButton) const
 {
     const DataPage *own = OwnData();
 
-    return (SmallButton *)(own->items)[numButton]; //-V2563
+    return (SmallButton *)(own->items)[numButton];
 }
 
 

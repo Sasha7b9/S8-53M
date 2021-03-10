@@ -424,7 +424,7 @@ void TCPSocket::SendFormatString(char *format, ...) //-V2560
 #define SIZE_BUFFER 200
     static char buffer[SIZE_BUFFER];
     std::va_list args;
-    va_start(args, format); //-V2563
+    va_start(args, format);
     std::vsprintf(buffer, format, args);
     va_end(args);
     std::strcat(buffer, "\r\n"); //-V2513

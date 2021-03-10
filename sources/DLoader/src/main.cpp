@@ -21,7 +21,7 @@ void Upgrade(void);
 
 int main(void)
 {
-    MainStruct::ms = static_cast<MainStruct *>(malloc(sizeof(MainStruct))); //-V2511
+    MainStruct::ms = static_cast<MainStruct *>(malloc(sizeof(MainStruct)));
     MainStruct::ms->percentUpdate = 0.0F; //-V522
 
     Hardware_Init();
@@ -47,7 +47,7 @@ int main(void)
     if (((MainStruct::ms->drive.connection != 0) && (MainStruct::ms->drive.active == 0)) ||  // ≈сли флеша подключена, но в активное состо€ние почему-то не перешла
         ((MainStruct::ms->drive.active != 0) && (MainStruct::ms->state != State::Mount)))     // или перешла в активное состо€ние, по почему-то не запустилс€ процесс монтировани€
     {
-        free(MainStruct::ms); //-V2511
+        free(MainStruct::ms);
         HAL::SystemReset();
         return 0;
     }
@@ -96,7 +96,7 @@ int main(void)
 
     HAL::DeInit();
 
-    free(MainStruct::ms); //-V2511
+    free(MainStruct::ms);
 
     HAL::JumpToApplication();
     

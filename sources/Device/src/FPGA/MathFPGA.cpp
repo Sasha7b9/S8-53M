@@ -108,7 +108,7 @@ void MathFPGA::PointsRelToVoltage(pUCHAR points, int numPoints, Range::E range, 
     float koeff = 1.0F / 20e3F;
     for (int i = 0; i < numPoints; i++)
     {
-        voltage[i] = static_cast<float>(points[i] * voltInPixel - diff) * koeff; //-V2563
+        voltage[i] = static_cast<float>(points[i] * voltInPixel - diff) * koeff;
     }
 }
 
@@ -125,18 +125,18 @@ void MathFPGA::PointsVoltageToRel(const float* voltage, int numPoints, Range::E 
 
     for (int i = 0; i < numPoints; i++)
     {
-        int value = static_cast<int>(voltage[i] * voltInPixel + delta); //-V2563
+        int value = static_cast<int>(voltage[i] * voltInPixel + delta);
         if (value < 0)
         {
-            points[i] = 0; //-V2563
+            points[i] = 0;
             continue;
         }
         else if (value > 255)
         {
-            points[i] = 255; //-V2563
+            points[i] = 255;
             continue;
         }
-        points[i] = (uint8)value; //-V2563
+        points[i] = (uint8)value;
     }
 }
 
@@ -166,7 +166,7 @@ static void MultiplyToWindow(float* data, int numPoints)
     {
         for (int i = 0; i < numPoints; i++)
         {
-            data[i] *= 0.53836F - 0.46164F * std::cos(2 * 3.1415926F * i / (numPoints - 1)); //-V2563 //-V2564
+            data[i] *= 0.53836F - 0.46164F * std::cos(2 * 3.1415926F * i / (numPoints - 1)); //-V2564
         }
     }
     else if (WINDOW_FFT_IS_BLACKMAN)
@@ -177,14 +177,14 @@ static void MultiplyToWindow(float* data, int numPoints)
         float a2 = alpha / 2.0F;
         for (int i = 0; i < numPoints; i++)
         {
-            data[i] *= a0 - a1 * std::cos(2 * 3.1415926F * i / (numPoints - 1)) + a2 * std::cos(4 * 3.1415926F * i / (numPoints - 1)); //-V2563 //-V2564
+            data[i] *= a0 - a1 * std::cos(2 * 3.1415926F * i / (numPoints - 1)) + a2 * std::cos(4 * 3.1415926F * i / (numPoints - 1)); //-V2564
         }
     }
     else if (WINDOW_FFT_IS_HANN)
     {
         for (int i = 0; i < numPoints; i++)
         {
-            data[i] *= 0.5F * (1.0F - std::cos(2.0F * 3.1415926F * i / (numPoints - 1.0F))); //-V2563 //-V2564
+            data[i] *= 0.5F * (1.0F - std::cos(2.0F * 3.1415926F * i / (numPoints - 1.0F))); //-V2564
         }
     }
 }
@@ -195,15 +195,15 @@ static void Normalize(float* data, int)
     float max = 0.0;
     for (int i = 0; i < 256; i++)
     {
-        if (data[i] > max) //-V2563
+        if (data[i] > max)
         {
-            max = data[i]; //-V2563
+            max = data[i];
         }
     }
 
     for (int i = 0; i < 256; i++)
     {
-        data[i] /= max; //-V2563
+        data[i] /= max;
     }
 }
 
@@ -224,7 +224,7 @@ void MathFPGA::CalculateFFT(float* dataR, int numPoints, float* result, float* f
 
     for (int i = 0; i < numPoints; i++)
     {
-        result[i] = 0.0F; //-V2563
+        result[i] = 0.0F;
     }
 
     MultiplyToWindow(dataR, numPoints);
@@ -271,16 +271,16 @@ void MathFPGA::CalculateFFT(float* dataR, int numPoints, float* result, float* f
             for (int i = j; i < numPoints; i += ie)
             {
                 int io = i + in;
-                float dRi = dataR[i]; //-V2563
-                float dRio = dataR[io]; //-V2563
-                float ri = result[i]; //-V2563
-                float rio = result[io]; //-V2563
-                dataR[i] = dRi + dRio; //-V2563
-                result[i] = ri + rio; //-V2563
+                float dRi = dataR[i];
+                float dRio = dataR[io];
+                float ri = result[i];
+                float rio = result[io];
+                dataR[i] = dRi + dRio;
+                result[i] = ri + rio;
                 float rtq = dRi - dRio;
                 float itq = ri - rio;
-                dataR[io] = rtq * ru - itq * iu; //-V2563
-                result[io] = itq * ru + rtq * iu; //-V2563
+                dataR[io] = rtq * ru - itq * iu;
+                result[io] = itq * ru + rtq * iu;
             }
             float sr = ru;
             ru = ru * rw - iu * iw;
@@ -295,12 +295,12 @@ void MathFPGA::CalculateFFT(float* dataR, int numPoints, float* result, float* f
         {
             int io = i - 1;
             int in = j - 1;
-            float rtp = dataR[in]; //-V2563
-            float itp = result[in]; //-V2563
-            dataR[in] = dataR[io]; //-V2563
-            result[in] = result[io]; //-V2563
-            dataR[io] = rtp; //-V2563
-            result[io] = itp; //-V2563
+            float rtp = dataR[in];
+            float itp = result[in];
+            dataR[in] = dataR[io];
+            result[in] = result[io];
+            dataR[io] = rtp;
+            result[io] = itp;
         }
 
         int k = nn;
@@ -316,10 +316,10 @@ void MathFPGA::CalculateFFT(float* dataR, int numPoints, float* result, float* f
 
     for (int i = 0; i < 256; i++)
     {
-        result[i] = std::sqrtf(dataR[i] * dataR[i] + result[i] * result[i]); //-V2563
+        result[i] = std::sqrtf(dataR[i] * dataR[i] + result[i] * result[i]);
     }
 
-    result[0] = 0.0F;       // WARN нулева€ составл€юща€ мешает посто€нно. надо еЄ убрать //-V2563
+    result[0] = 0.0F;       // WARN нулева€ составл€юща€ мешает посто€нно. надо еЄ убрать
 
     Normalize(result, 256);
 
@@ -329,30 +329,30 @@ void MathFPGA::CalculateFFT(float* dataR, int numPoints, float* result, float* f
 
         for (int i = 0; i < 256; i++)
         {
-            result[i] = 20 * std::log10f(result[i]); //-V2563 //-V2564
+            result[i] = 20 * std::log10f(result[i]); //-V2564
 
             if (i == FFT_POS_CURSOR_0)
             {
-                *density0 = result[i]; //-V2563
+                *density0 = result[i];
             }
             else if (i == FFT_POS_CURSOR_1)
             {
-                *density1 = result[i]; //-V2563
+                *density1 = result[i];
             }
-            if (result[i] < minDB) //-V2563
+            if (result[i] < minDB)
             {
-                result[i] = minDB; //-V2563
+                result[i] = minDB;
             }
-            result[i] = 1.0F - result[i] / minDB; //-V2563
+            result[i] = 1.0F - result[i] / minDB;
         }
     }
     else
     {
-        *density0 = result[FFT_POS_CURSOR_0]; //-V2563
-        *density1 = result[FFT_POS_CURSOR_1]; //-V2563
+        *density0 = result[FFT_POS_CURSOR_0];
+        *density1 = result[FFT_POS_CURSOR_1];
     }
-    *y0 = static_cast<int>(Grid::MathBottom() - result[FFT_POS_CURSOR_0] * Grid::MathHeight()); //-V2563 //-V2564
-    *y1 = static_cast<int>(Grid::MathBottom() - result[FFT_POS_CURSOR_1] * Grid::MathHeight()); //-V2563 //-V2564
+    *y0 = static_cast<int>(Grid::MathBottom() - result[FFT_POS_CURSOR_0] * Grid::MathHeight()); //-V2564
+    *y1 = static_cast<int>(Grid::MathBottom() - result[FFT_POS_CURSOR_1] * Grid::MathHeight()); //-V2564
 }
 
 
@@ -383,20 +383,20 @@ void MathFPGA::CalculateMathFunction(float* data0andResult, const float* data1, 
     if (MATH_FUNC_IS_SUM)
     {
         int delta = data1 - data0andResult;
-        float* end = &data0andResult[numPoints]; //-V2563
+        float* end = &data0andResult[numPoints];
         while (data0andResult < end)
         {
-            *data0andResult += *(data0andResult + delta); //-V2563
+            *data0andResult += *(data0andResult + delta);
             data0andResult++;
         }
     }
     else if (MATH_FUNC_IS_MUL)
     {
         int delta = data1 - data0andResult;
-        float* end = &data0andResult[numPoints]; //-V2563
+        float* end = &data0andResult[numPoints];
         while (data0andResult < end)
         {
-            *data0andResult *= *(data0andResult + delta); //-V2563
+            *data0andResult *= *(data0andResult + delta);
             data0andResult++;
         }
     }
