@@ -52,7 +52,7 @@ void Application::CreateButtons(Frame *frame)
 
     for (int i = 0; i < 4; i++)
     {
-        Key::E keys[4] = { Key::ChannelA, Key::ChannelB, Key::Time, Key::Synchronization };
+        Key::E keys[4] = { Key::ChannelA, Key::ChannelB, Key::Time, Key::Trig };
 
         int x[4] = { 760, 882, 1030, 1150 };
 

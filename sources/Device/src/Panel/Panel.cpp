@@ -140,7 +140,7 @@ static const pFuncVV funcOnLongPressure[Key::Count] =
     ChannelLongA,   // Key::ChannelA
     ChannelLongB,   // Key::ChannelB
     TimeLong,       // Key::Time
-    TrigLong,       // B_Sinchro
+    TrigLong,       // Key::Trig
     EmptyFuncVV,    // Key::Cursors
     EmptyFuncVV,    // Key::Measures
     EmptyFuncVV,    // Key::Display
@@ -149,31 +149,39 @@ static const pFuncVV funcOnLongPressure[Key::Count] =
     EmptyFuncVV,    // Key::Memory
     EmptyFuncVV,    // Key::Service
     MenuLong,       // Key::Menu
-    EmptyFuncVV     // B_Power
+    EmptyFuncVV,    // Key::Power
+    EmptyFuncVV,    // Key::RangeA
+    EmptyFuncVV,    // Key::RangeB
+    EmptyFuncVV,    // Key::RShiftA
+    EmptyFuncVV,    // Key::RShiftB
+    EmptyFuncVV,    // Key::TBase
+    EmptyFuncVV,    // Key::TShift
+    EmptyFuncVV,    // Key::TrigLev
+    EmptyFuncVV     // Key::Setting
 };
 
-static void (*funculatorLeft[Key::Count])()    =
+static const pFuncVV funculatorLeft[Key::Count] =
 {
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    RangeLeftA,     // R_Range0
-    RangeLeftB,     // R_Range1
-    RShiftLeftA,    // R_RShift0
-    RShiftLeftB,    // R_RShift1
-    TBaseLeft,      // R_TBase
-    TShiftLeft,     // R_TShift
-    TrigLevLeft,    // R_TrigLev
+    RangeLeftA,     // Key::RangeA
+    RangeLeftB,     // Key::RangeB
+    RShiftLeftA,    // Key::RShiftA
+    RShiftLeftB,    // Key::RShiftB
+    TBaseLeft,      // Key::TBase
+    TShiftLeft,     // Key::TShift
+    TrigLevLeft,    // Key::TrigLev
     SetLeft         // Key::Setting
 };
-static void (*funculatorRight[Key::Count])() =
+static const pFuncVV funculatorRight[Key::Count] =
 {
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    RangeRightA,    // R_Range0
-    RangeRightB,    // R_Range1
-    RShiftRightA,   // R_RShift0
-    RShiftRightB,   // R_RShift1
-    TBaseRight,     // R_TBase
-    TShiftRight,    // R_TShift
-    TrigLevRight,   // R_TrigLev
+    RangeRightA,    // Key::RangeA
+    RangeRightB,    // Key::RangeB
+    RShiftRightA,   // Key::RShiftA
+    RShiftRightB,   // Key::RShiftB
+    TBaseRight,     // Key::TBase
+    TShiftRight,    // Key::TShift
+    TrigLevRight,   // Key::TrigLev
     SetRight        // Key::Setting
 };
 
