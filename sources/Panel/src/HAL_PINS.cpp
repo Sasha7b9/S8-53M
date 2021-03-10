@@ -25,7 +25,7 @@ PinRC1_ChannelB pinRC1_ChannelB;
 PinRC2_Trig     pinRC2_Trig;
 PinRC3_Set      pinRC3_Set;
 
-PinON pinON;
+PinPower pinPower;
 
 
 PinSL0::PinSL0() : Pin(PinPort::A, PinPin::_0) { }
@@ -49,7 +49,7 @@ PinRC1_ChannelB::PinRC1_ChannelB() : Pin(PinPort::A, PinPin::_11) { }
 PinRC2_Trig::PinRC2_Trig() : Pin(PinPort::A, PinPin::_9) { }
 PinRC3_Set::PinRC3_Set() : Pin(PinPort::A, PinPin::_12) { }
 
-PinON::PinON() : Pin(PinPort::A, PinPin::_8) { }
+PinPower::PinPower() : Pin(PinPort::A, PinPin::_8) { }
 
 
 Pin pinSPI2_NSS(PinPort::B, PinPin::_12);    // 25
@@ -93,8 +93,8 @@ void HAL_PINS::Init()
     pinRC2_Trig.Init(PinMode::_Output);
     pinRC3_Set.Init(PinMode::_Output);
 
-    pinON.Init(PinMode::_Output);
-    pinON.Reset();
+    pinPower.Init(PinMode::_Output);
+    pinPower.Reset();
 }
 
 

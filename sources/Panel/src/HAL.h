@@ -26,7 +26,7 @@ extern PinRC1_ChannelB pinRC1_ChannelB;
 extern PinRC3_Set      pinRC3_Set;
 extern PinRC2_Trig     pinRC2_Trig;
 
-extern PinON pinON;
+extern PinPower pinPower;
 
 
 struct HAL

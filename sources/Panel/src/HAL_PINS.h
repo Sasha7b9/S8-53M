@@ -77,4 +77,4 @@ struct PinRC0_ChannelA : public Pin { PinRC0_ChannelA(); };
 struct PinRC1_ChannelB : public Pin { PinRC1_ChannelB(); };
 struct PinRC2_Trig : public Pin { PinRC2_Trig(); };
 struct PinRC3_Set : public Pin { PinRC3_Set(); };
-struct PinON : public Pin { PinON(); };
+struct PinPower : public Pin { PinPower(); };
