@@ -67,7 +67,7 @@ static void SetLeft();
 static void SetRight();
 
 
-static void(*funcOnKeyDown[Key::Count])() =
+static const pFuncVV funcOnKeyDown[Key::Count] =
 {    
     EmptyFuncVV,    // Key::None
     EmptyFuncVV,    // Key::F1
@@ -98,7 +98,7 @@ static void(*funcOnKeyDown[Key::Count])() =
     EmptyFuncVV     // Key::Setting
 };
 
-static void (*funcOnKeyUp[Key::Count])() =
+static const pFuncVV funcOnKeyUp[Key::Count] =
 {
     0,
     EmptyFuncVV,    // Key::F1
@@ -118,10 +118,18 @@ static void (*funcOnKeyUp[Key::Count])() =
     EmptyFuncVV,    // Key::Memory
     EmptyFuncVV,    // Key::Service
     EmptyFuncVV,    // Key::Menu
-    EmptyFuncVV     // B_Power
+    EmptyFuncVV,    // Key::Power
+    EmptyFuncVV,    // Key::RangeA
+    EmptyFuncVV,    // Key::RangeB
+    EmptyFuncVV,    // Key::RShiftA
+    EmptyFuncVV,    // Key::RShiftB
+    EmptyFuncVV,    // Key::TBase
+    EmptyFuncVV,    // Key::TShift
+    EmptyFuncVV,    // Key::TrigLev
+    EmptyFuncVV     // Key::Setting
 };
 
-static void (*funcOnLongPressure[Key::Count])()    =
+static const pFuncVV funcOnLongPressure[Key::Count] =
 {
     0,
     F1Long,         // Key::F1
