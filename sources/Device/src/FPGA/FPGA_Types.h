@@ -59,7 +59,7 @@
 
 
 #define WR_START        (HAL_FMC::ADDR_FPGA)                 //    Запуск цикла измерения. Для запуска нужно записать 1.
-#define WR_RAZVERTKA    (HAL_FMC::ADDR_FPGA + 4)             //    Установка частоты синхронизации. Используется в LoadTBase().
+#define WR_RAZV         ((uint16 *)(HAL_FMC::ADDR_FPGA + (0x01 << 1)))//    Установка частоты синхронизации. Используется в LoadTBase().
 #define WR_PRED_LOW     (HAL_FMC::ADDR_FPGA + 5)             //    Младший байт величины предзапуска. Используется совместно с WR_PRED_HI, WR_POST_LOW, WR_POST_HI для загрузки смещения по времени в ПЛИС. Используется в LoadTShift().
 #define WR_PRED_HI      (HAL_FMC::ADDR_FPGA + 6)             //    Старший байт величины предзапуска. Используется совместно с WR_PRED_LOW, WR_POST_LOW, WR_POST_HI для загрузки смещения по времени в ПЛИС. Используется в LoadTShift().
 #define WR_POST_LOW     (HAL_FMC::ADDR_FPGA + 7)             //    Младший байт величины послезапуска. Используется совместно с WR_PRED_LOW, WR_PRED_HI, WR_PRED_POST для загрузки смещения по времени в ПЛИС. Используется в LoadTShift().
