@@ -93,8 +93,8 @@ void FPGA::ProcedureCalibration(void)
         FPGA::SetRShift(Channel::B, RShiftZero);
         FPGA::SetModeCouple(Channel::A, ModeCouple::GND);
         FPGA::SetModeCouple(Channel::B, ModeCouple::GND);
-//        HAL_FMC::Write(WR_ADD_RSHIFT_DAC1, 0);
-//        HAL_FMC::Write(WR_ADD_RSHIFT_DAC2, 0);
+        HAL_FMC::Write(WR_ADD_RSHIFT_DAC1, 0);
+        HAL_FMC::Write(WR_ADD_RSHIFT_DAC2, 0);
 
         deltaADCPercentsOld[0] = CalculateDeltaADC(Channel::A, &avrADC1old[Channel::A], &avrADC2old[Channel::A], &deltaADCold[Channel::A]);
         deltaADCPercentsOld[1] = CalculateDeltaADC(Channel::B, &avrADC1old[Channel::B], &avrADC2old[Channel::B], &deltaADCold[Channel::B]);
@@ -184,8 +184,8 @@ void FPGA::ProcedureCalibration(void)
 
     SET_BALANCE_ADC_A = shiftADC0;
     SET_BALANCE_ADC_B = shiftADC1;
-//    HAL_FMC::Write(WR_ADD_RSHIFT_DAC1, (uint8)SET_BALANCE_ADC_A);
-//    HAL_FMC::Write(WR_ADD_RSHIFT_DAC2, (uint8)SET_BALANCE_ADC_B);
+    HAL_FMC::Write(WR_ADD_RSHIFT_DAC1, (uint8)SET_BALANCE_ADC_A);
+    HAL_FMC::Write(WR_ADD_RSHIFT_DAC2, (uint8)SET_BALANCE_ADC_B);
 
     FPGA::SetRShift(Channel::A, SET_RSHIFT_A);
     FPGA::SetRShift(Channel::B, SET_RSHIFT_B);
@@ -353,8 +353,8 @@ float CalculateDeltaADC(Channel::E chan, float *avgADC1, float *avgADC2, float *
     FPGA::SetTrigSource((TrigSource::E)chan);
     FPGA::SetTrigLev((TrigSource::E)chan, TrigLevZero);
 
-    uint16 *address1 = chan == Channel::A ? RD_ADC_A : RD_ADC_B;
-    uint16 *address2 = chan == Channel::A ? RD_ADC_B : RD_ADC_A;
+    uint16 *address1 = chan == Channel::A ? RD_ADC_A1 : RD_ADC_B1;
+    uint16 *address2 = chan == Channel::A ? RD_ADC_A2 : RD_ADC_B2;
 
     static const int numCicles = 10;
     for(int cicle = 0; cicle < numCicles; cicle++)
@@ -363,7 +363,7 @@ float CalculateDeltaADC(Channel::E chan, float *avgADC1, float *avgADC2, float *
         while(_GET_BIT(HAL_FMC::Read(RD_FL), 2) == 0) {};
         FPGA::SwitchingTrig();
         while(_GET_BIT(HAL_FMC::Read(RD_FL), 0) == 0) {};
-        HAL_FMC::Write(WR_RESET, 1);
+        HAL_FMC::Write(WR_STOP, 1);
 
         for(int i = 0; i < FPGA_MAX_POINTS; i++)
         {
@@ -371,13 +371,13 @@ float CalculateDeltaADC(Channel::E chan, float *avgADC1, float *avgADC2, float *
             {
                 *avgADC1 += HAL_FMC::Read(address1);
                 *avgADC2 += HAL_FMC::Read(address2);
-                HAL_FMC::Read(RD_ADC_B);
-//                HAL_FMC::Read(RD_ADC_B2);
+                HAL_FMC::Read(RD_ADC_B1);
+                HAL_FMC::Read(RD_ADC_B2);
             }
             else
             {
-                HAL_FMC::Read(RD_ADC_A);
-//                HAL_FMC::Read(RD_ADC_A2);
+                HAL_FMC::Read(RD_ADC_A1);
+                HAL_FMC::Read(RD_ADC_A2);
                 *avgADC1 += HAL_FMC::Read(address1);
                 *avgADC2 += HAL_FMC::Read(address2);
             }
@@ -402,8 +402,8 @@ void AlignmentADC(void)
     SET_BALANCE_ADC_A = shiftADC0;
     shiftADC1 = static_cast<int8>((deltaADCold[1] > 0.0F) ? (deltaADCold[1] + 0.5F) : (deltaADCold[1] - 0.5F));
     SET_BALANCE_ADC_B = shiftADC1;
-//    HAL_FMC::Write(WR_ADD_RSHIFT_DAC1, (uint8)SET_BALANCE_ADC_A);
-//    HAL_FMC::Write(WR_ADD_RSHIFT_DAC2, (uint8)SET_BALANCE_ADC_B);
+    HAL_FMC::Write(WR_ADD_RSHIFT_DAC1, (uint8)SET_BALANCE_ADC_A);
+    HAL_FMC::Write(WR_ADD_RSHIFT_DAC2, (uint8)SET_BALANCE_ADC_B);
 }
 
 
@@ -416,7 +416,7 @@ int16 CalculateAdditionRShift(Channel::E chan, Range::E range)
     FPGA::SetTrigPolarity(TrigPolarity::Front);
     FPGA::SetTrigLev((TrigSource::E)chan, TrigLevZero);
 
-    FPGA::WriteToHardware(WR_UPR, BIN_U8(00000000), false);   // Устанавливаем выход калибратора в ноль
+    FPGA::WriteToHardware(WR_UPR, BINARY_U8(00000000), false);   // Устанавливаем выход калибратора в ноль
 
     int numMeasures = 8;
     int sum = 0;
@@ -448,10 +448,10 @@ int16 CalculateAdditionRShift(Channel::E chan, Range::E range)
             return ERROR_VALUE_INT16;                       // выход с ошибкой.
         }
 
-        HAL_FMC::Write(WR_RESET, 1);
+        HAL_FMC::Write(WR_STOP, 1);
 
-        uint16 *addressRead1 = chan == Channel::A ? RD_ADC_A : RD_ADC_B;
-        uint16 *addressRead2 = chan == Channel::A ? RD_ADC_A : RD_ADC_B;
+        uint16 *addressRead1 = chan == Channel::A ? RD_ADC_A1 : RD_ADC_B1;
+        uint16 *addressRead2 = chan == Channel::A ? RD_ADC_A2 : RD_ADC_B2;
 
         for(int j = 0; j < FPGA_MAX_POINTS; j += 2)
         {
@@ -474,7 +474,7 @@ int16 CalculateAdditionRShift(Channel::E chan, Range::E range)
 
 float CalculateKoeffCalibration(Channel::E chan)
 {
-    FPGA::WriteToHardware(WR_UPR, BIN_U8(00000100), false);
+    FPGA::WriteToHardware(WR_UPR, BINARY_U8(00000100), false);
 
     FPGA::SetRShift(chan, RShiftZero - 40 * 4);
     FPGA::SetModeCouple(chan, ModeCouple::DC);
@@ -511,10 +511,10 @@ float CalculateKoeffCalibration(Channel::E chan)
             return ERROR_VALUE_FLOAT;
         }
 
-        HAL_FMC::Write(WR_RESET, 1);
+        HAL_FMC::Write(WR_STOP, 1);
 
-        uint16 *addressRead1 = chan == Channel::A ? RD_ADC_A : RD_ADC_B;
-        uint16 *addressRead2 = chan == Channel::A ? RD_ADC_A : RD_ADC_B;
+        uint16 *addressRead1 = chan == Channel::A ? RD_ADC_A1 : RD_ADC_B1;
+        uint16 *addressRead2 = chan == Channel::A ? RD_ADC_A2 : RD_ADC_B2;
 
         for(int j = 0; j < FPGA_MAX_POINTS; j += 2)
         {

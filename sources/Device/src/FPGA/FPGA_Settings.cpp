@@ -9,19 +9,19 @@
 
 static const uint8 masksRange[Range::Count] =
 {
-    BIN_U8(0000000),
-    BIN_U8(1000000),
-    BIN_U8(1100000),
-    BIN_U8(1010000),
-    BIN_U8(1000100),
-    BIN_U8(1100100),
-    BIN_U8(1010100),
-    BIN_U8(1000010),
-    BIN_U8(1100010),
-    BIN_U8(1010010),
-    BIN_U8(1000110),
-    BIN_U8(1100110),
-    BIN_U8(1010110)
+    BINARY_U8(0000000),
+    BINARY_U8(1000000),
+    BINARY_U8(1100000),
+    BINARY_U8(1010000),
+    BINARY_U8(1000100),
+    BINARY_U8(1100100),
+    BINARY_U8(1010100),
+    BINARY_U8(1000010),
+    BINARY_U8(1100010),
+    BINARY_U8(1010010),
+    BINARY_U8(1000110),
+    BINARY_U8(1100110),
+    BINARY_U8(1010110)
 };
 
 
@@ -33,6 +33,42 @@ struct TBaseMaskStruct
     uint8 maskNorm;         // Маска. Требуется для записи в аппаратную часть при выключенном режиме пикового детектора.
     uint8 maskPeackDet;     // Маска. Требуется для записи в аппаратную часть при включенном режиме пикового детектора.
 };
+
+static const TBaseMaskStruct masksTBase[TBase::Count] =
+{
+    {BINARY_U8(00000000), BINARY_U8(00000000)},
+    {BINARY_U8(00000000), BINARY_U8(00000000)},
+    {BINARY_U8(00000000), BINARY_U8(00000000)},
+    {BINARY_U8(00000000), BINARY_U8(00000000)},
+    {BINARY_U8(00000000), BINARY_U8(00000000)},
+    {BINARY_U8(00000000), BINARY_U8(00000000)},
+    {BINARY_U8(00100010), BINARY_U8(00000000)},
+    {BINARY_U8(00100001), BINARY_U8(00100011)},
+    {BINARY_U8(01000000), BINARY_U8(00100001)},
+    {BINARY_U8(01000010), BINARY_U8(01000000)},
+    {BINARY_U8(01000001), BINARY_U8(01000011)},
+    {BINARY_U8(01000100), BINARY_U8(01000001)},
+    {BINARY_U8(01000110), BINARY_U8(01000100)},
+    {BINARY_U8(01000101), BINARY_U8(01000111)},
+    {BINARY_U8(01001000), BINARY_U8(01000101)},
+    {BINARY_U8(01001010), BINARY_U8(01001000)},
+    {BINARY_U8(01001001), BINARY_U8(01001011)},
+    {BINARY_U8(01001100), BINARY_U8(01001001)},
+    {BINARY_U8(01001110), BINARY_U8(01001100)},
+    {BINARY_U8(01001101), BINARY_U8(01001111)},
+    {BINARY_U8(01010000), BINARY_U8(01001101)},
+    {BINARY_U8(01010010), BINARY_U8(01010000)},
+    {BINARY_U8(01010001), BINARY_U8(01010011)},
+    {BINARY_U8(01010100), BINARY_U8(01010001)},
+    {BINARY_U8(01010110), BINARY_U8(01010100)},
+    {BINARY_U8(01010101), BINARY_U8(01010111)},
+    {BINARY_U8(01011000), BINARY_U8(01010101)},
+    {BINARY_U8(01011010), BINARY_U8(01011000)},
+    {BINARY_U8(01011001), BINARY_U8(01011011)},
+    {BINARY_U8(01011100), BINARY_U8(01011001)}
+};
+
+
 
 void FPGA::LoadSettings()
 {
@@ -193,45 +229,9 @@ void FPGA::SetTBase(TBase::E tBase)
 
 void FPGA::LoadTBase()
 {
-    static const TBaseMaskStruct masksTBase[TBase::Count] =
-    {
-        {BIN_U8(00000000), BIN_U8(00000000)}, // 1ns
-        {BIN_U8(00000000), BIN_U8(00000000)}, // 2ns
-        {BIN_U8(00000000), BIN_U8(00000000)}, // 5ns
-        {BIN_U8(00000000), BIN_U8(00000000)}, // 10ns
-        {BIN_U8(00000000), BIN_U8(00000000)}, // 20ns
-        {BIN_U8(00000000), BIN_U8(00000000)}, // 50ns
-        {BIN_U8(00100001), BIN_U8(00100001)}, // 100ns
-        {BIN_U8(00100010), BIN_U8(00100010)}, // 200ns
-        {BIN_U8(00100011), BIN_U8(00100010)}, // 500ns
-        {BIN_U8(01000101), BIN_U8(00100011)}, // 1us
-        {BIN_U8(01000110), BIN_U8(01000101)}, // 2us
-        {BIN_U8(01000111), BIN_U8(01000110)}, // 5us
-        {BIN_U8(01001001), BIN_U8(01000111)}, // 10us
-        {BIN_U8(01001010), BIN_U8(01001001)}, // 20us
-        {BIN_U8(01001011), BIN_U8(01001010)}, // 50us
-        {BIN_U8(01001101), BIN_U8(01001011)}, // 100us
-        {BIN_U8(01001110), BIN_U8(01001101)}, // 200us
-        {BIN_U8(01001111), BIN_U8(01001110)}, // 500us
-        {BIN_U8(01010001), BIN_U8(01001111)}, // 1ms
-        {BIN_U8(01010010), BIN_U8(01010001)}, // 2ms
-        {BIN_U8(01010011), BIN_U8(01010010)}, // 5ms
-        {BIN_U8(01010101), BIN_U8(01010011)}, // 10ms
-        {BIN_U8(01010110), BIN_U8(01010101)}, // 20ms
-        {BIN_U8(01010111), BIN_U8(01010110)}, // 50ms
-        {BIN_U8(01011001), BIN_U8(01010111)}, // 100ms
-        {BIN_U8(01011010), BIN_U8(01011001)}, // 200ms
-        {BIN_U8(01011011), BIN_U8(01011010)}, // 500ms
-        {BIN_U8(01011101), BIN_U8(01011011)}, // 1s
-        {BIN_U8(01011110), BIN_U8(01011101)}, // 2s
-        {BIN_U8(01011111), BIN_U8(01011110)}, // 5s
-        {BIN_U8(01111111), BIN_U8(01011111)}  // 10s
-    };
-
-
     TBase::E tBase = SET_TBASE;
     uint8 mask = PEAKDET ? masksTBase[tBase].maskPeackDet : masksTBase[tBase].maskNorm;
-    Write(TypeRecord::FPGA, WR_RAZV, mask, true);
+    WriteToHardware(WR_RAZVERTKA, mask, true);
     ADD_SHIFT_T0 = deltaTShift[tBase];
 }
 
@@ -292,7 +292,6 @@ void FPGA::SetRShift(Channel::E chan, int16 rShift)
     }
 
     LIMITATION(rShift, rShift, RShiftMin, RShiftMax);
-
     if (rShift > RShiftZero)
     {
         rShift &= 0xfffe;                                            // Делаем кратным двум, т.к. у нас 800 значений на 400 точек
@@ -433,9 +432,9 @@ void FPGA::LoadRegUPR()
 }
 
 
-void FPGA::LoadKoeffCalibration(Channel::E /*chan*/)
+void FPGA::LoadKoeffCalibration(Channel::E chan)
 {
-//    FPGA::WriteToHardware(chan == Channel::A ? WR_CAL_A : WR_CAL_B, static_cast<uint8>(STRETCH_ADC(chan) * 0x80), false);
+    FPGA::WriteToHardware(chan == Channel::A ? WR_CAL_A : WR_CAL_B, static_cast<uint8>(STRETCH_ADC(chan) * 0x80), false);
 }
 
 
@@ -455,12 +454,12 @@ void FPGA::LoadTShift()
     FPGA::SetAdditionShift(additionShift);
     uint16 post = (uint16)tShift;
     post = (uint16)(~post);
-    WriteToHardware(WR_POST, (uint8)post, true);
-//    WriteToHardware(WR_POST_HI, (uint8)(post >> 8), true);
+    WriteToHardware(WR_POST_LOW, (uint8)post, true);
+    WriteToHardware(WR_POST_HI, (uint8)(post >> 8), true);
     uint16 pred = (uint16)((tShift > 511) ? 1023 : (511 - post));
     pred = (uint16)((~(pred - 1)) & 0x1ff);
-    WriteToHardware(WR_PRED, (uint8)pred, true);
-//    WriteToHardware(WR_PRED_HI, (uint8)(pred >> 8), true);
+    WriteToHardware(WR_PRED_LOW, (uint8)pred, true);
+    WriteToHardware(WR_PRED_HI, (uint8)(pred >> 8), true);
 }
 
 
@@ -525,7 +524,7 @@ void FPGA::SetTrigPolarity(TrigPolarity::E polarity)
 
 void FPGA::LoadTrigPolarity()
 {
-    WriteToHardware(WR_TRIG, TRIG_POLARITY_IS_FRONT ? 0x01U : 0x00U, true);
+    WriteToHardware(WR_TRIG_F, TRIG_POLARITY_IS_FRONT ? 0x01U : 0x00U, true);
 }
 
 

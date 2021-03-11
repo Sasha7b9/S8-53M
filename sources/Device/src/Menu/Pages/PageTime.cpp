@@ -42,13 +42,13 @@ void PageTime::OnChanged_PeakDet(bool active)
                 {0, SET_BALANCE_ADC_B, static_cast<int8>(BALANCE_ADC_B)}
             };
 
-//            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)shift[0][BALANCE_ADC_TYPE], false);
-//            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)shift[1][BALANCE_ADC_TYPE], false);
+            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)shift[0][BALANCE_ADC_TYPE], false);
+            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)shift[1][BALANCE_ADC_TYPE], false);
         }
         else
         {
-//            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, 3, false);     // Почему-то при пиковом детекторе смещение появляется. Вот его и компенсируем.
-//            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, 3, false);
+            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, 3, false);     // Почему-то при пиковом детекторе смещение появляется. Вот его и компенсируем.
+            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, 3, false);
         }
         if (PEAKDET_IS_DISABLE)
         {

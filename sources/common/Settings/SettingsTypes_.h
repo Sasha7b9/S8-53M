@@ -402,7 +402,6 @@ struct TrigModeFind { enum E
 // Масштаб по времени
 struct TBase { enum E
 {
-    _1ns,
     _2ns,
     _5ns,
     _10ns,

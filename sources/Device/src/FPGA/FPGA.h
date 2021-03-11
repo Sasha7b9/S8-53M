@@ -35,13 +35,6 @@ struct StateFPGA
 };
 
 
-struct TypeRecord { enum E {
-    FPGA,
-    Analog,
-    DAC
-};};
-
-
 class FPGA
 {
 public:
@@ -51,6 +44,12 @@ public:
     static void SetNumSignalsInSec(int numSigInSec);
 
     static void Update();
+    // Запись в регистр ПЛИС нового значения.
+    static void WriteToHardware				        
+                            (uint16 * const address,    // адрес регистра.
+                                uint16 value,    // записываемое значение.
+                                bool restart    // true означает, что после записи нужно запусить режим измерений, если до этого прибор не находился в режиме паузы.
+                            );
 
     static StateWorkFPGA FPGA_CurrentStateWork();
     // Запускает цикл сбора информации.
@@ -150,17 +149,6 @@ private:
     // Загрузить регистр WR_UPR (пиковый детектор и калибратор).
     static void LoadRegUPR();
 
-public:
-    // Запись в регистр ПЛИС нового значения.
-    // address - адрес регистра,
-    // value - записываемое значение,
-    // restart - true означает, что после записи нужно запусить режим измерений, если до этого прибор не находился в
-    // режиме паузы
-    static void WriteToHardware(uint16 *const address, uint16 value, bool restart);
-
-    static void Write(TypeRecord::E type, uint16 *address, uint data, bool restart);
-
-private:
     static void WriteToAnalog(TypeWriteAnalog::E type, uint data);
 
     static void WriteToDAC(TypeWriteDAC::E type, uint16 data);
