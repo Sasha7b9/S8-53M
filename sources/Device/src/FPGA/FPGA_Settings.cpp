@@ -413,25 +413,28 @@ void FPGA::SetCalibratorMode(CalibratorMode::E calibratorMode)
 
 void FPGA::LoadRegUPR()
 {
-    uint8 data = 0;
-    if (sTime_RandomizeModeEnabled())
+    uint16 data = 0;
+
+    if (IN_RANDOM_MODE)
     {
         _SET_BIT(data, 0);
     }
-    if (!PEAKDET_IS_DISABLE)
+
+    const uint16 mask[3] =
     {
-        _SET_BIT(data, 1);
-    }
-    if (CALIBRATOR_IS_FREQ)
+        (1 << UPR_BIT_CALIBRATOR_AC_DC),
+        (1 << UPR_BIT_CALIBRATOR_VOLTAGE),
+        (0)
+    };
+
+    data |= mask[CALIBRATOR];
+
+    if (PEAKDET_IS_ENABLE)
     {
-        _SET_BIT(data, 2);
-    }
-    else if (CALIBRATOR_IS_DC)
-    {
-        _SET_BIT(data, 3);
+        data |= (1 << UPR_BIT_PEAKDET);
     }
 
-    FPGA::WriteToHardware(WR_UPR, data, true);
+    Write(TypeRecord::FPGA, WR_UPR, data, false);
 }
 
 

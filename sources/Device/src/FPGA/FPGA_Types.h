@@ -78,6 +78,9 @@
                                                             D2, D3 - калибратор : D2 == 1 - 1кГц, D3 == 1 - пост, D2 == 0, D3 == 0 - ОВ
                                                             @endverbatim */
 #define WR_UPR          (HAL_FMC::ADDR_FPGA + 14)
+#define UPR_BIT_PEAKDET             1               // пиковый детектор - 0/1 выкл/вкл
+#define UPR_BIT_CALIBRATOR_AC_DC    2               // постоянное/переменное
+#define UPR_BIT_CALIBRATOR_VOLTAGE  3               // 0/4В
                                                     /** @brief Принудительное завершение цикла измерения. 
                                                         @verbatim
                                                         Для того, чтобы изменить режим работы ПЛИС, когда идёт цикл измерений, сначала нужно заслать по адресу WR_STOP 1, потом новые установки, а затем снова дать команду WR_START.
