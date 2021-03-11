@@ -51,13 +51,14 @@ public:
 
     static void Update();
     // Запись в регистр ПЛИС нового значения.
-    static void WriteToHardware				        
+    static void WriteToHardware
                             (uint16 * const address,    // адрес регистра.
                                 uint16 value,    // записываемое значение.
                                 bool restart    // true означает, что после записи нужно запусить режим измерений, если до этого прибор не находился в режиме паузы.
                             );
 
     static void Write(TypeRecord::E type, uint16 *address, uint data, bool restart);
+    static void Write(TypeRecord::E type, uint16 *address, uint data);
 
     static StateWorkFPGA FPGA_CurrentStateWork();
     // Запускает цикл сбора информации.

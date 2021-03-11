@@ -621,6 +621,33 @@ void FPGA::WriteToHardware(uint16 * const address, uint16 value, bool restart)
 }
 
 
+void FPGA::Write(TypeRecord::E type, uint16 *address, uint data, bool restart)
+{
+    if (restart)
+    {
+        Stop(true);
+        Write(type, address, data);
+        Start();
+    }
+    else
+    {
+        Write(type, address, data);
+    }
+
+
+    Panel::EnableLEDTrig(false); // После каждой засылки выключаем лампочку синхронизации
+}
+
+
+void FPGA::Write(TypeRecord::E type, uint16 *address, uint data)
+{
+    if (type == TypeRecord::FPGA)
+    {
+        *address = (uint16)data;
+    }
+}
+
+
 void ReadPoint(void)
 {
     if(_GET_BIT(ReadFlag(), BIT_POINT_READY))

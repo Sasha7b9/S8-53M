@@ -120,3 +120,9 @@ void FPGA::ClearData()
 {
 
 }
+
+
+void FPGA::Write(TypeRecord::E, uint16 *, uint, bool)
+{
+
+}
