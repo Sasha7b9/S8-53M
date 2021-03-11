@@ -61,17 +61,11 @@
 #define SHIFT(x) (0x02 * (x))
 
 
-#define WR_START        (HAL_FMC::ADDR_FPGA + SHIFT(0))     //    Запуск цикла измерения. Для запуска нужно записать 1.
-#define WR_RAZV         (HAL_FMC::ADDR_FPGA + SHIFT(1))    //    Установка частоты синхронизации. Используется в LoadTBase().
+#define WR_START        (HAL_FMC::ADDR_FPGA + SHIFT(0))
+#define WR_RAZV         (HAL_FMC::ADDR_FPGA + SHIFT(1))
 #define WR_PRED         (HAL_FMC::ADDR_FPGA + SHIFT(2))
 #define WR_POST         (HAL_FMC::ADDR_FPGA + SHIFT(3))
-                                                    /**     @brief Выбор фронта/спада импульса синхронизации и режимов AUTO/RUN.
-                                                            @verbatim
-                                                            D0 - фронт/спад,\n
-                                                            D1 - AUTO/RUN.\n
-                                                            Используется в LoadTrigPolarity(). 
-                                                            @endverbatim */
-#define WR_TRIG         ((uint16 *)(HAL_FMC::ADDR_FPGA + (0x04 << 1)))
+#define WR_TRIG         (HAL_FMC::ADDR_FPGA + SHIFT(4))
 #define WR_CAL_A        (HAL_FMC::ADDR_FPGA + 12)            //    Калибровочный коэффициент канала 1.
 #define WR_CAL_B        (HAL_FMC::ADDR_FPGA + 13)            //    Калибровочный коэффициент канала 2.
                                                     /**     @brief Управление калибратором, пиковым детектором и рандомизатором.
