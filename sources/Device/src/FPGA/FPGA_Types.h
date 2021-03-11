@@ -58,10 +58,13 @@
 #define FPGA_MAX_POINTS_FOR_CALCULATE 900
 
 
-#define WR_START        (HAL_FMC::ADDR_FPGA)                 //    Запуск цикла измерения. Для запуска нужно записать 1.
-#define WR_RAZV         ((uint16 *)(HAL_FMC::ADDR_FPGA + (0x01 << 1)))//    Установка частоты синхронизации. Используется в LoadTBase().
-#define WR_PRED         ((uint16 *)(HAL_FMC::ADDR_FPGA + (0x02 << 1)))
-#define WR_POST         ((uint16 *)(HAL_FMC::ADDR_FPGA + (0x03 << 1)))
+#define SHIFT(x) (0x02 * (x))
+
+
+#define WR_START        (HAL_FMC::ADDR_FPGA + SHIFT(0))     //    Запуск цикла измерения. Для запуска нужно записать 1.
+#define WR_RAZV         (HAL_FMC::ADDR_FPGA + SHIFT(1))    //    Установка частоты синхронизации. Используется в LoadTBase().
+#define WR_PRED         (HAL_FMC::ADDR_FPGA + SHIFT(2))
+#define WR_POST         (HAL_FMC::ADDR_FPGA + SHIFT(3))
                                                     /**     @brief Выбор фронта/спада импульса синхронизации и режимов AUTO/RUN.
                                                             @verbatim
                                                             D0 - фронт/спад,\n
