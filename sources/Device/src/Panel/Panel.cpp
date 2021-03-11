@@ -320,13 +320,13 @@ void Panel::EnableLEDTrig(bool enable)
     {
         Panel::TransmitData(LED_TRIG_DISABLE);
         Display::EnableTrigLabel(false);
-        timeEnable = gTimerMS;
+        timeEnable = TIME_MS;
         first = false;
     }
 
     if(enable)
     {
-        timeEnable = gTimerMS;
+        timeEnable = TIME_MS;
     }
 
     if(enable != fired)
@@ -337,7 +337,7 @@ void Panel::EnableLEDTrig(bool enable)
             Display::EnableTrigLabel(true);
             fired = true;
         }
-        else if(gTimerMS - timeEnable > 100)
+        else if(TIME_MS - timeEnable > 100)
         {
             Panel::TransmitData(LED_TRIG_DISABLE);
             Display::EnableTrigLabel(false);
@@ -498,14 +498,14 @@ static bool CanChangeRShiftOrTrigLev(TrigSource::E channel, int16 rShift)
     static uint time[3] = { 0, 0, 0 };
     if (rShift == RShiftZero)
     {
-        time[channel] = gTimerMS;
+        time[channel] = TIME_MS;
         return true;
     }
     else if (time[channel] == 0)
     {
         return true;
     }
-    else if (gTimerMS - time[channel] > MIN_TIME)
+    else if (TIME_MS - time[channel] > MIN_TIME)
     {
         time[channel] = 0;
         return true;
@@ -516,7 +516,7 @@ static bool CanChangeRShiftOrTrigLev(TrigSource::E channel, int16 rShift)
 
 int CalculateCount(int *prevTime)
 {
-    uint time = gTimerMS;
+    uint time = TIME_MS;
     uint delta = time - *prevTime;
     *prevTime = (int)time;
 
@@ -664,14 +664,14 @@ static bool CanChangeTShift(int16 tShift)
     static uint time = 0;
     if (tShift == 0)
     {
-        time = gTimerMS;
+        time = TIME_MS;
         return true;
     }
     else if (time == 0)
     {
         return true;
     }
-    else if (gTimerMS - time > MIN_TIME)
+    else if (TIME_MS - time > MIN_TIME)
     {
         time = 0;
         return true;

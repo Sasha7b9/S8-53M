@@ -72,7 +72,6 @@
                                                             D1 - AUTO/RUN.\n
                                                             Используется в LoadTrigPolarity(). 
                                                             @endverbatim */
-#define WR_TRIG_F       (HAL_FMC::ADDR_FPGA + 9)
 #define WR_TRIG         ((uint16 *)(HAL_FMC::ADDR_FPGA + (0x04 << 1)))
 #define WR_CAL_A        (HAL_FMC::ADDR_FPGA + 12)            //    Калибровочный коэффициент канала 1.
 #define WR_CAL_B        (HAL_FMC::ADDR_FPGA + 13)            //    Калибровочный коэффициент канала 2.

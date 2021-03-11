@@ -56,7 +56,7 @@ void LAN::Init(void)
 
 void LAN::Update(uint timeMS)
 {
-    uint time = gTimerMS;
+    uint time = TIME_MS;
 
     do 
     {
@@ -64,7 +64,7 @@ void LAN::Update(uint timeMS)
 
         ethernetif_input(&gnetif);
         sys_check_timeouts();
-    } while (gTimerMS - time < timeMS);
+    } while (TIME_MS - time < timeMS);
 }
 
 

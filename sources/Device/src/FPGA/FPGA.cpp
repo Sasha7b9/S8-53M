@@ -25,6 +25,8 @@ int gAddNStop = 0;
 uint16 gPost = 1024;
 int16 gPred = 1024;
 
+volatile static uint timeSwitchingTrig = 0;
+
 
 volatile static int numberMeasuresForGates = 1000;
 
@@ -105,16 +107,28 @@ void FPGA::Start(void)
     }
     HAL_FMC::Write(WR_START, 1);
     FillDataPointer(&ds);
-    timeStart = gTimerMS;
+    timeStart = TIME_MS;
     stateWork = StateWorkFPGA::Wait;
     criticalSituation = false;
 }
 
 
-void FPGA::SwitchingTrig(void)
+void FPGA::SwitchingTrig()
 {
-    HAL_FMC::Write(WR_TRIG_F, TRIG_POLARITY_IS_FRONT ? 0x00U : 0x01U);
-    HAL_FMC::Write(WR_TRIG_F, TRIG_POLARITY_IS_FRONT ? 0x01U : 0x00U);
+    if (TRIG_POLARITY_IS_FRONT)
+    {
+        *WR_TRIG = 0;
+        *WR_TRIG = 1;
+    }
+    else
+    {
+        *WR_TRIG = 1;
+        *WR_TRIG = 0;
+    }
+
+    timeSwitchingTrig = TIME_MS;
+
+    Panel::EnableLEDTrig(false);
 }
 
 
@@ -129,7 +143,7 @@ bool FPGA::ProcessingData(void)
         uint8 flag = ReadFlag();
         if (criticalSituation)
         {
-            if (gTimerMS - timeStart > 500)
+            if (TIME_MS - timeStart > 500)
             {
                 SwitchingTrig();
                 trigAutoFind = true;
@@ -169,7 +183,7 @@ bool FPGA::ProcessingData(void)
                 {
                     criticalSituation = true;
                 }
-                timeStart = gTimerMS;
+                timeStart = TIME_MS;
             }
         }
         Panel::EnableLEDTrig(_GET_BIT(flag, BIT_TRIG) ? true : false);
@@ -464,9 +478,9 @@ void FPGA::DataRead(bool necessaryShift, bool saveToStorage)
 
     static uint prevTime = 0;
 
-    if (saveToStorage || (gTimerMS - prevTime > 500))
+    if (saveToStorage || (TIME_MS - prevTime > 500))
     {
-        prevTime = gTimerMS;
+        prevTime = TIME_MS;
         if (!sTime_RandomizeModeEnabled())
         {
             InverseDataIsNecessary(Channel::A, dataRel0);
@@ -826,13 +840,13 @@ static float CalculateFreqFromCounterFreq(void)
 
 static float CalculateFreqFromCounterPeriod(void)
 {
-    uint time = gTimerMS;
-    while (gTimerMS - time < 1000 && _GET_BIT(HAL_FMC::Read(RD_FL), BIT_PERIOD_READY) == 0) {};
+    uint time = TIME_MS;
+    while (TIME_MS - time < 1000 && _GET_BIT(HAL_FMC::Read(RD_FL), BIT_PERIOD_READY) == 0) {};
     ReadRegPeriod();
-    time = gTimerMS;
-    while (gTimerMS - time < 1000 && _GET_BIT(HAL_FMC::Read(RD_FL), BIT_PERIOD_READY) == 0) {};
+    time = TIME_MS;
+    while (TIME_MS - time < 1000 && _GET_BIT(HAL_FMC::Read(RD_FL), BIT_PERIOD_READY) == 0) {};
     BitSet32 period = ReadRegPeriod();
-    if (period.word > 0 && (gTimerMS - time < 1000))
+    if (period.word > 0 && (TIME_MS - time < 1000))
     {
         return PeriodCounterToValue(&period);
     }

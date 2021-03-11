@@ -21,7 +21,7 @@ void VCP::Init()
 
 void VCP::SendDataAsinch(pUCHAR buffer, int size)
 {
-    lastTimeSend = gTimerMS;
+    lastTimeSend = TIME_MS;
 
     const int SIZE_BUFFER = 64;
     static uint8 trBuf[SIZE_BUFFER];
@@ -53,7 +53,7 @@ void VCP::SendDataSynch(pUCHAR buffer, int size)
         return;
     }
 
-    lastTimeSend = gTimerMS;
+    lastTimeSend = TIME_MS;
 
     do 
     {
@@ -118,7 +118,7 @@ void VCP::SendFormatStringSynch(char *format, ...) {
 
 void VCP::Update()
 {
-    if(gTimerMS - lastTimeSend > 1000)
+    if(TIME_MS - lastTimeSend > 1000)
     {
         LOG_WRITE("Долго нет засылок");
     }

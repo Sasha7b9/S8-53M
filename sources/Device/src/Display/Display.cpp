@@ -2163,7 +2163,7 @@ void Display::DrawLowPart()
     }
 
     // Ethernet
-    if ((LAN::clientIsConnected || LAN::cableIsConnected) && gTimerMS > 2000)
+    if ((LAN::clientIsConnected || LAN::cableIsConnected) && TIME_MS > 2000)
     {
         Char(Symbol::S8::ETHERNET).Draw4SymbolsInRect(x + 87, Grid::Bottom() + 2, LAN::clientIsConnected ? Color::FILL : Color::FLASH_01);
     }
@@ -2203,16 +2203,16 @@ void Display::DrawTimeForFrame(uint timeTicks)
     static float numMS = 0.0F;
     if(first)
     {
-        timeMSstartCalculation = gTimerMS;
+        timeMSstartCalculation = TIME_MS;
         first = false;
     }
     numMS += timeTicks / 120000.0F;
     numFrames++;
     
-    if((gTimerMS - timeMSstartCalculation) >= 500)
+    if((TIME_MS - timeMSstartCalculation) >= 500)
     {
         std::sprintf(buffer, "%.1fms/%d", numMS / numFrames, numFrames * 2);
-        timeMSstartCalculation = gTimerMS;
+        timeMSstartCalculation = TIME_MS;
         numMS = 0.0F;
         numFrames = 0;
     }
@@ -2526,12 +2526,12 @@ void Display::ShowWarn(const char *message)
         if (warnings[i] == 0 && !alreadyStored)
         {
             warnings[i] = message;
-            timeWarnings[i] = gTimerMS;
+            timeWarnings[i] = TIME_MS;
             alreadyStored = true;
         }
         else if (warnings[i] == message)
         {
-            timeWarnings[i] = gTimerMS;
+            timeWarnings[i] = TIME_MS;
             return;
         }
     }
@@ -2540,7 +2540,7 @@ void Display::ShowWarn(const char *message)
 
 void Display::OnTimerShowWarning()
 {
-    uint time = gTimerMS;
+    uint time = TIME_MS;
     for (int i = 0; i < NUM_WARNINGS; i++)
     {
         if (time - timeWarnings[i] > static_cast<uint>(TIME_MESSAGES * 1000))

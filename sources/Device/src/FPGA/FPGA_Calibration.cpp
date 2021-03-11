@@ -220,7 +220,7 @@ void FuncAttScreen(void)
     if(first)
     {
         first = false;
-        startTime = gTimerMS;
+        startTime = TIME_MS;
     }
     int16 y = 10;
     Display::Clear();
@@ -299,7 +299,7 @@ void FuncAttScreen(void)
     }
     */
     char buffer[100];
-    std::sprintf(buffer, "%.1f", (gTimerMS - startTime) / 1000.0F);
+    std::sprintf(buffer, "%.1f", (TIME_MS - startTime) / 1000.0F);
     Text(buffer).Draw(0, 0, Color::BLACK);
 
     Painter::SendFrame();
@@ -344,7 +344,7 @@ void DrawParametersChannel(Channel::E chan, int eX, int eY, bool inProgress)
 float CalculateDeltaADC(Channel::E chan, float *avgADC1, float *avgADC2, float *delta)
 {
     uint *startTime = (chan == Channel::A) ? &startTimeChan0 : &startTimeChan1;
-    *startTime = gTimerMS;
+    *startTime = TIME_MS;
     
     ProgressBar *bar = (chan == Channel::A) ? &bar0 : &bar1;
     bar->passedTime = 0;
@@ -383,7 +383,7 @@ float CalculateDeltaADC(Channel::E chan, float *avgADC1, float *avgADC2, float *
             }
         }
         
-        bar->passedTime = static_cast<float>(gTimerMS - *startTime);
+        bar->passedTime = static_cast<float>(TIME_MS - *startTime);
         bar->fullTime = bar->passedTime * (float)numCicles / (cicle + 1);
     }
 
@@ -422,28 +422,28 @@ int16 CalculateAdditionRShift(Channel::E chan, Range::E range)
     int sum = 0;
     int numPoints = 0;
 
-    uint time = gTimerMS;
+    uint time = TIME_MS;
 
-    while(gTimerMS - time < 50) {};
+    while(TIME_MS - time < 50) {};
 
     for(int i = 0; i < numMeasures; i++)
     {
-        uint startTime = gTimerMS;
+        uint startTime = TIME_MS;
         const uint timeWait = 100;
 
         HAL_FMC::Write(WR_START, 1);
-        while(_GET_BIT(HAL_FMC::Read(RD_FL), 2) == 0 && (gTimerMS - startTime < timeWait)) {};
-        if(gTimerMS - startTime > timeWait)                 // Если прошло слишком много времени - 
+        while(_GET_BIT(HAL_FMC::Read(RD_FL), 2) == 0 && (TIME_MS - startTime < timeWait)) {};
+        if(TIME_MS - startTime > timeWait)                 // Если прошло слишком много времени - 
         {
             return ERROR_VALUE_INT16;                       // выход с ошибкой.
         }
 
         FPGA::SwitchingTrig();
 
-        startTime = gTimerMS;
+        startTime = TIME_MS;
 
-        while(_GET_BIT(HAL_FMC::Read(RD_FL), 0) == 0 && (gTimerMS - startTime < timeWait)) {};
-        if(gTimerMS - startTime > timeWait)                 // Если прошло слишком много времени - 
+        while(_GET_BIT(HAL_FMC::Read(RD_FL), 0) == 0 && (TIME_MS - startTime < timeWait)) {};
+        if(TIME_MS - startTime > timeWait)                 // Если прошло слишком много времени - 
         {
             return ERROR_VALUE_INT16;                       // выход с ошибкой.
         }
@@ -489,24 +489,24 @@ float CalculateKoeffCalibration(Channel::E chan)
 
     for(int i = 0; i < numMeasures; i++)
     {
-        uint startTime = gTimerMS;
+        uint startTime = TIME_MS;
         const uint timeWait = 1000;
 
-        while(gTimerMS - startTime < 20) {}
-        startTime = gTimerMS;
+        while(TIME_MS - startTime < 20) {}
+        startTime = TIME_MS;
 
         HAL_FMC::Write(WR_START, 1);
-        while(_GET_BIT(HAL_FMC::Read(RD_FL), 2) == 0 && (gTimerMS - startTime > timeWait)) {};
-        if(gTimerMS - startTime > timeWait)
+        while(_GET_BIT(HAL_FMC::Read(RD_FL), 2) == 0 && (TIME_MS - startTime > timeWait)) {};
+        if(TIME_MS - startTime > timeWait)
         {
             return ERROR_VALUE_FLOAT;
         }
 
         FPGA::SwitchingTrig();
-        startTime = gTimerMS;
+        startTime = TIME_MS;
 
-        while(_GET_BIT(HAL_FMC::Read(RD_FL), 0) == 0 && (gTimerMS - startTime > timeWait)) {};
-        if(gTimerMS - startTime > timeWait)
+        while(_GET_BIT(HAL_FMC::Read(RD_FL), 0) == 0 && (TIME_MS - startTime > timeWait)) {};
+        if(TIME_MS - startTime > timeWait)
         {
             return ERROR_VALUE_FLOAT;
         }

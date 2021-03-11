@@ -60,7 +60,7 @@ static void DrawPageDescription()
 
 void PageHelpContent::Draw()
 {
-    uint startTime = gTimerMS;
+    uint startTime = TIME_MS;
     Region(319 - Grid::Right(), 20).Fill(Grid::Right(), 0, Color::BACK);
     Region(319 - Grid::Right(), 21).Fill(Grid::Right(), 219);
     Region(WIDTH, 237).Fill(1, 1);
@@ -74,7 +74,7 @@ void PageHelpContent::Draw()
     {
         DrawPageDescription();
     }
-    Text("%d", gTimerMS - startTime).Draw(2, 230, Color::FILL);
+    Text("%d", TIME_MS - startTime).Draw(2, 230, Color::FILL);
 }
 
 static int NumParagraphs(const PageHelpItem *page)
