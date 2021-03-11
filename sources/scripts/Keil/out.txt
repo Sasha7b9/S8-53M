@@ -1,3 +1,0 @@
-Load "D:\\Projects\\stm32\\S8-53M\\sources\\Panel\\Objects\\Panel.axf" 
-Erase Done.Programming Done.Application running ...
-Flash Load finished at 09:19:58

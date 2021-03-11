@@ -24,9 +24,9 @@ void Device::Init()
 {
     HAL::Init();
     Panel::Init();
-//  FDrive::Init();
+//    FDrive::Init();
 //    VCP::Init();
-//    Settings::Load(false);
+    Settings::Load(false);
     FPGA::Init();
     HAL_TIM2::Delay(250);
 //    FPGA::OnPressStartStop();

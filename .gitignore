@@ -5,6 +5,8 @@ archive.zip
 
 sources/generated/*
 
+sources/scripts/Keil/out.txt
+
 sources/DLoader/Objects/*
 sources/DLoader/Objects-Debug/*
 sources/DLoader/Listings/*
