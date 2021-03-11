@@ -14,5 +14,8 @@
 #define IS_SHOW_REG_TBASE       (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.tBase)
 
 
+#define PRETRIGGERED            (set.debug.pretriggered)
+
+
 int  sDebug_GetSizeFontForConsole();        // Возвращает размер шрифта, которым нужно выводить сообщения в консоли.
 

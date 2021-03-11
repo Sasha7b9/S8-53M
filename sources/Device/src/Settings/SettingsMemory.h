@@ -33,6 +33,9 @@
 #define MODE_SAVE_SIGNAL            (set.memory.modeSaveSignal)                     // SettingsMemory.modeSaveSignal
 #define MODE_SAVE_SIGNAL_IS_BMP     (MODE_SAVE_SIGNAL == ModeSaveSignal::BMP)
 
+#define SET_POINTS_IN_CHANNEL       1024
+#define NUM_BYTES_SET               1024
+
 
 struct StructMemoryLast
 {

@@ -7,6 +7,16 @@ static int additionShift = 0;
 
 StateFPGA FPGA::state;
 
+uint16 gPost = 1024;
+int16 gPred = 1024;
+int gAddNStop = 0;
+bool FPGA::inProcessingOfRead = false;
+int FPGA::addShiftForFPGA = 0;
+extern const int Kr[];
+
+#define N_KR 100
+const int Kr[] = { N_KR / 1, N_KR / 2, N_KR / 5, N_KR / 10, N_KR / 20 };
+
 
 void FPGA::WriteToDAC(TypeWriteDAC::E, uint16)
 {

@@ -179,6 +179,7 @@ struct SettingsDebug
     bool              viewAllAlteraWrittingData;  // \brief Показывать ли все данные, идущие в альтеру (если false, то постоянно идущие команды вроде 
                                                   // START, STOP не показываются).
     int16             altShift;                   // Добавочное смещение для устранения эффекта горизонтальной помехи синхронизации.
+    int16             pretriggered;               // Регулируемая величина предзапуска для исследования рандомизатора.
     OutputRegisters   showRegisters;
 };
 

@@ -6,6 +6,13 @@
 
 struct DataSettings;
 
+extern uint16 gPost;
+extern int16 gPred;
+extern int gAddNStop;
+
+
+#define FPGA_IN_PROCESS_OF_READ (FPGA::inProcessingOfRead)
+
 
 struct StateWorkFPGA { enum E {
     Stop,    // СТОП - не занимается считыванием информации.
@@ -44,6 +51,8 @@ struct TypeRecord { enum E {
 class FPGA
 {
 public:
+
+    static bool inProcessingOfRead;
 
     static void Init();
     // Установить количество считываемых сигналов в секунду.
@@ -137,6 +146,8 @@ public:
     static StateWorkFPGA::E CurrentStateWork();
 
     static StateFPGA state;
+
+    static int addShiftForFPGA;
 
 private:
     // Загрузить настройки в аппаратную часть из глобальной структуры SSettings.

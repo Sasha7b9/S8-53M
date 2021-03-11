@@ -28,6 +28,9 @@ static const uint8 masksRange[Range::Count] =
 // Добавочные смещения по времени для разверёток режима рандомизатора.
 static int16 deltaTShift[TBase::Count] = {505, 489, 464, 412, 258};
 
+/// Добавочные смещения по времени для разверёток режима рандомизатора.
+static int16 timeCompensation[TBase::Count] = { 550, 275, 120, 55, 25, 9, 4, 1 };
+
 
 void FPGA::LoadSettings()
 {
@@ -440,26 +443,66 @@ void FPGA::LoadKoeffCalibration(Channel::E chan)
 
 void FPGA::LoadTShift()
 {
-    static const int16 k[TBase::Count] = {50, 20, 10, 5, 2};
-    int16 tShift = TSHIFT - sTime_TShiftMin() + 1;
-    int16 tShiftOld = tShift;
     TBase::E tBase = SET_TBASE;
-    if (tBase < TBase::_100ns)
-    {
-        tShift = tShift / k[tBase] + deltaTShift[tBase];
-    }
-    
-    int additionShift = (k[tBase] == 0) ? 0 : ((tShiftOld % k[tBase]) * 2);
+    int tShift = TSHIFT - sTime_TShiftMin() + timeCompensation[tBase];
 
-    FPGA::SetAdditionShift(additionShift);
-    uint16 post = (uint16)tShift;
-    post = (uint16)(~post);
-    WriteToHardware(WR_POST_LOW, (uint8)post, true);
-    WriteToHardware(WR_POST_HI, (uint8)(post >> 8), true);
-    uint16 pred = (uint16)((tShift > 511) ? 1023 : (511 - post));
-    pred = (uint16)((~(pred - 1)) & 0x1ff);
-    WriteToHardware(WR_PRED_LOW, (uint8)pred, true);
-    WriteToHardware(WR_PRED_HI, (uint8)(pred >> 8), true);
+    gPost = (uint16)tShift;
+
+    if (IN_RANDOM_MODE)
+    {
+        extern const int Kr[];
+        int k = 0;
+        if (SET_TPOS_IS_LEFT)
+        {
+            k = SET_POINTS_IN_CHANNEL % Kr[tBase];
+        }
+        else if (SET_TPOS_IS_CENTER)
+        {
+            k = (SET_POINTS_IN_CHANNEL / 2) % Kr[tBase];
+        }
+
+        gPost = (uint16)((2 * gPost - k) / Kr[tBase]);
+
+        addShiftForFPGA = (TSHIFT * 2) % Kr[tBase];
+        if (addShiftForFPGA < 0)
+        {
+            addShiftForFPGA = Kr[tBase] + addShiftForFPGA;
+        }
+        gPred = ~(PRETRIGGERED);
+    }
+    else
+    {
+        gPred = (int16)NUM_BYTES_SET / 2 - (int16)gPost;
+
+        if (gPred < 0)
+        {
+            gPred = 0;
+        }
+        gPred = ~(gPred + 3);
+    }
+
+    if (tShift < 0)
+    {
+        gPost = 0;
+        gAddNStop = -tShift;
+    }
+    else
+    {
+        gAddNStop = 0;
+    }
+
+    gPost = (uint16)(~(gPost + 1));                   // Здесь просто для записи в железо дополняем
+
+    if (!FPGA_IN_PROCESS_OF_READ)
+    {
+        if (SET_TBASE > 8)
+        {
+            ++gPost;
+            --gPred;
+        }
+        Write(TypeRecord::FPGA, WR_POST, gPost, true);
+        Write(TypeRecord::FPGA, WR_PRED, (uint)gPred, true);
+    }
 }
 
 

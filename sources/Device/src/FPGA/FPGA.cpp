@@ -19,11 +19,20 @@ static float prevFreq = 0.0F;
 static StateWorkFPGA::E stateWork = StateWorkFPGA::Stop;
 
 
+bool FPGA::inProcessingOfRead = false;
+int FPGA::addShiftForFPGA = 0;
+int gAddNStop = 0;
+uint16 gPost = 1024;
+int16 gPred = 1024;
+
+
 volatile static int numberMeasuresForGates = 1000;
 
 static int additionShift = 0;
-#define n 200
-static const int Kr[] = {n / 2, n / 5, n / 10, n / 20, n / 50};
+
+extern const int Kr[];
+#define N_KR 100
+const int Kr[] = { N_KR / 1, N_KR / 2, N_KR / 5, N_KR / 10, N_KR / 20 };
 
 static DataSettings ds;
 
@@ -43,7 +52,6 @@ static uint timeStart = 0;
 static bool trigAutoFind = false;               // Установленное в 1 значение означает, что нужно производить автоматический поиск синхронизации, если выбрана соответствующая настройка.
 static bool autoFindInProgress = false;
 static bool temporaryPause = false;
-static bool inProcessingOfRead = false;
 static bool canReadData = true;
 static bool criticalSituation = false;
 static bool firstAfterWrite = false;            // Используется в режиме рандомизатора. После записи любого параметра в альтеру нужно не использовать первое считанное данное с АЦП, потому что оно завышено и портит ворота
