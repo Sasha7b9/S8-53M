@@ -36,10 +36,10 @@ void FPGA::LoadSettings()
 {
     LoadTBase();
     LoadTShift();
-//    LoadRange(A);
-//    LoadRShift(A);
-//    LoadRange(B);
-//    LoadRShift(B);
+    LoadRange(Channel::A);
+    LoadRShift(Channel::A);
+    LoadRange(Channel::B);
+    LoadRShift(Channel::B);
     LoadTrigLev();
     LoadTrigPolarity();
     LoadRegUPR();
