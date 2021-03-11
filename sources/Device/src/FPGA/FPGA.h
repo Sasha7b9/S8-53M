@@ -1,6 +1,5 @@
 #pragma once
 #include "FPGA_Types.h"
-//#include "common/Keyboard/Controls_.h"
 #include "Settings/SettingsTrig.h"
 #include "Settings/SettingsService.h"
 
@@ -35,6 +34,13 @@ struct StateFPGA
 };
 
 
+struct TypeRecord { enum E {
+    FPGA,
+    Analog,
+    DAC
+}; };
+
+
 class FPGA
 {
 public:
@@ -50,6 +56,8 @@ public:
                                 uint16 value,    // записываемое значение.
                                 bool restart    // true означает, что после записи нужно запусить режим измерений, если до этого прибор не находился в режиме паузы.
                             );
+
+    static void Write(TypeRecord::E type, uint16 *address, uint data, bool restart);
 
     static StateWorkFPGA FPGA_CurrentStateWork();
     // Запускает цикл сбора информации.
