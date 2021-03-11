@@ -41,6 +41,8 @@ void *HAL_RTC::handle = &handleRTC;
 
 void HAL_RTC::Init()
 {
+    __HAL_RCC_RTC_ENABLE();
+
     RCC_OscInitTypeDef oscIS;
     RCC_PeriphCLKInitTypeDef periphClkIS;
 
