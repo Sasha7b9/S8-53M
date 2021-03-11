@@ -73,7 +73,7 @@ struct StructRelAbs
   (((uint8)((uint)bits / 01000000)  % 010) << 6) |  \
   (((uint8)((uint)bits / 010000000) % 010) << 7)))
 
-#define BINARY_U8( bits ) _bitset(0##bits)
+#define BIN_U8( bits ) _bitset(0##bits)
 
 #define DISABLE_RU  "Откл"
 #define DISABLE_EN  "Disable"
