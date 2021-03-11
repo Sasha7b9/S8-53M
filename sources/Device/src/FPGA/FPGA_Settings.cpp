@@ -28,12 +28,6 @@ static const uint8 masksRange[Range::Count] =
 // Добавочные смещения по времени для разверёток режима рандомизатора.
 static int16 deltaTShift[TBase::Count] = {505, 489, 464, 412, 258};
 
-struct TBaseMaskStruct
-{
-    uint8 maskNorm;         // Маска. Требуется для записи в аппаратную часть при выключенном режиме пикового детектора.
-    uint8 maskPeackDet;     // Маска. Требуется для записи в аппаратную часть при включенном режиме пикового детектора.
-};
-
 
 void FPGA::LoadSettings()
 {
@@ -194,6 +188,12 @@ void FPGA::SetTBase(TBase::E tBase)
 
 void FPGA::LoadTBase()
 {
+    struct TBaseMaskStruct
+    {
+        uint8 maskNorm;      // Маска. Требуется для записи в аппаратную часть при выключенном режиме пикового детектора
+        uint8 maskPeackDet;  // Маска. Требуется для записи в аппаратную часть при включенном режиме пикового детектора
+    };
+
     static const TBaseMaskStruct masksTBase[TBase::Count] =
     {
         {BIN_U8(00000000), BIN_U8(00000000)}, // 1ns
