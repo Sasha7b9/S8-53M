@@ -14,7 +14,8 @@ int sMemory_GetNumPoints(bool forCalculate)
 
     if (ENUM_POINTS_IS_1024 && forCalculate)
     {
-        return FPGA_MAX_POINTS_FOR_CALCULATE;
+        return 1024;
+//        return FPGA_MAX_POINTS_FOR_CALCULATE;
     }
 
     return numPoints[PEAKDET][ENUM_POINTS];

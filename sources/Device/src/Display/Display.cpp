@@ -8,6 +8,7 @@
 #include "common/Hardware/Timer_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Display.h"
+#include "Display/Grid.h"
 #include "FDrive/FDrive.h"
 #include "FPGA/DataSettings.h"
 #include "FPGA/FPGA_Types.h"
@@ -1711,7 +1712,8 @@ void Display::DrawCursorRShift(Channel::E chan)
 
     int rShift = SET_RSHIFT(chan);
  
-    float scale = Grid::ChannelHeight() / (STEP_RSHIFT * 200.0F);
+    float scale = Grid::ChannelHeight() / (((RSHIFT_IN_CELL) / 20) * 200.0f);   // float scale = Grid::ChannelHeight() / (STEP_RSHIFT * 200.0F);
+
     float y = Grid::ChannelCenterHeight() - scale * (rShift - RShiftZero);
 
     if(y > Grid::ChannelBottom())

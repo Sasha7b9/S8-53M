@@ -14,7 +14,7 @@
 // Сколько точек смещения в одной клетке
 #define RSHIFT_IN_CELL (((RShiftMax) - (RShiftMin)) / 24)
 // На столько единиц нужно изменить значение смещения, чтобы маркер смещения по напряжению передвинулся на одну точку
-#define STEP_RSHIFT ((RSHIFT_IN_CELL) / GRID_DELTA)
+#define STEP_RSHIFT ((RSHIFT_IN_CELL) / Grid::DELTA)
 // Минимальное значение уровня синхронизации, засылаемое в прибор
 #define TrigLevMin  RShiftMin
 // Максимальное значечение уровня синхронизации, засылаемое в аналоговую часть
@@ -39,30 +39,31 @@
 // Столько точек помещается на экране от верхней до нижней границы
 #define POINTS_IN_SCREEN_VERT ((MAX_VALUE) - (MIN_VALUE))
 // Минимальный масштаб по времени, при котором возможно включение режима пикового детектора
-#define MIN_TBASE_PEC_DEAT  TBase_500ns
+#define MIN_TBASE_PEC_DEAT  TBase::_500ns
 // С этого значения tBase должен включаться режим поточечного вывода
-#define MIN_TBASE_P2P       TBase_50ms
+#define MIN_TBASE_P2P       TBase::_50ms
 // Столько точек может записать прибор во внутреннюю память за одно измерение
 #define FPGA_MAX_POINTS     16384
 
-#define WR_START        ((uint16 *)(ADDR_FPGA + (0x00 << 1)))    // Запуск цикла измерения. Для запуска нужно записать 1
-#define WR_RAZV         ((uint16 *)(ADDR_FPGA + (0x01 << 1)))
-#define WR_PRED         ((uint16 *)(ADDR_FPGA + (0x02 << 1)))
-#define WR_POST         ((uint16 *)(ADDR_FPGA + (0x03 << 1)))
-#define WR_TRIG         ((uint16 *)(ADDR_FPGA + (0x04 << 1)))
-#define WR_UPR          ((uint16 *)(ADDR_FPGA + (0x05 << 1)))
+#define WR_START        ((uint16 *)(HAL_FMC::ADDR_FPGA + (0x00 << 1)))  // Запуск цикла измерения. Для запуска нужно
+                                                                        // записать 1
+#define WR_RAZV         ((uint16 *)(HAL_FMC::ADDR_FPGA + (0x01 << 1)))
+#define WR_PRED         ((uint16 *)(HAL_FMC::ADDR_FPGA + (0x02 << 1)))
+#define WR_POST         ((uint16 *)(HAL_FMC::ADDR_FPGA + (0x03 << 1)))
+#define WR_TRIG         ((uint16 *)(HAL_FMC::ADDR_FPGA + (0x04 << 1)))
+#define WR_UPR          ((uint16 *)(HAL_FMC::ADDR_FPGA + (0x05 << 1)))
 #define UPR_BIT_PEAKDET            1    // пиковый детектор - 0/1 выкл/вкл
-#define UPR_BIT_CALIBRATOR_AC_DC    2   // постоянное/переменное
-#define UPR_BIT_CALIBRATOR_VOLTAGE  3   // 0/4В
-#define UPR_BIT_RECORDER            4   // 0 - обычный режим, 1 - регистратор
-#define WR_ADDR_NSTOP   ((uint16 *)(ADDR_FPGA + (0x06 << 1)))
-#define WR_FL_RESET     ((uint16 *)(ADDR_FPGA + (0x08 << 1)))
-#define WR_RESET        ((uint16 *)(ADDR_FPGA + (0x1f << 1)))
+#define UPR_BIT_CALIBRATOR_AC_DC   2    // постоянное/переменное
+#define UPR_BIT_CALIBRATOR_VOLTAGE 3    // 0/4В
+#define UPR_BIT_RECORDER           4    // 0 - обычный режим, 1 - регистратор
+#define WR_ADDR_NSTOP   ((uint16 *)(HAL_FMC::ADDR_FPGA + (0x06 << 1)))
+#define WR_FL_RESET     ((uint16 *)(HAL_FMC::ADDR_FPGA + (0x08 << 1)))
+#define WR_RESET        ((uint16 *)(HAL_FMC::ADDR_FPGA + (0x1f << 1)))
 
-#define RD_ADC_A        ((uint16 *)(ADDR_FPGA + (0x00 << 1)))
-#define RD_ADC_B        ((uint16 *)(ADDR_FPGA + (0x02 << 1)))
+#define RD_ADC_A        ((uint16 *)(HAL_FMC::ADDR_FPGA + (0x00 << 1)))
+#define RD_ADC_B        ((uint16 *)(HAL_FMC::ADDR_FPGA + (0x02 << 1)))
 
-#define RD_ADDR_NSTOP   ((uint16 *)(ADDR_FPGA + (0x08 << 1)))
+#define RD_ADDR_NSTOP   ((uint16 *)(HAL_FMC::ADDR_FPGA + (0x08 << 1)))
 /*
     Алгоритм последовательного чтения каналов
     1. Считать RD_ADDR.
@@ -75,14 +76,14 @@
     в  расчёте предзапуска заменить 8192 на 16384
 */
 
-#define WR_FREQ_METER_PARAMS    ((uint16 *)(ADDR_FPGA + (0x0a << 1)))
+#define WR_FREQ_METER_PARAMS    ((uint16 *)(HAL_FMC::ADDR_FPGA + (0x0a << 1)))
 
-#define RD_FREQ_LOW             ((uint16 *)(ADDR_FPGA + (0x10 << 1)))
-#define RD_FREQ_HI              ((uint16 *)(ADDR_FPGA + (0x18 << 1)))
-#define RD_PERIOD_LOW           ((uint16 *)(ADDR_FPGA + (0x20 << 1)))
-#define RD_PERIOD_HI            ((uint16 *)(ADDR_FPGA + (0x28 << 1)))
+#define RD_FREQ_LOW             ((uint16 *)(HAL_FMC::ADDR_FPGA + (0x10 << 1)))
+#define RD_FREQ_HI              ((uint16 *)(HAL_FMC::ADDR_FPGA + (0x18 << 1)))
+#define RD_PERIOD_LOW           ((uint16 *)(HAL_FMC::ADDR_FPGA + (0x20 << 1)))
+#define RD_PERIOD_HI            ((uint16 *)(HAL_FMC::ADDR_FPGA + (0x28 << 1)))
 
-#define RD_FL                   ((uint16 *)(ADDR_FPGA + (0x30 << 1)))  
+#define RD_FL                   ((uint16 *)(HAL_FMC::ADDR_FPGA + (0x30 << 1)))  
 #define FL_DATA_READY       0   // 0 - данные готовы
 #define FL_TRIG_READY       1   // 1 - наличие синхроимпульса
 #define FL_PRED_READY       2   // 2 - окончание счета предзапуска
@@ -96,3 +97,19 @@
 
 extern uint16 *addressesADC[NumChannels];
 #define ADDRESS_READ(ch)    addressesADC[ch];
+
+
+struct TypeWriteAnalog { enum E {
+    All,
+    Range0,
+    Range1,
+    TrigParam,
+    ChanParam0,
+    ChanParam1
+}; };
+
+struct TypeWriteDAC { enum E {
+    RShiftA,
+    RShiftB,
+    TrigLev
+}; };

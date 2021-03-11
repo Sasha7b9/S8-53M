@@ -292,6 +292,7 @@ void FPGA::SetRShift(Channel::E chan, int16 rShift)
     }
 
     LIMITATION(rShift, rShift, RShiftMin, RShiftMax);
+
     if (rShift > RShiftZero)
     {
         rShift &= 0xfffe;                                            // ƒелаем кратным двум, т.к. у нас 800 значений на 400 точек
@@ -432,9 +433,9 @@ void FPGA::LoadRegUPR()
 }
 
 
-void FPGA::LoadKoeffCalibration(Channel::E chan)
+void FPGA::LoadKoeffCalibration(Channel::E /*chan*/)
 {
-    FPGA::WriteToHardware(chan == Channel::A ? WR_CAL_A : WR_CAL_B, static_cast<uint8>(STRETCH_ADC(chan) * 0x80), false);
+//    FPGA::WriteToHardware(chan == Channel::A ? WR_CAL_A : WR_CAL_B, static_cast<uint8>(STRETCH_ADC(chan) * 0x80), false);
 }
 
 
@@ -454,12 +455,12 @@ void FPGA::LoadTShift()
     FPGA::SetAdditionShift(additionShift);
     uint16 post = (uint16)tShift;
     post = (uint16)(~post);
-    WriteToHardware(WR_POST_LOW, (uint8)post, true);
-    WriteToHardware(WR_POST_HI, (uint8)(post >> 8), true);
+    WriteToHardware(WR_POST, (uint8)post, true);
+//    WriteToHardware(WR_POST_HI, (uint8)(post >> 8), true);
     uint16 pred = (uint16)((tShift > 511) ? 1023 : (511 - post));
     pred = (uint16)((~(pred - 1)) & 0x1ff);
-    WriteToHardware(WR_PRED_LOW, (uint8)pred, true);
-    WriteToHardware(WR_PRED_HI, (uint8)(pred >> 8), true);
+    WriteToHardware(WR_PRED, (uint8)pred, true);
+//    WriteToHardware(WR_PRED_HI, (uint8)(pred >> 8), true);
 }
 
 
@@ -524,7 +525,7 @@ void FPGA::SetTrigPolarity(TrigPolarity::E polarity)
 
 void FPGA::LoadTrigPolarity()
 {
-    WriteToHardware(WR_TRIG_F, TRIG_POLARITY_IS_FRONT ? 0x01U : 0x00U, true);
+    WriteToHardware(WR_TRIG, TRIG_POLARITY_IS_FRONT ? 0x01U : 0x00U, true);
 }
 
 
