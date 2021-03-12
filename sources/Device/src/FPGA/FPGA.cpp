@@ -38,7 +38,7 @@ const int Kr[] = { N_KR / 1, N_KR / 2, N_KR / 5, N_KR / 10, N_KR / 20 };
 
 static DataSettings ds;
 
-uint8 FPGA::Flag::value = 0;
+uint16 FPGA::Flag::flag = 0U;
 
 StateFPGA FPGA::state =
 {
@@ -140,7 +140,7 @@ bool FPGA::ProcessingData(void)
     
    for (int i = 0; i < num; i++)
    {
-        uint8 flag = Flag::Read();
+        uint16 flag = Flag::Read();
 
         if (criticalSituation)
         {
@@ -160,7 +160,7 @@ bool FPGA::ProcessingData(void)
             if (set.debug.showRegisters.flag)
             {
                 char buffer[9];
-                LOG_WRITE("флаг готовности %s", Bin2String(flag, buffer));
+                LOG_WRITE("флаг готовности %s", Bin2String16(flag, buffer));
             }
             Panel::EnableLEDTrig(true);
             FPGA::Stop(true);
@@ -197,32 +197,6 @@ bool FPGA::ProcessingData(void)
 void FPGA::Update(void)
 {
     Flag::Read();
-
-    if (state.needCalibration)              // Если вошли в режим калибровки -
-    {
-        FPGA::ProcedureCalibration();            // выполняем её.
-        state.needCalibration = false;
-    }
-    if (temporaryPause)
-    {
-        return;
-    }
-
-	if(autoFindInProgress)
-    {
-		AutoFind();
-		return;
-	}
-
-    if(!canReadData || (stateWork == StateWorkFPGA::Stop))
-    {
-        return;
-    }
-
-    if(SET_SELFRECORDER)
-    {
-        ReadPoint();
-    }
 
     ProcessingData();
 
@@ -806,23 +780,23 @@ void ReadPeriod(void)
 }
 
 
-uint8 FPGA::Flag::Read()
+uint16 FPGA::Flag::Read()
 {
-    value = (uint8)HAL_FMC::Read(RD_FL);
+    flag = HAL_FMC::Read(RD_FL);
 
     if(!readPeriod) 
     {
-        if(_GET_BIT(value, BIT_FREQ_READY)) 
+        if(_GET_BIT(flag, BIT_FREQ_READY)) 
         {
             ReadFreq();
         }
     }
-    if(readPeriod && (_GET_BIT(value, BIT_PERIOD_READY) == 1)) 
+    if(readPeriod && (_GET_BIT(flag, BIT_PERIOD_READY) == 1)) 
     {
         ReadPeriod();
     }
 
-    return value;
+    return flag;
 }
 
 

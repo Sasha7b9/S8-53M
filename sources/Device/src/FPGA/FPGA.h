@@ -54,8 +54,8 @@ public:
 
     struct Flag
     {
-        static uint8 Read();
-        static uint8 value;
+        static uint16 Read();
+        static uint16 flag;
     };
 
     static bool inProcessingOfRead;
