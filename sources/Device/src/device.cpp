@@ -24,35 +24,25 @@ void Device::Init()
 {
     HAL::Init();
     Panel::Init();
-//    FDrive::Init();
-//    VCP::Init();
     Settings::Load(false);
     FPGA::Init();
     HAL_TIM2::Delay(250);
-//    FPGA::OnPressStartStop();
-//    LAN::Init();
     Display::Init();
+
+    //    FPGA::OnPressStartStop();
+    //    LAN::Init();
+    //    FDrive::Init();
+    //    VCP::Init();
 }
 
 
 void Device::Update()
 {
-//    if (Device::needResetSettings)
-//    {
-//        Settings::Load(true);
-//        Device::needResetSettings = false;
-//    }
-
-    HAL_TIM2::StartMultiMeasurement();      // Сброс таймера для замера длительности временных интервалов в течение одной итерации цикла.
-
-//    FDrive::Update();
-//    LAN::Update(0);
-    FPGA::Update();                      // Обновляем аппаратную часть.
-//    ProcessingSignal();
+    HAL_TIM2::StartMultiMeasurement();
+    FPGA::Update();
     Panel::Update();
-    Display::Update();                   // Рисуем экран.
-    Menu::Update();                 // Обновляем состояние меню
-//    VCP::Update();
+    Display::Update();
+    Menu::Update();
 }
 
 
