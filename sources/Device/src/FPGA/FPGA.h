@@ -52,6 +52,12 @@ class FPGA
 {
 public:
 
+    struct Flag
+    {
+        static uint8 Read();
+        static uint8 value;
+    };
+
     static bool inProcessingOfRead;
 
     static void Init();

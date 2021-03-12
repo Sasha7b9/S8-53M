@@ -38,6 +38,8 @@ const int Kr[] = { N_KR / 1, N_KR / 2, N_KR / 5, N_KR / 10, N_KR / 20 };
 
 static DataSettings ds;
 
+uint8 FPGA::Flag::value = 0;
+
 StateFPGA FPGA::state =
 {
     false,
@@ -63,8 +65,6 @@ static bool firstAfterWrite = false;            // Используется в режиме рандоми
 static void OnTimerCanReadData();
 
 static void ReadPoint();
-
-static uint8 ReadFlag();
 
 static void ReadFreq();
 
@@ -140,7 +140,8 @@ bool FPGA::ProcessingData(void)
     
    for (int i = 0; i < num; i++)
    {
-        uint8 flag = ReadFlag();
+        uint8 flag = Flag::Read();
+
         if (criticalSituation)
         {
             if (TIME_MS - timeStart > 500)
@@ -195,7 +196,7 @@ bool FPGA::ProcessingData(void)
 
 void FPGA::Update(void)
 {
-    ReadFlag();
+    Flag::Read();
 
     if (state.needCalibration)              // Если вошли в режим калибровки -
     {
@@ -672,7 +673,7 @@ void FPGA::Write(TypeRecord::E type, uint16 *address, uint data)
 
 void ReadPoint(void)
 {
-    if(_GET_BIT(ReadFlag(), BIT_POINT_READY))
+    if(_GET_BIT(FPGA::Flag::Read(), BIT_POINT_READY))
     {
         uint16 dataB1 = *RD_ADC_B1;
         uint16 dataB2 = *RD_ADC_B2;
@@ -805,22 +806,23 @@ void ReadPeriod(void)
 }
 
 
-static uint8 ReadFlag(void)
+uint8 FPGA::Flag::Read()
 {
-    uint8 flag = (uint8)HAL_FMC::Read(RD_FL);
+    value = (uint8)HAL_FMC::Read(RD_FL);
+
     if(!readPeriod) 
     {
-        if(_GET_BIT(flag, BIT_FREQ_READY)) 
+        if(_GET_BIT(value, BIT_FREQ_READY)) 
         {
             ReadFreq();
         }
     }
-    if(readPeriod && (_GET_BIT(flag, BIT_PERIOD_READY) == 1)) 
+    if(readPeriod && (_GET_BIT(value, BIT_PERIOD_READY) == 1)) 
     {
         ReadPeriod();
     }
 
-    return flag;
+    return value;
 }
 
 
