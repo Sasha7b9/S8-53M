@@ -196,11 +196,15 @@ bool FPGA::ProcessingData(void)
 
 void FPGA::Update(void)
 {
-    Flag::Read();
+    while (true)
+    {
+        uint16 flag = Flag::Read();
 
-    ProcessingData();
+        if (_GET_BIT(flag, FL_PRED_READY) == 1)
+        {
 
-    canReadData = false;
+        }
+    }
 }
 
 
