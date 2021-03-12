@@ -114,24 +114,24 @@ struct HAL_ETH
 // Используется для связи с FPGA и RAM
 struct HAL_FMC 
 {
-    static uint16 * const ADDR_FPGA;                // Адрес записи в альтеру
-
-    static uint16 * const ADDR_RAM_DISPLAY_FRONT;   // Видимое изображение дисплея. Находится в RAM и не может исполь-
-                                                    // зоваться для других целей
-    static uint16 * const ADDR_RAM_BEGIN;           // Первый свободный адрес в RAM.
-    static uint16 * const ADDR_RAM_END;             // Указывает на первый недопустимый адрес RAM. Использовать можно
-                                                    // адреса [ADDR_RAM_BEGIN...(ADDR_RAM_END - 1)]
-
     static void Init(void);
-
     static uint16 Read(uint16 * const address);
-
     static void  Write(uint16 * const address, uint16 value);
 
 private:
     
     static void InitRAM();
     static void InitFPGA();
+
+public:
+
+    static uint16 *const ADDR_FPGA;                 // Адрес записи в альтеру
+
+    static uint16 *const ADDR_RAM_DISPLAY_FRONT;    // Видимое изображение дисплея. Находится в RAM и не может исполь-
+                                                    // зоваться для других целей
+    static uint16 *const ADDR_RAM_BEGIN;            // Первый свободный адрес в RAM.
+    static uint16 *const ADDR_RAM_END;              // Указывает на первый недопустимый адрес RAM. Использовать можно
+                                                    // адреса [ADDR_RAM_BEGIN...(ADDR_RAM_END - 1)]
 };
 
 
