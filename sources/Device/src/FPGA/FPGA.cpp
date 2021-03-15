@@ -218,22 +218,29 @@ void FPGA::Update(void)
 
     if (_GET_BIT(flag, FL_PRED_READY) == 1)
     {
-        LOG_WRITE("Предзапуск");
+//        LOG_WRITE("Предзапуск готов");
+
         if (_GET_BIT(flag, FL_TRIG_READY) == 1)
         {
+//            LOG_WRITE("Синхронизация сработала");
+
             if (_GET_BIT(flag, FL_DATA_READY) == 1)
             {
                 LOG_WRITE("Данные можно считывать");
             }
+            else
+            {
+                LOG_WRITE("Данные не готовы");
+            }
         }
         else
         {
-
+//            LOG_WRITE("Синхронизация не готова");
         }
     }
     else
     {
-        LOG_WRITE("Предзапуск не готов");
+//        LOG_WRITE("Предзапуск не готов");
     }
 }
 
