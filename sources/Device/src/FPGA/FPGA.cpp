@@ -699,14 +699,14 @@ void ReadPoint(void)
 }
 
 
-void FPGA::SaveState(void)
+void FPGA::State::Save(void)
 {
     FPGA::state.stateWorkBeforeCalibration = stateWork;
     storingSettings = set;
 }
 
 
-void FPGA::RestoreState(void)
+void FPGA::State::Restore(void)
 {
     int16 rShiftAdd[2][Range::Count][2];
     for (int chan = 0; chan < 2; chan++)

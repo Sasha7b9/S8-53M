@@ -64,6 +64,15 @@ public:
         static float GetFreq();
     };
 
+    struct State
+    {
+        // Сохраняет текущие настройки. Потом их можно восстановить функцией FPGA_RestoreState().
+        static void Save();
+
+        // Восстанавливает настройки, ранее сохранённые функцией FPGA_SaveState().
+        static void Restore();
+    };
+
     static bool inProcessingOfRead;
 
     static void Init();
@@ -85,19 +94,16 @@ public:
     // Возвращает true, если прибор находится не в процессе сбора информации.
     static bool IsRunning();
 
-    // Сохраняет текущие настройки. Потом их можно восстановить функцией FPGA_RestoreState().
-    static void SaveState();
-
-    // Восстанавливает настройки, ранее сохранённые функцией FPGA_SaveState().
-    static void RestoreState();
-
     // Удаляет данные. Нужно для режима рандомизаотра, где информация каждого цикла не является самостоятельной.
     static void ClearData();
+
     // Установить дополнительное смещение. Нужно для правильной расстановки точек в режиме рандомизатора.
     static void SetAdditionShift(int shift);
+
     // Возвращает true,если все точки получены в режиме рандомизатора.
     static bool AllPointsRandomizer();
-    // Установить количество измерений, по которым будут рассчитываться ворота в режиме рандомизатора.
+
+     // Установить количество измерений, по которым будут рассчитываться ворота в режиме рандомизатора.
     static void SetNumberMeasuresForGates(int number);
     // Принудительно запустить синхронизацию.
     static void SwitchingTrig();
