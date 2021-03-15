@@ -350,7 +350,7 @@ float CalculateDeltaADC(Channel::E chan, float *avgADC1, float *avgADC2, float *
     bar->passedTime = 0;
     bar->fullTime = 0;
 
-    FPGA::SetTrigSource((TrigSource::E)chan);
+    TrigSource::Set((TrigSource::E)chan);
     TrigLev::Set((TrigSource::E)chan, TrigLevZero);
 
     uint16 *address1 = chan == Channel::A ? RD_ADC_A : RD_ADC_B;
@@ -412,8 +412,8 @@ int16 CalculateAdditionRShift(Channel::E chan, Range::E range)
     Range::Set(chan, range);
     RShift::Set(chan, RShiftZero);
     TBase::Set(TBase::_200us);
-    FPGA::SetTrigSource(chan == Channel::A ? TrigSource::A : TrigSource::B);
-    FPGA::SetTrigPolarity(TrigPolarity::Front);
+    TrigSource::Set(chan == Channel::A ? TrigSource::A : TrigSource::B);
+    TrigPolarity::Set(TrigPolarity::Front);
     TrigLev::Set((TrigSource::E)chan, TrigLevZero);
 
     FPGA::WriteToHardware(WR_UPR, BIN_U8(00000000), false);   // Устанавливаем выход калибратора в ноль
@@ -478,7 +478,7 @@ float CalculateKoeffCalibration(Channel::E chan)
 
     RShift::Set(chan, RShiftZero - 40 * 4);
     ModeCouple::Set(chan, ModeCouple::DC);
-    FPGA::SetTrigSource((TrigSource::E)chan);
+    TrigSource::Set((TrigSource::E)chan);
     TrigLev::Set((TrigSource::E)chan, TrigLevZero + 40 * 4);
     
     int numMeasures = 16;

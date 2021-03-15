@@ -1011,7 +1011,7 @@ bool FPGA::FindWave(Channel::E chan)
 
     Stop(false);
     SET_ENABLED(chan) = true;
-    FPGA::SetTrigSource(static_cast<TrigSource::E>(chan));
+    TrigSource::Set(static_cast<TrigSource::E>(chan));
     TrigLev::Set(static_cast<TrigSource::E>(chan), TrigLevZero);
     RShift::Set(chan, RShiftZero);
     ModeCouple::Set(chan, ModeCouple::AC);
@@ -1146,12 +1146,12 @@ TBase::E FPGA::AccurateFindTBase(Channel::E chan)
 
 TBase::E FPGA::FindTBase(Channel::E)
 {
-    SetTrigInput(TrigInput::Full);
+    TrigInput::Set(TrigInput::Full);
     HAL_TIM2::Delay(10);
     FPGA::Stop(false);
     float fr = CalculateFreqFromCounterFreq();
 
-    FPGA::SetTrigInput(fr < 1e6F ? TrigInput::LPF : TrigInput::Full);
+    TrigInput::Set(fr < 1e6F ? TrigInput::LPF : TrigInput::Full);
 
     fr = CalculateFreqFromCounterFreq();
 
@@ -1161,13 +1161,13 @@ TBase::E FPGA::FindTBase(Channel::E)
     {
         tBase = CalculateTBase(fr);
         TBase::Set(tBase);
-        FPGA::Start();
-        FPGA::SetTrigInput(fr < 500e3F ? TrigInput::LPF : TrigInput::HPF);
+        Start();
+        TrigInput::Set(fr < 500e3F ? TrigInput::LPF : TrigInput::HPF);
         return tBase;
     }
     else
     {
-        FPGA::SetTrigInput(TrigInput::LPF);
+        TrigInput::Set(TrigInput::LPF);
         freq = CalculateFreqFromCounterPeriod();
         if (fr > 0.0F)
         {

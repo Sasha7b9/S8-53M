@@ -391,28 +391,46 @@ struct StartMode { enum E
 };};
 
 // Источник синхронизации.
-struct TrigSource { enum E
+struct TrigSource
 {
-    A,      // Канал 1.
-    B,      // Канал 2.
-    Ext     // Внешняя.
-};};
+    enum E
+    {
+        A,      // Канал 1.
+        B,      // Канал 2.
+        Ext     // Внешняя.
+    };
 
-// Тип синхронизацц
-struct TrigPolarity { enum E
+    static void Set(E source);
+};
+
+
+// Полярность синхронизацц
+struct TrigPolarity
 {
-    Front,  // Синхронизация по фронту.
-    Back    // Синхронизация по срезу.
-};};
+    enum E
+    {
+        Front,  // Синхронизация по фронту.
+        Back    // Синхронизация по срезу.
+    };
+
+    static void Set(E polarity);
+};
+
 
 // Вход синхронизации.
-struct TrigInput { enum E
+struct TrigInput
 {
-    Full,   // Полный сиганл.
-    AC,     // Переменный.
-    LPF,    // ФНЧ.
-    HPF     // ФВЧ.
-};};
+    enum E
+    {
+        Full,   // Полный сиганл.
+        AC,     // Переменный.
+        LPF,    // ФНЧ.
+        HPF     // ФВЧ.
+    };
+
+    static void Set(E input);
+};
+
 
 // Режим длительного нажатия кнопки СИНХР.
 struct ModeLongPressTrig { enum E

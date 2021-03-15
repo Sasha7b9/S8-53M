@@ -112,12 +112,6 @@ public:
     static void EnableChannelFiltr(Channel::E chan, bool enable);
     // Загрузить в аппарат коэффициенты калибровки каналов.
     static void LoadKoeffCalibration(Channel::E chan);
-    // Установить источник синхронизации.
-    static void SetTrigSource(TrigSource::E trigSource);
-    // Установить полярность синхронизации.
-    static void SetTrigPolarity(TrigPolarity::E polarity);
-    // Установить режим входа синхронизации.
-    static void SetTrigInput(TrigInput::E trigInput);
     // Возвращает установленное смещение по времени в текстовом виде, пригодном для вывода на экран.
     static const char* GetTShiftString(int16 tShiftRel, char buffer[20]);
     // Запуск функции калибровки.

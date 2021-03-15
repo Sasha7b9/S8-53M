@@ -35,7 +35,7 @@ DEF_CHOICE_3(mcMode, PageTrig::self,
 
 static void OnChanged_Source(bool)
 {
-    FPGA::SetTrigSource(TRIG_SOURCE);
+    TrigSource::Set(TRIG_SOURCE);
 }
 
 DEF_CHOICE_3(mcSource, PageTrig::self,
@@ -50,7 +50,7 @@ DEF_CHOICE_3(mcSource, PageTrig::self,
 
 static void OnChanged_Polarity(bool)
 {
-    FPGA::SetTrigPolarity(TRIG_POLARITY);
+    TrigPolarity::Set(TRIG_POLARITY);
 }
 
 DEF_CHOICE_2(mcPolarity, PageTrig::self,
@@ -69,7 +69,7 @@ DEF_CHOICE_2(mcPolarity, PageTrig::self,
 
 static void OnChanged_Input(bool)
 {
-    FPGA::SetTrigInput(TRIG_INPUT);
+    TrigInput::Set(TRIG_INPUT);
 }
 
 DEF_CHOICE_4(mcInput, PageTrig::self,

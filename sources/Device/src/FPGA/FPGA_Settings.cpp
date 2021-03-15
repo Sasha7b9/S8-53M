@@ -433,10 +433,10 @@ bool Range::Decrease(Channel::E chan)
 };
 
 
-void FPGA::SetTrigSource(TrigSource::E trigSource)
+void TrigSource::Set(E trigSource)
 {
     TRIG_SOURCE = trigSource;
-    SetAttribChannelsAndTrig(TypeWriteAnalog::TrigParam);
+    FPGA::SetAttribChannelsAndTrig(TypeWriteAnalog::TrigParam);
     if (!TRIG_SOURCE_IS_EXT)
     {
         TrigLev::Set(TRIG_SOURCE, TRIG_LEVEL_SOURCE);
@@ -444,7 +444,7 @@ void FPGA::SetTrigSource(TrigSource::E trigSource)
 }
 
 
-void FPGA::SetTrigPolarity(TrigPolarity::E polarity)
+void TrigPolarity::Set(E polarity)
 {
     TRIG_POLARITY = polarity;
     TrigLev::Polarity::Load();
@@ -457,10 +457,10 @@ void TrigLev::Polarity::Load()
 }
 
 
-void FPGA::SetTrigInput(TrigInput::E trigInput)
+void TrigInput::Set(E trigInput)
 {
     TRIG_INPUT = trigInput;
-    SetAttribChannelsAndTrig(TypeWriteAnalog::TrigParam);
+    FPGA::SetAttribChannelsAndTrig(TypeWriteAnalog::TrigParam);
 }
 
 

@@ -66,9 +66,9 @@ void SCPI::TRIGGER::SOURCE(pUCHAR buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (0 == value)         { FPGA::SetTrigSource(TrigSource::A); }
-        else if (1 == value)    { FPGA::SetTrigSource(TrigSource::B); }
-        else if (2 == value)    { FPGA::SetTrigSource(TrigSource::Ext); }
+        if (0 == value)         { TrigSource::Set(TrigSource::A); }
+        else if (1 == value)    { TrigSource::Set(TrigSource::B); }
+        else if (2 == value)    { TrigSource::Set(TrigSource::Ext); }
         else if (3 == value)
         {
             SCPI_SEND(":TRIGGER:SOUCRE %s", map[START_MODE].key);
@@ -88,8 +88,8 @@ void SCPI::TRIGGER::POLARITY(pUCHAR buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (0 == value)         { FPGA::SetTrigPolarity(TrigPolarity::Front); }
-        else if (1 == value)    { FPGA::SetTrigPolarity(TrigPolarity::Back); }
+        if (0 == value)         { TrigPolarity::Set(TrigPolarity::Front); }
+        else if (1 == value)    { TrigPolarity::Set(TrigPolarity::Back); }
         else if (2 == value)
         {
             SCPI_SEND(":TRIGGER:POLARITY %s", map[TRIG_POLARITY].key);
@@ -111,10 +111,10 @@ void SCPI::TRIGGER::INPUT(pUCHAR buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (0 == value)         { FPGA::SetTrigInput(TrigInput::Full); }
-        else if (1 == value)    { FPGA::SetTrigInput(TrigInput::AC); }
-        else if (2 == value)    { FPGA::SetTrigInput(TrigInput::LPF); }
-        else if (3 == value)    { FPGA::SetTrigInput(TrigInput::HPF); }
+        if (0 == value)         { TrigInput::Set(TrigInput::Full); }
+        else if (1 == value)    { TrigInput::Set(TrigInput::AC); }
+        else if (2 == value)    { TrigInput::Set(TrigInput::LPF); }
+        else if (3 == value)    { TrigInput::Set(TrigInput::HPF); }
         else if (4 == value)
         {
             SCPI_SEND(":TRIGGER:INPUT %s", map[TRIG_INPUT].key);
