@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "common/Log_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Utils/Math_.h"
 #include "FPGA/DataSettings.h"
@@ -215,6 +216,11 @@ void TBase::Load()
 
     TBase::E tBase = SET_TBASE;
     uint8 mask = PEAKDET ? masksTBase[tBase].maskPeackDet : masksTBase[tBase].maskNorm;
+
+    char buffer[10];
+
+    LOG_WRITE("%s", Bin2String(mask, buffer));
+
     FPGA::BUS::Write(TypeRecord::FPGA, WR_RAZV, mask, true);
     ADD_SHIFT_T0 = deltaTShift[tBase];
 }
