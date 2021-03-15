@@ -1351,7 +1351,7 @@ void Display::WriteValueTrigLevel()
     {
         float trigLev = RSHIFT_2_ABS(TRIG_LEVEL_SOURCE, SET_RANGE(TRIG_SOURCE));     // WARN Здесь для внешней синхронизации неправильно рассчитывается уровень.
         TrigSource::E trigSource = TRIG_SOURCE;
-        if (TRIG_INPUT_IS_AC && trigSource <= TrigSource::B)
+        if (TRIG_INPUT_IS_AC && trigSource <= TrigSource::B_)
         {
             int16 rShift = SET_RSHIFT(trigSource);
             float rShiftAbs = RSHIFT_2_ABS(rShift, SET_RANGE(trigSource));
@@ -1635,7 +1635,7 @@ void Display::DrawCursorsWindow()
 void Display::DrawCursorTrigLevel()
 {
     TrigSource::E chan = TRIG_SOURCE;
-    if (chan == TrigSource::Ext)
+    if (chan == TrigSource::Ext_)
     {
         return;
     }

@@ -88,7 +88,7 @@ static const Settings defaultSettings =
     // trig
     {
         StartMode::Auto,
-        TrigSource::A,
+        TrigSource::A_,
         TrigPolarity::Front,
         TrigInput::Full,
         {TrigLevZero, TrigLevZero, TrigLevZero},

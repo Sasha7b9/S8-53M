@@ -66,9 +66,9 @@ void SCPI::TRIGGER::SOURCE(pUCHAR buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (0 == value)         { TrigSource::Set(TrigSource::A); }
-        else if (1 == value)    { TrigSource::Set(TrigSource::B); }
-        else if (2 == value)    { TrigSource::Set(TrigSource::Ext); }
+        if (0 == value)         { TrigSource::Set(TrigSource::A_); }
+        else if (1 == value)    { TrigSource::Set(TrigSource::B_); }
+        else if (2 == value)    { TrigSource::Set(TrigSource::Ext_); }
         else if (3 == value)
         {
             SCPI_SEND(":TRIGGER:SOUCRE %s", map[START_MODE].key);
