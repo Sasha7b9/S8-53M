@@ -168,7 +168,7 @@ void Range::Load(Channel::E chan)
 }
 
 
-void FPGA::SetTBase(TBase::E tBase)
+void TBase::Set(TBase::E tBase)
 {
     if (!sChannel_Enabled(Channel::A) && !sChannel_Enabled(Channel::B))
     {
@@ -178,7 +178,7 @@ void FPGA::SetTBase(TBase::E tBase)
     {
         float tShiftAbsOld = TSHIFT_2_ABS(TSHIFT, SET_TBASE);
         sTime_SetTBase(tBase);
-        TBase::Load();
+        Load();
         FPGA::SetTShift(static_cast<int>(TSHIFT_2_REL(tShiftAbsOld, SET_TBASE)));
         Display::Redraw();
     }
@@ -257,7 +257,7 @@ void FPGA::TBaseDecrease()
         else
         {
             TBase::E base = (TBase::E)((int)SET_TBASE - 1);
-            FPGA::SetTBase(base);
+            TBase::Set(base);
         }
     }
     else
@@ -272,7 +272,7 @@ void FPGA::TBaseIncrease()
     if (SET_TBASE < (TBase::Count - 1))
     {
         TBase::E base = (TBase::E)(SET_TBASE + 1);
-        FPGA::SetTBase(base);
+        TBase::Set(base);
     }
     else
     {

@@ -61,7 +61,7 @@ void SCPI::TBASE::RANGE(pUCHAR buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (TBase::Count > value) { FPGA::SetTBase((TBase::E)value); }
+        if (TBase::Count > value) { TBase::Set((TBase::E)value); }
         else if (255 == value) //-V547
         {
             SCPI_SEND(":TBASE:SET_RANGE %s", Tables::GetTBaseStringEN(SET_TBASE));

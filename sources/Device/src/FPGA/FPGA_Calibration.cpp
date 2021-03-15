@@ -81,7 +81,7 @@ void FPGA::ProcedureCalibration(void)
     {
         state.stateCalibration = StateCalibration::ADCinProgress;                  // Запускаем процедуру балансировки АЦП.
 
-        FPGA::SetTBase(TBase::_500us);
+        TBase::Set(TBase::_500us);
         FPGA::SetTShift(0);
         STRETCH_ADC_A = 1.0F;
         STRETCH_ADC_B = 1.0F;
@@ -411,7 +411,7 @@ int16 CalculateAdditionRShift(Channel::E chan, Range::E range)
 {
     Range::Set(chan, range);
     FPGA::SetRShift(chan, RShiftZero);
-    FPGA::SetTBase(TBase::_200us);
+    TBase::Set(TBase::_200us);
     FPGA::SetTrigSource(chan == Channel::A ? TrigSource::A : TrigSource::B);
     FPGA::SetTrigPolarity(TrigPolarity::Front);
     FPGA::SetTrigLev((TrigSource::E)chan, TrigLevZero);

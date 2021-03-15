@@ -112,8 +112,6 @@ public:
     static void SetModeCouple(Channel::E chan, ModeCouple::E modeCoupe);
     // Включить/выключить фильтр на входе канала.
     static void EnableChannelFiltr(Channel::E chan, bool enable);
-    // Установить масштаб по времени.
-    static void SetTBase(TBase::E tBase);
     // Уменьшить масштаб по времени.
     static void TBaseDecrease();
     // Увеличить масштаб по времени.

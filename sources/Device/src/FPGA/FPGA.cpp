@@ -1052,7 +1052,7 @@ Range::E FPGA::AccurateFindRange(Channel::E chan)
 
     uint8 buffer[100];  // —юда будем считывать точки
 
-    SetTBase(TBase::_50ms);
+    TBase::Set(TBase::_50ms);
     FPGA::SetModeCouple(chan, ModeCouple::AC);
     PeackDetMode::E peackDetMode = PEAKDET;
     FPGA::SetPeackDetMode(PeackDetMode::Enable);
@@ -1159,7 +1159,7 @@ TBase::E FPGA::FindTBase(Channel::E)
     if (fr >= 50.0F)
     {
         tBase = CalculateTBase(fr);
-        FPGA::SetTBase(tBase);
+        TBase::Set(tBase);
         FPGA::Start();
         FPGA::SetTrigInput(fr < 500e3F ? TrigInput::LPF : TrigInput::HPF);
         return tBase;
@@ -1171,7 +1171,7 @@ TBase::E FPGA::FindTBase(Channel::E)
         if (fr > 0.0F)
         {
             tBase = CalculateTBase(fr);
-            FPGA::SetTBase(tBase);
+            TBase::Set(tBase);
             HAL_TIM2::Delay(10);
             FPGA::Start();
             return tBase;
