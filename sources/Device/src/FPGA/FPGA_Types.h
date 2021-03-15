@@ -39,9 +39,6 @@
 #define FPGA_MAX_POINTS_FOR_CALCULATE   900
 
 
-#define SHIFT(x) (0x02 * (x))
-
-
 #define WR_START                (HAL_FMC::ADDR_FPGA + 0x00)
 #define WR_RAZV                 (HAL_FMC::ADDR_FPGA + 0x01)
 #define WR_PRED                 (HAL_FMC::ADDR_FPGA + 0x02)

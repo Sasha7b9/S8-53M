@@ -196,50 +196,32 @@ bool FPGA::ProcessingData(void)
 
 void FPGA::Update(void)
 {
-    static uint time_prev_reload = 0;
-
-    if (TIME_MS - time_prev_reload > 10000)
-    {
-        time_prev_reload = TIME_MS;
-
-        if (SET_TBASE == TBase::_1ms)
-        {
-            SET_TBASE = TBase::_5ms;
-        }
-        else
-        {
-            SET_TBASE = TBase::_1ms;
-        }
-    }
-
-    uint16 flag = Flag::Read();
-
-    TBase::Load();
-
-    if (_GET_BIT(flag, FL_PRED_READY) == 1)
-    {
-        LOG_WRITE("Предзапуск готов");
-
-        if (_GET_BIT(flag, FL_TRIG_READY) == 1)
-        {
-            if (_GET_BIT(flag, FL_DATA_READY) == 1)
-            {
-                LOG_WRITE("Данные можно считывать");
-            }
-            else
-            {
-                LOG_WRITE("Данные не готовы");
-            }
-        }
-        else
-        {
+//    uint16 flag = Flag::Read();
+//
+//    if (_GET_BIT(flag, FL_PRED_READY) == 1)
+//    {
+//        LOG_WRITE("Предзапуск готов");
+//
+//        if (_GET_BIT(flag, FL_TRIG_READY) == 1)
+//        {
+//            if (_GET_BIT(flag, FL_DATA_READY) == 1)
+//            {
+//                LOG_WRITE("Данные можно считывать");
+//            }
+//            else
+//            {
+//                LOG_WRITE("Данные не готовы");
+//            }
+//        }
+//        else
+//        {
 //            LOG_WRITE("Синхронизация не готова");
-        }
-    }
-    else
-    {
-        LOG_WRITE("Предзапуск не готов");
-    }
+//        }
+//    }
+//    else
+//    {
+//        LOG_WRITE("Предзапуск не готов");
+//    }
 }
 
 
@@ -707,7 +689,7 @@ void FPGA::State::Save(void)
 
 
 void FPGA::State::Restore(void)
-{\
+{
     int16 rShiftAdd[2][Range::Count][2];
     for (int chan = 0; chan < 2; chan++)
     {

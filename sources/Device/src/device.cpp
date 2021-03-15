@@ -27,7 +27,7 @@ void Device::Init()
     Settings::Load(false);
     FPGA::Init();
     HAL_TIM2::Delay(250);
-//    Display::Init();
+    Display::Init();
 
     //    FPGA::OnPressStartStop();
     //    LAN::Init();
@@ -41,7 +41,7 @@ void Device::Update()
     HAL_TIM2::StartMultiMeasurement();
     FPGA::Update();
     Panel::Update();
-//    Display::Update();
+    Display::Update();
     Menu::Update();
 }
 
