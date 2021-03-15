@@ -46,7 +46,7 @@ DEF_CHOICE_2(mcInputA, PageChannelA::self,
 
 void PageChannelA::OnChanged_Couple(bool)
 {
-    FPGA::SetModeCouple(Channel::A, SET_COUPLE_A);
+    ModeCouple::Set(Channel::A, SET_COUPLE_A);
 }
 
 DEF_CHOICE_3(mcCoupleA, PageChannelA::self,
@@ -124,7 +124,7 @@ DEF_CHOICE_2(mcInputB, PageChannelB::self,
 
 void PageChannelB::OnChanged_Couple(bool)
 {
-    FPGA::SetModeCouple(Channel::B, SET_COUPLE_B);
+    ModeCouple::Set(Channel::B, SET_COUPLE_B);
 }
 
 DEF_CHOICE_3(mcCoupleB, PageChannelB::self,

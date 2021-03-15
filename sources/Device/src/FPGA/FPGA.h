@@ -108,8 +108,6 @@ public:
     static void FillDataPointer(DataSettings *dp);
     // Найти и установить уровень синхронизации по последнему считанному сигналу
     static void FindAndSetTrigLevel();
-    // Установить режим канала по входу.
-    static void SetModeCouple(Channel::E chan, ModeCouple::E modeCoupe);
     // Включить/выключить фильтр на входе канала.
     static void EnableChannelFiltr(Channel::E chan, bool enable);
     // Установить добавочное смещение по времени для режима рандомизатора. В каждой развёртке это смещение должно быть разное.

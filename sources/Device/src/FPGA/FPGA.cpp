@@ -15,7 +15,7 @@
 #define NULL_TSHIFT 1000000
  
 static float freq = 0.0F;           // Частота, намеренная альтерой.
-static float prevFreq = 0.0F;
+volatile static float prevFreq = 0.0F;
 static StateWorkFPGA::E stateWork = StateWorkFPGA::Stop;
 
 
@@ -66,9 +66,9 @@ static void OnTimerCanReadData();
 
 static void ReadPoint();
 
-static void ReadFreq();
+//static void ReadFreq();
 
-static void ReadPeriod();
+//static void ReadPeriod();
 
 
 void FPGA::Init(void) 
@@ -739,7 +739,7 @@ void FPGA::RestoreState(void)
 }
 
 
-static bool readPeriod = false;     // Установленный в true флаг означает, что частоту нужно считать по счётчику периода
+volatile static bool readPeriod = false;     // Установленный в true флаг означает, что частоту нужно считать по счётчику периода
 
 
 static BitSet32 ReadRegFreq(void)
@@ -776,45 +776,45 @@ static float PeriodCounterToValue(const BitSet32 *period)
 }
 
 
-static void ReadFreq(void)                         // Чтение счётчика частоты производится после того, как бит 4 флага RD_FL установится в едицину
-{                                           // После чтения автоматически запускается новый цикл счёта
-    BitSet32 freqFPGA = ReadRegFreq();
+//static void ReadFreq(void)                         // Чтение счётчика частоты производится после того, как бит 4 флага RD_FL установится в едицину
+//{                                           // После чтения автоматически запускается новый цикл счёта
+//    BitSet32 freqFPGA = ReadRegFreq();
+//
+//    if(freqFPGA.word < 1000) 
+//    {
+//        readPeriod = true;
+//    } 
+//    else 
+//    {
+//        float fr = FreqCounterToValue(&freqFPGA);
+//        if (fr < prevFreq * 0.9F || fr > prevFreq * 1.1F)
+//        {
+//            freq = ERROR_VALUE_FLOAT;
+//        }
+//        else
+//        {
+//            freq = fr;
+//        }
+//        prevFreq = fr;
+//    }
+//}
 
-    if(freqFPGA.word < 1000) 
-    {
-        readPeriod = true;
-    } 
-    else 
-    {
-        float fr = FreqCounterToValue(&freqFPGA);
-        if (fr < prevFreq * 0.9F || fr > prevFreq * 1.1F)
-        {
-            freq = ERROR_VALUE_FLOAT;
-        }
-        else
-        {
-            freq = fr;
-        }
-        prevFreq = fr;
-    }
-}
 
-
-void ReadPeriod(void)
-{
-    BitSet32 periodFPGA = ReadRegPeriod();
-    float fr = PeriodCounterToValue(&periodFPGA);
-    if (fr < prevFreq * 0.9F || fr > prevFreq * 1.1F)
-    {
-        freq = ERROR_VALUE_FLOAT;
-    }
-    else
-    {
-        freq = fr;
-    }
-    prevFreq = fr;
-    readPeriod = false;
-}
+//void ReadPeriod(void)
+//{
+//    BitSet32 periodFPGA = ReadRegPeriod();
+//    float fr = PeriodCounterToValue(&periodFPGA);
+//    if (fr < prevFreq * 0.9F || fr > prevFreq * 1.1F)
+//    {
+//        freq = ERROR_VALUE_FLOAT;
+//    }
+//    else
+//    {
+//        freq = fr;
+//    }
+//    prevFreq = fr;
+//    readPeriod = false;
+//}
 
 
 uint16 FPGA::Flag::Read()
@@ -1014,7 +1014,7 @@ bool FPGA::FindWave(Channel::E chan)
     FPGA::SetTrigSource(static_cast<TrigSource::E>(chan));
     FPGA::SetTrigLev(static_cast<TrigSource::E>(chan), TrigLevZero);
     RShift::Set(chan, RShiftZero);
-    FPGA::SetModeCouple(chan, ModeCouple::AC);
+    ModeCouple::Set(chan, ModeCouple::AC);
     Range::E range = AccurateFindRange(chan);
     //LOG_WRITE("Range %s", RangeName(range));
     if(range != Range::Count)
@@ -1053,7 +1053,7 @@ Range::E FPGA::AccurateFindRange(Channel::E chan)
     uint8 buffer[100];  // Сюда будем считывать точки
 
     TBase::Set(TBase::_50ms);
-    FPGA::SetModeCouple(chan, ModeCouple::AC);
+    ModeCouple::Set(chan, ModeCouple::AC);
     PeackDetMode::E peackDetMode = PEAKDET;
     PeackDetMode::Set(PeackDetMode::Enable);
     for (int range = Range::Count - 1; range >= 0; range--)

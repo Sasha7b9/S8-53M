@@ -325,12 +325,17 @@ struct Channel { enum E
 
 
 // Режим канала по входу.
-struct ModeCouple { enum E
+struct ModeCouple
 {
-    DC,      // Открытый вход.
-    AC,      // Закрытый вход.
-    GND      // Вход заземлён.
-};};
+    enum E
+    {
+        DC,      // Открытый вход.
+        AC,      // Закрытый вход.
+        GND      // Вход заземлён.
+    };
+
+    static void Set(Channel::E ch, ModeCouple::E mode);
+};
 
 
 // Масштаб по напряжению.

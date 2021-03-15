@@ -464,14 +464,6 @@ void FPGA::SetTrigInput(TrigInput::E trigInput)
 }
 
 
-void FPGA::SetModeCouple(Channel::E chan, ModeCouple::E modeCoupe)
-{
-    SET_COUPLE(chan) = modeCoupe;
-    SetAttribChannelsAndTrig(chan == Channel::A ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
-    RShift::Set(chan, SET_RSHIFT(chan));
-}
-
-
 void FPGA::EnableChannelFiltr(Channel::E chan, bool enable)
 {
     SET_FILTR(chan) = enable;

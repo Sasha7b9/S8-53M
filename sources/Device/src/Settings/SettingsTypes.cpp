@@ -2,6 +2,7 @@
 #include "common/Settings/SettingsTypes_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Display.h"
+#include "FPGA/FPGA.h"
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/MathFPGA.h"
 #include "Settings/Settings.h"
@@ -196,4 +197,12 @@ void PeackDetMode::Set(PeackDetMode::E peackDetMode)
 {
     PEAKDET = peackDetMode;
     RegUPR::Load();
+}
+
+
+void ModeCouple::Set(Channel::E chan, ModeCouple::E modeCoupe)
+{
+    SET_COUPLE(chan) = modeCoupe;
+    FPGA::SetAttribChannelsAndTrig(chan == Channel::A ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
+    RShift::Set(chan, SET_RSHIFT(chan));
 }

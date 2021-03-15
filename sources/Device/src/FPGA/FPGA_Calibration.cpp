@@ -91,8 +91,8 @@ void FPGA::ProcedureCalibration(void)
         Range::Set(Channel::B, Range::_500mV);
         RShift::Set(Channel::A, RShiftZero);
         RShift::Set(Channel::B, RShiftZero);
-        FPGA::SetModeCouple(Channel::A, ModeCouple::GND);
-        FPGA::SetModeCouple(Channel::B, ModeCouple::GND);
+        ModeCouple::Set(Channel::A, ModeCouple::GND);
+        ModeCouple::Set(Channel::B, ModeCouple::GND);
 //        HAL_FMC::Write(WR_ADD_RSHIFT_DAC1, 0);
 //        HAL_FMC::Write(WR_ADD_RSHIFT_DAC2, 0);
 
@@ -133,7 +133,7 @@ void FPGA::ProcedureCalibration(void)
                 {
                     if (!(mode == 0 && (range == Range::_2mV || range == Range::_5mV || range == Range::_10mV)))
                     {
-                        FPGA::SetModeCouple(Channel::A, (ModeCouple::E)mode);
+                        ModeCouple::Set(Channel::A, (ModeCouple::E)mode);
                         RSHIFT_ADD(Channel::A, range, mode) = 0;
                         RSHIFT_ADD(Channel::A, range, mode) = CalculateAdditionRShift(Channel::A, (Range::E)range);
                     }
@@ -169,7 +169,7 @@ void FPGA::ProcedureCalibration(void)
                 {
                     if (!(mode == 0 && (range == Range::_2mV || range == Range::_5mV || range == Range::_10mV)))
                     {
-                        FPGA::SetModeCouple(Channel::B, (ModeCouple::E)mode);
+                        ModeCouple::Set(Channel::B, (ModeCouple::E)mode);
                         RSHIFT_ADD(Channel::B, range, mode) = 0;
                         RSHIFT_ADD(Channel::B, range, mode) = CalculateAdditionRShift(Channel::B, (Range::E)range);
                     }
@@ -477,7 +477,7 @@ float CalculateKoeffCalibration(Channel::E chan)
     FPGA::WriteToHardware(WR_UPR, BIN_U8(00000100), false);
 
     RShift::Set(chan, RShiftZero - 40 * 4);
-    FPGA::SetModeCouple(chan, ModeCouple::DC);
+    ModeCouple::Set(chan, ModeCouple::DC);
     FPGA::SetTrigSource((TrigSource::E)chan);
     FPGA::SetTrigLev((TrigSource::E)chan, TrigLevZero + 40 * 4);
     
