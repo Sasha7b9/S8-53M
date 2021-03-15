@@ -91,7 +91,7 @@ void RShift::Set(Channel::E chan, int16 rShift)
 
     if (rShift > RShiftMax || rShift < RShiftMin)
     {
-        Display::ShowWarningBad(chan == Channel::A ? Warning::LimitChan1_RShift : Warning::LimitChan2_RShift);
+        Display::ShowWarningBad(chan == ChA ? Warning::LimitChan1_RShift : Warning::LimitChan2_RShift);
     }
 
     LIMITATION(rShift, rShift, RShiftMin, RShiftMax);
@@ -154,7 +154,7 @@ void TBase::Increase()
 
 void TBase::Set(TBase::E tBase)
 {
-    if (!sChannel_Enabled(Channel::A) && !sChannel_Enabled(Channel::B))
+    if (!sChannel_Enabled(ChA) && !sChannel_Enabled(Channel::B))
     {
         return;
     }
@@ -175,7 +175,7 @@ void TBase::Set(TBase::E tBase)
 
 void TShift::Set(int tShift)
 {
-    if (!sChannel_Enabled(Channel::A) && !sChannel_Enabled(Channel::B))
+    if (!sChannel_Enabled(ChA) && !sChannel_Enabled(Channel::B))
     {
         return;
     }
@@ -202,6 +202,6 @@ void PeackDetMode::Set(PeackDetMode::E peackDetMode)
 void ModeCouple::Set(Channel::E chan, ModeCouple::E modeCoupe)
 {
     SET_COUPLE(chan) = modeCoupe;
-    FPGA::SetAttribChannelsAndTrig(chan == Channel::A ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
+    FPGA::SetAttribChannelsAndTrig(chan == ChA ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
     RShift::Set(chan, SET_RSHIFT(chan));
 }

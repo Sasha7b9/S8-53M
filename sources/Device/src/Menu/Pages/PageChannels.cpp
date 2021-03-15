@@ -32,7 +32,7 @@ static const char chanMultiplierEn[] = "Attenuation: \n\"x1\" - the signal is no
 
 void PageChannelA::OnChanged_Input(bool)
 {
-    Panel::EnableLEDChannel0(sChannel_Enabled(Channel::A));
+    Panel::EnableLEDChannel0(sChannel_Enabled(ChA));
 }
 
 DEF_CHOICE_2(mcInputA, PageChannelA::self,
@@ -46,7 +46,7 @@ DEF_CHOICE_2(mcInputA, PageChannelA::self,
 
 void PageChannelA::OnChanged_Couple(bool)
 {
-    ModeCouple::Set(Channel::A, SET_COUPLE_A);
+    ModeCouple::Set(ChA, SET_COUPLE_A);
 }
 
 DEF_CHOICE_3(mcCoupleA, PageChannelA::self,
@@ -75,7 +75,7 @@ DEF_CHOICE_2(mcFiltrA, PageChannelA::self,
 
 static void OnChanged_InverseA(bool)
 {
-    RShift::Set(Channel::A, SET_RSHIFT_A);
+    RShift::Set(ChA, SET_RSHIFT_A);
 }
 
 DEF_CHOICE_2(mcInverseA, PageChannelA::self,
@@ -93,7 +93,7 @@ DEF_CHOICE_2(mcMultiplierA, PageChannelA::self,
     chanMultiplierEn,
     "õ1", "x1",
     "x10", "x10",
-    SET_DIVIDER(Channel::A), nullptr, nullptr, nullptr
+    SET_DIVIDER(ChA), nullptr, nullptr, nullptr
 )
 
 DEF_PAGE_5(pageChanA, PageMain::self, NamePage::ChannelA,

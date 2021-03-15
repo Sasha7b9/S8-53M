@@ -275,11 +275,11 @@ void PageDebug::LoadStretchADC(Channel::E chan)
 {
     if (DEBUG_STRETCH_ADC_TYPE_IS_DISABLED)
     {
-//        FPGA::WriteToHardware(chan == Channel::A ? WR_CAL_A : WR_CAL_B, 0x80, true);
+//        FPGA::WriteToHardware(chan == ChA ? WR_CAL_A : WR_CAL_B, 0x80, true);
     }
     else if (DEBUG_STRETCH_ADC_TYPE_IS_HAND)
     {
-//        FPGA::WriteToHardware(chan == Channel::A ? WR_CAL_A : WR_CAL_B, (uint8)DEBUG_STRETCH_ADC(chan), true);
+//        FPGA::WriteToHardware(chan == ChA ? WR_CAL_A : WR_CAL_B, (uint8)DEBUG_STRETCH_ADC(chan), true);
     }
     else if (DEBUG_STRETCH_ADC_TYPE_IS_SETTINGS)
     {
@@ -291,7 +291,7 @@ static void OnChanged_ADC_Stretch_Mode(bool active)
 {
     if (active)
     {
-        PageDebug::LoadStretchADC(Channel::A);
+        PageDebug::LoadStretchADC(ChA);
         PageDebug::LoadStretchADC(Channel::B);
     }
 }
@@ -357,7 +357,7 @@ static void OnPress_ADC_AltRShift_Reset()
             }
         }
     }
-    RShift::Set(Channel::A, SET_RSHIFT_A);
+    RShift::Set(ChA, SET_RSHIFT_A);
     RShift::Set(Channel::B, SET_RSHIFT_B);
 }
 
@@ -369,14 +369,14 @@ DEF_BUTTON(mbADC_AltRShift_Reset, PageDebug::PageADC::PageAltRShift::self,
 
 static void OnChanged_ADC_AltRShift_A()
 {
-    RShift::Set(Channel::A, SET_RSHIFT_A);
+    RShift::Set(ChA, SET_RSHIFT_A);
 }
 
 DEF_GOVERNOR(mbADC_AltRShift_2mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
     "—м 1к 2м¬ пост", "Shift 1ch 2mV DC",
     "",
     "",
-    set.chan[Channel::A].rShiftAdd[Range::_2mV][ModeCouple::DC], -100, 100, nullptr, OnChanged_ADC_AltRShift_A, nullptr
+    set.chan[ChA].rShiftAdd[Range::_2mV][ModeCouple::DC], -100, 100, nullptr, OnChanged_ADC_AltRShift_A, nullptr
 )
 
 static void OnChanged_ADC_AltRShift_B()
@@ -395,7 +395,7 @@ DEF_GOVERNOR(mbADC_AltRShift_5mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
     "—м 1к 5м¬ пост", "Shift 1ch 5mV DC",
     "",
     "",
-    RSHIFT_ADD(Channel::A, Range::_5mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_A, nullptr
+    RSHIFT_ADD(ChA, Range::_5mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_A, nullptr
 )
 
 DEF_GOVERNOR(mbADC_AltRShift_5mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
@@ -409,7 +409,7 @@ DEF_GOVERNOR(mbADC_AltRShift_10mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
     "—м 1к 10м¬ пост", "Shift 1ch 10mV DC",
     "",
     "",
-    RSHIFT_ADD(Channel::A, Range::_10mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_A, nullptr
+    RSHIFT_ADD(ChA, Range::_10mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_A, nullptr
 )
 
 DEF_GOVERNOR(mbADC_AltRShift_10mV_DC_B, PageDebug::PageADC::PageAltRShift::self,

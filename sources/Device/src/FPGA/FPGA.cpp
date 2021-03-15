@@ -350,13 +350,13 @@ void FPGA::ReadRandomizeMode(void)
         */
             if (pData0 >= first0 && pData0 <= last0)
             {
-                WRITE_AND_OR_INVERSE(pData0, data00, Channel::A);
+                WRITE_AND_OR_INVERSE(pData0, data00, ChA);
             }
 
             uint16 *addr = pData0 + addShiftMem;
             if (addr >= first0 && addr <= last0)
             {
-//                WRITE_AND_OR_INVERSE(addr, data01, Channel::A);
+//                WRITE_AND_OR_INVERSE(addr, data01, ChA);
             }
 
             if (pData1 >= first1 && pData1 <= last1)
@@ -374,13 +374,13 @@ void FPGA::ReadRandomizeMode(void)
         {
             if (pData0 >= first0 && pData0 <= last0)
             {
-                *pData0 = (float)(numAve - 1) / (float)(numAve)* (*pData0) + InverseIfNecessary(data00, Channel::A) * 1.0F / (float)numAve;
+                *pData0 = (float)(numAve - 1) / (float)(numAve)* (*pData0) + InverseIfNecessary(data00, ChA) * 1.0F / (float)numAve;
             }
 
             uint8 *addr = pData0 + addShiftMem;
             if (addr >= first0 && addr <= last0)
             {
-                *addr = (float)(numAve - 1) / (float)(numAve)* (*(pData0 + addShiftMem)) + InverseIfNecessary(data01, Channel::A) * 1.0F / (float)numAve;
+                *addr = (float)(numAve - 1) / (float)(numAve)* (*(pData0 + addShiftMem)) + InverseIfNecessary(data01, ChA) * 1.0F / (float)numAve;
             }
 
             if (pData1 >= first1 && pData1 <= last1)
@@ -499,7 +499,7 @@ void FPGA::DataRead(bool necessaryShift, bool saveToStorage)
         prevTime = TIME_MS;
         if (!sTime_RandomizeModeEnabled())
         {
-            InverseDataIsNecessary(Channel::A, dataRel0);
+            InverseDataIsNecessary(ChA, dataRel0);
             InverseDataIsNecessary(Channel::B, dataRel1);
         }
 
@@ -989,7 +989,7 @@ void FPGA::AutoFind(void)
     //Timer::StartLogging();
 
     //LOG_WRITE("Канал 1");
-    if (!FindWave(Channel::A))
+    if (!FindWave(ChA))
     {
         //LOG_WRITE("Канал 2");
         if(!FindWave(Channel::B))
@@ -1073,7 +1073,7 @@ Range::E FPGA::AccurateFindRange(Channel::E chan)
             HAL_FMC::Read(RD_ADC_A);
         }
 
-        if (chan == Channel::A)
+        if (chan == ChA)
         {
             for (int i = 0; i < 100; i += 2)
             {
@@ -1097,7 +1097,7 @@ Range::E FPGA::AccurateFindRange(Channel::E chan)
         }
 
         /*
-        if(chan == Channel::A)
+        if(chan == ChA)
         {
             LOG_WRITE("min = %d, max = %d", CalculateMinWithout0(buffer), CalculateMaxWithout255(buffer));
         }
