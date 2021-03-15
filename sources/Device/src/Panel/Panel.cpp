@@ -288,17 +288,17 @@ void Panel::CallbackOnReceiveSPI5(uint8 *data, int size)
         queue.Push(*data++);
     }
 
-    char buffer[100] = { 0 };
-
-    for (int i = 0; i < queue.Size(); i++)
-    {
-        char buf[10];
-        std::sprintf(buf, "%d ", queue[i]);
-
-        std::strcat(buffer, buf);
-    }
-
-    LOG_WRITE(buffer);
+//    char buffer[100] = { 0 };
+//
+//    for (int i = 0; i < queue.Size(); i++)
+//    {
+//        char buf[10];
+//        std::sprintf(buf, "%d ", queue[i]);
+//
+//        std::strcat(buffer, buf);
+//    }
+//
+//    LOG_WRITE(buffer);
 }
 
 void Panel::EnableLEDChannel0(bool enable)
