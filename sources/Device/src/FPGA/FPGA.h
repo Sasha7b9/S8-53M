@@ -71,6 +71,8 @@ public:
         static void Write(TypeRecord::E type, uint16 *address, uint data, bool restart);
 
         static void Write(TypeRecord::E type, uint16 *address, uint data);
+
+        static void WriteToDAC(TypeWriteDAC::E type, uint16 data);
     };
 
     static bool inProcessingOfRead;
@@ -82,7 +84,7 @@ public:
 
     static void Update();
 
-    static StateWorkFPGA FPGA_CurrentStateWork();
+//    static StateWorkFPGA FPGA_CurrentStateWork();
     // Запускает цикл сбора информации.
     static void OnPressStartStop();
     // Запуск процесса сбора информации.
@@ -132,8 +134,6 @@ public:
 
     // Загрузить все параметры напряжения каналов и синхронизации в аппаратную часть.
     static void SetAttribChannelsAndTrig(TypeWriteAnalog::E type);
-
-    static void WriteToDAC(TypeWriteDAC::E type, uint16 data);
 
 private:
     // Загрузить настройки в аппаратную часть из глобальной структуры SSettings.

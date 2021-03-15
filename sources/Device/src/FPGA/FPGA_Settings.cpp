@@ -237,7 +237,7 @@ void RShift::Load(Channel::E chan)
     rShift = (uint16)(delta + RShiftZero);
 
     rShift = (uint16)(RShiftMax + RShiftMin - rShift);
-    FPGA::WriteToDAC(chan == Channel::A ? TypeWriteDAC::RShiftA : TypeWriteDAC::RShiftB, (uint16)(mask[chan] | (rShift << 2)));
+    FPGA::BUS::WriteToDAC(chan == Channel::A ? TypeWriteDAC::RShiftA : TypeWriteDAC::RShiftB, (uint16)(mask[chan] | (rShift << 2)));
 }
 
 
@@ -276,7 +276,7 @@ void TrigLev::Load()
     data |= trigLev << 2;
     // FPGA_WriteToHardware(WR_DAC_LOW, data.byte[0], true);
     // FPGA_WriteToHardware(WR_DAC_HI, data.byte[1], true);
-    FPGA::WriteToDAC(TypeWriteDAC::TrigLev, data);
+    FPGA::BUS::WriteToDAC(TypeWriteDAC::TrigLev, data);
 }
 
 

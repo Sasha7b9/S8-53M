@@ -1298,7 +1298,7 @@ void FPGA::WriteToAnalog(TypeWriteAnalog::E type, uint data)
 }
 
 
-void FPGA::WriteToDAC(TypeWriteDAC::E type, uint16 data)
+void FPGA::BUS::WriteToDAC(TypeWriteDAC::E type, uint16 data)
 {
     char buffer[19];
 
