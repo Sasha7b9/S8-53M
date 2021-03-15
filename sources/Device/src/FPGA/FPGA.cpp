@@ -880,7 +880,7 @@ void FPGA::ClearData(void)
 }
 
 
-bool FPGA::AllPointsRandomizer(void)
+bool FPGA::Randomizer::AllPointsRandomizer(void)
 {
     if(SET_TBASE < TBase::_100ns) 
     {
