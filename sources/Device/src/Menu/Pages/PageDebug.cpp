@@ -357,8 +357,8 @@ static void OnPress_ADC_AltRShift_Reset()
             }
         }
     }
-    FPGA::SetRShift(Channel::A, SET_RSHIFT_A);
-    FPGA::SetRShift(Channel::B, SET_RSHIFT_B);
+    RShift::Set(Channel::A, SET_RSHIFT_A);
+    RShift::Set(Channel::B, SET_RSHIFT_B);
 }
 
 DEF_BUTTON(mbADC_AltRShift_Reset, PageDebug::PageADC::PageAltRShift::self,
@@ -369,7 +369,7 @@ DEF_BUTTON(mbADC_AltRShift_Reset, PageDebug::PageADC::PageAltRShift::self,
 
 static void OnChanged_ADC_AltRShift_A()
 {
-    FPGA::SetRShift(Channel::A, SET_RSHIFT_A);
+    RShift::Set(Channel::A, SET_RSHIFT_A);
 }
 
 DEF_GOVERNOR(mbADC_AltRShift_2mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
@@ -381,7 +381,7 @@ DEF_GOVERNOR(mbADC_AltRShift_2mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
 
 static void OnChanged_ADC_AltRShift_B()
 {
-    FPGA::SetRShift(Channel::B, SET_RSHIFT_B);
+    RShift::Set(Channel::B, SET_RSHIFT_B);
 }
 
 DEF_GOVERNOR(mbADC_AltRShift_2mV_DC_B, PageDebug::PageADC::PageAltRShift::self,

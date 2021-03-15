@@ -1013,7 +1013,7 @@ bool FPGA::FindWave(Channel::E chan)
     SET_ENABLED(chan) = true;
     FPGA::SetTrigSource(static_cast<TrigSource::E>(chan));
     FPGA::SetTrigLev(static_cast<TrigSource::E>(chan), TrigLevZero);
-    FPGA::SetRShift(chan, RShiftZero);
+    RShift::Set(chan, RShiftZero);
     FPGA::SetModeCouple(chan, ModeCouple::AC);
     Range::E range = AccurateFindRange(chan);
     //LOG_WRITE("Range %s", RangeName(range));

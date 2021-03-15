@@ -417,11 +417,11 @@ void Menu::ProcessingLongPressureButton()
         }
         else if(longPressureButton == Key::ChannelA)
         {
-            FPGA::SetRShift(Channel::A, RShiftZero);
+            RShift::Set(Channel::A, RShiftZero);
         }
         else if(longPressureButton == Key::ChannelB)
         {
-            FPGA::SetRShift(Channel::B, RShiftZero);
+            RShift::Set(Channel::B, RShiftZero);
         }
         else if(longPressureButton == Key::Menu)
         {

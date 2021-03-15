@@ -116,8 +116,6 @@ public:
     static void TBaseDecrease();
     // Увеличить масштаб по времени.
     static void TBaseIncrease();
-    // Установить относительное смещение по напряжению.
-    static void SetRShift(Channel::E chan, int16 rShift);
     // Установить относительное смещение по времени.
     static void SetTShift(int tShift);
     // Установить добавочное смещение по времени для режима рандомизатора. В каждой развёртке это смещение должно быть разное.

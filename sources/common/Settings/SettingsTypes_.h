@@ -364,6 +364,8 @@ Range::E &operator--(Range::E &range);
 
 struct RShift
 {
+    static void Set(Channel::E chan, int16 rShift);
+
     static void Load(Channel::E ch);
 };
 

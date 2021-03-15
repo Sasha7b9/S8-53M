@@ -281,7 +281,7 @@ void FPGA::TBaseIncrease()
 }
 
 
-void FPGA::SetRShift(Channel::E chan, int16 rShift)
+void RShift::Set(Channel::E chan, int16 rShift)
 {
     if (!sChannel_Enabled(chan))
     {
@@ -585,7 +585,7 @@ void FPGA::SetModeCouple(Channel::E chan, ModeCouple::E modeCoupe)
 {
     SET_COUPLE(chan) = modeCoupe;
     SetAttribChannelsAndTrig(chan == Channel::A ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
-    SetRShift(chan, SET_RSHIFT(chan));
+    RShift::Set(chan, SET_RSHIFT(chan));
 }
 
 

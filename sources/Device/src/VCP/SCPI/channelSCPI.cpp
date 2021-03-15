@@ -167,7 +167,7 @@ void SCPI::CHANNEL::OFFSET(pUCHAR buffer)
     if (SCPI::FirstIsInt(buffer, &intVal, -240, 240))
     {
         int rShift = RShiftZero + 2 * intVal;
-        FPGA::SetRShift(chan, (int16)rShift);
+        RShift::Set(chan, (int16)rShift);
         return;
     }
     ENTER_ANALYSIS

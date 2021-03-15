@@ -559,7 +559,7 @@ static void ChangeRShift(int *prevTime, void(*f)(Channel::E, int16), Channel::E 
 
 static void SetRShift(Channel::E ch, int16 rShift)
 {
-    FPGA::SetRShift(ch, rShift);
+    RShift::Set(ch, rShift);
 }
 
 

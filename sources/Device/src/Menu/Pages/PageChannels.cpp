@@ -75,7 +75,7 @@ DEF_CHOICE_2(mcFiltrA, PageChannelA::self,
 
 static void OnChanged_InverseA(bool)
 {
-    FPGA::SetRShift(Channel::A, SET_RSHIFT_A);
+    RShift::Set(Channel::A, SET_RSHIFT_A);
 }
 
 DEF_CHOICE_2(mcInverseA, PageChannelA::self,
@@ -153,7 +153,7 @@ DEF_CHOICE_2(mcFiltrB, PageChannelB::self,
 
 static void OnChanged_InverseB(bool)
 {
-    FPGA::SetRShift(Channel::B, SET_RSHIFT_B);
+    RShift::Set(Channel::B, SET_RSHIFT_B);
 }
 
 DEF_CHOICE_2(mcInverseB, PageChannelB::self,
