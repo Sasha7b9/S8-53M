@@ -466,6 +466,8 @@ struct TBase
     static void Set(TBase::E tBase);
 
     static void Load();
+
+    static void Decrease();
 };
 
 

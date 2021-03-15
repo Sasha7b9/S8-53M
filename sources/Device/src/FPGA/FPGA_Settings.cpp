@@ -239,34 +239,6 @@ void TBase::Load()
 }
 
 
-void FPGA::TBaseDecrease()
-{
-    if ((PEAKDET != PeackDetMode::Disable) && SET_TBASE <= MIN_TBASE_PEC_DEAT)
-    {
-        Display::ShowWarningBad(Warning::LimitSweep_Time);
-        Display::ShowWarningBad(Warning::EnabledPeakDet);
-        return;
-    }
-
-    if ((int)SET_TBASE > 0)
-    {
-        if (SET_SELFRECORDER && SET_TBASE == MIN_TBASE_P2P)
-        {
-            Display::ShowWarningBad(Warning::TooFastScanForSelfRecorder);
-        }
-        else
-        {
-            TBase::E base = (TBase::E)((int)SET_TBASE - 1);
-            TBase::Set(base);
-        }
-    }
-    else
-    {
-        Display::ShowWarningBad(Warning::LimitSweep_Time);
-    }
-}
-
-
 void FPGA::TBaseIncrease()
 {
     if (SET_TBASE < (TBase::Count - 1))
@@ -279,34 +251,6 @@ void FPGA::TBaseIncrease()
         Display::ShowWarningBad(Warning::LimitSweep_Time);
     }
 }
-
-
-void RShift::Set(Channel::E chan, int16 rShift)
-{
-    if (!sChannel_Enabled(chan))
-    {
-        return;
-    }
-    Display::ChangedRShiftMarkers();
-
-    if (rShift > RShiftMax || rShift < RShiftMin)
-    {
-        Display::ShowWarningBad(chan == Channel::A ? Warning::LimitChan1_RShift : Warning::LimitChan2_RShift);
-    }
-
-    LIMITATION(rShift, rShift, RShiftMin, RShiftMax);
-    if (rShift > RShiftZero)
-    {
-        rShift &= 0xfffe;                                            // ƒелаем кратным двум, т.к. у нас 800 значений на 400 точек
-    }
-    else if (rShift < RShiftZero)
-    {
-        rShift = (rShift + 1) & 0xfffe;
-    }
-    SET_RSHIFT(chan) = rShift;
-    RShift::Load(chan);
-    Display::RotateRShift(chan);
-};
 
 
 void RShift::Load(Channel::E chan)
