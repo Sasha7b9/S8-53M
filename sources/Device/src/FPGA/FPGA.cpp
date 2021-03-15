@@ -821,17 +821,17 @@ uint16 FPGA::Flag::Read()
 {
     flag = HAL_FMC::Read(RD_FL);
 
-    if(!readPeriod) 
-    {
-        if(_GET_BIT(flag, FL_FREQ_READY)) 
-        {
-            ReadFreq();
-        }
-    }
-    if(readPeriod && (_GET_BIT(flag, FL_PERIOD_READY) == 1)) 
-    {
-        ReadPeriod();
-    }
+//    if(!readPeriod) 
+//    {
+//        if(_GET_BIT(flag, FL_FREQ_READY)) 
+//        {
+//            ReadFreq();
+//        }
+//    }
+//    if(readPeriod && (_GET_BIT(flag, FL_PERIOD_READY) == 1)) 
+//    {
+//        ReadPeriod();
+//    }
 
     return flag;
 }
@@ -1055,7 +1055,7 @@ Range::E FPGA::AccurateFindRange(Channel::E chan)
     TBase::Set(TBase::_50ms);
     FPGA::SetModeCouple(chan, ModeCouple::AC);
     PeackDetMode::E peackDetMode = PEAKDET;
-    FPGA::SetPeackDetMode(PeackDetMode::Enable);
+    PeackDetMode::Set(PeackDetMode::Enable);
     for (int range = Range::Count - 1; range >= 0; range--)
     {
         //Timer::LogPointMS("1");
@@ -1109,7 +1109,7 @@ Range::E FPGA::AccurateFindRange(Channel::E chan)
             {
                 range++;
             }
-            FPGA::SetPeackDetMode(peackDetMode);
+            PeackDetMode::Set(peackDetMode);
             return static_cast<Range::E>(range);
         }
 
@@ -1118,11 +1118,12 @@ Range::E FPGA::AccurateFindRange(Channel::E chan)
 
         if(range == Range::_2mV && CalculateMinWithout0(buffer) > min && CalculateMaxWithout255(buffer) < max)
         {
-            FPGA::SetPeackDetMode(peackDetMode);
+            PeackDetMode::Set(peackDetMode);
             return Range::Count;
         }
     }
-    FPGA::SetPeackDetMode(peackDetMode);
+
+    PeackDetMode::Set(peackDetMode);
     return Range::Count;
 }
 

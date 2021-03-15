@@ -287,13 +287,6 @@ void FPGA::SetDeltaTShift(int16 shift)
 }
 
 
-void FPGA::SetPeackDetMode(PeackDetMode::E peackDetMode)
-{
-    PEAKDET = peackDetMode;
-    RegUPR::Load();
-}
-
-
 void FPGA::SetCalibratorMode(CalibratorMode::E calibratorMode)
 {
     CALIBRATOR = calibratorMode;

@@ -190,3 +190,10 @@ void TShift::Set(int tShift)
     TShift::Load();
     Display::Redraw();
 };
+
+
+void PeackDetMode::Set(PeackDetMode::E peackDetMode)
+{
+    PEAKDET = peackDetMode;
+    RegUPR::Load();
+}

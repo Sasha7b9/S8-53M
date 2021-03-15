@@ -114,8 +114,6 @@ public:
     static void EnableChannelFiltr(Channel::E chan, bool enable);
     // Установить добавочное смещение по времени для режима рандомизатора. В каждой развёртке это смещение должно быть разное.
     static void SetDeltaTShift(int16 shift);
-    // Включить/выключить режим пикового детектора.
-    static void SetPeackDetMode(PeackDetMode::E peackDetMode);
     // Включить/выключить калибратор.
     static void SetCalibratorMode(CalibratorMode::E calibratorMode);
     // Загрузить в аппарат коэффициенты калибровки каналов.

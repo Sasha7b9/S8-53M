@@ -302,12 +302,17 @@ struct TPos { enum E
 
 
 // Режим работы пикового детектора.
-struct PeackDetMode { enum E
+struct PeackDetMode
 {
-    Disable,
-    Enable,
-    Average
-};};
+    enum E
+    {
+        Disable,
+        Enable,
+        Average
+    };
+
+    static void Set(PeackDetMode::E mode);
+};
 
 
 struct Channel { enum E
