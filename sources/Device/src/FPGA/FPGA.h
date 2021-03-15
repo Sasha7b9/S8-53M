@@ -73,6 +73,12 @@ public:
         static void Restore();
     };
 
+    struct Randomizer
+    {
+        // ”становить дополнительное смещение. Ќужно дл€ правильной расстановки точек в режиме рандомизатора.
+        static void SetAdditionShift(int shift);
+    };
+
     static bool inProcessingOfRead;
 
     static void Init();
@@ -96,9 +102,6 @@ public:
 
     // ”дал€ет данные. Ќужно дл€ режима рандомизаотра, где информаци€ каждого цикла не €вл€етс€ самосто€тельной.
     static void ClearData();
-
-    // ”становить дополнительное смещение. Ќужно дл€ правильной расстановки точек в режиме рандомизатора.
-    static void SetAdditionShift(int shift);
 
     // ¬озвращает true,если все точки получены в режиме рандомизатора.
     static bool AllPointsRandomizer();

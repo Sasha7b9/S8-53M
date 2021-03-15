@@ -515,7 +515,7 @@ void FPGA::DataRead(bool necessaryShift, bool saveToStorage)
 }
 
 
-void FPGA::SetAdditionShift(int shift)
+void FPGA::Randomizer::SetAdditionShift(int shift)
 {
     additionShift = shift;
 }

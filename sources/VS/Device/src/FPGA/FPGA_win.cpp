@@ -30,7 +30,7 @@ void FPGA::WriteToAnalog(TypeWriteAnalog::E, uint)
 }
 
 
-void FPGA::SetAdditionShift(int shift)
+void FPGA::Randomizer::SetAdditionShift(int shift)
 {
     additionShift = shift;
 }
