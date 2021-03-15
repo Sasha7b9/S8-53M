@@ -65,7 +65,7 @@ void Display::Update(void)
 {
     MainStruct::ms->display.isRun = true;
 
-    MainStruct::ms->display.timePrev = HAL_TIM2::TimeMS();
+    MainStruct::ms->display.timePrev = TIME_MS;
 
     BeginFrame(Color::BLACK);
 
@@ -84,7 +84,7 @@ void Display::Update(void)
     }
     else if (MainStruct::ms->state == State::Mount)
     {
-        uint dT = HAL_TIM2::TimeMS() - MainStruct::ms->display.timePrev;
+        uint dT = TIME_MS - MainStruct::ms->display.timePrev;
         DrawProgressBar(dT);
     }
     else if (MainStruct::ms->state == State::WrongFlash)
@@ -166,10 +166,10 @@ static void DrawBigMNIPI(void)
     if (first)
     {
         first = false;
-        startTime = HAL_TIM2::TimeMS();
+        startTime = TIME_MS;
     }
 
-    uint time = HAL_TIM2::TimeMS() - startTime;
+    uint time = TIME_MS - startTime;
 
     int numColor = 0;
     LIMITATION(numColor, static_cast<int>(static_cast<float>(time) / (float)TIME_WAIT * 13.0F), 0, 13);

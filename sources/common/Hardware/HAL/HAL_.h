@@ -18,7 +18,7 @@ struct PackedTime
   * Количество тиков, прошедших с момента последнего вызова функции Timer_StartMultiMeasurement(). Не более (1 << 32).
 ***/
 #define gTimerTics HAL_TIM2::GetTicks()
-#define TIME_MS    HAL_TIM2::TimeMS()
+#define TIME_MS    HAL_TIM::TimeMS()
 
 
 // Программа и константные данные
@@ -203,14 +203,18 @@ public:
 };
 
 
+struct HAL_TIM
+{
+    static uint TimeMS();
+};
+
+
 struct HAL_TIM2
 {
     static void Init();
 
     static uint GetTicks();
 
-    static uint TimeMS();
-    
     // Запускает счётчик для измерения малых отрезков времени.
     static void StartMultiMeasurement();
     

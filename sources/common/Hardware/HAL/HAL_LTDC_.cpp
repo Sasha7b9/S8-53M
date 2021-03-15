@@ -13,6 +13,8 @@ static uint backBuffer = 0;
 
 void HAL_LTDC::Init(uint8 *front, uint8 *back)
 {
+    HAL_PINS::LTDC_::Init();
+
     handleLTDC.Instance = LTDC;
     handleLTDC.Init.HSPolarity = LTDC_HSPOLARITY_AL;
     handleLTDC.Init.VSPolarity = LTDC_VSPOLARITY_AL;

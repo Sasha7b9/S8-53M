@@ -26,7 +26,7 @@ void HAL_TIM2::Init()
 uint HAL_TIM2::GetTicks()
 {
 #ifdef WIN32
-    return TimeMS();
+    return HAL_TIM::TimeMS();
 #else
     return TIM2->CNT;
 #endif
@@ -49,7 +49,7 @@ void HAL_TIM2::Delay(uint timeMS)
 }
 
 
-uint HAL_TIM2::TimeMS()
+uint HAL_TIM::TimeMS()
 {
     return HAL_GetTick();
 }

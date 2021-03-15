@@ -36,11 +36,11 @@ int main(void)
 
     Timer::Enable(TypeTimer::Temp, 10, Display::Update);
 
-    uint timeStart = HAL_TIM2::TimeMS();
+    uint timeStart = TIME_MS;
 
     FDrive_Init();
 
-    while (HAL_TIM2::TimeMS() - timeStart < TIME_WAIT && !FDrive_Update())
+    while (TIME_MS - timeStart < TIME_WAIT && !FDrive_Update())
     {
     }
 

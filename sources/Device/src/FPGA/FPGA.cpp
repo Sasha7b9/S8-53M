@@ -196,23 +196,21 @@ bool FPGA::ProcessingData(void)
 
 void FPGA::Update(void)
 {
-    /*
-    *  1. Записать развёртку
-    *  2. Записать смещение по времени
-    *  3. Ожидать готовность предзапуска
-    */
+    static uint time_prev_reload = 0;
 
-    static bool first = true;
-
-    if (first)
+    if (TIME_MS - time_prev_reload > 10000)
     {
-        first = false;
+        time_prev_reload = TIME_MS;
 
-        TBase::Load();
-        TShift::Load();
+        if (SET_TBASE == TBase::_1ms)
+        {
+            SET_TBASE = TBase::_5ms;
+        }
+        else
+        {
+            SET_TBASE = TBase::_1ms;
+        }
     }
-
-///    uint timePredReady = 0; // Время, когда сработал предзапуск
 
     uint16 flag = Flag::Read();
 
@@ -709,7 +707,7 @@ void FPGA::State::Save(void)
 
 
 void FPGA::State::Restore(void)
-{
+{\
     int16 rShiftAdd[2][Range::Count][2];
     for (int chan = 0; chan < 2; chan++)
     {
@@ -869,7 +867,7 @@ static float CalculateFreqFromCounterPeriod(void)
 }
 
 
-float FPGA::FreqMeter::GetFreq(void) 
+float FPGA::FreqMeter::GetFreq(void)
 {
     return freq;
 }
