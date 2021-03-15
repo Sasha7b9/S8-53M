@@ -109,7 +109,7 @@ file(GLOB MENU_PAGES           src/Menu/Pages/*.*)
 file(GLOB PANEL          ../common/Panel/*.*
                                src/Panel/*.*)
 file(GLOB SETTINGS             src/Settings/*.*
-                         ../common/Settings/cSettingsTypes.h)
+                         ../common/Settings/SettingsTypes_.h)
 file(GLOB UTILS                src/Utils/*.*
                          ../common/Utils/*.*)
 file(GLOB VCP                  src/VCP/*.h
