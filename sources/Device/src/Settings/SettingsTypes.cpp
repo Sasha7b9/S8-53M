@@ -18,7 +18,7 @@ int Divider::ToAbs(Divider::E multiplier)
 }
 
 
-const char *RangeName(Range::E range)
+pchar Range::Name(Range::E range)
 {
     static const char *names[Range::Count + 1] =
     {

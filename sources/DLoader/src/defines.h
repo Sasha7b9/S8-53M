@@ -7,6 +7,7 @@ typedef unsigned short int uint16;
 typedef signed short int   int16;
 typedef unsigned char      uchar;
 typedef const char *       pCHAR;
+typedef const char        *pchar;
 typedef const uint8 *      pUCHAR;
 typedef const char *const  pString;
 
