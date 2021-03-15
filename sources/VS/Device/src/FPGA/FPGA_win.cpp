@@ -96,7 +96,7 @@ void FPGA::OnPressStartStop()
 }
 
 
-void FPGA::WriteToHardware(uint16 *const, uint16, bool)
+void FPGA::BUS::WriteToHardware(uint16 *const, uint16, bool)
 {
 
 }
@@ -132,7 +132,7 @@ void FPGA::ClearData()
 }
 
 
-void FPGA::Write(TypeRecord::E, uint16 *, uint, bool)
+void FPGA::BUS::Write(TypeRecord::E, uint16 *, uint, bool)
 {
 
 }

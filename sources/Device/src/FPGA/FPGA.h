@@ -67,6 +67,10 @@ public:
         // restart - true означает, что после записи нужно запусить режим измерений, если до этого прибор не находилс€ в
         //           режиме паузы.
         static void WriteToHardware(uint16 *const address, uint16 value, bool restart);
+
+        static void Write(TypeRecord::E type, uint16 *address, uint data, bool restart);
+
+        static void Write(TypeRecord::E type, uint16 *address, uint data);
     };
 
     static bool inProcessingOfRead;
@@ -77,9 +81,6 @@ public:
     static void SetNumSignalsInSec(int numSigInSec);
 
     static void Update();
-
-    static void Write(TypeRecord::E type, uint16 *address, uint data, bool restart);
-    static void Write(TypeRecord::E type, uint16 *address, uint data);
 
     static StateWorkFPGA FPGA_CurrentStateWork();
     // «апускает цикл сбора информации.

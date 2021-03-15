@@ -659,7 +659,7 @@ void FPGA::BUS::WriteToHardware(uint16 * const address, uint16 value, bool resta
 }
 
 
-void FPGA::Write(TypeRecord::E type, uint16 *address, uint data, bool restart)
+void FPGA::BUS::Write(TypeRecord::E type, uint16 *address, uint data, bool restart)
 {
     if (restart)
     {
@@ -677,7 +677,7 @@ void FPGA::Write(TypeRecord::E type, uint16 *address, uint data, bool restart)
 }
 
 
-void FPGA::Write(TypeRecord::E type, uint16 *address, uint data)
+void FPGA::BUS::Write(TypeRecord::E type, uint16 *address, uint data)
 {
     if (type == TypeRecord::FPGA)
     {
