@@ -619,12 +619,17 @@ struct ModeRegSet { enum E
 
 
 // Режим работы калибратора.
-struct CalibratorMode { enum E
+struct CalibratorMode
 {
-    Freq,           // На выходе калибратора 4В, 1кГц.
-    DC,             // На выходе калибратора 4В постоянного напряжения.
-    GND             // На выходе калибратора 0В.
-};};
+    enum E
+    {
+        Freq,           // На выходе калибратора 4В, 1кГц.
+        DC,             // На выходе калибратора 4В постоянного напряжения.
+        GND             // На выходе калибратора 0В.
+    };
+
+    static void Set(CalibratorMode::E calibratorMode);
+};
 
 
 struct TrigLev

@@ -77,7 +77,7 @@ DEF_BUTTON(bAutoSearch, PageService::self,
 
 static void OnChanged_Calibrator_Mode(bool)
 {
-    FPGA::SetCalibratorMode(CALIBRATOR);
+    CalibratorMode::Set(CALIBRATOR);
 }
 
 DEF_CHOICE_3(cCalibrator_Mode, PageService::PageCalibrator::self,

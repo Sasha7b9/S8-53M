@@ -110,8 +110,6 @@ public:
     static void FindAndSetTrigLevel();
     // Включить/выключить фильтр на входе канала.
     static void EnableChannelFiltr(Channel::E chan, bool enable);
-    // Включить/выключить калибратор.
-    static void SetCalibratorMode(CalibratorMode::E calibratorMode);
     // Загрузить в аппарат коэффициенты калибровки каналов.
     static void LoadKoeffCalibration(Channel::E chan);
     // Установить источник синхронизации.

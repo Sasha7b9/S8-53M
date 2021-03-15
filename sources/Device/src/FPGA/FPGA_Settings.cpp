@@ -287,7 +287,7 @@ void TShift::SetDelta(int16 shift)
 }
 
 
-void FPGA::SetCalibratorMode(CalibratorMode::E calibratorMode)
+void CalibratorMode::Set(CalibratorMode::E calibratorMode)
 {
     CALIBRATOR = calibratorMode;
     RegUPR::Load();
