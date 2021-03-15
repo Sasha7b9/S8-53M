@@ -34,7 +34,7 @@ static int16 timeCompensation[TBase::Count] = { 550, 275, 120, 55, 25, 9, 4, 1 }
 
 void FPGA::LoadSettings()
 {
-    LoadTBase();
+    TBase::Load();
     LoadTShift();
     LoadRange(Channel::A);
     LoadRShift(Channel::A);
@@ -178,7 +178,7 @@ void FPGA::SetTBase(TBase::E tBase)
     {
         float tShiftAbsOld = TSHIFT_2_ABS(TSHIFT, SET_TBASE);
         sTime_SetTBase(tBase);
-        LoadTBase();
+        TBase::Load();
         FPGA::SetTShift(static_cast<int>(TSHIFT_2_REL(tShiftAbsOld, SET_TBASE)));
         Display::Redraw();
     }
@@ -189,7 +189,7 @@ void FPGA::SetTBase(TBase::E tBase)
 };
 
 
-void FPGA::LoadTBase()
+void TBase::Load()
 {
     struct TBaseMaskStruct
     {
@@ -234,7 +234,7 @@ void FPGA::LoadTBase()
 
     TBase::E tBase = SET_TBASE;
     uint8 mask = PEAKDET ? masksTBase[tBase].maskPeackDet : masksTBase[tBase].maskNorm;
-    Write(TypeRecord::FPGA, WR_RAZV, mask, true);
+    FPGA::Write(TypeRecord::FPGA, WR_RAZV, mask, true);
     ADD_SHIFT_T0 = deltaTShift[tBase];
 }
 

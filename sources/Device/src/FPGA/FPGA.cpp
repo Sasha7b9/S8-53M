@@ -208,7 +208,7 @@ void FPGA::Update(void)
     {
         first = false;
 
-        LoadTBase();
+        TBase::Load();
         LoadTShift();
     }
 
