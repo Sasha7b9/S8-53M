@@ -438,9 +438,9 @@ void FPGA::LoadRegUPR()
 }
 
 
-void FPGA::LoadKoeffCalibration(Channel::E chan)
+void FPGA::LoadKoeffCalibration(Channel::E /*chan*/)
 {
-    FPGA::WriteToHardware(chan == Channel::A ? WR_CAL_A : WR_CAL_B, static_cast<uint8>(STRETCH_ADC(chan) * 0x80), false);
+//    FPGA::WriteToHardware(chan == Channel::A ? WR_CAL_A : WR_CAL_B, static_cast<uint8>(STRETCH_ADC(chan) * 0x80), false);
 }
 
 

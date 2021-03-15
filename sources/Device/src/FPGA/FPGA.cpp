@@ -386,13 +386,13 @@ void FPGA::ReadRealMode(bool necessaryShift)
         uint16 *p1max = p1min + 512;
         while ((p0max < endP) && inProcessingOfRead)
         {
-            uint16 data = *RD_ADC_B2;
+            uint16 data = *RD_ADC_B;
             *p1max++ = data;
-            data = *RD_ADC_B1;
+            data = *RD_ADC_B;
             *p1min++ = data;
-            data = *RD_ADC_A2;
+            data = *RD_ADC_A;
             *p0min++ = data;
-            data = *RD_ADC_A1;
+            data = *RD_ADC_A;
             *p0max++ = data;
         }
     }
@@ -400,11 +400,11 @@ void FPGA::ReadRealMode(bool necessaryShift)
     {
         while ((p0 < endP) && inProcessingOfRead)
         {
-            *p1++ = *RD_ADC_B2;
-            *p1++ = *RD_ADC_B1;
-            uint16 data = *RD_ADC_A2;
+            *p1++ = *RD_ADC_B;
+            *p1++ = *RD_ADC_B;
+            uint16 data = *RD_ADC_A;
             *p0++ = data;
-            data = *RD_ADC_A1;
+            data = *RD_ADC_A;
             *p0++ = data;
         }
 
@@ -653,10 +653,10 @@ void ReadPoint(void)
 {
     if(_GET_BIT(FPGA::Flag::Read(), FL_POINT_READY))
     {
-        uint16 dataB1 = *RD_ADC_B1;
-        uint16 dataB2 = *RD_ADC_B2;
-        uint16 dataA1 = *RD_ADC_A1;
-        uint16 dataA2 = *RD_ADC_A2;
+        uint16 dataB1 = *RD_ADC_B;
+        uint16 dataB2 = *RD_ADC_B;
+        uint16 dataA1 = *RD_ADC_A;
+        uint16 dataA2 = *RD_ADC_A;
         Display::AddPoints(dataA2, dataA1, dataB2, dataB1);
     }
 }
@@ -708,10 +708,8 @@ static bool readPeriod = false;     // Установленный в true флаг означает, что ч
 static BitSet32 ReadRegFreq(void)
 {
     BitSet32 fr;
-    fr.byte[0] = (uint8)HAL_FMC::Read(RD_ADDR_FREQ_LOW);
-    fr.byte[1] = (uint8)HAL_FMC::Read(RD_ADDR_FREQ_MID);
-    fr.byte[2] = (uint8)HAL_FMC::Read(RD_ADDR_FREQ_HI);
-    fr.byte[3] = 0;
+    fr.half_word[0] = (uint8)HAL_FMC::Read(RD_FREQ_LOW);
+    fr.half_word[1] = (uint8)HAL_FMC::Read(RD_FREQ_HI);
     return fr;
 }
 
@@ -719,10 +717,8 @@ static BitSet32 ReadRegFreq(void)
 static BitSet32 ReadRegPeriod(void)
 {
     BitSet32 period;
-    period.byte[0] = (uint8)HAL_FMC::Read(RD_ADDR_PERIOD_LOW_LOW);
-    period.byte[1] = (uint8)HAL_FMC::Read(RD_ADDR_PERIOD_LOW);
-    period.byte[2] = (uint8)HAL_FMC::Read(RD_ADDR_PERIOD_MID);
-    period.byte[3] = (uint8)HAL_FMC::Read(RD_ADDR_PERIOD_HI);
+    period.half_word[0] = (uint8)HAL_FMC::Read(RD_PERIOD_LOW);
+    period.half_word[1] = (uint8)HAL_FMC::Read(RD_PERIOD_HI);
     return period;
 }
 
@@ -1034,10 +1030,10 @@ Range::E FPGA::AccurateFindRange(Channel::E chan)
         for (int i = 0; i < 50; i++)
         {
             while (_GET_BIT(HAL_FMC::Read(RD_FL), FL_POINT_READY) == 0) {};
-            HAL_FMC::Read(RD_ADC_B2);
-            HAL_FMC::Read(RD_ADC_B1);
-            HAL_FMC::Read(RD_ADC_A2);
-            HAL_FMC::Read(RD_ADC_A1);
+            HAL_FMC::Read(RD_ADC_B);
+            HAL_FMC::Read(RD_ADC_B);
+            HAL_FMC::Read(RD_ADC_A);
+            HAL_FMC::Read(RD_ADC_A);
         }
 
         if (chan == Channel::A)
@@ -1045,10 +1041,10 @@ Range::E FPGA::AccurateFindRange(Channel::E chan)
             for (int i = 0; i < 100; i += 2)
             {
                 while (_GET_BIT(HAL_FMC::Read(RD_FL), FL_POINT_READY) == 0) {};
-                HAL_FMC::Read(RD_ADC_B2);
-                HAL_FMC::Read(RD_ADC_B1);
-                buffer[i] = (uint8)HAL_FMC::Read(RD_ADC_A2);
-                buffer[i + 1] = (uint8)HAL_FMC::Read(RD_ADC_A1);
+                HAL_FMC::Read(RD_ADC_B);
+                HAL_FMC::Read(RD_ADC_B);
+                buffer[i] = (uint8)HAL_FMC::Read(RD_ADC_A);
+                buffer[i + 1] = (uint8)HAL_FMC::Read(RD_ADC_A);
             }
         }
         else
@@ -1056,10 +1052,10 @@ Range::E FPGA::AccurateFindRange(Channel::E chan)
             for (int i = 0; i < 100; i += 2)
             {
                 while (_GET_BIT(HAL_FMC::Read(RD_FL), FL_POINT_READY) == 0) {};
-                buffer[i] = (uint8)HAL_FMC::Read(RD_ADC_B2);
-                buffer[i + 1] = (uint8)HAL_FMC::Read(RD_ADC_B1);
-                HAL_FMC::Read(RD_ADC_A2);
-                HAL_FMC::Read(RD_ADC_A1);
+                buffer[i] = (uint8)HAL_FMC::Read(RD_ADC_B);
+                buffer[i + 1] = (uint8)HAL_FMC::Read(RD_ADC_B);
+                HAL_FMC::Read(RD_ADC_A);
+                HAL_FMC::Read(RD_ADC_A);
             }
         }
 

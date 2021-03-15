@@ -45,8 +45,9 @@ typedef void    (*pFuncpCU8)(pUCHAR );
 // Объединение размером 32 бита
 union BitSet32 //-V2514
 {
-    uint  word;
-    uint8 byte[4]; //-V112
+    uint   word;
+    uint16 half_word[2];
+    uint8  byte[4];
 };
 
 // Объединение размером 64 бита
