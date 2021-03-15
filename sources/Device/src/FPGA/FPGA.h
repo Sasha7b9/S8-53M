@@ -157,10 +157,10 @@ public:
 
     // Загрузить все параметры напряжения каналов и синхронизации в аппаратную часть.
     static void SetAttribChannelsAndTrig(TypeWriteAnalog::E type);
-    // Загрузка смещения по напряжению в аппаратную часть.
-    static void LoadRShift(Channel::E chan);
     // Загрузка уровня синхронизации в аппаратную часть.
     static void LoadTrigLev();
+
+    static void WriteToDAC(TypeWriteDAC::E type, uint16 data);
 
 private:
     // Загрузить настройки в аппаратную часть из глобальной структуры SSettings.
@@ -171,8 +171,6 @@ private:
     static void LoadRegUPR();
 
     static void WriteToAnalog(TypeWriteAnalog::E type, uint data);
-
-    static void WriteToDAC(TypeWriteDAC::E type, uint16 data);
     // Прочитать данные.
     static void DataRead(
                         bool necessaryShift,    // Признак того, что сигнал нужно смещать.

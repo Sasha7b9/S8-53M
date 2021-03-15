@@ -37,9 +37,9 @@ void FPGA::LoadSettings()
     TBase::Load();
     TShift::Load();
     Range::Load(Channel::A);
-    LoadRShift(Channel::A);
+    RShift::Load(Channel::A);
     Range::Load(Channel::B);
-    LoadRShift(Channel::B);
+    RShift::Load(Channel::B);
     LoadTrigLev();
     LoadTrigPolarity();
     LoadRegUPR();
@@ -160,7 +160,7 @@ void FPGA::SetRange(Channel::E chan, Range::E range)
 void Range::Load(Channel::E chan)
 {
     FPGA::SetAttribChannelsAndTrig(TypeWriteAnalog::Range0);
-    FPGA::LoadRShift(chan);
+    RShift::Load(chan);
     if (chan == (Channel::E)TRIG_SOURCE)
     {
         FPGA::LoadTrigLev();
@@ -304,12 +304,12 @@ void FPGA::SetRShift(Channel::E chan, int16 rShift)
         rShift = (rShift + 1) & 0xfffe;
     }
     SET_RSHIFT(chan) = rShift;
-    LoadRShift(chan);
+    RShift::Load(chan);
     Display::RotateRShift(chan);
 };
 
 
-void FPGA::LoadRShift(Channel::E chan)
+void RShift::Load(Channel::E chan)
 {
     static const uint16 mask[2] = {0x2000, 0x6000};
 
@@ -328,7 +328,7 @@ void FPGA::LoadRShift(Channel::E chan)
     rShift = (uint16)(delta + RShiftZero);
 
     rShift = (uint16)(RShiftMax + RShiftMin - rShift);
-    WriteToDAC(chan == Channel::A ? TypeWriteDAC::RShiftA : TypeWriteDAC::RShiftB, (uint16)(mask[chan] | (rShift << 2)));
+    FPGA::WriteToDAC(chan == Channel::A ? TypeWriteDAC::RShiftA : TypeWriteDAC::RShiftB, (uint16)(mask[chan] | (rShift << 2)));
 }
 
 

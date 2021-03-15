@@ -356,6 +356,12 @@ Range::E &operator++(Range::E &range);
 Range::E &operator--(Range::E &range);
 
 
+struct RShift
+{
+    static void Load(Channel::E ch);
+};
+
+
 // Режим запуска.
 struct StartMode { enum E
 {
