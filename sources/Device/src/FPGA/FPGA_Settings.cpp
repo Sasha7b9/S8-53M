@@ -40,10 +40,10 @@ void FPGA::LoadSettings()
     RShift::Load(Channel::A);
     Range::Load(Channel::B);
     RShift::Load(Channel::B);
-    LoadTrigLev();
+    TrigLev::Load();
     LoadTrigPolarity();
     LoadRegUPR();
-    LoadTrigLev();
+    TrigLev::Load();
 
     /*
     LoadKoeffCalibration(Channel::A);
@@ -163,7 +163,7 @@ void Range::Load(Channel::E chan)
     RShift::Load(chan);
     if (chan == (Channel::E)TRIG_SOURCE)
     {
-        FPGA::LoadTrigLev();
+        TrigLev::Load();
     }
 }
 
@@ -353,13 +353,13 @@ void FPGA::SetTrigLev(TrigSource::E chan, int16 trigLev)
     if (TRIG_LEVEL(chan) != trigLev)
     {
         TRIG_LEVEL(chan) = trigLev;
-        LoadTrigLev();
+        TrigLev::Load();
         Display::RotateTrigLev();
     }
 };
 
 
-void FPGA::LoadTrigLev()
+void TrigLev::Load()
 {
     uint16 data = 0xa000;
     uint16 trigLev = (uint16)TRIG_LEVEL_SOURCE;
@@ -367,7 +367,7 @@ void FPGA::LoadTrigLev()
     data |= trigLev << 2;
     // FPGA_WriteToHardware(WR_DAC_LOW, data.byte[0], true);
     // FPGA_WriteToHardware(WR_DAC_HI, data.byte[1], true);
-    WriteToDAC(TypeWriteDAC::TrigLev, data);
+    FPGA::WriteToDAC(TypeWriteDAC::TrigLev, data);
 }
 
 

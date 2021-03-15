@@ -157,8 +157,6 @@ public:
 
     // Загрузить все параметры напряжения каналов и синхронизации в аппаратную часть.
     static void SetAttribChannelsAndTrig(TypeWriteAnalog::E type);
-    // Загрузка уровня синхронизации в аппаратную часть.
-    static void LoadTrigLev();
 
     static void WriteToDAC(TypeWriteDAC::E type, uint16 data);
 

@@ -590,3 +590,9 @@ struct CalibratorMode { enum E
     DC,             // На выходе калибратора 4В постоянного напряжения.
     GND             // На выходе калибратора 0В.
 };};
+
+
+struct TrigLev
+{
+    static void Load();
+};
