@@ -163,8 +163,6 @@ public:
 private:
     // Загрузить настройки в аппаратную часть из глобальной структуры SSettings.
     static void LoadSettings();
-    // Загузка полярности синхронизации в аппаратную часть.
-    static void LoadTrigPolarity();
     // Загрузить регистр WR_UPR (пиковый детектор и калибратор).
     static void LoadRegUPR();
 

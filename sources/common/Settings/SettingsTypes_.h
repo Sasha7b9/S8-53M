@@ -594,5 +594,10 @@ struct CalibratorMode { enum E
 
 struct TrigLev
 {
+    struct Polarity
+    {
+        static void Load();
+    };
+
     static void Load();
 };
