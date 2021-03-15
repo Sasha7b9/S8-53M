@@ -745,7 +745,7 @@ static void TShiftRight()
 static void RangeLeftA()
 {
     Sound::RegulatorSwitchRotate();
-    FPGA::RangeIncrease(Channel::A);
+    Range::Increase(Channel::A);
 }
 
 
@@ -759,7 +759,7 @@ static void RangeRightA()
 static void RangeLeftB()
 {
     Sound::RegulatorSwitchRotate();
-    FPGA::RangeIncrease(Channel::B);
+    Range::Increase(Channel::B);
 }
 
 

@@ -148,7 +148,7 @@ void Range::Set(Channel::E chan, Range::E range)
             SET_RSHIFT(chan) = (int16)MathFPGA::RShift2Rel(rShiftAbs, range);
             TRIG_LEVEL(chan) = (int16)MathFPGA::RShift2Rel(trigLevAbs, range);
         }
-        Range::Load(chan);
+        Load(chan);
     }
     else
     {
@@ -516,12 +516,12 @@ const char *FPGA::GetTShiftString(int16 tShiftRel, char buffer[20])
 }
 
 
-bool FPGA::RangeIncrease(Channel::E chan)
+bool Range::Increase(Channel::E chan)
 {
     bool retValue = false;
     if (SET_RANGE(chan) < Range::Count - 1)
     {
-        Range::Set(chan, (Range::E)(SET_RANGE(chan) + 1));
+        Set(chan, (Range::E)(SET_RANGE(chan) + 1));
         retValue = true;
     }
     else
