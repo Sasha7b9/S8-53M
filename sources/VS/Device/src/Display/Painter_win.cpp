@@ -12,6 +12,7 @@
 #define uchar   unsigned char
 #define pString const char * const
 
+#undef A
 #include <wx/display.h>
 
 #pragma warning(pop)

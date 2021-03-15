@@ -4,6 +4,7 @@
 #include "GUI/Application.h"
 
 #pragma warning(push, 0)
+#undef A
 #include <wx/wx.h>
 #pragma warning(pop)
 

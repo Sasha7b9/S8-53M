@@ -6,8 +6,8 @@
 #define SCALE_FFT_IS_LINEAR         (SCALE_FFT == ScaleFFT::Linear)
 
 #define SOURCE_FFT                  (set.math.sourceFFT)                // SettingsMath.sourceFFT
-#define SOURCE_FFT_IS_A             (SOURCE_FFT == SourceFFT::A)
-#define SOURCE_FFT_IS_B             (SOURCE_FFT == SourceFFT::B)
+#define SOURCE_FFT_IS_A             (SOURCE_FFT == SourceFFT::A_)
+#define SOURCE_FFT_IS_B             (SOURCE_FFT == SourceFFT::B_)
 
 #define WINDOW_FFT                  (set.math.windowFFT)                // SettingsMath.windowFFT
 #define WINDOW_FFT_IS_HAMMING       (WINDOW_FFT == WindowFFT::Hamming)
