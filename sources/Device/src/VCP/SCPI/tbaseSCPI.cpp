@@ -83,7 +83,7 @@ void SCPI::TBASE::OFFSET(pUCHAR buffer)
     if (SCPI::FirstIsInt(buffer, &intVal, -1024, 15000))
     {
         int tShift = intVal + 1024;
-        FPGA::SetTShift(tShift);
+        TShift::Set(tShift);
         return;
     }
 

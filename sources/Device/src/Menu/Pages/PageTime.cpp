@@ -82,7 +82,7 @@ DEF_CHOICE_2(mcPeakDet, PageTime::self,
 void PageTime::OnChanged_TPos(bool active)
 {
     ChangeC_Memory_NumPoints(active);
-    FPGA::SetTShift(TSHIFT);
+    TShift::Set(TSHIFT);
 }
 
 DEF_CHOICE_3(mcTPos, PageTime::self,

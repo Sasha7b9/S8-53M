@@ -55,7 +55,8 @@ void ChangeC_Memory_NumPoints(bool)
             SHIFT_IN_MEMORY = static_cast<int16>(sMemory_GetNumPoints(false) - Grid::Width() - 2);
         }
     }
-    FPGA::SetTShift(TSHIFT);
+
+    TShift::Set(TSHIFT);
 }
 
 // Активна ли ПАМЯТЬ - ВНЕШН ЗУ - Маска

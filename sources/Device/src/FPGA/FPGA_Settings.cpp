@@ -168,27 +168,6 @@ void Range::Load(Channel::E chan)
 }
 
 
-void TBase::Set(TBase::E tBase)
-{
-    if (!sChannel_Enabled(Channel::A) && !sChannel_Enabled(Channel::B))
-    {
-        return;
-    }
-    if (tBase < TBase::Count)
-    {
-        float tShiftAbsOld = TSHIFT_2_ABS(TSHIFT, SET_TBASE);
-        sTime_SetTBase(tBase);
-        Load();
-        FPGA::SetTShift(static_cast<int>(TSHIFT_2_REL(tShiftAbsOld, SET_TBASE)));
-        Display::Redraw();
-    }
-    else
-    {
-        Display::ShowWarningBad(Warning::LimitSweep_Time);
-    }
-};
-
-
 void TBase::Load()
 {
     struct TBaseMaskStruct
@@ -299,25 +278,6 @@ void TrigLev::Load()
     // FPGA_WriteToHardware(WR_DAC_HI, data.byte[1], true);
     FPGA::WriteToDAC(TypeWriteDAC::TrigLev, data);
 }
-
-
-void FPGA::SetTShift(int tShift)
-{
-    if (!sChannel_Enabled(Channel::A) && !sChannel_Enabled(Channel::B))
-    {
-        return;
-    }
-
-    if (tShift < sTime_TShiftMin() || tShift > TShiftMax)
-    {
-        LIMITATION(tShift, tShift, sTime_TShiftMin(), TShiftMax);
-        Display::ShowWarningBad(Warning::LimitSweep_TShift);
-    }
-
-    sTime_SetTShift((int16)tShift);
-    TShift::Load();
-    Display::Redraw();
-};
 
 
 void FPGA::SetDeltaTShift(int16 shift)

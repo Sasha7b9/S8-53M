@@ -3,6 +3,7 @@
 #include "common/Utils/Math_.h"
 #include "Display/Display.h"
 #include "FPGA/FPGA_Types.h"
+#include "FPGA/MathFPGA.h"
 #include "Settings/Settings.h"
 #include "Settings/SettingsChannel.h"
 #include "Settings/SettingsTypes.h"
@@ -150,3 +151,42 @@ void TBase::Increase()
     }
 }
 
+
+void TBase::Set(TBase::E tBase)
+{
+    if (!sChannel_Enabled(Channel::A) && !sChannel_Enabled(Channel::B))
+    {
+        return;
+    }
+    if (tBase < TBase::Count)
+    {
+        float tShiftAbsOld = TSHIFT_2_ABS(TSHIFT, SET_TBASE);
+        sTime_SetTBase(tBase);
+        Load();
+        TShift::Set(static_cast<int>(TSHIFT_2_REL(tShiftAbsOld, SET_TBASE)));
+        Display::Redraw();
+    }
+    else
+    {
+        Display::ShowWarningBad(Warning::LimitSweep_Time);
+    }
+};
+
+
+void TShift::Set(int tShift)
+{
+    if (!sChannel_Enabled(Channel::A) && !sChannel_Enabled(Channel::B))
+    {
+        return;
+    }
+
+    if (tShift < sTime_TShiftMin() || tShift > TShiftMax)
+    {
+        LIMITATION(tShift, tShift, sTime_TShiftMin(), TShiftMax);
+        Display::ShowWarningBad(Warning::LimitSweep_TShift);
+    }
+
+    sTime_SetTShift((int16)tShift);
+    TShift::Load();
+    Display::Redraw();
+};

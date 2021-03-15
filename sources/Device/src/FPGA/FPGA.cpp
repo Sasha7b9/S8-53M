@@ -13,7 +13,7 @@
 
 
 #define NULL_TSHIFT 1000000
-
+ 
 static float freq = 0.0F;           // Частота, намеренная альтерой.
 static float prevFreq = 0.0F;
 static StateWorkFPGA::E stateWork = StateWorkFPGA::Stop;

@@ -409,7 +409,7 @@ void Menu::ProcessingLongPressureButton()
 
         if(longPressureButton == Key::Time)
         {
-            FPGA::SetTShift(0);
+            TShift::Set(0);
         }
         else if(longPressureButton == Key::Trig)
         {

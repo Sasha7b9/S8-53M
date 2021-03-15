@@ -420,6 +420,8 @@ struct TrigModeFind { enum E
 
 struct TShift
 {
+    static void Set(int t_shift);
+
     static void Load();
 };
 

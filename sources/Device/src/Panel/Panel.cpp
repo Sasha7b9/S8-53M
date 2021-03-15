@@ -630,7 +630,7 @@ static void TrigLevRight()
 
 static void SetTShift(int tShift)
 {
-    FPGA::SetTShift(tShift);
+    TShift::Set(tShift);
 }
 
 

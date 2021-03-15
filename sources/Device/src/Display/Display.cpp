@@ -1293,51 +1293,51 @@ static void DrawIndicator()
 
 void Display::Update()
 {
-    uint timeStart = gTimerTics;
+//    uint timeStart = gTimerTics;
 
     bool needClear = NeedForClearScreen();
 
     if (needClear)
     {
         BeginFrame(Color::BLACK);
-        DrawMemoryWindow();
+//        DrawMemoryWindow();
         DrawFullGrid();
     }
 
-    DrawData();
+//    DrawData();
 
     if (needClear)
     {
-        DrawMath();
-        DrawSpectrum();
-        DrawCursors();
-        DrawHiPart();
-        DrawLowPart();
-        DrawCursorsWindow();
-        DrawCursorTrigLevel();
-        DrawCursorsRShift();
-        DrawMeasures();
-        DrawStringNavigation();
-        DrawCursorTShift();
+//        DrawMath();
+//        DrawSpectrum();
+//        DrawCursors();
+//        DrawHiPart();
+//        DrawLowPart();
+//        DrawCursorsWindow();
+//        DrawCursorTrigLevel();
+//        DrawCursorsRShift();
+//        DrawMeasures();
+//        DrawStringNavigation();
+//        DrawCursorTShift();
     }
 
     Menu::Draw();
 
     DrawIndicator();
 
-    if (needClear)
-    {
-        DrawWarnings();
-    }
-
+//    if (needClear)
+//    {
+//        DrawWarnings();
+//    }
+//
     DrawConsole();
-
-    if (needClear)
-    {
-        WriteValueTrigLevel();
-    }
-
-    DrawTimeForFrame(gTimerTics - timeStart);
+//
+//    if (needClear)
+//    {
+//        WriteValueTrigLevel();
+//    }
+//
+//    DrawTimeForFrame(gTimerTics - timeStart);
 
     Color::FILL.SetAsCurrent();
 

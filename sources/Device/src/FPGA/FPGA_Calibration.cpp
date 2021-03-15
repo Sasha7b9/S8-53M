@@ -82,7 +82,7 @@ void FPGA::ProcedureCalibration(void)
         state.stateCalibration = StateCalibration::ADCinProgress;                  // Запускаем процедуру балансировки АЦП.
 
         TBase::Set(TBase::_500us);
-        FPGA::SetTShift(0);
+        TShift::Set(0);
         STRETCH_ADC_A = 1.0F;
         STRETCH_ADC_B = 1.0F;
         FPGA::LoadKoeffCalibration(Channel::A);
