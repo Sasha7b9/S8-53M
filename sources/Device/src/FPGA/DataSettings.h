@@ -28,4 +28,6 @@ struct DataSettings
     Divider::E    multiplier0     : 1;
     Divider::E    multiplier1     : 1;
     PackedTime    time;
+
+    void Fill();
 };

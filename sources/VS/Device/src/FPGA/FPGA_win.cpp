@@ -84,12 +84,6 @@ StateWorkFPGA::E FPGA::CurrentStateWork()
 }
 
 
-void FPGA::FillDataPointer(DataSettings *)
-{
-
-}
-
-
 void FPGA::OnPressStartStop()
 {
 

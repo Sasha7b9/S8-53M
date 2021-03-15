@@ -1602,6 +1602,11 @@
               <FilePath>.\src\FPGA\DataSettings.h</FilePath>
             </File>
             <File>
+              <FileName>DataSettings.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\FPGA\DataSettings.cpp</FilePath>
+            </File>
+            <File>
               <FileName>FPGA.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\FPGA\FPGA.h</FilePath>
@@ -3780,6 +3785,11 @@
               <FileName>DataSettings.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\FPGA\DataSettings.h</FilePath>
+            </File>
+            <File>
+              <FileName>DataSettings.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\FPGA\DataSettings.cpp</FilePath>
             </File>
             <File>
               <FileName>FPGA.h</FileName>

@@ -108,14 +108,16 @@ public:
 
     // Установить количество измерений, по которым будут рассчитываться ворота в режиме рандомизатора.
     static void SetNumberMeasuresForGates(int number);
+
     // Принудительно запустить синхронизацию.
     static void SwitchingTrig();
+
     // Запустить процесс поиска сигнала.
     static void StartAutoFind();
+
     // Установить временную паузу после изменения ручек - чтобы смещённый сигнал зафиксировать на некоторое время
     static void TemporaryPause();
 
-    static void FillDataPointer(DataSettings *dp);
     // Найти и установить уровень синхронизации по последнему считанному сигналу
     static void FindAndSetTrigLevel();
     // Включить/выключить фильтр на входе канала.
