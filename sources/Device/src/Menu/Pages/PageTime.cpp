@@ -36,7 +36,7 @@ void PageTime::OnChanged_PeakDet(bool active)
         FPGA::SetTBase(SET_TBASE);
         if (PEAKDET_IS_DISABLE)
         {
-            int8 shift[2][3] =
+            volatile int8 shift[2][3] =
             {
                 {0, SET_BALANCE_ADC_A, static_cast<int8>(BALANCE_ADC_A)},
                 {0, SET_BALANCE_ADC_B, static_cast<int8>(BALANCE_ADC_B)}

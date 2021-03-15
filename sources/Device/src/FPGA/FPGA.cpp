@@ -54,9 +54,9 @@ static uint16 dataRel1[FPGA_MAX_POINTS] = {0};   // Буфер используется для чтени
 static Settings storingSettings;                // Здесь нужно уменьшить необходимый размер памяти - сохранять настройки только альтеры
 static uint timeStart = 0;
 static bool trigAutoFind = false;               // Установленное в 1 значение означает, что нужно производить автоматический поиск синхронизации, если выбрана соответствующая настройка.
-static bool autoFindInProgress = false;
-static bool temporaryPause = false;
-static bool canReadData = true;
+volatile static bool autoFindInProgress = false;
+volatile static bool temporaryPause = false;
+volatile static bool canReadData = true;
 static bool criticalSituation = false;
 static bool firstAfterWrite = false;            // Используется в режиме рандомизатора. После записи любого параметра в альтеру нужно не использовать первое считанное данное с АЦП, потому что оно завышено и портит ворота
 
@@ -196,14 +196,44 @@ bool FPGA::ProcessingData(void)
 
 void FPGA::Update(void)
 {
-    while (true)
-    {
-        uint16 flag = Flag::Read();
+    /*
+    *  1. Записать развёртку
+    *  2. Записать смещение по времени
+    *  3. Ожидать готовность предзапуска
+    */
 
-        if (_GET_BIT(flag, FL_PRED_READY) == 1)
+    static bool first = true;
+
+    if (first)
+    {
+        first = false;
+
+        LoadTBase();
+        LoadTShift();
+    }
+
+//    uint timePredReady = 0; // Время, когда сработал предзапуск
+
+    uint16 flag = Flag::Read();
+
+    if (_GET_BIT(flag, FL_PRED_READY) == 1)
+    {
+        LOG_WRITE("Предзапуск");
+        if (_GET_BIT(flag, FL_TRIG_READY) == 1)
+        {
+            if (_GET_BIT(flag, FL_DATA_READY) == 1)
+            {
+                LOG_WRITE("Данные можно считывать");
+            }
+        }
+        else
         {
 
         }
+    }
+    else
+    {
+        LOG_WRITE("Предзапуск не готов");
     }
 }
 

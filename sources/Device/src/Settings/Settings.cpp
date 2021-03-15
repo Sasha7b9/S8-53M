@@ -97,7 +97,7 @@ static const Settings defaultSettings =
     },
     // time
     {
-        TBase::_200us,
+        TBase::_1ms,
         0,                          // set.time.tShiftRel
         FunctionTime::Time,
         TPos::Center,
