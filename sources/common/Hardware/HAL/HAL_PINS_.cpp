@@ -199,12 +199,13 @@ void HAL_PINS::Init()
 //    PinETH(B, 12).Init();       // TXD0
 //    PinETH(G, 14).Init();       // TXD1
 
-}
-
-
-void HAL_PINS::LTDC_::Init()
-{
     Pin(PinMode::_DAC1, PinPort::_A, PinPin::_4).Init();        // PWM
+
+//    Pin pinPWM(PinMode::_Output, PinPort::_A, PinPin::_4);
+//    pinPWM.Init();
+//    pinPWM.Set();
+
+    //    Pin::Temp.Init();
 
     Pin pinRL(PinMode::_Output, PinPort::_G, PinPin::_13);      // ¬ыбор горизонтальной ориентации диспле€ R/L
     pinRL.Init();

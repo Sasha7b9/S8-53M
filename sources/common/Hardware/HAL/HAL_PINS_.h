@@ -12,8 +12,6 @@ namespace HAL_PINS
     namespace SPI1_ { void Init(); }
 
     namespace SPI5_ { void Init(); }
-
-    namespace LTDC_ { void Init(); }
 };
 
 
