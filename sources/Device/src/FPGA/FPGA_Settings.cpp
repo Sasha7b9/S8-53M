@@ -38,25 +38,25 @@ void FPGA::LoadSettings()
 {
     TBase::Load();
     TShift::Load();
-    Range::Load(Channel::A_);
-    RShift::Load(Channel::A_);
-    Range::Load(Channel::B_);
-    RShift::Load(Channel::B_);
+    Range::Load(Channel::A);
+    RShift::Load(Channel::A);
+    Range::Load(Channel::B);
+    RShift::Load(Channel::B);
     TrigLev::Load();
     TrigLev::Polarity::Load();
     RegUPR::Load();
     TrigLev::Load();
 
     /*
-    LoadKoeffCalibration(Channel::A_);
-    LoadKoeffCalibration(Channel::B_);
+    LoadKoeffCalibration(Channel::A);
+    LoadKoeffCalibration(Channel::B);
     SetAttribChannelsAndTrig(TypeWriteAnalog::All);
     LoadTBase();
     LoadTShift();
-    LoadRange(Channel::A_);
-    LoadRShift(Channel::A_);
-    LoadRange(Channel::B_);
-    LoadRShift(Channel::B_);
+    LoadRange(Channel::A);
+    LoadRShift(Channel::A);
+    LoadRange(Channel::B);
+    LoadRShift(Channel::B);
     LoadTrigLev();
     LoadTrigPolarity();
     LoadRegUPR();
@@ -110,8 +110,8 @@ void FPGA::SetAttribChannelsAndTrig(TypeWriteAnalog::E type)
         {0x0800, 0x0000, 0x3000}
     };
 
-    data |= maskCouple[Channel::A_][SET_COUPLE_A];
-    data |= maskCouple[Channel::B_][SET_COUPLE_B];
+    data |= maskCouple[Channel::A][SET_COUPLE_A];
+    data |= maskCouple[Channel::B][SET_COUPLE_B];
 
     static const uint maskFiltr[2][2] = 
     {
@@ -119,8 +119,8 @@ void FPGA::SetAttribChannelsAndTrig(TypeWriteAnalog::E type)
         {0x0000, 0x0100}
     };
 
-    data |= maskFiltr[Channel::A_][SET_FILTR_A];
-    data |= maskFiltr[Channel::B_][SET_FILTR_B];
+    data |= maskFiltr[Channel::A][SET_FILTR_A];
+    data |= maskFiltr[Channel::B][SET_FILTR_B];
 
 
     // Параметры синхронизации
@@ -154,7 +154,7 @@ void Range::Set(Channel::E chan, Range::E range)
     }
     else
     {
-        Display::ShowWarningBad(chan == Channel::A_ ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
+        Display::ShowWarningBad(chan == Channel::A ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
     }
 };
 
@@ -239,7 +239,7 @@ void RShift::Load(Channel::E chan)
     rShift = (uint16)(delta + RShiftZero);
 
     rShift = (uint16)(RShiftMax + RShiftMin - rShift);
-    FPGA::BUS::WriteToDAC(chan == Channel::A_ ? TypeWriteDAC::RShiftA : TypeWriteDAC::RShiftB, (uint16)(mask[chan] | (rShift << 2)));
+    FPGA::BUS::WriteToDAC(chan == Channel::A ? TypeWriteDAC::RShiftA : TypeWriteDAC::RShiftB, (uint16)(mask[chan] | (rShift << 2)));
 }
 
 
@@ -325,7 +325,7 @@ void RegUPR::Load()
 
 void FPGA::LoadKoeffCalibration(Channel::E /*chan*/)
 {
-//    FPGA::WriteToHardware(chan == Channel::A_ ? WR_CAL_A : WR_CAL_B, static_cast<uint8>(STRETCH_ADC(chan) * 0x80), false);
+//    FPGA::WriteToHardware(chan == Channel::A ? WR_CAL_A : WR_CAL_B, static_cast<uint8>(STRETCH_ADC(chan) * 0x80), false);
 }
 
 
@@ -411,7 +411,7 @@ bool Range::Increase(Channel::E chan)
     }
     else
     {
-       Display::ShowWarningBad(chan == Channel::A_ ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
+       Display::ShowWarningBad(chan == Channel::A ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
     }
     Display::Redraw();
     return retValue;
@@ -428,7 +428,7 @@ bool Range::Decrease(Channel::E chan)
     }
     else
     {
-        Display::ShowWarningBad(chan == Channel::A_ ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
+        Display::ShowWarningBad(chan == Channel::A ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
     }
     Display::Redraw();
     return retValue;
@@ -469,7 +469,7 @@ void TrigInput::Set(E trigInput)
 void ChannelFiltr::Enable(Channel::E chan, bool enable)
 {
     SET_FILTR(chan) = enable;
-    FPGA::SetAttribChannelsAndTrig(chan == Channel::A_ ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
+    FPGA::SetAttribChannelsAndTrig(chan == Channel::A ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
 }
 
 
@@ -488,7 +488,7 @@ void TrigLev::FindAndSet()
 
     Storage::GetDataFromEnd(0, &ds_, &data0, &data1);
 
-    pUCHAR data = (chanTrig == Channel::A_) ? data0 : data1;
+    pUCHAR data = (chanTrig == Channel::A) ? data0 : data1;
 
     int lastPoint = static_cast<int>(ds_->length1channel) - 1;
 

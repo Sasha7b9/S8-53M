@@ -32,7 +32,7 @@ static const char chanMultiplierEn[] = "Attenuation: \n\"x1\" - the signal is no
 
 void PageChannelA::OnChanged_Input(bool)
 {
-    Panel::EnableLEDChannel0(sChannel_Enabled(Channel::A_));
+    Panel::EnableLEDChannel0(sChannel_Enabled(Channel::A));
 }
 
 DEF_CHOICE_2(mcInputA, PageChannelA::self,
@@ -46,7 +46,7 @@ DEF_CHOICE_2(mcInputA, PageChannelA::self,
 
 void PageChannelA::OnChanged_Couple(bool)
 {
-    ModeCouple::Set(Channel::A_, SET_COUPLE_A);
+    ModeCouple::Set(Channel::A, SET_COUPLE_A);
 }
 
 DEF_CHOICE_3(mcCoupleA, PageChannelA::self,
@@ -75,7 +75,7 @@ DEF_CHOICE_2(mcFiltrA, PageChannelA::self,
 
 static void OnChanged_InverseA(bool)
 {
-    RShift::Set(Channel::A_, SET_RSHIFT_A);
+    RShift::Set(Channel::A, SET_RSHIFT_A);
 }
 
 DEF_CHOICE_2(mcInverseA, PageChannelA::self,
@@ -93,7 +93,7 @@ DEF_CHOICE_2(mcMultiplierA, PageChannelA::self,
     chanMultiplierEn,
     "õ1", "x1",
     "x10", "x10",
-    SET_DIVIDER(Channel::A_), nullptr, nullptr, nullptr
+    SET_DIVIDER(Channel::A), nullptr, nullptr, nullptr
 )
 
 DEF_PAGE_5(pageChanA, PageMain::self, NamePage::ChannelA,
@@ -110,7 +110,7 @@ DEF_PAGE_5(pageChanA, PageMain::self, NamePage::ChannelA,
 
 void PageChannelB::OnChanged_Input(bool)
 {
-    Panel::EnableLEDChannel1(sChannel_Enabled(Channel::B_));
+    Panel::EnableLEDChannel1(sChannel_Enabled(Channel::B));
 }
 
 DEF_CHOICE_2(mcInputB, PageChannelB::self,
@@ -124,7 +124,7 @@ DEF_CHOICE_2(mcInputB, PageChannelB::self,
 
 void PageChannelB::OnChanged_Couple(bool)
 {
-    ModeCouple::Set(Channel::B_, SET_COUPLE_B);
+    ModeCouple::Set(Channel::B, SET_COUPLE_B);
 }
 
 DEF_CHOICE_3(mcCoupleB, PageChannelB::self,
@@ -139,7 +139,7 @@ DEF_CHOICE_3(mcCoupleB, PageChannelB::self,
 
 void PageChannelB::OnChanged_Filtr(bool)
 {
-    ChannelFiltr::Enable(Channel::B_, SET_FILTR_B);
+    ChannelFiltr::Enable(Channel::B, SET_FILTR_B);
 }
 
 DEF_CHOICE_2(mcFiltrB, PageChannelB::self,
@@ -153,7 +153,7 @@ DEF_CHOICE_2(mcFiltrB, PageChannelB::self,
 
 static void OnChanged_InverseB(bool)
 {
-    RShift::Set(Channel::B_, SET_RSHIFT_B);
+    RShift::Set(Channel::B, SET_RSHIFT_B);
 }
 
 DEF_CHOICE_2(mcInverseB, PageChannelB::self,
@@ -171,7 +171,7 @@ DEF_CHOICE_2(mcMultiplierB, PageChannelB::self,
     chanMultiplierEn,
     "õ1", "x1",
     "x10", "x10",
-    SET_DIVIDER(Channel::B_), nullptr, nullptr, nullptr
+    SET_DIVIDER(Channel::B), nullptr, nullptr, nullptr
 )
 
 DEF_PAGE_5(pageChanB, PageMain::self, NamePage::ChannelB,

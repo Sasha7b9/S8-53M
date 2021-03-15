@@ -28,7 +28,7 @@
   *
   * THIS SOFTWARE IS PROVIDED BY STMICROELECTRONICS AND CONTRIBUTORS "AS IS"
   * AND ANY EXPRESS, IMPLIED OR STATUTORY WARRANTIES, INCLUDING, BUT NOT
-  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR Channel::A_
+  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR Channel::A
   * PARTICULAR PURPOSE AND NON-INFRINGEMENT OF THIRD PARTY INTELLECTUAL PROPERTY
   * RIGHTS ARE DISCLAIMED TO THE FULLEST EXTENT PERMITTED BY LAW. IN NO EVENT
   * SHALL STMICROELECTRONICS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
@@ -201,7 +201,7 @@
 /  When _STR_VOLUME_ID is set to 1, also pre-defined strings can be used as drive
 /  number in the path name. _VOLUME_STRS defines the drive ID strings for each
 /  logical drives. Number of items must be equal to _VOLUMES. Valid characters for
-/  the drive ID strings are: Channel::A_-Z and 0-9. */
+/  the drive ID strings are: Channel::A-Z and 0-9. */
 
 
 #define	_MULTI_PARTITION	0 //-V2573
@@ -305,7 +305,7 @@
 /
 /  The _FS_TIMEOUT defines timeout period in unit of time tick.
 /  The _SYNC_t defines O/S dependent sync object type. e.g. HANDLE, ID, OS_EVENT*,
-/  SemaphoreHandle_t and etc.. Channel::A_ header file for O/S definitions needs to be
+/  SemaphoreHandle_t and etc.. Channel::A header file for O/S definitions needs to be
 /  included somewhere in the scope of ff.h. */
 
 /* #include <windows.h>	// O/S definitions  */

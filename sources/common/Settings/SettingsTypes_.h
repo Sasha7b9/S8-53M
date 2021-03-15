@@ -315,15 +315,15 @@ struct PeackDetMode
 };
 
 
-#define ChA Channel::A_
-#define ChB Channel::B_
+#define ChA Channel::A
+#define ChB Channel::B
 
 struct Channel { enum E
 {
-    A_,
-    B_,
-    A_B_,
-    Math_
+    A,
+    B,
+    A_B,
+    Math
 };};
 
 

@@ -566,28 +566,28 @@ static void SetRShift(Channel::E ch, int16 rShift)
 static void RShiftLeftA()
 {
     static int prevTime = 0;
-    ChangeRShift(&prevTime, SetRShift, Channel::A_, -STEP_RSHIFT);
+    ChangeRShift(&prevTime, SetRShift, Channel::A, -STEP_RSHIFT);
 }
 
 
 static void RShiftRightA()
 {
     static int prevTime = 0;
-    ChangeRShift(&prevTime, SetRShift, Channel::A_, +STEP_RSHIFT);
+    ChangeRShift(&prevTime, SetRShift, Channel::A, +STEP_RSHIFT);
 }
 
 
 static void RShiftLeftB()
 {
     static int prevTime = 0;
-    ChangeRShift(&prevTime, SetRShift, Channel::B_, -STEP_RSHIFT);
+    ChangeRShift(&prevTime, SetRShift, Channel::B, -STEP_RSHIFT);
 }
 
 
 static void RShiftRightB()
 {
     static int prevTime = 0;
-    ChangeRShift(&prevTime, SetRShift, Channel::B_, +STEP_RSHIFT);
+    ChangeRShift(&prevTime, SetRShift, Channel::B, +STEP_RSHIFT);
 }
 
 
@@ -745,28 +745,28 @@ static void TShiftRight()
 static void RangeLeftA()
 {
     Sound::RegulatorSwitchRotate();
-    Range::Increase(Channel::A_);
+    Range::Increase(Channel::A);
 }
 
 
 static void RangeRightA()
 {
     Sound::RegulatorSwitchRotate();
-    Range::Decrease(Channel::A_);
+    Range::Decrease(Channel::A);
 }
 
 
 static void RangeLeftB()
 {
     Sound::RegulatorSwitchRotate();
-    Range::Increase(Channel::B_);
+    Range::Increase(Channel::B);
 }
 
 
 static void RangeRightB()
 {
     Sound::RegulatorSwitchRotate();
-    Range::Decrease(Channel::B_);
+    Range::Decrease(Channel::B);
 }
 
 

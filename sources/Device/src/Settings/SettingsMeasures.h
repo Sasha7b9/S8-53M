@@ -11,9 +11,9 @@
 #define MEAS_NUM_IS_6_2                 (MEAS_NUM == MeasuresNumber::_6_2)
 
 #define MEAS_SOURCE                     (set.measures.source)                           // SettingsMeasures.source
-#define MEAS_SOURCE_IS_A                (MEAS_SOURCE == Channel::A_)
-#define MEAS_SOURCE_IS_B                (MEAS_SOURCE == Channel::B_)
-#define MEAS_SOURCE_IS_A_B              (MEAS_SOURCE == Channel::A_B_)
+#define MEAS_SOURCE_IS_A                (MEAS_SOURCE == Channel::A)
+#define MEAS_SOURCE_IS_B                (MEAS_SOURCE == Channel::B)
+#define MEAS_SOURCE_IS_A_B              (MEAS_SOURCE == Channel::A_B)
 
 #define MODE_VIEW_SIGNALS               (set.measures.modeViewSignals)                 // SettingsMeasures.modeViewSignals
 #define MODE_VIEW_SIGNALS_IS_COMPRESS   (MODE_VIEW_SIGNALS == ModeViewSignals::Compress)

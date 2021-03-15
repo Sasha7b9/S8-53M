@@ -10,7 +10,7 @@
 #include "VCP/SCPI/Utils/MapSCPI.h"
 
 
-static Channel::E chan = Channel::A_;
+static Channel::E chan = Channel::A;
 
 
 
@@ -28,7 +28,7 @@ ENTER_PARSE_FUNC(SCPI::ProcessCHANNEL)
         {0}
     };
 
-    chan = (char)(*(buffer - 2)) == '1' ? Channel::A_ : Channel::B_;
+    chan = (char)(*(buffer - 2)) == '1' ? Channel::A : Channel::B;
 
     SCPI::ProcessingCommand(commands, const_cast<uint8 *>(buffer));
 }
