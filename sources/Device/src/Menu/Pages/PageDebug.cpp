@@ -457,7 +457,7 @@ DEF_GOVERNOR(mgRandomizer_SamplesForGates, PageDebug::PageRandomizer::self,
 
 static void OnChanged_Randomizer_AltTShift0()
 {
-    FPGA::SetDeltaTShift(ADD_SHIFT_T0);
+    TShift::SetDelta(ADD_SHIFT_T0);
 }
 
 DEF_GOVERNOR(mgRandomizer_AltTShift0, PageDebug::PageRandomizer::self,
