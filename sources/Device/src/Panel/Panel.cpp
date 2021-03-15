@@ -752,7 +752,7 @@ static void RangeLeftA()
 static void RangeRightA()
 {
     Sound::RegulatorSwitchRotate();
-    FPGA::RangeDecrease(Channel::A);
+    Range::Decrease(Channel::A);
 }
 
 
@@ -766,7 +766,7 @@ static void RangeLeftB()
 static void RangeRightB()
 {
     Sound::RegulatorSwitchRotate();
-    FPGA::RangeDecrease(Channel::B);
+    Range::Decrease(Channel::B);
 }
 
 

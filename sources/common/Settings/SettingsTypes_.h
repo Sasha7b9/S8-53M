@@ -354,6 +354,8 @@ struct Range
     static void Set(Channel::E ch, Range::E range);
 
     static bool Increase(Channel::E ch);
+
+    static bool Decrease(Channel::E chan);
 };
 
 Range::E &operator++(Range::E &range);
