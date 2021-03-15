@@ -155,19 +155,18 @@ public:
 
     static int addShiftForFPGA;
 
-private:
-    // Загрузить настройки в аппаратную часть из глобальной структуры SSettings.
-    static void LoadSettings();
-    // Загрузка масштаба по напряжению в аппаратную часть.
-    static void LoadRange(Channel::E chan);
+    // Загрузить все параметры напряжения каналов и синхронизации в аппаратную часть.
+    static void SetAttribChannelsAndTrig(TypeWriteAnalog::E type);
     // Загрузка смещения по напряжению в аппаратную часть.
     static void LoadRShift(Channel::E chan);
     // Загрузка уровня синхронизации в аппаратную часть.
-    static void LoadTrigLev();                                  
+    static void LoadTrigLev();
+
+private:
+    // Загрузить настройки в аппаратную часть из глобальной структуры SSettings.
+    static void LoadSettings();
     // Загузка полярности синхронизации в аппаратную часть.
     static void LoadTrigPolarity();
-    // Загрузить все параметры напряжения каналов и синхронизации в аппаратную часть.
-    static void SetAttribChannelsAndTrig(TypeWriteAnalog::E type);
     // Загрузить регистр WR_UPR (пиковый детектор и калибратор).
     static void LoadRegUPR();
 

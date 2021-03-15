@@ -329,23 +329,28 @@ struct ModeCouple { enum E
 
 
 // Масштаб по напряжению.
-struct Range { enum E
+struct Range
 {
-    _2mV,
-    _5mV,
-    _10mV,
-    _20mV,
-    _50mV,
-    _100mV,
-    _200mV,
-    _500mV,
-    _1V,
-    _2V,
-    _5V,
-    _10V,
-    _20V,
-    Count
-};};
+    enum E
+    {
+        _2mV,
+        _5mV,
+        _10mV,
+        _20mV,
+        _50mV,
+        _100mV,
+        _200mV,
+        _500mV,
+        _1V,
+        _2V,
+        _5V,
+        _10V,
+        _20V,
+        Count
+    };
+
+    static void Load(Channel::E ch);
+};
 
 Range::E &operator++(Range::E &range);
 Range::E &operator--(Range::E &range);

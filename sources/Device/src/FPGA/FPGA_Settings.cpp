@@ -36,9 +36,9 @@ void FPGA::LoadSettings()
 {
     TBase::Load();
     TShift::Load();
-    LoadRange(Channel::A);
+    Range::Load(Channel::A);
     LoadRShift(Channel::A);
-    LoadRange(Channel::B);
+    Range::Load(Channel::B);
     LoadRShift(Channel::B);
     LoadTrigLev();
     LoadTrigPolarity();
@@ -148,7 +148,7 @@ void FPGA::SetRange(Channel::E chan, Range::E range)
             SET_RSHIFT(chan) = (int16)MathFPGA::RShift2Rel(rShiftAbs, range);
             TRIG_LEVEL(chan) = (int16)MathFPGA::RShift2Rel(trigLevAbs, range);
         }
-        LoadRange(chan);
+        Range::Load(chan);
     }
     else
     {
@@ -157,13 +157,13 @@ void FPGA::SetRange(Channel::E chan, Range::E range)
 };
 
 
-void FPGA::LoadRange(Channel::E chan)
+void Range::Load(Channel::E chan)
 {
-    SetAttribChannelsAndTrig(TypeWriteAnalog::Range0);
-    LoadRShift(chan);
+    FPGA::SetAttribChannelsAndTrig(TypeWriteAnalog::Range0);
+    FPGA::LoadRShift(chan);
     if (chan == (Channel::E)TRIG_SOURCE)
     {
-        LoadTrigLev();
+        FPGA::LoadTrigLev();
     }
 }
 
