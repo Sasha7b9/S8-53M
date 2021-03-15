@@ -7,7 +7,6 @@
 #include "FPGA/MathFPGA.h"
 #include "Settings/Settings.h"
 #include "Settings/SettingsChannel.h"
-#include "Settings/SettingsTypes.h"
 
 
 int Divider::ToAbs(Divider::E multiplier)
@@ -41,7 +40,7 @@ pchar Range::Name(Range::E range)
 }
 
 
-const char *TBaseName(TBase::E tBase)
+pchar TBase::Name(TBase::E tBase)
 {
     static const char *names[TBase::Count + 1] =
     {

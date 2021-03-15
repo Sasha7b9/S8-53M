@@ -1,5 +1,4 @@
 #pragma once
-#include "SettingsTypes.h"
 
 
 #define SET_TBASE                           (set.time.tBase)        // SettingTime.tBase

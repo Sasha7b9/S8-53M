@@ -1,6 +1,5 @@
 #pragma once
 #include "common/Settings/SettingsTypes_.h"
-#include "SettingsTypes.h"
 
 
 #define SET_INVERSE(ch)         (set.chan[ch].inverse)              // SettingsChannel.inverse

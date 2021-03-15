@@ -7,7 +7,6 @@
 #include "FPGA/FPGA.h"
 #include "Panel/Panel.h"
 #include "Settings/Settings.h"
-#include "Settings/SettingsTypes.h"
 
 
 using namespace Primitives;

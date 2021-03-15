@@ -489,6 +489,8 @@ struct TBase
     static void Decrease();
 
     static void Increase();
+
+    static pchar Name(TBase::E tBase);
 };
 
 

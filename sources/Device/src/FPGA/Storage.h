@@ -1,6 +1,5 @@
 #pragma once
 #include "FPGA/FPGA.h"
-#include "Settings/SettingsTypes.h"
 
 
 class Storage
