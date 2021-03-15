@@ -11,7 +11,7 @@
 #define CURS_MOVEMENT_IS_PERCENTS   (CURS_MOVEMENT == CursMovement::Percents)
 
 #define CURS_SOURCE                 (set.cursors.source)                        // SettingsCursors.source
-#define CURS_SOURCE_A               (CURS_SOURCE == Channel::A)
+#define CURS_SOURCE_A               (CURS_SOURCE == Channel::A_)
 
 #define CURsU_CNTRL_CH(ch)          (set.cursors.cntrlU[ch])                    // SettingsCursors.cntrlU
 #define CURsU_CNTRL                 (CURsU_CNTRL_CH(CURS_SOURCE))

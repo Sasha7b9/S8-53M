@@ -350,23 +350,23 @@ void FPGA::ReadRandomizeMode(void)
         */
             if (pData0 >= first0 && pData0 <= last0)
             {
-                WRITE_AND_OR_INVERSE(pData0, data00, Channel::A);
+                WRITE_AND_OR_INVERSE(pData0, data00, Channel::A_);
             }
 
             uint16 *addr = pData0 + addShiftMem;
             if (addr >= first0 && addr <= last0)
             {
-//                WRITE_AND_OR_INVERSE(addr, data01, Channel::A);
+//                WRITE_AND_OR_INVERSE(addr, data01, Channel::A_);
             }
 
             if (pData1 >= first1 && pData1 <= last1)
             {
-                WRITE_AND_OR_INVERSE(pData1, data10, Channel::B);
+                WRITE_AND_OR_INVERSE(pData1, data10, Channel::B_);
             }
             addr = pData1 + addShiftMem;
             if (addr >= first1 && addr <= last1)
             {
-//                WRITE_AND_OR_INVERSE(addr, data11, Channel::B);
+//                WRITE_AND_OR_INVERSE(addr, data11, Channel::B_);
             }
         /*
         }
@@ -374,25 +374,25 @@ void FPGA::ReadRandomizeMode(void)
         {
             if (pData0 >= first0 && pData0 <= last0)
             {
-                *pData0 = (float)(numAve - 1) / (float)(numAve)* (*pData0) + InverseIfNecessary(data00, Channel::A) * 1.0F / (float)numAve;
+                *pData0 = (float)(numAve - 1) / (float)(numAve)* (*pData0) + InverseIfNecessary(data00, Channel::A_) * 1.0F / (float)numAve;
             }
 
             uint8 *addr = pData0 + addShiftMem;
             if (addr >= first0 && addr <= last0)
             {
-                *addr = (float)(numAve - 1) / (float)(numAve)* (*(pData0 + addShiftMem)) + InverseIfNecessary(data01, Channel::A) * 1.0F / (float)numAve;
+                *addr = (float)(numAve - 1) / (float)(numAve)* (*(pData0 + addShiftMem)) + InverseIfNecessary(data01, Channel::A_) * 1.0F / (float)numAve;
             }
 
             if (pData1 >= first1 && pData1 <= last1)
             {
-                *pData1 = (float)(numAve - 1) / (float)(numAve)* (*pData1) + InverseIfNecessary(data10, Channel::B) * 1.0F / (float)numAve;
+                *pData1 = (float)(numAve - 1) / (float)(numAve)* (*pData1) + InverseIfNecessary(data10, Channel::B_) * 1.0F / (float)numAve;
             }
 
             addr = pData1 + addShiftMem;
 
             if (addr >= first1 && addr <= last1)
             {
-                *addr = (float)(numAve - 1) / (float)(numAve)* (*(pData1 + addShiftMem)) + InverseIfNecessary(data11, Channel::B) * 1.0F / (float)numAve;
+                *addr = (float)(numAve - 1) / (float)(numAve)* (*(pData1 + addShiftMem)) + InverseIfNecessary(data11, Channel::B_) * 1.0F / (float)numAve;
             }
         }
         */
@@ -499,8 +499,8 @@ void FPGA::DataRead(bool necessaryShift, bool saveToStorage)
         prevTime = TIME_MS;
         if (!sTime_RandomizeModeEnabled())
         {
-            InverseDataIsNecessary(Channel::A, dataRel0);
-            InverseDataIsNecessary(Channel::B, dataRel1);
+            InverseDataIsNecessary(Channel::A_, dataRel0);
+            InverseDataIsNecessary(Channel::B_, dataRel1);
         }
 
         Storage::AddData(dataRel0, dataRel1, ds);
@@ -989,10 +989,10 @@ void FPGA::AutoFind(void)
     //Timer::StartLogging();
 
     //LOG_WRITE("Канал 1");
-    if (!FindWave(Channel::A))
+    if (!FindWave(Channel::A_))
     {
         //LOG_WRITE("Канал 2");
-        if(!FindWave(Channel::B))
+        if(!FindWave(Channel::B_))
         {
             Display::ShowWarningBad(Warning::SignalNotFound);
         }
@@ -1073,7 +1073,7 @@ Range::E FPGA::AccurateFindRange(Channel::E chan)
             HAL_FMC::Read(RD_ADC_A);
         }
 
-        if (chan == Channel::A)
+        if (chan == Channel::A_)
         {
             for (int i = 0; i < 100; i += 2)
             {
@@ -1097,7 +1097,7 @@ Range::E FPGA::AccurateFindRange(Channel::E chan)
         }
 
         /*
-        if(chan == Channel::A)
+        if(chan == Channel::A_)
         {
             LOG_WRITE("min = %d, max = %d", CalculateMinWithout0(buffer), CalculateMaxWithout255(buffer));
         }

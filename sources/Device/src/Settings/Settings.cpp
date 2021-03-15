@@ -49,7 +49,7 @@ static const Settings defaultSettings =
         ENumMinMax::_1,             // enumMinMax
         Smoothing::Disable,         // smoothing
         ENumSignalsInSec::_25,      // num signals in one second
-        Channel::A,                          // lastAffectedChannel
+        Channel::A_,                          // lastAffectedChannel
         ModeAccumulation::NoReset,  // modeAccumulation
         AltMarkers::Show,           // altMarkers
         MenuAutoHide::None,         // menuAutoHide
@@ -110,7 +110,7 @@ static const Settings defaultSettings =
     {
         { CursCntrl::Disable, CursCntrl::Disable },   // CursCntrl U
         { CursCntrl::Disable, CursCntrl::Disable },   // CursCntrl T
-        Channel::A,                                      // source
+        Channel::A_,                                      // source
         { 60.0F,  140.0F, 60.0F, 140.0F },          // posCur U
         { 80.0F,  200.0F, 80.0F, 200.0F },          // posCur T
         { 80.0F,  80.0F },                          // расстояние между курсорами напряжения для 100%
@@ -140,7 +140,7 @@ static const Settings defaultSettings =
     // measures
     {
         MeasuresNumber::_1,         // measures number
-        Channel::A_B,               // source
+        Channel::A_B_,               // source
         ModeViewSignals::AsIs,      // mode view signal
         {
             Measure::VoltageMax,     Measure::VoltageMin,     Measure::VoltagePic,         Measure::VoltageMaxSteady,   Measure::VoltageMinSteady,
@@ -247,8 +247,8 @@ void Settings::Load(bool /*_default*/)
 //        uint16 rShiftAddA[Range::Count][2];
 //        uint16 rshiftAddB[Range::Count][2];
 //
-//        std::memcpy((void *)rShiftAddA, (void *)&RSHIFT_ADD(Channel::A, 0, 0), 2 * Range::Count * 2); // Сначала сохраняем несбрасываемые настройки
-//        std::memcpy((void *)rshiftAddB, (void *)&RSHIFT_ADD(Channel::B, 0, 0), 2 * Range::Count * 2);
+//        std::memcpy((void *)rShiftAddA, (void *)&RSHIFT_ADD(Channel::A_, 0, 0), 2 * Range::Count * 2); // Сначала сохраняем несбрасываемые настройки
+//        std::memcpy((void *)rshiftAddB, (void *)&RSHIFT_ADD(Channel::B_, 0, 0), 2 * Range::Count * 2);
 //
 //        int16  balanceADC0 = BALANCE_ADC_A;
 //        int16  balanceADC1 = BALANCE_ADC_B;
@@ -257,8 +257,8 @@ void Settings::Load(bool /*_default*/)
 //
 //        std::memcpy((void*)&set, (void*)(&defaultSettings), sizeof(set));                // Потом заполняем значениями по умолчанию
 //
-//        std::memcpy((void *)&RSHIFT_ADD(Channel::A, 0, 0), (void *)rShiftAddA, 2 * Range::Count * 2);  // И восстанавливаем несбрасываемые настройки
-//        std::memcpy((void *)&RSHIFT_ADD(Channel::B, 0, 0), (void *)rshiftAddB, 2 * Range::Count * 2);
+//        std::memcpy((void *)&RSHIFT_ADD(Channel::A_, 0, 0), (void *)rShiftAddA, 2 * Range::Count * 2);  // И восстанавливаем несбрасываемые настройки
+//        std::memcpy((void *)&RSHIFT_ADD(Channel::B_, 0, 0), (void *)rshiftAddB, 2 * Range::Count * 2);
 //
 //        BALANCE_ADC_A = balanceADC0;
 //        BALANCE_ADC_B = balanceADC1;
@@ -266,8 +266,8 @@ void Settings::Load(bool /*_default*/)
 //        BALANCE_ADC_TYPE = balanceType;
 //    }
 //
-//    Panel::EnableLEDChannel0(sChannel_Enabled(Channel::A));
-//    Panel::EnableLEDChannel1(sChannel_Enabled(Channel::B));
+//    Panel::EnableLEDChannel0(sChannel_Enabled(Channel::A_));
+//    Panel::EnableLEDChannel1(sChannel_Enabled(Channel::B_));
 //    Menu::SetAutoHide(true);
 //    Display::ChangedRShiftMarkers();
 //

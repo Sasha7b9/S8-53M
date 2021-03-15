@@ -6,8 +6,8 @@
 
 void DataSettings::Fill()
 {
-    enableCh0 = sChannel_Enabled(Channel::A) ? 1U : 0U;
-    enableCh1 = sChannel_Enabled(Channel::B) ? 1U : 0U;
+    enableCh0 = sChannel_Enabled(Channel::A_) ? 1U : 0U;
+    enableCh1 = sChannel_Enabled(Channel::B_) ? 1U : 0U;
     inverseCh0 = SET_INVERSE_A ? 1U : 0U;
     inverseCh1 = SET_INVERSE_B ? 1U : 0U;
     range[0] = SET_RANGE_A;

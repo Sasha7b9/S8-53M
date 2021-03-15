@@ -105,22 +105,22 @@ void Processing::CalculateMeasures()
             {
                 if(meas == MEAS_MARKED || MEAS_MARKED_IS_NONE)
                 {
-                    markerVert[Channel::A][0] = ERROR_VALUE_INT;
-                    markerVert[Channel::A][1] = ERROR_VALUE_INT;
-                    markerVert[Channel::B][0] = ERROR_VALUE_INT;
-                    markerVert[Channel::B][1] = ERROR_VALUE_INT;
-                    markerHor[Channel::A][0] = ERROR_VALUE_INT;
-                    markerHor[Channel::A][1] = ERROR_VALUE_INT;
-                    markerHor[Channel::B][0] = ERROR_VALUE_INT;
-                    markerHor[Channel::B][1] = ERROR_VALUE_INT;
+                    markerVert[Channel::A_][0] = ERROR_VALUE_INT;
+                    markerVert[Channel::A_][1] = ERROR_VALUE_INT;
+                    markerVert[Channel::B_][0] = ERROR_VALUE_INT;
+                    markerVert[Channel::B_][1] = ERROR_VALUE_INT;
+                    markerHor[Channel::A_][0] = ERROR_VALUE_INT;
+                    markerHor[Channel::A_][1] = ERROR_VALUE_INT;
+                    markerHor[Channel::B_][0] = ERROR_VALUE_INT;
+                    markerHor[Channel::B_][1] = ERROR_VALUE_INT;
                 }
                 if(MEAS_SOURCE_IS_A || MEAS_SOURCE_IS_A_B)
                 {
-                    values[meas].value[Channel::A] = func(Channel::A);
+                    values[meas].value[Channel::A_] = func(Channel::A_);
                 }
                 if(MEAS_SOURCE_IS_B || MEAS_SOURCE_IS_A_B)
                 {
-                    values[meas].value[Channel::B] = func(Channel::B);
+                    values[meas].value[Channel::B_] = func(Channel::B_);
                 }
             }
         }
@@ -137,7 +137,7 @@ float Processing::CalculateVoltageMax(Channel::E chan)
         markerHor[chan][0] = static_cast<int>(max);                           // Здесь не округляем, потому что max может быть только целым
     }
 
-    return POINT_2_VOLTAGE(max, dataSet->range[chan], chan == Channel::A ? dataSet->rShiftCh0 : dataSet->rShiftCh1) * VALUE_MULTIPLIER(chan);
+    return POINT_2_VOLTAGE(max, dataSet->range[chan], chan == Channel::A_ ? dataSet->rShiftCh0 : dataSet->rShiftCh1) * VALUE_MULTIPLIER(chan);
 }
 
 float Processing::CalculateVoltageMin(Channel::E chan)
@@ -149,7 +149,7 @@ float Processing::CalculateVoltageMin(Channel::E chan)
         markerHor[chan][0] = static_cast<int>(min);                           // Здесь не округляем, потому что min может быть только целым
     }
 
-    return POINT_2_VOLTAGE(min, dataSet->range[chan], chan == Channel::A ? dataSet->rShiftCh0 : dataSet->rShiftCh1) * VALUE_MULTIPLIER(chan);
+    return POINT_2_VOLTAGE(min, dataSet->range[chan], chan == Channel::A_ ? dataSet->rShiftCh0 : dataSet->rShiftCh1) * VALUE_MULTIPLIER(chan);
 }
 
 float Processing::CalculateVoltagePic(Channel::E chan)
@@ -176,7 +176,7 @@ float Processing::CalculateVoltageMinSteady(Channel::E chan)
         markerHor[chan][0] = static_cast<int>(ROUND(min)); //-V2528
     }
 
-    return (POINT_2_VOLTAGE(min, dataSet->range[chan], chan == Channel::A ? dataSet->rShiftCh0 : dataSet->rShiftCh1) * VALUE_MULTIPLIER(chan));
+    return (POINT_2_VOLTAGE(min, dataSet->range[chan], chan == Channel::A_ ? dataSet->rShiftCh0 : dataSet->rShiftCh1) * VALUE_MULTIPLIER(chan));
 }
 
 float Processing::CalculateVoltageMaxSteady(Channel::E chan)
@@ -191,7 +191,7 @@ float Processing::CalculateVoltageMaxSteady(Channel::E chan)
     }
 
     Range::E range = dataSet->range[chan];
-    uint rShift = chan == Channel::A ? dataSet->rShiftCh0 : dataSet->rShiftCh1;
+    uint rShift = chan == Channel::A_ ? dataSet->rShiftCh0 : dataSet->rShiftCh1;
 
     return (POINT_2_VOLTAGE(max, range, rShift) * VALUE_MULTIPLIER(chan));
 }
@@ -209,7 +209,7 @@ float Processing::CalculateVoltageVybrosPlus(Channel::E chan)
         markerHor[chan][1] = static_cast<int>(maxSteady);
     }
 
-    int16 rShift = chan == Channel::A ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1;
+    int16 rShift = chan == Channel::A_ ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1;
     return std::fabsf(POINT_2_VOLTAGE(maxSteady, dataSet->range[chan], rShift) - POINT_2_VOLTAGE(max, dataSet->range[chan], rShift)) * VALUE_MULTIPLIER(chan);
 }
 
@@ -225,7 +225,7 @@ float Processing::CalculateVoltageVybrosMinus(Channel::E chan)
         markerHor[chan][1] = static_cast<int>(minSteady);
     }
 
-    int16 rShift = chan == Channel::A ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1;
+    int16 rShift = chan == Channel::A_ ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1;
     return std::fabsf(POINT_2_VOLTAGE(minSteady, dataSet->range[chan], rShift) - POINT_2_VOLTAGE(min, dataSet->range[chan], rShift)) * VALUE_MULTIPLIER(chan);
 }
 
@@ -264,7 +264,7 @@ float Processing::CalculateVoltageAverage(Channel::E chan)
         markerHor[chan][0] = aveRel;
     }
 
-    return (POINT_2_VOLTAGE(aveRel, dataSet->range[chan], chan == Channel::A ? dataSet->rShiftCh0 : dataSet->rShiftCh1) * VALUE_MULTIPLIER(chan));
+    return (POINT_2_VOLTAGE(aveRel, dataSet->range[chan], chan == Channel::A_ ? dataSet->rShiftCh0 : dataSet->rShiftCh1) * VALUE_MULTIPLIER(chan));
 }
 
 float Processing::CalculateVoltageRMS(Channel::E chan)
@@ -274,7 +274,7 @@ float Processing::CalculateVoltageRMS(Channel::E chan)
     EXIT_IF_ERROR_INT(period);
 
     float rms = 0.0F;
-    int16 rShift = chan == Channel::A ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1;
+    int16 rShift = chan == Channel::A_ ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1;
     for(int i = firstP; i < firstP + period; i++)
     {
         float volts = POINT_2_VOLTAGE(dataIn[chan][i], dataSet->range[chan], rShift);
@@ -791,8 +791,8 @@ float Processing::CalculatePicRel(Channel::E chan)
 
 float Processing::CalculateDelayPlus(Channel::E chan)
 {
-    float period0 = CalculatePeriod(Channel::A);
-    float period1 = CalculatePeriod(Channel::B);
+    float period0 = CalculatePeriod(Channel::A_);
+    float period1 = CalculatePeriod(Channel::B_);
 
     EXIT_IF_ERRORS_FLOAT(period0, period1);
     if(!Math::FloatsIsEquals(period0, period1, 1.05F))
@@ -800,15 +800,15 @@ float Processing::CalculateDelayPlus(Channel::E chan)
         return ERROR_VALUE_FLOAT;
     }
 
-    float average0 = CalculateAverageRel(Channel::A);
-    float average1 = CalculateAverageRel(Channel::B);
+    float average0 = CalculateAverageRel(Channel::A_);
+    float average1 = CalculateAverageRel(Channel::B_);
 
     EXIT_IF_ERRORS_FLOAT(average0, average1);
 
-    float averageFirst = (chan == Channel::A) ? average0 : average1;
-    float averageSecond = (chan == Channel::A) ? average1 : average0;
-    Channel::E firstChannel = (chan == Channel::A) ? Channel::A : Channel::B;
-    Channel::E secondChannel = (chan == Channel::A) ? Channel::B : Channel::A;
+    float averageFirst = (chan == Channel::A_) ? average0 : average1;
+    float averageSecond = (chan == Channel::A_) ? average1 : average0;
+    Channel::E firstChannel = (chan == Channel::A_) ? Channel::A_ : Channel::B_;
+    Channel::E secondChannel = (chan == Channel::A_) ? Channel::B_ : Channel::A_;
 
     float firstIntersection = FindIntersectionWithHorLine(firstChannel, 1, true, static_cast<uint8>(averageFirst));
     float secondIntersection = FindIntersectionWithHorLine(secondChannel, 1, true, static_cast<uint8>(averageSecond));
@@ -827,8 +827,8 @@ float Processing::CalculateDelayPlus(Channel::E chan)
 
 float Processing::CalculateDelayMinus(Channel::E chan)
 {
-    float period0 = CalculatePeriod(Channel::A);
-    float period1 = CalculatePeriod(Channel::B);
+    float period0 = CalculatePeriod(Channel::A_);
+    float period1 = CalculatePeriod(Channel::B_);
 
     EXIT_IF_ERRORS_FLOAT(period0, period1);
 
@@ -837,15 +837,15 @@ float Processing::CalculateDelayMinus(Channel::E chan)
         return ERROR_VALUE_FLOAT;
     }
 
-    float average0 = CalculateAverageRel(Channel::A);
-    float average1 = CalculateAverageRel(Channel::B);
+    float average0 = CalculateAverageRel(Channel::A_);
+    float average1 = CalculateAverageRel(Channel::B_);
 
     EXIT_IF_ERRORS_FLOAT(average0, average1);
 
-    float averageFirst = (chan == Channel::A) ? average0 : average1;
-    float averageSecond = (chan == Channel::A) ? average1 : average0;
-    Channel::E firstChannel = (chan == Channel::A) ? Channel::A : Channel::B;
-    Channel::E secondChannel = (chan == Channel::A) ? Channel::B : Channel::A;
+    float averageFirst = (chan == Channel::A_) ? average0 : average1;
+    float averageSecond = (chan == Channel::A_) ? average1 : average0;
+    Channel::E firstChannel = (chan == Channel::A_) ? Channel::A_ : Channel::B_;
+    Channel::E secondChannel = (chan == Channel::A_) ? Channel::B_ : Channel::A_;
 
     float firstIntersection = FindIntersectionWithHorLine(firstChannel, 1, false, static_cast<uint8>(averageFirst));
     float secondIntersection = FindIntersectionWithHorLine(secondChannel, 1, false, static_cast<uint8>(averageSecond));
@@ -900,8 +900,8 @@ void Processing::SetSignal(pUCHAR data0, pUCHAR data1, DataSettings *ds, int _fi
 
     int length = (int)ds->length1channel * (ds->peakDet == PeackDetMode::Disable ? 1 : 2);
 
-    Math::CalculateFiltrArray(data0, &dataIn[Channel::A][0], length, numSmoothing);
-    Math::CalculateFiltrArray(data1, &dataIn[Channel::B][0], length, numSmoothing);
+    Math::CalculateFiltrArray(data0, &dataIn[Channel::A_][0], length, numSmoothing);
+    Math::CalculateFiltrArray(data1, &dataIn[Channel::B_][0], length, numSmoothing);
 
     CountedToCurrentSettings();
 }
@@ -1091,12 +1091,12 @@ char* Processing::GetStringMeasure(Measure::E measure, Channel::E chan, char buf
         return "";
     }
     buffer[0] = '\0';
-    std::sprintf(buffer, chan == Channel::A ? "1: " : "2: ");
+    std::sprintf(buffer, chan == Channel::A_ ? "1: " : "2: ");
     if(dataSet == 0)
     {
         std::strcat(buffer, "-.-"); //-V2513
     }
-    else if((chan == Channel::A && dataSet->enableCh0 == 0) || (chan == Channel::B && dataSet->enableCh1 == 0))
+    else if((chan == Channel::A_ && dataSet->enableCh0 == 0) || (chan == Channel::B_ && dataSet->enableCh1 == 0))
     {
     }
     else if(measures[measure].FuncCalculate)

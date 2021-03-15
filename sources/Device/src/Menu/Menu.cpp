@@ -374,12 +374,12 @@ void Menu::ProcessingShortPressureButton()
                 NamePage::E name = ((const Page *)Item::Opened())->GetName();
                 if(button == Key::ChannelA && name == NamePage::ChannelA)
                 {
-                    SET_ENABLED_A = !sChannel_Enabled(Channel::A);
+                    SET_ENABLED_A = !sChannel_Enabled(Channel::A_);
                     PageChannelA::OnChanged_Input(true);
                 }
                 else if(button == Key::ChannelB && name == NamePage::ChannelB)
                 {
-                    SET_ENABLED_B = !sChannel_Enabled(Channel::B);
+                    SET_ENABLED_B = !sChannel_Enabled(Channel::B_);
                     PageChannelB::OnChanged_Input(true);
                 }
                 else
@@ -417,11 +417,11 @@ void Menu::ProcessingLongPressureButton()
         }
         else if(longPressureButton == Key::ChannelA)
         {
-            RShift::Set(Channel::A, RShiftZero);
+            RShift::Set(Channel::A_, RShiftZero);
         }
         else if(longPressureButton == Key::ChannelB)
         {
-            RShift::Set(Channel::B, RShiftZero);
+            RShift::Set(Channel::B_, RShiftZero);
         }
         else if(longPressureButton == Key::Menu)
         {

@@ -159,8 +159,8 @@ void Storage::CalculateLimits(uint16 * data0, uint16 * data1, const DataSettings
      
         for(int numData = 0; numData < allDatas; numData++)
         {
-            pUCHAR dA = GetData(Channel::A, numData);
-            pUCHAR dB = GetData(Channel::B, numData);
+            pUCHAR dA = GetData(Channel::A_, numData);
+            pUCHAR dB = GetData(Channel::B_, numData);
             for(uint i = 0; i < numElements; i++)
             {
                 if(dA[i] < limitDown[0][i])  { limitDown[0][i] = dA[i]; }
@@ -296,11 +296,11 @@ bool Storage::GetDataFromEnd(int fromEnd, DataSettings **ds, uint8 **data0, uint
 
     if(data0 != 0)
     {
-        *data0 = CopyData(dp, Channel::A, dataImportRel) ?  &dataImportRel[0][0] : 0;
+        *data0 = CopyData(dp, Channel::A_, dataImportRel) ?  &dataImportRel[0][0] : 0;
     }
     if(data1 != 0)
     {
-        *data1 = CopyData(dp, Channel::B, dataImportRel) ? &dataImportRel[1][0] : 0;
+        *data1 = CopyData(dp, Channel::B_, dataImportRel) ? &dataImportRel[1][0] : 0;
     }
     *ds = dp;
     
@@ -323,17 +323,17 @@ uint8* Storage::GetData(Channel::E chan, int fromEnd)
 
 bool Storage::CopyData(DataSettings *ds, Channel::E chan, uint8 datatImportRel[2][FPGA_MAX_POINTS])
 {
-    if((chan == Channel::A && ds->enableCh0 == 0) || (chan == Channel::B && ds->enableCh1 == 0))
+    if((chan == Channel::A_ && ds->enableCh0 == 0) || (chan == Channel::B_ && ds->enableCh1 == 0))
     {
         return false;
     }
-    uint8* pointer = (chan == Channel::A) ? (&datatImportRel[0][0]) : (&datatImportRel[1][0]);
+    uint8* pointer = (chan == Channel::A_) ? (&datatImportRel[0][0]) : (&datatImportRel[1][0]);
 
     uint8* address = ((uint8*)ds + sizeof(DataSettings));
 
     uint length = ds->length1channel * (ds->peakDet == PeackDetMode::Disable ? 1 : 2);
 
-    if(chan == Channel::B && ds->enableCh0 == 1)
+    if(chan == Channel::B_ && ds->enableCh0 == 1)
     {
         address += length;
     }
@@ -368,7 +368,7 @@ uint8* Storage::GetAverageData(Channel::E chan)
 
     if (ModeAveraging::Current() == ModeAveraging::Around)
     {
-        float *floatAveData = (chan == Channel::A) ? aveData0 : aveData1;
+        float *floatAveData = (chan == Channel::A_) ? aveData0 : aveData1;
         
         for (uint i = 0; i < numPoints; i++)
         {
