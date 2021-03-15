@@ -1060,7 +1060,7 @@ Range::E FPGA::AccurateFindRange(Channel::E chan)
     {
         //Timer::LogPointMS("1");
         FPGA::Stop(false);
-        FPGA::SetRange(chan, static_cast<Range::E>(range));
+        Range::Set(chan, static_cast<Range::E>(range));
         HAL_TIM2::Delay(10);
         FPGA::Start();
 

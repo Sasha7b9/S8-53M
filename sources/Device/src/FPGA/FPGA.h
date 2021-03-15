@@ -112,8 +112,6 @@ public:
     static void SetModeCouple(Channel::E chan, ModeCouple::E modeCoupe);
     // Включить/выключить фильтр на входе канала.
     static void EnableChannelFiltr(Channel::E chan, bool enable);
-    // Установить масштаб по напряжению.
-    static void SetRange(Channel::E chan, Range::E range);
     // Увеличить масштаб по напряжению.
     static bool RangeIncrease(Channel::E chan);
     // Уменьшить масштаб по напряжению.

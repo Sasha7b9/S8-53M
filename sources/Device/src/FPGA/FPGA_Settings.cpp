@@ -132,7 +132,7 @@ void FPGA::SetAttribChannelsAndTrig(TypeWriteAnalog::E type)
 }
 
 
-void FPGA::SetRange(Channel::E chan, Range::E range)
+void Range::Set(Channel::E chan, Range::E range)
 {
     if (!sChannel_Enabled(chan))
     {
@@ -521,7 +521,7 @@ bool FPGA::RangeIncrease(Channel::E chan)
     bool retValue = false;
     if (SET_RANGE(chan) < Range::Count - 1)
     {
-        SetRange(chan, (Range::E)(SET_RANGE(chan) + 1));
+        Range::Set(chan, (Range::E)(SET_RANGE(chan) + 1));
         retValue = true;
     }
     else
@@ -538,7 +538,7 @@ bool FPGA::RangeDecrease(Channel::E chan)
     bool retValue = false;
     if (SET_RANGE(chan) > 0)
     {
-        SetRange(chan, (Range::E)(SET_RANGE(chan) - 1));
+        Range::Set(chan, (Range::E)(SET_RANGE(chan) - 1));
         retValue = true;
     }
     else

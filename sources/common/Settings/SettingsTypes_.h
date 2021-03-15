@@ -350,6 +350,8 @@ struct Range
     };
 
     static void Load(Channel::E ch);
+
+    static void Set(Channel::E ch, Range::E range);
 };
 
 Range::E &operator++(Range::E &range);
