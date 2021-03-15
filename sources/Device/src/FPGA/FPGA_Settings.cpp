@@ -239,20 +239,6 @@ void TBase::Load()
 }
 
 
-void FPGA::TBaseIncrease()
-{
-    if (SET_TBASE < (TBase::Count - 1))
-    {
-        TBase::E base = (TBase::E)(SET_TBASE + 1);
-        TBase::Set(base);
-    }
-    else
-    {
-        Display::ShowWarningBad(Warning::LimitSweep_Time);
-    }
-}
-
-
 void RShift::Load(Channel::E chan)
 {
     static const uint16 mask[2] = {0x2000, 0x6000};

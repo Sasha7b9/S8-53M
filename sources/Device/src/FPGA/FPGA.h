@@ -112,8 +112,6 @@ public:
     static void SetModeCouple(Channel::E chan, ModeCouple::E modeCoupe);
     // Включить/выключить фильтр на входе канала.
     static void EnableChannelFiltr(Channel::E chan, bool enable);
-    // Увеличить масштаб по времени.
-    static void TBaseIncrease();
     // Установить относительное смещение по времени.
     static void SetTShift(int tShift);
     // Установить добавочное смещение по времени для режима рандомизатора. В каждой развёртке это смещение должно быть разное.

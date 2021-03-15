@@ -468,6 +468,8 @@ struct TBase
     static void Load();
 
     static void Decrease();
+
+    static void Increase();
 };
 
 

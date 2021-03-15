@@ -126,8 +126,8 @@ void TBase::Decrease()
         }
         else
         {
-            TBase::E base = (TBase::E)((int)SET_TBASE - 1);
-            TBase::Set(base);
+            E base = (E)((int)SET_TBASE - 1);
+            Set(base);
         }
     }
     else
@@ -135,3 +135,18 @@ void TBase::Decrease()
         Display::ShowWarningBad(Warning::LimitSweep_Time);
     }
 }
+
+
+void TBase::Increase()
+{
+    if (SET_TBASE < (TBase::Count - 1))
+    {
+        E base = (E)(SET_TBASE + 1);
+        Set(base);
+    }
+    else
+    {
+        Display::ShowWarningBad(Warning::LimitSweep_Time);
+    }
+}
+
