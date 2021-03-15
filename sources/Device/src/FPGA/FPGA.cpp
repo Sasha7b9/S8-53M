@@ -867,7 +867,7 @@ static float CalculateFreqFromCounterPeriod(void)
 }
 
 
-float FPGA::GetFreq(void) 
+float FPGA::FreqMeter::GetFreq(void) 
 {
     return freq;
 }

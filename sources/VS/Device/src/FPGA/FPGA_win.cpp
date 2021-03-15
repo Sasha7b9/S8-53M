@@ -36,7 +36,7 @@ void FPGA::SetAdditionShift(int shift)
 }
 
 
-float FPGA::GetFreq()
+float FPGA::FreqMeter::GetFreq()
 {
     return 0.0F;
 }

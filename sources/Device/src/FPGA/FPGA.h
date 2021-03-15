@@ -58,6 +58,11 @@ public:
         static uint16 flag;
     };
 
+    struct FreqMeter
+    {
+        // Получить значение частоты.
+        static float GetFreq();
+    };
 
     static bool inProcessingOfRead;
 
@@ -68,21 +73,24 @@ public:
 
     static void Update();
 
-//    static StateWorkFPGA FPGA_CurrentStateWork();
     // Запускает цикл сбора информации.
     static void OnPressStartStop();
+
     // Запуск процесса сбора информации.
     static void Start();
+
     // Прерывает процесс сбора информации.
     static void Stop(bool pause);
+
     // Возвращает true, если прибор находится не в процессе сбора информации.
     static bool IsRunning();
+
     // Сохраняет текущие настройки. Потом их можно восстановить функцией FPGA_RestoreState().
     static void SaveState();
+
     // Восстанавливает настройки, ранее сохранённые функцией FPGA_SaveState().
     static void RestoreState();
-    // Получить значение частоты.
-    static float GetFreq();
+
     // Удаляет данные. Нужно для режима рандомизаотра, где информация каждого цикла не является самостоятельной.
     static void ClearData();
     // Установить дополнительное смещение. Нужно для правильной расстановки точек в режиме рандомизатора.
