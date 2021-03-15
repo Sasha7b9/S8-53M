@@ -58,19 +58,25 @@ public:
         static uint16 flag;
     };
 
+
+    struct BUS
+    {
+        // «апись в регистр ѕЋ»— нового значени€:
+        // address - адрес регистра,
+        // value - записываемое значение,
+        // restart - true означает, что после записи нужно запусить режим измерений, если до этого прибор не находилс€ в
+        //           режиме паузы.
+        static void WriteToHardware(uint16 *const address, uint16 value, bool restart);
+    };
+
     static bool inProcessingOfRead;
 
     static void Init();
+
     // ”становить количество считываемых сигналов в секунду.
     static void SetNumSignalsInSec(int numSigInSec);
 
     static void Update();
-    // «апись в регистр ѕЋ»— нового значени€.
-    static void WriteToHardware
-                            (uint16 * const address,    // адрес регистра.
-                                uint16 value,    // записываемое значение.
-                                bool restart    // true означает, что после записи нужно запусить режим измерений, если до этого прибор не находилс€ в режиме паузы.
-                            );
 
     static void Write(TypeRecord::E type, uint16 *address, uint data, bool restart);
     static void Write(TypeRecord::E type, uint16 *address, uint data);

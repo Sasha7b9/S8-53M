@@ -626,7 +626,7 @@ int FPGA::CalculateShift(void)            // \todo Не забыть восстановить функци
 }
 
 
-void FPGA::WriteToHardware(uint16 * const address, uint16 value, bool restart)
+void FPGA::BUS::WriteToHardware(uint16 * const address, uint16 value, bool restart)
 {
     firstAfterWrite = true;
     if(restart)

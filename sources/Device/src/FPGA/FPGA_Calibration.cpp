@@ -416,7 +416,7 @@ int16 CalculateAdditionRShift(Channel::E chan, Range::E range)
     TrigPolarity::Set(TrigPolarity::Front);
     TrigLev::Set((TrigSource::E)chan, TrigLevZero);
 
-    FPGA::WriteToHardware(WR_UPR, BIN_U8(00000000), false);   // Устанавливаем выход калибратора в ноль
+    FPGA::BUS::WriteToHardware(WR_UPR, BIN_U8(00000000), false);   // Устанавливаем выход калибратора в ноль
 
     int numMeasures = 8;
     int sum = 0;
@@ -474,7 +474,7 @@ int16 CalculateAdditionRShift(Channel::E chan, Range::E range)
 
 float CalculateKoeffCalibration(Channel::E chan)
 {
-    FPGA::WriteToHardware(WR_UPR, BIN_U8(00000100), false);
+    FPGA::BUS::WriteToHardware(WR_UPR, BIN_U8(00000100), false);
 
     RShift::Set(chan, RShiftZero - 40 * 4);
     ModeCouple::Set(chan, ModeCouple::DC);
