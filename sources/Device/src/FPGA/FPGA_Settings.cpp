@@ -241,7 +241,7 @@ void RShift::Load(Channel::E chan)
 }
 
 
-void FPGA::SetTrigLev(TrigSource::E chan, int16 trigLev)
+void TrigLev::Set(TrigSource::E chan, int16 trigLev)
 {
     Display::ChangedRShiftMarkers();
     if (trigLev < TrigLevMin || trigLev > TrigLevMax)
@@ -439,7 +439,7 @@ void FPGA::SetTrigSource(TrigSource::E trigSource)
     SetAttribChannelsAndTrig(TypeWriteAnalog::TrigParam);
     if (!TRIG_SOURCE_IS_EXT)
     {
-        SetTrigLev(TRIG_SOURCE, TRIG_LEVEL_SOURCE);
+        TrigLev::Set(TRIG_SOURCE, TRIG_LEVEL_SOURCE);
     }
 }
 

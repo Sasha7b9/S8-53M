@@ -610,7 +610,7 @@ static void ChangeTrigLev(int *prevTime, void(*f)(TrigSource::E, int16), TrigSou
 
 static void SetTrigLev(TrigSource::E ch, int16 trigLev)
 {
-    FPGA::SetTrigLev(ch, trigLev);
+    TrigLev::Set(ch, trigLev);
 }
 
 

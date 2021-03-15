@@ -626,6 +626,8 @@ struct TrigLev
     };
 
     static void Load();
+
+    static void Set(TrigSource::E chan, int16 trigLev);
 };
 
 

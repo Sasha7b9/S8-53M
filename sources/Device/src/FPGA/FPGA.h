@@ -116,8 +116,6 @@ public:
     static void SetCalibratorMode(CalibratorMode::E calibratorMode);
     // Загрузить в аппарат коэффициенты калибровки каналов.
     static void LoadKoeffCalibration(Channel::E chan);
-    // Установить относительный уровень синхронизации.
-    static void SetTrigLev(TrigSource::E chan, int16 trigLev);
     // Установить источник синхронизации.
     static void SetTrigSource(TrigSource::E trigSource);
     // Установить полярность синхронизации.
