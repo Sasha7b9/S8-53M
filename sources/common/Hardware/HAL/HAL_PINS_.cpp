@@ -94,10 +94,12 @@ void HAL_PINS::DAC2_::Init()
 
 void HAL_PINS::FMC_::Init()
 {
-    PinFMC(D, 4).Init();        // 146 NOE
-    PinFMC(D, 5).Init();        // 147 NWE
-    PinFMC(D, 7).Init();        // 151 NE1
-    PinFMC(G, 9).Init();        // 152 NE2
+    PinFMC(D, 4).Init();        // 146 NOE  Здесь привязывать нужно
+    PinFMC(D, 5).Init();        // 147 NWE  к единице
+
+    PinFMC(D, 7).Init();        // 151 NE1  Здесь привязывать нужно
+    PinFMC(G, 9).Init();        // 152 NE2  к нулю
+
     PinFMC(D, 14).Init();       // 104 D0
     PinFMC(D, 15).Init();       // 105 D1
     PinFMC(D, 0).Init();        // 142 D2
@@ -305,6 +307,18 @@ void Pin::Init()
     }
     else if (mode == PinMode::_FMC)
     {
+        if ((port == PinPort::_D && pin == 4) ||
+            (port == PinPort::_D && pin == 5))
+        {
+            isGPIO.Pull = GPIO_PULLUP;
+        }
+
+        if ((port == PinPort::_D && pin == 7) ||
+            (port == PinPort::_G && pin == 9))
+        {
+            isGPIO.Pull = GPIO_PULLDOWN;
+        }
+
         isGPIO.Mode = GPIO_MODE_AF_PP;
         isGPIO.Speed = GPIO_SPEED_FREQ_HIGH;
         isGPIO.Alternate = GPIO_AF12_FMC;
