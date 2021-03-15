@@ -150,12 +150,12 @@ bool FPGA::ProcessingData(void)
                 trigAutoFind = true;
                 criticalSituation = false;
             }
-            else if (_GET_BIT(flag, BIT_TRIG))
+            else if (_GET_BIT(flag, FL_TRIG_READY))
             {
                 criticalSituation = false;
             }
         }
-        else if (_GET_BIT(flag, BIT_DATA_READY))
+        else if (_GET_BIT(flag, FL_DATA_READY))
         {
             if (set.debug.showRegisters.flag)
             {
@@ -164,7 +164,7 @@ bool FPGA::ProcessingData(void)
             }
             Panel::EnableLEDTrig(true);
             FPGA::Stop(true);
-            DataRead(_GET_BIT(flag, BIT_SIGN_SHIFT_POINT), (num == 1) || (i == num - 1));
+            DataRead(true, (num == 1) || (i == num - 1));
             retValue = true;
             if (!START_MODE_IS_SINGLE)
             {
@@ -187,7 +187,7 @@ bool FPGA::ProcessingData(void)
                 timeStart = TIME_MS;
             }
         }
-        Panel::EnableLEDTrig(_GET_BIT(flag, BIT_TRIG) ? true : false);
+        Panel::EnableLEDTrig(_GET_BIT(flag, FL_TRIG_READY) ? true : false);
     }
 
     return retValue;
@@ -651,7 +651,7 @@ void FPGA::Write(TypeRecord::E type, uint16 *address, uint data)
 
 void ReadPoint(void)
 {
-    if(_GET_BIT(FPGA::Flag::Read(), BIT_POINT_READY))
+    if(_GET_BIT(FPGA::Flag::Read(), FL_POINT_READY))
     {
         uint16 dataB1 = *RD_ADC_B1;
         uint16 dataB2 = *RD_ADC_B2;
@@ -790,12 +790,12 @@ uint16 FPGA::Flag::Read()
 
     if(!readPeriod) 
     {
-        if(_GET_BIT(flag, BIT_FREQ_READY)) 
+        if(_GET_BIT(flag, FL_FREQ_READY)) 
         {
             ReadFreq();
         }
     }
-    if(readPeriod && (_GET_BIT(flag, BIT_PERIOD_READY) == 1)) 
+    if(readPeriod && (_GET_BIT(flag, FL_PERIOD_READY) == 1)) 
     {
         ReadPeriod();
     }
@@ -806,9 +806,9 @@ uint16 FPGA::Flag::Read()
 
 static float CalculateFreqFromCounterFreq(void)
 {
-    while (_GET_BIT(HAL_FMC::Read(RD_FL), BIT_FREQ_READY) == 0) {};
+    while (_GET_BIT(HAL_FMC::Read(RD_FL), FL_FREQ_READY) == 0) {};
     ReadRegFreq();
-    while (_GET_BIT(HAL_FMC::Read(RD_FL), BIT_FREQ_READY) == 0) {};
+    while (_GET_BIT(HAL_FMC::Read(RD_FL), FL_FREQ_READY) == 0) {};
     BitSet32 fr = ReadRegFreq();
     if (fr.word >= 5)
     {
@@ -821,10 +821,10 @@ static float CalculateFreqFromCounterFreq(void)
 static float CalculateFreqFromCounterPeriod(void)
 {
     uint time = TIME_MS;
-    while (TIME_MS - time < 1000 && _GET_BIT(HAL_FMC::Read(RD_FL), BIT_PERIOD_READY) == 0) {};
+    while (TIME_MS - time < 1000 && _GET_BIT(HAL_FMC::Read(RD_FL), FL_PERIOD_READY) == 0) {};
     ReadRegPeriod();
     time = TIME_MS;
-    while (TIME_MS - time < 1000 && _GET_BIT(HAL_FMC::Read(RD_FL), BIT_PERIOD_READY) == 0) {};
+    while (TIME_MS - time < 1000 && _GET_BIT(HAL_FMC::Read(RD_FL), FL_PERIOD_READY) == 0) {};
     BitSet32 period = ReadRegPeriod();
     if (period.word > 0 && (TIME_MS - time < 1000))
     {
@@ -1033,7 +1033,7 @@ Range::E FPGA::AccurateFindRange(Channel::E chan)
 
         for (int i = 0; i < 50; i++)
         {
-            while (_GET_BIT(HAL_FMC::Read(RD_FL), BIT_POINT_READY) == 0) {};
+            while (_GET_BIT(HAL_FMC::Read(RD_FL), FL_POINT_READY) == 0) {};
             HAL_FMC::Read(RD_ADC_B2);
             HAL_FMC::Read(RD_ADC_B1);
             HAL_FMC::Read(RD_ADC_A2);
@@ -1044,7 +1044,7 @@ Range::E FPGA::AccurateFindRange(Channel::E chan)
         {
             for (int i = 0; i < 100; i += 2)
             {
-                while (_GET_BIT(HAL_FMC::Read(RD_FL), BIT_POINT_READY) == 0) {};
+                while (_GET_BIT(HAL_FMC::Read(RD_FL), FL_POINT_READY) == 0) {};
                 HAL_FMC::Read(RD_ADC_B2);
                 HAL_FMC::Read(RD_ADC_B1);
                 buffer[i] = (uint8)HAL_FMC::Read(RD_ADC_A2);
@@ -1055,7 +1055,7 @@ Range::E FPGA::AccurateFindRange(Channel::E chan)
         {
             for (int i = 0; i < 100; i += 2)
             {
-                while (_GET_BIT(HAL_FMC::Read(RD_FL), BIT_POINT_READY) == 0) {};
+                while (_GET_BIT(HAL_FMC::Read(RD_FL), FL_POINT_READY) == 0) {};
                 buffer[i] = (uint8)HAL_FMC::Read(RD_ADC_B2);
                 buffer[i + 1] = (uint8)HAL_FMC::Read(RD_ADC_B1);
                 HAL_FMC::Read(RD_ADC_A2);

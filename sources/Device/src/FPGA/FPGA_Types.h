@@ -89,23 +89,18 @@
 #define RD_ADC_A2       (HAL_FMC::ADDR_FPGA + 0x11)          //    Чтение из памяти АЦП канала 1 2-го байта.
 #define RD_ADC_B1       (HAL_FMC::ADDR_FPGA + 0x12)          //    Чтение из памяти АЦП канала 2 1-го байта.
 #define RD_ADC_B2       (HAL_FMC::ADDR_FPGA + 0x13)          //    Чтение из памяти АЦП канала 2 2-го байта.
-                                                    /**     @brief Чтение установленных флагов.
-                                                            @verbatim
-                                                            D0 - флаг готовности данных,\n
-                                                            D1 - флаг синхронизации,\n
-                                                            D2 -\n
-                                                            D3 - флаг готовности очередной точки для поточечного вывода,\n
-                                                            D4 - завершение счёта частоты,\n
-                                                            D5 - завершение измерения периода,\n
-                                                            D6 - признак того, что нужно смещать сигналы на 1 точку в сторону. 
-                                                            @endverbatim */
-#define RD_FL           (HAL_FMC::ADDR_FPGA + 0x16)
-#define BIT_DATA_READY          0
-#define BIT_TRIG                1
-#define BIT_POINT_READY         3
-#define BIT_FREQ_READY          4
-#define BIT_PERIOD_READY        5
-#define BIT_SIGN_SHIFT_POINT    6
+
+
+#define RD_FL           (HAL_FMC::ADDR_FPGA + SHIFT(0x30))
+#define FL_DATA_READY           0   // 0 - данные готовы
+#define FL_TRIG_READY           1   // 1 - наличие синхроимпульса
+#define FL_PRED_READY           2   // 2 - окончание счета предзапуска
+#define FL_POINT_READY          3   // 3 - признак того, что точка готова (в поточечном выводе)
+#define FL_FREQ_READY           4   // 4 - можно считывать частоту
+#define FL_PERIOD_READY         5   // 5 - можно считывать период
+#define FL_LAST_RECOR           6   // 6 - признак последней записи - определяет, какой бит ставить первым
+#define FL_OVERFLOW_FREQ        8   // 8 - признак переполнения счётчика частоты
+#define FL_OVERFLOW_PERIOD      9   // 9 - признак переполнения счётчика периода
 
 
 #define RD_LAST_RECORD_LOW  (HAL_FMC::ADDR_FPGA + 0x17)      //    Младший байт адреса последней записи. Старший находится в RD_LAST_RECORD_HI. Используется в режиме поточечного вывода, чтобы не считывать все точки, когда пользователю не нужно 1024. Это ускоряет работу.
