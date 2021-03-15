@@ -59,22 +59,6 @@ public:
     };
 
 
-    struct BUS
-    {
-        // «апись в регистр ѕЋ»— нового значени€:
-        // address - адрес регистра,
-        // value - записываемое значение,
-        // restart - true означает, что после записи нужно запусить режим измерений, если до этого прибор не находилс€ в
-        //           режиме паузы.
-        static void WriteToHardware(uint16 *const address, uint16 value, bool restart);
-
-        static void Write(TypeRecord::E type, uint16 *address, uint data, bool restart);
-
-        static void Write(TypeRecord::E type, uint16 *address, uint data);
-
-        static void WriteToDAC(TypeWriteDAC::E type, uint16 data);
-    };
-
     static bool inProcessingOfRead;
 
     static void Init();
@@ -171,4 +155,22 @@ private:
     static TBase::E AccurateFindTBase(Channel::E chan);
 
     static bool FindWave(Channel::E chan);
+
+public:
+
+    struct BUS
+    {
+        // «апись в регистр ѕЋ»— нового значени€:
+        // address - адрес регистра,
+        // value - записываемое значение,
+        // restart - true означает, что после записи нужно запусить режим измерений, если до этого прибор не находилс€ в
+        //           режиме паузы.
+        static void WriteToHardware(uint16 *const address, uint16 value, bool restart);
+
+        static void Write(TypeRecord::E type, uint16 *address, uint data, bool restart);
+
+        static void Write(TypeRecord::E type, uint16 *address, uint data);
+
+        static void WriteToDAC(TypeWriteDAC::E type, uint16 data);
+    };
 };

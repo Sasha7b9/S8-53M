@@ -18,7 +18,7 @@ extern const int Kr[];
 const int Kr[] = { N_KR / 1, N_KR / 2, N_KR / 5, N_KR / 10, N_KR / 20 };
 
 
-void FPGA::WriteToDAC(TypeWriteDAC::E, uint16)
+void FPGA::BUS::WriteToDAC(TypeWriteDAC::E, uint16)
 {
 
 }
