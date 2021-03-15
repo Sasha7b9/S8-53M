@@ -54,12 +54,6 @@ void FPGA::TemporaryPause()
 }
 
 
-void FPGA::FindAndSetTrigLevel()
-{
-
-}
-
-
 void FPGA::Start()
 {
 

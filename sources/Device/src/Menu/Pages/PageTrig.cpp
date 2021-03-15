@@ -117,7 +117,7 @@ static bool IsActive_AutoFind_Search()
 
 static void OnPress_AutoFind_Search()
 {
-    FPGA::FindAndSetTrigLevel();
+    TrigLev::FindAndSet();
 }
 
 DEF_BUTTON(mbAutoFind_Search, PageTrig::PageAutoFind::self,

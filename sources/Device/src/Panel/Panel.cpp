@@ -434,7 +434,7 @@ static void TrigLong()
     }
     else
     {
-        FPGA::FindAndSetTrigLevel();
+        TrigLev::FindAndSet();
     }
 }
 

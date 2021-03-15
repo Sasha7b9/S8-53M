@@ -507,7 +507,7 @@ void FPGA::DataRead(bool necessaryShift, bool saveToStorage)
 
         if (TRIG_MODE_FIND_IS_AUTO && trigAutoFind)
         {
-            FPGA::FindAndSetTrigLevel();
+            TrigLev::FindAndSet();
             trigAutoFind = false;
         }
     }
@@ -1194,38 +1194,6 @@ void FPGA::TemporaryPause(void)
 {
     temporaryPause = true;
     Timer::Enable(TypeTimer::TemporaryPauseFPGA, 500, StopTemporaryPause);
-}
-
-
-void FPGA::FindAndSetTrigLevel(void)
-{
-    TrigSource::E trigSource = TRIG_SOURCE;
-    if (Storage::AllDatas() == 0 || TRIG_SOURCE_IS_EXT)
-    {
-        return;
-    }
-
-    Channel::E chanTrig = static_cast<Channel::E>(trigSource);
-    uint8 *data0 = 0;
-    uint8 *data1 = 0;
-    DataSettings *ds_ = 0;
-
-    Storage::GetDataFromEnd(0, &ds_, &data0, &data1);
-
-    pUCHAR data = (chanTrig == Channel::A) ? data0 : data1;
-
-    int lastPoint = static_cast<int>(ds_->length1channel) - 1;
-
-    uint8 min = Math::GetMinFromArray(data, 0, lastPoint);
-    uint8 max = Math::GetMaxFromArray(data, 0, lastPoint);
-
-    uint8 aveValue = static_cast<uint8>((static_cast<int>(min) + static_cast<int>(max)) / 2);
-
-    static const float scale = (float)(TrigLevMax - TrigLevZero) / (float)(MAX_VALUE - AVE_VALUE) / 2.4F;
-
-    int16 trigLev = static_cast<int16>(TrigLevZero + scale * (static_cast<int>(aveValue) - AVE_VALUE) - (SET_RSHIFT(chanTrig) - RShiftZero));
-
-    TrigLev::Set(trigSource, trigLev);
 }
 
 
