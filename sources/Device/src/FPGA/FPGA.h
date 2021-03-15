@@ -163,8 +163,6 @@ public:
 private:
     // Загрузить настройки в аппаратную часть из глобальной структуры SSettings.
     static void LoadSettings();
-    // Загрузить регистр WR_UPR (пиковый детектор и калибратор).
-    static void LoadRegUPR();
 
     static void WriteToAnalog(TypeWriteAnalog::E type, uint data);
     // Прочитать данные.

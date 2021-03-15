@@ -601,3 +601,9 @@ struct TrigLev
 
     static void Load();
 };
+
+
+struct RegUPR
+{
+    static void Load();
+};

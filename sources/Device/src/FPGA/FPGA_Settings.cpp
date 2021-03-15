@@ -42,7 +42,7 @@ void FPGA::LoadSettings()
     RShift::Load(Channel::B);
     TrigLev::Load();
     TrigLev::Polarity::Load();
-    LoadRegUPR();
+    RegUPR::Load();
     TrigLev::Load();
 
     /*
@@ -400,18 +400,18 @@ void FPGA::SetDeltaTShift(int16 shift)
 void FPGA::SetPeackDetMode(PeackDetMode::E peackDetMode)
 {
     PEAKDET = peackDetMode;
-    LoadRegUPR();
+    RegUPR::Load();
 }
 
 
 void FPGA::SetCalibratorMode(CalibratorMode::E calibratorMode)
 {
     CALIBRATOR = calibratorMode;
-    LoadRegUPR();
+    RegUPR::Load();
 }
 
 
-void FPGA::LoadRegUPR()
+void RegUPR::Load()
 {
     uint16 data = 0;
 
@@ -434,7 +434,7 @@ void FPGA::LoadRegUPR()
         data |= (1 << UPR_BIT_PEAKDET);
     }
 
-    Write(TypeRecord::FPGA, WR_UPR, data, false);
+    FPGA::Write(TypeRecord::FPGA, WR_UPR, data, false);
 }
 
 
