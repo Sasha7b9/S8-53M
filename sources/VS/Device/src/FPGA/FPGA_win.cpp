@@ -5,7 +5,7 @@
 
 static int additionShift = 0;
 
-StateFPGA FPGA::state;
+FPGA::State FPGA::state;
 
 uint16 gPost = 1024;
 int16 gPred = 1024;

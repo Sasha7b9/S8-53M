@@ -40,7 +40,7 @@ static DataSettings ds;
 
 uint16 FPGA::Flag::flag = 0U;
 
-StateFPGA FPGA::state =
+FPGA::State FPGA::state =
 {
     false,
     StateWorkFPGA::Stop,

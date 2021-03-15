@@ -33,14 +33,6 @@ struct StateCalibration { enum E {
 };};
 
 
-struct StateFPGA
-{
-    bool needCalibration;				        // Установленное в true значение означает, что необходимо произвести калибровку.
-    StateWorkFPGA::E stateWorkBeforeCalibration;
-    StateCalibration::E stateCalibration;          // Текущее состояние калибровки. Используется в процессе калибровки.
-};
-
-
 struct TypeRecord { enum E {
     FPGA,
     Analog,
@@ -51,36 +43,6 @@ struct TypeRecord { enum E {
 class FPGA
 {
 public:
-
-    struct Flag
-    {
-        static uint16 Read();
-        static uint16 flag;
-    };
-
-    struct FreqMeter
-    {
-        // Получить значение частоты.
-        static float GetFreq();
-    };
-
-    struct State
-    {
-        // Сохраняет текущие настройки. Потом их можно восстановить функцией FPGA_RestoreState().
-        static void Save();
-
-        // Восстанавливает настройки, ранее сохранённые функцией FPGA_SaveState().
-        static void Restore();
-    };
-
-    struct Randomizer
-    {
-        // Установить дополнительное смещение. Нужно для правильной расстановки точек в режиме рандомизатора.
-        static void SetAdditionShift(int shift);
-
-        // Возвращает true,если все точки получены в режиме рандомизатора.
-        static bool AllPointsRandomizer();
-    };
 
     static bool inProcessingOfRead;
 
@@ -126,8 +88,6 @@ public:
     static void ProcedureCalibration();
 
     static StateWorkFPGA::E CurrentStateWork();
-
-    static StateFPGA state;
 
     static int addShiftForFPGA;
 
@@ -187,5 +147,41 @@ public:
         static void Write(TypeRecord::E type, uint16 *address, uint data);
 
         static void WriteToDAC(TypeWriteDAC::E type, uint16 data);
+    };
+
+    struct Flag
+    {
+        static uint16 Read();
+        static uint16 flag;
+    };
+
+    struct FreqMeter
+    {
+        // Получить значение частоты.
+        static float GetFreq();
+    };
+
+    struct State
+    {
+        // Сохраняет текущие настройки. Потом их можно восстановить функцией FPGA_RestoreState().
+        static void Save();
+
+        // Восстанавливает настройки, ранее сохранённые функцией FPGA_SaveState().
+        static void Restore();
+
+        bool needCalibration;           // Установленное в true значение означает, что необходимо произвести калибровку.
+        StateWorkFPGA::E        stateWorkBeforeCalibration;
+        StateCalibration::E     stateCalibration;   // Текущее состояние калибровки. Используется в процессе калибровки.
+    };
+
+    static State state;
+
+    struct Randomizer
+    {
+        // Установить дополнительное смещение. Нужно для правильной расстановки точек в режиме рандомизатора.
+        static void SetAdditionShift(int shift);
+
+        // Возвращает true,если все точки получены в режиме рандомизатора.
+        static bool AllPointsRandomizer();
     };
 };
