@@ -292,7 +292,7 @@ static void OnChanged_ADC_Stretch_Mode(bool active)
     if (active)
     {
         PageDebug::LoadStretchADC(ChA);
-        PageDebug::LoadStretchADC(Channel::B);
+        PageDebug::LoadStretchADC(ChB);
     }
 }
 
@@ -358,7 +358,7 @@ static void OnPress_ADC_AltRShift_Reset()
         }
     }
     RShift::Set(ChA, SET_RSHIFT_A);
-    RShift::Set(Channel::B, SET_RSHIFT_B);
+    RShift::Set(ChB, SET_RSHIFT_B);
 }
 
 DEF_BUTTON(mbADC_AltRShift_Reset, PageDebug::PageADC::PageAltRShift::self,
@@ -381,14 +381,14 @@ DEF_GOVERNOR(mbADC_AltRShift_2mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
 
 static void OnChanged_ADC_AltRShift_B()
 {
-    RShift::Set(Channel::B, SET_RSHIFT_B);
+    RShift::Set(ChB, SET_RSHIFT_B);
 }
 
 DEF_GOVERNOR(mbADC_AltRShift_2mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
     "—м 2к 2м¬ пост", "Shift 2ch 2mV DC",
     "",
     "",
-    RSHIFT_ADD(Channel::B, Range::_2mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_B, nullptr
+    RSHIFT_ADD(ChB, Range::_2mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_B, nullptr
 )
 
 DEF_GOVERNOR(mbADC_AltRShift_5mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
@@ -402,7 +402,7 @@ DEF_GOVERNOR(mbADC_AltRShift_5mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
     "—м 2к 5м¬ пост", "Shift 2ch 5mV DC",
     "",
     "",
-    RSHIFT_ADD(Channel::B, Range::_5mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_B, nullptr
+    RSHIFT_ADD(ChB, Range::_5mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_B, nullptr
 )
 
 DEF_GOVERNOR(mbADC_AltRShift_10mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
@@ -416,7 +416,7 @@ DEF_GOVERNOR(mbADC_AltRShift_10mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
     "—м 2к 10м¬ пост", "Shift 2ch 10mV DC",
     "",
     "",
-    RSHIFT_ADD(Channel::B, Range::_10mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_B, nullptr
+    RSHIFT_ADD(ChB, Range::_10mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_B, nullptr
 )
 
 DEF_PAGE_7(pageAltShiftADC, PageDebug::PageADC::self, NamePage::DebugADCrShift,

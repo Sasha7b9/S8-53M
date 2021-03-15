@@ -361,12 +361,12 @@ void FPGA::ReadRandomizeMode(void)
 
             if (pData1 >= first1 && pData1 <= last1)
             {
-                WRITE_AND_OR_INVERSE(pData1, data10, Channel::B);
+                WRITE_AND_OR_INVERSE(pData1, data10, ChB);
             }
             addr = pData1 + addShiftMem;
             if (addr >= first1 && addr <= last1)
             {
-//                WRITE_AND_OR_INVERSE(addr, data11, Channel::B);
+//                WRITE_AND_OR_INVERSE(addr, data11, ChB);
             }
         /*
         }
@@ -385,14 +385,14 @@ void FPGA::ReadRandomizeMode(void)
 
             if (pData1 >= first1 && pData1 <= last1)
             {
-                *pData1 = (float)(numAve - 1) / (float)(numAve)* (*pData1) + InverseIfNecessary(data10, Channel::B) * 1.0F / (float)numAve;
+                *pData1 = (float)(numAve - 1) / (float)(numAve)* (*pData1) + InverseIfNecessary(data10, ChB) * 1.0F / (float)numAve;
             }
 
             addr = pData1 + addShiftMem;
 
             if (addr >= first1 && addr <= last1)
             {
-                *addr = (float)(numAve - 1) / (float)(numAve)* (*(pData1 + addShiftMem)) + InverseIfNecessary(data11, Channel::B) * 1.0F / (float)numAve;
+                *addr = (float)(numAve - 1) / (float)(numAve)* (*(pData1 + addShiftMem)) + InverseIfNecessary(data11, ChB) * 1.0F / (float)numAve;
             }
         }
         */
@@ -500,7 +500,7 @@ void FPGA::DataRead(bool necessaryShift, bool saveToStorage)
         if (!sTime_RandomizeModeEnabled())
         {
             InverseDataIsNecessary(ChA, dataRel0);
-            InverseDataIsNecessary(Channel::B, dataRel1);
+            InverseDataIsNecessary(ChB, dataRel1);
         }
 
         Storage::AddData(dataRel0, dataRel1, ds);
@@ -992,7 +992,7 @@ void FPGA::AutoFind(void)
     if (!FindWave(ChA))
     {
         //LOG_WRITE("Канал 2");
-        if(!FindWave(Channel::B))
+        if(!FindWave(ChB))
         {
             Display::ShowWarningBad(Warning::SignalNotFound);
         }

@@ -142,7 +142,7 @@ bool Display::ChannelNeedForDraw(pUCHAR data, Channel::E chan, const DataSetting
     }
     else if (ds != 0)
     {
-        if ((chan == ChA && ds->enableCh0 == 0) || (chan == Channel::B && ds->enableCh1 == 0))
+        if ((chan == ChA && ds->enableCh0 == 0) || (chan == ChB && ds->enableCh1 == 0))
         {
             return false;
         }
@@ -389,7 +389,7 @@ void Display::DrawDataChannel(uint8 *data, Channel::E chan, DataSettings *ds, in
 
 void Display::DrawMath()
 {
-    if (DISABLED_DRAW_MATH || Storage::GetData(ChA, 0) == 0 || Storage::GetData(Channel::B, 0) == 0)
+    if (DISABLED_DRAW_MATH || Storage::GetData(ChA, 0) == 0 || Storage::GetData(ChB, 0) == 0)
     {
         return;
     }
@@ -404,7 +404,7 @@ void Display::DrawMath()
 
     MathFPGA::PointsRelToVoltage(dataRel0, static_cast<int>(ds->length1channel), ds->range[ChA],
         static_cast<int16>(ds->rShiftCh0), dataAbs0);
-    MathFPGA::PointsRelToVoltage(dataRel1, static_cast<int>(ds->length1channel), ds->range[Channel::B],
+    MathFPGA::PointsRelToVoltage(dataRel1, static_cast<int>(ds->length1channel), ds->range[ChB],
         static_cast<int16>(ds->rShiftCh1), dataAbs1);
 
     MathFPGA::CalculateMathFunction(dataAbs0, dataAbs1, static_cast<int>(ds->length1channel));
@@ -532,19 +532,19 @@ void Display::DrawSpectrum()
         }
         else if (SOURCE_FFT_IS_B)
         {
-            DRAW_SPECTRUM(Storage::dataB, numPoints, Channel::B);
+            DRAW_SPECTRUM(Storage::dataB, numPoints, ChB);
         }
         else
         {
             if (LAST_AFFECTED_CHANNEL_IS_A)
             {
-                DRAW_SPECTRUM(Storage::dataB, numPoints, Channel::B);
+                DRAW_SPECTRUM(Storage::dataB, numPoints, ChB);
                 DRAW_SPECTRUM(Storage::dataA, numPoints, ChA);
             }
             else
             {
                 DRAW_SPECTRUM(Storage::dataA, numPoints, ChA);
-                DRAW_SPECTRUM(Storage::dataB, numPoints, Channel::B);
+                DRAW_SPECTRUM(Storage::dataB, numPoints, ChB);
             }
         }
     }
@@ -560,11 +560,11 @@ void Display::DrawBothChannels(uint8 *data0, uint8 *data1)
 	if (LAST_AFFECTED_CHANNEL_IS_B)
     {
         DrawDataChannel(data0, ChA, Storage::set, Grid::TOP, Grid::ChannelBottom());
-        DrawDataChannel(data1, Channel::B, Storage::set, Grid::TOP, Grid::ChannelBottom());
+        DrawDataChannel(data1, ChB, Storage::set, Grid::TOP, Grid::ChannelBottom());
     }
     else
     {
-        DrawDataChannel(data1, Channel::B, Storage::set, Grid::TOP, Grid::ChannelBottom());
+        DrawDataChannel(data1, ChB, Storage::set, Grid::TOP, Grid::ChannelBottom());
         DrawDataChannel(data0, ChA, Storage::set, Grid::TOP, Grid::ChannelBottom());
     }
 }
@@ -576,7 +576,7 @@ void Display::DrawDataMemInt()
     if(Storage::dsInt != 0)
      {
         DrawDataChannel(Storage::dataIntA, ChA, Storage::dsInt, Grid::TOP, Grid::ChannelBottom());
-        DrawDataChannel(Storage::dataIntB, Channel::B, Storage::dsInt, Grid::TOP, Grid::ChannelBottom());
+        DrawDataChannel(Storage::dataIntB, ChB, Storage::dsInt, Grid::TOP, Grid::ChannelBottom());
     }
 }
 
@@ -587,7 +587,7 @@ void Display::DrawDataInModeWorkLatest()
     if (Storage::dsLast != 0)
     {
         DrawDataChannel(Storage::dataLastA, ChA, Storage::dsLast, Grid::TOP, Grid::ChannelBottom());
-        DrawDataChannel(Storage::dataLastB, Channel::B, Storage::dsLast, Grid::TOP, Grid::ChannelBottom());
+        DrawDataChannel(Storage::dataLastB, ChB, Storage::dsLast, Grid::TOP, Grid::ChannelBottom());
     }
 }
 
@@ -605,24 +605,24 @@ void Display::DrawDataInModePoint2Point()
         if (SET_SELFRECORDER || (Storage::NumElementsWithCurrentSettings() == 0))
         {
             DrawDataChannel(dataP2P_0, ChA, ds, Grid::TOP, Grid::ChannelBottom());
-            DrawDataChannel(dataP2P_1, Channel::B, ds, Grid::TOP, Grid::ChannelBottom());
+            DrawDataChannel(dataP2P_1, ChB, ds, Grid::TOP, Grid::ChannelBottom());
         }
         else
         {
             DrawDataChannel(data0, ChA, ds, Grid::TOP, Grid::ChannelBottom());
-            DrawDataChannel(data1, Channel::B, ds, Grid::TOP, Grid::ChannelBottom());
+            DrawDataChannel(data1, ChB, ds, Grid::TOP, Grid::ChannelBottom());
         }
     }
     else
     {
         if (SET_SELFRECORDER || (Storage::NumElementsWithCurrentSettings() == 0))
         {
-            DrawDataChannel(dataP2P_1, Channel::B, ds, Grid::TOP, Grid::ChannelBottom());
+            DrawDataChannel(dataP2P_1, ChB, ds, Grid::TOP, Grid::ChannelBottom());
             DrawDataChannel(dataP2P_0, ChA, ds, Grid::TOP, Grid::ChannelBottom());
         }
         else
         {
-            DrawDataChannel(data1, Channel::B, ds, Grid::TOP, Grid::ChannelBottom());
+            DrawDataChannel(data1, ChB, ds, Grid::TOP, Grid::ChannelBottom());
             DrawDataChannel(data0, ChA, ds, Grid::TOP, Grid::ChannelBottom());
         }
     }
@@ -661,7 +661,7 @@ void Display::DrawDataInModeNormal()
     {
         for (int i = 0; i < numSignals; i++)
         {
-            DrawBothChannels(Storage::GetData(ChA, i), Storage::GetData(Channel::B, i));
+            DrawBothChannels(Storage::GetData(ChA, i), Storage::GetData(ChB, i));
         }
     }
 }
@@ -678,16 +678,16 @@ void Display::DrawDataMinMax()
             Grid::ChannelBottom());
         DrawDataChannel(Storage::GetLimitation(ChA, 1), ChA, Storage::set, Grid::TOP,
             Grid::ChannelBottom());
-        DrawDataChannel(Storage::GetLimitation(Channel::B, 0), Channel::B, Storage::set, Grid::TOP,
+        DrawDataChannel(Storage::GetLimitation(ChB, 0), ChB, Storage::set, Grid::TOP,
             Grid::ChannelBottom());
-        DrawDataChannel(Storage::GetLimitation(Channel::B, 1), Channel::B, Storage::set, Grid::TOP,
+        DrawDataChannel(Storage::GetLimitation(ChB, 1), ChB, Storage::set, Grid::TOP,
             Grid::ChannelBottom());
     }
     else
     {
-        DrawDataChannel(Storage::GetLimitation(Channel::B, 0), Channel::B, Storage::set, Grid::TOP,
+        DrawDataChannel(Storage::GetLimitation(ChB, 0), ChB, Storage::set, Grid::TOP,
             Grid::ChannelBottom());
-        DrawDataChannel(Storage::GetLimitation(Channel::B, 1), Channel::B, Storage::set, Grid::TOP,
+        DrawDataChannel(Storage::GetLimitation(ChB, 1), ChB, Storage::set, Grid::TOP,
             Grid::ChannelBottom());
         DrawDataChannel(Storage::GetLimitation(ChA, 0), ChA, Storage::set, Grid::TOP,
             Grid::ChannelBottom());
@@ -980,8 +980,8 @@ void Display::DrawMemoryWindow()
             int startI = shiftInMemory;
             int endI = startI + 281;
 
-            Channel::E chanFirst = LAST_AFFECTED_CHANNEL_IS_A ? Channel::B : ChA;
-            Channel::E chanSecond = LAST_AFFECTED_CHANNEL_IS_A ? ChA : Channel::B;
+            Channel::E chanFirst = LAST_AFFECTED_CHANNEL_IS_A ? ChB : ChA;
+            Channel::E chanSecond = LAST_AFFECTED_CHANNEL_IS_A ? ChA : ChB;
             pUCHAR dataFirst = LAST_AFFECTED_CHANNEL_IS_A ? dat1 : dat0;
             pUCHAR dataSecond = LAST_AFFECTED_CHANNEL_IS_A ? dat0 : dat1;
 
@@ -1204,11 +1204,11 @@ void Display::DrawCursorsRShift()
     if(LAST_AFFECTED_CHANNEL_IS_B)
     {
         DrawCursorRShift(ChA);
-        DrawCursorRShift(Channel::B);
+        DrawCursorRShift(ChB);
     }
     else
     {
-        DrawCursorRShift(Channel::B);
+        DrawCursorRShift(ChB);
         DrawCursorRShift(ChA);
     }
 }
@@ -1929,12 +1929,12 @@ void Display::DrawMeasures()
                 }
                 else if(MEAS_SOURCE_IS_B)
                 {
-                    Text(Processing::GetStringMeasure(meas, Channel::B, buffer)).Draw(x + 2, y + 11, Color::Channel(Channel::B));
+                    Text(Processing::GetStringMeasure(meas, ChB, buffer)).Draw(x + 2, y + 11, Color::Channel(ChB));
                 }
                 else
                 {
                     Text(Processing::GetStringMeasure(meas, ChA, buffer)).Draw(x + 2, y + 11, Color::Channel(ChA));
-                    Text(Processing::GetStringMeasure(meas, Channel::B, buffer)).Draw(x + 2, y + 20, Color::Channel(Channel::B));
+                    Text(Processing::GetStringMeasure(meas, ChB, buffer)).Draw(x + 2, y + 20, Color::Channel(ChB));
                 }
             }
         }
@@ -2033,7 +2033,7 @@ void Display::DrawLowPart()
 
     WriteTextVoltage(ChA, x + 2, y0);
 
-    WriteTextVoltage(Channel::B, x + 2, y1);
+    WriteTextVoltage(ChB, x + 2, y1);
 
     VLine().Draw(x + 95, Grid::Bottom() + 2, HEIGHT - 2, Color::FILL);
 

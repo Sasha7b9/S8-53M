@@ -40,8 +40,8 @@ void FPGA::LoadSettings()
     TShift::Load();
     Range::Load(ChA);
     RShift::Load(ChA);
-    Range::Load(Channel::B);
-    RShift::Load(Channel::B);
+    Range::Load(ChB);
+    RShift::Load(ChB);
     TrigLev::Load();
     TrigLev::Polarity::Load();
     RegUPR::Load();
@@ -49,14 +49,14 @@ void FPGA::LoadSettings()
 
     /*
     LoadKoeffCalibration(ChA);
-    LoadKoeffCalibration(Channel::B);
+    LoadKoeffCalibration(ChB);
     SetAttribChannelsAndTrig(TypeWriteAnalog::All);
     LoadTBase();
     LoadTShift();
     LoadRange(ChA);
     LoadRShift(ChA);
-    LoadRange(Channel::B);
-    LoadRShift(Channel::B);
+    LoadRange(ChB);
+    LoadRShift(ChB);
     LoadTrigLev();
     LoadTrigPolarity();
     LoadRegUPR();
@@ -111,7 +111,7 @@ void FPGA::SetAttribChannelsAndTrig(TypeWriteAnalog::E type)
     };
 
     data |= maskCouple[ChA][SET_COUPLE_A];
-    data |= maskCouple[Channel::B][SET_COUPLE_B];
+    data |= maskCouple[ChB][SET_COUPLE_B];
 
     static const uint maskFiltr[2][2] = 
     {
@@ -120,7 +120,7 @@ void FPGA::SetAttribChannelsAndTrig(TypeWriteAnalog::E type)
     };
 
     data |= maskFiltr[ChA][SET_FILTR_A];
-    data |= maskFiltr[Channel::B][SET_FILTR_B];
+    data |= maskFiltr[ChB][SET_FILTR_B];
 
 
     // Параметры синхронизации

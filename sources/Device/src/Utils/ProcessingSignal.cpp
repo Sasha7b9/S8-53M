@@ -107,12 +107,12 @@ void Processing::CalculateMeasures()
                 {
                     markerVert[ChA][0] = ERROR_VALUE_INT;
                     markerVert[ChA][1] = ERROR_VALUE_INT;
-                    markerVert[Channel::B][0] = ERROR_VALUE_INT;
-                    markerVert[Channel::B][1] = ERROR_VALUE_INT;
+                    markerVert[ChB][0] = ERROR_VALUE_INT;
+                    markerVert[ChB][1] = ERROR_VALUE_INT;
                     markerHor[ChA][0] = ERROR_VALUE_INT;
                     markerHor[ChA][1] = ERROR_VALUE_INT;
-                    markerHor[Channel::B][0] = ERROR_VALUE_INT;
-                    markerHor[Channel::B][1] = ERROR_VALUE_INT;
+                    markerHor[ChB][0] = ERROR_VALUE_INT;
+                    markerHor[ChB][1] = ERROR_VALUE_INT;
                 }
                 if(MEAS_SOURCE_IS_A || MEAS_SOURCE_IS_A_B)
                 {
@@ -120,7 +120,7 @@ void Processing::CalculateMeasures()
                 }
                 if(MEAS_SOURCE_IS_B || MEAS_SOURCE_IS_A_B)
                 {
-                    values[meas].value[Channel::B] = func(Channel::B);
+                    values[meas].value[ChB] = func(ChB);
                 }
             }
         }
@@ -792,7 +792,7 @@ float Processing::CalculatePicRel(Channel::E chan)
 float Processing::CalculateDelayPlus(Channel::E chan)
 {
     float period0 = CalculatePeriod(ChA);
-    float period1 = CalculatePeriod(Channel::B);
+    float period1 = CalculatePeriod(ChB);
 
     EXIT_IF_ERRORS_FLOAT(period0, period1);
     if(!Math::FloatsIsEquals(period0, period1, 1.05F))
@@ -801,14 +801,14 @@ float Processing::CalculateDelayPlus(Channel::E chan)
     }
 
     float average0 = CalculateAverageRel(ChA);
-    float average1 = CalculateAverageRel(Channel::B);
+    float average1 = CalculateAverageRel(ChB);
 
     EXIT_IF_ERRORS_FLOAT(average0, average1);
 
     float averageFirst = (chan == ChA) ? average0 : average1;
     float averageSecond = (chan == ChA) ? average1 : average0;
-    Channel::E firstChannel = (chan == ChA) ? ChA : Channel::B;
-    Channel::E secondChannel = (chan == ChA) ? Channel::B : ChA;
+    Channel::E firstChannel = (chan == ChA) ? ChA : ChB;
+    Channel::E secondChannel = (chan == ChA) ? ChB : ChA;
 
     float firstIntersection = FindIntersectionWithHorLine(firstChannel, 1, true, static_cast<uint8>(averageFirst));
     float secondIntersection = FindIntersectionWithHorLine(secondChannel, 1, true, static_cast<uint8>(averageSecond));
@@ -828,7 +828,7 @@ float Processing::CalculateDelayPlus(Channel::E chan)
 float Processing::CalculateDelayMinus(Channel::E chan)
 {
     float period0 = CalculatePeriod(ChA);
-    float period1 = CalculatePeriod(Channel::B);
+    float period1 = CalculatePeriod(ChB);
 
     EXIT_IF_ERRORS_FLOAT(period0, period1);
 
@@ -838,14 +838,14 @@ float Processing::CalculateDelayMinus(Channel::E chan)
     }
 
     float average0 = CalculateAverageRel(ChA);
-    float average1 = CalculateAverageRel(Channel::B);
+    float average1 = CalculateAverageRel(ChB);
 
     EXIT_IF_ERRORS_FLOAT(average0, average1);
 
     float averageFirst = (chan == ChA) ? average0 : average1;
     float averageSecond = (chan == ChA) ? average1 : average0;
-    Channel::E firstChannel = (chan == ChA) ? ChA : Channel::B;
-    Channel::E secondChannel = (chan == ChA) ? Channel::B : ChA;
+    Channel::E firstChannel = (chan == ChA) ? ChA : ChB;
+    Channel::E secondChannel = (chan == ChA) ? ChB : ChA;
 
     float firstIntersection = FindIntersectionWithHorLine(firstChannel, 1, false, static_cast<uint8>(averageFirst));
     float secondIntersection = FindIntersectionWithHorLine(secondChannel, 1, false, static_cast<uint8>(averageSecond));
@@ -901,7 +901,7 @@ void Processing::SetSignal(pUCHAR data0, pUCHAR data1, DataSettings *ds, int _fi
     int length = (int)ds->length1channel * (ds->peakDet == PeackDetMode::Disable ? 1 : 2);
 
     Math::CalculateFiltrArray(data0, &dataIn[ChA][0], length, numSmoothing);
-    Math::CalculateFiltrArray(data1, &dataIn[Channel::B][0], length, numSmoothing);
+    Math::CalculateFiltrArray(data1, &dataIn[ChB][0], length, numSmoothing);
 
     CountedToCurrentSettings();
 }
@@ -1096,7 +1096,7 @@ char* Processing::GetStringMeasure(Measure::E measure, Channel::E chan, char buf
     {
         std::strcat(buffer, "-.-"); //-V2513
     }
-    else if((chan == ChA && dataSet->enableCh0 == 0) || (chan == Channel::B && dataSet->enableCh1 == 0))
+    else if((chan == ChA && dataSet->enableCh0 == 0) || (chan == ChB && dataSet->enableCh1 == 0))
     {
     }
     else if(measures[measure].FuncCalculate)

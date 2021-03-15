@@ -160,7 +160,7 @@ void Storage::CalculateLimits(uint16 * data0, uint16 * data1, const DataSettings
         for(int numData = 0; numData < allDatas; numData++)
         {
             pUCHAR dA = GetData(ChA, numData);
-            pUCHAR dB = GetData(Channel::B, numData);
+            pUCHAR dB = GetData(ChB, numData);
             for(uint i = 0; i < numElements; i++)
             {
                 if(dA[i] < limitDown[0][i])  { limitDown[0][i] = dA[i]; }
@@ -300,7 +300,7 @@ bool Storage::GetDataFromEnd(int fromEnd, DataSettings **ds, uint8 **data0, uint
     }
     if(data1 != 0)
     {
-        *data1 = CopyData(dp, Channel::B, dataImportRel) ? &dataImportRel[1][0] : 0;
+        *data1 = CopyData(dp, ChB, dataImportRel) ? &dataImportRel[1][0] : 0;
     }
     *ds = dp;
     
@@ -323,7 +323,7 @@ uint8* Storage::GetData(Channel::E chan, int fromEnd)
 
 bool Storage::CopyData(DataSettings *ds, Channel::E chan, uint8 datatImportRel[2][FPGA_MAX_POINTS])
 {
-    if((chan == ChA && ds->enableCh0 == 0) || (chan == Channel::B && ds->enableCh1 == 0))
+    if((chan == ChA && ds->enableCh0 == 0) || (chan == ChB && ds->enableCh1 == 0))
     {
         return false;
     }
@@ -333,7 +333,7 @@ bool Storage::CopyData(DataSettings *ds, Channel::E chan, uint8 datatImportRel[2
 
     uint length = ds->length1channel * (ds->peakDet == PeackDetMode::Disable ? 1 : 2);
 
-    if(chan == Channel::B && ds->enableCh0 == 1)
+    if(chan == ChB && ds->enableCh0 == 1)
     {
         address += length;
     }

@@ -379,7 +379,7 @@ void Menu::ProcessingShortPressureButton()
                 }
                 else if(button == Key::ChannelB && name == NamePage::ChannelB)
                 {
-                    SET_ENABLED_B = !sChannel_Enabled(Channel::B);
+                    SET_ENABLED_B = !sChannel_Enabled(ChB);
                     PageChannelB::OnChanged_Input(true);
                 }
                 else
@@ -421,7 +421,7 @@ void Menu::ProcessingLongPressureButton()
         }
         else if(longPressureButton == Key::ChannelB)
         {
-            RShift::Set(Channel::B, RShiftZero);
+            RShift::Set(ChB, RShiftZero);
         }
         else if(longPressureButton == Key::Menu)
         {

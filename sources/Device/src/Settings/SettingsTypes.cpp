@@ -154,7 +154,7 @@ void TBase::Increase()
 
 void TBase::Set(TBase::E tBase)
 {
-    if (!sChannel_Enabled(ChA) && !sChannel_Enabled(Channel::B))
+    if (!sChannel_Enabled(ChA) && !sChannel_Enabled(ChB))
     {
         return;
     }
@@ -175,7 +175,7 @@ void TBase::Set(TBase::E tBase)
 
 void TShift::Set(int tShift)
 {
-    if (!sChannel_Enabled(ChA) && !sChannel_Enabled(Channel::B))
+    if (!sChannel_Enabled(ChA) && !sChannel_Enabled(ChB))
     {
         return;
     }

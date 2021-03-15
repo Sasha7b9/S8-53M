@@ -197,7 +197,7 @@ static const arrayHints hintsSetSource =
 
 static void PressSB_Cursors_Source()
 {
-    Channel::E source = CURS_SOURCE_A ? Channel::B : ChA;
+    Channel::E source = CURS_SOURCE_A ? ChB : ChA;
     SetCursSource(source);
 }
 

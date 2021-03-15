@@ -62,7 +62,7 @@ void Device::Update()
 //        if (ENumAveraging::NumAverages() != 1 || sTime_RandomizeModeEnabled())
 //        {
 //            Storage::dataA = Storage::GetAverageData(ChA);
-//            Storage::dataB = Storage::GetAverageData(Channel::B);
+//            Storage::dataB = Storage::GetAverageData(ChB);
 //        }
 //    }
 //    else if (MODE_WORK_IS_LATEST)

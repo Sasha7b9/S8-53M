@@ -248,7 +248,7 @@ void Settings::Load(bool /*_default*/)
 //        uint16 rshiftAddB[Range::Count][2];
 //
 //        std::memcpy((void *)rShiftAddA, (void *)&RSHIFT_ADD(ChA, 0, 0), 2 * Range::Count * 2); // Сначала сохраняем несбрасываемые настройки
-//        std::memcpy((void *)rshiftAddB, (void *)&RSHIFT_ADD(Channel::B, 0, 0), 2 * Range::Count * 2);
+//        std::memcpy((void *)rshiftAddB, (void *)&RSHIFT_ADD(ChB, 0, 0), 2 * Range::Count * 2);
 //
 //        int16  balanceADC0 = BALANCE_ADC_A;
 //        int16  balanceADC1 = BALANCE_ADC_B;
@@ -258,7 +258,7 @@ void Settings::Load(bool /*_default*/)
 //        std::memcpy((void*)&set, (void*)(&defaultSettings), sizeof(set));                // Потом заполняем значениями по умолчанию
 //
 //        std::memcpy((void *)&RSHIFT_ADD(ChA, 0, 0), (void *)rShiftAddA, 2 * Range::Count * 2);  // И восстанавливаем несбрасываемые настройки
-//        std::memcpy((void *)&RSHIFT_ADD(Channel::B, 0, 0), (void *)rshiftAddB, 2 * Range::Count * 2);
+//        std::memcpy((void *)&RSHIFT_ADD(ChB, 0, 0), (void *)rshiftAddB, 2 * Range::Count * 2);
 //
 //        BALANCE_ADC_A = balanceADC0;
 //        BALANCE_ADC_B = balanceADC1;
@@ -267,7 +267,7 @@ void Settings::Load(bool /*_default*/)
 //    }
 //
 //    Panel::EnableLEDChannel0(sChannel_Enabled(ChA));
-//    Panel::EnableLEDChannel1(sChannel_Enabled(Channel::B));
+//    Panel::EnableLEDChannel1(sChannel_Enabled(ChB));
 //    Menu::SetAutoHide(true);
 //    Display::ChangedRShiftMarkers();
 //

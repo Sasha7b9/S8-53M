@@ -12,7 +12,7 @@
 
 #define MEAS_SOURCE                     (set.measures.source)                           // SettingsMeasures.source
 #define MEAS_SOURCE_IS_A                (MEAS_SOURCE == ChA)
-#define MEAS_SOURCE_IS_B                (MEAS_SOURCE == Channel::B)
+#define MEAS_SOURCE_IS_B                (MEAS_SOURCE == ChB)
 #define MEAS_SOURCE_IS_A_B              (MEAS_SOURCE == Channel::A_B)
 
 #define MODE_VIEW_SIGNALS               (set.measures.modeViewSignals)                 // SettingsMeasures.modeViewSignals

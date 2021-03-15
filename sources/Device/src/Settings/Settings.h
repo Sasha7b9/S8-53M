@@ -138,7 +138,7 @@ struct OutputRegisters
 
 #define BALANCE_ADC(ch)                     (set.debug.balanceADC[ch])
 #define BALANCE_ADC_A                       (BALANCE_ADC(ChA))
-#define BALANCE_ADC_B                       (BALANCE_ADC(Channel::B))
+#define BALANCE_ADC_B                       (BALANCE_ADC(ChB))
 
 #define DEBUG_STRETCH_ADC_TYPE              (set.debug.stretchADCtype)
 #define DEBUG_STRETCH_ADC_TYPE_IS_DISABLED  (DEBUG_STRETCH_ADC_TYPE == StretchADCtype::Disable)
@@ -147,7 +147,7 @@ struct OutputRegisters
 
 #define DEBUG_STRETCH_ADC(ch)               (set.debug.stretchADC[ch])
 #define DEBUG_STRETCH_ADC_A                 (DEBUG_STRETCH_ADC(ChA))
-#define DEBUG_STRETCH_ADC_B                 (DEBUG_STRETCH_ADC(Channel::B))
+#define DEBUG_STRETCH_ADC_B                 (DEBUG_STRETCH_ADC(ChB))
 
 #define NUM_MEAS_FOR_GATES                  (set.debug.numMeasuresForGates)
 
