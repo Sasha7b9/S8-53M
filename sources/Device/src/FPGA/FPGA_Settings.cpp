@@ -466,10 +466,10 @@ void TrigInput::Set(E trigInput)
 }
 
 
-void FPGA::EnableChannelFiltr(Channel::E chan, bool enable)
+void ChannelFiltr::Enable(Channel::E chan, bool enable)
 {
     SET_FILTR(chan) = enable;
-    SetAttribChannelsAndTrig(chan == Channel::A ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
+    FPGA::SetAttribChannelsAndTrig(chan == Channel::A ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
 }
 
 

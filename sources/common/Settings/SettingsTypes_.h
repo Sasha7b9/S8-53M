@@ -315,6 +315,9 @@ struct PeackDetMode
 };
 
 
+#define ChA Channel::A
+#define ChB Channel::B
+
 struct Channel { enum E
 {
     A,
@@ -669,4 +672,11 @@ struct TrigLev
 struct RegUPR
 {
     static void Load();
+};
+
+
+// Фильтр по входу канала
+struct ChannelFiltr
+{
+    static void Enable(Channel::E ch, bool enable);
 };

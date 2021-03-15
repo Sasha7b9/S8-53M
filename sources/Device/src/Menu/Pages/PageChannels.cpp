@@ -61,7 +61,7 @@ DEF_CHOICE_3(mcCoupleA, PageChannelA::self,
 
 void PageChannelA::OnChanged_Filtr(bool)
 {
-    FPGA::EnableChannelFiltr(Channel::A, SET_FILTR_A);
+    ChannelFiltr::Enable(ChA, SET_FILTR_A);
 }
 
 DEF_CHOICE_2(mcFiltrA, PageChannelA::self,
@@ -139,7 +139,7 @@ DEF_CHOICE_3(mcCoupleB, PageChannelB::self,
 
 void PageChannelB::OnChanged_Filtr(bool)
 {
-    FPGA::EnableChannelFiltr(Channel::B, SET_FILTR_B);
+    ChannelFiltr::Enable(Channel::B, SET_FILTR_B);
 }
 
 DEF_CHOICE_2(mcFiltrB, PageChannelB::self,
