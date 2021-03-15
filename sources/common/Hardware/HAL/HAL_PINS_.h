@@ -81,7 +81,6 @@ struct Pin
     static Pin G5;
     static Pin LED;
     static Pin DisplayReady;
-
     static Pin Temp;
 
 private:

@@ -30,7 +30,7 @@
 #define MIN_TBASE_PEC_DEAT  TBase::_500ns     // Минимальный масштаб по времени, при котором возможно включение режима пикового детектора.
 #define MIN_TBASE_P2P       TBase::_20ms      // С этого значения tBase должен включаться режим поточечного вывода.
 
-#define FPGA_MAX_POINTS                 16384
+#define FPGA_MAX_POINTS                 1024
 #define FPGA_MAX_POINTS_FOR_CALCULATE   900
 
 

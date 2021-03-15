@@ -11,7 +11,7 @@ static const uint ADDR_BANK = 0x60000000;
 static const uint ADDR_RAM = ADDR_BANK + 0x04000000;
 
 //                                                           0x80000 - это смещение нужно для установки A19 на FPGA в 1
-uint16 * const HAL_FMC::ADDR_FPGA = (uint16 *)(ADDR_BANK + 0x00000000 + 0x80000);  // Адрес записи в аппаратные регистры.
+uint16 * const HAL_FMC::ADDR_FPGA = (uint16 *)(ADDR_BANK + 0x00000000 + 0x100000);  // Адрес записи в аппаратные регистры.
 
 uint16 *const HAL_FMC::ADDR_RAM_DISPLAY_FRONT = (uint16 *)(ADDR_RAM);
 
