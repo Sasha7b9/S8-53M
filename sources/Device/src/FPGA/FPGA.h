@@ -80,10 +80,9 @@ public:
     // Установить временную паузу после изменения ручек - чтобы смещённый сигнал зафиксировать на некоторое время
     static void TemporaryPause();
 
-    // Загрузить в аппарат коэффициенты калибровки каналов.
-    static void LoadKoeffCalibration(Channel::E chan);
     // Возвращает установленное смещение по времени в текстовом виде, пригодном для вывода на экран.
     static const char* GetTShiftString(int16 tShiftRel, char buffer[20]);
+
     // Запуск функции калибровки.
     static void ProcedureCalibration();
 
@@ -183,5 +182,11 @@ public:
 
         // Возвращает true,если все точки получены в режиме рандомизатора.
         static bool AllPointsRandomizer();
+    };
+
+    struct Calibrator
+    {
+        // Загрузить в аппарат коэффициенты калибровки каналов.
+        static void LoadKoeff(Channel::E chan);
     };
 };

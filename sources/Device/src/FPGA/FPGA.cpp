@@ -212,18 +212,18 @@ void FPGA::Update(void)
         TShift::Load();
     }
 
-//    uint timePredReady = 0; // Время, когда сработал предзапуск
+///    uint timePredReady = 0; // Время, когда сработал предзапуск
 
     uint16 flag = Flag::Read();
 
+    TBase::Load();
+
     if (_GET_BIT(flag, FL_PRED_READY) == 1)
     {
-//        LOG_WRITE("Предзапуск готов");
+        LOG_WRITE("Предзапуск готов");
 
         if (_GET_BIT(flag, FL_TRIG_READY) == 1)
         {
-//            LOG_WRITE("Синхронизация сработала");
-
             if (_GET_BIT(flag, FL_DATA_READY) == 1)
             {
                 LOG_WRITE("Данные можно считывать");
@@ -240,7 +240,7 @@ void FPGA::Update(void)
     }
     else
     {
-//        LOG_WRITE("Предзапуск не готов");
+        LOG_WRITE("Предзапуск не готов");
     }
 }
 
@@ -659,18 +659,20 @@ void FPGA::BUS::WriteToHardware(uint16 * const address, uint16 value, bool resta
 }
 
 
-void FPGA::BUS::Write(TypeRecord::E type, uint16 *address, uint data, bool restart)
+void FPGA::BUS::Write(TypeRecord::E type, uint16 *address, uint data, bool /*restart*/)
 {
-    if (restart)
-    {
-        Stop(true);
-        Write(type, address, data);
-        Start();
-    }
-    else
-    {
-        Write(type, address, data);
-    }
+    Write(type, address, data);
+
+//    if (restart)
+//    {
+//        Stop(true);
+//        Write(type, address, data);
+//        Start();
+//    }
+//    else
+//    {
+//        Write(type, address, data);
+//    }
 
 
     Panel::EnableLEDTrig(false); // После каждой засылки выключаем лампочку синхронизации

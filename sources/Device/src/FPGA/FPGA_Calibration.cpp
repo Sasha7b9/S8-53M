@@ -85,8 +85,8 @@ void FPGA::ProcedureCalibration(void)
         TShift::Set(0);
         STRETCH_ADC_A = 1.0F;
         STRETCH_ADC_B = 1.0F;
-        FPGA::LoadKoeffCalibration(ChA);
-        FPGA::LoadKoeffCalibration(ChB);
+        Calibrator::LoadKoeff(ChA);
+        Calibrator::LoadKoeff(ChB);
         Range::Set(ChA, Range::_500mV);
         Range::Set(ChB, Range::_500mV);
         RShift::Set(ChA, RShiftZero);
@@ -124,7 +124,7 @@ void FPGA::ProcedureCalibration(void)
             else
             {
                 STRETCH_ADC_A = koeffCal0;
-                FPGA::LoadKoeffCalibration(ChA);
+                Calibrator::LoadKoeff(ChA);
             }
 			
             for (int range = 0; range < Range::Count; range++)
@@ -160,7 +160,7 @@ void FPGA::ProcedureCalibration(void)
             else
             {
                 STRETCH_ADC_B = koeffCal1;
-                FPGA::LoadKoeffCalibration(ChB);
+                Calibrator::LoadKoeff(ChB);
             }
 
             for (int range = 0; range < Range::Count; range++)
@@ -192,10 +192,10 @@ void FPGA::ProcedureCalibration(void)
 
     STRETCH_ADC_A = (koeffCal0 == ERROR_VALUE_FLOAT) ? koeffCalibrationOld[0] : koeffCal0; //-V2550 //-V550
 
-    FPGA::LoadKoeffCalibration(ChA);
+    Calibrator::LoadKoeff(ChA);
 
     STRETCH_ADC_B = (koeffCal1 == ERROR_VALUE_FLOAT) ? koeffCalibrationOld[1] : koeffCal1; //-V2550 //-V550
-    FPGA::LoadKoeffCalibration(ChB);
+    Calibrator::LoadKoeff(ChB);
 
     state.stateCalibration = StateCalibration::None;
     Panel::WaitPressingButton();

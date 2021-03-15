@@ -283,7 +283,7 @@ void PageDebug::LoadStretchADC(Channel::E chan)
     }
     else if (DEBUG_STRETCH_ADC_TYPE_IS_SETTINGS)
     {
-        FPGA::LoadKoeffCalibration(chan);
+        FPGA::Calibrator::LoadKoeff(chan);
     }
 }
 
