@@ -399,6 +399,12 @@ struct TrigModeFind { enum E
 };};
 
 
+struct TShift
+{
+    static void Load();
+};
+
+
 // Масштаб по времени
 struct TBase
 {

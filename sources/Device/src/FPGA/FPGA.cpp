@@ -209,7 +209,7 @@ void FPGA::Update(void)
         first = false;
 
         TBase::Load();
-        LoadTShift();
+        TShift::Load();
     }
 
 //    uint timePredReady = 0; // Время, когда сработал предзапуск

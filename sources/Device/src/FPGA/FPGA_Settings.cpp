@@ -35,7 +35,7 @@ static int16 timeCompensation[TBase::Count] = { 550, 275, 120, 55, 25, 9, 4, 1 }
 void FPGA::LoadSettings()
 {
     TBase::Load();
-    LoadTShift();
+    TShift::Load();
     LoadRange(Channel::A);
     LoadRShift(Channel::A);
     LoadRange(Channel::B);
@@ -385,7 +385,7 @@ void FPGA::SetTShift(int tShift)
     }
 
     sTime_SetTShift((int16)tShift);
-    LoadTShift();
+    TShift::Load();
     Display::Redraw();
 };
 
@@ -393,7 +393,7 @@ void FPGA::SetTShift(int tShift)
 void FPGA::SetDeltaTShift(int16 shift)
 {
     deltaTShift[SET_TBASE] = shift;
-    LoadTShift();
+    TShift::Load();
 }
 
 
@@ -444,7 +444,7 @@ void FPGA::LoadKoeffCalibration(Channel::E /*chan*/)
 }
 
 
-void FPGA::LoadTShift()
+void TShift::Load()
 {
     TBase::E tBase = SET_TBASE;
     int tShift = TSHIFT - sTime_TShiftMin() + timeCompensation[tBase];
@@ -466,10 +466,10 @@ void FPGA::LoadTShift()
 
         gPost = (uint16)((2 * gPost - k) / Kr[tBase]);
 
-        addShiftForFPGA = (TSHIFT * 2) % Kr[tBase];
-        if (addShiftForFPGA < 0)
+        FPGA::addShiftForFPGA = (TSHIFT * 2) % Kr[tBase];
+        if (FPGA::addShiftForFPGA < 0)
         {
-            addShiftForFPGA = Kr[tBase] + addShiftForFPGA;
+            FPGA::addShiftForFPGA = Kr[tBase] + FPGA::addShiftForFPGA;
         }
         gPred = ~(PRETRIGGERED);
     }
@@ -503,8 +503,8 @@ void FPGA::LoadTShift()
             ++gPost;
             --gPred;
         }
-        Write(TypeRecord::FPGA, WR_POST, gPost, true);
-        Write(TypeRecord::FPGA, WR_PRED, (uint)gPred, true);
+        FPGA::Write(TypeRecord::FPGA, WR_POST, gPost, true);
+        FPGA::Write(TypeRecord::FPGA, WR_PRED, (uint)gPred, true);
     }
 }
 
