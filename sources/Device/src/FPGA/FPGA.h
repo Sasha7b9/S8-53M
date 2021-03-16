@@ -70,8 +70,8 @@ public:
 private:
 
     static StateWorkFPGA::E state_work;
-
-    static uint time_start;
+    static uint             time_start;
+    static bool             critical_situation;
 
     // Загрузить настройки в аппаратную часть из глобальной структуры SSettings.
     static void LoadSettings();

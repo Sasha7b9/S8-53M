@@ -21,20 +21,18 @@ FPGA::Flag       FPGA::flag;
 StateWorkFPGA::E FPGA::state_work = StateWorkFPGA::Stop;
 uint             FPGA::time_start = 0;
 bool             FPGA::temporary_pause = false;
-bool FPGA::can_read_data = true;
+bool             FPGA::can_read_data = true;
+bool             FPGA::critical_situation = false;
 
-bool      FPGA::AutoFinder::auto_find_in_progress = false;
+bool             FPGA::AutoFinder::auto_find_in_progress = false;
 
-float     FPGA::FreqMeter::freq = 0.0f;
+float            FPGA::FreqMeter::freq = 0.0f;
 
 #define N_KR 100
-const int FPGA::Randomizer::Kr[] = { N_KR / 1, N_KR / 2, N_KR / 5, N_KR / 10, N_KR / 20 };
-int       FPGA::Randomizer::number_measures_for_gates = 1000;
+const int        FPGA::Randomizer::Kr[] = { N_KR / 1, N_KR / 2, N_KR / 5, N_KR / 10, N_KR / 20 };
+int              FPGA::Randomizer::number_measures_for_gates = 1000;
 
 
-
-
-static bool criticalSituation = false;
 static bool firstAfterWrite = false;            // Используется в режиме рандомизатора. После записи любого параметра в альтеру нужно не использовать первое считанное данное с АЦП, потому что оно завышено и портит ворота
 
 
@@ -90,7 +88,7 @@ void FPGA::Start(void)
 
     time_start = TIME_MS;
     state_work = StateWorkFPGA::Wait;
-    criticalSituation = false;
+    critical_situation = false;
 }
 
 
@@ -106,7 +104,7 @@ bool FPGA::ProcessingData(void)
    {
         flag.Read();
 
-        if (criticalSituation)
+        if (critical_situation)
         {
             if (TIME_MS - time_start > 500)
             {
@@ -114,11 +112,11 @@ bool FPGA::ProcessingData(void)
 
                 TrigLev::need_auto_find = true;
 
-                criticalSituation = false;
+                critical_situation = false;
             }
             else if (flag.IsTrigReady())
             {
-                criticalSituation = false;
+                critical_situation = false;
             }
         }
         else if (flag.IsDataReady())
@@ -148,7 +146,7 @@ bool FPGA::ProcessingData(void)
             {
                 if (START_MODE_IS_AUTO)
                 {
-                    criticalSituation = true;
+                    critical_situation = true;
                 }
                 time_start = TIME_MS;
             }
