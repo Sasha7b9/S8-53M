@@ -7,7 +7,11 @@
 #include "FPGA/FPGA.h"
 #include "FPGA/MathFPGA.h"
 #include "FPGA/Storage.h"
+#include "Panel/Panel.h"
 #include "Settings/Settings.h"
+
+
+uint TrigPolarity::timeSwitch = 0;
 
 
 static const uint8 masksRange[Range::Count] =
@@ -459,6 +463,25 @@ void TrigPolarity::Set(E polarity)
 {
     TRIG_POLARITY = polarity;
     TrigLev::Polarity::Load();
+}
+
+
+void TrigPolarity::Switch()
+{
+    if (TRIG_POLARITY_IS_FRONT)
+    {
+        *WR_TRIG = 0;
+        *WR_TRIG = 1;
+    }
+    else
+    {
+        *WR_TRIG = 1;
+        *WR_TRIG = 0;
+    }
+
+    timeSwitch = TIME_MS;
+
+    Panel::EnableLEDTrig(false);
 }
 
 

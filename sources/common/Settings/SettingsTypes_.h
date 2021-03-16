@@ -419,6 +419,11 @@ struct TrigPolarity
     };
 
     static void Set(E polarity);
+
+    // ѕереключение пол€рности - принудетиельный запуск сбора информации
+    static void Switch();
+
+    static uint timeSwitch;     // ¬рем€ принудительного запуска сбора информации
 };
 
 

@@ -115,25 +115,6 @@ void FPGA::Start(void)
 }
 
 
-void FPGA::SwitchingTrig()
-{
-    if (TRIG_POLARITY_IS_FRONT)
-    {
-        *WR_TRIG = 0;
-        *WR_TRIG = 1;
-    }
-    else
-    {
-        *WR_TRIG = 1;
-        *WR_TRIG = 0;
-    }
-
-    timeSwitchingTrig = TIME_MS;
-
-    Panel::EnableLEDTrig(false);
-}
-
-
 bool FPGA::ProcessingData(void)
 {
     bool retValue = false;
@@ -148,7 +129,8 @@ bool FPGA::ProcessingData(void)
         {
             if (TIME_MS - timeStart > 500)
             {
-                SwitchingTrig();
+                TrigPolarity::Switch();
+
                 trigAutoFind = true;
                 criticalSituation = false;
             }

@@ -361,7 +361,9 @@ float CalculateDeltaADC(Channel::E chan, float *avgADC1, float *avgADC2, float *
     {
         HAL_FMC::Write(WR_START, 1);
         while(_GET_BIT(HAL_FMC::Read(RD_FL), 2) == 0) {};
-        FPGA::SwitchingTrig();
+
+        TrigPolarity::Switch();
+
         while(_GET_BIT(HAL_FMC::Read(RD_FL), 0) == 0) {};
         HAL_FMC::Write(WR_STOP, 1);
 
@@ -438,7 +440,7 @@ int16 CalculateAdditionRShift(Channel::E chan, Range::E range)
             return ERROR_VALUE_INT16;                       // выход с ошибкой.
         }
 
-        FPGA::SwitchingTrig();
+        TrigPolarity::Switch();
 
         startTime = TIME_MS;
 
@@ -502,7 +504,7 @@ float CalculateKoeffCalibration(Channel::E chan)
             return ERROR_VALUE_FLOAT;
         }
 
-        FPGA::SwitchingTrig();
+        TrigPolarity::Switch();
         startTime = TIME_MS;
 
         while(_GET_BIT(HAL_FMC::Read(RD_FL), 0) == 0 && (TIME_MS - startTime > timeWait)) {};
