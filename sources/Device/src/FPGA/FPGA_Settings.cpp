@@ -470,13 +470,13 @@ void TrigPolarity::Switch()
 {
     if (TRIG_POLARITY_IS_FRONT)
     {
-        *WR_TRIG = 0;
-        *WR_TRIG = 1;
+        HAL_FMC::Write(WR_TRIG, 0);
+        HAL_FMC::Write(WR_TRIG, 1);
     }
     else
     {
-        *WR_TRIG = 1;
-        *WR_TRIG = 0;
+        HAL_FMC::Write(WR_TRIG, 1);
+        HAL_FMC::Write(WR_TRIG, 0);
     }
 
     timeSwitch = TIME_MS;

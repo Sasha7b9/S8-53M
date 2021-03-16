@@ -186,6 +186,8 @@ void FPGA::Update(void)
     {
         LOG_WRITE("Предзапуск готов");
 
+        TrigPolarity::Switch();
+
         if (flag.IsTrigReady())
         {
             LOG_WRITE("Триггер готов");
