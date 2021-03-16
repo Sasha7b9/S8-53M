@@ -5,7 +5,7 @@
 #include "Settings/Settings.h"
 
 
-int main(void)
+int main()
 {
     set.Load(true);
     

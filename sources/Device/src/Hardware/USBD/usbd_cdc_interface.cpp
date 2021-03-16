@@ -46,7 +46,7 @@ static void SetAttributeConnected()
 
 
 
-static int8_t CDC_Itf_Init(void)
+static int8_t CDC_Itf_Init()
 {
     USBD_CDC_SetRxBuffer(reinterpret_cast<USBD_HandleTypeDef *>(HAL_USBD::handle), UserRxBuffer);
     Timer::Enable(TypeTimer::Temp, 100, SetAttributeConnected);    // GOVNOCODE Задержка введена для того, чтобы не было ложных срабатываний в 
@@ -55,7 +55,7 @@ static int8_t CDC_Itf_Init(void)
 
 
 
-static int8_t CDC_Itf_DeInit(void)
+static int8_t CDC_Itf_DeInit()
 {
     VCP::cableIsConnected = false;
     VCP::connectToHost = false;

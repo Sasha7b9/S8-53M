@@ -33,7 +33,7 @@ extern "C" {
 #endif
 
 
-    void TIM6_DAC_IRQHandler(void)
+    void TIM6_DAC_IRQHandler()
     {
         if (__HAL_TIM_GET_FLAG(&handleTIM6, TIM_FLAG_UPDATE) == SET && __HAL_TIM_GET_ITSTATUS(&handleTIM6, TIM_IT_UPDATE)) //-V2570
         {

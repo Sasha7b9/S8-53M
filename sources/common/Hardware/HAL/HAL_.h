@@ -114,7 +114,7 @@ struct HAL_ETH
 // Используется для связи с FPGA и RAM
 struct HAL_FMC 
 {
-    static void Init(void);
+    static void Init();
     inline static uint16 Read(uint16 * const address)               { return *address; };
     static void  Write(uint16 * const address, uint16 value);
 

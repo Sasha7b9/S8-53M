@@ -61,7 +61,7 @@ void HAL_ADC3::Init()
 }
 
 
-uint16 HAL_ADC3::GetValue(void)
+uint16 HAL_ADC3::GetValue()
 {
     return adcValue;
 }

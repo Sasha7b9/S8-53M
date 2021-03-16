@@ -12,9 +12,9 @@ public:
 
     static void Init();
 
-    static void Update(void);
+    static void Update();
 
-    static bool IsRun(void);
+    static bool IsRun();
 
     static void BeginFrame(const Color &color);
 

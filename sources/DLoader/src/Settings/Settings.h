@@ -225,4 +225,4 @@ struct Settings
 
 extern Settings set;
 
-void    Settings_Load(void);    // Загрузить настройки
+void    Settings_Load();    // Загрузить настройки

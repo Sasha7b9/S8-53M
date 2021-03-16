@@ -18,7 +18,7 @@
 static Key::E pressedButton = Key::None;
 
 
-Key::E Panel::PressedButton(void)
+Key::E Panel::PressedButton()
 {
     return pressedButton;
 }

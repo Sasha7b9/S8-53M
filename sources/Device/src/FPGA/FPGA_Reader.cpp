@@ -68,7 +68,7 @@ void FPGA::Reader::Read(bool necessary_shift, bool save_to_storage)
 }
 
 
-void FPGA::Reader::ReadRandomizeMode(void)
+void FPGA::Reader::ReadRandomizeMode()
 {
     int Tsm = CalculateShift();
     if (Tsm == TShift::NULL_VALUE)

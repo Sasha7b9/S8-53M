@@ -246,7 +246,7 @@ uint8_t *USBD_VCP_InterfaceStrDescriptor(USBD_SpeedTypeDef, uint16_t *length)
   * @param  None
   * @retval None
   */
-static void Get_SerialNum(void)
+static void Get_SerialNum()
 {
     uint32_t deviceserial0, deviceserial1, deviceserial2;
 

@@ -49,13 +49,13 @@ static uint startTimeChan1 = 0;                     // Время начала калибровки в
 static float koeffCalibrationOld[2];
 
 
-static void OnTimerDraw(void)
+static void OnTimerDraw()
 {
     Display::Update();
 }
 
 
-void FPGA::Calibrator::ProcedureCalibration(void)
+void FPGA::Calibrator::ProcedureCalibration()
 {
     bool chanAenable = SET_ENABLED_A;
     bool chanBenable = SET_ENABLED_B;
@@ -211,7 +211,7 @@ void FPGA::Calibrator::ProcedureCalibration(void)
 }
 
 
-void FuncAttScreen(void)
+void FuncAttScreen()
 {
     Display::BeginFrame(Color::BLACK);
 
@@ -398,7 +398,7 @@ float CalculateDeltaADC(Channel::E chan, float *avgADC1, float *avgADC2, float *
 }
 
 
-void AlignmentADC(void)
+void AlignmentADC()
 {
     shiftADC0 = static_cast<int8>((deltaADCold[0] > 0.0F) ? (deltaADCold[0] + 0.5F) : (deltaADCold[0] - 0.5F));
     SET_BALANCE_ADC_A = shiftADC0;

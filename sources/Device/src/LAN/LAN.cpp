@@ -20,7 +20,7 @@ bool LAN::cableIsConnected = false;
 bool LAN::clientIsConnected = false;
 
 
-static void FuncConnect(void)
+static void FuncConnect()
 {
 }
 
@@ -42,7 +42,7 @@ static void FuncReceiver(const char *buffer, uint length)
 }
 
 
-void LAN::Init(void)
+void LAN::Init()
 {
     // Initilaize the LwIP stack
     lwip_init();
@@ -68,7 +68,7 @@ void LAN::Update(uint timeMS)
 }
 
 
-void Netif_Config(void)
+void Netif_Config()
 {
     ip_addr_t ipaddr;
     ip_addr_t netmask;

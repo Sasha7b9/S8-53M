@@ -28,7 +28,7 @@ static bool GetNextNameFile(char *nameFileOut, StructForReadDir *s);
 
 
 
-void FDrive_Init(void)
+void FDrive_Init()
 {
     MainStruct::ms->drive.state = StateDisk::Idle;
     MainStruct::ms->drive.connection = 0;
@@ -73,7 +73,7 @@ void FDrive_Init(void)
 //}
 
 
-bool FDrive_Update(void)
+bool FDrive_Update()
 {
     USBH_Process(reinterpret_cast<USBH_HandleTypeDef *>(HAL_USBH::handle));
     if (MainStruct::ms->drive.state == StateDisk::Start)
@@ -235,7 +235,7 @@ int FDrive_ReadFromFile(int numBytes, uint8 *buffer)
 }
 
 
-void FDrive_CloseOpenedFile(void)
+void FDrive_CloseOpenedFile()
 {
     f_close(&MainStruct::ms->drive.file);
 }

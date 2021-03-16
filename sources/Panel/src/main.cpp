@@ -4,7 +4,7 @@
 #include "Keyboard.h"
 
 
-int main(void)
+int main()
 {
     HAL::Init();
 

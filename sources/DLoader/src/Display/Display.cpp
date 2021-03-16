@@ -27,11 +27,11 @@ Vector array[SIZE_ARRAY];
 
 
 static void DrawProgressBar(uint dT);
-static void DrawBigMNIPI(void);
+static void DrawBigMNIPI();
 
 uint8 *display_back_buffer = nullptr;
 
-void Display::Init(void)
+void Display::Init()
 {
     MainStruct::ms->display.value = 0.0F;
     MainStruct::ms->display.isRun = false;
@@ -61,7 +61,7 @@ void DrawButton(int x, int y, const char *text)
 }
 
 
-void Display::Update(void)
+void Display::Update()
 {
     MainStruct::ms->display.isRun = true;
 
@@ -152,13 +152,13 @@ void DrawProgressBar(uint dT)
 }
 
 
-bool Display::IsRun(void)
+bool Display::IsRun()
 {
     return MainStruct::ms->display.isRun;
 }
 
 
-static void DrawBigMNIPI(void)
+static void DrawBigMNIPI()
 {
     static uint startTime = 0;
     static bool first = true;

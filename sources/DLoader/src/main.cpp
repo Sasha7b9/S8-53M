@@ -15,11 +15,11 @@
 
 MainStruct *MainStruct::ms = nullptr;
 
-void Upgrade(void);
+void Upgrade();
 
 
 
-int main(void)
+int main()
 {
     MainStruct::ms = static_cast<MainStruct *>(malloc(sizeof(MainStruct)));
     MainStruct::ms->percentUpdate = 0.0F; //-V522
@@ -105,7 +105,7 @@ int main(void)
 
 
 
-void Upgrade(void)
+void Upgrade()
 {
     const int sizeSector = 1 * 1024;
 

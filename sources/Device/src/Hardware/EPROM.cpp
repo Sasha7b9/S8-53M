@@ -43,7 +43,7 @@ void EPROM::PrepareSectorForData()
 }
 
 
-bool EPROM::LoadSettings(void)
+bool EPROM::LoadSettings()
 {
     /*
         1. Проверка на первое включение. Выполняется тем, что в первом слове сектора настроек хранится MAX_UINT, если настройки ещё не сохранялись.

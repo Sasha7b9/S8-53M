@@ -203,7 +203,7 @@ void HAL::JumpToApplication()
 {
 #define MAIN_PROGRAM_START_ADDRESS  (uint)0x8020000
 
-    typedef void(*pFunction)(void);
+    typedef void(*pFunction)();
 
     pFunction JumpToApplication;
 
