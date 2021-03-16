@@ -41,22 +41,20 @@ namespace Math
 
     float RandFloat(float min, float max);
 
-    int8    AddInt8WithLimitation(int8 value, int8 delta, int8 min, int8 max);
-
-    int     Sign(int vlaue);
+    int Sign(int vlaue);
 
     // Вычисляет 10**pow.
-    int     Pow10(int pow);
+    int Pow10(int pow);
 
     // Вычисляет число разрядов в целом типа int.
-    int     NumDigitsInNumber(int value);
+    int NumDigitsInNumber(int value);
 
     // Возвращает модуль value.
-    int     FabsInt(int value);
+    int FabsInt(int value);
 
-    uint8   CalculateFiltr(puchar data, int x, int numPoints, int numSmoothing);
+    uint8 CalculateFiltr(puchar data, int x, int num_points, int num_smoothing);
 
-    void    CalculateFiltrArray(puchar dataIn, uint8* dataOut, int numPoints, int numSmoothing);
+    void CalculateFiltrArray(puchar data_in, uint8* data_out, int num_points, int num_smoothing);
 
     // Обменивает местами содержимое памяти по адресам value0 и value1
     template<class T> void Swap(T *value0, T *value1);
