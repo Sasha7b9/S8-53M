@@ -6,9 +6,6 @@
 
 struct DataSettings;
 
-extern uint16 gPost;
-
-
 
 struct StateWorkFPGA { enum E {
     Stop,    // СТОП - не занимается считыванием информации.
@@ -37,6 +34,7 @@ public:
     static int add_shift;
     static int add_N_stop;
     static int16 pred;
+    static uint16 post;
 
     static void Init();
 

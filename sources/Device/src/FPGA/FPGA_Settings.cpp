@@ -340,7 +340,7 @@ void TShift::Load()
     TBase::E tBase = SET_TBASE;
     int tShift = TSHIFT - sTime_TShiftMin() + timeCompensation[tBase];
 
-    gPost = (uint16)tShift;
+    FPGA::post = (uint16)tShift;
 
     if (IN_RANDOM_MODE)
     {
@@ -355,7 +355,7 @@ void TShift::Load()
             k = (SET_POINTS_IN_CHANNEL / 2) % Kr[tBase];
         }
 
-        gPost = (uint16)((2 * gPost - k) / Kr[tBase]);
+        FPGA::post = (uint16)((2 * FPGA::post - k) / Kr[tBase]);
 
         FPGA::add_shift = (TSHIFT * 2) % Kr[tBase];
 
@@ -368,7 +368,7 @@ void TShift::Load()
     }
     else
     {
-        FPGA::pred = (int16)NUM_BYTES_SET / 2 - (int16)gPost;
+        FPGA::pred = (int16)NUM_BYTES_SET / 2 - (int16)FPGA::post;
 
         if (FPGA::pred < 0)
         {
@@ -380,7 +380,7 @@ void TShift::Load()
 
     if (tShift < 0)
     {
-        gPost = 0;
+        FPGA::post = 0;
         FPGA::add_N_stop = -tShift;
     }
     else
@@ -388,16 +388,16 @@ void TShift::Load()
         FPGA::add_N_stop = 0;
     }
 
-    gPost = (uint16)(~(gPost + 1));                   // Здесь просто для записи в железо дополняем
+    FPGA::post = (uint16)(~(FPGA::post + 1));                   // Здесь просто для записи в железо дополняем
 
     if (!FPGA::IN_PROCESSING_OF_READ)
     {
         if (SET_TBASE > 8)
         {
-            ++gPost;
+            ++FPGA::post;
             --FPGA::pred;
         }
-        FPGA::BUS::Write(FPGA::BUS::TypeRecord::FPGA, WR_POST, gPost, true);
+        FPGA::BUS::Write(FPGA::BUS::TypeRecord::FPGA, WR_POST, FPGA::post, true);
         FPGA::BUS::Write(FPGA::BUS::TypeRecord::FPGA, WR_PRED, (uint)FPGA::pred, true);
     }
 }
