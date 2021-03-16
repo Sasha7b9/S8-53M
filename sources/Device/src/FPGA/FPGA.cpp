@@ -38,7 +38,6 @@ bool             FPGA::Randomizer::first_аfter_write = false;
 // Функция вызывается, когда можно считывать очередной сигнал.
 static void OnTimerCanReadData();
 
-static void ReadPoint();
 
 void FPGA::Init(void) 
 {
@@ -67,7 +66,7 @@ void FPGA::Start(void)
     if(SET_TBASE >= MIN_TBASE_P2P)
     {
         Display::ResetP2Ppoints(false);
-        Timer::Enable(TypeTimer::P2P, 1, ReadPoint);
+        Timer::Enable(TypeTimer::P2P, 1, Reader::ReadPoint);
     }
     else
     {
@@ -330,7 +329,7 @@ void FPGA::BUS::WriteWithoutStart(uint16 * const address, uint16 data)
 }
 
 
-void ReadPoint(void)
+void FPGA::Reader::ReadPoint(void)
 {
     FPGA::flag.Read();
 

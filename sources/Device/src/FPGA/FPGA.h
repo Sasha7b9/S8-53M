@@ -99,6 +99,8 @@ public:
 
         static void ReadRealMode(bool necessary_shift);
 
+        static void ReadPoint();
+
         static DataSettings ds;
 
         static uint16 data_rel_A[FPGA_MAX_POINTS];  // Буфер используется для чтения данных первого канала
