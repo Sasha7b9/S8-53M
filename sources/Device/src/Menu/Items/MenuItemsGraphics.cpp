@@ -3,11 +3,11 @@
 #include "common/Display/Primitives_.h"
 #include "common/Display/Text_.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "common/Utils/GlobalFunctions_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Grid.h"
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
-#include "Utils/GlobalFunctions.h"
 #include <cstdio>
 #include <cstring>
 
@@ -89,7 +89,7 @@ void Governor::DrawLowPart(int x, int y) const
         float delta = Step();
         if(delta == 0.0F) //-V2550 //-V550
         {
-            x = Text(Int2String(*own->cell, false, 1, buffer)).Draw(x + 1, y + 21);
+            x = Text(GF::Int2String(*own->cell, false, 1, buffer)).Draw(x + 1, y + 21);
         }
         else
         {
@@ -100,19 +100,19 @@ void Governor::DrawLowPart(int x, int y) const
             int limHeight = Item::HEIGHT_VALUE - 1;
             if(delta > 0.0F)
             {
-                x = Text(Int2String(*own->cell, false, 1, buffer)).DrawWithLimitation(drawX, static_cast<int>(y + 21 - delta), Color::BACK, limX, limY, limWidth, limHeight);
-                Text(Int2String(NextValue(), false, 1, buffer)).DrawWithLimitation(drawX, static_cast<int>(y + 21 + 10 - delta), Color::BACK, limX, limY, limWidth, limHeight);
+                x = Text(GF::Int2String(*own->cell, false, 1, buffer)).DrawWithLimitation(drawX, static_cast<int>(y + 21 - delta), Color::BACK, limX, limY, limWidth, limHeight);
+                Text(GF::Int2String(NextValue(), false, 1, buffer)).DrawWithLimitation(drawX, static_cast<int>(y + 21 + 10 - delta), Color::BACK, limX, limY, limWidth, limHeight);
             }
             if(delta < 0.0F)
             {
-                x = Text(Int2String(*own->cell, false, 1, buffer)).DrawWithLimitation(drawX, static_cast<int>(y + 21 - delta), Color::BACK, limX, limY, limWidth, limHeight);
-                Text(Int2String(PrevValue(), false, 1, buffer)).DrawWithLimitation(drawX, static_cast<int>(y + 21 - 10 - delta), Color::BACK, limX, limY, limWidth, limHeight);
+                x = Text(GF::Int2String(*own->cell, false, 1, buffer)).DrawWithLimitation(drawX, static_cast<int>(y + 21 - delta), Color::BACK, limX, limY, limWidth, limHeight);
+                Text(GF::Int2String(PrevValue(), false, 1, buffer)).DrawWithLimitation(drawX, static_cast<int>(y + 21 - 10 - delta), Color::BACK, limX, limY, limWidth, limHeight);
             }
         }
     }
     else
     {
-        x = Text(Int2String(*own->cell, false, 1, buffer)).Draw(x + 1, y + 21, Color::FILL);
+        x = Text(GF::Int2String(*own->cell, false, 1, buffer)).Draw(x + 1, y + 21, Color::FILL);
     }
     Text("\x81").Draw(x + 1, y + 21, colorTextDown);
 }
@@ -264,8 +264,8 @@ void Governor::DrawValue(int x, int y) const
     }
     Font::Set(TypeFont::S5);
     bool sign = own->minValue < 0;
-    Text(Int2String(own->maxValue, sign, 1, buffer)).Draw(x + 55, y - 5, Color::FILL);
-    Text(Int2String(own->minValue, sign, 1, buffer)).Draw(x + 55, y + 2);
+    Text(GF::Int2String(own->maxValue, sign, 1, buffer)).Draw(x + 55, y - 5, Color::FILL);
+    Text(GF::Int2String(own->minValue, sign, 1, buffer)).Draw(x + 55, y + 2);
     Font::Set(TypeFont::S8);
 
     DrawValueWithSelectedPosition(startX, y, value, NumDigits(), gCurDigit, true, true);
@@ -417,7 +417,7 @@ void GovernorColor::DrawValue(int x, int y, int delta) const
         Color colorDraw = (field == i) ? Color::BLACK : Color::WHITE;
         Region(29, 10).Fill(x - 1, y + 1, colorBack);
         Text(texts[i]).Draw(x, y + 2, colorDraw);
-        Text(Int2String(vals[i], false, 1, buffer)).Draw(x + 14, y + 2);
+        Text(GF::Int2String(vals[i], false, 1, buffer)).Draw(x + 14, y + 2);
         x -= 30;
     }
     
@@ -523,12 +523,12 @@ void TimeItem::DrawOpened(int x, int y) const
 
     char strI[8][20];
     std::strcpy(strI[iEXIT], "Не сохранять"); //-V2513
-    std::strcpy(strI[iDAY], Int2String(*own->day, false, 2, buffer)); //-V2513
-    std::strcpy(strI[iMONTH], Int2String(*own->month, false, 2, buffer)); //-V2513
-    std::strcpy(strI[iYEAR], Int2String(*own->year, false, 2, buffer)); //-V2513
-    std::strcpy(strI[iHOURS], Int2String(*own->hours, false, 2, buffer)); //-V2513
-    std::strcpy(strI[iMIN], Int2String(*own->minutes, false, 2, buffer)); //-V2513
-    std::strcpy(strI[iSEC], Int2String(*own->seconds, false, 2, buffer)); //-V2513
+    std::strcpy(strI[iDAY], GF::Int2String(*own->day, false, 2, buffer)); //-V2513
+    std::strcpy(strI[iMONTH], GF::Int2String(*own->month, false, 2, buffer)); //-V2513
+    std::strcpy(strI[iYEAR], GF::Int2String(*own->year, false, 2, buffer)); //-V2513
+    std::strcpy(strI[iHOURS], GF::Int2String(*own->hours, false, 2, buffer)); //-V2513
+    std::strcpy(strI[iMIN], GF::Int2String(*own->minutes, false, 2, buffer)); //-V2513
+    std::strcpy(strI[iSEC], GF::Int2String(*own->seconds, false, 2, buffer)); //-V2513
     std::strcpy(strI[iSET], "Сохранить"); //-V2513
 
     Text("д м г - ").Draw(x + 3, y + y0, Color::FILL);
@@ -621,18 +621,18 @@ void TimeItem::DrawClosed(int x, int y) const
     int startX = 3;
     y += 21;
     PackedTime time = HAL_RTC::GetPackedTime();
-    Text(Int2String((int)time.hours, false, 2, buffer)).Draw(x + startX, y, Color::BACK);
+    Text(GF::Int2String((int)time.hours, false, 2, buffer)).Draw(x + startX, y, Color::BACK);
     Text(":").Draw(x + startX + deltaField, y);
-    Text(Int2String((int)time.minutes, false, 2, buffer)).Draw(x + startX + deltaField + deltaSeparator, y);
+    Text(GF::Int2String((int)time.minutes, false, 2, buffer)).Draw(x + startX + deltaField + deltaSeparator, y);
     Text(":").Draw(x + startX + 2 * deltaField + deltaSeparator, y);
-    Text(Int2String((int)time.seconds, false, 2, buffer)).Draw(x + startX + 2 * deltaField + 2 * deltaSeparator, y);
+    Text(GF::Int2String((int)time.seconds, false, 2, buffer)).Draw(x + startX + 2 * deltaField + 2 * deltaSeparator, y);
 
     startX = 44;
-    Text(Int2String((int)time.day, false, 2, buffer)).Draw(x + startX, y);
+    Text(GF::Int2String((int)time.day, false, 2, buffer)).Draw(x + startX, y);
     Text(":").Draw(x + startX + deltaField, y);
-    Text(Int2String((int)time.month, false, 2, buffer)).Draw(x + startX + deltaField + deltaSeparator, y);
+    Text(GF::Int2String((int)time.month, false, 2, buffer)).Draw(x + startX + deltaField + deltaSeparator, y);
     Text(":").Draw(x + startX + 2 * deltaField + deltaSeparator, y);
-    Text(Int2String((int)time.year, false, 2, buffer)).Draw(x + startX + 2 * deltaField + 2 * deltaSeparator, y);
+    Text(GF::Int2String((int)time.year, false, 2, buffer)).Draw(x + startX + 2 * deltaField + 2 * deltaSeparator, y);
 }
 
 void TimeItem::Draw(int x, int y, bool opened) const

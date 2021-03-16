@@ -1,7 +1,7 @@
 #include "defines.h"
 #include "common/Log_.h"
+#include "common/Utils/GlobalFunctions_.h"
 #include "LAN/LAN.h"
-#include "Utils/GlobalFunctions.h"
 #include "VCP/SCPI/SCPI.h"
 #include "VCP/SCPI/Utils/StringsSCPI.h"
 #include <ctype.h>
@@ -179,7 +179,7 @@ bool SCPI::FirstIsInt(pUCHAR buffer, int *value, int min, int max)
         char *n = reinterpret_cast<char *>(std::malloc(static_cast<uint>(param.numSymbols + 1)));
         std::memcpy(n, param.address, static_cast<uint>(param.numSymbols)); //-V575
         n[param.numSymbols] = '\0';
-        bool res = String2Int(n, value) && *value >= min && *value <= max;
+        bool res = GF::String2Int(n, value) && *value >= min && *value <= max;
         std::free(n);
         return res;
     }

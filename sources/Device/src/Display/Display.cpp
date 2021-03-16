@@ -453,9 +453,9 @@ void Display::WriteParametersFFT(Channel::E chan, float freq0, float density0, f
 
     char buffer[20];
     Color::FILL.SetAsCurrent();
-    Text(Freq2String(freq0, false, buffer)).Draw(x, y);
+    Text(GF::Freq2String(freq0, false, buffer)).Draw(x, y);
     y += dY;
-    Text(Freq2String(freq1, false, buffer)).Draw(x, y);
+    Text(GF::Freq2String(freq1, false, buffer)).Draw(x, y);
     if (chan == ChA)
     {
         y += dY + 2;
@@ -465,9 +465,9 @@ void Display::WriteParametersFFT(Channel::E chan, float freq0, float density0, f
         y += dY * 3 + 4;
     }
     Color::Channel(chan).SetAsCurrent();
-    Text(SCALE_FFT_IS_LOG ? Float2Db(density0, 4, buffer) : Float2String(density0, false, 7, buffer)).Draw(x, y);
+    Text(SCALE_FFT_IS_LOG ? GF::Float2Db(density0, 4, buffer) : GF::Float2String(density0, false, 7, buffer)).Draw(x, y);
     y += dY;
-    Text(SCALE_FFT_IS_LOG ? Float2Db(density1, 4, buffer) : Float2String(density1, false, 7, buffer)).Draw(x, y);
+    Text(SCALE_FFT_IS_LOG ? GF::Float2Db(density1, 4, buffer) : GF::Float2String(density1, false, 7, buffer)).Draw(x, y);
 }
 
 
@@ -777,11 +777,11 @@ void Display::DrawTime(int x, int y)
             time.seconds = ds->time.seconds;
             time.month = ds->time.month;
             time.year = ds->time.year;
-            Text(Int2String((int)time.day, false, 2, buffer)).Draw(x, y);
+            Text(GF::Int2String((int)time.day, false, 2, buffer)).Draw(x, y);
             Text(":").Draw(x + dField, y);
-            Text(Int2String((int)time.month, false, 2, buffer)).Draw(x + dField + dSeparator, y);
+            Text(GF::Int2String((int)time.month, false, 2, buffer)).Draw(x + dField + dSeparator, y);
             Text(":").Draw(x + 2 * dField + dSeparator, y);
-            Text(Int2String((int)time.year + 2000, false, 4, buffer)).Draw(x + 2 * dField + 2 * dSeparator, y);
+            Text(GF::Int2String((int)time.year + 2000, false, 4, buffer)).Draw(x + 2 * dField + 2 * dSeparator, y);
             y += 9;
         }
         else
@@ -791,11 +791,11 @@ void Display::DrawTime(int x, int y)
     }
     
     
-    Text(Int2String((int)time.hours, false, 2, buffer)).Draw(x, y);
+    Text(GF::Int2String((int)time.hours, false, 2, buffer)).Draw(x, y);
     Text(":").Draw(x + dField, y);
-    Text(Int2String((int)time.minutes, false, 2, buffer)).Draw(x + dField + dSeparator, y);
+    Text(GF::Int2String((int)time.minutes, false, 2, buffer)).Draw(x + dField + dSeparator, y);
     Text(":").Draw(x + 2 * dField + dSeparator, y);
-    Text(Int2String((int)time.seconds, false, 2, buffer)).Draw(x + 2 * dField + 2 * dSeparator, y);
+    Text(GF::Int2String((int)time.seconds, false, 2, buffer)).Draw(x + 2 * dField + 2 * dSeparator, y);
 }
 
 
@@ -1082,7 +1082,7 @@ void Display::WriteCursors()
             float pos1 = MathFPGA::VoltageCursor(sCursors_GetCursPosU(source, 1), SET_RANGE(source), SET_RSHIFT(source));
             float delta = std::fabsf(pos1 - pos0);
             Text(":dU=").Draw(x, y1);
-            Text(Voltage2String(delta, false, buffer)).Draw(x + 17, y1);
+            Text(GF::Voltage2String(delta, false, buffer)).Draw(x + 17, y1);
             Text(":").Draw(x, y2);
             Text(sCursors_GetCursorPercentsU(source, buffer)).Draw(x + 10, y2);
         }
@@ -1104,7 +1104,7 @@ void Display::WriteCursors()
             float delta = std::fabsf(pos1 - pos0);
             Text(":dT=").Draw(x, y1);
             char buf[20];
-            Text(Time2String(delta, false, buf)).Draw(x + 17, y1);
+            Text(GF::Time2String(delta, false, buf)).Draw(x + 17, y1);
             Text(":").Draw(x, y2);
             Text(sCursors_GetCursorPercentsT(source, buf)).Draw(x + 8, y2);
 
@@ -1116,7 +1116,7 @@ void Display::WriteCursors()
                 Region(width - 2, 10).Fill(x0 + 1, Grid::TOP + 1, Color::BACK);
                 Text("1/dT=").Draw(x0 + 1, Grid::TOP + 2, colorText);
                 char buff[20];
-                Text(Freq2String(1.0F / delta, false, buff)).Draw(x0 + 25, Grid::TOP + 2);
+                Text(GF::Freq2String(1.0F / delta, false, buff)).Draw(x0 + 25, Grid::TOP + 2);
             }
         }
     }
@@ -1360,7 +1360,7 @@ void Display::WriteValueTrigLevel()
         char buffer[20];
         std::strcpy(buffer, LANG_RU ? "Ур синхр = " : "Trig lvl = "); //-V2513
         char bufForVolt[20];
-        std::strcat(buffer, Voltage2String(trigLev, true, bufForVolt)); //-V2513
+        std::strcat(buffer, GF::Voltage2String(trigLev, true, bufForVolt)); //-V2513
         int width = 96;
         int x = (Grid::Width() - width) / 2 + Grid::Left();
         int y = Grid::BottomMessages() - 20;
@@ -1768,14 +1768,14 @@ void Display::DrawCursorTShift()
     float scale = static_cast<float>((lastPoint - firstPoint) / Grid::Width());
     int gridLeft = Grid::Left();
     int x = static_cast<int>(gridLeft + shiftTPos * scale - 3);
-    if (IntInRange(x + 3, gridLeft, Grid::Right() + 1))
+    if (GF::IntInRange(x + 3, gridLeft, Grid::Right() + 1))
     {
         Char(Symbol::S8::TPOS_2).Draw2SymbolsInPosition(x, Grid::TOP - 1, Symbol::S8::TPOS_3, Color::BACK, Color::FILL);
     };
 
     // Рисуем tShift
     int shiftTShift = sTime_TPosInPoints((PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel, SET_TPOS) - sTime_TShiftInPoints((PeackDetMode::E)Storage::set->peakDet);
-    if(IntInRange(shiftTShift, firstPoint, lastPoint))
+    if(GF::IntInRange(shiftTShift, firstPoint, lastPoint))
     {
         x = gridLeft + shiftTShift - firstPoint - 3;
         Char(Symbol::S8::TSHIFT_NORM_1).Draw2SymbolsInPosition(x, Grid::TOP - 1, Symbol::S8::TSHIFT_NORM_2, Color::BACK, Color::FILL);
@@ -1883,8 +1883,8 @@ void Display::DrawMeasures()
         int y0 = MEAS_POS_CUR_U0 + Grid::TOP;
         int x1 = MEAS_POS_CUR_T1 - SHIFT_IN_MEMORY + Grid::Left();
         int y1 = MEAS_POS_CUR_U1 + Grid::TOP;
-        SortInt(&x0, &x1);
-        SortInt(&y0, &y1);
+        GF::SortInt(&x0, &x1);
+        GF::SortInt(&y0, &y1);
         Primitives::Rectangle(x1 - x0, y1 - y0).Draw(x0, y0, Color::FILL);
     }
 
@@ -2145,7 +2145,7 @@ void Display::DrawLowPart()
         }
         else
         {
-            std::strcat(mesFreq, Freq2String(freq, false, buf)); //-V2513
+            std::strcat(mesFreq, GF::Freq2String(freq, false, buf)); //-V2513
         }
         Text(mesFreq).Draw(x + 3, Grid::Bottom() + 2);
     }

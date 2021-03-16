@@ -2,10 +2,11 @@
 #include "common/Display/Font/Font_.h"
 #include "common/Hardware/Sound_.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "common/Utils/GlobalFunctions_.h"
 #include "common/Utils/Math_.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
-#include "Utils/GlobalFunctions.h"
+
 
 int8 Item::gCurDigit = 0;
 
@@ -170,7 +171,7 @@ void Governor::NextPosition()
 {
     if (IsOpened())
     {
-        CircleIncreaseInt8(&gCurDigit, 0, static_cast<int8>(NumDigits()) - 1);
+        GF::CircleIncreaseInt8(&gCurDigit, 0, static_cast<int8>(NumDigits()) - 1);
     }
 }
 
@@ -187,7 +188,7 @@ int Governor::NumDigits() const
 
 void IPaddress::NextPosition() const
 {
-    CircleIncreaseInt8(&gCurDigit, 0, (OwnData()->port == 0) ? 11 : 16);
+    GF::CircleIncreaseInt8(&gCurDigit, 0, (OwnData()->port == 0) ? 11 : 16);
 }
 
 void TimeItem::SetOpened()
@@ -210,7 +211,7 @@ void TimeItem::SetNewTime() const
 
 void TimeItem::SelectNextPosition()
 {
-    CircleIncreaseInt8(OwnData()->curField, 0, 7);
+    GF::CircleIncreaseInt8(OwnData()->curField, 0, 7);
     Color::ResetFlash();
 }
 

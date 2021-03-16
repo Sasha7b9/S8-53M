@@ -1140,14 +1140,14 @@
           <GroupName>Utils</GroupName>
           <Files>
             <File>
-              <FileName>GlobalFunctions.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\GlobalFunctions.cpp</FilePath>
+              <FileName>GlobalFunctions_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\GlobalFunctions_.h</FilePath>
             </File>
             <File>
-              <FileName>GlobalFunctions.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\GlobalFunctions.h</FilePath>
+              <FileName>GlobalFunctions_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\GlobalFunctions_.cpp</FilePath>
             </File>
             <File>
               <FileName>String_.cpp</FileName>
@@ -2317,14 +2317,14 @@
           <GroupName>Utils</GroupName>
           <Files>
             <File>
-              <FileName>GlobalFunctions.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\GlobalFunctions.cpp</FilePath>
+              <FileName>GlobalFunctions_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\GlobalFunctions_.h</FilePath>
             </File>
             <File>
-              <FileName>GlobalFunctions.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\GlobalFunctions.h</FilePath>
+              <FileName>GlobalFunctions_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\GlobalFunctions_.cpp</FilePath>
             </File>
             <File>
               <FileName>String_.cpp</FileName>

@@ -1,7 +1,6 @@
 #include "defines.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "Settings/Settings.h"
-#include "Utils/GlobalFunctions.h"
 #include "common/Hardware/Timer_.h"
 #include <stm32f4xx_hal.h>
 #include <cstdlib>

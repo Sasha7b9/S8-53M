@@ -1,10 +1,10 @@
 #include "defines.h"
+#include "common/Utils/GlobalFunctions_.h"
 #include "common/Utils/Math_.h"
 #include "FPGA/DataSettings.h"
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/MathFPGA.h"
 #include "Settings/Settings.h"
-#include "Utils/GlobalFunctions.h"
 #include "Utils/ProcessingSignal.h"
 #include <cmath>
 #include <cstdio>
@@ -29,28 +29,28 @@ static int numP = 0;
 const Processing::MeasureCalculate Processing::measures[Measure::Count] =
 {
     {0, 0},
-    {"CalculateVoltageMax",         CalculateVoltageMax,           Voltage2String, true},
-    {"CalculateVoltageMin",         CalculateVoltageMin,           Voltage2String, true},
-    {"CalculateVoltagePic",         CalculateVoltagePic,           Voltage2String, false},
-    {"CalculateVoltageMaxSteady",   CalculateVoltageMaxSteady,     Voltage2String, true},
-    {"CalculateVoltageMinSteady",   CalculateVoltageMinSteady,     Voltage2String, true},
-    {"CalculateVoltageAmpl",        CalculateVoltageAmpl,          Voltage2String, false},
-    {"CalculateVoltageAverage",     CalculateVoltageAverage,       Voltage2String, true},
-    {"CalculateVoltageRMS",         CalculateVoltageRMS,           Voltage2String, false},
-    {"CalculateVoltageVybrosPlus",  CalculateVoltageVybrosPlus,    Voltage2String, false},
-    {"CalculateVoltageVybrosMinus", CalculateVoltageVybrosMinus,   Voltage2String, false},
-    {"CalculatePeriod",             CalculatePeriod,               Time2String, false},
-    {"CalculateFreq",               CalculateFreq,                 Freq2String, false},
-    {"CalculateTimeNarastaniya",    CalculateTimeNarastaniya,      Time2String, false},
-    {"CalculateTimeSpada",          CalculateTimeSpada,            Time2String, false},
-    {"CalculateDurationPlus",       CalculateDurationPlus,         Time2String, false},
-    {"CalculateDurationPlus",       CalculateDurationMinus,        Time2String, false},
-    {"CalculateSkvaznostPlus",      CalculateSkvaznostPlus,        FloatFract2String, false},
-    {"CalculateSkvaznostMinus",     CalculateSkvaznostMinus,       FloatFract2String, false},
-    {"CalculateDelayPlus",          CalculateDelayPlus,            Time2String, false},
-    {"CalculateDelayMinus",         CalculateDelayMinus,           Time2String, false},
-    {"CalculatePhazaPlus",          CalculatePhazaPlus,            Phase2String, false},
-    {"CalculatePhazaMinus",         CalculatePhazaMinus,           Phase2String, false}
+    {"CalculateVoltageMax",         CalculateVoltageMax,           GF::Voltage2String, true},
+    {"CalculateVoltageMin",         CalculateVoltageMin,           GF::Voltage2String, true},
+    {"CalculateVoltagePic",         CalculateVoltagePic,           GF::Voltage2String, false},
+    {"CalculateVoltageMaxSteady",   CalculateVoltageMaxSteady,     GF::Voltage2String, true},
+    {"CalculateVoltageMinSteady",   CalculateVoltageMinSteady,     GF::Voltage2String, true},
+    {"CalculateVoltageAmpl",        CalculateVoltageAmpl,          GF::Voltage2String, false},
+    {"CalculateVoltageAverage",     CalculateVoltageAverage,       GF::Voltage2String, true},
+    {"CalculateVoltageRMS",         CalculateVoltageRMS,           GF::Voltage2String, false},
+    {"CalculateVoltageVybrosPlus",  CalculateVoltageVybrosPlus,    GF::Voltage2String, false},
+    {"CalculateVoltageVybrosMinus", CalculateVoltageVybrosMinus,   GF::Voltage2String, false},
+    {"CalculatePeriod",             CalculatePeriod,               GF::Time2String, false},
+    {"CalculateFreq",               CalculateFreq,                 GF::Freq2String, false},
+    {"CalculateTimeNarastaniya",    CalculateTimeNarastaniya,      GF::Time2String, false},
+    {"CalculateTimeSpada",          CalculateTimeSpada,            GF::Time2String, false},
+    {"CalculateDurationPlus",       CalculateDurationPlus,         GF::Time2String, false},
+    {"CalculateDurationPlus",       CalculateDurationMinus,        GF::Time2String, false},
+    {"CalculateSkvaznostPlus",      CalculateSkvaznostPlus,        GF::FloatFract2String, false},
+    {"CalculateSkvaznostMinus",     CalculateSkvaznostMinus,       GF::FloatFract2String, false},
+    {"CalculateDelayPlus",          CalculateDelayPlus,            GF::Time2String, false},
+    {"CalculateDelayMinus",         CalculateDelayMinus,           GF::Time2String, false},
+    {"CalculatePhazaPlus",          CalculatePhazaPlus,            GF::Phase2String, false},
+    {"CalculatePhazaMinus",         CalculatePhazaMinus,           GF::Phase2String, false}
 };
 
 static MeasureValue values[Measure::Count] = {{0.0F, 0.0F}};

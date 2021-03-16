@@ -3,11 +3,11 @@
 #include "common/Display/Primitives_.h"
 #include "common/Display/Text_.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "common/Utils/GlobalFunctions_.h"
 #include "Display/Grid.h"
 #include "Menu/Pages/HelpContent.h"
 #include "Menu/Pages/HelpContentPages.h"
 #include "Settings/Settings.h"
-#include "Utils/GlobalFunctions.h"
 
 
 using namespace Primitives;
@@ -91,7 +91,7 @@ void PageHelpContent::NextParagraph()
 {
     if(currentPage->OwnData()->type == TypePageHelp::Content)
     {
-        CircleIncreaseInt(&currentParagraph, 0, NumParagraphs(currentPage) - 1);
+        GF::CircleIncreaseInt(&currentParagraph, 0, NumParagraphs(currentPage) - 1);
     }
 }
 
@@ -99,7 +99,7 @@ void PageHelpContent::PrevParagraph()
 {
     if(currentPage->OwnData()->type == TypePageHelp::Content)
     {
-        CircleDecreaseInt(&currentParagraph, 0, NumParagraphs(currentPage) - 1);
+        GF::CircleDecreaseInt(&currentParagraph, 0, NumParagraphs(currentPage) - 1);
     }
 }
 

@@ -1,13 +1,13 @@
 #include "defines.h"
 #include "common/Log_.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "common/Utils/GlobalFunctions_.h"
 #include "common/Utils/Math_.h"
 #include "FPGA/DataSettings.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/MathFPGA.h"
 #include "FPGA/Storage.h"
 #include "Settings/Settings.h"
-#include "Utils/GlobalFunctions.h"
 
 
 static const uint8 masksRange[Range::Count] =
@@ -219,7 +219,7 @@ void TBase::Load()
 
     char buffer[10];
 
-    LOG_WRITE("%s", Bin2String(mask, buffer));
+    LOG_WRITE("%s", GF::Bin2String(mask, buffer));
 
     FPGA::BUS::Write(TypeRecord::FPGA, WR_RAZV, mask, true);
     ADD_SHIFT_T0 = deltaTShift[tBase];
@@ -403,7 +403,7 @@ void TShift::Load()
 const char *FPGA::GetTShiftString(int16 tShiftRel, char buffer[20])
 {
     float tShiftVal = TSHIFT_2_ABS(tShiftRel, SET_TBASE);
-    return Time2String(tShiftVal, true, buffer);
+    return GF::Time2String(tShiftVal, true, buffer);
 }
 
 

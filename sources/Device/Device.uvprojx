@@ -2023,14 +2023,14 @@
               <FilePath>.\src\Utils\CreateTables.py</FilePath>
             </File>
             <File>
-              <FileName>GlobalFunctions.h</FileName>
+              <FileName>GlobalFunctions_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Utils\GlobalFunctions.h</FilePath>
+              <FilePath>..\common\Utils\GlobalFunctions_.h</FilePath>
             </File>
             <File>
-              <FileName>GlobalFunctions.cpp</FileName>
+              <FileName>GlobalFunctions_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Utils\GlobalFunctions.cpp</FilePath>
+              <FilePath>..\common\Utils\GlobalFunctions_.cpp</FilePath>
             </File>
             <File>
               <FileName>Math_.h</FileName>
@@ -4208,14 +4208,14 @@
               <FilePath>.\src\Utils\CreateTables.py</FilePath>
             </File>
             <File>
-              <FileName>GlobalFunctions.h</FileName>
+              <FileName>GlobalFunctions_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Utils\GlobalFunctions.h</FilePath>
+              <FilePath>..\common\Utils\GlobalFunctions_.h</FilePath>
             </File>
             <File>
-              <FileName>GlobalFunctions.cpp</FileName>
+              <FileName>GlobalFunctions_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Utils\GlobalFunctions.cpp</FilePath>
+              <FilePath>..\common\Utils\GlobalFunctions_.cpp</FilePath>
             </File>
             <File>
               <FileName>Math_.h</FileName>

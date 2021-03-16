@@ -4,6 +4,7 @@
 #include "common/Display/Text_.h"
 #include "common/Hardware/Sound_.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "common/Utils/GlobalFunctions_.h"
 #include "Display/Grid.h"
 #include "FDrive/FDrive.h"
 #include "FPGA/FPGA.h"
@@ -12,7 +13,6 @@
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
-#include "Utils/GlobalFunctions.h"
 #include <cstdio>
 #include <cstdlib>
 
@@ -689,7 +689,7 @@ static void OnRegSet_SerialNumber(int angle)
 {
     typedef int(*pFunc)(int *, int, int);
 
-    pFunc p = angle > 0 ? CircleIncreaseInt : CircleDecreaseInt;
+    pFunc p = angle > 0 ? GF::CircleIncreaseInt : GF::CircleDecreaseInt;
 
     ACCESS_EXTRAMEM(StructForSN, s);
 

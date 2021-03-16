@@ -9,7 +9,6 @@
 #include "Menu/Pages/HelpContent.h"
 #include "Panel/Panel.h"
 #include "Settings/Settings.h"
-#include "Utils/GlobalFunctions.h"
 #include <cstdio>
 #include <cstring>
 
@@ -283,6 +282,13 @@ void Panel::Update()
 
 void Panel::CallbackOnReceiveSPI5(uint8 *data, int size)
 {
+    char buffer[100];
+
+    if (size != 3)
+    {
+        LOG_WRITE("%s : %s", __FUNCTION__, GF::PrintArrayUint8(data, size, buffer));
+    }
+
     for (int i = 0; i < size; i++)
     {
         queue.Push(*data++);

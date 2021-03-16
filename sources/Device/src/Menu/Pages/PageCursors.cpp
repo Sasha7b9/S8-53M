@@ -3,10 +3,10 @@
 #include "common/Display/Text_.h"
 #include "common/Display/Font/Font_.h"
 #include "common/Hardware/Sound_.h"
+#include "common/Utils/GlobalFunctions_.h"
 #include "common/Utils/Math_.h"
 #include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
-#include "Utils/GlobalFunctions.h"
 #include "Utils/ProcessingSignal.h"
 #include <cmath>
 
@@ -38,14 +38,14 @@ void SetCursSource(Channel::E chan)
 
 void IncCursCntrlU(Channel::E chan)
 {
-    CircleIncreaseInt8((int8*)&CURsU_CNTRL_CH(chan), 0, 3);
+    GF::CircleIncreaseInt8((int8*)&CURsU_CNTRL_CH(chan), 0, 3);
 }
 
 
 
 void IncCursCntrlT(Channel::E chan)
 {
-    CircleIncreaseInt8((int8*)&CURS_CNTRL_T(chan), 0, 3);
+    GF::CircleIncreaseInt8((int8*)&CURS_CNTRL_T(chan), 0, 3);
 }
 
 
@@ -440,7 +440,7 @@ static const arrayHints hintsSetPointsPercents =
 
 static void PressSB_Cursors_PointsPercents()
 {
-    CircleIncreaseInt8((int8 *)&CURS_MOVEMENT, 0, 1);
+    GF::CircleIncreaseInt8((int8 *)&CURS_MOVEMENT, 0, 1);
 }
 
 static void DrawSB_Cursors_PointsPercents(int x, int y)

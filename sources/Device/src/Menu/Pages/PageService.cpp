@@ -151,7 +151,7 @@ static void OnPress_Math_Function_ModeDraw()
     }
     else
     {
-        CircleIncreaseInt8((int8 *)&MODE_DRAW_MATH, 0, 2);
+        GF::CircleIncreaseInt8((int8 *)&MODE_DRAW_MATH, 0, 2);
     }
 }
 
@@ -258,7 +258,7 @@ static void OnRegSet_Math_Function(int delta)
 
 static void OnPress_Math_Function_Type()
 {
-    CircleIncreaseInt8((int8 *)&MATH_FUNC, 0, 1);
+    GF::CircleIncreaseInt8((int8 *)&MATH_FUNC, 0, 1);
 }
 
 static void Draw_Math_Function_Type_Sum(int x, int y)
@@ -295,7 +295,7 @@ DEF_SMALL_BUTTON(sbMath_Function_Type, PageService::PageMath::PageFunction::self
 
 static void OnPress_Math_Function_ModeRegSet()
 {
-    CircleIncreaseInt8((int8 *)&MATH_MODE_REG_SET, 0, 1);
+    GF::CircleIncreaseInt8((int8 *)&MATH_MODE_REG_SET, 0, 1);
 }
 
 static void Draw_Math_Function_ModeRegSet_Range(int x, int y)

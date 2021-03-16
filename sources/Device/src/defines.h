@@ -39,6 +39,8 @@ typedef char*   (*pFuncCFBC)(float, bool, char*);
 typedef void    (*pFuncpU8)(uint8*);
 typedef void    (*pFuncpCU8)(pUCHAR );
 
+inline void    EmptyFuncVV() {};
+
 #define _GET_BIT(value, bit) (((value) >> (bit)) & 0x01) //-V2573
 #define _SET_BIT(value, bit) ((value) |= (1 << (bit))) //-V2573
 #define _CLEAR_BIT(value, bit) ((value) &= (~(1 << (bit)))) //-V2573

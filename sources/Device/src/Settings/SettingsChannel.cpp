@@ -1,9 +1,9 @@
 #include "defines.h"
+#include "common/Utils/GlobalFunctions_.h"
 #include "common/Utils/Math_.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/MathFPGA.h"
 #include "Settings/Settings.h"
-#include "Utils/GlobalFunctions.h"
 
 
 // Структура для описания диапазона масштаба по напряжению.
@@ -62,5 +62,5 @@ const char* sChannel_Range2String(Range::E range, Divider::E multiplier)
 const char* sChannel_RShift2String(int16 rShiftRel, Range::E range, Divider::E multiplier, char buffer[20])
 {
     float rShiftVal = RSHIFT_2_ABS(rShiftRel, range) * Divider::ToAbs(multiplier);
-    return Voltage2String(rShiftVal, true, buffer);
+    return GF::Voltage2String(rShiftVal, true, buffer);
 };

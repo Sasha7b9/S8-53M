@@ -4,7 +4,6 @@
 #include "common/Display/Font/Font_.h"
 #include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
-#include "Utils/GlobalFunctions.h"
 #include "Utils/Measures.h"
 
 bool PageMeasures::choiceMeasuresIsActive = false;

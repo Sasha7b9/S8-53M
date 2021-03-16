@@ -1,11 +1,11 @@
 #include "defines.h"
 #include "common/Hardware/Sound_.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "common/Utils/GlobalFunctions_.h"
 #include "common/Utils/Math_.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/HelpContent.h"
 #include "Settings/Settings.h"
-#include "Utils/GlobalFunctions.h"
 
 
 // »спользуетс€ дл€ анимации изменени€ значени€ Choice
@@ -180,7 +180,7 @@ float Choice::Step() const
             {
                 return delta;
             }
-            CircleIncreaseInt8(own->cell, 0, static_cast<int8>(NumSubItems() - 1));
+            GF::CircleIncreaseInt8(own->cell, 0, static_cast<int8>(NumSubItems() - 1));
         }
         else if (tsChoice.inMoveDecrease == 1)
         {
@@ -190,7 +190,7 @@ float Choice::Step() const
             {
                 return delta;
             }
-            CircleDecreaseInt8(own->cell, 0, static_cast<int8>(NumSubItems() - 1));
+            GF::CircleDecreaseInt8(own->cell, 0, static_cast<int8>(NumSubItems() - 1));
         }
         tsChoice.choice = 0;
         FuncOnChanged(IsActive());
@@ -475,7 +475,7 @@ void GovernorColor::ShortPress()
     }
     if (IsOpened())
     {
-        CircleIncreaseInt8(&(OwnData()->colorType->currentField), 0, 3);
+        GF::CircleIncreaseInt8(&(OwnData()->colorType->currentField), 0, 3);
     }
     else
     {
@@ -488,7 +488,7 @@ void MACaddress::ShortPress()
 {
     if (IsOpened())
     {
-        CircleIncreaseInt8(&gCurDigit, 0, 5);
+        GF::CircleIncreaseInt8(&gCurDigit, 0, 5);
     }
 }
 

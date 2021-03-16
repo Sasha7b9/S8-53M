@@ -1,9 +1,9 @@
 #include "defines.h"
 #include "common/Log_.h"
 #include "common/Display/Colors_.h"
+#include "common/Utils/GlobalFunctions_.h"
 #include "common/Utils/Math_.h"
 #include "Settings/Settings.h"
-#include "Utils/GlobalFunctions.h"
 
 
 const Color Color::BLACK(0);
@@ -89,7 +89,7 @@ void ColorType::CalcSteps()
 
 void ColorType::SetBrightness()
 {
-    brightness = MaxFloat(red / 31.0F, green / 63.0F, blue / 31.0F);
+    brightness = GF::MaxFloat(red / 31.0F, green / 63.0F, blue / 31.0F);
 
     CalcSteps();
 }
@@ -178,7 +178,7 @@ void ColorType::ComponentChange(int delta)
     if (index >= 1 && index <= 3)
     {
         float *pointers[4] = { 0, &blue, &green, &red };
-        AddLimitationFloat(pointers[index], (float)Math::Sign(delta), 0.0F, maxs[index]);
+        GF::AddLimitationFloat(pointers[index], (float)Math::Sign(delta), 0.0F, maxs[index]);
     }
 
     Set();

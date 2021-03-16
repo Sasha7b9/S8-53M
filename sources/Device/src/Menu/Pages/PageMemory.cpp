@@ -3,6 +3,7 @@
 #include "common/Display/Text_.h"
 #include "common/Display/Font/Font_.h"
 #include "common/Hardware/Sound_.h"
+#include "common/Utils/GlobalFunctions_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Grid.h"
 #include "FDrive/FDrive.h"
@@ -13,7 +14,6 @@
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
-#include "Utils/GlobalFunctions.h"
 #include <cstring>
 
 
@@ -94,12 +94,12 @@ void PressSB_MemLastSelect()
 
 void PressSB_MemLast_Next()
 {
-    CircleIncreaseInt16(&PageMemory::PageLatest::currentSignal, 0, static_cast<int16>(Storage::AllDatas() - 1));
+    GF::CircleIncreaseInt16(&PageMemory::PageLatest::currentSignal, 0, static_cast<int16>(Storage::AllDatas() - 1));
 }
 
 void PressSB_MemLast_Prev()
 {
-    CircleDecreaseInt16(&PageMemory::PageLatest::currentSignal, 0, static_cast<int16>(Storage::AllDatas() - 1));
+    GF::CircleDecreaseInt16(&PageMemory::PageLatest::currentSignal, 0, static_cast<int16>(Storage::AllDatas() - 1));
 }
 
 static void RotateSB_MemLast(int angle)
@@ -126,9 +126,9 @@ static void FuncDrawingAdditionSPageMemoryLast()
     int height = 10;
     Region(width, height).Fill(Grid::Right() - width, Grid::TOP, Color::BACK);
     Primitives::Rectangle(width, height).Draw(Grid::Right() - width, Grid::TOP, Color::FILL);
-    Text(Int2String(PageMemory::PageLatest::currentSignal + 1, false, 3, buffer)).Draw(Grid::Right() - width + 2, Grid::TOP + 1);
+    Text(GF::Int2String(PageMemory::PageLatest::currentSignal + 1, false, 3, buffer)).Draw(Grid::Right() - width + 2, Grid::TOP + 1);
     Text("/").Draw(Grid::Right() - width + 17, Grid::TOP + 1);
-    Text(Int2String(Storage::AllDatas(), false, 3, buffer)).Draw(Grid::Right() - width + 23, Grid::TOP + 1);
+    Text(GF::Int2String(Storage::AllDatas(), false, 3, buffer)).Draw(Grid::Right() - width + 23, Grid::TOP + 1);
 }
 
 void DrawSB_MemLast_IntEnter(int x, int y)
@@ -362,9 +362,9 @@ void OnMemExtSetMaskNameRegSet(int angle, int maxIndex)
 {
     int8(*func[3])(int8 *, int8, int8) =
     {
-        CircleDecreaseInt8,
-        CircleDecreaseInt8,
-        CircleIncreaseInt8
+        GF::CircleDecreaseInt8,
+        GF::CircleDecreaseInt8,
+        GF::CircleIncreaseInt8
     };
 
     Color::ResetFlash();
@@ -532,7 +532,7 @@ static void DrawMemoryWave(int num, bool exist)
     ((num == PageMemory::PageInternal::currentSignal) ? Color::FLASH_01 : Color::FILL).SetAsCurrent();
     if (exist)
     {
-        Text(Int2String(num + 1, false, 2, buffer)).Draw(x + 2, y + 1);
+        Text(GF::Int2String(num + 1, false, 2, buffer)).Draw(x + 2, y + 1);
     }
     else
     {
@@ -565,11 +565,11 @@ static void FuncOnRegSetMemInt(int delta)
     Sound::RegulatorSwitchRotate();
     if (delta < 0)
     {
-        CircleDecreaseInt8(&PageMemory::PageInternal::currentSignal, 0, MAX_NUM_SAVED_WAVES - 1);
+        GF::CircleDecreaseInt8(&PageMemory::PageInternal::currentSignal, 0, MAX_NUM_SAVED_WAVES - 1);
     }
     else if (delta > 0)
     {
-        CircleIncreaseInt8(&PageMemory::PageInternal::currentSignal, 0, MAX_NUM_SAVED_WAVES - 1);
+        GF::CircleIncreaseInt8(&PageMemory::PageInternal::currentSignal, 0, MAX_NUM_SAVED_WAVES - 1);
     }
     EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
     Color::ResetFlash();
@@ -672,7 +672,7 @@ static void DrawSB_MemInt_ModeShow(int x, int y)
 
 static void PressSB_MemInt_ModeShow()
 {
-    CircleIncreaseInt8((int8*)&MODE_SHOW_MEMINT, 0, 2);
+    GF::CircleIncreaseInt8((int8*)&MODE_SHOW_MEMINT, 0, 2);
 }
 
 static const arrayHints hintsMemIntModeShow =

@@ -1,16 +1,16 @@
 #include "defines.h"
 #include "common/Display/Font/Font_.h"
+#include "common/Utils/GlobalFunctions_.h"
 #include "Settings/Settings.h"
-#include "Utils/GlobalFunctions.h"
 #include <cmath>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
 
 
-char* FloatFract2String(float value, bool alwaysSign, char bufferOut[20])
+char *GF::FloatFract2String(float value, bool alwaysSign, char bufferOut[20])
 {
-    return Float2String(value, alwaysSign, 4, bufferOut);
+    return GF::Float2String(value, alwaysSign, 4, bufferOut);
 }
 
 static int NumDigitsInIntPart(float value)
@@ -42,7 +42,7 @@ static int NumDigitsInIntPart(float value)
     return numDigitsInInt;
 }
 
-char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[20])
+char* GF::Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[20])
 {
     bufferOut[0] = 0;
     char *pBuffer = bufferOut;
@@ -103,7 +103,7 @@ char* Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[2
     return bufferOut;
 }
 
-char* Int2String(int value, bool alwaysSign, int numMinFields, char buffer[20])
+char* GF::Int2String(int value, bool alwaysSign, int numMinFields, char buffer[20])
 {
     char format[20] = "%";
     std::sprintf(&(format[1]), "0%d", numMinFields);
@@ -120,7 +120,7 @@ char* Int2String(int value, bool alwaysSign, int numMinFields, char buffer[20])
     return buffer;
 }
 
-bool String2Int(char *str, int *value)  
+bool GF::String2Int(char *str, int *value)  
 {
     int sign = str[0] == '-' ? -1 : 1;
     if (str[0] < '0' || str[0] > '9')
@@ -151,7 +151,7 @@ bool String2Int(char *str, int *value)
     return true;
 }
 
-char*    Bin2String(uint8 value, char buffer[9])
+char *GF::Bin2String(uint8 value, char buffer[9])
 {
     for(int bit = 0; bit < 8; bit++)
     {
@@ -160,7 +160,7 @@ char*    Bin2String(uint8 value, char buffer[9])
     return buffer;
 }
 
-char*   Bin2String16(uint16 value, char valBuffer[19])
+char *GF::Bin2String16(uint16 value, char valBuffer[19])
 {
     char buffer[9];
     std::strcpy(valBuffer, Bin2String((uint8)(value >> 8), buffer)); //-V2513
@@ -169,13 +169,13 @@ char*   Bin2String16(uint16 value, char valBuffer[19])
     return valBuffer;
 }
 
-char* Hex8toString(uint8 value, char buffer[3])
+char *GF::Hex8toString(uint8 value, char buffer[3])
 {
     std::sprintf(value < 16 ? (buffer[0] = '0', buffer + 1) :  (buffer), "%x", value); //-V2528
     return buffer;
 }
 
-char* Voltage2String(float voltage, bool alwaysSign, char buffer[20])
+char *GF::Voltage2String(float voltage, bool alwaysSign, char buffer[20])
 {
     buffer[0] = 0;
     char *suffix;
@@ -206,13 +206,13 @@ char* Voltage2String(float voltage, bool alwaysSign, char buffer[20])
 
     char bufferOut[20];
 
-    Float2String(voltage, alwaysSign, 4, bufferOut);
+    GF::Float2String(voltage, alwaysSign, 4, bufferOut);
     std::strcat(buffer, bufferOut); //-V2513
     std::strcat(buffer, suffix); //-V2513
     return buffer;
 }
 
-char* Time2String(float time, bool alwaysSign, char buffer[20])
+char* GF::Time2String(float time, bool alwaysSign, char buffer[20])
 {
     buffer[0] = 0;
     char *suffix = 0;
@@ -242,19 +242,19 @@ char* Time2String(float time, bool alwaysSign, char buffer[20])
     }
 
     char bufferOut[20];
-    std::strcat(buffer, Float2String(time, alwaysSign, 4, bufferOut)); //-V2513
+    std::strcat(buffer, GF::Float2String(time, alwaysSign, 4, bufferOut)); //-V2513
     std::strcat(buffer, suffix); //-V2513
     return buffer;
 }
 
-char* Phase2String(float phase, bool, char bufferOut[20])
+char *GF::Phase2String(float phase, bool, char bufferOut[20])
 {
     char buffer[20];
-    std::sprintf(bufferOut, "%s\xa8", Float2String(phase, false, 4, buffer));
+    std::sprintf(bufferOut, "%s\xa8", GF::Float2String(phase, false, 4, buffer));
     return bufferOut;
 }
 
-char *  Freq2String(float freq, bool, char bufferOut[20])
+char *GF::Freq2String(float freq, bool, char bufferOut[20])
 {
     bufferOut[0] = 0;
     char *suffix = 0;
@@ -278,26 +278,26 @@ char *  Freq2String(float freq, bool, char bufferOut[20])
         suffix = LANG_RU ? "ร๖" : "Hz";
     }
     char buffer[20];
-    std::strcat(bufferOut, Float2String(freq, false, 4, buffer)); //-V2513
+    std::strcat(bufferOut, GF::Float2String(freq, false, 4, buffer)); //-V2513
     std::strcat(bufferOut, suffix); //-V2513
     return bufferOut;
 }
 
-char* Float2Db(float value, int numDigits, char bufferOut[20])
+char* GF::Float2Db(float value, int numDigits, char bufferOut[20])
 {
     bufferOut[0] = 0;
     char buffer[20];
-    std::strcat(bufferOut, Float2String(value, false, numDigits, buffer)); //-V2513
+    std::strcat(bufferOut, GF::Float2String(value, false, numDigits, buffer)); //-V2513
     std::strcat(bufferOut, "ไม"); //-V2513
     return bufferOut;
 }
 
-bool IntInRange(int value, int min, int max)
+bool GF::IntInRange(int value, int min, int max)
 {
     return (value >= min) && (value <= max);
 }
 
-float MaxFloat(float val1, float val2, float val3)
+float GF::MaxFloat(float val1, float val2, float val3)
 {
     float retValue = val1;
     if(val2 > retValue)
@@ -311,7 +311,7 @@ float MaxFloat(float val1, float val2, float val3)
     return retValue;
 }
 
-int8 CircleIncreaseInt8(int8 *val, int8 min, int8 max)
+int8 GF::CircleIncreaseInt8(int8 *val, int8 min, int8 max)
 {
     (*val)++;
     if((*val) > max)
@@ -321,7 +321,7 @@ int8 CircleIncreaseInt8(int8 *val, int8 min, int8 max)
     return (*val);
 }
 
-int16 CircleIncreaseInt16(int16 *val, int16 min, int16 max)
+int16 GF::CircleIncreaseInt16(int16 *val, int16 min, int16 max)
 {
     (*val)++;
     if((*val) > max)
@@ -331,7 +331,7 @@ int16 CircleIncreaseInt16(int16 *val, int16 min, int16 max)
     return (*val);
 }
 
-int CircleIncreaseInt(int *val, int min, int max)
+int GF::CircleIncreaseInt(int *val, int min, int max)
 {
     (*val)++;
     if((*val) > max)
@@ -341,7 +341,7 @@ int CircleIncreaseInt(int *val, int min, int max)
     return (*val);
 }
 
-int8 CircleDecreaseInt8(int8 *val, int8 min, int8 max)
+int8 GF::CircleDecreaseInt8(int8 *val, int8 min, int8 max)
 {
     (*val)--;
     if((*val) < min)
@@ -351,7 +351,7 @@ int8 CircleDecreaseInt8(int8 *val, int8 min, int8 max)
     return *val;
 }
 
-int16 CircleDecreaseInt16(int16 *val, int16 min, int16 max)
+int16 GF::CircleDecreaseInt16(int16 *val, int16 min, int16 max)
 {
     (*val)--;
     if((*val) < min)
@@ -361,7 +361,7 @@ int16 CircleDecreaseInt16(int16 *val, int16 min, int16 max)
     return (*val);
 }
 
-int CircleDecreaseInt(int *val, int min, int max)
+int GF::CircleDecreaseInt(int *val, int min, int max)
 {
     (*val)--;
     if((*val) < min)
@@ -371,7 +371,7 @@ int CircleDecreaseInt(int *val, int min, int max)
     return (*val);
 }
 
-float CircleAddFloat(float *val, float delta, float min, float max)
+float GF::CircleAddFloat(float *val, float delta, float min, float max)
 {
     *val += delta;
     if(*val > max)
@@ -381,7 +381,7 @@ float CircleAddFloat(float *val, float delta, float min, float max)
     return *val;
 }
 
-float CircleSubFloat(float *val, float delta, float min, float max)
+float GF::CircleSubFloat(float *val, float delta, float min, float max)
 {
     *val -= delta;
     if(*val < min)
@@ -391,7 +391,7 @@ float CircleSubFloat(float *val, float delta, float min, float max)
     return *val;
 }
 
-void AddLimitationFloat(float *val, float delta, float min, float max)
+void GF::AddLimitationFloat(float *val, float delta, float min, float max)
 {
     float sum = *val + delta;
     if(sum < min)
@@ -408,14 +408,16 @@ void AddLimitationFloat(float *val, float delta, float min, float max)
     }
 }
 
-void SwapInt(int *value0, int *value1)
+
+void GF::SwapInt(int *value0, int *value1)
 {
     int temp = *value0;
     *value0 = *value1;
     *value1 = temp;
 }
 
-void SortInt(int *value0, int *value1)
+
+void GF::SortInt(int *value0, int *value1)
 {
     if(*value1 < *value0)
     {
@@ -423,24 +425,8 @@ void SortInt(int *value0, int *value1)
     }
 }
 
-void EmptyFuncVV() { }
 
-void EmptyFuncVI(int) { }
-
-void EmptyFuncVpV(void *) { }
-
-void EmptyFuncpVII(void *, int, int) { }
-
-void EmptyFuncVI16(int16) {}
-
-void EmptyFuncVB(bool) {}
-
-bool EmptyFuncBV()
-{
-    return true;
-}
-
-void IntToStrCat(char *_buffer, int _value)
+void GF::IntToStrCat(char *_buffer, int _value)
 {
     static const int LENGHT = 10;
     char buffer[LENGHT];
@@ -478,4 +464,19 @@ void IntToStrCat(char *_buffer, int _value)
     }
 
     *_buffer = 0;
+}
+
+
+char *GF::PrintArrayUint8(uint8 *array, int size, char *out_buffer)
+{
+    out_buffer[0] = '\0';
+
+    for (int i = 0; i < size; i++)
+    {
+        char buf[10];
+
+        std::strcat(out_buffer, GF::Int2String(array[i], false, 1, buf));
+    }
+
+    return out_buffer;
 }

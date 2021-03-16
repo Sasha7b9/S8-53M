@@ -2,7 +2,6 @@
 #include "FPGA/FPGA.h"
 #include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
-#include "Utils/GlobalFunctions.h"
 
 
 void PageTrig::OnPress_Mode(bool)

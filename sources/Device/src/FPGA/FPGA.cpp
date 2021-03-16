@@ -160,7 +160,7 @@ bool FPGA::ProcessingData(void)
             if (set.debug.showRegisters.flag)
             {
                 char buffer[9];
-                LOG_WRITE("флаг готовности %s", Bin2String16(flag, buffer));
+                LOG_WRITE("флаг готовности %s", GF::Bin2String16(flag, buffer));
             }
             Panel::EnableLEDTrig(true);
             FPGA::Stop(true);
@@ -1188,7 +1188,7 @@ void FPGA::WriteToAnalog(TypeWriteAnalog::E type, uint data)
 {
     char buffer[19];
 
-    char *str = Bin2String16(static_cast<uint16>(data), buffer);
+    char *str = GF::Bin2String16(static_cast<uint16>(data), buffer);
     if (type == TypeWriteAnalog::Range0 && IS_SHOW_REG_RANGE_A)
     {
         LOG_WRITE("range 0 = %s", str);
@@ -1231,15 +1231,15 @@ void FPGA::BUS::WriteToDAC(TypeWriteDAC::E type, uint16 data)
 
     if (type == TypeWriteDAC::RShiftA && IS_SHOW_REG_RSHIFT_A)
     {
-        LOG_WRITE("rShift 0 = %s", Bin2String16(data, buffer));
+        LOG_WRITE("rShift 0 = %s", GF::Bin2String16(data, buffer));
     }
     else if (type == TypeWriteDAC::RShiftB && IS_SHOW_REG_RSHIFT_B)
     {
-        LOG_WRITE("rShfit 1 = %s", Bin2String16(data, buffer));
+        LOG_WRITE("rShfit 1 = %s", GF::Bin2String16(data, buffer));
     }
     else if (type == TypeWriteDAC::TrigLev && IS_SHOW_REG_TRIGLEV)
     {
-        LOG_WRITE("trigLev = %s", Bin2String16(data, buffer));
+        LOG_WRITE("trigLev = %s", GF::Bin2String16(data, buffer));
     }
 
 //    Pin::G7.Reset();

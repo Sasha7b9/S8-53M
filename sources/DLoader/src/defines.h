@@ -44,3 +44,10 @@ typedef void    (*pFuncVpVIIB)(void*, int, int, bool);
 #define ERROR_VALUE_INT     INT_MAX
 #define ERROR_STRING_VALUE  "--.--"
 #define M_PI                3.14159265358979323846F
+
+
+#define _GET_BIT(value, bit) (((value) >> (bit)) & 0x01) //-V2573
+#define _SET_BIT(value, bit) ((value) |= (1 << (bit))) //-V2573
+#define _CLEAR_BIT(value, bit) ((value) &= (~(1 << (bit)))) //-V2573
+
+#define LANG_RU true

@@ -5,12 +5,12 @@
 #include "common/Display/Font/Font_.h"
 #include "common/Hardware/Sound_.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "common/Utils/GlobalFunctions_.h"
 #include "common/Utils/Math_.h"
 #include "FDrive/FDrive.h"
 #include "Menu/FileManager.h"
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
-#include "Utils/GlobalFunctions.h"
 #include <cstring>
 
 
@@ -407,7 +407,7 @@ LabelNextNumber:
             {
                 if (*ch == 0x07)    // ≈сли здесь надо записать пор€дковый номер
                 {
-                    std::strcpy(wr, Int2String(number, false, *(ch + 1), buffer)); //-V2513
+                    std::strcpy(wr, GF::Int2String(number, false, *(ch + 1), buffer)); //-V2513
                     wr += std::strlen(buffer); //-V2513
                     ch++;
                 }
@@ -415,7 +415,7 @@ LabelNextNumber:
                 {
                     if (*ch >= 0x01 && *ch <= 0x06)
                     {
-                        std::strcpy(wr, Int2String((int)values[*ch], false, 2, buffer)); //-V2513
+                        std::strcpy(wr, GF::Int2String((int)values[*ch], false, 2, buffer)); //-V2513
                         wr += std::strlen(buffer); //-V2513
                     }
                 }
