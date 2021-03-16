@@ -9,12 +9,14 @@
 
 #define SET_MAX_IF_LARGER(x, max)   if((x) > (max)) { (max) = (x); }
 
-#define LIMITATION(var, value, min, max)    var = (value); if(var < (min)) { var = (min); } else if(var > (max)) { var = (max); };
+#define LIMITATION(var, value, min, max) \
+   var = (value); if(var < (min)) { var = (min); } else if(var > (max)) { var = (max); };
 
 #define LIMITATION_BOUND(var, min, max)     if((var) < (min)) { (min) = (var); }; if((var) > (max)) { (max) = (var); };
 
-#define POINT_2_VOLTAGE(value, range, rShift)   \
-                (((float)(value) - (float)MIN_VALUE) * MathFPGA::voltsInPixel[(range)] - MAX_VOLTAGE_ON_SCREEN((range)) - RSHIFT_2_ABS((rShift), (range)))
+#define POINT_2_VOLTAGE(value, range, rShift)                                    \
+    (((float)(value) - (float)MIN_VALUE) * MathFPGA::voltsInPixel[(range)] -     \
+    MAX_VOLTAGE_ON_SCREEN((range)) - RSHIFT_2_ABS((rShift), (range)))
 
 #define TSHIFT_2_ABS(tShift, tBase)  (MathFPGA::absStepTShift[(tBase)] * (tShift) * 2.0F)
 
