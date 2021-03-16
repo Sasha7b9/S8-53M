@@ -25,7 +25,7 @@ float FPGA::FreqMeter::freq = 0.0f;
 
 #define N_KR 100
 const int FPGA::Randomizer::Kr[] = { N_KR / 1, N_KR / 2, N_KR / 5, N_KR / 10, N_KR / 20 };
-int       FPGA::Randomizer::numberMeasuresForGates = 1000;
+int       FPGA::Randomizer::number_measures_for_gates = 1000;
 
 volatile static bool autoFindInProgress = false;
 volatile static bool temporaryPause = false;
@@ -554,7 +554,7 @@ void FPGA::InverseDataIsNecessary(Channel::E chan, uint16 *data)
 
 void FPGA::Randomizer::SetNumberMeasuresForGates(int number)
 {
-    numberMeasuresForGates = number;
+    number_measures_for_gates = number;
 }
 
 

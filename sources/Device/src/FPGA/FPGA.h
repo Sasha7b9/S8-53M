@@ -189,7 +189,7 @@ public:
 
     private:
 
-        static int numberMeasuresForGates;
+        static int number_measures_for_gates;
     };
 
     struct Calibrator
