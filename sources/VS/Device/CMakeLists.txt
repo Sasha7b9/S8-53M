@@ -84,12 +84,7 @@ file(GLOB LAN               ../../Device/src/LAN/LAN.h
                             ../../Device/src/LAN/SocketTCP.cpp)
 file(GLOB FDRIVE            ../../Device/src/FDrive/*.h
                                          src/FDrive/FDrive_win.cpp)
-file(GLOB FPGA              ../../Device/src/FPGA/DataSettings.*
-                            ../../Device/src/FPGA/FPGA.h
-                            ../../Device/src/FPGA/FPGA_Settings.cpp
-                            ../../Device/src/FPGA/MathFPGA.*
-                            ../../Device/src/FPGA/Storage.*
-                                         src/FPGA/FPGA_win.cpp)
+file(GLOB FPGA              ../../Device/src/FPGA/*.*)
 file(GLOB HARDWARE          ../../Device/src/Hardware/EPROM.h
                                          src/Hardware/EPROM_win.cpp
                             ../../Device/src/Hardware/RAM.*
