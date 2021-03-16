@@ -198,28 +198,25 @@ bool FPGA::ProcessingData(void)
 
 void FPGA::Update(void)
 {
-//    uint16 flag = Flag::Read();
-//
-//    if(_GET_BIT(flag, FL_PRED_READY))
-//
-//
-//    static int pred_state = 1;
-//
-//    int st = _GET_BIT(flag, FL_PRED_READY);
-//
-//    if (st != pred_state)
-//    {
-//        if (st == 1)
-//        {
-//            LOG_WRITE("Предзапуск готов");
-//        }
-//        else
-//        {
-//            LOG_WRITE("         Предзапуск не готов");
-//        }
-//    }
-//
-//    pred_state = st;
+    flag.Read();
+
+    static bool pred_state = true;
+
+    bool st = flag.IsPredRead();
+
+    if (st != pred_state)
+    {
+        if (st)
+        {
+            LOG_WRITE("Предзапуск готов");
+        }
+        else
+        {
+            LOG_WRITE("         Предзапуск не готов");
+        }
+    }
+
+    pred_state = st;
 
 
     /*
@@ -787,24 +784,6 @@ static float PeriodCounterToValue(const BitSet32 *period)
 //    prevFreq = fr;
 //    readPeriod = false;
 //}
-
-
-bool FPGA::Flag::IsTrigReady() const
-{
-    return _GET_BIT(flag, FL_TRIG_READY) == 1;
-}
-
-
-bool FPGA::Flag::IsDataReady() const
-{
-    return _GET_BIT(flag, FL_DATA_READY) == 1;
-}
-
-
-bool FPGA::Flag::IsPointReady() const
-{
-    return _GET_BIT(flag, FL_POINT_READY) == 1;
-}
 
 
 void FPGA::Flag::Read()
