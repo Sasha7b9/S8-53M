@@ -107,6 +107,7 @@ void FPGA::Start(void)
     }
 
     HAL_FMC::Write(WR_START, 1);
+
     ds.Fill();
     timeStart = TIME_MS;
     stateWork = StateWorkFPGA::Wait;

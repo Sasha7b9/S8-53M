@@ -21,18 +21,6 @@ uint16 *const HAL_FMC::ADDR_RAM_END = (uint16 *)(ADDR_RAM + 1024 * 1024);
 
 
 
-uint16 HAL_FMC::Read(uint16 * const address)
-{
-    return(*(address));
-}
-
-
-void HAL_FMC::Write(uint16 * const address, uint16 value)
-{
-    *address = value;
-}
-
-
 void HAL_FMC::Init()
 {
     InitFPGA();
