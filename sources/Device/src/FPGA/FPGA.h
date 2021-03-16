@@ -37,6 +37,7 @@ public:
     static int    add_N_stop;
     static int16  pred;
     static uint16 post;
+    static bool   temporary_pause;
 
     static void Init();
 

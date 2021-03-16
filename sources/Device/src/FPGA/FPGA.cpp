@@ -20,6 +20,7 @@ int16            FPGA::pred = 1024;
 FPGA::Flag       FPGA::flag;
 StateWorkFPGA::E FPGA::state_work = StateWorkFPGA::Stop;
 uint             FPGA::time_start = 0;
+bool             FPGA::temporary_pause = false;
 
 bool      FPGA::AutoFinder::auto_find_in_progress = false;
 
@@ -30,7 +31,7 @@ const int FPGA::Randomizer::Kr[] = { N_KR / 1, N_KR / 2, N_KR / 5, N_KR / 10, N_
 int       FPGA::Randomizer::number_measures_for_gates = 1000;
 
 
-volatile static bool temporaryPause = false;
+
 volatile static bool canReadData = true;
 static bool criticalSituation = false;
 static bool firstAfterWrite = false;            // Используется в режиме рандомизатора. После записи любого параметра в альтеру нужно не использовать первое считанное данное с АЦП, потому что оно завышено и портит ворота
@@ -831,14 +832,14 @@ TBase::E FPGA::AutoFinder::FindTBase(Channel::E)
 
 void StopTemporaryPause(void)
 {
-    temporaryPause = false;
+    FPGA::temporary_pause = false;
     Timer::Disable(TypeTimer::TemporaryPauseFPGA);
 }
 
 
 void FPGA::TemporaryPause(void)
 {
-    temporaryPause = true;
+    temporary_pause = true;
     Timer::Enable(TypeTimer::TemporaryPauseFPGA, 500, StopTemporaryPause);
 }
 
