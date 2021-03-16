@@ -194,6 +194,10 @@ public:
     private:
 
         static int number_measures_for_gates;
+
+        static bool first_аfter_write;      // Используется в режиме рандомизатора. После записи любого параметра в
+                                            // альтеру нужно не использовать первое считанное данное с АЦП, потому что
+                                            // оно завышено и портит ворота
     };
 
     struct Calibrator

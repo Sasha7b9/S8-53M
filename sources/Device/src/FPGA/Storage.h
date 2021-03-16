@@ -8,9 +8,9 @@ public:
     
     // Количество отведённой для измерений памяти.
 #ifdef DEBUG
-    static const int SIZE_POOL = (60 * 1024 + 1000);
+    static const int SIZE_POOL = (60 * 1024);
 #else
-    static const int SIZE_POOL = (61 * 1024 + 20);
+    static const int SIZE_POOL = (61 * 1024);
 #endif
 
     // Удаление всех сохранённых измерений

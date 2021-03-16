@@ -31,9 +31,7 @@ float            FPGA::FreqMeter::freq = 0.0f;
 #define N_KR 100
 const int        FPGA::Randomizer::Kr[] = { N_KR / 1, N_KR / 2, N_KR / 5, N_KR / 10, N_KR / 20 };
 int              FPGA::Randomizer::number_measures_for_gates = 1000;
-
-
-static bool firstAfterWrite = false;            // Используется в режиме рандомизатора. После записи любого параметра в альтеру нужно не использовать первое считанное данное с АЦП, потому что оно завышено и портит ворота
+bool             FPGA::Randomizer::first_аfter_write = false;
 
 
 FPGA::State FPGA::state =
@@ -213,9 +211,9 @@ bool FPGA::IsRunning(void)
 
 bool FPGA::Randomizer::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
 {   
-    if(firstAfterWrite)
+    if(first_аfter_write)
     {
-        firstAfterWrite = false;
+        first_аfter_write = false;
         return false;
     }
     
