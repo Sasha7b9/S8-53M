@@ -115,16 +115,7 @@ public:
 
     struct BUS
     {
-        // «апись в регистр ѕЋ»— нового значени€:
-        // address - адрес регистра,
-        // value - записываемое значение,
-        // restart - true означает, что после записи нужно запусить режим измерений, если до этого прибор не находилс€ в
-        //           режиме паузы.
-        static void WriteToHardware(uint16 *const address, uint16 value, bool restart);
-
-        static void Write(uint16 *address, uint data, bool restart);
-
-        static void Write(uint16 *address, uint data);
+        static void Write(uint16 *address, uint16 data, bool restart = false);
 
         static void WriteToDAC(TypeWriteDAC::E type, uint16 data);
 

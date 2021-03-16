@@ -85,12 +85,6 @@ void FPGA::OnPressStartStop()
 }
 
 
-void FPGA::BUS::WriteToHardware(uint16 *const, uint16, bool)
-{
-
-}
-
-
 void FPGA::Randomizer::SetNumberMeasuresForGates(int)
 {
 
@@ -121,7 +115,7 @@ void FPGA::ClearData()
 }
 
 
-void FPGA::BUS::Write(uint16 *, uint, bool)
+void FPGA::BUS::Write(uint16 *, uint16, bool)
 {
 
 }

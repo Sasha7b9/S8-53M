@@ -629,60 +629,18 @@ int FPGA::CalculateShift(void)            // \todo Не забыть восстановить функци
 }
 
 
-void FPGA::BUS::WriteToHardware(uint16 * const address, uint16 value, bool restart)
+void FPGA::BUS::Write(uint16 *address, uint16 data, bool restart)
 {
-    firstAfterWrite = true;
+    Stop(true);
+
+    *address = data;
+
     if(restart)
     {
-        if(in_processing_of_read)
-        {
-            FPGA::Stop(true);
-            in_processing_of_read = false;
-            HAL_FMC::Write(address, value);
-            FPGA::Start();
-        }
-        else
-        {
-            if(stateWork != StateWorkFPGA::Stop)
-            {
-                FPGA::Stop(true);
-                HAL_FMC::Write(address, value);
-                FPGA::Start();
-            }
-            else
-            {
-                HAL_FMC::Write(address, value);
-            }
-        }
-    }
-    else
-    {
-        HAL_FMC::Write(address, value);
-    }
-}
-
-
-void FPGA::BUS::Write(uint16 *address, uint data, bool /*restart*/)
-{
-//    if (restart)
-//    {
-        Stop(true);
-        Write(address, data);
         Start();
-//    }
-//    else
-//    {
-//        Write(type, address, data);
-//    }
-
+    }
 
     Panel::EnableLEDTrig(false); // После каждой засылки выключаем лампочку синхронизации
-}
-
-
-void FPGA::BUS::Write(uint16 *address, uint data)
-{
-    *address = (uint16)data;
 }
 
 
