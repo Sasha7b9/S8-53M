@@ -91,7 +91,7 @@ void PageHelpContent::NextParagraph()
 {
     if(currentPage->OwnData()->type == TypePageHelp::Content)
     {
-        GF::CircleIncreaseInt(&currentParagraph, 0, NumParagraphs(currentPage) - 1);
+        GF::CircleIncrease<int>(&currentParagraph, 0, NumParagraphs(currentPage) - 1);
     }
 }
 

@@ -47,8 +47,6 @@ namespace GF
 
     int16 CircleDecreaseInt16(int16 *val, int16 min, int16 max);
 
-    int CircleIncreaseInt(int *val, int min, int max);
-
     int CircleDecreaseInt(int *val, int min, int max);
 
     // Увелечивает значение по адресу val на delta. Затем, если результат больше max, приравнивает его min
