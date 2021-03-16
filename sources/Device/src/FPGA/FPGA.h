@@ -118,6 +118,8 @@ public:
         static TBase::E FindTBase(Channel::E chan);
 
         static TBase::E AccurateFindTBase(Channel::E chan);
+
+        static bool auto_find_in_progress;
     };
 
     struct BUS

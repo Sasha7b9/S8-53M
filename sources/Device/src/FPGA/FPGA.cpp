@@ -21,13 +21,15 @@ FPGA::Flag       FPGA::flag;
 StateWorkFPGA::E FPGA::state_work = StateWorkFPGA::Stop;
 uint             FPGA::time_start = 0;
 
-float FPGA::FreqMeter::freq = 0.0f;
+bool      FPGA::AutoFinder::auto_find_in_progress = false;
+
+float     FPGA::FreqMeter::freq = 0.0f;
 
 #define N_KR 100
 const int FPGA::Randomizer::Kr[] = { N_KR / 1, N_KR / 2, N_KR / 5, N_KR / 10, N_KR / 20 };
 int       FPGA::Randomizer::number_measures_for_gates = 1000;
 
-volatile static bool autoFindInProgress = false;
+
 volatile static bool temporaryPause = false;
 volatile static bool canReadData = true;
 static bool criticalSituation = false;
@@ -560,7 +562,7 @@ void FPGA::Randomizer::SetNumberMeasuresForGates(int number)
 
 void FPGA::StartAutoFind(void)
 {
-    autoFindInProgress = true;
+    AutoFinder::auto_find_in_progress = true;
 }
 
 
@@ -645,7 +647,7 @@ void FPGA::AutoFinder::Find(void)
     Init();
     Start();
     
-    autoFindInProgress = true;
+    auto_find_in_progress = true;
 }
 
 
