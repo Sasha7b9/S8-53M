@@ -78,13 +78,8 @@ private:
     // Загрузить настройки в аппаратную часть из глобальной структуры SSettings.
     static void LoadSettings();
 
-    // Прочитать данные.
-    static void DataRead(
-                        bool necessaryShift,    // Признак того, что сигнал нужно смещать.
-                        bool saveToStorage      // Нужно в режиме рандомизатора для указания, что пора сохранять измерение
-                        );
-
     static int CalculateShift();
+
     // Инвертирует данные.
     static void InverseDataIsNecessary(Channel::E chan, uint16 *data);
 
@@ -94,9 +89,18 @@ private:
 
     static bool ProcessingData();
 
-    static void ReadRandomizeMode();
+private:
 
-    static void ReadRealMode(bool necessaryShift);
+    struct Reader
+    {
+
+        static void Read(bool necessaryShift, bool saveToStorage);
+
+        static void ReadRandomizeMode();
+
+        static void ReadRealMode(bool necessaryShift);
+
+    };
 
 public:
 

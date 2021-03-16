@@ -164,7 +164,7 @@ bool FPGA::ProcessingData(void)
             }
             Panel::EnableLEDTrig(true);
             FPGA::Stop(true);
-            DataRead(true, (num == 1) || (i == num - 1));
+            Reader::Read(true, (num == 1) || (i == num - 1));
             retValue = true;
             if (!START_MODE_IS_SINGLE)
             {
@@ -277,7 +277,7 @@ static uint8 InverseIfNecessary(uint8 data, Channel::E chan)
 */
 
 
-void FPGA::ReadRandomizeMode(void)
+void FPGA::Reader::ReadRandomizeMode(void)
 {
     int Tsm = CalculateShift();
     if (Tsm == NULL_TSHIFT)
@@ -389,7 +389,7 @@ void FPGA::ReadRandomizeMode(void)
 }
 
 
-void FPGA::ReadRealMode(bool necessaryShift)
+void FPGA::Reader::ReadRealMode(bool necessaryShift)
 {
     uint16 *p0 = &dataRel0[0];
     uint16 *p1 = &dataRel1[0];
@@ -459,7 +459,7 @@ void FPGA::ReadRealMode(bool necessaryShift)
 }
 
 
-void FPGA::DataRead(bool necessaryShift, bool saveToStorage) 
+void FPGA::Reader::Read(bool necessaryShift, bool saveToStorage) 
 {
     Panel::EnableLEDTrig(false);
     inProcessingOfRead = true;
