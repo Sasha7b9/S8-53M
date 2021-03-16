@@ -445,7 +445,7 @@ DEF_PAGE_3(pageADC, PageDebug::self, NamePage::DebugADC,
 
 static void OnChanged_Randomizer_SamplesForGates()
 {
-    FPGA::SetNumberMeasuresForGates(NUM_MEAS_FOR_GATES);
+    FPGA::Randomizer::SetNumberMeasuresForGates(NUM_MEAS_FOR_GATES);
 }
 
 DEF_GOVERNOR(mgRandomizer_SamplesForGates, PageDebug::PageRandomizer::self,

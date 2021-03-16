@@ -61,9 +61,6 @@ public:
     // ”дал€ет данные. Ќужно дл€ режима рандомизаотра, где информаци€ каждого цикла не €вл€етс€ самосто€тельной.
     static void ClearData();
 
-    // ”становить количество измерений, по которым будут рассчитыватьс€ ворота в режиме рандомизатора.
-    static void SetNumberMeasuresForGates(int number);
-
     // ѕринудительно запустить синхронизацию.
     static void SwitchingTrig();
 
@@ -185,6 +182,9 @@ public:
 
         // ¬озвращает true,если все точки получены в режиме рандомизатора.
         static bool AllPointsRandomizer();
+
+        // ”становить количество измерений, по которым будут рассчитыватьс€ ворота в режиме рандомизатора.
+        static void SetNumberMeasuresForGates(int number);
     };
 
     struct Calibrator

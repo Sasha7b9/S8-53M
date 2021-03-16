@@ -76,8 +76,8 @@ void FPGA::Init(void)
     Storage::Clear();
     FPGA::LoadSettings();
     FPGA::SetNumSignalsInSec(ENumSignalsInSec::NumSignalsInS());
-    FPGA::SetNumberMeasuresForGates(NUM_MEAS_FOR_GATES);
-    FPGA::SetNumberMeasuresForGates(NUM_MEAS_FOR_GATES);
+    FPGA::Randomizer::SetNumberMeasuresForGates(NUM_MEAS_FOR_GATES);
+    FPGA::Randomizer::SetNumberMeasuresForGates(NUM_MEAS_FOR_GATES);
 } 
 
 
@@ -890,7 +890,7 @@ void FPGA::InverseDataIsNecessary(Channel::E chan, uint16 *data)
 }
 
 
-void FPGA::SetNumberMeasuresForGates(int number)
+void FPGA::Randomizer::SetNumberMeasuresForGates(int number)
 {
     numberMeasuresForGates = number;
 }
