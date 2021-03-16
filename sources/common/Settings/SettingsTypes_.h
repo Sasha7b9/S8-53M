@@ -423,6 +423,8 @@ struct TrigPolarity
     // ѕереключение пол€рности - принудетиельный запуск сбора информации
     static void Switch();
 
+    static void Load();
+
     static uint timeSwitch;     // ¬рем€ принудительного запуска сбора информации
 };
 
@@ -667,11 +669,6 @@ struct CalibratorMode
 
 struct TrigLev
 {
-    struct Polarity
-    {
-        static void Load();
-    };
-
     static void Load();
 
     static void Set(TrigSource::E chan, int16 trigLev);

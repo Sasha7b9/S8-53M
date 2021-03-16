@@ -48,7 +48,7 @@ void FPGA::LoadSettings()
     Range::Load(ChB);
     RShift::Load(ChB);
     TrigLev::Load();
-    TrigLev::Polarity::Load();
+    TrigPolarity::Load();
     RegUPR::Load();
     TrigLev::Load();
 
@@ -462,7 +462,7 @@ void TrigSource::Set(E trigSource)
 void TrigPolarity::Set(E polarity)
 {
     TRIG_POLARITY = polarity;
-    TrigLev::Polarity::Load();
+    TrigPolarity::Load();
 }
 
 
@@ -485,7 +485,7 @@ void TrigPolarity::Switch()
 }
 
 
-void TrigLev::Polarity::Load()
+void TrigPolarity::Load()
 {
     FPGA::BUS::Write(WR_TRIG, TRIG_POLARITY_IS_FRONT ? 1U : 0U);
 }
