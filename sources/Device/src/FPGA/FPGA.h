@@ -147,6 +147,8 @@ public:
     {
         // Получить значение частоты.
         static float GetFreq();
+
+        static float freq;           // Частота, намеренная альтерой
     };
 
     struct State

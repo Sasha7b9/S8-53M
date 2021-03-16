@@ -12,7 +12,9 @@
 #include <cstring>
 
 
-static float freq = 0.0F;           // Частота, намеренная альтерой.
+float FPGA::FreqMeter::freq = 0.0f;
+
+
 volatile static float prevFreq = 0.0F;
 static StateWorkFPGA::E stateWork = StateWorkFPGA::Stop;
 
@@ -825,7 +827,7 @@ TBase::E FPGA::AutoFinder::FindTBase(Channel::E)
     else
     {
         TrigInput::Set(TrigInput::LPF);
-        freq = CalculateFreqFromCounterPeriod();
+        FreqMeter::freq = CalculateFreqFromCounterPeriod();
         if (fr > 0.0F)
         {
             tBase = CalculateTBase(fr);
