@@ -19,7 +19,7 @@ volatile static float prevFreq = 0.0F;
 static StateWorkFPGA::E stateWork = StateWorkFPGA::Stop;
 
 
-bool FPGA::inProcessingOfRead = false;
+bool FPGA::IN_PROCESSING_OF_READ = false;
 int FPGA::addShiftForFPGA = 0;
 int gAddNStop = 0;
 uint16 gPost = 1024;
@@ -401,7 +401,7 @@ void FPGA::Reader::ReadRealMode(bool necessaryShift)
         uint16 *p0max = p0min + 512;
         uint16 *p1min = p1;
         uint16 *p1max = p1min + 512;
-        while ((p0max < endP) && inProcessingOfRead)
+        while ((p0max < endP) && IN_PROCESSING_OF_READ)
         {
             uint16 data = *RD_ADC_B;
             *p1max++ = data;
@@ -415,7 +415,7 @@ void FPGA::Reader::ReadRealMode(bool necessaryShift)
     }
     else
     {
-        while ((p0 < endP) && inProcessingOfRead)
+        while ((p0 < endP) && IN_PROCESSING_OF_READ)
         {
             *p1++ = *RD_ADC_B;
             *p1++ = *RD_ADC_B;
@@ -462,7 +462,7 @@ void FPGA::Reader::ReadRealMode(bool necessaryShift)
 void FPGA::Reader::Read(bool necessaryShift, bool saveToStorage) 
 {
     Panel::EnableLEDTrig(false);
-    inProcessingOfRead = true;
+    IN_PROCESSING_OF_READ = true;
     if(static_cast<TBase::E>(ds.tBase) < TBase::_100ns)
     {
         ReadRandomizeMode();
@@ -491,7 +491,8 @@ void FPGA::Reader::Read(bool necessaryShift, bool saveToStorage)
             trigAutoFind = false;
         }
     }
-    inProcessingOfRead = false;
+
+    IN_PROCESSING_OF_READ = false;
 }
 
 
@@ -611,10 +612,10 @@ void FPGA::BUS::WriteToHardware(uint16 * const address, uint16 value, bool resta
     firstAfterWrite = true;
     if(restart)
     {
-        if(inProcessingOfRead)
+        if(IN_PROCESSING_OF_READ)
         {
             FPGA::Stop(true);
-            inProcessingOfRead = false;
+            IN_PROCESSING_OF_READ = false;
             HAL_FMC::Write(address, value);
             FPGA::Start();
         }

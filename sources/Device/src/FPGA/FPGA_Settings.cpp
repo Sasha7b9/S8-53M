@@ -387,7 +387,7 @@ void TShift::Load()
 
     gPost = (uint16)(~(gPost + 1));                   // Здесь просто для записи в железо дополняем
 
-    if (!FPGA_IN_PROCESS_OF_READ)
+    if (!FPGA::IN_PROCESSING_OF_READ)
     {
         if (SET_TBASE > 8)
         {

@@ -11,9 +11,6 @@ extern int16 gPred;
 extern int gAddNStop;
 
 
-#define FPGA_IN_PROCESS_OF_READ (FPGA::inProcessingOfRead)
-
-
 struct StateWorkFPGA { enum E {
     Stop,    // СТОП - не занимается считыванием информации.
     Wait,    // Ждёт поступления синхроимпульса.
@@ -37,7 +34,7 @@ class FPGA
 {
 public:
 
-    static bool inProcessingOfRead;
+    static bool IN_PROCESSING_OF_READ;
 
     static void Init();
 
