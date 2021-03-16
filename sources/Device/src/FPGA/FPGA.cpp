@@ -12,37 +12,22 @@
 #include <cstring>
 
 
+bool             FPGA::in_processing_of_read = false;
+int              FPGA::add_shift = 0;
+int              FPGA::add_N_stop = 0;
+uint16           FPGA::post = 1024;
+int16            FPGA::pred = 1024;
+FPGA::Flag       FPGA::flag;
+StateWorkFPGA::E FPGA::stateWork = StateWorkFPGA::Stop;
+
 float FPGA::FreqMeter::freq = 0.0f;
-
-
-volatile static float prevFreq = 0.0F;
-static StateWorkFPGA::E stateWork = StateWorkFPGA::Stop;
-
-
-bool   FPGA::in_processing_of_read = false;
-int    FPGA::add_shift = 0;
-int    FPGA::add_N_stop = 0;
-uint16 FPGA::post = 1024;
-int16  FPGA::pred = 1024;
-
-volatile static uint timeSwitchingTrig = 0;
-
-
-volatile static int numberMeasuresForGates = 1000;
 
 #define N_KR 100
 const int FPGA::Randomizer::Kr[] = { N_KR / 1, N_KR / 2, N_KR / 5, N_KR / 10, N_KR / 20 };
 
-FPGA::Flag FPGA::flag;
 
-FPGA::State FPGA::state =
-{
-    false,
-    StateWorkFPGA::Stop,
-    StateCalibration::None
-};
-
-
+volatile static uint timeSwitchingTrig = 0;
+volatile static int numberMeasuresForGates = 1000;
 static Settings storingSettings;                // Здесь нужно уменьшить необходимый размер памяти - сохранять настройки только альтеры
 static uint timeStart = 0;
 volatile static bool autoFindInProgress = false;
@@ -52,15 +37,18 @@ static bool criticalSituation = false;
 static bool firstAfterWrite = false;            // Используется в режиме рандомизатора. После записи любого параметра в альтеру нужно не использовать первое считанное данное с АЦП, потому что оно завышено и портит ворота
 
 
+FPGA::State FPGA::state =
+{
+    false,
+    StateWorkFPGA::Stop,
+    StateCalibration::None
+};
+
+
 // Функция вызывается, когда можно считывать очередной сигнал.
 static void OnTimerCanReadData();
 
 static void ReadPoint();
-
-//static void ReadFreq();
-
-//static void ReadPeriod();
-
 
 void FPGA::Init(void) 
 {
