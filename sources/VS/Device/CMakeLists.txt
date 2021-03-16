@@ -113,8 +113,7 @@ file(GLOB HARDWARE_HAL          ../../common/Hardware/HAL/HAL_.*
                                 ../../common/Hardware/HAL/HAL_USBD_.cpp)
 file(GLOB HARDWARE_USBD     ../../Device/src/Hardware/USBD/usbd_desc.cpp
                             ../../Device/src/Hardware/USBD/usbd_cdc_interface.*)
-file(GLOB MENU              ../../Device/src/Menu/*.h
-                            ../../Device/src/Menu/*.cpp)
+file(GLOB MENU              ../../Device/src/Menu/*.*)
 file(GLOB MENU_ITEMS        ../../Device/src/Menu/Items/*.*)
 file(GLOB MENU_PAGES        ../../Device/src/Menu/Pages/*.*)
 file(GLOB PANEL                 ../../common/Panel/Controls_.*
@@ -127,16 +126,12 @@ file(GLOB SRC                            src/main_win.cpp
                             ../../Device/src/Globals.*
                             ../../Device/src/Tables.*
                                 ../../common/Log_.*)
-file(GLOB VCP               ../../Device/src/VCP/*.h
-                            ../../Device/src/VCP/*.cpp)
-file(GLOB VCP_SCPI          ../../Device/src/VCP/SCPI/*.h
-                            ../../Device/src/VCP/SCPI/*.cpp)
+file(GLOB VCP               ../../Device/src/VCP/*.*)
+file(GLOB VCP_SCPI          ../../Device/src/VCP/SCPI/*.*)
 file(GLOB VCP_SCPI_UTILS    ../../Device/src/VCP/SCPI/Utils/*.*)
-file(GLOB UTILS             ../../Device/src/Utils/*.h
-                            ../../Device/src/Utils/*.cpp
+file(GLOB UTILS             ../../Device/src/Utils/*.*
                                 ../../common/Utils/*)
-file(GLOB GUI                            src/GUI/*.h
-                                         src/GUI/*.cpp)
+file(GLOB GUI                            src/GUI/*.*)
 file(GLOB GUI_CONTROLS                   src/GUI/Controls/*.*)
 file(GLOB GUI_DIALOGS                    src/GUI/Dialogs/*.*)
 file(GLOB GUI_VCP                        src/GUI/VCP/*.*)

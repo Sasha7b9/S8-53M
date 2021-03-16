@@ -20,13 +20,12 @@ public:
     bool IsEmpty() const;
 
     T &operator[](int n);
+
 private:
 
     void Destroy();
-    // Указатель на массив элементов
-    T *pointer;
-    // Индекс первого элемента
-    int iFront;
-    // Индекс элемента за последним
-    int iBack;
+    
+    T *pointer;         // Указатель на массив элементов
+    int iFront;         // Индекс первого элемента
+    int iBack;          // Индекс элемента за последним
 };

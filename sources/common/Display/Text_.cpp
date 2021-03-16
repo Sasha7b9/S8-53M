@@ -733,12 +733,19 @@ int Text::DrawInCenterRectAndBoundIt(int x, int y, int width, int height, Color 
     return DrawInCenterRect(x, y, width, height);
 }
 
+
 Text::Text(char *format, ...) : text("")
 {
     std::va_list args;
     va_start(args, format);
     text.Set(TypeConversionString::None, format, args); //-V510
     va_end(args);
+}
+
+
+Text::~Text()
+{
+    text.Free();
 }
 
 

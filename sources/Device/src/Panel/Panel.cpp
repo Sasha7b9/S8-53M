@@ -3,6 +3,7 @@
 #include "common/Hardware/Sound_.h"
 #include "common/Hardware/Timer_.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "common/Utils/Mutex_.h"
 #include "common/Utils/Queue_.h"
 #include "FPGA/FPGA.h"
 #include "Menu/Menu.h"
@@ -26,13 +27,57 @@
 static const uint MIN_TIME = 500;
 
 static Key::E pressedKey = Key::None;
-volatile static Key::E pressedButton = Key::None;         // Это используется для отслеживания нажатой кнопки при отключенной панели
+volatile static Key::E pressedButton = Key::None;         // Это используется для отслеживания нажатой кнопки при
+                                                          // отключенной панели
 static uint16 dataTransmitted[MAX_DATA] = {0x00};
 static uint16 numDataForTransmitted = 0;
 bool Panel::isRunning = true;
 
 
-static Queue <uint8>queue;
+struct ReceivedBuffer
+{
+    ReceivedBuffer() : pointer(0) {}
+
+    void Push(uint8 byte)
+    {
+        if (pointer < SIZE)
+        {
+            buffer[pointer++] = byte;
+        }
+    }
+
+    int Size() const
+    {
+        return pointer;
+    }
+
+    void Clear()
+    {
+        pointer = 0;
+    }
+
+    uint8 &operator[](int n)
+    {
+        if (n > (pointer - 1))
+        {
+            return buffer[0];
+        }
+
+        return buffer[pointer];
+    }
+
+    Mutex mutex;    // При работе с буфером главный цикл лочит этот мьютекс, а прерывание проверяет, не залочен ли он
+
+private:
+
+    static const int SIZE = 20;
+    uint8 buffer[SIZE];
+    int pointer;
+};
+
+
+static ReceivedBuffer received_buffer;      // Прерывание от панели сюда складывает принятые данные
+static Queue<uint8> queue;                  // А здесь идёт обработка принятных данных
 
 
 static void HelpLong();
@@ -221,9 +266,25 @@ static const pFuncVV funculatorRight[Key::Count] =
 };
 
 
+static void CopyData()
+{
+    received_buffer.mutex.Lock();
+
+    for (int i = 0; i < received_buffer.Size(); i++)
+    {
+        queue.Push(received_buffer[i]);
+    }
+
+    received_buffer.Clear();
+
+    received_buffer.mutex.Unlock();
+}
+
 
 void Panel::Update()
 {
+    CopyData();
+
     while (queue.Size() != 0 && queue[0] != 0xFF)
     {
         queue.Front();
@@ -235,6 +296,7 @@ void Panel::Update()
     }
 
     queue.Front();
+
     Key::E key = (Key::E)queue.Front();
     Action action(queue.Front());
 
@@ -282,50 +344,22 @@ void Panel::Update()
 
 void Panel::CallbackOnReceiveSPI5(uint8 *data, int size)
 {
-    char buffer[100];
+    static ReceivedBuffer buffer;
 
-    if (size != 3)
+    for (int i = 0; i < size; i++)              // Сначала сохраняем данные в промежуточный буфер
     {
-        goto EXIT_ERROR;
+        buffer.Push(data[i]);
     }
 
-    if (data[0] != 0xff)
+    if (!received_buffer.mutex.IsLocked())      // А затем, если основной буфер не заблокирован
     {
-        goto EXIT_ERROR;
+        for (int i = 0; i < buffer.Size(); i++)
+        {
+            received_buffer.Push(buffer[i]);    // сохраняем в нём все несохранённые данные
+        }
+
+        buffer.Clear();                         // И не забываем очистить прожежуточный
     }
-
-    if (data[1] >= Key::Count)
-    {
-        goto EXIT_ERROR;
-    }
-
-    if (data[2] >= Action::Count)
-    {
-        goto EXIT_ERROR;
-    }
-
-    for (int i = 0; i < size; i++)
-    {
-        queue.Push(*data++);
-    }
-
-    return;
-
-//    char buffer[100] = { 0 };
-//
-//    for (int i = 0; i < queue.Size(); i++)
-//    {
-//        char buf[10];
-//        std::sprintf(buf, "%d ", queue[i]);
-//
-//        std::strcat(buffer, buf);
-//    }
-//
-//    LOG_WRITE(buffer);
-
-EXIT_ERROR:
-
-    LOG_WRITE("%s : %s", __FUNCTION__, GF::PrintArrayUint8(data, size, buffer));
 }
 
 void Panel::EnableLEDChannel0(bool enable)

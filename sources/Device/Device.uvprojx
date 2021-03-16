@@ -2053,6 +2053,16 @@
               <FilePath>.\src\Utils\Measures.cpp</FilePath>
             </File>
             <File>
+              <FileName>Mutex_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\Mutex_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Mutex_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\Mutex_.cpp</FilePath>
+            </File>
+            <File>
               <FileName>ProcessingSignal.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Utils\ProcessingSignal.h</FilePath>
@@ -4236,6 +4246,16 @@
               <FileName>Measures.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Utils\Measures.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Mutex_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\Mutex_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Mutex_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\Mutex_.cpp</FilePath>
             </File>
             <File>
               <FileName>ProcessingSignal.h</FileName>

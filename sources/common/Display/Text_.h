@@ -22,6 +22,7 @@ class Text
 public:
     Text(char *format, ...);
     Text(pString t) : text(t) {};
+    ~Text();
     int Draw(int x, int y, Color color = Color::Count);
     void DrawInRect(int x, int y, int width, int height);
     void DrawBig(int x, int y, int size);
