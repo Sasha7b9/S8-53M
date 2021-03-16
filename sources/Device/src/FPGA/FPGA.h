@@ -74,9 +74,6 @@ public:
 
     static int addShiftForFPGA;
 
-    // Загрузить все параметры напряжения каналов и синхронизации в аппаратную часть.
-    static void SetAttribChannelsAndTrig(TypeWriteAnalog::E type);
-
 private:
     // Загрузить настройки в аппаратную часть из глобальной структуры SSettings.
     static void LoadSettings();
@@ -141,6 +138,9 @@ public:
         static void WriteToDAC(TypeWriteDAC::E type, uint16 data);
 
         static void WriteToAnalog(TypeWriteAnalog::E type, uint data);
+
+        // Загрузить все параметры напряжения каналов и синхронизации в аппаратную часть.
+        static void SetAttribChannelsAndTrig(TypeWriteAnalog::E type);
     };
 
     struct Flag

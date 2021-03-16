@@ -89,7 +89,7 @@ void FPGA::LoadSettings()
 }
 
 
-void FPGA::SetAttribChannelsAndTrig(TypeWriteAnalog::E type) 
+void FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::E type) 
 {
     uint data = 0;
 
@@ -162,7 +162,7 @@ void Range::Set(Channel::E chan, Range::E range)
 
 void Range::Load(Channel::E chan)
 {
-    FPGA::SetAttribChannelsAndTrig(TypeWriteAnalog::Range0);
+    FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::Range0);
     RShift::Load(chan);
     if (chan == (Channel::E)TRIG_SOURCE)
     {
@@ -444,7 +444,7 @@ bool Range::Decrease(Channel::E chan)
 void TrigSource::Set(E trigSource)
 {
     TRIG_SOURCE = trigSource;
-    FPGA::SetAttribChannelsAndTrig(TypeWriteAnalog::TrigParam);
+    FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::TrigParam);
     if (!TRIG_SOURCE_IS_EXT)
     {
         TrigLev::Set(TRIG_SOURCE, TRIG_LEVEL_SOURCE);
@@ -468,14 +468,14 @@ void TrigLev::Polarity::Load()
 void TrigInput::Set(E trigInput)
 {
     TRIG_INPUT = trigInput;
-    FPGA::SetAttribChannelsAndTrig(TypeWriteAnalog::TrigParam);
+    FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::TrigParam);
 }
 
 
 void ChannelFiltr::Enable(Channel::E chan, bool enable)
 {
     SET_FILTR(chan) = enable;
-    FPGA::SetAttribChannelsAndTrig(chan == ChA ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
+    FPGA::BUS::SetAttribChannelsAndTrig(chan == ChA ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
 }
 
 

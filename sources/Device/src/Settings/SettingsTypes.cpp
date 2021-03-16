@@ -202,6 +202,6 @@ void PeackDetMode::Set(PeackDetMode::E peackDetMode)
 void ModeCouple::Set(Channel::E chan, ModeCouple::E modeCoupe)
 {
     SET_COUPLE(chan) = modeCoupe;
-    FPGA::SetAttribChannelsAndTrig(chan == ChA ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
+    FPGA::BUS::SetAttribChannelsAndTrig(chan == ChA ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
     RShift::Set(chan, SET_RSHIFT(chan));
 }
