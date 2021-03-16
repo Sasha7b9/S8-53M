@@ -98,20 +98,20 @@ private:
 
     static void ReadRealMode(bool necessaryShift);
 
-    static Range::E AccurateFindRange(Channel::E chan);
-
-    static TBase::E FindTBase(Channel::E chan);
-
-    static TBase::E AccurateFindTBase(Channel::E chan);
-
-    static bool FindWave(Channel::E chan);
-
 public:
 
     // Поиск сигнала
     struct AutoFinder
     {
         static void Find();
+
+        static bool FindWave(Channel::E chan);
+
+        static Range::E AccurateFindRange(Channel::E chan);
+
+        static TBase::E FindTBase(Channel::E chan);
+
+        static TBase::E AccurateFindTBase(Channel::E chan);
     };
 
     struct BUS

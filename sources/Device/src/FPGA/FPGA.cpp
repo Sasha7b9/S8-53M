@@ -987,7 +987,7 @@ void FPGA::AutoFinder::Find(void)
 }
 
 
-bool FPGA::FindWave(Channel::E chan)
+bool FPGA::AutoFinder::FindWave(Channel::E chan)
 {
     Settings settings = set;    // Сохраняем предыдущие настройки
 
@@ -1017,7 +1017,7 @@ bool FPGA::FindWave(Channel::E chan)
 }
 
 
-Range::E FPGA::AccurateFindRange(Channel::E chan)
+Range::E FPGA::AutoFinder::AccurateFindRange(Channel::E chan)
 {
     /*
     Алгоритм поиска.
@@ -1110,7 +1110,7 @@ Range::E FPGA::AccurateFindRange(Channel::E chan)
 }
 
 
-TBase::E FPGA::AccurateFindTBase(Channel::E chan)
+TBase::E FPGA::AutoFinder::AccurateFindTBase(Channel::E chan)
 {
     for (int i = 0; i < 5; i++)
     {
@@ -1126,7 +1126,7 @@ TBase::E FPGA::AccurateFindTBase(Channel::E chan)
 }
 
 
-TBase::E FPGA::FindTBase(Channel::E)
+TBase::E FPGA::AutoFinder::FindTBase(Channel::E)
 {
     TrigInput::Set(TrigInput::Full);
     HAL_TIM2::Delay(10);
