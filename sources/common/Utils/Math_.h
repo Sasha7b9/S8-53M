@@ -28,18 +28,18 @@
 
 namespace Math
 {
-    uint8   GetMaxFromArray(puchar data, int firstPoint, int lastPoint);
+    uint8 GetMaxFromArray(puchar data, int first_point, int last_point);
 
-    uint8   GetMinFromArray(puchar data, int firstPoint, int lastPoint);
+    uint8 GetMinFromArray(puchar data, int first_point, int last_point);
 
     // Возвращает координату x пересечения линии, проходящей через (x0, y0), (x1, y1), с горизонтальной линией, проходящей через точку с ординатой yHorLine.
-    float   GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, int yHorLine);
+    float GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, int yHorLine);
 
     // Сравнивает два числа. Возвращает true, если числа отличаются друг от друга не более, чем на epsilonPart. При этом для расчёта epsilonPart 
     // используется большее в смысле модуля число.
-    bool    FloatsIsEquals(float value0, float value1, float epsilonPart);
+    bool FloatsIsEquals(float val1, float val2, float epsilon_part);
 
-    float   RandFloat(float min, float max);
+    float RandFloat(float min, float max);
 
     int8    AddInt8WithLimitation(int8 value, int8 delta, int8 min, int8 max);
 

@@ -154,22 +154,22 @@ uint8 Math::GetMinFromArray(puchar data, int firstPoint, int lastPoint)
 }
 
 
-uint8 Math::GetMaxFromArray(puchar data, int firstPoint, int lastPoint)
+uint8 Math::GetMaxFromArray(puchar data, int first_point, int last_point)
 {
 
 #define MAX_IF_ABOVE if(d > max) { max = d; }
 
     uint8 max = 0;
-    puchar pointer = &data[firstPoint];
+    puchar pointer = &data[first_point];
 
-    for (int i = firstPoint; i < lastPoint; i += 2)
+    for (int i = first_point; i < last_point; i += 2)
     {
         uint8 d = *pointer++;
         MAX_IF_ABOVE;
         d = *pointer++;
         MAX_IF_ABOVE;
     }
-    if ((lastPoint - firstPoint + 1) & 1)
+    if ((last_point - first_point + 1) & 1)
     {
         uint8 d = *pointer;
         MAX_IF_ABOVE
