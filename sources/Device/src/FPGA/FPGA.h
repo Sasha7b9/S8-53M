@@ -33,13 +33,6 @@ struct StateCalibration { enum E {
 };};
 
 
-struct TypeRecord { enum E {
-    FPGA,
-    Analog,
-    DAC
-}; };
-
-
 class FPGA
 {
 public:
@@ -134,6 +127,16 @@ public:
 
     struct BUS
     {
+        struct TypeRecord
+        {
+            enum E
+            {
+                FPGA,
+                Analog,
+                DAC
+            };
+        };
+
         // Запись в регистр ПЛИС нового значения:
         // address - адрес регистра,
         // value - записываемое значение,
