@@ -215,7 +215,7 @@ void TBase::Load()
     };
 
     TBase::E tBase = SET_TBASE;
-    uint8 mask = PEAKDET ? masksTBase[tBase].maskPeackDet : masksTBase[tBase].maskNorm;
+    uint8 mask = (PEAKDET == PeackDetMode::Disable) ? masksTBase[tBase].maskNorm : masksTBase[tBase].maskPeackDet;
 
     char buffer[10];
 
