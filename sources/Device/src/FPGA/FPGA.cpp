@@ -18,7 +18,7 @@ int              FPGA::add_N_stop = 0;
 uint16           FPGA::post = 1024;
 int16            FPGA::pred = 1024;
 FPGA::Flag       FPGA::flag;
-StateWorkFPGA::E FPGA::stateWork = StateWorkFPGA::Stop;
+StateWorkFPGA::E FPGA::state_work = StateWorkFPGA::Stop;
 uint             FPGA::time_start = 0;
 
 float FPGA::FreqMeter::freq = 0.0f;
@@ -85,7 +85,7 @@ void FPGA::Start(void)
     HAL_FMC::Write(WR_START, 1);
 
     time_start = TIME_MS;
-    stateWork = StateWorkFPGA::Wait;
+    state_work = StateWorkFPGA::Wait;
     criticalSituation = false;
 }
 
@@ -131,7 +131,7 @@ bool FPGA::ProcessingData(void)
             if (!START_MODE_IS_SINGLE)
             {
                 Start();
-                stateWork = StateWorkFPGA::Work;
+                state_work = StateWorkFPGA::Work;
             }
             else
             {
@@ -178,13 +178,13 @@ void FPGA::Update(void)
 
 StateWorkFPGA::E FPGA::CurrentStateWork(void)
 {
-    return stateWork;
+    return state_work;
 }
 
 
 void FPGA::OnPressStartStop(void)
 {
-    if(stateWork == StateWorkFPGA::Stop) 
+    if(state_work == StateWorkFPGA::Stop) 
     {
         FPGA::Start();
     } 
@@ -199,13 +199,13 @@ void FPGA::Stop(bool pause)
 {
     Timer::Disable(TypeTimer::P2P);
     HAL_FMC::Write(WR_STOP, 1);
-    stateWork = pause ? StateWorkFPGA::Pause : StateWorkFPGA::Stop;
+    state_work = pause ? StateWorkFPGA::Pause : StateWorkFPGA::Stop;
 }
 
 
 bool FPGA::IsRunning(void)
 {
-    return stateWork != StateWorkFPGA::Stop;
+    return state_work != StateWorkFPGA::Stop;
 }
 
 
@@ -354,7 +354,7 @@ void ReadPoint(void)
 
 void FPGA::State::Save(void)
 {
-    FPGA::state.stateWorkBeforeCalibration = stateWork;
+    FPGA::state.stateWorkBeforeCalibration = state_work;
     storingSettings = set;
 }
 
