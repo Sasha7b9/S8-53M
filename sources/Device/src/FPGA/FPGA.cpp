@@ -38,7 +38,7 @@ const int Kr[] = { N_KR / 1, N_KR / 2, N_KR / 5, N_KR / 10, N_KR / 20 };
 
 static DataSettings ds;
 
-uint16 FPGA::Flag::flag = 0U;
+FPGA::Flag FPGA::flag;
 
 FPGA::State FPGA::state =
 {
@@ -142,7 +142,7 @@ bool FPGA::ProcessingData(void)
     
    for (int i = 0; i < num; i++)
    {
-        uint16 flag = Flag::Read();
+        flag.Read();
 
         if (criticalSituation)
         {
@@ -152,17 +152,17 @@ bool FPGA::ProcessingData(void)
                 trigAutoFind = true;
                 criticalSituation = false;
             }
-            else if (_GET_BIT(flag, FL_TRIG_READY))
+            else if (flag.IsTrigReady())
             {
                 criticalSituation = false;
             }
         }
-        else if (_GET_BIT(flag, FL_DATA_READY))
+        else if (flag.IsDataReady())
         {
             if (set.debug.showRegisters.flag)
             {
                 char buffer[9];
-                LOG_WRITE("флаг готовности %s", GF::Bin2String16(flag, buffer));
+                LOG_WRITE("флаг готовности %s", GF::Bin2String16(flag.flag, buffer));
             }
             Panel::EnableLEDTrig(true);
             FPGA::Stop(true);
@@ -180,7 +180,7 @@ bool FPGA::ProcessingData(void)
         }
         else
         {
-            if (flag & (1 << 2))
+            if (flag.flag & (1 << 2))
             {
                 if (START_MODE_IS_AUTO)
                 {
@@ -189,7 +189,7 @@ bool FPGA::ProcessingData(void)
                 timeStart = TIME_MS;
             }
         }
-        Panel::EnableLEDTrig(_GET_BIT(flag, FL_TRIG_READY) ? true : false);
+        Panel::EnableLEDTrig(flag.IsTrigReady() ? true : false);
     }
 
     return retValue;
@@ -198,25 +198,28 @@ bool FPGA::ProcessingData(void)
 
 void FPGA::Update(void)
 {
-    uint16 flag = Flag::Read();
-
-    static int pred_state = 0;
-
-    int st = _GET_BIT(flag, FL_PRED_READY);
-
-    if (st != pred_state)
-    {
-        if (st == 1)
-        {
-            LOG_WRITE("Предзапуск готов");
-        }
-        else
-        {
-            LOG_WRITE("         Предзапуск не готов");
-        }
-    }
-
-    pred_state = st;
+//    uint16 flag = Flag::Read();
+//
+//    if(_GET_BIT(flag, FL_PRED_READY))
+//
+//
+//    static int pred_state = 1;
+//
+//    int st = _GET_BIT(flag, FL_PRED_READY);
+//
+//    if (st != pred_state)
+//    {
+//        if (st == 1)
+//        {
+//            LOG_WRITE("Предзапуск готов");
+//        }
+//        else
+//        {
+//            LOG_WRITE("         Предзапуск не готов");
+//        }
+//    }
+//
+//    pred_state = st;
 
 
     /*
@@ -655,7 +658,9 @@ void FPGA::BUS::WriteWithoutStart(uint16 * const address, uint16 data)
 
 void ReadPoint(void)
 {
-    if(_GET_BIT(FPGA::Flag::Read(), FL_POINT_READY))
+    FPGA::flag.Read();
+
+    if(FPGA::flag.IsPointReady())
     {
         uint16 dataB1 = *RD_ADC_B;
         uint16 dataB2 = *RD_ADC_B;
@@ -784,7 +789,25 @@ static float PeriodCounterToValue(const BitSet32 *period)
 //}
 
 
-uint16 FPGA::Flag::Read()
+bool FPGA::Flag::IsTrigReady() const
+{
+    return _GET_BIT(flag, FL_TRIG_READY) == 1;
+}
+
+
+bool FPGA::Flag::IsDataReady() const
+{
+    return _GET_BIT(flag, FL_DATA_READY) == 1;
+}
+
+
+bool FPGA::Flag::IsPointReady() const
+{
+    return _GET_BIT(flag, FL_POINT_READY) == 1;
+}
+
+
+void FPGA::Flag::Read()
 {
     flag = HAL_FMC::Read(RD_FL);
 
@@ -799,8 +822,6 @@ uint16 FPGA::Flag::Read()
 //    {
 //        ReadPeriod();
 //    }
-
-    return flag;
 }
 
 

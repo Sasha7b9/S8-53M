@@ -131,9 +131,15 @@ public:
 
     struct Flag
     {
-        static uint16 Read();
-        static uint16 flag;
+        Flag() : flag(0) {}
+        void Read();
+        bool IsTrigReady() const;
+        bool IsDataReady() const;
+        bool IsPointReady() const;
+        uint16 flag;
     };
+
+    static Flag flag;
 
     struct FreqMeter
     {
