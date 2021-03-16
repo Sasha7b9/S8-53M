@@ -99,7 +99,7 @@ void PageHelpContent::PrevParagraph()
 {
     if(currentPage->OwnData()->type == TypePageHelp::Content)
     {
-        GF::CircleDecreaseInt(&currentParagraph, 0, NumParagraphs(currentPage) - 1);
+        GF::CircleDecrease<int>(&currentParagraph, 0, NumParagraphs(currentPage) - 1);
     }
 }
 

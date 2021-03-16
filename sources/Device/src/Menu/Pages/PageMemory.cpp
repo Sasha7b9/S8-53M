@@ -99,7 +99,7 @@ void PressSB_MemLast_Next()
 
 void PressSB_MemLast_Prev()
 {
-    GF::CircleDecreaseInt16(&PageMemory::PageLatest::currentSignal, 0, static_cast<int16>(Storage::AllDatas() - 1));
+    GF::CircleDecrease<int16>(&PageMemory::PageLatest::currentSignal, 0, static_cast<int16>(Storage::AllDatas() - 1));
 }
 
 static void RotateSB_MemLast(int angle)
@@ -362,8 +362,8 @@ void OnMemExtSetMaskNameRegSet(int angle, int maxIndex)
 {
     int8(*func[3])(int8 *, int8, int8) =
     {
-        GF::CircleDecreaseInt8,
-        GF::CircleDecreaseInt8,
+        GF::CircleDecrease<int8>,
+        GF::CircleDecrease<int8>,
         GF::CircleIncrease<int8>
     };
 
@@ -565,7 +565,7 @@ static void FuncOnRegSetMemInt(int delta)
     Sound::RegulatorSwitchRotate();
     if (delta < 0)
     {
-        GF::CircleDecreaseInt8(&PageMemory::PageInternal::currentSignal, 0, MAX_NUM_SAVED_WAVES - 1);
+        GF::CircleDecrease<int8>(&PageMemory::PageInternal::currentSignal, 0, MAX_NUM_SAVED_WAVES - 1);
     }
     else if (delta > 0)
     {

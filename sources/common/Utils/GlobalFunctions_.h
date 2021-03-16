@@ -43,11 +43,8 @@ namespace GF
     T CircleIncrease(T *val, T min, T max);
 
     // Умеьшает значение по адресу val на 1. Затем, если результат меньше min, приравнивает его max
-    int8 CircleDecreaseInt8(int8 *val, int8 min, int8 max);
-
-    int16 CircleDecreaseInt16(int16 *val, int16 min, int16 max);
-
-    int CircleDecreaseInt(int *val, int min, int max);
+    template<class T>
+    T CircleDecrease(T *val, T min, T max);
 
     // Увелечивает значение по адресу val на delta. Затем, если результат больше max, приравнивает его min
     float CircleAddFloat(float *val, float delta, float min, float max);

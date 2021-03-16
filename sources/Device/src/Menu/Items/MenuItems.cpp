@@ -190,7 +190,7 @@ float Choice::Step() const
             {
                 return delta;
             }
-            GF::CircleDecreaseInt8(own->cell, 0, static_cast<int8>(NumSubItems() - 1));
+            GF::CircleDecrease<int8>(own->cell, 0, static_cast<int8>(NumSubItems() - 1));
         }
         tsChoice.choice = 0;
         FuncOnChanged(IsActive());
