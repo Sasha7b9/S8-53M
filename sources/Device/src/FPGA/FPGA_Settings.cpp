@@ -348,24 +348,23 @@ void TShift::Load()
 
     if (IN_RANDOM_MODE)
     {
-        extern const int Kr[];
         int k = 0;
         if (SET_TPOS_IS_LEFT)
         {
-            k = SET_POINTS_IN_CHANNEL % Kr[tBase];
+            k = SET_POINTS_IN_CHANNEL % FPGA::Randomizer::Kr[tBase];
         }
         else if (SET_TPOS_IS_CENTER)
         {
-            k = (SET_POINTS_IN_CHANNEL / 2) % Kr[tBase];
+            k = (SET_POINTS_IN_CHANNEL / 2) % FPGA::Randomizer::Kr[tBase];
         }
 
-        FPGA::post = (uint16)((2 * FPGA::post - k) / Kr[tBase]);
+        FPGA::post = (uint16)((2 * FPGA::post - k) / FPGA::Randomizer::Kr[tBase]);
 
-        FPGA::add_shift = (TSHIFT * 2) % Kr[tBase];
+        FPGA::add_shift = (TSHIFT * 2) % FPGA::Randomizer::Kr[tBase];
 
         if (FPGA::add_shift < 0)
         {
-            FPGA::add_shift = Kr[tBase] + FPGA::add_shift;
+            FPGA::add_shift = FPGA::Randomizer::Kr[tBase] + FPGA::add_shift;
         }
 
         FPGA::pred = ~(PRETRIGGERED);
@@ -534,4 +533,6 @@ void TrigLev::FindAndSet()
     int16 trigLev = static_cast<int16>(TrigLevZero + scale * (static_cast<int>(aveValue) - AVE_VALUE) - (SET_RSHIFT(chanTrig) - RShiftZero));
 
     TrigLev::Set(trigSource, trigLev);
+
+    need_auto_find = false;
 }

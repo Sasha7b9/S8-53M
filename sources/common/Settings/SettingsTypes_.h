@@ -472,6 +472,8 @@ struct TShift
 
     // ¬озвращает установленное смещение по времени в текстовом виде, пригодном дл€ вывода на экран.
     static pchar ToString(int16 tshift_rel, char buffer[20]);
+
+    static const int NULL_VALUE = 1000000;
 };
 
 
@@ -675,6 +677,8 @@ struct TrigLev
 
     // Ќайти и установить уровень синхронизации по последнему считанному сигналу
     static void FindAndSet();
+
+    static bool need_auto_find;   // ≈сли true, то нужно произвести поиск синхронизации
 };
 
 

@@ -12,11 +12,8 @@ int16  FPGA::pred = 1024;
 int    FPGA::add_N_stop = 0;
 bool   FPGA::in_processing_of_read = false;
 int    FPGA::add_shift = 0;
-
-extern const int Kr[];
-
 #define N_KR 100
-const int Kr[] = { N_KR / 1, N_KR / 2, N_KR / 5, N_KR / 10, N_KR / 20 };
+const int FPGA::Randomizer::Kr[] = { N_KR / 1, N_KR / 2, N_KR / 5, N_KR / 10, N_KR / 20 };
 
 
 void FPGA::BUS::WriteToDAC(TypeWriteDAC::E, uint16)
@@ -28,12 +25,6 @@ void FPGA::BUS::WriteToDAC(TypeWriteDAC::E, uint16)
 void FPGA::BUS::WriteToAnalog(TypeWriteAnalog::E, uint)
 {
 
-}
-
-
-void FPGA::Randomizer::SetAdditionShift(int shift)
-{
-    additionShift = shift;
 }
 
 
@@ -104,12 +95,6 @@ void FPGA::Init()
 
 
 void FPGA::StartAutoFind()
-{
-
-}
-
-
-void FPGA::ClearData()
 {
 
 }

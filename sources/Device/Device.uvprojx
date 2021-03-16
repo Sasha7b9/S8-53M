@@ -1617,19 +1617,14 @@
               <FilePath>.\src\FPGA\FPGA_Calibration.cpp</FilePath>
             </File>
             <File>
+              <FileName>FPGA_Reader.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\FPGA\FPGA_Reader.cpp</FilePath>
+            </File>
+            <File>
               <FileName>FPGA_Settings.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\FPGA\FPGA_Settings.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Storage.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\FPGA\Storage.h</FilePath>
-            </File>
-            <File>
-              <FileName>Storage.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\FPGA\Storage.cpp</FilePath>
             </File>
             <File>
               <FileName>MathFPGA.h</FileName>
@@ -1640,6 +1635,16 @@
               <FileName>MathFPGA.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\FPGA\MathFPGA.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Storage.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\FPGA\Storage.h</FilePath>
+            </File>
+            <File>
+              <FileName>Storage.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\FPGA\Storage.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -3802,19 +3807,14 @@
               <FilePath>.\src\FPGA\FPGA_Calibration.cpp</FilePath>
             </File>
             <File>
+              <FileName>FPGA_Reader.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\FPGA\FPGA_Reader.cpp</FilePath>
+            </File>
+            <File>
               <FileName>FPGA_Settings.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\FPGA\FPGA_Settings.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Storage.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\FPGA\Storage.h</FilePath>
-            </File>
-            <File>
-              <FileName>Storage.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\FPGA\Storage.cpp</FilePath>
             </File>
             <File>
               <FileName>MathFPGA.h</FileName>
@@ -3825,6 +3825,16 @@
               <FileName>MathFPGA.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\FPGA\MathFPGA.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Storage.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\FPGA\Storage.h</FilePath>
+            </File>
+            <File>
+              <FileName>Storage.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\FPGA\Storage.cpp</FilePath>
             </File>
           </Files>
         </Group>

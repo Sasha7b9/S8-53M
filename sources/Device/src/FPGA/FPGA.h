@@ -1,5 +1,6 @@
 #pragma once
-#include "FPGA_Types.h"
+#include "FPGA/DataSettings.h"
+#include "FPGA/FPGA_Types.h"
 #include "Settings/SettingsTrig.h"
 #include "Settings/SettingsService.h"
 
@@ -55,9 +56,6 @@ public:
     // Возвращает true, если прибор находится не в процессе сбора информации.
     static bool IsRunning();
 
-    // Удаляет данные. Нужно для режима рандомизаотра, где информация каждого цикла не является самостоятельной.
-    static void ClearData();
-
     // Запустить процесс поиска сигнала.
     static void StartAutoFind();
 
@@ -81,10 +79,11 @@ private:
 
     static bool ProcessingData();
 
-private:
+public:
 
     struct Reader
     {
+        static void ClearData();
 
         static void Read(bool necessaryShift, bool saveToStorage);
 
@@ -92,9 +91,14 @@ private:
 
         static void ReadRealMode(bool necessaryShift);
 
-    };
+        static DataSettings ds;
 
-public:
+        static uint16 data_rel_A[FPGA_MAX_POINTS];  // Буфер используется для чтения данных первого канала
+        static uint16 data_rel_B[FPGA_MAX_POINTS];  // Буфер используется для чтения данных второго канала
+
+        static int addition_shift;                  // Дополнительное смещение. Нужно для правильной расстановки точек
+                                                    // в режиме рандомизатора
+    };
 
     // Поиск сигнала
     struct AutoFinder
@@ -162,9 +166,6 @@ public:
 
     struct Randomizer
     {
-        // Установить дополнительное смещение. Нужно для правильной расстановки точек в режиме рандомизатора.
-        static void SetAdditionShift(int shift);
-
         // Возвращает true,если все точки получены в режиме рандомизатора.
         static bool AllPointsRandomizer();
 
@@ -172,6 +173,8 @@ public:
         static void SetNumberMeasuresForGates(int number);
 
         static bool CalculateGate(uint16 rand, uint16 *min, uint16 *max);
+
+        static const int Kr[];
     };
 
     struct Calibrator

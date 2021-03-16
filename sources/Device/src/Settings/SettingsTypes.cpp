@@ -9,6 +9,9 @@
 #include "Settings/SettingsChannel.h"
 
 
+bool TrigLev::need_auto_find = false;
+
+
 int Divider::ToAbs(Divider::E multiplier)
 {
     static const int results[2] = { 1, 10 };
