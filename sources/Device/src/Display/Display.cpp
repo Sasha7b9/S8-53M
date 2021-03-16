@@ -874,7 +874,7 @@ void Display::DrawDataInRect(int x, int width, puchar data, int numElems, Channe
     int height = 14;
     float scale = (float)height / (float)(MAX_VALUE - MIN_VALUE);
 
-#define ORDINATE(x) bottom - scale * LimitationInt((x) - MIN_VALUE, 0, 200)
+#define ORDINATE(x) bottom - scale * Math::Limitation<int>((x) - MIN_VALUE, 0, 200)
 
 #define NUM_POINTS (300 * 2)
     uint8 points[NUM_POINTS];

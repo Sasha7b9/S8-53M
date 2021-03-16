@@ -32,11 +32,12 @@ namespace Math
 
     uint8 GetMinFromArray(puchar data, int first_point, int last_point);
 
-    // Возвращает координату x пересечения линии, проходящей через (x0, y0), (x1, y1), с горизонтальной линией, проходящей через точку с ординатой yHorLine.
-    float GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, int yHorLine);
+    // Возвращает координату x пересечения линии, проходящей через (x0, y0), (x1, y1), с горизонтальной линией,
+    // проходящей через точку с ординатой yHorLine.
+    float GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, int y_hor_line);
 
-    // Сравнивает два числа. Возвращает true, если числа отличаются друг от друга не более, чем на epsilonPart. При этом для расчёта epsilonPart 
-    // используется большее в смысле модуля число.
+    // Сравнивает два числа. Возвращает true, если числа отличаются друг от друга не более, чем на epsilon_part.
+    // При этом для расчёта epsilon_part используется большее в смысле модуля число.
     bool FloatsIsEquals(float val1, float val2, float epsilon_part);
 
     float RandFloat(float min, float max);
@@ -60,11 +61,5 @@ namespace Math
     template<class T> void Swap(T *value0, T *value1);
     template<class T> void Limitation(T *value, T min, T max);
     template<class T> T MinFrom2(T val1, T val2);
+    template<class T> T Limitation(T val, T min, T max);
 }
-
-
-
-int     LimitationInt(int value, int min, int max);
-uint8   LimitationUInt8(uint8 value, uint8 min, uint8 max);
-float   LimitationFloat(float value, float min, float max);
-

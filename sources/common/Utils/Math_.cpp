@@ -9,6 +9,9 @@
 template void Math::Swap(int *, int *);
 template void Math::Limitation(int *, int, int);
 template int Math::MinFrom2(int, int);
+template int Math::Limitation(int, int, int);
+template uint8 Math::Limitation(uint8, uint8, uint8);
+template float Math::Limitation(float, float, float);
 
 
 template<class T>
@@ -178,25 +181,17 @@ uint8 Math::GetMaxFromArray(puchar data, int first_point, int last_point)
     return max;
 }
 
-#define LIMIT                           \
-    if (value <= min) { return min; }   \
-    if (value >= max) { return max; }   \
-    return value;
 
-int LimitationInt(int value, int min, int max)
+template<class T>
+T Math::Limitation(T val, T min, T max)
 {
-    LIMIT
+    if (val <= min) { return min; }
+
+    if (val >= max) { return max; }
+
+    return val;
 }
 
-uint8 LimitationUInt8(uint8 value, uint8 min, uint8 max)
-{
-    LIMIT
-}
-
-float LimitationFloat(float value, float min, float max)
-{
-    LIMIT
-}
 
 uint8 Math::CalculateFiltr(puchar data, int x, int numPoints, int numSmoothing)
 {
