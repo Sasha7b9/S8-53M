@@ -10,48 +10,6 @@
 using namespace Primitives;
 
 
-// Структура для описания диапазона масштаба по времени.
-struct TBaseStruct
-{
-    const char* name[2];    // Название диапазона в текстовом виде, пригодном для вывода на экран.
-};
-
-
-// Массив структур описаний масштабов по времени.
-static const TBaseStruct tBases[TBase::Count] =
-{
-    {"2\x10нс",     "2\x10ns"},
-    {"5\x10нс",     "5\x10ns"},
-    {"10\x10нс",    "10\x10ns"},
-    {"20\x10нс",    "20\x10ns"},
-    {"50\x10нс",    "50\x10ns"},
-    {"0.1\x10мкс",  "0.1\x10us"},
-    {"0.2\x10мкс",  "0.2\x10us"},
-    {"0.5\x10мкс",  "0.5\x10us"},
-    {"1\x10мкс",    "1\x10us"},
-    {"2\x10мкс",    "2\x10us"},
-    {"5\x10мкс",    "5\x10us"},
-    {"10\x10мкс",   "10\x10us"},
-    {"20\x10мкс",   "20\x10us"},
-    {"50\x10мкс",   "50\x10us"},
-    {"0.1\x10мс",   "0.1\x10ms"},
-    {"0.2\x10мс",   "0.2\x10ms"},
-    {"0.5\x10мс",   "0.5\x10ms"},
-    {"1\x10мс",     "1\x10ms"},
-    {"2\x10мс",     "2\x10ms"},
-    {"5\x10мс",     "5\x10ms"},
-    {"10\x10мс",    "10\x10ms"},
-    {"20\x10мс",    "20\x10ms"},
-    {"50\x10мс",    "50\x10ms"},
-    {"0.1\x10с",    "0.1\x10s"},
-    {"0.2\x10с",    "0.2\x10s"},
-    {"0.5\x10с",    "0.5\x10s"},
-    {"1\x10с",      "1\x10s"},
-    {"2\x10с",      "2\x10s"},
-    {"5\x10с",      "5\x10s"},
-    {"10\x10с",     "10\x10s"}
-};
-
 // Таблица символов алфавита и спецсимволов для ввода текста
 const char *Tables::symbolsAlphaBet[0x48] =
 {
@@ -136,18 +94,6 @@ const char* Tables::GetWarning(Warning::E warning)
         {"Память OTP полностью заполена",   "OPT memory fully completed"}
     };
     return warnings[warning][LANG];
-}
-
-
-const char* Tables::GetTBaseString(TBase::E tBase)
-{
-    return tBases[tBase].name[LANG];
-}
-
-
-const char* Tables::GetTBaseStringEN(TBase::E tBase)
-{
-    return tBases[tBase].name[Language::English];
 }
 
 

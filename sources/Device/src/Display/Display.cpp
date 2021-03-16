@@ -2054,7 +2054,7 @@ void Display::DrawLowPart()
         }
     }
 
-    std::sprintf(buffer, "ð\xa5%s", Tables::GetTBaseString(tBase));
+    std::sprintf(buffer, "ð\xa5%s", TBase::ToString(tBase));
     Text(buffer).Draw(x, y0);
 
     buffer[0] = 0;

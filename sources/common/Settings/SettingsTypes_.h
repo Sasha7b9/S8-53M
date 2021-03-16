@@ -505,7 +505,7 @@ struct TBase
         Count
     };
 
-    static void Set(TBase::E tBase);
+    static void Set(TBase::E tbase);
 
     static void Load();
 
@@ -513,7 +513,10 @@ struct TBase
 
     static void Increase();
 
-    static pchar Name(TBase::E tBase);
+    static pchar Name(TBase::E tbase);
+
+    static pchar ToString(TBase::E tbase);
+    static pchar ToStringEN(TBase::E tbase);
 };
 
 
