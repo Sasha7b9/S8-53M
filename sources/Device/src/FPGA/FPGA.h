@@ -163,6 +163,12 @@ public:
 
     struct State
     {
+        State() :
+            needCalibration(false),
+            stateWorkBeforeCalibration(StateWorkFPGA::Stop),
+            stateCalibration(StateCalibration::None)
+        { }
+
         // Сохраняет текущие настройки. Потом их можно восстановить функцией FPGA_RestoreState().
         void Save();
 
