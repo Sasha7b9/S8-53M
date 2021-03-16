@@ -378,11 +378,11 @@ void TShift::Load()
     if (tShift < 0)
     {
         gPost = 0;
-        gAddNStop = -tShift;
+        FPGA::add_N_stop = -tShift;
     }
     else
     {
-        gAddNStop = 0;
+        FPGA::add_N_stop = 0;
     }
 
     gPost = (uint16)(~(gPost + 1));                   // Здесь просто для записи в железо дополняем
