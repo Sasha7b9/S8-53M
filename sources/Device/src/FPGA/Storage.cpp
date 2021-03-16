@@ -159,8 +159,8 @@ void Storage::CalculateLimits(uint16 * data0, uint16 * data1, const DataSettings
      
         for(int numData = 0; numData < allDatas; numData++)
         {
-            pUCHAR dA = GetData(ChA, numData);
-            pUCHAR dB = GetData(ChB, numData);
+            puchar dA = GetData(ChA, numData);
+            puchar dB = GetData(ChB, numData);
             for(uint i = 0; i < numElements; i++)
             {
                 if(dA[i] < limitDown[0][i])  { limitDown[0][i] = dA[i]; }

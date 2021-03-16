@@ -5,7 +5,7 @@ class VCP
 {
 public:
     static void Init();
-    static void SendDataSynch(pUCHAR data, int size);
+    static void SendDataSynch(puchar data, int size);
     static void SendStringSynch(char *data);                   // Передаётся строка без завершающего нуля.
     static void SendFormatStringAsynch(char *format, ...);     // Эта строка передаётся с завершающими символами \r\n.
     static void SendFormatStringSynch(char *format, ...);      // Эта строка передаётся с завершающими символами \r\n.
@@ -15,7 +15,7 @@ public:
     static bool connectToHost;
 
 private:
-    static void SendDataAsinch(pUCHAR buffer, int size);
+    static void SendDataAsinch(puchar buffer, int size);
     static void SendStringAsinch(char *data);
     // Время последней передачи
     static uint lastTimeSend;

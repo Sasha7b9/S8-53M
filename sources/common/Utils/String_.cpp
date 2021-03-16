@@ -41,7 +41,7 @@ String::String(char symbol) : buffer(nullptr)
 }
 
 
-String::String(pCHAR format, ...) : buffer(nullptr)
+String::String(pchar format, ...) : buffer(nullptr)
 {
     Set(TypeConversionString::None, "");
 
@@ -73,7 +73,7 @@ String::String(pCHAR format, ...) : buffer(nullptr)
 }
 
 
-void String::Set(TypeConversionString::E conv, pCHAR format, ...)
+void String::Set(TypeConversionString::E conv, pchar format, ...)
 {
     Free();
 
@@ -100,7 +100,7 @@ void String::Set(TypeConversionString::E conv, pCHAR format, ...)
 }
 
 
-void String::Append(pCHAR str)
+void String::Append(pchar str)
 {
     if (!str || *str == '\0')
     {
@@ -118,7 +118,7 @@ void String::Append(pCHAR str)
 }
 
 
-void String::Append(pCHAR str, int numSymbols)
+void String::Append(pchar str, int numSymbols)
 {
     if (!str || *str == '\0')
     {

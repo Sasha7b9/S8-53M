@@ -99,7 +99,7 @@ float MathFPGA::VoltageCursor(float shiftCurU, Range::E range, int16 rShift)
 }
 
 
-void MathFPGA::PointsRelToVoltage(pUCHAR points, int numPoints, Range::E range, int16 rShift, float* voltage)
+void MathFPGA::PointsRelToVoltage(puchar points, int numPoints, Range::E range, int16 rShift, float* voltage)
 {
     int voltInPixel = voltsInPixelInt[range];
     float maxVoltsOnScreen = MAX_VOLTAGE_ON_SCREEN(range);
@@ -356,7 +356,7 @@ void MathFPGA::CalculateFFT(float* dataR, int numPoints, float* result, float* f
 }
 
 
-uint8 MathFPGA::GetMaxFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoint)
+uint8 MathFPGA::GetMaxFromArrayWithErrorCode(puchar data, int firstPoint, int lastPoint)
 {
     uint8 max = Math::GetMaxFromArray(data, firstPoint, lastPoint);
     if (max >= MAX_VALUE)
@@ -367,7 +367,7 @@ uint8 MathFPGA::GetMaxFromArrayWithErrorCode(pUCHAR data, int firstPoint, int la
 }
 
 
-uint8 MathFPGA::GetMinFromArrayWithErrorCode(pUCHAR data, int firstPoint, int lastPoint)
+uint8 MathFPGA::GetMinFromArrayWithErrorCode(puchar data, int firstPoint, int lastPoint)
 {
     uint8 min = Math::GetMinFromArray(data, firstPoint, lastPoint);
     if (min < MIN_VALUE || min >= MAX_VALUE)

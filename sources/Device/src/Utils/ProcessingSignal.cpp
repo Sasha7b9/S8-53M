@@ -604,7 +604,7 @@ float Processing::CalculateMinSteadyRel(Channel::E chan)
             int sum = 0;
             int numSums = 0;
             uint8 *data = &dataIn[chan][firstP];
-            pUCHAR const end = &dataIn[chan][lastP];
+            puchar const end = &dataIn[chan][lastP];
             while(data <= end)
             {
                 uint8 d = *data++;
@@ -676,7 +676,7 @@ float Processing::CalculateMaxSteadyRel(Channel::E chan)
             int sum = 0;
             int numSums = 0;
             uint8 *data = &dataIn[chan][firstP];
-            pUCHAR const end = &dataIn[chan][lastP];
+            puchar const end = &dataIn[chan][lastP];
             while (data <= end)
             {
                 uint8 d = *data++;
@@ -884,7 +884,7 @@ float Processing::CalculatePhazaMinus(Channel::E chan)
     return delay / period * 360.0F; 
 }
 
-void Processing::SetSignal(pUCHAR data0, pUCHAR data1, DataSettings *ds, int _firstPoint, int _lastPoint)
+void Processing::SetSignal(puchar data0, puchar data1, DataSettings *ds, int _firstPoint, int _lastPoint)
 {
     firstP = _firstPoint;
     lastP = _lastPoint;

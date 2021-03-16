@@ -50,7 +50,7 @@ LEAVE_PARSE_FUNC
 
 
 
-void SCPI::DISPLAY::AUTOSEND(pUCHAR buffer)
+void SCPI::DISPLAY::AUTOSEND(puchar buffer)
 {
     static int counter = 0;
     counter++;
@@ -71,7 +71,7 @@ void SCPI::DISPLAY::AUTOSEND(pUCHAR buffer)
 
 
 
-void SCPI::DISPLAY::MAPPING(pUCHAR buffer)
+void SCPI::DISPLAY::MAPPING(puchar buffer)
 {
     static const MapElement map[] =
     {
@@ -89,7 +89,7 @@ void SCPI::DISPLAY::MAPPING(pUCHAR buffer)
 
 
 
-void SCPI::DISPLAY::ACCUM_NUMBER(pUCHAR buffer)
+void SCPI::DISPLAY::ACCUM_NUMBER(puchar buffer)
 {
     static const MapElement map[] =
     {
@@ -116,7 +116,7 @@ void SCPI::DISPLAY::ACCUM_NUMBER(pUCHAR buffer)
 }
 
 
-void SCPI::DISPLAY::ACCUM_MODE(pUCHAR buffer)
+void SCPI::DISPLAY::ACCUM_MODE(puchar buffer)
 {
     static const MapElement map[] =
     {
@@ -135,13 +135,13 @@ void SCPI::DISPLAY::ACCUM_MODE(pUCHAR buffer)
 }
 
 
-void SCPI::DISPLAY::ACCUM_CLEAR(pUCHAR )
+void SCPI::DISPLAY::ACCUM_CLEAR(puchar )
 {
     PageDisplay::OnPress_Accumulation_Clear();
 }
 
 
-void SCPI::DISPLAY::AVERAGE_NUMBER(pUCHAR buffer)
+void SCPI::DISPLAY::AVERAGE_NUMBER(puchar buffer)
 {
     static const MapElement map[] =
     {
@@ -170,7 +170,7 @@ void SCPI::DISPLAY::AVERAGE_NUMBER(pUCHAR buffer)
 
 
 
-void SCPI::DISPLAY::AVERAGE_MODE(pUCHAR buffer)
+void SCPI::DISPLAY::AVERAGE_MODE(puchar buffer)
 {
     static const MapElement map[] =
     {
@@ -190,7 +190,7 @@ void SCPI::DISPLAY::AVERAGE_MODE(pUCHAR buffer)
 
 
 
-void SCPI::DISPLAY::MINMAX(pUCHAR buffer)
+void SCPI::DISPLAY::MINMAX(puchar buffer)
 {
     static const MapElement map[] =
     {
@@ -218,7 +218,7 @@ void SCPI::DISPLAY::MINMAX(pUCHAR buffer)
 
 
 
-void SCPI::DISPLAY::FILTR(pUCHAR buffer)
+void SCPI::DISPLAY::FILTR(puchar buffer)
 {
     static const MapElement map[] =
     {
@@ -248,7 +248,7 @@ void SCPI::DISPLAY::FILTR(pUCHAR buffer)
 
 
 
-void SCPI::DISPLAY::FPS(pUCHAR buffer)
+void SCPI::DISPLAY::FPS(puchar buffer)
 {
     static const MapElement map[] =
     {
@@ -271,7 +271,7 @@ void SCPI::DISPLAY::FPS(pUCHAR buffer)
 
 
 
-void SCPI::DISPLAY::WINDOW(pUCHAR buffer)
+void SCPI::DISPLAY::WINDOW(puchar buffer)
 {
     static const MapElement map[] =
     {
@@ -292,7 +292,7 @@ void SCPI::DISPLAY::WINDOW(pUCHAR buffer)
 
 
 
-void SCPI::DISPLAY::GRID_BRIGHTNESS(pUCHAR buffer)
+void SCPI::DISPLAY::GRID_BRIGHTNESS(puchar buffer)
 {
     int intVal = 0;
     if (SCPI::FirstIsInt(buffer, &intVal, 0, 100))
@@ -320,7 +320,7 @@ void SCPI::DISPLAY::GRID_BRIGHTNESS(pUCHAR buffer)
 
 
 
-void SCPI::DISPLAY::GRID_TYPE(pUCHAR buffer)
+void SCPI::DISPLAY::GRID_TYPE(puchar buffer)
 {
     static const MapElement map[] =
     {

@@ -8,8 +8,8 @@ struct Word
 };
 
 
-int GetNumWordsInString(pUCHAR string);                       // Возвращает количество слов в строке. Разделители - пробелы. Строка заканчивается байтами 0x0d, 0x0a.
-bool GetWord(pUCHAR string, Word *word, const int numWord);   // Эта команда сразу преобразует к верхенму регистру слово.
+int GetNumWordsInString(puchar string);                       // Возвращает количество слов в строке. Разделители - пробелы. Строка заканчивается байтами 0x0d, 0x0a.
+bool GetWord(puchar string, Word *word, const int numWord);   // Эта команда сразу преобразует к верхенму регистру слово.
 bool WordEqualZeroString(Word *word, char* string);
-bool EqualsStrings(pCHAR str1, pCHAR str2, int size);
+bool EqualsStrings(pchar str1, pchar str2, int size);
 bool EqualsZeroStrings(char *str1, char *str2);

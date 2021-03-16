@@ -8,42 +8,42 @@
 
 
 
-void SCPI::COMMON::IDN(pUCHAR )
+void SCPI::COMMON::IDN(puchar )
 {
     SCPI_SEND("MNIPI,S8-53/1,V%S,%X", NUM_VER, HAL_CRC::Calculate());
 }
 
 
 
-void SCPI::COMMON::RUN(pUCHAR )
+void SCPI::COMMON::RUN(puchar )
 {
 
 }
 
 
 
-void SCPI::COMMON::STOP(pUCHAR )
+void SCPI::COMMON::STOP(puchar )
 {
 
 }
 
 
 
-void SCPI::COMMON::RESET(pUCHAR )
+void SCPI::COMMON::RESET(puchar )
 {
     Device::needResetSettings = true;
 }
 
 
 
-void SCPI::COMMON::AUTOSCALE(pUCHAR )
+void SCPI::COMMON::AUTOSCALE(puchar )
 {
 
 }
 
 
 
-void SCPI::COMMON::REQUEST(pUCHAR )
+void SCPI::COMMON::REQUEST(puchar )
 {
     SCPI_SEND("S8-53/1");
 }

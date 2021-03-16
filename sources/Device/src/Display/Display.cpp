@@ -126,7 +126,7 @@ void Display::Redraw()
 }
 
 
-bool Display::ChannelNeedForDraw(pUCHAR data, Channel::E chan, const DataSettings *ds)
+bool Display::ChannelNeedForDraw(puchar data, Channel::E chan, const DataSettings *ds)
 {
     if (!data)
     {
@@ -189,7 +189,7 @@ void Display::DrawMarkersForMeasure(float scale, Channel::E chan)
 
 
 
-void Display::DrawSignalLined(pUCHAR data, const DataSettings *ds, int startPoint, int endPoint, int minY, int maxY,
+void Display::DrawSignalLined(puchar data, const DataSettings *ds, int startPoint, int endPoint, int minY, int maxY,
     float scaleY, float scaleX, bool calculateFiltr)
 {
     if (endPoint < startPoint)
@@ -276,7 +276,7 @@ void Display::DrawSignalLined(pUCHAR data, const DataSettings *ds, int startPoin
 
 
 
-void Display::DrawSignalPointed(pUCHAR data, const DataSettings *ds, int startPoint, int endPoint, int minY, int maxY,
+void Display::DrawSignalPointed(puchar data, const DataSettings *ds, int startPoint, int endPoint, int minY, int maxY,
     float scaleY, float scaleX)
 {
     int numPoints = sMemory_GetNumPoints(false);
@@ -472,7 +472,7 @@ void Display::WriteParametersFFT(Channel::E chan, float freq0, float density0, f
 
 
 
-void Display::DRAW_SPECTRUM(pUCHAR data, int numPoints, Channel::E channel)
+void Display::DRAW_SPECTRUM(puchar data, int numPoints, Channel::E channel)
 {
     if (!sChannel_Enabled(channel))
     {
@@ -808,7 +808,7 @@ void Display::DrawHiPart()
 
 // shiftForPeakDet - если рисуем информацию с пикового детектора - то через shiftForPeakDet точек расположена
 // иниформация о максимумах.
-void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channel::E chan, int shiftForPeakDet)
+void Display::DrawDataInRect(int x, int width, puchar data, int numElems, Channel::E chan, int shiftForPeakDet)
 {
     if(numElems == 0)
     {
@@ -907,7 +907,7 @@ void Display::DrawDataInRect(int x, int width, pUCHAR data, int numElems, Channe
 // shiftForPeakDet - если рисуем информацию с пикового детектора - то через shiftForPeakDet точек расположена
 // иниформация о максимумах.
 void Display::DrawChannelInWindowMemory(int timeWindowRectWidth, int xVert0, int xVert1, int startI, int endI,
-    pUCHAR data, int rightX, Channel::E chan, int shiftForPeakDet)
+    puchar data, int rightX, Channel::E chan, int shiftForPeakDet)
 {
     if(data == dataP2P_0 && data == dataP2P_1)
     {
@@ -982,8 +982,8 @@ void Display::DrawMemoryWindow()
 
             Channel::E chanFirst = LAST_AFFECTED_CHANNEL_IS_A ? ChB : ChA;
             Channel::E chanSecond = LAST_AFFECTED_CHANNEL_IS_A ? ChA : ChB;
-            pUCHAR dataFirst = LAST_AFFECTED_CHANNEL_IS_A ? dat1 : dat0;
-            pUCHAR dataSecond = LAST_AFFECTED_CHANNEL_IS_A ? dat0 : dat1;
+            puchar dataFirst = LAST_AFFECTED_CHANNEL_IS_A ? dat1 : dat0;
+            puchar dataSecond = LAST_AFFECTED_CHANNEL_IS_A ? dat0 : dat1;
 
             int shiftForPeakDet = ds->peakDet == PeackDetMode::Disable ? 0 : (int)ds->length1channel;
 
@@ -2006,7 +2006,7 @@ void Display::WriteTextVoltage(Channel::E chan, int x, int y)
 
 
 
-void Display::WriteStringAndNumber(pCHAR text, int x, int y, int number)
+void Display::WriteStringAndNumber(pchar text, int x, int y, int number)
 {
     char buffer[100];
     Text(text).Draw(x, y, Color::FILL);

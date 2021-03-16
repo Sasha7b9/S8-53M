@@ -494,7 +494,7 @@ void TrigLev::FindAndSet()
 
     Storage::GetDataFromEnd(0, &ds_, &data0, &data1);
 
-    pUCHAR data = (chanTrig == ChA) ? data0 : data1;
+    puchar data = (chanTrig == ChA) ? data0 : data1;
 
     int lastPoint = static_cast<int>(ds_->length1channel) - 1;
 

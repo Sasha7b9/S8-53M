@@ -34,7 +34,7 @@ ENTER_PARSE_FUNC(SCPI::ProcessCHANNEL)
 
 
 
-void SCPI::CHANNEL::INPUT(pUCHAR buffer)
+void SCPI::CHANNEL::INPUT(puchar buffer)
 {
     static const MapElement map[] = 
     {
@@ -55,7 +55,7 @@ void SCPI::CHANNEL::INPUT(pUCHAR buffer)
 
 
 
-void SCPI::CHANNEL::COUPLE(pUCHAR buffer)
+void SCPI::CHANNEL::COUPLE(puchar buffer)
 {
     static const pFuncVB func[2] = {PageChannelA::OnChanged_Couple, PageChannelB::OnChanged_Couple};
 
@@ -80,7 +80,7 @@ void SCPI::CHANNEL::COUPLE(pUCHAR buffer)
 
 
 
-void SCPI::CHANNEL::FILTR(pUCHAR buffer)
+void SCPI::CHANNEL::FILTR(puchar buffer)
 {
     static const pFuncVB func[2] = {PageChannelA::OnChanged_Filtr, PageChannelB::OnChanged_Filtr};
 
@@ -103,7 +103,7 @@ void SCPI::CHANNEL::FILTR(pUCHAR buffer)
 
 
 
-void SCPI::CHANNEL::INVERSE(pUCHAR buffer)
+void SCPI::CHANNEL::INVERSE(puchar buffer)
 {
     static const MapElement map[] =
     {
@@ -124,7 +124,7 @@ void SCPI::CHANNEL::INVERSE(pUCHAR buffer)
 
 
 
-void SCPI::CHANNEL::RANGE(pUCHAR buffer)
+void SCPI::CHANNEL::RANGE(puchar buffer)
 {
     static const MapElement map[] = 
     {
@@ -155,7 +155,7 @@ void SCPI::CHANNEL::RANGE(pUCHAR buffer)
 
 
 
-void SCPI::CHANNEL::OFFSET(pUCHAR buffer)
+void SCPI::CHANNEL::OFFSET(puchar buffer)
 {
     static const MapElement map[] =
     {
@@ -180,7 +180,7 @@ void SCPI::CHANNEL::OFFSET(pUCHAR buffer)
 
 
 
-void SCPI::CHANNEL::FACTOR(pUCHAR buffer)
+void SCPI::CHANNEL::FACTOR(puchar buffer)
 {
     static const MapElement map[] =
     {

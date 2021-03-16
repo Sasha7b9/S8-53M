@@ -7,7 +7,7 @@ class Processing
 {
 public:
     // ”становить сигнал дл€ обработки.
-    static void SetSignal(pUCHAR data0, pUCHAR data1, DataSettings *ds, int firstPoint, int lastPoint);
+    static void SetSignal(puchar data0, puchar data1, DataSettings *ds, int firstPoint, int lastPoint);
     // ѕолучить данные ранее установленного сигнала.
     static void GetData(uint8 **data0, uint8 **data1, DataSettings **ds);
     // ѕолучить позицию курсора напр€жени€, соответствующю заданной позиции курсора posCurT.

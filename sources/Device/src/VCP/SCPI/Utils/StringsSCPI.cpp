@@ -3,11 +3,11 @@
 #include <ctype.h>
 
 
-//static bool ChooseSymbols(pUCHAR *string);    // Возвращает false, если выбор невозможен - строка кончилась.
-//static bool ChooseSpaces(pUCHAR *string);     // Возвращает false, если выбор невозможен - строка кончилась.
+//static bool ChooseSymbols(puchar *string);    // Возвращает false, если выбор невозможен - строка кончилась.
+//static bool ChooseSpaces(puchar *string);     // Возвращает false, если выбор невозможен - строка кончилась.
 
 
-int GetNumWordsInString(pUCHAR )
+int GetNumWordsInString(puchar )
 {
     /*
     ChooseSpaces(&string);
@@ -26,7 +26,7 @@ int GetNumWordsInString(pUCHAR )
     return 0;
 }
 
-bool GetWord(pUCHAR /*string*/, Word * /*word*/, const int /*numWord*/)
+bool GetWord(puchar /*string*/, Word * /*word*/, const int /*numWord*/)
 {
 //    ChooseSpaces(&string);
 //
@@ -81,7 +81,7 @@ bool WordEqualZeroString(Word *word, char* string)
 
 #define  SYMBOL(x) (*(*(x)))
 
-//bool ChooseSymbols(pUCHAR *string)
+//bool ChooseSymbols(puchar *string)
 //{
 //    if (SYMBOL(string) == 0x0d && SYMBOL(string + 1) == 0x0a)
 //    {
@@ -96,7 +96,7 @@ bool WordEqualZeroString(Word *word, char* string)
 //    return true;
 //}
 
-//bool ChooseSpaces(pUCHAR *string)
+//bool ChooseSpaces(puchar *string)
 //{
 //    if (SYMBOL(string) == 0x0d && SYMBOL(string + 1) == 0x0a)
 //    {
@@ -113,7 +113,7 @@ bool WordEqualZeroString(Word *word, char* string)
 
 #undef SYMBOL
 
-bool EqualsStrings(pCHAR str1, pCHAR str2, int size)
+bool EqualsStrings(pchar str1, pchar str2, int size)
 {
     for (int i = 0; i < size; i++)
     {

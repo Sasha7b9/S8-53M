@@ -23,7 +23,7 @@ LEAVE_PARSE_FUNC
 
 
 
-void SCPI::TBASE::RANGE(pUCHAR buffer)
+void SCPI::TBASE::RANGE(puchar buffer)
 {
     static const MapElement map[] = 
     {
@@ -71,7 +71,7 @@ void SCPI::TBASE::RANGE(pUCHAR buffer)
 
 
 
-void SCPI::TBASE::OFFSET(pUCHAR buffer)
+void SCPI::TBASE::OFFSET(puchar buffer)
 {
     static const MapElement map[] =
     {
@@ -98,7 +98,7 @@ void SCPI::TBASE::OFFSET(pUCHAR buffer)
 
 
 
-void SCPI::TBASE::SAMPLING(pUCHAR buffer)
+void SCPI::TBASE::SAMPLING(puchar buffer)
 {
     static const MapElement map[] =
     {
@@ -118,7 +118,7 @@ void SCPI::TBASE::SAMPLING(pUCHAR buffer)
 
 
 
-void SCPI::TBASE::PEACKDET(pUCHAR buffer)
+void SCPI::TBASE::PEACKDET(puchar buffer)
 {
     static const MapElement map[] =
     {
@@ -138,7 +138,7 @@ void SCPI::TBASE::PEACKDET(pUCHAR buffer)
 
 
 
-void SCPI::TBASE::TPOS(pUCHAR buffer)
+void SCPI::TBASE::TPOS(puchar buffer)
 {
     static const MapElement map[] =
     {
@@ -159,7 +159,7 @@ void SCPI::TBASE::TPOS(pUCHAR buffer)
 
 
 
-void SCPI::TBASE::SELFRECORDER(pUCHAR buffer)
+void SCPI::TBASE::SELFRECORDER(puchar buffer)
 {
     static const MapElement map[] =
     {
@@ -179,7 +179,7 @@ void SCPI::TBASE::SELFRECORDER(pUCHAR buffer)
 
 
 
-void SCPI::TBASE::FUNCTIMEDIV(pUCHAR buffer)
+void SCPI::TBASE::FUNCTIMEDIV(puchar buffer)
 {
     static const MapElement map[] =
     {

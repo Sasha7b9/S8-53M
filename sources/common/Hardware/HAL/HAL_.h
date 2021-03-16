@@ -101,7 +101,7 @@ struct HAL_EPROM
     static void EraseSector(uint numSector);
     static uint GetSector(uint startAddress);
     static void WriteWord(uint address, uint word);
-    static void WriteBufferBytes(uint address, pUCHAR buffer, int size);
+    static void WriteBufferBytes(uint address, puchar buffer, int size);
 };
 
 

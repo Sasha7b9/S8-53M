@@ -28,9 +28,9 @@
 
 namespace Math
 {
-    uint8   GetMaxFromArray(pUCHAR data, int firstPoint, int lastPoint);
+    uint8   GetMaxFromArray(puchar data, int firstPoint, int lastPoint);
 
-    uint8   GetMinFromArray(pUCHAR data, int firstPoint, int lastPoint);
+    uint8   GetMinFromArray(puchar data, int firstPoint, int lastPoint);
 
     // ¬озвращает координату x пересечени€ линии, проход€щей через (x0, y0), (x1, y1), с горизонтальной линией, проход€щей через точку с ординатой yHorLine.
     float   GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, int yHorLine);
@@ -54,9 +54,9 @@ namespace Math
     // ¬озвращает модуль value.
     int     FabsInt(int value);
 
-    uint8   CalculateFiltr(pUCHAR data, int x, int numPoints, int numSmoothing);
+    uint8   CalculateFiltr(puchar data, int x, int numPoints, int numSmoothing);
 
-    void    CalculateFiltrArray(pUCHAR dataIn, uint8* dataOut, int numPoints, int numSmoothing);
+    void    CalculateFiltrArray(puchar dataIn, uint8* dataOut, int numPoints, int numSmoothing);
 
     // ќбменивает местами содержимое пам€ти по адресам value0 и value1
     template<class T> void Swap(T *value0, T *value1);

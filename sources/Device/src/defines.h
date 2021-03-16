@@ -21,9 +21,8 @@ typedef unsigned    short   int uint16;
 typedef unsigned    int         uint;
 typedef unsigned long long int  uint64;
 typedef unsigned    char        uchar;
-typedef const char             *pCHAR;
 typedef const char             *pchar;
-typedef const uint8            *pUCHAR;
+typedef const uint8            *puchar;
 typedef const char       *const pString;
 
 #ifndef __IO
@@ -37,7 +36,7 @@ typedef void  (*pFuncVI)(int);
 typedef void  (*pFuncVII)(int, int);
 typedef char* (*pFuncCFBC)(float, bool, char*);
 typedef void  (*pFuncpU8)(uint8*);
-typedef void  (*pFuncpCU8)(pUCHAR );
+typedef void  (*pFuncpCU8)(puchar );
 
 inline void EmptyFuncVV() {};
 

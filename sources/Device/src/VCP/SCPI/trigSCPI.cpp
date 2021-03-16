@@ -31,7 +31,7 @@ ENTER_PARSE_FUNC(SCPI::ProcessTRIG)
 LEAVE_PARSE_FUNC
 
 
-void SCPI::TRIGGER::MODE(pUCHAR buffer)
+void SCPI::TRIGGER::MODE(puchar buffer)
 {
     static const MapElement map[] =
     {
@@ -54,7 +54,7 @@ void SCPI::TRIGGER::MODE(pUCHAR buffer)
 
 
 
-void SCPI::TRIGGER::SOURCE(pUCHAR buffer)
+void SCPI::TRIGGER::SOURCE(puchar buffer)
 {
     static const MapElement map[] =
     {
@@ -77,7 +77,7 @@ void SCPI::TRIGGER::SOURCE(pUCHAR buffer)
 
 
 
-void SCPI::TRIGGER::POLARITY(pUCHAR buffer)
+void SCPI::TRIGGER::POLARITY(puchar buffer)
 {
     static const MapElement map[] =
     {
@@ -98,7 +98,7 @@ void SCPI::TRIGGER::POLARITY(pUCHAR buffer)
 
 
 
-void SCPI::TRIGGER::INPUT(pUCHAR buffer)
+void SCPI::TRIGGER::INPUT(puchar buffer)
 {
     static const MapElement map[] =
     {
@@ -123,7 +123,7 @@ void SCPI::TRIGGER::INPUT(pUCHAR buffer)
 
 
 
-void SCPI::TRIGGER::FIND(pUCHAR buffer)
+void SCPI::TRIGGER::FIND(puchar buffer)
 {
     static const MapElement map[] =
     {
@@ -146,7 +146,7 @@ void SCPI::TRIGGER::FIND(pUCHAR buffer)
 
 
 
-void SCPI::TRIGGER::OFFSET(pUCHAR buffer)
+void SCPI::TRIGGER::OFFSET(puchar buffer)
 {
     static const MapElement map[] =
     {

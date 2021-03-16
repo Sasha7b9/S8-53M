@@ -19,7 +19,7 @@ void VCP::Init()
 } 
 
 
-void VCP::SendDataAsinch(pUCHAR buffer, int size)
+void VCP::SendDataAsinch(puchar buffer, int size)
 {
     lastTimeSend = TIME_MS;
 
@@ -46,7 +46,7 @@ void VCP::Flush()
     sizeBuffer = 0;
 }
 
-void VCP::SendDataSynch(pUCHAR buffer, int size)
+void VCP::SendDataSynch(puchar buffer, int size)
 {
     if (!VCP::connectToHost)
     {
@@ -77,7 +77,7 @@ void VCP::SendDataSynch(pUCHAR buffer, int size)
     } while (size);
 }
 
-void SendData(pUCHAR , int)
+void SendData(puchar , int)
 {
 
 }
