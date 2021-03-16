@@ -81,7 +81,6 @@ private:
     // Загрузить настройки в аппаратную часть из глобальной структуры SSettings.
     static void LoadSettings();
 
-    static void WriteToAnalog(TypeWriteAnalog::E type, uint data);
     // Прочитать данные.
     static void DataRead(
                         bool necessaryShift,    // Признак того, что сигнал нужно смещать.
@@ -140,6 +139,8 @@ public:
         static void Write(TypeRecord::E type, uint16 *address, uint data);
 
         static void WriteToDAC(TypeWriteDAC::E type, uint16 data);
+
+        static void WriteToAnalog(TypeWriteAnalog::E type, uint data);
     };
 
     struct Flag

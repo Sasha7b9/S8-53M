@@ -131,7 +131,7 @@ void FPGA::SetAttribChannelsAndTrig(TypeWriteAnalog::E type)
     static const uint maskInput[4] = {0x000000, 0x030000, 0x020000, 0x010000};
     data |= maskInput[TRIG_INPUT];
 
-    WriteToAnalog(type, data);
+    BUS::WriteToAnalog(type, data);
 }
 
 

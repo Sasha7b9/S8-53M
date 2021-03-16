@@ -1184,7 +1184,7 @@ void FPGA::TemporaryPause(void)
 #define DATA_SET(x) Pin::G3.Write(x);
 
 
-void FPGA::WriteToAnalog(TypeWriteAnalog::E type, uint data)
+void FPGA::BUS::WriteToAnalog(TypeWriteAnalog::E type, uint data)
 {
     char buffer[19];
 

@@ -24,7 +24,7 @@ void FPGA::BUS::WriteToDAC(TypeWriteDAC::E, uint16)
 }
 
 
-void FPGA::WriteToAnalog(TypeWriteAnalog::E, uint)
+void FPGA::BUS::WriteToAnalog(TypeWriteAnalog::E, uint)
 {
 
 }
