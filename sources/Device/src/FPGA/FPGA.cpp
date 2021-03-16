@@ -501,7 +501,7 @@ void FPGA::Randomizer::SetAdditionShift(int shift)
 }
 
 
-bool FPGA::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
+bool FPGA::Randomizer::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
 {   
     if(firstAfterWrite)
     {
@@ -579,7 +579,7 @@ int FPGA::CalculateShift(void)            // \todo Не забыть восстановить функци
                                         // закомментирован, можно раскомментировать при необходимости
     }
 
-    if (!CalculateGate(rand, &min, &max))
+    if (!Randomizer::CalculateGate(rand, &min, &max))
     {
         return NULL_TSHIFT;
     }
@@ -965,7 +965,7 @@ TBase::E CalculateTBase(float freq_)
 }
 
 
-void FPGA::AutoFind(void)
+void FPGA::AutoFinder::Find(void)
 {
     //LOG_WRITE(" ");
     //Timer::StartLogging();

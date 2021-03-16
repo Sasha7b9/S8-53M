@@ -84,13 +84,9 @@ private:
                         bool saveToStorage      // Ќужно в режиме рандомизатора дл€ указани€, что пора сохран€ть измерение
                         );
 
-    static bool CalculateGate(uint16 rand, uint16 *min, uint16 *max);
-
     static int CalculateShift();
     // »нвертирует данные.
     static void InverseDataIsNecessary(Channel::E chan, uint16 *data);
-
-    static void AutoFind();
 
     static uint8 CalculateMinWithout0(const uint8 buffer[100]);
 
@@ -111,6 +107,12 @@ private:
     static bool FindWave(Channel::E chan);
 
 public:
+
+    // ѕоиск сигнала
+    struct AutoFinder
+    {
+        static void Find();
+    };
 
     struct BUS
     {
@@ -180,6 +182,8 @@ public:
 
         // ”становить количество измерений, по которым будут рассчитыватьс€ ворота в режиме рандомизатора.
         static void SetNumberMeasuresForGates(int number);
+
+        static bool CalculateGate(uint16 rand, uint16 *min, uint16 *max);
     };
 
     struct Calibrator
