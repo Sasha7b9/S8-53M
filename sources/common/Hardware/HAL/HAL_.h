@@ -115,8 +115,8 @@ struct HAL_ETH
 struct HAL_FMC 
 {
     static void Init(void);
-    inline static uint16 Read(uint16 *const address)               { return *address; };
-    static void  Write(uint16 *const address, uint16 value);
+    inline static uint16 Read(uint16 * const address)               { return *address; };
+    static void  Write(uint16 * const address, uint16 value);
 
 private:
     

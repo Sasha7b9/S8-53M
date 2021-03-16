@@ -115,11 +115,11 @@ public:
 
     struct BUS
     {
-        static void Write(uint16 *address, uint16 data);
+        static void Write(uint16 * const address, uint16 data);
 
         // Эта функция используется тогда, когда запись в регистр не требует перезапуска процесса измерения. Например,
         // в регистр, управляющий режимом калибратора
-        static void WriteWithoutStart(uint16 *address, uint16 data);
+        static void WriteWithoutStart(uint16 * const address, uint16 data);
 
         static void WriteToDAC(TypeWriteDAC::E type, uint16 data);
 

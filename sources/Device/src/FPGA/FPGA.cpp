@@ -630,7 +630,7 @@ int FPGA::CalculateShift(void)            // \todo Не забыть восстановить функци
 }
 
 
-void FPGA::BUS::Write(uint16 *address, uint16 data)
+void FPGA::BUS::Write(uint16 * const address, uint16 data)
 {
     bool is_running = FPGA::IsRunning();
 
@@ -647,7 +647,7 @@ void FPGA::BUS::Write(uint16 *address, uint16 data)
 }
 
 
-void FPGA::BUS::WriteWithoutStart(uint16 *address, uint16 data)
+void FPGA::BUS::WriteWithoutStart(uint16 * const address, uint16 data)
 {
     *address = data;
 }
