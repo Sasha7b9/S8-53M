@@ -21,6 +21,7 @@ FPGA::Flag       FPGA::flag;
 StateWorkFPGA::E FPGA::state_work = StateWorkFPGA::Stop;
 uint             FPGA::time_start = 0;
 bool             FPGA::temporary_pause = false;
+bool FPGA::can_read_data = true;
 
 bool      FPGA::AutoFinder::auto_find_in_progress = false;
 
@@ -32,7 +33,7 @@ int       FPGA::Randomizer::number_measures_for_gates = 1000;
 
 
 
-volatile static bool canReadData = true;
+
 static bool criticalSituation = false;
 static bool firstAfterWrite = false;            // Используется в режиме рандомизатора. После записи любого параметра в альтеру нужно не использовать первое считанное данное с АЦП, потому что оно завышено и портит ворота
 
@@ -68,7 +69,7 @@ void FPGA::SetNumSignalsInSec(int numSigInSec)
 
 void OnTimerCanReadData(void)
 {
-    canReadData = 1;
+    FPGA::can_read_data = 1;
 }
 
 

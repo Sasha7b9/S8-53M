@@ -38,6 +38,7 @@ public:
     static int16  pred;
     static uint16 post;
     static bool   temporary_pause;
+    static bool   can_read_data;
 
     static void Init();
 
