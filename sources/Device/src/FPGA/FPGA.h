@@ -36,6 +36,8 @@ public:
 
     static bool IN_PROCESSING_OF_READ;
 
+    static int add_shift;
+
     static void Init();
 
     // Установить количество считываемых сигналов в секунду.
@@ -68,8 +70,6 @@ public:
     static void TemporaryPause();
 
     static StateWorkFPGA::E CurrentStateWork();
-
-    static int addShiftForFPGA;
 
 private:
     // Загрузить настройки в аппаратную часть из глобальной структуры SSettings.

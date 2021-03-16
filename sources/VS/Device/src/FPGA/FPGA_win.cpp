@@ -11,7 +11,7 @@ uint16 gPost = 1024;
 int16 gPred = 1024;
 int gAddNStop = 0;
 bool FPGA::IN_PROCESSING_OF_READ = false;
-int FPGA::addShiftForFPGA = 0;
+int FPGA::add_shift = 0;
 extern const int Kr[];
 
 #define N_KR 100
