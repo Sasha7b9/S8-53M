@@ -1,6 +1,7 @@
 #pragma once
 #include "FPGA/DataSettings.h"
 #include "FPGA/FPGA_Types.h"
+#include "Settings/Settings.h"
 #include "Settings/SettingsTrig.h"
 #include "Settings/SettingsService.h"
 
@@ -157,14 +158,17 @@ public:
     struct State
     {
         // Сохраняет текущие настройки. Потом их можно восстановить функцией FPGA_RestoreState().
-        static void Save();
+        void Save();
 
         // Восстанавливает настройки, ранее сохранённые функцией FPGA_SaveState().
-        static void Restore();
+        void Restore();
 
-        bool needCalibration;           // Установленное в true значение означает, что необходимо произвести калибровку.
-        StateWorkFPGA::E        stateWorkBeforeCalibration;
-        StateCalibration::E     stateCalibration;   // Текущее состояние калибровки. Используется в процессе калибровки.
+        bool                 needCalibration;           // Установленное в true значение означает, что необходимо
+                                                        // произвести калибровку
+        StateWorkFPGA::E    stateWorkBeforeCalibration;
+        StateCalibration::E stateCalibration;           // Текущее состояние калибровки. Используется в процессе калибровки
+        Settings            storingSettings;            // Здесь нужно уменьшить необходимый размер памяти - сохранять
+                                                        // настройки только альтеры
     };
 
     static State state;
@@ -180,6 +184,10 @@ public:
         static bool CalculateGate(uint16 rand, uint16 *min, uint16 *max);
 
         static const int Kr[];
+
+    private:
+
+        static int numberMeasuresForGates;
     };
 
     struct Calibrator

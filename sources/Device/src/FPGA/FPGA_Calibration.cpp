@@ -74,7 +74,7 @@ void FPGA::Calibrator::ProcedureCalibration(void)
     bar1.fullTime = 0;
     bar1.passedTime = 0;
 
-    FPGA::State::Save();                               // Сохраняем текущее состояние.
+    FPGA::state.Save();                               // Сохраняем текущее состояние.
     Panel::Disable();                                // Отлкючаем панель управления.
 
     while(1)
@@ -180,7 +180,7 @@ void FPGA::Calibrator::ProcedureCalibration(void)
         break;
     }
 
-    FPGA::State::Restore();
+    FPGA::state.Restore();
 
     SET_BALANCE_ADC_A = shiftADC0;
     SET_BALANCE_ADC_B = shiftADC1;

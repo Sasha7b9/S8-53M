@@ -24,11 +24,8 @@ float FPGA::FreqMeter::freq = 0.0f;
 
 #define N_KR 100
 const int FPGA::Randomizer::Kr[] = { N_KR / 1, N_KR / 2, N_KR / 5, N_KR / 10, N_KR / 20 };
+int       FPGA::Randomizer::numberMeasuresForGates = 1000;
 
-
-volatile static uint timeSwitchingTrig = 0;
-volatile static int numberMeasuresForGates = 1000;
-static Settings storingSettings;                // Здесь нужно уменьшить необходимый размер памяти - сохранять настройки только альтеры
 static uint timeStart = 0;
 volatile static bool autoFindInProgress = false;
 volatile static bool temporaryPause = false;
