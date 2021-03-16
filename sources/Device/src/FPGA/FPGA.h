@@ -7,7 +7,7 @@
 struct DataSettings;
 
 extern uint16 gPost;
-extern int16 gPred;
+
 
 
 struct StateWorkFPGA { enum E {
@@ -36,6 +36,7 @@ public:
     static bool IN_PROCESSING_OF_READ;
     static int add_shift;
     static int add_N_stop;
+    static int16 pred;
 
     static void Init();
 

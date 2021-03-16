@@ -358,21 +358,24 @@ void TShift::Load()
         gPost = (uint16)((2 * gPost - k) / Kr[tBase]);
 
         FPGA::add_shift = (TSHIFT * 2) % Kr[tBase];
+
         if (FPGA::add_shift < 0)
         {
             FPGA::add_shift = Kr[tBase] + FPGA::add_shift;
         }
-        gPred = ~(PRETRIGGERED);
+
+        FPGA::pred = ~(PRETRIGGERED);
     }
     else
     {
-        gPred = (int16)NUM_BYTES_SET / 2 - (int16)gPost;
+        FPGA::pred = (int16)NUM_BYTES_SET / 2 - (int16)gPost;
 
-        if (gPred < 0)
+        if (FPGA::pred < 0)
         {
-            gPred = 0;
+            FPGA::pred = 0;
         }
-        gPred = ~(gPred + 3);
+
+        FPGA::pred = ~(FPGA::pred + 3);
     }
 
     if (tShift < 0)
@@ -392,10 +395,10 @@ void TShift::Load()
         if (SET_TBASE > 8)
         {
             ++gPost;
-            --gPred;
+            --FPGA::pred;
         }
         FPGA::BUS::Write(FPGA::BUS::TypeRecord::FPGA, WR_POST, gPost, true);
-        FPGA::BUS::Write(FPGA::BUS::TypeRecord::FPGA, WR_PRED, (uint)gPred, true);
+        FPGA::BUS::Write(FPGA::BUS::TypeRecord::FPGA, WR_PRED, (uint)FPGA::pred, true);
     }
 }
 
