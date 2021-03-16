@@ -629,18 +629,26 @@ int FPGA::CalculateShift(void)            // \todo Не забыть восстановить функци
 }
 
 
-void FPGA::BUS::Write(uint16 *address, uint16 data, bool restart)
+void FPGA::BUS::Write(uint16 *address, uint16 data)
 {
+    bool is_running = FPGA::IsRunning();
+
     Stop(true);
 
     *address = data;
 
-    if(restart)
+    if(is_running)
     {
         Start();
     }
 
     Panel::EnableLEDTrig(false); // После каждой засылки выключаем лампочку синхронизации
+}
+
+
+void FPGA::BUS::WriteWithoutStart(uint16 *address, uint16 data)
+{
+    *address = data;
 }
 
 

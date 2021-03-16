@@ -115,7 +115,7 @@ void FPGA::ClearData()
 }
 
 
-void FPGA::BUS::Write(uint16 *, uint16, bool)
+void FPGA::BUS::Write(uint16 *, uint16)
 {
 
 }
