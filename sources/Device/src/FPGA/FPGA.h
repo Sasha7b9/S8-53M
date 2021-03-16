@@ -30,10 +30,10 @@ class FPGA
 {
 public:
 
-    static bool IN_PROCESSING_OF_READ;
-    static int add_shift;
-    static int add_N_stop;
-    static int16 pred;
+    static bool   in_processing_of_read;
+    static int    add_shift;
+    static int    add_N_stop;
+    static int16  pred;
     static uint16 post;
 
     static void Init();

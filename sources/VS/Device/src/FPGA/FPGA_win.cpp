@@ -10,7 +10,7 @@ FPGA::State FPGA::state;
 uint16 FPGA::post = 1024;
 int16  FPGA::pred = 1024;
 int    FPGA::add_N_stop = 0;
-bool   FPGA::IN_PROCESSING_OF_READ = false;
+bool   FPGA::in_processing_of_read = false;
 int    FPGA::add_shift = 0;
 
 extern const int Kr[];
