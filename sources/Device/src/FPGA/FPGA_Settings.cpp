@@ -148,8 +148,8 @@ void Range::Set(Channel::E chan, Range::E range)
         {
             float rShiftAbs = RSHIFT_2_ABS(SET_RSHIFT(chan), SET_RANGE(chan));
             float trigLevAbs = RSHIFT_2_ABS(TRIG_LEVEL(chan), SET_RANGE(chan));
-            SET_RSHIFT(chan) = (int16)MathFPGA::RShift2Rel(rShiftAbs, range);
-            TRIG_LEVEL(chan) = (int16)MathFPGA::RShift2Rel(trigLevAbs, range);
+            SET_RSHIFT(chan) = (int16)RShift::ToRel(rShiftAbs, range);
+            TRIG_LEVEL(chan) = (int16)RShift::ToRel(trigLevAbs, range);
         }
         Load(chan);
     }

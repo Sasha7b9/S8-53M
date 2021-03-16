@@ -78,9 +78,9 @@ const float MathFPGA::absStepTShift[] =
 };
 
 
-int MathFPGA::RShift2Rel(float rShiftAbs, Range::E range)
+int RShift::ToRel(float rShiftAbs, Range::E range)
 {
-    int retValue = static_cast<int>(RShiftZero + rShiftAbs / absStepRShift[range]);
+    int retValue = static_cast<int>(RShiftZero + rShiftAbs / MathFPGA::absStepRShift[range]);
     if (retValue < RShiftMin)
     {
         retValue = RShiftMin;

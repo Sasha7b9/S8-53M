@@ -8,7 +8,6 @@
 
 struct MathFPGA
 {
-    static int   RShift2Rel(float rShiftAbs, Range::E range);
     static float VoltageCursor(float shiftCurU, Range::E range, int16 rShift);
     static void  PointsRelToVoltage(puchar points, int numPoints, Range::E range, int16 rShift, float *voltage);
     static void	 PointsVoltageToRel(const float *voltage, int numPoints, Range::E range, int16 rShift, uint8 *points);

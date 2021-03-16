@@ -382,6 +382,8 @@ struct RShift
     static void Set(Channel::E chan, int16 rShift);
 
     static void Load(Channel::E ch);
+
+    static int ToRel(float rshift_abs, Range::E range);
 };
 
 
