@@ -2059,7 +2059,7 @@ void Display::DrawLowPart()
 
     buffer[0] = 0;
     char bufForVal[20];
-    std::sprintf(buffer, "\xa5%s", FPGA::GetTShiftString(tShift, bufForVal));
+    std::sprintf(buffer, "\xa5%s", TShift::ToString(tShift, bufForVal));
     Text(buffer).Draw(x + 35, y0);
 
     buffer[0] = 0;

@@ -400,9 +400,9 @@ void TShift::Load()
 }
 
 
-const char *FPGA::GetTShiftString(int16 tShiftRel, char buffer[20])
+pchar TShift::ToString(int16 tshift_rel, char buffer[20])
 {
-    float tShiftVal = TSHIFT_2_ABS(tShiftRel, SET_TBASE);
+    float tShiftVal = TSHIFT_2_ABS(tshift_rel, SET_TBASE);
     return GF::Time2String(tShiftVal, true, buffer);
 }
 

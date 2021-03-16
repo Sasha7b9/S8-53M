@@ -70,9 +70,6 @@ public:
     // Установить временную паузу после изменения ручек - чтобы смещённый сигнал зафиксировать на некоторое время
     static void TemporaryPause();
 
-    // Возвращает установленное смещение по времени в текстовом виде, пригодном для вывода на экран.
-    static const char* GetTShiftString(int16 tShiftRel, char buffer[20]);
-
     // Запуск функции калибровки.
     static void ProcedureCalibration();
 

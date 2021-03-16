@@ -453,7 +453,7 @@ struct TrigModeFind { enum E
 
 struct TShift
 {
-    static void Set(int t_shift);
+    static void Set(int tshift);
 
     static void Load();
 
@@ -461,6 +461,8 @@ struct TShift
     // разное.
     static void SetDelta(int16 shift);
 
+    // Возвращает установленное смещение по времени в текстовом виде, пригодном для вывода на экран.
+    static pchar ToString(int16 tshift_rel, char buffer[20]);
 };
 
 
