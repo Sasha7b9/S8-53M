@@ -69,6 +69,8 @@ private:
 
     static StateWorkFPGA::E stateWork;
 
+    static uint time_start;
+
     // Загрузить настройки в аппаратную часть из глобальной структуры SSettings.
     static void LoadSettings();
 

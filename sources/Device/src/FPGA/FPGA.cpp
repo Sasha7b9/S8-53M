@@ -19,6 +19,7 @@ uint16           FPGA::post = 1024;
 int16            FPGA::pred = 1024;
 FPGA::Flag       FPGA::flag;
 StateWorkFPGA::E FPGA::stateWork = StateWorkFPGA::Stop;
+uint             FPGA::time_start = 0;
 
 float FPGA::FreqMeter::freq = 0.0f;
 
@@ -26,7 +27,6 @@ float FPGA::FreqMeter::freq = 0.0f;
 const int FPGA::Randomizer::Kr[] = { N_KR / 1, N_KR / 2, N_KR / 5, N_KR / 10, N_KR / 20 };
 int       FPGA::Randomizer::numberMeasuresForGates = 1000;
 
-static uint timeStart = 0;
 volatile static bool autoFindInProgress = false;
 volatile static bool temporaryPause = false;
 volatile static bool canReadData = true;
@@ -84,7 +84,7 @@ void FPGA::Start(void)
 
     HAL_FMC::Write(WR_START, 1);
 
-    timeStart = TIME_MS;
+    time_start = TIME_MS;
     stateWork = StateWorkFPGA::Wait;
     criticalSituation = false;
 }
@@ -104,7 +104,7 @@ bool FPGA::ProcessingData(void)
 
         if (criticalSituation)
         {
-            if (TIME_MS - timeStart > 500)
+            if (TIME_MS - time_start > 500)
             {
                 TrigPolarity::Switch();
 
@@ -146,7 +146,7 @@ bool FPGA::ProcessingData(void)
                 {
                     criticalSituation = true;
                 }
-                timeStart = TIME_MS;
+                time_start = TIME_MS;
             }
         }
         Panel::EnableLEDTrig(flag.IsTrigReady() ? true : false);
