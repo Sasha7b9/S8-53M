@@ -70,9 +70,6 @@ public:
     // Установить временную паузу после изменения ручек - чтобы смещённый сигнал зафиксировать на некоторое время
     static void TemporaryPause();
 
-    // Запуск функции калибровки.
-    static void ProcedureCalibration();
-
     static StateWorkFPGA::E CurrentStateWork();
 
     static int addShiftForFPGA;
@@ -188,5 +185,8 @@ public:
     {
         // Загрузить в аппарат коэффициенты калибровки каналов.
         static void LoadKoeff(Channel::E chan);
+
+        // Запуск функции калибровки.
+        static void ProcedureCalibration();
     };
 };

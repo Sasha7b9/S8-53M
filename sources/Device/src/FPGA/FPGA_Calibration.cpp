@@ -55,7 +55,7 @@ static void OnTimerDraw(void)
 }
 
 
-void FPGA::ProcedureCalibration(void)
+void FPGA::Calibrator::ProcedureCalibration(void)
 {
     bool chanAenable = SET_ENABLED_A;
     bool chanBenable = SET_ENABLED_B;

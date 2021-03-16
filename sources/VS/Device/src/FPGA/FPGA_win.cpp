@@ -90,7 +90,7 @@ void FPGA::BUS::WriteToHardware(uint16 *const, uint16, bool)
 }
 
 
-void FPGA::SetNumberMeasuresForGates(int)
+void FPGA::Randomizer::SetNumberMeasuresForGates(int)
 {
 
 }
