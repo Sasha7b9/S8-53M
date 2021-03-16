@@ -30,16 +30,16 @@ typedef const char       *const pString;
 #define __IO volatile //-V2573
 #endif
 
-typedef void    (*pFuncVV)();
-typedef bool    (*pFuncBV)();
-typedef void    (*pFuncVB)(bool);
-typedef void    (*pFuncVI)(int);
-typedef void    (*pFuncVII)(int, int);
-typedef char*   (*pFuncCFBC)(float, bool, char*);
-typedef void    (*pFuncpU8)(uint8*);
-typedef void    (*pFuncpCU8)(pUCHAR );
+typedef void  (*pFuncVV)();
+typedef bool  (*pFuncBV)();
+typedef void  (*pFuncVB)(bool);
+typedef void  (*pFuncVI)(int);
+typedef void  (*pFuncVII)(int, int);
+typedef char* (*pFuncCFBC)(float, bool, char*);
+typedef void  (*pFuncpU8)(uint8*);
+typedef void  (*pFuncpCU8)(pUCHAR );
 
-inline void    EmptyFuncVV() {};
+inline void EmptyFuncVV() {};
 
 #define _GET_BIT(value, bit) (((value) >> (bit)) & 0x01) //-V2573
 #define _SET_BIT(value, bit) ((value) |= (1 << (bit))) //-V2573

@@ -286,13 +286,30 @@ void Panel::CallbackOnReceiveSPI5(uint8 *data, int size)
 
     if (size != 3)
     {
-        LOG_WRITE("%s : %s", __FUNCTION__, GF::PrintArrayUint8(data, size, buffer));
+        goto EXIT_ERROR;
+    }
+
+    if (data[0] != 0xff)
+    {
+        goto EXIT_ERROR;
+    }
+
+    if (data[1] >= Key::Count)
+    {
+        goto EXIT_ERROR;
+    }
+
+    if (data[2] >= Action::Count)
+    {
+        goto EXIT_ERROR;
     }
 
     for (int i = 0; i < size; i++)
     {
         queue.Push(*data++);
     }
+
+    return;
 
 //    char buffer[100] = { 0 };
 //
@@ -305,6 +322,10 @@ void Panel::CallbackOnReceiveSPI5(uint8 *data, int size)
 //    }
 //
 //    LOG_WRITE(buffer);
+
+EXIT_ERROR:
+
+    LOG_WRITE("%s : %s", __FUNCTION__, GF::PrintArrayUint8(data, size, buffer));
 }
 
 void Panel::EnableLEDChannel0(bool enable)
