@@ -1321,7 +1321,7 @@ void Display::Update()
 //        DrawCursorTShift();
     }
 
-    Menu::Draw();
+//    Menu::Draw();
 
     DrawIndicator();
 
@@ -1331,6 +1331,7 @@ void Display::Update()
 //    }
 //
     DrawConsole();
+
 //
 //    if (needClear)
 //    {
@@ -1339,7 +1340,7 @@ void Display::Update()
 //
 //    DrawTimeForFrame(gTimerTics - timeStart);
 
-    Color::FILL.SetAsCurrent();
+//    Color::FILL.SetAsCurrent();
 
     EndFrame();
 }
@@ -2479,7 +2480,7 @@ void Display::DrawConsole()
     Font::Set(sDebug_GetSizeFontForConsole() == 5 ? TypeFont::S5 : TypeFont::S8);
     int height = Font::GetSize();
 
-    int lastString = FirstEmptyString() - 1;
+    int last_string = FirstEmptyString() - 1;
     int numStr = NUM_STRINGS;
     if(height == 8 && numStr > 22)
     {
@@ -2491,22 +2492,25 @@ void Display::DrawConsole()
         numStr -= ((height == 8) ? 1 : 2);
         delta = 10;
     }
-    int firstString = lastString - numStr + 1;
-    if(firstString < 0)
+    int first_string = last_string - numStr + 1;
+    if(first_string < 0)
     {
-        firstString = 0;
+        first_string = 0;
     }
 
-    for(int numString = firstString; numString <= lastString; numString++)
+    for(int num_string = first_string; num_string <= last_string; num_string++)
     {
-        int width = Font::GetLengthText(strings[numString]);
+        int width = Font::GetLengthText(strings[num_string]);
         Region(width, height + 1).Fill(Grid::Left() + 1, Grid::TOP + 1 + count * (height + 1) + delta, Color::BACK);
         int y = Grid::TOP + 5 + count * (height + 1) - 4;
+
         if(Font::GetSize() == 5)
         {
             y -= 3;
         }
-        Text(strings[numString]).Draw(Grid::Left() + 2, y + delta, Color::FILL);
+
+        Text(strings[num_string]).Draw(Grid::Left() + 2, y + delta, Color::FILL);
+
         count++;
     }
 
