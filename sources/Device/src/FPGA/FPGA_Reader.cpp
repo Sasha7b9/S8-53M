@@ -32,7 +32,7 @@ int          FPGA::Reader::addition_shift = 0;
 DataSettings FPGA::Reader::ds;
 
 
-void FPGA::Reader::Read(bool necessaryShift, bool saveToStorage)
+void FPGA::Reader::Read(bool necessary_shift, bool save_to_storage)
 {
 
     in_processing_of_read = true;
@@ -42,12 +42,12 @@ void FPGA::Reader::Read(bool necessaryShift, bool saveToStorage)
     }
     else
     {
-        ReadRealMode(necessaryShift);
+        ReadRealMode(necessary_shift);
     }
 
     static uint prevTime = 0;
 
-    if (saveToStorage || (TIME_MS - prevTime > 500))
+    if (save_to_storage || (TIME_MS - prevTime > 500))
     {
         prevTime = TIME_MS;
         if (!sTime_RandomizeModeEnabled())
@@ -180,7 +180,7 @@ void FPGA::Reader::ReadRandomizeMode(void)
 }
 
 
-void FPGA::Reader::ReadRealMode(bool necessaryShift)
+void FPGA::Reader::ReadRealMode(bool necessary_shift)
 {
     uint16 *p0 = &data_rel_A[0];
     uint16 *p1 = &data_rel_B[0];
@@ -221,7 +221,7 @@ void FPGA::Reader::ReadRealMode(bool necessaryShift)
         {
             shift = CalculateShift();
         }
-        else if (necessaryShift)
+        else if (necessary_shift)
         {
             //shift = set.debug.altShift;       WARN Остановились на жёстком задании дополнительного смещения. На PageDebug выбор закомментирован, можно включить при необходимости
             shift = -1;

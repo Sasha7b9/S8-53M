@@ -50,9 +50,9 @@ void FPGA::Init(void)
 } 
 
 
-void FPGA::SetNumSignalsInSec(int numSigInSec) 
+void FPGA::SetNumSignalsInSec(int num_sig_in_sec) 
 {
-    Timer::Enable(TypeTimer::NumSignalsInSec, static_cast<int>(1000.F / numSigInSec), OnTimerCanReadData);
+    Timer::Enable(TypeTimer::NumSignalsInSec, static_cast<int>(1000.F / num_sig_in_sec), OnTimerCanReadData);
 }
 
 
@@ -347,8 +347,8 @@ void ReadPoint(void)
 
 void FPGA::State::Save(void)
 {
-    FPGA::state.stateWorkBeforeCalibration = state_work;
-    storingSettings = set;
+    FPGA::state.state_work_before_calibration = state_work;
+    stored_settings = set;
 }
 
 
@@ -365,7 +365,7 @@ void FPGA::State::Restore(void)
             }
         }
     }
-    set = storingSettings;
+    set = stored_settings;
     for (int chan = 0; chan < 2; chan++)
     {
         for (int mode = 0; mode < 2; mode++)
@@ -377,9 +377,9 @@ void FPGA::State::Restore(void)
         }
     }
     FPGA::LoadSettings();
-    if(state.stateWorkBeforeCalibration != StateWorkFPGA::Stop)
+    if(state.state_work_before_calibration != StateWorkFPGA::Stop)
     {
-        state.stateWorkBeforeCalibration = StateWorkFPGA::Stop;
+        state.state_work_before_calibration = StateWorkFPGA::Stop;
         FPGA::OnPressStartStop();
     }
 }

@@ -43,7 +43,7 @@ public:
     static void Init();
 
     // Установить количество считываемых сигналов в секунду.
-    static void SetNumSignalsInSec(int numSigInSec);
+    static void SetNumSignalsInSec(int num_sig_in_sec);
 
     static void Update();
 
@@ -93,11 +93,11 @@ public:
     {
         static void ClearData();
 
-        static void Read(bool necessaryShift, bool saveToStorage);
+        static void Read(bool necessary_shift, bool save_to_storage);
 
         static void ReadRandomizeMode();
 
-        static void ReadRealMode(bool necessaryShift);
+        static void ReadRealMode(bool necessary_shift);
 
         static DataSettings ds;
 
@@ -164,9 +164,9 @@ public:
     struct State
     {
         State() :
-            needCalibration(false),
-            stateWorkBeforeCalibration(StateWorkFPGA::Stop),
-            stateCalibration(StateCalibration::None)
+            need_calibration(false),
+            state_work_before_calibration(StateWorkFPGA::Stop),
+            state_calibration(StateCalibration::None)
         { }
 
         // Сохраняет текущие настройки. Потом их можно восстановить функцией FPGA_RestoreState().
@@ -175,12 +175,13 @@ public:
         // Восстанавливает настройки, ранее сохранённые функцией FPGA_SaveState().
         void Restore();
 
-        bool                 needCalibration;           // Установленное в true значение означает, что необходимо
-                                                        // произвести калибровку
-        StateWorkFPGA::E    stateWorkBeforeCalibration;
-        StateCalibration::E stateCalibration;           // Текущее состояние калибровки. Используется в процессе калибровки
-        Settings            storingSettings;            // Здесь нужно уменьшить необходимый размер памяти - сохранять
-                                                        // настройки только альтеры
+        bool                need_calibration;               // Установленное в true значение означает, что необходимо
+                                                            // произвести калибровку
+        StateWorkFPGA::E    state_work_before_calibration;
+        StateCalibration::E state_calibration;              // Текущее состояние калибровки. Используется в процессе
+                                                            // калибровки
+        Settings            stored_settings;                // Здесь нужно уменьшить необходимый размер памяти -
+                                                            // сохранять настройки только альтеры
     };
 
     static State state;

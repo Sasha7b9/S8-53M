@@ -79,7 +79,7 @@ void FPGA::Calibrator::ProcedureCalibration(void)
 
     while(1)
     {
-        state.stateCalibration = StateCalibration::ADCinProgress;                  // Запускаем процедуру балансировки АЦП.
+        state.state_calibration = StateCalibration::ADCinProgress;                  // Запускаем процедуру балансировки АЦП.
 
         TBase::Set(TBase::_500us);
         TShift::Set(0);
@@ -104,19 +104,19 @@ void FPGA::Calibrator::ProcedureCalibration(void)
         deltaADCPercents[ChA] = CalculateDeltaADC(ChA, &avrADC1[ChA], &avrADC2[ChA], &deltaADC[ChA]);
         deltaADCPercents[ChB] = CalculateDeltaADC(ChB, &avrADC1[ChB], &avrADC2[ChB], &deltaADC[ChB]);
 
-        state.stateCalibration = StateCalibration::RShift0start;                 
+        state.state_calibration = StateCalibration::RShift0start;                 
 
         koeffCal0 = ERROR_VALUE_FLOAT;
         koeffCal1 = ERROR_VALUE_FLOAT;
 
         if(Panel::WaitPressingButton() == Key::Start)             // Ожидаем подтверждения или отмены процедуры калибровки первого канала.
         {
-			state.stateCalibration = StateCalibration::RShift0inProgress;
+			state.state_calibration = StateCalibration::RShift0inProgress;
 
 			koeffCal0 = CalculateKoeffCalibration(ChA);
 			if(koeffCal0 == ERROR_VALUE_FLOAT) //-V2550 //-V550
             {
-				state.stateCalibration = StateCalibration::ErrorCalibration0;
+				state.state_calibration = StateCalibration::ErrorCalibration0;
 				Panel::WaitPressingButton();
                 DEBUG_STRETCH_ADC_TYPE = StretchADCtype::Hand;
                 PageDebug::LoadStretchADC(ChA);
@@ -141,18 +141,18 @@ void FPGA::Calibrator::ProcedureCalibration(void)
             }
 		}
 
-        state.stateCalibration = StateCalibration::RShift1start;
+        state.state_calibration = StateCalibration::RShift1start;
 
         HAL_TIM2::Delay(500);
 
 		if(Panel::WaitPressingButton() == Key::Start)                 // Ожидаем подтверждения или отмены процедуры калибровки второго канала.
         {
-			state.stateCalibration = StateCalibration::RShift1inProgress;
+			state.state_calibration = StateCalibration::RShift1inProgress;
 
             koeffCal1 = CalculateKoeffCalibration(ChB);
 			if(koeffCal1 == ERROR_VALUE_FLOAT) //-V2550 //-V550
             {
-				state.stateCalibration = StateCalibration::ErrorCalibration1;
+				state.state_calibration = StateCalibration::ErrorCalibration1;
 				Panel::WaitPressingButton();
                 DEBUG_STRETCH_ADC_TYPE = StretchADCtype::Hand;
                 PageDebug::LoadStretchADC(ChB);
@@ -197,12 +197,12 @@ void FPGA::Calibrator::ProcedureCalibration(void)
     STRETCH_ADC_B = (koeffCal1 == ERROR_VALUE_FLOAT) ? koeffCalibrationOld[1] : koeffCal1; //-V2550 //-V550
     Calibrator::LoadKoeff(ChB);
 
-    state.stateCalibration = StateCalibration::None;
+    state.state_calibration = StateCalibration::None;
     Panel::WaitPressingButton();
     Panel::Enable();
     Timer::Disable(TypeTimer::TimerDrawHandFunction);
     Display::SetDrawMode(DrawMode::Auto, 0);
-    state.stateCalibration = StateCalibration::None;
+    state.state_calibration = StateCalibration::None;
 
     SET_ENABLED_A = chanAenable;
     SET_ENABLED_B = chanBenable;
@@ -230,7 +230,7 @@ void FuncAttScreen(void)
 #define dX 20
 #define dY -15
     
-    switch(FPGA::state.stateCalibration)
+    switch(FPGA::state.state_calibration)
     {
         case StateCalibration::None:
         {
@@ -286,7 +286,7 @@ void FuncAttScreen(void)
     }
 
     /*
-    if(stateFPGA.stateCalibration == kNone || stateFPGA.stateCalibration == kRShift0start || stateFPGA.stateCalibration == kRShift1start) {
+    if(stateFPGA.state_calibration == kNone || stateFPGA.state_calibration == kRShift0start || stateFPGA.state_calibration == kRShift1start) {
         x = 230;
         y = 187;
         int delta = 32;
