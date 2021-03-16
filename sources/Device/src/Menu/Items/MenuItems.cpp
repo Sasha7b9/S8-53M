@@ -180,7 +180,7 @@ float Choice::Step() const
             {
                 return delta;
             }
-            GF::CircleIncreaseInt8(own->cell, 0, static_cast<int8>(NumSubItems() - 1));
+            GF::CircleIncrease<int8>(own->cell, 0, static_cast<int8>(NumSubItems() - 1));
         }
         else if (tsChoice.inMoveDecrease == 1)
         {
@@ -475,7 +475,7 @@ void GovernorColor::ShortPress()
     }
     if (IsOpened())
     {
-        GF::CircleIncreaseInt8(&(OwnData()->colorType->currentField), 0, 3);
+        GF::CircleIncrease<int8>(&(OwnData()->colorType->currentField), 0, 3);
     }
     else
     {
@@ -488,7 +488,7 @@ void MACaddress::ShortPress()
 {
     if (IsOpened())
     {
-        GF::CircleIncreaseInt8(&gCurDigit, 0, 5);
+        GF::CircleIncrease<int8>(&gCurDigit, 0, 5);
     }
 }
 

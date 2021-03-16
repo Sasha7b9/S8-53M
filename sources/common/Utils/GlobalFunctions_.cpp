@@ -7,6 +7,12 @@
 #include <cstdlib>
 #include <cstring>
 
+namespace GF
+{
+    template int8 CircleIncrease(int8 *val, int8 min, int8 max);
+    template int16 CircleIncrease(int16 *val, int16 min, int16 max);
+}
+
 
 char *GF::FloatFract2String(float value, bool alwaysSign, char bufferOut[20])
 {
@@ -311,25 +317,20 @@ float GF::MaxFloat(float val1, float val2, float val3)
     return retValue;
 }
 
-int8 GF::CircleIncreaseInt8(int8 *val, int8 min, int8 max)
+
+template<class T>
+T GF::CircleIncrease(T *val, T min, T max)
 {
     (*val)++;
-    if((*val) > max)
+
+    if ((*val) > max)
     {
-        (*val) = min;
+        (*val = min);
     }
+
     return (*val);
 }
 
-int16 GF::CircleIncreaseInt16(int16 *val, int16 min, int16 max)
-{
-    (*val)++;
-    if((*val) > max)
-    {
-        (*val) = min;
-    }
-    return (*val);
-}
 
 int GF::CircleIncreaseInt(int *val, int min, int max)
 {

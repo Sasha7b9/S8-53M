@@ -39,10 +39,6 @@ namespace GF
     float MaxFloat(float val1, float val2, float val3);
 
     // Увеличивает значение по адресу val на 1. Затем, если результат превышает max, приравинвает его к min
-    int8 CircleIncreaseInt8(int8 *val, int8 min, int8 max);
-
-    int16 CircleIncreaseInt16(int16 *val, int16 min, int16 max);
-
     template<class T>
     T CircleIncrease(T *val, T min, T max);
 

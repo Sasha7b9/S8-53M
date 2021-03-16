@@ -94,7 +94,7 @@ void PressSB_MemLastSelect()
 
 void PressSB_MemLast_Next()
 {
-    GF::CircleIncreaseInt16(&PageMemory::PageLatest::currentSignal, 0, static_cast<int16>(Storage::AllDatas() - 1));
+    GF::CircleIncrease<int16>(&PageMemory::PageLatest::currentSignal, 0, static_cast<int16>(Storage::AllDatas() - 1));
 }
 
 void PressSB_MemLast_Prev()
@@ -364,7 +364,7 @@ void OnMemExtSetMaskNameRegSet(int angle, int maxIndex)
     {
         GF::CircleDecreaseInt8,
         GF::CircleDecreaseInt8,
-        GF::CircleIncreaseInt8
+        GF::CircleIncrease<int8>
     };
 
     Color::ResetFlash();
@@ -569,7 +569,7 @@ static void FuncOnRegSetMemInt(int delta)
     }
     else if (delta > 0)
     {
-        GF::CircleIncreaseInt8(&PageMemory::PageInternal::currentSignal, 0, MAX_NUM_SAVED_WAVES - 1);
+        GF::CircleIncrease<int8>(&PageMemory::PageInternal::currentSignal, 0, MAX_NUM_SAVED_WAVES - 1);
     }
     EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
     Color::ResetFlash();
@@ -672,7 +672,7 @@ static void DrawSB_MemInt_ModeShow(int x, int y)
 
 static void PressSB_MemInt_ModeShow()
 {
-    GF::CircleIncreaseInt8((int8*)&MODE_SHOW_MEMINT, 0, 2);
+    GF::CircleIncrease<int8>((int8*)&MODE_SHOW_MEMINT, 0, 2);
 }
 
 static const arrayHints hintsMemIntModeShow =

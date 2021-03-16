@@ -171,7 +171,7 @@ void Governor::NextPosition()
 {
     if (IsOpened())
     {
-        GF::CircleIncreaseInt8(&gCurDigit, 0, static_cast<int8>(NumDigits()) - 1);
+        GF::CircleIncrease<int8>(&gCurDigit, 0, static_cast<int8>(NumDigits()) - 1);
     }
 }
 
@@ -188,7 +188,7 @@ int Governor::NumDigits() const
 
 void IPaddress::NextPosition() const
 {
-    GF::CircleIncreaseInt8(&gCurDigit, 0, (OwnData()->port == 0) ? 11 : 16);
+    GF::CircleIncrease<int8>(&gCurDigit, 0, (OwnData()->port == 0) ? 11 : 16);
 }
 
 void TimeItem::SetOpened()
@@ -211,7 +211,7 @@ void TimeItem::SetNewTime() const
 
 void TimeItem::SelectNextPosition()
 {
-    GF::CircleIncreaseInt8(OwnData()->curField, 0, 7);
+    GF::CircleIncrease<int8>(OwnData()->curField, 0, 7);
     Color::ResetFlash();
 }
 
