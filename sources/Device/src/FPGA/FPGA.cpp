@@ -200,51 +200,19 @@ void FPGA::Update(void)
 {
     flag.Read();
 
-    static bool pred_state = true;
-
-    bool st = flag.IsPredRead();
-
-    if (st != pred_state)
-    {
-        if (st)
-        {
-            LOG_WRITE("Предзапуск готов");
-        }
-        else
-        {
-            LOG_WRITE("         Предзапуск не готов");
-        }
-    }
-
-    pred_state = st;
-
-
-    /*
-    if (_GET_BIT(flag, FL_PRED_READY) == 1)
+    if (flag.IsPredReady())
     {
         LOG_WRITE("Предзапуск готов");
 
-        if (_GET_BIT(flag, FL_TRIG_READY) == 1)
+        if (flag.IsTrigReady())
         {
-            if (_GET_BIT(flag, FL_DATA_READY) == 1)
-            {
-                LOG_WRITE("Данные можно считывать");
-            }
-            else
-            {
-                LOG_WRITE("Данные не готовы");
-            }
+            LOG_WRITE("Триггер готов");
         }
         else
         {
-            LOG_WRITE("Синхронизация не готова");
+            LOG_WRITE("Триггер не готов");
         }
     }
-    else
-    {
-        LOG_WRITE("Предзапуск не готов");
-    }
-    */
 }
 
 

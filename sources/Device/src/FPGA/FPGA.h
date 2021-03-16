@@ -136,7 +136,7 @@ public:
         inline bool IsTrigReady() const  { return _GET_BIT(flag, FL_TRIG_READY) == 1; }
         inline bool IsDataReady() const  { return _GET_BIT(flag, FL_DATA_READY) == 1; };
         inline bool IsPointReady() const { return _GET_BIT(flag, FL_POINT_READY) == 1; };
-        inline bool IsPredRead() const   { return _GET_BIT(flag, FL_PRED_READY) == 1; };
+        inline bool IsPredReady() const  { return _GET_BIT(flag, FL_PRED_READY) == 1; };
         uint16 flag;
     };
 
