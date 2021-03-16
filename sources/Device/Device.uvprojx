@@ -1079,14 +1079,9 @@
               <FilePath>.\src\Hardware\EPROM.cpp</FilePath>
             </File>
             <File>
-              <FileName>RAM.h</FileName>
+              <FileName>Sound_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Hardware\RAM.h</FilePath>
-            </File>
-            <File>
-              <FileName>RAM.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\RAM.cpp</FilePath>
+              <FilePath>..\common\Hardware\Sound_.h</FilePath>
             </File>
             <File>
               <FileName>Sound_.cpp</FileName>
@@ -1094,19 +1089,14 @@
               <FilePath>..\common\Hardware\Sound_.cpp</FilePath>
             </File>
             <File>
-              <FileName>Sound_.h</FileName>
+              <FileName>Timer_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Hardware\Sound_.h</FilePath>
+              <FilePath>..\common\Hardware\Timer_.h</FilePath>
             </File>
             <File>
               <FileName>Timer_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\Timer_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Timer_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Hardware\Timer_.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -3274,14 +3264,9 @@
               <FilePath>.\src\Hardware\EPROM.cpp</FilePath>
             </File>
             <File>
-              <FileName>RAM.h</FileName>
+              <FileName>Sound_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Hardware\RAM.h</FilePath>
-            </File>
-            <File>
-              <FileName>RAM.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\RAM.cpp</FilePath>
+              <FilePath>..\common\Hardware\Sound_.h</FilePath>
             </File>
             <File>
               <FileName>Sound_.cpp</FileName>
@@ -3289,19 +3274,14 @@
               <FilePath>..\common\Hardware\Sound_.cpp</FilePath>
             </File>
             <File>
-              <FileName>Sound_.h</FileName>
+              <FileName>Timer_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Hardware\Sound_.h</FilePath>
+              <FilePath>..\common\Hardware\Timer_.h</FilePath>
             </File>
             <File>
               <FileName>Timer_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\Timer_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Timer_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Hardware\Timer_.h</FilePath>
             </File>
           </Files>
         </Group>
