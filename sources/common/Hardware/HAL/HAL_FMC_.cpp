@@ -1,7 +1,9 @@
 #include "defines.h"
-#include "common/Hardware/HAL/HAL_.h"
-#include "Settings/Settings.h"
+#include "common/Log_.h"
 #include "common/Hardware/Timer_.h"
+#include "common/Hardware/HAL/HAL_.h"
+#include "FPGA/FPGA_Types.h"
+#include "Settings/Settings.h"
 #include <stm32f4xx_hal.h>
 #include <cstdlib>
 
@@ -19,6 +21,24 @@ uint16 *const HAL_FMC::ADDR_RAM_BEGIN = (uint16 *)(ADDR_RAM + 320 * 240);
 
 uint16 *const HAL_FMC::ADDR_RAM_END = (uint16 *)(ADDR_RAM + 1024 * 1024);
 
+
+void HAL_FMC::Write(uint16 *const address, uint16 value)
+{
+//    if (address == WR_STOP)
+//    {
+//        LOG_WRITE("WR_STOP");
+//    }
+//    else if (address == WR_START)
+//    {
+//        LOG_WRITE("WR_START");
+//    }
+//    else if (address == WR_RAZV)
+//    {
+//        LOG_WRITE("WR_RAZV");
+//    }
+
+    *address = value;
+}
 
 
 void HAL_FMC::Init()

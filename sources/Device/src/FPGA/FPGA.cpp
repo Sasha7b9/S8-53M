@@ -636,7 +636,7 @@ void FPGA::BUS::Write(uint16 *address, uint16 data)
 
     Stop(true);
 
-    *address = data;
+    HAL_FMC::Write(address, data);
 
     if(is_running)
     {
