@@ -115,16 +115,6 @@ public:
 
     struct BUS
     {
-        struct TypeRecord
-        {
-            enum E
-            {
-                FPGA,
-                Analog,
-                DAC
-            };
-        };
-
         // Запись в регистр ПЛИС нового значения:
         // address - адрес регистра,
         // value - записываемое значение,
@@ -132,9 +122,9 @@ public:
         //           режиме паузы.
         static void WriteToHardware(uint16 *const address, uint16 value, bool restart);
 
-        static void Write(TypeRecord::E type, uint16 *address, uint data, bool restart);
+        static void Write(uint16 *address, uint data, bool restart);
 
-        static void Write(TypeRecord::E type, uint16 *address, uint data);
+        static void Write(uint16 *address, uint data);
 
         static void WriteToDAC(TypeWriteDAC::E type, uint16 data);
 

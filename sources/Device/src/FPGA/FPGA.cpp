@@ -105,6 +105,7 @@ void FPGA::Start(void)
         Timer::Disable(TypeTimer::P2P);
         Display::ResetP2Ppoints(true);
     }
+
     HAL_FMC::Write(WR_START, 1);
     ds.Fill();
     timeStart = TIME_MS;
@@ -196,32 +197,53 @@ bool FPGA::ProcessingData(void)
 
 void FPGA::Update(void)
 {
-//    uint16 flag = Flag::Read();
-//
-//    if (_GET_BIT(flag, FL_PRED_READY) == 1)
-//    {
-//        LOG_WRITE("Предзапуск готов");
-//
-//        if (_GET_BIT(flag, FL_TRIG_READY) == 1)
-//        {
-//            if (_GET_BIT(flag, FL_DATA_READY) == 1)
-//            {
-//                LOG_WRITE("Данные можно считывать");
-//            }
-//            else
-//            {
-//                LOG_WRITE("Данные не готовы");
-//            }
-//        }
-//        else
-//        {
-//            LOG_WRITE("Синхронизация не готова");
-//        }
-//    }
-//    else
-//    {
-//        LOG_WRITE("Предзапуск не готов");
-//    }
+    uint16 flag = Flag::Read();
+
+    static int pred_state = 0;
+
+    int st = _GET_BIT(flag, FL_PRED_READY);
+
+    if (st != pred_state)
+    {
+        if (st == 1)
+        {
+            LOG_WRITE("Предзапуск готов");
+        }
+        else
+        {
+            LOG_WRITE("         Предзапуск не готов");
+        }
+    }
+
+    pred_state = st;
+
+
+    /*
+    if (_GET_BIT(flag, FL_PRED_READY) == 1)
+    {
+        LOG_WRITE("Предзапуск готов");
+
+        if (_GET_BIT(flag, FL_TRIG_READY) == 1)
+        {
+            if (_GET_BIT(flag, FL_DATA_READY) == 1)
+            {
+                LOG_WRITE("Данные можно считывать");
+            }
+            else
+            {
+                LOG_WRITE("Данные не готовы");
+            }
+        }
+        else
+        {
+            LOG_WRITE("Синхронизация не готова");
+        }
+    }
+    else
+    {
+        LOG_WRITE("Предзапуск не готов");
+    }
+    */
 }
 
 
@@ -640,15 +662,13 @@ void FPGA::BUS::WriteToHardware(uint16 * const address, uint16 value, bool resta
 }
 
 
-void FPGA::BUS::Write(TypeRecord::E type, uint16 *address, uint data, bool /*restart*/)
+void FPGA::BUS::Write(uint16 *address, uint data, bool /*restart*/)
 {
-    Write(type, address, data);
-
 //    if (restart)
 //    {
-//        Stop(true);
-//        Write(type, address, data);
-//        Start();
+        Stop(true);
+        Write(address, data);
+        Start();
 //    }
 //    else
 //    {
@@ -660,12 +680,9 @@ void FPGA::BUS::Write(TypeRecord::E type, uint16 *address, uint data, bool /*res
 }
 
 
-void FPGA::BUS::Write(TypeRecord::E type, uint16 *address, uint data)
+void FPGA::BUS::Write(uint16 *address, uint data)
 {
-    if (type == TypeRecord::FPGA)
-    {
-        *address = (uint16)data;
-    }
+    *address = (uint16)data;
 }
 
 

@@ -121,7 +121,7 @@ void FPGA::ClearData()
 }
 
 
-void FPGA::BUS::Write(TypeRecord::E, uint16 *, uint, bool)
+void FPGA::BUS::Write(uint16 *, uint, bool)
 {
 
 }

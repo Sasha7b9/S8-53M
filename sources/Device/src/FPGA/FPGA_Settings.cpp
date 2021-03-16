@@ -221,7 +221,7 @@ void TBase::Load()
 
     LOG_WRITE("%s", GF::Bin2String(mask, buffer));
 
-    FPGA::BUS::Write(FPGA::BUS::TypeRecord::FPGA, WR_RAZV, mask, true);
+    FPGA::BUS::Write(WR_RAZV, mask, true);
     ADD_SHIFT_T0 = deltaTShift[tBase];
 }
 
@@ -325,7 +325,7 @@ void RegUPR::Load()
         data |= (1 << UPR_BIT_PEAKDET);
     }
 
-    FPGA::BUS::Write(FPGA::BUS::TypeRecord::FPGA, WR_UPR, data, false);
+    FPGA::BUS::Write(WR_UPR, data, false);
 }
 
 
@@ -397,8 +397,8 @@ void TShift::Load()
             ++FPGA::post;
             --FPGA::pred;
         }
-        FPGA::BUS::Write(FPGA::BUS::TypeRecord::FPGA, WR_POST, FPGA::post, true);
-        FPGA::BUS::Write(FPGA::BUS::TypeRecord::FPGA, WR_PRED, (uint)FPGA::pred, true);
+        FPGA::BUS::Write(WR_POST, FPGA::post, true);
+        FPGA::BUS::Write(WR_PRED, (uint)FPGA::pred, true);
     }
 }
 
@@ -464,7 +464,7 @@ void TrigPolarity::Set(E polarity)
 
 void TrigLev::Polarity::Load()
 {
-    FPGA::BUS::Write(FPGA::BUS::TypeRecord::FPGA, WR_TRIG, TRIG_POLARITY_IS_FRONT ? 1U : 0U, true);
+    FPGA::BUS::Write(WR_TRIG, TRIG_POLARITY_IS_FRONT ? 1U : 0U, true);
 }
 
 
