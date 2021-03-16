@@ -6,17 +6,20 @@
 #include <cmath>
 
 
-template void Math::Swap<int>(int *, int *);
-template void Math::Limitation<int>(int *, int, int);
+template void Math::Swap(int *, int *);
+template void Math::Limitation(int *, int, int);
+template int Math::MinFrom2(int, int);
 
 
-int Math::MinFrom2Int(int val0, int val1)
+template<class T>
+T Math::MinFrom2(T val1, T val2)
 {
-    if (val0 < val1)
+    if (val1 < val2)
     {
-        return val0;
+        return val1;
     }
-    return val1;
+
+    return val2;
 }
 
 
@@ -51,12 +54,6 @@ float Math_MinFrom3float(float value1, float value2, float value3)
         retValue = value3;
     }
     return retValue;
-}
-
-
-int Math::MinInt(int val1, int val2)
-{
-    return val1 < val2 ? val1 : val2;
 }
 
 

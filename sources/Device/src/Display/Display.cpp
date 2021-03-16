@@ -1909,7 +1909,7 @@ void Display::DrawMeasures()
             {
                 Region(dX, dY).Fill(x, y, Color::BACK);
                 Primitives::Rectangle(dX, dY).Draw(x, y, Color::FILL);
-                topMeasures = Math::MinFrom2Int(topMeasures, y);
+                topMeasures = Math::MinFrom2(topMeasures, y);
             }
             if(active)
             {

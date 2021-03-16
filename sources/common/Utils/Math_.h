@@ -28,31 +28,42 @@
 
 namespace Math
 {
-    int     MinFrom2Int(int val0, int val1);
     uint8   GetMaxFromArray(pUCHAR data, int firstPoint, int lastPoint);
+
     uint8   GetMinFromArray(pUCHAR data, int firstPoint, int lastPoint);
+
     // ¬озвращает координату x пересечени€ линии, проход€щей через (x0, y0), (x1, y1), с горизонтальной линией, проход€щей через точку с ординатой yHorLine.
     float   GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, int yHorLine);
+
     // —равнивает два числа. ¬озвращает true, если числа отличаютс€ друг от друга не более, чем на epsilonPart. ѕри этом дл€ расчЄта epsilonPart 
     // используетс€ большее в смысле модул€ число.
     bool    FloatsIsEquals(float value0, float value1, float epsilonPart);
+
     float   MinFrom3float(float value1, float value2, float value3);
-    int     MinInt(int val1, int val2);
+
     float   RandFloat(float min, float max);
+
     int8    AddInt8WithLimitation(int8 value, int8 delta, int8 min, int8 max);
+
     int     Sign(int vlaue);
+
     // ¬ычисл€ет 10**pow.
     int     Pow10(int pow);
+
     // ¬ычисл€ет число разр€дов в целом типа int.
     int     NumDigitsInNumber(int value);
+
     // ¬озвращает модуль value.
     int     FabsInt(int value);
+
     uint8   CalculateFiltr(pUCHAR data, int x, int numPoints, int numSmoothing);
+
     void    CalculateFiltrArray(pUCHAR dataIn, uint8* dataOut, int numPoints, int numSmoothing);
 
     // ќбменивает местами содержимое пам€ти по адресам value0 и value1
     template<class T> void Swap(T *value0, T *value1);
     template<class T> void Limitation(T *value, T min, T max);
+    template<class T> T MinFrom2(T val1, T val2);
 }
 
 
