@@ -476,6 +476,7 @@ char *GF::PrintArrayUint8(uint8 *array, int size, char *out_buffer)
         char buf[10];
 
         std::strcat(out_buffer, GF::Int2String(array[i], false, 1, buf));
+        std::strcat(out_buffer, " ");
     }
 
     return out_buffer;

@@ -63,8 +63,10 @@ struct ReceivedBuffer
             return buffer[0];
         }
 
-        return buffer[pointer];
+        return buffer[n];
     }
+
+    uint8 *Data() { return buffer; }
 
     Mutex mutex;    // При работе с буфером главный цикл лочит этот мьютекс, а прерывание проверяет, не залочен ли он
 

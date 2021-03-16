@@ -127,3 +127,10 @@ T &Queue<T>::operator[](int n) //-V2506
 
     return result;
 }
+
+
+template<typename T>
+T *Queue<T>::Data()
+{
+    return pointer;
+}

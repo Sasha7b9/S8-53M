@@ -21,6 +21,8 @@ public:
 
     T &operator[](int n);
 
+    T *Data();
+
 private:
 
     void Destroy();

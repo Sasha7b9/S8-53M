@@ -1312,7 +1312,7 @@ void Display::Update()
 //        DrawSpectrum();
 //        DrawCursors();
 //        DrawHiPart();
-//        DrawLowPart();
+        DrawLowPart();
 //        DrawCursorsWindow();
 //        DrawCursorTrigLevel();
 //        DrawCursorsRShift();
