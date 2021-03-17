@@ -628,7 +628,7 @@ static void SetRShift(Channel::E ch, int16 rShift)
 
 static void RShiftLeftA()
 {
-//    LOG_WRITE(__FUNCTION__);
+    LOG_WRITE(__FUNCTION__);
 
     static int prevTime = 0;
     ChangeRShift(&prevTime, SetRShift, ChA, -STEP_RSHIFT);
