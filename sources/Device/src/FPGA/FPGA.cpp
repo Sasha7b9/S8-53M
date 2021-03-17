@@ -430,17 +430,23 @@ void FPGA::Flag::Read()
 {
     flag = HAL_FMC::Read(RD_FL);
 
-//    if(!readPeriod) 
-//    {
-//        if(_GET_BIT(flag, FL_FREQ_READY)) 
-//        {
-//            ReadFreq();
-//        }
-//    }
-//    if(readPeriod && (_GET_BIT(flag, FL_PERIOD_READY) == 1)) 
-//    {
-//        ReadPeriod();
-//    }
+    CalculateTimePredReady();
+}
+
+
+void FPGA::Flag::CalculateTimePredReady()
+{
+    if (IsPredReady())
+    {
+        if (time_pred_ready == 0)
+        {
+            time_pred_ready = TIME_MS;
+        }
+    }
+    else
+    {
+        time_pred_ready = 0;
+    }
 }
 
 
