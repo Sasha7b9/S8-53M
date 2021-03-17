@@ -451,7 +451,6 @@ void Display::WriteParametersFFT(Channel::E chan, float freq0, float density0, f
     int y = Grid::ChannelBottom() + 5;
     int dY = 10;
 
-    char buffer[20];
     Color::FILL.SetAsCurrent();
     GF::Freq2String(freq0, false).Draw(x, y);
     y += dY;
