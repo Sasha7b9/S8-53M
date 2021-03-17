@@ -1,6 +1,7 @@
 // 2021/03/16 16:35:58 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "common/Utils/Math_.h"
+#include "Display/DataPainter.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGA_Reader.h"
 #include "FPGA/Storage.h"
@@ -131,7 +132,7 @@ void ReaderFPGA::ReadPoint()
         uint16 dataB2 = *RD_ADC_B;
         uint16 dataA1 = *RD_ADC_A;
         uint16 dataA2 = *RD_ADC_A;
-        Display::AddPoints(dataA2, dataA1, dataB2, dataB1);
+        DataPainter::AddPoints(dataA2, dataA1, dataB2, dataB1);
     }
 }
 

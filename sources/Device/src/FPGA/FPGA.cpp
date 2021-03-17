@@ -1,12 +1,13 @@
 #include "defines.h"
 #include "common/Log_.h"
+#include "common/Hardware/Timer_.h"
 #include "common/Utils/Math_.h"
+#include "Display/DataPainter.h"
 #include "FPGA/DataSettings.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGA_Reader.h"
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/Storage.h"
-#include "common/Hardware/Timer_.h"
 #include "Panel/Panel.h"
 #include "Settings/Settings.h"
 #include "Utils/ProcessingSignal.h"
@@ -64,13 +65,13 @@ void FPGA::Start()
 {
     if(SET_TBASE >= MIN_TBASE_P2P)
     {
-        Display::ResetP2Ppoints(false);
+        DataPainter::ResetP2Ppoints(false);
         Timer::Enable(TypeTimer::P2P, 1, ReaderFPGA::ReadPoint);
     }
     else
     {
         Timer::Disable(TypeTimer::P2P);
-        Display::ResetP2Ppoints(true);
+        DataPainter::ResetP2Ppoints(true);
     }
 
     HAL_FMC::Write(WR_START, 1);
