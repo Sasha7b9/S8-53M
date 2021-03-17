@@ -762,7 +762,7 @@ void DataPainter::ResetP2Ppoints(bool empty)
 }
 
 
-void DataPainter::AddPoints(uint16 data00, uint16 data01, uint16 data10, uint16 data11)
+void DataPainter::AddPoints(uint16 data_a_1, uint16 data_a_2, uint16 data_b_1, uint16 data_b_2)
 {
     dataP2PIsEmpty = false;
     if (SET_SELFRECORDER)
@@ -774,11 +774,11 @@ void DataPainter::AddPoints(uint16 data00, uint16 data01, uint16 data10, uint16 
         }
     }
 
-    dataP2P_0[lastP2Pdata] = (uint8)data00;
-    dataP2P_1[lastP2Pdata++] = (uint8)data10;
+    dataP2P_0[lastP2Pdata] = (uint8)data_a_1;
+    dataP2P_1[lastP2Pdata++] = (uint8)data_b_1;
 
-    dataP2P_0[lastP2Pdata] = (uint8)data01;
-    dataP2P_1[lastP2Pdata++] = (uint8)data11;
+    dataP2P_0[lastP2Pdata] = (uint8)data_a_2;
+    dataP2P_1[lastP2Pdata++] = (uint8)data_b_2;
     if (!SET_SELFRECORDER && lastP2Pdata >= NUM_P2P_POINTS)
     {
         lastP2Pdata = 0;
