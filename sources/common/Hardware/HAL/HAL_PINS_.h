@@ -11,6 +11,8 @@ namespace HAL_PINS
 
     namespace SPI1_ { void Init(); }
 
+    namespace SPI4_ { void Init(); }
+
     namespace SPI5_ { void Init(); }
 };
 
@@ -76,9 +78,10 @@ struct Pin
     void Reset();
     uint Read();
 
-    static Pin G2;
-    static Pin G3;
-    static Pin G5;
+    static Pin SPI4_CS1;
+    static Pin SPI4_CS2;
+    static Pin SPI4_CLK;
+    static Pin SPI4_DAT;
     static Pin LED;
     static Pin DisplayReady;
     static Pin Temp;

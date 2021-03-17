@@ -221,10 +221,6 @@ void TBase::Load()
     TBase::E tBase = SET_TBASE;
     uint8 mask = (PEAKDET == PeackDetMode::Disable) ? masksTBase[tBase].maskNorm : masksTBase[tBase].maskPeackDet;
 
-    char buffer[10];
-
-    LOG_WRITE("%s", GF::Bin2String(mask, buffer));
-
     FPGA::BUS::Write(WR_RAZV, mask);
     ADD_SHIFT_T0 = deltaTShift[tBase];
 }
@@ -249,6 +245,7 @@ void RShift::Load(Channel::E chan)
     rShift = (uint16)(delta + RShiftZero);
 
     rShift = (uint16)(RShiftMax + RShiftMin - rShift);
+
     FPGA::BUS::WriteToDAC(chan == ChA ? TypeWriteDAC::RShiftA : TypeWriteDAC::RShiftB, (uint16)(mask[chan] | (rShift << 2)));
 }
 

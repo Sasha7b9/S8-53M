@@ -77,9 +77,10 @@ struct PinLTDC : public Pin
 };
 
 
-Pin Pin::G2(PinMode::_Output, PinPort::_G, PinPin::_2);
-Pin Pin::G3(PinMode::_Output, PinPort::_G, PinPin::_3);
-Pin Pin::G5(PinMode::_Output, PinPort::_G, PinPin::_5);
+Pin Pin::SPI4_CS1(PinMode::_Output, PinPort::_E, PinPin::_5);
+Pin Pin::SPI4_CS2(PinMode::_Output, PinPort::_I, PinPin::_8);
+Pin Pin::SPI4_CLK(PinMode::_Output, PinPort::_E, PinPin::_2);
+Pin Pin::SPI4_DAT(PinMode::_Output, PinPort::_E, PinPin::_6);
 Pin Pin::LED(PinMode::_Output, PinPort::_G, PinPin::_12);
 Pin Pin::DisplayReady(PinMode::_Input, PinPort::_G, PinPin::_11);
 
@@ -162,11 +163,22 @@ void HAL_PINS::SPI5_::Init()
 }
 
 
+void HAL_PINS::SPI4_::Init()
+{
+    Pin::SPI4_CS1.Init();
+    Pin::SPI4_CS1.Set();
+
+    Pin::SPI4_CS2.Init();
+    Pin::SPI4_CS1.Set();
+
+    Pin::SPI4_CLK.Init();
+
+    Pin::SPI4_DAT.Init();
+}
+
+
 void HAL_PINS::Init()
 {
-    Pin::G2.Init();
-    Pin::G3.Init();
-    Pin::G5.Init();
     Pin::LED.Init();
     Pin::DisplayReady.Init();
 

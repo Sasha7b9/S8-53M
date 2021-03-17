@@ -93,8 +93,8 @@ void FPGA::Update()
             {
                 ReaderFPGA::ReadData();
 
-                LOG_WRITE("1 : %s", GF::LogArrayUint8(ReaderFPGA::data_a, 10).c_str());
-                LOG_WRITE("2 : %s", GF::LogArrayUint8(ReaderFPGA::data_b, 10).c_str());
+//                LOG_WRITE("1 : %s", GF::LogArrayUint8(ReaderFPGA::data_a, 10).c_str());
+//                LOG_WRITE("2 : %s", GF::LogArrayUint8(ReaderFPGA::data_b, 10).c_str());
 
                 FPGA::Start();
             }
@@ -427,13 +427,15 @@ void FPGA::TemporaryPause()
 }
 
 
-#define CLC_HI      Pin::G2.Set();
-#define CLC_LOW     Pin::G2.Reset();
-#define DATA_SET(x) Pin::G3.Write(x);
+#define CLC_HI      Pin::SPI4_CLK.Set();
+#define CLC_LOW     Pin::SPI4_CLK.Reset();
+#define DATA_SET(x) Pin::SPI4_DAT.Write(x);
 
 
 void FPGA::BUS::WriteToAnalog(TypeWriteAnalog::E type, uint data)
 {
+    LOG_WRITE("%s : %d", __FUNCTION__, data);
+
     char buffer[19];
 
     char *str = GF::Bin2String16(static_cast<uint16>(data), buffer);
@@ -462,35 +464,39 @@ void FPGA::BUS::WriteToAnalog(TypeWriteAnalog::E type, uint data)
         LOG_WRITE("полная запись в аналоговую часть = %s", str);
     }
 
-    Pin::G5.Reset();
+    Pin::SPI4_CS2.Reset();
+
     for (int i = 23; i >= 0; i--)
     {
         DATA_SET((data & (1 << i)) ? 1 : 0);
         CLC_HI
         CLC_LOW
     }
-    Pin::G5.Set();
+
+    Pin::SPI4_CS2.Set();
 }
 
 
 void FPGA::BUS::WriteToDAC(TypeWriteDAC::E type, uint16 data)
 {
+    LOG_WRITE("%s : %d", __FUNCTION__, data);
+
     char buffer[19];
 
     if (type == TypeWriteDAC::RShiftA)
     {
-        LOG_WRITE("rShift 1 = %s", GF::Bin2String16(data, buffer));
+//        LOG_WRITE("rShift 1 = %s", GF::Bin2String16(data, buffer));
     }
     else if (type == TypeWriteDAC::RShiftB)
     {
-        LOG_WRITE("rShfit 2 = %s", GF::Bin2String16(data, buffer));
+//        LOG_WRITE("rShfit 2 = %s", GF::Bin2String16(data, buffer));
     }
     else if (type == TypeWriteDAC::TrigLev)
     {
-        LOG_WRITE("trigLev = %s", GF::Bin2String16(data, buffer));
+//        LOG_WRITE("trigLev = %s", GF::Bin2String16(data, buffer));
     }
 
-//    Pin::G7.Reset();
+    Pin::SPI4_CS1.Reset();
 
     for (int i = 15; i >= 0; i--)
     {
@@ -499,5 +505,5 @@ void FPGA::BUS::WriteToDAC(TypeWriteDAC::E type, uint16 data)
         CLC_LOW
     }
 
-//    Pin::G7.Set();
+    Pin::SPI4_CS1.Set();
 }
