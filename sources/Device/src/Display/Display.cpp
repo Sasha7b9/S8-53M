@@ -555,7 +555,7 @@ void Display::DrawSpectrum()
 
 
 
-void Display::DrawBothChannels(uint8 *data_a, uint8 *data_b)
+void Display::DrawBothChannels()
 {
 	if (LAST_AFFECTED_CHANNEL_IS_B)
     {
@@ -639,7 +639,7 @@ void Display::DrawDataInModeSelfRecorder()
 
 void Display::DrawDataInModeNormal()
 {
-    DrawBothChannels(0, 0);
+    DrawBothChannels();
 
 //    static void* prevAddr = 0;
 //

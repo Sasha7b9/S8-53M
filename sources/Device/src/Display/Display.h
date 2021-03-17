@@ -125,7 +125,7 @@ private:
     
     static void DrawDataChannel(uint8 *data, Channel::E chan, DataSettings *ds, int minY, int maxY);
     
-    static void DrawBothChannels(uint8 *data0, uint8 *data1);
+    static void DrawBothChannels();
     
     static void DrawDataMemInt();
     
