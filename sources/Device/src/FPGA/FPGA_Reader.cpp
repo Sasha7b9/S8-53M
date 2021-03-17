@@ -28,8 +28,8 @@ static uint8 InverseIfNecessary(uint8 data, Channel::E chan)
 */
 
 
-uint16       ReaderFPGA::data_rel_A[FPGA_MAX_POINTS];
-uint16       ReaderFPGA::data_rel_B[FPGA_MAX_POINTS];
+uint16       ReaderFPGA::data_a[FPGA_MAX_POINTS];
+uint16       ReaderFPGA::data_b[FPGA_MAX_POINTS];
 int          ReaderFPGA::addition_shift = 0;
 DataSettings ReaderFPGA::ds;
 
@@ -63,11 +63,11 @@ void ReaderFPGA::SaveToStorage(bool save_to_storage)
 
         if (!sTime_RandomizeModeEnabled())
         {
-            InverseDataIsNecessary(ChA, data_rel_A);
-            InverseDataIsNecessary(ChB, data_rel_B);
+            InverseDataIsNecessary(ChA, data_a);
+            InverseDataIsNecessary(ChB, data_b);
         }
 
-        Storage::AddData(data_rel_A, data_rel_B, ds);
+        Storage::AddData(data_a, data_b, ds);
 
         if (TRIG_MODE_FIND_IS_AUTO && TrigLev::need_auto_find)
         {
@@ -93,14 +93,14 @@ void ReaderFPGA::ReadRandomizeMode()
         index += step;        // WARN
     }
 
-    uint16 *pData0 = &data_rel_A[index];
-    uint16 *const pData0Last = &data_rel_A[FPGA_MAX_POINTS - 1];
-    uint16 *pData1 = &data_rel_B[index];
-    uint16 *const pData1Last = &data_rel_B[FPGA_MAX_POINTS - 1];
+    uint16 *pData0 = &data_a[index];
+    uint16 *const pData0Last = &data_a[FPGA_MAX_POINTS - 1];
+    uint16 *pData1 = &data_b[index];
+    uint16 *const pData1Last = &data_b[FPGA_MAX_POINTS - 1];
 
-    uint16 *const first0 = &data_rel_A[0];
+    uint16 *const first0 = &data_a[0];
     uint16 *const last0 = pData0Last;
-    uint16 *const first1 = &data_rel_B[0];
+    uint16 *const first1 = &data_b[0];
     uint16 *const last1 = pData1Last;
 
     int numAve = NUM_AVE_FOR_RAND;
@@ -117,7 +117,7 @@ void ReaderFPGA::ReadRandomizeMode()
         ClearData();
     }
 
-    while (pData0 < &data_rel_A[FPGA_MAX_POINTS])
+    while (pData0 < &data_a[FPGA_MAX_POINTS])
     {
         //        volatile uint16 data10 = *RD_ADC_B2; //-V2551
                 //uint8 data11 = *RD_ADC_B1;
@@ -183,19 +183,14 @@ void ReaderFPGA::ReadRandomizeMode()
 
     if (START_MODE_IS_SINGLE || SAMPLE_TYPE_IS_REAL)
     {
-        Processing::InterpolationSinX_X(data_rel_A, SET_TBASE);
-        Processing::InterpolationSinX_X(data_rel_B, SET_TBASE);
+        Processing::InterpolationSinX_X(data_a, SET_TBASE);
+        Processing::InterpolationSinX_X(data_b, SET_TBASE);
     }
 }
 
 
 void ReaderFPGA::ReadRealMode(bool /*necessary_shift*/)
 {
-//    uint16 *p0 = &data_rel_A[0];
-//    uint16 *p1 = &data_rel_B[0];
-//
-//    uint16 *endP = &data_rel_A[FPGA_MAX_POINTS];
-
     if (ds.peakDet != PeackDetMode::Disable)
     {
         ReadRealModePeakDetOn();
@@ -209,77 +204,50 @@ void ReaderFPGA::ReadRealMode(bool /*necessary_shift*/)
 
 void ReaderFPGA::ReadRealModePeakDetOn()
 {
-    uint16 *a = &data_rel_A[0];
-    uint16 *b = &data_rel_B[0];
-    uint16 *end = &data_rel_A[FPGA_MAX_POINTS];
+    uint16 *a = &data_a[0];
+    uint16 *b = &data_b[0];
+    uint16 *end = &data_a[FPGA_MAX_POINTS];
 
-    uint16 *p0min = a;
-    uint16 *p0max = p0min + 512;
-    uint16 *p1min = b;
-    uint16 *p1max = p1min + 512;
-    while ((p0max < end) && FPGA::in_processing_of_read)
+    uint16 *a_min = a;
+    uint16 *a_max = a_min + 512;
+    uint16 *b_min = b;
+    uint16 *b_max = b_min + 512;
+
+    while ((a_max < end) && FPGA::in_processing_of_read)
     {
         uint16 data = *RD_ADC_B;
-        *p1max++ = data;
+        *b_max++ = data;
         data = *RD_ADC_B;
-        *p1min++ = data;
+        *b_min++ = data;
         data = *RD_ADC_A;
-        *p0min++ = data;
+        *a_min++ = data;
         data = *RD_ADC_A;
-        *p0max++ = data;
+        *a_max++ = data;
     }
 }
 
 
 void ReaderFPGA::ReadRealModePeakDetOff()
 {
-    uint16 *a = &data_rel_A[0];
-    uint16 *b = &data_rel_B[0];
-    uint16 *end = &data_rel_A[FPGA_MAX_POINTS];
+    uint16 *a = &data_a[0];
+    uint16 *b = &data_b[0];
+    uint16 *end = &data_a[FPGA_MAX_POINTS];
 
     while ((a < end) && FPGA::in_processing_of_read)
     {
         *b++ = *RD_ADC_B;
         *b++ = *RD_ADC_B;
-        uint16 data = *RD_ADC_A;
-        *a++ = data;
-        data = *RD_ADC_A;
-        *a++ = data;
-    }
 
-    int shift = 0;
-    if (SET_TBASE == TBase::_100ns || SET_TBASE == TBase::_200ns)
-    {
-        shift = CalculateShift();
-    }
-
-    if (shift != 0)
-    {
-        if (shift < 0)
-        {
-            shift = -shift;
-            for (int i = FPGA_MAX_POINTS - shift - 1; i >= 0; i--)
-            {
-                data_rel_A[i + shift] = data_rel_A[i];
-                data_rel_B[i + shift] = data_rel_B[i];
-            }
-        }
-        else
-        {
-            for (int i = shift; i < FPGA_MAX_POINTS; i++)
-            {
-                data_rel_A[i - shift] = data_rel_A[i];
-                data_rel_B[i - shift] = data_rel_B[i];
-            }
-        }
+        *a++ = *RD_ADC_A;
+        *a++ = *RD_ADC_A;
     }
 }
 
 
 void ReaderFPGA::ClearData()
 {
-    std::memset(data_rel_A, 0, FPGA_MAX_POINTS);
-    std::memset(data_rel_B, 0, FPGA_MAX_POINTS);
+    std::memset(data_a, 0, FPGA_MAX_POINTS);
+    std::memset(data_b, 0, FPGA_MAX_POINTS);
 }
 
 

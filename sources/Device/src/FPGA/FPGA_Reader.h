@@ -18,8 +18,8 @@ struct ReaderFPGA
 
     static DataSettings ds;
 
-    static uint16 data_rel_A[FPGA_MAX_POINTS];  // Буфер используется для чтения данных первого канала
-    static uint16 data_rel_B[FPGA_MAX_POINTS];  // Буфер используется для чтения данных второго канала
+    static uint16 data_a[FPGA_MAX_POINTS];  // Буфер используется для чтения данных первого канала
+    static uint16 data_b[FPGA_MAX_POINTS];  // Буфер используется для чтения данных второго канала
 
     static int addition_shift;                  // Дополнительное смещение. Нужно для правильной расстановки точек
                                                 // в режиме рандомизатора

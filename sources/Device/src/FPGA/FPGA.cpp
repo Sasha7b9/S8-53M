@@ -416,7 +416,7 @@ bool FPGA::Randomizer::AllPointsRandomizer()
     {
         for(int i = 0; i < 281; i++) 
         {
-            if(ReaderFPGA::data_rel_A[i] == 0) 
+            if(ReaderFPGA::data_a[i] == 0) 
             {
                 return false;   
             }
