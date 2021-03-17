@@ -79,20 +79,26 @@ public:
 private:
 
     static void ShowWarn(const char *message);
+
     // Нарисовать сетку.
     static void DrawGrid(int left, int top, int width, int height);
+
     // Нарисовать полную сетку.
     static void DrawFullGrid();
 
     static void DrawCursorsWindow();
 
     static void DrawCursorsRShift();
+
     // Нарисовать маркеры смещения по напряжению
     static void DrawCursorRShift(Channel::E chan);
+
     // Нарисовать маркер уровня синхронизации.
     static void DrawCursorTrigLevel();
+
     // Нарисовать маркер смещения по времени.
     static void DrawCursorTShift();
+
     // Написать информацию под сеткой - в нижней части дисплея.
     static void DrawLowPart();
 
@@ -100,17 +106,21 @@ private:
 
     static void DrawHiRightPart();
 
-    static void DrawSpectrum();
     // Вывести текущее время.
     static void DrawTime(int x, int y);
+
     // Нарисовать курсоры курсорных измерений.
     static void DrawCursors();
+
     // Вывести значения курсоров курсорных измерений.
     static void WriteCursors();
+
     // Вывести значения автоматических измерений.
     static void DrawMeasures();
+
     // Написать сообщения отладочной консоли.
     static void DrawConsole();
+
     // Написать предупреждения.
     static void DrawWarnings();
 
@@ -118,15 +128,9 @@ private:
 
     static int CalculateFreeSize();
 
-    static void DrawData();
-
-    static void DRAW_SPECTRUM(puchar data, int numPoints, Channel::E channel);
-
     static void DrawGridSpectrum();
 
     static void DrawScaleLine(int x, bool forTrigLev);
-
-    static void WriteParametersFFT(Channel::E chan, float freq0, float density0, float freq1, float density1);
 
     static void WriteTextVoltage(Channel::E chan, int x, int y);
 
@@ -139,8 +143,6 @@ private:
     static void FuncOnTimerRShiftMarkersAutoHide();
 
     static void OnTimerShowWarning();
-
-    static void DrawSpectrumChannel(const float *spectrum, Color color);
 
     static void DrawStringInRectangle(int x, int y, char const *text);
 

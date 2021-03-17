@@ -4,12 +4,14 @@
 #include "common/Display/Painter_.h"
 #include "common/Display/Primitives_.h"
 #include "common/Display/Text_.h"
+#include "common/Utils/GlobalFunctions_.h"
 #include "common/Utils/Math_.h"
 #include "Display/DataPainter.h"
 #include "Display/Grid.h"
 #include "FPGA/FPGA_Reader.h"
 #include "FPGA/MathFPGA.h"
 #include "FPGA/Storage.h"
+#include "Menu/Menu.h"
 #include "Settings/Settings.h"
 #include "Utils/ProcessingSignal.h"
 #include <cstring>
@@ -781,4 +783,124 @@ void DataPainter::AddPoints(uint16 data00, uint16 data01, uint16 data10, uint16 
     {
         lastP2Pdata = 0;
     }
+}
+
+
+void DataPainter::DrawSpectrum()
+{
+    if (!ENABLED_FFT)
+    {
+        return;
+    }
+
+    HLine().Draw(Grid::Right(), Grid::ChannelBottom() + 1, Grid::MathBottom() - 1, Color::BACK);
+
+    if (MODE_WORK_IS_DIRECT)
+    {
+        int numPoints = sMemory_GetNumPoints(false);
+        if (numPoints < 512)
+        {
+            numPoints = 256;
+        }
+
+        if (SOURCE_FFT_IS_A)
+        {
+            DRAW_SPECTRUM(Storage::dataA, numPoints, ChA);
+        }
+        else if (SOURCE_FFT_IS_B)
+        {
+            DRAW_SPECTRUM(Storage::dataB, numPoints, ChB);
+        }
+        else
+        {
+            if (LAST_AFFECTED_CHANNEL_IS_A)
+            {
+                DRAW_SPECTRUM(Storage::dataB, numPoints, ChB);
+                DRAW_SPECTRUM(Storage::dataA, numPoints, ChA);
+            }
+            else
+            {
+                DRAW_SPECTRUM(Storage::dataA, numPoints, ChA);
+                DRAW_SPECTRUM(Storage::dataB, numPoints, ChB);
+            }
+        }
+    }
+
+    HLine().Draw(Grid::ChannelBottom(), Grid::Left(), Grid::Right(), Color::FILL);
+    HLine().Draw(Grid::MathBottom(), Grid::Left(), Grid::Right());
+}
+
+
+void DataPainter::DRAW_SPECTRUM(puchar data, int numPoints, Channel::E channel)
+{
+    if (!sChannel_Enabled(channel))
+    {
+        return;
+    }
+    float dataR[FPGA_MAX_POINTS];
+    float spectrum[FPGA_MAX_POINTS];
+
+    float freq0 = 0.0F;
+    float freq1 = 0.0F;
+    float density0 = 0.0F;
+    float density1 = 0.0F;
+    int y0 = 0;
+    int y1 = 0;
+
+    MathFPGA::PointsRelToVoltage(data, numPoints, Storage::set->range[channel], channel == ChA ?
+        static_cast<int16>(Storage::set->rShiftCh0) :
+        static_cast<int16>(Storage::set->rShiftCh1), dataR);
+
+    MathFPGA::CalculateFFT(dataR, numPoints, spectrum, &freq0, &density0, &freq1, &density1, &y0, &y1);
+    DrawSpectrumChannel(spectrum, Color::Channel(channel));
+    if (!Menu::IsShown() || Menu::IsMinimize())
+    {
+        int s = 2;
+
+        Color color = Color::FILL;
+        WriteParametersFFT(channel, freq0, density0, freq1, density1);
+        Primitives::Rectangle(s * 2, s * 2).Draw(FFT_POS_CURSOR_0 + Grid::Left() - s, y0 - s, color);
+        Primitives::Rectangle(s * 2, s * 2).Draw(FFT_POS_CURSOR_1 + Grid::Left() - s, y1 - s);
+
+        HLine().Draw(Grid::Left() + FFT_POS_CURSOR_0, Grid::MathBottom(), y0 + s);
+        HLine().Draw(Grid::Left() + FFT_POS_CURSOR_1, Grid::MathBottom(), y1 + s);
+    }
+}
+
+
+void DataPainter::DrawSpectrumChannel(const float *spectrum, Color color)
+{
+    color.SetAsCurrent();
+    int gridLeft = Grid::Left();
+    int gridBottom = Grid::MathBottom();
+    int gridHeight = Grid::MathHeight();
+    for (int i = 0; i < 256; i++)
+    {
+        HLine().Draw(gridLeft + i, gridBottom, gridBottom - static_cast<int>(gridHeight * spectrum[i]));
+    }
+}
+
+
+void DataPainter::WriteParametersFFT(Channel::E chan, float freq0, float density0, float freq1, float density1)
+{
+    int x = Grid::Left() + 259;
+    int y = Grid::ChannelBottom() + 5;
+    int dY = 10;
+
+    Color::FILL.SetAsCurrent();
+    GF::Freq2String(freq0, false).Draw(x, y);
+    y += dY;
+    GF::Freq2String(freq1, false).Draw(x, y);
+    if (chan == ChA)
+    {
+        y += dY + 2;
+    }
+    else
+    {
+        y += dY * 3 + 4;
+    }
+    Color::Channel(chan).SetAsCurrent();
+    Text(SCALE_FFT_IS_LOG ? GF::Float2Db(density0, 4).c_str() : GF::Float2String(density0, false, 7).c_str()).Draw(x, y);
+    y += dY;
+    Text(SCALE_FFT_IS_LOG ? GF::Float2Db(density1, 4).c_str() : GF::Float2String(density1, false, 7).c_str()).Draw(x, y);
 }

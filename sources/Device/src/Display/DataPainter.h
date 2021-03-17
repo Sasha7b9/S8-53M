@@ -1,5 +1,6 @@
 // 2021/03/17 13:26:49 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
+#include "common/Display/Colors_.h"
 #include "common/Settings/SettingsTypes_.h"
 #include "FPGA/FPGA_Types.h"
 
@@ -64,4 +65,12 @@ private:
 
     // Нарисовать окно памяти
     static void DrawMemoryWindow();
+
+    static void DrawSpectrum();
+
+    static void DRAW_SPECTRUM(puchar data, int numPoints, Channel::E channel);
+
+    static void DrawSpectrumChannel(const float *spectrum, Color color);
+
+    static void WriteParametersFFT(Channel::E chan, float freq0, float density0, float freq1, float density1);
 };
