@@ -209,15 +209,15 @@ void ReaderFPGA::ReadRealMode(bool /*necessary_shift*/)
 
 void ReaderFPGA::ReadRealModePeakDetOn()
 {
-    uint16 *p0 = &data_rel_A[0];
-    uint16 *p1 = &data_rel_B[0];
-    uint16 *end_p = &data_rel_A[FPGA_MAX_POINTS];
+    uint16 *a = &data_rel_A[0];
+    uint16 *b = &data_rel_B[0];
+    uint16 *end = &data_rel_A[FPGA_MAX_POINTS];
 
-    uint16 *p0min = p0;
+    uint16 *p0min = a;
     uint16 *p0max = p0min + 512;
-    uint16 *p1min = p1;
+    uint16 *p1min = b;
     uint16 *p1max = p1min + 512;
-    while ((p0max < end_p) && FPGA::in_processing_of_read)
+    while ((p0max < end) && FPGA::in_processing_of_read)
     {
         uint16 data = *RD_ADC_B;
         *p1max++ = data;
@@ -233,18 +233,18 @@ void ReaderFPGA::ReadRealModePeakDetOn()
 
 void ReaderFPGA::ReadRealModePeakDetOff()
 {
-    uint16 *p0 = &data_rel_A[0];
-    uint16 *p1 = &data_rel_B[0];
-    uint16 *end_p = &data_rel_A[FPGA_MAX_POINTS];
+    uint16 *a = &data_rel_A[0];
+    uint16 *b = &data_rel_B[0];
+    uint16 *end = &data_rel_A[FPGA_MAX_POINTS];
 
-    while ((p0 < end_p) && FPGA::in_processing_of_read)
+    while ((a < end) && FPGA::in_processing_of_read)
     {
-        *p1++ = *RD_ADC_B;
-        *p1++ = *RD_ADC_B;
+        *b++ = *RD_ADC_B;
+        *b++ = *RD_ADC_B;
         uint16 data = *RD_ADC_A;
-        *p0++ = data;
+        *a++ = data;
         data = *RD_ADC_A;
-        *p0++ = data;
+        *a++ = data;
     }
 
     int shift = 0;
