@@ -180,21 +180,21 @@ void GovernorStruct::Process()
 {
     RESET_SL(sl);
 
-    bool state_left = (READ_RL(rlA) != 0);
-    bool state_right = (READ_RL(rlB) != 0);
+    bool state_a = (READ_RL(rlA) != 0);
+    bool state_b = (READ_RL(rlB) != 0);
 
     SET_SL(sl);
 
-    if (state_left && state_right)
+    if (state_a && state_b)
     {
         prev_state_is_same = true;
     }
-    else if (prev_state_is_same && state_left && !state_right)
+    else if (prev_state_is_same && state_a && !state_b)
     {
         Buffer::AppendEvent(key, Action::RotateLeft);
         prev_state_is_same = false;
     }
-    else if (prev_state_is_same && !state_left && state_right)
+    else if (prev_state_is_same && !state_a && state_b)
     {
         Buffer::AppendEvent(key, Action::RotateRight);
         prev_state_is_same = false;
