@@ -371,7 +371,7 @@ void TShift::Load()
     }
     else
     {
-        FPGA::pred = (int16)NUM_BYTES_SET / 2 - (int16)FPGA::post;
+        FPGA::pred = (int16)SET_BYTES_IN_CHANNEL / 2 - (int16)FPGA::post;
 
         if (FPGA::pred < 0)
         {

@@ -49,6 +49,7 @@
 #define UPR_BIT_CALIBRATOR_AC_DC        2   // посто€нное/переменное
 #define UPR_BIT_CALIBRATOR_VOLTAGE      3   // 0/4¬
 #define UPR_BIT_RECORDER                4   // 0 - обычный режим, 1 - регистратор
+#define WR_ADDR_STOP            (HAL_FMC::ADDR_FPGA + 0x06)
 #define WR_STOP                 (HAL_FMC::ADDR_FPGA + 0x1f)
 
 
@@ -60,15 +61,15 @@
 #define RD_PERIOD_LOW           (HAL_FMC::ADDR_FPGA + 0x20)
 #define RD_PERIOD_HI            (HAL_FMC::ADDR_FPGA + 0x28)
 #define RD_FL                   (HAL_FMC::ADDR_FPGA + 0x30)
-#define FL_DATA_READY           0   // 0 - данные готовы
-#define FL_TRIG_READY           1   // 1 - наличие синхроимпульса
-#define FL_PRED_READY           2   // 2 - окончание счета предзапуска
-#define FL_POINT_READY          3   // 3 - признак того, что точка готова (в поточечном выводе)
-#define FL_FREQ_READY           4   // 4 - можно считывать частоту
-#define FL_PERIOD_READY         5   // 5 - можно считывать период
-#define FL_LAST_RECOR           6   // 6 - признак последней записи - определ€ет, какой бит ставить первым
-#define FL_OVERFLOW_FREQ        8   // 8 - признак переполнени€ счЄтчика частоты
-#define FL_OVERFLOW_PERIOD      9   // 9 - признак переполнени€ счЄтчика периода
+#define FL_DATA_READY                   0   // 0 - данные готовы
+#define FL_TRIG_READY                   1   // 1 - наличие синхроимпульса
+#define FL_PRED_READY                   2   // 2 - окончание счета предзапуска
+#define FL_POINT_READY                  3   // 3 - признак того, что точка готова (в поточечном выводе)
+#define FL_FREQ_READY                   4   // 4 - можно считывать частоту
+#define FL_PERIOD_READY                 5   // 5 - можно считывать период
+#define FL_LAST_RECOR                   6   // 6 - признак последней записи - определ€ет, какой бит ставить первым
+#define FL_OVERFLOW_FREQ                8   // 8 - признак переполнени€ счЄтчика частоты
+#define FL_OVERFLOW_PERIOD              9   // 9 - признак переполнени€ счЄтчика периода
 
 
 struct TypeWriteAnalog { enum E
@@ -87,3 +88,7 @@ struct TypeWriteDAC { enum E
     RShiftB,
     TrigLev
 };};
+
+
+extern uint16 *addresses_ADC[2];
+#define ADDRESS_READ(ch) addresses_ADC[ch]

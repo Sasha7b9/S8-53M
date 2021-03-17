@@ -16,7 +16,7 @@ public:
     // Удаление всех сохранённых измерений
     static void Clear();
     // Добавить считанные данные. При этом настройками считаются текущие настройки прибора.
-    static void AddData(uint16 *data0, uint16 *data1, DataSettings dss);
+    static void AddData(uint8 *data_a, uint8 *data_b, DataSettings dss);
     // Возвращает число непрерывных измерений, начиная с последнего, с такими же настройками, как у последнего.
     static int NumElementsWithSameSettings();
     // Возвращает число непрерывных измерений, начиная с последнего, с текущими настройками прибора

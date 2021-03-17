@@ -28,10 +28,13 @@ static uint8 InverseIfNecessary(uint8 data, Channel::E chan)
 */
 
 
-uint16       ReaderFPGA::data_a[FPGA_MAX_POINTS];
-uint16       ReaderFPGA::data_b[FPGA_MAX_POINTS];
+uint8        ReaderFPGA::data_a[FPGA_MAX_POINTS];
+uint8        ReaderFPGA::data_b[FPGA_MAX_POINTS];
 int          ReaderFPGA::addition_shift = 0;
 DataSettings ReaderFPGA::ds;
+
+
+uint16 *addresses_ADC[2] = { RD_ADC_A, RD_ADC_B };
 
 
 void ReaderFPGA::ReadData(bool necessary_shift, bool save_to_storage)
@@ -79,113 +82,7 @@ void ReaderFPGA::SaveToStorage(bool save_to_storage)
 
 void ReaderFPGA::ReadRandomizeMode()
 {
-    int Tsm = CalculateShift();
-    if (Tsm == TShift::NULL_VALUE)
-    {
-        return;
-    };
 
-    int step = FPGA::Randomizer::Kr[SET_TBASE];
-    int index = Tsm - step - addition_shift;
-
-    if (index < 0)
-    {
-        index += step;        // WARN
-    }
-
-    uint16 *pData0 = &data_a[index];
-    uint16 *const pData0Last = &data_a[FPGA_MAX_POINTS - 1];
-    uint16 *pData1 = &data_b[index];
-    uint16 *const pData1Last = &data_b[FPGA_MAX_POINTS - 1];
-
-    uint16 *const first0 = &data_a[0];
-    uint16 *const last0 = pData0Last;
-    uint16 *const first1 = &data_b[0];
-    uint16 *const last1 = pData1Last;
-
-    int numAve = NUM_AVE_FOR_RAND;
-
-    if (ENumAveraging::NumAverages() > numAve)
-    {
-        numAve = ENumAveraging::NumAverages();
-    }
-
-    int addShiftMem = step / 2;
-
-    if (START_MODE_IS_SINGLE || SAMPLE_TYPE_IS_REAL)
-    {
-        ClearData();
-    }
-
-    while (pData0 < &data_a[FPGA_MAX_POINTS])
-    {
-        //        volatile uint16 data10 = *RD_ADC_B2; //-V2551
-                //uint8 data11 = *RD_ADC_B1;
-        //        volatile uint16 data00 = *RD_ADC_A2; //-V2551
-                //uint8 data01 = *RD_ADC_A1;
-
-                /*
-                if (*pData0 == 0 || numAve == 1 || startMode == StartMode::Single)
-                {
-                */
-        if (pData0 >= first0 && pData0 <= last0)
-        {
-            WRITE_AND_OR_INVERSE(pData0, data00, ChA);
-        }
-
-        uint16 *addr = pData0 + addShiftMem;
-        if (addr >= first0 && addr <= last0)
-        {
-            //                WRITE_AND_OR_INVERSE(addr, data01, ChA);
-        }
-
-        if (pData1 >= first1 && pData1 <= last1)
-        {
-            WRITE_AND_OR_INVERSE(pData1, data10, ChB);
-        }
-        addr = pData1 + addShiftMem;
-        if (addr >= first1 && addr <= last1)
-        {
-            //                WRITE_AND_OR_INVERSE(addr, data11, ChB);
-        }
-        /*
-        }
-        else
-        {
-            if (pData0 >= first0 && pData0 <= last0)
-            {
-                *pData0 = (float)(numAve - 1) / (float)(numAve)* (*pData0) + InverseIfNecessary(data00, ChA) * 1.0F / (float)numAve;
-            }
-
-            uint8 *addr = pData0 + addShiftMem;
-            if (addr >= first0 && addr <= last0)
-            {
-                *addr = (float)(numAve - 1) / (float)(numAve)* (*(pData0 + addShiftMem)) + InverseIfNecessary(data01, ChA) * 1.0F / (float)numAve;
-            }
-
-            if (pData1 >= first1 && pData1 <= last1)
-            {
-                *pData1 = (float)(numAve - 1) / (float)(numAve)* (*pData1) + InverseIfNecessary(data10, ChB) * 1.0F / (float)numAve;
-            }
-
-            addr = pData1 + addShiftMem;
-
-            if (addr >= first1 && addr <= last1)
-            {
-                *addr = (float)(numAve - 1) / (float)(numAve)* (*(pData1 + addShiftMem)) + InverseIfNecessary(data11, ChB) * 1.0F / (float)numAve;
-            }
-        }
-        */
-
-        pData0 += step;
-        pData1 += step;
-    }
-
-    if (START_MODE_IS_SINGLE || SAMPLE_TYPE_IS_REAL)
-    {
-        Processing::InterpolationSinX_X(data_a, SET_TBASE);
-        Processing::InterpolationSinX_X(data_b, SET_TBASE);
-    }
 }
 
 
@@ -204,26 +101,6 @@ void ReaderFPGA::ReadRealMode(bool /*necessary_shift*/)
 
 void ReaderFPGA::ReadRealModePeakDetOn()
 {
-    uint16 *a = &data_a[0];
-    uint16 *b = &data_b[0];
-    uint16 *end = &data_a[FPGA_MAX_POINTS];
-
-    uint16 *a_min = a;
-    uint16 *a_max = a_min + 512;
-    uint16 *b_min = b;
-    uint16 *b_max = b_min + 512;
-
-    while ((a_max < end) && FPGA::in_processing_of_read)
-    {
-        uint16 data = *RD_ADC_B;
-        *b_max++ = data;
-        data = *RD_ADC_B;
-        *b_min++ = data;
-        data = *RD_ADC_A;
-        *a_min++ = data;
-        data = *RD_ADC_A;
-        *a_max++ = data;
-    }
 }
 
 
@@ -231,18 +108,9 @@ void ReaderFPGA::ReadRealModePeakDetOff()
 {
     uint16 addr_stop = ReadAddressStop();
 
-    uint16 *a = &data_a[0];
-    uint16 *b = &data_b[0];
-    uint16 *end = &data_a[FPGA_MAX_POINTS];
+    ReadChannel(data_a, ChA, addr_stop);
 
-    while ((a < end) && FPGA::in_processing_of_read)
-    {
-        *b++ = *RD_ADC_B;
-        *b++ = *RD_ADC_B;
-
-        *a++ = *RD_ADC_A;
-        *a++ = *RD_ADC_A;
-    }
+    ReadChannel(data_b, ChB, addr_stop);
 }
 
 
@@ -268,7 +136,7 @@ void ReaderFPGA::ReadPoint()
 }
 
 
-void ReaderFPGA::InverseDataIsNecessary(Channel::E chan, uint16 *data)
+void ReaderFPGA::InverseDataIsNecessary(Channel::E chan, uint8 *data)
 {
     if (SET_INVERSE(chan))
     {
@@ -323,4 +191,30 @@ int ReaderFPGA::CalculateShift()            // \todo Не забыть восстановить функ
 uint16 ReaderFPGA::ReadAddressStop()
 {
     return (uint16)(*RD_ADDR_NSTOP + 16384 - SET_POINTS_IN_CHANNEL / 2 - 1 - FPGA::add_N_stop);
+}
+
+
+void ReaderFPGA::ReadChannel(uint8 *data, Channel::E ch, uint16 addr_stop)
+{
+    *WR_PRED = addr_stop;
+    *WR_ADDR_STOP = 0xffff;
+
+    uint16 *p = (uint16 *)data;
+    uint16 *end = (uint16 *)(data + SET_POINTS_IN_CHANNEL);
+
+    uint16 *address = ADDRESS_READ(ch);
+
+    addr_stop = *address;
+
+    while (p < end && FPGA::in_processing_of_read)
+    {
+        *p++ = *address;
+        *p++ = *address;
+        *p++ = *address;
+        *p++ = *address;
+        *p++ = *address;
+        *p++ = *address;
+        *p++ = *address;
+        *p++ = *address;
+    }
 }

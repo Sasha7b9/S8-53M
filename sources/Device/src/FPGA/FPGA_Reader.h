@@ -18,8 +18,8 @@ struct ReaderFPGA
 
     static DataSettings ds;
 
-    static uint16 data_a[FPGA_MAX_POINTS];  // Буфер используется для чтения данных первого канала
-    static uint16 data_b[FPGA_MAX_POINTS];  // Буфер используется для чтения данных второго канала
+    static uint8 data_a[FPGA_MAX_POINTS];       // Буфер используется для чтения данных первого канала
+    static uint8 data_b[FPGA_MAX_POINTS];       // Буфер используется для чтения данных второго канала
 
     static int addition_shift;                  // Дополнительное смещение. Нужно для правильной расстановки точек
                                                 // в режиме рандомизатора
@@ -27,7 +27,7 @@ struct ReaderFPGA
 private:
 
     // Инвертирует данные.
-    static void InverseDataIsNecessary(Channel::E chan, uint16 *data);
+    static void InverseDataIsNecessary(Channel::E chan, uint8 *data);
 
     static int CalculateShift();
 
@@ -38,4 +38,6 @@ private:
     static void ReadRealModePeakDetOff();
 
     static uint16 ReadAddressStop();
+
+    static void ReadChannel(uint8 *data, Channel::E ch, uint16 addr_stop);
 };

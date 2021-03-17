@@ -101,22 +101,22 @@ void Storage::CalculateAroundAverage(uint16 *data0, uint16 *data1, const DataSet
 }
 
 
-void Storage::AddData(uint16 *data0, uint16 *data1, DataSettings dss)
+void Storage::AddData(uint8 * /*data_a*/, uint8 * /*data_b*/, DataSettings /*dss*/)
 {
-    dss.time = HAL_RTC::GetPackedTime();
-
-    if(dss.enableCh0 == 0 && dss.enableCh1 == 0)
-    {
-        return;
-    }
-    CalculateLimits(data0, data1, &dss);
-
-    PushData(&dss, data0, data1);
-
-    CalculateSums();
-
-    CalculateAroundAverage(data0, data1, &dss);
-    allData++;
+//    dss.time = HAL_RTC::GetPackedTime();
+//
+//    if(dss.enableCh0 == 0 && dss.enableCh1 == 0)
+//    {
+//        return;
+//    }
+//    CalculateLimits(data_a, data_b, &dss);
+//
+//    PushData(&dss, data0, data1);
+//
+//    CalculateSums();
+//
+//    CalculateAroundAverage(data0, data1, &dss);
+//    allData++;
 }
 
 
