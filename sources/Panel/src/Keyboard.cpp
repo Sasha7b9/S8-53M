@@ -75,7 +75,7 @@ static Pin *rls[NUM_RL] = { &pinRL0, &pinRL1, &pinRL2, &pinRL3, &pinRL4, &pinRL5
 struct GovernorStruct
 {
     GovernorStruct(Key::E k, uint8 rlA_, uint8 rlB_, uint8 sl_) :
-        key(k), rlA(rlA_), rlB(rlB_), sl(sl_), prev_state_is_same(false), prev_state(false), next_time(0) { }
+        key(k), rlA(rlA_), rlB(rlB_), sl(sl_), prevStateIsSame(false), prevState(false), nextTime(0) { }
     void Process();
 
 private:
@@ -85,9 +85,9 @@ private:
     uint8  rlA;
     uint8  rlB;
     uint8  sl;
-    bool   prev_state_is_same;      // true, если предыдущие состояния одинаковы
-    bool   prev_state;              // В этом состоянии оба сигнала находились в прошлый совместынй раз
-    uint   next_time;               // Время, следующей обработке. Используется для исключения дребезга
+    bool   prevStateIsSame;      // true, если предыдущие состояния одинаковы
+    bool   prevState;              // В этом состоянии оба сигнала находились в прошлый совместынй раз
+    uint   nextTime;               // Время, следующей обработке. Используется для исключения дребезга
     static const int dT = 10;
 };
 
@@ -185,30 +185,30 @@ void KeyStruct::Process(uint time, bool pressed)
 
 void GovernorStruct::Process()
 {
-    if (TIME_MS < next_time)
+    if (TIME_MS < nextTime)
     {
         return;
     }
 
     RESET_SL(sl);
 
-    bool state_a = (READ_RL(rlA) != 0);
-    bool state_b = (READ_RL(rlB) != 0);
+    bool stateA = (READ_RL(rlA) != 0);
+    bool stateB = (READ_RL(rlB) != 0);
 
     SET_SL(sl);
 
-    if (state_a == state_b)
+    if (stateA == stateB)
     {
-        prev_state_is_same = true;
-        prev_state = state_a;
+        prevStateIsSame = true;
+        prevState = stateA;
     }
-    else if (prev_state_is_same && state_a && !state_b)
+    else if (prevStateIsSame && stateA && !stateB)
     {
-        SendEvent(key, prev_state ? Action::RotateLeft : Action::RotateRight);
+        SendEvent(key, prevState ? Action::RotateLeft : Action::RotateRight);
     }
-    else if (prev_state_is_same && !state_a && state_b)
+    else if (prevStateIsSame && !stateA && stateB)
     {
-        SendEvent(key, prev_state ? Action::RotateRight : Action::RotateLeft);
+        SendEvent(key, prevState ? Action::RotateRight : Action::RotateLeft);
     }
 }
 
@@ -216,8 +216,8 @@ void GovernorStruct::Process()
 void GovernorStruct::SendEvent(Key::E key_, Action::E action)
 {
     Buffer::AppendEvent(key_, action);
-    prev_state_is_same = false;
-    next_time = TIME_MS + dT;
+    prevStateIsSame = false;
+    nextTime = TIME_MS + dT;
 }
 
 
