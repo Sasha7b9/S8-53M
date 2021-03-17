@@ -1258,7 +1258,7 @@ void Display::DrawLowPart()
     {
         char mesFreq[20] = "\x7c=";
         float freq = FPGA::FreqMeter::GetFreq();
-        if (freq == -1.0F) //-V550 //-V2550
+        if (freq == -1.0F)
         {
             std::strcat(mesFreq, "******"); //-V2513
         }

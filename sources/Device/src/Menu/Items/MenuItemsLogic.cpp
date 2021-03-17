@@ -117,7 +117,7 @@ float Governor::Step() const
     if ((address == this) && inMoveDecrease)
     {
         float delta = -speed * (TIME_MS - timeStartMS);
-        if (delta == 0.0F) //-V2550 //-V550
+        if (delta == 0.0F)
         {
             return -0.001F;
         }
@@ -137,7 +137,7 @@ float Governor::Step() const
     if ((address == this) && inMoveIncrease)
     {
         float delta = speed * (TIME_MS - timeStartMS);
-        if (delta == 0.0F) //-V550 //-V2550
+        if (delta == 0.0F)
         {
             return 0.001F;
         }

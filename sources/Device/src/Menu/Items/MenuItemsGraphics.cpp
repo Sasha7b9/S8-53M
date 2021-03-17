@@ -87,7 +87,7 @@ void Governor::DrawLowPart(int x, int y) const
     if(!IsOpened())
     {
         float delta = Step();
-        if(delta == 0.0F) //-V2550 //-V550
+        if(delta == 0.0F)
         {
             x = GF::Int2String(*own->cell, false, 1).Draw(x + 1, y + 21);
         }
@@ -581,7 +581,7 @@ void Choice::DrawClosed(int x, int y) const
     float deltaY = Step();
     Color colorText = Color::BACK;
     colorText.SetAsCurrent();
-    if(deltaY == 0.0F) //-V2550 //-V550
+    if(deltaY == 0.0F)
     {
         Text(NameCurrentSubItem()).Draw(x + 4, y + 21);
     }

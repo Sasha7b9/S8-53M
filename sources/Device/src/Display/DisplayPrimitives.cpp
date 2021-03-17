@@ -12,7 +12,7 @@ using namespace Primitives;
 void ProgressBar::Draw()
 {
     char buffer[100] = {0};
-    float passedPercents = fullTime == 0 ? 0 : passedTime / fullTime * 100; //-V2550 //-V550
+    float passedPercents = fullTime == 0 ? 0 : passedTime / fullTime * 100;
     std::sprintf(buffer, "Завершено %.1f %%", passedPercents);
     Text(buffer).DrawInCenterRect(x, y - 15, width, height, Color::FILL);
     Rectangle(width, height).Draw(x, y);

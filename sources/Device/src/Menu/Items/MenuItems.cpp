@@ -170,7 +170,7 @@ float Choice::Step() const
     if (tsChoice.choice == this)
     {
         float delta = speed * (TIME_MS - tsChoice.timeStartMS);
-        if (delta == 0.0F) //-V2550 //-V550
+        if (delta == 0.0F)
         {
             delta = 0.001F; // Таймер в несколько первых кадров может показать, что прошло 0 мс, но мы возвращаем большее число, потому что ноль будет говорить о том, что движения нет
         }

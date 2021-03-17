@@ -45,7 +45,7 @@ void Sound_Beep(TypeWave::E typeWave_, float frequency_, float amplitude_, int d
         return;
     }
 
-    if (frequency != frequency_ || amplitude != amplitude_ || typeWave != typeWave_) //-V2550 //-V550
+    if (frequency != frequency_ || amplitude != amplitude_ || typeWave != typeWave_)
     {
         frequency = frequency_;
         amplitude = amplitude_;

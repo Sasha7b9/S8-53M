@@ -167,7 +167,7 @@ bool FPGA::Randomizer::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
         max = rand;
     }
 
-    if(minGate == 0.0F) //-V550 //-V2550
+    if(minGate == 0.0F)
     {
         *eMin = min;
         *eMax = max;

@@ -299,13 +299,14 @@ void DataPainter::DrawSignalPointed(puchar data, const DataSettings *ds, int sta
 
     uint8 dataCD[281];
 
-    if (scale_x == 1.0F) //-V550 //-V2550
+    if (scale_x == 1.0F)
     {
         for (int i = start_i; i < end_i; i++)
         {
             int index = i - start_i;
             CONVERT_DATA_TO_DISPLAY(dataCD[index], Math::CalculateFiltr(data, i, numPoints, numSmoothing));
         }
+
         Painter::DrawSignal(Grid::Left(), dataCD, false);
 
         if (ds->peakDet)
@@ -319,6 +320,7 @@ void DataPainter::DrawSignalPointed(puchar data, const DataSettings *ds, int sta
                 int index = i - start_i;
                 CONVERT_DATA_TO_DISPLAY(dataCD[index], Math::CalculateFiltr(data, i, numPoints, numSmoothing));
             }
+
             Painter::DrawSignal(Grid::Left(), dataCD, false);
         }
     }
@@ -685,7 +687,7 @@ void DataPainter::DrawMemoryWindow()
     Region(4, 4).Fill(static_cast<int>(xShift), 4, Color::FILL);
     Color::BACK.SetAsCurrent();
 
-    if (xShift == leftX - 2) //-V2550 //-V550
+    if (xShift == leftX - 2)
     {
         xShift = static_cast<float>(leftX - 2);
         Line().Draw(static_cast<int>(xShift) + 3, 5, static_cast<int>(xShift) + 3, 7);

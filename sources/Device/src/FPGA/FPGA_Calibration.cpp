@@ -114,7 +114,7 @@ void FPGA::Calibrator::ProcedureCalibration()
 			state.state_calibration = StateCalibration::RShift0inProgress;
 
 			koeffCal0 = CalculateKoeffCalibration(ChA);
-			if(koeffCal0 == ERROR_VALUE_FLOAT) //-V2550 //-V550
+			if(koeffCal0 == ERROR_VALUE_FLOAT)
             {
 				state.state_calibration = StateCalibration::ErrorCalibration0;
 				Panel::WaitPressingButton();
@@ -150,7 +150,7 @@ void FPGA::Calibrator::ProcedureCalibration()
 			state.state_calibration = StateCalibration::RShift1inProgress;
 
             koeffCal1 = CalculateKoeffCalibration(ChB);
-			if(koeffCal1 == ERROR_VALUE_FLOAT) //-V2550 //-V550
+			if(koeffCal1 == ERROR_VALUE_FLOAT)
             {
 				state.state_calibration = StateCalibration::ErrorCalibration1;
 				Panel::WaitPressingButton();
@@ -190,11 +190,11 @@ void FPGA::Calibrator::ProcedureCalibration()
     RShift::Set(ChA, SET_RSHIFT_A);
     RShift::Set(ChB, SET_RSHIFT_B);
 
-    STRETCH_ADC_A = (koeffCal0 == ERROR_VALUE_FLOAT) ? koeffCalibrationOld[0] : koeffCal0; //-V2550 //-V550
+    STRETCH_ADC_A = (koeffCal0 == ERROR_VALUE_FLOAT) ? koeffCalibrationOld[0] : koeffCal0;
 
     Calibrator::LoadKoeff(ChA);
 
-    STRETCH_ADC_B = (koeffCal1 == ERROR_VALUE_FLOAT) ? koeffCalibrationOld[1] : koeffCal1; //-V2550 //-V550
+    STRETCH_ADC_B = (koeffCal1 == ERROR_VALUE_FLOAT) ? koeffCalibrationOld[1] : koeffCal1;
     Calibrator::LoadKoeff(ChB);
 
     state.state_calibration = StateCalibration::None;

@@ -57,7 +57,7 @@ String GF::Float2String(float value, bool always_sign, int num_digits)
 {
     String result;
 
-    if(value == ERROR_VALUE_FLOAT) //-V550 //-V2550
+    if(value == ERROR_VALUE_FLOAT)
     {
         return String(ERROR_STRING_VALUE);
     }
@@ -210,7 +210,7 @@ String GF::Voltage2String(float voltage, bool always_sign)
 {
     char *suffix;
 
-    if(voltage == ERROR_VALUE_FLOAT) //-V2550 //-V550
+    if(voltage == ERROR_VALUE_FLOAT)
     {
         return String(ERROR_STRING_VALUE);
     }
@@ -244,7 +244,7 @@ String GF::Time2String(float time, bool always_sign)
 {
     char *suffix = nullptr;
 
-    if(time == ERROR_VALUE_FLOAT) //-V2550 //-V550
+    if(time == ERROR_VALUE_FLOAT)
     {
         return String(ERROR_STRING_VALUE);
     }
@@ -280,7 +280,7 @@ String GF::Freq2String(float freq, bool)
 {
     char *suffix = 0;
 
-    if(freq == ERROR_VALUE_FLOAT) //-V2550 //-V550
+    if(freq == ERROR_VALUE_FLOAT)
     {
         return String(ERROR_STRING_VALUE);
     }
