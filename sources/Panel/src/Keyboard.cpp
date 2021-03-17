@@ -74,13 +74,14 @@ static Pin *rls[NUM_RL] = { &pinRL0, &pinRL1, &pinRL2, &pinRL3, &pinRL4, &pinRL5
 
 struct GovernorStruct
 {
-    GovernorStruct(Key::E k, uint8 rlA_, uint8 rlB_, uint8 sl_) : key(k), rlA(rlA_), rlB(rlB_), sl(sl_), prevStateIsSame(false) { }
+    GovernorStruct(Key::E k, uint8 rlA_, uint8 rlB_, uint8 sl_) :
+        key(k), rlA(rlA_), rlB(rlB_), sl(sl_), prev_state_is_same(false) { }
     void Process();
     Key::E key;
     uint8  rlA;
     uint8  rlB;
     uint8  sl;
-    bool   prevStateIsSame;   // true, если предыдущие состояния одинаковы
+    bool   prev_state_is_same;   // true, если предыдущие состояния одинаковы
 };
 
 #define NUM_GOVERNORS 8
@@ -179,24 +180,24 @@ void GovernorStruct::Process()
 {
     RESET_SL(sl);
 
-    bool stateLeft = (READ_RL(rlA) != 0);
-    bool stateRight = (READ_RL(rlB) != 0);
+    bool state_left = (READ_RL(rlA) != 0);
+    bool state_right = (READ_RL(rlB) != 0);
 
     SET_SL(sl);
 
-    if (stateLeft && stateRight)
+    if (state_left && state_right)
     {
-        prevStateIsSame = true;
+        prev_state_is_same = true;
     }
-    else if (prevStateIsSame && stateLeft && !stateRight)
+    else if (prev_state_is_same && state_left && !state_right)
     {
         Buffer::AppendEvent(key, Action::RotateLeft);
-        prevStateIsSame = false;
+        prev_state_is_same = false;
     }
-    else if (prevStateIsSame && !stateLeft && stateRight)
+    else if (prev_state_is_same && !state_left && state_right)
     {
         Buffer::AppendEvent(key, Action::RotateRight);
-        prevStateIsSame = false;
+        prev_state_is_same = false;
     }
 }
 
