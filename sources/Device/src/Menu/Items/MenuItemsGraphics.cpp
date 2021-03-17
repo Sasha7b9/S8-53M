@@ -4,6 +4,7 @@
 #include "common/Display/Text_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Utils/GlobalFunctions_.h"
+#include "common/Utils/Debug_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Grid.h"
 #include "Menu/Menu.h"
@@ -702,22 +703,32 @@ void Page::Draw(int x, int y, bool) const
 
 void Page::DrawOpened(int yTop)
 {
+    DEBUG_POINT_0;
     if (CurrentItemIsOpened())
     {
+        DEBUG_POINT_0;
         int8 posCurItem = GetPositionActItem();
+        DEBUG_POINT_0;
         const Item *item = GetItem(posCurItem);
+        DEBUG_POINT_0;
         item->Draw(Page::X(), OpenedPosY(), true);
+        DEBUG_POINT_0;
     }
     else
     {
+        DEBUG_POINT_0;
         DrawTitle(yTop);
+        DEBUG_POINT_0;
         DrawItems(yTop + Item::TITLE_HEIGHT);
+        DEBUG_POINT_0;
     }
-
+    DEBUG_POINT_0;
     if (OwnData()->funcOnDraw)
     {
+        DEBUG_POINT_0;
         OwnData()->funcOnDraw();
     }
+    DEBUG_POINT_0;
 }
 
 
@@ -780,23 +791,41 @@ static Item *itemUnderButton[6];
 
 void Page::DrawItems(int yTop) const
 {
+    DEBUG_POINT_0;
     for (int i = 0; i < 6; i++)
     {
+        DEBUG_POINT_0;
         itemUnderButton[i] = &Item::empty;
+        DEBUG_POINT_0;
     }
-
+    DEBUG_POINT_0;
     int posFirstItem = PosItemOnTop();
+    DEBUG_POINT_0;
     int posLastItem = posFirstItem + Menu::ITEMS_ON_DISPLAY - 1;
+    DEBUG_POINT_0;
     LIMITATION(posLastItem, posLastItem, 0, NumItems() - 1);
+    DEBUG_POINT_0;
     int count = 0;
+    DEBUG_POINT_0;
     for (int posItem = posFirstItem; posItem <= posLastItem; posItem++)
     {
+        DEBUG_POINT_0;
         const Item *item = GetItem(posItem);
+        DEBUG_POINT_0;
         itemUnderButton[count] = (Item *)item;
+        DEBUG_POINT_0;
         int top = yTop + Item::HEIGHT * count;
+        DEBUG_POINT_0;
+        if (item == nullptr)
+        {
+            item = item;
+        }
         item->Draw(Page::X(), top);
+        DEBUG_POINT_0;
         count++;
+        DEBUG_POINT_0;
     }
+    DEBUG_POINT_0;
 }
 
 

@@ -2,6 +2,7 @@
 #include "common/Display/Painter_.h"
 #include "common/Display/Primitives_.h"
 #include "common/Display/Text_.h"
+#include "common/Utils/Debug_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Grid.h"
 #include "Menu/Menu.h"
@@ -58,33 +59,46 @@ static void DrawHintItem(int x, int y, int width)
 
 void Menu::Draw()
 {
+    DEBUG_POINT_0;
     if(Menu::IsShown() || !Item::Opened()->IsPage())
     {
+        DEBUG_POINT_0;
         const Item *item = Item::Opened();
+        DEBUG_POINT_0;
         if(Menu::IsShown())
         {
+            DEBUG_POINT_0;
             if (item->IsPage())
             {
+                DEBUG_POINT_0;
                 ((Page *)item)->DrawOpened(Grid::TOP);
+                DEBUG_POINT_0;
             }
             else if(item->Keeper()->IsExist())
             {
+                DEBUG_POINT_0;
                 item->Keeper()->DrawOpened(Grid::TOP);
+                DEBUG_POINT_0;
             }
         }
         else
         {
+            DEBUG_POINT_0;
             if(item->IsChoice())
             {
+                DEBUG_POINT_0;
                 ((Choice *)item)->Draw(Page::X(), Grid::TOP, true);
+                DEBUG_POINT_0;
             }
             else if(item->IsGovernor())
             {
+                DEBUG_POINT_0;
                 ((Governor *)item)->Draw(Page::X(), Grid::TOP, true);
+                DEBUG_POINT_0;
             }
         }
     }
-
+    DEBUG_POINT_0;
     if (Menu::showHelpHints)
     {
         int x = 1;
@@ -107,6 +121,7 @@ void Menu::Draw()
             DrawHintItem(x, y, width - 1);
         }
     }
+    DEBUG_POINT_0;
 }
 
 

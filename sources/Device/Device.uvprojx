@@ -2038,6 +2038,16 @@
               <FilePath>.\src\Utils\CreateTables.py</FilePath>
             </File>
             <File>
+              <FileName>Debug_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\Debug_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Debug_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\Debug_.cpp</FilePath>
+            </File>
+            <File>
               <FileName>GlobalFunctions_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Utils\GlobalFunctions_.h</FilePath>
@@ -4246,6 +4256,16 @@
               <FileName>CreateTables.py</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Utils\CreateTables.py</FilePath>
+            </File>
+            <File>
+              <FileName>Debug_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\Debug_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Debug_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\Debug_.cpp</FilePath>
             </File>
             <File>
               <FileName>GlobalFunctions_.h</FileName>
