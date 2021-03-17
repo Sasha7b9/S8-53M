@@ -28,7 +28,7 @@ namespace GF
 
     String Freq2String(float freq, bool always_sign = false);
 
-    char *Phase2String(float phase, bool, char bufferOut[20]);
+    String Phase2String(float phase, bool);
 
     // ѕреобразует децибелы в текстовую строку.
     char *Float2Db(float value, int num_digits, char buffer_out[20]);

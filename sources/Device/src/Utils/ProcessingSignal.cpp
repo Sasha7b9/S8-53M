@@ -47,6 +47,11 @@ static char *Freq2StringC(float value, bool always_sign, char *buffer)
     return std::strcpy(buffer, GF::Freq2String(value, always_sign).c_str());
 }
 
+static char *Phase2StringC(float value, bool always_sign, char *buffer)
+{
+    return std::strcpy(buffer, GF::Phase2String(value, always_sign).c_str());
+}
+
 
 const Processing::MeasureCalculate Processing::measures[Measure::Count] =
 {
@@ -71,8 +76,8 @@ const Processing::MeasureCalculate Processing::measures[Measure::Count] =
     {"CalculateSkvaznostMinus",     CalculateSkvaznostMinus,       FloatFract2StringC, false},
     {"CalculateDelayPlus",          CalculateDelayPlus,            Time2StringC, false},
     {"CalculateDelayMinus",         CalculateDelayMinus,           Time2StringC, false},
-    {"CalculatePhazaPlus",          CalculatePhazaPlus,            GF::Phase2String, false},
-    {"CalculatePhazaMinus",         CalculatePhazaMinus,           GF::Phase2String, false}
+    {"CalculatePhazaPlus",          CalculatePhazaPlus,            Phase2StringC, false},
+    {"CalculatePhazaMinus",         CalculatePhazaMinus,           Phase2StringC, false}
 };
 
 static MeasureValue values[Measure::Count] = {{0.0F, 0.0F}};

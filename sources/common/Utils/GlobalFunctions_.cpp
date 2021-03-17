@@ -271,10 +271,9 @@ String GF::Time2String(float time, bool always_sign)
     return String("%s%s", Float2String(time, always_sign, 4).c_str(), suffix);
 }
 
-char *GF::Phase2String(float phase, bool, char buffer_out[20])
+String GF::Phase2String(float phase, bool)
 {
-    std::sprintf(buffer_out, "%s\xa8", GF::Float2String(phase, false, 4).c_str());
-    return buffer_out;
+    return String("%s\xa8", GF::Float2String(phase, false, 4).c_str());
 }
 
 String GF::Freq2String(float freq, bool)
