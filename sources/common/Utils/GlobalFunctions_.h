@@ -16,7 +16,7 @@ namespace GF
 
     String Bin2String16(uint16 value);
 
-    char *Hex8toString(uint8 value, char buffer[3]);
+    String Hex8toString(uint8 value);
 
     String Int2String(int value, bool always_sign = false, int num_min_fields = 1);
 

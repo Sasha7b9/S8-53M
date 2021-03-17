@@ -188,19 +188,22 @@ String GF::Bin2String16(uint16 value)
 {
     String result("000000000000000000");
 
-    std::strcpy(result.c_str(), Bin2String((uint8)(value >> 8)).c_str()); //-V2513
+    std::strcpy(&result[0], Bin2String((uint8)(value >> 8)).c_str()); //-V2513
 
     result.c_str()[8] = ' ';
 
-    std::strcpy(result.c_str() + 9, Bin2String((uint8)value).c_str()); //-V2513
+    std::strcpy(&result[9], Bin2String((uint8)value).c_str()); //-V2513
 
     return result;
 }
 
-char *GF::Hex8toString(uint8 value, char buffer[3])
+String GF::Hex8toString(uint8 value)
 {
-    std::sprintf(value < 16 ? (buffer[0] = '0', buffer + 1) :  (buffer), "%x", value); //-V2528
-    return buffer;
+    String result("00");
+
+    std::sprintf(&result[value < 16 ? 1 : 0], "%x", value);
+
+    return result;
 }
 
 char *GF::Voltage2String(float voltage, bool alwaysSign, char buffer[20])
