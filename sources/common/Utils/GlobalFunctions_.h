@@ -22,7 +22,7 @@ namespace GF
 
     bool String2Int(char *str, int *value);
 
-    char *Voltage2String(float voltage, bool always_sign, char buffer[20]);
+    String Voltage2String(float voltage, bool always_sign);
 
     char *Time2String(float time, bool always_sign, char buffer[20]);
 

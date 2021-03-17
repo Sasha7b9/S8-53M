@@ -34,20 +34,27 @@ static char *FloatFract2StringC(float value, bool always_sign, char *buffer)
     return buffer;
 }
 
+static char *Voltage2StringC(float value, bool always_sign, char *buffer)
+{
+    std::strcpy(buffer, GF::Voltage2String(value, always_sign).c_str());
+
+    return buffer;
+}
+
 
 const Processing::MeasureCalculate Processing::measures[Measure::Count] =
 {
     {0, 0},
-    {"CalculateVoltageMax",         CalculateVoltageMax,           GF::Voltage2String, true},
-    {"CalculateVoltageMin",         CalculateVoltageMin,           GF::Voltage2String, true},
-    {"CalculateVoltagePic",         CalculateVoltagePic,           GF::Voltage2String, false},
-    {"CalculateVoltageMaxSteady",   CalculateVoltageMaxSteady,     GF::Voltage2String, true},
-    {"CalculateVoltageMinSteady",   CalculateVoltageMinSteady,     GF::Voltage2String, true},
-    {"CalculateVoltageAmpl",        CalculateVoltageAmpl,          GF::Voltage2String, false},
-    {"CalculateVoltageAverage",     CalculateVoltageAverage,       GF::Voltage2String, true},
-    {"CalculateVoltageRMS",         CalculateVoltageRMS,           GF::Voltage2String, false},
-    {"CalculateVoltageVybrosPlus",  CalculateVoltageVybrosPlus,    GF::Voltage2String, false},
-    {"CalculateVoltageVybrosMinus", CalculateVoltageVybrosMinus,   GF::Voltage2String, false},
+    {"CalculateVoltageMax",         CalculateVoltageMax,           Voltage2StringC, true},
+    {"CalculateVoltageMin",         CalculateVoltageMin,           Voltage2StringC, true},
+    {"CalculateVoltagePic",         CalculateVoltagePic,           Voltage2StringC, false},
+    {"CalculateVoltageMaxSteady",   CalculateVoltageMaxSteady,     Voltage2StringC, true},
+    {"CalculateVoltageMinSteady",   CalculateVoltageMinSteady,     Voltage2StringC, true},
+    {"CalculateVoltageAmpl",        CalculateVoltageAmpl,          Voltage2StringC, false},
+    {"CalculateVoltageAverage",     CalculateVoltageAverage,       Voltage2StringC, true},
+    {"CalculateVoltageRMS",         CalculateVoltageRMS,           Voltage2StringC, false},
+    {"CalculateVoltageVybrosPlus",  CalculateVoltageVybrosPlus,    Voltage2StringC, false},
+    {"CalculateVoltageVybrosMinus", CalculateVoltageVybrosMinus,   Voltage2StringC, false},
     {"CalculatePeriod",             CalculatePeriod,               GF::Time2String, false},
     {"CalculateFreq",               CalculateFreq,                 GF::Freq2String, false},
     {"CalculateTimeNarastaniya",    CalculateTimeNarastaniya,      GF::Time2String, false},

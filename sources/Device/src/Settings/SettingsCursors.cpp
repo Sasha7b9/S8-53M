@@ -25,7 +25,10 @@ bool sCursors_NecessaryDrawCursors()
 const char* sCursors_GetCursVoltage(Channel::E source, int numCur, char buffer[20])
 {
     float voltage = MathFPGA::VoltageCursor(sCursors_GetCursPosU(source, numCur), SET_RANGE(source), SET_RSHIFT(source));
-    return GF::Voltage2String(voltage, true, buffer);
+
+    std::strcpy(buffer, GF::Voltage2String(voltage, true).c_str());
+
+    return buffer;
 }
 
 

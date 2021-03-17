@@ -1080,7 +1080,7 @@ void Display::WriteCursors()
             float pos1 = MathFPGA::VoltageCursor(sCursors_GetCursPosU(source, 1), SET_RANGE(source), SET_RSHIFT(source));
             float delta = std::fabsf(pos1 - pos0);
             Text(":dU=").Draw(x, y1);
-            Text(GF::Voltage2String(delta, false, buffer)).Draw(x + 17, y1);
+            GF::Voltage2String(delta, false).Draw(x + 17, y1);
             Text(":").Draw(x, y2);
             sCursors_GetCursorPercentsU(source).Draw(x + 10, y2);
         }
@@ -1358,8 +1358,7 @@ void Display::WriteValueTrigLevel()
         }
         char buffer[20];
         std::strcpy(buffer, LANG_RU ? "Ур синхр = " : "Trig lvl = "); //-V2513
-        char bufForVolt[20];
-        std::strcat(buffer, GF::Voltage2String(trigLev, true, bufForVolt)); //-V2513
+        std::strcat(buffer, GF::Voltage2String(trigLev, true).c_str()); //-V2513
         int width = 96;
         int x = (Grid::Width() - width) / 2 + Grid::Left();
         int y = Grid::BottomMessages() - 20;

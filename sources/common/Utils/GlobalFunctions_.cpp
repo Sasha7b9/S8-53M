@@ -206,14 +206,13 @@ String GF::Hex8toString(uint8 value)
     return result;
 }
 
-char *GF::Voltage2String(float voltage, bool alwaysSign, char buffer[20])
+String GF::Voltage2String(float voltage, bool always_sign)
 {
-    buffer[0] = 0;
     char *suffix;
+
     if(voltage == ERROR_VALUE_FLOAT) //-V2550 //-V550
     {
-        std::strcat(buffer, ERROR_STRING_VALUE); //-V2513
-        return buffer;
+        return String(ERROR_STRING_VALUE);
     }
     else if(std::fabsf(voltage) + 0.5e-4F < 1e-3F)
     {
@@ -235,13 +234,10 @@ char *GF::Voltage2String(float voltage, bool alwaysSign, char buffer[20])
         voltage *= 1e-3F;
     }
 
-    char bufferOut[20];
+    String result = Float2String(voltage, always_sign, 4);
+    result.Append(suffix);
 
-    std::strcpy(bufferOut, GF::Float2String(voltage, alwaysSign, 4).c_str());
-
-    std::strcat(buffer, bufferOut); //-V2513
-    std::strcat(buffer, suffix); //-V2513
-    return buffer;
+    return result;
 }
 
 char* GF::Time2String(float time, bool alwaysSign, char buffer[20])
