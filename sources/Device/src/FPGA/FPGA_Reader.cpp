@@ -38,7 +38,7 @@ void ReaderFPGA::ReadData(bool necessary_shift, bool save_to_storage)
 {
     FPGA::in_processing_of_read = true;
 
-    if (IN_RANDOM_MODE)
+    if (FPGA_IN_RANDOMIZE_MODE)
     {
         ReadRandomizeMode();
     }
@@ -189,70 +189,87 @@ void ReaderFPGA::ReadRandomizeMode()
 }
 
 
-void ReaderFPGA::ReadRealMode(bool necessary_shift)
+void ReaderFPGA::ReadRealMode(bool /*necessary_shift*/)
 {
-    uint16 *p0 = &data_rel_A[0];
-    uint16 *p1 = &data_rel_B[0];
-    uint16 *endP = &data_rel_A[FPGA_MAX_POINTS];
+//    uint16 *p0 = &data_rel_A[0];
+//    uint16 *p1 = &data_rel_B[0];
+//
+//    uint16 *endP = &data_rel_A[FPGA_MAX_POINTS];
 
     if (ds.peakDet != PeackDetMode::Disable)
     {
-        uint16 *p0min = p0;
-        uint16 *p0max = p0min + 512;
-        uint16 *p1min = p1;
-        uint16 *p1max = p1min + 512;
-        while ((p0max < endP) && FPGA::in_processing_of_read)
-        {
-            uint16 data = *RD_ADC_B;
-            *p1max++ = data;
-            data = *RD_ADC_B;
-            *p1min++ = data;
-            data = *RD_ADC_A;
-            *p0min++ = data;
-            data = *RD_ADC_A;
-            *p0max++ = data;
-        }
+        ReadRealModePeakDetOn();
     }
     else
     {
-        while ((p0 < endP) && FPGA::in_processing_of_read)
-        {
-            *p1++ = *RD_ADC_B;
-            *p1++ = *RD_ADC_B;
-            uint16 data = *RD_ADC_A;
-            *p0++ = data;
-            data = *RD_ADC_A;
-            *p0++ = data;
-        }
+        ReadRealModePeakDetOff();
+    }
+}
 
-        int shift = 0;
-        if (SET_TBASE == TBase::_100ns || SET_TBASE == TBase::_200ns)
+
+void ReaderFPGA::ReadRealModePeakDetOn()
+{
+    uint16 *p0 = &data_rel_A[0];
+    uint16 *p1 = &data_rel_B[0];
+    uint16 *end_p = &data_rel_A[FPGA_MAX_POINTS];
+
+    uint16 *p0min = p0;
+    uint16 *p0max = p0min + 512;
+    uint16 *p1min = p1;
+    uint16 *p1max = p1min + 512;
+    while ((p0max < end_p) && FPGA::in_processing_of_read)
+    {
+        uint16 data = *RD_ADC_B;
+        *p1max++ = data;
+        data = *RD_ADC_B;
+        *p1min++ = data;
+        data = *RD_ADC_A;
+        *p0min++ = data;
+        data = *RD_ADC_A;
+        *p0max++ = data;
+    }
+}
+
+
+void ReaderFPGA::ReadRealModePeakDetOff()
+{
+    uint16 *p0 = &data_rel_A[0];
+    uint16 *p1 = &data_rel_B[0];
+    uint16 *end_p = &data_rel_A[FPGA_MAX_POINTS];
+
+    while ((p0 < end_p) && FPGA::in_processing_of_read)
+    {
+        *p1++ = *RD_ADC_B;
+        *p1++ = *RD_ADC_B;
+        uint16 data = *RD_ADC_A;
+        *p0++ = data;
+        data = *RD_ADC_A;
+        *p0++ = data;
+    }
+
+    int shift = 0;
+    if (SET_TBASE == TBase::_100ns || SET_TBASE == TBase::_200ns)
+    {
+        shift = CalculateShift();
+    }
+
+    if (shift != 0)
+    {
+        if (shift < 0)
         {
-            shift = CalculateShift();
-        }
-        else if (necessary_shift)
-        {
-            //shift = set.debug.altShift;       WARN Остановились на жёстком задании дополнительного смещения. На PageDebug выбор закомментирован, можно включить при необходимости
-            shift = -1;
-        }
-        if (shift != 0)
-        {
-            if (shift < 0)
+            shift = -shift;
+            for (int i = FPGA_MAX_POINTS - shift - 1; i >= 0; i--)
             {
-                shift = -shift;
-                for (int i = FPGA_MAX_POINTS - shift - 1; i >= 0; i--)
-                {
-                    data_rel_A[i + shift] = data_rel_A[i];
-                    data_rel_B[i + shift] = data_rel_B[i];
-                }
+                data_rel_A[i + shift] = data_rel_A[i];
+                data_rel_B[i + shift] = data_rel_B[i];
             }
-            else
+        }
+        else
+        {
+            for (int i = shift; i < FPGA_MAX_POINTS; i++)
             {
-                for (int i = shift; i < FPGA_MAX_POINTS; i++)
-                {
-                    data_rel_A[i - shift] = data_rel_A[i];
-                    data_rel_B[i - shift] = data_rel_B[i];
-                }
+                data_rel_A[i - shift] = data_rel_A[i];
+                data_rel_B[i - shift] = data_rel_B[i];
             }
         }
     }

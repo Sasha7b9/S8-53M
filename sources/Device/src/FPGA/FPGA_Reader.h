@@ -32,4 +32,8 @@ private:
     static int CalculateShift();
 
     static void SaveToStorage(bool save_to_storage);
+
+    static void ReadRealModePeakDetOn();
+
+    static void ReadRealModePeakDetOff();
 };
