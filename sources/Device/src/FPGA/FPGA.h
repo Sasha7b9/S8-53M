@@ -68,36 +68,16 @@ public:
 
     static StateWorkFPGA::E CurrentStateWork();
 
+    // Загрузить настройки в аппаратную часть из глобальной структуры SSettings.
+    static void LoadSettings();
+
 private:
 
     static StateWorkFPGA::E state_work;
     static uint             time_start;
     static bool             critical_situation;
 
-    // Загрузить настройки в аппаратную часть из глобальной структуры SSettings.
-    static void LoadSettings();
-
-    static uint8 CalculateMinWithout0(const uint8 buffer[100]);
-
-    static uint8 CalculateMaxWithout255(const uint8 buffer[100]);
-
 public:
-
-    // Поиск сигнала
-    struct AutoFinder
-    {
-        static void Find();
-
-        static bool FindWave(Channel::E chan);
-
-        static Range::E AccurateFindRange(Channel::E chan);
-
-        static TBase::E FindTBase(Channel::E chan);
-
-        static TBase::E AccurateFindTBase(Channel::E chan);
-
-        static bool auto_find_in_progress;
-    };
 
     struct BUS
     {

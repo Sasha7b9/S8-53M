@@ -1,9 +1,10 @@
 // 2021/03/17 8:01:07 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "FPGA/FPGA.h"
+#include "FPGA/FPGA_AutoFinder.h"
 
 
-bool FPGA::AutoFinder::auto_find_in_progress = false;
+bool AutoFinderFPGA::auto_find_in_progress = false;
 
 
 static float CalculateFreqFromCounterFreq();
@@ -15,7 +16,7 @@ static BitSet32 ReadRegPeriod();
 static float PeriodCounterToValue(const BitSet32 *period);
 
 
-void FPGA::AutoFinder::Find()
+void AutoFinderFPGA::Find()
 {
     //LOG_WRITE(" ");
     //Timer::StartLogging();
@@ -30,18 +31,18 @@ void FPGA::AutoFinder::Find()
         }
     }
 
-    Init();
-    Start();
+    FPGA::Init();
+    FPGA::Start();
 
     auto_find_in_progress = true;
 }
 
 
-bool FPGA::AutoFinder::FindWave(Channel::E chan)
+bool AutoFinderFPGA::FindWave(Channel::E chan)
 {
     Settings settings = set;    // Сохраняем предыдущие настройки
 
-    Stop(false);
+    FPGA::Stop(false);
     SET_ENABLED(chan) = true;
     TrigSource::Set(static_cast<TrigSource::E>(chan));
     TrigLev::Set(static_cast<TrigSource::E>(chan), TrigLevZero);
@@ -67,7 +68,7 @@ bool FPGA::AutoFinder::FindWave(Channel::E chan)
 }
 
 
-Range::E FPGA::AutoFinder::AccurateFindRange(Channel::E chan)
+Range::E AutoFinderFPGA::AccurateFindRange(Channel::E chan)
 {
     /*
     Алгоритм поиска.
@@ -160,7 +161,7 @@ Range::E FPGA::AutoFinder::AccurateFindRange(Channel::E chan)
 }
 
 
-TBase::E FPGA::AutoFinder::FindTBase(Channel::E)
+TBase::E AutoFinderFPGA::FindTBase(Channel::E)
 {
     TrigInput::Set(TrigInput::Full);
     HAL_TIM2::Delay(10);
@@ -177,14 +178,14 @@ TBase::E FPGA::AutoFinder::FindTBase(Channel::E)
     {
         tBase = CalculateTBase(fr);
         TBase::Set(tBase);
-        Start();
+        FPGA::Start();
         TrigInput::Set(fr < 500e3F ? TrigInput::LPF : TrigInput::HPF);
         return tBase;
     }
     else
     {
         TrigInput::Set(TrigInput::LPF);
-        FreqMeter::freq = CalculateFreqFromCounterPeriod();
+        FPGA::FreqMeter::freq = CalculateFreqFromCounterPeriod();
         if (fr > 0.0F)
         {
             tBase = CalculateTBase(fr);
@@ -199,7 +200,7 @@ TBase::E FPGA::AutoFinder::FindTBase(Channel::E)
 }
 
 
-TBase::E FPGA::AutoFinder::AccurateFindTBase(Channel::E chan)
+TBase::E AutoFinderFPGA::AccurateFindTBase(Channel::E chan)
 {
     for (int i = 0; i < 5; i++)
     {
@@ -306,4 +307,37 @@ static float PeriodCounterToValue(const BitSet32 *period)
         return 0.0F;
     }
     return 10e6F / period->word;
+}
+
+
+uint8 AutoFinderFPGA::CalculateMinWithout0(const uint8 buffer[100])
+{
+    // \todo На одном экземпляре был страшенныый глюк, когда без сигнала выбивались значения 0 и 255 в рандомных местах
+    // Вот такой кастыиль на скорую ногу, чтобы нули выкинуть.
+    uint8 min = 255;
+
+    for (int i = 1; i < 100; i++)
+    {
+        if (buffer[i] > 0 && buffer[i] < min)
+        {
+            min = buffer[i];
+        }
+    }
+    return min;
+}
+
+
+uint8 AutoFinderFPGA::CalculateMaxWithout255(const uint8 buffer[100])
+{
+    // \todo На одном экземпляре был страшенныый глюк, когда без сигнала выбивались значения 0 и 255 в рандомных местах
+    // Вот такой кастыиль на скорую ногу, чтобы нули выкинуть.
+    uint8 max = 0;
+    for (int i = 1; i < 100; i++)
+    {
+        if (buffer[i] < 255 && buffer[i] > max)
+        {
+            max = buffer[i];
+        }
+    }
+    return max;
 }

@@ -5,6 +5,7 @@
 #include "Display/DataPainter.h"
 #include "FPGA/DataSettings.h"
 #include "FPGA/FPGA.h"
+#include "FPGA/FPGA_AutoFinder.h"
 #include "FPGA/FPGA_Reader.h"
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/Storage.h"
@@ -377,40 +378,7 @@ void FPGA::Randomizer::SetNumberMeasuresForGates(int number)
 
 void FPGA::StartAutoFind()
 {
-    AutoFinder::auto_find_in_progress = true;
-}
-
-
-uint8 FPGA::CalculateMinWithout0(const uint8 buffer[100])
-{
-    // \todo На одном экземпляре был страшенныый глюк, когда без сигнала выбивались значения 0 и 255 в рандомных местах
-    // Вот такой кастыиль на скорую ногу, чтобы нули выкинуть.
-    uint8 min = 255;
-    
-    for (int i = 1; i < 100; i++)
-    {
-        if (buffer[i] > 0 && buffer[i] < min)
-        {
-            min = buffer[i];
-        }
-    }
-    return min;
-}
-
-
-uint8 FPGA::CalculateMaxWithout255(const uint8 buffer[100])
-{
-    // \todo На одном экземпляре был страшенныый глюк, когда без сигнала выбивались значения 0 и 255 в рандомных местах
-    // Вот такой кастыиль на скорую ногу, чтобы нули выкинуть.
-    uint8 max = 0;
-    for(int i = 1; i < 100; i++)
-    {
-        if(buffer[i] < 255 && buffer[i] > max)
-        {
-            max = buffer[i];
-        }
-    }
-    return max;
+    AutoFinderFPGA::auto_find_in_progress = true;
 }
 
 
