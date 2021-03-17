@@ -75,8 +75,6 @@ void HAL_MspInit()
 
 void HAL::EnablePeripherals()
 {
-#ifndef WIN32
-
     __SYSCFG_CLK_ENABLE();
 
     __PWR_CLK_ENABLE();
@@ -119,9 +117,6 @@ void HAL::EnablePeripherals()
 
     __USB_OTG_FS_CLK_ENABLE();
     __USB_OTG_HS_CLK_ENABLE();
-
-#endif
-
 }
 
 

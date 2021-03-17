@@ -1,5 +1,6 @@
 #include "defines.h"
 #include <stm32f4xx_hal.h>
+#include <stm32f4xx_hal_rcc.h>
 
 
 __weak HAL_StatusTypeDef HAL_RCC_OscConfig(RCC_OscInitTypeDef *)

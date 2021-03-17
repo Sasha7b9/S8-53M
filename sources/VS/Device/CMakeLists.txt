@@ -9,6 +9,7 @@ include_directories(../..
                     ../../Device/src/Hardware/USBH
                                  src
                     ../../common/_VS_GUI/CMSIS
+                    ../../common/_VS_GUI/HAL
                     ../../common/STM32Cube_F4/Drivers/CMSIS/Device/ST/STM32F4xx/Include
                     ../../common/STM32Cube_F4/Drivers/STM32F4xx_HAL_Driver/Inc
                     ../../common/STM32Cube_F4/Middlewares/Third_Party/FatFs/src
@@ -21,6 +22,7 @@ include_directories(../..
                     ../../ThirdParty/wxWidgets/include
                     ../../ThirdParty/wxWidgets/generated/lib/vc_dll/mswud
                     )
+
 add_definitions(-DSTM32F429xx -DWXUSINGDLL -DGUI -DDEVICE)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -MP -Wall")
