@@ -179,6 +179,8 @@ void HAL_PINS::SPI4_::Init()
 
 void HAL_PINS::Init()
 {
+    SPI4_::Init();
+
     Pin::LED.Init();
     Pin::DisplayReady.Init();
 
