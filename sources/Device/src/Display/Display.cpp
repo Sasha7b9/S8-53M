@@ -465,9 +465,9 @@ void Display::WriteParametersFFT(Channel::E chan, float freq0, float density0, f
         y += dY * 3 + 4;
     }
     Color::Channel(chan).SetAsCurrent();
-    Text(SCALE_FFT_IS_LOG ? GF::Float2Db(density0, 4, buffer) : GF::Float2String(density0, false, 7, buffer)).Draw(x, y);
+    Text(SCALE_FFT_IS_LOG ? GF::Float2Db(density0, 4, buffer) : GF::Float2String(density0, false, 7).c_str()).Draw(x, y);
     y += dY;
-    Text(SCALE_FFT_IS_LOG ? GF::Float2Db(density1, 4, buffer) : GF::Float2String(density1, false, 7, buffer)).Draw(x, y);
+    Text(SCALE_FFT_IS_LOG ? GF::Float2Db(density1, 4, buffer) : GF::Float2String(density1, false, 7).c_str()).Draw(x, y);
 }
 
 
@@ -1082,7 +1082,7 @@ void Display::WriteCursors()
             Text(":dU=").Draw(x, y1);
             Text(GF::Voltage2String(delta, false, buffer)).Draw(x + 17, y1);
             Text(":").Draw(x, y2);
-            Text(sCursors_GetCursorPercentsU(source, buffer)).Draw(x + 10, y2);
+            sCursors_GetCursorPercentsU(source).Draw(x + 10, y2);
         }
 
         x = startX + 101;
@@ -1104,7 +1104,7 @@ void Display::WriteCursors()
             char buf[20];
             Text(GF::Time2String(delta, false, buf)).Draw(x + 17, y1);
             Text(":").Draw(x, y2);
-            Text(sCursors_GetCursorPercentsT(source, buf)).Draw(x + 8, y2);
+            sCursors_GetCursorPercentsT(source).Draw(x + 8, y2);
 
             if(CURSORS_SHOW_FREQ)
             {

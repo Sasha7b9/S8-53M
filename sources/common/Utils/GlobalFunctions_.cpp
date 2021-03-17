@@ -21,9 +21,7 @@ namespace GF
 
 String GF::FloatFract2String(float value, bool alwaysSign)
 {
-    char buffer[20];
-
-    return String(GF::Float2String(value, alwaysSign, 4, buffer));
+    return String(GF::Float2String(value, alwaysSign, 4));
 }
 
 static int NumDigitsInIntPart(float value)
@@ -55,65 +53,69 @@ static int NumDigitsInIntPart(float value)
     return numDigitsInInt;
 }
 
-char* GF::Float2String(float value, bool alwaysSign, int numDigits, char bufferOut[20])
+String GF::Float2String(float value, bool always_sign, int num_digits)
 {
-    bufferOut[0] = 0;
-    char *pBuffer = bufferOut;
+    String result;
 
     if(value == ERROR_VALUE_FLOAT) //-V550 //-V2550
     {
-        std::strcat(bufferOut, ERROR_STRING_VALUE); //-V2513
-        return bufferOut;
+        return String(ERROR_STRING_VALUE);
     }
 
-    if(!alwaysSign)
+    if(!always_sign)
     {
         if(value < 0)
         {
-            *pBuffer = '-';
-            pBuffer++;
+            result.Append('-');
         }
     }
     else
     {
-        *pBuffer = value < 0 ? '-' : '+';
-        pBuffer++;
+        result.Append(value < 0 ? '-' : '+');
     }
 
+
+    char buffer[20];
     char format[] = "%4.2f\0\0";
 
-    format[1] = (char)numDigits + 0x30;
+    format[1] = (char)num_digits + 0x30;
 
-    int numDigitsInInt = NumDigitsInIntPart(value);
+    int num_digits_in_int = NumDigitsInIntPart(value);
 
-    format[3] = static_cast<char>((numDigits - numDigitsInInt) + 0x30);
-    if(numDigits == numDigitsInInt)
+    format[3] = static_cast<char>((num_digits - num_digits_in_int) + 0x30);
+    if(num_digits == num_digits_in_int)
     {
         format[5] = '.';
     }
     
-    std::snprintf(pBuffer, 19, format, std::fabsf(value));
+    std::sprintf(buffer, format, std::fabsf(value));
 
-    float val = static_cast<float>(std::atof(pBuffer)); //-V2508
+    result.Append(buffer);
 
-    if (NumDigitsInIntPart(val) != numDigitsInInt)
+    float val = static_cast<float>(std::atof(buffer)); //-V2508
+
+    if (NumDigitsInIntPart(val) != num_digits_in_int)
     {
-        numDigitsInInt = NumDigitsInIntPart(val);
-        format[3] = static_cast<char>((numDigits - numDigitsInInt) + 0x30);
-        if (numDigits == numDigitsInInt)
+        num_digits_in_int = NumDigitsInIntPart(val);
+        format[3] = static_cast<char>((num_digits - num_digits_in_int) + 0x30);
+
+        if (num_digits == num_digits_in_int)
         {
             format[5] = '.';
         }
-        std::sprintf(pBuffer, format, value);
+
+        std::sprintf(buffer, format, value);
+        result.Append(buffer);
     }
 
-    bool signExist = alwaysSign || value < 0;
-    while(static_cast<int>(std::strlen(bufferOut)) < numDigits + (signExist ? 2 : 1)) //-V2513
+    bool signExist = always_sign || value < 0;
+
+    while(static_cast<int>(result.Size()) < num_digits + (signExist ? 2 : 1)) //-V2513
     {
-        std::strcat(bufferOut, "0"); //-V2513
+        result.Append("0");
     }
 
-    return bufferOut;
+    return result;
 }
 
 String GF::Int2String(int value, bool alwaysSign, int numMinFields)
@@ -224,7 +226,8 @@ char *GF::Voltage2String(float voltage, bool alwaysSign, char buffer[20])
 
     char bufferOut[20];
 
-    GF::Float2String(voltage, alwaysSign, 4, bufferOut);
+    std::strcpy(bufferOut, GF::Float2String(voltage, alwaysSign, 4).c_str());
+
     std::strcat(buffer, bufferOut); //-V2513
     std::strcat(buffer, suffix); //-V2513
     return buffer;
@@ -259,27 +262,28 @@ char* GF::Time2String(float time, bool alwaysSign, char buffer[20])
         suffix = LANG_RU ? "๑" : "s";
     }
 
-    char bufferOut[20];
-    std::strcat(buffer, GF::Float2String(time, alwaysSign, 4, bufferOut)); //-V2513
+    char buffer_out[20];
+
+    std::strcpy(buffer_out, GF::Float2String(time, alwaysSign, 4).c_str());
+
     std::strcat(buffer, suffix); //-V2513
     return buffer;
 }
 
-char *GF::Phase2String(float phase, bool, char bufferOut[20])
+char *GF::Phase2String(float phase, bool, char buffer_out[20])
 {
-    char buffer[20];
-    std::sprintf(bufferOut, "%s\xa8", GF::Float2String(phase, false, 4, buffer));
-    return bufferOut;
+    std::sprintf(buffer_out, "%s\xa8", GF::Float2String(phase, false, 4).c_str());
+    return buffer_out;
 }
 
-char *GF::Freq2String(float freq, bool, char bufferOut[20])
+char *GF::Freq2String(float freq, bool, char buffer_out[20])
 {
-    bufferOut[0] = 0;
+    buffer_out[0] = 0;
     char *suffix = 0;
     if(freq == ERROR_VALUE_FLOAT) //-V2550 //-V550
     {
-        std::strcat(bufferOut, ERROR_STRING_VALUE); //-V2513
-        return bufferOut;
+        std::strcat(buffer_out, ERROR_STRING_VALUE); //-V2513
+        return buffer_out;
     }
     if(freq >= 1e6F)
     {
@@ -295,19 +299,21 @@ char *GF::Freq2String(float freq, bool, char bufferOut[20])
     {
         suffix = LANG_RU ? "ร๖" : "Hz";
     }
-    char buffer[20];
-    std::strcat(bufferOut, GF::Float2String(freq, false, 4, buffer)); //-V2513
-    std::strcat(bufferOut, suffix); //-V2513
-    return bufferOut;
+
+    std::strcpy(buffer_out, GF::Float2String(freq, false, 4).c_str());
+
+    std::strcat(buffer_out, suffix); //-V2513
+
+    return buffer_out;
 }
 
-char* GF::Float2Db(float value, int numDigits, char bufferOut[20])
+char* GF::Float2Db(float value, int numDigits, char buffer_out[20])
 {
-    bufferOut[0] = 0;
-    char buffer[20];
-    std::strcat(bufferOut, GF::Float2String(value, false, numDigits, buffer)); //-V2513
-    std::strcat(bufferOut, "ไม"); //-V2513
-    return bufferOut;
+    std::strcpy(buffer_out, GF::Float2String(value, false, numDigits).c_str());
+
+    std::strcat(buffer_out, "ไม"); //-V2513
+
+    return buffer_out;
 }
 
 bool GF::IntInRange(int value, int min, int max)

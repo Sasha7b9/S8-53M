@@ -1,10 +1,6 @@
 #pragma once
+#include "common/Utils/String_.h"
 
-/** @addtogroup Settings
- *  @{
- *  @defgroup SettingsCursors Settings Cursors
- *  @{
- */
 
 #define CURSORS_SHOW_FREQ           (set.cursors.showFreq)                      // SettingsCursors.showFreq
 #define CURS_MOVEMENT               (set.cursors.movement)                      // SettingsCursors.movement
@@ -77,10 +73,6 @@ const char* sCursors_GetCursVoltage(Channel::E source, int numCur, char buffer[2
 // Получить строку курсора времени.
 const char* sCursors_GetCursorTime(Channel::E source, int numCur, char buffer[20]);
 // Получить строку процентов курсоров напряжения.
-const char* sCursors_GetCursorPercentsU(Channel::E source, char buffer[20]);
+String sCursors_GetCursorPercentsU(Channel::E source);
 // Получить строку процентов курсоров времени.
-const char* sCursors_GetCursorPercentsT(Channel::E source, char buffer[20]);
-
-
-/** @}  @}
- */
+String sCursors_GetCursorPercentsT(Channel::E source);
