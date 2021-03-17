@@ -26,6 +26,15 @@ static int firstP = 0;
 static int lastP = 0;
 static int numP = 0;
 
+
+static char *FloatFract2StringC(float value, bool always_sign, char *buffer)
+{
+    std::strcpy(buffer, GF::FloatFract2String(value, always_sign).c_str());
+    
+    return buffer;
+}
+
+
 const Processing::MeasureCalculate Processing::measures[Measure::Count] =
 {
     {0, 0},
@@ -45,8 +54,8 @@ const Processing::MeasureCalculate Processing::measures[Measure::Count] =
     {"CalculateTimeSpada",          CalculateTimeSpada,            GF::Time2String, false},
     {"CalculateDurationPlus",       CalculateDurationPlus,         GF::Time2String, false},
     {"CalculateDurationPlus",       CalculateDurationMinus,        GF::Time2String, false},
-    {"CalculateSkvaznostPlus",      CalculateSkvaznostPlus,        GF::FloatFract2String, false},
-    {"CalculateSkvaznostMinus",     CalculateSkvaznostMinus,       GF::FloatFract2String, false},
+    {"CalculateSkvaznostPlus",      CalculateSkvaznostPlus,        FloatFract2StringC, false},
+    {"CalculateSkvaznostMinus",     CalculateSkvaznostMinus,       FloatFract2StringC, false},
     {"CalculateDelayPlus",          CalculateDelayPlus,            GF::Time2String, false},
     {"CalculateDelayMinus",         CalculateDelayMinus,           GF::Time2String, false},
     {"CalculatePhazaPlus",          CalculatePhazaPlus,            GF::Phase2String, false},

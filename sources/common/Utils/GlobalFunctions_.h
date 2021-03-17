@@ -4,7 +4,7 @@
 
 namespace GF
 {
-    char *FloatFract2String(float value, bool always_sign, char out_buffer[20]);
+    String FloatFract2String(float value, bool always_sign = false);
 
     // alwaysSign - если установлен в true, перед числом всегда будет знак, если установлен в false, только если число
     //              отрицательное

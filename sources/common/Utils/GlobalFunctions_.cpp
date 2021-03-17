@@ -19,9 +19,11 @@ namespace GF
 }
 
 
-char *GF::FloatFract2String(float value, bool alwaysSign, char bufferOut[20])
+String GF::FloatFract2String(float value, bool alwaysSign)
 {
-    return GF::Float2String(value, alwaysSign, 4, bufferOut);
+    char buffer[20];
+
+    return String(GF::Float2String(value, alwaysSign, 4, buffer));
 }
 
 static int NumDigitsInIntPart(float value)
