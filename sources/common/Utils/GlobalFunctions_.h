@@ -12,7 +12,7 @@ namespace GF
     String Float2String(float value, bool always_sign, int num_digits);
 
     // Преобразует value в текстовую строку. При этом выводятся все 8 разрядов.
-    char *Bin2String(uint8 value, char out_buffer[9]);
+    String Bin2String(uint8 value);
 
     char *Bin2String16(uint16 value, char buffer[19]);
 

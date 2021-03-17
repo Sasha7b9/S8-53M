@@ -171,21 +171,24 @@ bool GF::String2Int(char *str, int *value)
     return true;
 }
 
-char *GF::Bin2String(uint8 value, char buffer[9])
+String GF::Bin2String(uint8 value)
 {
+    String result("00000000");
+
+    char *buffer = result.c_str();
+
     for(int bit = 0; bit < 8; bit++)
     {
         buffer[7 - bit] = _GET_BIT(value, bit) ? '1' : '0';
     }
-    return buffer;
+    return result;
 }
 
 char *GF::Bin2String16(uint16 value, char valBuffer[19])
 {
-    char buffer[9];
-    std::strcpy(valBuffer, Bin2String((uint8)(value >> 8), buffer)); //-V2513
+    std::strcpy(valBuffer, Bin2String((uint8)(value >> 8)).c_str()); //-V2513
     valBuffer[8] = ' ';
-    std::strcpy(valBuffer + 9, Bin2String((uint8)value, buffer)); //-V2513
+    std::strcpy(valBuffer + 9, Bin2String((uint8)value).c_str()); //-V2513
     return valBuffer;
 }
 
