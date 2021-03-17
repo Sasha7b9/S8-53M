@@ -216,7 +216,7 @@ void HAL::JumpToApplication()
 }
 
 
-void HAL::ErrorHandler(const char *file, int line)
+void HAL::ErrorHandler(pchar file, int line)
 {
     UNUSED(file);
     UNUSED(line);

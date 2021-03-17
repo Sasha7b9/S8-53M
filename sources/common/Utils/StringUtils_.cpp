@@ -48,7 +48,7 @@ char *SU::DoubleToString(double)
 }
 
 
-bool SU::StringToDouble(double *, const char *)
+bool SU::StringToDouble(double *, pchar)
 {
     return false;
 }
