@@ -477,15 +477,15 @@ void FPGA::BUS::WriteToDAC(TypeWriteDAC::E type, uint16 data)
 {
     char buffer[19];
 
-    if (type == TypeWriteDAC::RShiftA && IS_SHOW_REG_RSHIFT_A)
+    if (type == TypeWriteDAC::RShiftA)
     {
-        LOG_WRITE("rShift 0 = %s", GF::Bin2String16(data, buffer));
+        LOG_WRITE("rShift 1 = %s", GF::Bin2String16(data, buffer));
     }
-    else if (type == TypeWriteDAC::RShiftB && IS_SHOW_REG_RSHIFT_B)
+    else if (type == TypeWriteDAC::RShiftB)
     {
-        LOG_WRITE("rShfit 1 = %s", GF::Bin2String16(data, buffer));
+        LOG_WRITE("rShfit 2 = %s", GF::Bin2String16(data, buffer));
     }
-    else if (type == TypeWriteDAC::TrigLev && IS_SHOW_REG_TRIGLEV)
+    else if (type == TypeWriteDAC::TrigLev)
     {
         LOG_WRITE("trigLev = %s", GF::Bin2String16(data, buffer));
     }
