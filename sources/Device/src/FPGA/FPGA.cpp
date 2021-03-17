@@ -152,15 +152,9 @@ void FPGA::Update()
 
     if (flag.IsPredLaunchReady())
     {
-        LOG_WRITE("Предзапуск готов");  
-
         if (flag.IsTrigReady())
         {
-            LOG_WRITE("Триггер готов");
-        }
-        else
-        {
-            LOG_WRITE("Триггер не готов");
+//            Reader::ReadData();
         }
     }
 }
@@ -430,13 +424,13 @@ void FPGA::Flag::Read()
 {
     flag = HAL_FMC::Read(RD_FL);
 
-    CalculateTimePredLaunchReady();
+    CalculateTimeReadyPredLaunch();
 
     RunPostLaunchIfNeed();
 }
 
 
-void FPGA::Flag::CalculateTimePredLaunchReady()
+void FPGA::Flag::CalculateTimeReadyPredLaunch()
 {
     if (IsPredLaunchReady())
     {

@@ -158,7 +158,7 @@ public:
         inline bool IsPredLaunchReady() const  { return _GET_BIT(flag, FL_PRED_READY) == 1; }
 
         // Рассчитать время, когда был установлен флаг предзапуска
-        void CalculateTimePredLaunchReady();
+        void CalculateTimeReadyPredLaunch();
 
         // Запустить отсчёт послезапуска, если нужно (если у нас включена автоматическая синхронизация, после отсчёта
         // предзапуска прошло много времени, а синхронизация так и не прошла, нужно давать принудительную синхронизацию
