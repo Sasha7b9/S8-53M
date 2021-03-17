@@ -4,5 +4,5 @@
 
 HAL_StatusTypeDef HAL_DMA_Init(DMA_HandleTypeDef *)
 {
-    return HAL_ERROR;
+    return HAL_OK;
 }

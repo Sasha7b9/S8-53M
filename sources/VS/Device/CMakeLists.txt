@@ -99,7 +99,6 @@ file(GLOB HARDWARE_HAL          ../../common/Hardware/HAL/HAL_.*
                                 ../../common/Hardware/HAL/HAL_CRC_.cpp
                                 ../../common/Hardware/HAL/HAL_DAC2_.cpp
                                 ../../common/Hardware/HAL/HAL_EPROM_.cpp
-                                ../../common/Hardware/HAL/HAL_FMC_.cpp
                                 ../../common/Hardware/HAL/HAL_LTDC_.cpp
                                 ../../common/Hardware/HAL/HAL_OTP_.cpp
                                 ../../common/Hardware/HAL/HAL_RTC_.cpp
@@ -108,7 +107,8 @@ file(GLOB HARDWARE_HAL          ../../common/Hardware/HAL/HAL_.*
                                 ../../common/Hardware/HAL/HAL_TIM2_.cpp
                                 ../../common/Hardware/HAL/HAL_TIM6_.cpp
                                 ../../common/Hardware/HAL/HAL_TIM7_.cpp
-                                ../../common/Hardware/HAL/HAL_USBD_.cpp)
+                                ../../common/Hardware/HAL/HAL_USBD_.cpp
+                                         src/Hardware/HAL/HAL_FMC_win.cpp)
 file(GLOB HARDWARE_USBD     ../../Device/src/Hardware/USBD/usbd_desc.cpp
                             ../../Device/src/Hardware/USBD/usbd_cdc_interface.*)
 file(GLOB MENU              ../../Device/src/Menu/*.*)
