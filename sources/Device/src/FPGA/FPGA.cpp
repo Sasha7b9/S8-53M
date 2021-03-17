@@ -150,9 +150,9 @@ void FPGA::Update()
 {
     flag.Read();
 
-    if (flag.IsPredReady())
+    if (flag.IsPredLaunchReady())
     {
-        LOG_WRITE("Предзапуск готов");
+        LOG_WRITE("Предзапуск готов");  
 
         if (flag.IsTrigReady())
         {
@@ -430,33 +430,33 @@ void FPGA::Flag::Read()
 {
     flag = HAL_FMC::Read(RD_FL);
 
-    CalculateTimePredReady();
+    CalculateTimePredLaunchReady();
 
-    RunPostIfNeed();
+    RunPostLaunchIfNeed();
 }
 
 
-void FPGA::Flag::CalculateTimePredReady()
+void FPGA::Flag::CalculateTimePredLaunchReady()
 {
-    if (IsPredReady())
+    if (IsPredLaunchReady())
     {
-        if (time_pred_ready == 0)
+        if (time_pred_launch_ready == 0)
         {
-            time_pred_ready = TIME_MS;
+            time_pred_launch_ready = TIME_MS;
         }
     }
     else
     {
-        time_pred_ready = 0;
+        time_pred_launch_ready = 0;
     }
 }
 
 
-void FPGA::Flag::RunPostIfNeed()
+void FPGA::Flag::RunPostLaunchIfNeed()
 {
     if (START_MODE_IS_AUTO)
     {
-        if (IsPredReady() && !IsTrigReady() && TIME_MS - time_pred_ready > 1000)
+        if (IsPredLaunchReady() && !IsTrigReady() && TIME_MS - time_pred_launch_ready > 1000)
         {
             TrigPolarity::Switch();
         }

@@ -145,7 +145,7 @@ public:
 
     struct Flag
     {
-        Flag() : flag(0), time_pred_ready(0) {}
+        Flag() : flag(0), time_pred_launch_ready(0) {}
 
         void Read();
 
@@ -155,17 +155,17 @@ public:
 
         inline bool IsPointReady() const { return _GET_BIT(flag, FL_POINT_READY) == 1; };
 
-        inline bool IsPredReady() const  { return _GET_BIT(flag, FL_PRED_READY) == 1; }
+        inline bool IsPredLaunchReady() const  { return _GET_BIT(flag, FL_PRED_READY) == 1; }
 
         // Рассчитать время, когда был установлен флаг предзапуска
-        void CalculateTimePredReady();
+        void CalculateTimePredLaunchReady();
 
         // Запустить отсчёт послезапуска, если нужно (если у нас включена автоматическая синхронизация, после отсчёта
         // предзапуска прошло много времени, а синхронизация так и не прошла, нужно давать принудительную синхронизацию
-        void RunPostIfNeed();
+        void RunPostLaunchIfNeed();
 
         uint16 flag;
-        uint time_pred_ready;     // Время, когда флаг PredReady установился. Если == 0, не установлен
+        uint time_pred_launch_ready;     // Время, когда флаг PredReady установился. Если == 0, не установлен
     };
 
     static Flag flag;
