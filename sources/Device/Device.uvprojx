@@ -1607,6 +1607,11 @@
               <FilePath>.\src\FPGA\FPGA.cpp</FilePath>
             </File>
             <File>
+              <FileName>FPGA_AutoFinder.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\FPGA\FPGA_AutoFinder.cpp</FilePath>
+            </File>
+            <File>
               <FileName>FPGA_Types.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\FPGA\FPGA_Types.h</FilePath>
@@ -3795,6 +3800,11 @@
               <FileName>FPGA.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\FPGA\FPGA.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>FPGA_AutoFinder.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\FPGA\FPGA_AutoFinder.cpp</FilePath>
             </File>
             <File>
               <FileName>FPGA_Types.h</FileName>
