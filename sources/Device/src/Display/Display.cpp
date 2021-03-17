@@ -10,6 +10,7 @@
 #include "Display/Display.h"
 #include "FDrive/FDrive.h"
 #include "FPGA/DataSettings.h"
+#include "FPGA/FPGA_Reader.h"
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/MathFPGA.h"
 #include "FPGA/Storage.h"
@@ -554,17 +555,17 @@ void Display::DrawSpectrum()
 
 
 
-void Display::DrawBothChannels(uint8 *data0, uint8 *data1)
+void Display::DrawBothChannels(uint8 *data_a, uint8 *data_b)
 {
 	if (LAST_AFFECTED_CHANNEL_IS_B)
     {
-        DrawDataChannel(data0, ChA, Storage::set, Grid::TOP, Grid::ChannelBottom());
-        DrawDataChannel(data1, ChB, Storage::set, Grid::TOP, Grid::ChannelBottom());
+        DrawDataChannel(ReaderFPGA::data_a, ChA, &ReaderFPGA::ds, Grid::TOP, Grid::ChannelBottom());
+        DrawDataChannel(ReaderFPGA::data_b, ChB, &ReaderFPGA::ds, Grid::TOP, Grid::ChannelBottom());
     }
     else
     {
-        DrawDataChannel(data1, ChB, Storage::set, Grid::TOP, Grid::ChannelBottom());
-        DrawDataChannel(data0, ChA, Storage::set, Grid::TOP, Grid::ChannelBottom());
+        DrawDataChannel(ReaderFPGA::data_b, ChB, &ReaderFPGA::ds, Grid::TOP, Grid::ChannelBottom());
+        DrawDataChannel(ReaderFPGA::data_a, ChA, &ReaderFPGA::ds, Grid::TOP, Grid::ChannelBottom());
     }
 }
 
@@ -638,31 +639,33 @@ void Display::DrawDataInModeSelfRecorder()
 
 void Display::DrawDataInModeNormal()
 {
-    static void* prevAddr = 0;
+    DrawBothChannels(0, 0);
 
-    uint8 *data0 = 0;
-    uint8 *data1 = 0;
-    DataSettings *ds = 0;
-    Processing::GetData(&data0, &data1, &ds);
-
-    int16 numSignals = (int16)Storage::NumElementsWithSameSettings();
-    LIMITATION(numSignals, numSignals, 1, NUM_ACCUM);
-    if (numSignals == 1 || ENUM_ACCUM_IS_INFINITY || MODE_ACCUM_IS_RESET || sTime_RandomizeModeEnabled())
-    {
-        DrawBothChannels(0, 0);
-        if (prevAddr == 0 || prevAddr != ds->addrPrev)
-        {
-            numDrawingSignals++;
-            prevAddr = ds->addrPrev;
-        }
-    }
-    else
-    {
-        for (int i = 0; i < numSignals; i++)
-        {
-            DrawBothChannels(Storage::GetData(ChA, i), Storage::GetData(ChB, i));
-        }
-    }
+//    static void* prevAddr = 0;
+//
+//    uint8 *data0 = 0;
+//    uint8 *data1 = 0;
+//    DataSettings *ds = 0;
+//    Processing::GetData(&data0, &data1, &ds);
+//
+//    int16 numSignals = (int16)Storage::NumElementsWithSameSettings();
+//    LIMITATION(numSignals, numSignals, 1, NUM_ACCUM);
+//    if (numSignals == 1 || ENUM_ACCUM_IS_INFINITY || MODE_ACCUM_IS_RESET || sTime_RandomizeModeEnabled())
+//    {
+//        DrawBothChannels(0, 0);
+//        if (prevAddr == 0 || prevAddr != ds->addrPrev)
+//        {
+//            numDrawingSignals++;
+//            prevAddr = ds->addrPrev;
+//        }
+//    }
+//    else
+//    {
+//        for (int i = 0; i < numSignals; i++)
+//        {
+//            DrawBothChannels(Storage::GetData(ChA, i), Storage::GetData(ChB, i));
+//        }
+//    }
 }
 
 
@@ -702,8 +705,8 @@ void Display::DrawDataNormal()
 {
     if (!dataP2PIsEmpty)
     {
-        static const pFuncVV funcs[2] = {DrawDataInModePoint2Point, DrawDataInModeSelfRecorder};
-        funcs[(int)SET_SELFRECORDER]();
+//        static const pFuncVV funcs[2] = {DrawDataInModePoint2Point, DrawDataInModeSelfRecorder};
+//        funcs[(int)SET_SELFRECORDER]();
     }
     else
     {
@@ -715,38 +718,39 @@ void Display::DrawDataNormal()
 
 void Display::DrawData()
 {
-    if (Storage::AllDatas())
-    {
+    DrawDataNormal();
 
-        if (MODE_WORK_IS_MEMINT)
-        {
-            if (!MODE_SHOW_MEMINT_IS_DIRECT)
-            {
-                DrawDataMemInt();
-            }
-            if (!MODE_SHOW_MEMINT_IS_SAVED)
-            {
-                DrawDataNormal();
-            }
-        }
-        else if (MODE_WORK_IS_LATEST)
-        {
-            DrawDataInModeWorkLatest();
-        }
-        else
-        {
-            if (PageMemory::PageInternal::showAlways)
-            {
-                DrawDataMemInt();
-            }
-            DrawDataNormal();
-        }
-
-        if (NUM_MIN_MAX != 1)
-        {
-            DrawDataMinMax();
-        }
-    }
+//    if (Storage::AllDatas())
+//    {
+//        if (MODE_WORK_IS_MEMINT)
+//        {
+//            if (!MODE_SHOW_MEMINT_IS_DIRECT)
+//            {
+//                DrawDataMemInt();
+//            }
+//            if (!MODE_SHOW_MEMINT_IS_SAVED)
+//            {
+//                DrawDataNormal();
+//            }
+//        }
+//        else if (MODE_WORK_IS_LATEST)
+//        {
+//            DrawDataInModeWorkLatest();
+//        }
+//        else
+//        {
+//            if (PageMemory::PageInternal::showAlways)
+//            {
+//                DrawDataMemInt();
+//            }
+//            DrawDataNormal();
+//        }
+//
+//        if (NUM_MIN_MAX != 1)
+//        {
+//            DrawDataMinMax();
+//        }
+//    }
 
     Primitives::Rectangle(Grid::Width(), Grid::FullHeight()).Draw(Grid::Left(), Grid::TOP, Color::FILL);
 }
@@ -1299,7 +1303,7 @@ void Display::Update()
         DrawFullGrid();
     }
 
-//    DrawData();
+    DrawData();
 
     if (needClear)
     {
