@@ -3,6 +3,7 @@
 #include "common/Utils/Math_.h"
 #include "FPGA/DataSettings.h"
 #include "FPGA/FPGA.h"
+#include "FPGA/FPGA_Reader.h"
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/Storage.h"
 #include "common/Hardware/Timer_.h"
@@ -64,7 +65,7 @@ void FPGA::Start()
     if(SET_TBASE >= MIN_TBASE_P2P)
     {
         Display::ResetP2Ppoints(false);
-        Timer::Enable(TypeTimer::P2P, 1, Reader::ReadPoint);
+        Timer::Enable(TypeTimer::P2P, 1, ReaderFPGA::ReadPoint);
     }
     else
     {
@@ -116,7 +117,7 @@ bool FPGA::ProcessingData()
             }
             Panel::EnableLEDTrig(true);
             FPGA::Stop(true);
-            Reader::Read(true, (num == 1) || (i == num - 1));
+            ReaderFPGA::Read(true, (num == 1) || (i == num - 1));
             retValue = true;
             if (!START_MODE_IS_SINGLE)
             {
@@ -258,46 +259,6 @@ bool FPGA::Randomizer::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
 }
 
 
-int FPGA::CalculateShift()            // \todo Не забыть восстановить функцию
-{
-    uint16 rand = HAL_ADC3::GetValue();
-    //LOG_WRITE("rand = %d", (int)rand);
-    uint16 min = 0;
-    uint16 max = 0;
-
-    if (SET_TBASE == TBase::_200ns)
-    {
-        return rand < 3000 ? 0 : -1;    // set.debug.altShift; \todo Остановились на жёстком задании дополнительного смещения. На PageDebug выбор 
-                                        // закомментирован, можно раскомментировать при необходимости
-    }
-
-    if (!Randomizer::CalculateGate(rand, &min, &max))
-    {
-        return TShift::NULL_VALUE;
-    }
-    
-    //LOG_WRITE("ворота %d - %d", min, max);
-
-    //min += 100;
-    //max -= 100;
-
-    if (sTime_RandomizeModeEnabled())
-    {
-        float tin = static_cast<float>(rand - min) / (max - min) * 10e-9F;
-        int retValue = static_cast<int>(tin / 10e-9F * Randomizer::Kr[SET_TBASE]);
-        return retValue;
-    }
-
-    if (SET_TBASE == TBase::_100ns && rand < (min + max) / 2)
-    {
-        return 0;
-    }
-
-    return -1;  // set.debug.altShift;      \todo Остановились на жёстком задании дополнительного смещения. На PageDebug выбор закомментирован, 
-                                            //можно раскомментировать при необходимости
-}
-
-
 void FPGA::BUS::Write(uint16 * const address, uint16 data)
 {
     bool is_running = FPGA::IsRunning();
@@ -318,21 +279,6 @@ void FPGA::BUS::Write(uint16 * const address, uint16 data)
 void FPGA::BUS::WriteWithoutStart(uint16 * const address, uint16 data)
 {
     *address = data;
-}
-
-
-void FPGA::Reader::ReadPoint()
-{
-    FPGA::flag.Read();
-
-    if(FPGA::flag.IsPointReady())
-    {
-        uint16 dataB1 = *RD_ADC_B;
-        uint16 dataB2 = *RD_ADC_B;
-        uint16 dataA1 = *RD_ADC_A;
-        uint16 dataA2 = *RD_ADC_A;
-        Display::AddPoints(dataA2, dataA1, dataB2, dataB1);
-    }
 }
 
 
@@ -470,25 +416,13 @@ bool FPGA::Randomizer::AllPointsRandomizer()
     {
         for(int i = 0; i < 281; i++) 
         {
-            if(Reader::data_rel_A[i] == 0) 
+            if(ReaderFPGA::data_rel_A[i] == 0) 
             {
                 return false;   
             }
         }
     }
     return true;
-}
-
-
-void FPGA::InverseDataIsNecessary(Channel::E chan, uint16 *data)
-{
-    if(SET_INVERSE(chan))
-    {
-        for (int i = 0; i < FPGA_MAX_POINTS; i++)
-        {
-            data[i] = (uint8)((int)(2 * AVE_VALUE) - Math::Limitation<uint8>((uint8)data[i], MIN_VALUE, MAX_VALUE));
-        }
-    }
 }
 
 

@@ -1,6 +1,8 @@
 // 2021/03/16 16:35:58 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
+#include "common/Utils/Math_.h"
 #include "FPGA/FPGA.h"
+#include "FPGA/FPGA_Reader.h"
 #include "FPGA/Storage.h"
 #include "Settings/Settings.h"
 #include "Utils/ProcessingSignal.h"
@@ -26,16 +28,15 @@ static uint8 InverseIfNecessary(uint8 data, Channel::E chan)
 */
 
 
-uint16       FPGA::Reader::data_rel_A[FPGA_MAX_POINTS];
-uint16       FPGA::Reader::data_rel_B[FPGA_MAX_POINTS];
-int          FPGA::Reader::addition_shift = 0;
-DataSettings FPGA::Reader::ds;
+uint16       ReaderFPGA::data_rel_A[FPGA_MAX_POINTS];
+uint16       ReaderFPGA::data_rel_B[FPGA_MAX_POINTS];
+int          ReaderFPGA::addition_shift = 0;
+DataSettings ReaderFPGA::ds;
 
 
-void FPGA::Reader::Read(bool necessary_shift, bool save_to_storage)
+void ReaderFPGA::Read(bool necessary_shift, bool save_to_storage)
 {
-
-    in_processing_of_read = true;
+    FPGA::in_processing_of_read = true;
     if (static_cast<TBase::E>(ds.tBase) < TBase::_100ns)
     {
         ReadRandomizeMode();
@@ -64,11 +65,11 @@ void FPGA::Reader::Read(bool necessary_shift, bool save_to_storage)
         }
     }
 
-    in_processing_of_read = false;
+    FPGA::in_processing_of_read = false;
 }
 
 
-void FPGA::Reader::ReadRandomizeMode()
+void ReaderFPGA::ReadRandomizeMode()
 {
     int Tsm = CalculateShift();
     if (Tsm == TShift::NULL_VALUE)
@@ -76,7 +77,7 @@ void FPGA::Reader::ReadRandomizeMode()
         return;
     };
 
-    int step = Randomizer::Kr[SET_TBASE];
+    int step = FPGA::Randomizer::Kr[SET_TBASE];
     int index = Tsm - step - addition_shift;
 
     if (index < 0)
@@ -105,7 +106,7 @@ void FPGA::Reader::ReadRandomizeMode()
 
     if (START_MODE_IS_SINGLE || SAMPLE_TYPE_IS_REAL)
     {
-        FPGA::Reader::ClearData();
+        ClearData();
     }
 
     while (pData0 < &data_rel_A[FPGA_MAX_POINTS])
@@ -180,7 +181,7 @@ void FPGA::Reader::ReadRandomizeMode()
 }
 
 
-void FPGA::Reader::ReadRealMode(bool necessary_shift)
+void ReaderFPGA::ReadRealMode(bool necessary_shift)
 {
     uint16 *p0 = &data_rel_A[0];
     uint16 *p1 = &data_rel_B[0];
@@ -192,7 +193,7 @@ void FPGA::Reader::ReadRealMode(bool necessary_shift)
         uint16 *p0max = p0min + 512;
         uint16 *p1min = p1;
         uint16 *p1max = p1min + 512;
-        while ((p0max < endP) && in_processing_of_read)
+        while ((p0max < endP) && FPGA::in_processing_of_read)
         {
             uint16 data = *RD_ADC_B;
             *p1max++ = data;
@@ -206,7 +207,7 @@ void FPGA::Reader::ReadRealMode(bool necessary_shift)
     }
     else
     {
-        while ((p0 < endP) && in_processing_of_read)
+        while ((p0 < endP) && FPGA::in_processing_of_read)
         {
             *p1++ = *RD_ADC_B;
             *p1++ = *RD_ADC_B;
@@ -250,8 +251,75 @@ void FPGA::Reader::ReadRealMode(bool necessary_shift)
 }
 
 
-void FPGA::Reader::ClearData()
+void ReaderFPGA::ClearData()
 {
     std::memset(data_rel_A, 0, FPGA_MAX_POINTS);
     std::memset(data_rel_B, 0, FPGA_MAX_POINTS);
+}
+
+
+void ReaderFPGA::ReadPoint()
+{
+    FPGA::flag.Read();
+
+    if (FPGA::flag.IsPointReady())
+    {
+        uint16 dataB1 = *RD_ADC_B;
+        uint16 dataB2 = *RD_ADC_B;
+        uint16 dataA1 = *RD_ADC_A;
+        uint16 dataA2 = *RD_ADC_A;
+        Display::AddPoints(dataA2, dataA1, dataB2, dataB1);
+    }
+}
+
+
+void ReaderFPGA::InverseDataIsNecessary(Channel::E chan, uint16 *data)
+{
+    if (SET_INVERSE(chan))
+    {
+        for (int i = 0; i < FPGA_MAX_POINTS; i++)
+        {
+            data[i] = (uint8)((int)(2 * AVE_VALUE) - Math::Limitation<uint8>((uint8)data[i], MIN_VALUE, MAX_VALUE));
+        }
+    }
+}
+
+
+int ReaderFPGA::CalculateShift()            // \todo Не забыть восстановить функцию
+{
+    uint16 rand = HAL_ADC3::GetValue();
+    //LOG_WRITE("rand = %d", (int)rand);
+    uint16 min = 0;
+    uint16 max = 0;
+
+    if (SET_TBASE == TBase::_200ns)
+    {
+        return rand < 3000 ? 0 : -1;    // set.debug.altShift; \todo Остановились на жёстком задании дополнительного смещения. На PageDebug выбор 
+                                        // закомментирован, можно раскомментировать при необходимости
+    }
+
+    if (!FPGA::Randomizer::CalculateGate(rand, &min, &max))
+    {
+        return TShift::NULL_VALUE;
+    }
+
+    //LOG_WRITE("ворота %d - %d", min, max);
+
+    //min += 100;
+    //max -= 100;
+
+    if (sTime_RandomizeModeEnabled())
+    {
+        float tin = static_cast<float>(rand - min) / (max - min) * 10e-9F;
+        int retValue = static_cast<int>(tin / 10e-9F * FPGA::Randomizer::Kr[SET_TBASE]);
+        return retValue;
+    }
+
+    if (SET_TBASE == TBase::_100ns && rand < (min + max) / 2)
+    {
+        return 0;
+    }
+
+    return -1;  // set.debug.altShift;      \todo Остановились на жёстком задании дополнительного смещения. На PageDebug выбор закомментирован, 
+                                            //можно раскомментировать при необходимости
 }

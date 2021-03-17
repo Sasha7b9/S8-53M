@@ -1622,6 +1622,11 @@
               <FilePath>.\src\FPGA\FPGA_Calibration.cpp</FilePath>
             </File>
             <File>
+              <FileName>FPGA_Reader.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\FPGA\FPGA_Reader.h</FilePath>
+            </File>
+            <File>
               <FileName>FPGA_Reader.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\FPGA\FPGA_Reader.cpp</FilePath>
@@ -3815,6 +3820,11 @@
               <FileName>FPGA_Calibration.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\FPGA\FPGA_Calibration.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>FPGA_Reader.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\FPGA\FPGA_Reader.h</FilePath>
             </File>
             <File>
               <FileName>FPGA_Reader.cpp</FileName>

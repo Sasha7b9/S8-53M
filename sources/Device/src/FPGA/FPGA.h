@@ -77,11 +77,6 @@ private:
     // Загрузить настройки в аппаратную часть из глобальной структуры SSettings.
     static void LoadSettings();
 
-    static int CalculateShift();
-
-    // Инвертирует данные.
-    static void InverseDataIsNecessary(Channel::E chan, uint16 *data);
-
     static uint8 CalculateMinWithout0(const uint8 buffer[100]);
 
     static uint8 CalculateMaxWithout255(const uint8 buffer[100]);
@@ -89,27 +84,6 @@ private:
     static bool ProcessingData();
 
 public:
-
-    struct Reader
-    {
-        static void ClearData();
-
-        static void Read(bool necessary_shift, bool save_to_storage);
-
-        static void ReadRandomizeMode();
-
-        static void ReadRealMode(bool necessary_shift);
-
-        static void ReadPoint();
-
-        static DataSettings ds;
-
-        static uint16 data_rel_A[FPGA_MAX_POINTS];  // Буфер используется для чтения данных первого канала
-        static uint16 data_rel_B[FPGA_MAX_POINTS];  // Буфер используется для чтения данных второго канала
-
-        static int addition_shift;                  // Дополнительное смещение. Нужно для правильной расстановки точек
-                                                    // в режиме рандомизатора
-    };
 
     // Поиск сигнала
     struct AutoFinder
