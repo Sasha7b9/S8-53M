@@ -42,7 +42,7 @@ struct Measure { enum E
 
     static int GetDX();
 
-    static const char *Name(int row, int col);
+    static String Name(int row, int col);
 
     static Measure::E Type(int row, int col);
 

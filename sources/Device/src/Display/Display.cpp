@@ -1037,11 +1037,11 @@ void Display::DrawMeasures()
             if(meas != Measure::None)
             {
                 char buffer[20];
-                Text(Measure::Name(str, elem)).Draw(x + 4, y + 2, active ? Color::BACK : Color::FILL);
+                Measure::Name(str, elem).Draw(x + 4, y + 2, active ? Color::BACK : Color::FILL);
                 if(meas == MEAS_MARKED)
                 {
                     Region(dX - 2, 9).Fill(x + 1, y + 1, active ? Color::BACK : Color::FILL);
-                    Text(Measure::Name(str, elem)).Draw(x + 4, y + 2, active ? Color::FILL : Color::BACK);
+                    Measure::Name(str, elem).Draw(x + 4, y + 2, active ? Color::FILL : Color::BACK);
                 }
                 if(MEAS_SOURCE_IS_A)
                 {
