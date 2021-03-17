@@ -229,6 +229,8 @@ void ReaderFPGA::ReadRealModePeakDetOn()
 
 void ReaderFPGA::ReadRealModePeakDetOff()
 {
+    uint16 addr_stop = ReadAddressStop();
+
     uint16 *a = &data_a[0];
     uint16 *b = &data_b[0];
     uint16 *end = &data_a[FPGA_MAX_POINTS];
@@ -315,4 +317,10 @@ int ReaderFPGA::CalculateShift()            // \todo Не забыть восстановить функ
 
     return -1;  // set.debug.altShift;      \todo Остановились на жёстком задании дополнительного смещения. На PageDebug выбор закомментирован, 
                                             //можно раскомментировать при необходимости
+}
+
+
+uint16 ReaderFPGA::ReadAddressStop()
+{
+    return (uint16)(*RD_ADDR_NSTOP + 16384 - SET_POINTS_IN_CHANNEL / 2 - 1 - FPGA::add_N_stop);
 }

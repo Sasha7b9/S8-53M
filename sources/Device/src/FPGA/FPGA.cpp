@@ -155,7 +155,11 @@ void FPGA::Update()
     {
         if (flag.IsTrigReady())
         {
-            ReaderFPGA::ReadData(false, true);
+            if (flag.IsDataReady())
+            {
+                LOG_WRITE("Читаю данные");
+                ReaderFPGA::ReadData(false, true);
+            }
         }
     }
 }

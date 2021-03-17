@@ -36,4 +36,6 @@ private:
     static void ReadRealModePeakDetOn();
 
     static void ReadRealModePeakDetOff();
+
+    static uint16 ReadAddressStop();
 };

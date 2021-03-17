@@ -54,6 +54,7 @@
 
 #define RD_ADC_A                (HAL_FMC::ADDR_FPGA + 0x00)
 #define RD_ADC_B                (HAL_FMC::ADDR_FPGA + 0x02)
+#define RD_ADDR_NSTOP           (HAL_FMC::ADDR_FPGA + 0x08)
 #define RD_FREQ_LOW             (HAL_FMC::ADDR_FPGA + 0x10)
 #define RD_FREQ_HI              (HAL_FMC::ADDR_FPGA + 0x18)
 #define RD_PERIOD_LOW           (HAL_FMC::ADDR_FPGA + 0x20)
