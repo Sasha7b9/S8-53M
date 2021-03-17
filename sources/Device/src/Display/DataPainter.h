@@ -73,4 +73,6 @@ private:
     static void DrawSpectrumChannel(const float *spectrum, Color color);
 
     static void WriteParametersFFT(Channel::E chan, float freq0, float density0, float freq1, float density1);
+
+    static void DrawDataInModeSelfRecorder();
 };

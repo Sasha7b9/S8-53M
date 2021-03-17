@@ -904,3 +904,9 @@ void DataPainter::WriteParametersFFT(Channel::E chan, float freq0, float density
     y += dY;
     Text(SCALE_FFT_IS_LOG ? GF::Float2Db(density1, 4).c_str() : GF::Float2String(density1, false, 7).c_str()).Draw(x, y);
 }
+
+
+void DataPainter::DrawDataInModeSelfRecorder()
+{
+    LOG_TRACE
+}

@@ -122,12 +122,6 @@ void Display::Redraw()
 }
 
 
-void Display::DrawDataInModeSelfRecorder()
-{
-    LOG_TRACE
-}
-
-
 void Display::DrawTime(int x, int y)
 {
     int dField = 10;

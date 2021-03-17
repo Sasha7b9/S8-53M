@@ -26,8 +26,11 @@ public:
     static void Init();
 
     static uint8 *GetBuffer();
+
     static uint8 *GetBufferEnd();
+
     static void BeginFrame(const Color &color);
+
     static void EndFrame();
 
     static void Update();
@@ -65,10 +68,13 @@ public:
     static void OneStringDown();
 
     static void SetPauseForConsole(bool pause);
+
     // После отрисовки очередного экрана эта функция будет вызвана один раз.
     static void RunAfterDraw(pFuncVV func);
+
     // Отключить вспомогательную линию маркера смещения по напряжению первого канала.
     static void DisableShowLevelRShiftA();
+
     // Отключить вспомогательную линию маркера смещения по напряжению второго канала.
     static void DisableShowLevelRShiftB();
 
@@ -154,23 +160,19 @@ private:
 
     static void WriteStringAndNumber(pchar text, int x, int y, int number);
 
-    static void DrawGridType3(int left, int top, int right, int bottom, int centerX, int centerY, int deltaX, int deltaY, int stepX, int stepY);
-
-    static void DrawDataInModeSelfRecorder();
-
     static void DrawTimeForFrame(uint timeMS);
 
     static void DeleteFirstString();
-    // Нарисовать горизонтальный курсор курсорных измерений.
-    static void DrawHorizontalCursor
-    (int y,             // числовое значение курсора.
-        int xTearing        // координата места, в котором необходимо сделать разрыв для квадрата пересечения.
-    );
+    // Нарисовать горизонтальный курсор курсорных измерений
+    // y         - числовое значение курсора
+    // x_tearing - координата места, в котором необходимо сделать разрыв для квадрата пересечения
+    static void DrawHorizontalCursor(int y, int x_tearing);
+
     // Нарисовать вертикальный курсор курсорных измерений.
-    static void DrawVerticalCursor
-    (int x,             // числовое значение курсора.
-        int yTearing        // координата места, в котором необходимо сделать разрыв для квадрата пересечения.
-    );
+    // x         - числовое значение курсора
+    // y_tearing - координата места, в котором необходимо сделать разрыв для квадрата пересечения
+    static void DrawVerticalCursor(int x, int yTearing);
+
     // Вывести значение уровня синхронизации. 
     static void WriteValueTrigLevel();
 
@@ -178,8 +180,12 @@ private:
 
     static int CalculateCountH();
 
-    static void DrawGridType1(int left, int top, int right, int bottom, float centerX, float centerY, float deltaX, float deltaY, float stepX, float stepY);
+    static void DrawGridType1(int left, int top, int right, int bottom, float centerX, float centerY, float deltaX,
+        float deltaY, float stepX, float stepY);
 
     static void DrawGridType2(int left, int top, int right, int bottom, int deltaX, int deltaY, int stepX, int stepY);
+
+    static void DrawGridType3(int left, int top, int right, int bottom, int centerX, int centerY, int deltaX,
+        int deltaY, int stepX, int stepY);
 };
 
