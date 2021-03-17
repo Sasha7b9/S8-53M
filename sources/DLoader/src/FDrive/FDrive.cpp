@@ -22,7 +22,7 @@ struct StructForReadDir
 
 
 
-static bool GetNameFile(const char *fullPath, int numFile, char *nameFileOut, StructForReadDir *s);
+static bool GetNameFile(pchar fullPath, int numFile, char *nameFileOut, StructForReadDir *s);
 static bool GetNextNameFile(char *nameFileOut, StructForReadDir *s);
 //static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8 id);
 
@@ -102,7 +102,7 @@ void ToLower(char *str)
 }
 
 
-bool FDrive_FileExist(const char *fileName)
+bool FDrive_FileExist(pchar fileName)
 {
     char nameFile[255];
     char file[255];
@@ -131,7 +131,7 @@ bool FDrive_FileExist(const char *fileName)
 }
 
 
-static bool GetNameFile(const char *, int, char *, StructForReadDir *)
+static bool GetNameFile(pchar, int, char *, StructForReadDir *)
 {
 //    memcpy(s->nameDir, fullPath, strlen(fullPath));
 //    s->nameDir[strlen(fullPath)] = '\0';
@@ -214,7 +214,7 @@ static bool GetNextNameFile(char *nameFileOut, StructForReadDir *s)
 }
 
 
-int FDrive_OpenFileForRead(const char *fileName)
+int FDrive_OpenFileForRead(pchar fileName)
 {
     if (f_open(&MainStruct::ms->drive.file, fileName, FA_READ) == FR_OK)
     {

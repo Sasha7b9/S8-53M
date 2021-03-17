@@ -12,7 +12,7 @@
 
 using namespace Primitives;
 
-const char *PageHelpContent::stringForHint = 0;
+pchar PageHelpContent::stringForHint = 0;
 Item *PageHelpContent::itemHint = 0;
 
 const PageHelpItem PageHelpItem::empty(&Item::emptyData);
@@ -37,7 +37,7 @@ static void DrawPageContent()
     while(currentPage->OwnData()->pages[numPage])
     {
         Page *page = (Page*)currentPage->OwnData()->pages[numPage];
-        const char *title = TITLE(page);
+        pchar title = TITLE(page);
         if(currentParagraph == numPage)
         {
             Text(title).DrawInCenterRectOnBackground(0, y, WIDTH, 10, Color::BACK, 2, Color::FILL);

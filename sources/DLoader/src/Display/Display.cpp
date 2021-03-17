@@ -52,7 +52,7 @@ void Display::Init()
 }
 
 
-void DrawButton(int x, int y, const char *text)
+void DrawButton(int x, int y, pchar text)
 {
     int width = 25;
     int height = 20;

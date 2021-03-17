@@ -44,7 +44,7 @@ void FM::Init()
 }
 
 
-void FM::DrawLongString(int x, int y, const char *string, bool hightlight)
+void FM::DrawLongString(int x, int y, pchar string, bool hightlight)
 {
     int length = Font::GetLengthText(string);
 

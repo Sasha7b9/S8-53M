@@ -1,6 +1,6 @@
 #include "defines.h"
 
-void HardwareErrorHandler(const char *, const char *, int)
+void HardwareErrorHandler(pchar, pchar, int)
 {
     while (true)
     {

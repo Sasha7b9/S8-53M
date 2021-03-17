@@ -674,7 +674,7 @@ static void Information_Draw()
 
     Text(LANG_RU ? "Программное обеспечение:" : "Software:").Draw(x, y);
     y += dY;
-    std::sprintf(buffer, (const char *)(LANG_RU ? "версия %s" : "version %s"), NUM_VER);
+    std::sprintf(buffer, (pchar)(LANG_RU ? "версия %s" : "version %s"), NUM_VER);
     Text(buffer).Draw(x, y);
     y += dY;
 

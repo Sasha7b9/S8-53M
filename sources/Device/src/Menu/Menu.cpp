@@ -292,7 +292,7 @@ char* Menu::StringNavigation(char buffer[100])
     if(SHOW_STRING_NAVIGATION && IsShown())
     {
         buffer[0] = 0;
-        const char *titles[10] = {0};
+        pchar titles[10] = {0};
         int numTitle = 0;
         const Item *item = Item::Opened();
         if(IsMainPage(item))

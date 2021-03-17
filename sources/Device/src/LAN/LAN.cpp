@@ -26,7 +26,7 @@ static void FuncConnect()
 
 
 
-char *GetStringFromBuffer(const char *buffer, uint length, char *string)
+char *GetStringFromBuffer(pchar buffer, uint length, char *string)
 {
     std::memcpy(string, buffer, (size_t)length);
     string[length] = 'E';
@@ -36,7 +36,7 @@ char *GetStringFromBuffer(const char *buffer, uint length, char *string)
 
 
 
-static void FuncReceiver(const char *buffer, uint length)
+static void FuncReceiver(pchar buffer, uint length)
 {
     SCPI::AddNewData((uint8 *)buffer, length);
 }

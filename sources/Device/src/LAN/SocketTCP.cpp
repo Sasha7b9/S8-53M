@@ -25,7 +25,7 @@ struct State
 };
 
 void(*SocketFuncConnect)() = 0;                                 // this function will be called every time a new connection
-void(*SocketFuncReciever)(const char *buffer, uint length) = 0;     // this function will be called when a message is recieved from any client
+void(*SocketFuncReciever)(pchar buffer, uint length) = 0;     // this function will be called when a message is recieved from any client
 
 
 
@@ -350,7 +350,7 @@ err_t CallbackOnAcceptPolicyPort(void *_arg, struct tcp_pcb *_newPCB, err_t _err
 
 
 
-bool TCPSocket::Init(void(*_funcConnect)(), void(*_funcReciever)(const char *_buffer, uint _length))
+bool TCPSocket::Init(void(*_funcConnect)(), void(*_funcReciever)(pchar _buffer, uint _length))
 {
     struct tcp_pcb *pcb = tcp_new();
     if (pcb != NULL)
@@ -401,7 +401,7 @@ bool TCPSocket::Init(void(*_funcConnect)(), void(*_funcReciever)(const char *_bu
 
 
 
-bool TCPSocket::Send(const char *buffer, uint length)
+bool TCPSocket::Send(pchar buffer, uint length)
 {
     if (pcbClient)
     {

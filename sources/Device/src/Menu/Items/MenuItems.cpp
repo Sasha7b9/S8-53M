@@ -24,7 +24,7 @@ DataItem Item::emptyData = { TypeItem::None, nullptr, nullptr, nullptr, nullptr 
 Item Item::empty;
 static const Item *itemsPage[] = { &Item::empty, nullptr };
 static const DataPage emptyDataPage = { NamePage::Empty, &itemsPage[0], nullptr, nullptr };
-const char *titleHint[4] = { "", "", "", "" };
+pchar titleHint[4] = { "", "", "", "" };
 static const DataItem emptyDataItem = { TypeItem::None, nullptr, nullptr, titleHint, &emptyDataPage };
 static int8 subPageEmpty = 0;
 static int8 actItemEmpty = -1;
@@ -53,13 +53,13 @@ bool Item::IsPressed() const
 }
 
 
-const char *Choice::NameSubItem(int i) const
+pchar Choice::NameSubItem(int i) const
 {
     return OwnData()->names[(i * 2) + LANG];
 }
 
 
-const char *Choice::NameCurrentSubItem() const
+pchar Choice::NameCurrentSubItem() const
 {
     const DataChoice *own = OwnData();
 
@@ -67,7 +67,7 @@ const char *Choice::NameCurrentSubItem() const
 }
 
 
-const char *Choice::NameNextSubItem() const
+pchar Choice::NameNextSubItem() const
 {
     const DataChoice *own = OwnData();
 
@@ -84,7 +84,7 @@ const char *Choice::NameNextSubItem() const
 }
 
 
-const char *Choice::NamePrevSubItem() const
+pchar Choice::NamePrevSubItem() const
 {
     const DataChoice *own = OwnData();
 

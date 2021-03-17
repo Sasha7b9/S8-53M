@@ -265,7 +265,7 @@ void Display::DrawHiRightPart()
     }
 
     // Ðוזטל נאבמעû
-    static const char *strings_[][2] =
+    static pchar strings_[][2] =
     {
         {"ÈÇÌ",     "MEAS"},
         {"ÏÎÑË",    "LAST"},
@@ -496,7 +496,7 @@ void Display::DrawGridSpectrum()
     if (SCALE_FFT_IS_LOG)
     {
         static const int nums[] = {4, 6, 8};
-        static const char *strs[] = {"0", "-10", "-20", "-30", "-40", "-50", "-60", "-70"};
+        static pchar strs[] = {"0", "-10", "-20", "-30", "-40", "-50", "-60", "-70"};
         int numParts = nums[FFT_MAX_DB];
         float scale = (float)Grid::MathHeight() / numParts;
         for (int i = 1; i < numParts; i++)
@@ -517,7 +517,7 @@ void Display::DrawGridSpectrum()
     }
     else if (SCALE_FFT_IS_LINEAR)
     {
-        static const char *strs[] = {"1.0", "0.8", "0.6", "0.4", "0.2"};
+        static pchar strs[] = {"1.0", "0.8", "0.6", "0.4", "0.2"};
         float scale = (float)Grid::MathHeight() / 5;
         for (int i = 1; i < 5; i++)
         {
@@ -1070,7 +1070,7 @@ void Display::DrawMeasures()
 
 void Display::WriteTextVoltage(Channel::E chan, int x, int y)
 {
-    static const char *couple[] =
+    static pchar couple[] =
     {
         "\x92",
         "\x91",
@@ -1184,26 +1184,26 @@ void Display::DrawLowPart()
     buffer[0] = 0;
     if (MODE_WORK_IS_DIRECT)
     {
-        const char *source[3] = { "1", "2", "\x82" };
+        pchar source[3] = { "1", "2", "\x82" };
         std::sprintf(buffer, "ס\xa5\x10%s", source[TRIG_SOURCE]);
     }
 
     Text(buffer).Draw(x, y1, Color::Trig());
 
     buffer[0] = 0;
-    static const char *couple[] =
+    static pchar couple[] =
     {
         "\x92",
         "\x91",
         "\x92",
         "\x92"
     };
-    static const char *polar[] =
+    static pchar polar[] =
     {
         "\xa7",
         "\xa6"
     };
-    static const char *filtr[] =
+    static pchar filtr[] =
     {
         "\xb5\xb6",
         "\xb5\xb6",
@@ -1475,7 +1475,7 @@ void Display::DeleteFirstString()
 
 
 
-void Display::AddString(const char *string)
+void Display::AddString(pchar string)
 {
     if(CONSOLE_IN_PAUSE)
     {
@@ -1506,7 +1506,7 @@ void Display::AddString(const char *string)
 
 
 
-void Display::AddStringToIndicating(const char *string)
+void Display::AddStringToIndicating(pchar string)
 {
     if(FirstEmptyString() == (MAX_NUM_STRINGS - 1))
     {
@@ -1602,7 +1602,7 @@ void Display::DrawConsole()
 }
 
 
-void Display::ShowWarn(const char *message)
+void Display::ShowWarn(pchar message)
 {
     if (warnings[0] == 0)
     {

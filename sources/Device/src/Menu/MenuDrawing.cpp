@@ -20,7 +20,7 @@ static void DrawHintItem(int x, int y, int width)
         return;
     }
 
-    const char *names[TypeItem::Count][2] =
+    pchar names[TypeItem::Count][2] =
     {
         {"",            ""},        // TypeItem::None
         {"",            ""},        // TypeItem::Choice

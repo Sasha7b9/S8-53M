@@ -22,7 +22,7 @@ int Divider::ToAbs(Divider::E multiplier)
 
 pchar Range::Name(Range::E range)
 {
-    static const char *names[Range::Count + 1] =
+    static pchar names[Range::Count + 1] =
     {
         "2mV",
         "5mV",
@@ -45,7 +45,7 @@ pchar Range::Name(Range::E range)
 
 pchar TBase::Name(TBase::E tBase)
 {
-    static const char *names[TBase::Count + 1] =
+    static pchar names[TBase::Count + 1] =
     {
         "1ns"
         "2ns",
