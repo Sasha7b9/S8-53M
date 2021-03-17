@@ -96,3 +96,17 @@ bool Key::IsFunctionalButton(Key::E key)
 {
     return (key >= Key::F1) && (key <= Key::F5);
 }
+
+pchar Action::Name() const
+{
+    static const pchar names[Count] =
+    {
+        "Down",
+        "Up",
+        "Long",
+        "Rotate_Left",
+        "Rotate_Right"
+    };
+
+    return names[value];
+}

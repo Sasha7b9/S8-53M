@@ -66,6 +66,7 @@ struct Action { enum E {
     bool IsLong() const { return value == Long; }
     bool IsRotateLeft() const { return value == RotateLeft; }
     bool IsRotateRight() const { return value == RotateRight; }
+    pchar Name() const;
 };
 
 
