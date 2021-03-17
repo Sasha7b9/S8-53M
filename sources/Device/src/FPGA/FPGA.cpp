@@ -436,9 +436,8 @@ void FPGA::BUS::WriteToAnalog(TypeWriteAnalog::E type, uint data)
 {
 //    LOG_WRITE("%s : %d", __FUNCTION__, data);
 
-    char buffer[19];
+    char *str = GF::Bin2String16(static_cast<uint16>(data)).c_str();
 
-    char *str = GF::Bin2String16(static_cast<uint16>(data), buffer);
     if (type == TypeWriteAnalog::Range0 && IS_SHOW_REG_RANGE_A)
     {
         LOG_WRITE("range 0 = %s", str);
@@ -481,19 +480,17 @@ void FPGA::BUS::WriteToDAC(TypeWriteDAC::E type, uint16 data)
 {
 //    LOG_WRITE("%s : %d", __FUNCTION__, data);
 
-    char buffer[19];
-
     if (type == TypeWriteDAC::RShiftA && IS_SHOW_REG_RSHIFT_A)
     {
-        LOG_WRITE("rShift 0 = %s", GF::Bin2String16(data, buffer));
+        LOG_WRITE("rShift 0 = %s", GF::Bin2String16(data).c_str());
     }
     else if (type == TypeWriteDAC::RShiftB && IS_SHOW_REG_RSHIFT_B)
     {
-        LOG_WRITE("rShfit 1 = %s", GF::Bin2String16(data, buffer));
+        LOG_WRITE("rShfit 1 = %s", GF::Bin2String16(data).c_str());
     }
     else if (type == TypeWriteDAC::TrigLev && IS_SHOW_REG_TRIGLEV)
     {
-        LOG_WRITE("trigLev = %s", GF::Bin2String16(data, buffer));
+        LOG_WRITE("trigLev = %s", GF::Bin2String16(data).c_str());
     }
 
     Pin::SPI4_CS1.Reset();

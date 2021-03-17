@@ -184,12 +184,17 @@ String GF::Bin2String(uint8 value)
     return result;
 }
 
-char *GF::Bin2String16(uint16 value, char valBuffer[19])
+String GF::Bin2String16(uint16 value)
 {
-    std::strcpy(valBuffer, Bin2String((uint8)(value >> 8)).c_str()); //-V2513
-    valBuffer[8] = ' ';
-    std::strcpy(valBuffer + 9, Bin2String((uint8)value).c_str()); //-V2513
-    return valBuffer;
+    String result("000000000000000000");
+
+    std::strcpy(result.c_str(), Bin2String((uint8)(value >> 8)).c_str()); //-V2513
+
+    result.c_str()[8] = ' ';
+
+    std::strcpy(result.c_str() + 9, Bin2String((uint8)value).c_str()); //-V2513
+
+    return result;
 }
 
 char *GF::Hex8toString(uint8 value, char buffer[3])
