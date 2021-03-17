@@ -24,7 +24,7 @@ namespace GF
 
     String Voltage2String(float voltage, bool always_sign);
 
-    char *Time2String(float time, bool always_sign, char buffer[20]);
+    String Time2String(float time, bool always_sign);
 
     char *Freq2String(float freq, bool, char buffer_out[20]);
 

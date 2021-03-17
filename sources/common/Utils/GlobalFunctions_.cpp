@@ -240,14 +240,13 @@ String GF::Voltage2String(float voltage, bool always_sign)
     return result;
 }
 
-char* GF::Time2String(float time, bool alwaysSign, char buffer[20])
+String GF::Time2String(float time, bool always_sign)
 {
-    buffer[0] = 0;
-    char *suffix = 0;
+    char *suffix = nullptr;
+
     if(time == ERROR_VALUE_FLOAT) //-V2550 //-V550
     {
-        std::strcat(buffer, ERROR_STRING_VALUE); //-V2513
-        return buffer;
+        return String(ERROR_STRING_VALUE);
     }
     else if(std::fabsf(time) + 0.5e-10F < 1e-6F)
     {
@@ -269,12 +268,7 @@ char* GF::Time2String(float time, bool alwaysSign, char buffer[20])
         suffix = LANG_RU ? "ñ" : "s";
     }
 
-    char buffer_out[20];
-
-    std::strcpy(buffer_out, GF::Float2String(time, alwaysSign, 4).c_str());
-
-    std::strcat(buffer, suffix); //-V2513
-    return buffer;
+    return String("%s%s", Float2String(time, always_sign, 4).c_str(), suffix);
 }
 
 char *GF::Phase2String(float phase, bool, char buffer_out[20])

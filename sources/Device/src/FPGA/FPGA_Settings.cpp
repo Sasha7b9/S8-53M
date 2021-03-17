@@ -9,6 +9,7 @@
 #include "FPGA/Storage.h"
 #include "Panel/Panel.h"
 #include "Settings/Settings.h"
+#include <cstring>
 
 
 uint TrigPolarity::timeSwitch = 0;
@@ -406,7 +407,8 @@ void TShift::Load()
 pchar TShift::ToString(int16 tshift_rel, char buffer[20])
 {
     float tShiftVal = TSHIFT_2_ABS(tshift_rel, SET_TBASE);
-    return GF::Time2String(tShiftVal, true, buffer);
+
+    return std::strcpy(buffer, GF::Time2String(tShiftVal, true).c_str());
 }
 
 

@@ -29,17 +29,24 @@ static int numP = 0;
 
 static char *FloatFract2StringC(float value, bool always_sign, char *buffer)
 {
-    std::strcpy(buffer, GF::FloatFract2String(value, always_sign).c_str());
-    
-    return buffer;
+    return std::strcpy(buffer, GF::FloatFract2String(value, always_sign).c_str());
 }
 
 static char *Voltage2StringC(float value, bool always_sign, char *buffer)
 {
-    std::strcpy(buffer, GF::Voltage2String(value, always_sign).c_str());
-
-    return buffer;
+    return std::strcpy(buffer, GF::Voltage2String(value, always_sign).c_str());
 }
+
+static char *Time2StringC(float value, bool always_sign, char *buffer)
+{
+    return std::strcpy(buffer, GF::Time2String(value, always_sign).c_str());
+}
+
+
+//static char *Time2StringC(float value, bool always_sign, char *buffer)
+//{
+//    return std::strcpy(buffer, GF::T)
+//}
 
 
 const Processing::MeasureCalculate Processing::measures[Measure::Count] =
@@ -55,16 +62,16 @@ const Processing::MeasureCalculate Processing::measures[Measure::Count] =
     {"CalculateVoltageRMS",         CalculateVoltageRMS,           Voltage2StringC, false},
     {"CalculateVoltageVybrosPlus",  CalculateVoltageVybrosPlus,    Voltage2StringC, false},
     {"CalculateVoltageVybrosMinus", CalculateVoltageVybrosMinus,   Voltage2StringC, false},
-    {"CalculatePeriod",             CalculatePeriod,               GF::Time2String, false},
+    {"CalculatePeriod",             CalculatePeriod,               Time2StringC, false},
     {"CalculateFreq",               CalculateFreq,                 GF::Freq2String, false},
-    {"CalculateTimeNarastaniya",    CalculateTimeNarastaniya,      GF::Time2String, false},
-    {"CalculateTimeSpada",          CalculateTimeSpada,            GF::Time2String, false},
-    {"CalculateDurationPlus",       CalculateDurationPlus,         GF::Time2String, false},
-    {"CalculateDurationPlus",       CalculateDurationMinus,        GF::Time2String, false},
+    {"CalculateTimeNarastaniya",    CalculateTimeNarastaniya,      Time2StringC, false},
+    {"CalculateTimeSpada",          CalculateTimeSpada,            Time2StringC, false},
+    {"CalculateDurationPlus",       CalculateDurationPlus,         Time2StringC, false},
+    {"CalculateDurationPlus",       CalculateDurationMinus,        Time2StringC, false},
     {"CalculateSkvaznostPlus",      CalculateSkvaznostPlus,        FloatFract2StringC, false},
     {"CalculateSkvaznostMinus",     CalculateSkvaznostMinus,       FloatFract2StringC, false},
-    {"CalculateDelayPlus",          CalculateDelayPlus,            GF::Time2String, false},
-    {"CalculateDelayMinus",         CalculateDelayMinus,           GF::Time2String, false},
+    {"CalculateDelayPlus",          CalculateDelayPlus,            Time2StringC, false},
+    {"CalculateDelayMinus",         CalculateDelayMinus,           Time2StringC, false},
     {"CalculatePhazaPlus",          CalculatePhazaPlus,            GF::Phase2String, false},
     {"CalculatePhazaMinus",         CalculatePhazaMinus,           GF::Phase2String, false}
 };

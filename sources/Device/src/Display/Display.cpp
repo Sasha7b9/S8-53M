@@ -1101,8 +1101,7 @@ void Display::WriteCursors()
             float pos1 = MathFPGA::TimeCursor(CURS_POS_T1(source), SET_TBASE);
             float delta = std::fabsf(pos1 - pos0);
             Text(":dT=").Draw(x, y1);
-            char buf[20];
-            Text(GF::Time2String(delta, false, buf)).Draw(x + 17, y1);
+            GF::Time2String(delta, false).Draw(x + 17, y1);
             Text(":").Draw(x, y2);
             sCursors_GetCursorPercentsT(source).Draw(x + 8, y2);
 
