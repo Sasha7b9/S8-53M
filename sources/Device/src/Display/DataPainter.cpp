@@ -68,15 +68,17 @@ void DataPainter::DrawData()
 
 void DataPainter::DrawDataNormal()
 {
-    if (!dataP2PIsEmpty)
-    {
-        //        static const pFuncVV funcs[2] = {DrawDataInModePoint2Point, DrawDataInModeSelfRecorder};
-        //        funcs[(int)SET_SELFRECORDER]();
-    }
-    else
-    {
-        DrawDataInModeNormal();
-    }
+    DrawDataInModeNormal();
+
+//    if (!dataP2PIsEmpty)
+//    {
+//        static const pFuncVV funcs[2] = {DrawDataInModePoint2Point, DrawDataInModeSelfRecorder};
+//        funcs[(int)SET_SELFRECORDER]();
+//    }
+//    else
+//    {
+//        DrawDataInModeNormal();
+//    }
 }
 
 
@@ -127,8 +129,7 @@ void DataPainter::DrawBothChannels()
 }
 
 
-// Если data == 0, то данные брать из GetData
-void DataPainter::DrawDataChannel(uint8 *data, Channel::E chan, DataSettings *ds, int minY, int maxY)
+void DataPainter::DrawDataChannel(uint8 *data, Channel::E chan, DataSettings *ds, int min_y, int max_y)
 {
     bool calculateFiltr = true;
     if (data == 0)
@@ -149,7 +150,7 @@ void DataPainter::DrawDataChannel(uint8 *data, Channel::E chan, DataSettings *ds
         return;
     }
 
-    float scaleY = static_cast<float>(maxY - minY) / (MAX_VALUE - MIN_VALUE);
+    float scaleY = static_cast<float>(max_y - min_y) / (MAX_VALUE - MIN_VALUE);
     float scaleX = Grid::Width() / 280.0F;
 
     if (SHOW_MEASURES)
@@ -184,11 +185,11 @@ void DataPainter::DrawDataChannel(uint8 *data, Channel::E chan, DataSettings *ds
         }
         Color::SetCurrent(ColorChannel(chan));
         */
-        DrawSignalLined(data, ds, firstPoint, lastPoint, minY, maxY, scaleY, scaleX, calculateFiltr);
+        DrawSignalLined(data, ds, firstPoint, lastPoint, min_y, max_y, scaleY, scaleX, calculateFiltr);
     }
     else
     {
-        DrawSignalPointed(data, ds, firstPoint, lastPoint, minY, maxY, scaleY, scaleX);
+        DrawSignalPointed(data, ds, firstPoint, lastPoint, min_y, max_y, scaleY, scaleX);
     }
 }
 

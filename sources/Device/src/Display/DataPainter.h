@@ -36,7 +36,7 @@ private:
 
     static void DrawBothChannels();
 
-    static void DrawDataChannel(uint8 *data, Channel::E chan, DataSettings *ds, int minY, int maxY);
+    static void DrawDataChannel(uint8 *data, Channel::E chan, DataSettings *ds, int min_y, int max_y);
 
     static bool ChannelNeedForDraw(puchar data, Channel::E chan, const DataSettings *ds);
 
