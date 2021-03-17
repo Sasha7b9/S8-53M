@@ -26,7 +26,7 @@ namespace GF
 
     String Time2String(float time, bool always_sign);
 
-    char *Freq2String(float freq, bool, char buffer_out[20]);
+    String Freq2String(float freq, bool always_sign = false);
 
     char *Phase2String(float phase, bool, char bufferOut[20]);
 

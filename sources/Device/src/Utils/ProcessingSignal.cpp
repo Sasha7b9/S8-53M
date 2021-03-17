@@ -42,11 +42,10 @@ static char *Time2StringC(float value, bool always_sign, char *buffer)
     return std::strcpy(buffer, GF::Time2String(value, always_sign).c_str());
 }
 
-
-//static char *Time2StringC(float value, bool always_sign, char *buffer)
-//{
-//    return std::strcpy(buffer, GF::T)
-//}
+static char *Freq2StringC(float value, bool always_sign, char *buffer)
+{
+    return std::strcpy(buffer, GF::Freq2String(value, always_sign).c_str());
+}
 
 
 const Processing::MeasureCalculate Processing::measures[Measure::Count] =
@@ -63,7 +62,7 @@ const Processing::MeasureCalculate Processing::measures[Measure::Count] =
     {"CalculateVoltageVybrosPlus",  CalculateVoltageVybrosPlus,    Voltage2StringC, false},
     {"CalculateVoltageVybrosMinus", CalculateVoltageVybrosMinus,   Voltage2StringC, false},
     {"CalculatePeriod",             CalculatePeriod,               Time2StringC, false},
-    {"CalculateFreq",               CalculateFreq,                 GF::Freq2String, false},
+    {"CalculateFreq",               CalculateFreq,                 Freq2StringC, false},
     {"CalculateTimeNarastaniya",    CalculateTimeNarastaniya,      Time2StringC, false},
     {"CalculateTimeSpada",          CalculateTimeSpada,            Time2StringC, false},
     {"CalculateDurationPlus",       CalculateDurationPlus,         Time2StringC, false},

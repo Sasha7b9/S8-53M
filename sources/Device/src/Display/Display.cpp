@@ -453,9 +453,9 @@ void Display::WriteParametersFFT(Channel::E chan, float freq0, float density0, f
 
     char buffer[20];
     Color::FILL.SetAsCurrent();
-    Text(GF::Freq2String(freq0, false, buffer)).Draw(x, y);
+    GF::Freq2String(freq0, false).Draw(x, y);
     y += dY;
-    Text(GF::Freq2String(freq1, false, buffer)).Draw(x, y);
+    GF::Freq2String(freq1, false).Draw(x, y);
     if (chan == ChA)
     {
         y += dY + 2;
@@ -1112,8 +1112,7 @@ void Display::WriteCursors()
                 Primitives::Rectangle(width, 12).Draw(x0, Grid::TOP, Color::FILL);
                 Region(width - 2, 10).Fill(x0 + 1, Grid::TOP + 1, Color::BACK);
                 Text("1/dT=").Draw(x0 + 1, Grid::TOP + 2, colorText);
-                char buff[20];
-                Text(GF::Freq2String(1.0F / delta, false, buff)).Draw(x0 + 25, Grid::TOP + 2);
+                GF::Freq2String(1.0F / delta).Draw(x0 + 25, Grid::TOP + 2);
             }
         }
     }
@@ -2134,7 +2133,6 @@ void Display::DrawLowPart()
     if (MODE_WORK_IS_DIRECT)
     {
         char mesFreq[20] = "\x7c=";
-        char buf[20];
         float freq = FPGA::FreqMeter::GetFreq();
         if (freq == -1.0F) //-V550 //-V2550
         {
@@ -2142,7 +2140,7 @@ void Display::DrawLowPart()
         }
         else
         {
-            std::strcat(mesFreq, GF::Freq2String(freq, false, buf)); //-V2513
+            std::strcat(mesFreq, GF::Freq2String(freq).c_str()); //-V2513
         }
         Text(mesFreq).Draw(x + 3, Grid::Bottom() + 2);
     }

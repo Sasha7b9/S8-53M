@@ -277,14 +277,13 @@ char *GF::Phase2String(float phase, bool, char buffer_out[20])
     return buffer_out;
 }
 
-char *GF::Freq2String(float freq, bool, char buffer_out[20])
+String GF::Freq2String(float freq, bool)
 {
-    buffer_out[0] = 0;
     char *suffix = 0;
+
     if(freq == ERROR_VALUE_FLOAT) //-V2550 //-V550
     {
-        std::strcat(buffer_out, ERROR_STRING_VALUE); //-V2513
-        return buffer_out;
+        return String(ERROR_STRING_VALUE);
     }
     if(freq >= 1e6F)
     {
@@ -301,11 +300,7 @@ char *GF::Freq2String(float freq, bool, char buffer_out[20])
         suffix = LANG_RU ? "Ãö" : "Hz";
     }
 
-    std::strcpy(buffer_out, GF::Float2String(freq, false, 4).c_str());
-
-    std::strcat(buffer_out, suffix); //-V2513
-
-    return buffer_out;
+    return String("%s%s", GF::Float2String(freq, false, 4).c_str(), suffix);
 }
 
 char* GF::Float2Db(float value, int numDigits, char buffer_out[20])
