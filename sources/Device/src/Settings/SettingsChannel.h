@@ -50,6 +50,6 @@ void sChannel_SetRange(Channel::E chan, Range::E range);
 // Возвращает true, если канал chan включён.
 bool sChannel_Enabled(Channel::E chan);
 
-const char *sChannel_Range2String(Range::E range, Divider::E multiplier);
+pchar sChannel_Range2String(Range::E range, Divider::E multiplier);
 
-const char *sChannel_RShift2String(int16 rShiftRel, Range::E range, Divider::E multiplier, char buffer[20]);
+pchar sChannel_RShift2String(int16 rShiftRel, Range::E range, Divider::E multiplier, char buffer[20]);

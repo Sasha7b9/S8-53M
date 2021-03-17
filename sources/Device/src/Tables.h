@@ -44,11 +44,11 @@ struct Tables
 {
     static ENumSignalsInSec::E NumSignalsInSecToENUM(int enumSignalsInSec);
     static int ENUMtoNumSignalsInSec(ENumSignalsInSec::E enumSignalsInSec);
-    static const char *GetWarning(Warning::E warning);
-    static const char *RangeNameFromValue(Range::E range);
+    static pchar GetWarning(Warning::E warning);
+    static pchar RangeNameFromValue(Range::E range);
     // Возвращает номер канала от 1 до 2
     static int GetNumChannel(Channel::E chan);
     // Выводит строку из таблицы symbolsAlphaBet
     static void DrawStr(int index, int x, int y);
-    static const char *symbolsAlphaBet[0x48];
+    static pchar symbolsAlphaBet[0x48];
 };

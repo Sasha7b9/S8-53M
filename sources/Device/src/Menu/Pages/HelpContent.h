@@ -7,7 +7,7 @@ class Item;
 
 struct PageHelpContent
 {
-    static const char *stringForHint;   // Строка подсказки, которую надо выводить в случае включённого режима подсказок.
+    static pchar stringForHint;   // Строка подсказки, которую надо выводить в случае включённого режима подсказок.
     static Item *itemHint;              // Item, подсказку для которого нужно выводить в случае включённого режима подсказок.
 
     static void Draw();
