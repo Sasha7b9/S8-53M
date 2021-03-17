@@ -27,7 +27,7 @@ private:
     
     static bool FileIsExist(const char name[255]);
 
-    static void DrawLongString(int x, int y, const char *string, bool hightlight);
+    static void DrawLongString(int x, int y, pchar string, bool hightlight);
 
     static void DrawDirs(int x, int y);
 

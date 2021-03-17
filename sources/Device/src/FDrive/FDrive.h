@@ -43,7 +43,7 @@ public:
 
     static void CloseCurrentDir(StructForReadDir *sfrd);
 
-    static bool GetNameFile(const char *fullPath, int numFile, char *nameFileOut, StructForReadDir *sfrd);
+    static bool GetNameFile(pchar fullPath, int numFile, char *nameFileOut, StructForReadDir *sfrd);
 
     static bool GetNextNameFile(char *nameFileOut, StructForReadDir *sfrd);
     /// Функция создаст файл для записи. Если такой файл уже существует, сотрёт его, заменит новым нулевой длины и откроет его

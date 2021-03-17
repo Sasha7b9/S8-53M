@@ -63,7 +63,7 @@ struct Font
     Symbol symbol[256];
 
     static int GetSize();
-    static int GetLengthText(const char *text);
+    static int GetLengthText(pchar text);
     static int GetHeightSymbol();
     static int GetLengthSymbol(uchar symbol);
     static void Set(TypeFont::E typeFont);

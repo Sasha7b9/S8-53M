@@ -95,4 +95,4 @@ struct StructRelAbs
 #define EXIT_ILLUSTRATION_RU " нопка дл€ выхода в предыдущее меню"
 #define EXIT_ILLUSTRATION_EN "Button for return to previous menu"
 
-void HardwareErrorHandler(const char *file, const char *function, int line);
+void HardwareErrorHandler(pchar file, pchar function, int line);

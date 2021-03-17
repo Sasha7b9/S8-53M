@@ -6,7 +6,7 @@ struct DataItem
     TypeItem::E  type;          // Тип итема
     const Page  *keeper;        // Этой странице принадлежит итем
     pFuncBV      funcOfActive;  // Если функция возвращает true, то итем активен
-    const char **titleHint;     // Массив с названиями и подсказками для итема
+    pchar       *titleHint;     // Массив с названиями и подсказками для итема
     const void  *ad;            // Указатель на специфические для каждого типа итема данные
 };
 

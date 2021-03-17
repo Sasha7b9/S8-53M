@@ -84,7 +84,7 @@ public:
 
 private:
 
-    static void ShowWarn(const char *message);
+    static void ShowWarn(pchar message);
 
     // Нарисовать сетку.
     static void DrawGrid(int left, int top, int width, int height);
@@ -176,7 +176,7 @@ private:
     // Вывести значение уровня синхронизации. 
     static void WriteValueTrigLevel();
 
-    static void AddString(const char *string);
+    static void AddString(pchar string);
 
     static int CalculateCountH();
 
