@@ -69,19 +69,19 @@ static void DrawGovernorChoiceColorFormulaHiPart(const Item *item, int x, int y,
             symbol = item->GetSymbolForGovernor();
         }
 
-        Char(symbol).Draw4SymbolsInRect(x + Item::WIDTH - 13, y + 5 + (item->IsOpened() ? 0 : 15), IS_COLOR_SCHEME_WHITE_LETTERS ? Color::BACK : Color::FILL);
+        Char(symbol).Draw4SymbolsInRect(x + Item::WIDTH - 13, y + 5 + (item->IsOpened() ? 0 : 15),
+            IS_COLOR_SCHEME_WHITE_LETTERS ? Color::BACK : Color::FILL);
     }
 }
 
 void Governor::DrawLowPart(int x, int y) const
 {
-    char buffer[20];
-
     const DataGovernor *own = OwnData();
     
     Color colorTextDown = Color::BACK;
 
-    DrawVolumeButton(x + 1, y + 17, Item::WIDTH_VALUE + 2, Item::HEIGHT_VALUE + 3, 2, Color::MENU_FIELD, Color::MENU_ITEM_BRIGHT, Color::MENU_ITEM_DARK, true);
+    DrawVolumeButton(x + 1, y + 17, Item::WIDTH_VALUE + 2, Item::HEIGHT_VALUE + 3, 2, Color::MENU_FIELD,
+        Color::MENU_ITEM_BRIGHT, Color::MENU_ITEM_DARK, true);
 
     x = Text("\x80").Draw(x + 4, y + 21, colorTextDown);
     if(!IsOpened())
@@ -89,7 +89,7 @@ void Governor::DrawLowPart(int x, int y) const
         float delta = Step();
         if(delta == 0.0F) //-V2550 //-V550
         {
-            x = Text(GF::Int2String(*own->cell, false, 1, buffer)).Draw(x + 1, y + 21);
+            x = GF::Int2String(*own->cell, false, 1).Draw(x + 1, y + 21);
         }
         else
         {
@@ -100,19 +100,25 @@ void Governor::DrawLowPart(int x, int y) const
             int limHeight = Item::HEIGHT_VALUE - 1;
             if(delta > 0.0F)
             {
-                x = Text(GF::Int2String(*own->cell, false, 1, buffer)).DrawWithLimitation(drawX, static_cast<int>(y + 21 - delta), Color::BACK, limX, limY, limWidth, limHeight);
-                Text(GF::Int2String(NextValue(), false, 1, buffer)).DrawWithLimitation(drawX, static_cast<int>(y + 21 + 10 - delta), Color::BACK, limX, limY, limWidth, limHeight);
+                x = Text(GF::Int2String(*own->cell).c_str()).DrawWithLimitation(drawX,
+                    static_cast<int>(y + 21 - delta), Color::BACK, limX, limY, limWidth, limHeight);
+
+                Text(GF::Int2String(NextValue()).c_str()).DrawWithLimitation(drawX,
+                    static_cast<int>(y + 21 + 10 - delta), Color::BACK, limX, limY, limWidth, limHeight);
             }
             if(delta < 0.0F)
             {
-                x = Text(GF::Int2String(*own->cell, false, 1, buffer)).DrawWithLimitation(drawX, static_cast<int>(y + 21 - delta), Color::BACK, limX, limY, limWidth, limHeight);
-                Text(GF::Int2String(PrevValue(), false, 1, buffer)).DrawWithLimitation(drawX, static_cast<int>(y + 21 - 10 - delta), Color::BACK, limX, limY, limWidth, limHeight);
+                x = Text(GF::Int2String(*own->cell).c_str()).DrawWithLimitation(drawX,
+                    static_cast<int>(y + 21 - delta), Color::BACK, limX, limY, limWidth, limHeight);
+
+                Text(GF::Int2String(PrevValue()).c_str()).DrawWithLimitation(drawX,
+                    static_cast<int>(y + 21 - 10 - delta), Color::BACK, limX, limY, limWidth, limHeight);
             }
         }
     }
     else
     {
-        x = Text(GF::Int2String(*own->cell, false, 1, buffer)).Draw(x + 1, y + 21, Color::FILL);
+        x = GF::Int2String(*own->cell).Draw(x + 1, y + 21, Color::FILL);
     }
     Text("\x81").Draw(x + 1, y + 21, colorTextDown);
 }
@@ -253,8 +259,6 @@ void Governor::DrawValue(int x, int y) const
 {
     const DataGovernor *own = OwnData();
 
-    char buffer[20];
-
     int startX = x + 40;
     int16 value = *own->cell;
     int signGovernor = *own->cell < 0 ? -1 : 1;
@@ -264,8 +268,8 @@ void Governor::DrawValue(int x, int y) const
     }
     Font::Set(TypeFont::S5);
     bool sign = own->minValue < 0;
-    Text(GF::Int2String(own->maxValue, sign, 1, buffer)).Draw(x + 55, y - 5, Color::FILL);
-    Text(GF::Int2String(own->minValue, sign, 1, buffer)).Draw(x + 55, y + 2);
+    GF::Int2String(own->maxValue, sign).Draw(x + 55, y - 5, Color::FILL);
+    GF::Int2String(own->minValue, sign).Draw(x + 55, y + 2);
     Font::Set(TypeFont::S8);
 
     DrawValueWithSelectedPosition(startX, y, value, NumDigits(), gCurDigit, true, true);
@@ -392,8 +396,6 @@ void GovernorColor::DrawValue(int x, int y, int delta) const
 {
     const DataGovernorColor *own = OwnData();
 
-    char buffer[20];
-    
     ColorType *ct = own->colorType;
     int8 field = ct->currentField;
     char *texts[4] = {"Яр", "Сн", "Зл", "Кр"};
@@ -417,7 +419,7 @@ void GovernorColor::DrawValue(int x, int y, int delta) const
         Color colorDraw = (field == i) ? Color::BLACK : Color::WHITE;
         Region(29, 10).Fill(x - 1, y + 1, colorBack);
         Text(texts[i]).Draw(x, y + 2, colorDraw);
-        Text(GF::Int2String(vals[i], false, 1, buffer)).Draw(x + 14, y + 2);
+        GF::Int2String(vals[i]).Draw(x + 14, y + 2);
         x -= 30;
     }
     
@@ -430,9 +432,11 @@ void GovernorColor::DrawOpened(int x, int y) const
     OwnData()->colorType->Init();
     Rectangle(Item::WIDTH + delta + 2, Item::HEIGHT + 2).Draw(x - 1, y - 1, Color::BLACK);
     Rectangle(Item::WIDTH + delta, Item::HEIGHT).Draw(x, y, Color::MENU_TITLE);
-    DrawVolumeButton(x + 1, y + 1, Item::WIDTH_VALUE + 2 + delta, Item::HEIGHT_VALUE + 3, 2, Color::MENU_ITEM, Color::MENU_ITEM_BRIGHT, Color::MENU_ITEM_DARK, IsPressed());
+    DrawVolumeButton(x + 1, y + 1, Item::WIDTH_VALUE + 2 + delta, Item::HEIGHT_VALUE + 3, 2, Color::MENU_ITEM,
+        Color::MENU_ITEM_BRIGHT, Color::MENU_ITEM_DARK, IsPressed());
     HLine().Draw(y + Item::HEIGHT / 2 + 2, x, x + Item::WIDTH + delta, Color::MENU_TITLE);
-    Text(Title()).DrawInCenterRect(x + (IsPressed() ? 2 : 1), y + (IsPressed() ? 2 : 1), Item::WIDTH + delta, Item::HEIGHT / 2 + 2, Color::WHITE);
+    Text(Title()).DrawInCenterRect(x + (IsPressed() ? 2 : 1), y + (IsPressed() ? 2 : 1), Item::WIDTH + delta,
+        Item::HEIGHT / 2 + 2, Color::WHITE);
     DrawValue(x + 1, y + 19, delta);
 }
 
@@ -481,8 +485,6 @@ void Choice::DrawOpened(int x, int y) const
 
 void TimeItem::DrawOpened(int x, int y) const
 {
-    char buffer[20];
-    
     int width = Item::WIDTH_VALUE + 3;
     int height = 61;
     Rectangle(width + 2, height + 3).Draw(x - 1, y - 1, Color::BACK);
@@ -523,12 +525,12 @@ void TimeItem::DrawOpened(int x, int y) const
 
     char strI[8][20];
     std::strcpy(strI[iEXIT], "Не сохранять"); //-V2513
-    std::strcpy(strI[iDAY], GF::Int2String(*own->day, false, 2, buffer)); //-V2513
-    std::strcpy(strI[iMONTH], GF::Int2String(*own->month, false, 2, buffer)); //-V2513
-    std::strcpy(strI[iYEAR], GF::Int2String(*own->year, false, 2, buffer)); //-V2513
-    std::strcpy(strI[iHOURS], GF::Int2String(*own->hours, false, 2, buffer)); //-V2513
-    std::strcpy(strI[iMIN], GF::Int2String(*own->minutes, false, 2, buffer)); //-V2513
-    std::strcpy(strI[iSEC], GF::Int2String(*own->seconds, false, 2, buffer)); //-V2513
+    std::strcpy(strI[iDAY], GF::Int2String(*own->day, false, 2).c_str()); //-V2513
+    std::strcpy(strI[iMONTH], GF::Int2String(*own->month, false, 2).c_str()); //-V2513
+    std::strcpy(strI[iYEAR], GF::Int2String(*own->year, false, 2).c_str()); //-V2513
+    std::strcpy(strI[iHOURS], GF::Int2String(*own->hours, false, 2).c_str()); //-V2513
+    std::strcpy(strI[iMIN], GF::Int2String(*own->minutes, false, 2).c_str()); //-V2513
+    std::strcpy(strI[iSEC], GF::Int2String(*own->seconds, false, 2).c_str()); //-V2513
     std::strcpy(strI[iSET], "Сохранить"); //-V2513
 
     Text("д м г - ").Draw(x + 3, y + y0, Color::FILL);
@@ -610,29 +612,28 @@ void Choice::Draw(int x, int y, bool opened) const
 
 void TimeItem::DrawClosed(int x, int y) const
 {
-    char buffer[20];
-    
     DrawGovernorChoiceColorFormulaHiPart(this, x, y, IsPressed(), false);
 
-    DrawVolumeButton(x + 1, y + 17, Item::WIDTH_VALUE + 2, Item::HEIGHT_VALUE + 3, 2, Color::MENU_FIELD, Color::MENU_ITEM_BRIGHT, Color::MENU_ITEM_DARK, true);
+    DrawVolumeButton(x + 1, y + 17, Item::WIDTH_VALUE + 2, Item::HEIGHT_VALUE + 3, 2, Color::MENU_FIELD,
+        Color::MENU_ITEM_BRIGHT, Color::MENU_ITEM_DARK, true);
 
     int deltaField = 10;
     int deltaSeparator = 2;
     int startX = 3;
     y += 21;
     PackedTime time = HAL_RTC::GetPackedTime();
-    Text(GF::Int2String((int)time.hours, false, 2, buffer)).Draw(x + startX, y, Color::BACK);
+    GF::Int2String((int)time.hours, false, 2).Draw(x + startX, y, Color::BACK);
     Text(":").Draw(x + startX + deltaField, y);
-    Text(GF::Int2String((int)time.minutes, false, 2, buffer)).Draw(x + startX + deltaField + deltaSeparator, y);
+    GF::Int2String((int)time.minutes, false, 2).Draw(x + startX + deltaField + deltaSeparator, y);
     Text(":").Draw(x + startX + 2 * deltaField + deltaSeparator, y);
-    Text(GF::Int2String((int)time.seconds, false, 2, buffer)).Draw(x + startX + 2 * deltaField + 2 * deltaSeparator, y);
+    GF::Int2String((int)time.seconds, false, 2).Draw(x + startX + 2 * deltaField + 2 * deltaSeparator, y);
 
     startX = 44;
-    Text(GF::Int2String((int)time.day, false, 2, buffer)).Draw(x + startX, y);
+    GF::Int2String((int)time.day, false, 2).Draw(x + startX, y);
     Text(":").Draw(x + startX + deltaField, y);
-    Text(GF::Int2String((int)time.month, false, 2, buffer)).Draw(x + startX + deltaField + deltaSeparator, y);
+    GF::Int2String((int)time.month, false, 2).Draw(x + startX + deltaField + deltaSeparator, y);
     Text(":").Draw(x + startX + 2 * deltaField + deltaSeparator, y);
-    Text(GF::Int2String((int)time.year, false, 2, buffer)).Draw(x + startX + 2 * deltaField + 2 * deltaSeparator, y);
+    GF::Int2String((int)time.year, false, 2).Draw(x + startX + 2 * deltaField + 2 * deltaSeparator, y);
 }
 
 void TimeItem::Draw(int x, int y, bool opened) const

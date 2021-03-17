@@ -760,8 +760,6 @@ void Display::DrawTime(int x, int y)
 
     PackedTime time = HAL_RTC::GetPackedTime();
     
-    char buffer[20];
-    
     Color::FILL.SetAsCurrent();
     
     if (MODE_WORK_IS_MEMINT || MODE_WORK_IS_LATEST)
@@ -777,11 +775,11 @@ void Display::DrawTime(int x, int y)
             time.seconds = ds->time.seconds;
             time.month = ds->time.month;
             time.year = ds->time.year;
-            Text(GF::Int2String((int)time.day, false, 2, buffer)).Draw(x, y);
+            GF::Int2String((int)time.day, false, 2).Draw(x, y);
             Text(":").Draw(x + dField, y);
-            Text(GF::Int2String((int)time.month, false, 2, buffer)).Draw(x + dField + dSeparator, y);
+            GF::Int2String((int)time.month, false, 2).Draw(x + dField + dSeparator, y);
             Text(":").Draw(x + 2 * dField + dSeparator, y);
-            Text(GF::Int2String((int)time.year + 2000, false, 4, buffer)).Draw(x + 2 * dField + 2 * dSeparator, y);
+            GF::Int2String((int)time.year + 2000, false, 4).Draw(x + 2 * dField + 2 * dSeparator, y);
             y += 9;
         }
         else
@@ -791,11 +789,11 @@ void Display::DrawTime(int x, int y)
     }
     
     
-    Text(GF::Int2String((int)time.hours, false, 2, buffer)).Draw(x, y);
+    GF::Int2String((int)time.hours, false, 2).Draw(x, y);
     Text(":").Draw(x + dField, y);
-    Text(GF::Int2String((int)time.minutes, false, 2, buffer)).Draw(x + dField + dSeparator, y);
+    GF::Int2String((int)time.minutes, false, 2).Draw(x + dField + dSeparator, y);
     Text(":").Draw(x + 2 * dField + dSeparator, y);
-    Text(GF::Int2String((int)time.seconds, false, 2, buffer)).Draw(x + 2 * dField + 2 * dSeparator, y);
+    GF::Int2String((int)time.seconds, false, 2).Draw(x + 2 * dField + 2 * dSeparator, y);
 }
 
 

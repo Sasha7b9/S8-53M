@@ -18,7 +18,7 @@ namespace GF
 
     char *Hex8toString(uint8 value, char buffer[3]);
 
-    char *Int2String(int value, bool always_sign, int num_min_fields, char buffer[20]);
+    String Int2String(int value, bool always_sign = false, int num_min_fields = 1);
 
     bool String2Int(char *str, int *value);
 

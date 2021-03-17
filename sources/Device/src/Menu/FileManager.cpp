@@ -407,7 +407,7 @@ LabelNextNumber:
             {
                 if (*ch == 0x07)    // ≈сли здесь надо записать пор€дковый номер
                 {
-                    std::strcpy(wr, GF::Int2String(number, false, *(ch + 1), buffer)); //-V2513
+                    std::strcpy(wr, GF::Int2String(number, false, *(ch + 1)).c_str()); //-V2513
                     wr += std::strlen(buffer); //-V2513
                     ch++;
                 }
@@ -415,7 +415,7 @@ LabelNextNumber:
                 {
                     if (*ch >= 0x01 && *ch <= 0x06)
                     {
-                        std::strcpy(wr, GF::Int2String((int)values[*ch], false, 2, buffer)); //-V2513
+                        std::strcpy(wr, GF::Int2String((int)values[*ch], false, 2).c_str()); //-V2513
                         wr += std::strlen(buffer); //-V2513
                     }
                 }
