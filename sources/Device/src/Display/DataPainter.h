@@ -24,7 +24,7 @@ public:
     static void ResetP2Ppoints(bool empty);
 
     // ƒобавл€ет точки в режиме поточечного вывода и самописца data00, data01 - дл€ первого канала; data10, data11 - дл€ второго канала
-    static void AddPoints(uint16 data00, uint16 data01, uint16 data10, uint16 data11);
+    static void AddPoints(uint16 data_a_1, uint16 data_a_2, uint16 data_b_1, uint16 data_b_2);
 
     static void DrawData();
 
