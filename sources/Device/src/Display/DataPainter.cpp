@@ -205,10 +205,10 @@ void DataPainter::DrawMarkersForMeasure(float scale, Channel::E chan)
     else if (out > max_y)    { out = (uint8)max_y; };
 
 
-void DataPainter::DrawSignalLined(puchar data, const DataSettings *ds, int start_point, int end_point, int min_y,
+void DataPainter::DrawSignalLined(puchar data, const DataSettings *ds, int start_i, int end_i, int min_y,
     int max_y, float scale_y, float scale_x, bool calculate_filtr)
 {
-    if (end_point < start_point)
+    if (end_i < start_i)
     {
         return;
     }
@@ -222,12 +222,12 @@ void DataPainter::DrawSignalLined(puchar data, const DataSettings *ds, int start
 
     if (ds->peakDet == PeackDetMode::Disable)
     {
-        for (int i = start_point; i < end_point; i++)
+        for (int i = start_i; i < end_i; i++)
         {
-            float x0 = gridLeft + (i - start_point) * scale_x;
+            float x0 = gridLeft + (i - start_i) * scale_x;
             if (x0 >= gridLeft && x0 <= gridRight)
             {
-                int index = i - start_point;
+                int index = i - start_i;
                 int y = calculate_filtr ? Math::CalculateFiltr(data, i, numPoints, numSmoothing) : data[i];
                 CONVERT_DATA_TO_DISPLAY(dataCD[index], y);
             }
@@ -240,9 +240,9 @@ void DataPainter::DrawSignalLined(puchar data, const DataSettings *ds, int start
         int yMinNext = -1;
         int yMaxNext = -1;
 
-        for (int i = start_point; i < end_point; i++)
+        for (int i = start_i; i < end_i; i++)
         {
-            float x = gridLeft + (i - start_point) * scale_x;
+            float x = gridLeft + (i - start_i) * scale_x;
             if (x >= gridLeft && x <= gridRight)
             {
                 int yMin = yMinNext;
@@ -273,25 +273,25 @@ void DataPainter::DrawSignalLined(puchar data, const DataSettings *ds, int start
         }
     }
 
-    if (end_point - start_point < 281)
+    if (end_i - start_i < 281)
     {
-        int _numPoints = 281 - (end_point - start_point);
+        int _numPoints = 281 - (end_i - start_i);
         for (int i = 0; i < _numPoints; i++)
         {
-            int index = end_point - start_point + i;
+            int index = end_i - start_i + i;
             CONVERT_DATA_TO_DISPLAY(dataCD[index], MIN_VALUE);
         }
     }
 
     if (ds->peakDet == PeackDetMode::Disable)
     {
-        CONVERT_DATA_TO_DISPLAY(dataCD[280], data[end_point]);
+        CONVERT_DATA_TO_DISPLAY(dataCD[280], data[end_i]);
         Painter::DrawSignal(Grid::Left(), dataCD, true);
     }
 }
 
 
-void DataPainter::DrawSignalPointed(puchar data, const DataSettings *ds, int startPoint, int endPoint, int min_y,
+void DataPainter::DrawSignalPointed(puchar data, const DataSettings *ds, int start_i, int end_i, int min_y,
     int max_y, float scale_y, float scale_x)
 {
     int numPoints = sMemory_GetNumPoints(false);
@@ -301,22 +301,22 @@ void DataPainter::DrawSignalPointed(puchar data, const DataSettings *ds, int sta
 
     if (scale_x == 1.0F) //-V550 //-V2550
     {
-        for (int i = startPoint; i < endPoint; i++)
+        for (int i = start_i; i < end_i; i++)
         {
-            int index = i - startPoint;
+            int index = i - start_i;
             CONVERT_DATA_TO_DISPLAY(dataCD[index], Math::CalculateFiltr(data, i, numPoints, numSmoothing));
         }
         Painter::DrawSignal(Grid::Left(), dataCD, false);
 
         if (ds->peakDet)
         {
-            int size = endPoint - startPoint;
-            startPoint += numPoints;
-            endPoint = startPoint + size;;
+            int size = end_i - start_i;
+            start_i += numPoints;
+            end_i = start_i + size;;
 
-            for (int i = startPoint; i < endPoint; i++)
+            for (int i = start_i; i < end_i; i++)
             {
-                int index = i - startPoint;
+                int index = i - start_i;
                 CONVERT_DATA_TO_DISPLAY(dataCD[index], Math::CalculateFiltr(data, i, numPoints, numSmoothing));
             }
             Painter::DrawSignal(Grid::Left(), dataCD, false);
@@ -324,9 +324,9 @@ void DataPainter::DrawSignalPointed(puchar data, const DataSettings *ds, int sta
     }
     else
     {
-        for (int i = startPoint; i < endPoint; i++)
+        for (int i = start_i; i < end_i; i++)
         {
-            int index = i - startPoint;
+            int index = i - start_i;
             int dat = 0;
             CONVERT_DATA_TO_DISPLAY(dat, Math::CalculateFiltr(data, i, numPoints, numSmoothing));
             Point().Draw(Grid::Left() + static_cast<int>(index * scale_x), dat);
