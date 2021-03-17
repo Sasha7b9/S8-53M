@@ -449,17 +449,21 @@ void GF::IntToStrCat(char *_buffer, int _value)
 }
 
 
-char *GF::PrintArrayUint8(uint8 *array, int size, char *out_buffer)
+String GF::LogArrayUint8(uint8 *array, int size)
 {
-    out_buffer[0] = '\0';
+    String result;
 
     for (int i = 0; i < size; i++)
     {
         char buf[10];
 
-        std::strcat(out_buffer, GF::Int2String(array[i], false, 1, buf));
-        std::strcat(out_buffer, " ");
+        result.Append(GF::Int2String(array[i], false, 1, buf));
+        
+        if (i != size - 1)
+        {
+            result.Append(' ');
+        }
     }
 
-    return out_buffer;
+    return result;
 }

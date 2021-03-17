@@ -37,7 +37,7 @@ DataSettings ReaderFPGA::ds;
 uint16 *addresses_ADC[2] = { RD_ADC_A, RD_ADC_B };
 
 
-void ReaderFPGA::ReadData(bool save_to_storage)
+void ReaderFPGA::ReadData()
 {
     FPGA::in_processing_of_read = true;
 
@@ -50,17 +50,17 @@ void ReaderFPGA::ReadData(bool save_to_storage)
         ReadRealMode();
     }
 
-    SaveToStorage(save_to_storage);
+    SaveToStorage();
 
     FPGA::in_processing_of_read = false;
 }
 
 
-void ReaderFPGA::SaveToStorage(bool save_to_storage)
+void ReaderFPGA::SaveToStorage()
 {
     static uint prevTime = 0;
 
-    if (save_to_storage || (TIME_MS - prevTime > 500))
+    if (TIME_MS - prevTime > 500)
     {
         prevTime = TIME_MS;
 

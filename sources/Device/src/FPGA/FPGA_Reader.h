@@ -8,7 +8,7 @@ struct ReaderFPGA
 {
     static void ClearData();
 
-    static void ReadData(bool save_to_storage);
+    static void ReadData();
 
     static void ReadRandomizeMode();
 
@@ -31,7 +31,7 @@ private:
 
     static int CalculateShift();
 
-    static void SaveToStorage(bool save_to_storage);
+    static void SaveToStorage();
 
     static void ReadRealModePeakDetOn();
 

@@ -1,4 +1,5 @@
 #pragma once
+#include "common/Utils/String_.h"
 
 
 namespace GF
@@ -63,5 +64,5 @@ namespace GF
 
     void IntToStrCat(char *_buffer, int _value);
 
-    char *PrintArrayUint8(uint8 *array, int size, char *out_buffer);
+    String LogArrayUint8(uint8 *array, int size);
 }
