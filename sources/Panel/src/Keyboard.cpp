@@ -79,7 +79,7 @@ struct GovernorStruct
     void Process();
 
 private:
-    void AfterProcess();
+    void SendEvent(Key::E key, Action::E action);
 
     Key::E key;
     uint8  rlA;
@@ -204,19 +204,18 @@ void GovernorStruct::Process()
     }
     else if (prev_state_is_same && state_a && !state_b)
     {
-        Buffer::AppendEvent(key, prev_state ? Action::RotateLeft : Action::RotateRight);
-        AfterProcess();
+        SendEvent(key, prev_state ? Action::RotateLeft : Action::RotateRight);
     }
     else if (prev_state_is_same && !state_a && state_b)
     {
-        Buffer::AppendEvent(key, prev_state ? Action::RotateRight : Action::RotateLeft);
-        AfterProcess();
+        SendEvent(key, prev_state ? Action::RotateRight : Action::RotateLeft);
     }
 }
 
 
-void GovernorStruct::AfterProcess()
+void GovernorStruct::SendEvent(Key::E key_, Action::E action)
 {
+    Buffer::AppendEvent(key_, action);
     prev_state_is_same = false;
     next_time = TIME_MS + dT;
 }
