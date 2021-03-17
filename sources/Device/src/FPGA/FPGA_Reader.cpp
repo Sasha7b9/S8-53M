@@ -37,7 +37,7 @@ DataSettings ReaderFPGA::ds;
 uint16 *addresses_ADC[2] = { RD_ADC_A, RD_ADC_B };
 
 
-void ReaderFPGA::ReadData(bool necessary_shift, bool save_to_storage)
+void ReaderFPGA::ReadData(bool save_to_storage)
 {
     FPGA::in_processing_of_read = true;
 
@@ -47,7 +47,7 @@ void ReaderFPGA::ReadData(bool necessary_shift, bool save_to_storage)
     }
     else
     {
-        ReadRealMode(necessary_shift);
+        ReadRealMode();
     }
 
     SaveToStorage(save_to_storage);
@@ -86,7 +86,7 @@ void ReaderFPGA::ReadRandomizeMode()
 }
 
 
-void ReaderFPGA::ReadRealMode(bool /*necessary_shift*/)
+void ReaderFPGA::ReadRealMode()
 {
     if (ds.peakDet != PeackDetMode::Disable)
     {

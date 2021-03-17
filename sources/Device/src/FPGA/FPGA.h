@@ -81,8 +81,6 @@ private:
 
     static uint8 CalculateMaxWithout255(const uint8 buffer[100]);
 
-    static bool ProcessingData();
-
 public:
 
     // Поиск сигнала

@@ -81,72 +81,6 @@ void FPGA::Start()
 }
 
 
-bool FPGA::ProcessingData()
-{
-    bool retValue = false;
-
-    int num = (sTime_RandomizeModeEnabled() && (!START_MODE_IS_SINGLE) && SAMPLE_TYPE_IS_EQUAL) ?
-        Randomizer::Kr[SET_TBASE] :
-        1;
-    
-   for (int i = 0; i < num; i++)
-   {
-        flag.Read();
-
-        if (critical_situation)
-        {
-            if (TIME_MS - time_start > 500)
-            {
-                TrigPolarity::Switch();
-
-                TrigLev::need_auto_find = true;
-
-                critical_situation = false;
-            }
-            else if (flag.IsTrigReady())
-            {
-                critical_situation = false;
-            }
-        }
-        else if (flag.IsDataReady())
-        {
-            if (set.debug.showRegisters.flag)
-            {
-                char buffer[9];
-                LOG_WRITE("флаг готовности %s", GF::Bin2String16(flag.flag, buffer));
-            }
-            Panel::EnableLEDTrig(true);
-            FPGA::Stop(true);
-            ReaderFPGA::ReadData(true, (num == 1) || (i == num - 1));
-            retValue = true;
-            if (!START_MODE_IS_SINGLE)
-            {
-                Start();
-                state_work = StateWorkFPGA::Work;
-            }
-            else
-            {
-                FPGA::Stop(false);
-            }
-        }
-        else
-        {
-            if (flag.flag & (1 << 2))
-            {
-                if (START_MODE_IS_AUTO)
-                {
-                    critical_situation = true;
-                }
-                time_start = TIME_MS;
-            }
-        }
-        Panel::EnableLEDTrig(flag.IsTrigReady() ? true : false);
-    }
-
-    return retValue;
-}
-
-
 void FPGA::Update()
 {
     flag.Read();
@@ -158,7 +92,7 @@ void FPGA::Update()
             if (flag.IsDataReady())
             {
                 LOG_WRITE("Читаю данные");
-                ReaderFPGA::ReadData(false, true);
+                ReaderFPGA::ReadData(true);
             }
         }
     }

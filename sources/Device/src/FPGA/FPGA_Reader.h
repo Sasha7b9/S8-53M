@@ -8,11 +8,11 @@ struct ReaderFPGA
 {
     static void ClearData();
 
-    static void ReadData(bool necessary_shift, bool save_to_storage);
+    static void ReadData(bool save_to_storage);
 
     static void ReadRandomizeMode();
 
-    static void ReadRealMode(bool necessary_shift);
+    static void ReadRealMode();
 
     static void ReadPoint();
 
