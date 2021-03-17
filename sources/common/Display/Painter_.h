@@ -15,9 +15,6 @@ public:
 
     static uint ReduceBrightness(uint colorValue, float newBrightness);
 
-    // modeLines - true - точками, false - точками
-    static void DrawSignal(int x, uint8 data[281], bool modeLines);
-
     static void DrawPicture(int x, int y, int width, int height, uint8 *address);
 
     static bool SaveScreenToFlashDrive();

@@ -286,7 +286,7 @@ void DataPainter::DrawSignalLined(puchar data, const DataSettings *ds, int start
     if (ds->peakDet == PeackDetMode::Disable)
     {
         CONVERT_DATA_TO_DISPLAY(dataCD[280], data[end_i]);
-        Painter::DrawSignal(Grid::Left(), dataCD, true);
+        DrawPoints(dataCD, Grid::Left(), 281);
     }
 }
 
@@ -307,7 +307,7 @@ void DataPainter::DrawSignalPointed(puchar data, const DataSettings *ds, int sta
             CONVERT_DATA_TO_DISPLAY(dataCD[index], Math::CalculateFiltr(data, i, numPoints, numSmoothing));
         }
 
-        Painter::DrawSignal(Grid::Left(), dataCD, false);
+        DrawPoints(dataCD, Grid::Left(), 281);
 
         if (ds->peakDet)
         {
@@ -321,7 +321,7 @@ void DataPainter::DrawSignalPointed(puchar data, const DataSettings *ds, int sta
                 CONVERT_DATA_TO_DISPLAY(dataCD[index], Math::CalculateFiltr(data, i, numPoints, numSmoothing));
             }
 
-            Painter::DrawSignal(Grid::Left(), dataCD, false);
+            DrawPoints(dataCD, Grid::Left(), 281);
         }
     }
     else
@@ -863,4 +863,17 @@ void DataPainter::WriteParametersFFT(Channel::E chan, float freq0, float density
 void DataPainter::DrawDataInModeSelfRecorder()
 {
     LOG_TRACE
+}
+
+
+void DataPainter::DrawPoints(uint8 *y, const int start_x, int num_points, const Color &color)
+{
+    color.SetAsCurrent();
+
+    int x = start_x;
+
+    while (num_points-- > 0)
+    {
+        Point().Draw(x++, *y++);
+    }
 }

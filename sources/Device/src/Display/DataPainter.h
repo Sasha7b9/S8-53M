@@ -23,7 +23,8 @@ public:
     // Функция должна вызываться для очистки поточечной памяти. Вызывается при изменении масштаба по напряжению.
     static void ResetP2Ppoints(bool empty);
 
-    // Добавляет точки в режиме поточечного вывода и самописца data00, data01 - для первого канала; data10, data11 - для второго канала
+    // Добавляет точки в режиме поточечного вывода и самописца
+    // data_a_1, data_a_2 - для первого канала; data_b_1, data_b_2 - для второго канала
     static void AddPoints(uint16 data_a_1, uint16 data_a_2, uint16 data_b_1, uint16 data_b_2);
 
     static void DrawData();
@@ -75,4 +76,9 @@ private:
     static void WriteParametersFFT(Channel::E chan, float freq0, float density0, float freq1, float density1);
 
     static void DrawDataInModeSelfRecorder();
+
+    // Нарисовать сигнал точками
+    // start_x    - координата x первой точки
+    // T может быть uint8 - если данные находятся во встроенном ОЗУ, или uint16 - если данные находятся во внешнем ОЗУ
+    static void DrawPoints(uint8 *y, const int start_x, int num_points, const Color &color = Color::Count);
 };

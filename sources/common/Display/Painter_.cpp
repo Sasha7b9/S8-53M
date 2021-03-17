@@ -69,11 +69,6 @@ int NumberColorsInSceneCol()
 }
 
 
-void Painter::DrawSignal(int , uint8 [281], bool )
-{
-}
-
-
 void Painter::RunDisplay()
 {
 }
