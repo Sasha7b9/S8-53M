@@ -465,9 +465,9 @@ void Display::WriteParametersFFT(Channel::E chan, float freq0, float density0, f
         y += dY * 3 + 4;
     }
     Color::Channel(chan).SetAsCurrent();
-    Text(SCALE_FFT_IS_LOG ? GF::Float2Db(density0, 4, buffer) : GF::Float2String(density0, false, 7).c_str()).Draw(x, y);
+    Text(SCALE_FFT_IS_LOG ? GF::Float2Db(density0, 4).c_str() : GF::Float2String(density0, false, 7).c_str()).Draw(x, y);
     y += dY;
-    Text(SCALE_FFT_IS_LOG ? GF::Float2Db(density1, 4, buffer) : GF::Float2String(density1, false, 7).c_str()).Draw(x, y);
+    Text(SCALE_FFT_IS_LOG ? GF::Float2Db(density1, 4).c_str() : GF::Float2String(density1, false, 7).c_str()).Draw(x, y);
 }
 
 

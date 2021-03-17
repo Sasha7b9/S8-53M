@@ -302,13 +302,9 @@ String GF::Freq2String(float freq, bool)
     return String("%s%s", GF::Float2String(freq, false, 4).c_str(), suffix);
 }
 
-char* GF::Float2Db(float value, int numDigits, char buffer_out[20])
+String GF::Float2Db(float value, int num_digits)
 {
-    std::strcpy(buffer_out, GF::Float2String(value, false, numDigits).c_str());
-
-    std::strcat(buffer_out, "ไม"); //-V2513
-
-    return buffer_out;
+    return String("%sไม", GF::Float2String(value, false, num_digits).c_str());
 }
 
 bool GF::IntInRange(int value, int min, int max)

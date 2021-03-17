@@ -31,7 +31,7 @@ namespace GF
     String Phase2String(float phase, bool);
 
     // Преобразует децибелы в текстовую строку.
-    char *Float2Db(float value, int num_digits, char buffer_out[20]);
+    String Float2Db(float value, int num_digits);
 
     // Возвращает true, если value входит в диапазон [min; max]
     bool IntInRange(int value, int min, int max);
