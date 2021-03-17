@@ -131,66 +131,17 @@ void DataPainter::DrawBothChannels()
 
 void DataPainter::DrawDataChannel(uint8 *data, Channel::E chan, DataSettings *ds, int min_y, int max_y)
 {
-    bool calculateFiltr = true;
-    if (data == 0)
-    {
-        calculateFiltr = false;
-        if (chan == ChA)
-        {
-            Processing::GetData(&data, 0, &ds);
-        }
-        else
-        {
-            Processing::GetData(0, &data, &ds);
-        }
-    }
-
-    if (!ChannelNeedForDraw(data, chan, ds))
-    {
-        return;
-    }
-
     float scaleY = static_cast<float>(max_y - min_y) / (MAX_VALUE - MIN_VALUE);
     float scaleX = Grid::Width() / 280.0F;
 
-    if (SHOW_MEASURES)
-    {
-        DrawMarkersForMeasure(scaleY, chan);
-    }
-
     int firstPoint = 0;
     int lastPoint = 0;
+
     SettingsDisplay::PointsOnDisplay(&firstPoint, &lastPoint);
-    if (data == dataP2P_0 || data == dataP2P_1)
-    {
-        if (SET_SELFRECORDER)
-        {
-            LOG_TRACE
-        }
-        else if (lastPoint > lastP2Pdata)
-        {
-            lastPoint = lastP2Pdata;
-        }
-    }
 
     Color::Channel(chan).SetAsCurrent();
-    if (MODE_DRAW_IS_SIGNAL_LINES)
-    {
-        /*
-        if (set.display.numAveraging > ENumAveraging::_1)
-        {
-            Color::GRID.SetAsCurrent();
-            DrawSignalLined(DS_GetData(chan, 0), ds, firstPoint, lastPoint, minY, maxY, scaleY, scaleX, calculateFiltr);
-            // WARN
-        }
-        Color::SetCurrent(ColorChannel(chan));
-        */
-        DrawSignalLined(data, ds, firstPoint, lastPoint, min_y, max_y, scaleY, scaleX, calculateFiltr);
-    }
-    else
-    {
-        DrawSignalPointed(data, ds, firstPoint, lastPoint, min_y, max_y, scaleY, scaleX);
-    }
+
+    DrawSignalPointed(data, ds, firstPoint, lastPoint, min_y, max_y, scaleY, scaleX);
 }
 
 

@@ -95,9 +95,6 @@ void FPGA::Update()
             {
                 ReaderFPGA::ReadData();
 
-                LOG_WRITE("1 : %s", GF::LogArrayUint8(ReaderFPGA::data_a, 10).c_str());
-                LOG_WRITE("2 : %s", GF::LogArrayUint8(ReaderFPGA::data_b, 10).c_str());
-
                 FPGA::Start();
             }
         }
