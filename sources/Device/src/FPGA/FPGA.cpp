@@ -117,7 +117,7 @@ bool FPGA::ProcessingData()
             }
             Panel::EnableLEDTrig(true);
             FPGA::Stop(true);
-            ReaderFPGA::Read(true, (num == 1) || (i == num - 1));
+            ReaderFPGA::ReadData(true, (num == 1) || (i == num - 1));
             retValue = true;
             if (!START_MODE_IS_SINGLE)
             {
@@ -155,7 +155,7 @@ void FPGA::Update()
     {
         if (flag.IsTrigReady())
         {
-//            Reader::ReadData();
+            ReaderFPGA::ReadData(false, true);
         }
     }
 }

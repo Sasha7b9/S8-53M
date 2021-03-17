@@ -8,7 +8,7 @@ struct ReaderFPGA
 {
     static void ClearData();
 
-    static void Read(bool necessary_shift, bool save_to_storage);
+    static void ReadData(bool necessary_shift, bool save_to_storage);
 
     static void ReadRandomizeMode();
 
@@ -30,4 +30,6 @@ private:
     static void InverseDataIsNecessary(Channel::E chan, uint16 *data);
 
     static int CalculateShift();
+
+    static void SaveToStorage(bool save_to_storage);
 };

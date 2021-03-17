@@ -21,7 +21,7 @@
 #define PEAKDET_IS_DISABLE                  (PEAKDET == PeackDetMode::Disable)
 #define PEAKDET_IS_ENABLE                   (PEAKDET == PeackDetMode::Enable)
 
-#define IN_RANDOM_MODE                      (SET_TBASE < TBase::_50ns)
+#define IN_RANDOM_MODE                      (SET_TBASE < TBase::_100ns)
 
 #define SET_SELFRECORDER                    (set.time.selfRecorder) // SettingsTime.selfRecorder
 

@@ -34,10 +34,11 @@ int          ReaderFPGA::addition_shift = 0;
 DataSettings ReaderFPGA::ds;
 
 
-void ReaderFPGA::Read(bool necessary_shift, bool save_to_storage)
+void ReaderFPGA::ReadData(bool necessary_shift, bool save_to_storage)
 {
     FPGA::in_processing_of_read = true;
-    if (static_cast<TBase::E>(ds.tBase) < TBase::_100ns)
+
+    if (IN_RANDOM_MODE)
     {
         ReadRandomizeMode();
     }
@@ -46,11 +47,20 @@ void ReaderFPGA::Read(bool necessary_shift, bool save_to_storage)
         ReadRealMode(necessary_shift);
     }
 
+    SaveToStorage(save_to_storage);
+
+    FPGA::in_processing_of_read = false;
+}
+
+
+void ReaderFPGA::SaveToStorage(bool save_to_storage)
+{
     static uint prevTime = 0;
 
     if (save_to_storage || (TIME_MS - prevTime > 500))
     {
         prevTime = TIME_MS;
+
         if (!sTime_RandomizeModeEnabled())
         {
             InverseDataIsNecessary(ChA, data_rel_A);
@@ -64,8 +74,6 @@ void ReaderFPGA::Read(bool necessary_shift, bool save_to_storage)
             TrigLev::FindAndSet();
         }
     }
-
-    FPGA::in_processing_of_read = false;
 }
 
 
