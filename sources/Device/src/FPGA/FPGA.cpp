@@ -93,8 +93,8 @@ void FPGA::Update()
             {
                 ReaderFPGA::ReadData();
 
-//                LOG_WRITE("1 : %s", GF::LogArrayUint8(ReaderFPGA::data_a, 10).c_str());
-//                LOG_WRITE("2 : %s", GF::LogArrayUint8(ReaderFPGA::data_b, 10).c_str());
+                LOG_WRITE("1 : %s", GF::LogArrayUint8(ReaderFPGA::data_a, 10).c_str());
+                LOG_WRITE("2 : %s", GF::LogArrayUint8(ReaderFPGA::data_b, 10).c_str());
 
                 FPGA::Start();
             }
@@ -434,7 +434,7 @@ void FPGA::TemporaryPause()
 
 void FPGA::BUS::WriteToAnalog(TypeWriteAnalog::E type, uint data)
 {
-    LOG_WRITE("%s : %d", __FUNCTION__, data);
+//    LOG_WRITE("%s : %d", __FUNCTION__, data);
 
     char buffer[19];
 
@@ -471,7 +471,7 @@ void FPGA::BUS::WriteToAnalog(TypeWriteAnalog::E type, uint data)
         DATA_SET((data & (1 << i)) ? 1 : 0);
         CLC_HI
         CLC_LOW
-    }
+    } 
 
     Pin::SPI4_CS2.Set();
 }
@@ -479,21 +479,21 @@ void FPGA::BUS::WriteToAnalog(TypeWriteAnalog::E type, uint data)
 
 void FPGA::BUS::WriteToDAC(TypeWriteDAC::E type, uint16 data)
 {
-    LOG_WRITE("%s : %d", __FUNCTION__, data);
+//    LOG_WRITE("%s : %d", __FUNCTION__, data);
 
     char buffer[19];
 
-    if (type == TypeWriteDAC::RShiftA)
+    if (type == TypeWriteDAC::RShiftA && IS_SHOW_REG_RSHIFT_A)
     {
-//        LOG_WRITE("rShift 1 = %s", GF::Bin2String16(data, buffer));
+        LOG_WRITE("rShift 0 = %s", GF::Bin2String16(data, buffer));
     }
-    else if (type == TypeWriteDAC::RShiftB)
+    else if (type == TypeWriteDAC::RShiftB && IS_SHOW_REG_RSHIFT_B)
     {
-//        LOG_WRITE("rShfit 2 = %s", GF::Bin2String16(data, buffer));
+        LOG_WRITE("rShfit 1 = %s", GF::Bin2String16(data, buffer));
     }
-    else if (type == TypeWriteDAC::TrigLev)
+    else if (type == TypeWriteDAC::TrigLev && IS_SHOW_REG_TRIGLEV)
     {
-//        LOG_WRITE("trigLev = %s", GF::Bin2String16(data, buffer));
+        LOG_WRITE("trigLev = %s", GF::Bin2String16(data, buffer));
     }
 
     Pin::SPI4_CS1.Reset();
