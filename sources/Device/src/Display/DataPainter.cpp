@@ -247,14 +247,14 @@ void DataPainter::DrawMarkersForMeasure(float scale, Channel::E chan)
 }
 
 
-#define CONVERT_DATA_TO_DISPLAY(out, in)                \
-    out = (uint8)(maxY - ((in) - MIN_VALUE) * scaleY);  \
-    if(out < min_y)          { out = (uint8)min_y; }      \
-    else if (out > maxY)    { out = (uint8)maxY; };
+#define CONVERT_DATA_TO_DISPLAY(out, in)                    \
+    out = (uint8)(max_y - ((in) - MIN_VALUE) * scaleY);     \
+    if(out < min_y)          { out = (uint8)min_y; }        \
+    else if (out > max_y)    { out = (uint8)max_y; };
 
 
 void DataPainter::DrawSignalLined(puchar data, const DataSettings *ds, int start_point, int end_point, int min_y,
-    int maxY, float scaleY, float scaleX, bool calculateFiltr)
+    int max_y, float scaleY, float scaleX, bool calculateFiltr)
 {
     if (end_point < start_point)
     {
@@ -340,7 +340,7 @@ void DataPainter::DrawSignalLined(puchar data, const DataSettings *ds, int start
 
 
 void DataPainter::DrawSignalPointed(puchar data, const DataSettings *ds, int startPoint, int endPoint, int min_y,
-    int maxY, float scaleY, float scaleX)
+    int max_y, float scaleY, float scaleX)
 {
     int numPoints = sMemory_GetNumPoints(false);
     int numSmoothing = Smoothing::NumPoints();
