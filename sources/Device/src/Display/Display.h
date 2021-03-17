@@ -61,7 +61,7 @@ public:
 
     static void ChangedRShiftMarkers();
 
-    static void AddStringToIndicating(const char *string);
+    static void AddStringToIndicating(pchar string);
 
     static void OneStringUp();
 

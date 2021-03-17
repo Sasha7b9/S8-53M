@@ -100,8 +100,8 @@ struct NamePage { enum E
 class StructHelpSmallButton
 {
 public:
-    pFuncVII    funcDrawUGO;    // Указатель на функцию отрисовки изображения варианта кнопки
-    const char *helpUGO[2];     // Подпись к данному изображению.
+    pFuncVII funcDrawUGO;    // Указатель на функцию отрисовки изображения варианта кнопки
+    pchar    helpUGO[2];     // Подпись к данному изображению.
 };
 
 typedef StructHelpSmallButton arrayHints[MAX_NUM_CHOICE_SMALL_BUTTON];

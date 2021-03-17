@@ -3,10 +3,10 @@
 
 struct DataChoice
 {
-    const char **names;             // Варианты выбора на русском и английском языках.
-    int8        *cell;              // Адрес ячейки, в которой хранится позиция текущего выбора.
-    pFuncVB	     funcOnChanged;     // Функция должна вызываться после изменения значения элемента.
-    pFuncVII     funcForDraw;       // Функция вызывается после отрисовки элемента. 
+    pchar    *names;             // Варианты выбора на русском и английском языках.
+    int8     *cell;              // Адрес ячейки, в которой хранится позиция текущего выбора.
+    pFuncVB	  funcOnChanged;     // Функция должна вызываться после изменения значения элемента.
+    pFuncVII  funcForDraw;       // Функция вызывается после отрисовки элемента. 
 };
 
 
@@ -19,13 +19,13 @@ public:
         return static_cast<const DataChoice *>(data->ad);
     }
 
-    const char *NameSubItem(int i) const;
+    pchar NameSubItem(int i) const;
     // Возвращает имя текущего варианта выбора элемента choice, как оно записано в исходном коде программы.
-    const char *NameCurrentSubItem() const;
+    pchar NameCurrentSubItem() const;
     // Возвращает имя следующего варианта выбора элемента choice, как оно записано в исходном коде программы.
-    const char *NameNextSubItem() const;
+    pchar NameNextSubItem() const;
 
-    const char *NamePrevSubItem() const;
+    pchar NamePrevSubItem() const;
     // Возвращает количество вариантов выбора в элементе по адресу choice.
     int NumSubItems() const;
 
