@@ -42,11 +42,11 @@ private:
 
     static void DrawMarkersForMeasure(float scale, Channel::E chan);
 
-    static void DrawSignalLined(puchar data, const DataSettings *ds, int startPoint, int endPoint, int minY, int maxY,
-        float scaleY, float scaleX, bool calculateFiltr);
+    static void DrawSignalLined(puchar data, const DataSettings *ds, int start_point, int end_point, int min_y,
+        int max_y, float scale_y, float scale_x, bool calculate_filtr);
 
-    static void DrawSignalPointed(puchar data, const DataSettings *ds, int startPoint, int endPoint, int minY, int maxY,
-        float scaleY, float scaleX);
+    static void DrawSignalPointed(puchar data, const DataSettings *ds, int startPoint, int endPoint, int min_y,
+        int max_y, float scale_y, float scale_x);
 
     static void DrawMath();
 
