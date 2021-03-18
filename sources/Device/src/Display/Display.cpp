@@ -345,7 +345,7 @@ bool Display::NeedForClearScreen()
 {
     int numAccum = NUM_ACCUM;
 
-    if (sTime_RandomizeModeEnabled() || numAccum == 1 || MODE_ACCUM_IS_NORESET || SET_SELFRECORDER)
+    if (FPGA_IN_RANDOMIZE_MODE || numAccum == 1 || MODE_ACCUM_IS_NORESET || SET_SELFRECORDER)
     {
         return true;
     }

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#define SET_TBASE                           (set.time.tBase)
+#define SET_TBASE                           (::set.time.tBase)
 
 #define TSHIFT                              (set.time.tShiftRel)
 
@@ -41,12 +41,3 @@ struct SettingsTime
                                         // восстановить.
 };
 
-
-// ћинимальное смещение по времени, которое может быть записано в аппаратную часть.
-int16 sTime_TShiftMin();
-
-// —мещение по времени, соответствующее позиции TPos.
-int16 sTime_TShiftZero();
-
-// ≈сли true, значит, работает рандомизатор.
-bool sTime_RandomizeModeEnabled();

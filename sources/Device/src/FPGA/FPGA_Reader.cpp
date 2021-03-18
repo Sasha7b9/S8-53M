@@ -65,7 +65,7 @@ void ReaderFPGA::SaveToStorage()
     {
         prevTime = TIME_MS;
 
-        if (!sTime_RandomizeModeEnabled())
+        if (!FPGA_IN_RANDOMIZE_MODE)
         {
             InverseDataIsNecessary(ChA, data_a);
             InverseDataIsNecessary(ChB, data_b);
@@ -173,7 +173,7 @@ int ReaderFPGA::CalculateShift()            // \todo Не забыть восстановить функ
     //min += 100;
     //max -= 100;
 
-    if (sTime_RandomizeModeEnabled())
+    if (FPGA_IN_RANDOMIZE_MODE)
     {
         float tin = static_cast<float>(rand - min) / (max - min) * 10e-9F;
         int retValue = static_cast<int>(tin / 10e-9F * FPGA::Randomizer::Kr[SET_TBASE]);

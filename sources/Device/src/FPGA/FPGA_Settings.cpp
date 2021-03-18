@@ -342,7 +342,7 @@ void FPGA::Calibrator::LoadKoeff(const Channel & /*chan*/)
 void TShift::Load()
 {
     TBase::E tBase = SET_TBASE;
-    int tShift = TSHIFT - sTime_TShiftMin() + timeCompensation[tBase];
+    int tShift = TSHIFT - TShift::Min() + timeCompensation[tBase];
 
     FPGA::post = (uint16)tShift;
 

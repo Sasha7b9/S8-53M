@@ -45,7 +45,7 @@ bool SettingsDisplay::IsSeparate()
 
 ModeAveraging::E ModeAveraging::Current()
 {
-    if (sTime_RandomizeModeEnabled())
+    if (FPGA_IN_RANDOMIZE_MODE)
     {
         return ModeAveraging::Around;
     }
@@ -55,7 +55,7 @@ ModeAveraging::E ModeAveraging::Current()
 
 int ENumAveraging::NumAverages()
 {
-    if (sTime_RandomizeModeEnabled() && (NUM_AVE_FOR_RAND >= NUM_AVE))
+    if (FPGA_IN_RANDOMIZE_MODE && (NUM_AVE_FOR_RAND >= NUM_AVE))
     {
         return NUM_AVE_FOR_RAND;
     }

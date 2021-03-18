@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "common/Log_.h"
 #include "common/Settings/SettingsTypes_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Display.h"
@@ -280,9 +281,9 @@ void TShift::Set(int tShift)
         return;
     }
 
-    if (tShift < sTime_TShiftMin() || tShift > TShiftMax)
+    if (tShift < TShift::Min() || tShift > TShiftMax)
     {
-        LIMITATION(tShift, tShift, sTime_TShiftMin(), TShiftMax);
+        LIMITATION(tShift, tShift, TShift::Min(), TShiftMax);
         Display::ShowWarningBad(Warning::LimitSweep_TShift);
     }
 
@@ -351,4 +352,28 @@ int TPos::InPoints(PeackDetMode::E peakDet, int numPoints, TPos::E tPos)
 int TShift::InPoints(PeackDetMode::E peakDet)
 {
     return TSHIFT * (peakDet == PeackDetMode::Disable ? 2 : 1);
+}
+
+
+int16 TShift::Min()
+{
+    static const int16 m[3][3] = { {-511, -441, -371},
+    {-511, -383, -255},
+    {-511, -255, 0} };
+
+    ENUM_POINTS_FPGA::E numPoints = ENUM_POINTS;
+    if ((int)numPoints < 3)
+    {
+        return m[numPoints][SET_TPOS];
+    }
+
+    LOG_ERROR("");
+
+    return 0;
+}
+
+
+int16 TShift::Zero()
+{
+    return -TShift::Min();
 }
