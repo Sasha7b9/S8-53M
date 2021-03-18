@@ -28,24 +28,10 @@ int DataPainter::lastP2Pdata = 0;
 
 void DataPainter::DrawData()
 {
-    DrawBothChannels();
+    DrawDataChannel(ReaderFPGA::data_a, ChA, &ReaderFPGA::ds, Grid::TOP, Grid::ChannelBottom());
+    DrawDataChannel(ReaderFPGA::data_b, ChB, &ReaderFPGA::ds, Grid::TOP, Grid::ChannelBottom());
 
     Primitives::Rectangle(Grid::Width(), Grid::FullHeight()).Draw(Grid::Left(), Grid::TOP, Color::FILL);
-}
-
-
-void DataPainter::DrawBothChannels()
-{
-    if (LAST_AFFECTED_CHANNEL_IS_B)
-    {
-        DrawDataChannel(ReaderFPGA::data_a, ChA, &ReaderFPGA::ds, Grid::TOP, Grid::ChannelBottom());
-        DrawDataChannel(ReaderFPGA::data_b, ChB, &ReaderFPGA::ds, Grid::TOP, Grid::ChannelBottom());
-    }
-    else
-    {
-        DrawDataChannel(ReaderFPGA::data_b, ChB, &ReaderFPGA::ds, Grid::TOP, Grid::ChannelBottom());
-        DrawDataChannel(ReaderFPGA::data_a, ChA, &ReaderFPGA::ds, Grid::TOP, Grid::ChannelBottom());
-    }
 }
 
 
@@ -388,27 +374,6 @@ void DataPainter::DrawDataMinMax()
 
 // shiftForPeakDet - если рисуем информацию с пикового детектора - то через shiftForPeakDet точек расположена
 // иниформаци€ о максимумах.
-void DataPainter::DrawChannelInWindowMemory(int timeWindowRectWidth, int xVert0, int xVert1, int startI, int endI,
-    puchar data, int rightX, Channel::E chan, int shiftForPeakDet)
-{
-    if (data == dataP2P_0 && data == dataP2P_1)
-    {
-
-    }
-    else
-    {
-        DrawDataInRect(1, xVert0 - 1, &(data[0]), startI, chan,
-            shiftForPeakDet);
-        DrawDataInRect(xVert0 + 2, timeWindowRectWidth - 2, &(data[startI]), 281, chan,
-            shiftForPeakDet);
-        DrawDataInRect(xVert1 + 2, rightX - xVert1 + 2, &(data[endI + 1]), sMemory_GetNumPoints(false) - endI, chan,
-            shiftForPeakDet);
-    }
-}
-
-
-// shiftForPeakDet - если рисуем информацию с пикового детектора - то через shiftForPeakDet точек расположена
-// иниформаци€ о максимумах.
 void DataPainter::DrawDataInRect(int x, int width, puchar data, int numElems, Channel::E chan, int shiftForPeakDet)
 {
     if (numElems == 0)
@@ -498,131 +463,6 @@ void DataPainter::DrawDataInRect(int x, int width, puchar data, int numElems, Ch
     {
         VLineArray().Draw(x, 255, points, Color::Channel(chan));
         VLineArray().Draw(x + 255, width - 255, points + 255 * 2, Color::Channel(chan));
-    }
-}
-
-
-void DataPainter::DrawMemoryWindow()
-{
-    uint8 *dat0 = Storage::dataIntA;
-    uint8 *dat1 = Storage::dataIntB;
-    DataSettings *ds = Storage::dsInt;
-
-    if (MODE_WORK_IS_DIRECT || MODE_WORK_IS_LATEST)
-    {
-        dat0 = Storage::dataA;
-        dat1 = Storage::dataB;
-        ds = Storage::set;
-    }
-
-    if (ds == nullptr)
-    {
-        return;
-    }
-
-    int leftX = 3;
-    int top = 1;
-    int height = Grid::TOP - 3;
-    int bottom = top + height;
-
-    static const int rightXses[3] = { 276, 285, 247 };
-    int rightX = rightXses[MODE_WORK];
-    if (sCursors_NecessaryDrawCursors())
-    {
-        rightX = 68;
-    }
-
-    int timeWindowRectWidth = static_cast<int>((rightX - leftX) * (282.0F / sMemory_GetNumPoints(false)));
-    float scaleX = (float)(rightX - leftX + 1) / sMemory_GetNumPoints(false);
-
-    int16 shiftInMemory = SHIFT_IN_MEMORY;
-
-    const int xVert0 = static_cast<int>(leftX + shiftInMemory * scaleX);
-    const int xVert1 = leftX + static_cast<int>(shiftInMemory * scaleX) + timeWindowRectWidth;
-    bool showFull = set.display.showFullMemoryWindow;
-    Primitives::Rectangle(xVert1 - xVert0, bottom - top - (showFull ? 0 : 2)).Draw(xVert0, top + (showFull ? 0 : 1),
-        Color::FILL);
-
-    if (!dataP2PIsEmpty)
-    {
-        dat0 = dataP2P_0;
-        dat1 = dataP2P_1;
-    }
-
-    if (showFull)
-    {
-        if (Storage::dataA || Storage::dataB || (!dataP2PIsEmpty))
-        {
-            int startI = shiftInMemory;
-            int endI = startI + 281;
-
-            Channel::E chanFirst = LAST_AFFECTED_CHANNEL_IS_A ? ChB : ChA;
-            Channel::E chanSecond = LAST_AFFECTED_CHANNEL_IS_A ? ChA : ChB;
-            puchar dataFirst = LAST_AFFECTED_CHANNEL_IS_A ? dat1 : dat0;
-            puchar dataSecond = LAST_AFFECTED_CHANNEL_IS_A ? dat0 : dat1;
-
-            int shiftForPeakDet = ds->peakDet == PeackDetMode::Disable ? 0 : (int)ds->length1channel;
-
-            if (ChannelNeedForDraw(dataFirst, chanFirst, ds))
-            {
-                DrawChannelInWindowMemory(timeWindowRectWidth, xVert0, xVert1, startI, endI, dataFirst, rightX,
-                    chanFirst, shiftForPeakDet);
-            }
-            if (ChannelNeedForDraw(dataSecond, chanSecond, ds))
-            {
-                DrawChannelInWindowMemory(timeWindowRectWidth, xVert0, xVert1, startI, endI, dataSecond, rightX,
-                    chanSecond, shiftForPeakDet);
-            }
-        }
-    }
-    else
-    {
-        HLine().Draw(leftX - 2, top, bottom, Color::FILL);
-        HLine().Draw(rightX + 2, top, bottom);
-        HLine().Draw((bottom + top) / 2 - 3, leftX, xVert0 - 2);
-        HLine().Draw((bottom + top) / 2 + 3, leftX, xVert0 - 2);
-        HLine().Draw((bottom + top) / 2 + 3, xVert1 + 2, rightX);
-        HLine().Draw((bottom + top) / 2 - 3, xVert1 + 2, rightX);
-    }
-
-    int x[] = { leftX, (rightX - leftX) / 2 + leftX + 1, rightX };
-    int x0 = x[SET_TPOS];
-
-    // ћаркер TPos
-    Region(6, 6).Fill(x0 - 3, 9, Color::BACK);
-    Char(Symbol::S8::TPOS_1).Draw(x0 - 3, 9, Color::FILL);
-
-    // ћаркер tShift
-    float scale = (float)(rightX - leftX + 1) /
-        ((float)sMemory_GetNumPoints(false) - (sMemory_GetNumPoints(false) == 281 ? 1 : 0));
-
-    float xShift = 1 + (sTime_TPosInPoints((PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel, SET_TPOS) - sTime_TShiftInPoints((PeackDetMode::E)Storage::set->peakDet)) * scale;
-
-    if (xShift < leftX - 2)
-    {
-        xShift = static_cast<float>(leftX - 2);
-    }
-
-    Region(6, 6).Fill(static_cast<int>(xShift - 1), 3, Color::BACK);
-    Region(4, 4).Fill(static_cast<int>(xShift), 4, Color::FILL);
-    Color::BACK.SetAsCurrent();
-
-    if (xShift == leftX - 2)
-    {
-        xShift = static_cast<float>(leftX - 2);
-        Line().Draw(static_cast<int>(xShift) + 3, 5, static_cast<int>(xShift) + 3, 7);
-        Line().Draw(static_cast<int>(xShift) + 1, 6, static_cast<int>(xShift) + 2, 6);
-    }
-    else if (xShift > rightX - 1)
-    {
-        xShift = static_cast<float>(rightX - 2);
-        Line().Draw(static_cast<int>(xShift) + 1, 5, static_cast<int>(xShift) + 1, 7);
-        Line().Draw(static_cast<int>(xShift) + 2, 6, static_cast<int>(xShift) + 3, 6);
-    }
-    else
-    {
-        Line().Draw(static_cast<int>(xShift) + 1, 5, static_cast<int>(xShift) + 3, 5);
-        Line().Draw(static_cast<int>(xShift) + 2, 6, static_cast<int>(xShift) + 2, 7);
     }
 }
 

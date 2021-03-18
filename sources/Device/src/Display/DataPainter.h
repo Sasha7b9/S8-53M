@@ -31,8 +31,6 @@ public:
 
 private:
 
-    static void DrawBothChannels();
-
     static void DrawDataChannel(uint8 *data, Channel::E chan, DataSettings *ds, int min_y, int max_y);
 
     static bool ChannelNeedForDraw(puchar data, Channel::E chan, const DataSettings *ds);
@@ -54,9 +52,6 @@ private:
     static void DrawDataInModePoint2Point();
 
     static void DrawDataMinMax();
-
-    static void DrawChannelInWindowMemory(int timeWindowRectWidth, int xVert0, int xVert1, int startI, int endI,
-        puchar data, int rightX, Channel::E chan, int shiftForPeakDet);
 
     static void DrawDataInRect(int x, int width, puchar data, int numElems, Channel::E chan, int shiftForPeakDet);
 
