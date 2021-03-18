@@ -200,7 +200,7 @@ float Processing::CalculateVoltageMinSteady(Channel::E ch)
     EXIT_IF_ERROR_FLOAT(min);
     if(MEAS_MARKED == Measure::VoltageMinSteady)
     {
-        markerHor[ch][0] = static_cast<int>(ROUND(min)); //-V2528
+        markerHor[ch][0] = static_cast<int>(ROUND(min));
     }
 
     return (POINT_2_VOLTAGE(min, dataSet->range[ch], (ch == ChA) ?

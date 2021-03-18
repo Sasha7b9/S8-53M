@@ -218,7 +218,7 @@ void DataPainter::DrawDataInRect(int x, int width, puchar data, int numElems, co
         uint8 *iMin = &min[0];
         uint8 *iMax = &max[0];
 
-        for (int col = 0; col < width; col++, iMin++, iMax++) //-V2528
+        for (int col = 0; col < width; col++, iMin++, iMax++)
         {
             int firstElem = static_cast<int>(col * elemsInColumn);
             int lastElem = firstElem + static_cast<int>(elemsInColumn) - 1;

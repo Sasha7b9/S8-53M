@@ -50,21 +50,22 @@ String::String(pchar format, ...) : buffer(nullptr)
         return;
     }
 
-#ifdef WIN32
-    static const int SIZE = 5000;
-#else
-    static const int SIZE = 5000;
-#endif
+    static const int SIZE = 127;
+
     char buf[SIZE + 1];
 
     std::va_list args;
-    va_start(args, format); //-V2528
+    va_start(args, format);
     int numSymbols = std::vsprintf(buf, format, args);
     va_end(args);
 
     if (numSymbols < 0 || numSymbols > SIZE)
     {
-        std::strcpy(buffer, "Буфер слишком мал");
+#define ERROR_STRING "Буфер слишком мал"
+
+        Allocate((int)std::strlen(ERROR_STRING) + 1);
+
+        std::strcpy(buffer, ERROR_STRING);
     }
     else if (Allocate(static_cast<int>(std::strlen(buf) + 1)))
     {
@@ -83,7 +84,7 @@ void String::Set(TypeConversionString::E conv, pchar format, ...)
         char buf[SIZE + 1];
 
         std::va_list args;
-        va_start(args, format); //-V2528
+        va_start(args, format);
         int numSymbols = std::vsprintf(buf, format, args);
         va_end(args);
 
