@@ -348,7 +348,7 @@ void TShift::Load()
 
     if (FPGA_IN_RANDOMIZE_MODE)
     {
-        int k = 0;
+        uint k = 0;
         if (SET_TPOS_IS_LEFT)
         {
             k = FPGA::SET::PointsInChannel() % FPGA::Randomizer::Kr[tBase];
@@ -522,7 +522,7 @@ void TrigLev::FindAndSet()
 
     puchar data = (chanTrig == ChA) ? data0 : data1;
 
-    int lastPoint = ds_->BytesInChannel() - 1;
+    uint lastPoint = ds_->BytesInChannel() - 1;
 
     uint8 min = Math::GetMinFromArray(data, 0, lastPoint);
     uint8 max = Math::GetMaxFromArray(data, 0, lastPoint);

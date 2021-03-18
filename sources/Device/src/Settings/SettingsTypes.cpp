@@ -379,9 +379,9 @@ int16 TShift::Zero()
 }
 
 
-int ENUM_POINTS_FPGA::ToPoints(E v)
+uint ENUM_POINTS_FPGA::ToPoints(E v)
 {
-    static const int points[Count] =
+    static const uint points[Count] =
     {
         281,
         512,

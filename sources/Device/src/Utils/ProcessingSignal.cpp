@@ -22,9 +22,9 @@ static uint8 dataOut1[FPGA_MAX_POINTS];
 static DataSettings *dataSet = 0;
 static uint8 dataIn[2][FPGA_MAX_POINTS];
 
-static int firstP = 0;
-static int lastP = 0;
-static int numP = 0;
+static uint firstP = 0;
+static uint lastP = 0;
+static uint numP = 0;
 
 
 static char *FloatFract2StringC(float value, bool always_sign, char *buffer)
@@ -318,7 +318,7 @@ float Processing::CalculateVoltageRMS(Channel::E ch)
 
     int16 rShift = (ch == ChA) ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1;
 
-    for(int i = firstP; i < firstP + period; i++)
+    for(uint i = firstP; i < firstP + period; i++)
     {
         float volts = POINT_2_VOLTAGE(dataIn[ch][i], dataSet->range[ch], rShift);
         rms +=  volts * volts;
@@ -391,7 +391,7 @@ int Processing::CalculatePeriodAccurately(Channel::E ch)
         int delta = static_cast<int>(pic * 5);
         sums[firstP] = dataIn[ch][firstP];
 
-        int i = firstP + 1;
+        uint i = firstP + 1;
         int *sum = &sums[i];
         uint8 *data = &dataIn[ch][i];
         uint8 *end = &dataIn[ch][lastP];
@@ -407,7 +407,7 @@ int Processing::CalculatePeriodAccurately(Channel::E ch)
             sum++;
         }
 
-        int addShift = firstP - 1;
+        int addShift = (int)firstP - 1;
         int maxPeriod = static_cast<int>(numP * 0.95F);
 
         for(int nextPeriod = 10; nextPeriod < maxPeriod; nextPeriod++)
@@ -415,7 +415,7 @@ int Processing::CalculatePeriodAccurately(Channel::E ch)
             int s = sums[addShift + nextPeriod];
 
             int maxDelta = 0;
-            int maxStart = numP - nextPeriod;
+            int maxStart = (int)numP - nextPeriod;
 
             int *pSums = &sums[firstP + 1];
             for(int start = 1; start < maxStart; start++)
@@ -466,8 +466,8 @@ float Processing::CalculateFreq(Channel::E ch)
 float Processing::FindIntersectionWithHorLine(Channel::E ch, int numIntersection, bool downToUp, uint8 yLine)
 {
     int num = 0;
-    int x = firstP;
-    int compValue = lastP - 1;
+    int x = (int)firstP;
+    int compValue = (int)lastP - 1;
 
     uint8 *data = &dataIn[ch][0];
 
@@ -933,8 +933,8 @@ float Processing::CalculatePhazaMinus(Channel::E ch)
 
 void Processing::SetSignal(puchar data0, puchar data1, DataSettings *ds, int _firstPoint, int _lastPoint)
 {
-    firstP = _firstPoint;
-    lastP = _lastPoint;
+    firstP = (uint)_firstPoint;
+    lastP = (uint)_lastPoint;
     numP = lastP - firstP;
     dataSet = ds;
 
@@ -943,12 +943,12 @@ void Processing::SetSignal(puchar data0, puchar data1, DataSettings *ds, int _fi
         return;
     }
     
-    int numSmoothing = Smoothing::NumPoints();
+    uint numSmoothing = Smoothing::NumPoints();
 
-    int length = ds->BytesInChannel() * (ds->peakDet == PeackDetMode::Disable ? 1 : 2);
+    uint length = ds->BytesInChannel() * (ds->peakDet == PeackDetMode::Disable ? 1 : 2);
 
-    Math::CalculateFiltrArray(data0, &dataIn[ChA][0], length, numSmoothing);
-    Math::CalculateFiltrArray(data1, &dataIn[ChB][0], length, numSmoothing);
+    Math::CalculateFiltrArray(data0, &dataIn[ChA][0], (int)length, (int)numSmoothing);
+    Math::CalculateFiltrArray(data1, &dataIn[ChB][0], (int)length, (int)numSmoothing);
 
     CountedToCurrentSettings();
 }
@@ -1176,7 +1176,7 @@ void Processing::CountedToCurrentSettings()
     std::memset(dataOut0, 0, FPGA_MAX_POINTS);
     std::memset(dataOut1, 0, FPGA_MAX_POINTS);
     
-    int numPoints = dataSet->BytesInChannel() * (dataSet->peakDet == PeackDetMode::Disable ? 1 : 2);
+    int numPoints = (int)dataSet->BytesInChannel() * (dataSet->peakDet == PeackDetMode::Disable ? 1 : 2);
 
     int16 dataTShift = dataSet->tShift;
     int16 curTShift = TSHIFT;

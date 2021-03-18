@@ -28,9 +28,9 @@
 
 namespace Math
 {
-    uint8 GetMaxFromArray(puchar data, int first_point, int last_point);
+    uint8 GetMaxFromArray(puchar data, uint first_point, uint last_point);
 
-    uint8 GetMinFromArray(puchar data, int first_point, int last_point);
+    uint8 GetMinFromArray(puchar data, uint first_point, uint last_point);
 
     // Возвращает координату x пересечения линии, проходящей через (x0, y0), (x1, y1), с горизонтальной линией,
     // проходящей через точку с ординатой yHorLine.

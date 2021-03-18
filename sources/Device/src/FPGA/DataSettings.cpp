@@ -26,9 +26,9 @@ void DataSettings::Fill()
 }
 
 
-int DataSettings::BytesInChannel() const
+uint DataSettings::BytesInChannel() const
 {
-    int result = PointsInChannel();
+    uint result = PointsInChannel();
 
     if (peakDet != 0)
     {
@@ -39,7 +39,7 @@ int DataSettings::BytesInChannel() const
 }
 
 
-int DataSettings::PointsInChannel() const
+uint DataSettings::PointsInChannel() const
 {
     return ENUM_POINTS_FPGA::ToPoints((ENUM_POINTS_FPGA::E)enum_points);
 }

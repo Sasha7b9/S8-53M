@@ -6,7 +6,7 @@
 
 
 
-Buffer::Buffer(int s)
+Buffer::Buffer(uint s)
 {
     Malloc(s);
 }
@@ -18,7 +18,7 @@ Buffer::~Buffer()
 }
 
 
-void Buffer::Realloc(int _size)
+void Buffer::Realloc(uint _size)
 {
     Free();
     Malloc(_size);
@@ -42,7 +42,7 @@ void Buffer::Free()
 }
 
 
-void Buffer::Malloc(int s)
+void Buffer::Malloc(uint s)
 {
     if (s > 0)
     {

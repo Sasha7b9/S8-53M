@@ -64,7 +64,7 @@ void DataPainter::DrawSignalLined(puchar data, const DataSettings *ds, int start
     int gridRight = Grid::Right();
 
     int numPoints = sMemory_GetNumPoints(false);
-    int numSmoothing = Smoothing::NumPoints();
+    uint numSmoothing = Smoothing::NumPoints();
 
     if (ds->peakDet == PeackDetMode::Disable)
     {
@@ -74,7 +74,7 @@ void DataPainter::DrawSignalLined(puchar data, const DataSettings *ds, int start
             if (x0 >= gridLeft && x0 <= gridRight)
             {
                 int index = i - start_i;
-                int y = calculate_filtr ? Math::CalculateFiltr(data, i, numPoints, numSmoothing) : data[i];
+                int y = calculate_filtr ? Math::CalculateFiltr(data, i, numPoints, (int)numSmoothing) : data[i];
                 CONVERT_DATA_TO_DISPLAY(dataCD[index], y);
             }
         }
@@ -141,7 +141,7 @@ void DataPainter::DrawSignalPointed(puchar data, const DataSettings *ds, int sta
     int max_y, float scale_y, float scale_x)
 {
     int numPoints = sMemory_GetNumPoints(false);
-    int numSmoothing = Smoothing::NumPoints();
+    uint numSmoothing = Smoothing::NumPoints();
 
     uint8 dataCD[281];
 
@@ -150,7 +150,7 @@ void DataPainter::DrawSignalPointed(puchar data, const DataSettings *ds, int sta
         for (int i = start_i; i < end_i; i++)
         {
             int index = i - start_i;
-            CONVERT_DATA_TO_DISPLAY(dataCD[index], Math::CalculateFiltr(data, i, numPoints, numSmoothing));
+            CONVERT_DATA_TO_DISPLAY(dataCD[index], Math::CalculateFiltr(data, i, numPoints, (int)numSmoothing));
         }
 
         DrawPoints(dataCD, Grid::Left(), 281);
@@ -164,7 +164,7 @@ void DataPainter::DrawSignalPointed(puchar data, const DataSettings *ds, int sta
             for (int i = start_i; i < end_i; i++)
             {
                 int index = i - start_i;
-                CONVERT_DATA_TO_DISPLAY(dataCD[index], Math::CalculateFiltr(data, i, numPoints, numSmoothing));
+                CONVERT_DATA_TO_DISPLAY(dataCD[index], Math::CalculateFiltr(data, i, numPoints, (int)numSmoothing));
             }
 
             DrawPoints(dataCD, Grid::Left(), 281);
@@ -176,7 +176,7 @@ void DataPainter::DrawSignalPointed(puchar data, const DataSettings *ds, int sta
         {
             int index = i - start_i;
             int dat = 0;
-            CONVERT_DATA_TO_DISPLAY(dat, Math::CalculateFiltr(data, i, numPoints, numSmoothing));
+            CONVERT_DATA_TO_DISPLAY(dat, Math::CalculateFiltr(data, i, numPoints, (int)numSmoothing));
             Point().Draw(Grid::Left() + static_cast<int>(index * scale_x), dat);
         }
     }

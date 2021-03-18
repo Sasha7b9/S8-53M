@@ -1320,7 +1320,7 @@ void Display::DrawLowPart()
     if (MODE_WORK_IS_DIRECT)
     {
         Font::Set(TypeFont::S5);
-        WriteStringAndNumber("—√À¿∆.:", x + 57, Grid::Bottom() + 10, Smoothing::NumPoints());
+        WriteStringAndNumber("—√À¿∆.:", x + 57, Grid::Bottom() + 10, (int)Smoothing::NumPoints());
         Font::Set(TypeFont::S8);
     }
 }

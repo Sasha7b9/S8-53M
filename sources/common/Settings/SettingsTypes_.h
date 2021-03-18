@@ -38,7 +38,7 @@ struct ENUM_POINTS_FPGA
         Count
     };
 
-    static int ToPoints(E);
+    static uint ToPoints(E);
 };
 
 
@@ -171,7 +171,7 @@ struct Smoothing { enum E
     };
 
     // Возвращает число точек сглаживающего фильтра (режим ДИСПЛЕЙ - Сглаживание).
-    static int NumPoints();
+    static uint NumPoints();
 };
 
 

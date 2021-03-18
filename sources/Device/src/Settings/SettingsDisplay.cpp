@@ -9,13 +9,13 @@ int ENumSignalsInSec::NumSignalsInS()
 }
 
 
-int Smoothing::NumPoints()
+uint Smoothing::NumPoints()
 {
     if (SMOOTHING_IS_DISABLE)
     {
         return 0;
     }
-    return (int)SMOOTHING + 1;          // WARN Здесь очень коряво реализовано
+    return (uint)SMOOTHING + 1;          // WARN Здесь очень коряво реализовано
 }
 
 

@@ -365,7 +365,7 @@ void MathFPGA::CalculateFFT(float* dataR, int numPoints, float* result, float* f
 }
 
 
-uint8 MathFPGA::GetMaxFromArrayWithErrorCode(puchar data, int firstPoint, int lastPoint)
+uint8 MathFPGA::GetMaxFromArrayWithErrorCode(puchar data, uint firstPoint, uint lastPoint)
 {
     uint8 max = Math::GetMaxFromArray(data, firstPoint, lastPoint);
     if (max >= MAX_VALUE)
@@ -376,7 +376,7 @@ uint8 MathFPGA::GetMaxFromArrayWithErrorCode(puchar data, int firstPoint, int la
 }
 
 
-uint8 MathFPGA::GetMinFromArrayWithErrorCode(puchar data, int firstPoint, int lastPoint)
+uint8 MathFPGA::GetMinFromArrayWithErrorCode(puchar data, uint firstPoint, uint lastPoint)
 {
     uint8 min = Math::GetMinFromArray(data, firstPoint, lastPoint);
     if (min < MIN_VALUE || min >= MAX_VALUE)

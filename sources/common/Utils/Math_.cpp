@@ -132,7 +132,7 @@ int Math::FabsInt(int value)
 }
 
 
-uint8 Math::GetMinFromArray(puchar data, int firstPoint, int lastPoint)
+uint8 Math::GetMinFromArray(puchar data, uint firstPoint, uint lastPoint)
 {
 
 #define MIN_IF_LESS if(d < min) { min = d; }
@@ -140,7 +140,7 @@ uint8 Math::GetMinFromArray(puchar data, int firstPoint, int lastPoint)
     uint8 min = 255;
     puchar pointer = &data[firstPoint];
 
-    for (int i = firstPoint; i < lastPoint; i += 2)
+    for (uint i = firstPoint; i < lastPoint; i += 2)
     {
         uint8 d = *pointer++;
         MIN_IF_LESS
@@ -157,7 +157,7 @@ uint8 Math::GetMinFromArray(puchar data, int firstPoint, int lastPoint)
 }
 
 
-uint8 Math::GetMaxFromArray(puchar data, int first_point, int last_point)
+uint8 Math::GetMaxFromArray(puchar data, uint first_point, uint last_point)
 {
 
 #define MAX_IF_ABOVE if(d > max) { max = d; }
@@ -165,7 +165,7 @@ uint8 Math::GetMaxFromArray(puchar data, int first_point, int last_point)
     uint8 max = 0;
     puchar pointer = &data[first_point];
 
-    for (int i = first_point; i < last_point; i += 2)
+    for (uint i = first_point; i < last_point; i += 2)
     {
         uint8 d = *pointer++;
         MAX_IF_ABOVE;

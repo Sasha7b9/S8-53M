@@ -472,15 +472,15 @@ void FPGA::BUS::WriteToDAC(TypeWriteDAC::E type, uint16 data)
 }
 
 
-int FPGA::SET::PointsInChannel()
+uint FPGA::SET::PointsInChannel()
 {
     return ENUM_POINTS_FPGA::ToPoints(ENUM_POINTS);
 }
 
 
-int FPGA::SET::BytesInChannel()
+uint FPGA::SET::BytesInChannel()
 {
-    int result = PointsInChannel();
+    uint result = PointsInChannel();
 
     if (PEAKDET_IS_ENABLE)
     {
@@ -491,9 +491,9 @@ int FPGA::SET::BytesInChannel()
 }
 
 
-int FPGA::SET::BytesForData()
+uint FPGA::SET::BytesForData()
 {
-    int result = 0;
+    uint result = 0;
 
     if (SET_ENABLED_A)    { result += BytesInChannel(); }
 

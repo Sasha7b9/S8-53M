@@ -82,13 +82,13 @@ public:
     struct SET
     {
         // —только точек в измерении одного канала
-        static int PointsInChannel();
+        static uint PointsInChannel();
 
         // —только байтов в измерении одного канала
-        static int BytesInChannel();
+        static uint BytesInChannel();
 
         // —только байт нужно дл€ сохранени€ данных обоих каналов
-        static int BytesForData();
+        static uint BytesForData();
     };
 
     struct BUS

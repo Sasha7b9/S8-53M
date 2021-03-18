@@ -25,9 +25,9 @@ struct DataSettings
 
     void Fill();
 
-    int BytesInChannel() const;
+    uint BytesInChannel() const;
 
-    int PointsInChannel() const;
+    uint PointsInChannel() const;
 
     bool IsEnabled(const Channel &ch) const;
 };

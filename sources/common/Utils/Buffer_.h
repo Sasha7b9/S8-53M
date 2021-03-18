@@ -8,18 +8,18 @@
 class Buffer
 {
 public:
-    Buffer(int size = 0);
+    Buffer(uint size = 0U);
     ~Buffer();
-    void Realloc(int size);
+    void Realloc(uint size);
     void Fill(uint8 value);
-    inline int Size() const { return size; }
+    inline uint Size() const { return size; }
     inline char *DataChar() { return reinterpret_cast<char *>(data); }
     inline uint8 *Data() { return data; }
     void Log();
     static void LogU8(const uint8 *buffer);
 private:
-    int size;
+    uint size;
     uint8 *data;
     void Free();
-    void Malloc(int size);
+    void Malloc(uint size);
 };
