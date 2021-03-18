@@ -32,7 +32,7 @@ static const char chanMultiplierEn[] = "Attenuation: \n\"x1\" - the signal is no
 
 void PageChannelA::OnChanged_Input(bool)
 {
-    Panel::EnableLEDChannel0(sChannel_Enabled(ChA));
+    Panel::EnableLEDChannel0(ChA.IsEnabled());
 }
 
 DEF_CHOICE_2(mcInputA, PageChannelA::self,
@@ -110,7 +110,7 @@ DEF_PAGE_5(pageChanA, PageMain::self, NamePage::ChannelA,
 
 void PageChannelB::OnChanged_Input(bool)
 {
-    Panel::EnableLEDChannel1(sChannel_Enabled(ChB));
+    Panel::EnableLEDChannel1(ChB.IsEnabled());
 }
 
 DEF_CHOICE_2(mcInputB, PageChannelB::self,

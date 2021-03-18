@@ -138,7 +138,7 @@ void ReaderFPGA::ReadPoint()
 }
 
 
-void ReaderFPGA::InverseDataIsNecessary(Channel::E ch, uint8 *data)
+void ReaderFPGA::InverseDataIsNecessary(const Channel &ch, uint8 *data)
 {
     if (SET_INVERSE(ch))
     {
@@ -196,7 +196,7 @@ uint16 ReaderFPGA::ReadAddressStop()
 }
 
 
-void ReaderFPGA::ReadChannel(uint8 *data, Channel::E ch, uint16 addr_stop)
+void ReaderFPGA::ReadChannel(uint8 *data, const Channel &ch, uint16 addr_stop)
 {
     *WR_PRED = addr_stop;
     *WR_ADDR_STOP = 0xffff;

@@ -44,10 +44,10 @@ void ColorType::Set()
 }
 
 
-Color Color::Channel(Channel::E ch)
+Color Channel::GetColor() const
 {
     static const Color colors[4] = { Color::DATA_A, Color::DATA_B, Color::WHITE, Color::WHITE };
-    return colors[ch];
+    return colors[value];
 }
 
 

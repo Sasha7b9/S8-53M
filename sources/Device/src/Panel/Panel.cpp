@@ -599,7 +599,7 @@ int CalculateCount(int *prevTime)
 }
 
 
-static void ChangeRShift(int *prevTime, void(*f)(Channel::E, int16), Channel::E ch, int16 relStep)
+static void ChangeRShift(int *prevTime, void(*f)(const Channel &, int16), const Channel &ch, int16 relStep)
 {
     if (ENUM_ACCUM_IS_NONE)
     {
@@ -612,7 +612,7 @@ static void ChangeRShift(int *prevTime, void(*f)(Channel::E, int16), Channel::E 
     {
         rShift = RShiftZero;
     }
-    if (CanChangeRShiftOrTrigLev((TrigSource::E)ch, (int16)rShift))
+    if (CanChangeRShiftOrTrigLev((TrigSource::E)ch.value, (int16)rShift))
     {
         Sound::RegulatorShiftRotate();
         f(ch, (int16)rShift);
@@ -620,7 +620,7 @@ static void ChangeRShift(int *prevTime, void(*f)(Channel::E, int16), Channel::E 
 }
 
 
-static void SetRShift(Channel::E ch, int16 rShift)
+static void SetRShift(const Channel &ch, int16 rShift)
 {
     RShift::Set(ch, rShift);
 }

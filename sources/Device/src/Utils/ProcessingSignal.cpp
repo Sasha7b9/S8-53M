@@ -143,11 +143,11 @@ void Processing::CalculateMeasures()
                 }
                 if(MEAS_SOURCE_IS_A || MEAS_SOURCE_IS_A_B)
                 {
-                    values[meas].value[ChA] = func(ChA);
+                    values[meas].value[ChA] = func(ChA.value);
                 }
                 if(MEAS_SOURCE_IS_B || MEAS_SOURCE_IS_A_B)
                 {
-                    values[meas].value[ChB] = func(ChB);
+                    values[meas].value[ChB] = func(ChB.value);
                 }
             }
         }
@@ -827,8 +827,8 @@ float Processing::CalculatePicRel(Channel::E ch)
 
 float Processing::CalculateDelayPlus(Channel::E ch)
 {
-    float period0 = CalculatePeriod(ChA);
-    float period1 = CalculatePeriod(ChB);
+    float period0 = CalculatePeriod(ChA.value);
+    float period1 = CalculatePeriod(ChB.value);
 
     EXIT_IF_ERRORS_FLOAT(period0, period1);
     if(!Math::FloatsIsEquals(period0, period1, 1.05F))
@@ -836,15 +836,15 @@ float Processing::CalculateDelayPlus(Channel::E ch)
         return ERROR_VALUE_FLOAT;
     }
 
-    float average0 = CalculateAverageRel(ChA);
-    float average1 = CalculateAverageRel(ChB);
+    float average0 = CalculateAverageRel(ChA.value);
+    float average1 = CalculateAverageRel(ChB.value);
 
     EXIT_IF_ERRORS_FLOAT(average0, average1);
 
     float averageFirst = (ch == ChA) ? average0 : average1;
     float averageSecond = (ch == ChA) ? average1 : average0;
-    Channel::E firstChannel = (ch == ChA) ? ChA : ChB;
-    Channel::E secondChannel = (ch == ChA) ? ChB : ChA;
+    Channel::E firstChannel = (ch == ChA) ? ChA.value : ChB.value;
+    Channel::E secondChannel = (ch == ChA) ? ChB.value : ChA.value;
 
     float firstIntersection = FindIntersectionWithHorLine(firstChannel, 1, true, static_cast<uint8>(averageFirst));
     float secondIntersection = FindIntersectionWithHorLine(secondChannel, 1, true, static_cast<uint8>(averageSecond));
@@ -863,8 +863,8 @@ float Processing::CalculateDelayPlus(Channel::E ch)
 
 float Processing::CalculateDelayMinus(Channel::E ch)
 {
-    float period0 = CalculatePeriod(ChA);
-    float period1 = CalculatePeriod(ChB);
+    float period0 = CalculatePeriod(ChA.value);
+    float period1 = CalculatePeriod(ChB.value);
 
     EXIT_IF_ERRORS_FLOAT(period0, period1);
 
@@ -873,15 +873,15 @@ float Processing::CalculateDelayMinus(Channel::E ch)
         return ERROR_VALUE_FLOAT;
     }
 
-    float average0 = CalculateAverageRel(ChA);
-    float average1 = CalculateAverageRel(ChB);
+    float average0 = CalculateAverageRel(ChA.value);
+    float average1 = CalculateAverageRel(ChB.value);
 
     EXIT_IF_ERRORS_FLOAT(average0, average1);
 
     float averageFirst = (ch == ChA) ? average0 : average1;
     float averageSecond = (ch == ChA) ? average1 : average0;
-    Channel::E firstChannel = (ch == ChA) ? ChA : ChB;
-    Channel::E secondChannel = (ch == ChA) ? ChB : ChA;
+    Channel::E firstChannel = (ch == ChA) ? ChA.value : ChB.value;
+    Channel::E secondChannel = (ch == ChA) ? ChB.value : ChA.value;
 
     float firstIntersection = FindIntersectionWithHorLine(firstChannel, 1, false, static_cast<uint8>(averageFirst));
     float secondIntersection = FindIntersectionWithHorLine(secondChannel, 1, false, static_cast<uint8>(averageSecond));

@@ -29,9 +29,9 @@ static void SetCursPosT(Channel::E ch, int numCur, float pos);           // Уста
 #define MAX_POS_T   280
 
 
-void SetCursSource(Channel::E ch)
+void SetCursSource(const Channel &ch)
 {
-    CURS_SOURCE = ch;
+    CURS_SOURCE = ch.value;
 }
 
 
@@ -197,8 +197,7 @@ static const arrayHints hintsSetSource =
 
 static void PressSB_Cursors_Source()
 {
-    Channel::E source = CURS_SOURCE_A ? ChB : ChA;
-    SetCursSource(source);
+    SetCursSource(CURS_SOURCE_A ? ChB : ChA);
 }
 
 static void DrawSB_Cursors_Source(int x, int y)

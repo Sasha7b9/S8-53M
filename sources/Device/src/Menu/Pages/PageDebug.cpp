@@ -270,7 +270,7 @@ DEF_PAGE_3(pageBalanceADC, PageDebug::PageADC::self, NamePage::DebugADCbalance,
     nullptr, nullptr, nullptr, nullptr
 )
 
-void PageDebug::LoadStretchADC(Channel::E ch)
+void PageDebug::LoadStretchADC(const Channel &ch)
 {
     if (DEBUG_STRETCH_ADC_TYPE_IS_DISABLED)
     {

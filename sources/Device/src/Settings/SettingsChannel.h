@@ -45,4 +45,4 @@
 
 
 // Установить масштаб по напряжению канала chan.
-void sChannel_SetRange(Channel::E ch, Range::E range);
+void sChannel_SetRange(const Channel &ch, Range::E range);

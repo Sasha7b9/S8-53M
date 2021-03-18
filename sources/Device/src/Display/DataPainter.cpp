@@ -29,7 +29,7 @@ void DataPainter::DrawData()
 }
 
 
-void DataPainter::DrawDataChannel(uint8 *data, Channel::E ch, DataSettings *ds, int min_y, int max_y)
+void DataPainter::DrawDataChannel(uint8 *data, const Channel &ch, DataSettings *ds, int min_y, int max_y)
 {
     float scaleY = static_cast<float>(max_y - min_y) / (MAX_VALUE - MIN_VALUE);
     float scaleX = Grid::Width() / 280.0F;
@@ -39,7 +39,7 @@ void DataPainter::DrawDataChannel(uint8 *data, Channel::E ch, DataSettings *ds, 
 
     SettingsDisplay::PointsOnDisplay(&firstPoint, &lastPoint);
 
-    Color::Channel(ch).SetAsCurrent();
+    ch.GetColor().SetAsCurrent();
 
     DrawSignalPointed(data, ds, firstPoint, lastPoint, min_y, max_y, scaleY, scaleX);
 }
@@ -185,7 +185,7 @@ void DataPainter::DrawSignalPointed(puchar data, const DataSettings *ds, int sta
 
 // shiftForPeakDet - если рисуем информацию с пикового детектора - то через shiftForPeakDet точек расположена
 // иниформация о максимумах.
-void DataPainter::DrawDataInRect(int x, int width, puchar data, int numElems, Channel::E ch, int shiftForPeakDet)
+void DataPainter::DrawDataInRect(int x, int width, puchar data, int numElems, const Channel &ch, int shiftForPeakDet)
 {
     if (numElems == 0)
     {
@@ -268,12 +268,12 @@ void DataPainter::DrawDataInRect(int x, int width, puchar data, int numElems, Ch
     }
     if (width < 256)
     {
-        VLineArray().Draw(x, width, points, Color::Channel(ch));
+        VLineArray().Draw(x, width, points, ch.GetColor());
     }
     else
     {
-        VLineArray().Draw(x, 255, points, Color::Channel(ch));
-        VLineArray().Draw(x + 255, width - 255, points + 255 * 2, Color::Channel(ch));
+        VLineArray().Draw(x, 255, points, ch.GetColor());
+        VLineArray().Draw(x + 255, width - 255, points + 255 * 2, ch.GetColor());
     }
 }
 

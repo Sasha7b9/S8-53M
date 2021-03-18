@@ -41,7 +41,6 @@ struct Color
     void SetAsCurrent() const;
 
     static Color GetCurrent() { return Color(current); };
-    static Color Channel(const Channel &ch);
     static Color Cursors(Channel::E cnan);
 
     static Color Trig();

@@ -192,8 +192,10 @@ void Display::WriteCursors()
 
         HLine().Draw(x, 1, Grid::TOP - 2, Color::FILL);
         x += 3;
-        Channel::E source = CURS_SOURCE;
-        Color colorText = Color::Channel(source);
+        Channel source = CURS_SOURCE;
+
+        Color colorText = source.GetColor();
+
         if(!CURS_CNTRL_U_IS_DISABLE(source))
         {
             Text("1:").Draw(x, y1, colorText);
@@ -214,6 +216,7 @@ void Display::WriteCursors()
         x = startX + 101;
         HLine().Draw(x, 1, Grid::TOP - 2, Color::FILL);
         x += 3;
+
         if(!CURS_CNTRL_T_IS_DISABLE(source))
         {
             colorText.SetAsCurrent();
@@ -847,21 +850,21 @@ void Display::DrawCursorRShift(const Channel &ch)
 
     if(y > Grid::ChannelBottom())
     {
-        Char(Symbol::S8::RSHIFT_LOWER).Draw(static_cast<int>(x - 7), Grid::ChannelBottom() - 11, Color::Channel(ch));
+        Char(Symbol::S8::RSHIFT_LOWER).Draw(static_cast<int>(x - 7), Grid::ChannelBottom() - 11, ch.GetColor());
         Point().Draw(static_cast<int>(x - 5), Grid::ChannelBottom() - 2);
         y = static_cast<float>(Grid::ChannelBottom() - 7);
         x++;
     }
     else if(y < Grid::TOP)
     {
-        Char(Symbol::S8::RSHIFT_ABOVE).Draw(static_cast<int>(x - 7), Grid::TOP + 2, Color::Channel(ch));
+        Char(Symbol::S8::RSHIFT_ABOVE).Draw(static_cast<int>(x - 7), Grid::TOP + 2, ch.GetColor());
         Point().Draw(static_cast<int>(x - 5), Grid::TOP + 2);
         y = Grid::TOP + 7;
         x++;
     }
     else
     {
-        Char(Symbol::S8::RSHIFT_NORMAL).Draw(static_cast<int>(x - 8), static_cast<int>(y - 4), Color::Channel(ch));
+        Char(Symbol::S8::RSHIFT_NORMAL).Draw(static_cast<int>(x - 8), static_cast<int>(y - 4), ch.GetColor());
         if(((ch == ChA) ? showLevelRShiftA : showLevelRShiftB) && MODE_WORK_IS_DIRECT) //-V2570
         {
             DashedHLine(7, 3).Draw(static_cast<int>(y), Grid::Left(), Grid::Right(), 0);
@@ -877,7 +880,7 @@ void Display::DrawCursorRShift(const Channel &ch)
 
         float yFull = Grid::ChannelCenterHeight() - scaleFull * (rShift - RShiftZero);
 
-        Region(4, 6).Fill(4, static_cast<int>(yFull - 3), Color::Channel(ch));
+        Region(4, 6).Fill(4, static_cast<int>(yFull - 3), ch.GetColor());
         Char(ch == ChA ? '1' : '2').Draw(5, static_cast<int>(yFull - 9), Color::BACK);
     }
     Char(ch == ChA ? '1' : '2').Draw(static_cast<int>(x - 7), static_cast<int>(y - 9), Color::BACK);
@@ -1067,16 +1070,16 @@ void Display::DrawMeasures()
                 }
                 if(MEAS_SOURCE_IS_A)
                 {
-                    Processing::GetStringMeasure(meas, Channel::A).Draw(x + 2, y + 11, Color::Channel(ChA));
+                    Processing::GetStringMeasure(meas, Channel::A).Draw(x + 2, y + 11, ChA.GetColor());
                 }
                 else if(MEAS_SOURCE_IS_B)
                 {
-                    Processing::GetStringMeasure(meas, Channel::B).Draw(x + 2, y + 11, Color::Channel(ChB));
+                    Processing::GetStringMeasure(meas, Channel::B).Draw(x + 2, y + 11, ChA.GetColor());
                 }
                 else
                 {
-                    Processing::GetStringMeasure(meas, Channel::A).Draw(x + 2, y + 11, Color::Channel(ChA));
-                    Processing::GetStringMeasure(meas, Channel::B).Draw(x + 2, y + 20, Color::Channel(ChB));
+                    Processing::GetStringMeasure(meas, Channel::A).Draw(x + 2, y + 11, ChA.GetColor());
+                    Processing::GetStringMeasure(meas, Channel::B).Draw(x + 2, y + 20, ChB.GetColor());
                 }
             }
         }
@@ -1122,7 +1125,7 @@ void Display::WriteTextVoltage(const Channel &ch, int x, int y)
 
     if(enable)
     {
-        Color color = Color::Channel(ch);
+        Color color = ch.GetColor();
         Color colorDraw = inverse ? Color::WHITE : color;
 
         if(inverse)

@@ -69,7 +69,7 @@ struct PageDebug
 {
     static const Page *self;
 
-    static void LoadStretchADC(Channel::E);
+    static void LoadStretchADC(const Channel &);
 
     struct PageSerialNumber
     {

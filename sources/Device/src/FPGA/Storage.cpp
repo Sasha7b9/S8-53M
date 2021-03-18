@@ -308,7 +308,7 @@ bool Storage::GetDataFromEnd(int fromEnd, DataSettings **ds, uint8 **data0, uint
 }
 
 
-uint8* Storage::GetData(Channel::E ch, int fromEnd)
+uint8* Storage::GetData(const Channel &ch, int fromEnd)
 {
     static uint8 dataImportRel[2][FPGA_MAX_POINTS];
     DataSettings* dp = FromEnd(fromEnd);
@@ -321,7 +321,7 @@ uint8* Storage::GetData(Channel::E ch, int fromEnd)
 }
 
 
-bool Storage::CopyData(DataSettings *ds, Channel::E ch, uint8 datatImportRel[2][FPGA_MAX_POINTS])
+bool Storage::CopyData(DataSettings *ds, const Channel &ch, uint8 datatImportRel[2][FPGA_MAX_POINTS])
 {
     if((ch == ChA && ds->enableCh0 == 0) || (ch == ChB && ds->enableCh1 == 0))
     {

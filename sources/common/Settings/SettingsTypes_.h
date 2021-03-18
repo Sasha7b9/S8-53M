@@ -316,9 +316,6 @@ struct PeackDetMode
 };
 
 
-#define ChA Channel(Channel::A)
-#define ChB Channel(Channel::B)
-
 struct Channel
 {
     enum E
@@ -334,8 +331,11 @@ struct Channel
     bool IsA() const    { return (value == Channel::A); }
     bool IsMath() const { return (value == Channel::Math); }
     operator int() const { return (int)value; }
+    Color GetColor() const;
 };
 
+extern Channel ChA;
+extern Channel ChB;
 
 // –ежим канала по входу.
 struct ModeCouple
@@ -347,7 +347,7 @@ struct ModeCouple
         GND      // ¬ход заземлЄн.
     };
 
-    static void Set(Channel::E ch, ModeCouple::E mode);
+    static void Set(const Channel &ch, ModeCouple::E mode);
 };
 
 
@@ -372,9 +372,9 @@ struct Range
         Count
     };
 
-    static void Load(Channel::E ch);
+    static void Load(const Channel &ch);
 
-    static void Set(Channel::E ch, Range::E range);
+    static void Set(const Channel &ch, Range::E range);
 
     static bool Increase(Channel::E ch);
 
@@ -393,7 +393,7 @@ struct RShift
 {
     static void Set(const Channel &ch, int16 rShift);
 
-    static void Load(Channel::E ch);
+    static void Load(const Channel &ch);
 
     static int ToRel(float rshift_abs, Range::E range);
 
@@ -711,5 +711,5 @@ struct RegUPR
 // ‘ильтр по входу канала
 struct ChannelFiltr
 {
-    static void Enable(Channel::E ch, bool enable);
+    static void Enable(const Channel &ch, bool enable);
 };

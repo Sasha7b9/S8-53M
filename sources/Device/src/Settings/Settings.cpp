@@ -49,7 +49,7 @@ static const Settings defaultSettings =
         ENumMinMax::_1,             // enumMinMax
         Smoothing::Disable,         // smoothing
         ENumSignalsInSec::_25,      // num signals in one second
-        ChA,                          // lastAffectedChannel
+        Channel::A,                 // lastAffectedChannel
         ModeAccumulation::NoReset,  // modeAccumulation
         AltMarkers::Show,           // altMarkers
         MenuAutoHide::None,         // menuAutoHide
@@ -108,18 +108,18 @@ static const Settings defaultSettings =
     },
     // cursors
     {
-        { CursCntrl::Disable, CursCntrl::Disable },   // CursCntrl U
-        { CursCntrl::Disable, CursCntrl::Disable },   // CursCntrl T
-        ChA,                                      // source
-        { 60.0F,  140.0F, 60.0F, 140.0F },          // posCur U
-        { 80.0F,  200.0F, 80.0F, 200.0F },          // posCur T
-        { 80.0F,  80.0F },                          // расстояние между курсорами напряжения для 100%
-        { 120.0F, 120.0F },                         // расстояние между курсорами времени для 100%
-        CursMovement::Points,                        // CursMovement
-        CursActive::None,                            // CursActive
-        { CursLookMode::None, CursLookMode::None },   // Режим слежения курсоров.
-        false,                                      // showFreq
-        false                                       // showCursors
+        { CursCntrl::Disable, CursCntrl::Disable },     // CursCntrl U
+        { CursCntrl::Disable, CursCntrl::Disable },     // CursCntrl T
+        Channel::A,                                     // source
+        { 60.0F,  140.0F, 60.0F, 140.0F },              // posCur U
+        { 80.0F,  200.0F, 80.0F, 200.0F },              // posCur T
+        { 80.0F,  80.0F },                              // расстояние между курсорами напряжения для 100%
+        { 120.0F, 120.0F },                             // расстояние между курсорами времени для 100%
+        CursMovement::Points,                           // CursMovement
+        CursActive::None,                               // CursActive
+        { CursLookMode::None, CursLookMode::None },     // Режим слежения курсоров.
+        false,                                          // showFreq
+        false                                           // showCursors
     },
     // memory
     {

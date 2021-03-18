@@ -27,7 +27,7 @@ struct ReaderFPGA
 private:
 
     // Инвертирует данные.
-    static void InverseDataIsNecessary(Channel::E ch, uint8 *data);
+    static void InverseDataIsNecessary(const Channel &ch, uint8 *data);
 
     static int CalculateShift();
 
@@ -39,5 +39,5 @@ private:
 
     static uint16 ReadAddressStop();
 
-    static void ReadChannel(uint8 *data, Channel::E ch, uint16 addr_stop);
+    static void ReadChannel(uint8 *data, const Channel &ch, uint16 addr_stop);
 };

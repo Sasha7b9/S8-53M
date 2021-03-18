@@ -140,9 +140,9 @@ void FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::E type)
 }
 
 
-void Range::Set(Channel::E ch, Range::E range)
+void Range::Set(const Channel &ch, Range::E range)
 {
-    if (!sChannel_Enabled(ch))
+    if (!ch.IsEnabled())
     {
         return;
     }
@@ -165,7 +165,7 @@ void Range::Set(Channel::E ch, Range::E range)
 };
 
 
-void Range::Load(Channel::E ch)
+void Range::Load(const Channel &ch)
 {
     FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::Range0);
     RShift::Load(ch);
@@ -227,7 +227,7 @@ void TBase::Load()
 }
 
 
-void RShift::Load(Channel::E ch)
+void RShift::Load(const Channel &ch)
 {
     static const uint16 mask[2] = {0x2000, 0x6000};
 
@@ -331,7 +331,7 @@ void RegUPR::Load()
 }
 
 
-void FPGA::Calibrator::LoadKoeff(Channel::E /*chan*/)
+void FPGA::Calibrator::LoadKoeff(const Channel & /*chan*/)
 {
 //    FPGA::WriteToHardware(ch == ChA ? WR_CAL_A : WR_CAL_B, static_cast<uint8>(STRETCH_ADC(ch) * 0x80), false);
 }
@@ -496,7 +496,7 @@ void TrigInput::Set(E trigInput)
 }
 
 
-void ChannelFiltr::Enable(Channel::E ch, bool enable)
+void ChannelFiltr::Enable(const Channel &ch, bool enable)
 {
     SET_FILTR(ch) = enable;
     FPGA::BUS::SetAttribChannelsAndTrig(ch == ChA ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);

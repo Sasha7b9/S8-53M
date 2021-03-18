@@ -12,6 +12,10 @@
 bool TrigLev::need_auto_find = false;
 
 
+Channel ChA(Channel::A);
+Channel ChB(Channel::B);
+
+
 int Divider::ToAbs(Divider::E multiplier)
 {
     static const int results[2] = { 1, 10 };
@@ -175,9 +179,9 @@ pchar TBase::ToStringEN(TBase::E tbase)
 }
 
 
-void RShift::Set(Channel::E ch, int16 rShift)
+void RShift::Set(const Channel &ch, int16 rShift)
 {
-    if (!sChannel_Enabled(ch))
+    if (!ch.IsEnabled())
     {
         return;
     }
@@ -248,7 +252,7 @@ void TBase::Increase()
 
 void TBase::Set(TBase::E tBase)
 {
-    if (!sChannel_Enabled(ChA) && !sChannel_Enabled(ChB))
+    if (!ChA.IsEnabled() && !ChB.IsEnabled())
     {
         return;
     }
@@ -269,7 +273,7 @@ void TBase::Set(TBase::E tBase)
 
 void TShift::Set(int tShift)
 {
-    if (!sChannel_Enabled(ChA) && !sChannel_Enabled(ChB))
+    if (!ChA.IsEnabled() && !ChB.IsEnabled())
     {
         return;
     }
@@ -293,7 +297,7 @@ void PeackDetMode::Set(PeackDetMode::E peackDetMode)
 }
 
 
-void ModeCouple::Set(Channel::E ch, ModeCouple::E modeCoupe)
+void ModeCouple::Set(const Channel &ch, ModeCouple::E modeCoupe)
 {
     SET_COUPLE(ch) = modeCoupe;
     FPGA::BUS::SetAttribChannelsAndTrig(ch == ChA ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
@@ -301,15 +305,15 @@ void ModeCouple::Set(Channel::E ch, ModeCouple::E modeCoupe)
 }
 
 
-bool Channel::IsEnabaled()
+bool Channel::IsEnabled() const
 {
-    if (ch == Channel::Math)
+    if (value == Channel::Math)
     {
         return !DISABLED_DRAW_MATH;
     }
-    if (ch == Channel::A_B)
+    if (value == Channel::A_B)
     {
         return false;
     }
-    return SET_ENABLED(ch);
+    return SET_ENABLED(value);
 }

@@ -16,7 +16,7 @@ public:
 
 private:
 
-    static void DrawDataChannel(uint8 *data, Channel::E ch, DataSettings *ds, int min_y, int max_y);
+    static void DrawDataChannel(uint8 *data, const Channel &ch, DataSettings *ds, int min_y, int max_y);
 
     static void DrawSignalLined(puchar data, const DataSettings *ds, int start_i, int end_i, int min_y,
         int max_y, float scale_y, float scale_x, bool calculate_filtr);
@@ -24,7 +24,7 @@ private:
     static void DrawSignalPointed(puchar data, const DataSettings *ds, int start_i, int end_i, int min_y,
         int max_y, float scale_y, float scale_x);
 
-    static void DrawDataInRect(int x, int width, puchar data, int numElems, Channel::E ch, int shiftForPeakDet);
+    static void DrawDataInRect(int x, int width, puchar data, int numElems, const Channel &ch, int shiftForPeakDet);
 
     // Нарисовать сигнал точками
     // start_x    - координата x первой точки

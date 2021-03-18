@@ -9,7 +9,7 @@
 #include "VCP/SCPI/Utils/MapSCPI.h"
 
 
-static Channel::E ch = ChA;
+static Channel &ch = ChA;
 
 
 
@@ -48,7 +48,7 @@ void SCPI::CHANNEL::INPUT(puchar buffer)
         else if (1 == value)    { SET_ENABLED(ch) = false; }
         else if (2 == value)
         {
-            SCPI_SEND(":CHANNEL%d:INPUT %s", Tables::GetNumChannel(ch), sChannel_Enabled(ch) ? "ON" : "OFF");
+            SCPI_SEND(":CHANNEL%d:INPUT %s", Tables::GetNumChannel(ch), ch.IsEnabled() ? "ON" : "OFF");
         }
     LEAVE_ANALYSIS
 }

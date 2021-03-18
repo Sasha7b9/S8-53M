@@ -179,7 +179,7 @@ public:
     struct Calibrator
     {
         // Загрузить в аппарат коэффициенты калибровки каналов.
-        static void LoadKoeff(Channel::E ch);
+        static void LoadKoeff(const Channel &ch);
 
         // Запуск функции калибровки.
         static void ProcedureCalibration();

@@ -26,7 +26,7 @@ public:
     // ѕолучить указатель на данные
     static bool GetDataFromEnd(int fromEnd, DataSettings **ds, uint8 **data0, uint8 **data1);
 
-    static uint8* GetData(Channel::E ch, int fromEnd);
+    static uint8* GetData(const Channel &ch, int fromEnd);
     // ѕолучить усреднЄнные данные по нескольким измерени€м.
     static uint8* GetAverageData(Channel::E ch);
     // —колько всего измерений сохранено в пам€ти.
@@ -74,7 +74,7 @@ private:
 
     static DataSettings* GetSettingsDataFromEnd(int fromEnd);
     //  опирует данные канала chan из, определ€емые ds, в одну из двух строк массива dataImportRel. ¬озвращаемое значение false означает, что данный канал выключен.
-    static bool CopyData(DataSettings *ds, Channel::E ch, uint8 datatImportRel[NumChannels][FPGA_MAX_POINTS]);
+    static bool CopyData(DataSettings *ds, const Channel &ch, uint8 datatImportRel[NumChannels][FPGA_MAX_POINTS]);
 
     static void PrintElement(DataSettings *dp);
     

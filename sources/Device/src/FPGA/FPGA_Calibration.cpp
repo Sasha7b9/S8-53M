@@ -17,12 +17,12 @@
 using namespace Primitives;
 
 
-static int16    CalculateAdditionRShift(Channel::E ch, Range::E range);	// Измерить добавочное смещение канала по напряжению.
-static float    CalculateKoeffCalibration(Channel::E ch);			// Измерить коэффициент калибровки канала по напряжению.
+static int16    CalculateAdditionRShift(const Channel &ch, Range::E range);	// Измерить добавочное смещение канала по напряжению.
+static float    CalculateKoeffCalibration(const Channel &ch);			// Измерить коэффициент калибровки канала по напряжению.
 static void     AlignmentADC();
 static void     FuncAttScreen();								// Функция обновления экрана в режиме калибровки.
-static float    CalculateDeltaADC(Channel::E ch, float *avgADC1, float *avgADC2, float *delta);
-static void     DrawParametersChannel(Channel::E ch, int x, int y, bool inProgress);
+static float    CalculateDeltaADC(const Channel &ch, float *avgADC1, float *avgADC2, float *delta);
+static void     DrawParametersChannel(const Channel &ch, int x, int y, bool inProgress);
 
 static float deltaADC[2] = {0.0F, 0.0F};
 static float deltaADCPercents[2] = {0.0F, 0.0F};
@@ -306,7 +306,7 @@ void FuncAttScreen()
 }
 
 
-void DrawParametersChannel(Channel::E ch, int eX, int eY, bool inProgress)
+void DrawParametersChannel(const Channel &ch, int eX, int eY, bool inProgress)
 {
     Color::FILL.SetAsCurrent();
     if(inProgress)
@@ -341,7 +341,7 @@ void DrawParametersChannel(Channel::E ch, int eX, int eY, bool inProgress)
 }
 
 
-float CalculateDeltaADC(Channel::E ch, float *avgADC1, float *avgADC2, float *delta)
+float CalculateDeltaADC(const Channel &ch, float *avgADC1, float *avgADC2, float *delta)
 {
     uint *startTime = (ch == ChA) ? &startTimeChan0 : &startTimeChan1;
     *startTime = TIME_MS;
@@ -350,8 +350,8 @@ float CalculateDeltaADC(Channel::E ch, float *avgADC1, float *avgADC2, float *de
     bar->passedTime = 0;
     bar->fullTime = 0;
 
-    TrigSource::Set((TrigSource::E)ch);
-    TrigLev::Set((TrigSource::E)ch, TrigLevZero);
+    TrigSource::Set((TrigSource::E)ch.value);
+    TrigLev::Set((TrigSource::E)ch.value, TrigLevZero);
 
     uint16 *address1 = (ch == ChA) ? RD_ADC_A : RD_ADC_B;
     uint16 *address2 = (ch == ChA) ? RD_ADC_A : RD_ADC_B;
@@ -409,14 +409,14 @@ void AlignmentADC()
 }
 
 
-int16 CalculateAdditionRShift(Channel::E ch, Range::E range)
+int16 CalculateAdditionRShift(const Channel &ch, Range::E range)
 {
     Range::Set(ch, range);
     RShift::Set(ch, RShiftZero);
     TBase::Set(TBase::_200us);
     TrigSource::Set(ch == ChA ? TrigSource::A_ : TrigSource::B_);
     TrigPolarity::Set(TrigPolarity::Front);
-    TrigLev::Set((TrigSource::E)ch, TrigLevZero);
+    TrigLev::Set((TrigSource::E)ch.value, TrigLevZero);
 
     FPGA::BUS::WriteWithoutStart(WR_UPR, BIN_U8(00000000));   // Устанавливаем выход калибратора в ноль
 
@@ -474,14 +474,14 @@ int16 CalculateAdditionRShift(Channel::E ch, Range::E range)
 }
 
 
-float CalculateKoeffCalibration(Channel::E ch)
+float CalculateKoeffCalibration(const Channel &ch)
 {
     FPGA::BUS::WriteWithoutStart(WR_UPR, BIN_U8(00000100));
 
     RShift::Set(ch, RShiftZero - 40 * 4);
     ModeCouple::Set(ch, ModeCouple::DC);
-    TrigSource::Set((TrigSource::E)ch);
-    TrigLev::Set((TrigSource::E)ch, TrigLevZero + 40 * 4);
+    TrigSource::Set((TrigSource::E)ch.value);
+    TrigLev::Set((TrigSource::E)ch.value, TrigLevZero + 40 * 4);
     
     int numMeasures = 16;
     int sumMIN = 0;
