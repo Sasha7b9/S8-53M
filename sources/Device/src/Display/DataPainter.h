@@ -31,10 +31,6 @@ public:
 
 private:
 
-    static void DrawDataNormal();
-
-    static void DrawDataInModeNormal();
-
     static void DrawBothChannels();
 
     static void DrawDataChannel(uint8 *data, Channel::E chan, DataSettings *ds, int min_y, int max_y);
@@ -81,4 +77,6 @@ private:
     // start_x    - координата x первой точки
     // T может быть uint8 - если данные находятся во встроенном ОЗУ, или uint16 - если данные находятся во внешнем ОЗУ
     static void DrawPoints(uint8 *y, const int start_x, int num_points, const Color &color = Color::Count);
+    // Аналогично DrawPoints(), только в y идут попарно координаты низа и верха
+    static void DrawLines(uint8 *y, const int start_x, int num_lines, const Color &color = Color::Count);
 };

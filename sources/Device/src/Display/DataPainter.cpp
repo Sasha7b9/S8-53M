@@ -28,89 +28,9 @@ int DataPainter::lastP2Pdata = 0;
 
 void DataPainter::DrawData()
 {
-    DrawDataNormal();
-
-    //    if (Storage::AllDatas())
-    //    {
-    //        if (MODE_WORK_IS_MEMINT)
-    //        {
-    //            if (!MODE_SHOW_MEMINT_IS_DIRECT)
-    //            {
-    //                DrawDataMemInt();
-    //            }
-    //            if (!MODE_SHOW_MEMINT_IS_SAVED)
-    //            {
-    //                DrawDataNormal();
-    //            }
-    //        }
-    //        else if (MODE_WORK_IS_LATEST)
-    //        {
-    //            DrawDataInModeWorkLatest();
-    //        }
-    //        else
-    //        {
-    //            if (PageMemory::PageInternal::showAlways)
-    //            {
-    //                DrawDataMemInt();
-    //            }
-    //            DrawDataNormal();
-    //        }
-    //
-    //        if (NUM_MIN_MAX != 1)
-    //        {
-    //            DrawDataMinMax();
-    //        }
-    //    }
-
-    Primitives::Rectangle(Grid::Width(), Grid::FullHeight()).Draw(Grid::Left(), Grid::TOP, Color::FILL);
-}
-
-
-void DataPainter::DrawDataNormal()
-{
-    DrawDataInModeNormal();
-
-//    if (!dataP2PIsEmpty)
-//    {
-//        static const pFuncVV funcs[2] = {DrawDataInModePoint2Point, DrawDataInModeSelfRecorder};
-//        funcs[(int)SET_SELFRECORDER]();
-//    }
-//    else
-//    {
-//        DrawDataInModeNormal();
-//    }
-}
-
-
-void DataPainter::DrawDataInModeNormal()
-{
     DrawBothChannels();
 
-    //    static void* prevAddr = 0;
-    //
-    //    uint8 *data0 = 0;
-    //    uint8 *data1 = 0;
-    //    DataSettings *ds = 0;
-    //    Processing::GetData(&data0, &data1, &ds);
-    //
-    //    int16 numSignals = (int16)Storage::NumElementsWithSameSettings();
-    //    LIMITATION(numSignals, numSignals, 1, NUM_ACCUM);
-    //    if (numSignals == 1 || ENUM_ACCUM_IS_INFINITY || MODE_ACCUM_IS_RESET || sTime_RandomizeModeEnabled())
-    //    {
-    //        DrawBothChannels(0, 0);
-    //        if (prevAddr == 0 || prevAddr != ds->addrPrev)
-    //        {
-    //            numDrawingSignals++;
-    //            prevAddr = ds->addrPrev;
-    //        }
-    //    }
-    //    else
-    //    {
-    //        for (int i = 0; i < numSignals; i++)
-    //        {
-    //            DrawBothChannels(Storage::GetData(ChA, i), Storage::GetData(ChB, i));
-    //        }
-    //    }
+    Primitives::Rectangle(Grid::Width(), Grid::FullHeight()).Draw(Grid::Left(), Grid::TOP, Color::FILL);
 }
 
 
