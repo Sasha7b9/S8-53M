@@ -30,13 +30,11 @@ String sCursors_GetCursVoltage(Channel::E source, int numCur)
 }
 
 
-const char* sCursors_GetCursorTime(Channel::E source, int numCur, char buffer[20])
+String sCursors_GetCursorTime(Channel::E source, int numCur)
 {
     float time = MathFPGA::TimeCursor(CURS_POS_T(source, numCur), SET_TBASE);
 
-    std::strcpy(buffer, GF::Time2String(time, true).c_str());
-        
-    return buffer;
+    return GF::Time2String(time, true);
 }
 
 

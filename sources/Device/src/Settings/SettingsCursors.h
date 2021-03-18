@@ -66,13 +66,18 @@ struct SettingsCursors
 
 // Получить позицию курсора напряжения.
 float sCursors_GetCursPosU(Channel::E ch, int numCur);
+
 // Возвращает true,если нужно рисовать курсоры.
 bool sCursors_NecessaryDrawCursors();
+
 // Получить строку курсора напряжения.
 String sCursors_GetCursVoltage(Channel::E source, int numCur);
+
 // Получить строку курсора времени.
-const char* sCursors_GetCursorTime(Channel::E source, int numCur, char buffer[20]);
+String sCursors_GetCursorTime(Channel::E source, int numCur);
+
 // Получить строку процентов курсоров напряжения.
 String sCursors_GetCursorPercentsU(Channel::E source);
+
 // Получить строку процентов курсоров времени.
 String sCursors_GetCursorPercentsT(Channel::E source);

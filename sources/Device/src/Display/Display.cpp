@@ -220,8 +220,8 @@ void Display::WriteCursors()
             Text("1:").Draw(x, y1);
             Text("2:").Draw(x, y2);
             x+=7;
-            Text(sCursors_GetCursorTime(source, 0, buffer)).Draw(x, y1);
-            Text(sCursors_GetCursorTime(source, 1, buffer)).Draw(x, y2);
+            sCursors_GetCursorTime(source, 0).Draw(x, y1);
+            sCursors_GetCursorTime(source, 1).Draw(x, y2);
             x = startX + 153;
             float pos0 = MathFPGA::TimeCursor(CURS_POS_T0(source), SET_TBASE);
             float pos1 = MathFPGA::TimeCursor(CURS_POS_T1(source), SET_TBASE);
