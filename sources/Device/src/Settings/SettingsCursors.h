@@ -66,20 +66,20 @@ struct SettingsCursors
 struct Cursors
 {
     // Получить позицию курсора напряжения.
-    static float GetCursPosU(const Channel &ch, int num);
+    static float GetPosU(const Channel &ch, int num);
 
     // Возвращает true,если нужно рисовать курсоры.
-    static bool NecessaryDrawCursors();
+    static bool NecessaryDraw();
 
     // Получить строку курсора напряжения.
-    static String GetCursVoltage(const Channel &source, int numCur);
+    static String GetVoltage(const Channel &source, int numCur);
 
     // Получить строку курсора времени.
-    static String GetCursorTime(const Channel &source, int numCur);
+    static String GetTime(const Channel &source, int numCur);
 
     // Получить строку процентов курсоров напряжения.
-    static String GetCursorPercentsU(const Channel &source);
+    static String GetPercentsU(const Channel &source);
 
     // Получить строку процентов курсоров времени.
-    static String GetCursorPercentsT(const Channel &source);
+    static String GetPercentsT(const Channel &source);
 };
