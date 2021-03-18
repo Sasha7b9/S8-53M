@@ -1,5 +1,6 @@
 #pragma once
 #include "common/Panel/Controls_.h"
+#include "common/Utils/String_.h"
 #include "Menu/Items/MenuItems.h"
 
 
@@ -45,7 +46,7 @@ public:
     static Item *ItemUnderKey();
 
     // ¬озвращает путь к текущему пункту меню в текстовом виде, готовом к выводу на экран.
-    static char *StringNavigation(char buffer[100]);
+    static String StringNavigation();
 
     static void OpenItemTime();
 

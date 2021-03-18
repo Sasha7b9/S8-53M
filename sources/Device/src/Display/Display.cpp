@@ -58,15 +58,16 @@ static uint numDrawingSignals = 0;      // Число нарисованных сигналов для режим
 
 void Display::DrawStringNavigation() 
 {
-    char buffer[100];
-    char *string = Menu::StringNavigation(buffer);
-    if(string) 
+    String string = Menu::StringNavigation();
+
+    int length = string.Size();
+
+    if(length != 0) 
     {
-        int length = Font::GetLengthText(string);
         int height = 10;
         Primitives::Rectangle(length + 2, height).Draw(Grid::Left(), Grid::TOP, Color::FILL);
         Region(length, height - 2).Fill(Grid::Left() + 1, Grid::TOP + 1, Color::BACK);
-        Text(string).Draw(Grid::Left() + 2, Grid::TOP + 1, Color::FILL);
+        string.Draw(Grid::Left() + 2, Grid::TOP + 1, Color::FILL);
     }
 }
 

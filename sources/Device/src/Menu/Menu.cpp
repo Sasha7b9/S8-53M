@@ -287,37 +287,42 @@ void Menu::SetAutoHide(bool)
 }
 
 
-char* Menu::StringNavigation(char buffer[100])
+String Menu::StringNavigation()
 {
+    String result;
+
     if(SHOW_STRING_NAVIGATION && IsShown())
     {
-        buffer[0] = 0;
         pchar titles[10] = {0};
         int numTitle = 0;
         const Item *item = Item::Opened();
+
         if(IsMainPage(item))
         {
-            return 0;
+            return result;
         }
+
         while(!IsMainPage(item))
         {
             titles[numTitle++] = item->Title();
             item = item->Keeper();
         }
+
         for(int i = 9; i >= 0; i--)
         {
             if(titles[i])
             {
-                std::strcat(buffer, titles[i]); //-V2513
+                result.Append(titles[i]);
+
                 if(i != 0)
                 {
-                    std::strcat(buffer, " - "); //-V2513
+                    result.Append(" - ");
                 }
             }
         }
-        return buffer;
     }
-    return 0;
+
+    return result;
 }
 
 
