@@ -3,6 +3,7 @@
 #include "common/Utils/Buffer_.h"
 
 
+//----------------------------------------------------------------------------------------------------------------------
 struct DataStorage
 {
     DataStorage();
@@ -27,6 +28,7 @@ private:
 };
 
 
+//----------------------------------------------------------------------------------------------------------------------
 struct RecordStorage
 {
 friend class Storage;
@@ -42,15 +44,17 @@ friend class Storage;
 
     // Возвращает адрес первого байта, следующего за записью
     uint8 *End() const;
-private:
-    RecordStorage *prev;        // Адрес предыдущей (более старой) записи
-    RecordStorage *next;        // Адрес следующей (более новой) записи
-    uint16 *dataStorage;        //
 
     DataStorage &Data() const;
+
+private:
+
+    RecordStorage *prev;        // Адрес предыдущей (более старой) записи
+    RecordStorage *next;        // Адрес следующей (более новой) записи
 };
 
 
+//----------------------------------------------------------------------------------------------------------------------
 class Storage
 {
     /*
@@ -64,6 +68,13 @@ class Storage
 public:
 
     static void Append(const DataStorage &data);
+
+    // Извлечь последние положенные данные
+    static DataStorage &ExtractLast();
+
+    // Извлечь данные, находящиеся на "расстоянии" from_end от последней записи (при from_end возвращает последнюю
+    // сохранённую запись)
+    static DataStorage &Extract(uint from_end);
 
     // Возвращает количество записей в хранилище
     static uint NumRecords();

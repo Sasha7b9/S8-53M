@@ -117,13 +117,15 @@ uint RecordStorage::Size() const
 
 uint RecordStorage::Size(const DataStorage &data) const
 {
-    return data.Size() + 2 * sizeof(RecordStorage *);
+    return data.Size() + sizeof(*this);
 }
 
 
 DataStorage &RecordStorage::Data() const
 {
-    return *(DataStorage *)dataStorage;
+    uint8 *address = Address() + sizeof(*this);
+
+    return *(DataStorage *)address;
 }
 
 
@@ -253,4 +255,24 @@ uint Storage::NumRecords()
     }
 
     return result;
+}
+
+
+DataStorage &Storage::ExtractLast()
+{
+    return Extract(0);
+}
+
+
+DataStorage &Storage::Extract(uint from_end)
+{
+    RecordStorage *record = Newest();
+
+    while (from_end != 0)
+    {
+        record = record->prev;
+        from_end--;
+    }
+
+    return record->Data();
 }
