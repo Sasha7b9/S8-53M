@@ -60,11 +60,9 @@ const char* sChannel_Range2String(Range::E range, Divider::E multiplier)
 }
 
 
-const char* sChannel_RShift2String(int16 rShiftRel, Range::E range, Divider::E multiplier, char buffer[20])
+String sChannel_RShift2String(int16 rShiftRel, Range::E range, Divider::E multiplier)
 {
     float rShiftVal = RSHIFT_2_ABS(rShiftRel, range) * Divider::ToAbs(multiplier);
 
-    std::strcpy(buffer, GF::Voltage2String(rShiftVal, true).c_str());
-
-    return buffer;
+    return GF::Voltage2String(rShiftVal, true);
 };

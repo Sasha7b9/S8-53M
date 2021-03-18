@@ -52,4 +52,4 @@ bool sChannel_Enabled(Channel::E ch);
 
 pchar sChannel_Range2String(Range::E range, Divider::E multiplier);
 
-pchar sChannel_RShift2String(int16 rShiftRel, Range::E range, Divider::E multiplier, char buffer[20]);
+String sChannel_RShift2String(int16 rShiftRel, Range::E range, Divider::E multiplier);

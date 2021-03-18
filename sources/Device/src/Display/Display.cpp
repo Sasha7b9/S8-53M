@@ -1120,9 +1120,7 @@ void Display::WriteTextVoltage(Channel::E ch, int x, int y)
 
         Text(buffer).Draw(x + 1, y, colorDraw);
 
-        char bufferTemp[20];
-        std::sprintf(buffer, "\xa5%s", sChannel_RShift2String((int16)rShift, range, multiplier, bufferTemp));
-        Text(buffer).Draw(x + 46, y);
+        Text("\xa5%s", sChannel_RShift2String((int16)rShift, range, multiplier).c_str()).Draw(x + 46, y);
     }
 }
 
