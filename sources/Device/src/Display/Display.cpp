@@ -1138,7 +1138,7 @@ void Display::WriteTextVoltage(const Channel &ch, int x, int y)
         String("%s\xa5%s\xa5%s", (ch == ChA) ? (LANG_RU ? "1ê" : "1c") : (LANG_RU ? "2ê" : "2c"), couple[modeCouple],
             Range::ToString(range, multiplier)).Draw(x + 1, y, colorDraw);
 
-        Text("\xa5%s", RShift::ToString((int16)rShift, range, multiplier).c_str()).Draw(x + 46, y);
+        String("\xa5%s", RShift::ToString((int16)rShift, range, multiplier).c_str()).Draw(x + 46, y);
     }
 }
 
