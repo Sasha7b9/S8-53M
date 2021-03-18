@@ -196,15 +196,6 @@ int String::Draw(int x, int y) const
 }
 
 
-void String::RemoveFromEnd()
-{
-    if(Size() > 0)
-    {
-        buffer[Size() - 1] = '\0';
-    }
-}
-
-
 int String::Size() const
 {
     if (buffer == nullptr)

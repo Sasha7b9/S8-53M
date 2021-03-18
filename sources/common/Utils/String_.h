@@ -30,8 +30,6 @@ public:
 
     void Append(char symbol);
     
-    void RemoveFromEnd();
-
     int Size() const;
 
     char &operator[](int i) const;
