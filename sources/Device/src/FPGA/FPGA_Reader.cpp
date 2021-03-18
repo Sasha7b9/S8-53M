@@ -204,7 +204,7 @@ void ReaderFPGA::ReadChannel(uint8 *data, const Channel &ch, uint16 addr_stop)
     uint16 *p = (uint16 *)data;
     uint16 *end = (uint16 *)(data + SET_POINTS_IN_CHANNEL);
 
-    uint16 *address = ADDRESS_READ(ch);
+    volatile uint16 *address = ADDRESS_READ(ch);
 
     addr_stop = *address;
 
