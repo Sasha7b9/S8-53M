@@ -17,9 +17,9 @@ uint16 * const HAL_FMC::ADDR_FPGA = (uint16 *)(ADDR_BANK + 0x00000000 + 0x100000
 
 uint16 *const HAL_FMC::ADDR_RAM_DISPLAY_FRONT = (uint16 *)(ADDR_RAM);
 
-uint16 *const HAL_FMC::ADDR_RAM_BEGIN = (uint16 *)(ADDR_RAM + 320 * 240);
+uint8 *const HAL_FMC::ADDR_RAM_BEGIN = (uint8 *)(ADDR_RAM + 320 * 240);
 
-uint16 *const HAL_FMC::ADDR_RAM_END = (uint16 *)(ADDR_RAM + 1024 * 1024);
+uint8 *const HAL_FMC::ADDR_RAM_END = (uint8 *)(ADDR_RAM + 1024 * 1024);
 
 
 void HAL_FMC::Write(uint16 * const address, uint16 value)

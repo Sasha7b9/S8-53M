@@ -35,6 +35,9 @@ friend class Storage;
 
     uint Size() const;
 
+    // Возвращает размер записи, когда в неё будут записаны данные data
+    uint Size(const DataStorage &data) const;
+
     uint8 *Address() const;
 
     // Возвращает адрес первого байта, следующего за записью
@@ -62,6 +65,9 @@ public:
 
     static void Append(const DataStorage &data);
 
+    // Возвращает количество записей в хранилище
+    static uint NumRecords();
+
 private:
 
     // Создаёт запись во внешнем ОЗУ для сохраенения data
@@ -72,6 +78,9 @@ private:
 
     // Самая новая запись (записана последней)
     static RecordStorage *Newest();
+
+    // Удаляет самую старую запись
+    static void DeleteOldest();
 
     static RecordStorage *addressOldestRecord;   // Здесь хранится адрес первой записи. Зная его, можно рассчитать все
                                                 // остальные адреса

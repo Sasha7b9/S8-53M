@@ -129,8 +129,8 @@ public:
 
     static uint16 *const ADDR_RAM_DISPLAY_FRONT;    // Видимое изображение дисплея. Находится в RAM и не может исполь-
                                                     // зоваться для других целей
-    static uint16 *const ADDR_RAM_BEGIN;            // Первый свободный адрес в RAM.
-    static uint16 *const ADDR_RAM_END;              // Указывает на первый недопустимый адрес RAM. Использовать можно
+    static uint8 *const ADDR_RAM_BEGIN;            // Первый свободный адрес в RAM.
+    static uint8 *const ADDR_RAM_END;              // Указывает на первый недопустимый адрес RAM. Использовать можно
                                                     // адреса [ADDR_RAM_BEGIN...(ADDR_RAM_END - 1)]
 };
 

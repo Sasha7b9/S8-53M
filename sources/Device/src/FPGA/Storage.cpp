@@ -111,7 +111,13 @@ uint8 *RecordStorage::Address() const
 
 uint RecordStorage::Size() const
 {
-    return Data().Size() + 2 * sizeof(RecordStorage *);
+    return Size(Data());
+}
+
+
+uint RecordStorage::Size(const DataStorage &data) const
+{
+    return data.Size() + 2 * sizeof(RecordStorage *);
 }
 
 
@@ -135,7 +141,7 @@ void Storage::Append(const DataStorage &data)
 }
 
 
-RecordStorage *Storage::Create(const DataStorage & /*data*/)
+RecordStorage *Storage::Create(const DataStorage &data)
 {
     RecordStorage *result = nullptr;
 
@@ -148,17 +154,59 @@ RecordStorage *Storage::Create(const DataStorage & /*data*/)
     }
     else
     {
-        if (Newest() >= Oldest())       // Если записи идут в "прямом" порядке - адрес последней больше адреса первой
-        {                               // (Это означает, что память ещё не заполнена либо же заполнена полностью)
-//            uint8 *address_next = Newest()->End();
+        uint need_memory = Oldest()->Size(data);
+
+        if (Newest() >= Oldest())          // Если записи идут в "прямом" порядке - адрес последней больше адреса первой
+        {                                  // (Это означает, что память ещё не заполнена либо же заполнена полностью)
+            uint8 *address = Newest()->End();                                   // Это предполагаемый адрес нашей записи
+
+            if (address + need_memory <= HAL_FMC::ADDR_RAM_END)                        // Если запись поместится в память
+            {
+                result = (RecordStorage *)address;
+            }
+            else                                                                  // Если запись не поместится в память
+            {                                                                     // то будем записывать в начало памяти
+                while (Oldest()->Address() - HAL_FMC::ADDR_RAM_BEGIN < (int)need_memory)
+                {
+                    DeleteOldest();
+                }
+
+                result = (RecordStorage *)HAL_FMC::ADDR_RAM_BEGIN;
+            }
+
+            Oldest()->next = result;
+            result->prev = Newest();
+            result->next = nullptr;
         }
         else
         {
+            while (Oldest()->Address() - Newest()->End() < (int)need_memory)
+            {
+                DeleteOldest();
+            }
 
+            result = (RecordStorage *)Newest()->End();
+
+            Newest()->next = result;
+            result->prev = Newest();
+            result->next = nullptr;
         }
     }
 
     return result;
+}
+
+
+void Storage::DeleteOldest()
+{
+    if (addressOldestRecord == nullptr)
+    {
+        return;
+    }
+
+    Oldest()->next->prev = nullptr;
+
+    addressOldestRecord = Oldest()->next;
 }
 
 
@@ -183,4 +231,26 @@ RecordStorage *Storage::Newest()
     }
 
     return record;
+}
+
+
+uint Storage::NumRecords()
+{
+    if (addressOldestRecord == nullptr)
+    {
+        return 0;
+    }
+
+    RecordStorage *record = Oldest();
+
+    uint result = 1;
+
+    while (record->next)
+    {
+        result++;
+
+        record = record->next;
+    }
+
+    return result;
 }
