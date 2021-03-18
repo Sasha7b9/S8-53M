@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "common/Utils/String_.h"
 #include "FDrive/FDrive.h"
 
 
@@ -18,9 +19,9 @@ void FDrive::GetNumDirsAndFiles(const char *, int *, int *)
 }
 
 
-bool FDrive::GetNameDir(const char *, int, char *, StructForReadDir *)
+String FDrive::GetNameDir(const char *, int, StructForReadDir *)
 {
-    return false;
+    return String("");
 }
 
 

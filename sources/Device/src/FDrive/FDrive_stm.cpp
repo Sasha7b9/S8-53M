@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "common/Utils/String_.h"
 #include "FDrive/FDrive.h"
 #include "Menu/FileManager.h"
 #include "Menu/Menu.h"
@@ -97,8 +98,8 @@ void FDrive::GetNumDirsAndFiles(const char* fullPath, int *numDirs, int *numFile
     
 
     char nameDir[_MAX_LFN + 1];
-    memcpy(nameDir, fullPath, strlen(fullPath)); //-V2513
-    nameDir[strlen(fullPath)] = '\0'; //-V2513
+    memcpy(nameDir, fullPath, strlen(fullPath));
+    nameDir[strlen(fullPath)] = '\0';
 
     fno.fsize = _MAX_LFN + 1;
 
@@ -138,10 +139,10 @@ void FDrive::GetNumDirsAndFiles(const char* fullPath, int *numDirs, int *numFile
 }
 
 
-bool FDrive::GetNameDir(const char *fullPath, int numDir, char *nameDirOut, StructForReadDir *s)
+String FDrive::GetNameDir(const char *fullPath, int numDir, StructForReadDir *s)
 {
-    memcpy(s->nameDir, fullPath, strlen(fullPath)); //-V2513
-    s->nameDir[strlen(fullPath)] = '\0'; //-V2513
+    memcpy(s->nameDir, fullPath, strlen(fullPath));
+    s->nameDir[strlen(fullPath)] = '\0';
 
     DIR *pDir = &s->dir;
     if (f_opendir(pDir, s->nameDir) == FR_OK)
@@ -153,25 +154,22 @@ bool FDrive::GetNameDir(const char *fullPath, int numDir, char *nameDirOut, Stru
         {
             if (f_readdir(pDir, pFNO) != FR_OK)
             {
-                *nameDirOut = '\0';
                 f_closedir(pDir);
-                return false;
+                return String("");
             }
             if (pFNO->fname[0] == 0)
             {
                 if (alreadyNull)
                 {
-                    *nameDirOut = '\0';
                     f_closedir(pDir);
-                    return false;
+                    return String("");
                 }
                 alreadyNull = true;
             }
             char *fn = pFNO->fname;
             if (numDir == numDirs && ((pFNO->fattrib & AM_DIR) != 0))
             {
-                strcpy(nameDirOut, fn); //-V2513
-                return true;
+                return String(fn);
             }
             if (((pFNO->fattrib & AM_DIR) != 0) && (pFNO->fname[0] != '.'))
             {
@@ -179,7 +177,8 @@ bool FDrive::GetNameDir(const char *fullPath, int numDir, char *nameDirOut, Stru
             }
         }
     }
-    return false;
+
+    return String("");
 }
 
 
@@ -211,7 +210,7 @@ bool FDrive::GetNextNameDir(char *nameDirOut, StructForReadDir *s)
             char *fn = pFNO->fname;
             if (pFNO->fattrib & AM_DIR)
             {
-                strcpy(nameDirOut, fn); //-V2513
+                strcpy(nameDirOut, fn);
                 return true;
             }
         }
@@ -227,8 +226,8 @@ void FDrive::CloseCurrentDir(StructForReadDir *s)
 
 bool FDrive::GetNameFile(const char *fullPath, int numFile, char *nameFileOut, StructForReadDir *s)
 {
-    memcpy(s->nameDir, fullPath, strlen(fullPath)); //-V2513
-    s->nameDir[strlen(fullPath)] = '\0'; //-V2513
+    memcpy(s->nameDir, fullPath, strlen(fullPath));
+    s->nameDir[strlen(fullPath)] = '\0';
 
     DIR *pDir = &s->dir;
     FILINFO *pFNO = &s->fno;
@@ -257,7 +256,7 @@ bool FDrive::GetNameFile(const char *fullPath, int numFile, char *nameFileOut, S
             char *fn = pFNO->fname;
             if (numFile == numFiles && (pFNO->fattrib & AM_DIR) == 0)
             {
-                strcpy(nameFileOut, fn); //-V2513
+                strcpy(nameFileOut, fn);
                 return true;
             }
             if ((pFNO->fattrib & AM_DIR) == 0 && (pFNO->fname[0] != '.'))
@@ -297,7 +296,7 @@ bool FDrive::GetNextNameFile(char *nameFileOut, StructForReadDir *s)
             char *fn = pFNO->fname;
             if ((pFNO->fattrib & AM_DIR) == 0 && pFNO->fname[0] != '.')
             {
-                strcpy(nameFileOut, fn); //-V2513
+                strcpy(nameFileOut, fn);
                 return true;
             }
         }
@@ -311,7 +310,7 @@ bool FDrive::OpenNewFileForWrite(const char* fullPathToFile, StructForWrite *str
     {
         return false;
     }
-    strcpy(structForWrite->name, fullPathToFile); //-V2513
+    strcpy(structForWrite->name, fullPathToFile);
     structForWrite->sizeData = 0;
     return true;
 }

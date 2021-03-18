@@ -103,7 +103,7 @@ file(GLOB DISPLAY              src/Display/*.h
                                ../common/Display/*.h
                                ../common/Display/*.cpp)
 file(GLOB DISPLAY_FONT   ../common/Display/Font/*.*)
-file(GLOB FDRIVE               src/FDr ive/*.*)
+file(GLOB FDRIVE               src/FDrive/*.*)
 file(GLOB FPGA                 src/FPGA/*.*)
 file(GLOB LAN                  src/LAN/*.*)
 file(GLOB MENU                 src/Menu/*.h
