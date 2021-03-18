@@ -2013,6 +2013,16 @@
           <GroupName>Utils</GroupName>
           <Files>
             <File>
+              <FileName>Buffer_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\Buffer_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Buffer_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\Buffer_.cpp</FilePath>
+            </File>
+            <File>
               <FileName>CreateTables.py</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Utils\CreateTables.py</FilePath>
@@ -4212,6 +4222,16 @@
         <Group>
           <GroupName>Utils</GroupName>
           <Files>
+            <File>
+              <FileName>Buffer_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\Buffer_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Buffer_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\Buffer_.cpp</FilePath>
+            </File>
             <File>
               <FileName>CreateTables.py</FileName>
               <FileType>5</FileType>

@@ -470,3 +470,34 @@ void FPGA::BUS::WriteToDAC(TypeWriteDAC::E type, uint16 data)
 
     Pin::SPI4_CS1.Set();
 }
+
+
+int FPGA::SET::PointsInChannel()
+{
+    return ENUM_POINTS_FPGA::ToPoints(ENUM_POINTS);
+}
+
+
+int FPGA::SET::BytesInChannel()
+{
+    int result = PointsInChannel();
+
+    if (PEAKDET_IS_ENABLE)
+    {
+        result *= 2;
+    }
+
+    return result;
+}
+
+
+int FPGA::SET::BytesForData()
+{
+    int result = 0;
+
+    if (SET_ENABLED_A)    { result += BytesInChannel(); }
+
+    if (SET_ENABLED_B)    { result += BytesInChannel(); }
+
+    return result;
+}

@@ -24,12 +24,22 @@ struct SampleType { enum E
 
 
 // Число точек сигнала, с которым идёт работа.
-struct ENUM_POINTS_FPGA { enum E
+struct ENUM_POINTS_FPGA
 {
-    _281,
-    _512,
-    _1024
-};};
+    enum E
+    {
+        _281,
+        _512,
+        _1024,
+        _2048,
+        _4096,
+        _8192,
+        _16384,
+        Count
+    };
+
+    static int ToPoints(E);
+};
 
 
 // Источинк сигнала для отображения спектра.

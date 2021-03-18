@@ -79,6 +79,18 @@ private:
 
 public:
 
+    struct SET
+    {
+        // —только точек в измерении одного канала
+        static int PointsInChannel();
+
+        // —только байтов в измерении одного канала
+        static int BytesInChannel();
+
+        // —только байт нужно дл€ сохранени€ данных обоих каналов
+        static int BytesForData();
+    };
+
     struct BUS
     {
         static void Write(uint16 * const address, uint16 data);

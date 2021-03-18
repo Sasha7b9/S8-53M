@@ -42,6 +42,8 @@ void ReaderFPGA::ReadData()
 {
     FPGA::in_processing_of_read = true;
 
+    DataStorage data;
+
     if (FPGA_IN_RANDOMIZE_MODE)
     {
         ReadRandomizeMode();
@@ -192,7 +194,7 @@ int ReaderFPGA::CalculateShift()            // \todo Не забыть восстановить функ
 
 uint16 ReaderFPGA::ReadAddressStop()
 {
-    return (uint16)(*RD_ADDR_NSTOP + 16384 - SET_POINTS_IN_CHANNEL / 2 - 1 - FPGA::add_N_stop);
+    return (uint16)(*RD_ADDR_NSTOP + 16384 - FPGA::SET::PointsInChannel() / 2 - 1 - FPGA::add_N_stop);
 }
 
 
@@ -202,7 +204,7 @@ void ReaderFPGA::ReadChannel(uint8 *data, const Channel &ch, uint16 addr_stop)
     *WR_ADDR_STOP = 0xffff;
 
     uint16 *p = (uint16 *)data;
-    uint16 *end = (uint16 *)(data + SET_POINTS_IN_CHANNEL);
+    uint16 *end = (uint16 *)(data + FPGA::SET::PointsInChannel());
 
     volatile uint16 *address = ADDRESS_READ(ch);
 

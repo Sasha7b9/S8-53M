@@ -377,3 +377,20 @@ int16 TShift::Zero()
 {
     return -TShift::Min();
 }
+
+
+int ENUM_POINTS_FPGA::ToPoints(E v)
+{
+    static const int points[Count] =
+    {
+        281,
+        512,
+        1024,
+        2048,
+        4096,
+        8192,
+        16384
+    };
+
+    return points[v];
+}

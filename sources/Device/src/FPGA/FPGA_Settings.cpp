@@ -351,11 +351,11 @@ void TShift::Load()
         int k = 0;
         if (SET_TPOS_IS_LEFT)
         {
-            k = SET_POINTS_IN_CHANNEL % FPGA::Randomizer::Kr[tBase];
+            k = FPGA::SET::PointsInChannel() % FPGA::Randomizer::Kr[tBase];
         }
         else if (SET_TPOS_IS_CENTER)
         {
-            k = (SET_POINTS_IN_CHANNEL / 2) % FPGA::Randomizer::Kr[tBase];
+            k = (FPGA::SET::PointsInChannel() / 2) % FPGA::Randomizer::Kr[tBase];
         }
 
         FPGA::post = (uint16)((2 * FPGA::post - k) / FPGA::Randomizer::Kr[tBase]);
@@ -371,7 +371,7 @@ void TShift::Load()
     }
     else
     {
-        FPGA::pred = (int16)SET_BYTES_IN_CHANNEL / 2 - (int16)FPGA::post;
+        FPGA::pred = (int16)FPGA::SET::BytesInChannel() / 2 - (int16)FPGA::post;
 
         if (FPGA::pred < 0)
         {
