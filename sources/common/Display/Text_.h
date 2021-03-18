@@ -20,7 +20,7 @@ private:
 class Text
 {
 public:
-    Text(pString t) : text(t) {};
+    Text(pchar t) : text(t) {};
     Text(const String &string) : text(string) {}
     ~Text();
     int Draw(int x, int y, Color color = Color::Count);

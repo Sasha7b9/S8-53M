@@ -9,8 +9,8 @@ class String // -V690
 public:
     explicit String();
              String(const String &);
-    explicit String(char symbol);
-    explicit String(pchar format, ...);
+    explicit String(char t);
+    explicit String(pchar, ...);
     ~String();
 
     void Set(pchar format, ...);

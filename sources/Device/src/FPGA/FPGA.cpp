@@ -42,7 +42,7 @@ static void OnTimerCanReadData();
 
 void FPGA::Init() 
 {
-    Storage::Clear();
+//    Storage::Clear();
     FPGA::LoadSettings();
     FPGA::SetNumSignalsInSec(ENumSignalsInSec::NumSignalsInS());
     FPGA::Randomizer::SetNumberMeasuresForGates(NUM_MEAS_FOR_GATES);

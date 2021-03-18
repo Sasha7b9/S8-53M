@@ -94,28 +94,28 @@ void PressSB_MemLastSelect()
 
 void PressSB_MemLast_Next()
 {
-    GF::CircleIncrease<int16>(&PageMemory::PageLatest::currentSignal, 0, static_cast<int16>(Storage::AllDatas() - 1));
+//    GF::CircleIncrease<int16>(&PageMemory::PageLatest::currentSignal, 0, static_cast<int16>(Storage::AllDatas() - 1));
 }
 
 void PressSB_MemLast_Prev()
 {
-    GF::CircleDecrease<int16>(&PageMemory::PageLatest::currentSignal, 0, static_cast<int16>(Storage::AllDatas() - 1));
+//    GF::CircleDecrease<int16>(&PageMemory::PageLatest::currentSignal, 0, static_cast<int16>(Storage::AllDatas() - 1));
 }
 
-static void RotateSB_MemLast(int angle)
+static void RotateSB_MemLast(int /*angle*/)
 {
-    if (Storage::AllDatas() > 1)
-    {
-        Sound::RegulatorSwitchRotate();
-    }
-    if (Math::Sign(angle) > 0)
-    {
-        PressSB_MemLast_Next();
-    }
-    else
-    {
-        PressSB_MemLast_Prev();
-    }
+//    if (Storage::AllDatas() > 1)
+//    {
+//        Sound::RegulatorSwitchRotate();
+//    }
+//    if (Math::Sign(angle) > 0)
+//    {
+//        PressSB_MemLast_Next();
+//    }
+//    else
+//    {
+//        PressSB_MemLast_Prev();
+//    }
 }
 
 static void FuncDrawingAdditionSPageMemoryLast()
@@ -126,7 +126,8 @@ static void FuncDrawingAdditionSPageMemoryLast()
     Primitives::Rectangle(width, height).Draw(Grid::Right() - width, Grid::TOP, Color::FILL);
     GF::Int2String(PageMemory::PageLatest::currentSignal + 1, false, 3).Draw(Grid::Right() - width + 2, Grid::TOP + 1);
     Text("/").Draw(Grid::Right() - width + 17, Grid::TOP + 1);
-    GF::Int2String(Storage::AllDatas(), false, 3).Draw(Grid::Right() - width + 23, Grid::TOP + 1);
+
+//    GF::Int2String(Storage::AllDatas(), false, 3).Draw(Grid::Right() - width + 23, Grid::TOP + 1);
 }
 
 void DrawSB_MemLast_IntEnter(int x, int y)
@@ -207,7 +208,9 @@ void PressSB_MemLast_IntEnter()
 {
     PageMemory::PageInternal::self->OpenAndSetItCurrent();
     MODE_WORK = ModeWork::MemInt;
-    EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
+
+//    EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
+
     exitFromIntToLast = true;
 }
 
@@ -484,21 +487,21 @@ static void SaveSignalToIntMemory()
 {
     if (exitFromIntToLast)          // Если перешли во ВНУТР ЗУ из ПОСЛЕДНИЕ
     {
-        if  (Storage::dsLast != 0)
-        {                               // то сохраняем сигнал из последних
-            EPROM::SaveData(PageMemory::PageInternal::currentSignal, Storage::dsLast, Storage::dataLastA, Storage::dataLastB);
-            EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
-            Display::ShowWarningGood(Warning::SignalIsSaved);
-        }
+//        if  (Storage::dsLast != 0)
+//        {                               // то сохраняем сигнал из последних
+//            EPROM::SaveData(PageMemory::PageInternal::currentSignal, Storage::dsLast, Storage::dataLastA, Storage::dataLastB);
+//            EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
+//            Display::ShowWarningGood(Warning::SignalIsSaved);
+//        }
     }
     else                                // Иначе сохраняем текущий сигнал
     {
-        if (Storage::set != 0)
-        {
-            EPROM::SaveData(PageMemory::PageInternal::currentSignal, Storage::set, Storage::dataA, Storage::dataB);
-            EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::set, &Storage::dataIntA, &Storage::dataIntB);
-            Display::ShowWarningGood(Warning::SignalIsSaved);
-        }
+//        if (Storage::set != 0)
+//        {
+//            EPROM::SaveData(PageMemory::PageInternal::currentSignal, Storage::set, Storage::dataA, Storage::dataB);
+//            EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::set, &Storage::dataIntA, &Storage::dataIntB);
+//            Display::ShowWarningGood(Warning::SignalIsSaved);
+//        }
     }
 }
 
@@ -559,6 +562,7 @@ void PressSB_MemInt_SaveToFlashDrive()
 static void FuncOnRegSetMemInt(int delta)
 {
     Sound::RegulatorSwitchRotate();
+
     if (delta < 0)
     {
         GF::CircleDecrease<int8>(&PageMemory::PageInternal::currentSignal, 0, MAX_NUM_SAVED_WAVES - 1);
@@ -567,7 +571,9 @@ static void FuncOnRegSetMemInt(int delta)
     {
         GF::CircleIncrease<int8>(&PageMemory::PageInternal::currentSignal, 0, MAX_NUM_SAVED_WAVES - 1);
     }
-    EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
+
+//    EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
+
     Color::ResetFlash();
 }
 
@@ -722,7 +728,8 @@ DEF_SMALL_BUTTON(sbMemIntSaveToFlash, PageMemory::PageInternal::self,
 
 void PressSB_MemInt_Exit()
 {
-    EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
+//    EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
+
     if (exitFromIntToLast)
     {
         PageMemory::PageLatest::self->OpenAndSetItCurrent();
@@ -1118,7 +1125,8 @@ void OnPressMemoryInt()
 {
     PageMemory::PageInternal::self->OpenAndSetItCurrent();
     MODE_WORK = ModeWork::MemInt;
-    EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
+
+//    EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
 }
 
 DEF_PAGE_6(pageInternal, PageMemory::self, NamePage::SB_MemInt,

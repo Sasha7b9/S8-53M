@@ -71,7 +71,7 @@ void ReaderFPGA::SaveToStorage()
             InverseDataIsNecessary(ChB, data_b);
         }
 
-        Storage::AddData(data_a, data_b, ds);
+//        Storage::AddData(data_a, data_b, ds);
 
         if (TRIG_MODE_FIND_IS_AUTO && TrigLev::need_auto_find)
         {

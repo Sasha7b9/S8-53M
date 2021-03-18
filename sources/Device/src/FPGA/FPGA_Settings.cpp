@@ -508,7 +508,7 @@ void ChannelFiltr::Enable(const Channel &ch, bool enable)
 void TrigLev::FindAndSet()
 {
     TrigSource::E trigSource = TRIG_SOURCE;
-    if (Storage::AllDatas() == 0 || TRIG_SOURCE_IS_EXT)
+    if (/*Storage::AllDatas() == 0 ||*/ TRIG_SOURCE_IS_EXT)
     {
         return;
     }
@@ -518,7 +518,7 @@ void TrigLev::FindAndSet()
     uint8 *data1 = 0;
     DataSettings *ds_ = 0;
 
-    Storage::GetDataFromEnd(0, &ds_, &data0, &data1);
+//    Storage::GetDataFromEnd(0, &ds_, &data0, &data1);
 
     puchar data = (chanTrig == ChA) ? data0 : data1;
 

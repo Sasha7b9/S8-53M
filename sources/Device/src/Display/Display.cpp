@@ -11,6 +11,7 @@
 #include "Display/Display.h"
 #include "FDrive/FDrive.h"
 #include "FPGA/DataSettings.h"
+#include "FPGA/FPGA.h"
 #include "FPGA/FPGA_Reader.h"
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/MathFPGA.h"
@@ -133,31 +134,31 @@ void Display::DrawTime(int x, int y)
     
     Color::FILL.SetAsCurrent();
     
-    if (MODE_WORK_IS_MEMINT || MODE_WORK_IS_LATEST)
-    {
-        DataSettings *ds = MODE_WORK_IS_MEMINT ? Storage::dsInt : Storage::dsLast;
-
-        if (ds != 0)
-        {
-            y -= 9;
-            time.day = ds->time.day;
-            time.hours = ds->time.hours;
-            time.minutes = ds->time.minutes;
-            time.seconds = ds->time.seconds;
-            time.month = ds->time.month;
-            time.year = ds->time.year;
-            GF::Int2String((int)time.day, false, 2).Draw(x, y);
-            Text(":").Draw(x + dField, y);
-            GF::Int2String((int)time.month, false, 2).Draw(x + dField + dSeparator, y);
-            Text(":").Draw(x + 2 * dField + dSeparator, y);
-            GF::Int2String((int)time.year + 2000, false, 4).Draw(x + 2 * dField + 2 * dSeparator, y);
-            y += 9;
-        }
-        else
-        {
-            return;
-        }
-    }
+//    if (MODE_WORK_IS_MEMINT || MODE_WORK_IS_LATEST)
+//    {
+//        DataSettings *ds = MODE_WORK_IS_MEMINT ? Storage::dsInt : Storage::dsLast;
+//
+//        if (ds != 0)
+//        {
+//            y -= 9;
+//            time.day = ds->time.day;
+//            time.hours = ds->time.hours;
+//            time.minutes = ds->time.minutes;
+//            time.seconds = ds->time.seconds;
+//            time.month = ds->time.month;
+//            time.year = ds->time.year;
+//            GF::Int2String((int)time.day, false, 2).Draw(x, y);
+//            Text(":").Draw(x + dField, y);
+//            GF::Int2String((int)time.month, false, 2).Draw(x + dField + dSeparator, y);
+//            Text(":").Draw(x + 2 * dField + dSeparator, y);
+//            GF::Int2String((int)time.year + 2000, false, 4).Draw(x + 2 * dField + 2 * dSeparator, y);
+//            y += 9;
+//        }
+//        else
+//        {
+//            return;
+//        }
+//    }
     
     
     GF::Int2String((int)time.hours, false, 2).Draw(x, y);
@@ -890,49 +891,49 @@ void Display::DrawCursorRShift(const Channel &ch)
 
 void Display::DrawCursorTShift()
 {
-    int firstPoint = 0;
-    int lastPoint = 0;
-    SettingsDisplay::PointsOnDisplay(&firstPoint, &lastPoint);
-
-    if (Storage::set == nullptr)
-    {
-        return;
-    }
-
-    // Рисуем TPos
-    int shiftTPos = TPos::InPoints(
-        (PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel, SET_TPOS) - SHIFT_IN_MEMORY;
-
-    float scale = static_cast<float>((lastPoint - firstPoint) / Grid::Width());
-    int gridLeft = Grid::Left();
-    int x = static_cast<int>(gridLeft + shiftTPos * scale - 3);
-    if (GF::IntInRange(x + 3, gridLeft, Grid::Right() + 1))
-    {
-        Char(Symbol::S8::TPOS_2).Draw2SymbolsInPosition(x, Grid::TOP - 1, Symbol::S8::TPOS_3, Color::BACK, Color::FILL);
-    };
-
-    // Рисуем tShift
-    int shiftTShift = TPos::InPoints((PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel,
-        SET_TPOS) - TShift::InPoints((PeackDetMode::E)Storage::set->peakDet);
-
-    if(GF::IntInRange(shiftTShift, firstPoint, lastPoint))
-    {
-        x = gridLeft + shiftTShift - firstPoint - 3;
-        Char(Symbol::S8::TSHIFT_NORM_1).Draw2SymbolsInPosition(x, Grid::TOP - 1, Symbol::S8::TSHIFT_NORM_2, Color::BACK,
-            Color::FILL);
-    }
-    else if(shiftTShift < firstPoint)
-    {
-        Char(Symbol::S8::TSHIFT_LEFT_1).Draw2SymbolsInPosition(gridLeft + 1, Grid::TOP, Symbol::S8::TSHIFT_LEFT_2,
-            Color::BACK, Color::FILL);
-        Line().Draw(Grid::Left() + 9, Grid::TOP + 1, Grid::Left() + 9, Grid::TOP + 7, Color::BACK);
-    }
-    else if(shiftTShift > lastPoint)
-    {
-        Char(Symbol::S8::TSHIFT_RIGHT_1).Draw2SymbolsInPosition(Grid::Right() - 8, Grid::TOP,
-            Symbol::S8::TSHIFT_RIGHT_2, Color::BACK, Color::FILL);
-        Line().Draw(Grid::Right() - 9, Grid::TOP + 1, Grid::Right() - 9, Grid::TOP + 7, Color::BACK);
-    }
+//    int firstPoint = 0;
+//    int lastPoint = 0;
+//    SettingsDisplay::PointsOnDisplay(&firstPoint, &lastPoint);
+//
+//    if (Storage::set == nullptr)
+//    {
+//        return;
+//    }
+//
+//    // Рисуем TPos
+//    int shiftTPos = TPos::InPoints(
+//        (PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel, SET_TPOS) - SHIFT_IN_MEMORY;
+//
+//    float scale = static_cast<float>((lastPoint - firstPoint) / Grid::Width());
+//    int gridLeft = Grid::Left();
+//    int x = static_cast<int>(gridLeft + shiftTPos * scale - 3);
+//    if (GF::IntInRange(x + 3, gridLeft, Grid::Right() + 1))
+//    {
+//        Char(Symbol::S8::TPOS_2).Draw2SymbolsInPosition(x, Grid::TOP - 1, Symbol::S8::TPOS_3, Color::BACK, Color::FILL);
+//    };
+//
+//    // Рисуем tShift
+//    int shiftTShift = TPos::InPoints((PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel,
+//        SET_TPOS) - TShift::InPoints((PeackDetMode::E)Storage::set->peakDet);
+//
+//    if(GF::IntInRange(shiftTShift, firstPoint, lastPoint))
+//    {
+//        x = gridLeft + shiftTShift - firstPoint - 3;
+//        Char(Symbol::S8::TSHIFT_NORM_1).Draw2SymbolsInPosition(x, Grid::TOP - 1, Symbol::S8::TSHIFT_NORM_2, Color::BACK,
+//            Color::FILL);
+//    }
+//    else if(shiftTShift < firstPoint)
+//    {
+//        Char(Symbol::S8::TSHIFT_LEFT_1).Draw2SymbolsInPosition(gridLeft + 1, Grid::TOP, Symbol::S8::TSHIFT_LEFT_2,
+//            Color::BACK, Color::FILL);
+//        Line().Draw(Grid::Left() + 9, Grid::TOP + 1, Grid::Left() + 9, Grid::TOP + 7, Color::BACK);
+//    }
+//    else if(shiftTShift > lastPoint)
+//    {
+//        Char(Symbol::S8::TSHIFT_RIGHT_1).Draw2SymbolsInPosition(Grid::Right() - 8, Grid::TOP,
+//            Symbol::S8::TSHIFT_RIGHT_2, Color::BACK, Color::FILL);
+//        Line().Draw(Grid::Right() - 9, Grid::TOP + 1, Grid::Right() - 9, Grid::TOP + 7, Color::BACK);
+//    }
 }
 
 
@@ -1111,16 +1112,17 @@ void Display::WriteTextVoltage(const Channel &ch, int x, int y)
 
     if (!MODE_WORK_IS_DIRECT)
     {
-        DataSettings *ds = MODE_WORK_IS_DIRECT ? Storage::set : Storage::dsInt;
-        if (ds != 0)
-        {
-            inverse = (ch == ChA) ? ds->inverseCh0 : ds->inverseCh1;
-            modeCouple = (ch == ChA) ? ds->modeCouple0 : ds->modeCouple1;
-            multiplier = (ch == ChA) ? ds->multiplier0 : ds->multiplier1;
-            range = ds->range[ch];
-            rShift = (ch == ChA) ? ds->rShiftCh0 : ds->rShiftCh1;
-            enable = (ch == ChA) ? ds->enableCh0 : ds->enableCh1;
-        }
+//        DataSettings *ds = MODE_WORK_IS_DIRECT ? Storage::set : Storage::dsInt;
+//
+//        if (ds != 0)
+//        {
+//            inverse = (ch == ChA) ? ds->inverseCh0 : ds->inverseCh1;
+//            modeCouple = (ch == ChA) ? ds->modeCouple0 : ds->modeCouple1;
+//            multiplier = (ch == ChA) ? ds->multiplier0 : ds->multiplier1;
+//            range = ds->range[ch];
+//            rShift = (ch == ChA) ? ds->rShiftCh0 : ds->rShiftCh1;
+//            enable = (ch == ChA) ? ds->enableCh0 : ds->enableCh1;
+//        }
     }
 
     if(enable)
@@ -1183,12 +1185,13 @@ void Display::DrawLowPart()
 
     if (!MODE_WORK_IS_DIRECT)
     {
-        DataSettings *ds = MODE_WORK_IS_LATEST ? Storage::dsLast : Storage::dsInt;
-        if (ds != 0)
-        {
-            tBase = ds->tBase;
-            tShift = ds->tShift;
-        }
+//        DataSettings *ds = MODE_WORK_IS_LATEST ? Storage::dsLast : Storage::dsInt;
+//
+//        if (ds != 0)
+//        {
+//            tBase = ds->tBase;
+//            tShift = ds->tShift;
+//        }
     }
 
     Text(String("р\xa5%s", TBase::ToString(tBase))).Draw(x, y0);
@@ -1354,13 +1357,14 @@ void Display::DrawTimeForFrame(uint timeTicks)
     Region(82, 8).Fill(Grid::Left() + 1, Grid::FullBottom() - 9, Color::BACK);
     Text(buffer).Draw(Grid::Left() + 2, Grid::FullBottom() - 9, Color::FILL);
 
-    char message[20] = {0};
-    std::sprintf(message, "%d", Storage::NumElementsWithSameSettings());
-    std::strcat(message, "/");
-    char numAvail[10] = {0};
-    std::sprintf(numAvail, "%d", Storage::NumberAvailableEntries());
-    std::strcat(message, numAvail);
-    Text(message).Draw(Grid::Left() + 50, Grid::FullBottom() - 9);
+//    std::sprintf(message, "%d", Storage::NumElementsWithSameSettings());
+
+    String message("1");
+
+//    char numAvail[10] = {0};
+//    std::sprintf(numAvail, "%d", Storage::NumberAvailableEntries());
+//    std::strcat(message, numAvail);
+    message.Draw(Grid::Left() + 50, Grid::FullBottom() - 9);
 }
 
 
