@@ -6,25 +6,36 @@
 class Processing
 {
 public:
+
     // Установить сигнал для обработки.
     static void SetSignal(puchar data0, puchar data1, DataSettings *ds, int firstPoint, int lastPoint);
+
     // Получить данные ранее установленного сигнала.
     static void GetData(uint8 **data0, uint8 **data1, DataSettings **ds);
+
     // Получить позицию курсора напряжения, соответствующю заданной позиции курсора posCurT.
     static float GetCursU(Channel::E ch, float posCurT);
+
     // Получить позицию курсора времени, соответствующую заданной позиции курсора напряжения posCurU.
     static float GetCursT(Channel::E ch, float posCurU, int numCur);
+
     // Аппроксимировать единичное измерение режима рандомизатора функцией sinX/X.
     static void InterpolationSinX_X(uint16 data[FPGA_MAX_POINTS], TBase::E tBase);
+
     // Возвращает строку автоматического измерения.
     static char* GetStringMeasure(Measure::E measure, Channel::E ch, char buffer[20]);
+
     // Расчитать все измерения.
     static void CalculateMeasures();
+
     // Возвращает значение горизонтального маркера. Если ERROR_VALUE_INT - маркер рисовать не нужно.
     static int GetMarkerHorizontal(Channel::E ch, int numMarker);
+
     // Возвращает значение вертикального маркера. Если ERROR_VALUE_INT - маркер рисовать не нужно.
     static int GetMarkerVertical(Channel::E ch, int numMarker);
+
 private:
+
     static float CalculateVoltageMax(Channel::E ch);
     static float CalculateVoltageMin(Channel::E ch);
     static float CalculateVoltagePic(Channel::E ch);
