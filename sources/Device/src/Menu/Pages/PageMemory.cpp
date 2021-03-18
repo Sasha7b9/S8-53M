@@ -248,7 +248,7 @@ void DrawSB_SetName_Backspace(int x, int y) //-V524
 
 void PressSB_SetMask_Backspace()
 {
-    int size = static_cast<int>(std::strlen(FILE_NAME_MASK)); //-V2513
+    int size = static_cast<int>(std::strlen(FILE_NAME_MASK));
     if (size > 0)
     {
         if (size > 1 && FILE_NAME_MASK[size - 2] == 0x07)
@@ -265,7 +265,7 @@ void PressSB_SetMask_Backspace()
 
 void PressSB_SetName_Backspace()
 {
-    int size = static_cast<int>(std::strlen(FILE_NAME)); //-V2513
+    int size = static_cast<int>(std::strlen(FILE_NAME));
     if (size > 0)
     {
         FILE_NAME[size - 1] = '\0';
@@ -306,7 +306,7 @@ void DrawSB_SetMask_Insert(int x, int y)
 void PressSB_SetMask_Insert()
 {
     int index = INDEX_SYMBOL;
-    int size = static_cast<int>(std::strlen(FILE_NAME_MASK)); //-V2513
+    int size = static_cast<int>(std::strlen(FILE_NAME_MASK));
     if (size == MAX_SYMBOLS_IN_FILE_NAME - 1)
     {
         return;
@@ -348,7 +348,7 @@ void DrawSB_SetName_Insert(int x, int y) //-V524
 
 void PressSB_SetName_Insert()
 {
-    int size = static_cast<int>(std::strlen(FILE_NAME)); //-V2513
+    int size = static_cast<int>(std::strlen(FILE_NAME));
     if (size < MAX_SYMBOLS_IN_FILE_NAME - 1)
     {
         FILE_NAME[size] = Tables::symbolsAlphaBet[INDEX_SYMBOL][0];

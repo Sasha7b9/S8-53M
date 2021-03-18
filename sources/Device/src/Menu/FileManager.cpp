@@ -36,7 +36,7 @@ uint FM::needRedrawFileManager = 0;
 
 void FM::Init()
 {
-    std::strcpy(currentDir, "\\"); //-V2513
+    std::strcpy(currentDir, "\\");
     numFirstDir = 0;
     numFirstFile = 0;
     numCurDir = 0;
@@ -80,17 +80,19 @@ void FM::DrawDirs(int x, int y)
 {
     FDrive::GetNumDirsAndFiles(currentDir, &numDirs, &numFiles);
     DrawHat(x, y, "Каталог : %d/%d", numCurDir + ((numDirs == 0) ? 0 : 1), numDirs);
-    char nameDir[255];
     StructForReadDir sfrd;
     y += 12;
-    if (FDrive::GetNameDir(currentDir, numFirstDir, nameDir, &sfrd))
+
+    String nameDir = FDrive::GetNameDir(currentDir, numFirstDir, &sfrd);
+
+    if (nameDir.Size() != 0)
     {
-        DrawLongString(x, y, nameDir, cursorInDirs && (numFirstDir == numCurDir));
+        DrawLongString(x, y, nameDir.c_str(), cursorInDirs && (numFirstDir == numCurDir));
         int drawingDirs = 0;
-        while (drawingDirs < (RECS_ON_PAGE - 1) && FDrive::GetNextNameDir(nameDir, &sfrd))
+        while (drawingDirs < (RECS_ON_PAGE - 1) && FDrive::GetNextNameDir(nameDir.c_str(), &sfrd))
         {
             drawingDirs++;
-            DrawLongString(x, y + drawingDirs * 9, nameDir, cursorInDirs && ( numFirstDir + drawingDirs == numCurDir));
+            DrawLongString(x, y + drawingDirs * 9, nameDir.c_str(), cursorInDirs && ( numFirstDir + drawingDirs == numCurDir));
         }
     }
 }
@@ -124,7 +126,7 @@ bool FM::FileIsExist(const char name[255])
     {
         while(FDrive::GetNextNameFile(nameFile, &sfrd))
         {
-            if(std::strcmp(name + 2, nameFile) == 0) //-V2513
+            if(std::strcmp(name + 2, nameFile) == 0)
             {
                 return true;
             }
@@ -225,19 +227,23 @@ void FM::PressTab()
 void FM::PressLevelDown()
 {
     needRedrawFileManager = 1;
+
     if (!cursorInDirs)
     {
         return;
     }
-    char nameDir[100];
+
     StructForReadDir sfrd;
-    if (FDrive::GetNameDir(currentDir, numCurDir, nameDir, &sfrd))
+
+    String nameDir = FDrive::GetNameDir(currentDir, numCurDir, &sfrd);
+
+    if (nameDir.Size() != 0)
     {
-        if (std::strlen(currentDir) + std::strlen(nameDir) < 250) //-V2513
+        if (std::strlen(currentDir) + nameDir.Size() < 250)
         {
             FDrive::CloseCurrentDir(&sfrd);
-            std::strcat(currentDir, "\\"); //-V2513
-            std::strcat(currentDir, nameDir); //-V2513
+            std::strcat(currentDir, "\\");
+            std::strcat(currentDir, nameDir.c_str());
             numFirstDir = 0;
             numFirstFile = 0;
             numCurDir = 0;
@@ -252,11 +258,11 @@ void FM::PressLevelDown()
 void FM::PressLevelUp()
 {
     needRedrawFileManager = 1;
-    if (std::strlen(currentDir) == 1) //-V2513
+    if (std::strlen(currentDir) == 1)
     {
         return;
     }
-    char *pointer = currentDir + std::strlen(currentDir); //-V2513
+    char *pointer = currentDir + std::strlen(currentDir);
     while (*pointer != '\\')
     {
         pointer--;
@@ -365,10 +371,10 @@ bool FM::GetNameForNewFile(char name[255])
 
 LabelNextNumber:
 
-    std::strcpy(name, currentDir); //-V2513
-    std::strcat(name, "\\"); //-V2513
+    std::strcpy(name, currentDir);
+    std::strcat(name, "\\");
 
-    int size = static_cast<int>(std::strlen(FILE_NAME)); //-V2513
+    int size = static_cast<int>(std::strlen(FILE_NAME));
     if (size == 0)
     {
         return false;
@@ -377,9 +383,9 @@ LabelNextNumber:
     if (FILE_NAMING_MODE_IS_HAND)
     {
         LIMITATION(size, size, 1, 95);
-        std::strcat(name, FILE_NAME); //-V2513
-        std::strcat(name, "."); //-V2513
-        std::strcat(name, MODE_SAVE_SIGNAL_IS_BMP ? "bmp" : "txt"); //-V2513
+        std::strcat(name, FILE_NAME);
+        std::strcat(name, ".");
+        std::strcat(name, MODE_SAVE_SIGNAL_IS_BMP ? "bmp" : "txt");
         return true;
     }
     else
@@ -407,16 +413,16 @@ LabelNextNumber:
             {
                 if (*ch == 0x07)    // Если здесь надо записать порядковый номер
                 {
-                    std::strcpy(wr, GF::Int2String(number, false, *(ch + 1)).c_str()); //-V2513
-                    wr += std::strlen(buffer); //-V2513
+                    std::strcpy(wr, GF::Int2String(number, false, *(ch + 1)).c_str());
+                    wr += std::strlen(buffer);
                     ch++;
                 }
                 else
                 {
                     if (*ch >= 0x01 && *ch <= 0x06)
                     {
-                        std::strcpy(wr, GF::Int2String((int)values[*ch], false, 2).c_str()); //-V2513
-                        wr += std::strlen(buffer); //-V2513
+                        std::strcpy(wr, GF::Int2String((int)values[*ch], false, 2).c_str());
+                        wr += std::strlen(buffer);
                     }
                 }
             }
@@ -426,7 +432,7 @@ LabelNextNumber:
         *wr = '.';
         *(wr + 1) = '\0';
 
-        std::strcat(name, MODE_SAVE_SIGNAL_IS_BMP ? "bmp" : "txt"); //-V2513
+        std::strcat(name, MODE_SAVE_SIGNAL_IS_BMP ? "bmp" : "txt");
 
         if(FileIsExist(name))
         {

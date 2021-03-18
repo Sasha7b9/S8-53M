@@ -17,7 +17,7 @@ bool HAL_OTP::SaveSerialNumber(char *serialNumber)
 
     if (address < reinterpret_cast<uint8 *>(FLASH_OTP_END) - 16)
     {
-        HAL_EPROM::WriteBufferBytes(reinterpret_cast<uint>(address), reinterpret_cast<uint8 *>(serialNumber), static_cast<int>(std::strlen(serialNumber)) + 1); //-V2513
+        HAL_EPROM::WriteBufferBytes(reinterpret_cast<uint>(address), reinterpret_cast<uint8 *>(serialNumber), static_cast<int>(std::strlen(serialNumber)) + 1);
         return true;
     }
 
@@ -44,7 +44,7 @@ int HAL_OTP::GetSerialNumber(char buffer[17])
         return allShotsMAX;
     }
 
-    std::strcpy(buffer, reinterpret_cast<char *>(address)); //-V2513
+    std::strcpy(buffer, reinterpret_cast<char *>(address));
 
     return allShotsMAX - (address - reinterpret_cast<uint8 *>(FLASH_OTP_BASE)) / 16 - 1;
 }

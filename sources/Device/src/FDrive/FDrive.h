@@ -37,7 +37,7 @@ public:
 
     static void GetNumDirsAndFiles(const char* fullPath, int *numDirs, int *numFiles);
 
-    static bool GetNameDir(const char* fuulPath, int numDir, char *nameDirOut, StructForReadDir *sfrd);
+    static String GetNameDir(const char* fuulPath, int numDir, StructForReadDir *sfrd);
 
     static bool GetNextNameDir(char *nameDirOut, StructForReadDir *sfrd);
 

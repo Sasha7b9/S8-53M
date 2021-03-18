@@ -110,7 +110,7 @@ String GF::Float2String(float value, bool always_sign, int num_digits)
 
     bool signExist = always_sign || value < 0;
 
-    while(static_cast<int>(result.Size()) < num_digits + (signExist ? 2 : 1)) //-V2513
+    while(static_cast<int>(result.Size()) < num_digits + (signExist ? 2 : 1))
     {
         result.Append("0");
     }
@@ -131,7 +131,7 @@ String GF::Int2String(int value, bool alwaysSign, int numMinFields)
 
     char format[20] = "%";
     std::sprintf(&(format[1]), "0%d", numMinFields);
-    std::strcat(format, "d"); //-V2513
+    std::strcat(format, "d");
 
     std::sprintf(buffer, format, value);
 
@@ -147,7 +147,7 @@ bool GF::String2Int(char *str, int *value)
     {
         str++;
     }
-    int length = static_cast<int>(std::strlen(str)); //-V2513
+    int length = static_cast<int>(std::strlen(str));
     if (length == 0)
     {
         return false;
@@ -188,11 +188,11 @@ String GF::Bin2String16(uint16 value)
 {
     String result("000000000000000000");
 
-    std::strcpy(&result[0], Bin2String((uint8)(value >> 8)).c_str()); //-V2513
+    std::strcpy(&result[0], Bin2String((uint8)(value >> 8)).c_str());
 
     result.c_str()[8] = ' ';
 
-    std::strcpy(&result[9], Bin2String((uint8)value).c_str()); //-V2513
+    std::strcpy(&result[9], Bin2String((uint8)value).c_str());
 
     return result;
 }

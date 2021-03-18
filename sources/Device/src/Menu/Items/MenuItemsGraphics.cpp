@@ -524,14 +524,14 @@ void TimeItem::DrawOpened(int x, int y) const
     const DataTime *own = OwnData();
 
     char strI[8][20];
-    std::strcpy(strI[iEXIT], "Не сохранять"); //-V2513
-    std::strcpy(strI[iDAY], GF::Int2String(*own->day, false, 2).c_str()); //-V2513
-    std::strcpy(strI[iMONTH], GF::Int2String(*own->month, false, 2).c_str()); //-V2513
-    std::strcpy(strI[iYEAR], GF::Int2String(*own->year, false, 2).c_str()); //-V2513
-    std::strcpy(strI[iHOURS], GF::Int2String(*own->hours, false, 2).c_str()); //-V2513
-    std::strcpy(strI[iMIN], GF::Int2String(*own->minutes, false, 2).c_str()); //-V2513
-    std::strcpy(strI[iSEC], GF::Int2String(*own->seconds, false, 2).c_str()); //-V2513
-    std::strcpy(strI[iSET], "Сохранить"); //-V2513
+    std::strcpy(strI[iEXIT], "Не сохранять");
+    std::strcpy(strI[iDAY], GF::Int2String(*own->day, false, 2).c_str());
+    std::strcpy(strI[iMONTH], GF::Int2String(*own->month, false, 2).c_str());
+    std::strcpy(strI[iYEAR], GF::Int2String(*own->year, false, 2).c_str());
+    std::strcpy(strI[iHOURS], GF::Int2String(*own->hours, false, 2).c_str());
+    std::strcpy(strI[iMIN], GF::Int2String(*own->minutes, false, 2).c_str());
+    std::strcpy(strI[iSEC], GF::Int2String(*own->seconds, false, 2).c_str());
+    std::strcpy(strI[iSET], "Сохранить");
 
     Text("д м г - ").Draw(x + 3, y + y0, Color::FILL);
     Text("ч м с - ").Draw(x + 3, y + y1);

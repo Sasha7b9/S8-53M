@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "device.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "common/Utils/String_.h"
 #include "Display/Display.h"
 #include "FDrive/FDrive.h"
 #include "FPGA/FPGA.h"

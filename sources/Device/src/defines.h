@@ -29,14 +29,14 @@ typedef const char       *const pString;
 #define __IO volatile //-V2573
 #endif
 
-typedef void   (*pFuncVV)();
-typedef bool   (*pFuncBV)();
-typedef void   (*pFuncVB)(bool);
-typedef void   (*pFuncVI)(int);
-typedef void   (*pFuncVII)(int, int);
-typedef char*  (*pFuncCFBC)(float, bool, char*);
-typedef void   (*pFuncpU8)(uint8*);
-typedef void   (*pFuncpCU8)(puchar );
+typedef void  (*pFuncVV)();
+typedef bool  (*pFuncBV)();
+typedef void  (*pFuncVB)(bool);
+typedef void  (*pFuncVI)(int);
+typedef void  (*pFuncVII)(int, int);
+typedef char* (*pFuncCFBC)(float, bool, char*);
+typedef void  (*pFuncpU8)(uint8*);
+typedef void  (*pFuncpCU8)(puchar );
 
 inline void EmptyFuncVV() {};
 
