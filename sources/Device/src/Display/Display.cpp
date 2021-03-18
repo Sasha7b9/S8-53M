@@ -1113,12 +1113,8 @@ void Display::WriteTextVoltage(Channel::E ch, int x, int y)
             Region(widthField, heightField).Fill(x, y, color);
         }
 
-        char buffer[100] = {0};
-
-        std::sprintf(buffer, "%s\xa5%s\xa5%s", (ch == ChA) ? (LANG_RU ? "1ê" : "1c") : (LANG_RU ? "2ê" : "2c"), couple[modeCouple],
-            sChannel_Range2String(range, multiplier));
-
-        Text(buffer).Draw(x + 1, y, colorDraw);
+        Text("%s\xa5%s\xa5%s", (ch == ChA) ? (LANG_RU ? "1ê" : "1c") : (LANG_RU ? "2ê" : "2c"), couple[modeCouple],
+            sChannel_Range2String(range, multiplier)).Draw(x + 1, y, colorDraw);
 
         Text("\xa5%s", sChannel_RShift2String((int16)rShift, range, multiplier).c_str()).Draw(x + 46, y);
     }
