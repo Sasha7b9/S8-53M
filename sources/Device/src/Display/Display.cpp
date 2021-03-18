@@ -471,7 +471,8 @@ void Display::WriteValueTrigLevel()
 {
     if (showLevelTrigLev && MODE_WORK_IS_DIRECT)
     {
-        float trigLev = RSHIFT_2_ABS(TRIG_LEVEL_SOURCE, SET_RANGE(TRIG_SOURCE));     // WARN «десь дл€ внешней синхронизации неправильно рассчитываетс€ уровень.
+        float trigLev = RSHIFT_2_ABS(TRIG_LEVEL_SOURCE, SET_RANGE(TRIG_SOURCE));     // WARN «десь дл€ внешней
+                                                                    // синхронизации неправильно рассчитываетс€ уровень.
         TrigSource::E trigSource = TRIG_SOURCE;
         if (TRIG_INPUT_IS_AC && trigSource <= TrigSource::B_)
         {
@@ -599,7 +600,8 @@ int Display::CalculateCountH()
 
 
 
-void Display::DrawGridType1(int left, int top, int right, int bottom, float centerX, float centerY, float deltaX, float deltaY, float stepX, float stepY)
+void Display::DrawGridType1(int left, int top, int right, int bottom, float centerX, float centerY, float deltaX,
+    float deltaY, float stepX, float stepY)
 {
     uint16 masX[17];
     masX[0] = (uint16)(left + 1);
@@ -617,7 +619,8 @@ void Display::DrawGridType1(int left, int top, int right, int bottom, float cent
     }
     masX[16] = (uint16)(right - 1);
 
-    MultiVPointLine(17, masX, static_cast<int>(stepY), CalculateCountV()).Draw(static_cast<int>(top + stepY), Color::GRID);
+    MultiVPointLine(17, masX, static_cast<int>(stepY), CalculateCountV()).Draw(static_cast<int>(top + stepY),
+        Color::GRID);
 
     uint8 mas[13];
     mas[0] = (uint8)(top + 1);
@@ -635,7 +638,8 @@ void Display::DrawGridType1(int left, int top, int right, int bottom, float cent
     }
     mas[12] = (uint8)(bottom - 1);
 
-    MultiHPointLine(13, mas, static_cast<int>(stepX), CalculateCountH()).Draw(static_cast<int>(left + stepX), Color::GRID);
+    MultiHPointLine(13, mas, static_cast<int>(stepX), CalculateCountH()).Draw(static_cast<int>(left + stepX),
+        Color::GRID);
 }
 
 
@@ -661,13 +665,16 @@ void Display::DrawGridType2(int left, int top, int right, int bottom, int deltaX
     MultiHPointLine(11, mas, stepX, CalculateCountH()).Draw(left + stepX, Color::GRID);
 }
 
-void Display::DrawGridType3(int left, int top, int right, int bottom, int centerX, int centerY, int deltaX, int deltaY, int stepX, int stepY)
+void Display::DrawGridType3(int left, int top, int right, int bottom, int centerX, int centerY, int deltaX, int deltaY,
+    int stepX, int stepY)
 {
     HPointLine(static_cast<float>(stepX)).Draw(centerY, left + stepX, right);
-    uint8 masY[6] = {(uint8)(top + 1), (uint8)(top + 2), (uint8)(centerY - 1), (uint8)(centerY + 1), (uint8)(bottom - 2), (uint8)(bottom - 1)};
+    uint8 masY[6] = {(uint8)(top + 1), (uint8)(top + 2), (uint8)(centerY - 1), (uint8)(centerY + 1),
+        (uint8)(bottom - 2), (uint8)(bottom - 1)};
     MultiHPointLine(6, masY, deltaX, (right - top) / deltaX).Draw(left + deltaX, Color::GRID);
     VPointLine(static_cast<float>(stepY)).Draw(centerX, top + stepY, bottom, Color::GRID);
-    uint16 masX[6] = {(uint16)(left + 1), (uint16)(left + 2), (uint16)(centerX - 1), (uint16)(centerX + 1), (uint16)(right - 2), (uint16)(right - 1)};
+    uint16 masX[6] = {(uint16)(left + 1), (uint16)(left + 2), (uint16)(centerX - 1), (uint16)(centerX + 1),
+        (uint16)(right - 2), (uint16)(right - 1)};
     MultiVPointLine(6, masX, deltaY, (bottom - top) / deltaY).Draw(top + deltaY, Color::GRID);
 }
 
@@ -701,15 +708,18 @@ void Display::DrawGrid(int left, int top, int width, int height)
     Color::GRID.SetAsCurrent();
     if (TYPE_GRID_IS_1)
     {
-        DrawGridType1(left, top, right, bottom, static_cast<float>(centerX), static_cast<float>(centerY), deltaX, deltaY, stepX, stepY);
+        DrawGridType1(left, top, right, bottom, static_cast<float>(centerX), static_cast<float>(centerY), deltaX,
+            deltaY, stepX, stepY);
     }
     else if (TYPE_GRID_IS_2)
     {
-        DrawGridType2(left, top, right, bottom, static_cast<int>(deltaX), static_cast<int>(deltaY), static_cast<int>(stepX), static_cast<int>(stepY));
+        DrawGridType2(left, top, right, bottom, static_cast<int>(deltaX), static_cast<int>(deltaY),
+            static_cast<int>(stepX), static_cast<int>(stepY));
     }
     else if (TYPE_GRID_IS_3)
     {
-        DrawGridType3(left, top, right, bottom, centerX, centerY, static_cast<int>(deltaX), static_cast<int>(deltaY), static_cast<int>(stepX), static_cast<int>(stepY));
+        DrawGridType3(left, top, right, bottom, centerX, centerY, static_cast<int>(deltaX), static_cast<int>(deltaY),
+            static_cast<int>(stepX), static_cast<int>(stepY));
     }
 }
 
@@ -862,7 +872,9 @@ void Display::DrawCursorRShift(Channel::E ch)
 
     if((!Menu::IsMinimize() || !Menu::IsShown()) && drawRShiftMarkers)
     {
-        float scaleFull = (float)Grid::ChannelHeight() / (RShiftMax - RShiftMin) * (sService_MathEnabled() ? 0.9F : 0.91F);
+        float scaleFull = (float)Grid::ChannelHeight() / (RShiftMax - RShiftMin) *
+            (sService_MathEnabled() ? 0.9F : 0.91F);
+
         float yFull = Grid::ChannelCenterHeight() - scaleFull * (rShift - RShiftZero);
 
         Region(4, 6).Fill(4, static_cast<int>(yFull - 3), Color::Channel(ch));
@@ -885,7 +897,9 @@ void Display::DrawCursorTShift()
     }
 
     // –исуем TPos
-    int shiftTPos = sTime_TPosInPoints((PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel, SET_TPOS) - SHIFT_IN_MEMORY;
+    int shiftTPos = sTime_TPosInPoints(
+        (PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel, SET_TPOS) - SHIFT_IN_MEMORY;
+
     float scale = static_cast<float>((lastPoint - firstPoint) / Grid::Width());
     int gridLeft = Grid::Left();
     int x = static_cast<int>(gridLeft + shiftTPos * scale - 3);
@@ -895,20 +909,25 @@ void Display::DrawCursorTShift()
     };
 
     // –исуем tShift
-    int shiftTShift = sTime_TPosInPoints((PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel, SET_TPOS) - sTime_TShiftInPoints((PeackDetMode::E)Storage::set->peakDet);
+    int shiftTShift = sTime_TPosInPoints((PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel,
+        SET_TPOS) - sTime_TShiftInPoints((PeackDetMode::E)Storage::set->peakDet);
+
     if(GF::IntInRange(shiftTShift, firstPoint, lastPoint))
     {
         x = gridLeft + shiftTShift - firstPoint - 3;
-        Char(Symbol::S8::TSHIFT_NORM_1).Draw2SymbolsInPosition(x, Grid::TOP - 1, Symbol::S8::TSHIFT_NORM_2, Color::BACK, Color::FILL);
+        Char(Symbol::S8::TSHIFT_NORM_1).Draw2SymbolsInPosition(x, Grid::TOP - 1, Symbol::S8::TSHIFT_NORM_2, Color::BACK,
+            Color::FILL);
     }
     else if(shiftTShift < firstPoint)
     {
-        Char(Symbol::S8::TSHIFT_LEFT_1).Draw2SymbolsInPosition(gridLeft + 1, Grid::TOP, Symbol::S8::TSHIFT_LEFT_2, Color::BACK, Color::FILL);
+        Char(Symbol::S8::TSHIFT_LEFT_1).Draw2SymbolsInPosition(gridLeft + 1, Grid::TOP, Symbol::S8::TSHIFT_LEFT_2,
+            Color::BACK, Color::FILL);
         Line().Draw(Grid::Left() + 9, Grid::TOP + 1, Grid::Left() + 9, Grid::TOP + 7, Color::BACK);
     }
     else if(shiftTShift > lastPoint)
     {
-        Char(Symbol::S8::TSHIFT_RIGHT_1).Draw2SymbolsInPosition(Grid::Right() - 8, Grid::TOP, Symbol::S8::TSHIFT_RIGHT_2, Color::BACK, Color::FILL);
+        Char(Symbol::S8::TSHIFT_RIGHT_1).Draw2SymbolsInPosition(Grid::Right() - 8, Grid::TOP,
+            Symbol::S8::TSHIFT_RIGHT_2, Color::BACK, Color::FILL);
         Line().Draw(Grid::Right() - 9, Grid::TOP + 1, Grid::Right() - 9, Grid::TOP + 7, Color::BACK);
     }
 }
@@ -954,8 +973,8 @@ void Display::DrawCursors()
     Color::Cursors(source).SetAsCurrent();
     if (sCursors_NecessaryDrawCursors())
     {
-        bool bothCursors = !CURS_CNTRL_T_IS_DISABLE(source) && !CURS_CNTRL_U_IS_DISABLE(source);  // ѕризнак того, что включены и вертикальные и 
-                                                                            // горизонтальные курсоры - надо нарисовать квадраты в местах пересечени€
+        bool bothCursors = !CURS_CNTRL_T_IS_DISABLE(source) && !CURS_CNTRL_U_IS_DISABLE(source);  // ѕризнак того, что
+                    // включены и вертикальные и горизонтальные курсоры - надо нарисовать квадраты в местах пересечени€
         int x0 = -1;
         int x1 = -1;
         int y0 = -1;
@@ -1274,12 +1293,14 @@ void Display::DrawLowPart()
     // Ethernet
     if ((LAN::clientIsConnected || LAN::cableIsConnected) && TIME_MS > 2000)
     {
-        Char(Symbol::S8::ETHERNET).Draw4SymbolsInRect(x + 87, Grid::Bottom() + 2, LAN::clientIsConnected ? Color::FILL : Color::FLASH_01);
+        Char(Symbol::S8::ETHERNET).Draw4SymbolsInRect(x + 87, Grid::Bottom() + 2, LAN::clientIsConnected ?
+            Color::FILL : Color::FLASH_01);
     }
 
     if (VCP::connectToHost || VCP::cableIsConnected)
     {
-        Char(Symbol::UGO2::USB).Draw4SymbolsInRect(x + 72, Grid::Bottom() + 2, VCP::connectToHost ? Color::FILL : Color::FLASH_01);
+        Char(Symbol::UGO2::USB).Draw4SymbolsInRect(x + 72, Grid::Bottom() + 2, VCP::connectToHost ?
+            Color::FILL : Color::FLASH_01);
     }
     
     Color::FILL.SetAsCurrent();
@@ -1394,7 +1415,8 @@ void Display::Clear()
 
 void Display::ShiftScreen(int delta)
 {
-    LIMITATION(SHIFT_IN_MEMORY, static_cast<int16>(SHIFT_IN_MEMORY + delta), 0, static_cast<int16>(sMemory_GetNumPoints(false) - 282));
+    LIMITATION(SHIFT_IN_MEMORY, static_cast<int16>(SHIFT_IN_MEMORY + delta), 0,
+        static_cast<int16>(sMemory_GetNumPoints(false) - 282));
 }
 
 
@@ -1433,11 +1455,14 @@ int Display::FirstEmptyString()
 int Display::CalculateFreeSize()
 {
     int firstEmptyString = FirstEmptyString();
+
     if(firstEmptyString == 0)
     {
         return SIZE_BUFFER_FOR_STRINGS;
     }
-    return static_cast<int>(SIZE_BUFFER_FOR_STRINGS - (strings[firstEmptyString - 1] - bufferForStrings) - std::strlen(strings[firstEmptyString - 1]) - 1);
+
+    return static_cast<int>(SIZE_BUFFER_FOR_STRINGS - (strings[firstEmptyString - 1] - bufferForStrings) -
+        std::strlen(strings[firstEmptyString - 1]) - 1);
 }
 
 
