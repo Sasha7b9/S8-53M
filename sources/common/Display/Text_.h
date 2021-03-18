@@ -36,7 +36,7 @@ public:
 
     void DrawInRect(int x, int y, uint width, uint height);
 
-    void DrawBig(int x, int y, int size);
+    void DrawBig(int x, int y, uint size);
 
     int DrawInCenterRect(int x, int y, int width, int height, Color color = Color::Count);
 

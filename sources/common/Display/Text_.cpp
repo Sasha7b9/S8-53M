@@ -208,27 +208,27 @@ void Text::DrawInRect(int x, int y, uint width, uint)
 }
 
 
-static int DrawBigChar(int eX, int eY, int size, char symbol)
+static int DrawBigChar(int eX, int eY, uint size, char symbol)
 {
-    int8 width = static_cast<int8>(Font::font->symbol[symbol].width);
-    int8 height = static_cast<int8>(Font::font->height);
+    uint8 width = Font::font->symbol[symbol].width;
+    uint8 height = (uint8)Font::font->height;
 
     for (int b = 0; b < height; b++)
     {
         if (ByteFontNotEmpty(symbol, b))
         {
             int x = eX;
-            int y = eY + b * size + 9 - height;
+            int y = (int)(eY + b * size + 9 - height);
             int endBit = 8 - width;
             for (int bit = 7; bit >= endBit; bit--)
             {
                 if (BitInFontIsExist(symbol, b, bit))
                 {
-                    for (int i = 0; i < size; i++)
+                    for (uint i = 0; i < size; i++)
                     {
-                        for (int j = 0; j < size; j++)
+                        for (uint j = 0; j < size; j++)
                         {
-                            Primitives::Point().Draw(x + i, y + j);
+                            Primitives::Point().Draw((int)(x + i), (int)(y + j));
                         }
                     }
                 }
@@ -237,11 +237,11 @@ static int DrawBigChar(int eX, int eY, int size, char symbol)
         }
     }
 
-    return eX + width * size;
+    return (int)(eX + width * size);
 }
 
 
-void Text::DrawBig(int eX, int eY, int size)
+void Text::DrawBig(int eX, int eY, uint size)
 {
     int numSymbols = static_cast<int>(std::strlen(text.c_str()));
 
