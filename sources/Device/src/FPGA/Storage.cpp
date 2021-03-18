@@ -9,26 +9,26 @@ DataStorage::DataStorage()
 {
     buffer.Realloc((int)sizeof(DataSettings) + FPGA::SET::BytesForData());
 
-    DataSettings *ds = (DataSettings *)Begin();
+    DataSettings &ds = *(DataSettings *)Begin();
 
-    ds->Fill();
+    ds.Fill();
 }
 
 
 uint8 *DataStorage::Data(const Channel &ch)
 {
-    const DataSettings *ds = Settings();
+    const DataSettings &ds = *Settings();
 
-    if (!ds->IsEnabled(ch))
+    if (!ds.IsEnabled(ch))
     {
         return nullptr;
     }
 
     uint8 *result = Begin() + sizeof(DataSettings);
 
-    if (ch.IsB() && ds->IsEnabled(Channel::A))
+    if (ch.IsB() && ds.IsEnabled(Channel::A))
     {
-        result += ds->BytesInChannel();
+        result += ds.BytesInChannel();
     }
 
     return result;

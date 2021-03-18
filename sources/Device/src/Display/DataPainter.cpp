@@ -81,7 +81,7 @@ void DataPainter::DrawSignalLined(puchar data, const DataSettings *ds, int start
     }
     else
     {
-        int shift = static_cast<int>(ds->length1channel);
+        int shift = static_cast<int>(ds->BytesInChannel());
 
         int yMinNext = -1;
         int yMaxNext = -1;

@@ -264,11 +264,11 @@ int EPROM::CalculateSizeData(const DataSettings *ds)
     int size = sizeof(DataSettings);
     if (ds->IsEnabled(ChA))
     {
-        size += ds->length1channel;
+        size += ds->BytesInChannel();
     }
     if (ds->IsEnabled(ChB))
     {
-        size += ds->length1channel;
+        size += ds->BytesInChannel();
     }
     return size;
 }
@@ -306,7 +306,7 @@ void EPROM::CompactMemory()
             if (ds->IsEnabled(ChA))
             {
                 data0 = reinterpret_cast<uint8*>(addrDataNew);
-                addrDataNew += ds->length1channel;
+                addrDataNew += ds->BytesInChannel();
             }
             if (ds->IsEnabled(ChB))
             {
@@ -371,14 +371,14 @@ void EPROM::SaveData(int num, DataSettings *ds, uint8 *data0, uint8 *data1)
     
     if (ds->IsEnabled(ChA))
     {
-        HAL_EPROM::WriteBufferBytes(address, reinterpret_cast<uint8*>(data0), static_cast<int>(ds->length1channel));       // Сохраняем первый канал
-        address += ds->length1channel;
+        HAL_EPROM::WriteBufferBytes(address, reinterpret_cast<uint8*>(data0), ds->BytesInChannel());       // Сохраняем первый канал
+        address += ds->BytesInChannel();
     }
 
     if (ds->IsEnabled(ChB))
     {
-        HAL_EPROM::WriteBufferBytes(address, reinterpret_cast<uint8*>(data1), static_cast<int>(ds->length1channel));       // Сохраняем второй канал
-        address += ds->length1channel;
+        HAL_EPROM::WriteBufferBytes(address, reinterpret_cast<uint8*>(data1), ds->BytesInChannel());       // Сохраняем второй канал
+        address += ds->BytesInChannel();
     }
 
 // 6
@@ -424,7 +424,7 @@ bool EPROM::GetData(int num, DataSettings **ds, uint8 **data0, uint8 **data1)
     {
         if (addrData0 != 0)
         {
-            addrData1 = addrData0 + (*ds)->length1channel;
+            addrData1 = addrData0 + (*ds)->BytesInChannel();
         }
         else
         {

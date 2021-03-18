@@ -8,22 +8,21 @@ void DataSettings::Fill()
 {
     enabled_a = ChA.IsEnabled() ? 1U : 0U;
     enabled_b = ChB.IsEnabled() ? 1U : 0U;
-    inverseCh0 = SET_INVERSE_A ? 1U : 0U;
-    inverseCh1 = SET_INVERSE_B ? 1U : 0U;
-    range[0] = SET_RANGE_A;
-    range[1] = SET_RANGE_B;
     rShiftCh0 = (uint)SET_RSHIFT_A;
     rShiftCh1 = (uint)SET_RSHIFT_B;
-    tBase = SET_TBASE;
-    tShift = TSHIFT;
-    modeCouple0 = SET_COUPLE_A;
-    modeCouple1 = SET_COUPLE_B;
-    length1channel = static_cast<uint>(sMemory_GetNumPoints(false));
     trigLevCh0 = (uint)TRIG_LEVEL_A;
     trigLevCh1 = (uint)TRIG_LEVEL_B;
+    modeCouple0 = SET_COUPLE_A;
+    modeCouple1 = SET_COUPLE_B;
+    tBase = SET_TBASE;
+    tShift = TSHIFT;
+    range[0] = SET_RANGE_A;
+    range[1] = SET_RANGE_B;
     peakDet = (uint)PEAKDET;
     multiplier0 = SET_DIVIDER_A;
     multiplier1 = SET_DIVIDER_B;
+    enum_points = ENUM_POINTS;
+    time = HAL_RTC::GetPackedTime();
 }
 
 

@@ -522,7 +522,7 @@ void TrigLev::FindAndSet()
 
     puchar data = (chanTrig == ChA) ? data0 : data1;
 
-    int lastPoint = static_cast<int>(ds_->length1channel) - 1;
+    int lastPoint = ds_->BytesInChannel() - 1;
 
     uint8 min = Math::GetMinFromArray(data, 0, lastPoint);
     uint8 max = Math::GetMaxFromArray(data, 0, lastPoint);
