@@ -7,7 +7,7 @@
 #include <cstring>
 
 
-void sChannel_SetRange(Channel::E ch, Range::E range)
+void sChannel_SetRange(const Channel &ch, Range::E range)
 {
     SET_RANGE(ch) = range;
 }

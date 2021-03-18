@@ -9,7 +9,7 @@
 #include <cstring>
 
 
-float sCursors_GetCursPosU(Channel::E ch, int numCur)
+float sCursors_GetCursPosU(const Channel &ch, int numCur)
 {
     return CURS_POS_U(ch, numCur) / (Grid::ChannelBottom() == Grid::FullBottom() ? 1.0F : 2.0F);
 }
@@ -22,7 +22,7 @@ bool sCursors_NecessaryDrawCursors()
 }
 
 
-String sCursors_GetCursVoltage(Channel::E source, int numCur)
+String sCursors_GetCursVoltage(const Channel &source, int numCur)
 {
     float voltage = MathFPGA::VoltageCursor(sCursors_GetCursPosU(source, numCur), SET_RANGE(source), SET_RSHIFT(source));
 
@@ -30,7 +30,7 @@ String sCursors_GetCursVoltage(Channel::E source, int numCur)
 }
 
 
-String sCursors_GetCursorTime(Channel::E source, int numCur)
+String sCursors_GetCursorTime(const Channel &source, int numCur)
 {
     float time = MathFPGA::TimeCursor(CURS_POS_T(source, numCur), SET_TBASE);
 
@@ -38,7 +38,7 @@ String sCursors_GetCursorTime(Channel::E source, int numCur)
 }
 
 
-String sCursors_GetCursorPercentsU(Channel::E source)
+String sCursors_GetCursorPercentsU(const Channel &source)
 {
     float dPerc = DELTA_U100(source);
 
@@ -52,7 +52,7 @@ String sCursors_GetCursorPercentsU(Channel::E source)
 }
 
 
-String sCursors_GetCursorPercentsT(Channel::E source)
+String sCursors_GetCursorPercentsT(const Channel &source)
 {
     float dPerc = DELTA_T100(source);
 
