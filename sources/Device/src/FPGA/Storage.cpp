@@ -6,7 +6,7 @@
 #include <cstring>
 
 
-RecordStorage *Storage::addressFirstRecord = nullptr;
+RecordStorage *Storage::addressOldestRecord = nullptr;
 
 
 DataStorage::DataStorage()
@@ -121,13 +121,48 @@ RecordStorage *Storage::Create(const DataStorage &data)
 {
     RecordStorage *result = nullptr;
 
-    if (addressFirstRecord == nullptr)
+    if (addressOldestRecord == nullptr)
     {
-        addressFirstRecord = (RecordStorage *)HAL_FMC::ADDR_RAM_BEGIN;
-        result = addressFirstRecord;
+        addressOldestRecord = (RecordStorage *)HAL_FMC::ADDR_RAM_BEGIN;
+        result = addressOldestRecord;
         result->prev = nullptr;
-        result->next = (RecordStorage *)(result->Address() + data.Size());
+        result->next = nullptr;
+    }
+    else
+    {
+        if (Newest() >= Oldest())       // Если записи идут в "прямом" порядке - адрес последней больше адреса первой
+        {                               // (Это означает, что память ещё не заполнена либо же заполнена полностью)
+            
+        }
+        else
+        {
+
+        }
     }
 
-    return nullptr;
+    return result;
+}
+
+
+RecordStorage *Storage::Oldest()
+{
+    return addressOldestRecord;
+}
+
+
+RecordStorage *Storage::Newest()
+{
+    if (addressOldestRecord == nullptr)
+    {
+        return nullptr;
+    }
+
+    RecordStorage *record = addressOldestRecord;
+
+    while (record->next)
+    {
+        record = record->next;
+    }
+
+    return record;
 }

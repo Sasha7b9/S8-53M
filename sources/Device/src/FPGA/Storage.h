@@ -60,6 +60,12 @@ private:
     // Создаёт запись во внешнем ОЗУ для сохраенения data
     static RecordStorage *Create(const DataStorage &data);
 
-    static RecordStorage *addressFirstRecord;  // Здесь хранится адрес первой записи. Зная его, можно рассчитать все
-                                        // остальные адреса
+    // Самая старая запись (записана первой)
+    static RecordStorage *Oldest();
+
+    // Самая новая запись (записана последней)
+    static RecordStorage *Newest();
+
+    static RecordStorage *addressOldestRecord;   // Здесь хранится адрес первой записи. Зная его, можно рассчитать все
+                                                // остальные адреса
 };
