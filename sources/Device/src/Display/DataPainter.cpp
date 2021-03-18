@@ -51,35 +51,6 @@ void DataPainter::DrawDataChannel(uint8 *data, Channel::E chan, DataSettings *ds
 }
 
 
-bool DataPainter::ChannelNeedForDraw(puchar data, Channel::E chan, const DataSettings *ds)
-{
-    if (!data)
-    {
-        return false;
-    }
-
-    if (MODE_WORK_IS_DIRECT)
-    {
-        if (!sChannel_Enabled(chan))
-        {
-            return false;
-        }
-    }
-    else if (ds != 0)
-    {
-        if ((chan == ChA && ds->enableCh0 == 0) || (chan == ChB && ds->enableCh1 == 0))
-        {
-            return false;
-        }
-    }
-    else
-    {
-        return false;
-    }
-    return true;
-}
-
-
 void DataPainter::DrawMarkersForMeasure(float scale, Channel::E chan)
 {
     if (chan == Channel::Math)

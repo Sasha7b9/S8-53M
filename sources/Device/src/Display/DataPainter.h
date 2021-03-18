@@ -33,8 +33,6 @@ private:
 
     static void DrawDataChannel(uint8 *data, Channel::E chan, DataSettings *ds, int min_y, int max_y);
 
-    static bool ChannelNeedForDraw(puchar data, Channel::E chan, const DataSettings *ds);
-
     static void DrawMarkersForMeasure(float scale, Channel::E chan);
 
     static void DrawSignalLined(puchar data, const DataSettings *ds, int start_i, int end_i, int min_y,
