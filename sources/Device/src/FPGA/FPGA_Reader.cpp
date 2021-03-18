@@ -204,7 +204,7 @@ void ReaderFPGA::ReadChannel(DataStorage &data, const Channel &ch, uint16 addr_s
     *WR_ADDR_STOP = 0xffff;
 
     uint16 *p = (uint16 *)data.Data(ch);
-    uint16 *end = (uint16 *)(data.Data(ch) + data.Settings()->BytesInChannel());
+    uint16 *end = (uint16 *)(data.Data(ch) + data.Settings().BytesInChannel());
 
     volatile uint16 *address = ADDRESS_READ(ch);
 

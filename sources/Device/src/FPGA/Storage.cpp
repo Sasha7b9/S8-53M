@@ -17,7 +17,7 @@ DataStorage::DataStorage()
 
 uint8 *DataStorage::Data(const Channel &ch)
 {
-    const DataSettings &ds = *Settings();
+    const DataSettings &ds = Settings();
 
     if (!ds.IsEnabled(ch))
     {
@@ -35,15 +35,23 @@ uint8 *DataStorage::Data(const Channel &ch)
 }
 
 
-const DataSettings *DataStorage::Settings()
+const DataSettings &DataStorage::Settings() const
 {
-    return (const DataSettings *)Begin();
+    return (const DataSettings &)*Begin();
 }
 
 
-uint8 *DataStorage::Begin()
+bool DataStorage::HasData() const
 {
-    return buffer.Data();
+    const DataSettings &ds = Settings();
+
+    return ds.IsEnabled(Channel::A) || ds.IsEnabled(Channel::B);
+}
+
+
+uint8 *DataStorage::Begin() const
+{
+    return (uint8 *)((Buffer)buffer).Data();
 }
 
 
