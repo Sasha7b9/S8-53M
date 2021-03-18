@@ -234,21 +234,24 @@ void FuncAttScreen()
     {
         case StateCalibration::None:
         {
-                Text("Калибровка завершена. Нажмите любую кнопку, чтобы выйти из режима калибровки.").DrawInRect(40 + dX, y + 25 + dY, Display::WIDTH - 100, 200);
+                Text("Калибровка завершена. Нажмите любую кнопку, чтобы выйти из режима калибровки.").
+                    DrawInRect(40 + dX, y + 25 + dY, Display::WIDTH - 100, 200);
 
                 Text("Поправка нуля 1к :").Draw(10 + dX, 55 + dY);
                 Text("Поправка нуля 2к :").Draw(10 + dX, 80 + dY);
 
                 for (int i = 0; i < Range::Count; i++)
                 {
-                    Text("%d", RSHIFT_ADD(ChA, i, 0)).Draw(95 + i * 16 + dX, 55 + dY, Color::FILL);
-                    Text("%d", RSHIFT_ADD(ChA, i, 1)).Draw(95 + i * 16 + dX, 65 + dY, Color::FILL);
-                    Text("%d", RSHIFT_ADD(ChB, i, 0)).Draw(95 + i * 16 + dX, 80 + dY, Color::FILL);
-                    Text("%d", RSHIFT_ADD(ChB, i, 1)).Draw(95 + i * 16 + dX, 90 + dY, Color::FILL);
+                    Text(String("%d", RSHIFT_ADD(ChA, i, 0))).Draw(95 + i * 16 + dX, 55 + dY, Color::FILL);
+                    Text(String("%d", RSHIFT_ADD(ChA, i, 1))).Draw(95 + i * 16 + dX, 65 + dY, Color::FILL);
+                    Text(String("%d", RSHIFT_ADD(ChB, i, 0))).Draw(95 + i * 16 + dX, 80 + dY, Color::FILL);
+                    Text(String("%d", RSHIFT_ADD(ChB, i, 1))).Draw(95 + i * 16 + dX, 90 + dY, Color::FILL);
                 }
                 
-                Text("Коэффициент калибровки 1к : %f, %d", STRETCH_ADC_A, (int)(STRETCH_ADC_A * 0x80)).Draw(10 + dX, 110 + dY, Color::FILL);
-                Text("Коэфффициент калибровки 2к : %f, %d", STRETCH_ADC_B, (int)(STRETCH_ADC_B * 0x80)).Draw(10 + dX, 130 + dY, Color::FILL);
+                Text(String("Коэффициент калибровки 1к : %f, %d", STRETCH_ADC_A, (int)(STRETCH_ADC_A * 0x80))).
+                    Draw(10 + dX, 110 + dY, Color::FILL);
+                Text(String("Коэфффициент калибровки 2к : %f, %d", STRETCH_ADC_B, (int)(STRETCH_ADC_B * 0x80))).
+                    Draw(10 + dX, 130 + dY, Color::FILL);
 
                 DrawParametersChannel(ChA, 10 + dX, 150 + dY, false);
                 DrawParametersChannel(ChB, 10 + dX, 200 + dY, false);

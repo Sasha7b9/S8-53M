@@ -485,7 +485,7 @@ DEF_PAGE_3(pageRandomizer, PageDebug::self, NamePage::DebugRandomizer,
 
 static void OnDraw_SizeSettings(int x, int y)
 {
-    Text("Размер %d", sizeof(Settings)).Draw(x + 5, y + 21, Color::BLACK);
+    Text(String("Размер %d", sizeof(Settings))).Draw(x + 5, y + 21, Color::BLACK);
 }
 
 DEF_CHOICE_2(mcSizeSettings, PageDebug::self,

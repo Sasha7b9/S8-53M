@@ -74,7 +74,7 @@ void PageHelpContent::Draw()
     {
         DrawPageDescription();
     }
-    Text("%d", TIME_MS - startTime).Draw(2, 230, Color::FILL);
+    Text(String("%d", TIME_MS - startTime)).Draw(2, 230, Color::FILL);
 }
 
 static int NumParagraphs(const PageHelpItem *page)

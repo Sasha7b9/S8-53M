@@ -71,7 +71,7 @@ void FM::DrawLongString(int x, int y, pchar string, bool hightlight)
 void FM::DrawHat(int x, int y, char *string, int num1, int num2)
 {
     Region(WIDTH_COL + 9, RECS_ON_PAGE * 9 + 11).Fill(x - 1, y, Color::BACK);
-    Text(string, num1, num2).Draw(x + 60, y, Color::FILL);
+    Text(String(string, num1, num2)).Draw(x + 60, y, Color::FILL);
     HLine().Draw(y + 10, x + 2, x + 140);
 }
 

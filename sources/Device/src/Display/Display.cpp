@@ -1191,15 +1191,15 @@ void Display::DrawLowPart()
         }
     }
 
-    Text("ð\xa5%s", TBase::ToString(tBase)).Draw(x, y0);
+    Text(String("ð\xa5%s", TBase::ToString(tBase))).Draw(x, y0);
 
-    Text("\xa5%s", TShift::ToString(tShift).c_str()).Draw(x + 35, y0);
+    Text(String("\xa5%s", TShift::ToString(tShift).c_str())).Draw(x + 35, y0);
 
     if (MODE_WORK_IS_DIRECT)
     {
         pchar source[3] = { "1", "2", "\x82" };
 
-        Text("ñ\xa5\x10%s", source[TRIG_SOURCE]).Draw(x, y1, Color::Trig());
+        Text(String("ñ\xa5\x10%s", source[TRIG_SOURCE])).Draw(x, y1, Color::Trig());
     }
 
     if (MODE_WORK_IS_DIRECT)
@@ -1226,7 +1226,7 @@ void Display::DrawLowPart()
             "\xb1\xb2"
         };
 
-        Text("\xa5\x10%s\x10\xa5\x10%s\x10\xa5\x10", couple[TRIG_INPUT], polar[TRIG_POLARITY]).Draw(x + 18, y1);
+        Text(String("\xa5\x10%s\x10\xa5\x10%s\x10\xa5\x10", couple[TRIG_INPUT], polar[TRIG_POLARITY])).Draw(x + 18, y1);
         Char(filtr[TRIG_INPUT][0]).Draw(x + 45, y1);
         Char(filtr[TRIG_INPUT][1]).Draw(x + 53, y1);
     }
@@ -1240,7 +1240,7 @@ void Display::DrawLowPart()
             '\xb0'
         };
 
-        Text("\xa5\x10%c", mode[START_MODE]).Draw(x + 63, y1);
+        Text(String("\xa5\x10%c", mode[START_MODE])).Draw(x + 63, y1);
     }
     
     VLine().Draw(x + 79, Grid::Bottom() + 2, HEIGHT - 2, Color::FILL);
