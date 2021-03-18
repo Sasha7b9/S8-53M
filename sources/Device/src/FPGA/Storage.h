@@ -11,7 +11,7 @@ struct DataStorage
 
     // Хотя и возвращается указатель на 8-битные значения, следует иметь ввиду, что в случае, если данные расположены
     // во внешнем ОЗУ, читать следует по 16 бит, т.к. доступ по нечётным адресам к ОЗУ запрещён
-    uint8 *Data(const Channel &ch);
+    uint8 *Data(const Channel &ch) const;
 
     // Возвращает true, если в настройках включён хотя бы один канал
     bool HasData() const;
@@ -25,9 +25,13 @@ private:
 };
 
 
-struct RecordStorage : public DataStorage
+struct RecordStorage
 {
-
+    void Fill(const DataStorage &data);
+private:
+    RecordStorage *prev;        // Адрес предыдущей (более старой) записи
+    RecordStorage *next;        // Адрес следующей (более новой) записи
+    uint16 *dataStorage;        // 
 };
 
 
@@ -43,9 +47,14 @@ class Storage
 
 public:
 
+    Storage();
+
     static void Append(const DataStorage &data);
 
 private:
+
+    // Создаёт запись во внешнем ОЗУ для сохраенения data
+    static RecordStorage *Create(const DataStorage &data);
 
     RecordStorage *addressFirstRecord;  // Здесь хранится адрес первой записи. Зная его, можно рассчитать все
                                         // остальные адреса
