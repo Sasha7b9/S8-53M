@@ -346,3 +346,9 @@ int TPos::InPoints(PeackDetMode::E peakDet, int numPoints, TPos::E tPos)
         return m[sMemory_IntNumPoints2FPGA_NUM_POINTS(numPoints)][tPos];
     }
 }
+
+
+int TShift::InPoints(PeackDetMode::E peakDet)
+{
+    return TSHIFT * (peakDet == PeackDetMode::Disable ? 2 : 1);
+}

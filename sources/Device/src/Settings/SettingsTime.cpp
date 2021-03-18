@@ -4,12 +4,6 @@
 #include "Settings/Settings.h"
 
 
-int sTime_TShiftInPoints(PeackDetMode::E peakDet)
-{
-    return TSHIFT * (peakDet == PeackDetMode::Disable ? 2 : 1);
-}
-
-
 int16 sTime_TShiftMin()
 {
     static const int16 m[3][3] = {{-511, -441, -371},
