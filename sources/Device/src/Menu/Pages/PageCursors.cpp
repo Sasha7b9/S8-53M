@@ -16,36 +16,36 @@ using namespace Primitives;
 
 static void MoveCursUonPercentsOrPoints(int delta);
 static void MoveCursTonPercentsOrPoints(int delta);
-static void SetShiftCursPosU(Channel::E chan, int numCur, float delta);    // »зменить значение позиции курсора напр€жени€ на delta точек
-static void SetShiftCursPosT(Channel::E chan, int numCurs, float delta);   // »зменить значение позиции курсора времени на delta точек
-static void SetCursPos100(Channel::E chan);                                // «апомнить позиции курсоров, соответствующие 100%.
-static void IncCursCntrlU(Channel::E chan);                                // ¬ыбрать следующий курсор.
-static void IncCursCntrlT(Channel::E chan);                                // ¬ыбрать следующий курсор.
-static void SetCursPosU(Channel::E chan, int numCur, float pos);           // ”становить позицию курсора напр€жени€.
-static void SetCursPosT(Channel::E chan, int numCur, float pos);           // ”становить значение курсора по времени.
+static void SetShiftCursPosU(Channel::E ch, int numCur, float delta);    // »зменить значение позиции курсора напр€жени€ на delta точек
+static void SetShiftCursPosT(Channel::E ch, int numCurs, float delta);   // »зменить значение позиции курсора времени на delta точек
+static void SetCursPos100(Channel::E ch);                                // «апомнить позиции курсоров, соответствующие 100%.
+static void IncCursCntrlU(Channel::E ch);                                // ¬ыбрать следующий курсор.
+static void IncCursCntrlT(Channel::E ch);                                // ¬ыбрать следующий курсор.
+static void SetCursPosU(Channel::E ch, int numCur, float pos);           // ”становить позицию курсора напр€жени€.
+static void SetCursPosT(Channel::E ch, int numCur, float pos);           // ”становить значение курсора по времени.
 
 
 #define MAX_POS_U   200
 #define MAX_POS_T   280
 
 
-void SetCursSource(Channel::E chan)
+void SetCursSource(Channel::E ch)
 {
     CURS_SOURCE = chan;
 }
 
 
 
-void IncCursCntrlU(Channel::E chan)
+void IncCursCntrlU(Channel::E ch)
 {
-    GF::CircleIncrease<int8>((int8*)&CURsU_CNTRL_CH(chan), 0, 3);
+    GF::CircleIncrease<int8>((int8*)&CURsU_CNTRL_CH(ch), 0, 3);
 }
 
 
 
-void IncCursCntrlT(Channel::E chan)
+void IncCursCntrlT(Channel::E ch)
 {
-    GF::CircleIncrease<int8>((int8*)&CURS_CNTRL_T(chan), 0, 3);
+    GF::CircleIncrease<int8>((int8*)&CURS_CNTRL_T(ch), 0, 3);
 }
 
 
@@ -81,16 +81,16 @@ void Cursors_Update()
 }
 
 
-void SetCursPosU(Channel::E chan, int numCur, float pos)
+void SetCursPosU(Channel::E ch, int numCur, float pos)
 {
-    CURS_POS_U(chan, numCur) = Math::Limitation(pos, 0.0f, (float)MAX_POS_U);
+    CURS_POS_U(ch, numCur) = Math::Limitation(pos, 0.0f, (float)MAX_POS_U);
 }
 
 
 
-void SetCursPosT(Channel::E chan, int numCur, float pos)
+void SetCursPosT(Channel::E ch, int numCur, float pos)
 {
-    CURS_POS_T(chan, numCur) = Math::Limitation(pos, 0.0f, (float)MAX_POS_T);
+    CURS_POS_T(ch, numCur) = Math::Limitation(pos, 0.0f, (float)MAX_POS_T);
 }
 
 
@@ -398,10 +398,10 @@ static void PressSB_Cursors_100()
     SetCursPos100(CURS_SOURCE);
 }
 
-static void SetCursPos100(Channel::E chan)
+static void SetCursPos100(Channel::E ch)
 {
-    DELTA_U100(chan) = std::fabsf(CURS_POS_U0(chan) - CURS_POS_U1(chan));
-    DELTA_T100(chan) = std::fabsf(CURS_POS_T0(chan) - CURS_POS_T1(chan));
+    DELTA_U100(ch) = std::fabsf(CURS_POS_U0(ch) - CURS_POS_U1(ch));
+    DELTA_T100(ch) = std::fabsf(CURS_POS_T0(ch) - CURS_POS_T1(ch));
 }
 
 static void DrawSB_Cursors_100(int x, int y)
@@ -511,9 +511,9 @@ static void MoveCursUonPercentsOrPoints(int delta)
     Cursors_Update();
 }
 
-static void SetShiftCursPosU(Channel::E chan, int numCur, float delta)
+static void SetShiftCursPosU(Channel::E ch, int numCur, float delta)
 {
-    CURS_POS_U(chan, numCur) = Math::Limitation<float>(CURS_POS_U(chan, numCur) - delta, 0, MAX_POS_U);
+    CURS_POS_U(ch, numCur) = Math::Limitation<float>(CURS_POS_U(ch, numCur) - delta, 0, MAX_POS_U);
 }
 
 static void MoveCursTonPercentsOrPoints(int delta)
@@ -539,9 +539,9 @@ static void MoveCursTonPercentsOrPoints(int delta)
     Cursors_Update();
 }
 
-static void SetShiftCursPosT(Channel::E chan, int numCur, float delta)
+static void SetShiftCursPosT(Channel::E ch, int numCur, float delta)
 {
-    CURS_POS_T(chan, numCur) = Math::Limitation<float>(CURS_POS_T(chan, numCur) + delta, 0, MAX_POS_T);
+    CURS_POS_T(ch, numCur) = Math::Limitation<float>(CURS_POS_T(ch, numCur) + delta, 0, MAX_POS_T);
 }
 
 const Page *PageCursors::self = &pageCursors;

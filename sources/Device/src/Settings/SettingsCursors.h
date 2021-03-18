@@ -65,7 +65,7 @@ struct SettingsCursors
 
 
 // ѕолучить позицию курсора напр€жени€.
-float sCursors_GetCursPosU(Channel::E chan, int numCur);
+float sCursors_GetCursPosU(Channel::E ch, int numCur);
 // ¬озвращает true,если нужно рисовать курсоры.
 bool sCursors_NecessaryDrawCursors();
 // ѕолучить строку курсора напр€жени€.

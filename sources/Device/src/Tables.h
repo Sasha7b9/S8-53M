@@ -47,7 +47,7 @@ struct Tables
     static pchar GetWarning(Warning::E warning);
     static pchar RangeNameFromValue(Range::E range);
     // Возвращает номер канала от 1 до 2
-    static int GetNumChannel(Channel::E chan);
+    static int GetNumChannel(Channel::E ch);
     // Выводит строку из таблицы symbolsAlphaBet
     static void DrawStr(int index, int x, int y);
     static pchar symbolsAlphaBet[0x48];

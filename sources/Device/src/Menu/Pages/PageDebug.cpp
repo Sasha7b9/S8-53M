@@ -270,19 +270,19 @@ DEF_PAGE_3(pageBalanceADC, PageDebug::PageADC::self, NamePage::DebugADCbalance,
     nullptr, nullptr, nullptr, nullptr
 )
 
-void PageDebug::LoadStretchADC(Channel::E chan)
+void PageDebug::LoadStretchADC(Channel::E ch)
 {
     if (DEBUG_STRETCH_ADC_TYPE_IS_DISABLED)
     {
-//        FPGA::WriteToHardware(chan == ChA ? WR_CAL_A : WR_CAL_B, 0x80, true);
+//        FPGA::WriteToHardware(ch == ChA ? WR_CAL_A : WR_CAL_B, 0x80, true);
     }
     else if (DEBUG_STRETCH_ADC_TYPE_IS_HAND)
     {
-//        FPGA::WriteToHardware(chan == ChA ? WR_CAL_A : WR_CAL_B, (uint8)DEBUG_STRETCH_ADC(chan), true);
+//        FPGA::WriteToHardware(ch == ChA ? WR_CAL_A : WR_CAL_B, (uint8)DEBUG_STRETCH_ADC(ch), true);
     }
     else if (DEBUG_STRETCH_ADC_TYPE_IS_SETTINGS)
     {
-        FPGA::Calibrator::LoadKoeff(chan);
+        FPGA::Calibrator::LoadKoeff(ch);
     }
 }
 
@@ -352,7 +352,7 @@ static void OnPress_ADC_AltRShift_Reset()
         {
             for (int range = 0; range < Range::Count; range++)
             {
-                RSHIFT_ADD(chan, range, mode) = 0;
+                RSHIFT_ADD(ch, range, mode) = 0;
             }
         }
     }

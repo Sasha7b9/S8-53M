@@ -38,26 +38,26 @@ void AutoFinderFPGA::Find()
 }
 
 
-bool AutoFinderFPGA::FindWave(Channel::E chan)
+bool AutoFinderFPGA::FindWave(Channel::E ch)
 {
     Settings settings = set;    // Сохраняем предыдущие настройки
 
     FPGA::Stop(false);
-    SET_ENABLED(chan) = true;
-    TrigSource::Set(static_cast<TrigSource::E>(chan));
-    TrigLev::Set(static_cast<TrigSource::E>(chan), TrigLevZero);
-    RShift::Set(chan, RShiftZero);
-    ModeCouple::Set(chan, ModeCouple::AC);
-    Range::E range = AccurateFindRange(chan);
+    SET_ENABLED(ch) = true;
+    TrigSource::Set(static_cast<TrigSource::E>(ch));
+    TrigLev::Set(static_cast<TrigSource::E>(ch), TrigLevZero);
+    RShift::Set(ch, RShiftZero);
+    ModeCouple::Set(ch, ModeCouple::AC);
+    Range::E range = AccurateFindRange(ch);
     //LOG_WRITE("Range %s", RangeName(range));
     if (range != Range::Count)
     {
-        SET_RANGE(chan) = range;
-        TBase::E tBase = AccurateFindTBase(chan);
+        SET_RANGE(ch) = range;
+        TBase::E tBase = AccurateFindTBase(ch);
         if (tBase != TBase::Count)
         {
             SET_TBASE = tBase;
-            TRIG_SOURCE = static_cast<TrigSource::E>(chan);
+            TRIG_SOURCE = static_cast<TrigSource::E>(ch);
             return true;
         }
     }
@@ -68,7 +68,7 @@ bool AutoFinderFPGA::FindWave(Channel::E chan)
 }
 
 
-Range::E AutoFinderFPGA::AccurateFindRange(Channel::E chan)
+Range::E AutoFinderFPGA::AccurateFindRange(Channel::E ch)
 {
     /*
     Алгоритм поиска.
@@ -86,14 +86,14 @@ Range::E AutoFinderFPGA::AccurateFindRange(Channel::E chan)
     uint8 buffer[100];  // Сюда будем считывать точки
 
     TBase::Set(TBase::_50ms);
-    ModeCouple::Set(chan, ModeCouple::AC);
+    ModeCouple::Set(ch, ModeCouple::AC);
     PeackDetMode::E peackDetMode = PEAKDET;
     PeackDetMode::Set(PeackDetMode::Enable);
     for (int range = Range::Count - 1; range >= 0; range--)
     {
         //Timer::LogPointMS("1");
         FPGA::Stop(false);
-        Range::Set(chan, static_cast<Range::E>(range));
+        Range::Set(ch, static_cast<Range::E>(range));
         HAL_TIM2::Delay(10);
         FPGA::Start();
 
@@ -106,7 +106,7 @@ Range::E AutoFinderFPGA::AccurateFindRange(Channel::E chan)
             HAL_FMC::Read(RD_ADC_A);
         }
 
-        if (chan == ChA)
+        if (ch == ChA)
         {
             for (int i = 0; i < 100; i += 2)
             {
@@ -130,7 +130,7 @@ Range::E AutoFinderFPGA::AccurateFindRange(Channel::E chan)
         }
 
         /*
-        if(chan == ChA)
+        if(ch == ChA)
         {
             LOG_WRITE("min = %d, max = %d", CalculateMinWithout0(buffer), CalculateMaxWithout255(buffer));
         }
@@ -200,12 +200,12 @@ TBase::E AutoFinderFPGA::FindTBase(Channel::E)
 }
 
 
-TBase::E AutoFinderFPGA::AccurateFindTBase(Channel::E chan)
+TBase::E AutoFinderFPGA::AccurateFindTBase(Channel::E ch)
 {
     for (int i = 0; i < 5; i++)
     {
-        TBase::E tBase = FindTBase(chan);
-        TBase::E secondTBase = FindTBase(chan); //-V656
+        TBase::E tBase = FindTBase(ch);
+        TBase::E secondTBase = FindTBase(ch); //-V656
 
         if (tBase == secondTBase && tBase != TBase::Count)
         {

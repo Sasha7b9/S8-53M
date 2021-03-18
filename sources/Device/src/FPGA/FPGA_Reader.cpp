@@ -18,9 +18,9 @@
 //    *addr = (uint16)data;
 
 /*
-static uint8 InverseIfNecessary(uint8 data, Channel::E chan)
+static uint8 InverseIfNecessary(uint8 data, Channel::E ch)
 {
-    if (set.chan[chan].inverse)
+    if (set.chan[ch].inverse)
     {
         return (uint8)((int)(2 * AVE_VALUE) - LimitationUInt8(data, MIN_VALUE, MAX_VALUE));
     }
@@ -138,9 +138,9 @@ void ReaderFPGA::ReadPoint()
 }
 
 
-void ReaderFPGA::InverseDataIsNecessary(Channel::E chan, uint8 *data)
+void ReaderFPGA::InverseDataIsNecessary(Channel::E ch, uint8 *data)
 {
-    if (SET_INVERSE(chan))
+    if (SET_INVERSE(ch))
     {
         for (int i = 0; i < FPGA_MAX_POINTS; i++)
         {

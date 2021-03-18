@@ -119,9 +119,9 @@ const char* Tables::RangeNameFromValue(Range::E range)
 }
 
 
-int Tables::GetNumChannel(Channel::E chan)
+int Tables::GetNumChannel(Channel::E ch)
 {
-    return (chan == ChA) ? 1 : 2;
+    return (ch == ChA) ? 1 : 2;
 }
 
 

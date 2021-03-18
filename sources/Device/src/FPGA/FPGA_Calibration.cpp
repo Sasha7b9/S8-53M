@@ -17,12 +17,12 @@
 using namespace Primitives;
 
 
-static int16    CalculateAdditionRShift(Channel::E chan, Range::E range);	// Измерить добавочное смещение канала по напряжению.
-static float    CalculateKoeffCalibration(Channel::E chan);			// Измерить коэффициент калибровки канала по напряжению.
+static int16    CalculateAdditionRShift(Channel::E ch, Range::E range);	// Измерить добавочное смещение канала по напряжению.
+static float    CalculateKoeffCalibration(Channel::E ch);			// Измерить коэффициент калибровки канала по напряжению.
 static void     AlignmentADC();
 static void     FuncAttScreen();								// Функция обновления экрана в режиме калибровки.
-static float    CalculateDeltaADC(Channel::E chan, float *avgADC1, float *avgADC2, float *delta);
-static void     DrawParametersChannel(Channel::E chan, int x, int y, bool inProgress);
+static float    CalculateDeltaADC(Channel::E ch, float *avgADC1, float *avgADC2, float *delta);
+static void     DrawParametersChannel(Channel::E ch, int x, int y, bool inProgress);
 
 static float deltaADC[2] = {0.0F, 0.0F};
 static float deltaADCPercents[2] = {0.0F, 0.0F};
@@ -306,13 +306,13 @@ void FuncAttScreen()
 }
 
 
-void DrawParametersChannel(Channel::E chan, int eX, int eY, bool inProgress)
+void DrawParametersChannel(Channel::E ch, int eX, int eY, bool inProgress)
 {
     Color::FILL.SetAsCurrent();
     if(inProgress)
     {
-        Text(chan == 0 ? "КАНАЛ 1" : "КАНАЛ 2").Draw(eX, eY + 4);
-        ProgressBar *bar = (chan == ChA) ? &bar0 : &bar1;
+        Text(ch == 0 ? "КАНАЛ 1" : "КАНАЛ 2").Draw(eX, eY + 4);
+        ProgressBar *bar = (ch == ChA) ? &bar0 : &bar1;
         bar->width = 240;
         bar->height = 15;
         bar->y = eY;
@@ -326,27 +326,27 @@ void DrawParametersChannel(Channel::E chan, int eX, int eY, bool inProgress)
         int y = eY + (inProgress ? 110 : 0);
         Text("Отклонение от нуля:").Draw(x, y);
         char buffer[100] = {0};
-        std::sprintf(buffer, "АЦП1 = %.2f/%.2f, АЦП2 = %.2f/%.2f, d = %.2f/%.2f", avrADC1old[chan] - AVE_VALUE, avrADC1[chan] - AVE_VALUE,
-                                                                             avrADC2old[chan] - AVE_VALUE, avrADC2[chan] - AVE_VALUE,
-                                                                             deltaADCold[chan], deltaADC[chan]);
+        std::sprintf(buffer, "АЦП1 = %.2f/%.2f, АЦП2 = %.2f/%.2f, d = %.2f/%.2f", avrADC1old[ch] - AVE_VALUE, avrADC1[ch] - AVE_VALUE,
+                                                                             avrADC2old[ch] - AVE_VALUE, avrADC2[ch] - AVE_VALUE,
+                                                                             deltaADCold[ch], deltaADC[ch]);
         y += 10;
         Text(buffer).Draw(x, y);
         buffer[0] = 0;
-        std::sprintf(buffer, "Расхождение Channel::A_ЦП = %.2f/%.2f %%", deltaADCPercentsOld[chan], deltaADCPercents[chan]);
+        std::sprintf(buffer, "Расхождение Channel::A_ЦП = %.2f/%.2f %%", deltaADCPercentsOld[ch], deltaADCPercents[ch]);
         Text(buffer).Draw(x, y + 11);
         buffer[0] = 0;
-        std::sprintf(buffer, "Записано %d", SET_BALANCE_ADC(chan));
+        std::sprintf(buffer, "Записано %d", SET_BALANCE_ADC(ch));
         Text(buffer).Draw(x, y + 19);
     }
 }
 
 
-float CalculateDeltaADC(Channel::E chan, float *avgADC1, float *avgADC2, float *delta)
+float CalculateDeltaADC(Channel::E ch, float *avgADC1, float *avgADC2, float *delta)
 {
-    uint *startTime = (chan == ChA) ? &startTimeChan0 : &startTimeChan1;
+    uint *startTime = (ch == ChA) ? &startTimeChan0 : &startTimeChan1;
     *startTime = TIME_MS;
     
-    ProgressBar *bar = (chan == ChA) ? &bar0 : &bar1;
+    ProgressBar *bar = (ch == ChA) ? &bar0 : &bar1;
     bar->passedTime = 0;
     bar->fullTime = 0;
 
@@ -369,7 +369,7 @@ float CalculateDeltaADC(Channel::E chan, float *avgADC1, float *avgADC2, float *
 
         for(int i = 0; i < FPGA_MAX_POINTS; i++)
         {
-            if(chan == ChA)
+            if(ch == ChA)
             {
                 *avgADC1 += HAL_FMC::Read(address1);
                 *avgADC2 += HAL_FMC::Read(address2);
@@ -409,12 +409,12 @@ void AlignmentADC()
 }
 
 
-int16 CalculateAdditionRShift(Channel::E chan, Range::E range)
+int16 CalculateAdditionRShift(Channel::E ch, Range::E range)
 {
-    Range::Set(chan, range);
-    RShift::Set(chan, RShiftZero);
+    Range::Set(ch, range);
+    RShift::Set(ch, RShiftZero);
     TBase::Set(TBase::_200us);
-    TrigSource::Set(chan == ChA ? TrigSource::A_ : TrigSource::B_);
+    TrigSource::Set(ch == ChA ? TrigSource::A_ : TrigSource::B_);
     TrigPolarity::Set(TrigPolarity::Front);
     TrigLev::Set((TrigSource::E)chan, TrigLevZero);
 
@@ -474,12 +474,12 @@ int16 CalculateAdditionRShift(Channel::E chan, Range::E range)
 }
 
 
-float CalculateKoeffCalibration(Channel::E chan)
+float CalculateKoeffCalibration(Channel::E ch)
 {
     FPGA::BUS::WriteWithoutStart(WR_UPR, BIN_U8(00000100));
 
-    RShift::Set(chan, RShiftZero - 40 * 4);
-    ModeCouple::Set(chan, ModeCouple::DC);
+    RShift::Set(ch, RShiftZero - 40 * 4);
+    ModeCouple::Set(ch, ModeCouple::DC);
     TrigSource::Set((TrigSource::E)chan);
     TrigLev::Set((TrigSource::E)chan, TrigLevZero + 40 * 4);
     

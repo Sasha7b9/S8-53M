@@ -599,15 +599,15 @@ int CalculateCount(int *prevTime)
 }
 
 
-static void ChangeRShift(int *prevTime, void(*f)(Channel::E, int16), Channel::E chan, int16 relStep)
+static void ChangeRShift(int *prevTime, void(*f)(Channel::E, int16), Channel::E ch, int16 relStep)
 {
     if (ENUM_ACCUM_IS_NONE)
     {
         FPGA::TemporaryPause();
     }
     int count = CalculateCount(prevTime);
-    int rShiftOld = SET_RSHIFT(chan);
-    int rShift = SET_RSHIFT(chan) + relStep * count;
+    int rShiftOld = SET_RSHIFT(ch);
+    int rShift = SET_RSHIFT(ch) + relStep * count;
     if ((rShiftOld > RShiftZero && rShift < RShiftZero) || (rShiftOld < RShiftZero && rShift > RShiftZero))
     {
         rShift = RShiftZero;
@@ -615,7 +615,7 @@ static void ChangeRShift(int *prevTime, void(*f)(Channel::E, int16), Channel::E 
     if (CanChangeRShiftOrTrigLev((TrigSource::E)chan, (int16)rShift))
     {
         Sound::RegulatorShiftRotate();
-        f(chan, (int16)rShift);
+        f(ch, (int16)rShift);
     }
 }
 

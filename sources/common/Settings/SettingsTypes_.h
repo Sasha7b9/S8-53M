@@ -368,7 +368,7 @@ struct Range
 
     static bool Increase(Channel::E ch);
 
-    static bool Decrease(Channel::E chan);
+    static bool Decrease(Channel::E ch);
 
     static pchar Name(Range::E range);
 };
@@ -379,11 +379,17 @@ Range::E &operator--(Range::E &range);
 
 struct RShift
 {
-    static void Set(Channel::E chan, int16 rShift);
+    static void Set(Channel::E ch, int16 rShift);
 
     static void Load(Channel::E ch);
 
     static int ToRel(float rshift_abs, Range::E range);
+
+    static void Draw();
+
+private:
+
+    static void Draw(Channel::E ch);
 };
 
 

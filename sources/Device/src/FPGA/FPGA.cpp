@@ -239,7 +239,7 @@ void FPGA::State::Restore()
         {
             for (int range = 0; range < Range::Count; range++)
             {
-                rShiftAdd[chan][range][mode] = RSHIFT_ADD(chan, range, mode);
+                rShiftAdd[ch][range][mode] = RSHIFT_ADD(ch, range, mode);
             }
         }
     }
@@ -250,7 +250,7 @@ void FPGA::State::Restore()
         {
             for (int range = 0; range < Range::Count; range++)
             {
-                 RSHIFT_ADD(chan, range, mode) = rShiftAdd[chan][range][mode];
+                 RSHIFT_ADD(ch, range, mode) = rShiftAdd[ch][range][mode];
             }
         }
     }

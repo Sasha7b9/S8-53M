@@ -71,16 +71,16 @@ void Display::DrawStringNavigation()
 }
 
 
-void Display::RotateRShift(Channel::E chan)
+void Display::RotateRShift(Channel::E ch)
 {
     LAST_AFFECTED_CHANNEL = chan;
 
     if(TIME_SHOW_LEVELS)
     {
-        if (chan == ChA) { showLevelRShiftA = true; }
+        if (ch == ChA) { showLevelRShiftA = true; }
         else                    { showLevelRShiftB = true; }
-        Timer::Enable((chan == ChA) ? TypeTimer::ShowLevelRShift0 : TypeTimer::ShowLevelRShift1,
-            TIME_SHOW_LEVELS  * 1000, (chan == ChA) ? FuncOnTimerDisableShowLevelRShiftA :
+        Timer::Enable((ch == ChA) ? TypeTimer::ShowLevelRShift0 : TypeTimer::ShowLevelRShift1,
+            TIME_SHOW_LEVELS  * 1000, (ch == ChA) ? FuncOnTimerDisableShowLevelRShiftA :
             FuncOnTimerDisableShowLevelRShiftB);
     };
 
@@ -322,6 +322,7 @@ void Display::DrawCursorsRShift()
     {
         DrawCursorRShift(Channel::Math);
     }
+
     if(LAST_AFFECTED_CHANNEL_IS_B)
     {
         DrawCursorRShift(ChA);
@@ -754,11 +755,11 @@ void Display::DrawCursorsWindow()
 void Display::DrawCursorTrigLevel()
 {
     TrigSource::E chan = TRIG_SOURCE;
-    if (chan == TrigSource::Ext_)
+    if (ch == TrigSource::Ext_)
     {
         return;
     }
-    int trigLev = TRIG_LEVEL(chan) + (SET_RSHIFT(chan) - RShiftZero);
+    int trigLev = TRIG_LEVEL(ch) + (SET_RSHIFT(ch) - RShiftZero);
     float scale = 1.0F / ((TrigLevMax - TrigLevMin) / 2.0F / Grid::ChannelHeight());
     int y0 = static_cast<int>((Grid::TOP + Grid::ChannelBottom()) / 2 + scale * (TrigLevZero - TrigLevMin));
     int y = static_cast<int>(y0 - scale * (trigLev - TrigLevMin));
@@ -800,7 +801,7 @@ void Display::DrawCursorTrigLevel()
         int shiftFullMin = RShiftMin + TrigLevMin;
         int shiftFullMax = RShiftMax + TrigLevMax;
         scale = (float)height / (shiftFullMax - shiftFullMin);
-        int shiftFull = TRIG_LEVEL_SOURCE + (TRIG_SOURCE_IS_EXT ? 0 : SET_RSHIFT(chan));
+        int shiftFull = TRIG_LEVEL_SOURCE + (TRIG_SOURCE_IS_EXT ? 0 : SET_RSHIFT(ch));
         int yFull = static_cast<int>(Grid::TOP + DELTA + height - scale * (shiftFull - RShiftMin - TrigLevMin) - 4);
         Region(4, 6).Fill(left + 2, yFull + 1, Color::Trig());
         Font::Set(TypeFont::S5);
@@ -810,11 +811,11 @@ void Display::DrawCursorTrigLevel()
 }
 
 
-void Display::DrawCursorRShift(Channel::E chan)
+void Display::DrawCursorRShift(Channel::E ch)
 {
     float x = static_cast<float>(Grid::Right() - Grid::Width() - Measure::GetDeltaGridLeft());
 
-    if (chan == Channel::Math)
+    if (ch == Channel::Math)
     {
         int rShift = SET_RSHIFT_MATH;
         float scale = (float)Grid::MathHeight() / 960;
@@ -823,34 +824,34 @@ void Display::DrawCursorRShift(Channel::E chan)
         Char('m').Draw(static_cast<int>(x - 8), static_cast<int>(y - 5), Color::BACK);
         return;
     }
-    if(!sChannel_Enabled(chan))
+    if(!sChannel_Enabled(ch))
     {
         return;
     }
 
-    int rShift = SET_RSHIFT(chan);
+    int rShift = SET_RSHIFT(ch);
  
     float scale = Grid::ChannelHeight() / (STEP_RSHIFT * 200.0F);
     float y = Grid::ChannelCenterHeight() - scale * (rShift - RShiftZero);
 
     if(y > Grid::ChannelBottom())
     {
-        Char(Symbol::S8::RSHIFT_LOWER).Draw(static_cast<int>(x - 7), Grid::ChannelBottom() - 11, Color::Channel(chan));
+        Char(Symbol::S8::RSHIFT_LOWER).Draw(static_cast<int>(x - 7), Grid::ChannelBottom() - 11, Color::Channel(ch));
         Point().Draw(static_cast<int>(x - 5), Grid::ChannelBottom() - 2);
         y = static_cast<float>(Grid::ChannelBottom() - 7);
         x++;
     }
     else if(y < Grid::TOP)
     {
-        Char(Symbol::S8::RSHIFT_ABOVE).Draw(static_cast<int>(x - 7), Grid::TOP + 2, Color::Channel(chan));
+        Char(Symbol::S8::RSHIFT_ABOVE).Draw(static_cast<int>(x - 7), Grid::TOP + 2, Color::Channel(ch));
         Point().Draw(static_cast<int>(x - 5), Grid::TOP + 2);
         y = Grid::TOP + 7;
         x++;
     }
     else
     {
-        Char(Symbol::S8::RSHIFT_NORMAL).Draw(static_cast<int>(x - 8), static_cast<int>(y - 4), Color::Channel(chan));
-        if(((chan == ChA) ? showLevelRShiftA : showLevelRShiftB) && MODE_WORK_IS_DIRECT) //-V2570
+        Char(Symbol::S8::RSHIFT_NORMAL).Draw(static_cast<int>(x - 8), static_cast<int>(y - 4), Color::Channel(ch));
+        if(((ch == ChA) ? showLevelRShiftA : showLevelRShiftB) && MODE_WORK_IS_DIRECT) //-V2570
         {
             DashedHLine(7, 3).Draw(static_cast<int>(y), Grid::Left(), Grid::Right(), 0);
         }
@@ -863,10 +864,10 @@ void Display::DrawCursorRShift(Channel::E chan)
         float scaleFull = (float)Grid::ChannelHeight() / (RShiftMax - RShiftMin) * (sService_MathEnabled() ? 0.9F : 0.91F);
         float yFull = Grid::ChannelCenterHeight() - scaleFull * (rShift - RShiftZero);
 
-        Region(4, 6).Fill(4, static_cast<int>(yFull - 3), Color::Channel(chan));
-        Char(chan == ChA ? '1' : '2').Draw(5, static_cast<int>(yFull - 9), Color::BACK);
+        Region(4, 6).Fill(4, static_cast<int>(yFull - 3), Color::Channel(ch));
+        Char(ch == ChA ? '1' : '2').Draw(5, static_cast<int>(yFull - 9), Color::BACK);
     }
-    Char(chan == ChA ? '1' : '2').Draw(static_cast<int>(x - 7), static_cast<int>(y - 9), Color::BACK);
+    Char(ch == ChA ? '1' : '2').Draw(static_cast<int>(x - 7), static_cast<int>(y - 9), Color::BACK);
     Font::Set(TypeFont::S8);
 }
 
@@ -1067,7 +1068,7 @@ void Display::DrawMeasures()
 
 
 
-void Display::WriteTextVoltage(Channel::E chan, int x, int y)
+void Display::WriteTextVoltage(Channel::E ch, int x, int y)
 {
     static pchar couple[] =
     {
@@ -1076,30 +1077,30 @@ void Display::WriteTextVoltage(Channel::E chan, int x, int y)
         "\x90"
     };
 
-    bool inverse = SET_INVERSE(chan);
-    ModeCouple::E modeCouple = SET_COUPLE(chan);
-    Divider::E multiplier = SET_DIVIDER(chan);
-    Range::E range = SET_RANGE(chan);
-    uint rShift = (uint)SET_RSHIFT(chan);
-    bool enable = SET_ENABLED(chan);
+    bool inverse = SET_INVERSE(ch);
+    ModeCouple::E modeCouple = SET_COUPLE(ch);
+    Divider::E multiplier = SET_DIVIDER(ch);
+    Range::E range = SET_RANGE(ch);
+    uint rShift = (uint)SET_RSHIFT(ch);
+    bool enable = SET_ENABLED(ch);
 
     if (!MODE_WORK_IS_DIRECT)
     {
         DataSettings *ds = MODE_WORK_IS_DIRECT ? Storage::set : Storage::dsInt;
         if (ds != 0)
         {
-            inverse = (chan == ChA) ? ds->inverseCh0 : ds->inverseCh1;
-            modeCouple = (chan == ChA) ? ds->modeCouple0 : ds->modeCouple1;
-            multiplier = (chan == ChA) ? ds->multiplier0 : ds->multiplier1;
-            range = ds->range[chan];
-            rShift = (chan == ChA) ? ds->rShiftCh0 : ds->rShiftCh1;
-            enable = (chan == ChA) ? ds->enableCh0 : ds->enableCh1;
+            inverse = (ch == ChA) ? ds->inverseCh0 : ds->inverseCh1;
+            modeCouple = (ch == ChA) ? ds->modeCouple0 : ds->modeCouple1;
+            multiplier = (ch == ChA) ? ds->multiplier0 : ds->multiplier1;
+            range = ds->range[ch];
+            rShift = (ch == ChA) ? ds->rShiftCh0 : ds->rShiftCh1;
+            enable = (ch == ChA) ? ds->enableCh0 : ds->enableCh1;
         }
     }
 
     if(enable)
     {
-        Color color = Color::Channel(chan);
+        Color color = Color::Channel(ch);
         Color colorDraw = inverse ? Color::WHITE : color;
 
         if(inverse)
@@ -1111,7 +1112,7 @@ void Display::WriteTextVoltage(Channel::E chan, int x, int y)
 
         char buffer[100] = {0};
 
-        std::sprintf(buffer, "%s\xa5%s\xa5%s", (chan == ChA) ? (LANG_RU ? "1ê" : "1c") : (LANG_RU ? "2ê" : "2c"), couple[modeCouple],
+        std::sprintf(buffer, "%s\xa5%s\xa5%s", (ch == ChA) ? (LANG_RU ? "1ê" : "1c") : (LANG_RU ? "2ê" : "2c"), couple[modeCouple],
             sChannel_Range2String(range, multiplier));
 
         Text(buffer).Draw(x + 1, y, colorDraw);

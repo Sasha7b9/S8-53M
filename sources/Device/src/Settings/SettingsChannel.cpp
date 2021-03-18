@@ -34,23 +34,23 @@ static const RangeStruct ranges[Range::Count] =
 
 
 
-void sChannel_SetRange(Channel::E chan, Range::E range)
+void sChannel_SetRange(Channel::E ch, Range::E range)
 {
-    SET_RANGE(chan) = range;
+    SET_RANGE(ch) = range;
 }
 
 
-bool sChannel_Enabled(Channel::E chan)
+bool sChannel_Enabled(Channel::E ch)
 {
-    if (chan == Channel::Math)
+    if (ch == Channel::Math)
     {
         return !DISABLED_DRAW_MATH;
     }
-    if (chan == Channel::A_B)
+    if (ch == Channel::A_B)
     {
         return false;
     }
-    return SET_ENABLED(chan);
+    return SET_ENABLED(ch);
 }
 
 

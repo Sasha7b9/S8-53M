@@ -140,36 +140,36 @@ void FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::E type)
 }
 
 
-void Range::Set(Channel::E chan, Range::E range)
+void Range::Set(Channel::E ch, Range::E range)
 {
-    if (!sChannel_Enabled(chan))
+    if (!sChannel_Enabled(ch))
     {
         return;
     }
     if (range < Range::Count)
     {
-        sChannel_SetRange(chan, range);
+        sChannel_SetRange(ch, range);
         if (LINKING_RSHIFT_IS_VOLTAGE)
         {
-            float rShiftAbs = RSHIFT_2_ABS(SET_RSHIFT(chan), SET_RANGE(chan));
-            float trigLevAbs = RSHIFT_2_ABS(TRIG_LEVEL(chan), SET_RANGE(chan));
-            SET_RSHIFT(chan) = (int16)RShift::ToRel(rShiftAbs, range);
-            TRIG_LEVEL(chan) = (int16)RShift::ToRel(trigLevAbs, range);
+            float rShiftAbs = RSHIFT_2_ABS(SET_RSHIFT(ch), SET_RANGE(ch));
+            float trigLevAbs = RSHIFT_2_ABS(TRIG_LEVEL(ch), SET_RANGE(ch));
+            SET_RSHIFT(ch) = (int16)RShift::ToRel(rShiftAbs, range);
+            TRIG_LEVEL(ch) = (int16)RShift::ToRel(trigLevAbs, range);
         }
-        Load(chan);
+        Load(ch);
     }
     else
     {
-        Display::ShowWarningBad(chan == ChA ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
+        Display::ShowWarningBad(ch == ChA ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
     }
 };
 
 
-void Range::Load(Channel::E chan)
+void Range::Load(Channel::E ch)
 {
     FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::Range0);
-    RShift::Load(chan);
-    if (chan == (Channel::E)TRIG_SOURCE)
+    RShift::Load(ch);
+    if (ch == (Channel::E)TRIG_SOURCE)
     {
         TrigLev::Load();
     }
@@ -227,19 +227,19 @@ void TBase::Load()
 }
 
 
-void RShift::Load(Channel::E chan)
+void RShift::Load(Channel::E ch)
 {
     static const uint16 mask[2] = {0x2000, 0x6000};
 
-    Range::E range = SET_RANGE(chan);
-    ModeCouple::E mode = SET_COUPLE(chan);
+    Range::E range = SET_RANGE(ch);
+    ModeCouple::E mode = SET_COUPLE(ch);
     static const int index[3] = {0, 1, 1};
-    int16 rShiftAdd = RSHIFT_ADD(chan, range, index[mode]);
+    int16 rShiftAdd = RSHIFT_ADD(ch, range, index[mode]);
 
-    uint16 rShift = (uint16)(SET_RSHIFT(chan) + (SET_INVERSE(chan) ? -1 : 1) * rShiftAdd);
+    uint16 rShift = (uint16)(SET_RSHIFT(ch) + (SET_INVERSE(ch) ? -1 : 1) * rShiftAdd);
 
     int16 delta = -(rShift - RShiftZero);
-    if (SET_INVERSE(chan))
+    if (SET_INVERSE(ch))
     {
         delta = -delta;
     }
@@ -247,7 +247,7 @@ void RShift::Load(Channel::E chan)
 
     rShift = (uint16)(RShiftMax + RShiftMin - rShift);
 
-    FPGA::BUS::WriteToDAC(chan == ChA ? TypeWriteDAC::RShiftA : TypeWriteDAC::RShiftB, (uint16)(mask[chan] | (rShift << 2)));
+    FPGA::BUS::WriteToDAC(ch == ChA ? TypeWriteDAC::RShiftA : TypeWriteDAC::RShiftB, (uint16)(mask[ch] | (rShift << 2)));
 }
 
 
@@ -269,9 +269,9 @@ void TrigLev::Set(TrigSource::E chan, int16 trigLev)
         trigLev = (trigLev + 1) & 0xfffe;
     }
 
-    if (TRIG_LEVEL(chan) != trigLev)
+    if (TRIG_LEVEL(ch) != trigLev)
     {
-        TRIG_LEVEL(chan) = trigLev;
+        TRIG_LEVEL(ch) = trigLev;
         TrigLev::Load();
         Display::RotateTrigLev();
     }
@@ -333,7 +333,7 @@ void RegUPR::Load()
 
 void FPGA::Calibrator::LoadKoeff(Channel::E /*chan*/)
 {
-//    FPGA::WriteToHardware(chan == ChA ? WR_CAL_A : WR_CAL_B, static_cast<uint8>(STRETCH_ADC(chan) * 0x80), false);
+//    FPGA::WriteToHardware(ch == ChA ? WR_CAL_A : WR_CAL_B, static_cast<uint8>(STRETCH_ADC(ch) * 0x80), false);
 }
 
 
@@ -412,34 +412,34 @@ pchar TShift::ToString(int16 tshift_rel, char buffer[20])
 }
 
 
-bool Range::Increase(Channel::E chan)
+bool Range::Increase(Channel::E ch)
 {
     bool retValue = false;
-    if (SET_RANGE(chan) < Range::Count - 1)
+    if (SET_RANGE(ch) < Range::Count - 1)
     {
-        Set(chan, (Range::E)(SET_RANGE(chan) + 1));
+        Set(ch, (Range::E)(SET_RANGE(ch) + 1));
         retValue = true;
     }
     else
     {
-       Display::ShowWarningBad(chan == ChA ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
+       Display::ShowWarningBad(ch == ChA ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
     }
     Display::Redraw();
     return retValue;
 };
 
 
-bool Range::Decrease(Channel::E chan)
+bool Range::Decrease(Channel::E ch)
 {
     bool retValue = false;
-    if (SET_RANGE(chan) > 0)
+    if (SET_RANGE(ch) > 0)
     {
-        Range::Set(chan, (Range::E)(SET_RANGE(chan) - 1));
+        Range::Set(ch, (Range::E)(SET_RANGE(ch) - 1));
         retValue = true;
     }
     else
     {
-        Display::ShowWarningBad(chan == ChA ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
+        Display::ShowWarningBad(ch == ChA ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
     }
     Display::Redraw();
     return retValue;
@@ -496,10 +496,10 @@ void TrigInput::Set(E trigInput)
 }
 
 
-void ChannelFiltr::Enable(Channel::E chan, bool enable)
+void ChannelFiltr::Enable(Channel::E ch, bool enable)
 {
-    SET_FILTR(chan) = enable;
-    FPGA::BUS::SetAttribChannelsAndTrig(chan == ChA ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
+    SET_FILTR(ch) = enable;
+    FPGA::BUS::SetAttribChannelsAndTrig(ch == ChA ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
 }
 
 

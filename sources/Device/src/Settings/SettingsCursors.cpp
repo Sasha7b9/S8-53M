@@ -9,9 +9,9 @@
 #include <cstring>
 
 
-float sCursors_GetCursPosU(Channel::E chan, int numCur)
+float sCursors_GetCursPosU(Channel::E ch, int numCur)
 {
-    return CURS_POS_U(chan, numCur) / (Grid::ChannelBottom() == Grid::FullBottom() ? 1.0F : 2.0F);
+    return CURS_POS_U(ch, numCur) / (Grid::ChannelBottom() == Grid::FullBottom() ? 1.0F : 2.0F);
 }
 
 

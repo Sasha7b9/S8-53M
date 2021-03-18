@@ -308,7 +308,7 @@ bool Storage::GetDataFromEnd(int fromEnd, DataSettings **ds, uint8 **data0, uint
 }
 
 
-uint8* Storage::GetData(Channel::E chan, int fromEnd)
+uint8* Storage::GetData(Channel::E ch, int fromEnd)
 {
     static uint8 dataImportRel[2][FPGA_MAX_POINTS];
     DataSettings* dp = FromEnd(fromEnd);
@@ -317,23 +317,23 @@ uint8* Storage::GetData(Channel::E chan, int fromEnd)
         return 0;
     }
 
-    return CopyData(dp, chan, dataImportRel) ? &dataImportRel[chan][0] : 0;
+    return CopyData(dp, chan, dataImportRel) ? &dataImportRel[ch][0] : 0;
 }
 
 
-bool Storage::CopyData(DataSettings *ds, Channel::E chan, uint8 datatImportRel[2][FPGA_MAX_POINTS])
+bool Storage::CopyData(DataSettings *ds, Channel::E ch, uint8 datatImportRel[2][FPGA_MAX_POINTS])
 {
-    if((chan == ChA && ds->enableCh0 == 0) || (chan == ChB && ds->enableCh1 == 0))
+    if((ch == ChA && ds->enableCh0 == 0) || (ch == ChB && ds->enableCh1 == 0))
     {
         return false;
     }
-    uint8* pointer = (chan == ChA) ? (&datatImportRel[0][0]) : (&datatImportRel[1][0]);
+    uint8* pointer = (ch == ChA) ? (&datatImportRel[0][0]) : (&datatImportRel[1][0]);
 
     uint8* address = ((uint8*)ds + sizeof(DataSettings));
 
     uint length = ds->length1channel * (ds->peakDet == PeackDetMode::Disable ? 1 : 2);
 
-    if(chan == ChB && ds->enableCh0 == 1)
+    if(ch == ChB && ds->enableCh0 == 1)
     {
         address += length;
     }
@@ -344,16 +344,16 @@ bool Storage::CopyData(DataSettings *ds, Channel::E chan, uint8 datatImportRel[2
 }
 
 
-uint8* Storage::GetAverageData(Channel::E chan)
+uint8* Storage::GetAverageData(Channel::E ch)
 {
     static uint8 data[NumChannels][FPGA_MAX_POINTS];
     
-    if (newSumCalculated[chan] == false)
+    if (newSumCalculated[ch] == false)
     {
-        return &data[chan][0];
+        return &data[ch][0];
     }
 
-    newSumCalculated[chan] = false;
+    newSumCalculated[ch] = false;
 
     DataSettings *ds = 0;
     uint8 *d0, *d1;
@@ -368,13 +368,13 @@ uint8* Storage::GetAverageData(Channel::E chan)
 
     if (ModeAveraging::Current() == ModeAveraging::Around)
     {
-        float *floatAveData = (chan == ChA) ? aveData0 : aveData1;
+        float *floatAveData = (ch == ChA) ? aveData0 : aveData1;
         
         for (uint i = 0; i < numPoints; i++)
         {
-            data[chan][i] = (uint8)(floatAveData[i]);
+            data[ch][i] = (uint8)(floatAveData[i]);
         }
-        return &data[chan][0];
+        return &data[ch][0];
     }
 
     int numAveraging = ENumAveraging::NumAverages();
@@ -383,24 +383,24 @@ uint8* Storage::GetAverageData(Channel::E chan)
 
     for(uint i = 0; i < numPoints; i++)
     {
-        data[chan][i] = static_cast<uint8>(sum[chan][i] / numAveraging);
+        data[ch][i] = static_cast<uint8>(sum[ch][i] / numAveraging);
     }
 
-    return &data[chan][0];
+    return &data[ch][0];
 }
 
 
-uint8* Storage::GetLimitation(Channel::E chan, int direction)
+uint8* Storage::GetLimitation(Channel::E ch, int direction)
 {
     uint8 *retValue = 0;
 
     if(direction == 0)
     {
-        retValue = &(limitDown[chan][0]);
+        retValue = &(limitDown[ch][0]);
     }
     else if(direction == 1)
     {
-        retValue = &(limitUp[chan][0]);
+        retValue = &(limitUp[ch][0]);
     }
 
     return retValue;
