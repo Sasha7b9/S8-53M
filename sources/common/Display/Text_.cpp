@@ -3,6 +3,7 @@
 #include "common/Display/Primitives_.h"
 #include "common/Display/Text_.h"
 #include "common/Utils/Math_.h"
+#include "common/Utils/String_.h"
 #include <cstdarg>
 #include <cstring>
 #include <cstdlib>

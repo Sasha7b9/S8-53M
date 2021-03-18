@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "common/Log_.h"
+#include "common/Utils/String_.h"
 #include "common/Display/Colors_.h"
 #include "common/Utils/GlobalFunctions_.h"
 #include "common/Utils/Math_.h"

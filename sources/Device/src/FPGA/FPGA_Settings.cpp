@@ -404,11 +404,11 @@ void TShift::Load()
 }
 
 
-pchar TShift::ToString(int16 tshift_rel, char buffer[20])
+String TShift::ToString(int16 tshift_rel)
 {
     float tShiftVal = TSHIFT_2_ABS(tshift_rel, SET_TBASE);
 
-    return std::strcpy(buffer, GF::Time2String(tShiftVal, true).c_str());
+    return GF::Time2String(tShiftVal, true);
 }
 
 

@@ -1,4 +1,5 @@
 #pragma once
+#include "common/Utils/String_.h"
 
 
 #define NumChannels 2
@@ -477,7 +478,7 @@ struct TShift
     static void SetDelta(int16 shift);
 
     // ¬озвращает установленное смещение по времени в текстовом виде, пригодном дл€ вывода на экран.
-    static pchar ToString(int16 tshift_rel, char buffer[20]);
+    static String ToString(int16 tshift_rel);
 
     static const int NULL_VALUE = 1000000;
 };

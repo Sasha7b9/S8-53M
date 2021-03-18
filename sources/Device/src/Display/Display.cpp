@@ -1161,7 +1161,6 @@ void Display::DrawLowPart()
     VLine().Draw(x + 95, Grid::Bottom() + 2, HEIGHT - 2, Color::FILL);
 
     x += 98;
-    char buffer[100] = {0};
 
     TBase::E tBase = SET_TBASE;
     int16 tShift = TSHIFT;
@@ -1176,62 +1175,56 @@ void Display::DrawLowPart()
         }
     }
 
-    std::sprintf(buffer, "ð\xa5%s", TBase::ToString(tBase));
-    Text(buffer).Draw(x, y0);
+    Text("ð\xa5%s", TBase::ToString(tBase)).Draw(x, y0);
 
-    buffer[0] = 0;
-    char bufForVal[20];
-    std::sprintf(buffer, "\xa5%s", TShift::ToString(tShift, bufForVal));
-    Text(buffer).Draw(x + 35, y0);
+    Text("\xa5%s", TShift::ToString(tShift).c_str()).Draw(x + 35, y0);
 
-    buffer[0] = 0;
     if (MODE_WORK_IS_DIRECT)
     {
         pchar source[3] = { "1", "2", "\x82" };
-        std::sprintf(buffer, "ñ\xa5\x10%s", source[TRIG_SOURCE]);
+
+        Text("ñ\xa5\x10%s", source[TRIG_SOURCE]).Draw(x, y1, Color::Trig());
     }
 
-    Text(buffer).Draw(x, y1, Color::Trig());
-
-    buffer[0] = 0;
-    static pchar couple[] =
-    {
-        "\x92",
-        "\x91",
-        "\x92",
-        "\x92"
-    };
-    static pchar polar[] =
-    {
-        "\xa7",
-        "\xa6"
-    };
-    static pchar filtr[] =
-    {
-        "\xb5\xb6",
-        "\xb5\xb6",
-        "\xb3\xb4",
-        "\xb1\xb2"
-    };
     if (MODE_WORK_IS_DIRECT)
     {
-        std::sprintf(buffer, "\xa5\x10%s\x10\xa5\x10%s\x10\xa5\x10", couple[TRIG_INPUT], polar[TRIG_POLARITY]);
-        Text(buffer).Draw(x + 18, y1);
+        static pchar couple[] =
+        {
+            "\x92",
+            "\x91",
+            "\x92",
+            "\x92"
+        };
+
+        static pchar polar[] =
+        {
+            "\xa7",
+            "\xa6"
+        };
+
+        static pchar filtr[] =
+        {
+            "\xb5\xb6",
+            "\xb5\xb6",
+            "\xb3\xb4",
+            "\xb1\xb2"
+        };
+
+        Text("\xa5\x10%s\x10\xa5\x10%s\x10\xa5\x10", couple[TRIG_INPUT], polar[TRIG_POLARITY]).Draw(x + 18, y1);
         Char(filtr[TRIG_INPUT][0]).Draw(x + 45, y1);
         Char(filtr[TRIG_INPUT][1]).Draw(x + 53, y1);
     }
 
-    buffer[0] = '\0';
-    const char mode[] =
-    {
-        '\xb7',
-        '\xa0',
-        '\xb0'
-    };
     if (MODE_WORK_IS_DIRECT)
     {
-        std::sprintf(buffer, "\xa5\x10%c", mode[START_MODE]);
-        Text(buffer).Draw(x + 63, y1);
+        const char mode[] =
+        {
+            '\xb7',
+            '\xa0',
+            '\xb0'
+        };
+
+        Text("\xa5\x10%c", mode[START_MODE]).Draw(x + 63, y1);
     }
     
     VLine().Draw(x + 79, Grid::Bottom() + 2, HEIGHT - 2, Color::FILL);
