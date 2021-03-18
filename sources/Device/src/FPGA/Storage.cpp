@@ -109,6 +109,18 @@ uint8 *RecordStorage::Address() const
 }
 
 
+uint RecordStorage::Size() const
+{
+    return Data().Size() + 2 * sizeof(RecordStorage *);
+}
+
+
+DataStorage &RecordStorage::Data() const
+{
+    return *(DataStorage *)dataStorage;
+}
+
+
 void Storage::Append(const DataStorage &data)
 {
     RecordStorage *record = Create(data);
@@ -132,7 +144,7 @@ RecordStorage *Storage::Create(const DataStorage &data)
     {
         if (Newest() >= Oldest())       // Если записи идут в "прямом" порядке - адрес последней больше адреса первой
         {                               // (Это означает, что память ещё не заполнена либо же заполнена полностью)
-            
+            uint8 *address_next = Newest()->Address() + Newest()->Size();
         }
         else
         {

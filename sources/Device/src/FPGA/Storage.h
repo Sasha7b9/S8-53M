@@ -32,12 +32,19 @@ struct RecordStorage
 friend class Storage;
 
     void Fill(const DataStorage &data);
-    int Size() const;
+
+    uint Size() const;
+
     uint8 *Address() const;
+
+    // Возвращает адрес первого байта, следующего за записью
+    uint8 *End() const;
 private:
     RecordStorage *prev;        // Адрес предыдущей (более старой) записи
     RecordStorage *next;        // Адрес следующей (более новой) записи
-    uint16 *dataStorage;        // 
+    uint16 *dataStorage;        //
+
+    DataStorage &Data() const;
 };
 
 
