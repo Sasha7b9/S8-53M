@@ -35,7 +35,7 @@ public:
 
     static void Update();
 
-    static void RotateRShift(Channel::E channel);
+    static void RotateRShift(const Channel &ch);
 
     static void RotateTrigLev();
 
@@ -97,7 +97,7 @@ private:
     static void DrawCursorsRShift();
 
     // Нарисовать маркеры смещения по напряжению
-    static void DrawCursorRShift(Channel::E ch);
+    static void DrawCursorRShift(const Channel &ch);
 
     // Нарисовать маркер уровня синхронизации.
     static void DrawCursorTrigLevel();
@@ -138,7 +138,7 @@ private:
 
     static void DrawScaleLine(int x, bool forTrigLev);
 
-    static void WriteTextVoltage(Channel::E ch, int x, int y);
+    static void WriteTextVoltage(const Channel &ch, int x, int y);
 
     static void FuncOnTimerDisableShowLevelRShiftA();
 

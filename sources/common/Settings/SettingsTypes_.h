@@ -316,16 +316,25 @@ struct PeackDetMode
 };
 
 
-#define ChA Channel::A
-#define ChB Channel::B
+#define ChA Channel(Channel::A)
+#define ChB Channel(Channel::B)
 
-struct Channel { enum E
+struct Channel
 {
-    A,
-    B,
-    A_B,
-    Math
-};};
+    enum E
+    {
+        A,
+        B,
+        A_B,
+        Math
+    } value;
+
+    Channel(E v) : value(v) {}
+    bool IsEnabled() const;
+    bool IsA() const    { return (value == Channel::A); }
+    bool IsMath() const { return (value == Channel::Math); }
+    operator int() const { return (int)value; }
+};
 
 
 // Режим канала по входу.
@@ -382,7 +391,7 @@ Range::E &operator--(Range::E &range);
 
 struct RShift
 {
-    static void Set(Channel::E ch, int16 rShift);
+    static void Set(const Channel &ch, int16 rShift);
 
     static void Load(Channel::E ch);
 

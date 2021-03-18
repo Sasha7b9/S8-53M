@@ -299,3 +299,17 @@ void ModeCouple::Set(Channel::E ch, ModeCouple::E modeCoupe)
     FPGA::BUS::SetAttribChannelsAndTrig(ch == ChA ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
     RShift::Set(ch, SET_RSHIFT(ch));
 }
+
+
+bool Channel::IsEnabaled()
+{
+    if (ch == Channel::Math)
+    {
+        return !DISABLED_DRAW_MATH;
+    }
+    if (ch == Channel::A_B)
+    {
+        return false;
+    }
+    return SET_ENABLED(ch);
+}

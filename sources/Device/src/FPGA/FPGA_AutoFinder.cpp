@@ -22,10 +22,10 @@ void AutoFinderFPGA::Find()
     //Timer::StartLogging();
 
     //LOG_WRITE("Канал 1");
-    if (!FindWave(ChA))
+    if (!FindWave(Channel::A))
     {
         //LOG_WRITE("Канал 2");
-        if (!FindWave(ChB))
+        if (!FindWave(Channel::B))
         {
             Display::ShowWarningBad(Warning::SignalNotFound);
         }
@@ -68,7 +68,7 @@ bool AutoFinderFPGA::FindWave(Channel::E ch)
 }
 
 
-Range::E AutoFinderFPGA::AccurateFindRange(Channel::E ch)
+Range::E AutoFinderFPGA::AccurateFindRange(const Channel &ch)
 {
     /*
     Алгоритм поиска.
@@ -106,7 +106,7 @@ Range::E AutoFinderFPGA::AccurateFindRange(Channel::E ch)
             HAL_FMC::Read(RD_ADC_A);
         }
 
-        if (ch == ChA)
+        if (ch.IsA())
         {
             for (int i = 0; i < 100; i += 2)
             {

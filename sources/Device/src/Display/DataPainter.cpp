@@ -22,8 +22,8 @@ using namespace Primitives;
 
 void DataPainter::DrawData()
 {
-    DrawDataChannel(ReaderFPGA::data_a, ChA, &ReaderFPGA::ds, Grid::TOP, Grid::ChannelBottom());
-    DrawDataChannel(ReaderFPGA::data_b, ChB, &ReaderFPGA::ds, Grid::TOP, Grid::ChannelBottom());
+    DrawDataChannel(ReaderFPGA::data_a, Channel::A, &ReaderFPGA::ds, Grid::TOP, Grid::ChannelBottom());
+    DrawDataChannel(ReaderFPGA::data_b, Channel::B, &ReaderFPGA::ds, Grid::TOP, Grid::ChannelBottom());
 
     Primitives::Rectangle(Grid::Width(), Grid::FullHeight()).Draw(Grid::Left(), Grid::TOP, Color::FILL);
 }

@@ -119,9 +119,9 @@ const char* Tables::RangeNameFromValue(Range::E range)
 }
 
 
-int Tables::GetNumChannel(Channel::E ch)
+int Tables::GetNumChannel(const Channel &ch)
 {
-    return (ch == ChA) ? 1 : 2;
+    return ch.IsA() ? 1 : 2;
 }
 
 

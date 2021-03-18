@@ -6,8 +6,8 @@
 
 void DataSettings::Fill()
 {
-    enableCh0 = sChannel_Enabled(ChA) ? 1U : 0U;
-    enableCh1 = sChannel_Enabled(ChB) ? 1U : 0U;
+    enableCh0 = ChA.IsEnabaled() ? 1U : 0U;
+    enableCh1 = ChB.IsEnabaled() ? 1U : 0U;
     inverseCh0 = SET_INVERSE_A ? 1U : 0U;
     inverseCh1 = SET_INVERSE_B ? 1U : 0U;
     range[0] = SET_RANGE_A;

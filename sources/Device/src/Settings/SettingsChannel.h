@@ -3,26 +3,26 @@
 
 
 #define SET_INVERSE(ch)         (set.chan[ch].inverse)              // SettingsChannel.inverse
-#define SET_INVERSE_A           (SET_INVERSE(ChA))           // set.chan[ChA].inverse
-#define SET_INVERSE_B           (SET_INVERSE(ChB))           // set.chan[ChB].inverse
+#define SET_INVERSE_A           (SET_INVERSE(Channel::A))           // set.chan[ChA].inverse
+#define SET_INVERSE_B           (SET_INVERSE(Channel::B))           // set.chan[ChB].inverse
 #define SET_RSHIFT_MATH         (set.math.rShift)                   // SettingsMath.rShift
 #define SET_RANGE_MATH          (set.math.range)                    // SettingsMath.range
 
 #define SET_RANGE(ch)           (set.chan[ch].range)                // SettingsChannel.range
-#define SET_RANGE_A             (SET_RANGE(ChA))
-#define SET_RANGE_B             (SET_RANGE(ChB))
+#define SET_RANGE_A             (SET_RANGE(Channel::A))
+#define SET_RANGE_B             (SET_RANGE(Channel::B))
 
 #define SET_RSHIFT(ch)          (set.chan[ch].rShiftRel)            // SettingsChannel.rShiftRel
-#define SET_RSHIFT_A            (SET_RSHIFT(ChA))
-#define SET_RSHIFT_B            (SET_RSHIFT(ChB))
+#define SET_RSHIFT_A            (SET_RSHIFT(Channel::A))
+#define SET_RSHIFT_B            (SET_RSHIFT(Channel::B))
 
 #define SET_COUPLE(ch)          (set.chan[ch].modeCouple)           // SettingsChannel.modeCouple
-#define SET_COUPLE_A            (SET_COUPLE(ChA))
-#define SET_COUPLE_B            (SET_COUPLE(ChB))
+#define SET_COUPLE_A            (SET_COUPLE(Channel::A))
+#define SET_COUPLE_B            (SET_COUPLE(Channel::B))
 
 #define SET_DIVIDER(ch)         (set.chan[ch].divider)              // SettingsChannel.divider
-#define SET_DIVIDER_A           SET_DIVIDER(ChA)
-#define SET_DIVIDER_B           SET_DIVIDER(ChB)
+#define SET_DIVIDER_A           SET_DIVIDER(Channel::A)
+#define SET_DIVIDER_B           SET_DIVIDER(Channel::B)
 #define SET_DIVIDER_1(ch)       (SET_DIVIDER(ch) == Divider::_1)
 #define SET_DIVIDER_10(ch)      (SET_DIVIDER(ch) == Divider::_10)
 #define VALUE_MULTIPLIER(ch)    (Divider::ToAbs(SET_DIVIDER(ch)))
@@ -46,6 +46,3 @@
 
 // Установить масштаб по напряжению канала chan.
 void sChannel_SetRange(Channel::E ch, Range::E range);
-
-// Возвращает true, если канал chan включён.
-bool sChannel_Enabled(Channel::E ch);

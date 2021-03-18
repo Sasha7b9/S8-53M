@@ -9,7 +9,7 @@ struct AutoFinderFPGA
 
     static bool FindWave(Channel::E ch);
 
-    static Range::E AccurateFindRange(Channel::E ch);
+    static Range::E AccurateFindRange(const Channel &ch);
 
     static TBase::E FindTBase(Channel::E ch);
 

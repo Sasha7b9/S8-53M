@@ -72,16 +72,16 @@ void Display::DrawStringNavigation()
 }
 
 
-void Display::RotateRShift(Channel::E ch)
+void Display::RotateRShift(const Channel &ch)
 {
-    LAST_AFFECTED_CHANNEL = ch;
+    LAST_AFFECTED_CHANNEL = ch.value;
 
     if(TIME_SHOW_LEVELS)
     {
-        if (ch == ChA) { showLevelRShiftA = true; }
+        if (ch.IsA()) { showLevelRShiftA = true; }
         else                    { showLevelRShiftB = true; }
-        Timer::Enable((ch == ChA) ? TypeTimer::ShowLevelRShift0 : TypeTimer::ShowLevelRShift1,
-            TIME_SHOW_LEVELS  * 1000, (ch == ChA) ? FuncOnTimerDisableShowLevelRShiftA :
+        Timer::Enable(ch.IsA() ? TypeTimer::ShowLevelRShift0 : TypeTimer::ShowLevelRShift1,
+            TIME_SHOW_LEVELS  * 1000, ch.IsA() ? FuncOnTimerDisableShowLevelRShiftA :
             FuncOnTimerDisableShowLevelRShiftB);
     };
 
@@ -326,13 +326,13 @@ void Display::DrawCursorsRShift()
 
     if(LAST_AFFECTED_CHANNEL_IS_B)
     {
-        DrawCursorRShift(ChA);
-        DrawCursorRShift(ChB);
+        DrawCursorRShift(Channel::A);
+        DrawCursorRShift(Channel::B);
     }
     else
     {
-        DrawCursorRShift(ChB);
-        DrawCursorRShift(ChA);
+        DrawCursorRShift(Channel::B);
+        DrawCursorRShift(Channel::A);
     }
 }
 
@@ -822,11 +822,11 @@ void Display::DrawCursorTrigLevel()
 }
 
 
-void Display::DrawCursorRShift(Channel::E ch)
+void Display::DrawCursorRShift(const Channel &ch)
 {
     float x = static_cast<float>(Grid::Right() - Grid::Width() - Measure::GetDeltaGridLeft());
 
-    if (ch == Channel::Math)
+    if (ch.IsMath())
     {
         int rShift = SET_RSHIFT_MATH;
         float scale = (float)Grid::MathHeight() / 960;
@@ -835,7 +835,7 @@ void Display::DrawCursorRShift(Channel::E ch)
         Char('m').Draw(static_cast<int>(x - 8), static_cast<int>(y - 5), Color::BACK);
         return;
     }
-    if(!sChannel_Enabled(ch))
+    if(!ch.IsEnabled())
     {
         return;
     }
@@ -1067,16 +1067,16 @@ void Display::DrawMeasures()
                 }
                 if(MEAS_SOURCE_IS_A)
                 {
-                    Processing::GetStringMeasure(meas, ChA).Draw(x + 2, y + 11, Color::Channel(ChA));
+                    Processing::GetStringMeasure(meas, Channel::A).Draw(x + 2, y + 11, Color::Channel(ChA));
                 }
                 else if(MEAS_SOURCE_IS_B)
                 {
-                    Processing::GetStringMeasure(meas, ChB).Draw(x + 2, y + 11, Color::Channel(ChB));
+                    Processing::GetStringMeasure(meas, Channel::B).Draw(x + 2, y + 11, Color::Channel(ChB));
                 }
                 else
                 {
-                    Processing::GetStringMeasure(meas, ChA).Draw(x + 2, y + 11, Color::Channel(ChA));
-                    Processing::GetStringMeasure(meas, ChB).Draw(x + 2, y + 20, Color::Channel(ChB));
+                    Processing::GetStringMeasure(meas, Channel::A).Draw(x + 2, y + 11, Color::Channel(ChA));
+                    Processing::GetStringMeasure(meas, Channel::B).Draw(x + 2, y + 20, Color::Channel(ChB));
                 }
             }
         }
@@ -1090,7 +1090,7 @@ void Display::DrawMeasures()
 
 
 
-void Display::WriteTextVoltage(Channel::E ch, int x, int y)
+void Display::WriteTextVoltage(const Channel &ch, int x, int y)
 {
     static pchar couple[] =
     {
