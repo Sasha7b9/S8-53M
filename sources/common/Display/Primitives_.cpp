@@ -24,13 +24,13 @@ void Primitives::MultiHPointLine::DrawHPointLine(int x, int y, int count, int de
 }
 
 
-void Primitives::VPointLine::Draw(int , int , int , Color )
+void Primitives::VPointLine::Draw(int , int , int , const Color &) const
 {
 
 }
 
 
-void Primitives::HPointLine::Draw(int y, int x0, int x1)
+void Primitives::HPointLine::Draw(int y, int x0, int x1) const
 {
     for (int x = x0; x <= x1; x += static_cast<int>(delta))
     {
@@ -39,7 +39,7 @@ void Primitives::HPointLine::Draw(int y, int x0, int x1)
 }
 
 
-void Primitives::Line::Draw(int x0, int y0, int x1, int y1, Color color)
+void Primitives::Line::Draw(int x0, int y0, int x1, int y1, const Color &color) const
 {
     color.SetAsCurrent();
 
@@ -54,7 +54,7 @@ void Primitives::Line::Draw(int x0, int y0, int x1, int y1, Color color)
 }
 
 
-void Primitives::DashedHLine::Draw(int y, int x0, int x1, int deltaStart)
+void Primitives::DashedHLine::Draw(int y, int x0, int x1, int deltaStart) const
 {
     if (deltaStart < 0 || deltaStart >= (fill + empty))
     {
@@ -79,7 +79,7 @@ void Primitives::DashedHLine::Draw(int y, int x0, int x1, int deltaStart)
 }
 
 
-void Primitives::DashedVLine::Draw(int x, int y0, int y1, int deltaStart)
+void Primitives::DashedVLine::Draw(int x, int y0, int y1, int deltaStart) const
 {
     if (deltaStart < 0 || deltaStart >= (fill + empty))
     {
@@ -104,7 +104,7 @@ void Primitives::DashedVLine::Draw(int x, int y0, int y1, int deltaStart)
 }
 
 
-void Primitives::VLineArray::Draw(int , int , uint8 *, Color color)
+void Primitives::VLineArray::Draw(int , int , uint8 *, const Color &color) const
 {
     color.SetAsCurrent();
 }

@@ -1,6 +1,5 @@
 #pragma once
 #include "Display/Display.h"
-#include "common/Utils/String_.h"
 
 
 namespace Primitives
@@ -11,14 +10,15 @@ namespace Primitives
     class Point
     {
     public:
-        void Draw(int x, int y);
+        void Draw(int x, int y) const;
     };
 
     class Region
     {
     public:
         Region(int w, int h) : width(w), height(h) { }
-        void Fill(int x, int y, const Color &color = Color::Count);
+        void Fill(int x, int y, const Color &color) const;
+        void Fill(int x, int y) const;
 
     private:
         int width;
@@ -29,7 +29,8 @@ namespace Primitives
     {
     public:
         Rectangle(int w, int h) : width(w), height(h) { }
-        void Draw(int x, int y, const Color &color = Color::Count);
+        void Draw(int x, int y, const Color &color) const;
+        void Draw(int x, int y) const;
     private:
         int width;
         int height;
@@ -39,23 +40,26 @@ namespace Primitives
     {
     public:
         HLine() { };
-        void Draw(int y, int x1, int x2, const Color &color = Color::Count);
+        void Draw(int y, int x1, int x2, const Color &color) const;
+        void Draw(int y, int x1, int x2) const;
     };
 
     class VLine
     {
     public:
         VLine() { };
-        void Draw(int x, int y0, int y1, const Color &color = Color::Count);
+        void Draw(int x, int y0, int y1, const Color &color) const;
+        void Draw(int x, int y0, int y1) const;
     };
 
-    // numLines вертикальных линий, состо€щих из count точек кажда€ с рассто€нием между точками delta. √оризонтальна€ координата
-    // первой точки каждой линии соответствует очередному элементу массива x[]
+    // numLines вертикальных линий, состо€щих из count точек кажда€ с рассто€нием между точками delta.
+    //  √оризонтальна€ координата первой точки каждой линии соответствует очередному элементу массива x[]
     class MultiVPointLine
     {
     public:
-        MultiVPointLine(int _numLines, uint16 *_x0, int _delta, int _count) : numLines(_numLines), x0(_x0), delta(_delta), count(_count) { }
-        void Draw(int y0, Color color = Color::Count);
+        MultiVPointLine(int _numLines, uint16 *_x0, int _delta, int _count) :
+            numLines(_numLines), x0(_x0), delta(_delta), count(_count) { }
+        void Draw(int y0, const Color &color) const;
     private:
         int numLines;
         uint16 *x0;
@@ -71,7 +75,7 @@ namespace Primitives
     {
     public:
         MultiHPointLine(int _numLines, const uint8 *_y, int _delta, int _count) : numLines(_numLines), y(_y), delta(_delta), count(_count) { }
-        void Draw(int x, const Color &color = Color::Count);
+        void Draw(int x, const Color &color) const;
     private:
         int numLines;
         const uint8 *y;
@@ -85,7 +89,7 @@ namespace Primitives
     {
     public:
         VPointLine(float d) : delta(d) { }
-        void Draw(int x, int y0, int y1, Color color = Color::Count);
+        void Draw(int x, int y0, int y1, const Color &color) const;
     private:
         float delta;
     };
@@ -94,7 +98,7 @@ namespace Primitives
     {
     public:
         HPointLine(float d) : delta(d) { }
-        void Draw(int y, int x0, int x1);
+        void Draw(int y, int x0, int x1) const;
     private:
         float delta;
     };
@@ -103,17 +107,17 @@ namespace Primitives
     class Line
     {
     public:
-        void Draw(int x0, int y0, int x1, int y1, Color color = Color::Count);
+        void Draw(int x0, int y0, int x1, int y1, const Color &color) const;
     };
 
 
-    // –исует прерывистую горизонтальную линию. dFill - длина штриха, dEmpty - расст. между штрихами. Ћини€ всегда начинаетс€ со штриха. dStart указывает смещение первой рисуемой точки
-    // относительно начала штриха.
+    // –исует прерывистую горизонтальную линию. dFill - длина штриха, dEmpty - расст. между штрихами. Ћини€ всегда
+    //  начинаетс€ со штриха. dStart указывает смещение первой рисуемой точки относительно начала штриха.
     class DashedHLine
     {
     public:
         DashedHLine(int dFill, int dEmpty) : fill(dFill), empty(dEmpty) { }
-        void Draw(int y, int x0, int x1, int dStart);
+        void Draw(int y, int x0, int x1, int dStart) const;
     private:
         int fill;
         int empty;
@@ -124,7 +128,7 @@ namespace Primitives
     {
     public:
         DashedVLine(int dFill, int dEmpty) : fill(dFill), empty(dEmpty) { }
-        void Draw(int x, int y0, int y1, int dStart);
+        void Draw(int x, int y0, int y1, int dStart) const;
     private:
         int fill;
         int empty;
@@ -134,7 +138,7 @@ namespace Primitives
     class VLineArray
     {
     public:
-        void Draw(int x, int numLines, uint8 *y0y1, Color color = Color::Count);
+        void Draw(int x, int numLines, uint8 *y0y1, const Color &color) const;
     private:
     };
 }

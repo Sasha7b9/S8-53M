@@ -3,7 +3,13 @@
 #include "common/Display/Primitives_.h"
 
 
-void Primitives::HLine::Draw(int , int , int , const Color &)
+void Primitives::HLine::Draw(int, int, int ) const
+{
+    
+}
+
+
+void Primitives::HLine::Draw(int , int , int , const Color &) const
 {
 
 }

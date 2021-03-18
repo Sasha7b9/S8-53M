@@ -8,7 +8,7 @@
 extern uint8 *display_back_buffer;
 
 
-void Primitives::Point::Draw(int x, int y)
+void Primitives::Point::Draw(int x, int y) const
 {
     BoundingX(x);
     BoundingY(y);
@@ -17,10 +17,16 @@ void Primitives::Point::Draw(int x, int y)
 }
 
 
-void Primitives::VLine::Draw(int x, int y0, int y1, const Color &color)
+void Primitives::VLine::Draw(int x, int y0, int y1, const Color &color) const
 {
     color.SetAsCurrent();
 
+    Draw(x, y0, y1);
+}
+
+
+void Primitives::VLine::Draw(int x, int y0, int y1) const
+{
     if (x < 0 || x >= Display::WIDTH)
     {
         return;
@@ -49,7 +55,7 @@ void Primitives::VLine::Draw(int x, int y0, int y1, const Color &color)
 }
 
 
-void Primitives::MultiVPointLine::Draw(int y, Color color)
+void Primitives::MultiVPointLine::Draw(int y, const Color &color) const
 {
     color.SetAsCurrent();
 
@@ -60,10 +66,16 @@ void Primitives::MultiVPointLine::Draw(int y, Color color)
 }
 
 
-void Primitives::Rectangle::Draw(int x, int y, const Color &color)
+void Primitives::Rectangle::Draw(int x, int y, const Color &color) const
 {
     color.SetAsCurrent();
 
+    Draw(x, y);
+}
+
+
+void Primitives::Rectangle::Draw(int x, int y) const
+{
     if (width == 0 || height == 0)
     {
         return;
@@ -79,7 +91,7 @@ void Primitives::Rectangle::Draw(int x, int y, const Color &color)
 }
 
 
-void Primitives::MultiHPointLine::Draw(int x, const Color &color)
+void Primitives::MultiHPointLine::Draw(int x, const Color &color) const
 {
     color.SetAsCurrent();
 
@@ -90,10 +102,16 @@ void Primitives::MultiHPointLine::Draw(int x, const Color &color)
 }
 
 
-void Primitives::Region::Fill(int x, int y, const Color &color)
+void Primitives::Region::Fill(int x, int y, const Color &color) const
 {
     color.SetAsCurrent();
 
+    Fill(x, y);
+}
+
+
+void Primitives::Region::Fill(int x, int y) const
+{
     if (width == 0 || height == 0)
     {
         return;
@@ -101,6 +119,6 @@ void Primitives::Region::Fill(int x, int y, const Color &color)
 
     for (int i = y; i <= y + height - 1; i++)
     {
-        HLine().Draw(i, x, x + width - 1, color);
+        HLine().Draw(i, x, x + width - 1);
     }
 }
