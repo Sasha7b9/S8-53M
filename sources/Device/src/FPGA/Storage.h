@@ -94,4 +94,6 @@ private:
 
     static RecordStorage *addressOldestRecord;   // Здесь хранится адрес первой записи. Зная его, можно рассчитать все
                                                 // остальные адреса
+
+    static DataStorage *nullData;
 };

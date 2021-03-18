@@ -9,6 +9,11 @@
 RecordStorage *Storage::addressOldestRecord = nullptr;
 
 
+static DataSettings nullSettings;
+
+DataStorage *Storage::nullData = (DataStorage *)&nullSettings;
+
+
 DataStorage::DataStorage()
 {
     buffer.Realloc((int)sizeof(DataSettings) + FPGA::SET::BytesForData());
@@ -258,6 +263,13 @@ DataStorage &Storage::ExtractLast()
 
 DataStorage &Storage::Extract(uint from_end)
 {
+    if (NumRecords() == 0 || from_end >= NumRecords())
+    {
+        DataStorage &result = *nullData;
+
+        return result;
+    }
+
     RecordStorage *record = Newest();
 
     while (from_end != 0)
