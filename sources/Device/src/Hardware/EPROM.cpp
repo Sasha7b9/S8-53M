@@ -259,16 +259,16 @@ void EPROM::EraseData()
 }
 
 
-int EPROM::CalculateSizeData(const DataSettings *ds)
+int EPROM::CalculateSizeData(const DataSettings &ds)
 {
     int size = sizeof(DataSettings);
-    if (ds->IsEnabled(ChA))
+    if (ds.IsEnabled(ChA))
     {
-        size += ds->BytesInChannel();
+        size += ds.BytesInChannel();
     }
-    if (ds->IsEnabled(ChB))
+    if (ds.IsEnabled(ChB))
     {
-        size += ds->BytesInChannel();
+        size += ds.BytesInChannel();
     }
     return size;
 }
@@ -347,7 +347,7 @@ void EPROM::SaveData(int num, DataSettings *ds, uint8 *data0, uint8 *data1)
         DeleteData(num);
     }
 
-    int size = CalculateSizeData(ds);
+    int size = CalculateSizeData(*ds);
 
 // 2
     if (FreeMemory() < static_cast<uint>(size))
