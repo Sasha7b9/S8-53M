@@ -8,7 +8,7 @@
 #ifdef WIN32
 #define USBD_CLASS_BOS_ENABLED 0
 #ifndef __STATIC_INLINE
-    #define __STATIC_INLINE inline //-V2573
+    #define __STATIC_INLINE inline
 #endif
 #endif
 

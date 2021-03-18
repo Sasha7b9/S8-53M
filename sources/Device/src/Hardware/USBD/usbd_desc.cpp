@@ -47,7 +47,7 @@
 
   /* Includes ------------------------------------------------------------------*/
 
-#define _STL_COMPILER_PREPROCESSOR 0 //-V2573
+#define _STL_COMPILER_PREPROCESSOR 0
 
 #include "defines.h"
 #include "usbd_core.h"
@@ -92,7 +92,7 @@ USBD_DescriptorsTypeDef VCP_Desc = {
 };
 
 #ifdef WIN32
-#define __ALIGN_BEGIN //-V2573
+#define __ALIGN_BEGIN
 #endif
 
 /* USB Standard Device Descriptor */

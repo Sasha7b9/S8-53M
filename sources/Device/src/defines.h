@@ -26,7 +26,7 @@ typedef const uint8            *puchar;
 typedef const char       *const pString;
 
 #ifndef __IO
-#define __IO volatile //-V2573
+#define __IO volatile
 #endif
 
 typedef void  (*pFuncVV)();
@@ -40,9 +40,9 @@ typedef void  (*pFuncpCU8)(puchar );
 
 inline void EmptyFuncVV() {};
 
-#define _GET_BIT(value, bit) (((value) >> (bit)) & 0x01) //-V2573
-#define _SET_BIT(value, bit) ((value) |= (1 << (bit))) //-V2573
-#define _CLEAR_BIT(value, bit) ((value) &= (~(1 << (bit)))) //-V2573
+#define _GET_BIT(value, bit) (((value) >> (bit)) & 0x01)
+#define _SET_BIT(value, bit) ((value) |= (1 << (bit)))
+#define _CLEAR_BIT(value, bit) ((value) &= (~(1 << (bit))))
 
 // Объединение размером 32 бита
 union BitSet32 //-V2514

@@ -9,7 +9,7 @@
 #include <cstdarg>
 
 
-pchar const String::_ERROR = "---.---"; //-V2573
+pchar const String::_ERROR = "---.---";
 
 
 String::String() : buffer(nullptr)

@@ -16,11 +16,12 @@ public:
     void Set(pchar format, ...);
 
     char *c_str() const;
+
     // Отобразить текст на экране в заданнх координатах
     int Draw(int x, int y, const Color &color) const;
     int Draw(int x, int y) const;
 
-    static pString _ERROR; //-V2573
+    static pString _ERROR;
 
     void Free();
 
