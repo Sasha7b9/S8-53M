@@ -42,9 +42,6 @@ struct SettingsTime
 };
 
 
-// Узнать привязку отсительно уровня синхронизации в точках.
-int sTime_TPosInPoints(PeackDetMode::E peakDet, int numPoints, TPos::E tPos);
-
 // Смещение по времени в точках экрана. Т.к. на канал у нас работают два АЦП поочерёдно, это значение отличается от засылаемого в аппаратную часть в два раза.
 int sTime_TShiftInPoints(PeackDetMode::E peakDet);
 

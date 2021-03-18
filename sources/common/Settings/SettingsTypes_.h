@@ -293,15 +293,6 @@ struct FunctionTime { enum E
 };};
 
 
-// Привязка синхронизации к памяти.
-struct TPos { enum E
-{
-    Left,      // Синхронизация привязана к началу памяти.
-    Center,    // Синхронизация привязана к центру памяти.
-    Right      // Синхронизация привязана к концу памяти.
-};};
-
-
 // Режим работы пикового детектора.
 struct PeackDetMode
 {
@@ -313,6 +304,21 @@ struct PeackDetMode
     };
 
     static void Set(PeackDetMode::E mode);
+};
+
+
+// Привязка синхронизации к памяти.
+struct TPos
+{
+    enum E
+    {
+        Left,      // Синхронизация привязана к началу памяти.
+        Center,    // Синхронизация привязана к центру памяти.
+        Right      // Синхронизация привязана к концу памяти.
+    };
+
+    // Узнать привязку отсительно уровня синхронизации в точках
+    static int InPoints(PeackDetMode::E peakDet, int numPoints, E tPos);
 };
 
 

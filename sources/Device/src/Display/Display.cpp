@@ -900,7 +900,7 @@ void Display::DrawCursorTShift()
     }
 
     // Рисуем TPos
-    int shiftTPos = sTime_TPosInPoints(
+    int shiftTPos = TPos::InPoints(
         (PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel, SET_TPOS) - SHIFT_IN_MEMORY;
 
     float scale = static_cast<float>((lastPoint - firstPoint) / Grid::Width());
@@ -912,7 +912,7 @@ void Display::DrawCursorTShift()
     };
 
     // Рисуем tShift
-    int shiftTShift = sTime_TPosInPoints((PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel,
+    int shiftTShift = TPos::InPoints((PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel,
         SET_TPOS) - sTime_TShiftInPoints((PeackDetMode::E)Storage::set->peakDet);
 
     if(GF::IntInRange(shiftTShift, firstPoint, lastPoint))
