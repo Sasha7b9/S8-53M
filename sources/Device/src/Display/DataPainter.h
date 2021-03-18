@@ -6,6 +6,7 @@
 
 
 struct DataSettings;
+struct DataStorage;
 
 
 class DataPainter
@@ -16,7 +17,7 @@ public:
 
 private:
 
-    static void DrawDataChannel(uint8 *data, const Channel &ch, const DataSettings &ds, int min_y, int max_y);
+    static void DrawDataChannel(const DataStorage &data, const Channel &ch, int min_y, int max_y);
 
     static void DrawSignalLined(puchar data, const DataSettings *ds, int start_i, int end_i, int min_y,
         int max_y, float scale_y, float scale_x, bool calculate_filtr);

@@ -24,14 +24,14 @@ void DataPainter::DrawData()
 {
     DataStorage &data = Storage::ExtractLast();
 
-    DrawDataChannel(data.Data(ChA), Channel::A, data.Settings(), Grid::TOP, Grid::ChannelBottom());
-    DrawDataChannel(data.Data(ChB), Channel::B, data.Settings(), Grid::TOP, Grid::ChannelBottom());
+    DrawDataChannel(data, Channel::A, Grid::TOP, Grid::ChannelBottom());
+    DrawDataChannel(data, Channel::B, Grid::TOP, Grid::ChannelBottom());
 
     Primitives::Rectangle(Grid::Width(), Grid::FullHeight()).Draw(Grid::Left(), Grid::TOP, Color::FILL);
 }
 
 
-void DataPainter::DrawDataChannel(uint8 *data, const Channel &ch, const DataSettings &ds, int min_y, int max_y)
+void DataPainter::DrawDataChannel(const DataStorage &data, const Channel &ch, int min_y, int max_y)
 {
     float scaleY = static_cast<float>(max_y - min_y) / (MAX_VALUE - MIN_VALUE);
     float scaleX = Grid::Width() / 280.0F;
@@ -43,7 +43,7 @@ void DataPainter::DrawDataChannel(uint8 *data, const Channel &ch, const DataSett
 
     ch.GetColor().SetAsCurrent();
 
-    DrawSignalPointed(data, ds, firstPoint, lastPoint, min_y, max_y, scaleY, scaleX);
+    DrawSignalPointed(data.Data(ch), data.Settings(), firstPoint, lastPoint, min_y, max_y, scaleY, scaleX);
 }
 
 
