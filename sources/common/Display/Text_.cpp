@@ -183,16 +183,16 @@ static int DrawSpaces(int x, int y, char *text, int *numSymbols)
 }
 
 
-void Text::DrawInRect(int x, int y, int width, int)
+void Text::DrawInRect(int x, int y, uint width, uint)
 {
     int xStart = x;
-    uint xEnd = (uint)(xStart + width);
+    int xEnd = xStart + (int)width;
 
     char *t = text.c_str();
 
     while (*t != 0)
     {
-        uint length = GetLenghtSubString(t);
+        int length = (int)GetLenghtSubString(t);
         if (length + x > xEnd)
         {
             x = xStart;
