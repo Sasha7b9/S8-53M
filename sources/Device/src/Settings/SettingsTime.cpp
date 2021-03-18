@@ -4,13 +4,6 @@
 #include "Settings/Settings.h"
 
 
-void sTime_SetTShift(int16 shift)
-{
-    TSHIFT = shift;
-    ReaderFPGA::ClearData();
-}
-
-
 int sTime_TPosInPoints(PeackDetMode::E peakDet, int numPoints, TPos::E tPos)
 {
     if (peakDet == PeackDetMode::Disable)

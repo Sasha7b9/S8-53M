@@ -286,7 +286,9 @@ void TShift::Set(int tShift)
         Display::ShowWarningBad(Warning::LimitSweep_TShift);
     }
 
-    sTime_SetTShift((int16)tShift);
+    TSHIFT = (int16)tShift;
+    ReaderFPGA::ClearData();
+
     TShift::Load();
     Display::Redraw();
 };
