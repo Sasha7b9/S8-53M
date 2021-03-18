@@ -412,7 +412,7 @@ String TShift::ToString(int16 tshift_rel)
 }
 
 
-bool Range::Increase(Channel::E ch)
+bool Range::Increase(const Channel &ch)
 {
     bool retValue = false;
     if (SET_RANGE(ch) < Range::Count - 1)
@@ -429,7 +429,7 @@ bool Range::Increase(Channel::E ch)
 };
 
 
-bool Range::Decrease(Channel::E ch)
+bool Range::Decrease(const Channel &ch)
 {
     bool retValue = false;
     if (SET_RANGE(ch) > 0)

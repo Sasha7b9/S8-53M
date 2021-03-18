@@ -376,9 +376,9 @@ struct Range
 
     static void Set(const Channel &ch, Range::E range);
 
-    static bool Increase(Channel::E ch);
+    static bool Increase(const Channel &ch);
 
-    static bool Decrease(Channel::E ch);
+    static bool Decrease(const Channel &ch);
 
     static pchar Name(Range::E range);
 
