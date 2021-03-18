@@ -372,6 +372,8 @@ struct Range
     static bool Decrease(Channel::E ch);
 
     static pchar Name(Range::E range);
+
+    static pchar ToString(Range::E range, Divider::E multiplier);
 };
 
 Range::E &operator++(Range::E &range);

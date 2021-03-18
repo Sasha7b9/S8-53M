@@ -49,5 +49,3 @@ void sChannel_SetRange(Channel::E ch, Range::E range);
 
 // Возвращает true, если канал chan включён.
 bool sChannel_Enabled(Channel::E ch);
-
-pchar sChannel_Range2String(Range::E range, Divider::E multiplier);
