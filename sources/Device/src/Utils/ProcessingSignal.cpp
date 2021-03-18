@@ -164,7 +164,7 @@ float Processing::CalculateVoltageMax(Channel::E ch)
         markerHor[ch][0] = static_cast<int>(max);                           // Здесь не округляем, потому что max может быть только целым
     }
 
-    return POINT_2_VOLTAGE(max, dataSet->range[ch], chan == ChA ? dataSet->rShiftCh0 : dataSet->rShiftCh1) * VALUE_MULTIPLIER(ch);
+    return POINT_2_VOLTAGE(max, dataSet->range[ch], (ch == ChA) ? dataSet->rShiftCh0 : dataSet->rShiftCh1) * VALUE_MULTIPLIER(ch);
 }
 
 float Processing::CalculateVoltageMin(Channel::E ch)
@@ -176,7 +176,7 @@ float Processing::CalculateVoltageMin(Channel::E ch)
         markerHor[ch][0] = static_cast<int>(min);                           // Здесь не округляем, потому что min может быть только целым
     }
 
-    return POINT_2_VOLTAGE(min, dataSet->range[ch], chan == ChA ? dataSet->rShiftCh0 : dataSet->rShiftCh1) * VALUE_MULTIPLIER(ch);
+    return POINT_2_VOLTAGE(min, dataSet->range[ch], (ch == ChA) ? dataSet->rShiftCh0 : dataSet->rShiftCh1) * VALUE_MULTIPLIER(ch);
 }
 
 float Processing::CalculateVoltagePic(Channel::E ch)
@@ -203,7 +203,9 @@ float Processing::CalculateVoltageMinSteady(Channel::E ch)
         markerHor[ch][0] = static_cast<int>(ROUND(min)); //-V2528
     }
 
-    return (POINT_2_VOLTAGE(min, dataSet->range[ch], chan == ChA ? dataSet->rShiftCh0 : dataSet->rShiftCh1) * VALUE_MULTIPLIER(ch));
+    return (POINT_2_VOLTAGE(min, dataSet->range[ch], (ch == ChA) ?
+        dataSet->rShiftCh0 :
+        dataSet->rShiftCh1) * VALUE_MULTIPLIER(ch));
 }
 
 float Processing::CalculateVoltageMaxSteady(Channel::E ch)
@@ -218,7 +220,7 @@ float Processing::CalculateVoltageMaxSteady(Channel::E ch)
     }
 
     Range::E range = dataSet->range[ch];
-    uint rShift = chan == ChA ? dataSet->rShiftCh0 : dataSet->rShiftCh1;
+    uint rShift = (ch == ChA) ? dataSet->rShiftCh0 : dataSet->rShiftCh1;
 
     return (POINT_2_VOLTAGE(max, range, rShift) * VALUE_MULTIPLIER(ch));
 }
@@ -236,8 +238,10 @@ float Processing::CalculateVoltageVybrosPlus(Channel::E ch)
         markerHor[ch][1] = static_cast<int>(maxSteady);
     }
 
-    int16 rShift = chan == ChA ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1;
-    return std::fabsf(POINT_2_VOLTAGE(maxSteady, dataSet->range[ch], rShift) - POINT_2_VOLTAGE(max, dataSet->range[ch], rShift)) * VALUE_MULTIPLIER(ch);
+    int16 rShift = (ch == ChA) ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1;
+
+    return std::fabsf(POINT_2_VOLTAGE(maxSteady, dataSet->range[ch], rShift) -
+        POINT_2_VOLTAGE(max, dataSet->range[ch], rShift)) * VALUE_MULTIPLIER(ch);
 }
 
 float Processing::CalculateVoltageVybrosMinus(Channel::E ch)
@@ -252,8 +256,10 @@ float Processing::CalculateVoltageVybrosMinus(Channel::E ch)
         markerHor[ch][1] = static_cast<int>(minSteady);
     }
 
-    int16 rShift = chan == ChA ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1;
-    return std::fabsf(POINT_2_VOLTAGE(minSteady, dataSet->range[ch], rShift) - POINT_2_VOLTAGE(min, dataSet->range[ch], rShift)) * VALUE_MULTIPLIER(ch);
+    int16 rShift = (ch == ChA) ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1;
+
+    return std::fabsf(POINT_2_VOLTAGE(minSteady, dataSet->range[ch], rShift) -
+        POINT_2_VOLTAGE(min, dataSet->range[ch], rShift)) * VALUE_MULTIPLIER(ch);
 }
 
 float Processing::CalculateVoltageAmpl(Channel::E ch)
@@ -291,7 +297,8 @@ float Processing::CalculateVoltageAverage(Channel::E ch)
         markerHor[ch][0] = aveRel;
     }
 
-    return (POINT_2_VOLTAGE(aveRel, dataSet->range[ch], chan == ChA ? dataSet->rShiftCh0 : dataSet->rShiftCh1) * VALUE_MULTIPLIER(ch));
+    return (POINT_2_VOLTAGE(aveRel, dataSet->range[ch], (ch == ChA) ? dataSet->rShiftCh0 : dataSet->rShiftCh1) *
+        VALUE_MULTIPLIER(ch));
 }
 
 float Processing::CalculateVoltageRMS(Channel::E ch)
@@ -301,7 +308,9 @@ float Processing::CalculateVoltageRMS(Channel::E ch)
     EXIT_IF_ERROR_INT(period);
 
     float rms = 0.0F;
-    int16 rShift = chan == ChA ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1;
+
+    int16 rShift = (ch == ChA) ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1;
+
     for(int i = firstP; i < firstP + period; i++)
     {
         float volts = POINT_2_VOLTAGE(dataIn[ch][i], dataSet->range[ch], rShift);
@@ -1118,7 +1127,7 @@ char* Processing::GetStringMeasure(Measure::E measure, Channel::E ch, char buffe
         return "";
     }
     buffer[0] = '\0';
-    std::sprintf(buffer, chan == ChA ? "1: " : "2: ");
+    std::sprintf(buffer, (ch == ChA) ? "1: " : "2: ");
     if(dataSet == 0)
     {
         std::strcat(buffer, "-.-"); //-V2513

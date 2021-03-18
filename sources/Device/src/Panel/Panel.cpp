@@ -612,7 +612,7 @@ static void ChangeRShift(int *prevTime, void(*f)(Channel::E, int16), Channel::E 
     {
         rShift = RShiftZero;
     }
-    if (CanChangeRShiftOrTrigLev((TrigSource::E)chan, (int16)rShift))
+    if (CanChangeRShiftOrTrigLev((TrigSource::E)ch, (int16)rShift))
     {
         Sound::RegulatorShiftRotate();
         f(ch, (int16)rShift);

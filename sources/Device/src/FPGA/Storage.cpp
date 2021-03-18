@@ -317,7 +317,7 @@ uint8* Storage::GetData(Channel::E ch, int fromEnd)
         return 0;
     }
 
-    return CopyData(dp, chan, dataImportRel) ? &dataImportRel[ch][0] : 0;
+    return CopyData(dp, ch, dataImportRel) ? &dataImportRel[ch][0] : 0;
 }
 
 

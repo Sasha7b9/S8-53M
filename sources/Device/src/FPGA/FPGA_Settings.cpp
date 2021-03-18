@@ -251,7 +251,7 @@ void RShift::Load(Channel::E ch)
 }
 
 
-void TrigLev::Set(TrigSource::E chan, int16 trigLev)
+void TrigLev::Set(TrigSource::E ch, int16 trigLev)
 {
     Display::ChangedRShiftMarkers();
     if (trigLev < TrigLevMin || trigLev > TrigLevMax)

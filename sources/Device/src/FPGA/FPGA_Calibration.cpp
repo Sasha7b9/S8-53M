@@ -350,11 +350,11 @@ float CalculateDeltaADC(Channel::E ch, float *avgADC1, float *avgADC2, float *de
     bar->passedTime = 0;
     bar->fullTime = 0;
 
-    TrigSource::Set((TrigSource::E)chan);
-    TrigLev::Set((TrigSource::E)chan, TrigLevZero);
+    TrigSource::Set((TrigSource::E)ch);
+    TrigLev::Set((TrigSource::E)ch, TrigLevZero);
 
-    uint16 *address1 = chan == ChA ? RD_ADC_A : RD_ADC_B;
-    uint16 *address2 = chan == ChA ? RD_ADC_A : RD_ADC_B;
+    uint16 *address1 = (ch == ChA) ? RD_ADC_A : RD_ADC_B;
+    uint16 *address2 = (ch == ChA) ? RD_ADC_A : RD_ADC_B;
 
     static const int numCicles = 10;
     for(int cicle = 0; cicle < numCicles; cicle++)
@@ -416,7 +416,7 @@ int16 CalculateAdditionRShift(Channel::E ch, Range::E range)
     TBase::Set(TBase::_200us);
     TrigSource::Set(ch == ChA ? TrigSource::A_ : TrigSource::B_);
     TrigPolarity::Set(TrigPolarity::Front);
-    TrigLev::Set((TrigSource::E)chan, TrigLevZero);
+    TrigLev::Set((TrigSource::E)ch, TrigLevZero);
 
     FPGA::BUS::WriteWithoutStart(WR_UPR, BIN_U8(00000000));   // Устанавливаем выход калибратора в ноль
 
@@ -452,8 +452,8 @@ int16 CalculateAdditionRShift(Channel::E ch, Range::E range)
 
         HAL_FMC::Write(WR_STOP, 1);
 
-        uint16 *addressRead1 = chan == ChA ? RD_ADC_A : RD_ADC_B;
-        uint16 *addressRead2 = chan == ChA ? RD_ADC_A : RD_ADC_B;
+        uint16 *addressRead1 = (ch == ChA) ? RD_ADC_A : RD_ADC_B;
+        uint16 *addressRead2 = (ch == ChA) ? RD_ADC_A : RD_ADC_B;
 
         for(int j = 0; j < FPGA_MAX_POINTS; j += 2)
         {
@@ -480,8 +480,8 @@ float CalculateKoeffCalibration(Channel::E ch)
 
     RShift::Set(ch, RShiftZero - 40 * 4);
     ModeCouple::Set(ch, ModeCouple::DC);
-    TrigSource::Set((TrigSource::E)chan);
-    TrigLev::Set((TrigSource::E)chan, TrigLevZero + 40 * 4);
+    TrigSource::Set((TrigSource::E)ch);
+    TrigLev::Set((TrigSource::E)ch, TrigLevZero + 40 * 4);
     
     int numMeasures = 16;
     int sumMIN = 0;
@@ -515,8 +515,8 @@ float CalculateKoeffCalibration(Channel::E ch)
 
         HAL_FMC::Write(WR_STOP, 1);
 
-        uint16 *addressRead1 = chan == ChA ? RD_ADC_A : RD_ADC_B;
-        uint16 *addressRead2 = chan == ChA ? RD_ADC_A : RD_ADC_B;
+        uint16 *addressRead1 = (ch == ChA) ? RD_ADC_A : RD_ADC_B;
+        uint16 *addressRead2 = (ch == ChA) ? RD_ADC_A : RD_ADC_B;
 
         for(int j = 0; j < FPGA_MAX_POINTS; j += 2)
         {

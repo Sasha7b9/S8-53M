@@ -679,7 +679,7 @@ struct TrigLev
 {
     static void Load();
 
-    static void Set(TrigSource::E chan, int16 trigLev);
+    static void Set(TrigSource::E ch, int16 trigLev);
 
     // Ќайти и установить уровень синхронизации по последнему считанному сигналу
     static void FindAndSet();

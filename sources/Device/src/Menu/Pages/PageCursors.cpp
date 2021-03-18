@@ -31,7 +31,7 @@ static void SetCursPosT(Channel::E ch, int numCur, float pos);           // Уста
 
 void SetCursSource(Channel::E ch)
 {
-    CURS_SOURCE = chan;
+    CURS_SOURCE = ch;
 }
 
 

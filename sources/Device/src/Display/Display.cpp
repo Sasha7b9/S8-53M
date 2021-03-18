@@ -73,7 +73,7 @@ void Display::DrawStringNavigation()
 
 void Display::RotateRShift(Channel::E ch)
 {
-    LAST_AFFECTED_CHANNEL = chan;
+    LAST_AFFECTED_CHANNEL = ch;
 
     if(TIME_SHOW_LEVELS)
     {
@@ -754,7 +754,7 @@ void Display::DrawCursorsWindow()
 
 void Display::DrawCursorTrigLevel()
 {
-    TrigSource::E chan = TRIG_SOURCE;
+    TrigSource::E ch = TRIG_SOURCE;
     if (ch == TrigSource::Ext_)
     {
         return;

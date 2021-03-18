@@ -233,7 +233,7 @@ void FPGA::State::Save()
 void FPGA::State::Restore()
 {
     int16 rShiftAdd[2][Range::Count][2];
-    for (int chan = 0; chan < 2; chan++)
+    for (int ch = 0; ch < 2; ch++)
     {
         for (int mode = 0; mode < 2; mode++)
         {
@@ -244,7 +244,7 @@ void FPGA::State::Restore()
         }
     }
     set = stored_settings;
-    for (int chan = 0; chan < 2; chan++)
+    for (int ch = 0; ch < 2; ch++)
     {
         for (int mode = 0; mode < 2; mode++)
         {

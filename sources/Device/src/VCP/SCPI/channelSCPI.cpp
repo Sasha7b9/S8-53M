@@ -27,7 +27,7 @@ ENTER_PARSE_FUNC(SCPI::ProcessCHANNEL)
         {0}
     };
 
-    chan = (char)(*(buffer - 2)) == '1' ? ChA : ChB;
+    ch = (char)(*(buffer - 2)) == '1' ? ChA : ChB;
 
     SCPI::ProcessingCommand(commands, const_cast<uint8 *>(buffer));
 }

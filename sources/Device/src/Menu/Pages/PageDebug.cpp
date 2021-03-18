@@ -346,7 +346,7 @@ DEF_PAGE_3(pageStretchADC, PageDebug::PageADC::self, NamePage::DebugADCstretch,
 
 static void OnPress_ADC_AltRShift_Reset()
 {
-    for (int chan = 0; chan < 2; chan++)
+    for (int ch = 0; ch < 2; ch++)
     {
         for (int mode = 0; mode < 2; mode++)
         {
