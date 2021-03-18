@@ -45,14 +45,6 @@ const DataSettings &DataStorage::Settings() const
 }
 
 
-bool DataStorage::HasData() const
-{
-    const DataSettings &ds = Settings();
-
-    return ds.IsEnabled(Channel::A) || ds.IsEnabled(Channel::B);
-}
-
-
 uint8 *DataStorage::Begin() const
 {
     return (uint8 *)((Buffer)buffer).Data();

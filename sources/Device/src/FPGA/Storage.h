@@ -6,6 +6,8 @@
 //----------------------------------------------------------------------------------------------------------------------
 struct DataStorage
 {
+friend struct RecordStorage;
+
     DataStorage();
 
     const DataSettings &Settings() const;
@@ -14,17 +16,14 @@ struct DataStorage
     // во внешнем ОЗУ, читать следует по 16 бит, т.к. доступ по нечётным адресам к ОЗУ запрещён
     uint8 *Data(const Channel &ch) const;
 
-    // Возвращает true, если в настройках включён хотя бы один канал
-    bool HasData() const;
-
-    uint Size() const;
-
 private:
 
     // В буфере хранятся последовательно - настройки, данные первого канала, данные второго канала
     Buffer buffer;
 
     uint8 *Begin() const;
+
+    uint Size() const;
 };
 
 
@@ -32,6 +31,8 @@ private:
 struct RecordStorage
 {
 friend class Storage;
+
+private:
 
     void Fill(const DataStorage &data);
 
@@ -46,8 +47,6 @@ friend class Storage;
     uint8 *End() const;
 
     DataStorage &Data() const;
-
-private:
 
     RecordStorage *prev;        // Адрес предыдущей (более старой) записи
     RecordStorage *next;        // Адрес следующей (более новой) записи
