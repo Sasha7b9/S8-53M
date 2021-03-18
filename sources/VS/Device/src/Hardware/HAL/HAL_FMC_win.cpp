@@ -3,9 +3,12 @@
 #include "common/Hardware/HAL/HAL_.h"
 
 
+static uint8 buffer[1024 * 1024];
+
 static uint16 addr_fpga;
 
 uint16 *const HAL_FMC::ADDR_FPGA = &addr_fpga;
+uint16 *const HAL_FMC::ADDR_RAM_BEGIN = (uint16 *)&buffer[0];
 
 
 void HAL_FMC::Init()

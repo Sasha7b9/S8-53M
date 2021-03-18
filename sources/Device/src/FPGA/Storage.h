@@ -16,6 +16,8 @@ struct DataStorage
     // Возвращает true, если в настройках включён хотя бы один канал
     bool HasData() const;
 
+    uint Size() const;
+
 private:
 
     // В буфере хранятся последовательно - настройки, данные первого канала, данные второго канала
@@ -27,7 +29,11 @@ private:
 
 struct RecordStorage
 {
+friend class Storage;
+
     void Fill(const DataStorage &data);
+    int Size() const;
+    uint8 *Address() const;
 private:
     RecordStorage *prev;        // Адрес предыдущей (более старой) записи
     RecordStorage *next;        // Адрес следующей (более новой) записи
@@ -47,8 +53,6 @@ class Storage
 
 public:
 
-    Storage();
-
     static void Append(const DataStorage &data);
 
 private:
@@ -56,6 +60,6 @@ private:
     // Создаёт запись во внешнем ОЗУ для сохраенения data
     static RecordStorage *Create(const DataStorage &data);
 
-    RecordStorage *addressFirstRecord;  // Здесь хранится адрес первой записи. Зная его, можно рассчитать все
+    static RecordStorage *addressFirstRecord;  // Здесь хранится адрес первой записи. Зная его, можно рассчитать все
                                         // остальные адреса
 };

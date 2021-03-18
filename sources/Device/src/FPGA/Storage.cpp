@@ -6,6 +6,9 @@
 #include <cstring>
 
 
+RecordStorage *Storage::addressFirstRecord = nullptr;
+
+
 DataStorage::DataStorage()
 {
     buffer.Realloc((int)sizeof(DataSettings) + FPGA::SET::BytesForData());
@@ -56,6 +59,26 @@ uint8 *DataStorage::Begin() const
 }
 
 
+uint DataStorage::Size() const
+{
+    uint result = sizeof(DataSettings);
+
+    const DataSettings &ds = Settings();
+
+    if (ds.IsEnabled(Channel::A))
+    {
+        result += ds.BytesInChannel();
+    }
+
+    if (ds.IsEnabled(Channel::B))
+    {
+        result += ds.BytesInChannel();
+    }
+
+    return result;
+}
+
+
 void RecordStorage::Fill(const DataStorage &data)
 {
     const DataSettings &ds = data.Settings();
@@ -80,9 +103,9 @@ void RecordStorage::Fill(const DataStorage &data)
 }
 
 
-Storage::Storage() : addressFirstRecord(nullptr)
+uint8 *RecordStorage::Address() const
 {
-
+    return (uint8 *)this;
 }
 
 
@@ -96,5 +119,15 @@ void Storage::Append(const DataStorage &data)
 
 RecordStorage *Storage::Create(const DataStorage &data)
 {
+    RecordStorage *result = nullptr;
+
+    if (addressFirstRecord == nullptr)
+    {
+        addressFirstRecord = (RecordStorage *)HAL_FMC::ADDR_RAM_BEGIN;
+        result = addressFirstRecord;
+        result->prev = nullptr;
+        result->next = (RecordStorage *)(result->Address() + data.Size());
+    }
+
     return nullptr;
 }
