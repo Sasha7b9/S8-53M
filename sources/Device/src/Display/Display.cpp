@@ -1024,19 +1024,21 @@ void Display::DrawMeasures()
             int y = y0 + str * dY;
             bool active = Measure::IsActive(str, elem) && Menu::GetNameOpenedPage() == NamePage::SB_MeasTuneMeas;
             Measure::E meas = Measure::Type(str, elem);
+
             if(meas != Measure::None)
             {
                 Region(dX, dY).Fill(x, y, Color::BACK);
                 Primitives::Rectangle(dX, dY).Draw(x, y, Color::FILL);
                 topMeasures = Math::MinFrom2(topMeasures, y);
             }
+
             if(active)
             {
                 Region(dX - 4, dY - 4).Fill(x + 2, y + 2, Color::FILL);
             }
+
             if(meas != Measure::None)
             {
-                char buffer[20];
                 Measure::Name(str, elem).Draw(x + 4, y + 2, active ? Color::BACK : Color::FILL);
                 if(meas == MEAS_MARKED)
                 {
@@ -1045,16 +1047,16 @@ void Display::DrawMeasures()
                 }
                 if(MEAS_SOURCE_IS_A)
                 {
-                    Text(Processing::GetStringMeasure(meas, ChA, buffer)).Draw(x + 2, y + 11, Color::Channel(ChA));
+                    Processing::GetStringMeasure(meas, ChA).Draw(x + 2, y + 11, Color::Channel(ChA));
                 }
                 else if(MEAS_SOURCE_IS_B)
                 {
-                    Text(Processing::GetStringMeasure(meas, ChB, buffer)).Draw(x + 2, y + 11, Color::Channel(ChB));
+                    Processing::GetStringMeasure(meas, ChB).Draw(x + 2, y + 11, Color::Channel(ChB));
                 }
                 else
                 {
-                    Text(Processing::GetStringMeasure(meas, ChA, buffer)).Draw(x + 2, y + 11, Color::Channel(ChA));
-                    Text(Processing::GetStringMeasure(meas, ChB, buffer)).Draw(x + 2, y + 20, Color::Channel(ChB));
+                    Processing::GetStringMeasure(meas, ChA).Draw(x + 2, y + 11, Color::Channel(ChA));
+                    Processing::GetStringMeasure(meas, ChB).Draw(x + 2, y + 20, Color::Channel(ChB));
                 }
             }
         }
