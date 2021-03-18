@@ -22,7 +22,7 @@ String::String(const String &rhs) : buffer(nullptr)
 {
     Set("");
 
-    if (Allocate(static_cast<int>(std::strlen(rhs.c_str()) + 1)))
+    if (Allocate(std::strlen(rhs.c_str()) + 1))
     {
         std::strcpy(buffer, rhs.c_str());
     }
@@ -63,11 +63,11 @@ String::String(pchar format, ...) : buffer(nullptr)
     {
 #define ERROR_STRING "Буфер слишком мал"
 
-        Allocate((int)std::strlen(ERROR_STRING) + 1);
+        Allocate(std::strlen(ERROR_STRING) + 1);
 
         std::strcpy(buffer, ERROR_STRING);
     }
-    else if (Allocate(static_cast<int>(std::strlen(buf) + 1)))
+    else if (Allocate(std::strlen(buf) + 1))
     {
         std::strcpy(buffer, buf);
     }
@@ -92,7 +92,7 @@ void String::Set(pchar format, ...)
         {
             std::strcpy(buffer, "Буфер слишком мал");
         }
-        else if(Allocate(static_cast<int>(std::strlen(buf) + 1)))
+        else if(Allocate(std::strlen(buf) + 1))
         {
             std::strcpy(buffer, buf);
         }
@@ -111,14 +111,14 @@ void String::Append(pchar str)
 
     Free();
 
-    Allocate(static_cast<int>(old.Size() + std::strlen(str) + 1));
+    Allocate(old.Size() + std::strlen(str) + 1);
 
     std::strcpy(buffer, old.c_str());
     std::strcat(buffer, str);
 }
 
 
-void String::Append(pchar str, int numSymbols)
+void String::Append(pchar str, uint numSymbols)
 {
     if (!str || *str == '\0')
     {
@@ -129,7 +129,7 @@ void String::Append(pchar str, int numSymbols)
 
     Free();
 
-    int size = numSymbols + old.Size() + 1;
+    uint size = numSymbols + old.Size() + 1;
 
     Allocate(size);
 
@@ -169,7 +169,7 @@ char *String::c_str() const
 }
 
 
-bool String::Allocate(int size)
+bool String::Allocate(uint size)
 {
     std::free(buffer);
     buffer = static_cast<char *>(std::malloc(static_cast<uint>(size)));
@@ -193,25 +193,6 @@ int String::Draw(int x, int y, const Color &color) const
 int String::Draw(int x, int y) const
 {
     return Text(c_str()).Draw(x, y);
-}
-
-
-void String::RemoveFromBegin(int numSymbols)
-{
-    if (std::strlen(buffer) == static_cast<uint>(numSymbols))
-    {
-        Free();
-    }
-    else
-    {
-        String old(buffer);
-
-        Free();
-
-        Allocate(old.Size() - numSymbols + 1);
-
-        std::strcpy(buffer, old.c_str() + numSymbols);
-    }
 }
 
 

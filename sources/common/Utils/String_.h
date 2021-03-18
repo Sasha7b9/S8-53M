@@ -26,13 +26,10 @@ public:
 
     void Append(pchar str);
 
-    void Append(pchar str, int numSymbols);
+    void Append(pchar str, uint numSymbols);
 
     void Append(char symbol);
     
-    // Удаляет numSymbols из начала строки
-    void RemoveFromBegin(int numSymbols);
-
     void RemoveFromEnd();
 
     int Size() const;
@@ -41,7 +38,7 @@ public:
 
 private:
 
-    bool Allocate(int size);
+    bool Allocate(uint size);
 
     char *buffer;
 };
