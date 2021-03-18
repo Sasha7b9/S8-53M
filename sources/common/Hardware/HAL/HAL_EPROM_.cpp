@@ -69,10 +69,11 @@ void HAL_EPROM::WriteWord(uint address, uint word)
 }
 
 
-void HAL_EPROM::WriteBufferBytes(uint address, puchar buffer, int size)
+void HAL_EPROM::WriteBufferBytes(uint address, puchar buffer, uint size)
 {
     HAL_FLASH_Unlock();
-    for (int i = 0; i < size; i++)
+
+    for (uint i = 0; i < size; i++)
     {
         if (HAL_FLASH_Program(TYPEPROGRAM_BYTE, address, static_cast<uint64_t>(buffer[i])) != HAL_OK)
         {
@@ -80,5 +81,6 @@ void HAL_EPROM::WriteBufferBytes(uint address, puchar buffer, int size)
         }
         address++;
     }
+
     HAL_FLASH_Lock();
 }

@@ -120,7 +120,7 @@ void Upgrade()
 
     while (size)
     {
-        int readedBytes = FDrive_ReadFromFile(sizeSector, buffer);
+        uint readedBytes = FDrive_ReadFromFile(sizeSector, buffer);
         HAL_EPROM::WriteBufferBytes(address, buffer, readedBytes);
         size -= readedBytes;
         address += readedBytes;

@@ -17,7 +17,9 @@ bool HAL_OTP::SaveSerialNumber(char *serialNumber)
 
     if (address < reinterpret_cast<uint8 *>(FLASH_OTP_END) - 16)
     {
-        HAL_EPROM::WriteBufferBytes(reinterpret_cast<uint>(address), reinterpret_cast<uint8 *>(serialNumber), static_cast<int>(std::strlen(serialNumber)) + 1);
+        HAL_EPROM::WriteBufferBytes(reinterpret_cast<uint>(address), reinterpret_cast<uint8 *>(serialNumber),
+            std::strlen(serialNumber) + 1);
+
         return true;
     }
 
@@ -27,7 +29,8 @@ bool HAL_OTP::SaveSerialNumber(char *serialNumber)
 
 int HAL_OTP::GetSerialNumber(char buffer[17])
 {
-    // \todo улучшить - нельз€ разбрасыватьс€ байтами.  ажда€ запись должна занимать столько места, сколько в ней символов, а не 16, как сейчас.
+    // \todo улучшить - нельз€ разбрасыватьс€ байтами.  ажда€ запись должна занимать столько места, сколько в ней
+    // символов, а не 16, как сейчас.
 
     const int allShotsMAX = 512 / 16;   // ћаксимальное число записей в OPT серийного номера.
 

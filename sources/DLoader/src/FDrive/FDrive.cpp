@@ -224,14 +224,14 @@ int FDrive_OpenFileForRead(pchar fileName)
 }
 
 
-int FDrive_ReadFromFile(int numBytes, uint8 *buffer)
+uint FDrive_ReadFromFile(int numBytes, uint8 *buffer)
 {
     uint readed = 0;
     if (f_read(&MainStruct::ms->drive.file, buffer, static_cast<uint>(numBytes), &readed) == FR_OK)
     {
-        return (int)readed;
+        return readed;
     }
-    return -1;
+    return (uint)-1;
 }
 
 
