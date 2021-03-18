@@ -98,9 +98,9 @@ T Queue<T>::Back()
 
 
 template<typename T>
-int Queue<T>::Size() const
+uint Queue<T>::Size() const
 {
-    return (iBack - iFront);
+    return (uint)(iBack - iFront);
 }
 
 

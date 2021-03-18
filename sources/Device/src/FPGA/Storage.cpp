@@ -154,7 +154,7 @@ RecordStorage *Storage::Create(const DataStorage &data)
         {                                  // (Ёто означает, что пам€ть ещЄ не заполнена либо же заполнена полностью)
             uint8 *address = Newest()->End();                                   // Ёто предполагаемый адрес нашей записи
 
-            if (address + need_memory <= HAL_FMC::ADDR_RAM_END)                        // ≈сли запись поместитс€ в пам€ть
+            if (address + need_memory <= HAL_FMC::ADDR_RAM_END)                       // ≈сли запись поместитс€ в пам€ть
             {
                 result = (RecordStorage *)address;
             }
