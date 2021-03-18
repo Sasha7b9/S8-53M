@@ -1,5 +1,6 @@
 *** Обязательно ***
-- При нажатии на СИНХР зависает
+- Display.cpp:Display::WriteTextVoltage:1140
+    При замене String::Draw() на Text::Draw() зависает в release-версии
 
 *** Желательно ***
 
