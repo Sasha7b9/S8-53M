@@ -16,6 +16,7 @@ volatile static uint timePrevMS = 0;
 
 const char *Debug::file[10] = { 0 };
 int   Debug::line[10] = { 0 };
+int Debug::posItem = -1;
 
 
 void Debug::StartProfilingMS()

@@ -19,11 +19,13 @@ void HardFault_Handler()
 {
     pchar file = Debug::file[0];
     int line = Debug::line[0];
+    int posItem = Debug::posItem;
 
     while (1)
     {
         file = file;
         line = line;
+        posItem = posItem;
     }
 }
 

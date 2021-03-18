@@ -6,7 +6,6 @@
 #include "common/Display/Font/Font_.h"
 #include "common/Hardware/Sound_.h"
 #include "common/Hardware/Timer_.h"
-#include "common/Utils/Debug_.h"
 #include "common/Utils/Math_.h"
 #include "Display/DataPainter.h"
 #include "Display/Display.h"
@@ -416,25 +415,18 @@ void Display::Update()
 {
 //    uint timeStart = gTimerTics;
 
-    DEBUG_POINT_0;
     bool needClear = NeedForClearScreen();
-    DEBUG_POINT_0;
     if (needClear)
     {
-        DEBUG_POINT_0;
         BeginFrame(Color::BLACK);
-        DEBUG_POINT_0;
 //        DrawMemoryWindow();
         DrawFullGrid();
-        DEBUG_POINT_0;
     }
-    DEBUG_POINT_0;
+
     DataPainter::DrawData();
-    DEBUG_POINT_0;
 
     if (needClear)
     {
-        DEBUG_POINT_0;
 //        DrawMath();
 //        DrawSpectrum();
 //        DrawCursors();
@@ -446,15 +438,11 @@ void Display::Update()
 //        DrawMeasures();
 //        DrawStringNavigation();
 //        DrawCursorTShift();
-        DEBUG_POINT_0;
     }
 
-    DEBUG_POINT_0;
     Menu::Draw();
-    DEBUG_POINT_0;
 
     DrawIndicator();
-    DEBUG_POINT_0;
 
 //    if (needClear)
 //    {
@@ -462,7 +450,6 @@ void Display::Update()
 //    }
 //
     DrawConsole();
-    DEBUG_POINT_0;
 //
 //    if (needClear)
 //    {

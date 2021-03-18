@@ -143,7 +143,7 @@ DEF_PAGE_5(pageTrig, PageMain::self, NamePage::Trig,
     mcSource,
     mcPolarity,
     mcInput,
-    PageTrig::PageAutoFind::self,
+    *PageTrig::PageAutoFind::self,
     nullptr, nullptr, nullptr, nullptr
 )
 
