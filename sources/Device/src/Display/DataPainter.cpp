@@ -22,14 +22,16 @@ using namespace Primitives;
 
 void DataPainter::DrawData()
 {
-    DrawDataChannel(ReaderFPGA::data_a, Channel::A, &ReaderFPGA::ds, Grid::TOP, Grid::ChannelBottom());
-    DrawDataChannel(ReaderFPGA::data_b, Channel::B, &ReaderFPGA::ds, Grid::TOP, Grid::ChannelBottom());
+    DataStorage &data = Storage::ExtractLast();
+
+    DrawDataChannel(data.Data(ChA), Channel::A, data.Settings(), Grid::TOP, Grid::ChannelBottom());
+    DrawDataChannel(data.Data(ChB), Channel::B, data.Settings(), Grid::TOP, Grid::ChannelBottom());
 
     Primitives::Rectangle(Grid::Width(), Grid::FullHeight()).Draw(Grid::Left(), Grid::TOP, Color::FILL);
 }
 
 
-void DataPainter::DrawDataChannel(uint8 *data, const Channel &ch, DataSettings *ds, int min_y, int max_y)
+void DataPainter::DrawDataChannel(uint8 *data, const Channel &ch, const DataSettings &ds, int min_y, int max_y)
 {
     float scaleY = static_cast<float>(max_y - min_y) / (MAX_VALUE - MIN_VALUE);
     float scaleX = Grid::Width() / 280.0F;
@@ -137,7 +139,7 @@ void DataPainter::DrawSignalLined(puchar data, const DataSettings *ds, int start
 }
 
 
-void DataPainter::DrawSignalPointed(puchar data, const DataSettings *ds, int start_i, int end_i, int min_y,
+void DataPainter::DrawSignalPointed(puchar data, const DataSettings &ds, int start_i, int end_i, int min_y,
     int max_y, float scale_y, float scale_x)
 {
     int numPoints = sMemory_GetNumPoints(false);
@@ -155,7 +157,7 @@ void DataPainter::DrawSignalPointed(puchar data, const DataSettings *ds, int sta
 
         DrawPoints(dataCD, Grid::Left(), 281);
 
-        if (ds->peakDet)
+        if (ds.IsEnabledPeakDet())
         {
             int size = end_i - start_i;
             start_i += numPoints;

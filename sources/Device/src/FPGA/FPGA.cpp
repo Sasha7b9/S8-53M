@@ -353,17 +353,18 @@ float FPGA::FreqMeter::GetFreq()
 
 bool FPGA::Randomizer::AllPointsRandomizer()
 {
-    if(SET_TBASE < TBase::_100ns) 
-    {
-        for(int i = 0; i < 281; i++) 
-        {
-            if(ReaderFPGA::data_a[i] == 0) 
-            {
-                return false;   
-            }
-        }
-    }
-    return true;
+//    if(SET_TBASE < TBase::_100ns) 
+//    {
+//        for(int i = 0; i < 281; i++) 
+//        {
+//            if(ReaderFPGA::data_a[i] == 0) 
+//            {
+//                return false;   
+//            }
+//        }
+//    }
+
+    return false;
 }
 
 

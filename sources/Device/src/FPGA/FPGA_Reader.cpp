@@ -29,10 +29,7 @@ static uint8 InverseIfNecessary(uint8 data, Channel::E ch)
 */
 
 
-uint8        ReaderFPGA::data_a[FPGA_MAX_POINTS];
-uint8        ReaderFPGA::data_b[FPGA_MAX_POINTS];
 int          ReaderFPGA::addition_shift = 0;
-DataSettings ReaderFPGA::ds;
 
 
 uint16 *addresses_ADC[2] = { RD_ADC_A, RD_ADC_B };
@@ -59,30 +56,6 @@ void ReaderFPGA::ReadData()
 }
 
 
-void ReaderFPGA::SaveToStorage()
-{
-    static uint prevTime = 0;
-
-    if (TIME_MS - prevTime > 500)
-    {
-        prevTime = TIME_MS;
-
-        if (!FPGA_IN_RANDOMIZE_MODE)
-        {
-            InverseDataIsNecessary(ChA, data_a);
-            InverseDataIsNecessary(ChB, data_b);
-        }
-
-//        Storage::AddData(data_a, data_b, ds);
-
-        if (TRIG_MODE_FIND_IS_AUTO && TrigLev::need_auto_find)
-        {
-            TrigLev::FindAndSet();
-        }
-    }
-}
-
-
 void ReaderFPGA::ReadRandomizeMode(DataStorage &)
 {
 
@@ -91,7 +64,7 @@ void ReaderFPGA::ReadRandomizeMode(DataStorage &)
 
 void ReaderFPGA::ReadRealMode(DataStorage &data)
 {
-    if (ds.peakDet != PeackDetMode::Disable)
+    if(data.Settings().IsEnabledPeakDet())
     {
         ReadRealModePeakDetOn(data);
     }
@@ -114,13 +87,6 @@ void ReaderFPGA::ReadRealModePeakDetOff(DataStorage &data)
     ReadChannel(data, ChA, addr_stop);
 
     ReadChannel(data, ChB, addr_stop);
-}
-
-
-void ReaderFPGA::ClearData()
-{
-    std::memset(data_a, 0, FPGA_MAX_POINTS);
-    std::memset(data_b, 0, FPGA_MAX_POINTS);
 }
 
 

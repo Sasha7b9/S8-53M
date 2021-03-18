@@ -54,3 +54,9 @@ bool DataSettings::IsEnabled(const Channel &ch) const
 
     return (enabled_b != 0);
 }
+
+
+bool DataSettings::IsEnabledPeakDet() const
+{
+    return (peakDet != 0);
+}

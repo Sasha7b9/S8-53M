@@ -262,7 +262,6 @@ void TBase::Set(TBase::E tBase)
     {
         float tShiftAbsOld = TSHIFT_2_ABS(TSHIFT, SET_TBASE);
         SET_TBASE = tBase;
-        ReaderFPGA::ClearData();
         Load();
         TShift::Set(static_cast<int>(TSHIFT_2_REL(tShiftAbsOld, SET_TBASE)));
         Display::Redraw();
@@ -288,7 +287,6 @@ void TShift::Set(int tShift)
     }
 
     TSHIFT = (int16)tShift;
-    ReaderFPGA::ClearData();
 
     TShift::Load();
     Display::Redraw();

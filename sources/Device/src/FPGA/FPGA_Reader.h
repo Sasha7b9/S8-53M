@@ -9,8 +9,6 @@ struct DataStorage;
 
 struct ReaderFPGA
 {
-    static void ClearData();
-
     static void ReadData();
 
     static void ReadRandomizeMode(DataStorage &);
@@ -18,11 +16,6 @@ struct ReaderFPGA
     static void ReadRealMode(DataStorage &);
 
     static void ReadPoint();
-
-    static DataSettings ds;
-
-    static uint8 data_a[FPGA_MAX_POINTS];       // Буфер используется для чтения данных первого канала
-    static uint8 data_b[FPGA_MAX_POINTS];       // Буфер используется для чтения данных второго канала
 
     static int addition_shift;                  // Дополнительное смещение. Нужно для правильной расстановки точек
                                                 // в режиме рандомизатора
@@ -33,8 +26,6 @@ private:
     static void InverseDataIsNecessary(const Channel &ch, uint8 *data);
 
     static int CalculateShift();
-
-    static void SaveToStorage();
 
     static void ReadRealModePeakDetOn(DataStorage &);
 

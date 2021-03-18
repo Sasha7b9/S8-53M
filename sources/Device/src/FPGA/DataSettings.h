@@ -30,4 +30,6 @@ struct DataSettings
     uint PointsInChannel() const;
 
     bool IsEnabled(const Channel &ch) const;
+
+    bool IsEnabledPeakDet() const;
 };
