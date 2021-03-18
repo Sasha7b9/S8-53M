@@ -3,6 +3,7 @@
 #include "common/Utils/Math_.h"
 #include "Display/Display.h"
 #include "FPGA/FPGA.h"
+#include "FPGA/FPGA_Reader.h"
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/MathFPGA.h"
 #include "Settings/Settings.h"
@@ -259,7 +260,8 @@ void TBase::Set(TBase::E tBase)
     if (tBase < TBase::Count)
     {
         float tShiftAbsOld = TSHIFT_2_ABS(TSHIFT, SET_TBASE);
-        sTime_SetTBase(tBase);
+        SET_TBASE = tBase;
+        ReaderFPGA::ClearData();
         Load();
         TShift::Set(static_cast<int>(TSHIFT_2_REL(tShiftAbsOld, SET_TBASE)));
         Display::Redraw();
