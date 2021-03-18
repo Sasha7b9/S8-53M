@@ -913,7 +913,7 @@ void Display::DrawCursorTShift()
 
     // Рисуем tShift
     int shiftTShift = TPos::InPoints((PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel,
-        SET_TPOS) - sTime_TShiftInPoints((PeackDetMode::E)Storage::set->peakDet);
+        SET_TPOS) - TShift::InPoints((PeackDetMode::E)Storage::set->peakDet);
 
     if(GF::IntInRange(shiftTShift, firstPoint, lastPoint))
     {
