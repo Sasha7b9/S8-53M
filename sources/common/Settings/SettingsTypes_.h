@@ -386,6 +386,8 @@ struct RShift
 
     static int ToRel(float rshift_abs, Range::E range);
 
+    static String ToString(int16 rShiftRel, Range::E range, Divider::E multiplier);
+
     static void Draw();
 
 private:

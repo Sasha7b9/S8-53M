@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "common/Utils/GlobalFunctions_.h"
 #include "common/Utils/Math_.h"
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/MathFPGA.h"
@@ -90,6 +91,14 @@ int RShift::ToRel(float rShiftAbs, Range::E range)
         retValue = RShiftMax;
     }
     return retValue;
+};
+
+
+String RShift::ToString(int16 rShiftRel, Range::E range, Divider::E multiplier)
+{
+    float rShiftVal = RSHIFT_2_ABS(rShiftRel, range) * Divider::ToAbs(multiplier);
+
+    return GF::Voltage2String(rShiftVal, true);
 };
 
 

@@ -51,5 +51,3 @@ void sChannel_SetRange(Channel::E ch, Range::E range);
 bool sChannel_Enabled(Channel::E ch);
 
 pchar sChannel_Range2String(Range::E range, Divider::E multiplier);
-
-String sChannel_RShift2String(int16 rShiftRel, Range::E range, Divider::E multiplier);

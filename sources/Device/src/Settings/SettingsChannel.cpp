@@ -58,11 +58,3 @@ const char* sChannel_Range2String(Range::E range, Divider::E multiplier)
 {
     return ranges[range].name[LANG][multiplier];
 }
-
-
-String sChannel_RShift2String(int16 rShiftRel, Range::E range, Divider::E multiplier)
-{
-    float rShiftVal = RSHIFT_2_ABS(rShiftRel, range) * Divider::ToAbs(multiplier);
-
-    return GF::Voltage2String(rShiftVal, true);
-};
