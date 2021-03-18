@@ -113,7 +113,7 @@ void ConsoleSCPI::OnTextEnter(wxCommandEvent &)
 
     AddLine(txt.c_str());
 
-    txt.Set(TypeConversionString::None, "%s\x0d", static_cast<const char *>(line->GetLineText(0).mb_str()));
+    txt.Set("%s\x0d", static_cast<const char *>(line->GetLineText(0).mb_str()));
 
     if (ComPort::IsOpened())
     {

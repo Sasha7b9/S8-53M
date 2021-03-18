@@ -4,16 +4,6 @@
 struct Color;
 
 
-struct TypeConversionString
-{
-    enum E
-    {
-        None,           // Преобразование строки не производится
-        FirstUpper      // Первый символ - в вернем регистре, остальные - в нижнем
-    };
-};
-
-
 class String // -V690
 {
 public:
@@ -23,7 +13,7 @@ public:
     explicit String(pchar format, ...);
     ~String();
 
-    void Set(TypeConversionString::E conv, pchar format, ...);
+    void Set(pchar format, ...);
 
     char *c_str() const;
     // Отобразить текст на экране в заданнх координатах
@@ -52,7 +42,6 @@ public:
 private:
 
     bool Allocate(int size);
-    void Conversion(TypeConversionString::E conv);
 
     char *buffer;
 };

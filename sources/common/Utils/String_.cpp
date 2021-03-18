@@ -14,13 +14,13 @@ pchar const String::_ERROR = "---.---"; //-V2573
 
 String::String() : buffer(nullptr)
 {
-    Set(TypeConversionString::None, "");
+    Set("");
 }
 
 
 String::String(const String &rhs) : buffer(nullptr)
 {
-    Set(TypeConversionString::None, "");
+    Set("");
 
     if (Allocate(static_cast<int>(std::strlen(rhs.c_str()) + 1)))
     {
@@ -31,7 +31,7 @@ String::String(const String &rhs) : buffer(nullptr)
 
 String::String(char symbol) : buffer(nullptr)
 {
-    Set(TypeConversionString::None, "");
+    Set("");
 
     if (Allocate(2))
     {
@@ -43,7 +43,7 @@ String::String(char symbol) : buffer(nullptr)
 
 String::String(pchar format, ...) : buffer(nullptr)
 {
-    Set(TypeConversionString::None, "");
+    Set("");
 
     if (format == nullptr)
     {
@@ -74,7 +74,7 @@ String::String(pchar format, ...) : buffer(nullptr)
 }
 
 
-void String::Set(TypeConversionString::E conv, pchar format, ...)
+void String::Set(pchar format, ...)
 {
     Free();
 
@@ -95,7 +95,6 @@ void String::Set(TypeConversionString::E conv, pchar format, ...)
         else if(Allocate(static_cast<int>(std::strlen(buf) + 1)))
         {
             std::strcpy(buffer, buf);
-            Conversion(conv);
         }
     }
 }
@@ -159,7 +158,7 @@ void String::Free()
     {
         std::free(buffer);
         buffer = nullptr;
-        Set(TypeConversionString::None, "");
+        Set("");
     }
 }
 
@@ -194,27 +193,6 @@ int String::Draw(int x, int y, const Color &color) const
 int String::Draw(int x, int y) const
 {
     return Text(c_str()).Draw(x, y);
-}
-
-
-void String::Conversion(TypeConversionString::E conv)
-{
-    char *pointer = buffer;
-
-    if(conv == TypeConversionString::FirstUpper)
-    {
-        if(*pointer)
-        {
-            *pointer = SU::ToUpper(*pointer);
-            pointer++;
-        }
-
-        while(*pointer)
-        {
-            *pointer = SU::ToLower(*pointer);
-            pointer++;
-        }
-    }
 }
 
 

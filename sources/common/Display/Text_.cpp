@@ -744,7 +744,7 @@ Text::Text(char *format, ...) : text("")
 
     std::va_list args;
     va_start(args, format);
-    text.Set(TypeConversionString::None, format, args);
+    text.Set(format, args);
     va_end(args);
 }
 
