@@ -94,9 +94,14 @@ static bool periodIsCaclulating[2] = {false, false};
 static bool periodAccurateIsCalculating[2];
 static bool picIsCalculating[2] = {false, false};
 
-#define EXIT_IF_ERROR_FLOAT(x)      if(std::fabsf((x) - ERROR_VALUE_FLOAT) < 1e-10F)                                                  { return ERROR_VALUE_FLOAT; }
-#define EXIT_IF_ERRORS_FLOAT(x, y)  if(std::fabsf((x) - ERROR_VALUE_FLOAT) < 1e-10F || std::fabsf((y) - ERROR_VALUE_FLOAT) < 1e-10F)  { return ERROR_VALUE_FLOAT; }
-#define EXIT_IF_ERROR_INT(x)        if((x) == ERROR_VALUE_INT)                                                                        { return ERROR_VALUE_FLOAT; }
+#define EXIT_IF_ERROR_FLOAT(x)      if(std::fabsf((x) - ERROR_VALUE_FLOAT) < 1e-10F)    \
+                                        { return ERROR_VALUE_FLOAT; }
+
+#define EXIT_IF_ERRORS_FLOAT(x, y)  if(std::fabsf((x) - ERROR_VALUE_FLOAT) < 1e-10F ||                                 \
+                                        std::fabsf((y) - ERROR_VALUE_FLOAT) < 1e-10F)  { return ERROR_VALUE_FLOAT; }
+
+#define EXIT_IF_ERROR_INT(x)        if((x) == ERROR_VALUE_INT)      \
+                                        { return ERROR_VALUE_FLOAT; }
 
 void Processing::CalculateMeasures()
 {
@@ -161,10 +166,11 @@ float Processing::CalculateVoltageMax(Channel::E ch)
     EXIT_IF_ERROR_FLOAT(max); //-V2507
     if(MEAS_MARKED == Measure::VoltageMax)
     {
-        markerHor[ch][0] = static_cast<int>(max);                           // Здесь не округляем, потому что max может быть только целым
+        markerHor[ch][0] = static_cast<int>(max);         // Здесь не округляем, потому что max может быть только целым
     }
 
-    return POINT_2_VOLTAGE(max, dataSet->range[ch], (ch == ChA) ? dataSet->rShiftCh0 : dataSet->rShiftCh1) * VALUE_MULTIPLIER(ch);
+    return POINT_2_VOLTAGE(max, dataSet->range[ch], (ch == ChA) ? dataSet->rShiftCh0 : dataSet->rShiftCh1) *
+        VALUE_MULTIPLIER(ch);
 }
 
 float Processing::CalculateVoltageMin(Channel::E ch)
@@ -173,10 +179,11 @@ float Processing::CalculateVoltageMin(Channel::E ch)
     EXIT_IF_ERROR_FLOAT(min);
     if(MEAS_MARKED == Measure::VoltageMin)
     {
-        markerHor[ch][0] = static_cast<int>(min);                           // Здесь не округляем, потому что min может быть только целым
+        markerHor[ch][0] = static_cast<int>(min);          // Здесь не округляем, потому что min может быть только целым
     }
 
-    return POINT_2_VOLTAGE(min, dataSet->range[ch], (ch == ChA) ? dataSet->rShiftCh0 : dataSet->rShiftCh1) * VALUE_MULTIPLIER(ch);
+    return POINT_2_VOLTAGE(min, dataSet->range[ch], (ch == ChA) ? dataSet->rShiftCh0 : dataSet->rShiftCh1) *
+        VALUE_MULTIPLIER(ch);
 }
 
 float Processing::CalculateVoltagePic(Channel::E ch)
@@ -343,8 +350,11 @@ float Processing::CalculatePeriod(Channel::E ch)
 
             EXIT_IF_ERRORS_FLOAT(intersectionDownToTop, intersectionTopToDown);
 
-            float firstIntersection = intersectionDownToTop < intersectionTopToDown ? intersectionDownToTop : intersectionTopToDown;
-            float secondIntersection = FindIntersectionWithHorLine(ch, 2, intersectionDownToTop < intersectionTopToDown, static_cast<uint8>(aveValue));
+            float firstIntersection = intersectionDownToTop < intersectionTopToDown ? intersectionDownToTop :
+                intersectionTopToDown;
+
+            float secondIntersection = FindIntersectionWithHorLine(ch, 2, intersectionDownToTop < intersectionTopToDown,
+                static_cast<uint8>(aveValue));
 
             EXIT_IF_ERRORS_FLOAT(firstIntersection, secondIntersection);
 
@@ -532,7 +542,8 @@ float Processing::CalculateDurationMinus(Channel::E ch)
     return TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
 }
 
-float Processing::CalculateTimeNarastaniya(Channel::E ch)                    // WARN Здесь, возможно, нужно увеличить точность - брать не целые значени расстояний между отсчётами по времени, а рассчитывать пересечения линий
+float Processing::CalculateTimeNarastaniya(Channel::E ch)   // WARN Здесь, возможно, нужно увеличить точность - брать не
+                                // целые значени расстояний между отсчётами по времени, а рассчитывать пересечения линий
 {
     float maxSteady = CalculateMaxSteadyRel(ch);
     float minSteady = CalculateMinSteadyRel(ch);
@@ -1080,9 +1091,11 @@ void Processing::InterpolationSinX_X(uint16 data[FPGA_MAX_POINTS], TBase::E tBas
         {
             int part = num % ((delta - 1) * 2);
             num++;
-            float sinX = (part < delta - 1) ? std::sin(PI / delta * (part + 1)) : std::sin(PI / delta * (part - (delta - 1) * 2));
+            float sinX = (part < delta - 1) ?
+                std::sin(PI / delta * (part + 1)) :
+                std::sin(PI / delta * (part - (delta - 1) * 2));
 
-            if (tBase > TBase::_5ns)                 // Здесь используем более быструю, но более неправильную арифметику целвых чисел
+            if (tBase > TBase::_5ns)    // Здесь используем более быструю, но более неправильную арифметику целвых чисел
             {
                 int sinXint = (int)(sinX * MUL_SIN);
                 int value = 0;
@@ -1096,7 +1109,7 @@ void Processing::InterpolationSinX_X(uint16 data[FPGA_MAX_POINTS], TBase::E tBas
                 }
                 data[i] = (uint8)(value * KOEFF);
             }
-            else                                    // На этих развёртках арифметика с плавающей запятой даёт приемлемое быстродействие
+            else                     // На этих развёртках арифметика с плавающей запятой даёт приемлемое быстродействие
             {
                 float value = 0.0F;
                 float x = x0;
@@ -1133,7 +1146,7 @@ String Processing::GetStringMeasure(Measure::E measure, Channel::E ch)
     {
         result.Append("-.-");
     }
-    else if((ch == ChA && dataSet->enableCh0 == 0) || (ch == ChB && dataSet->enableCh1 == 0))
+    else if((ch == ChA && !dataSet->IsEnabled(ChA)) || (ch == ChB && !dataSet->IsEnabled(ChB)))
     {
     }
     else if(measures[measure].FuncCalculate)
@@ -1179,7 +1192,7 @@ void Processing::CountedToCurrentSettings()
         }
     }
  
-    if (dataSet->enableCh0 == 1U && (dataSet->range[0] != SET_RANGE_A || dataSet->rShiftCh0 != (uint)SET_RSHIFT_A))
+    if (dataSet->IsEnabled(ChA) && (dataSet->range[0] != SET_RANGE_A || dataSet->rShiftCh0 != (uint)SET_RSHIFT_A))
     {
         Range::E range = SET_RANGE_A;
         int16 rShift = SET_RSHIFT_A;
@@ -1187,14 +1200,15 @@ void Processing::CountedToCurrentSettings()
         for (int i = 0; i < numPoints; i++)
         {
             float absValue = POINT_2_VOLTAGE(dataOut0[i], dataSet->range[0], dataSet->rShiftCh0);
-            int relValue = static_cast<int>((absValue + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) / MathFPGA::voltsInPixel[range] + MIN_VALUE);
+            int relValue = static_cast<int>((absValue + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) /
+                MathFPGA::voltsInPixel[range] + MIN_VALUE);
 
             if (relValue < MIN_VALUE)       { dataOut0[i] = MIN_VALUE; }
             else if (relValue > MAX_VALUE)  { dataOut0[i] = MAX_VALUE; }
             else                            { dataOut0[i] = (uint8)relValue; }
         }
     }
-    if (dataSet->enableCh1 == 1 && (dataSet->range[1] != SET_RANGE_B || dataSet->rShiftCh1 != (uint)SET_RSHIFT_B))
+    if (dataSet->IsEnabled(ChB) && (dataSet->range[1] != SET_RANGE_B || dataSet->rShiftCh1 != (uint)SET_RSHIFT_B))
     {
         Range::E range = SET_RANGE_B;
         int16 rShift = SET_RSHIFT_B;
@@ -1202,7 +1216,8 @@ void Processing::CountedToCurrentSettings()
         for (int i = 0; i < numPoints; i++)
         {
             float absValue = POINT_2_VOLTAGE(dataOut1[i], dataSet->range[1], dataSet->rShiftCh1);
-            int relValue = static_cast<int>((absValue + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) / MathFPGA::voltsInPixel[range] + MIN_VALUE);
+            int relValue = static_cast<int>((absValue + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) /
+                MathFPGA::voltsInPixel[range] + MIN_VALUE);
 
             if (relValue < MIN_VALUE)       { dataOut1[i] = MIN_VALUE; }
             else if (relValue > MAX_VALUE)  { dataOut1[i] = MAX_VALUE; }

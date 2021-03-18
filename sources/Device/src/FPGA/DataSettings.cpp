@@ -6,8 +6,8 @@
 
 void DataSettings::Fill()
 {
-    enableCh0 = ChA.IsEnabled() ? 1U : 0U;
-    enableCh1 = ChB.IsEnabled() ? 1U : 0U;
+    enabled_a = ChA.IsEnabled() ? 1U : 0U;
+    enabled_b = ChB.IsEnabled() ? 1U : 0U;
     inverseCh0 = SET_INVERSE_A ? 1U : 0U;
     inverseCh1 = SET_INVERSE_B ? 1U : 0U;
     range[0] = SET_RANGE_A;
@@ -24,4 +24,34 @@ void DataSettings::Fill()
     peakDet = (uint)PEAKDET;
     multiplier0 = SET_DIVIDER_A;
     multiplier1 = SET_DIVIDER_B;
+}
+
+
+int DataSettings::BytesInChannel() const
+{
+    int result = PointsInChannel();
+
+    if (peakDet != 0)
+    {
+        result *= 2;
+    }
+
+    return result;
+}
+
+
+int DataSettings::PointsInChannel() const
+{
+    return ENUM_POINTS_FPGA::ToPoints((ENUM_POINTS_FPGA::E)enum_points);
+}
+
+
+bool DataSettings::IsEnabled(const Channel &ch) const
+{
+    if (ch.IsA())
+    {
+        return (enabled_a != 0);
+    }
+
+    return (enabled_b != 0);
 }

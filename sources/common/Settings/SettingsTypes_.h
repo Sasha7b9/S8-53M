@@ -344,8 +344,9 @@ struct Channel
 
     Channel(E v) : value(v) {}
     bool IsEnabled() const;
-    bool IsA() const    { return (value == Channel::A); }
-    bool IsMath() const { return (value == Channel::Math); }
+    bool IsA() const     { return (value == Channel::A); }
+    bool IsB() const     { return (value == Channel::B); }
+    bool IsMath() const  { return (value == Channel::Math); }
     operator int() const { return (int)value; }
     Color GetColor() const;
 };

@@ -262,11 +262,11 @@ void EPROM::EraseData()
 int EPROM::CalculateSizeData(const DataSettings *ds)
 {
     int size = sizeof(DataSettings);
-    if (ds->enableCh0 == 1)
+    if (ds->IsEnabled(ChA))
     {
         size += ds->length1channel;
     }
-    if (ds->enableCh1 == 1)
+    if (ds->IsEnabled(ChB))
     {
         size += ds->length1channel;
     }
@@ -303,12 +303,12 @@ void EPROM::CompactMemory()
             addrDataNew += sizeof(DataSettings);
             uint8 *data0 = 0;
             uint8 *data1 = 0;
-            if (ds->enableCh0 == 1)
+            if (ds->IsEnabled(ChA))
             {
                 data0 = reinterpret_cast<uint8*>(addrDataNew);
                 addrDataNew += ds->length1channel;
             }
-            if (ds->enableCh1 == 1)
+            if (ds->IsEnabled(ChB))
             {
                 data1 = reinterpret_cast<uint8*>(addrDataNew);
             }
@@ -369,13 +369,13 @@ void EPROM::SaveData(int num, DataSettings *ds, uint8 *data0, uint8 *data1)
     HAL_EPROM::WriteBufferBytes(address, reinterpret_cast<uint8*>(ds), sizeof(DataSettings));            // Сохраняем настройки сигнала
     address += sizeof(DataSettings);
     
-    if (ds->enableCh0 == 1)
+    if (ds->IsEnabled(ChA))
     {
         HAL_EPROM::WriteBufferBytes(address, reinterpret_cast<uint8*>(data0), static_cast<int>(ds->length1channel));       // Сохраняем первый канал
         address += ds->length1channel;
     }
 
-    if (ds->enableCh1 == 1)
+    if (ds->IsEnabled(ChB))
     {
         HAL_EPROM::WriteBufferBytes(address, reinterpret_cast<uint8*>(data1), static_cast<int>(ds->length1channel));       // Сохраняем второй канал
         address += ds->length1channel;
@@ -415,12 +415,12 @@ bool EPROM::GetData(int num, DataSettings **ds, uint8 **data0, uint8 **data1)
 
     *ds = reinterpret_cast<DataSettings*>(addrDS);
     
-    if ((*ds)->enableCh0 == 1)
+    if ((*ds)->IsEnabled(ChA))
     {
         addrData0 = addrDS + sizeof(DataSettings);
     }
 
-    if ((*ds)->enableCh1 == 1)
+    if ((*ds)->IsEnabled(ChB))
     {
         if (addrData0 != 0)
         {

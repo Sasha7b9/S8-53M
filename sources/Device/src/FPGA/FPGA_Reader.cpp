@@ -46,14 +46,14 @@ void ReaderFPGA::ReadData()
 
     if (FPGA_IN_RANDOMIZE_MODE)
     {
-        ReadRandomizeMode();
+        ReadRandomizeMode(data);
     }
     else
     {
-        ReadRealMode();
+        ReadRealMode(data);
     }
 
-    SaveToStorage();
+    Storage::Append(data);
 
     FPGA::in_processing_of_read = false;
 }
@@ -83,37 +83,37 @@ void ReaderFPGA::SaveToStorage()
 }
 
 
-void ReaderFPGA::ReadRandomizeMode()
+void ReaderFPGA::ReadRandomizeMode(DataStorage &)
 {
 
 }
 
 
-void ReaderFPGA::ReadRealMode()
+void ReaderFPGA::ReadRealMode(DataStorage &data)
 {
     if (ds.peakDet != PeackDetMode::Disable)
     {
-        ReadRealModePeakDetOn();
+        ReadRealModePeakDetOn(data);
     }
     else
     {
-        ReadRealModePeakDetOff();
+        ReadRealModePeakDetOff(data);
     }
 }
 
 
-void ReaderFPGA::ReadRealModePeakDetOn()
+void ReaderFPGA::ReadRealModePeakDetOn(DataStorage &)
 {
 }
 
 
-void ReaderFPGA::ReadRealModePeakDetOff()
+void ReaderFPGA::ReadRealModePeakDetOff(DataStorage &data)
 {
     uint16 addr_stop = ReadAddressStop();
 
-    ReadChannel(data_a, ChA, addr_stop);
+    ReadChannel(data, ChA, addr_stop);
 
-    ReadChannel(data_b, ChB, addr_stop);
+    ReadChannel(data, ChB, addr_stop);
 }
 
 
@@ -198,17 +198,15 @@ uint16 ReaderFPGA::ReadAddressStop()
 }
 
 
-void ReaderFPGA::ReadChannel(uint8 *data, const Channel &ch, uint16 addr_stop)
+void ReaderFPGA::ReadChannel(DataStorage &data, const Channel &ch, uint16 addr_stop)
 {
     *WR_PRED = addr_stop;
     *WR_ADDR_STOP = 0xffff;
 
-    uint16 *p = (uint16 *)data;
-    uint16 *end = (uint16 *)(data + FPGA::SET::PointsInChannel());
+    uint16 *p = (uint16 *)data.Data(ch);
+    uint16 *end = (uint16 *)(data.Data(ch) + data.Settings()->BytesInChannel());
 
     volatile uint16 *address = ADDRESS_READ(ch);
-
-    addr_stop = *address;
 
     while (p < end && FPGA::in_processing_of_read)
     {

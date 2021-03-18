@@ -4,15 +4,18 @@
 #include "FPGA/FPGA_Types.h"
 
 
+struct DataStorage;
+
+
 struct ReaderFPGA
 {
     static void ClearData();
 
     static void ReadData();
 
-    static void ReadRandomizeMode();
+    static void ReadRandomizeMode(DataStorage &);
 
-    static void ReadRealMode();
+    static void ReadRealMode(DataStorage &);
 
     static void ReadPoint();
 
@@ -33,11 +36,11 @@ private:
 
     static void SaveToStorage();
 
-    static void ReadRealModePeakDetOn();
+    static void ReadRealModePeakDetOn(DataStorage &);
 
-    static void ReadRealModePeakDetOff();
+    static void ReadRealModePeakDetOff(DataStorage &);
 
     static uint16 ReadAddressStop();
 
-    static void ReadChannel(uint8 *data, const Channel &ch, uint16 addr_stop);
+    static void ReadChannel(DataStorage &data, const Channel &ch, uint16 addr_stop);
 };
