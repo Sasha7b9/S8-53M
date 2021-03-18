@@ -143,15 +143,17 @@ int Text::DrawChar(int eX, int eY, uint8 symbol)
 }
 
 
-static int GetLenghtSubString(char *text)
+static uint GetLenghtSubString(char *text)
 {
-    int retValue = 0;
+    uint result = 0;
+
     while (((*text) != ' ') && ((*text) != '\0'))
     {
-        retValue += Font::GetLengthSymbol(static_cast<uint8>(*text));
+        result += Font::GetLengthSymbol(static_cast<uint8>(*text));
         text++;
     }
-    return retValue;
+
+    return result;
 }
 
 
@@ -184,13 +186,13 @@ static int DrawSpaces(int x, int y, char *text, int *numSymbols)
 void Text::DrawInRect(int x, int y, int width, int)
 {
     int xStart = x;
-    int xEnd = xStart + width;
+    uint xEnd = (uint)(xStart + width);
 
     char *t = text.c_str();
 
     while (*t != 0)
     {
-        int length = GetLenghtSubString(t);
+        uint length = GetLenghtSubString(t);
         if (length + x > xEnd)
         {
             x = xStart;
