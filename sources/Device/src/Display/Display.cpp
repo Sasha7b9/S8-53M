@@ -199,8 +199,8 @@ void Display::WriteCursors()
             Text("1:").Draw(x, y1, colorText);
             Text("2:").Draw(x, y2);
             x += 7;
-            Text(sCursors_GetCursVoltage(source, 0, buffer)).Draw(x, y1);
-            Text(sCursors_GetCursVoltage(source, 1, buffer)).Draw(x, y2);
+            sCursors_GetCursVoltage(source, 0).Draw(x, y1);
+            sCursors_GetCursVoltage(source, 1).Draw(x, y2);
             x = startX + 49;
             float pos0 = MathFPGA::VoltageCursor(sCursors_GetCursPosU(source, 0), SET_RANGE(source), SET_RSHIFT(source));
             float pos1 = MathFPGA::VoltageCursor(sCursors_GetCursPosU(source, 1), SET_RANGE(source), SET_RSHIFT(source));

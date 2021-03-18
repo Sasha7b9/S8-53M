@@ -69,7 +69,7 @@ float sCursors_GetCursPosU(Channel::E ch, int numCur);
 // Возвращает true,если нужно рисовать курсоры.
 bool sCursors_NecessaryDrawCursors();
 // Получить строку курсора напряжения.
-const char* sCursors_GetCursVoltage(Channel::E source, int numCur, char buffer[20]);
+String sCursors_GetCursVoltage(Channel::E source, int numCur);
 // Получить строку курсора времени.
 const char* sCursors_GetCursorTime(Channel::E source, int numCur, char buffer[20]);
 // Получить строку процентов курсоров напряжения.
