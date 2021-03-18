@@ -66,13 +66,13 @@ void FPGA::Start()
 {
     if(SET_TBASE >= MIN_TBASE_P2P)
     {
-        DataPainter::ResetP2Ppoints(false);
+//        DataPainter::ResetP2Ppoints(false);
         Timer::Enable(TypeTimer::P2P, 1, ReaderFPGA::ReadPoint);
     }
     else
     {
         Timer::Disable(TypeTimer::P2P);
-        DataPainter::ResetP2Ppoints(true);
+//        DataPainter::ResetP2Ppoints(true);
     }
 
     HAL_FMC::Write(WR_START, 1);

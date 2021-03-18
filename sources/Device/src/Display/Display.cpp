@@ -73,8 +73,8 @@ void Display::DrawStringNavigation()
 
 void Display::RotateRShift(Channel::E chan)
 {
-    DataPainter::ResetP2Ppoints(true);
     LAST_AFFECTED_CHANNEL = chan;
+
     if(TIME_SHOW_LEVELS)
     {
         if (chan == ChA) { showLevelRShiftA = true; }
@@ -83,6 +83,7 @@ void Display::RotateRShift(Channel::E chan)
             TIME_SHOW_LEVELS  * 1000, (chan == ChA) ? FuncOnTimerDisableShowLevelRShiftA :
             FuncOnTimerDisableShowLevelRShiftB);
     };
+
     Redraw();
 };
 
@@ -434,7 +435,7 @@ void Display::Update()
         DrawLowPart();
 //        DrawCursorsWindow();
 //        DrawCursorTrigLevel();
-//        DrawCursorsRShift();
+        DrawCursorsRShift();
 //        DrawMeasures();
 //        DrawStringNavigation();
 //        DrawCursorTShift();

@@ -128,11 +128,12 @@ void ReaderFPGA::ReadPoint()
 
     if (FPGA::flag.IsPointReady())
     {
-        uint16 dataB1 = *RD_ADC_B;
-        uint16 dataB2 = *RD_ADC_B;
-        uint16 dataA1 = *RD_ADC_A;
-        uint16 dataA2 = *RD_ADC_A;
-        DataPainter::AddPoints(dataA2, dataA1, dataB2, dataB1);
+//        uint16 dataB1 = *RD_ADC_B;
+//        uint16 dataB2 = *RD_ADC_B;
+//        uint16 dataA1 = *RD_ADC_A;
+//        uint16 dataA2 = *RD_ADC_A;
+
+//        DataPainter::AddPoints(dataA2, dataA1, dataB2, dataB1);
     }
 }
 
