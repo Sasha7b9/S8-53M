@@ -9,28 +9,28 @@
 #include <cstring>
 
 
-float sCursors_GetCursPosU(const Channel &ch, int numCur)
+float Cursors::GetCursPosU(const Channel &ch, int num)
 {
-    return CURS_POS_U(ch, numCur) / (Grid::ChannelBottom() == Grid::FullBottom() ? 1.0F : 2.0F);
+    return CURS_POS_U(ch, num) / (Grid::ChannelBottom() == Grid::FullBottom() ? 1.0F : 2.0F);
 }
 
 
-bool sCursors_NecessaryDrawCursors()
+bool Cursors::NecessaryDrawCursors()
 {
     return ((!CURS_CNTRL_U_IS_DISABLE(CURS_SOURCE)) || (!CURS_CNTRL_T_IS_DISABLE(CURS_SOURCE))) && 
         (CURS_SHOW || Menu::GetNameOpenedPage() == NamePage::SB_Curs);
 }
 
 
-String sCursors_GetCursVoltage(const Channel &source, int numCur)
+String Cursors::GetCursVoltage(const Channel &source, int numCur)
 {
-    float voltage = MathFPGA::VoltageCursor(sCursors_GetCursPosU(source, numCur), SET_RANGE(source), SET_RSHIFT(source));
+    float voltage = MathFPGA::VoltageCursor(GetCursPosU(source, numCur), SET_RANGE(source), SET_RSHIFT(source));
 
     return GF::Voltage2String(voltage, true);
 }
 
 
-String sCursors_GetCursorTime(const Channel &source, int numCur)
+String Cursors::GetCursorTime(const Channel &source, int numCur)
 {
     float time = MathFPGA::TimeCursor(CURS_POS_T(source, numCur), SET_TBASE);
 
@@ -38,11 +38,11 @@ String sCursors_GetCursorTime(const Channel &source, int numCur)
 }
 
 
-String sCursors_GetCursorPercentsU(const Channel &source)
+String Cursors::GetCursorPercentsU(const Channel &source)
 {
     float dPerc = DELTA_U100(source);
 
-    float dValue = std::fabsf(sCursors_GetCursPosU(source, 0) - sCursors_GetCursPosU(source, 1));
+    float dValue = std::fabsf(GetCursPosU(source, 0) - GetCursPosU(source, 1));
 
     String result = GF::Float2String(dValue / dPerc * 100.0F, false, 5);
 
@@ -52,7 +52,7 @@ String sCursors_GetCursorPercentsU(const Channel &source)
 }
 
 
-String sCursors_GetCursorPercentsT(const Channel &source)
+String Cursors::GetCursorPercentsT(const Channel &source)
 {
     float dPerc = DELTA_T100(source);
 

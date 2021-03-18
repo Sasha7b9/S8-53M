@@ -9,7 +9,7 @@ void RShift::Draw()
 }
 
 
-void RShift::Draw(Channel::E ch)
+void RShift::Draw(Channel::E)
 {
 
 }

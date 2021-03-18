@@ -278,7 +278,8 @@ static void DrawSB_Cursors_U(int x, int y)
         {
             Channel::E source = CURS_SOURCE;
             bool condTop = false, condDown = false;
-            CalculateConditions(static_cast<int16>(sCursors_GetCursPosU(source, 0)), static_cast<int16>(sCursors_GetCursPosU(source, 1)), cursCntrl, &condTop, &condDown);
+            CalculateConditions(static_cast<int16>(Cursors::GetCursPosU(source, 0)),
+                static_cast<int16>(Cursors::GetCursPosU(source, 1)), cursCntrl, &condTop, &condDown);
             if (condTop && condDown)
             {
                 DrawSB_Cursors_U_Both_Enable(x, y);

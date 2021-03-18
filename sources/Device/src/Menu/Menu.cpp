@@ -552,7 +552,7 @@ bool Menu::NeedForFireSetLED()    // Возвращает true, если лампочка УСТАНОВКА до
         name == NamePage::SB_MemLatest                               || 
         name == NamePage::SB_MemInt                                  ||
         (name == NamePage::SB_MathFunction && !DISABLED_DRAW_MATH)   ||
-        name == NamePage::SB_Curs && sCursors_NecessaryDrawCursors() //-V648
+        name == NamePage::SB_Curs && Cursors::NecessaryDrawCursors() //-V648
         )
     {
         return true;

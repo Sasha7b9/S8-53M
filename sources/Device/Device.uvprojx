@@ -1918,11 +1918,6 @@
           <GroupName>Settings</GroupName>
           <Files>
             <File>
-              <FileName>SettingsTypes.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Settings\SettingsTypes.h</FilePath>
-            </File>
-            <File>
               <FileName>Settings.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Settings\Settings.h</FilePath>
@@ -1983,11 +1978,6 @@
               <FilePath>.\src\Settings\Settings.cpp</FilePath>
             </File>
             <File>
-              <FileName>SettingsChannel.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Settings\SettingsChannel.cpp</FilePath>
-            </File>
-            <File>
               <FileName>SettingsCursors.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Settings\SettingsCursors.cpp</FilePath>
@@ -2021,11 +2011,6 @@
               <FileName>SettingsTime.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Settings\SettingsTime.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>cSettingsTypes.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Settings\cSettingsTypes.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -4138,11 +4123,6 @@
           <GroupName>Settings</GroupName>
           <Files>
             <File>
-              <FileName>SettingsTypes.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Settings\SettingsTypes.h</FilePath>
-            </File>
-            <File>
               <FileName>Settings.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Settings\Settings.h</FilePath>
@@ -4203,11 +4183,6 @@
               <FilePath>.\src\Settings\Settings.cpp</FilePath>
             </File>
             <File>
-              <FileName>SettingsChannel.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Settings\SettingsChannel.cpp</FilePath>
-            </File>
-            <File>
               <FileName>SettingsCursors.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Settings\SettingsCursors.cpp</FilePath>
@@ -4241,11 +4216,6 @@
               <FileName>SettingsTime.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Settings\SettingsTime.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>cSettingsTypes.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Settings\cSettingsTypes.h</FilePath>
             </File>
           </Files>
         </Group>

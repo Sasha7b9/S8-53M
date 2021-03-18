@@ -184,7 +184,7 @@ void Display::WriteCursors()
         startX += 29;
     }
 
-    if(sCursors_NecessaryDrawCursors())
+    if(Cursors::NecessaryDrawCursors())
     {
         int x = startX;
         int y1 = 0;
@@ -201,16 +201,16 @@ void Display::WriteCursors()
             Text("1:").Draw(x, y1, colorText);
             Text("2:").Draw(x, y2);
             x += 7;
-            sCursors_GetCursVoltage(source, 0).Draw(x, y1);
-            sCursors_GetCursVoltage(source, 1).Draw(x, y2);
+            Cursors::GetCursVoltage(source, 0).Draw(x, y1);
+            Cursors::GetCursVoltage(source, 1).Draw(x, y2);
             x = startX + 49;
-            float pos0 = MathFPGA::VoltageCursor(sCursors_GetCursPosU(source, 0), SET_RANGE(source), SET_RSHIFT(source));
-            float pos1 = MathFPGA::VoltageCursor(sCursors_GetCursPosU(source, 1), SET_RANGE(source), SET_RSHIFT(source));
+            float pos0 = MathFPGA::VoltageCursor(Cursors::GetCursPosU(source, 0), SET_RANGE(source), SET_RSHIFT(source));
+            float pos1 = MathFPGA::VoltageCursor(Cursors::GetCursPosU(source, 1), SET_RANGE(source), SET_RSHIFT(source));
             float delta = std::fabsf(pos1 - pos0);
             Text(":dU=").Draw(x, y1);
             GF::Voltage2String(delta, false).Draw(x + 17, y1);
             Text(":").Draw(x, y2);
-            sCursors_GetCursorPercentsU(source).Draw(x + 10, y2);
+            Cursors::GetCursorPercentsU(source).Draw(x + 10, y2);
         }
 
         x = startX + 101;
@@ -223,8 +223,8 @@ void Display::WriteCursors()
             Text("1:").Draw(x, y1);
             Text("2:").Draw(x, y2);
             x+=7;
-            sCursors_GetCursorTime(source, 0).Draw(x, y1);
-            sCursors_GetCursorTime(source, 1).Draw(x, y2);
+            Cursors::GetCursorTime(source, 0).Draw(x, y1);
+            Cursors::GetCursorTime(source, 1).Draw(x, y2);
             x = startX + 153;
             float pos0 = MathFPGA::TimeCursor(CURS_POS_T0(source), SET_TBASE);
             float pos1 = MathFPGA::TimeCursor(CURS_POS_T1(source), SET_TBASE);
@@ -232,7 +232,7 @@ void Display::WriteCursors()
             Text(":dT=").Draw(x, y1);
             GF::Time2String(delta, false).Draw(x + 17, y1);
             Text(":").Draw(x, y2);
-            sCursors_GetCursorPercentsT(source).Draw(x + 8, y2);
+            Cursors::GetCursorPercentsT(source).Draw(x + 8, y2);
 
             if(CURSORS_SHOW_FREQ)
             {
@@ -974,7 +974,7 @@ void Display::DrawCursors()
 {
     Channel::E source = CURS_SOURCE;
     Color::Cursors(source).SetAsCurrent();
-    if (sCursors_NecessaryDrawCursors())
+    if (Cursors::NecessaryDrawCursors())
     {
         bool bothCursors = !CURS_CNTRL_T_IS_DISABLE(source) && !CURS_CNTRL_U_IS_DISABLE(source);  // Признак того, что
                     // включены и вертикальные и горизонтальные курсоры - надо нарисовать квадраты в местах пересечения
@@ -987,8 +987,8 @@ void Display::DrawCursors()
         {
             x0 = static_cast<int>(Grid::Left() + CURS_POS_T0(source));
             x1 = static_cast<int>(Grid::Left() + CURS_POS_T1(source));
-            y0 = static_cast<int>(Grid::TOP + sCursors_GetCursPosU(source, 0));
-            y1 = static_cast<int>(Grid::TOP + sCursors_GetCursPosU(source, 1));
+            y0 = static_cast<int>(Grid::TOP + Cursors::GetCursPosU(source, 0));
+            y1 = static_cast<int>(Grid::TOP + Cursors::GetCursPosU(source, 1));
 
             Primitives::Rectangle(4, 4).Draw(x0 - 2, y0 - 2);
             Primitives::Rectangle(4, 4).Draw(x1 - 2, y1 - 2);
@@ -1003,8 +1003,8 @@ void Display::DrawCursors()
         cntrl = CURsU_CNTRL;
         if (cntrl != CursCntrl::Disable)
         {
-            DrawHorizontalCursor(static_cast<int>(sCursors_GetCursPosU(source, 0)), x0);
-            DrawHorizontalCursor(static_cast<int>(sCursors_GetCursPosU(source, 1)), x1);
+            DrawHorizontalCursor(static_cast<int>(Cursors::GetCursPosU(source, 0)), x0);
+            DrawHorizontalCursor(static_cast<int>(Cursors::GetCursPosU(source, 1)), x1);
         }
     }
 }

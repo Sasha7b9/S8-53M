@@ -148,7 +148,8 @@ void Range::Set(const Channel &ch, Range::E range)
     }
     if (range < Range::Count)
     {
-        sChannel_SetRange(ch, range);
+        SET_RANGE(ch) = range;
+
         if (LINKING_RSHIFT_IS_VOLTAGE)
         {
             float rShiftAbs = RSHIFT_2_ABS(SET_RSHIFT(ch), SET_RANGE(ch));
@@ -156,6 +157,7 @@ void Range::Set(const Channel &ch, Range::E range)
             SET_RSHIFT(ch) = (int16)RShift::ToRel(rShiftAbs, range);
             TRIG_LEVEL(ch) = (int16)RShift::ToRel(trigLevAbs, range);
         }
+
         Load(ch);
     }
     else
