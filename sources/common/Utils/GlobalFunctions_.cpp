@@ -201,7 +201,7 @@ String GF::Hex8toString(uint8 value)
 {
     String result("00");
 
-    std::sprintf(&result[value < 16 ? 1 : 0], "%x", value);
+    std::sprintf(&result[value < 16 ? 1U : 0U], "%x", value);
 
     return result;
 }

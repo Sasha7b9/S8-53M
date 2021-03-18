@@ -243,11 +243,11 @@ static int DrawBigChar(int eX, int eY, uint size, char symbol)
 
 void Text::DrawBig(int eX, int eY, uint size)
 {
-    int numSymbols = static_cast<int>(std::strlen(text.c_str()));
+    uint numSymbols = std::strlen(text.c_str());
 
     int x = eX;
 
-    for (int i = 0; i < numSymbols; i++)
+    for (uint i = 0; i < numSymbols; i++)
     {
         x = DrawBigChar(x, eY, size, text[i]);
         x += size;
@@ -663,7 +663,7 @@ int Text::DrawInRectWithTransfers(int eX, int eY, int eWidth, int eHeight, Color
     int bottom = eY + eHeight;
 
     char buffer[20];
-    int numSymb = text.Size();
+    int numSymb = (int)text.Size();
 
     int y = top - 1;
     int x = left;
@@ -679,7 +679,7 @@ int Text::DrawInRectWithTransfers(int eX, int eY, int eWidth, int eHeight, Color
 
             if (length <= 1)                            // Нет буквенных символов или один, т.е. слово не найдено
             {
-                char symbol = text[curSymbol++];
+                char symbol = text[(uint)curSymbol++];
                 if (symbol == '\n')
                 {
                     x = right;

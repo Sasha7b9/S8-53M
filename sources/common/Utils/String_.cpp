@@ -196,18 +196,18 @@ int String::Draw(int x, int y) const
 }
 
 
-int String::Size() const
+uint String::Size() const
 {
     if (buffer == nullptr)
     {
         return 0;
     }
 
-    return static_cast<int>(std::strlen(buffer));
+    return std::strlen(buffer);
 }
 
 
-char &String::operator[](int i) const
+char &String::operator[](uint i) const
 {
     static char result = 0;
 

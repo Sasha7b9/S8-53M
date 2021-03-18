@@ -61,13 +61,13 @@ void Display::DrawStringNavigation()
 {
     String string = Menu::StringNavigation();
 
-    int length = string.Size();
+    uint length = string.Size();
 
     if(length != 0) 
     {
         int height = 10;
-        Primitives::Rectangle(length + 2, height).Draw(Grid::Left(), Grid::TOP, Color::FILL);
-        Region(length, height - 2).Fill(Grid::Left() + 1, Grid::TOP + 1, Color::BACK);
+        Primitives::Rectangle((int)length + 2, height).Draw(Grid::Left(), Grid::TOP, Color::FILL);
+        Region((int)length, height - 2).Fill(Grid::Left() + 1, Grid::TOP + 1, Color::BACK);
         string.Draw(Grid::Left() + 2, Grid::TOP + 1, Color::FILL);
     }
 }

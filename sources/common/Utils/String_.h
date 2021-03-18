@@ -31,9 +31,9 @@ public:
 
     void Append(char symbol);
     
-    int Size() const;
+    uint Size() const;
 
-    char &operator[](int i) const;
+    char &operator[](uint i) const;
 
 private:
 
