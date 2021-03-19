@@ -6,7 +6,7 @@
 
 struct DataSettings
 {
-    DataSettings() : enabled_a(0), enabled_b(0) {}
+    DataSettings() : enabled_a(0), enabled_b(0) {} //-V730
 
     uint                enabled_a   : 1;    // Включён ли канал 0
     uint                enabled_b   : 1;    // Включен ли канал 1

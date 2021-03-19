@@ -142,7 +142,7 @@ void HAL_PINS::FMC_::Init()
 
 void HAL_PINS::SPI1_::Init()
 {
-    PinSPI1(A, 5).Init();   // SCK
+    PinSPI1(A, 5).Init();   // SCK //-V525
     PinSPI1(A, 6).Init();   // MISO
     PinSPI1(B, 5).Init();   // MOSI
     PinSPI1(G, 0).Init();   // NSS
@@ -321,12 +321,6 @@ void Pin::Init()
     }
     else if (mode == PinMode::_FMC)
     {
-        if ((port == PinPort::_D && pin == 4) ||
-            (port == PinPort::_D && pin == 5))
-        {
-            isGPIO.Pull = GPIO_PULLUP;
-        }
-
         if ((port == PinPort::_D && pin == 7) ||
             (port == PinPort::_G && pin == 9))
         {

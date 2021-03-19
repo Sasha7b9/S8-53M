@@ -9,8 +9,6 @@
 
 RecordStorage *Storage::addressOldestRecord = nullptr;
 
-uint Storage::num_appends = 0;
-
 
 // Записывает по address данные из buffer. Возвращает адрес первого байта после записи
 static uint8 *CopyTo(uint8 *address, void *buffer, uint size);
@@ -157,8 +155,6 @@ uint8 *RecordStorage::End() const
 
 void Storage::Append(const DataStorage &data)
 {
-    num_appends++;
-
     RecordStorage *record = Create(data.Settings());
 
     record->Fill(data);

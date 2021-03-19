@@ -22,12 +22,12 @@ void HardFault_Handler()
     int line = Debug::line[0];
     int posItem = Debug::posItem;
 
-    while (1)
+    while (1) //-V776
     {
         Display::Update();
-        file = file;
-        line = line;
-        posItem = posItem;
+        file = file; //-V570
+        line = line; //-V570
+        posItem = posItem; //-V570
     }
 }
 
