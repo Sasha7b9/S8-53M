@@ -40,18 +40,18 @@ void Device::Init()
 
 void Device::Update()
 {
-    static uint timePrev = 0;
-    static int counter = 0;
-
-    counter++;
-
-    if (TIME_MS - timePrev >= 1000)
-    {
-        LOG_WRITE("fps = %d", counter);
-
-        counter = 0;
-        timePrev = TIME_MS;
-    }
+//    static uint timePrev = 0;
+//    static int counter = 0;
+//
+//    counter++;
+//
+//    if (TIME_MS - timePrev >= 1000)
+//    {
+//        LOG_WRITE("fps = %d", counter);
+//
+//        counter = 0;
+//        timePrev = TIME_MS;
+//    }
 
     HAL_TIM2::StartMultiMeasurement();
     FPGA::Update();

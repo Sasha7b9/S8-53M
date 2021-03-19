@@ -1,5 +1,6 @@
 // 2021/03/16 16:35:58 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
+#include "common/Log_.h"
 #include "common/Utils/Math_.h"
 #include "Display/DataPainter.h"
 #include "FPGA/FPGA.h"
@@ -51,6 +52,8 @@ void ReaderFPGA::ReadData()
     }
 
     Storage::Append(data);
+
+    LOG_WRITE("%d данных в хранилище", Storage::NumRecords());
 
     FPGA::in_processing_of_read = false;
 }

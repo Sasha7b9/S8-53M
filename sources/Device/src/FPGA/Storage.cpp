@@ -1,5 +1,6 @@
 // 2021/03/18 16:06:12 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
+#include "common/Utils/Debug_.h"
 #include "FPGA/DataSettings.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/Storage.h"
@@ -75,7 +76,7 @@ uint8 *DataStorage::Data(const Channel &ch)
 
 DataSettings &DataStorage::Settings() const
 {
-    return (DataSettings &)*buffer.DataConst();
+    return (DataSettings &)*((DataStorage *)this)->buffer.Data();
 }
 
 
@@ -237,18 +238,23 @@ RecordStorage *Storage::Oldest()
 
 RecordStorage *Storage::Newest()
 {
+    DEBUG_POINT_0;
     if (addressOldestRecord == nullptr)
     {
+        DEBUG_POINT_0;
         return nullptr;
+        DEBUG_POINT_0;
     }
-
+    DEBUG_POINT_0;
     RecordStorage *record = addressOldestRecord;
-
+    DEBUG_POINT_0;
     while (record->next)
     {
+        DEBUG_POINT_0;
         record = record->next;
+        DEBUG_POINT_0;
     }
-
+    DEBUG_POINT_0;
     return record;
 }
 

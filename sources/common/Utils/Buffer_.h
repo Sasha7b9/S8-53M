@@ -25,8 +25,6 @@ public:
 
     inline uint8 *Data() { return data; }
 
-    inline uint8 *DataConst() const { return data; }
-
     void Log();
 
     static void LogU8(const uint8 *buffer);
