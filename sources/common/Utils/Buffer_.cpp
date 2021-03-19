@@ -6,7 +6,7 @@
 
 
 
-Buffer::Buffer(uint s)
+Buffer::Buffer(uint s) : data(nullptr)
 {
     Malloc(s);
 }

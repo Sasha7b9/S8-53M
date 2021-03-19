@@ -33,7 +33,7 @@ void DataPainter::DrawData()
 }
 
 
-void DataPainter::DrawDataChannel(const DataStorage &data, const Channel &ch, int min_y, int max_y)
+void DataPainter::DrawDataChannel(DataStorage &data, const Channel &ch, int min_y, int max_y)
 {
     float scaleY = static_cast<float>(max_y - min_y) / (MAX_VALUE - MIN_VALUE);
     float scaleX = Grid::Width() / 280.0F;
@@ -141,7 +141,7 @@ void DataPainter::DrawSignalLined(puchar data, const DataSettings *ds, int start
 }
 
 
-void DataPainter::DrawSignalPointed(puchar data, const DataSettings &ds, int start_i, int end_i, int min_y,
+void DataPainter::DrawSignalPointed(puchar data, DataSettings &ds, int start_i, int end_i, int min_y,
     int max_y, float scale_y, float scale_x)
 {
     int numPoints = sMemory_GetNumPoints(false);

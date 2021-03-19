@@ -23,7 +23,7 @@ void DataStorage::CreateFromCurrentSettings()
 {
     buffer.Realloc(sizeof(DataSettings) + FPGA::SET::BytesForData());
 
-    DataSettings &ds = *(DataSettings *)Begin();
+    DataSettings &ds = *(DataSettings *)buffer.Data();
 
     ds.Fill();
 }
@@ -53,7 +53,7 @@ void DataStorage::CreateNull()
 }
 
 
-uint8 *DataStorage::Data(const Channel &ch) const
+uint8 *DataStorage::Data(const Channel &ch)
 {
     const DataSettings &ds = Settings();
 
@@ -62,7 +62,7 @@ uint8 *DataStorage::Data(const Channel &ch) const
         return nullptr;
     }
 
-    uint8 *result = Begin() + sizeof(DataSettings);
+    uint8 *result = buffer.Data() + sizeof(DataSettings);
 
     if (ch.IsB() && ds.IsEnabled(Channel::A))
     {
@@ -73,23 +73,17 @@ uint8 *DataStorage::Data(const Channel &ch) const
 }
 
 
-const DataSettings &DataStorage::Settings() const
+DataSettings &DataStorage::Settings()
 {
-    return (const DataSettings &)*Begin();
+    return (DataSettings &)*buffer.Data();
 }
 
 
-uint8 *DataStorage::Begin() const
-{
-    return (uint8 *)((Buffer)buffer).Data();
-}
-
-
-uint DataStorage::Size() const
+uint DataStorage::Size()
 {
     uint result = sizeof(DataSettings);
 
-    const DataSettings &ds = Settings();
+    DataSettings &ds = Settings();
 
     if (ds.IsEnabled(Channel::A))
     {
@@ -105,9 +99,9 @@ uint DataStorage::Size() const
 }
 
 
-void RecordStorage::Fill(const DataStorage &data)
+void RecordStorage::Fill(DataStorage &data)
 {
-    const DataSettings &ds = data.Settings();
+    DataSettings &ds = data.Settings();
     uint length_channel = (uint)ds.BytesInChannel();
 
     uint8 *address = (uint8 *)this + sizeof(RecordStorage);
@@ -138,7 +132,7 @@ uint RecordStorage::Size() const
 }
 
 
-uint RecordStorage::Size(const DataSettings &data) const
+uint RecordStorage::Size(DataSettings &data) const
 {
     return sizeof(RecordStorage) + sizeof(data) + data.BytesInData();
 }
@@ -158,7 +152,7 @@ uint8 *RecordStorage::End() const
 }
 
 
-void Storage::Append(const DataStorage &data)
+void Storage::Append(DataStorage &data)
 {
     RecordStorage *record = Create(data);
 
@@ -166,7 +160,7 @@ void Storage::Append(const DataStorage &data)
 }
 
 
-RecordStorage *Storage::Create(const DataStorage &data)
+RecordStorage *Storage::Create(DataStorage &data)
 {
     RecordStorage *result = nullptr;
 

@@ -19,20 +19,18 @@ friend struct RecordStorage;
 
     void CreateNull();
 
-    const DataSettings &Settings() const;
+    DataSettings &Settings();
 
     // Хотя и возвращается указатель на 8-битные значения, следует иметь ввиду, что в случае, если данные расположены
     // во внешнем ОЗУ, читать следует по 16 бит, т.к. доступ по нечётным адресам к ОЗУ запрещён
-    uint8 *Data(const Channel &ch) const;
+    uint8 *Data(const Channel &ch);
 
 private:
 
     // В буфере хранятся последовательно - настройки, данные первого канала, данные второго канала
     Buffer buffer;
 
-    uint8 *Begin() const;
-
-    uint Size() const;
+    uint Size();
 };
 
 
@@ -49,12 +47,12 @@ friend struct DataStorage;
 
 private:
 
-    void Fill(const DataStorage &data);
+    void Fill(DataStorage &data);
 
     uint Size() const;
 
     // Возвращает размер записи, когда в неё будут записаны данные data
-    uint Size(const DataSettings &data) const;
+    uint Size(DataSettings &data) const;
 
     uint8 *Address() const;
 
@@ -81,7 +79,7 @@ class Storage
 
 public:
 
-    static void Append(const DataStorage &data);
+    static void Append(DataStorage &data);
 
     // Извлечь последние положенные данные
     static bool ExtractLast(DataStorage &data);
@@ -96,7 +94,7 @@ public:
 private:
 
     // Создаёт запись во внешнем ОЗУ для сохраенения data
-    static RecordStorage *Create(const DataStorage &data);
+    static RecordStorage *Create(DataStorage &data);
 
     // Самая старая запись (записана первой)
     static RecordStorage *Oldest();
