@@ -344,11 +344,11 @@ void Panel::Update()
 }
 
 
-void Panel::CallbackOnReceiveSPI5(uint8 *data, int size)
+void Panel::CallbackOnReceiveSPI5(uint8 *data, uint size)
 {
     static ReceivedBuffer buffer;
 
-    for (int i = 0; i < size; i++)              // Сначала сохраняем данные в промежуточный буфер
+    for (uint i = 0; i < size; i++)              // Сначала сохраняем данные в промежуточный буфер
     {
         buffer.Push(data[i]);
     }
