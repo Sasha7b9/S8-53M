@@ -453,11 +453,11 @@ void GF::IntToStrCat(char *_buffer, int _value)
 }
 
 
-String GF::LogArrayUint8(uint8 *array, int size)
+String GF::LogArrayUint8(uint8 *array, uint size)
 {
     String result;
 
-    for (int i = 0; i < size; i++)
+    for (uint i = 0; i < size; i++)
     {
         result.Append(GF::Int2String(array[i], false, 1).c_str());
         
