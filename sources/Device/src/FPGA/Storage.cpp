@@ -157,11 +157,20 @@ uint8 *RecordStorage::End() const
 
 void Storage::Append(const DataStorage &data)
 {
+    uint time = TIME_MS;
+
+    if (NumRecords() == 932)
+    {
+        int i = 0;
+    }
+
     num_appends++;
 
     RecordStorage *record = Create(data.Settings());
 
     record->Fill(data);
+
+    LOG_WRITE("time append %d ms", TIME_MS - time);
 }
 
 
@@ -202,6 +211,9 @@ RecordStorage *Storage::Create(const DataSettings &ds)
         {
             while (Oldest()->Address() - Newest()->End() < (int)need_memory)
             {
+                RecordStorage *oldest = Oldest();
+                RecordStorage *newest = Newest();
+                
                 DeleteOldest();
             }
 
