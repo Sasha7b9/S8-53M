@@ -10,6 +10,12 @@ friend struct RecordStorage;
 
     DataStorage();
 
+    void CreateFromCurrentSettings();
+
+    void CreateFromRecord(RecordStorage *record);
+
+    void CreateNull();
+
     const DataSettings &Settings() const;
 
     // Хотя и возвращается указатель на 8-битные значения, следует иметь ввиду, что в случае, если данные расположены
@@ -30,7 +36,13 @@ private:
 //----------------------------------------------------------------------------------------------------------------------
 struct RecordStorage
 {
+    /*
+    *  Запись записывается так. Сначала идёт собственно RecordStorage, затем DataSettings, а затем данные первого и вто-
+    *  рого каналов
+    */
+
 friend class Storage;
+friend struct DataStorage;
 
 private:
 
@@ -39,14 +51,14 @@ private:
     uint Size() const;
 
     // Возвращает размер записи, когда в неё будут записаны данные data
-    uint Size(const DataStorage &data) const;
+    uint Size(const DataSettings &data) const;
 
     uint8 *Address() const;
 
     // Возвращает адрес первого байта, следующего за записью
     uint8 *End() const;
 
-    DataStorage &Data() const;
+    DataSettings &Data() const;
 
     RecordStorage *prev;        // Адрес предыдущей (более старой) записи
     RecordStorage *next;        // Адрес следующей (более новой) записи
@@ -69,11 +81,11 @@ public:
     static void Append(const DataStorage &data);
 
     // Извлечь последние положенные данные
-    static DataStorage &ExtractLast();
+    static bool ExtractLast(DataStorage &data);
 
     // Извлечь данные, находящиеся на "расстоянии" from_end от последней записи (при from_end возвращает последнюю
     // сохранённую запись)
-    static DataStorage &Extract(uint from_end);
+    static bool Extract(uint from_end, DataStorage &data);
 
     // Возвращает количество записей в хранилище
     static uint NumRecords();
@@ -92,8 +104,9 @@ private:
     // Удаляет самую старую запись
     static void DeleteOldest();
 
+    // Возвращает false и пустое data (в котором оба канала выключены, остальные настройки не определены)
+    static bool CreateNull(DataStorage &data);
+
     static RecordStorage *addressOldestRecord;   // Здесь хранится адрес первой записи. Зная его, можно рассчитать все
                                                 // остальные адреса
-
-    static DataStorage *nullData;
 };

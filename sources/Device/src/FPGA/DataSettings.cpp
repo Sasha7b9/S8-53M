@@ -39,6 +39,26 @@ uint DataSettings::BytesInChannel() const
 }
 
 
+uint DataSettings::BytesInData() const
+{
+    uint result = 0;
+
+    uint bytes_in_channel = BytesInChannel();
+
+    if (IsEnabled(Channel::A))
+    {
+        result += bytes_in_channel;
+    }
+
+    if (IsEnabled(Channel::B))
+    {
+        result += bytes_in_channel;
+    }
+
+    return result;
+}
+
+
 uint DataSettings::PointsInChannel() const
 {
     return ENUM_POINTS_FPGA::ToPoints((ENUM_POINTS_FPGA::E)enum_points);

@@ -22,7 +22,9 @@ using namespace Primitives;
 
 void DataPainter::DrawData()
 {
-    DataStorage &data = Storage::ExtractLast();
+    DataStorage data;
+
+    Storage::ExtractLast(data);
 
     DrawDataChannel(data, Channel::A, Grid::TOP, Grid::ChannelBottom());
     DrawDataChannel(data, Channel::B, Grid::TOP, Grid::ChannelBottom());

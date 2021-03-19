@@ -27,8 +27,13 @@ struct DataSettings
 
     void Fill();
 
+    // Возвращает количество байт, занимаемых одним каналом
     uint BytesInChannel() const;
 
+    // Возвращает количество байт, занимаемых обоими каналами (с учётом их включения)
+    uint BytesInData() const;
+
+    // Сколько точек в одном канале
     uint PointsInChannel() const;
 
     bool IsEnabled(const Channel &ch) const;

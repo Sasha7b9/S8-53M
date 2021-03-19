@@ -9,18 +9,47 @@
 RecordStorage *Storage::addressOldestRecord = nullptr;
 
 
-static DataSettings nullSettings;
-
-DataStorage *Storage::nullData = (DataStorage *)&nullSettings;
+// Записывает по address данные из buffer. Возвращает адрес первого байта после записи
+static uint8 *CopyTo(uint8 *address, void *buffer, uint size);
 
 
 DataStorage::DataStorage()
 {
-    buffer.Realloc((int)sizeof(DataSettings) + FPGA::SET::BytesForData());
+    CreateFromCurrentSettings();
+}
+
+
+void DataStorage::CreateFromCurrentSettings()
+{
+    buffer.Realloc(sizeof(DataSettings) + FPGA::SET::BytesForData());
 
     DataSettings &ds = *(DataSettings *)Begin();
 
     ds.Fill();
+}
+
+
+void DataStorage::CreateFromRecord(RecordStorage *record)
+{
+    DataSettings &ds = record->Data();
+
+    uint size = sizeof(DataSettings) + ds.BytesInData();
+
+    buffer.Realloc(size);
+
+    std::memcpy(buffer.Data(), &ds, size);
+}
+
+
+void DataStorage::CreateNull()
+{
+    DataSettings ds;
+    ds.enabled_a = 0;
+    ds.enabled_b = 0;
+
+    buffer.Realloc(sizeof(DataSettings));
+
+    std::memcpy(buffer.Data(), &ds, sizeof(DataSettings));
 }
 
 
@@ -81,21 +110,18 @@ void RecordStorage::Fill(const DataStorage &data)
     const DataSettings &ds = data.Settings();
     uint length_channel = (uint)ds.BytesInChannel();
 
-    uint8 *address = (uint8 *)this;
+    uint8 *address = (uint8 *)this + sizeof(RecordStorage);
 
-    std::memcpy(address, &ds, sizeof(DataSettings));
-
-    address += sizeof(DataSettings);
+    address = CopyTo(address, (void *)&ds, sizeof(DataSettings));
 
     if (ds.IsEnabled(Channel::A))
     {
-        std::memcpy(address, data.Data(Channel::A), length_channel);
-        address += length_channel;
+        address = CopyTo(address, data.Data(Channel::A), length_channel);
     }
 
     if (ds.IsEnabled(Channel::B))
     {
-        std::memcpy(address, data.Data(Channel::B), length_channel);
+        CopyTo(address, data.Data(Channel::B), length_channel);
     }
 }
 
@@ -112,17 +138,17 @@ uint RecordStorage::Size() const
 }
 
 
-uint RecordStorage::Size(const DataStorage &data) const
+uint RecordStorage::Size(const DataSettings &data) const
 {
-    return data.Size() + sizeof(*this);
+    return sizeof(RecordStorage) + sizeof(data) + data.BytesInData();
 }
 
 
-DataStorage &RecordStorage::Data() const
+DataSettings &RecordStorage::Data() const
 {
-    uint8 *address = Address() + sizeof(*this);
+    uint8 *address = Address() + sizeof(RecordStorage);
 
-    return *(DataStorage *)address;
+    return *(DataSettings *)address;
 }
 
 
@@ -153,7 +179,7 @@ RecordStorage *Storage::Create(const DataStorage &data)
     }
     else
     {
-        uint need_memory = Oldest()->Size(data);
+        uint need_memory = Oldest()->Size(data.Settings());
 
         if (Newest() >= Oldest())          // Если записи идут в "прямом" порядке - адрес последней больше адреса первой
         {                                  // (Это означает, что память ещё не заполнена либо же заполнена полностью)
@@ -255,19 +281,17 @@ uint Storage::NumRecords()
 }
 
 
-DataStorage &Storage::ExtractLast()
+bool Storage::ExtractLast(DataStorage &data)
 {
-    return Extract(0);
+    return Extract(0, data);
 }
 
 
-DataStorage &Storage::Extract(uint from_end)
+bool Storage::Extract(uint from_end, DataStorage &data)
 {
     if (NumRecords() == 0 || from_end >= NumRecords())
     {
-        DataStorage &result = *nullData;
-
-        return result;
+        return CreateNull(data);
     }
 
     RecordStorage *record = Newest();
@@ -278,5 +302,23 @@ DataStorage &Storage::Extract(uint from_end)
         from_end--;
     }
 
-    return record->Data();
+    data.CreateFromRecord(record);
+
+    return true;
+}
+
+
+bool Storage::CreateNull(DataStorage &data)
+{
+    data.CreateNull();
+
+    return false;
+}
+
+
+static uint8 *CopyTo(uint8 *address, void *buffer, uint size)
+{
+    std::memcpy(address, buffer, size);
+
+    return address + size;
 }
