@@ -36,7 +36,7 @@ static Frame *frame = nullptr;
 
 wxMemoryDC Application::memDC;                                               // Здесь будем рисовать
 
-wxIMPLEMENT_APP_NO_MAIN(Application); //-V2511
+wxIMPLEMENT_APP_NO_MAIN(Application);
 
 
 int main(int argc, char **argv)
@@ -76,7 +76,7 @@ int Application::OnExit()
 void Frame::SaveSettings()
 {
     wxString wsFile(FILE_CONFIG);
-    wxFileConfig *pConfig = new wxFileConfig(wxEmptyString, wxEmptyString, wsFile, wxEmptyString, wxCONFIG_USE_LOCAL_FILE | wxCONFIG_USE_RELATIVE_PATH); //-V2511
+    wxFileConfig *pConfig = new wxFileConfig(wxEmptyString, wxEmptyString, wsFile, wxEmptyString, wxCONFIG_USE_LOCAL_FILE | wxCONFIG_USE_RELATIVE_PATH);
     wxConfigBase::Set(pConfig);
 
     pConfig->SetPath(wxT("Cenerator/A"));
@@ -96,14 +96,14 @@ void Frame::SaveSettings()
     pConfig->Write(wxT("width"), ConsoleSCPI::Self()->GetSize().x);
     pConfig->Write(wxT("height"), ConsoleSCPI::Self()->GetSize().y);
 
-    delete wxConfigBase::Set(nullptr); //-V2511
+    delete wxConfigBase::Set(nullptr);
 }
 
 
 void Frame::LoadSettings()
 {
     wxString wsFile(FILE_CONFIG);   
-    wxFileConfig *pConfig = new wxFileConfig(wxEmptyString, wxEmptyString, wsFile, wxEmptyString, wxCONFIG_USE_LOCAL_FILE | wxCONFIG_USE_RELATIVE_PATH); //-V2511
+    wxFileConfig *pConfig = new wxFileConfig(wxEmptyString, wxEmptyString, wsFile, wxEmptyString, wxCONFIG_USE_LOCAL_FILE | wxCONFIG_USE_RELATIVE_PATH);
     wxConfigBase::Set(pConfig);
 
     wxConfigBase *config = wxConfigBase::Get(false);
@@ -130,7 +130,7 @@ void Frame::LoadSettings()
         ConsoleSCPI::Self()->SetSize(rect);
     }
 
-    delete wxConfigBase::Set(nullptr); //-V2511
+    delete wxConfigBase::Set(nullptr);
 }
 
 
@@ -142,15 +142,15 @@ Frame::Frame(const wxString& title)
 
     SetIcon(wxICON(sample));
 
-    wxMenu *fileMenu = new wxMenu; //-V2511
-    wxMenu *toolsMenu = new wxMenu; //-V2511
+    wxMenu *fileMenu = new wxMenu;
+    wxMenu *toolsMenu = new wxMenu;
 
     fileMenu->Append(FILE_QUIT, "Выход\tAlt-X", "Закрывает окно программы");
 
     toolsMenu->Append(GENERATOR, "Генератор");
     toolsMenu->Append(SCPI, "SCPI");
 
-    wxMenuBar *menuBar = new wxMenuBar(); //-V2511
+    wxMenuBar *menuBar = new wxMenuBar();
     menuBar->Append(fileMenu, "Файл");
     menuBar->Append(toolsMenu, "Инструменты");
 
