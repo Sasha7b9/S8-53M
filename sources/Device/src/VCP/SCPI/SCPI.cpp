@@ -16,7 +16,7 @@ struct StateProcessing { enum E
     SAVE_SYMBOLS
 };};
 
-static int FindNumSymbolsInCommand(puchar buffer);
+static uint FindNumSymbolsInCommand(puchar buffer);
 
 static const int SIZE_BUFFER = 100;
 // —юда добавл€ем новые данные
@@ -130,12 +130,12 @@ void SCPI::ParseNewCommand(uint8 *buf)
 
 void SCPI::ProcessingCommand(const StructCommand *commands, uint8 *buffer) 
 {
-    int sizeNameCommand = FindNumSymbolsInCommand(buffer);
+    uint sizeNameCommand = FindNumSymbolsInCommand(buffer);
     if (sizeNameCommand == 0) 
     {
         return;
     }
-    for (int i = 0; i < sizeNameCommand; i++)
+    for (uint i = 0; i < sizeNameCommand; i++)
     {
         buffer[i] = static_cast<uint8>(toupper(static_cast<int8>(buffer[i])));
     }
@@ -159,13 +159,15 @@ void SCPI::ProcessingCommand(const StructCommand *commands, uint8 *buffer)
 
 
 
-static int FindNumSymbolsInCommand(puchar buffer)
+static uint FindNumSymbolsInCommand(puchar buffer)
 {
-    int pos = 0;
+    uint pos = 0;
+
     while ((buffer[pos] != ':') && (buffer[pos] != ' ') && (buffer[pos] != '\x0d'))
     {
         pos++;
     }
+
     return pos;
 }
 
