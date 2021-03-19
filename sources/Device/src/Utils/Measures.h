@@ -57,12 +57,20 @@ struct Measure { enum E
     static int GetDeltaGridBottom();
 
     static void RotateRegSet(int angle);
+
     // ¬ызываетс€ при коротком нажатии на кнопку выбора измерени€.
     static void ShorPressOnSmallButtonSettings();
 
     static void ShortPressOnSmallButonMarker();
+
     // Ќарисовать страницу выбора измерений.
     static void DrawPageChoice();
+
+    // ¬ывести значени€ автоматических измерений.
+    static void DrawAll();
+
+    static int top_measures;    // ¬ерх таблицы вывода измерений. Ёто значение нужно дл€ нормального вывода сообщений на
+                                // экран - чтобы они ничего не перекрывали
 };
 
 Measure::E& operator++(Measure::E &measure);

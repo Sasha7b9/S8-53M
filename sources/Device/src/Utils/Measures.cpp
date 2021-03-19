@@ -3,11 +3,14 @@
 #include "common/Display/Primitives_.h"
 #include "common/Display/Text_.h"
 #include "common/Hardware/Sound_.h"
+#include "common/Utils/GlobalFunctions_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Grid.h"
+#include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
 #include "Utils/Measures.h"
+#include "Utils/ProcessingSignal.h"
 
 
 using namespace Primitives;
@@ -48,6 +51,8 @@ static const StructMeasure measures[Measure::Count] =
 
 static int8 posActive = 0;                  // ѕозици€ активного измерени€ (на котором курсор)
 static int8 posOnPageChoice = 0;            // ѕозици€ курсора на странице выбора измерени€
+int Measure::top_measures = Grid::Bottom();
+
 
 bool Measure::IsActive(int row, int col)
 {
@@ -278,4 +283,86 @@ Measure::E& operator++(Measure::E &measure)
 {
     measure = (Measure::E)((int)measure + 1);
     return measure;
+}
+
+
+void Measure::DrawAll()
+{
+    if (!SHOW_MEASURES)
+    {
+        top_measures = Grid::Bottom();
+        return;
+    }
+
+    Processing::CalculateMeasures();
+
+    if (MEAS_FIELD_IS_HAND)
+    {
+        int x0 = MEAS_POS_CUR_T0 - SHIFT_IN_MEMORY + Grid::Left();
+        int y0 = MEAS_POS_CUR_U0 + Grid::TOP;
+        int x1 = MEAS_POS_CUR_T1 - SHIFT_IN_MEMORY + Grid::Left();
+        int y1 = MEAS_POS_CUR_U1 + Grid::TOP;
+        GF::SortInt(&x0, &x1);
+        GF::SortInt(&y0, &y1);
+        Primitives::Rectangle(x1 - x0, y1 - y0).Draw(x0, y0, Color::FILL);
+    }
+
+    int x0 = Grid::Left() - Measure::GetDeltaGridLeft();
+    int dX = Measure::GetDX();
+    int dY = Measure::GetDY();
+    int y0 = Measure::GetTopTable();
+
+    int numRows = Measure::NumRows();
+    int numCols = Measure::NumCols();
+
+    for (int str = 0; str < numRows; str++)
+    {
+        for (int elem = 0; elem < numCols; elem++)
+        {
+            int x = x0 + dX * elem;
+            int y = y0 + str * dY;
+            bool active = Measure::IsActive(str, elem) && Menu::GetNameOpenedPage() == NamePage::SB_MeasTuneMeas;
+            Measure::E meas = Measure::Type(str, elem);
+
+            if (meas != Measure::None)
+            {
+                Region(dX, dY).Fill(x, y, Color::BACK);
+                Primitives::Rectangle(dX, dY).Draw(x, y, Color::FILL);
+                top_measures = Math::MinFrom2(top_measures, y);
+            }
+
+            if (active)
+            {
+                Region(dX - 4, dY - 4).Fill(x + 2, y + 2, Color::FILL);
+            }
+
+            if (meas != Measure::None)
+            {
+                Measure::Name(str, elem).Draw(x + 4, y + 2, active ? Color::BACK : Color::FILL);
+                if (meas == MEAS_MARKED)
+                {
+                    Region(dX - 2, 9).Fill(x + 1, y + 1, active ? Color::BACK : Color::FILL);
+                    Measure::Name(str, elem).Draw(x + 4, y + 2, active ? Color::FILL : Color::BACK);
+                }
+                if (MEAS_SOURCE_IS_A)
+                {
+                    Processing::GetStringMeasure(meas, Channel::A).Draw(x + 2, y + 11, ChA.GetColor());
+                }
+                else if (MEAS_SOURCE_IS_B)
+                {
+                    Processing::GetStringMeasure(meas, Channel::B).Draw(x + 2, y + 11, ChA.GetColor());
+                }
+                else
+                {
+                    Processing::GetStringMeasure(meas, Channel::A).Draw(x + 2, y + 11, ChA.GetColor());
+                    Processing::GetStringMeasure(meas, Channel::B).Draw(x + 2, y + 20, ChB.GetColor());
+                }
+            }
+        }
+    }
+
+    if (Menu::GetNameOpenedPage() == NamePage::SB_MeasTuneMeas)
+    {
+        Measure::DrawPageChoice();
+    }
 }

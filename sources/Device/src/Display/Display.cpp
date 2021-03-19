@@ -51,7 +51,6 @@ static bool showLevelRShiftB = false;
 static bool showLevelTrigLev = false;    // Ќужно ли рисовать горизонтальную линию уровн€ смещени€ уровн€ синхронизации
 static bool trigEnable = false;
 static bool drawRShiftMarkers = false;
-int Display::topMeasures = Grid::Bottom();
 static bool needFinishDraw = true;      // ≈сли 1, то дисплей нуждаетс€ в перерисовке
 static uint numDrawingSignals = 0;      // „исло нарисованных сигналов дл€ режима накоплени€
 
@@ -442,7 +441,7 @@ void Display::Update()
 //        DrawCursorsWindow();
 //        DrawCursorTrigLevel();
         DrawCursorsRShift();
-//        DrawMeasures();
+        Measure::DrawAll();
 //        DrawStringNavigation();
 //        DrawCursorTShift();
     }
@@ -777,89 +776,6 @@ void Display::DrawCursors()
         }
     }
 }
-
-
-void Display::DrawMeasures()
-{
-    if(!SHOW_MEASURES)
-    {
-        topMeasures = Grid::Bottom();
-        return;
-    }
-
-    Processing::CalculateMeasures();
-
-    if(MEAS_FIELD_IS_HAND)
-    {
-        int x0 = MEAS_POS_CUR_T0 - SHIFT_IN_MEMORY + Grid::Left();
-        int y0 = MEAS_POS_CUR_U0 + Grid::TOP;
-        int x1 = MEAS_POS_CUR_T1 - SHIFT_IN_MEMORY + Grid::Left();
-        int y1 = MEAS_POS_CUR_U1 + Grid::TOP;
-        GF::SortInt(&x0, &x1);
-        GF::SortInt(&y0, &y1);
-        Primitives::Rectangle(x1 - x0, y1 - y0).Draw(x0, y0, Color::FILL);
-    }
-
-    int x0 = Grid::Left() - Measure::GetDeltaGridLeft();
-    int dX = Measure::GetDX();
-    int dY = Measure::GetDY();
-    int y0 = Measure::GetTopTable();
-
-    int numRows = Measure::NumRows();
-    int numCols = Measure::NumCols();
-
-    for(int str = 0; str < numRows; str++)
-    {
-        for(int elem = 0; elem < numCols; elem++)
-        {
-            int x = x0 + dX * elem;
-            int y = y0 + str * dY;
-            bool active = Measure::IsActive(str, elem) && Menu::GetNameOpenedPage() == NamePage::SB_MeasTuneMeas;
-            Measure::E meas = Measure::Type(str, elem);
-
-            if(meas != Measure::None)
-            {
-                Region(dX, dY).Fill(x, y, Color::BACK);
-                Primitives::Rectangle(dX, dY).Draw(x, y, Color::FILL);
-                topMeasures = Math::MinFrom2(topMeasures, y);
-            }
-
-            if(active)
-            {
-                Region(dX - 4, dY - 4).Fill(x + 2, y + 2, Color::FILL);
-            }
-
-            if(meas != Measure::None)
-            {
-                Measure::Name(str, elem).Draw(x + 4, y + 2, active ? Color::BACK : Color::FILL);
-                if(meas == MEAS_MARKED)
-                {
-                    Region(dX - 2, 9).Fill(x + 1, y + 1, active ? Color::BACK : Color::FILL);
-                    Measure::Name(str, elem).Draw(x + 4, y + 2, active ? Color::FILL : Color::BACK);
-                }
-                if(MEAS_SOURCE_IS_A)
-                {
-                    Processing::GetStringMeasure(meas, Channel::A).Draw(x + 2, y + 11, ChA.GetColor());
-                }
-                else if(MEAS_SOURCE_IS_B)
-                {
-                    Processing::GetStringMeasure(meas, Channel::B).Draw(x + 2, y + 11, ChA.GetColor());
-                }
-                else
-                {
-                    Processing::GetStringMeasure(meas, Channel::A).Draw(x + 2, y + 11, ChA.GetColor());
-                    Processing::GetStringMeasure(meas, Channel::B).Draw(x + 2, y + 20, ChB.GetColor());
-                }
-            }
-        }
-    }
-
-    if(Menu::GetNameOpenedPage() == NamePage::SB_MeasTuneMeas)
-    {
-        Measure::DrawPageChoice();
-    }
-}
-
 
 
 void Display::WriteTextVoltage(const Channel &ch, int x, int y)

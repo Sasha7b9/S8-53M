@@ -21,8 +21,6 @@ public:
     static const int WIDTH = 320;
     static const int HEIGHT = 240;
 
-    static int topMeasures;     // Верх таблицы вывода измерений. Это значение нужно для нормального вывода сообщений на
-                                // экран - чтобы они ничего не перекрывали
     static void Init();
 
     static uint8 *GetBuffer();
@@ -114,9 +112,6 @@ private:
 
     // Вывести значения курсоров курсорных измерений.
     static void WriteCursors();
-
-    // Вывести значения автоматических измерений.
-    static void DrawMeasures();
 
     // Написать сообщения отладочной консоли.
     static void DrawConsole();

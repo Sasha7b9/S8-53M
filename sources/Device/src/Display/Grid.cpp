@@ -138,7 +138,7 @@ int Grid::BottomMessages()
     }
     else if (SHOW_MEASURES)
     {
-        retValue = Display::topMeasures;
+        retValue = Measure::top_measures;
         if (MEAS_NUM_IS_6_1 || MEAS_NUM_IS_6_2 || MEAS_NUM_IS_1)
         {
             retValue = FullBottom();
