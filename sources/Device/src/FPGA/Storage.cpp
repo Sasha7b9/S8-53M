@@ -157,20 +157,11 @@ uint8 *RecordStorage::End() const
 
 void Storage::Append(const DataStorage &data)
 {
-    uint time = TIME_MS;
-
-    if (NumRecords() == 932)
-    {
-        int i = 0;
-    }
-
     num_appends++;
 
     RecordStorage *record = Create(data.Settings());
 
     record->Fill(data);
-
-    LOG_WRITE("time append %d ms", TIME_MS - time);
 }
 
 
@@ -188,41 +179,53 @@ RecordStorage *Storage::Create(const DataSettings &ds)
     else
     {
         uint need_memory = Oldest()->Size(ds);
-
-        if (Newest() >= Oldest())          // Если записи идут в "прямом" порядке - адрес последней больше адреса первой
+        
+        if (Oldest() <= Newest())          // Если записи идут в "прямом" порядке - адрес последней больше адреса первой
         {                                  // (Это означает, что память ещё не заполнена либо же заполнена полностью)
-            uint8 *address = Newest()->End();                                   // Это предполагаемый адрес нашей записи
-
-            if (address + need_memory <= HAL_FMC::ADDR_RAM_END)                       // Если запись поместится в память
-            {
-                result = (RecordStorage *)address;
-            }
-            else                                                                  // Если запись не поместится в память
-            {                                                                     // то будем записывать в начало памяти
-                while (Oldest()->Address() - HAL_FMC::ADDR_RAM_BEGIN < (int)need_memory)
-                {
-                    DeleteOldest();
-                }
-
-                result = (RecordStorage *)HAL_FMC::ADDR_RAM_BEGIN;
-            }
+            result = FindForNewestMoreOldest(need_memory);
         }
         else
         {
             while (Oldest()->Address() - Newest()->End() < (int)need_memory)
             {
-                RecordStorage *oldest = Oldest();
-                RecordStorage *newest = Newest();
-                
                 DeleteOldest();
+                
+                if(Oldest() < Newest())
+                {
+                    break;
+                }
             }
 
-            result = (RecordStorage *)Newest()->End();
+            result = (Oldest() < Newest()) ? FindForNewestMoreOldest(need_memory) : (RecordStorage *)Newest()->End();
         }
 
         result->prev = Newest();
         result->next = nullptr;
         Newest()->next = result;
+    }
+
+    return result;
+}
+
+
+RecordStorage *Storage::FindForNewestMoreOldest(uint need_memory)
+{
+    RecordStorage *result = nullptr;
+
+    uint8 *address = Newest()->End();                                           // Это предполагаемый адрес нашей записи
+
+    if (address + need_memory <= HAL_FMC::ADDR_RAM_END)                               // Если запись поместится в память
+    {
+        result = (RecordStorage *)address;
+    }
+    else                                                                          // Если запись не поместится в память
+    {                                                                             // то будем записывать в начало памяти
+        while (Oldest()->Address() - HAL_FMC::ADDR_RAM_BEGIN < (int)need_memory)
+        {
+            DeleteOldest();
+        }
+
+        result = (RecordStorage *)HAL_FMC::ADDR_RAM_BEGIN;
     }
 
     return result;

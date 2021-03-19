@@ -110,6 +110,9 @@ private:
     // ¬озвращает false и пустое data (в котором оба канала выключены, остальные настройки не определены)
     static bool CreateNull(DataStorage &data);
 
+    // Ќайти запись дл€ случа€, когда нова€ запись имеет больший адрес, чем стара€
+    static RecordStorage *FindForNewestMoreOldest(uint need_memory);
+
     static RecordStorage *addressOldestRecord;   // «десь хранитс€ адрес первой записи. «на€ его, можно рассчитать все
                                                 // остальные адреса
 };
