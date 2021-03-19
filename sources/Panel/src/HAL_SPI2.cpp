@@ -31,7 +31,7 @@ void HAL_SPI2::Init()
 }
 
 
-bool HAL_SPI2::Transmit(uint8 *buffer, int size)
+bool HAL_SPI2::Transmit(uint8 *buffer, uint size)
 {
     extern Pin pinSPI2_NSS;
 

@@ -113,9 +113,9 @@ bool WordEqualZeroString(Word *word, char* string)
 
 #undef SYMBOL
 
-bool EqualsStrings(pchar str1, pchar str2, int size)
+bool EqualsStrings(pchar str1, pchar str2, uint size)
 {
-    for (int i = 0; i < size; i++)
+    for (uint i = 0; i < size; i++)
     {
         if (str1[i] != str2[i])
         {

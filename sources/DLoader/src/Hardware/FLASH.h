@@ -19,4 +19,4 @@
 // ќщищает место дл€ последующей заливки прошивки
 void FLASH_Prepare();
 
-void FLASH_WriteData(uint address, uint8 *data, int size);
+void FLASH_WriteData(uint address, uint8 *data, uint size);
