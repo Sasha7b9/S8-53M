@@ -10,7 +10,7 @@ struct DataSettings
 
     uint                enabled_a   : 1;    // Включён ли канал 0
     uint                enabled_b   : 1;    // Включен ли канал 1
-    uint                rShiftCh0   : 10;   // Смещение по напряжению
+    uint                r_shift_a   : 10;   // Смещение по напряжению
     uint                rShiftCh1   : 10;
     uint                trigLevCh0  : 10;   // Уровень синхронизации
     uint                trigLevCh1  : 10;

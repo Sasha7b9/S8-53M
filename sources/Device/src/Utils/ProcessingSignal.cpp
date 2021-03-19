@@ -169,7 +169,7 @@ float Processing::CalculateVoltageMax(Channel::E ch)
         markerHor[ch][0] = static_cast<int>(max);         // Здесь не округляем, потому что max может быть только целым
     }
 
-    return POINT_2_VOLTAGE(max, dataSet->range[ch], (ch == ChA) ? dataSet->rShiftCh0 : dataSet->rShiftCh1) *
+    return POINT_2_VOLTAGE(max, dataSet->range[ch], (ch == ChA) ? dataSet->r_shift_a : dataSet->rShiftCh1) *
         VALUE_MULTIPLIER(ch);
 }
 
@@ -182,7 +182,7 @@ float Processing::CalculateVoltageMin(Channel::E ch)
         markerHor[ch][0] = static_cast<int>(min);          // Здесь не округляем, потому что min может быть только целым
     }
 
-    return POINT_2_VOLTAGE(min, dataSet->range[ch], (ch == ChA) ? dataSet->rShiftCh0 : dataSet->rShiftCh1) *
+    return POINT_2_VOLTAGE(min, dataSet->range[ch], (ch == ChA) ? dataSet->r_shift_a : dataSet->rShiftCh1) *
         VALUE_MULTIPLIER(ch);
 }
 
@@ -211,7 +211,7 @@ float Processing::CalculateVoltageMinSteady(Channel::E ch)
     }
 
     return (POINT_2_VOLTAGE(min, dataSet->range[ch], (ch == ChA) ?
-        dataSet->rShiftCh0 :
+        dataSet->r_shift_a :
         dataSet->rShiftCh1) * VALUE_MULTIPLIER(ch));
 }
 
@@ -227,7 +227,7 @@ float Processing::CalculateVoltageMaxSteady(Channel::E ch)
     }
 
     Range::E range = dataSet->range[ch];
-    uint rShift = (ch == ChA) ? dataSet->rShiftCh0 : dataSet->rShiftCh1;
+    uint rShift = (ch == ChA) ? dataSet->r_shift_a : dataSet->rShiftCh1;
 
     return (POINT_2_VOLTAGE(max, range, rShift) * VALUE_MULTIPLIER(ch));
 }
@@ -245,7 +245,7 @@ float Processing::CalculateVoltageVybrosPlus(Channel::E ch)
         markerHor[ch][1] = static_cast<int>(maxSteady);
     }
 
-    int16 rShift = (ch == ChA) ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1;
+    int16 rShift = (ch == ChA) ? (int16)dataSet->r_shift_a : (int16)dataSet->rShiftCh1;
 
     return std::fabsf(POINT_2_VOLTAGE(maxSteady, dataSet->range[ch], rShift) -
         POINT_2_VOLTAGE(max, dataSet->range[ch], rShift)) * VALUE_MULTIPLIER(ch);
@@ -263,7 +263,7 @@ float Processing::CalculateVoltageVybrosMinus(Channel::E ch)
         markerHor[ch][1] = static_cast<int>(minSteady);
     }
 
-    int16 rShift = (ch == ChA) ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1;
+    int16 rShift = (ch == ChA) ? (int16)dataSet->r_shift_a : (int16)dataSet->rShiftCh1;
 
     return std::fabsf(POINT_2_VOLTAGE(minSteady, dataSet->range[ch], rShift) -
         POINT_2_VOLTAGE(min, dataSet->range[ch], rShift)) * VALUE_MULTIPLIER(ch);
@@ -304,7 +304,7 @@ float Processing::CalculateVoltageAverage(Channel::E ch)
         markerHor[ch][0] = aveRel;
     }
 
-    return (POINT_2_VOLTAGE(aveRel, dataSet->range[ch], (ch == ChA) ? dataSet->rShiftCh0 : dataSet->rShiftCh1) *
+    return (POINT_2_VOLTAGE(aveRel, dataSet->range[ch], (ch == ChA) ? dataSet->r_shift_a : dataSet->rShiftCh1) *
         VALUE_MULTIPLIER(ch));
 }
 
@@ -316,7 +316,7 @@ float Processing::CalculateVoltageRMS(Channel::E ch)
 
     float rms = 0.0F;
 
-    int16 rShift = (ch == ChA) ? (int16)dataSet->rShiftCh0 : (int16)dataSet->rShiftCh1;
+    int16 rShift = (ch == ChA) ? (int16)dataSet->r_shift_a : (int16)dataSet->rShiftCh1;
 
     for(uint i = firstP; i < firstP + period; i++)
     {
@@ -1192,14 +1192,14 @@ void Processing::CountedToCurrentSettings()
         }
     }
  
-    if (dataSet->IsEnabled(ChA) && (dataSet->range[0] != SET_RANGE_A || dataSet->rShiftCh0 != (uint)SET_RSHIFT_A))
+    if (dataSet->IsEnabled(ChA) && (dataSet->range[0] != SET_RANGE_A || dataSet->r_shift_a != (uint)SET_RSHIFT_A))
     {
         Range::E range = SET_RANGE_A;
         int16 rShift = SET_RSHIFT_A;
 
         for (int i = 0; i < numPoints; i++)
         {
-            float absValue = POINT_2_VOLTAGE(dataOut0[i], dataSet->range[0], dataSet->rShiftCh0);
+            float absValue = POINT_2_VOLTAGE(dataOut0[i], dataSet->range[0], dataSet->r_shift_a);
             int relValue = static_cast<int>((absValue + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) /
                 MathFPGA::voltsInPixel[range] + MIN_VALUE);
 

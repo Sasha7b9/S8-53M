@@ -26,7 +26,7 @@ struct Color
     static Color EMPTY_A;
     static Color EMPTY_B;
 
-    static const int Count = 16;
+    static const uint8 Count = 16;
 
     static Color FLASH_10;
     static Color FLASH_01;
@@ -60,6 +60,7 @@ struct Color
 
     bool operator==(const Color &rhs) { return (index == rhs.index); }
     bool operator!=(const Color &rhs) { return (index != rhs.index); }
+    Color &operator=(const Color &rhs) { this->index = rhs.index; return *this; }
 
     static uint Make(uint8 r, uint8 g, uint8 b)  { return (static_cast<uint>(((b)) + (((g)) << 8) + (((r)) << 16))); }
 
