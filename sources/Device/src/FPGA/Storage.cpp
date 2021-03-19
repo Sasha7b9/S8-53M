@@ -73,9 +73,9 @@ uint8 *DataStorage::Data(const Channel &ch)
 }
 
 
-DataSettings &DataStorage::Settings()
+DataSettings &DataStorage::Settings() const
 {
-    return (DataSettings &)*buffer.Data();
+    return (DataSettings &)*buffer.DataConst();
 }
 
 
@@ -99,7 +99,7 @@ uint DataStorage::Size()
 }
 
 
-void RecordStorage::Fill(DataStorage &data)
+void RecordStorage::Fill(const DataStorage &data)
 {
     DataSettings &ds = data.Settings();
     uint length_channel = (uint)ds.BytesInChannel();
@@ -110,12 +110,12 @@ void RecordStorage::Fill(DataStorage &data)
 
     if (ds.IsEnabled(Channel::A))
     {
-        address = CopyTo(address, data.Data(Channel::A), length_channel);
+        address = CopyTo(address, ((DataStorage &)data).Data(Channel::A), length_channel);
     }
 
     if (ds.IsEnabled(Channel::B))
     {
-        CopyTo(address, data.Data(Channel::B), length_channel);
+        CopyTo(address, ((DataStorage &)data).Data(Channel::B), length_channel);
     }
 }
 
@@ -152,7 +152,7 @@ uint8 *RecordStorage::End() const
 }
 
 
-void Storage::Append(DataStorage &data)
+void Storage::Append(const DataStorage &data)
 {
     RecordStorage *record = Create(data.Settings());
 

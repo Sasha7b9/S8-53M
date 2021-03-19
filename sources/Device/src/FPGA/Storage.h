@@ -19,7 +19,7 @@ friend struct RecordStorage;
 
     void CreateNull();
 
-    DataSettings &Settings();
+    DataSettings &Settings() const;
 
     // Хотя и возвращается указатель на 8-битные значения, следует иметь ввиду, что в случае, если данные расположены
     // во внешнем ОЗУ, читать следует по 16 бит, т.к. доступ по нечётным адресам к ОЗУ запрещён
@@ -47,7 +47,7 @@ friend struct DataStorage;
 
 private:
 
-    void Fill(DataStorage &data);
+    void Fill(const DataStorage &data);
 
     uint Size() const;
 
@@ -79,7 +79,7 @@ class Storage
 
 public:
 
-    static void Append(DataStorage &data);
+    static void Append(const DataStorage &data);
 
     // Извлечь последние положенные данные
     static bool ExtractLast(DataStorage &data);
