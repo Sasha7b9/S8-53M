@@ -179,25 +179,21 @@ RecordStorage *Storage::Create(const DataSettings &ds)
     else
     {
         uint need_memory = Oldest()->Size(ds);
-        
-        if (Oldest() <= Newest())          // Если записи идут в "прямом" порядке - адрес последней больше адреса первой
-        {                                  // (Это означает, что память ещё не заполнена либо же заполнена полностью)
-            result = FindForNewestMoreOldest(need_memory);
-        }
-        else
+
+        if (Oldest() > Newest())
         {
             while (Oldest()->Address() - Newest()->End() < (int)need_memory)
             {
                 DeleteOldest();
-                
-                if(Oldest() < Newest())
+
+                if (Oldest() < Newest())
                 {
                     break;
                 }
             }
-
-            result = (Oldest() < Newest()) ? FindForNewestMoreOldest(need_memory) : (RecordStorage *)Newest()->End();
         }
+
+        result = (Oldest() < Newest()) ? FindForNewestMoreOldest(need_memory) : (RecordStorage *)Newest()->End();
 
         result->prev = Newest();
         result->next = nullptr;
