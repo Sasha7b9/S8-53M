@@ -418,9 +418,13 @@ struct RShift
 
     static void Draw();
 
+    static bool show_level_A;    // Нужно ли рисовать горизонтальную линию уровня смещения первого канала
+    static bool show_level_B;
+    static bool draw_markers;
+
 private:
 
-    static void Draw(Channel::E ch);
+    static void Draw(const Channel &ch);
 };
 
 

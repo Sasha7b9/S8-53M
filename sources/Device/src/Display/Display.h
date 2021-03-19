@@ -86,11 +86,6 @@ private:
 
     static void DrawCursorsWindow();
 
-    static void DrawCursorsRShift();
-
-    // Нарисовать маркеры смещения по напряжению
-    static void DrawCursorRShift(const Channel &ch);
-
     // Нарисовать маркер уровня синхронизации.
     static void DrawCursorTrigLevel();
 
