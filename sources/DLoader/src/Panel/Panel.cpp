@@ -30,7 +30,7 @@ uint16 Panel::NextData()
 }
 
 
-void Panel::CallbackOnReceiveSPI5(uint8 * /*data*/, int /*size*/)
+void Panel::CallbackOnReceiveSPI5(uint8 * /*data*/, uint /*size*/)
 {
 
 }
