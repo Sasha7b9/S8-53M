@@ -35,6 +35,11 @@ void DataPainter::DrawData()
 
 void DataPainter::DrawDataChannel(DataStorage &data, const Channel &ch, int min_y, int max_y)
 {
+    if (!data.Settings().IsEnabled(ch))
+    {
+        return;
+    }
+
     float scaleY = static_cast<float>(max_y - min_y) / (MAX_VALUE - MIN_VALUE);
     float scaleX = Grid::Width() / 280.0F;
 
