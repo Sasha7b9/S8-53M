@@ -86,12 +86,6 @@ private:
 
     static void ShowWarn(pchar message);
 
-    // Нарисовать сетку.
-    static void DrawGrid(int left, int top, int width, int height);
-
-    // Нарисовать полную сетку.
-    static void DrawFullGrid();
-
     static void DrawCursorsWindow();
 
     static void DrawCursorsRShift();
@@ -130,11 +124,7 @@ private:
     // Написать предупреждения.
     static void DrawWarnings();
 
-    static int CalculateCountV();
-
     static int CalculateFreeSize();
-
-    static void DrawGridSpectrum();
 
     static void DrawScaleLine(int x, bool forTrigLev);
 
@@ -177,15 +167,5 @@ private:
     static void WriteValueTrigLevel();
 
     static void AddString(pchar string);
-
-    static int CalculateCountH();
-
-    static void DrawGridType1(int left, int top, int right, int bottom, float centerX, float centerY, float deltaX,
-        float deltaY, float stepX, float stepY);
-
-    static void DrawGridType2(int left, int top, int right, int bottom, int deltaX, int deltaY, int stepX, int stepY);
-
-    static void DrawGridType3(int left, int top, int right, int bottom, int centerX, int centerY, int deltaX,
-        int deltaY, int stepX, int stepY);
 };
 
