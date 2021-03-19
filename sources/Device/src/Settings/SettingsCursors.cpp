@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "common/Display/Primitives_.h"
 #include "common/Utils/GlobalFunctions_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Grid.h"
@@ -7,6 +8,9 @@
 #include "Settings/Settings.h"
 #include <cmath>
 #include <cstring>
+
+
+using namespace Primitives;
 
 
 float Cursors::GetPosU(const Channel &ch, int num)
@@ -63,4 +67,83 @@ String Cursors::GetPercentsT(const Channel &source)
     result.Append("%");
 
     return result;
+}
+
+
+void Cursors::Draw()
+{
+    Channel::E source = CURS_SOURCE;
+    Color::Cursors(source).SetAsCurrent();
+
+    if (Cursors::NecessaryDraw())
+    {
+        bool bothCursors = !CURS_CNTRL_T_IS_DISABLE(source) && !CURS_CNTRL_U_IS_DISABLE(source);  // Признак того, что
+                    // включены и вертикальные и горизонтальные курсоры - надо нарисовать квадраты в местах пересечения
+        int x0 = -1;
+        int x1 = -1;
+        int y0 = -1;
+        int y1 = -1;
+
+        if (bothCursors)
+        {
+            x0 = static_cast<int>(Grid::Left() + CURS_POS_T0(source));
+            x1 = static_cast<int>(Grid::Left() + CURS_POS_T1(source));
+            y0 = static_cast<int>(Grid::TOP + Cursors::GetPosU(source, 0));
+            y1 = static_cast<int>(Grid::TOP + Cursors::GetPosU(source, 1));
+
+            Rectangle(4, 4).Draw(x0 - 2, y0 - 2);
+            Rectangle(4, 4).Draw(x1 - 2, y1 - 2);
+        }
+
+        CursCntrl::E cntrl = CURS_CNTRL_T(source);
+        if (cntrl != CursCntrl::Disable)
+        {
+            DrawVertical(static_cast<int>(CURS_POS_T0(source)), y0);
+            DrawVertical(static_cast<int>(CURS_POS_T1(source)), y1);
+        }
+        cntrl = CURsU_CNTRL;
+        if (cntrl != CursCntrl::Disable)
+        {
+            DrawHorizontal(static_cast<int>(Cursors::GetPosU(source, 0)), x0);
+            DrawHorizontal(static_cast<int>(Cursors::GetPosU(source, 1)), x1);
+        }
+    }
+}
+
+
+void Cursors::DrawVertical(int x, int yTearing)
+{
+    x += Grid::Left();
+
+    if (yTearing == -1)
+    {
+        DashedVLine(1, 1).Draw(x, Grid::TOP + 2, Grid::ChannelBottom() - 1, 0);
+    }
+    else
+    {
+        DashedVLine(1, 1).Draw(x, Grid::TOP + 2, yTearing - 2, 0);
+        DashedVLine(1, 1).Draw(x, yTearing + 2, Grid::ChannelBottom() - 1, 0);
+    }
+
+    Rectangle(2, 2).Draw(x - 1, Grid::TOP - 1);
+    Rectangle(2, 2).Draw(x - 1, Grid::ChannelBottom() - 1);
+}
+
+
+void Cursors::DrawHorizontal(int y, int xTearing)
+{
+    y += Grid::TOP;
+
+    if (xTearing == -1)
+    {
+        DashedHLine(1, 1).Draw(y, Grid::Left() + 2, Grid::Right() - 1, 0);
+    }
+    else
+    {
+        DashedHLine(1, 1).Draw(y, Grid::Left() + 2, xTearing - 2, 0);
+        DashedHLine(1, 1).Draw(y, xTearing + 2, Grid::Right() - 1, 0);
+    }
+
+    Rectangle(2, 2).Draw(Grid::Left() - 1, y - 1);
+    Rectangle(2, 2).Draw(Grid::Right() - 1, y - 1);
 }

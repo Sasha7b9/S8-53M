@@ -107,9 +107,6 @@ private:
     // Вывести текущее время.
     static void DrawTime(int x, int y);
 
-    // Нарисовать курсоры курсорных измерений.
-    static void DrawCursors();
-
     // Вывести значения курсоров курсорных измерений.
     static void WriteCursors();
 
@@ -148,15 +145,6 @@ private:
     static void DrawTimeForFrame(uint timeMS);
 
     static void DeleteFirstString();
-    // Нарисовать горизонтальный курсор курсорных измерений
-    // y         - числовое значение курсора
-    // x_tearing - координата места, в котором необходимо сделать разрыв для квадрата пересечения
-    static void DrawHorizontalCursor(int y, int x_tearing);
-
-    // Нарисовать вертикальный курсор курсорных измерений.
-    // x         - числовое значение курсора
-    // y_tearing - координата места, в котором необходимо сделать разрыв для квадрата пересечения
-    static void DrawVerticalCursor(int x, int yTearing);
 
     // Вывести значение уровня синхронизации. 
     static void WriteValueTrigLevel();
