@@ -242,8 +242,8 @@ struct HAL_USBD
 {
     static void Init();
     static bool PrevSendingComplete();
-    static void Transmit(uint8 *buffer, int size);
-    static void Flush(uint8 *buffer, int sizeBuffer);
+    static void Transmit(uint8 *buffer, uint size);
+    static void Flush(uint8 *buffer, uint sizeBuffer);
     static void Wait();
     static void *handle;    // USBD_HandleTypeDef
 };

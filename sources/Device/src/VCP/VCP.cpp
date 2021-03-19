@@ -19,11 +19,11 @@ void VCP::Init()
 } 
 
 
-void VCP::SendDataAsinch(puchar buffer, int size)
+void VCP::SendDataAsinch(puchar buffer, uint size)
 {
     lastTimeSend = TIME_MS;
 
-    const int SIZE_BUFFER = 64;
+    const uint SIZE_BUFFER = 64;
     static uint8 trBuf[SIZE_BUFFER];
 
     size = Math::MinFrom2(size, SIZE_BUFFER);
@@ -35,7 +35,7 @@ void VCP::SendDataAsinch(puchar buffer, int size)
 
 static const int SIZE_BUFFER_VCP = 256;     // WARN если поставить размер буфера 512, то на ТЕ207 глюки
 static uint8 buffSend[SIZE_BUFFER_VCP];
-static int sizeBuffer = 0;
+static uint sizeBuffer = 0;
 
 void VCP::Flush()
 {
@@ -46,7 +46,7 @@ void VCP::Flush()
     sizeBuffer = 0;
 }
 
-void VCP::SendDataSynch(puchar buffer, int size)
+void VCP::SendDataSynch(puchar buffer, uint size)
 {
     if (!VCP::connectToHost)
     {
@@ -59,8 +59,8 @@ void VCP::SendDataSynch(puchar buffer, int size)
     {
         if (sizeBuffer + size > SIZE_BUFFER_VCP)
         {
-            int reqBytes = SIZE_BUFFER_VCP - sizeBuffer;
-            LIMITATION(reqBytes, reqBytes, 0, size);
+            int reqBytes = SIZE_BUFFER_VCP - (int)sizeBuffer;
+            LIMITATION(reqBytes, reqBytes, 0, (int)size);
             HAL_USBD::Wait();
             std::memcpy(buffSend + sizeBuffer, buffer, static_cast<uint>(reqBytes));
             HAL_USBD::Transmit(buffSend, SIZE_BUFFER_VCP);
@@ -84,12 +84,12 @@ void SendData(puchar , int)
 
 void VCP::SendStringAsinch(char *data)
 {
-    SendDataAsinch((uint8*)data, static_cast<int>(std::strlen(data)));
+    SendDataAsinch((uint8*)data, std::strlen(data));
 }
 
 void VCP::SendStringSynch(char *data)
 {
-    SendDataSynch((uint8*)data, static_cast<int>(std::strlen(data)));
+    SendDataSynch((uint8*)data, std::strlen(data));
 }
 
 void VCP::SendFormatStringAsynch(char *format, ...)
@@ -101,7 +101,7 @@ void VCP::SendFormatStringAsynch(char *format, ...)
     std::vsprintf(buffer, format, args);
     va_end(args);
     std::strcat(buffer, "\n");
-    SendDataAsinch((uint8*)buffer, static_cast<int>(std::strlen(buffer)));
+    SendDataAsinch((uint8*)buffer, std::strlen(buffer));
 }
 
 void VCP::SendFormatStringSynch(char *format, ...) {
@@ -112,7 +112,7 @@ void VCP::SendFormatStringSynch(char *format, ...) {
     std::vsprintf(buffer, format, args);
     va_end(args);
     std::strcat(buffer, "\n");
-    SendDataSynch((uint8*)buffer, static_cast<int>(std::strlen(buffer)));
+    SendDataSynch((uint8*)buffer, std::strlen(buffer));
 }
 
 

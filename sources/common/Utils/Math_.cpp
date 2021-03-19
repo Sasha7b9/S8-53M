@@ -9,6 +9,7 @@
 template void Math::Swap(int *, int *);
 template void Math::Limitation(int *, int, int);
 template int Math::MinFrom2(int, int);
+template uint Math::MinFrom2(uint, uint);
 template int Math::Limitation(int, int, int);
 template uint8 Math::Limitation(uint8, uint8, uint8);
 template float Math::Limitation(float, float, float);

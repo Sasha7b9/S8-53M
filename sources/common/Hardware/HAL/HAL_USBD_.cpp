@@ -27,14 +27,14 @@ bool HAL_USBD::PrevSendingComplete()
 }
 
 
-void HAL_USBD::Transmit(uint8 *buffer, int size)
+void HAL_USBD::Transmit(uint8 *buffer, uint size)
 {
     USBD_CDC_SetTxBuffer(&handleUSBD, buffer, (uint16)size);
     USBD_CDC_TransmitPacket(&handleUSBD);
 }
 
 
-void HAL_USBD::Flush(uint8 *buffer, int sizeBuffer)
+void HAL_USBD::Flush(uint8 *buffer, uint sizeBuffer)
 {
     USBD_CDC_HandleTypeDef *pCDC = (USBD_CDC_HandleTypeDef *)handleUSBD.pClassData;
     while (pCDC->TxState == 1)
