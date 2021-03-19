@@ -1,5 +1,6 @@
 // 2021/03/18 16:06:12 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
+#include "common/Log_.h"
 #include "FPGA/DataSettings.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/Storage.h"
@@ -7,6 +8,8 @@
 
 
 RecordStorage *Storage::addressOldestRecord = nullptr;
+
+uint Storage::num_appends = 0;
 
 
 // Записывает по address данные из buffer. Возвращает адрес первого байта после записи
@@ -154,6 +157,8 @@ uint8 *RecordStorage::End() const
 
 void Storage::Append(const DataStorage &data)
 {
+    num_appends++;
+
     RecordStorage *record = Create(data.Settings());
 
     record->Fill(data);
@@ -192,10 +197,6 @@ RecordStorage *Storage::Create(const DataSettings &ds)
 
                 result = (RecordStorage *)HAL_FMC::ADDR_RAM_BEGIN;
             }
-
-            Oldest()->next = result;
-            result->prev = Newest();
-            result->next = nullptr;
         }
         else
         {
@@ -205,11 +206,11 @@ RecordStorage *Storage::Create(const DataSettings &ds)
             }
 
             result = (RecordStorage *)Newest()->End();
-
-            Newest()->next = result;
-            result->prev = Newest();
-            result->next = nullptr;
         }
+
+        result->prev = Newest();
+        result->next = nullptr;
+        Newest()->next = result;
     }
 
     return result;
@@ -267,7 +268,7 @@ uint Storage::NumRecords()
     while (record->next)
     {
         result++;
-
+        
         record = record->next;
     }
 

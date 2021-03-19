@@ -91,6 +91,8 @@ public:
     // Возвращает количество записей в хранилище
     static uint NumRecords();
 
+    static uint num_appends;
+
 private:
 
     // Создаёт запись во внешнем ОЗУ для сохраенения data

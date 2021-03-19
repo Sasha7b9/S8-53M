@@ -269,7 +269,7 @@
         <LExpSel>0</LExpSel>
       </OPTXL>
       <OPTFL>
-        <tvExp>0</tvExp>
+        <tvExp>1</tvExp>
         <tvExpOptDlg>0</tvExpOptDlg>
         <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
@@ -348,25 +348,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>26</LineNumber>
+          <LineNumber>276</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134240354</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\Hardware\HAL\HAL_IT.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\S8_53M\src/Hardware/HAL/HAL_IT.cpp\26</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>254</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134300616</Address>
+          <Address>134300188</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -375,7 +359,23 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>&lt;1&gt;.\src\FPGA\Storage.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\S8_53M\src/FPGA/Storage.cpp\254</Expression>
+          <Expression>\\S8_53M\src/FPGA/Storage.cpp\276</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>158</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134300264</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>&lt;1&gt;.\src\FPGA\Storage.cpp</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\S8_53M\src/FPGA/Storage.cpp\158</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>

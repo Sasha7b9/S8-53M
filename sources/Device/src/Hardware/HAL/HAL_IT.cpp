@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Utils/Debug_.h"
+#include "Display/Display.h"
 #include <stm32f4xx_hal.h>
 
 
@@ -23,6 +24,7 @@ void HardFault_Handler()
 
     while (1)
     {
+        Display::Update();
         file = file;
         line = line;
         posItem = posItem;

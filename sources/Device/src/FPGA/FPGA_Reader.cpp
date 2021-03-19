@@ -53,7 +53,7 @@ void ReaderFPGA::ReadData()
 
     Storage::Append(data);
 
-    LOG_WRITE("%d данных в хранилище", Storage::NumRecords());
+    LOG_WRITE("%d записей в хранилище, %d добавлено", Storage::NumRecords(), Storage::num_appends);
 
     FPGA::in_processing_of_read = false;
 }
