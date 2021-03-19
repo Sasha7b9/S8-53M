@@ -357,7 +357,7 @@ bool Display::NeedForClearScreen()
         return true;
     }
 
-    if (MODE_ACCUM_IS_RESET && (numDrawingSignals >= static_cast<uint>(numAccum))) //-V560
+    if (MODE_ACCUM_IS_RESET && (numDrawingSignals >= static_cast<uint>(numAccum)))
     {
         numDrawingSignals = 0;
         return true;

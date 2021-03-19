@@ -17,12 +17,20 @@
 using namespace Primitives;
 
 
-static int16    CalculateAdditionRShift(const Channel &ch, Range::E range);	// Измерить добавочное смещение канала по напряжению.
-static float    CalculateKoeffCalibration(const Channel &ch);			// Измерить коэффициент калибровки канала по напряжению.
-static void     AlignmentADC();
-static void     FuncAttScreen();								// Функция обновления экрана в режиме калибровки.
-static float    CalculateDeltaADC(const Channel &ch, float *avgADC1, float *avgADC2, float *delta);
-static void     DrawParametersChannel(const Channel &ch, int x, int y, bool inProgress);
+// Измерить добавочное смещение канала по напряжению.
+static int16 CalculateAdditionRShift(const Channel &ch, Range::E range);
+
+// Измерить коэффициент калибровки канала по напряжению
+static float CalculateKoeffCalibration(const Channel &ch);
+
+static void  AlignmentADC();
+
+// Функция обновления экрана в режиме калибровки
+static void  FuncAttScreen();
+
+static float CalculateDeltaADC(const Channel &ch, float *avgADC1, float *avgADC2, float *delta);
+
+static void  DrawParametersChannel(const Channel &ch, int x, int y, bool inProgress);
 
 static float deltaADC[2] = {0.0F, 0.0F};
 static float deltaADCPercents[2] = {0.0F, 0.0F};
@@ -79,7 +87,7 @@ void FPGA::Calibrator::ProcedureCalibration()
 
     while(1)
     {
-        state.state_calibration = StateCalibration::ADCinProgress;                  // Запускаем процедуру балансировки АЦП.
+        state.state_calibration = StateCalibration::ADCinProgress;              // Запускаем процедуру балансировки АЦП.
 
         TBase::Set(TBase::_500us);
         TShift::Set(0);
@@ -109,7 +117,8 @@ void FPGA::Calibrator::ProcedureCalibration()
         koeffCal0 = ERROR_VALUE_FLOAT;
         koeffCal1 = ERROR_VALUE_FLOAT;
 
-        if(Panel::WaitPressingButton() == Key::Start)             // Ожидаем подтверждения или отмены процедуры калибровки первого канала.
+                                                 // Ожидаем подтверждения или отмены процедуры калибровки первого канала
+        if(Panel::WaitPressingButton() == Key::Start)
         {
 			state.state_calibration = StateCalibration::RShift0inProgress;
 
@@ -145,7 +154,8 @@ void FPGA::Calibrator::ProcedureCalibration()
 
         HAL_TIM2::Delay(500);
 
-		if(Panel::WaitPressingButton() == Key::Start)                 // Ожидаем подтверждения или отмены процедуры калибровки второго канала.
+                                                 // Ожидаем подтверждения или отмены процедуры калибровки второго канала
+		if(Panel::WaitPressingButton() == Key::Start)
         {
 			state.state_calibration = StateCalibration::RShift1inProgress;
 

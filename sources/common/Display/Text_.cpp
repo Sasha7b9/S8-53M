@@ -441,8 +441,8 @@ static bool CompareArrays(const bool *array1, const bool *array2, int numElems)
 }
 
 
-// Находит следующий перенос. C letters начинается часть слово, где нужно найти перенос, в lettersInSyllable будет записано число букв в найденном 
-// слоге. Если слово закончилось, функция возвращает false
+// Находит следующий перенос. C letters начинается часть слово, где нужно найти перенос, в lettersInSyllable будет
+// записано число букв в найденном слоге. Если слово закончилось, функция возвращает false
 static bool FindNextTransfer(pchar letters, int8 *lettersInSyllable)
 {
 
@@ -455,14 +455,14 @@ static bool FindNextTransfer(pchar letters, int8 *lettersInSyllable)
         return false;
     }
 
-    static const bool template1[3] = { false, true, true };               //     011     2   // После второго символа перенос
-    static const bool template2[4] = { true, false, true, false };        //     1010    2
-    static const bool template3[4] = { false, true, false, true };        //     0101    3
-    static const bool template4[4] = { true, false, true, true };         //     1011    3
-    static const bool template5[4] = { false, true, false, false };       //     0100    3
-    static const bool template6[4] = { true, false, true, true };         //     1011    3
-    static const bool template7[5] = { true, true, false, true, false };  //     11010   3
-    static const bool template8[6] = { true, true, false, true, true };   //     11011   4
+    static const bool template1[3] = { false, true, true };               // 011   2   // После второго символа перенос
+    static const bool template2[4] = { true, false, true, false };        // 1010  2
+    static const bool template3[4] = { false, true, false, true };        // 0101  3
+    static const bool template4[4] = { true, false, true, true };         // 1011  3
+    static const bool template5[4] = { false, true, false, false };       // 0100  3
+    static const bool template6[4] = { true, false, true, true };         // 1011  3
+    static const bool template7[5] = { true, true, false, true, false };  // 11010 3
+    static const bool template8[6] = { true, true, false, true, true };   // 11011 4
 
     bool consonant[20];
 
@@ -486,7 +486,8 @@ static bool FindNextTransfer(pchar letters, int8 *lettersInSyllable)
     {
         return false;
     }
-    if (CompareArrays(template3, consonant, 4) || CompareArrays(template4, consonant, 4) || CompareArrays(template5, consonant, 4) || CompareArrays(template6, consonant, 4))
+    if (CompareArrays(template3, consonant, 4) || CompareArrays(template4, consonant, 4) ||
+        CompareArrays(template5, consonant, 4) || CompareArrays(template6, consonant, 4))
     {
         *lettersInSyllable = 3;
         return true;
@@ -582,7 +583,8 @@ static int DrawPartWord(char *word, int x, int y, int xRight, bool draw)
 }
 
 
-// Возвращает высоту экрана, которую займёт текст text, при выводе от left до right в переменной height. Если bool == false, то текст не влезет на экран 
+// Возвращает высоту экрана, которую займёт текст text, при выводе от left до right в переменной height.
+// Если bool == false, то текст не влезет на экран 
 static bool GetHeightTextWithTransfers(int left, int top, int right, pchar text, int *height)
 {
     char buffer[20];
@@ -614,7 +616,7 @@ static bool GetHeightTextWithTransfers(int left, int top, int right, pchar text,
                 }
                 x += Font::GetLengthSymbol(static_cast<uint8>(symbol));
             }
-            else                                            // А здесь найдено по крайней мере два буквенных символа, т.е. найдено слово
+            else                            // А здесь найдено по крайней мере два буквенных символа, т.е. найдено слово
             {
                 int lengthString = Font::GetLengthText(word);
                 if (x + lengthString > right + 5)
@@ -691,7 +693,7 @@ int Text::DrawInRectWithTransfers(int eX, int eY, int eWidth, int eHeight, Color
                 }
                 x = Char(symbol).Draw(x, y);
             }
-            else                                            // А здесь найдено по крайней мере два буквенных символа, т.е. найдено слово
+            else                            // А здесь найдено по крайней мере два буквенных символа, т.е. найдено слово
             {
                 int lengthString = Font::GetLengthText(word);
                 if (x + lengthString > right + 5)

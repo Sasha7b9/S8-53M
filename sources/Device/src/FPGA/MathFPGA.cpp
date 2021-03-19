@@ -7,7 +7,8 @@
 #include <cmath>
 
 
-const float MathFPGA::tableScalesRange[Range::Count] = { 2e-3F, 5e-3F, 10e-3F, 20e-3F, 50e-3F, 100e-3F, 200e-3F, 500e-3F, 1.0F, 2.0F, 5.0F, 10.0F, 20.0F };
+const float MathFPGA::tableScalesRange[Range::Count] = { 2e-3F, 5e-3F, 10e-3F, 20e-3F, 50e-3F, 100e-3F, 200e-3F,
+                                                            500e-3F, 1.0F, 2.0F, 5.0F, 10.0F, 20.0F };
 /*
 static const float tableScalesTBase[TBase::Count] =
     {2e-9, 5e-9, 10e-9, 20e-9, 50e-9, 100e-9, 200e-9, 500e-9,
@@ -152,8 +153,11 @@ void MathFPGA::PointsVoltageToRel(const float* voltage, int numPoints, Range::E 
 
 uint8 MathFPGA::VoltageToPoint(float voltage, Range::E range, int16 rShift)
 {
-    int relValue = static_cast<int>((voltage + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) / voltsInPixel[range] + MIN_VALUE);
+    int relValue = static_cast<int>((voltage + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) /
+        voltsInPixel[range] + MIN_VALUE);
+
     LIMITATION(relValue, relValue, 0, 255);
+
     return (uint8)relValue;
 }
 
@@ -186,7 +190,8 @@ static void MultiplyToWindow(float* data, int numPoints)
         float a2 = alpha / 2.0F;
         for (int i = 0; i < numPoints; i++)
         {
-            data[i] *= a0 - a1 * std::cos(2 * 3.1415926F * i / (numPoints - 1)) + a2 * std::cos(4 * 3.1415926F * i / (numPoints - 1));
+            data[i] *= a0 - a1 * std::cos(2 * 3.1415926F * i / (numPoints - 1)) + a2 * std::cos(4 * 3.1415926F * i /
+                (numPoints - 1));
         }
     }
     else if (WINDOW_FFT_IS_HANN)
@@ -217,7 +222,8 @@ static void Normalize(float* data, int)
 }
 
 
-void MathFPGA::CalculateFFT(float* dataR, int numPoints, float* result, float* freq0, float* density0, float* freq1, float* density1, int* y0, int* y1)
+void MathFPGA::CalculateFFT(float* dataR, int numPoints, float* result, float* freq0, float* density0, float* freq1,
+    float* density1, int* y0, int* y1)
 {
     float scale = 1.0F / absStepTShift[SET_TBASE] / 1024.0F;
 
