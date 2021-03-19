@@ -94,7 +94,7 @@ public:
 private:
 
     // Создаёт запись во внешнем ОЗУ для сохраенения data
-    static RecordStorage *Create(DataStorage &data);
+    static RecordStorage *Create(DataSettings &data);
 
     // Самая старая запись (записана первой)
     static RecordStorage *Oldest();
