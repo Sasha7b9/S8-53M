@@ -52,7 +52,7 @@ private:
     uint Size() const;
 
     // Возвращает размер записи, когда в неё будут записаны данные data
-    uint Size(DataSettings &data) const;
+    uint Size(const DataSettings &data) const;
 
     uint8 *Address() const;
 
@@ -94,7 +94,7 @@ public:
 private:
 
     // Создаёт запись во внешнем ОЗУ для сохраенения data
-    static RecordStorage *Create(DataSettings &data);
+    static RecordStorage *Create(const DataSettings &data);
 
     // Самая старая запись (записана первой)
     static RecordStorage *Oldest();

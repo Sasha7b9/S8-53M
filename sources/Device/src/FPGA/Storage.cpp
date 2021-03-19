@@ -132,7 +132,7 @@ uint RecordStorage::Size() const
 }
 
 
-uint RecordStorage::Size(DataSettings &data) const
+uint RecordStorage::Size(const DataSettings &data) const
 {
     return sizeof(RecordStorage) + sizeof(data) + data.BytesInData();
 }
@@ -160,7 +160,7 @@ void Storage::Append(DataStorage &data)
 }
 
 
-RecordStorage *Storage::Create(DataSettings &ds)
+RecordStorage *Storage::Create(const DataSettings &ds)
 {
     RecordStorage *result = nullptr;
 
