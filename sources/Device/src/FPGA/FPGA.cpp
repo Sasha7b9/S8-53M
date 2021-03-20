@@ -64,7 +64,7 @@ void OnTimerCanReadData()
 
 void FPGA::Start()
 {
-    if(SET_TBASE >= MIN_TBASE_P2P)
+    if(TBase::Get() >= MIN_TBASE_P2P)
     {
 //        DataPainter::ResetP2Ppoints(false);
         Timer::Enable(TypeTimer::P2P, 1, ReaderFPGA::ReadPoint);

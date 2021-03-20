@@ -1,8 +1,6 @@
 #pragma once
 
 
-#define SET_TBASE                           (::set.time.tBase)
-
 #define TSHIFT                              (set.time.tShiftRel)
 
 #define TIME_DIV_XPOS                       (set.time.timeDivXPos)
@@ -21,7 +19,7 @@
 #define PEAKDET_IS_DISABLE                  (PEAKDET == PeackDetMode::Disable)
 #define PEAKDET_IS_ENABLE                   (PEAKDET == PeackDetMode::Enable)
 
-#define FPGA_IN_RANDOMIZE_MODE              (SET_TBASE < TBase::_100ns)
+#define FPGA_IN_RANDOMIZE_MODE              (TBase::Get() < TBase::_100ns)
 
 #define SET_SELFRECORDER                    (set.time.selfRecorder)
 

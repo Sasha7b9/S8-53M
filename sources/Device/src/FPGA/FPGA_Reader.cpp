@@ -126,7 +126,7 @@ int ReaderFPGA::CalculateShift()            // \todo Не забыть восстановить функ
     uint16 min = 0;
     uint16 max = 0;
 
-    if (SET_TBASE == TBase::_200ns)
+    if (TBase::Get() == TBase::_200ns)
     {
         return rand < 3000 ? 0 : -1;    // set.debug.altShift; \todo Остановились на жёстком задании дополнительного
                                         // смещения. На PageDebug выбор закомментирован, можно раскомментировать при
@@ -146,11 +146,11 @@ int ReaderFPGA::CalculateShift()            // \todo Не забыть восстановить функ
     if (FPGA_IN_RANDOMIZE_MODE)
     {
         float tin = static_cast<float>(rand - min) / (max - min) * 10e-9F;
-        int retValue = static_cast<int>(tin / 10e-9F * FPGA::Randomizer::Kr[SET_TBASE]);
+        int retValue = static_cast<int>(tin / 10e-9F * FPGA::Randomizer::Kr[TBase::Get()]);
         return retValue;
     }
 
-    if (SET_TBASE == TBase::_100ns && rand < (min + max) / 2)
+    if (TBase::Get() == TBase::_100ns && rand < (min + max) / 2)
     {
         return 0;
     }

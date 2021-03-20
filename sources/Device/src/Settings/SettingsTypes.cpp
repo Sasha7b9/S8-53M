@@ -216,22 +216,22 @@ void RShift::Set(const Channel &ch, int16 rShift)
 
 void TBase::Decrease()
 {
-    if ((PEAKDET != PeackDetMode::Disable) && SET_TBASE <= MIN_TBASE_PEC_DEAT)
+    if ((PEAKDET != PeackDetMode::Disable) && TBase::Get() <= MIN_TBASE_PEC_DEAT)
     {
         Display::ShowWarningBad(Warning::LimitSweep_Time);
         Display::ShowWarningBad(Warning::EnabledPeakDet);
         return;
     }
 
-    if ((int)SET_TBASE > 0)
+    if ((int)TBase::Get() > 0)
     {
-        if (SET_SELFRECORDER && SET_TBASE == MIN_TBASE_P2P)
+        if (SET_SELFRECORDER && TBase::Get() == MIN_TBASE_P2P)
         {
             Display::ShowWarningBad(Warning::TooFastScanForSelfRecorder);
         }
         else
         {
-            E base = (E)((int)SET_TBASE - 1);
+            E base = (E)((int)TBase::Get() - 1);
             Set(base);
         }
     }
@@ -244,9 +244,9 @@ void TBase::Decrease()
 
 void TBase::Increase()
 {
-    if (SET_TBASE < (TBase::Count - 1))
+    if (TBase::Get() < (TBase::Count - 1))
     {
-        E base = (E)(SET_TBASE + 1);
+        E base = (E)(TBase::Get() + 1);
         Set(base);
     }
     else
@@ -264,10 +264,10 @@ void TBase::Set(TBase::E tBase)
     }
     if (tBase < TBase::Count)
     {
-        float tShiftAbsOld = TSHIFT_2_ABS(TSHIFT, SET_TBASE);
-        SET_TBASE = tBase;
+        float tShiftAbsOld = TSHIFT_2_ABS(TSHIFT, TBase::Get());
+        set.time.tBase = tBase;
         Load();
-        TShift::Set(static_cast<int>(TSHIFT_2_REL(tShiftAbsOld, SET_TBASE)));
+        TShift::Set(static_cast<int>(TSHIFT_2_REL(tShiftAbsOld, TBase::Get())));
         Display::Redraw();
     }
     else
@@ -275,6 +275,12 @@ void TBase::Set(TBase::E tBase)
         Display::ShowWarningBad(Warning::LimitSweep_Time);
     }
 };
+
+
+TBase::E TBase::Get()
+{
+    return set.time.tBase;
+}
 
 
 void TShift::Set(int tShift)

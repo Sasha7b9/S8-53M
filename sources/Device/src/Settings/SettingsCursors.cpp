@@ -36,7 +36,7 @@ String Cursors::GetVoltage(const Channel &source, int numCur)
 
 String Cursors::GetTime(const Channel &source, int numCur)
 {
-    float time = MathFPGA::TimeCursor(CURS_POS_T(source, numCur), SET_TBASE);
+    float time = MathFPGA::TimeCursor(CURS_POS_T(source, numCur), TBase::Get());
 
     return GF::Time2String(time, true);
 }

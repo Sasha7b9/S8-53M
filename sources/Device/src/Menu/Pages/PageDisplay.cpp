@@ -17,7 +17,7 @@ DEF_CHOICE_2(mcMapping, PageDisplay::self,
 
 static bool IsActive_Accumulation()
 {
-    return SET_TBASE > TBase::_50ns;
+    return TBase::Get() > TBase::_50ns;
 }
 
 DEF_CHOICE_REG_9(mcAccumulation_Number, PageDisplay::PageAccumulation::self,
@@ -85,7 +85,7 @@ DEF_PAGE_3(pageAccumulation, PageDisplay::self, NamePage::DisplayAccumulation,
 
 static bool IsActive_MinMax() //-V524
 {
-    return SET_TBASE > TBase::_50ns;
+    return TBase::Get() > TBase::_50ns;
 }
 
 static void OnChanged_MinMax(bool)

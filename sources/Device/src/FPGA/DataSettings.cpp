@@ -14,7 +14,7 @@ void DataSettings::Fill()
     trigLevCh1 = (uint)TRIG_LEVEL_B;
     modeCouple0 = SET_COUPLE_A;
     modeCouple1 = SET_COUPLE_B;
-    tBase = SET_TBASE;
+    tBase = TBase::Get();
     tShift = TSHIFT;
     range[0] = SET_RANGE_A;
     range[1] = SET_RANGE_B;

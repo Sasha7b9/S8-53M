@@ -221,7 +221,7 @@ void TBase::Load()
         {BIN_U8(01111111), BIN_U8(01011111)}  // 10s
     };
 
-    TBase::E tBase = SET_TBASE;
+    TBase::E tBase = TBase::Get();
     uint8 mask = (PEAKDET == PeackDetMode::Disable) ? masksTBase[tBase].maskNorm : masksTBase[tBase].maskPeackDet;
 
     FPGA::BUS::Write(WR_RAZV, mask);
@@ -294,7 +294,7 @@ void TrigLev::Load()
 
 void TShift::SetDelta(int16 shift)
 {
-    deltaTShift[SET_TBASE] = shift;
+    deltaTShift[TBase::Get()] = shift;
     Load();
 }
 
@@ -341,7 +341,7 @@ void FPGA::Calibrator::LoadKoeff(const Channel & /*chan*/)
 
 void TShift::Load()
 {
-    TBase::E tBase = SET_TBASE;
+    TBase::E tBase = TBase::Get();
     int tShift = TSHIFT - TShift::Min() + timeCompensation[tBase];
 
     FPGA::post = (uint16)tShift;
@@ -395,7 +395,7 @@ void TShift::Load()
 
     if (!FPGA::in_processing_of_read)
     {
-        if (SET_TBASE > 8)
+        if (TBase::Get() > 8)
         {
             ++FPGA::post;
             --FPGA::pred;
@@ -408,7 +408,7 @@ void TShift::Load()
 
 String TShift::ToString(int16 tshift_rel)
 {
-    float tShiftVal = TSHIFT_2_ABS(tshift_rel, SET_TBASE);
+    float tShiftVal = TSHIFT_2_ABS(tshift_rel, TBase::Get());
 
     return GF::Time2String(tShiftVal, true);
 }

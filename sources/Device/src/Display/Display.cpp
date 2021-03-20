@@ -223,8 +223,8 @@ void Display::WriteCursors()
             Cursors::GetTime(source, 0).Draw(x, y1);
             Cursors::GetTime(source, 1).Draw(x, y2);
             x = startX + 153;
-            float pos0 = MathFPGA::TimeCursor(CURS_POS_T0(source), SET_TBASE);
-            float pos1 = MathFPGA::TimeCursor(CURS_POS_T1(source), SET_TBASE);
+            float pos0 = MathFPGA::TimeCursor(CURS_POS_T0(source), TBase::Get());
+            float pos1 = MathFPGA::TimeCursor(CURS_POS_T1(source), TBase::Get());
             float delta = std::fabsf(pos1 - pos0);
             Text(":dT=").Draw(x, y1);
             GF::Time2String(delta, false).Draw(x + 17, y1);
@@ -702,7 +702,7 @@ void Display::DrawLowPart()
 
     x += 98;
 
-    TBase::E tBase = SET_TBASE;
+    TBase::E tBase = TBase::Get();
     int16 tShift = TSHIFT;
 
     if (!MODE_WORK_IS_DIRECT)

@@ -25,7 +25,7 @@ DEF_CHOICE_2(mcSample, PageTime::self,
 
 static bool IsActive_PeakDet()
 {
-    return (SET_TBASE >= MIN_TBASE_PEC_DEAT);
+    return (TBase::Get() >= MIN_TBASE_PEC_DEAT);
 }
 
 void PageTime::OnChanged_PeakDet(bool active)
@@ -33,7 +33,7 @@ void PageTime::OnChanged_PeakDet(bool active)
     if (active)
     {
         PeackDetMode::Set(PEAKDET);
-        TBase::Set(SET_TBASE);
+        TBase::Set(TBase::Get());
         if (PEAKDET_IS_DISABLE)
         {
             volatile int8 shift[2][3] =
@@ -97,7 +97,7 @@ DEF_CHOICE_3(mcTPos, PageTime::self,
 
 static bool IsActive_SelfRecorder()
 {
-    return SET_TBASE >= MIN_TBASE_P2P;
+    return (TBase::Get() >= MIN_TBASE_P2P);
 }
 
 DEF_CHOICE_2(mcSelfRecorder, PageTime::self,
