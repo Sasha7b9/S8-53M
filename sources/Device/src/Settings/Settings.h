@@ -3,9 +3,7 @@
 #include "Settings/SettingsChannel.h"
 #include "Settings/SettingsDisplay.h"
 #include "Settings/SettingsMemory.h"
-#include "Settings/SettingsService.h"
 #include "Settings/SettingsCursors.h"
-#include "Settings/SettingsDebug.h"
 #include "Settings/SettingsMemory.h"
 #include "Settings/SettingsMeasures.h"
 #include "Settings/SettingsMath.h"
@@ -158,6 +156,23 @@ struct OutputRegisters
 
 #define IP_ADDRESS          (set.service.IPaddress)             // SettingsService.IPaddress
 
+
+#define IS_SHOW_REGISTERS_ALL   (set.debug.showRegisters.all)
+#define IS_SHOW_REG_RSHIFT_A    (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.rShiftA)
+#define IS_SHOW_REG_RSHIFT_B    (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.rShiftB)
+#define IS_SHOW_REG_TRIGLEV     (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.trigLev)
+#define IS_SHOW_REG_RANGE_A     (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.range[Channel::A])
+#define IS_SHOW_REG_RANGE_B     (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.range[Channel::B])
+#define IS_SHOW_REG_TRIGPARAM   (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.trigParam)
+#define IS_SHOW_REG_PARAM_A     (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.chanParam[Channel::A])
+#define IS_SHOW_REG_PARAM_B     (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.chanParam[Channel::B])
+#define IS_SHOW_REG_TSHIFT      (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.tShift)
+#define IS_SHOW_REG_TBASE       (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.tBase)
+
+
+#define PRETRIGGERED            (set.debug.pretriggered)
+
+
 // Настройки меню СЕРВИС.
 struct SettingsService
 { //-V802
@@ -219,6 +234,8 @@ struct SettingsDebug
     int16             altShift;                   // Добавочное смещение для устранения эффекта горизонтальной помехи синхронизации.
     int16             pretriggered;               // Регулируемая величина предзапуска для исследования рандомизатора.
     OutputRegisters   showRegisters;
+
+    static int  GetSizeFontForConsole();        // Возвращает размер шрифта, которым нужно выводить сообщения в консоли.
 };
 
 struct SettingsMenu

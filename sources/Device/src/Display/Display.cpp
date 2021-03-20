@@ -1105,7 +1105,7 @@ void Display::OneStringDown()
 void Display::DrawConsole()
 {
     int count = 0;
-    Font::Set(sDebug_GetSizeFontForConsole() == 5 ? TypeFont::S5 : TypeFont::S8);
+    Font::Set(SettingsDebug::GetSizeFontForConsole() == 5 ? TypeFont::S5 : TypeFont::S8);
     int height = Font::GetSize();
 
     int last_string = FirstEmptyString() - 1;

@@ -303,3 +303,9 @@ bool SettingsMath::IsMathEnabled()
 {
     return !DISABLED_DRAW_MATH || ENABLED_FFT;
 }
+
+
+int SettingsDebug::GetSizeFontForConsole()
+{
+    return SIZE_FONT_CONSOLE ? 8 : 5;
+}
