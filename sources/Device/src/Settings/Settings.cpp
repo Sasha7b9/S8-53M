@@ -342,3 +342,9 @@ ENUM_POINTS_FPGA::E SettingsMemory::IntNumPoints2FPGA_NUM_POINTS(int numPoints)
     }
     return ENUM_POINTS_FPGA::_281;
 }
+
+
+bool SettingsChannel::FiltrIsEnabled(const Channel &ch)
+{
+    return set.chan[ch].filtr;
+}

@@ -61,7 +61,7 @@ DEF_CHOICE_3(mcCoupleA, PageChannelA::self,
 
 void PageChannelA::OnChanged_Filtr(bool)
 {
-    ChannelFiltr::Enable(ChA, SET_FILTR_A);
+    ChannelFiltr::Enable(ChA, SettingsChannel::FiltrIsEnabled(ChA));
 }
 
 DEF_CHOICE_2(mcFiltrA, PageChannelA::self,
@@ -70,7 +70,7 @@ DEF_CHOICE_2(mcFiltrA, PageChannelA::self,
     chanFiltrEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    SET_FILTR_A, nullptr, PageChannelA::OnChanged_Filtr, nullptr
+    set.chan[ChA].filtr, nullptr, PageChannelA::OnChanged_Filtr, nullptr
 )
 
 static void OnChanged_InverseA(bool)
@@ -139,7 +139,7 @@ DEF_CHOICE_3(mcCoupleB, PageChannelB::self,
 
 void PageChannelB::OnChanged_Filtr(bool)
 {
-    ChannelFiltr::Enable(ChB, SET_FILTR_B);
+    ChannelFiltr::Enable(ChB, SettingsChannel::FiltrIsEnabled(ChB));
 }
 
 DEF_CHOICE_2(mcFiltrB, PageChannelB::self,
@@ -148,7 +148,7 @@ DEF_CHOICE_2(mcFiltrB, PageChannelB::self,
     chanFiltrEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    SET_FILTR_B, nullptr, PageChannelB::OnChanged_Filtr, nullptr
+    set.chan[ChB].filtr, nullptr, PageChannelB::OnChanged_Filtr, nullptr
 )
 
 static void OnChanged_InverseB(bool)

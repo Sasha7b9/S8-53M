@@ -91,11 +91,11 @@ void SCPI::CHANNEL::FILTR(puchar buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (0 == value)         { SET_FILTR(ch) = true; func[ch](true); }
-        else if (1 == value)    { SET_FILTR(ch) = false; func[ch](true); }
+        if (0 == value)         { set.chan[ch].filtr = true; func[ch](true); }
+        else if (1 == value)    { set.chan[ch].filtr = false; func[ch](true); }
         else if (2 == value)
         {
-            SCPI_SEND(":CHANNEL%d:FILTR %s", Tables::GetNumChannel(ch), SET_FILTR(ch) ? "ON" : "OFF");
+            SCPI_SEND(":CHANNEL%d:FILTR %s", Tables::GetNumChannel(ch), SettingsChannel::FiltrIsEnabled(ch) ? "ON" : "OFF");
         }
     LEAVE_ANALYSIS
 }

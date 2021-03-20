@@ -125,8 +125,8 @@ void FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::E type)
         {0x0000, 0x0100}
     };
 
-    data |= maskFiltr[ChA][SET_FILTR_A];
-    data |= maskFiltr[ChB][SET_FILTR_B];
+    data |= maskFiltr[ChA][SettingsChannel::FiltrIsEnabled(ChA)];
+    data |= maskFiltr[ChB][SettingsChannel::FiltrIsEnabled(ChB)];
 
 
     // Параметры синхронизации
@@ -599,7 +599,7 @@ bool TrigInput::IsAC()
 
 void ChannelFiltr::Enable(const Channel &ch, bool enable)
 {
-    SET_FILTR(ch) = enable;
+    set.chan[ch].filtr = enable;
     FPGA::BUS::SetAttribChannelsAndTrig(ch == ChA ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
 }
 

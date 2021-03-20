@@ -21,7 +21,3 @@
 #define STRETCH_ADC(ch)         (set.chan[ch].stretchADC)           // SettingsChannel.stretchADC
 #define STRETCH_ADC_A           (STRETCH_ADC(ChA))                  // set.chan[ChA].stretchADC
 #define STRETCH_ADC_B           (STRETCH_ADC(ChB))                  // set.chan[ChB].stretchADC
-
-#define SET_FILTR(ch)           (set.chan[ch].filtr)                // SettingsChannel.filtr
-#define SET_FILTR_A             (SET_FILTR(ChA))                    // set.chan[ChA].filtr
-#define SET_FILTR_B             (SET_FILTR(ChB))                    // set.chan[ChB].filtr
