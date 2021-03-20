@@ -42,12 +42,12 @@ void SCPI::TRIGGER::MODE(puchar buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (0 == value)         { START_MODE = StartMode::Auto; PageTrig::OnPress_Mode(true); }
-        else if (1 == value)    { START_MODE = StartMode::Wait; PageTrig::OnPress_Mode(true); }
-        else if (2 == value)    { START_MODE = StartMode::Single; PageTrig::OnPress_Mode(true); }
+        if (0 == value)         { set.trig.startMode = StartMode::Auto; PageTrig::OnPress_Mode(true); }
+        else if (1 == value)    { set.trig.startMode = StartMode::Wait; PageTrig::OnPress_Mode(true); }
+        else if (2 == value)    { set.trig.startMode = StartMode::Single; PageTrig::OnPress_Mode(true); }
         else if (3 == value)
         {
-            SCPI_SEND(":TRIGGER:MODE %s", map[START_MODE].key);
+            SCPI_SEND(":TRIGGER:MODE %s", map[StartMode::Get()].key);
         }
     LEAVE_ANALYSIS
 }
@@ -70,7 +70,7 @@ void SCPI::TRIGGER::SOURCE(puchar buffer)
         else if (2 == value)    { TrigSource::Set(TrigSource::Ext); }
         else if (3 == value)
         {
-            SCPI_SEND(":TRIGGER:SOUCRE %s", map[START_MODE].key);
+            SCPI_SEND(":TRIGGER:SOUCRE %s", map[StartMode::Get()].key);
         }
     LEAVE_ANALYSIS
 }

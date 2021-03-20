@@ -765,7 +765,7 @@ void Display::DrawLowPart()
             '\xb0'
         };
 
-        Text(String("\xa5\x10%c", mode[START_MODE])).Draw(x + 63, y1);
+        Text(String("\xa5\x10%c", mode[StartMode::Get()])).Draw(x + 63, y1);
     }
     
     VLine().Draw(x + 79, Grid::Bottom() + 2, HEIGHT - 2, Color::FILL);

@@ -460,12 +460,19 @@ private:
 
 
 // Режим запуска.
-struct StartMode { enum E
-{
-    Auto,             // Автоматический.
-    Wait,             // Ждущий.
-    Single            // Однократный.
-};};
+struct StartMode {
+    enum E
+    {
+        Auto,             // Автоматический.
+        Wait,             // Ждущий.
+        Single            // Однократный.
+    };
+
+    static E Get();
+
+    static bool IsAuto();
+    static bool IsSingle();
+};
 
 // Источник синхронизации.
 struct TrigSource

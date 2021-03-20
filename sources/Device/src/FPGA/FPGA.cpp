@@ -336,7 +336,7 @@ void FPGA::Flag::CalculateTimeReadyPredLaunch()
 
 void FPGA::Flag::RunPostLaunchIfNeed()
 {
-    if (START_MODE_IS_AUTO)
+    if (StartMode::IsAuto())
     {
         if (IsPredLaunchReady() && !IsTrigReady() && TIME_MS - time_pred_launch_ready > 1000)
         {

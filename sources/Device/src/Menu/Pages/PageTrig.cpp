@@ -7,7 +7,7 @@
 void PageTrig::OnPress_Mode(bool)
 {
     FPGA::Stop(false);
-    if (!START_MODE_IS_SINGLE)
+    if (!StartMode::IsSingle())
     {
         FPGA::Start();
     }
@@ -29,7 +29,7 @@ DEF_CHOICE_3(mcMode, PageTrig::self,
     "Авто ", "Auto",
     "Ждущий", "Wait",
     "Однократный", "Single",
-    START_MODE, nullptr, PageTrig::OnPress_Mode, nullptr
+    set.trig.startMode, nullptr, PageTrig::OnPress_Mode, nullptr
 )
 
 static void OnChanged_Source(bool)

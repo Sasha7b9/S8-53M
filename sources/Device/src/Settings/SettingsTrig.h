@@ -2,10 +2,6 @@
 #include "common/Settings/SettingsTypes_.h"
 
 
-#define START_MODE              (set.trig.startMode)                    // SettingsTrig.startMode
-#define START_MODE_IS_SINGLE    (START_MODE == StartMode::Single)       // \c true, если однократный режим запуска.
-#define START_MODE_IS_AUTO      (START_MODE == StartMode::Auto)         // \c true, если автоматический режим запуска.
-
 #define TRIG_SOURCE             (set.trig.source)                       // SettingsTrig.source
 #define TRIG_SOURCE_IS_EXT      (TRIG_SOURCE == TrigSource::Ext)       // \c true, если внешний источник синхронизации.
 

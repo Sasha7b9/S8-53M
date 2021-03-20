@@ -507,3 +507,21 @@ bool FunctionTime::IsShiftInMemory()
 {
     return (set.time.function_time == FunctionTime::ShiftInMemory);
 }
+
+
+StartMode::E StartMode::Get()
+{
+    return set.trig.startMode;
+}
+
+
+bool StartMode::IsAuto()
+{
+    return (set.trig.startMode == StartMode::Auto);
+}
+
+
+bool StartMode::IsSingle()
+{
+    return (set.trig.startMode == StartMode::Single);
+}
