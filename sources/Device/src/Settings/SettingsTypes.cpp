@@ -537,3 +537,15 @@ bool ModeLongPressTrig::IsLevel0()
 {
     return (set.trig.modeLongPressTrig == ModeLongPressTrig::Level0);
 }
+
+
+TrigModeFind::E TrigModeFind::Get()
+{
+    return set.trig.modeFind;
+}
+
+
+bool TrigModeFind::IsHand()
+{
+    return (set.trig.modeFind == TrigModeFind::Hand);
+}

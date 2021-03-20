@@ -1953,11 +1953,6 @@
               <FilePath>.\src\Settings\SettingsDebug.h</FilePath>
             </File>
             <File>
-              <FileName>SettingsTrig.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Settings\SettingsTrig.h</FilePath>
-            </File>
-            <File>
               <FileName>SettingsMath.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Settings\SettingsMath.h</FilePath>
@@ -4166,11 +4161,6 @@
               <FileName>SettingsDebug.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Settings\SettingsDebug.h</FilePath>
-            </File>
-            <File>
-              <FileName>SettingsTrig.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Settings\SettingsTrig.h</FilePath>
             </File>
             <File>
               <FileName>SettingsMath.h</FileName>

@@ -106,12 +106,12 @@ DEF_CHOICE_2(mcAutoFind_Mode, PageTrig::PageAutoFind::self,
     ,
     "Ручной", "Hand",
     "Автоматический", "Auto",
-    TRIG_MODE_FIND, nullptr, nullptr, nullptr
+    set.trig.modeFind, nullptr, nullptr, nullptr
 )
 
 static bool IsActive_AutoFind_Search()
 {
-    return TRIG_MODE_FIND_IS_HAND;
+    return TrigModeFind::IsHand();
 }
 
 static void OnPress_AutoFind_Search()

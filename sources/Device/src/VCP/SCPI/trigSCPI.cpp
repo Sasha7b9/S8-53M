@@ -134,12 +134,12 @@ void SCPI::TRIGGER::FIND(puchar buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (0 == value)         { TRIG_MODE_FIND = TrigModeFind::Hand; }
-        else if (1 == value)    { TRIG_MODE_FIND = TrigModeFind::Auto; }
+        if (0 == value)         { set.trig.modeFind = TrigModeFind::Hand; }
+        else if (1 == value)    { set.trig.modeFind = TrigModeFind::Auto; }
         else if (2 == value)    { TrigLev::FindAndSet(); }
         else if (3 == value)
         {
-            SCPI_SEND(":TRIGGER:FIND %s", map[TRIG_MODE_FIND].key);
+            SCPI_SEND(":TRIGGER:FIND %s", map[TrigModeFind::Get()].key);
         }
     LEAVE_ANALYSIS
 }

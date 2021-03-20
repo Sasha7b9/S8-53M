@@ -3,7 +3,6 @@
 #include "Settings/SettingsChannel.h"
 #include "Settings/SettingsDisplay.h"
 #include "Settings/SettingsMemory.h"
-#include "Settings/SettingsTrig.h"
 #include "Settings/SettingsService.h"
 #include "Settings/SettingsCursors.h"
 #include "Settings/SettingsDebug.h"
@@ -155,6 +154,19 @@ struct OutputRegisters
 #define SHOW_STATS                          (set.debug.showStats)
 
 #define NUM_AVE_FOR_RAND                    (::set.debug.numAveForRand)
+
+
+// Настройки синхронизации
+struct SettingsTrig
+{
+    StartMode::E         startMode;          // Режим запуска.
+    TrigSource::E        source;             // Источник.
+    TrigPolarity::E      polarity;           // Тип синхронизации.
+    TrigInput::E         input;              // Вход синхронизации.
+    int16                levelRel[3];        // Уровень синхронизации для трёх источников.
+    ModeLongPressTrig::E modeLongPressTrig;  // Режим работы длительного нажатия кнопки СИНХР.
+    TrigModeFind::E      modeFind;           // Поиск синхронизации - вручную или автоматически.
+};
 
 
 // Настройки оси X.
