@@ -525,3 +525,15 @@ bool StartMode::IsSingle()
 {
     return (set.trig.startMode == StartMode::Single);
 }
+
+
+ModeLongPressTrig::E ModeLongPressTrig::Get()
+{
+    return set.trig.modeLongPressTrig;
+}
+
+
+bool ModeLongPressTrig::IsLevel0()
+{
+    return (set.trig.modeLongPressTrig == ModeLongPressTrig::Level0);
+}

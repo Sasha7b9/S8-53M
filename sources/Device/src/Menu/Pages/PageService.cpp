@@ -434,7 +434,7 @@ DEF_CHOICE_2(cModeLongPressButtonTrig, PageService::self,
     ,
     "Сброс уровня", "Reset trig level",
     "Автоуровень", "Autolevel",
-    MODE_LONG_PRESS_TRIG, nullptr, nullptr, nullptr
+    set.trig.modeLongPressTrig, nullptr, nullptr, nullptr
 )
 
 DEF_PAGE_10(pageService, PageMain::self, NamePage::Service,

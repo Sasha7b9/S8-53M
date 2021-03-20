@@ -491,7 +491,7 @@ static void TimeLong()
 
 static void TrigLong()
 {
-    if (MODE_LONG_PRESS_TRIG_IS_LEVEL0)
+    if (ModeLongPressTrig::IsLevel0())
     {
         Menu::Event::LongPressureButton(Key::Trig);
     }
