@@ -44,7 +44,7 @@ static void DrawGovernorChoiceColorFormulaHiPart(const Item *item, int x, int y,
         width += IPaddress::OPENED_WIDTH;
     }
 
-    Color color = IS_COLOR_SCHEME_WHITE_LETTERS ? Color::WHITE : Color::BLACK;
+    Color color = ColorScheme::IsWhiteLetters() ? Color::WHITE : Color::BLACK;
     HLine().Draw(y + 1, x, x + width + 3, Color::BorderMenu());
 
     item->DrawVolumeButton(x + 1, y + 2, width + 2, Item::HEIGHT_VALUE + 3, 2, Color::MENU_ITEM, Color::MENU_ITEM_BRIGHT, Color::MENU_ITEM_DARK, pressed);
@@ -70,7 +70,7 @@ static void DrawGovernorChoiceColorFormulaHiPart(const Item *item, int x, int y,
         }
 
         Char(symbol).Draw4SymbolsInRect(x + Item::WIDTH - 13, y + 5 + (item->IsOpened() ? 0 : 15),
-            IS_COLOR_SCHEME_WHITE_LETTERS ? Color::BACK : Color::FILL);
+            ColorScheme::IsWhiteLetters() ? Color::BACK : Color::FILL);
     }
 }
 

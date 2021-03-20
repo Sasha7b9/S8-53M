@@ -77,7 +77,7 @@ DEF_BUTTON(bAutoSearch, PageService::self,
 
 static void OnChanged_Calibrator_Mode(bool)
 {
-    CalibratorMode::Set(CALIBRATOR);
+    CalibratorMode::Set(CalibratorMode::Get());
 }
 
 DEF_CHOICE_3(cCalibrator_Mode, PageService::PageCalibrator::self,
@@ -87,7 +87,7 @@ DEF_CHOICE_3(cCalibrator_Mode, PageService::PageCalibrator::self,
     "Перем", "DC",
     "Пост", "AC",
     "0В", "OV",
-    CALIBRATOR, nullptr, OnChanged_Calibrator_Mode, nullptr
+    set.service.calibrator, nullptr, OnChanged_Calibrator_Mode, nullptr
 )
 
 static void OnPress_Calibrator_Calibrate()

@@ -82,11 +82,17 @@ struct TypeGrid { enum E
 
 
 // Цветовая схема
-struct ColorScheme { enum E
-{
-    WhiteLetters,   // В этом случае заголовки элементов меню пишутся белым - не очень хорошо видно снизу.
-    BlackLetters    // В этом случае заголовки элементов меню пишутся чёрным - не очень красиво выглядит.
-};};
+struct ColorScheme {
+    enum E
+    {
+        WhiteLetters,   // В этом случае заголовки элементов меню пишутся белым - не очень хорошо видно снизу.
+        BlackLetters    // В этом случае заголовки элементов меню пишутся чёрным - не очень красиво выглядит.
+    };
+
+    static E Get();
+
+    static bool IsWhiteLetters();
+};
 
 
 // Перечисление накоплений.
@@ -784,6 +790,8 @@ struct CalibratorMode
     };
 
     static void Set(CalibratorMode::E calibratorMode);
+
+    static E Get();
 };
 
 

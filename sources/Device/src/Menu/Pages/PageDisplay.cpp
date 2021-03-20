@@ -354,7 +354,7 @@ DEF_CHOICE_2(mcSettings_Colors_Scheme, PageDisplay::PageSettings::PageColors::se
     "Mode of operation of the calibrator",
     "Ñץולא 1", "Scheme 1",
     "Ñץולא 2", "Scheme 2",
-    COLOR_SCHEME, nullptr, nullptr, nullptr
+    set.service.colorScheme, nullptr, nullptr, nullptr
 )
 
 static ColorType colorT1 = { 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::DATA_A.index };

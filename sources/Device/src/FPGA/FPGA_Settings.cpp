@@ -343,8 +343,15 @@ void TShift::SetDelta(int16 shift)
 
 void CalibratorMode::Set(CalibratorMode::E calibratorMode)
 {
-    CALIBRATOR = calibratorMode;
+    set.service.calibrator = calibratorMode;
+
     RegUPR::Load();
+}
+
+
+CalibratorMode::E CalibratorMode::Get()
+{
+    return set.service.calibrator;
 }
 
 
@@ -364,7 +371,7 @@ void RegUPR::Load()
         (0)
     };
 
-    data |= mask[CALIBRATOR];
+    data |= mask[CalibratorMode::Get()];
 
     if (PeackDetMode::IsEnabled())
     {

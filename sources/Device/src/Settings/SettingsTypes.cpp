@@ -549,3 +549,15 @@ bool TrigModeFind::IsHand()
 {
     return (set.trig.modeFind == TrigModeFind::Hand);
 }
+
+
+ColorScheme::E ColorScheme::Get()
+{
+    return set.service.colorScheme;
+}
+
+
+bool ColorScheme::IsWhiteLetters()
+{
+    return (set.service.colorScheme == ColorScheme::WhiteLetters);
+}
