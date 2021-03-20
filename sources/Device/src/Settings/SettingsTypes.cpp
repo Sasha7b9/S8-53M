@@ -465,3 +465,9 @@ uint ENUM_POINTS_FPGA::ToPoints(E v)
 
     return points[v];
 }
+
+
+SampleType::E SampleType::Get()
+{
+    return set.time.sampleType;
+}
