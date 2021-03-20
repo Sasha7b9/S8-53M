@@ -42,7 +42,7 @@ void ChangeC_Memory_NumPoints(bool)
     }
     else
     {
-        if(SET_TPOS_IS_LEFT)
+        if(TPos::IsLeft())
         {
             SHIFT_IN_MEMORY = 0;
         }

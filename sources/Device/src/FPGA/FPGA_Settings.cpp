@@ -391,7 +391,7 @@ void TShift::Load()
     if (FPGA::SET::InRandomizeMode())
     {
         uint k = 0;
-        if (SET_TPOS_IS_LEFT)
+        if (TPos::IsLeft())
         {
             k = FPGA::SET::PointsInChannel() % FPGA::Randomizer::Kr[tBase];
         }

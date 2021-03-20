@@ -401,6 +401,12 @@ TPos::E TPos::Get()
 }
 
 
+bool TPos::IsLeft()
+{
+    return (set.time.tPos == TPos::Left);
+}
+
+
 int TPos::InPoints(PeackDetMode::E peakDet, int numPoints, TPos::E tPos)
 {
     if (peakDet == PeackDetMode::Disable)
