@@ -483,7 +483,7 @@ uint FPGA::SET::PointsInChannel()
 
 ENUM_POINTS_FPGA::E FPGA::SET::ENumPointsInChannel()
 {
-    return set.memory.fpgaNumPoints;
+    return set.memory.enum_points_fpga;
 }
 
 
