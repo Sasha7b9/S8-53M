@@ -429,7 +429,7 @@ int TPos::InPoints(PeackDetMode::E peakDet, int numPoints, TPos::E tPos)
             {0, 255, 511},
             {0, 512, 1022}
         };
-        return m[sMemory_IntNumPoints2FPGA_NUM_POINTS(numPoints)][tPos];
+        return m[SettingsMemory::IntNumPoints2FPGA_NUM_POINTS(numPoints)][tPos];
     }
     else
     {
@@ -439,7 +439,7 @@ int TPos::InPoints(PeackDetMode::E peakDet, int numPoints, TPos::E tPos)
             {0, 256, 510},
             {0, 256, 510}
         };
-        return m[sMemory_IntNumPoints2FPGA_NUM_POINTS(numPoints)][tPos];
+        return m[SettingsMemory::IntNumPoints2FPGA_NUM_POINTS(numPoints)][tPos];
     }
 }
 

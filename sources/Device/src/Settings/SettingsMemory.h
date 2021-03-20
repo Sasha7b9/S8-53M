@@ -57,9 +57,5 @@ struct SettingsMemory
     ModeSaveSignal::E   modeSaveSignal;                         // В каком виде сохранять сигнал.
 
     static int GetNumPoints(bool forCalculate);
+    static ENUM_POINTS_FPGA::E IntNumPoints2FPGA_NUM_POINTS(int numPoints);
 };
-
-
-
-
-ENUM_POINTS_FPGA::E sMemory_IntNumPoints2FPGA_NUM_POINTS(int numPoints);
