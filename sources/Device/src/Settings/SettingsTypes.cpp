@@ -264,7 +264,7 @@ void TBase::Set(TBase::E tBase)
     }
     if (tBase < TBase::Count)
     {
-        float tShiftAbsOld = TSHIFT_2_ABS(TSHIFT, TBase::Get());
+        float tShiftAbsOld = TSHIFT_2_ABS(TShift::Get(), TBase::Get());
         set.time.tBase = tBase;
         Load();
         TShift::Set(static_cast<int>(TSHIFT_2_REL(tShiftAbsOld, TBase::Get())));
@@ -296,11 +296,17 @@ void TShift::Set(int tShift)
         Display::ShowWarningBad(Warning::LimitSweep_TShift);
     }
 
-    TSHIFT = (int16)tShift;
+    set.time.tShiftRel = (int16)tShift;
 
     TShift::Load();
     Display::Redraw();
 };
+
+
+int16 TShift::Get()
+{
+    return set.time.tShiftRel;
+}
 
 
 void PeackDetMode::Set(PeackDetMode::E peackDetMode)
@@ -359,7 +365,7 @@ int TPos::InPoints(PeackDetMode::E peakDet, int numPoints, TPos::E tPos)
 
 int TShift::InPoints(PeackDetMode::E peakDet)
 {
-    return TSHIFT * (peakDet == PeackDetMode::Disable ? 2 : 1);
+    return TShift::Get() * (peakDet == PeackDetMode::Disable ? 2 : 1);
 }
 
 

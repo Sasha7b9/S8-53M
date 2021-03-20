@@ -117,7 +117,8 @@ file(GLOB MENU_PAGES        ../../Device/src/Menu/Pages/*.*)
 file(GLOB PANEL                 ../../common/Panel/Controls_.*
                             ../../Device/src/Panel/*.*
                                          src/Panel/*.*)
-file(GLOB SETTINGS          ../../Device/src/Settings/*.*)
+file(GLOB SETTINGS              ../../common/Settings/SettingsTypes_.h
+                            ../../Device/src/Settings/*.*)
 file(GLOB SRC                            src/main_win.cpp
                             ../../Device/src/defines.*
                             ../../Device/src/device.*

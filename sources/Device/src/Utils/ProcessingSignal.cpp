@@ -1179,7 +1179,7 @@ void Processing::CountedToCurrentSettings()
     int numPoints = (int)dataSet->BytesInChannel() * (dataSet->peakDet == PeackDetMode::Disable ? 1 : 2);
 
     int16 dataTShift = dataSet->tShift;
-    int16 curTShift = TSHIFT;
+    int16 curTShift = TShift::Get();
 
     int16 dTShift = curTShift - dataTShift;
     for (int i = 0; i < numPoints; i++)

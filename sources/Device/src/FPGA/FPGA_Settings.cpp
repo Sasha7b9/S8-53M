@@ -342,7 +342,7 @@ void FPGA::Calibrator::LoadKoeff(const Channel & /*chan*/)
 void TShift::Load()
 {
     TBase::E tBase = TBase::Get();
-    int tShift = TSHIFT - TShift::Min() + timeCompensation[tBase];
+    int tShift = TShift::Get() - TShift::Min() + timeCompensation[tBase];
 
     FPGA::post = (uint16)tShift;
 
@@ -360,7 +360,7 @@ void TShift::Load()
 
         FPGA::post = (uint16)((2 * FPGA::post - k) / FPGA::Randomizer::Kr[tBase]);
 
-        FPGA::add_shift = (TSHIFT * 2) % FPGA::Randomizer::Kr[tBase];
+        FPGA::add_shift = (TShift::Get() * 2) % FPGA::Randomizer::Kr[tBase];
 
         if (FPGA::add_shift < 0)
         {

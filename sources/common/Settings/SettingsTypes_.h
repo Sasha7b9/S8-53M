@@ -505,6 +505,8 @@ struct TShift
 {
     static void Set(int tshift);
 
+    static int16 Get();
+
     static void Load();
 
     // ”становить добавочное смещение по времени дл€ режима рандомизатора. ¬ каждой развЄртке это смещение должно быть

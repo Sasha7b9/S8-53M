@@ -1,8 +1,6 @@
 #pragma once
 
 
-#define TSHIFT                              (set.time.tShiftRel)
-
 #define TIME_DIV_XPOS                       (set.time.timeDivXPos)
 #define TIME_DIV_XPOS_IS_SHIFT_IN_MEMORY    (TIME_DIV_XPOS == FunctionTime::ShiftInMemory)
 

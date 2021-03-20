@@ -703,7 +703,7 @@ void Display::DrawLowPart()
     x += 98;
 
     TBase::E tBase = TBase::Get();
-    int16 tShift = TSHIFT;
+    int16 tShift = TShift::Get();
 
     if (!MODE_WORK_IS_DIRECT)
     {

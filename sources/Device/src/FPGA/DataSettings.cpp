@@ -15,7 +15,7 @@ void DataSettings::Fill()
     modeCouple0 = SET_COUPLE_A;
     modeCouple1 = SET_COUPLE_B;
     tBase = TBase::Get();
-    tShift = TSHIFT;
+    tShift = TShift::Get();
     range[0] = SET_RANGE_A;
     range[1] = SET_RANGE_B;
     peakDet = (uint)PEAKDET;
