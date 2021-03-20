@@ -1968,9 +1968,19 @@
               <FilePath>.\src\Settings\SettingsMath.h</FilePath>
             </File>
             <File>
+              <FileName>SettingsTypes_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Settings\SettingsTypes_.h</FilePath>
+            </File>
+            <File>
               <FileName>SettingsTypes.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Settings\SettingsTypes.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>SettingsTypesGraphics.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Settings\SettingsTypesGraphics.cpp</FilePath>
             </File>
             <File>
               <FileName>Settings.cpp</FileName>
@@ -4178,9 +4188,19 @@
               <FilePath>.\src\Settings\SettingsMath.h</FilePath>
             </File>
             <File>
+              <FileName>SettingsTypes_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Settings\SettingsTypes_.h</FilePath>
+            </File>
+            <File>
               <FileName>SettingsTypes.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Settings\SettingsTypes.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>SettingsTypesGraphics.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Settings\SettingsTypesGraphics.cpp</FilePath>
             </File>
             <File>
               <FileName>Settings.cpp</FileName>
