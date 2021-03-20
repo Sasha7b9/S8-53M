@@ -1,8 +1,6 @@
 #pragma once
 
 
-#define FFT_MAX_DB                  (set.math.fftMaxDB)                 // SettingsMath.fftMaxDB
-
 #define MATH_FUNC                   (set.math.func)                     // SettingsMath.func
 #define MATH_FUNC_IS_SUM            (MATH_FUNC == Function::Sum)
 #define MATH_FUNC_IS_MUL            (MATH_FUNC == Function::Mul)

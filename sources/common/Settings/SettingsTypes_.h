@@ -776,6 +776,7 @@ struct FFTmaxDB {
         _80         // Вертикальная координата до -80Дб
     };
 
+    static E Get();
     static float GetReal();
 };
 
