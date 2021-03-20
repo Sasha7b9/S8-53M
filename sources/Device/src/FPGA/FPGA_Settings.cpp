@@ -152,9 +152,9 @@ void Range::Set(const Channel &ch, Range::E range)
 
         if (LINKING_RSHIFT_IS_VOLTAGE)
         {
-            float rShiftAbs = RSHIFT_2_ABS(SET_RSHIFT(ch), SET_RANGE(ch));
+            float rShiftAbs = RSHIFT_2_ABS(RShift::Get(ch), SET_RANGE(ch));
             float trigLevAbs = RSHIFT_2_ABS(TRIG_LEVEL(ch), SET_RANGE(ch));
-            SET_RSHIFT(ch) = (int16)RShift::ToRel(rShiftAbs, range);
+            set.chan[ch].rShiftRel = (int16)RShift::ToRel(rShiftAbs, range);
             TRIG_LEVEL(ch) = (int16)RShift::ToRel(trigLevAbs, range);
         }
 
@@ -238,7 +238,7 @@ void RShift::Load(const Channel &ch)
     static const int index[3] = {0, 1, 1};
     int16 rShiftAdd = RSHIFT_ADD(ch, range, index[mode]);
 
-    uint16 rShift = (uint16)(SET_RSHIFT(ch) + (SET_INVERSE(ch) ? -1 : 1) * rShiftAdd);
+    uint16 rShift = (uint16)(RShift::Get(ch) + (SET_INVERSE(ch) ? -1 : 1) * rShiftAdd);
 
     int16 delta = -(rShift - RShiftZero);
     if (SET_INVERSE(ch))
@@ -532,7 +532,7 @@ void TrigLev::FindAndSet()
     static const float scale = (float)(TrigLevMax - TrigLevZero) / (float)(MAX_VALUE - AVE_VALUE) / 2.4F;
 
     int16 trigLev = static_cast<int16>(TrigLevZero + scale * (static_cast<int>(aveValue) - AVE_VALUE) -
-        (SET_RSHIFT(chanTrig) - RShiftZero));
+        (RShift::Get(chanTrig) - RShiftZero));
 
     TrigLev::Set(trigSource, trigLev);
 

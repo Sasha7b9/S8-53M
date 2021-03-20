@@ -12,9 +12,6 @@
 #define SET_RANGE_A             (SET_RANGE(ChA))
 #define SET_RANGE_B             (SET_RANGE(ChB))
 
-#define SET_RSHIFT(ch)          (set.chan[ch].rShiftRel)            // SettingsChannel.rShiftRel
-#define SET_RSHIFT_A            (SET_RSHIFT(ChA))
-
 #define SET_COUPLE(ch)          (set.chan[ch].modeCouple)           // SettingsChannel.modeCouple
 #define SET_COUPLE_A            (SET_COUPLE(ChA))
 #define SET_COUPLE_B            (SET_COUPLE(ChB))

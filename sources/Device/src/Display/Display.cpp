@@ -201,8 +201,8 @@ void Display::WriteCursors()
             Cursors::GetVoltage(source, 0).Draw(x, y1);
             Cursors::GetVoltage(source, 1).Draw(x, y2);
             x = startX + 49;
-            float pos0 = MathFPGA::VoltageCursor(Cursors::GetPosU(source, 0), SET_RANGE(source), SET_RSHIFT(source));
-            float pos1 = MathFPGA::VoltageCursor(Cursors::GetPosU(source, 1), SET_RANGE(source), SET_RSHIFT(source));
+            float pos0 = MathFPGA::VoltageCursor(Cursors::GetPosU(source, 0), SET_RANGE(source), RShift::Get(source));
+            float pos1 = MathFPGA::VoltageCursor(Cursors::GetPosU(source, 1), SET_RANGE(source), RShift::Get(source));
             float delta = std::fabsf(pos1 - pos0);
             Text(":dU=").Draw(x, y1);
             GF::Voltage2String(delta, false).Draw(x + 17, y1);
@@ -454,7 +454,7 @@ void Display::WriteValueTrigLevel()
         TrigSource::E trigSource = TRIG_SOURCE;
         if (TRIG_INPUT_IS_AC && trigSource <= TrigSource::B_)
         {
-            int16 rShift = SET_RSHIFT(trigSource);
+            int16 rShift = RShift::Get((Channel::E)trigSource);
             float rShiftAbs = RSHIFT_2_ABS(rShift, SET_RANGE(trigSource));
             trigLev += rShiftAbs;
         }
@@ -516,7 +516,7 @@ void Display::DrawCursorTrigLevel()
     {
         return;
     }
-    int trigLev = TRIG_LEVEL(ch) + (SET_RSHIFT(ch) - RShiftZero);
+    int trigLev = TRIG_LEVEL(ch) + (RShift::Get((Channel::E)ch) - RShiftZero);
     float scale = 1.0F / ((TrigLevMax - TrigLevMin) / 2.0F / Grid::ChannelHeight());
     int y0 = static_cast<int>((Grid::TOP + Grid::ChannelBottom()) / 2 + scale * (TrigLevZero - TrigLevMin));
     int y = static_cast<int>(y0 - scale * (trigLev - TrigLevMin));
@@ -558,7 +558,7 @@ void Display::DrawCursorTrigLevel()
         int shiftFullMin = RShiftMin + TrigLevMin;
         int shiftFullMax = RShiftMax + TrigLevMax;
         scale = (float)height / (shiftFullMax - shiftFullMin);
-        int shiftFull = TRIG_LEVEL_SOURCE + (TRIG_SOURCE_IS_EXT ? 0 : SET_RSHIFT(ch));
+        int shiftFull = TRIG_LEVEL_SOURCE + (TRIG_SOURCE_IS_EXT ? 0 : RShift::Get((Channel::E)ch));
         int yFull = static_cast<int>(Grid::TOP + DELTA + height - scale * (shiftFull - RShiftMin - TrigLevMin) - 4);
         Region(4, 6).Fill(left + 2, yFull + 1, Color::Trig());
         Font::Set(TypeFont::S5);
@@ -629,7 +629,7 @@ void Display::WriteTextVoltage(const Channel &ch, int x, int y)
     ModeCouple::E modeCouple = SET_COUPLE(ch);
     Divider::E multiplier = SET_DIVIDER(ch);
     Range::E range = SET_RANGE(ch);
-    uint rShift = (uint)SET_RSHIFT(ch);
+    uint rShift = (uint)RShift::Get(ch);
     bool enable = SET_ENABLED(ch);
 
     if (!MODE_WORK_IS_DIRECT)

@@ -199,6 +199,7 @@ void RShift::Set(const Channel &ch, int16 rShift)
     }
 
     LIMITATION(rShift, rShift, RShiftMin, RShiftMax);
+
     if (rShift > RShiftZero)
     {
         rShift &= 0xfffe;                                            // ƒелаем кратным двум, т.к. у нас 800 значений на 400 точек
@@ -207,7 +208,9 @@ void RShift::Set(const Channel &ch, int16 rShift)
     {
         rShift = (rShift + 1) & 0xfffe;
     }
-    SET_RSHIFT(ch) = rShift;
+
+    set.chan[ch].rShiftRel = rShift;
+
     RShift::Load(ch);
     Display::RotateRShift(ch);
 };
@@ -326,7 +329,7 @@ void ModeCouple::Set(const Channel &ch, ModeCouple::E modeCoupe)
 {
     SET_COUPLE(ch) = modeCoupe;
     FPGA::BUS::SetAttribChannelsAndTrig(ch == ChA ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
-    RShift::Set(ch, SET_RSHIFT(ch));
+    RShift::Set(ch, RShift::Get(ch));
 }
 
 

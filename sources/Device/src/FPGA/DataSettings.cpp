@@ -8,7 +8,7 @@ void DataSettings::Fill()
 {
     enabled_a = ChA.IsEnabled() ? 1U : 0U;
     enabled_b = ChB.IsEnabled() ? 1U : 0U;
-    r_shift_a = (uint)SET_RSHIFT_A;
+    r_shift_a = (uint)RShift::Get(ChA);
     rShiftCh1 = (uint)RShift::Get(ChB);
     trigLevCh0 = (uint)TRIG_LEVEL_A;
     trigLevCh1 = (uint)TRIG_LEVEL_B;

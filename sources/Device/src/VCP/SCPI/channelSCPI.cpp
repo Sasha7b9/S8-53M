@@ -172,7 +172,7 @@ void SCPI::CHANNEL::OFFSET(puchar buffer)
     ENTER_ANALYSIS
         if (value == 0)
         {
-            int retValue = static_cast<int>(0.5F * (SET_RSHIFT(ch) - RShiftZero));
+            int retValue = static_cast<int>(0.5F * (RShift::Get(ch) - RShiftZero));
             SCPI_SEND(":CHANNNEL%d:OFFSET %d", Tables::GetNumChannel(ch), retValue);
         }
     LEAVE_ANALYSIS

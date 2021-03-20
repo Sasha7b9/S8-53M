@@ -356,7 +356,7 @@ static void OnPress_ADC_AltRShift_Reset()
             }
         }
     }
-    RShift::Set(ChA, SET_RSHIFT_A);
+    RShift::Set(ChA, RShift::Get(ChA));
     RShift::Set(ChB, RShift::Get(ChB));
 }
 
@@ -368,7 +368,7 @@ DEF_BUTTON(mbADC_AltRShift_Reset, PageDebug::PageADC::PageAltRShift::self,
 
 static void OnChanged_ADC_AltRShift_A()
 {
-    RShift::Set(ChA, SET_RSHIFT_A);
+    RShift::Set(ChA, RShift::Get(ChA));
 }
 
 DEF_GOVERNOR(mbADC_AltRShift_2mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
