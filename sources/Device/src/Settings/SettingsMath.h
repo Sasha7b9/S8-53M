@@ -1,9 +1,6 @@
 #pragma once
 
 
-#define FFT_CUR_CURSOR              (set.math.currentCursor)            // SettingsMath.currentCursor
-#define FFT_CUR_CURSOR_IS_0         (FFT_CUR_CURSOR == 0)
-
 #define FFT_POS_CURSOR(num)         (set.math.posCur[num])              // SettingsMath.currentCursor
 #define FFT_POS_CURSOR_0            (FFT_POS_CURSOR(0))
 #define FFT_POS_CURSOR_1            (FFT_POS_CURSOR(1))
@@ -29,7 +26,7 @@ struct SettingsMath
     WindowFFT::E    windowFFT;      // Задаёт вид окна, на которое умножается сигнал перед расчётом спектра.
     FFTmaxDB::E     fftMaxDB;       // Минимальное значение на вертикальной координате графика спектра.
     Function::E     func;           // Включённая математическая функция.
-    uint8           currentCursor;  // Определяет, каким курсором спектра управляет ручка УСТАНОВКА.
+    uint8           cursorFFT;      // Определяет, каким курсором спектра управляет ручка УСТАНОВКА.
     uint8           posCur[2];      // Позиция курсора спектра. Изменятеся 0...256.
     int8            koeff1add;      // Коэффициент при первом слагаемом для сложения.
     int8            koeff2add;
@@ -43,4 +40,6 @@ struct SettingsMath
     int16           rShift;         // Смещение по вертикальной оси математического сигнала.
 
     static bool IsMathEnabled();
+
+    static uint8 CursorFFT();
 };

@@ -372,3 +372,9 @@ void Channel::Disable() const
 {
     set.chan[value].enable = false;
 }
+
+
+uint8 SettingsMath::CursorFFT()
+{
+    return set.math.cursorFFT;
+}
