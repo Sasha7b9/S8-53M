@@ -10,7 +10,7 @@ void DataSettings::Fill()
     enabled_b = ChB.IsEnabled() ? 1U : 0U;
     r_shift_a = (uint)RShift::Get(ChA);
     rShiftCh1 = (uint)RShift::Get(ChB);
-    trigLevCh0 = (uint)TRIG_LEVEL_A;
+    trigLevCh0 = (uint)TrigLev::GetA();
     trigLevCh1 = (uint)TrigLev::GetB();
     modeCouple0 = SET_COUPLE_A;
     modeCouple1 = SET_COUPLE_B;
