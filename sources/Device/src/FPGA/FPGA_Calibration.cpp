@@ -192,9 +192,10 @@ void FPGA::Calibrator::ProcedureCalibration()
 
     FPGA::state.Restore();
 
-    SET_BALANCE_ADC_A = shiftADC0;
-    SET_BALANCE_ADC_B = shiftADC1;
-//    HAL_FMC::Write(WR_ADD_RSHIFT_DAC1, (uint8)SET_BALANCE_ADC_A);
+    set.chan[ChA].balanceShiftADC = shiftADC0;
+    set.chan[ChB].balanceShiftADC = shiftADC1;
+
+    //    HAL_FMC::Write(WR_ADD_RSHIFT_DAC1, (uint8)SET_BALANCE_ADC_A);
 //    HAL_FMC::Write(WR_ADD_RSHIFT_DAC2, (uint8)SET_BALANCE_ADC_B);
 
     RShift::Set(ChA, RShift::Get(ChA));
@@ -349,7 +350,7 @@ void DrawParametersChannel(const Channel &ch, int eX, int eY, bool inProgress)
         std::sprintf(buffer, "Расхождение Channel::A_ЦП = %.2f/%.2f %%", deltaADCPercentsOld[ch], deltaADCPercents[ch]);
         Text(buffer).Draw(x, y + 11);
         buffer[0] = 0;
-        std::sprintf(buffer, "Записано %d", SET_BALANCE_ADC(ch));
+        std::sprintf(buffer, "Записано %d", SettingsChannel::BalanceShiftADC(ch));
         Text(buffer).Draw(x, y + 19);
     }
 }
@@ -415,9 +416,9 @@ float CalculateDeltaADC(const Channel &ch, float *avgADC1, float *avgADC2, float
 void AlignmentADC()
 {
     shiftADC0 = static_cast<int8>((deltaADCold[0] > 0.0F) ? (deltaADCold[0] + 0.5F) : (deltaADCold[0] - 0.5F));
-    SET_BALANCE_ADC_A = shiftADC0;
+    set.chan[ChA].balanceShiftADC = shiftADC0;
     shiftADC1 = static_cast<int8>((deltaADCold[1] > 0.0F) ? (deltaADCold[1] + 0.5F) : (deltaADCold[1] - 0.5F));
-    SET_BALANCE_ADC_B = shiftADC1;
+    set.chan[ChB].balanceShiftADC = shiftADC1;
 //    HAL_FMC::Write(WR_ADD_RSHIFT_DAC1, (uint8)SET_BALANCE_ADC_A);
 //    HAL_FMC::Write(WR_ADD_RSHIFT_DAC2, (uint8)SET_BALANCE_ADC_B);
 }

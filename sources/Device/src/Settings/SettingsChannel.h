@@ -13,7 +13,3 @@
 #define SET_ENABLED(ch)         (set.chan[ch].enable)               // SettingsChannel.enable
 #define SET_ENABLED_A           SET_ENABLED(ChA)                    // set.chan[ChA].enable
 #define SET_ENABLED_B           SET_ENABLED(ChB)                    // set.chan[ChB].enable
-
-#define SET_BALANCE_ADC(ch)     (set.chan[ch].balanceShiftADC)      // SettingsChannel.balanceShiftADC
-#define SET_BALANCE_ADC_A       (SET_BALANCE_ADC(ChA))              // set.chan[ChA].balanceShiftADC
-#define SET_BALANCE_ADC_B       (SET_BALANCE_ADC(ChB))              // set.chan[ChB].balanceShiftADC

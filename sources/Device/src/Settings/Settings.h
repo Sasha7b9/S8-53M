@@ -32,6 +32,7 @@ struct SettingsChannel
 
     static bool FiltrIsEnabled(const Channel &ch);
     static float StretchADC(const Channel &ch);
+    static int8 BalanceShiftADC(const Channel &ch);
 };
 
 

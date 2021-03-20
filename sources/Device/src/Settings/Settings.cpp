@@ -354,3 +354,9 @@ float SettingsChannel::StretchADC(const Channel &ch)
 {
     return set.chan[ch].stretchADC;
 }
+
+
+int8 SettingsChannel::BalanceShiftADC(const Channel &ch)
+{
+    return set.chan[ch].balanceShiftADC;
+}
