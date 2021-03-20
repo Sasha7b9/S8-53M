@@ -333,6 +333,12 @@ void ModeCouple::Set(const Channel &ch, ModeCouple::E modeCoupe)
 }
 
 
+ModeCouple::E ModeCouple::GetA()
+{
+    return set.chan[Channel::A].modeCouple;
+}
+
+
 bool Channel::IsEnabled() const
 {
     if (value == Channel::Math)

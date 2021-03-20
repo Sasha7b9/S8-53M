@@ -116,7 +116,7 @@ void FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::E type)
         {0x0800, 0x0000, 0x3000}
     };
 
-    data |= maskCouple[ChA][SET_COUPLE_A];
+    data |= maskCouple[ChA][ModeCouple::GetA()];
     data |= maskCouple[ChB][SET_COUPLE_B];
 
     static const uint maskFiltr[2][2] = 

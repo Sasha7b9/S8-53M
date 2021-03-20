@@ -365,6 +365,8 @@ struct ModeCouple
     };
 
     static void Set(const Channel &ch, ModeCouple::E mode);
+
+    static ModeCouple::E GetA();
 };
 
 
