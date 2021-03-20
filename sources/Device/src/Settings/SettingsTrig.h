@@ -2,8 +2,6 @@
 #include "common/Settings/SettingsTypes_.h"
 
 
-#define TRIG_LEVEL(source)      (set.trig.levelRel[source])             // SettingsTrig.levelRel
-
 #define MODE_LONG_PRESS_TRIG    (set.trig.modeLongPressTrig)            // SettingsTrig.modeLongPressTrig
 // если \c true, то длительное нажатие кнопки \b СИНХР сбрасывает уровень синхронизации в 0.
 #define MODE_LONG_PRESS_TRIG_IS_LEVEL0  (MODE_LONG_PRESS_TRIG == ModeLongPressTrig::Level0)

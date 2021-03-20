@@ -657,8 +657,8 @@ static void RShiftRightB()
 static void ChangeTrigLev(int *prevTime, void(*f)(TrigSource::E, int16), TrigSource::E trigSource, int16 relStep)
 {
     int count = CalculateCount(prevTime);
-    int trigLevOld = TRIG_LEVEL(trigSource);
-    int trigLev = TRIG_LEVEL(trigSource) + relStep * count;
+    int trigLevOld = TrigLev::Get(trigSource);
+    int trigLev = TrigLev::Get(trigSource) + relStep * count;
     if ((trigLevOld > TrigLevZero && trigLev < TrigLevZero) || (trigLevOld < TrigLevZero && trigLev > TrigLevZero))
     {
         trigLev = TrigLevZero;

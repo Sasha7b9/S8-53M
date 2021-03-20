@@ -153,9 +153,9 @@ void Range::Set(const Channel &ch, Range::E range)
         if (LINKING_RSHIFT_IS_VOLTAGE)
         {
             float rShiftAbs = RSHIFT_2_ABS(RShift::Get(ch), Range::Get(ch));
-            float trigLevAbs = RSHIFT_2_ABS(TRIG_LEVEL(ch), Range::Get(ch));
+            float trigLevAbs = RSHIFT_2_ABS(TrigLev::Get((TrigSource::E)ch.value), Range::Get(ch));
             set.chan[ch].rShiftRel = (int16)RShift::ToRel(rShiftAbs, range);
-            TRIG_LEVEL(ch) = (int16)RShift::ToRel(trigLevAbs, range);
+            set.trig.levelRel[(TrigSource::E)ch.value] = (int16)RShift::ToRel(trigLevAbs, range);
         }
 
         Load(ch);
@@ -289,9 +289,9 @@ void TrigLev::Set(TrigSource::E ch, int16 trigLev)
         trigLev = (trigLev + 1) & 0xfffe;
     }
 
-    if (TRIG_LEVEL(ch) != trigLev)
+    if (TrigLev::Get(ch) != trigLev)
     {
-        TRIG_LEVEL(ch) = trigLev;
+        set.trig.levelRel[ch] = trigLev;
         TrigLev::Load();
         Display::RotateTrigLev();
     }

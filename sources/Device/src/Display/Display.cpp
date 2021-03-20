@@ -516,7 +516,7 @@ void Display::DrawCursorTrigLevel()
     {
         return;
     }
-    int trigLev = TRIG_LEVEL(ch) + (RShift::Get((Channel::E)ch) - RShiftZero);
+    int trigLev = TrigLev::Get(ch) + (RShift::Get((Channel::E)ch) - RShiftZero);
     float scale = 1.0F / ((TrigLevMax - TrigLevMin) / 2.0F / Grid::ChannelHeight());
     int y0 = static_cast<int>((Grid::TOP + Grid::ChannelBottom()) / 2 + scale * (TrigLevZero - TrigLevMin));
     int y = static_cast<int>(y0 - scale * (trigLev - TrigLevMin));
