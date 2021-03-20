@@ -1,8 +1,6 @@
 #pragma once
 
 
-#define ENABLED_FFT                 (set.math.enableFFT)                // SettingsMath.enableFFT
-
 #define MODE_DRAW_MATH              (set.math.modeDraw)                 // SettingsMath.modeDraw
 #define DISABLED_DRAW_MATH          (MODE_DRAW_MATH == ModeDrawMath::Disable)
 #define MODE_DRAW_MATH_IS_TOGETHER  (MODE_DRAW_MATH == ModeDrawMath::Together)
@@ -38,4 +36,5 @@ struct SettingsMath
     static bool IsMathEnabled();
     static uint8 CursorFFT();
     static uint8 PositionCursorFFT(int num);
+    static bool IsEnbaledFFT();
 };

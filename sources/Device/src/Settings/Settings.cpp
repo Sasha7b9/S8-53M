@@ -301,7 +301,7 @@ Range::E& operator--(Range::E &range)
 
 bool SettingsMath::IsMathEnabled()
 {
-    return !DISABLED_DRAW_MATH || ENABLED_FFT;
+    return !DISABLED_DRAW_MATH || SettingsMath::IsEnbaledFFT();
 }
 
 
@@ -383,4 +383,10 @@ uint8 SettingsMath::CursorFFT()
 uint8 SettingsMath::PositionCursorFFT(int num)
 {
     return set.math.posCur[num];
+}
+
+
+bool SettingsMath::IsEnbaledFFT()
+{
+    return set.math.enableFFT;
 }
