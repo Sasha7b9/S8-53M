@@ -504,6 +504,10 @@ struct TrigPolarity
 
     static void Set(E polarity);
 
+    static E Get();
+
+    static bool IsFront();
+
     // ѕереключение пол€рности - принудетиельный запуск сбора информации
     static void Switch();
 

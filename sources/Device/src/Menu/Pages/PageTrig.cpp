@@ -49,7 +49,7 @@ DEF_CHOICE_3(mcSource, PageTrig::self,
 
 static void OnChanged_Polarity(bool)
 {
-    TrigPolarity::Set(TRIG_POLARITY);
+    TrigPolarity::Set(TrigPolarity::Get());
 }
 
 DEF_CHOICE_2(mcPolarity, PageTrig::self,
@@ -63,7 +63,7 @@ DEF_CHOICE_2(mcPolarity, PageTrig::self,
     ,
     "Фронт", "Front",
     "Срез", "Back",
-    TRIG_POLARITY, nullptr, OnChanged_Polarity, nullptr
+    set.trig.polarity, nullptr, OnChanged_Polarity, nullptr
 )
 
 static void OnChanged_Input(bool)

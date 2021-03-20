@@ -2,9 +2,6 @@
 #include "common/Settings/SettingsTypes_.h"
 
 
-#define TRIG_POLARITY           (set.trig.polarity)                     // SettingsTrig.polarity
-#define TRIG_POLARITY_IS_FRONT  (TRIG_POLARITY == TrigPolarity::Front)  // \c true, если синхронизация по фронту.
-
 #define TRIG_INPUT              (set.trig.input)                        // SettingsTrig.input
 #define TRIG_INPUT_IS_AC        (TRIG_INPUT == TrigInput::AC)           // \c true, если закрытый вход синхронизации.
 

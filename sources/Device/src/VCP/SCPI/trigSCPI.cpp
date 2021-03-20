@@ -91,7 +91,7 @@ void SCPI::TRIGGER::POLARITY(puchar buffer)
         else if (1 == value)    { TrigPolarity::Set(TrigPolarity::Back); }
         else if (2 == value)
         {
-            SCPI_SEND(":TRIGGER:POLARITY %s", map[TRIG_POLARITY].key);
+            SCPI_SEND(":TRIGGER:POLARITY %s", map[TrigPolarity::Get()].key);
         }
     LEAVE_ANALYSIS
 }

@@ -529,14 +529,26 @@ bool TrigSource::IsExt()
 
 void TrigPolarity::Set(E polarity)
 {
-    TRIG_POLARITY = polarity;
+    set.trig.polarity = polarity;
     TrigPolarity::Load();
+}
+
+
+TrigPolarity::E TrigPolarity::Get()
+{
+    return set.trig.polarity;
+}
+
+
+bool TrigPolarity::IsFront()
+{
+    return (set.trig.polarity == TrigPolarity::Front);
 }
 
 
 void TrigPolarity::Switch()
 {
-    if (TRIG_POLARITY_IS_FRONT)
+    if (TrigPolarity::IsFront())
     {
         HAL_FMC::Write(WR_TRIG, 0);
         HAL_FMC::Write(WR_TRIG, 1);
@@ -555,7 +567,7 @@ void TrigPolarity::Switch()
 
 void TrigPolarity::Load()
 {
-    FPGA::BUS::Write(WR_TRIG, TRIG_POLARITY_IS_FRONT ? 1U : 0U);
+    FPGA::BUS::Write(WR_TRIG, TrigPolarity::IsFront() ? 1U : 0U);
 }
 
 

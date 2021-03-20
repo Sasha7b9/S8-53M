@@ -751,7 +751,7 @@ void Display::DrawLowPart()
             "\xb1\xb2"
         };
 
-        Text(String("\xa5\x10%s\x10\xa5\x10%s\x10\xa5\x10", couple[TRIG_INPUT], polar[TRIG_POLARITY])).Draw(x + 18, y1);
+        Text(String("\xa5\x10%s\x10\xa5\x10%s\x10\xa5\x10", couple[TRIG_INPUT], polar[TrigPolarity::Get()])).Draw(x + 18, y1);
         Char(filtr[TRIG_INPUT][0]).Draw(x + 45, y1);
         Char(filtr[TRIG_INPUT][1]).Draw(x + 53, y1);
     }
