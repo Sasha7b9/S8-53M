@@ -1982,11 +1982,6 @@
               <FileType>5</FileType>
               <FilePath>.\src\Settings\SettingsMeasures.h</FilePath>
             </File>
-            <File>
-              <FileName>SettingsMemory.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Settings\SettingsMemory.cpp</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -4171,11 +4166,6 @@
               <FileName>SettingsMeasures.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Settings\SettingsMeasures.h</FilePath>
-            </File>
-            <File>
-              <FileName>SettingsMemory.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Settings\SettingsMemory.cpp</FilePath>
             </File>
           </Files>
         </Group>
