@@ -395,6 +395,12 @@ bool Channel::IsEnabled() const
 }
 
 
+TPos::E TPos::Get()
+{
+    return set.time.tPos;
+}
+
+
 int TPos::InPoints(PeackDetMode::E peakDet, int numPoints, TPos::E tPos)
 {
     if (peakDet == PeackDetMode::Disable)
@@ -435,7 +441,7 @@ int16 TShift::Min()
     ENUM_POINTS_FPGA::E numPoints = FPGA::SET::ENumPointsInChannel();
     if ((int)numPoints < 3)
     {
-        return m[numPoints][SET_TPOS];
+        return m[numPoints][TPos::Get()];
     }
 
     LOG_ERROR("");

@@ -323,6 +323,8 @@ struct TPos
         Right      // Синхронизация привязана к концу памяти.
     };
 
+    static E Get();
+
     // Узнать привязку отсительно уровня синхронизации в точках
     static int InPoints(PeackDetMode::E peakDet, int numPoints, E tPos);
 };

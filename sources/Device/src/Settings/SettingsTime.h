@@ -4,10 +4,10 @@
 #define TIME_DIV_XPOS                       (set.time.timeDivXPos)
 #define TIME_DIV_XPOS_IS_SHIFT_IN_MEMORY    (TIME_DIV_XPOS == FunctionTime::ShiftInMemory)
 
-#define SET_TPOS                            (set.time.tPos)
-#define SET_TPOS_IS_LEFT                    (SET_TPOS == TPos::Left)
-#define SET_TPOS_IS_CENTER                  (SET_TPOS == TPos::Center)
-#define SET_TPOS_IS_RIGHT                   (SET_TPOS == TPos::Right)
+//#define SET_TPOS                            (set.time.tPos)
+#define SET_TPOS_IS_LEFT                    (set.time.tPos == TPos::Left)
+#define SET_TPOS_IS_CENTER                  (set.time.tPos == TPos::Center)
+#define SET_TPOS_IS_RIGHT                   (set.time.tPos == TPos::Right)
 
 
 // Настройки оси X.
