@@ -122,7 +122,7 @@ DEF_CHOICE_2(mcDivRole, PageTime::self,
     ,
     "Время", "Time",
     "Память", "Memory",
-    TIME_DIV_XPOS, nullptr, nullptr, nullptr
+    set.time.function_time, nullptr, nullptr, nullptr
 )
 
 DEF_PAGE_5(pageTime, PageMain::self, NamePage::Time,

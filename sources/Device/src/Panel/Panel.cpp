@@ -779,7 +779,7 @@ static void ChangeTShift(int *prevTime, void(*f)(int), int16 relStep)
 static void XShift(int delta)
 {
     static int prevTime = 0;
-    if (!FPGA::IsRunning() || TIME_DIV_XPOS_IS_SHIFT_IN_MEMORY)
+    if (!FPGA::IsRunning() || FunctionTime::IsShiftInMemory())
     {
         if (FPGA::SET::ENumPointsInChannel() != ENUM_POINTS_FPGA::_281)
         {

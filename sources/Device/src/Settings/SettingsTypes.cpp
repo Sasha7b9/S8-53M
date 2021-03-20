@@ -495,3 +495,15 @@ SampleType::E SampleType::Get()
 {
     return set.time.sampleType;
 }
+
+
+FunctionTime::E FunctionTime::Get()
+{
+    return set.time.function_time;
+}
+
+
+bool FunctionTime::IsShiftInMemory()
+{
+    return (set.time.function_time == FunctionTime::ShiftInMemory);
+}

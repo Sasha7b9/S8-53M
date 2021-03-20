@@ -170,6 +170,7 @@ void SCPI::TBASE::SELFRECORDER(puchar buffer)
         {"?", 2},
         {0}
     };
+
     ENTER_ANALYSIS
         if (value < 2) { set.time.selfRecorder = (value == 0); }
         else if (2 == value)
@@ -190,11 +191,12 @@ void SCPI::TBASE::FUNCTIMEDIV(puchar buffer)
         {"?",      2},
         {0}
     };
+
     ENTER_ANALYSIS
-        if (value < 2) { TIME_DIV_XPOS = (FunctionTime::E)value; }
+        if (value < 2) { set.time.function_time = (FunctionTime::E)value; }
         else if (2 == value)
         {
-            SCPI_SEND(":TBASE:FUNCTIMEDIV %s", map[TIME_DIV_XPOS].key);
+            SCPI_SEND(":TBASE:FUNCTIMEDIV %s", map[FunctionTime::Get()].key);
         }
     LEAVE_ANALYSIS
 }

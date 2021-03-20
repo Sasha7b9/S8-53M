@@ -290,11 +290,16 @@ struct ModeSaveSignal { enum E
 
 
 // Функция ручки ВРЕМЯ/ДЕЛ.
-struct FunctionTime { enum E
-{
-    Time,              // Ручка управляет смещением по времени.
-    ShiftInMemory      // Ручка управляет отображаемым на экране участком памяти.
-};};
+struct FunctionTime {
+    enum E
+    {
+        Time,              // Ручка управляет смещением по времени.
+        ShiftInMemory      // Ручка управляет отображаемым на экране участком памяти.
+    };
+
+    static E Get();
+    static bool IsShiftInMemory();
+};
 
 
 // Режим работы пикового детектора.
