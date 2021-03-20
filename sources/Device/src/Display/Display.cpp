@@ -75,8 +75,8 @@ void Display::RotateRShift(const Channel &ch)
 
     if(TIME_SHOW_LEVELS)
     {
-        if (ch.IsA()) { showLevelRShiftA = true; }
-        else                    { showLevelRShiftB = true; }
+        if (ch.IsA()) { RShift::show_level_A = true; }
+        else                    { RShift::show_level_B = true; }
         Timer::Enable(ch.IsA() ? TypeTimer::ShowLevelRShift0 : TypeTimer::ShowLevelRShift1,
             TIME_SHOW_LEVELS  * 1000, ch.IsA() ? FuncOnTimerDisableShowLevelRShiftA :
             FuncOnTimerDisableShowLevelRShiftB);
@@ -502,7 +502,7 @@ void Display::DrawScaleLine(int x, bool forTrigLev)
 
 void Display::DrawCursorsWindow()
 {
-    if((!Menu::IsMinimize() || !Menu::IsShown()) && drawRShiftMarkers)
+    if((!Menu::IsMinimize() || !Menu::IsShown()) && RShift::draw_markers)
     {
         DrawScaleLine(2, false);
     }
@@ -550,7 +550,7 @@ void Display::DrawCursorTrigLevel()
     Char(simbols[TRIG_SOURCE]).Draw(x + 5, y - 9, Color::BACK);
     Font::Set(TypeFont::S8);
 
-    if (drawRShiftMarkers && !Menu::IsMinimize())
+    if (RShift::draw_markers && !Menu::IsMinimize())
     {
         DrawScaleLine(WIDTH - 11, true);
         int left = Grid::Right() + 9;
@@ -892,14 +892,14 @@ void Display::DrawTimeForFrame(uint timeTicks)
 
 void Display::DisableShowLevelRShiftA()
 {
-    showLevelRShiftA = false;
+    RShift::show_level_A = false;
     Timer::Disable(TypeTimer::ShowLevelRShift0);
 }
 
 
 void Display::DisableShowLevelRShiftB()
 {
-    showLevelRShiftB = false;
+    RShift::show_level_B = false;
     Timer::Disable(TypeTimer::ShowLevelRShift1);
 }
 
@@ -951,7 +951,7 @@ void Display::ShiftScreen(int delta)
 
 void Display::ChangedRShiftMarkers()
 {
-    drawRShiftMarkers = ALT_MARKERS_HIDE;
+    RShift::draw_markers = ALT_MARKERS_HIDE;
     Timer::Enable(TypeTimer::RShiftMarkersAutoHide, 5000, FuncOnTimerRShiftMarkersAutoHide);
 }
 
@@ -963,7 +963,7 @@ void Display::FuncOnTimerRShiftMarkersAutoHide()
 
 void Display::OnRShiftMarkersAutoHide()
 {
-    drawRShiftMarkers = false;
+    RShift::draw_markers = false;
     Timer::Disable(TypeTimer::RShiftMarkersAutoHide);
 }
 

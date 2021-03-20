@@ -11,6 +11,10 @@
 #include "Settings/SettingsChannel.h"
 
 
+bool RShift::show_level_A = false;
+bool RShift::show_level_B = false;
+bool RShift::draw_markers = false;
+
 bool TrigLev::need_auto_find = false;
 
 
