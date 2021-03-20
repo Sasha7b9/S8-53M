@@ -2,9 +2,6 @@
 #include "common/Settings/SettingsTypes_.h"
 
 
-#define TRIG_SOURCE             (set.trig.source)                       // SettingsTrig.source
-#define TRIG_SOURCE_IS_EXT      (TRIG_SOURCE == TrigSource::Ext)       // \c true, если внешний источник синхронизации.
-
 #define TRIG_POLARITY           (set.trig.polarity)                     // SettingsTrig.polarity
 #define TRIG_POLARITY_IS_FRONT  (TRIG_POLARITY == TrigPolarity::Front)  // \c true, если синхронизация по фронту.
 

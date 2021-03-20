@@ -680,14 +680,14 @@ static void SetTrigLev(TrigSource::E ch, int16 trigLev)
 static void TrigLevLeft()
 {
     static int prevTime = 0;
-    ChangeTrigLev(&prevTime, SetTrigLev, TRIG_SOURCE, -STEP_RSHIFT);
+    ChangeTrigLev(&prevTime, SetTrigLev, TrigSource::Get(), -STEP_RSHIFT);
 }
 
 
 static void TrigLevRight()
 {
     static int prevTime = 0;
-    ChangeTrigLev(&prevTime, SetTrigLev, TRIG_SOURCE, +STEP_RSHIFT);
+    ChangeTrigLev(&prevTime, SetTrigLev, TrigSource::Get(), +STEP_RSHIFT);
 }
 
 

@@ -158,7 +158,7 @@ void SCPI::TRIGGER::OFFSET(puchar buffer)
     if (SCPI::FirstIsInt(buffer, &intVal, -240, 240))
     {
         int trigLev = RShiftZero + 2 * intVal;
-        TrigLev::Set(TRIG_SOURCE, (int16)trigLev);
+        TrigLev::Set(TrigSource::Get(), (int16)trigLev);
         return;
     }
 

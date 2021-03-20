@@ -34,7 +34,7 @@ DEF_CHOICE_3(mcMode, PageTrig::self,
 
 static void OnChanged_Source(bool)
 {
-    TrigSource::Set(TRIG_SOURCE);
+    TrigSource::Set(TrigSource::Get());
 }
 
 DEF_CHOICE_3(mcSource, PageTrig::self,
@@ -44,7 +44,7 @@ DEF_CHOICE_3(mcSource, PageTrig::self,
     "Канал 1", "Channel 1",
     "Канал 2", "Channel 2",
     "Внешний", "External",
-    TRIG_SOURCE, nullptr, OnChanged_Source, nullptr
+    set.trig.source, nullptr, OnChanged_Source, nullptr
 )
 
 static void OnChanged_Polarity(bool)

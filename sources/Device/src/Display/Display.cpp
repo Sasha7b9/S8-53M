@@ -449,9 +449,9 @@ void Display::WriteValueTrigLevel()
 {
     if (showLevelTrigLev && MODE_WORK_IS_DIRECT)
     {
-        float trigLev = RSHIFT_2_ABS(TrigLev::Get(), Range::Get((Channel::E)TRIG_SOURCE));     // WARN Здесь для внешней
+        float trigLev = RSHIFT_2_ABS(TrigLev::Get(), Range::Get((Channel::E)TrigSource::Get()));     // WARN Здесь для внешней
                                                                     // синхронизации неправильно рассчитывается уровень.
-        TrigSource::E trigSource = TRIG_SOURCE;
+        TrigSource::E trigSource = TrigSource::Get();
         if (TRIG_INPUT_IS_AC && trigSource <= TrigSource::B)
         {
             int16 rShift = RShift::Get((Channel::E)trigSource);
@@ -511,7 +511,7 @@ void Display::DrawCursorsWindow()
 
 void Display::DrawCursorTrigLevel()
 {
-    TrigSource::E ch = TRIG_SOURCE;
+    TrigSource::E ch = TrigSource::Get();
     if (ch == TrigSource::Ext)
     {
         return;
@@ -547,7 +547,7 @@ void Display::DrawCursorTrigLevel()
 
     const char simbols[3] = {'1', '2', 'В'};
 
-    Char(simbols[TRIG_SOURCE]).Draw(x + 5, y - 9, Color::BACK);
+    Char(simbols[TrigSource::Get()]).Draw(x + 5, y - 9, Color::BACK);
     Font::Set(TypeFont::S8);
 
     if (RShift::draw_markers && !Menu::IsMinimize())
@@ -558,11 +558,11 @@ void Display::DrawCursorTrigLevel()
         int shiftFullMin = RShiftMin + TrigLevMin;
         int shiftFullMax = RShiftMax + TrigLevMax;
         scale = (float)height / (shiftFullMax - shiftFullMin);
-        int shiftFull = TrigLev::Get() + (TRIG_SOURCE_IS_EXT ? 0 : RShift::Get((Channel::E)ch));
+        int shiftFull = TrigLev::Get() + (TrigSource::IsExt() ? 0 : RShift::Get((Channel::E)ch));
         int yFull = static_cast<int>(Grid::TOP + DELTA + height - scale * (shiftFull - RShiftMin - TrigLevMin) - 4);
         Region(4, 6).Fill(left + 2, yFull + 1, Color::Trig());
         Font::Set(TypeFont::S5);
-        Char(simbols[TRIG_SOURCE]).Draw(left + 3, yFull - 5, Color::BACK);
+        Char(simbols[TrigSource::Get()]).Draw(left + 3, yFull - 5, Color::BACK);
         Font::Set(TypeFont::S8);
     }
 }
@@ -724,7 +724,7 @@ void Display::DrawLowPart()
     {
         pchar source[3] = { "1", "2", "\x82" };
 
-        Text(String("с\xa5\x10%s", source[TRIG_SOURCE])).Draw(x, y1, Color::Trig());
+        Text(String("с\xa5\x10%s", source[TrigSource::Get()])).Draw(x, y1, Color::Trig());
     }
 
     if (MODE_WORK_IS_DIRECT)

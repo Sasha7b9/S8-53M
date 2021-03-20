@@ -131,7 +131,7 @@ void FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::E type)
 
     // Параметры синхронизации
     static const uint maskSource[3] = {0x000000, 0x800000, 0x400000};
-    data |= maskSource[TRIG_SOURCE];
+    data |= maskSource[TrigSource::Get()];
 
     static const uint maskInput[4] = {0x000000, 0x030000, 0x020000, 0x010000};
     data |= maskInput[TRIG_INPUT];
@@ -189,7 +189,7 @@ void Range::Load(const Channel &ch)
 {
     FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::Range0);
     RShift::Load(ch);
-    if (ch == (Channel::E)TRIG_SOURCE)
+    if (ch == (Channel::E)TrigSource::Get())
     {
         TrigLev::Load();
     }
@@ -492,12 +492,38 @@ bool Range::Decrease(const Channel &ch)
 
 void TrigSource::Set(E trigSource)
 {
-    TRIG_SOURCE = trigSource;
+    set.trig.source = trigSource;
+
     FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::TrigParam);
-    if (!TRIG_SOURCE_IS_EXT)
+
+    if (!TrigSource::IsExt())
     {
-        TrigLev::Set(TRIG_SOURCE, TrigLev::Get());
+        TrigLev::Set(TrigSource::Get(), TrigLev::Get());
     }
+}
+
+
+TrigSource::E TrigSource::Get()
+{
+    return set.trig.source;
+}
+
+
+bool TrigSource::IsA()
+{
+    return (set.trig.source == TrigSource::A);
+}
+
+
+bool TrigSource::IsB()
+{
+    return (set.trig.source == TrigSource::B);
+}
+
+
+bool TrigSource::IsExt()
+{
+    return (set.trig.source == TrigSource::Ext);
 }
 
 
@@ -549,11 +575,12 @@ void ChannelFiltr::Enable(const Channel &ch, bool enable)
 
 void TrigLev::FindAndSet()
 {
-    TrigSource::E trigSource = TRIG_SOURCE;
-    if (/*Storage::AllDatas() == 0 ||*/ TRIG_SOURCE_IS_EXT)
+    if (/*Storage::AllDatas() == 0 ||*/ TrigSource::IsExt())
     {
         return;
     }
+
+    TrigSource::E trigSource = TrigSource::Get();
 
     Channel::E chanTrig = static_cast<Channel::E>(trigSource);
     uint8 *data0 = 0;

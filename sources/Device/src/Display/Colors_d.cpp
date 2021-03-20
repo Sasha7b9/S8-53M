@@ -5,11 +5,9 @@
 
 Color Color::Trig()
 {
-    TrigSource::E trigChan = TRIG_SOURCE;
-
-    if (trigChan == TrigSource::A || trigChan == TrigSource::B)
+    if (TrigSource::IsA() || TrigSource::IsB())
     {
-        return Channel((Channel::E)trigChan).GetColor();
+        return Channel((Channel::E)TrigSource::Get()).GetColor();
     }
 
     return Color::FILL;

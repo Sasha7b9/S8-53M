@@ -485,6 +485,11 @@ struct TrigSource
     };
 
     static void Set(E source);
+
+    static E Get();
+    static bool IsA();
+    static bool IsB();
+    static bool IsExt();
 };
 
 

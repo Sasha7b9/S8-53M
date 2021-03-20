@@ -57,7 +57,7 @@ bool AutoFinderFPGA::FindWave(Channel::E ch)
         if (tBase != TBase::Count)
         {
             TBase::Set(tBase);
-            TRIG_SOURCE = static_cast<TrigSource::E>(ch);
+            set.trig.source = static_cast<TrigSource::E>(ch);
             return true;
         }
     }
