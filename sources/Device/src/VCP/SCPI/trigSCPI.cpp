@@ -116,7 +116,7 @@ void SCPI::TRIGGER::INPUT(puchar buffer)
         else if (3 == value)    { TrigInput::Set(TrigInput::HPF); }
         else if (4 == value)
         {
-            SCPI_SEND(":TRIGGER:INPUT %s", map[TRIG_INPUT].key);
+            SCPI_SEND(":TRIGGER:INPUT %s", map[TrigInput::Get()].key);
         }
     LEAVE_ANALYSIS
 }

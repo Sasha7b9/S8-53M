@@ -2,9 +2,6 @@
 #include "common/Settings/SettingsTypes_.h"
 
 
-#define TRIG_INPUT              (set.trig.input)                        // SettingsTrig.input
-#define TRIG_INPUT_IS_AC        (TRIG_INPUT == TrigInput::AC)           // \c true, если закрытый вход синхронизации.
-
 #define TRIG_LEVEL(source)      (set.trig.levelRel[source])             // SettingsTrig.levelRel
 
 #define MODE_LONG_PRESS_TRIG    (set.trig.modeLongPressTrig)            // SettingsTrig.modeLongPressTrig

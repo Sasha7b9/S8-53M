@@ -452,7 +452,7 @@ void Display::WriteValueTrigLevel()
         float trigLev = RSHIFT_2_ABS(TrigLev::Get(), Range::Get((Channel::E)TrigSource::Get()));     // WARN Здесь для внешней
                                                                     // синхронизации неправильно рассчитывается уровень.
         TrigSource::E trigSource = TrigSource::Get();
-        if (TRIG_INPUT_IS_AC && trigSource <= TrigSource::B)
+        if (TrigInput::IsAC() && trigSource <= TrigSource::B)
         {
             int16 rShift = RShift::Get((Channel::E)trigSource);
             float rShiftAbs = RSHIFT_2_ABS(rShift, Range::Get((Channel::E)trigSource));
@@ -751,9 +751,9 @@ void Display::DrawLowPart()
             "\xb1\xb2"
         };
 
-        Text(String("\xa5\x10%s\x10\xa5\x10%s\x10\xa5\x10", couple[TRIG_INPUT], polar[TrigPolarity::Get()])).Draw(x + 18, y1);
-        Char(filtr[TRIG_INPUT][0]).Draw(x + 45, y1);
-        Char(filtr[TRIG_INPUT][1]).Draw(x + 53, y1);
+        Text(String("\xa5\x10%s\x10\xa5\x10%s\x10\xa5\x10", couple[TrigInput::Get()], polar[TrigPolarity::Get()])).Draw(x + 18, y1);
+        Char(filtr[TrigInput::Get()][0]).Draw(x + 45, y1);
+        Char(filtr[TrigInput::Get()][1]).Draw(x + 53, y1);
     }
 
     if (MODE_WORK_IS_DIRECT)

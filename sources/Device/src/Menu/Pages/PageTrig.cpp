@@ -68,7 +68,7 @@ DEF_CHOICE_2(mcPolarity, PageTrig::self,
 
 static void OnChanged_Input(bool)
 {
-    TrigInput::Set(TRIG_INPUT);
+    TrigInput::Set(TrigInput::Get());
 }
 
 DEF_CHOICE_4(mcInput, PageTrig::self,
@@ -90,7 +90,7 @@ DEF_CHOICE_4(mcInput, PageTrig::self,
     "ÀÑ", "AC",
     "ÔÍ×", "LPF",
     "ÔÂ×", "HPF",
-    TRIG_INPUT, nullptr, OnChanged_Input, nullptr
+    set.trig.input, nullptr, OnChanged_Input, nullptr
 )
 
 DEF_CHOICE_2(mcAutoFind_Mode, PageTrig::PageAutoFind::self,

@@ -529,6 +529,10 @@ struct TrigInput
     };
 
     static void Set(E input);
+
+    static E Get();
+
+    static bool IsAC();
 };
 
 

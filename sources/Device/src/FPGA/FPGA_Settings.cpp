@@ -134,7 +134,7 @@ void FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::E type)
     data |= maskSource[TrigSource::Get()];
 
     static const uint maskInput[4] = {0x000000, 0x030000, 0x020000, 0x010000};
-    data |= maskInput[TRIG_INPUT];
+    data |= maskInput[TrigInput::Get()];
 
     BUS::WriteToAnalog(type, data);
 }
@@ -573,8 +573,20 @@ void TrigPolarity::Load()
 
 void TrigInput::Set(E trigInput)
 {
-    TRIG_INPUT = trigInput;
+    set.trig.input = trigInput;
     FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::TrigParam);
+}
+
+
+TrigInput::E TrigInput::Get()
+{
+    return set.trig.input;
+}
+
+
+bool TrigInput::IsAC()
+{
+    return (set.trig.input == TrigInput::AC);
 }
 
 
