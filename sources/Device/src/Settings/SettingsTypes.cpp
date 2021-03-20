@@ -602,3 +602,21 @@ bool ScaleFFT::IsLinear()
 {
     return (set.math.scaleFFT == ScaleFFT::Linear);
 }
+
+
+bool WindowFFT::IsHamming()
+{
+    return (set.math.windowFFT == WindowFFT::Hamming);
+}
+
+
+bool WindowFFT::IsBlackman()
+{
+    return (set.math.windowFFT == WindowFFT::Blackman);
+}
+
+
+bool WindowFFT::IsHann()
+{
+    return (set.math.windowFFT == WindowFFT::Hann);
+}

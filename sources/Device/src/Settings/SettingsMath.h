@@ -1,11 +1,6 @@
 #pragma once
 
 
-#define WINDOW_FFT                  (set.math.windowFFT)                // SettingsMath.windowFFT
-#define WINDOW_FFT_IS_HAMMING       (WINDOW_FFT == WindowFFT::Hamming)
-#define WINDOW_FFT_IS_BLACKMAN      (WINDOW_FFT == WindowFFT::Blackman)
-#define WINDOW_FFT_IS_HANN          (WINDOW_FFT == WindowFFT::Hann)
-
 #define FFT_MAX_DB                  (set.math.fftMaxDB)                 // SettingsMath.fftMaxDB
 
 #define MATH_FUNC                   (set.math.func)                     // SettingsMath.func
