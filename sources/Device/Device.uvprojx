@@ -1938,11 +1938,6 @@
               <FilePath>.\src\Settings\SettingsCursors.h</FilePath>
             </File>
             <File>
-              <FileName>SettingsMath.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Settings\SettingsMath.h</FilePath>
-            </File>
-            <File>
               <FileName>SettingsTypes_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Settings\SettingsTypes_.h</FilePath>
@@ -4116,11 +4111,6 @@
               <FileName>SettingsCursors.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Settings\SettingsCursors.h</FilePath>
-            </File>
-            <File>
-              <FileName>SettingsMath.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Settings\SettingsMath.h</FilePath>
             </File>
             <File>
               <FileName>SettingsTypes_.h</FileName>

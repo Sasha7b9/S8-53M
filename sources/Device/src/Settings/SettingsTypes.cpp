@@ -662,3 +662,21 @@ bool ModeDrawMath::IsSeparate()
 {
     return (set.math.modeDraw == ModeDrawMath::Separate);
 }
+
+
+ModeRegSet::E ModeRegSet::Get()
+{
+    return set.math.modeRegSet;
+}
+
+
+bool ModeRegSet::IsRange()
+{
+    return (set.math.modeRegSet == ModeRegSet::Range);
+}
+
+
+bool ModeRegSet::IsRShift()
+{
+    return (set.math.modeRegSet == ModeRegSet::RShift);
+}

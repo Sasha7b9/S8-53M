@@ -193,7 +193,7 @@ static void OnRegSet_Math_Function(int delta)
         return;
     }
 
-    if (MATH_MODE_REG_SET_IS_RSHIFT)
+    if (ModeRegSet::IsRShift())
     {
         int16 prevRShift = RShift::GetMath();
         int16 rShift = prevRShift;
@@ -226,7 +226,7 @@ static void OnRegSet_Math_Function(int delta)
             }
         }
     }
-    if (MATH_MODE_REG_SET_IS_RANGE)
+    if (ModeRegSet::IsRange())
     {
         static int sum = 0;
         sum -= delta;
@@ -295,7 +295,7 @@ DEF_SMALL_BUTTON(sbMath_Function_Type, PageService::PageMath::PageFunction::self
 
 static void OnPress_Math_Function_ModeRegSet()
 {
-    GF::CircleIncrease<int8>((int8 *)&MATH_MODE_REG_SET, 0, 1);
+    GF::CircleIncrease<int8>((int8 *)&set.math.modeRegSet, 0, 1);
 }
 
 static void Draw_Math_Function_ModeRegSet_Range(int x, int y)
@@ -311,7 +311,7 @@ static void Draw_Math_Function_ModeRegSet_RShift(int x, int y)
 static void Draw_Math_Function_ModeRegSet(int x, int y)
 {
     const pFuncVII funcs[2] = { Draw_Math_Function_ModeRegSet_Range, Draw_Math_Function_ModeRegSet_RShift };
-    funcs[MATH_MODE_REG_SET](x, y);
+    funcs[ModeRegSet::Get()](x, y);
 }
 
 static const arrayHints hintsMath_Function_ModeRegSet =
@@ -330,7 +330,7 @@ DEF_SMALL_BUTTON(sbMath_Function_ModeRegSet, PageService::PageMath::PageFunction
 static void OnPress_Math_Function_RangeA()
 {
     set.math.range = Range::GetA();
-    MATH_MULTIPLIER = Divider::GetA();
+    set.math.multiplier = Divider::GetA();
 }
 
 static void Draw_Math_Function_RangeA(int x, int y)
@@ -348,7 +348,7 @@ DEF_SMALL_BUTTON(sbMath_Function_RangeA, PageService::PageMath::PageFunction::se
 static void OnPress_Math_Function_RangeB()
 {
     set.math.range = Range::GetB();
-    MATH_MULTIPLIER = Divider::GetB();
+    set.math.multiplier = Divider::GetB();
 }
 
 static void Draw_Math_Function_RangeB(int x, int y)
