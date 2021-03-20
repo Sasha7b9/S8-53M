@@ -432,7 +432,7 @@ int16 TShift::Min()
     {-511, -383, -255},
     {-511, -255, 0} };
 
-    ENUM_POINTS_FPGA::E numPoints = ENUM_POINTS;
+    ENUM_POINTS_FPGA::E numPoints = FPGA::SET::ENumPointsInChannel();
     if ((int)numPoints < 3)
     {
         return m[numPoints][SET_TPOS];

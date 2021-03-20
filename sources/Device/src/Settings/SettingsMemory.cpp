@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "FPGA/FPGA.h"
 #include "FPGA/FPGA_types.h"
 #include "Settings/Settings.h"
 
@@ -12,12 +13,13 @@ int sMemory_GetNumPoints(bool forCalculate)
         {281, 512, 512}
     };
 
-    if (ENUM_POINTS_IS_1024 && forCalculate)
+    if ((FPGA::SET::ENumPointsInChannel() == ENUM_POINTS_FPGA::_1024) &&
+        forCalculate)
     {
         return FPGA_MAX_POINTS_FOR_CALCULATE;
     }
 
-    return numPoints[PeackDetMode::Get()][ENUM_POINTS];
+    return numPoints[PeackDetMode::Get()][FPGA::SET::ENumPointsInChannel()];
 }
 
 

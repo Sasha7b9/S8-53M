@@ -1,5 +1,6 @@
 // 2021/03/15 13:29:36 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
+#include "FPGA/FPGA.h"
 #include "FPGA/DataSettings.h"
 #include "Settings/Settings.h"
 
@@ -21,7 +22,7 @@ void DataSettings::Fill()
     peakDet = (uint)PeackDetMode::Get();
     multiplier0 = Divider::GetA();
     multiplier1 = Divider::GetB();
-    enum_points = ENUM_POINTS;
+    enum_points = FPGA::SET::ENumPointsInChannel();
     time = HAL_RTC::GetPackedTime();
 }
 

@@ -54,7 +54,7 @@ void PageTime::OnChanged_PeakDet(bool active)
         {
             int centerX = SHIFT_IN_MEMORY + Grid::Width() / 2;
             SHIFT_IN_MEMORY = static_cast<int16>(centerX * 2 - Grid::Width() / 2);
-            ENUM_POINTS = set.time.oldNumPoints;
+            set.memory.fpgaNumPoints = set.time.oldNumPoints;
             ChangeC_Memory_NumPoints(true);
         }
         else if (PeackDetMode::IsEnabled())

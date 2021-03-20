@@ -783,7 +783,7 @@ DEF_CHOICE_3(mcMemoryNumPoints, PageMemory::self,
     "281",  "281",
     "512",  "512",
     "1024", "1024",
-    ENUM_POINTS, FuncActiveMemoryNumPoinst, ChangeC_Memory_NumPoints, nullptr
+    set.memory.fpgaNumPoints, FuncActiveMemoryNumPoinst, ChangeC_Memory_NumPoints, nullptr
 )
 
 DEF_CHOICE_2(mcMemoryExtName, PageMemory::PageExternal::self,
