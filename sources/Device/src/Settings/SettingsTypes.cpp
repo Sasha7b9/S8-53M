@@ -527,19 +527,19 @@ bool FunctionTime::IsShiftInMemory()
 
 StartMode::E StartMode::Get()
 {
-    return set.trig.startMode;
+    return set.trig.start_mode;
 }
 
 
 bool StartMode::IsAuto()
 {
-    return (set.trig.startMode == StartMode::Auto);
+    return (set.trig.start_mode == StartMode::Auto);
 }
 
 
 bool StartMode::IsSingle()
 {
-    return (set.trig.startMode == StartMode::Single);
+    return (set.trig.start_mode == StartMode::Single);
 }
 
 
@@ -679,4 +679,28 @@ bool ModeRegSet::IsRange()
 bool ModeRegSet::IsRShift()
 {
     return (set.math.modeRegSet == ModeRegSet::RShift);
+}
+
+
+TypeGrid::E Get()
+{
+    return set.display.typeGrid;
+}
+
+
+bool TypeGrid::Is1()
+{
+    return (set.display.typeGrid == TypeGrid::_1);
+}
+
+
+bool TypeGrid::Is2()
+{
+    return (set.display.typeGrid == TypeGrid::_2);
+}
+
+
+bool TypeGrid::Is3()
+{
+    return (set.display.typeGrid == TypeGrid::_3);
 }

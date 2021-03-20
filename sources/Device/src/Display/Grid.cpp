@@ -199,17 +199,18 @@ void Grid::Draw(int left, int top, int width, int height)
     int centerY = top + height / 2;
 
     Color::GRID.SetAsCurrent();
-    if (TYPE_GRID_IS_1)
+
+    if (TypeGrid::Is1())
     {
         DrawType1(left, top, right, bottom, static_cast<float>(centerX), static_cast<float>(centerY), deltaX,
             deltaY, stepX, stepY);
     }
-    else if (TYPE_GRID_IS_2)
+    else if (TypeGrid::Is2())
     {
         DrawType2(left, top, right, bottom, static_cast<int>(deltaX), static_cast<int>(deltaY),
             static_cast<int>(stepX), static_cast<int>(stepY));
     }
-    else if (TYPE_GRID_IS_3)
+    else if (TypeGrid::Is3())
     {
         DrawType3(left, top, right, bottom, centerX, centerY, static_cast<int>(deltaX), static_cast<int>(deltaY),
             static_cast<int>(stepX), static_cast<int>(stepY));

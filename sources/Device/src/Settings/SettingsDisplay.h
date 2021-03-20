@@ -17,11 +17,6 @@
 #define MODE_DRAW_SIGNAL            (set.display.modeDrawSignal)                // SettingsDisplay.modeDrawSignal
 #define MODE_DRAW_IS_SIGNAL_LINES   (MODE_DRAW_SIGNAL == ModeDrawSignal::Lines) // \c true, если сигнал выводится линиями.
 
-#define TYPE_GRID                   (set.display.typeGrid)                      // SettingsDisplay.typeGrid
-#define TYPE_GRID_IS_1              (TYPE_GRID == TypeGrid::_1)                 // Установлен тип сетки TypeGrid::_1.
-#define TYPE_GRID_IS_2              (TYPE_GRID == TypeGrid::_2)                 // Установлен тип сетки TypeGrid_2.
-#define TYPE_GRID_IS_3              (TYPE_GRID == TypeGrid::_3)                 // Установлен тип сетки TypeGrid_3.
-
 #define ENUM_ACCUM                  (set.display.enumAccumulation)              // SettingsDisplay.numAccumulation
 #define ENUM_ACCUM_IS_NONE          (ENUM_ACCUM == ENumAccumulation::_1)        // \c true, если накопление выключено.
 #define ENUM_ACCUM_IS_INFINITY      (ENUM_ACCUM == ENumAccumulation::Infinity)  // \c true, если установлено бесконечное число накоплений.

@@ -29,7 +29,7 @@ DEF_CHOICE_3(mcMode, PageTrig::self,
     "Авто ", "Auto",
     "Ждущий", "Wait",
     "Однократный", "Single",
-    set.trig.startMode, nullptr, PageTrig::OnPress_Mode, nullptr
+    set.trig.start_mode, nullptr, PageTrig::OnPress_Mode, nullptr
 )
 
 static void OnChanged_Source(bool)

@@ -71,14 +71,23 @@ struct ModeDrawSignal {enum E
 
 
 // Тип сетки на экране.
-struct TypeGrid { enum E
+struct TypeGrid
 {
-    _1,
-    _2,
-    _3,
-    _4,
-    Count
-};};
+    enum E
+    {
+        _1,
+        _2,
+        _3,
+        _4,
+        Count
+    };
+
+    static E Get();
+
+    static bool Is1();
+    static bool Is2();
+    static bool Is3();
+};
 
 
 // Цветовая схема

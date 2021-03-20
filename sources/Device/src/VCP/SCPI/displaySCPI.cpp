@@ -333,10 +333,10 @@ void SCPI::DISPLAY::GRID_TYPE(puchar buffer)
     };
 
     ENTER_ANALYSIS
-        if (value <= 3) { TYPE_GRID = (TypeGrid::E)value; }
+        if (value <= 3) { set.display.typeGrid = (TypeGrid::E)value; }
         else if (4 == value)
         {
-            SCPI_SEND(":DISPLAY:GRID:TYPE %s", map[TYPE_GRID].key);
+            SCPI_SEND(":DISPLAY:GRID:TYPE %s", map[TypeGrid::Get()].key);
         }
     LEAVE_ANALYSIS
 }

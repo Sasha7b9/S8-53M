@@ -217,7 +217,7 @@ struct SettingsService
 // Настройки синхронизации
 struct SettingsTrig
 {
-    StartMode::E         startMode;          // Режим запуска.
+    StartMode::E         start_mode;         // Режим запуска.
     TrigSource::E        source;             // Источник.
     TrigPolarity::E      polarity;           // Тип синхронизации.
     TrigInput::E         input;              // Вход синхронизации.
