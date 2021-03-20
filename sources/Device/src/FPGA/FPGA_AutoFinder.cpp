@@ -52,7 +52,7 @@ bool AutoFinderFPGA::FindWave(Channel::E ch)
     //LOG_WRITE("Range %s", RangeName(range));
     if (range != Range::Count)
     {
-        SET_RANGE(ch) = range;
+        set.chan[ch].range = range;
         TBase::E tBase = AccurateFindTBase(ch);
         if (tBase != TBase::Count)
         {

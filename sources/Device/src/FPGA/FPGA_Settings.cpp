@@ -148,12 +148,12 @@ void Range::Set(const Channel &ch, Range::E range)
     }
     if (range < Range::Count)
     {
-        SET_RANGE(ch) = range;
+        set.chan[ch].range = range;
 
         if (LINKING_RSHIFT_IS_VOLTAGE)
         {
-            float rShiftAbs = RSHIFT_2_ABS(RShift::Get(ch), SET_RANGE(ch));
-            float trigLevAbs = RSHIFT_2_ABS(TRIG_LEVEL(ch), SET_RANGE(ch));
+            float rShiftAbs = RSHIFT_2_ABS(RShift::Get(ch), Range::Get(ch));
+            float trigLevAbs = RSHIFT_2_ABS(TRIG_LEVEL(ch), Range::Get(ch));
             set.chan[ch].rShiftRel = (int16)RShift::ToRel(rShiftAbs, range);
             TRIG_LEVEL(ch) = (int16)RShift::ToRel(trigLevAbs, range);
         }
@@ -165,6 +165,12 @@ void Range::Set(const Channel &ch, Range::E range)
         Display::ShowWarningBad(ch == ChA ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
     }
 };
+
+
+Range::E Range::Get(const Channel &ch)
+{
+    return set.chan[ch].range;
+}
 
 
 Range::E Range::GetA()
@@ -245,7 +251,7 @@ void RShift::Load(const Channel &ch)
 {
     static const uint16 mask[2] = {0x2000, 0x6000};
 
-    Range::E range = SET_RANGE(ch);
+    Range::E range = Range::Get(ch);
     ModeCouple::E mode = ModeCouple::Get(ch);
     static const int index[3] = {0, 1, 1};
     int16 rShiftAdd = RSHIFT_ADD(ch, range, index[mode]);
@@ -453,9 +459,9 @@ String TShift::ToString(int16 tshift_rel)
 bool Range::Increase(const Channel &ch)
 {
     bool retValue = false;
-    if (SET_RANGE(ch) < Range::Count - 1)
+    if (Range::Get(ch) < Range::Count - 1)
     {
-        Set(ch, (Range::E)(SET_RANGE(ch) + 1));
+        Set(ch, (Range::E)(Range::Get(ch) + 1));
         retValue = true;
     }
     else
@@ -470,9 +476,9 @@ bool Range::Increase(const Channel &ch)
 bool Range::Decrease(const Channel &ch)
 {
     bool retValue = false;
-    if (SET_RANGE(ch) > 0)
+    if (Range::Get(ch) > 0)
     {
-        Range::Set(ch, (Range::E)(SET_RANGE(ch) - 1));
+        Range::Set(ch, (Range::E)(Range::Get(ch) - 1));
         retValue = true;
     }
     else

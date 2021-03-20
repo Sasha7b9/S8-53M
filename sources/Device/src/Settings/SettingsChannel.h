@@ -8,8 +8,6 @@
 #define SET_RSHIFT_MATH         (set.math.rShift)                   // SettingsMath.rShift
 #define SET_RANGE_MATH          (set.math.range)                    // SettingsMath.range
 
-#define SET_RANGE(ch)           (set.chan[ch].range)                // SettingsChannel.range
-
 #define SET_DIVIDER(ch)         (set.chan[ch].divider)              // SettingsChannel.divider
 #define SET_DIVIDER_A           SET_DIVIDER(ChA)
 #define SET_DIVIDER_B           SET_DIVIDER(ChB)

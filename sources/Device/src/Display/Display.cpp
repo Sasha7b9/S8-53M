@@ -201,8 +201,8 @@ void Display::WriteCursors()
             Cursors::GetVoltage(source, 0).Draw(x, y1);
             Cursors::GetVoltage(source, 1).Draw(x, y2);
             x = startX + 49;
-            float pos0 = MathFPGA::VoltageCursor(Cursors::GetPosU(source, 0), SET_RANGE(source), RShift::Get(source));
-            float pos1 = MathFPGA::VoltageCursor(Cursors::GetPosU(source, 1), SET_RANGE(source), RShift::Get(source));
+            float pos0 = MathFPGA::VoltageCursor(Cursors::GetPosU(source, 0), Range::Get(source), RShift::Get(source));
+            float pos1 = MathFPGA::VoltageCursor(Cursors::GetPosU(source, 1), Range::Get(source), RShift::Get(source));
             float delta = std::fabsf(pos1 - pos0);
             Text(":dU=").Draw(x, y1);
             GF::Voltage2String(delta, false).Draw(x + 17, y1);
@@ -449,13 +449,13 @@ void Display::WriteValueTrigLevel()
 {
     if (showLevelTrigLev && MODE_WORK_IS_DIRECT)
     {
-        float trigLev = RSHIFT_2_ABS(TrigLev::Get(), SET_RANGE(TRIG_SOURCE));     // WARN Здесь для внешней
+        float trigLev = RSHIFT_2_ABS(TrigLev::Get(), Range::Get((Channel::E)TRIG_SOURCE));     // WARN Здесь для внешней
                                                                     // синхронизации неправильно рассчитывается уровень.
         TrigSource::E trigSource = TRIG_SOURCE;
         if (TRIG_INPUT_IS_AC && trigSource <= TrigSource::B)
         {
             int16 rShift = RShift::Get((Channel::E)trigSource);
-            float rShiftAbs = RSHIFT_2_ABS(rShift, SET_RANGE(trigSource));
+            float rShiftAbs = RSHIFT_2_ABS(rShift, Range::Get((Channel::E)trigSource));
             trigLev += rShiftAbs;
         }
         char buffer[20];
@@ -628,7 +628,7 @@ void Display::WriteTextVoltage(const Channel &ch, int x, int y)
     bool inverse = SET_INVERSE(ch);
     ModeCouple::E modeCouple = ModeCouple::Get(ch);
     Divider::E multiplier = SET_DIVIDER(ch);
-    Range::E range = SET_RANGE(ch);
+    Range::E range = Range::Get(ch);
     uint rShift = (uint)RShift::Get(ch);
     bool enable = SET_ENABLED(ch);
 
