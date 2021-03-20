@@ -376,7 +376,9 @@ struct Divider {
         _1,
         _10
     };
+
     static int ToAbs(Divider::E divider);
+    static int ToAbs(const Channel &ch);
 
     static E Get(const Channel &ch);
     static E GetA();

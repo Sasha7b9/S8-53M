@@ -170,7 +170,7 @@ float Processing::CalculateVoltageMax(Channel::E ch)
     }
 
     return POINT_2_VOLTAGE(max, dataSet->range[ch], (ch == ChA) ? dataSet->r_shift_a : dataSet->rShiftCh1) *
-        VALUE_MULTIPLIER(ch);
+        Divider::ToAbs(ch);
 }
 
 float Processing::CalculateVoltageMin(Channel::E ch)
@@ -183,7 +183,7 @@ float Processing::CalculateVoltageMin(Channel::E ch)
     }
 
     return POINT_2_VOLTAGE(min, dataSet->range[ch], (ch == ChA) ? dataSet->r_shift_a : dataSet->rShiftCh1) *
-        VALUE_MULTIPLIER(ch);
+        Divider::ToAbs(ch);
 }
 
 float Processing::CalculateVoltagePic(Channel::E ch)
@@ -212,7 +212,7 @@ float Processing::CalculateVoltageMinSteady(Channel::E ch)
 
     return (POINT_2_VOLTAGE(min, dataSet->range[ch], (ch == ChA) ?
         dataSet->r_shift_a :
-        dataSet->rShiftCh1) * VALUE_MULTIPLIER(ch));
+        dataSet->rShiftCh1) * Divider::ToAbs(ch));
 }
 
 float Processing::CalculateVoltageMaxSteady(Channel::E ch)
@@ -229,7 +229,7 @@ float Processing::CalculateVoltageMaxSteady(Channel::E ch)
     Range::E range = dataSet->range[ch];
     uint rShift = (ch == ChA) ? dataSet->r_shift_a : dataSet->rShiftCh1;
 
-    return (POINT_2_VOLTAGE(max, range, rShift) * VALUE_MULTIPLIER(ch));
+    return (POINT_2_VOLTAGE(max, range, rShift) * Divider::ToAbs(ch));
 }
 
 float Processing::CalculateVoltageVybrosPlus(Channel::E ch)
@@ -248,7 +248,7 @@ float Processing::CalculateVoltageVybrosPlus(Channel::E ch)
     int16 rShift = (ch == ChA) ? (int16)dataSet->r_shift_a : (int16)dataSet->rShiftCh1;
 
     return std::fabsf(POINT_2_VOLTAGE(maxSteady, dataSet->range[ch], rShift) -
-        POINT_2_VOLTAGE(max, dataSet->range[ch], rShift)) * VALUE_MULTIPLIER(ch);
+        POINT_2_VOLTAGE(max, dataSet->range[ch], rShift)) * Divider::ToAbs(ch);
 }
 
 float Processing::CalculateVoltageVybrosMinus(Channel::E ch)
@@ -266,7 +266,7 @@ float Processing::CalculateVoltageVybrosMinus(Channel::E ch)
     int16 rShift = (ch == ChA) ? (int16)dataSet->r_shift_a : (int16)dataSet->rShiftCh1;
 
     return std::fabsf(POINT_2_VOLTAGE(minSteady, dataSet->range[ch], rShift) -
-        POINT_2_VOLTAGE(min, dataSet->range[ch], rShift)) * VALUE_MULTIPLIER(ch);
+        POINT_2_VOLTAGE(min, dataSet->range[ch], rShift)) * Divider::ToAbs(ch);
 }
 
 float Processing::CalculateVoltageAmpl(Channel::E ch)
@@ -305,7 +305,7 @@ float Processing::CalculateVoltageAverage(Channel::E ch)
     }
 
     return (POINT_2_VOLTAGE(aveRel, dataSet->range[ch], (ch == ChA) ? dataSet->r_shift_a : dataSet->rShiftCh1) *
-        VALUE_MULTIPLIER(ch));
+        Divider::ToAbs(ch));
 }
 
 float Processing::CalculateVoltageRMS(Channel::E ch)
@@ -329,7 +329,7 @@ float Processing::CalculateVoltageRMS(Channel::E ch)
         markerHor[ch][0] = MathFPGA::VoltageToPoint(std::sqrtf(rms / period), dataSet->range[ch], rShift);
     }
 
-    return std::sqrtf(rms / period) * VALUE_MULTIPLIER(ch);
+    return std::sqrtf(rms / period) * Divider::ToAbs(ch);
 }
 
 float Processing::CalculatePeriod(Channel::E ch)
