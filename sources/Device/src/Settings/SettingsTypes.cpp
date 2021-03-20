@@ -30,6 +30,18 @@ int Divider::ToAbs(Divider::E multiplier)
 }
 
 
+Divider::E Divider::GetA()
+{
+    return set.chan[ChA].divider;
+}
+
+
+Divider::E Divider::GetB()
+{
+    return set.chan[ChB].divider;
+}
+
+
 pchar Range::Name(Range::E range)
 {
     static pchar names[Range::Count + 1] =

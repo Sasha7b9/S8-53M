@@ -9,8 +9,6 @@
 #define SET_RANGE_MATH          (set.math.range)                    // SettingsMath.range
 
 #define SET_DIVIDER(ch)         (set.chan[ch].divider)              // SettingsChannel.divider
-#define SET_DIVIDER_A           SET_DIVIDER(ChA)
-#define SET_DIVIDER_B           SET_DIVIDER(ChB)
 #define SET_DIVIDER_1(ch)       (SET_DIVIDER(ch) == Divider::_1)
 #define SET_DIVIDER_10(ch)      (SET_DIVIDER(ch) == Divider::_10)
 #define VALUE_MULTIPLIER(ch)    (Divider::ToAbs(SET_DIVIDER(ch)))

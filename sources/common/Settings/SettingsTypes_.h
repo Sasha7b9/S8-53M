@@ -6,12 +6,16 @@
 
 
 // Делитель.
-struct Divider { enum E
+struct Divider {
+    enum E
     {
         _1,
         _10
     };
     static int ToAbs(Divider::E divider);
+
+    static E GetA();
+    static E GetB();
 };
 
 

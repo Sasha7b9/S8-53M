@@ -19,8 +19,8 @@ void DataSettings::Fill()
     range[0] = Range::GetA();
     range[1] = Range::GetB();
     peakDet = (uint)PeackDetMode::Get();
-    multiplier0 = SET_DIVIDER_A;
-    multiplier1 = SET_DIVIDER_B;
+    multiplier0 = Divider::GetA();
+    multiplier1 = Divider::GetB();
     enum_points = ENUM_POINTS;
     time = HAL_RTC::GetPackedTime();
 }
