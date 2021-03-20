@@ -90,6 +90,8 @@ public:
 
         // Столько байт нужно для сохранения данных обоих каналов
         static uint BytesForData();
+
+        static bool InRandomizeMode();
     };
 
     struct BUS

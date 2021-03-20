@@ -352,7 +352,7 @@ void RegUPR::Load()
 {
     uint16 data = 0;
 
-    if (FPGA_IN_RANDOMIZE_MODE)
+    if (FPGA::SET::InRandomizeMode())
     {
         _SET_BIT(data, 0);
     }
@@ -388,7 +388,7 @@ void TShift::Load()
 
     FPGA::post = (uint16)tShift;
 
-    if (FPGA_IN_RANDOMIZE_MODE)
+    if (FPGA::SET::InRandomizeMode())
     {
         uint k = 0;
         if (SET_TPOS_IS_LEFT)

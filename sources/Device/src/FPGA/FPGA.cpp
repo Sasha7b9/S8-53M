@@ -510,3 +510,9 @@ uint FPGA::SET::BytesForData()
 
     return result;
 }
+
+
+bool FPGA::SET::InRandomizeMode()
+{
+    return (set.time.tBase < TBase::_100ns);
+}

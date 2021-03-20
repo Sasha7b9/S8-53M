@@ -7,7 +7,7 @@
 
 static bool IsActive_Sample()
 {
-    return FPGA_IN_RANDOMIZE_MODE;
+    return FPGA::SET::InRandomizeMode();
 }
 
 DEF_CHOICE_2(mcSample, PageTime::self,

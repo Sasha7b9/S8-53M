@@ -42,7 +42,7 @@ void ReaderFPGA::ReadData()
 
     DataStorage data;
 
-    if (FPGA_IN_RANDOMIZE_MODE)
+    if (FPGA::SET::InRandomizeMode())
     {
         ReadRandomizeMode(data);
     }
@@ -143,7 +143,7 @@ int ReaderFPGA::CalculateShift()            // \todo Не забыть восстановить функ
     //min += 100;
     //max -= 100;
 
-    if (FPGA_IN_RANDOMIZE_MODE)
+    if (FPGA::SET::InRandomizeMode())
     {
         float tin = static_cast<float>(rand - min) / (max - min) * 10e-9F;
         int retValue = static_cast<int>(tin / 10e-9F * FPGA::Randomizer::Kr[TBase::Get()]);

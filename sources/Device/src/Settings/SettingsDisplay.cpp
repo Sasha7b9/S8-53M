@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "common/Utils/Math_.h"
+#include "FPGA/FPGA.h"
 #include "Settings/Settings.h"
 
 
@@ -45,7 +46,7 @@ bool SettingsDisplay::IsSeparate()
 
 ModeAveraging::E ModeAveraging::Current()
 {
-    if (FPGA_IN_RANDOMIZE_MODE)
+    if (FPGA::SET::InRandomizeMode())
     {
         return ModeAveraging::Around;
     }
@@ -55,7 +56,7 @@ ModeAveraging::E ModeAveraging::Current()
 
 int ENumAveraging::NumAverages()
 {
-    if (FPGA_IN_RANDOMIZE_MODE && (NUM_AVE_FOR_RAND >= NUM_AVE))
+    if (FPGA::SET::InRandomizeMode() && (NUM_AVE_FOR_RAND >= NUM_AVE))
     {
         return NUM_AVE_FOR_RAND;
     }
