@@ -109,7 +109,7 @@ void ReaderFPGA::ReadPoint()
 
 void ReaderFPGA::InverseDataIsNecessary(const Channel &ch, uint8 *data)
 {
-    if (SET_INVERSE(ch))
+    if (ch.IsInversed())
     {
         for (int i = 0; i < FPGA_MAX_POINTS; i++)
         {

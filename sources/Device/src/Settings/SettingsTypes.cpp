@@ -406,6 +406,12 @@ bool Channel::IsEnabled() const
 }
 
 
+bool Channel::IsInversed() const
+{
+    return set.chan[value].inverse;
+}
+
+
 TPos::E TPos::Get()
 {
     return set.time.tPos;

@@ -363,6 +363,7 @@ struct Channel
     bool IsMath() const  { return (value == Channel::Math); }
     operator int() const { return (int)value; }
     Color GetColor() const;
+    bool IsInversed() const;
 };
 
 extern Channel ChA;

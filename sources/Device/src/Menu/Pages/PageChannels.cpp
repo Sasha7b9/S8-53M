@@ -84,7 +84,7 @@ DEF_CHOICE_2(mcInverseA, PageChannelA::self,
     chanInverseEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    SET_INVERSE_A, nullptr, OnChanged_InverseA, nullptr
+    set.chan[ChA].inverse, nullptr, OnChanged_InverseA, nullptr
 )
 
 DEF_CHOICE_2(mcMultiplierA, PageChannelA::self,
@@ -162,7 +162,7 @@ DEF_CHOICE_2(mcInverseB, PageChannelB::self,
     chanInverseEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    SET_INVERSE_B, nullptr, OnChanged_InverseB, nullptr
+    set.chan[ChB].inverse, nullptr, OnChanged_InverseB, nullptr
 )
 
 DEF_CHOICE_2(mcMultiplierB, PageChannelB::self,

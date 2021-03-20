@@ -262,10 +262,10 @@ void RShift::Load(const Channel &ch)
     static const int index[3] = {0, 1, 1};
     int16 rShiftAdd = RSHIFT_ADD(ch, range, index[mode]);
 
-    uint16 rShift = (uint16)(RShift::Get(ch) + (SET_INVERSE(ch) ? -1 : 1) * rShiftAdd);
+    uint16 rShift = (uint16)(RShift::Get(ch) + (ch.IsInversed() ? -1 : 1) * rShiftAdd);
 
     int16 delta = -(rShift - RShiftZero);
-    if (SET_INVERSE(ch))
+    if (ch.IsInversed())
     {
         delta = -delta;
     }

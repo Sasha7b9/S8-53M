@@ -112,11 +112,11 @@ void SCPI::CHANNEL::INVERSE(puchar buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (0 == value)         { SET_INVERSE(ch) = true; }
-        else if (1 == value)    { SET_INVERSE(ch) = false; }
+        if (0 == value)         { set.chan[ch].inverse = true; }
+        else if (1 == value)    { set.chan[ch].inverse = false; }
         else if (2 == value)
         {
-            SCPI_SEND(":CHANNEL%d:SET_INVERSE %s", Tables::GetNumChannel(ch), SET_INVERSE(ch) ? "ON" : "OFF");
+            SCPI_SEND(":CHANNEL%d:SET_INVERSE %s", Tables::GetNumChannel(ch), ch.IsInversed() ? "ON" : "OFF");
         }
     LEAVE_ANALYSIS
 }

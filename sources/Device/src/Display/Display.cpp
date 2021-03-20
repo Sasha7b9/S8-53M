@@ -625,7 +625,7 @@ void Display::WriteTextVoltage(const Channel &ch, int x, int y)
         "\x90"
     };
 
-    bool inverse = SET_INVERSE(ch);
+    bool inverse = ch.IsInversed();
     ModeCouple::E modeCouple = ModeCouple::Get(ch);
     Divider::E multiplier = Divider::Get(ch);
     Range::E range = Range::Get(ch);
