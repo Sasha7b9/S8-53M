@@ -380,12 +380,12 @@ void Menu::ProcessingShortPressureButton()
                 NamePage::E name = ((const Page *)Item::Opened())->GetName();
                 if(button == Key::ChannelA && name == NamePage::ChannelA)
                 {
-                    SET_ENABLED_A = !ChA.IsEnabled();
+                    set.chan[ChA].enable = !ChA.IsEnabled();
                     PageChannelA::OnChanged_Input(true);
                 }
                 else if(button == Key::ChannelB && name == NamePage::ChannelB)
                 {
-                    SET_ENABLED_B = !ChB.IsEnabled();
+                    set.chan[ChB].enable = !ChB.IsEnabled();
                     PageChannelB::OnChanged_Input(true);
                 }
                 else

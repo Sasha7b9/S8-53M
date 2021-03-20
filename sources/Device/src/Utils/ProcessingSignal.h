@@ -23,7 +23,7 @@ public:
     static void InterpolationSinX_X(uint16 data[FPGA_MAX_POINTS], TBase::E tBase);
 
     // Возвращает строку автоматического измерения.
-    static String GetStringMeasure(Measure::E measure, Channel::E ch);
+    static String GetStringMeasure(Measure::E measure, const Channel &ch);
 
     // Расчитать все измерения.
     static void CalculateMeasures();

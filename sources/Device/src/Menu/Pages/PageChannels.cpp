@@ -41,7 +41,7 @@ DEF_CHOICE_2(mcInputA, PageChannelA::self,
     chanInputEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    SET_ENABLED_A, nullptr, PageChannelA::OnChanged_Input, nullptr
+    set.chan[ChA].enable, nullptr, PageChannelA::OnChanged_Input, nullptr
 )
 
 void PageChannelA::OnChanged_Couple(bool)
@@ -119,7 +119,7 @@ DEF_CHOICE_2(mcInputB, PageChannelB::self,
     chanInputEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    SET_ENABLED_B, nullptr, PageChannelB::OnChanged_Input, nullptr
+    set.chan[ChB].enable, nullptr, PageChannelB::OnChanged_Input, nullptr
 )
 
 void PageChannelB::OnChanged_Couple(bool)

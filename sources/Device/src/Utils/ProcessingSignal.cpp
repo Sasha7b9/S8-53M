@@ -1133,9 +1133,9 @@ void Processing::InterpolationSinX_X(uint16 data[FPGA_MAX_POINTS], TBase::E tBas
     }
 }
 
-String Processing::GetStringMeasure(Measure::E measure, Channel::E ch)
+String Processing::GetStringMeasure(Measure::E measure, const Channel &ch)
 {
-    if (!SET_ENABLED(ch))
+    if (!ch.IsEnabled())
     {
         return String("");
     }

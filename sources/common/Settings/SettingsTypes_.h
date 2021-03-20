@@ -355,6 +355,8 @@ struct Channel
     } value;
 
     Channel(E v) : value(v) {}
+    void Enable() const;
+    void Disable() const;
     bool IsEnabled() const;
     bool IsA() const     { return (value == Channel::A); }
     bool IsB() const     { return (value == Channel::B); }

@@ -65,11 +65,11 @@ static void OnTimerDraw()
 
 void FPGA::Calibrator::ProcedureCalibration()
 {
-    bool chanAenable = SET_ENABLED_A;
-    bool chanBenable = SET_ENABLED_B;
+    bool chanAenable = ChA.IsEnabled();
+    bool chanBenable = ChB.IsEnabled();
 
-    SET_ENABLED_A = true;
-    SET_ENABLED_B = true;
+    set.chan[ChA].enable = true;
+    set.chan[ChB].enable = true;
 
     Display::SetDrawMode(DrawMode::Hand, FuncAttScreen);
     Timer::Enable(TypeTimer::TimerDrawHandFunction, 100, OnTimerDraw);
@@ -215,8 +215,8 @@ void FPGA::Calibrator::ProcedureCalibration()
     Display::SetDrawMode(DrawMode::Auto, 0);
     state.state_calibration = StateCalibration::None;
 
-    SET_ENABLED_A = chanAenable;
-    SET_ENABLED_B = chanBenable;
+    set.chan[ChA].enable = chanAenable;
+    set.chan[ChB].enable = chanBenable;
 
     FPGA::OnPressStartStop();
 }

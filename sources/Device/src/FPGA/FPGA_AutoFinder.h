@@ -7,13 +7,13 @@ struct AutoFinderFPGA
 {
     static void Find();
 
-    static bool FindWave(Channel::E ch);
+    static bool FindWave(const Channel &ch);
 
     static Range::E AccurateFindRange(const Channel &ch);
 
-    static TBase::E FindTBase(Channel::E ch);
+    static TBase::E FindTBase(const Channel &ch);
 
-    static TBase::E AccurateFindTBase(Channel::E ch);
+    static TBase::E AccurateFindTBase(const Channel &ch);
 
     static bool auto_find_in_progress;
 

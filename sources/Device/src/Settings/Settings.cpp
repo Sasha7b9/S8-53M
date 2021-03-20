@@ -360,3 +360,15 @@ int8 SettingsChannel::BalanceShiftADC(const Channel &ch)
 {
     return set.chan[ch].balanceShiftADC;
 }
+
+
+void Channel::Enable() const
+{
+    set.chan[value].enable = true;
+}
+
+
+void Channel::Disable() const
+{
+    set.chan[value].enable = false;
+}

@@ -504,9 +504,9 @@ uint FPGA::SET::BytesForData()
 {
     uint result = 0;
 
-    if (SET_ENABLED_A)    { result += BytesInChannel(); }
+    if (ChA.IsEnabled())    { result += BytesInChannel(); }
 
-    if (SET_ENABLED_B)    { result += BytesInChannel(); }
+    if (ChB.IsEnabled())    { result += BytesInChannel(); }
 
     return result;
 }

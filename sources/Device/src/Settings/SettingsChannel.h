@@ -9,7 +9,3 @@
 #define SET_RANGE_MATH          (set.math.range)                    // SettingsMath.range
 
 #define VALUE_MULTIPLIER(ch)    (Divider::ToAbs(Divider::Get(ch)))
-
-#define SET_ENABLED(ch)         (set.chan[ch].enable)               // SettingsChannel.enable
-#define SET_ENABLED_A           SET_ENABLED(ChA)                    // set.chan[ChA].enable
-#define SET_ENABLED_B           SET_ENABLED(ChB)                    // set.chan[ChB].enable

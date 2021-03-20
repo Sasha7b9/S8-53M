@@ -38,14 +38,14 @@ void AutoFinderFPGA::Find()
 }
 
 
-bool AutoFinderFPGA::FindWave(Channel::E ch)
+bool AutoFinderFPGA::FindWave(const Channel &ch)
 {
     Settings settings = set;    // Сохраняем предыдущие настройки
 
     FPGA::Stop(false);
-    SET_ENABLED(ch) = true;
-    TrigSource::Set(static_cast<TrigSource::E>(ch));
-    TrigLev::Set(static_cast<TrigSource::E>(ch), TrigLevZero);
+    ch.Enable();
+    TrigSource::Set(static_cast<TrigSource::E>(ch.value));
+    TrigLev::Set(static_cast<TrigSource::E>(ch.value), TrigLevZero);
     RShift::Set(ch, RShiftZero);
     ModeCouple::Set(ch, ModeCouple::AC);
     Range::E range = AccurateFindRange(ch);
@@ -57,7 +57,7 @@ bool AutoFinderFPGA::FindWave(Channel::E ch)
         if (tBase != TBase::Count)
         {
             TBase::Set(tBase);
-            set.trig.source = static_cast<TrigSource::E>(ch);
+            set.trig.source = static_cast<TrigSource::E>(ch.value);
             return true;
         }
     }
@@ -161,7 +161,7 @@ Range::E AutoFinderFPGA::AccurateFindRange(const Channel &ch)
 }
 
 
-TBase::E AutoFinderFPGA::FindTBase(Channel::E)
+TBase::E AutoFinderFPGA::FindTBase(const Channel &)
 {
     TrigInput::Set(TrigInput::Full);
     HAL_TIM2::Delay(10);
@@ -200,7 +200,7 @@ TBase::E AutoFinderFPGA::FindTBase(Channel::E)
 }
 
 
-TBase::E AutoFinderFPGA::AccurateFindTBase(Channel::E ch)
+TBase::E AutoFinderFPGA::AccurateFindTBase(const Channel &ch)
 {
     for (int i = 0; i < 5; i++)
     {

@@ -630,7 +630,7 @@ void Display::WriteTextVoltage(const Channel &ch, int x, int y)
     Divider::E multiplier = Divider::Get(ch);
     Range::E range = Range::Get(ch);
     uint rShift = (uint)RShift::Get(ch);
-    bool enable = SET_ENABLED(ch);
+    bool enable = ch.IsEnabled();
 
     if (!MODE_WORK_IS_DIRECT)
     {

@@ -391,7 +391,7 @@ bool Channel::IsEnabled() const
     {
         return false;
     }
-    return SET_ENABLED(value);
+    return set.chan[value].enable;
 }
 
 

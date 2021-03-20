@@ -44,8 +44,8 @@ void SCPI::CHANNEL::INPUT(puchar buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (0 == value)         { SET_ENABLED(ch) = true; }
-        else if (1 == value)    { SET_ENABLED(ch) = false; }
+        if (0 == value)         { set.chan[ch].enable = true; }
+        else if (1 == value)    { set.chan[ch].enable = false; }
         else if (2 == value)
         {
             SCPI_SEND(":CHANNEL%d:INPUT %s", Tables::GetNumChannel(ch), ch.IsEnabled() ? "ON" : "OFF");
