@@ -1208,10 +1208,10 @@ void Processing::CountedToCurrentSettings()
             else                            { dataOut0[i] = (uint8)relValue; }
         }
     }
-    if (dataSet->IsEnabled(ChB) && (dataSet->range[1] != SET_RANGE_B || dataSet->rShiftCh1 != (uint)SET_RSHIFT_B))
+    if (dataSet->IsEnabled(ChB) && (dataSet->range[1] != SET_RANGE_B || dataSet->rShiftCh1 != (uint)RShift::Get(ChB)))
     {
         Range::E range = SET_RANGE_B;
-        int16 rShift = SET_RSHIFT_B;
+        int16 rShift = RShift::Get(ChB);
 
         for (int i = 0; i < numPoints; i++)
         {

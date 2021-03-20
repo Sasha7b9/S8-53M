@@ -198,7 +198,7 @@ void FPGA::Calibrator::ProcedureCalibration()
 //    HAL_FMC::Write(WR_ADD_RSHIFT_DAC2, (uint8)SET_BALANCE_ADC_B);
 
     RShift::Set(ChA, SET_RSHIFT_A);
-    RShift::Set(ChB, SET_RSHIFT_B);
+    RShift::Set(ChB, RShift::Get(ChB));
 
     STRETCH_ADC_A = (koeffCal0 == ERROR_VALUE_FLOAT) ? koeffCalibrationOld[0] : koeffCal0;
 

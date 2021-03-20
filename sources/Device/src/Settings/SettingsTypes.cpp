@@ -213,6 +213,12 @@ void RShift::Set(const Channel &ch, int16 rShift)
 };
 
 
+int16 RShift::Get(const Channel &ch)
+{
+    return set.chan[ch].rShiftRel;
+}
+
+
 
 void TBase::Decrease()
 {

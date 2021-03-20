@@ -14,7 +14,6 @@
 
 #define SET_RSHIFT(ch)          (set.chan[ch].rShiftRel)            // SettingsChannel.rShiftRel
 #define SET_RSHIFT_A            (SET_RSHIFT(ChA))
-#define SET_RSHIFT_B            (SET_RSHIFT(ChB))
 
 #define SET_COUPLE(ch)          (set.chan[ch].modeCouple)           // SettingsChannel.modeCouple
 #define SET_COUPLE_A            (SET_COUPLE(ChA))

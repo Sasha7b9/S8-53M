@@ -153,7 +153,7 @@ DEF_CHOICE_2(mcFiltrB, PageChannelB::self,
 
 static void OnChanged_InverseB(bool)
 {
-    RShift::Set(ChB, SET_RSHIFT_B);
+    RShift::Set(ChB, RShift::Get(ChB));
 }
 
 DEF_CHOICE_2(mcInverseB, PageChannelB::self,
