@@ -320,7 +320,7 @@ bool Display::NeedForClearScreen()
 {
     int numAccum = NUM_ACCUM;
 
-    if (FPGA::SET::InRandomizeMode() || numAccum == 1 || MODE_ACCUM_IS_NORESET || SET_SELFRECORDER)
+    if (FPGA::SET::InRandomizeMode() || numAccum == 1 || MODE_ACCUM_IS_NORESET || FPGA::SET::InSelfRecorderMode())
     {
         return true;
     }

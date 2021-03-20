@@ -92,6 +92,8 @@ public:
         static uint BytesForData();
 
         static bool InRandomizeMode();
+
+        static bool InSelfRecorderMode();
     };
 
     struct BUS

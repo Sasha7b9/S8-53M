@@ -13,8 +13,6 @@
 #define SAMPLE_TYPE_IS_EQUAL                (SAMPLE_TYPE == SampleType::Equal)
 #define SAMPLE_TYPE_IS_REAL                 (SAMPLE_TYPE == SampleType::Real)
 
-#define SET_SELFRECORDER                    (set.time.selfRecorder)
-
 
 // Настройки оси X.
 struct SettingsTime

@@ -106,7 +106,7 @@ DEF_CHOICE_2(mcSelfRecorder, PageTime::self,
     "Turn on/off the recorder. This mode is available for scanning 20ms/div and slower.",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    SET_SELFRECORDER, IsActive_SelfRecorder, nullptr, nullptr
+    set.time.selfRecorder, IsActive_SelfRecorder, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcDivRole, PageTime::self,

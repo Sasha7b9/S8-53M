@@ -516,3 +516,9 @@ bool FPGA::SET::InRandomizeMode()
 {
     return (set.time.tBase < TBase::_100ns);
 }
+
+
+bool FPGA::SET::InSelfRecorderMode()
+{
+    return set.time.selfRecorder;
+}
