@@ -50,7 +50,7 @@ void ChangeC_Memory_NumPoints(bool)
         {
             SHIFT_IN_MEMORY = static_cast<int16>(sMemory_GetNumPoints(false) / 2 - Grid::Width() / 2);
         }
-        else if(SET_TPOS_IS_RIGHT)
+        else if(TPos::IsRight())
         {
             SHIFT_IN_MEMORY = static_cast<int16>(sMemory_GetNumPoints(false) - Grid::Width() - 2);
         }

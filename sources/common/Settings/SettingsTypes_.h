@@ -326,6 +326,7 @@ struct TPos
     static E Get();
     static bool IsLeft();
     static bool IsCenter();
+    static bool IsRight();
 
     // Узнать привязку отсительно уровня синхронизации в точках
     static int InPoints(PeackDetMode::E peakDet, int numPoints, E tPos);

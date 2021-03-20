@@ -413,6 +413,12 @@ bool TPos::IsCenter()
 }
 
 
+bool TPos::IsRight()
+{
+    return (set.time.tPos == TPos::Right);
+}
+
+
 int TPos::InPoints(PeackDetMode::E peakDet, int numPoints, TPos::E tPos)
 {
     if (peakDet == PeackDetMode::Disable)
