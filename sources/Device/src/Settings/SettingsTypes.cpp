@@ -30,6 +30,12 @@ int Divider::ToAbs(Divider::E multiplier)
 }
 
 
+Divider::E Divider::Get(const Channel &ch)
+{
+    return set.chan[ch].divider;
+}
+
+
 Divider::E Divider::GetA()
 {
     return set.chan[ChA].divider;

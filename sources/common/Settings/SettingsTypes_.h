@@ -5,20 +5,6 @@
 #define NumChannels 2
 
 
-// Делитель.
-struct Divider {
-    enum E
-    {
-        _1,
-        _10
-    };
-    static int ToAbs(Divider::E divider);
-
-    static E GetA();
-    static E GetB();
-};
-
-
 // Тип выборки для режима рандомизатора.
 struct SampleType { enum E
 {
@@ -359,6 +345,21 @@ struct Channel
 
 extern Channel ChA;
 extern Channel ChB;
+
+
+// Делитель.
+struct Divider {
+    enum E
+    {
+        _1,
+        _10
+    };
+    static int ToAbs(Divider::E divider);
+
+    static E Get(const Channel &ch);
+    static E GetA();
+    static E GetB();
+};
 
 // Режим канала по входу.
 struct ModeCouple

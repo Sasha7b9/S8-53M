@@ -93,7 +93,7 @@ DEF_CHOICE_2(mcMultiplierA, PageChannelA::self,
     chanMultiplierEn,
     "õ1", "x1",
     "x10", "x10",
-    SET_DIVIDER(ChA), nullptr, nullptr, nullptr
+    set.chan[ChA].divider, nullptr, nullptr, nullptr
 )
 
 DEF_PAGE_5(pageChanA, PageMain::self, NamePage::ChannelA,
@@ -171,7 +171,7 @@ DEF_CHOICE_2(mcMultiplierB, PageChannelB::self,
     chanMultiplierEn,
     "õ1", "x1",
     "x10", "x10",
-    SET_DIVIDER(ChB), nullptr, nullptr, nullptr
+    set.chan[ChB].divider, nullptr, nullptr, nullptr
 )
 
 DEF_PAGE_5(pageChanB, PageMain::self, NamePage::ChannelB,

@@ -188,12 +188,13 @@ void SCPI::CHANNEL::FACTOR(puchar buffer)
         {"?",   2},
         {0}
     };
+
     ENTER_ANALYSIS
-        if (value == 0)         { SET_DIVIDER(ch) = Divider::_1; }
-        else if (value == 1)    { SET_DIVIDER(ch) = Divider::_10; }
+        if (value == 0)         { set.chan[ch].divider = Divider::_1; }
+        else if (value == 1)    { set.chan[ch].divider = Divider::_10; }
         else if (value == 2)
         {
-            SCPI_SEND(":CHANNEL%d:PROBE %s", Tables::GetNumChannel(ch), map[SET_DIVIDER(ch)].key);
+            SCPI_SEND(":CHANNEL%d:PROBE %s", Tables::GetNumChannel(ch), map[Divider::Get(ch)].key);
         }
     LEAVE_ANALYSIS
 }

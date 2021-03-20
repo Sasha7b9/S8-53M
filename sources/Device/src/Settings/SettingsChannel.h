@@ -8,10 +8,7 @@
 #define SET_RSHIFT_MATH         (set.math.rShift)                   // SettingsMath.rShift
 #define SET_RANGE_MATH          (set.math.range)                    // SettingsMath.range
 
-#define SET_DIVIDER(ch)         (set.chan[ch].divider)              // SettingsChannel.divider
-#define SET_DIVIDER_1(ch)       (SET_DIVIDER(ch) == Divider::_1)
-#define SET_DIVIDER_10(ch)      (SET_DIVIDER(ch) == Divider::_10)
-#define VALUE_MULTIPLIER(ch)    (Divider::ToAbs(SET_DIVIDER(ch)))
+#define VALUE_MULTIPLIER(ch)    (Divider::ToAbs(Divider::Get(ch)))
 
 #define SET_ENABLED(ch)         (set.chan[ch].enable)               // SettingsChannel.enable
 #define SET_ENABLED_A           SET_ENABLED(ChA)                    // set.chan[ChA].enable
