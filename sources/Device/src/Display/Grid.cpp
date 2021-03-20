@@ -219,7 +219,7 @@ void Grid::Draw(int left, int top, int width, int height)
 
 void Grid::DrawSpectrum()
 {
-    if (SCALE_FFT_IS_LOG)
+    if (ScaleFFT::IsLog())
     {
         static const int nums[] = { 4, 6, 8 };
         static pchar strs[] = { "0", "-10", "-20", "-30", "-40", "-50", "-60", "-70" };
@@ -241,7 +241,7 @@ void Grid::DrawSpectrum()
             Text("Да").Draw(5, Grid::MathTop() + 1);
         }
     }
-    else if (SCALE_FFT_IS_LINEAR)
+    else if (ScaleFFT::IsLinear())
     {
         static pchar strs[] = { "1.0", "0.8", "0.6", "0.4", "0.2" };
         float scale = (float)Grid::MathHeight() / 5;

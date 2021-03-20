@@ -1,14 +1,6 @@
 #pragma once
 
 
-#define SCALE_FFT                   (set.math.scaleFFT)                 // SettingMath.scaleFFT
-#define SCALE_FFT_IS_LOG            (SCALE_FFT == ScaleFFT::Log)
-#define SCALE_FFT_IS_LINEAR         (SCALE_FFT == ScaleFFT::Linear)
-
-#define SOURCE_FFT                  (set.math.sourceFFT)                // SettingsMath.sourceFFT
-#define SOURCE_FFT_IS_A             (SOURCE_FFT == SourceFFT::A_)
-#define SOURCE_FFT_IS_B             (SOURCE_FFT == SourceFFT::B_)
-
 #define WINDOW_FFT                  (set.math.windowFFT)                // SettingsMath.windowFFT
 #define WINDOW_FFT_IS_HAMMING       (WINDOW_FFT == WindowFFT::Hamming)
 #define WINDOW_FFT_IS_BLACKMAN      (WINDOW_FFT == WindowFFT::Blackman)

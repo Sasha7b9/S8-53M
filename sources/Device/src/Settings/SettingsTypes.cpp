@@ -584,3 +584,21 @@ float FFTmaxDB::GetReal()
     static const float db[] = { -40.0F, -60.0F, -80.0F };
     return db[FFT_MAX_DB];
 }
+
+
+ScaleFFT::E ScaleFFT::Get()
+{
+    return set.math.scaleFFT;
+}
+
+
+bool ScaleFFT::IsLog()
+{
+    return (set.math.scaleFFT == ScaleFFT::Log);
+}
+
+
+bool ScaleFFT::IsLinear()
+{
+    return (set.math.scaleFFT == ScaleFFT::Linear);
+}

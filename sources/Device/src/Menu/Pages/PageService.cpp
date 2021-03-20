@@ -469,7 +469,7 @@ DEF_CHOICE_2(cMath_FFT_Scale, PageService::PageMath::PageFFT::self,
     "Sets the scale of the output spectrum - linear or logarithmic",
     "Логарифм", "Log",
     "Линейная", "Linear",
-    SCALE_FFT, nullptr, nullptr, nullptr
+    set.math.scaleFFT, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_3(cMath_FFT_Source, PageService::PageMath::PageFFT::self,
@@ -479,7 +479,7 @@ DEF_CHOICE_3(cMath_FFT_Source, PageService::PageMath::PageFFT::self,
     "Канал 1", "Channel 1",
     "Канал 2", "Channel 2",
     "Канал 1 + 2", "Channel 1 + 2",
-    SOURCE_FFT, nullptr, nullptr, nullptr
+    set.math.sourceFFT, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_4(cMath_FFT_Window, PageService::PageMath::PageFFT::self,
@@ -508,7 +508,7 @@ static void OnPress_Math_FFT()
 
 static bool IsActive_Math_FFT_Limit()
 {
-    return SCALE_FFT_IS_LOG;
+    return ScaleFFT::IsLog();
 }
 
 DEF_CHOICE_3(cMath_FFT_Limit, PageService::PageMath::PageFFT::self,
