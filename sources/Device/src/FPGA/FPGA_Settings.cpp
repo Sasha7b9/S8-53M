@@ -280,6 +280,18 @@ void TrigLev::Set(TrigSource::E ch, int16 trigLev)
 };
 
 
+int16 TrigLev::Get(TrigSource::E ch)
+{
+    return set.trig.levelRel[ch];
+}
+
+
+int16 TrigLev::GetB()
+{
+    return set.trig.levelRel[TrigSource::B_];
+}
+
+
 void TrigLev::Load()
 {
     uint16 data = 0xa000;

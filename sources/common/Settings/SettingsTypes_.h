@@ -732,6 +732,9 @@ struct TrigLev
 
     static void Set(TrigSource::E ch, int16 trigLev);
 
+    static int16 Get(TrigSource::E ch);
+    static int16 GetB();
+
     // Ќайти и установить уровень синхронизации по последнему считанному сигналу
     static void FindAndSet();
 

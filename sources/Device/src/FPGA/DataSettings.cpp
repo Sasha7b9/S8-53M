@@ -11,7 +11,7 @@ void DataSettings::Fill()
     r_shift_a = (uint)RShift::Get(ChA);
     rShiftCh1 = (uint)RShift::Get(ChB);
     trigLevCh0 = (uint)TRIG_LEVEL_A;
-    trigLevCh1 = (uint)TRIG_LEVEL_B;
+    trigLevCh1 = (uint)TrigLev::GetB();
     modeCouple0 = SET_COUPLE_A;
     modeCouple1 = SET_COUPLE_B;
     tBase = TBase::Get();
