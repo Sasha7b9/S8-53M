@@ -36,7 +36,7 @@ static void DrawSetName();  // Эта функция рисует, когда нужно задать имя файла 
 
 void ChangeC_Memory_NumPoints(bool)
 {
-    if(sMemory_GetNumPoints(false) == 281)
+    if(SettingsMemory::GetNumPoints(false) == 281)
     {
         SHIFT_IN_MEMORY = 0;
     }
@@ -48,11 +48,11 @@ void ChangeC_Memory_NumPoints(bool)
         }
         else if(TPos::IsCenter())
         {
-            SHIFT_IN_MEMORY = static_cast<int16>(sMemory_GetNumPoints(false) / 2 - Grid::Width() / 2);
+            SHIFT_IN_MEMORY = static_cast<int16>(SettingsMemory::GetNumPoints(false) / 2 - Grid::Width() / 2);
         }
         else if(TPos::IsRight())
         {
-            SHIFT_IN_MEMORY = static_cast<int16>(sMemory_GetNumPoints(false) - Grid::Width() - 2);
+            SHIFT_IN_MEMORY = static_cast<int16>(SettingsMemory::GetNumPoints(false) - Grid::Width() - 2);
         }
     }
 

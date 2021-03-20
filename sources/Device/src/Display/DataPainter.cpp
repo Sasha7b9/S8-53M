@@ -72,7 +72,7 @@ void DataPainter::DrawSignalLined(puchar data, const DataSettings *ds, int start
     int gridLeft = Grid::Left();
     int gridRight = Grid::Right();
 
-    int numPoints = sMemory_GetNumPoints(false);
+    int numPoints = SettingsMemory::GetNumPoints(false);
     uint numSmoothing = Smoothing::NumPoints();
 
     if (ds->peakDet == PeackDetMode::Disable)
@@ -149,7 +149,7 @@ void DataPainter::DrawSignalLined(puchar data, const DataSettings *ds, int start
 void DataPainter::DrawSignalPointed(puchar data, DataSettings &ds, int start_i, int end_i, int min_y,
     int max_y, float scale_y, float scale_x)
 {
-    int numPoints = sMemory_GetNumPoints(false);
+    int numPoints = SettingsMemory::GetNumPoints(false);
     uint numSmoothing = Smoothing::NumPoints();
 
     uint8 dataCD[281];

@@ -309,3 +309,22 @@ int SettingsDebug::GetSizeFontForConsole()
 {
     return SIZE_FONT_CONSOLE ? 8 : 5;
 }
+
+
+int SettingsMemory::GetNumPoints(bool forCalculate)
+{
+    static const int numPoints[3][3] =
+    {
+        {281, 512, 1024},
+        {281, 512, 512},
+        {281, 512, 512}
+    };
+
+    if ((FPGA::SET::ENumPointsInChannel() == ENUM_POINTS_FPGA::_1024) &&
+        forCalculate)
+    {
+        return FPGA_MAX_POINTS_FOR_CALCULATE;
+    }
+
+    return numPoints[PeackDetMode::Get()][FPGA::SET::ENumPointsInChannel()];
+}

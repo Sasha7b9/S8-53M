@@ -945,7 +945,7 @@ void Display::Clear()
 void Display::ShiftScreen(int delta)
 {
     LIMITATION(SHIFT_IN_MEMORY, static_cast<int16>(SHIFT_IN_MEMORY + delta), 0,
-        static_cast<int16>(sMemory_GetNumPoints(false) - 282));
+        static_cast<int16>(SettingsMemory::GetNumPoints(false) - 282));
 }
 
 

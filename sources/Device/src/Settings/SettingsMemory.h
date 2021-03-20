@@ -55,9 +55,11 @@ struct SettingsMemory
     bool                flashAutoConnect;                       // Если true, при подлючении флеш автоматически выводится NC (Нортон Коммандер)
     ModeBtnMemory::E    modeBtnMemory;
     ModeSaveSignal::E   modeSaveSignal;                         // В каком виде сохранять сигнал.
+
+    static int GetNumPoints(bool forCalculate);
 };
 
 
-int sMemory_GetNumPoints(bool forCalculate);
+
 
 ENUM_POINTS_FPGA::E sMemory_IntNumPoints2FPGA_NUM_POINTS(int numPoints);

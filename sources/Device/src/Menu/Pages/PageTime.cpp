@@ -60,7 +60,8 @@ void PageTime::OnChanged_PeakDet(bool active)
         else if (PeackDetMode::IsEnabled())
         {
             int centerX = SHIFT_IN_MEMORY + Grid::Width() / 2;
-            LIMITATION(SHIFT_IN_MEMORY, static_cast<int16>(centerX / 2 - Grid::Width() / 2), 0, static_cast<int16>(sMemory_GetNumPoints(false) - Grid::Width()));
+            LIMITATION(SHIFT_IN_MEMORY, static_cast<int16>(centerX / 2 - Grid::Width() / 2), 0,
+                static_cast<int16>(SettingsMemory::GetNumPoints(false) - Grid::Width()));
             ChangeC_Memory_NumPoints(true);
         }
     }

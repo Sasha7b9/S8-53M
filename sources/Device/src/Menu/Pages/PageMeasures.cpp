@@ -53,7 +53,8 @@ void RotateRegMeasureSetField(int angle)
     {
         if (cursActive == CursActive::T)
         {
-            LIMITATION(MEAS_POS_CUR_T0, static_cast<int16>(MEAS_POS_CUR_T0 - sign), 0, static_cast<int16>(sMemory_GetNumPoints(false) - 1));
+            LIMITATION(MEAS_POS_CUR_T0, static_cast<int16>(MEAS_POS_CUR_T0 - sign), 0,
+                static_cast<int16>(SettingsMemory::GetNumPoints(false) - 1));
         }
         else
         {
@@ -64,7 +65,8 @@ void RotateRegMeasureSetField(int angle)
     {
         if (cursActive == CursActive::T)
         {
-            LIMITATION(MEAS_POS_CUR_T1, static_cast<int16>(MEAS_POS_CUR_T1 - sign), 0, static_cast<int16>(sMemory_GetNumPoints(false) - 1));
+            LIMITATION(MEAS_POS_CUR_T1, static_cast<int16>(MEAS_POS_CUR_T1 - sign), 0,
+                static_cast<int16>(SettingsMemory::GetNumPoints(false) - 1));
         }
         else
         {
