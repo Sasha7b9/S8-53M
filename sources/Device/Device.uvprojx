@@ -1938,11 +1938,6 @@
               <FilePath>.\src\Settings\SettingsMemory.h</FilePath>
             </File>
             <File>
-              <FileName>SettingsTime.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Settings\SettingsTime.h</FilePath>
-            </File>
-            <File>
               <FileName>SettingsService.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Settings\SettingsService.h</FilePath>
@@ -4156,11 +4151,6 @@
               <FileName>SettingsMemory.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Settings\SettingsMemory.h</FilePath>
-            </File>
-            <File>
-              <FileName>SettingsTime.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Settings\SettingsTime.h</FilePath>
             </File>
             <File>
               <FileName>SettingsService.h</FileName>

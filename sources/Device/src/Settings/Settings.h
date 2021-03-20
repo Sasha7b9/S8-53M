@@ -3,7 +3,6 @@
 #include "Settings/SettingsChannel.h"
 #include "Settings/SettingsDisplay.h"
 #include "Settings/SettingsMemory.h"
-#include "Settings/SettingsTime.h"
 #include "Settings/SettingsTrig.h"
 #include "Settings/SettingsService.h"
 #include "Settings/SettingsCursors.h"
@@ -156,6 +155,22 @@ struct OutputRegisters
 #define SHOW_STATS                          (set.debug.showStats)
 
 #define NUM_AVE_FOR_RAND                    (::set.debug.numAveForRand)
+
+
+// Настройки оси X.
+struct SettingsTime
+{ //-V802
+    TBase::E            tBase;          // Масштаб по времени.
+    int16               tShiftRel;      // Смещение по времени.
+    FunctionTime::E     function_time;
+    TPos::E             tPos;           // Привязка синхронизации к памяти.
+    SampleType::E       sampleType;     // Тип выборки для режима рандомизатора.
+    PeackDetMode::E     peakDet;        // Режим работы пикового детектора
+    bool                selfRecorder;   // Включен ли режим самописца.
+    ENUM_POINTS_FPGA::E oldNumPoints;   // \brief Когда переключаемся в режим пикового детектора, устанавливаем
+                                        // количество точек в 1024, а сюда  записываем то, что было, чтобы потом
+                                        // восстановить.
+};
 
 
 // Отладочные настройки.
