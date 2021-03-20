@@ -32,9 +32,9 @@ void PageTime::OnChanged_PeakDet(bool active)
 {
     if (active)
     {
-        PeackDetMode::Set(PEAKDET);
+        PeackDetMode::Set(PeackDetMode::Get());
         TBase::Set(TBase::Get());
-        if (PEAKDET_IS_DISABLE)
+        if (!PeackDetMode::IsEnabled())
         {
             volatile int8 shift[2][3] =
             {
@@ -50,14 +50,14 @@ void PageTime::OnChanged_PeakDet(bool active)
 //            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, 3, false);     // Почему-то при пиковом детекторе смещение появляется. Вот его и компенсируем.
 //            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, 3, false);
         }
-        if (PEAKDET_IS_DISABLE)
+        if (!PeackDetMode::IsEnabled())
         {
             int centerX = SHIFT_IN_MEMORY + Grid::Width() / 2;
             SHIFT_IN_MEMORY = static_cast<int16>(centerX * 2 - Grid::Width() / 2);
             ENUM_POINTS = set.time.oldNumPoints;
             ChangeC_Memory_NumPoints(true);
         }
-        else if (PEAKDET_IS_ENABLE)
+        else if (PeackDetMode::IsEnabled())
         {
             int centerX = SHIFT_IN_MEMORY + Grid::Width() / 2;
             LIMITATION(SHIFT_IN_MEMORY, static_cast<int16>(centerX / 2 - Grid::Width() / 2), 0, static_cast<int16>(sMemory_GetNumPoints(false) - Grid::Width()));
@@ -76,7 +76,7 @@ DEF_CHOICE_2(mcPeakDet, PageTime::self,
     "Turns on/off peak detector.",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    PEAKDET, IsActive_PeakDet, PageTime::OnChanged_PeakDet, nullptr
+    set.time.peakDet, IsActive_PeakDet, PageTime::OnChanged_PeakDet, nullptr
 )
 
 void PageTime::OnChanged_TPos(bool active)

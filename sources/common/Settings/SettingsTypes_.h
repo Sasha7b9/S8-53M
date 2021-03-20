@@ -314,6 +314,8 @@ struct PeackDetMode
     };
 
     static void Set(PeackDetMode::E mode);
+    static PeackDetMode::E Get();
+    static bool IsEnabled();
 };
 
 

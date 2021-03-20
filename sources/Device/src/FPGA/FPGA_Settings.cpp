@@ -240,7 +240,7 @@ void TBase::Load()
     };
 
     TBase::E tBase = TBase::Get();
-    uint8 mask = (PEAKDET == PeackDetMode::Disable) ? masksTBase[tBase].maskNorm : masksTBase[tBase].maskPeackDet;
+    uint8 mask = !PeackDetMode::IsEnabled() ? masksTBase[tBase].maskNorm : masksTBase[tBase].maskPeackDet;
 
     FPGA::BUS::Write(WR_RAZV, mask);
     ADD_SHIFT_T0 = deltaTShift[tBase];
@@ -366,7 +366,7 @@ void RegUPR::Load()
 
     data |= mask[CALIBRATOR];
 
-    if (PEAKDET_IS_ENABLE)
+    if (PeackDetMode::IsEnabled())
     {
         data |= (1 << UPR_BIT_PEAKDET);
     }

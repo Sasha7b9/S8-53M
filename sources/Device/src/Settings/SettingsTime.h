@@ -13,10 +13,6 @@
 #define SAMPLE_TYPE_IS_EQUAL                (SAMPLE_TYPE == SampleType::Equal)
 #define SAMPLE_TYPE_IS_REAL                 (SAMPLE_TYPE == SampleType::Real)
 
-#define PEAKDET                             (set.time.peakDet)
-#define PEAKDET_IS_DISABLE                  (PEAKDET == PeackDetMode::Disable)
-#define PEAKDET_IS_ENABLE                   (PEAKDET == PeackDetMode::Enable)
-
 #define FPGA_IN_RANDOMIZE_MODE              (TBase::Get() < TBase::_100ns)
 
 #define SET_SELFRECORDER                    (set.time.selfRecorder)

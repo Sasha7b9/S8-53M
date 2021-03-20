@@ -207,7 +207,7 @@ void DataPainter::DrawDataInRect(int x, int width, puchar data, int numElems, co
     uint8 max[300];
 
 
-    if ((TBase::Get() >= TBase::_20ms) && (PEAKDET != PeackDetMode::Disable))
+    if ((TBase::Get() >= TBase::_20ms) && PeackDetMode::IsEnabled())
     {
         for (int col = 0; col < width; col++)
         {

@@ -225,7 +225,7 @@ int16 RShift::Get(const Channel &ch)
 
 void TBase::Decrease()
 {
-    if ((PEAKDET != PeackDetMode::Disable) && TBase::Get() <= MIN_TBASE_PEC_DEAT)
+    if (PeackDetMode::IsEnabled() && TBase::Get() <= MIN_TBASE_PEC_DEAT)
     {
         Display::ShowWarningBad(Warning::LimitSweep_Time);
         Display::ShowWarningBad(Warning::EnabledPeakDet);
@@ -320,8 +320,20 @@ int16 TShift::Get()
 
 void PeackDetMode::Set(PeackDetMode::E peackDetMode)
 {
-    PEAKDET = peackDetMode;
+    set.time.peakDet = peackDetMode;
     RegUPR::Load();
+}
+
+
+PeackDetMode::E PeackDetMode::Get()
+{
+    return set.time.peakDet;
+}
+
+
+bool PeackDetMode::IsEnabled()
+{
+    return (set.time.peakDet != PeackDetMode::Disable);
 }
 
 

@@ -765,7 +765,7 @@ void OnPressMemoryExtMask()
 
 static bool FuncActiveMemoryNumPoinst()
 {
-    return PEAKDET_IS_DISABLE;
+    return !PeackDetMode::IsEnabled();
 }
 
 // ПАМЯТЬ - Точки

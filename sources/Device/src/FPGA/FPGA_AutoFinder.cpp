@@ -87,7 +87,7 @@ Range::E AutoFinderFPGA::AccurateFindRange(const Channel &ch)
 
     TBase::Set(TBase::_50ms);
     ModeCouple::Set(ch, ModeCouple::AC);
-    PeackDetMode::E peackDetMode = PEAKDET;
+    PeackDetMode::E peackDetMode = PeackDetMode::Get();
     PeackDetMode::Set(PeackDetMode::Enable);
     for (int range = Range::Count - 1; range >= 0; range--)
     {

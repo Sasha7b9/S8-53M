@@ -18,7 +18,7 @@ void DataSettings::Fill()
     tShift = TShift::Get();
     range[0] = Range::GetA();
     range[1] = Range::GetB();
-    peakDet = (uint)PEAKDET;
+    peakDet = (uint)PeackDetMode::Get();
     multiplier0 = SET_DIVIDER_A;
     multiplier1 = SET_DIVIDER_B;
     enum_points = ENUM_POINTS;

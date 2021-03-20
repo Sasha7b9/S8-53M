@@ -833,7 +833,7 @@ void Display::DrawLowPart()
     
     Color::FILL.SetAsCurrent();
     // Пиковый детектор
-    if(!PEAKDET_IS_DISABLE)
+    if(PeackDetMode::IsEnabled())
     {
        Char('\x12').Draw(x + 38, Grid::Bottom() + 11);
        Char('\x13').Draw(x + 46, Grid::Bottom() + 11);

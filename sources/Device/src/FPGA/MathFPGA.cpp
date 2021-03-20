@@ -231,7 +231,7 @@ void MathFPGA::CalculateFFT(float* dataR, int numPoints, float* result, float* f
 
     *freq0 = scale * FFT_POS_CURSOR_0 * K;
     *freq1 = scale * FFT_POS_CURSOR_1 * K;
-    if (PEAKDET)
+    if (PeackDetMode::IsEnabled())
     {
         *freq0 *= 2;
         *freq1 *= 2;

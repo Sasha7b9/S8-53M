@@ -485,7 +485,7 @@ uint FPGA::SET::BytesInChannel()
 {
     uint result = PointsInChannel();
 
-    if (PEAKDET_IS_ENABLE)
+    if (PeackDetMode::IsEnabled())
     {
         result *= 2;
     }
