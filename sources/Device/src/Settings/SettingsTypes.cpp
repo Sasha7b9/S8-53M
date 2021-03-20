@@ -395,7 +395,7 @@ bool Channel::IsEnabled() const
 {
     if (value == Channel::Math)
     {
-        return !DISABLED_DRAW_MATH;
+        return !ModeDrawMath::IsDisabled();
     }
     if (value == Channel::A_B)
     {
@@ -643,4 +643,22 @@ bool Function::IsSum()
 bool Function::IsMul()
 {
     return (set.math.func == Function::Mul);
+}
+
+
+ModeDrawMath::E ModeDrawMath::Get()
+{
+    return set.math.modeDraw;
+}
+
+
+bool ModeDrawMath::IsDisabled()
+{
+    return (set.math.modeDraw == ModeDrawMath::Disable);
+}
+
+
+bool ModeDrawMath::IsSeparate()
+{
+    return (set.math.modeDraw == ModeDrawMath::Separate);
 }

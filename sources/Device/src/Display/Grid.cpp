@@ -115,7 +115,7 @@ int Grid::MathTop()
 
 int Grid::MathHeight()
 {
-    if (SettingsMath::IsEnbaledFFT() || MODE_DRAW_MATH_IS_SEPARATE)
+    if (SettingsMath::IsEnbaledFFT() || ModeDrawMath::IsSeparate())
     {
         return FullHeight() / 2;
     }
@@ -158,7 +158,7 @@ void Grid::Draw()
         {
             DrawSpectrum();
         }
-        if (!DISABLED_DRAW_MATH)
+        if (!ModeDrawMath::IsDisabled())
         {
             Draw(Grid::Left(), Grid::TOP + Grid::FullHeight() / 2, Grid::Width(), Grid::FullHeight() / 2);
         }

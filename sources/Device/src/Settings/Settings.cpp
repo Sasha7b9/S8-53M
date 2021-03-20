@@ -301,7 +301,7 @@ Range::E& operator--(Range::E &range)
 
 bool SettingsMath::IsMathEnabled()
 {
-    return !DISABLED_DRAW_MATH || SettingsMath::IsEnbaledFFT();
+    return !ModeDrawMath::IsDisabled() || SettingsMath::IsEnbaledFFT();
 }
 
 

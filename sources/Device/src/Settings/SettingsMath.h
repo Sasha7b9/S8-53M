@@ -1,10 +1,10 @@
 #pragma once
 
 
-#define MODE_DRAW_MATH              (set.math.modeDraw)                 // SettingsMath.modeDraw
-#define DISABLED_DRAW_MATH          (MODE_DRAW_MATH == ModeDrawMath::Disable)
-#define MODE_DRAW_MATH_IS_TOGETHER  (MODE_DRAW_MATH == ModeDrawMath::Together)
-#define MODE_DRAW_MATH_IS_SEPARATE  (MODE_DRAW_MATH == ModeDrawMath::Separate)
+//#define MODE_DRAW_MATH              (set.math.modeDraw)                 // SettingsMath.modeDraw
+//#define DISABLED_DRAW_MATH          (MODE_DRAW_MATH == ModeDrawMath::Disable)
+//#define MODE_DRAW_MATH_IS_TOGETHER  (MODE_DRAW_MATH == ModeDrawMath::Together)
+//#define MODE_DRAW_MATH_IS_SEPARATE  (MODE_DRAW_MATH == ModeDrawMath::Separate)
 
 #define MATH_MODE_REG_SET           (set.math.modeRegSet)               // SettingsMath.modeRegSet
 #define MATH_MODE_REG_SET_IS_RSHIFT (MATH_MODE_REG_SET == ModeRegSet::RShift)

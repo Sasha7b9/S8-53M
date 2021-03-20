@@ -14,7 +14,7 @@ using namespace Primitives;
 
 void RShift::Draw()
 {
-    if (!DISABLED_DRAW_MATH)
+    if (!ModeDrawMath::IsDisabled())
     {
         Draw(Channel::Math);
     }

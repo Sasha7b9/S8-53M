@@ -151,7 +151,7 @@ static void OnPress_Math_Function_ModeDraw()
     }
     else
     {
-        GF::CircleIncrease<int8>((int8 *)&MODE_DRAW_MATH, 0, 2);
+        GF::CircleIncrease<int8>((int8 *)&set.math.modeDraw, 0, 2);
     }
 }
 
@@ -163,7 +163,7 @@ static void Draw_Math_Function_ModeDraw(int x, int y)
         Draw_Math_Function_ModeDraw_Separate,
         Draw_Math_Function_ModeDraw_Together
     };
-    funcs[MODE_DRAW_MATH](x, y);
+    funcs[ModeDrawMath::Get()](x, y);
 }
 
 DEF_SMALL_BUTTON(sbMath_Function_ModeDraw, PageService::PageMath::PageFunction::self,
@@ -188,7 +188,7 @@ static bool IsActive_Math_Function()
 
 static void OnRegSet_Math_Function(int delta)
 {
-    if (DISABLED_DRAW_MATH)
+    if (ModeDrawMath::IsDisabled())
     {
         return;
     }
@@ -495,7 +495,7 @@ DEF_CHOICE_4(cMath_FFT_Window, PageService::PageMath::PageFFT::self,
 
 static bool IsActive_Math_FFT()
 {
-    return DISABLED_DRAW_MATH;
+    return ModeDrawMath::IsDisabled();
 }
 
 static void OnPress_Math_FFT()
