@@ -452,6 +452,8 @@ struct RShift
 
     static int16 Get(const Channel &ch);
 
+    static int16 GetMath();
+
     static void Load(const Channel &ch);
 
     static int ToRel(float rshift_abs, Range::E range);

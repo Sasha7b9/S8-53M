@@ -195,7 +195,7 @@ static void OnRegSet_Math_Function(int delta)
 
     if (MATH_MODE_REG_SET_IS_RSHIFT)
     {
-        int16 prevRShift = SET_RSHIFT_MATH;
+        int16 prevRShift = RShift::GetMath();
         int16 rShift = prevRShift;
         if (delta > 0)
         {
@@ -208,7 +208,7 @@ static void OnRegSet_Math_Function(int delta)
                     rShift = RShiftZero;
                 }
                 Sound::RegulatorShiftRotate();
-                SET_RSHIFT_MATH = rShift;
+                set.math.rShift = rShift;
             }
         }
         else if (delta < 0)
@@ -222,7 +222,7 @@ static void OnRegSet_Math_Function(int delta)
                     rShift = RShiftZero;
                 }
                 Sound::RegulatorShiftRotate();
-                SET_RSHIFT_MATH = rShift;
+                set.math.rShift = rShift;
             }
         }
     }
@@ -231,14 +231,14 @@ static void OnRegSet_Math_Function(int delta)
         static int sum = 0;
         sum -= delta;
 
-        float rShiftAbs = RSHIFT_2_ABS(SET_RSHIFT_MATH, Range::GetMath());
+        float rShiftAbs = RSHIFT_2_ABS(RShift::GetMath(), Range::GetMath());
 
         if (sum > 2)
         {
             if (Range::GetMath() < Range::Count - 1)
             {
                 ++set.math.range;
-                SET_RSHIFT_MATH = (int16)RShift::ToRel(rShiftAbs, Range::GetMath());
+                set.math.rShift = (int16)RShift::ToRel(rShiftAbs, Range::GetMath());
                 Sound::RegulatorSwitchRotate();
             }
             sum = 0;
@@ -248,7 +248,7 @@ static void OnRegSet_Math_Function(int delta)
             if (Range::GetMath() > 0)
             {
                 --set.math.range;
-                SET_RSHIFT_MATH = (int16)RShift::ToRel(rShiftAbs, Range::GetMath());
+                set.math.rShift = (int16)RShift::ToRel(rShiftAbs, Range::GetMath());
                 Sound::RegulatorSwitchRotate();
             }
             sum = 0;

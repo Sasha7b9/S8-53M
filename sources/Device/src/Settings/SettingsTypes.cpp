@@ -246,6 +246,11 @@ int16 RShift::Get(const Channel &ch)
 }
 
 
+int16 RShift::GetMath()
+{
+    return set.math.rShift;
+}
+
 
 void TBase::Decrease()
 {

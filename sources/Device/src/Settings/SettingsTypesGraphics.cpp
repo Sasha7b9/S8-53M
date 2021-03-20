@@ -38,7 +38,7 @@ void RShift::Draw(const Channel &ch)
 
     if (ch.IsMath())
     {
-        int rShift = SET_RSHIFT_MATH;
+        int rShift = RShift::GetMath();
         float scale = (float)Grid::MathHeight() / 960;
         float y = (Grid::MathTop() + Grid::MathBottom()) / 2.0F - scale * (rShift - RShiftZero);
         Char(Symbol::S8::RSHIFT_NORMAL).Draw(static_cast<int>(x - 9), static_cast<int>(y - 4), Color::FILL);
