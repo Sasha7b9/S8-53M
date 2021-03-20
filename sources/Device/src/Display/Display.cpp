@@ -449,7 +449,7 @@ void Display::WriteValueTrigLevel()
 {
     if (showLevelTrigLev && MODE_WORK_IS_DIRECT)
     {
-        float trigLev = RSHIFT_2_ABS(TRIG_LEVEL_SOURCE, SET_RANGE(TRIG_SOURCE));     // WARN Здесь для внешней
+        float trigLev = RSHIFT_2_ABS(TrigLev::Get(), SET_RANGE(TRIG_SOURCE));     // WARN Здесь для внешней
                                                                     // синхронизации неправильно рассчитывается уровень.
         TrigSource::E trigSource = TRIG_SOURCE;
         if (TRIG_INPUT_IS_AC && trigSource <= TrigSource::B)
@@ -558,7 +558,7 @@ void Display::DrawCursorTrigLevel()
         int shiftFullMin = RShiftMin + TrigLevMin;
         int shiftFullMax = RShiftMax + TrigLevMax;
         scale = (float)height / (shiftFullMax - shiftFullMin);
-        int shiftFull = TRIG_LEVEL_SOURCE + (TRIG_SOURCE_IS_EXT ? 0 : RShift::Get((Channel::E)ch));
+        int shiftFull = TrigLev::Get() + (TRIG_SOURCE_IS_EXT ? 0 : RShift::Get((Channel::E)ch));
         int yFull = static_cast<int>(Grid::TOP + DELTA + height - scale * (shiftFull - RShiftMin - TrigLevMin) - 4);
         Region(4, 6).Fill(left + 2, yFull + 1, Color::Trig());
         Font::Set(TypeFont::S5);

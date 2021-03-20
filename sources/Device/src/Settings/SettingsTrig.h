@@ -16,7 +16,6 @@
 #define TRIG_INPUT_IS_AC        (TRIG_INPUT == TrigInput::AC)           // \c true, если закрытый вход синхронизации.
 
 #define TRIG_LEVEL(source)      (set.trig.levelRel[source])             // SettingsTrig.levelRel
-#define TRIG_LEVEL_SOURCE       (TRIG_LEVEL(TRIG_SOURCE))               // set.trig.levelRel[set.trig.source]
 
 #define MODE_LONG_PRESS_TRIG    (set.trig.modeLongPressTrig)            // SettingsTrig.modeLongPressTrig
 // если \c true, то длительное нажатие кнопки \b СИНХР сбрасывает уровень синхронизации в 0.

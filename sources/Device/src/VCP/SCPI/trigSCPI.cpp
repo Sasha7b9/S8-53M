@@ -165,7 +165,7 @@ void SCPI::TRIGGER::OFFSET(puchar buffer)
     ENTER_ANALYSIS
         if (value == 0)
         {
-            int retValue = static_cast<int>(0.5F * (TRIG_LEVEL_SOURCE - RShiftZero));
+            int retValue = static_cast<int>(0.5F * (TrigLev::Get() - RShiftZero));
             SCPI_SEND(":TRIGGER:OFFSET %d", retValue);
         }
     LEAVE_ANALYSIS

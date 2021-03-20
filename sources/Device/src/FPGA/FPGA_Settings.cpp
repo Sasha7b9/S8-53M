@@ -298,10 +298,16 @@ int16 TrigLev::GetB()
 }
 
 
+int16 TrigLev::Get()
+{
+    return set.trig.levelRel[set.trig.source];
+}
+
+
 void TrigLev::Load()
 {
     uint16 data = 0xa000;
-    uint16 trigLev = (uint16)TRIG_LEVEL_SOURCE;
+    uint16 trigLev = (uint16)TrigLev::Get();
     trigLev = (uint16)(TrigLevMax + TrigLevMin - trigLev);
     data |= trigLev << 2;
     // FPGA_WriteToHardware(WR_DAC_LOW, data.byte[0], true);
@@ -472,7 +478,7 @@ void TrigSource::Set(E trigSource)
     FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::TrigParam);
     if (!TRIG_SOURCE_IS_EXT)
     {
-        TrigLev::Set(TRIG_SOURCE, TRIG_LEVEL_SOURCE);
+        TrigLev::Set(TRIG_SOURCE, TrigLev::Get());
     }
 }
 
