@@ -74,8 +74,8 @@ void FPGA::Calibrator::ProcedureCalibration()
     Display::SetDrawMode(DrawMode::Hand, FuncAttScreen);
     Timer::Enable(TypeTimer::TimerDrawHandFunction, 100, OnTimerDraw);
 
-    koeffCalibrationOld[ChA] = STRETCH_ADC_A;
-    koeffCalibrationOld[ChB] = STRETCH_ADC_B;
+    koeffCalibrationOld[ChA] = SettingsChannel::StretchADC(ChA);
+    koeffCalibrationOld[ChB] = SettingsChannel::StretchADC(ChB);
 
     bar0.fullTime = 0;
     bar0.passedTime = 0;
@@ -91,8 +91,8 @@ void FPGA::Calibrator::ProcedureCalibration()
 
         TBase::Set(TBase::_500us);
         TShift::Set(0);
-        STRETCH_ADC_A = 1.0F;
-        STRETCH_ADC_B = 1.0F;
+        set.chan[ChA].stretchADC = 1.0F;
+        set.chan[ChB].stretchADC = 1.0F;
         Calibrator::LoadKoeff(ChA);
         Calibrator::LoadKoeff(ChB);
         Range::Set(ChA, Range::_500mV);
@@ -132,7 +132,7 @@ void FPGA::Calibrator::ProcedureCalibration()
             }
             else
             {
-                STRETCH_ADC_A = koeffCal0;
+                set.chan[ChA].stretchADC = koeffCal0;
                 Calibrator::LoadKoeff(ChA);
             }
 			
@@ -169,7 +169,7 @@ void FPGA::Calibrator::ProcedureCalibration()
 			}
             else
             {
-                STRETCH_ADC_B = koeffCal1;
+                set.chan[ChB].stretchADC = koeffCal1;
                 Calibrator::LoadKoeff(ChB);
             }
 
@@ -200,11 +200,11 @@ void FPGA::Calibrator::ProcedureCalibration()
     RShift::Set(ChA, RShift::Get(ChA));
     RShift::Set(ChB, RShift::Get(ChB));
 
-    STRETCH_ADC_A = (koeffCal0 == ERROR_VALUE_FLOAT) ? koeffCalibrationOld[0] : koeffCal0;
+    set.chan[ChA].stretchADC = (koeffCal0 == ERROR_VALUE_FLOAT) ? koeffCalibrationOld[0] : koeffCal0;
 
     Calibrator::LoadKoeff(ChA);
 
-    STRETCH_ADC_B = (koeffCal1 == ERROR_VALUE_FLOAT) ? koeffCalibrationOld[1] : koeffCal1;
+    set.chan[ChB].stretchADC = (koeffCal1 == ERROR_VALUE_FLOAT) ? koeffCalibrationOld[1] : koeffCal1;
     Calibrator::LoadKoeff(ChB);
 
     state.state_calibration = StateCalibration::None;
@@ -258,10 +258,11 @@ void FuncAttScreen()
                     Text(String("%d", RSHIFT_ADD(ChB, i, 1))).Draw(95 + i * 16 + dX, 90 + dY, Color::FILL);
                 }
                 
-                Text(String("Коэффициент калибровки 1к : %f, %d", STRETCH_ADC_A, (int)(STRETCH_ADC_A * 0x80))).
-                    Draw(10 + dX, 110 + dY, Color::FILL);
-                Text(String("Коэфффициент калибровки 2к : %f, %d", STRETCH_ADC_B, (int)(STRETCH_ADC_B * 0x80))).
-                    Draw(10 + dX, 130 + dY, Color::FILL);
+                Text(String("Коэффициент калибровки 1к : %f, %d", SettingsChannel::StretchADC(ChA),
+                    (int)(SettingsChannel::StretchADC(ChA) * 0x80))).Draw(10 + dX, 110 + dY, Color::FILL);
+
+                Text(String("Коэфффициент калибровки 2к : %f, %d", SettingsChannel::StretchADC(ChB),
+                    (int)(SettingsChannel::StretchADC(ChA) * 0x80))).Draw(10 + dX, 130 + dY, Color::FILL);
 
                 DrawParametersChannel(ChA, 10 + dX, 150 + dY, false);
                 DrawParametersChannel(ChB, 10 + dX, 200 + dY, false);

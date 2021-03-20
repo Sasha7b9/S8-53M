@@ -31,6 +31,7 @@ struct SettingsChannel
     int8          balanceShiftADC;            // Добавочное смещение для балансировки АЦП
 
     static bool FiltrIsEnabled(const Channel &ch);
+    static float StretchADC(const Channel &ch);
 };
 
 
