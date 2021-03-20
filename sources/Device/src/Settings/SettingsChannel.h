@@ -12,9 +12,6 @@
 #define SET_RANGE_A             (SET_RANGE(ChA))
 #define SET_RANGE_B             (SET_RANGE(ChB))
 
-#define SET_COUPLE(ch)          (set.chan[ch].modeCouple)           // SettingsChannel.modeCouple
-#define SET_COUPLE_B            (SET_COUPLE(ChB))
-
 #define SET_DIVIDER(ch)         (set.chan[ch].divider)              // SettingsChannel.divider
 #define SET_DIVIDER_A           SET_DIVIDER(ChA)
 #define SET_DIVIDER_B           SET_DIVIDER(ChB)

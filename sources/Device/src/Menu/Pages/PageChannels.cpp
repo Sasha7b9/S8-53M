@@ -124,7 +124,7 @@ DEF_CHOICE_2(mcInputB, PageChannelB::self,
 
 void PageChannelB::OnChanged_Couple(bool)
 {
-    ModeCouple::Set(ChB, SET_COUPLE_B);
+    ModeCouple::Set(ChB, ModeCouple::GetB());
 }
 
 DEF_CHOICE_3(mcCoupleB, PageChannelB::self,
@@ -134,7 +134,7 @@ DEF_CHOICE_3(mcCoupleB, PageChannelB::self,
     "Пост", "AC",
     "Перем", "DC",
     "Земля", "Ground",
-    SET_COUPLE_B, nullptr, PageChannelB::OnChanged_Couple, nullptr
+    set.chan[Channel::B].modeCouple, nullptr, PageChannelB::OnChanged_Couple, nullptr
 )
 
 void PageChannelB::OnChanged_Filtr(bool)

@@ -57,8 +57,6 @@ void SCPI::CHANNEL::INPUT(puchar buffer)
 
 void SCPI::CHANNEL::COUPLE(puchar buffer)
 {
-    static const pFuncVB func[2] = {PageChannelA::OnChanged_Couple, PageChannelB::OnChanged_Couple};
-
     static const MapElement map[] = 
     {
         {"DC",  0},
@@ -67,13 +65,14 @@ void SCPI::CHANNEL::COUPLE(puchar buffer)
         {"?",   3},
         {0}
     };
+
     ENTER_ANALYSIS
-        if (0 == value)         { SET_COUPLE(ch) = ModeCouple::DC; func[ch](true); }
-        else if (1 == value)    { SET_COUPLE(ch) = ModeCouple::AC; func[ch](true); }
-        else if (2 == value)    { SET_COUPLE(ch) = ModeCouple::GND; func[ch](true); }
+        if (0 == value)         { ModeCouple::Set(ch, ModeCouple::DC); }
+        else if (1 == value)    { ModeCouple::Set(ch, ModeCouple::AC); }
+        else if (2 == value)    { ModeCouple::Set(ch, ModeCouple::GND); }
         else if (3 == value)
         {
-            SCPI_SEND(":CHANNEL%d:COUPLING %s", Tables::GetNumChannel(ch), map[SET_COUPLE(ch)].key);
+            SCPI_SEND(":CHANNEL%d:COUPLING %s", Tables::GetNumChannel(ch), map[ModeCouple::Get(ch)].key);
         }
     LEAVE_ANALYSIS
 }

@@ -626,7 +626,7 @@ void Display::WriteTextVoltage(const Channel &ch, int x, int y)
     };
 
     bool inverse = SET_INVERSE(ch);
-    ModeCouple::E modeCouple = SET_COUPLE(ch);
+    ModeCouple::E modeCouple = ModeCouple::Get(ch);
     Divider::E multiplier = SET_DIVIDER(ch);
     Range::E range = SET_RANGE(ch);
     uint rShift = (uint)RShift::Get(ch);

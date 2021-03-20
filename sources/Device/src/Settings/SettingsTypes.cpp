@@ -327,15 +327,27 @@ void PeackDetMode::Set(PeackDetMode::E peackDetMode)
 
 void ModeCouple::Set(const Channel &ch, ModeCouple::E modeCoupe)
 {
-    SET_COUPLE(ch) = modeCoupe;
+    set.chan[ch].modeCouple = modeCoupe;
     FPGA::BUS::SetAttribChannelsAndTrig(ch == ChA ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
     RShift::Set(ch, RShift::Get(ch));
+}
+
+
+ModeCouple::E ModeCouple::Get(const Channel &ch)
+{
+    return set.chan[ch].modeCouple;
 }
 
 
 ModeCouple::E ModeCouple::GetA()
 {
     return set.chan[Channel::A].modeCouple;
+}
+
+
+ModeCouple::E ModeCouple::GetB()
+{
+    return set.chan[Channel::B].modeCouple;
 }
 
 

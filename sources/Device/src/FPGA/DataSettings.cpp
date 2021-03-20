@@ -13,7 +13,7 @@ void DataSettings::Fill()
     trigLevCh0 = (uint)TrigLev::GetA();
     trigLevCh1 = (uint)TrigLev::GetB();
     modeCouple0 = ModeCouple::GetA();
-    modeCouple1 = SET_COUPLE_B;
+    modeCouple1 = ModeCouple::GetB();
     tBase = TBase::Get();
     tShift = TShift::Get();
     range[0] = SET_RANGE_A;
