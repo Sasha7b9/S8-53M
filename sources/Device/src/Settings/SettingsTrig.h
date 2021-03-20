@@ -7,7 +7,7 @@
 #define START_MODE_IS_AUTO      (START_MODE == StartMode::Auto)         // \c true, если автоматический режим запуска.
 
 #define TRIG_SOURCE             (set.trig.source)                       // SettingsTrig.source
-#define TRIG_SOURCE_IS_EXT      (TRIG_SOURCE == TrigSource::Ext_)       // \c true, если внешний источник синхронизации.
+#define TRIG_SOURCE_IS_EXT      (TRIG_SOURCE == TrigSource::Ext)       // \c true, если внешний источник синхронизации.
 
 #define TRIG_POLARITY           (set.trig.polarity)                     // SettingsTrig.polarity
 #define TRIG_POLARITY_IS_FRONT  (TRIG_POLARITY == TrigPolarity::Front)  // \c true, если синхронизация по фронту.

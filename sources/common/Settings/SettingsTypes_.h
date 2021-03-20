@@ -443,9 +443,9 @@ struct TrigSource
 {
     enum E
     {
-        A_,      // Канал 1.
-        B_,      // Канал 2.
-        Ext_     // Внешняя.
+        A,      // Канал 1.
+        B,      // Канал 2.
+        Ext     // Внешняя.
     };
 
     static void Set(E source);

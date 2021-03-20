@@ -7,7 +7,7 @@ Color Color::Trig()
 {
     TrigSource::E trigChan = TRIG_SOURCE;
 
-    if (trigChan == TrigSource::A_ || trigChan == TrigSource::B_)
+    if (trigChan == TrigSource::A || trigChan == TrigSource::B)
     {
         return Channel((Channel::E)trigChan).GetColor();
     }

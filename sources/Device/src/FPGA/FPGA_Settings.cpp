@@ -288,7 +288,7 @@ int16 TrigLev::Get(TrigSource::E ch)
 
 int16 TrigLev::GetB()
 {
-    return set.trig.levelRel[TrigSource::B_];
+    return set.trig.levelRel[TrigSource::B];
 }
 
 

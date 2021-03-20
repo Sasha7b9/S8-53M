@@ -427,7 +427,7 @@ int16 CalculateAdditionRShift(const Channel &ch, Range::E range)
     Range::Set(ch, range);
     RShift::Set(ch, RShiftZero);
     TBase::Set(TBase::_200us);
-    TrigSource::Set(ch == ChA ? TrigSource::A_ : TrigSource::B_);
+    TrigSource::Set(ch == ChA ? TrigSource::A : TrigSource::B);
     TrigPolarity::Set(TrigPolarity::Front);
     TrigLev::Set((TrigSource::E)ch.value, TrigLevZero);
 
