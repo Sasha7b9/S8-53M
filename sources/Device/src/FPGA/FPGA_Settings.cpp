@@ -106,8 +106,8 @@ void FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::E type)
     */
 
     // Range0, Range1
-    data |= masksRange[SET_RANGE_A];
-    data |= (masksRange[SET_RANGE_B] << 8);
+    data |= masksRange[Range::GetA()];
+    data |= (masksRange[Range::GetB()] << 8);
 
     // Параметры каналов
     static const uint maskCouple[2][3] = 
@@ -165,6 +165,18 @@ void Range::Set(const Channel &ch, Range::E range)
         Display::ShowWarningBad(ch == ChA ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
     }
 };
+
+
+Range::E Range::GetA()
+{
+    return set.chan[ChA].range;
+}
+
+
+Range::E Range::GetB()
+{
+    return set.chan[ChB].range;
+}
 
 
 void Range::Load(const Channel &ch)

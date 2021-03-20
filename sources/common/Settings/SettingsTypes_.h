@@ -397,6 +397,9 @@ struct Range
 
     static void Set(const Channel &ch, Range::E range);
 
+    static Range::E GetA();
+    static Range::E GetB();
+
     static bool Increase(const Channel &ch);
 
     static bool Decrease(const Channel &ch);

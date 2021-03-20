@@ -9,8 +9,6 @@
 #define SET_RANGE_MATH          (set.math.range)                    // SettingsMath.range
 
 #define SET_RANGE(ch)           (set.chan[ch].range)                // SettingsChannel.range
-#define SET_RANGE_A             (SET_RANGE(ChA))
-#define SET_RANGE_B             (SET_RANGE(ChB))
 
 #define SET_DIVIDER(ch)         (set.chan[ch].divider)              // SettingsChannel.divider
 #define SET_DIVIDER_A           SET_DIVIDER(ChA)

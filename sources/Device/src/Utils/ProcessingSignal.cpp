@@ -1192,9 +1192,9 @@ void Processing::CountedToCurrentSettings()
         }
     }
  
-    if (dataSet->IsEnabled(ChA) && (dataSet->range[0] != SET_RANGE_A || dataSet->r_shift_a != (uint)RShift::Get(ChA)))
+    if (dataSet->IsEnabled(ChA) && (dataSet->range[0] != Range::GetA() || dataSet->r_shift_a != (uint)RShift::Get(ChA)))
     {
-        Range::E range = SET_RANGE_A;
+        Range::E range = Range::GetA();
         int16 rShift = RShift::Get(ChA);
 
         for (int i = 0; i < numPoints; i++)
@@ -1208,9 +1208,9 @@ void Processing::CountedToCurrentSettings()
             else                            { dataOut0[i] = (uint8)relValue; }
         }
     }
-    if (dataSet->IsEnabled(ChB) && (dataSet->range[1] != SET_RANGE_B || dataSet->rShiftCh1 != (uint)RShift::Get(ChB)))
+    if (dataSet->IsEnabled(ChB) && (dataSet->range[1] != Range::GetB() || dataSet->rShiftCh1 != (uint)RShift::Get(ChB)))
     {
-        Range::E range = SET_RANGE_B;
+        Range::E range = Range::GetB();
         int16 rShift = RShift::Get(ChB);
 
         for (int i = 0; i < numPoints; i++)

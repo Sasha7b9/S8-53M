@@ -16,8 +16,8 @@ void DataSettings::Fill()
     modeCouple1 = ModeCouple::GetB();
     tBase = TBase::Get();
     tShift = TShift::Get();
-    range[0] = SET_RANGE_A;
-    range[1] = SET_RANGE_B;
+    range[0] = Range::GetA();
+    range[1] = Range::GetB();
     peakDet = (uint)PEAKDET;
     multiplier0 = SET_DIVIDER_A;
     multiplier1 = SET_DIVIDER_B;
