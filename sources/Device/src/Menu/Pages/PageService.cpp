@@ -231,24 +231,24 @@ static void OnRegSet_Math_Function(int delta)
         static int sum = 0;
         sum -= delta;
 
-        float rShiftAbs = RSHIFT_2_ABS(SET_RSHIFT_MATH, SET_RANGE_MATH);
+        float rShiftAbs = RSHIFT_2_ABS(SET_RSHIFT_MATH, Range::GetMath());
 
         if (sum > 2)
         {
-            if (SET_RANGE_MATH < Range::Count - 1)
+            if (Range::GetMath() < Range::Count - 1)
             {
-                ++SET_RANGE_MATH;
-                SET_RSHIFT_MATH = (int16)RShift::ToRel(rShiftAbs, SET_RANGE_MATH);
+                ++set.math.range;
+                SET_RSHIFT_MATH = (int16)RShift::ToRel(rShiftAbs, Range::GetMath());
                 Sound::RegulatorSwitchRotate();
             }
             sum = 0;
         }
         else if (sum < -2)
         {
-            if (SET_RANGE_MATH > 0)
+            if (Range::GetMath() > 0)
             {
-                --SET_RANGE_MATH;
-                SET_RSHIFT_MATH = (int16)RShift::ToRel(rShiftAbs, SET_RANGE_MATH);
+                --set.math.range;
+                SET_RSHIFT_MATH = (int16)RShift::ToRel(rShiftAbs, Range::GetMath());
                 Sound::RegulatorSwitchRotate();
             }
             sum = 0;
@@ -329,7 +329,7 @@ DEF_SMALL_BUTTON(sbMath_Function_ModeRegSet, PageService::PageMath::PageFunction
 
 static void OnPress_Math_Function_RangeA()
 {
-    SET_RANGE_MATH = Range::GetA();
+    set.math.range = Range::GetA();
     MATH_MULTIPLIER = Divider::GetA();
 }
 
@@ -347,7 +347,7 @@ DEF_SMALL_BUTTON(sbMath_Function_RangeA, PageService::PageMath::PageFunction::se
 
 static void OnPress_Math_Function_RangeB()
 {
-    SET_RANGE_MATH = Range::GetB();
+    set.math.range = Range::GetB();
     MATH_MULTIPLIER = Divider::GetB();
 }
 

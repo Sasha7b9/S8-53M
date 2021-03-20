@@ -185,6 +185,12 @@ Range::E Range::GetB()
 }
 
 
+Range::E Range::GetMath()
+{
+    return set.math.range;
+}
+
+
 void Range::Load(const Channel &ch)
 {
     FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::Range0);

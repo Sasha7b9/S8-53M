@@ -431,6 +431,7 @@ struct Range
     static Range::E Get(const Channel &ch);
     static Range::E GetA();
     static Range::E GetB();
+    static Range::E GetMath();
 
     static bool Increase(const Channel &ch);
 
