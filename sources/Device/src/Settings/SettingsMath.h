@@ -60,4 +60,6 @@ struct SettingsMath
     Range::E        range;          // Масштаб по напряжению математического сигнала.
     Divider::E      multiplier;     // Множитель масштаба математического сигнала.
     int16           rShift;         // Смещение по вертикальной оси математического сигнала.
+
+    static bool IsMathEnabled();
 };

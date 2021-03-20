@@ -297,3 +297,9 @@ Range::E& operator--(Range::E &range)
     range = (Range::E)((int)range - 1);
     return range;
 }
+
+
+bool SettingsMath::IsMathEnabled()
+{
+    return !DISABLED_DRAW_MATH || ENABLED_FFT;
+}

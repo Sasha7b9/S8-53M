@@ -83,7 +83,7 @@ void RShift::Draw(const Channel &ch)
     if ((!Menu::IsMinimize() || !Menu::IsShown()) && draw_markers)
     {
         float scaleFull = (float)Grid::ChannelHeight() / (RShiftMax - RShiftMin) *
-            (sService_MathEnabled() ? 0.9F : 0.91F);
+            (SettingsMath::IsMathEnabled() ? 0.9F : 0.91F);
 
         float yFull = Grid::ChannelCenterHeight() - scaleFull * (rShift - RShiftZero);
 

@@ -561,3 +561,10 @@ bool ColorScheme::IsWhiteLetters()
 {
     return (set.service.colorScheme == ColorScheme::WhiteLetters);
 }
+
+
+float FFTmaxDB::GetReal()
+{
+    static const float db[] = { -40.0F, -60.0F, -80.0F };
+    return db[FFT_MAX_DB];
+}
