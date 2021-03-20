@@ -1,10 +1,6 @@
 #pragma once
 
 
-#define FFT_POS_CURSOR(num)         (set.math.posCur[num])              // SettingsMath.currentCursor
-#define FFT_POS_CURSOR_0            (FFT_POS_CURSOR(0))
-#define FFT_POS_CURSOR_1            (FFT_POS_CURSOR(1))
-
 #define ENABLED_FFT                 (set.math.enableFFT)                // SettingsMath.enableFFT
 
 #define MODE_DRAW_MATH              (set.math.modeDraw)                 // SettingsMath.modeDraw
@@ -40,6 +36,6 @@ struct SettingsMath
     int16           rShift;         // Смещение по вертикальной оси математического сигнала.
 
     static bool IsMathEnabled();
-
     static uint8 CursorFFT();
+    static uint8 PositionCursorFFT(int num);
 };

@@ -378,3 +378,9 @@ uint8 SettingsMath::CursorFFT()
 {
     return set.math.cursorFFT;
 }
+
+
+uint8 SettingsMath::PositionCursorFFT(int num)
+{
+    return set.math.posCur[num];
+}
