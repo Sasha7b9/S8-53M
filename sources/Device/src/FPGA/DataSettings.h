@@ -1,6 +1,6 @@
 #pragma once
-#include "Settings/SettingsChannel.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "common/Settings/SettingsTypes_.h"
 
 
 struct DataSettings

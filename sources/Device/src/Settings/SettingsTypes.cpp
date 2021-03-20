@@ -8,7 +8,6 @@
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/MathFPGA.h"
 #include "Settings/Settings.h"
-#include "Settings/SettingsChannel.h"
 
 
 bool RShift::show_level_A = false;

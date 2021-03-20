@@ -1923,11 +1923,6 @@
               <FilePath>.\src\Settings\Settings.h</FilePath>
             </File>
             <File>
-              <FileName>SettingsChannel.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Settings\SettingsChannel.h</FilePath>
-            </File>
-            <File>
               <FileName>SettingsDisplay.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Settings\SettingsDisplay.h</FilePath>
@@ -4106,11 +4101,6 @@
               <FileName>Settings.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Settings\Settings.h</FilePath>
-            </File>
-            <File>
-              <FileName>SettingsChannel.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Settings\SettingsChannel.h</FilePath>
             </File>
             <File>
               <FileName>SettingsDisplay.h</FileName>

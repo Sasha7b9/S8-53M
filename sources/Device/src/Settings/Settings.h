@@ -1,6 +1,5 @@
 #pragma once
 #include "Menu/Items/MenuItems.h"
-#include "Settings/SettingsChannel.h"
 #include "Settings/SettingsDisplay.h"
 #include "Settings/SettingsMemory.h"
 #include "Settings/SettingsCursors.h"
