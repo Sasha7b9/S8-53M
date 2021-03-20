@@ -258,7 +258,7 @@ static void OnRegSet_Math_Function(int delta)
 
 static void OnPress_Math_Function_Type()
 {
-    GF::CircleIncrease<int8>((int8 *)&MATH_FUNC, 0, 1);
+    GF::CircleIncrease<int8>((int8 *)&set.math.func, 0, 1);
 }
 
 static void Draw_Math_Function_Type_Sum(int x, int y)
@@ -277,7 +277,7 @@ static void Draw_Math_Function_Type_Mul(int x, int y)
 static void Draw_Math_Function_Type(int x, int y)
 {
     const pFuncVII funcs[2] = { Draw_Math_Function_Type_Sum, Draw_Math_Function_Type_Mul };
-    funcs[MATH_FUNC](x, y);
+    funcs[Function::Get()](x, y);
 }
 
 static const arrayHints hintsMath_Function_Type =

@@ -1,10 +1,6 @@
 #pragma once
 
 
-#define MATH_FUNC                   (set.math.func)                     // SettingsMath.func
-#define MATH_FUNC_IS_SUM            (MATH_FUNC == Function::Sum)
-#define MATH_FUNC_IS_MUL            (MATH_FUNC == Function::Mul)
-
 #define FFT_CUR_CURSOR              (set.math.currentCursor)            // SettingsMath.currentCursor
 #define FFT_CUR_CURSOR_IS_0         (FFT_CUR_CURSOR == 0)
 

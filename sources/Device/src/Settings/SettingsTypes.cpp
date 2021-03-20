@@ -626,3 +626,21 @@ bool WindowFFT::IsHann()
 {
     return (set.math.windowFFT == WindowFFT::Hann);
 }
+
+
+Function::E Function::Get()
+{
+    return set.math.func;
+}
+
+
+bool Function::IsSum()
+{
+    return (set.math.func == Function::Sum);
+}
+
+
+bool Function::IsMul()
+{
+    return (set.math.func == Function::Mul);
+}

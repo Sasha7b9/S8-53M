@@ -395,7 +395,7 @@ uint8 MathFPGA::GetMinFromArrayWithErrorCode(puchar data, uint firstPoint, uint 
 
 void MathFPGA::CalculateMathFunction(float* data0andResult, const float* data1, int numPoints)
 {
-    if (MATH_FUNC_IS_SUM)
+    if (Function::IsSum())
     {
         int delta = data1 - data0andResult;
         float* end = &data0andResult[numPoints];
@@ -405,7 +405,7 @@ void MathFPGA::CalculateMathFunction(float* data0andResult, const float* data1, 
             data0andResult++;
         }
     }
-    else if (MATH_FUNC_IS_MUL)
+    else if (Function::IsMul())
     {
         int delta = data1 - data0andResult;
         float* end = &data0andResult[numPoints];

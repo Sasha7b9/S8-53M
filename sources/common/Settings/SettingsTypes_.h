@@ -782,11 +782,19 @@ struct FFTmaxDB {
 
 
 // Какую функцию рассчитывать.
-struct Function { enum E
+struct Function
 {
-    Sum,        // Сумма двух каналов.
-    Mul         // Произведение двух каналов.
-};};
+    enum E
+    {
+        Sum,        // Сумма двух каналов.
+        Mul         // Произведение двух каналов.
+    };
+
+    static E Get();
+
+    static bool IsSum();
+    static bool IsMul();
+};
 
 
 // Где отрисовывать математический сигнал.
