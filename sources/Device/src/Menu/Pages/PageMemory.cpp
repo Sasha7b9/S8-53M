@@ -46,7 +46,7 @@ void ChangeC_Memory_NumPoints(bool)
         {
             SHIFT_IN_MEMORY = 0;
         }
-        else if(SET_TPOS_IS_CENTER)
+        else if(TPos::IsCenter())
         {
             SHIFT_IN_MEMORY = static_cast<int16>(sMemory_GetNumPoints(false) / 2 - Grid::Width() / 2);
         }

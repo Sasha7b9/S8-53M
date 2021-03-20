@@ -395,7 +395,7 @@ void TShift::Load()
         {
             k = FPGA::SET::PointsInChannel() % FPGA::Randomizer::Kr[tBase];
         }
-        else if (SET_TPOS_IS_CENTER)
+        else if (TPos::IsCenter())
         {
             k = (FPGA::SET::PointsInChannel() / 2) % FPGA::Randomizer::Kr[tBase];
         }
