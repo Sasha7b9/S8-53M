@@ -116,7 +116,7 @@ bool IsActiveButtonMeasuresTune()
 
 bool IsActiveButtonMeasuresFieldSet()
 {
-    return MEAS_FIELD_IS_HAND;
+    return MeasuresField::IsHand();
 }
 
 DEF_CHOICE_7( mcMeasuresNumber, PageMeasures::self,
@@ -157,7 +157,7 @@ DEF_CHOICE_3(mcMeasuresChannels, PageMeasures::self,
     "1",       "1",
     "2",       "2",
     "1 è 2",   "1 and 2",
-    MEAS_SOURCE, IsActiveChoiceMeasuresChannels, nullptr, nullptr
+    set.measures.source, IsActiveChoiceMeasuresChannels, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcMeasuresIsShow, PageMeasures::self,

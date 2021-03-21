@@ -806,3 +806,9 @@ bool MeasuresNumber::Is3_5()
 {
     return (set.measures.number == MeasuresNumber::_3_5);
 }
+
+
+bool MeasuresField::IsHand()
+{
+    return (set.measures.field == MeasuresField::Hand);
+}

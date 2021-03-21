@@ -352,15 +352,15 @@ int Grid::CalculateCountV()
     {
         if (MeasuresNumber::Is1_5())
         {
-            return MEAS_SOURCE_IS_A_B ? 42 : 44;
+            return SettingsMeasures::SourceIsAB() ? 42 : 44;
         }
         if (MeasuresNumber::Is2_5())
         {
-            return MEAS_SOURCE_IS_A_B ? 69 : 39;
+            return SettingsMeasures::SourceIsAB() ? 69 : 39;
         }
         if (MeasuresNumber::Is3_5())
         {
-            return MEAS_SOURCE_IS_A_B ? 54 : 68;
+            return SettingsMeasures::SourceIsAB() ? 54 : 68;
         }
     }
 

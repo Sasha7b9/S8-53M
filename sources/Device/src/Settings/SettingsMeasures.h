@@ -2,11 +2,6 @@
 #include "Utils/Measures.h"
 
 
-#define MEAS_SOURCE                     (set.measures.source)                           // SettingsMeasures.source
-#define MEAS_SOURCE_IS_A                (MEAS_SOURCE == ChA)
-#define MEAS_SOURCE_IS_B                (MEAS_SOURCE == ChB)
-#define MEAS_SOURCE_IS_A_B              (MEAS_SOURCE == Channel::A_B)
-
 #define MODE_VIEW_SIGNALS               (set.measures.modeViewSignals)                 // SettingsMeasures.modeViewSignals
 #define MODE_VIEW_SIGNALS_IS_COMPRESS   (MODE_VIEW_SIGNALS == ModeViewSignals::Compress)
 
@@ -17,9 +12,6 @@
 #define MEASURE_IS_MARKED(num)          (MEASURE(num) == MEAS_MARKED)
 
 #define SHOW_MEASURES                   (set.measures.show)                             // SettingsMeasures.show
-
-#define MEAS_FIELD                      (set.measures.field)                            // SettingsMeaseres.field
-#define MEAS_FIELD_IS_HAND              (MEAS_FIELD == MeasuresField::Hand)
 
 #define MEAS_POS_CUR_U(num)             (set.measures.posCurU[num])                     // SettingsMeasures.posCurU
 #define MEAS_POS_CUR_U0                 (MEAS_POS_CUR_U(0))
@@ -52,4 +44,9 @@ struct SettingsMeasures
     CursCntrl::E       cntrlT;           // јктивные курсоры времени.
     CursActive::E      cursActive;       //  акие курсоры активны - по времени или напр€жению.
     Measure::E         markedMeasure;    // »змерение, на которое нужно выводить маркеры.
+
+    static Channel::E Source();
+    static bool SourceIsA();
+    static bool SourceIsB();
+    static bool SourceIsAB();
 };

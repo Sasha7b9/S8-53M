@@ -81,7 +81,7 @@ char Measure::GetChar(Measure::E measure)
 
 int Measure::GetDY()
 {
-    if(MEAS_SOURCE_IS_A_B)
+    if(SettingsMeasures::SourceIsAB())
     {
         return 30;
     }
@@ -296,7 +296,7 @@ void Measure::DrawAll()
 
     Processing::CalculateMeasures();
 
-    if (MEAS_FIELD_IS_HAND)
+    if (MeasuresField::IsHand())
     {
         int x0 = MEAS_POS_CUR_T0 - SHIFT_IN_MEMORY + Grid::Left();
         int y0 = MEAS_POS_CUR_U0 + Grid::TOP;
@@ -344,11 +344,11 @@ void Measure::DrawAll()
                     Region(dX - 2, 9).Fill(x + 1, y + 1, active ? Color::BACK : Color::FILL);
                     Measure::Name(str, elem).Draw(x + 4, y + 2, active ? Color::FILL : Color::BACK);
                 }
-                if (MEAS_SOURCE_IS_A)
+                if (SettingsMeasures::SourceIsA())
                 {
                     Processing::GetStringMeasure(meas, Channel::A).Draw(x + 2, y + 11, ChA.GetColor());
                 }
-                else if (MEAS_SOURCE_IS_B)
+                else if (SettingsMeasures::SourceIsB())
                 {
                     Processing::GetStringMeasure(meas, Channel::B).Draw(x + 2, y + 11, ChA.GetColor());
                 }

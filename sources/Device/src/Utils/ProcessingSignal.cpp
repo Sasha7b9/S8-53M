@@ -146,11 +146,13 @@ void Processing::CalculateMeasures()
                     markerHor[ChB][0] = ERROR_VALUE_INT;
                     markerHor[ChB][1] = ERROR_VALUE_INT;
                 }
-                if(MEAS_SOURCE_IS_A || MEAS_SOURCE_IS_A_B)
+
+                if(SettingsMeasures::SourceIsA() || SettingsMeasures::SourceIsAB())
                 {
                     values[meas].value[ChA] = func(ChA.value);
                 }
-                if(MEAS_SOURCE_IS_B || MEAS_SOURCE_IS_A_B)
+
+                if(SettingsMeasures::SourceIsB() || SettingsMeasures::SourceIsAB())
                 {
                     values[meas].value[ChB] = func(ChB.value);
                 }
