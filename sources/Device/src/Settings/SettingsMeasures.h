@@ -2,9 +2,6 @@
 #include "Utils/Measures.h"
 
 
-#define MODE_VIEW_SIGNALS               (set.measures.modeViewSignals)                 // SettingsMeasures.modeViewSignals
-#define MODE_VIEW_SIGNALS_IS_COMPRESS   (MODE_VIEW_SIGNALS == ModeViewSignals::Compress)
-
 #define MEAS_MARKED                     (set.measures.markedMeasure)                    // SettingsMeasures.markedMeasure
 #define MEAS_MARKED_IS_NONE             (MEAS_MARKED == Measure::None)
 

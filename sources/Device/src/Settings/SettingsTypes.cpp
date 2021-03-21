@@ -824,3 +824,15 @@ bool CursActive::IsT()
 {
     return (set.measures.cursActive == CursActive::T);
 }
+
+
+ModeViewSignals::E ModeViewSignals::Get()
+{
+    return set.measures.modeViewSignals;
+}
+
+
+bool ModeViewSignals::IsCompress()
+{
+    return (set.measures.modeViewSignals == ModeViewSignals::Compress);
+}

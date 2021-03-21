@@ -348,7 +348,7 @@ void Grid::DrawType3(int left, int top, int right, int bottom, int centerX, int 
 
 int Grid::CalculateCountV()
 {
-    if (MODE_VIEW_SIGNALS_IS_COMPRESS)
+    if (ModeViewSignals::IsCompress())
     {
         if (MeasuresNumber::Is1_5())
         {
@@ -370,7 +370,7 @@ int Grid::CalculateCountV()
 
 int Grid::CalculateCountH()
 {
-    if (MODE_VIEW_SIGNALS_IS_COMPRESS)
+    if (ModeViewSignals::IsCompress())
     {
         if (MeasuresNumber::Is6_1())
         {

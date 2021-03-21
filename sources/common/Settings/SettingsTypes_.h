@@ -765,11 +765,18 @@ struct CursLookMode { enum E
 
 
 // Сжимать ли сигналы при выводе измерений.
-struct ModeViewSignals { enum E
+struct ModeViewSignals
 {
-    AsIs,       // Показывать сигналы как есть
-    Compress    // Сжимать сетку с сигналами
-};};
+    enum E
+    {
+        AsIs,       // Показывать сигналы как есть
+        Compress    // Сжимать сетку с сигналами
+    };
+
+    static E Get();
+
+    static bool IsCompress();
+};
 
 
 struct ScaleMath { enum E
