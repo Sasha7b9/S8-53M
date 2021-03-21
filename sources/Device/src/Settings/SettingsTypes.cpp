@@ -758,3 +758,9 @@ bool ModeBtnMemory::IsSave()
 {
     return (set.memory.modeBtnMemory == ModeBtnMemory::Save);
 }
+
+
+bool ModeSaveSignal::IsBMP()
+{
+    return (set.memory.modeSaveSignal == ModeSaveSignal::BMP);
+}

@@ -837,7 +837,7 @@ DEF_CHOICE_2(mcMemoryExtModeSave, PageMemory::PageExternal::self,
     ,
     "Изображение", "Image",
     "Текст",       "Text",
-    MODE_SAVE_SIGNAL, nullptr, nullptr, nullptr
+    set.memory.modeSaveSignal, nullptr, nullptr, nullptr
 )
 
     
