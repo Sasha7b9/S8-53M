@@ -176,7 +176,7 @@ void Display::WriteCursors()
 {
     int startX = 43;
 
-    if(MODE_WORK_IS_DIRECT)
+    if(ModeWork::IsDirect())
     {
         startX += 29;
     }
@@ -253,7 +253,7 @@ void Display::DrawHiRightPart()
     static const int xses[3] = {280, 271, 251};
     int x = xses[ModeWork::Get()];
 
-    if (!MODE_WORK_IS_LATEST)
+    if (!ModeWork::IsLatest())
     {
         HLine().Draw(x, 1, Grid::TOP - 2, Color::FILL);
 
@@ -274,7 +274,7 @@ void Display::DrawHiRightPart()
         {"ВНТР",    "INT"}
     };
 
-    if(!MODE_WORK_IS_DIRECT)
+    if(!ModeWork::IsDirect())
     {
         x += 18;
         HLine().Draw(x, 1, Grid::TOP - 2, Color::FILL);
@@ -287,7 +287,7 @@ void Display::DrawHiRightPart()
         x -= 9;
     }
 
-    if (!MODE_WORK_IS_LATEST)
+    if (!ModeWork::IsLatest())
     {
 
         x += 27;
@@ -447,7 +447,7 @@ void Display::Update()
 
 void Display::WriteValueTrigLevel()
 {
-    if (showLevelTrigLev && MODE_WORK_IS_DIRECT)
+    if (showLevelTrigLev && ModeWork::IsDirect())
     {
         float trigLev = RSHIFT_2_ABS(TrigLev::Get(), Range::Get((Channel::E)TrigSource::Get()));     // WARN Здесь для внешней
                                                                     // синхронизации неправильно рассчитывается уровень.
@@ -632,7 +632,7 @@ void Display::WriteTextVoltage(const Channel &ch, int x, int y)
     uint rShift = (uint)RShift::Get(ch);
     bool enable = ch.IsEnabled();
 
-    if (!MODE_WORK_IS_DIRECT)
+    if (!ModeWork::IsDirect())
     {
 //        DataSettings *ds = MODE_WORK_IS_DIRECT ? Storage::set : Storage::dsInt;
 //
@@ -705,7 +705,7 @@ void Display::DrawLowPart()
     TBase::E tBase = TBase::Get();
     int16 tShift = TShift::Get();
 
-    if (!MODE_WORK_IS_DIRECT)
+    if (!ModeWork::IsDirect())
     {
 //        DataSettings *ds = MODE_WORK_IS_LATEST ? Storage::dsLast : Storage::dsInt;
 //
@@ -720,14 +720,14 @@ void Display::DrawLowPart()
 
     Text(String("\xa5%s", TShift::ToString(tShift).c_str())).Draw(x + 35, y0);
 
-    if (MODE_WORK_IS_DIRECT)
+    if (ModeWork::IsDirect())
     {
         pchar source[3] = { "1", "2", "\x82" };
 
         Text(String("с\xa5\x10%s", source[TrigSource::Get()])).Draw(x, y1, Color::Trig());
     }
 
-    if (MODE_WORK_IS_DIRECT)
+    if (ModeWork::IsDirect())
     {
         static pchar couple[] =
         {
@@ -756,7 +756,7 @@ void Display::DrawLowPart()
         Char(filtr[TrigInput::Get()][1]).Draw(x + 53, y1);
     }
 
-    if (MODE_WORK_IS_DIRECT)
+    if (ModeWork::IsDirect())
     {
         const char mode[] =
         {
@@ -778,7 +778,7 @@ void Display::DrawLowPart()
     y1 = y1 - 6;
     Font::Set(TypeFont::S5);
     
-    if (MODE_WORK_IS_DIRECT)
+    if (ModeWork::IsDirect())
     {
         int y2 = y1 + 6;
         WriteStringAndNumber("накопл", x, y0, NUM_ACCUM);
@@ -791,7 +791,7 @@ void Display::DrawLowPart()
 
     Font::Set(TypeFont::S8);
 
-    if (MODE_WORK_IS_DIRECT)
+    if (ModeWork::IsDirect())
     {
         char mesFreq[20] = "\x7c=";
         float freq = FPGA::FreqMeter::GetFreq();
@@ -839,7 +839,7 @@ void Display::DrawLowPart()
        Char('\x13').Draw(x + 46, Grid::Bottom() + 11);
     }
 
-    if (MODE_WORK_IS_DIRECT)
+    if (ModeWork::IsDirect())
     {
         Font::Set(TypeFont::S5);
         WriteStringAndNumber("СГЛАЖ.:", x + 57, Grid::Bottom() + 10, (int)Smoothing::NumPoints());

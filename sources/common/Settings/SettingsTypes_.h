@@ -273,6 +273,8 @@ struct ModeWork
     };
 
     static E Get();
+    static bool IsDirect();
+    static bool IsLatest();
 };
 
 

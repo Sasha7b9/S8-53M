@@ -710,3 +710,15 @@ ModeWork::E ModeWork::Get()
 {
     return set.memory.modeWork;
 }
+
+
+bool ModeWork::IsDirect()
+{
+    return (set.memory.modeWork == ModeWork::Direct);
+}
+
+
+bool ModeWork::IsLatest()
+{
+    return (set.memory.modeWork == ModeWork::Latest);
+}

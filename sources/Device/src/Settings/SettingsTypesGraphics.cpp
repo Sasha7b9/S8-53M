@@ -72,7 +72,7 @@ void RShift::Draw(const Channel &ch)
     else
     {
         Char(Symbol::S8::RSHIFT_NORMAL).Draw(static_cast<int>(x - 8), static_cast<int>(y - 4), ch.GetColor());
-        if (((ch == ChA) ? show_level_A : show_level_B) && MODE_WORK_IS_DIRECT) //-V2570
+        if (((ch == ChA) ? show_level_A : show_level_B) && ModeWork::IsDirect())
         {
             DashedHLine(7, 3).Draw(static_cast<int>(y), Grid::Left(), Grid::Right(), 0);
         }

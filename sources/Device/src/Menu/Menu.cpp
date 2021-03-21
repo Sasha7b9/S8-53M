@@ -497,7 +497,7 @@ void Menu::ProcessingRegulatorSet()
 
 void Menu::ProcessingPressButton()
 {
-    if (pressButton == Key::Start && !MODE_WORK_IS_LATEST)
+    if (pressButton == Key::Start && !ModeWork::IsLatest())
     {
         FPGA::OnPressStartStop();
     } 
