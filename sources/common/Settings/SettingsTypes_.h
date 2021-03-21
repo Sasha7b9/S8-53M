@@ -749,6 +749,8 @@ struct CursActive
     };
 
     static E Get();
+
+    static bool IsT();
 };
 
 

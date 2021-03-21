@@ -11,7 +11,7 @@ bool PageMeasures::choiceMeasuresIsActive = false;
 // Каким курсором в данный момент происходит управление
 static CursCntrl::E GetMeasuresCursCntrlActive()
 {
-    if (MEAS_CURS_ACTIVE_IS_T)
+    if (CursActive::IsT())
     {
         return MEAS_CURS_CNTRL_T;
     }

@@ -818,3 +818,9 @@ CursActive::E CursActive::Get()
 {
     return set.measures.cursActive;
 }
+
+
+bool CursActive::IsT()
+{
+    return (set.measures.cursActive == CursActive::T);
+}
