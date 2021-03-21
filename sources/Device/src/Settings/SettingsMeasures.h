@@ -2,14 +2,6 @@
 #include "Utils/Measures.h"
 
 
-//#define MEAS_NUM                        (set.measures.number)                           // SettingsMeasuers.number
-#define MEAS_NUM_IS_1                   (set.measures.number == MeasuresNumber::_1)
-#define MEAS_NUM_IS_1_5                 (set.measures.number == MeasuresNumber::_1_5)
-#define MEAS_NUM_IS_2_5                 (set.measures.number == MeasuresNumber::_2_5)
-#define MEAS_NUM_IS_3_5                 (set.measures.number == MeasuresNumber::_3_5)
-#define MEAS_NUM_IS_6_1                 (set.measures.number == MeasuresNumber::_6_1)
-#define MEAS_NUM_IS_6_2                 (set.measures.number == MeasuresNumber::_6_2)
-
 #define MEAS_SOURCE                     (set.measures.source)                           // SettingsMeasures.source
 #define MEAS_SOURCE_IS_A                (MEAS_SOURCE == ChA)
 #define MEAS_SOURCE_IS_B                (MEAS_SOURCE == ChB)

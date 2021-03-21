@@ -107,7 +107,7 @@ Measure::E Measure::Type(int row, int col)
 
 int Measure::GetTopTable()
 {
-    if(MEAS_NUM_IS_6_2 || MEAS_NUM_IS_6_1)
+    if(MeasuresNumber::Is6_1() || MeasuresNumber::Is6_2())
     {
         return Grid::Bottom() - Measure::GetDY() * 6;
     }
@@ -130,11 +130,11 @@ int Measure::GetDeltaGridLeft()
 {
     if(SHOW_MEASURES && MODE_VIEW_SIGNALS_IS_COMPRESS)
     {
-        if(MEAS_NUM_IS_6_1)
+        if(MeasuresNumber::Is6_1())
         {
             return Measure::GetDX();
         }
-        else if(MEAS_NUM_IS_6_2)
+        else if(MeasuresNumber::Is6_2())
         {
             return Measure::GetDX() * 2;
         }
@@ -146,15 +146,15 @@ int Measure::GetDeltaGridBottom()
 {
     if(SHOW_MEASURES && MODE_VIEW_SIGNALS_IS_COMPRESS)
     {
-        if(MEAS_NUM_IS_1_5)
+        if(MeasuresNumber::Is1_5())
         {
             return Measure::GetDY();
         }
-        else if(MEAS_NUM_IS_2_5)
+        else if(MeasuresNumber::Is2_5())
         {
             return Measure::GetDY() * 2;
         }
-        else if(MEAS_NUM_IS_3_5)
+        else if(MeasuresNumber::Is3_5())
         {
             return Measure::GetDY() * 3;
         }
@@ -244,7 +244,7 @@ void Measure::DrawPageChoice()
         return;
     }
 
-    bool num61or62 = MEAS_NUM_IS_6_1 || MEAS_NUM_IS_6_2;
+    bool num61or62 = MeasuresNumber::Is6_1() || MeasuresNumber::Is6_2();
 
     int x = num61or62 ? (Grid::Right() - 3 * Grid::WIDTH / 5) : Grid::Left();
     int y = Grid::TOP;

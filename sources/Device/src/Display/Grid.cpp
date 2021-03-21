@@ -140,7 +140,7 @@ int Grid::BottomMessages()
     else if (SHOW_MEASURES)
     {
         retValue = Measure::top_measures;
-        if (MEAS_NUM_IS_6_1 || MEAS_NUM_IS_6_2 || MEAS_NUM_IS_1)
+        if (MeasuresNumber::Is6_1() || MeasuresNumber::Is6_2() || MeasuresNumber::Is1())
         {
             retValue = FullBottom();
         }
@@ -350,15 +350,15 @@ int Grid::CalculateCountV()
 {
     if (MODE_VIEW_SIGNALS_IS_COMPRESS)
     {
-        if (MEAS_NUM_IS_1_5)
+        if (MeasuresNumber::Is1_5())
         {
             return MEAS_SOURCE_IS_A_B ? 42 : 44;
         }
-        if (MEAS_NUM_IS_2_5)
+        if (MeasuresNumber::Is2_5())
         {
             return MEAS_SOURCE_IS_A_B ? 69 : 39;
         }
-        if (MEAS_NUM_IS_3_5)
+        if (MeasuresNumber::Is3_5())
         {
             return MEAS_SOURCE_IS_A_B ? 54 : 68;
         }
@@ -372,11 +372,11 @@ int Grid::CalculateCountH()
 {
     if (MODE_VIEW_SIGNALS_IS_COMPRESS)
     {
-        if (MEAS_NUM_IS_6_1)
+        if (MeasuresNumber::Is6_1())
         {
             return 73;
         }
-        if (MEAS_NUM_IS_6_2)
+        if (MeasuresNumber::Is6_2())
         {
             return 83;
         }

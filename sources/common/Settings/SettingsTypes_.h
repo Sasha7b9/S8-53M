@@ -257,6 +257,11 @@ struct MeasuresNumber
     static E Get();
 
     static bool Is1();
+    static bool Is6_1();
+    static bool Is6_2();
+    static bool Is1_5();
+    static bool Is2_5();
+    static bool Is3_5();
 };
 
 
