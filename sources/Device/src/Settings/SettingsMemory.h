@@ -1,10 +1,10 @@
 #pragma once
 
 
-#define MODE_WORK                   (set.memory.modeWork)                           // SettingsMemory.modeWork
-#define MODE_WORK_IS_DIRECT         (MODE_WORK == ModeWork::Direct)
-#define MODE_WORK_IS_LATEST         (MODE_WORK == ModeWork::Latest)
-#define MODE_WORK_IS_MEMINT         (MODE_WORK == ModeWork::MemInt)
+//#define MODE_WORK                   (set.memory.modeWork)                           // SettingsMemory.modeWork
+#define MODE_WORK_IS_DIRECT         (set.memory.modeWork == ModeWork::Direct)
+#define MODE_WORK_IS_LATEST         (set.memory.modeWork == ModeWork::Latest)
+#define MODE_WORK_IS_MEMINT         (set.memory.modeWork == ModeWork::MemInt)
 
 #define FILE_NAMING_MODE            (set.memory.fileNamingMode)                     // SettingsMemory.fileNamingMode
 #define FILE_NAMING_MODE_IS_MASK    (FILE_NAMING_MODE == FileNamingMode::Mask)

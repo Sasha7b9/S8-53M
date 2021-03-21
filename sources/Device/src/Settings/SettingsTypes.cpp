@@ -682,7 +682,7 @@ bool ModeRegSet::IsRShift()
 }
 
 
-TypeGrid::E Get()
+TypeGrid::E TypeGrid::Get()
 {
     return set.display.typeGrid;
 }
@@ -703,4 +703,10 @@ bool TypeGrid::Is2()
 bool TypeGrid::Is3()
 {
     return (set.display.typeGrid == TypeGrid::_3);
+}
+
+
+ModeWork::E ModeWork::Get()
+{
+    return set.memory.modeWork;
 }

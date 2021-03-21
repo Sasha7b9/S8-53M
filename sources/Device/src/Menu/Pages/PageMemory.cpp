@@ -207,7 +207,7 @@ DEF_SMALL_BUTTON(sbMemLastNext, PageMemory::PageLatest::self,
 void PressSB_MemLast_IntEnter()
 {
     PageMemory::PageInternal::self->OpenAndSetItCurrent();
-    MODE_WORK = ModeWork::MemInt;
+    set.memory.modeWork = ModeWork::MemInt;
 
 //    EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
 
@@ -733,13 +733,13 @@ void PressSB_MemInt_Exit()
     if (exitFromIntToLast)
     {
         PageMemory::PageLatest::self->OpenAndSetItCurrent();
-        MODE_WORK = ModeWork::Latest;
+        set.memory.modeWork = ModeWork::Latest;
         exitFromIntToLast = false;
         Menu::needClosePageSB = false;
     }
     else
     {
-        MODE_WORK = ModeWork::Direct;
+        set.memory.modeWork = ModeWork::Direct;
     }
 }
 
@@ -1008,7 +1008,7 @@ void Memory_SaveSignalToFlashDrive()
 
 static void PressSB_MemLast_Exit()
 {
-    MODE_WORK = ModeWork::Direct;
+    set.memory.modeWork = ModeWork::Direct;
     if (runningFPGAbeforeSmallButtons)
     {
         FPGA::Start();
@@ -1023,7 +1023,7 @@ void OnPressMemoryLatest()
     PageMemory::PageLatest::currentSignal = 0;
     runningFPGAbeforeSmallButtons = FPGA::IsRunning();
     FPGA::Stop(false);
-    MODE_WORK = ModeWork::Latest;
+    set.memory.modeWork = ModeWork::Latest;
 }
 
 DEF_SMALL_BUTTON(sbExitMemLast, PageMemory::PageLatest::self,
@@ -1124,7 +1124,7 @@ DEF_PAGE_6(pageExternal, PageMemory::self, NamePage::MemoryExt,
 void OnPressMemoryInt()
 {
     PageMemory::PageInternal::self->OpenAndSetItCurrent();
-    MODE_WORK = ModeWork::MemInt;
+    set.memory.modeWork = ModeWork::MemInt;
 
 //    EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
 }
