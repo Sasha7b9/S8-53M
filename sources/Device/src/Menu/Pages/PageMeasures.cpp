@@ -45,7 +45,7 @@ void PressSB_MeasTune_Markers()
 void RotateRegMeasureSetField(int angle)
 {
     CursCntrl::E cursCntrl = GetMeasuresCursCntrlActive();
-    CursActive::E cursActive = MEAS_CURS_ACTIVE;
+    CursActive::E cursActive = CursActive::Get();
 
     int sign = Math::Sign(angle);
 

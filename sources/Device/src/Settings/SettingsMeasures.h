@@ -25,8 +25,8 @@
 
 #define MEAS_CURS_CNTRL_T               (set.measures.cntrlT)                           // SettingsMeasures.cntrlT
 
-#define MEAS_CURS_ACTIVE                (set.measures.cursActive)                       // SettingsMeasures.cursActive
-#define MEAS_CURS_ACTIVE_IS_T           (MEAS_CURS_ACTIVE == CursActive::T)
+//#define MEAS_CURS_ACTIVE                (set.measures.cursActive)                       // SettingsMeasures.cursActive
+#define MEAS_CURS_ACTIVE_IS_T           (set.measures.cursActive == CursActive::T)
 
 
 // Настройки меню ИЗМЕРЕНИЯ

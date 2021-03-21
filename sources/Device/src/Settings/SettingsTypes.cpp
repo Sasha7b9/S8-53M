@@ -812,3 +812,9 @@ bool MeasuresField::IsHand()
 {
     return (set.measures.field == MeasuresField::Hand);
 }
+
+
+CursActive::E CursActive::Get()
+{
+    return set.measures.cursActive;
+}

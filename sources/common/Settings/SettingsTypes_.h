@@ -739,12 +739,17 @@ struct CursMovement { enum E
 
 
 // Какие курсоры сейчас активны. Какие активны, те и будут перемещаться по вращению ручки УСТАНОВКА.
-struct CursActive { enum E
+struct CursActive
 {
-    U,
-    T,
-    None
-};};
+    enum E
+    {
+        U,
+        T,
+        None
+    };
+
+    static E Get();
+};
 
 
 // Режим слежения курсоров.
