@@ -1,24 +1,11 @@
 #pragma once
 
 
-//#define MODE_WORK                   (set.memory.modeWork)                           // SettingsMemory.modeWork
-//#define MODE_WORK_IS_DIRECT         (set.memory.modeWork == ModeWork::Direct)
-//#define MODE_WORK_IS_LATEST         (set.memory.modeWork == ModeWork::Latest)
-//#define MODE_WORK_IS_MEMINT         (set.memory.modeWork == ModeWork::MemInt)
-
-#define FILE_NAMING_MODE            (set.memory.fileNamingMode)                     // SettingsMemory.fileNamingMode
-#define FILE_NAMING_MODE_IS_MASK    (FILE_NAMING_MODE == FileNamingMode::Mask)
-#define FILE_NAMING_MODE_IS_HAND    (FILE_NAMING_MODE == FileNamingMode::Manually)
-
 #define FILE_NAME_MASK              (set.memory.fileNameMask)                       // SettingsMemory.fileNameMask
 
 #define FILE_NAME                   (set.memory.fileName)                           // SettingsMemory.fileName
 
 #define INDEX_SYMBOL                (set.memory.indexCurSymbolNameMask)             // SettingsMemory.indexCurSymbolNameMask
-
-#define MODE_SHOW_MEMINT            (set.memory.modeShowIntMem)                     // SettingsMemory.modeShowIntMem
-#define MODE_SHOW_MEMINT_IS_SAVED   (MODE_SHOW_MEMINT == ModeShowIntMem::Saved)
-#define MODE_SHOW_MEMINT_IS_DIRECT  (MODE_SHOW_MEMINT == ModeShowIntMem::Direct)
 
 #define FLASH_AUTOCONNECT           (set.memory.flashAutoConnect)                   // SettingsMemory.flashAutoConnect
 

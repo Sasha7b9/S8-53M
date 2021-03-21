@@ -62,7 +62,7 @@ void ChangeC_Memory_NumPoints(bool)
 // Активна ли ПАМЯТЬ - ВНЕШН ЗУ - Маска
 bool IsActiveMemoryExtSetMask()
 {                       
-    return FILE_NAMING_MODE_IS_MASK;
+    return FileNamingMode::IsMask();
 }
 
 
@@ -656,7 +656,7 @@ static void DrawSB_MemInt_ModeShow_Both(int x, int y)
 
 static void DrawSB_MemInt_ModeShow(int x, int y)
 {
-    ModeShowIntMem::E mode = MODE_SHOW_MEMINT;
+    ModeShowIntMem::E mode = ModeShowIntMem::Get();
 
     if (mode == ModeShowIntMem::Direct)
     {
@@ -674,7 +674,7 @@ static void DrawSB_MemInt_ModeShow(int x, int y)
 
 static void PressSB_MemInt_ModeShow()
 {
-    GF::CircleIncrease<int8>((int8*)&MODE_SHOW_MEMINT, 0, 2);
+    GF::CircleIncrease<int8>((int8*)&set.memory.modeShowIntMem, 0, 2);
 }
 
 static const arrayHints hintsMemIntModeShow =
@@ -799,7 +799,7 @@ DEF_CHOICE_2(mcMemoryExtName, PageMemory::PageExternal::self,
     ,
     "По маске", "Mask",
     "Вручную",  "Manually",
-    FILE_NAMING_MODE, nullptr, nullptr, nullptr
+    set.memory.fileNamingMode, nullptr, nullptr, nullptr
 )
 
     
@@ -990,7 +990,7 @@ void Memory_SaveSignalToFlashDrive()
 {
     if (FDrive::isConnected)
     {
-        if (FILE_NAMING_MODE_IS_HAND)
+        if (FileNamingMode::IsHand())
         {
             PageMemory::PageSetName::self->OpenAndSetItCurrent();
             Display::SetAddDrawFunction(DrawSetName);

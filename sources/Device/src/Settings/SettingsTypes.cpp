@@ -728,3 +728,21 @@ bool ModeWork::IsMemInt()
 {
     return (set.memory.modeWork == ModeWork::MemInt);
 }
+
+
+bool FileNamingMode::IsMask()
+{
+    return (set.memory.fileNamingMode == FileNamingMode::Mask);
+}
+
+
+bool FileNamingMode::IsHand()
+{
+    return (set.memory.fileNamingMode == FileNamingMode::Manually);
+}
+
+
+ModeShowIntMem::E ModeShowIntMem::Get()
+{
+    return set.memory.modeShowIntMem;
+}
