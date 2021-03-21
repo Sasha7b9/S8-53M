@@ -5,7 +5,6 @@
 #include "Menu/FileManager.h"
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
-#include "Settings/SettingsMemory.h"
 #include <ff.h>
 #include <ff_gen_drv.h>
 #include <usbh_def.h>

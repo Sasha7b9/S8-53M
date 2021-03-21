@@ -1928,11 +1928,6 @@
               <FilePath>.\src\Settings\SettingsDisplay.h</FilePath>
             </File>
             <File>
-              <FileName>SettingsMemory.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Settings\SettingsMemory.h</FilePath>
-            </File>
-            <File>
               <FileName>SettingsCursors.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Settings\SettingsCursors.h</FilePath>
@@ -4101,11 +4096,6 @@
               <FileName>SettingsDisplay.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Settings\SettingsDisplay.h</FilePath>
-            </File>
-            <File>
-              <FileName>SettingsMemory.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Settings\SettingsMemory.h</FilePath>
             </File>
             <File>
               <FileName>SettingsCursors.h</FileName>
