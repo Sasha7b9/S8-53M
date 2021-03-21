@@ -722,3 +722,9 @@ bool ModeWork::IsLatest()
 {
     return (set.memory.modeWork == ModeWork::Latest);
 }
+
+
+bool ModeWork::IsMemInt()
+{
+    return (set.memory.modeWork == ModeWork::MemInt);
+}

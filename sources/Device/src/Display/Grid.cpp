@@ -132,7 +132,8 @@ int Grid::MathBottom()
 int Grid::BottomMessages()
 {
     int retValue = FullBottom();
-    if (MODE_WORK_IS_MEMINT)
+
+    if (ModeWork::IsMemInt())
     {
         retValue -= 12;
     }
@@ -144,6 +145,7 @@ int Grid::BottomMessages()
             retValue = FullBottom();
         }
     }
+
     return retValue - 12;;
 }
 
