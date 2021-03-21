@@ -764,3 +764,15 @@ bool ModeSaveSignal::IsBMP()
 {
     return (set.memory.modeSaveSignal == ModeSaveSignal::BMP);
 }
+
+
+MeasuresNumber::E MeasuresNumber::Get()
+{
+    return set.measures.number;
+}
+
+
+bool MeasuresNumber::Is1()
+{
+    return (set.measures.number == MeasuresNumber::_1);
+}

@@ -117,13 +117,13 @@ int Measure::GetTopTable()
 int Measure::NumCols()
 {
     static const int cols[] = {1, 2, 5, 5, 5, 1, 2};
-    return cols[MEAS_NUM];
+    return cols[MeasuresNumber::Get()];
 }
 
 int Measure::NumRows()
 {
     static const int rows[] = {1, 1, 1, 2, 3, 6, 6};
-    return rows[MEAS_NUM];
+    return rows[MeasuresNumber::Get()];
 }
 
 int Measure::GetDeltaGridLeft()

@@ -147,7 +147,7 @@ DEF_CHOICE_7( mcMeasuresNumber, PageMeasures::self,
     "3x5", "3x5",
     "6x1", "6x1",
     "6x2", "6x2",
-    MEAS_NUM, IsActiveChoiceMeasuresNumber, nullptr, nullptr
+    set.measures.number, IsActiveChoiceMeasuresNumber, nullptr, nullptr
 )
 
 DEF_CHOICE_3(mcMeasuresChannels, PageMeasures::self,
