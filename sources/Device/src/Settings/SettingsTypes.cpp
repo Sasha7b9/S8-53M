@@ -746,3 +746,15 @@ ModeShowIntMem::E ModeShowIntMem::Get()
 {
     return set.memory.modeShowIntMem;
 }
+
+
+ModeBtnMemory::E ModeBtnMemory::Get()
+{
+    return set.memory.modeBtnMemory;
+}
+
+
+bool ModeBtnMemory::IsSave()
+{
+    return (set.memory.modeBtnMemory == ModeBtnMemory::Save);
+}
