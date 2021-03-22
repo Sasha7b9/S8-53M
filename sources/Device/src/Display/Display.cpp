@@ -202,8 +202,13 @@ void Display::WriteCursors()
             Cursors::GetVoltage(source, 0).Draw(x, y1);
             Cursors::GetVoltage(source, 1).Draw(x, y2);
             x = startX + 49;
-            float pos0 = MathFPGA::VoltageCursor(Cursors::GetPosU(source, 0), Range::Get(source), RShift::Get(source));
-            float pos1 = MathFPGA::VoltageCursor(Cursors::GetPosU(source, 1), Range::Get(source), RShift::Get(source));
+
+            float pos0 = MathFPGA::VoltageCursor(
+                Cursors::GetPosU(source, 0), set.chan[source].range, RShift::Get(source));
+
+            float pos1 = MathFPGA::VoltageCursor(
+                Cursors::GetPosU(source, 1), set.chan[source].range, RShift::Get(source));
+
             float delta = std::fabsf(pos1 - pos0);
             Text(":dU=").Draw(x, y1);
             GF::Voltage2String(delta, false).Draw(x + 17, y1);
@@ -450,13 +455,13 @@ void Display::WriteValueTrigLevel()
 {
     if (showLevelTrigLev && ModeWork::IsDirect())
     {
-        float trigLev = RSHIFT_2_ABS(TrigLev::Get(), Range::Get((Channel::E)TrigSource::Get()));     // WARN Здесь для внешней
+        float trigLev = RSHIFT_2_ABS(TrigLev::Get(), set.chan[TrigSource::Get()].range);     // WARN Здесь для внешней
                                                                     // синхронизации неправильно рассчитывается уровень.
         TrigSource::E trigSource = TrigSource::Get();
         if (TrigInput::IsAC() && trigSource <= TrigSource::B)
         {
             int16 rShift = RShift::Get((Channel::E)trigSource);
-            float rShiftAbs = RSHIFT_2_ABS(rShift, Range::Get((Channel::E)trigSource));
+            float rShiftAbs = RSHIFT_2_ABS(rShift, set.chan[trigSource].range);
             trigLev += rShiftAbs;
         }
         char buffer[20];
@@ -629,7 +634,7 @@ void Display::WriteTextVoltage(const Channel &ch, int x, int y)
     bool inverse = ch.IsInversed();
     ModeCouple &mode_couple = set.chan[ch].mode_сouple;
     Divider::E multiplier = set.chan[ch].divider;
-    Range::E range = Range::Get(ch);
+    Range::E range = set.chan[ch].range;
     uint rShift = (uint)RShift::Get(ch);
     bool enable = ch.IsEnabled();
 

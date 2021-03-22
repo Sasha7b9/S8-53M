@@ -539,16 +539,15 @@ struct Range
         _10V,
         _20V,
         Count
-    };
+    } value;
+
+    Range(E v = _2mV) : value(v) {}
+
+    operator E() const { return value; }
 
     static void Load(const Channel &ch);
 
     static void Set(const Channel &ch, Range::E range);
-
-    static Range::E Get(const Channel &ch);
-    static Range::E GetA();
-    static Range::E GetB();
-    static Range::E GetMath();
 
     static bool Increase(const Channel &ch);
 

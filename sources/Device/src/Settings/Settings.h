@@ -54,7 +54,7 @@ struct SettingsChannel
     int16         rshift_add[Range::Count][2]; // Добавочное смещение для открытого (0) и закрытого (1) входов.
     ModeCouple    mode_сouple;                 // Режим по входу.
     Divider       divider;                     // Множитель.
-    Range::E      range;                       // Масштаб по напряжению.
+    Range         range;                       // Масштаб по напряжению.
     bool          enable;                      // Включён ли канал.
     bool          inverse;                     // Инвертирован ли канал.
     bool          filtr;                       // Фильтр

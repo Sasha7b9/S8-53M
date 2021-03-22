@@ -106,8 +106,8 @@ void FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::E type)
     */
 
     // Range0, Range1
-    data |= masksRange[Range::GetA()];
-    data |= (masksRange[Range::GetB()] << 8);
+    data |= masksRange[set.chan[ChA].range];
+    data |= (masksRange[set.chan[ChB].range] << 8);
 
     // Параметры каналов
     static const uint maskCouple[2][3] = 
@@ -152,8 +152,8 @@ void Range::Set(const Channel &ch, Range::E range)
 
         if (LinkingRShift::IsVoltage())
         {
-            float rShiftAbs = RSHIFT_2_ABS(RShift::Get(ch), Range::Get(ch));
-            float trigLevAbs = RSHIFT_2_ABS(TrigLev::Get((TrigSource::E)ch.value), Range::Get(ch));
+            float rShiftAbs = RSHIFT_2_ABS(RShift::Get(ch), set.chan[ch].range);
+            float trigLevAbs = RSHIFT_2_ABS(TrigLev::Get((TrigSource::E)ch.value), set.chan[ch].range);
             set.chan[ch].rshift = (int16)RShift::ToRel(rShiftAbs, range);
             set.trig.levelRel[(TrigSource::E)ch.value] = (int16)RShift::ToRel(trigLevAbs, range);
         }
@@ -165,30 +165,6 @@ void Range::Set(const Channel &ch, Range::E range)
         Display::ShowWarningBad(ch == ChA ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
     }
 };
-
-
-Range::E Range::Get(const Channel &ch)
-{
-    return set.chan[ch].range;
-}
-
-
-Range::E Range::GetA()
-{
-    return set.chan[ChA].range;
-}
-
-
-Range::E Range::GetB()
-{
-    return set.chan[ChB].range;
-}
-
-
-Range::E Range::GetMath()
-{
-    return set.math.range;
-}
 
 
 void Range::Load(const Channel &ch)
@@ -257,7 +233,7 @@ void RShift::Load(const Channel &ch)
 {
     static const uint16 mask[2] = {0x2000, 0x6000};
 
-    Range::E range = Range::Get(ch);
+    Range::E range = set.chan[ch].range;
     ModeCouple::E mode = set.chan[ch].mode_сouple;
     static const int index[3] = {0, 1, 1};
     int16 rShiftAdd = RSHIFT_ADD(ch, range, index[mode]);
@@ -471,35 +447,41 @@ String TShift::ToString(int16 tshift_rel)
 
 bool Range::Increase(const Channel &ch)
 {
-    bool retValue = false;
-    if (Range::Get(ch) < Range::Count - 1)
+    bool result = false;
+
+    if (set.chan[ch].range < Range::Count - 1)
     {
-        Set(ch, (Range::E)(Range::Get(ch) + 1));
-        retValue = true;
+        Set(ch, (Range::E)(set.chan[ch].range + 1));
+        result = true;
     }
     else
     {
        Display::ShowWarningBad(ch == ChA ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
     }
+
     Display::Redraw();
-    return retValue;
+ 
+    return result;
 };
 
 
 bool Range::Decrease(const Channel &ch)
 {
-    bool retValue = false;
-    if (Range::Get(ch) > 0)
+    bool result = false;
+
+    if (set.chan[ch].range > 0)
     {
-        Range::Set(ch, (Range::E)(Range::Get(ch) - 1));
-        retValue = true;
+        Range::Set(ch, (Range::E)(set.chan[ch].range - 1));
+        result = true;
     }
     else
     {
         Display::ShowWarningBad(ch == ChA ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
     }
+
     Display::Redraw();
-    return retValue;
+
+    return result;
 };
 
 

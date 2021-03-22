@@ -147,7 +147,7 @@ void SCPI::CHANNEL::RANGE(puchar buffer)
         if (value <= (uint8)Range::_20V)      { Range::Set(ch, (Range::E)value); }
         else if (value == (uint8)Range::Count)
         {
-            SCPI_SEND(":CHANNEL%d:SET_RANGE %s", ch.ToNumber(), map[Range::Get(ch)].key);
+            SCPI_SEND(":CHANNEL%d:SET_RANGE %s", ch.ToNumber(), map[set.chan[ch].range].key);
         }
     LEAVE_ANALYSIS
 }

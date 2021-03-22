@@ -28,7 +28,7 @@ bool Cursors::NecessaryDraw()
 
 String Cursors::GetVoltage(const Channel &source, int numCur)
 {
-    float voltage = MathFPGA::VoltageCursor(GetPosU(source, numCur), Range::Get(source), RShift::Get(source));
+    float voltage = MathFPGA::VoltageCursor(GetPosU(source, numCur), set.chan[source].range, RShift::Get(source));
 
     return GF::Voltage2String(voltage, true);
 }
