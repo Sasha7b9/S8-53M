@@ -368,26 +368,10 @@ bool PeackDetMode::IsEnabled()
 void ModeCouple::Set(const Channel &ch, ModeCouple::E mode_ñouple)
 {
     set.chan[ch].mode_ñouple = mode_ñouple;
+
     FPGA::BUS::SetAttribChannelsAndTrig(ch == ChA ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
+
     RShift::Set(ch, RShift::Get(ch));
-}
-
-
-ModeCouple::E ModeCouple::Get(const Channel &ch)
-{
-    return set.chan[ch].mode_ñouple;
-}
-
-
-ModeCouple::E ModeCouple::GetA()
-{
-    return set.chan[Channel::A].mode_ñouple;
-}
-
-
-ModeCouple::E ModeCouple::GetB()
-{
-    return set.chan[Channel::B].mode_ñouple;
 }
 
 

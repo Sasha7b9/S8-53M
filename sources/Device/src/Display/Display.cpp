@@ -627,7 +627,7 @@ void Display::WriteTextVoltage(const Channel &ch, int x, int y)
     };
 
     bool inverse = ch.IsInversed();
-    ModeCouple::E modeCouple = ModeCouple::Get(ch);
+    ModeCouple &mode_couple = set.chan[ch].mode_ñouple;
     Divider::E multiplier = Divider::Get(ch);
     Range::E range = Range::Get(ch);
     uint rShift = (uint)RShift::Get(ch);
@@ -660,7 +660,7 @@ void Display::WriteTextVoltage(const Channel &ch, int x, int y)
             Region(widthField, heightField).Fill(x, y, color);
         }
 
-        String("%s\xa5%s\xa5%s", (ch == ChA) ? (LANG_RU ? "1ê" : "1c") : (LANG_RU ? "2ê" : "2c"), couple[modeCouple],
+        String("%s\xa5%s\xa5%s", (ch == ChA) ? (LANG_RU ? "1ê" : "1c") : (LANG_RU ? "2ê" : "2c"), couple[mode_couple],
             Range::ToString(range, multiplier)).Draw(x + 1, y, colorDraw);
 
         String("\xa5%s", RShift::ToString((int16)rShift, range, multiplier).c_str()).Draw(x + 46, y);

@@ -52,7 +52,7 @@ struct SettingsChannel
     float         stretch_ADC;                 // Поправочный коэффициент.
     int16         rshift;
     int16         rshift_add[Range::Count][2]; // Добавочное смещение для открытого (0) и закрытого (1) входов.
-    ModeCouple::E mode_сouple;                 // Режим по входу.
+    ModeCouple    mode_сouple;                 // Режим по входу.
     Divider::E    divider;                     // Множитель.
     Range::E      range;                       // Масштаб по напряжению.
     bool          enable;                      // Включён ли канал.

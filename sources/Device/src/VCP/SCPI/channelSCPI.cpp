@@ -72,7 +72,7 @@ void SCPI::CHANNEL::COUPLE(puchar buffer)
         else if (2 == value)    { ModeCouple::Set(ch, ModeCouple::GND); }
         else if (3 == value)
         {
-            SCPI_SEND(":CHANNEL%d:COUPLING %s", ch.ToNumber(), map[ModeCouple::Get(ch)].key);
+            SCPI_SEND(":CHANNEL%d:COUPLING %s", ch.ToNumber(), map[set.chan[ch].mode_ñouple].key);
         }
     LEAVE_ANALYSIS
 }

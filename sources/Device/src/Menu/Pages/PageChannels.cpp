@@ -46,7 +46,7 @@ DEF_CHOICE_2(mcInputA, PageChannelA::self,
 
 void PageChannelA::OnChanged_Couple(bool)
 {
-    ModeCouple::Set(ChA, ModeCouple::GetA());
+    ModeCouple::Set(ChA, set.chan[ChA].mode_ñouple);
 }
 
 DEF_CHOICE_3(mcCoupleA, PageChannelA::self,
@@ -124,7 +124,7 @@ DEF_CHOICE_2(mcInputB, PageChannelB::self,
 
 void PageChannelB::OnChanged_Couple(bool)
 {
-    ModeCouple::Set(ChB, ModeCouple::GetB());
+    ModeCouple::Set(ChB, set.chan[ChB].mode_ñouple);
 }
 
 DEF_CHOICE_3(mcCoupleB, PageChannelB::self,

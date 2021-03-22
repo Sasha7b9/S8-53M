@@ -509,13 +509,13 @@ struct ModeCouple
         DC,      // Открытый вход.
         AC,      // Закрытый вход.
         GND      // Вход заземлён.
-    };
+    } value;
+
+    ModeCouple(E v = DC) : value(v) {}
+
+    operator E() const { return value; }
 
     static void Set(const Channel &ch, ModeCouple::E mode);
-
-    static ModeCouple::E Get(const Channel &ch);
-    static ModeCouple::E GetA();
-    static ModeCouple::E GetB();
 };
 
 
