@@ -402,7 +402,7 @@ static void PressSB_Cursors_100()
 static void SetCursPos100(Channel::E ch)
 {
     set.cursors.dU_100percents[ch] = std::fabsf(CURS_POS_U0(ch) - CURS_POS_U1(ch));
-    DELTA_T100(ch) = std::fabsf(CURS_POS_T0(ch) - CURS_POS_T1(ch));
+    set.cursors.dT_100percents[ch] = std::fabsf(CURS_POS_T0(ch) - CURS_POS_T1(ch));
 }
 
 static void DrawSB_Cursors_100(int x, int y)
@@ -526,7 +526,7 @@ static void MoveCursTonPercentsOrPoints(int delta)
 
     if(CursMovement::IsPercents())
     {
-        value *= DELTA_T100(source) / 100.0F;
+        value *= set.cursors.dT_100percents[source] / 100.0F;
     }
 
     if(cursCntrl == CursCntrl::_1 || cursCntrl == CursCntrl::_1_2)

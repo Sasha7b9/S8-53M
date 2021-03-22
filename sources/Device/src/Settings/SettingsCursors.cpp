@@ -58,7 +58,7 @@ String Cursors::GetPercentsU(const Channel &source)
 
 String Cursors::GetPercentsT(const Channel &source)
 {
-    float dPerc = DELTA_T100(source);
+    float dPerc = set.cursors.dT_100percents[source];
 
     float dValue = std::fabsf(CURS_POS_T0(source) - CURS_POS_T1(source));
 
