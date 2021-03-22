@@ -305,7 +305,6 @@ struct SettingsMeasures
     CursActive      curs_active;       //  акие курсоры активны - по времени или напр€жению.
     Measure         marked;            // »змерение, на которое нужно выводить маркеры.
 
-    static bool ShowMeasures();
     static int16 PosCursorU(int num);
     static int16 PosCursorT(int num);
 };

@@ -137,7 +137,7 @@ int Grid::BottomMessages()
     {
         result -= 12;
     }
-    else if (SettingsMeasures::ShowMeasures())
+    else if (set.measures.show)
     {
         result = Measure::top_measures;
 

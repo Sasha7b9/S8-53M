@@ -87,27 +87,27 @@ DEF_SMALL_BUTTON( sbMeasTuneMarkers, PageMeasures::PageTune::self,              
 
 bool IsActiveChoiceMeasuresNumber()
 {
-    return SettingsMeasures::ShowMeasures();
+    return set.measures.show;
 }
 
 bool IsActiveChoiceMeasuresChannels()
 {
-    return SettingsMeasures::ShowMeasures();
+    return set.measures.show;
 }
 
 bool IsActivePageMeasuresFields()
 {
-    return SettingsMeasures::ShowMeasures();
+    return set.measures.show;
 }
 
 bool IsActiveChoiceMeasuresSignal()
 {
-    return SettingsMeasures::ShowMeasures();
+    return set.measures.show;
 }
 
 bool IsActiveButtonMeasuresTune()
 {
-    return SettingsMeasures::ShowMeasures();
+    return set.measures.show;
 }
 
 bool IsActiveButtonMeasuresFieldSet()
