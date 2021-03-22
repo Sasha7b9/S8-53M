@@ -305,7 +305,7 @@ void Measure::DrawAll()
 
     Processing::CalculateMeasures();
 
-    if (MeasuresField::IsHand())
+    if (set.measures.field.IsHand())
     {
         int x0 = SettingsMeasures::PosCursorT(0) - TShift::GetInMemory() + Grid::Left();
         int y0 = SettingsMeasures::PosCursorU(0) + Grid::TOP;

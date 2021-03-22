@@ -112,7 +112,7 @@ bool IsActiveButtonMeasuresTune()
 
 bool IsActiveButtonMeasuresFieldSet()
 {
-    return MeasuresField::IsHand();
+    return set.measures.field.IsHand();
 }
 
 DEF_CHOICE_7( mcMeasuresNumber, PageMeasures::self,

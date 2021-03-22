@@ -784,12 +784,6 @@ bool ModeSaveSignal::IsBMP()
 }
 
 
-bool MeasuresField::IsHand()
-{
-    return (set.measures.field == MeasuresField::Hand);
-}
-
-
 ModeViewSignals::E ModeViewSignals::Get()
 {
     return set.measures.mode_view_signals;
