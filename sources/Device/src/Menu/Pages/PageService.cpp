@@ -391,7 +391,7 @@ DEF_CHOICE_2(cSound, PageService::self,
     "Inclusion/switching off of a sound",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    SOUND_ENABLED, nullptr, nullptr, nullptr
+    set.service.sound_enabled, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_2(cLang, PageService::self,

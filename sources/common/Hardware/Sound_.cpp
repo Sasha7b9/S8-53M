@@ -40,7 +40,7 @@ void Sound_Beep(TypeWave::E typeWave_, float frequency_, float amplitude_, int d
         return;
     }
 
-    if (!SOUND_ENABLED)
+    if (!set.service.sound_enabled)
     {
         return;
     }

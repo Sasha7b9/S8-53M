@@ -3,7 +3,6 @@
 #include "Utils/Measures.h"
 
 
-#define SOUND_ENABLED               set.service.soundEnabled          // SettingsService.soundEnabled
 #define RSHIFT_ADD(ch, range, mode) set.chan[ch].rshift_add[range][mode]
 
 
@@ -341,7 +340,7 @@ struct SettingsMath
 // Настройки меню СЕРВИС.
 struct SettingsService
 {
-    bool              soundEnabled;        // Включены ли звуки.
+    bool              sound_enabled;       // Включены ли звуки.
     CalibratorMode::E calibrator;          // Режим работы калибратора.
     int8              IPaddress;           // IP-адрес (временно).
     ColorScheme::E    colorScheme;         // Цветовая схеама.
