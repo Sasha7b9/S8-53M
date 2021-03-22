@@ -353,7 +353,7 @@ void DrawParametersChannel(const Channel &ch, int eX, int eY, bool inProgress)
         std::sprintf(buffer, "Расхождение Channel::A_ЦП = %.2f/%.2f %%", deltaADCPercentsOld[ch], deltaADCPercents[ch]);
         Text(buffer).Draw(x, y + 11);
         buffer[0] = 0;
-        std::sprintf(buffer, "Записано %d", SettingsChannel::BalanceShiftADC(ch));
+        std::sprintf(buffer, "Записано %d", set.chan[ch].balance_shift_ADC);
         Text(buffer).Draw(x, y + 19);
     }
 }

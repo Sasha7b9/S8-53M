@@ -343,12 +343,6 @@ ENUM_POINTS_FPGA::E SettingsMemory::IntNumPoints2FPGA_NUM_POINTS(int numPoints)
 }
 
 
-int8 SettingsChannel::BalanceShiftADC(const Channel &ch)
-{
-    return set.chan[ch].balance_shift_ADC;
-}
-
-
 void Channel::Enable() const
 {
     set.chan[value].enable = true;

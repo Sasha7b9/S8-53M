@@ -203,8 +203,8 @@ static void Draw_ADC_Balance_Mode(int, int)
 {
     int8 shift[2][3] =
     {
-        {0, SettingsChannel::BalanceShiftADC(ChA), (int8)set.debug.balance_ADC[ChA]},
-        {0, SettingsChannel::BalanceShiftADC(ChB), (int8)set.debug.balance_ADC[ChB]}
+        {0, set.chan[ChA].balance_shift_ADC, (int8)set.debug.balance_ADC[ChA]},
+        {0, set.chan[ChB].balance_shift_ADC, (int8)set.debug.balance_ADC[ChB]}
     };
 
     shiftADCA = shift[0][BalanceADCtype::Get()];
