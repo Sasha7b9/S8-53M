@@ -824,7 +824,10 @@ struct CursActive
         None
     } value;
 
+    CursActive(E v = U) : value(v) {}
+
     bool IsT() const { return value == T; }
+    bool IsU() const { return value == U; }
 };
 
 

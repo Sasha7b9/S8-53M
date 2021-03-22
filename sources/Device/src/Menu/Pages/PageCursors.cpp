@@ -56,23 +56,23 @@ void Cursors_Update()
     CursLookMode::E lookMode0 = CURS_LOOKMODE_0;
     CursLookMode::E lookMode1 = CURS_LOOKMODE_1;
 
-    if((lookMode0 == CursLookMode::Voltage || lookMode0 == CursLookMode::Both) && set.cursors.active ==  CURS_ACTIVE_IS_T)
+    if((lookMode0 == CursLookMode::Voltage || lookMode0 == CursLookMode::Both) && set.cursors.active.IsT())
     {
         float posU0 = Processing::GetCursU(source, set.cursors.posT[source][0]);
         SetCursPosU(source, 0, posU0);
     }
-    if((lookMode1 == CursLookMode::Voltage || lookMode1 == CursLookMode::Both)  && CURS_ACTIVE_IS_T)
+    if((lookMode1 == CursLookMode::Voltage || lookMode1 == CursLookMode::Both)  && set.cursors.active.IsT())
     {
         float posU1 = Processing::GetCursU(source, set.cursors.posT[source][1]);
         SetCursPosU(source, 1, posU1);
     }
-    if((lookMode0 == CursLookMode::Time || lookMode0 == CursLookMode::Both) && CURS_ACTIVE_IS_U)
+    if((lookMode0 == CursLookMode::Time || lookMode0 == CursLookMode::Both) && set.cursors.active.IsU())
     {
         float posU0 = set.cursors.posU[source][0];
         float posT0 = Processing::GetCursT(source, posU0, 0);
         SetCursPosT(source, 0, posT0);
     }
-    if((lookMode1 == CursLookMode::Time || lookMode1 == CursLookMode::Both) && CURS_ACTIVE_IS_U)
+    if((lookMode1 == CursLookMode::Time || lookMode1 == CursLookMode::Both) && set.cursors.active.IsU())
     {
         float posU1 = set.cursors.posU[source][1];
         float posT1 = Processing::GetCursT(source, posU1, 1);
@@ -159,7 +159,7 @@ DEF_CHOICE_2(mcShowFreq, PageCursors::self,
 
 static void OnRotate_RegSet_Set(int angle)
 {
-    if (CURS_ACTIVE_IS_U)
+    if (set.cursors.active.IsU())
     {
         MoveCursUonPercentsOrPoints(angle);
     }
@@ -254,11 +254,12 @@ static const arrayHints hintsSetU =
 
 static void PressSB_Cursors_U()
 {
-    if (CURS_ACTIVE_IS_U || CursCntrl::IsDisableForU(set.cursors.source))
+    if (set.cursors.active.IsU() || CursCntrl::IsDisableForU(set.cursors.source))
     {
         IncCursCntrlU(set.cursors.source);
     }
-    CURS_ACTIVE = CursActive::U;
+
+    set.cursors.active = CursActive::U;
 }
 
 static void DrawSB_Cursors_U(int x, int y)
@@ -271,7 +272,7 @@ static void DrawSB_Cursors_U(int x, int y)
     }
     else
     {
-        if (!CURS_ACTIVE_IS_U)
+        if (!set.cursors.active.IsU())
         {
             DrawSB_Cursors_U_Both_Disable(x, y);
         }
@@ -346,11 +347,12 @@ static const arrayHints hintsSetT =
 
 static void PressSB_Cursors_T()
 {
-    if (CURS_ACTIVE_IS_T || CursCntrl::IsDisableForT(set.cursors.source))
+    if (set.cursors.active.IsT() || CursCntrl::IsDisableForT(set.cursors.source))
     {
         IncCursCntrlT(set.cursors.source);
     }
-    CURS_ACTIVE = CursActive::T;
+
+    set.cursors.active = CursActive::T;
 }
 
 static void DrawSB_Cursors_T(int x, int y)
@@ -363,7 +365,7 @@ static void DrawSB_Cursors_T(int x, int y)
     }
     else
     {
-        if (!CURS_ACTIVE_IS_T)
+        if (!set.cursors.active.IsT())
         {
             DrawSB_Cursors_T_Both_Disable(x, y);
         }
