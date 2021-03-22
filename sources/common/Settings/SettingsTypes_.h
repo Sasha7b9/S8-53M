@@ -142,7 +142,9 @@ struct ENumAccumulation
 
 
 //  оличество усреднений по измерени€м.
-struct ENumAveraging { enum E
+struct ENumAveraging
+{ 
+    enum E
     {
         _1,
         _2,

@@ -9,8 +9,6 @@
 
 #define ENUM_SIGNALS_IN_SEC         (set.display.enumSignalsInSec)              // SettingsDisplay.enumSignalsInSec
 
-#define MENU_AUTO_HIDE              (set.display.menuAutoHide)                  // SettingsDisplay.menuAutoHide
-
 #define SHOW_STRING_NAVIGATION      (set.display.showStringNavigation)          // SettingsDisplay.showStringNavigation
 
 // Настройки изображения
@@ -35,7 +33,7 @@ struct SettingsDisplay
                                                // Нужно для того, чтобы знать, какой сигнал рисовать наверху.
     ModeAccumulation::E mode_acum;             // Задаёт режим накопления сигналов.
     AltMarkers::E       alt_markers;           // Режим отображения дополнительных боковых маркеров смещений.
-    MenuAutoHide::E     menuAutoHide;          // Через сколько времени после последнего нажатия клавиши прятать меню.
+    MenuAutoHide::E     menu_auto_hide;        // Через сколько времени после последнего нажатия клавиши прятать меню.
     bool                showFullMemoryWindow;  // Показывать ли окно памяти вверху экрана. \todo Не используется.
     bool                showStringNavigation;  // Показывать ли строку текущего состояния меню..
     LinkingRShift::E    linking_rshift;        // Тип привязки смещения по вертикали.

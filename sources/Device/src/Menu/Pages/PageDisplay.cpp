@@ -331,7 +331,7 @@ DEF_CHOICE_6(mcSettings_AutoHide, PageDisplay::PageSettings::self,
     "Через 15 сек", "Through 15 s",
     "Через 30 сек", "Through 30 s",
     "Через 60 сек", "Through 60 s",
-    MENU_AUTO_HIDE, nullptr, OnChanged_Settings_AutoHide, nullptr
+    set.display.menu_auto_hide, nullptr, OnChanged_Settings_AutoHide, nullptr
 )
 
 DEF_PAGE_7(pageSettings, PageDisplay::self, NamePage::ServiceDisplay,
