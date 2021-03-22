@@ -61,7 +61,7 @@ public:
     int HeightOpened() const;
 
     // Возвращает название элемента по адресу item, как оно выглядит на дисплее прибора.
-    pString Title() const;
+    pstring Title() const;
 
     void DrawVolumeButton(int x, int y, int width, int height, int thickness, Color normal, Color bright, Color dark, bool isPressed) const;
 

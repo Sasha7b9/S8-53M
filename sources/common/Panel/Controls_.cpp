@@ -14,9 +14,9 @@ bool KeyboardEvent::IsRelease() const
 }
 
 
-pString Key::Name() const
+pstring Key::Name() const
 {
-    static pString names[] =
+    static pstring names[] =
     {
         "None",
         "F1",

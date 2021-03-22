@@ -35,7 +35,7 @@ struct Key { enum E
 
     Key(E v) : value(v) { }
 
-    pString Name() const;
+    pstring Name() const;
 
     E value;
 

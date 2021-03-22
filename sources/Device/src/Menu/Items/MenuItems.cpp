@@ -653,7 +653,7 @@ int Item::HeightOpened() const
 }
 
 
-pString Item::Title() const
+pstring Item::Title() const
 {
     return TITLE((Page *)this);
 }

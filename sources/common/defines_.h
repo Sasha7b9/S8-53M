@@ -9,9 +9,9 @@ typedef unsigned    short   int uint16;
 typedef unsigned    int         uint;
 typedef unsigned long long int  uint64;
 typedef unsigned    char        uchar;
-typedef const char *pchar;
-typedef const uint8 *puchar;
-typedef const char *const pString;
+typedef const char             *pchar;
+typedef const uint8            *puchar;
+typedef const char *const       pstring;
 
 
 typedef void  (*pFuncVV)();

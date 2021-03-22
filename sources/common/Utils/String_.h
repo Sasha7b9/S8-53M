@@ -21,7 +21,7 @@ public:
     int Draw(int x, int y, const Color &color) const;
     int Draw(int x, int y) const;
 
-    static pString _ERROR;
+    static pstring _ERROR;
 
     void Free();
 
