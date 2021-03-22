@@ -49,24 +49,24 @@ void RotateRegMeasureSetField(int angle)
     {
         if (curs_active.IsT())
         {
-            LIMITATION(set.measures.posCurT[0], static_cast<int16>(SettingsMeasures::PosCursorT(0) - sign), 0,
+            LIMITATION(set.measures.posT[0], static_cast<int16>(SettingsMeasures::PosCursorT(0) - sign), 0,
                 static_cast<int16>(SettingsMemory::GetNumPoints(false) - 1));
         }
         else
         {
-            LIMITATION(set.measures.posCurU[0], static_cast<int16>(SettingsMeasures::PosCursorU(0) + sign), 0, 200);
+            LIMITATION(set.measures.posU[0], static_cast<int16>(SettingsMeasures::PosCursorU(0) + sign), 0, 200);
         }
     }
     if (curs_cntrl == CursCntrl::_2 || curs_cntrl == CursCntrl::_1_2)
     {
         if (curs_active.IsT())
         {
-            LIMITATION(set.measures.posCurT[1], static_cast<int16>(SettingsMeasures::PosCursorT(1) - sign), 0,
+            LIMITATION(set.measures.posT[1], static_cast<int16>(SettingsMeasures::PosCursorT(1) - sign), 0,
                 static_cast<int16>(SettingsMemory::GetNumPoints(false) - 1));
         }
         else
         {
-            LIMITATION(set.measures.posCurU[1], static_cast<int16>(SettingsMeasures::PosCursorU(1) + sign), 0, 200);
+            LIMITATION(set.measures.posU[1], static_cast<int16>(SettingsMeasures::PosCursorU(1) + sign), 0, 200);
         }
     }
 }

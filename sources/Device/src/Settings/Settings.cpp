@@ -423,11 +423,11 @@ bool SettingsMeasures::ShowMeasures()
 
 int16 SettingsMeasures::PosCursorU(int num)
 {
-    return set.measures.posCurU[num];
+    return set.measures.posU[num];
 }
 
 
 int16 SettingsMeasures::PosCursorT(int num)
 {
-    return set.measures.posCurT[num];
+    return set.measures.posT[num];
 }
