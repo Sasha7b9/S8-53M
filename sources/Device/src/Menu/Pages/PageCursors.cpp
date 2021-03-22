@@ -83,7 +83,7 @@ void Cursors_Update()
 
 void SetCursPosU(Channel::E ch, int numCur, float pos)
 {
-    CURS_POS_U(ch, numCur) = Math::Limitation(pos, 0.0f, (float)MAX_POS_U);
+    set.cursors.posU[ch][numCur] = Math::Limitation(pos, 0.0f, (float)MAX_POS_U);
 }
 
 
@@ -514,7 +514,7 @@ static void MoveCursUonPercentsOrPoints(int delta)
 
 static void SetShiftCursPosU(Channel::E ch, int numCur, float delta)
 {
-    CURS_POS_U(ch, numCur) = Math::Limitation<float>(CURS_POS_U(ch, numCur) - delta, 0, MAX_POS_U);
+    set.cursors.posU[ch][numCur] = Math::Limitation<float>(set.cursors.posU[ch][numCur] - delta, 0, MAX_POS_U);
 }
 
 static void MoveCursTonPercentsOrPoints(int delta)

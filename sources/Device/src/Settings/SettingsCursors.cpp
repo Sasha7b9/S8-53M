@@ -15,7 +15,7 @@ using namespace Primitives;
 
 float Cursors::GetPosU(const Channel &ch, int num)
 {
-    return CURS_POS_U(ch, num) / (Grid::ChannelBottom() == Grid::FullBottom() ? 1.0F : 2.0F);
+    return set.cursors.posU[ch][num] / (Grid::ChannelBottom() == Grid::FullBottom() ? 1.0F : 2.0F);
 }
 
 
