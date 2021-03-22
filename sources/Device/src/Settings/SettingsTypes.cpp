@@ -834,13 +834,13 @@ bool MeasuresField::IsHand()
 
 ModeViewSignals::E ModeViewSignals::Get()
 {
-    return set.measures.modeViewSignals;
+    return set.measures.mode_view_signals;
 }
 
 
 bool ModeViewSignals::IsCompress()
 {
-    return (set.measures.modeViewSignals == ModeViewSignals::Compress);
+    return (set.measures.mode_view_signals == ModeViewSignals::Compress);
 }
 
 

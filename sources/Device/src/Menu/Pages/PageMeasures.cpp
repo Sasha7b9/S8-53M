@@ -171,7 +171,7 @@ DEF_CHOICE_2(mcMeasuresSignal, PageMeasures::self,
     "Decrease or no zone output signal to avoid overlapping of its measurement results",
     "Как есть",    "As is",
     "Уменьшать",   "Reduce",
-    set.measures.modeViewSignals, nullptr, nullptr, nullptr
+    set.measures.mode_view_signals, nullptr, nullptr, nullptr
 )
 
 static void PressSB_MeasTune_Exit()
