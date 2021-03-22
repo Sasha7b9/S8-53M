@@ -253,16 +253,16 @@ void DrawSB_SetName_Backspace(int x, int y) //-V524
 
 void PressSB_SetMask_Backspace()
 {
-    int size = (int)(std::strlen(FILE_NAME_MASK));
+    int size = (int)(std::strlen(set.memory.file_name_mask));
     if (size > 0)
     {
-        if (size > 1 && FILE_NAME_MASK[size - 2] == 0x07)
+        if (size > 1 && set.memory.file_name_mask[size - 2] == 0x07)
         {
-            FILE_NAME_MASK[size - 2] = '\0';
+            set.memory.file_name_mask[size - 2] = '\0';
         }
         else
         {
-            FILE_NAME_MASK[size - 1] = '\0';
+            set.memory.file_name_mask[size - 1] = '\0';
         }
     }
 
@@ -286,7 +286,7 @@ void DrawSB_SetMask_Delete(int x, int y)
 
 void PressSB_SetMask_Delete()
 {
-    FILE_NAME_MASK[0] = '\0';
+    set.memory.file_name_mask[0] = '\0';
 }
 
 void DrawSB_SetName_Delete(int x, int y) //-V524
@@ -311,7 +311,7 @@ void DrawSB_SetMask_Insert(int x, int y)
 void PressSB_SetMask_Insert()
 {
     int index = set.memory.index_cur_symbol_name_mask;
-    int size = (int)(std::strlen(FILE_NAME_MASK));
+    int size = (int)(std::strlen(set.memory.file_name_mask));
 
     if (size == MAX_SYMBOLS_IN_FILE_NAME - 1)
     {
@@ -320,8 +320,8 @@ void PressSB_SetMask_Insert()
 
     if (index < 0x41)
     {
-        FILE_NAME_MASK[size] = Tables::symbolsAlphaBet[index][0];
-        FILE_NAME_MASK[size + 1] = '\0';
+        set.memory.file_name_mask[size] = Tables::symbolsAlphaBet[index][0];
+        set.memory.file_name_mask[size + 1] = '\0';
     }
     else
     {
@@ -331,18 +331,19 @@ void PressSB_SetMask_Insert()
         {
             if (size < MAX_SYMBOLS_IN_FILE_NAME - 2 && size > 0)
             {
-                if (FILE_NAME_MASK[size - 1] >= 0x30 && FILE_NAME_MASK[size - 1] <= 0x39) // Если ранее введено число
+                if (set.memory.file_name_mask[size - 1] >= 0x30 &&
+                    set.memory.file_name_mask[size - 1] <= 0x39) // Если ранее введено число
                 {
-                    FILE_NAME_MASK[size] = FILE_NAME_MASK[size - 1] - 0x30;
-                    FILE_NAME_MASK[size - 1] = 0x07;
-                    FILE_NAME_MASK[size + 1] = '\0'; 
+                    set.memory.file_name_mask[size] = set.memory.file_name_mask[size - 1] - 0x30;
+                    set.memory.file_name_mask[size - 1] = 0x07;
+                    set.memory.file_name_mask[size + 1] = '\0';
                 }
             }
         }
         else
         {
-            FILE_NAME_MASK[size] = (int8)index;
-            FILE_NAME_MASK[size + 1] = '\0';
+            set.memory.file_name_mask[size] = (int8)index;
+            set.memory.file_name_mask[size + 1] = '\0';
         }
     }
 }
@@ -896,7 +897,7 @@ void DrawSetName()
 
 static void DrawFileMask(int x, int y)
 {
-    char *ch = FILE_NAME_MASK;
+    char *ch = set.memory.file_name_mask;
 
     Color::FILL.SetAsCurrent();
     while (*ch != '\0')

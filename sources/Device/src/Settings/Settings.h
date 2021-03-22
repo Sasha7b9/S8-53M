@@ -33,12 +33,6 @@
 #define LANG_EN         (LANG == Language::English)
 
 
-#define NUM_AVE_FOR_RAND                    (::set.debug.numAveForRand)
-
-
-#define IP_ADDRESS          (set.service.IPaddress)             // SettingsService.IPaddress
-
-
 #define IS_SHOW_REGISTERS_ALL   (set.debug.showRegisters.all)
 #define IS_SHOW_REG_RSHIFT_A    (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.rShiftA)
 #define IS_SHOW_REG_RSHIFT_B    (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.rShiftB)
@@ -50,9 +44,6 @@
 #define IS_SHOW_REG_PARAM_B     (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.chanParam[Channel::B])
 #define IS_SHOW_REG_TSHIFT      (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.tShift)
 #define IS_SHOW_REG_TBASE       (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.tBase)
-
-
-#define PRETRIGGERED            (set.debug.pretriggered)
 
 
 #define FILE_NAME_MASK          (set.memory.fileNameMask)
@@ -144,10 +135,10 @@ struct StructMemoryLast
 struct SettingsMemory
 {
 #define MAX_SYMBOLS_IN_FILE_NAME 35
-    ENUM_POINTS_FPGA::E enum_points_fpga;                       // Число точек.
-    ModeWork::E         modeWork;                               // Режим работы.
-    FileNamingMode::E   fileNamingMode;                         // Режим именования файлов.
-    char                fileNameMask[MAX_SYMBOLS_IN_FILE_NAME]; // Здесь маска для автоматического именования файлов\n
+    ENUM_POINTS_FPGA::E enum_points_fpga;                         // Число точек.
+    ModeWork::E         modeWork;                                 // Режим работы.
+    FileNamingMode::E   fileNamingMode;                           // Режим именования файлов.
+    char                file_name_mask[MAX_SYMBOLS_IN_FILE_NAME]; // Здесь маска для автоматического именования файлов\n
         // Правила именования.\n
         // %y('\x42') - год, %m('\x43') - месяц, %d('\x44') - день, %H('\x45') - часы, %M('\x46') - минуты, %S('\x47') - секунды\n
         // %Nn('\x48''n') - порядковый номер, котрый занимает не менее n знакомест, например, 7 в %3N будет преобразовано в 007\n
@@ -155,15 +146,15 @@ struct SettingsMemory
         // name_%4N_%y_%m_%d_%H_%M_%S будет генерировать файлы вида name_0043_2014_04_25_14_45_32\n
         // При этом обратите внимание, что если спецификатор %4N стоИт после временнЫх параметров, то, скорее всего,
         //этот параметр будет всегда равен 0001, т.к. для определения номера просматриваются только символы ДО него.
-    char                file_name[MAX_SYMBOLS_IN_FILE_NAME];    // Имя файла для режима ручного задания
-    int8                index_cur_symbol_name_mask;             // Индекс текущего символа в режиме задания маски или
-                                                                // выбора имени.
+    char                file_name[MAX_SYMBOLS_IN_FILE_NAME];      // Имя файла для режима ручного задания
+    int8                index_cur_symbol_name_mask;               // Индекс текущего символа в режиме задания маски или
+                                                                  // выбора имени.
     StructMemoryLast    strMemoryLast;
-    ModeShowIntMem::E   modeShowIntMem;                         // Какие сигналы показывать в режиме внутреннего ЗУ
-    bool                flash_auto_connect;                     // Если true, при подлючении флеш автоматически
-                                                                // выводится NC (Нортон Коммандер)
+    ModeShowIntMem::E   modeShowIntMem;                           // Какие сигналы показывать в режиме внутреннего ЗУ
+    bool                flash_auto_connect;                       // Если true, при подлючении флеш автоматически
+                                                                  // выводится NC (Нортон Коммандер)
     ModeBtnMemory::E    modeBtnMemory;
-    ModeSaveSignal::E   modeSaveSignal;                         // В каком виде сохранять сигнал.
+    ModeSaveSignal::E   modeSaveSignal;                           // В каком виде сохранять сигнал.
 
     static int GetNumPoints(bool forCalculate);
     static ENUM_POINTS_FPGA::E IntNumPoints2FPGA_NUM_POINTS(int numPoints);

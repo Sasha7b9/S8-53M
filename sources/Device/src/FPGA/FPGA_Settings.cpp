@@ -422,7 +422,7 @@ void TShift::Load()
             FPGA::add_shift = FPGA::Randomizer::Kr[tBase] + FPGA::add_shift;
         }
 
-        FPGA::pred = ~(PRETRIGGERED);
+        FPGA::pred = ~(set.debug.pretriggered);
     }
     else
     {
