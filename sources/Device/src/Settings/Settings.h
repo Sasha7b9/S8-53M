@@ -58,7 +58,7 @@ struct SettingsChannel
     bool          enable;                      // Включён ли канал.
     bool          inverse;                     // Инвертирован ли канал.
     bool          filtr;                       // Фильтр
-    int8          balanceShiftADC;             // Добавочное смещение для балансировки АЦП
+    int8          balance_shift_ADC;           // Добавочное смещение для балансировки АЦП
 
     static bool FiltrIsEnabled(const Channel &ch);
     static float StretchADC(const Channel &ch);
