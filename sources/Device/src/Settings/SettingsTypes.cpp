@@ -914,3 +914,27 @@ bool ModeDrawSignal::IsLines()
 {
     return (set.display.mode_draw_signal == ModeDrawSignal::Lines);
 }
+
+
+bool ModeAccumulation::IsNoReset()
+{
+    return (set.display.mode_acum == ModeAccumulation::NoReset);
+}
+
+
+bool ModeAccumulation::IsReset()
+{
+    return (set.display.mode_acum == ModeAccumulation::Reset);
+}
+
+
+void ModeAccumulation::Set(E v)
+{
+    set.display.mode_acum = v;
+}
+
+
+ModeAccumulation::E ModeAccumulation::Get()
+{
+    return set.display.mode_acum;
+}

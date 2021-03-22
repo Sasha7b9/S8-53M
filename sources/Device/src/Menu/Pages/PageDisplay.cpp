@@ -58,7 +58,7 @@ DEF_CHOICE_2(mcAccumulation_Mode, PageDisplay::PageAccumulation::self,
     ,
     "Не сбрасывать", "Not to dump",
     "Сбрасывать", "Dump",
-    MODE_ACCUM, nullptr, nullptr, nullptr
+    set.display.mode_acum, nullptr, nullptr, nullptr
 )
 
 static bool IsActive_Accumulation_Clear()

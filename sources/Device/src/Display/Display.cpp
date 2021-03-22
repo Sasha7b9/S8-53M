@@ -320,7 +320,7 @@ bool Display::NeedForClearScreen()
 {
     int numAccum = ENumAccumulation::Get();
 
-    if (FPGA::SET::InRandomizeMode() || numAccum == 1 || MODE_ACCUM_IS_NORESET || FPGA::SET::InSelfRecorderMode())
+    if (FPGA::SET::InRandomizeMode() || numAccum == 1 || ModeAccumulation::IsNoReset() || FPGA::SET::InSelfRecorderMode())
     {
         return true;
     }
@@ -331,7 +331,7 @@ bool Display::NeedForClearScreen()
         return true;
     }
 
-    if (MODE_ACCUM_IS_RESET && (numDrawingSignals >= static_cast<uint>(numAccum)))
+    if (ModeAccumulation::IsReset() && (numDrawingSignals >= (uint)numAccum))
     {
         numDrawingSignals = 0;
         return true;

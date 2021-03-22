@@ -22,10 +22,6 @@
 
 #define ENUM_SIGNALS_IN_SEC         (set.display.enumSignalsInSec)              // SettingsDisplay.enumSignalsInSec
 
-#define MODE_ACCUM                  (set.display.modeAccumulation)              // SettingsDisplay.modeAccumulation
-#define MODE_ACCUM_IS_RESET         (MODE_ACCUM == ModeAccumulation::Reset)     // \c true, если накопление со сбросом.
-#define MODE_ACCUM_IS_NORESET       (MODE_ACCUM == ModeAccumulation::NoReset)   // \c true, если накопление без сброса.
-
 #define ALT_MARKERS                 (set.display.altMarkers)                    // SettingsDisplay.altMarkers
 #define ALT_MARKERS_HIDE            (ALT_MARKERS == AltMarkers::Hide)           // \c true, если дополнительные маркеры никогда не надо показывать.
 
@@ -57,7 +53,7 @@ struct SettingsDisplay
     ENumSignalsInSec::E enumSignalsInSec;      // Перечисление считываний сигнала в секунду.
     Channel::E          last_affected_channel; // Здесь хранится номер последнего канала, которым управляли ручками.
                                                // Нужно для того, чтобы знать, какой сигнал рисовать наверху.
-    ModeAccumulation::E modeAccumulation;      // Задаёт режим накопления сигналов.
+    ModeAccumulation::E mode_acum;             // Задаёт режим накопления сигналов.
     AltMarkers::E       altMarkers;            // Режим отображения дополнительных боковых маркеров смещений.
     MenuAutoHide::E     menuAutoHide;          // Через сколько времени после последнего нажатия клавиши прятать меню.
     bool                showFullMemoryWindow;  // Показывать ли окно памяти вверху экрана. \todo Не используется.

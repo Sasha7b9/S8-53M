@@ -227,11 +227,19 @@ struct ENumSignalsInSec { enum E
 
 
 // –ежим накоплени€.
-struct ModeAccumulation { enum E
+struct ModeAccumulation
 {
-    NoReset,   // ¬ этом режиме показываютс€ строго N последних измерений.
-    Reset      // ¬ этом режиме набираютс€ N последних измерений и потом сбрасываютс€.
-};};
+    enum E
+    {
+        NoReset,   // ¬ этом режиме показываютс€ строго N последних измерений.
+        Reset      // ¬ этом режиме набираютс€ N последних измерений и потом сбрасываютс€.
+    };
+
+    static bool IsNoReset();
+    static bool IsReset();
+    static void Set(E v);
+    static E Get();
+};
 
 
 // –ежим отображени€ дополнительных боковых маркеров смещени€ по напр€жению.
