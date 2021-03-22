@@ -2,8 +2,6 @@
 #include "Utils/Measures.h"
 
 
-#define SHOW_MEASURES                   (set.measures.show)                             // SettingsMeasures.show
-
 #define MEAS_POS_CUR_U(num)             (set.measures.posCurU[num])                     // SettingsMeasures.posCurU
 #define MEAS_POS_CUR_U0                 (MEAS_POS_CUR_U(0))
 #define MEAS_POS_CUR_U1                 (MEAS_POS_CUR_U(1))
@@ -36,4 +34,5 @@ struct SettingsMeasures
     static bool SourceIsA();
     static bool SourceIsB();
     static bool SourceIsAB();
+    static bool ShowMeasures();
 };

@@ -91,27 +91,27 @@ DEF_SMALL_BUTTON( sbMeasTuneMarkers, PageMeasures::PageTune::self,              
 
 bool IsActiveChoiceMeasuresNumber()
 {
-    return SHOW_MEASURES;
+    return SettingsMeasures::ShowMeasures();
 }
 
 bool IsActiveChoiceMeasuresChannels()
 {
-    return SHOW_MEASURES;
+    return SettingsMeasures::ShowMeasures();
 }
 
 bool IsActivePageMeasuresFields()
 {
-    return SHOW_MEASURES;
+    return SettingsMeasures::ShowMeasures();
 }
 
 bool IsActiveChoiceMeasuresSignal()
 {
-    return SHOW_MEASURES;
+    return SettingsMeasures::ShowMeasures();
 }
 
 bool IsActiveButtonMeasuresTune()
 {
-    return SHOW_MEASURES;
+    return SettingsMeasures::ShowMeasures();
 }
 
 bool IsActiveButtonMeasuresFieldSet()
@@ -166,7 +166,7 @@ DEF_CHOICE_2(mcMeasuresIsShow, PageMeasures::self,
     "Output or output measurements on screen",
     "Нет", "No",
     "Да",  "Yes",
-    SHOW_MEASURES, nullptr, nullptr, nullptr
+    set.measures.show, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcMeasuresSignal, PageMeasures::self,

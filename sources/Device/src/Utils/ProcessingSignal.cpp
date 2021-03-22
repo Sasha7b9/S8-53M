@@ -105,7 +105,7 @@ static bool picIsCalculating[2] = {false, false};
 
 void Processing::CalculateMeasures()
 {
-    if(!SHOW_MEASURES || !dataSet)
+    if(!SettingsMeasures::ShowMeasures() || !dataSet)
     {
         return;
     }

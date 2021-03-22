@@ -128,7 +128,7 @@ int Measure::NumRows()
 
 int Measure::GetDeltaGridLeft()
 {
-    if(SHOW_MEASURES && ModeViewSignals::IsCompress())
+    if(SettingsMeasures::ShowMeasures() && ModeViewSignals::IsCompress())
     {
         if(MeasuresNumber::Is6_1())
         {
@@ -144,7 +144,7 @@ int Measure::GetDeltaGridLeft()
 
 int Measure::GetDeltaGridBottom()
 {
-    if(SHOW_MEASURES && ModeViewSignals::IsCompress())
+    if(SettingsMeasures::ShowMeasures() && ModeViewSignals::IsCompress())
     {
         if(MeasuresNumber::Is1_5())
         {
@@ -292,7 +292,7 @@ Measure::E& operator++(Measure::E &measure)
 
 void Measure::DrawAll()
 {
-    if (!SHOW_MEASURES)
+    if (!SettingsMeasures::ShowMeasures())
     {
         top_measures = Grid::Bottom();
         return;

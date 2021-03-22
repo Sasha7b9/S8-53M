@@ -137,7 +137,7 @@ int Grid::BottomMessages()
     {
         retValue -= 12;
     }
-    else if (SHOW_MEASURES)
+    else if (SettingsMeasures::ShowMeasures())
     {
         retValue = Measure::top_measures;
         if (MeasuresNumber::Is6_1() || MeasuresNumber::Is6_2() || MeasuresNumber::Is1())

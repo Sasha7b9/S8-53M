@@ -414,3 +414,9 @@ bool SettingsMeasures::SourceIsAB()
 {
     return (set.measures.source == Channel::A_B);
 }
+
+
+bool SettingsMeasures::ShowMeasures()
+{
+    return set.measures.show;
+}
