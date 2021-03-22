@@ -175,7 +175,7 @@ float MathFPGA::TimeCursor(float shiftCurT, TBase::E tBase)
 
 static void MultiplyToWindow(float* data, int numPoints)
 {
-    WindowFFT &window = set.math.window_FFT;
+    WindowFFT &window = set.math.fft.window;
 
     if (window.IsHamming())
     {
@@ -340,9 +340,9 @@ void MathFPGA::CalculateFFT(float* dataR, int numPoints, float* result, float* f
 
     Normalize(result, 256);
 
-    if (set.math.scale_FFT.IsLog())
+    if (set.math.fft.scale.IsLog())
     {
-        float minDB = set.math.fft_max_DB.GetReal();
+        float minDB = set.math.fft.max_DB.GetReal();
 
         for (int i = 0; i < 256; i++)
         {

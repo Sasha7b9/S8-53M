@@ -469,7 +469,7 @@ DEF_CHOICE_2(cMath_FFT_Scale, PageService::PageMath::PageFFT::self,
     "Sets the scale of the output spectrum - linear or logarithmic",
     "Логарифм", "Log",
     "Линейная", "Linear",
-    set.math.scale_FFT, nullptr, nullptr, nullptr
+    set.math.fft.scale, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_3(cMath_FFT_Source, PageService::PageMath::PageFFT::self,
@@ -479,7 +479,7 @@ DEF_CHOICE_3(cMath_FFT_Source, PageService::PageMath::PageFFT::self,
     "Канал 1", "Channel 1",
     "Канал 2", "Channel 2",
     "Канал 1 + 2", "Channel 1 + 2",
-    set.math.source_FFT, nullptr, nullptr, nullptr
+    set.math.fft.source, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_4(cMath_FFT_Window, PageService::PageMath::PageFFT::self,
@@ -490,7 +490,7 @@ DEF_CHOICE_4(cMath_FFT_Window, PageService::PageMath::PageFFT::self,
     "Хэмминга", "Hamming",
     "Блэкмена", "Blackman",
     "Ханна", "Hann",
-    set.math.window_FFT, nullptr, nullptr, nullptr
+    set.math.fft.window, nullptr, nullptr, nullptr
 )
 
 static bool IsActive_Math_FFT()
@@ -508,7 +508,7 @@ static void OnPress_Math_FFT()
 
 static bool IsActive_Math_FFT_Limit()
 {
-    return set.math.scale_FFT.IsLog();
+    return set.math.fft.scale.IsLog();
 }
 
 DEF_CHOICE_3(cMath_FFT_Limit, PageService::PageMath::PageFFT::self,
@@ -518,7 +518,7 @@ DEF_CHOICE_3(cMath_FFT_Limit, PageService::PageMath::PageFFT::self,
     "-40дБ", "-40dB",
     "-60дБ", "-60dB",
     "-80дБ", "-80dB",
-    set.math.fft_max_DB, IsActive_Math_FFT_Limit, nullptr, nullptr
+    set.math.fft.max_DB, IsActive_Math_FFT_Limit, nullptr, nullptr
 )
 
 DEF_PAGE_6(pageFFT, PageService::PageMath::self, NamePage::MathFFT,
