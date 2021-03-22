@@ -164,7 +164,7 @@ static const Settings defaultSettings =
             ScaleFFT::Log,
             SourceFFT::A_,
             WindowFFT::Rectangle,
-            FFTmaxDB::_60,
+            MaxDbFFT::_60,
             0,
             {100, 256 - 100},
             false

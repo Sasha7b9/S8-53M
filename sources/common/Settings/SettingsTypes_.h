@@ -926,7 +926,7 @@ struct WindowFFT
 
 
 // ћинимальное значение на вертикальной координате графика спектра.
-struct FFTmaxDB
+struct MaxDbFFT
 {
     enum E
     {
