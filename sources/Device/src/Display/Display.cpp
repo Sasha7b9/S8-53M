@@ -423,7 +423,7 @@ void Display::Update()
 
     Menu::Draw();
 
-    DrawIndicator();
+//    DrawIndicator();
 
 //    if (needClear)
 //    {
