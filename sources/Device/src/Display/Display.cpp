@@ -194,7 +194,7 @@ void Display::WriteCursors()
 
         Color colorText = source.GetColor();
 
-        if(!CURS_CNTRL_U_IS_DISABLE(source))
+        if(!CursCntrl::GetForU(source))
         {
             Text("1:").Draw(x, y1, colorText);
             Text("2:").Draw(x, y2);

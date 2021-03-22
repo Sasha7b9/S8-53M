@@ -21,7 +21,7 @@ float Cursors::GetPosU(const Channel &ch, int num)
 
 bool Cursors::NecessaryDraw()
 {
-    return ((!CURS_CNTRL_U_IS_DISABLE(set.cursors.source)) || (!CURS_CNTRL_T_IS_DISABLE(set.cursors.source))) &&
+    return (!CursCntrl::IsDisableForU(set.cursors.source) || (!CURS_CNTRL_T_IS_DISABLE(set.cursors.source))) &&
         (CURS_SHOW || Menu::GetNameOpenedPage() == NamePage::SB_Curs);
 }
 
@@ -77,7 +77,7 @@ void Cursors::Draw()
 
     if (Cursors::NecessaryDraw())
     {
-        bool bothCursors = !CURS_CNTRL_T_IS_DISABLE(source) && !CURS_CNTRL_U_IS_DISABLE(source);  // ѕризнак того, что
+        bool bothCursors = !CURS_CNTRL_T_IS_DISABLE(source) && !CursCntrl::IsDisableForU(source);  // ѕризнак того, что
                     // включены и вертикальные и горизонтальные курсоры - надо нарисовать квадраты в местах пересечени€
         int x0 = -1;
         int x1 = -1;
@@ -96,12 +96,15 @@ void Cursors::Draw()
         }
 
         CursCntrl::E cntrl = CURS_CNTRL_T(source);
+
         if (cntrl != CursCntrl::Disable)
         {
             DrawVertical(static_cast<int>(CURS_POS_T0(source)), y0);
             DrawVertical(static_cast<int>(CURS_POS_T1(source)), y1);
         }
-        cntrl = CURsU_CNTRL;
+
+        cntrl = CursCntrl::GetForU();
+
         if (cntrl != CursCntrl::Disable)
         {
             DrawHorizontal(static_cast<int>(Cursors::GetPosU(source, 0)), x0);

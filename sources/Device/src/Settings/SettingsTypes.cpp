@@ -862,6 +862,23 @@ CursCntrl::E CursCntrl::GetForMeasuresT()
 }
 
 
+CursCntrl::E CursCntrl::GetForU(const Channel &ch)
+{
+    return set.cursors.cntrlU[ch];
+}
+
+
+bool CursCntrl::IsDisableForU(const Channel &ch)
+{
+    return (set.cursors.cntrlU[ch] == CursCntrl::Disable);
+}
+
+CursCntrl::E CursCntrl::GetForU()
+{
+    return set.cursors.cntrlU[set.cursors.source];
+}
+
+
 CursCntrl::E CursCntrl::GetForMeasuresU()
 {
     return set.measures.cntrlU;

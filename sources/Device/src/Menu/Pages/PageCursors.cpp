@@ -38,7 +38,7 @@ void SetCursSource(const Channel &ch)
 
 void IncCursCntrlU(Channel::E ch)
 {
-    GF::CircleIncrease<int8>((int8*)&CURsU_CNTRL_CH(ch), 0, 3);
+    GF::CircleIncrease<int8>((int8*)&set.cursors.cntrlU[ch], 0, 3);
 }
 
 
@@ -254,7 +254,7 @@ static const arrayHints hintsSetU =
 
 static void PressSB_Cursors_U()
 {
-    if (CURS_ACTIVE_IS_U || CURS_CNTRL_U_IS_DISABLE(set.cursors.source))
+    if (CURS_ACTIVE_IS_U || CursCntrl::IsDisableForU(set.cursors.source))
     {
         IncCursCntrlU(set.cursors.source);
     }
@@ -263,7 +263,8 @@ static void PressSB_Cursors_U()
 
 static void DrawSB_Cursors_U(int x, int y)
 {
-    CursCntrl::E cursCntrl = CURsU_CNTRL;
+    CursCntrl::E cursCntrl = CursCntrl::GetForU();
+
     if (cursCntrl == CursCntrl::Disable)
     {
         DrawSB_Cursors_U_Disable(x, y);
@@ -489,7 +490,7 @@ DEF_PAGE_5(pageCursors, PageMain::self, NamePage::Cursors,
 
 static void MoveCursUonPercentsOrPoints(int delta)
 {
-    CursCntrl::E cursCntrl = CURsU_CNTRL;
+    CursCntrl::E cursCntrl = CursCntrl::GetForU();
 
     float value = static_cast<float>(delta);
 
