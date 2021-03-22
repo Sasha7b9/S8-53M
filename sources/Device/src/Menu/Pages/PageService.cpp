@@ -479,7 +479,7 @@ DEF_CHOICE_3(cMath_FFT_Source, PageService::PageMath::PageFFT::self,
     "Канал 1", "Channel 1",
     "Канал 2", "Channel 2",
     "Канал 1 + 2", "Channel 1 + 2",
-    set.math.sourceFFT, nullptr, nullptr, nullptr
+    set.math.source_FFT, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_4(cMath_FFT_Window, PageService::PageMath::PageFFT::self,
