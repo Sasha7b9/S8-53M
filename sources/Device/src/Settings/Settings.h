@@ -92,7 +92,7 @@ struct SettingsChannel
 };
 
 
-struct SettingsEthernet
+struct SettingsLAN
 {
     uint8 mac0;
     uint8 mac1;
@@ -404,22 +404,22 @@ struct SettingsMenu
 // Струкура хранит все настройки прибора.
 struct Settings
 {
-    uint                size;
-    SettingsDisplay     display;            // настройки изображения          (меню ДИСПЛЕЙ).
-    SettingsChannel     chan[NumChannels];  // настройки каналов              (меню КАНАЛ 1 и КАНАЛ 2).
-    SettingsTrig        trig;               // настройки синхронизации        (меню СИНХР).
-    SettingsTime        time;               // временнЫе настройки            (меню РАЗВЁРТКА).
-    SettingsCursors     cursors;            // настройки курсорных измерений  (меню КУРСОРЫ).
-    SettingsMemory      memory;             // настройки режимов памяти       (меню ПАМЯТЬ).
-    SettingsMeasures    measures;           // настройки измерений            (меню ИЗМЕРЕНИЯ).
-    SettingsMath        math;               // настройки режима математических измерений.
-    SettingsService     service;            // дополнительные настройки       (меню СЕРВИС).
-    SettingsEthernet    eth;                // настройки для соединения по локальной сети.
-    SettingsCommon      common;             // системные настройки.
-    SettingsMenu        menu;               // состояние меню.
-    SettingsDebug       debug;              // настройки режима отладки       (меню ОТЛАДКА).
-    uint                crc32;              // контрольная сумма. Используется для проверки корректности сохранённых
-                                            // настроек
+    uint             size;
+    SettingsDisplay  display;            // настройки изображения          (меню ДИСПЛЕЙ).
+    SettingsChannel  chan[NumChannels];  // настройки каналов              (меню КАНАЛ 1 и КАНАЛ 2).
+    SettingsTrig     trig;               // настройки синхронизации        (меню СИНХР).
+    SettingsTime     time;               // временнЫе настройки            (меню РАЗВЁРТКА).
+    SettingsCursors  cursors;            // настройки курсорных измерений  (меню КУРСОРЫ).
+    SettingsMemory   memory;             // настройки режимов памяти       (меню ПАМЯТЬ).
+    SettingsMeasures measures;           // настройки измерений            (меню ИЗМЕРЕНИЯ).
+    SettingsMath     math;               // настройки режима математических измерений.
+    SettingsService  service;            // дополнительные настройки       (меню СЕРВИС).
+    SettingsLAN      eth;                // настройки для соединения по локальной сети.
+    SettingsCommon   common;             // системные настройки.
+    SettingsMenu     menu;               // состояние меню.
+    SettingsDebug    debug;              // настройки режима отладки       (меню ОТЛАДКА).
+    uint             crc32;              // контрольная сумма. Используется для проверки корректности сохранённых
+                                         // настроек
 
     static void Load(bool _default);  // \brief Загрузить настройки. Если _default == true, загружаются настройки по
                                       // умолчанию, иначе пытается 
