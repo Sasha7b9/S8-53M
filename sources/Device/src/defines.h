@@ -68,8 +68,6 @@ struct StructRelAbs
 #define ENABLE_RU   "Вкл"
 #define ENABLE_EN   "Enable"
 
-#define ERROR_STRING_VALUE  "--.--"
-
 #define EXIT_RU "Выход"
 #define EXIT_EN "Exit"
 #define EXIT_ILLUSTRATION_RU "Кнопка для выхода в предыдущее меню"

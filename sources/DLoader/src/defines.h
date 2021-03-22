@@ -29,6 +29,4 @@ typedef char* (*pFuncCFBC)(float, bool, char*);
 typedef void  (*pFuncpU8)(uint8*);
 typedef void  (*pFuncVpVIIB)(void*, int, int, bool);
 
-#define ERROR_STRING_VALUE  "--.--"
-
 #define LANG_RU true

@@ -41,3 +41,10 @@ private:
 
     char *buffer;
 };
+
+
+class EmptyString : public String
+{
+public:
+    EmptyString() : String("--.--") {}
+};

@@ -58,7 +58,7 @@ String GF::Float2String(const Float &value, bool always_sign, int num_digits)
 {
     if(!value.IsValid())
     {
-        return String(ERROR_STRING_VALUE);
+        return EmptyString();
     }
 
     String result;
@@ -212,7 +212,7 @@ String GF::Voltage2String(const Float &volt, bool always_sign)
 {
     if(!volt.IsValid())
     {
-        return String(ERROR_STRING_VALUE);
+        return EmptyString();
     }
 
     char *suffix = nullptr;
@@ -249,7 +249,7 @@ String GF::Time2String(const Float &tim, bool always_sign)
 {
     if(!tim.IsValid())
     {
-        return String(ERROR_STRING_VALUE);
+        return EmptyString();
     }
     
     char *suffix = nullptr;
@@ -288,7 +288,7 @@ String GF::Freq2String(const Float &freq, bool)
 {
     if(!freq.IsValid())
     {
-        return String(ERROR_STRING_VALUE);
+        return EmptyString();
     }
 
     char *suffix = 0;
