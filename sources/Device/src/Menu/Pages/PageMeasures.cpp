@@ -11,7 +11,7 @@ bool PageMeasures::choiceMeasuresIsActive = false;
 // Каким курсором в данный момент происходит управление
 static CursCntrl::E GetMeasuresCursCntrlActive()
 {
-    return set.measures.curs_active.IsT() ? CursCntrl::GetForMeasuresT() : CursCntrl::GetForMeasuresU();
+    return set.measures.curs_active.IsT() ? set.measures.cntrlT.value : CursCntrl::GetForMeasuresU();
 }
 
 void DrawSB_MeasTune_Settings(int x, int y)

@@ -790,10 +790,9 @@ struct CursCntrl
         _2,            // вторым.
         _1_2,          // обоими.
         Disable        // никаким.
-    };
+    } value;
 
     static E GetForMeasuresU();
-    static E GetForMeasuresT();
 
     static E GetForU();
     static E GetForU(const Channel &ch);

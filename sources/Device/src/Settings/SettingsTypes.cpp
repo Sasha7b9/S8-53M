@@ -844,12 +844,6 @@ bool ModeViewSignals::IsCompress()
 }
 
 
-CursCntrl::E CursCntrl::GetForMeasuresT()
-{
-    return set.measures.cntrlT;
-}
-
-
 CursCntrl::E CursCntrl::GetForU(const Channel &ch)
 {
     return set.cursors.cntrlU[ch];
@@ -881,7 +875,7 @@ bool CursCntrl::IsDisableForT(const Channel &ch)
 
 CursCntrl::E CursCntrl::GetForMeasuresU()
 {
-    return set.measures.cntrlU;
+    return set.measures.cntrlU.value;
 }
 
 
