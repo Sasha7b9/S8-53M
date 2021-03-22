@@ -343,12 +343,6 @@ ENUM_POINTS_FPGA::E SettingsMemory::IntNumPoints2FPGA_NUM_POINTS(int numPoints)
 }
 
 
-float SettingsChannel::StretchADC(const Channel &ch)
-{
-    return set.chan[ch].stretch_ADC;
-}
-
-
 int8 SettingsChannel::BalanceShiftADC(const Channel &ch)
 {
     return set.chan[ch].balance_shift_ADC;

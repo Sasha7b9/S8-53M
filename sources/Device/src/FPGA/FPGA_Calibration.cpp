@@ -75,8 +75,8 @@ void FPGA::Calibrator::ProcedureCalibration()
     Display::SetDrawMode(DrawMode::Hand, FuncAttScreen);
     Timer::Enable(TypeTimer::TimerDrawHandFunction, 100, OnTimerDraw);
 
-    koeffCalibrationOld[ChA] = SettingsChannel::StretchADC(ChA);
-    koeffCalibrationOld[ChB] = SettingsChannel::StretchADC(ChB);
+    koeffCalibrationOld[ChA] = set.chan[ChA].stretch_ADC;
+    koeffCalibrationOld[ChB] = set.chan[ChB].stretch_ADC;
 
     bar0.fullTime = 0;
     bar0.passedTime = 0;
@@ -262,11 +262,11 @@ void FuncAttScreen()
                     Text(String("%d", RSHIFT_ADD(ChB, i, 1))).Draw(95 + i * 16 + dX, 90 + dY, Color::FILL);
                 }
                 
-                Text(String("Коэффициент калибровки 1к : %f, %d", SettingsChannel::StretchADC(ChA),
-                    (int)(SettingsChannel::StretchADC(ChA) * 0x80))).Draw(10 + dX, 110 + dY, Color::FILL);
+                Text(String("Коэффициент калибровки 1к : %f, %d", set.chan[ChA].stretch_ADC,
+                    (int)(set.chan[ChA].stretch_ADC * 0x80))).Draw(10 + dX, 110 + dY, Color::FILL);
 
-                Text(String("Коэфффициент калибровки 2к : %f, %d", SettingsChannel::StretchADC(ChB),
-                    (int)(SettingsChannel::StretchADC(ChA) * 0x80))).Draw(10 + dX, 130 + dY, Color::FILL);
+                Text(String("Коэфффициент калибровки 2к : %f, %d", set.chan[ChB].stretch_ADC,
+                    (int)(set.chan[ChA].stretch_ADC * 0x80))).Draw(10 + dX, 130 + dY, Color::FILL);
 
                 DrawParametersChannel(ChA, 10 + dX, 150 + dY, false);
                 DrawParametersChannel(ChB, 10 + dX, 200 + dY, false);
