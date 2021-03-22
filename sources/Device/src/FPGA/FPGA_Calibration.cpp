@@ -203,11 +203,11 @@ void FPGA::Calibrator::ProcedureCalibration()
     RShift::Set(ChA, RShift::Get(ChA));
     RShift::Set(ChB, RShift::Get(ChB));
 
-    set.chan[ChA].stretch_ADC = koeffCal0.IsValid() ? koeffCal0 : koeffCalibrationOld[0];
+    set.chan[ChA].stretch_ADC = koeffCal0.IsValid() ? (float)koeffCal0 : koeffCalibrationOld[0];
 
     Calibrator::LoadKoeff(ChA);
 
-    set.chan[ChB].stretch_ADC = koeffCal1.IsValid() ? koeffCal1 : koeffCalibrationOld[1];
+    set.chan[ChB].stretch_ADC = koeffCal1.IsValid() ? (float)koeffCal1 : koeffCalibrationOld[1];
 
     Calibrator::LoadKoeff(ChB);
 

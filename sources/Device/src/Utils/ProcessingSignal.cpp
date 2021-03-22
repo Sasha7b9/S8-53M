@@ -694,6 +694,7 @@ float Processing::CalculateMinSteadyRel(Channel::E ch)
                 float value = pic / 9.0F;
                 data = &dataIn[ch][firstP];
                 float _min = min[ch];
+
                 while (data <= end)
                 {
                     uint8 d = *data++;
@@ -716,7 +717,8 @@ float Processing::CalculateMinSteadyRel(Channel::E ch)
                         }
                     }
                 }
-                min[ch] = (numDeleted > numMin / 2.0F) ? CalculateMinRel(ch) : (float)sum / numSums;
+
+                min[ch] = (numDeleted > numMin / 2.0F) ? CalculateMinRel(ch) : Float((float)sum / numSums);
             }
         }
         minSteadyIsCalculating[ch] = true;
@@ -790,7 +792,8 @@ float Processing::CalculateMaxSteadyRel(Channel::E ch)
                         }
                     }
                 }
-                max[ch] = (numDeleted > numMax / 2) ? CalculateMaxRel(ch) : (float)sum / numSums;
+
+                max[ch] = (numDeleted > numMax / 2) ? CalculateMaxRel(ch) : Float((float)sum / numSums);
             }
         }
         maxSteadyIsCalculating[ch] = true;
