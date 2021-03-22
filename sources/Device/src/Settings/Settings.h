@@ -11,19 +11,17 @@
 #define MAC_ADDR3       (set.LAN.mac3)
 #define MAC_ADDR4       (set.LAN.mac4)
 #define MAC_ADDR5       (set.LAN.mac5)
-//
+
 #define IP_ADDR0        (set.LAN.ip0)
 #define IP_ADDR1        (set.LAN.ip1)
 #define IP_ADDR2        (set.LAN.ip2)
 #define IP_ADDR3        (set.LAN.ip3)
-//
-#define PORT_ETH        (set.LAN.port)
-//
+
 #define NETMASK_ADDR0   (set.LAN.mask0)
 #define NETMASK_ADDR1   (set.LAN.mask1)
 #define NETMASK_ADDR2   (set.LAN.mask2)
 #define NETMASK_ADDR3   (set.LAN.mask3)
-//
+
 #define GW_ADDR0        (set.LAN.gw0)
 #define GW_ADDR1        (set.LAN.gw1)
 #define GW_ADDR2        (set.LAN.gw2)

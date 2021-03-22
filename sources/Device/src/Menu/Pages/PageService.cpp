@@ -609,7 +609,7 @@ DEF_IPADDRESS(ipEthernet_IP, PageService::PageEthernet::self,
     "IP адрес", "IP-address",
     "Установка IP адреса",
     "Set of IP-address",
-    IP_ADDR0, IP_ADDR1, IP_ADDR2, IP_ADDR3, PORT_ETH, OnChanged_Ethernet_Enable
+    IP_ADDR0, IP_ADDR1, IP_ADDR2, IP_ADDR3, set.LAN.port, OnChanged_Ethernet_Enable
 )
 
 
