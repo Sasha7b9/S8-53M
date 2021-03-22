@@ -19,7 +19,7 @@ void Log_Write(pchar format, ...) //-V2560
 {
     char buffer[SIZE_BUFFER_LOG];
     std::va_list args;
-    va_start(args, format); //-V2563 //-V2567 //-V2571
+    va_start(args, format); //-V2563 //-V2571
     std::vsprintf(buffer, format, args);
     va_end(args);
     Display::AddStringToIndicating(buffer);
@@ -34,7 +34,7 @@ void Log_Error(pchar module, const char *func, int numLine, char *format, ...) /
 {
     char buffer[SIZE_BUFFER_LOG];
     std::va_list args;
-    va_start(args, format); //-V2563 //-V2567 //-V2571
+    va_start(args, format); //-V2563 //-V2571
     std::vsprintf(buffer, format, args);
     va_end(args);
     char numBuffer[20];
