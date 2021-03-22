@@ -41,8 +41,8 @@ void Smoothing::Set(Smoothing::E v)
 void SettingsDisplay::PointsOnDisplay(int *firstPoint, int *lastPoint)
 {
     int numPointsOnScreen = 281;
-    *firstPoint = SHIFT_IN_MEMORY;
-    *lastPoint = SHIFT_IN_MEMORY + numPointsOnScreen - 1;
+    *firstPoint = TShift::GetInMemory();
+    *lastPoint = TShift::GetInMemory() + numPointsOnScreen - 1;
 }
 
 

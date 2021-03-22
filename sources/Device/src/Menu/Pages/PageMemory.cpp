@@ -26,8 +26,10 @@ bool PageMemory::PageInternal::showAlways = false;
 uint PageMemory::exitFromModeSetNameTo = 0;
 bool PageMemory::needForSaveToFlashDrive = false;
 
-static bool runningFPGAbeforeSmallButtons = false;      // Здесь сохраняется информация о том, работала ли ПЛИС перед переходом в режим работы с памятью
-static bool exitFromIntToLast = false;                  // Если 1, то выходить из страницы внутренней памяти нужно не стандартно, а в меню последних
+static bool runningFPGAbeforeSmallButtons = false;      // Здесь сохраняется информация о том, работала ли ПЛИС перед
+                                                        // переходом в режим работы с памятью
+static bool exitFromIntToLast = false;                  // Если 1, то выходить из страницы внутренней памяти нужно не
+                                                        // стандартно, а в меню последних
 
 
 static void DrawSetMask();  // Эта функция рисует, когда выбран режим задания маски.
@@ -38,21 +40,21 @@ void ChangeC_Memory_NumPoints(bool)
 {
     if(SettingsMemory::GetNumPoints(false) == 281)
     {
-        SHIFT_IN_MEMORY = 0;
+        TShift::SetInMemory(0);
     }
     else
     {
         if(TPos::IsLeft())
         {
-            SHIFT_IN_MEMORY = 0;
+            TShift::SetInMemory(0);
         }
         else if(TPos::IsCenter())
         {
-            SHIFT_IN_MEMORY = static_cast<int16>(SettingsMemory::GetNumPoints(false) / 2 - Grid::Width() / 2);
+            TShift::SetInMemory((int16)(SettingsMemory::GetNumPoints(false) / 2 - Grid::Width() / 2));
         }
         else if(TPos::IsRight())
         {
-            SHIFT_IN_MEMORY = static_cast<int16>(SettingsMemory::GetNumPoints(false) - Grid::Width() - 2);
+            TShift::SetInMemory((int16)(SettingsMemory::GetNumPoints(false) - Grid::Width() - 2));
         }
     }
 

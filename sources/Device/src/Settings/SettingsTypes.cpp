@@ -490,6 +490,18 @@ int16 TShift::Zero()
 }
 
 
+int16 TShift::GetInMemory()
+{
+    return set.display.shift_in_memory;
+}
+
+
+void TShift::SetInMemory(int16 shift)
+{
+    set.display.shift_in_memory = shift;
+}
+
+
 uint ENUM_POINTS_FPGA::ToPoints(E v)
 {
     static const uint points[Count] =

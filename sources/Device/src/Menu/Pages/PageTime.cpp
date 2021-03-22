@@ -52,16 +52,16 @@ void PageTime::OnChanged_PeakDet(bool active)
         }
         if (!PeackDetMode::IsEnabled())
         {
-            int centerX = SHIFT_IN_MEMORY + Grid::Width() / 2;
-            SHIFT_IN_MEMORY = static_cast<int16>(centerX * 2 - Grid::Width() / 2);
+            int centerX = TShift::GetInMemory() + Grid::Width() / 2;
+            TShift::SetInMemory((int16)(centerX * 2 - Grid::Width() / 2));
             set.memory.enum_points_fpga = set.time.oldNumPoints;
             ChangeC_Memory_NumPoints(true);
         }
         else if (PeackDetMode::IsEnabled())
         {
-            int centerX = SHIFT_IN_MEMORY + Grid::Width() / 2;
-            LIMITATION(SHIFT_IN_MEMORY, static_cast<int16>(centerX / 2 - Grid::Width() / 2), 0,
-                static_cast<int16>(SettingsMemory::GetNumPoints(false) - Grid::Width()));
+            int centerX = TShift::GetInMemory() + Grid::Width() / 2;
+            LIMITATION(set.display.shift_in_memory, (int16)(centerX / 2 - Grid::Width() / 2), 0,
+                (int16)(SettingsMemory::GetNumPoints(false) - Grid::Width()));
             ChangeC_Memory_NumPoints(true);
         }
     }

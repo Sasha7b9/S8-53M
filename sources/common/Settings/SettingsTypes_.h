@@ -705,6 +705,10 @@ struct TShift
     // Смещение по времени, соответствующее позиции TPos.
     static int16 Zero();
 
+    // Смещение отображаемого участка сигнала относительно начала памяти.
+    static int16 GetInMemory();
+    static void SetInMemory(int16 shift);
+
     static const int NULL_VALUE = 1000000;
 };
 

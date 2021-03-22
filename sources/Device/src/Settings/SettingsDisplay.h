@@ -2,8 +2,6 @@
 #include "common/Display/Colors_.h"
 
 
-#define SHIFT_IN_MEMORY             (set.display.shiftInMemory)                 // SettingsDisplay.shiftInMemory
-
 #define TIME_MESSAGES               (set.display.timeMessages)                  // SettingsDisplay.timeMessages
 
 #define BRIGHTNESS                  (set.display.brightness)                    // SettingsDisplay.brightness
@@ -30,7 +28,7 @@
 struct SettingsDisplay
 {
     int16               time_show_levels;      // ¬рем€, в течение которого нужно показывать уровни смещени€.
-    int16               shiftInMemory;         // ѕоказывает смещение левого кра€ сетки относительно нулевого байта
+    int16               shift_in_memory;       // ѕоказывает смещение левого кра€ сетки относительно нулевого байта
                                                // пам€ти. Ќужно дл€ правильного отображени€ сигнала в окне.
     int16               timeMessages;          // ¬рем€ в секундах, на которое сообщение остаЄтс€ на экране.
     int16               brightness;            // яркость диспле€.

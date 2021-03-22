@@ -587,8 +587,8 @@ Float Processing::CalculateTimeNarastaniya(Channel::E ch)   // WARN Çהוסü, גמחלמ
     {
         markerHor[ch][0] = static_cast<int>(max09);
         markerHor[ch][1] = static_cast<int>(min01);
-        markerVert[ch][0] = static_cast<int>(firstIntersection - SHIFT_IN_MEMORY);
-        markerVert[ch][1] = static_cast<int>(secondIntersection - SHIFT_IN_MEMORY);
+        markerVert[ch][0] = static_cast<int>(firstIntersection - TShift::GetInMemory());
+        markerVert[ch][1] = static_cast<int>(secondIntersection - TShift::GetInMemory());
     }
 
     return retValue;
@@ -623,8 +623,8 @@ Float Processing::CalculateTimeSpada(Channel::E ch)                          // 
     {
         markerHor[ch][0] = static_cast<int>(max09);
         markerHor[ch][1] = static_cast<int>(min01);
-        markerVert[ch][0] = static_cast<int>(firstIntersection - SHIFT_IN_MEMORY);
-        markerVert[ch][1] = static_cast<int>(secondIntersection - SHIFT_IN_MEMORY);
+        markerVert[ch][0] = static_cast<int>(firstIntersection - TShift::GetInMemory());
+        markerVert[ch][1] = static_cast<int>(secondIntersection - TShift::GetInMemory());
     }
 
     return retValue;

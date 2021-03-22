@@ -103,7 +103,8 @@ void Display::RotateTrigLev()
     if (set.display.time_show_levels)
     {
         showLevelTrigLev = true;
-        Timer::Enable(TypeTimer::ShowLevelTrigLev, set.display.time_show_levels * 1000, FuncOnTimerDisableShowLevelTrigLev);
+        Timer::Enable(TypeTimer::ShowLevelTrigLev, set.display.time_show_levels * 1000,
+            FuncOnTimerDisableShowLevelTrigLev);
     }
     Redraw();
 }
@@ -944,8 +945,8 @@ void Display::Clear()
 
 void Display::ShiftScreen(int delta)
 {
-    LIMITATION(SHIFT_IN_MEMORY, static_cast<int16>(SHIFT_IN_MEMORY + delta), 0,
-        static_cast<int16>(SettingsMemory::GetNumPoints(false) - 282));
+    LIMITATION(set.display.shift_in_memory, (int16)(TShift::GetInMemory() + delta), 0,
+        (int16)(SettingsMemory::GetNumPoints(false) - 282));
 }
 
 
