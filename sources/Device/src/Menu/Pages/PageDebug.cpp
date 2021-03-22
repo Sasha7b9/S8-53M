@@ -207,8 +207,8 @@ static void Draw_ADC_Balance_Mode(int, int)
         {0, SettingsChannel::BalanceShiftADC(ChB), static_cast<int8>(BALANCE_ADC_B)}
     };
 
-    shiftADCA = shift[0][BALANCE_ADC_TYPE];
-    shiftADCB = shift[1][BALANCE_ADC_TYPE];
+    shiftADCA = shift[0][BalanceADCtype::Get()];
+    shiftADCB = shift[1][BalanceADCtype::Get()];
 }
 
 static void OnChanged_ADC_Balance_Mode(bool)
@@ -226,7 +226,7 @@ DEF_CHOICE_3(mcADC_Balance_Mode, PageDebug::PageADC::PageBalance::self,
     DISABLE_RU, DISABLE_EN,
     "Реальный", "Real",
     "Ручной", "Manual",
-    BALANCE_ADC_TYPE, nullptr, OnChanged_ADC_Balance_Mode, Draw_ADC_Balance_Mode
+    set.debug.balance_ADC_type, nullptr, OnChanged_ADC_Balance_Mode, Draw_ADC_Balance_Mode
 )
 
 static void OnChanged_ADC_Balance_ShiftA()
@@ -237,7 +237,7 @@ static void OnChanged_ADC_Balance_ShiftA()
 
 static bool IsActive_ADC_Balance_Shift()
 {
-    return BALANCE_ADC_TYPE_IS_HAND;
+    return (BalanceADCtype::Get() == BalanceADCtype::Hand);
 }
 
 DEF_GOVERNOR(mgADC_Balance_ShiftA, PageDebug::PageADC::PageBalance::self,

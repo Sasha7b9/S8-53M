@@ -848,3 +848,9 @@ CursCntrl::E CursCntrl::GetForU()
 {
     return set.measures.cntrlU;
 }
+
+
+BalanceADCtype::E BalanceADCtype::Get()
+{
+    return set.debug.balance_ADC_type;
+}

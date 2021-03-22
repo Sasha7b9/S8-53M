@@ -122,9 +122,6 @@ struct OutputRegisters
 
 
 
-#define BALANCE_ADC_TYPE                    (set.debug.balanceADCtype)
-#define BALANCE_ADC_TYPE_IS_HAND            (BALANCE_ADC_TYPE == BalanceADCtype::Hand)
-
 #define BALANCE_ADC(ch)                     (set.debug.balanceADC[ch])
 #define BALANCE_ADC_A                       (BALANCE_ADC(ChA))
 #define BALANCE_ADC_B                       (BALANCE_ADC(ChB))
@@ -312,7 +309,7 @@ struct SettingsDebug
     bool              console_in_pause;           // \brief Признак того, что консоль находится в режиме паузы. Режим
                                                   // паузы означает, что новые 
                                                   // сообщения она не записывает и не сохраняет.
-    BalanceADCtype::E balanceADCtype;             // Тип балансировки.
+    BalanceADCtype::E balance_ADC_type;           // Тип балансировки.
     int16             balanceADC[2];              // Значение дополнительного смещения АЦП для ручной балансировки.
     StretchADCtype::E stretchADCtype;             // Тип растяжки канала.
     int16             stretchADC[2];              // Значение растяжки канала для ручного режима.
