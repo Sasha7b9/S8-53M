@@ -6,7 +6,12 @@
 
 int ENumSignalsInSec::NumSignalsInS()
 {
-    return Tables::ENUMtoNumSignalsInSec(set.display.enum_fps);
+    static const int fps[Count] =
+    {
+        25, 10, 5, 2, 1
+    };
+
+    return fps[set.display.enum_fps];
 }
 
 

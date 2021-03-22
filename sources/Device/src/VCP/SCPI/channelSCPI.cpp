@@ -48,7 +48,7 @@ void SCPI::CHANNEL::INPUT(puchar buffer)
         else if (1 == value)    { set.chan[ch].enable = false; }
         else if (2 == value)
         {
-            SCPI_SEND(":CHANNEL%d:INPUT %s", Tables::GetNumChannel(ch), ch.IsEnabled() ? "ON" : "OFF");
+            SCPI_SEND(":CHANNEL%d:INPUT %s", ch.ToNumber(), ch.IsEnabled() ? "ON" : "OFF");
         }
     LEAVE_ANALYSIS
 }
@@ -72,7 +72,7 @@ void SCPI::CHANNEL::COUPLE(puchar buffer)
         else if (2 == value)    { ModeCouple::Set(ch, ModeCouple::GND); }
         else if (3 == value)
         {
-            SCPI_SEND(":CHANNEL%d:COUPLING %s", Tables::GetNumChannel(ch), map[ModeCouple::Get(ch)].key);
+            SCPI_SEND(":CHANNEL%d:COUPLING %s", ch.ToNumber(), map[ModeCouple::Get(ch)].key);
         }
     LEAVE_ANALYSIS
 }
@@ -95,7 +95,7 @@ void SCPI::CHANNEL::FILTR(puchar buffer)
         else if (1 == value)    { set.chan[ch].filtr = false; func[ch](true); }
         else if (2 == value)
         {
-            SCPI_SEND(":CHANNEL%d:FILTR %s", Tables::GetNumChannel(ch), SettingsChannel::FiltrIsEnabled(ch) ? "ON" : "OFF");
+            SCPI_SEND(":CHANNEL%d:FILTR %s", ch.ToNumber(), SettingsChannel::FiltrIsEnabled(ch) ? "ON" : "OFF");
         }
     LEAVE_ANALYSIS
 }
@@ -116,7 +116,7 @@ void SCPI::CHANNEL::INVERSE(puchar buffer)
         else if (1 == value)    { set.chan[ch].inverse = false; }
         else if (2 == value)
         {
-            SCPI_SEND(":CHANNEL%d:SET_INVERSE %s", Tables::GetNumChannel(ch), ch.IsInversed() ? "ON" : "OFF");
+            SCPI_SEND(":CHANNEL%d:SET_INVERSE %s", ch.ToNumber(), ch.IsInversed() ? "ON" : "OFF");
         }
     LEAVE_ANALYSIS
 }
@@ -147,7 +147,7 @@ void SCPI::CHANNEL::RANGE(puchar buffer)
         if (value <= (uint8)Range::_20V)      { Range::Set(ch, (Range::E)value); }
         else if (value == (uint8)Range::Count)
         {
-            SCPI_SEND(":CHANNEL%d:SET_RANGE %s", Tables::GetNumChannel(ch), map[Range::Get(ch)].key);
+            SCPI_SEND(":CHANNEL%d:SET_RANGE %s", ch.ToNumber(), map[Range::Get(ch)].key);
         }
     LEAVE_ANALYSIS
 }
@@ -172,7 +172,7 @@ void SCPI::CHANNEL::OFFSET(puchar buffer)
         if (value == 0)
         {
             int retValue = static_cast<int>(0.5F * (RShift::Get(ch) - RShiftZero));
-            SCPI_SEND(":CHANNNEL%d:OFFSET %d", Tables::GetNumChannel(ch), retValue);
+            SCPI_SEND(":CHANNNEL%d:OFFSET %d", ch.ToNumber(), retValue);
         }
     LEAVE_ANALYSIS
 }
@@ -194,7 +194,7 @@ void SCPI::CHANNEL::FACTOR(puchar buffer)
         else if (value == 1)    { set.chan[ch].divider = Divider::_10; }
         else if (value == 2)
         {
-            SCPI_SEND(":CHANNEL%d:PROBE %s", Tables::GetNumChannel(ch), map[Divider::Get(ch)].key);
+            SCPI_SEND(":CHANNEL%d:PROBE %s", ch.ToNumber(), map[Divider::Get(ch)].key);
         }
     LEAVE_ANALYSIS
 }

@@ -411,6 +411,12 @@ bool Channel::IsInversed() const
 }
 
 
+int Channel::ToNumber() const
+{
+    return (value == A) ? 1 : 2;
+}
+
+
 TPos::E TPos::Get()
 {
     return set.time.tPos;

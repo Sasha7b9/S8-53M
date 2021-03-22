@@ -1,5 +1,4 @@
 #pragma once
-#include "Settings/SettingsDisplay.h"
 
 
 struct Warning { enum E
@@ -42,12 +41,7 @@ struct WarningWithNumber { enum E
 
 struct Tables
 {
-    static ENumSignalsInSec::E NumSignalsInSecToENUM(int enumSignalsInSec);
-    static int ENUMtoNumSignalsInSec(ENumSignalsInSec::E enumSignalsInSec);
     static pchar GetWarning(Warning::E warning);
-    static pchar RangeNameFromValue(Range::E range);
-    // Возвращает номер канала от 1 до 2
-    static int GetNumChannel(const Channel &ch);
     // Выводит строку из таблицы symbolsAlphaBet
     static void DrawStr(int index, int x, int y);
     static pchar symbolsAlphaBet[0x48];

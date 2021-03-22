@@ -220,13 +220,16 @@ struct Smoothing {
 
 
 // Ограничение FPS.
-struct ENumSignalsInSec { enum E
+struct ENumSignalsInSec
+{
+    enum E
     {
         _25,
         _10,
         _5,
         _2,
-        _1
+        _1,
+        Count
     };
 
     // Возвращает ограничение частоты кадров.
@@ -474,6 +477,7 @@ struct Channel
     operator int() const { return (int)value; }
     Color GetColor() const;
     bool IsInversed() const;
+    int ToNumber() const;
 };
 
 extern Channel ChA;

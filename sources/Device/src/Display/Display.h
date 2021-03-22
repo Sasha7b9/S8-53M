@@ -1,5 +1,6 @@
 #pragma once
 #include "Tables.h"
+#include "common/Display/Colors_.h"
 
 
 struct DataSettings;

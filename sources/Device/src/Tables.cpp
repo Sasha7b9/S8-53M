@@ -22,45 +22,6 @@ pchar Tables::symbolsAlphaBet[0x48] =
 };
 
 
-ENumSignalsInSec::E Tables::NumSignalsInSecToENUM(int enumSignalsInSec)
-{
-    if(enumSignalsInSec == 1)
-    {
-        return ENumSignalsInSec::_1;
-    }
-    else if(enumSignalsInSec == 2)
-    {
-        return ENumSignalsInSec::_2;
-    }
-    else if(enumSignalsInSec == 5)
-    {
-        return ENumSignalsInSec::_5;
-    }
-    else if(enumSignalsInSec == 10)
-    {
-        return ENumSignalsInSec::_10;
-    }
-    else if(enumSignalsInSec == 25)
-    {
-        return ENumSignalsInSec::_25;
-    }
-    LOG_ERROR("Число сигналов в секунду равно %d", enumSignalsInSec);
-    return ENumSignalsInSec::_1;
-}
-
-
-int Tables::ENUMtoNumSignalsInSec(ENumSignalsInSec::E enumSignalsInSec)
-{
-    static const int fps[] = {25, 10, 5, 2, 1};
-    if(enumSignalsInSec <= ENumSignalsInSec::_1)
-    {
-        return fps[enumSignalsInSec];
-    }
-    LOG_ERROR("Неправильный параметр %d", static_cast<int>(enumSignalsInSec));
-    return 1;
-}
-
-
 const char* Tables::GetWarning(Warning::E warning)
 {
     static pchar warnings[Warning::Count][2] =
@@ -94,34 +55,6 @@ const char* Tables::GetWarning(Warning::E warning)
         {"Память OTP полностью заполена",   "OPT memory fully completed"}
     };
     return warnings[warning][LANG];
-}
-
-
-const char* Tables::RangeNameFromValue(Range::E range)
-{
-    static const char* names[Range::Count] =
-    {
-        "Range::_2mV",
-        "Range::_5mV",
-        "Range::_10mV",
-        "Range::_20mV",
-        "Range::_50mV",
-        "Range::_100mV",
-        "Range::_200mV",
-        "Range::_500mV",
-        "Range::_1V",
-        "Range::_2V",
-        "Range::_5V",
-        "Range::_10V",
-        "Range::_20V"
-    };
-    return names[range];
-}
-
-
-int Tables::GetNumChannel(const Channel &ch)
-{
-    return ch.IsA() ? 1 : 2;
 }
 
 
