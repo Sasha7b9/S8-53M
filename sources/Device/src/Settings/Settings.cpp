@@ -166,14 +166,14 @@ static const Settings defaultSettings =
             WindowFFT::Rectangle,
             FFTmaxDB::_60,
             0,
-            {100, 256 - 100}
+            {100, 256 - 100},
+            false
         },
         Function::Sum,
         1,
         1,
         1,
         1,
-        false,
         ModeDrawMath::Disable,       // modeDrawMath
         ModeRegSet::Range,           // modeRegSet
         Range::_50mV,
@@ -309,7 +309,7 @@ Range::E& operator--(Range::E &range)
 
 bool SettingsMath::IsMathEnabled()
 {
-    return !ModeDrawMath::IsDisabled() || set.math.enabled_FFT;
+    return !ModeDrawMath::IsDisabled() || set.math.fft.enabled;
 }
 
 
