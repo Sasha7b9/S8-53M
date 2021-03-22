@@ -872,3 +872,15 @@ bool StretchADCtype::IsSettings()
 {
     return (set.debug.stretch_ADC_type == StretchADCtype::Settings);
 }
+
+
+ENumAccumulation::E ENumAccumulation::Get()
+{
+    return set.display.enum_accum;
+}
+
+
+void ENumAccumulation::Set(ENumAccumulation::E v)
+{
+    set.display.enum_accum = v;
+}

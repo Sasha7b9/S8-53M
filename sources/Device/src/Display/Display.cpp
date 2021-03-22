@@ -318,7 +318,7 @@ void Display::DrawHiRightPart()
 
 bool Display::NeedForClearScreen()
 {
-    int numAccum = NUM_ACCUM;
+    int numAccum = ENumAccumulation::Get();
 
     if (FPGA::SET::InRandomizeMode() || numAccum == 1 || MODE_ACCUM_IS_NORESET || FPGA::SET::InSelfRecorderMode())
     {
@@ -781,7 +781,7 @@ void Display::DrawLowPart()
     if (ModeWork::IsDirect())
     {
         int y2 = y1 + 6;
-        WriteStringAndNumber("накопл", x, y0, NUM_ACCUM);
+        WriteStringAndNumber("накопл", x, y0, ENumAccumulation::Get());
         WriteStringAndNumber("усредн", x, y1, NUM_AVE);
         WriteStringAndNumber("мн\x93мкс", x, y2, NUM_MIN_MAX);
     }

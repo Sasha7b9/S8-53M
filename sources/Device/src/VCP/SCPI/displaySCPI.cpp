@@ -106,11 +106,11 @@ void SCPI::DISPLAY::ACCUM_NUMBER(puchar buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (value <= 7)         { ENUM_ACCUM = (ENumAccumulation::E)value; }
-        else if (8 == value)    { ENUM_ACCUM = ENumAccumulation::Infinity; }
+        if (value <= 7)         { ENumAccumulation::Set((ENumAccumulation::E)value); }
+        else if (8 == value)    { ENumAccumulation::Set(ENumAccumulation::Infinity); }
         else if (9 == value)
         {
-            SCPI_SEND(":DISPLAY:ACCUMULATION:NUMBER %s", map[ENUM_ACCUM].key);
+            SCPI_SEND(":DISPLAY:ACCUMULATION:NUMBER %s", map[ENumAccumulation::Get()].key);
         }
     LEAVE_ANALYSIS
 }

@@ -112,18 +112,24 @@ struct ColorScheme {
 
 
 // Перечисление накоплений.
-struct ENumAccumulation { enum E
+struct ENumAccumulation
 {
-    _1,
-    _2,
-    _4,
-    _8,
-    _16,
-    _32,
-    _64,
-    _128,
-    Infinity
-};};
+    enum E
+    {
+        _1,
+        _2,
+        _4,
+        _8,
+        _16,
+        _32,
+        _64,
+        _128,
+        Infinity
+    };
+
+    static E Get();
+    static void Set(E v);
+};
 
 
 // Количество усреднений по измерениям.

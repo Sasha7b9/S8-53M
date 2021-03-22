@@ -40,7 +40,7 @@ DEF_CHOICE_REG_9(mcAccumulation_Number, PageDisplay::PageAccumulation::self,
     "64", "64",
     "128", "128",
     "Бесконечность", "Infinity",
-    ENUM_ACCUM, nullptr, nullptr, nullptr
+    set.display.enum_accum, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcAccumulation_Mode, PageDisplay::PageAccumulation::self,

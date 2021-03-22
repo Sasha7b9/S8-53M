@@ -15,9 +15,8 @@
 #define MODE_DRAW_SIGNAL            (set.display.modeDrawSignal)                // SettingsDisplay.modeDrawSignal
 #define MODE_DRAW_IS_SIGNAL_LINES   (MODE_DRAW_SIGNAL == ModeDrawSignal::Lines) // \c true, если сигнал выводится линиями.
 
-#define ENUM_ACCUM                  (set.display.enumAccumulation)              // SettingsDisplay.numAccumulation
-#define ENUM_ACCUM_IS_NONE          (ENUM_ACCUM == ENumAccumulation::_1)        // \c true, если накопление выключено.
-#define ENUM_ACCUM_IS_INFINITY      (ENUM_ACCUM == ENumAccumulation::Infinity)  // \c true, если установлено бесконечное число накоплений.
+#define ENUM_ACCUM_IS_NONE          (set.display.enum_accum == ENumAccumulation::_1)        // \c true, если накопление выключено.
+#define ENUM_ACCUM_IS_INFINITY      (set.display.enum_accum == ENumAccumulation::Infinity)  // \c true, если установлено бесконечное число накоплений.
 #define NUM_ACCUM                   (1 << (int)set.display.enumAccumulation)    // Количество накоплений.
 
 #define ENUM_AVE                    (set.display.enumAve)                       // SettingsDisplay.enumAve
@@ -64,7 +63,7 @@ struct SettingsDisplay
     uint                colors[16];           // Цвета.
     ModeDrawSignal::E   modeDrawSignal;       // Режим отрисовки сигнала.
     TypeGrid::E         typeGrid;             // Тип сетки.
-    ENumAccumulation::E enumAccumulation;     // Перечисление накоплений сигнала на экране.
+    ENumAccumulation::E enum_accum;           // Перечисление накоплений сигнала на экране.
     ENumAveraging::E    enumAve;              // Перечисление усреднений сигнала.
     ModeAveraging::E    modeAve;              // Тип усреднений по измерениям.
     ENumMinMax::E       enumMinMax;           // Число измерений для определения минимумов и максимумов.
