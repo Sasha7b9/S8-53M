@@ -172,13 +172,13 @@ struct OutputRegisters
 #define PRETRIGGERED            (set.debug.pretriggered)
 
 
-#define FILE_NAME_MASK              (set.memory.fileNameMask)                       // SettingsMemory.fileNameMask
+#define FILE_NAME_MASK              (set.memory.fileNameMask)
 
-#define FILE_NAME                   (set.memory.fileName)                           // SettingsMemory.fileName
+#define FILE_NAME                   (set.memory.fileName)
 
-#define INDEX_SYMBOL                (set.memory.indexCurSymbolNameMask)             // SettingsMemory.indexCurSymbolNameMask
+#define INDEX_SYMBOL                (set.memory.indexCurSymbolNameMask)
 
-#define FLASH_AUTOCONNECT           (set.memory.flashAutoConnect)                   // SettingsMemory.flashAutoConnect
+#define FLASH_AUTOCONNECT           (set.memory.flashAutoConnect)
 
 struct StructMemoryLast
 {
@@ -193,17 +193,20 @@ struct SettingsMemory
     ModeWork::E         modeWork;                               // Режим работы.
     FileNamingMode::E   fileNamingMode;                         // Режим именования файлов.
     char                fileNameMask[MAX_SYMBOLS_IN_FILE_NAME]; // Здесь маска для автоматического именования файлов\n
-         // Правила именования.\n
-         // %y('\x42') - год, %m('\x43') - месяц, %d('\x44') - день, %H('\x45') - часы, %M('\x46') - минуты, %S('\x47') - секунды\n
-         // %Nn('\x48''n') - порядковый номер, котрый занимает не менее n знакомест, например, 7 в %3N будет преобразовано в 007\n
-         // Примеры\n
-         // name_%4N_%y_%m_%d_%H_%M_%S будет генерировать файлы вида name_0043_2014_04_25_14_45_32\n
-         // При этом обратите внимание, что если спецификатор %4N стоИт после временнЫх параметров, то, скорее всего, этот параметр будет всегда равен 0001, т.к. для определения номера просматриваются только символы ДО него.
+        // Правила именования.\n
+        // %y('\x42') - год, %m('\x43') - месяц, %d('\x44') - день, %H('\x45') - часы, %M('\x46') - минуты, %S('\x47') - секунды\n
+        // %Nn('\x48''n') - порядковый номер, котрый занимает не менее n знакомест, например, 7 в %3N будет преобразовано в 007\n
+        // Примеры\n
+        // name_%4N_%y_%m_%d_%H_%M_%S будет генерировать файлы вида name_0043_2014_04_25_14_45_32\n
+        // При этом обратите внимание, что если спецификатор %4N стоИт после временнЫх параметров, то, скорее всего,
+        //этот параметр будет всегда равен 0001, т.к. для определения номера просматриваются только символы ДО него.
     char                fileName[MAX_SYMBOLS_IN_FILE_NAME];     // Имя файла для режима ручного задания
-    int8                indexCurSymbolNameMask;                 // Индекс текущего символа в режиме задания маски или выбора имени.
+    int8                indexCurSymbolNameMask;                 // Индекс текущего символа в режиме задания маски или
+                                                                // выбора имени.
     StructMemoryLast    strMemoryLast;
     ModeShowIntMem::E   modeShowIntMem;                         // Какие сигналы показывать в режиме внутреннего ЗУ
-    bool                flashAutoConnect;                       // Если true, при подлючении флеш автоматически выводится NC (Нортон Коммандер)
+    bool                flashAutoConnect;                       // Если true, при подлючении флеш автоматически
+                                                                // выводится NC (Нортон Коммандер)
     ModeBtnMemory::E    modeBtnMemory;
     ModeSaveSignal::E   modeSaveSignal;                         // В каком виде сохранять сигнал.
 
@@ -215,18 +218,20 @@ struct SettingsMemory
 // Настройки меню ИЗМЕРЕНИЯ
 struct SettingsMeasures
 {
-    MeasuresNumber::E  number;           // Сколько измерений выводить.
-    Channel::E         source;           // Для каких каналов выводить измерения.
-    ModeViewSignals::E modeViewSignals;  // Сжимать ли сигналы при выводе измерений.
-    Measure::E         measures[15];     // Выбранные для индикации измерения.
-    bool               show;             // Показывать ли измерения.
-    MeasuresField::E   field;            // Задаёт область, из которой берутся значения для расчёта измерений.
-    int16              posCurU[2];       // Позиции курсоров, которые задают область, из которой берутся значения для расчёта измерений при field == MeasuresField::Hand.
-    int16              posCurT[2];       // Позиции курсоров, которые задают область, из которой берутся значения для расчёта измерений при field == MeasuresField::Hand.
-    CursCntrl::E       cntrlU;           // Активные курсоры напряжения.
-    CursCntrl::E       cntrlT;           // Активные курсоры времени.
-    CursActive::E      cursActive;       // Какие курсоры активны - по времени или напряжению.
-    Measure::E         markedMeasure;    // Измерение, на которое нужно выводить маркеры.
+    MeasuresNumber::E  number;          // Сколько измерений выводить.
+    Channel::E         source;          // Для каких каналов выводить измерения.
+    ModeViewSignals::E modeViewSignals; // Сжимать ли сигналы при выводе измерений.
+    Measure::E         measures[15];    // Выбранные для индикации измерения.
+    bool               show;            // Показывать ли измерения.
+    MeasuresField::E   field;           // Задаёт область, из которой берутся значения для расчёта измерений.
+    int16              posCurU[2];      // Позиции курсоров, которые задают область, из которой берутся значения для
+                                        //расчёта измерений при field == MeasuresField::Hand.
+    int16              posCurT[2];      // Позиции курсоров, которые задают область, из которой берутся значения для
+                                        // расчёта измерений при field == MeasuresField::Hand.
+    CursCntrl::E       cntrlU;          // Активные курсоры напряжения.
+    CursCntrl::E       cntrlT;          // Активные курсоры времени.
+    CursActive::E      cursActive;      // Какие курсоры активны - по времени или напряжению.
+    Measure::E         markedMeasure;   // Измерение, на которое нужно выводить маркеры.
 
     static Channel::E Source();
     static bool SourceIsA();
@@ -268,8 +273,7 @@ struct SettingsMath
 
 // Настройки меню СЕРВИС.
 struct SettingsService
-{ //-V802
-    bool              screenWelcomeEnable; // Будет ли показываться экран приглашения при включении прибора. \todo убрать этот артефакт.
+{
     bool              soundEnabled;        // Включены ли звуки.
     CalibratorMode::E calibrator;          // Режим работы калибратора.
     int8              IPaddress;           // IP-адрес (временно).
@@ -292,7 +296,7 @@ struct SettingsTrig
 
 // Настройки оси X.
 struct SettingsTime
-{ //-V802
+{
     TBase::E            tBase;          // Масштаб по времени.
     int16               tShiftRel;      // Смещение по времени.
     FunctionTime::E     function_time;
@@ -311,20 +315,24 @@ struct SettingsDebug
 {
     int16             numStrings;                 // Число строк в консоли.
     int8              sizeFont;                   // Размер шрифта консоли - 0 - 5, 1 - 8,
-    bool              consoleInPause;             // \brief Признак того, что консоль находится в режиме паузы. Режим паузы означает, что новые 
+    bool              consoleInPause;             // \brief Признак того, что консоль находится в режиме паузы. Режим
+                                                  // паузы означает, что новые 
                                                   // сообщения она не записывает и не сохраняет.
     BalanceADCtype::E balanceADCtype;             // Тип балансировки.
     int16             balanceADC[2];              // Значение дополнительного смещения АЦП для ручной балансировки.
     StretchADCtype::E stretchADCtype;             // Тип растяжки канала.
     int16             stretchADC[2];              // Значение растяжки канала для ручного режима.
     int16             numMeasuresForGates;        // Число измерений для ворот.
-    int16             shiftT0;                    // Дополнительное смещение по времени для данной развёртки режима рандомизатора.
+    int16             shiftT0;                    // Дополнительное смещение по времени для данной развёртки режима
+                                                  // рандомизатора.
     bool              showStats;                  // Показывать статистику на экране (fps, например).
     int16             numAveForRand;              // По скольким измерениям усреднять сигнал в режиме рандомизатора.
     bool              viewAlteraWrittingData;     // Показывать ли данные, идущие в альтеру.
-    bool              viewAllAlteraWrittingData;  // \brief Показывать ли все данные, идущие в альтеру (если false, то постоянно идущие команды вроде 
+    bool              viewAllAlteraWrittingData;  // \brief Показывать ли все данные, идущие в альтеру (если false, то
+                                                  // постоянно идущие команды вроде 
                                                   // START, STOP не показываются).
-    int16             altShift;                   // Добавочное смещение для устранения эффекта горизонтальной помехи синхронизации.
+    int16             altShift;                   // Добавочное смещение для устранения эффекта горизонтальной помехи
+                                                  // синхронизации.
     int16             pretriggered;               // Регулируемая величина предзапуска для исследования рандомизатора.
     OutputRegisters   showRegisters;
 
@@ -355,15 +363,18 @@ struct Settings
     SettingsCommon      common;             // системные настройки.
     SettingsMenu        menu;               // состояние меню.
     SettingsDebug       debug;              // настройки режима отладки       (меню ОТЛАДКА).
-    uint                crc32;              // контрольная сумма. Используется для проверки корректности сохранённых настроек
-    //int temp[5];
-    static void Load(bool _default);  // \brief Загрузить настройки. Если _default == true, загружаются настройки по умолчанию, иначе пытается 
+    uint                crc32;              // контрольная сумма. Используется для проверки корректности сохранённых
+                                            // настроек
+
+    static void Load(bool _default);  // \brief Загрузить настройки. Если _default == true, загружаются настройки по
+                                      // умолчанию, иначе пытается 
                                       // загрузить настройки из ПЗУ, а в случае неудачи - тоже настройки по умолчанию.
     static void Save();               // Сохранить настройки во флеш-память.
     static bool DebugModeEnable();    // Возвращает true, если включён режим отладки.
-    static bool loaded;    // Эта переменная нужна для того, чтобы исключить ложную запись пустых настроек из-за неправильного 
-                                        // включения прибора (при исключённом из схемы программном включении иногда сигнал от кнопки отключения 
-                                        // питания приходит быстрее, чем программа успевает настроить настройки).
+    static bool loaded;               // Эта переменная нужна для того, чтобы исключить ложную запись пустых настроек
+                                      // из-за неправильного включения прибора (при исключённом из схемы программном
+                                      // включении иногда сигнал от кнопки отключения питания приходит быстрее, чем
+                                      // программа успевает настроить настройки).
 };
 
 extern Settings set;

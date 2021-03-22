@@ -180,7 +180,6 @@ static const Settings defaultSettings =
     },
     // service
     {
-        true,                       // screenWelcomeEnable
         false,                      // soundEnable
         CalibratorMode::Freq,       // calibratorEnable
         0,                          // IP-адрес (временно)  WARN
