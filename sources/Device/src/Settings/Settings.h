@@ -275,7 +275,7 @@ struct SettingsMath
     WindowFFT       window_FFT;     // Задаёт вид окна, на которое умножается сигнал перед расчётом спектра.
     FFTmaxDB        fft_max_DB;     // Минимальное значение на вертикальной координате графика спектра.
     Function        func;           // Включённая математическая функция.
-    uint8           cursorFFT;      // Определяет, каким курсором спектра управляет ручка УСТАНОВКА.
+    uint8           cursor_FFT;     // Определяет, каким курсором спектра управляет ручка УСТАНОВКА.
     uint8           posCur[2];      // Позиция курсора спектра. Изменятеся 0...256.
     int8            koeff1add;      // Коэффициент при первом слагаемом для сложения.
     int8            koeff2add;
@@ -289,7 +289,6 @@ struct SettingsMath
     int16           rShift;         // Смещение по вертикальной оси математического сигнала.
 
     static bool IsMathEnabled();
-    static uint8 CursorFFT();
     static uint8 PositionCursorFFT(int num);
     static bool IsEnbaledFFT();
 };

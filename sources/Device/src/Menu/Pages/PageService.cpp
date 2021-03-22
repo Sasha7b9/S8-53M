@@ -551,18 +551,18 @@ static bool IsActive_Math_FFT_Cursors()
 
 static void OnRegSet_Math_FFT_Cursors(int angle)
 {
-    set.math.posCur[SettingsMath::CursorFFT()] += (uint8)angle;
+    set.math.posCur[set.math.cursor_FFT] += (uint8)angle;
     Sound::RegulatorShiftRotate();
 }
 
 static void OnPress_Math_FFT_Cursors_Source()
 {
-    set.math.cursorFFT = (uint8)((SettingsMath::CursorFFT() + 1) % 2);
+    set.math.cursor_FFT = (uint8)((set.math.cursor_FFT + 1) % 2);
 }
 
 static void Draw_Math_FFT_Cursors_Source(int x, int y)
 {
-    Text((SettingsMath::CursorFFT() == 0) ? "1" : "2").Draw(x + 7, y + 5);
+    Text((set.math.cursor_FFT == 0) ? "1" : "2").Draw(x + 7, y + 5);
 }
 
 DEF_SMALL_BUTTON(cMath_FFT_Cursors_Source, PageService::PageMath::PageFFT::PageCursors::self,
