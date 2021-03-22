@@ -131,22 +131,25 @@ int Grid::MathBottom()
 
 int Grid::BottomMessages()
 {
-    int retValue = FullBottom();
+    int result = FullBottom();
 
     if (ModeWork::IsMemInt())
     {
-        retValue -= 12;
+        result -= 12;
     }
     else if (SettingsMeasures::ShowMeasures())
     {
-        retValue = Measure::top_measures;
-        if (MeasuresNumber::Is6_1() || MeasuresNumber::Is6_2() || MeasuresNumber::Is1())
+        result = Measure::top_measures;
+
+        if (set.measures.number.Is6_1() ||
+            set.measures.number.Is6_2() ||
+            set.measures.number.Is1())
         {
-            retValue = FullBottom();
+            result = FullBottom();
         }
     }
 
-    return retValue - 12;;
+    return result - 12;;
 }
 
 
@@ -350,17 +353,19 @@ int Grid::CalculateCountV()
 {
     if (ModeViewSignals::IsCompress())
     {
-        if (MeasuresNumber::Is1_5())
+        bool source_is_AB = set.measures.source.IsAB();
+
+        if (set.measures.number.Is1_5())
         {
-            return SettingsMeasures::SourceIsAB() ? 42 : 44;
+            return source_is_AB ? 42 : 44;
         }
-        if (MeasuresNumber::Is2_5())
+        if (set.measures.number.Is2_5())
         {
-            return SettingsMeasures::SourceIsAB() ? 69 : 39;
+            return source_is_AB ? 69 : 39;
         }
-        if (MeasuresNumber::Is3_5())
+        if (set.measures.number.Is3_5())
         {
-            return SettingsMeasures::SourceIsAB() ? 54 : 68;
+            return source_is_AB ? 54 : 68;
         }
     }
 
@@ -372,11 +377,11 @@ int Grid::CalculateCountH()
 {
     if (ModeViewSignals::IsCompress())
     {
-        if (MeasuresNumber::Is6_1())
+        if (set.measures.number.Is6_1())
         {
             return 73;
         }
-        if (MeasuresNumber::Is6_2())
+        if (set.measures.number.Is6_2())
         {
             return 83;
         }

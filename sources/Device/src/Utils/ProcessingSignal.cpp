@@ -144,12 +144,12 @@ void Processing::CalculateMeasures()
                     markerHor[ChB][1].SetInvalid();
                 }
 
-                if(SettingsMeasures::SourceIsA() || SettingsMeasures::SourceIsAB())
+                if(set.measures.source.IsA() || set.measures.source.IsAB())
                 {
                     values[meas].value[ChA] = func(ChA.value);
                 }
 
-                if(SettingsMeasures::SourceIsB() || SettingsMeasures::SourceIsAB())
+                if(set.measures.source.IsB() || set.measures.source.IsAB())
                 {
                     values[meas].value[ChB] = func(ChB.value);
                 }
@@ -1006,10 +1006,12 @@ void Processing::GetData(uint8 **data0, uint8 **data1, DataSettings **ds)
     {
         *data0 = dataOut0;
     }
+
     if (data1)
     {
         *data1 = dataOut1;
     }
+
     *ds = dataSet;
 }
 
@@ -1020,7 +1022,7 @@ float Processing::GetCursU(const Channel &ch, float posCurT)
     SettingsDisplay::PointsOnDisplay(&first, &last);
 
     float result = 0.0f;
-    LIMITATION(result, static_cast<float>(200.0F - (dataIn[ch])[first + (int)posCurT] + MIN_VALUE), 0.0F, 200.0F);
+    LIMITATION(result, (float)(200.0F - (dataIn[ch])[first + (int)posCurT] + MIN_VALUE), 0.0F, 200.0F);
     return result;
 }
 

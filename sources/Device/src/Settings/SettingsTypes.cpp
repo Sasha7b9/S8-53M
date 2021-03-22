@@ -784,48 +784,6 @@ bool ModeSaveSignal::IsBMP()
 }
 
 
-MeasuresNumber::E MeasuresNumber::Get()
-{
-    return set.measures.number;
-}
-
-
-bool MeasuresNumber::Is1()
-{
-    return (set.measures.number == MeasuresNumber::_1);
-}
-
-
-bool MeasuresNumber::Is6_1()
-{
-    return (set.measures.number == MeasuresNumber::_6_1);
-}
-
-
-bool MeasuresNumber::Is6_2()
-{
-    return (set.measures.number == MeasuresNumber::_6_2);
-}
-
-
-bool MeasuresNumber::Is1_5()
-{
-    return (set.measures.number == MeasuresNumber::_1_5);
-}
-
-
-bool MeasuresNumber::Is2_5()
-{
-    return (set.measures.number == MeasuresNumber::_2_5);
-}
-
-
-bool MeasuresNumber::Is3_5()
-{
-    return (set.measures.number == MeasuresNumber::_3_5);
-}
-
-
 bool MeasuresField::IsHand()
 {
     return (set.measures.field == MeasuresField::Hand);

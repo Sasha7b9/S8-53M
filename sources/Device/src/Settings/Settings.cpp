@@ -391,30 +391,6 @@ bool SettingsMath::IsEnbaledFFT()
 }
 
 
-Channel::E SettingsMeasures::Source()
-{
-    return set.measures.source;
-}
-
-
-bool SettingsMeasures::SourceIsA()
-{
-    return (set.measures.source == Channel::A);
-}
-
-
-bool SettingsMeasures::SourceIsB()
-{
-    return (set.measures.source == Channel::B);
-}
-
-
-bool SettingsMeasures::SourceIsAB()
-{
-    return (set.measures.source == Channel::A_B);
-}
-
-
 bool SettingsMeasures::ShowMeasures()
 {
     return set.measures.show;

@@ -290,8 +290,8 @@ private:
 // Настройки меню ИЗМЕРЕНИЯ
 struct SettingsMeasures
 {
-    MeasuresNumber::E  number;            // Сколько измерений выводить.
-    Channel::E         source;            // Для каких каналов выводить измерения.
+    MeasuresNumber     number;            // Сколько измерений выводить.
+    Channel            source;            // Для каких каналов выводить измерения.
     ModeViewSignals::E mode_view_signals; // Сжимать ли сигналы при выводе измерений.
     Measure::E         measures[15];      // Выбранные для индикации измерения.
     bool               show;              // Показывать ли измерения.
@@ -305,10 +305,6 @@ struct SettingsMeasures
     CursActive         curs_active;       // Какие курсоры активны - по времени или напряжению.
     Measure::E         marked_measure;    // Измерение, на которое нужно выводить маркеры.
 
-    static Channel::E Source();
-    static bool SourceIsA();
-    static bool SourceIsB();
-    static bool SourceIsAB();
     static bool ShowMeasures();
     static int16 PosCursorU(int num);
     static int16 PosCursorT(int num);

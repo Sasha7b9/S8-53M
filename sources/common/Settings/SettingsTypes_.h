@@ -308,16 +308,16 @@ struct MeasuresNumber
         _3_5,           // 3 строки по 5 измерений.
         _6_1,           // 6 строк по 1 измерению.
         _6_2            // 6 строк по 2 измерения.
-    };
+    } value;
 
-    static E Get();
+    bool Is1()   const { return value == _1; };
+    bool Is6_1() const { return value == _6_1; };
+    bool Is6_2() const { return value == _6_2; };
+    bool Is1_5() const { return value == _1_5; };
+    bool Is2_5() const { return value == _2_5; };
+    bool Is3_5() const { return value == _3_5; };
 
-    static bool Is1();
-    static bool Is6_1();
-    static bool Is6_2();
-    static bool Is1_5();
-    static bool Is2_5();
-    static bool Is3_5();
+    operator int() const { return (int)value; }
 };
 
 
@@ -471,9 +471,10 @@ struct Channel
     void Enable() const;
     void Disable() const;
     bool IsEnabled() const;
-    bool IsA() const     { return (value == Channel::A); }
-    bool IsB() const     { return (value == Channel::B); }
-    bool IsMath() const  { return (value == Channel::Math); }
+    bool IsA() const     { return (value == A); }
+    bool IsB() const     { return (value == B); }
+    bool IsAB() const    { return (value == A_B); }
+    bool IsMath() const  { return (value == Math); }
     operator int() const { return (int)value; }
     Color GetColor() const;
     bool IsInversed() const;

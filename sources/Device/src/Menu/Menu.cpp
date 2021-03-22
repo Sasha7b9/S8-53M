@@ -541,7 +541,7 @@ bool Menu::NeedForFireSetLED()    // Возвращает true, если лампочка УСТАНОВКА до
     }
     NamePage::E name = GetNameOpenedPage();
 
-    if (name == NamePage::SB_MeasTuneMeas && MeasuresNumber::Is1() && !PageMeasures::choiceMeasuresIsActive)
+    if (name == NamePage::SB_MeasTuneMeas && set.measures.number.Is1() && !PageMeasures::choiceMeasuresIsActive)
     {
         return false;
     }

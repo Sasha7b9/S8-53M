@@ -81,7 +81,7 @@ char Measure::GetChar(Measure::E measure)
 
 int Measure::GetDY()
 {
-    if(SettingsMeasures::SourceIsAB())
+    if(set.measures.source.IsAB())
     {
         return 30;
     }
@@ -107,7 +107,8 @@ Measure::E Measure::Type(int row, int col)
 
 int Measure::GetTopTable()
 {
-    if(MeasuresNumber::Is6_1() || MeasuresNumber::Is6_2())
+    if(set.measures.number.Is6_1() ||
+       set.measures.number.Is6_2())
     {
         return Grid::Bottom() - Measure::GetDY() * 6;
     }
@@ -117,24 +118,24 @@ int Measure::GetTopTable()
 int Measure::NumCols()
 {
     static const int cols[] = {1, 2, 5, 5, 5, 1, 2};
-    return cols[MeasuresNumber::Get()];
+    return cols[set.measures.number];
 }
 
 int Measure::NumRows()
 {
     static const int rows[] = {1, 1, 1, 2, 3, 6, 6};
-    return rows[MeasuresNumber::Get()];
+    return rows[set.measures.number];
 }
 
 int Measure::GetDeltaGridLeft()
 {
     if(SettingsMeasures::ShowMeasures() && ModeViewSignals::IsCompress())
     {
-        if(MeasuresNumber::Is6_1())
+        if(set.measures.number.Is1())
         {
             return Measure::GetDX();
         }
-        else if(MeasuresNumber::Is6_2())
+        else if(set.measures.number.Is6_2())
         {
             return Measure::GetDX() * 2;
         }
@@ -146,15 +147,17 @@ int Measure::GetDeltaGridBottom()
 {
     if(SettingsMeasures::ShowMeasures() && ModeViewSignals::IsCompress())
     {
-        if(MeasuresNumber::Is1_5())
+        MeasuresNumber &number = set.measures.number;
+
+        if(number.Is1_5())
         {
             return Measure::GetDY();
         }
-        else if(MeasuresNumber::Is2_5())
+        else if(number.Is2_5())
         {
             return Measure::GetDY() * 2;
         }
-        else if(MeasuresNumber::Is3_5())
+        else if(number.Is3_5())
         {
             return Measure::GetDY() * 3;
         }
@@ -248,7 +251,7 @@ void Measure::DrawPageChoice()
         return;
     }
 
-    bool num61or62 = MeasuresNumber::Is6_1() || MeasuresNumber::Is6_2();
+    bool num61or62 = set.measures.number.Is6_1() || set.measures.number.Is6_2();
 
     int x = num61or62 ? (Grid::Right() - 3 * Grid::WIDTH / 5) : Grid::Left();
     int y = Grid::TOP;
@@ -258,6 +261,7 @@ void Measure::DrawPageChoice()
     int maxCol = num61or62 ? 3 : 5;
     Measure::E meas = Measure::None;
     Font::Set(TypeFont::UGO);
+
     for(int row = 0; row < maxRow; row++)
     {
         for(int col = 0; col < maxCol; col++)
@@ -279,6 +283,7 @@ void Measure::DrawPageChoice()
             ++meas;
         }
     }
+
     Font::Set(TypeFont::S8);
 }
 
@@ -348,11 +353,11 @@ void Measure::DrawAll()
                     Region(dX - 2, 9).Fill(x + 1, y + 1, active ? Color::BACK : Color::FILL);
                     Measure::Name(str, elem).Draw(x + 4, y + 2, active ? Color::FILL : Color::BACK);
                 }
-                if (SettingsMeasures::SourceIsA())
+                if (set.measures.source.IsA())
                 {
                     Processing::GetStringMeasure(meas, Channel::A).Draw(x + 2, y + 11, ChA.GetColor());
                 }
-                else if (SettingsMeasures::SourceIsB())
+                else if (set.measures.source.IsB())
                 {
                     Processing::GetStringMeasure(meas, Channel::B).Draw(x + 2, y + 11, ChA.GetColor());
                 }
