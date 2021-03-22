@@ -926,16 +926,17 @@ struct WindowFFT
 
 
 // Минимальное значение на вертикальной координате графика спектра.
-struct FFTmaxDB {
+struct FFTmaxDB
+{
     enum E
     {
         _40,        // Вертикальная координата до -40Дб
         _60,        // Вертикальная координата до -60Дб
         _80         // Вертикальная координата до -80Дб
-    };
+    } value;
 
-    static E Get();
-    static float GetReal();
+    float GetReal();
+    operator E() const { return value; }
 };
 
 

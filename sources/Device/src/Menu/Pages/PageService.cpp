@@ -518,7 +518,7 @@ DEF_CHOICE_3(cMath_FFT_Limit, PageService::PageMath::PageFFT::self,
     "-40Да", "-40dB",
     "-60Да", "-60dB",
     "-80Да", "-80dB",
-    set.math.fftMaxDB, IsActive_Math_FFT_Limit, nullptr, nullptr
+    set.math.fft_max_DB, IsActive_Math_FFT_Limit, nullptr, nullptr
 )
 
 DEF_PAGE_6(pageFFT, PageService::PageMath::self, NamePage::MathFFT,

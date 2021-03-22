@@ -563,16 +563,10 @@ bool ColorScheme::IsWhiteLetters()
 }
 
 
-FFTmaxDB::E FFTmaxDB::Get()
-{
-    return set.math.fftMaxDB;
-}
-
-
 float FFTmaxDB::GetReal()
 {
     static const float db[] = { -40.0F, -60.0F, -80.0F };
-    return db[set.math.fftMaxDB];
+    return db[value];
 }
 
 

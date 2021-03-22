@@ -229,7 +229,7 @@ void Grid::DrawSpectrum()
     {
         static const int nums[] = { 4, 6, 8 };
         static pchar strs[] = { "0", "-10", "-20", "-30", "-40", "-50", "-60", "-70" };
-        int numParts = nums[FFTmaxDB::Get()];
+        int numParts = nums[set.math.fft_max_DB];
         float scale = (float)Grid::MathHeight() / numParts;
 
         for (int i = 1; i < numParts; i++)
