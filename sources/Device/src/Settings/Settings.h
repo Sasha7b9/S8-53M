@@ -248,7 +248,7 @@ struct SettingsMeasures
     CursCntrl::E       cntrlU;            // јктивные курсоры напр€жени€.
     CursCntrl::E       cntrlT;            // јктивные курсоры времени.
     CursActive         curs_active;       //  акие курсоры активны - по времени или напр€жению.
-    Measure::E         markedMeasure;     // »змерение, на которое нужно выводить маркеры.
+    Measure::E         marked_measure;    // »змерение, на которое нужно выводить маркеры.
 
     static Channel::E Source();
     static bool SourceIsA();

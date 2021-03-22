@@ -233,11 +233,11 @@ void Measure::ShortPressOnSmallButonMarker()
 {
     if(Measure::IsMarked(posActive))
     {
-        set.measures.markedMeasure = Measure::None;
+        set.measures.marked_measure = Measure::None;
     }
     else
     {
-        set.measures.markedMeasure = Measure::Get(posActive);
+        set.measures.marked_measure = Measure::Get(posActive);
     }
 }
 
@@ -374,7 +374,7 @@ void Measure::DrawAll()
 
 Measure::E Measure::Marked()
 {
-    return set.measures.markedMeasure;
+    return set.measures.marked_measure;
 }
 
 
