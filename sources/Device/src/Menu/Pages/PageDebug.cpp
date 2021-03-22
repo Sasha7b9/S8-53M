@@ -203,8 +203,8 @@ static void Draw_ADC_Balance_Mode(int, int)
 {
     int8 shift[2][3] =
     {
-        {0, SettingsChannel::BalanceShiftADC(ChA), static_cast<int8>(BALANCE_ADC_A)},
-        {0, SettingsChannel::BalanceShiftADC(ChB), static_cast<int8>(BALANCE_ADC_B)}
+        {0, SettingsChannel::BalanceShiftADC(ChA), (int8)set.debug.balance_ADC[ChA]},
+        {0, SettingsChannel::BalanceShiftADC(ChB), (int8)set.debug.balance_ADC[ChB]}
     };
 
     shiftADCA = shift[0][BalanceADCtype::Get()];
@@ -231,7 +231,7 @@ DEF_CHOICE_3(mcADC_Balance_Mode, PageDebug::PageADC::PageBalance::self,
 
 static void OnChanged_ADC_Balance_ShiftA()
 {
-    BALANCE_ADC_A = shiftADCA;
+    set.debug.balance_ADC[ChA] = shiftADCA;
 //    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)BALANCE_ADC_A, false);
 }
 
@@ -249,7 +249,7 @@ DEF_GOVERNOR(mgADC_Balance_ShiftA, PageDebug::PageADC::PageBalance::self,
 
 static void OnChanged_ADC_Balance_ShiftB()
 {
-    BALANCE_ADC_B = shiftADCB;
+    set.debug.balance_ADC[ChB] = shiftADCB;
 //    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)BALANCE_ADC_B, false);
 }
 

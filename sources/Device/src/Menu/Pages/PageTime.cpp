@@ -38,8 +38,8 @@ void PageTime::OnChanged_PeakDet(bool active)
         {
             volatile int8 shift[2][3] =
             {
-                {0, SettingsChannel::BalanceShiftADC(ChA), static_cast<int8>(BALANCE_ADC_A)},
-                {0, SettingsChannel::BalanceShiftADC(ChB), static_cast<int8>(BALANCE_ADC_B)}
+                {0, SettingsChannel::BalanceShiftADC(ChA), (int8)set.debug.balance_ADC[ChA]},
+                {0, SettingsChannel::BalanceShiftADC(ChB), (int8)set.debug.balance_ADC[ChB]}
             };
 
 //            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)shift[0][BALANCE_ADC_TYPE], false);
