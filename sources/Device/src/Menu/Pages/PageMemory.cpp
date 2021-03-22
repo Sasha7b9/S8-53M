@@ -270,10 +270,10 @@ void PressSB_SetMask_Backspace()
 
 void PressSB_SetName_Backspace()
 {
-    int size = (int)(std::strlen(FILE_NAME));
+    int size = (int)(std::strlen(set.memory.file_name));
     if (size > 0)
     {
-        FILE_NAME[size - 1] = '\0';
+        set.memory.file_name[size - 1] = '\0';
     }
 }
 
@@ -298,7 +298,7 @@ void DrawSB_SetName_Delete(int x, int y) //-V524
 
 void PressSB_SetName_Delete()
 {
-    FILE_NAME[0] = '\0';
+    set.memory.file_name[0] = '\0';
 }
 
 void DrawSB_SetMask_Insert(int x, int y)
@@ -353,11 +353,11 @@ void DrawSB_SetName_Insert(int x, int y) //-V524
 
 void PressSB_SetName_Insert()
 {
-    int size = (int)(std::strlen(FILE_NAME));
+    int size = (int)(std::strlen(set.memory.file_name));
     if (size < MAX_SYMBOLS_IN_FILE_NAME - 1)
     {
-        FILE_NAME[size] = Tables::symbolsAlphaBet[INDEX_SYMBOL][0];
-        FILE_NAME[size + 1] = '\0';
+        set.memory.file_name[size] = Tables::symbolsAlphaBet[INDEX_SYMBOL][0];
+        set.memory.file_name[size + 1] = '\0';
     }
 }
 
@@ -885,7 +885,7 @@ void DrawSetName()
         position++;
     }
 
-    int x = Text(FILE_NAME).Draw(x0 + deltaX, y0 + 65, Color::FILL);
+    int x = Text(set.memory.file_name).Draw(x0 + deltaX, y0 + 65, Color::FILL);
     Region(5, 8).Fill(x, y0 + 65, Color::FLASH_10);
 }
 

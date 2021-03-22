@@ -374,7 +374,7 @@ LabelNextNumber:
     std::strcpy(name, currentDir);
     std::strcat(name, "\\");
 
-    int size = (int)(std::strlen(FILE_NAME));
+    int size = (int)(std::strlen(set.memory.file_name));
     if (size == 0)
     {
         return false;
@@ -383,7 +383,7 @@ LabelNextNumber:
     if (FileNamingMode::IsHand())
     {
         LIMITATION(size, size, 1, 95);
-        std::strcat(name, FILE_NAME);
+        std::strcat(name, set.memory.file_name);
         std::strcat(name, ".");
         std::strcat(name, ModeSaveSignal::IsBMP() ? "bmp" : "txt");
         return true;
