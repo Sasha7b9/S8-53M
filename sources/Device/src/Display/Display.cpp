@@ -1119,7 +1119,7 @@ void Display::DrawConsole()
 
     int delta = 0;
 
-    if(SHOW_STRING_NAVIGATION)
+    if(set.display.show_string_navigation)
     {
         numStr -= ((height == 8) ? 1 : 2);
         delta = 10;

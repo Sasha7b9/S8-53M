@@ -292,7 +292,7 @@ String Menu::StringNavigation()
 {
     String result;
 
-    if(SHOW_STRING_NAVIGATION && IsShown())
+    if(set.display.show_string_navigation && IsShown())
     {
         pchar titles[10] = {0};
         int numTitle = 0;

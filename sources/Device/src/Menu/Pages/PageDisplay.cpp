@@ -289,7 +289,7 @@ DEF_CHOICE_2(mcSettings_ShowStringNavigation, PageDisplay::PageSettings::self,
     "When choosing \nDisplay\n at the top left of the screen displays the full path to the current page menu",
     "Скрывать", "Hide",
     "Показывать", "Show",
-    SHOW_STRING_NAVIGATION, nullptr, nullptr, nullptr
+    set.display.show_string_navigation, nullptr, nullptr, nullptr
 )
 
 static void OnChanged_Settings_ShowAltMarkers(bool)
