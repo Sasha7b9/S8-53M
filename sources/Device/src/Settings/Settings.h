@@ -5,29 +5,6 @@
 
 #define RSHIFT_ADD(ch, range, mode) set.chan[ch].rshift_add[range][mode]
 
-
- // Настройки каналов
-struct SettingsChannel
-{
-    float         stretch_ADC;                 // Поправочный коэффициент.
-    int16         rshift;
-    int16         rshift_add[Range::Count][2]; // Добавочное смещение для открытого (0) и закрытого (1) входов.
-    ModeCouple::E modeCouple;                  // Режим по входу.
-    Divider::E    divider;                     // Множитель.
-    Range::E      range;                       // Масштаб по напряжению.
-    bool          enable;                      // Включён ли канал.
-    bool          inverse;                     // Инвертирован ли канал.
-    bool          filtr;                       // Фильтр
-    int8          balanceShiftADC;             // Добавочное смещение для балансировки АЦП
-
-    static bool FiltrIsEnabled(const Channel &ch);
-    static float StretchADC(const Channel &ch);
-    static int8 BalanceShiftADC(const Channel &ch);
-};
-
-
-
-
 #define MAC_ADDR0       (set.eth.mac0)
 #define MAC_ADDR1       (set.eth.mac1)
 #define MAC_ADDR2       (set.eth.mac2)
@@ -55,67 +32,9 @@ struct SettingsChannel
 #define ETH_ENABLE      (set.eth.enable)
 
 
-struct SettingsEthernet
-{
-    uint8 mac0;
-    uint8 mac1;
-    uint8 mac2;
-    uint8 mac3;
-    uint8 mac4;
-    uint8 mac5;
-
-    uint8 ip0;
-    uint8 ip1;
-    uint8 ip2;
-    uint8 ip3;
-
-    uint16 port;
-
-    uint8 mask0;
-    uint8 mask1;
-    uint8 mask2;
-    uint8 mask3;
-
-    uint8 gw0;
-    uint8 gw1;
-    uint8 gw2;
-    uint8 gw3;
-
-    bool enable;
-};
-
-
-
 #define LANG            (set.common.lang)       // SettingsCommon.lang
 #define LANG_RU         (LANG == Language::Russian)
 #define LANG_EN         (LANG == Language::English)
-                                    
-struct SettingsCommon
-{
-    int         countEnables;               // Количество включений. Увеличивается при каждом включении.
-    int         countErasedFlashData;       // Сколько раз стирался первый сектор с ресурсами.
-    int         countErasedFlashSettings;   // Сколько раз стирался сектор с настройкаи.
-    int         workingTimeInSecs;          // Время работы в секундах.
-    Language::E lang;                       // Язык меню.
-};
-
-
-
-struct OutputRegisters
-{
-    bool    all;            // Показывать значения всех регистров.
-    bool    flag;           // Выводить ли флаг готовности.
-    bool    rShiftA;
-    bool    rShiftB;
-    bool    trigLev;
-    bool    range[2];
-    bool    chanParam[2];
-    bool    trigParam;
-    bool    tShift;
-    bool    tBase;
-};
-
-
 
 #define BALANCE_ADC(ch)                     (set.debug.balanceADC[ch])
 #define BALANCE_ADC_A                       (BALANCE_ADC(ChA))
@@ -160,10 +79,88 @@ struct OutputRegisters
 
 #define FLASH_AUTOCONNECT           (set.memory.flashAutoConnect)
 
+
+ // Настройки каналов
+struct SettingsChannel
+{
+    float         stretch_ADC;                 // Поправочный коэффициент.
+    int16         rshift;
+    int16         rshift_add[Range::Count][2]; // Добавочное смещение для открытого (0) и закрытого (1) входов.
+    ModeCouple::E modeCouple;                  // Режим по входу.
+    Divider::E    divider;                     // Множитель.
+    Range::E      range;                       // Масштаб по напряжению.
+    bool          enable;                      // Включён ли канал.
+    bool          inverse;                     // Инвертирован ли канал.
+    bool          filtr;                       // Фильтр
+    int8          balanceShiftADC;             // Добавочное смещение для балансировки АЦП
+
+    static bool FiltrIsEnabled(const Channel &ch);
+    static float StretchADC(const Channel &ch);
+    static int8 BalanceShiftADC(const Channel &ch);
+};
+
+
+struct SettingsEthernet
+{
+    uint8 mac0;
+    uint8 mac1;
+    uint8 mac2;
+    uint8 mac3;
+    uint8 mac4;
+    uint8 mac5;
+
+    uint8 ip0;
+    uint8 ip1;
+    uint8 ip2;
+    uint8 ip3;
+
+    uint16 port;
+
+    uint8 mask0;
+    uint8 mask1;
+    uint8 mask2;
+    uint8 mask3;
+
+    uint8 gw0;
+    uint8 gw1;
+    uint8 gw2;
+    uint8 gw3;
+
+    bool enable;
+};
+
+                                   
+struct SettingsCommon
+{
+    int         countEnables;               // Количество включений. Увеличивается при каждом включении.
+    int         countErasedFlashData;       // Сколько раз стирался первый сектор с ресурсами.
+    int         countErasedFlashSettings;   // Сколько раз стирался сектор с настройкаи.
+    int         workingTimeInSecs;          // Время работы в секундах.
+    Language::E lang;                       // Язык меню.
+};
+
+
+
+struct OutputRegisters
+{
+    bool    all;            // Показывать значения всех регистров.
+    bool    flag;           // Выводить ли флаг готовности.
+    bool    rShiftA;
+    bool    rShiftB;
+    bool    trigLev;
+    bool    range[2];
+    bool    chanParam[2];
+    bool    trigParam;
+    bool    tShift;
+    bool    tBase;
+};
+
+
 struct StructMemoryLast
 {
     bool isActiveModeSelect;
 };
+
 
 // Настройки МЕНЮ->ПАМЯТЬ
 struct SettingsMemory
