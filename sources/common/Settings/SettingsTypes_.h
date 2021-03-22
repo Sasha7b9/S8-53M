@@ -486,19 +486,20 @@ extern Channel ChB;
 
 
 // Делитель.
-struct Divider {
+struct Divider
+{
     enum E
     {
         _1,
         _10
-    };
+    } value;
+
+    Divider(E v = _1) : value(v) {}
+
+    operator E() const { return value; }
 
     static int ToAbs(Divider::E divider);
     static int ToAbs(const Channel &ch);
-
-    static E Get(const Channel &ch);
-    static E GetA();
-    static E GetB();
 };
 
 // Режим канала по входу.

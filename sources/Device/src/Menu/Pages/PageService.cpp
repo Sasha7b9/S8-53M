@@ -330,7 +330,7 @@ DEF_SMALL_BUTTON(sbMath_Function_ModeRegSet, PageService::PageMath::PageFunction
 static void OnPress_Math_Function_RangeA()
 {
     set.math.range = Range::GetA();
-    set.math.multiplier = Divider::GetA();
+    set.math.multiplier = set.chan[ChA].divider;
 }
 
 static void Draw_Math_Function_RangeA(int x, int y)
@@ -348,7 +348,7 @@ DEF_SMALL_BUTTON(sbMath_Function_RangeA, PageService::PageMath::PageFunction::se
 static void OnPress_Math_Function_RangeB()
 {
     set.math.range = Range::GetB();
-    set.math.multiplier = Divider::GetB();
+    set.math.multiplier = set.chan[ChB].divider;
 }
 
 static void Draw_Math_Function_RangeB(int x, int y)

@@ -194,7 +194,7 @@ void SCPI::CHANNEL::FACTOR(puchar buffer)
         else if (value == 1)    { set.chan[ch].divider = Divider::_10; }
         else if (value == 2)
         {
-            SCPI_SEND(":CHANNEL%d:PROBE %s", ch.ToNumber(), map[Divider::Get(ch)].key);
+            SCPI_SEND(":CHANNEL%d:PROBE %s", ch.ToNumber(), map[set.chan[ch].divider].key);
         }
     LEAVE_ANALYSIS
 }
