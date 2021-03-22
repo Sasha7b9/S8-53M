@@ -185,7 +185,7 @@ DEF_CHOICE_REG_10(mcAveraging_Number, PageDisplay::PageAveraging::self,
     "128", "128",
     "256", "256",
     "512", "512",
-    ENUM_AVE, nullptr, nullptr, nullptr
+    set.display.enum_ave, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcAveraging_Mode, PageDisplay::PageAveraging::self,

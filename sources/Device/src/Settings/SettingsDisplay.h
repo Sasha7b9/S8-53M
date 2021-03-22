@@ -2,10 +2,7 @@
 #include "common/Display/Colors_.h"
 
 
-#define DISPLAY_COLOR(num)          (set.display.colors[num])                   // SettingsDisplay.colors
-
-#define ENUM_AVE                    (set.display.enumAve)                       // SettingsDisplay.enumAve
-#define NUM_AVE                     (1 << ENUM_AVE)                             // Количество усреднений.
+#define NUM_AVE                     (1 << set.display.enum_ave)                 // Количество усреднений.
 
 #define MODE_AVE                    (set.display.modeAve)                       // SettingsDisplay.modeAve
 
@@ -31,7 +28,7 @@ struct SettingsDisplay
     ModeDrawSignal::E   mode_draw_signal;      // Режим отрисовки сигнала.
     TypeGrid::E         typeGrid;              // Тип сетки.
     ENumAccumulation::E enum_accum;            // Перечисление накоплений сигнала на экране.
-    ENumAveraging::E    enumAve;               // Перечисление усреднений сигнала.
+    ENumAveraging::E    enum_ave;              // Перечисление усреднений сигнала.
     ModeAveraging::E    modeAve;               // Тип усреднений по измерениям.
     ENumMinMax::E       enumMinMax;            // Число измерений для определения минимумов и максимумов.
     Smoothing::E        smoothing;             // Число точек для скользящего фильтра.

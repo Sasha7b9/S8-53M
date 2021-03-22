@@ -160,10 +160,10 @@ void SCPI::DISPLAY::AVERAGE_NUMBER(puchar buffer)
     };
 
     ENTER_ANALYSIS
-        if (value <= 9) { ENUM_AVE = (ENumAveraging::E)value; }
+        if (value <= 9) { set.display.enum_ave = (ENumAveraging::E)value; }
         else if (10 == value)
         {
-            SCPI_SEND(":DISPLAY:AVERAGE:NUMBER %s", map[ENUM_AVE].key);
+            SCPI_SEND(":DISPLAY:AVERAGE:NUMBER %s", map[set.display.enum_ave].key);
         }
     LEAVE_ANALYSIS
 }
