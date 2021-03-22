@@ -4,8 +4,6 @@
 
 #define NUM_AVE                     (1 << set.display.enum_ave)                 // Количество усреднений.
 
-#define MODE_AVE                    (set.display.modeAve)                       // SettingsDisplay.modeAve
-
 #define ENUM_MIN_MAX                (::set.display.enumMinMax)                  // SettingsDisplay.enumMinMax
 #define NUM_MIN_MAX                 (1 << ENUM_MIN_MAX)                         // Количество измерений сигналов для расчёта минимумов и максимумов.
 
@@ -29,7 +27,7 @@ struct SettingsDisplay
     TypeGrid::E         typeGrid;              // Тип сетки.
     ENumAccumulation::E enum_accum;            // Перечисление накоплений сигнала на экране.
     ENumAveraging::E    enum_ave;              // Перечисление усреднений сигнала.
-    ModeAveraging::E    modeAve;               // Тип усреднений по измерениям.
+    ModeAveraging::E    mode_ave;              // Тип усреднений по измерениям.
     ENumMinMax::E       enumMinMax;            // Число измерений для определения минимумов и максимумов.
     Smoothing::E        smoothing;             // Число точек для скользящего фильтра.
     ENumSignalsInSec::E enumSignalsInSec;      // Перечисление считываний сигнала в секунду.

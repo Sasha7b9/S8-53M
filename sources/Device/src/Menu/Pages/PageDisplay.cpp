@@ -200,7 +200,7 @@ DEF_CHOICE_2(mcAveraging_Mode, PageDisplay::PageAveraging::self,
     "memory.",
     "Точно", "Accurately",
     "Приблизительно", "Around",
-    MODE_AVE, nullptr, nullptr, nullptr
+    set.display.mode_ave, nullptr, nullptr, nullptr
 )
 
 static bool IsActive_Averaging()
