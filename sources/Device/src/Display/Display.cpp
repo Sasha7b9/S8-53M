@@ -1081,7 +1081,7 @@ void Display::OneStringUp()
     if(!CONSOLE_IN_PAUSE)
     {
     }
-    else if(lastStringForPause > NUM_STRINGS - 1)
+    else if(lastStringForPause > set.debug.num_srings - 1)
     {
         lastStringForPause--;
     }
@@ -1109,18 +1109,23 @@ void Display::DrawConsole()
     int height = Font::GetSize();
 
     int last_string = FirstEmptyString() - 1;
-    int numStr = NUM_STRINGS;
+    int numStr = set.debug.num_srings;
+
     if(height == 8 && numStr > 22)
     {
         numStr = 22;
     }
+
     int delta = 0;
+
     if(SHOW_STRING_NAVIGATION)
     {
         numStr -= ((height == 8) ? 1 : 2);
         delta = 10;
     }
+
     int first_string = last_string - numStr + 1;
+
     if(first_string < 0)
     {
         first_string = 0;

@@ -122,8 +122,6 @@ struct OutputRegisters
 
 
 
-#define NUM_STRINGS                         (set.debug.numStrings)
-
 #define SIZE_FONT_CONSOLE                   (set.debug.sizeFont)
 
 #define CONSOLE_IN_PAUSE                    (set.debug.consoleInPause)
@@ -313,7 +311,7 @@ struct SettingsTime
 // Отладочные настройки.
 struct SettingsDebug
 {
-    int16             numStrings;                 // Число строк в консоли.
+    int16             num_srings;                 // Число строк в консоли.
     int8              sizeFont;                   // Размер шрифта консоли - 0 - 5, 1 - 8,
     bool              consoleInPause;             // \brief Признак того, что консоль находится в режиме паузы. Режим
                                                   // паузы означает, что новые 

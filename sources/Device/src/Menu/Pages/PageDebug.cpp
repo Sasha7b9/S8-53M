@@ -45,7 +45,7 @@ DEF_GOVERNOR(mgConsole_NumStrings, PageDebug::PageConsole::self,
     "Число строк", "Number strings",
     "",
     "",
-    NUM_STRINGS, 0, 33, nullptr, nullptr, nullptr
+    set.debug.num_srings, 0, 33, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_SizeFont, PageDebug::PageConsole::self,
