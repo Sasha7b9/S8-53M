@@ -135,10 +135,6 @@ struct OutputRegisters
 #define DEBUG_STRETCH_ADC_A                 (DEBUG_STRETCH_ADC(ChA))
 #define DEBUG_STRETCH_ADC_B                 (DEBUG_STRETCH_ADC(ChB))
 
-#define ADD_SHIFT_T0                        (set.debug.shiftT0)
-
-#define SHOW_STATS                          (set.debug.showStats)
-
 #define NUM_AVE_FOR_RAND                    (::set.debug.numAveForRand)
 
 
@@ -314,7 +310,7 @@ struct SettingsDebug
     int16             num_measures_for_gates;     // Число измерений для ворот.
     int16             shift_T0;                   // Дополнительное смещение по времени для данной развёртки режима
                                                   // рандомизатора.
-    bool              showStats;                  // Показывать статистику на экране (fps, например).
+    bool              show_stats;                 // Показывать статистику на экране (fps, например).
     int16             numAveForRand;              // По скольким измерениям усреднять сигнал в режиме рандомизатора.
     bool              viewAlteraWrittingData;     // Показывать ли данные, идущие в альтеру.
     bool              viewAllAlteraWrittingData;  // \brief Показывать ли все данные, идущие в альтеру (если false, то

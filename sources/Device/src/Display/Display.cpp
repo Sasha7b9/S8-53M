@@ -850,7 +850,7 @@ void Display::DrawLowPart()
 
 void Display::DrawTimeForFrame(uint timeTicks)
 {
-    if(!SHOW_STATS)
+    if(!set.debug.show_stats)
     {
         return;
     }

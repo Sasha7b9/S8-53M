@@ -38,7 +38,7 @@ DEF_CHOICE_2(mcStats, PageDebug::self,
     "To show/not to show a time/shot, frames per second, quantity of signals with the last settings in memory/quantity of the signals kept in memory",
     "Не показывать", "Hide",
     "Показывать", "Show",
-    SHOW_STATS, nullptr, nullptr, nullptr
+    set.debug.show_stats, nullptr, nullptr, nullptr
 )
 
 DEF_GOVERNOR(mgConsole_NumStrings, PageDebug::PageConsole::self,
