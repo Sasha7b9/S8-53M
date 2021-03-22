@@ -490,7 +490,7 @@ DEF_CHOICE_4(cMath_FFT_Window, PageService::PageMath::PageFFT::self,
     "Хэмминга", "Hamming",
     "Блэкмена", "Blackman",
     "Ханна", "Hann",
-    set.math.windowFFT, nullptr, nullptr, nullptr
+    set.math.window_FFT, nullptr, nullptr, nullptr
 )
 
 static bool IsActive_Math_FFT()

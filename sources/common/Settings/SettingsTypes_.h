@@ -909,18 +909,19 @@ struct ScaleFFT
 
 
 // Вид окна для умножения сигнала перед расчётом спектра.
-struct WindowFFT {
+struct WindowFFT
+{
     enum E
     {
         Rectangle,  // Перед расчётом спектра сигнал не умножается на окно.
         Hamming,    // Перед расчётом спектра сигнал умножается на окно Хэмминга.
         Blackman,   // Перед расчётом спектра сигнал умножается на окно Блэкмана.
         Hann        // Перед расчётом спектра сигнал умножается на окно Ханна.
-    };
+    } value;
 
-    static bool IsHamming();
-    static bool IsBlackman();
-    static bool IsHann();
+    bool IsHamming()  const { return value == Hamming; };
+    bool IsBlackman() const { return value == Blackman; };
+    bool IsHann()     const { return value == Hann; };
 };
 
 

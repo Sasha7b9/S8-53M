@@ -175,14 +175,16 @@ float MathFPGA::TimeCursor(float shiftCurT, TBase::E tBase)
 
 static void MultiplyToWindow(float* data, int numPoints)
 {
-    if (WindowFFT::IsHamming())
+    WindowFFT &window = set.math.window_FFT;
+
+    if (window.IsHamming())
     {
         for (int i = 0; i < numPoints; i++)
         {
             data[i] *= 0.53836F - 0.46164F * std::cos(2 * 3.1415926F * i / (numPoints - 1));
         }
     }
-    else if (WindowFFT::IsBlackman())
+    else if (window.IsBlackman())
     {
         float alpha = 0.16F;
         float a0 = (1.0F - alpha) / 2.0F;
@@ -194,7 +196,7 @@ static void MultiplyToWindow(float* data, int numPoints)
                 (numPoints - 1));
         }
     }
-    else if (WindowFFT::IsHann())
+    else if (window.IsHann())
     {
         for (int i = 0; i < numPoints; i++)
         {
