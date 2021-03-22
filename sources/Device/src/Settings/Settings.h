@@ -5,29 +5,29 @@
 
 #define RSHIFT_ADD(ch, range, mode) set.chan[ch].rshift_add[range][mode]
 
-#define MAC_ADDR0       (set.eth.mac0)
-#define MAC_ADDR1       (set.eth.mac1)
-#define MAC_ADDR2       (set.eth.mac2)
-#define MAC_ADDR3       (set.eth.mac3)
-#define MAC_ADDR4       (set.eth.mac4)
-#define MAC_ADDR5       (set.eth.mac5)
+#define MAC_ADDR0       (set.LAN.mac0)
+#define MAC_ADDR1       (set.LAN.mac1)
+#define MAC_ADDR2       (set.LAN.mac2)
+#define MAC_ADDR3       (set.LAN.mac3)
+#define MAC_ADDR4       (set.LAN.mac4)
+#define MAC_ADDR5       (set.LAN.mac5)
 //
-#define IP_ADDR0        (set.eth.ip0)
-#define IP_ADDR1        (set.eth.ip1)
-#define IP_ADDR2        (set.eth.ip2)
-#define IP_ADDR3        (set.eth.ip3)
+#define IP_ADDR0        (set.LAN.ip0)
+#define IP_ADDR1        (set.LAN.ip1)
+#define IP_ADDR2        (set.LAN.ip2)
+#define IP_ADDR3        (set.LAN.ip3)
 //
-#define PORT_ETH        (set.eth.port)
+#define PORT_ETH        (set.LAN.port)
 //
-#define NETMASK_ADDR0   (set.eth.mask0)
-#define NETMASK_ADDR1   (set.eth.mask1)
-#define NETMASK_ADDR2   (set.eth.mask2)
-#define NETMASK_ADDR3   (set.eth.mask3)
+#define NETMASK_ADDR0   (set.LAN.mask0)
+#define NETMASK_ADDR1   (set.LAN.mask1)
+#define NETMASK_ADDR2   (set.LAN.mask2)
+#define NETMASK_ADDR3   (set.LAN.mask3)
 //
-#define GW_ADDR0        (set.eth.gw0)
-#define GW_ADDR1        (set.eth.gw1)
-#define GW_ADDR2        (set.eth.gw2)
-#define GW_ADDR3        (set.eth.gw3)
+#define GW_ADDR0        (set.LAN.gw0)
+#define GW_ADDR1        (set.LAN.gw1)
+#define GW_ADDR2        (set.LAN.gw2)
+#define GW_ADDR3        (set.LAN.gw3)
 
 
 #define LANG            (set.common.lang)       // SettingsCommon.lang
@@ -414,7 +414,7 @@ struct Settings
     SettingsMeasures measures;           // настройки измерений            (меню ИЗМЕРЕНИЯ).
     SettingsMath     math;               // настройки режима математических измерений.
     SettingsService  service;            // дополнительные настройки       (меню СЕРВИС).
-    SettingsLAN      eth;                // настройки для соединения по локальной сети.
+    SettingsLAN      LAN;                // настройки для соединения по локальной сети.
     SettingsCommon   common;             // системные настройки.
     SettingsMenu     menu;               // состояние меню.
     SettingsDebug    debug;              // настройки режима отладки       (меню ОТЛАДКА).
