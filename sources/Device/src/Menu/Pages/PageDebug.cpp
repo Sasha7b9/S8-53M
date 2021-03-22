@@ -375,7 +375,7 @@ DEF_GOVERNOR(mbADC_AltRShift_2mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
     "—м 1к 2м¬ пост", "Shift 1ch 2mV DC",
     "",
     "",
-    set.chan[ChA].rShiftAdd[Range::_2mV][ModeCouple::DC], -100, 100, nullptr, OnChanged_ADC_AltRShift_A, nullptr
+    set.chan[ChA].rshift_add[Range::_2mV][ModeCouple::DC], -100, 100, nullptr, OnChanged_ADC_AltRShift_A, nullptr
 )
 
 static void OnChanged_ADC_AltRShift_B()

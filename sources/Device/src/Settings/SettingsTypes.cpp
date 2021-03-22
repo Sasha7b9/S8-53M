@@ -232,7 +232,7 @@ void RShift::Set(const Channel &ch, int16 rShift)
         rShift = (rShift + 1) & 0xfffe;
     }
 
-    set.chan[ch].rShiftRel = rShift;
+    set.chan[ch].rshift = rShift;
 
     RShift::Load(ch);
     Display::RotateRShift(ch);
@@ -241,7 +241,7 @@ void RShift::Set(const Channel &ch, int16 rShift)
 
 int16 RShift::Get(const Channel &ch)
 {
-    return set.chan[ch].rShiftRel;
+    return set.chan[ch].rshift;
 }
 
 

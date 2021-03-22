@@ -154,7 +154,7 @@ void Range::Set(const Channel &ch, Range::E range)
         {
             float rShiftAbs = RSHIFT_2_ABS(RShift::Get(ch), Range::Get(ch));
             float trigLevAbs = RSHIFT_2_ABS(TrigLev::Get((TrigSource::E)ch.value), Range::Get(ch));
-            set.chan[ch].rShiftRel = (int16)RShift::ToRel(rShiftAbs, range);
+            set.chan[ch].rshift = (int16)RShift::ToRel(rShiftAbs, range);
             set.trig.levelRel[(TrigSource::E)ch.value] = (int16)RShift::ToRel(trigLevAbs, range);
         }
 

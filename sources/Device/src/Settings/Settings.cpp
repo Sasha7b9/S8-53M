@@ -351,7 +351,7 @@ bool SettingsChannel::FiltrIsEnabled(const Channel &ch)
 
 float SettingsChannel::StretchADC(const Channel &ch)
 {
-    return set.chan[ch].stretchADC;
+    return set.chan[ch].stretch_ADC;
 }
 
 

@@ -5,25 +5,23 @@
 #include "Utils/Measures.h"
 
 
-#define SOUND_ENABLED       (set.service.soundEnabled)          // SettingsService.soundEnabled
+#define SOUND_ENABLED               set.service.soundEnabled          // SettingsService.soundEnabled
+#define RSHIFT_ADD(ch, range, mode) set.chan[ch].rshift_add[range][mode]
 
-#define RSHIFT_ADD(ch, range, closed) set.chan[ch].rShiftAdd[range][closed]
 
-
- 
  // Настройки каналов
 struct SettingsChannel
 {
-    float         stretchADC;                 // Поправочный коэффициент.
-    int16         rShiftRel;
-    int16         rShiftAdd[Range::Count][2]; // Добавочное смещение для открытого (0) и закрытого (1) входов.
-    ModeCouple::E modeCouple;                 // Режим по входу.
-    Divider::E    divider;                    // Множитель.
-    Range::E      range;                      // Масштаб по напряжению.
-    bool          enable;                     // Включён ли канал.
-    bool          inverse;                    // Инвертирован ли канал.
-    bool          filtr;                      // Фильтр
-    int8          balanceShiftADC;            // Добавочное смещение для балансировки АЦП
+    float         stretch_ADC;                 // Поправочный коэффициент.
+    int16         rshift;
+    int16         rshift_add[Range::Count][2]; // Добавочное смещение для открытого (0) и закрытого (1) входов.
+    ModeCouple::E modeCouple;                  // Режим по входу.
+    Divider::E    divider;                     // Множитель.
+    Range::E      range;                       // Масштаб по напряжению.
+    bool          enable;                      // Включён ли канал.
+    bool          inverse;                     // Инвертирован ли канал.
+    bool          filtr;                       // Фильтр
+    int8          balanceShiftADC;             // Добавочное смещение для балансировки АЦП
 
     static bool FiltrIsEnabled(const Channel &ch);
     static float StretchADC(const Channel &ch);

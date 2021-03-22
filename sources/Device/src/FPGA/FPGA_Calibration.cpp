@@ -91,8 +91,8 @@ void FPGA::Calibrator::ProcedureCalibration()
 
         TBase::Set(TBase::_500us);
         TShift::Set(0);
-        set.chan[ChA].stretchADC = 1.0F;
-        set.chan[ChB].stretchADC = 1.0F;
+        set.chan[ChA].stretch_ADC = 1.0F;
+        set.chan[ChB].stretch_ADC = 1.0F;
         Calibrator::LoadKoeff(ChA);
         Calibrator::LoadKoeff(ChB);
         Range::Set(ChA, Range::_500mV);
@@ -132,7 +132,7 @@ void FPGA::Calibrator::ProcedureCalibration()
             }
             else
             {
-                set.chan[ChA].stretchADC = koeffCal0;
+                set.chan[ChA].stretch_ADC = koeffCal0;
                 Calibrator::LoadKoeff(ChA);
             }
 
@@ -143,8 +143,8 @@ void FPGA::Calibrator::ProcedureCalibration()
                     if (!(mode == 0 && (range == Range::_2mV || range == Range::_5mV || range == Range::_10mV)))
                     {
                         ModeCouple::Set(ChA, (ModeCouple::E)mode);
-                        RSHIFT_ADD(ChA, range, mode) = 0;
-                        RSHIFT_ADD(ChA, range, mode) = CalculateAdditionRShift(ChA, (Range::E)range);
+                        set.chan[ChA].rshift_add[range][mode] = 0;
+                        set.chan[ChA].rshift_add[range][mode] = CalculateAdditionRShift(ChA, (Range::E)range);
                     }
                 }
             }
@@ -169,7 +169,7 @@ void FPGA::Calibrator::ProcedureCalibration()
             }
             else
             {
-                set.chan[ChB].stretchADC = koeffCal1;
+                set.chan[ChB].stretch_ADC = koeffCal1;
                 Calibrator::LoadKoeff(ChB);
             }
 
@@ -201,11 +201,11 @@ void FPGA::Calibrator::ProcedureCalibration()
     RShift::Set(ChA, RShift::Get(ChA));
     RShift::Set(ChB, RShift::Get(ChB));
 
-    set.chan[ChA].stretchADC = (koeffCal0 == ERROR_VALUE_FLOAT) ? koeffCalibrationOld[0] : koeffCal0;
+    set.chan[ChA].stretch_ADC = (koeffCal0 == ERROR_VALUE_FLOAT) ? koeffCalibrationOld[0] : koeffCal0;
 
     Calibrator::LoadKoeff(ChA);
 
-    set.chan[ChB].stretchADC = (koeffCal1 == ERROR_VALUE_FLOAT) ? koeffCalibrationOld[1] : koeffCal1;
+    set.chan[ChB].stretch_ADC = (koeffCal1 == ERROR_VALUE_FLOAT) ? koeffCalibrationOld[1] : koeffCal1;
     Calibrator::LoadKoeff(ChB);
 
     state.state_calibration = StateCalibration::None;
