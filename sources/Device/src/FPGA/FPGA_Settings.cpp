@@ -125,8 +125,8 @@ void FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::E type)
         {0x0000, 0x0100}
     };
 
-    data |= maskFiltr[ChA][SettingsChannel::FiltrIsEnabled(ChA)];
-    data |= maskFiltr[ChB][SettingsChannel::FiltrIsEnabled(ChB)];
+    data |= maskFiltr[ChA][set.chan[ChA].filtr];
+    data |= maskFiltr[ChB][set.chan[ChB].filtr];
 
 
     // Параметры синхронизации

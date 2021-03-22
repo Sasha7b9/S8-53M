@@ -95,7 +95,7 @@ void SCPI::CHANNEL::FILTR(puchar buffer)
         else if (1 == value)    { set.chan[ch].filtr = false; func[ch](true); }
         else if (2 == value)
         {
-            SCPI_SEND(":CHANNEL%d:FILTR %s", ch.ToNumber(), SettingsChannel::FiltrIsEnabled(ch) ? "ON" : "OFF");
+            SCPI_SEND(":CHANNEL%d:FILTR %s", ch.ToNumber(), set.chan[ch].filtr ? "ON" : "OFF");
         }
     LEAVE_ANALYSIS
 }

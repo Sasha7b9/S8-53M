@@ -61,7 +61,7 @@ DEF_CHOICE_3(mcCoupleA, PageChannelA::self,
 
 void PageChannelA::OnChanged_Filtr(bool)
 {
-    ChannelFiltr::Enable(ChA, SettingsChannel::FiltrIsEnabled(ChA));
+    ChannelFiltr::Enable(ChA, set.chan[ChA].filtr);
 }
 
 DEF_CHOICE_2(mcFiltrA, PageChannelA::self,
@@ -139,7 +139,7 @@ DEF_CHOICE_3(mcCoupleB, PageChannelB::self,
 
 void PageChannelB::OnChanged_Filtr(bool)
 {
-    ChannelFiltr::Enable(ChB, SettingsChannel::FiltrIsEnabled(ChB));
+    ChannelFiltr::Enable(ChB, set.chan[ChB].filtr);
 }
 
 DEF_CHOICE_2(mcFiltrB, PageChannelB::self,
