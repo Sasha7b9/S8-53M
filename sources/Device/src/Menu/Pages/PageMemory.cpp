@@ -812,7 +812,7 @@ DEF_CHOICE_2(mcMemoryExtAutoConnectFlash, PageMemory::PageExternal::self,
     "If \"Enable\", when you connect an external drive is automatically transferred to the page MEMORY - Ext.Storage",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU,  ENABLE_EN,
-    FLASH_AUTOCONNECT, nullptr, nullptr, nullptr
+    set.memory.flash_auto_connect, nullptr, nullptr, nullptr
 )
 
 

@@ -71,13 +71,11 @@
 #define PRETRIGGERED            (set.debug.pretriggered)
 
 
-#define FILE_NAME_MASK              (set.memory.fileNameMask)
+#define FILE_NAME_MASK          (set.memory.fileNameMask)
 
-#define FILE_NAME                   (set.memory.fileName)
+#define FILE_NAME               (set.memory.fileName)
 
-#define INDEX_SYMBOL                (set.memory.indexCurSymbolNameMask)
-
-#define FLASH_AUTOCONNECT           (set.memory.flashAutoConnect)
+#define INDEX_SYMBOL            (set.memory.indexCurSymbolNameMask)
 
 
  // Настройки каналов
@@ -182,7 +180,7 @@ struct SettingsMemory
                                                                 // выбора имени.
     StructMemoryLast    strMemoryLast;
     ModeShowIntMem::E   modeShowIntMem;                         // Какие сигналы показывать в режиме внутреннего ЗУ
-    bool                flashAutoConnect;                       // Если true, при подлючении флеш автоматически
+    bool                flash_auto_connect;                     // Если true, при подлючении флеш автоматически
                                                                 // выводится NC (Нортон Коммандер)
     ModeBtnMemory::E    modeBtnMemory;
     ModeSaveSignal::E   modeSaveSignal;                         // В каком виде сохранять сигнал.
