@@ -54,7 +54,7 @@ DEF_CHOICE_2(mcConsole_SizeFont, PageDebug::PageConsole::self,
     "",
     "5", "5",
     "8", "8",
-    SIZE_FONT_CONSOLE, nullptr, nullptr, nullptr
+    set.debug.size_font, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_Registers_ShowAll, PageDebug::PageConsole::PageRegisters::self,

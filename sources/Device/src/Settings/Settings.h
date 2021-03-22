@@ -122,8 +122,6 @@ struct OutputRegisters
 
 
 
-#define SIZE_FONT_CONSOLE                   (set.debug.sizeFont)
-
 #define CONSOLE_IN_PAUSE                    (set.debug.consoleInPause)
 
 #define BALANCE_ADC_TYPE                    (set.debug.balanceADCtype)
@@ -312,7 +310,7 @@ struct SettingsTime
 struct SettingsDebug
 {
     int16             num_srings;                 // Число строк в консоли.
-    int8              sizeFont;                   // Размер шрифта консоли - 0 - 5, 1 - 8,
+    int8              size_font;                  // Размер шрифта консоли - 0 - 5, 1 - 8,
     bool              consoleInPause;             // \brief Признак того, что консоль находится в режиме паузы. Режим
                                                   // паузы означает, что новые 
                                                   // сообщения она не записывает и не сохраняет.

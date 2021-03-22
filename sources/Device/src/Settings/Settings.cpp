@@ -306,7 +306,7 @@ bool SettingsMath::IsMathEnabled()
 
 int SettingsDebug::GetSizeFontForConsole()
 {
-    return SIZE_FONT_CONSOLE ? 8 : 5;
+    return set.debug.size_font ? 8 : 5;
 }
 
 
