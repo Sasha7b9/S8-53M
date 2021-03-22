@@ -426,3 +426,9 @@ int16 SettingsMeasures::PosCursorU(int num)
 {
     return set.measures.posCurU[num];
 }
+
+
+int16 SettingsMeasures::PosCursorT(int num)
+{
+    return set.measures.posCurT[num];
+}
