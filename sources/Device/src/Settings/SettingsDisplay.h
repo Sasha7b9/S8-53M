@@ -12,12 +12,7 @@
 
 #define DISPLAY_COLOR(num)          (set.display.colors[num])                   // SettingsDisplay.colors
 
-#define MODE_DRAW_SIGNAL            (set.display.modeDrawSignal)                // SettingsDisplay.modeDrawSignal
-#define MODE_DRAW_IS_SIGNAL_LINES   (MODE_DRAW_SIGNAL == ModeDrawSignal::Lines) // \c true, если сигнал выводится линиями.
-
-#define ENUM_ACCUM_IS_NONE          (set.display.enum_accum == ENumAccumulation::_1)        // \c true, если накопление выключено.
-#define ENUM_ACCUM_IS_INFINITY      (set.display.enum_accum == ENumAccumulation::Infinity)  // \c true, если установлено бесконечное число накоплений.
-#define NUM_ACCUM                   (1 << (int)set.display.enumAccumulation)    // Количество накоплений.
+#define MODE_DRAW_IS_SIGNAL_LINES   (set.display.mode_draw_signal == ModeDrawSignal::Lines) // \c true, если сигнал выводится линиями.
 
 #define ENUM_AVE                    (set.display.enumAve)                       // SettingsDisplay.enumAve
 #define NUM_AVE                     (1 << ENUM_AVE)                             // Количество усреднений.
@@ -61,7 +56,7 @@ struct SettingsDisplay
     int16               brightness;           // Яркость дисплея.
     int16               brightnessGrid;       // Яркость сетки от 0 до 100.
     uint                colors[16];           // Цвета.
-    ModeDrawSignal::E   modeDrawSignal;       // Режим отрисовки сигнала.
+    ModeDrawSignal::E   mode_draw_signal;     // Режим отрисовки сигнала.
     TypeGrid::E         typeGrid;             // Тип сетки.
     ENumAccumulation::E enum_accum;           // Перечисление накоплений сигнала на экране.
     ENumAveraging::E    enumAve;              // Перечисление усреднений сигнала.

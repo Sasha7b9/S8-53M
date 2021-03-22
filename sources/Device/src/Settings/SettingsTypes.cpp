@@ -884,3 +884,27 @@ void ENumAccumulation::Set(ENumAccumulation::E v)
 {
     set.display.enum_accum = v;
 }
+
+
+bool ENumAccumulation::IsNone()
+{
+    return (set.display.enum_accum == ENumAccumulation::_1);
+}
+
+
+bool ENumAccumulation::IsInfinity()
+{
+    return (set.display.enum_accum == ENumAccumulation::Infinity);
+}
+
+
+ModeDrawSignal::E ModeDrawSignal::Get()
+{
+    return set.display.mode_draw_signal;
+}
+
+
+void ModeDrawSignal::Set(ModeDrawSignal::E v)
+{
+    set.display.mode_draw_signal = v;
+}

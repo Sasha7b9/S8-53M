@@ -70,11 +70,17 @@ struct StretchADCtype
 
 
 // Режим отрисовки сигнала.
-struct ModeDrawSignal {enum E
+struct ModeDrawSignal
 {
-    Lines,      // Сигнал рисуется линиями.
-    Points      // Сигнал рисуется точками.
-};};
+    enum E
+    {
+        Lines,      // Сигнал рисуется линиями.
+        Points      // Сигнал рисуется точками.
+    };
+
+    static E Get();
+    static void Set(E v);
+};
 
 
 // Тип сетки на экране.
@@ -129,6 +135,8 @@ struct ENumAccumulation
 
     static E Get();
     static void Set(E v);
+    static bool IsNone();
+    static bool IsInfinity();
 };
 
 

@@ -12,7 +12,7 @@ DEF_CHOICE_2(mcMapping, PageDisplay::self,
     "Sets the display mode signal.",
     "Вектор", "Vector",
     "Точки", "Points",
-    MODE_DRAW_SIGNAL, nullptr, nullptr, nullptr
+    set.display.mode_draw_signal, nullptr, nullptr, nullptr
 )
 
 static bool IsActive_Accumulation()
@@ -63,7 +63,7 @@ DEF_CHOICE_2(mcAccumulation_Mode, PageDisplay::PageAccumulation::self,
 
 static bool IsActive_Accumulation_Clear()
 {
-    return ENUM_ACCUM_IS_INFINITY;
+    return ENumAccumulation::IsInfinity();
 }
 
 DEF_BUTTON(mbAccumulation_Clear, PageDisplay::PageAccumulation::self,

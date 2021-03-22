@@ -601,7 +601,7 @@ int CalculateCount(int *prevTime)
 
 static void ChangeRShift(int *prevTime, void(*f)(const Channel &, int16), const Channel &ch, int16 relStep)
 {
-    if (ENUM_ACCUM_IS_NONE)
+    if (ENumAccumulation::IsNone())
     {
         FPGA::TemporaryPause();
     }
