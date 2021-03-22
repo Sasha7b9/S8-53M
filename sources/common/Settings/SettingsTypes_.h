@@ -893,18 +893,16 @@ struct RShiftADCtype { enum E
 
 
 // Масштаб шкалы для отображения спектра.
-struct ScaleFFT {
+struct ScaleFFT
+{
     enum E
     {
         Log,        // Это значение означает логарифмическую шкалу вывода спектра.
         Linear      // Это значение означает линейную шкалу вывода спектра.
-    };
+    } value;
 
-    static E Get();
-
-    static bool IsLog();
-
-    static bool IsLinear();
+    bool IsLog()    const { return value == Log; };
+    bool IsLinear() const { return value == Linear; };
 };
 
 

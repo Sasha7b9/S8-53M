@@ -576,24 +576,6 @@ float FFTmaxDB::GetReal()
 }
 
 
-ScaleFFT::E ScaleFFT::Get()
-{
-    return set.math.scaleFFT;
-}
-
-
-bool ScaleFFT::IsLog()
-{
-    return (set.math.scaleFFT == ScaleFFT::Log);
-}
-
-
-bool ScaleFFT::IsLinear()
-{
-    return (set.math.scaleFFT == ScaleFFT::Linear);
-}
-
-
 bool WindowFFT::IsHamming()
 {
     return (set.math.windowFFT == WindowFFT::Hamming);

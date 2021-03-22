@@ -270,7 +270,7 @@ struct SettingsMeasures
 
 struct SettingsMath
 {
-    ScaleFFT::E     scaleFFT;       // Масштаб шкалы для отображения спектра.
+    ScaleFFT        scale_FFT;      // Масштаб шкалы для отображения спектра.
     SourceFFT::E    sourceFFT;      // Источник сигнала для расчёта и отображения спектра.
     WindowFFT::E    windowFFT;      // Задаёт вид окна, на которое умножается сигнал перед расчётом спектра.
     FFTmaxDB::E     fftMaxDB;       // Минимальное значение на вертикальной координате графика спектра.

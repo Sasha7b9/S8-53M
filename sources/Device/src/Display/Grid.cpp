@@ -225,32 +225,36 @@ void Grid::Draw(int left, int top, int width, int height)
 
 void Grid::DrawSpectrum()
 {
-    if (ScaleFFT::IsLog())
+    if (set.math.scale_FFT.IsLog())
     {
         static const int nums[] = { 4, 6, 8 };
         static pchar strs[] = { "0", "-10", "-20", "-30", "-40", "-50", "-60", "-70" };
         int numParts = nums[FFTmaxDB::Get()];
         float scale = (float)Grid::MathHeight() / numParts;
+
         for (int i = 1; i < numParts; i++)
         {
             int y = (int)(Grid::MathTop() + i * scale);
             HLine().Draw(y, Grid::Left(), Grid::Left() + 256, Color::GRID);
+
             if (!Menu::IsMinimize())
             {
                 Color::FILL.SetAsCurrent();
                 Text(strs[i]).Draw(3, y - 4);
             }
         }
+
         if (!Menu::IsMinimize())
         {
             Color::FILL.SetAsCurrent();
             Text("Да").Draw(5, Grid::MathTop() + 1);
         }
     }
-    else if (ScaleFFT::IsLinear())
+    else if (set.math.scale_FFT.IsLinear())
     {
         static pchar strs[] = { "1.0", "0.8", "0.6", "0.4", "0.2" };
         float scale = (float)Grid::MathHeight() / 5;
+
         for (int i = 1; i < 5; i++)
         {
             int y = (int)(Grid::MathTop() + i * scale);

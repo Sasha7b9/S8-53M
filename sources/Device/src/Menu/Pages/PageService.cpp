@@ -469,7 +469,7 @@ DEF_CHOICE_2(cMath_FFT_Scale, PageService::PageMath::PageFFT::self,
     "Sets the scale of the output spectrum - linear or logarithmic",
     "Логарифм", "Log",
     "Линейная", "Linear",
-    set.math.scaleFFT, nullptr, nullptr, nullptr
+    set.math.scale_FFT, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_3(cMath_FFT_Source, PageService::PageMath::PageFFT::self,
@@ -508,7 +508,7 @@ static void OnPress_Math_FFT()
 
 static bool IsActive_Math_FFT_Limit()
 {
-    return ScaleFFT::IsLog();
+    return set.math.scale_FFT.IsLog();
 }
 
 DEF_CHOICE_3(cMath_FFT_Limit, PageService::PageMath::PageFFT::self,
