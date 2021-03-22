@@ -2,7 +2,6 @@
 #include "Menu/Items/MenuItems.h"
 #include "Settings/SettingsDisplay.h"
 #include "Settings/SettingsCursors.h"
-#include "Settings/SettingsMeasures.h"
 #include "Utils/Measures.h"
 
 
