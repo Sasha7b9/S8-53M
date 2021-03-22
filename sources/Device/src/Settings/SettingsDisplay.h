@@ -12,8 +12,6 @@
 
 #define DISPLAY_COLOR(num)          (set.display.colors[num])                   // SettingsDisplay.colors
 
-#define MODE_DRAW_IS_SIGNAL_LINES   (set.display.mode_draw_signal == ModeDrawSignal::Lines) // \c true, если сигнал выводится линиями.
-
 #define ENUM_AVE                    (set.display.enumAve)                       // SettingsDisplay.enumAve
 #define NUM_AVE                     (1 << ENUM_AVE)                             // Количество усреднений.
 
@@ -21,9 +19,6 @@
 
 #define ENUM_MIN_MAX                (::set.display.enumMinMax)                  // SettingsDisplay.enumMinMax
 #define NUM_MIN_MAX                 (1 << ENUM_MIN_MAX)                         // Количество измерений сигналов для расчёта минимумов и максимумов.
-
-#define SMOOTHING                   (set.display.smoothing)                     // SettingsDisplay.smoothing
-#define SMOOTHING_IS_DISABLE        (SMOOTHING == Smoothing::Disable)           // \c true, если скользящий фильтр выключен.
 
 #define ENUM_SIGNALS_IN_SEC         (set.display.enumSignalsInSec)              // SettingsDisplay.enumSignalsInSec
 

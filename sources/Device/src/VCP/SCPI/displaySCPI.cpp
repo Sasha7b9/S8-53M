@@ -83,7 +83,7 @@ void SCPI::DISPLAY::MAPPING(puchar buffer)
     ENTER_ANALYSIS
         if (1 == value)         { ModeDrawSignal::Set(ModeDrawSignal::Points); }
         else if (2 == value)    { ModeDrawSignal::Set(ModeDrawSignal::Lines); }
-        else if (3 == value)    { SCPI_SEND(":DISPLAY:MAPPING %s", MODE_DRAW_IS_SIGNAL_LINES ? "LINES" : "POINTS"); }
+        else if (3 == value)    { SCPI_SEND(":DISPLAY:MAPPING %s", ModeDrawSignal::IsLines() ? "LINES" : "POINTS"); }
     LEAVE_ANALYSIS
 }
 
@@ -236,12 +236,13 @@ void SCPI::DISPLAY::FILTR(puchar buffer)
         {"?", 11},
         {0}
     };
+
     ENTER_ANALYSIS
-        if (value <= 9)         { SMOOTHING = (Smoothing::E)value; }
-        else if (10 == value)   { SMOOTHING = Smoothing::Disable; }
+        if (value <= 9)         { Smoothing::Set((Smoothing::E)value); }
+        else if (10 == value)   { Smoothing::Set(Smoothing::Disable); }
         else if (11 == value)
         {
-            SCPI_SEND(":DISPLAY:FILTR %s", map[SMOOTHING].key);
+            SCPI_SEND(":DISPLAY:FILTR %s", map[Smoothing::Get()].key);
         }
     LEAVE_ANALYSIS
 }

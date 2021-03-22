@@ -80,6 +80,7 @@ struct ModeDrawSignal
 
     static E Get();
     static void Set(E v);
+    static bool IsLines();
 };
 
 
@@ -186,7 +187,9 @@ struct ENumMinMax { enum E
 
 
 // Количество точек для расчёта скользящего фильтра.
-struct Smoothing { enum E
+struct Smoothing {
+    
+    enum E
     {
         Disable,
         _2points,
@@ -202,6 +205,9 @@ struct Smoothing { enum E
 
     // Возвращает число точек сглаживающего фильтра (режим ДИСПЛЕЙ - Сглаживание).
     static uint NumPoints();
+    static bool IsDisable();
+    static E Get();
+    static void Set(E v);
 };
 
 

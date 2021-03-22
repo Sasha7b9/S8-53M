@@ -121,7 +121,7 @@ DEF_CHOICE_REG_10(mcSmoothing, PageDisplay::self,
     "8 точек", "8 points",
     "9 точек", "9 points",
     "10 точек", "10 points",
-    SMOOTHING, nullptr, nullptr, nullptr
+    set.display.smoothing, nullptr, nullptr, nullptr
 )
 
 void PageDisplay::OnChanged_RefreshFPS(bool)

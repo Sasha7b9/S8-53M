@@ -908,3 +908,9 @@ void ModeDrawSignal::Set(ModeDrawSignal::E v)
 {
     set.display.mode_draw_signal = v;
 }
+
+
+bool ModeDrawSignal::IsLines()
+{
+    return (set.display.mode_draw_signal == ModeDrawSignal::Lines);
+}
