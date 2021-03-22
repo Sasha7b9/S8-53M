@@ -165,10 +165,10 @@ static const Settings defaultSettings =
             SourceFFT::A_,
             WindowFFT::Rectangle,
             FFTmaxDB::_60,
-            0
+            0,
+            {100, 256 - 100}
         },
         Function::Sum,
-        {100, 256 - 100},
         1,
         1,
         1,
