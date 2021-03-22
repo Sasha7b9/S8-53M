@@ -570,24 +570,6 @@ float FFTmaxDB::GetReal()
 }
 
 
-Function::E Function::Get()
-{
-    return set.math.func;
-}
-
-
-bool Function::IsSum()
-{
-    return (set.math.func == Function::Sum);
-}
-
-
-bool Function::IsMul()
-{
-    return (set.math.func == Function::Mul);
-}
-
-
 ModeDrawMath::E ModeDrawMath::Get()
 {
     return set.math.modeDraw;

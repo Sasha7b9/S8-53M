@@ -277,7 +277,7 @@ static void Draw_Math_Function_Type_Mul(int x, int y)
 static void Draw_Math_Function_Type(int x, int y)
 {
     const pFuncVII funcs[2] = { Draw_Math_Function_Type_Sum, Draw_Math_Function_Type_Mul };
-    funcs[Function::Get()](x, y);
+    funcs[set.math.func](x, y);
 }
 
 static const arrayHints hintsMath_Function_Type =

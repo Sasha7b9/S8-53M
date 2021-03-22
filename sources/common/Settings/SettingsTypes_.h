@@ -947,12 +947,11 @@ struct Function
     {
         Sum,        // Сумма двух каналов.
         Mul         // Произведение двух каналов.
-    };
+    } value;
 
-    static E Get();
-
-    static bool IsSum();
-    static bool IsMul();
+    bool IsSum() const { return value == Sum; };
+    bool IsMul() const { return value == Mul; };
+    operator E() const { return value; }
 };
 
 
