@@ -129,7 +129,7 @@ struct SettingsMath
 struct SettingsService
 {
     bool              screenWelcomeEnable;    // Будет ли показываться экран приглашения при включении прибора.
-    bool              soundEnabled;           // Включены ли звуки.
+    bool              sound_enabled;           // Включены ли звуки.
     int8              IPaddress;              // IP-адрес (временно)
     CalibratorMode::E calibrator;             // Режим работы калибратора.
     ColorScheme::E    colorScheme;            //
