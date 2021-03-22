@@ -18,16 +18,6 @@
 #define __IO volatile
 #endif
 
-typedef void  (*pFuncVV)();
-typedef bool  (*pFuncBV)();
-typedef void  (*pFuncVB)(bool);
-typedef void  (*pFuncVI)(int);
-typedef void  (*pFuncVII)(int, int);
-typedef char* (*pFuncCFBC)(float, bool, char*);
-typedef void  (*pFuncpU8)(uint8*);
-typedef void  (*pFuncpCU8)(puchar );
-
-inline void EmptyFuncVV() {};
 
 // Объединение размером 32 бита
 union BitSet32 //-V2514
@@ -72,6 +62,3 @@ struct StructRelAbs
 #define EXIT_EN "Exit"
 #define EXIT_ILLUSTRATION_RU "Кнопка для выхода в предыдущее меню"
 #define EXIT_ILLUSTRATION_EN "Button for return to previous menu"
-
-void HardwareErrorHandler(pchar file, pchar function, int line);
-

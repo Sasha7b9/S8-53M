@@ -14,6 +14,18 @@ typedef const uint8 *puchar;
 typedef const char *const pString;
 
 
+typedef void  (*pFuncVV)();
+typedef void  (*pFuncVII)(int, int);
+typedef bool  (*pFuncBV)();
+typedef void  (*pFuncVI)(int);
+typedef void  (*pFuncVB)(bool);
+typedef void  (*pFuncpCU8)(puchar);
+typedef char* (*pFuncCFBC)(float, bool, char*);
+
+
+inline void EmptyFuncVV() {};
+
+
 template<class T>
 struct ValueStruct
 {
