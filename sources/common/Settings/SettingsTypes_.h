@@ -825,11 +825,9 @@ struct CursActive
         U,
         T,
         None
-    };
+    } value;
 
-    static E Get();
-
-    static bool IsT();
+    bool IsT() const { return value == T; }
 };
 
 

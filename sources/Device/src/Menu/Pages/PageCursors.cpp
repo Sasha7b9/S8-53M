@@ -56,7 +56,7 @@ void Cursors_Update()
     CursLookMode::E lookMode0 = CURS_LOOKMODE_0;
     CursLookMode::E lookMode1 = CURS_LOOKMODE_1;
 
-    if((lookMode0 == CursLookMode::Voltage || lookMode0 == CursLookMode::Both) && CURS_ACTIVE_IS_T)
+    if((lookMode0 == CursLookMode::Voltage || lookMode0 == CursLookMode::Both) && set.cursors.active ==  CURS_ACTIVE_IS_T)
     {
         float posU0 = Processing::GetCursU(source, set.cursors.posT[source][0]);
         SetCursPosU(source, 0, posU0);

@@ -832,18 +832,6 @@ bool MeasuresField::IsHand()
 }
 
 
-CursActive::E CursActive::Get()
-{
-    return set.measures.cursActive;
-}
-
-
-bool CursActive::IsT()
-{
-    return (set.measures.cursActive == CursActive::T);
-}
-
-
 ModeViewSignals::E ModeViewSignals::Get()
 {
     return set.measures.modeViewSignals;
