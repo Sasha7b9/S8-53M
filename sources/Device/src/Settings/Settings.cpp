@@ -307,7 +307,7 @@ Range::E& operator--(Range::E &range)
 
 bool SettingsMath::IsMathEnabled()
 {
-    return !ModeDrawMath::IsDisabled() || SettingsMath::IsEnbaledFFT();
+    return !ModeDrawMath::IsDisabled() || set.math.enabled_FFT;
 }
 
 
@@ -365,12 +365,6 @@ void Channel::Disable() const
 uint8 SettingsMath::PositionCursorFFT(int num)
 {
     return set.math.posCur[num];
-}
-
-
-bool SettingsMath::IsEnbaledFFT()
-{
-    return set.math.enableFFT;
 }
 
 

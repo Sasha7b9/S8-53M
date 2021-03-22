@@ -281,7 +281,7 @@ struct SettingsMath
     int8            koeff2add;
     int8            koeff1mul;
     int8            koeff2mul;
-    bool            enableFFT;      // \c true, если включён спектр.
+    bool            enabled_FFT;    // \c true, если включён спектр.
     ModeDrawMath::E modeDraw;       // Раздельный или общий дисплей в режиме математической функции.
     ModeRegSet::E   modeRegSet;     // Функция ручки УСТАНОВКА - масштаб по времени или смещение по вертикали.
     Range           range;          // Масштаб по напряжению математического сигнала.
@@ -290,7 +290,6 @@ struct SettingsMath
 
     static bool IsMathEnabled();
     static uint8 PositionCursorFFT(int num);
-    static bool IsEnbaledFFT();
 };
 
 

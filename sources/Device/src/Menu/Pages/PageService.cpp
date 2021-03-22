@@ -145,7 +145,7 @@ static const arrayHints hintsMath_Function_ModeDraw =
 
 static void OnPress_Math_Function_ModeDraw()
 {
-    if (SettingsMath::IsEnbaledFFT())
+    if (set.math.enabled_FFT)
     {
         Display::ShowWarningBad(Warning::ImpossibleEnableMathFunction);
     }
@@ -175,7 +175,7 @@ DEF_SMALL_BUTTON(sbMath_Function_ModeDraw, PageService::PageMath::PageFunction::
 
 static void OnPress_Math_Function()
 {
-    if (SettingsMath::IsEnbaledFFT())
+    if (set.math.enabled_FFT)
     {
         Display::ShowWarningBad(Warning::ImpossibleEnableMathFunction);
     }
@@ -183,7 +183,7 @@ static void OnPress_Math_Function()
 
 static bool IsActive_Math_Function()
 {
-    return !SettingsMath::IsEnbaledFFT();
+    return !set.math.enabled_FFT;
 }
 
 static void OnRegSet_Math_Function(int delta)
@@ -460,7 +460,7 @@ DEF_CHOICE_2(cMath_FFT_Enable, PageService::PageMath::PageFFT::self,
     "Enables or disables the display of the spectrum",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.math.enableFFT, nullptr, nullptr, nullptr
+    set.math.enabled_FFT, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_2(cMath_FFT_Scale, PageService::PageMath::PageFFT::self,
@@ -546,7 +546,7 @@ DEF_SMALL_BUTTON(cMath_FFT_Cursors_Exit, PageService::PageMath::PageFFT::PageCur
 
 static bool IsActive_Math_FFT_Cursors()
 {
-    return SettingsMath::IsEnbaledFFT();
+    return set.math.enabled_FFT;
 }
 
 static void OnRegSet_Math_FFT_Cursors(int angle)

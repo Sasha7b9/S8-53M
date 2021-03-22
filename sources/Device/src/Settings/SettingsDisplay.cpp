@@ -63,7 +63,7 @@ int MenuAutoHide::Time()
 
 bool SettingsDisplay::IsSeparate()
 {
-    return (!ModeDrawMath::IsDisabled() && ModeDrawMath::IsSeparate()) || SettingsMath::IsEnbaledFFT();
+    return (!ModeDrawMath::IsDisabled() && ModeDrawMath::IsSeparate()) || set.math.enabled_FFT;
 }
 
 
