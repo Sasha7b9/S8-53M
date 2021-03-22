@@ -310,12 +310,14 @@ void DrawSB_SetMask_Insert(int x, int y)
 
 void PressSB_SetMask_Insert()
 {
-    int index = INDEX_SYMBOL;
+    int index = set.memory.index_cur_symbol_name_mask;
     int size = (int)(std::strlen(FILE_NAME_MASK));
+
     if (size == MAX_SYMBOLS_IN_FILE_NAME - 1)
     {
         return;
     }
+
     if (index < 0x41)
     {
         FILE_NAME_MASK[size] = Tables::symbolsAlphaBet[index][0];
@@ -324,6 +326,7 @@ void PressSB_SetMask_Insert()
     else
     {
         index -= 0x40;
+
         if (index == 0x07)  // Для %nN - отдельный случай
         {
             if (size < MAX_SYMBOLS_IN_FILE_NAME - 2 && size > 0)
@@ -356,7 +359,7 @@ void PressSB_SetName_Insert()
     int size = (int)(std::strlen(set.memory.file_name));
     if (size < MAX_SYMBOLS_IN_FILE_NAME - 1)
     {
-        set.memory.file_name[size] = Tables::symbolsAlphaBet[INDEX_SYMBOL][0];
+        set.memory.file_name[size] = Tables::symbolsAlphaBet[set.memory.index_cur_symbol_name_mask][0];
         set.memory.file_name[size + 1] = '\0';
     }
 }
@@ -371,11 +374,13 @@ void OnMemExtSetMaskNameRegSet(int angle, int maxIndex)
     };
 
     Color::ResetFlash();
-    if (INDEX_SYMBOL > maxIndex)
+
+    if (set.memory.index_cur_symbol_name_mask > maxIndex)
     {
-        INDEX_SYMBOL = static_cast<int8>(maxIndex - 1);
+        set.memory.index_cur_symbol_name_mask = static_cast<int8>(maxIndex - 1);
     }
-    func[Math::Sign(angle) + 1](&INDEX_SYMBOL, 0, static_cast<int8>(maxIndex - 1));
+
+    func[Math::Sign(angle) + 1](&set.memory.index_cur_symbol_name_mask, 0, static_cast<int8>(maxIndex - 1));
     Sound::RegulatorSwitchRotate();
 
 }

@@ -61,9 +61,10 @@ const char* Tables::GetWarning(Warning::E warning)
 void Tables::DrawStr(int index, int x, int y)
 {
     pchar str = symbolsAlphaBet[index];
-    if (index == INDEX_SYMBOL)
+    if (index == set.memory.index_cur_symbol_name_mask)
     {
         Region(Font::GetLengthText(str), 9).Fill(x - 1, y, Color::FLASH_10);
     }
-    Text(symbolsAlphaBet[index]).Draw(x, y, index == INDEX_SYMBOL ? Color::FLASH_01 : Color::FILL);
+    Text(symbolsAlphaBet[index]).Draw(x, y, (index == set.memory.index_cur_symbol_name_mask) ?
+        Color::FLASH_01 : Color::FILL);
 }

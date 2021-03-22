@@ -73,8 +73,6 @@
 
 #define FILE_NAME_MASK          (set.memory.fileNameMask)
 
-#define INDEX_SYMBOL            (set.memory.indexCurSymbolNameMask)
-
 
  // Настройки каналов
 struct SettingsChannel
@@ -174,7 +172,7 @@ struct SettingsMemory
         // При этом обратите внимание, что если спецификатор %4N стоИт после временнЫх параметров, то, скорее всего,
         //этот параметр будет всегда равен 0001, т.к. для определения номера просматриваются только символы ДО него.
     char                file_name[MAX_SYMBOLS_IN_FILE_NAME];    // Имя файла для режима ручного задания
-    int8                indexCurSymbolNameMask;                 // Индекс текущего символа в режиме задания маски или
+    int8                index_cur_symbol_name_mask;             // Индекс текущего символа в режиме задания маски или
                                                                 // выбора имени.
     StructMemoryLast    strMemoryLast;
     ModeShowIntMem::E   modeShowIntMem;                         // Какие сигналы показывать в режиме внутреннего ЗУ
