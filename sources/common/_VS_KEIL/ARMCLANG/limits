@@ -15,6 +15,7 @@ namespace std //-V1061
         static float epsilon();
         static float quiet_NaN();
         static float infinity();
+        static float max();
     };
 
 }

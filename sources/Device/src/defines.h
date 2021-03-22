@@ -83,7 +83,7 @@ struct StructRelAbs
 #define ENABLE_RU   "¬кл"
 #define ENABLE_EN   "Enable"
 
-#define ERROR_VALUE_FLOAT   std::nanf("")
+#define ERROR_VALUE_FLOAT   std::numeric_limits<float>::max()
 #define ERROR_VALUE_INT16   SHRT_MAX
 #define ERROR_VALUE_UINT8   255
 #define ERROR_VALUE_INT     0x7fffffff
