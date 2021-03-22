@@ -26,10 +26,6 @@
 
 #define SHOW_STRING_NAVIGATION      (set.display.showStringNavigation)          // SettingsDisplay.showStringNavigation
 
-#define LINKING_RSHIFT              (set.display.linkingRShift)                 // SettingsDisplay.linkingRShift
-#define LINKING_RSHIFT_IS_VOLTAGE   (LINKING_RSHIFT == LinkingRShift::Voltage)  // \c true, если привязка к абсолютному напряжению.
-
-
 // Настройки изображения
 struct SettingsDisplay
 {
@@ -55,7 +51,7 @@ struct SettingsDisplay
     MenuAutoHide::E     menuAutoHide;          // Через сколько времени после последнего нажатия клавиши прятать меню.
     bool                showFullMemoryWindow;  // Показывать ли окно памяти вверху экрана. \todo Не используется.
     bool                showStringNavigation;  // Показывать ли строку текущего состояния меню..
-    LinkingRShift::E    linkingRShift;         // Тип привязки смещения по вертикали.
+    LinkingRShift::E    linking_rshift;        // Тип привязки смещения по вертикали.
 
     // Возвращает адрес первой и последней точки на экране.
     static void PointsOnDisplay(int *firstPoint, int *lastPoint);

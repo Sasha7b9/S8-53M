@@ -944,3 +944,9 @@ bool AltMarkers::IsHide()
 {
     return (set.display.alt_markers == AltMarkers::Hide);
 }
+
+
+bool LinkingRShift::IsVoltage()
+{
+    return (set.display.linking_rshift == LinkingRShift::Voltage);
+}

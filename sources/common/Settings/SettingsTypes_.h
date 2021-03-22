@@ -273,11 +273,16 @@ struct MenuAutoHide { enum E
 
 
 // Тип привязки к смещению по вертикали
-struct LinkingRShift { enum E
+struct LinkingRShift
 {
-    Voltage,      // Смещение привязано к напряжению
-    Position      // Смещение привязаоно к позиции на экране
-};};
+    enum E
+    {
+        Voltage,      // Смещение привязано к напряжению
+        Position      // Смещение привязаоно к позиции на экране
+    };
+
+    static bool IsVoltage();
+};
 
 
 // Количество и расположение на экране результатов измерений.

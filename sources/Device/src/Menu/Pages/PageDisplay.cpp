@@ -147,7 +147,7 @@ DEF_CHOICE_2(mcTypeShift, PageDisplay::self,
     "Sets the mode of retaining the vertical displacement\n1. \"Voltage\" - saved dressing bias.\n2. \"Divisions\" - retained the position of the offset on the screen.",
     "Напряжение", "Voltage",
     "Деления", "Divisions",
-    LINKING_RSHIFT, nullptr, nullptr, nullptr
+    set.display.linking_rshift, nullptr, nullptr, nullptr
 )
 
 DEF_PAGE_9(pageDisplay, PageMain::self, NamePage::Display,
