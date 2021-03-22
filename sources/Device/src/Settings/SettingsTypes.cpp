@@ -844,35 +844,6 @@ bool ModeViewSignals::IsCompress()
 }
 
 
-CursCntrl::E CursCntrl::GetForU(const Channel &ch)
-{
-    return set.cursors.cntrlU[ch];
-}
-
-
-bool CursCntrl::IsDisableForU(const Channel &ch)
-{
-    return (set.cursors.cntrlU[ch] == CursCntrl::Disable);
-}
-
-CursCntrl::E CursCntrl::GetForU()
-{
-    return set.cursors.cntrlU[set.cursors.source];
-}
-
-
-CursCntrl::E CursCntrl::GetForT(const Channel &ch)
-{
-    return set.cursors.cntrlT[ch];
-}
-
-
-bool CursCntrl::IsDisableForT(const Channel &ch)
-{
-    return (set.cursors.cntrlT[ch] == CursCntrl::Disable);
-}
-
-
 BalanceADCtype::E BalanceADCtype::Get()
 {
     return set.debug.balance_ADC_type;

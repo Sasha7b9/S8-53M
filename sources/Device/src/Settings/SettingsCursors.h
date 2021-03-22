@@ -5,8 +5,8 @@
 // Настройки курсорных измерений.
 struct SettingsCursors
 {
-    CursCntrl::E    cntrlU[NumChannels];    // Активные курсоры напряжения.
-    CursCntrl::E    cntrlT[NumChannels];    // Активные курсоры напряжения.
+    CursCntrl       cntrlU[NumChannels];    // Активные курсоры напряжения.
+    CursCntrl       cntrlT[NumChannels];    // Активные курсоры напряжения.
     Channel::E      source;                 // Источник - к какому каналу относятся курсоры.
     float           posU[NumChannels][2];   // Текущие позиции курсоров напряжения обоих каналов.
     float           posT[NumChannels][2];   // Текущие позиции курсоров времени обоих каналов.

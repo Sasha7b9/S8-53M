@@ -194,7 +194,7 @@ void Display::WriteCursors()
 
         Color colorText = source.GetColor();
 
-        if(!CursCntrl::GetForU(source))
+        if(!set.cursors.cntrlU[source].IsDisable())
         {
             Text("1:").Draw(x, y1, colorText);
             Text("2:").Draw(x, y2);
@@ -215,7 +215,7 @@ void Display::WriteCursors()
         HLine().Draw(x, 1, Grid::TOP - 2, Color::FILL);
         x += 3;
 
-        if(!CursCntrl::IsDisableForT(source))
+        if(!set.cursors.cntrlT[source].IsDisable())
         {
             colorText.SetAsCurrent();
             Text("1:").Draw(x, y1);

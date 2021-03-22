@@ -792,12 +792,10 @@ struct CursCntrl
         Disable        // никаким.
     } value;
 
-    static E GetForU();
-    static E GetForU(const Channel &ch);
-    static bool IsDisableForU(const Channel &ch);
-
-    static E GetForT(const Channel &ch);
-    static bool IsDisableForT(const Channel &ch);
+    bool IsDisable() const { return value == Disable; }
+    bool Is1()       const { return value == _1; }
+    bool Is2()       const { return value == _2; }
+    bool Is1_2()     const { return value == _1_2; }
 };
 
 

@@ -254,7 +254,7 @@ static const arrayHints hintsSetU =
 
 static void PressSB_Cursors_U()
 {
-    if (set.cursors.active.IsU() || CursCntrl::IsDisableForU(set.cursors.source))
+    if (set.cursors.active.IsU() || set.cursors.cntrlU[set.cursors.source].IsDisable())
     {
         IncCursCntrlU(set.cursors.source);
     }
@@ -264,9 +264,9 @@ static void PressSB_Cursors_U()
 
 static void DrawSB_Cursors_U(int x, int y)
 {
-    CursCntrl::E cursCntrl = CursCntrl::GetForU();
+    CursCntrl &cursCntrl = set.cursors.cntrlU[set.cursors.source];
 
-    if (cursCntrl == CursCntrl::Disable)
+    if (cursCntrl.IsDisable())
     {
         DrawSB_Cursors_U_Disable(x, y);
     }
@@ -280,8 +280,10 @@ static void DrawSB_Cursors_U(int x, int y)
         {
             Channel::E source = set.cursors.source;
             bool condTop = false, condDown = false;
-            CalculateConditions(static_cast<int16>(Cursors::GetPosU(source, 0)),
-                static_cast<int16>(Cursors::GetPosU(source, 1)), cursCntrl, &condTop, &condDown);
+
+            CalculateConditions((int16)(Cursors::GetPosU(source, 0)),
+                (int16)(Cursors::GetPosU(source, 1)), cursCntrl.value, &condTop, &condDown);
+
             if (condTop && condDown)
             {
                 DrawSB_Cursors_U_Both_Enable(x, y);
@@ -347,7 +349,7 @@ static const arrayHints hintsSetT =
 
 static void PressSB_Cursors_T()
 {
-    if (set.cursors.active.IsT() || CursCntrl::IsDisableForT(set.cursors.source))
+    if (set.cursors.active.IsT() || set.cursors.cntrlT[set.cursors.source].IsDisable())
     {
         IncCursCntrlT(set.cursors.source);
     }
@@ -358,8 +360,9 @@ static void PressSB_Cursors_T()
 static void DrawSB_Cursors_T(int x, int y)
 {
     Channel::E source = set.cursors.source;
-    CursCntrl::E cursCntrl = CursCntrl::GetForT(source);
-    if (cursCntrl == CursCntrl::Disable)
+    CursCntrl &curs_cntrl = set.cursors.cntrlT[source];
+
+    if (curs_cntrl.IsDisable())
     {
         DrawSB_Cursors_T_Disable(x, y);
     }
@@ -375,7 +378,7 @@ static void DrawSB_Cursors_T(int x, int y)
             bool cond_down = false;
 
             CalculateConditions((int16)(set.cursors.posT[source][0]),
-                (int16)(set.cursors.posT[source][1]), cursCntrl, &cond_left, &cond_down);
+                (int16)(set.cursors.posT[source][1]), curs_cntrl.value, &cond_left, &cond_down);
 
             if (cond_left && cond_down)
             {
@@ -496,9 +499,9 @@ DEF_PAGE_5(pageCursors, PageMain::self, NamePage::Cursors,
 
 static void MoveCursUonPercentsOrPoints(int delta)
 {
-    CursCntrl::E cursCntrl = CursCntrl::GetForU();
+    CursCntrl &curs_ñntrl = set.cursors.cntrlU[set.cursors.source];
 
-    float value = static_cast<float>(delta);
+    float value = (float)delta;
 
     Channel::E source = set.cursors.source;
 
@@ -507,14 +510,16 @@ static void MoveCursUonPercentsOrPoints(int delta)
         value *= set.cursors.dU_100percents[source] / 100.0F;
     }
 
-    if(cursCntrl == CursCntrl::_1 || cursCntrl == CursCntrl::_1_2)
+    if(curs_ñntrl.Is1() || curs_ñntrl.Is1_2())
     {
         SetShiftCursPosU(source, 0, value);
     }
-    if(cursCntrl == CursCntrl::_2 || cursCntrl == CursCntrl::_1_2)
+
+    if(curs_ñntrl.Is2() || curs_ñntrl.Is1_2())
     {
         SetShiftCursPosU(source, 1, value);
     }
+
     Cursors_Update();
 }
 
@@ -526,7 +531,7 @@ static void SetShiftCursPosU(Channel::E ch, int numCur, float delta)
 static void MoveCursTonPercentsOrPoints(int delta)
 {
     Channel::E source = set.cursors.source;
-    CursCntrl::E cursCntrl = CursCntrl::GetForT(source);
+    CursCntrl &curs_cntrl = set.cursors.cntrlT[source];
 
     float value = static_cast<float>(delta);
 
@@ -535,14 +540,16 @@ static void MoveCursTonPercentsOrPoints(int delta)
         value *= set.cursors.dT_100percents[source] / 100.0F;
     }
 
-    if(cursCntrl == CursCntrl::_1 || cursCntrl == CursCntrl::_1_2)
+    if(curs_cntrl.Is1() || curs_cntrl.Is1_2())
     {
         SetShiftCursPosT(source, 0, value);
     }
-    if(cursCntrl == CursCntrl::_2 || cursCntrl == CursCntrl::_1_2)
+
+    if(curs_cntrl.Is2() || curs_cntrl.Is1_2())
     {
         SetShiftCursPosT(source, 1, value);
     }
+
     Cursors_Update();
 }
 
