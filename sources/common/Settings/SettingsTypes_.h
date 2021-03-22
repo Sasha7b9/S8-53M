@@ -806,9 +806,9 @@ struct CursMovement
     {
         Points,    // по точкам.
         Percents   // по процентам.
-    };
+    } value;
 
-    static bool IsPercents();
+    bool IsPercents() const { return value == Percents; };
 };
 
 

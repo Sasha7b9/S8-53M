@@ -455,7 +455,7 @@ static void PressSB_Cursors_PointsPercents()
 
 static void DrawSB_Cursors_PointsPercents(int x, int y)
 {
-    if (CursMovement::IsPercents())
+    if (set.cursors.movement.IsPercents())
     {
         DrawSB_Cursors_PointsPercents_Percents(x, y);
     }
@@ -505,7 +505,7 @@ static void MoveCursUonPercentsOrPoints(int delta)
 
     Channel::E source = set.cursors.source;
 
-    if(CursMovement::IsPercents())
+    if(set.cursors.movement.IsPercents())
     {
         value *= set.cursors.dU_100percents[source] / 100.0F;
     }
@@ -535,7 +535,7 @@ static void MoveCursTonPercentsOrPoints(int delta)
 
     float value = static_cast<float>(delta);
 
-    if(CursMovement::IsPercents())
+    if(set.cursors.movement.IsPercents())
     {
         value *= set.cursors.dT_100percents[source] / 100.0F;
     }
