@@ -798,6 +798,9 @@ struct CursCntrl
     static E GetForU();
     static E GetForU(const Channel &ch);
     static bool IsDisableForU(const Channel &ch);
+
+    static E GetForT(const Channel &ch);
+    static bool IsDisableForT(const Channel &ch);
 };
 
 

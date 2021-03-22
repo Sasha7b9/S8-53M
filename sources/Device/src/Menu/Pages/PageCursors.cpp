@@ -45,7 +45,7 @@ void IncCursCntrlU(Channel::E ch)
 
 void IncCursCntrlT(Channel::E ch)
 {
-    GF::CircleIncrease<int8>((int8*)&CURS_CNTRL_T(ch), 0, 3);
+    GF::CircleIncrease<int8>((int8*)&set.cursors.cntrlT[ch], 0, 3);
 }
 
 
@@ -346,7 +346,7 @@ static const arrayHints hintsSetT =
 
 static void PressSB_Cursors_T()
 {
-    if (CURS_ACTIVE_IS_T || CURS_CNTRL_T_IS_DISABLE(set.cursors.source))
+    if (CURS_ACTIVE_IS_T || CursCntrl::IsDisableForT(set.cursors.source))
     {
         IncCursCntrlT(set.cursors.source);
     }
@@ -356,7 +356,7 @@ static void PressSB_Cursors_T()
 static void DrawSB_Cursors_T(int x, int y)
 {
     Channel::E source = set.cursors.source;
-    CursCntrl::E cursCntrl = CURS_CNTRL_T(source);
+    CursCntrl::E cursCntrl = CursCntrl::GetForT(source);
     if (cursCntrl == CursCntrl::Disable)
     {
         DrawSB_Cursors_T_Disable(x, y);
@@ -520,7 +520,7 @@ static void SetShiftCursPosU(Channel::E ch, int numCur, float delta)
 static void MoveCursTonPercentsOrPoints(int delta)
 {
     Channel::E source = set.cursors.source;
-    CursCntrl::E cursCntrl = CURS_CNTRL_T(source);
+    CursCntrl::E cursCntrl = CursCntrl::GetForT(source);
 
     float value = static_cast<float>(delta);
 

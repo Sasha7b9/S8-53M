@@ -2,9 +2,6 @@
 #include "common/Utils/String_.h"
 
 
-#define CURS_CNTRL_T(ch)            (set.cursors.cntrlT[ch])                    // SettingsCursors.cntrlT
-#define CURS_CNTRL_T_IS_DISABLE(ch) (CURS_CNTRL_T(ch) == CursCntrl::Disable)
-
 #define CURS_POS_U(ch, num)         (set.cursors.posCurU[ch][num])              // SettingsCursors.posCurU
 #define CURS_POS_U0(ch)             (CURS_POS_U(ch, 0))
 #define CURS_POS_U1(ch)             (CURS_POS_U(ch, 1))

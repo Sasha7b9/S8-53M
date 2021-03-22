@@ -215,7 +215,7 @@ void Display::WriteCursors()
         HLine().Draw(x, 1, Grid::TOP - 2, Color::FILL);
         x += 3;
 
-        if(!CURS_CNTRL_T_IS_DISABLE(source))
+        if(!CursCntrl::IsDisableForT(source))
         {
             colorText.SetAsCurrent();
             Text("1:").Draw(x, y1);

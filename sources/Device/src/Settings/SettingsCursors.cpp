@@ -21,7 +21,7 @@ float Cursors::GetPosU(const Channel &ch, int num)
 
 bool Cursors::NecessaryDraw()
 {
-    return (!CursCntrl::IsDisableForU(set.cursors.source) || (!CURS_CNTRL_T_IS_DISABLE(set.cursors.source))) &&
+    return (!CursCntrl::IsDisableForU(set.cursors.source) || !CursCntrl::IsDisableForT(set.cursors.source)) &&
         (CURS_SHOW || Menu::GetNameOpenedPage() == NamePage::SB_Curs);
 }
 
@@ -77,7 +77,7 @@ void Cursors::Draw()
 
     if (Cursors::NecessaryDraw())
     {
-        bool bothCursors = !CURS_CNTRL_T_IS_DISABLE(source) && !CursCntrl::IsDisableForU(source);  // ѕризнак того, что
+        bool bothCursors = !CursCntrl::IsDisableForT(source) && !CursCntrl::IsDisableForU(source);  // ѕризнак того, что
                     // включены и вертикальные и горизонтальные курсоры - надо нарисовать квадраты в местах пересечени€
         int x0 = -1;
         int x1 = -1;
@@ -95,7 +95,7 @@ void Cursors::Draw()
             Rectangle(4, 4).Draw(x1 - 2, y1 - 2);
         }
 
-        CursCntrl::E cntrl = CURS_CNTRL_T(source);
+        CursCntrl::E cntrl = CursCntrl::GetForT(source);
 
         if (cntrl != CursCntrl::Disable)
         {
