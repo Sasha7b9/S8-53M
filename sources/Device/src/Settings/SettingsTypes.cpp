@@ -784,18 +784,6 @@ bool ModeSaveSignal::IsBMP()
 }
 
 
-ModeViewSignals::E ModeViewSignals::Get()
-{
-    return set.measures.mode_view_signals;
-}
-
-
-bool ModeViewSignals::IsCompress()
-{
-    return (set.measures.mode_view_signals == ModeViewSignals::Compress);
-}
-
-
 BalanceADCtype::E BalanceADCtype::Get()
 {
     return set.debug.balance_ADC_type;

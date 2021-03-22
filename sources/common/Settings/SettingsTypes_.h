@@ -854,11 +854,9 @@ struct ModeViewSignals
     {
         AsIs,       // Показывать сигналы как есть
         Compress    // Сжимать сетку с сигналами
-    };
+    } value;
 
-    static E Get();
-
-    static bool IsCompress();
+    bool IsCompress() const { return value == Compress; };
 };
 
 

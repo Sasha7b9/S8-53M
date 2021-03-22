@@ -129,7 +129,7 @@ int Measure::NumRows()
 
 int Measure::GetDeltaGridLeft()
 {
-    if(SettingsMeasures::ShowMeasures() && ModeViewSignals::IsCompress())
+    if(SettingsMeasures::ShowMeasures() && set.measures.mode_view_signals.IsCompress())
     {
         if(set.measures.number.Is1())
         {
@@ -145,7 +145,7 @@ int Measure::GetDeltaGridLeft()
 
 int Measure::GetDeltaGridBottom()
 {
-    if(SettingsMeasures::ShowMeasures() && ModeViewSignals::IsCompress())
+    if(SettingsMeasures::ShowMeasures() && set.measures.mode_view_signals.IsCompress())
     {
         MeasuresNumber &number = set.measures.number;
 

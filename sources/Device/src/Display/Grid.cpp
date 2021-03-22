@@ -351,19 +351,20 @@ void Grid::DrawType3(int left, int top, int right, int bottom, int centerX, int 
 
 int Grid::CalculateCountV()
 {
-    if (ModeViewSignals::IsCompress())
+    if (set.measures.mode_view_signals.IsCompress())
     {
         bool source_is_AB = set.measures.source.IsAB();
+        MeasuresNumber &number = set.measures.number;
 
-        if (set.measures.number.Is1_5())
+        if (number.Is1_5())
         {
             return source_is_AB ? 42 : 44;
         }
-        if (set.measures.number.Is2_5())
+        if (number.Is2_5())
         {
             return source_is_AB ? 69 : 39;
         }
-        if (set.measures.number.Is3_5())
+        if (number.Is3_5())
         {
             return source_is_AB ? 54 : 68;
         }
@@ -375,7 +376,7 @@ int Grid::CalculateCountV()
 
 int Grid::CalculateCountH()
 {
-    if (ModeViewSignals::IsCompress())
+    if (set.measures.mode_view_signals.IsCompress())
     {
         if (set.measures.number.Is6_1())
         {
