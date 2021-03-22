@@ -22,10 +22,6 @@
 
 #define ENUM_SIGNALS_IN_SEC         (set.display.enumSignalsInSec)              // SettingsDisplay.enumSignalsInSec
 
-#define LAST_AFFECTED_CHANNEL       (set.display.lastAffectedChannel)           // SettingsDisplay.lastAffectedChannel
-#define LAST_AFFECTED_CHANNEL_IS_A  (LAST_AFFECTED_CHANNEL == Channel::A)       // \c true, если последний канал, которым управляли - 1.
-#define LAST_AFFECTED_CHANNEL_IS_B  (LAST_AFFECTED_CHANNEL == Channel::B)       // \c true, если последний канал, которым управляли - 2.
-
 #define MODE_ACCUM                  (set.display.modeAccumulation)              // SettingsDisplay.modeAccumulation
 #define MODE_ACCUM_IS_RESET         (MODE_ACCUM == ModeAccumulation::Reset)     // \c true, если накопление со сбросом.
 #define MODE_ACCUM_IS_NORESET       (MODE_ACCUM == ModeAccumulation::NoReset)   // \c true, если накопление без сброса.
@@ -44,29 +40,29 @@
 // Настройки изображения
 struct SettingsDisplay
 {
-    int16               time_show_levels;     // Время, в течение которого нужно показывать уровни смещения.
-    int16               shiftInMemory;        // Показывает смещение левого края сетки относительно нулевого байта
-                                              // памяти. Нужно для правильного отображения сигнала в окне.
-    int16               timeMessages;         // Время в секундах, на которое сообщение остаётся на экране.
-    int16               brightness;           // Яркость дисплея.
-    int16               brightnessGrid;       // Яркость сетки от 0 до 100.
-    uint                colors[16];           // Цвета.
-    ModeDrawSignal::E   mode_draw_signal;     // Режим отрисовки сигнала.
-    TypeGrid::E         typeGrid;             // Тип сетки.
-    ENumAccumulation::E enum_accum;           // Перечисление накоплений сигнала на экране.
-    ENumAveraging::E    enumAve;              // Перечисление усреднений сигнала.
-    ModeAveraging::E    modeAve;              // Тип усреднений по измерениям.
-    ENumMinMax::E       enumMinMax;           // Число измерений для определения минимумов и максимумов.
-    Smoothing::E        smoothing;            // Число точек для скользящего фильтра.
-    ENumSignalsInSec::E enumSignalsInSec;     // Перечисление считываний сигнала в секунду.
-    Channel::E          lastAffectedChannel;  // Здесь хранится номер последнего канала, которым управляли ручками.
-                                              // Нужно для того, чтобы знать, какой сигнал рисовать наверху.
-    ModeAccumulation::E modeAccumulation;     // Задаёт режим накопления сигналов.
-    AltMarkers::E       altMarkers;           // Режим отображения дополнительных боковых маркеров смещений.
-    MenuAutoHide::E     menuAutoHide;         // Через сколько времени после последнего нажатия клавиши прятать меню.
-    bool                showFullMemoryWindow; // Показывать ли окно памяти вверху экрана. \todo Не используется.
-    bool                showStringNavigation; // Показывать ли строку текущего состояния меню..
-    LinkingRShift::E    linkingRShift;        // Тип привязки смещения по вертикали.
+    int16               time_show_levels;      // Время, в течение которого нужно показывать уровни смещения.
+    int16               shiftInMemory;         // Показывает смещение левого края сетки относительно нулевого байта
+                                               // памяти. Нужно для правильного отображения сигнала в окне.
+    int16               timeMessages;          // Время в секундах, на которое сообщение остаётся на экране.
+    int16               brightness;            // Яркость дисплея.
+    int16               brightnessGrid;        // Яркость сетки от 0 до 100.
+    uint                colors[16];            // Цвета.
+    ModeDrawSignal::E   mode_draw_signal;      // Режим отрисовки сигнала.
+    TypeGrid::E         typeGrid;              // Тип сетки.
+    ENumAccumulation::E enum_accum;            // Перечисление накоплений сигнала на экране.
+    ENumAveraging::E    enumAve;               // Перечисление усреднений сигнала.
+    ModeAveraging::E    modeAve;               // Тип усреднений по измерениям.
+    ENumMinMax::E       enumMinMax;            // Число измерений для определения минимумов и максимумов.
+    Smoothing::E        smoothing;             // Число точек для скользящего фильтра.
+    ENumSignalsInSec::E enumSignalsInSec;      // Перечисление считываний сигнала в секунду.
+    Channel::E          last_affected_channel; // Здесь хранится номер последнего канала, которым управляли ручками.
+                                               // Нужно для того, чтобы знать, какой сигнал рисовать наверху.
+    ModeAccumulation::E modeAccumulation;      // Задаёт режим накопления сигналов.
+    AltMarkers::E       altMarkers;            // Режим отображения дополнительных боковых маркеров смещений.
+    MenuAutoHide::E     menuAutoHide;          // Через сколько времени после последнего нажатия клавиши прятать меню.
+    bool                showFullMemoryWindow;  // Показывать ли окно памяти вверху экрана. \todo Не используется.
+    bool                showStringNavigation;  // Показывать ли строку текущего состояния меню..
+    LinkingRShift::E    linkingRShift;         // Тип привязки смещения по вертикали.
 
     // Возвращает адрес первой и последней точки на экране.
     static void PointsOnDisplay(int *firstPoint, int *lastPoint);

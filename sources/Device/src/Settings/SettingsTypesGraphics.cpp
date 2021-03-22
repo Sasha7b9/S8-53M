@@ -19,7 +19,7 @@ void RShift::Draw()
         Draw(Channel::Math);
     }
 
-    if (LAST_AFFECTED_CHANNEL_IS_B)
+    if (set.display.last_affected_channel == ChB)
     {
         Draw(Channel::A);
         Draw(Channel::B);

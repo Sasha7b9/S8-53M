@@ -71,7 +71,7 @@ void Display::DrawStringNavigation()
 
 void Display::RotateRShift(const Channel &ch)
 {
-    LAST_AFFECTED_CHANNEL = ch.value;
+    set.display.last_affected_channel = ch.value;
 
     if(set.display.time_show_levels)
     {
