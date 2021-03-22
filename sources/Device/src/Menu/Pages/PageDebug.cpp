@@ -470,7 +470,7 @@ DEF_GOVERNOR(mgRandomizer_Average, PageDebug::PageRandomizer::self,
     "Усредн.", "Average",
     "",
     "",
-    NUM_AVE_FOR_RAND, 1, 32, nullptr, nullptr, nullptr
+    set.debug.num_ave_for_rand, 1, 32, nullptr, nullptr, nullptr
 )
 
 DEF_PAGE_3(pageRandomizer, PageDebug::self, NamePage::DebugRandomizer,

@@ -32,18 +32,6 @@
 #define LANG_RU         (LANG == Language::Russian)
 #define LANG_EN         (LANG == Language::English)
 
-#define BALANCE_ADC(ch)                     (set.debug.balanceADC[ch])
-#define BALANCE_ADC_A                       (BALANCE_ADC(ChA))
-#define BALANCE_ADC_B                       (BALANCE_ADC(ChB))
-
-#define DEBUG_STRETCH_ADC_TYPE              (set.debug.stretchADCtype)
-#define DEBUG_STRETCH_ADC_TYPE_IS_DISABLED  (DEBUG_STRETCH_ADC_TYPE == StretchADCtype::Disable)
-#define DEBUG_STRETCH_ADC_TYPE_IS_HAND      (DEBUG_STRETCH_ADC_TYPE == StretchADCtype::Hand)
-#define DEBUG_STRETCH_ADC_TYPE_IS_SETTINGS  (DEBUG_STRETCH_ADC_TYPE == StretchADCtype::Settings)
-
-#define DEBUG_STRETCH_ADC(ch)               (set.debug.stretchADC[ch])
-#define DEBUG_STRETCH_ADC_A                 (DEBUG_STRETCH_ADC(ChA))
-#define DEBUG_STRETCH_ADC_B                 (DEBUG_STRETCH_ADC(ChB))
 
 #define NUM_AVE_FOR_RAND                    (::set.debug.numAveForRand)
 
@@ -379,7 +367,7 @@ struct SettingsDebug
     int16             shift_T0;                   // ƒополнительное смещение по времени дл€ данной развЄртки режима
                                                   // рандомизатора.
     bool              show_stats;                 // ѕоказывать статистику на экране (fps, например).
-    int16             numAveForRand;              // ѕо скольким измерени€м усредн€ть сигнал в режиме рандомизатора.
+    int16             num_ave_for_rand;           // ѕо скольким измерени€м усредн€ть сигнал в режиме рандомизатора.
     bool              viewAlteraWrittingData;     // ѕоказывать ли данные, идущие в альтеру.
     bool              viewAllAlteraWrittingData;  // \brief ѕоказывать ли все данные, идущие в альтеру (если false, то
                                                   // посто€нно идущие команды вроде 
