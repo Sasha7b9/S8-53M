@@ -291,6 +291,13 @@ Range::E& operator++(Range::E &range)
 }
 
 
+Range &operator++(Range &range)
+{
+    range.value = (Range::E)((int)range.value + 1);
+    return range;
+}
+
+
 Range::E& operator--(Range::E &range)
 {
     range = (Range::E)((int)range - 1);

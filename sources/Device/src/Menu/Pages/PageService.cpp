@@ -237,7 +237,7 @@ static void OnRegSet_Math_Function(int delta)
         {
             if (set.math.range < Range::Count - 1)
             {
-                ++set.math.range;
+                ++set.math.range.value;
                 set.math.rShift = (int16)RShift::ToRel(rShiftAbs, set.math.range);
                 Sound::RegulatorSwitchRotate();
             }
@@ -247,7 +247,7 @@ static void OnRegSet_Math_Function(int delta)
         {
             if (set.math.range > 0)
             {
-                --set.math.range;
+                --set.math.range.value;
                 set.math.rShift = (int16)RShift::ToRel(rShiftAbs, set.math.range);
                 Sound::RegulatorSwitchRotate();
             }
