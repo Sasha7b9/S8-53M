@@ -1,14 +1,14 @@
 #pragma once
 
 #ifdef WIN32
-#define __weak //-V2573
+#define __weak
 #else
-#define __weak __attribute((weak)) //-V2573
+#define __weak __attribute((weak))
 #endif
 
 
 #ifdef MSVC
-#define __attribute(x) //-V2573
+#define __attribute(x)
 #endif
 
 /* Exported types ------------------------------------------------------------*/

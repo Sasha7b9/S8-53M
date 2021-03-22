@@ -18,7 +18,7 @@
 **/
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __USBH_DISKIO_H
-#define __USBH_DISKIO_H //-V2573
+#define __USBH_DISKIO_H
 
 /* Includes ------------------------------------------------------------------*/
 #include "usbh_core.h"

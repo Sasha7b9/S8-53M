@@ -44,7 +44,7 @@
   */
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __USBH_CONF__H__
-#define __USBH_CONF__H__ //-V2573
+#define __USBH_CONF__H__
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx.h"

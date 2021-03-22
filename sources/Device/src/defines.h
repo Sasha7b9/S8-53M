@@ -1,5 +1,5 @@
 #pragma once
-
+#include "common/defines_.h"
 
 #ifdef WIN32
 #define __attribute__(x)
@@ -13,21 +13,6 @@
 
 
 #define NUM_VER "1.3"
-
-
-typedef signed      char        int8;
-typedef signed      short   int int16;
-typedef unsigned    char        uint8;
-typedef unsigned    short   int uint16;
-typedef unsigned    int         uint;
-typedef unsigned long long int  uint64;
-typedef unsigned    char        uchar;
-typedef const char             *pchar;
-typedef const uint8            *puchar;
-typedef const char       *const pString;
-
-
-#include "common/defines_.h"
 
 #ifndef __IO
 #define __IO volatile
