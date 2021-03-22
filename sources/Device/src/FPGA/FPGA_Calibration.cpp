@@ -10,6 +10,7 @@
 #include "Menu/Pages/Definition.h"
 #include "Panel/Panel.h"
 #include "Settings/Settings.h"
+#include <cmath>
 #include <cstdio>
 #include <limits>
 
