@@ -792,8 +792,8 @@ struct CursCntrl
         Disable        // никаким.
     };
 
-    static E GetForU();
-    static E GetForT();
+    static E GetForMeasuresU();
+    static E GetForMeasuresT();
 };
 
 

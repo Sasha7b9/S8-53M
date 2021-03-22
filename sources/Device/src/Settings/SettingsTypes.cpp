@@ -856,13 +856,13 @@ bool ModeViewSignals::IsCompress()
 }
 
 
-CursCntrl::E CursCntrl::GetForT()
+CursCntrl::E CursCntrl::GetForMeasuresT()
 {
     return set.measures.cntrlT;
 }
 
 
-CursCntrl::E CursCntrl::GetForU()
+CursCntrl::E CursCntrl::GetForMeasuresU()
 {
     return set.measures.cntrlU;
 }
