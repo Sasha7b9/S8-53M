@@ -362,12 +362,6 @@ void Channel::Disable() const
 }
 
 
-uint8 SettingsMath::PositionCursorFFT(int num)
-{
-    return set.math.posCur[num];
-}
-
-
 int16 SettingsMeasures::PosCursorU(int num)
 {
     return set.measures.posU[num];

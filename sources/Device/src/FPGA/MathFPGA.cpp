@@ -231,8 +231,8 @@ void MathFPGA::CalculateFFT(float* dataR, int numPoints, float* result, float* f
 
     float K = 1024.0F / numPoints;
 
-    *freq0 = scale * SettingsMath::PositionCursorFFT(0) * K;
-    *freq1 = scale * SettingsMath::PositionCursorFFT(1) * K;
+    *freq0 = scale * set.math.pos_cur[0] * K;
+    *freq1 = scale * set.math.pos_cur[1] * K;
     if (PeackDetMode::IsEnabled())
     {
         *freq0 *= 2;
@@ -348,11 +348,11 @@ void MathFPGA::CalculateFFT(float* dataR, int numPoints, float* result, float* f
         {
             result[i] = 20 * std::log10f(result[i]);
 
-            if (i == SettingsMath::PositionCursorFFT(0))
+            if (i == set.math.pos_cur[0])
             {
                 *density0 = result[i];
             }
-            else if (i == SettingsMath::PositionCursorFFT(1))
+            else if (i == set.math.pos_cur[1])
             {
                 *density1 = result[i];
             }
@@ -365,11 +365,11 @@ void MathFPGA::CalculateFFT(float* dataR, int numPoints, float* result, float* f
     }
     else
     {
-        *density0 = result[SettingsMath::PositionCursorFFT(0)];
-        *density1 = result[SettingsMath::PositionCursorFFT(1)];
+        *density0 = result[set.math.pos_cur[0]];
+        *density1 = result[set.math.pos_cur[1]];
     }
-    *y0 = (int)(Grid::MathBottom() - result[SettingsMath::PositionCursorFFT(0)] * Grid::MathHeight());
-    *y1 = (int)(Grid::MathBottom() - result[SettingsMath::PositionCursorFFT(1)] * Grid::MathHeight());
+    *y0 = (int)(Grid::MathBottom() - result[set.math.pos_cur[0]] * Grid::MathHeight());
+    *y1 = (int)(Grid::MathBottom() - result[set.math.pos_cur[1]] * Grid::MathHeight());
 }
 
 

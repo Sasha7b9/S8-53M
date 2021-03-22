@@ -551,7 +551,7 @@ static bool IsActive_Math_FFT_Cursors()
 
 static void OnRegSet_Math_FFT_Cursors(int angle)
 {
-    set.math.posCur[set.math.cursor_FFT] += (uint8)angle;
+    set.math.pos_cur[set.math.cursor_FFT] += (uint8)angle;
     Sound::RegulatorShiftRotate();
 }
 
