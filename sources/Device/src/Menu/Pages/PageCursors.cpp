@@ -68,13 +68,13 @@ void Cursors_Update()
     }
     if((lookMode0 == CursLookMode::Time || lookMode0 == CursLookMode::Both) && CURS_ACTIVE_IS_U)
     {
-        float posU0 = CURS_POS_U0(source);
+        float posU0 = set.cursors.posU[source][0];
         float posT0 = Processing::GetCursT(source, posU0, 0);
         SetCursPosT(source, 0, posT0);
     }
     if((lookMode1 == CursLookMode::Time || lookMode1 == CursLookMode::Both) && CURS_ACTIVE_IS_U)
     {
-        float posU1 = CURS_POS_U1(source);
+        float posU1 = set.cursors.posU[source][1];
         float posT1 = Processing::GetCursT(source, posU1, 1);
         SetCursPosT(source, 1, posT1);
     }
@@ -401,7 +401,7 @@ static void PressSB_Cursors_100()
 
 static void SetCursPos100(Channel::E ch)
 {
-    set.cursors.dU_100percents[ch] = std::fabsf(CURS_POS_U0(ch) - CURS_POS_U1(ch));
+    set.cursors.dU_100percents[ch] = std::fabsf(set.cursors.posU[ch][0] - set.cursors.posU[ch][1]);
     set.cursors.dT_100percents[ch] = std::fabsf(CURS_POS_T0(ch) - CURS_POS_T1(ch));
 }
 

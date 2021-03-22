@@ -2,10 +2,6 @@
 #include "common/Utils/String_.h"
 
 
-//#define CURS_POS_U(ch, num)         (set.cursors.posCurU[ch][num])              // SettingsCursors.posCurU
-#define CURS_POS_U0(ch)             (set.cursors.posU[ch][0])
-#define CURS_POS_U1(ch)             (set.cursors.posU[ch][1])
-
 #define CURS_POS_T(ch, num)         (set.cursors.posCurT[ch][num])              // SettingsCursors.posCurT
 #define CURS_POS_T0(ch)             (CURS_POS_T(ch, 0))
 #define CURS_POS_T1(ch)             (CURS_POS_T(ch, 1))
