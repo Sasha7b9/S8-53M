@@ -2,10 +2,6 @@
 #include "common/Display/Colors_.h"
 
 
-#define TIME_MESSAGES               (set.display.timeMessages)                  // SettingsDisplay.timeMessages
-
-#define BRIGHTNESS                  (set.display.brightness)                    // SettingsDisplay.brightness
-
 #define BRIGHTNESS_GRID             (set.display.brightnessGrid)                // SettingsDisplay.brightnessGrid
 
 #define DISPLAY_COLOR(num)          (set.display.colors[num])                   // SettingsDisplay.colors
@@ -30,7 +26,7 @@ struct SettingsDisplay
     int16               time_show_levels;      // Время, в течение которого нужно показывать уровни смещения.
     int16               shift_in_memory;       // Показывает смещение левого края сетки относительно нулевого байта
                                                // памяти. Нужно для правильного отображения сигнала в окне.
-    int16               timeMessages;          // Время в секундах, на которое сообщение остаётся на экране.
+    int16               time_messages;         // Время в секундах, на которое сообщение остаётся на экране.
     int16               brightness;            // Яркость дисплея.
     int16               brightnessGrid;        // Яркость сетки от 0 до 100.
     uint                colors[16];            // Цвета.

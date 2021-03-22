@@ -259,14 +259,14 @@ DEF_PAGE_2(pageGrid, PageDisplay::self, NamePage::DisplayGrid,
 
 static void OnChanged_Settings_Brightness()
 {
-    Painter::SetBrightnessDisplay(BRIGHTNESS);
+    Painter::SetBrightnessDisplay(set.display.brightness);
 }
 
 DEF_GOVERNOR(mgSettings_Brightness, PageDisplay::PageSettings::self,
     "яркость", "Brightness",
     "”становка €ркости свечени€ диспле€",
     "Setting the brightness of the display",
-    BRIGHTNESS, 0, 100, nullptr, OnChanged_Settings_Brightness, nullptr
+    set.display.brightness, 0, 100, nullptr, OnChanged_Settings_Brightness, nullptr
 )
 
 DEF_GOVERNOR(mgSettings_Levels, PageDisplay::PageSettings::self,
@@ -280,7 +280,7 @@ DEF_GOVERNOR(mgSettings_TimeMessages, PageDisplay::PageSettings::self,
     "¬рем€", "Time",
     "”становка времени, в течение которого сообщени€ будут находитьс€ на экране",
     "Set the time during which the message will be on the screen",
-    TIME_MESSAGES, 1, 99, nullptr, nullptr, nullptr
+    set.display.time_messages, 1, 99, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcSettings_ShowStringNavigation, PageDisplay::PageSettings::self,

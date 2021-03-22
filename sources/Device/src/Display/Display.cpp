@@ -1181,7 +1181,7 @@ void Display::OnTimerShowWarning()
     uint time = TIME_MS;
     for (int i = 0; i < NUM_WARNINGS; i++)
     {
-        if (time - timeWarnings[i] > static_cast<uint>(TIME_MESSAGES * 1000))
+        if (time - timeWarnings[i] > (uint)(set.display.time_messages * 1000))
         {
             timeWarnings[i] = 0;
             warnings[i] = 0;
