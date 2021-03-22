@@ -974,3 +974,9 @@ int ENumMinMax::ToAbs()
 {
     return (1 << set.display.enum_min_max);
 }
+
+
+bool CursMovement::IsPercents()
+{
+    return (set.cursors.movement == CursMovement::Percents);
+}

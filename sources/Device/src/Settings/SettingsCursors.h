@@ -2,20 +2,9 @@
 #include "common/Utils/String_.h"
 
 
-#define CURSORS_SHOW_FREQ           (set.cursors.showFreq)                      // SettingsCursors.showFreq
-#define CURS_MOVEMENT               (set.cursors.movement)                      // SettingsCursors.movement
-#define CURS_MOVEMENT_IS_PERCENTS   (CURS_MOVEMENT == CursMovement::Percents)
-
-#define CURS_SOURCE                 (set.cursors.source)                        // SettingsCursors.source
-#define CURS_SOURCE_A               (CURS_SOURCE == ChA)
-
 #define CURsU_CNTRL_CH(ch)          (set.cursors.cntrlU[ch])                    // SettingsCursors.cntrlU
-#define CURsU_CNTRL                 (CURsU_CNTRL_CH(CURS_SOURCE))
+#define CURsU_CNTRL                 (CURsU_CNTRL_CH(set.cursors.source))
 #define CURS_CNTRL_U_IS_DISABLE(ch) (CURsU_CNTRL_CH(ch) == CursCntrl::Disable)
-
-
-
-
 
 #define CURS_CNTRL_T(ch)            (set.cursors.cntrlT[ch])                    // SettingsCursors.cntrlT
 #define CURS_CNTRL_T_IS_DISABLE(ch) (CURS_CNTRL_T(ch) == CursCntrl::Disable)
@@ -58,7 +47,7 @@ struct SettingsCursors
     CursMovement::E movement;                   //  ак перемещатьс€ курсорам - по точкам или по процентам.
     CursActive::E   active;                     //  акие курсоры сейчас активны.
     CursLookMode::E lookMode[2];                // –ежимы слежени€ за курсорами дл€ двух пар курсоров.
-    bool            showFreq;                   // ”становленное в true значение, что нужно показывать на экране значение 1/dT между курсорами.
+    bool            show_freq;                  // ”становленное в true значение, что нужно показывать на экране значение 1/dT между курсорами.
     bool            showCursors;                // ѕоказывать ли курсоры.
 };
 

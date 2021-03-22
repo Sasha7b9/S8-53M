@@ -31,7 +31,7 @@ static void SetCursPosT(Channel::E ch, int numCur, float pos);           // Уста
 
 void SetCursSource(const Channel &ch)
 {
-    CURS_SOURCE = ch.value;
+    set.cursors.source = ch.value;
 }
 
 
@@ -52,7 +52,7 @@ void IncCursCntrlT(Channel::E ch)
 
 void Cursors_Update()
 {
-    Channel::E source = CURS_SOURCE;
+    Channel::E source = set.cursors.source;
     CursLookMode::E lookMode0 = CURS_LOOKMODE_0;
     CursLookMode::E lookMode1 = CURS_LOOKMODE_1;
 
@@ -154,7 +154,7 @@ DEF_CHOICE_2(mcShowFreq, PageCursors::self,
     "If you select \"Enable\" in the upper right corner displays the inverse of the distance between cursors time - frequency signal, a period equal to the distance between the time cursors.",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    CURSORS_SHOW_FREQ, nullptr, nullptr, nullptr
+    set.cursors.show_freq, nullptr, nullptr, nullptr
 )
 
 static void OnRotate_RegSet_Set(int angle)
@@ -197,12 +197,12 @@ static const arrayHints hintsSetSource =
 
 static void PressSB_Cursors_Source()
 {
-    SetCursSource(CURS_SOURCE_A ? ChB : ChA);
+    SetCursSource(set.cursors.source == ChA ? ChB : ChA);
 }
 
 static void DrawSB_Cursors_Source(int x, int y)
 {
-    CURS_SOURCE_A ? DrawSB_Cursors_SourceA(x, y) : DrawSB_Cursors_SourceB(x, y);
+    (set.cursors.source == ChA) ? DrawSB_Cursors_SourceA(x, y) : DrawSB_Cursors_SourceB(x, y);
 }
 
 
@@ -254,9 +254,9 @@ static const arrayHints hintsSetU =
 
 static void PressSB_Cursors_U()
 {
-    if (CURS_ACTIVE_IS_U || CURS_CNTRL_U_IS_DISABLE(CURS_SOURCE))
+    if (CURS_ACTIVE_IS_U || CURS_CNTRL_U_IS_DISABLE(set.cursors.source))
     {
-        IncCursCntrlU(CURS_SOURCE);
+        IncCursCntrlU(set.cursors.source);
     }
     CURS_ACTIVE = CursActive::U;
 }
@@ -276,7 +276,7 @@ static void DrawSB_Cursors_U(int x, int y)
         }
         else
         {
-            Channel::E source = CURS_SOURCE;
+            Channel::E source = set.cursors.source;
             bool condTop = false, condDown = false;
             CalculateConditions(static_cast<int16>(Cursors::GetPosU(source, 0)),
                 static_cast<int16>(Cursors::GetPosU(source, 1)), cursCntrl, &condTop, &condDown);
@@ -345,16 +345,16 @@ static const arrayHints hintsSetT =
 
 static void PressSB_Cursors_T()
 {
-    if (CURS_ACTIVE_IS_T || CURS_CNTRL_T_IS_DISABLE(CURS_SOURCE))
+    if (CURS_ACTIVE_IS_T || CURS_CNTRL_T_IS_DISABLE(set.cursors.source))
     {
-        IncCursCntrlT(CURS_SOURCE);
+        IncCursCntrlT(set.cursors.source);
     }
     CURS_ACTIVE = CursActive::T;
 }
 
 static void DrawSB_Cursors_T(int x, int y)
 {
-    Channel::E source = CURS_SOURCE;
+    Channel::E source = set.cursors.source;
     CursCntrl::E cursCntrl = CURS_CNTRL_T(source);
     if (cursCntrl == CursCntrl::Disable)
     {
@@ -395,7 +395,7 @@ DEF_SMALL_BUTTON(sbSetT, PageCursors::PageSet::self,
 
 static void PressSB_Cursors_100()
 {
-    SetCursPos100(CURS_SOURCE);
+    SetCursPos100(set.cursors.source);
 }
 
 static void SetCursPos100(Channel::E ch)
@@ -440,12 +440,12 @@ static const arrayHints hintsSetPointsPercents =
 
 static void PressSB_Cursors_PointsPercents()
 {
-    GF::CircleIncrease<int8>((int8 *)&CURS_MOVEMENT, 0, 1);
+    GF::CircleIncrease<int8>((int8 *)&set.cursors.movement, 0, 1);
 }
 
 static void DrawSB_Cursors_PointsPercents(int x, int y)
 {
-    if (CURS_MOVEMENT_IS_PERCENTS)
+    if (CursMovement::IsPercents())
     {
         DrawSB_Cursors_PointsPercents_Percents(x, y);
     }
@@ -493,9 +493,9 @@ static void MoveCursUonPercentsOrPoints(int delta)
 
     float value = static_cast<float>(delta);
 
-    Channel::E source = CURS_SOURCE;
+    Channel::E source = set.cursors.source;
 
-    if(CURS_MOVEMENT_IS_PERCENTS)
+    if(CursMovement::IsPercents())
     {
         value *= DELTA_U100(source) / 100.0F;
     }
@@ -518,12 +518,12 @@ static void SetShiftCursPosU(Channel::E ch, int numCur, float delta)
 
 static void MoveCursTonPercentsOrPoints(int delta)
 {
-    Channel::E source = CURS_SOURCE;
+    Channel::E source = set.cursors.source;
     CursCntrl::E cursCntrl = CURS_CNTRL_T(source);
 
     float value = static_cast<float>(delta);
 
-    if(CURS_MOVEMENT_IS_PERCENTS)
+    if(CursMovement::IsPercents())
     {
         value *= DELTA_T100(source) / 100.0F;
     }

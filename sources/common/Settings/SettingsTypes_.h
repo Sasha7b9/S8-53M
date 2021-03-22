@@ -798,11 +798,16 @@ struct CursCntrl
 
 
 // Дискретность перемещения курсоров.
-struct CursMovement { enum E
+struct CursMovement
 {
-    Points,    // по точкам.
-    Percents   // по процентам.
-};};
+    enum E
+    {
+        Points,    // по точкам.
+        Percents   // по процентам.
+    };
+
+    static bool IsPercents();
+};
 
 
 // Какие курсоры сейчас активны. Какие активны, те и будут перемещаться по вращению ручки УСТАНОВКА.

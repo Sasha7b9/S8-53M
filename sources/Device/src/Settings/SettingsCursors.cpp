@@ -21,7 +21,7 @@ float Cursors::GetPosU(const Channel &ch, int num)
 
 bool Cursors::NecessaryDraw()
 {
-    return ((!CURS_CNTRL_U_IS_DISABLE(CURS_SOURCE)) || (!CURS_CNTRL_T_IS_DISABLE(CURS_SOURCE))) && 
+    return ((!CURS_CNTRL_U_IS_DISABLE(set.cursors.source)) || (!CURS_CNTRL_T_IS_DISABLE(set.cursors.source))) &&
         (CURS_SHOW || Menu::GetNameOpenedPage() == NamePage::SB_Curs);
 }
 
@@ -72,7 +72,7 @@ String Cursors::GetPercentsT(const Channel &source)
 
 void Cursors::Draw()
 {
-    Channel::E source = CURS_SOURCE;
+    Channel::E source = set.cursors.source;
     Color::Cursors(source).SetAsCurrent();
 
     if (Cursors::NecessaryDraw())

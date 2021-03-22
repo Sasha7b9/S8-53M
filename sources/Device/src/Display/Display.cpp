@@ -190,7 +190,7 @@ void Display::WriteCursors()
 
         HLine().Draw(x, 1, Grid::TOP - 2, Color::FILL);
         x += 3;
-        Channel source = CURS_SOURCE;
+        Channel source = set.cursors.source;
 
         Color colorText = source.GetColor();
 
@@ -232,7 +232,7 @@ void Display::WriteCursors()
             Text(":").Draw(x, y2);
             Cursors::GetPercentsT(source).Draw(x + 8, y2);
 
-            if(CURSORS_SHOW_FREQ)
+            if(set.cursors.show_freq)
             {
                 int width = 65;
                 int x0 = Grid::Right() - width;
