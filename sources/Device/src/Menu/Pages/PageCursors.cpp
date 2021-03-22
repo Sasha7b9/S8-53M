@@ -53,26 +53,26 @@ void IncCursCntrlT(Channel::E ch)
 void Cursors_Update()
 {
     Channel::E source = set.cursors.source;
-    CursLookMode::E lookMode0 = CURS_LOOKMODE_0;
-    CursLookMode::E lookMode1 = CURS_LOOKMODE_1;
+    CursLookMode &look_mode_0 = set.cursors.look_mode[0];
+    CursLookMode &look_mode_1 = set.cursors.look_mode[1];
 
-    if((lookMode0 == CursLookMode::Voltage || lookMode0 == CursLookMode::Both) && set.cursors.active.IsT())
+    if((look_mode_0.IsVoltage() || look_mode_0.IsTime()) && set.cursors.active.IsT())
     {
         float posU0 = Processing::GetCursU(source, set.cursors.posT[source][0]);
         SetCursPosU(source, 0, posU0);
     }
-    if((lookMode1 == CursLookMode::Voltage || lookMode1 == CursLookMode::Both)  && set.cursors.active.IsT())
+    if((look_mode_1.IsVoltage() || look_mode_1.IsBoth())  && set.cursors.active.IsT())
     {
         float posU1 = Processing::GetCursU(source, set.cursors.posT[source][1]);
         SetCursPosU(source, 1, posU1);
     }
-    if((lookMode0 == CursLookMode::Time || lookMode0 == CursLookMode::Both) && set.cursors.active.IsU())
+    if((look_mode_0.IsTime() || look_mode_0.IsBoth()) && set.cursors.active.IsU())
     {
         float posU0 = set.cursors.posU[source][0];
         float posT0 = Processing::GetCursT(source, posU0, 0);
         SetCursPosT(source, 0, posT0);
     }
-    if((lookMode1 == CursLookMode::Time || lookMode1 == CursLookMode::Both) && set.cursors.active.IsU())
+    if((look_mode_1.IsTime() || look_mode_1.IsBoth()) && set.cursors.active.IsU())
     {
         float posU1 = set.cursors.posU[source][1];
         float posT1 = Processing::GetCursT(source, posU1, 1);
@@ -123,7 +123,7 @@ DEF_CHOICE_4(mcTrackingT1U1, PageCursors::self,
     "Напряжение", "Voltage",
     "Время", "Time",
     "Напряж и время", "Volt and time",
-    CURS_LOOKMODE_0, nullptr, nullptr, nullptr
+    set.cursors.look_mode[0], nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_4(mcTrackingT2U2, PageCursors::self,
@@ -145,7 +145,7 @@ DEF_CHOICE_4(mcTrackingT2U2, PageCursors::self,
     "Напряжение", "Voltage",
     "Время", "Time",
     "Напряж. и время", "Volt. and time",
-    CURS_LOOKMODE_1, nullptr, nullptr, nullptr
+    set.cursors.look_mode[1], nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcShowFreq, PageCursors::self,
