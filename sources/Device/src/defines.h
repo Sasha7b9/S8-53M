@@ -29,10 +29,6 @@ typedef void  (*pFuncpCU8)(puchar );
 
 inline void EmptyFuncVV() {};
 
-#define _GET_BIT(value, bit) (((value) >> (bit)) & 0x01)
-#define _SET_BIT(value, bit) ((value) |= (1 << (bit)))
-#define _CLEAR_BIT(value, bit) ((value) &= (~(1 << (bit))))
-
 // Объединение размером 32 бита
 union BitSet32 //-V2514
 {
@@ -73,7 +69,6 @@ struct StructRelAbs
 #define ENABLE_EN   "Enable"
 
 #define ERROR_STRING_VALUE  "--.--"
-#define M_PI                3.14159265358979323846F
 
 #define EXIT_RU "Выход"
 #define EXIT_EN "Exit"

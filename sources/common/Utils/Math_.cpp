@@ -15,6 +15,9 @@ template uint8 Math::Limitation(uint8, uint8, uint8);
 template float Math::Limitation(float, float, float);
 
 
+float Math::Pi = 3.14159265358979323846F;
+
+
 template<class T>
 T Math::MinFrom2(T val1, T val2)
 {

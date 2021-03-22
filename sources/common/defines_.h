@@ -62,3 +62,8 @@ struct InvalidInt16 : public Int16
 {
     InvalidInt16() : Int16() { SetInvalid(); }
 };
+
+
+#define _GET_BIT(value, bit) (((value) >> (bit)) & 0x01)
+#define _SET_BIT(value, bit) ((value) |= (1 << (bit)))
+#define _CLEAR_BIT(value, bit) ((value) &= (~(1 << (bit))))

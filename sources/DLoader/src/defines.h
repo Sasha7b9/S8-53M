@@ -30,11 +30,5 @@ typedef void  (*pFuncpU8)(uint8*);
 typedef void  (*pFuncVpVIIB)(void*, int, int, bool);
 
 #define ERROR_STRING_VALUE  "--.--"
-#define M_PI                3.14159265358979323846F
-
-
-#define _GET_BIT(value, bit) (((value) >> (bit)) & 0x01)
-#define _SET_BIT(value, bit) ((value) |= (1 << (bit)))
-#define _CLEAR_BIT(value, bit) ((value) &= (~(1 << (bit))))
 
 #define LANG_RU true

@@ -105,7 +105,8 @@ String GF::Float2String(const Float &value, bool always_sign, int num_digits)
             format[5] = '.';
         }
 
-        std::sprintf(buffer, format, value);
+        std::sprintf(buffer, format, value.value);
+
         result.Append(buffer);
     }
 
