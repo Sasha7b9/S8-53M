@@ -303,9 +303,9 @@ void Measure::DrawAll()
     if (MeasuresField::IsHand())
     {
         int x0 = MEAS_POS_CUR_T0 - SHIFT_IN_MEMORY + Grid::Left();
-        int y0 = MEAS_POS_CUR_U0 + Grid::TOP;
+        int y0 = SettingsMeasures::PosCursorU(0) + Grid::TOP;
         int x1 = MEAS_POS_CUR_T1 - SHIFT_IN_MEMORY + Grid::Left();
-        int y1 = MEAS_POS_CUR_U1 + Grid::TOP;
+        int y1 = SettingsMeasures::PosCursorU(1) + Grid::TOP;
         GF::SortInt(&x0, &x1);
         GF::SortInt(&y0, &y1);
         Primitives::Rectangle(x1 - x0, y1 - y0).Draw(x0, y0, Color::FILL);

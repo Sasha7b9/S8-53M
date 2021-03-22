@@ -420,3 +420,9 @@ bool SettingsMeasures::ShowMeasures()
 {
     return set.measures.show;
 }
+
+
+int16 SettingsMeasures::PosCursorU(int num)
+{
+    return set.measures.posCurU[num];
+}

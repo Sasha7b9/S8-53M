@@ -58,7 +58,7 @@ void RotateRegMeasureSetField(int angle)
         }
         else
         {
-            LIMITATION(MEAS_POS_CUR_U0, static_cast<int16>(MEAS_POS_CUR_U0 + sign), 0, 200);
+            LIMITATION(set.measures.posCurU[0], static_cast<int16>(SettingsMeasures::PosCursorU(0) + sign), 0, 200);
         }
     }
     if (cursCntrl == CursCntrl::_2 || cursCntrl == CursCntrl::_1_2)
@@ -70,7 +70,7 @@ void RotateRegMeasureSetField(int angle)
         }
         else
         {
-            LIMITATION(MEAS_POS_CUR_U1, static_cast<int16>(MEAS_POS_CUR_U1 + sign), 0, 200);
+            LIMITATION(set.measures.posCurU[1], static_cast<int16>(SettingsMeasures::PosCursorU(1) + sign), 0, 200);
         }
     }
 }
