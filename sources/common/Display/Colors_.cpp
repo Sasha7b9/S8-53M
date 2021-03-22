@@ -51,7 +51,7 @@ Color Channel::GetColor() const
 }
 
 
-Color Color::Cursors(Channel::E ch)
+Color Color::Cursors(const Channel &ch)
 {
     static const Color colors[4] = { Color::DATA_A, Color::DATA_B, Color::WHITE, Color::WHITE };
     return colors[ch];

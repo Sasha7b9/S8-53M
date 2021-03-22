@@ -1013,7 +1013,7 @@ void Processing::GetData(uint8 **data0, uint8 **data1, DataSettings **ds)
     *ds = dataSet;
 }
 
-float Processing::GetCursU(Channel::E ch, float posCurT)
+float Processing::GetCursU(const Channel &ch, float posCurT)
 {   
     int first = 0;
     int last = 0;
@@ -1024,7 +1024,7 @@ float Processing::GetCursU(Channel::E ch, float posCurT)
     return result;
 }
 
-float Processing::GetCursT(Channel::E ch, float posCurU, int numCur)
+float Processing::GetCursT(const Channel &ch, float posCurU, int numCur)
 {
     int firstPoint = 0;
     int lastPoint = 0;

@@ -1,6 +1,5 @@
 #pragma once
 #include "common/Panel/Controls_.h"
-#include "Settings/SettingsCursors.h"
 
 
 #define RETURN_TO_MAIN_MENU             0U

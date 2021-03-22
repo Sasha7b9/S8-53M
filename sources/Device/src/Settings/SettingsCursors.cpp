@@ -72,7 +72,7 @@ String Cursors::GetPercentsT(const Channel &source)
 
 void Cursors::Draw()
 {
-    Channel::E source = set.cursors.source;
+    Channel &source = set.cursors.source;
     Color::Cursors(source).SetAsCurrent();
 
     if (Cursors::NecessaryDraw())

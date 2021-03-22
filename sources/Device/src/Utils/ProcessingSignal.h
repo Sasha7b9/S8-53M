@@ -14,10 +14,10 @@ public:
     static void GetData(uint8 **data0, uint8 **data1, DataSettings **ds);
 
     // Получить позицию курсора напряжения, соответствующю заданной позиции курсора posCurT.
-    static float GetCursU(Channel::E ch, float posCurT);
+    static float GetCursU(const Channel &ch, float posCurT);
 
     // Получить позицию курсора времени, соответствующую заданной позиции курсора напряжения posCurU.
-    static float GetCursT(Channel::E ch, float posCurU, int numCur);
+    static float GetCursT(const Channel &ch, float posCurU, int numCur);
 
     // Аппроксимировать единичное измерение режима рандомизатора функцией sinX/X.
     static void InterpolationSinX_X(uint16 data[FPGA_MAX_POINTS], TBase::E tBase);

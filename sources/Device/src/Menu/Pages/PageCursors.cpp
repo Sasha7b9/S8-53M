@@ -16,13 +16,16 @@ using namespace Primitives;
 
 static void MoveCursUonPercentsOrPoints(int delta);
 static void MoveCursTonPercentsOrPoints(int delta);
-static void SetShiftCursPosU(Channel::E ch, int numCur, float delta);    // »зменить значение позиции курсора напр€жени€ на delta точек
-static void SetShiftCursPosT(Channel::E ch, int numCurs, float delta);   // »зменить значение позиции курсора времени на delta точек
-static void SetCursPos100(Channel::E ch);                                // «апомнить позиции курсоров, соответствующие 100%.
-static void IncCursCntrlU(Channel::E ch);                                // ¬ыбрать следующий курсор.
-static void IncCursCntrlT(Channel::E ch);                                // ¬ыбрать следующий курсор.
-static void SetCursPosU(Channel::E ch, int numCur, float pos);           // ”становить позицию курсора напр€жени€.
-static void SetCursPosT(Channel::E ch, int numCur, float pos);           // ”становить значение курсора по времени.
+static void SetShiftCursPosU(const Channel &ch, int numCur, float delta);  // »зменить значение позиции курсора
+                                                                           // напр€жени€ на delta точек
+static void SetShiftCursPosT(const Channel &ch, int numCurs, float delta); // »зменить значение позиции курсора времени
+                                                                           // на delta точек
+static void SetCursPos100(const Channel &ch);                              // «апомнить позиции курсоров,
+                                                                           // соответствующие 100%.
+static void IncCursCntrlU(const Channel &ch);                              // ¬ыбрать следующий курсор.
+static void IncCursCntrlT(const Channel &ch);                              // ¬ыбрать следующий курсор.
+static void SetCursPosU(const Channel &ch, int numCur, float pos);         // ”становить позицию курсора напр€жени€.
+static void SetCursPosT(const Channel &ch, int numCur, float pos);         // ”становить значение курсора по времени.
 
 
 #define MAX_POS_U   200
@@ -36,14 +39,14 @@ void SetCursSource(const Channel &ch)
 
 
 
-void IncCursCntrlU(Channel::E ch)
+void IncCursCntrlU(const Channel &ch)
 {
     GF::CircleIncrease<int8>((int8*)&set.cursors.cntrlU[ch], 0, 3);
 }
 
 
 
-void IncCursCntrlT(Channel::E ch)
+void IncCursCntrlT(const Channel &ch)
 {
     GF::CircleIncrease<int8>((int8*)&set.cursors.cntrlT[ch], 0, 3);
 }
@@ -52,7 +55,7 @@ void IncCursCntrlT(Channel::E ch)
 
 void Cursors_Update()
 {
-    Channel::E source = set.cursors.source;
+    Channel &source = set.cursors.source;
     CursLookMode &look_mode_0 = set.cursors.look_mode[0];
     CursLookMode &look_mode_1 = set.cursors.look_mode[1];
 
@@ -81,14 +84,14 @@ void Cursors_Update()
 }
 
 
-void SetCursPosU(Channel::E ch, int num_cur, float pos)
+void SetCursPosU(const Channel &ch, int num_cur, float pos)
 {
     set.cursors.posU[ch][num_cur] = Math::Limitation(pos, 0.0f, (float)MAX_POS_U);
 }
 
 
 
-void SetCursPosT(Channel::E ch, int num_cur, float pos)
+void SetCursPosT(const Channel &ch, int num_cur, float pos)
 {
     set.cursors.posT[ch][num_cur] = Math::Limitation(pos, 0.0f, (float)MAX_POS_T);
 }
@@ -278,7 +281,7 @@ static void DrawSB_Cursors_U(int x, int y)
         }
         else
         {
-            Channel::E source = set.cursors.source;
+            Channel &source = set.cursors.source;
             bool condTop = false, condDown = false;
 
             CalculateConditions((int16)(Cursors::GetPosU(source, 0)),
@@ -359,7 +362,7 @@ static void PressSB_Cursors_T()
 
 static void DrawSB_Cursors_T(int x, int y)
 {
-    Channel::E source = set.cursors.source;
+    Channel &source = set.cursors.source;
     CursCntrl &curs_cntrl = set.cursors.cntrlT[source];
 
     if (curs_cntrl.IsDisable())
@@ -408,7 +411,7 @@ static void PressSB_Cursors_100()
     SetCursPos100(set.cursors.source);
 }
 
-static void SetCursPos100(Channel::E ch)
+static void SetCursPos100(const Channel &ch)
 {
     set.cursors.dU_100percents[ch] = std::fabsf(set.cursors.posU[ch][0] - set.cursors.posU[ch][1]);
     set.cursors.dT_100percents[ch] = std::fabsf(set.cursors.posT[ch][0] - set.cursors.posT[ch][1]);
@@ -503,7 +506,7 @@ static void MoveCursUonPercentsOrPoints(int delta)
 
     float value = (float)delta;
 
-    Channel::E source = set.cursors.source;
+    Channel &source = set.cursors.source;
 
     if(set.cursors.movement.IsPercents())
     {
@@ -523,14 +526,14 @@ static void MoveCursUonPercentsOrPoints(int delta)
     Cursors_Update();
 }
 
-static void SetShiftCursPosU(Channel::E ch, int numCur, float delta)
+static void SetShiftCursPosU(const Channel &ch, int numCur, float delta)
 {
     set.cursors.posU[ch][numCur] = Math::Limitation<float>(set.cursors.posU[ch][numCur] - delta, 0, MAX_POS_U);
 }
 
 static void MoveCursTonPercentsOrPoints(int delta)
 {
-    Channel::E source = set.cursors.source;
+    Channel &source = set.cursors.source;
     CursCntrl &curs_cntrl = set.cursors.cntrlT[source];
 
     float value = static_cast<float>(delta);
@@ -553,7 +556,7 @@ static void MoveCursTonPercentsOrPoints(int delta)
     Cursors_Update();
 }
 
-static void SetShiftCursPosT(Channel::E ch, int num_cur, float delta)
+static void SetShiftCursPosT(const Channel &ch, int num_cur, float delta)
 {
     set.cursors.posT[ch][num_cur] = Math::Limitation<float>(set.cursors.posT[ch][num_cur] + delta, 0, MAX_POS_T);
 }

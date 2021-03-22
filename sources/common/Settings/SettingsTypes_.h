@@ -467,7 +467,7 @@ struct Channel
         Math
     } value;
 
-    Channel(E v) : value(v) {}
+    Channel(E v = A) : value(v) {}
     void Enable() const;
     void Disable() const;
     bool IsEnabled() const;

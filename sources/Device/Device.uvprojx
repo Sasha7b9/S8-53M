@@ -1928,11 +1928,6 @@
               <FilePath>.\src\Settings\Settings.h</FilePath>
             </File>
             <File>
-              <FileName>SettingsCursors.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Settings\SettingsCursors.h</FilePath>
-            </File>
-            <File>
               <FileName>SettingsTypes_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Settings\SettingsTypes_.h</FilePath>
@@ -4091,11 +4086,6 @@
               <FileName>Settings.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Settings\Settings.h</FilePath>
-            </File>
-            <File>
-              <FileName>SettingsCursors.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Settings\SettingsCursors.h</FilePath>
             </File>
             <File>
               <FileName>SettingsTypes_.h</FileName>
