@@ -22,9 +22,6 @@
 
 #define ENUM_SIGNALS_IN_SEC         (set.display.enumSignalsInSec)              // SettingsDisplay.enumSignalsInSec
 
-#define ALT_MARKERS                 (set.display.altMarkers)                    // SettingsDisplay.altMarkers
-#define ALT_MARKERS_HIDE            (ALT_MARKERS == AltMarkers::Hide)           // \c true, если дополнительные маркеры никогда не надо показывать.
-
 #define MENU_AUTO_HIDE              (set.display.menuAutoHide)                  // SettingsDisplay.menuAutoHide
 
 #define SHOW_STRING_NAVIGATION      (set.display.showStringNavigation)          // SettingsDisplay.showStringNavigation
@@ -54,7 +51,7 @@ struct SettingsDisplay
     Channel::E          last_affected_channel; // «десь хранитс€ номер последнего канала, которым управл€ли ручками.
                                                // Ќужно дл€ того, чтобы знать, какой сигнал рисовать наверху.
     ModeAccumulation::E mode_acum;             // «адаЄт режим накоплени€ сигналов.
-    AltMarkers::E       altMarkers;            // –ежим отображени€ дополнительных боковых маркеров смещений.
+    AltMarkers::E       alt_markers;           // –ежим отображени€ дополнительных боковых маркеров смещений.
     MenuAutoHide::E     menuAutoHide;          // „ерез сколько времени после последнего нажати€ клавиши пр€тать меню.
     bool                showFullMemoryWindow;  // ѕоказывать ли окно пам€ти вверху экрана. \todo Ќе используетс€.
     bool                showStringNavigation;  // ѕоказывать ли строку текущего состо€ни€ меню..

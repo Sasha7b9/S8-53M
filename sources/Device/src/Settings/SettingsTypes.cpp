@@ -938,3 +938,9 @@ ModeAccumulation::E ModeAccumulation::Get()
 {
     return set.display.mode_acum;
 }
+
+
+bool AltMarkers::IsHide()
+{
+    return (set.display.alt_markers == AltMarkers::Hide);
+}

@@ -476,7 +476,7 @@ void Display::WriteValueTrigLevel()
 
 void Display::DrawScaleLine(int x, bool forTrigLev)
 {
-    if(ALT_MARKERS_HIDE)
+    if(AltMarkers::IsHide())
     {
         return;
     }
@@ -951,7 +951,7 @@ void Display::ShiftScreen(int delta)
 
 void Display::ChangedRShiftMarkers()
 {
-    RShift::draw_markers = ALT_MARKERS_HIDE;
+    RShift::draw_markers = AltMarkers::IsHide();
     Timer::Enable(TypeTimer::RShiftMarkersAutoHide, 5000, FuncOnTimerRShiftMarkersAutoHide);
 }
 

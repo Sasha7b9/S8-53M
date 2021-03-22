@@ -313,7 +313,7 @@ DEF_CHOICE_3(mcSettings_ShowAltMarkers, PageDisplay::PageSettings::self,
     "Скрывать", "Hide",
     "Показывать", "Show",
     "Авто", "Auto",
-    ALT_MARKERS, nullptr, OnChanged_Settings_ShowAltMarkers, nullptr
+    set.display.alt_markers, nullptr, OnChanged_Settings_ShowAltMarkers, nullptr
 )
 
 static void OnChanged_Settings_AutoHide(bool autoHide)
