@@ -104,7 +104,7 @@ DEF_CHOICE_REG_8(mcMinMax, PageDisplay::self,
     "32", "32",
     "64", "64",
     "128", "128",
-    ENUM_MIN_MAX, IsActive_MinMax, OnChanged_MinMax, nullptr
+    set.display.enum_min_max, IsActive_MinMax, OnChanged_MinMax, nullptr
 )
 
 DEF_CHOICE_REG_10(mcSmoothing, PageDisplay::self,

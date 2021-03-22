@@ -159,6 +159,7 @@ struct ENumAveraging
     };
 
     static int NumAverages();
+    static int ToAbs();
 };
 
 
@@ -175,17 +176,22 @@ struct ModeAveraging { enum E
 
 
 // Количество измерений для расчёта минимального и максимального значений.
-struct ENumMinMax { enum E
+struct ENumMinMax
 {
-    _1,
-    _2,
-    _4,
-    _8,
-    _16,
-    _32,
-    _64,
-    _128
-};};
+    enum E
+    {
+        _1,
+        _2,
+        _4,
+        _8,
+        _16,
+        _32,
+        _64,
+        _128
+    };
+
+    static int ToAbs();
+};
 
 
 // Количество точек для расчёта скользящего фильтра.

@@ -74,9 +74,16 @@ ModeAveraging::E ModeAveraging::Current()
 
 int ENumAveraging::NumAverages()
 {
-    if (FPGA::SET::InRandomizeMode() && (NUM_AVE_FOR_RAND >= NUM_AVE))
+    if (FPGA::SET::InRandomizeMode() && (NUM_AVE_FOR_RAND >= ENumAveraging::ToAbs()))
     {
         return NUM_AVE_FOR_RAND;
     }
-    return NUM_AVE;
+
+    return ENumAveraging::ToAbs();
+}
+
+
+int ENumAveraging::ToAbs()
+{
+    return (1 << set.display.enum_ave);
 }

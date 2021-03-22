@@ -207,11 +207,11 @@ void SCPI::DISPLAY::MINMAX(puchar buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (value <= 7)         { ENUM_MIN_MAX = (ENumMinMax::E)value; }
-        else if (8 == value)    { ENUM_MIN_MAX = ENumMinMax::_1; }
+        if (value <= 7)         { set.display.enum_min_max = (ENumMinMax::E)value; }
+        else if (8 == value)    { set.display.enum_min_max = ENumMinMax::_1; }
         else if (9 == value)
         {
-            SCPI_SEND(":DISPLAY:MINMAX %s", map[ENUM_MIN_MAX].key);
+            SCPI_SEND(":DISPLAY:MINMAX %s", map[set.display.enum_min_max].key);
         }
     LEAVE_ANALYSIS
 }

@@ -2,11 +2,6 @@
 #include "common/Display/Colors_.h"
 
 
-#define NUM_AVE                     (1 << set.display.enum_ave)                 // Количество усреднений.
-
-#define ENUM_MIN_MAX                (::set.display.enumMinMax)                  // SettingsDisplay.enumMinMax
-#define NUM_MIN_MAX                 (1 << ENUM_MIN_MAX)                         // Количество измерений сигналов для расчёта минимумов и максимумов.
-
 // Настройки изображения
 struct SettingsDisplay
 {
@@ -22,7 +17,7 @@ struct SettingsDisplay
     ENumAccumulation::E enum_accum;             // Перечисление накоплений сигнала на экране.
     ENumAveraging::E    enum_ave;               // Перечисление усреднений сигнала.
     ModeAveraging::E    mode_ave;               // Тип усреднений по измерениям.
-    ENumMinMax::E       enumMinMax;             // Число измерений для определения минимумов и максимумов.
+    ENumMinMax::E       enum_min_max;           // Число измерений для определения минимумов и максимумов.
     Smoothing::E        smoothing;              // Число точек для скользящего фильтра.
     ENumSignalsInSec::E enum_fps;               // Перечисление считываний сигнала в секунду.
     Channel::E          last_affected_channel;  // Здесь хранится номер последнего канала, которым управляли ручками.
