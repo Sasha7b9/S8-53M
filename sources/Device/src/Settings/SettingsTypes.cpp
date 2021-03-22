@@ -873,12 +873,6 @@ bool CursCntrl::IsDisableForT(const Channel &ch)
 }
 
 
-CursCntrl::E CursCntrl::GetForMeasuresU()
-{
-    return set.measures.cntrlU.value;
-}
-
-
 BalanceADCtype::E BalanceADCtype::Get()
 {
     return set.debug.balance_ADC_type;

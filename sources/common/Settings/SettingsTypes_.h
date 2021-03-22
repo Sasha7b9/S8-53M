@@ -792,8 +792,6 @@ struct CursCntrl
         Disable        // никаким.
     } value;
 
-    static E GetForMeasuresU();
-
     static E GetForU();
     static E GetForU(const Channel &ch);
     static bool IsDisableForU(const Channel &ch);
