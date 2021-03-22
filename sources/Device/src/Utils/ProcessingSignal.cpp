@@ -1019,9 +1019,9 @@ float Processing::GetCursU(Channel::E ch, float posCurT)
     int last = 0;
     SettingsDisplay::PointsOnDisplay(&first, &last);
 
-    float retValue;
-    LIMITATION(retValue, static_cast<float>(200.0F - (dataIn[ch])[first + (int)posCurT] + MIN_VALUE), 0.0F, 200.0F);
-    return retValue;
+    float result = 0.0f;
+    LIMITATION(result, static_cast<float>(200.0F - (dataIn[ch])[first + (int)posCurT] + MIN_VALUE), 0.0F, 200.0F);
+    return result;
 }
 
 float Processing::GetCursT(Channel::E ch, float posCurU, int numCur)

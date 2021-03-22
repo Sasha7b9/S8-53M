@@ -34,9 +34,9 @@ String Cursors::GetVoltage(const Channel &source, int numCur)
 }
 
 
-String Cursors::GetTime(const Channel &source, int numCur)
+String Cursors::GetTime(const Channel &source, int num_cur)
 {
-    float time = MathFPGA::TimeCursor(CURS_POS_T(source, numCur), TBase::Get());
+    float time = MathFPGA::TimeCursor(set.cursors.posT[source][num_cur], TBase::Get());
 
     return GF::Time2String(time, true);
 }
@@ -60,7 +60,7 @@ String Cursors::GetPercentsT(const Channel &source)
 {
     float dPerc = set.cursors.dT_100percents[source];
 
-    float dValue = std::fabsf(CURS_POS_T0(source) - CURS_POS_T1(source));
+    float dValue = std::fabsf(set.cursors.posT[source][0] - set.cursors.posT[source][1]);
 
     String result = GF::Float2String(dValue / dPerc * 100.0F, false, 6);
 
@@ -86,10 +86,10 @@ void Cursors::Draw()
 
         if (bothCursors)
         {
-            x0 = static_cast<int>(Grid::Left() + CURS_POS_T0(source));
-            x1 = static_cast<int>(Grid::Left() + CURS_POS_T1(source));
-            y0 = static_cast<int>(Grid::TOP + Cursors::GetPosU(source, 0));
-            y1 = static_cast<int>(Grid::TOP + Cursors::GetPosU(source, 1));
+            x0 = (int)(Grid::Left() + set.cursors.posT[source][0]);
+            x1 = (int)(Grid::Left() + set.cursors.posT[source][1]);
+            y0 = (int)(Grid::TOP + Cursors::GetPosU(source, 0));
+            y1 = (int)(Grid::TOP + Cursors::GetPosU(source, 1));
 
             Rectangle(4, 4).Draw(x0 - 2, y0 - 2);
             Rectangle(4, 4).Draw(x1 - 2, y1 - 2);
@@ -99,16 +99,16 @@ void Cursors::Draw()
 
         if (cntrl != CursCntrl::Disable)
         {
-            DrawVertical(static_cast<int>(CURS_POS_T0(source)), y0);
-            DrawVertical(static_cast<int>(CURS_POS_T1(source)), y1);
+            DrawVertical((int)(set.cursors.posT[source][0]), y0);
+            DrawVertical((int)(set.cursors.posT[source][1]), y1);
         }
 
         cntrl = CursCntrl::GetForU();
 
         if (cntrl != CursCntrl::Disable)
         {
-            DrawHorizontal(static_cast<int>(Cursors::GetPosU(source, 0)), x0);
-            DrawHorizontal(static_cast<int>(Cursors::GetPosU(source, 1)), x1);
+            DrawHorizontal((int)(Cursors::GetPosU(source, 0)), x0);
+            DrawHorizontal((int)(Cursors::GetPosU(source, 1)), x1);
         }
     }
 }

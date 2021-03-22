@@ -2,10 +2,6 @@
 #include "common/Utils/String_.h"
 
 
-#define CURS_POS_T(ch, num)         (set.cursors.posCurT[ch][num])              // SettingsCursors.posCurT
-#define CURS_POS_T0(ch)             (CURS_POS_T(ch, 0))
-#define CURS_POS_T1(ch)             (CURS_POS_T(ch, 1))
-
 #define CURS_ACTIVE                 (set.cursors.active)                        // SettingsCursors.active
 #define CURS_ACTIVE_IS_T            (CURS_ACTIVE == CursActive::T)
 #define CURS_ACTIVE_IS_U            (CURS_ACTIVE == CursActive::U)
@@ -22,7 +18,7 @@ struct SettingsCursors
     CursCntrl::E    cntrlT[NumChannels];        // јктивные курсоры напр€жени€.
     Channel::E      source;                     // »сточник - к какому каналу относ€тс€ курсоры.
     float           posU[NumChannels][2];    // “екущие позиции курсоров напр€жени€ обоих каналов.
-    float           posCurT[NumChannels][2];    // “екущие позиции курсоров времени обоих каналов.
+    float           posT[NumChannels][2];    // “екущие позиции курсоров времени обоих каналов.
     float           dU_100percents[2];          // –ассто€ние между курсорами напр€жени€ дл€ 100%, дл€ обоих каналов.
     float           dT_100percents[2];          // –ассто€ние между курсорами времени дл€ 100%, дл€ обоих каналов.
     CursMovement::E movement;                   //  ак перемещатьс€ курсорам - по точкам или по процентам.

@@ -58,12 +58,12 @@ void Cursors_Update()
 
     if((lookMode0 == CursLookMode::Voltage || lookMode0 == CursLookMode::Both) && CURS_ACTIVE_IS_T)
     {
-        float posU0 = Processing::GetCursU(source, CURS_POS_T0(source));
+        float posU0 = Processing::GetCursU(source, set.cursors.posT[source][0]);
         SetCursPosU(source, 0, posU0);
     }
     if((lookMode1 == CursLookMode::Voltage || lookMode1 == CursLookMode::Both)  && CURS_ACTIVE_IS_T)
     {
-        float posU1 = Processing::GetCursU(source, CURS_POS_T1(source));
+        float posU1 = Processing::GetCursU(source, set.cursors.posT[source][1]);
         SetCursPosU(source, 1, posU1);
     }
     if((lookMode0 == CursLookMode::Time || lookMode0 == CursLookMode::Both) && CURS_ACTIVE_IS_U)
@@ -81,16 +81,16 @@ void Cursors_Update()
 }
 
 
-void SetCursPosU(Channel::E ch, int numCur, float pos)
+void SetCursPosU(Channel::E ch, int num_cur, float pos)
 {
-    set.cursors.posU[ch][numCur] = Math::Limitation(pos, 0.0f, (float)MAX_POS_U);
+    set.cursors.posU[ch][num_cur] = Math::Limitation(pos, 0.0f, (float)MAX_POS_U);
 }
 
 
 
-void SetCursPosT(Channel::E ch, int numCur, float pos)
+void SetCursPosT(Channel::E ch, int num_cur, float pos)
 {
-    CURS_POS_T(ch, numCur) = Math::Limitation(pos, 0.0f, (float)MAX_POS_T);
+    set.cursors.posT[ch][num_cur] = Math::Limitation(pos, 0.0f, (float)MAX_POS_T);
 }
 
 
@@ -369,13 +369,17 @@ static void DrawSB_Cursors_T(int x, int y)
         }
         else
         {
-            bool condLeft = false, condDown = false;
-            CalculateConditions(static_cast<int16>(CURS_POS_T0(source)), static_cast<int16>(CURS_POS_T1(source)), cursCntrl, &condLeft, &condDown);
-            if (condLeft && condDown)
+            bool cond_left = false;
+            bool cond_down = false;
+
+            CalculateConditions((int16)(set.cursors.posT[source][0]),
+                (int16)(set.cursors.posT[source][1]), cursCntrl, &cond_left, &cond_down);
+
+            if (cond_left && cond_down)
             {
                 DrawSB_Cursors_T_Both_Enable(x, y);
             }
-            else if (condLeft)
+            else if (cond_left)
             {
                 DrawSB_Cursors_T_Left(x, y);
             }
@@ -402,7 +406,7 @@ static void PressSB_Cursors_100()
 static void SetCursPos100(Channel::E ch)
 {
     set.cursors.dU_100percents[ch] = std::fabsf(set.cursors.posU[ch][0] - set.cursors.posU[ch][1]);
-    set.cursors.dT_100percents[ch] = std::fabsf(CURS_POS_T0(ch) - CURS_POS_T1(ch));
+    set.cursors.dT_100percents[ch] = std::fabsf(set.cursors.posT[ch][0] - set.cursors.posT[ch][1]);
 }
 
 static void DrawSB_Cursors_100(int x, int y)
@@ -540,9 +544,9 @@ static void MoveCursTonPercentsOrPoints(int delta)
     Cursors_Update();
 }
 
-static void SetShiftCursPosT(Channel::E ch, int numCur, float delta)
+static void SetShiftCursPosT(Channel::E ch, int num_cur, float delta)
 {
-    CURS_POS_T(ch, numCur) = Math::Limitation<float>(CURS_POS_T(ch, numCur) + delta, 0, MAX_POS_T);
+    set.cursors.posT[ch][num_cur] = Math::Limitation<float>(set.cursors.posT[ch][num_cur] + delta, 0, MAX_POS_T);
 }
 
 const Page *PageCursors::self = &pageCursors;
