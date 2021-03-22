@@ -22,10 +22,6 @@
 #define CURS_LOOKMODE_0             (CURS_LOOKMODE(0))
 #define CURS_LOOKMODE_1             (CURS_LOOKMODE(1))
 
-#define CURS_SHOW                   (set.cursors.showCursors)                   // SettingsCursors.showCursors
-
-
-
 
 // Настройки курсорных измерений.
 struct SettingsCursors
@@ -41,7 +37,7 @@ struct SettingsCursors
     CursActive::E   active;                     // Какие курсоры сейчас активны.
     CursLookMode::E lookMode[2];                // Режимы слежения за курсорами для двух пар курсоров.
     bool            show_freq;                  // Установленное в true значение, что нужно показывать на экране значение 1/dT между курсорами.
-    bool            showCursors;                // Показывать ли курсоры.
+    bool            show;                       // Показывать ли курсоры.
 };
 
 

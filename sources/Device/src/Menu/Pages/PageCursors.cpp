@@ -100,7 +100,7 @@ DEF_CHOICE_2(mcShow, PageCursors::self,
     "Enable/disable cursors.",
     "Нет", "No",
     "Да", "Yes",
-    CURS_SHOW, nullptr, nullptr, nullptr
+    set.cursors.show, nullptr, nullptr, nullptr
 )
 
 

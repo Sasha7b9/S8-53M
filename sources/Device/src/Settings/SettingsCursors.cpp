@@ -22,7 +22,7 @@ float Cursors::GetPosU(const Channel &ch, int num)
 bool Cursors::NecessaryDraw()
 {
     return (!CursCntrl::IsDisableForU(set.cursors.source) || !CursCntrl::IsDisableForT(set.cursors.source)) &&
-        (CURS_SHOW || Menu::GetNameOpenedPage() == NamePage::SB_Curs);
+        (set.cursors.show || Menu::GetNameOpenedPage() == NamePage::SB_Curs);
 }
 
 
