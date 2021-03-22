@@ -160,12 +160,14 @@ static const Settings defaultSettings =
     },
     // math
     {
-        ScaleFFT::Log,
-        SourceFFT::A_,
-        WindowFFT::Rectangle,
-        FFTmaxDB::_60,
+        {
+            ScaleFFT::Log,
+            SourceFFT::A_,
+            WindowFFT::Rectangle,
+            FFTmaxDB::_60,
+            0
+        },
         Function::Sum,
-        0,
         {100, 256 - 100},
         1,
         1,
