@@ -122,8 +122,6 @@ struct OutputRegisters
 
 
 
-#define CONSOLE_IN_PAUSE                    (set.debug.consoleInPause)
-
 #define BALANCE_ADC_TYPE                    (set.debug.balanceADCtype)
 #define BALANCE_ADC_TYPE_IS_HAND            (BALANCE_ADC_TYPE == BalanceADCtype::Hand)
 
@@ -311,7 +309,7 @@ struct SettingsDebug
 {
     int16             num_srings;                 // Число строк в консоли.
     int8              size_font;                  // Размер шрифта консоли - 0 - 5, 1 - 8,
-    bool              consoleInPause;             // \brief Признак того, что консоль находится в режиме паузы. Режим
+    bool              console_in_pause;           // \brief Признак того, что консоль находится в режиме паузы. Режим
                                                   // паузы означает, что новые 
                                                   // сообщения она не записывает и не сохраняет.
     BalanceADCtype::E balanceADCtype;             // Тип балансировки.

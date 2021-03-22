@@ -1021,7 +1021,7 @@ void Display::DeleteFirstString()
 
 void Display::AddString(pchar string)
 {
-    if(CONSOLE_IN_PAUSE)
+    if(set.debug.console_in_pause)
     {
         return;
     }
@@ -1078,7 +1078,7 @@ void Display::SetPauseForConsole(bool pause)
 
 void Display::OneStringUp()
 {
-    if(!CONSOLE_IN_PAUSE)
+    if(!set.debug.console_in_pause)
     {
     }
     else if(lastStringForPause > set.debug.num_srings - 1)
@@ -1091,7 +1091,7 @@ void Display::OneStringUp()
 
 void Display::OneStringDown()
 {
-    if(!CONSOLE_IN_PAUSE)
+    if(!set.debug.console_in_pause)
     {
     }
     else if(lastStringForPause < FirstEmptyString() - 1)
