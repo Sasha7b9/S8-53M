@@ -444,14 +444,14 @@ DEF_PAGE_3(pageADC, PageDebug::self, NamePage::DebugADC,
 
 static void OnChanged_Randomizer_SamplesForGates()
 {
-    FPGA::Randomizer::SetNumberMeasuresForGates(NUM_MEAS_FOR_GATES);
+    FPGA::Randomizer::SetNumberMeasuresForGates(set.debug.num_measures_for_gates);
 }
 
 DEF_GOVERNOR(mgRandomizer_SamplesForGates, PageDebug::PageRandomizer::self,
     "Выб-к/ворота", "Samples/gates",
     "",
     "",
-    NUM_MEAS_FOR_GATES, 1, 2500, nullptr, OnChanged_Randomizer_SamplesForGates, nullptr
+    set.debug.num_measures_for_gates, 1, 2500, nullptr, OnChanged_Randomizer_SamplesForGates, nullptr
 )
 
 static void OnChanged_Randomizer_AltTShift0()

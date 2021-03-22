@@ -135,8 +135,6 @@ struct OutputRegisters
 #define DEBUG_STRETCH_ADC_A                 (DEBUG_STRETCH_ADC(ChA))
 #define DEBUG_STRETCH_ADC_B                 (DEBUG_STRETCH_ADC(ChB))
 
-#define NUM_MEAS_FOR_GATES                  (set.debug.numMeasuresForGates)
-
 #define ADD_SHIFT_T0                        (set.debug.shiftT0)
 
 #define SHOW_STATS                          (set.debug.showStats)
@@ -313,7 +311,7 @@ struct SettingsDebug
     int16             balance_ADC[2];             // Значение дополнительного смещения АЦП для ручной балансировки.
     StretchADCtype::E stretch_ADC_type;           // Тип растяжки канала.
     int16             stretch_ADC[2];             // Значение растяжки канала для ручного режима.
-    int16             numMeasuresForGates;        // Число измерений для ворот.
+    int16             num_measures_for_gates;     // Число измерений для ворот.
     int16             shiftT0;                    // Дополнительное смещение по времени для данной развёртки режима
                                                   // рандомизатора.
     bool              showStats;                  // Показывать статистику на экране (fps, например).
