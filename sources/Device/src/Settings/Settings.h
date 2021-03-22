@@ -46,16 +46,13 @@
 #define IS_SHOW_REG_TBASE       (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.tBase)
 
 
-#define FILE_NAME_MASK          (set.memory.fileNameMask)
-
-
  // Настройки каналов
 struct SettingsChannel
 {
     float         stretch_ADC;                 // Поправочный коэффициент.
     int16         rshift;
     int16         rshift_add[Range::Count][2]; // Добавочное смещение для открытого (0) и закрытого (1) входов.
-    ModeCouple::E modeCouple;                  // Режим по входу.
+    ModeCouple::E mode_сouple;                 // Режим по входу.
     Divider::E    divider;                     // Множитель.
     Range::E      range;                       // Масштаб по напряжению.
     bool          enable;                      // Включён ли канал.
