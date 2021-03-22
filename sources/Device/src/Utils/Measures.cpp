@@ -236,11 +236,11 @@ void Measure::ShortPressOnSmallButonMarker()
 {
     if(Measure::IsMarked(posActive))
     {
-        set.measures.marked_measure = Measure::None;
+        set.measures.marked = Measure::None;
     }
     else
     {
-        set.measures.marked_measure = Measure::Get(posActive);
+        set.measures.marked = Measure::Get(posActive);
     }
 }
 
@@ -348,7 +348,7 @@ void Measure::DrawAll()
             if (meas != Measure::None)
             {
                 Measure::Name(str, elem).Draw(x + 4, y + 2, active ? Color::BACK : Color::FILL);
-                if (meas == Measure::Marked())
+                if (meas == set.measures.marked)
                 {
                     Region(dX - 2, 9).Fill(x + 1, y + 1, active ? Color::BACK : Color::FILL);
                     Measure::Name(str, elem).Draw(x + 4, y + 2, active ? Color::FILL : Color::BACK);
@@ -377,12 +377,6 @@ void Measure::DrawAll()
 }
 
 
-Measure::E Measure::Marked()
-{
-    return set.measures.marked_measure;
-}
-
-
 Measure::E Measure::Get(int num)
 {
     return set.measures.measures[num];
@@ -391,5 +385,5 @@ Measure::E Measure::Get(int num)
 
 bool Measure::IsMarked(int num)
 {
-    return Get(num) == Marked();
+    return Get(num) == set.measures.marked;
 }

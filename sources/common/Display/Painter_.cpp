@@ -44,11 +44,11 @@ void CalculateColor(uint8 *color)
 
     if (*color == Color::FLASH_10.index)
     {
-        *color = static_cast<uint8>(inverseColors ? Color::BACK.index : Color::FILL.index);
+        *color = (uint8)(inverseColors ? Color::BACK.index : Color::FILL.index);
     }
     else if (*color == Color::FLASH_01.index)
     {
-        *color = static_cast<uint8>(inverseColors ? Color::FILL.index : Color::BACK.index);
+        *color = (uint8)(inverseColors ? Color::FILL.index : Color::BACK.index);
     }
 }
 
@@ -94,13 +94,13 @@ void Painter::DrawPicture(int , int , int , int , uint8 *)
 
 uint Painter::ReduceBrightness(uint colorValue, float newBrightness)
 {
-    int red = static_cast<int>(R_FROM_COLOR(colorValue) * newBrightness);
+    int red = (int)(R_FROM_COLOR(colorValue) * newBrightness);
     LIMITATION(red, red, 0, 31);
-    int green = static_cast<int>(G_FROM_COLOR(colorValue) * newBrightness);
+    int green = (int)(G_FROM_COLOR(colorValue) * newBrightness);
     LIMITATION(green, green, 0, 63);
-    int blue = static_cast<int>(B_FROM_COLOR(colorValue) * newBrightness);
+    int blue = (int)(B_FROM_COLOR(colorValue) * newBrightness);
     LIMITATION(blue, blue, 0, 31);
-    return Color::Make(static_cast<uint8>(red), static_cast<uint8>(green), static_cast<uint8>(blue));
+    return Color::Make((uint8)(red), (uint8)(green), (uint8)(blue));
 }
 
 

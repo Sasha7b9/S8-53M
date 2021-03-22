@@ -146,7 +146,7 @@ int ReaderFPGA::CalculateShift()            // \todo Не забыть восстановить функ
     if (FPGA::SET::InRandomizeMode())
     {
         float tin = static_cast<float>(rand - min) / (max - min) * 10e-9F;
-        int retValue = static_cast<int>(tin / 10e-9F * FPGA::Randomizer::Kr[TBase::Get()]);
+        int retValue = (int)(tin / 10e-9F * FPGA::Randomizer::Kr[TBase::Get()]);
         return retValue;
     }
 

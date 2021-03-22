@@ -112,7 +112,7 @@ String GF::Float2String(const Float &value, bool always_sign, int num_digits)
 
     bool signExist = always_sign || value < 0.0f;
 
-    while(static_cast<int>(result.Size()) < num_digits + (signExist ? 2 : 1))
+    while((int)(result.Size()) < num_digits + (signExist ? 2 : 1))
     {
         result.Append("0");
     }
@@ -149,7 +149,7 @@ bool GF::String2Int(char *str, int *value)
     {
         str++;
     }
-    int length = static_cast<int>(std::strlen(str));
+    int length = (int)(std::strlen(str));
     if (length == 0)
     {
         return false;

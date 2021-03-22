@@ -149,7 +149,7 @@ void CalculateSine()
     {
         float step = 2.0F * 3.1415926F / (POINTS_IN_PERIOD - 1);
         float value = (std::sin(static_cast<float>(i) * step) + 1.0F) / 2.0F;
-        points[i] = static_cast<uint8>(value * amplitude * 255);
+        points[i] = (uint8)(value * amplitude * 255);
     }
 }
 
@@ -158,7 +158,7 @@ void CalculateMeandr()
 {
     for (int i = 0; i < POINTS_IN_PERIOD / 2; i++)
     {
-        points[i] = static_cast<uint8>(255 * amplitude);
+        points[i] = (uint8)(255 * amplitude);
     }
     for (int i = POINTS_IN_PERIOD / 2; i < POINTS_IN_PERIOD; i++)
     {
@@ -172,6 +172,6 @@ void CalculateTriangle()
     float k = 255.0 / POINTS_IN_PERIOD;
     for (int i = 0; i < POINTS_IN_PERIOD; i++)
     {
-        points[i] = static_cast<uint8>(k * i * amplitude);
+        points[i] = (uint8)(k * i * amplitude);
     }
 }

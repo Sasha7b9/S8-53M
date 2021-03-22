@@ -37,7 +37,7 @@ void GovernorGUI::OnPaint(wxPaintEvent &)
     float x = static_cast<float>(radius) + Sin(angleDiscrete) * r;
     float y = static_cast<float>(radius) + Cos(angleDiscrete) * r;
 
-    dc.DrawCircle(static_cast<int>(x), static_cast<int>(y), radius / 5);
+    dc.DrawCircle((int)(x), (int)(y), radius / 5);
 }
 
 

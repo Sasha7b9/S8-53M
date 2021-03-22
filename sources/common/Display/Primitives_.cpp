@@ -33,7 +33,7 @@ void Primitives::VPointLine::Draw(int , int , int , const Color &) const
 
 void Primitives::HPointLine::Draw(int y, int x0, int x1) const
 {
-    for (int x = x0; x <= x1; x += static_cast<int>(delta))
+    for (int x = x0; x <= x1; x += (int)(delta))
     {
         Point().Draw(x, y);
     }

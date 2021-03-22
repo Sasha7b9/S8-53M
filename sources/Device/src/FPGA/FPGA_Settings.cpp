@@ -390,7 +390,7 @@ void RegUPR::Load()
 
 void FPGA::Calibrator::LoadKoeff(const Channel & /*chan*/)
 {
-//    FPGA::WriteToHardware(ch == ChA ? WR_CAL_A : WR_CAL_B, static_cast<uint8>(STRETCH_ADC(ch) * 0x80), false);
+//    FPGA::WriteToHardware(ch == ChA ? WR_CAL_A : WR_CAL_B, (uint8)(STRETCH_ADC(ch) * 0x80), false);
 }
 
 
@@ -633,11 +633,11 @@ void TrigLev::FindAndSet()
     uint8 min = Math::GetMinFromArray(data, 0, lastPoint);
     uint8 max = Math::GetMaxFromArray(data, 0, lastPoint);
 
-    uint8 aveValue = static_cast<uint8>((static_cast<int>(min) + static_cast<int>(max)) / 2);
+    uint8 aveValue = (uint8)(((int)(min) + (int)(max)) / 2);
 
     static const float scale = (float)(TrigLevMax - TrigLevZero) / (float)(MAX_VALUE - AVE_VALUE) / 2.4F;
 
-    int16 trigLev = static_cast<int16>(TrigLevZero + scale * (static_cast<int>(aveValue) - AVE_VALUE) -
+    int16 trigLev = static_cast<int16>(TrigLevZero + scale * ((int)(aveValue) - AVE_VALUE) -
         (RShift::Get(chanTrig) - RShiftZero));
 
     TrigLev::Set(trigSource, trigLev);

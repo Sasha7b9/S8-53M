@@ -82,7 +82,7 @@ const float MathFPGA::absStepTShift[] =
 
 int RShift::ToRel(float rShiftAbs, Range::E range)
 {
-    int retValue = static_cast<int>(RShiftZero + rShiftAbs / MathFPGA::absStepRShift[range]);
+    int retValue = (int)(RShiftZero + rShiftAbs / MathFPGA::absStepRShift[range]);
     if (retValue < RShiftMin)
     {
         retValue = RShiftMin;
@@ -114,7 +114,7 @@ void MathFPGA::PointsRelToVoltage(puchar points, int numPoints, Range::E range, 
     int voltInPixel = voltsInPixelInt[range];
     float maxVoltsOnScreen = MAX_VOLTAGE_ON_SCREEN(range);
     float rShiftAbs = RSHIFT_2_ABS(rShift, range);
-    int diff = static_cast<int>((MIN_VALUE * voltInPixel) + (maxVoltsOnScreen + rShiftAbs) * 20e3F);
+    int diff = (int)((MIN_VALUE * voltInPixel) + (maxVoltsOnScreen + rShiftAbs) * 20e3F);
     float koeff = 1.0F / 20e3F;
     for (int i = 0; i < numPoints; i++)
     {
@@ -135,7 +135,7 @@ void MathFPGA::PointsVoltageToRel(const float* voltage, int numPoints, Range::E 
 
     for (int i = 0; i < numPoints; i++)
     {
-        int value = static_cast<int>(voltage[i] * voltInPixel + delta);
+        int value = (int)(voltage[i] * voltInPixel + delta);
         if (value < 0)
         {
             points[i] = 0;
@@ -153,7 +153,7 @@ void MathFPGA::PointsVoltageToRel(const float* voltage, int numPoints, Range::E 
 
 uint8 MathFPGA::VoltageToPoint(float voltage, Range::E range, int16 rShift)
 {
-    int relValue = static_cast<int>((voltage + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) /
+    int relValue = (int)((voltage + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) /
         voltsInPixel[range] + MIN_VALUE);
 
     LIMITATION(relValue, relValue, 0, 255);
@@ -366,8 +366,8 @@ void MathFPGA::CalculateFFT(float* dataR, int numPoints, float* result, float* f
         *density0 = result[SettingsMath::PositionCursorFFT(0)];
         *density1 = result[SettingsMath::PositionCursorFFT(1)];
     }
-    *y0 = static_cast<int>(Grid::MathBottom() - result[SettingsMath::PositionCursorFFT(0)] * Grid::MathHeight());
-    *y1 = static_cast<int>(Grid::MathBottom() - result[SettingsMath::PositionCursorFFT(1)] * Grid::MathHeight());
+    *y0 = (int)(Grid::MathBottom() - result[SettingsMath::PositionCursorFFT(0)] * Grid::MathHeight());
+    *y1 = (int)(Grid::MathBottom() - result[SettingsMath::PositionCursorFFT(1)] * Grid::MathHeight());
 }
 
 

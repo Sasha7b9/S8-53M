@@ -101,18 +101,18 @@ void Governor::DrawLowPart(int x, int y) const
             if(delta > 0.0F)
             {
                 x = Text(GF::Int2String(*own->cell).c_str()).DrawWithLimitation(drawX,
-                    static_cast<int>(y + 21 - delta), Color::BACK, limX, limY, limWidth, limHeight);
+                    (int)(y + 21 - delta), Color::BACK, limX, limY, limWidth, limHeight);
 
                 Text(GF::Int2String(NextValue()).c_str()).DrawWithLimitation(drawX,
-                    static_cast<int>(y + 21 + 10 - delta), Color::BACK, limX, limY, limWidth, limHeight);
+                    (int)(y + 21 + 10 - delta), Color::BACK, limX, limY, limWidth, limHeight);
             }
             if(delta < 0.0F)
             {
                 x = Text(GF::Int2String(*own->cell).c_str()).DrawWithLimitation(drawX,
-                    static_cast<int>(y + 21 - delta), Color::BACK, limX, limY, limWidth, limHeight);
+                    (int)(y + 21 - delta), Color::BACK, limX, limY, limWidth, limHeight);
 
                 Text(GF::Int2String(PrevValue()).c_str()).DrawWithLimitation(drawX,
-                    static_cast<int>(y + 21 - 10 - delta), Color::BACK, limX, limY, limWidth, limHeight);
+                    (int)(y + 21 - 10 - delta), Color::BACK, limX, limY, limWidth, limHeight);
             }
         }
     }
@@ -408,7 +408,7 @@ void GovernorColor::DrawValue(int x, int y, int delta) const
         ct->Init();
     }
 
-    int vals[4] = { static_cast<int>(ct->brightness * 100), blue, green, red };
+    int vals[4] = { (int)(ct->brightness * 100), blue, green, red };
 
     Region(Item::WIDTH + delta - 2, Item::HEIGHT / 2 - 3).Fill(x, y, Color::BLACK);
     x += 92;
@@ -587,9 +587,9 @@ void Choice::DrawClosed(int x, int y) const
     }
     else
     {
-        Text(NameCurrentSubItem()).DrawWithLimitation(x + 4, static_cast<int>(y + 21 - deltaY), colorText, x, y + 19, Item::WIDTH_VALUE, Item::HEIGHT_VALUE - 1);
-        HLine().Draw(static_cast<int>(y + (deltaY > 0 ? 31 : 19) - deltaY), x + 3, x + Item::WIDTH_VALUE + 1, Color::BLACK);
-        Text(deltaY > 0 ? NameNextSubItem() : NamePrevSubItem()).DrawWithLimitation(x + 4, static_cast<int>(y + (deltaY > 0 ? 33 : 9) - deltaY), colorText, x, y + 19, Item::WIDTH_VALUE, Item::HEIGHT_VALUE - 1);
+        Text(NameCurrentSubItem()).DrawWithLimitation(x + 4, (int)(y + 21 - deltaY), colorText, x, y + 19, Item::WIDTH_VALUE, Item::HEIGHT_VALUE - 1);
+        HLine().Draw((int)(y + (deltaY > 0 ? 31 : 19) - deltaY), x + 3, x + Item::WIDTH_VALUE + 1, Color::BLACK);
+        Text(deltaY > 0 ? NameNextSubItem() : NamePrevSubItem()).DrawWithLimitation(x + 4, (int)(y + (deltaY > 0 ? 33 : 9) - deltaY), colorText, x, y + 19, Item::WIDTH_VALUE, Item::HEIGHT_VALUE - 1);
     }
     HLine().Draw(y + Item::HEIGHT + 1, x, x + Item::WIDTH, Color::BorderMenu());
 

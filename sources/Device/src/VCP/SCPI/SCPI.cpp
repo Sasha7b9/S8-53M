@@ -58,7 +58,7 @@ label_another:
 
     for (int i = 0; i < pointer; i++)
     {
-        bufData[i] = static_cast<uint8>(toupper(static_cast<int8>(bufData[i])));
+        bufData[i] = (uint8)(toupper(static_cast<int8>(bufData[i])));
 
         if (bufData[i] == 0x0d || bufData[i] == 0x0a)
         {
@@ -137,7 +137,7 @@ void SCPI::ProcessingCommand(const StructCommand *commands, uint8 *buffer)
     }
     for (uint i = 0; i < sizeNameCommand; i++)
     {
-        buffer[i] = static_cast<uint8>(toupper(static_cast<int8>(buffer[i])));
+        buffer[i] = (uint8)(toupper(static_cast<int8>(buffer[i])));
     }
     int numCommand = -1;
     char *name = 0;

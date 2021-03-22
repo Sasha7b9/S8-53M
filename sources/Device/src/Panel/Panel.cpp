@@ -718,7 +718,7 @@ static void ChangeShiftScreen(int *prevTime, void(*f)(int), int16 relStep)
     {
         step = 1;
     }
-    f(static_cast<int>(step));
+    f((int)(step));
 }
 
 

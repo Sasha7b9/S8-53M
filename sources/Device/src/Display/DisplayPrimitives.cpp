@@ -16,8 +16,8 @@ void ProgressBar::Draw()
     std::sprintf(buffer, "Завершено %.1f %%", passedPercents);
     Text(buffer).DrawInCenterRect(x, y - 15, width, height, Color::FILL);
     Rectangle(width, height).Draw(x, y);
-    Region(static_cast<int>(width * passedPercents / 100.0F), height).Fill(x, y);
+    Region((int)(width * passedPercents / 100.0F), height).Fill(x, y);
     buffer[0] = 0;
-    std::sprintf(buffer, "Осталось %.1f с", static_cast<int>(fullTime - passedTime) / 1000.0F);
+    std::sprintf(buffer, "Осталось %.1f с", (int)(fullTime - passedTime) / 1000.0F);
     Text(buffer).DrawInCenterRect(x, y + height, width, height);
 }

@@ -52,7 +52,7 @@ void FPGA::Init()
 
 void FPGA::SetNumSignalsInSec(int num_sig_in_sec) 
 {
-    Timer::Enable(TypeTimer::NumSignalsInSec, static_cast<int>(1000.F / num_sig_in_sec), OnTimerCanReadData);
+    Timer::Enable(TypeTimer::NumSignalsInSec, (int)(1000.F / num_sig_in_sec), OnTimerCanReadData);
 }
 
 

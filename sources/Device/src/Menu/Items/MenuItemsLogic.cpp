@@ -77,7 +77,7 @@ void IPaddress::ChangeValue(int delta)
         }
         else
         {
-            OwnData()->ip0[numByte] = static_cast<uint8>(newValue);
+            OwnData()->ip0[numByte] = (uint8)(newValue);
         }
         Sound::GovernorChangedValue();
         Display::ShowWarningGood(Warning::NeedRebootDevice2);

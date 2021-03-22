@@ -212,13 +212,13 @@ void Grid::Draw(int left, int top, int width, int height)
     }
     else if (TypeGrid::Is2())
     {
-        DrawType2(left, top, right, bottom, static_cast<int>(deltaX), static_cast<int>(deltaY),
-            static_cast<int>(stepX), static_cast<int>(stepY));
+        DrawType2(left, top, right, bottom, (int)(deltaX), (int)(deltaY),
+            (int)(stepX), (int)(stepY));
     }
     else if (TypeGrid::Is3())
     {
-        DrawType3(left, top, right, bottom, centerX, centerY, static_cast<int>(deltaX), static_cast<int>(deltaY),
-            static_cast<int>(stepX), static_cast<int>(stepY));
+        DrawType3(left, top, right, bottom, centerX, centerY, (int)(deltaX), (int)(deltaY),
+            (int)(stepX), (int)(stepY));
     }
 }
 
@@ -233,7 +233,7 @@ void Grid::DrawSpectrum()
         float scale = (float)Grid::MathHeight() / numParts;
         for (int i = 1; i < numParts; i++)
         {
-            int y = static_cast<int>(Grid::MathTop() + i * scale);
+            int y = (int)(Grid::MathTop() + i * scale);
             HLine().Draw(y, Grid::Left(), Grid::Left() + 256, Color::GRID);
             if (!Menu::IsMinimize())
             {
@@ -253,7 +253,7 @@ void Grid::DrawSpectrum()
         float scale = (float)Grid::MathHeight() / 5;
         for (int i = 1; i < 5; i++)
         {
-            int y = static_cast<int>(Grid::MathTop() + i * scale);
+            int y = (int)(Grid::MathTop() + i * scale);
             HLine().Draw(y, Grid::Left(), Grid::Left() + 256, Color::GRID);
             if (!Menu::IsMinimize())
             {
@@ -284,26 +284,26 @@ void Grid::DrawType1(int left, int top, int right, int bottom, float centerX, fl
     }
     masX[16] = (uint16)(right - 1);
 
-    MultiVPointLine(17, masX, static_cast<int>(stepY), CalculateCountV()).Draw(static_cast<int>(top + stepY),
+    MultiVPointLine(17, masX, (int)(stepY), CalculateCountV()).Draw((int)(top + stepY),
         Color::GRID);
 
     uint8 mas[13];
     mas[0] = (uint8)(top + 1);
     for (int i = 1; i < 5; i++)
     {
-        mas[i] = static_cast<uint8>(top + deltaY * i);
+        mas[i] = (uint8)(top + deltaY * i);
     }
     for (int i = 5; i < 8; i++)
     {
-        mas[i] = static_cast<uint8>(centerY - 6 + i);
+        mas[i] = (uint8)(centerY - 6 + i);
     }
     for (int i = 8; i < 12; i++)
     {
-        mas[i] = static_cast<uint8>(centerY + deltaY * (i - 7));
+        mas[i] = (uint8)(centerY + deltaY * (i - 7));
     }
     mas[12] = (uint8)(bottom - 1);
 
-    MultiHPointLine(13, mas, static_cast<int>(stepX), CalculateCountH()).Draw(static_cast<int>(left + stepX),
+    MultiHPointLine(13, mas, (int)(stepX), CalculateCountH()).Draw((int)(left + stepX),
         Color::GRID);
 }
 

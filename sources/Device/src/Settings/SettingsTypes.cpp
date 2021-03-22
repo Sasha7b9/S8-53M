@@ -304,7 +304,7 @@ void TBase::Set(TBase::E tBase)
         float tShiftAbsOld = TSHIFT_2_ABS(TShift::Get(), TBase::Get());
         set.time.tBase = tBase;
         Load();
-        TShift::Set(static_cast<int>(TSHIFT_2_REL(tShiftAbsOld, TBase::Get())));
+        TShift::Set((int)(TSHIFT_2_REL(tShiftAbsOld, TBase::Get())));
         Display::Redraw();
     }
     else

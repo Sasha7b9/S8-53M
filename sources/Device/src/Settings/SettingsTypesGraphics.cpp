@@ -41,8 +41,8 @@ void RShift::Draw(const Channel &ch)
         int rShift = RShift::GetMath();
         float scale = (float)Grid::MathHeight() / 960;
         float y = (Grid::MathTop() + Grid::MathBottom()) / 2.0F - scale * (rShift - RShiftZero);
-        Char(Symbol::S8::RSHIFT_NORMAL).Draw(static_cast<int>(x - 9), static_cast<int>(y - 4), Color::FILL);
-        Char('m').Draw(static_cast<int>(x - 8), static_cast<int>(y - 5), Color::BACK);
+        Char(Symbol::S8::RSHIFT_NORMAL).Draw((int)(x - 9), (int)(y - 4), Color::FILL);
+        Char('m').Draw((int)(x - 8), (int)(y - 5), Color::BACK);
         return;
     }
     if (!ch.IsEnabled())
@@ -57,24 +57,24 @@ void RShift::Draw(const Channel &ch)
 
     if (y > Grid::ChannelBottom())
     {
-        Char(Symbol::S8::RSHIFT_LOWER).Draw(static_cast<int>(x - 7), Grid::ChannelBottom() - 11, ch.GetColor());
-        Point().Draw(static_cast<int>(x - 5), Grid::ChannelBottom() - 2);
+        Char(Symbol::S8::RSHIFT_LOWER).Draw((int)(x - 7), Grid::ChannelBottom() - 11, ch.GetColor());
+        Point().Draw((int)(x - 5), Grid::ChannelBottom() - 2);
         y = static_cast<float>(Grid::ChannelBottom() - 7);
         x++;
     }
     else if (y < Grid::TOP)
     {
-        Char(Symbol::S8::RSHIFT_ABOVE).Draw(static_cast<int>(x - 7), Grid::TOP + 2, ch.GetColor());
-        Point().Draw(static_cast<int>(x - 5), Grid::TOP + 2);
+        Char(Symbol::S8::RSHIFT_ABOVE).Draw((int)(x - 7), Grid::TOP + 2, ch.GetColor());
+        Point().Draw((int)(x - 5), Grid::TOP + 2);
         y = Grid::TOP + 7;
         x++;
     }
     else
     {
-        Char(Symbol::S8::RSHIFT_NORMAL).Draw(static_cast<int>(x - 8), static_cast<int>(y - 4), ch.GetColor());
+        Char(Symbol::S8::RSHIFT_NORMAL).Draw((int)(x - 8), (int)(y - 4), ch.GetColor());
         if (((ch == ChA) ? show_level_A : show_level_B) && ModeWork::IsDirect())
         {
-            DashedHLine(7, 3).Draw(static_cast<int>(y), Grid::Left(), Grid::Right(), 0);
+            DashedHLine(7, 3).Draw((int)(y), Grid::Left(), Grid::Right(), 0);
         }
     }
 
@@ -87,9 +87,9 @@ void RShift::Draw(const Channel &ch)
 
         float yFull = Grid::ChannelCenterHeight() - scaleFull * (rShift - RShiftZero);
 
-        Region(4, 6).Fill(4, static_cast<int>(yFull - 3), ch.GetColor());
-        Char(ch == ChA ? '1' : '2').Draw(5, static_cast<int>(yFull - 9), Color::BACK);
+        Region(4, 6).Fill(4, (int)(yFull - 3), ch.GetColor());
+        Char(ch == ChA ? '1' : '2').Draw(5, (int)(yFull - 9), Color::BACK);
     }
-    Char(ch == ChA ? '1' : '2').Draw(static_cast<int>(x - 7), static_cast<int>(y - 9), Color::BACK);
+    Char(ch == ChA ? '1' : '2').Draw((int)(x - 7), (int)(y - 9), Color::BACK);
     Font::Set(TypeFont::S8);
 }

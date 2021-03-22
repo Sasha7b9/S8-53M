@@ -519,8 +519,8 @@ void Display::DrawCursorTrigLevel()
     }
     int trigLev = TrigLev::Get(ch) + (RShift::Get((Channel::E)ch) - RShiftZero);
     float scale = 1.0F / ((TrigLevMax - TrigLevMin) / 2.0F / Grid::ChannelHeight());
-    int y0 = static_cast<int>((Grid::TOP + Grid::ChannelBottom()) / 2 + scale * (TrigLevZero - TrigLevMin));
-    int y = static_cast<int>(y0 - scale * (trigLev - TrigLevMin));
+    int y0 = (int)((Grid::TOP + Grid::ChannelBottom()) / 2 + scale * (TrigLevZero - TrigLevMin));
+    int y = (int)(y0 - scale * (trigLev - TrigLevMin));
 
     y = (y - Grid::ChannelCenterHeight()) + Grid::ChannelCenterHeight();
 
@@ -560,7 +560,7 @@ void Display::DrawCursorTrigLevel()
         int shiftFullMax = RShiftMax + TrigLevMax;
         scale = (float)height / (shiftFullMax - shiftFullMin);
         int shiftFull = TrigLev::Get() + (TrigSource::IsExt() ? 0 : RShift::Get((Channel::E)ch));
-        int yFull = static_cast<int>(Grid::TOP + DELTA + height - scale * (shiftFull - RShiftMin - TrigLevMin) - 4);
+        int yFull = (int)(Grid::TOP + DELTA + height - scale * (shiftFull - RShiftMin - TrigLevMin) - 4);
         Region(4, 6).Fill(left + 2, yFull + 1, Color::Trig());
         Font::Set(TypeFont::S5);
         Char(simbols[TrigSource::Get()]).Draw(left + 3, yFull - 5, Color::BACK);
@@ -586,7 +586,7 @@ void Display::DrawCursorTShift()
 //
 //    float scale = static_cast<float>((lastPoint - firstPoint) / Grid::Width());
 //    int gridLeft = Grid::Left();
-//    int x = static_cast<int>(gridLeft + shiftTPos * scale - 3);
+//    int x = (int)(gridLeft + shiftTPos * scale - 3);
 //    if (GF::IntInRange(x + 3, gridLeft, Grid::Right() + 1))
 //    {
 //        Char(Symbol::S8::TPOS_2).Draw2SymbolsInPosition(x, Grid::TOP - 1, Symbol::S8::TPOS_3, Color::BACK, Color::FILL);
@@ -991,7 +991,7 @@ int Display::CalculateFreeSize()
         return SIZE_BUFFER_FOR_STRINGS;
     }
 
-    return static_cast<int>(SIZE_BUFFER_FOR_STRINGS - (strings[firstEmptyString - 1] - bufferForStrings) -
+    return (int)(SIZE_BUFFER_FOR_STRINGS - (strings[firstEmptyString - 1] - bufferForStrings) -
         std::strlen(strings[firstEmptyString - 1]) - 1);
 }
 
@@ -1002,7 +1002,7 @@ void Display::DeleteFirstString()
     {
         return;
     }
-    int delta = static_cast<int>(std::strlen(strings[0])) + 1;
+    int delta = (int)(std::strlen(strings[0])) + 1;
     int numStrings = FirstEmptyString();
     for(int i = 1; i < numStrings; i++)
     {
@@ -1030,7 +1030,7 @@ void Display::AddString(pchar string)
     char buffer[100];
     std::sprintf(buffer, "%d\x11", num++);
     std::strcat(buffer, string);
-    int size = static_cast<int>(std::strlen(buffer)) + 1;
+    int size = (int)(std::strlen(buffer)) + 1;
     while(CalculateFreeSize() < size)
     {
         DeleteFirstString();

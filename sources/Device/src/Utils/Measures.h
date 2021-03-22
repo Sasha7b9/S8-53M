@@ -30,9 +30,15 @@ struct Measure
         PhazaPlus,
         PhazaMinus,
         Count
-    };
+    } value;
 
-    static E Marked();
+    Measure(E v = None) : value(v) {}
+
+    operator E() { return value; }
+
+    bool IsNone() const { return value == None; }
+
+    bool Is(E v) const { return value == v; }
 
     static E Get(int num);
 

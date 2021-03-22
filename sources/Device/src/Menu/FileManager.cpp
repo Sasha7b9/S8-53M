@@ -374,7 +374,7 @@ LabelNextNumber:
     std::strcpy(name, currentDir);
     std::strcat(name, "\\");
 
-    int size = static_cast<int>(std::strlen(FILE_NAME));
+    int size = (int)(std::strlen(FILE_NAME));
     if (size == 0)
     {
         return false;

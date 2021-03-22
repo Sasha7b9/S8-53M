@@ -6,7 +6,7 @@
 
 char SU::ToUpper(char symbol)
 {
-    uint8 s = static_cast<uint8>(symbol);
+    uint8 s = (uint8)(symbol);
 
     if (s == 0x40)        // ¸
     {
@@ -27,7 +27,7 @@ char SU::ToUpper(char symbol)
 
 char SU::ToLower(char symbol)
 {
-    uint8 s = static_cast<uint8>(symbol);
+    uint8 s = (uint8)(symbol);
 
     if (s >= 0x41 && s <= 0x5a)
     {

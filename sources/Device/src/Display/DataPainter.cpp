@@ -90,7 +90,7 @@ void DataPainter::DrawSignalLined(puchar data, const DataSettings *ds, int start
     }
     else
     {
-        int shift = static_cast<int>(ds->BytesInChannel());
+        int shift = (int)(ds->BytesInChannel());
 
         int yMinNext = -1;
         int yMaxNext = -1;
@@ -123,7 +123,7 @@ void DataPainter::DrawSignalLined(puchar data, const DataSettings *ds, int start
                     yMax = yMinNext - 1;
                 }
 
-                HLine().Draw(static_cast<int>(x), yMin, yMax);
+                HLine().Draw((int)(x), yMin, yMax);
             }
         }
     }
@@ -186,7 +186,7 @@ void DataPainter::DrawSignalPointed(puchar data, DataSettings &ds, int start_i, 
             int index = i - start_i;
             int dat = 0;
             CONVERT_DATA_TO_DISPLAY(dat, Math::CalculateFiltr(data, i, numPoints, (int)numSmoothing));
-            Point().Draw(Grid::Left() + static_cast<int>(index * scale_x), dat);
+            Point().Draw(Grid::Left() + (int)(index * scale_x), dat);
         }
     }
 }
@@ -215,7 +215,7 @@ void DataPainter::DrawDataInRect(int x, int width, puchar data, int numElems, co
             float lastElem = firstElem + elemsInColumn - 1;
             min[col] = data[(int)firstElem];
             max[col] = data[(int)firstElem + 1];
-            for (int elem = static_cast<int>(firstElem) + 2; elem <= lastElem; elem += 2)
+            for (int elem = (int)(firstElem) + 2; elem <= lastElem; elem += 2)
             {
                 SET_MIN_IF_LESS(data[elem], min[col]);
                 SET_MAX_IF_LARGER(data[elem + 1], max[col]);
@@ -229,8 +229,8 @@ void DataPainter::DrawDataInRect(int x, int width, puchar data, int numElems, co
 
         for (int col = 0; col < width; col++, iMin++, iMax++)
         {
-            int firstElem = static_cast<int>(col * elemsInColumn);
-            int lastElem = firstElem + static_cast<int>(elemsInColumn) - 1;
+            int firstElem = (int)(col * elemsInColumn);
+            int lastElem = firstElem + (int)(elemsInColumn) - 1;
             *iMin = data[firstElem];
             *iMax = data[firstElem];
             for (int elem = firstElem + 1; elem <= lastElem; elem++)
@@ -248,7 +248,7 @@ void DataPainter::DrawDataInRect(int x, int width, puchar data, int numElems, co
             float lastElem = firstElem + elemsInColumn - 1;
             min[col] = data[(int)firstElem];
             max[col] = data[(int)firstElem + shiftForPeakDet];
-            for (int elem = static_cast<int>(firstElem) + 1; elem <= lastElem; elem++)
+            for (int elem = (int)(firstElem) + 1; elem <= lastElem; elem++)
             {
                 SET_MIN_IF_LESS(data[elem], min[col]);
                 SET_MAX_IF_LARGER(data[elem + shiftForPeakDet], max[col]);
@@ -265,15 +265,15 @@ void DataPainter::DrawDataInRect(int x, int width, puchar data, int numElems, co
 #define NUM_POINTS (300 * 2)
     uint8 points[NUM_POINTS];
 
-    points[0] = static_cast<uint8>(ORDINATE(max[0]));
-    points[1] = static_cast<uint8>(ORDINATE(min[0]));
+    points[0] = (uint8)(ORDINATE(max[0]));
+    points[1] = (uint8)(ORDINATE(min[0]));
 
     for (int i = 1; i < width; i++)
     {
         int value0 = min[i] > max[i - 1] ? max[i - 1] : min[i];
         int value1 = max[i] < min[i - 1] ? min[i - 1] : max[i];
-        points[i * 2] = static_cast<uint8>(ORDINATE(value1));
-        points[i * 2 + 1] = static_cast<uint8>(ORDINATE(value0));
+        points[i * 2] = (uint8)(ORDINATE(value1));
+        points[i * 2 + 1] = (uint8)(ORDINATE(value0));
     }
     if (width < 256)
     {

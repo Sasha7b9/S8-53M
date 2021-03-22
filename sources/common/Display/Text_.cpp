@@ -94,9 +94,9 @@ int Char::Draw(int x, int y, Color color)
     }
     else
     {
-        DrawCharInColorDisplay(x, y, static_cast<uint8>(symbol));
+        DrawCharInColorDisplay(x, y, (uint8)(symbol));
     }
-    return x + Font::GetLengthSymbol(static_cast<uint8>(symbol));
+    return x + Font::GetLengthSymbol((uint8)(symbol));
 }
 
 
@@ -149,7 +149,7 @@ static uint GetLenghtSubString(char *text)
 
     while (((*text) != ' ') && ((*text) != '\0'))
     {
-        result += Font::GetLengthSymbol(static_cast<uint8>(*text));
+        result += Font::GetLengthSymbol((uint8)(*text));
         text++;
     }
 
@@ -350,8 +350,8 @@ int Text::DrawWithLimitation(int x, int y, Color color, int limitX, int limitY, 
 
     while (*t)
     {
-        x = DrawCharWithLimitation(x, y, static_cast<uint8>(*t), limitX, limitY, limitWidth, limitHeight);
-        retValue += Font::GetLengthSymbol(static_cast<uint8>(*t));
+        x = DrawCharWithLimitation(x, y, (uint8)(*t), limitX, limitY, limitWidth, limitHeight);
+        retValue += Font::GetLengthSymbol((uint8)(*t));
         t++;
     }
     return retValue + 1;
@@ -380,7 +380,7 @@ static bool IsLetter(char symbol)
         true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
     };
 
-    return isLetter[static_cast<uint8>(symbol)];
+    return isLetter[(uint8)(symbol)];
 }
 
 
@@ -424,7 +424,7 @@ static bool IsConsonant(char symbol)
         true, true, true, false, true, true, true, true, true, true, true, false, true, false, false, false
     };
 
-    return isConsonat[static_cast<uint8>(symbol)];
+    return isConsonat[(uint8)(symbol)];
 }
 
 
@@ -575,7 +575,7 @@ static int DrawPartWord(char *word, int x, int y, int xRight, bool draw)
             {
                 Text(subString).Draw(x, y);
             }
-            return static_cast<int>(std::strlen(subString)) - 1;
+            return (int)(std::strlen(subString)) - 1;
         }
     }
 
@@ -588,7 +588,7 @@ static int DrawPartWord(char *word, int x, int y, int xRight, bool draw)
 static bool GetHeightTextWithTransfers(int left, int top, int right, pchar text, int *height)
 {
     char buffer[20];
-    int numSymb = static_cast<int>(std::strlen(text));
+    int numSymb = (int)(std::strlen(text));
 
     int y = top - 1;
     int x = left;
@@ -614,7 +614,7 @@ static bool GetHeightTextWithTransfers(int left, int top, int right, pchar text,
                 {
                     continue;
                 }
-                x += Font::GetLengthSymbol(static_cast<uint8>(symbol));
+                x += Font::GetLengthSymbol((uint8)(symbol));
             }
             else                            // ј здесь найдено по крайней мере два буквенных символа, т.е. найдено слово
             {

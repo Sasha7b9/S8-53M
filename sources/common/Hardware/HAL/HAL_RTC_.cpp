@@ -115,9 +115,9 @@ bool HAL_RTC::SetTimeAndData(int8 day, int8 month, int8 year, int8 hours, int8 m
     RTC_DateTypeDef dateStruct =
     {
         RTC_WEEKDAY_MONDAY,
-        static_cast<uint8>(month),
-        static_cast<uint8>(day),
-        static_cast<uint8>(year)
+        (uint8)(month),
+        (uint8)(day),
+        (uint8)(year)
     };
 
     if (HAL_RTC_SetDate(reinterpret_cast<RTC_HandleTypeDef *>(&handle), &dateStruct, FORMAT_BIN) != HAL_OK)
@@ -129,9 +129,9 @@ bool HAL_RTC::SetTimeAndData(int8 day, int8 month, int8 year, int8 hours, int8 m
 
     RTC_TimeTypeDef timeStruct =
     {
-        static_cast<uint8>(hours),
-        static_cast<uint8>(minutes),
-        static_cast<uint8>(seconds),
+        (uint8)(hours),
+        (uint8)(minutes),
+        (uint8)(seconds),
         RTC_HOURFORMAT_24,
         RTC_DAYLIGHTSAVING_NONE,
         RTC_STOREOPERATION_SET

@@ -303,7 +303,7 @@ struct SettingsMeasures
     CursCntrl          cntrlU;            // јктивные курсоры напр€жени€.
     CursCntrl          cntrlT;            // јктивные курсоры времени.
     CursActive         curs_active;       //  акие курсоры активны - по времени или напр€жению.
-    Measure::E         marked_measure;    // »змерение, на которое нужно выводить маркеры.
+    Measure            marked;            // »змерение, на которое нужно выводить маркеры.
 
     static bool ShowMeasures();
     static int16 PosCursorU(int num);
