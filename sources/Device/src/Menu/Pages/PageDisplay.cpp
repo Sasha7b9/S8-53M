@@ -273,7 +273,7 @@ DEF_GOVERNOR(mgSettings_Levels, PageDisplay::PageSettings::self,
     "Уровни", "Levels",
     "Задаёт время, в течение которого после поворота ручки сещения напряжения на экране остаётся вспомогательная метка уровня смещения",
     "Defines the time during which, after turning the handle visits to the voltage on the screen remains auxiliary label offset level",
-    TIME_SHOW_LEVELS, 0, 125, nullptr, nullptr, nullptr
+    set.display.time_show_levels, 0, 125, nullptr, nullptr, nullptr
 )
 
 DEF_GOVERNOR(mgSettings_TimeMessages, PageDisplay::PageSettings::self,

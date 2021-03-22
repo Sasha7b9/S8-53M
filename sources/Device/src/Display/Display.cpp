@@ -73,12 +73,12 @@ void Display::RotateRShift(const Channel &ch)
 {
     LAST_AFFECTED_CHANNEL = ch.value;
 
-    if(TIME_SHOW_LEVELS)
+    if(set.display.time_show_levels)
     {
         if (ch.IsA()) { RShift::show_level_A = true; }
         else                    { RShift::show_level_B = true; }
         Timer::Enable(ch.IsA() ? TypeTimer::ShowLevelRShift0 : TypeTimer::ShowLevelRShift1,
-            TIME_SHOW_LEVELS  * 1000, ch.IsA() ? FuncOnTimerDisableShowLevelRShiftA :
+            set.display.time_show_levels * 1000, ch.IsA() ? FuncOnTimerDisableShowLevelRShiftA :
             FuncOnTimerDisableShowLevelRShiftB);
     };
 
@@ -100,10 +100,10 @@ void Display::FuncOnTimerDisableShowLevelRShiftB()
 
 void Display::RotateTrigLev()
 {
-    if (TIME_SHOW_LEVELS)
+    if (set.display.time_show_levels)
     {
         showLevelTrigLev = true;
-        Timer::Enable(TypeTimer::ShowLevelTrigLev, TIME_SHOW_LEVELS * 1000, FuncOnTimerDisableShowLevelTrigLev);
+        Timer::Enable(TypeTimer::ShowLevelTrigLev, set.display.time_show_levels * 1000, FuncOnTimerDisableShowLevelTrigLev);
     }
     Redraw();
 }
