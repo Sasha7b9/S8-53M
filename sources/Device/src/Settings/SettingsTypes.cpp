@@ -836,3 +836,15 @@ bool ModeViewSignals::IsCompress()
 {
     return (set.measures.modeViewSignals == ModeViewSignals::Compress);
 }
+
+
+CursCntrl::E CursCntrl::GetForT()
+{
+    return set.measures.cntrlT;
+}
+
+
+CursCntrl::E CursCntrl::GetForU()
+{
+    return set.measures.cntrlU;
+}

@@ -721,13 +721,19 @@ struct TBase
 
 
 // Каким курсором управлять.
-struct CursCntrl { enum E
+struct CursCntrl
 {
-    _1,            // первым.
-    _2,            // вторым.
-    _1_2,          // обоими.
-    Disable        // никаким.
-};};
+    enum E
+    {
+        _1,            // первым.
+        _2,            // вторым.
+        _1_2,          // обоими.
+        Disable        // никаким.
+    };
+
+    static E GetForU();
+    static E GetForT();
+};
 
 
 // Дискретность перемещения курсоров.
