@@ -456,14 +456,14 @@ DEF_GOVERNOR(mgRandomizer_SamplesForGates, PageDebug::PageRandomizer::self,
 
 static void OnChanged_Randomizer_AltTShift0()
 {
-    TShift::SetDelta(ADD_SHIFT_T0);
+    TShift::SetDelta(set.debug.shift_T0);
 }
 
 DEF_GOVERNOR(mgRandomizer_AltTShift0, PageDebug::PageRandomizer::self,
     "tShift доп.", "tShift alt.",
     "",
     "",
-    ADD_SHIFT_T0, 0, 510, nullptr, OnChanged_Randomizer_AltTShift0, nullptr
+    set.debug.shift_T0, 0, 510, nullptr, OnChanged_Randomizer_AltTShift0, nullptr
 )
 
 DEF_GOVERNOR(mgRandomizer_Average, PageDebug::PageRandomizer::self,
