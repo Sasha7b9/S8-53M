@@ -10,8 +10,6 @@
 #define CURS_POS_T0(ch)             (CURS_POS_T(ch, 0))
 #define CURS_POS_T1(ch)             (CURS_POS_T(ch, 1))
 
-#define DELTA_U100(ch)              (set.cursors.deltaU100percents[ch])
-
 #define DELTA_T100(ch)              (set.cursors.deltaT100percents[ch])
 
 #define CURS_ACTIVE                 (set.cursors.active)                        // SettingsCursors.active
@@ -31,7 +29,7 @@ struct SettingsCursors
     Channel::E      source;                     // »сточник - к какому каналу относ€тс€ курсоры.
     float           posCurU[NumChannels][2];    // “екущие позиции курсоров напр€жени€ обоих каналов.
     float           posCurT[NumChannels][2];    // “екущие позиции курсоров времени обоих каналов.
-    float           deltaU100percents[2];       // –ассто€ние между курсорами напр€жени€ дл€ 100%, дл€ обоих каналов.
+    float           dU_100percents[2];          // –ассто€ние между курсорами напр€жени€ дл€ 100%, дл€ обоих каналов.
     float           deltaT100percents[2];       // –ассто€ние между курсорами времени дл€ 100%, дл€ обоих каналов.
     CursMovement::E movement;                   //  ак перемещатьс€ курсорам - по точкам или по процентам.
     CursActive::E   active;                     //  акие курсоры сейчас активны.

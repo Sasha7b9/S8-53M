@@ -44,7 +44,7 @@ String Cursors::GetTime(const Channel &source, int numCur)
 
 String Cursors::GetPercentsU(const Channel &source)
 {
-    float dPerc = DELTA_U100(source);
+    float dPerc = set.cursors.dU_100percents[source];
 
     float dValue = std::fabsf(GetPosU(source, 0) - GetPosU(source, 1));
 
