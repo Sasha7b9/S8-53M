@@ -109,7 +109,7 @@ struct SettingsMath
     ScaleFFT::E     scaleFFT;
     SourceFFT::E    sourceFFT;
     WindowFFT::E    windowFFT;
-    FFTmaxDB::E     fftMaxDB;
+    MaxDbFFT::E     fftMaxDB;
     Function::E     func;
     uint8           currentCursor;          // Определяет, каким курсором спектра управляет ручка УСТАНОВКА
     uint8           posCur[2];              // Позиция курсора спектра. Изменятеся 0...256.
