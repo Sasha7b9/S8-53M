@@ -7,8 +7,6 @@
 #define ENUM_MIN_MAX                (::set.display.enumMinMax)                  // SettingsDisplay.enumMinMax
 #define NUM_MIN_MAX                 (1 << ENUM_MIN_MAX)                         // Количество измерений сигналов для расчёта минимумов и максимумов.
 
-#define ENUM_SIGNALS_IN_SEC         (set.display.enumSignalsInSec)              // SettingsDisplay.enumSignalsInSec
-
 #define SHOW_STRING_NAVIGATION      (set.display.showStringNavigation)          // SettingsDisplay.showStringNavigation
 
 // Настройки изображения
@@ -28,7 +26,7 @@ struct SettingsDisplay
     ModeAveraging::E    mode_ave;              // Тип усреднений по измерениям.
     ENumMinMax::E       enumMinMax;            // Число измерений для определения минимумов и максимумов.
     Smoothing::E        smoothing;             // Число точек для скользящего фильтра.
-    ENumSignalsInSec::E enumSignalsInSec;      // Перечисление считываний сигнала в секунду.
+    ENumSignalsInSec::E enum_fps;              // Перечисление считываний сигнала в секунду.
     Channel::E          last_affected_channel; // Здесь хранится номер последнего канала, которым управляли ручками.
                                                // Нужно для того, чтобы знать, какой сигнал рисовать наверху.
     ModeAccumulation::E mode_acum;             // Задаёт режим накопления сигналов.

@@ -138,7 +138,7 @@ DEF_CHOICE_5(mcRefreshFPS, PageDisplay::self,
     "5", "5",
     "2", "2",
     "1", "1",
-    ENUM_SIGNALS_IN_SEC, nullptr, PageDisplay::OnChanged_RefreshFPS, nullptr
+    set.display.enum_fps, nullptr, PageDisplay::OnChanged_RefreshFPS, nullptr
 )
 
 DEF_CHOICE_2(mcTypeShift, PageDisplay::self,

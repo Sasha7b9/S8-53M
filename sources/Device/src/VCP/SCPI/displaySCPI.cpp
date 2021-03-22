@@ -262,10 +262,10 @@ void SCPI::DISPLAY::FPS(puchar buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (value < 5) { ENUM_SIGNALS_IN_SEC = (ENumSignalsInSec::E)value; PageDisplay::OnChanged_RefreshFPS(true); }
+        if (value < 5) { set.display.enum_fps = (ENumSignalsInSec::E)value; PageDisplay::OnChanged_RefreshFPS(true); }
         else if (5 == value)
         {
-            SCPI_SEND(":DISPLAY:FPS %s", map[ENUM_SIGNALS_IN_SEC].key);
+            SCPI_SEND(":DISPLAY:FPS %s", map[set.display.enum_fps].key);
         }
     LEAVE_ANALYSIS
 }

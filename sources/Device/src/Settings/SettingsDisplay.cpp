@@ -6,7 +6,7 @@
 
 int ENumSignalsInSec::NumSignalsInS()
 {
-    return Tables::ENUMtoNumSignalsInSec(ENUM_SIGNALS_IN_SEC);
+    return Tables::ENUMtoNumSignalsInSec(set.display.enum_fps);
 }
 
 
