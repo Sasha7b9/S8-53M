@@ -2,7 +2,9 @@
 
 
 // Виды измерений.
-struct Measure { enum E
+struct Measure
+{ 
+    enum E
     {
         None,
         VoltageMax,
@@ -29,6 +31,12 @@ struct Measure { enum E
         PhazaMinus,
         Count
     };
+
+    static E Marked();
+
+    static E Get(int num);
+
+    static bool IsMarked(int num);
 
     static char GetChar(Measure::E measure);
 

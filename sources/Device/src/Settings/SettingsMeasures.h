@@ -2,12 +2,6 @@
 #include "Utils/Measures.h"
 
 
-#define MEAS_MARKED                     (set.measures.markedMeasure)                    // SettingsMeasures.markedMeasure
-#define MEAS_MARKED_IS_NONE             (MEAS_MARKED == Measure::None)
-
-#define MEASURE(num)                    (set.measures.measures[num])                    // SettingsMeasures.measure
-#define MEASURE_IS_MARKED(num)          (MEASURE(num) == MEAS_MARKED)
-
 #define SHOW_MEASURES                   (set.measures.show)                             // SettingsMeasures.show
 
 #define MEAS_POS_CUR_U(num)             (set.measures.posCurU[num])                     // SettingsMeasures.posCurU

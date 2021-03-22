@@ -135,7 +135,7 @@ void Processing::CalculateMeasures()
             pFuncFCh func = measures[meas].FuncCalculate;
             if(func)
             {
-                if(meas == MEAS_MARKED || MEAS_MARKED_IS_NONE)
+                if(meas == Measure::Marked() || Measure::Marked() == Measure::None)
                 {
                     markerVert[ChA][0] = ERROR_VALUE_INT;
                     markerVert[ChA][1] = ERROR_VALUE_INT;
@@ -166,7 +166,7 @@ float Processing::CalculateVoltageMax(Channel::E ch)
     float max = CalculateMaxRel(ch);
     
     EXIT_IF_ERROR_FLOAT(max); //-V2507
-    if(MEAS_MARKED == Measure::VoltageMax)
+    if(Measure::Marked() == Measure::VoltageMax)
     {
         markerHor[ch][0] = static_cast<int>(max);         // Здесь не округляем, потому что max может быть только целым
     }
@@ -179,7 +179,7 @@ float Processing::CalculateVoltageMin(Channel::E ch)
 {
     float min = CalculateMinRel(ch);
     EXIT_IF_ERROR_FLOAT(min);
-    if(MEAS_MARKED == Measure::VoltageMin)
+    if(Measure::Marked() == Measure::VoltageMin)
     {
         markerHor[ch][0] = static_cast<int>(min);          // Здесь не округляем, потому что min может быть только целым
     }
@@ -195,7 +195,7 @@ float Processing::CalculateVoltagePic(Channel::E ch)
 
     EXIT_IF_ERRORS_FLOAT(min, max);
 
-    if(MEAS_MARKED == Measure::VoltagePic)
+    if(Measure::Marked() == Measure::VoltagePic)
     {
         markerHor[ch][0] = static_cast<int>(CalculateMaxRel(ch));
         markerHor[ch][1] = static_cast<int>(CalculateMinRel(ch));
@@ -207,7 +207,7 @@ float Processing::CalculateVoltageMinSteady(Channel::E ch)
 {
     float min = CalculateMinSteadyRel(ch);
     EXIT_IF_ERROR_FLOAT(min);
-    if(MEAS_MARKED == Measure::VoltageMinSteady)
+    if(Measure::Marked() == Measure::VoltageMinSteady)
     {
         markerHor[ch][0] = static_cast<int>(ROUND(min));
     }
@@ -223,7 +223,7 @@ float Processing::CalculateVoltageMaxSteady(Channel::E ch)
 
     EXIT_IF_ERROR_FLOAT(max);
 
-    if(MEAS_MARKED == Measure::VoltageMaxSteady)
+    if(Measure::Marked() == Measure::VoltageMaxSteady)
     {
         markerHor[ch][0] = static_cast<int>(max);
     }
@@ -241,7 +241,7 @@ float Processing::CalculateVoltageVybrosPlus(Channel::E ch)
 
     EXIT_IF_ERRORS_FLOAT(max, maxSteady);
 
-    if (MEAS_MARKED == Measure::VoltageVybrosPlus)
+    if (Measure::Marked() == Measure::VoltageVybrosPlus)
     {
         markerHor[ch][0] = static_cast<int>(max);
         markerHor[ch][1] = static_cast<int>(maxSteady);
@@ -259,7 +259,7 @@ float Processing::CalculateVoltageVybrosMinus(Channel::E ch)
     float minSteady = CalculateMinSteadyRel(ch);
     EXIT_IF_ERRORS_FLOAT(min, minSteady);
 
-    if (MEAS_MARKED == Measure::VoltageVybrosMinus)
+    if (Measure::Marked() == Measure::VoltageVybrosMinus)
     {
         markerHor[ch][0] = static_cast<int>(min);
         markerHor[ch][1] = static_cast<int>(minSteady);
@@ -278,7 +278,7 @@ float Processing::CalculateVoltageAmpl(Channel::E ch)
 
     EXIT_IF_ERRORS_FLOAT(min, max);
 
-    if(MEAS_MARKED == Measure::VoltageAmpl)
+    if(Measure::Marked() == Measure::VoltageAmpl)
     {
         markerHor[ch][0] = static_cast<int>(CalculateMaxSteadyRel(ch));
         markerHor[ch][1] = static_cast<int>(CalculateMinSteadyRel(ch));
@@ -301,7 +301,7 @@ float Processing::CalculateVoltageAverage(Channel::E ch)
 
     uint8 aveRel = static_cast<uint8>((float)sum / period);
 
-    if(MEAS_MARKED == Measure::VoltageAverage)
+    if(Measure::Marked() == Measure::VoltageAverage)
     {
         markerHor[ch][0] = aveRel;
     }
@@ -326,7 +326,7 @@ float Processing::CalculateVoltageRMS(Channel::E ch)
         rms +=  volts * volts;
     }
 
-    if(MEAS_MARKED == Measure::VoltageRMS)
+    if(Measure::Marked() == Measure::VoltageRMS)
     {
         markerHor[ch][0] = MathFPGA::VoltageToPoint(std::sqrtf(rms / period), dataSet->range[ch], rShift);
     }
@@ -570,7 +570,7 @@ float Processing::CalculateTimeNarastaniya(Channel::E ch)   // WARN Здесь, возмо
 
     float retValue = TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
 
-    if (MEAS_MARKED == Measure::TimeNarastaniya)
+    if (Measure::Marked() == Measure::TimeNarastaniya)
     {
         markerHor[ch][0] = static_cast<int>(max09);
         markerHor[ch][1] = static_cast<int>(min01);
@@ -606,7 +606,7 @@ float Processing::CalculateTimeSpada(Channel::E ch)                          // 
 
     float retValue = TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
 
-    if (MEAS_MARKED == Measure::TimeSpada)
+    if (Measure::Marked() == Measure::TimeSpada)
     {
         markerHor[ch][0] = static_cast<int>(max09);
         markerHor[ch][1] = static_cast<int>(min01);

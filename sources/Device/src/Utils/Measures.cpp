@@ -96,13 +96,13 @@ int Measure::GetDX()
 String Measure::Name(int row, int col)
 {
     int numMeasure = row * Measure::NumCols() + col;
-    return String(measures[MEASURE(numMeasure)].name);
+    return String(measures[Measure::Get(numMeasure)].name);
 }
 
 Measure::E Measure::Type(int row, int col)
 {
     int numMeasure = row * Measure::NumCols() + col;
-    return MEASURE(numMeasure);
+    return Measure::Get(numMeasure);
 }
 
 int Measure::GetTopTable()
@@ -167,14 +167,17 @@ void Measure::RotateRegSet(int angle)
     static const int8 step = 3;
     static int8 currentAngle = 0;
     currentAngle += (int8)angle;
+
     if (currentAngle < step && currentAngle > -step)
     {
         return;
     }
+
     if (PageMeasures::choiceMeasuresIsActive)
     {
         posOnPageChoice += (int8)Math::Sign(currentAngle);
         Sound::RegulatorSwitchRotate();
+
         if (posOnPageChoice < 0)
         {
             posOnPageChoice = Measure::Count - 1;
@@ -183,7 +186,8 @@ void Measure::RotateRegSet(int angle)
         {
             posOnPageChoice = 0;
         }
-        MEASURE(posActive) = (Measure::E)posOnPageChoice;
+
+        set.measures.measures[posActive] = (Measure::E)posOnPageChoice;
         Color::ResetFlash();
     }
     else
@@ -221,19 +225,19 @@ void Measure::ShorPressOnSmallButtonSettings()
     PageMeasures::choiceMeasuresIsActive = !PageMeasures::choiceMeasuresIsActive;
     if(PageMeasures::choiceMeasuresIsActive)
     {
-        posOnPageChoice = static_cast<int8>(MEASURE(posActive));
+        posOnPageChoice = static_cast<int8>(Measure::Get(posActive));
     }
 }
 
 void Measure::ShortPressOnSmallButonMarker()
 {
-    if(MEASURE_IS_MARKED(posActive))
+    if(Measure::IsMarked(posActive))
     {
-        MEAS_MARKED = Measure::None;
+        set.measures.markedMeasure = Measure::None;
     }
     else
     {
-        MEAS_MARKED = MEASURE(posActive);
+        set.measures.markedMeasure = Measure::Get(posActive);
     }
 }
 
@@ -339,7 +343,7 @@ void Measure::DrawAll()
             if (meas != Measure::None)
             {
                 Measure::Name(str, elem).Draw(x + 4, y + 2, active ? Color::BACK : Color::FILL);
-                if (meas == MEAS_MARKED)
+                if (meas == Measure::Marked())
                 {
                     Region(dX - 2, 9).Fill(x + 1, y + 1, active ? Color::BACK : Color::FILL);
                     Measure::Name(str, elem).Draw(x + 4, y + 2, active ? Color::FILL : Color::BACK);
@@ -365,4 +369,22 @@ void Measure::DrawAll()
     {
         Measure::DrawPageChoice();
     }
+}
+
+
+Measure::E Measure::Marked()
+{
+    return set.measures.markedMeasure;
+}
+
+
+Measure::E Measure::Get(int num)
+{
+    return set.measures.measures[num];
+}
+
+
+bool Measure::IsMarked(int num)
+{
+    return Get(num) == Marked();
 }
