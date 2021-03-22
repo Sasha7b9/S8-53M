@@ -36,56 +36,56 @@ public:
 
 private:
 
-    static float CalculateVoltageMax(Channel::E ch);
-    static float CalculateVoltageMin(Channel::E ch);
-    static float CalculateVoltagePic(Channel::E ch);
-    static float CalculateVoltageMaxSteady(Channel::E ch);
-    static float CalculateVoltageMinSteady(Channel::E ch);
-    static float CalculateVoltageAmpl(Channel::E ch);
-    static float CalculateVoltageAverage(Channel::E ch);
-    static float CalculateVoltageRMS(Channel::E ch);
-    static float CalculateVoltageVybrosPlus(Channel::E ch);
-    static float CalculateVoltageVybrosMinus(Channel::E ch);
-    static float CalculatePeriod(Channel::E ch);
+    static Float CalculateVoltageMax(Channel::E ch);
+    static Float CalculateVoltageMin(Channel::E ch);
+    static Float CalculateVoltagePic(Channel::E ch);
+    static Float CalculateVoltageMaxSteady(Channel::E ch);
+    static Float CalculateVoltageMinSteady(Channel::E ch);
+    static Float CalculateVoltageAmpl(Channel::E ch);
+    static Float CalculateVoltageAverage(Channel::E ch);
+    static Float CalculateVoltageRMS(Channel::E ch);
+    static Float CalculateVoltageVybrosPlus(Channel::E ch);
+    static Float CalculateVoltageVybrosMinus(Channel::E ch);
+    static Float CalculatePeriod(Channel::E ch);
     // Точно вычисляет период или целое число периодов в точках сигнала.
-    static int   CalculatePeriodAccurately(Channel::E ch);
-    static float CalculateFreq(Channel::E ch);
-    static float CalculateTimeNarastaniya(Channel::E ch);
-    static float CalculateTimeSpada(Channel::E ch);
-    static float CalculateDurationPlus(Channel::E ch);
-    static float CalculateDurationMinus(Channel::E ch);
-    static float CalculateSkvaznostPlus(Channel::E ch);
-    static float CalculateSkvaznostMinus(Channel::E ch);
+    static Int   CalculatePeriodAccurately(Channel::E ch);
+    static Float CalculateFreq(Channel::E ch);
+    static Float CalculateTimeNarastaniya(Channel::E ch);
+    static Float CalculateTimeSpada(Channel::E ch);
+    static Float CalculateDurationPlus(Channel::E ch);
+    static Float CalculateDurationMinus(Channel::E ch);
+    static Float CalculateSkvaznostPlus(Channel::E ch);
+    static Float CalculateSkvaznostMinus(Channel::E ch);
     // Возвращает минимальное значение относительного сигнала    
-    static float CalculateMinRel(Channel::E ch);
+    static Float CalculateMinRel(Channel::E ch);
     // Возвращает минимальное установившееся значение относительного сигнала
     static float CalculateMinSteadyRel(Channel::E ch);
     // Возвращает максимальное значение относительного сигнала
-    static float CalculateMaxRel(Channel::E ch);
+    static Float CalculateMaxRel(Channel::E ch);
     // Возвращает максимальное установившееся значение относительного сигнала
     static float CalculateMaxSteadyRel(Channel::E ch);
     // Возвращает среденее значение относительного сигнала
-    static float CalculateAverageRel(Channel::E ch);
-    static float CalculatePicRel(Channel::E ch);
-    static float CalculateDelayPlus(Channel::E ch);
-    static float CalculateDelayMinus(Channel::E ch);
-    static float CalculatePhazaPlus(Channel::E ch);
-    static float CalculatePhazaMinus(Channel::E ch);
+    static Float CalculateAverageRel(Channel::E ch);
+    static Float CalculatePicRel(Channel::E ch);
+    static Float CalculateDelayPlus(Channel::E ch);
+    static Float CalculateDelayMinus(Channel::E ch);
+    static Float CalculatePhazaPlus(Channel::E ch);
+    static Float CalculatePhazaMinus(Channel::E ch);
     // Найти точку пересечения сигнала с горизонтальной линией, проведённой на уровне yLine. numItersection - порядковый номер пересечения, 
     // начинается с 1. downToTop - если true, ищем пересечение сигнала со средней линией при прохождении из "-" в "+".
-    static float FindIntersectionWithHorLine(Channel::E ch, int numIntersection, bool downToUp, uint8 yLine);
+    static Float FindIntersectionWithHorLine(Channel::E ch, int numIntersection, bool downToUp, uint8 yLine);
 
     static void CountedToCurrentSettings();
 
-    typedef float (*pFuncFCh)(Channel::E);
+    typedef Float(*pFuncCalculate)(Channel::E);
 
     struct MeasureCalculate
     {
-        char        *name;
-        pFuncFCh    FuncCalculate;
-        pFuncCFBC   FucnConvertate;
+        char          *name;
+        pFuncCalculate FuncCalculate;
+        pFuncCFBC      FucnConvertate;
         // Если true, нужно показывать знак.
-        bool        showSign;
+        bool           showSign;
     };
 
     static const MeasureCalculate measures[Measure::Count];

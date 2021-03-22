@@ -19,10 +19,10 @@ using namespace Primitives;
 
 
 // Измерить добавочное смещение канала по напряжению.
-static int16 CalculateAdditionRShift(const Channel &ch, Range::E range);
+static Int16 CalculateAdditionRShift(const Channel &ch, Range::E range);
 
 // Измерить коэффициент калибровки канала по напряжению
-static float CalculateKoeffCalibration(const Channel &ch);
+static Float CalculateKoeffCalibration(const Channel &ch);
 
 static void  AlignmentADC();
 
@@ -46,8 +46,8 @@ static float avrADC2old[2] = {0.0F, 0.0F};
 static int8 shiftADC0 = 0;
 static int8 shiftADC1 = 0;
 
-static float koeffCal0 = -1.0F;
-static float koeffCal1 = -1.0F;
+static Float koeffCal0 = -1.0F;
+static Float koeffCal1 = -1.0F;
 
 static ProgressBar bar0;                            // Прогресс-бар для калибровки первого канала.
 static ProgressBar bar1;                            // Прогресс-бар для калибровки второго канала.
@@ -115,8 +115,8 @@ void FPGA::Calibrator::ProcedureCalibration()
 
         state.state_calibration = StateCalibration::RShift0start;                 
 
-        koeffCal0 = ERROR_VALUE_FLOAT;
-        koeffCal1 = ERROR_VALUE_FLOAT;
+        koeffCal0.SetInvalid();
+        koeffCal1.SetInvalid();
 
                                                  // Ожидаем подтверждения или отмены процедуры калибровки первого канала
         if(Panel::WaitPressingButton() == Key::Start)
@@ -124,7 +124,7 @@ void FPGA::Calibrator::ProcedureCalibration()
             state.state_calibration = StateCalibration::RShift0inProgress;
 
             koeffCal0 = CalculateKoeffCalibration(ChA);
-            if (koeffCal0 == ERROR_VALUE_FLOAT)
+            if (!koeffCal0.IsValid())
             {
                 state.state_calibration = StateCalibration::ErrorCalibration0;
                 Panel::WaitPressingButton();
@@ -161,7 +161,8 @@ void FPGA::Calibrator::ProcedureCalibration()
             state.state_calibration = StateCalibration::RShift1inProgress;
 
             koeffCal1 = CalculateKoeffCalibration(ChB);
-            if (koeffCal1 == ERROR_VALUE_FLOAT)
+
+            if (!koeffCal1.IsValid())
             {
                 state.state_calibration = StateCalibration::ErrorCalibration1;
                 Panel::WaitPressingButton();
@@ -202,11 +203,12 @@ void FPGA::Calibrator::ProcedureCalibration()
     RShift::Set(ChA, RShift::Get(ChA));
     RShift::Set(ChB, RShift::Get(ChB));
 
-    set.chan[ChA].stretch_ADC = (koeffCal0 == ERROR_VALUE_FLOAT) ? koeffCalibrationOld[0] : koeffCal0;
+    set.chan[ChA].stretch_ADC = koeffCal0.IsValid() ? koeffCal0 : koeffCalibrationOld[0];
 
     Calibrator::LoadKoeff(ChA);
 
-    set.chan[ChB].stretch_ADC = (koeffCal1 == ERROR_VALUE_FLOAT) ? koeffCalibrationOld[1] : koeffCal1;
+    set.chan[ChB].stretch_ADC = koeffCal1.IsValid() ? koeffCal1 : koeffCalibrationOld[1];
+
     Calibrator::LoadKoeff(ChB);
 
     state.state_calibration = StateCalibration::None;
@@ -425,7 +427,7 @@ void AlignmentADC()
 }
 
 
-int16 CalculateAdditionRShift(const Channel &ch, Range::E range)
+Int16 CalculateAdditionRShift(const Channel &ch, Range::E range)
 {
     Range::Set(ch, range);
     RShift::Set(ch, RShiftZero);
@@ -451,9 +453,10 @@ int16 CalculateAdditionRShift(const Channel &ch, Range::E range)
 
         HAL_FMC::Write(WR_START, 1);
         while(_GET_BIT(HAL_FMC::Read(RD_FL), 2) == 0 && (TIME_MS - startTime < timeWait)) {};
+
         if(TIME_MS - startTime > timeWait)                 // Если прошло слишком много времени - 
         {
-            return ERROR_VALUE_INT16;                       // выход с ошибкой.
+            return InvalidInt16();                       // выход с ошибкой.
         }
 
         TrigPolarity::Switch();
@@ -463,7 +466,7 @@ int16 CalculateAdditionRShift(const Channel &ch, Range::E range)
         while(_GET_BIT(HAL_FMC::Read(RD_FL), 0) == 0 && (TIME_MS - startTime < timeWait)) {};
         if(TIME_MS - startTime > timeWait)                 // Если прошло слишком много времени - 
         {
-            return ERROR_VALUE_INT16;                       // выход с ошибкой.
+            return InvalidInt16();                       // выход с ошибкой.
         }
 
         HAL_FMC::Write(WR_STOP, 1);
@@ -484,13 +487,14 @@ int16 CalculateAdditionRShift(const Channel &ch, Range::E range)
 
     if(retValue < - 100 || retValue > 100)
     {
-        return ERROR_VALUE_INT16;
+        return InvalidInt16();
     }
+
     return retValue;
 }
 
 
-float CalculateKoeffCalibration(const Channel &ch)
+Float CalculateKoeffCalibration(const Channel &ch)
 {
     FPGA::BUS::WriteWithoutStart(WR_UPR, BIN_U8(00000100));
 
@@ -517,7 +521,7 @@ float CalculateKoeffCalibration(const Channel &ch)
         while(_GET_BIT(HAL_FMC::Read(RD_FL), 2) == 0 && (TIME_MS - startTime > timeWait)) {};
         if(TIME_MS - startTime > timeWait)
         {
-            return ERROR_VALUE_FLOAT;
+            return Float(false);
         }
 
         TrigPolarity::Switch();
@@ -526,7 +530,7 @@ float CalculateKoeffCalibration(const Channel &ch)
         while(_GET_BIT(HAL_FMC::Read(RD_FL), 0) == 0 && (TIME_MS - startTime > timeWait)) {};
         if(TIME_MS - startTime > timeWait)
         {
-            return ERROR_VALUE_FLOAT;
+            return Float(false);;
         }
 
         HAL_FMC::Write(WR_STOP, 1);
@@ -569,7 +573,7 @@ float CalculateKoeffCalibration(const Channel &ch)
 
     if(retValue < 0.5F || retValue > 1.5F)
     {
-        return ERROR_VALUE_FLOAT;
+        return InvalidFloat();
     }
     return retValue * 1.004F;
 }

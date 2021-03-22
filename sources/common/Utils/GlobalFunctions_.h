@@ -2,6 +2,9 @@
 #include "common/Utils/String_.h"
 
 
+struct Float;
+
+
 namespace GF
 {
     String FloatFract2String(float value, bool always_sign = false);
@@ -9,7 +12,7 @@ namespace GF
     // alwaysSign - если установлен в true, перед числом всегда будет знак, если установлен в false, только если число
     //              отрицательное
     // numDigits - число разрядов мантиссы
-    String Float2String(float value, bool always_sign, int num_digits);
+    String Float2String(const Float &value, bool always_sign, int num_digits);
 
     // Преобразует value в текстовую строку. При этом выводятся все 8 разрядов.
     String Bin2String(uint8 value);
@@ -22,11 +25,11 @@ namespace GF
 
     bool String2Int(char *str, int *value);
 
-    String Voltage2String(float voltage, bool always_sign);
+    String Voltage2String(const Float &voltage, bool always_sign);
 
-    String Time2String(float time, bool always_sign);
+    String Time2String(const Float &time, bool always_sign);
 
-    String Freq2String(float freq, bool always_sign = false);
+    String Freq2String(const Float &freq, bool always_sign = false);
 
     String Phase2String(float phase, bool);
 

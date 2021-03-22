@@ -15,8 +15,8 @@ struct MathFPGA
     static float TimeCursor(float shiftCurT, TBase::E tBase);
     static void  CalculateFFT(float *data, int numPoints, float *result, float *freq0, float *density0, float *freq1,
         float *density1, int *y0, int *y1);
-    static uint8 GetMaxFromArrayWithErrorCode(puchar data, uint firstPoint, uint lastPoint);
-    static uint8 GetMinFromArrayWithErrorCode(puchar data, uint firstPoint, uint lastPoint);
+    static Float GetMaxFromArrayWithErrorCode(puchar data, uint firstPoint, uint lastPoint);
+    static Float GetMinFromArrayWithErrorCode(puchar data, uint firstPoint, uint lastPoint);
     static void  CalculateMathFunction(float *data0andResult, const float *data1, int numPoints);
 
     static const float tableScalesRange[Range::Count];

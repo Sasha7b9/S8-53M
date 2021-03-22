@@ -97,7 +97,8 @@ file(GLOB HARDWARE_USBD        src/Hardware/USBD/*.*)
 file(GLOB HARDWARE_USBH        src/Hardware/USBH/*.*)
 file(GLOB SRC                  src/*.h
                                src/*.cpp
-                               ../common/Log.*)
+                         ../common/defines_.h
+                         ../common/Log_.*)
 file(GLOB DISPLAY              src/Display/*.h
                                src/Display/*.cpp
                                ../common/Display/*.h

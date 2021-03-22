@@ -1,5 +1,6 @@
 #pragma once
 
+
 #ifdef WIN32
 #define __attribute__(x)
 #define __packed__
@@ -24,6 +25,9 @@ typedef unsigned    char        uchar;
 typedef const char             *pchar;
 typedef const uint8            *puchar;
 typedef const char       *const pString;
+
+
+#include "common/defines_.h"
 
 #ifndef __IO
 #define __IO volatile
@@ -83,10 +87,6 @@ struct StructRelAbs
 #define ENABLE_RU   "Âêë"
 #define ENABLE_EN   "Enable"
 
-#define ERROR_VALUE_FLOAT   std::numeric_limits<float>::max()
-#define ERROR_VALUE_INT16   SHRT_MAX
-#define ERROR_VALUE_UINT8   255
-#define ERROR_VALUE_INT     0x7fffffff
 #define ERROR_STRING_VALUE  "--.--"
 #define M_PI                3.14159265358979323846F
 
@@ -96,3 +96,4 @@ struct StructRelAbs
 #define EXIT_ILLUSTRATION_EN "Button for return to previous menu"
 
 void HardwareErrorHandler(pchar file, pchar function, int line);
+

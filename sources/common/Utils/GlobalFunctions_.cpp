@@ -22,7 +22,7 @@ namespace GF
 
 String GF::FloatFract2String(float value, bool alwaysSign)
 {
-    return String(GF::Float2String(value, alwaysSign, 4));
+    return GF::Float2String(value, alwaysSign, 4);
 }
 
 static int NumDigitsInIntPart(float value)
@@ -54,25 +54,25 @@ static int NumDigitsInIntPart(float value)
     return numDigitsInInt;
 }
 
-String GF::Float2String(float value, bool always_sign, int num_digits)
+String GF::Float2String(const Float &value, bool always_sign, int num_digits)
 {
-    String result;
-
-    if(value == ERROR_VALUE_FLOAT)
+    if(!value.IsValid())
     {
         return String(ERROR_STRING_VALUE);
     }
 
+    String result;
+
     if(!always_sign)
     {
-        if(value < 0)
+        if(value < 0.0f)
         {
             result.Append('-');
         }
     }
     else
     {
-        result.Append(value < 0 ? '-' : '+');
+        result.Append(value < 0.0f ? '-' : '+');
     }
 
 
@@ -109,7 +109,7 @@ String GF::Float2String(float value, bool always_sign, int num_digits)
         result.Append(buffer);
     }
 
-    bool signExist = always_sign || value < 0;
+    bool signExist = always_sign || value < 0.0f;
 
     while(static_cast<int>(result.Size()) < num_digits + (signExist ? 2 : 1))
     {
@@ -207,15 +207,18 @@ String GF::Hex8toString(uint8 value)
     return result;
 }
 
-String GF::Voltage2String(float voltage, bool always_sign)
+String GF::Voltage2String(const Float &volt, bool always_sign)
 {
-    char *suffix;
-
-    if(voltage == ERROR_VALUE_FLOAT)
+    if(!volt.IsValid())
     {
         return String(ERROR_STRING_VALUE);
     }
-    else if(std::fabsf(voltage) + 0.5e-4F < 1e-3F)
+
+    char *suffix = nullptr;
+
+    float voltage = volt;
+    
+    if(std::fabsf(voltage) + 0.5e-4F < 1e-3F)
     {
         suffix = LANG_RU ? "\x10ìêÂ" : "\x10uV";
         voltage *= 1e6F;
@@ -241,15 +244,18 @@ String GF::Voltage2String(float voltage, bool always_sign)
     return result;
 }
 
-String GF::Time2String(float time, bool always_sign)
+String GF::Time2String(const Float &tim, bool always_sign)
 {
-    char *suffix = nullptr;
-
-    if(time == ERROR_VALUE_FLOAT)
+    if(!tim.IsValid())
     {
         return String(ERROR_STRING_VALUE);
     }
-    else if(std::fabsf(time) + 0.5e-10F < 1e-6F)
+    
+    char *suffix = nullptr;
+
+    float time = tim;
+    
+    if(std::fabsf(time) + 0.5e-10F < 1e-6F)
     {
         suffix = LANG_RU ? "íñ" : "ns";
         time *= 1e9F;
@@ -277,30 +283,33 @@ String GF::Phase2String(float phase, bool)
     return String("%s\xa8", GF::Float2String(phase, false, 4).c_str());
 }
 
-String GF::Freq2String(float freq, bool)
+String GF::Freq2String(const Float &freq, bool)
 {
-    char *suffix = 0;
-
-    if(freq == ERROR_VALUE_FLOAT)
+    if(!freq.IsValid())
     {
         return String(ERROR_STRING_VALUE);
     }
-    if(freq >= 1e6F)
+
+    char *suffix = 0;
+
+    float frequency = freq;
+
+    if(frequency >= 1e6F)
     {
         suffix = LANG_RU ? "ÌÃö" : "MHz";
-        freq /= 1e6F;
+        frequency /= 1e6F;
     }
-    else if (freq >= 1e3F)
+    else if (frequency >= 1e3F)
     {
         suffix = LANG_RU ? "êÃö" : "kHz";
-        freq /= 1e3F;
+        frequency /= 1e3F;
     }
     else
     {
         suffix = LANG_RU ? "Ãö" : "Hz";
     }
 
-    return String("%s%s", GF::Float2String(freq, false, 4).c_str(), suffix);
+    return String("%s%s", GF::Float2String(frequency, false, 4).c_str(), suffix);
 }
 
 String GF::Float2Db(float value, int num_digits)

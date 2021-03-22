@@ -1,5 +1,6 @@
 #pragma once
 
+
 typedef unsigned char      uint8;
 typedef unsigned int       uint;
 typedef signed char        int8;
@@ -9,6 +10,9 @@ typedef unsigned char      uchar;
 typedef const char        *pchar;
 typedef const uint8       *puchar; 
 typedef const char *const  pString;
+
+#include "common/defines_.h"
+
 
 #ifndef __cplusplus
 typedef unsigned char bool;
