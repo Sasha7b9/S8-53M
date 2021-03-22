@@ -54,12 +54,19 @@ struct Language { enum E
 
 
 // Тип растяжки АЦП
-struct StretchADCtype { enum E
+struct StretchADCtype
 {
-    Disable,
-    Settings,
-    Hand
-};};
+    enum E
+    {
+        Disable,
+        Settings,
+        Hand
+    };
+
+    static bool IsDisabled();
+    static bool IsHand();
+    static bool IsSettings();
+};
 
 
 // Режим отрисовки сигнала.

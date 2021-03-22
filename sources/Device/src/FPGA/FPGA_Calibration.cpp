@@ -120,14 +120,14 @@ void FPGA::Calibrator::ProcedureCalibration()
                                                  // ќжидаем подтверждени€ или отмены процедуры калибровки первого канала
         if(Panel::WaitPressingButton() == Key::Start)
         {
-			state.state_calibration = StateCalibration::RShift0inProgress;
+            state.state_calibration = StateCalibration::RShift0inProgress;
 
-			koeffCal0 = CalculateKoeffCalibration(ChA);
-			if(koeffCal0 == ERROR_VALUE_FLOAT)
+            koeffCal0 = CalculateKoeffCalibration(ChA);
+            if (koeffCal0 == ERROR_VALUE_FLOAT)
             {
-				state.state_calibration = StateCalibration::ErrorCalibration0;
-				Panel::WaitPressingButton();
-                DEBUG_STRETCH_ADC_TYPE = StretchADCtype::Hand;
+                state.state_calibration = StateCalibration::ErrorCalibration0;
+                Panel::WaitPressingButton();
+                set.debug.stretch_ADC_type = StretchADCtype::Hand;
                 PageDebug::LoadStretchADC(ChA);
             }
             else
@@ -135,7 +135,7 @@ void FPGA::Calibrator::ProcedureCalibration()
                 set.chan[ChA].stretchADC = koeffCal0;
                 Calibrator::LoadKoeff(ChA);
             }
-			
+
             for (int range = 0; range < Range::Count; range++)
             {
                 for (int mode = 0; mode < 2; mode++)
@@ -148,25 +148,25 @@ void FPGA::Calibrator::ProcedureCalibration()
                     }
                 }
             }
-		}
+        }
 
         state.state_calibration = StateCalibration::RShift1start;
 
         HAL_TIM2::Delay(500);
 
                                                  // ќжидаем подтверждени€ или отмены процедуры калибровки второго канала
-		if(Panel::WaitPressingButton() == Key::Start)
+        if (Panel::WaitPressingButton() == Key::Start)
         {
-			state.state_calibration = StateCalibration::RShift1inProgress;
+            state.state_calibration = StateCalibration::RShift1inProgress;
 
             koeffCal1 = CalculateKoeffCalibration(ChB);
-			if(koeffCal1 == ERROR_VALUE_FLOAT)
+            if (koeffCal1 == ERROR_VALUE_FLOAT)
             {
-				state.state_calibration = StateCalibration::ErrorCalibration1;
-				Panel::WaitPressingButton();
-                DEBUG_STRETCH_ADC_TYPE = StretchADCtype::Hand;
+                state.state_calibration = StateCalibration::ErrorCalibration1;
+                Panel::WaitPressingButton();
+                set.debug.stretch_ADC_type = StretchADCtype::Hand;
                 PageDebug::LoadStretchADC(ChB);
-			}
+            }
             else
             {
                 set.chan[ChB].stretchADC = koeffCal1;
@@ -185,7 +185,7 @@ void FPGA::Calibrator::ProcedureCalibration()
                     }
                 }
             }
-		}
+        }
 
         break;
     }

@@ -272,15 +272,15 @@ DEF_PAGE_3(pageBalanceADC, PageDebug::PageADC::self, NamePage::DebugADCbalance,
 
 void PageDebug::LoadStretchADC(const Channel &ch)
 {
-    if (DEBUG_STRETCH_ADC_TYPE_IS_DISABLED)
+    if (StretchADCtype::IsDisabled())
     {
 //        FPGA::WriteToHardware(ch == ChA ? WR_CAL_A : WR_CAL_B, 0x80, true);
     }
-    else if (DEBUG_STRETCH_ADC_TYPE_IS_HAND)
+    else if (StretchADCtype::IsHand())
     {
 //        FPGA::WriteToHardware(ch == ChA ? WR_CAL_A : WR_CAL_B, (uint8)DEBUG_STRETCH_ADC(ch), true);
     }
-    else if (DEBUG_STRETCH_ADC_TYPE_IS_SETTINGS)
+    else if (StretchADCtype::IsSettings())
     {
         FPGA::Calibrator::LoadKoeff(ch);
     }
@@ -302,7 +302,7 @@ DEF_CHOICE_3(mcADC_Stretch_Mode, PageDebug::PageADC::PageStretch::self,
     DISABLE_RU, DISABLE_EN,
     "Реальный", "Real",
     "Ручной", "Manual",
-    DEBUG_STRETCH_ADC_TYPE, nullptr, OnChanged_ADC_Stretch_Mode, nullptr
+    set.debug.stretch_ADC_type, nullptr, OnChanged_ADC_Stretch_Mode, nullptr
 )
 
 static void OnChanged_ADC_Stretch_ADC_A()
@@ -312,7 +312,7 @@ static void OnChanged_ADC_Stretch_ADC_A()
 
 static bool IsActive_ADC_Stretch_ADC()
 {
-    return DEBUG_STRETCH_ADC_TYPE_IS_HAND;
+    return StretchADCtype::IsHand();
 }
 
 DEF_GOVERNOR(mgADC_Stretch_ADC_A, PageDebug::PageADC::PageStretch::self,

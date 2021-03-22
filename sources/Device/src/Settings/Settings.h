@@ -311,7 +311,7 @@ struct SettingsDebug
                                                   // сообщения она не записывает и не сохраняет.
     BalanceADCtype::E balance_ADC_type;           // Тип балансировки.
     int16             balance_ADC[2];             // Значение дополнительного смещения АЦП для ручной балансировки.
-    StretchADCtype::E stretchADCtype;             // Тип растяжки канала.
+    StretchADCtype::E stretch_ADC_type;           // Тип растяжки канала.
     int16             stretchADC[2];              // Значение растяжки канала для ручного режима.
     int16             numMeasuresForGates;        // Число измерений для ворот.
     int16             shiftT0;                    // Дополнительное смещение по времени для данной развёртки режима
