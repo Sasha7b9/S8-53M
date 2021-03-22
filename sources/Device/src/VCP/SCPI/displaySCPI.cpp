@@ -298,7 +298,7 @@ void SCPI::DISPLAY::GRID_BRIGHTNESS(puchar buffer)
     int intVal = 0;
     if (SCPI::FirstIsInt(buffer, &intVal, 0, 100))
     {
-        BRIGHTNESS_GRID = (int16)intVal;
+        set.display.brightness_grid = (int16)intVal;
         Display::RunAfterDraw(PageDisplay::OnChanged_Grid_Brightness);
     }
     else

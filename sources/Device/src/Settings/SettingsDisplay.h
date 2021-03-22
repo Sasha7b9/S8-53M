@@ -2,8 +2,6 @@
 #include "common/Display/Colors_.h"
 
 
-#define BRIGHTNESS_GRID             (set.display.brightnessGrid)                // SettingsDisplay.brightnessGrid
-
 #define DISPLAY_COLOR(num)          (set.display.colors[num])                   // SettingsDisplay.colors
 
 #define ENUM_AVE                    (set.display.enumAve)                       // SettingsDisplay.enumAve
@@ -28,7 +26,7 @@ struct SettingsDisplay
                                                // памяти. Нужно для правильного отображения сигнала в окне.
     int16               time_messages;         // Время в секундах, на которое сообщение остаётся на экране.
     int16               brightness;            // Яркость дисплея.
-    int16               brightnessGrid;        // Яркость сетки от 0 до 100.
+    int16               brightness_grid;       // Яркость сетки от 0 до 100.
     uint                colors[16];            // Цвета.
     ModeDrawSignal::E   mode_draw_signal;      // Режим отрисовки сигнала.
     TypeGrid::E         typeGrid;              // Тип сетки.

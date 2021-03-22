@@ -232,20 +232,20 @@ static ColorType cTypeGrid = { 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::
 
 void PageDisplay::OnChanged_Grid_Brightness()
 {
-    cTypeGrid.SetBrightness(BRIGHTNESS_GRID / 1e2F);
+    cTypeGrid.SetBrightness(set.display.brightness_grid / 1e2F);
 }
 
 static void BeforeDraw_Grid_Brightness()
 {
     cTypeGrid.Init();
-    BRIGHTNESS_GRID = (int16)(cTypeGrid.brightness * 100.0F);
+    set.display.brightness_grid = (int16)(cTypeGrid.brightness * 100.0F);
 }
 
 DEF_GOVERNOR(mgGrid_Brightness, PageDisplay::PageGrid::self,
     "яркость", "Brightness",
     "”станавливает €ркость сетки.",
     "Adjust the brightness of the Grid.",
-    BRIGHTNESS_GRID, 0, 100, nullptr, PageDisplay::OnChanged_Grid_Brightness, BeforeDraw_Grid_Brightness
+    set.display.brightness_grid, 0, 100, nullptr, PageDisplay::OnChanged_Grid_Brightness, BeforeDraw_Grid_Brightness
 )
 
 DEF_PAGE_2(pageGrid, PageDisplay::self, NamePage::DisplayGrid,
