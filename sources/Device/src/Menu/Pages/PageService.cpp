@@ -602,7 +602,7 @@ DEF_CHOICE_2(cEthernet_Enable, PageService::PageEthernet::self,
     ,
     "Включено", "Included",
     "Отключено", "Disconnected",
-    ETH_ENABLE, nullptr, OnChanged_Ethernet_Enable, nullptr
+    set.eth.enabled, nullptr, OnChanged_Ethernet_Enable, nullptr
 )
 
 DEF_IPADDRESS(ipEthernet_IP, PageService::PageEthernet::self,

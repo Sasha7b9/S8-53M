@@ -28,8 +28,6 @@
 #define GW_ADDR1        (set.eth.gw1)
 #define GW_ADDR2        (set.eth.gw2)
 #define GW_ADDR3        (set.eth.gw3)
-//
-#define ETH_ENABLE      (set.eth.enable)
 
 
 #define LANG            (set.common.lang)       // SettingsCommon.lang
@@ -120,7 +118,7 @@ struct SettingsEthernet
     uint8 gw2;
     uint8 gw3;
 
-    bool enable;
+    bool enabled;
 };
 
                                    
