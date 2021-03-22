@@ -11,7 +11,7 @@ bool PageMeasures::choiceMeasuresIsActive = false;
 // Каким курсором в данный момент происходит управление
 static CursCntrl::E GetMeasuresCursCntrlActive()
 {
-    return set.measures.cursActive.IsT() ? CursCntrl::GetForMeasuresT() : CursCntrl::GetForMeasuresU();
+    return set.measures.curs_active.IsT() ? CursCntrl::GetForMeasuresT() : CursCntrl::GetForMeasuresU();
 }
 
 void DrawSB_MeasTune_Settings(int x, int y)
@@ -41,7 +41,7 @@ void PressSB_MeasTune_Markers()
 void RotateRegMeasureSetField(int angle)
 {
     CursCntrl::E curs_cntrl = GetMeasuresCursCntrlActive();
-    CursActive &curs_active = set.measures.cursActive;
+    CursActive &curs_active = set.measures.curs_active;
 
     int sign = Math::Sign(angle);
 

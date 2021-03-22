@@ -247,7 +247,7 @@ struct SettingsMeasures
                                           // расчЄта измерений при field == MeasuresField::Hand.
     CursCntrl::E       cntrlU;            // јктивные курсоры напр€жени€.
     CursCntrl::E       cntrlT;            // јктивные курсоры времени.
-    CursActive         cursActive;        //  акие курсоры активны - по времени или напр€жению.
+    CursActive         curs_active;       //  акие курсоры активны - по времени или напр€жению.
     Measure::E         markedMeasure;     // »змерение, на которое нужно выводить маркеры.
 
     static Channel::E Source();
