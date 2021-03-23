@@ -46,7 +46,18 @@ void Primitives::Rectangle::Draw(int x, int y, const Color &color) const
 
 void Primitives::Rectangle::Draw(int x, int y) const
 {
-    Application::memDC.DrawRectangle({ x, y, width + 1, height + 1 });
+    if (width == 1)
+    {
+        VLine().Draw(x, y, y + height);
+    }
+    else if (height == 1)
+    {
+        HLine().Draw(y, x, x + width);
+    }
+    else
+    {
+        Application::memDC.DrawRectangle({ x, y, width, height });
+    }
 }
 
 
