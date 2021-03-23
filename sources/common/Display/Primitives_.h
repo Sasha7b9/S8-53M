@@ -46,8 +46,14 @@ namespace Primitives
     class VLine
     {
     public:
+        VLine() : height(0) {}
+        VLine(int h) : height(h) {};
         void Draw(int x, int y0, int y1, const Color &color) const;
         void Draw(int x, int y0, int y1) const;
+        void Draw(int x, int y, const Color &color) const;
+        void Draw(int x, int y) const;
+    private:
+        int height;
     };
 
     // numLines вертикальных линий, состоящих из count точек каждая с расстоянием между точками delta.

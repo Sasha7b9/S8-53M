@@ -18,14 +18,6 @@ void Primitives::Point::Draw(int x, int y) const
 }
 
 
-void Primitives::VLine::Draw(int x, int y0, int y1, const Color &color) const
-{
-    color.SetAsCurrent();
-
-    Draw(x, y0, y1);
-}
-
-
 void Primitives::VLine::Draw(int x, int y0, int y1) const
 {
     if (x < 0 || x >= Display::WIDTH)
@@ -36,10 +28,7 @@ void Primitives::VLine::Draw(int x, int y0, int y1) const
     BoundingY(y0);
     BoundingY(y1);
 
-    if (y1 < y0)
-    {
-        Math::Swap(&y0, &y1);
-    }
+    Math::Sort(&y0, &y1);
 
     uint8 *address = display_back_buffer + Display::WIDTH * y0 + x;
 
@@ -53,6 +42,27 @@ void Primitives::VLine::Draw(int x, int y0, int y1) const
         address += Display::WIDTH;
 
     } while (--counter > 0);
+}
+
+
+void Primitives::VLine::Draw(int x, int y) const
+{
+    if (x < 0 || x >= Display::WIDTH)
+    {
+        return;
+    }
+
+    BoundingY(y);
+
+    uint8 *address = display_back_buffer + Display::WIDTH * y + x;
+
+    uint8 value = Color::GetCurrent().index;
+
+    for (int i = 0; i < height; i++)
+    {
+        *address = value;
+        address += Display::WIDTH;
+    }
 }
 
 

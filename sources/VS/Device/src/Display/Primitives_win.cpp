@@ -82,14 +82,6 @@ void Primitives::HLine::Draw(int y, int x1, int x2) const
 }
 
 
-void Primitives::VLine::Draw(int x, int y0, int y1, const Color &color) const
-{
-    color.SetAsCurrent();
-
-    Draw(x, y0, y1);
-}
-
-
 void Primitives::VLine::Draw(int x, int y0, int y1) const
 {
     Math::Sort(&y0, &y1);
@@ -97,6 +89,15 @@ void Primitives::VLine::Draw(int x, int y0, int y1) const
     for (int y = y0; y <= y1; y++)
     {
         Point().Draw(x, y);
+    }
+}
+
+
+void Primitives::VLine::Draw(int x, int y) const
+{
+    for (int i = 0; i < height; i++)
+    {
+        Point().Draw(x, y++);
     }
 }
 

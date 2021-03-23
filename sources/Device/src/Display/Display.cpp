@@ -701,14 +701,18 @@ void Display::DrawLowPart()
     int y1 = HEIGHT - 10;
     int x = -1;
 
-    HLine().Draw(Grid::ChannelBottom(), 1, Grid::Left() - Measure::GetDeltaGridLeft() - 2, Color::FILL);
-    HLine().Draw(Grid::FullBottom(), 1, Grid::Left() - Measure::GetDeltaGridLeft() - 2);
+    VLine vline(17);
 
-    WriteTextVoltage(ChA, x + 2, y0);
+    int y = Grid::Bottom() + 2;
 
-    WriteTextVoltage(ChB, x + 2, y1);
+    vline.Draw(95, y, Color::FILL);
+    vline.Draw(176, y);
+    vline.Draw(221, y);
+    vline.Draw(276, y);
 
-    VLine().Draw(x + 95, Grid::Bottom() + 2, HEIGHT - 2, Color::FILL);
+    WriteTextVoltage(ChA, x + 1, y0);
+
+    WriteTextVoltage(ChB, x + 1, y1);
 
     x += 98;
 
@@ -778,11 +782,6 @@ void Display::DrawLowPart()
         Text(String("\xa5\x10%c", mode[StartMode::Get()])).Draw(x + 63, y1);
     }
     
-    VLine().Draw(x + 79, Grid::Bottom() + 2, HEIGHT - 2, Color::FILL);
-
-    HLine().Draw(Grid::Bottom(), Grid::Right() + 2, WIDTH - 2);
-    HLine().Draw(Grid::ChannelBottom(), Grid::Right() + 2, WIDTH - 2);
-
     x += 82;
     y0 = y0 - 3;
     y1 = y1 - 6;
@@ -797,7 +796,6 @@ void Display::DrawLowPart()
     }
 
     x += 42;
-    VLine().Draw(x, Grid::Bottom() + 2, HEIGHT - 2);
 
     Font::Set(TypeFont::S8);
 
@@ -817,8 +815,6 @@ void Display::DrawLowPart()
     }
 
     DrawTime(x + 3, Grid::Bottom() + 11);
-
-    HLine().Draw(x + 55, Grid::Bottom() + 2, HEIGHT - 2);
 
     Font::Set(TypeFont::UGO2);
 

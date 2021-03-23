@@ -109,3 +109,19 @@ void Primitives::VLineArray::Draw(int , int , uint8 *, const Color &color) const
 {
     color.SetAsCurrent();
 }
+
+
+void Primitives::VLine::Draw(int x, int y0, int y1, const Color &color) const
+{
+    color.SetAsCurrent();
+
+    Draw(x, y0, y1);
+}
+
+
+void Primitives::VLine::Draw(int x, int y, const Color &color) const
+{
+    color.SetAsCurrent();
+
+    Draw(x, y);
+}
