@@ -378,10 +378,10 @@ void OnMemExtSetMaskNameRegSet(int angle, int maxIndex)
 
     if (set.memory.index_cur_symbol_name_mask > maxIndex)
     {
-        set.memory.index_cur_symbol_name_mask = static_cast<int8>(maxIndex - 1);
+        set.memory.index_cur_symbol_name_mask = (int8)(maxIndex - 1);
     }
 
-    func[Math::Sign(angle) + 1](&set.memory.index_cur_symbol_name_mask, 0, static_cast<int8>(maxIndex - 1));
+    func[Math::Sign(angle) + 1](&set.memory.index_cur_symbol_name_mask, 0, (int8)(maxIndex - 1));
     Sound::RegulatorSwitchRotate();
 
 }

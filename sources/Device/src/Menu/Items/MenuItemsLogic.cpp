@@ -171,7 +171,7 @@ void Governor::NextPosition()
 {
     if (IsOpened())
     {
-        GF::CircleIncrease<int8>(&gCurDigit, 0, static_cast<int8>(NumDigits()) - 1);
+        GF::CircleIncrease<int8>(&gCurDigit, 0, (int8)(NumDigits()) - 1);
     }
 }
 
@@ -194,12 +194,12 @@ void IPaddress::NextPosition() const
 void TimeItem::SetOpened()
 {
     PackedTime time = HAL_RTC::GetPackedTime();
-    *OwnData()->seconds = static_cast<int8>(time.seconds);
-    *OwnData()->minutes = static_cast<int8>(time.minutes);
-    *OwnData()->hours = static_cast<int8>(time.hours);
-    *OwnData()->day = static_cast<int8>(time.day);
-    *OwnData()->month = static_cast<int8>(time.month);
-    *OwnData()->year = static_cast<int8>(time.year);
+    *OwnData()->seconds = (int8)(time.seconds);
+    *OwnData()->minutes = (int8)(time.minutes);
+    *OwnData()->hours = (int8)(time.hours);
+    *OwnData()->day = (int8)(time.day);
+    *OwnData()->month = (int8)(time.month);
+    *OwnData()->year = (int8)(time.year);
 }
 
 void TimeItem::SetNewTime() const

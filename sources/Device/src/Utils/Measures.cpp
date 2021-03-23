@@ -71,7 +71,7 @@ void Measure::GetActive(int *row, int *col)
 
 void Measure::SetActive(int row, int col)
 {
-    posActive = static_cast<int8>(row * Measure::NumCols() + col);
+    posActive = (int8)(row * Measure::NumCols() + col);
 }
 
 char Measure::GetChar(Measure::E measure)
@@ -228,7 +228,7 @@ void Measure::ShorPressOnSmallButtonSettings()
     PageMeasures::choiceMeasuresIsActive = !PageMeasures::choiceMeasuresIsActive;
     if(PageMeasures::choiceMeasuresIsActive)
     {
-        posOnPageChoice = static_cast<int8>(Measure::Get(posActive));
+        posOnPageChoice = (int8)(Measure::Get(posActive));
     }
 }
 

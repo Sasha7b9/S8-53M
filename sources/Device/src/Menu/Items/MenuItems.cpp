@@ -180,7 +180,7 @@ float Choice::Step() const
             {
                 return delta;
             }
-            GF::CircleIncrease<int8>(own->cell, 0, static_cast<int8>(NumSubItems() - 1));
+            GF::CircleIncrease<int8>(own->cell, 0, (int8)(NumSubItems() - 1));
         }
         else if (tsChoice.inMoveDecrease == 1)
         {
@@ -190,7 +190,7 @@ float Choice::Step() const
             {
                 return delta;
             }
-            GF::CircleDecrease<int8>(own->cell, 0, static_cast<int8>(NumSubItems() - 1));
+            GF::CircleDecrease<int8>(own->cell, 0, (int8)(NumSubItems() - 1));
         }
         tsChoice.choice = 0;
         FuncOnChanged(IsActive());
@@ -234,7 +234,7 @@ void Choice::ChangeValue(int delta)
     }
     else
     {
-        int8 value = static_cast<int8>((*own->cell == 0) ? (NumSubItems() - 1) : (*own->cell - 1));
+        int8 value = (int8)((*own->cell == 0) ? (NumSubItems() - 1) : (*own->cell - 1));
         *own->cell = value;
     }
 

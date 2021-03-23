@@ -38,7 +38,7 @@ bool GetWord(puchar /*string*/, Word * /*word*/, const int /*numWord*/)
 //        {
 //            word->address = (uint8*)string;
 //            ChooseSymbols(&string);
-//            word->numSymbols = static_cast<int8>(string - word->address);
+//            word->numSymbols = (int8)(string - word->address);
 //            
 //            uint8 *pointer = word->address;
 //            int numSymbols = word->numSymbols;

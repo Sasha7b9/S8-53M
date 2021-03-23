@@ -48,8 +48,8 @@ static bool BitInFontIsExist(int eChar, int numByte, int bit)
 
 static void DrawCharInColorDisplay(int eX, int eY, uchar symbol)
 {
-    int8 width = static_cast<int8>(Font::font->symbol[symbol].width);
-    int8 height = static_cast<int8>(Font::font->height);
+    int8 width = (int8)(Font::font->symbol[symbol].width);
+    int8 height = (int8)(Font::font->height);
 
     for (int b = 0; b < height; b++)
     {
@@ -313,8 +313,8 @@ void Char::Draw10SymbolsInRect(int x, int y)
 
 static int DrawCharWithLimitation(int eX, int eY, uchar symbol, int limitX, int limitY, int limitWidth, int limitHeight)
 {
-    int8 width = static_cast<int8>(Font::font->symbol[symbol].width);
-    int8 height = static_cast<int8>(Font::font->height);
+    int8 width = (int8)(Font::font->symbol[symbol].width);
+    int8 height = (int8)(Font::font->height);
 
     for (int b = 0; b < height; b++)
     {
@@ -449,7 +449,7 @@ static bool FindNextTransfer(pchar letters, int8 *lettersInSyllable)
 #define VOWEL       0   // Гласная
 #define CONSONANT   1   // Согласная
 
-    * lettersInSyllable = static_cast<int8>(std::strlen(letters)); //-V1029
+    * lettersInSyllable = (int8)(std::strlen(letters)); //-V1029
     if (std::strlen(letters) <= 3) //-V1051
     {
         return false;
