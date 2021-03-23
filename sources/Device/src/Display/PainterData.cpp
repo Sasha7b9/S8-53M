@@ -69,10 +69,7 @@ void DataDrawing::PrepareChannel(const Channel &ch)
     float scale_y = (float)(max_y - min_y) / (MAX_VALUE - MIN_VALUE);
     float scale_x = Grid::Width() / 280.0f;
 
-    int first_point = 0;
-    int last_point = 0;
-
-    SettingsDisplay::PointsOnDisplay(&first_point, &last_point);
+    Set2Int p = SettingsDisplay::PointsOnDisplay();
 
     points[ch].Realloc(281);
 
@@ -80,9 +77,9 @@ void DataDrawing::PrepareChannel(const Channel &ch)
 
     if (scale_x == 1.0f)
     {
-        for (int i = first_point; i < last_point; i++)
+        for (int i = p.value1; i < p.value2; i++)
         {
-            int index = i - first_point;
+            int index = i - p.value1;
             CONVERT_DATA_TO_DISPLAY((points[ch][(uint)index]),
                 Math::CalculateFiltr(data_channel, i, SettingsMemory::GetNumPoints(false), (int)Smoothing::NumPoints()));
         }
