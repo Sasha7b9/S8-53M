@@ -20,7 +20,7 @@
 using namespace Primitives;
 
 
-void DataPainter::DrawData()
+void PainterData::DrawData()
 {
     DataStorage data;
 
@@ -33,7 +33,7 @@ void DataPainter::DrawData()
 }
 
 
-void DataPainter::DrawDataChannel(DataStorage &data, const Channel &ch, int min_y, int max_y)
+void PainterData::DrawDataChannel(DataStorage &data, const Channel &ch, int min_y, int max_y)
 {
     if (!data.Settings().IsEnabled(ch))
     {
@@ -60,7 +60,7 @@ void DataPainter::DrawDataChannel(DataStorage &data, const Channel &ch, int min_
     else if (out > max_y)    { out = (uint8)max_y; };
 
 
-void DataPainter::DrawSignalLined(puchar data, const DataSettings *ds, int start_i, int end_i, int min_y,
+void PainterData::DrawSignalLined(puchar data, const DataSettings *ds, int start_i, int end_i, int min_y,
     int max_y, float scale_y, float scale_x, bool calculate_filtr)
 {
     if (end_i < start_i)
@@ -146,7 +146,7 @@ void DataPainter::DrawSignalLined(puchar data, const DataSettings *ds, int start
 }
 
 
-void DataPainter::DrawSignalPointed(puchar data, DataSettings &ds, int start_i, int end_i, int min_y,
+void PainterData::DrawSignalPointed(puchar data, DataSettings &ds, int start_i, int end_i, int min_y,
     int max_y, float scale_y, float scale_x)
 {
     int numPoints = SettingsMemory::GetNumPoints(false);
@@ -194,7 +194,7 @@ void DataPainter::DrawSignalPointed(puchar data, DataSettings &ds, int start_i, 
 
 // shiftForPeakDet - если рисуем информацию с пикового детектора - то через shiftForPeakDet точек расположена
 // иниформация о максимумах.
-void DataPainter::DrawDataInRect(int x, int width, puchar data, int numElems, const Channel &ch, int shiftForPeakDet)
+void PainterData::DrawDataInRect(int x, int width, puchar data, int numElems, const Channel &ch, int shiftForPeakDet)
 {
     if (numElems == 0)
     {
@@ -287,7 +287,7 @@ void DataPainter::DrawDataInRect(int x, int width, puchar data, int numElems, co
 }
 
 
-void DataPainter::DrawPoints(uint8 *y, const int start_x, int num_points, const Color &color)
+void PainterData::DrawPoints(uint8 *y, const int start_x, int num_points, const Color &color)
 {
     color.SetAsCurrent();
 

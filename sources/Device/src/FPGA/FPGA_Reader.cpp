@@ -102,7 +102,7 @@ void ReaderFPGA::ReadPoint()
 //        uint16 dataA1 = *RD_ADC_A;
 //        uint16 dataA2 = *RD_ADC_A;
 
-//        DataPainter::AddPoints(dataA2, dataA1, dataB2, dataB1);
+//        PainterData::AddPoints(dataA2, dataA1, dataB2, dataB1);
     }
 }
 

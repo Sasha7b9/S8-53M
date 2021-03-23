@@ -410,7 +410,7 @@ void Display::Update()
         Grid::Draw();
     }
 
-    DataPainter::DrawData();
+    PainterData::DrawData();
 
     if (needClear)
     {

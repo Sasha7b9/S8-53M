@@ -9,7 +9,7 @@ struct DataSettings;
 struct DataStorage;
 
 
-class DataPainter
+class PainterData
 {
 public:
 
