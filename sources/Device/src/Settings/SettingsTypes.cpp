@@ -319,7 +319,7 @@ void TShift::Set(int tShift)
         Display::ShowWarningBad(Warning::LimitSweep_TShift);
     }
 
-    set.time.tShiftRel = (int16)tShift;
+    set.time.shift = (int16)tShift;
 
     TShift::Load();
     Display::Redraw();
@@ -328,7 +328,7 @@ void TShift::Set(int tShift)
 
 int16 TShift::Get()
 {
-    return set.time.tShiftRel;
+    return set.time.shift;
 }
 
 

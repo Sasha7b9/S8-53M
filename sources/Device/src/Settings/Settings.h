@@ -280,7 +280,7 @@ struct SettingsTrig
 struct SettingsTime
 {
     TBase::E            base;           // Масштаб по времени.
-    int16               tShiftRel;      // Смещение по времени.
+    int16               shift;          // Смещение по времени.
     FunctionTime::E     function_time;
     TPos::E             tPos;           // Привязка синхронизации к памяти.
     SampleType::E       sampleType;     // Тип выборки для режима рандомизатора.
