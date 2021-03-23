@@ -46,7 +46,7 @@ void Buffer::Malloc(uint s)
 {
     if (s > 0)
     {
-        data = static_cast<uint8 *>(std::malloc((uint)(s)));
+        data = (uint8 *)(std::malloc((uint)(s)));
         size = (data) ? s : 0;
 
         if(!data)

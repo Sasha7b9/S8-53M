@@ -44,8 +44,8 @@ bool AutoFinderFPGA::FindWave(const Channel &ch)
 
     FPGA::Stop();
     ch.Enable();
-    TrigSource::Set(static_cast<TrigSource::E>(ch.value));
-    TrigLev::Set(static_cast<TrigSource::E>(ch.value), TrigLev::ZERO);
+    TrigSource::Set((TrigSource::E)(ch.value));
+    TrigLev::Set((TrigSource::E)(ch.value), TrigLev::ZERO);
     RShift::Set(ch, RShift::ZERO);
     ModeCouple::Set(ch, ModeCouple::AC);
     Range::E range = AccurateFindRange(ch);
@@ -57,7 +57,7 @@ bool AutoFinderFPGA::FindWave(const Channel &ch)
         if (tBase != TBase::Count)
         {
             TBase::Set(tBase);
-            set.trig.source = static_cast<TrigSource::E>(ch.value);
+            set.trig.source = (TrigSource::E)(ch.value);
             return true;
         }
     }
@@ -93,7 +93,7 @@ Range::E AutoFinderFPGA::AccurateFindRange(const Channel &ch)
     {
         //Timer::LogPointMS("1");
         FPGA::Stop();
-        Range::Set(ch, static_cast<Range::E>(range));
+        Range::Set(ch, (Range::E)(range));
         HAL_TIM2::Delay(10);
         FPGA::Start();
 
@@ -143,7 +143,7 @@ Range::E AutoFinderFPGA::AccurateFindRange(const Channel &ch)
                 range++;
             }
             PeackDetMode::Set(peackDetMode);
-            return static_cast<Range::E>(range);
+            return (Range::E)(range);
         }
 
         uint8 min = AVE_VALUE - 30;

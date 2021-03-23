@@ -58,7 +58,7 @@ Key::E &operator++(Key::E &right)
 
 Key::E Key::FromCode(uint16 code)
 {
-    return static_cast<Key::E>(code & 0x1F);
+    return (Key::E)(code & 0x1F);
 }
 
 
@@ -82,7 +82,7 @@ bool Key::IsButton(Key::E key)
 
 Action::E Action::FromCode(uint16 code)
 {
-    return static_cast<Action::E>((code >> 5) & 0x7);
+    return (Action::E)((code >> 5) & 0x7);
 }
 
 
