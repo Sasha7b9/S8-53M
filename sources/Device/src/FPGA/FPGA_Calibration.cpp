@@ -483,7 +483,7 @@ Int16 CalculateAdditionRShift(const Channel &ch, Range::E range)
     }
 
     float aveValue = (float)sum / numPoints;
-    int16 retValue = static_cast<int16>(-(aveValue - AVE_VALUE) * 2);
+    int16 retValue = (int16)(-(aveValue - AVE_VALUE) * 2);
 
     if(retValue < - 100 || retValue > 100)
     {

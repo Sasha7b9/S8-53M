@@ -96,12 +96,12 @@ void PressSB_MemLastSelect()
 
 void PressSB_MemLast_Next()
 {
-//    GF::CircleIncrease<int16>(&PageMemory::PageLatest::currentSignal, 0, static_cast<int16>(Storage::AllDatas() - 1));
+//    GF::CircleIncrease<int16>(&PageMemory::PageLatest::currentSignal, 0, (int16)(Storage::AllDatas() - 1));
 }
 
 void PressSB_MemLast_Prev()
 {
-//    GF::CircleDecrease<int16>(&PageMemory::PageLatest::currentSignal, 0, static_cast<int16>(Storage::AllDatas() - 1));
+//    GF::CircleDecrease<int16>(&PageMemory::PageLatest::currentSignal, 0, (int16)(Storage::AllDatas() - 1));
 }
 
 static void RotateSB_MemLast(int /*angle*/)

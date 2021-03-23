@@ -34,9 +34,9 @@ void Governor::ChangeValue(int delta)
 {
     int16 oldValue = *OwnData()->cell;
     LIMITATION(*OwnData()->cell,
-                static_cast<int16>(oldValue + Math::Sign(delta) * Math::Pow10(gCurDigit)),
-                static_cast<int16>(OwnData()->minValue),
-                static_cast<int16>(OwnData()->maxValue));
+                (int16)(oldValue + Math::Sign(delta) * Math::Pow10(gCurDigit)),
+                (int16)(OwnData()->minValue),
+                (int16)(OwnData()->maxValue));
     if (*OwnData()->cell != oldValue)
     {
         if (OwnData()->funcOfChanged)
@@ -159,7 +159,7 @@ float Governor::Step() const
 
 int16 Governor::NextValue() const
 {
-    return ((*OwnData()->cell) < OwnData()->maxValue) ? (*OwnData()->cell) + 1 : static_cast<int16>(OwnData()->minValue);
+    return ((*OwnData()->cell) < OwnData()->maxValue) ? (*OwnData()->cell) + 1 : (int16)(OwnData()->minValue);
 }
 
 int16 Governor::PrevValue() const

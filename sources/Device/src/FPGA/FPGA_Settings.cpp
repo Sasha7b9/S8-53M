@@ -619,7 +619,7 @@ void TrigLev::FindAndSet()
 
     static const float scale = (float)(TrigLev::MAX - TrigLev::ZERO) / (float)(MAX_VALUE - AVE_VALUE) / 2.4F;
 
-    int16 trigLev = static_cast<int16>(TrigLev::ZERO + scale * ((int)(aveValue) - AVE_VALUE) -
+    int16 trigLev = (int16)(TrigLev::ZERO + scale * ((int)(aveValue) - AVE_VALUE) -
         (RShift::Get(chanTrig) - RShift::ZERO));
 
     TrigLev::Set(trigSource, trigLev);

@@ -766,7 +766,7 @@ static void ChangeTShift(int *prevTime, void(*f)(int), int16 relStep)
         }
     }
 
-    int16 tShift = static_cast<int16>(TShift::Get() + step);
+    int16 tShift = (int16)(TShift::Get() + step);
     if (((tShiftOld > 0) && (tShift < 0)) || (tShiftOld < 0 && tShift > 0))
     {
         tShift = 0;
@@ -786,7 +786,7 @@ static void XShift(int delta)
     {
         if (FPGA::SET::ENumPointsInChannel() != ENUM_POINTS_FPGA::_281)
         {
-            ChangeShiftScreen(&prevTime, ShiftScreen, static_cast<int16>(2 * delta));
+            ChangeShiftScreen(&prevTime, ShiftScreen, (int16)(2 * delta));
         }
     }
     else

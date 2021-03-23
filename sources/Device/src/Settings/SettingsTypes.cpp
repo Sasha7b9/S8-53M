@@ -701,5 +701,5 @@ int ENumMinMax::ToAbs()
 
 int16 RShift::STEP()
 {
-    return static_cast<int16>(((RShift::MAX - RShift::MIN) / 24) / Grid::Delta());
+    return (int16)(((RShift::MAX - RShift::MIN) / 24) / Grid::Delta());
 }
