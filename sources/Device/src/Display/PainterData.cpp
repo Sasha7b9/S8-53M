@@ -95,7 +95,6 @@ void DataDrawing::DrawChannel(const Channel &ch)
 
     if (set.display.mode_draw_signal.IsLines())
     {
-        DrawChannelPointed(x, points[ch]);
         DrawChannelLined(x, points[ch]);
     }
     else
@@ -107,16 +106,31 @@ void DataDrawing::DrawChannel(const Channel &ch)
 
 void DataDrawing::DrawChannelPointed(int x, Buffer &buffer)
 {
-    uint8 *d = buffer.Data();
+    uint8 *_data = buffer.Data();
 
     for (uint i = 0; i < buffer.Size(); i++)
     {
-        Point().Draw(x++, *d++);
+        Point().Draw(x++, *_data++);
     }
 }
 
 
 void DataDrawing::DrawChannelLined(int x, Buffer &buffer)
 {
+    Buffer y(buffer.Size());
 
+    for (uint i = 0; i < y.Size() - 1; i++)
+    {
+        y[i] = buffer[i + 1];
+
+        if      (y[i] < buffer[i + 1]) { y[i]++; }
+        else if (y[i] > buffer[i + 1]) { y[i]--; }
+    }
+
+    y[buffer.Size() - 1] = buffer[buffer.Size() - 1];
+
+    for (uint i = 0; i < buffer.Size(); i++)
+    {
+        VLine().Draw(x++, y[i], buffer[i]);
+    }
 }
