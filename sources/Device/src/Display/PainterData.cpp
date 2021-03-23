@@ -118,20 +118,17 @@ void DataDrawing::DrawChannelPointed(int x, Buffer &buffer)
 
 void DataDrawing::DrawChannelLined(int x, Buffer &buffer)
 {
-    Buffer y(buffer.Size());
+    uint size = buffer.Size() - 1;
 
-    for (uint i = 0; i < y.Size() - 1; i++)
+    for (uint i = 0; i < size; i++)
     {
-        y[i] = buffer[i + 1];
+        uint8 current = buffer[i];
+        uint8 next = buffer[i + 1];
 
-        if      (buffer[i] > buffer[i + 1]) { y[i]++; }
-        else if (buffer[i] < buffer[i + 1]) { y[i]--; }
+        if      (current > next) { VLine().Draw(x++, next + 1, current); }
+        else if (current < next) { VLine().Draw(x++, next - 1, current); }
+        else                     { Point().Draw(x++, next); }
     }
 
-    y[buffer.Size() - 1] = buffer[buffer.Size() - 1];
-
-    for (uint i = 0; i < buffer.Size(); i++)
-    {
-        VLine().Draw(x++, y[i], buffer[i]);
-    }
+    Point().Draw(x, buffer[buffer.Size() - 1]);
 }
