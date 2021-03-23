@@ -123,8 +123,8 @@ void DataDrawing::DrawChannelLined(int x, Buffer &buffer)
     {
         y[i] = buffer[i + 1];
 
-        if      (y[i] < buffer[i + 1]) { y[i]++; }
-        else if (y[i] > buffer[i + 1]) { y[i]--; }
+        if      (y[i] > buffer[i + 1]) { y[i]++; }
+        else if (y[i] < buffer[i + 1]) { y[i]--; }
     }
 
     y[buffer.Size() - 1] = buffer[buffer.Size() - 1];

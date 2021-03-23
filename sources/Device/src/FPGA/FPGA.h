@@ -10,9 +10,7 @@ struct DataSettings;
 struct StateWorkFPGA { enum E {
     Stop,    // СТОП - не занимается считыванием информации.
     Wait,    // Ждёт поступления синхроимпульса.
-    Work,    // Идёт работа.
-    Pause    // Это состояние, когда временно приостановлен прибор, например, для чтения данных или для записи значений
-             // регистров.
+    Work     // Идёт работа.
 };};
 
 struct StateCalibration { enum E {
@@ -53,7 +51,7 @@ public:
     static void Start();
 
     // Прерывает процесс сбора информации.
-    static void Stop(bool pause);
+    static void Stop();
 
     // Возвращает true, если прибор находится не в процессе сбора информации.
     static bool IsRunning();

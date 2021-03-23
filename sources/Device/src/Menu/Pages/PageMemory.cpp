@@ -1030,7 +1030,7 @@ void OnPressMemoryLatest()
 {
     PageMemory::PageLatest::currentSignal = 0;
     runningFPGAbeforeSmallButtons = FPGA::IsRunning();
-    FPGA::Stop(false);
+    FPGA::Stop();
     set.memory.modeWork = ModeWork::Latest;
 }
 

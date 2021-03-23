@@ -116,16 +116,16 @@ void FPGA::OnPressStartStop()
     } 
     else
     {
-        FPGA::Stop(false);
+        FPGA::Stop();
     } 
 }
 
 
-void FPGA::Stop(bool pause) 
+void FPGA::Stop() 
 {
     Timer::Disable(TypeTimer::P2P);
     HAL_FMC::Write(WR_STOP, 1);
-    state_work = pause ? StateWorkFPGA::Pause : StateWorkFPGA::Stop;
+    state_work = StateWorkFPGA::Stop;
 }
 
 
@@ -204,7 +204,7 @@ void FPGA::BUS::Write(uint16 * const address, uint16 data)
 {
     bool is_running = FPGA::IsRunning();
 
-    Stop(true);
+    Stop();
 
     HAL_FMC::Write(address, data);
 

@@ -42,7 +42,7 @@ bool AutoFinderFPGA::FindWave(const Channel &ch)
 {
     Settings settings = set;    // Сохраняем предыдущие настройки
 
-    FPGA::Stop(false);
+    FPGA::Stop();
     ch.Enable();
     TrigSource::Set(static_cast<TrigSource::E>(ch.value));
     TrigLev::Set(static_cast<TrigSource::E>(ch.value), TrigLevZero);
@@ -92,7 +92,7 @@ Range::E AutoFinderFPGA::AccurateFindRange(const Channel &ch)
     for (int range = Range::Count - 1; range >= 0; range--)
     {
         //Timer::LogPointMS("1");
-        FPGA::Stop(false);
+        FPGA::Stop();
         Range::Set(ch, static_cast<Range::E>(range));
         HAL_TIM2::Delay(10);
         FPGA::Start();
@@ -165,7 +165,7 @@ TBase::E AutoFinderFPGA::FindTBase(const Channel &)
 {
     TrigInput::Set(TrigInput::Full);
     HAL_TIM2::Delay(10);
-    FPGA::Stop(false);
+    FPGA::Stop();
     float fr = CalculateFreqFromCounterFreq();
 
     TrigInput::Set(fr < 1e6F ? TrigInput::LPF : TrigInput::Full);

@@ -6,7 +6,8 @@
 
 void PageTrig::OnPress_Mode(bool)
 {
-    FPGA::Stop(false);
+    FPGA::Stop();
+
     if (!StartMode::IsSingle())
     {
         FPGA::Start();
