@@ -290,12 +290,15 @@ void SCPI::DISPLAY::WINDOW(puchar buffer)
         {"?",           2},
         {0}
     };
+
+    bool &show = set.display.show_full_memory_window;
+
     ENTER_ANALYSIS
-        if (value == 0) { set.display.showFullMemoryWindow = true; }
-        else if (1 == value) { set.display.showFullMemoryWindow = false; }
+        if (value == 0)      { show = true; }
+        else if (1 == value) { show = false; }
         else if (2 == value)
         {
-            SCPI_SEND(":DISPLAY:WINDOW %s", set.display.showFullMemoryWindow ? "STANDARD" : "SIMPLE");
+            SCPI_SEND(":DISPLAY:WINDOW %s", show ? "STANDARD" : "SIMPLE");
         }
     LEAVE_ANALYSIS
 }
