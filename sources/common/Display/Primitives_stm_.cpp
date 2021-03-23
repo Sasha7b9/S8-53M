@@ -66,14 +66,6 @@ void Primitives::VLine::Draw(int x, int y) const
 }
 
 
-void Primitives::Rectangle::Draw(int x, int y, const Color &color) const
-{
-    color.SetAsCurrent();
-
-    Draw(x, y);
-}
-
-
 void Primitives::Rectangle::Draw(int x, int y) const
 {
     if (width == 0 || height == 0)

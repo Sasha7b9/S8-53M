@@ -136,3 +136,11 @@ void Primitives::MultiVPointLine::Draw(int y, const Color &color) const
         DrawVPointLine(x0[i], y, count, delta);
     }
 }
+
+
+void Primitives::Rectangle::Draw(int x, int y, const Color &color) const
+{
+    color.SetAsCurrent();
+
+    Draw(x, y);
+}

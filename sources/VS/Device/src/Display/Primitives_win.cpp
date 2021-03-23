@@ -38,14 +38,6 @@ void Primitives::Region::Fill(int x, int y) const
 }
 
 
-void Primitives::Rectangle::Draw(int x, int y, const Color &color) const
-{
-    color.SetAsCurrent();
-
-    Draw(x, y);
-}
-
-
 void Primitives::Rectangle::Draw(int x, int y) const
 {
     if (width == 1)
