@@ -109,7 +109,7 @@ void SCPI::TBASE::SAMPLING(puchar buffer)
     };
 
     ENTER_ANALYSIS
-        if (value < 2) { set.time.sampleType = (SampleType::E)value; }
+        if (value < 2) { set.time.sample_type = (SampleType::E)value; }
         else if (2 == value)
         {
             SCPI_SEND(":TBASE:SAMPLING %s", map[SampleType::Get()].key);

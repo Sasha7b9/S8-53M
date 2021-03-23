@@ -20,7 +20,7 @@ DEF_CHOICE_2(mcSample, PageTime::self,
     ,
     "–еальное врем€", "Real",
     "Ёквивалентна€", "Equals",
-    set.time.sampleType, IsActive_Sample, nullptr, nullptr
+    set.time.sample_type, IsActive_Sample, nullptr, nullptr
 )
 
 static bool IsActive_PeakDet()

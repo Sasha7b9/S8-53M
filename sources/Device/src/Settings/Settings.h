@@ -283,7 +283,7 @@ struct SettingsTime
     int16               shift;          // Смещение по времени.
     FunctionTime::E     function_time;
     TPos::E             t_pos;          // Привязка синхронизации к памяти.
-    SampleType::E       sampleType;     // Тип выборки для режима рандомизатора.
+    SampleType::E       sample_type;    // Тип выборки для режима рандомизатора.
     PeackDetMode::E     peakDet;        // Режим работы пикового детектора
     bool                selfRecorder;   // Включен ли режим самописца.
     ENUM_POINTS_FPGA::E oldNumPoints;   // \brief Когда переключаемся в режим пикового детектора, устанавливаем
