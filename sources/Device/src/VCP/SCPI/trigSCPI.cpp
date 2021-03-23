@@ -157,7 +157,7 @@ void SCPI::TRIGGER::OFFSET(puchar buffer)
     int intVal = 0;
     if (SCPI::FirstIsInt(buffer, &intVal, -240, 240))
     {
-        int trigLev = RShiftZero + 2 * intVal;
+        int trigLev = RShift::ZERO + 2 * intVal;
         TrigLev::Set(TrigSource::Get(), (int16)trigLev);
         return;
     }
@@ -165,7 +165,7 @@ void SCPI::TRIGGER::OFFSET(puchar buffer)
     ENTER_ANALYSIS
         if (value == 0)
         {
-            int retValue = (int)(0.5F * (TrigLev::Get() - RShiftZero));
+            int retValue = (int)(0.5F * (TrigLev::Get() - RShift::ZERO));
             SCPI_SEND(":TRIGGER:OFFSET %d", retValue);
         }
     LEAVE_ANALYSIS

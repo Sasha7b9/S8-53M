@@ -207,11 +207,11 @@ void RShift::Set(const Channel &ch, int16 rShift)
 
     LIMITATION(rShift, rShift, RShift::MIN, RShiftMax);
 
-    if (rShift > RShiftZero)
+    if (rShift > RShift::ZERO)
     {
         rShift &= 0xfffe;                                            // ƒелаем кратным двум, т.к. у нас 800 значений на 400 точек
     }
-    else if (rShift < RShiftZero)
+    else if (rShift < RShift::ZERO)
     {
         rShift = (rShift + 1) & 0xfffe;
     }

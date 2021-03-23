@@ -559,7 +559,7 @@ static void F5Long()
 static bool CanChangeRShiftOrTrigLev(TrigSource::E channel, int16 rShift)
 {
     static uint time[3] = { 0, 0, 0 };
-    if (rShift == RShiftZero)
+    if (rShift == RShift::ZERO)
     {
         time[channel] = TIME_MS;
         return true;
@@ -608,9 +608,9 @@ static void ChangeRShift(int *prevTime, void(*f)(const Channel &, int16), const 
     int count = CalculateCount(prevTime);
     int rShiftOld = RShift::Get(ch);
     int rShift = RShift::Get(ch) + relStep * count;
-    if ((rShiftOld > RShiftZero && rShift < RShiftZero) || (rShiftOld < RShiftZero && rShift > RShiftZero))
+    if ((rShiftOld > RShift::ZERO && rShift < RShift::ZERO) || (rShiftOld < RShift::ZERO && rShift > RShift::ZERO))
     {
-        rShift = RShiftZero;
+        rShift = RShift::ZERO;
     }
     if (CanChangeRShiftOrTrigLev((TrigSource::E)ch.value, (int16)rShift))
     {

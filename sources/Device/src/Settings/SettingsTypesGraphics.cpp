@@ -40,7 +40,7 @@ void RShift::Draw(const Channel &ch)
     {
         int rShift = RShift::GetMath();
         float scale = (float)Grid::MathHeight() / 960;
-        float y = (Grid::MathTop() + Grid::MathBottom()) / 2.0F - scale * (rShift - RShiftZero);
+        float y = (Grid::MathTop() + Grid::MathBottom()) / 2.0F - scale * (rShift - RShift::ZERO);
         Char(Symbol::S8::RSHIFT_NORMAL).Draw((int)(x - 9), (int)(y - 4), Color::FILL);
         Char('m').Draw((int)(x - 8), (int)(y - 5), Color::BACK);
         return;
@@ -53,7 +53,7 @@ void RShift::Draw(const Channel &ch)
     int rShift = RShift::Get(ch);
 
     float scale = Grid::ChannelHeight() / (STEP_RSHIFT * 200.0F);
-    float y = Grid::ChannelCenterHeight() - scale * (rShift - RShiftZero);
+    float y = Grid::ChannelCenterHeight() - scale * (rShift - RShift::ZERO);
 
     if (y > Grid::ChannelBottom())
     {
@@ -85,7 +85,7 @@ void RShift::Draw(const Channel &ch)
         float scaleFull = (float)Grid::ChannelHeight() / (RShiftMax - RShift::MIN) *
             (SettingsMath::IsMathEnabled() ? 0.9F : 0.91F);
 
-        float yFull = Grid::ChannelCenterHeight() - scaleFull * (rShift - RShiftZero);
+        float yFull = Grid::ChannelCenterHeight() - scaleFull * (rShift - RShift::ZERO);
 
         Region(4, 6).Fill(4, (int)(yFull - 3), ch.GetColor());
         Char(ch == ChA ? '1' : '2').Draw(5, (int)(yFull - 9), Color::BACK);

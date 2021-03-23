@@ -203,9 +203,9 @@ static void OnRegSet_Math_Function(int delta)
             {
                 rShift += 4 * STEP_RSHIFT;
                 LIMIT_ABOVE(rShift, RShiftMax);
-                if (prevRShift < RShiftZero && rShift > RShiftZero)
+                if (prevRShift < RShift::ZERO && rShift > RShift::ZERO)
                 {
-                    rShift = RShiftZero;
+                    rShift = RShift::ZERO;
                 }
                 Sound::RegulatorShiftRotate();
                 set.math.rShift = rShift;
@@ -217,9 +217,9 @@ static void OnRegSet_Math_Function(int delta)
             {
                 rShift -= 4 * STEP_RSHIFT;
                 LIMIT_BELOW(rShift, RShift::MIN);
-                if (prevRShift > RShiftZero && rShift < RShiftZero)
+                if (prevRShift > RShift::ZERO && rShift < RShift::ZERO)
                 {
-                    rShift = RShiftZero;
+                    rShift = RShift::ZERO;
                 }
                 Sound::RegulatorShiftRotate();
                 set.math.rShift = rShift;

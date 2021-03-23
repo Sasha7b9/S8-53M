@@ -164,14 +164,14 @@ void SCPI::CHANNEL::OFFSET(puchar buffer)
     int intVal = 0;
     if (SCPI::FirstIsInt(buffer, &intVal, -240, 240))
     {
-        int rShift = RShiftZero + 2 * intVal;
+        int rShift = RShift::ZERO + 2 * intVal;
         RShift::Set(ch, (int16)rShift);
         return;
     }
     ENTER_ANALYSIS
         if (value == 0)
         {
-            int retValue = (int)(0.5F * (RShift::Get(ch) - RShiftZero));
+            int retValue = (int)(0.5F * (RShift::Get(ch) - RShift::ZERO));
             SCPI_SEND(":CHANNNEL%d:OFFSET %d", ch.ToNumber(), retValue);
         }
     LEAVE_ANALYSIS

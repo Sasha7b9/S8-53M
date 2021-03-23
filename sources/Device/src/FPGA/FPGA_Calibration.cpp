@@ -98,8 +98,8 @@ void FPGA::Calibrator::ProcedureCalibration()
         Calibrator::LoadKoeff(ChB);
         Range::Set(ChA, Range::_500mV);
         Range::Set(ChB, Range::_500mV);
-        RShift::Set(ChA, RShiftZero);
-        RShift::Set(ChB, RShiftZero);
+        RShift::Set(ChA, RShift::ZERO);
+        RShift::Set(ChB, RShift::ZERO);
         ModeCouple::Set(ChA, ModeCouple::GND);
         ModeCouple::Set(ChB, ModeCouple::GND);
 //        HAL_FMC::Write(WR_ADD_RSHIFT_DAC1, 0);
@@ -430,7 +430,7 @@ void AlignmentADC()
 Int16 CalculateAdditionRShift(const Channel &ch, Range::E range)
 {
     Range::Set(ch, range);
-    RShift::Set(ch, RShiftZero);
+    RShift::Set(ch, RShift::ZERO);
     TBase::Set(TBase::_200us);
     TrigSource::Set(ch == ChA ? TrigSource::A : TrigSource::B);
     TrigPolarity::Set(TrigPolarity::Front);
@@ -498,7 +498,7 @@ Float CalculateKoeffCalibration(const Channel &ch)
 {
     FPGA::BUS::WriteWithoutStart(WR_UPR, BIN_U8(00000100));
 
-    RShift::Set(ch, RShiftZero - 40 * 4);
+    RShift::Set(ch, RShift::ZERO - 40 * 4);
     ModeCouple::Set(ch, ModeCouple::DC);
     TrigSource::Set((TrigSource::E)ch.value);
     TrigLev::Set((TrigSource::E)ch.value, TrigLevZero + 40 * 4);

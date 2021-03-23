@@ -240,12 +240,12 @@ void RShift::Load(const Channel &ch)
 
     uint16 rShift = (uint16)(RShift::Get(ch) + (ch.IsInversed() ? -1 : 1) * rShiftAdd);
 
-    int16 delta = -(rShift - RShiftZero);
+    int16 delta = -(rShift - RShift::ZERO);
     if (ch.IsInversed())
     {
         delta = -delta;
     }
-    rShift = (uint16)(delta + RShiftZero);
+    rShift = (uint16)(delta + RShift::ZERO);
 
     rShift = (uint16)(RShiftMax + RShift::MIN - rShift);
 
@@ -620,7 +620,7 @@ void TrigLev::FindAndSet()
     static const float scale = (float)(TrigLevMax - TrigLevZero) / (float)(MAX_VALUE - AVE_VALUE) / 2.4F;
 
     int16 trigLev = static_cast<int16>(TrigLevZero + scale * ((int)(aveValue) - AVE_VALUE) -
-        (RShift::Get(chanTrig) - RShiftZero));
+        (RShift::Get(chanTrig) - RShift::ZERO));
 
     TrigLev::Set(trigSource, trigLev);
 
