@@ -39,7 +39,6 @@ namespace Primitives
     class HLine
     {
     public:
-        HLine() { };
         void Draw(int y, int x1, int x2, const Color &color) const;
         void Draw(int y, int x1, int x2) const;
     };
@@ -47,7 +46,6 @@ namespace Primitives
     class VLine
     {
     public:
-        VLine() { };
         void Draw(int x, int y0, int y1, const Color &color) const;
         void Draw(int x, int y0, int y1) const;
     };

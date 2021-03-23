@@ -29,7 +29,7 @@ int Grid::Left()
 
 int Grid::Right()
 {
-    return ((Menu::IsMinimize() && Menu::IsShown()) ? 9 : 20) + 281;
+    return ((Menu::IsMinimize() && Menu::IsShown()) ? 9 : 20) + 280;
 }
 
 
