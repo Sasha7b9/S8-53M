@@ -288,9 +288,11 @@ struct AltMarkers
         Hide,        // Никода не выводить.
         Show,        // Всегда выводить.
         AutoHide     // Выводить и прятать через timeShowLevels.
-    };
+    } value;
 
-    static bool IsHide();
+    AltMarkers(E v = Hide) : value(v) {}
+
+    bool IsHide() const { return value == Hide; };
 };
 
 

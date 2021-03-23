@@ -690,12 +690,6 @@ bool StretchADCtype::IsSettings()
 }
 
 
-bool AltMarkers::IsHide()
-{
-    return (set.display.alt_markers == AltMarkers::Hide);
-}
-
-
 int ENumMinMax::ToAbs()
 {
     return (1 << value);
