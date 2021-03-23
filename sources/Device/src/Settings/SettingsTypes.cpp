@@ -690,30 +690,6 @@ bool StretchADCtype::IsSettings()
 }
 
 
-bool ModeAccumulation::IsNoReset()
-{
-    return (set.display.mode_acum == ModeAccumulation::NoReset);
-}
-
-
-bool ModeAccumulation::IsReset()
-{
-    return (set.display.mode_acum == ModeAccumulation::Reset);
-}
-
-
-void ModeAccumulation::Set(E v)
-{
-    set.display.mode_acum = v;
-}
-
-
-ModeAccumulation::E ModeAccumulation::Get()
-{
-    return set.display.mode_acum;
-}
-
-
 bool AltMarkers::IsHide()
 {
     return (set.display.alt_markers == AltMarkers::Hide);

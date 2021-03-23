@@ -269,12 +269,14 @@ struct ModeAccumulation
     {
         NoReset,   // ¬ этом режиме показываютс€ строго N последних измерений.
         Reset      // ¬ этом режиме набираютс€ N последних измерений и потом сбрасываютс€.
-    };
+    } value;
 
-    static bool IsNoReset();
-    static bool IsReset();
-    static void Set(E v);
-    static E Get();
+    ModeAccumulation(E v = NoReset) : value(v) {}
+
+    bool IsNoReset() const { return value == NoReset; };
+    bool IsReset()   const { return value == Reset; };
+
+    operator E() const { return value; }
 };
 
 

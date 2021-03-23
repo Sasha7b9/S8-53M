@@ -129,9 +129,9 @@ struct SettingsDisplay
     ENumMinMax          enum_min_max;            // Число измерений для определения минимумов и максимумов.
     Smoothing           smoothing;               // Число точек для скользящего фильтра.
     ENumSignalsInSec    enum_fps;                // Перечисление считываний сигнала в секунду.
-    Channel::E          last_affected_channel;   // Здесь хранится номер последнего канала, которым управляли ручками.
+    Channel             last_affected_channel;   // Здесь хранится номер последнего канала, которым управляли ручками.
                                                  // Нужно для того, чтобы знать, какой сигнал рисовать наверху.
-    ModeAccumulation::E mode_acum;               // Задаёт режим накопления сигналов.
+    ModeAccumulation    mode_acum;               // Задаёт режим накопления сигналов.
     AltMarkers::E       alt_markers;             // Режим отображения дополнительных боковых маркеров смещений.
     MenuAutoHide::E     menu_auto_hide;          // Через сколько времени после последнего нажатия клавиши прятать меню.
     bool                show_full_memory_window; // Показывать ли окно памяти вверху экрана. \todo Не используется.
