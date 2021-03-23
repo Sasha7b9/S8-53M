@@ -225,7 +225,7 @@ DEF_CHOICE_4(mcGrid_Type, PageDisplay::PageGrid::self,
     "“ип 2", "Type 2",
     "“ип 3", "Type 3",
     "“ип 4", "Type 4",
-    set.display.typeGrid, nullptr, nullptr, nullptr
+    set.display.type_grid, nullptr, nullptr, nullptr
 )
 
 static ColorType cTypeGrid = { 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::GRID.index };

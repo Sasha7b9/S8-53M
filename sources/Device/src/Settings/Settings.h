@@ -122,7 +122,7 @@ struct SettingsDisplay
     int16               brightness_grid;        // Яркость сетки от 0 до 100.
     uint                colors[16];             // Цвета.
     ModeDrawSignal::E   mode_draw_signal;       // Режим отрисовки сигнала.
-    TypeGrid::E         typeGrid;               // Тип сетки.
+    TypeGrid            type_grid;              // Тип сетки.
     ENumAccumulation::E enum_accum;             // Перечисление накоплений сигнала на экране.
     ENumAveraging::E    enum_ave;               // Перечисление усреднений сигнала.
     ModeAveraging::E    mode_ave;               // Тип усреднений по измерениям.

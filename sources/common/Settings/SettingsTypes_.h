@@ -96,13 +96,13 @@ struct TypeGrid
         _3,
         _4,
         Count
-    };
+    } value;
 
-    static E Get();
+    bool Is1() const { return value == _1; };
+    bool Is2() const { return value == _2; };
+    bool Is3() const { return value == _3; };
 
-    static bool Is1();
-    static bool Is2();
-    static bool Is3();
+    operator E() const { return value; }
 };
 
 
