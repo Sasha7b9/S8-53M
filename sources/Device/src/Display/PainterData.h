@@ -50,10 +50,6 @@ class PainterData
 public:
 
     static void DrawData();
-
-private:
-
-    static void DrawDataInRect(int x, int width, puchar data, int numElems, const Channel &ch, int shiftForPeakDet);
 };
 
 
