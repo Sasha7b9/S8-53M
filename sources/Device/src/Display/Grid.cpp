@@ -29,7 +29,7 @@ int Grid::Left()
 
 int Grid::Right()
 {
-    return ((Menu::IsMinimize() && Menu::IsShown()) ? 9 : 20) + 280;
+    return ((Menu::IsMinimize() && Menu::IsShown()) ? 9 : 20) + 281;
 }
 
 
@@ -77,7 +77,7 @@ int Grid::Width()
 
 int Grid::Height()
 {
-    return CELLS_IN_HEIGHT * DELTA;
+    return CELLS_IN_HEIGHT * DELTA + 1;
 }
 
 
