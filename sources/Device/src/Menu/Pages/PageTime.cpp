@@ -77,7 +77,7 @@ DEF_CHOICE_2(mcPeakDet, PageTime::self,
     "Turns on/off peak detector.",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.time.peakDet, IsActive_PeakDet, PageTime::OnChanged_PeakDet, nullptr
+    set.time.peak_det, IsActive_PeakDet, PageTime::OnChanged_PeakDet, nullptr
 )
 
 void PageTime::OnChanged_TPos(bool active)

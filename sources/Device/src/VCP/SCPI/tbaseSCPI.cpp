@@ -129,7 +129,7 @@ void SCPI::TBASE::PEACKDET(puchar buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (value < 2) { set.time.peakDet = (value == 0) ? PeackDetMode::Disable : PeackDetMode::Enable;
+        if (value < 2) { set.time.peak_det = (value == 0) ? PeackDetMode::Disable : PeackDetMode::Enable;
                                      PageTime::OnChanged_PeakDet(true); } // WARN SCPI для пикового детектора переделать
         else if (2 == value)
         {

@@ -334,20 +334,20 @@ int16 TShift::Get()
 
 void PeackDetMode::Set(PeackDetMode::E peackDetMode)
 {
-    set.time.peakDet = peackDetMode;
+    set.time.peak_det = peackDetMode;
     RegUPR::Load();
 }
 
 
 PeackDetMode::E PeackDetMode::Get()
 {
-    return set.time.peakDet;
+    return set.time.peak_det;
 }
 
 
 bool PeackDetMode::IsEnabled()
 {
-    return (set.time.peakDet != PeackDetMode::Disable);
+    return (set.time.peak_det != PeackDetMode::Disable);
 }
 
 
