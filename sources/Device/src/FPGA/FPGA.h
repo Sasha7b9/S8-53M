@@ -150,7 +150,7 @@ public:
     {
         State() :
             need_calibration(false),
-            state_work_before_calibration(StateWorkFPGA::Stop),
+            work_before_calibration(StateWorkFPGA::Stop),
             state_calibration(StateCalibration::None)
         { }
 
@@ -162,8 +162,8 @@ public:
 
         bool                need_calibration;               // Установленное в true значение означает, что необходимо
                                                             // произвести калибровку
-        StateWorkFPGA::E    state_work_before_calibration;
-        StateWorkFPGA       state_work;
+        StateWorkFPGA::E    work_before_calibration;
+        StateWorkFPGA       work;
         StateCalibration::E state_calibration;              // Текущее состояние калибровки. Используется в процессе
                                                             // калибровки
         Settings            stored_settings;                // Здесь нужно уменьшить необходимый размер памяти -

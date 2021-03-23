@@ -74,7 +74,7 @@ void FPGA::Start()
 
     HAL_FMC::Write(WR_START, 1);
 
-    state.state_work = StateWorkFPGA::Wait;
+    state.work = StateWorkFPGA::Wait;
 }
 
 
@@ -82,12 +82,17 @@ void FPGA::Stop()
 {
     Timer::Disable(TypeTimer::P2P);
     HAL_FMC::Write(WR_STOP, 1);
-    state.state_work = StateWorkFPGA::Stop;
+    state.work = StateWorkFPGA::Stop;
 }
 
 
 void FPGA::Update()
 {
+    if (state.work.IsStop())
+    {
+        return;
+    }
+
     flag.Read();
 
     if (flag.IsPredLaunchReady())
@@ -107,13 +112,13 @@ void FPGA::Update()
 
 StateWorkFPGA &FPGA::CurrentStateWork()
 {
-    return state.state_work;
+    return state.work;
 }
 
 
 bool FPGA::IsRunning()
 {
-    return !state.state_work.IsStop();
+    return !state.work.IsStop();
 }
 
 
@@ -207,7 +212,7 @@ void FPGA::BUS::WriteWithoutStart(uint16 * const address, uint16 data)
 
 void FPGA::State::Save()
 {
-    FPGA::state.state_work_before_calibration = state_work;
+    FPGA::state.work_before_calibration = work;
     stored_settings = set;
 }
 
@@ -242,9 +247,9 @@ void FPGA::State::Restore()
 
     FPGA::LoadSettings();
 
-    if(state.state_work_before_calibration != StateWorkFPGA::Stop)
+    if(state.work_before_calibration != StateWorkFPGA::Stop)
     {
-        state.state_work_before_calibration = StateWorkFPGA::Stop;
+        state.work_before_calibration = StateWorkFPGA::Stop;
         FPGA::Start();
     }
 }
