@@ -126,7 +126,7 @@ DEF_CHOICE_REG_10(mcSmoothing, PageDisplay::self,
 
 void PageDisplay::OnChanged_RefreshFPS(bool)
 {
-    FPGA::SetNumSignalsInSec(ENumSignalsInSec::NumSignalsInS());
+    FPGA::SetNumSignalsInSec(set.display.enum_fps.NumSignalsInS());
 }
 
 DEF_CHOICE_5(mcRefreshFPS, PageDisplay::self,

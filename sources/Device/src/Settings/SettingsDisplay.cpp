@@ -11,7 +11,7 @@ int ENumSignalsInSec::NumSignalsInS()
         25, 10, 5, 2, 1
     };
 
-    return fps[set.display.enum_fps];
+    return fps[value];
 }
 
 

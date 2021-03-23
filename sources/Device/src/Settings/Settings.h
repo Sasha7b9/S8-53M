@@ -128,7 +128,7 @@ struct SettingsDisplay
     ModeAveraging       mode_ave;                // Тип усреднений по измерениям.
     ENumMinMax          enum_min_max;            // Число измерений для определения минимумов и максимумов.
     Smoothing           smoothing;               // Число точек для скользящего фильтра.
-    ENumSignalsInSec::E enum_fps;                // Перечисление считываний сигнала в секунду.
+    ENumSignalsInSec    enum_fps;                // Перечисление считываний сигнала в секунду.
     Channel::E          last_affected_channel;   // Здесь хранится номер последнего канала, которым управляли ручками.
                                                  // Нужно для того, чтобы знать, какой сигнал рисовать наверху.
     ModeAccumulation::E mode_acum;               // Задаёт режим накопления сигналов.

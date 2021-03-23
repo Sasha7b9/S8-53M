@@ -251,10 +251,14 @@ struct ENumSignalsInSec
         _2,
         _1,
         Count
-    };
+    } value;
+
+    ENumSignalsInSec(E v = _25) : value(v) {}
 
     // ¬озвращает ограничение частоты кадров.
-    static int NumSignalsInS();
+    int NumSignalsInS();
+
+    operator E() const { return value; }
 };
 
 
