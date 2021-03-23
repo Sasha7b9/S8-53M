@@ -93,7 +93,7 @@ DEF_CHOICE_3(mcTPos, PageTime::self,
     "Лево", "Left",
     "Центр", "Center",
     "Право", "Right",
-    set.time.tPos, nullptr, PageTime::OnChanged_TPos, nullptr
+    set.time.t_pos, nullptr, PageTime::OnChanged_TPos, nullptr
 )
 
 static bool IsActive_SelfRecorder()

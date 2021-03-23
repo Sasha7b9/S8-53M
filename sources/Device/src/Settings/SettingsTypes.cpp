@@ -389,25 +389,25 @@ int Channel::ToNumber() const
 
 TPos::E TPos::Get()
 {
-    return set.time.tPos;
+    return set.time.t_pos;
 }
 
 
 bool TPos::IsLeft()
 {
-    return (set.time.tPos == TPos::Left);
+    return (set.time.t_pos == TPos::Left);
 }
 
 
 bool TPos::IsCenter()
 {
-    return (set.time.tPos == TPos::Center);
+    return (set.time.t_pos == TPos::Center);
 }
 
 
 bool TPos::IsRight()
 {
-    return (set.time.tPos == TPos::Right);
+    return (set.time.t_pos == TPos::Right);
 }
 
 

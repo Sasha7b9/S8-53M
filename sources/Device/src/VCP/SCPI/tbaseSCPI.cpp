@@ -151,7 +151,7 @@ void SCPI::TBASE::TPOS(puchar buffer)
         {0}
     };
     ENTER_ANALYSIS
-        if (value < 3)      { set.time.tPos = (TPos::E)value; PageTime::OnChanged_TPos(true); }
+        if (value < 3)      { set.time.t_pos = (TPos::E)value; PageTime::OnChanged_TPos(true); }
         else if (4 == value)
         {
             SCPI_SEND(":TBASE:TPOS %s", map[TPos::Get()].key);

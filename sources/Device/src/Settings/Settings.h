@@ -282,7 +282,7 @@ struct SettingsTime
     TBase::E            base;           // Масштаб по времени.
     int16               shift;          // Смещение по времени.
     FunctionTime::E     function_time;
-    TPos::E             tPos;           // Привязка синхронизации к памяти.
+    TPos::E             t_pos;          // Привязка синхронизации к памяти.
     SampleType::E       sampleType;     // Тип выборки для режима рандомизатора.
     PeackDetMode::E     peakDet;        // Режим работы пикового детектора
     bool                selfRecorder;   // Включен ли режим самописца.
