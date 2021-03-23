@@ -54,9 +54,6 @@ public:
 
     static void Update();
 
-    // Запускает цикл сбора информации.
-    static void OnPressStartStop();
-
     // Запуск процесса сбора информации.
     static void Start();
 
@@ -92,6 +89,8 @@ public:
         static uint BytesForData();
 
         static bool InRandomizeMode();
+
+        static bool InModeP2P();
 
         static bool InSelfRecorderMode();
     };

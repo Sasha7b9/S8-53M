@@ -16,6 +16,8 @@ bool RShift::draw_markers = false;
 
 bool TrigLev::need_auto_find = false;
 
+TBase::E TBase::MIN_P2P = TBase::_20ms;
+
 
 Channel ChA(Channel::A);
 Channel ChB(Channel::B);
@@ -244,7 +246,7 @@ void TBase::Decrease()
 
     if ((int)TBase::Get() > 0)
     {
-        if (FPGA::SET::InSelfRecorderMode() && TBase::Get() == MIN_TBASE_P2P)
+        if (FPGA::SET::InSelfRecorderMode() && TBase::Get() == TBase::MIN_P2P)
         {
             Display::ShowWarningBad(Warning::TooFastScanForSelfRecorder);
         }

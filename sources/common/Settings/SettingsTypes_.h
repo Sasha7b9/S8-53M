@@ -812,6 +812,8 @@ struct TBase
 
     static pchar ToString(TBase::E tbase);
     static pchar ToStringEN(TBase::E tbase);
+
+    static E MIN_P2P;               // С этой развёртки начинается поточечный вывод
 };
 
 

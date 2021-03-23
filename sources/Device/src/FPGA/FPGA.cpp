@@ -61,7 +61,7 @@ void OnTimerCanReadData()
 
 void FPGA::Start()
 {
-    if(TBase::Get() >= MIN_TBASE_P2P)
+    if(SET::InModeP2P())
     {
 //        PainterData::ResetP2Ppoints(false);
         Timer::Enable(TypeTimer::P2P, 1, ReaderFPGA::ReadPoint);
@@ -75,6 +75,14 @@ void FPGA::Start()
     HAL_FMC::Write(WR_START, 1);
 
     state.state_work = StateWorkFPGA::Wait;
+}
+
+
+void FPGA::Stop()
+{
+    Timer::Disable(TypeTimer::P2P);
+    HAL_FMC::Write(WR_STOP, 1);
+    state.state_work = StateWorkFPGA::Stop;
 }
 
 
@@ -100,20 +108,6 @@ void FPGA::Update()
 StateWorkFPGA &FPGA::CurrentStateWork()
 {
     return state.state_work;
-}
-
-
-void FPGA::OnPressStartStop()
-{
-    state.state_work.IsStop() ? FPGA::Start() : FPGA::Stop();
-}
-
-
-void FPGA::Stop() 
-{
-    Timer::Disable(TypeTimer::P2P);
-    HAL_FMC::Write(WR_STOP, 1);
-    state.state_work = StateWorkFPGA::Stop;
 }
 
 
@@ -221,6 +215,7 @@ void FPGA::State::Save()
 void FPGA::State::Restore()
 {
     int16 rShiftAdd[2][Range::Count][2];
+
     for (int ch = 0; ch < 2; ch++)
     {
         for (int mode = 0; mode < 2; mode++)
@@ -231,7 +226,9 @@ void FPGA::State::Restore()
             }
         }
     }
+
     set = stored_settings;
+
     for (int ch = 0; ch < 2; ch++)
     {
         for (int mode = 0; mode < 2; mode++)
@@ -242,11 +239,13 @@ void FPGA::State::Restore()
             }
         }
     }
+
     FPGA::LoadSettings();
+
     if(state.state_work_before_calibration != StateWorkFPGA::Stop)
     {
         state.state_work_before_calibration = StateWorkFPGA::Stop;
-        FPGA::OnPressStartStop();
+        FPGA::Start();
     }
 }
 
@@ -509,4 +508,10 @@ bool FPGA::SET::InRandomizeMode()
 bool FPGA::SET::InSelfRecorderMode()
 {
     return set.time.selfRecorder;
+}
+
+
+bool FPGA::SET::InModeP2P()
+{
+    return (set.time.tBase >= TBase::MIN_P2P);
 }

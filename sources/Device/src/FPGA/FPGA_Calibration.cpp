@@ -221,7 +221,7 @@ void FPGA::Calibrator::ProcedureCalibration()
     set.chan[ChA].enable = chanAenable;
     set.chan[ChB].enable = chanBenable;
 
-    FPGA::OnPressStartStop();
+    FPGA::Start();
 }
 
 

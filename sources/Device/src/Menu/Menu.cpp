@@ -231,6 +231,7 @@ void Menu::Event::PressButton(Key::E button)
             Display::ShowWarningGood(Warning::MenuDebugEnabled);
         }
     }
+
     pressButton = button;
 };
 
@@ -499,7 +500,7 @@ void Menu::ProcessingPressButton()
 {
     if (pressButton == Key::Start && !ModeWork::IsLatest())
     {
-        FPGA::OnPressStartStop();
+        FPGA::CurrentStateWork().IsStop() ? FPGA::Start() : FPGA::Stop();
     } 
 
     pressButton = Key::None;

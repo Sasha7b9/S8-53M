@@ -98,7 +98,7 @@ DEF_CHOICE_3(mcTPos, PageTime::self,
 
 static bool IsActive_SelfRecorder()
 {
-    return (TBase::Get() >= MIN_TBASE_P2P);
+    return (FPGA::SET::InModeP2P());
 }
 
 DEF_CHOICE_2(mcSelfRecorder, PageTime::self,
