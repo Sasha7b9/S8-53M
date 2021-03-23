@@ -66,17 +66,6 @@ void Primitives::VLine::Draw(int x, int y) const
 }
 
 
-void Primitives::MultiVPointLine::Draw(int y, const Color &color) const
-{
-    color.SetAsCurrent();
-
-    for (int i = 0; i < numLines; i++)
-    {
-        DrawVPointLine(x0[i], y, count, delta);
-    }
-}
-
-
 void Primitives::Rectangle::Draw(int x, int y, const Color &color) const
 {
     color.SetAsCurrent();

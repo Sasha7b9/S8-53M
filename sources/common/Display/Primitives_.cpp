@@ -125,3 +125,14 @@ void Primitives::VLine::Draw(int x, int y, const Color &color) const
 
     Draw(x, y);
 }
+
+
+void Primitives::MultiVPointLine::Draw(int y, const Color &color) const
+{
+    color.SetAsCurrent();
+
+    for (int i = 0; i < numLines; i++)
+    {
+        DrawVPointLine(x0[i], y, count, delta);
+    }
+}
