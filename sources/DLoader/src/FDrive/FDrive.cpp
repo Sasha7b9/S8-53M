@@ -227,7 +227,7 @@ int FDrive_OpenFileForRead(pchar fileName)
 uint FDrive_ReadFromFile(int numBytes, uint8 *buffer)
 {
     uint readed = 0;
-    if (f_read(&MainStruct::ms->drive.file, buffer, static_cast<uint>(numBytes), &readed) == FR_OK)
+    if (f_read(&MainStruct::ms->drive.file, buffer, (uint)(numBytes), &readed) == FR_OK)
     {
         return readed;
     }

@@ -79,7 +79,7 @@ bool EPROM::LoadSettings()
         {                                                                                   // за пределы сектора (глюк предыдущей версии сохранения)
             --record;                                                                       // то воспользуемся предыдущими сохранёнными настройками
         }
-        std::memcpy(&set, reinterpret_cast<const void *>(record->addrData - 4), static_cast<uint>(record->sizeData));               // Считываем их
+        std::memcpy(&set, reinterpret_cast<const void *>(record->addrData - 4), (uint)(record->sizeData));               // Считываем их
         EraseSector(ADDR_SECTOR_SETTINGS);                                                  // Стираем сектор настроек
         EPROM::SaveSettings(true);                                                           // И сохраняем настройки в новом формате
     }
@@ -96,7 +96,7 @@ bool EPROM::LoadSettings()
         
         if (addressPrev != 0)                   // Если по этому адресу что-то записано
         {
-            std::memcpy(&set, reinterpret_cast<const void *>(addressPrev), static_cast<uint>(READ_WORD(addressPrev)));    // Счтываем сохранённые настройки
+            std::memcpy(&set, reinterpret_cast<const void *>(addressPrev), (uint)(READ_WORD(addressPrev)));    // Счтываем сохранённые настройки
             return true;
         }
     }
@@ -350,7 +350,7 @@ void EPROM::SaveData(int num, DataSettings *ds, uint8 *data0, uint8 *data1)
     int size = CalculateSizeData(*ds);
 
 // 2
-    if (FreeMemory() < static_cast<uint>(size))
+    if (FreeMemory() < (uint)(size))
     {
         CompactMemory();
     }

@@ -237,7 +237,7 @@ void Math::CalculateFiltrArray(puchar dataIn, uint8 *dataOut, int numPoints, int
 {
     if (numSmoothing < 2)
     {
-        std::memcpy(dataOut, dataIn, static_cast<uint>(numPoints));
+        std::memcpy(dataOut, dataIn, (uint)(numPoints));
     }
     else
     {

@@ -28,7 +28,7 @@ void VCP::SendDataAsinch(puchar buffer, uint size)
 
     size = Math::MinFrom2(size, SIZE_BUFFER);
     while (!HAL_USBD::PrevSendingComplete())  {};
-    std::memcpy(trBuf, buffer, static_cast<uint>(size));
+    std::memcpy(trBuf, buffer, (uint)(size));
 
     HAL_USBD::Transmit(trBuf, size);
 }
@@ -62,7 +62,7 @@ void VCP::SendDataSynch(puchar buffer, uint size)
             int reqBytes = SIZE_BUFFER_VCP - (int)sizeBuffer;
             LIMITATION(reqBytes, reqBytes, 0, (int)size);
             HAL_USBD::Wait();
-            std::memcpy(buffSend + sizeBuffer, buffer, static_cast<uint>(reqBytes));
+            std::memcpy(buffSend + sizeBuffer, buffer, (uint)(reqBytes));
             HAL_USBD::Transmit(buffSend, SIZE_BUFFER_VCP);
             size -= reqBytes;
             buffer += reqBytes;
@@ -70,7 +70,7 @@ void VCP::SendDataSynch(puchar buffer, uint size)
         }
         else
         {
-            std::memcpy(buffSend + sizeBuffer, buffer, static_cast<uint>(size));
+            std::memcpy(buffSend + sizeBuffer, buffer, (uint)(size));
             sizeBuffer += size;
             size = 0;
         }

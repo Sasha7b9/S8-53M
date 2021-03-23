@@ -134,7 +134,7 @@ void String::Append(pchar str, uint numSymbols)
     Allocate(size);
 
     std::strcpy(buffer, old.c_str());
-    std::memcpy(buffer + old.Size(), str, static_cast<uint>(numSymbols));
+    std::memcpy(buffer + old.Size(), str, (uint)(numSymbols));
     buffer[size - 1] = '\0';
 }
 
@@ -172,7 +172,7 @@ char *String::c_str() const
 bool String::Allocate(uint size)
 {
     std::free(buffer);
-    buffer = static_cast<char *>(std::malloc(static_cast<uint>(size)));
+    buffer = static_cast<char *>(std::malloc((uint)(size)));
     if (buffer)
     {
         return true;

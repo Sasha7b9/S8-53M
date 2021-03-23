@@ -62,7 +62,7 @@ struct Color
     bool operator!=(const Color &rhs) { return (index != rhs.index); }
     Color &operator=(const Color &rhs) { this->index = rhs.index; return *this; }
 
-    static uint Make(uint8 r, uint8 g, uint8 b)  { return (static_cast<uint>(((b)) + (((g)) << 8) + (((r)) << 16))); }
+    static uint Make(uint8 r, uint8 g, uint8 b)  { return ((uint)(((b)) + (((g)) << 8) + (((r)) << 16))); }
 
 private:
 

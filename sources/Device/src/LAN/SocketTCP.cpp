@@ -428,5 +428,5 @@ void TCPSocket::SendFormatString(char *format, ...) //-V2560
     std::vsprintf(buffer, format, args);
     va_end(args);
     std::strcat(buffer, "\r\n");
-    TCPSocket::Send(buffer, static_cast<uint>(std::strlen(buffer)));
+    TCPSocket::Send(buffer, (uint)(std::strlen(buffer)));
 }

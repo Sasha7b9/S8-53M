@@ -90,7 +90,7 @@ static int8_t CDC_Itf_Control (uint8_t cmd, uint8_t *pbuf, uint16_t)
         break;
 
     case CDC_SET_LINE_CODING:
-        LineCoding.bitrate    = static_cast<uint>(pbuf[0] | (pbuf[1] << 8) | (pbuf[2] << 16) | (pbuf[3] << 24));
+        LineCoding.bitrate    = (uint)(pbuf[0] | (pbuf[1] << 8) | (pbuf[2] << 16) | (pbuf[3] << 24));
         LineCoding.format     = pbuf[4];
         LineCoding.paritytype = pbuf[5];
         LineCoding.datatype   = pbuf[6];
