@@ -105,14 +105,7 @@ StateWorkFPGA &FPGA::CurrentStateWork()
 
 void FPGA::OnPressStartStop()
 {
-    if(state.state_work.IsStop()) 
-    {
-        FPGA::Start();
-    } 
-    else
-    {
-        FPGA::Stop();
-    } 
+    state.state_work.IsStop() ? FPGA::Start() : FPGA::Stop();
 }
 
 
