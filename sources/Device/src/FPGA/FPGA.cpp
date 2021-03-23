@@ -25,7 +25,6 @@ StateWorkFPGA::E FPGA::state_work = StateWorkFPGA::Stop;
 uint             FPGA::time_start = 0;
 bool             FPGA::temporary_pause = false;
 bool             FPGA::can_read_data = true;
-bool             FPGA::critical_situation = false;
 FPGA::State      FPGA::state;
 
 float            FPGA::FreqMeter::freq = 0.0f;
@@ -79,7 +78,6 @@ void FPGA::Start()
 
     time_start = TIME_MS;
     state_work = StateWorkFPGA::Wait;
-    critical_situation = false;
 }
 
 
