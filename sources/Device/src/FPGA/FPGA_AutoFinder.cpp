@@ -136,7 +136,7 @@ Range::E AutoFinderFPGA::AccurateFindRange(const Channel &ch)
         }
         */
 
-        if (CalculateMinWithout0(buffer) < Value::MIN || CalculateMaxWithout255(buffer) > MAX_VALUE)
+        if (CalculateMinWithout0(buffer) < Value::MIN || CalculateMaxWithout255(buffer) > Value::MAX)
         {
             if (range < Range::_20V)
             {

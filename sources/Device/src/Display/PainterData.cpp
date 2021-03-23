@@ -66,7 +66,7 @@ void DataDrawing::PrepareChannel(const Channel &ch)
 
     int min_y = Grid::TOP;
     int max_y = Grid::ChannelBottom();
-    float scale_y = (float)(max_y - min_y) / (MAX_VALUE - Value::MIN);
+    float scale_y = (float)(max_y - min_y) / (Value::MAX - Value::MIN);
 
     Set2Int p = SettingsDisplay::PointsOnDisplay();
 

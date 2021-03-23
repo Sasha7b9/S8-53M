@@ -378,7 +378,7 @@ Float MathFPGA::GetMaxFromArrayWithErrorCode(puchar data, uint firstPoint, uint 
 {
     Float max = Math::GetMaxFromArray(data, firstPoint, lastPoint);
 
-    if (max >= MAX_VALUE)
+    if (max >= Value::MAX)
     {
         max.SetInvalid();
     }
@@ -391,7 +391,7 @@ Float MathFPGA::GetMinFromArrayWithErrorCode(puchar data, uint firstPoint, uint 
 {
     Float min = Math::GetMinFromArray(data, firstPoint, lastPoint);
 
-    if ((uint8)min < Value::MIN || min >= MAX_VALUE)
+    if ((uint8)min < Value::MIN || min >= Value::MAX)
     {
         min.SetInvalid();
     }

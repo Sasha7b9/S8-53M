@@ -406,7 +406,7 @@ Int Processing::CalculatePeriodAccurately(Channel::E ch)
         while (data < end)
         {
             uint8 point = *data++;
-            if(point < Value::MIN || point >= MAX_VALUE)
+            if(point < Value::MIN || point >= Value::MAX)
             {
                 EXIT_FROM_PERIOD_ACCURACY
             }
@@ -1250,7 +1250,7 @@ void Processing::CountedToCurrentSettings()
                 MathFPGA::voltsInPixel[range] + Value::MIN);
 
             if (relValue < Value::MIN)      { dataOut0[i] = Value::MIN; }
-            else if (relValue > MAX_VALUE)  { dataOut0[i] = MAX_VALUE; }
+            else if (relValue > Value::MAX) { dataOut0[i] = Value::MAX; }
             else                            { dataOut0[i] = (uint8)relValue; }
         }
     }
@@ -1267,7 +1267,7 @@ void Processing::CountedToCurrentSettings()
                 MathFPGA::voltsInPixel[range] + Value::MIN);
 
             if (relValue < Value::MIN)      { dataOut1[i] = Value::MIN; }
-            else if (relValue > MAX_VALUE)  { dataOut1[i] = MAX_VALUE; }
+            else if (relValue > Value::MAX) { dataOut1[i] = Value::MAX; }
             else                            { dataOut1[i] = (uint8)relValue; }
         }
     }
