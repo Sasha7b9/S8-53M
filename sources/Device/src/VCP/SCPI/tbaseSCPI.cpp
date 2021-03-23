@@ -172,7 +172,7 @@ void SCPI::TBASE::SELFRECORDER(puchar buffer)
     };
 
     ENTER_ANALYSIS
-        if (value < 2) { set.time.selfRecorder = (value == 0); }
+        if (value < 2) { set.time.self_recorder = (value == 0); }
         else if (2 == value)
         {
             SCPI_SEND(":TBASE:SELFRECORDER %s", FPGA::SET::InSelfRecorderMode() ? "ON" : "OFF");

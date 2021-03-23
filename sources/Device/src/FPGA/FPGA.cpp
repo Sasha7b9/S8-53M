@@ -512,7 +512,7 @@ bool FPGA::SET::InRandomizeMode()
 
 bool FPGA::SET::InSelfRecorderMode()
 {
-    return set.time.selfRecorder;
+    return set.time.self_recorder;
 }
 
 
