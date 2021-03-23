@@ -709,7 +709,7 @@ static void ShiftScreen(int shift)
 static void ChangeShiftScreen(int *prevTime, void(*f)(int), int16 relStep)
 {
     int count = CalculateCount(prevTime);
-    float step = static_cast<float>(relStep * count);
+    float step = (float)(relStep * count);
     if (step < 0)
     {
         if (step > -1)
@@ -750,7 +750,7 @@ static void ChangeTShift(int *prevTime, void(*f)(int), int16 relStep)
 {
     int count = CalculateCount(prevTime);
     int tShiftOld = TShift::Get();
-    float step = static_cast<float>(relStep * count);
+    float step = (float)(relStep * count);
     if (step < 0)
     {
         if (step > -1)

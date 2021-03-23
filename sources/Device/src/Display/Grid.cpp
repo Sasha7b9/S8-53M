@@ -207,7 +207,7 @@ void Grid::Draw(int left, int top, int width, int height)
 
     if (set.display.type_grid.Is1())
     {
-        DrawType1(left, top, right, bottom, static_cast<float>(centerX), static_cast<float>(centerY), deltaX,
+        DrawType1(left, top, right, bottom, (float)(centerX), (float)(centerY), deltaX,
             deltaY, stepX, stepY);
     }
     else if (set.display.type_grid.Is2())
@@ -337,14 +337,14 @@ void Grid::DrawType2(int left, int top, int right, int bottom, int deltaX, int d
 void Grid::DrawType3(int left, int top, int right, int bottom, int centerX, int centerY, int deltaX, int deltaY,
     int stepX, int stepY)
 {
-    HPointLine(static_cast<float>(stepX)).Draw(centerY, left + stepX, right);
+    HPointLine((float)(stepX)).Draw(centerY, left + stepX, right);
 
     uint8 masY[6] = { (uint8)(top + 1), (uint8)(top + 2), (uint8)(centerY - 1), (uint8)(centerY + 1),
         (uint8)(bottom - 2), (uint8)(bottom - 1) };
 
     MultiHPointLine(6, masY, deltaX, (right - top) / deltaX).Draw(left + deltaX, Color::GRID);
 
-    VPointLine(static_cast<float>(stepY)).Draw(centerX, top + stepY, bottom, Color::GRID);
+    VPointLine((float)(stepY)).Draw(centerX, top + stepY, bottom, Color::GRID);
 
     uint16 masX[6] = { (uint16)(left + 1), (uint16)(left + 2), (uint16)(centerX - 1), (uint16)(centerX + 1),
         (uint16)(right - 2), (uint16)(right - 1) };

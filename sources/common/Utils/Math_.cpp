@@ -34,7 +34,7 @@ float Math::GetIntersectionWithHorizontalLine(int x0, int y0, int x1, int y1, in
 {
     if(y0 == y1)
     {
-        return static_cast<float>(x1);
+        return (float)(x1);
     }
 
     return (yHorLine - y0) / ((float)(y1 - y0) / (float)(x1 - x0)) + x0;

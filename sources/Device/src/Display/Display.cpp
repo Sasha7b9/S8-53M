@@ -593,7 +593,7 @@ void Display::DrawCursorTShift()
 //    int shiftTPos = TPos::InPoints(
 //        (PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel, SET_TPOS) - SHIFT_IN_MEMORY;
 //
-//    float scale = static_cast<float>((lastPoint - firstPoint) / Grid::Width());
+//    float scale = (float)((lastPoint - firstPoint) / Grid::Width());
 //    int gridLeft = Grid::Left();
 //    int x = (int)(gridLeft + shiftTPos * scale - 3);
 //    if (GF::IntInRange(x + 3, gridLeft, Grid::Right() + 1))

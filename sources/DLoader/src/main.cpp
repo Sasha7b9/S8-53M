@@ -125,7 +125,7 @@ void Upgrade()
         size -= readedBytes;
         address += readedBytes;
 
-        MainStruct::ms->percentUpdate = 1.0F - static_cast<float>(size) / static_cast<float>(fullSize);
+        MainStruct::ms->percentUpdate = 1.0F - (float)(size) / (float)(fullSize);
     }
 
     FDrive_CloseOpenedFile();

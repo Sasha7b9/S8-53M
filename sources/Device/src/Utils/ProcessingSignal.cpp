@@ -1040,7 +1040,7 @@ float Processing::GetCursT(const Channel &ch, float posCurU, int numCur)
         {
             if(numCur == 0)
             {
-                return static_cast<float>(i - p.value2);
+                return (float)(i - p.value2);
             }
             else
             {
@@ -1050,7 +1050,7 @@ float Processing::GetCursT(const Channel &ch, float posCurU, int numCur)
                 }
                 else
                 {
-                    return static_cast<float>(i - p.value1);
+                    return (float)(i - p.value1);
                 }
             }
         }
@@ -1059,7 +1059,7 @@ float Processing::GetCursT(const Channel &ch, float posCurU, int numCur)
         {
             if(numCur == 0)
             {
-                return static_cast<float>(i - p.value1);
+                return (float)(i - p.value1);
             }
             else
             {
@@ -1069,7 +1069,7 @@ float Processing::GetCursT(const Channel &ch, float posCurU, int numCur)
                 }
                 else
                 {
-                    return static_cast<float>(i - p.value1);
+                    return (float)(i - p.value1);
                 }
             }
         }

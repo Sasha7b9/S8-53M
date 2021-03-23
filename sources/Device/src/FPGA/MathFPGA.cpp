@@ -118,7 +118,7 @@ void MathFPGA::PointsRelToVoltage(puchar points, int numPoints, Range::E range, 
     float koeff = 1.0F / 20e3F;
     for (int i = 0; i < numPoints; i++)
     {
-        voltage[i] = static_cast<float>(points[i] * voltInPixel - diff) * koeff;
+        voltage[i] = (float)(points[i] * voltInPixel - diff) * koeff;
     }
 }
 

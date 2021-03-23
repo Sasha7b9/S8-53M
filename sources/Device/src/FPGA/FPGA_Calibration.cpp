@@ -403,7 +403,7 @@ float CalculateDeltaADC(const Channel &ch, float *avgADC1, float *avgADC2, float
             }
         }
         
-        bar->passedTime = static_cast<float>(TIME_MS - *startTime);
+        bar->passedTime = (float)(TIME_MS - *startTime);
         bar->fullTime = bar->passedTime * (float)numCicles / (cicle + 1);
     }
 

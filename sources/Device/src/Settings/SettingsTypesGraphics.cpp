@@ -34,7 +34,7 @@ void RShift::Draw()
 
 void RShift::Draw(const Channel &ch)
 {
-    float x = static_cast<float>(Grid::Right() - Grid::Width() - Measure::GetDeltaGridLeft());
+    float x = (float)(Grid::Right() - Grid::Width() - Measure::GetDeltaGridLeft());
 
     if (ch.IsMath())
     {
@@ -59,7 +59,7 @@ void RShift::Draw(const Channel &ch)
     {
         Char(Symbol::S8::RSHIFT_LOWER).Draw((int)(x - 7), Grid::ChannelBottom() - 11, ch.GetColor());
         Point().Draw((int)(x - 5), Grid::ChannelBottom() - 2);
-        y = static_cast<float>(Grid::ChannelBottom() - 7);
+        y = (float)(Grid::ChannelBottom() - 7);
         x++;
     }
     else if (y < Grid::TOP)

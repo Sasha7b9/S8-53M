@@ -41,9 +41,9 @@ void Display::Init()
 
     for (int i = 0; i < 14; i++)
     {
-        float red = static_cast<float>(i) / 14.0F * 31.0F + 0.5F;
-        float green = static_cast<float>(i) / 14.0F * 63.0F + 0.5F;
-        float blue = static_cast<float>(i) / 14.0F * 31.0F + 0.5F;
+        float red = (float)(i) / 14.0F * 31.0F + 0.5F;
+        float green = (float)(i) / 14.0F * 63.0F + 0.5F;
+        float blue = (float)(i) / 14.0F * 31.0F + 0.5F;
         set.display.colors[i + 2] = Color::Make((uint8)red, (uint8)green, (uint8)blue);
     }
 
@@ -108,7 +108,7 @@ void Display::Update()
 
         int height = 30;
         int fullWidth = 280;
-        int width = static_cast<int>(static_cast<float>(fullWidth) * MainStruct::ms->percentUpdate);
+        int width = static_cast<int>((float)(fullWidth) * MainStruct::ms->percentUpdate);
 
         Region(width, height).Fill(20, 130);
         Rectangle(fullWidth, height).Draw(20, 130);
@@ -126,7 +126,7 @@ void DrawProgressBar(uint dT)
     const int X = 10;
     const int Y = 200;
 
-    float step = static_cast<float>(dT) / MainStruct::ms->display.direction;
+    float step = (float)(dT) / MainStruct::ms->display.direction;
 
     MainStruct::ms->display.value += step;
 
@@ -173,27 +173,27 @@ static void DrawBigMNIPI()
     uint time = TIME_MS - startTime;
 
     int numColor = 0;
-    LIMITATION(numColor, static_cast<int>(static_cast<float>(time) / (float)TIME_WAIT * 13.0F), 0, 13);
+    LIMITATION(numColor, static_cast<int>((float)(time) / (float)TIME_WAIT * 13.0F), 0, 13);
 
     Color(static_cast<uint8>(numColor + 2)).SetAsCurrent();
 
-    float amplitude = 3.0F - (static_cast<float>(time) / (TIME_WAIT / 2.0F)) * 3;
+    float amplitude = 3.0F - ((float)(time) / (TIME_WAIT / 2.0F)) * 3;
     LIMIT_BELOW(amplitude, 0.0F);
     float frequency = 0.05F;
 
-    float radius = 5000.0F * (TIME_WAIT) / 3000.0F / static_cast<float>(time);
+    float radius = 5000.0F * (TIME_WAIT) / 3000.0F / (float)(time);
     LIMIT_BELOW(radius, 0);
 
     float shift[240];
 
     for (int i = 0; i < 240; i++)
     {
-        shift[i] = amplitude * std::sin(frequency * static_cast<float>(time) + static_cast<float>(i) / 5.0F);
+        shift[i] = amplitude * std::sin(frequency * (float)(time) + (float)(i) / 5.0F);
     }
 
     for (int i = 0; i < numPoints; i++)
     {
-        int x = static_cast<int>(static_cast<float>(array[i].x) + shift[array[i].y]); //-V537
+        int x = static_cast<int>((float)(array[i].x) + shift[array[i].y]); //-V537
         int y = array[i].y;
         if (x > 0 && x < 319 && y > 0 && y < 239)
         {

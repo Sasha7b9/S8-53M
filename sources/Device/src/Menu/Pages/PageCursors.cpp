@@ -536,7 +536,7 @@ static void MoveCursTonPercentsOrPoints(int delta)
     Channel &source = set.cursors.source;
     CursCntrl &curs_cntrl = set.cursors.cntrlT[source];
 
-    float value = static_cast<float>(delta);
+    float value = (float)(delta);
 
     if(set.cursors.movement.IsPercents())
     {
