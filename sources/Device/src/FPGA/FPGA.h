@@ -23,6 +23,7 @@ struct StateWorkFPGA
     operator E() const  { return value; }
 };
 
+
 struct StateCalibration { enum E {
     None,
     ADCinProgress,

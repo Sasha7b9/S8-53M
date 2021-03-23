@@ -8,6 +8,7 @@
 #include "common/Utils/Math_.h"
 #include "Display/Grid.h"
 #include "Display/PainterData.h"
+#include "FPGA/FPGA.h"
 #include "FPGA/FPGA_Reader.h"
 #include "FPGA/MathFPGA.h"
 #include "FPGA/Storage.h"
@@ -21,7 +22,7 @@ using namespace Primitives;
 
 
 #define CONVERT_DATA_TO_DISPLAY(out, in)                        \
-    (out) = (uint8)(max_y - ((in) - MIN_VALUE) * scale_y);      \
+    (out) = (uint8)(max_y - ((in) - Value::MIN) * scale_y);     \
     if((out) < min_y)          { (out) = (uint8)min_y; }        \
     else if ((out) > max_y)    { (out) = (uint8)max_y; };
 
@@ -65,7 +66,7 @@ void DataDrawing::PrepareChannel(const Channel &ch)
 
     int min_y = Grid::TOP;
     int max_y = Grid::ChannelBottom();
-    float scale_y = (float)(max_y - min_y) / (MAX_VALUE - MIN_VALUE);
+    float scale_y = (float)(max_y - min_y) / (MAX_VALUE - Value::MIN);
 
     Set2Int p = SettingsDisplay::PointsOnDisplay();
 

@@ -113,7 +113,7 @@ void ReaderFPGA::InverseDataIsNecessary(const Channel &ch, uint8 *data)
     {
         for (int i = 0; i < FPGA_MAX_POINTS; i++)
         {
-            data[i] = (uint8)((int)(2 * AVE_VALUE) - Math::Limitation<uint8>((uint8)data[i], MIN_VALUE, MAX_VALUE));
+            data[i] = (uint8)((int)(2 * AVE_VALUE) - Math::Limitation<uint8>((uint8)data[i], Value::MIN, MAX_VALUE));
         }
     }
 }

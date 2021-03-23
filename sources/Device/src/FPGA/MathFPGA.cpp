@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "common/Utils/GlobalFunctions_.h"
 #include "common/Utils/Math_.h"
+#include "FPGA/FPGA.h"
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/MathFPGA.h"
 #include "Settings/Settings.h"
@@ -114,7 +115,7 @@ void MathFPGA::PointsRelToVoltage(puchar points, int numPoints, Range::E range, 
     int voltInPixel = voltsInPixelInt[range];
     float maxVoltsOnScreen = MAX_VOLTAGE_ON_SCREEN(range);
     float rShiftAbs = RSHIFT_2_ABS(rShift, range);
-    int diff = (int)((MIN_VALUE * voltInPixel) + (maxVoltsOnScreen + rShiftAbs) * 20e3F);
+    int diff = (int)((Value::MIN * voltInPixel) + (maxVoltsOnScreen + rShiftAbs) * 20e3F);
     float koeff = 1.0F / 20e3F;
     for (int i = 0; i < numPoints; i++)
     {
@@ -131,7 +132,7 @@ void MathFPGA::PointsVoltageToRel(const float* voltage, int numPoints, Range::E 
 
     float add = maxVoltOnScreen + rShiftAbs;
 
-    float delta = add * voltInPixel + MIN_VALUE;
+    float delta = add * voltInPixel + Value::MIN;
 
     for (int i = 0; i < numPoints; i++)
     {
@@ -154,7 +155,7 @@ void MathFPGA::PointsVoltageToRel(const float* voltage, int numPoints, Range::E 
 uint8 MathFPGA::VoltageToPoint(float voltage, Range::E range, int16 rShift)
 {
     int relValue = (int)((voltage + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) /
-        voltsInPixel[range] + MIN_VALUE);
+        voltsInPixel[range] + Value::MIN);
 
     LIMITATION(relValue, relValue, 0, 255);
 
@@ -390,7 +391,7 @@ Float MathFPGA::GetMinFromArrayWithErrorCode(puchar data, uint firstPoint, uint 
 {
     Float min = Math::GetMinFromArray(data, firstPoint, lastPoint);
 
-    if ((uint8)min < MIN_VALUE || min >= MAX_VALUE)
+    if ((uint8)min < Value::MIN || min >= MAX_VALUE)
     {
         min.SetInvalid();
     }

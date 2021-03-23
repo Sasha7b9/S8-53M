@@ -406,7 +406,7 @@ Int Processing::CalculatePeriodAccurately(Channel::E ch)
         while (data < end)
         {
             uint8 point = *data++;
-            if(point < MIN_VALUE || point >= MAX_VALUE)
+            if(point < Value::MIN || point >= MAX_VALUE)
             {
                 EXIT_FROM_PERIOD_ACCURACY
             }
@@ -1020,7 +1020,7 @@ float Processing::GetCursU(const Channel &ch, float posCurT)
     Set2Int p = SettingsDisplay::PointsOnDisplay();
 
     float result = 0.0f;
-    LIMITATION(result, (float)(200.0F - (dataIn[ch])[p.value1 + (int)posCurT] + MIN_VALUE), 0.0F, 200.0F);
+    LIMITATION(result, (float)(200.0F - (dataIn[ch])[p.value1 + (int)posCurT] + Value::MIN), 0.0F, 200.0F);
     return result;
 }
 
@@ -1028,13 +1028,13 @@ float Processing::GetCursT(const Channel &ch, float posCurU, int numCur)
 {
     Set2Int p = SettingsDisplay::PointsOnDisplay();
 
-    int prevData = 200 - (dataIn[ch])[p.value1] + MIN_VALUE;
+    int prevData = 200 - (dataIn[ch])[p.value1] + Value::MIN;
 
     int numIntersections = 0;
 
     for(int i = p.value1 + 1; i < p.value2; i++)
     {
-        int curData = 200 - (dataIn[ch])[i] + MIN_VALUE;
+        int curData = 200 - (dataIn[ch])[i] + Value::MIN;
 
         if(curData <= posCurU && prevData > posCurU)
         {
@@ -1208,7 +1208,7 @@ String Processing::GetStringMeasure(Measure::E measure, const Channel &ch)
 
 int Processing::GetMarkerHorizontal(Channel::E ch, int numMarker)
 {
-    return markerHor[ch][numMarker] - MIN_VALUE;
+    return markerHor[ch][numMarker] - Value::MIN;
 }
 
 int Processing::GetMarkerVertical(Channel::E ch, int numMarker)
@@ -1247,9 +1247,9 @@ void Processing::CountedToCurrentSettings()
         {
             float absValue = POINT_2_VOLTAGE(dataOut0[i], dataSet->range[0], dataSet->r_shift_a);
             int relValue = (int)((absValue + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) /
-                MathFPGA::voltsInPixel[range] + MIN_VALUE);
+                MathFPGA::voltsInPixel[range] + Value::MIN);
 
-            if (relValue < MIN_VALUE)       { dataOut0[i] = MIN_VALUE; }
+            if (relValue < Value::MIN)      { dataOut0[i] = Value::MIN; }
             else if (relValue > MAX_VALUE)  { dataOut0[i] = MAX_VALUE; }
             else                            { dataOut0[i] = (uint8)relValue; }
         }
@@ -1264,9 +1264,9 @@ void Processing::CountedToCurrentSettings()
         {
             float absValue = POINT_2_VOLTAGE(dataOut1[i], dataSet->range[1], dataSet->rShiftCh1);
             int relValue = (int)((absValue + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) /
-                MathFPGA::voltsInPixel[range] + MIN_VALUE);
+                MathFPGA::voltsInPixel[range] + Value::MIN);
 
-            if (relValue < MIN_VALUE)       { dataOut1[i] = MIN_VALUE; }
+            if (relValue < Value::MIN)      { dataOut1[i] = Value::MIN; }
             else if (relValue > MAX_VALUE)  { dataOut1[i] = MAX_VALUE; }
             else                            { dataOut1[i] = (uint8)relValue; }
         }
