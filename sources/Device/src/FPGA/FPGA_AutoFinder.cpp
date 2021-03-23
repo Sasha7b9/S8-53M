@@ -146,8 +146,8 @@ Range::E AutoFinderFPGA::AccurateFindRange(const Channel &ch)
             return (Range::E)(range);
         }
 
-        uint8 min = AVE_VALUE - 30;
-        uint8 max = AVE_VALUE + 30;
+        uint8 min = Value::AVE - 30;
+        uint8 max = Value::AVE + 30;
 
         if (range == Range::_2mV && CalculateMinWithout0(buffer) > min && CalculateMaxWithout255(buffer) < max)
         {

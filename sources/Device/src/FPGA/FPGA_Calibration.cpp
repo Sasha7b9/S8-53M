@@ -344,9 +344,12 @@ void DrawParametersChannel(const Channel &ch, int eX, int eY, bool inProgress)
         int y = eY + (inProgress ? 110 : 0);
         Text("Отклонение от нуля:").Draw(x, y);
         char buffer[100] = {0};
-        std::sprintf(buffer, "АЦП1 = %.2f/%.2f, АЦП2 = %.2f/%.2f, d = %.2f/%.2f", avrADC1old[ch] - AVE_VALUE, avrADC1[ch] - AVE_VALUE,
-                                                                             avrADC2old[ch] - AVE_VALUE, avrADC2[ch] - AVE_VALUE,
-                                                                             deltaADCold[ch], deltaADC[ch]);
+
+        std::sprintf(buffer, "АЦП1 = %.2f/%.2f, АЦП2 = %.2f/%.2f, d = %.2f/%.2f",
+            avrADC1old[ch] - Value::AVE, avrADC1[ch] - Value::AVE,
+            avrADC2old[ch] - Value::AVE, avrADC2[ch] - Value::AVE,
+            deltaADCold[ch], deltaADC[ch]);
+
         y += 10;
         Text(buffer).Draw(x, y);
         buffer[0] = 0;
@@ -483,7 +486,7 @@ Int16 CalculateAdditionRShift(const Channel &ch, Range::E range)
     }
 
     float aveValue = (float)sum / numPoints;
-    int16 retValue = (int16)(-(aveValue - AVE_VALUE) * 2);
+    int16 retValue = (int16)(-(aveValue - Value::AVE) * 2);
 
     if(retValue < - 100 || retValue > 100)
     {
@@ -541,24 +544,24 @@ Float CalculateKoeffCalibration(const Channel &ch)
         for(int j = 0; j < FPGA_MAX_POINTS; j += 2)
         {
             uint8 val0 = (uint8)HAL_FMC::Read(addressRead1);
-            if(val0 > AVE_VALUE + 60)
+            if(val0 > Value::AVE + 60)
             {
                 numMAX++;
                 sumMAX += val0;
             }
-            else if(val0 < AVE_VALUE - 60)
+            else if(val0 < Value::AVE - 60)
             {
                 numMIN++;
                 sumMIN += val0;
             }
 
             uint8 val1 = (uint8)HAL_FMC::Read(addressRead2);
-            if(val1 > AVE_VALUE + 60)
+            if(val1 > Value::AVE + 60)
             {
                 numMAX++;
                 sumMAX += val1;
             }
-            else if(val1 < AVE_VALUE - 60)
+            else if(val1 < Value::AVE - 60)
             {
                 numMIN++;
                 sumMIN += val1;
