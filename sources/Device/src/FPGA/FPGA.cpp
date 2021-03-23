@@ -22,7 +22,6 @@ uint16           FPGA::post = 1024;
 int16            FPGA::pred = 1024;
 FPGA::Flag       FPGA::flag;
 StateWorkFPGA::E FPGA::state_work = StateWorkFPGA::Stop;
-uint             FPGA::time_start = 0;
 bool             FPGA::temporary_pause = false;
 bool             FPGA::can_read_data = true;
 FPGA::State      FPGA::state;
@@ -76,7 +75,6 @@ void FPGA::Start()
 
     HAL_FMC::Write(WR_START, 1);
 
-    time_start = TIME_MS;
     state_work = StateWorkFPGA::Wait;
 }
 

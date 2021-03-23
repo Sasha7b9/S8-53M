@@ -70,7 +70,6 @@ public:
 private:
 
     static StateWorkFPGA::E state_work;
-    static uint             time_start;
 
 public:
 
