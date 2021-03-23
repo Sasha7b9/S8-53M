@@ -1061,6 +1061,8 @@ struct TrigLev
     static void FindAndSet();
 
     static bool need_auto_find;   // Если true, то нужно произвести поиск синхронизации
+
+    static const int16 MIN = RShift::MIN;
 };
 
 

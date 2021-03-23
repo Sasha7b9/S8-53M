@@ -527,9 +527,9 @@ void Display::DrawCursorTrigLevel()
         return;
     }
     int trigLev = TrigLev::Get(ch) + (RShift::Get((Channel::E)ch) - RShift::ZERO);
-    float scale = 1.0F / ((TrigLevMax - TrigLevMin) / 2.0F / Grid::ChannelHeight());
-    int y0 = (int)((Grid::TOP + Grid::ChannelBottom()) / 2 + scale * (TrigLevZero - TrigLevMin));
-    int y = (int)(y0 - scale * (trigLev - TrigLevMin));
+    float scale = 1.0F / ((TrigLevMax - TrigLev::MIN) / 2.0F / Grid::ChannelHeight());
+    int y0 = (int)((Grid::TOP + Grid::ChannelBottom()) / 2 + scale * (TrigLevZero - TrigLev::MIN));
+    int y = (int)(y0 - scale * (trigLev - TrigLev::MIN));
 
     y = (y - Grid::ChannelCenterHeight()) + Grid::ChannelCenterHeight();
 
@@ -565,11 +565,11 @@ void Display::DrawCursorTrigLevel()
         DrawScaleLine(WIDTH - 11, true);
         int left = Grid::Right() + 9;
         int height = Grid::ChannelHeight() - 2 * DELTA;
-        int shiftFullMin = RShift::MIN + TrigLevMin;
+        int shiftFullMin = RShift::MIN + TrigLev::MIN;
         int shiftFullMax = RShift::MAX + TrigLevMax;
         scale = (float)height / (shiftFullMax - shiftFullMin);
         int shiftFull = TrigLev::Get() + (TrigSource::IsExt() ? 0 : RShift::Get((Channel::E)ch));
-        int yFull = (int)(Grid::TOP + DELTA + height - scale * (shiftFull - RShift::MIN - TrigLevMin) - 4);
+        int yFull = (int)(Grid::TOP + DELTA + height - scale * (shiftFull - RShift::MIN - TrigLev::MIN) - 4);
         Region(4, 6).Fill(left + 2, yFull + 1, Color::Trig());
         Font::Set(TypeFont::S5);
         Char(simbols[TrigSource::Get()]).Draw(left + 3, yFull - 5, Color::BACK);

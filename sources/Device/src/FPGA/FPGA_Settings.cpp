@@ -256,11 +256,11 @@ void RShift::Load(const Channel &ch)
 void TrigLev::Set(TrigSource::E ch, int16 trigLev)
 {
     Display::ChangedRShiftMarkers();
-    if (trigLev < TrigLevMin || trigLev > TrigLevMax)
+    if (trigLev < TrigLev::MIN || trigLev > TrigLevMax)
     {
         Display::ShowWarningBad(Warning::LimitSweep_Level);
     }
-    LIMITATION(trigLev, trigLev, TrigLevMin, TrigLevMax);
+    LIMITATION(trigLev, trigLev, TrigLev::MIN, TrigLevMax);
 
     if (trigLev > TrigLevZero)
     {
@@ -308,7 +308,7 @@ void TrigLev::Load()
 {
     uint16 data = 0xa000;
     uint16 trigLev = (uint16)TrigLev::Get();
-    trigLev = (uint16)(TrigLevMax + TrigLevMin - trigLev);
+    trigLev = (uint16)(TrigLevMax + TrigLev::MIN - trigLev);
     data |= trigLev << 2;
     // FPGA_WriteToHardware(WR_DAC_LOW, data.byte[0], true);
     // FPGA_WriteToHardware(WR_DAC_HI, data.byte[1], true);
