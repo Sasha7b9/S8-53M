@@ -95,6 +95,7 @@ void DataDrawing::DrawChannel(const Channel &ch)
 
     if (set.display.mode_draw_signal.IsLines())
     {
+        DrawChannelPointed(x, ch);
         DrawChannelLined(x, ch);
     }
     else

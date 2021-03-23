@@ -333,13 +333,13 @@ void Pin::Init()
     }
     else if (mode == PinMode::_LTDC)
     {
-        isGPIO.Pull = GPIO_NOPULL;
+        isGPIO.Pull = GPIO_PULLDOWN;
         isGPIO.Mode = GPIO_MODE_AF_PP;
         isGPIO.Speed = GPIO_SPEED_FREQ_LOW;
         isGPIO.Alternate = GPIO_AF14_LTDC;
     }
 
-    HAL_GPIO_Init(reinterpret_cast<GPIO_TypeDef *>(const_cast<GPIO_TypeDef *>(ports[port])), &isGPIO);
+    HAL_GPIO_Init((GPIO_TypeDef *)(const_cast<GPIO_TypeDef *>(ports[port])), &isGPIO);
 }
 
 
