@@ -20,19 +20,9 @@
 using namespace Primitives;
 
 
-DataDrawing PainterData::data;
-
-
-void DataDrawing::Clear()
-{
-    points[ChA].Free();
-    points[ChB].Free();
-}
-
-
 void PainterData::DrawData()
 {
-    data.Clear();
+    DataDrawing data;
 
     data.Prepare();
 

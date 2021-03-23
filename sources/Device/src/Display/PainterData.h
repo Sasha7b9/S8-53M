@@ -14,7 +14,6 @@ struct DataStorage;
 // Базовая структура для отрисовки данных - осциллографических и спектральных
 struct DataDrawing
 {
-    void Clear();
     void Prepare();
     void Draw();
 
@@ -34,10 +33,6 @@ class PainterData
 public:
 
     static void DrawData();
-
-private:
-
-    static DataDrawing data;
 };
 
 
