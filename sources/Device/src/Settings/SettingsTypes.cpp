@@ -288,7 +288,7 @@ void TBase::Set(TBase::E tBase)
     if (tBase < TBase::Count)
     {
         float tShiftAbsOld = TSHIFT_2_ABS(TShift::Get(), TBase::Get());
-        set.time.tBase = tBase;
+        set.time.base = tBase;
         Load();
         TShift::Set((int)(TSHIFT_2_REL(tShiftAbsOld, TBase::Get())));
         Display::Redraw();
@@ -302,7 +302,7 @@ void TBase::Set(TBase::E tBase)
 
 TBase::E TBase::Get()
 {
-    return set.time.tBase;
+    return set.time.base;
 }
 
 

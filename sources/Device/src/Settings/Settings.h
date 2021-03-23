@@ -279,7 +279,7 @@ struct SettingsTrig
 // Настройки оси X.
 struct SettingsTime
 {
-    TBase::E            tBase;          // Масштаб по времени.
+    TBase::E            base;           // Масштаб по времени.
     int16               tShiftRel;      // Смещение по времени.
     FunctionTime::E     function_time;
     TPos::E             tPos;           // Привязка синхронизации к памяти.

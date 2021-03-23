@@ -506,7 +506,7 @@ uint FPGA::SET::BytesForData()
 
 bool FPGA::SET::InRandomizeMode()
 {
-    return (set.time.tBase < TBase::_100ns);
+    return (set.time.base < TBase::_100ns);
 }
 
 
@@ -518,5 +518,5 @@ bool FPGA::SET::InSelfRecorderMode()
 
 bool FPGA::SET::InModeP2P()
 {
-    return (set.time.tBase >= TBase::MIN_P2P);
+    return (set.time.base >= TBase::MIN_P2P);
 }
