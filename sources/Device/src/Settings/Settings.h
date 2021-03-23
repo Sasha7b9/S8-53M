@@ -3,49 +3,6 @@
 #include "Utils/Measures.h"
 
 
-#define RSHIFT_ADD(ch, range, mode) set.chan[ch].rshift_add[range][mode]
-
-#define MAC_ADDR0       (set.LAN.mac0)
-#define MAC_ADDR1       (set.LAN.mac1)
-#define MAC_ADDR2       (set.LAN.mac2)
-#define MAC_ADDR3       (set.LAN.mac3)
-#define MAC_ADDR4       (set.LAN.mac4)
-#define MAC_ADDR5       (set.LAN.mac5)
-
-#define IP_ADDR0        (set.LAN.ip0)
-#define IP_ADDR1        (set.LAN.ip1)
-#define IP_ADDR2        (set.LAN.ip2)
-#define IP_ADDR3        (set.LAN.ip3)
-
-#define NETMASK_ADDR0   (set.LAN.mask0)
-#define NETMASK_ADDR1   (set.LAN.mask1)
-#define NETMASK_ADDR2   (set.LAN.mask2)
-#define NETMASK_ADDR3   (set.LAN.mask3)
-
-#define GW_ADDR0        (set.LAN.gw0)
-#define GW_ADDR1        (set.LAN.gw1)
-#define GW_ADDR2        (set.LAN.gw2)
-#define GW_ADDR3        (set.LAN.gw3)
-
-
-#define LANG            (set.common.lang)       // SettingsCommon.lang
-#define LANG_RU         (LANG == Language::Russian)
-#define LANG_EN         (LANG == Language::English)
-
-
-#define IS_SHOW_REGISTERS_ALL   (set.debug.showRegisters.all)
-#define IS_SHOW_REG_RSHIFT_A    (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.rShiftA)
-#define IS_SHOW_REG_RSHIFT_B    (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.rShiftB)
-#define IS_SHOW_REG_TRIGLEV     (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.trigLev)
-#define IS_SHOW_REG_RANGE_A     (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.range[Channel::A])
-#define IS_SHOW_REG_RANGE_B     (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.range[Channel::B])
-#define IS_SHOW_REG_TRIGPARAM   (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.trigParam)
-#define IS_SHOW_REG_PARAM_A     (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.chanParam[Channel::A])
-#define IS_SHOW_REG_PARAM_B     (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.chanParam[Channel::B])
-#define IS_SHOW_REG_TSHIFT      (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.tShift)
-#define IS_SHOW_REG_TBASE       (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.tBase)
-
-
  // Настройки каналов
 struct SettingsChannel
 {
@@ -402,4 +359,48 @@ struct Settings
                                       // программа успевает настроить настройки).
 };
 
+
 extern Settings set;
+
+
+#define RSHIFT_ADD(ch, range, mode) set.chan[ch].rshift_add[range][mode]
+
+#define MAC_ADDR0       (set.LAN.mac0)
+#define MAC_ADDR1       (set.LAN.mac1)
+#define MAC_ADDR2       (set.LAN.mac2)
+#define MAC_ADDR3       (set.LAN.mac3)
+#define MAC_ADDR4       (set.LAN.mac4)
+#define MAC_ADDR5       (set.LAN.mac5)
+
+#define IP_ADDR0        (set.LAN.ip0)
+#define IP_ADDR1        (set.LAN.ip1)
+#define IP_ADDR2        (set.LAN.ip2)
+#define IP_ADDR3        (set.LAN.ip3)
+
+#define NETMASK_ADDR0   (set.LAN.mask0)
+#define NETMASK_ADDR1   (set.LAN.mask1)
+#define NETMASK_ADDR2   (set.LAN.mask2)
+#define NETMASK_ADDR3   (set.LAN.mask3)
+
+#define GW_ADDR0        (set.LAN.gw0)
+#define GW_ADDR1        (set.LAN.gw1)
+#define GW_ADDR2        (set.LAN.gw2)
+#define GW_ADDR3        (set.LAN.gw3)
+
+
+#define LANG            (set.common.lang)       // SettingsCommon.lang
+#define LANG_RU         (LANG == Language::Russian)
+#define LANG_EN         (LANG == Language::English)
+
+
+#define IS_SHOW_REGISTERS_ALL   (set.debug.showRegisters.all)
+#define IS_SHOW_REG_RSHIFT_A    (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.rShiftA)
+#define IS_SHOW_REG_RSHIFT_B    (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.rShiftB)
+#define IS_SHOW_REG_TRIGLEV     (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.trigLev)
+#define IS_SHOW_REG_RANGE_A     (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.range[Channel::A])
+#define IS_SHOW_REG_RANGE_B     (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.range[Channel::B])
+#define IS_SHOW_REG_TRIGPARAM   (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.trigParam)
+#define IS_SHOW_REG_PARAM_A     (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.chanParam[Channel::A])
+#define IS_SHOW_REG_PARAM_B     (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.chanParam[Channel::B])
+#define IS_SHOW_REG_TSHIFT      (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.tShift)
+#define IS_SHOW_REG_TBASE       (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.tBase)

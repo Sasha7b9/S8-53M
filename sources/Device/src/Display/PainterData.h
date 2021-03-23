@@ -9,6 +9,13 @@ struct DataSettings;
 struct DataStorage;
 
 
+// Базовая структура для отрисовки данных - осциллографических и спектральных
+struct DataDrawing
+{
+
+};
+
+
 class PainterData
 {
 public:
