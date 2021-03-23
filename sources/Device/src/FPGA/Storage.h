@@ -3,6 +3,7 @@
 #include "common/Utils/Buffer_.h"
 
 
+struct DataSettings;
 struct RecordStorage;
 
 
