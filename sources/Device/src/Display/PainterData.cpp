@@ -32,10 +32,10 @@ void PainterData::DrawData()
 }
 
 
-#define CONVERT_DATA_TO_DISPLAY(out, in)                    \
-    out = (uint8)(max_y - ((in) - MIN_VALUE) * scale_y);    \
-    if(out < min_y)          { out = (uint8)min_y; }        \
-    else if (out > max_y)    { out = (uint8)max_y; };
+#define CONVERT_DATA_TO_DISPLAY(out, in)                        \
+    (out) = (uint8)(max_y - ((in) - MIN_VALUE) * scale_y);      \
+    if((out) < min_y)          { (out) = (uint8)min_y; }        \
+    else if ((out) > max_y)    { (out) = (uint8)max_y; };
 
 
 // shiftForPeakDet - если рисуем информацию с пикового детектора - то через shiftForPeakDet точек расположена
@@ -136,13 +136,16 @@ void PainterData::DrawDataInRect(int x, int width, puchar data, int numElems, co
 void DataDrawing::Prepare()
 {
     Storage::ExtractLast(data);
+
+    PrepareChannel(ChA);
+    PrepareChannel(ChB);
 }
 
 
 void DataDrawing::Draw()
 {
-    DrawDataChannel(data, Channel::A, Grid::TOP, Grid::ChannelBottom());
-    DrawDataChannel(data, Channel::B, Grid::TOP, Grid::ChannelBottom());
+    DrawChannel(ChA);
+    DrawChannel(ChB);
 }
 
 
@@ -164,6 +167,73 @@ void DataDrawing::DrawDataChannel(DataStorage &data, const Channel &ch, int min_
     ch.GetColor().SetAsCurrent();
 
     DrawSignalPointed(data.Data(ch), data.Settings(), firstPoint, lastPoint, min_y, max_y, scaleY, scaleX);
+}
+
+
+void DataDrawing::PrepareChannel(const Channel &ch)
+{
+    points[ch].Free();
+
+    if (!data.Settings().IsEnabled(ch))
+    {
+        return;
+    }
+
+    int min_y = Grid::TOP;
+    int max_y = Grid::ChannelBottom();
+
+    float scale_y = (float)(max_y - min_y) / (MAX_VALUE - MIN_VALUE);
+    float scale_x = Grid::Width() / 280.0f;
+
+    int first_point = 0;
+    int last_point = 0;
+
+    SettingsDisplay::PointsOnDisplay(&first_point, &last_point);
+
+    points[ch].Realloc(281);
+
+    uint8 *data_channel = data.Data(ch);
+
+    if (scale_x == 1.0f)
+    {
+        for (int i = first_point; i < last_point; i++)
+        {
+            int index = i - first_point;
+            CONVERT_DATA_TO_DISPLAY((points[ch][index]),
+                Math::CalculateFiltr(data_channel, i, SettingsMemory::GetNumPoints(false), (int)Smoothing::NumPoints()));
+        }
+    }
+}
+
+
+void DataDrawing::DrawChannel(const Channel &ch)
+{
+    if (!data.Settings().IsEnabled(ch))
+    {
+        return;
+    }
+
+    ch.GetColor().SetAsCurrent();
+
+    int x = Grid::Left();
+
+    for (uint i = 0; i < points[ch].Size(); i++)
+    {
+        Point().Draw(x++, points[ch][i]);
+    }
+}
+
+
+void DataDrawing::DrawPoints(uint8 *y, const int start_x, int num_points, const Color &color)
+{
+    color.SetAsCurrent();
+
+    int x = start_x;
+
+    while (num_points-- > 0)
+    {
+        Point().Draw(x++, *y++);
+    }
 }
 
 
@@ -295,17 +365,5 @@ void DataDrawing::DrawSignalLined(puchar data, const DataSettings *ds, int start
     {
         CONVERT_DATA_TO_DISPLAY(dataCD[280], data[end_i]);
         DrawPoints(dataCD, Grid::Left(), 281);
-    }
-}
-
-void DataDrawing::DrawPoints(uint8 *y, const int start_x, int num_points, const Color &color)
-{
-    color.SetAsCurrent();
-
-    int x = start_x;
-
-    while (num_points-- > 0)
-    {
-        Point().Draw(x++, *y++);
     }
 }

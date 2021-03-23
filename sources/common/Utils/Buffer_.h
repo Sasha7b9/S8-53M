@@ -29,6 +29,8 @@ public:
 
     static void LogU8(const uint8 *buffer);
 
+    uint8 &operator[](uint i) const;
+
 private:
 
     uint size;

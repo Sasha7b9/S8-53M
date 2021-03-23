@@ -2,11 +2,13 @@
 #pragma once
 #include "common/Display/Colors_.h"
 #include "common/Settings/SettingsTypes_.h"
+#include "common/Utils/Buffer_.h"
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/Storage.h"
 
 
 struct DataSettings;
+struct DataStorage;
 
 
 // Базовая структура для отрисовки данных - осциллографических и спектральных
@@ -17,8 +19,12 @@ struct DataDrawing
 
 private:
 
-    DataStorage data;           // Здесь данныые, по которым будем рассчитывать точки
+    DataStorage data;
     Buffer points[NumChannels]; // Здесь рассчитанные точки, готовые к выводу на экран
+
+    void PrepareChannel(const Channel &ch);
+
+    void DrawChannel(const Channel &ch);
 
     static void DrawDataChannel(DataStorage &data, const Channel &ch, int min_y, int max_y);
 
@@ -53,7 +59,6 @@ private:
 
 
 /*
-
     1. Режимы отрисовки:
         - нормальный режим;
         - нормальный в рандомизаторе;
