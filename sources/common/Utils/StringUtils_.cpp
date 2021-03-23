@@ -14,11 +14,11 @@ char SU::ToUpper(char symbol)
     }
     else if (s >= 0x60 && s <= 0x7a)
     {
-        return static_cast<char>(s - 0x20);
+        return (char)(s - 0x20);
     }
     else if (s >= 0xf0)
     {
-        return static_cast<char>(s - 0x20);
+        return (char)(s - 0x20);
     }
 
     return symbol;
@@ -31,11 +31,11 @@ char SU::ToLower(char symbol)
 
     if (s >= 0x41 && s <= 0x5a)
     {
-        return static_cast<char>(s + 0x20);
+        return (char)(s + 0x20);
     }
     else if (s >= 0xc0 && s < 0xE0)
     {
-        return static_cast<char>(s + 0x20);
+        return (char)(s + 0x20);
     }
 
     return symbol;

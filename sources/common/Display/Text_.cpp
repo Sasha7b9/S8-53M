@@ -261,8 +261,8 @@ void Char::Draw4SymbolsInRect(int x, int y, Color color)
 
     for (int i = 0; i < 2; i++)
     {
-        Char(static_cast<char>(symbol + i)).Draw(x + 8 * i, y);
-        Char(static_cast<char>(symbol + i + 16)).Draw(x + 8 * i, y + 8);
+        Char((char)(symbol + i)).Draw(x + 8 * i, y);
+        Char((char)(symbol + i + 16)).Draw(x + 8 * i, y + 8);
     }
 }
 
@@ -305,8 +305,8 @@ void Char::Draw10SymbolsInRect(int x, int y)
 {
     for (int i = 0; i < 5; i++)
     {
-        Char(static_cast<char>(symbol + i)).Draw(x + 8 * i, y);
-        Char(static_cast<char>(symbol + i + 16)).Draw(x + 8 * i, y + 8);
+        Char((char)(symbol + i)).Draw(x + 8 * i, y);
+        Char((char)(symbol + i + 16)).Draw(x + 8 * i, y + 8);
     }
 }
 

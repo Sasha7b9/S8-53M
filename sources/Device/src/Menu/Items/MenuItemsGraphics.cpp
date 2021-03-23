@@ -241,7 +241,7 @@ static void DrawValueWithSelectedPosition(int x, int y, int value, int numDigits
         }
         if (!(rest == 0 && value == 0) || (firstValue == 0 && i == 0))
         {
-            Char(static_cast<char>(rest + 48)).Draw(x, y, selPos == i ? Color::BACK : Color::FILL);
+            Char((char)(rest + 48)).Draw(x, y, selPos == i ? Color::BACK : Color::FILL);
         }
         else if (fillNull)
         {

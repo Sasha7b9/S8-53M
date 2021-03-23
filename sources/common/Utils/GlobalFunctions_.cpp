@@ -83,7 +83,7 @@ String GF::Float2String(const Float &value, bool always_sign, int num_digits)
 
     int num_digits_in_int = NumDigitsInIntPart(value);
 
-    format[3] = static_cast<char>((num_digits - num_digits_in_int) + 0x30);
+    format[3] = (char)((num_digits - num_digits_in_int) + 0x30);
     if(num_digits == num_digits_in_int)
     {
         format[5] = '.';
@@ -98,7 +98,7 @@ String GF::Float2String(const Float &value, bool always_sign, int num_digits)
     if (NumDigitsInIntPart(val) != num_digits_in_int)
     {
         num_digits_in_int = NumDigitsInIntPart(val);
-        format[3] = static_cast<char>((num_digits - num_digits_in_int) + 0x30);
+        format[3] = (char)((num_digits - num_digits_in_int) + 0x30);
 
         if (num_digits == num_digits_in_int)
         {
