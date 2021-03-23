@@ -136,7 +136,7 @@ struct SettingsDisplay
     MenuAutoHide::E     menu_auto_hide;          // Через сколько времени после последнего нажатия клавиши прятать меню.
     bool                show_full_memory_window; // Показывать ли окно памяти вверху экрана. \todo Не используется.
     bool                show_string_navigation;  // Показывать ли строку текущего состояния меню..
-    LinkingRShift::E    linking_rshift;          // Тип привязки смещения по вертикали.
+    LinkingRShift       linking_rshift;          // Тип привязки смещения по вертикали.
 
     // Возвращает адрес первой и последней точки на экране.
     static void PointsOnDisplay(int *firstPoint, int *lastPoint);

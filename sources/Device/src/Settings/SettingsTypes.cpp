@@ -720,12 +720,6 @@ bool AltMarkers::IsHide()
 }
 
 
-bool LinkingRShift::IsVoltage()
-{
-    return (set.display.linking_rshift == LinkingRShift::Voltage);
-}
-
-
 int ENumMinMax::ToAbs()
 {
     return (1 << value);

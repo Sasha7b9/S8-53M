@@ -150,7 +150,7 @@ void Range::Set(const Channel &ch, Range::E range)
     {
         set.chan[ch].range = range;
 
-        if (LinkingRShift::IsVoltage())
+        if (set.display.linking_rshift.IsVoltage())
         {
             float rShiftAbs = RSHIFT_2_ABS(RShift::Get(ch), set.chan[ch].range);
             float trigLevAbs = RSHIFT_2_ABS(TrigLev::Get((TrigSource::E)ch.value), set.chan[ch].range);

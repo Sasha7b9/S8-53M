@@ -298,9 +298,9 @@ struct LinkingRShift
     {
         Voltage,      // Смещение привязано к напряжению
         Position      // Смещение привязаоно к позиции на экране
-    };
+    } value;
 
-    static bool IsVoltage();
+    bool IsVoltage() const { return value == Voltage; };
 };
 
 
