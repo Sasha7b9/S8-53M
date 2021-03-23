@@ -728,5 +728,5 @@ bool LinkingRShift::IsVoltage()
 
 int ENumMinMax::ToAbs()
 {
-    return (1 << set.display.enum_min_max);
+    return (1 << value);
 }

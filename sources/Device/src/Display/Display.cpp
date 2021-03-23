@@ -789,7 +789,7 @@ void Display::DrawLowPart()
         int y2 = y1 + 6;
         WriteStringAndNumber("накопл", x, y0, set.display.enum_accum);
         WriteStringAndNumber("усредн", x, y1, set.display.enum_ave);
-        WriteStringAndNumber("мн\x93мкс", x, y2, ENumMinMax::ToAbs());
+        WriteStringAndNumber("мн\x93мкс", x, y2, set.display.enum_min_max.ToAbs());
     }
 
     x += 42;

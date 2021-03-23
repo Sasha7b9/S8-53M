@@ -192,9 +192,13 @@ struct ENumMinMax
         _32,
         _64,
         _128
-    };
+    } value;
 
-    static int ToAbs();
+    ENumMinMax(E v = _1) : value(v) {}
+
+    int ToAbs();
+
+    operator E() const { return value; }
 };
 
 
