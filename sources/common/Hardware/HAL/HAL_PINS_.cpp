@@ -43,37 +43,37 @@ static const uint16 pins[16] =
 
 struct PinFMC : public Pin
 {
-    PinFMC(int port, int pin) : Pin(PinMode::_FMC, static_cast<PinPort::E>(port), static_cast<PinPin::E>(pin)) { }
+    PinFMC(int port, int pin) : Pin(PinMode::_FMC, (PinPort::E)(port), static_cast<PinPin::E>(pin)) { }
 };
 
 
 struct PinETH : public Pin
 {
-    PinETH(int port, int pin) : Pin(PinMode::_ETH, static_cast<PinPort::E>(port), static_cast<PinPin::E>(pin)) { }
+    PinETH(int port, int pin) : Pin(PinMode::_ETH, (PinPort::E)(port), static_cast<PinPin::E>(pin)) { }
 };
 
 
 struct PinSPI1 : public Pin
 {
-    PinSPI1(int port, int pin) : Pin(PinMode::_SPI1, static_cast<PinPort::E>(port), static_cast<PinPin::E>(pin)) { }
+    PinSPI1(int port, int pin) : Pin(PinMode::_SPI1, (PinPort::E)(port), static_cast<PinPin::E>(pin)) { }
 };
 
 
 struct PinOTG_HS : public Pin
 {
-    PinOTG_HS(int port, int pin) : Pin(PinMode::_OTG_HS_FS, static_cast<PinPort::E>(port), static_cast<PinPin::E>(pin)) { }
+    PinOTG_HS(int port, int pin) : Pin(PinMode::_OTG_HS_FS, (PinPort::E)(port), static_cast<PinPin::E>(pin)) { }
 };
 
 
 struct PinOTG_FS : public Pin
 {
-    PinOTG_FS(int port, int pin) : Pin(PinMode::_OTG_FS, static_cast<PinPort::E>(port), static_cast<PinPin::E>(pin)) { }
+    PinOTG_FS(int port, int pin) : Pin(PinMode::_OTG_FS, (PinPort::E)(port), static_cast<PinPin::E>(pin)) { }
 };
 
 
 struct PinLTDC : public Pin
 {
-    PinLTDC(int port, int pin) : Pin(PinMode::_LTDC, static_cast<PinPort::E>(port), static_cast<PinPin::E>(pin)) { }
+    PinLTDC(int port, int pin) : Pin(PinMode::_LTDC, (PinPort::E)(port), static_cast<PinPin::E>(pin)) { }
 };
 
 

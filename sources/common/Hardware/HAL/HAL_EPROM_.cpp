@@ -61,7 +61,7 @@ void HAL_EPROM::WriteWord(uint address, uint word)
     __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP | FLASH_FLAG_OPERR | FLASH_FLAG_WRPERR | FLASH_FLAG_PGAERR | FLASH_FLAG_PGPERR | FLASH_FLAG_PGSERR);
 
     HAL_FLASH_Unlock();
-    if (HAL_FLASH_Program(TYPEPROGRAM_WORD, address, static_cast<uint64_t>(word)) != HAL_OK)
+    if (HAL_FLASH_Program(TYPEPROGRAM_WORD, address, (uint64_t)(word)) != HAL_OK)
     {
         LOG_ERROR("Не могу записать в память");
     }
@@ -75,7 +75,7 @@ void HAL_EPROM::WriteBufferBytes(uint address, puchar buffer, uint size)
 
     for (uint i = 0; i < size; i++)
     {
-        if (HAL_FLASH_Program(TYPEPROGRAM_BYTE, address, static_cast<uint64_t>(buffer[i])) != HAL_OK)
+        if (HAL_FLASH_Program(TYPEPROGRAM_BYTE, address, (uint64_t)(buffer[i])) != HAL_OK)
         {
             ERROR_HANDLER();
         }

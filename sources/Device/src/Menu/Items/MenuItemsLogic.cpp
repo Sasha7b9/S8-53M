@@ -73,7 +73,7 @@ void IPaddress::ChangeValue(int delta)
     {
         if (numByte == 4)
         {
-            *OwnData()->port = static_cast<uint16>(newValue);
+            *OwnData()->port = (uint16)(newValue);
         }
         else
         {

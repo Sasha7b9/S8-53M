@@ -174,8 +174,8 @@ bool FPGA::Randomizer::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
         min = 0xffff;
         max = 0;
     }
-    *eMin = static_cast<uint16>(minGate); //-V519
-    *eMax = static_cast<uint16>(maxGate); //-V519
+    *eMin = (uint16)(minGate); //-V519
+    *eMax = (uint16)(maxGate); //-V519
 
     //LOG_WRITE("min %u, max %u, rand %d", *eMin, *eMax, rand);
     return true;
@@ -391,7 +391,7 @@ void FPGA::BUS::WriteToAnalog(TypeWriteAnalog::E type, uint data)
 {
 //    LOG_WRITE("%s : %d", __FUNCTION__, data);
 
-    char *str = GF::Bin2String16(static_cast<uint16>(data)).c_str();
+    char *str = GF::Bin2String16((uint16)(data)).c_str();
 
     if (type == TypeWriteAnalog::Range0 && IS_SHOW_REG_RANGE_A)
     {

@@ -139,7 +139,7 @@ void SetWave()
 
 uint16 CalculatePeriodForTIM()
 {
-    return static_cast<uint16>(120e6F / frequency / POINTS_IN_PERIOD);
+    return (uint16)(120e6F / frequency / POINTS_IN_PERIOD);
 }
 
 

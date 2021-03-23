@@ -276,15 +276,15 @@ void Grid::DrawType1(int left, int top, int right, int bottom, float centerX, fl
     masX[0] = (uint16)(left + 1);
     for (int i = 1; i < 7; i++)
     {
-        masX[i] = static_cast<uint16>(left + deltaX * i);
+        masX[i] = (uint16)(left + deltaX * i);
     }
     for (int i = 7; i < 10; i++)
     {
-        masX[i] = static_cast<uint16>(centerX - 8 + i);
+        masX[i] = (uint16)(centerX - 8 + i);
     }
     for (int i = 10; i < 16; i++)
     {
-        masX[i] = static_cast<uint16>(centerX + deltaX * (i - 9));
+        masX[i] = (uint16)(centerX + deltaX * (i - 9));
     }
     masX[16] = (uint16)(right - 1);
 

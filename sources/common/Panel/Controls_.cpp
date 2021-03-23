@@ -64,7 +64,7 @@ Key::E Key::FromCode(uint16 code)
 
 uint16 Key::ToCode(Key::E key)
 {
-    return static_cast<uint16>(key);
+    return (uint16)(key);
 }
 
 
@@ -88,7 +88,7 @@ Action::E Action::FromCode(uint16 code)
 
 uint16 Action::ToCode(Action::E action)
 {
-    return static_cast<uint16>(action << 5);
+    return (uint16)(action << 5);
 }
 
 

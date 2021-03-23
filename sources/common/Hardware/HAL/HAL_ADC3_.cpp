@@ -69,5 +69,5 @@ uint16 HAL_ADC3::GetValue()
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
 {
-    adcValue = static_cast<uint16>(HAL_ADC_GetValue(hadc));
+    adcValue = (uint16)(HAL_ADC_GetValue(hadc));
 }
