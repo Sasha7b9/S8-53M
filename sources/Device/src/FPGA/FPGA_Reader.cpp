@@ -2,7 +2,7 @@
 #include "defines.h"
 #include "common/Log_.h"
 #include "common/Utils/Math_.h"
-#include "Display/DataPainter.h"
+#include "Display/PainterData.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGA_Reader.h"
 #include "FPGA/Storage.h"

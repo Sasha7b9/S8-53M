@@ -68,11 +68,11 @@ file(GLOB LIBS_USBH         ../../common/_VS_GUI/USBH/*.*)
 file(GLOB LIBS_USBD         ../../common/_VS_GUI/USBD/*.*)
 file(GLOB DISPLAY           ../../Device/src/Display/Colors.*
                             ../../Device/src/Display/Colors_d.cpp
-                            ../../Device/src/Display/DataPainter.*
                             ../../Device/src/Display/Display.*
                             ../../Device/src/Display/DisplayPrimitives.*
                             ../../Device/src/Display/Grid.*
                             ../../Device/src/Display/Painter.*
+                            ../../Device/src/Display/PainterData.*
                             ../../Device/src/Display/PainterText.cpp
                                 ../../common/Display/Colors_.*
                                 ../../common/Display/DisplayTypes_.h

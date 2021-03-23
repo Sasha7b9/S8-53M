@@ -2,7 +2,7 @@
 #include "common/Log_.h"
 #include "common/Hardware/Timer_.h"
 #include "common/Utils/Math_.h"
-#include "Display/DataPainter.h"
+#include "Display/PainterData.h"
 #include "FPGA/DataSettings.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGA_AutoFinder.h"
