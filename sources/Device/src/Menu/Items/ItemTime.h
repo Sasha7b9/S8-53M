@@ -29,7 +29,7 @@ public:
     TimeItem(const DataItem *const data) : Item(data) {};
 
     const DataTime *OwnData() const {
-        return static_cast<const DataTime *>(data->ad);
+        return (const DataTime *)(data->ad);
     }
 
     virtual void Draw(int x, int y, bool opened = false) const;

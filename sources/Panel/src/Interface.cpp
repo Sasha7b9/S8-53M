@@ -23,7 +23,7 @@ void Interface::Update()
         }
         else
         {
-            uint8 message[3] = { 0xFF, static_cast<uint8>(event.key), static_cast<uint8>(event.action) };
+            uint8 message[3] = { 0xFF, (uint8)(event.key), (uint8)(event.action) };
 
             HAL_SPI2::Transmit(message, 3);
         }

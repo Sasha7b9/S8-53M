@@ -108,7 +108,7 @@ void Display::Update()
 
         int height = 30;
         int fullWidth = 280;
-        int width = static_cast<int>((float)(fullWidth) * MainStruct::ms->percentUpdate);
+        int width = (int)((float)(fullWidth) * MainStruct::ms->percentUpdate);
 
         Region(width, height).Fill(20, 130);
         Rectangle(fullWidth, height).Draw(20, 130);
@@ -149,7 +149,7 @@ void DrawProgressBar(uint dT)
     Text("Подождите...").DrawInCenterRect(X, y0 + 2 * dH, WIDTH, 10);
 
     Rectangle(WIDTH, HEIGHT).Draw(X, Y);
-    Region(static_cast<int>(MainStruct::ms->display.value), HEIGHT).Fill(X, Y);
+    Region((int)(MainStruct::ms->display.value), HEIGHT).Fill(X, Y);
 }
 
 
@@ -173,9 +173,9 @@ static void DrawBigMNIPI()
     uint time = TIME_MS - startTime;
 
     int numColor = 0;
-    LIMITATION(numColor, static_cast<int>((float)(time) / (float)TIME_WAIT * 13.0F), 0, 13);
+    LIMITATION(numColor, (int)((float)(time) / (float)TIME_WAIT * 13.0F), 0, 13);
 
-    Color(static_cast<uint8>(numColor + 2)).SetAsCurrent();
+    Color((uint8)(numColor + 2)).SetAsCurrent();
 
     float amplitude = 3.0F - ((float)(time) / (TIME_WAIT / 2.0F)) * 3;
     LIMIT_BELOW(amplitude, 0.0F);
@@ -193,7 +193,7 @@ static void DrawBigMNIPI()
 
     for (int i = 0; i < numPoints; i++)
     {
-        int x = static_cast<int>((float)(array[i].x) + shift[array[i].y]); //-V537
+        int x = (int)((float)(array[i].x) + shift[array[i].y]); //-V537
         int y = array[i].y;
         if (x > 0 && x < 319 && y > 0 && y < 239)
         {
