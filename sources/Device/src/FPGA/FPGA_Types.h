@@ -5,9 +5,6 @@
 #define MIN_VALUE_SCREEN 0
 #define MAX_VALUE_SCREEN 200
 
-#define MIN_TBASE_PEC_DEAT  TBase::_500ns     // Минимальный масштаб по времени, при котором возможно включение режима
-                                              // пикового детектора.
-
 #define FPGA_MAX_POINTS                 1024
 #define FPGA_MAX_POINTS_FOR_CALCULATE   900
 

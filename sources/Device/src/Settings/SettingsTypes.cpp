@@ -18,6 +18,7 @@ bool RShift::draw_markers = false;
 bool TrigLev::need_auto_find = false;
 
 TBase::E TBase::MIN_P2P = TBase::_20ms;
+TBase::E TBase::MIN_PEAK_DET = TBase::_500ns;
 
 
 Channel ChA(Channel::A);
@@ -238,7 +239,7 @@ int16 RShift::GetMath()
 
 void TBase::Decrease()
 {
-    if (PeackDetMode::IsEnabled() && TBase::Get() <= MIN_TBASE_PEC_DEAT)
+    if (PeackDetMode::IsEnabled() && TBase::Get() <= TBase::MIN_PEAK_DET)
     {
         Display::ShowWarningBad(Warning::LimitSweep_Time);
         Display::ShowWarningBad(Warning::EnabledPeakDet);

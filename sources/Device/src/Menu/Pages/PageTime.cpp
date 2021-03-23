@@ -25,7 +25,7 @@ DEF_CHOICE_2(mcSample, PageTime::self,
 
 static bool IsActive_PeakDet()
 {
-    return (TBase::Get() >= MIN_TBASE_PEC_DEAT);
+    return (TBase::Get() >= TBase::MIN_PEAK_DET);
 }
 
 void PageTime::OnChanged_PeakDet(bool active)
