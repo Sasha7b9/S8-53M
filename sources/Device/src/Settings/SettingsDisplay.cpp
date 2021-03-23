@@ -84,11 +84,11 @@ int ENumAveraging::NumAverages()
         return set.debug.num_ave_for_rand;
     }
 
-    return ENumAveraging::ToAbs();
+    return ToAbs();
 }
 
 
 int ENumAveraging::ToAbs()
 {
-    return (1 << set.display.enum_ave);
+    return (1 << value);
 }

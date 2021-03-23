@@ -160,10 +160,14 @@ struct ENumAveraging
         _128,
         _256,
         _512
-    };
+    } value;
 
-    static int NumAverages();
-    static int ToAbs();
+    ENumAveraging(E v = _1) : value(v) {}
+
+    int NumAverages();
+    int ToAbs();
+
+    operator E() const { return value; }
 };
 
 
