@@ -144,3 +144,53 @@ void Primitives::Rectangle::Draw(int x, int y, const Color &color) const
 
     Draw(x, y);
 }
+
+
+void Primitives::Rectangle::Draw(int x, int y) const
+{
+    if (width == 0 || height == 0)
+    {
+        return;
+    }
+
+    int dx = x + width - 1;
+    int dy = y + height - 1;
+
+    HLine().Draw(y, x, dx);
+    HLine().Draw(dy, x, dx);
+    VLine().Draw(x, y, dy);
+    VLine().Draw(dx, y, dy);
+}
+
+
+void Primitives::MultiHPointLine::Draw(int x, const Color &color) const
+{
+    color.SetAsCurrent();
+
+    for (int i = 0; i < numLines; i++)
+    {
+        DrawHPointLine(x, y[i], count, delta);
+    }
+}
+
+
+void Primitives::Region::Fill(int x, int y, const Color &color) const
+{
+    color.SetAsCurrent();
+
+    Fill(x, y);
+}
+
+
+void Primitives::Region::Fill(int x, int y) const
+{
+    if (width == 0 || height == 0)
+    {
+        return;
+    }
+
+    for (int i = y; i <= y + height - 1; i++)
+    {
+        HLine().Draw(i, x, x + width - 1);
+    }
+}
