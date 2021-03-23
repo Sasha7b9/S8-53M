@@ -7,11 +7,21 @@
 struct DataSettings;
 
 
-struct StateWorkFPGA { enum E {
-    Stop,    // СТОП - не занимается считыванием информации.
-    Wait,    // Ждёт поступления синхроимпульса.
-    Work     // Идёт работа.
-};};
+struct StateWorkFPGA
+{
+    enum E
+    {
+        Stop,    // СТОП - не занимается считыванием информации.
+        Wait,    // Ждёт поступления синхроимпульса.
+        Work     // Идёт работа.
+    } value;
+
+    StateWorkFPGA(E v = Stop) : value(v) {}
+    bool IsStop() const { return value == Stop; }
+    bool IsWait() const { return value == Wait; }
+    bool IsWork() const { return value == Work; }
+    operator E() const  { return value; }
+};
 
 struct StateCalibration { enum E {
     None,
@@ -62,14 +72,10 @@ public:
     // Установить временную паузу после изменения ручек - чтобы смещённый сигнал зафиксировать на некоторое время
     static void TemporaryPause();
 
-    static StateWorkFPGA::E CurrentStateWork();
+    static StateWorkFPGA &CurrentStateWork();
 
     // Загрузить настройки в аппаратную часть из глобальной структуры SSettings.
     static void LoadSettings();
-
-private:
-
-    static StateWorkFPGA::E state_work;
 
 public:
 
@@ -158,6 +164,7 @@ public:
         bool                need_calibration;               // Установленное в true значение означает, что необходимо
                                                             // произвести калибровку
         StateWorkFPGA::E    state_work_before_calibration;
+        StateWorkFPGA       state_work;
         StateCalibration::E state_calibration;              // Текущее состояние калибровки. Используется в процессе
                                                             // калибровки
         Settings            stored_settings;                // Здесь нужно уменьшить необходимый размер памяти -

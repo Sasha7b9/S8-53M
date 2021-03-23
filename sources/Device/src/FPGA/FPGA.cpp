@@ -21,7 +21,6 @@ int              FPGA::add_N_stop = 0;
 uint16           FPGA::post = 1024;
 int16            FPGA::pred = 1024;
 FPGA::Flag       FPGA::flag;
-StateWorkFPGA::E FPGA::state_work = StateWorkFPGA::Stop;
 bool             FPGA::temporary_pause = false;
 bool             FPGA::can_read_data = true;
 FPGA::State      FPGA::state;
@@ -75,7 +74,7 @@ void FPGA::Start()
 
     HAL_FMC::Write(WR_START, 1);
 
-    state_work = StateWorkFPGA::Wait;
+    state.state_work = StateWorkFPGA::Wait;
 }
 
 
@@ -98,15 +97,15 @@ void FPGA::Update()
 }
 
 
-StateWorkFPGA::E FPGA::CurrentStateWork()
+StateWorkFPGA &FPGA::CurrentStateWork()
 {
-    return state_work;
+    return state.state_work;
 }
 
 
 void FPGA::OnPressStartStop()
 {
-    if(state_work == StateWorkFPGA::Stop) 
+    if(state.state_work.IsStop()) 
     {
         FPGA::Start();
     } 
@@ -121,13 +120,13 @@ void FPGA::Stop()
 {
     Timer::Disable(TypeTimer::P2P);
     HAL_FMC::Write(WR_STOP, 1);
-    state_work = StateWorkFPGA::Stop;
+    state.state_work = StateWorkFPGA::Stop;
 }
 
 
 bool FPGA::IsRunning()
 {
-    return state_work != StateWorkFPGA::Stop;
+    return !state.state_work.IsStop();
 }
 
 

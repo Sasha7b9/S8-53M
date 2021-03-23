@@ -301,15 +301,16 @@ void Display::DrawHiRightPart()
 
         x += 2;
         y = 1;
-        if (FPGA::CurrentStateWork() == StateWorkFPGA::Work)
+
+        if (FPGA::CurrentStateWork().IsWork())
         {
             Char(Symbol::S8::PLAY).Draw4SymbolsInRect(x, 1);
         }
-        else if (FPGA::CurrentStateWork() == StateWorkFPGA::Stop)
+        else if (FPGA::CurrentStateWork().IsStop())
         {
             Region(10, 10).Fill(x + 3, y + 3);
         }
-        else if (FPGA::CurrentStateWork() == StateWorkFPGA::Wait)
+        else if (FPGA::CurrentStateWork().IsWait())
         {
             int w = 4;
             int h = 14;
