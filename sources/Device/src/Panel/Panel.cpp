@@ -629,28 +629,28 @@ static void SetRShift(const Channel &ch, int16 rShift)
 static void RShiftLeftA()
 {
     static int prevTime = 0;
-    ChangeRShift(&prevTime, SetRShift, ChA, -STEP_RSHIFT);
+    ChangeRShift(&prevTime, SetRShift, ChA, -RShift::STEP());
 }
 
 
 static void RShiftRightA()
 {
     static int prevTime = 0;
-    ChangeRShift(&prevTime, SetRShift, ChA, +STEP_RSHIFT);
+    ChangeRShift(&prevTime, SetRShift, ChA, +RShift::STEP());
 }
 
 
 static void RShiftLeftB()
 {
     static int prevTime = 0;
-    ChangeRShift(&prevTime, SetRShift, ChB, -STEP_RSHIFT);
+    ChangeRShift(&prevTime, SetRShift, ChB, -RShift::STEP());
 }
 
 
 static void RShiftRightB()
 {
     static int prevTime = 0;
-    ChangeRShift(&prevTime, SetRShift, ChB, +STEP_RSHIFT);
+    ChangeRShift(&prevTime, SetRShift, ChB, +RShift::STEP());
 }
 
 
@@ -680,14 +680,14 @@ static void SetTrigLev(TrigSource::E ch, int16 trigLev)
 static void TrigLevLeft()
 {
     static int prevTime = 0;
-    ChangeTrigLev(&prevTime, SetTrigLev, TrigSource::Get(), -STEP_RSHIFT);
+    ChangeTrigLev(&prevTime, SetTrigLev, TrigSource::Get(), -RShift::STEP());
 }
 
 
 static void TrigLevRight()
 {
     static int prevTime = 0;
-    ChangeTrigLev(&prevTime, SetTrigLev, TrigSource::Get(), +STEP_RSHIFT);
+    ChangeTrigLev(&prevTime, SetTrigLev, TrigSource::Get(), +RShift::STEP());
 }
 
 

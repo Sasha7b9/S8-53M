@@ -52,7 +52,7 @@ void RShift::Draw(const Channel &ch)
 
     int rShift = RShift::Get(ch);
 
-    float scale = Grid::ChannelHeight() / (STEP_RSHIFT * 200.0F);
+    float scale = Grid::ChannelHeight() / (RShift::STEP() * 200.0F);
     float y = Grid::ChannelCenterHeight() - scale * (rShift - RShift::ZERO);
 
     if (y > Grid::ChannelBottom())

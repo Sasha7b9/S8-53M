@@ -3,6 +3,7 @@
 #include "common/Settings/SettingsTypes_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Display.h"
+#include "Display/Grid.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGA_Reader.h"
 #include "FPGA/FPGA_Types.h"
@@ -695,4 +696,10 @@ bool StretchADCtype::IsSettings()
 int ENumMinMax::ToAbs()
 {
     return (1 << value);
+}
+
+
+int16 RShift::STEP()
+{
+    return static_cast<int16>(((RShift::MAX - RShift::MIN) / 24) / Grid::Delta());
 }
