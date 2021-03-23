@@ -17,7 +17,8 @@ struct DataDrawing
 
 private:
 
-    DataStorage data;
+    DataStorage data;           // Здесь данныые, по которым будем рассчитывать точки
+    Buffer points[NumChannels]; // Здесь рассчитанные точки, готовые к выводу на экран
 
     static void DrawDataChannel(DataStorage &data, const Channel &ch, int min_y, int max_y);
 
