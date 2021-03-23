@@ -659,10 +659,13 @@ static void ChangeTrigLev(int *prevTime, void(*f)(TrigSource::E, int16), TrigSou
     int count = CalculateCount(prevTime);
     int trigLevOld = TrigLev::Get(trigSource);
     int trigLev = TrigLev::Get(trigSource) + relStep * count;
-    if ((trigLevOld > TrigLevZero && trigLev < TrigLevZero) || (trigLevOld < TrigLevZero && trigLev > TrigLevZero))
+
+    if ((trigLevOld > TrigLev::ZERO && trigLev < TrigLev::ZERO) ||
+        (trigLevOld < TrigLev::ZERO && trigLev > TrigLev::ZERO))
     {
-        trigLev = TrigLevZero;
+        trigLev = TrigLev::ZERO;
     }
+
     if (CanChangeRShiftOrTrigLev(trigSource, (int16)trigLev))
     {
         Sound::RegulatorShiftRotate();

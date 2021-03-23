@@ -420,7 +420,7 @@ void Menu::ProcessingLongPressureButton()
         }
         else if(longPressureButton == Key::Trig)
         {
-            TrigLev::Set(TrigSource::Get(), TrigLevZero);
+            TrigLev::Set(TrigSource::Get(), TrigLev::ZERO);
         }
         else if(longPressureButton == Key::ChannelA)
         {

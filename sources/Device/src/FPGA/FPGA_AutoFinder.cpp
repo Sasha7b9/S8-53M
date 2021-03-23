@@ -45,7 +45,7 @@ bool AutoFinderFPGA::FindWave(const Channel &ch)
     FPGA::Stop();
     ch.Enable();
     TrigSource::Set(static_cast<TrigSource::E>(ch.value));
-    TrigLev::Set(static_cast<TrigSource::E>(ch.value), TrigLevZero);
+    TrigLev::Set(static_cast<TrigSource::E>(ch.value), TrigLev::ZERO);
     RShift::Set(ch, RShift::ZERO);
     ModeCouple::Set(ch, ModeCouple::AC);
     Range::E range = AccurateFindRange(ch);

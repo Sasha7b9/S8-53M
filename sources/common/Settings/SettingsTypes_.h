@@ -1064,6 +1064,9 @@ struct TrigLev
 
     static const int16 MIN = RShift::MIN;
     static const int16 MAX = RShift::MAX;
+    static const int16 ZERO = RShift::ZERO;     // Ќулевое значение уровн€ синхронизации, засылаемое в прибор.
+                          // ћаркер синхронизации при этом находитис€ на одном уровне с маркером смещени€ по напр€жению.
+
 };
 
 

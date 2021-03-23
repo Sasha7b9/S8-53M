@@ -262,11 +262,11 @@ void TrigLev::Set(TrigSource::E ch, int16 trigLev)
     }
     LIMITATION(trigLev, trigLev, TrigLev::MIN, TrigLev::MAX);
 
-    if (trigLev > TrigLevZero)
+    if (trigLev > TrigLev::ZERO)
     {
         trigLev &= 0xfffe;
     }
-    else if (trigLev < TrigLevZero)
+    else if (trigLev < TrigLev::ZERO)
     {
         trigLev = (trigLev + 1) & 0xfffe;
     }
@@ -617,9 +617,9 @@ void TrigLev::FindAndSet()
 
     uint8 aveValue = (uint8)(((int)(min) + (int)(max)) / 2);
 
-    static const float scale = (float)(TrigLev::MAX - TrigLevZero) / (float)(MAX_VALUE - AVE_VALUE) / 2.4F;
+    static const float scale = (float)(TrigLev::MAX - TrigLev::ZERO) / (float)(MAX_VALUE - AVE_VALUE) / 2.4F;
 
-    int16 trigLev = static_cast<int16>(TrigLevZero + scale * ((int)(aveValue) - AVE_VALUE) -
+    int16 trigLev = static_cast<int16>(TrigLev::ZERO + scale * ((int)(aveValue) - AVE_VALUE) -
         (RShift::Get(chanTrig) - RShift::ZERO));
 
     TrigLev::Set(trigSource, trigLev);
