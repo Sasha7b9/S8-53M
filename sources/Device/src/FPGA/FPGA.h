@@ -162,7 +162,7 @@ public:
 
         bool                need_calibration;               // Установленное в true значение означает, что необходимо
                                                             // произвести калибровку
-        StateWorkFPGA::E    work_before_calibration;
+        StateWorkFPGA       work_before_calibration;
         StateWorkFPGA       work;
         StateCalibration::E state_calibration;              // Текущее состояние калибровки. Используется в процессе
                                                             // калибровки

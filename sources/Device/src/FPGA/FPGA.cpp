@@ -247,7 +247,7 @@ void FPGA::State::Restore()
 
     FPGA::LoadSettings();
 
-    if(state.work_before_calibration != StateWorkFPGA::Stop)
+    if(!state.work_before_calibration.IsStop())
     {
         state.work_before_calibration = StateWorkFPGA::Stop;
         FPGA::Start();
