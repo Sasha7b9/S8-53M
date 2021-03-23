@@ -78,6 +78,7 @@ ModeAveraging::E ModeAveraging::Current()
     {
         return ModeAveraging::Around;
     }
+
     return set.display.mode_ave;
 }
 

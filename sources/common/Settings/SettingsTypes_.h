@@ -172,14 +172,20 @@ struct ENumAveraging
 
 
 // Тип усреднений по измерениям.
-struct ModeAveraging { enum E
+struct ModeAveraging
+{
+    enum E
     {
         Accurately,   // Усреднять точно.
         Around        // Усреднять приблизительно.
-    };
+    } value;
+
+    ModeAveraging(E v = Accurately) : value(v) {}
 
     // Возвращает режим усреднения
     static ModeAveraging::E Current();
+
+    operator E() const { return value; }
 };
 
 

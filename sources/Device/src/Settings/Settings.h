@@ -125,7 +125,7 @@ struct SettingsDisplay
     TypeGrid            type_grid;               // Тип сетки.
     ENumAccumulation    enum_accum;              // Перечисление накоплений сигнала на экране.
     ENumAveraging       enum_ave;                // Перечисление усреднений сигнала.
-    ModeAveraging::E    mode_ave;                // Тип усреднений по измерениям.
+    ModeAveraging       mode_ave;                // Тип усреднений по измерениям.
     ENumMinMax          enum_min_max;            // Число измерений для определения минимумов и максимумов.
     Smoothing::E        smoothing;               // Число точек для скользящего фильтра.
     ENumSignalsInSec::E enum_fps;                // Перечисление считываний сигнала в секунду.
