@@ -414,6 +414,11 @@ void Display::Update()
         Grid::Draw();
     }
 
+    VLine().Draw(0, 0, 0, Color::WHITE);
+    VLine().Draw(1, 0, 1);
+    VLine().Draw(2, 0, 2);
+    VLine().Draw(3, 0, 3);
+
     PainterData::DrawData();
 
     if (needClear)
