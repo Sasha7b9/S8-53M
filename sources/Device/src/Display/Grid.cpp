@@ -186,7 +186,7 @@ void Grid::Draw(int left, int top, int width, int height)
     if (top == Grid::TOP)
     {
         HLine().Draw(top, 1, left - 2);
-        HLine().Draw(top, right + 2, WIDTH - 2);
+        HLine().Draw(top, right + 2, Display::WIDTH - 2);
 
         if (!Menu::IsMinimize() || !Menu::IsShown())
         {
