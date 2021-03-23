@@ -25,8 +25,8 @@ private:
     void PrepareChannel(const Channel &ch);
 
     void DrawChannel(const Channel &ch);
-    void DrawChannelPointed(int x, const Channel &ch);
-    void DrawChannelLined(int x, const Channel &ch);
+    void DrawChannelPointed(int x, Buffer &buffer);
+    void DrawChannelLined(int x, Buffer &buffer);
 };
 
 
