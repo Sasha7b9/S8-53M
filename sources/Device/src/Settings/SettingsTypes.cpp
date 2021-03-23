@@ -312,9 +312,9 @@ void TShift::Set(int tShift)
         return;
     }
 
-    if (tShift < TShift::Min() || tShift > TShiftMax)
+    if (tShift < TShift::Min() || tShift > TShift::MAX)
     {
-        LIMITATION(tShift, tShift, TShift::Min(), TShiftMax);
+        LIMITATION(tShift, tShift, TShift::Min(), TShift::MAX);
         Display::ShowWarningBad(Warning::LimitSweep_TShift);
     }
 

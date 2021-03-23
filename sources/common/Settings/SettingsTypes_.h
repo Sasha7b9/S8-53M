@@ -764,6 +764,8 @@ struct TShift
     static void SetInMemory(int16 shift);
 
     static const int NULL_VALUE = 1000000;
+
+    static const int16 MAX = 16000;
 };
 
 
