@@ -286,7 +286,7 @@ struct SettingsTime
     SampleType::E       sample_type;    // Тип выборки для режима рандомизатора.
     PeackDetMode::E     peak_det;       // Режим работы пикового детектора
     bool                self_recorder;  // Включен ли режим самописца.
-    ENUM_POINTS_FPGA::E oldNumPoints;   // \brief Когда переключаемся в режим пикового детектора, устанавливаем
+    ENUM_POINTS_FPGA::E old_num_points; // \brief Когда переключаемся в режим пикового детектора, устанавливаем
                                         // количество точек в 1024, а сюда  записываем то, что было, чтобы потом
                                         // восстановить.
 };
