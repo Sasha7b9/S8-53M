@@ -20,6 +20,12 @@
 using namespace Primitives;
 
 
+#define CONVERT_DATA_TO_DISPLAY(out, in)                        \
+    (out) = (uint8)(max_y - ((in) - MIN_VALUE) * scale_y);      \
+    if((out) < min_y)          { (out) = (uint8)min_y; }        \
+    else if ((out) > max_y)    { (out) = (uint8)max_y; };
+
+
 void PainterData::DrawData()
 {
     DataDrawing data;
@@ -30,12 +36,6 @@ void PainterData::DrawData()
 
     Primitives::Rectangle(Grid::Width(), Grid::FullHeight()).Draw(Grid::Left(), Grid::TOP, Color::FILL);
 }
-
-
-#define CONVERT_DATA_TO_DISPLAY(out, in)                        \
-    (out) = (uint8)(max_y - ((in) - MIN_VALUE) * scale_y);      \
-    if((out) < min_y)          { (out) = (uint8)min_y; }        \
-    else if ((out) > max_y)    { (out) = (uint8)max_y; };
 
 
 void DataDrawing::Prepare()
@@ -93,10 +93,29 @@ void DataDrawing::DrawChannel(const Channel &ch)
 
     int x = Grid::Left();
 
+    if (set.display.mode_draw_signal.IsLines())
+    {
+        DrawChannelLined(x, ch);
+    }
+    else
+    {
+        DrawChannelPointed(x, ch);
+    }
+}
+
+
+void DataDrawing::DrawChannelPointed(int x, const Channel &ch)
+{
     uint8 *d = points[ch].Data();
 
     for (uint i = 0; i < points[ch].Size(); i++)
     {
         Point().Draw(x++, *d++);
     }
+}
+
+
+void DataDrawing::DrawChannelLined(int x, const Channel &ch)
+{
+
 }
