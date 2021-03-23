@@ -199,7 +199,7 @@ void DataDrawing::PrepareChannel(const Channel &ch)
         for (int i = first_point; i < last_point; i++)
         {
             int index = i - first_point;
-            CONVERT_DATA_TO_DISPLAY((points[ch][index]),
+            CONVERT_DATA_TO_DISPLAY((points[ch][(uint)index]),
                 Math::CalculateFiltr(data_channel, i, SettingsMemory::GetNumPoints(false), (int)Smoothing::NumPoints()));
         }
     }
