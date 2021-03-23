@@ -17,29 +17,11 @@ int ENumSignalsInSec::NumSignalsInS()
 
 uint Smoothing::NumPoints()
 {
-    if (Smoothing::IsDisable())
+    if (set.display.smoothing.IsDisable())
     {
         return 0;
     }
-    return (uint)Smoothing::Get() + 1;          // WARN Здесь очень коряво реализовано
-}
-
-
-bool Smoothing::IsDisable()
-{
-    return (set.display.smoothing == Smoothing::Disable);
-}
-
-
-Smoothing::E Smoothing::Get()
-{
-    return set.display.smoothing;
-}
-
-
-void Smoothing::Set(Smoothing::E v)
-{
-    set.display.smoothing = v;
+    return (uint)set.display.smoothing + 1;          // WARN Здесь очень коряво реализовано
 }
 
 

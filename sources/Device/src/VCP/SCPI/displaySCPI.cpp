@@ -246,12 +246,14 @@ void SCPI::DISPLAY::FILTR(puchar buffer)
         {0}
     };
 
+    Smoothing &smoothing = set.display.smoothing;
+
     ENTER_ANALYSIS
-        if (value <= 9)         { Smoothing::Set((Smoothing::E)value); }
-        else if (10 == value)   { Smoothing::Set(Smoothing::Disable); }
+        if (value <= 9)         { smoothing = (Smoothing::E)value; }
+        else if (10 == value)   { smoothing = Smoothing::Disable; }
         else if (11 == value)
         {
-            SCPI_SEND(":DISPLAY:FILTR %s", map[Smoothing::Get()].key);
+            SCPI_SEND(":DISPLAY:FILTR %s", map[smoothing].key);
         }
     LEAVE_ANALYSIS
 }

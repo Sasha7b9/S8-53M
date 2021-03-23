@@ -227,13 +227,16 @@ struct Smoothing {
         _8points,
         _9points,
         _10points
-    };
+    } value;
+
+    Smoothing(E v = Disable) : value(v) {}
 
     // Возвращает число точек сглаживающего фильтра (режим ДИСПЛЕЙ - Сглаживание).
     static uint NumPoints();
-    static bool IsDisable();
-    static E Get();
-    static void Set(E v);
+
+    bool IsDisable() const { return value == Disable; }
+
+    operator E() const { return value; }
 };
 
 
