@@ -1063,6 +1063,7 @@ struct TrigLev
     static bool need_auto_find;   // Если true, то нужно произвести поиск синхронизации
 
     static const int16 MIN = RShift::MIN;
+    static const int16 MAX = RShift::MAX;
 };
 
 

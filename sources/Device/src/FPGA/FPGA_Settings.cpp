@@ -256,11 +256,11 @@ void RShift::Load(const Channel &ch)
 void TrigLev::Set(TrigSource::E ch, int16 trigLev)
 {
     Display::ChangedRShiftMarkers();
-    if (trigLev < TrigLev::MIN || trigLev > TrigLevMax)
+    if (trigLev < TrigLev::MIN || trigLev > TrigLev::MAX)
     {
         Display::ShowWarningBad(Warning::LimitSweep_Level);
     }
-    LIMITATION(trigLev, trigLev, TrigLev::MIN, TrigLevMax);
+    LIMITATION(trigLev, trigLev, TrigLev::MIN, TrigLev::MAX);
 
     if (trigLev > TrigLevZero)
     {
@@ -308,7 +308,7 @@ void TrigLev::Load()
 {
     uint16 data = 0xa000;
     uint16 trigLev = (uint16)TrigLev::Get();
-    trigLev = (uint16)(TrigLevMax + TrigLev::MIN - trigLev);
+    trigLev = (uint16)(TrigLev::MAX + TrigLev::MIN - trigLev);
     data |= trigLev << 2;
     // FPGA_WriteToHardware(WR_DAC_LOW, data.byte[0], true);
     // FPGA_WriteToHardware(WR_DAC_HI, data.byte[1], true);
@@ -617,7 +617,7 @@ void TrigLev::FindAndSet()
 
     uint8 aveValue = (uint8)(((int)(min) + (int)(max)) / 2);
 
-    static const float scale = (float)(TrigLevMax - TrigLevZero) / (float)(MAX_VALUE - AVE_VALUE) / 2.4F;
+    static const float scale = (float)(TrigLev::MAX - TrigLevZero) / (float)(MAX_VALUE - AVE_VALUE) / 2.4F;
 
     int16 trigLev = static_cast<int16>(TrigLevZero + scale * ((int)(aveValue) - AVE_VALUE) -
         (RShift::Get(chanTrig) - RShift::ZERO));
