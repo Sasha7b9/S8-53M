@@ -62,6 +62,7 @@ namespace Math
     template<class T> void Limitation(T *value, T min, T max);
     template<class T> T MinFrom2(T val1, T val2);
     template<class T> T Limitation(T val, T min, T max);
+    template<class T> void Sort(T *value1, T *value2);
 
     extern float Pi;
 }

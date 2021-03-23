@@ -13,6 +13,7 @@ template uint Math::MinFrom2(uint, uint);
 template int Math::Limitation(int, int, int);
 template uint8 Math::Limitation(uint8, uint8, uint8);
 template float Math::Limitation(float, float, float);
+template void Math::Sort(int *value1, int *value2);
 
 
 float Math::Pi = 3.14159265358979323846F;
@@ -194,6 +195,18 @@ T Math::Limitation(T val, T min, T max)
     if (val >= max) { return max; }
 
     return val;
+}
+
+
+template<class T>
+void Math::Sort(T *value1, T *value2)
+{
+    if (*value1 > *value2)
+    {
+        T temp = *value1;
+        *value1 = *value2;
+        *value2 = temp;
+    }
 }
 
 

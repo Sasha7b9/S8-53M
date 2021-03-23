@@ -35,7 +35,7 @@ void PainterData::DrawData()
 
     data.Draw();
 
-    Primitives::Rectangle(Grid::Width() + 1, Grid::FullHeight() + 1).Draw(Grid::Left(), Grid::TOP, Color::FILL);
+//    Primitives::Rectangle(Grid::Width() + 1, Grid::FullHeight() + 1).Draw(Grid::Left(), Grid::TOP, Color::FILL);
 }
 
 
