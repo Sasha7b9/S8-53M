@@ -87,9 +87,9 @@ int RShift::ToRel(float rShiftAbs, Range::E range)
     {
         retValue = RShift::MIN;
     }
-    else if (retValue > RShiftMax)
+    else if (retValue > RShift::MAX)
     {
-        retValue = RShiftMax;
+        retValue = RShift::MAX;
     }
     return retValue;
 };
