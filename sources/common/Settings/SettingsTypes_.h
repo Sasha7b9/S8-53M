@@ -297,7 +297,9 @@ struct AltMarkers
 
 
 // Через какое время после последнего нажатия кнопки скрывать меню.
-struct MenuAutoHide { enum E
+struct MenuAutoHide
+{
+    enum E
     {
         None,   // Никогда.
         _5,     // Через 5 секунд.
@@ -305,10 +307,12 @@ struct MenuAutoHide { enum E
         _15,    // Через 15 секунд.
         _30,    // Через 30 секунд.
         _60     // Через 60 секунд.
-    };
+    } value;
+
+    MenuAutoHide(E v = None) : value(v) {}
 
     // Возвращает время, через которое меню автоматически скрывается, если не было больше нажатий.
-    static int Time();
+    int Time();
 };
 
 

@@ -277,13 +277,13 @@ void Menu::SetAutoHide(bool)
     {
         return;
     }
-    if(MenuAutoHide::Time() == 0)
+    if(set.display.menu_auto_hide.Time() == 0)
     {
         Timer::Disable(TypeTimer::MenuAutoHide);
     }
     else
     {
-        Timer::Enable(TypeTimer::MenuAutoHide, MenuAutoHide::Time(), OnTimerAutoHide);
+        Timer::Enable(TypeTimer::MenuAutoHide, set.display.menu_auto_hide.Time(), OnTimerAutoHide);
     }
 }
 

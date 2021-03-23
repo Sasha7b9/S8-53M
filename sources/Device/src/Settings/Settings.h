@@ -133,7 +133,7 @@ struct SettingsDisplay
                                                  // Нужно для того, чтобы знать, какой сигнал рисовать наверху.
     ModeAccumulation    mode_acum;               // Задаёт режим накопления сигналов.
     AltMarkers          alt_markers;             // Режим отображения дополнительных боковых маркеров смещений.
-    MenuAutoHide::E     menu_auto_hide;          // Через сколько времени после последнего нажатия клавиши прятать меню.
+    MenuAutoHide        menu_auto_hide;          // Через сколько времени после последнего нажатия клавиши прятать меню.
     bool                show_full_memory_window; // Показывать ли окно памяти вверху экрана. \todo Не используется.
     bool                show_string_navigation;  // Показывать ли строку текущего состояния меню..
     LinkingRShift       linking_rshift;          // Тип привязки смещения по вертикали.
