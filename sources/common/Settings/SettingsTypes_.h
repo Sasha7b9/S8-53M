@@ -134,12 +134,14 @@ struct ENumAccumulation
         _64,
         _128,
         Infinity
-    };
+    } value;
 
-    static E Get();
-    static void Set(E v);
-    static bool IsNone();
-    static bool IsInfinity();
+    ENumAccumulation(E v = _1) : value(v) {}
+
+    bool IsNone() const     { return value == _1; };
+    bool IsInfinity() const { return value == Infinity; };
+
+    operator E() const { return value; }
 };
 
 

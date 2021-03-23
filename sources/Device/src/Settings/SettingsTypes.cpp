@@ -690,30 +690,6 @@ bool StretchADCtype::IsSettings()
 }
 
 
-ENumAccumulation::E ENumAccumulation::Get()
-{
-    return set.display.enum_accum;
-}
-
-
-void ENumAccumulation::Set(ENumAccumulation::E v)
-{
-    set.display.enum_accum = v;
-}
-
-
-bool ENumAccumulation::IsNone()
-{
-    return (set.display.enum_accum == ENumAccumulation::_1);
-}
-
-
-bool ENumAccumulation::IsInfinity()
-{
-    return (set.display.enum_accum == ENumAccumulation::Infinity);
-}
-
-
 bool ModeAccumulation::IsNoReset()
 {
     return (set.display.mode_acum == ModeAccumulation::NoReset);

@@ -324,9 +324,9 @@ void Display::DrawHiRightPart()
 
 bool Display::NeedForClearScreen()
 {
-    int numAccum = ENumAccumulation::Get();
+    ENumAccumulation &enum_accum = set.display.enum_accum;;
 
-    if (FPGA::SET::InRandomizeMode() || numAccum == 1 || ModeAccumulation::IsNoReset() || FPGA::SET::InSelfRecorderMode())
+    if (FPGA::SET::InRandomizeMode() || enum_accum == 1 || ModeAccumulation::IsNoReset() || FPGA::SET::InSelfRecorderMode())
     {
         return true;
     }
@@ -337,7 +337,7 @@ bool Display::NeedForClearScreen()
         return true;
     }
 
-    if (ModeAccumulation::IsReset() && (numDrawingSignals >= (uint)numAccum))
+    if (ModeAccumulation::IsReset() && (numDrawingSignals >= (uint)enum_accum))
     {
         numDrawingSignals = 0;
         return true;
@@ -787,7 +787,7 @@ void Display::DrawLowPart()
     if (ModeWork::IsDirect())
     {
         int y2 = y1 + 6;
-        WriteStringAndNumber("накопл", x, y0, ENumAccumulation::Get());
+        WriteStringAndNumber("накопл", x, y0, set.display.enum_accum);
         WriteStringAndNumber("усредн", x, y1, set.display.enum_ave);
         WriteStringAndNumber("мн\x93мкс", x, y2, ENumMinMax::ToAbs());
     }

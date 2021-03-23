@@ -63,7 +63,7 @@ DEF_CHOICE_2(mcAccumulation_Mode, PageDisplay::PageAccumulation::self,
 
 static bool IsActive_Accumulation_Clear()
 {
-    return ENumAccumulation::IsInfinity();
+    return set.display.enum_accum.IsInfinity();
 }
 
 DEF_BUTTON(mbAccumulation_Clear, PageDisplay::PageAccumulation::self,
