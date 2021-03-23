@@ -25,23 +25,6 @@ private:
     void PrepareChannel(const Channel &ch);
 
     void DrawChannel(const Channel &ch);
-
-    static void DrawDataChannel(DataStorage &data, const Channel &ch, int min_y, int max_y);
-
-    static void DrawSignalPointed(puchar data, DataSettings &ds, int start_i, int end_i, int min_y,
-        int max_y, float scale_y, float scale_x);
-
-    static void DrawSignalLined(puchar data, const DataSettings *ds, int start_i, int end_i, int min_y,
-        int max_y, float scale_y, float scale_x, bool calculate_filtr);
-
-    // Нарисовать сигнал точками
-    // start_x    - координата x первой точки
-    // T может быть uint8 - если данные находятся во встроенном ОЗУ, или uint16 - если данные находятся во внешнем ОЗУ
-    static void DrawPoints(uint8 *y, const int start_x, int num_points, const Color &color = Color::Count);
-
-    // Аналогично DrawPoints(), только в y идут попарно координаты низа и верха
-    static void DrawLines(uint8 *y, const int start_x, int num_lines, const Color &color = Color::Count);
-
 };
 
 
