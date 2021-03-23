@@ -80,10 +80,13 @@ void SCPI::DISPLAY::MAPPING(puchar buffer)
         {"?",       3},
         {0}
     };
+
+    ModeDrawSignal &mode = set.display.mode_draw_signal;
+
     ENTER_ANALYSIS
-        if (1 == value)         { ModeDrawSignal::Set(ModeDrawSignal::Points); }
-        else if (2 == value)    { ModeDrawSignal::Set(ModeDrawSignal::Lines); }
-        else if (3 == value)    { SCPI_SEND(":DISPLAY:MAPPING %s", ModeDrawSignal::IsLines() ? "LINES" : "POINTS"); }
+        if (1 == value)         { mode = ModeDrawSignal::Points; }
+        else if (2 == value)    { mode = ModeDrawSignal::Lines; }
+        else if (3 == value)    { SCPI_SEND(":DISPLAY:MAPPING %s", mode.IsLines() ? "LINES" : "POINTS"); }
     LEAVE_ANALYSIS
 }
 

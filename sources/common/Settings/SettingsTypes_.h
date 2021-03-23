@@ -78,11 +78,11 @@ struct ModeDrawSignal
     {
         Lines,      // Сигнал рисуется линиями.
         Points      // Сигнал рисуется точками.
-    };
+    } value;
 
-    static E Get();
-    static void Set(E v);
-    static bool IsLines();
+    ModeDrawSignal(E v = Lines) : value(v) {}
+
+    bool IsLines() const { return value == Lines; };
 };
 
 

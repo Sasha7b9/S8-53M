@@ -714,24 +714,6 @@ bool ENumAccumulation::IsInfinity()
 }
 
 
-ModeDrawSignal::E ModeDrawSignal::Get()
-{
-    return set.display.mode_draw_signal;
-}
-
-
-void ModeDrawSignal::Set(ModeDrawSignal::E v)
-{
-    set.display.mode_draw_signal = v;
-}
-
-
-bool ModeDrawSignal::IsLines()
-{
-    return (set.display.mode_draw_signal == ModeDrawSignal::Lines);
-}
-
-
 bool ModeAccumulation::IsNoReset()
 {
     return (set.display.mode_acum == ModeAccumulation::NoReset);
