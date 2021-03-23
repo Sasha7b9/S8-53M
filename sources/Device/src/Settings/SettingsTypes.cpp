@@ -200,12 +200,12 @@ void RShift::Set(const Channel &ch, int16 rShift)
     }
     Display::ChangedRShiftMarkers();
 
-    if (rShift > RShiftMax || rShift < RShiftMin)
+    if (rShift > RShiftMax || rShift < RShift::MIN)
     {
         Display::ShowWarningBad(ch == ChA ? Warning::LimitChan1_RShift : Warning::LimitChan2_RShift);
     }
 
-    LIMITATION(rShift, rShift, RShiftMin, RShiftMax);
+    LIMITATION(rShift, rShift, RShift::MIN, RShiftMax);
 
     if (rShift > RShiftZero)
     {

@@ -615,6 +615,9 @@ struct RShift
     static bool show_level_B;
     static bool draw_markers;
 
+    static const int16 MIN = 20;  // Минимальное значение смещения канала по напряжению, засылаемое в аналоговую часть
+                                  // Соответствует смещению 10 клеток вниз от центральной линии
+
 private:
 
     static void Draw(const Channel &ch);
