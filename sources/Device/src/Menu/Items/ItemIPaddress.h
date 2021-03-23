@@ -20,7 +20,7 @@ public:
     IPaddress(const DataItem *const data) : Item(data) {};
 
     const DataIPaddress *OwnData() const {
-        return static_cast<const DataIPaddress *>(data->ad);
+        return (const DataIPaddress *)(data->ad);
     }
 
     virtual void Draw(int x, int y, bool opened = false) const;

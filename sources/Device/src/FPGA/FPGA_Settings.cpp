@@ -601,7 +601,7 @@ void TrigLev::FindAndSet()
 
     TrigSource::E trigSource = TrigSource::Get();
 
-    Channel::E chanTrig = static_cast<Channel::E>(trigSource);
+    Channel::E chanTrig = (Channel::E)(trigSource);
     uint8 *data0 = 0;
     uint8 *data1 = 0;
     DataSettings *ds_ = 0;

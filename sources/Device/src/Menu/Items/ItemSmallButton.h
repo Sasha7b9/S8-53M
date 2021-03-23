@@ -19,7 +19,7 @@ public:
     SmallButton(const DataItem *const data) : Item(data) {};
 
     const DataSmallButton *OwnData() const {
-        return static_cast<const DataSmallButton *>(data->ad);
+        return (const DataSmallButton *)(data->ad);
     }
 
     virtual void Draw(int x, int y, bool opened = false) const;

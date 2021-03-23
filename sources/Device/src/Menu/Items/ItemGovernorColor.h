@@ -13,7 +13,7 @@ public:
     GovernorColor(const DataItem *const data) : Item(data) {};
 
     const DataGovernorColor *OwnData() const {
-        return static_cast<const DataGovernorColor *>(data->ad);
+        return (const DataGovernorColor *)(data->ad);
     }
 
     virtual void Draw(int x, int y, bool opened = false) const;

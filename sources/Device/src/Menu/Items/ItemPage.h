@@ -17,13 +17,18 @@ class Page : public Item
 public:
 
     static const int Y = Grid::TOP + 1;
+
     inline static int X() {
         return Grid::Right() - Item::TITLE_WIDTH - 1;
     };
-    Page(const DataItem *const data, int8 *subPage, int8 *actItem, bool *opened) : Item(data), currentSubPage(subPage), posActItem(actItem), actItemIsOpened(opened) {};
+
+    Page(const DataItem *const data, int8 *subPage, int8 *actItem, bool *opened) :
+        Item(data), currentSubPage(subPage), posActItem(actItem), actItemIsOpened(opened) {};
+
     const DataPage *OwnData() const {
-        return static_cast<const DataPage *>(data->ad);
+        return (const DataPage *)(data->ad);
     }
+
     virtual void Draw(int x, int y, bool opened = false) const;
     NamePage::E GetName() const;
     // Возвращает количество элементов в странице по адресу page.

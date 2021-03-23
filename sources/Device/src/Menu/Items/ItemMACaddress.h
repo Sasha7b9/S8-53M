@@ -19,7 +19,7 @@ public:
     MACaddress(const DataItem *const data) : Item(data) {};
 
     const DataMACaddress *OwnData() const {
-        return static_cast<const DataMACaddress *>(data->ad);
+        return (const DataMACaddress *)(data->ad);
     }
 
     virtual void Draw(int x, int y, bool opened = false) const;

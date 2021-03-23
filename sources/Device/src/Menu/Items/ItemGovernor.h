@@ -18,7 +18,7 @@ public:
 
     Governor(const DataItem *const data) : Item(data) {};
     const DataGovernor *OwnData() const {
-        return static_cast<const DataGovernor *>(data->ad);
+        return (const DataGovernor *)(data->ad);
     }
     // Обработка короткого нажатия на элемент Governor с адресом governor.
     virtual void ShortPress();
