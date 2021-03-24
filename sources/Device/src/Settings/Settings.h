@@ -179,8 +179,8 @@ struct Cursors
     static Voltage GetVoltage(float shift_cur, Range::E range, int16 rshift);
 
     // Получить строку курсора времени.
-    static String GetTime(const Channel &source, int numCur);
-    static float GetTime(float shift_cur, TBase::E tbase);
+    static Time GetTime(const Channel &source, int numCur);
+    static Time GetTime(float shift_cur, TBase::E tbase);
 
     // Получить строку процентов курсоров напряжения.
     static String GetPercentsU(const Channel &source);

@@ -176,8 +176,8 @@ void Display::WriteCursors()
             Text("1:").Draw(x, y1);
             Text("2:").Draw(x, y2);
             x+=7;
-            Cursors::GetTime(source, 0).Draw(x, y1);
-            Cursors::GetTime(source, 1).Draw(x, y2);
+            Cursors::GetTime(source, 0).ToString().Draw(x, y1);
+            Cursors::GetTime(source, 1).ToString().Draw(x, y2);
             x = startX + 153;
             float pos0 = Cursors::GetTime(set.cursors.posT[source][0], TBase::Get());
             float pos1 = Cursors::GetTime(set.cursors.posT[source][1], TBase::Get());
