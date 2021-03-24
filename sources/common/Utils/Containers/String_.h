@@ -14,6 +14,7 @@ public:
     ~String();
 
     void Set(pchar format, ...);
+    void Set(const String &str);
 
     char *c_str() const;
 

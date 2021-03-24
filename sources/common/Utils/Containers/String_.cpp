@@ -20,10 +20,7 @@ String::String() : buffer(nullptr), capacity(0)
 
 String::String(const String &rhs) : buffer(nullptr), capacity(0)
 {
-    if (Allocate(std::strlen(rhs.c_str()) + 1))
-    {
-        std::strcpy(buffer, rhs.c_str());
-    }
+    Set(rhs);
 }
 
 
@@ -78,6 +75,12 @@ void String::Set(pchar format, ...)
     {
         std::strcpy(buffer, temp_buffer);
     }
+}
+
+
+void String::Set(const String &str)
+{
+    Set(str.c_str());
 }
 
 

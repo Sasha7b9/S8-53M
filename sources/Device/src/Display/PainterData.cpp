@@ -101,8 +101,9 @@ void DataDrawing::DrawChannel(const Channel &ch)
 void DataDrawing::DrawChannelPointed(int x, Buffer &buffer)
 {
     uint8 *_data = buffer.Data();
+    uint size = buffer.Size() - 1;
 
-    for (uint i = 0; i < buffer.Size(); i++)
+    for (uint i = 0; i < size; i++)
     {
         Point().Draw(x++, *_data++);
     }
