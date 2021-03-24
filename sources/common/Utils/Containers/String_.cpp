@@ -87,14 +87,14 @@ void String::Append(pchar str)
 }
 
 
-void String::Append(pchar str, uint numSymbols)
+void String::Append(pchar str, uint num_symbols)
 {
     if (!str || *str == '\0')
     {
         return;
     }
 
-    uint need_size = Size() + numSymbols + 1;
+    uint need_size = Size() + num_symbols + 1;
 
     if (capacity < need_size)
     {
@@ -103,7 +103,8 @@ void String::Append(pchar str, uint numSymbols)
         std::strcpy(buffer, old.c_str());
     }
 
-    std::memcpy(buffer + std::strlen(buffer), str, numSymbols);
+    std::memcpy(buffer + std::strlen(buffer), str, num_symbols);
+    buffer[need_size - 1] = '\0';
 }
 
 
