@@ -18,7 +18,7 @@ void Log_Write(pchar format, ...)
 {
     char buffer[SIZE_BUFFER_LOG];
     std::va_list args;
-    va_start(args, format); //-V2571
+    va_start(args, format);
     std::vsprintf(buffer, format, args);
     va_end(args);
     Display::AddStringToIndicating(buffer);
@@ -29,24 +29,20 @@ void Log_Write(pchar format, ...)
 }
 
 
-void Log_Error(pchar module, const char *func, int numLine, char *format, ...)
+void Log_Error(pchar module, const char *func, int num_line, char *format, ...)
 {
     char buffer[SIZE_BUFFER_LOG];
     std::va_list args;
-    va_start(args, format); //-V2571
+    va_start(args, format);
     std::vsprintf(buffer, format, args);
     va_end(args);
-    char numBuffer[20];
-    std::sprintf(numBuffer, ":%d", numLine);
-    char message[SIZE_BUFFER_LOG];
-    message[0] = 0;
-    std::strcat(message, "!!!ERROR!!! "); //-V2513
-    std::strcat(message, module); //-V2513
-    std::strcat(message, " "); //-V2513
-    std::strcat(message, func); //-V2513
-    std::strcat(message, numBuffer); //-V2513
-    Display::AddStringToIndicating(message);
+
+    String message("!!!ERROR!!! %s %s:%", module, func, num_line);
+
+    Display::AddStringToIndicating(message.c_str());
+
     Display::AddStringToIndicating(buffer);
+
     if(loggerUSB)
     {
         //VCP::SendFormatStringAsynch(message);
