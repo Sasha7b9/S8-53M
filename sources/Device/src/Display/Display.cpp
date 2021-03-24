@@ -207,7 +207,7 @@ void Display::WriteCursors()
 
             float delta = std::fabsf(pos1 - pos0);
             Text(":dU=").Draw(x, y1);
-            GF::Voltage2String(delta, false).Draw(x + 17, y1);
+            Voltage(delta).ToString(false).Draw(x + 17, y1);
             Text(":").Draw(x, y2);
             Cursors::GetPercentsU(source).Draw(x + 10, y2);
         }
@@ -466,7 +466,7 @@ void Display::WriteValueTrigLevel()
         }
         char buffer[20];
         std::strcpy(buffer, LANG_RU ? "Ур синхр = " : "Trig lvl = ");
-        std::strcat(buffer, GF::Voltage2String(trigLev, true).c_str());
+        std::strcat(buffer, Voltage(trigLev).ToString(true).c_str());
         int width = 96;
         int x = (Grid::Width() - width) / 2 + Grid::Left();
         int y = Grid::BottomMessages() - 20;

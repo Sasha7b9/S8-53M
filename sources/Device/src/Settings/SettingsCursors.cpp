@@ -31,7 +31,7 @@ String Cursors::GetVoltage(const Channel &source, int numCur)
 {
     float voltage = GetVoltage(GetPosU(source, numCur), set.chan[source].range, RShift::Get(source));
 
-    return GF::Voltage2String(voltage, true);
+    return Voltage(voltage).ToString(true);
 }
 
 

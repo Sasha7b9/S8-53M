@@ -107,7 +107,7 @@ String RShift::ToString(int16 rShiftRel, Range::E range, Divider::E multiplier)
 {
     float rShiftVal = RShift::ToAbs(rShiftRel, range) * Divider::ToAbs(multiplier);
 
-    return GF::Voltage2String(rShiftVal, true);
+    return Voltage(rShiftVal).ToString(true);
 };
 
 

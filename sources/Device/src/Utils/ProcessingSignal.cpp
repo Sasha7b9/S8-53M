@@ -34,7 +34,7 @@ static char *FloatFract2StringC(float value, bool always_sign, char *buffer)
 
 static char *Voltage2StringC(float value, bool always_sign, char *buffer)
 {
-    return std::strcpy(buffer, GF::Voltage2String(value, always_sign).c_str());
+    return std::strcpy(buffer, Voltage(value).ToString(always_sign).c_str());
 }
 
 static char *Time2StringC(float value, bool always_sign, char *buffer)

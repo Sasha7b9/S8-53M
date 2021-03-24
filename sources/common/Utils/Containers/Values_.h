@@ -1,5 +1,6 @@
 // 2021/03/24 10:56:42 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
+#include "common/Utils/Containers/String_.h"
 
 
 template<class T>
@@ -49,4 +50,12 @@ struct Int16 : public ValueStruct<int16>
 struct InvalidInt16 : public Int16
 {
     InvalidInt16() : Int16() { SetInvalid(); }
+};
+
+
+struct Voltage : public Float
+{
+    Voltage(float v = 0.0f) : Float(v) {}
+
+    String ToString(bool always_sign);
 };

@@ -198,42 +198,6 @@ String GF::Hex8toString(uint8 value)
     return result;
 }
 
-String GF::Voltage2String(const Float &volt, bool always_sign)
-{
-    if(!volt.IsValid())
-    {
-        return EmptyString();
-    }
-
-    char *suffix = nullptr;
-
-    float voltage = volt;
-    
-    if(std::fabsf(voltage) + 0.5e-4F < 1e-3F)
-    {
-        suffix = LANG_RU ? "\x10ìêÂ" : "\x10uV";
-        voltage *= 1e6F;
-    }
-    else if(std::fabsf(voltage) + 0.5e-4F < 1.0F)
-    {
-        suffix = LANG_RU ? "\x10ìÂ" : "\x10mV" ;
-        voltage *= 1e3F;
-    }
-    else if(std::fabsf(voltage) + 0.5e-4F < 1000.0F)
-    {
-        suffix = LANG_RU ? "\x10Â" : "\x10V";
-    }
-    else
-    {
-        suffix = LANG_RU ? "\x10êÂ" : "\x10kV";
-        voltage *= 1e-3F;
-    }
-
-    String result = Float2String(voltage, always_sign, 4);
-    result.Append(suffix);
-
-    return result;
-}
 
 String GF::Time2String(const Float &tim, bool always_sign)
 {
@@ -269,10 +233,12 @@ String GF::Time2String(const Float &tim, bool always_sign)
     return String("%s%s", Float2String(time, always_sign, 4).c_str(), suffix);
 }
 
+
 String GF::Phase2String(float phase, bool)
 {
     return String("%s\xa8", GF::Float2String(phase, false, 4).c_str());
 }
+
 
 String GF::Freq2String(const Float &freq, bool)
 {
