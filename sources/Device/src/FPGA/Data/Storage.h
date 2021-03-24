@@ -3,8 +3,18 @@
 #include "common/Utils/Buffer_.h"
 
 
+struct Channel;
+struct DataDrawing;
 struct DataSettings;
 struct RecordStorage;
+
+
+struct DataDrawingKeeper
+{
+    DataDrawingKeeper() : data(nullptr) {}
+    ~DataDrawingKeeper();
+    DataDrawing *data;
+};
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -91,6 +101,8 @@ public:
 
     // ¬озвращает количество записей в хранилище
     static uint NumRecords();
+
+    static void PrepareDataForDrawing(DataDrawingKeeper &keeper);
 
 private:
 

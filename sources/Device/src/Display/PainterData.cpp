@@ -28,11 +28,11 @@ using namespace Primitives;
 
 void PainterData::DrawData()
 {
-    DataDrawing data;
+    DataDrawingKeeper keeper;
 
-    data.Prepare();
+    Storage::PrepareDataForDrawing(keeper);
 
-    data.Draw();
+    keeper.data->Draw();
 
     Primitives::Rectangle(Grid::Width() + 1, Grid::FullHeight() + 1).Draw(Grid::Left(), Grid::TOP, Color::FILL);
 }

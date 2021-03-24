@@ -1657,6 +1657,11 @@
           <GroupName>FPGA/Data</GroupName>
           <Files>
             <File>
+              <FileName>DataPreparator.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\FPGA\Data\DataPreparator.cpp</FilePath>
+            </File>
+            <File>
               <FileName>DataSettings.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\FPGA\Data\DataSettings.h</FilePath>
@@ -3821,6 +3826,11 @@
         <Group>
           <GroupName>FPGA/Data</GroupName>
           <Files>
+            <File>
+              <FileName>DataPreparator.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\FPGA\Data\DataPreparator.cpp</FilePath>
+            </File>
             <File>
               <FileName>DataSettings.h</FileName>
               <FileType>5</FileType>
