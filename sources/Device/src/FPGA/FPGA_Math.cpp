@@ -124,6 +124,13 @@ void Value::PointsToVoltage(puchar points, int numPoints, Range::E range, int16 
 }
 
 
+float Value::PointToVoltage(uint8 value, Range::E range, int16 rshift)
+{
+    return (((float)(value)-(float)Value::MIN) * MathFPGA::voltsInPixel[(range)] -
+        MAX_VOLTAGE_ON_SCREEN((range)) - RShift::ToAbs((int16)(rshift), (range)));
+}
+
+
 void Value::VoltageToPoints(const float* voltage, int numPoints, Range::E range, int16 rShift, uint8* points)
 {
     float maxVoltOnScreen = MAX_VOLTAGE_ON_SCREEN(range);
