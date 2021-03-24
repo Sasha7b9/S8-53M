@@ -68,8 +68,8 @@ struct Value
     static const uint8 MAX = 252;
     static const uint8 NONE = 0;
 
-    static void PointsToVoltage(puchar points, int numPoints, Range::E range, int16 rShift, float *voltage);
-    static float PointToVoltage(uint8 value, Range::E range, int16 rshift);
+    static void ToVoltage(puchar points, int numPoints, Range::E range, int16 rShift, float *voltage);
+    static float ToVoltage(uint8 value, Range::E range, int16 rshift);
     static void VoltageToPoints(const float *voltage, int numPoints, Range::E range, int16 rShift, uint8 *points);
     static uint8 VoltageToPoint(float voltage, Range::E range, int16 rshift);
 };

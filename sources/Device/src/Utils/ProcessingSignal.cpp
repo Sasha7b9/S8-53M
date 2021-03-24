@@ -169,7 +169,7 @@ Float Processing::CalculateVoltageMax(Channel::E ch)
         markerHor[ch][0] = (int)(max);         // Здесь не округляем, потому что max может быть только целым
     }
 
-    return Value::PointToVoltage((uint8)max, dataSet->range[ch], (int16)((ch == ChA) ? dataSet->r_shift_a : dataSet->rShiftCh1)) *
+    return Value::ToVoltage((uint8)max, dataSet->range[ch], (int16)((ch == ChA) ? dataSet->r_shift_a : dataSet->rShiftCh1)) *
         Divider::ToAbs(ch);
 }
 
@@ -184,7 +184,7 @@ Float Processing::CalculateVoltageMin(Channel::E ch)
         markerHor[ch][0] = (int)(min);          // Здесь не округляем, потому что min может быть только целым
     }
 
-    return Value::PointToVoltage((uint8)min, dataSet->range[ch], (int16)((ch == ChA) ? dataSet->r_shift_a : dataSet->rShiftCh1)) *
+    return Value::ToVoltage((uint8)min, dataSet->range[ch], (int16)((ch == ChA) ? dataSet->r_shift_a : dataSet->rShiftCh1)) *
         Divider::ToAbs(ch);
 }
 
@@ -214,7 +214,7 @@ Float Processing::CalculateVoltageMinSteady(Channel::E ch)
         markerHor[ch][0] = (int)ROUND(min);
     }
 
-    return (Value::PointToVoltage((uint8)min, dataSet->range[ch], (ch == ChA) ?
+    return (Value::ToVoltage((uint8)min, dataSet->range[ch], (ch == ChA) ?
         (int16)dataSet->r_shift_a :
         (int16)dataSet->rShiftCh1) * Divider::ToAbs(ch));
 }
@@ -233,7 +233,7 @@ Float Processing::CalculateVoltageMaxSteady(Channel::E ch)
     Range::E range = dataSet->range[ch];
     uint rShift = (ch == ChA) ? dataSet->r_shift_a : dataSet->rShiftCh1;
 
-    return (Value::PointToVoltage((uint8)max, range, (int16)rShift) * Divider::ToAbs(ch));
+    return (Value::ToVoltage((uint8)max, range, (int16)rShift) * Divider::ToAbs(ch));
 }
 
 Float Processing::CalculateVoltageVybrosPlus(Channel::E ch)
@@ -251,8 +251,8 @@ Float Processing::CalculateVoltageVybrosPlus(Channel::E ch)
 
     int16 rShift = (ch == ChA) ? (int16)dataSet->r_shift_a : (int16)dataSet->rShiftCh1;
 
-    return std::fabsf(Value::PointToVoltage((uint8)maxSteady, dataSet->range[ch], (int16)rShift) -
-        Value::PointToVoltage((uint8)max, dataSet->range[ch], (int16)rShift)) * Divider::ToAbs(ch);
+    return std::fabsf(Value::ToVoltage((uint8)maxSteady, dataSet->range[ch], (int16)rShift) -
+        Value::ToVoltage((uint8)max, dataSet->range[ch], (int16)rShift)) * Divider::ToAbs(ch);
 }
 
 Float Processing::CalculateVoltageVybrosMinus(Channel::E ch)
@@ -270,8 +270,8 @@ Float Processing::CalculateVoltageVybrosMinus(Channel::E ch)
 
     int16 rShift = (ch == ChA) ? (int16)dataSet->r_shift_a : (int16)dataSet->rShiftCh1;
 
-    return std::fabsf(Value::PointToVoltage((uint8)minSteady, dataSet->range[ch], (int16)rShift) -
-        Value::PointToVoltage((uint8)min, dataSet->range[ch], (int16)rShift)) * Divider::ToAbs(ch);
+    return std::fabsf(Value::ToVoltage((uint8)minSteady, dataSet->range[ch], (int16)rShift) -
+        Value::ToVoltage((uint8)min, dataSet->range[ch], (int16)rShift)) * Divider::ToAbs(ch);
 }
 
 Float Processing::CalculateVoltageAmpl(Channel::E ch)
@@ -310,7 +310,7 @@ Float Processing::CalculateVoltageAverage(Channel::E ch)
         markerHor[ch][0] = aveRel;
     }
 
-    return (Value::PointToVoltage((uint8)aveRel, dataSet->range[ch], (ch == ChA) ?
+    return (Value::ToVoltage((uint8)aveRel, dataSet->range[ch], (ch == ChA) ?
         (int16)dataSet->r_shift_a :
         (int16)dataSet->rShiftCh1) *
         Divider::ToAbs(ch));
@@ -328,7 +328,7 @@ Float Processing::CalculateVoltageRMS(Channel::E ch)
 
     for(uint i = firstP; i < firstP + period; i++)
     {
-        float volts = Value::PointToVoltage(dataIn[ch][i], dataSet->range[ch], rShift);
+        float volts = Value::ToVoltage(dataIn[ch][i], dataSet->range[ch], rShift);
         rms +=  volts * volts;
     }
 
@@ -1247,7 +1247,7 @@ void Processing::CountedToCurrentSettings()
 
         for (int i = 0; i < numPoints; i++)
         {
-            float absValue = Value::PointToVoltage(dataOut0[i], dataSet->range[0], (int16)dataSet->r_shift_a);
+            float absValue = Value::ToVoltage(dataOut0[i], dataSet->range[0], (int16)dataSet->r_shift_a);
             int relValue = (int)((absValue + MAX_VOLTAGE_ON_SCREEN(range) + RShift::ToAbs(rShift, range)) /
                 MathFPGA::voltsInPixel[range] + Value::MIN);
 
@@ -1264,7 +1264,7 @@ void Processing::CountedToCurrentSettings()
 
         for (int i = 0; i < numPoints; i++)
         {
-            float absValue = Value::PointToVoltage(dataOut1[i], dataSet->range[1], (int16)dataSet->rShiftCh1);
+            float absValue = Value::ToVoltage(dataOut1[i], dataSet->range[1], (int16)dataSet->rShiftCh1);
             int relValue = (int)((absValue + MAX_VOLTAGE_ON_SCREEN(range) + RShift::ToAbs(rShift, range)) /
                 MathFPGA::voltsInPixel[range] + Value::MIN);
 
