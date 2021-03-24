@@ -176,6 +176,7 @@ String GF::Bin2String(uint8 value)
     return result;
 }
 
+
 String GF::Bin2String16(uint16 value)
 {
     String result("000000000000000000");
@@ -189,6 +190,7 @@ String GF::Bin2String16(uint16 value)
     return result;
 }
 
+
 String GF::Hex8toString(uint8 value)
 {
     String result("00");
@@ -196,12 +198,6 @@ String GF::Hex8toString(uint8 value)
     std::sprintf(&result[value < 16 ? 1U : 0U], "%x", value);
 
     return result;
-}
-
-
-String GF::Phase2String(float phase, bool)
-{
-    return String("%s\xa8", GF::Float2String(phase, false, 4).c_str());
 }
 
 

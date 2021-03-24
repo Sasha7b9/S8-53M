@@ -25,8 +25,6 @@ namespace GF
 
     bool String2Int(char *str, int *value);
 
-    String Phase2String(float phase, bool);
-
     // ѕреобразует децибелы в текстовую строку.
     String Float2Db(float value, int num_digits);
 

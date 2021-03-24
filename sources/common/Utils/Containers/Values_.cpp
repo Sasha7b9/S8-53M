@@ -108,3 +108,9 @@ String Frequency::ToString()
 
     return String("%s%s", GF::Float2String(frequency, false, 4).c_str(), suffix);
 }
+
+
+String Phase::ToString()
+{
+    return String("%s\xa8", GF::Float2String(*this, false, 4).c_str());
+}

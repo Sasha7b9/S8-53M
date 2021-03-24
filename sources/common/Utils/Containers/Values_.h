@@ -75,3 +75,11 @@ struct Frequency : public Float
 
     String ToString();
 };
+
+
+struct Phase : public Float
+{
+    Phase(float v = 0.0f) : Float(v) {}
+
+    String ToString();
+};
