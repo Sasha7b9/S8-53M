@@ -49,8 +49,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx.h"
 #include <stdio.h>
-#include <cstdlib>
-#include <cstring>
+#include <stdlib.h>
+#include <string.h>
 
 /* Exported types ------------------------------------------------------------*/
 #define USBH_MAX_NUM_ENDPOINTS                2

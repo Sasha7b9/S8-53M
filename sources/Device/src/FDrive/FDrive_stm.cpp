@@ -8,6 +8,7 @@
 #include <ff_gen_drv.h>
 #include <usbh_def.h>
 #include <usbh_diskio.h>
+#include <cstring>
 
 
 
