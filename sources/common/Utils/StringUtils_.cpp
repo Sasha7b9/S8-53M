@@ -52,3 +52,9 @@ bool SU::StringToDouble(double *, pchar)
 {
     return false;
 }
+
+
+bool SU::IsDigit(char symbol)
+{
+    return (symbol >= '0') && (symbol <= '9');
+}

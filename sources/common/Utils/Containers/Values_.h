@@ -23,7 +23,12 @@ struct Float : public ValueStruct<float>
 
     String ToString(bool always_sign, int num_digits);
 
+private:
+
     int NumDigitsInIntPart(float val);
+
+    // Удалить из buffer все цифровые символы кроме num_digits первых
+    void RemoveDigits(String &string, int max_digits);
 };
 
 

@@ -12,4 +12,6 @@ public:
     static char *DoubleToString(double value);
 
     static bool StringToDouble(double *value, pchar buffer);
+
+    static bool IsDigit(char symbol);
 };

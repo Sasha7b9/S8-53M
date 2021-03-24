@@ -1,5 +1,6 @@
 // 2021/03/24 10:56:47 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
+#include "common/Utils/StringUtils_.h"
 #include "common/Utils/Containers/Values_.h"
 #include "Settings/Settings.h"
 #include <cmath>
@@ -47,32 +48,39 @@ String Float::ToString(bool always_sign, int num_digits)
 
     result.Append(buffer);
 
-    float val = (float)(std::atof(buffer));
+    bool sign_exist = always_sign || value < 0.0f;
 
-    if (NumDigitsInIntPart(val) != num_digits_in_int)
-    {
-        num_digits_in_int = NumDigitsInIntPart(val);
-        format[3] = (char)((num_digits - num_digits_in_int) + 0x30);
-
-        if (num_digits == num_digits_in_int)
-        {
-            format[5] = '.';
-        }
-
-        std::sprintf(buffer, format, value);
-
-        result.Append(buffer);
-    }
-
-    bool signExist = always_sign || value < 0.0f;
-
-    while ((int)(result.Size()) < num_digits + (signExist ? 2 : 1))
+    while ((int)(result.Size()) < num_digits + (sign_exist ? 2 : 1))
     {
         result.Append("0");
     }
 
+    RemoveDigits(result, num_digits);
+
     return result;
 }
+
+
+void Float::RemoveDigits(String &string, int max_digits)
+{
+    uint size = string.Size();
+
+    int num_digits = 0;
+
+    for (uint i = 0; i < size; i++)
+    {
+        if (num_digits == max_digits)
+        {
+            string[i] = '\0';
+        }
+
+        if (SU::IsDigit(string[i]))
+        {
+            num_digits++;
+        }
+    }
+}
+
 
 String Voltage::ToString(bool always_sign)
 {
