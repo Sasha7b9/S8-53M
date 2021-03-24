@@ -74,7 +74,7 @@ static void DrawCharHardCol(int x, int y, char symbol)
 }
 
 
-int Char::Draw(int x, int y, Color color)
+int Char::Draw(int x, int y, const Color &color)
 {
     color.SetAsCurrent();
 
@@ -254,7 +254,7 @@ void Text::DrawBig(int eX, int eY, uint size)
 }
 
 
-void Char::Draw4SymbolsInRect(int x, int y, Color color)
+void Char::Draw4SymbolsInRect(int x, int y, const Color &color)
 {
     color.SetAsCurrent();
 
@@ -743,7 +743,7 @@ Text::~Text()
 }
 
 
-void Char::Draw2SymbolsInPosition(int x, int y, char symbol2, Color color1, Color color2)
+void Char::Draw2SymbolsInPosition(int x, int y, char symbol2, const Color &color1, const Color &color2)
 {
     Char(symbol).Draw(x, y, color1);
     Char(symbol2).Draw(x, y, color2);

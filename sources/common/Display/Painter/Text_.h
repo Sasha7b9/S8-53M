@@ -8,11 +8,11 @@ public:
 
     Char(char s) : symbol(s) {}
 
-    int Draw(int x, int y, Color color = Color::Count);
+    int Draw(int x, int y, const Color &color = Color::Count);
 
-    void Draw2SymbolsInPosition(int x, int y, char symbol2, Color color1, Color color2);
+    void Draw2SymbolsInPosition(int x, int y, char symbol2, const Color &color1, const Color &color2);
 
-    void Draw4SymbolsInRect(int x, int y, Color color = Color::Count);
+    void Draw4SymbolsInRect(int x, int y, const Color &color = Color::Count);
 
     void Draw10SymbolsInRect(int x, int y);
 
