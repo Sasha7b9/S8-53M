@@ -228,16 +228,19 @@ void BottomPart::WriteTextVoltage(const Channel &ch, int x, int y)
 
 void BottomPart::WriteStringAndNumber(pchar text, int x, int y, int number)
 {
-    char buffer[100];
     Text(text).Draw(x, y, Color::FILL);
+
+    String buffer;
+
     if (number == 0)
     {
-        std::sprintf(buffer, "-");
+        buffer.Append("-");
     }
     else
     {
-        std::sprintf(buffer, "%d", number);
+        buffer.Append(Int(number).ToString(true));
     }
+
     Text(buffer).DrawRelativelyRight(x + 41, y);
 }
 
