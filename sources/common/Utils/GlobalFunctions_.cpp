@@ -12,7 +12,7 @@
 
 String GF::FloatFract2String(float value, bool alwaysSign)
 {
-    return GF::Float2String(value, alwaysSign, 4);
+    return Float(value).ToString(alwaysSign, 4);
 }
 
 int GF::NumDigitsInIntPart(float value)
@@ -42,72 +42,6 @@ int GF::NumDigitsInIntPart(float value)
     }
 
     return numDigitsInInt;
-}
-
-String GF::Float2String(const Float &value, bool always_sign, int num_digits)
-{
-    if(!value.IsValid())
-    {
-        return EmptyString();
-    }
-
-    String result;
-
-    if(!always_sign)
-    {
-        if(value < 0.0f)
-        {
-            result.Append('-');
-        }
-    }
-    else
-    {
-        result.Append(value < 0.0f ? '-' : '+');
-    }
-
-
-    char buffer[20];
-    char format[] = "%4.2f\0\0";
-
-    format[1] = (char)num_digits + 0x30;
-
-    int num_digits_in_int = NumDigitsInIntPart(value);
-
-    format[3] = (char)((num_digits - num_digits_in_int) + 0x30);
-    if(num_digits == num_digits_in_int)
-    {
-        format[5] = '.';
-    }
-    
-    std::sprintf(buffer, format, std::fabsf(value));
-
-    result.Append(buffer);
-
-    float val = (float)(std::atof(buffer)); //-V2508
-
-    if (NumDigitsInIntPart(val) != num_digits_in_int)
-    {
-        num_digits_in_int = NumDigitsInIntPart(val);
-        format[3] = (char)((num_digits - num_digits_in_int) + 0x30);
-
-        if (num_digits == num_digits_in_int)
-        {
-            format[5] = '.';
-        }
-
-        std::sprintf(buffer, format, value.value);
-
-        result.Append(buffer);
-    }
-
-    bool signExist = always_sign || value < 0.0f;
-
-    while((int)(result.Size()) < num_digits + (signExist ? 2 : 1))
-    {
-        result.Append("0");
-    }
-
-    return result;
 }
 
 
@@ -151,7 +85,7 @@ String GF::Hex8toString(uint8 value)
 
 String GF::Float2Db(float value, int num_digits)
 {
-    return String("%säÁ", GF::Float2String(value, false, num_digits).c_str());
+    return String("%säÁ", Float(value).ToString(false, num_digits).c_str());
 }
 
 

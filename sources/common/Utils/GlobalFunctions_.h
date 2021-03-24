@@ -9,11 +9,6 @@ namespace GF
 {
     String FloatFract2String(float value, bool always_sign = false);
 
-    // alwaysSign - если установлен в true, перед числом всегда будет знак, если установлен в false, только если число
-    //              отрицательное
-    // numDigits - число разрядов мантиссы
-    String Float2String(const Float &value, bool always_sign, int num_digits);
-
     // Преобразует value в текстовую строку. При этом выводятся все 8 разрядов.
     String Bin2String(uint8 value);
 

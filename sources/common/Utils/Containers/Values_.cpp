@@ -106,7 +106,8 @@ String Voltage::ToString(bool always_sign)
         voltage *= 1e-3F;
     }
 
-    String result = GF::Float2String(voltage, always_sign, 4);
+    String result = Float(voltage).ToString(always_sign, 4);
+
     result.Append(suffix);
 
     return result;
@@ -144,7 +145,7 @@ String Time::ToString(bool always_sign)
         suffix = LANG_RU ? "ñ" : "s";
     }
 
-    return String("%s%s", GF::Float2String(time, always_sign, 4).c_str(), suffix);
+    return String("%s%s", Float(time).ToString(always_sign, 4).c_str(), suffix);
 }
 
 
@@ -174,13 +175,13 @@ String Frequency::ToString()
         suffix = LANG_RU ? "Ãö" : "Hz";
     }
 
-    return String("%s%s", GF::Float2String(frequency, false, 4).c_str(), suffix);
+    return String("%s%s", Float(frequency).ToString(false, 4).c_str(), suffix);
 }
 
 
 String Phase::ToString()
 {
-    return String("%s\xa8", GF::Float2String(*this, false, 4).c_str());
+    return String("%s\xa8", Float(*this).ToString(false, 4).c_str());
 }
 
 

@@ -61,7 +61,7 @@ String Cursors::GetPercentsU(const Channel &source)
 
     float dValue = std::fabsf(GetPosU(source, 0) - GetPosU(source, 1));
 
-    String result = GF::Float2String(dValue / dPerc * 100.0F, false, 5);
+    String result = Float(dValue / dPerc * 100.0F).ToString(false, 5);
 
     result.Append("%");
 
@@ -75,7 +75,7 @@ String Cursors::GetPercentsT(const Channel &source)
 
     float dValue = std::fabsf(set.cursors.posT[source][0] - set.cursors.posT[source][1]);
 
-    String result = GF::Float2String(dValue / dPerc * 100.0F, false, 6);
+    String result = Float(dValue / dPerc * 100.0F).ToString(false, 6);
 
     result.Append("%");
 
