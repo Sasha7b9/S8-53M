@@ -36,9 +36,6 @@ namespace GF
     // Преобразует децибелы в текстовую строку.
     String Float2Db(float value, int num_digits);
 
-    // Возвращает true, если value входит в диапазон [min; max]
-    bool IntInRange(int value, int min, int max);
-
     // Возвращает максимальное значение из трёх
     float MaxFloat(float val1, float val2, float val3);
 

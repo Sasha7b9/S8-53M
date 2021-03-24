@@ -313,15 +313,12 @@ String GF::Freq2String(const Float &freq, bool)
     return String("%s%s", GF::Float2String(frequency, false, 4).c_str(), suffix);
 }
 
+
 String GF::Float2Db(float value, int num_digits)
 {
     return String("%säÁ", GF::Float2String(value, false, num_digits).c_str());
 }
 
-bool GF::IntInRange(int value, int min, int max)
-{
-    return (value >= min) && (value <= max);
-}
 
 float GF::MaxFloat(float val1, float val2, float val3)
 {
