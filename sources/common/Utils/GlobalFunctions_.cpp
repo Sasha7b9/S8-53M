@@ -40,20 +40,6 @@ int GF::NumDigitsInIntPart(float value)
 }
 
 
-String GF::Bin2String16(uint16 value)
-{
-    String result("000000000000000000");
-
-    std::strcpy(&result[0], Uint8((uint8)(value >> 8)).ToStringBinU8().c_str());
-
-    result.c_str()[8] = ' ';
-
-    std::strcpy(&result[9], Uint8((uint8)value).ToStringBinU8().c_str());
-
-    return result;
-}
-
-
 String GF::Hex8toString(uint8 value)
 {
     String result("00");

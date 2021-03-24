@@ -43,13 +43,21 @@ struct Uint8 : public ValueStruct<uint8>
 {
     Uint8(uint8 v = 0) : ValueStruct(v) {}
 
-    String ToStringBinU8();
+    String ToStringBin();
 };
 
 
 struct Int16 : public ValueStruct<int16>
 {
     Int16(int16 v = 0) : ValueStruct(v) {}
+};
+
+
+struct Uint16 : public ValueStruct<uint16>
+{
+    Uint16(uint16 v = 0) : ValueStruct(v) {}
+
+    String ToStringBin();
 };
 
 

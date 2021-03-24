@@ -208,7 +208,7 @@ String Int::ToString(bool always_sign, int num_min_fields)
 }
 
 
-String Uint8::ToStringBinU8()
+String Uint8::ToStringBin()
 {
     String result("00000000");
 
@@ -218,6 +218,20 @@ String Uint8::ToStringBinU8()
     {
         buffer[7 - bit] = _GET_BIT(value, bit) ? '1' : '0';
     }
+
+    return result;
+}
+
+
+String Uint16::ToStringBin()
+{
+    String result("000000000000000000");
+
+    std::strcpy(&result[0], Uint8((uint8)(value >> 8)).ToStringBin().c_str());
+
+    result.c_str()[8] = ' ';
+
+    std::strcpy(&result[9], Uint8((uint8)value).ToStringBin().c_str());
 
     return result;
 }
