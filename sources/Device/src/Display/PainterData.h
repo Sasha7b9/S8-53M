@@ -2,7 +2,6 @@
 #pragma once
 #include "common/Display/Colors_.h"
 #include "common/Settings/SettingsTypes_.h"
-#include "common/Utils/Buffer_.h"
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/Data/Storage.h"
 

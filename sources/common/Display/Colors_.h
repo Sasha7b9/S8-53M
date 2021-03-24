@@ -2,6 +2,9 @@
 #include "common/Settings/SettingsTypes_.h"
 
 
+struct Channel;
+
+
 // Тип цвета
 struct Color
 {

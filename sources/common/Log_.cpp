@@ -1,6 +1,5 @@
 #include "defines.h"
 #include "common/Log_.h"
-#include "common/Utils/String_.h"
 #include "Display/Display.h"
 #include "Settings/Settings.h"
 #include <cstdarg>

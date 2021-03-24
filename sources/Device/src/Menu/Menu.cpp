@@ -1,6 +1,5 @@
 #include "defines.h"
 #include "common/Hardware/Sound_.h"
-#include "common/Utils/String_.h"
 #include "FDrive/FDrive.h"
 #include "FPGA/FPGA.h"
 #include "common/Hardware/Timer_.h"

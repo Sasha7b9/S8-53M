@@ -1,5 +1,4 @@
 #include "defines.h"
-#include "common/Utils/String_.h"
 #include "common/Log_.h"
 #include "common/Display/Painter_.h"
 #include "common/Display/Primitives_.h"

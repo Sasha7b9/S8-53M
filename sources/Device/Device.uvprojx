@@ -1973,16 +1973,6 @@
           <GroupName>Utils</GroupName>
           <Files>
             <File>
-              <FileName>Buffer_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Utils\Buffer_.h</FilePath>
-            </File>
-            <File>
-              <FileName>Buffer_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Utils\Buffer_.cpp</FilePath>
-            </File>
-            <File>
               <FileName>CreateTables.py</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Utils\CreateTables.py</FilePath>
@@ -2048,16 +2038,6 @@
               <FilePath>.\src\Utils\ProcessingSignal.cpp</FilePath>
             </File>
             <File>
-              <FileName>Queue_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Utils\Queue_.h</FilePath>
-            </File>
-            <File>
-              <FileName>Queue_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Utils\Queue_.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Stack2500uint16.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Utils\Stack2500uint16.h</FilePath>
@@ -2068,16 +2048,6 @@
               <FilePath>.\src\Utils\Stack2500uint16.cpp</FilePath>
             </File>
             <File>
-              <FileName>String_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Utils\String_.h</FilePath>
-            </File>
-            <File>
-              <FileName>String_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Utils\String_.cpp</FilePath>
-            </File>
-            <File>
               <FileName>StringUtils_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Utils\StringUtils_.h</FilePath>
@@ -2086,6 +2056,41 @@
               <FileName>StringUtils_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Utils\StringUtils_.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Utils/Containers</GroupName>
+          <Files>
+            <File>
+              <FileName>Buffer_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\Containers\Buffer_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Buffer_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\Containers\Buffer_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Queue_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\Containers\Queue_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Queue_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\Containers\Queue_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>String_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\Containers\String_.h</FilePath>
+            </File>
+            <File>
+              <FileName>String_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\Containers\String_.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -4143,16 +4148,6 @@
           <GroupName>Utils</GroupName>
           <Files>
             <File>
-              <FileName>Buffer_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Utils\Buffer_.h</FilePath>
-            </File>
-            <File>
-              <FileName>Buffer_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Utils\Buffer_.cpp</FilePath>
-            </File>
-            <File>
               <FileName>CreateTables.py</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Utils\CreateTables.py</FilePath>
@@ -4218,16 +4213,6 @@
               <FilePath>.\src\Utils\ProcessingSignal.cpp</FilePath>
             </File>
             <File>
-              <FileName>Queue_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Utils\Queue_.h</FilePath>
-            </File>
-            <File>
-              <FileName>Queue_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Utils\Queue_.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Stack2500uint16.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Utils\Stack2500uint16.h</FilePath>
@@ -4238,16 +4223,6 @@
               <FilePath>.\src\Utils\Stack2500uint16.cpp</FilePath>
             </File>
             <File>
-              <FileName>String_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Utils\String_.h</FilePath>
-            </File>
-            <File>
-              <FileName>String_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Utils\String_.cpp</FilePath>
-            </File>
-            <File>
               <FileName>StringUtils_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Utils\StringUtils_.h</FilePath>
@@ -4256,6 +4231,41 @@
               <FileName>StringUtils_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Utils\StringUtils_.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Utils/Containers</GroupName>
+          <Files>
+            <File>
+              <FileName>Buffer_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\Containers\Buffer_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Buffer_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\Containers\Buffer_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Queue_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\Containers\Queue_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Queue_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\Containers\Queue_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>String_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\Containers\String_.h</FilePath>
+            </File>
+            <File>
+              <FileName>String_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\Containers\String_.cpp</FilePath>
             </File>
           </Files>
         </Group>

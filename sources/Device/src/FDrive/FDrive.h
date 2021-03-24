@@ -1,5 +1,7 @@
 #pragma once
 #include "defines.h"
+#include "common/Utils/Containers/String_.h"
+
 
 #ifdef _MS_VS
 #undef _WIN32
