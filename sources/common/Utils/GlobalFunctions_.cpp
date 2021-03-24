@@ -38,21 +38,3 @@ int GF::NumDigitsInIntPart(float value)
 
     return numDigitsInInt;
 }
-
-
-String GF::LogArrayUint8(uint8 *array, uint size)
-{
-    String result;
-
-    for (uint i = 0; i < size; i++)
-    {
-        result.Append(Int(array[i]).ToString(false, 1).c_str());
-        
-        if (i != size - 1)
-        {
-            result.Append(' ');
-        }
-    }
-
-    return result;
-}
