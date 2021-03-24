@@ -31,7 +31,7 @@ String Cursors::GetVoltage(const Channel &source, int numCur)
 }
 
 
-float Cursors::GetVoltage(float shift_cur, Range::E range, int16 rshift)
+Voltage Cursors::GetVoltage(float shift_cur, Range::E range, int16 rshift)
 {
     return MAX_VOLTAGE_ON_SCREEN(range) - shift_cur * MathFPGA::voltsInPixel[range] - RShift::ToAbs(rshift, range);
 }
