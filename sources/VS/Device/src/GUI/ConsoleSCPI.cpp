@@ -1,7 +1,7 @@
 #include "defines.h"
 #include "GUI/ConsoleSCPI.h"
 #include "GUI/VCP/ComPort.h"
-#include "common/Utils/String_.h"
+#include "common/Utils/Containers/String_.h"
 
 #pragma warning(push, 0)
 #include <wx/wx.h>

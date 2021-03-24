@@ -2038,16 +2038,6 @@
               <FilePath>.\src\Utils\ProcessingSignal.cpp</FilePath>
             </File>
             <File>
-              <FileName>Stack2500uint16.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Stack2500uint16.h</FilePath>
-            </File>
-            <File>
-              <FileName>Stack2500uint16.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Stack2500uint16.cpp</FilePath>
-            </File>
-            <File>
               <FileName>StringUtils_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Utils\StringUtils_.h</FilePath>
@@ -4211,16 +4201,6 @@
               <FileName>ProcessingSignal.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Utils\ProcessingSignal.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Stack2500uint16.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Utils\Stack2500uint16.h</FilePath>
-            </File>
-            <File>
-              <FileName>Stack2500uint16.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Utils\Stack2500uint16.cpp</FilePath>
             </File>
             <File>
               <FileName>StringUtils_.h</FileName>
