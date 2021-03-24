@@ -10,11 +10,6 @@
 #include <limits>
 
 
-String GF::FloatFract2String(float value, bool alwaysSign)
-{
-    return Float(value).ToString(alwaysSign, 4);
-}
-
 int GF::NumDigitsInIntPart(float value)
 {
     float fabsValue = std::fabsf(value);

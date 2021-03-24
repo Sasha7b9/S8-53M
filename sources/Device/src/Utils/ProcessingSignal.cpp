@@ -29,7 +29,7 @@ static uint numP = 0;
 
 static char *FloatFract2StringC(float value, bool always_sign, char *buffer)
 {
-    return std::strcpy(buffer, GF::FloatFract2String(value, always_sign).c_str());
+    return std::strcpy(buffer, Float(value).ToString(always_sign, 4).c_str());
 }
 
 static char *Voltage2StringC(float value, bool always_sign, char *buffer)
