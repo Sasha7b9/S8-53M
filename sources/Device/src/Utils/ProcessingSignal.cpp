@@ -332,7 +332,7 @@ Float Processing::CalculateVoltageRMS(Channel::E ch)
 
     if(set.measures.marked.Is(Measure::VoltageRMS))
     {
-        markerHor[ch][0] = MathFPGA::VoltageToPoint(std::sqrtf(rms / period), dataSet->range[ch], rShift);
+        markerHor[ch][0] = Value::VoltageToPoint(std::sqrtf(rms / period), dataSet->range[ch], rShift);
     }
 
     return std::sqrtf(rms / period) * Divider::ToAbs(ch);

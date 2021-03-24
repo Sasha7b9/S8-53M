@@ -152,10 +152,10 @@ void Value::VoltageToPoints(const float* voltage, int numPoints, Range::E range,
 }
 
 
-uint8 MathFPGA::VoltageToPoint(float voltage, Range::E range, int16 rShift)
+uint8 Value::VoltageToPoint(float voltage, Range::E range, int16 rshift)
 {
-    int relValue = (int)((voltage + MAX_VOLTAGE_ON_SCREEN(range) + RShift::ToAbs(rShift, range)) /
-        voltsInPixel[range] + Value::MIN);
+    int relValue = (int)((voltage + MAX_VOLTAGE_ON_SCREEN(range) + RShift::ToAbs(rshift, range)) /
+        MathFPGA::voltsInPixel[range] + Value::MIN);
 
     LIMITATION(relValue, relValue, 0, 255);
 

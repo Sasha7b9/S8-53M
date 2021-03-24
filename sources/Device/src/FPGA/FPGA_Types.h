@@ -70,6 +70,7 @@ struct Value
 
     static void PointsToVoltage(puchar points, int numPoints, Range::E range, int16 rShift, float *voltage);
     static void VoltageToPoints(const float *voltage, int numPoints, Range::E range, int16 rShift, uint8 *points);
+    static uint8 VoltageToPoint(float voltage, Range::E range, int16 rshift);
 };
 
 
