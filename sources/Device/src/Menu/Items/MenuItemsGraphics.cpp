@@ -133,25 +133,13 @@ void IPaddress::DrawLowPart(int x, int y) const
 
 void MACaddress::DrawLowPart(int x, int y) const
 {
-    char buffer[20];
-
     DrawVolumeButton(x + 1, y + 17, Item::WIDTH_VALUE + 2, Item::HEIGHT_VALUE + 3, 2, Color::MENU_FIELD,
         Color::MENU_ITEM_BRIGHT, Color::MENU_ITEM_DARK, true);
 
     const DataMACaddress *own = OwnData();
 
-    std::sprintf(buffer, "%02X.%02X.%02X.%02X.%02X.%02X", *own->mac0, *own->mac1, *own->mac2, *own->mac3, *own->mac4,
-        *own->mac5);
-
-    if (!IsOpened())
-    {
-
-        Text(buffer).Draw(x + 4, y + 21, Color::BACK);
-    }
-    else
-    {
-        Text(buffer).Draw(x + 4, y + 21, Color::FILL);
-    }
+    String("%02X.%02X.%02X.%02X.%02X.%02X", *own->mac0, *own->mac1, *own->mac2, *own->mac3, *own->mac4, *own->mac5).
+        Draw(x + 4, y + 21, IsOpened() ? Color::FILL : Color::BACK);
 }
 
 void Formula::WriteText(int x, int y, bool) const
