@@ -313,9 +313,8 @@ void FuncAttScreen()
         DrawStringInCenterRect(x, y - delta, width, height, "Œ“Ã≈Õ»“‹", Color::BLACK, false);
     }
     */
-    char buffer[100];
-    std::sprintf(buffer, "%.1f", (TIME_MS - startTime) / 1000.0F);
-    Text(buffer).Draw(0, 0, Color::BLACK);
+
+    String("%.1f", (TIME_MS - startTime) / 1000.0F).Draw(0, 0, Color::BLACK);
 
     Painter::SendFrame();
 }
