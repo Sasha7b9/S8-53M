@@ -4,6 +4,8 @@
 #include "common/Utils/Containers/Values_.h"
 #include "Settings/Settings.h"
 #include <cmath>
+#include <cstdio>
+#include <cstring>
 
 
 
@@ -113,4 +115,27 @@ String Frequency::ToString()
 String Phase::ToString()
 {
     return String("%s\xa8", GF::Float2String(*this, false, 4).c_str());
+}
+
+
+String Int::ToString(bool always_sign, int num_min_fields)
+{
+    String result;
+
+    if (always_sign && value >= 0)
+    {
+        result.Append('+');
+    }
+
+    char buffer[20];
+
+    char format[20] = "%";
+    std::sprintf(&(format[1]), "0%d", num_min_fields);
+    std::strcat(format, "d");
+
+    std::sprintf(buffer, format, value);
+
+    result.Append(buffer);
+
+    return result;
 }

@@ -32,6 +32,8 @@ struct InvalidFloat : public Float
 struct Int : public ValueStruct<int>
 {
     Int(int v = 0) : ValueStruct(v) {}
+
+    String ToString(bool always_sign = false, int num_min_fields = 1);
 };
 
 

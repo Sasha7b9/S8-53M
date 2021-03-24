@@ -21,8 +21,6 @@ namespace GF
 
     String Hex8toString(uint8 value);
 
-    String Int2String(int value, bool always_sign = false, int num_min_fields = 1);
-
     bool String2Int(char *str, int *value);
 
     // ѕреобразует децибелы в текстовую строку.

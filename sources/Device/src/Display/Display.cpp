@@ -156,11 +156,11 @@ void Display::DrawTime(int x, int y)
 //    }
     
     
-    GF::Int2String((int)time.hours, false, 2).Draw(x, y);
+    Int((int)time.hours).ToString(false, 2).Draw(x, y);
     Text(":").Draw(x + dField, y);
-    GF::Int2String((int)time.minutes, false, 2).Draw(x + dField + dSeparator, y);
+    Int((int)time.minutes).ToString(false, 2).Draw(x + dField + dSeparator, y);
     Text(":").Draw(x + 2 * dField + dSeparator, y);
-    GF::Int2String((int)time.seconds, false, 2).Draw(x + 2 * dField + 2 * dSeparator, y);
+    Int((int)time.seconds).ToString(false, 2).Draw(x + 2 * dField + 2 * dSeparator, y);
 }
 
 

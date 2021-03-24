@@ -90,7 +90,7 @@ void Governor::DrawLowPart(int x, int y) const
         float delta = Step();
         if(delta == 0.0F)
         {
-            x = GF::Int2String(*own->cell, false, 1).Draw(x + 1, y + 21);
+            x = Int(*own->cell).ToString(false, 1).Draw(x + 1, y + 21);
         }
         else
         {
@@ -101,25 +101,25 @@ void Governor::DrawLowPart(int x, int y) const
             int limHeight = Item::HEIGHT_VALUE - 1;
             if(delta > 0.0F)
             {
-                x = Text(GF::Int2String(*own->cell).c_str()).DrawWithLimitation(drawX,
+                x = Text(Int(*own->cell).ToString().c_str()).DrawWithLimitation(drawX,
                     (int)(y + 21 - delta), Color::BACK, limX, limY, limWidth, limHeight);
 
-                Text(GF::Int2String(NextValue()).c_str()).DrawWithLimitation(drawX,
+                Text(Int(NextValue()).ToString()).DrawWithLimitation(drawX,
                     (int)(y + 21 + 10 - delta), Color::BACK, limX, limY, limWidth, limHeight);
             }
             if(delta < 0.0F)
             {
-                x = Text(GF::Int2String(*own->cell).c_str()).DrawWithLimitation(drawX,
+                x = Text(Int(*own->cell).ToString()).DrawWithLimitation(drawX,
                     (int)(y + 21 - delta), Color::BACK, limX, limY, limWidth, limHeight);
 
-                Text(GF::Int2String(PrevValue()).c_str()).DrawWithLimitation(drawX,
+                Text(Int(PrevValue()).ToString()).DrawWithLimitation(drawX,
                     (int)(y + 21 - 10 - delta), Color::BACK, limX, limY, limWidth, limHeight);
             }
         }
     }
     else
     {
-        x = GF::Int2String(*own->cell).Draw(x + 1, y + 21, Color::FILL);
+        x = Int(*own->cell).ToString().Draw(x + 1, y + 21, Color::FILL);
     }
     Text("\x81").Draw(x + 1, y + 21, colorTextDown);
 }
@@ -279,8 +279,8 @@ void Governor::DrawValue(int x, int y) const
     }
     Font::Set(TypeFont::S5);
     bool sign = own->minValue < 0;
-    GF::Int2String(own->maxValue, sign).Draw(x + 55, y - 5, Color::FILL);
-    GF::Int2String(own->minValue, sign).Draw(x + 55, y + 2);
+    Int(own->maxValue).ToString(sign).Draw(x + 55, y - 5, Color::FILL);
+    Int(own->minValue).ToString(sign).Draw(x + 55, y + 2);
     Font::Set(TypeFont::S8);
 
     DrawValueWithSelectedPosition(startX, y, value, NumDigits(), gCurDigit, true, true);
@@ -430,7 +430,7 @@ void GovernorColor::DrawValue(int x, int y, int delta) const
         Color colorDraw = (field == i) ? Color::BLACK : Color::WHITE;
         Region(29, 10).Fill(x - 1, y + 1, colorBack);
         Text(texts[i]).Draw(x, y + 2, colorDraw);
-        GF::Int2String(vals[i]).Draw(x + 14, y + 2);
+        Int(vals[i]).ToString().Draw(x + 14, y + 2);
         x -= 30;
     }
     
@@ -544,12 +544,12 @@ void TimeItem::DrawOpened(int x, int y) const
 
     char strI[8][20];
     std::strcpy(strI[iEXIT], "Не сохранять");
-    std::strcpy(strI[iDAY], GF::Int2String(*own->day, false, 2).c_str());
-    std::strcpy(strI[iMONTH], GF::Int2String(*own->month, false, 2).c_str());
-    std::strcpy(strI[iYEAR], GF::Int2String(*own->year, false, 2).c_str());
-    std::strcpy(strI[iHOURS], GF::Int2String(*own->hours, false, 2).c_str());
-    std::strcpy(strI[iMIN], GF::Int2String(*own->minutes, false, 2).c_str());
-    std::strcpy(strI[iSEC], GF::Int2String(*own->seconds, false, 2).c_str());
+    std::strcpy(strI[iDAY],   Int(*own->day).ToString(false, 2).c_str());
+    std::strcpy(strI[iMONTH], Int(*own->month).ToString(false, 2).c_str());
+    std::strcpy(strI[iYEAR],  Int(*own->year).ToString(false, 2).c_str());
+    std::strcpy(strI[iHOURS], Int(*own->hours).ToString(false, 2).c_str());
+    std::strcpy(strI[iMIN],   Int(*own->minutes).ToString(false, 2).c_str());
+    std::strcpy(strI[iSEC],   Int(*own->seconds).ToString(false, 2).c_str());
     std::strcpy(strI[iSET], "Сохранить");
 
     Text("д м г - ").Draw(x + 3, y + y0, Color::FILL);
@@ -649,18 +649,18 @@ void TimeItem::DrawClosed(int x, int y) const
     int startX = 3;
     y += 21;
     PackedTime time = HAL_RTC::GetPackedTime();
-    GF::Int2String((int)time.hours, false, 2).Draw(x + startX, y, Color::BACK);
+    Int((int)time.hours).ToString(false, 2).Draw(x + startX, y, Color::BACK);
     Text(":").Draw(x + startX + deltaField, y);
-    GF::Int2String((int)time.minutes, false, 2).Draw(x + startX + deltaField + deltaSeparator, y);
+    Int((int)time.minutes).ToString(false, 2).Draw(x + startX + deltaField + deltaSeparator, y);
     Text(":").Draw(x + startX + 2 * deltaField + deltaSeparator, y);
-    GF::Int2String((int)time.seconds, false, 2).Draw(x + startX + 2 * deltaField + 2 * deltaSeparator, y);
+    Int((int)time.seconds).ToString(false, 2).Draw(x + startX + 2 * deltaField + 2 * deltaSeparator, y);
 
     startX = 44;
-    GF::Int2String((int)time.day, false, 2).Draw(x + startX, y);
+    Int((int)time.day).ToString(false, 2).Draw(x + startX, y);
     Text(":").Draw(x + startX + deltaField, y);
-    GF::Int2String((int)time.month, false, 2).Draw(x + startX + deltaField + deltaSeparator, y);
+    Int((int)time.month).ToString(false, 2).Draw(x + startX + deltaField + deltaSeparator, y);
     Text(":").Draw(x + startX + 2 * deltaField + deltaSeparator, y);
-    GF::Int2String((int)time.year, false, 2).Draw(x + startX + 2 * deltaField + 2 * deltaSeparator, y);
+    Int((int)time.year).ToString(false, 2).Draw(x + startX + 2 * deltaField + 2 * deltaSeparator, y);
 }
 
 

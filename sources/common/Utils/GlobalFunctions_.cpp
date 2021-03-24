@@ -110,27 +110,6 @@ String GF::Float2String(const Float &value, bool always_sign, int num_digits)
     return result;
 }
 
-String GF::Int2String(int value, bool alwaysSign, int numMinFields)
-{
-    String result;
-
-    if (alwaysSign && value >= 0)
-    {
-        result.Append('+');
-    }
-
-    char buffer[20];
-
-    char format[20] = "%";
-    std::sprintf(&(format[1]), "0%d", numMinFields);
-    std::strcat(format, "d");
-
-    std::sprintf(buffer, format, value);
-
-    result.Append(buffer);
-
-    return result;
-}
 
 bool GF::String2Int(char *str, int *value)  
 {
@@ -162,6 +141,7 @@ bool GF::String2Int(char *str, int *value)
     }
     return true;
 }
+
 
 String GF::Bin2String(uint8 value)
 {
@@ -254,7 +234,7 @@ String GF::LogArrayUint8(uint8 *array, uint size)
 
     for (uint i = 0; i < size; i++)
     {
-        result.Append(GF::Int2String(array[i], false, 1).c_str());
+        result.Append(Int(array[i]).ToString(false, 1).c_str());
         
         if (i != size - 1)
         {

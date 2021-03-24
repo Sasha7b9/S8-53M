@@ -1184,6 +1184,16 @@
               <FileType>8</FileType>
               <FilePath>..\common\Utils\Containers\String_.cpp</FilePath>
             </File>
+            <File>
+              <FileName>Values_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\Containers\Values_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Values_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\Containers\Values_.cpp</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
@@ -2365,6 +2375,16 @@
               <FileName>String_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Utils\Containers\String_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Values_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\Containers\Values_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Values_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\Containers\Values_.cpp</FilePath>
             </File>
           </Files>
         </Group>
