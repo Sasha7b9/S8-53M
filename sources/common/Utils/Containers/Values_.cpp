@@ -47,7 +47,7 @@ String Float::ToString(bool always_sign, int num_digits)
 
     result.Append(buffer);
 
-    float val = (float)(std::atof(buffer)); //-V2508
+    float val = (float)(std::atof(buffer));
 
     if (NumDigitsInIntPart(val) != num_digits_in_int)
     {
