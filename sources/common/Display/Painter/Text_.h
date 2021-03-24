@@ -30,8 +30,6 @@ public:
 
     explicit Text(pchar format, ...);
 
-    explicit Text(const String &string);
-
     virtual ~Text();
 
     int Draw(int x, int y, const Color &color) const;

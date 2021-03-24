@@ -225,7 +225,7 @@ void BottomPart::WriteStringAndNumber(pchar text, int x, int y, int number)
 {
     Text(text).Draw(x, y, Color::FILL);
 
-    String buffer;
+    Text buffer;
 
     if (number == 0)
     {
@@ -236,7 +236,7 @@ void BottomPart::WriteStringAndNumber(pchar text, int x, int y, int number)
         buffer.Append(Int(number).ToText(false));
     }
 
-    Text(buffer).DrawRelativelyRight(x + 41, y);
+    buffer.DrawRelativelyRight(x + 41, y);
 }
 
 

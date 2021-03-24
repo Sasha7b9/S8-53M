@@ -109,12 +109,6 @@ Text::Text(pchar format, ...)
 }
 
 
-Text::Text(const String &string)
-{
-    Set(string.c_str());
-}
-
-
 int Text::DrawChar(int eX, int eY, uint8 symbol) const
 {
     int8 width = (int8)Font::font->symbol[symbol].width;
