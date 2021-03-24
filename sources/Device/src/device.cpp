@@ -28,6 +28,7 @@ void Device::Init()
     FPGA::Init();
     HAL_TIM2::Delay(250);
     Display::Init();
+    FPGA::Start();
 
     //    FPGA::OnPressStartStop();
     //    LAN::Init();
