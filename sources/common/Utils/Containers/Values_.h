@@ -98,3 +98,11 @@ struct Phase : public Float
 
     String ToString();
 };
+
+
+struct Decibel : public Float
+{
+    Decibel(float v = 0.0f) : Float(v) {}
+
+    String ToString(int num_digits);
+};

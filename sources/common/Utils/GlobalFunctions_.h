@@ -7,9 +7,6 @@ struct Float;
 
 namespace GF
 {
-    // ѕреобразует децибелы в текстовую строку.
-    String Float2Db(float value, int num_digits);
-
     String LogArrayUint8(uint8 *array, uint size);
 
     int NumDigitsInIntPart(float value);

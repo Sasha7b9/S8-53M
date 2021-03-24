@@ -245,3 +245,9 @@ String Uint16::ToStringBin()
 
     return result;
 }
+
+
+String Decibel::ToString(int num_digits)
+{
+    return String("%sไม", Float::ToString(false, num_digits).c_str());
+}

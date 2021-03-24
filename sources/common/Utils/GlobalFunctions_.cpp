@@ -40,12 +40,6 @@ int GF::NumDigitsInIntPart(float value)
 }
 
 
-String GF::Float2Db(float value, int num_digits)
-{
-    return String("%sไม", Float(value).ToString(false, num_digits).c_str());
-}
-
-
 String GF::LogArrayUint8(uint8 *array, uint size)
 {
     String result;
