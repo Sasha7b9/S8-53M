@@ -6,22 +6,22 @@
 #include <cmath>
 
 
-template void Math::Swap(int *, int *);
-template void Math::Limitation(int *, int, int);
-template int Math::MinFrom2(int, int);
-template uint Math::MinFrom2(uint, uint);
-template int Math::Limitation(int, int, int);
+template void  Math::Swap(int *, int *);
+template void  Math::Limitation(int *, int, int);
+template int   Math::MinFrom2(int, int);
+template uint  Math::MinFrom2(uint, uint);
+template int   Math::Limitation(int, int, int);
 template uint8 Math::Limitation(uint8, uint8, uint8);
 template float Math::Limitation(float, float, float);
-template void Math::Sort(int *, int *);
+template void  Math::Sort(int *, int *);
 template float Math::Max(float, float, float);
-
-template int8 Math::CircleIncrease(int8 *val, int8 min, int8 max);
+template int8  Math::CircleIncrease(int8 *val, int8 min, int8 max);
 template int16 Math::CircleIncrease(int16 *val, int16 min, int16 max);
-template int Math::CircleIncrease(int *val, int min, int max);
-template int8 Math::CircleDecrease(int8 *val, int8 min, int8 max);
+template int   Math::CircleIncrease(int *val, int min, int max);
+template int8  Math::CircleDecrease(int8 *val, int8 min, int8 max);
 template int16 Math::CircleDecrease(int16 *val, int16 min, int16 max);
-template int Math::CircleDecrease(int *val, int min, int max);
+template int   Math::CircleDecrease(int *val, int min, int max);
+template void  Math::AddLimitation(float *val, float delta, float min, float max);
 
 
 float Math::Pi = 3.14159265358979323846F;
@@ -391,3 +391,24 @@ T Math::CircleSub(T *val, T delta, T min, T max)
 
     return *val;
 }
+
+
+template<class T>
+void Math::AddLimitation(T *val, T delta, T min, T max)
+{
+    float sum = *val + delta;
+
+    if (sum < min)
+    {
+        *val = min;
+    }
+    else if (sum > max)
+    {
+        *val = max;
+    }
+    else
+    {
+        *val = sum;
+    }
+}
+

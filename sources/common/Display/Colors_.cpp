@@ -178,7 +178,7 @@ void ColorType::ComponentChange(int delta)
     if (index >= 1 && index <= 3)
     {
         float *pointers[4] = { 0, &blue, &green, &red };
-        GF::AddLimitationFloat(pointers[index], (float)Math::Sign(delta), 0.0F, maxs[index]);
+        Math::AddLimitation(pointers[index], (float)Math::Sign(delta), 0.0F, maxs[index]);
     }
 
     Set();

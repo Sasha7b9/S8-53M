@@ -64,6 +64,8 @@ namespace Math
     template<class T> T CircleAdd(T *val, T delta, T min, T max);
     // Уменьшает значение по адресу val на delta. Затем, елси результат меньше min, приравнивает его masx
     template<class T> T CircleSub(T *val, T delta, T min, T max);
+    // Прибавить к значению по адресу val delta. Если результат не вписывается в диапазон [min; max], ограничить
+    template<class T> void AddLimitation(T *val, T delta, T min, T max);
 
     extern float Pi;
 }

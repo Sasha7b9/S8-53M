@@ -309,24 +309,6 @@ String GF::Float2Db(float value, int num_digits)
 }
 
 
-void GF::AddLimitationFloat(float *val, float delta, float min, float max)
-{
-    float sum = *val + delta;
-    if(sum < min)
-    {
-        *val = min;
-    }
-    else if(sum > max)
-    {
-        *val = max;
-    }
-    else
-    {
-        *val = sum;
-    }
-}
-
-
 void GF::IntToStrCat(char *_buffer, int _value)
 {
     static const int LENGHT = 10;

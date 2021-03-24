@@ -36,9 +36,6 @@ namespace GF
     // Преобразует децибелы в текстовую строку.
     String Float2Db(float value, int num_digits);
 
-    // Прибавить к значению по адресу val delta. Если результат не вписывается в диапазон [min; max], ограничить
-    void AddLimitationFloat(float *val, float delta, float min, float max);
-
     void IntToStrCat(char *_buffer, int _value);
 
     String LogArrayUint8(uint8 *array, uint size);
