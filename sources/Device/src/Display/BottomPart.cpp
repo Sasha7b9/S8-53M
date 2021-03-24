@@ -122,17 +122,12 @@ void BottomPart::Draw()
 
     if (ModeWork::IsDirect())
     {
-        char mesFreq[20] = "\x7c=";
+        String mes_freq("\x7c=");
         float freq = FPGA::FreqMeter::GetFreq();
-        if (freq == -1.0F)
-        {
-            std::strcat(mesFreq, "******");
-        }
-        else
-        {
-            std::strcat(mesFreq, Frequency(freq).ToString().c_str());
-        }
-        Text(mesFreq).Draw(x + 3, Grid::Bottom() + 2);
+
+        mes_freq.Append(freq == 1.0f ? "******" : Frequency(freq).ToString().c_str());
+
+        mes_freq.Draw(x + 3, Grid::Bottom() + 2);
     }
 
     DrawTime(x + 3, Grid::Bottom() + 11);
