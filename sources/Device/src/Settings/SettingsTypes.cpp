@@ -706,7 +706,7 @@ int16 RShift::STEP()
 }
 
 
-float TShift::ToAbs(float tshift, TBase::E tbase)
+Time TShift::ToAbs(float tshift, TBase::E tbase)
 {
     return (MathFPGA::absStepTShift[(tbase)] * (tshift) * 2.0F);
 }

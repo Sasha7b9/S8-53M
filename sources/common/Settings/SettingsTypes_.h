@@ -1,6 +1,7 @@
 #pragma once
 #include "common/Display/Colors_.h"
 #include "common/Utils/Containers/String_.h"
+#include "common/Utils/Containers/Values_.h"
 
 
 #define NumChannels 2
@@ -826,7 +827,7 @@ struct TShift
     static void SetInMemory(int16 shift);
 
     // tshift может принимать нецелые значения в результате расчёта
-    static float ToAbs(float tshift, TBase::E tbase);
+    static Time ToAbs(float tshift, TBase::E tbase);
 
     static float ToRel(float tshift_abs, TBase::E tbase);
 
