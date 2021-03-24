@@ -55,3 +55,13 @@ void VLine::Draw(int x, int y) const
         Point().Draw(x, y++);
     }
 }
+
+
+void Region::Fill(int x, int y) const
+{
+    wxBrush brush = Application::memDC.GetBrush();
+    wxPen pen = Application::memDC.GetPen();
+    Application::memDC.SetBrush(wxBrush(pen.GetColour()));
+    Application::memDC.DrawRectangle({ x, y, width + 1, height + 1 });
+    Application::memDC.SetBrush(brush);
+}

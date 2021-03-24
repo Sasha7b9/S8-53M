@@ -179,17 +179,3 @@ void Region::Fill(int x, int y, const Color &color) const
 
     Fill(x, y);
 }
-
-
-void Region::Fill(int x, int y) const
-{
-    if (width == 0 || height == 0)
-    {
-        return;
-    }
-
-    for (int i = y; i <= y + height - 1; i++)
-    {
-        HLine().Draw(i, x, x + width - 1);
-    }
-}
