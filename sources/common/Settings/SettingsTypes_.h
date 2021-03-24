@@ -79,12 +79,15 @@ struct ModeDrawSignal
     enum E
     {
         Lines,      // Сигнал рисуется линиями.
-        Points      // Сигнал рисуется точками.
+        Points,     // Сигнал рисуется точками.
+        Count
     } value;
 
     ModeDrawSignal(E v = Lines) : value(v) {}
 
     bool IsLines() const { return value == Lines; };
+
+    operator E() const { return value; }
 };
 
 
