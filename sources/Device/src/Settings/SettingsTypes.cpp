@@ -290,7 +290,7 @@ void TBase::Set(TBase::E tBase)
         float tShiftAbsOld = TShift::ToAbs(TShift::Get(), TBase::Get());
         set.time.base = tBase;
         Load();
-        TShift::Set((int)(TSHIFT_2_REL(tShiftAbsOld, TBase::Get())));
+        TShift::Set((int)(TShift::ToRel(tShiftAbsOld, TBase::Get())));
         Display::Redraw();
     }
     else
@@ -709,4 +709,10 @@ int16 RShift::STEP()
 float TShift::ToAbs(float tshift, TBase::E tbase)
 {
     return (MathFPGA::absStepTShift[(tbase)] * (tshift) * 2.0F);
+}
+
+
+float TShift::ToRel(float tshift_abs, TBase::E tbase)
+{
+    return ((tshift_abs) / MathFPGA::absStepTShift[tbase] / 2.0F);
 }

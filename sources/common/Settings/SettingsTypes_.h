@@ -827,6 +827,8 @@ struct TShift
     // tshift может принимать нецелые значения в результате расчёта
     static float ToAbs(float tshift, TBase::E tbase);
 
+    static float ToRel(float tshift_abs, TBase::E tbase);
+
     static const int NULL_VALUE = 1000000;
 
     static const int16 MAX = 16000;

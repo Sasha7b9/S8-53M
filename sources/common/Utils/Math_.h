@@ -14,8 +14,6 @@
 
 #define LIMITATION_BOUND(var, min, max)     if((var) < (min)) { (min) = (var); }; if((var) > (max)) { (max) = (var); };
 
-#define TSHIFT_2_REL(tShiftAbs, tBase) ((tShiftAbs) / MathFPGA::absStepTShift[(tBase)] / 2.0F)
-
 #define ROUND(x) (x.value += 0.5F, x.value)
 
 #define PI 3.141592653589793F
