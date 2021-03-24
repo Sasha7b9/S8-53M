@@ -87,16 +87,14 @@ void DataDrawing::DrawChannel(const Channel &ch)
 
     int x = Grid::Left();
 
-    typedef void (DataDrawing::*pFuncDraw)(int, Buffer &);
-
-    static pFuncDraw funcs[ModeDrawSignal::Count] =
+    if (set.display.mode_draw_signal.IsLines())
     {
-        &DataDrawing::DrawChannelLined, &DataDrawing::DrawChannelPointed
-    };
-
-    pFuncDraw func = funcs[set.display.mode_draw_signal];
-
-    (this->*func)(x, points[ch]);
+        DrawChannelLined(x, points[ch]);
+    }
+    else
+    {
+        DrawChannelPointed(x, points[ch]);
+    }
 }
 
 
