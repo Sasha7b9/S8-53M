@@ -339,21 +339,17 @@ void DrawParametersChannel(const Channel &ch, int eX, int eY, bool inProgress)
         int x = inProgress ? 5 : eX;
         int y = eY + (inProgress ? 110 : 0);
         Text("Отклонение от нуля:").Draw(x, y);
-        char buffer[100] = {0};
+        y += 10;
 
-        std::sprintf(buffer, "АЦП1 = %.2f/%.2f, АЦП2 = %.2f/%.2f, d = %.2f/%.2f",
+        String("АЦП1 = %.2f/%.2f, АЦП2 = %.2f/%.2f, d = %.2f/%.2f",
             avrADC1old[ch] - Value::AVE, avrADC1[ch] - Value::AVE,
             avrADC2old[ch] - Value::AVE, avrADC2[ch] - Value::AVE,
-            deltaADCold[ch], deltaADC[ch]);
+            deltaADCold[ch], deltaADC[ch]).Draw(x, y);
 
-        y += 10;
-        Text(buffer).Draw(x, y);
-        buffer[0] = 0;
-        std::sprintf(buffer, "Расхождение Channel::A_ЦП = %.2f/%.2f %%", deltaADCPercentsOld[ch], deltaADCPercents[ch]);
-        Text(buffer).Draw(x, y + 11);
-        buffer[0] = 0;
-        std::sprintf(buffer, "Записано %d", set.chan[ch].balance_shift_ADC);
-        Text(buffer).Draw(x, y + 19);
+        String("Расхождение Channel::A_ЦП = %.2f/%.2f %%", deltaADCPercentsOld[ch], deltaADCPercents[ch]).
+            Draw(x, y + 11);
+
+        String("Записано %d", set.chan[ch].balance_shift_ADC).Draw(x, y + 19);
     }
 }
 
