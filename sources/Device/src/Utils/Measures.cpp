@@ -89,7 +89,7 @@ int Measure::GetDX()
     return Grid::WIDTH / 5; 
 }
 
-String Measure::Name(int row, int col)
+Text Measure::Name(int row, int col)
 {
     int numMeasure = row * Measure::NumCols() + col;
     return String(measures[Measure::Get(numMeasure)].name);

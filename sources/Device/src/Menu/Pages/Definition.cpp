@@ -5,6 +5,7 @@
 #include "common/Display/Painter/Text_.h"
 #include "Display/Display.h"
 #include "FPGA/FPGA.h"
+#include "Menu/Items/MenuItems.h"
 #include "Panel/Panel.h"
 #include "Settings/Settings.h"
 

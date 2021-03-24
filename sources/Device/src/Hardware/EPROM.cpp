@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "Display/Display.h"
 #include "FPGA/Data/DataSettings.h"
 #include "Hardware/EPROM.h"
 #include "Settings/Settings.h"

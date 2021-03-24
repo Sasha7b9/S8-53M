@@ -1,6 +1,8 @@
 // 2021/03/17 8:01:07 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
+#include "common/Display/Painter/Text_.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "Display/Display.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGA_AutoFinder.h"
 

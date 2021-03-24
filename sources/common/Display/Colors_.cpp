@@ -1,6 +1,6 @@
 #include "defines.h"
-#include "common/Log_.h"
 #include "common/Display/Colors_.h"
+#include "common/Display/Painter/Text_.h"
 #include "common/Utils/Math_.h"
 #include "Settings/Settings.h"
 

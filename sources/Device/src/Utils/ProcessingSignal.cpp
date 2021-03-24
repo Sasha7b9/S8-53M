@@ -1179,14 +1179,14 @@ void Processing::InterpolationSinX_X(uint16 data[FPGA_MAX_POINTS], TBase::E tBas
     }
 }
 
-String Processing::GetStringMeasure(Measure::E measure, const Channel &ch)
+Text Processing::GetStringMeasure(Measure::E measure, const Channel &ch)
 {
     if (!ch.IsEnabled())
     {
-        return String("");
+        return Text("");
     }
 
-    String result("%s", (ch == ChA) ? "1: " : "2: ");
+    Text result("%s", (ch == ChA) ? "1: " : "2: ");
 
     if(dataSet == 0)
     {

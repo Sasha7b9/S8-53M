@@ -1,4 +1,5 @@
 #pragma once
+#include "common/Display/Painter/Text_.h"
 
 
 // Виды измерений.
@@ -56,7 +57,7 @@ struct Measure
 
     static int GetDX();
 
-    static String Name(int row, int col);
+    static Text Name(int row, int col);
 
     static Measure::E Type(int row, int col);
 

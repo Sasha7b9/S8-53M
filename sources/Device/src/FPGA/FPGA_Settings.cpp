@@ -2,6 +2,7 @@
 #include "common/Log_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Utils/Math_.h"
+#include "Display/Display.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGA_Math.h"
 #include "FPGA/Data/DataSettings.h"
