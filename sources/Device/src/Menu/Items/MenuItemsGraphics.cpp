@@ -717,7 +717,7 @@ void Page::Draw(int x, int y, bool) const
     bool isPressed = IsPressed();
     HLine().Draw(y + 1, x, x + Item::WIDTH, Color::BorderMenu());
 
-    DrawVolumeButton(x + 1, y + 2, Item::WIDTH - 2, Item::HEIGHT - 2, 2, Color::MENU_ITEM, Color::MENU_ITEM_BRIGHT,
+    DrawVolumeButton(x + 1, y + 2, Item::WIDTH - 1, Item::HEIGHT - 1, 2, Color::MENU_ITEM, Color::MENU_ITEM_BRIGHT,
         Color::MENU_ITEM_DARK, isPressed);
 
     Color colorText = Color::BLACK;
