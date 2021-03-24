@@ -1,16 +1,13 @@
 #include "defines.h"
-#include "common/Display/Painter_.h"
-#include "common/Display/Primitives_.h"
-#include "common/Display/Text_.h"
+#include "common/Display/Font/Font_.h"
+#include "common/Display/Painter/Painter_.h"
+#include "common/Display/Painter/Primitives_.h"
+#include "common/Display/Painter/Text_.h"
 #include "common/Utils/Math_.h"
 #include <cstdarg>
 #include <cstring>
 #include <cstdlib>
 #include <cstdio>
-
-
-
-using namespace Primitives;
 
 
 static bool ByteFontNotEmpty(int eChar, int byte)
@@ -61,7 +58,7 @@ static void DrawCharInColorDisplay(int eX, int eY, uchar symbol)
             {
                 if (BitInFontIsExist(symbol, b, bit))
                 {
-                    Primitives::Point().Draw(x, y);
+                    Point().Draw(x, y);
                 }
                 x++;
             }
@@ -131,7 +128,7 @@ int Text::DrawChar(int eX, int eY, uint8 symbol)
             {
                 if (BitInFontIsExist(symbol, b, bit))
                 {
-                    Primitives::Point().Draw(x, y);
+                    Point().Draw(x, y);
                 }
                 x++;
             }
@@ -227,7 +224,7 @@ static int DrawBigChar(int eX, int eY, uint size, char symbol)
                     {
                         for (uint j = 0; j < size; j++)
                         {
-                            Primitives::Point().Draw((int)(x + i), (int)(y + j));
+                            Point().Draw((int)(x + i), (int)(y + j));
                         }
                     }
                 }
@@ -293,7 +290,7 @@ int Text::DrawOnBackground(int x, int y, Color colorBackground)
     int height = Font::GetSize();
 
     Color colorText = Color::GetCurrent();
-    Primitives::Region(width, height).Fill(x - 1, y, colorBackground);
+    Region(width, height).Fill(x - 1, y, colorBackground);
     colorText.SetAsCurrent();
 
     return Draw(x, y);

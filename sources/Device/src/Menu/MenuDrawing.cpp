@@ -1,16 +1,11 @@
 #include "defines.h"
-#include "common/Display/Painter_.h"
-#include "common/Display/Primitives_.h"
-#include "common/Display/Text_.h"
+#include "common/Display/Painter/Text_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Grid.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/HelpContent.h"
 #include "Settings/Settings.h"
 #include <cstdio>
-
-
-using namespace Primitives;
 
 
 static void DrawHintItem(int x, int y, int width)

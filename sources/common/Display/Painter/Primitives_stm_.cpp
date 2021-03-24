@@ -1,14 +1,13 @@
 #include "defines.h"
-#include "common/Display/Painter_.h"
-#include "common/Display/Primitives_.h"
-#include "Display/Display.h"
+#include "common/Display/Painter/Primitives_.h"
 #include "common/Utils/Math_.h"
+#include "Display/Display.h"
 
 
 extern uint8 *display_back_buffer;
 
 
-void Primitives::Point::Draw(int x, int y) const
+void Point::Draw(int x, int y) const
 {
     BoundingX(x);
     BoundingY(y);
@@ -17,7 +16,7 @@ void Primitives::Point::Draw(int x, int y) const
 }
 
 
-void Primitives::VLine::Draw(int x, int y0, int y1) const
+void VLine::Draw(int x, int y0, int y1) const
 {
     if (x < 0 || x >= Display::WIDTH)
     {
@@ -44,7 +43,7 @@ void Primitives::VLine::Draw(int x, int y0, int y1) const
 }
 
 
-void Primitives::VLine::Draw(int x, int y) const
+void VLine::Draw(int x, int y) const
 {
     if (x < 0 || x >= Display::WIDTH)
     {

@@ -1,7 +1,7 @@
 #include "defines.h"
-#include "common/Display/Primitives_.h"
-#include "common/Display/Text_.h"
 #include "common/Display/Font/Font_.h"
+#include "common/Display/Painter/Primitives_.h"
+#include "common/Display/Painter/Text_.h"
 #include "common/Hardware/Sound_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Grid.h"
@@ -13,9 +13,6 @@
 #include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
 #include <cstring>
-
-
-using namespace Primitives;
 
 
 int16 PageMemory::PageLatest::currentSignal = 0;
@@ -123,7 +120,7 @@ static void FuncDrawingAdditionSPageMemoryLast()
     int width = 40;
     int height = 10;
     Region(width, height).Fill(Grid::Right() - width, Grid::TOP, Color::BACK);
-    Primitives::Rectangle(width, height).Draw(Grid::Right() - width, Grid::TOP, Color::FILL);
+    Rectangle(width, height).Draw(Grid::Right() - width, Grid::TOP, Color::FILL);
     Int(PageMemory::PageLatest::currentSignal + 1).ToString(false, 3).Draw(Grid::Right() - width + 2, Grid::TOP + 1);
     Text("/").Draw(Grid::Right() - width + 17, Grid::TOP + 1);
 
@@ -533,7 +530,7 @@ static void DrawMemoryWave(int num, bool exist)
     int y = Grid::FullBottom() - 10;
     int width = 12;
     Region(width, 10).Fill(x, y, (num == PageMemory::PageInternal::currentSignal) ? Color::FLASH_10 : Color::BACK);
-    Primitives::Rectangle(width, 10).Draw(x, y, Color::FILL);
+    Rectangle(width, 10).Draw(x, y, Color::FILL);
     ((num == PageMemory::PageInternal::currentSignal) ? Color::FLASH_01 : Color::FILL).SetAsCurrent();
     if (exist)
     {
@@ -648,9 +645,9 @@ static void DrawSB_MemInt_ModeShow_Both(int x, int y)
 {
     ++y;
 
-    Primitives::Rectangle(4, 7).Draw(x + 2, y + 5);
+    Rectangle(4, 7).Draw(x + 2, y + 5);
 
-    Primitives::Rectangle(4, 4).Draw(x + 8, y + 8);
+    Rectangle(4, 4).Draw(x + 8, y + 8);
     HLine().Draw(x + 8, y + 8, y + 5);
     HLine().Draw(y + 5, x + 8, x + 12);
 
@@ -854,7 +851,7 @@ void DrawSetName()
     int width = Grid::Width() - 80;
     int height = 80;
 
-    Primitives::Rectangle(width, height).Draw(x0, y0, Color::FILL);
+    Rectangle(width, height).Draw(x0, y0, Color::FILL);
     Region(width - 2, height - 2).Fill(x0 + 1, y0 + 1, Color::BACK);
 
     int index = 0;
@@ -930,7 +927,7 @@ void DrawSetMask()
     int width = Grid::Width() - 80;
     int height = 160;
 
-    Primitives::Rectangle(width, height).Draw(x0, y0, Color::FILL);
+    Rectangle(width, height).Draw(x0, y0, Color::FILL);
     Region(width - 2, height - 2).Fill(x0 + 1, y0 + 1, Color::BACK);
 
     int index = 0;

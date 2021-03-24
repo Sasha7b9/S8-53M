@@ -1,8 +1,7 @@
 #include "defines.h"
-#include "common/Display/Painter_.h"
-#include "common/Display/Primitives_.h"
-#include "common/Display/Text_.h"
 #include "common/Display/Font/Font_.h"
+#include "common/Display/Painter/Primitives_.h"
+#include "common/Display/Painter/Text_.h"
 #include "common/Hardware/Sound_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Utils/Math_.h"
@@ -11,9 +10,6 @@
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
 #include <cstring>
-
-
-using namespace Primitives;
 
 
 #define RECS_ON_PAGE 23
@@ -179,7 +175,7 @@ void FM::Draw()
     {
         Display::BeginFrame(Color::BACK);
         Menu::Draw();
-        Primitives::Rectangle(width, 239).Draw(1, 0, Color::FILL);
+        Rectangle(width, 239).Draw(1, 0, Color::FILL);
         FDrive::GetNumDirsAndFiles(currentDir, &numDirs, &numFiles);
         DrawNameCurrentDir(left + 1, top + 2);
         HLine().Draw(left2col, top + 16, 239, Color::FILL);

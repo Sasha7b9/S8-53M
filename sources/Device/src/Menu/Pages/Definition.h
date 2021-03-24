@@ -1,5 +1,6 @@
 #pragma once
 #include "common/Panel/Controls_.h"
+#include "common/Settings/SettingsTypes_.h"
 
 
 #define RETURN_TO_MAIN_MENU             0U

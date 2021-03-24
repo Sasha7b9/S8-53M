@@ -2,7 +2,7 @@
 #include "stm32f4xx.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <cstring>
 
 
 #define USBH_MAX_NUM_ENDPOINTS                2

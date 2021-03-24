@@ -2,6 +2,9 @@
 #pragma once
 
 
+struct Channel;
+
+
 struct BottomPart
 {
     // Написать информацию под сеткой - в нижней части дисплея.

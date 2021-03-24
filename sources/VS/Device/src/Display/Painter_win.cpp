@@ -17,8 +17,7 @@
 
 #pragma warning(pop)
 
-#include "common/Display/Painter_.h"
-#include "common/Display/Primitives_.h"
+#include "common/Display/Painter/Primitives_.h"
 #include "Display/Display.h"
 
 #undef uint   
@@ -30,8 +29,6 @@
 #undef uchar  
 #undef pString
 
-
-using namespace Primitives;
 
 static uint colors[256];                                        // Цвета
 static wxBitmap bitmapScreen(Display::WIDTH, Display::HEIGHT);

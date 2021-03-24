@@ -1,9 +1,8 @@
 #include "defines.h"
 #include "common/Log_.h"
-#include "common/Display/Painter_.h"
-#include "common/Display/Primitives_.h"
-#include "common/Display/Text_.h"
 #include "common/Display/Font/Font_.h"
+#include "common/Display/Painter/Primitives_.h"
+#include "common/Display/Painter/Text_.h"
 #include "common/Hardware/Sound_.h"
 #include "common/Hardware/Timer_.h"
 #include "common/Utils/Math_.h"
@@ -26,8 +25,6 @@
 #include <cstdlib>
 #include <cstring>
 #include <limits>
-
-using namespace Primitives;
 
 
 #define MAX_NUM_STRINGS         35
@@ -61,7 +58,7 @@ void Display::DrawStringNavigation()
     if(length != 0) 
     {
         int height = 10;
-        Primitives::Rectangle((int)length + 2, height).Draw(Grid::Left(), Grid::TOP, Color::FILL);
+        Rectangle((int)length + 2, height).Draw(Grid::Left(), Grid::TOP, Color::FILL);
         Region((int)length, height - 2).Fill(Grid::Left() + 1, Grid::TOP + 1, Color::BACK);
         string.Draw(Grid::Left() + 2, Grid::TOP + 1, Color::FILL);
     }
@@ -194,7 +191,7 @@ void Display::WriteCursors()
             {
                 int width = 65;
                 int x0 = Grid::Right() - width;
-                Primitives::Rectangle(width, 12).Draw(x0, Grid::TOP, Color::FILL);
+                Rectangle(width, 12).Draw(x0, Grid::TOP, Color::FILL);
                 Region(width - 2, 10).Fill(x0 + 1, Grid::TOP + 1, Color::BACK);
                 Text("1/dT=").Draw(x0 + 1, Grid::TOP + 2, colorText);
                 Frequency(1.0F / delta).ToString().Draw(x0 + 25, Grid::TOP + 2);
@@ -427,7 +424,7 @@ void Display::WriteValueTrigLevel()
         int width = 96;
         int x = (Grid::Width() - width) / 2 + Grid::Left();
         int y = Grid::BottomMessages() - 20;
-        Primitives::Rectangle(width, 10).Draw(x, y, Color::FILL);
+        Rectangle(width, 10).Draw(x, y, Color::FILL);
         Region(width - 2, 8).Fill(x + 1, y + 1, Color::BACK);
         Text(buffer).Draw(x + 2, y + 1, Color::FILL);
     }
@@ -606,7 +603,7 @@ void Display::DrawTimeForFrame(uint timeTicks)
         numFrames = 0;
     }
 
-    Primitives::Rectangle(84, 10).Draw(Grid::Left(), Grid::FullBottom() - 10, Color::FILL);
+    Rectangle(84, 10).Draw(Grid::Left(), Grid::FullBottom() - 10, Color::FILL);
     Region(82, 8).Fill(Grid::Left() + 1, Grid::FullBottom() - 9, Color::BACK);
     Text(buffer).Draw(Grid::Left() + 2, Grid::FullBottom() - 9, Color::FILL);
 
@@ -974,8 +971,8 @@ void Display::DrawStringInRectangle(int, int y, char const *text)
 {
     int width = Font::GetLengthText(text);
     int height = 8;
-    Primitives::Rectangle(width + 4, height + 4).Draw(Grid::Left(), y, Color::FILL);
-    Primitives::Rectangle(width + 2, height + 2).Draw(Grid::Left() + 1, y + 1, Color::BACK);
+    Rectangle(width + 4, height + 4).Draw(Grid::Left(), y, Color::FILL);
+    Rectangle(width + 2, height + 2).Draw(Grid::Left() + 1, y + 1, Color::BACK);
     Region(width, height).Fill(Grid::Left() + 2, y + 2, Color::FLASH_10);
     Text(text).Draw(Grid::Left() + 3, y + 2, Color::FLASH_01);
 }

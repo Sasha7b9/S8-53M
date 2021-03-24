@@ -1,12 +1,9 @@
 #include "defines.h"
 #include "common/Display/Colors_.h"
-#include "common/Display/Primitives_.h"
-#include "common/Display/Text_.h"
-#include "Display/DisplayPrimitives.h"
+#include "common/Display/Painter/Primitives_.h"
+#include "common/Display/Painter/Text_.h"
+#include "Display/Painter/DisplayPrimitives.h"
 #include <cstdio> 
-
-
-using namespace Primitives;
 
 
 void ProgressBar::Draw()

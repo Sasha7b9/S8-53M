@@ -1,13 +1,10 @@
 #include "defines.h"
 #include "Tables.h"
 #include "common/Log_.h"
-#include "common/Display/Primitives_.h"
-#include "common/Display/Text_.h"
 #include "common/Display/Font/Font_.h"
+#include "common/Display/Painter/Primitives_.h"
+#include "common/Display/Painter/Text_.h"
 #include "Settings/Settings.h"
-
-
-using namespace Primitives;
 
 
 // Таблица символов алфавита и спецсимволов для ввода текста

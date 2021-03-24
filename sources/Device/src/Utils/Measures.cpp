@@ -1,7 +1,7 @@
 #include "defines.h"
-#include "common/Display/Painter_.h"
-#include "common/Display/Primitives_.h"
-#include "common/Display/Text_.h"
+#include "common/Display/Font/Font_.h"
+#include "common/Display/Painter/Primitives_.h"
+#include "common/Display/Painter/Text_.h"
 #include "common/Hardware/Sound_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Grid.h"
@@ -10,9 +10,6 @@
 #include "Settings/Settings.h"
 #include "Utils/Measures.h"
 #include "Utils/ProcessingSignal.h"
-
-
-using namespace Primitives;
 
 
 struct StructMeasure
@@ -312,7 +309,7 @@ void Measure::DrawAll()
         int y1 = SettingsMeasures::PosCursorU(1) + Grid::TOP;
         Math::Sort(&x0, &x1);
         Math::Sort(&y0, &y1);
-        Primitives::Rectangle(x1 - x0, y1 - y0).Draw(x0, y0, Color::FILL);
+        Rectangle(x1 - x0, y1 - y0).Draw(x0, y0, Color::FILL);
     }
 
     int x0 = Grid::Left() - Measure::GetDeltaGridLeft();
@@ -335,7 +332,7 @@ void Measure::DrawAll()
             if (meas != Measure::None)
             {
                 Region(dX, dY).Fill(x, y, Color::BACK);
-                Primitives::Rectangle(dX, dY).Draw(x, y, Color::FILL);
+                Rectangle(dX, dY).Draw(x, y, Color::FILL);
                 top_measures = Math::MinFrom2(top_measures, y);
             }
 

@@ -1,7 +1,6 @@
 #include "defines.h"
-#include "common/Display/Painter_.h"
-#include "common/Display/Primitives_.h"
-#include "common/Display/Text_.h"
+#include "common/Display/Font/Font_.h"
+#include "common/Display/Painter/Text_.h"
 #include "common/Hardware/Sound_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "Display/Grid.h"
@@ -14,8 +13,6 @@
 #include <cstdio>
 #include <cstdlib>
 
-
-using namespace Primitives;
 
 static int16 shiftADCA;
 static int16 shiftADCB;

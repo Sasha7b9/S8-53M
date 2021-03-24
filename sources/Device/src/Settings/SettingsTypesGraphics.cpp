@@ -1,15 +1,12 @@
 // 2021/03/18 9:50:03 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
-#include "common/Display/Primitives_.h"
-#include "common/Display/Text_.h"
 #include "common/Display/Font/Font_.h"
+#include "common/Display/Painter/Primitives_.h"
+#include "common/Display/Painter/Text_.h"
 #include "common/Settings/SettingsTypes_.h"
 #include "FPGA/FPGA_Types.h"
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
-
-
-using namespace Primitives;
 
 
 void RShift::Draw()

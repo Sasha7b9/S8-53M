@@ -1467,16 +1467,6 @@
               <FilePath>.\src\Display\Display_stm.cpp</FilePath>
             </File>
             <File>
-              <FileName>DisplayPrimitives.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\DisplayPrimitives.h</FilePath>
-            </File>
-            <File>
-              <FileName>DisplayPrimitives.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\DisplayPrimitives.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Grid.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Display\Grid.h</FilePath>
@@ -1487,16 +1477,6 @@
               <FilePath>.\src\Display\Grid.cpp</FilePath>
             </File>
             <File>
-              <FileName>Painter_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Display\Painter_.h</FilePath>
-            </File>
-            <File>
-              <FileName>Painter_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Painter_.cpp</FilePath>
-            </File>
-            <File>
               <FileName>PainterData.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Display\PainterData.h</FilePath>
@@ -1505,31 +1485,6 @@
               <FileName>PainterData.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Display\PainterData.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Primitives_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Primitives_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Primitives_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Display\Primitives_.h</FilePath>
-            </File>
-            <File>
-              <FileName>Primitives_stm_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Primitives_stm_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Text_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Text_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Text_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Display\Text_.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1585,6 +1540,56 @@
               <FileName>Font_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Display\Font\Font_.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Display/Painter</GroupName>
+          <Files>
+            <File>
+              <FileName>DisplayPrimitives.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\Painter\DisplayPrimitives.h</FilePath>
+            </File>
+            <File>
+              <FileName>DisplayPrimitives.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\Painter\DisplayPrimitives.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Painter_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\Painter\Painter_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Painter_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Painter\Painter_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Primitives_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\Painter\Primitives_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Primitives_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Painter\Primitives_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Primitives_stm_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Painter\Primitives_stm_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Text_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\Painter\Text_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Text_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Painter\Text_.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -3642,16 +3647,6 @@
               <FilePath>.\src\Display\Display_stm.cpp</FilePath>
             </File>
             <File>
-              <FileName>DisplayPrimitives.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\DisplayPrimitives.h</FilePath>
-            </File>
-            <File>
-              <FileName>DisplayPrimitives.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\DisplayPrimitives.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Grid.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Display\Grid.h</FilePath>
@@ -3662,16 +3657,6 @@
               <FilePath>.\src\Display\Grid.cpp</FilePath>
             </File>
             <File>
-              <FileName>Painter_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Display\Painter_.h</FilePath>
-            </File>
-            <File>
-              <FileName>Painter_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Painter_.cpp</FilePath>
-            </File>
-            <File>
               <FileName>PainterData.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Display\PainterData.h</FilePath>
@@ -3680,31 +3665,6 @@
               <FileName>PainterData.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Display\PainterData.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Primitives_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Primitives_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Primitives_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Display\Primitives_.h</FilePath>
-            </File>
-            <File>
-              <FileName>Primitives_stm_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Primitives_stm_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Text_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Display\Text_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Text_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Display\Text_.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -3760,6 +3720,56 @@
               <FileName>Font_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Display\Font\Font_.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Display/Painter</GroupName>
+          <Files>
+            <File>
+              <FileName>DisplayPrimitives.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\Painter\DisplayPrimitives.h</FilePath>
+            </File>
+            <File>
+              <FileName>DisplayPrimitives.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\Painter\DisplayPrimitives.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Painter_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\Painter\Painter_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Painter_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Painter\Painter_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Primitives_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\Painter\Primitives_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Primitives_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Painter\Primitives_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Primitives_stm_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Painter\Primitives_stm_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Text_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\Painter\Text_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Text_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Painter\Text_.cpp</FilePath>
             </File>
           </Files>
         </Group>

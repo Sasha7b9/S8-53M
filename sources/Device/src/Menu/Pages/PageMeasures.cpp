@@ -1,7 +1,7 @@
 #include "defines.h"
 #include "common/Utils/Math_.h"
-#include "common/Display/Text_.h"
 #include "common/Display/Font/Font_.h"
+#include "common/Display/Painter/Text_.h"
 #include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
 #include "Utils/Measures.h"

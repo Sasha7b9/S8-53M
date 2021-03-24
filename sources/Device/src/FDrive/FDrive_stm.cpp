@@ -96,8 +96,8 @@ void FDrive::GetNumDirsAndFiles(const char* fullPath, int *numDirs, int *numFile
     
 
     char nameDir[_MAX_LFN + 1];
-    memcpy(nameDir, fullPath, strlen(fullPath));
-    nameDir[strlen(fullPath)] = '\0';
+    std::memcpy(nameDir, fullPath, std::strlen(fullPath));
+    nameDir[std::strlen(fullPath)] = '\0';
 
     fno.fsize = _MAX_LFN + 1;
 
@@ -139,8 +139,8 @@ void FDrive::GetNumDirsAndFiles(const char* fullPath, int *numDirs, int *numFile
 
 String FDrive::GetNameDir(const char *fullPath, int numDir, StructForReadDir *s)
 {
-    memcpy(s->nameDir, fullPath, strlen(fullPath));
-    s->nameDir[strlen(fullPath)] = '\0';
+    std::memcpy(s->nameDir, fullPath, std::strlen(fullPath));
+    s->nameDir[std::strlen(fullPath)] = '\0';
 
     DIR *pDir = &s->dir;
     if (f_opendir(pDir, s->nameDir) == FR_OK)
@@ -208,7 +208,7 @@ bool FDrive::GetNextNameDir(char *nameDirOut, StructForReadDir *s)
             char *fn = pFNO->fname;
             if (pFNO->fattrib & AM_DIR)
             {
-                strcpy(nameDirOut, fn);
+                std::strcpy(nameDirOut, fn);
                 return true;
             }
         }
@@ -224,8 +224,8 @@ void FDrive::CloseCurrentDir(StructForReadDir *s)
 
 bool FDrive::GetNameFile(const char *fullPath, int numFile, char *nameFileOut, StructForReadDir *s)
 {
-    memcpy(s->nameDir, fullPath, strlen(fullPath));
-    s->nameDir[strlen(fullPath)] = '\0';
+    std::memcpy(s->nameDir, fullPath, std::strlen(fullPath));
+    s->nameDir[std::strlen(fullPath)] = '\0';
 
     DIR *pDir = &s->dir;
     FILINFO *pFNO = &s->fno;
@@ -254,7 +254,7 @@ bool FDrive::GetNameFile(const char *fullPath, int numFile, char *nameFileOut, S
             char *fn = pFNO->fname;
             if (numFile == numFiles && (pFNO->fattrib & AM_DIR) == 0)
             {
-                strcpy(nameFileOut, fn);
+                std::strcpy(nameFileOut, fn);
                 return true;
             }
             if ((pFNO->fattrib & AM_DIR) == 0 && (pFNO->fname[0] != '.'))
@@ -294,7 +294,7 @@ bool FDrive::GetNextNameFile(char *nameFileOut, StructForReadDir *s)
             char *fn = pFNO->fname;
             if ((pFNO->fattrib & AM_DIR) == 0 && pFNO->fname[0] != '.')
             {
-                strcpy(nameFileOut, fn);
+                std::strcpy(nameFileOut, fn);
                 return true;
             }
         }
@@ -308,7 +308,7 @@ bool FDrive::OpenNewFileForWrite(const char* fullPathToFile, StructForWrite *str
     {
         return false;
     }
-    strcpy(structForWrite->name, fullPathToFile);
+    std::strcpy(structForWrite->name, fullPathToFile);
     structForWrite->sizeData = 0;
     return true;
 }
@@ -324,7 +324,7 @@ bool FDrive::WriteToFile(uint8* data, int sizeData, StructForWrite *structForWri
             dataToCopy = SIZE_FLASH_TEMP_BUFFER - structForWrite->sizeData;
         }
         sizeData -= dataToCopy;
-        memcpy(structForWrite->tempBuffer + structForWrite->sizeData, data, (uint)dataToCopy); //-V2563
+        std::memcpy(structForWrite->tempBuffer + structForWrite->sizeData, data, (uint)dataToCopy); //-V2563
         data += dataToCopy; //-V2563
         structForWrite->sizeData += dataToCopy;
         if (structForWrite->sizeData == SIZE_FLASH_TEMP_BUFFER)

@@ -1,12 +1,11 @@
 #include "defines.h"
-#include "common/Display/Painter_.h"
-#include "common/Display/Primitives_.h"
-#include "common/Display/Text_.h"
+#include "common/Display/Painter/Painter_.h"
+#include "common/Display/Painter/Text_.h"
 #include "common/Hardware/Timer_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Utils/Containers/Values_.h"
 #include "Display/Display.h"
-#include "Display/DisplayPrimitives.h"
+#include "Display/Painter/DisplayPrimitives.h"
 #include "FPGA/FPGA.h"
 #include "Menu/Pages/Definition.h"
 #include "Panel/Panel.h"
@@ -14,9 +13,6 @@
 #include <cmath>
 #include <cstdio>
 #include <limits>
-
-
-using namespace Primitives;
 
 
 // Измерить добавочное смещение канала по напряжению.

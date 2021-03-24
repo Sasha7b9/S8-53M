@@ -1,8 +1,7 @@
 #include "defines.h"
-#include "common/Display/Text_.h"
-#include "common/Display/Painter_.h"
-#include "common/Display/Primitives_.h"
-#include "common/Display/Text_.h"
+#include "common/Display/Painter/Painter_.h"
+#include "common/Display/Painter/Primitives_.h"
+#include "common/Display/Painter/Text_.h"
 #include "common/Hardware/Sound_.h"
 #include "common/Hardware/Timer_.h"
 #include "common/Hardware/HAL/HAL_.h"
@@ -14,9 +13,6 @@
 #include "Panel/Panel.h"
 #include "Settings/Settings.h"
 #include <cstdio>
-
-
-using namespace Primitives;
 
 
 static int8 dServicetime = 0;

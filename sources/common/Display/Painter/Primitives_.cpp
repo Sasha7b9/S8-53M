@@ -1,10 +1,9 @@
 #include "defines.h"
 #include "common/Log_.h"
-#include "common/Display/Painter_.h"
-#include "common/Display/Primitives_.h"
+#include "common/Display/Painter/Primitives_.h"
 
 
-void Primitives::MultiVPointLine::DrawVPointLine(int x, int y, int count, int delta)
+void MultiVPointLine::DrawVPointLine(int x, int y, int count, int delta)
 {
     for (int i = 0; i < count; i++)
     {
@@ -14,7 +13,7 @@ void Primitives::MultiVPointLine::DrawVPointLine(int x, int y, int count, int de
 }
 
 
-void Primitives::MultiHPointLine::DrawHPointLine(int x, int y, int count, int delta)
+void MultiHPointLine::DrawHPointLine(int x, int y, int count, int delta)
 {
     for (int i = 0; i < count; i++)
     {
@@ -24,13 +23,13 @@ void Primitives::MultiHPointLine::DrawHPointLine(int x, int y, int count, int de
 }
 
 
-void Primitives::VPointLine::Draw(int , int , int , const Color &) const
+void VPointLine::Draw(int , int , int , const Color &) const
 {
 
 }
 
 
-void Primitives::HPointLine::Draw(int y, int x0, int x1) const
+void HPointLine::Draw(int y, int x0, int x1) const
 {
     for (int x = x0; x <= x1; x += (int)(delta))
     {
@@ -39,7 +38,7 @@ void Primitives::HPointLine::Draw(int y, int x0, int x1) const
 }
 
 
-void Primitives::Line::Draw(int x0, int y0, int x1, int y1, const Color &color) const
+void Line::Draw(int x0, int y0, int x1, int y1, const Color &color) const
 {
     color.SetAsCurrent();
 
@@ -54,7 +53,7 @@ void Primitives::Line::Draw(int x0, int y0, int x1, int y1, const Color &color) 
 }
 
 
-void Primitives::DashedHLine::Draw(int y, int x0, int x1, int deltaStart) const
+void DashedHLine::Draw(int y, int x0, int x1, int deltaStart) const
 {
     if (deltaStart < 0 || deltaStart >= (fill + empty))
     {
@@ -79,7 +78,7 @@ void Primitives::DashedHLine::Draw(int y, int x0, int x1, int deltaStart) const
 }
 
 
-void Primitives::DashedVLine::Draw(int x, int y0, int y1, int deltaStart) const
+void DashedVLine::Draw(int x, int y0, int y1, int deltaStart) const
 {
     if (deltaStart < 0 || deltaStart >= (fill + empty))
     {
@@ -104,13 +103,13 @@ void Primitives::DashedVLine::Draw(int x, int y0, int y1, int deltaStart) const
 }
 
 
-void Primitives::VLineArray::Draw(int , int , uint8 *, const Color &color) const
+void VLineArray::Draw(int , int , uint8 *, const Color &color) const
 {
     color.SetAsCurrent();
 }
 
 
-void Primitives::VLine::Draw(int x, int y0, int y1, const Color &color) const
+void VLine::Draw(int x, int y0, int y1, const Color &color) const
 {
     color.SetAsCurrent();
 
@@ -118,7 +117,7 @@ void Primitives::VLine::Draw(int x, int y0, int y1, const Color &color) const
 }
 
 
-void Primitives::VLine::Draw(int x, int y, const Color &color) const
+void VLine::Draw(int x, int y, const Color &color) const
 {
     color.SetAsCurrent();
 
@@ -126,7 +125,7 @@ void Primitives::VLine::Draw(int x, int y, const Color &color) const
 }
 
 
-void Primitives::MultiVPointLine::Draw(int y, const Color &color) const
+void MultiVPointLine::Draw(int y, const Color &color) const
 {
     color.SetAsCurrent();
 
@@ -137,7 +136,7 @@ void Primitives::MultiVPointLine::Draw(int y, const Color &color) const
 }
 
 
-void Primitives::Rectangle::Draw(int x, int y, const Color &color) const
+void Rectangle::Draw(int x, int y, const Color &color) const
 {
     color.SetAsCurrent();
 
@@ -145,7 +144,7 @@ void Primitives::Rectangle::Draw(int x, int y, const Color &color) const
 }
 
 
-void Primitives::Rectangle::Draw(int x, int y) const
+void Rectangle::Draw(int x, int y) const
 {
     if (width == 0 || height == 0)
     {
@@ -162,7 +161,7 @@ void Primitives::Rectangle::Draw(int x, int y) const
 }
 
 
-void Primitives::MultiHPointLine::Draw(int x, const Color &color) const
+void MultiHPointLine::Draw(int x, const Color &color) const
 {
     color.SetAsCurrent();
 
@@ -173,7 +172,7 @@ void Primitives::MultiHPointLine::Draw(int x, const Color &color) const
 }
 
 
-void Primitives::Region::Fill(int x, int y, const Color &color) const
+void Region::Fill(int x, int y, const Color &color) const
 {
     color.SetAsCurrent();
 
@@ -181,7 +180,7 @@ void Primitives::Region::Fill(int x, int y, const Color &color) const
 }
 
 
-void Primitives::Region::Fill(int x, int y) const
+void Region::Fill(int x, int y) const
 {
     if (width == 0 || height == 0)
     {

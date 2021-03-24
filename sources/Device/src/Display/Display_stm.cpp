@@ -1,6 +1,6 @@
 #include "defines.h"
-#include "common/Display/Painter_.h"
-#include "common/Display/Primitives_.h"
+#include "common/Display/Font/Font_.h"
+#include "common/Display/Painter/Primitives_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Display.h"
@@ -52,7 +52,7 @@ uint8 *Display::GetBufferEnd()
 }
 
 
-void Primitives::HLine::Draw(int y, int x1, int x2, const Color &color) const
+void HLine::Draw(int y, int x1, int x2, const Color &color) const
 {
     color.SetAsCurrent();
 
@@ -60,7 +60,7 @@ void Primitives::HLine::Draw(int y, int x1, int x2, const Color &color) const
 }
 
 
-void Primitives::HLine::Draw(int y, int x0, int x1) const
+void HLine::Draw(int y, int x0, int x1) const
 {
     if (y < 0 || y >= Display::HEIGHT)
     {

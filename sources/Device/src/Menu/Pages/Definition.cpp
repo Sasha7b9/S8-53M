@@ -1,15 +1,13 @@
 #include "defines.h"
 #include "common/Display/Colors_.h"
-#include "common/Display/Painter_.h"
-#include "common/Display/Primitives_.h"
-#include "common/Display/Text_.h"
+#include "common/Display/Font/Font_.h"
+#include "common/Display/Painter/Primitives_.h"
+#include "common/Display/Painter/Text_.h"
 #include "Display/Display.h"
 #include "FPGA/FPGA.h"
 #include "Panel/Panel.h"
 #include "Settings/Settings.h"
 
-
-using namespace Primitives;
 
 void CalculateConditions(int16 pos0, int16 pos1, CursCntrl::E cursCntrl, bool *cond0, bool *cond1)
 {

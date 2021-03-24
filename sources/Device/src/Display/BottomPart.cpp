@@ -1,8 +1,8 @@
 // 2021/03/24 15:17:08 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
-#include "common/Display/Primitives_.h"
-#include "common/Display/Text_.h"
 #include "common/Display/Font/Font_.h"
+#include "common/Display/Painter/Primitives_.h"
+#include "common/Display/Painter/Text_.h"
 #include "Display/BottomPart.h"
 #include "Display/Display.h"
 #include "Display/Grid.h"
@@ -13,9 +13,6 @@
 #include "VCP/VCP.h"
 #include <cstdio>
 #include <cstring>
-
-
-using namespace Primitives;
 
 
 void BottomPart::Draw()

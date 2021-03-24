@@ -1,6 +1,6 @@
 #include "defines.h"
-#include "common/Display/Primitives_.h"
-#include "common/Display/Text_.h"
+#include "common/Display/Colors_.h"
+#include "common/Display/Painter/Text_.h"
 #include "common/Utils/StringUtils_.h"
 #include "common/Utils/Containers/Buffer_.h"
 #include <cstring>

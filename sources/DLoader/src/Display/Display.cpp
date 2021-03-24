@@ -1,17 +1,14 @@
 #include "defines.h"
 #include "main.h"
 #include "common/Display/Colors_.h"
-#include "common/Display/Painter_.h"
-#include "common/Display/Primitives_.h"
-#include "common/Display/Text_.h"
+#include "common/Display/Font/Font_.h"
+#include "common/Display/Painter/Primitives_.h"
+#include "common/Display/Painter/Text_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Display.h"
 #include "Settings/Settings.h"
 #include <cmath>
-
-
-using namespace Primitives;
 
 
 struct Vector

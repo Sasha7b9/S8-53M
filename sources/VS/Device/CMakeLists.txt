@@ -70,18 +70,17 @@ file(GLOB DISPLAY           ../../Device/src/Display/BottomPart.*
                             ../../Device/src/Display/Colors.*
                             ../../Device/src/Display/Colors_d.cpp
                             ../../Device/src/Display/Display.*
-                            ../../Device/src/Display/DisplayPrimitives.*
                             ../../Device/src/Display/Grid.*
                             ../../Device/src/Display/Painter.*
                             ../../Device/src/Display/PainterData.*
                             ../../Device/src/Display/PainterText.cpp
                                 ../../common/Display/Colors_.*
-                                ../../common/Display/DisplayTypes_.h
-                                ../../common/Display/Painter_.*
-                                ../../common/Display/Primitives_.*
-                                ../../common/Display/Text_.*
                                          src/Display/*.*)
 file(GLOB DISPLAY_FONT          ../../common/Display/Font/*.*)
+file(GLOB DISPLAY_PAINTER       ../../common/Display/Painter/Painter_.*
+                                ../../common/Display/Painter/Primitives_.*
+                                ../../common/Display/Painter/Text_.*
+                            ../../Device/src/Display/Painter/DisplayPrimitives.*)
 file(GLOB LAN               ../../Device/src/LAN/LAN.h
                                          src/LAN/LAN_win.cpp
                             ../../Device/src/LAN/SocketTCP.h
@@ -155,6 +154,7 @@ source_group(libs\\USBD        FILES ${LIBS_USBD})
 source_group(libs\\USBH        FILES ${LIBS_USBH})
 source_group(Display           FILES ${DISPLAY})
 source_group(Display\\Font     FILES ${DISPLAY_FONT})
+source_group(Display\\Painter  FILES ${DISPLAY_PAINTER})
 source_group(LAN               FILES ${LAN})
 source_group(FDrive            FILES ${FDRIVE})
 source_group(FPGA              FILES ${FPGA})
@@ -180,7 +180,8 @@ source_group(Utils             FILES ${UTILS})
 source_group(Utils\\Containers FILES ${UTILS_CONTAINERS})
 
 add_executable(S8-53M ${LIBS_CMSIS} ${LIBS_FATFS} ${LIBS_LWIP} ${LIBS_HAL} ${LIBS_USBD} ${LIBS_USBH} ${DISPLAY}
-          ${DISPLAY_FONT} ${LAN} ${FDRIVE} ${FPGA} ${FPGA_DATA} ${GUI} ${GUI_CONTROLS} ${GUI_DIALOGS} ${GUI_VCP}
+          ${DISPLAY_FONT} ${DISPLAY_PAINTER} ${LAN} ${FDRIVE} ${FPGA} ${FPGA_DATA} ${GUI} ${GUI_CONTROLS} ${GUI_DIALOGS}
+          ${GUI_VCP}
           ${HARDWARE}
           ${HARDWARE_HAL} ${HARDWARE_USBD} ${MENU} ${MENU_ITEMS} ${MENU_PAGES} ${PANEL} ${RESOURCES} ${SETTINGS}
           ${SRC} ${VCP} ${VCP_SCPI} ${VCP_SCPI_UTILS} ${UTILS} ${UTILS_CONTAINERS})

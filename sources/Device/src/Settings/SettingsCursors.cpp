@@ -1,5 +1,5 @@
 #include "defines.h"
-#include "common/Display/Primitives_.h"
+#include "common/Display/Painter/Primitives_.h"
 #include "common/Utils/Math_.h"
 #include "common/Utils/Containers/Values_.h"
 #include "Display/Grid.h"
@@ -8,9 +8,6 @@
 #include "Settings/Settings.h"
 #include <cmath>
 #include <cstring>
-
-
-using namespace Primitives;
 
 
 float Cursors::GetPosU(const Channel &ch, int num)

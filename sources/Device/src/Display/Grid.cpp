@@ -1,12 +1,9 @@
 #include "defines.h"
-#include "common/Display/Primitives_.h"
-#include "common/Display/Text_.h"
+#include "common/Display/Painter/Primitives_.h"
+#include "common/Display/Painter/Text_.h"
 #include "Display/Grid.h"
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
-
-
-using namespace Primitives;
 
 
 int Grid::Bottom()
