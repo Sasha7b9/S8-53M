@@ -69,7 +69,7 @@ String Buffer::Log()
 
     for (uint i = 0; i < Size(); i++)
     {
-        result.Append(Int(data[i]).ToString(false, 1).c_str());
+        result.Append(Int(data[i]).ToText(false, 1).c_str());
 
         if (i != size - 1)
         {

@@ -121,7 +121,7 @@ static void FuncDrawingAdditionSPageMemoryLast()
     int height = 10;
     Region(width, height).Fill(Grid::Right() - width, Grid::TOP, Color::BACK);
     Rectangle(width, height).Draw(Grid::Right() - width, Grid::TOP, Color::FILL);
-    Int(PageMemory::PageLatest::currentSignal + 1).ToString(false, 3).Draw(Grid::Right() - width + 2, Grid::TOP + 1);
+    Int(PageMemory::PageLatest::currentSignal + 1).ToText(false, 3).Draw(Grid::Right() - width + 2, Grid::TOP + 1);
     Text("/").Draw(Grid::Right() - width + 17, Grid::TOP + 1);
 
 //    GF::Int2String(Storage::AllDatas(), false, 3).Draw(Grid::Right() - width + 23, Grid::TOP + 1);
@@ -534,7 +534,7 @@ static void DrawMemoryWave(int num, bool exist)
     ((num == PageMemory::PageInternal::currentSignal) ? Color::FLASH_01 : Color::FILL).SetAsCurrent();
     if (exist)
     {
-        Int(num + 1).ToString(false, 2).Draw(x + 2, y + 1);
+        Int(num + 1).ToText(false, 2).Draw(x + 2, y + 1);
     }
     else
     {

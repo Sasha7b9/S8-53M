@@ -233,7 +233,7 @@ void BottomPart::WriteStringAndNumber(pchar text, int x, int y, int number)
     }
     else
     {
-        buffer.Append(Int(number).ToString(false));
+        buffer.Append(Int(number).ToText(false));
     }
 
     Text(buffer).DrawRelativelyRight(x + 41, y);
@@ -276,9 +276,9 @@ void BottomPart::DrawTime(int x, int y)
     //    }
 
 
-    Int((int)time.hours).ToString(false, 2).Draw(x, y);
+    Int((int)time.hours).ToText(false, 2).Draw(x, y);
     Text(":").Draw(x + dField, y);
-    Int((int)time.minutes).ToString(false, 2).Draw(x + dField + dSeparator, y);
+    Int((int)time.minutes).ToText(false, 2).Draw(x + dField + dSeparator, y);
     Text(":").Draw(x + 2 * dField + dSeparator, y);
-    Int((int)time.seconds).ToString(false, 2).Draw(x + 2 * dField + 2 * dSeparator, y);
+    Int((int)time.seconds).ToText(false, 2).Draw(x + 2 * dField + 2 * dSeparator, y);
 }

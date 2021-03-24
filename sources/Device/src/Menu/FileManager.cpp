@@ -408,7 +408,7 @@ LabelNextNumber:
             {
                 if (*ch == 0x07)    // ≈сли здесь надо записать пор€дковый номер
                 {
-                    std::strcpy(wr, Int(number).ToString(false, *(ch + 1)).c_str());
+                    std::strcpy(wr, Int(number).ToText(false, *(ch + 1)).c_str());
                     wr += std::strlen(buffer);
                     ch++;
                 }
@@ -416,7 +416,7 @@ LabelNextNumber:
                 {
                     if (*ch >= 0x01 && *ch <= 0x06)
                     {
-                        std::strcpy(wr, Int((int)values[*ch]).ToString(false, 2).c_str());
+                        std::strcpy(wr, Int((int)values[*ch]).ToText(false, 2).c_str());
                         wr += std::strlen(buffer);
                     }
                 }

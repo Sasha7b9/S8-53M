@@ -42,7 +42,7 @@ struct Int : public ValueStruct<int>
 {
     Int(int v = 0) : ValueStruct(v) {}
 
-    Text ToString(bool always_sign = false, int num_min_fields = 1);
+    Text ToText(bool always_sign = false, int num_min_fields = 1);
 };
 
 

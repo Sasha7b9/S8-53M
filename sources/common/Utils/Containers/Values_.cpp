@@ -192,7 +192,7 @@ String Phase::ToString()
 }
 
 
-Text Int::ToString(bool always_sign, int num_min_fields)
+Text Int::ToText(bool always_sign, int num_min_fields)
 {
     Text result;
 
