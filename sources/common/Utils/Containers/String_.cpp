@@ -87,6 +87,12 @@ void String::Append(pchar str)
 }
 
 
+void String::Append(const String &str)
+{
+    Append(str.c_str());
+}
+
+
 void String::Append(pchar str, uint num_symbols)
 {
     if (!str || *str == '\0')

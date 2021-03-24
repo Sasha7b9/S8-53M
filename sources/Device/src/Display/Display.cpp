@@ -418,15 +418,16 @@ void Display::WriteValueTrigLevel()
             float rShiftAbs = RShift::ToAbs(rShift, set.chan[trigSource].range);
             trigLev += rShiftAbs;
         }
-        char buffer[20];
-        std::strcpy(buffer, LANG_RU ? "Ур синхр = " : "Trig lvl = ");
-        std::strcat(buffer, Voltage(trigLev).ToString(true).c_str());
+
+        String text(LANG_RU ? "Ур синхр = " : "Trig lvl = ");
+        text.Append(Voltage(trigLev).ToString());
+
         int width = 96;
         int x = (Grid::Width() - width) / 2 + Grid::Left();
         int y = Grid::BottomMessages() - 20;
         Rectangle(width, 10).Draw(x, y, Color::FILL);
         Region(width - 2, 8).Fill(x + 1, y + 1, Color::BACK);
-        Text(buffer).Draw(x + 2, y + 1, Color::FILL);
+        text.Draw(x + 2, y + 1, Color::FILL);
     }
 }
 

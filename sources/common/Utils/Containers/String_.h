@@ -26,10 +26,9 @@ public:
     void Free();
 
     void Append(pchar str);
-
     void Append(pchar str, uint numSymbols);
-
     void Append(char symbol);
+    void Append(const String &str);
     
     uint Size() const;
 
