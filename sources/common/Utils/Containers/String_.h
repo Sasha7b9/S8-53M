@@ -33,6 +33,8 @@ public:
     
     uint Size() const;
 
+    bool ToInt(int *out);
+
     char &operator[](uint i) const;
 
 private:

@@ -181,7 +181,7 @@ bool SCPI::FirstIsInt(puchar buffer, int *value, int min, int max)
         char *n = reinterpret_cast<char *>(std::malloc((uint)(param.numSymbols + 1)));
         std::memcpy(n, param.address, (uint)(param.numSymbols)); //-V575
         n[param.numSymbols] = '\0';
-        bool res = GF::String2Int(n, value) && *value >= min && *value <= max;
+        bool res = String(n).ToInt(value) && *value >= min && *value <= max;
         std::free(n);
         return res;
     }

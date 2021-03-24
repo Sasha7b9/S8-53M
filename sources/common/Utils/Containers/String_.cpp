@@ -217,3 +217,45 @@ char &String::operator[](uint i) const
 
     return buffer[i];
 }
+
+
+bool String::ToInt(int *out)
+{
+    char *str = buffer;
+
+    int sign = str[0] == '-' ? -1 : 1;
+
+    if (str[0] < '0' || str[0] > '9')
+    {
+        ++str;
+    }
+
+    int length = (int)(std::strlen(str));
+
+    if (length == 0)
+    {
+        return false;
+    }
+
+    *out = 0;
+
+    int pow = 1;
+
+    for (int i = length - 1; i >= 0; i--)
+    {
+        int val = str[i] & (~(0x30));
+        if (val < 0 || val > 9)
+        {
+            return false;
+        }
+        *out += val * pow;
+        pow *= 10;
+    }
+
+    if (sign == -1)
+    {
+        *out *= -1;
+    }
+
+    return true;
+}

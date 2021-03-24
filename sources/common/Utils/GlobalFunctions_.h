@@ -21,8 +21,6 @@ namespace GF
 
     String Hex8toString(uint8 value);
 
-    bool String2Int(char *str, int *value);
-
     // ѕреобразует децибелы в текстовую строку.
     String Float2Db(float value, int num_digits);
 
