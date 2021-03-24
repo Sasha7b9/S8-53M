@@ -38,26 +38,27 @@ public:
 
     void DrawBig(int x, int y, uint size);
 
-    int DrawInCenterRect(int x, int y, int width, int height, Color color = Color::Count);
+    int DrawInCenterRect(int x, int y, int width, int height, const Color &color = Color::Count);
 
-    void DrawRelativelyRight(int xRight, int y, Color color = Color::Count);
+    void DrawRelativelyRight(int xRight, int y, const Color &color = Color::Count);
 
     // Выводит текст на прямоугольнике цвета colorBackgound
-    int DrawOnBackground(int x, int y, Color colorBackground);
+    int DrawOnBackground(int x, int y, const Color &colorBackground);
 
-    int DrawWithLimitation(int x, int y, Color color, int limitX, int limitY, int limitWidth, int limitHeight);
+    int DrawWithLimitation(int x, int y, const Color &color, int limitX, int limitY, int limitWidth, int limitHeight);
 
     // Возвращает нижнюю координату прямоугольника.
-    int DrawInBoundedRectWithTransfers(int x, int y, int width, Color colorBackground, Color colorFill);
+    int DrawInBoundedRectWithTransfers(int x, int y, int width, const Color &colorBackground, const Color &colorFill);
 
-    int DrawInRectWithTransfers(int x, int y, int width, int height, Color color = Color::Count);
+    int DrawInRectWithTransfers(int x, int y, int width, int height, const Color &color = Color::Count);
 
     // Пишет строку текста в центре области(x, y, width, height)цветом ColorText на прямоугольнике с шириной бордюра
     // widthBorder цвета colorBackground.
-    void DrawInCenterRectOnBackground(int x, int y, int width, int height, Color colorText, int widthBorder,
-        Color colorBackground);
+    void DrawInCenterRectOnBackground(int x, int y, int width, int height, const Color &colorText, int widthBorder,
+        const Color &colorBackground);
 
-    int DrawInCenterRectAndBoundIt(int x, int y, int width, int height, Color colorBackground, Color colorFill);
+    int DrawInCenterRectAndBoundIt(int x, int y, int width, int height, const Color &colorBackground,
+        const Color &colorFill);
 
 private:
 

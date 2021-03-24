@@ -266,7 +266,7 @@ void Char::Draw4SymbolsInRect(int x, int y, const Color &color)
 }
 
 
-int Text::DrawInCenterRect(int eX, int eY, int width, int eHeight, Color color)
+int Text::DrawInCenterRect(int eX, int eY, int width, int eHeight, const Color &color)
 {
     color.SetAsCurrent();
 
@@ -278,7 +278,7 @@ int Text::DrawInCenterRect(int eX, int eY, int width, int eHeight, Color color)
 }
 
 
-void Text::DrawRelativelyRight(int xRight, int y, Color color)
+void Text::DrawRelativelyRight(int xRight, int y, const Color &color)
 {
     color.SetAsCurrent();
 
@@ -287,7 +287,7 @@ void Text::DrawRelativelyRight(int xRight, int y, Color color)
 }
 
 
-int Text::DrawOnBackground(int x, int y, Color colorBackground)
+int Text::DrawOnBackground(int x, int y, const Color &colorBackground)
 {
     int width = Font::GetLengthText(c_str());
     int height = Font::GetSize();
@@ -340,7 +340,7 @@ static int DrawCharWithLimitation(int eX, int eY, uchar symbol, int limitX, int 
 }
 
 
-int Text::DrawWithLimitation(int x, int y, Color color, int limitX, int limitY, int limitWidth, int limitHeight)
+int Text::DrawWithLimitation(int x, int y, const Color &color, int limitX, int limitY, int limitWidth, int limitHeight)
 {
     color.SetAsCurrent();
     int retValue = x;
@@ -642,7 +642,7 @@ static bool GetHeightTextWithTransfers(int left, int top, int right, pchar text,
 }
 
 
-int Text::DrawInBoundedRectWithTransfers(int x, int y, int width, Color colorBackground, Color colorFill)
+int Text::DrawInBoundedRectWithTransfers(int x, int y, int width, const Color &colorBackground, const Color &colorFill)
 {
     int height = 0;
     GetHeightTextWithTransfers(x + 3, y + 3, x + width - 8, c_str(), &height);
@@ -654,7 +654,7 @@ int Text::DrawInBoundedRectWithTransfers(int x, int y, int width, Color colorBac
 }
 
 
-int Text::DrawInRectWithTransfers(int eX, int eY, int eWidth, int eHeight, Color color)
+int Text::DrawInRectWithTransfers(int eX, int eY, int eWidth, int eHeight, const Color &color)
 {
     color.SetAsCurrent();
 
@@ -717,8 +717,8 @@ int Text::DrawInRectWithTransfers(int eX, int eY, int eWidth, int eHeight, Color
 }
 
 
-void Text::DrawInCenterRectOnBackground(int x, int y, int width, int height, Color colorText, int widthBorder,
-    Color colorBackground)
+void Text::DrawInCenterRectOnBackground(int x, int y, int width, int height, const Color &colorText, int widthBorder,
+    const Color &colorBackground)
 {
     int lenght = Font::GetLengthText(c_str());
     int eX = DrawInCenterRect(x, y, width, height, colorBackground);
@@ -729,7 +729,8 @@ void Text::DrawInCenterRectOnBackground(int x, int y, int width, int height, Col
 }
 
 
-int Text::DrawInCenterRectAndBoundIt(int x, int y, int width, int height, Color colorBackground, Color colorFill)
+int Text::DrawInCenterRectAndBoundIt(int x, int y, int width, int height, const Color &colorBackground,
+    const Color &colorFill)
 {
     Rectangle(width, height).Draw(x, y, colorFill);
     Region(width - 2, height - 2).Fill(x + 1, y + 1, colorBackground);
