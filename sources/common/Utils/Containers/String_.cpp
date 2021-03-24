@@ -180,65 +180,6 @@ uint String::NeedMemory(uint size)
 }
 
 
-static bool ByteFontNotEmpty(int eChar, int byte)
-{
-    static const uint8 *bytes = 0;
-    static int prevChar = -1;
-
-    if (eChar != prevChar)
-    {
-        prevChar = eChar;
-        bytes = Font::font->symbol[prevChar].bytes;
-    }
-
-    return bytes[byte] != 0;
-}
-
-
-static bool BitInFontIsExist(int eChar, int numByte, int bit)
-{
-    static uint8 prevByte = 0;
-    static int prevChar = -1;
-    static int prevNumByte = -1;
-
-    if (prevNumByte != numByte || prevChar != eChar)
-    {
-        prevByte = Font::font->symbol[eChar].bytes[numByte];
-        prevChar = eChar;
-        prevNumByte = numByte;
-    }
-
-    return prevByte & (1 << bit);
-}
-
-
-int String::DrawChar(int eX, int eY, uint8 symbol) const
-{
-    int8 width = (int8)Font::font->symbol[symbol].width;
-    int8 height = (int8)Font::font->height;
-
-    for (int b = 0; b < height; b++)
-    {
-        if (ByteFontNotEmpty(symbol, b))
-        {
-            int x = eX;
-            int y = eY + b + 9 - height;
-            int endBit = 8 - width;
-            for (int bit = 7; bit >= endBit; bit--)
-            {
-                if (BitInFontIsExist(symbol, b, bit))
-                {
-                    Point().Draw(x, y);
-                }
-                x++;
-            }
-        }
-    }
-
-    return eX + width;
-}
-
-
 uint String::Size() const
 {
     if (buffer == nullptr)

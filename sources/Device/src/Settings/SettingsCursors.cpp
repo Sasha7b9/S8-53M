@@ -49,7 +49,7 @@ Time Cursors::GetTime(float shift_cur, TBase::E tBase)
 
 Text Cursors::GetPercentsU(const Channel &source)
 {
-    float dPerc = set.cursors.dU_100percents[source];
+    float dPerc = set.cursors.dU_100percents[source]; 
 
     float dValue = std::fabsf(GetPosU(source, 0) - GetPosU(source, 1));
 

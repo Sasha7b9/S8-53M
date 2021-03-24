@@ -39,8 +39,6 @@ private:
 
     uint NeedMemory(uint size);
 
-    int DrawChar(int eX, int eY, uint8 symbol) const;
-
     char *buffer;
 
     uint capacity;
