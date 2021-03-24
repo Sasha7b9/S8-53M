@@ -592,7 +592,7 @@ void MACaddress::DrawOpened(int x, int y) const
 
 void Choice::DrawClosed(int x, int y) const
 {
-    DrawVolumeButton(x + 1, y + 17, Item::WIDTH_VALUE + 2, Item::HEIGHT_VALUE + 3, 2, Color::MENU_FIELD,
+    DrawVolumeButton(x + 1, y + 17, Item::WIDTH_VALUE + 3, Item::HEIGHT_VALUE + 4, 2, Color::MENU_FIELD,
         Color::MENU_ITEM_BRIGHT, Color::MENU_ITEM_DARK, true);
 
     float deltaY = Step();
