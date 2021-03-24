@@ -43,7 +43,7 @@ static void DrawGovernorChoiceColorFormulaHiPart(const Item *item, int x, int y,
     Color color = ColorScheme::IsWhiteLetters() ? Color::WHITE : Color::BLACK;
     HLine().Draw(y + 1, x, x + width + 3, Color::BorderMenu());
 
-    item->DrawVolumeButton(x + 1, y + 2, width + 2, Item::HEIGHT_VALUE + 3, 2, Color::MENU_ITEM,
+    item->DrawVolumeButton(x + 1, y + 2, width + 3, Item::HEIGHT_VALUE + 3, 2, Color::MENU_ITEM,
         Color::MENU_ITEM_BRIGHT, Color::MENU_ITEM_DARK, pressed);
 
     Text(item->Title()).Draw(x + 6 + delta, y + 6 + delta, color);
@@ -779,7 +779,7 @@ void Page::DrawTitle(int ytop)
     bool shade = CurrentItemIsOpened();
 
     Region(Item::TITLE_WIDTH + 2, height + 2).Fill(x - 1, ytop, Color::BACK);
-    Rectangle(Item::TITLE_WIDTH + 1, height + 1).Draw(x, ytop, Color::BorderMenu());
+    Rectangle(Item::TITLE_WIDTH + 2, height + 3).Draw(x, ytop, Color::BorderMenu());
     
     if (shade)
     {
@@ -792,8 +792,6 @@ void Page::DrawTitle(int ytop)
             Color::MENU_TITLE_BRIGHT, Color::MENU_TITLE_DARK, false);
     }
     
-    VLine().Draw(x, ytop, ytop + HeightOpened(), Color::BorderMenu());
-
     int delta = NeedDrawRegSet(this) ? -10 : 0;
 
     Color colorText = shade ? Color::LightShadingText() : Color::BLACK;
