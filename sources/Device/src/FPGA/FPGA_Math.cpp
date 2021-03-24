@@ -96,9 +96,15 @@ int RShift::ToRel(float rShiftAbs, Range::E range)
 };
 
 
+float RShift::ToAbs(int16 rshift, Range::E range)
+{
+    return (-((float)ZERO - (float)(rshift)) * MathFPGA::absStepRShift[(uint)(range)]);
+}
+
+
 String RShift::ToString(int16 rShiftRel, Range::E range, Divider::E multiplier)
 {
-    float rShiftVal = RSHIFT_2_ABS(rShiftRel, range) * Divider::ToAbs(multiplier);
+    float rShiftVal = RShift::ToAbs(rShiftRel, range) * Divider::ToAbs(multiplier);
 
     return GF::Voltage2String(rShiftVal, true);
 };
@@ -106,7 +112,7 @@ String RShift::ToString(int16 rShiftRel, Range::E range, Divider::E multiplier)
 
 float MathFPGA::VoltageCursor(float shiftCurU, Range::E range, int16 rShift)
 {
-    return MAX_VOLTAGE_ON_SCREEN(range) - shiftCurU * voltsInPixel[range] - RSHIFT_2_ABS(rShift, range);
+    return MAX_VOLTAGE_ON_SCREEN(range) - shiftCurU * voltsInPixel[range] - RShift::ToAbs(rShift, range);
 }
 
 
@@ -114,7 +120,7 @@ void MathFPGA::PointsRelToVoltage(puchar points, int numPoints, Range::E range, 
 {
     int voltInPixel = voltsInPixelInt[range];
     float maxVoltsOnScreen = MAX_VOLTAGE_ON_SCREEN(range);
-    float rShiftAbs = RSHIFT_2_ABS(rShift, range);
+    float rShiftAbs = RShift::ToAbs(rShift, range);
     int diff = (int)((Value::MIN * voltInPixel) + (maxVoltsOnScreen + rShiftAbs) * 20e3F);
     float koeff = 1.0F / 20e3F;
     for (int i = 0; i < numPoints; i++)
@@ -127,7 +133,7 @@ void MathFPGA::PointsRelToVoltage(puchar points, int numPoints, Range::E range, 
 void MathFPGA::PointsVoltageToRel(const float* voltage, int numPoints, Range::E range, int16 rShift, uint8* points)
 {
     float maxVoltOnScreen = MAX_VOLTAGE_ON_SCREEN(range);
-    float rShiftAbs = RSHIFT_2_ABS(rShift, range);
+    float rShiftAbs = RShift::ToAbs(rShift, range);
     float voltInPixel = 1.0F / voltsInPixel[range];
 
     float add = maxVoltOnScreen + rShiftAbs;
@@ -154,7 +160,7 @@ void MathFPGA::PointsVoltageToRel(const float* voltage, int numPoints, Range::E 
 
 uint8 MathFPGA::VoltageToPoint(float voltage, Range::E range, int16 rShift)
 {
-    int relValue = (int)((voltage + MAX_VOLTAGE_ON_SCREEN(range) + RSHIFT_2_ABS(rShift, range)) /
+    int relValue = (int)((voltage + MAX_VOLTAGE_ON_SCREEN(range) + RShift::ToAbs(rShift, range)) /
         voltsInPixel[range] + Value::MIN);
 
     LIMITATION(relValue, relValue, 0, 255);

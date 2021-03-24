@@ -4,8 +4,6 @@
 
 #define MAX_VOLTAGE_ON_SCREEN(range) (MathFPGA::tableScalesRange[(range)] * 5.0F)
 
-#define RSHIFT_2_ABS(rShift, range) (-((float)RShift::ZERO - (float)(rShift)) * MathFPGA::absStepRShift[(uint)(range)])
-
 struct MathFPGA
 {
     static float VoltageCursor(float shiftCurU, Range::E range, int16 rShift);

@@ -16,7 +16,7 @@
 
 #define POINT_2_VOLTAGE(value, range, rShift)                                    \
     (((float)(value) - (float)Value::MIN) * MathFPGA::voltsInPixel[(range)] -     \
-    MAX_VOLTAGE_ON_SCREEN((range)) - RSHIFT_2_ABS((rShift), (range)))
+    MAX_VOLTAGE_ON_SCREEN((range)) - RShift::ToAbs((int16)(rShift), (range)))
 
 #define TSHIFT_2_ABS(tShift, tBase)  (MathFPGA::absStepTShift[(tBase)] * (tShift) * 2.0F)
 
