@@ -1,5 +1,6 @@
 #pragma once
 #include "common/Display/Colors_.h"
+#include "common/Utils/Containers/String_.h"
 
 
 class Char
@@ -24,6 +25,8 @@ private:
 class Text : public String
 {
 public:
+
+    explicit Text() : String() {}
 
     explicit Text(pchar format, ...);
 

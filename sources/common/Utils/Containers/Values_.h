@@ -1,6 +1,6 @@
 // 2021/03/24 10:56:42 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
-#include "common/Utils/Containers/String_.h"
+#include "common/Display/Painter/Text_.h"
 
 
 template<class T>
@@ -42,7 +42,7 @@ struct Int : public ValueStruct<int>
 {
     Int(int v = 0) : ValueStruct(v) {}
 
-    String ToString(bool always_sign = false, int num_min_fields = 1);
+    Text ToString(bool always_sign = false, int num_min_fields = 1);
 };
 
 

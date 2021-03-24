@@ -1,6 +1,7 @@
 #include "defines.h"
-#include "common/Display/Font/Font_.h"
+//#include "common/Display/Font/Font_.h"
 #include "common/Display/Painter/Primitives_.h"
+#include "common/Display/Painter/Text_.h"
 #include "common/Utils/Math_.h"
 #include "GUI/Application.h"
 

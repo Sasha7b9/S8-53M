@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "common/Display/Colors_.h"
 #include "common/Display/Painter/Primitives_.h"
 #include "common/Display/Painter/Text_.h"
 #include "Display/Grid.h"

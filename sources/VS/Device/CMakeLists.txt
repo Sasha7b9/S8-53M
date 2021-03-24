@@ -130,7 +130,7 @@ file(GLOB VCP               ../../Device/src/VCP/*.*)
 file(GLOB VCP_SCPI          ../../Device/src/VCP/SCPI/*.*)
 file(GLOB VCP_SCPI_UTILS    ../../Device/src/VCP/SCPI/Utils/*.*)
 file(GLOB UTILS             ../../Device/src/Utils/*.*
-                                ../../common/Utils/*)
+                                ../../common/Utils/*.*)
 file(GLOB UTILS_CONTAINERS      ../../common/Utils/Containers/*.*)
 file(GLOB GUI                            src/GUI/*.*)
 file(GLOB GUI_CONTROLS                   src/GUI/Controls/*.*)
