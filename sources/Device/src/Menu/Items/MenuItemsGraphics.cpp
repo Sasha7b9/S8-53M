@@ -318,9 +318,7 @@ void MACaddress::DrawValue(int x, int y) const
         {
             Region(10, 8).Fill(x - 1, y, Color::FILL);
         }
-        char buffer[20];
-        std::sprintf(buffer, "%02X", value);
-        Text(buffer).Draw(x, y, gCurDigit == num ? Color::BACK : Color::FILL);
+        String("%02X", value).Draw(x, y, gCurDigit == num ? Color::BACK : Color::FILL);
         x -= 12;
     }
 }
