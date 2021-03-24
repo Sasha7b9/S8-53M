@@ -29,6 +29,8 @@ private:
 
     // Удалить из buffer все цифровые символы кроме num_digits первых
     void RemoveDigits(String &string, int max_digits);
+
+    void ReplacePoints(String &string);
 };
 
 

@@ -57,6 +57,8 @@ Text Float::ToText(bool always_sign, int num_digits)
 
     RemoveDigits(result, num_digits);
 
+    ReplacePoints(result);
+
     return result;
 }
 
@@ -78,6 +80,22 @@ void Float::RemoveDigits(String &string, int max_digits)
         {
             num_digits++;
         }
+    }
+}
+
+
+void Float::ReplacePoints(String &string)
+{
+    char *txt = string.c_str();
+
+    while (txt && *txt)
+    {
+        if (*txt == ',')
+        {
+            *txt = '.';
+        }
+
+        txt++;
     }
 }
 
