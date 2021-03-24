@@ -1422,6 +1422,16 @@
           <GroupName>Display</GroupName>
           <Files>
             <File>
+              <FileName>BottomPart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\BottomPart.h</FilePath>
+            </File>
+            <File>
+              <FileName>BottomPart.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\BottomPart.cpp</FilePath>
+            </File>
+            <File>
               <FileName>Colors_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Display\Colors_.h</FilePath>
@@ -3586,6 +3596,16 @@
         <Group>
           <GroupName>Display</GroupName>
           <Files>
+            <File>
+              <FileName>BottomPart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\BottomPart.h</FilePath>
+            </File>
+            <File>
+              <FileName>BottomPart.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\BottomPart.cpp</FilePath>
+            </File>
             <File>
               <FileName>Colors_.h</FileName>
               <FileType>5</FileType>

@@ -93,15 +93,9 @@ private:
     // Нарисовать маркер смещения по времени.
     static void DrawCursorTShift();
 
-    // Написать информацию под сеткой - в нижней части дисплея.
-    static void DrawLowPart();
-
     static void DrawHiPart();
 
     static void DrawHiRightPart();
-
-    // Вывести текущее время.
-    static void DrawTime(int x, int y);
 
     // Вывести значения курсоров курсорных измерений.
     static void WriteCursors();
@@ -115,8 +109,6 @@ private:
     static int CalculateFreeSize();
 
     static void DrawScaleLine(int x, bool forTrigLev);
-
-    static void WriteTextVoltage(const Channel &ch, int x, int y);
 
     static void FuncOnTimerDisableShowLevelRShiftA();
 
@@ -135,8 +127,6 @@ private:
     static int FirstEmptyString();
 
     static bool NeedForClearScreen();
-
-    static void WriteStringAndNumber(pchar text, int x, int y, int number);
 
     static void DrawTimeForFrame(uint timeMS);
 

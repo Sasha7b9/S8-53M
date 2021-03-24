@@ -66,7 +66,8 @@ file(GLOB LIBS_LWIP         ../../common/_VS_GUI/LwIP/*.*)
 file(GLOB LIBS_HAL          ../../common/_VS_GUI/HAL/*.*)
 file(GLOB LIBS_USBH         ../../common/_VS_GUI/USBH/*.*)
 file(GLOB LIBS_USBD         ../../common/_VS_GUI/USBD/*.*)
-file(GLOB DISPLAY           ../../Device/src/Display/Colors.*
+file(GLOB DISPLAY           ../../Device/src/Display/BottomPart.*
+                            ../../Device/src/Display/Colors.*
                             ../../Device/src/Display/Colors_d.cpp
                             ../../Device/src/Display/Display.*
                             ../../Device/src/Display/DisplayPrimitives.*
