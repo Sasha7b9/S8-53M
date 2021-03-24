@@ -6,7 +6,6 @@
 
 struct MathFPGA
 {
-    static float VoltageCursor(float shiftCurU, Range::E range, int16 rShift);
     static void  PointsRelToVoltage(puchar points, int numPoints, Range::E range, int16 rShift, float *voltage);
     static void	 PointsVoltageToRel(const float *voltage, int numPoints, Range::E range, int16 rShift, uint8 *points);
     static uint8 VoltageToPoint(float voltage, Range::E range, int16 rShift);

@@ -176,6 +176,8 @@ struct Cursors
     // Получить строку курсора напряжения.
     static String GetVoltage(const Channel &source, int numCur);
 
+    static float GetVoltage(float shift_cur, Range::E range, int16 rshift);
+
     // Получить строку курсора времени.
     static String GetTime(const Channel &source, int numCur);
 
