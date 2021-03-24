@@ -89,7 +89,7 @@ void ColorType::CalcSteps()
 
 void ColorType::SetBrightness()
 {
-    brightness = GF::MaxFloat(red / 31.0F, green / 63.0F, blue / 31.0F);
+    brightness = Math::Max(red / 31.0F, green / 63.0F, blue / 31.0F);
 
     CalcSteps();
 }

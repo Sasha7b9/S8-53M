@@ -320,21 +320,6 @@ String GF::Float2Db(float value, int num_digits)
 }
 
 
-float GF::MaxFloat(float val1, float val2, float val3)
-{
-    float retValue = val1;
-    if(val2 > retValue)
-    {
-        retValue = val2;
-    }
-    if(val3 > retValue)
-    {
-        retValue = val3;
-    }
-    return retValue;
-}
-
-
 template<class T>
 T GF::CircleIncrease(T *val, T min, T max)
 {
