@@ -240,7 +240,7 @@ void Display::WriteCursors()
                 Primitives::Rectangle(width, 12).Draw(x0, Grid::TOP, Color::FILL);
                 Region(width - 2, 10).Fill(x0 + 1, Grid::TOP + 1, Color::BACK);
                 Text("1/dT=").Draw(x0 + 1, Grid::TOP + 2, colorText);
-                GF::Freq2String(1.0F / delta).Draw(x0 + 25, Grid::TOP + 2);
+                Frequency(1.0F / delta).ToString().Draw(x0 + 25, Grid::TOP + 2);
             }
         }
     }
@@ -805,7 +805,7 @@ void Display::DrawLowPart()
         }
         else
         {
-            std::strcat(mesFreq, GF::Freq2String(freq).c_str());
+            std::strcat(mesFreq, Frequency(freq).ToString().c_str());
         }
         Text(mesFreq).Draw(x + 3, Grid::Bottom() + 2);
     }

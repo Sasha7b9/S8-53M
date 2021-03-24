@@ -205,36 +205,6 @@ String GF::Phase2String(float phase, bool)
 }
 
 
-String GF::Freq2String(const Float &freq, bool)
-{
-    if(!freq.IsValid())
-    {
-        return EmptyString();
-    }
-
-    char *suffix = 0;
-
-    float frequency = freq;
-
-    if(frequency >= 1e6F)
-    {
-        suffix = LANG_RU ? "ÌÃö" : "MHz";
-        frequency /= 1e6F;
-    }
-    else if (frequency >= 1e3F)
-    {
-        suffix = LANG_RU ? "êÃö" : "kHz";
-        frequency /= 1e3F;
-    }
-    else
-    {
-        suffix = LANG_RU ? "Ãö" : "Hz";
-    }
-
-    return String("%s%s", GF::Float2String(frequency, false, 4).c_str(), suffix);
-}
-
-
 String GF::Float2Db(float value, int num_digits)
 {
     return String("%säÁ", GF::Float2String(value, false, num_digits).c_str());

@@ -67,3 +67,11 @@ struct Time : public Float
 
     String ToString(bool always_sign);
 };
+
+
+struct Frequency : public Float
+{
+    Frequency(float v = 0.0f) : Float(v) {}
+
+    String ToString();
+};

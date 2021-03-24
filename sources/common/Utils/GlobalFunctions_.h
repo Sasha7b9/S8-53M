@@ -25,8 +25,6 @@ namespace GF
 
     bool String2Int(char *str, int *value);
 
-    String Freq2String(const Float &freq, bool always_sign = false);
-
     String Phase2String(float phase, bool);
 
     // ѕреобразует децибелы в текстовую строку.

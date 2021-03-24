@@ -78,3 +78,33 @@ String Time::ToString(bool always_sign)
 
     return String("%s%s", GF::Float2String(time, always_sign, 4).c_str(), suffix);
 }
+
+
+String Frequency::ToString()
+{
+    if (!IsValid())
+    {
+        return EmptyString();
+    }
+
+    char *suffix = 0;
+
+    float frequency = *this;
+
+    if (frequency >= 1e6F)
+    {
+        suffix = LANG_RU ? "ÌÃö" : "MHz";
+        frequency /= 1e6F;
+    }
+    else if (frequency >= 1e3F)
+    {
+        suffix = LANG_RU ? "êÃö" : "kHz";
+        frequency /= 1e3F;
+    }
+    else
+    {
+        suffix = LANG_RU ? "Ãö" : "Hz";
+    }
+
+    return String("%s%s", GF::Float2String(frequency, false, 4).c_str(), suffix);
+}

@@ -44,7 +44,7 @@ static char *Time2StringC(float value, bool always_sign, char *buffer)
 
 static char *Freq2StringC(float value, bool always_sign, char *buffer)
 {
-    return std::strcpy(buffer, GF::Freq2String(value, always_sign).c_str());
+    return std::strcpy(buffer, Frequency(value).ToString().c_str());
 }
 
 static char *Phase2StringC(float value, bool always_sign, char *buffer)
