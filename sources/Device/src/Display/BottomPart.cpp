@@ -233,7 +233,7 @@ void BottomPart::WriteStringAndNumber(pchar text, int x, int y, int number)
     }
     else
     {
-        buffer.Append(Int(number).ToString(true));
+        buffer.Append(Int(number).ToString(false));
     }
 
     Text(buffer).DrawRelativelyRight(x + 41, y);

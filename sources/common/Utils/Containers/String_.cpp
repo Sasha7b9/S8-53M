@@ -16,7 +16,7 @@ pchar const String::_ERROR = "---.---";
 
 String::String() : buffer(nullptr), capacity(0)
 {
-    Set("");
+    Set(" ");
 }
 
 
@@ -137,7 +137,7 @@ void String::Free()
         std::free(buffer);
         buffer = nullptr;
         capacity = 0;
-        Set("");
+        Set(" ");
     }
 }
 
