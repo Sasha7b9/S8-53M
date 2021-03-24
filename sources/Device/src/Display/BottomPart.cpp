@@ -50,15 +50,15 @@ void BottomPart::Draw()
         //        }
     }
 
-    Text(String("ð\xa5%s", TBase::ToString(tBase))).Draw(x, y0);
+    Text("ð\xa5%s", TBase::ToString(tBase)).Draw(x, y0);
 
-    Text(String("\xa5%s", TShift::ToString(tShift).c_str())).Draw(x + 35, y0);
+    Text("\xa5%s", TShift::ToString(tShift).c_str()).Draw(x + 35, y0);
 
     if (ModeWork::IsDirect())
     {
         pchar source[3] = { "1", "2", "\x82" };
 
-        Text(String("ñ\xa5\x10%s", source[TrigSource::Get()])).Draw(x, y1, Color::Trig());
+        Text("ñ\xa5\x10%s", source[TrigSource::Get()]).Draw(x, y1, Color::Trig());
     }
 
     if (ModeWork::IsDirect())
@@ -85,7 +85,7 @@ void BottomPart::Draw()
             "\xb1\xb2"
         };
 
-        Text(String("\xa5\x10%s\x10\xa5\x10%s\x10\xa5\x10", couple[TrigInput::Get()], polar[TrigPolarity::Get()])).Draw(x + 18, y1);
+        Text("\xa5\x10%s\x10\xa5\x10%s\x10\xa5\x10", couple[TrigInput::Get()], polar[TrigPolarity::Get()]).Draw(x + 18, y1);
         Char(filtr[TrigInput::Get()][0]).Draw(x + 45, y1);
         Char(filtr[TrigInput::Get()][1]).Draw(x + 53, y1);
     }
@@ -99,7 +99,7 @@ void BottomPart::Draw()
             '\xb0'
         };
 
-        Text(String("\xa5\x10%c", mode[StartMode::Get()])).Draw(x + 63, y1);
+        Text("\xa5\x10%c", mode[StartMode::Get()]).Draw(x + 63, y1);
     }
 
     x += 82;

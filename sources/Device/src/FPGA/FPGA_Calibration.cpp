@@ -253,17 +253,17 @@ void FuncAttScreen()
 
                 for (int i = 0; i < Range::Count; i++)
                 {
-                    Text(String("%d", RSHIFT_ADD(ChA, i, 0))).Draw(95 + i * 16 + dX, 55 + dY, Color::FILL);
-                    Text(String("%d", RSHIFT_ADD(ChA, i, 1))).Draw(95 + i * 16 + dX, 65 + dY, Color::FILL);
-                    Text(String("%d", RSHIFT_ADD(ChB, i, 0))).Draw(95 + i * 16 + dX, 80 + dY, Color::FILL);
-                    Text(String("%d", RSHIFT_ADD(ChB, i, 1))).Draw(95 + i * 16 + dX, 90 + dY, Color::FILL);
+                    Text("%d", RSHIFT_ADD(ChA, i, 0)).Draw(95 + i * 16 + dX, 55 + dY, Color::FILL);
+                    Text("%d", RSHIFT_ADD(ChA, i, 1)).Draw(95 + i * 16 + dX, 65 + dY, Color::FILL);
+                    Text("%d", RSHIFT_ADD(ChB, i, 0)).Draw(95 + i * 16 + dX, 80 + dY, Color::FILL);
+                    Text("%d", RSHIFT_ADD(ChB, i, 1)).Draw(95 + i * 16 + dX, 90 + dY, Color::FILL);
                 }
                 
-                Text(String("Коэффициент калибровки 1к : %f, %d", set.chan[ChA].stretch_ADC,
-                    (int)(set.chan[ChA].stretch_ADC * 0x80))).Draw(10 + dX, 110 + dY, Color::FILL);
+                Text("Коэффициент калибровки 1к : %f, %d", set.chan[ChA].stretch_ADC,
+                    (int)(set.chan[ChA].stretch_ADC * 0x80)).Draw(10 + dX, 110 + dY, Color::FILL);
 
-                Text(String("Коэфффициент калибровки 2к : %f, %d", set.chan[ChB].stretch_ADC,
-                    (int)(set.chan[ChA].stretch_ADC * 0x80))).Draw(10 + dX, 130 + dY, Color::FILL);
+                Text("Коэфффициент калибровки 2к : %f, %d", set.chan[ChB].stretch_ADC,
+                    (int)(set.chan[ChA].stretch_ADC * 0x80)).Draw(10 + dX, 130 + dY, Color::FILL);
 
                 DrawParametersChannel(ChA, 10 + dX, 150 + dY, false);
                 DrawParametersChannel(ChB, 10 + dX, 200 + dY, false);
