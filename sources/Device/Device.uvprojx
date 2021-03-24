@@ -1988,16 +1988,6 @@
               <FilePath>..\common\Utils\Debug_.cpp</FilePath>
             </File>
             <File>
-              <FileName>GlobalFunctions_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Utils\GlobalFunctions_.h</FilePath>
-            </File>
-            <File>
-              <FileName>GlobalFunctions_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Utils\GlobalFunctions_.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Math_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Utils\Math_.h</FilePath>
@@ -4161,16 +4151,6 @@
               <FileName>Debug_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Utils\Debug_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>GlobalFunctions_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Utils\GlobalFunctions_.h</FilePath>
-            </File>
-            <File>
-              <FileName>GlobalFunctions_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Utils\GlobalFunctions_.cpp</FilePath>
             </File>
             <File>
               <FileName>Math_.h</FileName>

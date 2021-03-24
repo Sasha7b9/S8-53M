@@ -1,5 +1,4 @@
 #include "defines.h"
-#include "common/Utils/GlobalFunctions_.h"
 #include "common/Utils/Math_.h"
 #include "common/Utils/Containers/Values_.h"
 #include "FPGA/FPGA.h"

@@ -1,7 +1,6 @@
 #include "defines.h"
 #include "common/Hardware/Sound_.h"
 #include "common/Hardware/HAL/HAL_.h"
-#include "common/Utils/GlobalFunctions_.h"
 #include "common/Utils/Math_.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/HelpContent.h"

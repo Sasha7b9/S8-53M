@@ -1,6 +1,6 @@
 #include "defines.h"
 #include "common/Log_.h"
-#include "common/Utils/GlobalFunctions_.h"
+#include "common/Utils/Containers/String_.h"
 #include "LAN/LAN.h"
 #include "VCP/SCPI/SCPI.h"
 #include "VCP/SCPI/Utils/StringsSCPI.h"

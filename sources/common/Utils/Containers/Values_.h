@@ -22,6 +22,8 @@ struct Float : public ValueStruct<float>
     Float(float v = 0.0f) : ValueStruct(v) {}
 
     String ToString(bool always_sign, int num_digits);
+
+    int NumDigitsInIntPart(float val);
 };
 
 

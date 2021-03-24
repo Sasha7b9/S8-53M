@@ -3,7 +3,6 @@
 #include "common/Display/Primitives_.h"
 #include "common/Display/Text_.h"
 #include "common/Hardware/HAL/HAL_.h"
-#include "common/Utils/GlobalFunctions_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Grid.h"
 #include "Menu/Menu.h"

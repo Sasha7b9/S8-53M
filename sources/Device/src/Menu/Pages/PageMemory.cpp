@@ -3,7 +3,6 @@
 #include "common/Display/Text_.h"
 #include "common/Display/Font/Font_.h"
 #include "common/Hardware/Sound_.h"
-#include "common/Utils/GlobalFunctions_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Grid.h"
 #include "FDrive/FDrive.h"

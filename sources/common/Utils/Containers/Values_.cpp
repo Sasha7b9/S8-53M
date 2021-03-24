@@ -1,6 +1,5 @@
 // 2021/03/24 10:56:47 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
-#include "common/Utils/GlobalFunctions_.h"
 #include "common/Utils/Containers/Values_.h"
 #include "Settings/Settings.h"
 #include <cmath>
@@ -36,7 +35,7 @@ String Float::ToString(bool always_sign, int num_digits)
 
     format[1] = (char)num_digits + 0x30;
 
-    int num_digits_in_int = GF::NumDigitsInIntPart(value);
+    int num_digits_in_int = NumDigitsInIntPart(value);
 
     format[3] = (char)((num_digits - num_digits_in_int) + 0x30);
     if (num_digits == num_digits_in_int)
@@ -50,9 +49,9 @@ String Float::ToString(bool always_sign, int num_digits)
 
     float val = (float)(std::atof(buffer)); //-V2508
 
-    if (GF::NumDigitsInIntPart(val) != num_digits_in_int)
+    if (NumDigitsInIntPart(val) != num_digits_in_int)
     {
-        num_digits_in_int = GF::NumDigitsInIntPart(val);
+        num_digits_in_int = NumDigitsInIntPart(val);
         format[3] = (char)((num_digits - num_digits_in_int) + 0x30);
 
         if (num_digits == num_digits_in_int)
@@ -250,4 +249,35 @@ String Uint16::ToStringBin()
 String Decibel::ToString(int num_digits)
 {
     return String("%säÁ", Float::ToString(false, num_digits).c_str());
+}
+
+
+int Float::NumDigitsInIntPart(float val)
+{
+    float fabsValue = std::fabsf(val);
+
+    int numDigitsInInt = 0;
+
+    if (fabsValue >= 10000)
+    {
+        numDigitsInInt = 5;
+    }
+    else if (fabsValue >= 1000)
+    {
+        numDigitsInInt = 4;
+    }
+    else if (fabsValue >= 100)
+    {
+        numDigitsInInt = 3;
+    }
+    else if (fabsValue >= 10)
+    {
+        numDigitsInInt = 2;
+    }
+    else
+    {
+        numDigitsInInt = 1;
+    }
+
+    return numDigitsInInt;
 }

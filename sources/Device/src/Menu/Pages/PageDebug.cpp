@@ -4,7 +4,6 @@
 #include "common/Display/Text_.h"
 #include "common/Hardware/Sound_.h"
 #include "common/Hardware/HAL/HAL_.h"
-#include "common/Utils/GlobalFunctions_.h"
 #include "Display/Grid.h"
 #include "FDrive/FDrive.h"
 #include "FPGA/FPGA.h"

@@ -1140,16 +1140,6 @@
           <GroupName>Utils</GroupName>
           <Files>
             <File>
-              <FileName>GlobalFunctions_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Utils\GlobalFunctions_.h</FilePath>
-            </File>
-            <File>
-              <FileName>GlobalFunctions_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Utils\GlobalFunctions_.cpp</FilePath>
-            </File>
-            <File>
               <FileName>StringUtils_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Utils\StringUtils_.cpp</FilePath>
@@ -2331,16 +2321,6 @@
         <Group>
           <GroupName>Utils</GroupName>
           <Files>
-            <File>
-              <FileName>GlobalFunctions_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Utils\GlobalFunctions_.h</FilePath>
-            </File>
-            <File>
-              <FileName>GlobalFunctions_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Utils\GlobalFunctions_.cpp</FilePath>
-            </File>
             <File>
               <FileName>StringUtils_.cpp</FileName>
               <FileType>8</FileType>
