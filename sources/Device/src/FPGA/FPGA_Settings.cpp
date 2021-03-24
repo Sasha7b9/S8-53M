@@ -438,7 +438,7 @@ void TShift::Load()
 
 String TShift::ToString(int16 tshift_rel)
 {
-    float tShiftVal = TSHIFT_2_ABS(tshift_rel, TBase::Get());
+    float tShiftVal = TShift::ToAbs(tshift_rel, TBase::Get());
 
     return GF::Time2String(tShiftVal, true);
 }

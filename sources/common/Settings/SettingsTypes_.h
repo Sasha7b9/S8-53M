@@ -736,41 +736,6 @@ struct TrigModeFind {
 };
 
 
-struct TShift
-{
-    static void Set(int tshift);
-
-    static int16 Get();
-
-    static void Load();
-
-    // Установить добавочное смещение по времени для режима рандомизатора. В каждой развёртке это смещение должно быть
-    // разное.
-    static void SetDelta(int16 shift);
-
-    // Возвращает установленное смещение по времени в текстовом виде, пригодном для вывода на экран
-    static String ToString(int16 tshift_rel);
-
-    // Смещение по времени в точках экрана. Т.к. на канал у нас работают два АЦП поочерёдно, это значение отличается от
-    // засылаемого в аппаратную часть в два раза
-    static int InPoints(PeackDetMode::E peakDet);
-
-    // Минимальное смещение по времени, которое может быть записано в аппаратную часть.
-    static int16 Min();
-
-    // Смещение по времени, соответствующее позиции TPos.
-    static int16 Zero();
-
-    // Смещение отображаемого участка сигнала относительно начала памяти.
-    static int16 GetInMemory();
-    static void SetInMemory(int16 shift);
-
-    static const int NULL_VALUE = 1000000;
-
-    static const int16 MAX = 16000;
-};
-
-
 // Масштаб по времени
 struct TBase
 {
@@ -827,6 +792,44 @@ struct TBase
 
     static E MIN_P2P;               // С этой развёртки начинается поточечный вывод
     static E MIN_PEAK_DET;
+};
+
+
+struct TShift
+{
+    static void Set(int tshift);
+
+    static int16 Get();
+
+    static void Load();
+
+    // Установить добавочное смещение по времени для режима рандомизатора. В каждой развёртке это смещение должно быть
+    // разное.
+    static void SetDelta(int16 shift);
+
+    // Возвращает установленное смещение по времени в текстовом виде, пригодном для вывода на экран
+    static String ToString(int16 tshift_rel);
+
+    // Смещение по времени в точках экрана. Т.к. на канал у нас работают два АЦП поочерёдно, это значение отличается от
+    // засылаемого в аппаратную часть в два раза
+    static int InPoints(PeackDetMode::E peakDet);
+
+    // Минимальное смещение по времени, которое может быть записано в аппаратную часть.
+    static int16 Min();
+
+    // Смещение по времени, соответствующее позиции TPos.
+    static int16 Zero();
+
+    // Смещение отображаемого участка сигнала относительно начала памяти.
+    static int16 GetInMemory();
+    static void SetInMemory(int16 shift);
+
+    // tshift может принимать нецелые значения в результате расчёта
+    static float ToAbs(float tshift, TBase::E tbase);
+
+    static const int NULL_VALUE = 1000000;
+
+    static const int16 MAX = 16000;
 };
 
 

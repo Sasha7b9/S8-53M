@@ -287,7 +287,7 @@ void TBase::Set(TBase::E tBase)
     }
     if (tBase < TBase::Count)
     {
-        float tShiftAbsOld = TSHIFT_2_ABS(TShift::Get(), TBase::Get());
+        float tShiftAbsOld = TShift::ToAbs(TShift::Get(), TBase::Get());
         set.time.base = tBase;
         Load();
         TShift::Set((int)(TSHIFT_2_REL(tShiftAbsOld, TBase::Get())));
@@ -703,4 +703,10 @@ int ENumMinMax::ToAbs()
 int16 RShift::STEP()
 {
     return (int16)(((RShift::MAX - RShift::MIN) / 24) / Grid::Delta());
+}
+
+
+float TShift::ToAbs(float tshift, TBase::E tbase)
+{
+    return (MathFPGA::absStepTShift[(tbase)] * (tshift) * 2.0F);
 }

@@ -367,7 +367,7 @@ Float Processing::CalculatePeriod(Channel::E ch)
 
             EXIT_IF_ERRORS_FLOAT(firstIntersection, secondIntersection);
 
-            float per = TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
+            float per = TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
 
             period[ch] = per;
             periodIsCaclulating[ch] = true;
@@ -535,7 +535,7 @@ Float Processing::CalculateDurationPlus(Channel::E ch)
 
     EXIT_IF_ERROR_FLOAT(secondIntersection);
 
-    return TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
+    return TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
 }
 
 Float Processing::CalculateDurationMinus(Channel::E ch)
@@ -556,7 +556,7 @@ Float Processing::CalculateDurationMinus(Channel::E ch)
 
     EXIT_IF_ERROR_FLOAT(secondIntersection);
 
-    return TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
+    return TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
 }
 
 Float Processing::CalculateTimeNarastaniya(Channel::E ch)   // WARN Здесь, возможно, нужно увеличить точность - брать не
@@ -583,7 +583,7 @@ Float Processing::CalculateTimeNarastaniya(Channel::E ch)   // WARN Здесь, возмо
 
     EXIT_IF_ERROR_FLOAT(secondIntersection);
 
-    float retValue = TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
+    float retValue = TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
 
     if (set.measures.marked.Is(Measure::TimeNarastaniya))
     {
@@ -619,7 +619,7 @@ Float Processing::CalculateTimeSpada(Channel::E ch)                          // 
 
     EXIT_IF_ERROR_FLOAT(secondIntersection);
 
-    float result = TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
+    float result = TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
 
     if (set.measures.marked.Is(Measure::TimeSpada))
     {
@@ -914,7 +914,7 @@ Float Processing::CalculateDelayPlus(Channel::E ch)
 
     EXIT_IF_ERROR_FLOAT(secondIntersection);
 
-    return TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
+    return TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
 }
 
 Float Processing::CalculateDelayMinus(Channel::E ch)
@@ -951,7 +951,7 @@ Float Processing::CalculateDelayMinus(Channel::E ch)
 
     EXIT_IF_ERROR_FLOAT(secondIntersection);
 
-    return TSHIFT_2_ABS((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
+    return TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
 }
 
 Float Processing::CalculatePhazaPlus(Channel::E ch)
