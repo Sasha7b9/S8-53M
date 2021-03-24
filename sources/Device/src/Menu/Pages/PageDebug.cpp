@@ -688,7 +688,7 @@ static void OnRegSet_SerialNumber(int /*angle*/)
 {
 //    typedef int(*pFunc)(int *, int, int);
 //
-//    pFunc p = angle > 0 ? GF::CircleIncrease<int> : GF::CircleDecrease<int>;
+//    pFunc p = angle > 0 ? Math::CircleIncrease<int> : Math::CircleDecrease<int>;
 //
 //    ACCESS_EXTRAMEM(StructForSN, s);
 //

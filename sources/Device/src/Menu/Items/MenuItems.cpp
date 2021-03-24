@@ -180,7 +180,7 @@ float Choice::Step() const
             {
                 return delta;
             }
-            GF::CircleIncrease<int8>(own->cell, 0, (int8)(NumSubItems() - 1));
+            Math::CircleIncrease<int8>(own->cell, 0, (int8)(NumSubItems() - 1));
         }
         else if (tsChoice.inMoveDecrease == 1)
         {
@@ -190,7 +190,8 @@ float Choice::Step() const
             {
                 return delta;
             }
-            GF::CircleDecrease<int8>(own->cell, 0, (int8)(NumSubItems() - 1));
+
+            Math::CircleDecrease<int8>(own->cell, 0, (int8)(NumSubItems() - 1));
         }
         tsChoice.choice = 0;
         FuncOnChanged(IsActive());
@@ -475,7 +476,7 @@ void GovernorColor::ShortPress()
     }
     if (IsOpened())
     {
-        GF::CircleIncrease<int8>(&(OwnData()->colorType->currentField), 0, 3);
+        Math::CircleIncrease<int8>(&(OwnData()->colorType->currentField), 0, 3);
     }
     else
     {
@@ -488,7 +489,7 @@ void MACaddress::ShortPress()
 {
     if (IsOpened())
     {
-        GF::CircleIncrease<int8>(&gCurDigit, 0, 5);
+        Math::CircleIncrease<int8>(&gCurDigit, 0, 5);
     }
 }
 

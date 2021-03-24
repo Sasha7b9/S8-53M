@@ -8,17 +8,6 @@
 #include <cstring>
 #include <limits>
 
-namespace GF
-{
-    template int8 CircleIncrease(int8 *val, int8 min, int8 max);
-    template int16 CircleIncrease(int16 *val, int16 min, int16 max);
-    template int CircleIncrease(int *val, int min, int max);
-
-    template int8 CircleDecrease(int8 *val, int8 min, int8 max);
-    template int16 CircleDecrease(int16 *val, int16 min, int16 max);
-    template int CircleDecrease(int *val, int min, int max);
-}
-
 
 String GF::FloatFract2String(float value, bool alwaysSign)
 {
@@ -317,34 +306,6 @@ String GF::Freq2String(const Float &freq, bool)
 String GF::Float2Db(float value, int num_digits)
 {
     return String("%s‰¡", GF::Float2String(value, false, num_digits).c_str());
-}
-
-
-template<class T>
-T GF::CircleIncrease(T *val, T min, T max)
-{
-    (*val)++;
-
-    if ((*val) > max)
-    {
-        (*val = min);
-    }
-
-    return (*val);
-}
-
-
-template<class T>
-T GF::CircleDecrease(T *val, T min, T max)
-{
-    (*val)--;
-
-    if((*val) < min)
-    {
-        (*val) = max;
-    }
-
-    return *val;
 }
 
 

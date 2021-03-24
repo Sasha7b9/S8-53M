@@ -95,12 +95,12 @@ void PressSB_MemLastSelect()
 
 void PressSB_MemLast_Next()
 {
-//    GF::CircleIncrease<int16>(&PageMemory::PageLatest::currentSignal, 0, (int16)(Storage::AllDatas() - 1));
+//    Math::CircleIncrease<int16>(&PageMemory::PageLatest::currentSignal, 0, (int16)(Storage::AllDatas() - 1));
 }
 
 void PressSB_MemLast_Prev()
 {
-//    GF::CircleDecrease<int16>(&PageMemory::PageLatest::currentSignal, 0, (int16)(Storage::AllDatas() - 1));
+//    Math::CircleDecrease<int16>(&PageMemory::PageLatest::currentSignal, 0, (int16)(Storage::AllDatas() - 1));
 }
 
 static void RotateSB_MemLast(int /*angle*/)
@@ -368,9 +368,9 @@ void OnMemExtSetMaskNameRegSet(int angle, int maxIndex)
 {
     int8(*func[3])(int8 *, int8, int8) =
     {
-        GF::CircleDecrease<int8>,
-        GF::CircleDecrease<int8>,
-        GF::CircleIncrease<int8>
+        Math::CircleDecrease<int8>,
+        Math::CircleDecrease<int8>,
+        Math::CircleIncrease<int8>
     };
 
     Color::ResetFlash();
@@ -572,11 +572,11 @@ static void FuncOnRegSetMemInt(int delta)
 
     if (delta < 0)
     {
-        GF::CircleDecrease<int8>(&PageMemory::PageInternal::currentSignal, 0, MAX_NUM_SAVED_WAVES - 1);
+        Math::CircleDecrease<int8>(&PageMemory::PageInternal::currentSignal, 0, MAX_NUM_SAVED_WAVES - 1);
     }
     else if (delta > 0)
     {
-        GF::CircleIncrease<int8>(&PageMemory::PageInternal::currentSignal, 0, MAX_NUM_SAVED_WAVES - 1);
+        Math::CircleIncrease<int8>(&PageMemory::PageInternal::currentSignal, 0, MAX_NUM_SAVED_WAVES - 1);
     }
 
 //    EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
@@ -681,7 +681,7 @@ static void DrawSB_MemInt_ModeShow(int x, int y)
 
 static void PressSB_MemInt_ModeShow()
 {
-    GF::CircleIncrease<int8>((int8*)&set.memory.modeShowIntMem, 0, 2);
+    Math::CircleIncrease<int8>((int8*)&set.memory.modeShowIntMem, 0, 2);
 }
 
 static const arrayHints hintsMemIntModeShow =

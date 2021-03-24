@@ -48,10 +48,4 @@ namespace GF
     void IntToStrCat(char *_buffer, int _value);
 
     String LogArrayUint8(uint8 *array, uint size);
-
-    // Увеличивает значение по адресу val на 1. Затем, если результат превышает max, приравинвает его к min
-    template<class T> T CircleIncrease(T *val, T min, T max);
-
-    // Умеьшает значение по адресу val на 1. Затем, если результат меньше min, приравнивает его max
-    template<class T> T CircleDecrease(T *val, T min, T max);
 }

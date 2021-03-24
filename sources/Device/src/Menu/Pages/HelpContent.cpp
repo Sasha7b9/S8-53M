@@ -4,6 +4,7 @@
 #include "common/Display/Text_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Utils/GlobalFunctions_.h"
+#include "common/Utils/Math_.h"
 #include "Display/Grid.h"
 #include "Menu/Pages/HelpContent.h"
 #include "Menu/Pages/HelpContentPages.h"
@@ -91,7 +92,7 @@ void PageHelpContent::NextParagraph()
 {
     if(currentPage->OwnData()->type == TypePageHelp::Content)
     {
-        GF::CircleIncrease<int>(&currentParagraph, 0, NumParagraphs(currentPage) - 1);
+        Math::CircleIncrease<int>(&currentParagraph, 0, NumParagraphs(currentPage) - 1);
     }
 }
 
@@ -99,7 +100,7 @@ void PageHelpContent::PrevParagraph()
 {
     if(currentPage->OwnData()->type == TypePageHelp::Content)
     {
-        GF::CircleDecrease<int>(&currentParagraph, 0, NumParagraphs(currentPage) - 1);
+        Math::CircleDecrease<int>(&currentParagraph, 0, NumParagraphs(currentPage) - 1);
     }
 }
 

@@ -16,6 +16,13 @@ template float Math::Limitation(float, float, float);
 template void Math::Sort(int *, int *);
 template float Math::Max(float, float, float);
 
+template int8 Math::CircleIncrease(int8 *val, int8 min, int8 max);
+template int16 Math::CircleIncrease(int16 *val, int16 min, int16 max);
+template int Math::CircleIncrease(int *val, int min, int max);
+template int8 Math::CircleDecrease(int8 *val, int8 min, int8 max);
+template int16 Math::CircleDecrease(int16 *val, int16 min, int16 max);
+template int Math::CircleDecrease(int *val, int min, int max);
+
 
 float Math::Pi = 3.14159265358979323846F;
 
@@ -327,4 +334,32 @@ void Math::Limitation(T *value, T min, T max)
     {
         *value = max;
     }
+}
+
+
+template<class T>
+T Math::CircleIncrease(T *val, T min, T max)
+{
+    (*val)++;
+
+    if ((*val) > max)
+    {
+        (*val = min);
+    }
+
+    return (*val);
+}
+
+
+template<class T>
+T Math::CircleDecrease(T *val, T min, T max)
+{
+    (*val)--;
+
+    if ((*val) < min)
+    {
+        (*val) = max;
+    }
+
+    return *val;
 }

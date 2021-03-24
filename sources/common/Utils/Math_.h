@@ -56,6 +56,10 @@ namespace Math
     template<class T> T Limitation(T val, T min, T max);
     template<class T> void Sort(T *value1, T *value2);
     template<class T> T Max(T value1, T value2, T value3);
+    // Увеличивает значение по адресу val на 1. Затем, если результат превышает max, приравинвает его к min
+    template<class T> T CircleIncrease(T *val, T min, T max);
+    // Умеьшает значение по адресу val на 1. Затем, если результат меньше min, приравнивает его max
+    template<class T> T CircleDecrease(T *val, T min, T max);
 
     extern float Pi;
 }

@@ -41,14 +41,14 @@ void SetCursSource(const Channel &ch)
 
 void IncCursCntrlU(const Channel &ch)
 {
-    GF::CircleIncrease<int8>((int8*)&set.cursors.cntrlU[ch], 0, 3);
+    Math::CircleIncrease<int8>((int8*)&set.cursors.cntrlU[ch], 0, 3);
 }
 
 
 
 void IncCursCntrlT(const Channel &ch)
 {
-    GF::CircleIncrease<int8>((int8*)&set.cursors.cntrlT[ch], 0, 3);
+    Math::CircleIncrease<int8>((int8*)&set.cursors.cntrlT[ch], 0, 3);
 }
 
 
@@ -453,7 +453,7 @@ static const arrayHints hintsSetPointsPercents =
 
 static void PressSB_Cursors_PointsPercents()
 {
-    GF::CircleIncrease<int8>((int8 *)&set.cursors.movement, 0, 1);
+    Math::CircleIncrease<int8>((int8 *)&set.cursors.movement, 0, 1);
 }
 
 static void DrawSB_Cursors_PointsPercents(int x, int y)
