@@ -24,7 +24,5 @@ namespace GF
     // ѕреобразует децибелы в текстовую строку.
     String Float2Db(float value, int num_digits);
 
-    void IntToStrCat(char *_buffer, int _value);
-
     String LogArrayUint8(uint8 *array, uint size);
 }
