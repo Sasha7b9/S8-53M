@@ -1,5 +1,6 @@
 #pragma once
 #include "common/Hardware/HAL/HAL_.h"
+#include "common/Settings/SettingsTypes_.h"
 
 
 #define MIN_VALUE_SCREEN 0
@@ -66,6 +67,8 @@ struct Value
     static const uint8 AVE = 127;
     static const uint8 MAX = 252;
     static const uint8 NONE = 0;
+
+    static void PointsToVoltage(puchar points, int numPoints, Range::E range, int16 rShift, float *voltage);
 };
 
 

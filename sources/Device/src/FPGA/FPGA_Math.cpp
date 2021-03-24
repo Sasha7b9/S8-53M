@@ -110,7 +110,7 @@ String RShift::ToString(int16 rShiftRel, Range::E range, Divider::E multiplier)
 };
 
 
-void MathFPGA::PointsRelToVoltage(puchar points, int numPoints, Range::E range, int16 rShift, float* voltage)
+void Value::PointsToVoltage(puchar points, int numPoints, Range::E range, int16 rShift, float* voltage)
 {
     int voltInPixel = voltsInPixelInt[range];
     float maxVoltsOnScreen = MAX_VOLTAGE_ON_SCREEN(range);
