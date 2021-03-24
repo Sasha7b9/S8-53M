@@ -41,7 +41,13 @@ private:
 
     bool Allocate(uint size);
 
+    uint NeedMemory(uint size);
+
     char *buffer;
+
+    uint capacity;
+
+    static const uint SIZE_SEGMENT = 32;
 };
 
 

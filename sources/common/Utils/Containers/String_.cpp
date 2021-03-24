@@ -2,6 +2,7 @@
 #include "common/Display/Primitives_.h"
 #include "common/Display/Text_.h"
 #include "common/Utils/StringUtils_.h"
+#include "common/Utils/Containers/Buffer_.h"
 #include <cstring>
 #include <cstdio>
 #include <cstdlib>
@@ -11,16 +12,14 @@
 pchar const String::_ERROR = "---.---";
 
 
-String::String() : buffer(nullptr)
+String::String() : buffer(nullptr), capacity(0)
 {
     Set("");
 }
 
 
-String::String(const String &rhs) : buffer(nullptr)
+String::String(const String &rhs) : buffer(nullptr), capacity(0)
 {
-    Set("");
-
     if (Allocate(std::strlen(rhs.c_str()) + 1))
     {
         std::strcpy(buffer, rhs.c_str());
@@ -28,10 +27,8 @@ String::String(const String &rhs) : buffer(nullptr)
 }
 
 
-String::String(char symbol) : buffer(nullptr)
+String::String(char symbol) : buffer(nullptr), capacity(0)
 {
-    Set("");
-
     if (Allocate(2))
     {
         buffer[0] = symbol;
@@ -40,80 +37,53 @@ String::String(char symbol) : buffer(nullptr)
 }
 
 
-String::String(pchar format, ...) : buffer(nullptr)
+String::String(pchar format, ...) : buffer(nullptr), capacity(0)
 {
-    Set("");
+#define SIZE_TEMP_BUFFER 1024
 
-    if (format == nullptr)
-    {
-        return;
-    }
-
-    static const int SIZE = 127;
-
-    char buf[SIZE + 1];
+    char temp_buffer[1024];
 
     std::va_list args;
     va_start(args, format);
-    int numSymbols = std::vsprintf(buf, format, args);
-    va_end(args);
+    uint num_symbols = (uint)std::vsprintf(temp_buffer, format, args);
 
-    if (numSymbols < 0 || numSymbols > SIZE)
+    if (capacity < num_symbols)
     {
-#define ERROR_STRING "Буфер слишком мал"
-
-        Allocate(std::strlen(ERROR_STRING) + 1);
-
-        std::strcpy(buffer, ERROR_STRING);
+        Allocate(num_symbols);
     }
-    else if (Allocate(std::strlen(buf) + 1))
+
+    if (buffer)
     {
-        std::strcpy(buffer, buf);
+        std::strcpy(buffer, temp_buffer);
     }
 }
 
 
 void String::Set(pchar format, ...)
 {
-    Free();
+#define SIZE_TEMP_BUFFER 1024
 
-    if(format)
+    char temp_buffer[1024];
+
+    std::va_list args;
+    va_start(args, format);
+    uint num_symbols = (uint)std::vsprintf(temp_buffer, format, args);
+
+    if (capacity < num_symbols)
     {
-        static const int SIZE = 100;
-        char buf[SIZE + 1];
+        Allocate(num_symbols);
+    }
 
-        std::va_list args;
-        va_start(args, format);
-        int numSymbols = std::vsprintf(buf, format, args);
-        va_end(args);
-
-        if(numSymbols < 0 || numSymbols > SIZE)
-        {
-            std::strcpy(buffer, "Буфер слишком мал");
-        }
-        else if(Allocate(std::strlen(buf) + 1))
-        {
-            std::strcpy(buffer, buf);
-        }
+    if (buffer)
+    {
+        std::strcpy(buffer, temp_buffer);
     }
 }
 
 
 void String::Append(pchar str)
 {
-    if (!str || *str == '\0')
-    {
-        return;
-    }
-
-    String old(*this);
-
-    Free();
-
-    Allocate(old.Size() + std::strlen(str) + 1);
-
-    std::strcpy(buffer, old.c_str());
-    std::strcat(buffer, str);
+    Append(str, std::strlen(str));
 }
 
 
@@ -124,17 +94,16 @@ void String::Append(pchar str, uint numSymbols)
         return;
     }
 
-    String old(*this);
+    uint need_size = Size() + numSymbols + 1;
 
-    Free();
+    if (capacity < need_size)
+    {
+        String old(*this);
+        Allocate(need_size);
+        std::strcpy(buffer, old.c_str());
+    }
 
-    uint size = numSymbols + old.Size() + 1;
-
-    Allocate(size);
-
-    std::strcpy(buffer, old.c_str());
-    std::memcpy(buffer + old.Size(), str, (uint)(numSymbols));
-    buffer[size - 1] = '\0';
+    std::memcpy(buffer + std::strlen(buffer), str, numSymbols);
 }
 
 
@@ -157,6 +126,7 @@ void String::Free()
     {
         std::free(buffer);
         buffer = nullptr;
+        capacity = 0;
         Set("");
     }
 }
@@ -171,13 +141,32 @@ char *String::c_str() const
 bool String::Allocate(uint size)
 {
     std::free(buffer);
-    buffer = (char *)(std::malloc((uint)(size)));
+
+    capacity = NeedMemory(size);
+
+    buffer = (char *)(std::malloc(capacity));
+
     if (buffer)
     {
         return true;
     }
 
+    capacity = 0;
+
     return false;
+}
+
+
+uint String::NeedMemory(uint size)
+{
+    if (size % SIZE_SEGMENT == 0)
+    {
+        return size;
+    }
+    else
+    {
+        return (size / SIZE_SEGMENT) * SIZE_SEGMENT + SIZE_SEGMENT;
+    }
 }
 
 
