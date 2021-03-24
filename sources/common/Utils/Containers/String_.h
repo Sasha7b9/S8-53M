@@ -18,9 +18,6 @@ public:
 
     char *c_str() const;
 
-//    int Draw(int x, int y, const Color &color) const;
-    int Draw(int x, int y) const;
-
     static pstring _ERROR;
 
     void Free();
@@ -49,11 +46,4 @@ private:
     uint capacity;
 
     static const uint SIZE_SEGMENT = 32;
-};
-
-
-class EmptyString : public String
-{
-public:
-    EmptyString() : String("--.--") {}
 };

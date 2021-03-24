@@ -21,7 +21,7 @@ struct Float : public ValueStruct<float>
 {
     Float(float v = 0.0f) : ValueStruct(v) {}
 
-    String ToString(bool always_sign, int num_digits);
+    Text ToText(bool always_sign, int num_digits);
 
 private:
 
@@ -79,7 +79,7 @@ struct Voltage : public Float
 {
     Voltage(float v = 0.0f) : Float(v) {}
 
-    String ToString(bool always_sign = true);
+    Text ToText(bool always_sign = true);
 };
 
 
@@ -87,7 +87,7 @@ struct Time : public Float
 {
     Time(float v = 0.0f) : Float(v) {}
 
-    String ToString(bool always_sign = true);
+    Text ToText(bool always_sign = true);
 };
 
 
@@ -95,7 +95,7 @@ struct Frequency : public Float
 {
     Frequency(float v = 0.0f) : Float(v) {}
 
-    String ToString();
+    Text ToText();
 };
 
 
@@ -103,7 +103,7 @@ struct Phase : public Float
 {
     Phase(float v = 0.0f) : Float(v) {}
 
-    String ToString();
+    Text ToText();
 };
 
 
@@ -111,5 +111,5 @@ struct Decibel : public Float
 {
     Decibel(float v = 0.0f) : Float(v) {}
 
-    String ToString(int num_digits);
+    Text ToText(int num_digits);
 };

@@ -122,10 +122,10 @@ void BottomPart::Draw()
 
     if (ModeWork::IsDirect())
     {
-        String mes_freq("\x7c=");
+        Text mes_freq("\x7c=");
         float freq = FPGA::FreqMeter::GetFreq();
 
-        mes_freq.Append(freq == 1.0f ? "******" : Frequency(freq).ToString().c_str());
+        mes_freq.Append(freq == 1.0f ? "******" : Frequency(freq).ToText().c_str());
 
         mes_freq.Draw(x + 3, Grid::Bottom() + 2);
     }
@@ -216,7 +216,7 @@ void BottomPart::WriteTextVoltage(const Channel &ch, int x, int y)
         Text("%s\xa5%s\xa5%s", (ch == ChA) ? (LANG_RU ? "1ê" : "1c") : (LANG_RU ? "2ê" : "2c"), couple[mode_couple],
             Range::ToString(range, multiplier)).Draw(x + 1, y, colorDraw);
 
-        String("\xa5%s", RShift::ToAbs((int16)rShift, range, multiplier).ToString().c_str()).Draw(x + 46, y);
+        Text("\xa5%s", RShift::ToAbs((int16)rShift, range, multiplier).ToText().c_str()).Draw(x + 46, y);
     }
 }
 

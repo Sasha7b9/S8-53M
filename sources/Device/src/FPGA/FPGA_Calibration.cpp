@@ -341,15 +341,15 @@ void DrawParametersChannel(const Channel &ch, int eX, int eY, bool inProgress)
         Text("Отклонение от нуля:").Draw(x, y);
         y += 10;
 
-        String("АЦП1 = %.2f/%.2f, АЦП2 = %.2f/%.2f, d = %.2f/%.2f",
+        Text("АЦП1 = %.2f/%.2f, АЦП2 = %.2f/%.2f, d = %.2f/%.2f",
             avrADC1old[ch] - Value::AVE, avrADC1[ch] - Value::AVE,
             avrADC2old[ch] - Value::AVE, avrADC2[ch] - Value::AVE,
             deltaADCold[ch], deltaADC[ch]).Draw(x, y);
 
-        String("Расхождение Channel::A_ЦП = %.2f/%.2f %%", deltaADCPercentsOld[ch], deltaADCPercents[ch]).
+        Text("Расхождение Channel::A_ЦП = %.2f/%.2f %%", deltaADCPercentsOld[ch], deltaADCPercents[ch]).
             Draw(x, y + 11);
 
-        String("Записано %d", set.chan[ch].balance_shift_ADC).Draw(x, y + 19);
+        Text("Записано %d", set.chan[ch].balance_shift_ADC).Draw(x, y + 19);
     }
 }
 

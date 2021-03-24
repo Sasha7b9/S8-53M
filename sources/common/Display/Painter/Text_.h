@@ -67,3 +67,10 @@ private:
 
     int DrawChar(int x, int y, uint8 symbol) const;
 };
+
+
+class EmptyText : public Text
+{
+public:
+    EmptyText() : Text("--.--") {}
+};

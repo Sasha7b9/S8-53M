@@ -9,14 +9,14 @@
 #include <cstring>
 
 
-String Float::ToString(bool always_sign, int num_digits)
+Text Float::ToText(bool always_sign, int num_digits)
 {
     if (!IsValid())
     {
-        return EmptyString();
+        return EmptyText();
     }
 
-    String result;
+    Text result;
 
     if (!always_sign)
     {
@@ -82,11 +82,11 @@ void Float::RemoveDigits(String &string, int max_digits)
 }
 
 
-String Voltage::ToString(bool always_sign)
+Text Voltage::ToText(bool always_sign)
 {
     if (!IsValid())
     {
-        return EmptyString();
+        return EmptyText();
     }
 
     char *suffix = nullptr;
@@ -113,7 +113,7 @@ String Voltage::ToString(bool always_sign)
         voltage *= 1e-3F;
     }
 
-    String result = Float(voltage).ToString(always_sign, 4);
+    Text result = Float(voltage).ToText(always_sign, 4);
 
     result.Append(suffix);
 
@@ -121,11 +121,11 @@ String Voltage::ToString(bool always_sign)
 }
 
 
-String Time::ToString(bool always_sign)
+Text Time::ToText(bool always_sign)
 {
     if (!IsValid())
     {
-        return EmptyString();
+        return EmptyText();
     }
 
     char *suffix = nullptr;
@@ -152,15 +152,15 @@ String Time::ToString(bool always_sign)
         suffix = LANG_RU ? "๑" : "s";
     }
 
-    return String("%s%s", Float(time).ToString(always_sign, 4).c_str(), suffix);
+    return Text("%s%s", Float(time).ToText(always_sign, 4).c_str(), suffix);
 }
 
 
-String Frequency::ToString()
+Text Frequency::ToText()
 {
     if (!IsValid())
     {
-        return EmptyString();
+        return EmptyText();
     }
 
     char *suffix = 0;
@@ -182,13 +182,13 @@ String Frequency::ToString()
         suffix = LANG_RU ? "ร๖" : "Hz";
     }
 
-    return String("%s%s", Float(frequency).ToString(false, 4).c_str(), suffix);
+    return Text("%s%s", Float(frequency).ToText(false, 4).c_str(), suffix);
 }
 
 
-String Phase::ToString()
+Text Phase::ToText()
 {
-    return String("%s\xa8", Float(*this).ToString(false, 4).c_str());
+    return Text("%s\xa8", Float(*this).ToText(false, 4).c_str());
 }
 
 
@@ -254,9 +254,9 @@ String Uint16::ToStringBin()
 }
 
 
-String Decibel::ToString(int num_digits)
+Text Decibel::ToText(int num_digits)
 {
-    return String("%sไม", Float::ToString(false, num_digits).c_str());
+    return Text("%sไม", Float::ToText(false, num_digits).c_str());
 }
 
 

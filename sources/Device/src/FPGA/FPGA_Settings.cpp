@@ -440,7 +440,7 @@ String TShift::ToString(int16 tshift_rel)
 {
     float tShiftVal = TShift::ToAbs(tshift_rel, TBase::Get());
 
-    return Time(tShiftVal).ToString(true);
+    return Time(tShiftVal).ToText(true);
 }
 
 

@@ -151,8 +151,8 @@ void Display::WriteCursors()
             Text("1:").Draw(x, y1, colorText);
             Text("2:").Draw(x, y2);
             x += 7;
-            Cursors::GetVoltage(source, 0).ToString().Draw(x, y1);
-            Cursors::GetVoltage(source, 1).ToString().Draw(x, y2);
+            Cursors::GetVoltage(source, 0).ToText().Draw(x, y1);
+            Cursors::GetVoltage(source, 1).ToText().Draw(x, y2);
             x = startX + 49;
 
             float pos0 = Cursors::GetVoltage(Cursors::GetPosU(source, 0), set.chan[source].range, RShift::Get(source));
@@ -161,7 +161,7 @@ void Display::WriteCursors()
 
             float delta = std::fabsf(pos1 - pos0);
             Text(":dU=").Draw(x, y1);
-            Voltage(delta).ToString(false).Draw(x + 17, y1);
+            Voltage(delta).ToText(false).Draw(x + 17, y1);
             Text(":").Draw(x, y2);
             Cursors::GetPercentsU(source).Draw(x + 10, y2);
         }
@@ -176,14 +176,14 @@ void Display::WriteCursors()
             Text("1:").Draw(x, y1);
             Text("2:").Draw(x, y2);
             x+=7;
-            Cursors::GetTime(source, 0).ToString().Draw(x, y1);
-            Cursors::GetTime(source, 1).ToString().Draw(x, y2);
+            Cursors::GetTime(source, 0).ToText().Draw(x, y1);
+            Cursors::GetTime(source, 1).ToText().Draw(x, y2);
             x = startX + 153;
             float pos0 = Cursors::GetTime(set.cursors.posT[source][0], TBase::Get());
             float pos1 = Cursors::GetTime(set.cursors.posT[source][1], TBase::Get());
             float delta = std::fabsf(pos1 - pos0);
             Text(":dT=").Draw(x, y1);
-            Time(delta).ToString(false).Draw(x + 17, y1);
+            Time(delta).ToText(false).Draw(x + 17, y1);
             Text(":").Draw(x, y2);
             Cursors::GetPercentsT(source).Draw(x + 8, y2);
 
@@ -194,7 +194,7 @@ void Display::WriteCursors()
                 Rectangle(width, 12).Draw(x0, Grid::TOP, Color::FILL);
                 Region(width - 2, 10).Fill(x0 + 1, Grid::TOP + 1, Color::BACK);
                 Text("1/dT=").Draw(x0 + 1, Grid::TOP + 2, colorText);
-                Frequency(1.0F / delta).ToString().Draw(x0 + 25, Grid::TOP + 2);
+                Frequency(1.0F / delta).ToText().Draw(x0 + 25, Grid::TOP + 2);
             }
         }
     }
@@ -420,7 +420,7 @@ void Display::WriteValueTrigLevel()
         }
 
         Text text(LANG_RU ? "Óð ñèíõð = " : "Trig lvl = ");
-        text.Append(Voltage(trigLev).ToString());
+        text.Append(Voltage(trigLev).ToText());
 
         int width = 96;
         int x = (Grid::Width() - width) / 2 + Grid::Left();
@@ -610,7 +610,7 @@ void Display::DrawTimeForFrame(uint timeTicks)
 
 //    std::sprintf(message, "%d", Storage::NumElementsWithSameSettings());
 
-    String message("1");
+    Text message("1");
 
 //    char numAvail[10] = {0};
 //    std::sprintf(numAvail, "%d", Storage::NumberAvailableEntries());

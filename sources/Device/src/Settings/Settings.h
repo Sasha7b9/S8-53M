@@ -182,10 +182,10 @@ struct Cursors
     static Time GetTime(float shift_cur, TBase::E tbase);
 
     // Получить строку процентов курсоров напряжения.
-    static String GetPercentsU(const Channel &source);
+    static Text GetPercentsU(const Channel &source);
 
     // Получить строку процентов курсоров времени.
-    static String GetPercentsT(const Channel &source);
+    static Text GetPercentsT(const Channel &source);
 
     // Нарисовать курсоры курсорных измерений.
     static void Draw();

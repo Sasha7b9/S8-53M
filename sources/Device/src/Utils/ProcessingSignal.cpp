@@ -28,27 +28,27 @@ static uint numP = 0;
 
 static char *FloatFract2StringC(float value, bool always_sign, char *buffer)
 {
-    return std::strcpy(buffer, Float(value).ToString(always_sign, 4).c_str());
+    return std::strcpy(buffer, Float(value).ToText(always_sign, 4).c_str());
 }
 
 static char *Voltage2StringC(float value, bool always_sign, char *buffer)
 {
-    return std::strcpy(buffer, Voltage(value).ToString(always_sign).c_str());
+    return std::strcpy(buffer, Voltage(value).ToText(always_sign).c_str());
 }
 
 static char *Time2StringC(float value, bool always_sign, char *buffer)
 {
-    return std::strcpy(buffer, Time(value).ToString(always_sign).c_str());
+    return std::strcpy(buffer, Time(value).ToText(always_sign).c_str());
 }
 
 static char *Freq2StringC(float value, bool, char *buffer)
 {
-    return std::strcpy(buffer, Frequency(value).ToString().c_str());
+    return std::strcpy(buffer, Frequency(value).ToText().c_str());
 }
 
 static char *Phase2StringC(float value, bool, char *buffer)
 {
-    return std::strcpy(buffer, Phase(value).ToString().c_str());
+    return std::strcpy(buffer, Phase(value).ToText().c_str());
 }
 
 

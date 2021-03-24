@@ -669,7 +669,7 @@ static void Information_Draw()
     Text(LANG_RU ? "Программное обеспечение:" : "Software:").Draw(x, y);
     y += dY;
 
-    String((pchar)(LANG_RU ? "версия %s" : "version %s"), NUM_VER).Draw(x, y);
+    Text((pchar)(LANG_RU ? "версия %s" : "version %s"), NUM_VER).Draw(x, y);
 
     y += dY;
 

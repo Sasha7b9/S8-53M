@@ -47,13 +47,13 @@ Time Cursors::GetTime(float shift_cur, TBase::E tBase)
 }
 
 
-String Cursors::GetPercentsU(const Channel &source)
+Text Cursors::GetPercentsU(const Channel &source)
 {
     float dPerc = set.cursors.dU_100percents[source];
 
     float dValue = std::fabsf(GetPosU(source, 0) - GetPosU(source, 1));
 
-    String result = Float(dValue / dPerc * 100.0F).ToString(false, 5);
+    Text result = Float(dValue / dPerc * 100.0F).ToText(false, 5);
 
     result.Append("%");
 
@@ -61,13 +61,13 @@ String Cursors::GetPercentsU(const Channel &source)
 }
 
 
-String Cursors::GetPercentsT(const Channel &source)
+Text Cursors::GetPercentsT(const Channel &source)
 {
     float dPerc = set.cursors.dT_100percents[source];
 
     float dValue = std::fabsf(set.cursors.posT[source][0] - set.cursors.posT[source][1]);
 
-    String result = Float(dValue / dPerc * 100.0F).ToString(false, 6);
+    Text result = Float(dValue / dPerc * 100.0F).ToText(false, 6);
 
     result.Append("%");
 
