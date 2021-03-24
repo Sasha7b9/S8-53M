@@ -51,7 +51,7 @@ static uint numDrawingSignals = 0;      // Число нарисованных сигналов для режим
 
 void Display::DrawStringNavigation() 
 {
-    String string = Menu::StringNavigation();
+    Text string = Menu::StringNavigation();
 
     uint length = string.Size();
 

@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "common/Display/Painter/Text_.h"
 #include "device.h"
 #include "GUI/Application.h"
 #include "Menu/Menu.h"

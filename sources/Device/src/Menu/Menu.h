@@ -46,7 +46,7 @@ public:
     static Item *ItemUnderKey();
 
     // ¬озвращает путь к текущему пункту меню в текстовом виде, готовом к выводу на экран.
-    static String StringNavigation();
+    static Text StringNavigation();
 
     static void OpenItemTime();
 

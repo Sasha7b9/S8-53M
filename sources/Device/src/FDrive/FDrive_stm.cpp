@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "common/Display/Painter/Text_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "FDrive/FDrive.h"
 #include "Menu/FileManager.h"

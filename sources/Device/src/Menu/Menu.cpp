@@ -288,9 +288,9 @@ void Menu::SetAutoHide(bool)
 }
 
 
-String Menu::StringNavigation()
+Text Menu::StringNavigation()
 {
-    String result;
+    Text result;
 
     if(set.display.show_string_navigation && IsShown())
     {
