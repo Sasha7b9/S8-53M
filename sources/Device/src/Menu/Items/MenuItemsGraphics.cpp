@@ -852,7 +852,7 @@ void Governor::Draw(int x, int y)
 
 void Page::DrawPagesUGO(int right, int bottom) const
 {
-    int size = 4;
+    int size = 5;
     int delta = 2;
 
     int allPages = (NumItems() - 1) / Menu::ITEMS_ON_DISPLAY + 1;
