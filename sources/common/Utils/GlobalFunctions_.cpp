@@ -40,29 +40,15 @@ int GF::NumDigitsInIntPart(float value)
 }
 
 
-String GF::Bin2String(uint8 value)
-{
-    String result("00000000");
-
-    char *buffer = result.c_str();
-
-    for(int bit = 0; bit < 8; bit++)
-    {
-        buffer[7 - bit] = _GET_BIT(value, bit) ? '1' : '0';
-    }
-    return result;
-}
-
-
 String GF::Bin2String16(uint16 value)
 {
     String result("000000000000000000");
 
-    std::strcpy(&result[0], Bin2String((uint8)(value >> 8)).c_str());
+    std::strcpy(&result[0], Uint8((uint8)(value >> 8)).ToStringBinU8().c_str());
 
     result.c_str()[8] = ' ';
 
-    std::strcpy(&result[9], Bin2String((uint8)value).c_str());
+    std::strcpy(&result[9], Uint8((uint8)value).ToStringBinU8().c_str());
 
     return result;
 }

@@ -7,9 +7,6 @@ struct Float;
 
 namespace GF
 {
-    // Преобразует value в текстовую строку. При этом выводятся все 8 разрядов.
-    String Bin2String(uint8 value);
-
     String Bin2String16(uint16 value);
 
     String Hex8toString(uint8 value);

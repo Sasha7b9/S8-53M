@@ -42,6 +42,8 @@ struct Int : public ValueStruct<int>
 struct Uint8 : public ValueStruct<uint8>
 {
     Uint8(uint8 v = 0) : ValueStruct(v) {}
+
+    String ToStringBinU8();
 };
 
 

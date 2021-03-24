@@ -206,3 +206,18 @@ String Int::ToString(bool always_sign, int num_min_fields)
 
     return result;
 }
+
+
+String Uint8::ToStringBinU8()
+{
+    String result("00000000");
+
+    char *buffer = result.c_str();
+
+    for (int bit = 0; bit < 8; bit++)
+    {
+        buffer[7 - bit] = _GET_BIT(value, bit) ? '1' : '0';
+    }
+
+    return result;
+}
