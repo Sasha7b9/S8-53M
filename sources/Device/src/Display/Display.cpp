@@ -225,8 +225,8 @@ void Display::WriteCursors()
             Cursors::GetTime(source, 0).Draw(x, y1);
             Cursors::GetTime(source, 1).Draw(x, y2);
             x = startX + 153;
-            float pos0 = MathFPGA::TimeCursor(set.cursors.posT[source][0], TBase::Get());
-            float pos1 = MathFPGA::TimeCursor(set.cursors.posT[source][1], TBase::Get());
+            float pos0 = Cursors::GetTime(set.cursors.posT[source][0], TBase::Get());
+            float pos1 = Cursors::GetTime(set.cursors.posT[source][1], TBase::Get());
             float delta = std::fabsf(pos1 - pos0);
             Text(":dT=").Draw(x, y1);
             GF::Time2String(delta, false).Draw(x + 17, y1);

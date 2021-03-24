@@ -163,12 +163,6 @@ uint8 MathFPGA::VoltageToPoint(float voltage, Range::E range, int16 rShift)
 }
 
 
-float MathFPGA::TimeCursor(float shiftCurT, TBase::E tBase)
-{
-    return shiftCurT * absStepTShift[tBase];
-}
-
-
 /*
     Быстрое преобразование Фурье. Вычисляет модуль спектра для дейсвтительного сигнала.
     Количество отсчётов должно быть 2**N

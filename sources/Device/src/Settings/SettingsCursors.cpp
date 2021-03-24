@@ -42,9 +42,15 @@ float Cursors::GetVoltage(float shift_cur, Range::E range, int16 rshift)
 
 String Cursors::GetTime(const Channel &source, int num_cur)
 {
-    float time = MathFPGA::TimeCursor(set.cursors.posT[source][num_cur], TBase::Get());
+    float time = GetTime(set.cursors.posT[source][num_cur], TBase::Get());
 
     return GF::Time2String(time, true);
+}
+
+
+float Cursors::GetTime(float shift_cur, TBase::E tBase)
+{
+    return shift_cur * MathFPGA::absStepTShift[tBase];
 }
 
 
