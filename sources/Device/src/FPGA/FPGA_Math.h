@@ -1,5 +1,6 @@
 #pragma once
 #include "common/Settings/SettingsTypes_.h"
+#include "common/Utils/Containers/Values_.h"
 
 
 #define MAX_VOLTAGE_ON_SCREEN(range) (MathFPGA::tableScalesRange[(range)] * 5.0F)
