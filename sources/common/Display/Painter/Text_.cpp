@@ -96,19 +96,22 @@ int Char::Draw(int x, int y, Color color)
 }
 
 
-int Text::Draw(int x, int y, Color color)
+Text::Text(pchar format, ...)
 {
-    color.SetAsCurrent();
+    char temp_buffer[1024];
 
-    char *pointer = text.c_str();
+    std::va_list args;
+    va_start(args, format);
+    std::vsprintf(temp_buffer, format, args);
+    va_end(args);
 
-    while (*pointer != '\0')
-    {
-        x = DrawChar(x, y, (uint8)(*pointer)) + 1;
-        pointer++;
-    }
+    Set(temp_buffer);
+}
 
-    return x;
+
+Text::Text(const String &string)
+{
+    Set(string.c_str());
 }
 
 
@@ -184,7 +187,7 @@ void Text::DrawInRect(int x, int y, uint width, uint)
     int xStart = x;
     int xEnd = xStart + (int)width;
 
-    char *t = text.c_str();
+    char *t = c_str();
 
     while (*t != 0)
     {
@@ -239,13 +242,13 @@ static int DrawBigChar(int eX, int eY, uint size, char symbol)
 
 void Text::DrawBig(int eX, int eY, uint size)
 {
-    uint numSymbols = std::strlen(text.c_str());
+    uint numSymbols = std::strlen(c_str());
 
     int x = eX;
 
     for (uint i = 0; i < numSymbols; i++)
     {
-        x = DrawBigChar(x, eY, size, text[i]);
+        x = DrawBigChar(x, eY, size, (*this)[i]);
         x += size;
     }
 }
@@ -267,7 +270,7 @@ int Text::DrawInCenterRect(int eX, int eY, int width, int eHeight, Color color)
 {
     color.SetAsCurrent();
 
-    int lenght = Font::GetLengthText(text.c_str());
+    int lenght = Font::GetLengthText(c_str());
     int height = Font::GetHeightSymbol();
     int x = eX + (width - lenght) / 2;
     int y = eY + (eHeight - height) / 2;
@@ -279,14 +282,14 @@ void Text::DrawRelativelyRight(int xRight, int y, Color color)
 {
     color.SetAsCurrent();
 
-    int lenght = Font::GetLengthText(text.c_str());
+    int lenght = Font::GetLengthText(c_str());
     Draw(xRight - lenght, y);
 }
 
 
 int Text::DrawOnBackground(int x, int y, Color colorBackground)
 {
-    int width = Font::GetLengthText(text.c_str());
+    int width = Font::GetLengthText(c_str());
     int height = Font::GetSize();
 
     Color colorText = Color::GetCurrent();
@@ -342,7 +345,7 @@ int Text::DrawWithLimitation(int x, int y, Color color, int limitX, int limitY, 
     color.SetAsCurrent();
     int retValue = x;
 
-    char *t = text.c_str();
+    char *t = c_str();
 
     while (*t)
     {
@@ -642,7 +645,7 @@ static bool GetHeightTextWithTransfers(int left, int top, int right, pchar text,
 int Text::DrawInBoundedRectWithTransfers(int x, int y, int width, Color colorBackground, Color colorFill)
 {
     int height = 0;
-    GetHeightTextWithTransfers(x + 3, y + 3, x + width - 8, text.c_str(), &height);
+    GetHeightTextWithTransfers(x + 3, y + 3, x + width - 8, c_str(), &height);
 
     Rectangle(width, height).Draw(x, y, colorFill);
     Region(width - 2, height - 2).Fill(x + 1, y + 1, colorBackground);
@@ -660,8 +663,8 @@ int Text::DrawInRectWithTransfers(int eX, int eY, int eWidth, int eHeight, Color
     int right = eX + eWidth;
     int bottom = eY + eHeight;
 
-    char buffer[20];
-    int numSymb = (int)text.Size();
+    char buff[20];
+    int numSymb = (int)Size();
 
     int y = top - 1;
     int x = left;
@@ -673,11 +676,11 @@ int Text::DrawInRectWithTransfers(int eX, int eY, int eWidth, int eHeight, Color
         while (x < right - 1 && curSymbol < numSymb)
         {
             int length = 0;
-            char *word = GetWord(text.c_str() + curSymbol, &length, buffer);
+            char *word = GetWord(c_str() + curSymbol, &length, buff);
 
             if (length <= 1)                            // Нет буквенных символов или один, т.е. слово не найдено
             {
-                char symbol = text[(uint)curSymbol++];
+                char symbol = (*this)[(uint)curSymbol++];
                 if (symbol == '\n')
                 {
                     x = right;
@@ -717,7 +720,7 @@ int Text::DrawInRectWithTransfers(int eX, int eY, int eWidth, int eHeight, Color
 void Text::DrawInCenterRectOnBackground(int x, int y, int width, int height, Color colorText, int widthBorder,
     Color colorBackground)
 {
-    int lenght = Font::GetLengthText(text.c_str());
+    int lenght = Font::GetLengthText(c_str());
     int eX = DrawInCenterRect(x, y, width, height, colorBackground);
     int w = lenght + widthBorder * 2 - 2;
     int h = 7 + widthBorder * 2 - 1;
@@ -737,7 +740,6 @@ int Text::DrawInCenterRectAndBoundIt(int x, int y, int width, int height, Color 
 
 Text::~Text()
 {
-    text.Free();
 }
 
 

@@ -21,17 +21,15 @@ private:
 };
 
 
-class Text
+class Text : public String
 {
 public:
 
-    Text(pchar t) : text(t) {};
+    Text(pchar format, ...);
 
-    Text(const String &string) : text(string) {}
+    Text(const String &string);
 
-    ~Text();
-
-    int Draw(int x, int y, Color color = Color::Count);
+    virtual ~Text();
 
     void DrawInRect(int x, int y, uint width, uint height);
 
@@ -59,6 +57,6 @@ public:
     int DrawInCenterRectAndBoundIt(int x, int y, int width, int height, Color colorBackground, Color colorFill);
 
 private:
-    String text;
+
     int DrawChar(int x, int y, uint8 symbol);
 };

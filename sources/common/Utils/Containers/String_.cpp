@@ -1,5 +1,7 @@
 #include "defines.h"
 #include "common/Display/Colors_.h"
+#include "common/Display/Font/Font_.h"
+#include "common/Display/Painter/Primitives_.h"
 #include "common/Display/Painter/Text_.h"
 #include "common/Utils/StringUtils_.h"
 #include "common/Utils/Containers/Buffer_.h"
@@ -36,13 +38,12 @@ String::String(char symbol) : buffer(nullptr), capacity(0)
 
 String::String(pchar format, ...) : buffer(nullptr), capacity(0)
 {
-#define SIZE_TEMP_BUFFER 1024
-
     char temp_buffer[1024];
 
     std::va_list args;
     va_start(args, format);
     uint num_symbols = (uint)std::vsprintf(temp_buffer, format, args);
+    va_end(args);
 
     if (capacity < num_symbols)
     {
@@ -58,13 +59,12 @@ String::String(pchar format, ...) : buffer(nullptr), capacity(0)
 
 void String::Set(pchar format, ...)
 {
-#define SIZE_TEMP_BUFFER 1024
-
     char temp_buffer[1024];
 
     std::va_list args;
     va_start(args, format);
     uint num_symbols = (uint)std::vsprintf(temp_buffer, format, args);
+    va_end(args);
 
     if (capacity < num_symbols)
     {
@@ -126,7 +126,7 @@ void String::Append(char symbol)
 
 String::~String()
 {
-    std::free(buffer);
+    Free();
 }
 
 
@@ -180,6 +180,65 @@ uint String::NeedMemory(uint size)
 }
 
 
+static bool ByteFontNotEmpty(int eChar, int byte)
+{
+    static const uint8 *bytes = 0;
+    static int prevChar = -1;
+
+    if (eChar != prevChar)
+    {
+        prevChar = eChar;
+        bytes = Font::font->symbol[prevChar].bytes;
+    }
+
+    return bytes[byte] != 0;
+}
+
+
+static bool BitInFontIsExist(int eChar, int numByte, int bit)
+{
+    static uint8 prevByte = 0;
+    static int prevChar = -1;
+    static int prevNumByte = -1;
+
+    if (prevNumByte != numByte || prevChar != eChar)
+    {
+        prevByte = Font::font->symbol[eChar].bytes[numByte];
+        prevChar = eChar;
+        prevNumByte = numByte;
+    }
+
+    return prevByte & (1 << bit);
+}
+
+
+int String::DrawChar(int eX, int eY, uint8 symbol) const
+{
+    int8 width = (int8)Font::font->symbol[symbol].width;
+    int8 height = (int8)Font::font->height;
+
+    for (int b = 0; b < height; b++)
+    {
+        if (ByteFontNotEmpty(symbol, b))
+        {
+            int x = eX;
+            int y = eY + b + 9 - height;
+            int endBit = 8 - width;
+            for (int bit = 7; bit >= endBit; bit--)
+            {
+                if (BitInFontIsExist(symbol, b, bit))
+                {
+                    Point().Draw(x, y);
+                }
+                x++;
+            }
+        }
+    }
+
+    return eX + width;
+}
+
+
 int String::Draw(int x, int y, const Color &color) const
 {
     color.SetAsCurrent();
@@ -190,7 +249,15 @@ int String::Draw(int x, int y, const Color &color) const
 
 int String::Draw(int x, int y) const
 {
-    return Text(c_str()).Draw(x, y);
+    char *pointer = c_str();
+
+    while (*pointer != '\0')
+    {
+        x = DrawChar(x, y, (uint8)(*pointer)) + 1;
+        pointer++;
+    }
+
+    return x;
 }
 
 

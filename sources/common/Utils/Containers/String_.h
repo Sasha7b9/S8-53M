@@ -11,7 +11,7 @@ public:
              String(const String &);
     explicit String(char t);
     explicit String(pchar, ...);
-    ~String();
+    virtual ~String();
 
     void Set(pchar format, ...);
     void Set(const String &str);
@@ -42,6 +42,8 @@ private:
     bool Allocate(uint size);
 
     uint NeedMemory(uint size);
+
+    int DrawChar(int eX, int eY, uint8 symbol) const;
 
     char *buffer;
 
