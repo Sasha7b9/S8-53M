@@ -51,9 +51,6 @@ namespace GF
     // Прибавить к значению по адресу val delta. Если результат не вписывается в диапазон [min; max], ограничить
     void AddLimitationFloat(float *val, float delta, float min, float max);
 
-    // Обменивает местами содержимое памяти по адресам value0 и value1
-    void SwapInt(int *value0, int *value1);
-
     void IntToStrCat(char *_buffer, int _value);
 
     String LogArrayUint8(uint8 *array, uint size);

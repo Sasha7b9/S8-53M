@@ -406,14 +406,6 @@ void GF::AddLimitationFloat(float *val, float delta, float min, float max)
 }
 
 
-void GF::SwapInt(int *value0, int *value1)
-{
-    int temp = *value0;
-    *value0 = *value1;
-    *value1 = temp;
-}
-
-
 void GF::IntToStrCat(char *_buffer, int _value)
 {
     static const int LENGHT = 10;
