@@ -96,7 +96,7 @@ int RShift::ToRel(float rShiftAbs, Range::E range)
 };
 
 
-float RShift::ToAbs(int16 rshift, Range::E range)
+Voltage RShift::ToAbs(int16 rshift, Range::E range)
 {
     return (-((float)ZERO - (float)(rshift)) * MathFPGA::absStepRShift[(uint)(range)]);
 }

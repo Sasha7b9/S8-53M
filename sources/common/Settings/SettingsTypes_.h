@@ -609,7 +609,7 @@ struct RShift
 
     static int ToRel(float rshift_abs, Range::E range);
 
-    static float ToAbs(int16 rshift, Range::E range);
+    static Voltage ToAbs(int16 rshift, Range::E range);
 
     static String ToString(int16 rShiftRel, Range::E range, Divider::E multiplier);
 
