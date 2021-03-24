@@ -25,8 +25,6 @@ namespace GF
 
     bool String2Int(char *str, int *value);
 
-    String Time2String(const Float &time, bool always_sign);
-
     String Freq2String(const Float &freq, bool always_sign = false);
 
     String Phase2String(float phase, bool);

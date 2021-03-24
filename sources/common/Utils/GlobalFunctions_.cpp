@@ -199,41 +199,6 @@ String GF::Hex8toString(uint8 value)
 }
 
 
-String GF::Time2String(const Float &tim, bool always_sign)
-{
-    if(!tim.IsValid())
-    {
-        return EmptyString();
-    }
-    
-    char *suffix = nullptr;
-
-    float time = tim;
-    
-    if(std::fabsf(time) + 0.5e-10F < 1e-6F)
-    {
-        suffix = LANG_RU ? "нс" : "ns";
-        time *= 1e9F;
-    }
-    else if(std::fabsf(time) + 0.5e-7F < 1e-3F)
-    {
-        suffix = LANG_RU ? "мкс" : "us";
-        time *= 1e6F;
-    }
-    else if(std::fabsf(time) + 0.5e-3F < 1.0F)
-    {
-        suffix = LANG_RU ? "мс" : "ms";
-        time *= 1e3F;
-    }
-    else
-    {
-        suffix = LANG_RU ? "с" : "s";
-    }
-
-    return String("%s%s", Float2String(time, always_sign, 4).c_str(), suffix);
-}
-
-
 String GF::Phase2String(float phase, bool)
 {
     return String("%s\xa8", GF::Float2String(phase, false, 4).c_str());

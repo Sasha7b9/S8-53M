@@ -45,7 +45,7 @@ String Cursors::GetTime(const Channel &source, int num_cur)
 {
     float time = GetTime(set.cursors.posT[source][num_cur], TBase::Get());
 
-    return GF::Time2String(time, true);
+    return Time(time).ToString(true);
 }
 
 

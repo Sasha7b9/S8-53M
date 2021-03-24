@@ -59,3 +59,11 @@ struct Voltage : public Float
 
     String ToString(bool always_sign);
 };
+
+
+struct Time : public Float
+{
+    Time(float v = 0.0f) : Float(v) {}
+
+    String ToString(bool always_sign);
+};

@@ -229,7 +229,7 @@ void Display::WriteCursors()
             float pos1 = Cursors::GetTime(set.cursors.posT[source][1], TBase::Get());
             float delta = std::fabsf(pos1 - pos0);
             Text(":dT=").Draw(x, y1);
-            GF::Time2String(delta, false).Draw(x + 17, y1);
+            Time(delta).ToString(false).Draw(x + 17, y1);
             Text(":").Draw(x, y2);
             Cursors::GetPercentsT(source).Draw(x + 8, y2);
 
