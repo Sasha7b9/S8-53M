@@ -25,7 +25,7 @@ class Text : public String
 {
 public:
 
-    Text(pchar format, ...);
+    explicit Text(pchar format, ...);
 
     explicit Text(const String &string);
 
