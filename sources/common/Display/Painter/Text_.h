@@ -27,7 +27,7 @@ public:
 
     Text(pchar format, ...);
 
-    Text(const String &string);
+    explicit Text(const String &string);
 
     virtual ~Text();
 

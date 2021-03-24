@@ -92,7 +92,7 @@ int Measure::GetDX()
 Text Measure::Name(int row, int col)
 {
     int numMeasure = row * Measure::NumCols() + col;
-    return String(measures[Measure::Get(numMeasure)].name);
+    return Text(measures[Measure::Get(numMeasure)].name);
 }
 
 Measure::E Measure::Type(int row, int col)
