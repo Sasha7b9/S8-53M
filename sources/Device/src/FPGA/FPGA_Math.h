@@ -6,7 +6,6 @@
 
 struct MathFPGA
 {
-    static void	 PointsVoltageToRel(const float *voltage, int numPoints, Range::E range, int16 rShift, uint8 *points);
     static uint8 VoltageToPoint(float voltage, Range::E range, int16 rShift);
     static float TimeCursor(float shiftCurT, TBase::E tBase);
     static void  CalculateFFT(float *data, int numPoints, float *result, float *freq0, float *density0, float *freq1,
