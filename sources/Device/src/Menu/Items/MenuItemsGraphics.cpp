@@ -732,46 +732,50 @@ static bool NeedDrawRegSet(const Page *page)
 }
 
 
-void Page::DrawTitle(int yTop)
+void Page::DrawTitle(int ytop)
 {
     int x = Page::X();
+
     if (IsPageSB())
     {
-        SmallButonFrom(0)->Draw(SmallButton::LEFT, yTop + 3);
+        SmallButonFrom(0)->Draw(SmallButton::LEFT, ytop + 3);
         return;
     }
+
     int height = HeightOpened();
     bool shade = CurrentItemIsOpened();
-    Region(Item::TITLE_WIDTH + 2, height + 2).Fill(x - 1, yTop, Color::BACK);
-    Rectangle(Item::TITLE_WIDTH + 1, height + 1).Draw(x, yTop, Color::BorderMenu());
+
+    Region(Item::TITLE_WIDTH + 2, height + 2).Fill(x - 1, ytop, Color::BACK);
+    Rectangle(Item::TITLE_WIDTH + 1, height + 1).Draw(x, ytop, Color::BorderMenu());
     
     if (shade)
     {
-        Region(Item::TITLE_WIDTH - 1, Item::TITLE_HEIGHT - 1).Fill(x + 1, yTop + 1, Color::MENU_TITLE_DARK);
-        Region(Item::TITLE_WIDTH - 5, Item::TITLE_HEIGHT - 7).Fill(x + 4, yTop + 4, Color::MENU_TITLE_DARK);
+        Region(Item::TITLE_WIDTH - 1, Item::TITLE_HEIGHT - 1).Fill(x + 1, ytop + 1, Color::MENU_TITLE_DARK);
+        Region(Item::TITLE_WIDTH - 5, Item::TITLE_HEIGHT - 7).Fill(x + 4, ytop + 4, Color::MENU_TITLE_DARK);
     }
     else
     {
-        DrawVolumeButton(x + 1, yTop + 1, Item::TITLE_WIDTH, Item::TITLE_HEIGHT, 3, Color::MENU_TITLE,
+        DrawVolumeButton(x + 1, ytop + 1, Item::TITLE_WIDTH, Item::TITLE_HEIGHT, 3, Color::MENU_TITLE,
             Color::MENU_TITLE_BRIGHT, Color::MENU_TITLE_DARK, false);
     }
     
-    VLine().Draw(x, yTop, yTop + HeightOpened(), Color::BorderMenu());
-
+    VLine().Draw(x, ytop, ytop + HeightOpened(), Color::BorderMenu());
 
     int delta = NeedDrawRegSet(this) ? -10 : 0;
 
     Color colorText = shade ? Color::LightShadingText() : Color::BLACK;
-    x = Text(Title()).DrawInCenterRect(x, yTop, Item::TITLE_WIDTH + 2 + delta, Item::TITLE_HEIGHT, colorText);
+    x = Text(Title()).DrawInCenterRect(x, ytop, Item::TITLE_WIDTH + 2 + delta, Item::TITLE_HEIGHT, colorText);
+
     if (NeedDrawRegSet(this))
     {
-        Char(GetSymbolForGovernor()).Draw4SymbolsInRect(x + 4, yTop + 11, colorText);
+        Char(GetSymbolForGovernor()).Draw4SymbolsInRect(x + 4, ytop + 11, colorText);
     }
     
     delta = 0;
     
     colorText.SetAsCurrent();
-    DrawPagesUGO(Page::X() + Item::TITLE_WIDTH - 3 + delta, yTop + Item::TITLE_HEIGHT - 2 + delta); //-V2007
+
+    DrawPagesUGO(Page::X() + Item::TITLE_WIDTH - 3 + delta, ytop + Item::TITLE_HEIGHT - 2 + delta); //-V2007
 }
 
 
