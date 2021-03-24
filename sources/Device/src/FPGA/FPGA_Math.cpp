@@ -159,7 +159,7 @@ void Value::FromVoltage(const float* voltage, int numPoints, Range::E range, int
 }
 
 
-uint8 Value::FromVoltage(float voltage, Range::E range, int16 rshift)
+uint8 Value::FromVoltage(Voltage voltage, Range::E range, int16 rshift)
 {
     int relValue = (int)((voltage + MAX_VOLTAGE_ON_SCREEN(range) + RShift::ToAbs(rshift, range)) /
         MathFPGA::voltsInPixel[range] + Value::MIN);
