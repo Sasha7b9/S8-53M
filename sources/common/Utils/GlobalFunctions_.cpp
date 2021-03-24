@@ -414,15 +414,6 @@ void GF::SwapInt(int *value0, int *value1)
 }
 
 
-void GF::SortInt(int *value0, int *value1)
-{
-    if(*value1 < *value0)
-    {
-        SwapInt(value0,  value1);
-    }
-}
-
-
 void GF::IntToStrCat(char *_buffer, int _value)
 {
     static const int LENGHT = 10;

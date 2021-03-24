@@ -311,8 +311,8 @@ void Measure::DrawAll()
         int y0 = SettingsMeasures::PosCursorU(0) + Grid::TOP;
         int x1 = SettingsMeasures::PosCursorT(1) - TShift::GetInMemory() + Grid::Left();
         int y1 = SettingsMeasures::PosCursorU(1) + Grid::TOP;
-        GF::SortInt(&x0, &x1);
-        GF::SortInt(&y0, &y1);
+        Math::Sort(&x0, &x1);
+        Math::Sort(&y0, &y1);
         Primitives::Rectangle(x1 - x0, y1 - y0).Draw(x0, y0, Color::FILL);
     }
 

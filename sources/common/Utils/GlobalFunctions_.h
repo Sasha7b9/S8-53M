@@ -54,9 +54,6 @@ namespace GF
     // Обменивает местами содержимое памяти по адресам value0 и value1
     void SwapInt(int *value0, int *value1);
 
-    // Размещает переменные value0 и value1 в порядке возрастания
-    void SortInt(int *value0, int *value1);
-
     void IntToStrCat(char *_buffer, int _value);
 
     String LogArrayUint8(uint8 *array, uint size);
