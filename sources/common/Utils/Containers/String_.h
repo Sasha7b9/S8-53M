@@ -18,7 +18,6 @@ public:
 
     char *c_str() const;
 
-    // Отобразить текст на экране в заданнх координатах
     int Draw(int x, int y, const Color &color) const;
     int Draw(int x, int y) const;
 

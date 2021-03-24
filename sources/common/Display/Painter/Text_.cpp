@@ -115,7 +115,7 @@ Text::Text(const String &string)
 }
 
 
-int Text::DrawChar(int eX, int eY, uint8 symbol)
+int Text::DrawChar(int eX, int eY, uint8 symbol) const
 {
     int8 width = (int8)Font::font->symbol[symbol].width;
     int8 height = (int8)Font::font->height;
@@ -747,4 +747,26 @@ void Char::Draw2SymbolsInPosition(int x, int y, char symbol2, Color color1, Colo
 {
     Char(symbol).Draw(x, y, color1);
     Char(symbol2).Draw(x, y, color2);
+}
+
+
+int Text::Draw(int x, int y, const Color &color) const
+{
+    color.SetAsCurrent();
+
+    return Draw(x, y);
+}
+
+
+int Text::Draw(int x, int y) const
+{
+    char *pointer = c_str();
+
+    while (*pointer != '\0')
+    {
+        x = DrawChar(x, y, (uint8)(*pointer)) + 1;
+        pointer++;
+    }
+
+    return x;
 }

@@ -31,6 +31,9 @@ public:
 
     virtual ~Text();
 
+    int Draw(int x, int y, const Color &color) const;
+    int Draw(int x, int y) const;
+
     void DrawInRect(int x, int y, uint width, uint height);
 
     void DrawBig(int x, int y, uint size);
@@ -58,5 +61,5 @@ public:
 
 private:
 
-    int DrawChar(int x, int y, uint8 symbol);
+    int DrawChar(int x, int y, uint8 symbol) const;
 };
