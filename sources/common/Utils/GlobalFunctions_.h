@@ -7,8 +7,6 @@ struct Float;
 
 namespace GF
 {
-    String Hex8toString(uint8 value);
-
     // ѕреобразует децибелы в текстовую строку.
     String Float2Db(float value, int num_digits);
 

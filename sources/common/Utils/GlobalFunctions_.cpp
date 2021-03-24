@@ -40,16 +40,6 @@ int GF::NumDigitsInIntPart(float value)
 }
 
 
-String GF::Hex8toString(uint8 value)
-{
-    String result("00");
-
-    std::sprintf(&result[value < 16 ? 1U : 0U], "%x", value);
-
-    return result;
-}
-
-
 String GF::Float2Db(float value, int num_digits)
 {
     return String("%säÁ", Float(value).ToString(false, num_digits).c_str());

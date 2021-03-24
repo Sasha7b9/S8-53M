@@ -44,6 +44,7 @@ struct Uint8 : public ValueStruct<uint8>
     Uint8(uint8 v = 0) : ValueStruct(v) {}
 
     String ToStringBin();
+    String ToStringHex();
 };
 
 

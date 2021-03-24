@@ -223,6 +223,16 @@ String Uint8::ToStringBin()
 }
 
 
+String Uint8::ToStringHex()
+{
+    String result("00");
+
+    std::sprintf(&result[value < 16 ? 1U : 0U], "%x", value);
+
+    return result;
+}
+
+
 String Uint16::ToStringBin()
 {
     String result("000000000000000000");
