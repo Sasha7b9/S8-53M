@@ -102,11 +102,9 @@ Voltage RShift::ToAbs(int16 rshift, Range::E range)
 }
 
 
-String RShift::ToString(int16 rShiftRel, Range::E range, Divider::E multiplier)
+Voltage RShift::ToAbs(int16 rShiftRel, Range::E range, Divider::E multiplier)
 {
-    float rShiftVal = RShift::ToAbs(rShiftRel, range) * Divider::ToAbs(multiplier);
-
-    return Voltage(rShiftVal).ToString(true);
+    return RShift::ToAbs(rShiftRel, range) * Divider::ToAbs(multiplier);
 };
 
 

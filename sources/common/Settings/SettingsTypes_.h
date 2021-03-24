@@ -611,7 +611,7 @@ struct RShift
 
     static Voltage ToAbs(int16 rshift, Range::E range);
 
-    static String ToString(int16 rShiftRel, Range::E range, Divider::E multiplier);
+    static Voltage ToAbs(int16 rshift, Range::E range, Divider::E multiplier);
 
     static void Draw();
 
