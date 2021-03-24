@@ -239,12 +239,12 @@ int String::DrawChar(int eX, int eY, uint8 symbol) const
 }
 
 
-int String::Draw(int x, int y, const Color &color) const
-{
-    color.SetAsCurrent();
-
-    return Draw(x, y);
-}
+//int String::Draw(int x, int y, const Color &color) const
+//{
+//    color.SetAsCurrent();
+//
+//    return Draw(x, y);
+//}
 
 
 int String::Draw(int x, int y) const

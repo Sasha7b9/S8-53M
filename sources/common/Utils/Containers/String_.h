@@ -18,7 +18,7 @@ public:
 
     char *c_str() const;
 
-    int Draw(int x, int y, const Color &color) const;
+//    int Draw(int x, int y, const Color &color) const;
     int Draw(int x, int y) const;
 
     static pstring _ERROR;

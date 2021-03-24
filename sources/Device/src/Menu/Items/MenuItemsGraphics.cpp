@@ -127,7 +127,7 @@ void IPaddress::DrawLowPart(int x, int y) const
 
     const DataIPaddress *own = OwnData();
 
-    String("%03d.%03d.%03d.%03d", *own->ip0, *own->ip1, *own->ip2, *own->ip3).
+    Text("%03d.%03d.%03d.%03d", *own->ip0, *own->ip1, *own->ip2, *own->ip3).
         Draw(x + 4, y + 21, IsOpened() ? Color::FILL : Color::BACK);
 }
 
@@ -138,7 +138,7 @@ void MACaddress::DrawLowPart(int x, int y) const
 
     const DataMACaddress *own = OwnData();
 
-    String("%02X.%02X.%02X.%02X.%02X.%02X", *own->mac0, *own->mac1, *own->mac2, *own->mac3, *own->mac4, *own->mac5).
+    Text("%02X.%02X.%02X.%02X.%02X.%02X", *own->mac0, *own->mac1, *own->mac2, *own->mac3, *own->mac4, *own->mac5).
         Draw(x + 4, y + 21, IsOpened() ? Color::FILL : Color::BACK);
 }
 
@@ -318,7 +318,7 @@ void MACaddress::DrawValue(int x, int y) const
         {
             Region(10, 8).Fill(x - 1, y, Color::FILL);
         }
-        String("%02X", value).Draw(x, y, gCurDigit == num ? Color::BACK : Color::FILL);
+        Text("%02X", value).Draw(x, y, gCurDigit == num ? Color::BACK : Color::FILL);
         x -= 12;
     }
 }

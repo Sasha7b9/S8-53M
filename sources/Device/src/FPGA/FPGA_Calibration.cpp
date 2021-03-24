@@ -314,7 +314,7 @@ void FuncAttScreen()
     }
     */
 
-    String("%.1f", (TIME_MS - startTime) / 1000.0F).Draw(0, 0, Color::BLACK);
+    Text("%.1f", (TIME_MS - startTime) / 1000.0F).Draw(0, 0, Color::BLACK);
 
     Painter::SendFrame();
 }

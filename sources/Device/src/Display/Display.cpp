@@ -419,7 +419,7 @@ void Display::WriteValueTrigLevel()
             trigLev += rShiftAbs;
         }
 
-        String text(LANG_RU ? "Ур синхр = " : "Trig lvl = ");
+        Text text(LANG_RU ? "Ур синхр = " : "Trig lvl = ");
         text.Append(Voltage(trigLev).ToString());
 
         int width = 96;
