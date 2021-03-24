@@ -1,4 +1,5 @@
 #pragma once
+#include "common/Utils/Containers/String_.h"
 
 
 /*
@@ -25,9 +26,7 @@ public:
 
     inline uint8 *Data() { return data; }
 
-    void Log();
-
-    static void LogU8(const uint8 *buffer);
+    String Log();
 
     uint8 &operator[](uint i) const;
 

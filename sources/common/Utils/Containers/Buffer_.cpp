@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "common/Log_.h"
 #include "common/Utils/Containers/Buffer_.h"
+#include "common/Utils/Containers/Values_.h"
 #include <cstdlib>
 #include <cstring>
 
@@ -62,15 +63,21 @@ void Buffer::Malloc(uint s)
 }
 
 
-void Buffer::Log()
+String Buffer::Log()
 {
-    LogU8(data);
-}
+    String result;
 
+    for (uint i = 0; i < Size(); i++)
+    {
+        result.Append(Int(data[i]).ToString(false, 1).c_str());
 
-void Buffer::LogU8(const uint8 *buffer)
-{
-    LOG_WRITE("%d %d %d %d %d %d %d %d %d %d", buffer[0], buffer[1], buffer[2], buffer[3], buffer[4], buffer[5], buffer[6], buffer[7], buffer[8], buffer[9]);
+        if (i != size - 1)
+        {
+            result.Append(' ');
+        }
+    }
+
+    return result;
 }
 
 
