@@ -5,9 +5,9 @@
 #include "Display/Display.h"
 #include "Display/Grid.h"
 #include "FPGA/FPGA.h"
+#include "FPGA/FPGA_Math.h"
 #include "FPGA/FPGA_Reader.h"
 #include "FPGA/FPGA_Types.h"
-#include "FPGA/MathFPGA.h"
 #include "Settings/Settings.h"
 
 

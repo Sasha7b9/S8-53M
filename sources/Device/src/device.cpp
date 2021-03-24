@@ -6,7 +6,6 @@
 #include "Display/Display.h"
 #include "FDrive/FDrive.h"
 #include "FPGA/FPGA.h"
-#include "FPGA/Storage.h"
 #include "Hardware/EPROM.h"
 #include "LAN/LAN.h"
 #include "Menu/Menu.h"

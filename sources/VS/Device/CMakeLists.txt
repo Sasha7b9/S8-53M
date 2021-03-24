@@ -88,6 +88,7 @@ file(GLOB LAN               ../../Device/src/LAN/LAN.h
 file(GLOB FDRIVE            ../../Device/src/FDrive/*.h
                                          src/FDrive/FDrive_win.cpp)
 file(GLOB FPGA              ../../Device/src/FPGA/*.*)
+file(GLOB FPGA_DATA         ../../Device/src/FPGA/Data/*.*)
 file(GLOB HARDWARE          ../../Device/src/Hardware/EPROM.h
                                          src/Hardware/EPROM_win.cpp
                             ../../Device/src/Hardware/RAM.*
@@ -155,6 +156,7 @@ source_group(Display\\Font    FILES ${DISPLAY_FONT})
 source_group(LAN              FILES ${LAN})
 source_group(FDrive           FILES ${FDRIVE})
 source_group(FPGA             FILES ${FPGA})
+source_group(FPGA\\Data       FILES ${FPGA_DATA})
 source_group(GUI              FILES ${GUI})
 source_group(GUI\\Controls    FILES ${GUI_CONTROLS})
 source_group(GUI\\Dialogs     FILES ${GUI_DIALOGS})
@@ -175,7 +177,8 @@ source_group(VCP\\SCPI\\Utils FILES ${VCP_SCPI_UTILS})
 source_group(Utils            FILES ${UTILS})
 
 add_executable(S8-53M ${LIBS_CMSIS} ${LIBS_FATFS} ${LIBS_LWIP} ${LIBS_HAL} ${LIBS_USBD} ${LIBS_USBH} ${DISPLAY}
-          ${DISPLAY_FONT} ${LAN} ${FDRIVE} ${FPGA} ${GUI} ${GUI_CONTROLS} ${GUI_DIALOGS} ${GUI_VCP}  ${HARDWARE}
+          ${DISPLAY_FONT} ${LAN} ${FDRIVE} ${FPGA} ${FPGA_DATA} ${GUI} ${GUI_CONTROLS} ${GUI_DIALOGS} ${GUI_VCP}
+          ${HARDWARE}
           ${HARDWARE_HAL} ${HARDWARE_USBD} ${MENU} ${MENU_ITEMS} ${MENU_PAGES} ${PANEL} ${RESOURCES} ${SETTINGS}
           ${SRC} ${VCP} ${VCP_SCPI} ${VCP_SCPI_UTILS} ${UTILS})
 

@@ -1,7 +1,7 @@
 // 2021/03/15 13:29:36 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "FPGA/FPGA.h"
-#include "FPGA/DataSettings.h"
+#include "FPGA/Data/DataSettings.h"
 #include "Settings/Settings.h"
 
 

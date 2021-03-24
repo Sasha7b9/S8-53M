@@ -4,7 +4,7 @@
 #include "common/Settings/SettingsTypes_.h"
 #include "common/Utils/Buffer_.h"
 #include "FPGA/FPGA_Types.h"
-#include "FPGA/Storage.h"
+#include "FPGA/Data/Storage.h"
 
 
 struct DataSettings;

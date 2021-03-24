@@ -106,6 +106,7 @@ file(GLOB DISPLAY              src/Display/*.h
 file(GLOB DISPLAY_FONT   ../common/Display/Font/*.*)
 file(GLOB FDRIVE               src/FDrive/*.*)
 file(GLOB FPGA                 src/FPGA/*.*)
+file(GLOB FPGA_DATA            src/FPGA/Data/*.*)
 file(GLOB LAN                  src/LAN/*.*)
 file(GLOB MENU                 src/Menu/*.h
                                src/Menu/*.cpp)
@@ -146,6 +147,7 @@ source_group(Display                 FILES ${DISPLAY})
 source_group(Display\\Font           FILES ${DISPLAY_FONT})
 source_group(FDrive                  FILES ${FDRIVE})
 source_group(FPGA                    FILES ${FPGA})
+source_group(FPGA\\Data              FILES ${FPGA_DATA})
 source_group(LAN                     FILES ${LAN})
 source_group(Menu                    FILES ${MENU})
 source_group(Menu\\Items             FILES ${MENU_ITEMS})
@@ -157,6 +159,10 @@ source_group(VCP                     FILES ${VCP})
 source_group(VCP\\SCPI               FILES ${VCP_SCPI})
 source_group(VCP\\SCPI\\Utils        FILES ${VCP_SCPI_UTILS})
 
-add_library(Device ${VS_KEIL_CMSIS} ${VS_KEIL_ARMCLANG} ${VS_KEIL_FATFS} ${LIBS_CMSIS} ${LIBS_FATFS} ${LIBS_HAL} ${LIBS_LWIP} ${LIBS_USBH} ${HARDWARE}
-                   ${HARDWARE_CMSIS} ${HARDWARE_FATFS} ${HARDWARE_HAL} ${HARDWARE_LWIP} ${HARDWARE_USBD} ${HARDWARE_USBH} ${SRC} ${DISPLAY} 
-                   ${DISPLAY_FONT} ${FDRIVE} ${FPGA} ${LAN} ${MENU} ${MENU_ITEMS} ${MENU_PAGES} ${PANEL} ${SETTINGS} ${UTILS} ${VCP} ${VCP_SCPI} ${VCP_SCPI_UTILS})
+add_library(Device ${VS_KEIL_CMSIS} ${VS_KEIL_ARMCLANG} ${VS_KEIL_FATFS} ${LIBS_CMSIS} ${LIBS_FATFS} ${LIBS_HAL}
+                   ${LIBS_LWIP} ${LIBS_USBH} ${HARDWARE}
+                   ${HARDWARE_CMSIS} ${HARDWARE_FATFS} ${HARDWARE_HAL} ${HARDWARE_LWIP} ${HARDWARE_USBD}
+                   ${HARDWARE_USBH} ${SRC} ${DISPLAY} 
+                   ${DISPLAY_FONT} ${FDRIVE} ${FPGA} ${FPGA_DATA} ${LAN} ${MENU} ${MENU_ITEMS} ${MENU_PAGES} ${PANEL}
+                   ${SETTINGS}
+                   ${UTILS} ${VCP} ${VCP_SCPI} ${VCP_SCPI_UTILS})

@@ -8,7 +8,6 @@
 #include "Display/Grid.h"
 #include "FDrive/FDrive.h"
 #include "FPGA/FPGA.h"
-#include "FPGA/Storage.h"
 #include "Hardware/EPROM.h"
 #include "Menu/FileManager.h"
 #include "Menu/Menu.h"

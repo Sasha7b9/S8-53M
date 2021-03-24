@@ -1597,16 +1597,6 @@
           <GroupName>FPGA</GroupName>
           <Files>
             <File>
-              <FileName>DataSettings.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\FPGA\DataSettings.h</FilePath>
-            </File>
-            <File>
-              <FileName>DataSettings.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\FPGA\DataSettings.cpp</FilePath>
-            </File>
-            <File>
               <FileName>FPGA.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\FPGA\FPGA.h</FilePath>
@@ -1617,19 +1607,29 @@
               <FilePath>.\src\FPGA\FPGA.cpp</FilePath>
             </File>
             <File>
+              <FileName>FPGA_AutoFinder.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\FPGA\FPGA_AutoFinder.h</FilePath>
+            </File>
+            <File>
               <FileName>FPGA_AutoFinder.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\FPGA\FPGA_AutoFinder.cpp</FilePath>
             </File>
             <File>
-              <FileName>FPGA_Types.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\FPGA\FPGA_Types.h</FilePath>
-            </File>
-            <File>
               <FileName>FPGA_Calibration.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\FPGA\FPGA_Calibration.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>FPGA_Math.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\FPGA\FPGA_Math.h</FilePath>
+            </File>
+            <File>
+              <FileName>FPGA_Math.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\FPGA\FPGA_Math.cpp</FilePath>
             </File>
             <File>
               <FileName>FPGA_Reader.h</FileName>
@@ -1647,24 +1647,34 @@
               <FilePath>.\src\FPGA\FPGA_Settings.cpp</FilePath>
             </File>
             <File>
-              <FileName>MathFPGA.h</FileName>
+              <FileName>FPGA_Types.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\FPGA\MathFPGA.h</FilePath>
+              <FilePath>.\src\FPGA\FPGA_Types.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FPGA/Data</GroupName>
+          <Files>
+            <File>
+              <FileName>DataSettings.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\FPGA\Data\DataSettings.h</FilePath>
             </File>
             <File>
-              <FileName>MathFPGA.cpp</FileName>
+              <FileName>DataSettings.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\FPGA\MathFPGA.cpp</FilePath>
+              <FilePath>.\src\FPGA\Data\DataSettings.cpp</FilePath>
             </File>
             <File>
               <FileName>Storage.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\FPGA\Storage.h</FilePath>
+              <FilePath>.\src\FPGA\Data\Storage.h</FilePath>
             </File>
             <File>
               <FileName>Storage.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\FPGA\Storage.cpp</FilePath>
+              <FilePath>.\src\FPGA\Data\Storage.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -3752,16 +3762,6 @@
           <GroupName>FPGA</GroupName>
           <Files>
             <File>
-              <FileName>DataSettings.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\FPGA\DataSettings.h</FilePath>
-            </File>
-            <File>
-              <FileName>DataSettings.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\FPGA\DataSettings.cpp</FilePath>
-            </File>
-            <File>
               <FileName>FPGA.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\FPGA\FPGA.h</FilePath>
@@ -3772,19 +3772,29 @@
               <FilePath>.\src\FPGA\FPGA.cpp</FilePath>
             </File>
             <File>
+              <FileName>FPGA_AutoFinder.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\FPGA\FPGA_AutoFinder.h</FilePath>
+            </File>
+            <File>
               <FileName>FPGA_AutoFinder.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\FPGA\FPGA_AutoFinder.cpp</FilePath>
             </File>
             <File>
-              <FileName>FPGA_Types.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\FPGA\FPGA_Types.h</FilePath>
-            </File>
-            <File>
               <FileName>FPGA_Calibration.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\FPGA\FPGA_Calibration.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>FPGA_Math.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\FPGA\FPGA_Math.h</FilePath>
+            </File>
+            <File>
+              <FileName>FPGA_Math.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\FPGA\FPGA_Math.cpp</FilePath>
             </File>
             <File>
               <FileName>FPGA_Reader.h</FileName>
@@ -3802,24 +3812,34 @@
               <FilePath>.\src\FPGA\FPGA_Settings.cpp</FilePath>
             </File>
             <File>
-              <FileName>MathFPGA.h</FileName>
+              <FileName>FPGA_Types.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\FPGA\MathFPGA.h</FilePath>
+              <FilePath>.\src\FPGA\FPGA_Types.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FPGA/Data</GroupName>
+          <Files>
+            <File>
+              <FileName>DataSettings.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\FPGA\Data\DataSettings.h</FilePath>
             </File>
             <File>
-              <FileName>MathFPGA.cpp</FileName>
+              <FileName>DataSettings.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\FPGA\MathFPGA.cpp</FilePath>
+              <FilePath>.\src\FPGA\Data\DataSettings.cpp</FilePath>
             </File>
             <File>
               <FileName>Storage.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\FPGA\Storage.h</FilePath>
+              <FilePath>.\src\FPGA\Data\Storage.h</FilePath>
             </File>
             <File>
               <FileName>Storage.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\FPGA\Storage.cpp</FilePath>
+              <FilePath>.\src\FPGA\Data\Storage.cpp</FilePath>
             </File>
           </Files>
         </Group>

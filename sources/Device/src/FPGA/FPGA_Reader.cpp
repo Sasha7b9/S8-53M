@@ -5,7 +5,8 @@
 #include "Display/PainterData.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGA_Reader.h"
-#include "FPGA/Storage.h"
+#include "FPGA/FPGA_Types.h"
+#include "FPGA/Data/DataSettings.h"
 #include "Settings/Settings.h"
 #include "Utils/ProcessingSignal.h"
 #include <cstring>

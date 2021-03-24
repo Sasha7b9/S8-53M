@@ -3,7 +3,7 @@
 #include "common/Utils/GlobalFunctions_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Grid.h"
-#include "FPGA/MathFPGA.h"
+#include "FPGA/FPGA_Math.h"
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
 #include <cmath>

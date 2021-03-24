@@ -8,7 +8,7 @@
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Utils/Math_.h"
 #include "FPGA/FPGA.h"
-#include "FPGA/MathFPGA.h"
+#include "FPGA/FPGA_Math.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
 #include "Panel/Panel.h"

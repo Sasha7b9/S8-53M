@@ -3,10 +3,9 @@
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Utils/GlobalFunctions_.h"
 #include "common/Utils/Math_.h"
-#include "FPGA/DataSettings.h"
 #include "FPGA/FPGA.h"
-#include "FPGA/MathFPGA.h"
-#include "FPGA/Storage.h"
+#include "FPGA/FPGA_Math.h"
+#include "FPGA/Data/DataSettings.h"
 #include "Panel/Panel.h"
 #include "Settings/Settings.h"
 #include <cstring>

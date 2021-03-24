@@ -1,6 +1,5 @@
 // 2021/03/17 8:40:06 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
-#include "FPGA/DataSettings.h"
 #include "FPGA/FPGA_Types.h"
 
 

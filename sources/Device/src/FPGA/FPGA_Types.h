@@ -1,5 +1,5 @@
 #pragma once
-#include "Display/Grid.h"
+#include "common/Hardware/HAL/HAL_.h"
 
 
 #define MIN_VALUE_SCREEN 0
