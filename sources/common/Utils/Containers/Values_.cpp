@@ -5,9 +5,75 @@
 #include "Settings/Settings.h"
 #include <cmath>
 #include <cstdio>
+#include <cstdlib>
 #include <cstring>
 
 
+String Float::ToString(bool always_sign, int num_digits)
+{
+    if (!IsValid())
+    {
+        return EmptyString();
+    }
+
+    String result;
+
+    if (!always_sign)
+    {
+        if (value < 0.0f)
+        {
+            result.Append('-');
+        }
+    }
+    else
+    {
+        result.Append(value < 0.0f ? '-' : '+');
+    }
+
+
+    char buffer[20];
+    char format[] = "%4.2f\0\0";
+
+    format[1] = (char)num_digits + 0x30;
+
+    int num_digits_in_int = GF::NumDigitsInIntPart(value);
+
+    format[3] = (char)((num_digits - num_digits_in_int) + 0x30);
+    if (num_digits == num_digits_in_int)
+    {
+        format[5] = '.';
+    }
+
+    std::sprintf(buffer, format, std::fabsf(value));
+
+    result.Append(buffer);
+
+    float val = (float)(std::atof(buffer)); //-V2508
+
+    if (GF::NumDigitsInIntPart(val) != num_digits_in_int)
+    {
+        num_digits_in_int = GF::NumDigitsInIntPart(val);
+        format[3] = (char)((num_digits - num_digits_in_int) + 0x30);
+
+        if (num_digits == num_digits_in_int)
+        {
+            format[5] = '.';
+        }
+
+        std::sprintf(buffer, format, value);
+
+        result.Append(buffer);
+    }
+
+    bool signExist = always_sign || value < 0.0f;
+
+    while ((int)(result.Size()) < num_digits + (signExist ? 2 : 1))
+    {
+        result.Append("0");
+    }
+
+    return result;
+}
 
 String Voltage::ToString(bool always_sign)
 {

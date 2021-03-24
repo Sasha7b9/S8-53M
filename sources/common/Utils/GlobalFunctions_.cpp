@@ -15,7 +15,7 @@ String GF::FloatFract2String(float value, bool alwaysSign)
     return GF::Float2String(value, alwaysSign, 4);
 }
 
-static int NumDigitsInIntPart(float value)
+int GF::NumDigitsInIntPart(float value)
 {
     float fabsValue = std::fabsf(value);
 
