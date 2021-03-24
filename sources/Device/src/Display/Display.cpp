@@ -151,8 +151,8 @@ void Display::WriteCursors()
             Text("1:").Draw(x, y1, colorText);
             Text("2:").Draw(x, y2);
             x += 7;
-            Cursors::GetVoltage(source, 0).Draw(x, y1);
-            Cursors::GetVoltage(source, 1).Draw(x, y2);
+            Cursors::GetVoltage(source, 0).ToString().Draw(x, y1);
+            Cursors::GetVoltage(source, 1).ToString().Draw(x, y2);
             x = startX + 49;
 
             float pos0 = Cursors::GetVoltage(Cursors::GetPosU(source, 0), set.chan[source].range, RShift::Get(source));

@@ -23,11 +23,9 @@ bool Cursors::NecessaryDraw()
 }
 
 
-String Cursors::GetVoltage(const Channel &source, int numCur)
+Voltage Cursors::GetVoltage(const Channel &source, int numCur)
 {
-    float voltage = GetVoltage(GetPosU(source, numCur), set.chan[source].range, RShift::Get(source));
-
-    return Voltage(voltage).ToString(true);
+    return GetVoltage(GetPosU(source, numCur), set.chan[source].range, RShift::Get(source));
 }
 
 

@@ -175,7 +175,7 @@ struct Cursors
     static bool NecessaryDraw();
 
     // Получить строку курсора напряжения.
-    static String GetVoltage(const Channel &source, int numCur);
+    static Voltage GetVoltage(const Channel &source, int num_cur);
     static Voltage GetVoltage(float shift_cur, Range::E range, int16 rshift);
 
     // Получить строку курсора времени.

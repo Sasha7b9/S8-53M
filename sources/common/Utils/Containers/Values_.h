@@ -79,7 +79,7 @@ struct Voltage : public Float
 {
     Voltage(float v = 0.0f) : Float(v) {}
 
-    String ToString(bool always_sign);
+    String ToString(bool always_sign = true);
 };
 
 
