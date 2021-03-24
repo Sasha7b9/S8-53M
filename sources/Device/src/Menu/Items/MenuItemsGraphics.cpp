@@ -748,11 +748,11 @@ void Page::DrawTitle(int yTop)
     if (shade)
     {
         Region(Item::TITLE_WIDTH - 1, Item::TITLE_HEIGHT - 1).Fill(x + 1, yTop + 1, Color::MENU_TITLE_DARK);
-        Region(Item::TITLE_WIDTH - 7, Item::TITLE_HEIGHT - 7).Fill(x + 4, yTop + 4, Color::MENU_TITLE_DARK);
+        Region(Item::TITLE_WIDTH - 5, Item::TITLE_HEIGHT - 7).Fill(x + 4, yTop + 4, Color::MENU_TITLE_DARK);
     }
     else
     {
-        DrawVolumeButton(x + 1, yTop + 1, Item::TITLE_WIDTH - 1, Item::TITLE_HEIGHT - 1, 3, Color::MENU_TITLE,
+        DrawVolumeButton(x + 1, yTop + 1, Item::TITLE_WIDTH, Item::TITLE_HEIGHT, 3, Color::MENU_TITLE,
             Color::MENU_TITLE_BRIGHT, Color::MENU_TITLE_DARK, false);
     }
     
@@ -859,7 +859,7 @@ void SmallButton::DrawHints(int x, int y, int width)
 
 void Item::DrawVolumeButton(int x, int y, int width, int height, int thickness, Color normal, Color bright, Color dark, bool isPressed) const
 {
-    Region(width - thickness * 2, height - thickness * 2).Fill(x + thickness, y + thickness, normal);
+    Region(width - thickness * 2 + 1, height - thickness * 2 + 1).Fill(x + thickness, y + thickness, normal);
 
     if (isPressed)
     {
