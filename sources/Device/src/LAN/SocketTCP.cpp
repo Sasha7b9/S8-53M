@@ -418,7 +418,7 @@ bool TCPSocket::Send(pchar buffer, uint length)
 
 
 
-void TCPSocket::SendFormatString(char *format, ...) //-V2560
+void TCPSocket::SendFormatString(char *format, ...)
 {
 #undef SIZE_BUFFER
 #define SIZE_BUFFER 200
@@ -428,5 +428,6 @@ void TCPSocket::SendFormatString(char *format, ...) //-V2560
     std::vsprintf(buffer, format, args);
     va_end(args);
     std::strcat(buffer, "\r\n");
+
     TCPSocket::Send(buffer, (uint)(std::strlen(buffer)));
 }

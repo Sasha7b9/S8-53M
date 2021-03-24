@@ -122,23 +122,13 @@ void Governor::DrawLowPart(int x, int y) const
 
 void IPaddress::DrawLowPart(int x, int y) const
 {
-    char buffer[20];
-
     DrawVolumeButton(x + 1, y + 17, Item::WIDTH_VALUE + 2, Item::HEIGHT_VALUE + 3, 2, Color::MENU_FIELD,
         Color::MENU_ITEM_BRIGHT, Color::MENU_ITEM_DARK, true);
 
     const DataIPaddress *own = OwnData();
 
-    std::sprintf(buffer, "%03d.%03d.%03d.%03d", *own->ip0, *own->ip1, *own->ip2, *own->ip3);
-
-    if (!IsOpened())
-    {
-        Text(buffer).Draw(x + 4, y + 21, Color::BACK);
-    }
-    else
-    {
-        Text(buffer).Draw(x + 4, y + 21, Color::FILL);
-    }
+    String("%03d.%03d.%03d.%03d", *own->ip0, *own->ip1, *own->ip2, *own->ip3).
+        Draw(x + 4, y + 21, IsOpened() ? Color::FILL : Color::BACK);
 }
 
 void MACaddress::DrawLowPart(int x, int y) const

@@ -14,7 +14,7 @@ static bool loggerUSB = false;
 #define SIZE_BUFFER_LOG 200
 
 
-void Log_Write(pchar format, ...) //-V2560
+void Log_Write(pchar format, ...)
 {
     char buffer[SIZE_BUFFER_LOG];
     std::va_list args;
@@ -29,7 +29,7 @@ void Log_Write(pchar format, ...) //-V2560
 }
 
 
-void Log_Error(pchar module, const char *func, int numLine, char *format, ...) //-V2560
+void Log_Error(pchar module, const char *func, int numLine, char *format, ...)
 {
     char buffer[SIZE_BUFFER_LOG];
     std::va_list args;
