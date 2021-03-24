@@ -666,12 +666,11 @@ static void Information_Draw()
     Text(LANG_RU ? "Модель : С8-53/1" : "Model : S8-53/1").Draw(x, y);
     y += dY;
 
-    char buffer[100];
-
     Text(LANG_RU ? "Программное обеспечение:" : "Software:").Draw(x, y);
     y += dY;
-    std::sprintf(buffer, (pchar)(LANG_RU ? "версия %s" : "version %s"), NUM_VER);
-    Text(buffer).Draw(x, y);
+
+    String((pchar)(LANG_RU ? "версия %s" : "version %s"), NUM_VER).Draw(x, y);
+
     y += dY;
 
     Text(String("CRC32 : %X", HAL_CRC::Calculate())).Draw(x, y, Color::FILL);
