@@ -309,28 +309,6 @@ String GF::Float2Db(float value, int num_digits)
 }
 
 
-float GF::CircleAddFloat(float *val, float delta, float min, float max)
-{
-    *val += delta;
-    if(*val > max)
-    {
-        *val = min;
-    }
-    return *val;
-}
-
-
-float GF::CircleSubFloat(float *val, float delta, float min, float max)
-{
-    *val -= delta;
-    if(*val < min)
-    {
-        *val = max;
-    }
-    return *val;
-}
-
-
 void GF::AddLimitationFloat(float *val, float delta, float min, float max)
 {
     float sum = *val + delta;

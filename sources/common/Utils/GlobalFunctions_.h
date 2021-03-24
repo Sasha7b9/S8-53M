@@ -36,12 +36,6 @@ namespace GF
     // Преобразует децибелы в текстовую строку.
     String Float2Db(float value, int num_digits);
 
-    // Увелечивает значение по адресу val на delta. Затем, если результат больше max, приравнивает его min
-    float CircleAddFloat(float *val, float delta, float min, float max);
-
-    // Уменьшает значение по адресу val на delta. Затем, елси результат меньше min, приравнивает его masx
-    float CircleSubFloat(float *val, float delta, float min, float max);
-
     // Прибавить к значению по адресу val delta. Если результат не вписывается в диапазон [min; max], ограничить
     void AddLimitationFloat(float *val, float delta, float min, float max);
 

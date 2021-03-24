@@ -363,3 +363,31 @@ T Math::CircleDecrease(T *val, T min, T max)
 
     return *val;
 }
+
+
+template<class T>
+T Math::CircleAdd(T *val, T delta, T min, T max)
+{
+    *val += delta;
+
+    if (*val > max)
+    {
+        *val = min;
+    }
+
+    return *val;
+}
+
+
+template<class T>
+T Math::CircleSub(T *val, T delta, T min, T max)
+{
+    *val -= delta;
+
+    if (*val < min)
+    {
+        *val = max;
+    }
+
+    return *val;
+}

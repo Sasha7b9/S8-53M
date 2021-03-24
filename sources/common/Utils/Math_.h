@@ -60,6 +60,10 @@ namespace Math
     template<class T> T CircleIncrease(T *val, T min, T max);
     // Умеьшает значение по адресу val на 1. Затем, если результат меньше min, приравнивает его max
     template<class T> T CircleDecrease(T *val, T min, T max);
+    // Увелечивает значение по адресу val на delta. Затем, если результат больше max, приравнивает его min
+    template<class T> T CircleAdd(T *val, T delta, T min, T max);
+    // Уменьшает значение по адресу val на delta. Затем, елси результат меньше min, приравнивает его masx
+    template<class T> T CircleSub(T *val, T delta, T min, T max);
 
     extern float Pi;
 }
