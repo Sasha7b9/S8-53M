@@ -47,11 +47,11 @@ void ReaderFPGA::ReadData()
 
     if (data.data->Settings().IsEnabledPeakDet())
     {
-        ReadRealModePeakDetOn(*data.data);
+        ReadPeakDetOn(*data.data);
     }
     else
     {
-        ReadRealModePeakDetOff(*data.data);
+        ReadPeakDetOff(*data.data);
     }
 
     Storage::Append(*data.data);
@@ -60,22 +60,22 @@ void ReaderFPGA::ReadData()
 }
 
 
-void ReaderFPGA::ReadRealModePeakDetOn(DataReading &)
+void ReaderFPGA::ReadPeakDetOn(DataReading &)
 {
 }
 
 
-void ReaderFPGA::ReadRealModePeakDetOff(DataReading &data)
+void ReaderFPGA::ReadPeakDetOff(DataReading &data)
 {
     uint16 addr_stop = ReadAddressStop();
 
-    ReadChannel(data, ChA, addr_stop);
+    ReadChannelPeakDetOff(data, ChA, addr_stop);
 
-    ReadChannel(data, ChB, addr_stop);
+    ReadChannelPeakDetOff(data, ChB, addr_stop);
 }
 
 
-void ReaderFPGA::ReadChannel(DataReading &data, const Channel &ch, uint16 addr_stop)
+void ReaderFPGA::ReadChannelPeakDetOff(DataReading &data, const Channel &ch, uint16 addr_stop)
 {
     *WR_PRED = addr_stop;
     *WR_ADDR_STOP = 0xffff;

@@ -25,11 +25,11 @@ private:
 
     static int CalculateShift();
 
-    static void ReadRealModePeakDetOn(DataReading &);
+    static void ReadPeakDetOn(DataReading &);
 
-    static void ReadRealModePeakDetOff(DataReading &);
+    static void ReadPeakDetOff(DataReading &);
 
     static uint16 ReadAddressStop();
 
-    static void ReadChannel(DataReading &data, const Channel &ch, uint16 addr_stop);
+    static void ReadChannelPeakDetOff(DataReading &data, const Channel &ch, uint16 addr_stop);
 };
