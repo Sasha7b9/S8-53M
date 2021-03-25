@@ -25,18 +25,22 @@ private:
 
     static int CalculateShift();
 
-    static void ReadPeakDetOn(DataReading &);
-
-    static void ReadPeakDetOff(DataReading &);
-
     static uint16 ReadAddressStop();
-
-    static void ReadChannelPeakDetOff(DataReading &data, const Channel &ch, uint16 addr_stop);
 
     struct Read
     {
         static void PeakDetOn(DataReading &);
 
         static void PeakDetOff(DataReading &);
+
+        struct Real
+        {
+            static void Channel(DataReading &, const Channel &ch, uint16 addr_stop);
+        };
+
+        struct Randomizer
+        {
+            static void Channel();
+        };
     };
 };

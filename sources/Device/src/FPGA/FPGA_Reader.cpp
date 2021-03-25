@@ -69,13 +69,13 @@ void ReaderFPGA::Read::PeakDetOff(DataReading &data)
 {
     uint16 addr_stop = ReadAddressStop();
 
-    ReadChannelPeakDetOff(data, ChA, addr_stop);
+    Real::Channel(data, ChA, addr_stop);
 
-    ReadChannelPeakDetOff(data, ChB, addr_stop);
+    Real::Channel(data, ChB, addr_stop);
 }
 
 
-void ReaderFPGA::ReadChannelPeakDetOff(DataReading &data, const Channel &ch, uint16 addr_stop)
+void ReaderFPGA::Read::Real::Channel(DataReading &data, const ::Channel &ch, uint16 addr_stop)
 {
     *WR_PRED = addr_stop;
     *WR_ADDR_STOP = 0xffff;
