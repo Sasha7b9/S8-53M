@@ -9,14 +9,6 @@ struct DataSettings;
 struct RecordStorage;
 
 
-struct DataDrawingKeeper
-{
-    DataDrawingKeeper() : data(nullptr) {}
-    ~DataDrawingKeeper();
-    DataDrawing *data;
-};
-
-
 //----------------------------------------------------------------------------------------------------------------------
 struct DataStorage
 {
@@ -101,8 +93,6 @@ public:
 
     // ¬озвращает количество записей в хранилище
     static uint NumRecords();
-
-    static void PrepareDataForDrawing(DataDrawingKeeper &keeper);
 
 private:
 

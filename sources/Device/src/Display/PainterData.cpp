@@ -8,6 +8,7 @@
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGA_Reader.h"
 #include "FPGA/Data/DataSettings.h"
+#include "FPGA/Data/Preparator.h"
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
 #include "Utils/ProcessingSignal.h"
@@ -24,7 +25,7 @@ void PainterData::DrawData()
 {
     DataDrawingKeeper keeper;
 
-    Storage::PrepareDataForDrawing(keeper);
+    Preparator::PrepareForDrawing(keeper);
 
     keeper.data->Draw();
 

@@ -1,7 +1,7 @@
 // 2021/03/24 8:41:43 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "Display/PainterData.h"
-#include "FPGA/Data/Storage.h"
+#include "FPGA/Data/Preparator.h"
 
 
 DataDrawingKeeper::~DataDrawingKeeper()
@@ -10,7 +10,7 @@ DataDrawingKeeper::~DataDrawingKeeper()
 }
  
 
-void Storage::PrepareDataForDrawing(DataDrawingKeeper &keeper)
+void Preparator::PrepareForDrawing(DataDrawingKeeper &keeper)
 {
     keeper.data = new DataDrawing();
 
