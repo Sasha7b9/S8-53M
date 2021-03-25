@@ -562,7 +562,7 @@ void TrigPolarity::Switch()
 
 void TrigPolarity::Load()
 {
-    FPGA::BUS::Write(WR_TRIG, TrigPolarity::IsFront() ? 1U : 0U);
+    FPGA::BUS::Write(WR_TRIG, TrigPolarity::IsFront() ? 0U : 1U);
 }
 
 
