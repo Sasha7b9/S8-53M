@@ -97,7 +97,7 @@ file(GLOB HARDWARE          ../../Device/src/Hardware/EPROM.h
                                 ../../common/Hardware/Timer_.*)
 file(GLOB HARDWARE_HAL          ../../common/Hardware/HAL/HAL_.*
                                 ../../common/Hardware/HAL/HAL_PINS_.*
-                                ../../common/Hardware/HAL/HAL_ADC3_.cpp
+                                ../../common/Hardware/HAL/HAL_ADC1_.cpp
                                 ../../common/Hardware/HAL/HAL_CRC_.cpp
                                 ../../common/Hardware/HAL/HAL_DAC2_.cpp
                                 ../../common/Hardware/HAL/HAL_EPROM_.cpp
