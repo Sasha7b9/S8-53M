@@ -85,7 +85,9 @@ void BottomPart::Draw()
             "\xb1\xb2"
         };
 
-        Text("\xa5\x10%s\x10\xa5\x10%s\x10\xa5\x10", couple[TrigInput::Get()], polar[TrigPolarity::Get()]).Draw(x + 18, y1);
+        Text("\xa5\x10%s\x10\xa5\x10%s\x10\xa5\x10", couple[TrigInput::Get()],
+            polar[set.trig.polarity]).Draw(x + 18, y1);
+
         Char(filtr[TrigInput::Get()][0]).Draw(x + 45, y1);
         Char(filtr[TrigInput::Get()][1]).Draw(x + 53, y1);
     }

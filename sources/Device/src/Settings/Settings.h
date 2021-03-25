@@ -270,7 +270,7 @@ struct SettingsTrig
 {
     StartMode::E         start_mode;         // Режим запуска.
     TrigSource::E        source;             // Источник.
-    TrigPolarity::E      polarity;           // Тип синхронизации.
+    TrigPolarity         polarity;           // Тип синхронизации.
     TrigInput::E         input;              // Вход синхронизации.
     int16                levelRel[3];        // Уровень синхронизации для трёх источников.
     ModeLongPressTrig::E modeLongPressTrig;  // Режим работы длительного нажатия кнопки СИНХР.

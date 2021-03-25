@@ -529,21 +529,9 @@ void TrigPolarity::Set(E polarity)
 }
 
 
-TrigPolarity::E TrigPolarity::Get()
-{
-    return set.trig.polarity;
-}
-
-
-bool TrigPolarity::IsFront()
-{
-    return (set.trig.polarity == TrigPolarity::Front);
-}
-
-
 void TrigPolarity::Switch()
 {
-    if (TrigPolarity::IsFront())
+    if (set.trig.polarity.IsFront())
     {
         HAL_FMC::Write(WR_TRIG, 0);
         HAL_FMC::Write(WR_TRIG, 1);
@@ -562,7 +550,7 @@ void TrigPolarity::Switch()
 
 void TrigPolarity::Load()
 {
-    FPGA::BUS::Write(WR_TRIG, TrigPolarity::IsFront() ? 0U : 1U);
+    FPGA::BUS::Write(WR_TRIG, set.trig.polarity.IsFront() ? 0U : 1U);
 }
 
 

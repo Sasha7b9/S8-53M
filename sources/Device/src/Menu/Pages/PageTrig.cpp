@@ -53,7 +53,7 @@ DEF_CHOICE_3(mcSource, PageTrig::self,
 
 static void OnChanged_Polarity(bool)
 {
-    TrigPolarity::Set(TrigPolarity::Get());
+    TrigPolarity::Load();
 }
 
 DEF_CHOICE_2(mcPolarity, PageTrig::self,

@@ -677,18 +677,20 @@ struct TrigPolarity
     {
         Front,  // Синхронизация по фронту.
         Back    // Синхронизация по срезу.
-    };
+    } value;
+
+    TrigPolarity(E v = Front) : value(v) {};
 
     static void Set(E polarity);
 
-    static E Get();
-
-    static bool IsFront();
+    bool IsFront() const { return value == Front; };
 
     // Переключение полярности - принудетиельный запуск сбора информации
     static void Switch();
 
     static void Load();
+
+    operator E() const { return value; }
 
     static uint timeSwitch;     // Время принудительного запуска сбора информации
 };
