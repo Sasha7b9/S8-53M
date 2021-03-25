@@ -793,13 +793,17 @@ struct TBase
     // Возвращает true, если установлена рандомизаторная развёртка
     static bool IsRandomize();
 
+    // Возвращает true, если установлена поточечная развёртка
+    static bool IsP2P();
+
     static pchar Name(TBase::E tbase);
 
     static pchar ToString(TBase::E tbase);
     static pchar ToStringEN(TBase::E tbase);
 
-    static E MIN_P2P;               // С этой развёртки начинается поточечный вывод
-    static E MIN_PEAK_DET;
+    static E MIN_P2P;       // С этой развёртки начинается поточечный вывод
+    static E MIN_PEAK_DET;  // С этой развёртки можно включать пиковый детектор
+    static E MAX_RANOMIZE;  // Максимальная развёртка, на которой работает рандомизатор
 };
 
 

@@ -88,8 +88,6 @@ public:
         // Столько байт нужно для сохранения данных обоих каналов
         static uint BytesForData();
 
-        static bool InModeP2P();
-
         static bool InSelfRecorderMode();
     };
 

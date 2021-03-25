@@ -99,7 +99,7 @@ DEF_CHOICE_3(mcTPos, PageTime::self,
 
 static bool IsActive_SelfRecorder()
 {
-    return (FPGA::SET::InModeP2P());
+    return TBase::IsP2P();
 }
 
 DEF_CHOICE_2(mcSelfRecorder, PageTime::self,

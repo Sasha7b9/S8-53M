@@ -19,6 +19,7 @@ bool TrigLev::need_auto_find = false;
 
 TBase::E TBase::MIN_P2P = TBase::_20ms;
 TBase::E TBase::MIN_PEAK_DET = TBase::_500ns;
+TBase::E TBase::MAX_RANOMIZE = TBase::_50ns;
 
 
 Channel ChA(Channel::A);
@@ -281,7 +282,13 @@ void TBase::Increase()
 
 bool TBase::IsRandomize()
 {
-    return (set.time.base < TBase::_100ns);
+    return (set.time.base <= MAX_RANOMIZE);
+}
+
+
+bool TBase::IsP2P()
+{
+    return (set.time.base >= MIN_P2P);
 }
 
 

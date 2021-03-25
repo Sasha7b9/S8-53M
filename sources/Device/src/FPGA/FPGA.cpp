@@ -59,7 +59,7 @@ void OnTimerCanReadData()
 
 void FPGA::Start()
 {
-    if(SET::InModeP2P())
+    if(TBase::IsP2P())
     {
 //        PainterData::ResetP2Ppoints(false);
         Timer::Enable(TypeTimer::P2P, 1, ReaderFPGA::ReadPoint);
@@ -505,10 +505,4 @@ uint FPGA::SET::BytesForData()
 bool FPGA::SET::InSelfRecorderMode()
 {
     return set.time.self_recorder;
-}
-
-
-bool FPGA::SET::InModeP2P()
-{
-    return (set.time.base >= TBase::MIN_P2P);
 }
