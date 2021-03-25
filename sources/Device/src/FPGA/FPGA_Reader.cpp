@@ -32,7 +32,8 @@ static uint8 InverseIfNecessary(uint8 data, Channel::E ch)
 */
 
 
-int          ReaderFPGA::addition_shift = 0;
+int   ReaderFPGA::addition_shift = 0;
+Mutex ReaderFPGA::mutex_read;
 
 
 uint16 *addresses_ADC[2] = { RD_ADC_A, RD_ADC_B };
@@ -40,7 +41,7 @@ uint16 *addresses_ADC[2] = { RD_ADC_A, RD_ADC_B };
 
 void ReaderFPGA::ReadData()
 {
-    FPGA::in_processing_of_read = true;
+    mutex_read.Lock();
 
     DataReadingKeeper data;
 
@@ -55,7 +56,7 @@ void ReaderFPGA::ReadData()
 
     Storage::Append(*data.data);
 
-    FPGA::in_processing_of_read = false;
+    mutex_read.Unlock();
 }
 
 
@@ -178,7 +179,7 @@ void ReaderFPGA::ReadChannel(DataReading &data, const Channel &ch, uint16 addr_s
 
     volatile uint16 *address = ADDRESS_READ(ch);
 
-    while (p < end && FPGA::in_processing_of_read)
+    while (p < end)
     {
         *p++ = *address;
         *p++ = *address;

@@ -5,6 +5,7 @@
 #include "Display/Display.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGA_Math.h"
+#include "FPGA/FPGA_Reader.h"
 #include "FPGA/Data/DataSettings.h"
 #include "Panel/Panel.h"
 #include "Settings/Settings.h"
@@ -423,7 +424,7 @@ void TShift::Load()
 
     FPGA::post = (uint16)(~(FPGA::post + 1));                   // Здесь просто для записи в железо дополняем
 
-    if (!FPGA::in_processing_of_read)
+    if (!ReaderFPGA::mutex_read.IsLocked())
     {
         if (TBase::Get() > 8)
         {

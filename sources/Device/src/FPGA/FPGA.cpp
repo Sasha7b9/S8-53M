@@ -13,7 +13,6 @@
 #include <cstring>
 
 
-bool             FPGA::in_processing_of_read = false;
 int              FPGA::add_shift = 0;
 int              FPGA::add_N_stop = 0;
 uint16           FPGA::post = 1024;

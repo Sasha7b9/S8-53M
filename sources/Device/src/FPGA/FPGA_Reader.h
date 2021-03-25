@@ -1,5 +1,6 @@
 // 2021/03/17 8:40:06 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
+#include "common/Utils/Mutex_.h"
 #include "FPGA/FPGA_Types.h"
 
 
@@ -18,6 +19,8 @@ struct ReaderFPGA
 
     static int addition_shift;                  // ƒополнительное смещение. Ќужно дл€ правильной расстановки точек
                                                 // в режиме рандомизатора
+
+    static Mutex mutex_read;                    // ћьютекс на чтение данных
 
 private:
 

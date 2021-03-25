@@ -39,7 +39,6 @@ class FPGA
 {
 public:
 
-    static bool   in_processing_of_read;
     static int    add_shift;
     static int    add_N_stop;
     static int16  pred;
