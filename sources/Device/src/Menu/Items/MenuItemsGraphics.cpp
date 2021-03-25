@@ -754,7 +754,6 @@ void Page::DrawTitle(int ytop)
     int height = HeightOpened();
     bool shade = CurrentItemIsOpened();
 
-    Region(Item::TITLE_WIDTH + 2, height + 2).Fill(x - 1, ytop, Color::BACK);
     Rectangle(Item::TITLE_WIDTH + 2, height + 3).Draw(x, ytop, Color::BorderMenu());
     
     if (shade)
