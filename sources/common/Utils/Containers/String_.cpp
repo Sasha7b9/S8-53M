@@ -16,7 +16,7 @@ pchar const String::_ERROR = "---.---";
 
 String::String() : buffer(nullptr), capacity(0)
 {
-    Set(" ");
+    Set("");
 }
 
 
@@ -65,6 +65,11 @@ void String::Set(pchar format, ...)
     va_start(args, format);
     uint num_symbols = (uint)std::vsprintf(temp_buffer, format, args);
     va_end(args);
+
+    if (num_symbols == 0)
+    {
+        num_symbols = 2;
+    }
 
     if (capacity < num_symbols)
     {

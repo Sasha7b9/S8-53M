@@ -32,7 +32,7 @@ Set2Int SettingsDisplay::PointsOnDisplay()
     int num_points_on_screen = 281;
 
     result.value1 = TShift::GetInMemory();
-    result.value2 = TShift::GetInMemory() + num_points_on_screen - 1;
+    result.value2 = TShift::GetInMemory() + num_points_on_screen;
 
     return result;
 }
