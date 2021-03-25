@@ -27,7 +27,7 @@ void HAL::Init()
     HAL_SPI1::Init();
 
     HAL_SPI5::Init();
-
+   
     HAL_ADC1::Init();
 //
     HAL_TIM7::Init();

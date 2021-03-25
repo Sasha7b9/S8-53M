@@ -237,7 +237,7 @@ T Math::Max(T value1, T value2, T value3)
 }
 
 
-uint8 Math::CalculateFiltr(puchar data, int x, int numPoints, int numSmoothing)
+uint8 Math::CalculateFiltr(puchar data, int x, int num_points, int numSmoothing)
 {
     if (numSmoothing < 2)
     {
@@ -252,7 +252,7 @@ uint8 Math::CalculateFiltr(puchar data, int x, int numPoints, int numSmoothing)
 
     for (int delta = startDelta; delta <= endDelta; delta++)
     {
-        if (((x - delta) >= 0) && ((x + delta) < (numPoints)))
+        if (((x - delta) >= 0) && ((x + delta) < (num_points)))
         {
             sum += data[x - delta];
             sum += data[x + delta];
@@ -263,7 +263,7 @@ uint8 Math::CalculateFiltr(puchar data, int x, int numPoints, int numSmoothing)
     if ((numSmoothing % 2) == 1)
     {
         int delta = numSmoothing / 2;
-        if ((x + delta) < numPoints)
+        if ((x + delta) < num_points)
         {
             sum += data[x + delta];
             count++;
@@ -273,11 +273,11 @@ uint8 Math::CalculateFiltr(puchar data, int x, int numPoints, int numSmoothing)
     return (uint8)(sum / count);
 }
 
-void Math::CalculateFiltrArray(puchar dataIn, uint8 *dataOut, int numPoints, int numSmoothing)
+void Math::CalculateFiltrArray(puchar dataIn, uint8 *dataOut, int num_points, int numSmoothing)
 {
     if (numSmoothing < 2)
     {
-        std::memcpy(dataOut, dataIn, (uint)(numPoints));
+        std::memcpy(dataOut, dataIn, (uint)(num_points));
     }
     else
     {
@@ -286,14 +286,14 @@ void Math::CalculateFiltrArray(puchar dataIn, uint8 *dataOut, int numPoints, int
         int startDelta = 1;
         int d = numSmoothing / 2;
 
-        for (int i = 0; i < numPoints; i++)
+        for (int i = 0; i < num_points; i++)
         {
             int count = 1;
             int sum = dataIn[i];
 
             for (int delta = startDelta; delta <= endDelta; delta++)
             {
-                if (((i - delta) >= 0) && ((i + delta) < (numPoints)))
+                if (((i - delta) >= 0) && ((i + delta) < (num_points)))
                 {
                     sum += dataIn[i - delta];
                     sum += dataIn[i + delta];
@@ -303,7 +303,7 @@ void Math::CalculateFiltrArray(puchar dataIn, uint8 *dataOut, int numPoints, int
 
             if (addCalculation)
             {
-                if ((i + d) < numPoints)
+                if ((i + d) < num_points)
                 {
                     sum += dataIn[i + d];
                     count++;
