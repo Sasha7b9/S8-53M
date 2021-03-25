@@ -52,6 +52,13 @@ Text Float::ToText(bool always_sign, int num_digits)
 
     while ((int)(result.Size()) < num_digits + (sign_exist ? 2 : 1))
     {
+        uint size = result.Size();
+        size = size;
+        
+        uint _value = num_digits + (sign_exist ? 2 : 1);
+        _value = _value;
+        
+        
         result.Append("0");
     }
 
