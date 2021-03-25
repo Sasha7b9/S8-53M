@@ -8,7 +8,7 @@
 #define __RBIT(VAL) 0
 #define __CLZ(x) 0
 #else
-#define nullptr 0 //-V1059
+#define nullptr 0
 #endif
 
 
@@ -20,7 +20,7 @@
 
 
 // Объединение размером 32 бита
-union BitSet32 //-V2514
+union BitSet32
 {
     uint   word;
     uint16 half_word[2];
@@ -28,7 +28,7 @@ union BitSet32 //-V2514
 };
 
 // Объединение размером 64 бита
-union BitSet64 //-V2514
+union BitSet64
 {
     long long unsigned int  dword;
     unsigned int            word[2];
