@@ -8,7 +8,7 @@ DataDrawingKeeper::~DataDrawingKeeper()
 {
     delete data;
 }
-
+ 
 
 void Storage::PrepareDataForDrawing(DataDrawingKeeper &keeper)
 {

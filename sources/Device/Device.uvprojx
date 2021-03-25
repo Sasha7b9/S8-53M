@@ -1682,6 +1682,16 @@
               <FilePath>.\src\FPGA\Data\DataSettings.cpp</FilePath>
             </File>
             <File>
+              <FileName>Preparator.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\FPGA\Data\Preparator.h</FilePath>
+            </File>
+            <File>
+              <FileName>Preparator.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\FPGA\Data\Preparator.cpp</FilePath>
+            </File>
+            <File>
               <FileName>Storage.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\FPGA\Data\Storage.h</FilePath>
@@ -1690,11 +1700,6 @@
               <FileName>Storage.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\FPGA\Data\Storage.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Preparator.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\FPGA\Data\Preparator.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -3862,6 +3867,16 @@
               <FilePath>.\src\FPGA\Data\DataSettings.cpp</FilePath>
             </File>
             <File>
+              <FileName>Preparator.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\FPGA\Data\Preparator.h</FilePath>
+            </File>
+            <File>
+              <FileName>Preparator.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\FPGA\Data\Preparator.cpp</FilePath>
+            </File>
+            <File>
               <FileName>Storage.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\FPGA\Data\Storage.h</FilePath>
@@ -3870,11 +3885,6 @@
               <FileName>Storage.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\FPGA\Data\Storage.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Preparator.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\FPGA\Data\Preparator.cpp</FilePath>
             </File>
           </Files>
         </Group>
