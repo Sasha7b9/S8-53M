@@ -47,11 +47,11 @@ void ReaderFPGA::ReadData()
 
     if (data.data->Settings().IsEnabledPeakDet())
     {
-        Read::PeakDet::On(*data.data);
+        Read::PeakDetOn(*data.data);
     }
     else
     {
-        Read::PeakDet::Off(*data.data);
+        Read::PeakDetOff(*data.data);
     }
 
     Storage::Append(*data.data);
@@ -60,12 +60,12 @@ void ReaderFPGA::ReadData()
 }
 
 
-void ReaderFPGA::Read::PeakDet::On(DataReading &)
+void ReaderFPGA::Read::PeakDetOn(DataReading &)
 {
 }
 
 
-void ReaderFPGA::Read::PeakDet::Off(DataReading &data)
+void ReaderFPGA::Read::PeakDetOff(DataReading &data)
 {
     uint16 addr_stop = ReadAddressStop();
 

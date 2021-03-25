@@ -35,11 +35,8 @@ private:
 
     struct Read
     {
-        struct PeakDet
-        {
-            static void On(DataReading &);
+        static void PeakDetOn(DataReading &);
 
-            static void Off(DataReading &);
-        };
+        static void PeakDetOff(DataReading &);
     };
 };
