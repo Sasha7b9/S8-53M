@@ -48,6 +48,12 @@ struct Int : public ValueStruct<int>
 };
 
 
+struct InvalidInt : public Int
+{
+    InvalidInt() : Int() { SetInvalid(); }
+};
+
+
 struct Uint8 : public ValueStruct<uint8>
 {
     Uint8(uint8 v = 0) : ValueStruct(v) {}

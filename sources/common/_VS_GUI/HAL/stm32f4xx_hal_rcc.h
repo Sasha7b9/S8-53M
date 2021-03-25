@@ -17,6 +17,7 @@
 #define __GPIOG_CLK_ENABLE()
 #define __GPIOH_CLK_ENABLE()
 #define __GPIOI_CLK_ENABLE()
+#define __ADC1_CLK_ENABLE()
 #define __ADC3_CLK_ENABLE()
 #define __CRC_CLK_ENABLE()
 #define __DMA2D_CLK_ENABLE()

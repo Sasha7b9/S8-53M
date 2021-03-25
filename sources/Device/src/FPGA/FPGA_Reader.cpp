@@ -114,7 +114,7 @@ void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch,
 
     std::memset(data, Value::NONE, bytes_in_channel);
 
-    int Tsm = CalculateShift();
+    Int Tsm = CalculateShift();
 
     int step = TBase::Kr();
 
@@ -165,44 +165,21 @@ void ReaderFPGA::InverseDataIsNecessary(const Channel &ch, uint8 *data)
 }
 
 
-int ReaderFPGA::CalculateShift()            // \todo Не забыть восстановить функцию
+Int ReaderFPGA::CalculateShift()
 {
     uint16 rand = HAL_ADC1::GetValue();
-    //LOG_WRITE("rand = %d", (int)rand);
+
     uint16 min = 0;
     uint16 max = 0;
 
-    if (TBase::Get() == TBase::_200ns)
-    {
-        return rand < 3000 ? 0 : -1;    // set.debug.altShift; \todo Остановились на жёстком задании дополнительного
-                                        // смещения. На PageDebug выбор закомментирован, можно раскомментировать при
-                                        // необходимости
-    }
-
     if (!FPGA::Randomizer::CalculateGate(rand, &min, &max))
     {
-        return TShift::NULL_VALUE;
+        return InvalidInt();
     }
 
-    //LOG_WRITE("ворота %d - %d", min, max);
+    float tin = (float)(rand - min) / (max - min) * 10e-9F;
 
-    //min += 100;
-    //max -= 100;
-
-    if (TBase::IsRandomize())
-    {
-        float tin = (float)(rand - min) / (max - min) * 10e-9F;
-        int retValue = (int)(tin / 10e-9F * TBase::Kr());
-        return retValue;
-    }
-
-    if (TBase::Get() == TBase::_100ns && rand < (min + max) / 2)
-    {
-        return 0;
-    }
-
-    return -1;  // set.debug.altShift;      \todo Остановились на жёстком задании дополнительного смещения. На PageDebug
-                                            // выбор закомментирован, можно раскомментировать при необходимости
+    return (int)(tin / 10e-9F * TBase::Kr());
 }
 
 

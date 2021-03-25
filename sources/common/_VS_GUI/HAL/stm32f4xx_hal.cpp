@@ -2,6 +2,8 @@
 #include <stm32f4xx_hal.h>
 
 
+uint SystemCoreClock = 128000000;
+
 __weak void HAL_Delay(uint32_t)
 {
 

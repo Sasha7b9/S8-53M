@@ -23,7 +23,7 @@ private:
     // Инвертирует данные.
     static void InverseDataIsNecessary(const Channel &ch, uint8 *data);
 
-    static int CalculateShift();
+    static Int CalculateShift();
 
     static uint16 ReadAddressStop();
 
