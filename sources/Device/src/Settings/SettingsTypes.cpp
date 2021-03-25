@@ -279,6 +279,12 @@ void TBase::Increase()
 }
 
 
+bool TBase::IsRandomize()
+{
+    return (set.time.base < TBase::_100ns);
+}
+
+
 void TBase::Set(TBase::E tBase)
 {
     if (!ChA.IsEnabled() && !ChB.IsEnabled())

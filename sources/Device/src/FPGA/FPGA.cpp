@@ -502,12 +502,6 @@ uint FPGA::SET::BytesForData()
 }
 
 
-bool FPGA::SET::InRandomizeMode()
-{
-    return (set.time.base < TBase::_100ns);
-}
-
-
 bool FPGA::SET::InSelfRecorderMode()
 {
     return set.time.self_recorder;

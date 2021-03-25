@@ -790,6 +790,9 @@ struct TBase
 
     static void Increase();
 
+    // Возвращает true, если установлена рандомизаторная развёртка
+    static bool IsRandomize();
+
     static pchar Name(TBase::E tbase);
 
     static pchar ToString(TBase::E tbase);

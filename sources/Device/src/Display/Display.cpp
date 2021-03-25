@@ -277,7 +277,7 @@ bool Display::NeedForClearScreen()
 {
     ENumAccumulation &enum_accum = set.display.enum_accum;;
 
-    if (FPGA::SET::InRandomizeMode() ||
+    if (TBase::IsRandomize() ||
         enum_accum == 1 ||
         set.display.mode_acum.IsNoReset() ||
         FPGA::SET::InSelfRecorderMode())

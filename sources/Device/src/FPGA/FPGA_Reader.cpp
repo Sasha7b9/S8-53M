@@ -44,7 +44,7 @@ void ReaderFPGA::ReadData()
 
     DataReadingKeeper data;
 
-    if (FPGA::SET::InRandomizeMode())
+    if (TBase::IsRandomize())
     {
         ReadRandomizeMode(*data.data);
     }
@@ -145,7 +145,7 @@ int ReaderFPGA::CalculateShift()            // \todo Не забыть восстановить функ
     //min += 100;
     //max -= 100;
 
-    if (FPGA::SET::InRandomizeMode())
+    if (TBase::IsRandomize())
     {
         float tin = (float)(rand - min) / (max - min) * 10e-9F;
         int retValue = (int)(tin / 10e-9F * FPGA::Randomizer::Kr[TBase::Get()]);
