@@ -280,7 +280,7 @@ void Pin::Init()
     }
     else if (mode == PinMode::_ADC1_IT)
     {
-        isGPIO.Mode = GPIO_MODE_IT_FALLING;
+        isGPIO.Mode = GPIO_MODE_IT_RISING;
     }
     else if (mode == PinMode::_DAC1 || mode == PinMode::_DAC2)
     {
