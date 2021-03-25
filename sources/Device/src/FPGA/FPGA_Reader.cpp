@@ -116,7 +116,7 @@ void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch,
 
     Int Tsm = CalculateShift();
 
-    int step = TBase::Kr();
+    int step = TBase::StepRand();
 
 #define NUM_ADD_STEPS 2
 
@@ -179,7 +179,7 @@ Int ReaderFPGA::CalculateShift()
 
     float tin = (float)(rand - min) / (max - min) * 10e-9F;
 
-    return (int)(tin / 10e-9F * TBase::Kr());
+    return (int)(tin / 10e-9F * TBase::StepRand());
 }
 
 

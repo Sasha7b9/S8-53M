@@ -731,7 +731,7 @@ float TShift::ToRel(float tshift_abs, TBase::E tbase)
 }
 
 
-int TBase::Kr()
+int TBase::StepRand()
 {
 #define N_KR 100
     static const int steps[] = { N_KR / 1, N_KR / 2, N_KR / 5, N_KR / 10, N_KR / 20, N_KR / 50 };

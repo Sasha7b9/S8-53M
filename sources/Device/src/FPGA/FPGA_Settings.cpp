@@ -381,7 +381,7 @@ void TShift::Load()
     {
         uint k = 0;
 
-        int step = TBase::Kr();
+        int step = TBase::StepRand();
 
         if (TPos::IsLeft())
         {
