@@ -13,4 +13,12 @@ private:
 };
 
 
-
+// —труктура дл€ хранени€ массива считываемых данных
+struct DataReadingKeeper
+{
+    DataReadingKeeper();
+    ~DataReadingKeeper();
+    DataReading *data;
+private:
+    void Prepare();
+};

@@ -22,3 +22,21 @@ void DataDrawingKeeper::Prepare()
 
     data->Prepare();
 }
+
+
+DataReadingKeeper::DataReadingKeeper() : data(nullptr)
+{
+    Prepare();
+}
+
+
+DataReadingKeeper::~DataReadingKeeper()
+{
+    delete data;
+}
+
+
+void DataReadingKeeper::Prepare()
+{
+    data = new DataReading();
+}

@@ -7,6 +7,7 @@
 #include "FPGA/FPGA_Reader.h"
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/Data/DataSettings.h"
+#include "FPGA/Data/Preparator.h"
 #include "Settings/Settings.h"
 #include "Utils/ProcessingSignal.h"
 #include <cstring>
@@ -41,18 +42,18 @@ void ReaderFPGA::ReadData()
 {
     FPGA::in_processing_of_read = true;
 
-    DataReading data;
+    DataReadingKeeper data;
 
     if (FPGA::SET::InRandomizeMode())
     {
-        ReadRandomizeMode(data);
+        ReadRandomizeMode(*data.data);
     }
     else
     {
-        ReadRealMode(data);
+        ReadRealMode(*data.data);
     }
 
-    Storage::Append(data);
+    Storage::Append(*data.data);
 
     FPGA::in_processing_of_read = false;
 }
