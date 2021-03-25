@@ -55,24 +55,12 @@ void HAL_ADC1::Init()
 
 uint16 HAL_ADC1::GetValue()
 {
-    ReadValue();
+    if (__HAL_ADC_GET_FLAG(&handleADC, ADC_FLAG_EOC))
+    {
+        __HAL_ADC_CLEAR_FLAG(&handleADC, ADC_FLAG_EOC);
 
-    LOG_WRITE("%d", adc_value);
+        adc_value = (uint16)handleADC.Instance->DR;
+    }
 
     return adc_value;
-}
-
-
-void HAL_ADC1::ReadValue()
-{
-    if (HAL_ADC_PollForConversion(&handleADC, 1) == HAL_OK)
-    {
-        adc_value = (uint16)HAL_ADC_GetValue(&handleADC);
-    }
-}
-
-
-void HAL_ADC1::StartConvertion()
-{
-
 }
