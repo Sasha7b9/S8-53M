@@ -14,13 +14,13 @@ RecordStorage *Storage::addressOldestRecord = nullptr;
 static uint8 *CopyTo(uint8 *address, void *buffer, uint size);
 
 
-DataStorage::DataStorage()
+DataReading::DataReading()
 {
     CreateFromCurrentSettings();
 }
 
 
-void DataStorage::CreateFromCurrentSettings()
+void DataReading::CreateFromCurrentSettings()
 {
     buffer.Realloc(sizeof(DataSettings) + FPGA::SET::BytesForData());
 
@@ -30,7 +30,7 @@ void DataStorage::CreateFromCurrentSettings()
 }
 
 
-void DataStorage::CreateFromRecord(RecordStorage *record)
+void DataReading::CreateFromRecord(RecordStorage *record)
 {
     DataSettings &ds = record->Data();
 
@@ -42,7 +42,7 @@ void DataStorage::CreateFromRecord(RecordStorage *record)
 }
 
 
-void DataStorage::CreateNull()
+void DataReading::CreateNull()
 {
     DataSettings ds;
     ds.enabled_a = 0;
@@ -54,7 +54,7 @@ void DataStorage::CreateNull()
 }
 
 
-uint8 *DataStorage::Data(const Channel &ch)
+uint8 *DataReading::Data(const Channel &ch)
 {
     const DataSettings &ds = Settings();
 
@@ -74,13 +74,13 @@ uint8 *DataStorage::Data(const Channel &ch)
 }
 
 
-DataSettings &DataStorage::Settings() const
+DataSettings &DataReading::Settings() const
 {
-    return (DataSettings &)*((DataStorage *)this)->buffer.Data();
+    return (DataSettings &)*((DataReading *)this)->buffer.Data();
 }
 
 
-uint DataStorage::Size()
+uint DataReading::Size()
 {
     uint result = sizeof(DataSettings);
 
@@ -100,7 +100,7 @@ uint DataStorage::Size()
 }
 
 
-void RecordStorage::Fill(const DataStorage &data)
+void RecordStorage::Fill(const DataReading &data)
 {
     DataSettings &ds = data.Settings();
     uint length_channel = (uint)ds.BytesInChannel();
@@ -111,12 +111,12 @@ void RecordStorage::Fill(const DataStorage &data)
 
     if (ds.IsEnabled(Channel::A))
     {
-        address = CopyTo(address, ((DataStorage &)data).Data(Channel::A), length_channel);
+        address = CopyTo(address, ((DataReading &)data).Data(Channel::A), length_channel);
     }
 
     if (ds.IsEnabled(Channel::B))
     {
-        CopyTo(address, ((DataStorage &)data).Data(Channel::B), length_channel);
+        CopyTo(address, ((DataReading &)data).Data(Channel::B), length_channel);
     }
 }
 
@@ -153,7 +153,7 @@ uint8 *RecordStorage::End() const
 }
 
 
-void Storage::Append(const DataStorage &data)
+void Storage::Append(const DataReading &data)
 {
     RecordStorage *record = Create(data.Settings());
 
@@ -283,13 +283,13 @@ uint Storage::NumRecords()
 }
 
 
-bool Storage::ExtractLast(DataStorage &data)
+bool Storage::ExtractLast(DataReading &data)
 {
     return Extract(0, data);
 }
 
 
-bool Storage::Extract(uint from_end, DataStorage &data)
+bool Storage::Extract(uint from_end, DataReading &data)
 {
     if (NumRecords() == 0 || from_end >= NumRecords())
     {
@@ -310,7 +310,7 @@ bool Storage::Extract(uint from_end, DataStorage &data)
 }
 
 
-bool Storage::CreateNull(DataStorage &data)
+bool Storage::CreateNull(DataReading &data)
 {
     data.CreateNull();
 

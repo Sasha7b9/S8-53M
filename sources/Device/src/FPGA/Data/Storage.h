@@ -10,11 +10,11 @@ struct RecordStorage;
 
 
 //----------------------------------------------------------------------------------------------------------------------
-struct DataStorage
+struct DataReading
 {
 friend struct RecordStorage;
 
-    DataStorage();
+    DataReading();
 
     void CreateFromCurrentSettings();
 
@@ -46,11 +46,11 @@ struct RecordStorage
     */
 
 friend class Storage;
-friend struct DataStorage;
+friend struct DataReading;
 
 private:
 
-    void Fill(const DataStorage &data);
+    void Fill(const DataReading &data);
 
     uint Size() const;
 
@@ -74,7 +74,7 @@ class Storage
 {
     /*
     *  Класс организует из свободного пространства внешнего ОЗУ хранилище данных, данные в которым хранятся так.
-    *  В переменной addressFirstRecord хранится адрес первой записи. Запись представляет собой элемент типа DataStorage.
+    *  В переменной addressFirstRecord хранится адрес первой записи. Запись представляет собой элемент типа DataReading.
     *  Начало каждой последующей записи находится за последним байтом предыдущей записи.
     *  При достижении конца ОЗУ стирается первый (самый старый) элемент, и на его место записывается последний (самый
     *  новый. Не забыть переписать указатель на первый э
@@ -82,14 +82,14 @@ class Storage
 
 public:
 
-    static void Append(const DataStorage &data);
+    static void Append(const DataReading &data);
 
     // Извлечь последние положенные данные
-    static bool ExtractLast(DataStorage &data);
+    static bool ExtractLast(DataReading &data);
 
     // Извлечь данные, находящиеся на "расстоянии" from_end от последней записи (при from_end возвращает последнюю
     // сохранённую запись)
-    static bool Extract(uint from_end, DataStorage &data);
+    static bool Extract(uint from_end, DataReading &data);
 
     // Возвращает количество записей в хранилище
     static uint NumRecords();
@@ -109,7 +109,7 @@ private:
     static void DeleteOldest();
 
     // Возвращает false и пустое data (в котором оба канала выключены, остальные настройки не определены)
-    static bool CreateNull(DataStorage &data);
+    static bool CreateNull(DataReading &data);
 
     // Найти запись для случая, когда новая запись имеет больший адрес, чем старая
     static RecordStorage *FindForNewestMoreOldest(uint need_memory);

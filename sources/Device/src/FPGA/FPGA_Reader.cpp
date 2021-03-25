@@ -41,7 +41,7 @@ void ReaderFPGA::ReadData()
 {
     FPGA::in_processing_of_read = true;
 
-    DataStorage data;
+    DataReading data;
 
     if (FPGA::SET::InRandomizeMode())
     {
@@ -58,13 +58,13 @@ void ReaderFPGA::ReadData()
 }
 
 
-void ReaderFPGA::ReadRandomizeMode(DataStorage &)
+void ReaderFPGA::ReadRandomizeMode(DataReading &)
 {
 
 }
 
 
-void ReaderFPGA::ReadRealMode(DataStorage &data)
+void ReaderFPGA::ReadRealMode(DataReading &data)
 {
     if(data.Settings().IsEnabledPeakDet())
     {
@@ -77,12 +77,12 @@ void ReaderFPGA::ReadRealMode(DataStorage &data)
 }
 
 
-void ReaderFPGA::ReadRealModePeakDetOn(DataStorage &)
+void ReaderFPGA::ReadRealModePeakDetOn(DataReading &)
 {
 }
 
 
-void ReaderFPGA::ReadRealModePeakDetOff(DataStorage &data)
+void ReaderFPGA::ReadRealModePeakDetOff(DataReading &data)
 {
     uint16 addr_stop = ReadAddressStop();
 
@@ -167,7 +167,7 @@ uint16 ReaderFPGA::ReadAddressStop()
 }
 
 
-void ReaderFPGA::ReadChannel(DataStorage &data, const Channel &ch, uint16 addr_stop)
+void ReaderFPGA::ReadChannel(DataReading &data, const Channel &ch, uint16 addr_stop)
 {
     *WR_PRED = addr_stop;
     *WR_ADDR_STOP = 0xffff;

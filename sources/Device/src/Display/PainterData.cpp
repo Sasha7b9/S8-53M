@@ -25,8 +25,6 @@ void PainterData::DrawData()
 {
     DataDrawingKeeper keeper;
 
-    keeper.Prepare();
-
     keeper.data->Draw();
 
     Rectangle(Grid::Width() + 1, Grid::FullHeight() + 1).Draw(Grid::Left(), Grid::TOP, Color::FILL);

@@ -4,6 +4,12 @@
 #include "FPGA/Data/Preparator.h"
 
 
+DataDrawingKeeper::DataDrawingKeeper() : data(nullptr)
+{
+    Prepare();
+}
+
+
 DataDrawingKeeper::~DataDrawingKeeper()
 {
     delete data;

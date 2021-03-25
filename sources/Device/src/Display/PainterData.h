@@ -7,7 +7,7 @@
 
 
 struct DataSettings;
-struct DataStorage;
+struct DataReading;
 
 
 // Базовая структура для отрисовки данных - осциллографических и спектральных
@@ -18,7 +18,7 @@ struct DataDrawing
 
 private:
 
-    DataStorage data;
+    DataReading data;
     Buffer points[NumChannels]; // Здесь рассчитанные точки, готовые к выводу на экран
 
     void PrepareChannel(const Channel &ch);

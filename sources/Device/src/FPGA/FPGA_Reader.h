@@ -3,16 +3,16 @@
 #include "FPGA/FPGA_Types.h"
 
 
-struct DataStorage;
+struct DataReading;
 
 
 struct ReaderFPGA
 {
     static void ReadData();
 
-    static void ReadRandomizeMode(DataStorage &);
+    static void ReadRandomizeMode(DataReading &);
 
-    static void ReadRealMode(DataStorage &);
+    static void ReadRealMode(DataReading &);
 
     static void ReadPoint();
 
@@ -26,11 +26,11 @@ private:
 
     static int CalculateShift();
 
-    static void ReadRealModePeakDetOn(DataStorage &);
+    static void ReadRealModePeakDetOn(DataReading &);
 
-    static void ReadRealModePeakDetOff(DataStorage &);
+    static void ReadRealModePeakDetOff(DataReading &);
 
     static uint16 ReadAddressStop();
 
-    static void ReadChannel(DataStorage &data, const Channel &ch, uint16 addr_stop);
+    static void ReadChannel(DataReading &data, const Channel &ch, uint16 addr_stop);
 };

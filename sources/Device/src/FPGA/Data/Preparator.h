@@ -5,16 +5,12 @@
 // —труктура дл€ хранени€ данных дл€ отрисовки
 struct DataDrawingKeeper
 {
-    DataDrawingKeeper() : data(nullptr) {}
+    DataDrawingKeeper();
     ~DataDrawingKeeper();
-    void Prepare();
     DataDrawing *data;
+private:
+    void Prepare();
 };
 
 
-class Preparator
-{
-public:
 
-    static void PrepareForRead();
-};
