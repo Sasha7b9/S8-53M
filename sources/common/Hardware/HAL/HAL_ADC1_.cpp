@@ -61,11 +61,6 @@ uint16 HAL_ADC1::GetValue()
         adc_value = (uint16)handle.Instance->DR;
     }
 
-    if (adc_value > 500 && adc_value < 3500)
-    {
-        LOG_WRITE("%d", adc_value);
-    }
-
     return adc_value;
 }
 

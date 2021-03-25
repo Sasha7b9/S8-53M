@@ -106,33 +106,81 @@ void ReaderFPGA::Read::Real::Channel(DataReading &data, const ::Channel &ch, uin
 }
 
 
-void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch, uint16 addr_stop)
+#define NUM_ADD_STEPS 2
+
+
+bool ReaderFPGA::Read::Randomizer::IndexFirstPoint(int *first_out, int *skipped_out)
 {
-    uint bytes_in_channel = dr.Settings().BytesInChannel();
-
-    uint8 *data = dr.Data(ch);
-
-    std::memset(data, Value::NONE, bytes_in_channel);
-
     Int Tsm = CalculateShift();
+
+    if (!Tsm.IsValid())
+    {
+        return false;
+    }
 
     int step = TBase::StepRand();
 
-#define NUM_ADD_STEPS 2
+    int index = Tsm - addition_shift - NUM_ADD_STEPS * step;
 
-    uint16 addr_first_read = (uint16)(addr_stop + 16384 - (uint16)(bytes_in_channel / step) - 1 - NUM_ADD_STEPS);
+    int num_skipped = 0;
+
+    while (index < 0)
+    {
+        index += step;
+        num_skipped++;
+    }
+
+    *first_out = index;
+    *skipped_out = num_skipped;
+
+    return true;
+}
+
+
+void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch, uint16 addr_stop)
+{
+    int index = 0;
+    int num_skipped = 0;
+
+    if (!IndexFirstPoint(&index, &num_skipped))
+    {
+        return;
+    }
+
+    LOG_WRITE("%d", index);
+
+    uint bytes_in_channel = dr.Settings().BytesInChannel();
+
+    uint16 *address = ADDRESS_READ(ch);
+    uint8 *data = dr.Data(ch);
+    uint8 *last = data + bytes_in_channel;
+    std::memset(data, Value::NONE, bytes_in_channel);
+
+    UtilizeFirstBytes(address, num_skipped);
+
+    data += index;
+
+    uint16 addr_first_read =
+        (uint16)(addr_stop + 16384 - (uint16)(bytes_in_channel / TBase::StepRand()) - 1 - NUM_ADD_STEPS);
 
     HAL_FMC::Write(WR_PRED, addr_first_read);
     HAL_FMC::Write(WR_ADDR_STOP, 0xffff);
 
-    uint16 *address = ADDRESS_READ(ch);
-
-    uint8 *last = data + bytes_in_channel;
-
     while (data < last)
     {
         *data = (uint8)*address;
-        data += step;
+        data += TBase::StepRand();
+    }
+}
+
+
+void ReaderFPGA::Read::Randomizer::UtilizeFirstBytes(uint16 *address, int num_words)
+{
+    __IO uint16 data;
+
+    for (int i = 0; i < num_words; i++)
+    {
+        data = *address;
     }
 }
 

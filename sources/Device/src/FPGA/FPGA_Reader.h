@@ -41,6 +41,13 @@ private:
         struct Randomizer
         {
             static void Channel(DataReading &data, const Channel &ch, uint16 addr_stop);
+
+            // –ассчитывает индекс первой считываемой точки в массиве и также количество точек, которые нужно отбросить
+            // при чтении
+            static bool IndexFirstPoint(int *first_out, int *skipped_out);
+
+            // —читать и выбрость num_words данных по адресу address
+            static void UtilizeFirstBytes(uint16 *address, int num_words);
         };
     };
 };
