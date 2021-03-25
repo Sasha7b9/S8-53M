@@ -106,13 +106,34 @@ void ReaderFPGA::Read::Real::Channel(DataReading &data, const ::Channel &ch, uin
 }
 
 
-void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch, uint16 /*addr_stop*/)
+void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch, uint16 addr_stop)
 {
     uint bytes_in_channel = dr.Settings().BytesInChannel();
 
     uint8 *data = dr.Data(ch);
 
     std::memset(data, Value::NONE, bytes_in_channel);
+
+//    int Tsm = CalculateShift();
+
+    int step = TBase::Kr();
+
+#define NUM_ADD_STEPS 2
+
+    uint16 addr_first_read = (uint16)(addr_stop + 16384 - (uint16)(bytes_in_channel / step) - 1 - NUM_ADD_STEPS);
+
+    HAL_FMC::Write(WR_PRED, addr_first_read);
+    HAL_FMC::Write(WR_ADDR_STOP, 0xffff);
+
+    uint16 *address = ADDRESS_READ(ch);
+
+    uint8 *last = data + bytes_in_channel;
+
+    while (data < last)
+    {
+        *data = (uint8)*address;
+        data += step;
+    }
 }
 
 
@@ -146,7 +167,7 @@ void ReaderFPGA::InverseDataIsNecessary(const Channel &ch, uint8 *data)
 
 int ReaderFPGA::CalculateShift()            // \todo Не забыть восстановить функцию
 {
-    uint16 rand = HAL_ADC3::GetValue();
+    uint16 rand = HAL_ADC1::GetValue();
     //LOG_WRITE("rand = %d", (int)rand);
     uint16 min = 0;
     uint16 max = 0;

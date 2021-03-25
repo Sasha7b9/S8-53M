@@ -61,7 +61,7 @@ private:
 
 
 // АЦП рандомизатора
-struct HAL_ADC3
+struct HAL_ADC1
 {
     static void Init();
     static uint16 GetValue();

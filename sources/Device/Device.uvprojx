@@ -1154,9 +1154,9 @@
               <FilePath>.\src\Hardware\HAL\HAL_IT.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_ADC3_.cpp</FileName>
+              <FileName>HAL_ADC1_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_ADC3_.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_ADC1_.cpp</FilePath>
             </File>
             <File>
               <FileName>HAL_CRC_.cpp</FileName>
@@ -3339,9 +3339,9 @@
               <FilePath>.\src\Hardware\HAL\HAL_IT.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_ADC3_.cpp</FileName>
+              <FileName>HAL_ADC1_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_ADC3_.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_ADC1_.cpp</FilePath>
             </File>
             <File>
               <FileName>HAL_CRC_.cpp</FileName>

@@ -348,18 +348,18 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>62</LineNumber>
+          <LineNumber>72</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134296164</Address>
+          <Address>134228192</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;..\common\Utils\Containers\Values_.cpp</Filename>
+          <Filename>D:\Projects\stm32\S8-53M\sources\common\Hardware\HAL\HAL_ADC3_.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\S8_53M\../common/Utils/Containers/Values_.cpp\62</Expression>
+          <Expression>\\S8_53M\../common/Hardware/HAL/HAL_ADC3_.cpp\72</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -2238,7 +2238,7 @@
 
   <Group>
     <GroupName>Hardware/HAL</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -2297,8 +2297,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\common\Hardware\HAL\HAL_ADC3_.cpp</PathWithFileName>
-      <FilenameWithoutPath>HAL_ADC3_.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\HAL\HAL_ADC1_.cpp</PathWithFileName>
+      <FilenameWithoutPath>HAL_ADC1_.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -3398,7 +3398,7 @@
 
   <Group>
     <GroupName>FPGA/Data</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

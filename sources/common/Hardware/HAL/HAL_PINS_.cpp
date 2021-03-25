@@ -184,7 +184,7 @@ void HAL_PINS::Init()
     Pin::LED.Init();
     Pin::DisplayReady.Init();
 
-    Pin(PinMode::_ADC3_IT, PinPort::_C, PinPin::_11).Init();    // ADC3 IT
+    Pin(PinMode::_ADC3_IT, PinPort::_C, PinPin::_11).Init();    // ADC3 IT  PA0 40
     Pin(PinMode::_ADC3_OUT, PinPort::_F, PinPin::_6).Init();    // ADC3 OUT
 
     PinOTG_HS(B, 15).Init();    // DP

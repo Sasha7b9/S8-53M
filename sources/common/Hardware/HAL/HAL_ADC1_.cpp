@@ -6,10 +6,10 @@
 static uint16 adcValue = 0;
 
 static ADC_HandleTypeDef hADC;
-void *HAL_ADC3::handle = &hADC;
+void *HAL_ADC1::handle = &hADC;
 
 
-void HAL_ADC3::Init()
+void HAL_ADC1::Init()
 {
     /*
     АЦП для рандомизатора
@@ -61,7 +61,7 @@ void HAL_ADC3::Init()
 }
 
 
-uint16 HAL_ADC3::GetValue()
+uint16 HAL_ADC1::GetValue()
 {
     return adcValue;
 }

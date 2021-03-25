@@ -89,6 +89,12 @@ void DMA1_Stream5_IRQHandler()
 }
 
 
+void ADC_IRQHandler()
+{
+    HAL_ADC_IRQHandler((ADC_HandleTypeDef *)HAL_ADC1::handle);
+}
+
+
 //void ADC_IRQHandler()
 //{
 //    HAL_ADC_IRQHandler(reinterpret_cast<ADC_HandleTypeDef *>(HAL_ADC3::handle));
