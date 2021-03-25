@@ -7,6 +7,7 @@ struct DataDrawingKeeper
 {
     DataDrawingKeeper() : data(nullptr) {}
     ~DataDrawingKeeper();
+    void Prepare();
     DataDrawing *data;
 };
 
@@ -16,6 +17,4 @@ class Preparator
 public:
 
     static void PrepareForRead();
-
-    static void PrepareForDrawing(DataDrawingKeeper &keeper);
 };

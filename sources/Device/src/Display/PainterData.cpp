@@ -25,7 +25,7 @@ void PainterData::DrawData()
 {
     DataDrawingKeeper keeper;
 
-    Preparator::PrepareForDrawing(keeper);
+    keeper.Prepare();
 
     keeper.data->Draw();
 

@@ -10,9 +10,9 @@ DataDrawingKeeper::~DataDrawingKeeper()
 }
  
 
-void Preparator::PrepareForDrawing(DataDrawingKeeper &keeper)
+void DataDrawingKeeper::Prepare()
 {
-    keeper.data = new DataDrawing();
+    data = new DataDrawing();
 
-    keeper.data->Prepare();
+    data->Prepare();
 }
