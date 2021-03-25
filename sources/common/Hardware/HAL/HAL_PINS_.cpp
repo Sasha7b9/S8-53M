@@ -87,6 +87,13 @@ Pin Pin::DisplayReady(PinMode::_Input, PinPort::_G, PinPin::_11);
 Pin Pin::Temp(PinMode::_Output, PinPort::_I, PinPin::_9);
 
 
+void HAL_PINS::ADC1_::Init()
+{
+    Pin(PinMode::_ADC1_IN, PinPort::_A, PinPin::_0).Init();         // ADC3 IN  PA0 40
+    Pin(PinMode::_ADC1_IT, PinPort::_H, PinPin::_4).Init();         // ADC3 IT  PH4 45
+}
+
+
 void HAL_PINS::DAC2_::Init()
 {
     Pin(PinMode::_DAC2, PinPort::_A, PinPin::_5).Init();    // 51 - динамик
@@ -184,9 +191,6 @@ void HAL_PINS::Init()
     Pin::LED.Init();
     Pin::DisplayReady.Init();
 
-    Pin(PinMode::_ADC3_IT, PinPort::_C, PinPin::_11).Init();    // ADC3 IT  PA0 40
-    Pin(PinMode::_ADC3_OUT, PinPort::_F, PinPin::_6).Init();    // ADC3 OUT
-
     PinOTG_HS(B, 15).Init();    // DP
     PinOTG_HS(B, 14).Init();    // DM
     PinOTG_HS(B, 13).Init();    // VBUS
@@ -270,13 +274,13 @@ void Pin::Init()
         isGPIO.Mode = GPIO_MODE_OUTPUT_PP;
         isGPIO.Speed = GPIO_SPEED_HIGH;
     }
-    else if (mode == PinMode::_ADC3_OUT)
+    else if (mode == PinMode::_ADC1_IN)
     {
         isGPIO.Mode = GPIO_MODE_ANALOG;
     }
-    else if (mode == PinMode::_ADC3_IT)
+    else if (mode == PinMode::_ADC1_IT)
     {
-        isGPIO.Mode = GPIO_MODE_IT_RISING;
+        isGPIO.Mode = GPIO_MODE_IT_FALLING;
     }
     else if (mode == PinMode::_DAC1 || mode == PinMode::_DAC2)
     {

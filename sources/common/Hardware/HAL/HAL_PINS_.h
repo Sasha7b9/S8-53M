@@ -5,6 +5,8 @@ namespace HAL_PINS
 {
     void Init();
 
+    namespace ADC1_ { void Init(); }
+
     namespace DAC2_ { void Init(); }
 
     namespace FMC_  { void Init(); }
@@ -21,8 +23,8 @@ struct PinMode { enum E
 {
     _Input,
     _Output,
-    _ADC3_OUT,
-    _ADC3_IT,
+    _ADC1_IT,
+    _ADC1_IN,
     _DAC1,
     _DAC2,              // Динамик
     _ETH,

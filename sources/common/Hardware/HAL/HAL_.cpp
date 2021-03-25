@@ -91,7 +91,7 @@ void HAL::EnablePeripherals()
     __GPIOH_CLK_ENABLE();
     __GPIOI_CLK_ENABLE();
 
-    __ADC3_CLK_ENABLE();
+    __ADC1_CLK_ENABLE();
 
     __CRC_CLK_ENABLE();
 

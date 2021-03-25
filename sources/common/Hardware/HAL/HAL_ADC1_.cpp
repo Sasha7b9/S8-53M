@@ -11,19 +11,12 @@ void *HAL_ADC1::handle = &hADC;
 
 void HAL_ADC1::Init()
 {
-    /*
-    АЦП для рандомизатора
-    вход - ADC3 - 18 ADC3_IN4 - PF6
-    тактовая частота 25МГц
-    режим работы :
-    -измерение по 1 регулярному каналу
-    - одиночное измерение по фронту внешнего запуска(прерывание от 112 - EXT11 - PC11)
-    */
+    HAL_PINS::ADC1_::Init();
 
     HAL_NVIC_SetPriority(ADC_IRQn, 5, 0);
     HAL_NVIC_EnableIRQ(ADC_IRQn);
     
-    hADC.Instance = ADC3;
+    hADC.Instance = ADC1;
     hADC.Init.ClockPrescaler = ADC_CLOCKPRESCALER_PCLK_DIV2;
     hADC.Init.Resolution = ADC_RESOLUTION12b;
     hADC.Init.DataAlign = ADC_DATAALIGN_RIGHT;
@@ -34,8 +27,8 @@ void HAL_ADC1::Init()
     hADC.Init.NbrOfConversion = 1;
     hADC.Init.DiscontinuousConvMode = DISABLE;
     hADC.Init.NbrOfDiscConversion = 0;
-    hADC.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_RISING;
-    hADC.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_Ext_IT11;
+    hADC.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+    hADC.Init.ExternalTrigConv = ADC_SOFTWARE_START;
 
     if (HAL_ADC_Init(&hADC) != HAL_OK)
     {
@@ -44,7 +37,7 @@ void HAL_ADC1::Init()
 
     ADC_ChannelConfTypeDef sConfig;
 
-    sConfig.Channel = ADC_CHANNEL_4;
+    sConfig.Channel = ADC_CHANNEL_0;
     sConfig.Rank = 1;
     sConfig.SamplingTime = ADC_SAMPLETIME_28CYCLES;
     sConfig.Offset = 0;
@@ -54,10 +47,8 @@ void HAL_ADC1::Init()
         ERROR_HANDLER();
     }
 
-    if (HAL_ADC_Start_IT(&hADC) != HAL_OK)
-    {
-        ERROR_HANDLER();
-    }
+    HAL_NVIC_SetPriority(EXTI4_IRQn, 1, 1);         // По этому прерыванию нужно считывать значение рандомизатора
+    HAL_NVIC_EnableIRQ(EXTI4_IRQn);
 }
 
 

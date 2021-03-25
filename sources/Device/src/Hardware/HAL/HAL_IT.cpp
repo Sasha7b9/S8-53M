@@ -95,12 +95,12 @@ void ADC_IRQHandler()
 }
 
 
-//void ADC_IRQHandler()
-//{
-//    HAL_ADC_IRQHandler(reinterpret_cast<ADC_HandleTypeDef *>(HAL_ADC3::handle));
-//}
-//
-//
+void EXTI4_IRQHandler()
+{
+    HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_4);
+}
+
+
 //void OTG_HS_IRQHandler()
 //{
 //    HAL_HCD_IRQHandler(reinterpret_cast<HCD_HandleTypeDef *>(HAL_HCD::handle));
