@@ -89,15 +89,19 @@ void DMA1_Stream5_IRQHandler()
 }
 
 
-void ADC_IRQHandler()
-{
-    HAL_ADC_IRQHandler((ADC_HandleTypeDef *)HAL_ADC1::handle);
-}
+//void ADC_IRQHandler()
+//{
+//    HAL_ADC_IRQHandler((ADC_HandleTypeDef *)HAL_ADC1::handle);
+//}
 
 
 void EXTI4_IRQHandler()
 {
-    HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_4);
+    if(__HAL_GPIO_EXTI_GET_IT(GPIO_PIN_4) != RESET)
+    {
+        __HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN_4);
+        HAL_ADC_Start((ADC_HandleTypeDef *)HAL_ADC1::handle);
+    }
 }
 
 

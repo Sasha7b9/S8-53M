@@ -65,7 +65,9 @@ struct HAL_ADC1
 {
     static void Init();
     static uint16 GetValue();
-    static void *handle;    // ADC_HandleTypeDef
+    static void ReadValue();
+    static void StartConvertion();
+    static void *handle;
 };
 
 

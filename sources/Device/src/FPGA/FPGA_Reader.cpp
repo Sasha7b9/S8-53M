@@ -114,7 +114,7 @@ void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch,
 
     std::memset(data, Value::NONE, bytes_in_channel);
 
-//    int Tsm = CalculateShift();
+    int Tsm = CalculateShift();
 
     int step = TBase::Kr();
 
