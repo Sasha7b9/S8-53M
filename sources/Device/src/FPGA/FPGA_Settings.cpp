@@ -380,22 +380,25 @@ void TShift::Load()
     if (TBase::IsRandomize())
     {
         uint k = 0;
+
+        int step = TBase::Kr();
+
         if (TPos::IsLeft())
         {
-            k = FPGA::SET::PointsInChannel() % FPGA::Randomizer::Kr[tBase];
+            k = FPGA::SET::PointsInChannel() % step;
         }
         else if (TPos::IsCenter())
         {
-            k = (FPGA::SET::PointsInChannel() / 2) % FPGA::Randomizer::Kr[tBase];
+            k = (FPGA::SET::PointsInChannel() / 2) % step;
         }
 
-        FPGA::post = (uint16)((2 * FPGA::post - k) / FPGA::Randomizer::Kr[tBase]);
+        FPGA::post = (uint16)((2 * FPGA::post - k) / step);
 
-        FPGA::add_shift = (TShift::Get() * 2) % FPGA::Randomizer::Kr[tBase];
+        FPGA::add_shift = (TShift::Get() * 2) % step;
 
         if (FPGA::add_shift < 0)
         {
-            FPGA::add_shift = FPGA::Randomizer::Kr[tBase] + FPGA::add_shift;
+            FPGA::add_shift = step + FPGA::add_shift;
         }
 
         FPGA::pred = ~(set.debug.pretriggered);

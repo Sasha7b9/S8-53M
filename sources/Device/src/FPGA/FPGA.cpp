@@ -24,8 +24,6 @@ FPGA::State      FPGA::state;
 
 float            FPGA::FreqMeter::freq = 0.0f;
 
-#define N_KR 100
-const int        FPGA::Randomizer::Kr[] = { N_KR / 1, N_KR / 2, N_KR / 5, N_KR / 10, N_KR / 20 };
 int              FPGA::Randomizer::number_measures_for_gates = 1000;
 bool             FPGA::Randomizer::first_àfter_write = false;
 

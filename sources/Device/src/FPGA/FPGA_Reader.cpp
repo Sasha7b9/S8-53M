@@ -106,9 +106,13 @@ void ReaderFPGA::Read::Real::Channel(DataReading &data, const ::Channel &ch, uin
 }
 
 
-void ReaderFPGA::Read::Randomizer::Channel(DataReading &, const ::Channel &ch, uint16 addr_stop)
+void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch, uint16 /*addr_stop*/)
 {
+    uint bytes_in_channel = dr.Settings().BytesInChannel();
 
+    uint8 *data = dr.Data(ch);
+
+    std::memset(data, Value::NONE, bytes_in_channel);
 }
 
 
@@ -167,7 +171,7 @@ int ReaderFPGA::CalculateShift()            // \todo Не забыть восстановить функ
     if (TBase::IsRandomize())
     {
         float tin = (float)(rand - min) / (max - min) * 10e-9F;
-        int retValue = (int)(tin / 10e-9F * FPGA::Randomizer::Kr[TBase::Get()]);
+        int retValue = (int)(tin / 10e-9F * TBase::Kr());
         return retValue;
     }
 

@@ -177,8 +177,6 @@ public:
 
         static bool CalculateGate(uint16 rand, uint16 *min, uint16 *max);
 
-        static const int Kr[];
-
     private:
 
         static int number_measures_for_gates;

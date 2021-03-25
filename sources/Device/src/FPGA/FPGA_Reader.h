@@ -35,12 +35,12 @@ private:
 
         struct Real
         {
-            static void Channel(DataReading &, const Channel &ch, uint16 addr_stop);
+            static void Channel(DataReading &data, const Channel &ch, uint16 addr_stop);
         };
 
         struct Randomizer
         {
-            static void Channel(DataReading &, const Channel &ch, uint16 addr_stop);
+            static void Channel(DataReading &data, const Channel &ch, uint16 addr_stop);
         };
     };
 };
