@@ -32,4 +32,14 @@ private:
     static uint16 ReadAddressStop();
 
     static void ReadChannelPeakDetOff(DataReading &data, const Channel &ch, uint16 addr_stop);
+
+    struct Read
+    {
+        struct PeakDet
+        {
+            static void On(DataReading &);
+
+            static void Off(DataReading &);
+        };
+    };
 };
