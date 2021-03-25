@@ -97,10 +97,41 @@ void DMA1_Stream5_IRQHandler()
 
 void EXTI4_IRQHandler()
 {
-    if(__HAL_GPIO_EXTI_GET_IT(GPIO_PIN_4) != RESET)
+    if (__HAL_GPIO_EXTI_GET_IT(GPIO_PIN_4) != RESET)
     {
+        // HAL_ADC_Start((ADC_HandleTypeDef *)HAL_ADC1::handle);
+
         __HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN_4);
-        HAL_ADC_Start((ADC_HandleTypeDef *)HAL_ADC1::handle);
+
+        ADC_HandleTypeDef *hadc = (ADC_HandleTypeDef *)HAL_ADC1::handle;
+
+        hadc->Lock = HAL_LOCKED;
+
+        if ((hadc->Instance->CR2 & ADC_CR2_ADON) != ADC_CR2_ADON)
+        {
+            __HAL_ADC_ENABLE(hadc);
+
+            __IO uint counter = (ADC_STAB_DELAY_US * (SystemCoreClock / 1000000U));
+
+            while (counter != 0U)
+            {
+                counter--;
+            }
+        }
+
+        ADC_STATE_CLR_SET(hadc->State,
+            HAL_ADC_STATE_READY | HAL_ADC_STATE_REG_EOC | HAL_ADC_STATE_REG_OVR, HAL_ADC_STATE_REG_BUSY);
+
+        ADC_CLEAR_ERRORCODE(hadc);
+
+        hadc->Lock = HAL_UNLOCKED;
+
+        __HAL_ADC_CLEAR_FLAG(hadc, ADC_FLAG_EOC | ADC_FLAG_OVR);
+
+        if ((hadc->Instance->CR2 & ADC_CR2_EXTEN) == RESET)
+        {
+            hadc->Instance->CR2 |= (uint32_t)ADC_CR2_SWSTART;
+        }
     }
 }
 
