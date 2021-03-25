@@ -147,8 +147,6 @@ void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch,
         return;
     }
 
-    LOG_WRITE("%d", index);
-
     uint bytes_in_channel = dr.Settings().BytesInChannel();
 
     uint16 *address = ADDRESS_READ(ch);
@@ -220,14 +218,16 @@ Int ReaderFPGA::CalculateShift()
     uint16 min = 0;
     uint16 max = 0;
 
-    if (!FPGA::Randomizer::CalculateGate(rand, &min, &max))
+    if (FPGA::Randomizer::CalculateGate(rand, &min, &max))
     {
-        return InvalidInt();
+        LOG_WRITE("%d %d", min, max);
+
+        float tin = (float)(rand - min) / (max - min) * 10e-9F;
+
+        return (int)(tin / 10e-9F * TBase::StepRand());
     }
 
-    float tin = (float)(rand - min) / (max - min) * 10e-9F;
-
-    return (int)(tin / 10e-9F * TBase::StepRand());
+    return InvalidInt();
 }
 
 
