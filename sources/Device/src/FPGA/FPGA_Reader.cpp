@@ -69,9 +69,16 @@ void ReaderFPGA::Read::PeakDetOff(DataReading &data)
 {
     uint16 addr_stop = ReadAddressStop();
 
-    Real::Channel(data, ChA, addr_stop);
-
-    Real::Channel(data, ChB, addr_stop);
+    if (TBase::IsRandomize())
+    {
+        Randomizer::Channel(data, ChA, addr_stop);
+        Randomizer::Channel(data, ChB, addr_stop);
+    }
+    else
+    {
+        Real::Channel(data, ChA, addr_stop);
+        Real::Channel(data, ChB, addr_stop);
+    }
 }
 
 
@@ -96,6 +103,12 @@ void ReaderFPGA::Read::Real::Channel(DataReading &data, const ::Channel &ch, uin
         *p++ = *address;
         *p++ = *address;
     }
+}
+
+
+void ReaderFPGA::Read::Randomizer::Channel(DataReading &, const ::Channel &ch, uint16 addr_stop)
+{
+
 }
 
 

@@ -40,7 +40,7 @@ private:
 
         struct Randomizer
         {
-            static void Channel();
+            static void Channel(DataReading &, const Channel &ch, uint16 addr_stop);
         };
     };
 };
