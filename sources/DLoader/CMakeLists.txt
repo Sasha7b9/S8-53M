@@ -25,6 +25,7 @@ add_definitions(-DSTM32F429xx -DUSE_HAL_DRIVER -DLOADER)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -MP -Wall")
 
+add_compile_options(/wd4201)    # nonstandard extension used : nameless struct/union
 add_compile_options(/wd4514)    # 'function' : unreferenced inline function has been removed
 add_compile_options(/wd4623)    # 'derived class' : default constructor was implicitly defined as deleted because a base
                                 # class default constructor is inaccessible or deleted
@@ -88,7 +89,8 @@ file(GLOB HARDWARE_HAL         src/Hardware/HAL/*
                          ../common/Hardware/HAL/HAL_TIM6_c.cpp
                          ../common/Hardware/HAL/HAL_TIM7_c.cpp)
 file(GLOB HARDWARE_USBH        src/Hardware/USBH/*)
-file(GLOB SRC                  src/*.h
+file(GLOB SRC            ../common/defines_.h
+                               src/*.h
                                src/*.cpp)
 file(GLOB DISPLAY              src/Display/*.h
                                src/Display/*.cpp

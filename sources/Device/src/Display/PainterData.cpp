@@ -61,15 +61,15 @@ void DataDrawing::PrepareChannel(const Channel &ch)
     int max_y = Grid::ChannelBottom();
     float scale_y = (float)(max_y - min_y) / (Value::MAX - Value::MIN);
 
-    Set2Int p = SettingsDisplay::PointsOnDisplay();
+    BitSet64 p = SettingsDisplay::PointsOnDisplay();
 
     points[ch].Realloc(281);
 
     uint8 *data_channel = data.Data(ch);
 
-    for (int i = p.value1; i < p.value2; i++)
+    for (int i = p.first; i < p.second; i++)
     {
-        int index = i - p.value1;
+        int index = i - p.first;
         CONVERT_DATA_TO_DISPLAY((points[ch][(uint)index]),
             Math::CalculateFiltr(data_channel, i, SettingsMemory::GetNumPoints(false), (int)Smoothing::NumPoints()));
     }

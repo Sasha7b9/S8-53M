@@ -25,14 +25,14 @@ uint Smoothing::NumPoints()
 }
 
 
-Set2Int SettingsDisplay::PointsOnDisplay()
+BitSet64 SettingsDisplay::PointsOnDisplay()
 {
-    Set2Int result;
+    BitSet64 result;
 
     int num_points_on_screen = 281;
 
-    result.value1 = TShift::GetInMemory();
-    result.value2 = TShift::GetInMemory() + num_points_on_screen;
+    result.first = TShift::GetInMemory();
+    result.second = TShift::GetInMemory() + num_points_on_screen;
 
     return result;
 }

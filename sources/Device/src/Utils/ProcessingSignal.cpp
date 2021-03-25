@@ -1018,22 +1018,22 @@ void Processing::GetData(uint8 **data0, uint8 **data1, DataSettings **ds)
 
 float Processing::GetCursU(const Channel &ch, float posCurT)
 {   
-    Set2Int p = SettingsDisplay::PointsOnDisplay();
+    BitSet64 p = SettingsDisplay::PointsOnDisplay();
 
     float result = 0.0f;
-    LIMITATION(result, (float)(200.0F - (dataIn[ch])[p.value1 + (int)posCurT] + Value::MIN), 0.0F, 200.0F);
+    LIMITATION(result, (float)(200.0F - (dataIn[ch])[p.first + (int)posCurT] + Value::MIN), 0.0F, 200.0F);
     return result;
 }
 
 float Processing::GetCursT(const Channel &ch, float posCurU, int numCur)
 {
-    Set2Int p = SettingsDisplay::PointsOnDisplay();
+    BitSet64 p = SettingsDisplay::PointsOnDisplay();
 
-    int prevData = 200 - (dataIn[ch])[p.value1] + Value::MIN;
+    int prevData = 200 - (dataIn[ch])[p.first] + Value::MIN;
 
     int numIntersections = 0;
 
-    for(int i = p.value1 + 1; i < p.value2; i++)
+    for(int i = p.first + 1; i < p.second; i++)
     {
         int curData = 200 - (dataIn[ch])[i] + Value::MIN;
 
@@ -1041,7 +1041,7 @@ float Processing::GetCursT(const Channel &ch, float posCurU, int numCur)
         {
             if(numCur == 0)
             {
-                return (float)(i - p.value2);
+                return (float)(i - p.second);
             }
             else
             {
@@ -1051,7 +1051,7 @@ float Processing::GetCursT(const Channel &ch, float posCurU, int numCur)
                 }
                 else
                 {
-                    return (float)(i - p.value1);
+                    return (float)(i - p.first);
                 }
             }
         }
@@ -1060,7 +1060,7 @@ float Processing::GetCursT(const Channel &ch, float posCurU, int numCur)
         {
             if(numCur == 0)
             {
-                return (float)(i - p.value1);
+                return (float)(i - p.first);
             }
             else
             {
@@ -1070,7 +1070,7 @@ float Processing::GetCursT(const Channel &ch, float posCurU, int numCur)
                 }
                 else
                 {
-                    return (float)(i - p.value1);
+                    return (float)(i - p.first);
                 }
             }
         }

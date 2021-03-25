@@ -139,7 +139,7 @@ struct SettingsDisplay
     LinkingRShift       linking_rshift;          // Тип привязки смещения по вертикали.
 
     // Возвращает адрес первой и последней точки на экране.
-    static Set2Int PointsOnDisplay();
+    static BitSet64 PointsOnDisplay();
 
     // Если экран разделён на две части и основной сигнал выводится сверху - например, в режиме вывода спектра
     static bool IsSeparate();

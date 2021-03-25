@@ -1,5 +1,8 @@
 // 2021/03/22 14:37:11 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
+#ifndef WIN32
+#pragma anon_unions
+#endif
 
 
 typedef signed      char        int8;
@@ -31,8 +34,28 @@ inline void EmptyFuncVV() {};
 #define _CLEAR_BIT(value, bit) ((value) &= (~(1 << (bit))))
 
 
-struct Set2Int
+// Объединение размером 32 бита
+union BitSet32
 {
-    int value1;
-    int value2;
+    uint   word;
+    uint16 half_word[2];
+    uint8  byte[4];
 };
+
+// Объединение размером 64 бита
+union BitSet64
+{
+    uint64  dword;
+    uint    word[2];
+    struct
+    {
+        int first;
+        int second;
+    };
+    struct
+    {
+        uint u_first;
+        uint u_second;
+    };
+};
+

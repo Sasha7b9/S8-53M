@@ -27,6 +27,7 @@ add_definitions(-DSTM32F429xx -DWXUSINGDLL -DGUI -DDEVICE)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -MP -Wall")
 
+add_compile_options(/wd4201)    # nonstandard extension used : nameless struct/union
 add_compile_options(/wd4127)    # conditional expression is constant
 add_compile_options(/wd4211)    # nonstandard extension used : redefined extern to static
 add_compile_options(/wd4255)    # 'function' : no function prototype given: converting '()' to '(void)'
@@ -125,6 +126,7 @@ file(GLOB SRC                            src/main_win.cpp
                             ../../Device/src/device.*
                             ../../Device/src/Globals.*
                             ../../Device/src/Tables.*
+                                ../../common/defines_.h
                                 ../../common/Log_.*)
 file(GLOB VCP               ../../Device/src/VCP/*.*)
 file(GLOB VCP_SCPI          ../../Device/src/VCP/SCPI/*.*)
