@@ -6,8 +6,7 @@
 
 static uint16 adc_value = 0;
 
-static ADC_HandleTypeDef handleADC;
-void *HAL_ADC1::handle = &handleADC;
+static ADC_HandleTypeDef handle;
 
 
 void HAL_ADC1::Init()
@@ -17,21 +16,21 @@ void HAL_ADC1::Init()
     HAL_NVIC_SetPriority(ADC_IRQn, 5, 0);
     HAL_NVIC_EnableIRQ(ADC_IRQn);
     
-    handleADC.Instance = ADC1;
-    handleADC.Init.ClockPrescaler = ADC_CLOCKPRESCALER_PCLK_DIV2;
-    handleADC.Init.Resolution = ADC_RESOLUTION12b;
-    handleADC.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-    handleADC.Init.ScanConvMode = DISABLE;
-    handleADC.Init.EOCSelection = ENABLE;
-    handleADC.Init.ContinuousConvMode = DISABLE;
-    handleADC.Init.DMAContinuousRequests = DISABLE;
-    handleADC.Init.NbrOfConversion = 1;
-    handleADC.Init.DiscontinuousConvMode = DISABLE;
-    handleADC.Init.NbrOfDiscConversion = 0;
-    handleADC.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
-    handleADC.Init.ExternalTrigConv = ADC_EXTERNALTRIGINJECCONV_T1_CC4;
+    handle.Instance = ADC1;
+    handle.Init.ClockPrescaler = ADC_CLOCKPRESCALER_PCLK_DIV2;
+    handle.Init.Resolution = ADC_RESOLUTION12b;
+    handle.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+    handle.Init.ScanConvMode = DISABLE;
+    handle.Init.EOCSelection = ENABLE;
+    handle.Init.ContinuousConvMode = DISABLE;
+    handle.Init.DMAContinuousRequests = DISABLE;
+    handle.Init.NbrOfConversion = 1;
+    handle.Init.DiscontinuousConvMode = DISABLE;
+    handle.Init.NbrOfDiscConversion = 0;
+    handle.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+    handle.Init.ExternalTrigConv = ADC_EXTERNALTRIGINJECCONV_T1_CC4;
 
-    if (HAL_ADC_Init(&handleADC) != HAL_OK)
+    if (HAL_ADC_Init(&handle) != HAL_OK)
     {
         ERROR_HANDLER();
     }
@@ -43,7 +42,7 @@ void HAL_ADC1::Init()
     sConfig.SamplingTime = ADC_SAMPLETIME_28CYCLES;
     sConfig.Offset = 0;
 
-    if (HAL_ADC_ConfigChannel(&handleADC, &sConfig) != HAL_OK)
+    if (HAL_ADC_ConfigChannel(&handle, &sConfig) != HAL_OK)
     {
         ERROR_HANDLER();
     }
@@ -55,12 +54,46 @@ void HAL_ADC1::Init()
 
 uint16 HAL_ADC1::GetValue()
 {
-    if (__HAL_ADC_GET_FLAG(&handleADC, ADC_FLAG_EOC))
+    if (__HAL_ADC_GET_FLAG(&handle, ADC_FLAG_EOC))
     {
-        __HAL_ADC_CLEAR_FLAG(&handleADC, ADC_FLAG_EOC);
+        __HAL_ADC_CLEAR_FLAG(&handle, ADC_FLAG_EOC);
 
-        adc_value = (uint16)handleADC.Instance->DR;
+        adc_value = (uint16)handle.Instance->DR;
     }
 
     return adc_value;
+}
+
+
+void HAL_ADC1::StartConversion()
+{
+    // HAL_ADC_Start((ADC_HandleTypeDef *)HAL_ADC1::handle);
+
+    handle.Lock = HAL_LOCKED;
+
+    if ((handle.Instance->CR2 & ADC_CR2_ADON) != ADC_CR2_ADON)
+    {
+        __HAL_ADC_ENABLE(&handle);
+
+        __IO uint counter = (ADC_STAB_DELAY_US * (SystemCoreClock / 1000000U));
+
+        while (counter != 0U)
+        {
+            counter--;
+        }
+    }
+
+    ADC_STATE_CLR_SET(handle.State,
+        HAL_ADC_STATE_READY | HAL_ADC_STATE_REG_EOC | HAL_ADC_STATE_REG_OVR, HAL_ADC_STATE_REG_BUSY);
+
+    ADC_CLEAR_ERRORCODE(&handle);
+
+    handle.Lock = HAL_UNLOCKED;
+
+    __HAL_ADC_CLEAR_FLAG(&handle, ADC_FLAG_EOC | ADC_FLAG_OVR);
+
+    if ((handle.Instance->CR2 & ADC_CR2_EXTEN) == RESET)
+    {
+        handle.Instance->CR2 |= (uint32_t)ADC_CR2_SWSTART;
+    }
 }
