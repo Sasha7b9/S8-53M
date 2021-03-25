@@ -11,10 +11,6 @@ struct ReaderFPGA
 {
     static void ReadData();
 
-    static void ReadRandomizeMode(DataReading &);
-
-    static void ReadRealMode(DataReading &);
-
     static void ReadPoint();
 
     static int addition_shift;                  // Дополнительное смещение. Нужно для правильной расстановки точек

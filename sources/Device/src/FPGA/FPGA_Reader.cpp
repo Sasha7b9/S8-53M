@@ -45,37 +45,18 @@ void ReaderFPGA::ReadData()
 
     DataReadingKeeper data;
 
-    if (TBase::IsRandomize())
+    if (data.data->Settings().IsEnabledPeakDet())
     {
-        ReadRandomizeMode(*data.data);
+        ReadRealModePeakDetOn(*data.data);
     }
     else
     {
-        ReadRealMode(*data.data);
+        ReadRealModePeakDetOff(*data.data);
     }
 
     Storage::Append(*data.data);
 
     mutex_read.Unlock();
-}
-
-
-void ReaderFPGA::ReadRandomizeMode(DataReading &)
-{
-
-}
-
-
-void ReaderFPGA::ReadRealMode(DataReading &data)
-{
-    if(data.Settings().IsEnabledPeakDet())
-    {
-        ReadRealModePeakDetOn(data);
-    }
-    else
-    {
-        ReadRealModePeakDetOff(data);
-    }
 }
 
 
@@ -91,6 +72,30 @@ void ReaderFPGA::ReadRealModePeakDetOff(DataReading &data)
     ReadChannel(data, ChA, addr_stop);
 
     ReadChannel(data, ChB, addr_stop);
+}
+
+
+void ReaderFPGA::ReadChannel(DataReading &data, const Channel &ch, uint16 addr_stop)
+{
+    *WR_PRED = addr_stop;
+    *WR_ADDR_STOP = 0xffff;
+
+    uint16 *p = (uint16 *)data.Data(ch);
+    uint16 *end = (uint16 *)(data.Data(ch) + data.Settings().BytesInChannel());
+
+    volatile uint16 *address = ADDRESS_READ(ch);
+
+    while (p < end)
+    {
+        *p++ = *address;
+        *p++ = *address;
+        *p++ = *address;
+        *p++ = *address;
+        *p++ = *address;
+        *p++ = *address;
+        *p++ = *address;
+        *p++ = *address;
+    }
 }
 
 
@@ -166,28 +171,4 @@ int ReaderFPGA::CalculateShift()            // \todo Не забыть восстановить функ
 uint16 ReaderFPGA::ReadAddressStop()
 {
     return (uint16)(*RD_ADDR_NSTOP + 16384 - FPGA::SET::PointsInChannel() / 2 - 1 - FPGA::add_N_stop);
-}
-
-
-void ReaderFPGA::ReadChannel(DataReading &data, const Channel &ch, uint16 addr_stop)
-{
-    *WR_PRED = addr_stop;
-    *WR_ADDR_STOP = 0xffff;
-
-    uint16 *p = (uint16 *)data.Data(ch);
-    uint16 *end = (uint16 *)(data.Data(ch) + data.Settings().BytesInChannel());
-
-    volatile uint16 *address = ADDRESS_READ(ch);
-
-    while (p < end)
-    {
-        *p++ = *address;
-        *p++ = *address;
-        *p++ = *address;
-        *p++ = *address;
-        *p++ = *address;
-        *p++ = *address;
-        *p++ = *address;
-        *p++ = *address;
-    }
 }
