@@ -865,6 +865,11 @@
               <FilePath>.\src\Hardware\HAL\HAL_IT.cpp</FilePath>
             </File>
             <File>
+              <FileName>HAL_ADC1.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HAL\HAL_ADC1.cpp</FilePath>
+            </File>
+            <File>
               <FileName>HAL_DAC2_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_DAC2_.cpp</FilePath>
@@ -943,6 +948,11 @@
               <FileName>defines.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\defines.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>defines_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\defines_.h</FilePath>
             </File>
             <File>
               <FileName>defines.h</FileName>
@@ -2057,6 +2067,11 @@
               <FilePath>.\src\Hardware\HAL\HAL_IT.cpp</FilePath>
             </File>
             <File>
+              <FileName>HAL_ADC1.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\HAL\HAL_ADC1.cpp</FilePath>
+            </File>
+            <File>
               <FileName>HAL_DAC2_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_DAC2_.cpp</FilePath>
@@ -2135,6 +2150,11 @@
               <FileName>defines.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\defines.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>defines_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\defines_.h</FilePath>
             </File>
             <File>
               <FileName>defines.h</FileName>

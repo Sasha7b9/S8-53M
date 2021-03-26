@@ -15,3 +15,5 @@ typedef unsigned char bool;
 
 
 #define LANG_RU true
+
+#define WR_START 0
