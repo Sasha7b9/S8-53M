@@ -37,8 +37,12 @@ private:
 class HLine
 {
 public:
+    HLine(int w = 0) : width(w) {}
     void Draw(int y, int x1, int x2, const Color &color) const;
     void Draw(int y, int x1, int x2) const;
+    void Draw(int x, int y) const;
+private:
+    int width;
 };
 
 class VLine

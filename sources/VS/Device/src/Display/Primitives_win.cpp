@@ -26,42 +26,58 @@ void HLine::Draw(int y, int x1, int x2, const Color &color) const
 }
 
 
-void HLine::Draw(int y, int x1, int x2) const
-{
-    Math::Sort(&x1, &x2);
-
-    for (int x = x1; x <= x2; x++)
-    {
-        Point().Draw(x, y);
-    }
-}
-
-
-void VLine::Draw(int x, int y0, int y1) const
-{
-    Math::Sort(&y0, &y1);
-
-    for (int y = y0; y <= y1; y++)
-    {
-        Point().Draw(x, y);
-    }
-}
-
-
-void VLine::Draw(int x, int y) const
-{
-    for (int i = 0; i < height; i++)
-    {
-        Point().Draw(x, y++);
-    }
-}
-
-
 void Region::Fill(int x, int y) const
 {
     wxBrush brush = Application::memDC.GetBrush();
     wxPen pen = Application::memDC.GetPen();
     Application::memDC.SetBrush(wxBrush(pen.GetColour()));
-    Application::memDC.DrawRectangle({ x, y, width + 1, height + 1 });
+    if (width == 1)
+    {
+        VLine(height).Draw(x, y);
+    }
+    else if (height == 1)
+    {
+        HLine(width).Draw(x, y);
+    }
+    else
+    {
+        Application::memDC.DrawRectangle({ x, y, width, height });
+    }
+    Application::memDC.SetBrush(brush);
+}
+
+
+void HLine::Draw(int y, int x1, int x2) const
+{
+    Math::Sort(&x1, &x2);
+
+    wxBrush brush = Application::memDC.GetBrush();
+    Application::memDC.DrawLine(x1, y, x2, y);
+    Application::memDC.SetBrush(brush);
+}
+
+
+void HLine::Draw(int x, int y) const
+{
+    wxBrush brush = Application::memDC.GetBrush();
+    Application::memDC.DrawLine(x, y, x + width, y);
+    Application::memDC.SetBrush(brush);
+}
+
+
+void VLine::Draw(int x, int y1, int y2) const
+{
+    Math::Sort(&y1, &y2);
+
+    wxBrush brush = Application::memDC.GetBrush();
+    Application::memDC.DrawLine(x, y1, x, y2);
+    Application::memDC.SetBrush(brush);
+}
+
+
+void VLine::Draw(int x, int y) const
+{
+    wxBrush brush = Application::memDC.GetBrush();
+    Application::memDC.DrawLine(x, y, x, y + height);
     Application::memDC.SetBrush(brush);
 }
