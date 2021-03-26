@@ -98,13 +98,13 @@ static const Settings defaultSettings =
     // time
     {
         TBase::_1ms,
-        0,                          // set.time.tShiftRel
         FunctionTime::Time,
         TPos::Center,
         SampleType::Equal,
         PeackDetMode::Disable,
-        false,
-        ENUM_POINTS_FPGA::_1024
+        ENUM_POINTS_FPGA::_1024,
+        0,                          // set.time.tShiftRel
+        false
     },
     // cursors
     {
@@ -182,10 +182,10 @@ static const Settings defaultSettings =
     },
     // service
     {
-        false,                      // soundEnable
         CalibratorMode::Freq,       // calibratorEnable
-        0,                          // IP-адрес (временно)  WARN
-        ColorScheme::WhiteLetters   // colorScheme
+        ColorScheme::WhiteLetters,  // colorScheme
+        false,                      // soundEnable
+        0                           // IP-адрес (временно)  WARN
     },
     {
         0x8b, 0x2e, 0xaf, 0x8f, 0x13, 0x00, // mac

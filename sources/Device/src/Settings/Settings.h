@@ -258,10 +258,10 @@ struct SettingsMath
 // Настройки меню СЕРВИС.
 struct SettingsService
 {
-    bool              sound_enabled;       // Включены ли звуки.
     CalibratorMode::E calibrator;          // Режим работы калибратора.
-    int8              IPaddress;           // IP-адрес (временно).
     ColorScheme::E    colorScheme;         // Цветовая схеама.
+    bool              sound_enabled;       // Включены ли звуки.
+    int8              IPaddress;           // IP-адрес (временно).
 };
 
 
@@ -282,15 +282,15 @@ struct SettingsTrig
 struct SettingsTime
 {
     TBase::E            base;           // Масштаб по времени.
-    int16               shift;          // Смещение по времени.
     FunctionTime::E     function_time;
     TPos::E             t_pos;          // Привязка синхронизации к памяти.
     SampleType::E       sample_type;    // Тип выборки для режима рандомизатора.
     PeackDetMode::E     peak_det;       // Режим работы пикового детектора
-    bool                self_recorder;  // Включен ли режим самописца.
     ENUM_POINTS_FPGA::E old_num_points; // \brief Когда переключаемся в режим пикового детектора, устанавливаем
                                         // количество точек в 1024, а сюда  записываем то, что было, чтобы потом
                                         // восстановить.
+    int16               shift;          // Смещение по времени.
+    bool                self_recorder;  // Включен ли режим самописца.
 };
 
 

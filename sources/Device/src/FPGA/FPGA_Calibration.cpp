@@ -525,7 +525,7 @@ Float CalculateKoeffCalibration(const Channel &ch)
         while(_GET_BIT(HAL_FMC::Read(RD_FL), 0) == 0 && (TIME_MS - startTime > timeWait)) {};
         if(TIME_MS - startTime > timeWait)
         {
-            return Float(false);;
+            return InvalidFloat();
         }
 
         HAL_FMC::Write(WR_STOP, 1);
