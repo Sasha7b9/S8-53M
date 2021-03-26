@@ -1,6 +1,5 @@
 #pragma once
 #include "common/Hardware/HAL/HAL_PINS_.h"
-#include "common/Utils/Containers/Values_.h"
 
 
 struct PackedTime
@@ -65,11 +64,8 @@ private:
 struct HAL_ADC1
 {
     static void Init();
-    static Uint16 GetValue();
+    static uint16 GetValue();
     static void StartConversion();
-
-    // После запуска нужно вызывать эту функцию, чтобы установить признак того, что нет валидных данных
-    static void ResetValue();
 };
 
 

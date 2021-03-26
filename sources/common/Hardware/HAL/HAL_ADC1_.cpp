@@ -1,18 +1,17 @@
 #include "defines.h"
 #include "common/Log_.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "common/Utils/Containers/Values_.h"
 #include <stm32f4xx_hal.h>
 
 
-static Uint16 adc_value;
+static Uint16 adc_value = 0U;
 
 static ADC_HandleTypeDef handle;
 
 
 void HAL_ADC1::Init()
 {
-    adc_value.SetInvalid();
-
     HAL_PINS::ADC1_::Init();
 
     HAL_NVIC_SetPriority(ADC_IRQn, 5, 0);
@@ -54,22 +53,16 @@ void HAL_ADC1::Init()
 }
 
 
-Uint16 HAL_ADC1::GetValue()
+uint16 HAL_ADC1::GetValue()
 {
     if (__HAL_ADC_GET_FLAG(&handle, ADC_FLAG_EOC))
     {
         __HAL_ADC_CLEAR_FLAG(&handle, ADC_FLAG_EOC);
 
-        adc_value = Uint16((uint16)handle.Instance->DR);
+        adc_value = (uint16)handle.Instance->DR;
     }
 
     return adc_value;
-}
-
-
-void HAL_ADC1::ResetValue()
-{
-    adc_value.SetInvalid();
 }
 
 

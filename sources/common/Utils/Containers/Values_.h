@@ -12,7 +12,7 @@ struct ValueStruct
     bool IsValid() const { return valid; }
     bool operator <(const T rhs) const { return value < rhs; }
     operator T() const { return value; }
-protected:
+private:
     bool valid;
 };
 
@@ -69,23 +69,17 @@ struct Int16 : public ValueStruct<int16>
 };
 
 
-struct InvalidInt16 : public Int16
-{
-    InvalidInt16() : Int16() { SetInvalid(); }
-};
-
-
 struct Uint16 : public ValueStruct<uint16>
 {
-    explicit Uint16(uint16 v = 0) : ValueStruct(v) { valid = true; }
+    Uint16(uint16 v = 0) : ValueStruct(v) {}
 
     String ToStringBin();
 };
 
 
-struct InvalidUint16 : public Uint16
+struct InvalidInt16 : public Int16
 {
-    InvalidUint16() : Uint16() { SetInvalid(); }
+    InvalidInt16() : Int16() { SetInvalid(); }
 };
 
 

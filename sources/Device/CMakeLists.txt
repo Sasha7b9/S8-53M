@@ -33,12 +33,10 @@ add_compile_options(/wd4310)    # cast truncates constant value
 add_compile_options(/wd4514)    # 'function' : unreferenced inline function has been removed
 add_compile_options(/wd4623)    # 'derived class' : default constructor was implicitly defined as deleted because a base
                                 # class default constructor is inaccessible or deleted
-add_compile_options(/wd4625)
 add_compile_options(/wd4626)    # 'derived class' : assignment operator was implicitly defined as deleted because a base
                                 # class assignment operator is inaccessible or deleted
 add_compile_options(/wd4774)    # 'function' : format string expected in argument 3 is not a string literal
 add_compile_options(/wd4820)    # 'bytes' bytes padding added after construct 'member_name'
-add_compile_options(/wd5026)
 add_compile_options(/wd5027)    # 'derived class' : move assignment operator was implicitly defined as deleted
 add_compile_options(/wd5039)    # 'function': pointer or reference to potentially throwing function passed to
                                 # 'extern "C"' function under -EHc. Undefined behavior may occur if this function throws
