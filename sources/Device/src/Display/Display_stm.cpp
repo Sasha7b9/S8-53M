@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "common/Display/Colors_.h"
 #include "common/Display/Font/Font_.h"
 #include "common/Display/Painter/Primitives_.h"
 #include "common/Hardware/HAL/HAL_.h"
@@ -79,3 +80,35 @@ void HLine::Draw(int y, int x0, int x1) const
 
     std::memset(start, Color::GetCurrent().index, (uint)(x1 - x0 + 1));
 }
+
+void HLine::Draw(int x, int y) const
+{
+    if (y < 0 || y >= Display::HEIGHT)
+    {
+        return;
+    }
+
+    int w = width;
+
+    if (x < 0)
+    {
+        w += x;
+        x = 0;
+    }
+    else if (x >= Display::WIDTH)
+    {
+        w -= (x - Display::WIDTH);
+        x = Display::WIDTH - 1;
+    }
+
+    uint8 *address = &back[y][x];
+
+    uint8 color = Color::GetCurrent().index;
+
+    while (w > 0)
+    {
+        *address = color;
+        address += width;
+    }
+}
+
