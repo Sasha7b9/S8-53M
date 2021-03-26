@@ -2,7 +2,7 @@
 #include "common/Log_.h"
 #include "common/Hardware/Timer_.h"
 #include "common/Hardware/HAL/HAL_.h"
-//#include "FPGA/FPGA_Types.h"
+#include "FPGA/FPGA_Types.h"
 #include "Settings/Settings.h"
 #include <stm32f4xx_hal.h>
 #include <cstdlib>
@@ -24,6 +24,11 @@ uint16 *const HAL_FMC::ADDR_RAM_DISPLAY_FRONT = (uint16 *)(ADDR_RAM + 1024 * 102
 
 void HAL_FMC::Write(uint16 * const address, uint16 value)
 {
+    if (address == WR_START)
+    {
+        HAL_ADC1::ResetValue();
+    }
+
 //    if (address == WR_STOP)
 //    {
 //        LOG_WRITE("WR_STOP");

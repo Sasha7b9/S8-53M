@@ -215,16 +215,19 @@ void ReaderFPGA::InverseDataIsNecessary(const Channel &ch, uint8 *data)
 
 Int ReaderFPGA::CalculateShift()
 {
-    uint16 rand = HAL_ADC1::GetValue();
+    Uint16 rand = HAL_ADC1::GetValue();
 
-    uint16 min = 0;
-    uint16 max = 0;
-
-    if (FPGA::Randomizer::CalculateGate(rand, &min, &max))
+    if (rand.IsValid())
     {
-        float tin = (float)(rand - min) / (max - min) * 10e-9F;
+        uint16 min = 0;
+        uint16 max = 0;
 
-        return (int)(tin / 10e-9F * TBase::StepRand());
+        if (FPGA::Randomizer::CalculateGate(rand, &min, &max))
+        {
+            float tin = (float)(rand - min) / (max - min) * 10e-9F;
+
+            return (int)(tin / 10e-9F * TBase::StepRand());
+        }
     }
 
     return InvalidInt();
