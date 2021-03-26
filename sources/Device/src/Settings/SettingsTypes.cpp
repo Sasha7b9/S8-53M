@@ -656,7 +656,7 @@ bool ModeRegSet::IsRShift()
 
 ModeShowIntMem::E ModeShowIntMem::Get()
 {
-    return set.memory.modeShowIntMem;
+    return set.memory.mode_show_int_mem;
 }
 
 

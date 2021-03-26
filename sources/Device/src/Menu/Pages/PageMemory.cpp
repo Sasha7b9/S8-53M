@@ -677,7 +677,7 @@ static void DrawSB_MemInt_ModeShow(int x, int y)
 
 static void PressSB_MemInt_ModeShow()
 {
-    Math::CircleIncrease<int8>((int8*)&set.memory.modeShowIntMem, 0, 2);
+    Math::CircleIncrease<int8>((int8*)&set.memory.mode_show_int_mem, 0, 2);
 }
 
 static const arrayHints hintsMemIntModeShow =

@@ -100,7 +100,7 @@ struct SettingsMemory
     int8                index_cur_symbol_name_mask;               // Индекс текущего символа в режиме задания маски или
                                                                   // выбора имени.
     StructMemoryLast    str_memory_last;
-    ModeShowIntMem::E   modeShowIntMem;                           // Какие сигналы показывать в режиме внутреннего ЗУ
+    ModeShowIntMem::E   mode_show_int_mem;                        // Какие сигналы показывать в режиме внутреннего ЗУ
     bool                flash_auto_connect;                       // Если true, при подлючении флеш автоматически
                                                                   // выводится NC (Нортон Коммандер)
     ModeBtnMemory::E    modeBtnMemory;
