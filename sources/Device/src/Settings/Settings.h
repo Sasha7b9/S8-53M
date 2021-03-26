@@ -104,7 +104,7 @@ struct SettingsMemory
     bool                flash_auto_connect;                       // Если true, при подлючении флеш автоматически
                                                                   // выводится NC (Нортон Коммандер)
     ModeBtnMemory::E    mode_button_memory;
-    ModeSaveSignal::E   modeSaveSignal;                           // В каком виде сохранять сигнал.
+    ModeSaveSignal::E   mode_save_signal;                         // В каком виде сохранять сигнал.
 
     static int GetNumPoints(bool forCalculate);
 };
