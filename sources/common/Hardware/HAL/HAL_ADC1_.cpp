@@ -1,11 +1,10 @@
 #include "defines.h"
 #include "common/Log_.h"
 #include "common/Hardware/HAL/HAL_.h"
-#include "common/Utils/Containers/Values_.h"
 #include <stm32f4xx_hal.h>
 
 
-static Uint16 adc_value = 0U;
+static Uint16 adc_value = Uint16(0);
 
 static ADC_HandleTypeDef handle;
 
@@ -53,7 +52,7 @@ void HAL_ADC1::Init()
 }
 
 
-uint16 HAL_ADC1::GetValue()
+Uint16 HAL_ADC1::GetValue()
 {
     if (__HAL_ADC_GET_FLAG(&handle, ADC_FLAG_EOC))
     {

@@ -1,5 +1,6 @@
 #pragma once
 #include "common/Hardware/HAL/HAL_PINS_.h"
+#include "common/Utils/Containers/Values_.h"
 
 
 struct PackedTime
@@ -64,7 +65,7 @@ private:
 struct HAL_ADC1
 {
     static void Init();
-    static uint16 GetValue();
+    static Uint16 GetValue();
     static void StartConversion();
 };
 
