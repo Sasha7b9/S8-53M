@@ -654,18 +654,6 @@ bool ModeRegSet::IsRShift()
 }
 
 
-ModeBtnMemory::E ModeBtnMemory::Get()
-{
-    return set.memory.mode_button_memory;
-}
-
-
-bool ModeBtnMemory::IsSave()
-{
-    return (set.memory.mode_button_memory == ModeBtnMemory::Save);
-}
-
-
 bool ModeSaveSignal::IsBMP()
 {
     return (set.memory.mode_save_signal == ModeSaveSignal::BMP);

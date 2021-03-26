@@ -103,7 +103,7 @@ struct SettingsMemory
     ModeShowIntMem      mode_show_int_mem;                        // Какие сигналы показывать в режиме внутреннего ЗУ
     bool                flash_auto_connect;                       // Если true, при подлючении флеш автоматически
                                                                   // выводится NC (Нортон Коммандер)
-    ModeBtnMemory::E    mode_button_memory;
+    ModeBtnMemory       mode_button_memory;
     ModeSaveSignal::E   mode_save_signal;                         // В каком виде сохранять сигнал.
 
     static int GetNumPoints(bool forCalculate);

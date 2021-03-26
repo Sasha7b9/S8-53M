@@ -338,7 +338,9 @@ void Menu::ProcessingShortPressureButton()
 {
     if(shortPressureButton != Key::None)
     {
-        if (shortPressureButton == Key::Memory && ModeBtnMemory::IsSave() && FDrive::isConnected)
+        if (shortPressureButton == Key::Memory &&
+            set.memory.mode_button_memory.IsSave() &&
+            FDrive::isConnected)
         {
             PageMemory::exitFromModeSetNameTo = IsShown() ? RETURN_TO_MAIN_MENU : RETURN_TO_DISABLE_MENU;
             Memory_SaveSignalToFlashDrive();

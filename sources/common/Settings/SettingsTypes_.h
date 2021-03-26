@@ -437,11 +437,11 @@ struct ModeBtnMemory
     {
         Menu,     // Будет открывааться соответствующая страница меню.
         Save      // Сохранение содержимого экрана на флешку.
-    };
+    } value;
 
-    static E Get();
+    ModeBtnMemory(E v = Menu) : value(v) {}
 
-    static bool IsSave();
+    bool IsSave() const { return value == Save; };
 };
 
 
