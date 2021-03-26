@@ -22,7 +22,7 @@ DataReading::DataReading()
 
 void DataReading::CreateFromCurrentSettings()
 {
-    buffer.Realloc(sizeof(DataSettings) + FPGA::SET::BytesForData());
+    buffer.Realloc(sizeof(DataSettings) + set.memory.enum_points_fpga.BytesForData());
 
     DataSettings &ds = *(DataSettings *)buffer.Data();
 

@@ -77,9 +77,6 @@ public:
 
     struct SET
     {
-        // Столько байт нужно для сохранения данных обоих каналов
-        static uint BytesForData();
-
         static bool InSelfRecorderMode();
     };
 
