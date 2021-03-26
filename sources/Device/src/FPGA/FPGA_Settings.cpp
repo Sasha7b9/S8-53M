@@ -385,11 +385,11 @@ void TShift::Load()
 
         if (TPos::IsLeft())
         {
-            k = FPGA::SET::PointsInChannel() % step;
+            k = set.memory.enum_points_fpga.ToPoints() % step;
         }
         else if (TPos::IsCenter())
         {
-            k = (FPGA::SET::PointsInChannel() / 2) % step;
+            k = (set.memory.enum_points_fpga.ToPoints() / 2) % step;
         }
 
         FPGA::post = (uint16)((2 * FPGA::post - k) / step);

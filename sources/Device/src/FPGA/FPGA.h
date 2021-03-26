@@ -77,10 +77,6 @@ public:
 
     struct SET
     {
-        // —только точек в измерении одного канала
-        static uint PointsInChannel();
-        static ENUM_POINTS_FPGA::E ENumPointsInChannel();
-
         // —только байтов в измерении одного канала
         static uint BytesInChannel();
 

@@ -328,13 +328,13 @@ int SettingsMemory::GetNumPoints(bool forCalculate)
         {281, 512, 512}
     };
 
-    if ((FPGA::SET::ENumPointsInChannel() == ENUM_POINTS_FPGA::_1024) &&
+    if ((set.memory.enum_points_fpga.ToPoints() > 512) &&
         forCalculate)
     {
         return FPGA_MAX_POINTS_FOR_CALCULATE;
     }
 
-    return numPoints[PeackDetMode::Get()][FPGA::SET::ENumPointsInChannel()];
+    return numPoints[PeackDetMode::Get()][set.memory.enum_points_fpga];
 }
 
 

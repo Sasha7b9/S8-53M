@@ -380,7 +380,7 @@ LabelNextNumber:
         LIMITATION(size, size, 1, 95);
         std::strcat(name, set.memory.file_name);
         std::strcat(name, ".");
-        std::strcat(name, ModeSaveSignal::IsBMP() ? "bmp" : "txt");
+        std::strcat(name, set.memory.mode_save_signal.IsBMP() ? "bmp" : "txt");
         return true;
     }
     else
@@ -427,7 +427,7 @@ LabelNextNumber:
         *wr = '.';
         *(wr + 1) = '\0';
 
-        std::strcat(name, ModeSaveSignal::IsBMP() ? "bmp" : "txt");
+        std::strcat(name, set.memory.mode_save_signal.IsBMP() ? "bmp" : "txt");
 
         if(FileIsExist(name))
         {

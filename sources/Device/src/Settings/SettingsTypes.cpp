@@ -461,10 +461,11 @@ int16 TShift::Min()
     {-511, -383, -255},
     {-511, -255, 0} };
 
-    ENUM_POINTS_FPGA::E numPoints = FPGA::SET::ENumPointsInChannel();
-    if ((int)numPoints < 3)
+    ENUM_POINTS_FPGA::E enumPoints = set.memory.enum_points_fpga;
+
+    if ((int)enumPoints < 3)
     {
-        return m[numPoints][TPos::Get()];
+        return m[enumPoints][TPos::Get()];
     }
 
     LOG_ERROR("");
@@ -505,6 +506,12 @@ uint ENUM_POINTS_FPGA::ToPoints(E v)
     };
 
     return points[v];
+}
+
+
+uint ENUM_POINTS_FPGA::ToPoints()
+{
+    return ENUM_POINTS_FPGA::ToPoints(set.memory.enum_points_fpga.value);
 }
 
 
@@ -651,12 +658,6 @@ bool ModeRegSet::IsRange()
 bool ModeRegSet::IsRShift()
 {
     return (set.math.modeRegSet == ModeRegSet::RShift);
-}
-
-
-bool ModeSaveSignal::IsBMP()
-{
-    return (set.memory.mode_save_signal == ModeSaveSignal::BMP);
 }
 
 

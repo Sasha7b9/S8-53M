@@ -37,7 +37,10 @@ struct ENUM_POINTS_FPGA
     ENUM_POINTS_FPGA(E v = _1024) : value(v) {}
 
     static uint ToPoints(E);
+    uint ToPoints();
     static E FromPoints(int num_points);
+
+    operator E() const { return value; }
 };
 
 
@@ -452,9 +455,11 @@ struct ModeSaveSignal
     {
         BMP,     // Сохранять данные на флешку в формате .bmp.
         TXT      // Сохранять данные на флешку в текствовом виде.
-    };
+    } value;
 
-    static bool IsBMP();
+    ModeSaveSignal(E v = BMP) : value(v) {}
+
+    bool IsBMP() const { return value == BMP; }
 };
 
 

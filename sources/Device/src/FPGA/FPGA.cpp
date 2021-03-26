@@ -461,21 +461,9 @@ void FPGA::BUS::WriteToDAC(TypeWriteDAC::E type, uint16 data)
 }
 
 
-uint FPGA::SET::PointsInChannel()
-{
-    return ENUM_POINTS_FPGA::ToPoints(FPGA::SET::ENumPointsInChannel());
-}
-
-
-ENUM_POINTS_FPGA::E FPGA::SET::ENumPointsInChannel()
-{
-    return set.memory.enum_points_fpga.value;
-}
-
-
 uint FPGA::SET::BytesInChannel()
 {
-    uint result = PointsInChannel();
+    uint result = set.memory.enum_points_fpga.ToPoints();
 
     if (PeackDetMode::IsEnabled())
     {

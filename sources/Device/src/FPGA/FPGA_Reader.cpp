@@ -240,5 +240,5 @@ Int ReaderFPGA::CalculateShift()
 
 uint16 ReaderFPGA::ReadAddressStop()
 {
-    return (uint16)(*RD_ADDR_NSTOP + 16384 - FPGA::SET::PointsInChannel() / 2 - 1 - FPGA::add_N_stop);
+    return (uint16)(*RD_ADDR_NSTOP + 16384 - set.memory.enum_points_fpga.ToPoints() / 2 - 1 - FPGA::add_N_stop);
 }
