@@ -662,13 +662,13 @@ ModeShowIntMem::E ModeShowIntMem::Get()
 
 ModeBtnMemory::E ModeBtnMemory::Get()
 {
-    return set.memory.modeBtnMemory;
+    return set.memory.mode_button_memory;
 }
 
 
 bool ModeBtnMemory::IsSave()
 {
-    return (set.memory.modeBtnMemory == ModeBtnMemory::Save);
+    return (set.memory.mode_button_memory == ModeBtnMemory::Save);
 }
 
 

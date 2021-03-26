@@ -824,7 +824,7 @@ DEF_CHOICE_2(mcMemoryExtModeBtnMemory, PageMemory::PageExternal::self,
     "",
     "Меню",       "Menu",
     "Сохранение", "Save",
-    set.memory.modeBtnMemory, nullptr, nullptr, nullptr
+    set.memory.mode_button_memory, nullptr, nullptr, nullptr
 )
 
 
