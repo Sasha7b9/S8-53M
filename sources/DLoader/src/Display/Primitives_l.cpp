@@ -9,6 +9,11 @@ void HLine::Draw(int, int, int ) const
 }
 
 
+void HLine::Draw(int, int) const
+{
+}
+
+
 void HLine::Draw(int , int , int , const Color &) const
 {
 
