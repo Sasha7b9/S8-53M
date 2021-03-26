@@ -21,9 +21,7 @@ const Page* PageForButton(Key::E button);   // Возвращает страницу меню, которая
 bool IsMainPage(const void *item);                        // Возвращает true, если item - адрес главной страницы меню.
 
 
-void DrawMenuCursVoltage(int x, int y, bool top, bool bottom);
 void CalculateConditions(int16 pos0, int16 pos1, CursCntrl::E cursCntrl, bool *cond0, bool *cond1);    // Рассчитывает условия отрисовки УГО малых кнопок управления выбором курсорами.
-void DrawMenuCursTime(int x, int y, bool left, bool right);
 void DrawSB_Exit(int x, int y);
 
 
@@ -61,7 +59,17 @@ struct PageCursors
         static const Page *self;
     };
 
+    // Рисует состояние курсоров напряжения на кнопках меню
+    static void DrawMenuCursorsVoltage(int x, int y, bool top, bool bottom);
+
+    static void DrawMenuCursorsTime(int x, int y, bool left, bool right);
+
+
     static const Page *self;
+
+private:
+
+    static void CalculateXY(int *x0, int *x1, int *y0, int *y1);
 };
 
 

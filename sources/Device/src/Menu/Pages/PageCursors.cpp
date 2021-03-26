@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "common/Display/Font/Font_.h"
+#include "common/Display/Painter/Primitives_.h"
 #include "common/Display/Painter/Text_.h"
 #include "common/Hardware/Sound_.h"
 #include "common/Utils/Math_.h"
@@ -219,22 +220,22 @@ static void DrawSB_Cursors_U_Disable(int x, int y)
 
 static void DrawSB_Cursors_U_Both_Disable(int x, int y)
 {
-    DrawMenuCursVoltage(x + 7, y + 5, false, false);
+    PageCursors::DrawMenuCursorsVoltage(x + 7, y + 5, false, false);
 }
 
 static void DrawSB_Cursors_U_Upper(int x, int y)
 {
-    DrawMenuCursVoltage(x + 7, y + 5, true, false);
+    PageCursors::DrawMenuCursorsVoltage(x + 7, y + 5, true, false);
 }
 
 static void DrawSB_Cursors_U_Lower(int x, int y)
 {
-    DrawMenuCursVoltage(x + 7, y + 5, false, true);
+    PageCursors::DrawMenuCursorsVoltage(x + 7, y + 5, false, true);
 }
 
 static void DrawSB_Cursors_U_Both_Enable(int x, int y)
 {
-    DrawMenuCursVoltage(x + 7, y + 5, true, true);
+    PageCursors::DrawMenuCursorsVoltage(x + 7, y + 5, true, true);
 }
 
 static const arrayHints hintsSetU =
@@ -314,22 +315,22 @@ static void DrawSB_Cursors_T_Disable(int x, int y)
 
 static void DrawSB_Cursors_T_Both_Disable(int x, int y)
 {
-    DrawMenuCursTime(x, y, false, false);
+    PageCursors::DrawMenuCursorsTime(x, y, false, false);
 }
 
 static void DrawSB_Cursors_T_Left(int x, int y)
 {
-    DrawMenuCursTime(x, y, true, false);
+    PageCursors::DrawMenuCursorsTime(x, y, true, false);
 }
 
 static void DrawSB_Cursors_T_Right(int x, int y)
 {
-    DrawMenuCursTime(x, y, false, true);
+    PageCursors::DrawMenuCursorsTime(x, y, false, true);
 }
 
 static void DrawSB_Cursors_T_Both_Enable(int x, int y)
 {
-    DrawMenuCursTime(x, y, true, true);
+    PageCursors::DrawMenuCursorsTime(x, y, true, true);
 }
 
 static const arrayHints hintsSetT =
@@ -559,3 +560,58 @@ static void SetShiftCursPosT(const Channel &ch, int num_cur, float delta)
 
 const Page *PageCursors::self = &pageCursors;
 const Page *PageCursors::PageSet::self = &pageSet;
+
+
+static int CalculateYforCurs(int y, bool top)
+{
+    return top ? y + Item::HEIGHT / 2 + 4 : y + Item::HEIGHT - 2;
+}
+
+
+static int CalculateXforCurs(int x, bool left)
+{
+    return left ? x + Item::WIDTH - 20 : x + Item::WIDTH - 5;
+}
+
+
+void PageCursors::CalculateXY(int *x0, int *x1, int *y0, int *y1)
+{
+    *x0 = CalculateXforCurs(*x0, true);
+    *x1 = CalculateXforCurs(*x1, false);
+    *y0 = CalculateYforCurs(*y0, true);
+    *y1 = CalculateYforCurs(*y1, false);
+}
+
+
+void PageCursors::DrawMenuCursorsVoltage(int x, int y, bool top, bool bottom)
+{
+    x -= 65;
+    y -= 21;
+    int x0 = x, x1 = x, y0 = y, y1 = y;
+    CalculateXY(&x0, &x1, &y0, &y1);
+    for (int i = 0; i < (top ? 3 : 1); i++)
+    {
+        HLine().Draw(y0 + i, x0, x1);
+    }
+    for (int i = 0; i < (bottom ? 3 : 1); i++)
+    {
+        HLine().Draw(y1 - i, x0, x1);
+    }
+}
+
+
+void PageCursors::DrawMenuCursorsTime(int x, int y, bool left, bool right)
+{
+    x -= 58;
+    y -= 16;
+    int x0 = x, x1 = x, y0 = y, y1 = y;
+    CalculateXY(&x0, &x1, &y0, &y1);
+    for (int i = 0; i < (left ? 3 : 1); i++)
+    {
+        HLine().Draw(x0 + i, y0, y1);
+    }
+    for (int i = 0; i < (right ? 3 : 1); i++)
+    {
+        HLine().Draw(x1 - i, y0, y1);
+    }
+}
