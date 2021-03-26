@@ -120,7 +120,7 @@ struct HAL_FMC
 {
     static void Init();
     inline static uint16 Read(uint16 * const address)               { return *address; };
-    static void  Write(uint16 * const address, uint16 value);
+    static void Write(uint16 * const address, uint16 value);
 
 private:
     

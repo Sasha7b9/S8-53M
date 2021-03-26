@@ -338,20 +338,6 @@ int SettingsMemory::GetNumPoints(bool forCalculate)
 }
 
 
-ENUM_POINTS_FPGA::E SettingsMemory::IntNumPoints2FPGA_NUM_POINTS(int numPoints)
-{
-    if (numPoints == 1024)
-    {
-        return ENUM_POINTS_FPGA::_1024;
-    }
-    else if (numPoints == 512)
-    {
-        return ENUM_POINTS_FPGA::_512;
-    }
-    return ENUM_POINTS_FPGA::_281;
-}
-
-
 void Channel::Enable() const
 {
     set.chan[value].enable = true;

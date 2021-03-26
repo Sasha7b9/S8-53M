@@ -424,9 +424,9 @@ bool TPos::IsRight()
 }
 
 
-int TPos::InPoints(PeackDetMode::E peakDet, int numPoints, TPos::E tPos)
+int TPos::InPoints(PeackDetMode::E peak_det, int num_points, TPos::E tPos)
 {
-    if (peakDet == PeackDetMode::Disable)
+    if (peak_det == PeackDetMode::Disable)
     {
         static const int m[3][3] =
         {
@@ -434,7 +434,7 @@ int TPos::InPoints(PeackDetMode::E peakDet, int numPoints, TPos::E tPos)
             {0, 255, 511},
             {0, 512, 1022}
         };
-        return m[SettingsMemory::IntNumPoints2FPGA_NUM_POINTS(numPoints)][tPos];
+        return m[ENUM_POINTS_FPGA::FromPoints(num_points)][tPos];
     }
     else
     {
@@ -444,7 +444,7 @@ int TPos::InPoints(PeackDetMode::E peakDet, int numPoints, TPos::E tPos)
             {0, 256, 510},
             {0, 256, 510}
         };
-        return m[SettingsMemory::IntNumPoints2FPGA_NUM_POINTS(numPoints)][tPos];
+        return m[ENUM_POINTS_FPGA::FromPoints(num_points)][tPos];
     }
 }
 
@@ -505,6 +505,37 @@ uint ENUM_POINTS_FPGA::ToPoints(E v)
     };
 
     return points[v];
+}
+
+
+ENUM_POINTS_FPGA::E ENUM_POINTS_FPGA::FromPoints(int num_points)
+{
+    struct Struct
+    {
+        int num_points;
+        E enum_points;
+    };
+
+    static const Struct structs[Count] =
+    {
+        { 8192, _16384 },
+        { 4096, _8192 },
+        { 2048, _4096 },
+        { 1024, _2048 },
+        { 512,  _1024 },
+        { 281,  _512 },
+        { 1,    _281}
+    };
+
+    for (int i = 0; i < Count; i++)
+    {
+        if (num_points > structs[i].num_points)
+        {
+            return structs[i].enum_points;
+        }
+    }
+
+    return ENUM_POINTS_FPGA::_16384;
 }
 
 

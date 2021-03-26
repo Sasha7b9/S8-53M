@@ -147,7 +147,7 @@ void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch,
         return;
     }
 
-    LOG_WRITE("index = %d", index);
+//    LOG_WRITE("index = %d", index);
 
     uint bytes_in_channel = dr.Settings().BytesInChannel();
 
@@ -228,6 +228,10 @@ Int ReaderFPGA::CalculateShift()
 
             return (int)(tin / 10e-9F * TBase::StepRand());
         }
+    }
+    else
+    {
+        LOG_WRITE("Невалидный ADC");
     }
 
     return InvalidInt();

@@ -35,6 +35,7 @@ struct ENUM_POINTS_FPGA
     };
 
     static uint ToPoints(E);
+    static E FromPoints(int num_points);
 };
 
 
