@@ -656,13 +656,13 @@ bool ModeRegSet::IsRShift()
 
 bool FileNamingMode::IsMask()
 {
-    return (set.memory.fileNamingMode == FileNamingMode::Mask);
+    return (set.memory.file_naming_mode == FileNamingMode::Mask);
 }
 
 
 bool FileNamingMode::IsHand()
 {
-    return (set.memory.fileNamingMode == FileNamingMode::Manually);
+    return (set.memory.file_naming_mode == FileNamingMode::Manually);
 }
 
 

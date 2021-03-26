@@ -802,7 +802,7 @@ DEF_CHOICE_2(mcMemoryExtName, PageMemory::PageExternal::self,
     ,
     "По маске", "Mask",
     "Вручную",  "Manually",
-    set.memory.fileNamingMode, nullptr, nullptr, nullptr
+    set.memory.file_naming_mode, nullptr, nullptr, nullptr
 )
 
     
