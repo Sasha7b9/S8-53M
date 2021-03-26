@@ -461,26 +461,15 @@ void FPGA::BUS::WriteToDAC(TypeWriteDAC::E type, uint16 data)
 }
 
 
-uint FPGA::SET::BytesInChannel()
-{
-    uint result = set.memory.enum_points_fpga.ToPoints();
-
-    if (PeackDetMode::IsEnabled())
-    {
-        result *= 2;
-    }
-
-    return result;
-}
-
-
 uint FPGA::SET::BytesForData()
 {
     uint result = 0;
 
-    if (ChA.IsEnabled())    { result += BytesInChannel(); }
+    uint bytes_in_channel = set.memory.enum_points_fpga.BytesInChannel();
 
-    if (ChB.IsEnabled())    { result += BytesInChannel(); }
+    if (ChA.IsEnabled())    { result += bytes_in_channel; }
+
+    if (ChB.IsEnabled())    { result += bytes_in_channel; }
 
     return result;
 }

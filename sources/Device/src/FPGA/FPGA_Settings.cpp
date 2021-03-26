@@ -405,7 +405,7 @@ void TShift::Load()
     }
     else
     {
-        FPGA::pred = (int16)FPGA::SET::BytesInChannel() / 2 - (int16)FPGA::post;
+        FPGA::pred = (int16)set.memory.enum_points_fpga.BytesInChannel() / 2 - (int16)FPGA::post;
 
         if (FPGA::pred < 0)
         {

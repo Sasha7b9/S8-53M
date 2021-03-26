@@ -511,7 +511,20 @@ uint ENUM_POINTS_FPGA::ToPoints(E v)
 
 uint ENUM_POINTS_FPGA::ToPoints()
 {
-    return ENUM_POINTS_FPGA::ToPoints(set.memory.enum_points_fpga.value);
+    return ENUM_POINTS_FPGA::ToPoints(value);
+}
+
+
+uint ENUM_POINTS_FPGA::BytesInChannel()
+{
+    uint result = ToPoints();
+
+    if (PeackDetMode::IsEnabled())
+    {
+        result *= 2;
+    }
+
+    return result;
 }
 
 

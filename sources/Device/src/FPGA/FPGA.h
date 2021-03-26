@@ -77,9 +77,6 @@ public:
 
     struct SET
     {
-        // —только байтов в измерении одного канала
-        static uint BytesInChannel();
-
         // —только байт нужно дл€ сохранени€ данных обоих каналов
         static uint BytesForData();
 

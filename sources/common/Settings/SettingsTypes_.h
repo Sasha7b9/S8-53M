@@ -37,8 +37,10 @@ struct ENUM_POINTS_FPGA
     ENUM_POINTS_FPGA(E v = _1024) : value(v) {}
 
     static uint ToPoints(E);
-    uint ToPoints();
     static E FromPoints(int num_points);
+
+    uint ToPoints();
+    uint BytesInChannel();
 
     operator E() const { return value; }
 };
