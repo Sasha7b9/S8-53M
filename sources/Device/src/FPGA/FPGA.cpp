@@ -459,9 +459,3 @@ void FPGA::BUS::WriteToDAC(TypeWriteDAC::E type, uint16 data)
 
     Pin::SPI4_CS1.Set();
 }
-
-
-bool FPGA::InSelfRecorderMode()
-{
-    return set.time.self_recorder;
-}

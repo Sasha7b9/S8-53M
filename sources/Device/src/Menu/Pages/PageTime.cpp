@@ -140,3 +140,9 @@ DEF_PAGE_5(pageTime, PageMain::self, NamePage::Time,
 )
 
 const Page *PageTime::self = &pageTime;
+
+
+bool PageTime::InSelfRecoredMode()
+{
+    return set.time.self_recorder;
+}

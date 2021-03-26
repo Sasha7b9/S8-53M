@@ -8,6 +8,7 @@
 #include "FPGA/FPGA_Math.h"
 #include "FPGA/FPGA_Reader.h"
 #include "FPGA/FPGA_Types.h"
+#include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
 
 
@@ -249,7 +250,7 @@ void TBase::Decrease()
 
     if ((int)TBase::Get() > 0)
     {
-        if (FPGA::InSelfRecorderMode() && TBase::Get() == TBase::MIN_P2P)
+        if (PageTime::InSelfRecoredMode() && TBase::Get() == TBase::MIN_P2P)
         {
             Display::ShowWarningBad(Warning::TooFastScanForSelfRecorder);
         }

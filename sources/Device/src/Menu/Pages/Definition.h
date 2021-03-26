@@ -214,6 +214,8 @@ struct PageTime
     static void OnChanged_TPos(bool);
 
     static void OnChanged_PeakDet(bool);
+
+    static bool InSelfRecoredMode();
 };
 
 
