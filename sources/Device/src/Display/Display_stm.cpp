@@ -88,7 +88,7 @@ void HLine::Draw(int x, int y) const
         return;
     }
 
-    int w = width;
+    int w = width;  
 
     if (x < 0)
     {
@@ -103,12 +103,6 @@ void HLine::Draw(int x, int y) const
 
     uint8 *address = &back[y][x];
 
-    uint8 color = Color::GetCurrent().index;
-
-    while (w > 0)
-    {
-        *address = color;
-        address += width;
-    }
+    std::memset(address, Color::GetCurrent().index, w);
 }
 

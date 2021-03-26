@@ -412,8 +412,8 @@ void FPGA::BUS::WriteToAnalog(TypeWriteAnalog::E type, uint data)
     {
         LOG_WRITE("парам. кан. 2 = %s", str);
     }
-    else if (type == TypeWriteAnalog::All && (IS_SHOW_REG_TRIGPARAM || IS_SHOW_REG_RANGE_A || IS_SHOW_REG_RANGE_B ||
-        IS_SHOW_REG_PARAM_A || IS_SHOW_REG_PARAM_B))
+    else if (type == TypeWriteAnalog::All &&
+        (IS_SHOW_REG_TRIGPARAM || IS_SHOW_REG_RANGE_A || IS_SHOW_REG_RANGE_B || IS_SHOW_REG_PARAM_A || IS_SHOW_REG_PARAM_B))
     {
         LOG_WRITE("полная запись в аналоговую часть = %s", str);
     }

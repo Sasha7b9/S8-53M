@@ -516,7 +516,7 @@ Float CalculateKoeffCalibration(const Channel &ch)
         while(_GET_BIT(HAL_FMC::Read(RD_FL), 2) == 0 && (TIME_MS - startTime > timeWait)) {};
         if(TIME_MS - startTime > timeWait)
         {
-            return Float(false);
+            return InvalidFloat();
         }
 
         TrigPolarity::Switch();
