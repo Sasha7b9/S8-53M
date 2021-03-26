@@ -59,7 +59,7 @@ void ChangeC_Memory_NumPoints(bool)
 // Àêòèâíà ëè ÏÀÌßÒÜ - ÂÍÅØÍ ÇÓ - Ìàñêà
 bool IsActiveMemoryExtSetMask()
 {                       
-    return FileNamingMode::IsMask();
+    return set.memory.file_naming_mode.IsMask();
 }
 
 
@@ -993,7 +993,7 @@ void Memory_SaveSignalToFlashDrive()
 {
     if (FDrive::isConnected)
     {
-        if (FileNamingMode::IsHand())
+        if (set.memory.file_naming_mode.IsHand())
         {
             PageMemory::PageSetName::self->OpenAndSetItCurrent();
             Display::SetAddDrawFunction(DrawSetName);

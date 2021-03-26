@@ -375,7 +375,7 @@ LabelNextNumber:
         return false;
     }
 
-    if (FileNamingMode::IsHand())
+    if (set.memory.file_naming_mode.IsHand())
     {
         LIMITATION(size, size, 1, 95);
         std::strcat(name, set.memory.file_name);

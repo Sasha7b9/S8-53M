@@ -403,10 +403,12 @@ struct FileNamingMode
     {
         Mask,        // Именовать по маске.
         Manually     // Именовать вручную.
-    };
+    } value;
 
-    static bool IsMask();
-    static bool IsHand();
+    FileNamingMode(E v = Mask) : value(v) {}
+
+    bool IsMask() const { return value == Mask; };
+    bool IsHand() const { return value == Manually; };
 };
 
 

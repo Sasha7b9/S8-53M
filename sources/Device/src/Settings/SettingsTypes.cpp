@@ -654,18 +654,6 @@ bool ModeRegSet::IsRShift()
 }
 
 
-bool FileNamingMode::IsMask()
-{
-    return (set.memory.file_naming_mode == FileNamingMode::Mask);
-}
-
-
-bool FileNamingMode::IsHand()
-{
-    return (set.memory.file_naming_mode == FileNamingMode::Manually);
-}
-
-
 ModeShowIntMem::E ModeShowIntMem::Get()
 {
     return set.memory.modeShowIntMem;
