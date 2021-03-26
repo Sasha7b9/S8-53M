@@ -504,7 +504,7 @@ static void TrigLong()
 
 static void StartDown()
 {
-    if (ModeWork::IsDirect())
+    if (set.memory.mode_work.IsDirect())
     {
         Menu::Event::PressButton(Key::Start);
     }

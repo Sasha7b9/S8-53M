@@ -654,30 +654,6 @@ bool ModeRegSet::IsRShift()
 }
 
 
-ModeWork::E ModeWork::Get()
-{
-    return set.memory.modeWork;
-}
-
-
-bool ModeWork::IsDirect()
-{
-    return (set.memory.modeWork == ModeWork::Direct);
-}
-
-
-bool ModeWork::IsLatest()
-{
-    return (set.memory.modeWork == ModeWork::Latest);
-}
-
-
-bool ModeWork::IsMemInt()
-{
-    return (set.memory.modeWork == ModeWork::MemInt);
-}
-
-
 bool FileNamingMode::IsMask()
 {
     return (set.memory.fileNamingMode == FileNamingMode::Mask);

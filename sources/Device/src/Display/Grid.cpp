@@ -131,7 +131,7 @@ int Grid::BottomMessages()
 {
     int result = FullBottom();
 
-    if (ModeWork::IsMemInt())
+    if (set.memory.mode_work.IsMemInt())
     {
         result -= 12;
     }

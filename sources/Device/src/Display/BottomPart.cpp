@@ -39,7 +39,7 @@ void BottomPart::Draw()
     TBase::E tBase = TBase::Get();
     int16 tShift = TShift::Get();
 
-    if (!ModeWork::IsDirect())
+    if (!set.memory.mode_work.IsDirect())
     {
         //        DataSettings *ds = MODE_WORK_IS_LATEST ? Storage::dsLast : Storage::dsInt;
         //
@@ -54,15 +54,12 @@ void BottomPart::Draw()
 
     Text("\xa5%s", TShift::ToString(tShift).c_str()).Draw(x + 35, y0);
 
-    if (ModeWork::IsDirect())
+    if (set.memory.mode_work.IsDirect())
     {
         pchar source[3] = { "1", "2", "\x82" };
 
         Text("Ò\xa5\x10%s", source[TrigSource::Get()]).Draw(x, y1, Color::Trig());
-    }
 
-    if (ModeWork::IsDirect())
-    {
         static pchar couple[] =
         {
             "\x92",
@@ -92,7 +89,7 @@ void BottomPart::Draw()
         Char(filtr[TrigInput::Get()][1]).Draw(x + 53, y1);
     }
 
-    if (ModeWork::IsDirect())
+    if (set.memory.mode_work.IsDirect())
     {
         const char mode[] =
         {
@@ -110,7 +107,7 @@ void BottomPart::Draw()
 
     Font::Set(TypeFont::S5);
 
-    if (ModeWork::IsDirect())
+    if (set.memory.mode_work.IsDirect())
     {
         int y2 = y1 + 6;
         WriteStringAndNumber("Ì‡ÍÓÔÎ", x, y0, set.display.enum_accum);
@@ -122,7 +119,7 @@ void BottomPart::Draw()
 
     Font::Set(TypeFont::S8);
 
-    if (ModeWork::IsDirect())
+    if (set.memory.mode_work.IsDirect())
     {
         Text mes_freq("\x7c=");
         float freq = FPGA::FreqMeter::GetFreq();
@@ -163,7 +160,7 @@ void BottomPart::Draw()
         Char('\x13').Draw(x + 46, Grid::Bottom() + 11);
     }
 
-    if (ModeWork::IsDirect())
+    if (set.memory.mode_work.IsDirect())
     {
         Font::Set(TypeFont::S5);
         WriteStringAndNumber("—√À¿∆.:", x + 57, Grid::Bottom() + 10, (int)Smoothing::NumPoints());
@@ -188,7 +185,7 @@ void BottomPart::WriteTextVoltage(const Channel &ch, int x, int y)
     uint rShift = (uint)RShift::Get(ch);
     bool enable = ch.IsEnabled();
 
-    if (!ModeWork::IsDirect())
+    if (!set.memory.mode_work.IsDirect())
     {
         //        DataSettings *ds = MODE_WORK_IS_DIRECT ? Storage::set : Storage::dsInt;
         //

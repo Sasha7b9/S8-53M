@@ -384,12 +384,15 @@ struct ModeWork
         Direct,        // Основной режим.
         Latest,        // В этом режиме можно просмотреть последние сохранённые измерения.
         MemInt,        // В этом режиме можно сохранять во flash-памяти измерения просматривать ранее сохранённые.
-    };
+    } value;
 
-    static E Get();
-    static bool IsDirect();
-    static bool IsLatest();
-    static bool IsMemInt();
+    ModeWork(E v = Direct) : value(v) {}
+
+    bool IsDirect() const { return value == Direct; };
+    bool IsLatest() const { return value == Latest; };
+    bool IsMemInt() const { return value == MemInt; };
+
+    operator E() const { return value; }
 };
 
 

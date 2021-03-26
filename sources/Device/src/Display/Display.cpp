@@ -129,7 +129,7 @@ void Display::WriteCursors()
 {
     int startX = 43;
 
-    if(ModeWork::IsDirect())
+    if(set.memory.mode_work.IsDirect())
     {
         startX += 29;
     }
@@ -207,9 +207,9 @@ void Display::DrawHiRightPart()
     int y = 2;
 
     static const int xses[3] = {280, 271, 251};
-    int x = xses[ModeWork::Get()];
+    int x = xses[set.memory.mode_work];
 
-    if (!ModeWork::IsLatest())
+    if (!set.memory.mode_work.IsLatest())
     {
         HLine().Draw(x, 1, Grid::TOP - 2, Color::FILL);
 
@@ -230,20 +230,20 @@ void Display::DrawHiRightPart()
         {"ВНТР",    "INT"}
     };
 
-    if(!ModeWork::IsDirect())
+    if(!set.memory.mode_work.IsDirect())
     {
         x += 18;
         HLine().Draw(x, 1, Grid::TOP - 2, Color::FILL);
         x += 2;
         Text(LANG_RU ? "режим" : "mode").Draw(LANG_RU ? x : x + 3, -1);
-        Text(strings_[ModeWork::Get()][LANG]).DrawInCenterRect(x + 1, 9, 25, 8);
+        Text(strings_[set.memory.mode_work][LANG]).DrawInCenterRect(x + 1, 9, 25, 8);
     }
     else
     {
         x -= 9;
     }
 
-    if (!ModeWork::IsLatest())
+    if (!set.memory.mode_work.IsLatest())
     {
 
         x += 27;
@@ -408,7 +408,7 @@ void Display::Update()
 
 void Display::WriteValueTrigLevel()
 {
-    if (showLevelTrigLev && ModeWork::IsDirect())
+    if (showLevelTrigLev && set.memory.mode_work.IsDirect())
     {
         float trigLev = RShift::ToAbs(TrigLev::Get(), set.chan[TrigSource::Get()].range);     // WARN Здесь для внешней
                                                                     // синхронизации неправильно рассчитывается уровень.

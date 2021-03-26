@@ -86,7 +86,7 @@ struct SettingsMemory
 {
 #define MAX_SYMBOLS_IN_FILE_NAME 35
     ENUM_POINTS_FPGA    enum_points_fpga;                         // Число точек.
-    ModeWork::E         modeWork;                                 // Режим работы.
+    ModeWork            mode_work;                                // Режим работы.
     FileNamingMode::E   fileNamingMode;                           // Режим именования файлов.
     char                file_name_mask[MAX_SYMBOLS_IN_FILE_NAME]; // Здесь маска для автоматического именования файлов\n
         // Правила именования.\n
