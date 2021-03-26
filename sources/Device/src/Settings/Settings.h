@@ -99,7 +99,7 @@ struct SettingsMemory
     char                file_name[MAX_SYMBOLS_IN_FILE_NAME];      // Имя файла для режима ручного задания
     int8                index_cur_symbol_name_mask;               // Индекс текущего символа в режиме задания маски или
                                                                   // выбора имени.
-    StructMemoryLast    strMemoryLast;
+    StructMemoryLast    str_memory_last;
     ModeShowIntMem::E   modeShowIntMem;                           // Какие сигналы показывать в режиме внутреннего ЗУ
     bool                flash_auto_connect;                       // Если true, при подлючении флеш автоматически
                                                                   // выводится NC (Нортон Коммандер)

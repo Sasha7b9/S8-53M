@@ -66,7 +66,7 @@ bool IsActiveMemoryExtSetMask()
 void DrawSB_MemLastSelect(int x, int y)
 {
     Font::Set(TypeFont::UGO2);
-    Char(set.memory.strMemoryLast.isActiveModeSelect ? '\x2a' : '\x28').Draw4SymbolsInRect(x + 3, y + 2);
+    Char(set.memory.str_memory_last.isActiveModeSelect ? '\x2a' : '\x28').Draw4SymbolsInRect(x + 3, y + 2);
     Font::Set(TypeFont::S8);
 }
 
@@ -86,7 +86,7 @@ void DrawSB_MemLast_Next(int x, int y)
 
 void PressSB_MemLastSelect()
 {
-    set.memory.strMemoryLast.isActiveModeSelect = !set.memory.strMemoryLast.isActiveModeSelect;
+    set.memory.str_memory_last.isActiveModeSelect = !set.memory.str_memory_last.isActiveModeSelect;
 }
 
 void PressSB_MemLast_Next()
