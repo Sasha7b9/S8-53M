@@ -11,6 +11,8 @@ static ADC_HandleTypeDef handle;
 
 void HAL_ADC1::Init()
 {
+    adc_value.SetInvalid();
+
     HAL_PINS::ADC1_::Init();
 
     HAL_NVIC_SetPriority(ADC_IRQn, 5, 0);
@@ -58,10 +60,16 @@ Uint16 HAL_ADC1::GetValue()
     {
         __HAL_ADC_CLEAR_FLAG(&handle, ADC_FLAG_EOC);
 
-        adc_value = (uint16)handle.Instance->DR;
+        adc_value = Uint16((uint16)handle.Instance->DR);
     }
 
     return adc_value;
+}
+
+
+void HAL_ADC1::ResetValue()
+{
+    adc_value.SetInvalid();
 }
 
 
