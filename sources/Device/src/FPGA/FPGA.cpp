@@ -461,7 +461,7 @@ void FPGA::BUS::WriteToDAC(TypeWriteDAC::E type, uint16 data)
 }
 
 
-bool FPGA::SET::InSelfRecorderMode()
+bool FPGA::InSelfRecorderMode()
 {
     return set.time.self_recorder;
 }

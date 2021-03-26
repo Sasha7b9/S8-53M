@@ -73,12 +73,9 @@ public:
     // Загрузить настройки в аппаратную часть из глобальной структуры SSettings.
     static void LoadSettings();
 
-public:
+    static bool InSelfRecorderMode();
 
-    struct SET
-    {
-        static bool InSelfRecorderMode();
-    };
+public:
 
     struct BUS
     {

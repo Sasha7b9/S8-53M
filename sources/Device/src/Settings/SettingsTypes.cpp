@@ -249,7 +249,7 @@ void TBase::Decrease()
 
     if ((int)TBase::Get() > 0)
     {
-        if (FPGA::SET::InSelfRecorderMode() && TBase::Get() == TBase::MIN_P2P)
+        if (FPGA::InSelfRecorderMode() && TBase::Get() == TBase::MIN_P2P)
         {
             Display::ShowWarningBad(Warning::TooFastScanForSelfRecorder);
         }

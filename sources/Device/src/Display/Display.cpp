@@ -280,7 +280,7 @@ bool Display::NeedForClearScreen()
     if (TBase::IsRandomize() ||
         enum_accum == 1 ||
         set.display.mode_acum.IsNoReset() ||
-        FPGA::SET::InSelfRecorderMode())
+        FPGA::InSelfRecorderMode())
     {
         return true;
     }
