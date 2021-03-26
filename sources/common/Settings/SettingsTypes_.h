@@ -41,6 +41,8 @@ struct ENUM_POINTS_FPGA
 
     uint ToPoints();
     uint BytesInChannel();
+    // Столько байт нужно для сохранения данных обоих каналов
+    uint BytesForData();
 
     operator E() const { return value; }
 };

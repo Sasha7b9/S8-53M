@@ -461,20 +461,6 @@ void FPGA::BUS::WriteToDAC(TypeWriteDAC::E type, uint16 data)
 }
 
 
-uint FPGA::SET::BytesForData()
-{
-    uint result = 0;
-
-    uint bytes_in_channel = set.memory.enum_points_fpga.BytesInChannel();
-
-    if (ChA.IsEnabled())    { result += bytes_in_channel; }
-
-    if (ChB.IsEnabled())    { result += bytes_in_channel; }
-
-    return result;
-}
-
-
 bool FPGA::SET::InSelfRecorderMode()
 {
     return set.time.self_recorder;

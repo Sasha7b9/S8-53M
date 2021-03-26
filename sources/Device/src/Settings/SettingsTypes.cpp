@@ -528,6 +528,20 @@ uint ENUM_POINTS_FPGA::BytesInChannel()
 }
 
 
+uint ENUM_POINTS_FPGA::BytesForData()
+{
+    uint result = 0;
+
+    uint bytes_in_channel = BytesInChannel();
+
+    if (ChA.IsEnabled()) { result += bytes_in_channel; }
+
+    if (ChB.IsEnabled()) { result += bytes_in_channel; }
+
+    return result;
+}
+
+
 ENUM_POINTS_FPGA::E ENUM_POINTS_FPGA::FromPoints(int num_points)
 {
     struct Struct
