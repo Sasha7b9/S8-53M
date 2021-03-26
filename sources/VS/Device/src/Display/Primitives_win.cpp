@@ -26,6 +26,14 @@ void HLine::Draw(int y, int x1, int x2, const Color &color) const
 }
 
 
+void HLine::Draw(int x, int y, const Color &color) const
+{
+    color.SetAsCurrent();
+
+    Draw(x, y);
+}
+
+
 void Region::Fill(int x, int y) const
 {
     wxBrush brush = Application::memDC.GetBrush();

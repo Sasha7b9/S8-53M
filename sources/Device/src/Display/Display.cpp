@@ -354,6 +354,7 @@ bool Display::NeedForClearScreen()
 
 void Display::Update()
 {
+
 //    uint timeStart = gTimerTics;
 
     bool needClear = NeedForClearScreen();
@@ -363,6 +364,17 @@ void Display::Update()
 //        DrawMemoryWindow();
         Grid::Draw();
     }
+
+//    for (int i = 0; i < 5; i++)
+//    {
+//        VLine(i).Draw(i, 0, Color::WHITE);
+//    }
+
+    for (int i = 0; i < 5; i++)
+    {
+        HLine(i).Draw(0, i, Color::WHITE);
+    }
+
 
     PainterData::DrawData();
 

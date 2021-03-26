@@ -152,13 +152,13 @@ void Rectangle::Draw(int x, int y) const
         return;
     }
 
-    int dx = x + width - 1;
-    int dy = y + height - 1;
+    HLine h_line(width);
+    h_line.Draw(x, y);
+    h_line.Draw(x, y + height - 1);
 
-    HLine().Draw(y, x, dx);
-    HLine().Draw(dy, x, dx);
-    VLine().Draw(x, y, dy);
-    VLine().Draw(dx, y, dy);
+    VLine v_line(height);
+    v_line.Draw(x, y);
+    v_line.Draw(x + width - 1, y);
 }
 
 
