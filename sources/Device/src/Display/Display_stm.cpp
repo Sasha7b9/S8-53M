@@ -103,6 +103,6 @@ void HLine::Draw(int x, int y) const
 
     uint8 *address = &back[y][x];
 
-    std::memset(address, Color::GetCurrent().index, w);
+    std::memset(address, Color::GetCurrent().index, (uint)w);
 }
 

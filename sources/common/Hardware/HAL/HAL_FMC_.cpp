@@ -2,7 +2,7 @@
 #include "common/Log_.h"
 #include "common/Hardware/Timer_.h"
 #include "common/Hardware/HAL/HAL_.h"
-//#include "FPGA/FPGA_Types.h"
+#include "FPGA/FPGA_Types.h"
 #include "Settings/Settings.h"
 #include <stm32f4xx_hal.h>
 #include <cstdlib>
@@ -36,6 +36,11 @@ void HAL_FMC::Write(uint16 * const address, uint16 value)
 //    {
 //        LOG_WRITE("WR_RAZV");
 //    }
+
+    if (address == WR_START)
+    {
+        HAL_ADC1::ResetValue();
+    }
 
     *address = value;
 }
