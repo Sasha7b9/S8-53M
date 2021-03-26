@@ -654,12 +654,6 @@ bool ModeRegSet::IsRShift()
 }
 
 
-ModeShowIntMem::E ModeShowIntMem::Get()
-{
-    return set.memory.mode_show_int_mem;
-}
-
-
 ModeBtnMemory::E ModeBtnMemory::Get()
 {
     return set.memory.mode_button_memory;

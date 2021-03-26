@@ -659,19 +659,13 @@ static void DrawSB_MemInt_ModeShow_Both(int x, int y)
 
 static void DrawSB_MemInt_ModeShow(int x, int y)
 {
-    ModeShowIntMem::E mode = ModeShowIntMem::Get();
+    ModeShowIntMem &mode = set.memory.mode_show_int_mem;
 
-    if (mode == ModeShowIntMem::Direct)
+    switch (mode.value)
     {
-        DrawSB_MemInt_ModeShow_Direct(x, y);
-    }
-    else if (mode == ModeShowIntMem::Saved)
-    {
-        DrawSB_MemInt_ModeShow_Saved(x, y);
-    }
-    else if (mode == ModeShowIntMem::Both)
-    {
-        DrawSB_MemInt_ModeShow_Both(x, y);
+    case ModeShowIntMem::Direct:    DrawSB_MemInt_ModeShow_Direct(x, y);       break;
+    case ModeShowIntMem::Saved:     DrawSB_MemInt_ModeShow_Saved(x, y);        break;
+    case ModeShowIntMem::Both:      DrawSB_MemInt_ModeShow_Both(x, y);         break;
     }
 }
 

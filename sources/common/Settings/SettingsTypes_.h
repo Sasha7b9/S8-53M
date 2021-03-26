@@ -420,9 +420,13 @@ struct ModeShowIntMem
         Direct,  // Показывать данные реального времени.
         Saved,   // Показывать сохранённые данные.
         Both     // Показывать данные реального времени и сохранённые данные.
-    };
+    } value;
 
-    static E Get();
+    ModeShowIntMem(E v = Direct) : value(v) {}
+
+    bool IsDirect() const { return value == Direct; }
+    bool IsSaved() const { return value == Saved; }
+    bool IsBoth() const { return value == Both; }
 };
 
 
