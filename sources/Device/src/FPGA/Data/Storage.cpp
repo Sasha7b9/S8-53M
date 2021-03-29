@@ -341,7 +341,8 @@ bool Storage::SettingsIsEquals(uint from_end, const DataReading &sample)
             (ss.r_shift_a == sd.r_shift_a) &&
             (ss.r_shift_b == sd.r_shift_b) &&
             (ss.multiplier_a == sd.multiplier_a) &&
-            (ss.multiplier_b == sd.multiplier_b));
+            (ss.multiplier_b == sd.multiplier_b) &&
+            (ss.enum_points == sd.enum_points));
     }
 
     return false;

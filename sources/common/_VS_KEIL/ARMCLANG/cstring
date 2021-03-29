@@ -9,5 +9,5 @@ namespace std //-V1061
 
     void *memset(void *, int val, unsigned int num);
     int memcmp(const void *, const void *, unsigned int);
-    void *memcpy(void *, const void *, unsigned int);
+    void *memcpy(void *dst, const void *src, unsigned int num);
 }
