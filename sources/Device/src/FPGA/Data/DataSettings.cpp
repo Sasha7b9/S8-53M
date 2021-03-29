@@ -20,8 +20,8 @@ void DataSettings::Fill()
     range[0] = set.chan[ChA].range;
     range[1] = set.chan[ChB].range;
     peak_det = (uint)PeackDetMode::Get();
-    multiplier0 = set.chan[ChA].divider;
-    multiplier1 = set.chan[ChB].divider;
+    multiplier_a = set.chan[ChA].divider;
+    multiplier_b = set.chan[ChB].divider;
     enum_points = set.memory.enum_points_fpga;
     time = HAL_RTC::GetPackedTime();
 }
