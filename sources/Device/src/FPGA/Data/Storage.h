@@ -13,12 +13,11 @@ struct RecordStorage;
 struct DataReading
 {
 friend struct RecordStorage;
+friend class Storage;
 
     DataReading();
 
     void CreateFromCurrentSettings();
-
-    void CreateFromRecord(RecordStorage *record);
 
     void CreateNull();
 
@@ -34,6 +33,8 @@ private:
     Buffer buffer;
 
     uint Size();
+
+    void CreateFromRecord(RecordStorage *record);
 };
 
 
@@ -93,6 +94,9 @@ public:
 
     // ¬озвращает количество записей в хранилище
     static uint NumRecords();
+
+    // ¬озвращает true, если настройки у from-end-й записи и data совпадают (нужно дл€ рандомизатора)
+    static bool SettingsIsEquals(uint from_end, const DataReading &data);
 
 private:
 

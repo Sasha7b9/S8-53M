@@ -324,3 +324,22 @@ static uint8 *CopyTo(uint8 *address, void *buffer, uint size)
 
     return address + size;
 }
+
+
+bool Storage::SettingsIsEquals(uint from_end, const DataReading &sample)
+{
+    DataReading data;
+
+    if (Extract(from_end, data))
+    {
+        DataSettings &setS = sample.Settings();
+        DataSettings &setD = data.Settings();
+
+        if (setS.tBase != setD.tBase)
+        {
+            return false;
+        }
+    }
+
+    return false;
+}

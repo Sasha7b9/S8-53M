@@ -39,4 +39,11 @@ DataReadingKeeper::~DataReadingKeeper()
 void DataReadingKeeper::Prepare()
 {
     data = new DataReading();
+
+    if (Storage::NumRecords() == 0)
+    {
+        return;
+    }
+
+
 }

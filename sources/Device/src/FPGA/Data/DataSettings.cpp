@@ -10,7 +10,7 @@ void DataSettings::Fill()
     enabled_a = ChA.IsEnabled() ? 1U : 0U;
     enabled_b = ChB.IsEnabled() ? 1U : 0U;
     r_shift_a = (uint)RShift::Get(ChA);
-    rShiftCh1 = (uint)RShift::Get(ChB);
+    r_shift_b = (uint)RShift::Get(ChB);
     trigLevCh0 = (uint)TrigLev::GetA();
     trigLevCh1 = (uint)TrigLev::GetB();
     modeCouple0 = set.chan[ChA].mode_ñouple;
