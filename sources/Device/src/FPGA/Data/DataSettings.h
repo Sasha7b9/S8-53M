@@ -12,9 +12,9 @@ struct DataSettings
     uint                r_shift_a   : 10;   // Смещение по напряжению
     uint                r_shift_b   : 10;
     uint                trig_lev_a  : 10;   // Уровень синхронизации
-    uint                trig_lev_b : 10;
-    ModeCouple::E       modeCouple0 : 2;    // Режим канала по входу
-    ModeCouple::E       modeCouple1 : 2;
+    uint                trig_lev_b  : 10;
+    ModeCouple::E       couple_a    : 2;    // Режим канала по входу
+    ModeCouple::E       couple_b    : 2;
     TBase::E            tBase       : 5;    // Масштаб по времени
     int16               tShift;             // Смещение по времени
     Range::E            range[2];           // Масштаб по напряжению обоих каналов.
