@@ -75,6 +75,42 @@ void DataDrawing::PrepareChannel(const Channel &ch)
 }
 
 
+static void PrepareBuffer(Buffer &source, Buffer &dest, const Channel &ch)
+{
+    dest.Realloc(source.Size() / 2);
+
+    uint8 *data = source.Data();
+
+    if (ch.IsB())
+    {
+        data++;
+    }
+
+    for (uint i = 0; i < dest.Size(); i++)
+    {
+        dest[i] = *data;
+        data += 2;
+    }
+}
+
+
+static void SwapPoints(Buffer &buffer)
+{
+    uint16 *data = (uint16 *)buffer.Data();
+
+    uint16 *end = (uint16 *)(buffer.Data() + buffer.Size());
+
+    while (data < end)
+    {
+        BitSet16 bs;
+        bs.half_word = *data;
+        Math::Swap(&bs.byte0, &bs.byte1);
+        *data = bs.half_word;
+        data++;
+    }
+}
+
+
 void DataDrawing::DrawChannel(const Channel &ch)
 {
     if (!data.Settings().IsEnabled(ch))
@@ -85,6 +121,22 @@ void DataDrawing::DrawChannel(const Channel &ch)
     ch.GetColor().SetAsCurrent();
 
     int x = Grid::Left();
+
+
+//    Buffer buffer;
+//    PrepareBuffer(  points[ChA], buffer, ch);
+//
+//
+//    if (set.display.mode_draw_signal.IsLines())
+//    {
+//        DrawChannelLined(x, buffer);
+//    }
+//    else
+//    {
+//        DrawChannelPointed(x, buffer);
+//    }
+
+//    SwapPoints(points[ch]);
 
     if (set.display.mode_draw_signal.IsLines())
     {

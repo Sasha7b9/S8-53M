@@ -34,6 +34,16 @@ inline void EmptyFuncVV() {};
 #define _CLEAR_BIT(value, bit) ((value) &= (~(1 << (bit))))
 
 
+union BitSet16
+{
+    uint16 half_word;
+    struct
+    {
+        uint8 byte0;
+        uint8 byte1;
+    };
+};
+
 // Объединение размером 32 бита
 union BitSet32
 {

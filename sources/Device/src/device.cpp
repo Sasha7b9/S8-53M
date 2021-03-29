@@ -56,7 +56,7 @@ static void WriteFPS()
 
 void Device::Update()
 {
-    WriteFPS();
+//    WriteFPS();
 
     HAL_TIM2::StartMultiMeasurement();
     FPGA::Update();

@@ -73,6 +73,11 @@ public:
     // Загрузить настройки в аппаратную часть из глобальной структуры SSettings.
     static void LoadSettings();
 
+private:
+
+    // Дать запуск, если в этом есть необходимость (например, включён автоматический режим запуска)
+    static void StartIfNeed();
+
 public:
 
     struct BUS
