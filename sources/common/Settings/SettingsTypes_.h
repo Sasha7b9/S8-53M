@@ -666,8 +666,12 @@ struct StartMode {
         Single            // Однократный.
     } value;
 
-    static bool IsAuto();
+    StartMode(E v = Auto) : value(v) {}
+
+    bool IsAuto() const { return value == Auto; };
     static bool IsSingle();
+
+    operator E() const { return value; }
 };
 
 // Источник синхронизации.
