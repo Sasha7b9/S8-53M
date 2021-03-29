@@ -36,7 +36,10 @@ bool Panel::isRunning = true;
 
 struct ReceivedBuffer
 {
-    ReceivedBuffer() : pointer(0) {}
+    ReceivedBuffer() : pointer(0)
+    {
+        std::memset(buffer, 0, SIZE);
+    }
 
     void Push(uint8 byte)
     {

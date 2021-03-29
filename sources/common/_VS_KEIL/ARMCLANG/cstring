@@ -7,7 +7,7 @@ namespace std //-V1061
     char *strcat(char *__restrict, const char *__restrict);
     char *strcpy(char *__restrict, const char *__restrict);
 
-    void *memset(void *, int, unsigned int);
+    void *memset(void *, int val, unsigned int num);
     int memcmp(const void *, const void *, unsigned int);
     void *memcpy(void *, const void *, unsigned int);
 }

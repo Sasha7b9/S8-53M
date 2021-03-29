@@ -664,7 +664,7 @@ struct StartMode {
         Auto,             // Автоматический.
         Wait,             // Ждущий.
         Single            // Однократный.
-    };
+    } value;
 
     static E Get();
 
@@ -680,7 +680,7 @@ struct TrigSource
         A,      // Канал 1.
         B,      // Канал 2.
         Ext     // Внешняя.
-    };
+    } value;
 
     static void Set(E source);
 
@@ -726,7 +726,7 @@ struct TrigInput
         AC,     // Переменный.
         LPF,    // ФНЧ.
         HPF     // ФВЧ.
-    };
+    } value;
 
     static void Set(E input);
 
@@ -742,7 +742,7 @@ struct ModeLongPressTrig {
     {
         Level0,   // Сброс уровня синхронизации в 0.
         Auto      // Автоматический поиск синхронизации - уровень устанавливается посередине между максимумом и минимумом.
-    };
+    } value;
 
     static E Get();
 
@@ -756,7 +756,7 @@ struct TrigModeFind {
     {
         Hand,   // Уровень синхронизации устанавливается вручную.
         Auto    // Подстройки уровня синхронизации производится автоматически после каждого нового считанного сигнала
-    };
+    } value;
 
     static E Get();
 

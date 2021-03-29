@@ -332,13 +332,16 @@ bool Storage::SettingsIsEquals(uint from_end, const DataReading &sample)
 
     if (Extract(from_end, data))
     {
-        DataSettings &setS = sample.Settings();
-        DataSettings &setD = data.Settings();
+        DataSettings &ss = sample.Settings();
+        DataSettings &sd = data.Settings();
 
-        if (setS.tbase != setD.tbase)
-        {
-            return false;
-        }
+        return ((ss.tbase == sd.tbase) &&
+            (ss.range == sd.range) &&
+            (ss.tshift == sd.tshift) &&
+            (ss.r_shift_a == sd.r_shift_a) &&
+            (ss.r_shift_b == sd.r_shift_b) &&
+            (ss.multiplier_a == sd.multiplier_a) &&
+            (ss.multiplier_b == sd.multiplier_b));
     }
 
     return false;

@@ -39,9 +39,9 @@ struct SettingsTrig
     TrigSource          source;             // Источник.
     TrigPolarity        polarity;           // Тип синхронизации.
     TrigInput           input;              // Вход синхронизации.
-    int16               levelRel[3];        // Уровень синхронизации для трёх источников.
     ModeLongPressTrig   modeLongPressTrig;  // Режим работы длительного нажатия кнопки СИНХР.
     TrigModeFind        modeFind;           // Поиск синхронизации - вручную или автоматически.
+    int16               levelRel[3];        // Уровень синхронизации для трёх источников.
 };
 
 

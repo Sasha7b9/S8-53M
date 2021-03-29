@@ -49,7 +49,8 @@ void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
 {
     if (hspi == &handleSPI2)
     {
-
+        volatile int i = 0;
+        i++;
     }
 }
 
