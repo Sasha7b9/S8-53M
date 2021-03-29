@@ -37,26 +37,26 @@ void Device::Init()
 }
 
 
-//static void WriteFPS()
-//{
-//    static uint timePrev = 0;
-//    static int counter = 0;
-//
-//    counter++;
-//
-//    if (TIME_MS - timePrev >= 1000)
-//    {
-//        LOG_WRITE("fps = %d", counter);
-//
-//        counter = 0;
-//        timePrev = TIME_MS;
-//    }
-//}
+static void WriteFPS()
+{
+    static uint timePrev = 0;
+    static int counter = 0;
+
+    counter++;
+
+    if (TIME_MS - timePrev >= 1000)
+    {
+        LOG_WRITE("fps = %d", counter);
+
+        counter = 0;
+        timePrev = TIME_MS;
+    }
+}
 
 
 void Device::Update()
 {
-//    WriteFPS();
+    WriteFPS();
 
     HAL_TIM2::StartMultiMeasurement();
     FPGA::Update();

@@ -98,7 +98,7 @@ void BottomPart::Draw()
             '\xb0'
         };
 
-        Text("\xa5\x10%c", mode[StartMode::Get()]).Draw(x + 63, y1);
+        Text("\xa5\x10%c", mode[set.trig.start_mode]).Draw(x + 63, y1);
     }
 
     x += 82;

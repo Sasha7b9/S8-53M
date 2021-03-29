@@ -98,6 +98,8 @@ void FPGA::Update()
             {
                 ReaderFPGA::ReadData();
 
+//                if(set.trig.start_mode)
+
                 FPGA::Start();
             }
         }

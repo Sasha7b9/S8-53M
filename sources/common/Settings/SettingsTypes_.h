@@ -666,8 +666,6 @@ struct StartMode {
         Single            // Однократный.
     } value;
 
-    static E Get();
-
     static bool IsAuto();
     static bool IsSingle();
 };

@@ -592,12 +592,6 @@ bool FunctionTime::IsShiftInMemory()
 }
 
 
-StartMode::E StartMode::Get()
-{
-    return set.trig.start_mode;
-}
-
-
 bool StartMode::IsAuto()
 {
     return (set.trig.start_mode == StartMode::Auto);

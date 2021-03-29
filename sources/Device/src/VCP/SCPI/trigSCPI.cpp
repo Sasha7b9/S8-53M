@@ -47,7 +47,7 @@ void SCPI::TRIGGER::MODE(puchar buffer)
         else if (2 == value)    { set.trig.start_mode = StartMode::Single; PageTrig::OnPress_Mode(true); }
         else if (3 == value)
         {
-            SCPI_SEND(":TRIGGER:MODE %s", map[StartMode::Get()].key);
+            SCPI_SEND(":TRIGGER:MODE %s", map[set.trig.start_mode].key);
         }
     LEAVE_ANALYSIS
 }
@@ -70,7 +70,7 @@ void SCPI::TRIGGER::SOURCE(puchar buffer)
         else if (2 == value)    { TrigSource::Set(TrigSource::Ext); }
         else if (3 == value)
         {
-            SCPI_SEND(":TRIGGER:SOUCRE %s", map[StartMode::Get()].key);
+            SCPI_SEND(":TRIGGER:SOUCRE %s", map[TrigSource::Get()].key);
         }
     LEAVE_ANALYSIS
 }
