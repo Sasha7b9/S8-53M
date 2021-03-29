@@ -62,5 +62,7 @@ void DataReadingKeeper::Prepare()
         {
             std::memcpy(data->Data(ChB), last.Data(ChB), ds.BytesInChannel());
         }
+
+        ds.is_clean = 0;
     }
 }
