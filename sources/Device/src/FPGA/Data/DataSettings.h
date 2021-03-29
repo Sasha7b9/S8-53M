@@ -11,8 +11,8 @@ struct DataSettings
     uint                enabled_b   : 1;    // Включен ли канал 1
     uint                r_shift_a   : 10;   // Смещение по напряжению
     uint                r_shift_b   : 10;
-    uint                trigLevCh0  : 10;   // Уровень синхронизации
-    uint                trigLevCh1  : 10;
+    uint                trig_lev_a  : 10;   // Уровень синхронизации
+    uint                trig_lev_b : 10;
     ModeCouple::E       modeCouple0 : 2;    // Режим канала по входу
     ModeCouple::E       modeCouple1 : 2;
     TBase::E            tBase       : 5;    // Масштаб по времени
