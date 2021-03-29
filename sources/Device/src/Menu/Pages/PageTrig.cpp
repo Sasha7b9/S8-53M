@@ -9,7 +9,7 @@ void PageTrig::OnPress_Mode(bool)
 {
     FPGA::Stop();
 
-    if (!StartMode::IsSingle())
+    if (!set.trig.start_mode.IsSingle())
     {
         FPGA::Start();
     }

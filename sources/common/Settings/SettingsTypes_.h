@@ -669,7 +669,7 @@ struct StartMode {
     StartMode(E v = Auto) : value(v) {}
 
     bool IsAuto() const { return value == Auto; };
-    static bool IsSingle();
+    bool IsSingle() const { return value == Single; }
 
     operator E() const { return value; }
 };

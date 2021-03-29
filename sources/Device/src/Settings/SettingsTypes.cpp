@@ -592,12 +592,6 @@ bool FunctionTime::IsShiftInMemory()
 }
 
 
-bool StartMode::IsSingle()
-{
-    return (set.trig.start_mode == StartMode::Single);
-}
-
-
 ModeLongPressTrig::E ModeLongPressTrig::Get()
 {
     return set.trig.modeLongPressTrig;
