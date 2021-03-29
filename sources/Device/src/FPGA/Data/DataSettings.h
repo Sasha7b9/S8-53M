@@ -16,9 +16,9 @@ struct DataSettings
     ModeCouple::E       couple_a    : 2;    // Режим канала по входу
     ModeCouple::E       couple_b    : 2;
     TBase::E            tbase       : 5;    // Масштаб по времени
-    int16               tShift;             // Смещение по времени
+    int16               tshift;             // Смещение по времени
     Range::E            range[2];           // Масштаб по напряжению обоих каналов.
-    uint                peakDet     : 2;    // Включен ли пиковый детектор
+    uint                peak_det    : 2;    // Включен ли пиковый детектор
     Divider::E          multiplier0 : 1;
     Divider::E          multiplier1 : 1;
     ENUM_POINTS_FPGA::E enum_points : 4;    // enum точек в канале

@@ -16,10 +16,10 @@ void DataSettings::Fill()
     couple_a = set.chan[ChA].mode_ñouple;
     couple_b = set.chan[ChB].mode_ñouple;
     tbase = TBase::Get();
-    tShift = TShift::Get();
+    tshift = TShift::Get();
     range[0] = set.chan[ChA].range;
     range[1] = set.chan[ChB].range;
-    peakDet = (uint)PeackDetMode::Get();
+    peak_det = (uint)PeackDetMode::Get();
     multiplier0 = set.chan[ChA].divider;
     multiplier1 = set.chan[ChB].divider;
     enum_points = set.memory.enum_points_fpga;
@@ -31,7 +31,7 @@ uint DataSettings::BytesInChannel() const
 {
     uint result = PointsInChannel();
 
-    if (peakDet != 0)
+    if (peak_det != 0)
     {
         result *= 2;
     }
@@ -79,5 +79,5 @@ bool DataSettings::IsEnabled(const Channel &ch) const
 
 bool DataSettings::IsEnabledPeakDet() const
 {
-    return (peakDet != 0);
+    return (peak_det != 0);
 }
