@@ -15,7 +15,7 @@ struct DataSettings
     uint                trig_lev_b  : 10;
     ModeCouple::E       couple_a    : 2;    // Режим канала по входу
     ModeCouple::E       couple_b    : 2;
-    TBase::E            tBase       : 5;    // Масштаб по времени
+    TBase::E            tbase       : 5;    // Масштаб по времени
     int16               tShift;             // Смещение по времени
     Range::E            range[2];           // Масштаб по напряжению обоих каналов.
     uint                peakDet     : 2;    // Включен ли пиковый детектор

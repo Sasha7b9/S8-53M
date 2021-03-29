@@ -15,7 +15,7 @@ void DataSettings::Fill()
     trig_lev_b = (uint)TrigLev::GetB();
     couple_a = set.chan[ChA].mode_ñouple;
     couple_b = set.chan[ChB].mode_ñouple;
-    tBase = TBase::Get();
+    tbase = TBase::Get();
     tShift = TShift::Get();
     range[0] = set.chan[ChA].range;
     range[1] = set.chan[ChB].range;

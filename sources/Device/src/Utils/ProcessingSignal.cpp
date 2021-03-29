@@ -18,7 +18,7 @@ struct MeasureValue
 
 static uint8 dataOut0[FPGA_MAX_POINTS];
 static uint8 dataOut1[FPGA_MAX_POINTS];
-static DataSettings *dataSet = 0;
+static DataSettings *dataSet = nullptr;
 static uint8 dataIn[2][FPGA_MAX_POINTS];
 
 static uint firstP = 0;
@@ -366,7 +366,7 @@ Float Processing::CalculatePeriod(Channel::E ch)
 
             EXIT_IF_ERRORS_FLOAT(firstIntersection, secondIntersection);
 
-            float per = TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
+            float per = TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->tbase);
 
             period[ch] = per;
             periodIsCaclulating[ch] = true;
@@ -534,7 +534,7 @@ Float Processing::CalculateDurationPlus(Channel::E ch)
 
     EXIT_IF_ERROR_FLOAT(secondIntersection);
 
-    return TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
+    return TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->tbase);
 }
 
 Float Processing::CalculateDurationMinus(Channel::E ch)
@@ -555,7 +555,7 @@ Float Processing::CalculateDurationMinus(Channel::E ch)
 
     EXIT_IF_ERROR_FLOAT(secondIntersection);
 
-    return TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
+    return TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->tbase);
 }
 
 Float Processing::CalculateTimeNarastaniya(Channel::E ch)   // WARN Здесь, возможно, нужно увеличить точность - брать не
@@ -582,7 +582,7 @@ Float Processing::CalculateTimeNarastaniya(Channel::E ch)   // WARN Здесь, возмо
 
     EXIT_IF_ERROR_FLOAT(secondIntersection);
 
-    float retValue = TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
+    float retValue = TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->tbase);
 
     if (set.measures.marked.Is(Measure::TimeNarastaniya))
     {
@@ -618,7 +618,7 @@ Float Processing::CalculateTimeSpada(Channel::E ch)                          // 
 
     EXIT_IF_ERROR_FLOAT(secondIntersection);
 
-    float result = TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
+    float result = TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->tbase);
 
     if (set.measures.marked.Is(Measure::TimeSpada))
     {
@@ -913,7 +913,7 @@ Float Processing::CalculateDelayPlus(Channel::E ch)
 
     EXIT_IF_ERROR_FLOAT(secondIntersection);
 
-    return TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
+    return TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->tbase);
 }
 
 Float Processing::CalculateDelayMinus(Channel::E ch)
@@ -950,7 +950,7 @@ Float Processing::CalculateDelayMinus(Channel::E ch)
 
     EXIT_IF_ERROR_FLOAT(secondIntersection);
 
-    return TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->tBase);
+    return TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->tbase);
 }
 
 Float Processing::CalculatePhazaPlus(Channel::E ch)

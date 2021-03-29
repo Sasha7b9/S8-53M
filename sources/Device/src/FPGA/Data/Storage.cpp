@@ -335,7 +335,7 @@ bool Storage::SettingsIsEquals(uint from_end, const DataReading &sample)
         DataSettings &setS = sample.Settings();
         DataSettings &setD = data.Settings();
 
-        if (setS.tBase != setD.tBase)
+        if (setS.tbase != setD.tbase)
         {
             return false;
         }
