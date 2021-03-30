@@ -133,65 +133,11 @@ bool Display::NeedForClearScreen()
 }
 
 
-//static void CalculateCoord(int &x, int &y)
-//{
-//    int width = 40;
-//
-//    static int dirX = 1;
-//    x += dirX;
-//
-//    if (x > 320 - width)
-//    {
-//        dirX = -dirX;
-//    }
-//
-//    if (x < 0)
-//    {
-//        dirX = -dirX;
-//    }
-//
-//    static int dirY = 1;
-//    y += dirY;
-//
-//    if (y > 240 - width)
-//    {
-//        dirY = -dirY;
-//    }
-//
-//    if (y < 0)
-//    {
-//        dirY = -dirY;
-//    }
-//}
-
-
-//static void DrawIndicator()
-//{
-//    static int x = 0;
-//    static int dx = 1;
-//
-//    Region(10, 10).Fill(x, 0, Color::FILL);
-//
-//    x += dx;
-//
-//    if (x > 310)
-//    {
-//        dx = -1;
-//    }
-//    else if (x < 0)
-//    {
-//        dx = 1;
-//    }
-//}
-
-
 void Display::Update()
 {
+    bool need_clear = NeedForClearScreen();
 
-//    uint timeStart = gTimerTics;
-
-    bool needClear = NeedForClearScreen();
-    if (needClear)
+    if (need_clear)
     {
         BeginFrame(Color::BLACK);
 //        DrawMemoryWindow();
@@ -200,40 +146,34 @@ void Display::Update()
 
     PainterData::DrawData();
 
-    if (needClear)
+    if (need_clear)
     {
 //        DrawMath();
 //        DrawSpectrum();
         Cursors::Draw();
         TopPart::Draw();
         BottomPart::Draw();
-//        DrawCursorsWindow();
-//        DrawCursorTrigLevel();
+        DrawCursorsWindow();
+        DrawCursorTrigLevel();
         RShift::Draw();
         Measure::DrawAll();
-//        DrawStringNavigation();
-//        DrawCursorTShift();
+        DrawStringNavigation();
+        DrawCursorTShift();
     }
 
     Menu::Draw();
 
-//    DrawIndicator();
+    if (need_clear)
+    {
+        DrawWarnings();
+    }
 
-//    if (needClear)
-//    {
-//        DrawWarnings();
-//    }
-//
     DrawConsole();
-//
-//    if (needClear)
-//    {
-//        WriteValueTrigLevel();
-//    }
-//
-//    DrawTimeForFrame(gTimerTics - timeStart);
 
-//    Color::FILL.SetAsCurrent();
+    if (need_clear)
+    {
+        WriteValueTrigLevel();
+    }
 
     EndFrame();
 }
