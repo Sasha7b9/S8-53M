@@ -3,6 +3,7 @@
 #include "common/Display/Painter/Text_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "Display/Display.h"
+#include "Display/Warnings.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGA_AutoFinder.h"
 
@@ -30,7 +31,7 @@ void AutoFinderFPGA::Find()
         //LOG_WRITE("Канал 2");
         if (!FindWave(Channel::B))
         {
-            Display::ShowWarningBad(Warning::SignalNotFound);
+            Warnings::ShowWarningBad(Warning::SignalNotFound);
         }
     }
 

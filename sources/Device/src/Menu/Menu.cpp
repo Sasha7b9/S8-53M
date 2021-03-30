@@ -1,8 +1,9 @@
 #include "defines.h"
 #include "common/Hardware/Sound_.h"
+#include "common/Hardware/Timer_.h"
+#include "Display/Warnings.h"
 #include "FDrive/FDrive.h"
 #include "FPGA/FPGA.h"
-#include "common/Hardware/Timer_.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
 #include "Menu/Pages/HelpContent.h"
@@ -227,7 +228,7 @@ void Menu::Event::PressButton(Key::E button)
         if (std::memcmp(bufferForButtons, sampleBufferForButtons, SIZE_BUFFER_FOR_BUTTONS * sizeof(Key::E)) == 0)
         {
             showDebugMenu = true;
-            Display::ShowWarningGood(Warning::MenuDebugEnabled);
+            Warnings::ShowWarningGood(Warning::MenuDebugEnabled);
         }
     }
 
@@ -519,7 +520,7 @@ void Menu::ProcessingReleaseButton()
 
 void Menu::OpenItemTime()
 {
-    Display::ShowWarningGood(Warning::TimeNotSet);
+    Warnings::ShowWarningGood(Warning::TimeNotSet);
     Event::ShortPressureButton(Key::Service);
     Update();
     Display::Update();

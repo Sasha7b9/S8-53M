@@ -74,6 +74,7 @@ file(GLOB DISPLAY           ../../Device/src/Display/BottomPart.*
                             ../../Device/src/Display/Painter.*
                             ../../Device/src/Display/PainterData.*
                             ../../Device/src/Display/TopPart.*
+                            ../../Device/src/Display/Warnings.*
                                 ../../common/Display/Colors_.*
                                          src/Display/*.*)
 file(GLOB DISPLAY_FONT          ../../common/Display/Font/*.*)

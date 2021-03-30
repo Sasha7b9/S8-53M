@@ -493,7 +493,7 @@ static void SaveSignalToIntMemory()
 //        {                               // то сохраняем сигнал из последних
 //            EPROM::SaveData(PageMemory::PageInternal::currentSignal, Storage::dsLast, Storage::dataLastA, Storage::dataLastB);
 //            EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
-//            Display::ShowWarningGood(Warning::SignalIsSaved);
+//            Warnings::ShowWarningGood(Warning::SignalIsSaved);
 //        }
     }
     else                                // Иначе сохраняем текущий сигнал
@@ -502,7 +502,7 @@ static void SaveSignalToIntMemory()
 //        {
 //            EPROM::SaveData(PageMemory::PageInternal::currentSignal, Storage::set, Storage::dataA, Storage::dataB);
 //            EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::set, &Storage::dataIntA, &Storage::dataIntB);
-//            Display::ShowWarningGood(Warning::SignalIsSaved);
+//            Warnings::ShowWarningGood(Warning::SignalIsSaved);
 //        }
     }
 }

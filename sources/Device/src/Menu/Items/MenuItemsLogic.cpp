@@ -4,6 +4,7 @@
 #include "common/Hardware/Sound_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Utils/Math_.h"
+#include "Display/Warnings.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
 
@@ -82,8 +83,8 @@ void IPaddress::ChangeValue(int delta)
             OwnData()->ip0[numByte] = (uint8)(newValue);
         }
         Sound::GovernorChangedValue();
-        Display::ShowWarningGood(Warning::NeedRebootDevice2);
-        Display::ShowWarningGood(Warning::NeedRebootDevice1);
+        Warnings::ShowWarningGood(Warning::NeedRebootDevice2);
+        Warnings::ShowWarningGood(Warning::NeedRebootDevice1);
     }
 }
 
@@ -92,8 +93,8 @@ void MACaddress::ChangeValue(int delta)
     uint8 *value = OwnData()->mac0 + gCurDigit;
     *value += delta > 0 ? 1 : -1;
     Sound::GovernorChangedValue();
-    Display::ShowWarningGood(Warning::NeedRebootDevice2);
-    Display::ShowWarningGood(Warning::NeedRebootDevice1);
+    Warnings::ShowWarningGood(Warning::NeedRebootDevice2);
+    Warnings::ShowWarningGood(Warning::NeedRebootDevice1);
 }
 
 void IPaddress::GetNumPosIPvalue(int *numIP, int *selPos)

@@ -6,6 +6,7 @@
 #include "common/Hardware/Timer_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Utils/Math_.h"
+#include "Display/Warnings.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGA_Math.h"
 #include "Menu/Menu.h"
@@ -143,7 +144,7 @@ static void OnPress_Math_Function_ModeDraw()
 {
     if (set.math.fft.enabled)
     {
-        Display::ShowWarningBad(Warning::ImpossibleEnableMathFunction);
+        Warnings::ShowWarningBad(Warning::ImpossibleEnableMathFunction);
     }
     else
     {
@@ -173,7 +174,7 @@ static void OnPress_Math_Function()
 {
     if (set.math.fft.enabled)
     {
-        Display::ShowWarningBad(Warning::ImpossibleEnableMathFunction);
+        Warnings::ShowWarningBad(Warning::ImpossibleEnableMathFunction);
     }
 }
 
@@ -498,7 +499,7 @@ static void OnPress_Math_FFT()
 {
     if (!IsActive_Math_FFT())
     {
-        Display::ShowWarningBad(Warning::ImpossibleEnableFFT);
+        Warnings::ShowWarningBad(Warning::ImpossibleEnableFFT);
     }
 }
 
@@ -583,8 +584,8 @@ DEF_PAGE_6(pageCursorsFFT, PageService::PageMath::PageFFT::self, NamePage::SB_Ma
 
 static void OnChanged_Ethernet_Enable(bool)
 {
-    Display::ShowWarningGood(Warning::NeedRebootDevice2);
-    Display::ShowWarningGood(Warning::NeedRebootDevice1);
+    Warnings::ShowWarningGood(Warning::NeedRebootDevice2);
+    Warnings::ShowWarningGood(Warning::NeedRebootDevice1);
 }
 
 DEF_CHOICE_2(cEthernet_Enable, PageService::PageEthernet::self,

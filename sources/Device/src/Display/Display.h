@@ -40,12 +40,6 @@ public:
 
     static void Redraw();
 
-    static void ShowWarningBad(Warning::E warning);
-
-    static void ShowWarningGood(Warning::E warning);
-
-    static void ClearFromWarnings();
-
     static void SetDrawMode(DrawMode::E mode, pFuncVV func);
 
     static void SetAddDrawFunction(pFuncVV func);
@@ -83,16 +77,11 @@ public:
 
 private:
 
-    static void ShowWarn(pchar message);
-
     // Нарисовать маркер смещения по времени.
     static void DrawCursorTShift();
 
     // Написать сообщения отладочной консоли.
     static void DrawConsole();
-
-    // Написать предупреждения.
-    static void DrawWarnings();
 
     static int CalculateFreeSize();
 
@@ -103,10 +92,6 @@ private:
     static void FuncOnTimerDisableShowLevelTrigLev();
 
     static void FuncOnTimerRShiftMarkersAutoHide();
-
-    static void OnTimerShowWarning();
-
-    static void DrawStringInRectangle(int x, int y, char const *text);
 
     static int FirstEmptyString();
 

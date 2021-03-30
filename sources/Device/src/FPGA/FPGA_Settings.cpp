@@ -3,6 +3,7 @@
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Display.h"
+#include "Display/Warnings.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGA_Math.h"
 #include "FPGA/FPGA_Reader.h"
@@ -162,7 +163,7 @@ void Range::Set(const Channel &ch, Range::E range)
     }
     else
     {
-        Display::ShowWarningBad(ch == ChA ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
+        Warnings::ShowWarningBad(ch == ChA ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
     }
 };
 
@@ -258,7 +259,7 @@ void TrigLev::Set(TrigSource::E ch, int16 trigLev)
     Display::ChangedRShiftMarkers();
     if (trigLev < TrigLev::MIN || trigLev > TrigLev::MAX)
     {
-        Display::ShowWarningBad(Warning::LimitSweep_Level);
+        Warnings::ShowWarningBad(Warning::LimitSweep_Level);
     }
 
     Math::Limitation(&trigLev, TrigLev::MIN, TrigLev::MAX);
@@ -460,7 +461,7 @@ bool Range::Increase(const Channel &ch)
     }
     else
     {
-       Display::ShowWarningBad(ch == ChA ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
+       Warnings::ShowWarningBad(ch == ChA ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
     }
 
     Display::Redraw();
@@ -480,7 +481,7 @@ bool Range::Decrease(const Channel &ch)
     }
     else
     {
-        Display::ShowWarningBad(ch == ChA ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
+        Warnings::ShowWarningBad(ch == ChA ? Warning::LimitChan1_Volts : Warning::LimitChan2_Volts);
     }
 
     Display::Redraw();

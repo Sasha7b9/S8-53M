@@ -7,6 +7,7 @@
 #include "common/Utils/Math_.h"
 #include "Display/Display.h"
 #include "Display/PainterData.h"
+#include "Display/Warnings.h"
 #include "Display/Screen/BottomPart.h"
 #include "Display/Screen/TopPart.h"
 #include "Menu/Menu.h"
@@ -21,11 +22,6 @@
 static char                     *strings[MAX_NUM_STRINGS] = {0};
 static char                     bufferForStrings[SIZE_BUFFER_FOR_STRINGS] = {0};
 static int                      lastStringForPause = -1;
-
-#define NUM_WARNINGS            10
-static const char               *warnings[NUM_WARNINGS] = {0};      // Здесь предупреждающие сообщения.
-static uint                     timeWarnings[NUM_WARNINGS] = {0};   // Здесь время, когда предупреждающее сообщение
-                                                                    // поступило на экран.
 
 //static pFuncVV funcOnHand       = 0;
 //static pFuncVV funcAdditionDraw = 0;
@@ -149,7 +145,7 @@ void Display::Update()
 
     if (need_clear)
     {
-        DrawWarnings();
+        Warnings::Draw();
     }
 
     DrawConsole();
@@ -538,120 +534,6 @@ void Display::DrawConsole()
     }
 
     Font::Set(TypeFont::S8);
-}
-
-
-void Display::ShowWarn(pchar message)
-{
-    if (warnings[0] == 0)
-    {
-        Timer::Enable(TypeTimer::ShowMessages, 100, OnTimerShowWarning);
-    }
-    bool alreadyStored = false;
-    for (int i = 0; i < NUM_WARNINGS; i++)
-    {
-        if (warnings[i] == 0 && !alreadyStored)
-        {
-            warnings[i] = message;
-            timeWarnings[i] = TIME_MS;
-            alreadyStored = true;
-        }
-        else if (warnings[i] == message)
-        {
-            timeWarnings[i] = TIME_MS;
-            return;
-        }
-    }
-}
-
-
-void Display::OnTimerShowWarning()
-{
-    uint time = TIME_MS;
-    for (int i = 0; i < NUM_WARNINGS; i++)
-    {
-        if (time - timeWarnings[i] > (uint)(set.display.time_messages * 1000))
-        {
-            timeWarnings[i] = 0;
-            warnings[i] = 0;
-        }
-    }
-
-    int pointer = 0;
-    for (int i = 0; i < NUM_WARNINGS; i++)
-    {
-        if (warnings[i] != 0)
-        {
-            warnings[pointer] = warnings[i];
-            timeWarnings[pointer] = timeWarnings[i];
-            if (pointer != i)
-            {
-                timeWarnings[i] = 0;
-                warnings[i] = 0;
-            }
-            pointer++;
-        }
-    }
-
-    if (pointer == 0)
-    {
-        Timer::Disable(TypeTimer::ShowMessages);
-    }
-}
-
-
-void Display::ClearFromWarnings()
-{
-    Timer::Disable(TypeTimer::ShowMessages);
-    for (int i = 0; i < NUM_WARNINGS; i++)
-    {
-        warnings[i] = 0;
-        timeWarnings[i] = 0;
-    }
-}
-
-
-
-void Display::ShowWarningBad(Warning::E warning)
-{
-    Color::ResetFlash();
-    ShowWarn(Tables::GetWarning(warning));
-    Sound::WarnBeepBad();
-}
-
-
-
-void Display::ShowWarningGood(Warning::E warning)
-{
-    Color::ResetFlash();
-    ShowWarn(Tables::GetWarning(warning));
-    Sound::WarnBeepGood();
-}
-
-
-void Display::DrawStringInRectangle(int, int y, char const *text)
-{
-    int width = Font::GetLengthText(text);
-    int height = 8;
-    Rectangle(width + 4, height + 4).Draw(Grid::Left(), y, Color::FILL);
-    Rectangle(width + 2, height + 2).Draw(Grid::Left() + 1, y + 1, Color::BACK);
-    Region(width, height).Fill(Grid::Left() + 2, y + 2, Color::FLASH_10);
-    Text(text).Draw(Grid::Left() + 3, y + 2, Color::FLASH_01);
-}
-
-
-void Display::DrawWarnings()
-{
-    int delta = 12;
-    int y = Grid::BottomMessages();
-    for(int i = 0; i < 10; i++)
-    {
-        if(warnings[i] != 0)
-        {
-            DrawStringInRectangle(Grid::Left(), y, warnings[i]);
-            y -= delta;
-        }
-    }
 }
 
 

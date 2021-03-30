@@ -5,6 +5,7 @@
 #include "common/Settings/SettingsTypes_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Display.h"
+#include "Display/Warnings.h"
 #include "Display/Screen/Grid.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGA_Math.h"
@@ -212,7 +213,7 @@ void RShift::Set(const Channel &ch, int16 rShift)
 
     if (rShift > RShift::MAX || rShift < RShift::MIN)
     {
-        Display::ShowWarningBad(ch == ChA ? Warning::LimitChan1_RShift : Warning::LimitChan2_RShift);
+        Warnings::ShowWarningBad(ch == ChA ? Warning::LimitChan1_RShift : Warning::LimitChan2_RShift);
     }
 
     Math::Limitation(&rShift, RShift::MIN, RShift::MAX);
@@ -249,8 +250,8 @@ void TBase::Decrease()
 {
     if (PeackDetMode::IsEnabled() && TBase::Get() <= TBase::MIN_PEAK_DET)
     {
-        Display::ShowWarningBad(Warning::LimitSweep_Time);
-        Display::ShowWarningBad(Warning::EnabledPeakDet);
+        Warnings::ShowWarningBad(Warning::LimitSweep_Time);
+        Warnings::ShowWarningBad(Warning::EnabledPeakDet);
         return;
     }
 
@@ -258,7 +259,7 @@ void TBase::Decrease()
     {
         if (PageTime::InSelfRecoredMode() && TBase::Get() == TBase::MIN_P2P)
         {
-            Display::ShowWarningBad(Warning::TooFastScanForSelfRecorder);
+            Warnings::ShowWarningBad(Warning::TooFastScanForSelfRecorder);
         }
         else
         {
@@ -268,7 +269,7 @@ void TBase::Decrease()
     }
     else
     {
-        Display::ShowWarningBad(Warning::LimitSweep_Time);
+        Warnings::ShowWarningBad(Warning::LimitSweep_Time);
     }
 }
 
@@ -282,7 +283,7 @@ void TBase::Increase()
     }
     else
     {
-        Display::ShowWarningBad(Warning::LimitSweep_Time);
+        Warnings::ShowWarningBad(Warning::LimitSweep_Time);
     }
 }
 
@@ -315,7 +316,7 @@ void TBase::Set(TBase::E tBase)
     }
     else
     {
-        Display::ShowWarningBad(Warning::LimitSweep_Time);
+        Warnings::ShowWarningBad(Warning::LimitSweep_Time);
     }
 };
 
@@ -337,7 +338,7 @@ void TShift::Set(int tShift)
     {
         Math::Limitation<int>(&tShift, TShift::Min(), TShift::MAX);
 
-        Display::ShowWarningBad(Warning::LimitSweep_TShift);
+        Warnings::ShowWarningBad(Warning::LimitSweep_TShift);
     }
 
     set.time.shift = (int16)tShift;

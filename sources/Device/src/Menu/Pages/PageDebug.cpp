@@ -3,6 +3,7 @@
 #include "common/Display/Painter/Text_.h"
 #include "common/Hardware/Sound_.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "Display/Warnings.h"
 #include "FDrive/FDrive.h"
 #include "FPGA/FPGA.h"
 #include "Hardware/EPROM.h"
@@ -516,7 +517,7 @@ static void OnPress_SaveFirmware()
 
     FDrive::CloseFile(&structForWrite);
 
-    Display::ShowWarningGood(Warning::FirmwareSaved);
+    Warnings::ShowWarningGood(Warning::FirmwareSaved);
 }
 
 DEF_BUTTON(mbSaveFirmware, PageDebug::self,
@@ -595,7 +596,7 @@ static void OnPress_SerialNumber_Save()
 //
 //    if (!HAL_OTP::SaveSerialNumber(stringSN))
 //    {
-//        Display::ShowWarningBad(Warning::FullyCompletedOTP);
+//        Warnings::ShowWarningBad(Warning::FullyCompletedOTP);
 //    }
 }
 

@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "Display/Display.h"
+#include "Display/Warnings.h"
 #include "FPGA/Data/DataSettings.h"
 #include "Hardware/EPROM.h"
 #include "Settings/Settings.h"
@@ -283,8 +284,8 @@ uint EPROM::FreeMemory()
 
 void EPROM::CompactMemory()
 {
-    Display::ClearFromWarnings();
-    Display::ShowWarningGood(Warning::MovingData);
+    Warnings::ClearFromWarnings();
+    Warnings::ShowWarningGood(Warning::MovingData);
     Display::Update();
     uint dataInfoRel = FindActualDataInfo() - ADDR_SECTOR_DATA_MAIN;
 
@@ -316,7 +317,8 @@ void EPROM::CompactMemory()
             EPROM::SaveData(i, ds, data0, data1);
         }
     }
-    Display::ClearFromWarnings();
+
+    Warnings::ClearFromWarnings();
 }
 
 
