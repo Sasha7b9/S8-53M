@@ -85,7 +85,6 @@ void Display::Update()
     if (need_clear)
     {
         BeginFrame(Color::BLACK);
-//        DrawMemoryWindow();
         Grid::Draw();
     }
 

@@ -102,7 +102,7 @@ static const Settings defaultSettings =
         TPos::Center,
         SampleType::Equal,
         PeackDetMode::Disable,
-        ENUM_POINTS_FPGA::_1024,
+        ENUM_POINTS_FPGA::_1k,
         0,                          // set.time.tShiftRel
         false
     },
@@ -123,7 +123,7 @@ static const Settings defaultSettings =
     },
     // memory
     {
-        ENUM_POINTS_FPGA::_1024,
+        ENUM_POINTS_FPGA::_1k,
         ModeWork::Direct,
         FileNamingMode::Mask,
         "Signal_\x07\x03",      // \x07 - означает, что здесь должен быть очередной номер, \x03 - минимум на три знакоместа

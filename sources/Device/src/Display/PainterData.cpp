@@ -4,6 +4,7 @@
 #include "common/Display/Painter/Primitives_.h"
 #include "common/Utils/Math_.h"
 #include "Display/PainterData.h"
+#include "Display/Screen/MemoryWindow.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGA_Reader.h"
 #include "FPGA/Data/DataSettings.h"
@@ -27,6 +28,8 @@ void PainterData::DrawData()
     keeper.data->Draw();
 
     Rectangle(Grid::Width() + 1, Grid::FullHeight() + 1).Draw(Grid::Left(), Grid::TOP, Color::FILL);
+
+    MemoryWindow::Draw(keeper.data->data);
 }
 
 

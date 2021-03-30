@@ -16,9 +16,10 @@ struct DataDrawing
     void Prepare();
     void Draw();
 
+    DataReading data;
+
 private:
 
-    DataReading data;
     Buffer points[NumChannels]; // Здесь рассчитанные точки, готовые к выводу на экран
 
     void PrepareChannel(const Channel &ch);

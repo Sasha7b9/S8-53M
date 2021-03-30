@@ -26,15 +26,15 @@ struct ENUM_POINTS_FPGA
     {
         _281,
         _512,
-        _1024,
-        _2048,
-        _4096,
-        _8192,
-        _16384,
+        _1k,
+        _2k,
+        _4k,
+        _8k,
+        _16k,
         Count
     } value;
 
-    ENUM_POINTS_FPGA(E v = _1024) : value(v) {}
+    ENUM_POINTS_FPGA(E v = _1k) : value(v) {}
 
     static uint ToPoints(E);
     static E FromPoints(uint num_points);
