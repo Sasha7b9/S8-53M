@@ -69,9 +69,6 @@ public:
 
 private:
 
-    // Ќарисовать маркер смещени€ по времени.
-    static void DrawCursorTShift();
-
     static void FuncOnTimerDisableShowLevelRShiftA();
 
     static void FuncOnTimerDisableShowLevelRShiftB();

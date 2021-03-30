@@ -433,7 +433,7 @@ bool TPos::IsRight()
 }
 
 
-int TPos::InPoints(PeackDetMode::E peak_det, int num_points, TPos::E tPos)
+int TPos::InPoints(PeackDetMode::E peak_det, uint num_points, TPos::E tPos)
 {
     if (peak_det == PeackDetMode::Disable)
     {
@@ -551,11 +551,11 @@ uint ENUM_POINTS_FPGA::BytesForData()
 }
 
 
-ENUM_POINTS_FPGA::E ENUM_POINTS_FPGA::FromPoints(int num_points)
+ENUM_POINTS_FPGA::E ENUM_POINTS_FPGA::FromPoints(uint num_points)
 {
     struct Struct
     {
-        int num_points;
+        uint num_points;
         E enum_points;
     };
 

@@ -4,6 +4,7 @@
 #include "common/Display/Painter/Primitives_.h"
 #include "common/Display/Painter/Text_.h"
 #include "common/Settings/SettingsTypes_.h"
+#include "common/Utils/Math_.h"
 #include "FPGA/FPGA_Types.h"
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
@@ -183,5 +184,49 @@ void TrigLev::WriteValue()
         Rectangle(width, 10).Draw(x, y, Color::FILL);
         Region(width - 2, 8).Fill(x + 1, y + 1, Color::BACK);
         text.Draw(x + 2, y + 1, Color::FILL);
+    }
+}
+
+
+void TShift::Draw()
+{
+    BitSet64 bs = SettingsDisplay::PointsOnDisplay();
+
+    PeackDetMode::E peak_det = set.time.peak_det;
+    uint points_in_channel = set.memory.enum_points_fpga.ToPoints();
+    TPos::E t_pos = set.time.t_pos;
+
+    // Рисуем TPos
+    int shiftTPos = TPos::InPoints(
+        peak_det, points_in_channel, t_pos) - set.display.shift_in_memory;
+
+    float scale = (float)((bs.first - bs.second) / Grid::Width());
+    int gridLeft = Grid::Left();
+    int x = (int)(gridLeft + shiftTPos * scale - 3);
+    if (Math::InRange(x + 3, gridLeft, Grid::Right() + 1))
+    {
+        Char(Symbol::S8::TPOS_2).Draw2SymbolsInPosition(x, Grid::TOP - 1, Symbol::S8::TPOS_3, Color::BACK, Color::FILL);
+    };
+
+    // Рисуем tShift
+    int tshift = TPos::InPoints(peak_det, points_in_channel, t_pos) - TShift::InPoints(peak_det);
+
+    if (Math::InRange(tshift, bs.first, bs.second))
+    {
+        x = gridLeft + tshift - bs.first - 3;
+        Char(Symbol::S8::TSHIFT_NORM_1).Draw2SymbolsInPosition(x, Grid::TOP - 1, Symbol::S8::TSHIFT_NORM_2, Color::BACK,
+            Color::FILL);
+    }
+    else if (tshift < bs.first)
+    {
+        Char(Symbol::S8::TSHIFT_LEFT_1).Draw2SymbolsInPosition(gridLeft + 1, Grid::TOP, Symbol::S8::TSHIFT_LEFT_2,
+            Color::BACK, Color::FILL);
+        Line().Draw(Grid::Left() + 9, Grid::TOP + 1, Grid::Left() + 9, Grid::TOP + 7, Color::BACK);
+    }
+    else if (tshift > bs.second)
+    {
+        Char(Symbol::S8::TSHIFT_RIGHT_1).Draw2SymbolsInPosition(Grid::Right() - 8, Grid::TOP,
+            Symbol::S8::TSHIFT_RIGHT_2, Color::BACK, Color::FILL);
+        Line().Draw(Grid::Right() - 9, Grid::TOP + 1, Grid::Right() - 9, Grid::TOP + 7, Color::BACK);
     }
 }

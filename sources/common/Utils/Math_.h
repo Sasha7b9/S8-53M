@@ -33,7 +33,6 @@ namespace Math
 
     void CalculateFiltrArray(puchar data_in, uint8* data_out, int num_points, int num_smoothing);
 
-    // Обменивает местами содержимое памяти по адресам value0 и value1
     template<class T> void Limitation(T *value, T min, T max);
     template<class T> T    Limitation(T value, T min, T max);
     template<class T> void LimitAbove(T *value, T max);
@@ -41,6 +40,9 @@ namespace Math
     template<class T> T    MinFrom2(T val1, T val2);
     template<class T> T    Max(T value1, T value2, T value3);
     template<class T> void Sort(T *value1, T *value2);
+    template<class T> bool InRange(T value, T min, T max);
+
+    // Обменивает местами содержимое памяти по адресам value0 и value1
     template<class T> void Swap(T *value0, T *value1);
 
     // Увеличивает значение по адресу val на 1. Затем, если результат превышает max, приравинвает его к min

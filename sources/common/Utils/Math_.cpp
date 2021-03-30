@@ -28,6 +28,7 @@ template int8  Math::CircleDecrease(int8 *val, int8 min, int8 max);
 template int16 Math::CircleDecrease(int16 *val, int16 min, int16 max);
 template int   Math::CircleDecrease(int *val, int min, int max);
 template void  Math::AddLimitation(float *val, float delta, float min, float max);
+template bool  Math::InRange(int value, int min, int max);
 
 
 const float Math::Pi = 3.14159265358979323846F;
@@ -438,3 +439,13 @@ void Math::AddLimitation(T *val, T delta, T min, T max)
     }
 }
 
+
+template<class T>
+bool Math::InRange(T value, T min, T max)
+{
+    if (value < min)    { return false; }
+
+    if (value > max)    { return false; }
+
+    return true;
+}

@@ -37,7 +37,7 @@ struct ENUM_POINTS_FPGA
     ENUM_POINTS_FPGA(E v = _1024) : value(v) {}
 
     static uint ToPoints(E);
-    static E FromPoints(int num_points);
+    static E FromPoints(uint num_points);
 
     uint ToPoints();
     uint BytesInChannel();
@@ -512,7 +512,7 @@ struct TPos
     static bool IsRight();
 
     // Узнать привязку отсительно уровня синхронизации в точках
-    static int InPoints(PeackDetMode::E peakDet, int numPoints, E tPos);
+    static int InPoints(PeackDetMode::E peak_det, uint num_points, E t_pos);
 };
 
 
@@ -840,6 +840,8 @@ struct TBase
 struct TShift
 {
     static void Set(int tshift);
+
+    static void Draw();
 
     static int16 Get();
 

@@ -133,7 +133,7 @@ void Display::Update()
         RShift::Draw();
         Measure::DrawAll();
         Menu::DrawStringNavigation();
-        DrawCursorTShift();
+        TShift::Draw();
     }
 
     Menu::Draw();
@@ -183,54 +183,6 @@ int Display::DrawScaleLine(int x, bool forTrigLev)
     }
 
     return DELTA;
-}
-
-
-void Display::DrawCursorTShift()
-{
-//    int firstPoint = 0;
-//    int lastPoint = 0;
-//    SettingsDisplay::PointsOnDisplay(&firstPoint, &lastPoint);
-//
-//    if (Storage::set == nullptr)
-//    {
-//        return;
-//    }
-//
-//    // Рисуем TPos
-//    int shiftTPos = TPos::InPoints(
-//        (PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel, SET_TPOS) - SHIFT_IN_MEMORY;
-//
-//    float scale = (float)((lastPoint - firstPoint) / Grid::Width());
-//    int gridLeft = Grid::Left();
-//    int x = (int)(gridLeft + shiftTPos * scale - 3);
-//    if (GF::IntInRange(x + 3, gridLeft, Grid::Right() + 1))
-//    {
-//        Char(Symbol::S8::TPOS_2).Draw2SymbolsInPosition(x, Grid::TOP - 1, Symbol::S8::TPOS_3, Color::BACK, Color::FILL);
-//    };
-//
-//    // Рисуем tShift
-//    int shiftTShift = TPos::InPoints((PeackDetMode::E)Storage::set->peakDet, (int)Storage::set->length1channel,
-//        SET_TPOS) - TShift::InPoints((PeackDetMode::E)Storage::set->peakDet);
-//
-//    if(GF::IntInRange(shiftTShift, firstPoint, lastPoint))
-//    {
-//        x = gridLeft + shiftTShift - firstPoint - 3;
-//        Char(Symbol::S8::TSHIFT_NORM_1).Draw2SymbolsInPosition(x, Grid::TOP - 1, Symbol::S8::TSHIFT_NORM_2, Color::BACK,
-//            Color::FILL);
-//    }
-//    else if(shiftTShift < firstPoint)
-//    {
-//        Char(Symbol::S8::TSHIFT_LEFT_1).Draw2SymbolsInPosition(gridLeft + 1, Grid::TOP, Symbol::S8::TSHIFT_LEFT_2,
-//            Color::BACK, Color::FILL);
-//        Line().Draw(Grid::Left() + 9, Grid::TOP + 1, Grid::Left() + 9, Grid::TOP + 7, Color::BACK);
-//    }
-//    else if(shiftTShift > lastPoint)
-//    {
-//        Char(Symbol::S8::TSHIFT_RIGHT_1).Draw2SymbolsInPosition(Grid::Right() - 8, Grid::TOP,
-//            Symbol::S8::TSHIFT_RIGHT_2, Color::BACK, Color::FILL);
-//        Line().Draw(Grid::Right() - 9, Grid::TOP + 1, Grid::Right() - 9, Grid::TOP + 7, Color::BACK);
-//    }
 }
 
 
