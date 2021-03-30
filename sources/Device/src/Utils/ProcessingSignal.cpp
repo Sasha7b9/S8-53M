@@ -1119,9 +1119,9 @@ void Processing::InterpolationSinX_X(uint16 data[FPGA_MAX_POINTS], TBase::E tBas
         }
     }
 
-    float deltaX = PI;
-    float stepX0 = PI / (float)delta;
-    float x0 = PI - stepX0;
+    float deltaX = Math::Pi;
+    float stepX0 = Math::Pi / (float)delta;
+    float x0 = Math::Pi - stepX0;
     int num = 0;
     
     for(int i = 0; i < FPGA_MAX_POINTS; i++)
@@ -1136,8 +1136,8 @@ void Processing::InterpolationSinX_X(uint16 data[FPGA_MAX_POINTS], TBase::E tBas
             int part = num % ((delta - 1) * 2);
             num++;
             float sinX = (part < delta - 1) ?
-                std::sin(PI / delta * (part + 1)) :
-                std::sin(PI / delta * (part - (delta - 1) * 2));
+                std::sin(Math::Pi / delta * (part + 1)) :
+                std::sin(Math::Pi / delta * (part - (delta - 1) * 2));
 
             if (tBase > TBase::_5ns)    // Здесь используем более быструю, но более неправильную арифметику целвых чисел
             {
