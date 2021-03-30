@@ -2,7 +2,6 @@
 #include "common/Display/Colors_.h"
 #include "common/Display/Painter/Primitives_.h"
 #include "common/Display/Painter/Text_.h"
-#include "Display/Grid.h"
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
 

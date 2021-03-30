@@ -2,8 +2,8 @@
 #include "defines.h"
 #include "common/Display/Font/Font_.h"
 #include "common/Display/Painter/Primitives_.h"
-#include "Display/Grid.h"
-#include "Display/TopPart.h"
+#include "Display/Screen/Grid.h"
+#include "Display/Screen/TopPart.h"
 #include "FPGA/FPGA.h"
 #include "Settings/Settings.h"
 #include <cmath>

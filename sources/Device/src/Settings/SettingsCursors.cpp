@@ -2,7 +2,6 @@
 #include "common/Display/Painter/Primitives_.h"
 #include "common/Utils/Math_.h"
 #include "common/Utils/Containers/Values_.h"
-#include "Display/Grid.h"
 #include "FPGA/FPGA_Math.h"
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"

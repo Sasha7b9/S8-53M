@@ -4,7 +4,6 @@
 #include "common/Display/Painter/Text_.h"
 #include "common/Hardware/Sound_.h"
 #include "common/Utils/Math_.h"
-#include "Display/Grid.h"
 #include "FDrive/FDrive.h"
 #include "FPGA/FPGA.h"
 #include "Hardware/EPROM.h"

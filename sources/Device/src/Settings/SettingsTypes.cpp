@@ -3,7 +3,7 @@
 #include "common/Settings/SettingsTypes_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Display.h"
-#include "Display/Grid.h"
+#include "Display/Screen/Grid.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGA_Math.h"
 #include "FPGA/FPGA_Reader.h"

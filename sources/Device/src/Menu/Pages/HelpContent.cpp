@@ -3,7 +3,6 @@
 #include "common/Display/Painter/Text_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Utils/Math_.h"
-#include "Display/Grid.h"
 #include "Menu/Pages/HelpContent.h"
 #include "Menu/Pages/HelpContentPages.h"
 #include "Settings/Settings.h"

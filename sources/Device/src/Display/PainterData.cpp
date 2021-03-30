@@ -3,7 +3,6 @@
 #include "common/Log_.h"
 #include "common/Display/Painter/Primitives_.h"
 #include "common/Utils/Math_.h"
-#include "Display/Grid.h"
 #include "Display/PainterData.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGA_Reader.h"

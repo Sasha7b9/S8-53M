@@ -1,31 +1,19 @@
 #include "defines.h"
-#include "common/Log_.h"
 #include "common/Display/Font/Font_.h"
 #include "common/Display/Painter/Primitives_.h"
 #include "common/Display/Painter/Text_.h"
 #include "common/Hardware/Sound_.h"
 #include "common/Hardware/Timer_.h"
 #include "common/Utils/Math_.h"
-#include "Display/BottomPart.h"
 #include "Display/Display.h"
 #include "Display/PainterData.h"
-#include "Display/TopPart.h"
-#include "FDrive/FDrive.h"
-#include "FPGA/FPGA.h"
-#include "FPGA/FPGA_Math.h"
-#include "FPGA/FPGA_Reader.h"
-#include "FPGA/FPGA_Types.h"
-#include "LAN/LAN.h"
+#include "Display/Screen/BottomPart.h"
+#include "Display/Screen/TopPart.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
-#include "Utils/ProcessingSignal.h"
-#include "VCP/VCP.h"
-#include <cmath>
 #include <cstdio>
-#include <cstdlib>
 #include <cstring>
-#include <limits>
 
 
 #define MAX_NUM_STRINGS         35

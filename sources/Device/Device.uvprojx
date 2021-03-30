@@ -1422,16 +1422,6 @@
           <GroupName>Display</GroupName>
           <Files>
             <File>
-              <FileName>BottomPart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\BottomPart.h</FilePath>
-            </File>
-            <File>
-              <FileName>BottomPart.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\BottomPart.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Colors_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Display\Colors_.h</FilePath>
@@ -1467,16 +1457,6 @@
               <FilePath>.\src\Display\Display_stm.cpp</FilePath>
             </File>
             <File>
-              <FileName>Grid.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\Grid.h</FilePath>
-            </File>
-            <File>
-              <FileName>Grid.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\Grid.cpp</FilePath>
-            </File>
-            <File>
               <FileName>PainterData.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Display\PainterData.h</FilePath>
@@ -1485,16 +1465,6 @@
               <FileName>PainterData.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Display\PainterData.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>TopPart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\TopPart.h</FilePath>
-            </File>
-            <File>
-              <FileName>TopPart.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\TopPart.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -1600,6 +1570,41 @@
               <FileName>Text_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Display\Painter\Text_.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Display/Screen</GroupName>
+          <Files>
+            <File>
+              <FileName>BottomPart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\Screen\BottomPart.h</FilePath>
+            </File>
+            <File>
+              <FileName>BottomPart.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\Screen\BottomPart.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Grid.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\Screen\Grid.h</FilePath>
+            </File>
+            <File>
+              <FileName>Grid.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\Screen\Grid.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TopPart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\Screen\TopPart.h</FilePath>
+            </File>
+            <File>
+              <FileName>TopPart.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\Screen\TopPart.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -3617,16 +3622,6 @@
           <GroupName>Display</GroupName>
           <Files>
             <File>
-              <FileName>BottomPart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\BottomPart.h</FilePath>
-            </File>
-            <File>
-              <FileName>BottomPart.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\BottomPart.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Colors_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Display\Colors_.h</FilePath>
@@ -3662,16 +3657,6 @@
               <FilePath>.\src\Display\Display_stm.cpp</FilePath>
             </File>
             <File>
-              <FileName>Grid.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\Grid.h</FilePath>
-            </File>
-            <File>
-              <FileName>Grid.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\Grid.cpp</FilePath>
-            </File>
-            <File>
               <FileName>PainterData.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Display\PainterData.h</FilePath>
@@ -3680,16 +3665,6 @@
               <FileName>PainterData.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Display\PainterData.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>TopPart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Display\TopPart.h</FilePath>
-            </File>
-            <File>
-              <FileName>TopPart.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Display\TopPart.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -3795,6 +3770,41 @@
               <FileName>Text_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Display\Painter\Text_.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Display/Screen</GroupName>
+          <Files>
+            <File>
+              <FileName>BottomPart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\Screen\BottomPart.h</FilePath>
+            </File>
+            <File>
+              <FileName>BottomPart.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\Screen\BottomPart.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Grid.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\Screen\Grid.h</FilePath>
+            </File>
+            <File>
+              <FileName>Grid.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\Screen\Grid.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TopPart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\Screen\TopPart.h</FilePath>
+            </File>
+            <File>
+              <FileName>TopPart.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\Screen\TopPart.cpp</FilePath>
             </File>
           </Files>
         </Group>

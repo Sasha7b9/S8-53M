@@ -106,7 +106,8 @@ file(GLOB DISPLAY                src/Display/*.h
                            ../common/Display/*.cpp)
 file(GLOB DISPLAY_FONT     ../common/Display/Font/*.*)
 file(GLOB DISPLAY_PAINTER  ../common/Display/Painter/*.*
-                                     Display/Painter/*.*)
+                                 src/Display/Painter/*.*)
+file(GLOB DISPLAY_SCREEN         src/Display/Screen/*.*)
 file(GLOB FDRIVE                 src/FDrive/*.*)
 file(GLOB FPGA                   src/FPGA/*.*)
 file(GLOB FPGA_DATA              src/FPGA/Data/*.*)
@@ -150,6 +151,7 @@ source_group(src                     FILES ${SRC})
 source_group(Display                 FILES ${DISPLAY})
 source_group(Display\\Font           FILES ${DISPLAY_FONT})
 source_group(Display\\Painter        FILES ${DISPLAY_PAINTER})
+source_group(Display\\Screen         FILES ${DISPLAY_SCREEN})
 source_group(FDrive                  FILES ${FDRIVE})
 source_group(FPGA                    FILES ${FPGA})
 source_group(FPGA\\Data              FILES ${FPGA_DATA})
@@ -169,7 +171,6 @@ add_library(Device ${VS_KEIL_CMSIS} ${VS_KEIL_ARMCLANG} ${VS_KEIL_FATFS} ${LIBS_
                    ${LIBS_LWIP} ${LIBS_USBH} ${HARDWARE}
                    ${HARDWARE_CMSIS} ${HARDWARE_FATFS} ${HARDWARE_HAL} ${HARDWARE_LWIP} ${HARDWARE_USBD}
                    ${HARDWARE_USBH} ${SRC} ${DISPLAY} 
-                   ${DISPLAY_FONT} ${DISPLAY_PAINTER} ${FDRIVE} ${FPGA} ${FPGA_DATA} ${LAN} ${MENU} ${MENU_ITEMS}
-                   ${MENU_PAGES} ${PANEL}
-                   ${SETTINGS}
+                   ${DISPLAY_FONT} ${DISPLAY_PAINTER} ${DISPLAY_SCREEN} ${FDRIVE} ${FPGA} ${FPGA_DATA} ${LAN} ${MENU}
+                   ${MENU_ITEMS} ${MENU_PAGES} ${PANEL} ${SETTINGS}
                    ${UTILS} ${UTILS_CONTAINERS} ${VCP} ${VCP_SCPI} ${VCP_SCPI_UTILS})
