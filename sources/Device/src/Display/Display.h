@@ -52,14 +52,6 @@ public:
 
     static void ChangedRShiftMarkers();
 
-    static void AddStringToIndicating(pchar string);
-
-    static void OneStringUp();
-
-    static void OneStringDown();
-
-    static void SetPauseForConsole(bool pause);
-
     // После отрисовки очередного экрана эта функция будет вызвана один раз.
     static void RunAfterDraw(pFuncVV func);
 
@@ -80,11 +72,6 @@ private:
     // Нарисовать маркер смещения по времени.
     static void DrawCursorTShift();
 
-    // Написать сообщения отладочной консоли.
-    static void DrawConsole();
-
-    static int CalculateFreeSize();
-
     static void FuncOnTimerDisableShowLevelRShiftA();
 
     static void FuncOnTimerDisableShowLevelRShiftB();
@@ -93,14 +80,7 @@ private:
 
     static void FuncOnTimerRShiftMarkersAutoHide();
 
-    static int FirstEmptyString();
-
     static bool NeedForClearScreen();
 
     static void DrawTimeForFrame(uint timeMS);
-
-    static void DeleteFirstString();
-
-    static void AddString(pchar string);
 };
-

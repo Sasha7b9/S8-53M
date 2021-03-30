@@ -68,6 +68,7 @@ file(GLOB LIBS_HAL          ../../common/_VS_GUI/HAL/*.*)
 file(GLOB LIBS_USBH         ../../common/_VS_GUI/USBH/*.*)
 file(GLOB LIBS_USBD         ../../common/_VS_GUI/USBD/*.*)
 file(GLOB DISPLAY           ../../Device/src/Display/BottomPart.*
+                            ../../Device/src/Display/Console.*
                             ../../Device/src/Display/Colors_d.cpp
                             ../../Device/src/Display/Display.*
                             ../../Device/src/Display/Grid.*

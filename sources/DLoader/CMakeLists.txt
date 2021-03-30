@@ -90,6 +90,7 @@ file(GLOB HARDWARE_HAL         src/Hardware/HAL/*
                          ../common/Hardware/HAL/HAL_TIM7_c.cpp)
 file(GLOB HARDWARE_USBH        src/Hardware/USBH/*)
 file(GLOB SRC            ../common/defines_.h
+                         ../common/Log_.*
                                src/*.h
                                src/*.cpp)
 file(GLOB DISPLAY              src/Display/*.h

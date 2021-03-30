@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "common/Log_.h"
+#include "Display/Console.h"
 #include "Display/Display.h"
 #include "Settings/Settings.h"
 #include <cstdarg>
@@ -21,7 +22,9 @@ void Log_Write(pchar format, ...)
     va_start(args, format);
     std::vsprintf(buffer, format, args);
     va_end(args);
-    Display::AddStringToIndicating(buffer);
+
+    Console::AddStringToIndicating(buffer);
+
     if(loggerUSB)
     {
         //VCP::SendFormatStringAsynch(buffer);
@@ -39,9 +42,9 @@ void Log_Error(pchar module, const char *func, int num_line, char *format, ...)
 
     String message("!!!ERROR!!! %s %s:%", module, func, num_line);
 
-    Display::AddStringToIndicating(message.c_str());
+    Console::AddStringToIndicating(message.c_str());
 
-    Display::AddStringToIndicating(buffer);
+    Console::AddStringToIndicating(buffer);
 
     if(loggerUSB)
     {
