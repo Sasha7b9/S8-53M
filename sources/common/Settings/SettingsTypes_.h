@@ -1114,6 +1114,8 @@ struct TrigLev
 
     static void DrawCursor();
 
+    static void WriteValue();
+
     static bool need_auto_find;   // Если true, то нужно произвести поиск синхронизации
 
     static const int16 MIN = RShift::MIN;
@@ -1121,7 +1123,9 @@ struct TrigLev
     static const int16 ZERO = RShift::ZERO;     // Нулевое значение уровня синхронизации, засылаемое в прибор.
                           // Маркер синхронизации при этом находитися на одном уровне с маркером смещения по напряжению.
 
-    static bool exist_impulse;         // Если true, нужно отображать значок наличия синхроимпульса
+    static bool exist_impulse;          // Если true, нужно отображать значок наличия синхроимпульса
+
+    static bool show_level;             // Нужно ли рисовать горизонтальную линию уровня смещения уровня синхронизации
 };
 
 

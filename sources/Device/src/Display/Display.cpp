@@ -31,7 +31,6 @@ static uint                     timeWarnings[NUM_WARNINGS] = {0};   // Здесь вре
 //static pFuncVV funcAdditionDraw = 0;
 //static pFuncVV funcAfterDraw    = 0;
 
-static bool showLevelTrigLev = false;    // Нужно ли рисовать горизонтальную линию уровня смещения уровня синхронизации
 static bool needFinishDraw = true;      // Если 1, то дисплей нуждается в перерисовке
 static uint numDrawingSignals = 0;      // Число нарисованных сигналов для режима накопления
 
@@ -86,10 +85,11 @@ void Display::RotateTrigLev()
 {
     if (set.display.time_show_levels)
     {
-        showLevelTrigLev = true;
+        TrigLev::show_level = true;
         Timer::Enable(TypeTimer::ShowLevelTrigLev, set.display.time_show_levels * 1000,
             FuncOnTimerDisableShowLevelTrigLev);
     }
+
     Redraw();
 }
 
@@ -172,37 +172,10 @@ void Display::Update()
 
     if (need_clear)
     {
-        WriteValueTrigLevel();
+        TrigLev::WriteValue();
     }
 
     EndFrame();
-}
-
-
-void Display::WriteValueTrigLevel()
-{
-    if (showLevelTrigLev && set.memory.mode_work.IsDirect())
-    {
-        float trigLev = RShift::ToAbs(TrigLev::Get(), set.chan[TrigSource::Get()].range);     // WARN Здесь для внешней
-                                                                    // синхронизации неправильно рассчитывается уровень.
-        TrigSource::E trigSource = TrigSource::Get();
-        if (TrigInput::IsAC() && trigSource <= TrigSource::B)
-        {
-            int16 rShift = RShift::Get((Channel::E)trigSource);
-            float rShiftAbs = RShift::ToAbs(rShift, set.chan[trigSource].range);
-            trigLev += rShiftAbs;
-        }
-
-        Text text(LANG_RU ? "Ур синхр = " : "Trig lvl = ");
-        text.Append(Voltage(trigLev).ToText());
-
-        int width = 96;
-        int x = (Grid::Width() - width) / 2 + Grid::Left();
-        int y = Grid::BottomMessages() - 20;
-        Rectangle(width, 10).Draw(x, y, Color::FILL);
-        Region(width - 2, 8).Fill(x + 1, y + 1, Color::BACK);
-        text.Draw(x + 2, y + 1, Color::FILL);
-    }
 }
 
 
@@ -344,7 +317,7 @@ void Display::DisableShowLevelRShiftB()
 
 void Display::DisableShowLevelTrigLev()
 {
-    showLevelTrigLev = false;
+    TrigLev::show_level = false;
     Timer::Disable(TypeTimer::ShowLevelTrigLev);
 }
 

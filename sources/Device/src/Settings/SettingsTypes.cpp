@@ -21,6 +21,7 @@ bool RShift::draw_markers = false;
 
 bool TrigLev::need_auto_find = false;
 bool TrigLev::exist_impulse = false;
+bool TrigLev::show_level = false;
 
 TBase::E TBase::MIN_P2P = TBase::_20ms;
 TBase::E TBase::MIN_PEAK_DET = TBase::_500ns;
@@ -732,64 +733,3 @@ int TBase::StepRand()
 
     return IsRandomize() ? steps[set.time.base] : 1;
 }
-
-
-void TrigLev::DrawCursor()
-{
-    TrigSource::E ch = TrigSource::Get();
-    if (ch == TrigSource::Ext)
-    {
-        return;
-    }
-    int trigLev = TrigLev::Get(ch) + (RShift::Get((Channel::E)ch) - RShift::ZERO);
-    float scale = 1.0F / ((TrigLev::MAX - TrigLev::MIN) / 2.0F / Grid::ChannelHeight());
-    int y0 = (int)((Grid::TOP + Grid::ChannelBottom()) / 2 + scale * (TrigLev::ZERO - TrigLev::MIN));
-    int y = (int)(y0 - scale * (trigLev - TrigLev::MIN));
-
-    y = (y - Grid::ChannelCenterHeight()) + Grid::ChannelCenterHeight();
-
-    int x = Grid::Right();
-    Color::Trig().SetAsCurrent();
-    if (y > Grid::ChannelBottom())
-    {
-        Char(Symbol::S8::TRIG_LEV_LOWER).Draw(x + 3, Grid::ChannelBottom() - 11);;
-        Point().Draw(x + 5, Grid::ChannelBottom() - 2);
-        y = Grid::ChannelBottom() - 7;
-        x--;
-    }
-    else if (y < Grid::TOP)
-    {
-        Char(Symbol::S8::TRIG_LEV_ABOVE).Draw(x + 3, Grid::TOP + 2);
-        Point().Draw(x + 5, Grid::TOP + 2);
-        y = Grid::TOP + 7;
-        x--;
-    }
-    else
-    {
-        Char(Symbol::S8::TRIG_LEV_NORMAL).Draw(x + 1, y - 4);
-    }
-    Font::Set(TypeFont::S5);
-
-    const char simbols[3] = { '1', '2', 'Â' };
-
-    Char(simbols[TrigSource::Get()]).Draw(x + 5, y - 9, Color::BACK);
-    Font::Set(TypeFont::S8);
-
-    if (RShift::draw_markers && !Menu::IsMinimize())
-    {
-        int delta = Display::DrawScaleLine(Display::WIDTH - 11, true);
-        int left = Grid::Right() + 9;
-        int height = Grid::ChannelHeight() - 2 * delta;
-        int shiftFullMin = RShift::MIN + TrigLev::MIN;
-        int shiftFullMax = RShift::MAX + TrigLev::MAX;
-        scale = (float)height / (shiftFullMax - shiftFullMin);
-        int shiftFull = TrigLev::Get() + (TrigSource::IsExt() ? 0 : RShift::Get((Channel::E)ch));
-        int yFull = (int)(Grid::TOP + delta + height - scale * (shiftFull - RShift::MIN - TrigLev::MIN) - 4);
-        Region(4, 6).Fill(left + 2, yFull + 1, Color::Trig());
-        Font::Set(TypeFont::S5);
-        Char(simbols[TrigSource::Get()]).Draw(left + 3, yFull - 5, Color::BACK);
-        Font::Set(TypeFont::S8);
-    }
-}
-
-

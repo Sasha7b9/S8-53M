@@ -118,9 +118,6 @@ private:
 
     static void DeleteFirstString();
 
-    // Вывести значение уровня синхронизации. 
-    static void WriteValueTrigLevel();
-
     static void AddString(pchar string);
 };
 
