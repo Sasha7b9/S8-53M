@@ -656,6 +656,15 @@ struct RShift
 private:
 
     static void Draw(const Channel &ch);
+
+    static void RotateRShift(const Channel &ch);
+
+    static void FuncOnTimerDisableShowA();
+    static void FuncOnTimerDisableShowB();
+
+    // Отключить вспомогательную линию маркера смещения по напряжению
+    static void DisableShowLevelA();
+    static void DisableShowLevelB();
 };
 
 

@@ -2,6 +2,7 @@
 #include "common/Log_.h"
 #include "common/Display/Font/Font_.h"
 #include "common/Display/Painter/Primitives_.h"
+#include "common/Hardware/Timer_.h"
 #include "common/Settings/SettingsTypes_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Display.h"
@@ -230,7 +231,8 @@ void RShift::Set(const Channel &ch, int16 rShift)
     set.chan[ch].rshift = rShift;
 
     RShift::Load(ch);
-    Display::RotateRShift(ch);
+
+    RotateRShift(ch);
 };
 
 
@@ -733,4 +735,47 @@ int TBase::StepRand()
     static const int steps[] = { N_KR / 1, N_KR / 2, N_KR / 5, N_KR / 10, N_KR / 20, N_KR / 50 };
 
     return IsRandomize() ? steps[set.time.base] : 1;
+}
+
+
+void RShift::RotateRShift(const Channel &ch)
+{
+    set.display.last_affected_channel = ch.value;
+
+    if (set.display.time_show_levels)
+    {
+        if (ch.IsA()) { RShift::show_level_A = true; }
+        else { RShift::show_level_B = true; }
+        Timer::Enable(ch.IsA() ? TypeTimer::ShowLevelRShift0 : TypeTimer::ShowLevelRShift1,
+            set.display.time_show_levels * 1000, ch.IsA() ? FuncOnTimerDisableShowA :
+            FuncOnTimerDisableShowB);
+    };
+
+    Display::Redraw();
+};
+
+
+void RShift::FuncOnTimerDisableShowA()
+{
+    DisableShowLevelA();
+}
+
+
+void RShift::FuncOnTimerDisableShowB()
+{
+    DisableShowLevelB();
+}
+
+
+void RShift::DisableShowLevelA()
+{
+    RShift::show_level_A = false;
+    Timer::Disable(TypeTimer::ShowLevelRShift0);
+}
+
+
+void RShift::DisableShowLevelB()
+{
+    RShift::show_level_B = false;
+    Timer::Disable(TypeTimer::ShowLevelRShift1);
 }

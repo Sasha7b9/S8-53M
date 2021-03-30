@@ -34,8 +34,6 @@ public:
 
     static void Update();
 
-    static void RotateRShift(const Channel &ch);
-
     static void RotateTrigLev();
 
     static void Redraw();
@@ -55,12 +53,6 @@ public:
     // После отрисовки очередного экрана эта функция будет вызвана один раз.
     static void RunAfterDraw(pFuncVV func);
 
-    // Отключить вспомогательную линию маркера смещения по напряжению первого канала.
-    static void DisableShowLevelRShiftA();
-
-    // Отключить вспомогательную линию маркера смещения по напряжению второго канала.
-    static void DisableShowLevelRShiftB();
-
     static void DisableShowLevelTrigLev();
 
     static void OnRShiftMarkersAutoHide();
@@ -68,10 +60,6 @@ public:
     static int DrawScaleLine(int x, bool for_trig_level);
 
 private:
-
-    static void FuncOnTimerDisableShowLevelRShiftA();
-
-    static void FuncOnTimerDisableShowLevelRShiftB();
 
     static void FuncOnTimerDisableShowLevelTrigLev();
 

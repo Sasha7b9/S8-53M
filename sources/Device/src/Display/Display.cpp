@@ -26,36 +26,6 @@ static bool needFinishDraw = true;      // ≈сли 1, то дисплей нуждаетс€ в перери
 static uint numDrawingSignals = 0;      // „исло нарисованных сигналов дл€ режима накоплени€
 
 
-
-void Display::RotateRShift(const Channel &ch)
-{
-    set.display.last_affected_channel = ch.value;
-
-    if(set.display.time_show_levels)
-    {
-        if (ch.IsA()) { RShift::show_level_A = true; }
-        else                    { RShift::show_level_B = true; }
-        Timer::Enable(ch.IsA() ? TypeTimer::ShowLevelRShift0 : TypeTimer::ShowLevelRShift1,
-            set.display.time_show_levels * 1000, ch.IsA() ? FuncOnTimerDisableShowLevelRShiftA :
-            FuncOnTimerDisableShowLevelRShiftB);
-    };
-
-    Redraw();
-};
-
-
-void Display::FuncOnTimerDisableShowLevelRShiftA()
-{
-    DisableShowLevelRShiftA();
-}
-
-
-void Display::FuncOnTimerDisableShowLevelRShiftB()
-{
-    DisableShowLevelRShiftB();
-}
-
-
 void Display::RotateTrigLev()
 {
     if (set.display.time_show_levels)
@@ -225,20 +195,6 @@ void Display::DrawTimeForFrame(uint timeTicks)
 //    std::sprintf(numAvail, "%d", Storage::NumberAvailableEntries());
 //    std::strcat(message, numAvail);
     message.Draw(Grid::Left() + 50, Grid::FullBottom() - 9);
-}
-
-
-void Display::DisableShowLevelRShiftA()
-{
-    RShift::show_level_A = false;
-    Timer::Disable(TypeTimer::ShowLevelRShift0);
-}
-
-
-void Display::DisableShowLevelRShiftB()
-{
-    RShift::show_level_B = false;
-    Timer::Disable(TypeTimer::ShowLevelRShift1);
 }
 
 
