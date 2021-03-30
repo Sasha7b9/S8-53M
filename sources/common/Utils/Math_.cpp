@@ -9,6 +9,7 @@
 template void  Math::Swap(int *, int *);
 template void  Math::Swap(uint8 *, uint8 *);
 template void  Math::Limitation(int *, int, int);
+template void  Math::LimitBelow(int16 *, int16);
 template int   Math::MinFrom2(int, int);
 template uint  Math::MinFrom2(uint, uint);
 template int   Math::Limitation(int, int, int);
@@ -334,6 +335,16 @@ void Math::Limitation(T *value, T min, T max)
     else if(*value > max)
     {
         *value = max;
+    }
+}
+
+
+template<class T>
+void Math::LimitBelow(T *value, T min)
+{
+    if (*value < min)
+    {
+        *value = min;
     }
 }
 

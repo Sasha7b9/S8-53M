@@ -1,8 +1,6 @@
 // 2021/03/01 10:48:35 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
 
-#define LIMIT_BELOW(x, min)         if(x < min) { x = min; }
-
 #define LIMIT_ABOVE(x, max)         if(x > max) { x = max; }
 
 #define SET_MIN_IF_LESS(x, min)     if((x) < (min)) { (min) = (x); }
@@ -52,6 +50,7 @@ namespace Math
     // Обменивает местами содержимое памяти по адресам value0 и value1
     template<class T> void Swap(T *value0, T *value1);
     template<class T> void Limitation(T *value, T min, T max);
+    template<class T> void LimitBelow(T *value, T min);
     template<class T> T MinFrom2(T val1, T val2);
     template<class T> T Limitation(T val, T min, T max);
     template<class T> void Sort(T *value1, T *value2);

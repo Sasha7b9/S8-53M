@@ -174,11 +174,11 @@ static void DrawBigMNIPI()
     Color((uint8)(numColor + 2)).SetAsCurrent();
 
     float amplitude = 3.0F - ((float)(time) / (TIME_WAIT / 2.0F)) * 3;
-    LIMIT_BELOW(amplitude, 0.0F);
+    Math::LimitBelow(&amplitude, 0.0F);
     float frequency = 0.05F;
 
     float radius = 5000.0F * (TIME_WAIT) / 3000.0F / (float)(time);
-    LIMIT_BELOW(radius, 0);
+    Math::LimitBelow(&radius, 0.0F);
 
     float shift[240];
 
