@@ -149,16 +149,18 @@ void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch,
 
 //    LOG_WRITE("index = %d", index);
 
-    uint bytes_in_channel = dr.Settings().BytesInChannel();
+    DataSettings &ds = dr.Settings();
+
+    uint bytes_in_channel = ds.BytesInChannel();
 
     uint16 *address = ADDRESS_READ(ch);
     uint8 *data = dr.Data(ch);
     uint8 *last = data + bytes_in_channel;
 
-    if (dr.Settings().is_clean == 1)
+    if (ds.is_clean == 1)
     {
         std::memset(data, Value::NONE, bytes_in_channel);
-        dr.Settings().is_clean = 0;
+        ds.is_clean = 0;
     }
 
     UtilizeFirstBytes(address, num_skipped);
