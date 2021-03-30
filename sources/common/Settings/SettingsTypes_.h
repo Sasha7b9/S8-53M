@@ -641,8 +641,7 @@ struct RShift
 
     static void DrawCursors();
 
-    static bool show_level_A;    // Нужно ли рисовать горизонтальную линию уровня смещения первого канала
-    static bool show_level_B;
+    static bool show_level[NumChannels];    // Нужно ли рисовать горизонтальную линию уровня смещения первого канала
     static bool draw_markers;
 
     static const int16 MIN = 20;    // Минимальное значение смещения канала по напряжению, засылаемое в аналоговую часть

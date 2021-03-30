@@ -17,8 +17,7 @@
 #include "Settings/Settings.h"
 
 
-bool RShift::show_level_A = false;
-bool RShift::show_level_B = false;
+bool RShift::show_level[NumChannels] = { false, false };
 bool RShift::draw_markers = false;
 
 bool TrigLev::need_auto_find = false;
@@ -744,8 +743,8 @@ void RShift::OnChanged(const Channel &ch)
 
     if (set.display.time_show_levels)
     {
-        if (ch.IsA()) { RShift::show_level_A = true; }
-        else { RShift::show_level_B = true; }
+        show_level[ch] = true;
+
         Timer::Enable(ch.IsA() ? TypeTimer::ShowLevelRShiftA : TypeTimer::ShowLevelRShiftB,
             set.display.time_show_levels * 1000, ch.IsA() ? FuncOnTimerDisableShowA :
             FuncOnTimerDisableShowB);
@@ -769,14 +768,14 @@ void RShift::FuncOnTimerDisableShowB()
 
 void RShift::DisableShowLevel(const Channel &ch)
 {
+    show_level[ch] = false;
+
     if (ch.IsA())
     {
-        RShift::show_level_A = false;
         Timer::Disable(TypeTimer::ShowLevelRShiftA);
     }
     else
     {
-        RShift::show_level_B = false;
         Timer::Disable(TypeTimer::ShowLevelRShiftB);
     }
 }
