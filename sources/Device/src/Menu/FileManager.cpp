@@ -363,7 +363,7 @@ void FM::RotateRegSet(int angle)
 
 bool FM::GetNameForNewFile(char name[255])
 {
-    char buffer[20];
+    char buffer[20] = "";
     int number = 1;
 
 LabelNextNumber:
@@ -400,6 +400,8 @@ LabelNextNumber:
             wr++;
         }
 
+        uint length_buffer = std::strlen(buffer);
+
         while (*ch)
         {
             if (*ch >= 0x30)        // Если текстовый символ
@@ -412,7 +414,7 @@ LabelNextNumber:
                 if (*ch == 0x07)    // Если здесь надо записать порядковый номер
                 {
                     std::strcpy(wr, Int(number).ToText(false, *(ch + 1)).c_str());
-                    wr += std::strlen(buffer);
+                    wr += length_buffer;
                     ch++;
                 }
                 else
@@ -420,7 +422,7 @@ LabelNextNumber:
                     if (*ch >= 0x01 && *ch <= 0x06)
                     {
                         std::strcpy(wr, Int((int)values[*ch]).ToText(false, 2).c_str());
-                        wr += std::strlen(buffer);
+                        wr += length_buffer;
                     }
                 }
             }
