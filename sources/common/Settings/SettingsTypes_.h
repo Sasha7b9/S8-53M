@@ -663,8 +663,7 @@ private:
     static void FuncOnTimerDisableShowB();
 
     // Отключить вспомогательную линию маркера смещения по напряжению
-    static void DisableShowLevelA();
-    static void DisableShowLevelB();
+    static void DisableShowLevel(const Channel &ch);
 };
 
 

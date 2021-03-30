@@ -757,25 +757,26 @@ void RShift::OnChanged(const Channel &ch)
 
 void RShift::FuncOnTimerDisableShowA()
 {
-    DisableShowLevelA();
+    DisableShowLevel(ChA);
 }
 
 
 void RShift::FuncOnTimerDisableShowB()
 {
-    DisableShowLevelB();
+    DisableShowLevel(ChB);
 }
 
 
-void RShift::DisableShowLevelA()
+void RShift::DisableShowLevel(const Channel &ch)
 {
-    RShift::show_level_A = false;
-    Timer::Disable(TypeTimer::ShowLevelRShiftA);
-}
-
-
-void RShift::DisableShowLevelB()
-{
-    RShift::show_level_B = false;
-    Timer::Disable(TypeTimer::ShowLevelRShiftB);
+    if (ch.IsA())
+    {
+        RShift::show_level_A = false;
+        Timer::Disable(TypeTimer::ShowLevelRShiftA);
+    }
+    else
+    {
+        RShift::show_level_B = false;
+        Timer::Disable(TypeTimer::ShowLevelRShiftB);
+    }
 }
