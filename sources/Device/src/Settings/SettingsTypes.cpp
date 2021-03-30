@@ -232,7 +232,7 @@ void RShift::Set(const Channel &ch, int16 rShift)
 
     RShift::Load(ch);
 
-    RotateRShift(ch);
+    OnChanged(ch);
 };
 
 
@@ -738,7 +738,7 @@ int TBase::StepRand()
 }
 
 
-void RShift::RotateRShift(const Channel &ch)
+void RShift::OnChanged(const Channel &ch)
 {
     set.display.last_affected_channel = ch.value;
 
@@ -746,7 +746,7 @@ void RShift::RotateRShift(const Channel &ch)
     {
         if (ch.IsA()) { RShift::show_level_A = true; }
         else { RShift::show_level_B = true; }
-        Timer::Enable(ch.IsA() ? TypeTimer::ShowLevelRShift0 : TypeTimer::ShowLevelRShift1,
+        Timer::Enable(ch.IsA() ? TypeTimer::ShowLevelRShiftA : TypeTimer::ShowLevelRShiftB,
             set.display.time_show_levels * 1000, ch.IsA() ? FuncOnTimerDisableShowA :
             FuncOnTimerDisableShowB);
     };
@@ -770,12 +770,12 @@ void RShift::FuncOnTimerDisableShowB()
 void RShift::DisableShowLevelA()
 {
     RShift::show_level_A = false;
-    Timer::Disable(TypeTimer::ShowLevelRShift0);
+    Timer::Disable(TypeTimer::ShowLevelRShiftA);
 }
 
 
 void RShift::DisableShowLevelB()
 {
     RShift::show_level_B = false;
-    Timer::Disable(TypeTimer::ShowLevelRShift1);
+    Timer::Disable(TypeTimer::ShowLevelRShiftB);
 }

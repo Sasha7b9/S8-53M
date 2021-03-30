@@ -657,7 +657,7 @@ private:
 
     static void Draw(const Channel &ch);
 
-    static void RotateRShift(const Channel &ch);
+    static void OnChanged(const Channel &ch);
 
     static void FuncOnTimerDisableShowA();
     static void FuncOnTimerDisableShowB();
