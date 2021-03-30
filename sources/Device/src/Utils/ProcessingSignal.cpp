@@ -1020,9 +1020,7 @@ float Processing::GetCursU(const Channel &ch, float posCurT)
 {   
     BitSet64 p = SettingsDisplay::PointsOnDisplay();
 
-    float result = 0.0f;
-    LIMITATION(result, (float)(200.0F - (dataIn[ch])[p.first + (int)posCurT] + Value::MIN), 0.0F, 200.0F);
-    return result;
+    return Math::Limitation((float)(200.0F - (dataIn[ch])[p.first + (int)posCurT] + Value::MIN), 0.0F, 200.0F);
 }
 
 float Processing::GetCursT(const Channel &ch, float posCurU, int numCur)

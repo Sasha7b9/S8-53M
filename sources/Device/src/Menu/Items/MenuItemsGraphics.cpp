@@ -795,8 +795,9 @@ void Page::DrawItems(int yTop) const
     }
 
     int posFirstItem = PosItemOnTop();
-    int posLastItem = posFirstItem + Menu::ITEMS_ON_DISPLAY - 1;
-    LIMITATION(posLastItem, posLastItem, 0, NumItems() - 1);
+    
+    int posLastItem = Math::Limitation(posFirstItem + Menu::ITEMS_ON_DISPLAY - 1, 0, NumItems() - 1);
+    
     int count = 0;
 
     for (int posItem = posFirstItem; posItem <= posLastItem; posItem++)

@@ -260,7 +260,8 @@ void TrigLev::Set(TrigSource::E ch, int16 trigLev)
     {
         Display::ShowWarningBad(Warning::LimitSweep_Level);
     }
-    LIMITATION(trigLev, trigLev, TrigLev::MIN, TrigLev::MAX);
+
+    Math::Limitation(&trigLev, TrigLev::MIN, TrigLev::MAX);
 
     if (trigLev > TrigLev::ZERO)
     {

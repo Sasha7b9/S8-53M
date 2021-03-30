@@ -163,7 +163,7 @@ uint8 Value::FromVoltage(const Voltage &voltage, Range::E range, int16 rshift)
     int relValue = (int)((voltage + MAX_VOLTAGE_ON_SCREEN(range) + RShift::ToAbs(rshift, range)) /
         MathFPGA::voltsInPixel[range] + Value::MIN);
 
-    LIMITATION(relValue, relValue, 0, 255);
+    Math::Limitation(&relValue, 0, 255);
 
     return (uint8)relValue;
 }

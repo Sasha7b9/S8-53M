@@ -50,24 +50,26 @@ void RotateRegMeasureSetField(int angle)
     {
         if (curs_active.IsT())
         {
-            LIMITATION(set.measures.posT[0], (int16)(SettingsMeasures::PosCursorT(0) - sign), 0,
+            set.measures.posT[0] = Math::Limitation<int16>((int16)(SettingsMeasures::PosCursorT(0) - sign),
+                0,
                 (int16)(SettingsMemory::GetNumPoints(false) - 1));
         }
         else
         {
-            LIMITATION(set.measures.posU[0], (int16)(SettingsMeasures::PosCursorU(0) + sign), 0, 200);
+            set.measures.posU[0] = Math::Limitation<int16>((int16)(SettingsMeasures::PosCursorU(0) + sign), 0, 200);
         }
     }
     if (curs_cntrl == CursCntrl::_2 || curs_cntrl == CursCntrl::_1_2)
     {
         if (curs_active.IsT())
         {
-            LIMITATION(set.measures.posT[1], (int16)(SettingsMeasures::PosCursorT(1) - sign), 0,
+            set.measures.posT[1] = Math::Limitation<int16>((int16)(SettingsMeasures::PosCursorT(1) - sign),
+                0,
                 (int16)(SettingsMemory::GetNumPoints(false) - 1));
         }
         else
         {
-            LIMITATION(set.measures.posU[1], (int16)(SettingsMeasures::PosCursorU(1) + sign), 0, 200);
+            set.measures.posU[1] = Math::Limitation<int16>((int16)(SettingsMeasures::PosCursorU(1) + sign), 0, 200);
         }
     }
 }

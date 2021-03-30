@@ -168,8 +168,7 @@ static void DrawBigMNIPI()
 
     uint time = TIME_MS - startTime;
 
-    int numColor = 0;
-    LIMITATION(numColor, (int)((float)(time) / (float)TIME_WAIT * 13.0F), 0, 13);
+    int numColor = Math::Limitation((int)((float)(time) / (float)TIME_WAIT * 13.0F), 0, 13);
 
     Color((uint8)(numColor + 2)).SetAsCurrent();
 

@@ -643,7 +643,9 @@ int Item::HeightOpened() const
     if (IsPage())
     {
         int numItems = ((const Page *)this)->NumItems() - ((Page *)this)->GetCurrentSubPage() * Menu::ITEMS_ON_DISPLAY;
-        LIMITATION(numItems, numItems, 0, Menu::ITEMS_ON_DISPLAY);
+
+        Math::Limitation(&numItems, 0, Menu::ITEMS_ON_DISPLAY);
+
         return Item::TITLE_HEIGHT + Item::HEIGHT * numItems;
     }
     else if (IsChoice() || IsChoiceReg())

@@ -9,6 +9,7 @@
 template void  Math::Swap(int *, int *);
 template void  Math::Swap(uint8 *, uint8 *);
 template void  Math::Limitation(int *, int, int);
+template void  Math::Limitation(int16 *, int16, int16);
 template void  Math::LimitAbove(int16 *, int16);
 template void  Math::LimitBelow(int16 *, int16);
 template void  Math::LimitBelow(float *, float);
@@ -17,6 +18,7 @@ template uint  Math::MinFrom2(uint, uint);
 template int   Math::Limitation(int, int, int);
 template uint8 Math::Limitation(uint8, uint8, uint8);
 template float Math::Limitation(float, float, float);
+template int16 Math::Limitation(int16, int16, int16);
 template void  Math::Sort(int *, int *);
 template float Math::Max(float, float, float);
 template int8  Math::CircleIncrease(int8 *val, int8 min, int8 max);

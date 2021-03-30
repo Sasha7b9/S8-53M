@@ -203,6 +203,7 @@ void RShift::Set(const Channel &ch, int16 rShift)
     {
         return;
     }
+
     Display::ChangedRShiftMarkers();
 
     if (rShift > RShift::MAX || rShift < RShift::MIN)
@@ -210,7 +211,7 @@ void RShift::Set(const Channel &ch, int16 rShift)
         Display::ShowWarningBad(ch == ChA ? Warning::LimitChan1_RShift : Warning::LimitChan2_RShift);
     }
 
-    LIMITATION(rShift, rShift, RShift::MIN, RShift::MAX);
+    Math::Limitation(&rShift, RShift::MIN, RShift::MAX);
 
     if (rShift > RShift::ZERO)
     {
@@ -330,7 +331,8 @@ void TShift::Set(int tShift)
 
     if (tShift < TShift::Min() || tShift > TShift::MAX)
     {
-        LIMITATION(tShift, tShift, TShift::Min(), TShift::MAX);
+        Math::Limitation<int>(&tShift, TShift::Min(), TShift::MAX);
+
         Display::ShowWarningBad(Warning::LimitSweep_TShift);
     }
 

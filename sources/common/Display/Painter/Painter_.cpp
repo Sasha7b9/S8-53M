@@ -90,12 +90,12 @@ void Painter::DrawPicture(int , int , int , int , uint8 *)
 
 uint Painter::ReduceBrightness(uint colorValue, float newBrightness)
 {
-    int red = (int)(R_FROM_COLOR(colorValue) * newBrightness);
-    LIMITATION(red, red, 0, 31);
-    int green = (int)(G_FROM_COLOR(colorValue) * newBrightness);
-    LIMITATION(green, green, 0, 63);
-    int blue = (int)(B_FROM_COLOR(colorValue) * newBrightness);
-    LIMITATION(blue, blue, 0, 31);
+    int red = Math::Limitation((int)(R_FROM_COLOR(colorValue) * newBrightness), 0, 31);
+
+    int green = Math::Limitation((int)(G_FROM_COLOR(colorValue) * newBrightness), 0, 63);
+
+    int blue = Math::Limitation((int)(B_FROM_COLOR(colorValue) * newBrightness), 0, 31);
+
     return Color::Make((uint8)(red), (uint8)(green), (uint8)(blue));
 }
 

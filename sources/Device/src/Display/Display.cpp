@@ -501,7 +501,8 @@ void Display::Clear()
 
 void Display::ShiftScreen(int delta)
 {
-    LIMITATION(set.display.shift_in_memory, (int16)(TShift::GetInMemory() + delta), 0,
+    set.display.shift_in_memory = Math::Limitation<int16>((int16)(TShift::GetInMemory() + delta),
+        0,
         (int16)(SettingsMemory::GetNumPoints(false) - 282));
 }
 

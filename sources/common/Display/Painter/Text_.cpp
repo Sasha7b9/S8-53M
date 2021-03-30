@@ -630,7 +630,7 @@ static bool GetHeightTextWithTransfers(int left, int top, int right, pchar text,
         y += 9;
     }
 
-    LIMITATION(*height, y - top + 4, 0, 239);
+    *height = Math::Limitation(y - top + 4, 0, 239);
 
     return curSymbol == numSymb;
 }
