@@ -768,14 +768,9 @@ void RShift::FuncOnTimerDisableShowB()
 
 void RShift::DisableShowLevel(const Channel &ch)
 {
+    static const TypeTimer::E types[NumChannels] = { TypeTimer::ShowLevelRShiftA, TypeTimer::ShowLevelRShiftB };
+
     show_level[ch] = false;
 
-    if (ch.IsA())
-    {
-        Timer::Disable(TypeTimer::ShowLevelRShiftA);
-    }
-    else
-    {
-        Timer::Disable(TypeTimer::ShowLevelRShiftB);
-    }
+    Timer::Disable(types[ch]);
 }
