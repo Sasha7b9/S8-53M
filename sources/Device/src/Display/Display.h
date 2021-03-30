@@ -79,14 +79,13 @@ public:
 
     static void OnRShiftMarkersAutoHide();
 
+    static int DrawScaleLine(int x, bool for_trig_level);
+
 private:
 
     static void ShowWarn(pchar message);
 
     static void DrawCursorsWindow();
-
-    // Нарисовать маркер уровня синхронизации.
-    static void DrawCursorTrigLevel();
 
     // Нарисовать маркер смещения по времени.
     static void DrawCursorTShift();
@@ -98,8 +97,6 @@ private:
     static void DrawWarnings();
 
     static int CalculateFreeSize();
-
-    static void DrawScaleLine(int x, bool forTrigLev);
 
     static void FuncOnTimerDisableShowLevelRShiftA();
 

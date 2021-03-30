@@ -154,7 +154,7 @@ void Display::Update()
         TopPart::Draw();
         BottomPart::Draw();
         DrawCursorsWindow();
-        DrawCursorTrigLevel();
+        TrigLev::DrawCursor();
         RShift::Draw();
         Measure::DrawAll();
         DrawStringNavigation();
@@ -206,15 +206,15 @@ void Display::WriteValueTrigLevel()
 }
 
 
-#define  DELTA 5
-
-
-void Display::DrawScaleLine(int x, bool forTrigLev)
+int Display::DrawScaleLine(int x, bool forTrigLev)
 {
+    static const int DELTA = 5;
+
     if(set.display.alt_markers.IsHide())
     {
-        return;
+        return DELTA;
     }
+
     int width = 6;
     int topY = Grid::TOP + DELTA;
     int x2 = width + x + 2;
@@ -228,10 +228,13 @@ void Display::DrawScaleLine(int x, bool forTrigLev)
         centerY - (bottomY - topY) / (forTrigLev ? 8 : 4),
         centerY + (bottomY - topY) / (forTrigLev ? 8 : 4)
     };
+
     for(int i = 0; i < 5; i++)
     {
         Line().Draw(x + 1, levels[i], x2 - 1, levels[i], Color::FILL);
     }
+
+    return DELTA;
 }
 
 
@@ -240,65 +243,6 @@ void Display::DrawCursorsWindow()
     if((!Menu::IsMinimize() || !Menu::IsShown()) && RShift::draw_markers)
     {
         DrawScaleLine(2, false);
-    }
-}
-
-
-void Display::DrawCursorTrigLevel()
-{
-    TrigSource::E ch = TrigSource::Get();
-    if (ch == TrigSource::Ext)
-    {
-        return;
-    }
-    int trigLev = TrigLev::Get(ch) + (RShift::Get((Channel::E)ch) - RShift::ZERO);
-    float scale = 1.0F / ((TrigLev::MAX - TrigLev::MIN) / 2.0F / Grid::ChannelHeight());
-    int y0 = (int)((Grid::TOP + Grid::ChannelBottom()) / 2 + scale * (TrigLev::ZERO - TrigLev::MIN));
-    int y = (int)(y0 - scale * (trigLev - TrigLev::MIN));
-
-    y = (y - Grid::ChannelCenterHeight()) + Grid::ChannelCenterHeight();
-
-    int x = Grid::Right();
-    Color::Trig().SetAsCurrent();
-    if(y > Grid::ChannelBottom())
-    {
-        Char(Symbol::S8::TRIG_LEV_LOWER).Draw(x + 3, Grid::ChannelBottom() - 11);;
-        Point().Draw(x + 5, Grid::ChannelBottom() - 2);
-        y = Grid::ChannelBottom() - 7;
-        x--;
-    }
-    else if(y < Grid::TOP)
-    {
-        Char(Symbol::S8::TRIG_LEV_ABOVE).Draw(x + 3, Grid::TOP + 2);
-        Point().Draw(x + 5, Grid::TOP + 2);
-        y = Grid::TOP + 7;
-        x--;
-    }
-    else
-    {
-        Char(Symbol::S8::TRIG_LEV_NORMAL).Draw(x + 1, y - 4);
-    }
-    Font::Set(TypeFont::S5);
-
-    const char simbols[3] = {'1', '2', 'Â'};
-
-    Char(simbols[TrigSource::Get()]).Draw(x + 5, y - 9, Color::BACK);
-    Font::Set(TypeFont::S8);
-
-    if (RShift::draw_markers && !Menu::IsMinimize())
-    {
-        DrawScaleLine(WIDTH - 11, true);
-        int left = Grid::Right() + 9;
-        int height = Grid::ChannelHeight() - 2 * DELTA;
-        int shiftFullMin = RShift::MIN + TrigLev::MIN;
-        int shiftFullMax = RShift::MAX + TrigLev::MAX;
-        scale = (float)height / (shiftFullMax - shiftFullMin);
-        int shiftFull = TrigLev::Get() + (TrigSource::IsExt() ? 0 : RShift::Get((Channel::E)ch));
-        int yFull = (int)(Grid::TOP + DELTA + height - scale * (shiftFull - RShift::MIN - TrigLev::MIN) - 4);
-        Region(4, 6).Fill(left + 2, yFull + 1, Color::Trig());
-        Font::Set(TypeFont::S5);
-        Char(simbols[TrigSource::Get()]).Draw(left + 3, yFull - 5, Color::BACK);
-        Font::Set(TypeFont::S8);
     }
 }
 

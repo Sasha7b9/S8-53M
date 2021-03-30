@@ -1110,6 +1110,8 @@ struct TrigLev
     // Найти и установить уровень синхронизации по последнему считанному сигналу
     static void FindAndSet();
 
+    static void DrawCursor();
+
     static bool need_auto_find;   // Если true, то нужно произвести поиск синхронизации
 
     static const int16 MIN = RShift::MIN;
