@@ -58,5 +58,5 @@ namespace Math
     // Прибавить к значению по адресу val delta. Если результат не вписывается в диапазон [min; max], ограничить
     template<class T> void AddLimitation(T *val, T delta, T min, T max);
 
-    extern float Pi;
+    extern const float Pi;
 }

@@ -30,7 +30,7 @@ template int   Math::CircleDecrease(int *val, int min, int max);
 template void  Math::AddLimitation(float *val, float delta, float min, float max);
 
 
-float Math::Pi = 3.14159265358979323846F;
+const float Math::Pi = 3.14159265358979323846F;
 
 
 template<class T>
