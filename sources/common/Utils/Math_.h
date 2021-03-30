@@ -1,11 +1,6 @@
 // 2021/03/01 10:48:35 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
 
-//#define LIMITATION(var, value, min, max) \
-//   var = (value); if(var < (min)) { var = (min); } else if(var > (max)) { var = (max); };
-
-#define LIMITATION_BOUND(var, min, max)     if((var) < (min)) { (min) = (var); }; if((var) > (max)) { (max) = (var); };
-
 #define ROUND(x) (x.value += 0.5F, x.value)
 
 #define PI 3.141592653589793F
