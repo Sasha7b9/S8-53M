@@ -1486,6 +1486,16 @@
               <FileType>8</FileType>
               <FilePath>.\src\Display\PainterData.cpp</FilePath>
             </File>
+            <File>
+              <FileName>TopPart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\TopPart.h</FilePath>
+            </File>
+            <File>
+              <FileName>TopPart.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\TopPart.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3670,6 +3680,16 @@
               <FileName>PainterData.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Display\PainterData.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TopPart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\TopPart.h</FilePath>
+            </File>
+            <File>
+              <FileName>TopPart.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\TopPart.cpp</FilePath>
             </File>
           </Files>
         </Group>

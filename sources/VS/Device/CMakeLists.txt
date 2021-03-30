@@ -68,13 +68,12 @@ file(GLOB LIBS_HAL          ../../common/_VS_GUI/HAL/*.*)
 file(GLOB LIBS_USBH         ../../common/_VS_GUI/USBH/*.*)
 file(GLOB LIBS_USBD         ../../common/_VS_GUI/USBD/*.*)
 file(GLOB DISPLAY           ../../Device/src/Display/BottomPart.*
-                            ../../Device/src/Display/Colors.*
                             ../../Device/src/Display/Colors_d.cpp
                             ../../Device/src/Display/Display.*
                             ../../Device/src/Display/Grid.*
                             ../../Device/src/Display/Painter.*
                             ../../Device/src/Display/PainterData.*
-                            ../../Device/src/Display/PainterText.cpp
+                            ../../Device/src/Display/TopPart.*
                                 ../../common/Display/Colors_.*
                                          src/Display/*.*)
 file(GLOB DISPLAY_FONT          ../../common/Display/Font/*.*)

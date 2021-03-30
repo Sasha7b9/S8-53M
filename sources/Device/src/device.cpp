@@ -37,7 +37,7 @@ void Device::Init()
 }
 
 
-static void WriteFPS()
+void Device::WriteFPS()
 {
     static uint timePrev = 0;
     static int counter = 0;
@@ -56,8 +56,6 @@ static void WriteFPS()
 
 void Device::Update()
 {
-//    WriteFPS();
-
     HAL_TIM2::StartMultiMeasurement();
     FPGA::Update();
     Panel::Update();

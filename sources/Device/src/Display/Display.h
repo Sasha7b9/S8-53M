@@ -40,8 +40,6 @@ public:
 
     static void Redraw();
 
-    static void EnableTrigLabel(bool enable);
-
     static void ShowWarningBad(Warning::E warning);
 
     static void ShowWarningGood(Warning::E warning);
@@ -92,13 +90,6 @@ private:
 
     // Ќарисовать маркер смещени€ по времени.
     static void DrawCursorTShift();
-
-    static void DrawHiPart();
-
-    static void DrawHiRightPart();
-
-    // ¬ывести значени€ курсоров курсорных измерений.
-    static void WriteCursors();
 
     // Ќаписать сообщени€ отладочной консоли.
     static void DrawConsole();

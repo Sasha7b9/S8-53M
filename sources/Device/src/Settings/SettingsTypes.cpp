@@ -17,6 +17,7 @@ bool RShift::show_level_B = false;
 bool RShift::draw_markers = false;
 
 bool TrigLev::need_auto_find = false;
+bool TrigLev::exist_impulse = false;
 
 TBase::E TBase::MIN_P2P = TBase::_20ms;
 TBase::E TBase::MIN_PEAK_DET = TBase::_500ns;

@@ -385,7 +385,7 @@ void Panel::EnableLEDTrig(bool enable)
     if(first)
     {
         Panel::TransmitData(LED_TRIG_DISABLE);
-        Display::EnableTrigLabel(false);
+        TrigLev::exist_impulse = false;
         timeEnable = TIME_MS;
         first = false;
     }
@@ -400,13 +400,13 @@ void Panel::EnableLEDTrig(bool enable)
         if(enable)
         {
             Panel::TransmitData(LED_TRIG_ENABLE);
-            Display::EnableTrigLabel(true);
+            TrigLev::exist_impulse = true;
             fired = true;
         }
         else if(TIME_MS - timeEnable > 100)
         {
             Panel::TransmitData(LED_TRIG_DISABLE);
-            Display::EnableTrigLabel(false);
+            TrigLev::exist_impulse = false;
             fired = false;
         }
     }
