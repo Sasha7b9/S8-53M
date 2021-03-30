@@ -153,7 +153,7 @@ void Display::Update()
         Cursors::Draw();
         TopPart::Draw();
         BottomPart::Draw();
-        DrawCursorsWindow();
+        RShift::DrawCursors();
         TrigLev::DrawCursor();
         RShift::Draw();
         Measure::DrawAll();
@@ -235,15 +235,6 @@ int Display::DrawScaleLine(int x, bool forTrigLev)
     }
 
     return DELTA;
-}
-
-
-void Display::DrawCursorsWindow()
-{
-    if((!Menu::IsMinimize() || !Menu::IsShown()) && RShift::draw_markers)
-    {
-        DrawScaleLine(2, false);
-    }
 }
 
 

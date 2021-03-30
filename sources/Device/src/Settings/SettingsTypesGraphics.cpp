@@ -29,6 +29,15 @@ void RShift::Draw()
 }
 
 
+void RShift::DrawCursors()
+{
+    if ((!Menu::IsMinimize() || !Menu::IsShown()) && RShift::draw_markers)
+    {
+        Display::DrawScaleLine(2, false);
+    }
+}
+
+
 void RShift::Draw(const Channel &ch)
 {
     float x = (float)(Grid::Right() - Grid::Width() - Measure::GetDeltaGridLeft());

@@ -639,6 +639,8 @@ struct RShift
 
     static void Draw();
 
+    static void DrawCursors();
+
     static bool show_level_A;    // Нужно ли рисовать горизонтальную линию уровня смещения первого канала
     static bool show_level_B;
     static bool draw_markers;

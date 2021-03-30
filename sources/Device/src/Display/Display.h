@@ -85,8 +85,6 @@ private:
 
     static void ShowWarn(pchar message);
 
-    static void DrawCursorsWindow();
-
     // Ќарисовать маркер смещени€ по времени.
     static void DrawCursorTShift();
 
