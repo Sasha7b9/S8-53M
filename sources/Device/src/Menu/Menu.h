@@ -71,6 +71,8 @@ public:
     // Повернуть ручку УСТАНОВКА на текущей странице малых кнопок.
     static void CurrentPageSBregSet(int angle);
 
+    static void DrawStringNavigation();
+
     static bool showHelpHints;      // Если 1, то при нажатии кнопки вместо выполнения её фунции выводится подсказка о её назначении
     static bool showDebugMenu;
     static bool needClosePageSB;    // Если 1, нужно закрывать страницу малых кнопок

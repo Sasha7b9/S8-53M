@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "common/Display/Painter/Primitives_.h"
 #include "common/Display/Painter/Text_.h"
 #include "common/Utils/Math_.h"
 #include "Menu/Menu.h"
@@ -115,4 +116,20 @@ int Item::OpenedPosY() const
         y = Grid::Bottom() - HeightOpened() - 2;
     }
     return y + 1;
+}
+
+
+void Menu::DrawStringNavigation()
+{
+    Text string = Menu::StringNavigation();
+
+    uint length = string.Size();
+
+    if (length != 0)
+    {
+        int height = 10;
+        Rectangle((int)length + 2, height).Draw(Grid::Left(), Grid::TOP, Color::FILL);
+        Region((int)length, height - 2).Fill(Grid::Left() + 1, Grid::TOP + 1, Color::BACK);
+        string.Draw(Grid::Left() + 2, Grid::TOP + 1, Color::FILL);
+    }
 }

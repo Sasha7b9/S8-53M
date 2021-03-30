@@ -108,8 +108,6 @@ private:
 
     static void DrawStringInRectangle(int x, int y, char const *text);
 
-    static void DrawStringNavigation();
-
     static int FirstEmptyString();
 
     static bool NeedForClearScreen();
