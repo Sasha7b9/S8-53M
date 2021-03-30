@@ -307,3 +307,9 @@ int Float::NumDigitsInIntPart(float val)
 
     return numDigitsInInt;
 }
+
+
+float Float::Round() const
+{
+    return (value + 0.5F);
+}

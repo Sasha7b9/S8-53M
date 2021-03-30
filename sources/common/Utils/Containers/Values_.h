@@ -23,6 +23,8 @@ struct Float : public ValueStruct<float>
 
     Text ToText(bool always_sign, int num_digits);
 
+    float Round() const;
+
 private:
 
     int NumDigitsInIntPart(float val);

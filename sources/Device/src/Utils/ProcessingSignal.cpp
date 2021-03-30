@@ -210,7 +210,7 @@ Float Processing::CalculateVoltageMinSteady(Channel::E ch)
 
     if(set.measures.marked.Is(Measure::VoltageMinSteady))
     {
-        markerHor[ch][0] = (int)ROUND(min);
+        markerHor[ch][0] = (int)min.Round();
     }
 
     return (Value::ToVoltage((uint8)min, dataSet->range[ch], (ch == ChA) ?

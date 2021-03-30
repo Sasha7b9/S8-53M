@@ -1,8 +1,6 @@
 // 2021/03/01 10:48:35 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
 
-#define ROUND(x) (x.value += 0.5F, x.value)
-
 #define PI 3.141592653589793F
 
 namespace Math
