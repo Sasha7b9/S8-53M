@@ -43,6 +43,12 @@ void Line::Draw(int x0, int y0, int x1, int y1, const Color &color) const
 {
     color.SetAsCurrent();
 
+    Draw(x0, y0, x1, y1);
+}
+
+
+void Line::Draw(int x0, int y0, int x1, int y1) const
+{
     if (x0 == x1)
     {
         HLine().Draw(x0, y0, y1);

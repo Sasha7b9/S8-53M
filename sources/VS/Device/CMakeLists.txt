@@ -67,14 +67,11 @@ file(GLOB LIBS_LWIP         ../../common/_VS_GUI/LwIP/*.*)
 file(GLOB LIBS_HAL          ../../common/_VS_GUI/HAL/*.*)
 file(GLOB LIBS_USBH         ../../common/_VS_GUI/USBH/*.*)
 file(GLOB LIBS_USBD         ../../common/_VS_GUI/USBD/*.*)
-file(GLOB DISPLAY           ../../Device/src/Display/BottomPart.*
-                            ../../Device/src/Display/Console.*
+file(GLOB DISPLAY           ../../Device/src/Display/Console.*
                             ../../Device/src/Display/Colors_d.cpp
                             ../../Device/src/Display/Display.*
-                            ../../Device/src/Display/Grid.*
                             ../../Device/src/Display/Painter.*
                             ../../Device/src/Display/PainterData.*
-                            ../../Device/src/Display/TopPart.*
                             ../../Device/src/Display/Warnings.*
                                 ../../common/Display/Colors_.*
                                          src/Display/*.*)

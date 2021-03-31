@@ -209,7 +209,7 @@ void FPGA::BUS::Write(uint16 * const address, uint16 data)
 
 void FPGA::BUS::WriteWithoutStart(uint16 * const address, uint16 data)
 {
-    *address = data;
+    HAL_FMC::Write(address, data);
 }
 
 

@@ -117,6 +117,7 @@ class Line
 {
 public:
     void Draw(int x0, int y0, int x1, int y1, const Color &color) const;
+    void Draw(int x0, int y0, int x1, int y1) const;
 };
 
 

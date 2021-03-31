@@ -282,9 +282,9 @@ struct SettingsTime
 {
     TBase::E            base;           // Масштаб по времени.
     FunctionTime::E     function_time;
-    TPos::E             t_pos;          // Привязка синхронизации к памяти.
+    TPos                t_pos;          // Привязка синхронизации к памяти.
     SampleType::E       sample_type;    // Тип выборки для режима рандомизатора.
-    PeackDetMode::E     peak_det;       // Режим работы пикового детектора
+    PeackDetMode        peak_det;       // Режим работы пикового детектора
     ENUM_POINTS_FPGA::E old_num_points; // \brief Когда переключаемся в режим пикового детектора, устанавливаем
                                         // количество точек в 1024, а сюда  записываем то, что было, чтобы потом
                                         // восстановить.

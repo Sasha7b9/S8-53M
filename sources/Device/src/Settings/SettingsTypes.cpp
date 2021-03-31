@@ -410,12 +410,6 @@ int Channel::ToNumber() const
 }
 
 
-TPos::E TPos::Get()
-{
-    return set.time.t_pos;
-}
-
-
 bool TPos::IsLeft()
 {
     return (set.time.t_pos == TPos::Left);
@@ -475,7 +469,7 @@ int16 TShift::Min()
 
     if ((int)enumPoints < 3)
     {
-        return m[enumPoints][TPos::Get()];
+        return m[enumPoints][set.time.t_pos];
     }
 
     LOG_ERROR("");
@@ -562,11 +556,11 @@ ENUM_POINTS_FPGA::E ENUM_POINTS_FPGA::FromPoints(uint num_points)
 
     static const Struct structs[Count] =
     {
-        { 8192, _16384 },
-        { 4096, _8192 },
-        { 2048, _4096 },
-        { 1024, _2048 },
-        { 512,  _1024 },
+        { 8192, _16k },
+        { 4096, _8k },
+        { 2048, _4k },
+        { 1024, _2k },
+        { 512,  _1k},
         { 281,  _512 },
         { 1,    _281}
     };
@@ -579,7 +573,7 @@ ENUM_POINTS_FPGA::E ENUM_POINTS_FPGA::FromPoints(uint num_points)
         }
     }
 
-    return ENUM_POINTS_FPGA::_16384;
+    return ENUM_POINTS_FPGA::_16k;
 }
 
 

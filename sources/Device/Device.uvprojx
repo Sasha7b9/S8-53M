@@ -1626,6 +1626,16 @@
               <FileType>8</FileType>
               <FilePath>.\src\Display\Screen\TopPart.cpp</FilePath>
             </File>
+            <File>
+              <FileName>MemoryWindow.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\Screen\MemoryWindow.h</FilePath>
+            </File>
+            <File>
+              <FileName>MemoryWindow.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\Screen\MemoryWindow.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3845,6 +3855,16 @@
               <FileName>TopPart.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Display\Screen\TopPart.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MemoryWindow.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Display\Screen\MemoryWindow.h</FilePath>
+            </File>
+            <File>
+              <FileName>MemoryWindow.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Display\Screen\MemoryWindow.cpp</FilePath>
             </File>
           </Files>
         </Group>

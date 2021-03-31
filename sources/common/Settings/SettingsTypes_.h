@@ -488,11 +488,15 @@ struct PeackDetMode
         Disable,
         Enable,
         Average
-    };
+    } value;
+
+    PeackDetMode(E v = Disable) : value(v) {}
 
     static void Set(PeackDetMode::E mode);
     static PeackDetMode::E Get();
     static bool IsEnabled();
+
+    operator E() const { return value; }
 };
 
 
@@ -504,15 +508,18 @@ struct TPos
         Left,      // Синхронизация привязана к началу памяти.
         Center,    // Синхронизация привязана к центру памяти.
         Right      // Синхронизация привязана к концу памяти.
-    };
+    } value;
 
-    static E Get();
+    TPos(E v = Center) : value(v) {}
+
     static bool IsLeft();
     static bool IsCenter();
     static bool IsRight();
 
     // Узнать привязку отсительно уровня синхронизации в точках
     static int InPoints(PeackDetMode::E peak_det, uint num_points, E t_pos);
+
+    operator E() const { return value; }
 };
 
 

@@ -2,6 +2,7 @@
 #pragma once
 
 
+
 namespace Math
 {
     uint8 GetMaxFromArray(puchar data, uint first_point, uint last_point);

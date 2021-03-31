@@ -1,8 +1,13 @@
 // 2021/03/30 15:51:32 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
+#include "common/Display/Font/Font_.h"
 #include "common/Display/Painter/Primitives_.h"
+#include "common/Utils/Math_.h"
 #include "Display/Screen/Grid.h"
 #include "Display/Screen/MemoryWindow.h"
+#include "FPGA/FPGA_Types.h"
+#include "FPGA/Data/DataSettings.h"
+#include "FPGA/Data/Storage.h"
 #include "Settings/Settings.h"
 
 
@@ -32,37 +37,42 @@ void MemoryWindow::Draw(DataReading &data)
 }
 
 
-void MemoryWindow::DrawDataInRect(int width, const Channel &ch, DataReading &data)
+void MemoryWindow::DrawDataInRect(int width, const Channel &ch, DataReading &_data)
 {
-    if (!dataStruct->needDraw[ch])
+    DataSettings &ds = _data.Settings();
+
+    if (!ds.IsEnabled(ch))
     {
         return;
     }
 
-    uint8 *data = OUT(ch);
+    uint8 *data = _data.Data(ch);
 
-    float elemsInColumn = NUM_BYTES_SET / (float)width;
+    float elems_in_column = ds.BytesInChannel() / (float)width;
 
 #undef SIZE_BUFFER
 #define SIZE_BUFFER 300
+
     uint8 min[SIZE_BUFFER];
     uint8 max[SIZE_BUFFER];
 
-    if (PEAKDET_DS != PeakDet_Disabled)                                 // Если пик. дет. включен
+    if (ds.peak_det != 0)                                 // Если пик. дет. включен
     {
-        uint8 *iMin = &min[0];
-        uint8 *iMax = &max[0];
+        uint8 *mini = &min[0];
+        uint8 *maxi = &max[0];
 
-        for (int col = 0; col < width; col++, iMin++, iMax++)
+        for (int col = 0; col < width; col++, mini++, maxi++)
         {
-            uint firstElem = (uint)(col * elemsInColumn);
-            uint lastElem = (uint)(firstElem + elemsInColumn - 1);
-            *iMin = data[firstElem];
-            *iMax = data[firstElem];
-            for (uint elem = firstElem + 1; elem <= lastElem; elem++)
+            uint first = (uint)(col * elems_in_column);
+            uint last = (uint)(first + elems_in_column - 1);
+            *mini = data[first];
+            *maxi = data[first];
+
+            for (uint elem = first + 1; elem <= last; elem++)
             {
-                SET_MIN_IF_LESS(data[elem], *iMin);
-                SET_MAX_IF_LARGER(data[elem], *iMax);
+                uint8 d = data[elem];
+                if (d < *mini) { *mini = d; }
+                if (d > *maxi) { *maxi = d; }
             }
         }
     }
@@ -70,14 +80,16 @@ void MemoryWindow::DrawDataInRect(int width, const Channel &ch, DataReading &dat
     {
         for (int col = 0; col < width; col++)
         {
-            uint firstElem = (uint)(col * elemsInColumn);
-            uint lastElem = (uint)(firstElem + elemsInColumn - 1);
-            min[col] = data[firstElem];
-            max[col] = data[firstElem];
-            for (uint elem = firstElem + 1; elem <= lastElem; elem++)
+            uint first = (uint)(col * elems_in_column);
+            uint last = (uint)(first + elems_in_column - 1);
+            min[col] = data[first];
+            max[col] = data[first];
+
+            for (uint elem = first + 1; elem <= last; elem++)
             {
-                SET_MIN_IF_LESS(data[elem], min[col]);
-                SET_MAX_IF_LARGER(data[elem], max[col]);
+                uint8 d = data[elem];
+                if (d < min[col]) { min[col] = d; }
+                if (d > max[col]) { max[col] = d; }
             }
         }
     }
@@ -85,7 +97,7 @@ void MemoryWindow::DrawDataInRect(int width, const Channel &ch, DataReading &dat
     int mines[SIZE_BUFFER];     // Массив для максимальных значений в каждом столбике
     int maxes[SIZE_BUFFER];     // Массив для минимальных значений в каждом столбике
 
-    float scale = 17.0f / (MAX_VALUE - MIN_VALUE);
+    float scale = 17.0f / (Value::MAX - Value::MIN);
 
     mines[0] = Ordinate(max[0], scale);
     maxes[0] = Ordinate(min[0], scale);
@@ -133,25 +145,32 @@ void MemoryWindow::DrawDataInRect(int width, const Channel &ch, DataReading &dat
 void MemoryWindow::DrawTPos(int leftX, int rightX)
 {
     int x[] = { leftX, (rightX - leftX) / 2 + leftX, rightX };
-    int x0 = x[TPOS];
-    Painter::FillRegion(x0 - 3, 10, 6, 6, Color::BACK);
-    Painter::DrawChar(x0 - 3, 10, SYMBOL_TPOS_1, Color::FILL);
+    int x0 = x[set.time.t_pos];
+
+    Region(6, 6).Fill(x0 - 3, 10, Color::BACK);
+
+    Char(Symbol::S8::TPOS_1).Draw(x0 - 3, 10, Color::FILL);
 }
 
 
-void MemoryWindow::DrawTShift(int leftX, int rightX, int numBytes)
+void MemoryWindow::DrawTShift(int leftX, int rightX, uint numBytes)
 {
     float scale = (float)(rightX - leftX + 1) / ((float)numBytes - (numBytes == 281 ? 1 : 0));
-    int xShift = (int)(1.5f + (TPOS_IN_BYTES - TSHIFT_IN_POINTS) * scale) - 1;
-    if (SET_PEAKDET_EN && TPOS_IS_RIGHT)
+
+    int xShift = (int)(1.5f + (TPos::InPoints(set.time.peak_det, set.memory.enum_points_fpga.ToPoints(), set.time.t_pos) -
+        TShift::InPoints(set.time.peak_det)) * scale) - 1;
+
+    if (set.time.peak_det.IsEnabled() && set.time.t_pos.IsRight())
     {
         --xShift;
     }
-    if (FPGA_POINTS_512)
+
+    if (set.memory.enum_points_fpga == ENUM_POINTS_FPGA::_512)
     {
         ++xShift;                           /// \todo Костыль
     }
-    LIMIT_ABOVE(xShift, rightX - 2);
+
+    Math::LimitAbove(&xShift, rightX - 2);
 
     int dX01 = 1, dX02 = 2, dX11 = 3, dY11 = 7, dY12 = 6;
 
@@ -170,8 +189,41 @@ void MemoryWindow::DrawTShift(int leftX, int rightX, int numBytes)
         dY11 = 5; dY12 = 7;
     }
 
-    Painter::FillRegion((int)xShift - 1, 1, 6, 6, Color::BACK);
-    Painter::FillRegion((int)xShift, 2, 4, 4, Color::FILL);
-    Painter::DrawLine((int)xShift + dX01, 3, (int)xShift + dX11, dY11 - 2, Color::BACK);
-    Painter::DrawLine((int)xShift + dX02, 4, (int)xShift + 2, dY12 - 2);
+    Region(6, 6).Fill((int)xShift - 1, 1, Color::BACK);
+    Region(4, 4).Fill((int)xShift, 2, Color::FILL);
+
+    Line().Draw((int)xShift + dX01, 3, (int)xShift + dX11, dY11 - 2, Color::BACK);
+    Line().Draw((int)xShift + dX02, 4, (int)xShift + 2, dY12 - 2);
+}
+
+
+int MemoryWindow::Ordinate(uint8 x, float scale)
+{
+    if (x == Value::NONE)
+    {
+        return -1;
+    }
+
+    Math::Limitation<uint8>((uint8)(x - Value::MIN), 0, (Value::MAX - Value::MIN));
+
+    return (int)((17.0f - scale * x) + 0.5f);
+}
+
+
+void MemoryWindow::SendToDisplayDataInRect(const Channel &ch, int x, int *min, int *max, int width)
+{
+    Math::LimitAbove(&width, 255);
+
+#undef SIZE_BUFFER
+#define SIZE_BUFFER (255 * 2)
+
+    uint8 points[SIZE_BUFFER];
+
+    for (int i = 0; i < width; i++)
+    {
+        points[i * 2] = (uint8)max[i];
+        points[i * 2 + 1] = (uint8)(min[i] < 0 ? 0 : min[i]);
+    }
+
+    VLineArray().Draw(x, (int)width, points, ch.GetColor());
 }
