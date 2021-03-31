@@ -29,18 +29,10 @@ void HAL_FMC::Write(uint16 * const address, uint16 value)
         HAL_ADC1::ResetValue();
     }
 
-//    if (address == WR_STOP)
-//    {
-//        LOG_WRITE("WR_STOP");
-//    }
-//    else if (address == WR_START)
-//    {
-//        LOG_WRITE("WR_START");
-//    }
-//    else if (address == WR_RAZV)
-//    {
-//        LOG_WRITE("WR_RAZV");
-//    }
+    if (address == WR_UPR)
+    {
+        LOG_WRITE(Uint16(value).ToStringBin().c_str());
+    }
 
     *address = value;
 }

@@ -1,3 +1,10 @@
+31.03.2021
+- Сделать отрисовку в режиме пикового детектора
+
+
+
+
+
 *** Обязательно ***
 - Display.cpp:Display::WriteTextVoltage:1140
     При замене String::Draw() на Text::Draw() зависает в release-версии

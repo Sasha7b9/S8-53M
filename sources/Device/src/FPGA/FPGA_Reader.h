@@ -29,10 +29,6 @@ private:
 
     struct Read
     {
-        static void PeakDetOn(DataReading &);
-
-        static void PeakDetOff(DataReading &);
-
         struct Real
         {
             static void Channel(DataReading &data, const Channel &ch, uint16 addr_stop);
@@ -47,7 +43,7 @@ private:
             static bool IndexFirstPoint(int *first_out, int *skipped_out);
 
             // —читать и выбрость num_words данных по адресу address
-            static void UtilizeFirstBytes(uint16 *address, int num_words);
+            static void UtilizeFirstBytes(const uint16 * const address, int num_words);
         };
     };
 };

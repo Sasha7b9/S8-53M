@@ -36,7 +36,7 @@ int   ReaderFPGA::addition_shift = 0;
 Mutex ReaderFPGA::mutex_read;
 
 
-uint16 *addresses_ADC[2] = { RD_ADC_A, RD_ADC_B };
+static const uint16 *const addresses_ADC[2] = { RD_ADC_A, RD_ADC_B };
 
 
 void ReaderFPGA::ReadData()
@@ -45,40 +45,22 @@ void ReaderFPGA::ReadData()
 
     DataReadingKeeper data;
 
-    if (data.data->Settings().IsEnabledPeakDet())
+    uint16 addr_stop = ReadAddressStop();
+
+    if (TBase::IsRandomize())
     {
-        Read::PeakDetOn(*data.data);
+        Read::Randomizer::Channel(*data.data, ChA, addr_stop);
+        Read::Randomizer::Channel(*data.data, ChB, addr_stop);
     }
     else
     {
-        Read::PeakDetOff(*data.data);
+        Read::Real::Channel(*data.data, ChA, addr_stop);
+        Read::Real::Channel(*data.data, ChB, addr_stop);
     }
 
     Storage::Append(*data.data);
 
     mutex_read.Unlock();
-}
-
-
-void ReaderFPGA::Read::PeakDetOn(DataReading &)
-{
-}
-
-
-void ReaderFPGA::Read::PeakDetOff(DataReading &data)
-{
-    uint16 addr_stop = ReadAddressStop();
-
-    if (TBase::IsRandomize())
-    {
-        Randomizer::Channel(data, ChA, addr_stop);
-        Randomizer::Channel(data, ChB, addr_stop);
-    }
-    else
-    {
-        Real::Channel(data, ChA, addr_stop);
-        Real::Channel(data, ChB, addr_stop);
-    }
 }
 
 
@@ -90,7 +72,7 @@ void ReaderFPGA::Read::Real::Channel(DataReading &data, const ::Channel &ch, uin
     uint16 *p = (uint16 *)data.Data(ch);
     uint16 *end = (uint16 *)(data.Data(ch) + data.Settings().BytesInChannel());
 
-    volatile uint16 *address = ADDRESS_READ(ch);
+    volatile const uint16 * const address = ADDRESS_READ(ch);
 
     while (p < end)
     {
@@ -153,7 +135,7 @@ void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch,
 
     uint bytes_in_channel = ds.BytesInChannel();
 
-    uint16 *address = ADDRESS_READ(ch);
+    const uint16 *const address = ADDRESS_READ(ch);
     uint8 *data = dr.Data(ch);
     uint8 *last = data + bytes_in_channel;
 
@@ -181,7 +163,7 @@ void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch,
 }
 
 
-void ReaderFPGA::Read::Randomizer::UtilizeFirstBytes(uint16 *address, int num_words)
+void ReaderFPGA::Read::Randomizer::UtilizeFirstBytes(const uint16 * const address, int num_words)
 {
     __IO uint16 data;
 
