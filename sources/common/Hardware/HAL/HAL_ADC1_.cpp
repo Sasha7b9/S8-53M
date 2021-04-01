@@ -77,8 +77,6 @@ void HAL_ADC1::StartConversion()
 {
     // HAL_ADC_Start((ADC_HandleTypeDef *)HAL_ADC1::handle);
 
-    handle.Lock = HAL_LOCKED;
-
     if ((handle.Instance->CR2 & ADC_CR2_ADON) != ADC_CR2_ADON)
     {
         __HAL_ADC_ENABLE(&handle);
@@ -95,8 +93,6 @@ void HAL_ADC1::StartConversion()
         HAL_ADC_STATE_READY | HAL_ADC_STATE_REG_EOC | HAL_ADC_STATE_REG_OVR, HAL_ADC_STATE_REG_BUSY);
 
     ADC_CLEAR_ERRORCODE(&handle);
-
-    handle.Lock = HAL_UNLOCKED;
 
     __HAL_ADC_CLEAR_FLAG(&handle, ADC_FLAG_EOC | ADC_FLAG_OVR);
 
