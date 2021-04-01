@@ -13,9 +13,9 @@ struct DataSettings
     uint                r_shift_b    : 10;
     uint                trig_lev_a   : 10;  // Уровень синхронизации
     uint                trig_lev_b   : 10;
-    ModeCouple::E       couple_a     : 2;   // Режим канала по входу
-    ModeCouple::E       couple_b     : 2;
-    TBase::E            tbase        : 5;   // Масштаб по времени
+    uint                couple_a     : 2;   // Режим канала по входу
+    uint                couple_b     : 2;
+    uint                tbase        : 5;   // Масштаб по времени
     uint                peak_det     : 2;   // Включен ли пиковый детектор
     Divider::E          multiplier_a : 1;
     Divider::E          multiplier_b : 1;
@@ -28,6 +28,8 @@ struct DataSettings
 
 
     void Fill();
+
+    TBase::E GetTBase() const;
 
     // Возвращает количество байт, занимаемых одним каналом
     uint BytesInChannel() const;

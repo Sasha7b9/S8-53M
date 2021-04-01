@@ -819,7 +819,9 @@ struct TBase
         _5s,
         _10s,
         Count
-    };
+    } value;
+
+    TBase(E v = TBase::_1ns) : value(v) {}
 
     static void Set(TBase::E tbase);
 
@@ -848,6 +850,8 @@ struct TBase
 
     // ¬озвращает шаг между точками дл€ рандомизатора при установленной развЄртке
     static int StepRand();
+
+    operator E() const { return value; }
 };
 
 

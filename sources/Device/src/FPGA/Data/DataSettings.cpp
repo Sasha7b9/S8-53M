@@ -81,3 +81,9 @@ bool DataSettings::IsEnabledPeakDet() const
 {
     return (peak_det != 0);
 }
+
+
+TBase::E DataSettings::GetTBase() const
+{
+    return (TBase::E)tbase;
+}
