@@ -19,11 +19,10 @@ struct MeasureValue
 
 
 static BufferU8 out[NumChannels];
+static BufferU8 in[NumChannels];
 
 static DataSettings *pDS = nullptr;
 static DataSettings &ds = *pDS;
-
-static uint8 dataIn[2][FPGA::MAX_NUM_POINTS];
 
 static uint firstP = 0;
 static uint lastP = 0;
@@ -299,7 +298,7 @@ Float Processing::CalculateVoltageAverage(Channel::E ch)
     EXIT_IF_ERROR_INT(period);
 
     int sum = 0;
-    uint8 *data = &dataIn[ch][firstP];
+    uint8 *data = &in[ch][firstP];
 
     for(int i = 0; i < period; i++)
     {
@@ -331,7 +330,7 @@ Float Processing::CalculateVoltageRMS(Channel::E ch)
 
     for(uint i = firstP; i < firstP + period; i++)
     {
-        float volts = Value::ToVoltage(dataIn[ch][i], ds.range[ch], rShift);
+        float volts = Value::ToVoltage(in[ch][i], ds.range[ch], rShift);
         rms +=  volts * volts;
     }
 
@@ -401,12 +400,12 @@ Int Processing::CalculatePeriodAccurately(Channel::E ch)
             EXIT_FROM_PERIOD_ACCURACY
         }
         int delta = (int)(pic * 5);
-        sums[firstP] = dataIn[ch][firstP];
+        sums[firstP] = in[ch][firstP];
 
         uint i = firstP + 1;
         int *sum = &sums[i];
-        uint8 *data = &dataIn[ch][i];
-        uint8 *end = &dataIn[ch][lastP];
+        uint8 *data = &in[ch][i];
+        uint8 *end = &in[ch][lastP];
 
         while (data < end)
         {
@@ -487,7 +486,7 @@ Float Processing::FindIntersectionWithHorLine(Channel::E ch, int numIntersection
     int x = (int)firstP;
     int compValue = (int)lastP - 1;
 
-    uint8 *data = &dataIn[ch][0];
+    uint8 *data = &in[ch][0];
 
     if(downToUp)
     {
@@ -671,8 +670,8 @@ float Processing::CalculateMinSteadyRel(Channel::E ch)
         {
             int sum = 0;
             int numSums = 0;
-            uint8 *data = &dataIn[ch][firstP];
-            puchar const end = &dataIn[ch][lastP];
+            uint8 *data = &in[ch][firstP];
+            puchar const end = &in[ch][lastP];
 
             while(data <= end)
             {
@@ -697,7 +696,7 @@ float Processing::CalculateMinSteadyRel(Channel::E ch)
             {
                 int numDeleted = 0;
                 float value = pic / 9.0F;
-                data = &dataIn[ch][firstP];
+                data = &in[ch][firstP];
                 float _min = min[ch];
 
                 while (data <= end)
@@ -748,8 +747,8 @@ float Processing::CalculateMaxSteadyRel(Channel::E ch)
         {
             int sum = 0;
             int numSums = 0;
-            uint8 *data = &dataIn[ch][firstP];
-            puchar const end = &dataIn[ch][lastP];
+            uint8 *data = &in[ch][firstP];
+            puchar const end = &in[ch][lastP];
             while (data <= end)
             {
                 uint8 d = *data++;
@@ -773,7 +772,7 @@ float Processing::CalculateMaxSteadyRel(Channel::E ch)
                 int numMax = numSums;
                 float value = pic / 9.0F;
 
-                data = &dataIn[ch][firstP];
+                data = &in[ch][firstP];
                 uint8 _max = (uint8)(max[ch]);
                 while (data <= end)
                 {
@@ -813,7 +812,7 @@ Float Processing::CalculateMaxRel(Channel::E ch)
 
     if(!maxIsCalculating[ch])
     {
-        max[ch] = MathFPGA::GetMaxFromArrayWithErrorCode(dataIn[ch], firstP, lastP);
+        max[ch] = MathFPGA::GetMaxFromArrayWithErrorCode(in[ch].DataU8(), firstP, lastP);
 
         maxIsCalculating[ch] = true;
     }
@@ -827,7 +826,7 @@ Float Processing::CalculateMinRel(Channel::E ch)
 
     if (!minIsCalculating[ch])
     {
-        min[ch] = MathFPGA::GetMinFromArrayWithErrorCode(dataIn[ch], firstP, lastP);
+        min[ch] = MathFPGA::GetMinFromArrayWithErrorCode(in[ch].DataU8(), firstP, lastP);
 
         minIsCalculating[ch] = true;
     }
@@ -999,8 +998,8 @@ void Processing::SetSignal(puchar data0, puchar data1, DataSettings *_ds, int _f
 
     uint length = ds.BytesInChannel() * (ds.peak_det == PeackDetMode::Disable ? 1 : 2);
 
-    Math::CalculateFiltrArray(data0, &dataIn[ChA][0], (int)length, (int)numSmoothing);
-    Math::CalculateFiltrArray(data1, &dataIn[ChB][0], (int)length, (int)numSmoothing);
+    Math::CalculateFiltrArray(data0, &in[ChA][0], (int)length, (int)numSmoothing);
+    Math::CalculateFiltrArray(data1, &in[ChB][0], (int)length, (int)numSmoothing);
 
     CountedToCurrentSettings();
 }
@@ -1024,20 +1023,20 @@ float Processing::GetCursU(const Channel &ch, float posCurT)
 {   
     BitSet64 p = SettingsDisplay::PointsOnDisplay();
 
-    return Math::Limitation((float)(200.0F - (dataIn[ch])[p.first + (int)posCurT] + Value::MIN), 0.0F, 200.0F);
+    return Math::Limitation((float)(200.0F - (in[ch])[p.first + (int)posCurT] + Value::MIN), 0.0F, 200.0F);
 }
 
 float Processing::GetCursT(const Channel &ch, float posCurU, int numCur)
 {
     BitSet64 p = SettingsDisplay::PointsOnDisplay();
 
-    int prevData = 200 - (dataIn[ch])[p.first] + Value::MIN;
+    int prevData = 200 - (in[ch])[p.first] + Value::MIN;
 
     int numIntersections = 0;
 
     for(int i = p.first + 1; i < p.second; i++)
     {
-        int curData = 200 - (dataIn[ch])[i] + Value::MIN;
+        int curData = 200 - (in[ch])[i] + Value::MIN;
 
         if(curData <= posCurU && prevData > posCurU)
         {
@@ -1240,8 +1239,8 @@ void Processing::CountedToCurrentSettings()
         int index = i - dTShift;
         if (index >= 0 && index < numPoints)
         {
-            out[ChA][index] = dataIn[0][i];
-            out[ChB][index] = dataIn[1][i];
+            out[ChA][index] = in[0][i];
+            out[ChB][index] = in[1][i];
         }
     }
  
