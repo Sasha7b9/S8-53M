@@ -389,7 +389,7 @@ Int Processing::CalculatePeriodAccurately(Channel::E ch)
 {
     static Int period[2];
 
-    int sums[FPGA::MAX_NUM_POINTS];
+    Buffer<int> sums(out[ch].Size());
 
     if(!periodAccurateIsCalculating[ch])
     {

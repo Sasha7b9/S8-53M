@@ -7,15 +7,19 @@
 
 
 template Buffer<uint8>::Buffer(uint);
+template Buffer<int>::Buffer(uint);
 template Buffer<uint8>::~Buffer();
+template Buffer<int>::~Buffer();
 template void Buffer<uint8>::Free();
 template void Buffer<uint8>::Realloc(uint);
 template void Buffer<uint8>::Fill(uint8 value);
 template void Buffer<int>::Fill(int value);
 template uint8 &Buffer<uint8>::operator[](uint) const;
-template uint8 &Buffer<uint8>::operator[](int) const;
 template uint16 &Buffer<uint16>::operator[](uint) const;
+template int &Buffer<int>::operator[](uint) const;
+template uint8 &Buffer<uint8>::operator[](int) const;
 template uint16 &Buffer<uint16>::operator[](int) const;
+template int &Buffer<int>::operator[](int) const;
 
 
 template<class T>
