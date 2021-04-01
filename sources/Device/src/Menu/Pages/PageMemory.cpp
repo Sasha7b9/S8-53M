@@ -767,7 +767,7 @@ static bool FuncActiveMemoryNumPoinst()
 // ПАМЯТЬ - Точки
 int8 temp = 0;
 
-DEF_CHOICE_3(mcMemoryNumPoints, PageMemory::self,
+DEF_CHOICE_7(mcMemoryNumPoints, PageMemory::self,
     "Точки", "Points"
     ,
     "Выбор количества отсчётов для сохраняемых сигналов. "
@@ -776,9 +776,13 @@ DEF_CHOICE_3(mcMemoryNumPoints, PageMemory::self,
     "Choice of number of counting for the saved signals. "
     "At increase in number of counting the quantity of the signals kept in memory decreases."
     ,
-    "281",  "281",
-    "512",  "512",
-    "1024", "1024",
+    "281", "281",
+    "512", "512",
+    "1k",  "1k",
+    "2k",  "2k",
+    "4k",  "4k",
+    "8k",  "8k",
+    "16k", "16k",
     set.memory.enum_points_fpga, FuncActiveMemoryNumPoinst, ChangeC_Memory_NumPoints, nullptr
 )
 
