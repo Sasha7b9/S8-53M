@@ -536,7 +536,7 @@ Float CalculateKoeffCalibration(const Channel &ch)
         uint16 *addressRead1 = (ch == ChA) ? RD_ADC_A : RD_ADC_B;
         uint16 *addressRead2 = (ch == ChA) ? RD_ADC_A : RD_ADC_B;
 
-        for(int j = 0; j < FPGA::MAX_NUM_POINTS; j += 2)
+        for(int j = 0; j < 1024; j += 2)
         {
             uint8 val0 = (uint8)HAL_FMC::Read(addressRead1);
             if(val0 > Value::AVE + 60)
