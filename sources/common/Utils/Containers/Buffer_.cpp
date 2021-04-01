@@ -14,6 +14,8 @@ template void Buffer<uint8>::Fill(uint8 value);
 template void Buffer<int>::Fill(int value);
 template uint8 &Buffer<uint8>::operator[](uint) const;
 template uint8 &Buffer<uint8>::operator[](int) const;
+template uint16 &Buffer<uint16>::operator[](uint) const;
+template uint16 &Buffer<uint16>::operator[](int) const;
 
 
 template<class T>

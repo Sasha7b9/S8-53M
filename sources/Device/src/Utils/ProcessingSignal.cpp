@@ -1082,7 +1082,7 @@ float Processing::GetCursT(const Channel &ch, float posCurU, int numCur)
     return 0;
 }
 
-void Processing::InterpolationSinX_X(uint16 data[FPGA::MAX_NUM_POINTS], TBase::E tBase)
+void Processing::InterpolationSinX_X(Buffer<uint16> &buffer, TBase::E tBase)
 {
 /*
      Последовательности x в sin(x)
@@ -1100,14 +1100,15 @@ void Processing::InterpolationSinX_X(uint16 data[FPGA::MAX_NUM_POINTS], TBase::E
     int deltas[5] = {50, 20, 10, 5, 2};
     int delta = deltas[tBase];
 
-    uint8 signedData[FPGA::MAX_NUM_POINTS / 2];
+    BufferU8 signedData(buffer.Size() / 2);
+
     int numSignedPoints = 0;
     
-    for (int pos = 0; pos < FPGA::MAX_NUM_POINTS; pos++)
+    for (uint pos = 0; pos < buffer.Size(); pos++)
     {
-        if (data[pos] > 0)
+        if (buffer[pos] > 0)
         {
-            signedData[numSignedPoints] = (uint8)data[pos];
+            signedData[numSignedPoints] = (uint8)buffer[pos];
             numSignedPoints++;
         }
     }
@@ -1115,11 +1116,12 @@ void Processing::InterpolationSinX_X(uint16 data[FPGA::MAX_NUM_POINTS], TBase::E
     // Найдём смещение первой значащей точки
 
     int shift = 0;
-    for (int pos = 0; pos < FPGA::MAX_NUM_POINTS; pos++)
+
+    for (uint pos = 0; pos < buffer.Size(); pos++)
     {
-        if (data[pos] > 0)
+        if (buffer[pos] > 0)
         {
-            shift = pos;
+            shift = (int)pos;
             break;
         }
     }
@@ -1129,12 +1131,12 @@ void Processing::InterpolationSinX_X(uint16 data[FPGA::MAX_NUM_POINTS], TBase::E
     float x0 = Math::Pi - stepX0;
     int num = 0;
     
-    for(int i = 0; i < FPGA::MAX_NUM_POINTS; i++)
+    for(uint i = 0; i < buffer.Size(); i++)
     {
         x0 += stepX0;
         if((i % delta) == 0)
         {
-            data[i] = signedData[i / delta];
+            buffer[i] = signedData[i / delta];
         }
         else
         {
@@ -1156,7 +1158,8 @@ void Processing::InterpolationSinX_X(uint16 data[FPGA::MAX_NUM_POINTS], TBase::E
                     value += signedData[n] * sinXint / (x - n * deltaXint);
                     sinXint = -sinXint;
                 }
-                data[i] = (uint8)(value * KOEFF);
+
+                buffer[i] = (uint8)(value * KOEFF);
             }
             else                     // На этих развёртках арифметика с плавающей запятой даёт приемлемое быстродействие
             {
@@ -1169,15 +1172,17 @@ void Processing::InterpolationSinX_X(uint16 data[FPGA::MAX_NUM_POINTS], TBase::E
                     value += signedData[n] * sinX / x;
                     sinX = -sinX;
                 }
-                data[i] = (uint8)value;
+
+                buffer[i] = (uint8)value;
             }
         }
     }
     
     int pos = FPGA::MAX_NUM_POINTS - 1;
+
     while (pos > shift)
     {
-        data[pos] = data[pos - shift];
+        buffer[pos] = buffer[pos - shift];
         pos--;
     }
 }
