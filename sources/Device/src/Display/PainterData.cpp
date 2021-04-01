@@ -131,7 +131,12 @@ void DataDrawing::DrawChannelLined(int x, BufferU8 &buffer)
 
         for (uint i = 0; i < size; i += 2)
         {
-            VLine().Draw(x++, *d++, *d++);
+            int x1 = *d;
+            d++;
+            int x2 = *d;
+            d++;
+
+            VLine().Draw(x++, x1, x2);
         }
     }
     else

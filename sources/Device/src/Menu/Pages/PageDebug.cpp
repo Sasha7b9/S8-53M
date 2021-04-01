@@ -73,7 +73,7 @@ DEF_CHOICE_2(mcConsole_Registers_RD_FL, PageDebug::PageConsole::PageRegisters::s
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.showRegisters.flag, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+    set.debug.show_registers.flag, IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_Registers_RShiftA, PageDebug::PageConsole::PageRegisters::self,
@@ -82,7 +82,7 @@ DEF_CHOICE_2(mcConsole_Registers_RShiftA, PageDebug::PageConsole::PageRegisters:
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.showRegisters.rShiftA, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+    set.debug.show_registers.rShiftA, IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_Registers_RShiftB, PageDebug::PageConsole::PageRegisters::self,
@@ -91,7 +91,7 @@ DEF_CHOICE_2(mcConsole_Registers_RShiftB, PageDebug::PageConsole::PageRegisters:
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.showRegisters.rShiftB, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+    set.debug.show_registers.rShiftB, IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_Registers_TrigLev, PageDebug::PageConsole::PageRegisters::self,
@@ -100,7 +100,7 @@ DEF_CHOICE_2(mcConsole_Registers_TrigLev, PageDebug::PageConsole::PageRegisters:
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.showRegisters.trigLev, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+    set.debug.show_registers.trigLev, IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_Registers_RangeA, PageDebug::PageConsole::PageRegisters::self,
@@ -109,7 +109,7 @@ DEF_CHOICE_2(mcConsole_Registers_RangeA, PageDebug::PageConsole::PageRegisters::
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.showRegisters.range[0], IsActive_Console_Registers_RD_FL, nullptr, nullptr
+    set.debug.show_registers.range[0], IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_Registers_RangeB, PageDebug::PageConsole::PageRegisters::self,
@@ -118,7 +118,7 @@ DEF_CHOICE_2(mcConsole_Registers_RangeB, PageDebug::PageConsole::PageRegisters::
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.showRegisters.range[1], IsActive_Console_Registers_RD_FL, nullptr, nullptr
+    set.debug.show_registers.range[1], IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_Registers_TrigParam, PageDebug::PageConsole::PageRegisters::self,
@@ -127,7 +127,7 @@ DEF_CHOICE_2(mcConsole_Registers_TrigParam, PageDebug::PageConsole::PageRegister
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.showRegisters.trigParam, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+    set.debug.show_registers.trigParam, IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_Registers_ChanParamA, PageDebug::PageConsole::PageRegisters::self,
@@ -136,7 +136,7 @@ DEF_CHOICE_2(mcConsole_Registers_ChanParamA, PageDebug::PageConsole::PageRegiste
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.showRegisters.chanParam[0], IsActive_Console_Registers_RD_FL, nullptr, nullptr
+    set.debug.show_registers.chanParam[0], IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_Registers_ChanParamB, PageDebug::PageConsole::PageRegisters::self,
@@ -145,7 +145,7 @@ DEF_CHOICE_2(mcConsole_Registers_ChanParamB, PageDebug::PageConsole::PageRegiste
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.showRegisters.chanParam[1], IsActive_Console_Registers_RD_FL, nullptr, nullptr
+    set.debug.show_registers.chanParam[1], IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_Registers_TBase, PageDebug::PageConsole::PageRegisters::self,
@@ -154,7 +154,7 @@ DEF_CHOICE_2(mcConsole_Registers_TBase, PageDebug::PageConsole::PageRegisters::s
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.showRegisters.tBase, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+    set.debug.show_registers.tBase, IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_Registers_tShift, PageDebug::PageConsole::PageRegisters::self,
@@ -163,7 +163,7 @@ DEF_CHOICE_2(mcConsole_Registers_tShift, PageDebug::PageConsole::PageRegisters::
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.showRegisters.tShift, IsActive_Console_Registers_RD_FL, nullptr, nullptr
+    set.debug.show_registers.tShift, IsActive_Console_Registers_RD_FL, nullptr, nullptr
 )
 
 DEF_PAGE_12(pageRegisters, PageDebug::PageConsole::self, NamePage::DebugShowRegisters,

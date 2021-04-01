@@ -14,26 +14,28 @@
 void MemoryWindow::Draw(DataReading &data)
 {
     static const int rightXses[3] = { 276, 285, 247 };
-    int rightX = rightXses[set.memory.mode_work];
+
+    int right = rightXses[set.memory.mode_work];
+
     if (Cursors::NecessaryDraw())
     {
-        rightX = 68;
+        right = 68;
     }
 
-    DrawDataInRect(rightX + 2, set.display.last_affected_channel.IsA() ? ChB : ChA, data);
-    DrawDataInRect(rightX + 2, set.display.last_affected_channel.IsA() ? ChA : ChB, data);
+    DrawDataInRect(right + 2, set.display.last_affected_channel.IsA() ? ChB : ChA, data);
+    DrawDataInRect(right + 2, set.display.last_affected_channel.IsA() ? ChA : ChB, data);
 
     int leftX = 3;
-    float scaleX = (float)(rightX - leftX + 1) / set.memory.enum_points_fpga.ToPoints();
+    float scaleX = (float)(right - leftX + 1) / set.memory.enum_points_fpga.ToPoints();
     const int xVert0 = leftX + (int)(set.display.shift_in_memory * scaleX);
-    int width = (int)((rightX - leftX) * (282.0f / set.memory.enum_points_fpga.ToPoints()));
+    int width = (int)((right - leftX) * (282.0f / set.memory.enum_points_fpga.ToPoints()));
 
     Rectangle(width - (set.memory.enum_points_fpga == ENUM_POINTS_FPGA::_8k ? 1 : 0), Grid::TOP - 2).
         Draw(xVert0, 0, Color::FILL);
 
-    DrawTPos(leftX, rightX);
+    DrawTPos(leftX, right);
 
-    DrawTShift(leftX, rightX, set.memory.enum_points_fpga.BytesInChannel());
+    DrawTShift(leftX, right, set.memory.enum_points_fpga.BytesInChannel());
 }
 
 
@@ -172,12 +174,17 @@ void MemoryWindow::DrawTShift(int leftX, int rightX, uint numBytes)
 
     Math::LimitAbove(&xShift, rightX - 2);
 
-    int dX01 = 1, dX02 = 2, dX11 = 3, dY11 = 7, dY12 = 6;
+    int dX01 = 1;
+    int dX02 = 2;
+    int dX11 = 3;
+    int dY11 = 7;
+    int dY12 = 6;
 
     if (xShift < leftX - 2)
     {
         xShift = leftX - 2;
-        dX01 = 3; dX02 = 1; dY12 = 6;
+        dX01 = 3;
+        dX02 = 1;
     }
     else if (xShift > rightX - 1)
     {
@@ -186,7 +193,8 @@ void MemoryWindow::DrawTShift(int leftX, int rightX, uint numBytes)
     }
     else
     {
-        dY11 = 5; dY12 = 7;
+        dY11 = 5;
+        dY12 = 7;
     }
 
     Region(6, 6).Fill((int)xShift - 1, 1, Color::BACK);

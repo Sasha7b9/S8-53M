@@ -317,7 +317,7 @@ struct SettingsDebug
     int16             altShift;                   // Добавочное смещение для устранения эффекта горизонтальной помехи
                                                   // синхронизации.
     int16             pretriggered;               // Регулируемая величина предзапуска для исследования рандомизатора.
-    OutputRegisters   showRegisters;
+    OutputRegisters   show_registers;
 
     static int  GetSizeFontForConsole();        // Возвращает размер шрифта, которым нужно выводить сообщения в консоли.
 };
@@ -394,14 +394,14 @@ extern Settings set;
 #define LANG_EN         (LANG == Language::English)
 
 
-#define IS_SHOW_REGISTERS_ALL   (set.debug.showRegisters.all)
-#define IS_SHOW_REG_RSHIFT_A    (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.rShiftA)
-#define IS_SHOW_REG_RSHIFT_B    (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.rShiftB)
-#define IS_SHOW_REG_TRIGLEV     (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.trigLev)
-#define IS_SHOW_REG_RANGE_A     (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.range[Channel::A])
-#define IS_SHOW_REG_RANGE_B     (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.range[Channel::B])
-#define IS_SHOW_REG_TRIGPARAM   (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.trigParam)
-#define IS_SHOW_REG_PARAM_A     (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.chanParam[Channel::A])
-#define IS_SHOW_REG_PARAM_B     (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.chanParam[Channel::B])
-#define IS_SHOW_REG_TSHIFT      (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.tShift)
-#define IS_SHOW_REG_TBASE       (IS_SHOW_REGISTERS_ALL || set.debug.showRegisters.tBase)
+#define IS_SHOW_REGISTERS_ALL   (set.debug.show_registers.all)
+#define IS_SHOW_REG_RSHIFT_A    (IS_SHOW_REGISTERS_ALL || set.debug.show_registers.rShiftA)
+#define IS_SHOW_REG_RSHIFT_B    (IS_SHOW_REGISTERS_ALL || set.debug.show_registers.rShiftB)
+#define IS_SHOW_REG_TRIGLEV     (IS_SHOW_REGISTERS_ALL || set.debug.show_registers.trigLev)
+#define IS_SHOW_REG_RANGE_A     (IS_SHOW_REGISTERS_ALL || set.debug.show_registers.range[Channel::A])
+#define IS_SHOW_REG_RANGE_B     (IS_SHOW_REGISTERS_ALL || set.debug.show_registers.range[Channel::B])
+#define IS_SHOW_REG_TRIGPARAM   (IS_SHOW_REGISTERS_ALL || set.debug.show_registers.trigParam)
+#define IS_SHOW_REG_PARAM_A     (IS_SHOW_REGISTERS_ALL || set.debug.show_registers.chanParam[Channel::A])
+#define IS_SHOW_REG_PARAM_B     (IS_SHOW_REGISTERS_ALL || set.debug.show_registers.chanParam[Channel::B])
+#define IS_SHOW_REG_TSHIFT      (IS_SHOW_REGISTERS_ALL || set.debug.show_registers.tShift)
+#define IS_SHOW_REG_TBASE       (IS_SHOW_REGISTERS_ALL || set.debug.show_registers.tBase)
