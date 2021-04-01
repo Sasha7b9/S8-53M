@@ -99,7 +99,7 @@ void DataDrawing::DrawChannel(const Channel &ch)
 
 void DataDrawing::DrawChannelPointed(int x, Buffer &buffer)
 {
-    uint8 *d = buffer.Data();
+    uint8 *d = buffer.DataU8();
     uint size = buffer.Size();
 
     if (data.Settings().IsEnabledPeakDet())
@@ -127,7 +127,7 @@ void DataDrawing::DrawChannelLined(int x, Buffer &buffer)
     if (data.Settings().IsEnabledPeakDet())
     {
         uint size = buffer.Size();
-        uint8 *d = buffer.Data();
+        uint8 *d = buffer.DataU8();
 
         for (uint i = 0; i < size; i += 2)
         {

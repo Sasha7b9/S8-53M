@@ -6,6 +6,7 @@
      ласс единственно предназначен дл€ автоматического выделени€/освобождени€ пам€ти из кучи
 */
 
+
 class Buffer
 {
 public:
@@ -24,7 +25,7 @@ public:
 
     inline char *DataChar() { return reinterpret_cast<char *>(data); }
 
-    inline uint8 *Data() { return data; }
+    inline uint8 *DataU8() { return data; }
 
     String Log();
 

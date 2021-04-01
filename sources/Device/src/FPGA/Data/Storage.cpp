@@ -24,7 +24,7 @@ void DataReading::CreateFromCurrentSettings()
 {
     buffer.Realloc(sizeof(DataSettings) + set.memory.enum_points_fpga.BytesForData());
 
-    DataSettings &ds = *(DataSettings *)buffer.Data();
+    DataSettings &ds = *(DataSettings *)buffer.DataU8();
 
     ds.Fill();
 }
@@ -38,7 +38,7 @@ void DataReading::CreateFromRecord(RecordStorage *record)
 
     buffer.Realloc(size);
 
-    std::memcpy(buffer.Data(), &ds, size);
+    std::memcpy(buffer.DataU8(), &ds, size);
 }
 
 
@@ -50,7 +50,7 @@ void DataReading::CreateNull()
 
     buffer.Realloc(sizeof(DataSettings));
 
-    std::memcpy(buffer.Data(), &ds, sizeof(DataSettings));
+    std::memcpy(buffer.DataU8(), &ds, sizeof(DataSettings));
 }
 
 
@@ -63,7 +63,7 @@ uint8 *DataReading::Data(const Channel &ch)
         return nullptr;
     }
 
-    uint8 *result = buffer.Data() + sizeof(DataSettings);
+    uint8 *result = buffer.DataU8() + sizeof(DataSettings);
 
     if (ch.IsB() && ds.IsEnabled(Channel::A))
     {
@@ -76,7 +76,7 @@ uint8 *DataReading::Data(const Channel &ch)
 
 DataSettings &DataReading::Settings() const
 {
-    return (DataSettings &)*((DataReading *)this)->buffer.Data();
+    return (DataSettings &)*((DataReading *)this)->buffer.DataU8();
 }
 
 
