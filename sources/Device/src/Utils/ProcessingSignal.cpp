@@ -1175,8 +1175,8 @@ void Processing::InterpolationSinX_X(Buffer<uint16> &buffer, TBase::E tBase)
             }
         }
     }
-    
-    int pos = FPGA::MAX_NUM_POINTS - 1;
+
+    int pos = (int)(buffer.Size() - 1);
 
     while (pos > shift)
     {
