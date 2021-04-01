@@ -16,11 +16,11 @@ void Point::Draw(int x, int y) const
         return;
     }
 
-    uint8 shift = Display::WIDTH * y + x;
+    uint8 *address = display_back_buffer + Display::WIDTH * y + x;
 
-    if (shift < Display::WIDTH * Display::HEIGHT)
+    if (address < display_back_buffer_end)
     {
-        *(display_back_buffer + shift) = Color::GetCurrent().index;
+        *address = Color::GetCurrent().index;
     }
 }
 

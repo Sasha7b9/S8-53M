@@ -27,6 +27,7 @@ static void DrawProgressBar(uint dT);
 static void DrawBigMNIPI();
 
 uint8 *display_back_buffer = nullptr;
+uint8 *display_back_buffer_end = nullptr;
 
 void Display::Init()
 {
