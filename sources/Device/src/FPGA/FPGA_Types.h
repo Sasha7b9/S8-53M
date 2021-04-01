@@ -4,10 +4,6 @@
 #include "common/Utils/Containers/Values_.h"
 
 
-//#define MIN_VALUE_SCREEN 0
-//#define MAX_VALUE_SCREEN 200
-
-#define FPGA_MAX_POINTS                 2048
 #define FPGA_MAX_POINTS_FOR_CALCULATE   900
 
 

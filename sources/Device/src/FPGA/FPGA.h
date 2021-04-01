@@ -39,6 +39,8 @@ class FPGA
 {
 public:
 
+    static const int MAX_NUM_POINTS = 2048;
+
     static int    add_shift;
     static int    add_N_stop;
     static int16  pred;

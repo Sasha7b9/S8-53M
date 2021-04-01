@@ -1,5 +1,6 @@
 #pragma once
 #include "common/Utils/Containers/Values_.h"
+#include "FPGA/FPGA.h"
 #include "FPGA/FPGA_Types.h"
 #include "Utils/Measures.h"
 
@@ -24,7 +25,7 @@ public:
     static float GetCursT(const Channel &ch, float posCurU, int numCur);
 
     // Аппроксимировать единичное измерение режима рандомизатора функцией sinX/X.
-    static void InterpolationSinX_X(uint16 data[FPGA_MAX_POINTS], TBase::E tBase);
+    static void InterpolationSinX_X(uint16 data[FPGA::MAX_NUM_POINTS], TBase::E tBase);
 
     // Возвращает строку автоматического измерения.
     static Text GetStringMeasure(Measure::E measure, const Channel &ch);
