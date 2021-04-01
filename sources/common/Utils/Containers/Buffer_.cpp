@@ -10,7 +10,10 @@ template Buffer<uint8>::Buffer(uint);
 template Buffer<uint8>::~Buffer();
 template void Buffer<uint8>::Free();
 template void Buffer<uint8>::Realloc(uint);
+template void Buffer<uint8>::Fill(uint8 value);
+template void Buffer<int>::Fill(int value);
 template uint8 &Buffer<uint8>::operator[](uint) const;
+template uint8 &Buffer<uint8>::operator[](int) const;
 
 
 template<class T>
@@ -40,16 +43,9 @@ void Buffer<T>::Fill(T value)
 {
     if (size)
     {
-        if (sizeof(T) == 1)
+        for (uint i = 0; i < size; i++)
         {
-            std::memset(data, value, size);
-        }
-        else
-        {
-            for (uint i = 0; i < size; i++)
-            {
-                data[i] = value;
-            }
+            data[i] = value;
         }
     }
 }
@@ -107,6 +103,20 @@ template<class T>
 T &Buffer<T>::operator[](uint i) const
 {
     if (i < Size())
+    {
+        return data[i];
+    }
+
+    static T empty(0);
+
+    return empty;
+}
+
+
+template<class T>
+T &Buffer<T>::operator[](int i) const
+{
+    if (i <= 0 && i < (int)Size())
     {
         return data[i];
     }

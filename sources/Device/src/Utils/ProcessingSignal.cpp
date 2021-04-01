@@ -1,5 +1,6 @@
 #include "defines.h"
 #include "common/Utils/Math_.h"
+#include "common/Utils/Containers/Buffer_.h"
 #include "FPGA/FPGA_Math.h"
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/Data/DataSettings.h"
@@ -16,8 +17,9 @@ struct MeasureValue
     float value[2];
 };
 
-static uint8 dataOut0[FPGA::MAX_NUM_POINTS];
-static uint8 dataOut1[FPGA::MAX_NUM_POINTS];
+
+static BufferU8 outA;
+static BufferU8 outB;
 
 static DataSettings *pDS = nullptr;
 static DataSettings &ds = *pDS;
@@ -1004,20 +1006,20 @@ void Processing::SetSignal(puchar data0, puchar data1, DataSettings *_ds, int _f
     CountedToCurrentSettings();
 }
 
-void Processing::GetData(uint8 **data0, uint8 **data1, DataSettings **_ds)
-{
-    if (data0)
-    {
-        *data0 = dataOut0;
-    }
-
-    if (data1)
-    {
-        *data1 = dataOut1;
-    }
-
-    *_ds = pDS;
-}
+//void Processing::GetData(uint8 **data0, uint8 **data1, DataSettings **_ds)
+//{
+//    if (data0)
+//    {
+//        *data0 = dataOut0;
+//    }
+//
+//    if (data1)
+//    {
+//        *data1 = dataOut1;
+//    }
+//
+//    *_ds = pDS;
+//}
 
 float Processing::GetCursU(const Channel &ch, float posCurT)
 {   
@@ -1220,8 +1222,8 @@ int Processing::GetMarkerVertical(Channel::E ch, int numMarker)
 
 void Processing::CountedToCurrentSettings()
 {
-    std::memset(dataOut0, 0, FPGA::MAX_NUM_POINTS);
-    std::memset(dataOut1, 0, FPGA::MAX_NUM_POINTS);
+    outA.Fill(0);
+    outB.Fill(0);
     
     int numPoints = (int)ds.BytesInChannel() * (ds.peak_det == PeackDetMode::Disable ? 1 : 2);
 
@@ -1234,8 +1236,8 @@ void Processing::CountedToCurrentSettings()
         int index = i - dTShift;
         if (index >= 0 && index < numPoints)
         {
-            dataOut0[index] = dataIn[0][i];
-            dataOut1[index] = dataIn[1][i];
+            outA[index] = dataIn[0][i];
+            outB[index] = dataIn[1][i];
         }
     }
  
@@ -1247,13 +1249,13 @@ void Processing::CountedToCurrentSettings()
 
         for (int i = 0; i < numPoints; i++)
         {
-            float absValue = Value::ToVoltage(dataOut0[i], ds.range[0], (int16)ds.r_shift_a);
+            float absValue = Value::ToVoltage(outA[i], ds.range[0], (int16)ds.r_shift_a);
             int relValue = (int)((absValue + MAX_VOLTAGE_ON_SCREEN(range) + RShift::ToAbs(rShift, range)) /
                 MathFPGA::voltsInPixel[range] + Value::MIN);
 
-            if (relValue < Value::MIN)      { dataOut0[i] = Value::MIN; }
-            else if (relValue > Value::MAX) { dataOut0[i] = Value::MAX; }
-            else                            { dataOut0[i] = (uint8)relValue; }
+            if (relValue < Value::MIN)      { outA[i] = Value::MIN; }
+            else if (relValue > Value::MAX) { outA[i] = Value::MAX; }
+            else                            { outA[i] = (uint8)relValue; }
         }
     }
     if (ds.IsEnabled(ChB) &&
@@ -1264,13 +1266,13 @@ void Processing::CountedToCurrentSettings()
 
         for (int i = 0; i < numPoints; i++)
         {
-            float absValue = Value::ToVoltage(dataOut1[i], ds.range[1], (int16)ds.r_shift_b);
+            float absValue = Value::ToVoltage(outB[i], ds.range[1], (int16)ds.r_shift_b);
             int relValue = (int)((absValue + MAX_VOLTAGE_ON_SCREEN(range) + RShift::ToAbs(rShift, range)) /
                 MathFPGA::voltsInPixel[range] + Value::MIN);
 
-            if (relValue < Value::MIN)      { dataOut1[i] = Value::MIN; }
-            else if (relValue > Value::MAX) { dataOut1[i] = Value::MAX; }
-            else                            { dataOut1[i] = (uint8)relValue; }
+            if (relValue < Value::MIN)      { outB[i] = Value::MIN; }
+            else if (relValue > Value::MAX) { outB[i] = Value::MAX; }
+            else                            { outB[i] = (uint8)relValue; }
         }
     }
 }

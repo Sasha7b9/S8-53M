@@ -28,6 +28,7 @@ public:
     inline uint8 *DataU8() { return (uint8 *)data; }
 
     T &operator[](uint i) const;
+    T &operator[](int i) const;
 
 private:
 
