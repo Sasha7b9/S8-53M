@@ -21,7 +21,7 @@ struct ReaderFPGA
 private:
 
     // Инвертирует данные.
-    static void InverseDataIsNecessary(const Channel &ch, uint8 *data);
+    static void InverseDataIsNecessary(DataReading &data, const Channel &ch);
 
     static Int CalculateShift();
 

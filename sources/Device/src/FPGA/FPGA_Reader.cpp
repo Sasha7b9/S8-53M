@@ -190,13 +190,16 @@ void ReaderFPGA::ReadPoint()
 }
 
 
-void ReaderFPGA::InverseDataIsNecessary(const Channel &ch, uint8 *data)
+void ReaderFPGA::InverseDataIsNecessary(DataReading &data, const Channel &ch)
 {
     if (ch.IsInversed())
     {
-        for (int i = 0; i < FPGA::MAX_NUM_POINTS; i++)
+        uint8 *d = data.Data(ch);
+        uint size = data.Settings().BytesInChannel();
+
+        for (uint i = 0; i < size; i++)
         {
-            data[i] = (uint8)((int)(2 * Value::AVE) - Math::Limitation<uint8>((uint8)data[i], Value::MIN, Value::MAX));
+            d[i] = (uint8)((int)(2 * Value::AVE) - Math::Limitation<uint8>((uint8)d[i], Value::MIN, Value::MAX));
         }
     }
 }
