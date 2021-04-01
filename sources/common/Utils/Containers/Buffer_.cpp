@@ -44,14 +44,30 @@ void Buffer<T>::Realloc(uint _size)
 }
 
 
+
+
+
 template<class T>
 void Buffer<T>::Fill(T value)
 {
     if (size)
     {
-        for (uint i = 0; i < size; i++)
+#ifdef WIN32
+#pragma warning(push, 0)
+#endif
+        if (sizeof(data[0]) == 1)
+#ifdef WIN32
+#pragma warning(pop)
+#endif
         {
-            data[i] = value;
+            std::memset(data, value, size);
+        }
+        else
+        {
+            for (uint i = 0; i < size; i++)
+            {
+                data[i] = value;
+            }
         }
     }
 }
