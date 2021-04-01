@@ -80,13 +80,13 @@ void HAL_FMC::InitFPGA()
 
     static const FMC_NORSRAM_TimingTypeDef sramTiming =
     {
-        3,                 // FSMC_AddressSetupTime
-        5,                 // FSMC_AddressHoldTime
-        10,                // FSMC_DataSetupTime
-        1,                 // FSMC_BusTurnAroundDuration
-        1,                 // FSMC_CLKDivision
-        1,                 // FSMC_DataLatency
-        FMC_ACCESS_MODE_C  // FSMC_AccessMode
+        1,                  // FSMC_AddressSetupTime
+        1,                  // FSMC_AddressHoldTime
+        2,                  // FSMC_DataSetupTime
+        1,                  // FSMC_BusTurnAroundDuration
+        1,                  // FSMC_CLKDivision
+        1,                  // FSMC_DataLatency
+        FMC_ACCESS_MODE_C   // FSMC_AccessMode
     };
 
     FMC_NORSRAM_TimingTypeDef *timing = const_cast<FMC_NORSRAM_TimingTypeDef *>(&sramTiming);
