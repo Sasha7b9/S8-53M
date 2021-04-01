@@ -86,44 +86,68 @@ void DataDrawing::DrawChannel(const Channel &ch)
 
     ch.GetColor().SetAsCurrent();
 
-    int x = Grid::Left();
-
     if (set.display.mode_draw_signal.IsLines())
     {
-        DrawChannelLined(x, points[ch]);
+        DrawChannelLined(Grid::Left(), points[ch]);
     }
     else
     {
-        DrawChannelPointed(x, points[ch]);
+        DrawChannelPointed(Grid::Left(), points[ch]);
     }
 }
 
 
 void DataDrawing::DrawChannelPointed(int x, Buffer &buffer)
 {
-    uint8 *_data = buffer.Data();
+    uint8 *d = buffer.Data();
     uint size = buffer.Size();
 
-    for (uint i = 0; i < size; i++)
+    if (data.Settings().IsEnabledPeakDet())
     {
-        Point().Draw(x++, *_data++);
+        for (uint i = 0; i < size; i += 2)
+        {
+            Point().Draw(x, *d++);
+            Point().Draw(x, *d++);
+
+            x++;
+        }
+    }
+    else
+    {
+        for (uint i = 0; i < size; i++)
+        {
+            Point().Draw(x++, *d++);
+        }
     }
 }
 
 
 void DataDrawing::DrawChannelLined(int x, Buffer &buffer)
 {
-    uint size = buffer.Size() - 1;
-
-    for (uint i = 0; i < size; i++)
+    if (data.Settings().IsEnabledPeakDet())
     {
-        uint8 current = buffer[i];
-        uint8 next = buffer[i + 1];
+        uint size = buffer.Size();
+        uint8 *d = buffer.Data();
 
-        if      (current > next) { VLine().Draw(x++, next + 1, current); }
-        else if (current < next) { VLine().Draw(x++, next - 1, current); }
-        else                     { Point().Draw(x++, next); }
+        for (uint i = 0; i < size; i += 2)
+        {
+            VLine().Draw(x++, *d++, *d++);
+        }
     }
+    else
+    {
+        uint size = buffer.Size() - 1;
 
-    Point().Draw(x, buffer[buffer.Size() - 1]);
+        for (uint i = 0; i < size; i++)
+        {
+            uint8 current = buffer[i];
+            uint8 next = buffer[i + 1];
+
+            if (current > next) { VLine().Draw(x++, next + 1, current); }
+            else if (current < next) { VLine().Draw(x++, next - 1, current); }
+            else { Point().Draw(x++, next); }
+        }
+
+        Point().Draw(x, buffer[buffer.Size() - 1]);
+    }
 }

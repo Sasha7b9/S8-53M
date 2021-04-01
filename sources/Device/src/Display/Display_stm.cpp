@@ -15,6 +15,7 @@ static uint8 *front = (uint8 *)HAL_FMC::ADDR_RAM_DISPLAY_FRONT;
 static uint8 back[240][320];
 
 uint8 *display_back_buffer = &back[0][0];
+uint8 *display_back_buffer_end = display_back_buffer + SIZE_BUFFER;
 
 
 void Display::Init()

@@ -6,14 +6,22 @@
 
 
 extern uint8 *display_back_buffer;
+extern uint8 *display_back_buffer_end;
 
 
 void Point::Draw(int x, int y) const
 {
-    BoundingX(x);
-    BoundingY(y);
+    if (x < 0 || y < 0)
+    {
+        return;
+    }
 
-    *(display_back_buffer + Display::WIDTH * y + x) = Color::GetCurrent().index;
+    uint8 shift = Display::WIDTH * y + x;
+
+    if (shift < Display::WIDTH * Display::HEIGHT)
+    {
+        *(display_back_buffer + shift) = Color::GetCurrent().index;
+    }
 }
 
 
