@@ -354,7 +354,7 @@ void DrawParametersChannel(const Channel &ch, int eX, int eY, bool inProgress)
 }
 
 
-float CalculateDeltaADC(const Channel &ch, float *avgADC1, float *avgADC2, float *delta)
+static float CalculateDeltaADC(const Channel &ch, float *avgADC1, float *avgADC2, float *delta)
 {
     uint *startTime = (ch == ChA) ? &startTimeChan0 : &startTimeChan1;
     *startTime = TIME_MS;
@@ -370,6 +370,9 @@ float CalculateDeltaADC(const Channel &ch, float *avgADC1, float *avgADC2, float
     uint16 *address2 = (ch == ChA) ? RD_ADC_A : RD_ADC_B;
 
     static const int numCicles = 10;
+
+    static const uint NUM_POINTS = 1024;
+
     for(int cicle = 0; cicle < numCicles; cicle++)
     {
         HAL_FMC::Write(WR_START, 1);
@@ -380,7 +383,7 @@ float CalculateDeltaADC(const Channel &ch, float *avgADC1, float *avgADC2, float
         while(_GET_BIT(HAL_FMC::Read(RD_FL), 0) == 0) {};
         HAL_FMC::Write(WR_STOP, 1);
 
-        for(int i = 0; i < FPGA::MAX_NUM_POINTS; i++)
+        for(int i = 0; i < NUM_POINTS; i++)
         {
             if(ch == ChA)
             {
@@ -402,8 +405,8 @@ float CalculateDeltaADC(const Channel &ch, float *avgADC1, float *avgADC2, float
         bar->fullTime = bar->passedTime * (float)numCicles / (cicle + 1);
     }
 
-    *avgADC1 /= (FPGA::MAX_NUM_POINTS * numCicles);
-    *avgADC2 /= (FPGA::MAX_NUM_POINTS * numCicles);
+    *avgADC1 /= (NUM_POINTS * numCicles);
+    *avgADC2 /= (NUM_POINTS * numCicles);
 
     *delta = *avgADC1 - *avgADC2;
 
