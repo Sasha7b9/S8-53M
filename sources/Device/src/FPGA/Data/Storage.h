@@ -30,7 +30,7 @@ friend class Storage;
 private:
 
     // В буфере хранятся последовательно - настройки, данные первого канала, данные второго канала
-    Buffer buffer;
+    BufferU8 buffer;
 
     uint Size();
 

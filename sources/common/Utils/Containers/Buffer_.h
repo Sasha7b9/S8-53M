@@ -6,7 +6,7 @@
      ласс единственно предназначен дл€ автоматического выделени€/освобождени€ пам€ти из кучи
 */
 
-
+template<class T>
 class Buffer
 {
 public:
@@ -19,23 +19,30 @@ public:
 
     void Free();
 
-    void Fill(uint8 value);
+    void Fill(T value);
 
     inline uint Size() const { return size; }
 
-    inline char *DataChar() { return reinterpret_cast<char *>(data); }
+    inline char *DataChar() { return (char *)data; }
 
-    inline uint8 *DataU8() { return data; }
+    inline uint8 *DataU8() { return (uint8 *)data; }
 
-    String Log();
-
-    uint8 &operator[](uint i) const;
+    T &operator[](uint i) const;
 
 private:
 
     uint size;
 
-    uint8 *data;
+    T *data;
 
     void Malloc(uint size);
+};
+
+
+class BufferU8 : public Buffer<uint8>
+{
+public:
+    BufferU8(uint size = 0U) : Buffer<uint8>(size) {}
+
+    String Log();
 };

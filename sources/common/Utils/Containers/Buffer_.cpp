@@ -6,36 +6,57 @@
 #include <cstring>
 
 
+template Buffer<uint8>::Buffer(uint);
+template Buffer<uint8>::~Buffer();
+template void Buffer<uint8>::Free();
+template void Buffer<uint8>::Realloc(uint);
+template uint8 &Buffer<uint8>::operator[](uint) const;
 
-Buffer::Buffer(uint s) : data(nullptr)
+
+template<class T>
+Buffer<T>::Buffer(uint s) : data(nullptr)
 {
     Malloc(s);
 }
 
 
-Buffer::~Buffer()
+template<class T>
+Buffer<T>::~Buffer()
 {
     Free();
 }
 
 
-void Buffer::Realloc(uint _size)
+template<class T>
+void Buffer<T>::Realloc(uint _size)
 {
     Free();
     Malloc(_size);
 }
 
 
-void Buffer::Fill(uint8 value)
+template<class T>
+void Buffer<T>::Fill(T value)
 {
     if (size)
     {
-        std::memset(data, value, (uint)(size));
+        if (sizeof(T) == 1)
+        {
+            std::memset(data, value, size);
+        }
+        else
+        {
+            for (uint i = 0; i < size; i++)
+            {
+                data[i] = value;
+            }
+        }
     }
 }
 
 
-void Buffer::Free()
+template<class T>
+void Buffer<T>::Free()
 {
     std::free(data);
     data = nullptr;
@@ -43,11 +64,12 @@ void Buffer::Free()
 }
 
 
-void Buffer::Malloc(uint s)
+template<class T>
+void Buffer<T>::Malloc(uint s)
 {
     if (s > 0)
     {
-        data = (uint8 *)(std::malloc((uint)(s)));
+        data = (T *)(std::malloc((uint)(s) * sizeof(T)));
         size = (data) ? s : 0;
 
         if(!data)
@@ -63,15 +85,15 @@ void Buffer::Malloc(uint s)
 }
 
 
-String Buffer::Log()
+String BufferU8::Log()
 {
     String result;
 
     for (uint i = 0; i < Size(); i++)
     {
-        result.Append(Int(data[i]).ToText(false, 1).c_str());
+        result.Append(Int((*this)[i]).ToText(false, 1).c_str());
 
-        if (i != size - 1)
+        if (i != Size() - 1)
         {
             result.Append(' ');
         }
@@ -81,14 +103,15 @@ String Buffer::Log()
 }
 
 
-uint8 &Buffer::operator[](uint i) const
+template<class T>
+T &Buffer<T>::operator[](uint i) const
 {
     if (i < Size())
     {
         return data[i];
     }
 
-    static uint8 empty = 0;
+    static T empty(0);
 
     return empty;
 }
