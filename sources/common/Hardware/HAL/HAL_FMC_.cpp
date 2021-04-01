@@ -26,7 +26,7 @@ void HAL_FMC::Write(uint16 * const address, uint16 value)
 {
     if (address == WR_RAZV)
     {
-        LOG_WRITE(Uint16(value).ToStringBin().c_str());
+//        LOG_WRITE(Uint16(value).ToStringBin().c_str());
     }
 
     if (address == WR_START)
@@ -36,7 +36,7 @@ void HAL_FMC::Write(uint16 * const address, uint16 value)
 
     if (address == WR_UPR)
     {
-        LOG_WRITE(Uint16(value).ToStringBin().c_str());
+//        LOG_WRITE(Uint16(value).ToStringBin().c_str());
     }
 
     *address = value;
