@@ -24,6 +24,11 @@ uint16 *const HAL_FMC::ADDR_RAM_DISPLAY_FRONT = (uint16 *)(ADDR_RAM + 1024 * 102
 
 void HAL_FMC::Write(uint16 * const address, uint16 value)
 {
+    if (address == WR_RAZV)
+    {
+        LOG_WRITE(Uint16(value).ToStringBin().c_str());
+    }
+
     if (address == WR_START)
     {
         HAL_ADC1::ResetValue();
