@@ -18,7 +18,7 @@ struct MeasureValue
 
 static uint8 dataOut0[FPGA_MAX_POINTS];
 static uint8 dataOut1[FPGA_MAX_POINTS];
-static DataSettings *dataSet = nullptr;
+static DataSettings *ds = nullptr;
 static uint8 dataIn[2][FPGA_MAX_POINTS];
 
 static uint firstP = 0;
@@ -101,7 +101,7 @@ static bool picIsCalculating[2] = {false, false};
 
 void Processing::CalculateMeasures()
 {
-    if(!set.measures.show || !dataSet)
+    if(!set.measures.show || !ds)
     {
         return;
     }
@@ -168,7 +168,7 @@ Float Processing::CalculateVoltageMax(Channel::E ch)
         markerHor[ch][0] = (int)(max);         // Здесь не округляем, потому что max может быть только целым
     }
 
-    return Value::ToVoltage((uint8)max, dataSet->range[ch], (int16)((ch == ChA) ? dataSet->r_shift_a : dataSet->r_shift_b)) *
+    return Value::ToVoltage((uint8)max, ds->range[ch], (int16)((ch == ChA) ? ds->r_shift_a : ds->r_shift_b)) *
         Divider::ToAbs(ch);
 }
 
@@ -183,7 +183,7 @@ Float Processing::CalculateVoltageMin(Channel::E ch)
         markerHor[ch][0] = (int)(min);          // Здесь не округляем, потому что min может быть только целым
     }
 
-    return Value::ToVoltage((uint8)min, dataSet->range[ch], (int16)((ch == ChA) ? dataSet->r_shift_a : dataSet->r_shift_b)) *
+    return Value::ToVoltage((uint8)min, ds->range[ch], (int16)((ch == ChA) ? ds->r_shift_a : ds->r_shift_b)) *
         Divider::ToAbs(ch);
 }
 
@@ -213,9 +213,9 @@ Float Processing::CalculateVoltageMinSteady(Channel::E ch)
         markerHor[ch][0] = (int)min.Round();
     }
 
-    return (Value::ToVoltage((uint8)min, dataSet->range[ch], (ch == ChA) ?
-        (int16)dataSet->r_shift_a :
-        (int16)dataSet->r_shift_b) * Divider::ToAbs(ch));
+    return (Value::ToVoltage((uint8)min, ds->range[ch], (ch == ChA) ?
+        (int16)ds->r_shift_a :
+        (int16)ds->r_shift_b) * Divider::ToAbs(ch));
 }
 
 Float Processing::CalculateVoltageMaxSteady(Channel::E ch)
@@ -229,8 +229,8 @@ Float Processing::CalculateVoltageMaxSteady(Channel::E ch)
         markerHor[ch][0] = (int)(max);
     }
 
-    Range::E range = dataSet->range[ch];
-    uint rShift = (ch == ChA) ? dataSet->r_shift_a : dataSet->r_shift_b;
+    Range::E range = ds->range[ch];
+    uint rShift = (ch == ChA) ? ds->r_shift_a : ds->r_shift_b;
 
     return (Value::ToVoltage((uint8)max, range, (int16)rShift) * Divider::ToAbs(ch));
 }
@@ -248,10 +248,10 @@ Float Processing::CalculateVoltageVybrosPlus(Channel::E ch)
         markerHor[ch][1] = (int)(maxSteady);
     }
 
-    int16 rShift = (ch == ChA) ? (int16)dataSet->r_shift_a : (int16)dataSet->r_shift_b;
+    int16 rShift = (ch == ChA) ? (int16)ds->r_shift_a : (int16)ds->r_shift_b;
 
-    return std::fabsf(Value::ToVoltage((uint8)maxSteady, dataSet->range[ch], (int16)rShift) -
-        Value::ToVoltage((uint8)max, dataSet->range[ch], (int16)rShift)) * Divider::ToAbs(ch);
+    return std::fabsf(Value::ToVoltage((uint8)maxSteady, ds->range[ch], (int16)rShift) -
+        Value::ToVoltage((uint8)max, ds->range[ch], (int16)rShift)) * Divider::ToAbs(ch);
 }
 
 Float Processing::CalculateVoltageVybrosMinus(Channel::E ch)
@@ -267,10 +267,10 @@ Float Processing::CalculateVoltageVybrosMinus(Channel::E ch)
         markerHor[ch][1] = (int)(minSteady);
     }
 
-    int16 rShift = (ch == ChA) ? (int16)dataSet->r_shift_a : (int16)dataSet->r_shift_b;
+    int16 rShift = (ch == ChA) ? (int16)ds->r_shift_a : (int16)ds->r_shift_b;
 
-    return std::fabsf(Value::ToVoltage((uint8)minSteady, dataSet->range[ch], (int16)rShift) -
-        Value::ToVoltage((uint8)min, dataSet->range[ch], (int16)rShift)) * Divider::ToAbs(ch);
+    return std::fabsf(Value::ToVoltage((uint8)minSteady, ds->range[ch], (int16)rShift) -
+        Value::ToVoltage((uint8)min, ds->range[ch], (int16)rShift)) * Divider::ToAbs(ch);
 }
 
 Float Processing::CalculateVoltageAmpl(Channel::E ch)
@@ -309,9 +309,9 @@ Float Processing::CalculateVoltageAverage(Channel::E ch)
         markerHor[ch][0] = aveRel;
     }
 
-    return (Value::ToVoltage((uint8)aveRel, dataSet->range[ch], (ch == ChA) ?
-        (int16)dataSet->r_shift_a :
-        (int16)dataSet->r_shift_b) *
+    return (Value::ToVoltage((uint8)aveRel, ds->range[ch], (ch == ChA) ?
+        (int16)ds->r_shift_a :
+        (int16)ds->r_shift_b) *
         Divider::ToAbs(ch));
 }
 
@@ -323,17 +323,17 @@ Float Processing::CalculateVoltageRMS(Channel::E ch)
 
     float rms = 0.0F;
 
-    int16 rShift = (ch == ChA) ? (int16)dataSet->r_shift_a : (int16)dataSet->r_shift_b;
+    int16 rShift = (ch == ChA) ? (int16)ds->r_shift_a : (int16)ds->r_shift_b;
 
     for(uint i = firstP; i < firstP + period; i++)
     {
-        float volts = Value::ToVoltage(dataIn[ch][i], dataSet->range[ch], rShift);
+        float volts = Value::ToVoltage(dataIn[ch][i], ds->range[ch], rShift);
         rms +=  volts * volts;
     }
 
     if(set.measures.marked.Is(Measure::VoltageRMS))
     {
-        markerHor[ch][0] = Value::FromVoltage(std::sqrtf(rms / period), dataSet->range[ch], rShift);
+        markerHor[ch][0] = Value::FromVoltage(std::sqrtf(rms / period), ds->range[ch], rShift);
     }
 
     return std::sqrtf(rms / period) * Divider::ToAbs(ch);
@@ -366,7 +366,7 @@ Float Processing::CalculatePeriod(Channel::E ch)
 
             EXIT_IF_ERRORS_FLOAT(firstIntersection, secondIntersection);
 
-            float per = TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->GetTBase());
+            float per = TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, ds->GetTBase());
 
             period[ch] = per;
             periodIsCaclulating[ch] = true;
@@ -534,7 +534,7 @@ Float Processing::CalculateDurationPlus(Channel::E ch)
 
     EXIT_IF_ERROR_FLOAT(secondIntersection);
 
-    return TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->GetTBase());
+    return TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, ds->GetTBase());
 }
 
 Float Processing::CalculateDurationMinus(Channel::E ch)
@@ -555,7 +555,7 @@ Float Processing::CalculateDurationMinus(Channel::E ch)
 
     EXIT_IF_ERROR_FLOAT(secondIntersection);
 
-    return TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->GetTBase());
+    return TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, ds->GetTBase());
 }
 
 Float Processing::CalculateTimeNarastaniya(Channel::E ch)   // WARN Здесь, возможно, нужно увеличить точность - брать не
@@ -582,7 +582,7 @@ Float Processing::CalculateTimeNarastaniya(Channel::E ch)   // WARN Здесь, возмо
 
     EXIT_IF_ERROR_FLOAT(secondIntersection);
 
-    float retValue = TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->GetTBase());
+    float retValue = TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, ds->GetTBase());
 
     if (set.measures.marked.Is(Measure::TimeNarastaniya))
     {
@@ -618,7 +618,7 @@ Float Processing::CalculateTimeSpada(Channel::E ch)                          // 
 
     EXIT_IF_ERROR_FLOAT(secondIntersection);
 
-    float result = TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->GetTBase());
+    float result = TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, ds->GetTBase());
 
     if (set.measures.marked.Is(Measure::TimeSpada))
     {
@@ -913,7 +913,7 @@ Float Processing::CalculateDelayPlus(Channel::E ch)
 
     EXIT_IF_ERROR_FLOAT(secondIntersection);
 
-    return TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->GetTBase());
+    return TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, ds->GetTBase());
 }
 
 Float Processing::CalculateDelayMinus(Channel::E ch)
@@ -950,7 +950,7 @@ Float Processing::CalculateDelayMinus(Channel::E ch)
 
     EXIT_IF_ERROR_FLOAT(secondIntersection);
 
-    return TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, dataSet->GetTBase());
+    return TShift::ToAbs((secondIntersection - firstIntersection) / 2.0F, ds->GetTBase());
 }
 
 Float Processing::CalculatePhazaPlus(Channel::E ch)
@@ -979,12 +979,12 @@ Float Processing::CalculatePhazaMinus(Channel::E ch)
     return delay / period * 360.0F; 
 }
 
-void Processing::SetSignal(puchar data0, puchar data1, DataSettings *ds, int _firstPoint, int _lastPoint)
+void Processing::SetSignal(puchar data0, puchar data1, DataSettings *_ds, int _firstPoint, int _lastPoint)
 {
     firstP = (uint)_firstPoint;
     lastP = (uint)_lastPoint;
     numP = lastP - firstP;
-    dataSet = ds;
+    ds = _ds;
 
     if (ds == nullptr)
     {
@@ -1001,7 +1001,7 @@ void Processing::SetSignal(puchar data0, puchar data1, DataSettings *ds, int _fi
     CountedToCurrentSettings();
 }
 
-void Processing::GetData(uint8 **data0, uint8 **data1, DataSettings **ds)
+void Processing::GetData(uint8 **data0, uint8 **data1, DataSettings **_ds)
 {
     if (data0)
     {
@@ -1013,7 +1013,7 @@ void Processing::GetData(uint8 **data0, uint8 **data1, DataSettings **ds)
         *data1 = dataOut1;
     }
 
-    *ds = dataSet;
+    *_ds = ds;
 }
 
 float Processing::GetCursU(const Channel &ch, float posCurT)
@@ -1186,11 +1186,11 @@ Text Processing::GetStringMeasure(Measure::E measure, const Channel &ch)
 
     Text result("%s", (ch == ChA) ? "1: " : "2: ");
 
-    if(dataSet == 0)
+    if(ds == 0)
     {
         result.Append("-.-");
     }
-    else if((ch == ChA && !dataSet->IsEnabled(ChA)) || (ch == ChB && !dataSet->IsEnabled(ChB)))
+    else if((ch == ChA && !ds->IsEnabled(ChA)) || (ch == ChB && !ds->IsEnabled(ChB)))
     {
     }
     else if(measures[measure].FuncCalculate)
@@ -1220,9 +1220,9 @@ void Processing::CountedToCurrentSettings()
     std::memset(dataOut0, 0, FPGA_MAX_POINTS);
     std::memset(dataOut1, 0, FPGA_MAX_POINTS);
     
-    int numPoints = (int)dataSet->BytesInChannel() * (dataSet->peak_det == PeackDetMode::Disable ? 1 : 2);
+    int numPoints = (int)ds->BytesInChannel() * (ds->peak_det == PeackDetMode::Disable ? 1 : 2);
 
-    int16 dataTShift = dataSet->tshift;
+    int16 dataTShift = ds->tshift;
     int16 curTShift = TShift::Get();
 
     int16 dTShift = curTShift - dataTShift;
@@ -1236,15 +1236,15 @@ void Processing::CountedToCurrentSettings()
         }
     }
  
-    if (dataSet->IsEnabled(ChA) && 
-        (dataSet->range[0] != set.chan[ChA].range || dataSet->r_shift_a != (uint)RShift::Get(ChA)))
+    if (ds->IsEnabled(ChA) &&
+        (ds->range[0] != set.chan[ChA].range || ds->r_shift_a != (uint)RShift::Get(ChA)))
     {
         Range::E range = set.chan[ChA].range;
         int16 rShift = RShift::Get(ChA);
 
         for (int i = 0; i < numPoints; i++)
         {
-            float absValue = Value::ToVoltage(dataOut0[i], dataSet->range[0], (int16)dataSet->r_shift_a);
+            float absValue = Value::ToVoltage(dataOut0[i], ds->range[0], (int16)ds->r_shift_a);
             int relValue = (int)((absValue + MAX_VOLTAGE_ON_SCREEN(range) + RShift::ToAbs(rShift, range)) /
                 MathFPGA::voltsInPixel[range] + Value::MIN);
 
@@ -1253,15 +1253,15 @@ void Processing::CountedToCurrentSettings()
             else                            { dataOut0[i] = (uint8)relValue; }
         }
     }
-    if (dataSet->IsEnabled(ChB) &&
-        (dataSet->range[1] != set.chan[ChB].range || dataSet->r_shift_b != (uint)RShift::Get(ChB)))
+    if (ds->IsEnabled(ChB) &&
+        (ds->range[1] != set.chan[ChB].range || ds->r_shift_b != (uint)RShift::Get(ChB)))
     {
         Range::E range = set.chan[ChB].range;
         int16 rShift = RShift::Get(ChB);
 
         for (int i = 0; i < numPoints; i++)
         {
-            float absValue = Value::ToVoltage(dataOut1[i], dataSet->range[1], (int16)dataSet->r_shift_b);
+            float absValue = Value::ToVoltage(dataOut1[i], ds->range[1], (int16)ds->r_shift_b);
             int relValue = (int)((absValue + MAX_VOLTAGE_ON_SCREEN(range) + RShift::ToAbs(rShift, range)) /
                 MathFPGA::voltsInPixel[range] + Value::MIN);
 
