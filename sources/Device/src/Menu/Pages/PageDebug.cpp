@@ -59,7 +59,7 @@ DEF_CHOICE_2(mcConsole_Registers_ShowAll, PageDebug::PageConsole::PageRegisters:
     "To show all values transferred in registers",
     "Нет", "No",
     "Да", "Yes",
-    IS_SHOW_REGISTERS_ALL, nullptr, nullptr, nullptr
+    set.debug.show_registers.all, nullptr, nullptr, nullptr
 )
 
 static bool IsActive_Console_Registers_RD_FL()
