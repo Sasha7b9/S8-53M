@@ -461,20 +461,16 @@ int TShift::InPoints(PeackDetMode::E peakDet)
 
 int16 TShift::Min()
 {
-    static const int16 m[3][3] = { {-511, -441, -371},
-    {-511, -383, -255},
-    {-511, -255, 0} };
+    int16 result = -(int16)set.memory.enum_points_fpga.ToPoints();
 
-    ENUM_POINTS_FPGA::E enumPoints = set.memory.enum_points_fpga;
-
-    if ((int)enumPoints < 3)
+    switch (set.time.t_pos)
     {
-        return m[enumPoints][set.time.t_pos];
+    case TPos::Left:                    break;
+    case TPos::Center:  result /= 2;    break;
+    case TPos::Right:   result = 0;     break;
     }
 
-    LOG_ERROR("");
-
-    return 0;
+    return result;
 }
 
 
