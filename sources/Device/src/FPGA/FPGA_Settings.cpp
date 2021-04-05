@@ -371,12 +371,18 @@ void FPGA::Calibrator::LoadKoeff(const Channel & /*chan*/)
 
 void TShift::Load()
 {
+    LaunchFPGA::Load();
+}
+
+
+void LaunchFPGA::Load()
+{
     if (!ReaderFPGA::mutex_read.IsLocked())
     {
-        LaunchFPGA::Calculate();
+        Calculate();
 
-        FPGA::BUS::Write(WR_POST, LaunchFPGA::PostForWrite());
-        FPGA::BUS::Write(WR_PRED, LaunchFPGA::PredForWrite());
+        FPGA::BUS::Write(WR_POST, PostForWrite());
+        FPGA::BUS::Write(WR_PRED, PredForWrite());
     }
 }
 
