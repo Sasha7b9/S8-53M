@@ -373,10 +373,10 @@ void TShift::Load()
 {
     if (!ReaderFPGA::mutex_read.IsLocked())
     {
-        FPGA::launch.Calculate();
+        LaunchFPGA::Calculate();
 
-        FPGA::BUS::Write(WR_POST, FPGA::launch.PostForWrite());
-        FPGA::BUS::Write(WR_PRED, FPGA::launch.PredForWrite());
+        FPGA::BUS::Write(WR_POST, LaunchFPGA::PostForWrite());
+        FPGA::BUS::Write(WR_PRED, LaunchFPGA::PredForWrite());
     }
 }
 

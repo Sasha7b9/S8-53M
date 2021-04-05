@@ -39,8 +39,6 @@ class FPGA
 {
 public:
 
-    static LaunchFPGA launch;
-
     static int  add_shift;
     static int  add_N_stop;
     static bool temporary_pause;
