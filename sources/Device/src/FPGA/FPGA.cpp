@@ -15,7 +15,6 @@
 
 int         FPGA::add_shift = 0;
 int         FPGA::add_N_stop = 0;
-LaunchFPGA  FPGA::launch;
 FPGA::Flag  FPGA::flag;
 bool        FPGA::temporary_pause = false;
 bool        FPGA::can_read_data = true;

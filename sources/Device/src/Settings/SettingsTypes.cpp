@@ -28,6 +28,8 @@ TBase::E TBase::MIN_P2P = TBase::_20ms;
 TBase::E TBase::MIN_PEAK_DET = TBase::_500ns;
 TBase::E TBase::MAX_RANOMIZE = TBase::_50ns;
 
+int LaunchFPGA::pred = 0;
+int LaunchFPGA::post = 0;
 
 Channel ChA(Channel::A);
 Channel ChB(Channel::B);

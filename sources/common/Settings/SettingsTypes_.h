@@ -1164,20 +1164,18 @@ struct ChannelFiltr
 
 struct LaunchFPGA
 {
-    LaunchFPGA() : pred(0), post(0) {}
-
-    void Calculate();
+    static void Calculate();
 
     // Возвращают значения, готовые для записи в ПЛИС
-    uint16 PredForWrite() const { return (uint16)(~(pred + 3)); };
-    uint16 PostForWrite() const { return (uint16)(~(post + 1)); };
+    static uint16 PredForWrite() { return (uint16)(~(pred + 3)); };
+    static uint16 PostForWrite() { return (uint16)(~(post + 1)); };
 
     // Возвращает "прямые значения"
-    int PredRaw() const { return pred; };
-    int PostRaw() const { return post; };
+    static int PredRaw() { return pred; };
+    static int PostRaw() { return post; };
 
 private:
 
-    int pred;
-    int post;
+    static int pred;
+    static int post;
 };
