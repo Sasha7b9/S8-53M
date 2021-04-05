@@ -181,7 +181,7 @@ void BottomPart::WriteTextVoltage(const Channel &ch, int x, int y)
     ModeCouple &mode_couple = set.chan[ch].mode_ñouple;
     Divider::E multiplier = set.chan[ch].divider;
     Range::E range = set.chan[ch].range;
-    uint rShift = (uint)RShift::Get(ch);
+    uint rShift = (uint)set.chan[ch].rshift;
     bool enable = ch.IsEnabled();
 
     if (!set.memory.mode_work.IsDirect())

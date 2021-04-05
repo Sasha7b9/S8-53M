@@ -76,7 +76,7 @@ DEF_CHOICE_2(mcFiltrA, PageChannelA::self,
 
 static void OnChanged_InverseA(bool)
 {
-    RShift::Set(ChA, RShift::Get(ChA));
+    RShift::Set(ChA, set.chan[ChA].rshift);
 }
 
 DEF_CHOICE_2(mcInverseA, PageChannelA::self,
@@ -154,7 +154,7 @@ DEF_CHOICE_2(mcFiltrB, PageChannelB::self,
 
 static void OnChanged_InverseB(bool)
 {
-    RShift::Set(ChB, RShift::Get(ChB));
+    RShift::Set(ChB, set.chan[ChB].rshift);
 }
 
 DEF_CHOICE_2(mcInverseB, PageChannelB::self,

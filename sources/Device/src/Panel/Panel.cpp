@@ -609,8 +609,8 @@ static void ChangeRShift(int *prevTime, void(*f)(const Channel &, int16), const 
         FPGA::TemporaryPause();
     }
     int count = CalculateCount(prevTime);
-    int rShiftOld = RShift::Get(ch);
-    int rShift = RShift::Get(ch) + relStep * count;
+    int rShiftOld = set.chan[ch].rshift;
+    int rShift = set.chan[ch].rshift + relStep * count;
     if ((rShiftOld > RShift::ZERO && rShift < RShift::ZERO) || (rShiftOld < RShift::ZERO && rShift > RShift::ZERO))
     {
         rShift = RShift::ZERO;

@@ -197,8 +197,8 @@ void FPGA::Calibrator::ProcedureCalibration()
     //    HAL_FMC::Write(WR_ADD_RSHIFT_DAC1, (uint8)SET_BALANCE_ADC_A);
 //    HAL_FMC::Write(WR_ADD_RSHIFT_DAC2, (uint8)SET_BALANCE_ADC_B);
 
-    RShift::Set(ChA, RShift::Get(ChA));
-    RShift::Set(ChB, RShift::Get(ChB));
+    RShift::Set(ChA, set.chan[ChA].rshift);
+    RShift::Set(ChB, set.chan[ChB].rshift);
 
     set.chan[ChA].stretch_ADC = koeffCal0.IsValid() ? (float)koeffCal0 : koeffCalibrationOld[0];
 

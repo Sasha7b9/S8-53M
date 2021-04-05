@@ -24,7 +24,7 @@ bool Cursors::NecessaryDraw()
 
 Voltage Cursors::GetVoltage(const Channel &source, int numCur)
 {
-    return GetVoltage(GetPosU(source, numCur), set.chan[source].range, RShift::Get(source));
+    return GetVoltage(GetPosU(source, numCur), set.chan[source].range, set.chan[source].rshift);
 }
 
 

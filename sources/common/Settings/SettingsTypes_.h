@@ -632,8 +632,6 @@ struct RShift
 {
     static void Set(const Channel &ch, int16 rShift);
 
-    static int16 Get(const Channel &ch);
-
     static int16 GetMath();
 
     static void Load(const Channel &ch);

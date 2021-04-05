@@ -171,7 +171,7 @@ void SCPI::CHANNEL::OFFSET(puchar buffer)
     ENTER_ANALYSIS
         if (value == 0)
         {
-            int retValue = (int)(0.5F * (RShift::Get(ch) - RShift::ZERO));
+            int retValue = (int)(0.5F * (set.chan[ch].rshift - RShift::ZERO));
             SCPI_SEND(":CHANNNEL%d:OFFSET %d", ch.ToNumber(), retValue);
         }
     LEAVE_ANALYSIS

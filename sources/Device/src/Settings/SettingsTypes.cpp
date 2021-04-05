@@ -237,12 +237,6 @@ void RShift::Set(const Channel &ch, int16 rShift)
 };
 
 
-int16 RShift::Get(const Channel &ch)
-{
-    return set.chan[ch].rshift;
-}
-
-
 int16 RShift::GetMath()
 {
     return set.math.rShift;
@@ -377,7 +371,7 @@ void ModeCouple::Set(const Channel &ch, ModeCouple::E mode_ñouple)
 
     FPGA::BUS::SetAttribChannelsAndTrig(ch == ChA ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
 
-    RShift::Set(ch, RShift::Get(ch));
+    RShift::Set(ch, set.chan[ch].rshift);
 }
 
 

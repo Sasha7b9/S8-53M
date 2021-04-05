@@ -57,7 +57,7 @@ void RShift::Draw(const Channel &ch)
         return;
     }
 
-    int rShift = RShift::Get(ch);
+    int rShift = set.chan[ch].rshift;
 
     float scale = Grid::ChannelHeight() / (RShift::STEP() * 200.0F);
     float y = Grid::ChannelCenterHeight() - scale * (rShift - RShift::ZERO);
@@ -109,7 +109,7 @@ void TrigLev::DrawCursor()
     {
         return;
     }
-    int trigLev = TrigLev::Get(ch) + (RShift::Get((Channel::E)ch) - RShift::ZERO);
+    int trigLev = TrigLev::Get(ch) + (set.chan[ch].rshift - RShift::ZERO);
     float scale = 1.0F / ((TrigLev::MAX - TrigLev::MIN) / 2.0F / Grid::ChannelHeight());
     int y0 = (int)((Grid::TOP + Grid::ChannelBottom()) / 2 + scale * (TrigLev::ZERO - TrigLev::MIN));
     int y = (int)(y0 - scale * (trigLev - TrigLev::MIN));
@@ -151,7 +151,7 @@ void TrigLev::DrawCursor()
         int shiftFullMin = RShift::MIN + TrigLev::MIN;
         int shiftFullMax = RShift::MAX + TrigLev::MAX;
         scale = (float)height / (shiftFullMax - shiftFullMin);
-        int shiftFull = TrigLev::Get() + (TrigSource::IsExt() ? 0 : RShift::Get((Channel::E)ch));
+        int shiftFull = TrigLev::Get() + (TrigSource::IsExt() ? 0 : set.chan[ch].rshift);
         int yFull = (int)(Grid::TOP + delta + height - scale * (shiftFull - RShift::MIN - TrigLev::MIN) - 4);
         Region(4, 6).Fill(left + 2, yFull + 1, Color::Trig());
         Font::Set(TypeFont::S5);
@@ -170,7 +170,7 @@ void TrigLev::WriteValue()
         TrigSource::E trigSource = TrigSource::Get();
         if (TrigInput::IsAC() && trigSource <= TrigSource::B)
         {
-            int16 rShift = RShift::Get((Channel::E)trigSource);
+            int16 rShift = set.chan[trigSource].rshift;
             float rShiftAbs = RShift::ToAbs(rShift, set.chan[trigSource].range);
             trigLev += rShiftAbs;
         }
