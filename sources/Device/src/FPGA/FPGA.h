@@ -39,8 +39,7 @@ class FPGA
 {
 public:
 
-    static PredLaunch pred;
-    static PostLaunch post;
+    static LaunchFPGA launch;
 
     static int  add_shift;
     static int  add_N_stop;

@@ -13,19 +13,18 @@
 #include <cstring>
 
 
-int              FPGA::add_shift = 0;
-int              FPGA::add_N_stop = 0;
-PostLaunch       FPGA::post(1024);
-PredLaunch       FPGA::pred(1024);
-FPGA::Flag       FPGA::flag;
-bool             FPGA::temporary_pause = false;
-bool             FPGA::can_read_data = true;
-FPGA::State      FPGA::state;
+int         FPGA::add_shift = 0;
+int         FPGA::add_N_stop = 0;
+LaunchFPGA  FPGA::launch;
+FPGA::Flag  FPGA::flag;
+bool        FPGA::temporary_pause = false;
+bool        FPGA::can_read_data = true;
+FPGA::State FPGA::state;
 
-float            FPGA::FreqMeter::freq = 0.0f;
+float       FPGA::FreqMeter::freq = 0.0f;
 
-int              FPGA::Randomizer::number_measures_for_gates = 1000;
-bool             FPGA::Randomizer::first_аfter_write = false;
+int         FPGA::Randomizer::number_measures_for_gates = 1000;
+bool        FPGA::Randomizer::first_аfter_write = false;
 
 
 // Функция вызывается, когда можно считывать очередной сигнал.
@@ -467,28 +466,4 @@ void FPGA::BUS::WriteToDAC(TypeWriteDAC::E type, uint16 data)
     }
 
     Pin::SPI4_CS1.Set();
-}
-
-
-uint16 PredLaunch::CalcualateForWrite()
-{
-    return (uint16)(~(CalculateRaw()));
-}
-
-
-int PredLaunch::CalculateRaw()
-{
-    return value;
-}
-
-
-uint16 PostLaunch::CalcualateForWrite()
-{
-    return (uint16)(~(CalculateRaw()));
-}
-
-
-int PostLaunch::CalculateRaw()
-{
-    return value;
 }

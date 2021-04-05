@@ -37,9 +37,6 @@ static const uint8 masksRange[Range::Count] =
 // Добавочные смещения по времени для разверёток режима рандомизатора.
 static int16 deltaTShift[TBase::Count] = {505, 489, 464, 412, 258};
 
-/// Добавочные смещения по времени для разверёток режима рандомизатора.
-static int16 timeCompensation[TBase::Count] = { 550, 275, 120, 55, 25, 9, 4, 1 };
-
 
 void FPGA::LoadSettings()
 {
@@ -374,70 +371,12 @@ void FPGA::Calibrator::LoadKoeff(const Channel & /*chan*/)
 
 void TShift::Load()
 {
-    TBase::E tBase = TBase::Get();
-    int shift = TShift::Get() - TShift::Min() + timeCompensation[tBase];
-
-    FPGA::post = shift;
-
-    if (TBase::IsRandomize())
-    {
-        uint k = 0;
-
-        int step = TBase::StepRand();
-
-        if (TPos::IsLeft())
-        {
-            k = set.memory.enum_points_fpga.ToPoints() % step;
-        }
-        else if (TPos::IsCenter())
-        {
-            k = (set.memory.enum_points_fpga.ToPoints() / 2) % step;
-        }
-
-        FPGA::post = (uint16)((2 * FPGA::post - k) / step);
-
-        FPGA::add_shift = (TShift::Get() * 2) % step;
-
-        if (FPGA::add_shift < 0)
-        {
-            FPGA::add_shift = step + FPGA::add_shift;
-        }
-
-        FPGA::pred = ~(set.debug.pretriggered);
-    }
-    else
-    {
-        FPGA::pred = (int16)set.memory.enum_points_fpga.BytesInChannel() / 2 - (int16)FPGA::post;
-
-        if (FPGA::pred < 0)
-        {
-            FPGA::pred = 0;
-        }
-
-        FPGA::pred = ~(FPGA::pred + 3);
-    }
-
-    if (shift < 0)
-    {
-        FPGA::post = 0;
-        FPGA::add_N_stop = -shift;
-    }
-    else
-    {
-        FPGA::add_N_stop = 0;
-    }
-
-    FPGA::post = (uint16)(~(FPGA::post + 1));                   // Здесь просто для записи в железо дополняем
-
     if (!ReaderFPGA::mutex_read.IsLocked())
     {
-        if (TBase::Get() > 8)
-        {
-            ++FPGA::post;
-            --FPGA::pred;
-        }
-        FPGA::BUS::Write(WR_POST, FPGA::post.CalcualateForWrite());
-        FPGA::BUS::Write(WR_PRED, FPGA::pred.CalcualateForWrite());
+        FPGA::launch.Calculate();
+
+        FPGA::BUS::Write(WR_POST, FPGA::launch.PostForWrite());
+        FPGA::BUS::Write(WR_PRED, FPGA::launch.PredForWrite());
     }
 }
 

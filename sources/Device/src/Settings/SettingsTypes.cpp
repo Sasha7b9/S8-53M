@@ -764,3 +764,55 @@ void RShift::DisableShowLevel(const Channel &ch)
 
     Timer::Disable(types[ch]);
 }
+
+
+void LaunchFPGA::Calculate()
+{
+    // Добавочные смещения по времени для разверёток режима рандомизатора.
+    static const int16 timeCompensation[TBase::Count] = { 550, 275, 120, 55, 25, 9, 4, 1 };
+
+    int shift = TShift::Get() - TShift::Min() + timeCompensation[set.time.base];
+
+    post = shift;
+
+    if (TBase::IsRandomize())
+    {
+        uint k = 0;
+
+        int step = TBase::StepRand();
+
+        if (TPos::IsLeft())
+        {
+            k = set.memory.enum_points_fpga.ToPoints() % step;
+        }
+        else if (TPos::IsCenter())
+        {
+            k = (set.memory.enum_points_fpga.ToPoints() / 2) % step;
+        }
+
+        post = (uint16)((2 * post - k) / step);
+
+        FPGA::add_shift = (TShift::Get() * 2) % step;
+
+        if (FPGA::add_shift < 0)
+        {
+            FPGA::add_shift = step + FPGA::add_shift;
+        }
+    }
+
+    pred = (int)set.memory.enum_points_fpga.BytesInChannel() / 2 - post;
+
+    Math::LimitBelow(&pred, 0);
+
+    pred = ~(pred + 3);
+
+    if (shift < 0)
+    {
+        post = 0;
+        FPGA:: add_N_stop = -shift;
+    }
+    else
+    {
+        FPGA::add_N_stop = 0;
+    }
+}
