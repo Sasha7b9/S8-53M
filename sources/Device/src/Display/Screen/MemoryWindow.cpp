@@ -30,7 +30,7 @@ void MemoryWindow::Draw(DataReading &data)
     const int xVert0 = leftX + (int)(set.display.shift_in_memory * scaleX);
     int width = (int)((right - leftX) * (282.0f / set.memory.enum_points_fpga.ToPoints()));
 
-    Rectangle(width - (set.memory.enum_points_fpga == ENUM_POINTS_FPGA::_8k ? 1 : 0), Grid::TOP - 2).
+    Rectangle(width - (set.memory.enum_points_fpga == EnumPointsFPGA::_8k ? 1 : 0), Grid::TOP - 2).
         Draw(xVert0, 0, Color::FILL);
 
     DrawTPos(leftX, right);
@@ -167,7 +167,7 @@ void MemoryWindow::DrawTShift(int leftX, int rightX, uint numBytes)
         --xShift;
     }
 
-    if (set.memory.enum_points_fpga == ENUM_POINTS_FPGA::_512)
+    if (set.memory.enum_points_fpga == EnumPointsFPGA::_512)
     {
         ++xShift;                           /// \todo Костыль
     }

@@ -177,7 +177,7 @@ bool FPGA::Randomizer::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
     {
         minGate = 0.9F * minGate + 0.1F * min;
         maxGate = 0.9F * maxGate + 0.1F * max;
-        LOG_WRITE("%.0F ... %.0F, min = %u, max = %u", minGate, maxGate, min, max);
+        LOG_WRITE("вор %.0F ... %.0F, min = %u, max = %u", minGate, maxGate, min, max);
         numElements = 0;
         min = 0xffff;
         max = 0;

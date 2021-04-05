@@ -20,7 +20,7 @@ struct SampleType {
 
 
 // Число точек сигнала, с которым идёт работа.
-struct ENUM_POINTS_FPGA
+struct EnumPointsFPGA
 {
     enum E
     {
@@ -34,7 +34,7 @@ struct ENUM_POINTS_FPGA
         Count
     } value;
 
-    ENUM_POINTS_FPGA(E v = _1k) : value(v) {}
+    EnumPointsFPGA(E v = _1k) : value(v) {}
 
     static uint ToPoints(E);
     static E FromPoints(uint num_points);

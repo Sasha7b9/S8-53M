@@ -19,7 +19,7 @@ struct DataSettings
     uint                peak_det     : 2;   // Включен ли пиковый детектор
     Divider::E          multiplier_a : 1;
     Divider::E          multiplier_b : 1;
-    ENUM_POINTS_FPGA::E enum_points  : 4;   // enum точек в канале
+    EnumPointsFPGA::E enum_points  : 4;   // enum точек в канале
     uint                is_clean     : 1;   // установленное в 1 значение означает, что данных нет (структура только
                                             // что создана)
     PackedTime          time;

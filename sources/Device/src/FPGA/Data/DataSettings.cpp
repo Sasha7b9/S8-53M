@@ -62,7 +62,7 @@ uint DataSettings::BytesInData() const
 
 uint DataSettings::PointsInChannel() const
 {
-    return ENUM_POINTS_FPGA::ToPoints((ENUM_POINTS_FPGA::E)enum_points);
+    return EnumPointsFPGA::ToPoints((EnumPointsFPGA::E)enum_points);
 }
 
 

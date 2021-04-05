@@ -55,7 +55,7 @@ struct SettingsTime
     TPos::E             tPos;
     SampleType::E       sampleType;
     PeackDetMode::E     peakDet;
-    ENUM_POINTS_FPGA::E oldNumPoints;           // Когда переключаемся в режим пикового детектора, устанавливаем количество точек в 1024, а сюда записываем то, что было, чтобы потом восстановить
+    EnumPointsFPGA::E oldNumPoints;           // Когда переключаемся в режим пикового детектора, устанавливаем количество точек в 1024, а сюда записываем то, что было, чтобы потом восстановить
 };
 
 
@@ -85,7 +85,7 @@ struct StructMemoryLast
 struct SettingsMemory
 {
 #define MAX_SYMBOLS_IN_FILE_NAME 35
-    ENUM_POINTS_FPGA::E fpgaNumPoints;          // Число точек.
+    EnumPointsFPGA::E fpgaNumPoints;          // Число точек.
     ModeWork::E         modeWork;               // Режим работы.
     FileNamingMode::E   fileNamingMode;         // Режим именования файлов.
     char                fileNameMask[MAX_SYMBOLS_IN_FILE_NAME]; // Здесь маска для автоматического именования файлов\n

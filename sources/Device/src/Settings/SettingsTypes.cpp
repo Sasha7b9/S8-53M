@@ -438,7 +438,7 @@ int TPos::InPoints(PeackDetMode::E peak_det, uint num_points, TPos::E tPos)
             {0, 255, 511},
             {0, 512, 1022}
         };
-        return m[ENUM_POINTS_FPGA::FromPoints(num_points)][tPos];
+        return m[EnumPointsFPGA::FromPoints(num_points)][tPos];
     }
     else
     {
@@ -448,7 +448,7 @@ int TPos::InPoints(PeackDetMode::E peak_det, uint num_points, TPos::E tPos)
             {0, 256, 510},
             {0, 256, 510}
         };
-        return m[ENUM_POINTS_FPGA::FromPoints(num_points)][tPos];
+        return m[EnumPointsFPGA::FromPoints(num_points)][tPos];
     }
 }
 
@@ -492,7 +492,7 @@ void TShift::SetInMemory(int16 shift)
 }
 
 
-uint ENUM_POINTS_FPGA::ToPoints(E v)
+uint EnumPointsFPGA::ToPoints(E v)
 {
     static const uint points[Count] =
     {
@@ -509,13 +509,13 @@ uint ENUM_POINTS_FPGA::ToPoints(E v)
 }
 
 
-uint ENUM_POINTS_FPGA::ToPoints()
+uint EnumPointsFPGA::ToPoints()
 {
-    return ENUM_POINTS_FPGA::ToPoints(value);
+    return EnumPointsFPGA::ToPoints(value);
 }
 
 
-uint ENUM_POINTS_FPGA::BytesInChannel()
+uint EnumPointsFPGA::BytesInChannel()
 {
     uint result = ToPoints();
 
@@ -528,7 +528,7 @@ uint ENUM_POINTS_FPGA::BytesInChannel()
 }
 
 
-uint ENUM_POINTS_FPGA::BytesForData()
+uint EnumPointsFPGA::BytesForData()
 {
     uint result = 0;
 
@@ -542,7 +542,7 @@ uint ENUM_POINTS_FPGA::BytesForData()
 }
 
 
-ENUM_POINTS_FPGA::E ENUM_POINTS_FPGA::FromPoints(uint num_points)
+EnumPointsFPGA::E EnumPointsFPGA::FromPoints(uint num_points)
 {
     struct Struct
     {
@@ -569,7 +569,7 @@ ENUM_POINTS_FPGA::E ENUM_POINTS_FPGA::FromPoints(uint num_points)
         }
     }
 
-    return ENUM_POINTS_FPGA::_16k;
+    return EnumPointsFPGA::_16k;
 }
 
 
