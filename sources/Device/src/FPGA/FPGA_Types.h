@@ -74,3 +74,44 @@ struct Value
 
 extern const uint16 * const addresses_ADC[2];
 #define ADDRESS_READ(ch) addresses_ADC[ch]
+
+
+struct PredLaunch
+{
+    PredLaunch(int v) : value(v) {}
+
+    // Возвращает значение, готовое к засылке в аппаратную часть
+    uint16 CalcualateForWrite();
+
+    // Возвращает "прямое" значение.
+    int CalculateRaw();
+
+
+    operator int() const { return value; }
+
+    PredLaunch &operator--() { --value; return *this; }
+
+private:
+
+    int value;
+};
+
+
+struct PostLaunch
+{
+    PostLaunch(int v) : value(v) {}
+
+    // Возвращает значение, готовое к засылке в аппаратную часть
+    uint16 CalcualateForWrite();
+
+    // Возвращает "прямое" значение.
+    int CalculateRaw();
+
+    operator int() const { return value; }
+
+    PostLaunch &operator++() { ++value; return *this; }
+
+private:
+
+    int value;
+};

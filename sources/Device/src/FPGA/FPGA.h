@@ -38,12 +38,14 @@ struct StateCalibration { enum E {
 class FPGA
 {
 public:
-    static int    add_shift;
-    static int    add_N_stop;
-    static int16  pred;
-    static uint16 post;
-    static bool   temporary_pause;
-    static bool   can_read_data;
+
+    static PredLaunch pred;
+    static PostLaunch post;
+
+    static int  add_shift;
+    static int  add_N_stop;
+    static bool temporary_pause;
+    static bool can_read_data;
 
     static void Init();
 

@@ -375,9 +375,9 @@ void FPGA::Calibrator::LoadKoeff(const Channel & /*chan*/)
 void TShift::Load()
 {
     TBase::E tBase = TBase::Get();
-    int tShift = TShift::Get() - TShift::Min() + timeCompensation[tBase];
+    int shift = TShift::Get() - TShift::Min() + timeCompensation[tBase];
 
-    FPGA::post = (uint16)tShift;
+    FPGA::post = shift;
 
     if (TBase::IsRandomize())
     {
@@ -417,10 +417,10 @@ void TShift::Load()
         FPGA::pred = ~(FPGA::pred + 3);
     }
 
-    if (tShift < 0)
+    if (shift < 0)
     {
         FPGA::post = 0;
-        FPGA::add_N_stop = -tShift;
+        FPGA::add_N_stop = -shift;
     }
     else
     {
@@ -436,8 +436,8 @@ void TShift::Load()
             ++FPGA::post;
             --FPGA::pred;
         }
-        FPGA::BUS::Write(WR_POST, FPGA::post);
-        FPGA::BUS::Write(WR_PRED, (uint)FPGA::pred);
+        FPGA::BUS::Write(WR_POST, FPGA::post.CalcualateForWrite());
+        FPGA::BUS::Write(WR_PRED, FPGA::pred.CalcualateForWrite());
     }
 }
 

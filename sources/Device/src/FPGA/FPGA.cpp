@@ -15,8 +15,8 @@
 
 int              FPGA::add_shift = 0;
 int              FPGA::add_N_stop = 0;
-uint16           FPGA::post = 1024;
-int16            FPGA::pred = 1024;
+PostLaunch       FPGA::post(1024);
+PredLaunch       FPGA::pred(1024);
 FPGA::Flag       FPGA::flag;
 bool             FPGA::temporary_pause = false;
 bool             FPGA::can_read_data = true;
@@ -177,7 +177,7 @@ bool FPGA::Randomizer::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
     {
         minGate = 0.9F * minGate + 0.1F * min;
         maxGate = 0.9F * maxGate + 0.1F * max;
-        LOG_WRITE("вор %.0F ... %.0F, min = %u, max = %u", minGate, maxGate, min, max);
+//        LOG_WRITE("вор %.0F ... %.0F, min = %u, max = %u", minGate, maxGate, min, max);
         numElements = 0;
         min = 0xffff;
         max = 0;
@@ -467,4 +467,28 @@ void FPGA::BUS::WriteToDAC(TypeWriteDAC::E type, uint16 data)
     }
 
     Pin::SPI4_CS1.Set();
+}
+
+
+uint16 PredLaunch::CalcualateForWrite()
+{
+    return (uint16)(~(CalculateRaw()));
+}
+
+
+int PredLaunch::CalculateRaw()
+{
+    return value;
+}
+
+
+uint16 PostLaunch::CalcualateForWrite()
+{
+    return (uint16)(~(CalculateRaw()));
+}
+
+
+int PostLaunch::CalculateRaw()
+{
+    return value;
 }
