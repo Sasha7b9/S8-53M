@@ -804,8 +804,6 @@ void LaunchFPGA::Calculate()
 
     Math::LimitBelow(&pred, 0);
 
-    pred = ~(pred + 3);
-
     if (shift < 0)
     {
         post = 0;

@@ -74,22 +74,3 @@ struct Value
 
 extern const uint16 * const addresses_ADC[2];
 #define ADDRESS_READ(ch) addresses_ADC[ch]
-
-
-
-struct LaunchFPGA
-{
-    LaunchFPGA() : pred(0), post(0) {}
-    void Calculate();
-
-    // Возвращают значения, готовые для записи в ПЛИС
-    uint16 PredForWrite() const { return (uint16)(~(pred + 3)); };
-    uint16 PostForWrite() const { return (uint16)(~(post + 1)); };
-
-    // Возвращает "прямые значения"
-    int PredRaw() const { return pred; };
-    int PostRaw() const { return post; };
-private:
-    int pred;
-    int post;
-};

@@ -14,6 +14,7 @@ template void  Math::LimitAbove(int16 *, int16);
 template void  Math::LimitAbove(int *, int);
 template void  Math::LimitBelow(int16 *, int16);
 template void  Math::LimitBelow(float *, float);
+template void  Math::LimitBelow(int *, int);
 template int   Math::MinFrom2(int, int);
 template uint  Math::MinFrom2(uint, uint);
 template int   Math::Limitation(int, int, int);
