@@ -41,7 +41,7 @@ static int16 deltaTShift[TBase::Count] = {505, 489, 464, 412, 258};
 void FPGA::LoadSettings()
 {
     TBase::Load();
-    TShift::Load();
+    LaunchFPGA::Load();
     Range::Load(ChA);
     RShift::Load(ChA);
     Range::Load(ChB);
@@ -318,7 +318,8 @@ void TrigLev::Load()
 void TShift::SetDelta(int16 shift)
 {
     deltaTShift[TBase::Get()] = shift;
-    Load();
+
+    LaunchFPGA::Load();
 }
 
 
@@ -366,12 +367,6 @@ void RegUPR::Load()
 void FPGA::Calibrator::LoadKoeff(const Channel & /*chan*/)
 {
 //    FPGA::WriteToHardware(ch == ChA ? WR_CAL_A : WR_CAL_B, (uint8)(STRETCH_ADC(ch) * 0x80), false);
-}
-
-
-void TShift::Load()
-{
-    LaunchFPGA::Load();
 }
 
 

@@ -346,7 +346,8 @@ void TShift::Set(int tShift)
 
     set.time.shift = (int16)tShift;
 
-    TShift::Load();
+    LaunchFPGA::Load();
+
     Display::Redraw();
 };
 
