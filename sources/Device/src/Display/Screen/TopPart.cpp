@@ -70,8 +70,8 @@ void TopPart::WriteCursors()
             Cursors::GetTime(source, 0).ToText().Draw(x, y1);
             Cursors::GetTime(source, 1).ToText().Draw(x, y2);
             x = startX + 153;
-            float pos0 = Cursors::GetTime(set.cursors.posT[source][0], TBase::Get());
-            float pos1 = Cursors::GetTime(set.cursors.posT[source][1], TBase::Get());
+            float pos0 = Cursors::GetTime(set.cursors.posT[source][0], set.time.base);
+            float pos1 = Cursors::GetTime(set.cursors.posT[source][1], set.time.base);
             float delta = std::fabsf(pos1 - pos0);
             Text(":dT=").Draw(x, y1);
             Time(delta).ToText(false).Draw(x + 17, y1);

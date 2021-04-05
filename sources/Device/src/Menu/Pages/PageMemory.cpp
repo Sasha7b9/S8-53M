@@ -238,7 +238,7 @@ void DrawSB_SetMask_Backspace(int x, int y)
     Font::Set(TypeFont::S8);
 }
 
-void DrawSB_SetName_Backspace(int x, int y) //-V524
+void DrawSB_SetName_Backspace(int x, int y)
 {
     Font::Set(TypeFont::UGO2);
     Char(Symbol::UGO2::BACKSPACE).Draw4SymbolsInRect(x + 2, y + 1);
@@ -283,7 +283,7 @@ void PressSB_SetMask_Delete()
     set.memory.file_name_mask[0] = '\0';
 }
 
-void DrawSB_SetName_Delete(int x, int y) //-V524
+void DrawSB_SetName_Delete(int x, int y)
 {
     Font::Set(TypeFont::UGO2);
     Char(Symbol::UGO2::DEL).Draw4SymbolsInRect(x + 2, y + 1);
@@ -342,7 +342,7 @@ void PressSB_SetMask_Insert()
     }
 }
 
-void DrawSB_SetName_Insert(int x, int y) //-V524
+void DrawSB_SetName_Insert(int x, int y)
 {
     Font::Set(TypeFont::UGO2);
     Char('\x26').Draw4SymbolsInRect(x + 2, y + 2);
@@ -513,7 +513,7 @@ void PressSB_MemInt_SaveToIntMemory()
     SaveSignalToIntMemory();
 }
 
-void DrawSB_MemInt_SaveToFlashDrive(int x, int y) //-V524
+void DrawSB_MemInt_SaveToFlashDrive(int x, int y)
 {
     if (FDrive::isConnected)
     {

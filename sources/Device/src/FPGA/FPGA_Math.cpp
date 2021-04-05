@@ -228,7 +228,7 @@ static void Normalize(float* data, int)
 void MathFPGA::CalculateFFT(float* dataR, int numPoints, float* result, float* freq0, float* density0, float* freq1,
     float* density1, int* y0, int* y1)
 {
-    float scale = 1.0F / absStepTShift[TBase::Get()] / 1024.0F;
+    float scale = 1.0F / absStepTShift[set.time.base] / 1024.0F;
 
     float K = 1024.0F / numPoints;
 

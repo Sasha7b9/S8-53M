@@ -58,7 +58,7 @@ struct Color
     static Color Contrast(const Color &color);
 
     // Светлый цвет в тени.
-    static Color LightShadingText()   { return Color::MENU_TITLE; } //-V524
+    static Color LightShadingText()   { return Color::MENU_TITLE; }
 
     bool operator==(const Color &rhs) { return (index == rhs.index); }
     bool operator!=(const Color &rhs) { return (index != rhs.index); }

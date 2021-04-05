@@ -825,8 +825,6 @@ struct TBase
 
     static void Set(TBase::E tbase);
 
-    static TBase::E Get();
-
     static void Load();
 
     static void Decrease();

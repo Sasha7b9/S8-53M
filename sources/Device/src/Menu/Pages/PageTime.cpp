@@ -28,7 +28,7 @@ DEF_CHOICE_2(mcSample, PageTime::self,
 
 static bool IsActive_PeakDet()
 {
-    return (TBase::Get() >= TBase::MIN_PEAK_DET);
+    return (set.time.base >= TBase::MIN_PEAK_DET);
 }
 
 void PageTime::OnChanged_PeakDet(bool active)
@@ -36,7 +36,7 @@ void PageTime::OnChanged_PeakDet(bool active)
     if (active)
     {
         PeackDetMode::Set(PeackDetMode::Get());
-        TBase::Set(TBase::Get());
+        TBase::Set(set.time.base);
         if (!PeackDetMode::IsEnabled())
         {
             volatile int8 shift[2][3] =

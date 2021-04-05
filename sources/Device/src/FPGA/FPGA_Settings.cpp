@@ -219,11 +219,11 @@ void TBase::Load()
         {BIN_U8(01111111), BIN_U8(01011111)}  // 10s
     };
 
-    TBase::E tBase = TBase::Get();
-    uint8 mask = !PeackDetMode::IsEnabled() ? masksTBase[tBase].maskNorm : masksTBase[tBase].maskPeackDet;
+    TBase::E base = set.time.base;
+    uint8 mask = !PeackDetMode::IsEnabled() ? masksTBase[base].maskNorm : masksTBase[base].maskPeackDet;
 
     FPGA::BUS::Write(WR_RAZV, mask);
-    set.debug.shift_T0 = deltaTShift[tBase];
+    set.debug.shift_T0 = deltaTShift[base];
 }
 
 
@@ -317,7 +317,7 @@ void TrigLev::Load()
 
 void TShift::SetDelta(int16 shift)
 {
-    deltaTShift[TBase::Get()] = shift;
+    deltaTShift[set.time.base] = shift;
 
     LaunchFPGA::Load();
 }
@@ -384,7 +384,7 @@ void LaunchFPGA::Load()
 
 String TShift::ToString(int16 tshift_rel)
 {
-    float tShiftVal = TShift::ToAbs(tshift_rel, TBase::Get());
+    float tShiftVal = TShift::ToAbs(tshift_rel, set.time.base);
 
     return Time(tShiftVal).ToText(true);
 }

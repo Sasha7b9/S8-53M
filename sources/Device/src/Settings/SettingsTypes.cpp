@@ -251,22 +251,22 @@ int16 RShift::GetMath()
 
 void TBase::Decrease()
 {
-    if (PeackDetMode::IsEnabled() && TBase::Get() <= TBase::MIN_PEAK_DET)
+    if (PeackDetMode::IsEnabled() && (set.time.base <= TBase::MIN_PEAK_DET))
     {
         Warnings::ShowWarningBad(Warning::LimitSweep_Time);
         Warnings::ShowWarningBad(Warning::EnabledPeakDet);
         return;
     }
 
-    if ((int)TBase::Get() > 0)
+    if (set.time.base > 0)
     {
-        if (PageTime::InSelfRecoredMode() && TBase::Get() == TBase::MIN_P2P)
+        if (PageTime::InSelfRecoredMode() && (set.time.base == TBase::MIN_P2P))
         {
             Warnings::ShowWarningBad(Warning::TooFastScanForSelfRecorder);
         }
         else
         {
-            E base = (E)((int)TBase::Get() - 1);
+            E base = (E)(set.time.base - 1);
             Set(base);
         }
     }
@@ -279,9 +279,9 @@ void TBase::Decrease()
 
 void TBase::Increase()
 {
-    if (TBase::Get() < (TBase::Count - 1))
+    if (set.time.base < (TBase::Count - 1))
     {
-        E base = (E)(TBase::Get() + 1);
+        E base = (E)(set.time.base + 1);
         Set(base);
     }
     else
@@ -311,10 +311,10 @@ void TBase::Set(TBase::E tBase)
     }
     if (tBase < TBase::Count)
     {
-        float tShiftAbsOld = TShift::ToAbs(TShift::Get(), TBase::Get());
+        float tShiftAbsOld = TShift::ToAbs(TShift::Get(), set.time.base);
         set.time.base = tBase;
         Load();
-        TShift::Set((int)(TShift::ToRel(tShiftAbsOld, TBase::Get())));
+        TShift::Set((int)(TShift::ToRel(tShiftAbsOld, set.time.base)));
         Display::Redraw();
     }
     else
@@ -322,12 +322,6 @@ void TBase::Set(TBase::E tBase)
         Warnings::ShowWarningBad(Warning::LimitSweep_Time);
     }
 };
-
-
-TBase::E TBase::Get()
-{
-    return set.time.base;
-}
 
 
 void TShift::Set(int tShift)

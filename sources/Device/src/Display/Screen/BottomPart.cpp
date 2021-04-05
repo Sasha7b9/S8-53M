@@ -36,7 +36,6 @@ void BottomPart::Draw()
 
     x += 98;
 
-    TBase::E tBase = TBase::Get();
     int16 tShift = TShift::Get();
 
     if (!set.memory.mode_work.IsDirect())
@@ -50,7 +49,7 @@ void BottomPart::Draw()
         //        }
     }
 
-    Text("ð\xa5%s", TBase::ToString(tBase)).Draw(x, y0);
+    Text("ð\xa5%s", TBase::ToString(set.time.base)).Draw(x, y0);
 
     Text("\xa5%s", TShift::ToString(tShift).c_str()).Draw(x + 35, y0);
 
