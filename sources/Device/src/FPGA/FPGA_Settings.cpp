@@ -387,11 +387,11 @@ void LaunchFPGA::Load()
 }
 
 
-String TShift::ToString(int16 tshift_rel)
+String TShift::ToString(int16 shift)
 {
-    float tShiftVal = TShift::ToAbs(tshift_rel, set.time.base);
+    float abs = TShift::ToAbs(shift, set.time.base);
 
-    return Time(tShiftVal).ToText(true);
+    return Time(abs).ToText(true);
 }
 
 
