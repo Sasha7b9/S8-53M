@@ -49,7 +49,7 @@ void BottomPart::Draw()
 
     Text("ð\xa5%s", TBase::ToString(set.time.base)).Draw(x, y0);
 
-    Text("\xa5%s", TShift::ToString(set.time.shift).c_str()).Draw(x + 35, y0);
+    Text("\xa5%s", TShift::ToString(set.time.shift).c_str()).Draw(x + 36, y0);
 
     if (set.memory.mode_work.IsDirect())
     {
