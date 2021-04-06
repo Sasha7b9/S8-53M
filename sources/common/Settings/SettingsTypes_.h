@@ -668,6 +668,8 @@ private:
 
     // Отключить вспомогательную линию маркера смещения по напряжению
     static void DisableShowLevel(const Channel &ch);
+
+    static const float abs_step[Range::Count];
 };
 
 

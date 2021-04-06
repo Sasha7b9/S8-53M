@@ -14,6 +14,5 @@ struct MathFPGA
     static void  CalculateMathFunction(float *data0andResult, const float *data1, int numPoints);
 
     static const float tableScalesRange[Range::Count];
-    static const float absStepRShift[];
     static const float voltsInPixel[];
 };

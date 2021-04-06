@@ -38,24 +38,6 @@ const int voltsInPixelInt[] =   // Коэффициент 20000
 };
 
 
-const float MathFPGA::absStepRShift[] =
-{
-    2e-3F   / 20 / RShift::STEP(),
-    5e-3F   / 20 / RShift::STEP(),
-    10e-3F  / 20 / RShift::STEP(),
-    20e-3F  / 20 / RShift::STEP(),
-    50e-3F  / 20 / RShift::STEP(),
-    100e-3F / 20 / RShift::STEP(),
-    200e-3F / 20 / RShift::STEP(),
-    500e-3F / 20 / RShift::STEP(),
-    1.0F    / 20 / RShift::STEP(),
-    2.0F    / 20 / RShift::STEP(),
-    5.0F    / 20 / RShift::STEP(),
-    10.0F   / 20 / RShift::STEP(),
-    20.0F   / 20 / RShift::STEP()
-};
-
-
 const float MathFPGA::voltsInPixel[] =
 {
     2e-3F   / 20,   // 2mV
@@ -76,7 +58,7 @@ const float MathFPGA::voltsInPixel[] =
 
 int RShift::ToRel(float rShiftAbs, Range::E range)
 {
-    int retValue = (int)(RShift::ZERO + rShiftAbs / MathFPGA::absStepRShift[range]);
+    int retValue = (int)(RShift::ZERO + rShiftAbs / abs_step[range]);
     if (retValue < RShift::MIN)
     {
         retValue = RShift::MIN;
@@ -91,7 +73,7 @@ int RShift::ToRel(float rShiftAbs, Range::E range)
 
 Voltage RShift::ToAbs(int16 rshift, Range::E range)
 {
-    return (-((float)ZERO - (float)(rshift)) * MathFPGA::absStepRShift[(uint)(range)]);
+    return (-((float)ZERO - (float)(rshift)) * abs_step[(uint)(range)]);
 }
 
 
