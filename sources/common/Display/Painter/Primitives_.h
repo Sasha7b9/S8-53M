@@ -8,6 +8,7 @@ inline void BoundingY(int &y) { if (y < 0) y = 0; if (y >= Display::HEIGHT) y = 
 class Point
 {
 public:
+    void Draw(int x, int y, const Color &color) const;
     void Draw(int x, int y) const;
 };
 

@@ -155,53 +155,41 @@ void MemoryWindow::DrawTPos(int leftX, int rightX)
 }
 
 
-void MemoryWindow::DrawTShift(int leftX, int rightX, uint numBytes)
+void MemoryWindow::DrawTShift(int left, int right, uint numBytes)
 {
-    float scale = (float)(rightX - leftX + 1) / ((float)numBytes - (numBytes == 281 ? 1 : 0));
+    float scale = (float)(right - left + 1) / ((float)numBytes - (numBytes == 281 ? 1 : 0));
 
-    int xShift = (int)(1.5f + (TPos::InPoints(set.time.peak_det, set.memory.enum_points_fpga.ToPoints(), set.time.t_pos) -
+    int x = (int)(1.5f + (TPos::InPoints(set.time.peak_det, set.memory.enum_points_fpga.ToPoints(), set.time.t_pos) -
         TShift::InPoints(set.time.peak_det)) * scale) - 1;
 
     if (set.time.peak_det.IsEnabled() && set.time.t_pos.IsRight())
     {
-        --xShift;
+        --x;
     }
 
     if (set.memory.enum_points_fpga == EnumPointsFPGA::_512)
     {
-        ++xShift;                           /// \todo Костыль
+        ++x;                           /// \todo Костыль
     }
 
-    Math::LimitAbove(&xShift, rightX - 2);
+    Math::LimitAbove(&x, right - 2);
 
-    int dX01 = 1;
-    int dX02 = 2;
-    int dX11 = 3;
-    int dY11 = 7;
-    int dY12 = 6;
+    Rectangle(7, 6).Draw(x - 1, 1, Color::BACK);
+    Rectangle(5, 5).Draw(x, 1, Color::FILL);
 
-    if (xShift < leftX - 2)
+    if (x < left - 2)
     {
-        xShift = leftX - 2;
-        dX01 = 3;
-        dX02 = 1;
+
     }
-    else if (xShift > rightX - 1)
+    else if (x > right - 1)
     {
-        xShift = rightX - 2;
-        dX11 = 1;
+
     }
     else
     {
-        dY11 = 5;
-        dY12 = 7;
+        HLine(3).Draw(x + 1, 2, Color::DATA_B);
+        VLine(2).Draw(x + 2, 3);
     }
-
-    Region(6, 6).Fill((int)xShift - 1, 1, Color::BACK);
-    Region(4, 4).Fill((int)xShift, 2, Color::FILL);
-
-    Line().Draw((int)xShift + dX01, 3, (int)xShift + dX11, dY11 - 2, Color::BACK);
-    Line().Draw((int)xShift + dX02, 4, (int)xShift + 2, dY12 - 2);
 }
 
 

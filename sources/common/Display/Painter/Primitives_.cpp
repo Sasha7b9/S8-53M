@@ -179,9 +179,25 @@ void MultiHPointLine::Draw(int x, const Color &color) const
 }
 
 
+void Point::Draw(int x, int y, const Color &color) const
+{
+    color.SetAsCurrent();
+
+    Draw(x, y);
+}
+
+
 void Region::Fill(int x, int y, const Color &color) const
 {
     color.SetAsCurrent();
 
     Fill(x, y);
+}
+
+
+void HLine::Draw(int x, int y, const Color &color) const
+{
+    color.SetAsCurrent();
+
+    Draw(x, y);
 }
