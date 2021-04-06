@@ -753,12 +753,31 @@ void RShift::DisableShowLevel(const Channel &ch)
 
 void LaunchFPGA::Calculate()
 {
+    if (set.debug.show_registers.launch)
+    {
+        LOG_WRITE("");
+    }
+
     // ƒобавочные смещени€ по времени дл€ разверЄток режима рандомизатора.
-    static const int16 timeCompensation[TBase::Count] = { 550, 275, 120, 55, 25, 9, 4, 1 };
+    //                                                    1нс  2нс  5нс  10нс 20 нс 50нс
+    static const int16 timeCompensation[TBase::Count] = { 550, 275, 120, 55,  25,   9};
+
+    if (set.debug.show_registers.launch)
+    {
+        LOG_WRITE("1 set.time.shift = %d", set.time.shift);
+        LOG_WRITE("2 TSshift::Min() = %d", TShift::Min());
+    }
 
     const int shift = set.time.shift - TShift::Min() + timeCompensation[set.time.base];
 
-    post = shift;
+    if (set.debug.show_registers.launch)
+    {
+        LOG_WRITE("3 shift = %d", shift);
+    }
+
+    post = shift / 2;
+
+    int points_in_channel = set.memory.enum_points_fpga.ToPoints();
 
     if (TBase::IsRandomize())
     {
@@ -768,11 +787,11 @@ void LaunchFPGA::Calculate()
 
         if (TPos::IsLeft())
         {
-            k = set.memory.enum_points_fpga.ToPoints() % step;
+            k = points_in_channel % step;
         }
         else if (TPos::IsCenter())
         {
-            k = (set.memory.enum_points_fpga.ToPoints() / 2) % step;
+            k = (points_in_channel / 2) % step;
         }
 
         post = (uint16)((2 * post - k) / step);
@@ -785,9 +804,14 @@ void LaunchFPGA::Calculate()
         }
     }
 
-    pred = (int)set.memory.enum_points_fpga.BytesInChannel() / 2 - post;
+    pred = points_in_channel / 2 - post;
 
     Math::LimitBelow(&pred, 0);
+
+    if (post + pred < points_in_channel)
+    {
+        pred = points_in_channel - post;
+    }
 
     if (shift < 0)
     {

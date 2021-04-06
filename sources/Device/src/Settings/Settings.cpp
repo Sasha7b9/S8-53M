@@ -205,7 +205,7 @@ static const Settings defaultSettings =
     },
     // debug
     {
-        20,                          // numStrings
+        20,                         // numStrings
         0,                          // נאחלונ רנטפעא - 5
         0,                          // consoleInPause
         BalanceADCtype::Settings,   // balanceADC
