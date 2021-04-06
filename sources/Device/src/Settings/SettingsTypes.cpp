@@ -756,7 +756,7 @@ void LaunchFPGA::Calculate()
     // Добавочные смещения по времени для разверёток режима рандомизатора.
     static const int16 timeCompensation[TBase::Count] = { 550, 275, 120, 55, 25, 9, 4, 1 };
 
-    int shift = set.time.shift - TShift::Min() + timeCompensation[set.time.base];
+    const int shift = set.time.shift - TShift::Min() + timeCompensation[set.time.base];
 
     post = shift;
 
