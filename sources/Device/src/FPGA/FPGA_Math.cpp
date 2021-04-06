@@ -58,27 +58,19 @@ const float MathFPGA::absStepRShift[] =
 
 const float MathFPGA::voltsInPixel[] =
 {
-    2e-3F / 20,      // 2mV
-    5e-3F / 20,      // 5mV
-    10e-3F / 20,     // 10mV
-    20e-3F / 20,     // 20mV
-    50e-3F / 20,     // 50mV
-    100e-3F / 20,    // 100mV
-    200e-3F / 20,    // 200mV
-    500e-3F / 20,    // 500mV
-    1.0F / 20,       // 1V
-    2.0F / 20,       // 2V
-    5.0F / 20,       // 5V
-    10.0F / 20,      // 10V
-    20.0F / 20       // 20V
-};
-
-const float MathFPGA::absStepTShift[] =
-{
-    2e-9F / 20, 5e-9F / 20, 10e-9F / 20, 20e-9F / 20, 50e-9F / 20, 100e-9F / 20, 200e-9F / 20, 500e-9F / 20,
-    1e-6F / 20, 2e-6F / 20, 5e-6F / 20, 10e-6F / 20, 20e-6F / 20,   50e-6F / 20, 100e-6F / 20, 200e-6F / 20, 500e-6F / 20,
-    1e-3F / 20, 2e-3F / 20, 5e-3F / 20, 10e-3F / 20, 20e-3F / 20,   50e-3F / 20, 100e-3F / 20, 200e-3F / 20, 500e-3F / 20,
-    1.0F / 20, 2.0F / 20, 5.0F / 20, 10.0F / 20
+    2e-3F   / 20,   // 2mV
+    5e-3F   / 20,   // 5mV
+    10e-3F  / 20,   // 10mV
+    20e-3F  / 20,   // 20mV
+    50e-3F  / 20,   // 50mV
+    100e-3F / 20,   // 100mV
+    200e-3F / 20,   // 200mV
+    500e-3F / 20,   // 500mV
+    1.0F    / 20,   // 1V
+    2.0F    / 20,   // 2V
+    5.0F    / 20,   // 5V
+    10.0F   / 20,   // 10V
+    20.0F   / 20    // 20V
 };
 
 
@@ -228,7 +220,7 @@ static void Normalize(float* data, int)
 void MathFPGA::CalculateFFT(float* dataR, int numPoints, float* result, float* freq0, float* density0, float* freq1,
     float* density1, int* y0, int* y1)
 {
-    float scale = 1.0F / absStepTShift[set.time.base] / 1024.0F;
+    float scale = 1.0F / TShift::abs_step[set.time.base] / 1024.0F;
 
     float K = 1024.0F / numPoints;
 

@@ -16,5 +16,4 @@ struct MathFPGA
     static const float tableScalesRange[Range::Count];
     static const float absStepRShift[];
     static const float voltsInPixel[];
-    static const float absStepTShift[];
 };

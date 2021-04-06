@@ -42,7 +42,7 @@ Time Cursors::GetTime(const Channel &source, int num_cur)
 
 Time Cursors::GetTime(float shift_cur, TBase::E tBase)
 {
-    return shift_cur * MathFPGA::absStepTShift[tBase];
+    return shift_cur * TShift::abs_step[tBase];
 }
 
 

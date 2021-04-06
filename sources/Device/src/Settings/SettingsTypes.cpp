@@ -35,6 +35,15 @@ Channel ChA(Channel::A);
 Channel ChB(Channel::B);
 
 
+const float TShift::abs_step[TBase::Count] =
+{
+    1e-9F / 20, 2e-9F / 20, 5e-9F / 20, 10e-9F / 20, 20e-9F / 20, 50e-9F / 20, 100e-9F / 20, 200e-9F / 20, 500e-9F / 20,
+    1e-6F / 20, 2e-6F / 20, 5e-6F / 20, 10e-6F / 20, 20e-6F / 20, 50e-6F / 20, 100e-6F / 20, 200e-6F / 20, 500e-6F / 20,
+    1e-3F / 20, 2e-3F / 20, 5e-3F / 20, 10e-3F / 20, 20e-3F / 20, 50e-3F / 20, 100e-3F / 20, 200e-3F / 20, 500e-3F / 20,
+    1.0F / 20, 2.0F / 20, 5.0F / 20, 10.0F / 20
+};
+
+
 int Divider::ToAbs(Divider::E multiplier)
 {
     static const int results[2] = { 1, 10 };
@@ -440,7 +449,7 @@ int TPos::InPoints(PeackDetMode::E peak_det, uint num_points, TPos::E tPos)
 
 int TShift::InPoints(PeackDetMode::E peakDet)
 {
-    return set.time.shift * (peakDet == PeackDetMode::Disable ? 2 : 1);
+    return set.time.shift * (peakDet == PeackDetMode::Disable ? 1 : 2);
 }
 
 
@@ -693,13 +702,13 @@ int16 RShift::STEP()
 
 Time TShift::ToAbs(float tshift, TBase::E tbase)
 {
-    return (MathFPGA::absStepTShift[(tbase)] * (tshift) * 2.0F);
+    return (abs_step[(tbase)] * (tshift) * 2.0F);
 }
 
 
 float TShift::ToRel(float tshift_abs, TBase::E tbase)
 {
-    return ((tshift_abs) / MathFPGA::absStepTShift[tbase] / 2.0F);
+    return ((tshift_abs) / abs_step[tbase] / 2.0F);
 }
 
 
@@ -777,7 +786,7 @@ void LaunchFPGA::Calculate()
 
     post = shift / 2;
 
-    int points_in_channel = set.memory.enum_points_fpga.ToPoints();
+    uint points_in_channel = set.memory.enum_points_fpga.ToPoints();
 
     if (TBase::IsRandomize())
     {
@@ -804,13 +813,13 @@ void LaunchFPGA::Calculate()
         }
     }
 
-    pred = points_in_channel / 2 - post;
+    pred = (int)points_in_channel / 2 - post;
 
     Math::LimitBelow(&pred, 0);
 
-    if (post + pred < points_in_channel)
+    if (post + pred < (int)points_in_channel / 2)
     {
-        pred = points_in_channel - post;
+        pred = (int)points_in_channel / 2 - post;
     }
 
     if (shift < 0)

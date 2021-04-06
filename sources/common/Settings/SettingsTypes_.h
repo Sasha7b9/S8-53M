@@ -886,6 +886,8 @@ struct TShift
     static const int NULL_VALUE = 1000000;
 
     static const int16 MAX = 16000;
+
+    static const float abs_step[TBase::Count];
 };
 
 
