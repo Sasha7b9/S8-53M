@@ -54,6 +54,16 @@ DEF_CHOICE_2(mcConsole_SizeFont, PageDebug::PageConsole::self,
 )
 
 
+DEF_CHOICE_2(mcLaunchFPGA, PageDebug::PageConsole::PageRegisters::self,
+    "Çàïóñê", "Launch",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    ENABLE_RU, ENABLE_EN,
+    set.debug.show_registers.launch, nullptr, nullptr, nullptr
+)
+
+
 DEF_CHOICE_2(mcConsole_Registers_RD_FL, PageDebug::PageConsole::PageRegisters::self,
     "RD_FL", "RD_FL",
     "",
@@ -96,7 +106,7 @@ DEF_CHOICE_2(mcConsole_Registers_RangeA, PageDebug::PageConsole::PageRegisters::
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.show_registers.range[0], nullptr, nullptr, nullptr
+    set.debug.show_registers.rangeA, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_Registers_RangeB, PageDebug::PageConsole::PageRegisters::self,
@@ -105,7 +115,7 @@ DEF_CHOICE_2(mcConsole_Registers_RangeB, PageDebug::PageConsole::PageRegisters::
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.show_registers.range[1], nullptr, nullptr, nullptr
+    set.debug.show_registers.rangeB, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_Registers_TrigParam, PageDebug::PageConsole::PageRegisters::self,
@@ -123,7 +133,7 @@ DEF_CHOICE_2(mcConsole_Registers_ChanParamA, PageDebug::PageConsole::PageRegiste
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.show_registers.chanParam[0], nullptr, nullptr, nullptr
+    set.debug.show_registers.chanParamA, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_Registers_ChanParamB, PageDebug::PageConsole::PageRegisters::self,
@@ -132,7 +142,7 @@ DEF_CHOICE_2(mcConsole_Registers_ChanParamB, PageDebug::PageConsole::PageRegiste
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.show_registers.chanParam[1], nullptr, nullptr, nullptr
+    set.debug.show_registers.chanParamB, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_Registers_TBase, PageDebug::PageConsole::PageRegisters::self,
@@ -153,21 +163,22 @@ DEF_CHOICE_2(mcConsole_Registers_tShift, PageDebug::PageConsole::PageRegisters::
     set.debug.show_registers.tShift, nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_11(pageRegisters, PageDebug::PageConsole::self, NamePage::DebugShowRegisters,
+DEF_PAGE_12(pageRegisters, PageDebug::PageConsole::self, NamePage::DebugShowRegisters,
     "ĞÅÃÈÑÒĞÛ", "REGISTERS",
     "",
     "",
-    mcConsole_Registers_RD_FL,      // ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - ĞÅÃÈÑÒĞÛ - RD_FL
-    mcConsole_Registers_RShiftA,    // ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - ĞÅÃÈÑÒĞÛ - U ñì. 1ê
-    mcConsole_Registers_RShiftB,    // ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - ĞÅÃÈÑÒĞÛ - U ñì. 2ê
-    mcConsole_Registers_TrigLev,    // ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - ĞÅÃÈÑÒĞÛ - U ñèíõğ.
-    mcConsole_Registers_RangeA,     // ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - ĞÅÃÈÑÒĞÛ - ÂÎËÜÒ/ÄÅË 1
-    mcConsole_Registers_RangeB,     // ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - ĞÅÃÈÑÒĞÛ - ÂÎËÜÒ/ÄÅË 2
-    mcConsole_Registers_TrigParam,  // ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - ĞÅÃÈÑÒĞÛ - Ïàğàì. ñèíõğ.
-    mcConsole_Registers_ChanParamA, // ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - ĞÅÃÈÑÒĞÛ - Ïàğàì. êàí. 1
-    mcConsole_Registers_ChanParamB, // ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - ĞÅÃÈÑÒĞÛ - Ïàğàì. êàí. 2
-    mcConsole_Registers_TBase,      // ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - ĞÅÃÈÑÒĞÛ - ÂĞÅÌß/ÄÅË
-    mcConsole_Registers_tShift,      // ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ - ĞÅÃÈÑÒĞÛ - Ò ñì.
+    mcLaunchFPGA,
+    mcConsole_Registers_RD_FL,
+    mcConsole_Registers_RShiftA,
+    mcConsole_Registers_RShiftB,
+    mcConsole_Registers_TrigLev,
+    mcConsole_Registers_RangeA,
+    mcConsole_Registers_RangeB,
+    mcConsole_Registers_TrigParam,
+    mcConsole_Registers_ChanParamA,
+    mcConsole_Registers_ChanParamB,
+    mcConsole_Registers_TBase,
+    mcConsole_Registers_tShift,
     nullptr, nullptr, nullptr, nullptr
 )
 

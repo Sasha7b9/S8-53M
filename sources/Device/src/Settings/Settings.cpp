@@ -220,12 +220,7 @@ static const Settings defaultSettings =
         false,                      // view altera writting data
         false,                      // view all altera writting data
         0,                          // alt shift
-        {
-            false,                  // показывать ли флаг готовности
-            false,                  // rShift0
-            false,                  // rShift1
-            false                   // trigLev
-        }
+        { true, false, false, false, false, false, false, false, false, false, false, false }
     }
 };
 

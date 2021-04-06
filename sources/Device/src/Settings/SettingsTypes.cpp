@@ -363,7 +363,7 @@ void ModeCouple::Set(const Channel &ch, ModeCouple::E mode_ñouple)
 {
     set.chan[ch].mode_ñouple = mode_ñouple;
 
-    FPGA::BUS::SetAttribChannelsAndTrig(ch == ChA ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
+    FPGA::BUS::SetAttribChannelsAndTrig(ch == ChA ? TypeWriteAnalog::ChanParamA : TypeWriteAnalog::ChanParamB);
 
     RShift::Set(ch, set.chan[ch].rshift);
 }

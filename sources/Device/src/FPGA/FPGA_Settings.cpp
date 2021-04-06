@@ -167,7 +167,7 @@ void Range::Set(const Channel &ch, Range::E range)
 
 void Range::Load(const Channel &ch)
 {
-    FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::Range0);
+    FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::RangeA);
     RShift::Load(ch);
     if (ch == (Channel::E)TrigSource::Get())
     {
@@ -376,6 +376,11 @@ void LaunchFPGA::Load()
     {
         Calculate();
 
+        if (set.debug.show_registers.launch)
+        {
+            LOG_WRITE("запуск %d:%d", pred, post);
+        }
+
         FPGA::BUS::Write(WR_POST, PostForWrite());
         FPGA::BUS::Write(WR_PRED, PredForWrite());
     }
@@ -521,7 +526,7 @@ bool TrigInput::IsAC()
 void ChannelFiltr::Enable(const Channel &ch, bool enable)
 {
     set.chan[ch].filtr = enable;
-    FPGA::BUS::SetAttribChannelsAndTrig(ch == ChA ? TypeWriteAnalog::ChanParam0 : TypeWriteAnalog::ChanParam1);
+    FPGA::BUS::SetAttribChannelsAndTrig(ch == ChA ? TypeWriteAnalog::ChanParamA : TypeWriteAnalog::ChanParamB);
 }
 
 

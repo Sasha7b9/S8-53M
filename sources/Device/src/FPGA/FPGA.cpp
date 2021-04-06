@@ -395,34 +395,36 @@ void FPGA::TemporaryPause()
 
 void FPGA::BUS::WriteToAnalog(TypeWriteAnalog::E type, uint data)
 {
-//    LOG_WRITE("%s : %d", __FUNCTION__, data);
+#define STR_VALUE Uint16((uint16)(data)).ToStringBin().c_str()
 
-    char *str = Uint16((uint16)(data)).ToStringBin().c_str();
-
-    if (type == TypeWriteAnalog::Range0 && IS_SHOW_REG_RANGE_A)
+    if (type == TypeWriteAnalog::RangeA && set.debug.show_registers.rangeA)
     {
-        LOG_WRITE("range 0 = %s", str);
+        LOG_WRITE("range 0 = %s", STR_VALUE);
     }
-    else if (type == TypeWriteAnalog::Range1 && IS_SHOW_REG_RANGE_B)
+    else if (type == TypeWriteAnalog::RangeB && set.debug.show_registers.rangeB)
     {
-        LOG_WRITE("range 1 = %s", str);
+        LOG_WRITE("range 1 = %s", STR_VALUE);
     }
-    else if (type == TypeWriteAnalog::TrigParam && IS_SHOW_REG_TRIGPARAM)
+    else if (type == TypeWriteAnalog::TrigParam && set.debug.show_registers.trigParam)
     {
-        LOG_WRITE("парам. синхр. = %s", str);
+        LOG_WRITE("парам. синхр. = %s", STR_VALUE);
     }
-    else if (type == TypeWriteAnalog::ChanParam0 && IS_SHOW_REG_PARAM_A)
+    else if (type == TypeWriteAnalog::ChanParamA && set.debug.show_registers.chanParamA)
     {
-        LOG_WRITE("парам. кан. 1 = %s", str);
+        LOG_WRITE("парам. кан. 1 = %s", STR_VALUE);
     }
-    else if (type == TypeWriteAnalog::ChanParam1 && IS_SHOW_REG_PARAM_B)
+    else if (type == TypeWriteAnalog::ChanParamB && set.debug.show_registers.chanParamB)
     {
-        LOG_WRITE("парам. кан. 2 = %s", str);
+        LOG_WRITE("парам. кан. 2 = %s", STR_VALUE);
     }
-    else if (type == TypeWriteAnalog::All &&
-        (IS_SHOW_REG_TRIGPARAM || IS_SHOW_REG_RANGE_A || IS_SHOW_REG_RANGE_B || IS_SHOW_REG_PARAM_A || IS_SHOW_REG_PARAM_B)) //-V560 //-V501
+    else if (type == TypeWriteAnalog::All && (
+            set.debug.show_registers.trigParam ||
+            set.debug.show_registers.rangeA ||
+            set.debug.show_registers.rangeB ||
+            set.debug.show_registers.chanParamA ||
+            set.debug.show_registers.chanParamB))
     {
-        LOG_WRITE("полная запись в аналоговую часть = %s", str);
+        LOG_WRITE("полная запись в аналоговую часть = %s", STR_VALUE);
     }
 
     Pin::SPI4_CS2.Reset();
@@ -440,19 +442,19 @@ void FPGA::BUS::WriteToAnalog(TypeWriteAnalog::E type, uint data)
 
 void FPGA::BUS::WriteToDAC(TypeWriteDAC::E type, uint16 data)
 {
-//    LOG_WRITE("%s : %d", __FUNCTION__, data);
+#define STR_VALUE Uint16((uint16)(data)).ToStringBin().c_str()
 
-    if (type == TypeWriteDAC::RShiftA && IS_SHOW_REG_RSHIFT_A)
+    if (type == TypeWriteDAC::RShiftA && set.debug.show_registers.rShiftA)
     {
-        LOG_WRITE("rShift 0 = %s", Uint16(data).ToStringBin().c_str());
+        LOG_WRITE("rShift 0 = %s", STR_VALUE);
     }
-    else if (type == TypeWriteDAC::RShiftB && IS_SHOW_REG_RSHIFT_B)
+    else if (type == TypeWriteDAC::RShiftB && set.debug.show_registers.rShiftB)
     {
-        LOG_WRITE("rShfit 1 = %s", Uint16(data).ToStringBin().c_str());
+        LOG_WRITE("rShfit 1 = %s", STR_VALUE);
     }
-    else if (type == TypeWriteDAC::TrigLev && IS_SHOW_REG_TRIGLEV)
+    else if (type == TypeWriteDAC::TrigLev && set.debug.show_registers.trigLev)
     {
-        LOG_WRITE("trigLev = %s", Uint16(data).ToStringBin().c_str());
+        LOG_WRITE("trigLev = %s", STR_VALUE);
     }
 
     Pin::SPI4_CS1.Reset();
