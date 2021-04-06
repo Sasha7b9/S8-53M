@@ -201,3 +201,11 @@ void HLine::Draw(int x, int y, const Color &color) const
 
     Draw(x, y);
 }
+
+
+void HLine::Draw(int y, int x1, int x2, const Color &color) const
+{
+    color.SetAsCurrent();
+
+    Draw(y, x1, x2);
+}

@@ -54,14 +54,6 @@ uint8 *Display::GetBufferEnd()
 }
 
 
-void HLine::Draw(int y, int x1, int x2, const Color &color) const
-{
-    color.SetAsCurrent();
-
-    Draw(y, x1, x2);
-}
-
-
 void HLine::Draw(int y, int x0, int x1) const
 {
     if (y < 0 || y >= Display::HEIGHT)

@@ -18,22 +18,6 @@ void Point::Draw(int x, int y) const
 }
 
 
-void HLine::Draw(int y, int x1, int x2, const Color &color) const
-{
-    color.SetAsCurrent();
-
-    Draw(y, x1, x2);
-}
-
-
-void HLine::Draw(int x, int y, const Color &color) const
-{
-    color.SetAsCurrent();
-
-    Draw(x, y);
-}
-
-
 void Region::Fill(int x, int y) const
 {
     wxBrush brush = Application::memDC.GetBrush();
