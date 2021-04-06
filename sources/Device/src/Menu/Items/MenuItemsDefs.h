@@ -124,7 +124,7 @@ static const Page name(&di##name, &subPage##name, &actItem##name, &actItemIsOpen
 
 #define DEF_PAGE_9(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN, item1, item2, item3, item4, item5, item6, item7, item8, item9,                                         \
     funcActive, funcPress, funcDraw, funcRegSet)                                                                                                                                    \
-static pchar th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                                                                                                \
+static pchar th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                                                                                                      \
 static const Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, (Item*)&item4, (Item*)&item5, (Item*)&item6, (Item*)&item7, (Item*)&item8, (Item*)&item9, nullptr};    \
 static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                                                                                              \
 static const DataItem di##name = { TypeItem::Page, keeper, funcActive, th##name, &dp##name};                                                                                        \
@@ -132,49 +132,49 @@ static int8 subPage##name = 0; static int8 actItem##name = -1; static bool actIt
 static const Page name(&di##name, &subPage##name, &actItem##name, &actItemIsOpened##name);
 
 
-#define DEF_PAGE_10(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN,                                                                                                               \
-    item1, item2, item3, item4, item5, item6, item7, item8, item9, item10,     funcActive, funcPress, funcDraw, funcRegSet)                                                                 \
-static pchar th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                                                                                                        \
+#define DEF_PAGE_10(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN,                                                                                                                   \
+    item1, item2, item3, item4, item5, item6, item7, item8, item9, item10,     funcActive, funcPress, funcDraw, funcRegSet)                                                                     \
+static pchar th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                                                                                                                  \
 static const Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, (Item*)&item4, (Item*)&item5, (Item*)&item6, (Item*)&item7, (Item*)&item8, (Item*)&item9, (Item*)&item10, nullptr};\
-static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                                                                                                      \
-static const DataItem di##name = { TypeItem::Page, keeper, funcActive, th##name, &dp##name};                                                                                                \
-static int8 subPage##name = 0; static int8 actItem##name = -1; static bool actItemIsOpened##name = false;                                                                                   \
+static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                                                                                                          \
+static const DataItem di##name = { TypeItem::Page, keeper, funcActive, th##name, &dp##name};                                                                                                    \
+static int8 subPage##name = 0; static int8 actItem##name = -1; static bool actItemIsOpened##name = false;                                                                                       \
 static const Page name(&di##name, &subPage##name, &actItem##name, &actItemIsOpened##name);
 
 
-#define DEF_PAGE_11(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN,                                                                                                               \
-    item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11,funcActive, funcPress, funcDraw, funcRegSet)                                                              \
-static pchar th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                                                                                                        \
-static const Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, (Item*)&item4, (Item*)&item5, (Item*)&item6,                                                                   \
-                            (Item*)&item7, (Item*)&item8, (Item*)&item9, (Item*)&item10, (Item*)&item11, nullptr};                                                                          \
-static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                                                                                                      \
-static const DataItem di##name = { TypeItem::Page, &keeper, funcActive, th##name, &dp##name};                                                                                               \
-static int8 subPage##name = 0; static int8 actItem##name = -1; static bool actItemIsOpened##name = false;                                                                                   \
+#define DEF_PAGE_11(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN,                                                   \
+    item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11,funcActive, funcPress, funcDraw, funcRegSet)  \
+static pchar th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                                                  \
+static const Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, (Item*)&item4, (Item*)&item5, (Item*)&item6,       \
+                            (Item*)&item7, (Item*)&item8, (Item*)&item9, (Item*)&item10, (Item*)&item11, nullptr};              \
+static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                                          \
+static const DataItem di##name = { TypeItem::Page, keeper, funcActive, th##name, &dp##name};                                    \
+static int8 subPage##name = 0; static int8 actItem##name = -1; static bool actItemIsOpened##name = false;                       \
 static const Page name(&di##name, &subPage##name, &actItem##name, &actItemIsOpened##name);
 
 
-#define DEF_PAGE_12(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN,                                                                                                               \
-                    item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12, funcActive, funcPress, funcDraw, funcRegSet)                                     \
-static pchar th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                                                                                                        \
-static const Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, (Item*)&item4, (Item*)&item5, (Item*)&item6,                                                                   \
-                            (Item*)&item7, (Item*)&item8, (Item*)&item9, (Item*)&item10, (Item*)&item11, (Item*)&item12, nullptr};                                                          \
-static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                                                                                                      \
-static const DataItem di##name = { TypeItem::Page, keeper, funcActive, th##name, &dp##name};                                                                                                \
-static int8 subPage##name = 0; static int8 actItem##name = -1; static bool actItemIsOpened##name = false;                                                                                   \
+#define DEF_PAGE_12(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN,                                                                            \
+                    item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12, funcActive, funcPress, funcDraw, funcRegSet)  \
+static pchar th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                                                                           \
+static const Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, (Item*)&item4, (Item*)&item5, (Item*)&item6,                                \
+                            (Item*)&item7, (Item*)&item8, (Item*)&item9, (Item*)&item10, (Item*)&item11, (Item*)&item12, nullptr};                       \
+static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                                                                   \
+static const DataItem di##name = { TypeItem::Page, keeper, funcActive, th##name, &dp##name};                                                             \
+static int8 subPage##name = 0; static int8 actItem##name = -1; static bool actItemIsOpened##name = false;                                                \
 static const Page name(&di##name, &subPage##name, &actItem##name, &actItemIsOpened##name);
 
 
 #define DEF_CHOICE_2(name, keeper, titleRU, titleEN, hintRU, hintEN, nameRu1, nameEn1, nameRu2, nameEn2, cell, funcActive, funcChanged, funcDraw)   \
-static pchar names##name[] = {nameRu1, nameEn1, nameRu2, nameEn2, nullptr};                                                                   \
-static pchar th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                                                                \
+static pchar names##name[] = {nameRu1, nameEn1, nameRu2, nameEn2, nullptr};                                                                         \
+static pchar th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                                                                      \
 static const DataChoice dc##name = {names##name, (int8 *)(&cell), funcChanged, funcDraw};                                                           \
 static const DataItem di##name = { TypeItem::Choice, keeper, funcActive, th##name, &dc##name};                                                      \
 static const Choice name(&di##name);
 
 
 #define DEF_CHOICE_3(name, keeper, titleRU, titleEN, hintRU, hintEN, nameRu1, nameEn1, nameRu2, nameEn2, nameRu3, nameEn3, cell, funcActive, funcChanged, funcDraw) \
-static pchar names##name[] = {nameRu1, nameEn1, nameRu2, nameEn2, nameRu3, nameEn3, nullptr};                                                                 \
-static pchar th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                                                                                \
+static pchar names##name[] = {nameRu1, nameEn1, nameRu2, nameEn2, nameRu3, nameEn3, nullptr};                                                                       \
+static pchar th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                                                                                      \
 static const DataChoice dc##name = {names##name, (int8 *)&cell, funcChanged, funcDraw};                                                                             \
 static const DataItem di##name = { TypeItem::Choice, keeper, funcActive, th##name, &dc##name};                                                                      \
 static const Choice name(&di##name);
@@ -182,8 +182,8 @@ static const Choice name(&di##name);
 
 #define DEF_CHOICE_4(name, keeper, titleRU, titleEN, hintRU, hintEN,                                                                    \
                     nameRu1, nameEn1, nameRu2, nameEn2, nameRu3, nameEn3, nameRu4, nameEn4, cell, funcActive, funcChanged, funcDraw)    \
-static pchar names##name[] = {nameRu1, nameEn1, nameRu2, nameEn2, nameRu3, nameEn3, nameRu4, nameEn4, nullptr};                   \
-static pchar th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                                                    \
+static pchar names##name[] = {nameRu1, nameEn1, nameRu2, nameEn2, nameRu3, nameEn3, nameRu4, nameEn4, nullptr};                         \
+static pchar th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                                                          \
 static const DataChoice dc##name = {names##name, (int8 *)&cell, funcChanged, funcDraw};                                                 \
 static const DataItem di##name = { TypeItem::Choice, keeper, funcActive, th##name, &dc##name};                                          \
 static const Choice name(&di##name);
@@ -191,8 +191,8 @@ static const Choice name(&di##name);
 
 #define DEF_CHOICE_5(name, keeper, titleRU, titleEN, hintRU, hintEN,                                                                        \
     nameRu1, nameEn1, nameRu2, nameEn2, nameRu3, nameEn3, nameRu4, nameEn4, nameRu5, nameEn5, cell, funcActive, funcChanged, funcDraw)      \
-static pchar names##name[] = {nameRu1, nameEn1, nameRu2, nameEn2, nameRu3, nameEn3, nameRu4, nameEn4, nameRu5, nameEn5, nullptr};     \
-static pchar th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                                                        \
+static pchar names##name[] = {nameRu1, nameEn1, nameRu2, nameEn2, nameRu3, nameEn3, nameRu4, nameEn4, nameRu5, nameEn5, nullptr};           \
+static pchar th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                                                              \
 static const DataChoice dc##name = {names##name, (int8 *)&cell, funcChanged, funcDraw};                                                     \
 static const DataItem di##name = { TypeItem::Choice, keeper, funcActive, th##name, &dc##name};                                              \
 static const Choice name(&di##name);

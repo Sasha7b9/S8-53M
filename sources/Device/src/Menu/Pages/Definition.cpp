@@ -29,7 +29,7 @@ void DrawSB_Exit(int x, int y)
 #include "PageHelp.cpp"
 
 
-DEF_PAGE_11(mainPage, Page::empty, NamePage::MainPage,
+DEF_PAGE_11(mainPage, &Page::empty, NamePage::MainPage,
     "лемч", "MENU",
     "",
     "",

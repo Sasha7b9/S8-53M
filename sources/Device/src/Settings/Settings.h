@@ -62,7 +62,6 @@ struct SettingsCommon
 
 struct OutputRegisters
 {
-    bool    all;            // Показывать значения всех регистров.
     bool    flag;           // Выводить ли флаг готовности.
     bool    rShiftA;
     bool    rShiftB;
@@ -393,14 +392,13 @@ extern Settings set;
 #define LANG_EN         (LANG == Language::English)
 
 
-#define IS_SHOW_REGISTERS_ALL   (set.debug.show_registers.all)
-#define IS_SHOW_REG_RSHIFT_A    (IS_SHOW_REGISTERS_ALL || set.debug.show_registers.rShiftA)
-#define IS_SHOW_REG_RSHIFT_B    (IS_SHOW_REGISTERS_ALL || set.debug.show_registers.rShiftB)
-#define IS_SHOW_REG_TRIGLEV     (IS_SHOW_REGISTERS_ALL || set.debug.show_registers.trigLev)
-#define IS_SHOW_REG_RANGE_A     (IS_SHOW_REGISTERS_ALL || set.debug.show_registers.range[Channel::A])
-#define IS_SHOW_REG_RANGE_B     (IS_SHOW_REGISTERS_ALL || set.debug.show_registers.range[Channel::B])
-#define IS_SHOW_REG_TRIGPARAM   (IS_SHOW_REGISTERS_ALL || set.debug.show_registers.trigParam)
-#define IS_SHOW_REG_PARAM_A     (IS_SHOW_REGISTERS_ALL || set.debug.show_registers.chanParam[Channel::A])
-#define IS_SHOW_REG_PARAM_B     (IS_SHOW_REGISTERS_ALL || set.debug.show_registers.chanParam[Channel::B])
-#define IS_SHOW_REG_TSHIFT      (IS_SHOW_REGISTERS_ALL || set.debug.show_registers.tShift)
-#define IS_SHOW_REG_TBASE       (IS_SHOW_REGISTERS_ALL || set.debug.show_registers.tBase)
+#define IS_SHOW_REG_RSHIFT_A    (set.debug.show_registers.rShiftA)
+#define IS_SHOW_REG_RSHIFT_B    (set.debug.show_registers.rShiftB)
+#define IS_SHOW_REG_TRIGLEV     (set.debug.show_registers.trigLev)
+#define IS_SHOW_REG_RANGE_A     (set.debug.show_registers.range[Channel::A])
+#define IS_SHOW_REG_RANGE_B     (set.debug.show_registers.range[Channel::B])
+#define IS_SHOW_REG_TRIGPARAM   (set.debug.show_registers.trigParam)
+#define IS_SHOW_REG_PARAM_A     (set.debug.show_registers.chanParam[Channel::A])
+#define IS_SHOW_REG_PARAM_B     (set.debug.show_registers.chanParam[Channel::B])
+#define IS_SHOW_REG_TSHIFT      (set.debug.show_registers.tShift)
+#define IS_SHOW_REG_TBASE       (set.debug.show_registers.tBase)

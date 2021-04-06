@@ -265,7 +265,7 @@ int Page::NumItems() const
 {
     if (OwnData()->name == NamePage::MainPage)
     {
-        return !Menu::showDebugMenu ? 10 : 11;
+        return !Menu::showDebugMenu ? 11 : 11;
     }
     else if (IsPageSB())
     {
