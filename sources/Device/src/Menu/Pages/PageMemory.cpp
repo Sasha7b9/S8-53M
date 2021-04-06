@@ -52,7 +52,7 @@ void ChangeC_Memory_NumPoints(bool)
         }
     }
 
-    TShift::Set(TShift::Get());
+    TShift::Set(set.time.shift);
 }
 
 // Активна ли ПАМЯТЬ - ВНЕШН ЗУ - Маска

@@ -16,7 +16,7 @@ void DataSettings::Fill()
     couple_a = set.chan[ChA].mode_ñouple;
     couple_b = set.chan[ChB].mode_ñouple;
     tbase = set.time.base;
-    tshift = TShift::Get();
+    tshift = set.time.shift;
     range[0] = set.chan[ChA].range;
     range[1] = set.chan[ChB].range;
     peak_det = (uint)PeackDetMode::Get();

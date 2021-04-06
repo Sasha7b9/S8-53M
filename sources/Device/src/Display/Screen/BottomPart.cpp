@@ -36,8 +36,6 @@ void BottomPart::Draw()
 
     x += 98;
 
-    int16 tShift = TShift::Get();
-
     if (!set.memory.mode_work.IsDirect())
     {
         //        DataSettings *ds = MODE_WORK_IS_LATEST ? Storage::dsLast : Storage::dsInt;
@@ -51,7 +49,7 @@ void BottomPart::Draw()
 
     Text("ð\xa5%s", TBase::ToString(set.time.base)).Draw(x, y0);
 
-    Text("\xa5%s", TShift::ToString(tShift).c_str()).Draw(x + 35, y0);
+    Text("\xa5%s", TShift::ToString(set.time.shift).c_str()).Draw(x + 35, y0);
 
     if (set.memory.mode_work.IsDirect())
     {

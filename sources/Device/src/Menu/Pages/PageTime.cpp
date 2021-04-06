@@ -89,7 +89,7 @@ DEF_CHOICE_2(mcPeakDet, PageTime::self,
 void PageTime::OnChanged_TPos(bool active)
 {
     ChangeC_Memory_NumPoints(active);
-    TShift::Set(TShift::Get());
+    TShift::Set(set.time.shift);
 }
 
 DEF_CHOICE_3(mcTPos, PageTime::self,

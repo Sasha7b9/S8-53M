@@ -752,7 +752,7 @@ static bool CanChangeTShift(int16 tShift)
 static void ChangeTShift(int *prevTime, void(*f)(int), int16 relStep)
 {
     int count = CalculateCount(prevTime);
-    int tShiftOld = TShift::Get();
+    int tShiftOld = set.time.shift;
     float step = (float)(relStep * count);
     if (step < 0)
     {
@@ -769,7 +769,7 @@ static void ChangeTShift(int *prevTime, void(*f)(int), int16 relStep)
         }
     }
 
-    int16 tShift = (int16)(TShift::Get() + step);
+    int16 tShift = (int16)(set.time.shift + step);
     if (((tShiftOld > 0) && (tShift < 0)) || (tShiftOld < 0 && tShift > 0))
     {
         tShift = 0;

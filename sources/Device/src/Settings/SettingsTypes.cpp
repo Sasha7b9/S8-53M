@@ -305,7 +305,7 @@ void TBase::Set(TBase::E tBase)
     }
     if (tBase < TBase::Count)
     {
-        float tShiftAbsOld = TShift::ToAbs(TShift::Get(), set.time.base);
+        float tShiftAbsOld = TShift::ToAbs(set.time.shift, set.time.base);
         set.time.base = tBase;
         Load();
         TShift::Set((int)(TShift::ToRel(tShiftAbsOld, set.time.base)));
@@ -338,12 +338,6 @@ void TShift::Set(int tShift)
 
     Display::Redraw();
 };
-
-
-int16 TShift::Get()
-{
-    return set.time.shift;
-}
 
 
 void PeackDetMode::Set(PeackDetMode::E peackDetMode)
@@ -446,7 +440,7 @@ int TPos::InPoints(PeackDetMode::E peak_det, uint num_points, TPos::E tPos)
 
 int TShift::InPoints(PeackDetMode::E peakDet)
 {
-    return TShift::Get() * (peakDet == PeackDetMode::Disable ? 2 : 1);
+    return set.time.shift * (peakDet == PeackDetMode::Disable ? 2 : 1);
 }
 
 
@@ -762,7 +756,7 @@ void LaunchFPGA::Calculate()
     // Добавочные смещения по времени для разверёток режима рандомизатора.
     static const int16 timeCompensation[TBase::Count] = { 550, 275, 120, 55, 25, 9, 4, 1 };
 
-    int shift = TShift::Get() - TShift::Min() + timeCompensation[set.time.base];
+    int shift = set.time.shift - TShift::Min() + timeCompensation[set.time.base];
 
     post = shift;
 
@@ -783,7 +777,7 @@ void LaunchFPGA::Calculate()
 
         post = (uint16)((2 * post - k) / step);
 
-        FPGA::add_shift = (TShift::Get() * 2) % step;
+        FPGA::add_shift = (set.time.shift * 2) % step;
 
         if (FPGA::add_shift < 0)
         {
