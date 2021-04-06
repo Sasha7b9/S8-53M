@@ -174,21 +174,25 @@ void MemoryWindow::DrawTShift(int left, int right, uint numBytes)
 
     Math::LimitAbove(&x, right - 2);
 
-    Rectangle(7, 6).Draw(x - 1, 1, Color::BACK);
-    Rectangle(5, 5).Draw(x, 1, Color::FILL);
+    int x_rect = Math::Limitation(x, 1, right);
+
+    Rectangle(7, 6).Draw(x_rect - 1, 1, Color::BACK);
+    Region(5, 5).Fill(x_rect, 1, Color::FILL);
 
     if (x < left - 2)
     {
-
+        VLine(3).Draw(x_rect + 3, 2, Color::BACK);
+        HLine(2).Draw(x_rect + 1, 3);
     }
     else if (x > right - 1)
     {
-
+        VLine(3).Draw(x_rect + 1, 2, Color::BACK);
+        HLine(2).Draw(x_rect + 2, 3);
     }
     else
     {
-        HLine(3).Draw(x + 1, 2, Color::DATA_B);
-        VLine(2).Draw(x + 2, 3);
+        HLine(3).Draw(x_rect + 1, 2, Color::BACK);
+        VLine(2).Draw(x_rect + 2, 3);
     }
 }
 
