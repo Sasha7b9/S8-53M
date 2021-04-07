@@ -370,6 +370,12 @@ void FPGA::Calibrator::LoadKoeff(const Channel & /*chan*/)
 }
 
 
+void LaunchFPGA::LoadPred()
+{
+    FPGA::BUS::Write(WR_PRED, PredForWrite());
+}
+
+
 void LaunchFPGA::Load()
 {
     if (!ReaderFPGA::mutex_read.IsLocked())

@@ -66,8 +66,8 @@ void ReaderFPGA::ReadData()
 
 void ReaderFPGA::Read::Real::Channel(DataReading &data, const ::Channel &ch, uint16 addr_stop)
 {
-    *WR_PRED = addr_stop;
-    *WR_ADDR_STOP = 0xffff;
+    HAL_FMC::Write(WR_PRED, addr_stop);
+    HAL_FMC::Write(WR_ADDR_STOP, 0xffff);
 
     uint16 *p = (uint16 *)data.Data(ch);
     uint16 *end = (uint16 *)(data.Data(ch) + data.Settings().BytesInChannel());

@@ -1164,6 +1164,8 @@ struct LaunchFPGA
 {
     static void Load();
 
+    static void LoadPred();
+
 private:
 
     static void Calculate();

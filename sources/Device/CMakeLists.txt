@@ -43,10 +43,13 @@ add_compile_options(/wd5039)    # 'function': pointer or reference to potentiall
                                 # 'extern "C"' function under -EHc. Undefined behavior may occur if this function throws
                                 # an exception
 add_compile_options(/wd5045)    # Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-add_compile_options(/wd5204)
+add_compile_options(/wd5204)    # 'xxx': class has virtual functions, but its trivial destructor is not virtual;
+                                # instances of objects derived from this class may not be destructed correctly
 add_compile_options(/wd5219)    # implicit conversion from 'type1' to 'type2', possible loss of data
-add_compile_options(/wd5220)
-add_compile_options(/wd26812)
+add_compile_options(/wd5220)    # '<unnamed-tag>::SR': a non-static data member with a volatile qualified type no longer
+                                # implies that compiler generated copy/move constructors and copy/move assignment
+                                # operators are not trivia
+add_compile_options(/wd26812)   # Prefer 'enum class' over 'enum' (Enum.3)
 
 file(GLOB VS_KEIL_ARMCLANG ../common/vs_keil/ARMCLANG/*)
 file(GLOB VS_KEIL_CMSIS    ../common/vs_keil/CMSIS/core_cm3.h)
