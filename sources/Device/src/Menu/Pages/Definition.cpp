@@ -52,12 +52,12 @@ DEF_PAGE_11(mainPage, &Page::empty, NamePage::MainPage,
 const Page *PageForButton(Key::E button)
 {
     static const void *pages[Key::Count] = {  
-        (void *)&Page::empty,       // Key::None
-        (void *)&Page::empty,       // Key::F1
-        (void *)&Page::empty,       // Key::F2
-        (void *)&Page::empty,       // Key::F3
-        (void *)&Page::empty,       // Key::F4
-        (void *)&Page::empty,       // Key::F5
+        (void *)nullptr,            // Key::None
+        (void *)nullptr,            // Key::F1
+        (void *)nullptr,            // Key::F2
+        (void *)nullptr,            // Key::F3
+        (void *)nullptr,            // Key::F4
+        (void *)nullptr,            // Key::F5
         (void *)PageChannelA::self, // Key::ChannelA
         (void *)PageChannelB::self, // Key::ChannelB
         (void *)PageTime::self,     // Key::Time
@@ -65,20 +65,20 @@ const Page *PageForButton(Key::E button)
         (void *)PageCursors::self,  // Key::Cursors
         (void *)PageMeasures::self, // Key::Measures
         (void *)PageDisplay::self,  // Key::Display
-        (void *)&Page::empty,       // Key::Help
-        (void *)&Page::empty,       // Key::Start
+        (void *)nullptr,            // Key::Help
+        (void *)nullptr,            // Key::Start
         (void *)PageMemory::self,   // Key::Memory
         (void *)PageService::self,  // Key::Service
-        (void *)&Page::empty,       // Key::Menu
-        (void *)&Page::empty,       // Key::Power
-        (void *)&Page::empty,       // Key::RangeA
-        (void *)&Page::empty,       // Key::RangeB
-        (void *)&Page::empty,       // Key::RShiftA
-        (void *)&Page::empty,       // Key::RShiftB
-        (void *)&Page::empty,       // Key::TBase
-        (void *)&Page::empty,       // Key::TShift
-        (void *)&Page::empty,       // Key::TrigLev
-        (void *)&Page::empty        // Key::Setting
+        (void *)nullptr,            // Key::Menu
+        (void *)nullptr,            // Key::Power
+        (void *)nullptr,            // Key::RangeA
+        (void *)nullptr,            // Key::RangeB
+        (void *)nullptr,            // Key::RShiftA
+        (void *)nullptr,            // Key::RShiftB
+        (void *)nullptr,            // Key::TBase
+        (void *)nullptr,            // Key::TShift
+        (void *)nullptr,            // Key::TrigLev
+        (void *)nullptr             // Key::Setting
     };
 
     return reinterpret_cast<const Page *>(pages[button]);
