@@ -17,6 +17,8 @@
 #include "Settings/Settings.h"
 
 
+int TShift::add_rand = 0;
+
 bool RShift::show_level[NumChannels] = { false, false };
 bool RShift::draw_markers = false;
 
@@ -787,7 +789,8 @@ void LaunchFPGA::Calculate()
 
     // ƒобавочные смещени€ по времени дл€ разверЄток режима рандомизатора.
     //                                                    1нс  2нс  5нс  10нс 20 нс 50нс
-    static const int16 timeCompensation[TBase::Count] = { 550, 275, 120, 55,  25,   9};
+    //static const int16 timeCompensation[TBase::Count] = { 550, 275, 120, 55,  25,   9};
+    static const int16 timeCompensation[TBase::Count] = { 0, 0, 0, 0,  0,   0 };
 
     if (set.debug.show_registers.launch)
     {
@@ -823,11 +826,11 @@ void LaunchFPGA::Calculate()
 
         post = (uint16)((2 * post - k) / step);
 
-        FPGA::add_shift = (set.time.shift * 2) % step;
+        TShift::add_rand = (set.time.shift * 2) % step;
 
-        if (FPGA::add_shift < 0)
+        if (TShift::add_rand < 0)
         {
-            FPGA::add_shift = step + FPGA::add_shift;
+            TShift::add_rand += step;
         }
     }
 

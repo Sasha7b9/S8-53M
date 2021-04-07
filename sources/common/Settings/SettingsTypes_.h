@@ -890,6 +890,8 @@ struct TShift
     static const int16 MAX = 16000;
 
     static const float abs_step[TBase::Count];
+
+    static int add_rand;                // Дополнительное смещение в режиме рандомизатора
 };
 
 
@@ -1167,7 +1169,7 @@ private:
     static void Calculate();
 
     // Возвращают значения, готовые для записи в ПЛИС
-    static uint16 PredForWrite() { return (uint16)(~(pred + 3)); };
+    static uint16 PredForWrite() { return (uint16)(~(pred + 1)); };
     static uint16 PostForWrite() { return (uint16)(~(post + 1)); };
 
     static int pred;
