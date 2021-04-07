@@ -811,27 +811,7 @@ void LaunchFPGA::Calculate()
 
     if (TBase::IsRandomize())
     {
-        uint k = 0;
-
-        int step = TBase::StepRand();
-
-        if (TPos::IsLeft())
-        {
-            k = points_in_channel % step;
-        }
-        else if (TPos::IsCenter())
-        {
-            k = (points_in_channel / 2) % step;
-        }
-
-        post = (uint16)((2 * post - k) / step);
-
-        TShift::add_rand = (set.time.shift * 2) % step;
-
-        if (TShift::add_rand < 0)
-        {
-            TShift::add_rand += step;
-        }
+        post /= 2;
     }
 
     pred = (int)points_in_channel / 2 - post;

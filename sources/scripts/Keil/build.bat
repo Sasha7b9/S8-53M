@@ -12,6 +12,10 @@ goto HINT
 
 :BUILD_LOAD
     call build.bat %2 %3
+    if %3==debug goto LOAD_NOW
+    if %3==debug goto LOAD_NOW
+    goto HINT
+:LOAD_NOW
     call load.bat %2
     goto EXIT
 
