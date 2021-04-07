@@ -64,6 +64,8 @@ void FPGA::Start()
 //        PainterData::ResetP2Ppoints(true);
     }
 
+    LaunchFPGA::LoadPred();
+
     HAL_FMC::Write(WR_START, 1);
 
     state.work = StateWorkFPGA::Wait;

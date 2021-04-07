@@ -149,10 +149,7 @@ void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch,
 
     data += index;
 
-    uint16 addr_first_read =
-        (uint16)(addr_stop + 16384 - (uint16)(bytes_in_channel / TBase::StepRand()) - 1 - NUM_ADD_STEPS);
-
-    HAL_FMC::Write(WR_PRED, addr_first_read);
+    HAL_FMC::Write(WR_PRED, addr_stop);
     HAL_FMC::Write(WR_ADDR_STOP, 0xffff);
 
     while (data < last)
