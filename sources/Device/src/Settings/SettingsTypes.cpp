@@ -15,6 +15,7 @@
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
+#include <climits>
 
 
 int TShift::add_rand = 0;
@@ -799,15 +800,13 @@ void LaunchFPGA::CalculateReal()
 
     post = shift / 2;
 
-    int points_in_channel_half = (int)set.memory.enum_points_fpga.ToPoints() / 2;
+    int pointsInChannelHalf = (int)set.memory.enum_points_fpga.ToPoints() / 2;
 
-    pred = points_in_channel_half - post;
+    pred = Math::Limitation(pointsInChannelHalf - post, 0, INT_MAX);
 
-    Math::LimitBelow(&pred, 0);
-
-    if (post + pred < points_in_channel_half)
+    if (post + pred < pointsInChannelHalf)
     {
-        pred = points_in_channel_half - post;
+        pred = pointsInChannelHalf - post;
     }
 
     if (shift < 0)
