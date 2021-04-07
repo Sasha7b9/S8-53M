@@ -1174,4 +1174,8 @@ private:
 
     static int pred;
     static int post;
+
+    static void CalculateReal();
+
+    static void CalculateRandomize();
 };

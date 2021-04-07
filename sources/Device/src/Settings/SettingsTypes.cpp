@@ -782,6 +782,48 @@ void RShift::DisableShowLevel(const Channel &ch)
 
 void LaunchFPGA::Calculate()
 {
+    if (TBase::IsRandomize())
+    {
+        CalculateRandomize();
+    }
+    else
+    {
+        CalculateReal();
+    }
+}
+
+
+void LaunchFPGA::CalculateReal()
+{
+    const int shift = set.time.shift - TShift::Min();
+
+    post = shift / 2;
+
+    int points_in_channel_half = (int)set.memory.enum_points_fpga.ToPoints() / 2;
+
+    pred = points_in_channel_half - post;
+
+    Math::LimitBelow(&pred, 0);
+
+    if (post + pred < points_in_channel_half)
+    {
+        pred = points_in_channel_half - post;
+    }
+
+    if (shift < 0)
+    {
+        post = 0;
+        FPGA::add_N_stop = -shift;
+    }
+    else
+    {
+        FPGA::add_N_stop = 0;
+    }
+}
+
+
+void LaunchFPGA::CalculateRandomize()
+{
     if (set.debug.show_registers.launch)
     {
         LOG_WRITE("");
@@ -789,8 +831,7 @@ void LaunchFPGA::Calculate()
 
     // ƒобавочные смещени€ по времени дл€ разверЄток режима рандомизатора.
     //                                                    1нс  2нс  5нс  10нс 20 нс 50нс
-    //static const int16 timeCompensation[TBase::Count] = { 550, 275, 120, 55,  25,   9};
-    static const int16 timeCompensation[TBase::Count] = { 0, 0, 0, 0,  0,   0 };
+    static const int16 timeCompensation[TBase::Count] = { 550, 275, 120, 55,  25,   9 };
 
     if (set.debug.show_registers.launch)
     {
@@ -811,7 +852,20 @@ void LaunchFPGA::Calculate()
 
     if (TBase::IsRandomize())
     {
-        post /= 2;
+        uint k = 0;
+
+        int step = TBase::StepRand();
+
+        if (TPos::IsLeft())
+        {
+            k = points_in_channel % step;
+        }
+        else if (TPos::IsCenter())
+        {
+            k = (points_in_channel / 2) % step;
+        }
+
+        post = (uint16)((2 * post - k) / step);
     }
 
     pred = (int)points_in_channel / 2 - post;
@@ -826,7 +880,7 @@ void LaunchFPGA::Calculate()
     if (shift < 0)
     {
         post = 0;
-        FPGA:: add_N_stop = -shift;
+        FPGA::add_N_stop = -shift;
     }
     else
     {
