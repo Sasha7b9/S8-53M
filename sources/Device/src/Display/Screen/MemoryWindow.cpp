@@ -179,7 +179,7 @@ void MemoryWindow::DrawTShift(int left, int right, uint numBytes)
     Rectangle(7, 6).Draw(x_rect - 1, 1, Color::BACK);
     Region(5, 5).Fill(x_rect, 1, Color::FILL);
 
-    if (x < left - 2)
+    if (x < left - 3)
     {
         VLine(3).Draw(x_rect + 3, 2, Color::BACK);
         HLine(2).Draw(x_rect + 1, 3);
