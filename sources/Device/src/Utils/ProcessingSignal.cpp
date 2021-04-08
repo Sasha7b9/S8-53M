@@ -684,7 +684,7 @@ float Processing::CalculateMinSteadyRel(Channel::E ch)
             }
 
             min[ch] = (float)sum / numSums;
-            int numMin = numSums; //-V2551
+            int numMin = numSums;
 
             Float pic = CalculatePicRel(ch);
 

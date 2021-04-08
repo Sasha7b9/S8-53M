@@ -125,7 +125,7 @@ static int8_t CDC_Itf_Control (uint8_t cmd, uint8_t *pbuf, uint16_t)
 
 
 
-static int8_t CDC_Itf_Receive(uint8_t * buffer, uint32_t *length) //-V2009 //-V2558
+static int8_t CDC_Itf_Receive(uint8_t * buffer, uint32_t *length)
 {
     SCPI::AddNewData(buffer, *length);
 

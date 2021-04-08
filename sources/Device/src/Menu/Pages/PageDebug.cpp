@@ -672,10 +672,10 @@ static void OnPress_SerialNumber()
     PageDebug::PageSerialNumber::self->OpenAndSetItCurrent();
     Display::SetAddDrawFunction(Draw_EnterSerialNumber);
 //    MALLOC_EXTRAMEM(StructForSN, s);
-//    s->number = 1; //-V522
+//    s->number = 1; 522
 //    s->year = 2017;
 //    s->curDigt = 0;
-} //-V773
+}
 
 static void OnRegSet_SerialNumber(int /*angle*/)
 {

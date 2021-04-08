@@ -62,7 +62,7 @@ void SCPI::TBASE::RANGE(puchar buffer)
     };
     ENTER_ANALYSIS
         if (TBase::Count > value) { TBase::Set((TBase::E)value); }
-        else if (255 == value) //-V547
+        else if (255 == value)
         {
             SCPI_SEND(":TBASE:SET_RANGE %s", TBase::ToStringEN(set.time.base));
         }

@@ -780,7 +780,7 @@ void Page::DrawTitle(int ytop)
     
     colorText.SetAsCurrent();
 
-    DrawPagesUGO(Page::X() + Item::TITLE_WIDTH - 3 + delta, ytop + Item::TITLE_HEIGHT - 2 + delta); //-V2007
+    DrawPagesUGO(Page::X() + Item::TITLE_WIDTH - 3 + delta, ytop + Item::TITLE_HEIGHT - 2 + delta);
 }
 
 

@@ -8,7 +8,7 @@ const float GovernorGUI::stepDegree = 60.0F;
 
 GovernorGUI::GovernorGUI(wxWindow *parent, const wxPoint &position, int code) : wxPanel(parent, wxID_ANY, position), timer(this, 1), keyCode(code)
 {
-    angleDiscrete = ((std::rand() % 100) - 100) * stepDegree; //-V2564
+    angleDiscrete = ((std::rand() % 100) - 100) * stepDegree;
 
     cursor = { false, {0, 0}, 0 };
 
@@ -45,7 +45,7 @@ void GovernorGUI::OnMouseLeftDown(wxMouseEvent &event)
 {
     if(MouseOnGovernor(event))
     {
-        ::SetCursor(LoadCursor(NULL, IDC_HAND)); //-V2571
+        ::SetCursor(LoadCursor(NULL, IDC_HAND));
 
         cursor.OnPressLeftButton();
     }
@@ -56,12 +56,12 @@ void GovernorGUI::OnMouseMove(wxMouseEvent &event)
 {
     if(MouseOnGovernor(event))
     {
-        ::SetCursor(LoadCursor(NULL, IDC_HAND)); //-V2571
+        ::SetCursor(LoadCursor(NULL, IDC_HAND));
     }
 }
 
 
-bool GovernorGUI::MouseOnGovernor(wxMouseEvent &event) //-V2009
+bool GovernorGUI::MouseOnGovernor(wxMouseEvent &event)
 {
     int mouseX = 0;
     int mouseY = 0;
@@ -88,19 +88,19 @@ void GovernorGUI::OnTimer(wxTimerEvent &)
 {
     if(cursor.LeftIsDown())
     {
-        ::SetCursor(LoadCursor(NULL, IDC_HAND)); //-V2571
+        ::SetCursor(LoadCursor(NULL, IDC_HAND));
 
         int delta = cursor.CalculateDelta();
 
         if(delta != 0)
         {
-            angleFull += delta * 3; //-V2564
+            angleFull += delta * 3;
 
             if (angleFull <= -60.0F)
             {
                 FuncChange(-1);
             }
-            else if (angleFull >= 60.0F) //-V2516
+            else if (angleFull >= 60.0F)
             {
                 FuncChange(1);
             }
@@ -113,9 +113,9 @@ void GovernorGUI::OnTimer(wxTimerEvent &)
 
 void GovernorGUI::FuncChange(int delta)
 {
-    angleDiscrete += delta * stepDegree; //-V2564
+    angleDiscrete += delta * stepDegree;
 
-    angleFull -= delta * stepDegree; //-V2564
+    angleFull -= delta * stepDegree;
 
 //    int code = keyCode | Action::ToCode((delta < 0) ? Action::RotateRight : Action::RotateLeft);
 

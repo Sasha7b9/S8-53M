@@ -198,7 +198,7 @@ static err_t low_level_output(struct netif *, struct pbuf *p)
   bufferoffset = 0;
   
   /* copy frame from pbufs to driver buffers */
-  for(q = p; q != NULL; q = q->next) //-V2530
+  for(q = p; q != NULL; q = q->next)
   {
     /* Is this buffer available? If not, goto error */
     if((DmaTxDesc->Status & ETH_DMATXDESC_OWN) != (uint32_t)RESET)
@@ -525,7 +525,7 @@ void ethernetif_update_config(struct netif *netif)
     }
     else /* AutoNegotiation Disable */
     {
-    error : //-V2529
+    error :
       /* Check parameters */
       assert_param(IS_ETH_SPEED(EthHandle.Init.Speed));
       assert_param(IS_ETH_DUPLEX_MODE(EthHandle.Init.DuplexMode));

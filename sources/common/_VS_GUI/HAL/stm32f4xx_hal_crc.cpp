@@ -8,7 +8,7 @@ HAL_StatusTypeDef HAL_CRC_Init(CRC_HandleTypeDef *)
 }
 
 
-uint32_t HAL_CRC_Calculate(CRC_HandleTypeDef *, uint32_t[], uint32_t) //-V2504
+uint32_t HAL_CRC_Calculate(CRC_HandleTypeDef *, uint32_t[], uint32_t)
 {
     return 0;
 }

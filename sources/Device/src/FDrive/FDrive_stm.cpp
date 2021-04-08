@@ -26,7 +26,7 @@ bool FDrive::needOpenFileMananger = false;
 
 void FDrive::Init(void)
 {
-//    if(FATFS_LinkDriver(&USBH_Driver, USBDISKPath) == FR_OK)  //-V2001
+//    if(FATFS_LinkDriver(&USBH_Driver, USBDISKPath) == FR_OK)  2001
 //    {
 //        USBH_Init(reinterpret_cast<USBH_HandleTypeDef *>(&HAL_USBH::handle), USBH_UserProcess, 0);
 //        USBH_RegisterClass(reinterpret_cast<USBH_HandleTypeDef *>(&HAL_USBH::handle), USBH_MSC_CLASS);
@@ -106,7 +106,7 @@ void FDrive::GetNumDirsAndFiles(const char* fullPath, int *numDirs, int *numFile
     if (f_opendir(&dir, nameDir) == FR_OK)
     {
         bool alreadyNull = false;
-        while (true) //-V2530
+        while (true)
         {
             if (f_readdir(&dir, &fno) != FR_OK)
             {
@@ -326,8 +326,8 @@ bool FDrive::WriteToFile(uint8* data, int sizeData, StructForWrite *structForWri
             dataToCopy = SIZE_FLASH_TEMP_BUFFER - structForWrite->sizeData;
         }
         sizeData -= dataToCopy;
-        std::memcpy(structForWrite->tempBuffer + structForWrite->sizeData, data, (uint)dataToCopy); //-V2563
-        data += dataToCopy; //-V2563
+        std::memcpy(structForWrite->tempBuffer + structForWrite->sizeData, data, (uint)dataToCopy);
+        data += dataToCopy;
         structForWrite->sizeData += dataToCopy;
         if (structForWrite->sizeData == SIZE_FLASH_TEMP_BUFFER)
         {

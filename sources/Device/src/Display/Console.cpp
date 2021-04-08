@@ -109,7 +109,7 @@ void Console::DeleteFirstString()
 
     for (int i = numStrings - 1; i < MAX_NUM_STRINGS; i++)
     {
-        strings[i] = 0; //-V557
+        strings[i] = 0;
     }
 
     for (int i = 0; i < SIZE_BUFFER_FOR_STRINGS - delta; i++)

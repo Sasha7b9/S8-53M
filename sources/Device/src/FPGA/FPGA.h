@@ -130,7 +130,7 @@ public:
 
     struct State
     {
-        State() : //-V730
+        State() :
             need_calibration(false),
             work_before_calibration(StateWorkFPGA::Stop),
             state_calibration(StateCalibration::None)

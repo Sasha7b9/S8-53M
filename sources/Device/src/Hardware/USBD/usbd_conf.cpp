@@ -56,7 +56,7 @@ void HAL_PCD_SetupStageCallback(PCD_HandleTypeDef *hpcd)
             {                                                       //
                 VCP::connectToHost = false;                         //
             }                                                       //
-            VCP::connectToHost = (prevLength != 0);                 // //-V519
+            VCP::connectToHost = (prevLength != 0);                 // 519
         }                                                           //
     }                                                               //
     prevLength = request.wLength;                                   //

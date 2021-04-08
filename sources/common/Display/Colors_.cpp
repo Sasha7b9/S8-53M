@@ -59,7 +59,7 @@ Color Color::Cursors(const Channel &ch)
 Color Color::Contrast(const Color &color)
 {
     uint colorValue = set.display.colors[color.index];
-    if (R_FROM_COLOR(colorValue) > 128 || G_FROM_COLOR(colorValue) > 128 || B_FROM_COLOR(colorValue) > 128)    //-V112
+    if (R_FROM_COLOR(colorValue) > 128 || G_FROM_COLOR(colorValue) > 128 || B_FROM_COLOR(colorValue) > 128)
     {
         return Color::BLACK;
     }

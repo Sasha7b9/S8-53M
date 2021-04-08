@@ -23,7 +23,7 @@ void Upgrade();
 int main()
 {
     MainStruct::ms = (MainStruct *)(std::malloc(sizeof(MainStruct)));
-    MainStruct::ms->percentUpdate = 0.0F; //-V522
+    MainStruct::ms->percentUpdate = 0.0F;
 
     Hardware_Init();
 
@@ -59,7 +59,7 @@ int main()
         {
             MainStruct::ms->state = State::RequestAction;
 
-            while (1) //-V2530
+            while (1)
             {
                 Key::E button = Panel::PressedButton();
                 if (button == Key::F1)

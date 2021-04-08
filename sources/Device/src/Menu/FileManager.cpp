@@ -437,7 +437,7 @@ LabelNextNumber:
         if(FileIsExist(name))
         {
             number++;
-            goto LabelNextNumber; //-V2505
+            goto LabelNextNumber;
         }
 
         return true;

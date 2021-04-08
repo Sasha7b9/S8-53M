@@ -18,7 +18,7 @@
 #define FILE_CONFIG wxT("config.ini")
 
 
-enum //-V2521
+enum
 {
     FILE_QUIT = wxID_EXIT,
     FILE_SIZE = wxID_HIGHEST + 1,
@@ -201,7 +201,7 @@ void Frame::DrawFPS()
 
     if (clock() - prevTime > 1000)
     {
-        float fps = static_cast<float>(count) / static_cast<float>(clock() - prevTime) * 1000.0F; //-V2564
+        float fps = static_cast<float>(count) / static_cast<float>(clock() - prevTime) * 1000.0F;
 
         char buffer[100];
         sprintf(buffer, "fps %f", fps);

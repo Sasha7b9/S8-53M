@@ -189,7 +189,7 @@ static void DrawBigMNIPI()
 
     for (int i = 0; i < numPoints; i++)
     {
-        int x = (int)((float)(array[i].x) + shift[array[i].y]); //-V537
+        int x = (int)((float)(array[i].x) + shift[array[i].y]);
         int y = array[i].y;
         if (x > 0 && x < 319 && y > 0 && y < 239)
         {

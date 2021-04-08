@@ -367,7 +367,7 @@ bool Item::IsOpened() const
         return page->CurrentItemIsOpened();
     }
 
-    return page->CurrentItemIsOpened(); //-V523
+    return page->CurrentItemIsOpened();
 }
 
 

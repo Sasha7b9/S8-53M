@@ -140,7 +140,7 @@ int Math::NumDigitsInNumber(int value)
 {
     value = Math::FabsInt(value);
     int num = 1;
-    while ((value /= 10) > 0) //-V2561
+    while ((value /= 10) > 0)
     {
         num++;
     }

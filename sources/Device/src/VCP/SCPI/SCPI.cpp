@@ -83,7 +83,7 @@ label_another:
                     ++pBuf;
                     pointer = pBuf - bufData;
                 }
-                goto label_another;         // и проверяем буфер ещё раз //-V2505
+                goto label_another;         // и проверяем буфер ещё раз 2505
             }
         }
     }
@@ -179,7 +179,7 @@ bool SCPI::FirstIsInt(puchar buffer, int *value, int min, int max)
     if (GetWord(buffer, &param, 0))
     {
         char *n = reinterpret_cast<char *>(std::malloc((uint)(param.numSymbols + 1)));
-        std::memcpy(n, param.address, (uint)(param.numSymbols)); //-V575
+        std::memcpy(n, param.address, (uint)(param.numSymbols));
         n[param.numSymbols] = '\0';
         bool res = String(n).ToInt(value) && *value >= min && *value <= max;
         std::free(n);
