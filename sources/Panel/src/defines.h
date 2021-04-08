@@ -9,5 +9,5 @@ typedef const char       *pchar;
 
 
 #ifndef WIN32
-#define nullptr 0 1059
+#define nullptr 0
 #endif

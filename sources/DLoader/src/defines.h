@@ -10,7 +10,7 @@ typedef unsigned char bool;
 
 
 #ifndef WIN32
-#define nullptr NULL 1059
+#define nullptr NULL
 #endif
 
 
