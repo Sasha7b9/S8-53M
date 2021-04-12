@@ -986,7 +986,7 @@ void DrawSetMask()
     }
 }
 
-void Memory_SaveSignalToFlashDrive()
+void PageMemory::PageExternal::SaveSignalToFlashDrive()
 {
     if (FDrive::isConnected)
     {
