@@ -30,7 +30,7 @@ static void DrawSetMask();  // Эта функция рисует, когда выбран режим задания ма
 static void DrawSetName();  // Эта функция рисует, когда нужно задать имя файла для сохранения
 
 
-void ChangeC_Memory_NumPoints(bool)
+void PageMemory::OnChanged_MemoryNumPoints(bool)
 {
     if(SettingsMemory::GetNumPoints(false) == 281)
     {
@@ -783,7 +783,7 @@ DEF_CHOICE_7(mcMemoryNumPoints, PageMemory::self,
     "4k",  "4k",
     "8k",  "8k",
     "16k", "16k",
-    set.memory.enum_points_fpga, FuncActiveMemoryNumPoinst, ChangeC_Memory_NumPoints, nullptr
+    set.memory.enum_points_fpga, FuncActiveMemoryNumPoinst, PageMemory::OnChanged_MemoryNumPoints, nullptr
 )
 
 DEF_CHOICE_2(mcMemoryExtName, PageMemory::PageExternal::self,

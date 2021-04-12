@@ -220,7 +220,7 @@ static const Settings defaultSettings =
         false,                      // view altera writting data
         false,                      // view all altera writting data
         0,                          // alt shift
-        { true, false, false, false, false, false, false, false, false, false, false, false }
+        { false, false, false, false, false, false, false, false, false, false, false, false }
     }
 };
 

@@ -252,6 +252,7 @@ struct PageMemory
     static uint exitFromModeSetNameTo;      // Куда возвращаться из окна установки имени при сохранении : 0 - в основное меню, 1 - в окно последних, 2 - в окно Внутр ЗУ, 3 - в основно окно в выключенным меню
     static bool needForSaveToFlashDrive;    // Если 1, то нужно сохранить после отрисовки на флешку.
 
+    static void OnChanged_MemoryNumPoints(bool active);
 
     struct PageLatest
     {
@@ -292,6 +293,6 @@ struct PageMemory
 };
 
 
-void ChangeC_Memory_NumPoints(bool active);
+
 void OnPressMemoryExtFileManager();
 void Memory_SaveSignalToFlashDrive();

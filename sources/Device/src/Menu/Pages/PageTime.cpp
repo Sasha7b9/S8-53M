@@ -58,7 +58,7 @@ void PageTime::OnChanged_PeakDet(bool active)
             int centerX = TShift::GetInMemory() + Grid::Width() / 2;
             TShift::SetInMemory((int16)(centerX * 2 - Grid::Width() / 2));
             set.memory.enum_points_fpga = set.time.old_num_points;
-            ChangeC_Memory_NumPoints(true);
+            PageMemory::OnChanged_MemoryNumPoints(true);
         }
         else if (PeackDetMode::IsEnabled())
         {
@@ -68,7 +68,7 @@ void PageTime::OnChanged_PeakDet(bool active)
                 0,
                 (int16)(SettingsMemory::GetNumPoints(false) - Grid::Width()));
 
-            ChangeC_Memory_NumPoints(true);
+            PageMemory::OnChanged_MemoryNumPoints(true);
         }
     }
     else
@@ -88,7 +88,7 @@ DEF_CHOICE_2(mcPeakDet, PageTime::self,
 
 void PageTime::OnChanged_TPos(bool active)
 {
-    ChangeC_Memory_NumPoints(active);
+    PageMemory::OnChanged_MemoryNumPoints(active);
     TShift::Set(set.time.shift);
 }
 

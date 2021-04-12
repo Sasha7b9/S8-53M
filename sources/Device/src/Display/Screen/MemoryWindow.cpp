@@ -1,5 +1,6 @@
 // 2021/03/30 15:51:32 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
+#include "common/Log_.h"
 #include "common/Display/Font/Font_.h"
 #include "common/Display/Painter/Primitives_.h"
 #include "common/Utils/Math_.h"
@@ -25,17 +26,18 @@ void MemoryWindow::Draw(DataReading &data)
     DrawDataInRect(right + 2, set.display.last_affected_channel.IsA() ? ChB : ChA, data);
     DrawDataInRect(right + 2, set.display.last_affected_channel.IsA() ? ChA : ChB, data);
 
-    int leftX = 3;
-    float scaleX = (float)(right - leftX + 1) / set.memory.enum_points_fpga.ToPoints();
-    const int xVert0 = leftX + (int)(set.display.shift_in_memory * scaleX);
-    int width = (int)((right - leftX) * (282.0f / set.memory.enum_points_fpga.ToPoints()));
+    int left = 3;
+    float scale_x = (float)(right - left + 1) / set.memory.enum_points_fpga.ToPoints();
+    const int x_rect = left + (int)(set.display.shift_in_memory * scale_x);
+    int width = (int)((right - left) * (282.0f / set.memory.enum_points_fpga.ToPoints()));
 
-    Rectangle(width - (set.memory.enum_points_fpga == EnumPointsFPGA::_8k ? 1 : 0), Grid::TOP - 2).
-        Draw(xVert0, 0, Color::FILL);
+//    LOG_WRITE("scale = %f, x = %d, width = %d, shift = %d", scale_x, x_rect, width, set.display.shift_in_memory);
 
-    DrawTPos(leftX, right);
+    Rectangle(width, Grid::TOP - 2).Draw(x_rect, 0, Color::FILL);
 
-    DrawTShift(leftX, right, set.memory.enum_points_fpga.BytesInChannel());
+    DrawTPos(left, right);
+
+    DrawTShift(left, right, set.memory.enum_points_fpga.BytesInChannel());
 }
 
 
