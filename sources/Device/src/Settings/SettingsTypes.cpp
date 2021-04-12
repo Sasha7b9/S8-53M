@@ -443,28 +443,12 @@ bool TPos::IsRight()
 }
 
 
-int TPos::InPoints(PeackDetMode::E peak_det, uint num_points, TPos::E tPos)
+int TPos::InPoints(EnumPointsFPGA::E enum_points, TPos::E t_pos)
 {
-    if (peak_det == PeackDetMode::Disable)
-    {
-        static const int m[3][3] =
-        {
-            {0, 140, 280},
-            {0, 255, 511},
-            {0, 512, 1022}
-        };
-        return m[EnumPointsFPGA::FromPoints(num_points)][tPos];
-    }
-    else
-    {
-        static const int m[3][3] =
-        {
-            {0, 140, 280},
-            {0, 256, 510},
-            {0, 256, 510}
-        };
-        return m[EnumPointsFPGA::FromPoints(num_points)][tPos];
-    }
+    static const int div[TPos::Count] = { 0x7fffffff, 2, 1 };   // 0x7fffffff выбрано, потому что при делении на него
+        // любого допустимого enum_points получается ноль
+
+    return (int)EnumPointsFPGA::ToPoints(enum_points) / div[t_pos];
 }
 
 
@@ -483,6 +467,7 @@ int16 TShift::Min()
     case TPos::Left:                    break;
     case TPos::Center:  result /= 2;    break;
     case TPos::Right:   result = 0;     break;
+    case TPos::Count:                   break;
     }
 
     return result;

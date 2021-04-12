@@ -18,7 +18,7 @@ private:
 
     static void DrawTPos(int left_x, int right_x);
 
-    static void DrawTShift(int left_x, int right_x, uint num_points);
+    static void DrawTShift(int left_x, int right_x);
 
     // Возвращает точку в экранной координате. Если точка не считана (Value::NONE), возвращает -1.
     static int Ordinate(uint8 x, float scale);

@@ -31,13 +31,11 @@ void MemoryWindow::Draw(DataReading &data)
     const int x_rect = left + (int)(set.display.shift_in_memory * scale_x);
     int width = (int)((right - left) * (282.0f / set.memory.enum_points_fpga.ToPoints()));
 
-//    LOG_WRITE("scale = %f, x = %d, width = %d, shift = %d", scale_x, x_rect, width, set.display.shift_in_memory);
-
     Rectangle(width, Grid::TOP - 2).Draw(x_rect, 0, Color::FILL);
 
     DrawTPos(left, right);
 
-    DrawTShift(left, right, set.memory.enum_points_fpga.BytesInChannel());
+    DrawTShift(left, right);
 }
 
 
@@ -157,11 +155,14 @@ void MemoryWindow::DrawTPos(int leftX, int rightX)
 }
 
 
-void MemoryWindow::DrawTShift(int left, int right, uint numBytes)
+void MemoryWindow::DrawTShift(int left, int right)
 {
-    float scale = (float)(right - left + 1) / ((float)numBytes - (numBytes == 281 ? 1 : 0));
+    EnumPointsFPGA::E enum_points = set.memory.enum_points_fpga;
+    uint num_points = set.memory.enum_points_fpga.ToPoints();
 
-    int x = (int)(1.5f + (TPos::InPoints(set.time.peak_det, set.memory.enum_points_fpga.ToPoints(), set.time.t_pos) -
+    float scale = (float)(right - left + 1) / num_points;
+
+    int x = (int)(1.5f + (TPos::InPoints(enum_points, set.time.t_pos) -
         TShift::InPoints(set.time.peak_det)) * scale) - 1;
 
     if (set.time.peak_det.IsEnabled() && set.time.t_pos.IsRight())
@@ -169,7 +170,7 @@ void MemoryWindow::DrawTShift(int left, int right, uint numBytes)
         --x;
     }
 
-    if (set.memory.enum_points_fpga == EnumPointsFPGA::_512)
+    if (enum_points == EnumPointsFPGA::_512)
     {
         ++x;                           /// \todo Костыль
     }

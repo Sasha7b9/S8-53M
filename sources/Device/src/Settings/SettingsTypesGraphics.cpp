@@ -193,12 +193,11 @@ void TShift::Draw()
     BitSet64 bs = SettingsDisplay::PointsOnDisplay();
 
     PeackDetMode::E peak_det = set.time.peak_det;
-    uint points_in_channel = set.memory.enum_points_fpga.ToPoints();
+    EnumPointsFPGA::E enum_points = set.memory.enum_points_fpga;
     TPos::E t_pos = set.time.t_pos;
 
     // Рисуем TPos
-    int shiftTPos = TPos::InPoints(
-        peak_det, points_in_channel, t_pos) - set.display.shift_in_memory;
+    int shiftTPos = TPos::InPoints(enum_points, t_pos) - set.display.shift_in_memory;
 
     float scale = (float)((bs.first - bs.second) / Grid::Width());
     int gridLeft = Grid::Left();
@@ -209,7 +208,7 @@ void TShift::Draw()
     };
 
     // Рисуем tShift
-    int tshift = TPos::InPoints(peak_det, points_in_channel, t_pos) - TShift::InPoints(peak_det);
+    int tshift = TPos::InPoints(enum_points, t_pos) - TShift::InPoints(peak_det);
 
     if (Math::InRange(tshift, bs.first, bs.second))
     {

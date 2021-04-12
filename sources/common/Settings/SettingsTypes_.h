@@ -508,7 +508,8 @@ struct TPos
     {
         Left,      // Синхронизация привязана к началу памяти.
         Center,    // Синхронизация привязана к центру памяти.
-        Right      // Синхронизация привязана к концу памяти.
+        Right,     // Синхронизация привязана к концу памяти.
+        Count
     } value;
 
     TPos(E v = Center) : value(v) {}
@@ -518,7 +519,7 @@ struct TPos
     static bool IsRight();
 
     // Узнать привязку отсительно уровня синхронизации в точках
-    static int InPoints(PeackDetMode::E peak_det, uint num_points, E t_pos);
+    static int InPoints(EnumPointsFPGA::E enum_points, E t_pos);
 
     operator E() const { return value; }
 };
