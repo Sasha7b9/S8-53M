@@ -156,7 +156,7 @@ static void DrawSB_MemExtSetNameSave(int x, int y)
 static void PressSB_MemLast_SaveToFlash()
 {
     PageMemory::exitFromModeSetNameTo = RETURN_TO_LAST_MEM;
-    Memory_SaveSignalToFlashDrive();
+    PageMemory::PageExternal::SaveSignalToFlashDrive();
 }
 
 
@@ -558,7 +558,7 @@ static void FuncAdditionDrawingSPageMemoryInt()
 void PressSB_MemInt_SaveToFlashDrive()
 {
     PageMemory::exitFromModeSetNameTo = RETURN_TO_INT_MEM;
-    Memory_SaveSignalToFlashDrive();
+    PageMemory::PageExternal::SaveSignalToFlashDrive();
 }
 
 static void FuncOnRegSetMemInt(int delta)

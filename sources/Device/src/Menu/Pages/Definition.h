@@ -274,6 +274,8 @@ struct PageMemory
         static const Page *self;
 
         static void OnPress_MemoryFileManager();
+
+        static void SaveSignalToFlashDrive();
     };
 
     struct PageSetMask
@@ -294,4 +296,4 @@ struct PageMemory
     static const Page *self;
 };
 
-void Memory_SaveSignalToFlashDrive();
+

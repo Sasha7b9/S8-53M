@@ -344,7 +344,7 @@ void Menu::ProcessingShortPressureButton()
             FDrive::isConnected)
         {
             PageMemory::exitFromModeSetNameTo = IsShown() ? RETURN_TO_MAIN_MENU : RETURN_TO_DISABLE_MENU;
-            Memory_SaveSignalToFlashDrive();
+            PageMemory::PageExternal::SaveSignalToFlashDrive();
             shortPressureButton = Key::None;
             return;
         }
