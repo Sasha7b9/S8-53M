@@ -72,7 +72,8 @@ void DataDrawing::PrepareChannel(const Channel &ch)
     {
         int index = i - p.first;
         CONVERT_DATA_TO_DISPLAY((points[ch][(uint)index]),
-            Math::CalculateFiltr(data_channel, i, SettingsMemory::GetNumPoints(false), (int)Smoothing::NumPoints()));
+            Math::CalculateFiltr(data_channel, i, (int)set.memory.enum_points_fpga.BytesInChannel(),
+            (int)Smoothing::NumPoints()));
     }
 }
 

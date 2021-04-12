@@ -487,7 +487,8 @@ struct PeackDetMode
     {
         Disable,
         Enable,
-        Average
+        Average,
+        Count
     } value;
 
     PeackDetMode(E v = Disable) : value(v) {}

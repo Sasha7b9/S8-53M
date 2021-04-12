@@ -46,26 +46,29 @@ void RotateRegMeasureSetField(int angle)
 
     int sign = Math::Sign(angle);
 
+    uint bytes_in_channel = set.memory.enum_points_fpga.BytesInChannel();
+
     if (curs_cntrl == CursCntrl::_1 || curs_cntrl == CursCntrl::_1_2)
     {
         if (curs_active.IsT())
         {
             set.measures.posT[0] = Math::Limitation<int16>((int16)(SettingsMeasures::PosCursorT(0) - sign),
                 0,
-                (int16)(SettingsMemory::GetNumPoints(false) - 1));
+                (int16)(bytes_in_channel - 1));
         }
         else
         {
             set.measures.posU[0] = Math::Limitation<int16>((int16)(SettingsMeasures::PosCursorU(0) + sign), 0, 200);
         }
     }
+
     if (curs_cntrl == CursCntrl::_2 || curs_cntrl == CursCntrl::_1_2)
     {
         if (curs_active.IsT())
         {
             set.measures.posT[1] = Math::Limitation<int16>((int16)(SettingsMeasures::PosCursorT(1) - sign),
                 0,
-                (int16)(SettingsMemory::GetNumPoints(false) - 1));
+                (int16)(bytes_in_channel - 1));
         }
         else
         {

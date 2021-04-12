@@ -107,8 +107,6 @@ struct SettingsMemory
                                                                   // выводится NC (Нортон Коммандер)
     ModeBtnMemory       mode_button_memory;
     ModeSaveSignal      mode_save_signal;                         // В каком виде сохранять сигнал.
-
-    static int GetNumPoints(bool forCalculate);
 };
 
 

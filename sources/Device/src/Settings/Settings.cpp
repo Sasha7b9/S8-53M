@@ -313,25 +313,6 @@ int SettingsDebug::GetSizeFontForConsole()
 }
 
 
-int SettingsMemory::GetNumPoints(bool forCalculate)
-{
-    static const int numPoints[3][3] =
-    {
-        {281, 512, 1024},
-        {281, 512, 512},
-        {281, 512, 512}
-    };
-
-    if ((set.memory.enum_points_fpga.ToPoints() > 512) &&
-        forCalculate)
-    {
-        return FPGA_MAX_POINTS_FOR_CALCULATE;
-    }
-
-    return numPoints[PeackDetMode::Get()][set.memory.enum_points_fpga];
-}
-
-
 void Channel::Enable() const
 {
     set.chan[value].enable = true;

@@ -233,7 +233,7 @@ void Display::ShiftScreen(int delta)
 {
     set.display.shift_in_memory = Math::Limitation<int16>((int16)(TShift::GetInMemory() + delta),
         0,
-        (int16)(SettingsMemory::GetNumPoints(false) - 282));
+        (int16)(set.memory.enum_points_fpga.BytesInChannel() - 282));
 }
 
 

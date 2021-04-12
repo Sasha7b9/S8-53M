@@ -32,7 +32,9 @@ static void DrawSetName();  // Эта функция рисует, когда нужно задать имя файла 
 
 void PageMemory::OnChanged_MemoryNumPoints(bool)
 {
-    if(SettingsMemory::GetNumPoints(false) == 281)
+    uint bytes_in_channel = set.memory.enum_points_fpga.BytesInChannel();
+
+    if(bytes_in_channel == 281)
     {
         TShift::SetInMemory(0);
     }
@@ -44,11 +46,11 @@ void PageMemory::OnChanged_MemoryNumPoints(bool)
         }
         else if(TPos::IsCenter())
         {
-            TShift::SetInMemory((int16)(SettingsMemory::GetNumPoints(false) / 2 - Grid::Width() / 2));
+            TShift::SetInMemory((int16)(bytes_in_channel / 2 - Grid::Width() / 2));
         }
         else if(TPos::IsRight())
         {
-            TShift::SetInMemory((int16)(SettingsMemory::GetNumPoints(false) - Grid::Width() - 2));
+            TShift::SetInMemory((int16)(bytes_in_channel - Grid::Width() - 2));
         }
     }
 
