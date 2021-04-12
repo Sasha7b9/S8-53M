@@ -1067,7 +1067,7 @@ DEF_PAGE_6(pageSetMask, PageMemory::PageExternal::self, NamePage::SB_MemExtSetMa
     IsActiveMemoryExtSetMask, OnPressMemoryExtMask, nullptr, OnMemExtSetMaskRegSet
 )
 
-void OnPressMemoryExtFileManager()
+void PageMemory::PageExternal::OnPress_MemoryFileManager()
 {
     if(FDrive::isConnected)
     {
@@ -1105,7 +1105,7 @@ DEF_PAGE_6(pageFileManager, PageMemory::PageExternal::self, NamePage::SB_FileMan
     Item::empty,
     sbFileManagerLevelUp,
     sbFileManagerLevelDown,
-    FuncOfActiveExtMemFolder, OnPressMemoryExtFileManager, EmptyFuncVV, FM::RotateRegSet
+    FuncOfActiveExtMemFolder, PageMemory::PageExternal::OnPress_MemoryFileManager, EmptyFuncVV, FM::RotateRegSet
 );
 
 DEF_PAGE_6(pageExternal, PageMemory::self, NamePage::MemoryExt,

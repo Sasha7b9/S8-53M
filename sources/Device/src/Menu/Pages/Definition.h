@@ -272,6 +272,8 @@ struct PageMemory
     struct PageExternal
     {
         static const Page *self;
+
+        static void OnPress_MemoryFileManager();
     };
 
     struct PageSetMask
@@ -292,7 +294,4 @@ struct PageMemory
     static const Page *self;
 };
 
-
-
-void OnPressMemoryExtFileManager();
 void Memory_SaveSignalToFlashDrive();
