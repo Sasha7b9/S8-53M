@@ -825,22 +825,6 @@ void LaunchFPGA::CalculateRandomize()
         pred = equal_points;
         post = 0;
     }
-
-//    post = shift / 2 / k;
-//
-//    int pointsInChannelHalf = (int)set.memory.enum_points_fpga.ToPoints() / 2 / k;
-//
-//    pred = Math::Limitation(pointsInChannelHalf - post, 0, INT_MAX);
-//
-//    if (post + pred < pointsInChannelHalf)
-//    {
-//        pred = pointsInChannelHalf - post;
-//    }
-//
-//    if (shift < 0)
-//    {
-//        post = 0;
-//    }
 }
 
 

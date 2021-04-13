@@ -129,33 +129,37 @@ void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch,
         return;
     }
 
-//    LOG_WRITE("index = %d", index);
-
     DataSettings &ds = dr.Settings();
 
     uint bytes_in_channel = ds.BytesInChannel();
 
     const uint16 *const address = ADDRESS_READ(ch);
-    uint8 *data = dr.Data(ch);
-    uint8 *last = data + bytes_in_channel;
+    uint8 *addr_wr = dr.Data(ch);                           // —юда будем писать считываемые данные
+    const uint8 * const addr_wr_last = addr_wr + bytes_in_channel;
 
     if (ds.is_clean == 1)
     {
-        std::memset(data, Value::NONE, bytes_in_channel);
+        std::memset(addr_wr, Value::NONE, bytes_in_channel);
         ds.is_clean = 0;
     }
 
     UtilizeFirstBytes(address, num_skipped);
 
-    data += index;
+    addr_wr += index;
 
     HAL_FMC::Write(WR_PRED, addr_read);
     HAL_FMC::Write(WR_ADDR_READ, 0xffff);
 
-    while (data < last)
+    uint num_bytes = bytes_in_channel / TBase::StepRand();
+
+    for (uint i = 0; i < num_bytes; i++)
     {
-        *data = (uint8)*address;
-        data += TBase::StepRand();
+        if (addr_wr >= dr.Data(ch) && addr_wr < addr_wr_last)
+        {
+            *addr_wr = (uint8)*address;
+        }
+
+        addr_wr += TBase::StepRand();
     }
 }
 
@@ -236,10 +240,10 @@ uint16 ReaderFPGA::CalculateAddressRead()
         result += (uint16)TShift::ForLaunchFPGA();
     }
 
-    if (TBase::IsRandomize())
-    {
-        result += LaunchFPGA::Pred();
-    }
+//     if (TBase::IsRandomize())
+//     {
+//         result += LaunchFPGA::Pred();
+//     }
 
 //    static const uint16 delta[TBase::Count] =
 //    {//  1   2   5  10  20   50
