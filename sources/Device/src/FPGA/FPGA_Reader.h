@@ -32,12 +32,12 @@ private:
     {
         struct Real
         {
-            static void Channel(DataReading &data, const Channel &ch, uint16 addr_stop);
+            static void Channel(DataReading &data, const Channel &ch, uint16 addr_read);
         };
 
         struct Randomizer
         {
-            static void Channel(DataReading &data, const Channel &ch, uint16 addr_stop);
+            static void Channel(DataReading &data, const Channel &ch, uint16 addr_read);
 
             // –ассчитывает индекс первой считываемой точки в массиве и также количество точек, которые нужно отбросить
             // при чтении

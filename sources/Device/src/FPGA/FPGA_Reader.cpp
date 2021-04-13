@@ -45,17 +45,17 @@ void ReaderFPGA::ReadData()
 
     DataReadingKeeper data;
 
-    uint16 addr_stop = CalculateAddressRead();
+    uint16 addr_read = CalculateAddressRead();
 
     if (TBase::IsRandomize())
     {
-        Read::Randomizer::Channel(*data.data, ChA, addr_stop);
-        Read::Randomizer::Channel(*data.data, ChB, addr_stop);
+        Read::Randomizer::Channel(*data.data, ChA, addr_read);
+        Read::Randomizer::Channel(*data.data, ChB, addr_read);
     }
     else
     {
-        Read::Real::Channel(*data.data, ChA, addr_stop);
-        Read::Real::Channel(*data.data, ChB, addr_stop);
+        Read::Real::Channel(*data.data, ChA, addr_read);
+        Read::Real::Channel(*data.data, ChB, addr_read);
     }
 
     Storage::Append(*data.data);
@@ -64,9 +64,9 @@ void ReaderFPGA::ReadData()
 }
 
 
-void ReaderFPGA::Read::Real::Channel(DataReading &data, const ::Channel &ch, uint16 addr_stop)
+void ReaderFPGA::Read::Real::Channel(DataReading &data, const ::Channel &ch, uint16 addr_read)
 {
-    HAL_FMC::Write(WR_PRED, addr_stop);
+    HAL_FMC::Write(WR_PRED, addr_read);
     HAL_FMC::Write(WR_ADDR_READ, 0xffff);
 
     uint16 *p = (uint16 *)data.Data(ch);
@@ -119,7 +119,7 @@ bool ReaderFPGA::Read::Randomizer::IndexFirstPoint(int *first_out, int *skipped_
 }
 
 
-void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch, uint16 addr_stop)
+void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch, uint16 addr_read)
 {
     int index = 0;
     int num_skipped = 0;
@@ -149,7 +149,7 @@ void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch,
 
     data += index;
 
-    HAL_FMC::Write(WR_PRED, addr_stop);
+    HAL_FMC::Write(WR_PRED, addr_read);
     HAL_FMC::Write(WR_ADDR_READ, 0xffff);
 
     while (data < last)
