@@ -45,7 +45,7 @@ void ReaderFPGA::ReadData()
 
     DataReadingKeeper data;
 
-    uint16 addr_stop = ReadAddressStop();
+    uint16 addr_stop = CalculateAddressRead();
 
     if (TBase::IsRandomize())
     {
@@ -227,7 +227,7 @@ Int ReaderFPGA::CalculateShift()
 }
 
 
-uint16 ReaderFPGA::ReadAddressStop()
+uint16 ReaderFPGA::CalculateAddressRead()
 {
     uint16 result = (uint16)(HAL_FMC::Read(RD_ADDR_LAST_RECORD) - set.memory.enum_points_fpga.ToPoints() / 2 - 1);
 

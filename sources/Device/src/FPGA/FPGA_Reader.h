@@ -25,7 +25,8 @@ private:
 
     static Int CalculateShift();
 
-    static uint16 ReadAddressStop();
+    // Возвращает адрес, с которого нужно читать первую точку
+    static uint16 CalculateAddressRead();
 
     struct Read
     {
