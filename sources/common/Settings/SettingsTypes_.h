@@ -1180,8 +1180,8 @@ private:
     static void Calculate();
 
     // Возвращают значения, готовые для записи в ПЛИС
-    static uint16 PredForWrite() { return (uint16)(~(pred + 5)); };
-    static uint16 PostForWrite() { return (uint16)(~(post + 5)); };
+    static uint16 PredForWrite() { return (uint16)(~(pred + 1)); };
+    static uint16 PostForWrite() { return (uint16)(~(post + 1)); };
 
     static void CalculateReal();
 

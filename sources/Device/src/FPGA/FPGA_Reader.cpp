@@ -233,24 +233,16 @@ Int ReaderFPGA::CalculateShift()
 
 uint16 ReaderFPGA::CalculateAddressRead()
 {
-    uint16 result = (uint16)(HAL_FMC::Read(RD_ADDR_LAST_RECORD) - set.memory.enum_points_fpga.ToPoints() / 2 - 1);
+    uint shift = TBase::IsRandomize() ?
+        set.memory.enum_points_fpga.ToPoints() / TBase::StepRand() :
+        set.memory.enum_points_fpga.ToPoints() / 2;
+
+    uint16 result = (uint16)(HAL_FMC::Read(RD_ADDR_LAST_RECORD) - shift - 1);
 
     if (TShift::ForLaunchFPGA() < 0)
     {
         result += (uint16)TShift::ForLaunchFPGA();
     }
-
-//     if (TBase::IsRandomize())
-//     {
-//         result += LaunchFPGA::Pred();
-//     }
-
-//    static const uint16 delta[TBase::Count] =
-//    {//  1   2   5  10  20   50
-//        10, 10, 10, 25, 50, 135, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-//    };
-//
-//    result += delta[set.time.base];
 
     return result;
 }

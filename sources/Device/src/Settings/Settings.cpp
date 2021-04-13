@@ -19,7 +19,7 @@ static const Settings defaultSettings =
     // Display
     {
         5,                          // timeShowLevels
-        512 - 140,                  // shiftInMemory
+        0,                          // shiftInMemory
         5,                          // timeMessages
         100,                        // brightness
         20,                         // brightnessGrid
@@ -99,7 +99,7 @@ static const Settings defaultSettings =
     {
         TBase::_1ms,
         FunctionTime::Time,
-        TPos::Center,
+        TPos::Left,
         SampleType::Equal,
         PeackDetMode::Disable,
         EnumPointsFPGA::_1k,
@@ -123,7 +123,7 @@ static const Settings defaultSettings =
     },
     // memory
     {
-        EnumPointsFPGA::_1k,
+        EnumPointsFPGA::_281,
         ModeWork::Direct,
         FileNamingMode::Mask,
         "Signal_\x07\x03",      // \x07 - означает, что здесь должен быть очередной номер, \x03 - минимум на три знакоместа

@@ -806,7 +806,7 @@ void LaunchFPGA::CalculateRandomize()
     int k            = TBase::StepRand();
     TPos &tpos       = set.time.t_pos;
 //    int shift      = TShift::ForLaunchFPGA();
-    int num_points   = (int)set.memory.enum_points_fpga.ToPoints() / 2;
+    int num_points   = (int)set.memory.enum_points_fpga.ToPoints();
     int equal_points = num_points / k;      // Эквивалентное количество точек, которые нужно считать. Оно в коэффициент
                                             // растяжки меньше реального количесва точек, очевидно.
 
