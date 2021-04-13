@@ -236,5 +236,12 @@ uint16 ReaderFPGA::ReadAddressStop()
         result += (uint16)TShift::ForLaunchFPGA();
     }
 
+    static const uint16 delta[TBase::Count] =
+    {//  1   2   5  10  20  50
+        10, 10, 10, 10, 10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+    };
+
+    result += delta[set.time.base];
+
     return result;
 }
