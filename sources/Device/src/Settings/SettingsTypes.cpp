@@ -781,7 +781,7 @@ void LaunchFPGA::Calculate()
 
 void LaunchFPGA::CalculateReal()
 {
-    const int shift = set.time.shift - TShift::Min();
+    const int shift = TShift::ForLaunchFPGA();
 
     post = shift / 2;
 
@@ -797,11 +797,6 @@ void LaunchFPGA::CalculateReal()
     if (shift < 0)
     {
         post = 0;
-        FPGA::add_N_stop = -shift;
-    }
-    else
-    {
-        FPGA::add_N_stop = 0;
     }
 }
 
@@ -810,7 +805,7 @@ void LaunchFPGA::CalculateRandomize()
 {
     int k = TBase::StepRand();
 
-    const int shift = set.time.shift - TShift::Min();
+    const int shift = TShift::ForLaunchFPGA();
 
     post = shift / 2 / k;
 
@@ -826,10 +821,11 @@ void LaunchFPGA::CalculateRandomize()
     if (shift < 0)
     {
         post = 0;
-        FPGA::add_N_stop = -shift;
     }
-    else
-    {
-        FPGA::add_N_stop = 0;
-    }
+}
+
+
+int TShift::ForLaunchFPGA()
+{
+    return set.time.shift - TShift::Min();
 }

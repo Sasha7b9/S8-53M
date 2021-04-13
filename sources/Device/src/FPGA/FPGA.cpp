@@ -13,7 +13,6 @@
 #include <cstring>
 
 
-int         FPGA::add_N_stop = 0;
 FPGA::Flag  FPGA::flag;
 bool        FPGA::temporary_pause = false;
 bool        FPGA::can_read_data = true;

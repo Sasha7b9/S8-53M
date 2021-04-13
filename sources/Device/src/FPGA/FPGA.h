@@ -39,7 +39,6 @@ class FPGA
 {
 public:
 
-    static int  add_N_stop;
     static bool temporary_pause;
     static bool can_read_data;
 

@@ -878,6 +878,9 @@ struct TShift
     // Смещение по времени, соответствующее позиции TPos.
     static int16 Zero();
 
+    // Смещение по времени, используемое для засылки в пред/после- запуски
+    static int ForLaunchFPGA();
+
     // Смещение отображаемого участка сигнала относительно начала памяти.
     static int16 GetInMemory();
     static void SetInMemory(int16 shift);
