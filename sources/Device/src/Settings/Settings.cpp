@@ -200,7 +200,7 @@ static const Settings defaultSettings =
     },
     // menu
     {
-        true,
+        false,
         1
     },
     // debug
