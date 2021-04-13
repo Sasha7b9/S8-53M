@@ -237,12 +237,17 @@ uint16 ReaderFPGA::CalculateAddressRead()
         set.memory.enum_points_fpga.ToPoints() / TBase::StepRand() :
         set.memory.enum_points_fpga.ToPoints() / 2;
 
-    uint16 result = (uint16)(HAL_FMC::Read(RD_ADDR_LAST_RECORD) - shift - 1);
+    uint result = HAL_FMC::Read(RD_ADDR_LAST_RECORD) - shift - 1;
 
     if (TShift::ForLaunchFPGA() < 0)
     {
-        result += (uint16)TShift::ForLaunchFPGA();
+        result += TShift::ForLaunchFPGA();
     }
 
-    return result;
+    static const uint d[TBase::Count] =
+    {// 1  2  5  10 20  50
+        0, 0, 0,  0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+    };
+
+    return (uint16)(result + d[set.time.base]);
 }
