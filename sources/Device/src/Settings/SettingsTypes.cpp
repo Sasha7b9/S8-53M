@@ -803,25 +803,44 @@ void LaunchFPGA::CalculateReal()
 
 void LaunchFPGA::CalculateRandomize()
 {
-    int k = TBase::StepRand();
+    int k            = TBase::StepRand();
+    TPos &tpos       = set.time.t_pos;
+//    int shift      = TShift::ForLaunchFPGA();
+    int num_points   = (int)set.memory.enum_points_fpga.ToPoints() / 2;
+    int equal_points = num_points / k;      // Эквивалентное количество точек, которые нужно считать. Оно в коэффициент
+                                            // растяжки меньше реального количесва точек, очевидно.
 
-    const int shift = TShift::ForLaunchFPGA();
-
-    post = shift / 2 / k;
-
-    int pointsInChannelHalf = (int)set.memory.enum_points_fpga.ToPoints() / 2 / k;
-
-    pred = Math::Limitation(pointsInChannelHalf - post, 0, INT_MAX);
-
-    if (post + pred < pointsInChannelHalf)
+    if (tpos.IsLeft())
     {
-        pred = pointsInChannelHalf - post;
+        pred = 0;
+        post = equal_points;
     }
-
-    if (shift < 0)
+    else if (tpos.IsCenter())
     {
+        pred = equal_points / 2;
+        post = equal_points / 2;
+    }
+    else
+    {
+        pred = equal_points;
         post = 0;
     }
+
+//    post = shift / 2 / k;
+//
+//    int pointsInChannelHalf = (int)set.memory.enum_points_fpga.ToPoints() / 2 / k;
+//
+//    pred = Math::Limitation(pointsInChannelHalf - post, 0, INT_MAX);
+//
+//    if (post + pred < pointsInChannelHalf)
+//    {
+//        pred = pointsInChannelHalf - post;
+//    }
+//
+//    if (shift < 0)
+//    {
+//        post = 0;
+//    }
 }
 
 

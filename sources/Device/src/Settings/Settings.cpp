@@ -220,7 +220,10 @@ static const Settings defaultSettings =
         false,                      // view altera writting data
         false,                      // view all altera writting data
         0,                          // alt shift
-        { false, false, false, false, false, false, false, false, false, false, false, false }
+        {
+            true,                   // отображать пред/после запуск
+            false, false, false, false, false, false, false, false, false, false, false
+        }
     }
 };
 
