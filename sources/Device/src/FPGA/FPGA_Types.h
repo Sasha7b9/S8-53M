@@ -17,13 +17,13 @@
 #define UPR_BIT_CALIBRATOR_AC_DC        2   // посто€нное/переменное
 #define UPR_BIT_CALIBRATOR_VOLTAGE      3   // 0/4¬
 #define UPR_BIT_RECORDER                4   // 0 - обычный режим, 1 - регистратор
-#define WR_ADDR_STOP            (HAL_FMC::ADDR_FPGA + 0x06)
+#define WR_ADDR_READ            (HAL_FMC::ADDR_FPGA + 0x06)     // Ёта команда записывает адрес чтени€ в регистр предзапуска
 #define WR_STOP                 (HAL_FMC::ADDR_FPGA + 0x1f)
 
 
 #define RD_ADC_A                (HAL_FMC::ADDR_FPGA + 0x00)
 #define RD_ADC_B                (HAL_FMC::ADDR_FPGA + 0x02)
-#define RD_ADDR_NSTOP           (HAL_FMC::ADDR_FPGA + 0x08)
+#define RD_ADDR_NSTOP           (HAL_FMC::ADDR_FPGA + 0x08)     // „тение адреса последней записи
 #define RD_FREQ_LOW             (HAL_FMC::ADDR_FPGA + 0x10)
 #define RD_FREQ_HI              (HAL_FMC::ADDR_FPGA + 0x18)
 #define RD_PERIOD_LOW           (HAL_FMC::ADDR_FPGA + 0x20)
