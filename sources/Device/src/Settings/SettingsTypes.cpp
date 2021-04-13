@@ -804,26 +804,17 @@ void LaunchFPGA::CalculateReal()
 void LaunchFPGA::CalculateRandomize()
 {
     int k            = TBase::StepRand();
-    TPos &tpos       = set.time.t_pos;
-//    int shift      = TShift::ForLaunchFPGA();
+    int shift        = TShift::ForLaunchFPGA();
     int num_points   = (int)set.memory.enum_points_fpga.ToPoints();
     int equal_points = num_points / k;      // Эквивалентное количество точек, которые нужно считать. Оно в коэффициент
                                             // растяжки меньше реального количесва точек, очевидно.
+    post = shift / k;
 
-    if (tpos.IsLeft())
+    pred = equal_points - post;
+
+    if (pred + post < equal_points)
     {
-        pred = 0;
-        post = equal_points;
-    }
-    else if (tpos.IsCenter())
-    {
-        pred = equal_points / 2;
-        post = equal_points / 2;
-    }
-    else
-    {
-        pred = equal_points;
-        post = 0;
+        pred = equal_points - post;
     }
 }
 
