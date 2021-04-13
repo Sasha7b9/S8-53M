@@ -445,8 +445,8 @@ bool TPos::IsRight()
 
 int TPos::InPoints(EnumPointsFPGA::E enum_points, TPos::E t_pos)
 {
-    static const int div[TPos::Count] = { 0x7fffffff, 2, 1 };   // 0x7fffffff выбрано, потому что при делении на него
-        // любого допустимого enum_points получаетс€ ноль
+    static const int div[TPos::Count] = { INT_MAX, 2, 1 };   // INT_MAX выбрано, потому что при делении на него
+        // любого допустимого enum_points получаетс€ нольkei
 
     return (int)EnumPointsFPGA::ToPoints(enum_points) / div[t_pos];
 }
