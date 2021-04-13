@@ -229,7 +229,7 @@ Int ReaderFPGA::CalculateShift()
 
 uint16 ReaderFPGA::ReadAddressStop()
 {
-    uint16 result = (uint16)(HAL_FMC::Read(RD_ADDR_NSTOP) - set.memory.enum_points_fpga.ToPoints() / 2 - 1);
+    uint16 result = (uint16)(HAL_FMC::Read(RD_ADDR_LAST_RECORD) - set.memory.enum_points_fpga.ToPoints() / 2 - 1);
 
     if (TShift::ForLaunchFPGA() < 0)
     {
