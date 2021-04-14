@@ -78,7 +78,7 @@ public:
 
     struct BUS
     {
-        static void Write(uint16 * const address, uint16 data);
+        static void Write(uint16 * const address, uint16 data, bool restart = true);
 
         // Эта функция используется тогда, когда запись в регистр не требует перезапуска процесса измерения. Например,
         // в регистр, управляющий режимом калибратора

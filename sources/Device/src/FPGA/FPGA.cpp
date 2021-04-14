@@ -65,7 +65,7 @@ void FPGA::Start()
 
     LaunchFPGA::LoadPred();
 
-    HAL_FMC::Write(WR_START, 1);
+    FPGA::BUS::Write(WR_START, 1, false);
 
     state.work = StateWorkFPGA::Wait;
 }
@@ -175,7 +175,7 @@ bool FPGA::Randomizer::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
     {
         minGate = 0.9F * minGate + 0.1F * min;
         maxGate = 0.9F * maxGate + 0.1F * max;
-//        LOG_WRITE("вор %.0F ... %.0F, min = %u, max = %u", minGate, maxGate, min, max);
+        LOG_WRITE("вор %.0F ... %.0F, min = %u, max = %u", minGate, maxGate, min, max);
         numElements = 0;
         min = 0xffff;
         max = 0;
@@ -188,15 +188,18 @@ bool FPGA::Randomizer::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
 }
 
 
-void FPGA::BUS::Write(uint16 * const address, uint16 data)
+void FPGA::BUS::Write(uint16 * const address, uint16 data, bool restart)
 {
     bool is_running = FPGA::IsRunning();
 
-    Stop();
+    if (restart)
+    {
+        Stop();
+    }
 
     HAL_FMC::Write(address, data);
 
-    if(is_running)
+    if(is_running && restart)
     {
         Start();
     }
