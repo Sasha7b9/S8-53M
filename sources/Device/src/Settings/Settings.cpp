@@ -221,7 +221,7 @@ static const Settings defaultSettings =
         false,                      // view all altera writting data
         0,                          // alt shift
         {
-            true,                   // отображать пред/после запуск
+            false,                   // отображать пред/после запуск
             false, false, false, false, false, false, false, false, false, false, false
         }
     }
