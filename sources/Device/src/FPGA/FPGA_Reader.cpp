@@ -66,8 +66,8 @@ void ReaderFPGA::ReadData()
 
 void ReaderFPGA::Read::Real::Channel(DataReading &data, const ::Channel &ch, uint16 addr_read)
 {
-    HAL_FMC::Write(WR_PRED, addr_read);
-    HAL_FMC::Write(WR_ADDR_READ, 0xffff);
+    FPGA::BUS::Write(WR_PRED, addr_read, false);
+    FPGA::BUS::Write(WR_ADDR_READ, 0xffff, false);
 
     uint16 *p = (uint16 *)data.Data(ch);
     uint16 *end = (uint16 *)(data.Data(ch) + data.Settings().BytesInChannel());
@@ -147,8 +147,8 @@ void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch,
 
     addr_wr += index;
 
-    HAL_FMC::Write(WR_PRED, addr_read);
-    HAL_FMC::Write(WR_ADDR_READ, 0xffff);
+    FPGA::BUS::Write(WR_PRED, addr_read, false);
+    FPGA::BUS::Write(WR_ADDR_READ, 0xffff, false);
 
     uint num_bytes = bytes_in_channel / TBase::StepRand();
 

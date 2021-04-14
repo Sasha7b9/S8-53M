@@ -74,7 +74,7 @@ void FPGA::Start()
 void FPGA::Stop()
 {
     Timer::Disable(TypeTimer::P2P);
-    HAL_FMC::Write(WR_STOP, 1);
+    FPGA::BUS::Write(WR_STOP, 1, false);
     state.work = StateWorkFPGA::Stop;
 }
 
