@@ -63,7 +63,7 @@ void FPGA::Start()
 //        PainterData::ResetP2Ppoints(true);
     }
 
-    LaunchFPGA::LoadPred();
+    FPGA::BUS::Write(WR_PRED, LaunchFPGA::PredForWrite(), false);
 
     FPGA::BUS::Write(WR_START, 1, false);
 

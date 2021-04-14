@@ -1170,18 +1170,15 @@ struct LaunchFPGA
     // Загружает в аппаратную часть пред- и после- запуски
     static void Load();
 
-    // Загружает в аппаратную часть только предзапуск, который был запорчен раньше записью адреса чтения
-    static void LoadPred();
-
     static uint16 Pred() { return (uint16)pred; }
-
-private:
-
-    static void Calculate();
 
     // Возвращают значения, готовые для записи в ПЛИС
     static uint16 PredForWrite() { return (uint16)(~(pred + 1)); };
     static uint16 PostForWrite() { return (uint16)(~(post + 1)); };
+
+private:
+
+    static void Calculate();
 
     static void CalculateReal();
 
