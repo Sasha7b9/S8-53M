@@ -245,9 +245,9 @@ uint16 ReaderFPGA::CalculateAddressRead()
     }
 
     static const uint d[TBase::Count] =
-    {//   1    2    5  10  20  50
-        10, 10, 10, 10, 10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+    {//  1   2   5  10  20  50
+        10, 10, 10, 10, 10, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
     };
 
-    return (uint16)(result + d[set.time.base]);
+    return (uint16)(result - d[set.time.base]);
 }

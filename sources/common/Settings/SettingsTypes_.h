@@ -1173,8 +1173,8 @@ struct LaunchFPGA
     static uint16 Pred() { return (uint16)pred; }
 
     // Возвращают значения, готовые для записи в ПЛИС
-    static uint16 PredForWrite() { return (uint16)(~(pred + 1)); };
-    static uint16 PostForWrite() { return (uint16)(~(post + 1)); };
+    static uint16 PredForWrite();
+    static uint16 PostForWrite();
 
 private:
 

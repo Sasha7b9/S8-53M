@@ -823,3 +823,20 @@ int TShift::ForLaunchFPGA()
 {
     return set.time.shift - TShift::Min();
 }
+
+
+uint16 LaunchFPGA::PredForWrite()
+{
+    return (uint16)(~(pred + 1));
+}
+
+
+uint16 LaunchFPGA::PostForWrite()
+{
+    static const int delta[TBase::Count] =
+    {//  1   2   5  10  20  50
+        10, 10, 20, 10, 5,  20, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+    };
+
+    return (uint16)(~(post + delta[set.time.base]));
+}
