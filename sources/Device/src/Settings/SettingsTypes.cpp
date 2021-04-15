@@ -840,3 +840,21 @@ uint16 LaunchFPGA::PostForWrite()
 
     return (uint16)(~(post + delta[set.time.base]));
 }
+
+
+int LaunchFPGA::DeltaReadAddress()
+{
+    int result = 0;
+
+    if (TShift::ForLaunchFPGA() < 0)
+    {
+        result += TShift::ForLaunchFPGA();
+    }
+
+    static const uint d[TBase::Count] =
+    {//  1   2   5  10  20  50
+        10, 10, 10, 10, 10, 30, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+    };
+
+    return result - d[set.time.base];
+}

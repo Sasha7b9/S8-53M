@@ -1176,6 +1176,9 @@ struct LaunchFPGA
     static uint16 PredForWrite();
     static uint16 PostForWrite();
 
+    // Ќа сколько мен€ть адрес первого чтени€
+    static int DeltaReadAddress();
+
 private:
 
     static void Calculate();
