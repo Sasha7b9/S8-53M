@@ -766,6 +766,12 @@ void RShift::DisableShowLevel(const Channel &ch)
 }
 
 
+int TShift::ForLaunchFPGA()
+{
+    return set.time.shift - TShift::Min();
+}
+
+
 void LaunchFPGA::Calculate()
 {
     if (TBase::IsRandomize())
@@ -819,10 +825,15 @@ void LaunchFPGA::CalculateRandomize()
 }
 
 
-int TShift::ForLaunchFPGA()
-{
-    return set.time.shift - TShift::Min();
-}
+int8 LaunchFPGA::d_post[TBase::Count] =
+{//  1   2   5  10  20  50
+    10, 10, 10, 10, 10,  2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+};
+
+int8 LaunchFPGA::d_read[TBase::Count] =
+{//  1   2   5  10  20  50
+     1,  1,  1,  1,  1,  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+};
 
 
 uint16 LaunchFPGA::PredForWrite()
@@ -833,12 +844,7 @@ uint16 LaunchFPGA::PredForWrite()
 
 uint16 LaunchFPGA::PostForWrite()
 {
-    static const int delta[TBase::Count] =
-    {//  1   2   5  10  20  50
-        10, 10, 20, 10, 5,  20, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
-    };
-
-    return (uint16)(~(post + delta[set.time.base]));
+    return (uint16)(~(post + d_post[set.time.base]));
 }
 
 
@@ -851,10 +857,5 @@ int LaunchFPGA::DeltaReadAddress()
         result += TShift::ForLaunchFPGA();
     }
 
-    static const uint d[TBase::Count] =
-    {//  1   2   5  10  20  50
-        10, 10, 10, 10, 10, 30, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
-    };
-
-    return result - d[set.time.base];
+    return result - d_read[set.time.base];
 }

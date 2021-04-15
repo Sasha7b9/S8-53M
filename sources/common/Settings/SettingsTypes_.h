@@ -1189,4 +1189,7 @@ private:
 
     static int pred;
     static int post;
+
+    static int8 d_post[TBase::Count];   // ƒополнительное смещение дл€ послезапуска
+    static int8 d_read[TBase::Count];   // ƒополнительное смещение дл€ чтени€ адреса
 };
