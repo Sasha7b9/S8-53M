@@ -239,5 +239,5 @@ uint16 ReaderFPGA::CalculateAddressRead()
 
     uint result = HAL_FMC::Read(RD_ADDR_LAST_RECORD) - shift;
 
-    return (uint16)(result - LaunchFPGA::DeltaReadAddress());
+    return (uint16)(result + LaunchFPGA::DeltaReadAddress());
 }
