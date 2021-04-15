@@ -1190,7 +1190,7 @@ private:
     static int pred;
     static int post;
 
-    static int8 d_pred[TBase::Count];   // Дополнительное смещение для предзапуска
-    static int8 d_post[TBase::Count];   // Дополнительное смещение для послезапуска
-    static int8 d_read[TBase::Count];   // Дополнительное смещение для чтения адреса
+    static const int8 d_pred[TBase::Count];   // Дополнительное смещение для предзапуска
+    static const int8 d_post[TBase::Count];   // Дополнительное смещение для послезапуска
+    static const int8 d_read[TBase::Count];   // Дополнительное смещение для чтения адреса
 };
