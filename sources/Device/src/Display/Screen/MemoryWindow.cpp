@@ -213,8 +213,6 @@ int MemoryWindow::Ordinate(uint8 x, float scale)
 
 void MemoryWindow::DrawDataInRectangle(const Channel &ch, int x, int *min, int *max, int width)
 {
-    Math::LimitAbove(&width, 255);
-
     const int SIZE_BUFFER = 255 * 2;
 
     uint8 points[SIZE_BUFFER];

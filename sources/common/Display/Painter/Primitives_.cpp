@@ -110,9 +110,17 @@ void DashedVLine::Draw(int x, int y0, int y1, int deltaStart) const
 }
 
 
-void VLineArray::Draw(int , int , uint8 *, const Color &color) const
+void VLineArray::Draw(int x, int numLines, uint8 *y0y1, const Color &color) const
 {
     color.SetAsCurrent();
+
+    for (; numLines > 0; numLines--)
+    {
+        int y0 = *y0y1++;
+        int y1 = *y0y1++;
+
+        VLine().Draw(x++, y0, y1);
+    }
 }
 
 
