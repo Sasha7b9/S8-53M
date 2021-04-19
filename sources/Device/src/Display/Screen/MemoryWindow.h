@@ -14,7 +14,7 @@ public:
 
 private:
 
-    static void DrawDataInRect(int width, const Channel &ch, DataReading &data);
+    static void DrawDataInRectangle(int width, const Channel &ch, DataReading &data);
 
     static void DrawTPos(int left_x, int right_x);
 
@@ -23,6 +23,6 @@ private:
     // Возвращает точку в экранной координате. Если точка не считана (Value::NONE), возвращает -1.
     static int Ordinate(uint8 x, float scale);
 
-    // \node Процедура ограничивает width числом 255
-    static void SendToDisplayDataInRect(const Channel &ch, int x, int *min, int *max, int width);
+    // \note Процедура ограничивает width числом 255
+    static void DrawDataInRectangle(const Channel &ch, int x, int *min, int *max, int width);
 };

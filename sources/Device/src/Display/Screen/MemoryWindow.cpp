@@ -23,8 +23,8 @@ void MemoryWindow::Draw(DataReading &data)
         right = 68;
     }
 
-    DrawDataInRect(right + 2, set.display.last_affected_channel.IsA() ? ChB : ChA, data);
-    DrawDataInRect(right + 2, set.display.last_affected_channel.IsA() ? ChA : ChB, data);
+    DrawDataInRectangle(right + 2, set.display.last_affected_channel.IsA() ? ChB : ChA, data);
+    DrawDataInRectangle(right + 2, set.display.last_affected_channel.IsA() ? ChA : ChB, data);
 
     int left = 3;
     float scale_x = (float)(right - left + 1) / set.memory.enum_points_fpga.ToPoints();
@@ -39,22 +39,20 @@ void MemoryWindow::Draw(DataReading &data)
 }
 
 
-void MemoryWindow::DrawDataInRect(int width, const Channel &ch, DataReading &_data)
+void MemoryWindow::DrawDataInRectangle(int width, const Channel &ch, DataReading &data_channel)
 {
-    DataSettings &ds = _data.Settings();
+    DataSettings &ds = data_channel.Settings();
 
     if (!ds.IsEnabled(ch))
     {
         return;
     }
 
-    uint8 *data = _data.Data(ch);
+    uint8 *data = data_channel.Data(ch);
 
     float elems_in_column = ds.BytesInChannel() / (float)width;
 
-#undef SIZE_BUFFER
-#define SIZE_BUFFER 300
-
+    const int SIZE_BUFFER = 300;
     uint8 min[SIZE_BUFFER];
     uint8 max[SIZE_BUFFER];
 
@@ -132,13 +130,13 @@ void MemoryWindow::DrawDataInRect(int width, const Channel &ch, DataReading &_da
         int delta = x;
         if (numPoints < 256)
         {
-            SendToDisplayDataInRect(ch, x, mines + delta, maxes + delta, numPoints);
+            DrawDataInRectangle(ch, x, mines + delta, maxes + delta, numPoints);
         }
         else
         {
-            SendToDisplayDataInRect(ch, x, mines + delta, maxes + delta, 255);
+            DrawDataInRectangle(ch, x, mines + delta, maxes + delta, 255);
             numPoints -= 255;
-            SendToDisplayDataInRect(ch, x + 255, mines + 255 + delta, maxes + 255 + delta, numPoints);
+            DrawDataInRectangle(ch, x + 255, mines + 255 + delta, maxes + 255 + delta, numPoints);
         }
     }
 }
@@ -213,12 +211,11 @@ int MemoryWindow::Ordinate(uint8 x, float scale)
 }
 
 
-void MemoryWindow::SendToDisplayDataInRect(const Channel &ch, int x, int *min, int *max, int width)
+void MemoryWindow::DrawDataInRectangle(const Channel &ch, int x, int *min, int *max, int width)
 {
     Math::LimitAbove(&width, 255);
 
-#undef SIZE_BUFFER
-#define SIZE_BUFFER (255 * 2)
+    const int SIZE_BUFFER = 255 * 2;
 
     uint8 points[SIZE_BUFFER];
 
