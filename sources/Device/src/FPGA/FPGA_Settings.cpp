@@ -481,16 +481,14 @@ void TrigPolarity::Set(E polarity)
 
 void TrigPolarity::Switch()
 {
-    if (set.trig.polarity.IsFront())
+    static const uint16 value[2][2] =
     {
-        HAL_FMC::Write(WR_TRIG, 0);
-        HAL_FMC::Write(WR_TRIG, 1);
-    }
-    else
-    {
-        HAL_FMC::Write(WR_TRIG, 1);
-        HAL_FMC::Write(WR_TRIG, 0);
-    }
+        {1, 0},
+        {0, 1}
+    };
+
+    HAL_FMC::Write(WR_TRIG, value[set.trig.polarity][0]);
+    HAL_FMC::Write(WR_TRIG, value[set.trig.polarity][1]);
 
     timeSwitch = TIME_MS;
 
