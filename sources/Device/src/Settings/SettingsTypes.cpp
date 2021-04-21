@@ -831,13 +831,27 @@ const int8 LaunchFPGA::d_read[TBase::Count] =
 
 uint16 LaunchFPGA::PredForWrite()
 {
-    return (uint16)(~(pred + d_pred[set.time.base]));
+    int result = pred + d_pred[set.time.base];
+
+    if (PeackDetMode::IsEnabled())
+    {
+        result *= 2;
+    }
+
+    return (uint16)(~result);
 }
 
 
 uint16 LaunchFPGA::PostForWrite()
 {
-    return (uint16)(~(post + d_post[set.time.base]));
+    int result = post + d_post[set.time.base];
+
+    if (PeackDetMode::IsEnabled())
+    {
+        result *= 2;
+    }
+
+    return (uint16)(~result);
 }
 
 

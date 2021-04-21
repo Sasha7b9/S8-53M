@@ -56,8 +56,6 @@ static void WriteRShiftADC()
 
 void PageTime::OnChanged_PeakDet(bool active)
 {
-    LOG_WRITE("");
-
     if (active)
     {
         PeackDetMode::Set(PeackDetMode::Get());
@@ -87,8 +85,6 @@ void PageTime::OnChanged_PeakDet(bool active)
     {
         Warnings::ShowWarningBad(Warning::TooSmallSweepForPeakDet);
     }
-
-    LOG_WRITE("shift int in memory in points = %d", set.display.shift_in_memory_in_points);
 }
 
 DEF_CHOICE_2(mcPeakDet, PageTime::self,

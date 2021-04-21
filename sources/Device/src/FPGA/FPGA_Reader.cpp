@@ -74,21 +74,16 @@ void ReaderFPGA::Read::Real::Channel(DataReading &data, const ::Channel &ch, uin
 
     volatile const uint16 * const address = ADDRESS_READ(ch);
 
+    int counter = 0;
+
     while (p < end)
     {
         *p++ = *address;
-        *p++ = *address;
-        *p++ = *address;
-        *p++ = *address;
-        *p++ = *address;
-        *p++ = *address;
-        *p++ = *address;
-        *p++ = *address;
+        counter++;
     }
+
+    LOG_WRITE("—читано %d байт", counter * 2);
 }
-
-
-#define NUM_ADD_STEPS 2
 
 
 bool ReaderFPGA::Read::Randomizer::IndexFirstPoint(int *first_out, int *skipped_out)
@@ -101,6 +96,8 @@ bool ReaderFPGA::Read::Randomizer::IndexFirstPoint(int *first_out, int *skipped_
     }
 
     int step = TBase::StepRand();
+
+    static const int NUM_ADD_STEPS = 2;
 
     int index = Tsm - addition_shift - NUM_ADD_STEPS * step;
 
@@ -234,8 +231,8 @@ Int ReaderFPGA::CalculateShift()
 uint16 ReaderFPGA::CalculateAddressRead()
 {
     uint shift = TBase::IsRandomize() ?
-        set.memory.enum_points_fpga.PointsInChannel() / TBase::StepRand() :
-        set.memory.enum_points_fpga.PointsInChannel() / 2;
+        set.memory.enum_points_fpga.BytesInChannel() / TBase::StepRand() :
+        set.memory.enum_points_fpga.BytesInChannel() / 2;
 
     uint result = HAL_FMC::Read(RD_ADDR_LAST_RECORD) - shift;
 
