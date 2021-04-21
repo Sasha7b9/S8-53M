@@ -3,6 +3,7 @@
 #include "common/Display/Font/Font_.h"
 #include "common/Display/Painter/Primitives_.h"
 #include "common/Utils/Math_.h"
+#include "common/Utils/Containers/Buffer_.h"
 #include "Display/Screen/Grid.h"
 #include "Display/Screen/MemoryWindow.h"
 #include "FPGA/FPGA_Types.h"
@@ -109,7 +110,7 @@ void MemoryWindow::DrawDataInRectangle(int width, const Channel &ch, DataReading
         mines[i] = Ordinate((uint8)((min[i] > max[i - 1]) ? max[i - 1] : min[i]), scale);
     }
 
-    //*** Теперь определим количество точек, которые нужно нарисовать
+    // Теперь определим количество точек, которые нужно нарисовать
     int numPoints = 0;
     for (int i = 0; i < width; ++i)
     {
@@ -118,7 +119,7 @@ void MemoryWindow::DrawDataInRectangle(int width, const Channel &ch, DataReading
 
     numPoints--;
 
-    //*** Теперь определим, с какой позиции выводить точки (если сигнал сжат по горизонтали, то вначале будет пустое место
+    // Теперь определим, с какой позиции выводить точки (если сигнал сжат по горизонтали, то вначале будет пустое место
     int x = 1;
     for (int i = 0; i < width; ++i)
     {
@@ -128,17 +129,7 @@ void MemoryWindow::DrawDataInRectangle(int width, const Channel &ch, DataReading
 
     if (numPoints > 1)
     {
-        int delta = x;
-        if (numPoints < 256)
-        {
-            DrawDataInRectangle(ch, x, mines + delta, maxes + delta, numPoints);
-        }
-        else
-        {
-            DrawDataInRectangle(ch, x, mines + delta, maxes + delta, 255);
-            numPoints -= 255;
-            DrawDataInRectangle(ch, x + 255, mines + 255 + delta, maxes + 255 + delta, numPoints);
-        }
+        DrawDataInRectangle(ch, x, mines + x, maxes + x, numPoints);
     }
 }
 
@@ -211,9 +202,9 @@ int MemoryWindow::Ordinate(uint8 x, float scale)
 
 void MemoryWindow::DrawDataInRectangle(const Channel &ch, int x, int *min, int *max, int width)
 {
-    const int SIZE_BUFFER = 255 * 2;
+    Buffer<uint8> buffer((uint)(width * 2));
 
-    uint8 points[SIZE_BUFFER];
+    uint8 *points = buffer.DataU8();
 
     for (int i = 0; i < width; i++)
     {
