@@ -54,9 +54,11 @@ void MemoryWindow::DrawDataInRectangle(int width, const Channel &ch, DataReading
 
     float elems_in_column = ds.BytesInChannel() / (float)width;
 
-    const int SIZE_BUFFER = 300;
-    uint8 min[SIZE_BUFFER];
-    uint8 max[SIZE_BUFFER];
+    Buffer<uint8> buffer_min((uint)width);
+    Buffer<uint8> buffer_max((uint)width);
+
+    uint8 *min = buffer_min.DataU8();
+    uint8 *max = buffer_max.DataU8();
 
     if (ds.peak_det != 0)                                 // Если пик. дет. включен
     {
@@ -96,8 +98,12 @@ void MemoryWindow::DrawDataInRectangle(int width, const Channel &ch, DataReading
         }
     }
 
-    int mines[SIZE_BUFFER];     // Массив для максимальных значений в каждом столбике
-    int maxes[SIZE_BUFFER];     // Массив для минимальных значений в каждом столбике
+
+    Buffer<int> buffer_mines((uint)width);
+    Buffer<int> buffer_maxes((uint)width);
+
+    int *mines = buffer_mines.Data();   // Массив для максимальных значений в каждом столбике
+    int *maxes = buffer_maxes.Data();   // Массив для минимальных значений в каждом столбике
 
     float scale = 17.0f / (Value::MAX - Value::MIN);
 
