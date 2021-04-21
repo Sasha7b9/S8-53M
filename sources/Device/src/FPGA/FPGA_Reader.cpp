@@ -81,8 +81,6 @@ void ReaderFPGA::Read::Real::Channel(DataReading &data, const ::Channel &ch, uin
         *p++ = *address;
         counter++;
     }
-
-    LOG_WRITE("—читано %d байт", counter * 2);
 }
 
 

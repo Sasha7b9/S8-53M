@@ -452,12 +452,6 @@ int TPos::InPoints(EnumPointsFPGA::E enum_points, TPos::E t_pos)
 }
 
 
-int TShift::InPoints(PeackDetMode::E peakDet)
-{
-    return set.time.shift * (peakDet == PeackDetMode::Disable ? 1 : 2);
-}
-
-
 int16 TShift::Min()
 {
     int16 result = -(int16)set.memory.enum_points_fpga.PointsInChannel();

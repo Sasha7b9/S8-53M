@@ -162,8 +162,7 @@ void MemoryWindow::DrawTShift(int left, int right)
 
     float scale = (float)(right - left + 1) / num_points;
 
-    int x = (int)(1.5f + (TPos::InPoints(enum_points, set.time.t_pos) -
-        TShift::InPoints(set.time.peak_det)) * scale) - 1;
+    int x = (int)(1.5f + (TPos::InPoints(enum_points, set.time.t_pos) - set.time.shift) * scale) - 1;
 
     if (set.time.peak_det.IsEnabled() && set.time.t_pos.IsRight())
     {

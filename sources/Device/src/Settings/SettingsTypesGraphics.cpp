@@ -192,7 +192,6 @@ void TShift::Draw()
 {
     BitSet64 bs = SettingsDisplay::PointsOnDisplay();
 
-    PeackDetMode::E peak_det = set.time.peak_det;
     EnumPointsFPGA::E enum_points = set.memory.enum_points_fpga;
     TPos::E t_pos = set.time.t_pos;
 
@@ -208,7 +207,7 @@ void TShift::Draw()
     };
 
     // Рисуем tShift
-    int tshift = TPos::InPoints(enum_points, t_pos) - TShift::InPoints(peak_det);
+    int tshift = TPos::InPoints(enum_points, t_pos) - set.time.shift;
 
     if (Math::InRange(tshift, bs.first, bs.second))
     {
