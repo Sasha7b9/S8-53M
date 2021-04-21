@@ -236,9 +236,11 @@ void TPos::Draw()
         set.display.shift_in_memory_in_points +
         Grid::Left();
 
+    LOG_WRITE("x = %d", x);
+
     if (x >= Grid::Left() && x <= Grid::Right())
     {
-        Draw(x, Grid::TOP);
+        Draw(x, Grid::TOP - 1);
     }
 }
 

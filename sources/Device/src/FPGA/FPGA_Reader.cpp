@@ -1,6 +1,5 @@
 // 2021/03/16 16:35:58 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
-#include "common/Log_.h"
 #include "common/Utils/Math_.h"
 #include "Display/PainterData.h"
 #include "FPGA/FPGA.h"

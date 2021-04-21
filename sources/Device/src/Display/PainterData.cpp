@@ -1,6 +1,5 @@
 // 2021/03/17 13:27:02 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
-#include "common/Log_.h"
 #include "common/Display/Painter/Primitives_.h"
 #include "common/Utils/Math_.h"
 #include "Display/PainterData.h"

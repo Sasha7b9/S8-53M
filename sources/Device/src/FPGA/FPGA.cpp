@@ -1,5 +1,4 @@
 #include "defines.h"
-#include "common/Log_.h"
 #include "common/Hardware/Timer_.h"
 #include "common/Utils/Math_.h"
 #include "Display/PainterData.h"

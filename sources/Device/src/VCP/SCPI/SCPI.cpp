@@ -1,5 +1,4 @@
 #include "defines.h"
-#include "common/Log_.h"
 #include "common/Utils/Containers/String_.h"
 #include "LAN/LAN.h"
 #include "VCP/SCPI/SCPI.h"

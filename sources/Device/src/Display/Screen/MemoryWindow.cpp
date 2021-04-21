@@ -1,6 +1,5 @@
 // 2021/03/30 15:51:32 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
-#include "common/Log_.h"
 #include "common/Display/Font/Font_.h"
 #include "common/Display/Painter/Primitives_.h"
 #include "common/Utils/Math_.h"

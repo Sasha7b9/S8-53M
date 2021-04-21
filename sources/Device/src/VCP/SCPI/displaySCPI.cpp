@@ -1,5 +1,4 @@
 #include "defines.h"
-#include "common/Log_.h"
 #include "common/Display/Painter/Painter_.h"
 #include "Display/Display.h"
 #include "LAN/LAN.h"

@@ -1,5 +1,4 @@
 #include "defines.h"
-#include "common/Log_.h"
 #include "Panel/Panel.h"
 #include "VCP/SCPI/SCPI.h"
 #include "VCP/SCPI/Utils/MapSCPI.h"

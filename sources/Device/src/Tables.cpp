@@ -1,6 +1,5 @@
 #include "defines.h"
 #include "Tables.h"
-#include "common/Log_.h"
 #include "common/Display/Font/Font_.h"
 #include "common/Display/Painter/Primitives_.h"
 #include "common/Display/Painter/Text_.h"

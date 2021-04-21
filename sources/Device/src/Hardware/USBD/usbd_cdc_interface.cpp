@@ -3,7 +3,6 @@
 #include "main.h"
 #include "VCP/VCP.h"
 #include "VCP/SCPI/SCPI.h"
-#include "common/Log_.h"
 #include "common/Hardware/Timer_.h"
 #include "common/Hardware/HAL/HAL_.h"
 

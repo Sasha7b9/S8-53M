@@ -19,3 +19,6 @@ typedef unsigned char bool;
 #define WR_START 0
 #define WR_UPR   0
 #define WR_RAZV  0
+
+
+#include "common/Log_.h"
