@@ -482,13 +482,13 @@ int16 TShift::Zero()
 
 int16 TShift::GetInMemory()
 {
-    return set.display.shift_in_memory;
+    return set.display.shift_in_memory_in_points;
 }
 
 
 void TShift::SetInMemory(int16 shift)
 {
-    set.display.shift_in_memory = shift;
+    set.display.shift_in_memory_in_points = shift;
 }
 
 

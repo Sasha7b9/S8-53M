@@ -37,7 +37,13 @@ void PageTime::OnChanged_PeakDet(bool active)
     {
         PeackDetMode::Set(PeackDetMode::Get());
         TBase::Set(set.time.base);
+
         if (!PeackDetMode::IsEnabled())
+        {
+            //            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, 3, false);     // Почему-то при пиковом детекторе смещение появляется. Вот его и компенсируем.
+            //            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, 3, false);
+        }
+        else
         {
             volatile int8 shift[2][3] =
             {
@@ -45,29 +51,25 @@ void PageTime::OnChanged_PeakDet(bool active)
                 {0, set.chan[ChB].balance_shift_ADC, (int8)set.debug.balance_ADC[ChB]}
             };
 
-//            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)shift[0][BALANCE_ADC_TYPE], false);
-//            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)shift[1][BALANCE_ADC_TYPE], false);
+            //            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)shift[0][BALANCE_ADC_TYPE], false);
+            //            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)shift[1][BALANCE_ADC_TYPE], false);
+        }
+
+        if (PeackDetMode::IsEnabled())
+        {
+            int centerX = TShift::GetInMemory() + Grid::Width() / 2;
+
+            set.display.shift_in_memory_in_points = Math::Limitation<int16>((int16)(centerX / 2 - Grid::Width() / 2),
+                0,
+                (int16)(set.memory.enum_points_fpga.BytesInChannel() - Grid::Width()));
+
+            PageMemory::OnChanged_MemoryNumPoints(true);
         }
         else
-        {
-//            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, 3, false);     // Почему-то при пиковом детекторе смещение появляется. Вот его и компенсируем.
-//            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, 3, false);
-        }
-        if (!PeackDetMode::IsEnabled())
         {
             int centerX = TShift::GetInMemory() + Grid::Width() / 2;
             TShift::SetInMemory((int16)(centerX * 2 - Grid::Width() / 2));
             set.memory.enum_points_fpga = set.time.old_num_points;
-            PageMemory::OnChanged_MemoryNumPoints(true);
-        }
-        else if (PeackDetMode::IsEnabled())
-        {
-            int centerX = TShift::GetInMemory() + Grid::Width() / 2;
-            
-            set.display.shift_in_memory = Math::Limitation<int16>((int16)(centerX / 2 - Grid::Width() / 2),
-                0,
-                (int16)(set.memory.enum_points_fpga.BytesInChannel() - Grid::Width()));
-
             PageMemory::OnChanged_MemoryNumPoints(true);
         }
     }

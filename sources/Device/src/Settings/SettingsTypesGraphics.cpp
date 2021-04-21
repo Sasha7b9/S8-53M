@@ -197,7 +197,7 @@ void TShift::Draw()
     TPos::E t_pos = set.time.t_pos;
 
     // Рисуем TPos
-    int shiftTPos = TPos::InPoints(enum_points, t_pos) - set.display.shift_in_memory;
+    int shiftTPos = TPos::InPoints(enum_points, t_pos) - set.display.shift_in_memory_in_points;
 
     float scale = (float)((bs.first - bs.second) / Grid::Width());
     int gridLeft = Grid::Left();
