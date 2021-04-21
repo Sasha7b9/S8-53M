@@ -69,10 +69,29 @@ void MemoryWindow::DrawDataInRectangle(int width, const Channel &ch, DataReading
     mines[0] = Ordinate(max[0], scale);
     maxes[0] = Ordinate(min[0], scale);
 
+    int counter = 0;
+
     for (int i = 1; i < width; i++)
     {
         maxes[i] = Ordinate((uint8)((max[i] < min[i - 1]) ? min[i - 1] : max[i]), scale);
         mines[i] = Ordinate((uint8)((min[i] > max[i - 1]) ? max[i - 1] : min[i]), scale);
+
+        if (mines[i] < 0)
+        {
+            counter++;
+//            LOG_WRITE("mines[i] = %d", mines[i]);
+        }
+
+        if (maxes[i] < 0)
+        {
+            counter++;
+//            LOG_WRITE("maxes[i] = %d", maxes[i]);
+        }
+    }
+
+    if (counter != 0)
+    {
+        LOG_WRITE("%d неправильных значений", counter);
     }
 
     // Теперь определим количество точек, которые нужно нарисовать
@@ -205,6 +224,7 @@ int MemoryWindow::Ordinate(uint8 x, float scale)
 {
     if (x == Value::NONE)
     {
+        LOG_WRITE("Value::NONE");
         return -1;
     }
 
@@ -222,25 +242,25 @@ void MemoryWindow::DrawDataInRectangle(const Channel &ch, int x, int *min, int *
 
     for (int i = 0; i < width; i++)
     {
-        if (min[i] < 0)
-        {
-            LOG_WRITE("min[i] = %d", min[i]);
-        }
-
-        if (max[i] < 0)
-        {
-            LOG_WRITE("max[i] = %d", max[i]);
-        }
-
-        if (min[i] > 50)
-        {
-            LOG_WRITE("min[i] = %d", min[i]);
-        }
-
-        if (max[i] > 50)
-        {
-            LOG_WRITE("max[i] = %d", max[i]);
-        }
+//        if (min[i] < 0)
+//        {
+//            LOG_WRITE("min[i] = %d", min[i]);
+//        }
+//
+//        if (max[i] < 0)
+//        {
+//            LOG_WRITE("max[i] = %d", max[i]);
+//        }
+//
+//        if (min[i] > 50)
+//        {
+//            LOG_WRITE("min[i] = %d", min[i]);
+//        }
+//
+//        if (max[i] > 50)
+//        {
+//            LOG_WRITE("max[i] = %d", max[i]);
+//        }
 
         points[i * 2] = (uint8)max[i];
         points[i * 2 + 1] = (uint8)(min[i] < 0 ? 0 : min[i]);
