@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "common/Log_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Warnings.h"
@@ -31,33 +32,42 @@ static bool IsActive_PeakDet()
     return (set.time.base >= TBase::MIN_PEAK_DET);
 }
 
+
+static void WriteRShiftADC()
+{
+    if (PeackDetMode::IsEnabled())
+    {
+        //            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, 3, false);     // Почему-то при пиковом детекторе смещение появляется. Вот его и компенсируем.
+        //            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, 3, false);
+    }
+    else
+    {
+        volatile int8 shift[2][3] =
+        {
+            {0, set.chan[ChA].balance_shift_ADC, (int8)set.debug.balance_ADC[ChA]},
+            {0, set.chan[ChB].balance_shift_ADC, (int8)set.debug.balance_ADC[ChB]}
+        };
+
+        //            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)shift[0][BALANCE_ADC_TYPE], false);
+        //            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)shift[1][BALANCE_ADC_TYPE], false);
+    }
+}
+
+
 void PageTime::OnChanged_PeakDet(bool active)
 {
+    LOG_WRITE("");
+
     if (active)
     {
         PeackDetMode::Set(PeackDetMode::Get());
         TBase::Set(set.time.base);
 
-        if (PeackDetMode::IsEnabled())
-        {
-            //            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, 3, false);     // Почему-то при пиковом детекторе смещение появляется. Вот его и компенсируем.
-            //            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, 3, false);
-        }
-        else
-        {
-            volatile int8 shift[2][3] =
-            {
-                {0, set.chan[ChA].balance_shift_ADC, (int8)set.debug.balance_ADC[ChA]},
-                {0, set.chan[ChB].balance_shift_ADC, (int8)set.debug.balance_ADC[ChB]}
-            };
-
-            //            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)shift[0][BALANCE_ADC_TYPE], false);
-            //            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)shift[1][BALANCE_ADC_TYPE], false);
-        }
+        WriteRShiftADC();
 
         if (PeackDetMode::IsEnabled())
         {
-            int centerX = TShift::GetInMemory() + Grid::Width() / 2;
+            int centerX = set.display.shift_in_memory_in_points + Grid::Width() / 2;
 
             set.display.shift_in_memory_in_points = Math::Limitation<int16>((int16)(centerX / 2 - Grid::Width() / 2),
                 0,
@@ -67,8 +77,8 @@ void PageTime::OnChanged_PeakDet(bool active)
         }
         else
         {
-            int centerX = TShift::GetInMemory() + Grid::Width() / 2;
-            TShift::SetInMemory((int16)(centerX * 2 - Grid::Width() / 2));
+            int centerX = set.display.shift_in_memory_in_points + Grid::Width() / 2;
+            set.display.shift_in_memory_in_points = (int16)(centerX * 2 - Grid::Width() / 2);
             set.memory.enum_points_fpga = set.time.old_num_points;
             PageMemory::OnChanged_MemoryNumPoints(true);
         }

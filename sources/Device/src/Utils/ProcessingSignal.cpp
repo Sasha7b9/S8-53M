@@ -591,8 +591,8 @@ Float Processing::CalculateTimeNarastaniya(Channel::E ch)   // WARN Çהוסü, גמחלמ
     {
         markerHor[ch][0] = (int)(max09);
         markerHor[ch][1] = (int)(min01);
-        markerVert[ch][0] = (int)(firstIntersection - TShift::GetInMemory());
-        markerVert[ch][1] = (int)(secondIntersection - TShift::GetInMemory());
+        markerVert[ch][0] = (int)(firstIntersection - set.display.shift_in_memory_in_points);
+        markerVert[ch][1] = (int)(secondIntersection - set.display.shift_in_memory_in_points);
     }
 
     return retValue;
@@ -627,8 +627,8 @@ Float Processing::CalculateTimeSpada(Channel::E ch)                          // 
     {
         markerHor[ch][0] = (int)(max09);
         markerHor[ch][1] = (int)(min01);
-        markerVert[ch][0] = (int)(firstIntersection - TShift::GetInMemory());
-        markerVert[ch][1] = (int)(secondIntersection - TShift::GetInMemory());
+        markerVert[ch][0] = (int)(firstIntersection - set.display.shift_in_memory_in_points);
+        markerVert[ch][1] = (int)(secondIntersection - set.display.shift_in_memory_in_points);
     }
 
     return result;

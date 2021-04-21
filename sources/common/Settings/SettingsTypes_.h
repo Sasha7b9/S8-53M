@@ -881,10 +881,6 @@ struct TShift
     // —мещение по времени, используемое дл€ засылки в пред/после- запуски
     static int ForLaunchFPGA();
 
-    // —мещение отображаемого участка сигнала относительно начала пам€ти.
-    static int16 GetInMemory();
-    static void SetInMemory(int16 shift);
-
     // tshift может принимать нецелые значени€ в результате расчЄта
     static Time ToAbs(float tshift, TBase::E tbase);
 

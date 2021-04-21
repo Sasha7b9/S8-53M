@@ -36,21 +36,21 @@ void PageMemory::OnChanged_MemoryNumPoints(bool)
 
     if(bytes_in_channel == 281)
     {
-        TShift::SetInMemory(0);
+        set.display.shift_in_memory_in_points = 0;
     }
     else
     {
         if(TPos::IsLeft())
         {
-            TShift::SetInMemory(0);
+            set.display.shift_in_memory_in_points = 0;
         }
         else if(TPos::IsCenter())
         {
-            TShift::SetInMemory((int16)(bytes_in_channel / 2 - Grid::Width() / 2));
+            set.display.shift_in_memory_in_points = (int16)(bytes_in_channel / 2 - Grid::Width() / 2);
         }
         else if(TPos::IsRight())
         {
-            TShift::SetInMemory((int16)(bytes_in_channel - Grid::Width() - 2));
+            set.display.shift_in_memory_in_points = (int16)(bytes_in_channel - Grid::Width() - 2);
         }
     }
 

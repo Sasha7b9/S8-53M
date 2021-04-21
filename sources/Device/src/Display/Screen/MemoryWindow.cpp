@@ -27,8 +27,10 @@ void MemoryWindow::Draw(DataReading &data)
     DrawDataInRectangle(right + 2, set.display.last_affected_channel.IsA() ? ChA : ChB, data);
 
     int left = 3;
+
     float scale_x = (float)(right - left + 1) / set.memory.enum_points_fpga.PointsInChannel();
     const int x_rect = left + (int)(set.display.shift_in_memory_in_points * scale_x);
+
     int width = (int)((right - left) * (282.0f / set.memory.enum_points_fpga.PointsInChannel()));
 
     Rectangle(width, Grid::TOP - 2).Draw(x_rect, 0, Color::FILL);

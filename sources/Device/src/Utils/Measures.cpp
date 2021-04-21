@@ -302,9 +302,9 @@ void Measure::DrawAll()
 
     if (set.measures.field.IsHand())
     {
-        int x0 = SettingsMeasures::PosCursorT(0) - TShift::GetInMemory() + Grid::Left();
+        int x0 = SettingsMeasures::PosCursorT(0) - set.display.shift_in_memory_in_points + Grid::Left();
         int y0 = SettingsMeasures::PosCursorU(0) + Grid::TOP;
-        int x1 = SettingsMeasures::PosCursorT(1) - TShift::GetInMemory() + Grid::Left();
+        int x1 = SettingsMeasures::PosCursorT(1) - set.display.shift_in_memory_in_points + Grid::Left();
         int y1 = SettingsMeasures::PosCursorU(1) + Grid::TOP;
         Math::Sort(&x0, &x1);
         Math::Sort(&y0, &y1);

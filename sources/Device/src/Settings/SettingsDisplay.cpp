@@ -31,8 +31,8 @@ BitSet64 SettingsDisplay::PointsOnDisplay()
 
     int num_points_on_screen = 281;
 
-    result.first = TShift::GetInMemory();
-    result.second = TShift::GetInMemory() + num_points_on_screen;
+    result.first = set.display.shift_in_memory_in_points;
+    result.second = set.display.shift_in_memory_in_points + num_points_on_screen;
 
     return result;
 }
