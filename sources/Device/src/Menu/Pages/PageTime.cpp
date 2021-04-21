@@ -38,7 +38,7 @@ void PageTime::OnChanged_PeakDet(bool active)
         PeackDetMode::Set(PeackDetMode::Get());
         TBase::Set(set.time.base);
 
-        if (!PeackDetMode::IsEnabled())
+        if (PeackDetMode::IsEnabled())
         {
             //            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, 3, false);     // Почему-то при пиковом детекторе смещение появляется. Вот его и компенсируем.
             //            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, 3, false);
