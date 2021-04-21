@@ -460,7 +460,7 @@ int TShift::InPoints(PeackDetMode::E peakDet)
 
 int16 TShift::Min()
 {
-    int16 result = -(int16)set.memory.enum_points_fpga.ToPoints();
+    int16 result = -(int16)set.memory.enum_points_fpga.PointsInChannel();
 
     switch (set.time.t_pos)
     {
@@ -509,7 +509,7 @@ uint EnumPointsFPGA::ToPoints(E v)
 }
 
 
-uint EnumPointsFPGA::ToPoints()
+uint EnumPointsFPGA::PointsInChannel()
 {
     return EnumPointsFPGA::ToPoints(value);
 }
@@ -517,7 +517,7 @@ uint EnumPointsFPGA::ToPoints()
 
 uint EnumPointsFPGA::BytesInChannel()
 {
-    uint result = ToPoints();
+    uint result = PointsInChannel();
 
     if (PeackDetMode::IsEnabled())
     {
@@ -791,7 +791,7 @@ void LaunchFPGA::CalculateReal()
 
     post = shift / 2;
 
-    int pointsInChannelHalf = (int)set.memory.enum_points_fpga.ToPoints() / 2;
+    int pointsInChannelHalf = (int)set.memory.enum_points_fpga.PointsInChannel() / 2;
 
     pred = Math::Limitation(pointsInChannelHalf - post, 0, INT_MAX);
 
@@ -811,7 +811,7 @@ void LaunchFPGA::CalculateRandomize()
 {
     int k            = TBase::StepRand();
     int shift        = TShift::ForLaunchFPGA();
-    int num_points   = (int)set.memory.enum_points_fpga.ToPoints();
+    int num_points   = (int)set.memory.enum_points_fpga.PointsInChannel();
     int equal_points = num_points / k;      // Эквивалентное количество точек, которые нужно считать. Оно в коэффициент
                                             // растяжки меньше реального количесва точек, очевидно.
     post = shift / k;

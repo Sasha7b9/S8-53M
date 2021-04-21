@@ -234,8 +234,8 @@ Int ReaderFPGA::CalculateShift()
 uint16 ReaderFPGA::CalculateAddressRead()
 {
     uint shift = TBase::IsRandomize() ?
-        set.memory.enum_points_fpga.ToPoints() / TBase::StepRand() :
-        set.memory.enum_points_fpga.ToPoints() / 2;
+        set.memory.enum_points_fpga.PointsInChannel() / TBase::StepRand() :
+        set.memory.enum_points_fpga.PointsInChannel() / 2;
 
     uint result = HAL_FMC::Read(RD_ADDR_LAST_RECORD) - shift;
 

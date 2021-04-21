@@ -39,7 +39,7 @@ struct EnumPointsFPGA
     static uint ToPoints(E);
     static E FromPoints(uint num_points);
 
-    uint ToPoints();
+    uint PointsInChannel();
     uint BytesInChannel();
     // Столько байт нужно для сохранения данных обоих каналов
     uint BytesForData();

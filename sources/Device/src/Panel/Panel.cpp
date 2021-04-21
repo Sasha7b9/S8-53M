@@ -787,7 +787,7 @@ static void XShift(int delta)
     static int prevTime = 0;
     if (!FPGA::IsRunning() || FunctionTime::IsShiftInMemory())
     {
-        if (set.memory.enum_points_fpga.ToPoints() != EnumPointsFPGA::_281)
+        if (set.memory.enum_points_fpga.PointsInChannel() != EnumPointsFPGA::_281)
         {
             ChangeShiftScreen(&prevTime, ShiftScreen, (int16)(2 * delta));
         }

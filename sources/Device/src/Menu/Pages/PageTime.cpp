@@ -61,7 +61,7 @@ void PageTime::OnChanged_PeakDet(bool active)
 
             set.display.shift_in_memory_in_points = Math::Limitation<int16>((int16)(centerX / 2 - Grid::Width() / 2),
                 0,
-                (int16)(set.memory.enum_points_fpga.BytesInChannel() - Grid::Width()));
+                (int16)(set.memory.enum_points_fpga.PointsInChannel() - Grid::Width()));
 
             PageMemory::OnChanged_MemoryNumPoints(true);
         }
