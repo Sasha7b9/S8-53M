@@ -23,8 +23,8 @@ void MemoryWindow::Draw(DataReading &data)
         right = 68;
     }
 
-    DrawDataInRectangle(right + 2, set.display.last_affected_channel.IsA() ? ChB : ChA, data);
-    DrawDataInRectangle(right + 2, set.display.last_affected_channel.IsA() ? ChA : ChB, data);
+    DrawDataInRectangle(right + 2, Channel::FirstDrawing(), data);
+    DrawDataInRectangle(right + 2, Channel::SecondDrawing(), data);
 
     int left = 3;
 
@@ -208,6 +208,26 @@ void MemoryWindow::DrawDataInRectangle(const Channel &ch, int x, int *min, int *
 
     for (int i = 0; i < width; i++)
     {
+        if (min[i] < 0)
+        {
+            LOG_WRITE("min[i] = %d", min[i]);
+        }
+
+        if (max[i] < 0)
+        {
+            LOG_WRITE("max[i] = %d", max[i]);
+        }
+
+        if (min[i] > 50)
+        {
+            LOG_WRITE("min[i] = %d", min[i]);
+        }
+
+        if (max[i] > 50)
+        {
+            LOG_WRITE("max[i] = %d", max[i]);
+        }
+
         points[i * 2] = (uint8)max[i];
         points[i * 2 + 1] = (uint8)(min[i] < 0 ? 0 : min[i]);
     }

@@ -17,16 +17,8 @@ void RShift::Draw()
         Draw(Channel::Math);
     }
 
-    if (set.display.last_affected_channel == ChB)
-    {
-        Draw(Channel::A);
-        Draw(Channel::B);
-    }
-    else
-    {
-        Draw(Channel::B);
-        Draw(Channel::A);
-    }
+    Draw(Channel::FirstDrawing());
+    Draw(Channel::SecondDrawing());
 }
 
 
@@ -234,4 +226,16 @@ void TPos::Draw(int x, int y)
     Region(6, 6).Fill(x - 3, y, Color::BACK);
 
     Char(Symbol::S8::TPOS_1).Draw(x - 3, y, Color::FILL);
+}
+
+
+Channel &Channel::FirstDrawing()
+{
+    return set.display.last_affected_channel.IsA() ? ChB : ChA;
+}
+
+
+Channel &Channel::SecondDrawing()
+{
+    return FirstDrawing().IsA() ? ChB : ChA;
 }

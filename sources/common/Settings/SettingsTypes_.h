@@ -551,6 +551,12 @@ struct Channel
     Color GetColor() const;
     bool IsInversed() const;
     int ToNumber() const;
+
+    // ƒанные этого канала нужно отрисовывать первыми
+    static Channel &FirstDrawing();
+
+    // ƒанные этого канала нужно отрисовывать последними
+    static Channel &SecondDrawing();
 };
 
 extern Channel ChA;
