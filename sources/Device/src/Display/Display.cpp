@@ -102,6 +102,7 @@ void Display::Update()
         RShift::Draw();
         Measure::DrawAll();
         Menu::DrawStringNavigation();
+        TPos::Draw();
         TShift::Draw();
     }
 

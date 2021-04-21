@@ -149,9 +149,7 @@ void MemoryWindow::DrawTPos(int leftX, int rightX)
     int x[] = { leftX, (rightX - leftX) / 2 + leftX, rightX };
     int x0 = x[set.time.t_pos];
 
-    Region(6, 6).Fill(x0 - 3, 10, Color::BACK);
-
-    Char(Symbol::S8::TPOS_1).Draw(x0 - 3, 10, Color::FILL);
+    TPos::Draw(x0, 10);
 }
 
 

@@ -521,6 +521,10 @@ struct TPos
     // Узнать привязку отсительно уровня синхронизации в точках
     static int InPoints(EnumPointsFPGA::E enum_points, E t_pos);
 
+    static void Draw();
+
+    static void Draw(int x, int y);
+
     operator E() const { return value; }
 };
 

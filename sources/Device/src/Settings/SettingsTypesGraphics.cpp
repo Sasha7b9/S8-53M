@@ -228,3 +228,24 @@ void TShift::Draw()
         Line().Draw(Grid::Right() - 9, Grid::TOP + 1, Grid::Right() - 9, Grid::TOP + 7, Color::BACK);
     }
 }
+
+
+void TPos::Draw()
+{
+    int x = TPos::InPoints(set.memory.enum_points_fpga, set.time.t_pos) -
+        set.display.shift_in_memory_in_points +
+        Grid::Left();
+
+    if (x >= Grid::Left() && x <= Grid::Right())
+    {
+        Draw(x, Grid::TOP);
+    }
+}
+
+
+void TPos::Draw(int x, int y)
+{
+    Region(6, 6).Fill(x - 3, y, Color::BACK);
+
+    Char(Symbol::S8::TPOS_1).Draw(x - 3, y, Color::FILL);
+}
