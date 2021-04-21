@@ -24,4 +24,6 @@ private:
     static int Ordinate(uint8 x, float scale);
 
     static void DrawDataInRectangle(const Channel &ch, int x, int *min, int *max, int width);
+
+    static void Calculate(Buffer<uint8> &buffer_min, Buffer<uint8> &buffer_max, uint bytes_in_channel, uint8 *data);
 };

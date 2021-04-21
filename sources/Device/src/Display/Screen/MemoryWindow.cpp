@@ -50,62 +50,21 @@ void MemoryWindow::DrawDataInRectangle(int width, const Channel &ch, DataReading
         return;
     }
 
-    uint8 *data = data_channel.Data(ch);
-
-    float elems_in_column = ds.BytesInChannel() / (float)width;
-
     Buffer<uint8> buffer_min((uint)width);
     Buffer<uint8> buffer_max((uint)width);
 
-    uint8 *min = buffer_min.DataU8();
-    uint8 *max = buffer_max.DataU8();
-
-    if (ds.peak_det != 0)                                 // Если пик. дет. включен
-    {
-        uint8 *mini = &min[0];
-        uint8 *maxi = &max[0];
-
-        for (int col = 0; col < width; col++, mini++, maxi++)
-        {
-            uint first = (uint)(col * elems_in_column);
-            uint last = (uint)(first + elems_in_column - 1);
-            *mini = data[first];
-            *maxi = data[first];
-
-            for (uint elem = first + 1; elem <= last; elem++)
-            {
-                uint8 d = data[elem];
-                if (d < *mini) { *mini = d; }
-                if (d > *maxi) { *maxi = d; }
-            }
-        }
-    }
-    else                                                                // Если пик. дет. выключён
-    {
-        for (int col = 0; col < width; col++)
-        {
-            uint first = (uint)(col * elems_in_column);
-            uint last = (uint)(first + elems_in_column - 1);
-            min[col] = data[first];
-            max[col] = data[first];
-
-            for (uint elem = first + 1; elem <= last; elem++)
-            {
-                uint8 d = data[elem];
-                if (d < min[col]) { min[col] = d; }
-                if (d > max[col]) { max[col] = d; }
-            }
-        }
-    }
-
-
     Buffer<int> buffer_mines((uint)width);
     Buffer<int> buffer_maxes((uint)width);
+
+    Calculate(buffer_min, buffer_max, ds.BytesInChannel(), data_channel.Data(ch));
 
     int *mines = buffer_mines.Data();   // Массив для максимальных значений в каждом столбике
     int *maxes = buffer_maxes.Data();   // Массив для минимальных значений в каждом столбике
 
     float scale = 17.0f / (Value::MAX - Value::MIN);
+
+    uint8 *min = buffer_min.DataU8();
+    uint8 *max = buffer_max.DataU8();
 
     mines[0] = Ordinate(max[0], scale);
     maxes[0] = Ordinate(min[0], scale);
@@ -136,6 +95,55 @@ void MemoryWindow::DrawDataInRectangle(int width, const Channel &ch, DataReading
     if (numPoints > 1)
     {
         DrawDataInRectangle(ch, x, mines + x, maxes + x, numPoints);
+    }
+}
+
+
+void MemoryWindow::Calculate(Buffer<uint8> &buffer_min, Buffer<uint8> &buffer_max, uint bytes_in_channel, uint8 *data)
+{
+    uint8 *min = buffer_min.Data();
+    uint8 *max = buffer_max.Data();
+
+    uint width = buffer_max.Size();
+
+    float elems_in_column = (float)bytes_in_channel / width;
+
+    if (PeackDetMode::IsEnabled())                                 // Если пик. дет. включен
+    {
+        uint8 *mini = &min[0];
+        uint8 *maxi = &max[0];
+
+        for (uint col = 0; col < width; col++, mini++, maxi++)
+        {
+            uint first = (uint)(col * elems_in_column);
+            uint last = (uint)(first + elems_in_column - 1);
+            *mini = data[first];
+            *maxi = data[first];
+
+            for (uint elem = first + 1; elem <= last; elem++)
+            {
+                uint8 d = data[elem];
+                if (d < *mini) { *mini = d; }
+                if (d > *maxi) { *maxi = d; }
+            }
+        }
+    }
+    else                                                                // Если пик. дет. выключён
+    {
+        for (uint col = 0; col < width; col++)
+        {
+            uint first = (uint)(col * elems_in_column);
+            uint last = (uint)(first + elems_in_column - 1);
+            min[col] = data[first];
+            max[col] = data[first];
+
+            for (uint elem = first + 1; elem <= last; elem++)
+            {
+                uint8 d = data[elem];
+                if (d < min[col]) { min[col] = d; }
+                if (d > max[col]) { max[col] = d; }
+            }
+        }
     }
 }
 
