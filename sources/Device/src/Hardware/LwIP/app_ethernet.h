@@ -1,3 +1,4 @@
+// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 /**
   ******************************************************************************
   * @file    LwIP/LwIP_TCP_Echo_Server/Inc/app_ethernet.h 

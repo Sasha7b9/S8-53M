@@ -1,3 +1,4 @@
+// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "Menu/Items/MenuItems.h"
 #include "Menu/Pages/HelpContent.h"
 #include "Definition.h"

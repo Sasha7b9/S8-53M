@@ -1,3 +1,4 @@
+// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 /** @file
   * @version V0.1
   * @date 14-March-2014

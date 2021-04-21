@@ -1,3 +1,4 @@
+// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
 #include "common/Utils/Containers/Buffer_.h"
 #include "common/Utils/Containers/Values_.h"

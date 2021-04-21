@@ -1,3 +1,4 @@
+// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "Panel/Panel.h"
 #include "VCP/SCPI/SCPI.h"
