@@ -192,32 +192,18 @@ void TShift::Draw()
 {
     BitSet64 bs = SettingsDisplay::PointsOnDisplay();
 
-    EnumPointsFPGA::E enum_points = set.memory.enum_points_fpga;
-    TPos::E t_pos = set.time.t_pos;
-
-    // Рисуем TPos
-    int shiftTPos = TPos::InPoints(enum_points, t_pos) - set.display.shift_in_memory_in_points;
-
-    float scale = (float)((bs.first - bs.second) / Grid::Width());
-    int gridLeft = Grid::Left();
-    int x = (int)(gridLeft + shiftTPos * scale - 3);
-    if (Math::InRange(x + 3, gridLeft, Grid::Right() + 1))
-    {
-        Char(Symbol::S8::TPOS_2).Draw2SymbolsInPosition(x, Grid::TOP - 1, Symbol::S8::TPOS_3, Color::BACK, Color::FILL);
-    };
-
     // Рисуем tShift
-    int tshift = TPos::InPoints(enum_points, t_pos) - set.time.shift;
+    int tshift = TPos::InPoints(set.memory.enum_points_fpga, set.time.t_pos) - set.time.shift;
 
     if (Math::InRange(tshift, bs.first, bs.second))
     {
-        x = gridLeft + tshift - bs.first - 3;
+        int x = Grid::Left() + tshift - bs.first - 3;
         Char(Symbol::S8::TSHIFT_NORM_1).Draw2SymbolsInPosition(x, Grid::TOP - 1, Symbol::S8::TSHIFT_NORM_2, Color::BACK,
             Color::FILL);
     }
     else if (tshift < bs.first)
     {
-        Char(Symbol::S8::TSHIFT_LEFT_1).Draw2SymbolsInPosition(gridLeft + 1, Grid::TOP, Symbol::S8::TSHIFT_LEFT_2,
+        Char(Symbol::S8::TSHIFT_LEFT_1).Draw2SymbolsInPosition(Grid::Left() + 1, Grid::TOP, Symbol::S8::TSHIFT_LEFT_2,
             Color::BACK, Color::FILL);
         Line().Draw(Grid::Left() + 9, Grid::TOP + 1, Grid::Left() + 9, Grid::TOP + 7, Color::BACK);
     }

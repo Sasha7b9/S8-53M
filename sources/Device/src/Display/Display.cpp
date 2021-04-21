@@ -94,6 +94,7 @@ void Display::Update()
     {
 //        DrawMath();
 //        DrawSpectrum();
+
         Cursors::Draw();
         TopPart::Draw();
         BottomPart::Draw();
