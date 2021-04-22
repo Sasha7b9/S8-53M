@@ -24,6 +24,9 @@
 #define LED_TRIG_DISABLE    3
 #define POWER_OFF           4
 
+
+inline void E() {};
+
 static const uint MIN_TIME = 500;
 
 static Key::E pressedKey = Key::None;
@@ -118,69 +121,69 @@ static void SetRight();
 
 static const pFuncVV funcOnKeyDown[Key::Count] =
 {    
-    EmptyFuncVV,    // Key::None
-    EmptyFuncVV,    // Key::F1
-    EmptyFuncVV,    // Key::F2
-    EmptyFuncVV,    // Key::F3
-    EmptyFuncVV,    // Key::F4
-    EmptyFuncVV,    // Key::F5
-    EmptyFuncVV,    // Key::ChannelA
-    EmptyFuncVV,    // Key::ChannelB
-    EmptyFuncVV,    // Key::Time
-    EmptyFuncVV,    // Key::Trig
-    EmptyFuncVV,    // Key::Cursors
-    EmptyFuncVV,    // Key::Measures
-    EmptyFuncVV,    // Key::Display
-    EmptyFuncVV,    // Key::Help
+    E,              // Key::None
+    E,              // Key::F1
+    E,              // Key::F2
+    E,              // Key::F3
+    E,              // Key::F4
+    E,              // Key::F5
+    E,              // Key::ChannelA
+    E,              // Key::ChannelB
+    E,              // Key::Time
+    E,              // Key::Trig
+    E,              // Key::Cursors
+    E,              // Key::Measures
+    E,              // Key::Display
+    E,              // Key::Help
     StartDown,      // Key::Start
-    EmptyFuncVV,    // Key::Memory                                         
-    EmptyFuncVV,    // Key::Service
-    EmptyFuncVV,    // Key::Menu
+    E,              // Key::Memory                                         
+    E,              // Key::Service
+    E,              // Key::Menu
     PowerDown,      // Key::Power
-    EmptyFuncVV,    // Key::RangeA
-    EmptyFuncVV,    // Key::RangeB
-    EmptyFuncVV,    // Key::RShiftA
-    EmptyFuncVV,    // Key::RShiftB
-    EmptyFuncVV,    // Key::TBase
-    EmptyFuncVV,    // Key::TShift
-    EmptyFuncVV,    // Key::TrigLev
-    EmptyFuncVV     // Key::Setting
+    E,              // Key::RangeA
+    E,              // Key::RangeB
+    E,              // Key::RShiftA
+    E,              // Key::RShiftB
+    E,              // Key::TBase
+    E,              // Key::TShift
+    E,              // Key::TrigLev
+    E               // Key::Setting
 };
 
 static const pFuncVV funcOnKeyUp[Key::Count] =
 {
-    EmptyFuncVV,    // Key::None
-    EmptyFuncVV,    // Key::F1
-    EmptyFuncVV,    // Key::F2
-    EmptyFuncVV,    // Key::F3
-    EmptyFuncVV,    // Key::F4
-    EmptyFuncVV,    // Key::F5
-    EmptyFuncVV,    // Key::ChannelA
-    EmptyFuncVV,    // Key::ChannelB
-    EmptyFuncVV,    // Key::Time
-    EmptyFuncVV,    // Key::Trig
-    EmptyFuncVV,    // Key::Cursors
-    EmptyFuncVV,    // Key::Measures
-    EmptyFuncVV,    // Key::Display
-    EmptyFuncVV,    // Key::Help
-    EmptyFuncVV,    // Key::Start
-    EmptyFuncVV,    // Key::Memory
-    EmptyFuncVV,    // Key::Service
-    EmptyFuncVV,    // Key::Menu
-    EmptyFuncVV,    // Key::Power
-    EmptyFuncVV,    // Key::RangeA
-    EmptyFuncVV,    // Key::RangeB
-    EmptyFuncVV,    // Key::RShiftA
-    EmptyFuncVV,    // Key::RShiftB
-    EmptyFuncVV,    // Key::TBase
-    EmptyFuncVV,    // Key::TShift
-    EmptyFuncVV,    // Key::TrigLev
-    EmptyFuncVV     // Key::Setting
+    E,              // Key::None
+    E,              // Key::F1
+    E,              // Key::F2
+    E,              // Key::F3
+    E,              // Key::F4
+    E,              // Key::F5
+    E,              // Key::ChannelA
+    E,              // Key::ChannelB
+    E,              // Key::Time
+    E,              // Key::Trig
+    E,              // Key::Cursors
+    E,              // Key::Measures
+    E,              // Key::Display
+    E,              // Key::Help
+    E,              // Key::Start
+    E,              // Key::Memory
+    E,              // Key::Service
+    E,              // Key::Menu
+    E,              // Key::Power
+    E,              // Key::RangeA
+    E,              // Key::RangeB
+    E,              // Key::RShiftA
+    E,              // Key::RShiftB
+    E,              // Key::TBase
+    E,              // Key::TShift
+    E,              // Key::TrigLev
+    E               // Key::Setting
 };
 
 static const pFuncVV funcOnLongPressure[Key::Count] =
 {
-    EmptyFuncVV,    // Key::None
+    E,    // Key::None
     F1Long,         // Key::F1
     F2Long,         // Key::F2
     F3Long,         // Key::F3
@@ -190,46 +193,46 @@ static const pFuncVV funcOnLongPressure[Key::Count] =
     ChannelLongB,   // Key::ChannelB
     TimeLong,       // Key::Time
     TrigLong,       // Key::Trig
-    EmptyFuncVV,    // Key::Cursors
-    EmptyFuncVV,    // Key::Measures
-    EmptyFuncVV,    // Key::Display
+    E,              // Key::Cursors
+    E,              // Key::Measures
+    E,              // Key::Display
     HelpLong,       // Key::Help
-    EmptyFuncVV,    // Key::Start
-    EmptyFuncVV,    // Key::Memory
-    EmptyFuncVV,    // Key::Service
+    E,              // Key::Start
+    E,              // Key::Memory
+    E,              // Key::Service
     MenuLong,       // Key::Menu
-    EmptyFuncVV,    // Key::Power
-    EmptyFuncVV,    // Key::RangeA
-    EmptyFuncVV,    // Key::RangeB
-    EmptyFuncVV,    // Key::RShiftA
-    EmptyFuncVV,    // Key::RShiftB
-    EmptyFuncVV,    // Key::TBase
-    EmptyFuncVV,    // Key::TShift
-    EmptyFuncVV,    // Key::TrigLev
-    EmptyFuncVV     // Key::Setting
+    E,              // Key::Power
+    E,              // Key::RangeA
+    E,              // Key::RangeB
+    E,              // Key::RShiftA
+    E,              // Key::RShiftB
+    E,              // Key::TBase
+    E,              // Key::TShift
+    E,              // Key::TrigLev
+    E               // Key::Setting
 };
 
 static const pFuncVV funculatorLeft[Key::Count] =
 {
-    EmptyFuncVV,    // Key::None
-    EmptyFuncVV,    // Key::F1
-    EmptyFuncVV,    // Key::F2
-    EmptyFuncVV,    // Key::F3
-    EmptyFuncVV,    // Key::F4
-    EmptyFuncVV,    // Key::F5
-    EmptyFuncVV,    // Key::ChannelA
-    EmptyFuncVV,    // Key::ChannelB
-    EmptyFuncVV,    // Key::Time
-    EmptyFuncVV,    // Key::Trig
-    EmptyFuncVV,    // Key::Cursors
-    EmptyFuncVV,    // Key::Measures
-    EmptyFuncVV,    // Key::Display
-    EmptyFuncVV,    // Key::Help
-    EmptyFuncVV,    // Key::Start
-    EmptyFuncVV,    // Key::Memory
-    EmptyFuncVV,    // Key::Service
-    EmptyFuncVV,    // Key::Menu
-    EmptyFuncVV,    // Key::Power
+    E,              // Key::None
+    E,              // Key::F1
+    E,              // Key::F2
+    E,              // Key::F3
+    E,              // Key::F4
+    E,              // Key::F5
+    E,              // Key::ChannelA
+    E,              // Key::ChannelB
+    E,              // Key::Time
+    E,              // Key::Trig
+    E,              // Key::Cursors
+    E,              // Key::Measures
+    E,              // Key::Display
+    E,              // Key::Help
+    E,              // Key::Start
+    E,              // Key::Memory
+    E,              // Key::Service
+    E,              // Key::Menu
+    E,              // Key::Power
     RangeLeftA,     // Key::RangeA
     RangeLeftB,     // Key::RangeB
     RShiftLeftA,    // Key::RShiftA
@@ -241,25 +244,25 @@ static const pFuncVV funculatorLeft[Key::Count] =
 };
 static const pFuncVV funculatorRight[Key::Count] =
 {
-    EmptyFuncVV,    // Key::None
-    EmptyFuncVV,    // Key::F1
-    EmptyFuncVV,    // Key::F2
-    EmptyFuncVV,    // Key::F3
-    EmptyFuncVV,    // Key::F4
-    EmptyFuncVV,    // Key::F5
-    EmptyFuncVV,    // Key::ChannelA
-    EmptyFuncVV,    // Key::ChannelB
-    EmptyFuncVV,    // Key::Time
-    EmptyFuncVV,    // Key::Trig
-    EmptyFuncVV,    // Key::Cursors
-    EmptyFuncVV,    // Key::Measures
-    EmptyFuncVV,    // Key::Display
-    EmptyFuncVV,    // Key::Help
-    EmptyFuncVV,    // Key::Start
-    EmptyFuncVV,    // Key::Memory
-    EmptyFuncVV,    // Key::Service
-    EmptyFuncVV,    // Key::Menu
-    EmptyFuncVV,    // Key::Power
+    E,              // Key::None
+    E,              // Key::F1
+    E,              // Key::F2
+    E,              // Key::F3
+    E,              // Key::F4
+    E,              // Key::F5
+    E,              // Key::ChannelA
+    E,              // Key::ChannelB
+    E,              // Key::Time
+    E,              // Key::Trig
+    E,              // Key::Cursors
+    E,              // Key::Measures
+    E,              // Key::Display
+    E,              // Key::Help
+    E,              // Key::Start
+    E,              // Key::Memory
+    E,              // Key::Service
+    E,              // Key::Menu
+    E,              // Key::Power
     RangeRightA,    // Key::RangeA
     RangeRightB,    // Key::RangeB
     RShiftRightA,   // Key::RShiftA
