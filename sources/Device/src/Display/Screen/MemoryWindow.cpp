@@ -222,15 +222,9 @@ void MemoryWindow::DrawTShift(int left, int right)
 
 int MemoryWindow::Ordinate(uint8 x, float scale)
 {
-    if (x == Value::NONE)
-    {
-        LOG_WRITE("Value::NONE");
-        return -1;
-    }
-
     Math::Limitation<uint8>((uint8)(x - Value::MIN), 0, (Value::MAX - Value::MIN));
 
-    return (int)((17.0f - scale * x) + 0.5f);
+    return Math::Limitation<int>((int)((17.0f - scale * x) + 0.5f), 0, 16);
 }
 
 
