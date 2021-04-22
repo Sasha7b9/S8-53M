@@ -19,8 +19,8 @@ struct MeasureValue
 };
 
 
-static BufferU8 out[NumChannels];
-static BufferU8 in[NumChannels];
+static BufferU8 out[Channel::Count];
+static BufferU8 in[Channel::Count];
 
 static DataSettings *pDS = nullptr;
 static DataSettings &ds = *pDS;
@@ -85,8 +85,8 @@ const Processing::MeasureCalculate Processing::measures[Measure::Count] =
 
 static MeasureValue values[Measure::Count] = {{0.0F, 0.0F}};
 
-static Int markerHor[NumChannels][2]  = {{Int(false)}, {Int(false)}};
-static Int markerVert[NumChannels][2] = {{Int(false)}, {Int(false)}};
+static Int markerHor[Channel::Count][2]  = {{Int(false)}, {Int(false)}};
+static Int markerVert[Channel::Count][2] = {{Int(false)}, {Int(false)}};
 
 static bool maxIsCalculating[2] = {false, false};
 static bool minIsCalculating[2] = {false, false};

@@ -20,7 +20,7 @@ struct DataDrawing
 
 private:
 
-    BufferU8 points[NumChannels]; // Здесь рассчитанные точки, готовые к выводу на экран
+    BufferU8 points[Channel::Count]; // Здесь рассчитанные точки, готовые к выводу на экран
 
     void PrepareChannel(const Channel &ch);
 

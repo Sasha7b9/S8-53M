@@ -48,32 +48,34 @@ struct SettingsTrig
 // ВременнЫе настройки
 struct SettingsTime
 {
-    bool                selfRecorder;           // Включен ли режим самописца.
-    int16               tShiftRel;              // Смещение по времени
-    TBase::E            tBase;                  // Масштаб по времени.
+    bool                selfRecorder;   // Включен ли режим самописца.
+    int16               tShiftRel;      // Смещение по времени
+    TBase::E            tBase;          // Масштаб по времени.
     FunctionTime::E     timeDivXPos;
     TPos::E             tPos;
     SampleType::E       sampleType;
     PeackDetMode::E     peakDet;
-    EnumPointsFPGA::E oldNumPoints;           // Когда переключаемся в режим пикового детектора, устанавливаем количество точек в 1024, а сюда записываем то, что было, чтобы потом восстановить
+    EnumPointsFPGA::E oldNumPoints;     // Когда переключаемся в режим пикового детектора, устанавливаем количество
+                                        // точек в 1024, а сюда записываем то, что было, чтобы потом восстановить
 };
 
 
 // Настройки курсоров
 struct SettingsCursors
 {
-    CursCntrl::E        cntrlU[NumChannels];                    // Активные курсоры напряжения.
-    CursCntrl::E        cntrlT[NumChannels];                    // Активные курсоры напряжения.
-    Channel::E          source;                                 // Источник - к какому каналу относятся курсоры.
-    float               posCurU[NumChannels][2];                // Текущие позиции курсоров напряжения обоих каналов.
-    float               posCurT[NumChannels][2];                // Текущие позиции курсоров времени обоих каналов.
-    float               deltaU100percents[2];                   // Расстояние между курсорами напряжения для 100%, для обоих каналов.
-    float               deltaT100percents[2];                   // Расстояние между курсорами времени для 100%, для обоих каналов.
-    CursMovement::E     movement;                               // Как перемещаться курсорам - по точкам или по процентам.
-    CursActive::E       active;                                 // Какие курсоры сейчас активны.
-    CursLookMode::E     lookMode[2];                            // Режимы слежения за курсорами для двух пар курсоров.
-    bool                showFreq;                               // Установленное в true значение, что нужно показывать на экране значение 1/dT между курсорами.
-    bool                showCursors;                            // Показывать ли курсоры
+    CursCntrl::E        cntrlU[Channel::Count];     // Активные курсоры напряжения.
+    CursCntrl::E        cntrlT[Channel::Count];     // Активные курсоры напряжения.
+    Channel::E          source;                     // Источник - к какому каналу относятся курсоры.
+    float               posCurU[Channel::Count][2]; // Текущие позиции курсоров напряжения обоих каналов.
+    float               posCurT[Channel::Count][2]; // Текущие позиции курсоров времени обоих каналов.
+    float               deltaU100percents[2];       // Расстояние между курсорами напряжения для 100%, для обоих каналов.
+    float               deltaT100percents[2];       // Расстояние между курсорами времени для 100%, для обоих каналов.
+    CursMovement::E     movement;                   // Как перемещаться курсорам - по точкам или по процентам.
+    CursActive::E       active;                     // Какие курсоры сейчас активны.
+    CursLookMode::E     lookMode[2];                // Режимы слежения за курсорами для двух пар курсоров.
+    bool                showFreq;                   // Установленное в true значение, что нужно показывать на экране
+                                                    // значение 1/dT между курсорами.
+    bool                showCursors;                // Показывать ли курсоры
 };
 
 struct StructMemoryLast

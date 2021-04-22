@@ -20,7 +20,7 @@
 
 int TShift::add_rand = 0;
 
-bool RShift::show_level[NumChannels] = { false, false };
+bool RShift::show_level[Channel::Count] = { false, false };
 bool RShift::draw_markers = false;
 
 bool TrigLev::need_auto_find = false;
@@ -740,7 +740,7 @@ void RShift::FuncOnTimerDisableShowB()
 
 void RShift::DisableShowLevel(const Channel &ch)
 {
-    static const TypeTimer::E types[NumChannels] = { TypeTimer::ShowLevelRShiftA, TypeTimer::ShowLevelRShiftB };
+    static const TypeTimer::E types[Channel::Count] = { TypeTimer::ShowLevelRShiftA, TypeTimer::ShowLevelRShiftB };
 
     show_level[ch] = false;
 

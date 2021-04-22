@@ -149,19 +149,19 @@ struct SettingsDisplay
 // Настройки курсорных измерений.
 struct SettingsCursors
 {
-    CursCntrl       cntrlU[NumChannels];    // Активные курсоры напряжения.
-    CursCntrl       cntrlT[NumChannels];    // Активные курсоры напряжения.
-    Channel         source;                 // Источник - к какому каналу относятся курсоры.
-    float           posU[NumChannels][2];   // Текущие позиции курсоров напряжения обоих каналов.
-    float           posT[NumChannels][2];   // Текущие позиции курсоров времени обоих каналов.
-    float           dU_100percents[2];      // Расстояние между курсорами напряжения для 100%, для обоих каналов.
-    float           dT_100percents[2];      // Расстояние между курсорами времени для 100%, для обоих каналов.
-    CursMovement    movement;               // Как перемещаться курсорам - по точкам или по процентам.
-    CursActive      active;                 // Какие курсоры сейчас активны.
-    CursLookMode    look_mode[2];           // Режимы слежения за курсорами для двух пар курсоров.
-    bool            show_freq;              // Установленное в true значение, что нужно показывать на экране значение
-                                            // 1/dT между курсорами.
-    bool            show;                   // Показывать ли курсоры.
+    CursCntrl       cntrlU[Channel::Count];  // Активные курсоры напряжения.
+    CursCntrl       cntrlT[Channel::Count];  // Активные курсоры напряжения.
+    Channel         source;                  // Источник - к какому каналу относятся курсоры.
+    float           posU[Channel::Count][2]; // Текущие позиции курсоров напряжения обоих каналов.
+    float           posT[Channel::Count][2]; // Текущие позиции курсоров времени обоих каналов.
+    float           dU_100percents[2];       // Расстояние между курсорами напряжения для 100%, для обоих каналов.
+    float           dT_100percents[2];       // Расстояние между курсорами времени для 100%, для обоих каналов.
+    CursMovement    movement;                // Как перемещаться курсорам - по точкам или по процентам.
+    CursActive      active;                  // Какие курсоры сейчас активны.
+    CursLookMode    look_mode[2];            // Режимы слежения за курсорами для двух пар курсоров.
+    bool            show_freq;               // Установленное в true значение, что нужно показывать на экране значение
+                                             // 1/dT между курсорами.
+    bool            show;                    // Показывать ли курсоры.
 };
 
 
@@ -333,21 +333,21 @@ struct SettingsMenu
 struct Settings
 {
     uint             size;
-    SettingsDisplay  display;            // настройки изображения          (меню ДИСПЛЕЙ).
-    SettingsChannel  chan[NumChannels];  // настройки каналов              (меню КАНАЛ 1 и КАНАЛ 2).
-    SettingsTrig     trig;               // настройки синхронизации        (меню СИНХР).
-    SettingsTime     time;               // временнЫе настройки            (меню РАЗВЁРТКА).
-    SettingsCursors  cursors;            // настройки курсорных измерений  (меню КУРСОРЫ).
-    SettingsMemory   memory;             // настройки режимов памяти       (меню ПАМЯТЬ).
-    SettingsMeasures measures;           // настройки измерений            (меню ИЗМЕРЕНИЯ).
-    SettingsMath     math;               // настройки режима математических измерений.
-    SettingsService  service;            // дополнительные настройки       (меню СЕРВИС).
-    SettingsLAN      LAN;                // настройки для соединения по локальной сети.
-    SettingsCommon   common;             // системные настройки.
-    SettingsMenu     menu;               // состояние меню.
-    SettingsDebug    debug;              // настройки режима отладки       (меню ОТЛАДКА).
-    uint             crc32;              // контрольная сумма. Используется для проверки корректности сохранённых
-                                         // настроек
+    SettingsDisplay  display;              // настройки изображения          (меню ДИСПЛЕЙ).
+    SettingsChannel  chan[Channel::Count]; // настройки каналов              (меню КАНАЛ 1 и КАНАЛ 2).
+    SettingsTrig     trig;                 // настройки синхронизации        (меню СИНХР).
+    SettingsTime     time;                 // временнЫе настройки            (меню РАЗВЁРТКА).
+    SettingsCursors  cursors;              // настройки курсорных измерений  (меню КУРСОРЫ).
+    SettingsMemory   memory;               // настройки режимов памяти       (меню ПАМЯТЬ).
+    SettingsMeasures measures;             // настройки измерений            (меню ИЗМЕРЕНИЯ).
+    SettingsMath     math;                 // настройки режима математических измерений.
+    SettingsService  service;              // дополнительные настройки       (меню СЕРВИС).
+    SettingsLAN      LAN;                  // настройки для соединения по локальной сети.
+    SettingsCommon   common;               // системные настройки.
+    SettingsMenu     menu;                 // состояние меню.
+    SettingsDebug    debug;                // настройки режима отладки       (меню ОТЛАДКА).
+    uint             crc32;                // контрольная сумма. Используется для проверки корректности сохранённых
+                                           // настроек
 
     static void Load(bool _default);  // \brief Загрузить настройки. Если _default == true, загружаются настройки по
                                       // умолчанию, иначе пытается 
