@@ -39,6 +39,17 @@ BitSet64 SettingsDisplay::PointsOnDisplay()
 }
 
 
+BitSet64 SettingsDisplay::BytesOnDisplay()
+{
+    BitSet64 result = PointsOnDisplay();
+
+    result.first *= 2;
+    result.second *= 2;
+
+    return result;
+}
+
+
 int MenuAutoHide::Time()
 {
     static const int times[] =
