@@ -183,7 +183,7 @@ static const pFuncVV funcOnKeyUp[Key::Count] =
 
 static const pFuncVV funcOnLongPressure[Key::Count] =
 {
-    E,    // Key::None
+    E,              // Key::None
     F1Long,         // Key::F1
     F2Long,         // Key::F2
     F3Long,         // Key::F3
