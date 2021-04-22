@@ -537,7 +537,8 @@ struct Channel
         A,
         B,
         A_B,
-        Math
+        Math,
+        Count = 2
     } value;
 
     Channel(E v = A) : value(v) {}
