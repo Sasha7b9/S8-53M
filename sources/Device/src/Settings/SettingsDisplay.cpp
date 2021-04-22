@@ -43,8 +43,11 @@ BitSet64 SettingsDisplay::BytesOnDisplay()
 {
     BitSet64 result = PointsOnDisplay();
 
-    result.first *= 2;
-    result.second *= 2;
+    if (set.time.peak_det.IsEnabled())
+    {
+        result.first *= 2;
+        result.second *= 2;
+    }
 
     return result;
 }
