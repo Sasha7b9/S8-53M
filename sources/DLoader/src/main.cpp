@@ -1,4 +1,5 @@
 #include "defines.h"
+#include "common/Hardware/Memory/Sector_.h"
 #include "common/Utils/Containers/String_.h"
 #include "main.h"
 #include "FDrive/FDrive.h"
@@ -112,7 +113,7 @@ void Upgrade()
 
     uint8 buffer[sizeSector];
 
-    HAL_EPROM::EraseSector(5);
+    Sector::Get(Sector::_05_FIRM_1).Erase();
 
     int size = FDrive_OpenFileForRead(FILE_NAME);
     int fullSize = size;
@@ -121,7 +122,9 @@ void Upgrade()
     while (size)
     {
         uint readedBytes = FDrive_ReadFromFile(sizeSector, buffer);
-        HAL_EPROM::WriteBufferBytes(address, buffer, readedBytes);
+
+        ROM::Write(address, buffer, readedBytes);
+
         size -= readedBytes;
         address += readedBytes;
 

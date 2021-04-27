@@ -15,6 +15,7 @@ class Sound
 public:
 
     static void ButtonPress();
+
     // Функция вызовет звук отпускаемой кнопки только если перед этим проигрывался звук нажатия кнопки.
     static void ButtonRelease();
 
@@ -27,6 +28,9 @@ public:
     static void WarnBeepBad();
 
     static void WarnBeepGood();
+
+    // Эту функцию надо вызывать перед записью/стиранием ППЗУ. Звук конфликтует с ППЗУ.
+    static void WaitForCompletion();
 
     volatile static bool isBeep;
     static bool warnIsBeep;

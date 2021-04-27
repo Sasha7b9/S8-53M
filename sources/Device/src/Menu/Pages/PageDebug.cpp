@@ -4,10 +4,10 @@
 #include "common/Display/Painter/Text_.h"
 #include "common/Hardware/Sound_.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "common/Hardware/Memory/ROM_.h"
 #include "Display/Warnings.h"
 #include "FDrive/FDrive.h"
 #include "FPGA/FPGA.h"
-#include "Hardware/EPROM.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
@@ -527,7 +527,7 @@ DEF_BUTTON(mbSaveFirmware, PageDebug::self,
 
 static void OnPress_EraseData()
 {
-    EPROM::EraseData();
+    ROM::Data::EraseAll();
 }
 
 DEF_BUTTON(bEraseData, PageDebug::self,

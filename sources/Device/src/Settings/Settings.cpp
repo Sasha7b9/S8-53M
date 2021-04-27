@@ -1,8 +1,8 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
+#include "common/Hardware/Memory/ROM_.h"
 #include "common/Utils/Math_.h"
 #include "FPGA/FPGA.h"
-#include "Hardware/EPROM.H"
 #include "Menu/Menu.h"
 #include "Panel/Panel.h"
 #include "Settings/Settings.h"
@@ -275,7 +275,7 @@ void Settings::Load(bool /*_default*/)
 
 void Settings::Save()
 {
-    EPROM::SaveSettings();
+    ROM::Settings::Save();
 }
 
 bool Settings::DebugModeEnable()

@@ -63,7 +63,7 @@ void DataDrawing::PrepareChannel(const Channel &ch)
 
     BitSet64 p = SettingsDisplay::BytesOnDisplay();
 
-    points[ch].Realloc(data.Settings().IsEnabledPeakDet() ? (281 * 2) : 281);
+    points[ch].Realloc(data.Settings().IsEnabledPeakDet() ? (281 * 2) : 281U);
 
     uint8 *data_channel = data.Data(ch);
 

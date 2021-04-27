@@ -18,7 +18,7 @@ bool HAL_OTP::SaveSerialNumber(char *serialNumber)
 
     if (address < reinterpret_cast<uint8 *>(FLASH_OTP_END) - 16)
     {
-        HAL_EPROM::WriteBufferBytes(reinterpret_cast<uint>(address), reinterpret_cast<uint8 *>(serialNumber),
+        ROM::Write(reinterpret_cast<uint>(address), reinterpret_cast<uint8 *>(serialNumber),
             std::strlen(serialNumber) + 1);
 
         return true;

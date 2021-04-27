@@ -4,10 +4,10 @@
 #include "common/Display/Painter/Primitives_.h"
 #include "common/Display/Painter/Text_.h"
 #include "common/Hardware/Sound_.h"
+#include "common/Hardware/Memory/ROM_.h"
 #include "common/Utils/Math_.h"
 #include "FDrive/FDrive.h"
 #include "FPGA/FPGA.h"
-#include "Hardware/EPROM.h"
 #include "Menu/FileManager.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
@@ -550,11 +550,11 @@ static void FuncAdditionDrawingSPageMemoryInt()
 {
     // Теперь нарисуем состояние памяти
 
-    bool exist[MAX_NUM_SAVED_WAVES] = {false};
+    bool exist[ROM::Data::MAX_NUM_SAVED_WAVES] = {false};
 
-    EPROM::GetDataInfo(exist);
+    ROM::Data::GetInfo(exist);
 
-    for (int i = 0; i < MAX_NUM_SAVED_WAVES; i++)
+    for (int i = 0; i < ROM::Data::MAX_NUM_SAVED_WAVES; i++)
     {
         DrawMemoryWave(i, exist[i]);
     }
@@ -572,11 +572,11 @@ static void FuncOnRegSetMemInt(int delta)
 
     if (delta < 0)
     {
-        Math::CircleDecrease<int8>(&PageMemory::PageInternal::currentSignal, 0, MAX_NUM_SAVED_WAVES - 1);
+        Math::CircleDecrease<int8>(&PageMemory::PageInternal::currentSignal, 0, ROM::Data::MAX_NUM_SAVED_WAVES - 1);
     }
     else if (delta > 0)
     {
-        Math::CircleIncrease<int8>(&PageMemory::PageInternal::currentSignal, 0, MAX_NUM_SAVED_WAVES - 1);
+        Math::CircleIncrease<int8>(&PageMemory::PageInternal::currentSignal, 0, ROM::Data::MAX_NUM_SAVED_WAVES - 1);
     }
 
 //    EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
@@ -695,7 +695,7 @@ DEF_SMALL_BUTTON(sbMemIntModeShow, PageMemory::PageInternal::self,
 
 static void PressSB_MemInt_Delete()
 {
-    EPROM::DeleteData(PageMemory::PageInternal::currentSignal);
+    ROM::Data::Erase((uint)PageMemory::PageInternal::currentSignal);
 }
 
 static void DrawSB_MemInt_Delete(int x, int y)

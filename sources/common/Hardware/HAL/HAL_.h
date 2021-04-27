@@ -1,6 +1,7 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
 #include "common/Hardware/HAL/HAL_PINS_.h"
+#include "common/Hardware/Memory/Sector_.h"
 #include "common/Utils/Containers/Values_.h"
 
 
@@ -100,16 +101,6 @@ struct HAL_DAC2
 };
 
 
-struct HAL_EPROM
-{
-    static void ClearFlags();
-    static void EraseSector(uint numSector);
-    static uint GetSector(uint startAddress);
-    static void WriteWord(uint address, uint word);
-    static void WriteBufferBytes(uint address, puchar buffer, uint size);
-};
-
-
 struct HAL_ETH
 {
     static void Init();
@@ -174,6 +165,16 @@ struct HAL_OTP
 struct HAL_PCD
 {
     static void *handle;    // PCD_HandleTypeDef
+};
+
+
+struct HAL_ROM
+{
+    static const Sector sectors[Sector::Count];
+
+    static void WriteBytes(uint address, const uint8 *data, int size);
+    static void WriteBufferBytes(uint address, const void *data, int size);
+    static void Fill(uint address, uint8 value, int size);
 };
 
 
