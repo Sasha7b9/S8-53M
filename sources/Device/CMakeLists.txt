@@ -98,6 +98,8 @@ file(GLOB HARDWARE_FATFS         src/Hardware/FatFS/*.*)
 file(GLOB HARDWARE_HAL           src/Hardware/HAL/*.*
                            ../common/Hardware/HAL/*.*)
 file(GLOB HARDWARE_LWIP          src/Hardware/LwIP/*.*)
+file(GLOB HARDWARE_MEMORY  ../common/Hardware/Memory/*.*
+                                 src/Hardware/Memory/*.*)
 file(GLOB HARDWARE_USBD          src/Hardware/USBD/*.*)
 file(GLOB HARDWARE_USBH          src/Hardware/USBH/*.*)
 file(GLOB SRC                    src/*.h
@@ -149,6 +151,7 @@ source_group(Hardware\\CMSIS         FILES ${HARDWARE_CMSIS})
 source_group(Hardware\\FatFS         FILES ${HARDWARE_FATFS})
 source_group(Hardware\\HAL           FILES ${HARDWARE_HAL})
 source_group(Hardware\\LwIP          FILES ${HARDWARE_LWIP})
+source_group(Hardware\\Memory        FILES ${HARDWARE_MEMORY})
 source_group(Hardware\\USBD          FILES ${HARDWARE_USBD})
 source_group(Hardware\\USBH          FILES ${HARDWARE_USBH})
 source_group(src                     FILES ${SRC})
@@ -173,8 +176,8 @@ source_group(VCP\\SCPI\\Utils        FILES ${VCP_SCPI_UTILS})
 
 add_library(Device ${VS_KEIL_CMSIS} ${VS_KEIL_ARMCLANG} ${VS_KEIL_FATFS} ${LIBS_CMSIS} ${LIBS_FATFS} ${LIBS_HAL}
                    ${LIBS_LWIP} ${LIBS_USBH} ${HARDWARE}
-                   ${HARDWARE_CMSIS} ${HARDWARE_FATFS} ${HARDWARE_HAL} ${HARDWARE_LWIP} ${HARDWARE_USBD}
-                   ${HARDWARE_USBH} ${SRC} ${DISPLAY} 
+                   ${HARDWARE_CMSIS} ${HARDWARE_FATFS} ${HARDWARE_HAL} ${HARDWARE_LWIP} ${HARDWARE_MEMORY}
+                   ${HARDWARE_USBD} ${HARDWARE_USBH} ${SRC} ${DISPLAY} 
                    ${DISPLAY_FONT} ${DISPLAY_PAINTER} ${DISPLAY_SCREEN} ${FDRIVE} ${FPGA} ${FPGA_DATA} ${LAN} ${MENU}
                    ${MENU_ITEMS} ${MENU_PAGES} ${PANEL} ${SETTINGS}
                    ${UTILS} ${UTILS_CONTAINERS} ${VCP} ${VCP_SCPI} ${VCP_SCPI_UTILS})

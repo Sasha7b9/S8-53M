@@ -1069,16 +1069,6 @@
           <GroupName>Hardware</GroupName>
           <Files>
             <File>
-              <FileName>EPROM.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\EPROM.h</FilePath>
-            </File>
-            <File>
-              <FileName>EPROM.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\EPROM.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Sound_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Hardware\Sound_.h</FilePath>
@@ -1174,11 +1164,6 @@
               <FilePath>..\common\Hardware\HAL\HAL_DAC2_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_EPROM_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_EPROM_.cpp</FilePath>
-            </File>
-            <File>
               <FileName>HAL_FMC_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_FMC_.cpp</FilePath>
@@ -1194,14 +1179,19 @@
               <FilePath>..\common\Hardware\HAL\HAL_OTP_.cpp</FilePath>
             </File>
             <File>
+              <FileName>HAL_PINS_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_PINS_.h</FilePath>
+            </File>
+            <File>
               <FileName>HAL_PINS_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_PINS_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_PINS_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_PINS_.h</FilePath>
+              <FileName>HAL_ROM_stm_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_ROM_stm_.cpp</FilePath>
             </File>
             <File>
               <FileName>HAL_RTC_.cpp</FileName>
@@ -1267,6 +1257,41 @@
               <FileName>lwipopts.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\LwIP\lwipopts.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Hardware/Memory</GroupName>
+          <Files>
+            <File>
+              <FileName>ROM_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\Memory\ROM_.h</FilePath>
+            </File>
+            <File>
+              <FileName>ROM_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\Memory\ROM_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ROM_Data_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\Memory\ROM_Data_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Sector_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\Memory\Sector_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Sector_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\Memory\Sector_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Sector.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\Memory\Sector.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -3299,16 +3324,6 @@
           <GroupName>Hardware</GroupName>
           <Files>
             <File>
-              <FileName>EPROM.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\EPROM.h</FilePath>
-            </File>
-            <File>
-              <FileName>EPROM.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\EPROM.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Sound_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Hardware\Sound_.h</FilePath>
@@ -3404,11 +3419,6 @@
               <FilePath>..\common\Hardware\HAL\HAL_DAC2_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_EPROM_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_EPROM_.cpp</FilePath>
-            </File>
-            <File>
               <FileName>HAL_FMC_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_FMC_.cpp</FilePath>
@@ -3424,14 +3434,19 @@
               <FilePath>..\common\Hardware\HAL\HAL_OTP_.cpp</FilePath>
             </File>
             <File>
+              <FileName>HAL_PINS_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_PINS_.h</FilePath>
+            </File>
+            <File>
               <FileName>HAL_PINS_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_PINS_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_PINS_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_PINS_.h</FilePath>
+              <FileName>HAL_ROM_stm_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_ROM_stm_.cpp</FilePath>
             </File>
             <File>
               <FileName>HAL_RTC_.cpp</FileName>
@@ -3497,6 +3512,41 @@
               <FileName>lwipopts.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\LwIP\lwipopts.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Hardware/Memory</GroupName>
+          <Files>
+            <File>
+              <FileName>ROM_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\Memory\ROM_.h</FilePath>
+            </File>
+            <File>
+              <FileName>ROM_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\Memory\ROM_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ROM_Data_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\Memory\ROM_Data_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Sector_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\Memory\Sector_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Sector_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\Memory\Sector_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Sector.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Hardware\Memory\Sector.cpp</FilePath>
             </File>
           </Files>
         </Group>

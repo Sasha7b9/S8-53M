@@ -1,8 +1,8 @@
+// 2021/04/27 11:09:14 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
-#include "Hardware/Memory/ROM.h"
+#include "common/Hardware/HAL/HAL_.h"
+#include "common/Hardware/Memory/Sector_.h"
 #include "Settings/Settings.h"
-#include "Hardware/HAL/HAL.h"
-#include "Hardware/Memory/Sector.h"
 #include <cstring>
 
 
@@ -131,7 +131,7 @@ void ROM::Settings::Save()
     set.number = lastSaved ? (lastSaved->set.number + 1) : 0;                // ≈сли запись пуста€, то номер будет равен 0 = 0xFFFFFFFF + 1
     set.crc32 = set.CalcWriteCRC32();
 
-    HAL_ROM::WriteBufferBytes(reinterpret_cast<uint>(record), &set, sizeof(set)); //-V2571
+    HAL_ROM::WriteBufferBytes(reinterpret_cast<uint>(record), &set, sizeof(set));
 }
 
 
@@ -169,7 +169,7 @@ bool OTP::SaveSerialNumber(char *servialNumber)
 }
 
 
-static Record *LastSaved() //-V2506
+static Record *LastSaved()
 {
     Record *saved1 = sectorFirst.LastSaved();
     Record *saved2 = sectorSecond.LastSaved();
@@ -203,7 +203,7 @@ Record *Record::Next()
 {
     uint8 *addressThis = reinterpret_cast<uint8 *>(this);
 
-    uint8 *addressNext = addressThis + SIZE_RECORD; //-V2563
+    uint8 *addressNext = addressThis + SIZE_RECORD;
 
     return reinterpret_cast<Record *>(addressNext);
 }
@@ -215,7 +215,7 @@ bool Record::IsFree()
 }
 
 
-SectorSet *Record::GetSector() //-V2506
+SectorSet *Record::GetSector()
 {
     if(sectorFirst.Contains(this))
     {
@@ -231,7 +231,7 @@ SectorSet *Record::GetSector() //-V2506
 }
 
 
-SectorSet *Record::GetAnotherSector() //-V2506
+SectorSet *Record::GetAnotherSector()
 {
     if(sectorFirst.Contains(this))
     {
@@ -259,10 +259,10 @@ uint *Record::FirstDowbleWord()
 }
 
 
-bool Record::IsCorrect() //-V2506
+bool Record::IsCorrect()
 {
-    uint *start = FirstDowbleWord() + 1; //-V2563
-    uint *end = FirstDowbleWord() + SIZE_RECORD / 4; //-V2563
+    uint *start = FirstDowbleWord() + 1;
+    uint *end = FirstDowbleWord() + SIZE_RECORD / 4;
 
     if (set.crc32 == 0xFFFFFFFFU)
     {
@@ -295,25 +295,25 @@ bool Record::IsCorrect() //-V2506
 
 void Record::Erase()
 {
-    HAL_ROM::Fill(reinterpret_cast<uint>(this), 0, SIZE_RECORD); //-V2571
+    HAL_ROM::Fill(reinterpret_cast<uint>(this), 0, SIZE_RECORD);
 }
 
 
 Record *SectorSet::FirstRecord()
 {
-    return reinterpret_cast<Record *>(sector.address); //-V2571
+    return reinterpret_cast<Record *>(sector.address);
 }
 
 
 bool SectorSet::Contains(Record *record)
 {
-    uint addressRecord = reinterpret_cast<uint>(record); //-V2571
+    uint addressRecord = reinterpret_cast<uint>(record);
 
     return addressRecord >= sector.address && addressRecord < sector.End();
 }
 
 
-Record *SectorSet::NextFree(Record *record) //-V2506
+Record *SectorSet::NextFree(Record *record)
 {
     record = record->Next();
 
@@ -367,7 +367,7 @@ Record *SectorSet::LastSaved()
 }
 
 
-Record *SectorSet::FirstFree() //-V2506
+Record *SectorSet::FirstFree()
 {
     Record *record = FirstRecord();
 

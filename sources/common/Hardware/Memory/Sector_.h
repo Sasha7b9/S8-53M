@@ -1,3 +1,4 @@
+// 2021/04/27 11:09:39 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
 #include "common/Hardware/Memory/ROM_.h"
 
@@ -15,6 +16,7 @@
 
 
 struct Sector;
+struct DataReading;
 
 
 struct PacketROM
@@ -31,11 +33,11 @@ struct PacketROM
     bool IsErased() const { return (state == STATE_ERASED); }
     bool IsValid() const { return (state == STATE_VALID); }
 
-    uint Address() const { return reinterpret_cast<uint>(this); }; //-V2571
+    uint Address() const { return reinterpret_cast<uint>(this); };
 
     PacketROM *Next() const;
     
-    const DataSettings *UnPack() const;
+    const DataReading *UnPack() const;
     
     int Size() const;
     
@@ -99,7 +101,7 @@ struct Sector
 
     const PacketROM *WriteData(uint numInROM, const DataSettings *ds) const;
 
-    const DataSettings *ReadData(uint numInROM) const;
+    const DataReading *ReadData(uint numInROM) const;
 
     const PacketROM *DeleteData(uint numInROM) const;
     

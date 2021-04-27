@@ -1,3 +1,4 @@
+// 2021/04/27 11:09:23 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
 #include "common/Utils/Containers/String_.h"
 
@@ -11,8 +12,6 @@ struct ROM
 	static const uint SIZE = 2 * 1024 * 1024;
 
     static void Init();
-
-    static void Write(uint address, uint8 *buffer, uint num_bytes);
 
     // Функция для сохранения/восстановления настроек
     struct Settings

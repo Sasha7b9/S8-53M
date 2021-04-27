@@ -1,5 +1,6 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
+#include "common/Hardware/HAL/HAL_.h"
 #include "common/Hardware/Memory/ROM_.h"
 #include "common/Utils/Math_.h"
 #include "FPGA/FPGA.h"
@@ -16,7 +17,8 @@ bool Settings::loaded = false;
 
 static const Settings defaultSettings =
 {
-    0,                              // size
+    0,                              // crc32
+    0,                              // number
     // Display
     {
         5,                          // timeShowLevels
@@ -338,4 +340,12 @@ int16 SettingsMeasures::PosCursorU(int num)
 int16 SettingsMeasures::PosCursorT(int num)
 {
     return set.measures.posT[num];
+}
+
+
+uint Settings::CalcWriteCRC32()
+{
+    uint8 *buffer = reinterpret_cast<uint8 *>(this);
+
+    return HAL_CRC::Calculate8bit(buffer + 2 * sizeof(uint), sizeof(*this) - 2 * sizeof(uint));
 }

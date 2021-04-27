@@ -123,7 +123,7 @@ void Upgrade()
     {
         uint readedBytes = FDrive_ReadFromFile(sizeSector, buffer);
 
-        ROM::Write(address, buffer, readedBytes);
+        HAL_ROM::WriteBufferBytes(address, buffer, readedBytes);
 
         size -= readedBytes;
         address += readedBytes;

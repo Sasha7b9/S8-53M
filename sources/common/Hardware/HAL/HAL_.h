@@ -78,7 +78,12 @@ struct HAL_ADC1
 struct HAL_CRC
 {
     static void Init();
+
     static uint Calculate(uint address = 0x08020000, uint numBytes = 128 * 1024 * 3 / 4);
+
+    // Расчитывает контрольную сумму последовательности байт из buffer. Если size не кратно четырём, последние байты не
+    // участвуют в вычислении контрольной суммы
+    static uint Calculate8bit(uint8 *buffer, int size);
 };
 
 
@@ -172,8 +177,8 @@ struct HAL_ROM
 {
     static const Sector sectors[Sector::Count];
 
-    static void WriteBytes(uint address, const uint8 *data, int size);
-    static void WriteBufferBytes(uint address, const void *data, int size);
+    static void WriteBytes(uint address, const uint8 *data, uint size);
+    static void WriteBufferBytes(uint address, const void *data, uint size);
     static void Fill(uint address, uint8 value, int size);
 };
 

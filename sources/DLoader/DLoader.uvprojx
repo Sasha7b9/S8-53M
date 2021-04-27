@@ -837,6 +837,21 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Hardware/Memory</GroupName>
+          <Files>
+            <File>
+              <FileName>Sector_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\Memory\Sector_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Sector_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\Memory\Sector_.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>Hardware/HAL</GroupName>
           <Files>
             <File>
@@ -873,11 +888,6 @@
               <FileName>HAL_DAC2_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_DAC2_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_EPROM_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_EPROM_.cpp</FilePath>
             </File>
             <File>
               <FileName>HAL_FMC_.cpp</FileName>
@@ -923,6 +933,11 @@
               <FileName>HAL_TIM7_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_TIM7_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_ROM_stm_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_ROM_stm_.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -2039,6 +2054,21 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Hardware/Memory</GroupName>
+          <Files>
+            <File>
+              <FileName>Sector_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\Memory\Sector_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Sector_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\Memory\Sector_.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>Hardware/HAL</GroupName>
           <Files>
             <File>
@@ -2075,11 +2105,6 @@
               <FileName>HAL_DAC2_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_DAC2_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_EPROM_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_EPROM_.cpp</FilePath>
             </File>
             <File>
               <FileName>HAL_FMC_.cpp</FileName>
@@ -2125,6 +2150,11 @@
               <FileName>HAL_TIM7_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_TIM7_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_ROM_stm_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_ROM_stm_.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -2417,5 +2447,14 @@
     <components/>
     <files/>
   </RTE>
+
+  <LayerInfo>
+    <Layers>
+      <Layer>
+        <LayName>DLoader</LayName>
+        <LayPrjMark>1</LayPrjMark>
+      </Layer>
+    </Layers>
+  </LayerInfo>
 
 </Project>

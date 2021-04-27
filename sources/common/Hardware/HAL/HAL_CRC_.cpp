@@ -17,3 +17,14 @@ uint HAL_CRC::Calculate(uint address, uint numBytes)
 {
     return HAL_CRC_Calculate(&handleCRC, reinterpret_cast<uint *>(address), numBytes);
 }
+
+
+uint HAL_CRC::Calculate8bit(uint8 *buffer, int size)
+{
+    if ((size % 4) != 0)
+    {
+        size -= (size % 4);
+    }
+
+    return HAL_CRC_Calculate(&handleCRC, reinterpret_cast<uint *>(buffer), static_cast<uint>(size / 4));
+}

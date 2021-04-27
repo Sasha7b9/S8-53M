@@ -109,7 +109,9 @@ file(GLOB HARDWARE_HAL          ../../common/Hardware/HAL/HAL_.*
                                 ../../common/Hardware/HAL/HAL_TIM6_.cpp
                                 ../../common/Hardware/HAL/HAL_TIM7_.cpp
                                 ../../common/Hardware/HAL/HAL_USBD_.cpp
-                                         src/Hardware/HAL/HAL_FMC_win.cpp)
+                                         src/Hardware/HAL/HAL_FMC_win.cpp
+                                         src/Hardware/HAL/HAL_ROM_win.cpp)
+file(GLOB HARDWARE_MEMORY       ../../common/Hardware/Memory/ROM_.*)
 file(GLOB HARDWARE_USBD     ../../Device/src/Hardware/USBD/usbd_desc.cpp
                             ../../Device/src/Hardware/USBD/usbd_cdc_interface.*)
 file(GLOB MENU              ../../Device/src/Menu/*.*)
@@ -167,6 +169,7 @@ source_group(GUI\\Dialogs      FILES ${GUI_DIALOGS})
 source_group(GUI\\VCP          FILES ${GUI_VCP})
 source_group(Hardware          FILES ${HARDWARE})
 source_group(Hardware\\HAL     FILES ${HARDWARE_HAL})
+source_group(Hardware\\Memory  FILES ${HARDWARE_MEMORY})
 source_group(Hardware\\USBD    FILES ${HARDWARE_USBD})
 source_group(Menu              FILES ${MENU})
 source_group(Menu\\Items       FILES ${MENU_ITEMS})
@@ -184,7 +187,8 @@ source_group(Utils\\Containers FILES ${UTILS_CONTAINERS})
 add_executable(S8-53M ${LIBS_CMSIS} ${LIBS_FATFS} ${LIBS_LWIP} ${LIBS_HAL} ${LIBS_USBD} ${LIBS_USBH} ${DISPLAY}
           ${DISPLAY_FONT} ${DISPLAY_PAINTER} ${DISPLAY_SCREEN} ${LAN} ${FDRIVE} ${FPGA} ${FPGA_DATA} ${GUI}
           ${GUI_CONTROLS} ${GUI_DIALOGS} ${GUI_VCP} ${HARDWARE}
-          ${HARDWARE_HAL} ${HARDWARE_USBD} ${MENU} ${MENU_ITEMS} ${MENU_PAGES} ${PANEL} ${RESOURCES} ${SETTINGS}
+          ${HARDWARE_HAL} ${HARDWARE_MEMORY} ${HARDWARE_USBD} ${MENU} ${MENU_ITEMS} ${MENU_PAGES} ${PANEL} ${RESOURCES}
+          ${SETTINGS}
           ${SRC} ${VCP} ${VCP_SCPI} ${VCP_SCPI_UTILS} ${UTILS} ${UTILS_CONTAINERS})
 
 target_link_libraries(S8-53M ../../../ThirdParty/wxWidgets/generated/lib/vc_dll/wxbase31ud)

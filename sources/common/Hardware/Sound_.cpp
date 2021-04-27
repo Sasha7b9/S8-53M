@@ -176,3 +176,9 @@ void CalculateTriangle()
         points[i] = (uint8)(k * i * amplitude);
     }
 }
+
+
+void Sound::WaitForCompletion()
+{
+
+}
