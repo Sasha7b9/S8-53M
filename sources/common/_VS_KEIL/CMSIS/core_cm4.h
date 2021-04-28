@@ -21,7 +21,7 @@
     }
     
     #ifndef __CLZ
-//        #define __CLZ 0
+        #define __CLZ  (uint8_t)__builtin_clz
     #endif
 #endif
 
