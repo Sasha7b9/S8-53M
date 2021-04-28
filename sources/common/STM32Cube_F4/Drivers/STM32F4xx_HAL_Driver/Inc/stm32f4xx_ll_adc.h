@@ -1866,13 +1866,17 @@ __STATIC_INLINE uint32_t LL_ADC_DMA_GetRegAddr(ADC_TypeDef *ADCx, uint32_t Regis
   
   if (Register == LL_ADC_DMA_REG_REGULAR_DATA)
   {
+#ifndef __linux__
     /* Retrieve address of register DR */
     data_reg_addr = (uint32_t)&(ADCx->DR);
+#endif
   }
   else /* (Register == LL_ADC_DMA_REG_REGULAR_DATA_MULTI) */
   {
+#ifndef __linux__
     /* Retrieve address of register CDR */
     data_reg_addr = (uint32_t)&((__LL_ADC_COMMON_INSTANCE(ADCx))->CDR);
+#endif
   }
   
   return data_reg_addr;
