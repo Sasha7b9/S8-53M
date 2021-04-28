@@ -93,12 +93,12 @@ void Menu::ProcessButtonForHint(Key::E button)
         "MENU button performs the following functions:\n"
             "1. At the closed menu pressing or pressing with deduction during 0.5s opens the menu.\n"
             "2. At the open menu deduction of the button during 0.5s closes the menu.\n"
-#ifndef WIN32
+#ifdef __ARMCC_VERSION
 #pragma push
 #pragma diag_suppress 192
 #endif
             "3. At control \"SERVICE\x99Mode btn MENU\x99\x43lose\" current becomes the page of the previous level of the menu. If the root page is current, the menu is closed.\n"
-#ifndef WIN32
+#ifdef __ARMCC_VERSION
 #pragma pop
 #endif
             "4. At control \"SERVICE\x99Mode btn MENU\x99Toggle\" current becomes the page of the current level of the menu. If the current page the last in the current level, happens transition to the previous level of the menu.\n"
