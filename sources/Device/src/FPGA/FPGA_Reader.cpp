@@ -13,11 +13,13 @@
 
 
 #define WRITE_AND_OR_INVERSE(addr, data, ch)
-//    if(SET_INVERSE(ch))                                                                   \
-//    {                                                                                               \
-//        data = (uint8)((int)(2 * AVE_VALUE) - LimitationUInt8(data, MIN_VALUE, MAX_VALUE));    \
-//    }                                                                                               \
-//    *addr = (uint16)data;
+/*
+    if(SET_INVERSE(ch))                                                                   \
+    {                                                                                               \
+        data = (uint8)((int)(2 * AVE_VALUE) - LimitationUInt8(data, MIN_VALUE, MAX_VALUE));    \
+    }                                                                                               \
+    *addr = (uint16)data;
+* */
 
 /*
 static uint8 InverseIfNecessary(uint8 data, Channel::E ch)
