@@ -27,7 +27,7 @@ const Sector HAL_ROM::sectors[Sector::Count] =
     { Sector::_03_NRST_1,     0x0800C000U, _16K  },
     { Sector::_04_NRST_2,     0x08010000U, _64K  },
     { Sector::_05_FIRM_1,     0x08020000U, _128K },
-    { Sector::_06_FIRM_2,     0x08040000U, _128K },
+    { Sector::_06,     0x08040000U, _128K },
     { Sector::_07_FIRM_3,     0x08060000U, _128K },
     { Sector::_08,            0x08080000U, _128K },
     { Sector::_09,            0x080A0000U, _128K },
