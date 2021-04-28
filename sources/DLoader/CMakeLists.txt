@@ -14,8 +14,8 @@ include_directories(src
                     ../common/STM32Cube_F4/Drivers/CMSIS/Device/ST/STM32F4xx/Include
                     ../common/STM32Cube_F4/Drivers/CMSIS/Include
                     ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc
-                    ../common/STM32Cube_F4/Middlewares/Third_Party/FatFS/src
-                    ../common/STM32Cube_F4/Middlewares/Third_Party/FatFS/src/drivers
+                    ../common/STM32Cube_F4/Middlewares/Third_Party/FatFs/src
+                    ../common/STM32Cube_F4/Middlewares/Third_Party/FatFs/src/drivers
                     ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Core/Inc
                     ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc
                     ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc
