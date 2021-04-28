@@ -35,7 +35,6 @@ function BuildProject {
     dir=$PWD
     cd generated/$1/S8-53M
     make -j$(nproc)
-    make install
     cd $dir
 }
 
