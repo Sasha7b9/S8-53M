@@ -966,7 +966,7 @@ void DrawSetMask()
 
     // Теперь рисуем спецсимволы
     position = 0;
-    while (index < (sizeof(Tables::symbolsAlphaBet) / 4))
+    while ((size_t)index < (sizeof(Tables::symbolsAlphaBet) / 4))
     {
         Tables::DrawStr(index, x0 + deltaX + 26 + position * 20, y0 + deltaY0 + deltaY * 3);
         index++;
