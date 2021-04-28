@@ -10,7 +10,7 @@ include_directories(src
                     ../common/STM32Cube_L0/Drivers/CMSIS/Include
                     )
 
-add_definitions(-DSTM32L063xx)
+add_definitions(-DSTM32L063xx -DUSE_HAL_DRIVER)
 
 if(WIN32)
     SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -MP -Wall")
