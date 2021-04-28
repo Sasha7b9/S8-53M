@@ -169,8 +169,9 @@ void ReaderFPGA::Read::Randomizer::UtilizeFirstBytes(const uint16 * const addres
         data = *address;
     }
 
-
+#ifdef __linux__
     data = data;
+#endif
 }
 
 
