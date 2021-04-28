@@ -59,6 +59,7 @@ else()
     add_definitions(-Wno-builtin-declaration-mismatch
                     -Wno-write-strings
                     -Wno-overflow
+                    -Wno-int-to-pointer-cast
     )
 
 endif()
