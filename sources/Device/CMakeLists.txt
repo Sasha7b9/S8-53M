@@ -55,7 +55,7 @@ if(WIN32)
 
 else()
 
-    add_definitions(-Wno-builtin-declaration_mismatch)
+    add_definitions(-Wno-builtin-declaration-mismatch)
 
 endif()
 
