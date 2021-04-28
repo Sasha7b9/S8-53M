@@ -24,6 +24,7 @@ include_directories(src
 add_definitions(-DSTM32F429xx -DUSE_HAL_DRIVER -DLOADER)
 
 if(WIN32)
+
     SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -MP -Wall")
     
     add_compile_options(/wd4201)    # nonstandard extension used : nameless struct/union
@@ -41,6 +42,9 @@ if(WIN32)
     add_compile_options(/wd5045)    # Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
     add_compile_options(/wd5219)    # implicit conversion from 'type1' to 'type2', possible loss of data
     add_compile_options(/wd5220)    # 
+
+else()
+
 endif()
 
 file(GLOB VS_KEIL_ARMCLANG ../common/vs_keil/ARMCLANG/*)
