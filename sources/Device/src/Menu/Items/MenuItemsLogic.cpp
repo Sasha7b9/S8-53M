@@ -230,10 +230,14 @@ void TimeItem::IncCurrentPosition() const
         int8 *value[] = { 0, own->day, own->month, own->year, own->hours, own->minutes, own->seconds };
         static const int8 max[] = {0, 31, 12, 99, 23, 59, 59};
         static const int8 min[] = {0, 1, 1, 15, 0, 0, 0};
-        *(value[position]) = (*(value[position]))++;
-        if (*value[position] > max[position])
+
+        if (position != 0)
         {
-            *value[position] = min[position];
+            *(value[position]) = (*(value[position]))++;
+            if (*value[position] > max[position])
+            {
+                *value[position] = min[position];
+            }
         }
     }
 }

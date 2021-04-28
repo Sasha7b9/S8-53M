@@ -556,7 +556,7 @@ static void FuncAdditionDrawingSPageMemoryInt()
 
     for (uint i = 0; i < ROM::Data::MAX_NUM_SAVED_WAVES; i++)
     {
-        DrawMemoryWave(i, exist[i]);
+        DrawMemoryWave((int)i, exist[i]);
     }
 }
 
@@ -987,7 +987,7 @@ void DrawSetMask()
     Color::FILL.SetAsCurrent();
     for(uint i = 0; i < sizeof(strings) / 4; i++)
     {
-        Text(strings[i]).Draw(x0 + deltaX, y0 + 100 + deltaY * i);
+        Text(strings[i]).Draw(x0 + deltaX, (int)(y0 + 100 + deltaY * i));
     }
 }
 
