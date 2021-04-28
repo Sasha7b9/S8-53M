@@ -500,7 +500,7 @@ DEF_PAGE_5(pageCursors, PageMain::self, NamePage::Cursors,
 
 static void MoveCursUonPercentsOrPoints(int delta)
 {
-    CursCntrl &curs_ñntrl = set.cursors.cntrlU[set.cursors.source];
+    CursCntrl &curs_cntrl = set.cursors.cntrlU[set.cursors.source];
 
     float value = (float)delta;
 
@@ -511,12 +511,12 @@ static void MoveCursUonPercentsOrPoints(int delta)
         value *= set.cursors.dU_100percents[source] / 100.0F;
     }
 
-    if(curs_ñntrl.Is1() || curs_ñntrl.Is1_2())
+    if(curs_cntrl.Is1() || curs_cntrl.Is1_2())
     {
         SetShiftCursPosU(source, 0, value);
     }
 
-    if(curs_ñntrl.Is2() || curs_ñntrl.Is1_2())
+    if(curs_cntrl.Is2() || curs_cntrl.Is1_2())
     {
         SetShiftCursPosU(source, 1, value);
     }
