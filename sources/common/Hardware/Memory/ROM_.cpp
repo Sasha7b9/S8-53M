@@ -2,6 +2,7 @@
 #include "defines.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Hardware/Memory/Sector_.h"
+#include "common/Utils/Math_.h"
 #include "Settings/Settings.h"
 #include <cstring>
 
@@ -131,7 +132,7 @@ void ROM::Settings::Save()
     set.number = lastSaved ? (lastSaved->set.number + 1) : 0;                // ≈сли запись пуста€, то номер будет равен 0 = 0xFFFFFFFF + 1
     set.crc32 = set.CalcWriteCRC32();
 
-    HAL_ROM::WriteBufferBytes(reinterpret_cast<uint>(record), &set, sizeof(set));
+    HAL_ROM::WriteBufferBytes(Math::ToUINT(record), &set, sizeof(set));
 }
 
 
