@@ -15,10 +15,10 @@
         #define __STATIC_INLINE
     #endif
     #ifndef __RBIT
-        #define __RBIT(x) x
+//        #define __RBIT(x) x
     #endif
     #ifndef __CLZ
-        #define __CLZ 0
+//        #define __CLZ 0
     #endif
 #endif
 
