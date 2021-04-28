@@ -35,7 +35,7 @@ int   ReaderFPGA::addition_shift = 0;
 Mutex ReaderFPGA::mutex_read;
 
 
-static const uint16 *const addresses_ADC[2] = { RD_ADC_A, RD_ADC_B };
+const uint16 *const addresses_ADC[2] = { RD_ADC_A, RD_ADC_B };
 
 
 void ReaderFPGA::ReadData()

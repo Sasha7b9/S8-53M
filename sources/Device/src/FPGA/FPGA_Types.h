@@ -73,5 +73,5 @@ struct Value
 };
 
 
-extern static const uint16 * const addresses_ADC[2];
+extern const uint16 * const addresses_ADC[2];
 #define ADDRESS_READ(ch) addresses_ADC[ch]
