@@ -21,7 +21,7 @@ FPGA::State FPGA::state;
 float       FPGA::FreqMeter::freq = 0.0f;
 
 int         FPGA::Randomizer::number_measures_for_gates = 1000;
-bool        FPGA::Randomizer::first_аfter_write = false;
+bool        FPGA::Randomizer::first_after_write = false;
 
 
 // Функция вызывается, когда можно считывать очередной сигнал.
@@ -126,9 +126,9 @@ bool FPGA::IsRunning()
 
 bool FPGA::Randomizer::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
 {   
-    if(first_аfter_write)
+    if(first_after_write)
     {
-        first_аfter_write = false;
+        first_after_write = false;
         return false;
     }
     
