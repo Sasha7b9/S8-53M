@@ -31,7 +31,6 @@ if(WIN32)
     add_compile_options(/wd5220)
     add_compile_options(/wd26812)   # The enum type type-name is unscoped. Prefer 'enum class' over 'enum' (Enum.3)
 else()
-
 endif()
 
 file(GLOB VS_KEIL_ARMCLANG ../common/vs_keil/ARMCLANG/*)
