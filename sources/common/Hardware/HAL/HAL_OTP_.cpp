@@ -1,6 +1,7 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "common/Utils/Math_.h"
 #include <cstring>
 #include <stm32f4xx_hal.h>
 
@@ -18,9 +19,8 @@ bool HAL_OTP::SaveSerialNumber(char *serialNumber)
 
     if (address < reinterpret_cast<uint8 *>(FLASH_OTP_END) - 16)
     {
-        HAL_ROM::WriteBytes(reinterpret_cast<uint>(address), reinterpret_cast<uint8 *>(serialNumber),
+        HAL_ROM::WriteBytes(Math::ToUINT(address), reinterpret_cast<uint8 *>(serialNumber),
             std::strlen(serialNumber) + 1);
-
         return true;
     }
 

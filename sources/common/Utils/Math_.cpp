@@ -452,3 +452,9 @@ bool Math::InRange(T value, T min, T max)
 
     return true;
 }
+
+
+uint Math::ToUINT(void *pointer)
+{
+    return (uint)pointer;
+}
