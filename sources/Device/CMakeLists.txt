@@ -26,6 +26,7 @@ include_directories(..
 add_definitions(-DSTM32F429xx -DUSE_HAL_DRIVER -DDEVICE)
 
 if(WIN32)
+
     SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -MP -Wall")
     
     add_compile_options(/wd4201)    # nonstandard extension used : nameless struct/union
@@ -51,6 +52,11 @@ if(WIN32)
                                     # implies that compiler generated copy/move constructors and copy/move assignment
                                     # operators are not trivia
     add_compile_options(/wd26812)   # Prefer 'enum class' over 'enum' (Enum.3)
+
+else()
+
+    add_definitions(-Wno-builtin-declaration_mismatch)
+
 endif()
 
 file(GLOB VS_KEIL_ARMCLANG ../common/vs_keil/ARMCLANG/*)
