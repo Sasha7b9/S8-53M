@@ -192,12 +192,12 @@ void Menu::ProcessButtonForHint(Key::E button)
             "3. Нажатие и удержание в течение 0.5с кнопки СИНХР при настройке \"СЕРВИС\x99Реж длит СИНХР\x99Сброс уровня\" устанавливает уровень синхронизации 0В."
             :
             "1. СИНХР button opens a menu settings synchronization.\n"
-#ifndef WIN32
+#ifdef __ARMCC_VERSION
 #pragma push
 #pragma diag_suppress 192
 #endif
             "2. Pressing and holding the button СИНХР for 0.5s when setting \"SERVICE\x99Mode long TRIG\x99\x41utolevel\" automatically adjust the trigger level.\n"
-#ifndef WIN32
+#ifdef __ARMCC_VERSION
 #pragma pop
 #endif
             "3. Pressing and holding the button СИНХР for 0.5s when setting \"SERVICE\x99Mode long TRIG\x99SReset trig level\" sets the trigger level 0V.";
