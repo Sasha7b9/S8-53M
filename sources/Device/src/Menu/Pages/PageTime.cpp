@@ -42,11 +42,11 @@ static void WriteRShiftADC()
     }
     else
     {
-        volatile int8 shift[2][3] =
-        {
-            {0, set.chan[ChA].balance_shift_ADC, (int8)set.debug.balance_ADC[ChA]},
-            {0, set.chan[ChB].balance_shift_ADC, (int8)set.debug.balance_ADC[ChB]}
-        };
+//        volatile int8 shift[2][3] =
+//        {
+//            {0, set.chan[ChA].balance_shift_ADC, (int8)set.debug.balance_ADC[ChA]},
+//            {0, set.chan[ChB].balance_shift_ADC, (int8)set.debug.balance_ADC[ChB]}
+//        };
 
         //            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)shift[0][BALANCE_ADC_TYPE], false);
         //            FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)shift[1][BALANCE_ADC_TYPE], false);

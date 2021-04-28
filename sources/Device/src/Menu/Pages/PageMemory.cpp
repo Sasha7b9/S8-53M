@@ -554,7 +554,7 @@ static void FuncAdditionDrawingSPageMemoryInt()
 
     ROM::Data::GetInfo(exist);
 
-    for (int i = 0; i < ROM::Data::MAX_NUM_SAVED_WAVES; i++)
+    for (uint i = 0; i < ROM::Data::MAX_NUM_SAVED_WAVES; i++)
     {
         DrawMemoryWave(i, exist[i]);
     }
