@@ -456,5 +456,10 @@ bool Math::InRange(T value, T min, T max)
 
 uint Math::ToUINT(void *pointer)
 {
+#ifdef __linux__
     return (uint)pointer;
+#else
+    uint64 result = (uint64)pointer;
+    return (uint)(result >> 32);
+#endif
 }
