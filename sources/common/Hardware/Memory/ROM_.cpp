@@ -296,7 +296,7 @@ bool Record::IsCorrect()
 
 void Record::Erase()
 {
-    HAL_ROM::Fill(reinterpret_cast<uint>(this), 0, SIZE_RECORD);
+    HAL_ROM::Fill(Math::ToUINT(this), 0, SIZE_RECORD);
 }
 
 
