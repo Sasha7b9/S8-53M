@@ -422,7 +422,7 @@ LabelNextNumber:
                 {
                     if (*ch >= 0x01 && *ch <= 0x06)
                     {
-                        std::strcpy(wr, Int((int)values[*ch]).ToText(false, 2).c_str());
+                        std::strcpy(wr, Int((int)values[(uint)*ch]).ToText(false, 2).c_str());
                         wr += length_buffer;
                     }
                 }
