@@ -52,7 +52,7 @@ bool PacketROM::WriteToSector(const Sector *sector) const
         dest = dest->Next();
     }
 
-    uint addressWrite = reinterpret_cast<uint>(dest);       // ѕо этому адресу будет производитьс€ запись пакета
+    uint addressWrite = Math::ToUINT(dest);       // ѕо этому адресу будет производитьс€ запись пакета
 
     uint lastAddress = addressWrite + size;                 // ј это последний адрес записи
 
