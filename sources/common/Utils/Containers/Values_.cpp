@@ -181,7 +181,7 @@ Text Frequency::ToText()
         return EmptyText();
     }
 
-    char *suffix = 0;
+    pchar suffix = 0;
 
     float frequency = *this;
 
