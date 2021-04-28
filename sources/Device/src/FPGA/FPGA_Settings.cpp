@@ -114,8 +114,8 @@ void FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::E type)
         {0x0800, 0x0000, 0x3000}
     };
 
-    data |= maskCouple[ChA][set.chan[ChA].mode_ñouple];
-    data |= maskCouple[ChB][set.chan[ChB].mode_ñouple];
+    data |= maskCouple[ChA][set.chan[ChA].mode_couple];
+    data |= maskCouple[ChB][set.chan[ChB].mode_couple];
 
     static const uint maskFiltr[2][2] = 
     {
@@ -232,7 +232,7 @@ void RShift::Load(const Channel &ch)
     static const uint16 mask[2] = {0x2000, 0x6000};
 
     Range::E range = set.chan[ch].range;
-    ModeCouple::E mode = set.chan[ch].mode_ñouple;
+    ModeCouple::E mode = set.chan[ch].mode_couple;
     static const int index[3] = {0, 1, 1};
     int16 rShiftAdd = RSHIFT_ADD(ch, range, index[mode]);
 

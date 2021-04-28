@@ -176,7 +176,7 @@ void BottomPart::WriteTextVoltage(const Channel &ch, int x, int y)
     };
 
     bool inverse = ch.IsInversed();
-    ModeCouple &mode_couple = set.chan[ch].mode_ñouple;
+    ModeCouple &mode_couple = set.chan[ch].mode_couple;
     Divider::E multiplier = set.chan[ch].divider;
     Range::E range = set.chan[ch].range;
     uint rShift = (uint)set.chan[ch].rshift;

@@ -13,8 +13,8 @@ void DataSettings::Fill()
     r_shift_b = (uint)set.chan[ChB].rshift;
     trig_lev_a = (uint)TrigLev::GetA();
     trig_lev_b = (uint)TrigLev::GetB();
-    couple_a = set.chan[ChA].mode_ñouple;
-    couple_b = set.chan[ChB].mode_ñouple;
+    couple_a = set.chan[ChA].mode_couple;
+    couple_b = set.chan[ChB].mode_couple;
     tbase = set.time.base;
     tshift = set.time.shift;
     range[0] = set.chan[ChA].range;

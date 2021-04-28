@@ -48,7 +48,7 @@ DEF_CHOICE_2(mcInputA, PageChannelA::self,
 
 void PageChannelA::OnChanged_Couple(bool)
 {
-    ModeCouple::Set(ChA, set.chan[ChA].mode_сouple);
+    ModeCouple::Set(ChA, set.chan[ChA].mode_couple);
 }
 
 DEF_CHOICE_3(mcCoupleA, PageChannelA::self,
@@ -58,7 +58,7 @@ DEF_CHOICE_3(mcCoupleA, PageChannelA::self,
     "Пост", "AC",
     "Перем", "DC",
     "Земля", "Ground",
-    set.chan[Channel::A].mode_сouple, nullptr, PageChannelA::OnChanged_Couple, nullptr
+    set.chan[Channel::A].mode_couple, nullptr, PageChannelA::OnChanged_Couple, nullptr
 )
 
 void PageChannelA::OnChanged_Filtr(bool)
@@ -126,7 +126,7 @@ DEF_CHOICE_2(mcInputB, PageChannelB::self,
 
 void PageChannelB::OnChanged_Couple(bool)
 {
-    ModeCouple::Set(ChB, set.chan[ChB].mode_сouple);
+    ModeCouple::Set(ChB, set.chan[ChB].mode_couple);
 }
 
 DEF_CHOICE_3(mcCoupleB, PageChannelB::self,
@@ -136,7 +136,7 @@ DEF_CHOICE_3(mcCoupleB, PageChannelB::self,
     "Пост", "AC",
     "Перем", "DC",
     "Земля", "Ground",
-    set.chan[Channel::B].mode_сouple, nullptr, PageChannelB::OnChanged_Couple, nullptr
+    set.chan[Channel::B].mode_couple, nullptr, PageChannelB::OnChanged_Couple, nullptr
 )
 
 void PageChannelB::OnChanged_Filtr(bool)
