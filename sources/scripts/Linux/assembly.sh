@@ -9,8 +9,8 @@ function ShowHint {
 
 
 function MakeProject {
-    rm -R -f ../../generated/$1/VictoryU3D
-    cmake ../../src/CMakeLists.txt -G "CodeBlocks - Unix Makefiles" -B../../generated/$1/VictoryU3D -DCMAKE_BUILD_TYPE=$2
+    rm -R -f generated/$1/S8-53M
+    cmake CMakeLists.txt -G "CodeBlocks - Unix Makefiles" -Bgenerated/$1/S8-53M -DCMAKE_BUILD_TYPE=$2
 }
 
 
@@ -33,7 +33,7 @@ function MakeProjects {
 
 function BuildProject {
     dir=$PWD
-    cd ../../generated/$1/VictoryU3D
+    cd generated/$1/S8-53M
     make -j$(nproc)
     make install
     cd $dir
@@ -78,8 +78,6 @@ cd ../..
 
 sudo git pull
 
-cd $dir
-
 case $1 in
     "make"  ) isMake=1  ;;
 
@@ -116,3 +114,4 @@ then
     BuildProjects $isBuildDebug $isBuildRelease
 fi
 
+cd $dif
