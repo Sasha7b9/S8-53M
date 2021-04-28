@@ -57,6 +57,7 @@ else()
 
     add_definitions(-Wno-builtin-declaration-mismatch
                     -Wno-write-strings
+                    -Wno-write-strings
     )
 
 endif()
