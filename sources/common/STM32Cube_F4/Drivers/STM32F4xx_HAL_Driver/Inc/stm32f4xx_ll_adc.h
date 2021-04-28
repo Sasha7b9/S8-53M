@@ -294,8 +294,13 @@ extern "C" {
   * @param  __REG_OFFFSET__ Offset to be applied (unit number of registers).
   * @retval Pointer to register address
   */
+
+#ifndef __linux__
 #define __ADC_PTR_REG_OFFSET(__REG__, __REG_OFFFSET__)                         \
  ((__IO uint32_t *)((uint32_t) ((uint32_t)(&(__REG__)) + ((__REG_OFFFSET__) << 2UL))))
+#else
+#define __ADC_PTR_REG_OFFSET(__REG__, __REG_OFFFSET__) 0
+#endif
 
 /**
   * @}
