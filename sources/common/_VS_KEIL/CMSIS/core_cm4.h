@@ -17,6 +17,9 @@
     #ifndef __RBIT
         #define __RBIT(x)
     #endif
+    #ifndef __CLZ
+        #define __CLZ(x)
+    #endif
 #endif
 
 void NVIC_SystemReset(void);
