@@ -512,7 +512,7 @@ void Menu::ProcessingPressButton()
 
 void Menu::ProcessingReleaseButton()
 {
-    if(releaseButton >= Key::F1 && releaseButton <= Key::F5 || pressButton == Key::Menu)
+    if((releaseButton >= Key::F1 && releaseButton <= Key::F5) || pressButton == Key::Menu)
     {
         releaseButton = Key::None;
     }
