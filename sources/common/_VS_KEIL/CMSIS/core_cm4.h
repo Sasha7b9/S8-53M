@@ -18,7 +18,7 @@
         #define __RBIT(x) x
     #endif
     #ifndef __CLZ
-        #define __CLZ(x) x
+        #define __CLZ(x)
     #endif
 #endif
 
