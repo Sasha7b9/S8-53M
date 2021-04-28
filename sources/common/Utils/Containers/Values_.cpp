@@ -107,7 +107,7 @@ Text Voltage::ToText(bool always_sign)
         return EmptyText();
     }
 
-    char *suffix = nullptr;
+    pchar suffix = nullptr;
 
     float voltage = *this;
 
