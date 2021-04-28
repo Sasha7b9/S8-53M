@@ -162,7 +162,7 @@ void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch,
 
 void ReaderFPGA::Read::Randomizer::UtilizeFirstBytes(const uint16 * const address, int num_words)
 {
-    __IO uint16 data;
+    volatile uint16 data;
 
     for (int i = 0; i < num_words; i++)
     {
