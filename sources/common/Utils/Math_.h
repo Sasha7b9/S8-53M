@@ -5,7 +5,7 @@
 
 namespace Math
 {
-    uint ToUINT(void *pointer);
+    uint ToUINT(const void *pointer);
 
     uint8 GetMaxFromArray(puchar data, uint first_point, uint last_point);
 

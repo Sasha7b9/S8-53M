@@ -454,7 +454,7 @@ bool Math::InRange(T value, T min, T max)
 }
 
 
-uint Math::ToUINT(void *pointer)
+uint Math::ToUINT(const void *pointer)
 {
 #ifndef __linux__
     return (uint)pointer;
