@@ -1,7 +1,5 @@
 project (Panel)
 
-set(CMAKE_UNITY_BUILD ON)
-
 include_directories(src
                     src/Hardware/HAL
                     ..
