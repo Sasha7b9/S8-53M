@@ -146,7 +146,7 @@ Text Time::ToText(bool always_sign)
         return EmptyText();
     }
 
-    char *suffix = nullptr;
+    pchar suffix = nullptr;
 
     float time = *this;
 
