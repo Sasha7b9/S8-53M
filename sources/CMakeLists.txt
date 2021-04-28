@@ -6,7 +6,7 @@ set (TARGET_NAME S8-53M)
 
 if(WIN32)
 else()
-    add_definitions(-fmax-errors=1)
+    add_definitions(-fmax-errors=1 -Werror)
 endif()
 
 add_subdirectory(Device)
