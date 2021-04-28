@@ -8,6 +8,10 @@ include_directories(src
                     ../common/STM32Cube_L0/Drivers/STM32L0xx_HAL_Driver/Inc
                     ../common/STM32Cube_L0/Drivers/CMSIS/Device/ST/STM32L0xx/Include
                     ../common/STM32Cube_L0/Drivers/CMSIS/Include
+if(WIN32)
+else()
+                    /usr/include/x86_64-linux-gnu
+endif()
                     )
 
 add_definitions(-DSTM32L063xx -DUSE_HAL_DRIVER)
