@@ -34,7 +34,7 @@ struct PacketROM
     bool IsValid() const { return (state == STATE_VALID); }
 
     uint Address() const {
-#ifdef GCC
+#ifdef __linux__
         return 0;
 #else
         return (uint)this;
