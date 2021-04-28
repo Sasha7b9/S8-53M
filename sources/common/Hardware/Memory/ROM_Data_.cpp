@@ -34,7 +34,7 @@ static void CopyDataToFreeSpace(const Sector *src);
 
 void ROM::Data::GetInfo(bool existData[MAX_NUM_SAVED_WAVES])
 {
-    for (int i = 0; i < MAX_NUM_SAVED_WAVES; i++)
+    for (uint i = 0; i < MAX_NUM_SAVED_WAVES; i++)
     {
         existData[i] = false;
     }
