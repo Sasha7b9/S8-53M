@@ -21,6 +21,10 @@ include_directories(..
                     ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Core/Inc
                     ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc
                     ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc
+if(WIN32)
+else()
+                    /usr/include/x86_64-linux-gnu
+endif()
                     )
 
 add_definitions(-DSTM32F429xx -DUSE_HAL_DRIVER -DDEVICE)
