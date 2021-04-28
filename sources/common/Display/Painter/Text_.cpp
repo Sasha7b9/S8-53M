@@ -204,7 +204,7 @@ void Text::DrawInRect(int x, int y, uint width, uint)
 
 static int DrawBigChar(int eX, int eY, uint size, char symbol)
 {
-    uint8 width = Font::font->symbol[symbol].width;
+    uint8 width = Font::font->symbol[(uint8)symbol].width;
     uint8 height = (uint8)Font::font->height;
 
     for (int b = 0; b < height; b++)
