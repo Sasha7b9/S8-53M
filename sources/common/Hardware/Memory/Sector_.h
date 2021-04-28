@@ -33,7 +33,7 @@ struct PacketROM
     bool IsErased() const { return (state == STATE_ERASED); }
     bool IsValid() const { return (state == STATE_VALID); }
 
-    uint Address() const { (uint)this; };
+    uint Address() const { return (uint)this; };
 
     PacketROM *Next() const;
     
