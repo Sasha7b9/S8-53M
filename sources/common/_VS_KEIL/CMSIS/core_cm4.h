@@ -14,6 +14,9 @@
     #ifndef __STATIC_INLINE
         #define __STATIC_INLINE
     #endif
+    #ifndef __RBIT
+        #define __RBIT(x)
+    #endif
 #endif
 
 void NVIC_SystemReset(void);
