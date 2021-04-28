@@ -308,7 +308,7 @@ Record *SectorSet::FirstRecord()
 
 bool SectorSet::Contains(Record *record)
 {
-    uint addressRecord = reinterpret_cast<uint>(record);
+    uint addressRecord = Math::ToUINT(record);
 
     return addressRecord >= sector.address && addressRecord < sector.End();
 }
