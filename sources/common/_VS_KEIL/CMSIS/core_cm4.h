@@ -9,6 +9,13 @@
 #define __IO
 #endif
 
+#ifdef WIN32
+#else
+    #ifndef __STATIC_INLINE
+        #define __STATIC_INLINE
+    #endif
+#endif
+
 void NVIC_SystemReset(void);
 void NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority);
 void __disable_irq(void);
