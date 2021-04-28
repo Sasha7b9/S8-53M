@@ -35,7 +35,7 @@ struct PacketROM
 
     uint Address() const {
 #ifdef __linux__
-        return 0;
+        return 0 ;
 #else
         return (uint)this;
 #endif
