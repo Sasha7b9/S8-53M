@@ -57,8 +57,10 @@ void HAL_LTDC::LoadPalette()
 
 void HAL_LTDC::SetBuffers(uint8 *front, uint8 *back)
 {
+#ifndef __linux
     frontBuffer = reinterpret_cast<uint>(front);
     backBuffer = reinterpret_cast<uint>(back);
+#endif
 
     LTDC_LayerCfgTypeDef pLayerCfg;
 
