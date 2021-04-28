@@ -169,6 +169,7 @@ void ReaderFPGA::Read::Randomizer::UtilizeFirstBytes(const uint16 * const addres
         data = *address;
     }
 
+
     data = data;
 }
 
