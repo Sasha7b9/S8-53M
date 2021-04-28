@@ -45,6 +45,8 @@ if(WIN32)
 
 else()
 
+    add_definitions(-Wno-builtin-declaration-mismatch)
+
 endif()
 
 file(GLOB VS_KEIL_ARMCLANG ../common/vs_keil/ARMCLANG/*)
