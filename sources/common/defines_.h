@@ -1,6 +1,6 @@
 // 2021/03/22 14:37:11 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
-#ifndef WIN32
+#ifdef __ARMCC_VERSION
 #pragma anon_unions
 #endif
 
