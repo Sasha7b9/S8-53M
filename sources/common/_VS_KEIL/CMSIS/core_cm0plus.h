@@ -5,7 +5,10 @@
 #include <stdint.h>
 
 #define __IO
+
+#ifdef WIN32
 #define __RAM_FUNC
+#endif
 
 void NVIC_SystemReset(void);
 void NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority);
