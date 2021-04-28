@@ -6,6 +6,10 @@
 #define __MODULE__ ""
 #endif
 
+#ifdef __linux__
+#define __MODULE__ ""
+#endif
+
 
 #define LOG_WRITE(...)   Log_Write(__VA_ARGS__)
 #define LOG_ERROR(...)   Log_Error(__MODULE__, __FUNCTION__, __LINE__, __VA_ARGS__)
