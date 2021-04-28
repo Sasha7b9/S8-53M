@@ -14,9 +14,12 @@
     #ifndef __STATIC_INLINE
         #define __STATIC_INLINE
     #endif
-    #ifndef __RBIT
-//        #define __RBIT(x) x
-    #endif
+    
+    inline uint32_t __RBIT(uint32_t value)
+    {
+        return value;
+    }
+    
     #ifndef __CLZ
 //        #define __CLZ 0
     #endif
