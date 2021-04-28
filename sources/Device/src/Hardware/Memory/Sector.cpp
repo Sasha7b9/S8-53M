@@ -1,5 +1,6 @@
 // 2021/04/27 11:09:31 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
+#include "common/Utils/Math_.h"
 #include "FPGA/Data/DataSettings.h"
 #include "FPGA/Data/Storage.h"
 
