@@ -985,7 +985,7 @@ void DrawSetMask()
 
     deltaY--;
     Color::FILL.SetAsCurrent();
-    for(int i = 0; i < sizeof(strings) / 4; i++)
+    for(uint i = 0; i < sizeof(strings) / 4; i++)
     {
         Text(strings[i]).Draw(x0 + deltaX, y0 + 100 + deltaY * i);
     }
