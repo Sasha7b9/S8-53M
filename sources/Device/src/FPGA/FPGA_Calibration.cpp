@@ -384,7 +384,7 @@ static float CalculateDeltaADC(const Channel &ch, float *avgADC1, float *avgADC2
         while(_GET_BIT(HAL_FMC::Read(RD_FL), 0) == 0) {};
         HAL_FMC::Write(WR_STOP, 1);
 
-        for(int i = 0; i < NUM_POINTS; i++)
+        for(uint i = 0; i < NUM_POINTS; i++)
         {
             if(ch == ChA)
             {
