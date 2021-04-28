@@ -2598,7 +2598,7 @@ __STATIC_INLINE uint32_t LL_ADC_REG_GetSequencerRanks(ADC_TypeDef *ADCx, uint32_
 #ifndef __linux__
   __IO uint32_t *preg = __ADC_PTR_REG_OFFSET(ADCx->SQR1, __ADC_MASK_SHIFT(Rank, ADC_REG_SQRX_REGOFFSET_MASK));
 #else
-  __IO uint32_t *pre = 0;
+  __IO uint32_t *preg = 0;
 #endif  
 
   return (uint32_t) (READ_BIT(*preg,
