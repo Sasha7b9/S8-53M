@@ -25,12 +25,9 @@ void Interface::Update()
         {
             static const int SIZE_BUFFER = 3;
 
-            uint8 message[SIZE_BUFFER] = { 0xFF, (uint8)(event.key), (uint8)(event.action) };
-
+            uint8 buffer_out[SIZE_BUFFER] = { 0xFF, (uint8)(event.key), (uint8)(event.action) };
             uint8 buffer_in[SIZE_BUFFER];
-
-            HAL_SPI2::TransmitReceivce(message, buffer_in, SIZE_BUFFER);
-
+            HAL_SPI2::TransmitReceivce(buffer_out, buffer_in, SIZE_BUFFER);
             ProcessReceivedData(buffer_in, SIZE_BUFFER);
         }
     }
@@ -38,9 +35,9 @@ void Interface::Update()
 
     if (HAL_SPI2::TimeAfterTransmit() > 10)
     {
-        uint8 message[3] = { 0, 0, 0 };
+        uint8 buffer_out[3] = { 0, 0, 0 };
         uint8 buffer_in[3] = { 0, 0, 0 };
-        HAL_SPI2::TransmitReceivce(message, buffer_in, 3);
+        HAL_SPI2::TransmitReceivce(buffer_out, buffer_in, 3);
         ProcessReceivedData(buffer_in, 3);
     }
 }
