@@ -47,7 +47,7 @@ void HAL_SPI5::Init()
     HAL_NVIC_SetPriority(SPI5_IRQn, 0, 1);
     HAL_NVIC_EnableIRQ(SPI5_IRQn);
 
-    HAL_SPI_TransmitReceive_IT(&handleSPI5, buffer_out, buffer_in, SIZE_PACKET);
+    HAL_SPI_Receive_IT(&handleSPI5, buffer_in, SIZE_PACKET);
 }
 
 
@@ -56,7 +56,7 @@ void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
 {
     if (hspi == &handleSPI5)
     {
-        HAL_SPI_TransmitReceive_IT(&handleSPI5, buffer_out, buffer_in, SIZE_PACKET);
+        HAL_SPI_Receive_IT(&handleSPI5, buffer_in, SIZE_PACKET);
     }
 }
 
@@ -68,6 +68,6 @@ void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi)
     {
         Panel::CallbackOnReceiveSPI5(buffer_in, SIZE_PACKET);
 
-        HAL_SPI_TransmitReceive_IT(&handleSPI5, buffer_out, buffer_in, SIZE_PACKET);
+        HAL_SPI_Receive_IT(&handleSPI5, buffer_in, SIZE_PACKET);
     }
 }
