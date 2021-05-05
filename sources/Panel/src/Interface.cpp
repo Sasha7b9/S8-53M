@@ -16,9 +16,8 @@ void Interface::Update()
             static const int SIZE_BUFFER = 3;
 
             uint8 buffer_out[SIZE_BUFFER] = { 0xFF, (uint8)(event.key), (uint8)(event.action) };
-            uint8 buffer_in[SIZE_BUFFER];
-            HAL_SPI2::TransmitReceivce(buffer_out, buffer_in, SIZE_BUFFER);
-            ProcessReceivedData(buffer_in, SIZE_BUFFER);
+
+            TransmitAndProcessAnswer(buffer_out);
         }
     }
 
@@ -30,6 +29,16 @@ void Interface::Update()
         HAL_SPI2::TransmitReceivce(buffer_out, buffer_in, 3);
         ProcessReceivedData(buffer_in, 3);
     }
+}
+
+
+void Interface::TransmitAndProcessAnswer(uint8 *buffer_out)
+{
+    uint8 buffer_in[3];
+
+    HAL_SPI2::TransmitReceivce(buffer_out, buffer_in, 3);
+
+    ProcessReceivedData(buffer_in, 3);
 }
 
 
