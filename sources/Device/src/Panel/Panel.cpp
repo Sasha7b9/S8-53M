@@ -16,10 +16,10 @@
 
 #define MAX_DATA            20
 
-#define LED_CHAN0_ENABLE    129U
-#define LED_CHAN0_DISABLE   1U
-#define LED_CHAN1_ENABLE    130U
-#define LED_CHAN1_DISABLE   2U
+#define LED_CHANA_ENABLE    129U
+#define LED_CHANA_DISABLE   1U
+#define LED_CHANB_ENABLE    130U
+#define LED_CHANB_DISABLE   2U
 #define LED_TRIG_ENABLE     131
 #define LED_TRIG_DISABLE    3
 #define POWER_OFF           4
@@ -370,50 +370,57 @@ void Panel::CallbackOnReceiveSPI5(uint8 *data, uint size)
     }
 }
 
-void Panel::EnableLEDChannel0(bool enable)
+
+void Panel::EnableLED(LED::E led, bool enable)
 {
-    Panel::TransmitData(enable ? LED_CHAN0_ENABLE : LED_CHAN0_DISABLE);
-}
-
-void Panel::EnableLEDChannel1(bool enable)
-{
-    Panel::TransmitData(enable ? LED_CHAN1_ENABLE : LED_CHAN1_DISABLE);
-}
-
-void Panel::EnableLEDTrig(bool enable)
-{
-    static uint timeEnable = 0;
-    static bool first = true;
-    static bool fired = false;
-    if(first)
+    if (led == LED::Trig)
     {
-        Panel::TransmitData(LED_TRIG_DISABLE);
-        TrigLev::exist_impulse = false;
-        timeEnable = TIME_MS;
-        first = false;
-    }
-
-    if(enable)
-    {
-        timeEnable = TIME_MS;
-    }
-
-    if(enable != fired)
-    {
-        if(enable)
-        {
-            Panel::TransmitData(LED_TRIG_ENABLE);
-            TrigLev::exist_impulse = true;
-            fired = true;
-        }
-        else if(TIME_MS - timeEnable > 100)
+        static uint timeEnable = 0;
+        static bool first = true;
+        static bool fired = false;
+        if (first)
         {
             Panel::TransmitData(LED_TRIG_DISABLE);
             TrigLev::exist_impulse = false;
-            fired = false;
+            timeEnable = TIME_MS;
+            first = false;
+        }
+
+        if (enable)
+        {
+            timeEnable = TIME_MS;
+        }
+
+        if (enable != fired)
+        {
+            if (enable)
+            {
+                Panel::TransmitData(LED_TRIG_ENABLE);
+                TrigLev::exist_impulse = true;
+                fired = true;
+            }
+            else if (TIME_MS - timeEnable > 100)
+            {
+                Panel::TransmitData(LED_TRIG_DISABLE);
+                TrigLev::exist_impulse = false;
+                fired = false;
+            }
         }
     }
+    else if (led == LED::RegSet)
+    {
+        Pin::LED.Write(enable ? 1 : 0);
+    }
+    else if (led == LED::ChanA)
+    {
+        Panel::TransmitData(enable ? LED_CHANA_ENABLE : LED_CHANA_DISABLE);
+    }
+    else if (led == LED::ChanB)
+    {
+        Panel::TransmitData(enable ? LED_CHANB_ENABLE : LED_CHANB_DISABLE);
+    }
 }
+
 
 void Panel::TransmitData(uint16 data)
 {
@@ -428,13 +435,14 @@ void Panel::TransmitData(uint16 data)
     }
 }
 
-uint16 Panel::NextData()
+uint16 Panel::NextDataForTransmit()
 {
     if (numDataForTransmitted > 0)
     {
         numDataForTransmitted--;
         return dataTransmitted[numDataForTransmitted];
     }
+
     return 0;
 }
 
@@ -452,13 +460,7 @@ void Panel::Enable()
 void Panel::Init()
 {
     // Лампочка УСТАНОВКА  pinLED
-
-    Panel::EnableLEDRegSet(false);
-}
-
-void Panel::EnableLEDRegSet(bool enable)
-{
-    Pin::LED.Write(enable ? 1 : 0);
+    Panel::EnableLED(LED::RegSet, false);
 }
 
 Key::E Panel::WaitPressingButton()
@@ -521,7 +523,6 @@ static void PowerDown()
 {
     ((Page *)Item::Opened())->ShortPressOnItem(0);
     Settings::Save();
-//\    Log_DisconnectLoggerUSB();
     Panel::TransmitData(0x04);           // Посылаем команду выключения
 }
 

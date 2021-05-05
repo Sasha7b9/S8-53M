@@ -50,6 +50,7 @@ void HAL_SPI5::Init()
 }
 
 
+// Для обработки ошибок
 void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
 {
     if (hspi == &handleSPI5)
@@ -59,6 +60,7 @@ void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
 }
 
 
+// Вызывается на приёме
 void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi)
 {
     if (hspi == &handleSPI5)

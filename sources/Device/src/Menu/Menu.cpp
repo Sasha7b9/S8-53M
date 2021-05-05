@@ -587,12 +587,12 @@ void Menu::SwitchSetLED()
     if (first)
     {
         first = false;
-        Panel::EnableLEDRegSet(state);
+        Panel::EnableLED(LED::RegSet, state);
         prevState = state;
     }
     else if (prevState != state)
     {
-        Panel::EnableLEDRegSet(state);
+        Panel::EnableLED(LED::RegSet, state);
         prevState = state;
     }
 }
