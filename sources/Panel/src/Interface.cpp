@@ -11,17 +11,7 @@ void Interface::Update()
     {
         KeyboardEvent event = Keyboard::Buffer::GetNextEvent();
 
-        if (pinPower.Read() == 0)
-        {
-            if (event.key == Key::Power)
-            {
-                if (event.IsUp() || event.IsLong())
-                {
-                    pinPower.Set();
-                }
-            }
-        }
-        else
+        if (event.key != Key::Power)
         {
             static const int SIZE_BUFFER = 3;
 

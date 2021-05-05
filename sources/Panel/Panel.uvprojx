@@ -572,6 +572,16 @@
               </FileOption>
             </File>
             <File>
+              <FileName>PowerSupply.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\PowerSupply.h</FilePath>
+            </File>
+            <File>
+              <FileName>PowerSupply.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\PowerSupply.cpp</FilePath>
+            </File>
+            <File>
               <FileName>startup_stm32l063xx.s</FileName>
               <FileType>2</FileType>
               <FilePath>.\src\startup_stm32l063xx.s</FilePath>
@@ -1154,6 +1164,16 @@
                   </Aads>
                 </FileArmAds>
               </FileOption>
+            </File>
+            <File>
+              <FileName>PowerSupply.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\PowerSupply.h</FilePath>
+            </File>
+            <File>
+              <FileName>PowerSupply.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\PowerSupply.cpp</FilePath>
             </File>
             <File>
               <FileName>startup_stm32l063xx.s</FileName>

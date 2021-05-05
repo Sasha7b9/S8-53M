@@ -2,6 +2,7 @@
 #include "HAL.h"
 #include "Interface.h"
 #include "Keyboard.h"
+#include "PowerSupply.h"
 
 
 int main()
@@ -9,6 +10,14 @@ int main()
     HAL::Init();
 
     Keyboard::Init();
+
+    while (!PowerSupply::IsEnabled())
+    {
+        Keyboard::Update();
+
+        PowerSupply::Update();
+    }
+
 
     while (1)
     {
