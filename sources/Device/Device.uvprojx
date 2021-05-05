@@ -1189,9 +1189,9 @@
               <FilePath>..\common\Hardware\HAL\HAL_PINS_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_ROM_stm_.cpp</FileName>
+              <FileName>HAL_ROM_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_ROM_stm_.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_ROM_.cpp</FilePath>
             </File>
             <File>
               <FileName>HAL_RTC_.cpp</FileName>
@@ -3444,9 +3444,9 @@
               <FilePath>..\common\Hardware\HAL\HAL_PINS_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_ROM_stm_.cpp</FileName>
+              <FileName>HAL_ROM_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_ROM_stm_.cpp</FilePath>
+              <FilePath>..\common\Hardware\HAL\HAL_ROM_.cpp</FilePath>
             </File>
             <File>
               <FileName>HAL_RTC_.cpp</FileName>

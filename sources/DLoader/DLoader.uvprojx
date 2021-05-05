@@ -915,6 +915,11 @@
               <FilePath>..\common\Hardware\HAL\HAL_RTC_.cpp</FilePath>
             </File>
             <File>
+              <FileName>HAL_ROM_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_ROM_.cpp</FilePath>
+            </File>
+            <File>
               <FileName>HAL_SPI1_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_SPI1_.cpp</FilePath>
@@ -933,11 +938,6 @@
               <FileName>HAL_TIM7_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_TIM7_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_ROM_stm_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_ROM_stm_.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -2132,6 +2132,11 @@
               <FilePath>..\common\Hardware\HAL\HAL_RTC_.cpp</FilePath>
             </File>
             <File>
+              <FileName>HAL_ROM_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_ROM_.cpp</FilePath>
+            </File>
+            <File>
               <FileName>HAL_SPI1_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_SPI1_.cpp</FilePath>
@@ -2150,11 +2155,6 @@
               <FileName>HAL_TIM7_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_TIM7_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_ROM_stm_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_ROM_stm_.cpp</FilePath>
             </File>
           </Files>
         </Group>
