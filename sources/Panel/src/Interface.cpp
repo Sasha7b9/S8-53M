@@ -25,9 +25,8 @@ void Interface::Update()
     if (HAL_SPI2::TimeAfterTransmit() > 10)
     {
         uint8 buffer_out[3] = { 0, 0, 0 };
-        uint8 buffer_in[3] = { 0, 0, 0 };
-        HAL_SPI2::TransmitReceivce(buffer_out, buffer_in, 3);
-        ProcessReceivedData(buffer_in, 3);
+
+        TransmitAndProcessAnswer(buffer_out);
     }
 }
 
