@@ -7,45 +7,35 @@
 
 void Interface::Update()
 {
-    while (!Keyboard::Buffer::IsEmpty())
-    {
-        KeyboardEvent event = Keyboard::Buffer::GetNextEvent();
+    KeyboardEvent event = Keyboard::Buffer::GetNextEvent();
 
-        if (event.key != Key::Power)
+    static const int SIZE_BUFFER = 3;
+
+    uint8 buffer_out[SIZE_BUFFER] = { 0xFF, (uint8)(event.key), (uint8)(event.action) };
+
+    bool need_transmit = false;
+
+    if (event.key != Key::None && event.key != Key::Power)
+    {
+        need_transmit = true;
+    }
+    else if (HAL_SPI2::TimeAfterTransmit() > 10)
+    {
+        buffer_out[0] = 0x00;
+
+        need_transmit = true;
+    }
+
+    if (need_transmit)
+    {
+        uint8 buffer_in[SIZE_BUFFER];
+
+        HAL_SPI2::TransmitReceivce(buffer_out, buffer_in, SIZE_BUFFER);
+
+        for (uint i = 0; i < SIZE_BUFFER; i++)
         {
-            static const int SIZE_BUFFER = 3;
-
-            uint8 buffer_out[SIZE_BUFFER] = { 0xFF, (uint8)(event.key), (uint8)(event.action) };
-
-            TransmitAndProcessAnswer(buffer_out);
+            ProcessByte(buffer_in[i]);
         }
-    }
-
-
-    if (HAL_SPI2::TimeAfterTransmit() > 10)
-    {
-        uint8 buffer_out[3] = { 0, 0, 0 };
-
-        TransmitAndProcessAnswer(buffer_out);
-    }
-}
-
-
-void Interface::TransmitAndProcessAnswer(uint8 *buffer_out)
-{
-    uint8 buffer_in[3];
-
-    HAL_SPI2::TransmitReceivce(buffer_out, buffer_in, 3);
-
-    ProcessReceivedData(buffer_in, 3);
-}
-
-
-void Interface::ProcessReceivedData(uint8 *data, uint size)
-{
-    for (uint i = 0; i < size; i++)
-    {
-        ProcessByte(data[i]);
     }
 }
 

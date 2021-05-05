@@ -9,9 +9,5 @@ public:
 
 private:
 
-    static void ProcessReceivedData(uint8 *data, uint size);
-
     static void ProcessByte(uint8 byte);
-
-    static void TransmitAndProcessAnswer(uint8 *buffer_out);
 };
