@@ -40,6 +40,13 @@ struct HAL_SPI2
     static void Init();
 
     static bool TransmitReceivce(uint8 *buffer_out, uint8 *buffer_in, uint size);
+
+    // Время, прошедшее после последней передачи
+    static uint TimeAfterTransmit();
+
+private:
+
+    static uint time_last_transmit;
 };
 
 

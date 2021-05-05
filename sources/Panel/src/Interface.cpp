@@ -34,6 +34,15 @@ void Interface::Update()
             ProcessReceivedData(buffer_in, SIZE_BUFFER);
         }
     }
+
+
+    if (HAL_SPI2::TimeAfterTransmit() > 10)
+    {
+        uint8 message[3] = { 0, 0, 0 };
+        uint8 buffer_in[3] = { 0, 0, 0 };
+        HAL_SPI2::TransmitReceivce(message, buffer_in, 3);
+        ProcessReceivedData(buffer_in, 3);
+    }
 }
 
 
@@ -48,26 +57,19 @@ void Interface::ProcessReceivedData(uint8 *data, uint size)
 
 void Interface::ProcessByte(uint8 byte)
 {
-    uint8 control = byte & 0x0F;
+    uint8 control = (uint8)(byte & 0x0F);
 
-    if (control == TypeLED::Trig)
+    if (control == TypeLED::Power)
     {
-
+        pinPower.Reset();
     }
-    else if (control == TypeLED::RegSet)
-    {
 
-    }
-    else if (control == TypeLED::ChanA)
+    if (control > 0 && control < 5)
     {
+        static LED *leds[] = { nullptr, &led_Trig, &led_Set, &led_ChannelA, &led_ChannelB };
 
-    }
-    else if (control == TypeLED::ChanB)
-    {
+        LED *led = leds[control];
 
-    }
-    else if (control == TypeLED::Power)
-    {
-
+        (control == byte) ? led->Disable() : led->Enable();
     }
 }

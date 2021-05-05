@@ -23,6 +23,9 @@ static SPI_HandleTypeDef handleSPI2 =
 };
 
 
+uint HAL_SPI2::time_last_transmit = 0;
+
+
 void HAL_SPI2::Init()
 {
     HAL_PINS::InitSPI2();
@@ -39,9 +42,17 @@ bool HAL_SPI2::TransmitReceivce(uint8 *buffer_out, uint8 *buffer_in, uint size)
 
     bool result = (HAL_SPI_TransmitReceive(&handleSPI2, buffer_out, buffer_in, (uint16)size, 100) == HAL_OK);
 
+    time_last_transmit = TIME_MS;
+
     pinSPI2_NSS.Set();
 
     return (result == HAL_OK);
+}
+
+
+uint HAL_SPI2::TimeAfterTransmit()
+{
+    return (TIME_MS - time_last_transmit);
 }
 
 
