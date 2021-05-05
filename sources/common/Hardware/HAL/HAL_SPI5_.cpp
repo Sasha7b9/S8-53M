@@ -33,7 +33,7 @@ void *HAL_SPI5::handle = &handleSPI5;
 
 #define SIZE_PACKET 3
 static uint8 buffer_in[SIZE_PACKET];                // Сюда принимаем данные
-static uint8 buffer_out[SIZE_PACKET] = { 0, 0, 0 }; // Здесь данные, которые нужно передать
+//static uint8 buffer_out[SIZE_PACKET] = { 0, 0, 0 }; // Здесь данные, которые нужно передать
 
 
 void HAL_SPI5::Init()
@@ -69,5 +69,7 @@ void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi)
         Panel::CallbackOnReceiveSPI5(buffer_in, SIZE_PACKET);
 
         HAL_SPI_Receive_IT(&handleSPI5, buffer_in, SIZE_PACKET);
+
+        SPI5->DR = Panel::NextData();
     }
 }

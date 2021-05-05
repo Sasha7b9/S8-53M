@@ -204,7 +204,7 @@ void FPGA::BUS::Write(uint16 * const address, uint16 data, bool restart)
         Start();
     }
 
-    Panel::EnableLED(LED::Trig, false);     // После каждой засылки выключаем лампочку синхронизации
+    Panel::EnableLED(TypeLED::Trig, false);     // После каждой засылки выключаем лампочку синхронизации
 }
 
 

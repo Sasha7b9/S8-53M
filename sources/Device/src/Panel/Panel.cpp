@@ -23,9 +23,9 @@ static const uint MIN_TIME = 500;
 static Key::E pressedKey = Key::None;
 volatile static Key::E pressedButton = Key::None;         // Это используется для отслеживания нажатой кнопки при
                                                           // отключенной панели
-static uint16 data_for_transmit[MAX_DATA] = {0x00};
-static uint16 num_data_for_transmit = 0;
 bool Panel::isRunning = true;
+
+static Queue<uint8> data_for_panel;
 
 
 struct ReceivedBuffer
@@ -362,9 +362,9 @@ void Panel::CallbackOnReceiveSPI5(uint8 *data, uint size)
 }
 
 
-void Panel::EnableLED(LED::E led, bool enable)
+void Panel::EnableLED(TypeLED::E led, bool enable)
 {
-    if (led == LED::Trig)
+    if (led == TypeLED::Trig)
     {
         static uint timeEnable = 0;
         static bool first = true;
@@ -407,14 +407,20 @@ void Panel::EnableLED(LED::E led, bool enable)
 
 void Panel::TransmitData(uint8 data)
 {
-    if(num_data_for_transmit >= MAX_DATA)
+    if(data_for_panel.Size() > MAX_DATA)
     {
         LOG_WRITE("Не могу послать в панель - мало места");
     }
     else
     {
-        data_for_transmit[num_data_for_transmit++] = data;
+        data_for_panel.Push(data);
     }
+}
+
+
+uint8 Panel::NextData()
+{
+    return data_for_panel.Front();
 }
 
 
@@ -433,7 +439,7 @@ void Panel::Enable()
 void Panel::Init()
 {
     // Лампочка УСТАНОВКА  pinLED
-    Panel::EnableLED(LED::RegSet, false);
+    Panel::EnableLED(TypeLED::RegSet, false);
 }
 
 Key::E Panel::WaitPressingButton()

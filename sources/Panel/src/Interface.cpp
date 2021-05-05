@@ -48,5 +48,22 @@ void Interface::ProcessReceivedData(uint8 *data, uint size)
 
 void Interface::ProcessByte(uint8 byte)
 {
+    LED *leds[] = { nullptr, &led_Trig, &led_Set, &led_ChannelA, &led_ChannelB };
 
+    if (byte != 0)
+    {
+        if (byte == 5 || (byte == (5 | 0x80)))
+        {
+            pinPower.Reset();
+        }
+
+        if (byte & 0x80)
+        {
+            leds[byte & 0x0F]->Enable();
+        }
+        else
+        {
+            leds[byte & 0x0F]->Disable();
+        }
+    }
 }
