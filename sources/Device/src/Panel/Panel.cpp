@@ -16,15 +16,6 @@
 
 #define MAX_DATA            20
 
-#define LED_CHANA_ENABLE    129U
-#define LED_CHANA_DISABLE   1U
-#define LED_CHANB_ENABLE    130U
-#define LED_CHANB_DISABLE   2U
-#define LED_TRIG_ENABLE     131
-#define LED_TRIG_DISABLE    3
-#define POWER_OFF           4
-
-
 inline void E() {};
 
 static const uint MIN_TIME = 500;
@@ -32,8 +23,8 @@ static const uint MIN_TIME = 500;
 static Key::E pressedKey = Key::None;
 volatile static Key::E pressedButton = Key::None;         // Ёто используетс€ дл€ отслеживани€ нажатой кнопки при
                                                           // отключенной панели
-static uint16 dataTransmitted[MAX_DATA] = {0x00};
-static uint16 numDataForTransmitted = 0;
+static uint16 data_for_transmit[MAX_DATA] = {0x00};
+static uint16 num_data_for_transmit = 0;
 bool Panel::isRunning = true;
 
 
@@ -380,7 +371,7 @@ void Panel::EnableLED(LED::E led, bool enable)
         static bool fired = false;
         if (first)
         {
-            Panel::TransmitData(LED_TRIG_DISABLE);
+            Panel::TransmitData((uint8)led);
             TrigLev::exist_impulse = false;
             timeEnable = TIME_MS;
             first = false;
@@ -395,61 +386,43 @@ void Panel::EnableLED(LED::E led, bool enable)
         {
             if (enable)
             {
-                Panel::TransmitData(LED_TRIG_ENABLE);
+                Panel::TransmitData((uint8)(led | 0x80));
                 TrigLev::exist_impulse = true;
                 fired = true;
             }
             else if (TIME_MS - timeEnable > 100)
             {
-                Panel::TransmitData(LED_TRIG_DISABLE);
+                Panel::TransmitData((uint8)(led));
                 TrigLev::exist_impulse = false;
                 fired = false;
             }
         }
     }
-    else if (led == LED::RegSet)
+    else
     {
-        Pin::LED.Write(enable ? 1 : 0);
-    }
-    else if (led == LED::ChanA)
-    {
-        Panel::TransmitData(enable ? LED_CHANA_ENABLE : LED_CHANA_DISABLE);
-    }
-    else if (led == LED::ChanB)
-    {
-        Panel::TransmitData(enable ? LED_CHANB_ENABLE : LED_CHANB_DISABLE);
+        Panel::TransmitData(enable ? (uint8)(led | 0x80) : (uint8)led);
     }
 }
 
 
-void Panel::TransmitData(uint16 data)
+void Panel::TransmitData(uint8 data)
 {
-    if(numDataForTransmitted >= MAX_DATA)
+    if(num_data_for_transmit >= MAX_DATA)
     {
         LOG_WRITE("Ќе могу послать в панель - мало места");
     }
     else
     {
-        dataTransmitted[numDataForTransmitted] = data;
-        numDataForTransmitted++;
+        data_for_transmit[num_data_for_transmit++] = data;
     }
 }
 
-uint16 Panel::NextDataForTransmit()
-{
-    if (numDataForTransmitted > 0)
-    {
-        numDataForTransmitted--;
-        return dataTransmitted[numDataForTransmitted];
-    }
-
-    return 0;
-}
 
 void Panel::Disable()
 {
     Panel::isRunning = false;
 }
+
 
 void Panel::Enable()
 {

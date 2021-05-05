@@ -31,17 +31,17 @@ void HAL_SPI2::Init()
 }
 
 
-bool HAL_SPI2::Transmit(uint8 *buffer, uint size)
+bool HAL_SPI2::TransmitReceivce(uint8 *buffer_out, uint8 *buffer_in, uint size)
 {
     extern Pin pinSPI2_NSS;
 
     pinSPI2_NSS.Reset();
 
-    bool result = HAL_SPI_Transmit(&handleSPI2, buffer, (uint16)size, 100) == HAL_OK;
+    bool result = (HAL_SPI_TransmitReceive(&handleSPI2, buffer_out, buffer_in, (uint16)size, 100) == HAL_OK);
 
     pinSPI2_NSS.Set();
 
-    return result;
+    return (result == HAL_OK);
 }
 
 

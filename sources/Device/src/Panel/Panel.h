@@ -7,10 +7,13 @@ struct LED
 {
     enum E
     {
-        Trig,
-        RegSet,
-        ChanA,
-        ChanB
+        // Вкл/выкл определяется так: если выкл, то посылается код лампочки, если включить, то устанавл. старший бит
+        _None,
+        Trig,   // 1 / 128 + 1
+        RegSet, // 2 / 128 + 2
+        ChanA,  // 3 / 128 + 3
+        ChanB,  // 4 / 128 + 4
+        Power
     };
 };
 
@@ -28,17 +31,6 @@ public:
 
     static void EnableLED(LED::E led, bool endable);
 
-//    // Включить/выключить светодиод СИНХР.
-//    static void EnableLEDTrig(bool enable);
-//
-//    static void EnableLEDRegSet(bool enable);
-//
-//    // Включить/выключить светодиод КАНАЛ 1.
-//    static void EnableLEDChannel0(bool enable);
-//
-//    // Включить/выключить светодиод КАНАЛ 2.
-//    static void EnableLEDChannel1(bool enable);
-
     // Эта функция должна вызываться из приёмной фунции SPI5
     static void CallbackOnReceiveSPI5(uint8 *data, uint size);
 
@@ -48,12 +40,9 @@ public:
     static void Enable();
 
     // Передать даннные в мк панели управления.
-    static void TransmitData(uint16 data);
+    static void TransmitData(uint8 data);
 
 private:
-
-    // Получить следующие данные для передачи
-    static uint16 NextDataForTransmit();
 
     static bool isRunning;
 };

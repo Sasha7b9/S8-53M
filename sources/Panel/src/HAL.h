@@ -39,7 +39,7 @@ struct HAL_SPI2
 {
     static void Init();
 
-    static bool Transmit(uint8 *buffer, uint size);
+    static bool TransmitReceivce(uint8 *buffer_out, uint8 *buffer_in, uint size);
 };
 
 

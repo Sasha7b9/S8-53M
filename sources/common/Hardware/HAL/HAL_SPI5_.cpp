@@ -32,7 +32,8 @@ void *HAL_SPI5::handle = &handleSPI5;
 
 
 #define SIZE_PACKET 3
-static uint8 buffer[SIZE_PACKET];
+static uint8 buffer_in[SIZE_PACKET];                // —юда принимаем данные
+static uint8 buffer_out[SIZE_PACKET] = { 0, 0, 0 }; // «десь данные, которые нужно передать
 
 
 void HAL_SPI5::Init()
@@ -46,7 +47,7 @@ void HAL_SPI5::Init()
     HAL_NVIC_SetPriority(SPI5_IRQn, 0, 1);
     HAL_NVIC_EnableIRQ(SPI5_IRQn);
 
-    HAL_SPI_Receive_IT(&handleSPI5, buffer, SIZE_PACKET);
+    HAL_SPI_TransmitReceive_IT(&handleSPI5, buffer_out, buffer_in, SIZE_PACKET);
 }
 
 
@@ -55,7 +56,7 @@ void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
 {
     if (hspi == &handleSPI5)
     {
-        HAL_SPI_Receive_IT(&handleSPI5, buffer, SIZE_PACKET);
+        HAL_SPI_TransmitReceive_IT(&handleSPI5, buffer_out, buffer_in, SIZE_PACKET);
     }
 }
 
@@ -65,8 +66,8 @@ void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi)
 {
     if (hspi == &handleSPI5)
     {
-        Panel::CallbackOnReceiveSPI5(buffer, SIZE_PACKET);
+        Panel::CallbackOnReceiveSPI5(buffer_in, SIZE_PACKET);
 
-        HAL_SPI_Receive_IT(&handleSPI5, buffer, SIZE_PACKET);
+        HAL_SPI_TransmitReceive_IT(&handleSPI5, buffer_out, buffer_in, SIZE_PACKET);
     }
 }
