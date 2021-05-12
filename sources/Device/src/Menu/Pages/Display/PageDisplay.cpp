@@ -17,25 +17,16 @@ DEF_CHOICE_2(mcMapping, PageDisplay::self,
 )
 
 
-
-
-
-
-
-
-
-
-
-
-
 static bool IsActive_MinMax()
 {
     return (set.time.base > TBase::_50ns);
 }
 
+
 static void OnChanged_MinMax(bool)
 {
 }
+
 
 DEF_CHOICE_REG_8(mcMinMax, PageDisplay::self,
     "Мин Макс", "Min Max",
@@ -51,6 +42,7 @@ DEF_CHOICE_REG_8(mcMinMax, PageDisplay::self,
     "128", "128",
     set.display.enum_min_max, IsActive_MinMax, OnChanged_MinMax, nullptr
 )
+
 
 DEF_CHOICE_REG_10(mcSmoothing, PageDisplay::self,
     "Сглаживание", "Smoothing",
@@ -69,10 +61,12 @@ DEF_CHOICE_REG_10(mcSmoothing, PageDisplay::self,
     set.display.smoothing, nullptr, nullptr, nullptr
 )
 
+
 void PageDisplay::OnChanged_RefreshFPS(bool)
 {
     FPGA::SetNumSignalsInSec(set.display.enum_fps.NumSignalsInS());
 }
+
 
 DEF_CHOICE_5(mcRefreshFPS, PageDisplay::self,
     "Частота обновл", "Refresh rate",
@@ -86,6 +80,7 @@ DEF_CHOICE_5(mcRefreshFPS, PageDisplay::self,
     set.display.enum_fps, nullptr, PageDisplay::OnChanged_RefreshFPS, nullptr
 )
 
+
 DEF_CHOICE_2(mcTypeShift, PageDisplay::self,
     "Смещение", "Offset",
     "Задаёт режим удержания смещения по вертикали\n1. \"Напряжение\" - сохраняется напряжение смещения.\n2. \"Деления\" - сохраняется положение смещения на экране.",
@@ -94,6 +89,7 @@ DEF_CHOICE_2(mcTypeShift, PageDisplay::self,
     "Деления", "Divisions",
     set.display.linking_rshift, nullptr, nullptr, nullptr
 )
+
 
 DEF_PAGE_9(pageDisplay, PageMain::self, NamePage::Display,
     "ДИСПЛЕЙ", "DISPLAY",
@@ -111,57 +107,11 @@ DEF_PAGE_9(pageDisplay, PageMain::self, NamePage::Display,
     nullptr, nullptr, nullptr, nullptr
 )
 
+
 void PageDisplay::OnPress_Accumulation_Clear()
 {
     Display::Redraw();
 }
 
 
-
-DEF_CHOICE_2(mcSettings_Colors_Scheme, PageDisplay::PageSettings::PageColors::self,
-    "Цветовая схема", "Color scheme",
-    "Режим работы калибратора",
-    "Mode of operation of the calibrator",
-    "Схема 1", "Scheme 1",
-    "Схема 2", "Scheme 2",
-    set.service.colorScheme, nullptr, nullptr, nullptr
-)
-
-static ColorType colorT1 = { 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::DATA_A.index };
-
-DEF_GOVERNOR_COLOR(mgcSettings_Colors_ChannelA, PageDisplay::PageSettings::PageColors::self,
-    "Канал 1", "Channel 1",
-    "",
-    "",
-    colorT1, nullptr
-)
-
-static ColorType colorT2 = { 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::DATA_B.index };
-
-DEF_GOVERNOR_COLOR(mgcSettings_Colors_ChannelB, PageDisplay::PageSettings::PageColors::self,
-    "Канал 2", "Channel 2",
-    "",
-    "",
-    colorT2, nullptr
-)
-
-DEF_GOVERNOR_COLOR(mgcSettings_Colors_Grid, PageDisplay::PageSettings::PageColors::self,
-    "Сетка", "Grid",
-    "Устанавливает цвет сетки",
-    "Sets the grid color",
-    PageDisplay::PageGrid::typeGrid, nullptr
-)
-
-DEF_PAGE_4(pageColors, PageDisplay::PageSettings::self, NamePage::ServiceDisplayColors,
-    "ЦВЕТА", "COLORS",
-    "Выбор цветов дисплея",
-    "The choice of colors display",
-    mcSettings_Colors_Scheme,
-    mgcSettings_Colors_ChannelA,
-    mgcSettings_Colors_ChannelB,
-    mgcSettings_Colors_Grid,
-    nullptr, nullptr, nullptr, nullptr
-)
-
 const Page *PageDisplay::self = &pageDisplay;
-const Page *PageDisplay::PageSettings::PageColors::self = &pageColors;
