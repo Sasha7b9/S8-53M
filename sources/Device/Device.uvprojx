@@ -1977,6 +1977,11 @@
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Cursors\PageCursors.cpp</FilePath>
             </File>
+            <File>
+              <FileName>PageCursorsSet.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Cursors\PageCursorsSet.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2033,11 +2038,6 @@
           <GroupName>Menu/Pages/Display</GroupName>
           <Files>
             <File>
-              <FileName>PageDisplay.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\Display\PageDisplay.cpp</FilePath>
-            </File>
-            <File>
               <FileName>PageAccumulation.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Display\PageAccumulation.cpp</FilePath>
@@ -2061,6 +2061,11 @@
               <FileName>PageSettings.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Display\PageSettings.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PageDisplay.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Display\PageDisplay.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -2108,11 +2113,6 @@
           <GroupName>Menu/Pages/Service</GroupName>
           <Files>
             <File>
-              <FileName>PageService.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\Service\PageService.cpp</FilePath>
-            </File>
-            <File>
               <FileName>PageCalibrator.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Service\PageCalibrator.cpp</FilePath>
@@ -2146,6 +2146,11 @@
               <FileName>PageMath.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Service\PageMath.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PageService.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Service\PageService.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -4397,6 +4402,11 @@
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Cursors\PageCursors.cpp</FilePath>
             </File>
+            <File>
+              <FileName>PageCursorsSet.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Cursors\PageCursorsSet.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4453,11 +4463,6 @@
           <GroupName>Menu/Pages/Display</GroupName>
           <Files>
             <File>
-              <FileName>PageDisplay.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\Display\PageDisplay.cpp</FilePath>
-            </File>
-            <File>
               <FileName>PageAccumulation.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Display\PageAccumulation.cpp</FilePath>
@@ -4481,6 +4486,11 @@
               <FileName>PageSettings.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Display\PageSettings.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PageDisplay.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Display\PageDisplay.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -4528,11 +4538,6 @@
           <GroupName>Menu/Pages/Service</GroupName>
           <Files>
             <File>
-              <FileName>PageService.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\Service\PageService.cpp</FilePath>
-            </File>
-            <File>
               <FileName>PageCalibrator.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Service\PageCalibrator.cpp</FilePath>
@@ -4566,6 +4571,11 @@
               <FileName>PageMath.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Service\PageMath.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PageService.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Service\PageService.cpp</FilePath>
             </File>
           </Files>
         </Group>
