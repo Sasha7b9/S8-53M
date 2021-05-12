@@ -119,7 +119,6 @@ DEF_PAGE_7(pageDebug, PageMain::self, NamePage::Debug,
     "ÎÒËÀÄÊÀ", "DEBUG",
     "",
     "",
-
     mcStats,                            // ÎÒËÀÄÊÀ - Ñòàòèñòèêà
     *PageDebug::PageConsole::self,      // ÎÒËÀÄÊÀ - ÊÎÍÑÎËÜ
     *PageDebug::PageADC::self,          // ÎÒËÀÄÊÀ - ÀÖÏ

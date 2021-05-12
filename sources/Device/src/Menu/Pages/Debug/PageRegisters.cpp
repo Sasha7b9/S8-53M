@@ -16,7 +16,7 @@ DEF_CHOICE_2(mcLaunchFPGA, PageDebug::PageConsole::PageRegisters::self,
 )
 
 
-DEF_CHOICE_2(mcConsole_Registers_RD_FL, PageDebug::PageConsole::PageRegisters::self,
+DEF_CHOICE_2(mcRD_FL, PageDebug::PageConsole::PageRegisters::self,
     "RD_FL", "RD_FL",
     "",
     "",
@@ -26,7 +26,7 @@ DEF_CHOICE_2(mcConsole_Registers_RD_FL, PageDebug::PageConsole::PageRegisters::s
 )
 
 
-DEF_CHOICE_2(mcConsole_Registers_RShiftA, PageDebug::PageConsole::PageRegisters::self,
+DEF_CHOICE_2(mcRShiftA, PageDebug::PageConsole::PageRegisters::self,
     "U см. 1к", "U shift 1ch",
     "",
     "",
@@ -36,7 +36,7 @@ DEF_CHOICE_2(mcConsole_Registers_RShiftA, PageDebug::PageConsole::PageRegisters:
 )
 
 
-DEF_CHOICE_2(mcConsole_Registers_RShiftB, PageDebug::PageConsole::PageRegisters::self,
+DEF_CHOICE_2(mcRShiftB, PageDebug::PageConsole::PageRegisters::self,
     "U см. 2к", "U shift 2ch",
     "",
     "",
@@ -46,7 +46,7 @@ DEF_CHOICE_2(mcConsole_Registers_RShiftB, PageDebug::PageConsole::PageRegisters:
 )
 
 
-DEF_CHOICE_2(mcConsole_Registers_TrigLev, PageDebug::PageConsole::PageRegisters::self,
+DEF_CHOICE_2(mcTrigLev, PageDebug::PageConsole::PageRegisters::self,
     "U синхр.", "U trig.",
     "",
     "",
@@ -56,7 +56,7 @@ DEF_CHOICE_2(mcConsole_Registers_TrigLev, PageDebug::PageConsole::PageRegisters:
 )
 
 
-DEF_CHOICE_2(mcConsole_Registers_RangeA, PageDebug::PageConsole::PageRegisters::self,
+DEF_CHOICE_2(mcRangeA, PageDebug::PageConsole::PageRegisters::self,
     "ВОЛЬТ/ДЕЛ 1", "Range 1",
     "",
     "",
@@ -66,7 +66,7 @@ DEF_CHOICE_2(mcConsole_Registers_RangeA, PageDebug::PageConsole::PageRegisters::
 )
 
 
-DEF_CHOICE_2(mcConsole_Registers_RangeB, PageDebug::PageConsole::PageRegisters::self,
+DEF_CHOICE_2(mcRangeB, PageDebug::PageConsole::PageRegisters::self,
     "ВОЛЬТ/ДЕЛ 2", "Range 2",
     "",
     "",
@@ -76,7 +76,7 @@ DEF_CHOICE_2(mcConsole_Registers_RangeB, PageDebug::PageConsole::PageRegisters::
 )
 
 
-DEF_CHOICE_2(mcConsole_Registers_TrigParam, PageDebug::PageConsole::PageRegisters::self,
+DEF_CHOICE_2(mTrigParam, PageDebug::PageConsole::PageRegisters::self,
     "Парам. синхр.", "Trig param",
     "",
     "",
@@ -86,7 +86,7 @@ DEF_CHOICE_2(mcConsole_Registers_TrigParam, PageDebug::PageConsole::PageRegister
 )
 
 
-DEF_CHOICE_2(mcConsole_Registers_ChanParamA, PageDebug::PageConsole::PageRegisters::self,
+DEF_CHOICE_2(mcChanParamA, PageDebug::PageConsole::PageRegisters::self,
     "Парам. кан. 1", "Chan 1 param",
     "",
     "",
@@ -96,7 +96,7 @@ DEF_CHOICE_2(mcConsole_Registers_ChanParamA, PageDebug::PageConsole::PageRegiste
 )
 
 
-DEF_CHOICE_2(mcConsole_Registers_ChanParamB, PageDebug::PageConsole::PageRegisters::self,
+DEF_CHOICE_2(mcChanParamB, PageDebug::PageConsole::PageRegisters::self,
     "Парам. кан. 2", "Chan 2 param",
     "",
     "",
@@ -106,7 +106,7 @@ DEF_CHOICE_2(mcConsole_Registers_ChanParamB, PageDebug::PageConsole::PageRegiste
 )
 
 
-DEF_CHOICE_2(mcConsole_Registers_TBase, PageDebug::PageConsole::PageRegisters::self,
+DEF_CHOICE_2(mcTBase, PageDebug::PageConsole::PageRegisters::self,
     "ВРЕМЯ/ДЕЛ", "TBase",
     "",
     "",
@@ -116,7 +116,7 @@ DEF_CHOICE_2(mcConsole_Registers_TBase, PageDebug::PageConsole::PageRegisters::s
 )
 
 
-DEF_CHOICE_2(mcConsole_Registers_tShift, PageDebug::PageConsole::PageRegisters::self,
+DEF_CHOICE_2(mcTShift, PageDebug::PageConsole::PageRegisters::self,
     "Т см.", "tShift",
     "",
     "",
@@ -131,17 +131,17 @@ DEF_PAGE_12(pageRegisters, PageDebug::PageConsole::self, NamePage::DebugShowRegi
     "",
     "",
     mcLaunchFPGA,
-    mcConsole_Registers_RD_FL,
-    mcConsole_Registers_RShiftA,
-    mcConsole_Registers_RShiftB,
-    mcConsole_Registers_TrigLev,
-    mcConsole_Registers_RangeA,
-    mcConsole_Registers_RangeB,
-    mcConsole_Registers_TrigParam,
-    mcConsole_Registers_ChanParamA,
-    mcConsole_Registers_ChanParamB,
-    mcConsole_Registers_TBase,
-    mcConsole_Registers_tShift,
+    mcRD_FL,
+    mcRShiftA,
+    mcRShiftB,
+    mcTrigLev,
+    mcRangeA,
+    mcRangeB,
+    mTrigParam,
+    mcChanParamA,
+    mcChanParamB,
+    mcTBase,
+    mcTShift,
     nullptr, nullptr, nullptr, nullptr
 )
 

@@ -6,7 +6,7 @@
 #include "Menu/Pages/Definition.h"
 
 
-static void OnChanged_Randomizer_SamplesForGates()
+static void OnChanged_SamplesForGates()
 {
     FPGA::Randomizer::SetNumberMeasuresForGates(setNRST.num_measures_for_gates);
 }
@@ -16,25 +16,25 @@ DEF_GOVERNOR(mgSamplesForGates, PageDebug::PageRandomizer::self,
     "Âûá-ê/âîğîòà", "Samples/gates",
     "",
     "",
-    setNRST.num_measures_for_gates, 1, 2500, nullptr, OnChanged_Randomizer_SamplesForGates, nullptr
+    setNRST.num_measures_for_gates, 1, 2500, nullptr, OnChanged_SamplesForGates, nullptr
 )
 
 
-static void OnChanged_Randomizer_AltTShift0()
+static void OnChanged_AltTShift0()
 {
     TShift::SetDelta(setNRST.shift_T0);
 }
 
 
-DEF_GOVERNOR(mgRandomizer_AltTShift0, PageDebug::PageRandomizer::self,
+DEF_GOVERNOR(mgAltTShift0, PageDebug::PageRandomizer::self,
     "tShift äîï.", "tShift alt.",
     "",
     "",
-    setNRST.shift_T0, 0, 510, nullptr, OnChanged_Randomizer_AltTShift0, nullptr
+    setNRST.shift_T0, 0, 510, nullptr, OnChanged_AltTShift0, nullptr
 )
 
 
-DEF_GOVERNOR(mgRandomizer_Average, PageDebug::PageRandomizer::self,
+DEF_GOVERNOR(mgAverage, PageDebug::PageRandomizer::self,
     "Óñğåäí.", "Average",
     "",
     "",
@@ -47,8 +47,8 @@ DEF_PAGE_3(pageRandomizer, PageDebug::self, NamePage::DebugRandomizer,
     "",
     "",
     mgSamplesForGates,   // ÎÒËÀÄÊÀ - ĞÀÍÄ-ÒÎĞ - Âûá-ê/âîğîòà
-    mgRandomizer_AltTShift0,        // ÎÒËÀÄÊÀ - ĞÀÍÄ-ÒÎĞ - tShift äîï.
-    mgRandomizer_Average,           // ÎÒËÀÄÊÀ - ĞÀÍÄ-ÒÎĞ - Óñğåäí.
+    mgAltTShift0,        // ÎÒËÀÄÊÀ - ĞÀÍÄ-ÒÎĞ - tShift äîï.
+    mgAverage,           // ÎÒËÀÄÊÀ - ĞÀÍÄ-ÒÎĞ - Óñğåäí.
     nullptr, nullptr, nullptr, nullptr
 )
 
