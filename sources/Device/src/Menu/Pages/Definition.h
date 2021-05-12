@@ -126,8 +126,6 @@ struct PageDisplay
 {
     static const Page *self;
 
-    static ColorType *colorTypeGrid;
-
     static void OnPress_Accumulation_Clear();
 
     static void OnChanged_RefreshFPS(bool);

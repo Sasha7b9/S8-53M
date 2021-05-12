@@ -268,7 +268,6 @@ DEF_PAGE_4(pageColors, PageDisplay::PageSettings::self, NamePage::ServiceDisplay
     nullptr, nullptr, nullptr, nullptr
 )
 
-ColorType *PageDisplay::colorTypeGrid = &PageDisplay::PageGrid::typeGrid;
 const Page *PageDisplay::self = &pageDisplay;
 const Page *PageDisplay::PageSettings::self = &pageSettings;
 const Page *PageDisplay::PageSettings::PageColors::self = &pageColors;
