@@ -246,7 +246,7 @@ static void OnPress()
 
 static void OnRegSet(int angle)
 {
-    PageMemory::PageExternal::OnRegSet_SetMaskName(angle, sizeof(Tables::symbolsAlphaBet) / 4);
+    PageMemory::PageSetMask::OnRegSet(angle, sizeof(Tables::symbolsAlphaBet) / 4);
 }
 
 
@@ -270,3 +270,24 @@ DEF_PAGE_6(pageSetMask, PageMemory::PageExternal::self, NamePage::SB_MemExtSetMa
 )
 
 const Page *PageMemory::PageSetMask::self = &pageSetMask;
+
+
+void PageMemory::PageSetMask::OnRegSet(int angle, int maxIndex)
+{
+    int8(*func[3])(int8 *, int8, int8) =
+    {
+        Math::CircleDecrease<int8>,
+        Math::CircleDecrease<int8>,
+        Math::CircleIncrease<int8>
+    };
+
+    Color::ResetFlash();
+
+    if (set.memory.index_cur_symbol_name_mask > maxIndex)
+    {
+        set.memory.index_cur_symbol_name_mask = (int8)(maxIndex - 1);
+    }
+
+    func[Math::Sign(angle) + 1](&set.memory.index_cur_symbol_name_mask, 0, (int8)(maxIndex - 1));
+    Sound::RegulatorSwitchRotate();
+}

@@ -281,13 +281,13 @@ struct PageMemory
         static void OnPress_FileManager();
 
         static void SaveSignalToFlashDrive();
-
-        static void OnRegSet_SetMaskName(int angle, int maxIndex);
     };
 
     struct PageSetMask
     {
         static const Page *self;
+
+        static void OnRegSet(int angle, int maxIndex);
     };
 
     struct PageSetName
