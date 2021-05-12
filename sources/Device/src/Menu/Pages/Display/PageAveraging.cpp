@@ -28,12 +28,12 @@ DEF_CHOICE_2(mcMode, PageDisplay::PageAveraging::self,
     "–ежим", "Mode"
     ,
     "1. \"“очно\" - точный режим усреднени€, когда в расчЄте участвуют только последние сигналы.\n"
-    "2. \"ѕриблизительно\" - приблизительный режим усреднени€. »меет смысл использовать, когда задано количество измерений большее, чем может "
-    "поместитьс€ в пам€ти."
+    "2. \"ѕриблизительно\" - приблизительный режим усреднени€. »меет смысл использовать, когда задано количество "
+    "измерений большее, чем может поместитьс€ в пам€ти."
     ,
     "1. \"Accurately\" - the exact mode of averaging when only the last signals participate in calculation.\n"
-    "2. \"Around\" - approximate mode of averaging. It makes sense to use when the number of measurements bigger is set, than can be located in "
-    "memory.",
+    "2. \"Around\" - approximate mode of averaging. It makes sense to use when the number of measurements bigger is "
+    "set, than can be located in memory.",
     "“очно", "Accurately",
     "ѕриблизительно", "Around",
     set.display.mode_ave, nullptr, nullptr, nullptr

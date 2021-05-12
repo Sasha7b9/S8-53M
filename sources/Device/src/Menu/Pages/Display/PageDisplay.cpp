@@ -30,8 +30,10 @@ static void OnChanged_MinMax(bool)
 
 DEF_CHOICE_REG_8(mcMinMax, PageDisplay::self,
     "Мин Макс", "Min Max",
-    "Задаёт количество последних измерений, по которым строятся ограничительные линии, огибающие минимумы и максимумы измерений.",
-    "Sets number of the last measurements on which the limiting lines which are bending around minima and maxima of measurements are under construction.",
+    "Задаёт количество последних измерений, по которым строятся ограничительные линии, огибающие минимумы и максимумы "
+    "измерений.",
+    "Sets number of the last measurements on which the limiting lines which are bending around minima and maxima of "
+    "measurements are under construction.",
     DISABLE_RU, DISABLE_EN,
     "2", "2",
     "4", "4",
@@ -83,8 +85,10 @@ DEF_CHOICE_5(mcRefreshFPS, PageDisplay::self,
 
 DEF_CHOICE_2(mcTypeShift, PageDisplay::self,
     "Смещение", "Offset",
-    "Задаёт режим удержания смещения по вертикали\n1. \"Напряжение\" - сохраняется напряжение смещения.\n2. \"Деления\" - сохраняется положение смещения на экране.",
-    "Sets the mode of retaining the vertical displacement\n1. \"Voltage\" - saved dressing bias.\n2. \"Divisions\" - retained the position of the offset on the screen.",
+    "Задаёт режим удержания смещения по вертикали\n1. \"Напряжение\" - сохраняется напряжение смещения.\n"
+    "2. \"Деления\" - сохраняется положение смещения на экране.",
+    "Sets the mode of retaining the vertical displacement\n1. \"Voltage\" - saved dressing bias.\n2. \"Divisions\" - "
+    "retained the position of the offset on the screen.",
     "Напряжение", "Voltage",
     "Деления", "Divisions",
     set.display.linking_rshift, nullptr, nullptr, nullptr
