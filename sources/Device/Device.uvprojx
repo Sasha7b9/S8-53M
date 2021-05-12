@@ -1968,11 +1968,6 @@
               <FilePath>.\src\Menu\Pages\PageMeasures.cpp</FilePath>
             </File>
             <File>
-              <FileName>PageService.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\PageService.cpp</FilePath>
-            </File>
-            <File>
               <FileName>PageTime.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\PageTime.cpp</FilePath>
@@ -2071,6 +2066,16 @@
               <FileName>PageSetName.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Memory\PageSetName.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Menu/Pages/Service</GroupName>
+          <Files>
+            <File>
+              <FileName>PageService.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Service\PageService.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -4313,11 +4318,6 @@
               <FilePath>.\src\Menu\Pages\PageMeasures.cpp</FilePath>
             </File>
             <File>
-              <FileName>PageService.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\PageService.cpp</FilePath>
-            </File>
-            <File>
               <FileName>PageTime.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\PageTime.cpp</FilePath>
@@ -4416,6 +4416,16 @@
               <FileName>PageSetName.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Memory\PageSetName.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Menu/Pages/Service</GroupName>
+          <Files>
+            <File>
+              <FileName>PageService.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Service\PageService.cpp</FilePath>
             </File>
           </Files>
         </Group>

@@ -102,53 +102,54 @@ file(GLOB LIBS_USBH      ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Li
                          ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_bot.*
                          ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_scsi.*)
 
-file(GLOB HARDWARE               src/Hardware/*.h
-                                 src/Hardware/*.cpp
-                           ../common/Hardware/Sound_.*
-                           ../common/Hardware/Timer_.*)
-file(GLOB HARDWARE_CMSIS         src/Hardware/CMSIS/*.*)
-file(GLOB HARDWARE_FATFS         src/Hardware/FatFS/*.*)
-file(GLOB HARDWARE_HAL           src/Hardware/HAL/*.*
-                           ../common/Hardware/HAL/*.*)
-file(GLOB HARDWARE_LWIP          src/Hardware/LwIP/*.*)
-file(GLOB HARDWARE_MEMORY  ../common/Hardware/Memory/*.*
-                                 src/Hardware/Memory/*.*)
-file(GLOB HARDWARE_USBD          src/Hardware/USBD/*.*)
-file(GLOB HARDWARE_USBH          src/Hardware/USBH/*.*)
-file(GLOB SRC                    src/*.h
-                                 src/*.cpp
-                           ../common/defines_.h
-                           ../common/Log_.*)
-file(GLOB DISPLAY                src/Display/*.h
-                                 src/Display/*.cpp
-                           ../common/Display/*.h
-                           ../common/Display/*.cpp)
-file(GLOB DISPLAY_FONT     ../common/Display/Font/*.*)
-file(GLOB DISPLAY_PAINTER  ../common/Display/Painter/*.*
-                                 src/Display/Painter/*.*)
-file(GLOB DISPLAY_SCREEN         src/Display/Screen/*.*)
-file(GLOB FDRIVE                 src/FDrive/*.*)
-file(GLOB FPGA                   src/FPGA/*.*)
-file(GLOB FPGA_DATA              src/FPGA/Data/*.*)
-file(GLOB LAN                    src/LAN/*.*)
-file(GLOB MENU                   src/Menu/*.h
-                                 src/Menu/*.cpp)
-file(GLOB MENU_ITEMS             src/Menu/Items/*.*)
-file(GLOB MENU_PAGES             src/Menu/Pages/*.*)
-file(GLOB MENU_PAGES_DEBUG       src/Menu/Pages/Debug/*.*)
-file(GLOB MENU_PAGES_MEMORY      src/Menu/Pages/Memory/*.*)
-file(GLOB PANEL            ../common/Panel/*.*
-                                 src/Panel/*.*)
-file(GLOB SETTINGS               src/Settings/*.*
-                           ../common/Settings/SettingsTypes_.h)
-file(GLOB UTILS                  src/Utils/*.*
-                           ../common/Utils/*.*)
-file(GLOB UTILS_CONTAINERS ../common/Utils/Containers/*.*)
-file(GLOB VCP                    src/VCP/*.h
-                                 src/VCP/*.cpp)
-file(GLOB VCP_SCPI               src/VCP/SCPI/*.h
-                                 src/VCP/SCPI/*.cpp)
-file(GLOB VCP_SCPI_UTILS         src/VCP/SCPI/Utils/*.*)
+file(GLOB HARDWARE                 src/Hardware/*.h
+                                   src/Hardware/*.cpp
+                             ../common/Hardware/Sound_.*
+                             ../common/Hardware/Timer_.*)
+file(GLOB HARDWARE_CMSIS           src/Hardware/CMSIS/*.*)
+file(GLOB HARDWARE_FATFS           src/Hardware/FatFS/*.*)
+file(GLOB HARDWARE_HAL             src/Hardware/HAL/*.*
+                             ../common/Hardware/HAL/*.*)
+file(GLOB HARDWARE_LWIP            src/Hardware/LwIP/*.*)
+file(GLOB HARDWARE_MEMORY    ../common/Hardware/Memory/*.*
+                                   src/Hardware/Memory/*.*)
+file(GLOB HARDWARE_USBD            src/Hardware/USBD/*.*)
+file(GLOB HARDWARE_USBH            src/Hardware/USBH/*.*)
+file(GLOB SRC                      src/*.h
+                                   src/*.cpp
+                             ../common/defines_.h
+                             ../common/Log_.*)
+file(GLOB DISPLAY                  src/Display/*.h
+                                   src/Display/*.cpp
+                             ../common/Display/*.h
+                             ../common/Display/*.cpp)
+file(GLOB DISPLAY_FONT       ../common/Display/Font/*.*)
+file(GLOB DISPLAY_PAINTER    ../common/Display/Painter/*.*
+                                   src/Display/Painter/*.*)
+file(GLOB DISPLAY_SCREEN           src/Display/Screen/*.*)
+file(GLOB FDRIVE                   src/FDrive/*.*)
+file(GLOB FPGA                     src/FPGA/*.*)
+file(GLOB FPGA_DATA                src/FPGA/Data/*.*)
+file(GLOB LAN                      src/LAN/*.*)
+file(GLOB MENU                     src/Menu/*.h
+                                   src/Menu/*.cpp)
+file(GLOB MENU_ITEMS               src/Menu/Items/*.*)
+file(GLOB MENU_PAGES               src/Menu/Pages/*.*)
+file(GLOB MENU_PAGES_DEBUG         src/Menu/Pages/Debug/*.*)
+file(GLOB MENU_PAGES_MEMORY        src/Menu/Pages/Memory/*.*)
+file(GLOB MENU_PAGES_SERVICE       src/Menu/Pages/Service/*.*)
+file(GLOB PANEL              ../common/Panel/*.*
+                                   src/Panel/*.*)
+file(GLOB SETTINGS                 src/Settings/*.*
+                             ../common/Settings/SettingsTypes_.h)
+file(GLOB UTILS                    src/Utils/*.*
+                             ../common/Utils/*.*)
+file(GLOB UTILS_CONTAINERS   ../common/Utils/Containers/*.*)
+file(GLOB VCP                      src/VCP/*.h
+                                   src/VCP/*.cpp)
+file(GLOB VCP_SCPI                 src/VCP/SCPI/*.h
+                                   src/VCP/SCPI/*.cpp)
+file(GLOB VCP_SCPI_UTILS           src/VCP/SCPI/Utils/*.*)
 
 set_source_files_properties(${LIBS_FATFS} ${LIBS_HAL} ${LIBS_USBH} ${HARDWARE_CMSIS}
                             src/Menu/Pages/PageHelp.cpp
@@ -183,6 +184,7 @@ source_group(Menu\\Items             FILES ${MENU_ITEMS})
 source_group(Menu\\Pages             FILES ${MENU_PAGES})
 source_group(Menu\\Pages\\Debug      FILES ${MENU_PAGES_DEBUG})
 source_group(Menu\\Pages\\Memory     FILES ${MENU_PAGES_MEMORY})
+source_group(Menu\\Pages\\Service    FILES ${MENU_PAGES_SERVICE})
 source_group(Panel                   FILES ${PANEL})
 source_group(Settings                FILES ${SETTINGS})
 source_group(Utils                   FILES ${UTILS})
@@ -196,5 +198,6 @@ add_library(Device ${VS_KEIL_CMSIS} ${VS_KEIL_ARMCLANG} ${VS_KEIL_FATFS} ${LIBS_
                    ${HARDWARE_CMSIS} ${HARDWARE_FATFS} ${HARDWARE_HAL} ${HARDWARE_LWIP} ${HARDWARE_MEMORY}
                    ${HARDWARE_USBD} ${HARDWARE_USBH} ${SRC} ${DISPLAY} 
                    ${DISPLAY_FONT} ${DISPLAY_PAINTER} ${DISPLAY_SCREEN} ${FDRIVE} ${FPGA} ${FPGA_DATA} ${LAN} ${MENU}
-                   ${MENU_ITEMS} ${MENU_PAGES} ${MENU_PAGES_DEBUG} ${MENU_PAGES_MEMORY} ${PANEL} ${SETTINGS}
+                   ${MENU_ITEMS} ${MENU_PAGES} ${MENU_PAGES_DEBUG} ${MENU_PAGES_MEMORY} ${MENU_PAGES_SERVICE}
+                   ${PANEL} ${SETTINGS}
                    ${UTILS} ${UTILS_CONTAINERS} ${VCP} ${VCP_SCPI} ${VCP_SCPI_UTILS})

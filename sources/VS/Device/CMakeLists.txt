@@ -59,93 +59,94 @@ if(WIN32)
     add_compile_options(/wd26812)   # the enum type 'xxx' is unscoped. Prefer 'enum class' over 'enum'
 endif()
 
-file(GLOB LIBS_CMSIS        ../../common/_VS_GUI/CMSIS/*.*)
-file(GLOB LIBS_FATFS        ../../common/STM32Cube_F4/Middlewares/Third_Party/FatFs/src/diskio.*
-                            ../../common/STM32Cube_F4/Middlewares/Third_Party/FatFs/src/ff.*
-                            ../../common/STM32Cube_F4/Middlewares/Third_Party/FatFs/src/ff_gen_drv.*
-                            ../../common/STM32Cube_F4/Middlewares/Third_Party/FatFs/src/option/unicode.c
-                            ../../common/STM32Cube_F4/Middlewares/Third_Party/FatFs/src/option/syscall.c)
-file(GLOB LIBS_LWIP         ../../common/_VS_GUI/LwIP/*.*)
-file(GLOB LIBS_HAL          ../../common/_VS_GUI/HAL/*.*)
-file(GLOB LIBS_USBH         ../../common/_VS_GUI/USBH/*.*)
-file(GLOB LIBS_USBD         ../../common/_VS_GUI/USBD/*.*)
-file(GLOB DISPLAY           ../../Device/src/Display/Console.*
-                            ../../Device/src/Display/Colors_d.cpp
-                            ../../Device/src/Display/Display.*
-                            ../../Device/src/Display/Painter.*
-                            ../../Device/src/Display/PainterData.*
-                            ../../Device/src/Display/Warnings.*
-                                ../../common/Display/Colors_.*
-                                         src/Display/*.*)
-file(GLOB DISPLAY_FONT          ../../common/Display/Font/*.*)
-file(GLOB DISPLAY_PAINTER       ../../common/Display/Painter/Painter_.*
-                                ../../common/Display/Painter/Primitives_.*
-                                ../../common/Display/Painter/Text_.*
-                            ../../Device/src/Display/Painter/DisplayPrimitives.*)
-file(GLOB DISPLAY_SCREEN    ../../Device/src/Display/Screen/*.*)
-file(GLOB LAN               ../../Device/src/LAN/LAN.h
-                                         src/LAN/LAN_win.cpp
-                            ../../Device/src/LAN/SocketTCP.h
-                            ../../Device/src/LAN/SocketTCP.cpp)
-file(GLOB FDRIVE            ../../Device/src/FDrive/*.h
-                                         src/FDrive/FDrive_win.cpp)
-file(GLOB FPGA              ../../Device/src/FPGA/*.*)
-file(GLOB FPGA_DATA         ../../Device/src/FPGA/Data/*.*)
-file(GLOB HARDWARE          ../../Device/src/Hardware/EPROM.h
-                                         src/Hardware/EPROM_win.cpp
-                            ../../Device/src/Hardware/RAM.*
-                                ../../common/Hardware/Sound_.*
-                                ../../common/Hardware/Timer_.*)
-file(GLOB HARDWARE_HAL          ../../common/Hardware/HAL/HAL_.*
-                                ../../common/Hardware/HAL/HAL_PINS_.*
-                                ../../common/Hardware/HAL/HAL_ADC1_.cpp
-                                ../../common/Hardware/HAL/HAL_CRC_.cpp
-                                ../../common/Hardware/HAL/HAL_DAC2_.cpp
-                                ../../common/Hardware/HAL/HAL_LTDC_.cpp
-                                ../../common/Hardware/HAL/HAL_OTP_.cpp
-                                ../../common/Hardware/HAL/HAL_ROM_.cpp
-                                ../../common/Hardware/HAL/HAL_RTC_.cpp
-                                ../../common/Hardware/HAL/HAL_SPI1_.cpp
-                                ../../common/Hardware/HAL/HAL_SPI5_.cpp
-                                ../../common/Hardware/HAL/HAL_TIM2_.cpp
-                                ../../common/Hardware/HAL/HAL_TIM6_.cpp
-                                ../../common/Hardware/HAL/HAL_TIM7_.cpp
-                                ../../common/Hardware/HAL/HAL_USBD_.cpp
-                                         src/Hardware/HAL/HAL_FMC_win.cpp)
-file(GLOB HARDWARE_MEMORY       ../../common/Hardware/Memory/ROM_.*
-                                ../../common/Hardware/Memory/ROM_Data_.cpp
-                                ../../common/Hardware/Memory/Sector_.*
-                            ../../Device/src/Hardware/Memory/Sector.cpp)
-file(GLOB HARDWARE_USBD     ../../Device/src/Hardware/USBD/usbd_desc.cpp
-                            ../../Device/src/Hardware/USBD/usbd_cdc_interface.*)
-file(GLOB MENU              ../../Device/src/Menu/*.*)
-file(GLOB MENU_ITEMS        ../../Device/src/Menu/Items/*.*)
-file(GLOB MENU_PAGES        ../../Device/src/Menu/Pages/*.*)
-file(GLOB MENU_PAGES_DEBUG  ../../Device/src/Menu/Pages/Debug/*.*)
-file(GLOB MENU_PAGES_MEMORY ../../Device/src/Menu/Pages/Memory/*.*)
-file(GLOB PANEL                 ../../common/Panel/Controls_.*
-                            ../../Device/src/Panel/*.*
-                                         src/Panel/*.*)
-file(GLOB SETTINGS              ../../common/Settings/SettingsTypes_.h
-                            ../../Device/src/Settings/*.*)
-file(GLOB SRC                            src/main_win.cpp
-                            ../../Device/src/defines.*
-                            ../../Device/src/device.*
-                            ../../Device/src/Globals.*
-                            ../../Device/src/Tables.*
-                                ../../common/defines_.h
-                                ../../common/Log_.*)
-file(GLOB VCP               ../../Device/src/VCP/*.*)
-file(GLOB VCP_SCPI          ../../Device/src/VCP/SCPI/*.*)
-file(GLOB VCP_SCPI_UTILS    ../../Device/src/VCP/SCPI/Utils/*.*)
-file(GLOB UTILS             ../../Device/src/Utils/*.*
-                                ../../common/Utils/*.*)
-file(GLOB UTILS_CONTAINERS      ../../common/Utils/Containers/*.*)
-file(GLOB GUI                            src/GUI/*.*)
-file(GLOB GUI_CONTROLS                   src/GUI/Controls/*.*)
-file(GLOB GUI_DIALOGS                    src/GUI/Dialogs/*.*)
-file(GLOB GUI_VCP                        src/GUI/VCP/*.*)
-file(GLOB RESOURCES         resources/*)
+file(GLOB LIBS_CMSIS         ../../common/_VS_GUI/CMSIS/*.*)
+file(GLOB LIBS_FATFS         ../../common/STM32Cube_F4/Middlewares/Third_Party/FatFs/src/diskio.*
+                             ../../common/STM32Cube_F4/Middlewares/Third_Party/FatFs/src/ff.*
+                             ../../common/STM32Cube_F4/Middlewares/Third_Party/FatFs/src/ff_gen_drv.*
+                             ../../common/STM32Cube_F4/Middlewares/Third_Party/FatFs/src/option/unicode.c
+                             ../../common/STM32Cube_F4/Middlewares/Third_Party/FatFs/src/option/syscall.c)
+file(GLOB LIBS_LWIP          ../../common/_VS_GUI/LwIP/*.*)
+file(GLOB LIBS_HAL           ../../common/_VS_GUI/HAL/*.*)
+file(GLOB LIBS_USBH          ../../common/_VS_GUI/USBH/*.*)
+file(GLOB LIBS_USBD          ../../common/_VS_GUI/USBD/*.*)
+file(GLOB DISPLAY            ../../Device/src/Display/Console.*
+                             ../../Device/src/Display/Colors_d.cpp
+                             ../../Device/src/Display/Display.*
+                             ../../Device/src/Display/Painter.*
+                             ../../Device/src/Display/PainterData.*
+                             ../../Device/src/Display/Warnings.*
+                                 ../../common/Display/Colors_.*
+                                          src/Display/*.*)
+file(GLOB DISPLAY_FONT           ../../common/Display/Font/*.*)
+file(GLOB DISPLAY_PAINTER        ../../common/Display/Painter/Painter_.*
+                                 ../../common/Display/Painter/Primitives_.*
+                                 ../../common/Display/Painter/Text_.*
+                             ../../Device/src/Display/Painter/DisplayPrimitives.*)
+file(GLOB DISPLAY_SCREEN     ../../Device/src/Display/Screen/*.*)
+file(GLOB LAN                ../../Device/src/LAN/LAN.h
+                                          src/LAN/LAN_win.cpp
+                             ../../Device/src/LAN/SocketTCP.h
+                             ../../Device/src/LAN/SocketTCP.cpp)
+file(GLOB FDRIVE             ../../Device/src/FDrive/*.h
+                                          src/FDrive/FDrive_win.cpp)
+file(GLOB FPGA               ../../Device/src/FPGA/*.*)
+file(GLOB FPGA_DATA          ../../Device/src/FPGA/Data/*.*)
+file(GLOB HARDWARE           ../../Device/src/Hardware/EPROM.h
+                                          src/Hardware/EPROM_win.cpp
+                             ../../Device/src/Hardware/RAM.*
+                                 ../../common/Hardware/Sound_.*
+                                 ../../common/Hardware/Timer_.*)
+file(GLOB HARDWARE_HAL           ../../common/Hardware/HAL/HAL_.*
+                                 ../../common/Hardware/HAL/HAL_PINS_.*
+                                 ../../common/Hardware/HAL/HAL_ADC1_.cpp
+                                 ../../common/Hardware/HAL/HAL_CRC_.cpp
+                                 ../../common/Hardware/HAL/HAL_DAC2_.cpp
+                                 ../../common/Hardware/HAL/HAL_LTDC_.cpp
+                                 ../../common/Hardware/HAL/HAL_OTP_.cpp
+                                 ../../common/Hardware/HAL/HAL_ROM_.cpp
+                                 ../../common/Hardware/HAL/HAL_RTC_.cpp
+                                 ../../common/Hardware/HAL/HAL_SPI1_.cpp
+                                 ../../common/Hardware/HAL/HAL_SPI5_.cpp
+                                 ../../common/Hardware/HAL/HAL_TIM2_.cpp
+                                 ../../common/Hardware/HAL/HAL_TIM6_.cpp
+                                 ../../common/Hardware/HAL/HAL_TIM7_.cpp
+                                 ../../common/Hardware/HAL/HAL_USBD_.cpp
+                                          src/Hardware/HAL/HAL_FMC_win.cpp)
+file(GLOB HARDWARE_MEMORY        ../../common/Hardware/Memory/ROM_.*
+                                 ../../common/Hardware/Memory/ROM_Data_.cpp
+                                 ../../common/Hardware/Memory/Sector_.*
+                             ../../Device/src/Hardware/Memory/Sector.cpp)
+file(GLOB HARDWARE_USBD      ../../Device/src/Hardware/USBD/usbd_desc.cpp
+                             ../../Device/src/Hardware/USBD/usbd_cdc_interface.*)
+file(GLOB MENU               ../../Device/src/Menu/*.*)
+file(GLOB MENU_ITEMS         ../../Device/src/Menu/Items/*.*)
+file(GLOB MENU_PAGES         ../../Device/src/Menu/Pages/*.*)
+file(GLOB MENU_PAGES_DEBUG   ../../Device/src/Menu/Pages/Debug/*.*)
+file(GLOB MENU_PAGES_MEMORY  ../../Device/src/Menu/Pages/Memory/*.*)
+file(GLOB MENU_PAGES_SERVICE ../../Device/src/Menu/Pages/Service/*.*)
+file(GLOB PANEL                  ../../common/Panel/Controls_.*
+                             ../../Device/src/Panel/*.*
+                                          src/Panel/*.*)
+file(GLOB SETTINGS               ../../common/Settings/SettingsTypes_.h
+                             ../../Device/src/Settings/*.*)
+file(GLOB SRC                             src/main_win.cpp
+                             ../../Device/src/defines.*
+                             ../../Device/src/device.*
+                             ../../Device/src/Globals.*
+                             ../../Device/src/Tables.*
+                                 ../../common/defines_.h
+                                 ../../common/Log_.*)
+file(GLOB VCP                ../../Device/src/VCP/*.*)
+file(GLOB VCP_SCPI           ../../Device/src/VCP/SCPI/*.*)
+file(GLOB VCP_SCPI_UTILS     ../../Device/src/VCP/SCPI/Utils/*.*)
+file(GLOB UTILS              ../../Device/src/Utils/*.*
+                                 ../../common/Utils/*.*)
+file(GLOB UTILS_CONTAINERS       ../../common/Utils/Containers/*.*)
+file(GLOB GUI                             src/GUI/*.*)
+file(GLOB GUI_CONTROLS                    src/GUI/Controls/*.*)
+file(GLOB GUI_DIALOGS                     src/GUI/Dialogs/*.*)
+file(GLOB GUI_VCP                         src/GUI/VCP/*.*)
+file(GLOB RESOURCES          resources/*)
 
 set_source_files_properties(resources/*
                             PROPERTIES LANGUAGE RC)
@@ -155,48 +156,49 @@ set_source_files_properties(../../Device/src/Ethernet/Ethernet.cpp
                             ../../Device/src/Menu/Pages/PageHelp.cpp
                             PROPERTIES HEADER_FILE_ONLY TRUE)
 
-source_group(libs\\CMSIS         FILES ${LIBS_CMSIS})
-source_group(libs\\FatFS         FILES ${LIBS_FATFS})
-source_group(libs\\LwIP          FILES ${LIBS_LWIP})
-source_group(libs\\HAL           FILES ${LIBS_HAL})
-source_group(libs\\USBD          FILES ${LIBS_USBD})
-source_group(libs\\USBH          FILES ${LIBS_USBH})
-source_group(Display             FILES ${DISPLAY})
-source_group(Display\\Font       FILES ${DISPLAY_FONT})
-source_group(Display\\Painter    FILES ${DISPLAY_PAINTER})
-source_group(Display\\Screen     FILES ${DISPLAY_SCREEN})
-source_group(LAN                 FILES ${LAN})
-source_group(FDrive              FILES ${FDRIVE})
-source_group(FPGA                FILES ${FPGA})
-source_group(FPGA\\Data          FILES ${FPGA_DATA})
-source_group(GUI                 FILES ${GUI})
-source_group(GUI\\Controls       FILES ${GUI_CONTROLS})
-source_group(GUI\\Dialogs        FILES ${GUI_DIALOGS})
-source_group(GUI\\VCP            FILES ${GUI_VCP})
-source_group(Hardware            FILES ${HARDWARE})
-source_group(Hardware\\HAL       FILES ${HARDWARE_HAL})
-source_group(Hardware\\Memory    FILES ${HARDWARE_MEMORY})
-source_group(Hardware\\USBD      FILES ${HARDWARE_USBD})
-source_group(Menu                FILES ${MENU})
-source_group(Menu\\Items         FILES ${MENU_ITEMS})
-source_group(Menu\\Pages         FILES ${MENU_PAGES})
-source_group(Menu\\Pages\\Debug  FILES ${MENU_PAGES_DEBUG})
-source_group(Menu\\Pages\\Memory FILES ${MENU_PAGES_MEMORY})
-source_group(Panel               FILES ${PANEL})
-source_group(Resources           FILES ${RESOURCES})
-source_group(Settings            FILES ${SETTINGS})
-source_group(src                 FILES ${SRC})
-source_group(VCP                 FILES ${VCP})
-source_group(VCP\\SCPI           FILES ${VCP_SCPI})
-source_group(VCP\\SCPI\\Utils    FILES ${VCP_SCPI_UTILS})
-source_group(Utils               FILES ${UTILS})
-source_group(Utils\\Containers   FILES ${UTILS_CONTAINERS})
+source_group(libs\\CMSIS          FILES ${LIBS_CMSIS})
+source_group(libs\\FatFS          FILES ${LIBS_FATFS})
+source_group(libs\\LwIP           FILES ${LIBS_LWIP})
+source_group(libs\\HAL            FILES ${LIBS_HAL})
+source_group(libs\\USBD           FILES ${LIBS_USBD})
+source_group(libs\\USBH           FILES ${LIBS_USBH})
+source_group(Display              FILES ${DISPLAY})
+source_group(Display\\Font        FILES ${DISPLAY_FONT})
+source_group(Display\\Painter     FILES ${DISPLAY_PAINTER})
+source_group(Display\\Screen      FILES ${DISPLAY_SCREEN})
+source_group(LAN                  FILES ${LAN})
+source_group(FDrive               FILES ${FDRIVE})
+source_group(FPGA                 FILES ${FPGA})
+source_group(FPGA\\Data           FILES ${FPGA_DATA})
+source_group(GUI                  FILES ${GUI})
+source_group(GUI\\Controls        FILES ${GUI_CONTROLS})
+source_group(GUI\\Dialogs         FILES ${GUI_DIALOGS})
+source_group(GUI\\VCP             FILES ${GUI_VCP})
+source_group(Hardware             FILES ${HARDWARE})
+source_group(Hardware\\HAL        FILES ${HARDWARE_HAL})
+source_group(Hardware\\Memory     FILES ${HARDWARE_MEMORY})
+source_group(Hardware\\USBD       FILES ${HARDWARE_USBD})
+source_group(Menu                 FILES ${MENU})
+source_group(Menu\\Items          FILES ${MENU_ITEMS})
+source_group(Menu\\Pages          FILES ${MENU_PAGES})
+source_group(Menu\\Pages\\Debug   FILES ${MENU_PAGES_DEBUG})
+source_group(Menu\\Pages\\Memory  FILES ${MENU_PAGES_MEMORY})
+source_group(Menu\\Pages\\Service FILES ${MENU_PAGES_SERVICE})
+source_group(Panel                FILES ${PANEL})
+source_group(Resources            FILES ${RESOURCES})
+source_group(Settings             FILES ${SETTINGS})
+source_group(src                  FILES ${SRC})
+source_group(VCP                  FILES ${VCP})
+source_group(VCP\\SCPI            FILES ${VCP_SCPI})
+source_group(VCP\\SCPI\\Utils     FILES ${VCP_SCPI_UTILS})
+source_group(Utils                FILES ${UTILS})
+source_group(Utils\\Containers    FILES ${UTILS_CONTAINERS})
 
 add_executable(S8-53M ${LIBS_CMSIS} ${LIBS_FATFS} ${LIBS_LWIP} ${LIBS_HAL} ${LIBS_USBD} ${LIBS_USBH} ${DISPLAY}
           ${DISPLAY_FONT} ${DISPLAY_PAINTER} ${DISPLAY_SCREEN} ${LAN} ${FDRIVE} ${FPGA} ${FPGA_DATA} ${GUI}
           ${GUI_CONTROLS} ${GUI_DIALOGS} ${GUI_VCP} ${HARDWARE}
           ${HARDWARE_HAL} ${HARDWARE_MEMORY} ${HARDWARE_USBD} ${MENU} ${MENU_ITEMS}
-          ${MENU_PAGES} ${MENU_PAGES_DEBUG} ${MENU_PAGES_MEMORY} ${PANEL} ${RESOURCES}
+          ${MENU_PAGES} ${MENU_PAGES_DEBUG} ${MENU_PAGES_MEMORY} ${MENU_PAGES_SERVICE} ${PANEL} ${RESOURCES}
           ${SETTINGS}
           ${SRC} ${VCP} ${VCP_SCPI} ${VCP_SCPI_UTILS} ${UTILS} ${UTILS_CONTAINERS})
 
