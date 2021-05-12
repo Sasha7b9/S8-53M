@@ -13,7 +13,7 @@
 static bool runningFPGAbeforeSmallButtons = false;      // Здесь сохраняется информация о том, работала ли ПЛИС перед
                                                         // переходом в режим работы с памятью
 
-static void PressSB_MemLast_Exit()
+static void PressSB_Exit()
 {
     set.memory.mode_work = ModeWork::Direct;
     if (runningFPGAbeforeSmallButtons)
@@ -27,11 +27,11 @@ static void PressSB_MemLast_Exit()
 
 DEF_SMALL_BUTTON(sbExitMemLast, PageMemory::PageLatest::self,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
-    nullptr, PressSB_MemLast_Exit, DrawSB_Exit, nullptr
+    nullptr, PressSB_Exit, DrawSB_Exit, nullptr
 )
 
 
-void PressSB_MemLast_Next()
+static void PressSB_Next()
 {
     //    Math::CircleIncrease<int16>(&PageMemory::PageLatest::currentSignal, 0, (int16)(Storage::AllDatas() - 1));
 }
@@ -49,7 +49,7 @@ DEF_SMALL_BUTTON(sbMemLastNext, PageMemory::PageLatest::self,
     "Следующий", "Next",
     "Перейти к следующему сигналу",
     "Go to the next signal",
-    nullptr, PressSB_MemLast_Next, DrawSB_MemLast_Next, nullptr
+    nullptr, PressSB_Next, DrawSB_MemLast_Next, nullptr
 )
 
 
@@ -158,7 +158,7 @@ static void RotateSB_MemLast(int /*angle*/)
     //    }
     //    if (Math::Sign(angle) > 0)
     //    {
-    //        PressSB_MemLast_Next();
+    //        PressSB_Next();
     //    }
     //    else
     //    {
