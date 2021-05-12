@@ -211,8 +211,10 @@ const PacketROM *Sector::WriteData(uint numInROM, const DataSettings *ds) const
 
     existSpace = existSpace;
 
-    if (packet->Address() + PacketROM::GetPackedSize(ds) > End() - 10)      // Если пакет при записи вылезет за границу сектора. Даём запас - в конце сектора должны остаться миниму 4 байта,
-    {                                                                    // помеченные 0xFFFFFFFF во избежание лишних проверок за выход за пределы сектора.
+    // Если пакет при записи вылезет за границу сектора. Даём запас - в конце сектора должны остаться миниму 4 байта,
+    // помеченные 0xFFFFFFFF во избежание лишних проверок за выход за пределы сектора.
+    if (packet->Address() + PacketROM::GetPackedSize(ds) > End() - 10)
+    {
         return nullptr;
     }
 
