@@ -244,27 +244,6 @@ static void OnPress()
 }
 
 
-void PageMemory::PageExternal::OnMemExtSetMaskNameRegSet(int angle, int maxIndex)
-{
-    int8(*func[3])(int8 *, int8, int8) =
-    {
-        Math::CircleDecrease<int8>,
-        Math::CircleDecrease<int8>,
-        Math::CircleIncrease<int8>
-    };
-
-    Color::ResetFlash();
-
-    if (set.memory.index_cur_symbol_name_mask > maxIndex)
-    {
-        set.memory.index_cur_symbol_name_mask = (int8)(maxIndex - 1);
-    }
-
-    func[Math::Sign(angle) + 1](&set.memory.index_cur_symbol_name_mask, 0, (int8)(maxIndex - 1));
-    Sound::RegulatorSwitchRotate();
-}
-
-
 static void OnRegSet(int angle)
 {
     PageMemory::PageExternal::OnMemExtSetMaskNameRegSet(angle, sizeof(Tables::symbolsAlphaBet) / 4);
