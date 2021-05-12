@@ -247,7 +247,8 @@ void RShift::Load(const Channel &ch)
 
     rShift = (uint16)(RShift::MAX + RShift::MIN - rShift);
 
-    FPGA::BUS::WriteToDAC(ch == ChA ? TypeWriteDAC::RShiftA : TypeWriteDAC::RShiftB, (uint16)(mask[ch] | (rShift << 2)));
+    FPGA::BUS::WriteToDAC
+                        (ch == ChA ? TypeWriteDAC::RShiftA : TypeWriteDAC::RShiftB, (uint16)(mask[ch] | (rShift << 2)));
 }
 
 
