@@ -2022,6 +2022,11 @@
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Debug\PageSerialNumber.cpp</FilePath>
             </File>
+            <File>
+              <FileName>PageStretchADC.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Debug\PageStretchADC.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4316,6 +4321,11 @@
               <FileName>PageSerialNumber.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Debug\PageSerialNumber.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PageStretchADC.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Debug\PageStretchADC.cpp</FilePath>
             </File>
           </Files>
         </Group>
