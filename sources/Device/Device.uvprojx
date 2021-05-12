@@ -2037,6 +2037,11 @@
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Display\PageAccumulation.cpp</FilePath>
             </File>
+            <File>
+              <FileName>PageAveraging.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Display\PageAveraging.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4431,6 +4436,11 @@
               <FileName>PageAccumulation.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Display\PageAccumulation.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PageAveraging.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Display\PageAveraging.cpp</FilePath>
             </File>
           </Files>
         </Group>
