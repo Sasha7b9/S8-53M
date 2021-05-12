@@ -80,3 +80,9 @@ DEF_PAGE_3(pageAccumulation, PageDisplay::self, NamePage::DisplayAccumulation,
 )
 
 const Page *PageDisplay::PageAccumulation::self = &pageAccumulation;
+
+
+void PageDisplay::PageAccumulation::OnPress_Clear()
+{
+    Display::Redraw();
+}

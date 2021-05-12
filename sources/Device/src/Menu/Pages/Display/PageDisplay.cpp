@@ -108,10 +108,4 @@ DEF_PAGE_9(pageDisplay, PageMain::self, NamePage::Display,
 )
 
 
-void PageDisplay::PageAccumulation::OnPress_Clear()
-{
-    Display::Redraw();
-}
-
-
 const Page *PageDisplay::self = &pageDisplay;
