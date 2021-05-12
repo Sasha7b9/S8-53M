@@ -250,13 +250,14 @@ struct PageHelp
 
 struct PageMemory
 {
-    static uint exitFromModeSetNameTo;      // Куда возвращаться из окна установки имени при сохранении : 0 - в основное меню, 1 - в окно последних, 2 - в окно Внутр ЗУ, 3 - в основно окно в выключенным меню
+    static uint exitFromModeSetNameTo;      // Куда возвращаться из окна установки имени при сохранении : 0 - в основное
+                                            // меню, 1 - в окно последних, 2 - в окно Внутр ЗУ, 3 - в основно окно в
+                                            // выключенным меню
     static bool needForSaveToFlashDrive;    // Если 1, то нужно сохранить после отрисовки на флешку.
     static bool exitFromIntToLast;          // Если 1, то выходить из страницы внутренней памяти нужно не
                                             // стандартно, а в меню последних
 
     static void OnChanged_NumPoints(bool active);
-    static void OnMemExtSetMaskNameRegSet(int angle, int maxIndex);
 
     struct PageLatest
     {
@@ -280,6 +281,8 @@ struct PageMemory
         static void OnPress_FileManager();
 
         static void SaveSignalToFlashDrive();
+
+        static void OnMemExtSetMaskNameRegSet(int angle, int maxIndex);
     };
 
     struct PageSetMask

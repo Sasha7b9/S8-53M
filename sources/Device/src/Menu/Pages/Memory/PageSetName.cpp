@@ -138,7 +138,7 @@ DEF_SMALL_BUTTON(sbSave, PageMemory::PageSetName::self,
 
 static void OnRegSet(int angle)
 {
-    PageMemory::OnMemExtSetMaskNameRegSet(angle, sizeof(Tables::symbolsAlphaBet) / 4 - 7);
+    PageMemory::PageExternal::OnMemExtSetMaskNameRegSet(angle, sizeof(Tables::symbolsAlphaBet) / 4 - 7);
 }
 
 

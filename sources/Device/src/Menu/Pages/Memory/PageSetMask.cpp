@@ -17,7 +17,7 @@ static void PressSB_Exit()
 }
 
 
-DEF_SMALL_BUTTON(sbExitSetMask, PageMemory::PageSetMask::self,
+DEF_SMALL_BUTTON(sbExit, PageMemory::PageSetMask::self,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
     nullptr, PressSB_Exit, DrawSB_Exit, nullptr
 )
@@ -37,7 +37,7 @@ static void DrawSB_Delete(int x, int y)
 }
 
 
-DEF_SMALL_BUTTON(sbSetMaskDelete, PageMemory::PageSetMask::self,
+DEF_SMALL_BUTTON(sbDelete, PageMemory::PageSetMask::self,
     "Удалить", "Delete",
     "Удаляет все введённые символы",
     "Deletes all entered symbols",
@@ -70,7 +70,7 @@ static void DrawSB_Backspace(int x, int y)
 }
 
 
-DEF_SMALL_BUTTON(sbSetMaskBackspace, PageMemory::PageSetMask::self,
+DEF_SMALL_BUTTON(sbBackspace, PageMemory::PageSetMask::self,
     "Backspace", "Backspace",
     "Удаляет последний введённый символ",
     "Deletes the last entered symbol",
@@ -127,7 +127,7 @@ static void DrawSB_Insert(int x, int y)
 }
 
 
-DEF_SMALL_BUTTON(sbSetMaskInsert, PageMemory::PageSetMask::self,
+DEF_SMALL_BUTTON(sbInsert, PageMemory::PageSetMask::self,
     "Вставить", "Insert",
     "Вставляет выбранный символ",
     "Inserts the chosen symbol",
@@ -244,7 +244,7 @@ static void OnPress()
 }
 
 
-void PageMemory::OnMemExtSetMaskNameRegSet(int angle, int maxIndex)
+void PageMemory::PageExternal::OnMemExtSetMaskNameRegSet(int angle, int maxIndex)
 {
     int8(*func[3])(int8 *, int8, int8) =
     {
@@ -267,7 +267,7 @@ void PageMemory::OnMemExtSetMaskNameRegSet(int angle, int maxIndex)
 
 static void OnRegSet(int angle)
 {
-    PageMemory::OnMemExtSetMaskNameRegSet(angle, sizeof(Tables::symbolsAlphaBet) / 4);
+    PageMemory::PageExternal::OnMemExtSetMaskNameRegSet(angle, sizeof(Tables::symbolsAlphaBet) / 4);
 }
 
 
@@ -281,12 +281,12 @@ DEF_PAGE_6(pageSetMask, PageMemory::PageExternal::self, NamePage::SB_MemExtSetMa
     "МАСКА", "MASK",
     "Режим ввода маски для автоматического именования файлов",
     "Input mode mask for automatic file naming",
-    sbExitSetMask,
-    sbSetMaskDelete,
+    sbExit,
+    sbDelete,
     Item::empty,
     Item::empty,
-    sbSetMaskBackspace,
-    sbSetMaskInsert,
+    sbBackspace,
+    sbInsert,
     IsActive, OnPress, nullptr, OnRegSet
 )
 
