@@ -25,7 +25,7 @@ static void PressSB_Exit()
 }
 
 
-DEF_SMALL_BUTTON(sbExitMemLast, PageMemory::PageLatest::self,
+DEF_SMALL_BUTTON(sbExit, PageMemory::PageLatest::self,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
     nullptr, PressSB_Exit, DrawSB_Exit, nullptr
 )
@@ -37,7 +37,7 @@ static void PressSB_Next()
 }
 
 
-void DrawSB_MemLast_Next(int x, int y)
+static void DrawSB_Next(int x, int y)
 {
     Font::Set(TypeFont::UGO2);
     Char('\x64').Draw4SymbolsInRect(x + 2, y + 2);
@@ -45,21 +45,21 @@ void DrawSB_MemLast_Next(int x, int y)
 }
 
 
-DEF_SMALL_BUTTON(sbMemLastNext, PageMemory::PageLatest::self,
+DEF_SMALL_BUTTON(sbNext, PageMemory::PageLatest::self,
     "Следующий", "Next",
     "Перейти к следующему сигналу",
     "Go to the next signal",
-    nullptr, PressSB_Next, DrawSB_MemLast_Next, nullptr
+    nullptr, PressSB_Next, DrawSB_Next, nullptr
 )
 
 
-void PressSB_MemLast_Prev()
+static void PressSB_Prev()
 {
     //    Math::CircleDecrease<int16>(&PageMemory::PageLatest::currentSignal, 0, (int16)(Storage::AllDatas() - 1));
 }
 
 
-void DrawSB_MemLast_Prev(int x, int y)
+static void DrawSB_Prev(int x, int y)
 {
     Font::Set(TypeFont::UGO2);
     Char('\x20').Draw4SymbolsInRect(x + 2, y + 2);
@@ -67,15 +67,15 @@ void DrawSB_MemLast_Prev(int x, int y)
 }
 
 
-DEF_SMALL_BUTTON(sbMemLastPrev, PageMemory::PageLatest::self,
+DEF_SMALL_BUTTON(sbPrev, PageMemory::PageLatest::self,
     "Предыдущий", "Previous",
     "Перейти к предыдущему сигналу",
     "Go to the previous signal",
-    nullptr, PressSB_MemLast_Prev, DrawSB_MemLast_Prev, nullptr
+    nullptr, PressSB_Prev, DrawSB_Prev, nullptr
 )
 
 
-void PressSB_MemLast_IntEnter()
+static void PressSB_EnterInt()
 {
     PageMemory::PageInternal::self->OpenAndSetItCurrent();
     set.memory.mode_work = ModeWork::MemInt;
@@ -86,7 +86,7 @@ void PressSB_MemLast_IntEnter()
 }
 
 
-void DrawSB_MemLast_IntEnter(int x, int y)
+static void DrawSB_EnterInt(int x, int y)
 {
     Font::Set(TypeFont::UGO2);
     Char('\x40').Draw4SymbolsInRect(x + 2, y + 1);
@@ -94,22 +94,22 @@ void DrawSB_MemLast_IntEnter(int x, int y)
 }
 
 
-DEF_SMALL_BUTTON(sbMemLastIntEnter, PageMemory::PageLatest::self,
+DEF_SMALL_BUTTON(sbEnterInt, PageMemory::PageLatest::self,
     "Внутр ЗУ", "Internal storage",
     "Нажмите эту кнопку, чтобы сохранить сигнал во внутреннем запоминающем устройстве",
     "Press this button to keep a signal in an internal memory",
-    nullptr, PressSB_MemLast_IntEnter, DrawSB_MemLast_IntEnter, nullptr
+    nullptr, PressSB_EnterInt, DrawSB_EnterInt, nullptr
 )
 
 
-static void PressSB_MemLast_SaveToFlash()
+static void PressSB_SaveToFlash()
 {
     PageMemory::exitFromModeSetNameTo = RETURN_TO_LAST_MEM;
     PageMemory::PageExternal::SaveSignalToFlashDrive();
 }
 
 
-void DrawSB_MemLast_SaveToFlash(int x, int y)
+static void DrawSB_SaveToFlash(int x, int y)
 {
     if (FDrive::isConnected)
     {
@@ -120,15 +120,15 @@ void DrawSB_MemLast_SaveToFlash(int x, int y)
 }
 
 
-DEF_SMALL_BUTTON(sbMemLastSaveToFlash, PageMemory::PageLatest::self,
+DEF_SMALL_BUTTON(sbSaveToFlash, PageMemory::PageLatest::self,
     "Сохранить", "Save",
     "Кнопка становится доступна при присоединённом внешнем ЗУ. Позволяет сохранить сигнал на внешем ЗУ",
     "Click this button to save the signal on the external FLASH",
-    nullptr, PressSB_MemLast_SaveToFlash, DrawSB_MemLast_SaveToFlash, nullptr
+    nullptr, PressSB_SaveToFlash, DrawSB_SaveToFlash, nullptr
 )
 
 
-void OnPressMemoryLatest()
+static void OnPress()
 {
     PageMemory::PageLatest::currentSignal = 0;
     runningFPGAbeforeSmallButtons = FPGA::IsRunning();
@@ -137,7 +137,7 @@ void OnPressMemoryLatest()
 }
 
 
-static void FuncDrawingAdditionSPageMemoryLast()
+static void FuncDrawingAddition()
 {
     int width = 40;
     int height = 10;
@@ -150,7 +150,7 @@ static void FuncDrawingAdditionSPageMemoryLast()
 }
 
 
-static void RotateSB_MemLast(int /*angle*/)
+static void OnRegSet(int /*angle*/)
 {
     //    if (Storage::AllDatas() > 1)
     //    {
@@ -162,7 +162,7 @@ static void RotateSB_MemLast(int /*angle*/)
     //    }
     //    else
     //    {
-    //        PressSB_MemLast_Prev();
+    //        PressSB_Prev();
     //    }
 }
 
@@ -171,13 +171,13 @@ DEF_PAGE_6(pageLatest, PageMemory::self, NamePage::SB_MemLatest,
     "ПОСЛЕДНИЕ", "LATEST",
     "Переход в режим работы с последними полученными сигналами",
     "Transition to an operating mode with the last received signals",
-    sbExitMemLast,
+    sbExit,
     Item::empty,
-    sbMemLastNext,
-    sbMemLastPrev,
-    sbMemLastIntEnter,
-    sbMemLastSaveToFlash,
-    nullptr, OnPressMemoryLatest, FuncDrawingAdditionSPageMemoryLast, RotateSB_MemLast
+    sbNext,
+    sbPrev,
+    sbEnterInt,
+    sbSaveToFlash,
+    nullptr, OnPress, FuncDrawingAddition, OnRegSet
 )
 
 const Page *PageMemory::PageLatest::self = &pageLatest;
