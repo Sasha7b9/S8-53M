@@ -7,46 +7,46 @@
 #include "Settings/Settings.h"
 
 
-static void OnPress_Math_FFT_Cursors_Exit()
+static void OnPress_Exit()
 {
     Display::RemoveAddDrawFunction();
 }
 
 
-DEF_SMALL_BUTTON(cMath_FFT_Cursors_Exit, PageService::PageMath::PageFFT::PageCursors::self,
+DEF_SMALL_BUTTON(cExit, PageService::PageMath::PageFFT::PageCursors::self,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
-    nullptr, OnPress_Math_FFT_Cursors_Exit, DrawSB_Exit, nullptr
+    nullptr, OnPress_Exit, DrawSB_Exit, nullptr
 )
 
 
-static void OnPress_Math_FFT_Cursors_Source()
+static void OnPress_Source()
 {
     set.math.fft.cursor = (uint8)((set.math.fft.cursor + 1) % 2);
 }
 
 
-static void Draw_Math_FFT_Cursors_Source(int x, int y)
+static void Draw_Source(int x, int y)
 {
     Text((set.math.fft.cursor == 0) ? "1" : "2").Draw(x + 7, y + 5);
 }
 
 
-DEF_SMALL_BUTTON(cMath_FFT_Cursors_Source, PageService::PageMath::PageFFT::PageCursors::self,
+DEF_SMALL_BUTTON(cSource, PageService::PageMath::PageFFT::PageCursors::self,
     "Источник", "Source",
     "Выбор источника для расчёта спектра",
     "Source choice for calculation of a range",
-    nullptr, OnPress_Math_FFT_Cursors_Source, Draw_Math_FFT_Cursors_Source, nullptr
+    nullptr, OnPress_Source, Draw_Source, nullptr
 )
 
 
-static void OnRegSet_Math_FFT_Cursors(int angle)
+static void OnRegSet(int angle)
 {
     set.math.fft.pos_cur[set.math.fft.cursor] += (uint8)angle;
     Sound::RegulatorShiftRotate();
 }
 
 
-static bool IsActive_Math_FFT_Cursors()
+static bool IsActive()
 {
     return set.math.fft.enabled;
 }
@@ -56,13 +56,13 @@ DEF_PAGE_6(pageCursorsFFT, PageService::PageMath::PageFFT::self, NamePage::SB_Ma
     "КУРСОРЫ", "CURSORS",
     "Включает курсоры для измерения параметров спектра",
     "Includes cursors to measure the parameters of the spectrum",
-    cMath_FFT_Cursors_Exit,     // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ - Выход
-    cMath_FFT_Cursors_Source,   // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ - Источник
+    cExit,
+    cSource,
     Item::empty,
     Item::empty,
     Item::empty,
     Item::empty,
-    IsActive_Math_FFT_Cursors, nullptr, nullptr, OnRegSet_Math_FFT_Cursors
+    IsActive, nullptr, nullptr, OnRegSet
 )
 
 const Page *PageService::PageMath::PageFFT::PageCursors::self = &pageCursorsFFT;
