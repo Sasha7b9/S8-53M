@@ -146,6 +146,8 @@ struct PageDisplay
 
     struct PageGrid
     {
+        static ColorType typeGrid;
+
         static const Page *self;
     };
 

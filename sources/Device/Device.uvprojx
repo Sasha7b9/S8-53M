@@ -2042,6 +2042,11 @@
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Display\PageAveraging.cpp</FilePath>
             </File>
+            <File>
+              <FileName>PageGrid.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Display\PageGrid.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4441,6 +4446,11 @@
               <FileName>PageAveraging.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Display\PageAveraging.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PageGrid.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Display\PageGrid.cpp</FilePath>
             </File>
           </Files>
         </Group>
