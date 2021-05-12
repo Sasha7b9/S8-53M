@@ -79,7 +79,7 @@ DEF_PAGE_6(pageExternal, PageMemory::self, NamePage::MemoryExt,
 const Page *PageMemory::PageExternal::self = &pageExternal;
 
 
-void PageMemory::PageExternal::OnMemExtSetMaskNameRegSet(int angle, int maxIndex)
+void PageMemory::PageExternal::OnSetMaskNameRegSet(int angle, int maxIndex)
 {
     int8(*func[3])(int8 *, int8, int8) =
     {
