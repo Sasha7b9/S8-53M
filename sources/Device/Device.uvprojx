@@ -2057,6 +2057,11 @@
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Memory\PageLatest.cpp</FilePath>
             </File>
+            <File>
+              <FileName>PageSetMask.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Memory\PageSetMask.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4386,6 +4391,11 @@
               <FileName>PageLatest.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Memory\PageLatest.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PageSetMask.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Memory\PageSetMask.cpp</FilePath>
             </File>
           </Files>
         </Group>

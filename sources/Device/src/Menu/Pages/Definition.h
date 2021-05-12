@@ -256,6 +256,7 @@ struct PageMemory
                                             // стандартно, а в меню последних
 
     static void OnChanged_MemoryNumPoints(bool active);
+    static void OnMemExtSetMaskNameRegSet(int angle, int maxIndex);
 
     struct PageLatest
     {
