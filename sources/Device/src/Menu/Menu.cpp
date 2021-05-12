@@ -21,7 +21,8 @@ static Key::E longPressureButton = Key::None;
 static Key::E pressButton = Key::None;
 // При отпускании кнопки её имя записывается в эту переменную и хранится там до обработки  события отпускания кнопки.
 static Key::E releaseButton = Key::None;
-// Угол, на который нужно повернуть ручку УСТАНОВКА - величина означает количество щелчков, знак - направление - "-" - влево, "+" - вправо
+// Угол, на который нужно повернуть ручку УСТАНОВКА - величина означает количество щелчков,
+// знак - направление - "-" - влево, "+" - вправо
 static int angleRegSet = 0;
 
 static const int stepAngleRegSet = 2;
@@ -86,22 +87,27 @@ void Menu::ProcessButtonForHint(Key::E button)
             "Кнопка МЕНЮ выполняет следующие функции:\n"
             "1. При закрытом меню нажатие либо нажатие с удержанием в течение 0.5с открывает меню.\n"
             "2. При открытом меню удержание кнопки в течение 0.5с закрывает меню.\n"
-            "3. При настройке \"СЕРВИС\x99Режим кн МЕНЮ\x99Закрывать\" текущей становится страница предыдущего уровня меню. Если текущей является корневая страница, меню закрывается.\n"
-            "4. При настройке \"СЕРВИС\x99Режим кн МЕНЮ\x99Переключать\" текущей становится страница текущего уровня меню. Если текущая страница последняя в текущем уровне, происходит переход на предыдущий уровень меню.\n"
+            "3. При настройке \"СЕРВИС\x99Режим кн МЕНЮ\x99Закрывать\" текущей становится страница предыдущего уровня "
+            "меню. Если текущей является корневая страница, меню закрывается.\n"
+            "4. При настройке \"СЕРВИС\x99Режим кн МЕНЮ\x99Переключать\" текущей становится страница текущего уровня "
+            "меню. Если текущая страница последняя в текущем уровне, происходит переход на предыдущий уровень меню.\n"
             "5. Если меню находится в режиме малых кнопок, то нажатие закрывает страницу."
             :
-        "MENU button performs the following functions:\n"
+            "MENU button performs the following functions:\n"
             "1. At the closed menu pressing or pressing with deduction during 0.5s opens the menu.\n"
             "2. At the open menu deduction of the button during 0.5s closes the menu.\n"
 #ifdef __ARMCC_VERSION
 #pragma push
 #pragma diag_suppress 192
 #endif
-            "3. At control \"SERVICE\x99Mode btn MENU\x99\x43lose\" current becomes the page of the previous level of the menu. If the root page is current, the menu is closed.\n"
+            "3. At control \"SERVICE\x99Mode btn MENU\x99\x43lose\" current becomes the page of the previous level of "
+                "the menu. If the root page is current, the menu is closed.\n"
 #ifdef __ARMCC_VERSION
 #pragma pop
 #endif
-            "4. At control \"SERVICE\x99Mode btn MENU\x99Toggle\" current becomes the page of the current level of the menu. If the current page the last in the current level, happens transition to the previous level of the menu.\n"
+            "4. At control \"SERVICE\x99Mode btn MENU\x99Toggle\" current becomes the page of the current level of the "
+            "menu. If the current page the last in the current level, happens transition to the previous level of the "
+            "menu.\n"
             "5. If the menu is in the mode of small buttons, pressing closes the page.";
 
     } else if (button == Key::Cursors)
@@ -188,19 +194,23 @@ void Menu::ProcessButtonForHint(Key::E button)
     {
         PageHelpContent::stringForHint = LANG_RU ?
             "1. Кнопка СИНХР открывает меню настроек синхронизации.\n"
-            "2. Нажатие и удержание в течение 0.5с кнопки СИНХР при настройке \"СЕРВИС\x99Реж длит СИНХР\x99Автоуровень\" производит автоматическую настройку уровня синхронизации.\n"
-            "3. Нажатие и удержание в течение 0.5с кнопки СИНХР при настройке \"СЕРВИС\x99Реж длит СИНХР\x99Сброс уровня\" устанавливает уровень синхронизации 0В."
+            "2. Нажатие и удержание в течение 0.5с кнопки СИНХР при настройке \"СЕРВИС\x99Реж длит "
+            "СИНХР\x99Автоуровень\" производит автоматическую настройку уровня синхронизации.\n"
+            "3. Нажатие и удержание в течение 0.5с кнопки СИНХР при настройке \"СЕРВИС\x99Реж длит "
+            "СИНХР\x99Сброс уровня\" устанавливает уровень синхронизации 0В."
             :
             "1. СИНХР button opens a menu settings synchronization.\n"
 #ifdef __ARMCC_VERSION
 #pragma push
 #pragma diag_suppress 192
 #endif
-            "2. Pressing and holding the button СИНХР for 0.5s when setting \"SERVICE\x99Mode long TRIG\x99\x41utolevel\" automatically adjust the trigger level.\n"
+            "2. Pressing and holding the button СИНХР for 0.5s when setting \"SERVICE\x99Mode long "
+            "TRIG\x99\x41utolevel\" automatically adjust the trigger level.\n"
 #ifdef __ARMCC_VERSION
 #pragma pop
 #endif
-            "3. Pressing and holding the button СИНХР for 0.5s when setting \"SERVICE\x99Mode long TRIG\x99SReset trig level\" sets the trigger level 0V.";
+            "3. Pressing and holding the button СИНХР for 0.5s when setting \"SERVICE\x99Mode long TRIG\x99SReset trig "
+            "level\" sets the trigger level 0V.";
     }
     else
     {
@@ -356,7 +366,7 @@ void Menu::ProcessingShortPressureButton()
 
         do
         {
-            if(button == Key::Menu)                                   // Если нажата кнопка МЕНЮ и мы не находимся в режме настройки измерений.
+            if(button == Key::Menu)            // Если нажата кнопка МЕНЮ и мы не находимся в режме настройки измерений.
             {
                 if(!IsShown())
                 {
@@ -367,7 +377,7 @@ void Menu::ProcessingShortPressureButton()
                     CloseOpenedItem();
                 }
             }
-            else if (IsShown() && Key::IsFunctionalButton(button))       // Если меню показано и нажата функциональная клавиша
+            else if (IsShown() && Key::IsFunctionalButton(button)) // Если меню показано и нажата функциональная клавиша
             {
                 Item *item = ItemUnderButton(button);
                 if (showHelpHints)
@@ -476,7 +486,8 @@ void Menu::ProcessingRegulatorSet()
             {
                 CurrentPageSBregSet(angleRegSet);
             }
-            else if (item->IsPage() || item->IsIP() || item->IsMAC() || item->IsChoice() || item->IsChoiceReg() || item->IsGovernor())
+            else if (item->IsPage() || item->IsIP() || item->IsMAC() || item->IsChoice() || item->IsChoiceReg() ||
+                     item->IsGovernor())
             {
                 if (item->ChangeOpened(angleRegSet))
                 {
