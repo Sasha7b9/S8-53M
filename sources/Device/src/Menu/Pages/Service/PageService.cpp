@@ -1,20 +1,14 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "common/Display/Painter/Painter_.h"
-#include "common/Display/Painter/Primitives_.h"
 #include "common/Display/Painter/Text_.h"
-#include "common/Hardware/Sound_.h"
 #include "common/Hardware/Timer_.h"
-#include "common/Hardware/HAL/HAL_.h"
-#include "common/Utils/Math_.h"
-#include "Display/Warnings.h"
+#include "Display/Display.h"
+#include "Panel/Panel.h"
 #include "FPGA/FPGA.h"
-#include "FPGA/FPGA_Math.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
-#include "Panel/Panel.h"
 #include "Settings/Settings.h"
-#include <cstdio>
 
 
 static int8 dServicetime = 0;
