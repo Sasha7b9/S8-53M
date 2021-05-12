@@ -20,7 +20,8 @@ static void FuncDraw()
 {
     Display::BeginFrame(Color::BACK);
 
-    Text("Подтвердите сброс настроек нажатием кнопки ПУСК/СТОП.\nНажмите любую другую кнопку, если сброс не нужен.").DrawInRectWithTransfers(30, 110, 300, 200, Color::FILL);
+    Text("Подтвердите сброс настроек нажатием кнопки ПУСК/СТОП.\nНажмите любую другую кнопку, если сброс не нужен.").
+        DrawInRectWithTransfers(30, 110, 300, 200, Color::FILL);
 
     Painter::SendFrame();
 }
@@ -89,18 +90,21 @@ DEF_TIME(tTime, PageService::self,
     "Время", "Time"
     ,
     "Установка текущего времени.\nПорядок работы:\n"
-    "Нажать на элемент меню \"Время\". Откроется меню установки текущего времени. Короткими нажатиями кнопки на цифровой клавиатуре, соответсвующей "
-    "элементу управления \"Время\", выделить часы, минуты, секунды, год, месяц, или число. Выделенный элемент обозначается мигающей областью. "
-    "Вращением ручки УСТАНОВКА установить необходимое значение. Затем выделить пункт \"Сохранить\", нажать и удреживать более 0.5 сек кнопку на панели "
-    "управления. Меню установки текущего временя закроется с сохранением нового текущего времени. Нажатие длительное удержание кнопки на любом другом элементе "
-    "приведёт к закрытию меню установки текущего времени без сохранения нового текущего времени"
+    "Нажать на элемент меню \"Время\". Откроется меню установки текущего времени. Короткими нажатиями кнопки на "
+    "цифровой клавиатуре, соответсвующей элементу управления \"Время\", выделить часы, минуты, секунды, год, месяц, "
+    "или число. Выделенный элемент обозначается мигающей областью. Вращением ручки УСТАНОВКА установить необходимое "
+    "значение. Затем выделить пункт \"Сохранить\", нажать и удреживать более 0.5 сек кнопку на панели управления. Меню "
+    "установки текущего временя закроется с сохранением нового текущего времени. Нажатие длительное удержание кнопки "
+    "на любом другом элементе приведёт к закрытию меню установки текущего времени без сохранения нового текущего "
+    "времени"
     ,
     "Setting the current time. \nPoryadok work:\n"
-    "Click on the menu item \"Time\".The menu set the current time.By briefly pressing the button on the numeric keypad of conformity "
-    "Item \"Time\", highlight the hours, minutes, seconds, year, month, or a number.The selected item is indicated by a flashing area. "
-    "Turn the setting knob to set the desired value. Then highlight \"Save\", press and udrezhivat more than 0.5 seconds, the button on the panel "
-    "Item. Menu Setting the current time will be closed to the conservation of the new current time. Pressing a button on the prolonged retention of any other element "
-    "will lead to the closure of the current time setting menu without saving the new current time"
+    "Click on the menu item \"Time\".The menu set the current time.By briefly pressing the button on the numeric "
+    "keypad of conformity Item \"Time\", highlight the hours, minutes, seconds, year, month, or a number.The selected "
+    "item is indicated by a flashing area. Turn the setting knob to set the desired value. Then highlight \"Save\", "
+    "press and udrezhivat more than 0.5 seconds, the button on the panel Item. Menu Setting the current time will be "
+    "closed to the conservation of the new current time. Pressing a button on the prolonged retention of any other "
+    "element will lead to the closure of the current time setting menu without saving the new current time"
     ,
     dServicetime, hours, minutes, secondes, month, day, year
 )
@@ -108,8 +112,8 @@ DEF_TIME(tTime, PageService::self,
 DEF_CHOICE_2(cModeLongPressButtonTrig, PageService::self,
     "Реж длит СИНХР", "Mode long СИНХР"
     ,
-    "Устанавливает действия для длительного нажатия кнопки СИНХР:\n\"Сброс уровня\" - установка уровня синхронизации в ноль,\n\"Автоуровень\" "
-    "- автоматическое определение и установка уровня синхронизации"
+    "Устанавливает действия для длительного нажатия кнопки СИНХР:\n\"Сброс уровня\" - установка уровня синхронизации в "
+    "ноль,\n\"Автоуровень\" - автоматическое определение и установка уровня синхронизации"
     ,
     "Sets the action for long press CLOCK:\n\"Reset trig lvl\" - to set the trigger level to zero, \n\"Auto level\""
     "- Automatically detect and install the trigger level"

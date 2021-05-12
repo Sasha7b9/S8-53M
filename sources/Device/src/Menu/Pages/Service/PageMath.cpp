@@ -9,8 +9,8 @@ DEF_PAGE_2(pageMath, PageService::self, NamePage::Math,
     "МАТЕМАТИКА", "MATH",
     "Математические функции и БПФ",
     "Mathematical functions and FFT",
-    *PageService::PageMath::PageFunction::self,     // СЕРВИС - МАТЕМАТИКА - ФУНКЦИЯ
-    *PageService::PageMath::PageFFT::self,          // СЕРВИС - МАТЕМАТИКА - СПЕКТР
+    *PageService::PageMath::PageFunction::self,
+    *PageService::PageMath::PageFFT::self,
     nullptr, nullptr, nullptr, nullptr
 )
 
