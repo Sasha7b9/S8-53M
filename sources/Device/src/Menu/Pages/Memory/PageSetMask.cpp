@@ -11,7 +11,7 @@
 #include <cstring>
 
 
-static void PressSB_SetMask_Exit()
+static void PressSB_Exit()
 {
     Display::RemoveAddDrawFunction();
 }
@@ -19,17 +19,17 @@ static void PressSB_SetMask_Exit()
 
 DEF_SMALL_BUTTON(sbExitSetMask, PageMemory::PageSetMask::self,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
-    nullptr, PressSB_SetMask_Exit, DrawSB_Exit, nullptr
+    nullptr, PressSB_Exit, DrawSB_Exit, nullptr
 )
 
 
-void PressSB_SetMask_Delete()
+static void PressSB_Delete()
 {
     set.memory.file_name_mask[0] = '\0';
 }
 
 
-void DrawSB_SetMask_Delete(int x, int y)
+static void DrawSB_Delete(int x, int y)
 {
     Font::Set(TypeFont::UGO2);
     Char(Symbol::UGO2::DEL).Draw4SymbolsInRect(x + 2, y + 1);
@@ -41,11 +41,11 @@ DEF_SMALL_BUTTON(sbSetMaskDelete, PageMemory::PageSetMask::self,
     "Удалить", "Delete",
     "Удаляет все введённые символы",
     "Deletes all entered symbols",
-    nullptr, PressSB_SetMask_Delete, DrawSB_SetMask_Delete, nullptr
+    nullptr, PressSB_Delete, DrawSB_Delete, nullptr
 )
 
 
-void PressSB_SetMask_Backspace()
+static void PressSB_Backspace()
 {
     int size = (int)(std::strlen(set.memory.file_name_mask));
     if (size > 0)
@@ -62,7 +62,7 @@ void PressSB_SetMask_Backspace()
 }
 
 
-void DrawSB_SetMask_Backspace(int x, int y)
+static void DrawSB_Backspace(int x, int y)
 {
     Font::Set(TypeFont::UGO2);
     Char(Symbol::UGO2::BACKSPACE).Draw4SymbolsInRect(x + 2, y + 1);
@@ -74,11 +74,11 @@ DEF_SMALL_BUTTON(sbSetMaskBackspace, PageMemory::PageSetMask::self,
     "Backspace", "Backspace",
     "Удаляет последний введённый символ",
     "Deletes the last entered symbol",
-    nullptr, PressSB_SetMask_Backspace, DrawSB_SetMask_Backspace, nullptr
+    nullptr, PressSB_Backspace, DrawSB_Backspace, nullptr
 )
 
 
-void PressSB_SetMask_Insert()
+static void PressSB_Insert()
 {
     int index = set.memory.index_cur_symbol_name_mask;
     int size = (int)(std::strlen(set.memory.file_name_mask));
@@ -119,7 +119,7 @@ void PressSB_SetMask_Insert()
 }
 
 
-void DrawSB_SetMask_Insert(int x, int y)
+static void DrawSB_Insert(int x, int y)
 {
     Font::Set(TypeFont::UGO2);
     Char(Symbol::UGO2::INSERT).Draw4SymbolsInRect(x + 2, y + 2);
@@ -131,7 +131,7 @@ DEF_SMALL_BUTTON(sbSetMaskInsert, PageMemory::PageSetMask::self,
     "Вставить", "Insert",
     "Вставляет выбранный символ",
     "Inserts the chosen symbol",
-    nullptr, PressSB_SetMask_Insert, DrawSB_SetMask_Insert, nullptr
+    nullptr, PressSB_Insert, DrawSB_Insert, nullptr
 )
 
 
@@ -167,7 +167,7 @@ static void DrawFileMask(int x, int y)
 
 
 // Эта функция рисует, когда выбран режим задания маски
-void DrawSetMask()
+static void DrawSetMask()
 {
     int x0 = Grid::Left() + 40;
     int y0 = Grid::TOP + 20;
@@ -237,7 +237,7 @@ void DrawSetMask()
 }
 
 
-void OnPressMemoryExtMask()
+static void OnPress()
 {
     PageMemory::PageSetMask::self->OpenAndSetItCurrent();
     Display::SetAddDrawFunction(DrawSetMask);
@@ -265,13 +265,13 @@ void PageMemory::OnMemExtSetMaskNameRegSet(int angle, int maxIndex)
 }
 
 
-static void OnMemExtSetMaskRegSet(int angle)
+static void OnRegSet(int angle)
 {
     PageMemory::OnMemExtSetMaskNameRegSet(angle, sizeof(Tables::symbolsAlphaBet) / 4);
 }
 
 
-bool IsActiveMemoryExtSetMask()
+static bool IsActive()
 {
     return set.memory.file_naming_mode.IsMask();
 }
@@ -287,7 +287,7 @@ DEF_PAGE_6(pageSetMask, PageMemory::PageExternal::self, NamePage::SB_MemExtSetMa
     Item::empty,
     sbSetMaskBackspace,
     sbSetMaskInsert,
-    IsActiveMemoryExtSetMask, OnPressMemoryExtMask, nullptr, OnMemExtSetMaskRegSet
+    IsActive, OnPress, nullptr, OnRegSet
 )
 
 const Page *PageMemory::PageSetMask::self = &pageSetMask;
