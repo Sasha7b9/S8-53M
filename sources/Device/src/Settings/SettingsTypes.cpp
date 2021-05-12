@@ -654,25 +654,25 @@ bool ModeRegSet::IsRShift()
 
 BalanceADCtype::E BalanceADCtype::Get()
 {
-    return set.debug.balance_ADC_type;
+    return setNRST.balance_ADC_type;
 }
 
 
 bool StretchADCtype::IsDisabled()
 {
-    return (set.debug.stretch_ADC_type == StretchADCtype::Disable);
+    return (setNRST.stretch_ADC_type == StretchADCtype::Disable);
 }
 
 
 bool StretchADCtype::IsHand()
 {
-    return (set.debug.stretch_ADC_type == StretchADCtype::Hand);
+    return (setNRST.stretch_ADC_type == StretchADCtype::Hand);
 }
 
 
 bool StretchADCtype::IsSettings()
 {
-    return (set.debug.stretch_ADC_type == StretchADCtype::Settings);
+    return (setNRST.stretch_ADC_type == StretchADCtype::Settings);
 }
 
 

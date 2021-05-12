@@ -9,6 +9,7 @@
 #include "FPGA/FPGA_Types.h"
 #include "Panel/Panel.h"
 #include "Settings/Settings.h"
+#include "Settings/SettingsNRST.h"
 #include "Utils/ProcessingSignal.h"
 #include <cstring>
 
@@ -33,8 +34,8 @@ void FPGA::Init()
 //    Storage::Clear();
     FPGA::LoadSettings();
     FPGA::SetNumSignalsInSec(set.display.enum_fps.NumSignalsInS());
-    FPGA::Randomizer::SetNumberMeasuresForGates(set.debug.num_measures_for_gates);
-    FPGA::Randomizer::SetNumberMeasuresForGates(set.debug.num_measures_for_gates);
+    FPGA::Randomizer::SetNumberMeasuresForGates(setNRST.num_measures_for_gates);
+    FPGA::Randomizer::SetNumberMeasuresForGates(setNRST.num_measures_for_gates);
 } 
 
 
@@ -400,32 +401,32 @@ void FPGA::BUS::WriteToAnalog(TypeWriteAnalog::E type, uint data)
 {
 #define STR_VALUE Uint16((uint16)(data)).ToStringBin().c_str()
 
-    if (type == TypeWriteAnalog::RangeA && set.debug.show_registers.rangeA)
+    if (type == TypeWriteAnalog::RangeA && setNRST.show_registers.rangeA)
     {
         LOG_WRITE("range 0 = %s", STR_VALUE);
     }
-    else if (type == TypeWriteAnalog::RangeB && set.debug.show_registers.rangeB)
+    else if (type == TypeWriteAnalog::RangeB && setNRST.show_registers.rangeB)
     {
         LOG_WRITE("range 1 = %s", STR_VALUE);
     }
-    else if (type == TypeWriteAnalog::TrigParam && set.debug.show_registers.trigParam)
+    else if (type == TypeWriteAnalog::TrigParam && setNRST.show_registers.trigParam)
     {
         LOG_WRITE("парам. синхр. = %s", STR_VALUE);
     }
-    else if (type == TypeWriteAnalog::ChanParamA && set.debug.show_registers.chanParamA)
+    else if (type == TypeWriteAnalog::ChanParamA && setNRST.show_registers.chanParamA)
     {
         LOG_WRITE("парам. кан. 1 = %s", STR_VALUE);
     }
-    else if (type == TypeWriteAnalog::ChanParamB && set.debug.show_registers.chanParamB)
+    else if (type == TypeWriteAnalog::ChanParamB && setNRST.show_registers.chanParamB)
     {
         LOG_WRITE("парам. кан. 2 = %s", STR_VALUE);
     }
     else if (type == TypeWriteAnalog::All && (
-            set.debug.show_registers.trigParam ||
-            set.debug.show_registers.rangeA ||
-            set.debug.show_registers.rangeB ||
-            set.debug.show_registers.chanParamA ||
-            set.debug.show_registers.chanParamB))
+            setNRST.show_registers.trigParam ||
+            setNRST.show_registers.rangeA ||
+            setNRST.show_registers.rangeB ||
+            setNRST.show_registers.chanParamA ||
+            setNRST.show_registers.chanParamB))
     {
         LOG_WRITE("полная запись в аналоговую часть = %s", STR_VALUE);
     }
@@ -447,15 +448,15 @@ void FPGA::BUS::WriteToDAC(TypeWriteDAC::E type, uint16 data)
 {
 #define STR_VALUE Uint16((uint16)(data)).ToStringBin().c_str()
 
-    if (type == TypeWriteDAC::RShiftA && set.debug.show_registers.rShiftA)
+    if (type == TypeWriteDAC::RShiftA && setNRST.show_registers.rShiftA)
     {
         LOG_WRITE("rShift 0 = %s", STR_VALUE);
     }
-    else if (type == TypeWriteDAC::RShiftB && set.debug.show_registers.rShiftB)
+    else if (type == TypeWriteDAC::RShiftB && setNRST.show_registers.rShiftB)
     {
         LOG_WRITE("rShfit 1 = %s", STR_VALUE);
     }
-    else if (type == TypeWriteDAC::TrigLev && set.debug.show_registers.trigLev)
+    else if (type == TypeWriteDAC::TrigLev && setNRST.show_registers.trigLev)
     {
         LOG_WRITE("trigLev = %s", STR_VALUE);
     }

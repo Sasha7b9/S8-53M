@@ -24,7 +24,7 @@ void Console::Draw()
     int height = Font::GetSize();
 
     int last_string = FirstEmptyString() - 1;
-    int numStr = set.debug.num_srings;
+    int numStr = setNRST.num_srings;
 
     if (height == 8 && numStr > 22)
     {
@@ -122,7 +122,7 @@ void Console::DeleteFirstString()
 
 void Console::AddString(pchar string)
 {
-    if (set.debug.console_in_pause)
+    if (setNRST.console_in_pause)
     {
         return;
     }
@@ -179,10 +179,10 @@ void Console::SetPauseForConsole(bool pause)
 
 void Console::OneStringUp()
 {
-    if (!set.debug.console_in_pause)
+    if (!setNRST.console_in_pause)
     {
     }
-    else if (lastStringForPause > set.debug.num_srings - 1)
+    else if (lastStringForPause > setNRST.num_srings - 1)
     {
         lastStringForPause--;
     }
@@ -191,7 +191,7 @@ void Console::OneStringUp()
 
 void Console::OneStringDown()
 {
-    if (!set.debug.console_in_pause)
+    if (!setNRST.console_in_pause)
     {
     }
     else if (lastStringForPause < FirstEmptyString() - 1)

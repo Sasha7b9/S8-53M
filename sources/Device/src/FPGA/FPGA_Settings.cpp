@@ -223,7 +223,7 @@ void TBase::Load()
     uint8 mask = !PeackDetMode::IsEnabled() ? masksTBase[base].maskNorm : masksTBase[base].maskPeackDet;
 
     FPGA::BUS::Write(WR_RAZV, mask);
-    set.debug.shift_T0 = deltaTShift[base];
+    setNRST.shift_T0 = deltaTShift[base];
 }
 
 
@@ -376,7 +376,7 @@ void LaunchFPGA::Load()
     {
         Calculate();
 
-        if (set.debug.show_registers.launch)
+        if (setNRST.show_registers.launch)
         {
             LOG_WRITE("запуск %d:%d", pred, post);
         }

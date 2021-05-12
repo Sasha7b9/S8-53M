@@ -2028,6 +2028,21 @@
               <FilePath>.\src\Settings\Settings.h</FilePath>
             </File>
             <File>
+              <FileName>Settings.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Settings\Settings.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>SettingsNRST.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Settings\SettingsNRST.h</FilePath>
+            </File>
+            <File>
+              <FileName>SettingsNRST.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Settings\SettingsNRST.cpp</FilePath>
+            </File>
+            <File>
               <FileName>SettingsTypes_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Settings\SettingsTypes_.h</FilePath>
@@ -2041,11 +2056,6 @@
               <FileName>SettingsTypesGraphics.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Settings\SettingsTypesGraphics.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Settings.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Settings\Settings.cpp</FilePath>
             </File>
             <File>
               <FileName>SettingsCursors.cpp</FileName>
@@ -4283,6 +4293,21 @@
               <FilePath>.\src\Settings\Settings.h</FilePath>
             </File>
             <File>
+              <FileName>Settings.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Settings\Settings.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>SettingsNRST.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Settings\SettingsNRST.h</FilePath>
+            </File>
+            <File>
+              <FileName>SettingsNRST.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Settings\SettingsNRST.cpp</FilePath>
+            </File>
+            <File>
               <FileName>SettingsTypes_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Settings\SettingsTypes_.h</FilePath>
@@ -4296,11 +4321,6 @@
               <FileName>SettingsTypesGraphics.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Settings\SettingsTypesGraphics.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Settings.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Settings\Settings.cpp</FilePath>
             </File>
             <File>
               <FileName>SettingsCursors.cpp</FileName>

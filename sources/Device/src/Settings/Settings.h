@@ -1,6 +1,7 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
 #include "common/Settings/SettingsTypes_.h"
+#include "Settings/SettingsNRST.h"
 #include "Utils/Measures.h"
 
 

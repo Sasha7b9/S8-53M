@@ -160,7 +160,7 @@ int Display::DrawScaleLine(int x, bool forTrigLev)
 
 void Display::DrawTimeForFrame(uint timeTicks)
 {
-    if(!set.debug.show_stats)
+    if(!setNRST.show_stats)
     {
         return;
     }

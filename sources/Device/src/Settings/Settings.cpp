@@ -205,28 +205,6 @@ static const Settings defaultSettings =
     {
         false,
         1
-    },
-    // debug
-    {
-        10,                         // numStrings
-        0,                          // размер шрифта - 5
-        0,                          // consoleInPause
-        BalanceADCtype::Settings,   // balanceADC
-        {0, 5},                     // shiftADC
-        StretchADCtype::Settings,   // stretch
-        {128, 128},                 // stretchADC
-//      RShiftADC_Settings,
-        1000,                       // numMeasuresForGates
-        0,                          // shiftT0
-        false,                      // showStats
-        6,                          // numAveForRand
-        false,                      // view altera writting data
-        false,                      // view all altera writting data
-        0,                          // alt shift
-        {
-            false,                   // отображать пред/после запуск
-            false, false, false, false, false, false, false, false, false, false, false
-        }
     }
 };
 
@@ -310,12 +288,6 @@ Range::E& operator--(Range::E &range)
 bool SettingsMath::IsMathEnabled()
 {
     return !ModeDrawMath::IsDisabled() || set.math.fft.enabled;
-}
-
-
-int SettingsDebug::GetSizeFontForConsole()
-{
-    return set.debug.size_font ? 8 : 5;
 }
 
 

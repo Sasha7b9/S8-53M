@@ -35,14 +35,14 @@ DEF_CHOICE_2(mcStats, PageDebug::self,
     "To show/not to show a time/shot, frames per second, quantity of signals with the last settings in memory/quantity of the signals kept in memory",
     "Не показывать", "Hide",
     "Показывать", "Show",
-    set.debug.show_stats, nullptr, nullptr, nullptr
+    setNRST.show_stats, nullptr, nullptr, nullptr
 )
 
 DEF_GOVERNOR(mgConsole_NumStrings, PageDebug::PageConsole::self,
     "Число строк", "Number strings",
     "",
     "",
-    set.debug.num_srings, 0, 33, nullptr, nullptr, nullptr
+    setNRST.num_srings, 0, 33, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_SizeFont, PageDebug::PageConsole::self,
@@ -51,7 +51,7 @@ DEF_CHOICE_2(mcConsole_SizeFont, PageDebug::PageConsole::self,
     "",
     "5", "5",
     "8", "8",
-    set.debug.size_font, nullptr, nullptr, nullptr
+    setNRST.size_font, nullptr, nullptr, nullptr
 )
 
 
@@ -61,7 +61,7 @@ DEF_CHOICE_2(mcLaunchFPGA, PageDebug::PageConsole::PageRegisters::self,
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.show_registers.launch, nullptr, nullptr, nullptr
+    setNRST.show_registers.launch, nullptr, nullptr, nullptr
 )
 
 
@@ -71,7 +71,7 @@ DEF_CHOICE_2(mcConsole_Registers_RD_FL, PageDebug::PageConsole::PageRegisters::s
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.show_registers.flag, nullptr, nullptr, nullptr
+    setNRST.show_registers.flag, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_Registers_RShiftA, PageDebug::PageConsole::PageRegisters::self,
@@ -80,7 +80,7 @@ DEF_CHOICE_2(mcConsole_Registers_RShiftA, PageDebug::PageConsole::PageRegisters:
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.show_registers.rShiftA, nullptr, nullptr, nullptr
+    setNRST.show_registers.rShiftA, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_Registers_RShiftB, PageDebug::PageConsole::PageRegisters::self,
@@ -89,7 +89,7 @@ DEF_CHOICE_2(mcConsole_Registers_RShiftB, PageDebug::PageConsole::PageRegisters:
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.show_registers.rShiftB, nullptr, nullptr, nullptr
+    setNRST.show_registers.rShiftB, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_Registers_TrigLev, PageDebug::PageConsole::PageRegisters::self,
@@ -98,7 +98,7 @@ DEF_CHOICE_2(mcConsole_Registers_TrigLev, PageDebug::PageConsole::PageRegisters:
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.show_registers.trigLev, nullptr, nullptr, nullptr
+    setNRST.show_registers.trigLev, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_Registers_RangeA, PageDebug::PageConsole::PageRegisters::self,
@@ -107,7 +107,7 @@ DEF_CHOICE_2(mcConsole_Registers_RangeA, PageDebug::PageConsole::PageRegisters::
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.show_registers.rangeA, nullptr, nullptr, nullptr
+    setNRST.show_registers.rangeA, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_Registers_RangeB, PageDebug::PageConsole::PageRegisters::self,
@@ -116,7 +116,7 @@ DEF_CHOICE_2(mcConsole_Registers_RangeB, PageDebug::PageConsole::PageRegisters::
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.show_registers.rangeB, nullptr, nullptr, nullptr
+    setNRST.show_registers.rangeB, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_Registers_TrigParam, PageDebug::PageConsole::PageRegisters::self,
@@ -125,7 +125,7 @@ DEF_CHOICE_2(mcConsole_Registers_TrigParam, PageDebug::PageConsole::PageRegister
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.show_registers.trigParam, nullptr, nullptr, nullptr
+    setNRST.show_registers.trigParam, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_Registers_ChanParamA, PageDebug::PageConsole::PageRegisters::self,
@@ -134,7 +134,7 @@ DEF_CHOICE_2(mcConsole_Registers_ChanParamA, PageDebug::PageConsole::PageRegiste
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.show_registers.chanParamA, nullptr, nullptr, nullptr
+    setNRST.show_registers.chanParamA, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_Registers_ChanParamB, PageDebug::PageConsole::PageRegisters::self,
@@ -143,7 +143,7 @@ DEF_CHOICE_2(mcConsole_Registers_ChanParamB, PageDebug::PageConsole::PageRegiste
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.show_registers.chanParamB, nullptr, nullptr, nullptr
+    setNRST.show_registers.chanParamB, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_Registers_TBase, PageDebug::PageConsole::PageRegisters::self,
@@ -152,7 +152,7 @@ DEF_CHOICE_2(mcConsole_Registers_TBase, PageDebug::PageConsole::PageRegisters::s
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.show_registers.tBase, nullptr, nullptr, nullptr
+    setNRST.show_registers.tBase, nullptr, nullptr, nullptr
 )
 
 DEF_CHOICE_2(mcConsole_Registers_tShift, PageDebug::PageConsole::PageRegisters::self,
@@ -161,7 +161,7 @@ DEF_CHOICE_2(mcConsole_Registers_tShift, PageDebug::PageConsole::PageRegisters::
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.debug.show_registers.tShift, nullptr, nullptr, nullptr
+    setNRST.show_registers.tShift, nullptr, nullptr, nullptr
 )
 
 DEF_PAGE_12(pageRegisters, PageDebug::PageConsole::self, NamePage::DebugShowRegisters,
@@ -197,8 +197,8 @@ static void Draw_ADC_Balance_Mode(int, int)
 {
     int8 shift[2][3] =
     {
-        {0, set.chan[ChA].balance_shift_ADC, (int8)set.debug.balance_ADC[ChA]},
-        {0, set.chan[ChB].balance_shift_ADC, (int8)set.debug.balance_ADC[ChB]}
+        {0, set.chan[ChA].balance_shift_ADC, (int8)setNRST.balance_ADC[ChA]},
+        {0, set.chan[ChB].balance_shift_ADC, (int8)setNRST.balance_ADC[ChB]}
     };
 
     shiftADCA = shift[0][BalanceADCtype::Get()];
@@ -220,12 +220,12 @@ DEF_CHOICE_3(mcADC_Balance_Mode, PageDebug::PageADC::PageBalance::self,
     DISABLE_RU, DISABLE_EN,
     "Реальный", "Real",
     "Ручной", "Manual",
-    set.debug.balance_ADC_type, nullptr, OnChanged_ADC_Balance_Mode, Draw_ADC_Balance_Mode
+    setNRST.balance_ADC_type, nullptr, OnChanged_ADC_Balance_Mode, Draw_ADC_Balance_Mode
 )
 
 static void OnChanged_ADC_Balance_ShiftA()
 {
-    set.debug.balance_ADC[ChA] = shiftADCA;
+    setNRST.balance_ADC[ChA] = shiftADCA;
 //    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)BALANCE_ADC_A, false);
 }
 
@@ -243,7 +243,7 @@ DEF_GOVERNOR(mgADC_Balance_ShiftA, PageDebug::PageADC::PageBalance::self,
 
 static void OnChanged_ADC_Balance_ShiftB()
 {
-    set.debug.balance_ADC[ChB] = shiftADCB;
+    setNRST.balance_ADC[ChB] = shiftADCB;
 //    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)BALANCE_ADC_B, false);
 }
 
@@ -296,7 +296,7 @@ DEF_CHOICE_3(mcADC_Stretch_Mode, PageDebug::PageADC::PageStretch::self,
     DISABLE_RU, DISABLE_EN,
     "Реальный", "Real",
     "Ручной", "Manual",
-    set.debug.stretch_ADC_type, nullptr, OnChanged_ADC_Stretch_Mode, nullptr
+    setNRST.stretch_ADC_type, nullptr, OnChanged_ADC_Stretch_Mode, nullptr
 )
 
 static void OnChanged_ADC_Stretch_ADC_A()
@@ -313,7 +313,7 @@ DEF_GOVERNOR(mgADC_Stretch_ADC_A, PageDebug::PageADC::PageStretch::self,
     "Коэфф. 1к", "Koeff. 1ch",
     "",
     "",
-    set.debug.stretch_ADC[ChA], 0, 255, IsActive_ADC_Stretch_ADC, OnChanged_ADC_Stretch_ADC_A, nullptr
+    setNRST.stretch_ADC[ChA], 0, 255, IsActive_ADC_Stretch_ADC, OnChanged_ADC_Stretch_ADC_A, nullptr
 )
 
 static void OnChanged_ADC_Stretch_ADC_B()
@@ -325,7 +325,7 @@ DEF_GOVERNOR(mgADC_Stretch_ADC_B, PageDebug::PageADC::PageStretch::self,
     "Коэфф. 2к", "Koeff. 2ch",
     "",
     "",
-    set.debug.stretch_ADC[ChB], 0, 255, IsActive_ADC_Stretch_ADC, OnChanged_ADC_Stretch_ADC_B, nullptr
+    setNRST.stretch_ADC[ChB], 0, 255, IsActive_ADC_Stretch_ADC, OnChanged_ADC_Stretch_ADC_B, nullptr
 )
 
 DEF_PAGE_3(pageStretchADC, PageDebug::PageADC::self, NamePage::DebugADCstretch,
@@ -438,33 +438,33 @@ DEF_PAGE_3(pageADC, PageDebug::self, NamePage::DebugADC,
 
 static void OnChanged_Randomizer_SamplesForGates()
 {
-    FPGA::Randomizer::SetNumberMeasuresForGates(set.debug.num_measures_for_gates);
+    FPGA::Randomizer::SetNumberMeasuresForGates(setNRST.num_measures_for_gates);
 }
 
 DEF_GOVERNOR(mgRandomizer_SamplesForGates, PageDebug::PageRandomizer::self,
     "Выб-к/ворота", "Samples/gates",
     "",
     "",
-    set.debug.num_measures_for_gates, 1, 2500, nullptr, OnChanged_Randomizer_SamplesForGates, nullptr
+    setNRST.num_measures_for_gates, 1, 2500, nullptr, OnChanged_Randomizer_SamplesForGates, nullptr
 )
 
 static void OnChanged_Randomizer_AltTShift0()
 {
-    TShift::SetDelta(set.debug.shift_T0);
+    TShift::SetDelta(setNRST.shift_T0);
 }
 
 DEF_GOVERNOR(mgRandomizer_AltTShift0, PageDebug::PageRandomizer::self,
     "tShift доп.", "tShift alt.",
     "",
     "",
-    set.debug.shift_T0, 0, 510, nullptr, OnChanged_Randomizer_AltTShift0, nullptr
+    setNRST.shift_T0, 0, 510, nullptr, OnChanged_Randomizer_AltTShift0, nullptr
 )
 
 DEF_GOVERNOR(mgRandomizer_Average, PageDebug::PageRandomizer::self,
     "Усредн.", "Average",
     "",
     "",
-    set.debug.num_ave_for_rand, 1, 32, nullptr, nullptr, nullptr
+    setNRST.num_ave_for_rand, 1, 32, nullptr, nullptr, nullptr
 )
 
 DEF_PAGE_3(pageRandomizer, PageDebug::self, NamePage::DebugRandomizer,

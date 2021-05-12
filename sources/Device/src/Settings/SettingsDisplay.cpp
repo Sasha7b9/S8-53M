@@ -82,9 +82,9 @@ ModeAveraging::E ModeAveraging::Current()
 
 int ENumAveraging::NumAverages()
 {
-    if (TBase::IsRandomize() && (set.debug.num_ave_for_rand >= ENumAveraging::ToAbs()))
+    if (TBase::IsRandomize() && (setNRST.num_ave_for_rand >= ENumAveraging::ToAbs()))
     {
-        return set.debug.num_ave_for_rand;
+        return setNRST.num_ave_for_rand;
     }
 
     return ToAbs();
