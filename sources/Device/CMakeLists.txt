@@ -136,6 +136,7 @@ file(GLOB MENU                   src/Menu/*.h
 file(GLOB MENU_ITEMS             src/Menu/Items/*.*)
 file(GLOB MENU_PAGES             src/Menu/Pages/*.*)
 file(GLOB MENU_PAGES_DEBUG       src/Menu/Pages/Debug/*.*)
+file(GLOB MENU_PAGES_MEMORY      src/Menu/Pages/Memory/*.*)
 file(GLOB PANEL            ../common/Panel/*.*
                                  src/Panel/*.*)
 file(GLOB SETTINGS               src/Settings/*.*
@@ -181,6 +182,7 @@ source_group(Menu                    FILES ${MENU})
 source_group(Menu\\Items             FILES ${MENU_ITEMS})
 source_group(Menu\\Pages             FILES ${MENU_PAGES})
 source_group(Menu\\Pages\\Debug      FILES ${MENU_PAGES_DEBUG})
+source_group(Menu\\Pages\\Memory     FILES ${MENU_PAGES_MEMORY})
 source_group(Panel                   FILES ${PANEL})
 source_group(Settings                FILES ${SETTINGS})
 source_group(Utils                   FILES ${UTILS})
@@ -194,5 +196,5 @@ add_library(Device ${VS_KEIL_CMSIS} ${VS_KEIL_ARMCLANG} ${VS_KEIL_FATFS} ${LIBS_
                    ${HARDWARE_CMSIS} ${HARDWARE_FATFS} ${HARDWARE_HAL} ${HARDWARE_LWIP} ${HARDWARE_MEMORY}
                    ${HARDWARE_USBD} ${HARDWARE_USBH} ${SRC} ${DISPLAY} 
                    ${DISPLAY_FONT} ${DISPLAY_PAINTER} ${DISPLAY_SCREEN} ${FDRIVE} ${FPGA} ${FPGA_DATA} ${LAN} ${MENU}
-                   ${MENU_ITEMS} ${MENU_PAGES} ${MENU_PAGES_DEBUG} ${PANEL} ${SETTINGS}
+                   ${MENU_ITEMS} ${MENU_PAGES} ${MENU_PAGES_DEBUG} ${MENU_PAGES_MEMORY} ${PANEL} ${SETTINGS}
                    ${UTILS} ${UTILS_CONTAINERS} ${VCP} ${VCP_SCPI} ${VCP_SCPI_UTILS})
