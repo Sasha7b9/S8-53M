@@ -51,7 +51,8 @@ public:
 
     static void OpenItemTime();
 
-    // Возвращает адрес текущего элемента меню (текущим, как правило, является элемент, кнопка которого была нажата последней.
+    // Возвращает адрес текущего элемента меню (текущим, как правило, является элемент, кнопка которого была нажата
+    // последней.
     static const Item *CurrentItem();
     static bool IsCurrentItem(const Item *item);
 
@@ -74,7 +75,8 @@ public:
 
     static void DrawStringNavigation();
 
-    static bool showHelpHints;      // Если 1, то при нажатии кнопки вместо выполнения её фунции выводится подсказка о её назначении
+    static bool showHelpHints;      // Если 1, то при нажатии кнопки вместо выполнения её фунции выводится подсказка о
+                                    // её назначении
     static bool showDebugMenu;
     static bool needClosePageSB;    // Если 1, нужно закрывать страницу малых кнопок
 

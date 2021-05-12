@@ -11,7 +11,7 @@ public:
 
     static void Update();
 
-    // В отлюченном режиме панель лишь обновляет состояние переменной pressedButton, не выполняя больше никаких действий.
+    // В отлюченном режиме панель лишь обновляет состояние переменной pressedButton, не выполняя больше никаких действий
     static void Disable();
 
     static void EnableLED(TypeLED::E led, bool endable);

@@ -88,16 +88,18 @@ void Menu::Draw()
         int y = 0;
         int width = Menu::IsMinimize() ? 289 : 220;
 
-        Text(LANG_RU ? "Включён режим подсказок. В этом режиме при нажатии на кнопку на экран выводится информация о её назначении. "
-            "Чтобы выключить этот режим, нажмите кнопку ПОМОЩЬ и удерживайте её в течение 0.5с."
+        Text(LANG_RU ? "Включён режим подсказок. В этом режиме при нажатии на кнопку на экран выводится информация о "
+            "её назначении. Чтобы выключить этот режим, нажмите кнопку ПОМОЩЬ и удерживайте её в течение 0.5с."
             :
             "Mode is activated hints. In this mode, pressing the button displays the information on its purpose. "
-            "To disable this mode, press the button HELP and hold it for 0.5s.").DrawInBoundedRectWithTransfers(x, y, width - 1, Color::BACK, Color::FILL);
+            "To disable this mode, press the button HELP and hold it for 0.5s.").
+                                              DrawInBoundedRectWithTransfers(x, y, width - 1, Color::BACK, Color::FILL);
 
         y += LANG_RU ? 49 : 40;
         if (PageHelpContent::stringForHint)
         {
-            Text(PageHelpContent::stringForHint).DrawInBoundedRectWithTransfers(x, y, width - 1, Color::BACK, Color::FILL);
+            Text(PageHelpContent::stringForHint).
+                                              DrawInBoundedRectWithTransfers(x, y, width - 1, Color::BACK, Color::FILL);
         }
         else if (PageHelpContent::itemHint)
         {

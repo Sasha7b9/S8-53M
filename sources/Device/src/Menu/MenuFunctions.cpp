@@ -31,10 +31,10 @@ void Menu::CloseOpenedItem()
     const Item *item = Item::Opened();
     if(item->IsPage())
     {
-        if (((const Page *)item)->IsPageSB())                                       // Для страницы малых кнопок
-        {
-            SmallButton *sb = item->ReinterpretToPage()->SmallButonFrom(0);         // Выполняем функцию нажатия кнопки Key::Menu
-            if (sb->OwnData()->funcOnPress)                                         // Если она есть
+        if (((const Page *)item)->IsPageSB())                                               // Для страницы малых кнопок
+        {                                                                  // Выполняем функцию нажатия кнопки Key::Menu
+            SmallButton *sb = item->ReinterpretToPage()->SmallButonFrom(0);
+            if (sb->OwnData()->funcOnPress)                                                             // Если она есть
             {
                 sb->OwnData()->funcOnPress();
             }
