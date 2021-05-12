@@ -11,7 +11,7 @@ static const Button name(&di##name);
 
 #define DEF_SMALL_BUTTON(name, keeper, titleRU, titleEN, hintRU, hintEN, funcActive, funcPress, funcDraw, hintUGO)     \
 static const DataSmallButton dsb##name = { funcPress, funcDraw, hintUGO };                                             \
-pchar th##name[4] = {titleRU, titleEN, hintRU, hintEN };                                                               \
+static pchar th##name[4] = {titleRU, titleEN, hintRU, hintEN };                                                        \
 static const DataItem di##name = { TypeItem::SmallButton, keeper, funcActive, th##name, &dsb##name};                   \
 static const SmallButton name(&di##name);
 

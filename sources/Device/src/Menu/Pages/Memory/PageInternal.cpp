@@ -32,7 +32,7 @@ static void PressSB_Exit()
 }
 
 
-DEF_SMALL_BUTTON(sbExitMemInt, PageMemory::PageInternal::self,    // Кнопка для выхода из режима малых кнопок.
+DEF_SMALL_BUTTON(sbExit, PageMemory::PageInternal::self,    // Кнопка для выхода из режима малых кнопок.
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
     nullptr, PressSB_Exit, DrawSB_Exit, nullptr
 )
@@ -82,7 +82,7 @@ static const arrayHints hintsShowSignalAlways =
 };
 
 
-DEF_SMALL_BUTTON(sbMemIntShowSignalAlways, PageMemory::PageInternal::self,
+DEF_SMALL_BUTTON(sbShowSignalAlways, PageMemory::PageInternal::self,
     "Показывать всегда", "To show always",
     "Позволяет всегда показывать выбранный сохранённый сигнал поверх текущего",
     "Allows to show always the chosen kept signal over the current",
@@ -150,7 +150,7 @@ static const arrayHints hintsModeShow =
 };
 
 
-DEF_SMALL_BUTTON(sbMemIntModeShow, PageMemory::PageInternal::self,
+DEF_SMALL_BUTTON(sbModeShow, PageMemory::PageInternal::self,
     "Вид сигнала", "Type of a signal",
     "Показывать записанный или текущий сигнал в режиме ВНУТР ЗУ",
     "Show recorded or current signal in mode Internal Memory",
@@ -172,7 +172,7 @@ static void DrawSB_Delete(int x, int y)
 }
 
 
-DEF_SMALL_BUTTON(sbMemIntDelete, PageMemory::PageInternal::self,
+DEF_SMALL_BUTTON(sbDelete, PageMemory::PageInternal::self,
     "Удалить сигнал", "Delete signal",
     "Удалить сигнал",
     "Delete signal",
@@ -217,7 +217,7 @@ void DrawSB_Save(int x, int y)
 }
 
 
-DEF_SMALL_BUTTON(sbMemIntSave, PageMemory::PageInternal::self,
+DEF_SMALL_BUTTON(sbSave, PageMemory::PageInternal::self,
     "Сохранить", "Save",
     "Сохранить сигнал во внутреннем запоминующем устройстве",
     "To keep a signal in an internal memory",
@@ -243,7 +243,7 @@ void DrawSB_SaveToFlashDrive(int x, int y)
 }
 
 
-DEF_SMALL_BUTTON(sbMemIntSaveToFlash, PageMemory::PageInternal::self,
+DEF_SMALL_BUTTON(sbSaveToFlash, PageMemory::PageInternal::self,
     "Сохранить", "Save",
     "Сохраняет сигнал на флешку",
     "Save signal to flash drive",
@@ -317,12 +317,12 @@ DEF_PAGE_6(pageInternal, PageMemory::self, NamePage::SB_MemInt,
     "ВНУТР ЗУ", "INT STORAGE",
     "Переход в режим работы с внутренней памятью",
     "Transition to an operating mode with internal memory",
-    sbExitMemInt,
-    sbMemIntShowSignalAlways,
-    sbMemIntModeShow,
-    sbMemIntDelete,
-    sbMemIntSave,
-    sbMemIntSaveToFlash,
+    sbExit,
+    sbShowSignalAlways,
+    sbModeShow,
+    sbDelete,
+    sbSave,
+    sbSaveToFlash,
     nullptr, OnPress, FuncAdditionDrawing, OnRegSet
 );
 

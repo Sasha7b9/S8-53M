@@ -6,7 +6,7 @@
 #include "Settings/Settings.h"
 
 
-DEF_CHOICE_2(mcMemoryExtName, PageMemory::PageExternal::self,
+DEF_CHOICE_2(mcName, PageMemory::PageExternal::self,
     "Имя файла", "File name"
     ,
     "Задаёт режим наименования файлов при сохранении на внешний накопитель:\n"
@@ -23,7 +23,7 @@ DEF_CHOICE_2(mcMemoryExtName, PageMemory::PageExternal::self,
 )
 
 
-DEF_CHOICE_2(mcMemoryExtModeSave, PageMemory::PageExternal::self,
+DEF_CHOICE_2(mcModeSave, PageMemory::PageExternal::self,
     "Сохранять как", "Save as"
     ,
     "Если выбран вариант \"Изображение\", сигнал будет сохранён в текущем каталоге в графическом файле с расширением BMP\n"
@@ -38,7 +38,7 @@ DEF_CHOICE_2(mcMemoryExtModeSave, PageMemory::PageExternal::self,
 )
 
 
-DEF_CHOICE_2(mcMemoryExtModeBtnMemory, PageMemory::PageExternal::self,
+DEF_CHOICE_2(mcModeBtnMemory, PageMemory::PageExternal::self,
     "Реж кн ПАМЯТЬ", "Mode btn MEMORY",
     "",
     "",
@@ -48,7 +48,7 @@ DEF_CHOICE_2(mcMemoryExtModeBtnMemory, PageMemory::PageExternal::self,
 )
 
 
-DEF_CHOICE_2(mcMemoryExtAutoConnectFlash, PageMemory::PageExternal::self,
+DEF_CHOICE_2(mcAutoConnectFlash, PageMemory::PageExternal::self,
     "Автоподкл.", "AutoConnect",
     "Eсли \"Вкл\", при подключении внешнего накопителя происходит автоматический переход на страницу ПАМЯТЬ - Внешн ЗУ",
     "If \"Enable\", when you connect an external drive is automatically transferred to the page MEMORY - Ext.Storage",
@@ -63,11 +63,11 @@ DEF_PAGE_6(pageExternal, PageMemory::self, NamePage::MemoryExt,
     "Работа с внешним запоминающим устройством.",
     "Work with external storage device.",
     *PageMemory::PageFileManager::self,
-    mcMemoryExtName,
+    mcName,
     *PageMemory::PageSetMask::self,
-    mcMemoryExtModeSave,
-    mcMemoryExtModeBtnMemory,
-    mcMemoryExtAutoConnectFlash,
+    mcModeSave,
+    mcModeBtnMemory,
+    mcAutoConnectFlash,
     nullptr, nullptr, nullptr, nullptr
 );
 
