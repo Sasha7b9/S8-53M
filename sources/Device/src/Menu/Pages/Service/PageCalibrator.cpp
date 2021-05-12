@@ -7,34 +7,34 @@
 #include "Settings/Settings.h"
 
 
-static void OnChanged_Calibrator_Mode(bool)
+static void OnChanged_Mode(bool)
 {
     CalibratorMode::Set(CalibratorMode::Get());
 }
 
 
-DEF_CHOICE_3(cCalibrator_Mode, PageService::PageCalibrator::self,
+DEF_CHOICE_3(cMode, PageService::PageCalibrator::self,
     "Калибратор", "Calibrator",
     "Режим работы калибратора",
     "Mode of operation of the calibrator",
     "Перем", "DC",
     "Пост", "AC",
     "0В", "OV",
-    set.service.calibrator, nullptr, OnChanged_Calibrator_Mode, nullptr
+    set.service.calibrator, nullptr, OnChanged_Mode, nullptr
 )
 
 
-static void OnPress_Calibrator_Calibrate()
+static void OnPress_Calibrate()
 {
     FPGA::state.need_calibration = true;
 }
 
 
-DEF_BUTTON(cCalibrator_Calibrate, PageService::PageCalibrator::self,
+DEF_BUTTON(cCalibrate, PageService::PageCalibrator::self,
     "Калибровать", "Calibrate",
     "Запуск процедуры калибровки",
     "Running the calibration procedure",
-    nullptr, OnPress_Calibrator_Calibrate
+    nullptr, OnPress_Calibrate
 )
 
 
@@ -42,8 +42,8 @@ DEF_PAGE_2(pageCalibrator, PageService::self, NamePage::ServiceCalibrator,
     "КАЛИБРАТОР", "CALIBRATOR",
     "Управлением калибратором и калибровка осциллографа",
     "Item of the calibrator and calibration of an oscillograph",
-    cCalibrator_Mode,
-    cCalibrator_Calibrate,
+    cMode,
+    cCalibrate,
     nullptr, nullptr, nullptr, nullptr
 )
 
