@@ -9,16 +9,16 @@
 #include "Settings/Settings.h"
 
 
-static void OnPress_Information_Exit()
+static void OnPress_Exit()
 {
     Display::SetDrawMode(DrawMode::Auto, 0);
     Display::RemoveAddDrawFunction();
 }
 
 
-DEF_SMALL_BUTTON(sbInformation_Exit, PageService::PageCalibrator::self,
+DEF_SMALL_BUTTON(sbExit, PageService::PageCalibrator::self,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
-    nullptr, OnPress_Information_Exit, DrawSB_Exit, nullptr
+    nullptr, OnPress_Exit, DrawSB_Exit, nullptr
 )
 
 
@@ -54,7 +54,7 @@ static void Information_Draw()
 }
 
 
-static void OnPress_Information()
+static void OnPress()
 {
     PageService::PageInformation::self->OpenAndSetItCurrent();
     Display::SetDrawMode(DrawMode::Hand, Information_Draw);
@@ -65,13 +65,13 @@ DEF_PAGE_6(pageInformation, PageService::self, NamePage::SB_Information,
     "ИНФОРМАЦИЯ", "INFORMATION",
     "Выводит на экран идентификационные данные осциллографа",
     "Displays identification data of the oscilloscope",
-    sbInformation_Exit, // СЕРВИС - ИНФОРМАЦИЯ - Выход
+    sbExit,
     Item::empty,
     Item::empty,
     Item::empty,
     Item::empty,
     Item::empty,
-    nullptr, OnPress_Information, nullptr, nullptr
+    nullptr, OnPress, nullptr, nullptr
 )
 
 const Page *PageService::PageInformation::self = &pageInformation;
