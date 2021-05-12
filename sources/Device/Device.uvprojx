@@ -2003,6 +2003,11 @@
               <FilePath>.\src\Menu\Pages\Debug\PageConsole.cpp</FilePath>
             </File>
             <File>
+              <FileName>PageRegisters.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Debug\PageRegisters.cpp</FilePath>
+            </File>
+            <File>
               <FileName>PageSerialNumber.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Debug\PageSerialNumber.cpp</FilePath>
@@ -4281,6 +4286,11 @@
               <FileName>PageConsole.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Debug\PageConsole.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PageRegisters.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Debug\PageRegisters.cpp</FilePath>
             </File>
             <File>
               <FileName>PageSerialNumber.cpp</FileName>
