@@ -74,14 +74,19 @@ DEF_CHOICE_4(mcTrackingT1U1, PageCursors::self,
     ,
     "Задаёт режим слежения за первым курсором времени и напряжения:\n"
     "1. \"Откл\" - курсор времени и курсор напряжения устанавливаются вручную.\n"
-    "2. \"Напряжение\" - при ручном изменении положения курсора времени курсор напряжения автоматически отслеживают изменения сигнала.\n"
-    "3. \"Время\" - при ручном изменении положения курсора напряжения курсор времени автоматически отслеживают изменения сигнала.\n"
-    "4. \"Напряж и время\" - действует как один из предыдущих режимов, в зависимости от того, на какой курсор производилось последнее воздействие."
+    "2. \"Напряжение\" - при ручном изменении положения курсора времени курсор напряжения автоматически отслеживают "
+    "изменения сигнала.\n"
+    "3. \"Время\" - при ручном изменении положения курсора напряжения курсор времени автоматически отслеживают "
+    "изменения сигнала.\n"
+    "4. \"Напряж и время\" - действует как один из предыдущих режимов, в зависимости от того, на какой курсор "
+    "производилось последнее воздействие."
     ,
     "Sets the mode tracking for second cursor:\n"                   // WARN Перевод
     "1. \"Disable\" - all cursors are set manually.\n"
-    "2. \"Voltage\" - when manually changing the position of the cursor time cursors voltage automatically track changes in the signal.\n"
-    "3. \"Time\" - when manually changing the position of the cursor voltage cursors time automatically track changes in the signal.\n"
+    "2. \"Voltage\" - when manually changing the position of the cursor time cursors voltage automatically track "
+    "changes in the signal.\n"
+    "3. \"Time\" - when manually changing the position of the cursor voltage cursors time automatically track changes "
+    "in the signal.\n"
     "4. \"Volt and time\" - acts as one of the previous modes, depending on which was carried out last effect cursors."
     ,
     DISABLE_RU, DISABLE_EN,
@@ -96,14 +101,19 @@ DEF_CHOICE_4(mcTrackingT2U2, PageCursors::self,
     ,
     "Задаёт режим слежения за вторым курсором времени и напряжения:\n"
     "1. \"Откл\" - курсор времени и курсор напряжения устанавливаются вручную.\n"
-    "2. \"Напряжение\" - при ручном изменении положения курсора времени курсор напряжения автоматически отслеживают изменения сигнала.\n"
-    "3. \"Время\" - при ручном изменении положения курсора напряжения курсор времени автоматически отслеживают изменения сигнала.\n"
-    "4. \"Напряж и время\" - действует как один из предыдущих режимов, в зависимости от того, на какой курсор производилось последнее воздействие."
+    "2. \"Напряжение\" - при ручном изменении положения курсора времени курсор напряжения автоматически отслеживают "
+    "изменения сигнала.\n"
+    "3. \"Время\" - при ручном изменении положения курсора напряжения курсор времени автоматически отслеживают "
+    "изменения сигнала.\n"
+    "4. \"Напряж и время\" - действует как один из предыдущих режимов, в зависимости от того, на какой курсор "
+    "производилось последнее воздействие."
     ,
     "Sets the mode tracking cursors channel 2:\n"
     "1. \"Disable\" - all cursors are set manually.\n"
-    "2. \"Voltage\" - when manually changing the position of the cursor time cursors voltage automatically track changes in the signal.\n"
-    "3. \"Time\" - when manually changing the position of the cursor voltage cursors time automatically track changes in the signal.\n"
+    "2. \"Voltage\" - when manually changing the position of the cursor time cursors voltage automatically track "
+    "changes in the signal.\n"
+    "3. \"Time\" - when manually changing the position of the cursor voltage cursors time automatically track changes "
+    "in the signal.\n"
     "4. \"Volt and time\" - acts as one of the previous modes, depending on which was carried out last effect cursors."
     ,
     DISABLE_RU, DISABLE_EN,
@@ -115,8 +125,10 @@ DEF_CHOICE_4(mcTrackingT2U2, PageCursors::self,
 
 DEF_CHOICE_2(mcShowFreq, PageCursors::self,
     "1/dT", "1/dT",
-    "Если выбрано \"Вкл\", в правом верхнем углу выводится величина, обратная расстоянию между курсорами времени - частота сигнала, один период которого равен расстоянию между временными курсорами.",
-    "If you select \"Enable\" in the upper right corner displays the inverse of the distance between cursors time - frequency signal, a period equal to the distance between the time cursors.",
+    "Если выбрано \"Вкл\", в правом верхнем углу выводится величина, обратная расстоянию между курсорами времени - "
+    "частота сигнала, один период которого равен расстоянию между временными курсорами.",
+    "If you select \"Enable\" in the upper right corner displays the inverse of the distance between cursors time - "
+    "frequency signal, a period equal to the distance between the time cursors.",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
     set.cursors.show_freq, nullptr, nullptr, nullptr
