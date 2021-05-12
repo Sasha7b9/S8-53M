@@ -1,18 +1,13 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
-#include "common/Display/Font/Font_.h"
 #include "common/Display/Painter/Primitives_.h"
 #include "common/Display/Painter/Text_.h"
-#include "common/Hardware/Sound_.h"
-#include "common/Hardware/Memory/ROM_.h"
-#include "common/Utils/Math_.h"
+#include "Display/Screen/Grid.h"
 #include "FDrive/FDrive.h"
-#include "FPGA/FPGA.h"
 #include "Menu/FileManager.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
-#include <cstring>
 
 
 int16 PageMemory::PageLatest::currentSignal = 0;
