@@ -2078,14 +2078,19 @@
               <FilePath>.\src\Menu\Pages\Service\PageService.cpp</FilePath>
             </File>
             <File>
-              <FileName>PageFFT.cpp</FileName>
+              <FileName>PageCalibrator.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\Service\PageFFT.cpp</FilePath>
+              <FilePath>.\src\Menu\Pages\Service\PageCalibrator.cpp</FilePath>
             </File>
             <File>
               <FileName>PageCursorsFFT.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Service\PageCursorsFFT.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PageFFT.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Service\PageFFT.cpp</FilePath>
             </File>
             <File>
               <FileName>PageFunction.cpp</FileName>
@@ -4453,14 +4458,19 @@
               <FilePath>.\src\Menu\Pages\Service\PageService.cpp</FilePath>
             </File>
             <File>
-              <FileName>PageFFT.cpp</FileName>
+              <FileName>PageCalibrator.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\Service\PageFFT.cpp</FilePath>
+              <FilePath>.\src\Menu\Pages\Service\PageCalibrator.cpp</FilePath>
             </File>
             <File>
               <FileName>PageCursorsFFT.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Service\PageCursorsFFT.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PageFFT.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Service\PageFFT.cpp</FilePath>
             </File>
             <File>
               <FileName>PageFunction.cpp</FileName>

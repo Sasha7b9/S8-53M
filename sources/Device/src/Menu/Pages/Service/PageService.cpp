@@ -72,41 +72,15 @@ DEF_BUTTON(bAutoSearch, PageService::self,
     nullptr, OnPress_AutoSearch
 )
 
-static void OnChanged_Calibrator_Mode(bool)
-{
-    CalibratorMode::Set(CalibratorMode::Get());
-}
 
-DEF_CHOICE_3(cCalibrator_Mode, PageService::PageCalibrator::self,
-    "Калибратор", "Calibrator",
-    "Режим работы калибратора",
-    "Mode of operation of the calibrator",
-    "Перем", "DC",
-    "Пост", "AC",
-    "0В", "OV",
-    set.service.calibrator, nullptr, OnChanged_Calibrator_Mode, nullptr
-)
 
-static void OnPress_Calibrator_Calibrate()
-{
-    FPGA::state.need_calibration = true;
-}
 
-DEF_BUTTON(cCalibrator_Calibrate, PageService::PageCalibrator::self,
-    "Калибровать", "Calibrate",
-    "Запуск процедуры калибровки",
-    "Running the calibration procedure",
-    nullptr, OnPress_Calibrator_Calibrate
-)
 
-DEF_PAGE_2(pageCalibrator, PageService::self, NamePage::ServiceCalibrator,
-    "КАЛИБРАТОР", "CALIBRATOR",
-    "Управлением калибратором и калибровка осциллографа",
-    "Item of the calibrator and calibration of an oscillograph",
-    cCalibrator_Mode,       // СЕРВИС - КАЛИБРАТОР - Калибратор
-    cCalibrator_Calibrate,  // СЕРВИС - КАЛИБРАТОР - Калибровать
-    nullptr, nullptr, nullptr, nullptr
-)
+
+
+
+
+
 
 
 DEF_CHOICE_2(cSound, PageService::self,
@@ -243,5 +217,4 @@ DEF_PAGE_6(pageInformation, PageService::self, NamePage::SB_Information,
 )
 
 const Page *PageService::self = &pageService;
-const Page *PageService::PageCalibrator::self = &pageCalibrator;
 const Page *PageService::PageInformation::self = &pageInformation;
