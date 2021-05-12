@@ -80,12 +80,13 @@ private:
     static void DrawVPointLine(int x, int y, int count, int delta);
 };
 
-// \brief Нарисовать numLines горизонтальных линий, состоящих из count точек каждая с расстоянием между точками delta. Вертикальная координата
-// первой точки каждой линии соответствует очередному элементу массива y[]
+// \brief Нарисовать numLines горизонтальных линий, состоящих из count точек каждая с расстоянием между точками delta.
+// Вертикальная координата первой точки каждой линии соответствует очередному элементу массива y[]
 class MultiHPointLine
 {
 public:
-    MultiHPointLine(int _numLines, const uint8 *_y, int _delta, int _count) : numLines(_numLines), y(_y), delta(_delta), count(_count) {}
+    MultiHPointLine(int _numLines, const uint8 *_y, int _delta, int _count) : numLines(_numLines), y(_y), delta(_delta),
+        count(_count) {}
     void Draw(int x, const Color &color) const;
 private:
     int numLines;
