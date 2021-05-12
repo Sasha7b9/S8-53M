@@ -46,8 +46,11 @@ void TopPart::WriteCursors()
             Cursors::GetVoltage(source, 1).ToText().Draw(x, y2);
             x = startX + 49;
 
-            float pos0 = Cursors::GetVoltage(Cursors::GetPosU(source, 0), set.chan[source].range, set.chan[source].rshift);
-            float pos1 = Cursors::GetVoltage(Cursors::GetPosU(source, 1), set.chan[source].range, set.chan[source].rshift);
+            float pos0 = Cursors::GetVoltage
+                (Cursors::GetPosU(source, 0), set.chan[source].range, set.chan[source].rshift);
+
+            float pos1 = Cursors::GetVoltage
+                (Cursors::GetPosU(source, 1), set.chan[source].range, set.chan[source].rshift);
 
             float delta = std::fabsf(pos1 - pos0);
             Text(":dU=").Draw(x, y1);
