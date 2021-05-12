@@ -21,11 +21,7 @@ bool PageMemory::PageInternal::showAlways = false;
 uint PageMemory::exitFromModeSetNameTo = 0;
 bool PageMemory::needForSaveToFlashDrive = false;
 
-static bool runningFPGAbeforeSmallButtons = false;      // Здесь сохраняется информация о том, работала ли ПЛИС перед
-                                                        // переходом в режим работы с памятью
-static bool exitFromIntToLast = false;                  // Если 1, то выходить из страницы внутренней памяти нужно не
-                                                        // стандартно, а в меню последних
-
+bool PageMemory::exitFromIntToLast = false;
 
 static void DrawSetMask();  // Эта функция рисует, когда выбран режим задания маски.
 static void DrawSetName();  // Эта функция рисует, когда нужно задать имя файла для сохранения
@@ -74,79 +70,26 @@ void DrawSB_MemLastSelect(int x, int y)
     Font::Set(TypeFont::S8);
 }
 
-void DrawSB_MemLast_Prev(int x, int y)
-{
-    Font::Set(TypeFont::UGO2);
-    Char('\x20').Draw4SymbolsInRect(x + 2, y + 2);
-    Font::Set(TypeFont::S8);
-}
 
-void DrawSB_MemLast_Next(int x, int y)
-{
-    Font::Set(TypeFont::UGO2);
-    Char('\x64').Draw4SymbolsInRect(x + 2, y + 2);
-    Font::Set(TypeFont::S8);
-}
+
+
 
 void PressSB_MemLastSelect()
 {
     set.memory.str_memory_last.isActiveModeSelect = !set.memory.str_memory_last.isActiveModeSelect;
 }
 
-void PressSB_MemLast_Next()
-{
-//    Math::CircleIncrease<int16>(&PageMemory::PageLatest::currentSignal, 0, (int16)(Storage::AllDatas() - 1));
-}
 
-void PressSB_MemLast_Prev()
-{
-//    Math::CircleDecrease<int16>(&PageMemory::PageLatest::currentSignal, 0, (int16)(Storage::AllDatas() - 1));
-}
 
-static void RotateSB_MemLast(int /*angle*/)
-{
-//    if (Storage::AllDatas() > 1)
-//    {
-//        Sound::RegulatorSwitchRotate();
-//    }
-//    if (Math::Sign(angle) > 0)
-//    {
-//        PressSB_MemLast_Next();
-//    }
-//    else
-//    {
-//        PressSB_MemLast_Prev();
-//    }
-}
 
-static void FuncDrawingAdditionSPageMemoryLast()
-{
-    int width = 40;
-    int height = 10;
-    Region(width, height).Fill(Grid::Right() - width, Grid::TOP, Color::BACK);
-    Rectangle(width, height).Draw(Grid::Right() - width, Grid::TOP, Color::FILL);
-    Int(PageMemory::PageLatest::currentSignal + 1).ToText(false, 3).Draw(Grid::Right() - width + 2, Grid::TOP + 1);
-    Text("/").Draw(Grid::Right() - width + 17, Grid::TOP + 1);
 
-//    GF::Int2String(Storage::AllDatas(), false, 3).Draw(Grid::Right() - width + 23, Grid::TOP + 1);
-}
 
-void DrawSB_MemLast_IntEnter(int x, int y)
-{
-    Font::Set(TypeFont::UGO2);
-    Char('\x40').Draw4SymbolsInRect(x + 2, y + 1);
-    Font::Set(TypeFont::S8);
-}
 
-void DrawSB_MemLast_SaveToFlash(int x, int y)
-{
-    if (FDrive::isConnected)
-    {
-        Font::Set(TypeFont::UGO2);
-        Char('\x42').Draw4SymbolsInRect(x + 2, y + 1);
-        Font::Set(TypeFont::S8);
-    }
-}
+
+
+
+
+
 
 static void DrawSB_MemExtSetNameSave(int x, int y)
 {
@@ -158,11 +101,7 @@ static void DrawSB_MemExtSetNameSave(int x, int y)
     }
 }
 
-static void PressSB_MemLast_SaveToFlash()
-{
-    PageMemory::exitFromModeSetNameTo = RETURN_TO_LAST_MEM;
-    PageMemory::PageExternal::SaveSignalToFlashDrive();
-}
+
 
 
 static void PressSB_SetName_Exit()
@@ -189,45 +128,17 @@ static void PressSB_MemExtSetNameSave()
     }
 }
 
-DEF_SMALL_BUTTON(sbMemLastPrev, PageMemory::PageLatest::self,
-    "Предыдущий", "Previous",
-    "Перейти к предыдущему сигналу",
-    "Go to the previous signal",
-    nullptr, PressSB_MemLast_Prev, DrawSB_MemLast_Prev, nullptr
-)
 
 
-DEF_SMALL_BUTTON(sbMemLastNext, PageMemory::PageLatest::self,
-    "Следующий", "Next",
-    "Перейти к следующему сигналу",
-    "Go to the next signal",
-    nullptr, PressSB_MemLast_Next, DrawSB_MemLast_Next, nullptr
-)
 
 
-void PressSB_MemLast_IntEnter()
-{
-    PageMemory::PageInternal::self->OpenAndSetItCurrent();
-    set.memory.mode_work = ModeWork::MemInt;
 
-//    EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
 
-    exitFromIntToLast = true;
-}
 
-DEF_SMALL_BUTTON(sbMemLastIntEnter, PageMemory::PageLatest::self,
-    "Внутр ЗУ", "Internal storage",
-    "Нажмите эту кнопку, чтобы сохранить сигнал во внутреннем запоминающем устройстве",
-    "Press this button to keep a signal in an internal memory",
-    nullptr, PressSB_MemLast_IntEnter, DrawSB_MemLast_IntEnter, nullptr
-)
 
-DEF_SMALL_BUTTON(sbMemLastSaveToFlash, PageMemory::PageLatest::self,
-    "Сохранить", "Save",
-    "Кнопка становится доступна при присоединённом внешнем ЗУ. Позволяет сохранить сигнал на внешем ЗУ",
-    "Click this button to save the signal on the external FLASH",
-    nullptr, PressSB_MemLast_SaveToFlash, DrawSB_MemLast_SaveToFlash, nullptr
-)
+
+
+
 
 DEF_SMALL_BUTTON(sbSetNameSave, PageMemory::PageSetName::self,
     "Сохранить", "Save",
@@ -492,7 +403,7 @@ void DrawSB_MemInt_SaveToIntMemory(int x, int y)
 
 static void SaveSignalToIntMemory()
 {
-    if (exitFromIntToLast)          // Если перешли во ВНУТР ЗУ из ПОСЛЕДНИЕ
+    if (PageMemory::exitFromIntToLast)          // Если перешли во ВНУТР ЗУ из ПОСЛЕДНИЕ
     {
 //        if  (Storage::dsLast != 0)
 //        {                               // то сохраняем сигнал из последних
@@ -731,11 +642,11 @@ void PressSB_MemInt_Exit()
 {
 //    EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
 
-    if (exitFromIntToLast)
+    if (PageMemory::exitFromIntToLast)
     {
         PageMemory::PageLatest::self->OpenAndSetItCurrent();
         set.memory.mode_work = ModeWork::Latest;
-        exitFromIntToLast = false;
+        PageMemory::exitFromIntToLast = false;
         Menu::needClosePageSB = false;
     }
     else
@@ -1011,43 +922,7 @@ void PageMemory::PageExternal::SaveSignalToFlashDrive()
     }
 }
 
-static void PressSB_MemLast_Exit()
-{
-    set.memory.mode_work = ModeWork::Direct;
-    if (runningFPGAbeforeSmallButtons)
-    {
-        FPGA::Start();
-        runningFPGAbeforeSmallButtons = false;
-    }
-    Display::RemoveAddDrawFunction();
-}
 
-// Нажатие ПАМЯТЬ - Последние.
-void OnPressMemoryLatest()
-{
-    PageMemory::PageLatest::currentSignal = 0;
-    runningFPGAbeforeSmallButtons = FPGA::IsRunning();
-    FPGA::Stop();
-    set.memory.mode_work = ModeWork::Latest;
-}
-
-DEF_SMALL_BUTTON(sbExitMemLast, PageMemory::PageLatest::self,
-    "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
-    nullptr, PressSB_MemLast_Exit, DrawSB_Exit, nullptr
-)
-
-DEF_PAGE_6(pageLatest, PageMemory::self, NamePage::SB_MemLatest,
-    "ПОСЛЕДНИЕ", "LATEST",
-    "Переход в режим работы с последними полученными сигналами",
-    "Transition to an operating mode with the last received signals",
-    sbExitMemLast,
-    Item::empty,
-    sbMemLastNext,
-    sbMemLastPrev,
-    sbMemLastIntEnter,
-    sbMemLastSaveToFlash,
-    nullptr, OnPressMemoryLatest, FuncDrawingAdditionSPageMemoryLast, RotateSB_MemLast
-)
 
 static void PressSB_SetMask_Exit()
 {
@@ -1178,7 +1053,6 @@ DEF_PAGE_4(pageMemory, PageMain::self, NamePage::Memory,
 )
 
 const Page *PageMemory::self = &pageMemory;
-const Page *PageMemory::PageLatest::self = &pageLatest;
 const Page *PageMemory::PageInternal::self = &pageInternal;
 const Page *PageMemory::PageExternal::self = &pageExternal;
 const Page *PageMemory::PageSetMask::self = &pageSetMask;
