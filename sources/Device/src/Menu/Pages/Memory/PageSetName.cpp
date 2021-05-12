@@ -9,7 +9,7 @@
 #include <cstring>
 
 
-static void PressSB_SetName_Exit()
+static void PressSB_Exit()
 {
     Display::RemoveAddDrawFunction();
     if (PageMemory::exitFromModeSetNameTo == RETURN_TO_LAST_MEM)
@@ -24,21 +24,21 @@ static void PressSB_SetName_Exit()
 }
 
 
-DEF_SMALL_BUTTON(sbExitSetName, PageMemory::PageSetName::self,     // Кнопк для выхода из режима задания имени сохраняемому сигналу. Одновременно кнопка отказа от сохранения
+DEF_SMALL_BUTTON(sbExit, PageMemory::PageSetName::self,     // Кнопк для выхода из режима задания имени сохраняемому сигналу. Одновременно кнопка отказа от сохранения
     EXIT_RU, EXIT_EN,
     "Отказ от сохранения",
     "Failure to save",
-    nullptr, PressSB_SetName_Exit, DrawSB_Exit, nullptr
+    nullptr, PressSB_Exit, DrawSB_Exit, nullptr
 )
 
 
-void PressSB_SetName_Delete()
+static void PressSB_Delete()
 {
     set.memory.file_name[0] = '\0';
 }
 
 
-void DrawSB_SetName_Delete(int x, int y)
+static void DrawSB_Delete(int x, int y)
 {
     Font::Set(TypeFont::UGO2);
     Char(Symbol::UGO2::DEL).Draw4SymbolsInRect(x + 2, y + 1);
@@ -46,15 +46,15 @@ void DrawSB_SetName_Delete(int x, int y)
 }
 
 
-DEF_SMALL_BUTTON(sbSetNameDelete, PageMemory::PageSetName::self,
+DEF_SMALL_BUTTON(sbDelete, PageMemory::PageSetName::self,
     "Удалить", "Delete",
     "Удаляет все введённые символы",
     "Deletes all entered characters",
-    nullptr, PressSB_SetName_Delete, DrawSB_SetName_Delete, nullptr
+    nullptr, PressSB_Delete, DrawSB_Delete, nullptr
 )
 
 
-void PressSB_SetName_Backspace()
+static void PressSB_Backspace()
 {
     int size = (int)(std::strlen(set.memory.file_name));
     if (size > 0)
@@ -64,7 +64,7 @@ void PressSB_SetName_Backspace()
 }
 
 
-void DrawSB_SetName_Backspace(int x, int y)
+static void DrawSB_Backspace(int x, int y)
 {
     Font::Set(TypeFont::UGO2);
     Char(Symbol::UGO2::BACKSPACE).Draw4SymbolsInRect(x + 2, y + 1);
@@ -72,15 +72,15 @@ void DrawSB_SetName_Backspace(int x, int y)
 }
 
 
-DEF_SMALL_BUTTON(sbSetNameBackspace, PageMemory::PageSetName::self,
+DEF_SMALL_BUTTON(sbBackspace, PageMemory::PageSetName::self,
     "Backspace", "Backspace",
     "Удаляет последний символ",
     "Delete the last character",
-    nullptr, PressSB_SetName_Backspace, DrawSB_SetName_Backspace, nullptr
+    nullptr, PressSB_Backspace, DrawSB_Backspace, nullptr
 )
 
 
-void PressSB_SetName_Insert()
+static void PressSB_Insert()
 {
     int size = (int)(std::strlen(set.memory.file_name));
     if (size < MAX_SYMBOLS_IN_FILE_NAME - 1)
@@ -91,7 +91,7 @@ void PressSB_SetName_Insert()
 }
 
 
-void DrawSB_SetName_Insert(int x, int y)
+static void DrawSB_Insert(int x, int y)
 {
     Font::Set(TypeFont::UGO2);
     Char('\x26').Draw4SymbolsInRect(x + 2, y + 2);
@@ -99,25 +99,25 @@ void DrawSB_SetName_Insert(int x, int y)
 }
 
 
-DEF_SMALL_BUTTON(sbSetNameInsert, PageMemory::PageSetName::self,
+DEF_SMALL_BUTTON(sbInsert, PageMemory::PageSetName::self,
     "Вставить", "Insert",
     "Вводит очередной символ",
     "Print the next character",
-    nullptr, PressSB_SetName_Insert, DrawSB_SetName_Insert, nullptr
+    nullptr, PressSB_Insert, DrawSB_Insert, nullptr
 )
 
 
-static void PressSB_MemExtSetNameSave()
+static void PressSB_Save()
 {
     if (FDrive::isConnected)
     {
-        PressSB_SetName_Exit();
+        PressSB_Exit();
         PageMemory::needForSaveToFlashDrive = true;
     }
 }
 
 
-static void DrawSB_MemExtSetNameSave(int x, int y)
+static void DrawSB_Save(int x, int y)
 {
     if (FDrive::isConnected)
     {
@@ -128,15 +128,15 @@ static void DrawSB_MemExtSetNameSave(int x, int y)
 }
 
 
-DEF_SMALL_BUTTON(sbSetNameSave, PageMemory::PageSetName::self,
+DEF_SMALL_BUTTON(sbSave, PageMemory::PageSetName::self,
     "Сохранить", "Save",
     "Сохранение на флеш под заданным именем",
     "Saving to flashdrive with the specified name",
-    nullptr, PressSB_MemExtSetNameSave, DrawSB_MemExtSetNameSave, nullptr
+    nullptr, PressSB_Save, DrawSB_Save, nullptr
 )
 
 
-static void OnMemExtSetNameRegSet(int angle)
+static void OnRegSet(int angle)
 {
     PageMemory::OnMemExtSetMaskNameRegSet(angle, sizeof(Tables::symbolsAlphaBet) / 4 - 7);
 }
@@ -146,13 +146,13 @@ DEF_PAGE_6(pageSetName, &Page::empty, NamePage::SB_MemExtSetName,
     "", "",
     "",
     "",
-    sbExitSetName,
-    sbSetNameDelete,
+    sbExit,
+    sbDelete,
     Item::empty,
-    sbSetNameBackspace,
-    sbSetNameInsert,
-    sbSetNameSave,
-    nullptr, nullptr, nullptr, OnMemExtSetNameRegSet
+    sbBackspace,
+    sbInsert,
+    sbSave,
+    nullptr, nullptr, nullptr, OnRegSet
 )
 
 const Page *PageMemory::PageSetName::self = &pageSetName;
