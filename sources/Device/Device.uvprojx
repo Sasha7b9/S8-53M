@@ -1897,11 +1897,6 @@
               <FilePath>.\src\Menu\Pages\Definition.cpp</FilePath>
             </File>
             <File>
-              <FileName>PageDebug.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\PageDebug.cpp</FilePath>
-            </File>
-            <File>
               <FileName>HelpContent.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\HelpContent.cpp</FilePath>
@@ -1991,6 +1986,16 @@
               <FileName>PageTrig.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\PageTrig.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Menu/Pages/Debug</GroupName>
+          <Files>
+            <File>
+              <FileName>PageDebug.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Debug\PageDebug.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -4162,11 +4167,6 @@
               <FilePath>.\src\Menu\Pages\Definition.cpp</FilePath>
             </File>
             <File>
-              <FileName>PageDebug.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\PageDebug.cpp</FilePath>
-            </File>
-            <File>
               <FileName>HelpContent.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\HelpContent.cpp</FilePath>
@@ -4256,6 +4256,16 @@
               <FileName>PageTrig.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\PageTrig.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Menu/Pages/Debug</GroupName>
+          <Files>
+            <File>
+              <FileName>PageDebug.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Debug\PageDebug.cpp</FilePath>
             </File>
           </Files>
         </Group>

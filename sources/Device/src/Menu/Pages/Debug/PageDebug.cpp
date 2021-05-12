@@ -541,6 +541,8 @@ DEF_PAGE_7(pageDebug, PageMain::self, NamePage::Debug,
     "ОТЛАДКА", "DEBUG",
     "",
     "",
+
+// Это то, что осталось от "старого" S8-53
     mcStats,                            // ОТЛАДКА - Статистика
     *PageDebug::PageConsole::self,      // ОТЛАДКА - КОНСОЛЬ
     *PageDebug::PageADC::self,          // ОТЛАДКА - АЦП
