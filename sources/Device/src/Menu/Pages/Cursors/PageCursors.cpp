@@ -1,21 +1,13 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
-#include "common/Display/Font/Font_.h"
 #include "common/Display/Painter/Primitives_.h"
-#include "common/Display/Painter/Text_.h"
-#include "common/Hardware/Sound_.h"
 #include "common/Utils/Math_.h"
 #include "Menu/Items/MenuItems.h"
 #include "Menu/Pages/Definition.h"
 #include "Settings/Settings.h"
 #include "Utils/ProcessingSignal.h"
-#include <cmath>
 
 
-//static void SetCursPos100(const Channel &ch);                              // Запомнить позиции курсоров,
-                                                                           // соответствующие 100%.
-//static void IncCursCntrlU(const Channel &ch);                              // Выбрать следующий курсор.
-//static void IncCursCntrlT(const Channel &ch);                              // Выбрать следующий курсор.
 static void SetCursPosU(const Channel &ch, int numCur, float pos);         // Установить позицию курсора напряжения.
 static void SetCursPosT(const Channel &ch, int numCur, float pos);         // Установить значение курсора по времени.
 

@@ -14,59 +14,59 @@
 #define MAX_POS_T   280
 
 
-static void PressSB_Cursors_Exit()
+static void PressSB_Exit()
 {
     Display::RemoveAddDrawFunction();
 }
 
 
-DEF_SMALL_BUTTON(sbSetExit, PageCursors::PageSet::self,
+DEF_SMALL_BUTTON(sbExit, PageCursors::PageSet::self,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
-    nullptr, PressSB_Cursors_Exit, DrawSB_Exit, nullptr
+    nullptr, PressSB_Exit, DrawSB_Exit, nullptr
 )
 
 
-static void SetCursSource(const Channel &ch)
+static void SetSource(const Channel &ch)
 {
     set.cursors.source = ch.value;
 }
 
 
-static void PressSB_Cursors_Source()
+static void PressSB_Source()
 {
-    SetCursSource(set.cursors.source == ChA ? ChB : ChA);
+    SetSource(set.cursors.source == ChA ? ChB : ChA);
 }
 
 
-static void DrawSB_Cursors_SourceA(int x, int y)
+static void DrawSB_SourceA(int x, int y)
 {
     Text("1").Draw(x + 7, y + 5);
 }
 
 
-static void DrawSB_Cursors_SourceB(int x, int y)
+static void DrawSB_SourceB(int x, int y)
 {
     Text("2").Draw(x + 7, y + 5);
 }
 
 
-static void DrawSB_Cursors_Source(int x, int y)
+static void DrawSB_Source(int x, int y)
 {
-    (set.cursors.source == ChA) ? DrawSB_Cursors_SourceA(x, y) : DrawSB_Cursors_SourceB(x, y);
+    (set.cursors.source == ChA) ? DrawSB_SourceA(x, y) : DrawSB_SourceB(x, y);
 }
 
 
 static const arrayHints hintsSetSource =
 {
-    { DrawSB_Cursors_SourceA, "канал 1", "channel 1" }, { DrawSB_Cursors_SourceB, "канал 2", "channel 2" }
+    { DrawSB_SourceA, "канал 1", "channel 1" }, { DrawSB_SourceB, "канал 2", "channel 2" }
 };
 
 
-DEF_SMALL_BUTTON(sbSetSource, PageCursors::PageSet::self,
+DEF_SMALL_BUTTON(sbSource, PageCursors::PageSet::self,
     "Источник", "Source",
     "Выбор канала для курсорных измерений",
     "Channel choice for measurements",
-    nullptr, PressSB_Cursors_Source, DrawSB_Cursors_Source, &hintsSetSource
+    nullptr, PressSB_Source, DrawSB_Source, &hintsSetSource
 )
 
 
@@ -76,7 +76,7 @@ static void IncCursCntrlU(const Channel &ch)
 }
 
 
-static void PressSB_Cursors_U()
+static void PressSB_U()
 {
     if (set.cursors.active.IsU() || set.cursors.cntrlU[set.cursors.source].IsDisable())
     {
@@ -87,31 +87,31 @@ static void PressSB_Cursors_U()
 }
 
 
-static void DrawSB_Cursors_U_Disable(int x, int y)
+static void DrawSB_U_Disable(int x, int y)
 {
     Text("U").Draw(x + 7, y + 5);
 }
 
 
-static void DrawSB_Cursors_U_Both_Disable(int x, int y)
+static void DrawSB_U_Both_Disable(int x, int y)
 {
     PageCursors::DrawMenuCursorsVoltage(x + 7, y + 5, false, false);
 }
 
 
-static void DrawSB_Cursors_U_Both_Enable(int x, int y)
+static void DrawSB_U_Both_Enable(int x, int y)
 {
     PageCursors::DrawMenuCursorsVoltage(x + 7, y + 5, true, true);
 }
 
 
-static void DrawSB_Cursors_U_Upper(int x, int y)
+static void DrawSB_U_Upper(int x, int y)
 {
     PageCursors::DrawMenuCursorsVoltage(x + 7, y + 5, true, false);
 }
 
 
-static void DrawSB_Cursors_U_Lower(int x, int y)
+static void DrawSB_U_Lower(int x, int y)
 {
     PageCursors::DrawMenuCursorsVoltage(x + 7, y + 5, false, true);
 }
@@ -123,13 +123,13 @@ static void DrawSB_Cursors_U(int x, int y)
 
     if (cursCntrl.IsDisable())
     {
-        DrawSB_Cursors_U_Disable(x, y);
+        DrawSB_U_Disable(x, y);
     }
     else
     {
         if (!set.cursors.active.IsU())
         {
-            DrawSB_Cursors_U_Both_Disable(x, y);
+            DrawSB_U_Both_Disable(x, y);
         }
         else
         {
@@ -141,15 +141,15 @@ static void DrawSB_Cursors_U(int x, int y)
 
             if (condTop && condDown)
             {
-                DrawSB_Cursors_U_Both_Enable(x, y);
+                DrawSB_U_Both_Enable(x, y);
             }
             else if (condTop)
             {
-                DrawSB_Cursors_U_Upper(x, y);
+                DrawSB_U_Upper(x, y);
             }
             else
             {
-                DrawSB_Cursors_U_Lower(x, y);
+                DrawSB_U_Lower(x, y);
             }
         }
     }
@@ -158,24 +158,24 @@ static void DrawSB_Cursors_U(int x, int y)
 
 static const arrayHints hintsSetU =
 {
-    { DrawSB_Cursors_U_Disable,     "курсоры напряжения выключены",
+    { DrawSB_U_Disable,     "курсоры напряжения выключены",
                                     "cursors of tension are switched off" },
-    { DrawSB_Cursors_U_Both_Disable,"курсоры напряжения включены",
+    { DrawSB_U_Both_Disable,"курсоры напряжения включены",
                                     "cursors of tension are switched on" },
-    { DrawSB_Cursors_U_Upper,       "курсоры напряжения включены, управление верхним курсором",
+    { DrawSB_U_Upper,       "курсоры напряжения включены, управление верхним курсором",
                                     "cursors of tension are switched on, control of the top cursor" },
-    { DrawSB_Cursors_U_Lower,       "курсоры напряжения включены, управление нижним курсором",
+    { DrawSB_U_Lower,       "курсоры напряжения включены, управление нижним курсором",
                                     "cursors of tension are switched on, control of the lower cursor" },
-    { DrawSB_Cursors_U_Both_Enable, "курсоры напряжения включены, управление обоими курсорами",
+    { DrawSB_U_Both_Enable, "курсоры напряжения включены, управление обоими курсорами",
                                     "cursors of tension are switched on, control of both cursors" }
 };
 
 
-DEF_SMALL_BUTTON(sbSetU, PageCursors::PageSet::self,
+DEF_SMALL_BUTTON(sbtU, PageCursors::PageSet::self,
     "Курсоры U", "Cursors U",
     "Выбор курсоров напряжения для индикации и управления",
     "Choice of cursors of voltage for indication and management",
-    nullptr, PressSB_Cursors_U, DrawSB_Cursors_U, &hintsSetU
+    nullptr, PressSB_U, DrawSB_Cursors_U, &hintsSetU
 )
 
 
@@ -281,7 +281,7 @@ static const arrayHints hintsSetT =
 };
 
 
-DEF_SMALL_BUTTON(sbSetT, PageCursors::PageSet::self,
+DEF_SMALL_BUTTON(sbT, PageCursors::PageSet::self,
     "Курсоры T", "Cursors T",
     "Выбор курсоров времени для индикации и управления",
     "Choice of cursors of time for indication and management",
@@ -310,7 +310,7 @@ static void DrawSB_Cursors_100(int x, int y)
 }
 
 
-DEF_SMALL_BUTTON(sbSet100, PageCursors::PageSet::self,
+DEF_SMALL_BUTTON(sb100, PageCursors::PageSet::self,
     "100%", "100%",
     "Используется для процентных измерений. Нажатие помечает расстояние между активными курсорами как 100%",
     "It is used for percentage measurements. Pressing marks distance between active cursors as 100%",
@@ -360,7 +360,7 @@ static const arrayHints hintsSetPointsPercents =
 };
 
 
-DEF_SMALL_BUTTON(sbSetPointsPercents, PageCursors::PageSet::self,
+DEF_SMALL_BUTTON(sbPointsPercents, PageCursors::PageSet::self,
     "Перемещение", "Movement",
     "Выбор шага перемещения курсоров - проценты или точки",
     "Choice of a step of movement of cursors - percent or points",
@@ -451,12 +451,12 @@ DEF_PAGE_6(pageSet, PageCursors::self, NamePage::SB_Curs,
     "УСТАНОВИТЬ", "SET",
     "Переход в режим курсорных измерений",
     "Switch to cursor measures",
-    sbSetExit,              // КУРСОРЫ - УСТАНОВИТЬ - Выход
-    sbSetSource,            // КУРСОРЫ - УСТАНОВИТЬ - Источник
-    sbSetU,                 // КУРСОРЫ - УСТАНОВИТЬ - Курсоры U
-    sbSetT,                 // КУРСОРЫ - УСТАНОВИТЬ - Курсоры T
-    sbSet100,               // КУРСОРЫ - УСТАНОВИТЬ - 100%
-    sbSetPointsPercents,    // КУРСОРЫ - УСТАНОВИТЬ - Перемещение
+    sbExit,
+    sbSource,
+    sbtU,
+    sbT,
+    sb100,
+    sbPointsPercents,
     nullptr, nullptr, nullptr, OnRotate_RegSet_Set
 )
 
