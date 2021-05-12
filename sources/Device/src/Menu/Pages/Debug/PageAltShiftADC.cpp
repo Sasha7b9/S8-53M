@@ -23,7 +23,7 @@ static void OnPress_ADC_AltRShift_Reset()
 }
 
 
-DEF_BUTTON(mbADC_AltRShift_Reset, PageDebug::PageADC::PageAltRShift::self,
+DEF_BUTTON(mbReset, PageDebug::PageADC::PageAltRShift::self,
     "яАПНЯ", "Reset",
     "", "",
     nullptr, OnPress_ADC_AltRShift_Reset
@@ -36,7 +36,7 @@ static void OnChanged_ADC_AltRShift_A()
 }
 
 
-DEF_GOVERNOR(mbADC_AltRShift_2mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
+DEF_GOVERNOR(mb2mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
     "яЛ 1Й 2Лб ОНЯР", "Shift 1ch 2mV DC",
     "",
     "",
@@ -50,7 +50,7 @@ static void OnChanged_ADC_AltRShift_B()
 }
 
 
-DEF_GOVERNOR(mbADC_AltRShift_2mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
+DEF_GOVERNOR(mb2mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
     "яЛ 2Й 2Лб ОНЯР", "Shift 2ch 2mV DC",
     "",
     "",
@@ -58,7 +58,7 @@ DEF_GOVERNOR(mbADC_AltRShift_2mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
 )
 
 
-DEF_GOVERNOR(mbADC_AltRShift_5mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
+DEF_GOVERNOR(mb5mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
     "яЛ 1Й 5Лб ОНЯР", "Shift 1ch 5mV DC",
     "",
     "",
@@ -66,7 +66,7 @@ DEF_GOVERNOR(mbADC_AltRShift_5mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
 )
 
 
-DEF_GOVERNOR(mbADC_AltRShift_5mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
+DEF_GOVERNOR(mb5mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
     "яЛ 2Й 5Лб ОНЯР", "Shift 2ch 5mV DC",
     "",
     "",
@@ -74,7 +74,7 @@ DEF_GOVERNOR(mbADC_AltRShift_5mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
 )
 
 
-DEF_GOVERNOR(mbADC_AltRShift_10mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
+DEF_GOVERNOR(mb10mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
     "яЛ 1Й 10Лб ОНЯР", "Shift 1ch 10mV DC",
     "",
     "",
@@ -82,7 +82,7 @@ DEF_GOVERNOR(mbADC_AltRShift_10mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
 )
 
 
-DEF_GOVERNOR(mbADC_AltRShift_10mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
+DEF_GOVERNOR(mb10mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
     "яЛ 2Й 10Лб ОНЯР", "Shift 2ch 10mV DC",
     "",
     "",
@@ -94,13 +94,13 @@ DEF_PAGE_7(pageAltShiftADC, PageDebug::PageADC::self, NamePage::DebugADCrShift,
     "дно ялеы", "ADD RSHFIT",
     "",
     "",
-    mbADC_AltRShift_Reset,          // нркюдйю - южо - дно ялеы - яАПНЯ
-    mbADC_AltRShift_2mV_DC_A,       // нркюдйю - южо - дно ялеы - яЛ 1Й 2Лб ОНЯР
-    mbADC_AltRShift_2mV_DC_B,       // нркюдйю - южо - дно ялеы - яЛ 2Й 2Лб ОНЯР
-    mbADC_AltRShift_5mV_DC_A,       // нркюдйю - южо - дно ялеы - яЛ 1Й 5Лб ОНЯР
-    mbADC_AltRShift_5mV_DC_B,       // нркюдйю - южо - дно ялеы - яЛ 2Й 5Лб ОНЯР
-    mbADC_AltRShift_10mV_DC_A,      // нркюдйю - южо - дно ялеы - яЛ 1Й 10Лб ОНЯР
-    mbADC_AltRShift_10mV_DC_B,      // нркюдйю - южо - дно ялеы - яЛ 2Й 10Лб ОНЯР
+    mbReset,          // нркюдйю - южо - дно ялеы - яАПНЯ
+    mb2mV_DC_A,       // нркюдйю - южо - дно ялеы - яЛ 1Й 2Лб ОНЯР
+    mb2mV_DC_B,       // нркюдйю - южо - дно ялеы - яЛ 2Й 2Лб ОНЯР
+    mb5mV_DC_A,       // нркюдйю - южо - дно ялеы - яЛ 1Й 5Лб ОНЯР
+    mb5mV_DC_B,       // нркюдйю - южо - дно ялеы - яЛ 2Й 5Лб ОНЯР
+    mb10mV_DC_A,      // нркюдйю - южо - дно ялеы - яЛ 1Й 10Лб ОНЯР
+    mb10mV_DC_B,      // нркюдйю - южо - дно ялеы - яЛ 2Й 10Лб ОНЯР
     nullptr, nullptr, nullptr, nullptr
 )
 
