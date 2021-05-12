@@ -2032,6 +2032,11 @@
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Display\PageDisplay.cpp</FilePath>
             </File>
+            <File>
+              <FileName>PageAccumulation.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Display\PageAccumulation.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4421,6 +4426,11 @@
               <FileName>PageDisplay.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Display\PageDisplay.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PageAccumulation.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Display\PageAccumulation.cpp</FilePath>
             </File>
           </Files>
         </Group>
