@@ -7,7 +7,7 @@
 #include "Settings/Settings.h"
 
 
-DEF_CHOICE_2(cMath_FFT_Enable, PageService::PageMath::PageFFT::self,
+DEF_CHOICE_2(cEnable, PageService::PageMath::PageFFT::self,
     "Отображение", "Display",
     "Включает и выключает отображение спектра",
     "Enables or disables the display of the spectrum",
@@ -17,7 +17,7 @@ DEF_CHOICE_2(cMath_FFT_Enable, PageService::PageMath::PageFFT::self,
 )
 
 
-DEF_CHOICE_2(cMath_FFT_Scale, PageService::PageMath::PageFFT::self,
+DEF_CHOICE_2(cScale, PageService::PageMath::PageFFT::self,
     "Шкала", "Scale",
     "Задаёт масштаб вывода спектра - линейный или логарифмический",
     "Sets the scale of the output spectrum - linear or logarithmic",
@@ -27,7 +27,7 @@ DEF_CHOICE_2(cMath_FFT_Scale, PageService::PageMath::PageFFT::self,
 )
 
 
-DEF_CHOICE_3(cMath_FFT_Source, PageService::PageMath::PageFFT::self,
+DEF_CHOICE_3(cSource, PageService::PageMath::PageFFT::self,
     "Источник", "Source",
     "Выбор источника для расчёта спектра",
     "Selecting the source for the calculation of the spectrum",
@@ -38,7 +38,7 @@ DEF_CHOICE_3(cMath_FFT_Source, PageService::PageMath::PageFFT::self,
 )
 
 
-DEF_CHOICE_4(cMath_FFT_Window, PageService::PageMath::PageFFT::self,
+DEF_CHOICE_4(cWindow, PageService::PageMath::PageFFT::self,
     "Окно", "Window",
     "Задаёт окно для расчёта спектра",
     "Sets the window to calculate the spectrum",
@@ -50,32 +50,32 @@ DEF_CHOICE_4(cMath_FFT_Window, PageService::PageMath::PageFFT::self,
 )
 
 
-static bool IsActive_Math_FFT_Limit()
+static bool IsActive_Limit()
 {
     return set.math.fft.scale.IsLog();
 }
 
 
-DEF_CHOICE_3(cMath_FFT_Limit, PageService::PageMath::PageFFT::self,
+DEF_CHOICE_3(cLimit, PageService::PageMath::PageFFT::self,
     "Диапазон", "Range",
     "Здесь можно задать предел наблюдения за мощностью спектра",
     "Here you can set the limit of monitoring the power spectrum",
     "-40дБ", "-40dB",
     "-60дБ", "-60dB",
     "-80дБ", "-80dB",
-    set.math.fft.max_DB, IsActive_Math_FFT_Limit, nullptr, nullptr
+    set.math.fft.max_DB, IsActive_Limit, nullptr, nullptr
 )
 
 
-static bool IsActive_Math_FFT()
+static bool IsActive()
 {
     return ModeDrawMath::IsDisabled();
 }
 
 
-static void OnPress_Math_FFT()
+static void OnPress()
 {
-    if (!IsActive_Math_FFT())
+    if (!IsActive())
     {
         Warnings::ShowWarningBad(Warning::ImpossibleEnableFFT);
     }
@@ -86,13 +86,13 @@ DEF_PAGE_6(pageFFT, PageService::PageMath::self, NamePage::MathFFT,
     "СПЕКТР", "SPECTRUM",
     "Отображение спектра входного сигнала",
     "Mapping the input signal spectrum",
-    cMath_FFT_Enable,                                   // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Отображение
-    cMath_FFT_Scale,                                    // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Шкала
-    cMath_FFT_Source,                                   // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Источник
-    cMath_FFT_Window,                                   // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Окно
-    PageService::PageMath::PageFFT::PageCursors::self,  // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ
-    cMath_FFT_Limit,                                    // СЕРВИС - МАТЕМАТИКА - СПЕКТР - Диапазон
-    IsActive_Math_FFT, OnPress_Math_FFT, nullptr, nullptr
+    cEnable,
+    cScale,
+    cSource,
+    cWindow,
+    PageService::PageMath::PageFFT::PageCursors::self,
+    cLimit,
+    IsActive, OnPress, nullptr, nullptr
 )
 
 const Page *PageService::PageMath::PageFFT::self = &pageFFT;
