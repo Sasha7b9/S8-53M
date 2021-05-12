@@ -6,7 +6,7 @@
 #include "Settings/Settings.h"
 
 
-DEF_CHOICE_REG_10(mcAveraging_Number, PageDisplay::PageAveraging::self,
+DEF_CHOICE_REG_10(mcNumber, PageDisplay::PageAveraging::self,
     "Количество", "Number",
     "Задаёт количество последних измерений, по которым производится усреднение.",
     "Sets number of the last measurements on which averaging is made.",
@@ -24,7 +24,7 @@ DEF_CHOICE_REG_10(mcAveraging_Number, PageDisplay::PageAveraging::self,
 )
 
 
-DEF_CHOICE_2(mcAveraging_Mode, PageDisplay::PageAveraging::self,
+DEF_CHOICE_2(mcMode, PageDisplay::PageAveraging::self,
     "Режим", "Mode"
     ,
     "1. \"Точно\" - точный режим усреднения, когда в расчёте участвуют только последние сигналы.\n"
@@ -40,7 +40,7 @@ DEF_CHOICE_2(mcAveraging_Mode, PageDisplay::PageAveraging::self,
 )
 
 
-static bool IsActive_Averaging()
+static bool IsActive()
 {
     return true;
 }
@@ -50,9 +50,9 @@ DEF_PAGE_2(pageAveraging, PageDisplay::self, NamePage::DisplayAverage,
     "УСРЕДНЕНИЕ", "AVERAGE",
     "Настройки режима усреднения по последним измерениям.",
     "Settings of the mode of averaging on the last measurements.",
-    mcAveraging_Number,
-    mcAveraging_Mode,
-    IsActive_Averaging, nullptr, nullptr, nullptr
+    mcNumber,
+    mcMode,
+    IsActive, nullptr, nullptr, nullptr
 )
 
 const Page *PageDisplay::PageAveraging::self = &pageAveraging;
