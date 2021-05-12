@@ -18,7 +18,9 @@ float Cursors::GetPosU(const Channel &ch, int num)
 
 bool Cursors::NecessaryDraw()
 {
-    return (!set.cursors.cntrlU[set.cursors.source].IsDisable() || !set.cursors.cntrlT[set.cursors.source].IsDisable()) &&
+    return (
+        !set.cursors.cntrlU[set.cursors.source].IsDisable() || !set.cursors.cntrlT[set.cursors.source].IsDisable()
+        ) &&
         (set.cursors.show || Menu::GetNameOpenedPage() == NamePage::SB_Curs);
 }
 

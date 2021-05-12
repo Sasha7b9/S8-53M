@@ -252,7 +252,7 @@ void RShift::Set(const Channel &ch, int16 rShift)
 
     if (rShift > RShift::ZERO)
     {
-        rShift &= 0xfffe;                                            // ƒелаем кратным двум, т.к. у нас 800 значений на 400 точек
+        rShift &= 0xfffe;                                   // ƒелаем кратным двум, т.к. у нас 800 значений на 400 точек
     }
     else if (rShift < RShift::ZERO)
     {
