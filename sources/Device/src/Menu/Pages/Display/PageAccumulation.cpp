@@ -9,11 +9,13 @@
 DEF_CHOICE_REG_9(mcNumber, PageDisplay::PageAccumulation::self,
     " оличество", "Number"
     ,
-    "«адаЄт максимальное количество последних сигналов на экране. ≈сли в настройке \"–ежим\" выбрано \"Ѕесконечность\", экран очищаетс€ только "
+    "«адаЄт максимальное количество последних сигналов на экране. ≈сли в настройке \"–ежим\" выбрано "
+    "\"Ѕесконечность\", экран очищаетс€ только "
     "нажатием кнопки \"ќчистить\"."
     "\"Ѕесконечность\" - каждое измерение остаЄтс€ на дисплее до тех пор, пока не будет нажата кнопка \"ќчистить\"."
     ,
-    "Sets the maximum quantity of the last signals on the screen. If in control \"Mode\" it is chosen \"Infinity\", the screen is cleared only "
+    "Sets the maximum quantity of the last signals on the screen. If in control \"Mode\" it is chosen \"Infinity\", "
+    "the screen is cleared only "
     "by pressing of the button \"Clear\"."
     "\"Infinity\" - each measurement remains on the display until the button \"Clear\" is pressed."
     ,
@@ -33,15 +35,17 @@ DEF_CHOICE_REG_9(mcNumber, PageDisplay::PageAccumulation::self,
 DEF_CHOICE_2(mcMode, PageDisplay::PageAccumulation::self,
     "–ежим", "Mode"
     ,
-    "1. \"—брасывать\" - после накоплени€ заданного количества измерени€ происходит очистка диспле€. Ётот режим удобен, когда пам€ти не хватает "
-    "дл€ сохранени€ нужного количества измерений.\n"
-    "2. \"Ќе сбрасывать\" - на дисплей всегда выводитс€ заданное или меньшее (в случае нехватки пам€ти) количество измерений. Ќедостатком €вл€етс€ "
-    "меньшее быстродействие и невозможность накоплени€ заданного количества измерений при недостатке пам€ти."
+    "1. \"—брасывать\" - после накоплени€ заданного количества измерени€ происходит очистка диспле€. Ётот режим "
+    "удобен, когда пам€ти не хватает дл€ сохранени€ нужного количества измерений.\n"
+    "2. \"Ќе сбрасывать\" - на дисплей всегда выводитс€ заданное или меньшее (в случае нехватки пам€ти) количество "
+    "измерений. Ќедостатком €вл€етс€ меньшее быстродействие и невозможность накоплени€ заданного количества измерений "
+    "при недостатке пам€ти."
     ,
-    "1. \"Dump\" - after accumulation of the set number of measurement there is a cleaning of the Display:: This mode is convenient when memory "
-    "isn't enough for preservation of the necessary number of measurements.\n"
-    "2. \"Not to dump\" - the number of measurements is always output to the display set or smaller (in case of shortage of memory). Shortcoming "
-    "is smaller speed and impossibility of accumulation of the set number of measurements at a lack of memory."
+    "1. \"Dump\" - after accumulation of the set number of measurement there is a cleaning of the Display:: This mode "
+    "is convenient when memory isn't enough for preservation of the necessary number of measurements.\n"
+    "2. \"Not to dump\" - the number of measurements is always output to the display set or smaller (in case of "
+    "shortage of memory). Shortcoming is smaller speed and impossibility of accumulation of the set number of "
+    "measurements at a lack of memory."
     ,
     "Ќе сбрасывать", "Not to dump",
     "—брасывать", "Dump",

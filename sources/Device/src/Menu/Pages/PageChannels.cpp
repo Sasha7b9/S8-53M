@@ -25,10 +25,13 @@ static const char chanFiltrRu[] = "Включает/отключает фильтр для ограничения пол
 static const char chanFiltrEn[] = "Includes/switches-off the filter for restriction of a pass-band.";
 
 static const char chanInverseRu[] = "При \"Вкл\" сигнал на экране будет симметрично отражён относительно U = 0В.";
-static const char chanInverseEn[] = "When \"Enable\" signal on the screen will be reflected symmetrically with respect to U = 0V.";
+static const char chanInverseEn[] =
+                         "When \"Enable\" signal on the screen will be reflected symmetrically with respect to U = 0V.";
 
-static const char chanMultiplierRu[] = "Ослабление сигнала:\n\"x1\" - сигнал не ослабляется.\n\"x10\" - сигнал ослабляется в 10 раз";
-static const char chanMultiplierEn[] = "Attenuation: \n\"x1\" - the signal is not attenuated.\n\"x10\" - the signal is attenuated by 10 times";
+static const char chanMultiplierRu[] =
+                          "Ослабление сигнала:\n\"x1\" - сигнал не ослабляется.\n\"x10\" - сигнал ослабляется в 10 раз";
+static const char chanMultiplierEn[] =
+                "Attenuation: \n\"x1\" - the signal is not attenuated.\n\"x10\" - the signal is attenuated by 10 times";
 
 
 

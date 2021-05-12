@@ -76,9 +76,12 @@ static void DrawSB_ShowSignalAlways(int x, int y)
 static const arrayHints hintsShowSignalAlways =
 {
     {DrawSB_ShowSignalAllways_Yes, "показывать выбранный сигнал из внутренней памяти поверх текущего",
-                                          "to show the chosen signal from internal memory over the current"},
-    {DrawSB_ShowSignalAllways_No,  "сигнал из внутренней памяти виден только в режиме работы с внутренним запоминающим устройством",
-                                          "the signal from internal memory is visible only in an operating mode with an internal memory"}
+                                   "to show the chosen signal from internal memory over the current"},
+    {DrawSB_ShowSignalAllways_No,  "сигнал из внутренней памяти виден только в режиме работы с внутренним запоминающим "
+                                   "устройством"
+                                   ,
+                                   "the signal from internal memory is visible only in an operating mode with an "
+                                   "internal memory"}
 };
 
 

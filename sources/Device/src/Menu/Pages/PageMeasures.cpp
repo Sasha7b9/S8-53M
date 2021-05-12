@@ -85,7 +85,8 @@ DEF_SMALL_BUTTON( sbMeasTuneSettings, PageMeasures::PageTune::self,
     nullptr, PressSB_MeasTune_Settings, DrawSB_MeasTune_Settings, nullptr
 )
 
-DEF_SMALL_BUTTON( sbMeasTuneMarkers, PageMeasures::PageTune::self,                 // Включение / отключение маркера для режима измерений.
+                                                                 // Включение / отключение маркера для режима измерений.
+DEF_SMALL_BUTTON( sbMeasTuneMarkers, PageMeasures::PageTune::self,
     "Маркер", "Marker",
     "Позволяет установить маркеры для визуального контроля измерений",
     "Allows to establish markers for visual control of measurements",

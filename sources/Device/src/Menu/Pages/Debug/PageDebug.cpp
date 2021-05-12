@@ -29,9 +29,14 @@ struct StructForSN
 
 
 DEF_CHOICE_2(mcStats, PageDebug::self,
-    "—татистика", "Statistics",
-    "ѕоказывать/не показывать врем€/кадр, кадров в секунду, количество сигналов с последними настройками в пам€ти/количество сохран€емых в пам€ти сигналов",
-    "To show/not to show a time/shot, frames per second, quantity of signals with the last settings in memory/quantity of the signals kept in memory",
+    "—татистика", "Statistics"
+    ,
+    "ѕоказывать/не показывать врем€/кадр, кадров в секунду, количество сигналов с последними настройками в "
+    "пам€ти/количество сохран€емых в пам€ти сигналов"
+    ,
+    "To show/not to show a time/shot, frames per second, quantity of signals with the last settings in memory/quantity "
+    "of the signals kept in memory"
+    ,
     "Ќе показывать", "Hide",
     "ѕоказывать", "Show",
     setNRST.show_stats, nullptr, nullptr, nullptr

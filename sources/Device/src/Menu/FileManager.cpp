@@ -18,14 +18,25 @@
 
 
 static char currentDir[255] = "\\";
-static int numFirstDir = 0;         // Номер первого выведенного каталога в левой панели. Всего может быть выведено RECS_ON_PAGE каталогов
-static int numCurDir = 0;           // Номер подсвеченного каталога
-static int numFirstFile = 0;        // Номер первого выведенного файла в правой панели. Всего может быть выведено RECS_ON_PAGE файлов.
-static int numCurFile = 0;          // Номер подсвеченного файла
+
+// Номер первого выведенного каталога в левой панели. Всего может быть выведено RECS_ON_PAGE каталогов
+static int numFirstDir = 0;
+
+// Номер подсвеченного каталога
+static int numCurDir = 0;
+
+// Номер первого выведенного файла в правой панели. Всего может быть выведено RECS_ON_PAGE файлов.
+static int numFirstFile = 0;        
+
+// Номер подсвеченного файла
+static int numCurFile = 0;
+
 static int numDirs = 0;
+
 static int numFiles = 0;
 
-static bool cursorInDirs = false;    // Если true, то ручка УСТАНОВКА перемещает по каталогам
+// Если true, то ручка УСТАНОВКА перемещает по каталогам
+static bool cursorInDirs = false;
 
 
 uint FM::needRedrawFileManager = 0;
@@ -88,7 +99,8 @@ void FM::DrawDirs(int x, int y)
         while (drawingDirs < (RECS_ON_PAGE - 1) && FDrive::GetNextNameDir(nameDir.c_str(), &sfrd))
         {
             drawingDirs++;
-            DrawLongString(x, y + drawingDirs * 9, nameDir.c_str(), cursorInDirs && ( numFirstDir + drawingDirs == numCurDir));
+            DrawLongString
+                (x, y + drawingDirs * 9, nameDir.c_str(), cursorInDirs && ( numFirstDir + drawingDirs == numCurDir));
         }
     }
 }
@@ -107,7 +119,8 @@ void FM::DrawFiles(int x, int y)
         while (drawingFiles < (RECS_ON_PAGE - 1) && FDrive::GetNextNameFile(nameFile, &sfrd))
         {
             drawingFiles++;
-            DrawLongString(x, y + drawingFiles * 9, nameFile, !cursorInDirs && (numFirstFile + drawingFiles == numCurFile));
+            DrawLongString
+                (x, y + drawingFiles * 9, nameFile, !cursorInDirs && (numFirstFile + drawingFiles == numCurFile));
         }
     }
 }
