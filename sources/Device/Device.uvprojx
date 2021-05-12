@@ -2083,6 +2083,11 @@
               <FilePath>.\src\Menu\Pages\Service\PageFFT.cpp</FilePath>
             </File>
             <File>
+              <FileName>PageCursorsFFT.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Service\PageCursorsFFT.cpp</FilePath>
+            </File>
+            <File>
               <FileName>PageFunction.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Service\PageFunction.cpp</FilePath>
@@ -4451,6 +4456,11 @@
               <FileName>PageFFT.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Service\PageFFT.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PageCursorsFFT.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Service\PageCursorsFFT.cpp</FilePath>
             </File>
             <File>
               <FileName>PageFunction.cpp</FileName>

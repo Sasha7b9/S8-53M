@@ -181,73 +181,6 @@ DEF_PAGE_10(pageService, PageMain::self, NamePage::Service,
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-static void OnPress_Math_FFT_Cursors_Exit()
-{
-    Display::RemoveAddDrawFunction();
-}
-
-DEF_SMALL_BUTTON(cMath_FFT_Cursors_Exit, PageService::PageMath::PageFFT::PageCursors::self,
-    "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
-    nullptr, OnPress_Math_FFT_Cursors_Exit, DrawSB_Exit, nullptr
-)
-
-static bool IsActive_Math_FFT_Cursors()
-{
-    return set.math.fft.enabled;
-}
-
-static void OnRegSet_Math_FFT_Cursors(int angle)
-{
-    set.math.fft.pos_cur[set.math.fft.cursor] += (uint8)angle;
-    Sound::RegulatorShiftRotate();
-}
-
-static void OnPress_Math_FFT_Cursors_Source()
-{
-    set.math.fft.cursor = (uint8)((set.math.fft.cursor + 1) % 2);
-}
-
-static void Draw_Math_FFT_Cursors_Source(int x, int y)
-{
-    Text((set.math.fft.cursor == 0) ? "1" : "2").Draw(x + 7, y + 5);
-}
-
-DEF_SMALL_BUTTON(cMath_FFT_Cursors_Source, PageService::PageMath::PageFFT::PageCursors::self,
-    "Источник", "Source",
-    "Выбор источника для расчёта спектра",
-    "Source choice for calculation of a range",
-    nullptr, OnPress_Math_FFT_Cursors_Source, Draw_Math_FFT_Cursors_Source, nullptr
-)
-
-DEF_PAGE_6(pageCursorsFFT, PageService::PageMath::PageFFT::self, NamePage::SB_MathCursorsFFT,
-    "КУРСОРЫ", "CURSORS",
-    "Включает курсоры для измерения параметров спектра",
-    "Includes cursors to measure the parameters of the spectrum",
-    cMath_FFT_Cursors_Exit,     // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ - Выход
-    cMath_FFT_Cursors_Source,   // СЕРВИС - МАТЕМАТИКА - СПЕКТР - КУРСОРЫ - Источник
-    Item::empty,
-    Item::empty,
-    Item::empty,
-    Item::empty,
-    IsActive_Math_FFT_Cursors, nullptr, nullptr, OnRegSet_Math_FFT_Cursors
-)
-
-
 static void OnPress_Information_Exit()
 {
     Display::SetDrawMode(DrawMode::Auto, 0);
@@ -310,6 +243,5 @@ DEF_PAGE_6(pageInformation, PageService::self, NamePage::SB_Information,
 )
 
 const Page *PageService::self = &pageService;
-const Page *PageService::PageMath::PageFFT::PageCursors::self = &pageCursorsFFT;
 const Page *PageService::PageCalibrator::self = &pageCalibrator;
 const Page *PageService::PageInformation::self = &pageInformation;
