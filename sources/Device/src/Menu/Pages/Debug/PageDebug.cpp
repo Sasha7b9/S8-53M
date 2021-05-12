@@ -38,22 +38,6 @@ DEF_CHOICE_2(mcStats, PageDebug::self,
     setNRST.show_stats, nullptr, nullptr, nullptr
 )
 
-DEF_GOVERNOR(mgConsole_NumStrings, PageDebug::PageConsole::self,
-    "Число строк", "Number strings",
-    "",
-    "",
-    setNRST.num_srings, 0, 33, nullptr, nullptr, nullptr
-)
-
-DEF_CHOICE_2(mcConsole_SizeFont, PageDebug::PageConsole::self,
-    "Размер шрифта", "Size font",
-    "",
-    "",
-    "5", "5",
-    "8", "8",
-    setNRST.size_font, nullptr, nullptr, nullptr
-)
-
 
 DEF_CHOICE_2(mcLaunchFPGA, PageDebug::PageConsole::PageRegisters::self,
     "Запуск", "Launch",
@@ -183,15 +167,7 @@ DEF_PAGE_12(pageRegisters, PageDebug::PageConsole::self, NamePage::DebugShowRegi
     nullptr, nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_3(pageConsole, PageDebug::self, NamePage::DebugConsole,
-    "КОНСОЛЬ", "CONSOLE",
-    "",
-    "",
-    mgConsole_NumStrings,                           // ОТЛАДКА - КОНСОЛЬ - Число строк
-    mcConsole_SizeFont,                             // ОТЛАДКА - КОНСОЛЬ - Размер шрифта
-    *PageDebug::PageConsole::PageRegisters::self,   // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ
-    nullptr, nullptr, nullptr, nullptr
-);
+
 
 static void Draw_ADC_Balance_Mode(int, int)
 {
@@ -714,7 +690,6 @@ DEF_PAGE_6(pageSerialNumber, PageDebug::self, NamePage::SB_SerialNumber,
 
 const Page *PageDebug::PageSerialNumber::self = &pageSerialNumber;
 const Page *PageDebug::self = &pageDebug;
-const Page *PageDebug::PageConsole::self = &pageConsole;
 const Page *PageDebug::PageConsole::PageRegisters::self = &pageRegisters;
 const Page *PageDebug::PageADC::self = &pageADC;
 const Page *PageDebug::PageADC::PageBalance::self = &pageBalanceADC;
