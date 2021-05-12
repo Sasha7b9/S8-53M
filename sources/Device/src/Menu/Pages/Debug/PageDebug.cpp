@@ -77,93 +77,20 @@ void PageDebug::LoadStretchADC(const Channel &ch)
 
 
 
-static void OnPress_ADC_AltRShift_Reset()
-{
-    for (int ch = 0; ch < 2; ch++)
-    {
-        for (int mode = 0; mode < 2; mode++)
-        {
-            for (int range = 0; range < Range::Count; range++)
-            {
-                RSHIFT_ADD(ch, range, mode) = 0;
-            }
-        }
-    }
-    RShift::Set(ChA, set.chan[ChA].rshift);
-    RShift::Set(ChB, set.chan[ChB].rshift);
-}
 
-DEF_BUTTON(mbADC_AltRShift_Reset, PageDebug::PageADC::PageAltRShift::self,
-    "Ñáðîñ", "Reset",
-    "", "",
-    nullptr, OnPress_ADC_AltRShift_Reset
-)
 
-static void OnChanged_ADC_AltRShift_A()
-{
-    RShift::Set(ChA, set.chan[ChA].rshift);
-}
 
-DEF_GOVERNOR(mbADC_AltRShift_2mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
-    "Ñì 1ê 2ìÂ ïîñò", "Shift 1ch 2mV DC",
-    "",
-    "",
-    set.chan[ChA].rshift_add[Range::_2mV][ModeCouple::DC], -100, 100, nullptr, OnChanged_ADC_AltRShift_A, nullptr
-)
 
-static void OnChanged_ADC_AltRShift_B()
-{
-    RShift::Set(ChB, set.chan[ChB].rshift);
-}
 
-DEF_GOVERNOR(mbADC_AltRShift_2mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
-    "Ñì 2ê 2ìÂ ïîñò", "Shift 2ch 2mV DC",
-    "",
-    "",
-    RSHIFT_ADD(ChB, Range::_2mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_B, nullptr
-)
 
-DEF_GOVERNOR(mbADC_AltRShift_5mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
-    "Ñì 1ê 5ìÂ ïîñò", "Shift 1ch 5mV DC",
-    "",
-    "",
-    RSHIFT_ADD(ChA, Range::_5mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_A, nullptr
-)
 
-DEF_GOVERNOR(mbADC_AltRShift_5mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
-    "Ñì 2ê 5ìÂ ïîñò", "Shift 2ch 5mV DC",
-    "",
-    "",
-    RSHIFT_ADD(ChB, Range::_5mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_B, nullptr
-)
 
-DEF_GOVERNOR(mbADC_AltRShift_10mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
-    "Ñì 1ê 10ìÂ ïîñò", "Shift 1ch 10mV DC",
-    "",
-    "",
-    RSHIFT_ADD(ChA, Range::_10mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_A, nullptr
-)
 
-DEF_GOVERNOR(mbADC_AltRShift_10mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
-    "Ñì 2ê 10ìÂ ïîñò", "Shift 2ch 10mV DC",
-    "",
-    "",
-    RSHIFT_ADD(ChB, Range::_10mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_ADC_AltRShift_B, nullptr
-)
 
-DEF_PAGE_7(pageAltShiftADC, PageDebug::PageADC::self, NamePage::DebugADCrShift,
-    "ÄÎÏ ÑÌÅÙ", "ADD RSHFIT",
-    "",
-    "",
-    mbADC_AltRShift_Reset,          // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñáðîñ
-    mbADC_AltRShift_2mV_DC_A,       // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 1ê 2ìÂ ïîñò
-    mbADC_AltRShift_2mV_DC_B,       // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 2ê 2ìÂ ïîñò
-    mbADC_AltRShift_5mV_DC_A,       // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 1ê 5ìÂ ïîñò
-    mbADC_AltRShift_5mV_DC_B,       // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 2ê 5ìÂ ïîñò
-    mbADC_AltRShift_10mV_DC_A,      // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 1ê 10ìÂ ïîñò
-    mbADC_AltRShift_10mV_DC_B,      // ÎÒËÀÄÊÀ - ÀÖÏ - ÄÎÏ ÑÌÅÙ - Ñì 2ê 10ìÂ ïîñò
-    nullptr, nullptr, nullptr, nullptr
-)
+
+
+
+
 
 
 static void OnChanged_Randomizer_SamplesForGates()
@@ -285,5 +212,5 @@ DEF_PAGE_7(pageDebug, PageMain::self, NamePage::Debug,
 
 
 const Page *PageDebug::self = &pageDebug;
-const Page *PageDebug::PageADC::PageAltRShift::self = &pageAltShiftADC;
+
 const Page *PageDebug::PageRandomizer::self = &pageRandomizer;

@@ -2003,6 +2003,11 @@
               <FilePath>.\src\Menu\Pages\Debug\PageADC.cpp</FilePath>
             </File>
             <File>
+              <FileName>PageAltShiftADC.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Debug\PageAltShiftADC.cpp</FilePath>
+            </File>
+            <File>
               <FileName>PageBalanceADC.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Debug\PageBalanceADC.cpp</FilePath>
@@ -4301,6 +4306,11 @@
               <FileName>PageADC.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Debug\PageADC.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PageAltShiftADC.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Debug\PageAltShiftADC.cpp</FilePath>
             </File>
             <File>
               <FileName>PageBalanceADC.cpp</FileName>
