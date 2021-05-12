@@ -282,7 +282,7 @@ struct PageMemory
 
         static void SaveSignalToFlashDrive();
 
-        static void OnSetMaskNameRegSet(int angle, int maxIndex);
+        static void OnRegSet_SetMaskName(int angle, int maxIndex);
     };
 
     struct PageSetMask

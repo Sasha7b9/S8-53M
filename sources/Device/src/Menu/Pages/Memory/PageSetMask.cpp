@@ -246,7 +246,7 @@ static void OnPress()
 
 static void OnRegSet(int angle)
 {
-    PageMemory::PageExternal::OnSetMaskNameRegSet(angle, sizeof(Tables::symbolsAlphaBet) / 4);
+    PageMemory::PageExternal::OnRegSet_SetMaskName(angle, sizeof(Tables::symbolsAlphaBet) / 4);
 }
 
 
