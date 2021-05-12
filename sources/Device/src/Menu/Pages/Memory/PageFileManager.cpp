@@ -8,22 +8,22 @@
 #include "Menu/Pages/Definition.h"
 
 
-static void PressSB_FM_Exit()
+static void PressSB_Exit()
 {
     Display::SetDrawMode(DrawMode::Auto, 0);
     Display::RemoveAddDrawFunction();
 }
 
 
-DEF_SMALL_BUTTON(sbExitFileManager, PageMemory::PageFileManager::self,
+DEF_SMALL_BUTTON(sbExit, PageMemory::PageFileManager::self,
     EXIT_RU, EXIT_EN,
     EXIT_ILLUSTRATION_RU,
     EXIT_ILLUSTRATION_EN,
-    nullptr, PressSB_FM_Exit, DrawSB_Exit, nullptr
+    nullptr, PressSB_Exit, DrawSB_Exit, nullptr
 )
 
 
-static void DrawSB_FM_Tab(int x, int y)
+static void DrawSB_Tab(int x, int y)
 {
     Font::Set(TypeFont::UGO2);
     Char('\x6e').Draw4SymbolsInRect(x + 2, y + 1);
@@ -31,15 +31,15 @@ static void DrawSB_FM_Tab(int x, int y)
 }
 
 
-DEF_SMALL_BUTTON(sbFileManagerTab, PageMemory::PageFileManager::self,
+DEF_SMALL_BUTTON(sbTab, PageMemory::PageFileManager::self,
     "Tab", "Tab",
     "Переход между каталогами и файлами",
     "The transition between the directories and files",
-    nullptr, FM::PressTab, DrawSB_FM_Tab, nullptr
+    nullptr, FM::PressTab, DrawSB_Tab, nullptr
 )
 
 
-void DrawSB_FM_LevelUp(int x, int y)
+static void DrawSB_LevelUp(int x, int y)
 {
     Font::Set(TypeFont::UGO2);
     Char('\x48').Draw4SymbolsInRect(x + 2, y + 1);
@@ -47,15 +47,15 @@ void DrawSB_FM_LevelUp(int x, int y)
 }
 
 
-DEF_SMALL_BUTTON(sbFileManagerLevelUp, PageMemory::PageFileManager::self,
+DEF_SMALL_BUTTON(sbLevelUp, PageMemory::PageFileManager::self,
     "Выйти", "Leave",
     "Переход в родительский каталог",
     "Transition to the parental catalog",
-    nullptr, FM::PressLevelUp, DrawSB_FM_LevelUp, nullptr
+    nullptr, FM::PressLevelUp, DrawSB_LevelUp, nullptr
 )
 
 
-void DrawSB_FM_LevelDown(int x, int y)
+static void DrawSB_LevelDown(int x, int y)
 {
     Font::Set(TypeFont::UGO2);
     Char('\x4a').Draw4SymbolsInRect(x + 2, y + 2);
@@ -63,14 +63,14 @@ void DrawSB_FM_LevelDown(int x, int y)
 }
 
 
-DEF_SMALL_BUTTON(sbFileManagerLevelDown, PageMemory::PageFileManager::self,
+DEF_SMALL_BUTTON(sbLevelDown, PageMemory::PageFileManager::self,
     "Войти", "Enter",
     "Переход в выбранный каталог",
     "Transition to the chosen catalog",
-    nullptr, FM::PressLevelDown, DrawSB_FM_LevelDown, nullptr
+    nullptr, FM::PressLevelDown, DrawSB_LevelDown, nullptr
 )
 
-bool FuncOfActiveExtMemFolder()
+static bool FuncActive()
 {
     return FDrive::isConnected;
 }
@@ -80,13 +80,13 @@ DEF_PAGE_6(pageFileManager, PageMemory::PageExternal::self, NamePage::SB_FileMan
     "КАТАЛОГ", "DIRECTORY",
     "Открывает доступ к файловой системе подключенного накопителя",
     "Provides access to the file system of the connected drive",
-    sbExitFileManager,
-    sbFileManagerTab,
+    sbExit,
+    sbTab,
     Item::empty,
     Item::empty,
-    sbFileManagerLevelUp,
-    sbFileManagerLevelDown,
-    FuncOfActiveExtMemFolder, PageMemory::PageExternal::OnPress_MemoryFileManager, EmptyFuncVV, FM::RotateRegSet
+    sbLevelUp,
+    sbLevelDown,
+    FuncActive, PageMemory::PageExternal::OnPress_FileManager, EmptyFuncVV, FM::RotateRegSet
 );
 
 const Page *PageMemory::PageFileManager::self = &pageFileManager;

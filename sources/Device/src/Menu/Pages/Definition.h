@@ -277,7 +277,7 @@ struct PageMemory
     {
         static const Page *self;
 
-        static void OnPress_MemoryFileManager();
+        static void OnPress_FileManager();
 
         static void SaveSignalToFlashDrive();
     };

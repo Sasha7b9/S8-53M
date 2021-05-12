@@ -174,7 +174,7 @@ void PageMemory::PageExternal::SaveSignalToFlashDrive()
 }
 
 
-void PageMemory::PageExternal::OnPress_MemoryFileManager()
+void PageMemory::PageExternal::OnPress_FileManager()
 {
     if(FDrive::isConnected)
     {
