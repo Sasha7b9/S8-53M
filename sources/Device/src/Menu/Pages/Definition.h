@@ -126,15 +126,13 @@ struct PageDisplay
 {
     static const Page *self;
 
-    static void OnPress_Accumulation_Clear();
-
     static void OnChanged_RefreshFPS(bool);
-
-    static void OnChanged_Grid_Brightness();
 
     struct PageAccumulation
     {
         static const Page *self;
+
+        static void OnPress_Accumulation_Clear();
     };
 
     struct PageAveraging
@@ -147,6 +145,8 @@ struct PageDisplay
         static ColorType typeGrid;
 
         static const Page *self;
+
+        static void OnChangedBrightness();
     };
 
     struct PageSettings

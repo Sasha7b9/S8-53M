@@ -6,7 +6,7 @@
 #include "Settings/Settings.h"
 
 
-DEF_CHOICE_2(mcSettings_Colors_Scheme, PageDisplay::PageSettings::PageColors::self,
+DEF_CHOICE_2(mcScheme, PageDisplay::PageSettings::PageColors::self,
     "Цветовая схема", "Color scheme",
     "Режим работы калибратора",
     "Mode of operation of the calibrator",
@@ -18,7 +18,7 @@ DEF_CHOICE_2(mcSettings_Colors_Scheme, PageDisplay::PageSettings::PageColors::se
 
 static ColorType colorT1 = { 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::DATA_A.index };
 
-DEF_GOVERNOR_COLOR(mgcSettings_Colors_ChannelA, PageDisplay::PageSettings::PageColors::self,
+DEF_GOVERNOR_COLOR(mgcChannelA, PageDisplay::PageSettings::PageColors::self,
     "Канал 1", "Channel 1",
     "",
     "",
@@ -28,7 +28,7 @@ DEF_GOVERNOR_COLOR(mgcSettings_Colors_ChannelA, PageDisplay::PageSettings::PageC
 
 static ColorType colorT2 = { 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::DATA_B.index };
 
-DEF_GOVERNOR_COLOR(mgcSettings_Colors_ChannelB, PageDisplay::PageSettings::PageColors::self,
+DEF_GOVERNOR_COLOR(mgcChannelB, PageDisplay::PageSettings::PageColors::self,
     "Канал 2", "Channel 2",
     "",
     "",
@@ -36,7 +36,7 @@ DEF_GOVERNOR_COLOR(mgcSettings_Colors_ChannelB, PageDisplay::PageSettings::PageC
 )
 
 
-DEF_GOVERNOR_COLOR(mgcSettings_Colors_Grid, PageDisplay::PageSettings::PageColors::self,
+DEF_GOVERNOR_COLOR(mgcGrid, PageDisplay::PageSettings::PageColors::self,
     "Сетка", "Grid",
     "Устанавливает цвет сетки",
     "Sets the grid color",
@@ -48,10 +48,10 @@ DEF_PAGE_4(pageColors, PageDisplay::PageSettings::self, NamePage::ServiceDisplay
     "ЦВЕТА", "COLORS",
     "Выбор цветов дисплея",
     "The choice of colors display",
-    mcSettings_Colors_Scheme,
-    mgcSettings_Colors_ChannelA,
-    mgcSettings_Colors_ChannelB,
-    mgcSettings_Colors_Grid,
+    mcScheme,
+    mgcChannelA,
+    mgcChannelB,
+    mgcGrid,
     nullptr, nullptr, nullptr, nullptr
 )
 

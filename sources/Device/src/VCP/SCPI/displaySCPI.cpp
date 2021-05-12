@@ -147,7 +147,7 @@ void SCPI::DISPLAY::ACCUM_MODE(puchar buffer)
 
 void SCPI::DISPLAY::ACCUM_CLEAR(puchar )
 {
-    PageDisplay::OnPress_Accumulation_Clear();
+    PageDisplay::PageAccumulation::OnPress_Accumulation_Clear();
 }
 
 
@@ -320,7 +320,7 @@ void SCPI::DISPLAY::GRID_BRIGHTNESS(puchar buffer)
     if (SCPI::FirstIsInt(buffer, &intVal, 0, 100))
     {
         set.display.brightness_grid = (int16)intVal;
-        Display::RunAfterDraw(PageDisplay::OnChanged_Grid_Brightness);
+        Display::RunAfterDraw(PageDisplay::PageGrid::OnChangedBrightness);
     }
     else
     {

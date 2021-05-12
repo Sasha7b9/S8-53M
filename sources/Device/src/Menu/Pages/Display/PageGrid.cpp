@@ -9,7 +9,7 @@
 ColorType PageDisplay::PageGrid::typeGrid = { 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::GRID.index };
 
 
-DEF_CHOICE_4(mcGrid_Type, PageDisplay::PageGrid::self,
+DEF_CHOICE_4(mcType, PageDisplay::PageGrid::self,
     "Тип", "Type",
     "Выбор типа сетки.",
     "Choice like Grid.",
@@ -21,7 +21,7 @@ DEF_CHOICE_4(mcGrid_Type, PageDisplay::PageGrid::self,
 )
 
 
-void PageDisplay::OnChanged_Grid_Brightness()
+void PageDisplay::PageGrid::OnChangedBrightness()
 {
     PageDisplay::PageGrid::typeGrid.SetBrightness(set.display.brightness_grid / 1e2F);
 }
@@ -34,11 +34,11 @@ static void BeforeDraw_Grid_Brightness()
 }
 
 
-DEF_GOVERNOR(mgGrid_Brightness, PageDisplay::PageGrid::self,
+DEF_GOVERNOR(mgBrightness, PageDisplay::PageGrid::self,
     "Яркость", "Brightness",
     "Устанавливает яркость сетки.",
     "Adjust the brightness of the Grid.",
-    set.display.brightness_grid, 0, 100, nullptr, PageDisplay::OnChanged_Grid_Brightness, BeforeDraw_Grid_Brightness
+    set.display.brightness_grid, 0, 100, nullptr, PageDisplay::PageGrid::OnChangedBrightness, BeforeDraw_Grid_Brightness
 )
 
 
@@ -46,8 +46,8 @@ DEF_PAGE_2(pageGrid, PageDisplay::self, NamePage::DisplayGrid,
     "СЕТКА", "GRID",
     "Содержит настройки отображения координатной сетки.",
     "Contains settings of display of a coordinate Grid::",
-    mcGrid_Type,
-    mgGrid_Brightness,
+    mcType,
+    mgBrightness,
     nullptr, nullptr, nullptr, nullptr
 )
 
