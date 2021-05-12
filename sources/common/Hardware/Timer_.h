@@ -26,13 +26,18 @@ class Timer
 public:
 
     static void PauseOnTicks(uint numTicks);
-    // Функция вызывается по прерыванию системного таймера для работы таймеров. Увеличивает внутренее время таймеров на 1мс.
+
+    // Функция вызывается по прерыванию системного таймера для работы таймеров.
+    // Увеличивает внутреннее время таймеров на 1мс.
     static void Update1ms();
          
     static void Enable(TypeTimer::E type, int timeInMS, pFuncVV);
+
     // Остановить таймер.
     static void Disable(TypeTimer::E type);
-    // Устанавливает стартовую точку логгирования. Далее вызовы Timer_LogPoint засекают временные интервалы от это точки.
+
+    // Устанавливает стартовую точку логгирования.
+    // Далее вызовы Timer_LogPoint засекают временные интервалы от это точки.
     static void StartLogging();
     
     static uint LogPointUS(char *name);

@@ -25,8 +25,11 @@ struct State
     int numPort;
 };
 
-void(*SocketFuncConnect)() = 0;                                 // this function will be called every time a new connection
-void(*SocketFuncReciever)(pchar buffer, uint length) = 0;     // this function will be called when a message is recieved from any client
+// this function will be called every time a new connection
+void(*SocketFuncConnect)() = 0;
+
+// this function will be called when a message is recieved from any client
+void(*SocketFuncReciever)(pchar buffer, uint length) = 0;
 
 
 

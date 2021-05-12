@@ -12,8 +12,8 @@
 // »спользуетс€ дл€ анимации изменени€ значени€ Choice
 struct TimeStructChoice
 {
-    Choice* choice;                 // јдрес Choice, который находитс€ в данный момент в движении. ≈сли 0 - все статичны.
-    uint        timeStartMS;        // ¬рем€ начала анимации choice.
+    Choice* choice;                // јдрес Choice, который находитс€ в данный момент в движении. ≈сли 0 - все статичны.
+    uint        timeStartMS;       // ¬рем€ начала анимации choice.
     uint        inMoveIncrease : 1;
     uint        inMoveDecrease : 1;
 };
@@ -173,7 +173,8 @@ float Choice::Step() const
         float delta = speed * (TIME_MS - tsChoice.timeStartMS);
         if (delta == 0.0F)
         {
-            delta = 0.001F; // “аймер в несколько первых кадров может показать, что прошло 0 мс, но мы возвращаем большее число, потому что ноль будет говорить о том, что движени€ нет
+            delta = 0.001F; // “аймер в несколько первых кадров может показать, что прошло 0 мс, но мы возвращаем
+                            // большее число, потому что ноль будет говорить о том, что движени€ нет
         }
         if (tsChoice.inMoveIncrease == 1)
         {

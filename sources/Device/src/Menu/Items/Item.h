@@ -64,7 +64,8 @@ public:
     // ¬озвращает название элемента по адресу item, как оно выгл€дит на дисплее прибора.
     pstring Title() const;
 
-    void DrawVolumeButton(int x, int y, int width, int height, int thickness, Color normal, Color bright, Color dark, bool isPressed) const;
+    void DrawVolumeButton(int x, int y, int width, int height, int thickness, Color normal, Color bright, Color dark,
+        bool isPressed) const;
 
     // ¬озвращает изображение регул€тора, соответствующее его текущему положению.
     char GetSymbolForGovernor() const;

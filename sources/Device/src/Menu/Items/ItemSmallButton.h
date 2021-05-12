@@ -4,8 +4,8 @@
 
 struct DataSmallButton
 {
-    pFuncVV           funcOnPress;    // Эта функция вызвается для обработки нажатия кнопки. Возвращает true, если надо за
-    pFuncVII          funcOnDraw;     // Эта функция вызывается для отрисовки кнопки в месте с координатами x, y.
+    pFuncVV           funcOnPress;  // Эта функция вызвается для обработки нажатия кнопки. Возвращает true, если надо за
+    pFuncVII          funcOnDraw;   // Эта функция вызывается для отрисовки кнопки в месте с координатами x, y.
     const arrayHints *hintUGO;
 };
 
