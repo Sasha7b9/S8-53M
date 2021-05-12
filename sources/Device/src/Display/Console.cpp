@@ -5,6 +5,7 @@
 #include "Display/Console.h"
 #include "Display/Screen/Grid.h"
 #include "Settings/Settings.h"
+#include "Settings/SettingsNRST.h"
 #include <cstdio>
 #include <cstring>
 
@@ -19,7 +20,7 @@ static int                      lastStringForPause = -1;
 void Console::Draw()
 {
     int count = 0;
-    Font::Set(SettingsDebug::GetSizeFontForConsole() == 5 ? TypeFont::S5 : TypeFont::S8);
+    Font::Set(SettingsNRST::GetSizeFontForConsole() == 5 ? TypeFont::S5 : TypeFont::S8);
     int height = Font::GetSize();
 
     int last_string = FirstEmptyString() - 1;
