@@ -272,15 +272,6 @@ DEF_PAGE_7(pageAltShiftADC, PageDebug::PageADC::self, NamePage::DebugADCrShift,
     nullptr, nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_3(pageADC, PageDebug::self, NamePage::DebugADC,
-    "¿÷œ", "ADC",
-    "",
-    "",
-    *PageDebug::PageADC::PageBalance::self,     // Œ“À¿ƒ ¿ - ¿÷œ - ¡¿À¿Õ—
-    *PageDebug::PageADC::PageStretch::self,     // Œ“À¿ƒ ¿ - ¿÷œ - –¿—“ﬂ∆ ¿
-    *PageDebug::PageADC::PageAltRShift::self,   // Œ“À¿ƒ ¿ - ¿÷œ - ƒŒœ —Ã≈Ÿ
-    nullptr, nullptr, nullptr, nullptr
-)
 
 static void OnChanged_Randomizer_SamplesForGates()
 {
@@ -401,7 +392,6 @@ DEF_PAGE_7(pageDebug, PageMain::self, NamePage::Debug,
 
 
 const Page *PageDebug::self = &pageDebug;
-const Page *PageDebug::PageADC::self = &pageADC;
 const Page *PageDebug::PageADC::PageBalance::self = &pageBalanceADC;
 const Page *PageDebug::PageADC::PageStretch::self = &pageStretchADC;
 const Page *PageDebug::PageADC::PageAltRShift::self = &pageAltShiftADC;

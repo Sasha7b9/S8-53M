@@ -1998,6 +1998,11 @@
               <FilePath>.\src\Menu\Pages\Debug\PageDebug.cpp</FilePath>
             </File>
             <File>
+              <FileName>PageADC.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Debug\PageADC.cpp</FilePath>
+            </File>
+            <File>
               <FileName>PageConsole.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Debug\PageConsole.cpp</FilePath>
@@ -4281,6 +4286,11 @@
               <FileName>PageDebug.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Debug\PageDebug.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PageADC.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Debug\PageADC.cpp</FilePath>
             </File>
             <File>
               <FileName>PageConsole.cpp</FileName>
