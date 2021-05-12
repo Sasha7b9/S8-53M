@@ -55,181 +55,27 @@ void PageMemory::OnChanged_MemoryNumPoints(bool)
     TShift::Set(set.time.shift);
 }
 
-// Активна ли ПАМЯТЬ - ВНЕШН ЗУ - Маска
 
-
-
-void DrawSB_MemLastSelect(int x, int y)
-{
-    Font::Set(TypeFont::UGO2);
-    Char(set.memory.str_memory_last.isActiveModeSelect ? '\x2a' : '\x28').Draw4SymbolsInRect(x + 3, y + 2);
-    Font::Set(TypeFont::S8);
-}
-
-
-
-
-
-void PressSB_MemLastSelect()
-{
-    set.memory.str_memory_last.isActiveModeSelect = !set.memory.str_memory_last.isActiveModeSelect;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void DrawSB_MemExtNewFolder(int x, int y)
-{
-    Font::Set(TypeFont::UGO2);
-    Char('\x46').Draw4SymbolsInRect(x + 1, y);
-    Font::Set(TypeFont::S8);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Нажатие ПАМЯТЬ - ВНЕШН ЗУ - Маска
+//static void DrawSB_MemLastSelect(int x, int y)
+//{
+//    Font::Set(TypeFont::UGO2);
+//    Char(set.memory.str_memory_last.isActiveModeSelect ? '\x2a' : '\x28').Draw4SymbolsInRect(x + 3, y + 2);
+//    Font::Set(TypeFont::S8);
+//}
+
+
+//static void PressSB_MemLastSelect()
+//{
+//    set.memory.str_memory_last.isActiveModeSelect = !set.memory.str_memory_last.isActiveModeSelect;
+//}
+
+
+//static void DrawSB_MemExtNewFolder(int x, int y)
+//{
+//    Font::Set(TypeFont::UGO2);
+//    Char('\x46').Draw4SymbolsInRect(x + 1, y);
+//    Font::Set(TypeFont::S8);
+//}
 
 
 static bool FuncActiveMemoryNumPoinst()
@@ -260,17 +106,7 @@ DEF_CHOICE_7(mcMemoryNumPoints, PageMemory::self,
 )
 
 
-
-    
-// ПАМЯТЬ - ВНЕШН ЗУ - Автоподключение
-
-
-
-// ПАМЯТЬ - ВНЕШН ЗУ - Реж кн ПАМЯТЬ
-
-
-
-void DrawSetName()
+static void DrawSetName()
 {
     int x0 = Grid::Left() + 40;
     int y0 = Grid::TOP + 60;
@@ -317,9 +153,6 @@ void DrawSetName()
 }
 
 
-
-
-
 void PageMemory::PageExternal::SaveSignalToFlashDrive()
 {
     if (FDrive::isConnected)
@@ -341,12 +174,6 @@ void PageMemory::PageExternal::SaveSignalToFlashDrive()
 }
 
 
-
-
-
-
-
-
 void PageMemory::PageExternal::OnPress_MemoryFileManager()
 {
     if(FDrive::isConnected)
@@ -356,24 +183,6 @@ void PageMemory::PageExternal::OnPress_MemoryFileManager()
         FM::needRedrawFileManager = 1;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Страница вызывается при выбранном ручном режиме задания имени файла перед сохранением на флешку ///////////////
-
-
 
 
 DEF_PAGE_4(pageMemory, PageMain::self, NamePage::Memory,
