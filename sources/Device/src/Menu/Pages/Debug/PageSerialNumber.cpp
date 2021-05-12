@@ -6,19 +6,19 @@
 #include "Menu/Items/MenuItemsDefs.h"
 
 
-static void OnPress_SerialNumber_Exit()
+static void OnPress_Exit()
 {
     Display::RemoveAddDrawFunction();
     //    FREE_EXTRAMEM();
 }
 
-DEF_SMALL_BUTTON(bSerialNumber_Exit, PageDebug::PageSerialNumber::self,
+DEF_SMALL_BUTTON(bExit, PageDebug::PageSerialNumber::self,
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
-    nullptr, OnPress_SerialNumber_Exit, DrawSB_Exit, nullptr
+    nullptr, OnPress_Exit, DrawSB_Exit, nullptr
 )
 
 
-static void OnPress_SerialNumber_Change()
+static void OnPress_Change()
 {
     //    ACCESS_EXTRAMEM(StructForSN, s);
     //    ++s->curDigt;
@@ -26,22 +26,22 @@ static void OnPress_SerialNumber_Change()
     //    Color::ResetFlash();
 }
 
-static void Draw_SerialNumber_Change(int x, int y)
+static void Draw_Change(int x, int y)
 {
     Font::Set(TypeFont::UGO2);
     Char(Symbol::UGO2::TAB).Draw4SymbolsInRect(x + 2, y + 2);
     Font::Set(TypeFont::S8);
 }
 
-DEF_SMALL_BUTTON(bSerialNumber_Change, PageDebug::PageSerialNumber::self,
+DEF_SMALL_BUTTON(bChange, PageDebug::PageSerialNumber::self,
     "Вставить", "Insert",
     "Вставляет выбраный символ",
     "Inserts the chosen symbol",
-    nullptr, OnPress_SerialNumber_Change, Draw_SerialNumber_Change, nullptr
+    nullptr, OnPress_Change, Draw_Change, nullptr
 )
 
 
-static void OnPress_SerialNumber_Save()
+static void OnPress_Save()
 {
     //    ACCESS_EXTRAMEM(StructForSN, s);
     //
@@ -56,7 +56,7 @@ static void OnPress_SerialNumber_Save()
 }
 
 
-static void Draw_SerialNumber_Save(int x, int y)
+static void Draw_Save(int x, int y)
 {
     Font::Set(TypeFont::UGO2);
     Char(Symbol::UGO2::SAVE_TO_MEM).Draw4SymbolsInRect(x + 2, y + 1);
@@ -64,15 +64,15 @@ static void Draw_SerialNumber_Save(int x, int y)
 }
 
 
-DEF_SMALL_BUTTON(bSerialNumber_Save, PageDebug::PageSerialNumber::self,
+DEF_SMALL_BUTTON(bSave, PageDebug::PageSerialNumber::self,
     "Сохранить", "Save",
     "Записывает серийный номер в OTP",
     "Records the serial number in OTP",
-    nullptr, OnPress_SerialNumber_Save, Draw_SerialNumber_Save, nullptr
+    nullptr, OnPress_Save, Draw_Save, nullptr
 )
 
 
-static void Draw_EnterSerialNumber()
+static void Draw_Enter()
 {
     //    int x0 = Grid::Left() + 40;
     //    int y0 = Grid::TOP + 20;
@@ -129,10 +129,10 @@ static void Draw_EnterSerialNumber()
 }
 
 
-static void OnPress_SerialNumber()
+static void OnPress()
 {
     PageDebug::PageSerialNumber::self->OpenAndSetItCurrent();
-    Display::SetAddDrawFunction(Draw_EnterSerialNumber);
+    Display::SetAddDrawFunction(Draw_Enter);
     //    MALLOC_EXTRAMEM(StructForSN, s);
     //    s->number = 1; 522
     //    s->year = 2017;
@@ -140,7 +140,7 @@ static void OnPress_SerialNumber()
 }
 
 
-static void OnRegSet_SerialNumber(int /*angle*/)
+static void OnRegSet(int /*angle*/)
 {
     //    typedef int(*pFunc)(int *, int, int);
     //
@@ -164,13 +164,13 @@ DEF_PAGE_6(pageSerialNumber, PageDebug::self, NamePage::SB_SerialNumber,
     "С/Н", "S/N",
     "Запись серийного номера в OTP-память. ВНИМАНИЕ!!! ОТP-память - память с однократной записью.",
     "Serial number recording in OTP-memory. ATTENTION!!! OTP memory is a one-time programming memory.",
-    bSerialNumber_Exit,     // ОТЛАДКА - С/Н - Выход
-    bSerialNumber_Change,   // ОТЛАДКА - С/Н - Перейти
+    bExit,
+    bChange,
     Item::empty,
     Item::empty,
     Item::empty,
-    bSerialNumber_Save,      // ОТЛАДКА - С/Н - Сохранить    
-    nullptr, OnPress_SerialNumber, nullptr, OnRegSet_SerialNumber
+    bSave,
+    nullptr, OnPress, nullptr, OnRegSet
 )
 
 
