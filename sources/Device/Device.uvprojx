@@ -2048,6 +2048,11 @@
               <FilePath>.\src\Menu\Pages\Memory\PageExternal.cpp</FilePath>
             </File>
             <File>
+              <FileName>PageFileManager.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Memory\PageFileManager.cpp</FilePath>
+            </File>
+            <File>
               <FileName>PageInternal.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Memory\PageInternal.cpp</FilePath>
@@ -4386,6 +4391,11 @@
               <FileName>PageExternal.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Memory\PageExternal.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PageFileManager.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Memory\PageFileManager.cpp</FilePath>
             </File>
             <File>
               <FileName>PageInternal.cpp</FileName>
