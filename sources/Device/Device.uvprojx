@@ -2098,6 +2098,11 @@
               <FilePath>.\src\Menu\Pages\Service\PageFunction.cpp</FilePath>
             </File>
             <File>
+              <FileName>PageInformation.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Service\PageInformation.cpp</FilePath>
+            </File>
+            <File>
               <FileName>PageLAN.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Service\PageLAN.cpp</FilePath>
@@ -4476,6 +4481,11 @@
               <FileName>PageFunction.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Service\PageFunction.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PageInformation.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Service\PageInformation.cpp</FilePath>
             </File>
             <File>
               <FileName>PageLAN.cpp</FileName>
