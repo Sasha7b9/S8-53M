@@ -38,19 +38,6 @@ DEF_CHOICE_2(mcStats, PageDebug::self,
 )
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 void PageDebug::LoadStretchADC(const Channel &ch)
 {
     if (StretchADCtype::IsDisabled())
@@ -67,72 +54,6 @@ void PageDebug::LoadStretchADC(const Channel &ch)
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-static void OnChanged_Randomizer_SamplesForGates()
-{
-    FPGA::Randomizer::SetNumberMeasuresForGates(setNRST.num_measures_for_gates);
-}
-
-DEF_GOVERNOR(mgRandomizer_SamplesForGates, PageDebug::PageRandomizer::self,
-    "Выб-к/ворота", "Samples/gates",
-    "",
-    "",
-    setNRST.num_measures_for_gates, 1, 2500, nullptr, OnChanged_Randomizer_SamplesForGates, nullptr
-)
-
-static void OnChanged_Randomizer_AltTShift0()
-{
-    TShift::SetDelta(setNRST.shift_T0);
-}
-
-DEF_GOVERNOR(mgRandomizer_AltTShift0, PageDebug::PageRandomizer::self,
-    "tShift доп.", "tShift alt.",
-    "",
-    "",
-    setNRST.shift_T0, 0, 510, nullptr, OnChanged_Randomizer_AltTShift0, nullptr
-)
-
-DEF_GOVERNOR(mgRandomizer_Average, PageDebug::PageRandomizer::self,
-    "Усредн.", "Average",
-    "",
-    "",
-    setNRST.num_ave_for_rand, 1, 32, nullptr, nullptr, nullptr
-)
-
-DEF_PAGE_3(pageRandomizer, PageDebug::self, NamePage::DebugRandomizer,
-    "РАНД-ТОР", "RANDOMIZER",
-    "",
-    "",
-    mgRandomizer_SamplesForGates,   // ОТЛАДКА - РАНД-ТОР - Выб-к/ворота
-    mgRandomizer_AltTShift0,        // ОТЛАДКА - РАНД-ТОР - tShift доп.
-    mgRandomizer_Average,           // ОТЛАДКА - РАНД-ТОР - Усредн.
-    nullptr, nullptr, nullptr, nullptr
-)
 
 static void OnDraw_SizeSettings(int x, int y)
 {
@@ -199,7 +120,6 @@ DEF_PAGE_7(pageDebug, PageMain::self, NamePage::Debug,
     "",
     "",
 
-// Это то, что осталось от "старого" S8-53
     mcStats,                            // ОТЛАДКА - Статистика
     *PageDebug::PageConsole::self,      // ОТЛАДКА - КОНСОЛЬ
     *PageDebug::PageADC::self,          // ОТЛАДКА - АЦП
@@ -212,5 +132,3 @@ DEF_PAGE_7(pageDebug, PageMain::self, NamePage::Debug,
 
 
 const Page *PageDebug::self = &pageDebug;
-
-const Page *PageDebug::PageRandomizer::self = &pageRandomizer;

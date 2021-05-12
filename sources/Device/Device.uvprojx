@@ -2018,6 +2018,11 @@
               <FilePath>.\src\Menu\Pages\Debug\PageConsole.cpp</FilePath>
             </File>
             <File>
+              <FileName>PageRandomizer.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Debug\PageRandomizer.cpp</FilePath>
+            </File>
+            <File>
               <FileName>PageRegisters.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Debug\PageRegisters.cpp</FilePath>
@@ -4321,6 +4326,11 @@
               <FileName>PageConsole.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Debug\PageConsole.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PageRandomizer.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Debug\PageRandomizer.cpp</FilePath>
             </File>
             <File>
               <FileName>PageRegisters.cpp</FileName>
