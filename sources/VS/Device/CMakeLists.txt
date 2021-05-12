@@ -121,6 +121,7 @@ file(GLOB HARDWARE_USBD      ../../Device/src/Hardware/USBD/usbd_desc.cpp
 file(GLOB MENU               ../../Device/src/Menu/*.*)
 file(GLOB MENU_ITEMS         ../../Device/src/Menu/Items/*.*)
 file(GLOB MENU_PAGES         ../../Device/src/Menu/Pages/*.*)
+file(GLOB MENU_PAGES_CURSORS ../../Device/src/Menu/Pages/Cursors/*.*)
 file(GLOB MENU_PAGES_DEBUG   ../../Device/src/Menu/Pages/Debug/*.*)
 file(GLOB MENU_PAGES_DISPLAY ../../Device/src/Menu/Pages/Display/*.*)
 file(GLOB MENU_PAGES_MEMORY  ../../Device/src/Menu/Pages/Memory/*.*)
@@ -182,6 +183,7 @@ source_group(Hardware\\USBD       FILES ${HARDWARE_USBD})
 source_group(Menu                 FILES ${MENU})
 source_group(Menu\\Items          FILES ${MENU_ITEMS})
 source_group(Menu\\Pages          FILES ${MENU_PAGES})
+source_group(Menu\\Pages\\Cursors FILES ${MENU_PAGES_CURSORS})
 source_group(Menu\\Pages\\Debug   FILES ${MENU_PAGES_DEBUG})
 source_group(Menu\\Pages\\Display FILES ${MENU_PAGES_DISPLAY})
 source_group(Menu\\Pages\\Memory  FILES ${MENU_PAGES_MEMORY})
@@ -200,7 +202,8 @@ add_executable(S8-53M ${LIBS_CMSIS} ${LIBS_FATFS} ${LIBS_LWIP} ${LIBS_HAL} ${LIB
           ${DISPLAY_FONT} ${DISPLAY_PAINTER} ${DISPLAY_SCREEN} ${LAN} ${FDRIVE} ${FPGA} ${FPGA_DATA} ${GUI}
           ${GUI_CONTROLS} ${GUI_DIALOGS} ${GUI_VCP} ${HARDWARE}
           ${HARDWARE_HAL} ${HARDWARE_MEMORY} ${HARDWARE_USBD} ${MENU} ${MENU_ITEMS}
-          ${MENU_PAGES} ${MENU_PAGES_DEBUG} ${MENU_PAGES_DISPLAY} ${MENU_PAGES_MEMORY} ${MENU_PAGES_SERVICE}
+          ${MENU_PAGES} ${MENU_PAGES_CURSORS} ${MENU_PAGES_DEBUG} ${MENU_PAGES_DISPLAY} ${MENU_PAGES_MEMORY}
+          ${MENU_PAGES_SERVICE}
           ${PANEL} ${RESOURCES}
           ${SETTINGS}
           ${SRC} ${VCP} ${VCP_SCPI} ${VCP_SCPI_UTILS} ${UTILS} ${UTILS_CONTAINERS})

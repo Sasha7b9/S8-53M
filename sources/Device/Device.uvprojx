@@ -1882,11 +1882,6 @@
               <FilePath>.\src\Menu\Pages\HelpContentPages.h</FilePath>
             </File>
             <File>
-              <FileName>PageCursors.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\PageCursors.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Definition.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Definition.cpp</FilePath>
@@ -1971,6 +1966,16 @@
               <FileName>PageTrig.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\PageTrig.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Menu/Pages/Cursors</GroupName>
+          <Files>
+            <File>
+              <FileName>PageCursors.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Cursors\PageCursors.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -4297,11 +4302,6 @@
               <FilePath>.\src\Menu\Pages\HelpContentPages.h</FilePath>
             </File>
             <File>
-              <FileName>PageCursors.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\PageCursors.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Definition.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Definition.cpp</FilePath>
@@ -4386,6 +4386,16 @@
               <FileName>PageTrig.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\PageTrig.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Menu/Pages/Cursors</GroupName>
+          <Files>
+            <File>
+              <FileName>PageCursors.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Cursors\PageCursors.cpp</FilePath>
             </File>
           </Files>
         </Group>
