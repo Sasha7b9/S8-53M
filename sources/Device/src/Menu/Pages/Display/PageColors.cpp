@@ -40,7 +40,7 @@ DEF_GOVERNOR_COLOR(mgcGrid, PageDisplay::PageSettings::PageColors::self,
     "Сетка", "Grid",
     "Устанавливает цвет сетки",
     "Sets the grid color",
-    PageDisplay::PageGrid::typeGrid, nullptr
+    PageDisplay::PageGrid::colorType, nullptr
 )
 
 

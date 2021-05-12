@@ -6,7 +6,7 @@
 #include "Settings/Settings.h"
 
 
-ColorType PageDisplay::PageGrid::typeGrid = { 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::GRID.index };
+ColorType PageDisplay::PageGrid::colorType = { 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, Color::GRID.index };
 
 
 DEF_CHOICE_4(mcType, PageDisplay::PageGrid::self,
@@ -23,14 +23,14 @@ DEF_CHOICE_4(mcType, PageDisplay::PageGrid::self,
 
 void PageDisplay::PageGrid::OnChangedBrightness()
 {
-    PageDisplay::PageGrid::typeGrid.SetBrightness(set.display.brightness_grid / 1e2F);
+    PageDisplay::PageGrid::colorType.SetBrightness(set.display.brightness_grid / 1e2F);
 }
 
 
 static void BeforeDraw_Grid_Brightness()
 {
-    PageDisplay::PageGrid::typeGrid.Init();
-    set.display.brightness_grid = (int16)(PageDisplay::PageGrid::typeGrid.brightness * 100.0F);
+    PageDisplay::PageGrid::colorType.Init();
+    set.display.brightness_grid = (int16)(PageDisplay::PageGrid::colorType.brightness * 100.0F);
 }
 
 

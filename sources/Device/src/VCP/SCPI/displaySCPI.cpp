@@ -333,8 +333,8 @@ void SCPI::DISPLAY::GRID_BRIGHTNESS(puchar buffer)
         ENTER_ANALYSIS
             if (0 == value)
             {
-                PageDisplay::PageGrid::typeGrid.Init();
-                SCPI_SEND(":DISPLAY:GRID:BRIGHTNESS %d", (int)(PageDisplay::PageGrid::typeGrid.brightness * 100.0F));
+                PageDisplay::PageGrid::colorType.Init();
+                SCPI_SEND(":DISPLAY:GRID:BRIGHTNESS %d", (int)(PageDisplay::PageGrid::colorType.brightness * 100.0F));
             }
         LEAVE_ANALYSIS
     }
