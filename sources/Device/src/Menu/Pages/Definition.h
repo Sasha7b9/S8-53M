@@ -132,7 +132,7 @@ struct PageDisplay
     {
         static const Page *self;
 
-        static void OnPress_Accumulation_Clear();
+        static void OnPress_Clear();
     };
 
     struct PageAveraging

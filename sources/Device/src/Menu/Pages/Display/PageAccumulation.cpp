@@ -59,7 +59,7 @@ DEF_BUTTON(mbClear, PageDisplay::PageAccumulation::self,
     "Очистить", "Clear",
     "Очищает экран от накопленных сигналов.",
     "Clears the screen of the saved-up signals.",
-    IsActive_Clear, PageDisplay::PageAccumulation::OnPress_Accumulation_Clear
+    IsActive_Clear, PageDisplay::PageAccumulation::OnPress_Clear
 )
 
 

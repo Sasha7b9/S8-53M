@@ -147,7 +147,7 @@ void SCPI::DISPLAY::ACCUM_MODE(puchar buffer)
 
 void SCPI::DISPLAY::ACCUM_CLEAR(puchar )
 {
-    PageDisplay::PageAccumulation::OnPress_Accumulation_Clear();
+    PageDisplay::PageAccumulation::OnPress_Clear();
 }
 
 
