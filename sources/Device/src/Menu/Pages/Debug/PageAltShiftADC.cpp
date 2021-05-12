@@ -94,13 +94,13 @@ DEF_PAGE_7(pageAltShiftADC, PageDebug::PageADC::self, NamePage::DebugADCrShift,
     "дно ялеы", "ADD RSHFIT",
     "",
     "",
-    mbReset,          // нркюдйю - южо - дно ялеы - яАПНЯ
-    mb2mV_DC_A,       // нркюдйю - южо - дно ялеы - яЛ 1Й 2Лб ОНЯР
-    mb2mV_DC_B,       // нркюдйю - южо - дно ялеы - яЛ 2Й 2Лб ОНЯР
-    mb5mV_DC_A,       // нркюдйю - южо - дно ялеы - яЛ 1Й 5Лб ОНЯР
-    mb5mV_DC_B,       // нркюдйю - южо - дно ялеы - яЛ 2Й 5Лб ОНЯР
-    mb10mV_DC_A,      // нркюдйю - южо - дно ялеы - яЛ 1Й 10Лб ОНЯР
-    mb10mV_DC_B,      // нркюдйю - южо - дно ялеы - яЛ 2Й 10Лб ОНЯР
+    mbReset,
+    mb2mV_DC_A,
+    mb2mV_DC_B,
+    mb5mV_DC_A,
+    mb5mV_DC_B,
+    mb10mV_DC_A,
+    mb10mV_DC_B,
     nullptr, nullptr, nullptr, nullptr
 )
 

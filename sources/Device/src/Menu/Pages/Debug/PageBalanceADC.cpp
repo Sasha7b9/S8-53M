@@ -84,9 +84,9 @@ DEF_PAGE_3(pageBalanceADC, PageDebug::PageADC::self, NamePage::DebugADCbalance,
     "БАЛАНС", "BALANCE",
     "",
     "",
-    mcMode,     // ОТЛАДКА - АЦП - БАЛАНС - Режим
-    mgShiftA,   // ОТЛАДКА - АЦП - БАЛАНС - Смещение 1
-    mgShiftB,   // ОТЛАДКА - АЦП - БАЛАНС - Смещение 2
+    mcMode,
+    mgShiftA,
+    mgShiftB,
     nullptr, nullptr, nullptr, nullptr
 )
 

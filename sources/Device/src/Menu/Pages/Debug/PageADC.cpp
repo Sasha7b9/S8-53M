@@ -9,9 +9,9 @@ DEF_PAGE_3(pageADC, PageDebug::self, NamePage::DebugADC,
     "¿÷œ", "ADC",
     "",
     "",
-    *PageDebug::PageADC::PageBalance::self,     // Œ“À¿ƒ ¿ - ¿÷œ - ¡¿À¿Õ—
-    *PageDebug::PageADC::PageStretch::self,     // Œ“À¿ƒ ¿ - ¿÷œ - –¿—“ﬂ∆ ¿
-    *PageDebug::PageADC::PageAltRShift::self,   // Œ“À¿ƒ ¿ - ¿÷œ - ƒŒœ —Ã≈Ÿ
+    *PageDebug::PageADC::PageBalance::self,
+    *PageDebug::PageADC::PageStretch::self,
+    *PageDebug::PageADC::PageAltRShift::self,
     nullptr, nullptr, nullptr, nullptr
 )
 

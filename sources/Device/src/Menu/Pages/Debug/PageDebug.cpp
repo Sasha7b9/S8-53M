@@ -119,13 +119,13 @@ DEF_PAGE_7(pageDebug, PageMain::self, NamePage::Debug,
     "ОТЛАДКА", "DEBUG",
     "",
     "",
-    mcStats,                            // ОТЛАДКА - Статистика
-    *PageDebug::PageConsole::self,      // ОТЛАДКА - КОНСОЛЬ
-    *PageDebug::PageADC::self,          // ОТЛАДКА - АЦП
-    *PageDebug::PageRandomizer::self,   // ОТЛАДКА - РАНД-ТОР
-    mcSizeSettings,                     // ОТЛАДКА - Размер настроек
-    mbSaveFirmware,                     // ОТЛАДКА - Сохр. прошивку
-    bEraseData,                         // ОТЛАДКА - Стереть данные
+    mcStats,
+    *PageDebug::PageConsole::self,
+    *PageDebug::PageADC::self,
+    *PageDebug::PageRandomizer::self,
+    mcSizeSettings,
+    mbSaveFirmware,
+    bEraseData,
     nullptr, nullptr, nullptr, nullptr
 );
 

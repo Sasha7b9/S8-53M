@@ -28,9 +28,9 @@ DEF_PAGE_3(pageConsole, PageDebug::self, NamePage::DebugConsole,
     "КОНСОЛЬ", "CONSOLE",
     "",
     "",
-    mgNumStrings,                           // ОТЛАДКА - КОНСОЛЬ - Число строк
-    mcSizeFont,                             // ОТЛАДКА - КОНСОЛЬ - Размер шрифта
-    *PageDebug::PageConsole::PageRegisters::self,   // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ
+    mgNumStrings,
+    mcSizeFont,
+    *PageDebug::PageConsole::PageRegisters::self,
     nullptr, nullptr, nullptr, nullptr
 );
 

@@ -46,9 +46,9 @@ DEF_PAGE_3(pageRandomizer, PageDebug::self, NamePage::DebugRandomizer,
     "РАНД-ТОР", "RANDOMIZER",
     "",
     "",
-    mgSamplesForGates,   // ОТЛАДКА - РАНД-ТОР - Выб-к/ворота
-    mgAltTShift0,        // ОТЛАДКА - РАНД-ТОР - tShift доп.
-    mgAverage,           // ОТЛАДКА - РАНД-ТОР - Усредн.
+    mgSamplesForGates,
+    mgAltTShift0,
+    mgAverage,
     nullptr, nullptr, nullptr, nullptr
 )
 
