@@ -14,7 +14,7 @@
 #include "Settings/Settings.h"
 
 
-void PressSB_MemInt_Exit()
+static void PressSB_Exit()
 {
     //    EPROM::GetData(PageMemory::PageInternal::currentSignal, &Storage::dsInt, &Storage::dataIntA, &Storage::dataIntB);
 
@@ -34,17 +34,17 @@ void PressSB_MemInt_Exit()
 
 DEF_SMALL_BUTTON(sbExitMemInt, PageMemory::PageInternal::self,    // Кнопка для выхода из режима малых кнопок.
     "Выход", "Exit", "Кнопка для выхода в предыдущее меню", "Button for return to the previous menu",
-    nullptr, PressSB_MemInt_Exit, DrawSB_Exit, nullptr
+    nullptr, PressSB_Exit, DrawSB_Exit, nullptr
 )
 
 
-static void PressSB_MemInt_ShowSignalAlways()
+static void PressSB_ShowSignalAlways()
 {
     PageMemory::PageInternal::showAlways = !PageMemory::PageInternal::showAlways;
 }
 
 
-static void DrawSB_MemInt_ShowSignalAllways_No(int x, int y)
+static void DrawSB_ShowSignalAllways_No(int x, int y)
 {
     Font::Set(TypeFont::UGO2);
     Char('\x68').Draw4SymbolsInRect(x + 2, y + 1);
@@ -52,7 +52,7 @@ static void DrawSB_MemInt_ShowSignalAllways_No(int x, int y)
 }
 
 
-static void DrawSB_MemInt_ShowSignalAllways_Yes(int x, int y)
+static void DrawSB_ShowSignalAllways_Yes(int x, int y)
 {
     Font::Set(TypeFont::UGO2);
     Char('\x66').Draw4SymbolsInRect(x + 2, y + 1);
@@ -60,24 +60,24 @@ static void DrawSB_MemInt_ShowSignalAllways_Yes(int x, int y)
 }
 
 
-static void DrawSB_MemInt_ShowSignalAlways(int x, int y)
+static void DrawSB_ShowSignalAlways(int x, int y)
 {
     if (!PageMemory::PageInternal::showAlways)
     {
-        DrawSB_MemInt_ShowSignalAllways_No(x, y);
+        DrawSB_ShowSignalAllways_No(x, y);
     }
     else
     {
-        DrawSB_MemInt_ShowSignalAllways_Yes(x, y);
+        DrawSB_ShowSignalAllways_Yes(x, y);
     }
 }
 
 
-static const arrayHints hintsMemIntShowSignalAlways =
+static const arrayHints hintsShowSignalAlways =
 {
-    {DrawSB_MemInt_ShowSignalAllways_Yes, "показывать выбранный сигнал из внутренней памяти поверх текущего",
+    {DrawSB_ShowSignalAllways_Yes, "показывать выбранный сигнал из внутренней памяти поверх текущего",
                                           "to show the chosen signal from internal memory over the current"},
-    {DrawSB_MemInt_ShowSignalAllways_No,  "сигнал из внутренней памяти виден только в режиме работы с внутренним запоминающим устройством",
+    {DrawSB_ShowSignalAllways_No,  "сигнал из внутренней памяти виден только в режиме работы с внутренним запоминающим устройством",
                                           "the signal from internal memory is visible only in an operating mode with an internal memory"}
 };
 
@@ -86,17 +86,17 @@ DEF_SMALL_BUTTON(sbMemIntShowSignalAlways, PageMemory::PageInternal::self,
     "Показывать всегда", "To show always",
     "Позволяет всегда показывать выбранный сохранённый сигнал поверх текущего",
     "Allows to show always the chosen kept signal over the current",
-    nullptr, PressSB_MemInt_ShowSignalAlways, DrawSB_MemInt_ShowSignalAlways, &hintsMemIntShowSignalAlways
+    nullptr, PressSB_ShowSignalAlways, DrawSB_ShowSignalAlways, &hintsShowSignalAlways
 )
 
 
-static void PressSB_MemInt_ModeShow()
+static void PressSB_ModeShow()
 {
     Math::CircleIncrease<int8>((int8 *)&set.memory.mode_show_int_mem, 0, 2);
 }
 
 
-static void DrawSB_MemInt_ModeShow_Direct(int x, int y)
+static void DrawSB_ModeShow_Direct(int x, int y)
 {
     Font::Set(TypeFont::UGO2);
     Char(Symbol::UGO2::MEM_INT_SHOW_DIRECT).Draw4SymbolsInRect(x + 2, y + 1);
@@ -104,7 +104,7 @@ static void DrawSB_MemInt_ModeShow_Direct(int x, int y)
 }
 
 
-static void DrawSB_MemInt_ModeShow_Saved(int x, int y)
+static void DrawSB_ModeShow_Saved(int x, int y)
 {
     Font::Set(TypeFont::UGO2);
     Char(Symbol::UGO2::MEM_INT_SHOW_SAVED).Draw4SymbolsInRect(x + 2, y + 1);
@@ -112,7 +112,7 @@ static void DrawSB_MemInt_ModeShow_Saved(int x, int y)
 }
 
 
-static void DrawSB_MemInt_ModeShow_Both(int x, int y)
+static void DrawSB_ModeShow_Both(int x, int y)
 {
     ++y;
 
@@ -129,24 +129,24 @@ static void DrawSB_MemInt_ModeShow_Both(int x, int y)
 }
 
 
-static void DrawSB_MemInt_ModeShow(int x, int y)
+static void DrawSB_ModeShow(int x, int y)
 {
     ModeShowIntMem &mode = set.memory.mode_show_int_mem;
 
     switch (mode.value)
     {
-    case ModeShowIntMem::Direct:    DrawSB_MemInt_ModeShow_Direct(x, y);       break;
-    case ModeShowIntMem::Saved:     DrawSB_MemInt_ModeShow_Saved(x, y);        break;
-    case ModeShowIntMem::Both:      DrawSB_MemInt_ModeShow_Both(x, y);         break;
+    case ModeShowIntMem::Direct:    DrawSB_ModeShow_Direct(x, y);       break;
+    case ModeShowIntMem::Saved:     DrawSB_ModeShow_Saved(x, y);        break;
+    case ModeShowIntMem::Both:      DrawSB_ModeShow_Both(x, y);         break;
     }
 }
 
 
-static const arrayHints hintsMemIntModeShow =
+static const arrayHints hintsModeShow =
 {
-    { DrawSB_MemInt_ModeShow_Direct, "на дисплее текущий сигнал",     "on the display current signal" },
-    { DrawSB_MemInt_ModeShow_Saved,  "на дисплее сохранённый сигнал", "on the display the kept signal" },
-    { DrawSB_MemInt_ModeShow_Both,   "на дисплее оба сигнала",        "on the display the both signals" }
+    { DrawSB_ModeShow_Direct, "на дисплее текущий сигнал",     "on the display current signal" },
+    { DrawSB_ModeShow_Saved,  "на дисплее сохранённый сигнал", "on the display the kept signal" },
+    { DrawSB_ModeShow_Both,   "на дисплее оба сигнала",        "on the display the both signals" }
 };
 
 
@@ -154,17 +154,17 @@ DEF_SMALL_BUTTON(sbMemIntModeShow, PageMemory::PageInternal::self,
     "Вид сигнала", "Type of a signal",
     "Показывать записанный или текущий сигнал в режиме ВНУТР ЗУ",
     "Show recorded or current signal in mode Internal Memory",
-    nullptr, PressSB_MemInt_ModeShow, DrawSB_MemInt_ModeShow, &hintsMemIntModeShow
+    nullptr, PressSB_ModeShow, DrawSB_ModeShow, &hintsModeShow
 )
 
 
-static void PressSB_MemInt_Delete()
+static void PressSB_Delete()
 {
     ROM::Data::Erase((uint)PageMemory::PageInternal::currentSignal);
 }
 
 
-static void DrawSB_MemInt_Delete(int x, int y)
+static void DrawSB_Delete(int x, int y)
 {
     Font::Set(TypeFont::UGO2);
     Char(Symbol::UGO2::DEL).Draw4SymbolsInRect(x + 2, y + 1);
@@ -176,11 +176,11 @@ DEF_SMALL_BUTTON(sbMemIntDelete, PageMemory::PageInternal::self,
     "Удалить сигнал", "Delete signal",
     "Удалить сигнал",
     "Delete signal",
-    nullptr, PressSB_MemInt_Delete, DrawSB_MemInt_Delete, nullptr
+    nullptr, PressSB_Delete, DrawSB_Delete, nullptr
 )
 
 
-static void SaveSignalToIntMemory()
+static void SaveSignal()
 {
     if (PageMemory::exitFromIntToLast)          // Если перешли во ВНУТР ЗУ из ПОСЛЕДНИЕ
     {
@@ -203,13 +203,13 @@ static void SaveSignalToIntMemory()
 }
 
 
-void PressSB_MemInt_SaveToIntMemory()
+void PressSB_Save()
 {
-    SaveSignalToIntMemory();
+    SaveSignal();
 }
 
 
-void DrawSB_MemInt_SaveToIntMemory(int x, int y)
+void DrawSB_Save(int x, int y)
 {
     Font::Set(TypeFont::UGO2);
     Char(Symbol::UGO2::SAVE_TO_MEM).Draw4SymbolsInRect(x + 2, y + 1);
@@ -221,18 +221,18 @@ DEF_SMALL_BUTTON(sbMemIntSave, PageMemory::PageInternal::self,
     "Сохранить", "Save",
     "Сохранить сигнал во внутреннем запоминующем устройстве",
     "To keep a signal in an internal memory",
-    nullptr, PressSB_MemInt_SaveToIntMemory, DrawSB_MemInt_SaveToIntMemory, nullptr
+    nullptr, PressSB_Save, DrawSB_Save, nullptr
 )
 
 
-void PressSB_MemInt_SaveToFlashDrive()
+void PressSB_SaveToFlashDrive()
 {
     PageMemory::exitFromModeSetNameTo = RETURN_TO_INT_MEM;
     PageMemory::PageExternal::SaveSignalToFlashDrive();
 }
 
 
-void DrawSB_MemInt_SaveToFlashDrive(int x, int y)
+void DrawSB_SaveToFlashDrive(int x, int y)
 {
     if (FDrive::isConnected)
     {
@@ -247,11 +247,11 @@ DEF_SMALL_BUTTON(sbMemIntSaveToFlash, PageMemory::PageInternal::self,
     "Сохранить", "Save",
     "Сохраняет сигнал на флешку",
     "Save signal to flash drive",
-    nullptr, PressSB_MemInt_SaveToFlashDrive, DrawSB_MemInt_SaveToFlashDrive, nullptr
+    nullptr, PressSB_SaveToFlashDrive, DrawSB_SaveToFlashDrive, nullptr
 )
 
 
-void OnPressMemoryInt()
+void OnPress()
 {
     PageMemory::PageInternal::self->OpenAndSetItCurrent();
     set.memory.mode_work = ModeWork::MemInt;
@@ -279,7 +279,7 @@ static void DrawMemoryWave(int num, bool exist)
 }
 
 
-static void FuncAdditionDrawingSPageMemoryInt()
+static void FuncAdditionDrawing()
 {
     // Теперь нарисуем состояние памяти
 
@@ -294,7 +294,7 @@ static void FuncAdditionDrawingSPageMemoryInt()
 }
 
 
-static void FuncOnRegSetMemInt(int delta)
+static void OnRegSet(int delta)
 {
     Sound::RegulatorSwitchRotate();
 
@@ -323,7 +323,7 @@ DEF_PAGE_6(pageInternal, PageMemory::self, NamePage::SB_MemInt,
     sbMemIntDelete,
     sbMemIntSave,
     sbMemIntSaveToFlash,
-    nullptr, OnPressMemoryInt, FuncAdditionDrawingSPageMemoryInt, FuncOnRegSetMemInt
+    nullptr, OnPress, FuncAdditionDrawing, OnRegSet
 );
 
 
