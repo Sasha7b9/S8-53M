@@ -373,14 +373,7 @@ DEF_PAGE_6(pageMathFunction, PageService::PageMath::self, NamePage::SB_MathFunct
     IsActive_Math_Function, OnPress_Math_Function, nullptr, OnRegSet_Math_Function
 );
 
-DEF_PAGE_2(pageMath, PageService::self, NamePage::Math,
-    "ÌÀÒÅÌÀÒÈÊÀ", "MATH",
-    "Ìàòåìàòè÷åñêèå ôóíêöèè è ÁÏÔ",
-    "Mathematical functions and FFT",
-    *PageService::PageMath::PageFunction::self,     // ÑÅĞÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÔÓÍÊÖÈß
-    *PageService::PageMath::PageFFT::self,          // ÑÅĞÂÈÑ - ÌÀÒÅÌÀÒÈÊÀ - ÑÏÅÊÒĞ
-    nullptr, nullptr, nullptr, nullptr
-)
+
 
 DEF_CHOICE_2(cSound, PageService::self,
     "Çâóê", "Sound",
@@ -660,7 +653,7 @@ DEF_PAGE_6(pageInformation, PageService::self, NamePage::SB_Information,
 
 const Page *PageService::self = &pageService;
 
-const Page *PageService::PageMath::self = &pageMath;
+
 const Page *PageService::PageMath::PageFunction::self = &pageMathFunction;
 const Page *PageService::PageMath::PageFFT::self = &pageFFT;
 const Page *PageService::PageMath::PageFFT::PageCursors::self = &pageCursorsFFT;
