@@ -255,7 +255,7 @@ struct PageMemory
     static bool exitFromIntToLast;          // Если 1, то выходить из страницы внутренней памяти нужно не
                                             // стандартно, а в меню последних
 
-    static void OnChanged_MemoryNumPoints(bool active);
+    static void OnChanged_NumPoints(bool active);
     static void OnMemExtSetMaskNameRegSet(int angle, int maxIndex);
 
     struct PageLatest

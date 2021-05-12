@@ -26,7 +26,7 @@ bool PageMemory::exitFromIntToLast = false;
 static void DrawSetName();  // Эта функция рисует, когда нужно задать имя файла для сохранения
 
 
-void PageMemory::OnChanged_MemoryNumPoints(bool)
+void PageMemory::OnChanged_NumPoints(bool)
 {
     uint points_in_channel = set.memory.enum_points_fpga.PointsInChannel();
 
@@ -86,7 +86,7 @@ static bool FuncActiveMemoryNumPoinst()
 // ПАМЯТЬ - Точки
 int8 temp = 0;
 
-DEF_CHOICE_7(mcMemoryNumPoints, PageMemory::self,
+DEF_CHOICE_7(mcNumPoints, PageMemory::self,
     "Точки", "Points"
     ,
     "Выбор количества отсчётов для сохраняемых сигналов. "
@@ -102,7 +102,7 @@ DEF_CHOICE_7(mcMemoryNumPoints, PageMemory::self,
     "4k",  "4k",
     "8k",  "8k",
     "16k", "16k",
-    set.memory.enum_points_fpga, FuncActiveMemoryNumPoinst, PageMemory::OnChanged_MemoryNumPoints, nullptr
+    set.memory.enum_points_fpga, FuncActiveMemoryNumPoinst, PageMemory::OnChanged_NumPoints, nullptr
 )
 
 
@@ -189,7 +189,7 @@ DEF_PAGE_4(pageMemory, PageMain::self, NamePage::Memory,
     "ПАМЯТЬ", "MEMORY",
     "Работа с внешней и внутренней памятью.",
     "Working with external and internal memory.",
-    mcMemoryNumPoints,
+    mcNumPoints,
     *PageMemory::PageLatest::self,
     *PageMemory::PageInternal::self,
     *PageMemory::PageExternal::self ,
