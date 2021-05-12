@@ -6,7 +6,7 @@
 #include "Settings/SettingsNRST.h"
 
 
-DEF_GOVERNOR(mgConsole_NumStrings, PageDebug::PageConsole::self,
+DEF_GOVERNOR(mgNumStrings, PageDebug::PageConsole::self,
     "Число строк", "Number strings",
     "",
     "",
@@ -14,7 +14,7 @@ DEF_GOVERNOR(mgConsole_NumStrings, PageDebug::PageConsole::self,
 )
 
 
-DEF_CHOICE_2(mcConsole_SizeFont, PageDebug::PageConsole::self,
+DEF_CHOICE_2(mcSizeFont, PageDebug::PageConsole::self,
     "Размер шрифта", "Size font",
     "",
     "",
@@ -28,8 +28,8 @@ DEF_PAGE_3(pageConsole, PageDebug::self, NamePage::DebugConsole,
     "КОНСОЛЬ", "CONSOLE",
     "",
     "",
-    mgConsole_NumStrings,                           // ОТЛАДКА - КОНСОЛЬ - Число строк
-    mcConsole_SizeFont,                             // ОТЛАДКА - КОНСОЛЬ - Размер шрифта
+    mgNumStrings,                           // ОТЛАДКА - КОНСОЛЬ - Число строк
+    mcSizeFont,                             // ОТЛАДКА - КОНСОЛЬ - Размер шрифта
     *PageDebug::PageConsole::PageRegisters::self,   // ОТЛАДКА - КОНСОЛЬ - РЕГИСТРЫ
     nullptr, nullptr, nullptr, nullptr
 );
