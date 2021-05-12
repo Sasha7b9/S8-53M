@@ -2003,6 +2003,11 @@
               <FilePath>.\src\Menu\Pages\Debug\PageADC.cpp</FilePath>
             </File>
             <File>
+              <FileName>PageBalanceADC.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Debug\PageBalanceADC.cpp</FilePath>
+            </File>
+            <File>
               <FileName>PageConsole.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Debug\PageConsole.cpp</FilePath>
@@ -4291,6 +4296,11 @@
               <FileName>PageADC.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Debug\PageADC.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PageBalanceADC.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Debug\PageBalanceADC.cpp</FilePath>
             </File>
             <File>
               <FileName>PageConsole.cpp</FileName>
