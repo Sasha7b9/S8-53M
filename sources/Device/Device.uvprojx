@@ -2047,6 +2047,11 @@
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Display\PageGrid.cpp</FilePath>
             </File>
+            <File>
+              <FileName>PageSettings.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Display\PageSettings.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4451,6 +4456,11 @@
               <FileName>PageGrid.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Display\PageGrid.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PageSettings.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Display\PageSettings.cpp</FilePath>
             </File>
           </Files>
         </Group>
