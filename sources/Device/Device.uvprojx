@@ -1902,11 +1902,6 @@
               <FilePath>.\src\Menu\Pages\PageChannels.cpp</FilePath>
             </File>
             <File>
-              <FileName>PageDisplay.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\PageDisplay.cpp</FilePath>
-            </File>
-            <File>
               <FileName>PageHelp.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\PageHelp.cpp</FilePath>
@@ -2026,6 +2021,16 @@
               <FileName>PageStretchADC.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Debug\PageStretchADC.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Menu/Pages/Display</GroupName>
+          <Files>
+            <File>
+              <FileName>PageDisplay.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Display\PageDisplay.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -4287,11 +4292,6 @@
               <FilePath>.\src\Menu\Pages\PageChannels.cpp</FilePath>
             </File>
             <File>
-              <FileName>PageDisplay.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\PageDisplay.cpp</FilePath>
-            </File>
-            <File>
               <FileName>PageHelp.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\PageHelp.cpp</FilePath>
@@ -4411,6 +4411,16 @@
               <FileName>PageStretchADC.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Debug\PageStretchADC.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Menu/Pages/Display</GroupName>
+          <Files>
+            <File>
+              <FileName>PageDisplay.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Display\PageDisplay.cpp</FilePath>
             </File>
           </Files>
         </Group>
