@@ -65,10 +65,9 @@ static const Settings defaultSettings =
         {
             1.0F,                   // коэффициент калибровки
             RShift::ZERO,
-            {{0}, {0}},             // rShiftAdd
-            ModeCouple::AC,          // ModCouple
-            Divider::_1,              // Divider
-            Range::_500mV,            // range
+            ModeCouple::AC,         // ModCouple
+            Divider::_1,            // Divider
+            Range::_500mV,          // range
             true,                   // enable
             false,                  // inverse
             false,                  // filtr
@@ -77,10 +76,9 @@ static const Settings defaultSettings =
         {
             1.0F,                   // коэффициент калибровки
             RShift::ZERO,
-            {{0}, {0}},             // rShiftAdd
-            ModeCouple::AC,          // ModCouple
-            Divider::_1,           // Divider
-            Range::_500mV,            // range
+            ModeCouple::AC,         // ModCouple
+            Divider::_1,            // Divider
+            Range::_500mV,          // range
             true,                   // enable
             false,                  // inverse
             false,                  // filtr

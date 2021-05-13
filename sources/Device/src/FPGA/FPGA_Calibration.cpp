@@ -142,8 +142,8 @@ void FPGA::Calibrator::ProcedureCalibration()
                     if (!(mode == 0 && (range == Range::_2mV || range == Range::_5mV || range == Range::_10mV)))
                     {
                         ModeCouple::Set(ChA, (ModeCouple::E)mode);
-                        set.chan[ChA].rshift_add[range][mode] = 0;
-                        set.chan[ChA].rshift_add[range][mode] = CalculateAdditionRShift(ChA, (Range::E)range);
+                        setNRST.channel[ChA].rshift_add[range][mode] = 0;
+                        setNRST.channel[ChA].rshift_add[range][mode] = CalculateAdditionRShift(ChA, (Range::E)range);
                     }
                 }
             }
@@ -180,8 +180,8 @@ void FPGA::Calibrator::ProcedureCalibration()
                     if (!(mode == 0 && (range == Range::_2mV || range == Range::_5mV || range == Range::_10mV)))
                     {
                         ModeCouple::Set(ChB, (ModeCouple::E)mode);
-                        RSHIFT_ADD(ChB, range, mode) = 0;
-                        RSHIFT_ADD(ChB, range, mode) = CalculateAdditionRShift(ChB, (Range::E)range);
+                        setNRST.channel[ChB].rshift_add[range][mode] = 0;
+                        setNRST.channel[ChB].rshift_add[range][mode] = CalculateAdditionRShift(ChB, (Range::E)range);
                     }
                 }
             }
@@ -254,10 +254,10 @@ void FuncAttScreen()
 
                 for (int i = 0; i < Range::Count; i++)
                 {
-                    Text("%d", RSHIFT_ADD(ChA, i, 0)).Draw(95 + i * 16 + dX, 55 + dY, Color::FILL);
-                    Text("%d", RSHIFT_ADD(ChA, i, 1)).Draw(95 + i * 16 + dX, 65 + dY, Color::FILL);
-                    Text("%d", RSHIFT_ADD(ChB, i, 0)).Draw(95 + i * 16 + dX, 80 + dY, Color::FILL);
-                    Text("%d", RSHIFT_ADD(ChB, i, 1)).Draw(95 + i * 16 + dX, 90 + dY, Color::FILL);
+                    Text("%d", setNRST.channel[ChA].rshift_add[i][0]).Draw(95 + i * 16 + dX, 55 + dY, Color::FILL);
+                    Text("%d", setNRST.channel[ChA].rshift_add[i][1]).Draw(95 + i * 16 + dX, 65 + dY, Color::FILL);
+                    Text("%d", setNRST.channel[ChB].rshift_add[i][0]).Draw(95 + i * 16 + dX, 80 + dY, Color::FILL);
+                    Text("%d", setNRST.channel[ChB].rshift_add[i][1]).Draw(95 + i * 16 + dX, 90 + dY, Color::FILL);
                 }
                 
                 Text("Коэффициент калибровки 1к : %f, %d", set.chan[ChA].stretch_ADC,

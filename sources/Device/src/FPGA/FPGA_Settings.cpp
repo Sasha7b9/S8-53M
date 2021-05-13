@@ -234,7 +234,7 @@ void RShift::Load(const Channel &ch)
     Range::E range = set.chan[ch].range;
     ModeCouple::E mode = set.chan[ch].mode_couple;
     static const int index[3] = {0, 1, 1};
-    int16 rShiftAdd = RSHIFT_ADD(ch, range, index[mode]);
+    int16 rShiftAdd = setNRST.channel[ch].rshift_add[range][index[mode]];
 
     uint16 rShift = (uint16)(set.chan[ch].rshift + (ch.IsInversed() ? -1 : 1) * rShiftAdd);
 

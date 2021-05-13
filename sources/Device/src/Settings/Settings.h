@@ -10,7 +10,6 @@ struct SettingsChannel
 {
     float      stretch_ADC;                 // Поправочный коэффициент.
     int16      rshift;
-    int16      rshift_add[Range::Count][2]; // Добавочное смещение для открытого (0) и закрытого (1) входов.
     ModeCouple mode_couple;                 // Режим по входу.
     Divider    divider;                     // Множитель.
     Range      range;                       // Масштаб по напряжению.
@@ -324,8 +323,6 @@ struct Settings
 
 extern Settings set;
 
-
-#define RSHIFT_ADD(ch, range, mode) set.chan[ch].rshift_add[range][mode]
 
 #define MAC_ADDR0       (set.LAN.mac0)
 #define MAC_ADDR1       (set.LAN.mac1)
