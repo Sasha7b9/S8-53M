@@ -305,6 +305,7 @@ struct Settings
     SettingsLAN      LAN;                  // настройки для соединения по локальной сети.
     SettingsCommon   common;               // системные настройки.
     SettingsMenu     menu;                 // состояние меню.
+    uint             unused_crc32;
 
     void Load();  // \brief Загрузить настройки. Если _default == true, загружаются настройки по
                                       // умолчанию, иначе пытается 

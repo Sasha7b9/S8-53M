@@ -59,6 +59,7 @@ struct SettingsNRST
     uint               size;                // Размер структуры.За одно при загрузке из памяти можно определить, что
                                             // структура пуста - здесь будет значение 0xFFFFFFFF
     uint               crc32;               // Контрольная сумма для проверки корректности сохранённых данных
+    uint               number;
     bool               show_stats;          // Показывать статистику на экране (fps, например).
     SettingsRangomizer rand;
     SettingsADC        adc;

@@ -7,8 +7,9 @@
 
 static const SettingsNRST defaultNRST =
 {
-    0,
-    0,
+    0,                              // size
+    0,                              // crc32
+    0,                              // number
     false,                          // show_stats
     {
         6,                          // num_ave
