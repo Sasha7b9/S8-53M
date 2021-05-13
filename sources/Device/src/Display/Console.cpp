@@ -122,7 +122,7 @@ void Console::DeleteFirstString()
 
 void Console::AddString(pchar string)
 {
-    if (setNRST.console_in_pause)
+    if (setNRST.console.in_pause)
     {
         return;
     }
@@ -179,7 +179,7 @@ void Console::SetPauseForConsole(bool pause)
 
 void Console::OneStringUp()
 {
-    if (!setNRST.console_in_pause)
+    if (!setNRST.console.in_pause)
     {
     }
     else if (lastStringForPause > setNRST.console.num_srings - 1)
@@ -191,7 +191,7 @@ void Console::OneStringUp()
 
 void Console::OneStringDown()
 {
-    if (!setNRST.console_in_pause)
+    if (!setNRST.console.in_pause)
     {
     }
     else if (lastStringForPause < FirstEmptyString() - 1)

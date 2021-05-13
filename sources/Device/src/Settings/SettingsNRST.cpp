@@ -5,16 +5,15 @@
 
 static const SettingsNRST defaultNRST =
 {
-    0,                          // consoleInPause
-    false,                      // showStats
-    false,                      // view altera writting data
-    false,                      // view all altera writting data
-    0,                          // alt shift
+    false,                          // showStats
+    false,                          // view altera writting data
+    false,                          // view all altera writting data
+    0,                              // alt shift
     {
-        6,                      // num_ave
-        1,                      // num_smooth
-        1000,                   // num_measures_for_gates
-        0                       // shift_T0
+        6,                          // num_ave
+        1,                          // num_smooth
+        1000,                       // num_measures_for_gates
+        0                           // shift_T0
     },
     {
         BalanceADCtype::Settings,   // type_balance
@@ -25,6 +24,7 @@ static const SettingsNRST defaultNRST =
     {
         10,                         // num_srings
         0,                          // size_font
+        0                           // in_pause
     },
     {
         false,                  // отображать пред/после запуск
