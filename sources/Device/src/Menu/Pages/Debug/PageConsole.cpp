@@ -8,7 +8,7 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_GOVERNOR(mgNumStrings, PageDebug::PageConsole::self,
+DEF_GOVERNOR(gNumStrings, PageDebug::PageConsole::self,
     "Число строк", "Number strings",
     "",
     "",
@@ -17,7 +17,7 @@ DEF_GOVERNOR(mgNumStrings, PageDebug::PageConsole::self,
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_CHOICE_2(mcSizeFont, PageDebug::PageConsole::self,
+DEF_CHOICE_2(cSizeFont, PageDebug::PageConsole::self,
     "Размер шрифта", "Size font",
     "",
     "",
@@ -32,8 +32,8 @@ DEF_PAGE_3(pageConsole, PageDebug::self, NamePage::DebugConsole,
     "КОНСОЛЬ", "CONSOLE",
     "",
     "",
-    mgNumStrings,
-    mcSizeFont,
+    gNumStrings,
+    cSizeFont,
     *PageDebug::PageConsole::PageRegisters::self,
     nullptr, nullptr, nullptr, nullptr
 );

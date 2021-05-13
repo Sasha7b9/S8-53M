@@ -17,7 +17,7 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_CHOICE_2(mcStats, PageDebug::self,
+DEF_CHOICE_2(cStats, PageDebug::self,
     "Статистика", "Statistics"
     ,
     "Показывать/не показывать время/кадр, кадров в секунду, количество сигналов с последними настройками в "
@@ -41,7 +41,7 @@ static void OnDraw_SizeSettings(int x, int y)
 }
 
 
-DEF_CHOICE_2(mcSizeSettings, PageDebug::self,
+DEF_CHOICE_2(cSizeSettings, PageDebug::self,
     "Размер настроек", "Size settings",
     "Вывод размера структуры Settings",
     "Show size of struct Settings",
@@ -81,7 +81,7 @@ static void OnPress_SaveFirmware()
 }
 
 
-DEF_BUTTON(mbSaveFirmware, PageDebug::self,
+DEF_BUTTON(bSaveFirmware, PageDebug::self,
     "Сохр. прошивку", "Save firmware",
     "Сохранение прошивки - секторов 5, 6, 7 общим объёмом 3 х 128 кБ, где хранится программа",
     "Saving firmware - sectors 5, 6, 7 with a total size of 3 x 128 kB, where the program is stored",
@@ -112,9 +112,9 @@ DEF_PAGE_7(pageDebug, PageMain::self, NamePage::Debug,
     *PageDebug::PageADC::self,
     *PageDebug::PageRandomizer::self,
     *PageDebug::PageConsole::self,
-    mcStats,
-    mcSizeSettings,
-    mbSaveFirmware,
+    cStats,
+    cSizeSettings,
+    bSaveFirmware,
     bEraseData,
     nullptr, nullptr, nullptr, nullptr
 );

@@ -24,28 +24,6 @@ static void OnChanged_B()
 
 //----------------------------------------------------------------------------------------------------------------------
 
-static void OnPress_ResetBalance()
-{
-    for (int ch = 0; ch < 2; ch++)
-    {
-        for (int range = 0; range < Range::Count; range++)
-        {
-            for (int mode = 0; mode < 2; mode++)
-            {
-
-            }
-        }
-    }
-}
-
-DEF_BUTTON(mbResetBalance, PageDebug::PageADC::PageAltRShift::self,
-    "—брос баланс", "Reset balance",
-    "", "",
-    nullptr, OnPress_ResetBalance
-)
-
-//----------------------------------------------------------------------------------------------------------------------
-
 static void OnPress_Reset()
 {
     for (int ch = 0; ch < 2; ch++)
@@ -65,7 +43,7 @@ static void OnPress_Reset()
 }
 
 
-DEF_BUTTON(mbReset, PageDebug::PageADC::PageAltRShift::self,
+DEF_BUTTON(bReset, PageDebug::PageADC::PageAltRShift::self,
     "—брос", "Reset",
     "", "",
     nullptr, OnPress_Reset
@@ -73,7 +51,7 @@ DEF_BUTTON(mbReset, PageDebug::PageADC::PageAltRShift::self,
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_GOVERNOR(mb2mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
+DEF_GOVERNOR(b2mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
     "—м 1к 2м¬ пост", "Shift 1ch 2mV DC",
     "",
     "",
@@ -82,7 +60,7 @@ DEF_GOVERNOR(mb2mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_GOVERNOR(mb2mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
+DEF_GOVERNOR(b2mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
     "—м 2к 2м¬ пост", "Shift 2ch 2mV DC",
     "",
     "",
@@ -91,7 +69,7 @@ DEF_GOVERNOR(mb2mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_GOVERNOR(mb5mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
+DEF_GOVERNOR(b5mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
     "—м 1к 5м¬ пост", "Shift 1ch 5mV DC",
     "",
     "",
@@ -100,7 +78,7 @@ DEF_GOVERNOR(mb5mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_GOVERNOR(mb5mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
+DEF_GOVERNOR(b5mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
     "—м 2к 5м¬ пост", "Shift 2ch 5mV DC",
     "",
     "",
@@ -109,7 +87,7 @@ DEF_GOVERNOR(mb5mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_GOVERNOR(mb10mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
+DEF_GOVERNOR(b10mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
     "—м 1к 10м¬ пост", "Shift 1ch 10mV DC",
     "",
     "",
@@ -118,7 +96,7 @@ DEF_GOVERNOR(mb10mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_GOVERNOR(mb10mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
+DEF_GOVERNOR(b10mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
     "—м 2к 10м¬ пост", "Shift 2ch 10mV DC",
     "",
     "",
@@ -131,14 +109,13 @@ DEF_PAGE_7(pageAltShift, PageDebug::PageADC::self, NamePage::DebugADCrShift,
     "ƒќѕ —ћ≈ў", "ADD RSHFIT",
     "",
     "",
-//    mbResetBalance,
-    mbReset,
-    mb2mV_DC_A,
-    mb2mV_DC_B,
-    mb5mV_DC_A,
-    mb5mV_DC_B,
-    mb10mV_DC_A,
-    mb10mV_DC_B,
+    bReset,
+    b2mV_DC_A,
+    b2mV_DC_B,
+    b5mV_DC_A,
+    b5mV_DC_B,
+    b10mV_DC_A,
+    b10mV_DC_B,
     nullptr, nullptr, nullptr, nullptr
 )
 

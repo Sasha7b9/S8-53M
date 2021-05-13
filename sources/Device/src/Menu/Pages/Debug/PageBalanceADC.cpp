@@ -44,7 +44,7 @@ static void OnChanged_Mode(bool)
 }
 
 
-DEF_CHOICE_3(mcMode, PageDebug::PageADC::PageBalance::self,
+DEF_CHOICE_3(cMode, PageDebug::PageADC::PageBalance::self,
     "Режим", "Mode",
     "",
     "",
@@ -65,7 +65,7 @@ static void OnChanged_ShiftA()
 }
 
 
-DEF_GOVERNOR(mgShiftA, PageDebug::PageADC::PageBalance::self,
+DEF_GOVERNOR(gShiftA, PageDebug::PageADC::PageBalance::self,
     "Смещение 1", "Offset 1",
     "",
     "",
@@ -83,7 +83,7 @@ static void OnChanged_ShiftB()
 }
 
 
-DEF_GOVERNOR(mgShiftB, PageDebug::PageADC::PageBalance::self,
+DEF_GOVERNOR(gShiftB, PageDebug::PageADC::PageBalance::self,
     "Смещение 2", "Offset 2",
     "",
     "",
@@ -96,9 +96,9 @@ DEF_PAGE_3(pageBalanceADC, PageDebug::PageADC::self, NamePage::DebugADCbalance,
     "БАЛАНС", "BALANCE",
     "",
     "",
-    mcMode,
-    mgShiftA,
-    mgShiftB,
+    cMode,
+    gShiftA,
+    gShiftB,
     nullptr, nullptr, nullptr, nullptr
 )
 
