@@ -2,8 +2,11 @@
 #include "defines.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Hardware/Memory/ROM_.h"
+#include "Settings/Settings.h"
 #include "Settings/SettingsNRST.h"
 
+
+//template void ROM::Settings<::Settings>::Save(::Settings *set);
 
 template void ROM::Settings<SettingsNRST>::Save(SettingsNRST *nrst);
 template SettingsNRST *ROM::Settings<SettingsNRST>::GetSaved();
@@ -30,7 +33,7 @@ struct Packet
 };
 
 
-struct SectorNRST
+struct StructSector
 {
     // ¬озвращает указатель на сохранЄнную структуру, если такова€ имеетс€ и nullptr в противном случае
     SettingsNRST *GetSaved() const;
@@ -48,14 +51,14 @@ struct SectorNRST
 };
 
 
-static const SectorNRST sector1 = { HAL_ROM::sectors[Sector::_03_NRST_1] };
-static const SectorNRST sector2 = { HAL_ROM::sectors[Sector::_04_NRST_2] };
+static const StructSector sector1 = { HAL_ROM::sectors[Sector::_03_NRST_1] };
+static const StructSector sector2 = { HAL_ROM::sectors[Sector::_04_NRST_2] };
 
 
 template<class T>
 T *ROM::Settings<T>::GetSaved()
 {
-    SettingsNRST *settings = sector2.GetSaved();
+    T *settings = sector2.GetSaved();
 
     if (settings)
     {
@@ -81,7 +84,7 @@ void ROM::Settings<T>::Save(T *nrst)
 }
 
 
-bool SectorNRST::SaveSettings(SettingsNRST *nrst) const
+bool StructSector::SaveSettings(SettingsNRST *nrst) const
 {
     Packet *last = LastPacket();
 
@@ -96,7 +99,7 @@ bool SectorNRST::SaveSettings(SettingsNRST *nrst) const
 }
 
 
-Packet *SectorNRST::LastPacket() const
+Packet *StructSector::LastPacket() const
 {
     Packet *packet = CreatePacket();
 
@@ -121,13 +124,13 @@ Packet *SectorNRST::LastPacket() const
 }
 
 
-Packet *SectorNRST::CreatePacket() const
+Packet *StructSector::CreatePacket() const
 {
     return (Packet *)sector.address;
 }
 
 
-SettingsNRST *SectorNRST::GetSaved() const
+SettingsNRST *StructSector::GetSaved() const
 {
     Packet *last = LastPacket();
 
