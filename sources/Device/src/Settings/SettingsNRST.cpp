@@ -5,10 +5,7 @@
 
 static const SettingsNRST defaultNRST =
 {
-    false,                          // showStats
-    false,                          // view altera writting data
-    false,                          // view all altera writting data
-    0,                              // alt shift
+    false,                          // show_stats
     {
         6,                          // num_ave
         1,                          // num_smooth

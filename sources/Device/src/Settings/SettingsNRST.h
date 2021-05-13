@@ -3,23 +3,6 @@
 #include "common/Settings/SettingsTypes_.h"
 
 
-struct OutputRegisters
-{
-    bool launch;
-    bool flag;           // Выводить ли флаг готовности.
-    bool rShiftA;
-    bool rShiftB;
-    bool trigLev;
-    bool rangeA;
-    bool rangeB;
-    bool chanParamA;
-    bool chanParamB;
-    bool trigParam;
-    bool tShift;
-    bool tBase;
-};
-
-
 struct SettingsNRST
 {
     struct SettingsRangomizer
@@ -46,17 +29,27 @@ struct SettingsNRST
                                 // сообщения она не записывает и не сохраняет.
     };
 
-    bool              show_stats;                 // Показывать статистику на экране (fps, например).
-    bool              viewAlteraWrittingData;     // Показывать ли данные, идущие в альтеру.
-    bool              viewAllAlteraWrittingData;  // \brief Показывать ли все данные, идущие в альтеру (если false, то
-                                                  // постоянно идущие команды вроде 
-                                                  // START, STOP не показываются).
-    int16             altShift;                   // Добавочное смещение для устранения эффекта горизонтальной помехи
-                                                  // синхронизации.
+    struct SettingsRegisters
+    {
+        bool launch;
+        bool flag;           // Выводить ли флаг готовности.
+        bool rShiftA;
+        bool rShiftB;
+        bool trigLev;
+        bool rangeA;
+        bool rangeB;
+        bool chanParamA;
+        bool chanParamB;
+        bool trigParam;
+        bool tShift;
+        bool tBase;
+    };
+
+    bool               show_stats;                 // Показывать статистику на экране (fps, например).
     SettingsRangomizer rand;
     SettingsADC        adc;
     SettingsConsole    console;
-    OutputRegisters    show_registers;
+    SettingsRegisters  show_registers;
 
     static int  GetSizeFontForConsole();        // Возвращает размер шрифта, которым нужно выводить сообщения в консоли.
 };
