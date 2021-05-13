@@ -102,6 +102,12 @@ Packet *SectorNRST::LastPacket() const
 }
 
 
+Packet *SectorNRST::CreatePacket() const
+{
+    return (Packet *)sector.address;
+}
+
+
 bool Packet::SaveSettings(SettingsNRST *nrst)
 {
     const Sector &sector = Sector::Get(Begin());
@@ -129,4 +135,10 @@ Packet *Packet::Next()
     }
 
     return (Packet *)(Begin() + size);
+}
+
+
+bool Packet::IsEmpty() const
+{
+    return (size == (uint)(-1));
 }
