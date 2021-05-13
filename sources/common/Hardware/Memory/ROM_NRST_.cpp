@@ -48,6 +48,19 @@ static const SectorNRST sector1 = { HAL_ROM::sectors[Sector::_03_NRST_1] };
 static const SectorNRST sector2 = { HAL_ROM::sectors[Sector::_04_NRST_2] };
 
 
+SettingsNRST *ROM::NRST::GetSaved()
+{
+    SettingsNRST *settings = sector2.GetSaved();
+
+    if (settings)
+    {
+        return settings;
+    }
+
+    return sector1.GetSaved();
+}
+
+
 void ROM::NRST::Save(SettingsNRST *nrst)
 {
     if (!sector1.SaveSettings(nrst))
@@ -105,6 +118,14 @@ Packet *SectorNRST::LastPacket() const
 Packet *SectorNRST::CreatePacket() const
 {
     return (Packet *)sector.address;
+}
+
+
+SettingsNRST *SectorNRST::GetSaved() const
+{
+    Packet *last = LastPacket();
+
+    return (last && last->IsEmpty()) ? nullptr : (SettingsNRST *)last;
 }
 
 
