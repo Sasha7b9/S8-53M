@@ -15,8 +15,8 @@ static void Draw_Mode(int, int)
 {
     int8 shift[2][3] =
     {
-        {0, setNRST.channel[ChA].balance_auto, (int8)setNRST.channel[ChA].balance_hand},
-        {0, setNRST.channel[ChB].balance_auto, (int8)setNRST.channel[ChB].balance_hand}
+        {0, setNRST.chan[ChA].balance_auto, (int8)setNRST.chan[ChA].balance_hand},
+        {0, setNRST.chan[ChB].balance_auto, (int8)setNRST.chan[ChB].balance_hand}
     };
 
     shiftADCA = shift[0][BalanceADCtype::Get()];
@@ -52,7 +52,7 @@ static bool IsActive_Shift()
 
 static void OnChanged_ShiftA()
 {
-    setNRST.channel[ChA].balance_hand = shiftADCA;
+    setNRST.chan[ChA].balance_hand = shiftADCA;
     //    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)BALANCE_ADC_A, false);
 }
 
@@ -67,7 +67,7 @@ DEF_GOVERNOR(mgShiftA, PageDebug::PageADC::PageBalance::self,
 
 static void OnChanged_ShiftB()
 {
-    setNRST.channel[ChB].balance_hand = shiftADCB;
+    setNRST.chan[ChB].balance_hand = shiftADCB;
     //    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)BALANCE_ADC_B, false);
 }
 

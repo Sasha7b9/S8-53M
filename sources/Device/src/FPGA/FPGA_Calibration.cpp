@@ -73,8 +73,8 @@ void FPGA::Calibrator::ProcedureCalibration()
     Display::SetDrawMode(DrawMode::Hand, FuncAttScreen);
     Timer::Enable(TypeTimer::TimerDrawHandFunction, 100, OnTimerDraw);
 
-    koeffCalibrationOld[ChA] = setNRST.channel[ChA].stretch_auto;
-    koeffCalibrationOld[ChB] = setNRST.channel[ChB].stretch_auto;
+    koeffCalibrationOld[ChA] = setNRST.chan[ChA].stretch_auto;
+    koeffCalibrationOld[ChB] = setNRST.chan[ChB].stretch_auto;
 
     bar0.fullTime = 0;
     bar0.passedTime = 0;
@@ -90,8 +90,8 @@ void FPGA::Calibrator::ProcedureCalibration()
 
         TBase::Set(TBase::_500us);
         TShift::Set(0);
-        setNRST.channel[ChA].stretch_auto = 1.0F;
-        setNRST.channel[ChB].stretch_auto = 1.0F;
+        setNRST.chan[ChA].stretch_auto = 1.0F;
+        setNRST.chan[ChB].stretch_auto = 1.0F;
         Calibrator::LoadKoeff(ChA);
         Calibrator::LoadKoeff(ChB);
         Range::Set(ChA, Range::_500mV);
@@ -131,7 +131,7 @@ void FPGA::Calibrator::ProcedureCalibration()
             }
             else
             {
-                setNRST.channel[ChA].stretch_auto = koeffCal0;
+                setNRST.chan[ChA].stretch_auto = koeffCal0;
                 Calibrator::LoadKoeff(ChA);
             }
 
@@ -142,8 +142,8 @@ void FPGA::Calibrator::ProcedureCalibration()
                     if (!(mode == 0 && (range == Range::_2mV || range == Range::_5mV || range == Range::_10mV)))
                     {
                         ModeCouple::Set(ChA, (ModeCouple::E)mode);
-                        setNRST.channel[ChA].rshift_add[range][mode] = 0;
-                        setNRST.channel[ChA].rshift_add[range][mode] = CalculateAdditionRShift(ChA, (Range::E)range);
+                        setNRST.chan[ChA].rshift_add[range][mode] = 0;
+                        setNRST.chan[ChA].rshift_add[range][mode] = CalculateAdditionRShift(ChA, (Range::E)range);
                     }
                 }
             }
@@ -169,7 +169,7 @@ void FPGA::Calibrator::ProcedureCalibration()
             }
             else
             {
-                setNRST.channel[ChB].stretch_auto = koeffCal1;
+                setNRST.chan[ChB].stretch_auto = koeffCal1;
                 Calibrator::LoadKoeff(ChB);
             }
 
@@ -180,8 +180,8 @@ void FPGA::Calibrator::ProcedureCalibration()
                     if (!(mode == 0 && (range == Range::_2mV || range == Range::_5mV || range == Range::_10mV)))
                     {
                         ModeCouple::Set(ChB, (ModeCouple::E)mode);
-                        setNRST.channel[ChB].rshift_add[range][mode] = 0;
-                        setNRST.channel[ChB].rshift_add[range][mode] = CalculateAdditionRShift(ChB, (Range::E)range);
+                        setNRST.chan[ChB].rshift_add[range][mode] = 0;
+                        setNRST.chan[ChB].rshift_add[range][mode] = CalculateAdditionRShift(ChB, (Range::E)range);
                     }
                 }
             }
@@ -192,8 +192,8 @@ void FPGA::Calibrator::ProcedureCalibration()
 
     FPGA::state.Restore();
 
-    setNRST.channel[ChA].balance_auto = shiftADC0;
-    setNRST.channel[ChB].balance_auto = shiftADC1;
+    setNRST.chan[ChA].balance_auto = shiftADC0;
+    setNRST.chan[ChB].balance_auto = shiftADC1;
 
     //    HAL_FMC::Write(WR_ADD_RSHIFT_DAC1, (uint8)SET_BALANCE_ADC_A);
 //    HAL_FMC::Write(WR_ADD_RSHIFT_DAC2, (uint8)SET_BALANCE_ADC_B);
@@ -201,11 +201,11 @@ void FPGA::Calibrator::ProcedureCalibration()
     RShift::Set(ChA, set.chan[ChA].rshift);
     RShift::Set(ChB, set.chan[ChB].rshift);
 
-    setNRST.channel[ChA].stretch_auto = koeffCal0.IsValid() ? (float)koeffCal0 : koeffCalibrationOld[0];
+    setNRST.chan[ChA].stretch_auto = koeffCal0.IsValid() ? (float)koeffCal0 : koeffCalibrationOld[0];
 
     Calibrator::LoadKoeff(ChA);
 
-    setNRST.channel[ChB].stretch_auto = koeffCal1.IsValid() ? (float)koeffCal1 : koeffCalibrationOld[1];
+    setNRST.chan[ChB].stretch_auto = koeffCal1.IsValid() ? (float)koeffCal1 : koeffCalibrationOld[1];
 
     Calibrator::LoadKoeff(ChB);
 
@@ -254,17 +254,17 @@ void FuncAttScreen()
 
                 for (int i = 0; i < Range::Count; i++)
                 {
-                    Text("%d", setNRST.channel[ChA].rshift_add[i][0]).Draw(95 + i * 16 + dX, 55 + dY, Color::FILL);
-                    Text("%d", setNRST.channel[ChA].rshift_add[i][1]).Draw(95 + i * 16 + dX, 65 + dY, Color::FILL);
-                    Text("%d", setNRST.channel[ChB].rshift_add[i][0]).Draw(95 + i * 16 + dX, 80 + dY, Color::FILL);
-                    Text("%d", setNRST.channel[ChB].rshift_add[i][1]).Draw(95 + i * 16 + dX, 90 + dY, Color::FILL);
+                    Text("%d", setNRST.chan[ChA].rshift_add[i][0]).Draw(95 + i * 16 + dX, 55 + dY, Color::FILL);
+                    Text("%d", setNRST.chan[ChA].rshift_add[i][1]).Draw(95 + i * 16 + dX, 65 + dY, Color::FILL);
+                    Text("%d", setNRST.chan[ChB].rshift_add[i][0]).Draw(95 + i * 16 + dX, 80 + dY, Color::FILL);
+                    Text("%d", setNRST.chan[ChB].rshift_add[i][1]).Draw(95 + i * 16 + dX, 90 + dY, Color::FILL);
                 }
                 
-                Text("Коэффициент калибровки 1к : %f, %d", setNRST.channel[ChA].stretch_auto,
-                    (int)(setNRST.channel[ChA].stretch_auto * 0x80)).Draw(10 + dX, 110 + dY, Color::FILL);
+                Text("Коэффициент калибровки 1к : %f, %d", setNRST.chan[ChA].stretch_auto,
+                    (int)(setNRST.chan[ChA].stretch_auto * 0x80)).Draw(10 + dX, 110 + dY, Color::FILL);
 
-                Text("Коэфффициент калибровки 2к : %f, %d", setNRST.channel[ChB].stretch_auto,
-                    (int)(setNRST.channel[ChB].stretch_auto * 0x80)).Draw(10 + dX, 130 + dY, Color::FILL);
+                Text("Коэфффициент калибровки 2к : %f, %d", setNRST.chan[ChB].stretch_auto,
+                    (int)(setNRST.chan[ChB].stretch_auto * 0x80)).Draw(10 + dX, 130 + dY, Color::FILL);
 
                 DrawParametersChannel(ChA, 10 + dX, 150 + dY, false);
                 DrawParametersChannel(ChB, 10 + dX, 200 + dY, false);
@@ -352,7 +352,7 @@ void DrawParametersChannel(const Channel &ch, int eX, int eY, bool inProgress)
         Text("Расхождение Channel::A_ЦП = %.2f/%.2f %%", deltaADCPercentsOld[ch], deltaADCPercents[ch]).
             Draw(x, y + 11);
 
-        Text("Записано %d", setNRST.channel[ch].balance_auto).Draw(x, y + 19);
+        Text("Записано %d", setNRST.chan[ch].balance_auto).Draw(x, y + 19);
     }
 }
 
@@ -420,9 +420,9 @@ static float CalculateDeltaADC(const Channel &ch, float *avgADC1, float *avgADC2
 void AlignmentADC()
 {
     shiftADC0 = (int8)((deltaADCold[0] > 0.0F) ? (deltaADCold[0] + 0.5F) : (deltaADCold[0] - 0.5F));
-    setNRST.channel[ChA].balance_auto = shiftADC0;
+    setNRST.chan[ChA].balance_auto = shiftADC0;
     shiftADC1 = (int8)((deltaADCold[1] > 0.0F) ? (deltaADCold[1] + 0.5F) : (deltaADCold[1] - 0.5F));
-    setNRST.channel[ChB].balance_auto = shiftADC1;
+    setNRST.chan[ChB].balance_auto = shiftADC1;
 //    HAL_FMC::Write(WR_ADD_RSHIFT_DAC1, (uint8)SET_BALANCE_ADC_A);
 //    HAL_FMC::Write(WR_ADD_RSHIFT_DAC2, (uint8)SET_BALANCE_ADC_B);
 }

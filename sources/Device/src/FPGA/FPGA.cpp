@@ -232,7 +232,7 @@ void FPGA::State::Restore()
         {
             for (int range = 0; range < Range::Count; range++)
             {
-                rShiftAdd[ch][range][mode] = setNRST.channel[ch].rshift_add[range][mode];
+                rShiftAdd[ch][range][mode] = setNRST.chan[ch].rshift_add[range][mode];
             }
         }
     }
@@ -245,7 +245,7 @@ void FPGA::State::Restore()
         {
             for (int range = 0; range < Range::Count; range++)
             {
-                setNRST.channel[ch].rshift_add[range][mode] = rShiftAdd[ch][range][mode];
+                setNRST.chan[ch].rshift_add[range][mode] = rShiftAdd[ch][range][mode];
             }
         }
     }

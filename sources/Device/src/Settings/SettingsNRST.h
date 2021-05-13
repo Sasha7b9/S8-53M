@@ -56,7 +56,7 @@ struct SettingsNRST
     bool               show_stats;                 // Показывать статистику на экране (fps, например).
     SettingsRangomizer rand;
     SettingsADC        adc;
-    SettingsChannel    channel[Channel::Count];
+    SettingsChannel    chan[Channel::Count];
     SettingsConsole    console;
     SettingsRegisters  show_registers;
 
