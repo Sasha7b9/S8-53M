@@ -6,6 +6,42 @@
 #include "Settings/Settings.h"
 
 
+//----------------------------------------------------------------------------------------------------------------------
+
+static void OnChanged_A()
+{
+    RShift::Set(ChA, set.chan[ChA].rshift);
+}
+
+static void OnChanged_B()
+{
+    RShift::Set(ChB, set.chan[ChB].rshift);
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void OnPress_ResetBalance()
+{
+    for (int ch = 0; ch < 2; ch++)
+    {
+        for (int range = 0; range < Range::Count; range++)
+        {
+            for (int mode = 0; mode < 2; mode++)
+            {
+
+            }
+        }
+    }
+}
+
+DEF_BUTTON(mbResetBalance, PageDebug::PageADC::PageAltRShift::self,
+    "—брос баланс", "Reset balance",
+    "", "",
+    nullptr, OnPress_ResetBalance
+)
+
+//----------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_Reset()
 {
     for (int ch = 0; ch < 2; ch++)
@@ -29,12 +65,7 @@ DEF_BUTTON(mbReset, PageDebug::PageADC::PageAltRShift::self,
     nullptr, OnPress_Reset
 )
 
-
-static void OnChanged_A()
-{
-    RShift::Set(ChA, set.chan[ChA].rshift);
-}
-
+//----------------------------------------------------------------------------------------------------------------------
 
 DEF_GOVERNOR(mb2mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
     "—м 1к 2м¬ пост", "Shift 1ch 2mV DC",
@@ -43,12 +74,7 @@ DEF_GOVERNOR(mb2mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
     set.chan[ChA].rshift_add[Range::_2mV][ModeCouple::DC], -100, 100, nullptr, OnChanged_A, nullptr
 )
 
-
-static void OnChanged_B()
-{
-    RShift::Set(ChB, set.chan[ChB].rshift);
-}
-
+//----------------------------------------------------------------------------------------------------------------------
 
 DEF_GOVERNOR(mb2mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
     "—м 2к 2м¬ пост", "Shift 2ch 2mV DC",
@@ -57,6 +83,7 @@ DEF_GOVERNOR(mb2mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
     RSHIFT_ADD(ChB, Range::_2mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_B, nullptr
 )
 
+//----------------------------------------------------------------------------------------------------------------------
 
 DEF_GOVERNOR(mb5mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
     "—м 1к 5м¬ пост", "Shift 1ch 5mV DC",
@@ -65,6 +92,7 @@ DEF_GOVERNOR(mb5mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
     RSHIFT_ADD(ChA, Range::_5mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_A, nullptr
 )
 
+//----------------------------------------------------------------------------------------------------------------------
 
 DEF_GOVERNOR(mb5mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
     "—м 2к 5м¬ пост", "Shift 2ch 5mV DC",
@@ -73,6 +101,7 @@ DEF_GOVERNOR(mb5mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
     RSHIFT_ADD(ChB, Range::_5mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_B, nullptr
 )
 
+//----------------------------------------------------------------------------------------------------------------------
 
 DEF_GOVERNOR(mb10mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
     "—м 1к 10м¬ пост", "Shift 1ch 10mV DC",
@@ -81,6 +110,7 @@ DEF_GOVERNOR(mb10mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
     RSHIFT_ADD(ChA, Range::_10mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_A, nullptr
 )
 
+//----------------------------------------------------------------------------------------------------------------------
 
 DEF_GOVERNOR(mb10mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
     "—м 2к 10м¬ пост", "Shift 2ch 10mV DC",
@@ -89,11 +119,13 @@ DEF_GOVERNOR(mb10mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
     RSHIFT_ADD(ChB, Range::_10mV, ModeCouple::DC), -100, 100, nullptr, OnChanged_B, nullptr
 )
 
+//----------------------------------------------------------------------------------------------------------------------
 
-DEF_PAGE_7(pageAltShiftADC, PageDebug::PageADC::self, NamePage::DebugADCrShift,
+DEF_PAGE_7(pageAltShift, PageDebug::PageADC::self, NamePage::DebugADCrShift,
     "ƒќѕ —ћ≈ў", "ADD RSHFIT",
     "",
     "",
+//    mbResetBalance,
     mbReset,
     mb2mV_DC_A,
     mb2mV_DC_B,
@@ -105,4 +137,4 @@ DEF_PAGE_7(pageAltShiftADC, PageDebug::PageADC::self, NamePage::DebugADCrShift,
 )
 
 
-const Page *PageDebug::PageADC::PageAltRShift::self = &pageAltShiftADC;
+const Page *PageDebug::PageADC::PageAltRShift::self = &pageAltShift;

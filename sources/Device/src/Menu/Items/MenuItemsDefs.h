@@ -129,6 +129,17 @@ static int8 subPage##name = 0; static int8 actItem##name = -1; static bool actIt
 static const Page name(&di##name, &subPage##name, &actItem##name, &actItemIsOpened##name);
 
 
+#define DEF_PAGE_8(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN, item1, item2, item3, item4, item5, item6, \
+    item7, item8, funcActive, funcPress, funcDraw, funcRegSet)                                                         \
+static pchar th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                                         \
+static const Item *i##name[] = {(Item*)&item1, (Item*)&item2, (Item*)&item3, (Item*)&item4, (Item*)&item5,             \
+    (Item*)&item6, (Item*)&item7, (Item*)&item8, nullptr};                                                             \
+static const DataPage dp##name = {namePage, i##name, funcPress, funcDraw, funcRegSet};                                 \
+static const DataItem di##name = { TypeItem::Page, keeper, funcActive, th##name, &dp##name};                           \
+static int8 subPage##name = 0; static int8 actItem##name = -1; static bool actItemIsOpened##name = false;              \
+static const Page name(&di##name, &subPage##name, &actItem##name, &actItemIsOpened##name);
+
+
 #define DEF_PAGE_9(name, keeper, namePage, titleRU, titleEN, hintRU, hintEN, item1, item2, item3, item4, item5, item6, \
     item7, item8, item9, funcActive, funcPress, funcDraw, funcRegSet)                                                  \
 static pchar th##name[4] = {titleRU, titleEN, hintRU, hintEN};                                                         \
