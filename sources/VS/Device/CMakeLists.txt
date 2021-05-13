@@ -114,6 +114,7 @@ file(GLOB HARDWARE_HAL           ../../common/Hardware/HAL/HAL_.*
                                           src/Hardware/HAL/HAL_FMC_win.cpp)
 file(GLOB HARDWARE_MEMORY        ../../common/Hardware/Memory/ROM_.*
                                  ../../common/Hardware/Memory/ROM_Data_.cpp
+                                 ../../common/Hardware/Memory/ROM_NRST_.cpp
                                  ../../common/Hardware/Memory/Sector_.*
                              ../../Device/src/Hardware/Memory/Sector.cpp)
 file(GLOB HARDWARE_USBD      ../../Device/src/Hardware/USBD/usbd_desc.cpp
