@@ -20,7 +20,7 @@ DEF_CHOICE_2(mcSizeFont, PageDebug::PageConsole::self,
     "",
     "5", "5",
     "8", "8",
-    setNRST.size_font, nullptr, nullptr, nullptr
+    setNRST.console.size_font, nullptr, nullptr, nullptr
 )
 
 

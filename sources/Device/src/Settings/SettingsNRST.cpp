@@ -5,7 +5,6 @@
 
 static const SettingsNRST defaultNRST =
 {
-    0,                          // размер шрифта - 5
     0,                          // consoleInPause
     false,                      // showStats
     false,                      // view altera writting data
@@ -25,6 +24,7 @@ static const SettingsNRST defaultNRST =
     },
     {
         10,                         // num_srings
+        0,                          // size_font
     },
     {
         false,                  // отображать пред/после запуск
@@ -38,5 +38,5 @@ SettingsNRST setNRST = defaultNRST;
 
 int SettingsNRST::GetSizeFontForConsole()
 {
-    return setNRST.size_font ? 8 : 5;
+    return setNRST.console.size_font ? 8 : 5;
 }
