@@ -64,3 +64,9 @@ void SettingsNRST::CommonOnChanged()
 {
     Save();
 }
+
+
+void SettingsNRST::CommonOnChanged(bool)
+{
+    CommonOnChanged();
+}

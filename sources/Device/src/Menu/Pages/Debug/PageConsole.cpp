@@ -6,13 +6,16 @@
 #include "Settings/SettingsNRST.h"
 
 
+//----------------------------------------------------------------------------------------------------------------------
+
 DEF_GOVERNOR(mgNumStrings, PageDebug::PageConsole::self,
     "Число строк", "Number strings",
     "",
     "",
-    setNRST.console.num_srings, 0, 33, nullptr, nullptr, nullptr
+    setNRST.console.num_srings, 0, 33, nullptr, SettingsNRST::CommonOnChanged, nullptr
 )
 
+//----------------------------------------------------------------------------------------------------------------------
 
 DEF_CHOICE_2(mcSizeFont, PageDebug::PageConsole::self,
     "Размер шрифта", "Size font",
@@ -20,9 +23,10 @@ DEF_CHOICE_2(mcSizeFont, PageDebug::PageConsole::self,
     "",
     "5", "5",
     "8", "8",
-    setNRST.console.size_font, nullptr, nullptr, nullptr
+    setNRST.console.size_font, nullptr, SettingsNRST::CommonOnChanged, nullptr
 )
 
+//----------------------------------------------------------------------------------------------------------------------
 
 DEF_PAGE_3(pageConsole, PageDebug::self, NamePage::DebugConsole,
     "КОНСОЛЬ", "CONSOLE",

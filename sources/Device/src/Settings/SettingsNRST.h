@@ -65,6 +65,7 @@ struct SettingsNRST
 
     // Эту функцию нужно вызывать после каждого изменения несбрасываемой настройки
     static void CommonOnChanged();
+    static void CommonOnChanged(bool);
 
     static void Save();
 };
