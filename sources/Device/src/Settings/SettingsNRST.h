@@ -23,8 +23,8 @@ struct SettingsNRST
     struct SettingsChannel
     {
         int16   balance;                     // Значение дополнительного смещения АЦП для ручной балансировки
-        int16   stretch;                     // Значение растяжки канала для ручного режима.
-        int16   rshift_add[Range::Count][2]; // Добавочное смещение для открытого (0) и закрытого (1) входов.
+        int16   stretch_hand;                // Значение растяжки канала для ручного режима
+        int16   rshift_add[Range::Count][2]; // Добавочное смещение для открытого (0) и закрытого (1) входов
     };
 
     struct SettingsConsole
