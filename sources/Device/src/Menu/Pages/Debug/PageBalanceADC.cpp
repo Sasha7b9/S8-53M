@@ -11,6 +11,15 @@ static int16 shiftADCA;
 static int16 shiftADCB;
 
 
+//----------------------------------------------------------------------------------------------------------------------
+
+static bool IsActive_Shift()
+{
+    return (BalanceADCtype::Get() == BalanceADCtype::Hand);
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
 static void Draw_Mode(int, int)
 {
     int8 shift[2][3] =
@@ -30,6 +39,8 @@ static void OnChanged_Mode(bool)
 
     //    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)shiftADCA, false);
     //    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)shiftADCB, false);
+
+    SettingsNRST::CommonOnChanged();
 }
 
 
@@ -43,17 +54,14 @@ DEF_CHOICE_3(mcMode, PageDebug::PageADC::PageBalance::self,
     setNRST.adc.type_balance, nullptr, OnChanged_Mode, Draw_Mode
 )
 
-
-static bool IsActive_Shift()
-{
-    return (BalanceADCtype::Get() == BalanceADCtype::Hand);
-}
-
+//----------------------------------------------------------------------------------------------------------------------
 
 static void OnChanged_ShiftA()
 {
     setNRST.chan[ChA].balance_hand = shiftADCA;
     //    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, (uint8)BALANCE_ADC_A, false);
+
+    SettingsNRST::CommonOnChanged();
 }
 
 
@@ -64,11 +72,14 @@ DEF_GOVERNOR(mgShiftA, PageDebug::PageADC::PageBalance::self,
     shiftADCA, -125, 125, IsActive_Shift, OnChanged_ShiftA, nullptr
 )
 
+//----------------------------------------------------------------------------------------------------------------------
 
 static void OnChanged_ShiftB()
 {
     setNRST.chan[ChB].balance_hand = shiftADCB;
     //    FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, (uint8)BALANCE_ADC_B, false);
+
+    SettingsNRST::CommonOnChanged();
 }
 
 
@@ -79,6 +90,7 @@ DEF_GOVERNOR(mgShiftB, PageDebug::PageADC::PageBalance::self,
     shiftADCB, -125, 125, IsActive_Shift, OnChanged_ShiftB, nullptr
 )
 
+//----------------------------------------------------------------------------------------------------------------------
 
 DEF_PAGE_3(pageBalanceADC, PageDebug::PageADC::self, NamePage::DebugADCbalance,
     "¡¿À¿Õ—", "BALANCE",
