@@ -15,18 +15,7 @@
 #include <cstdlib>
 
 
-
-static int8 size = 0;
-
-
-// В этой структуре будут храниться данные серийного номера при открытой странице ppSerialNumer
-struct StructForSN
-{
-    int number;     // Соответственно, порядковый номер.
-    int year;       // Соответственно, год.
-    int curDigt;    // Соответственно, номером (0) или годом (1) управляет ручка УСТАНОВКА.
-};
-
+//----------------------------------------------------------------------------------------------------------------------
 
 DEF_CHOICE_2(mcStats, PageDebug::self,
     "Статистика", "Statistics"
@@ -42,28 +31,15 @@ DEF_CHOICE_2(mcStats, PageDebug::self,
     setNRST.show_stats, nullptr, SettingsNRST::CommonOnChanged, nullptr
 )
 
+//----------------------------------------------------------------------------------------------------------------------
 
-void PageDebug::LoadStretchADC(const Channel &ch)
-{
-    if (StretchADCtype::IsDisabled())
-    {
-//        FPGA::WriteToHardware(ch == ChA ? WR_CAL_A : WR_CAL_B, 0x80, true);
-    }
-    else if (StretchADCtype::IsHand())
-    {
-//        FPGA::WriteToHardware(ch == ChA ? WR_CAL_A : WR_CAL_B, (uint8)DEBUG_STRETCH_ADC(ch), true);
-    }
-    else if (StretchADCtype::IsSettings())
-    {
-        FPGA::Calibrator::LoadKoeff(ch);
-    }
-}
-
+static int8 size = 0;
 
 static void OnDraw_SizeSettings(int x, int y)
 {
     Text("Размер %d", sizeof(Settings)).Draw(x + 5, y + 21, Color::BLACK);
 }
+
 
 DEF_CHOICE_2(mcSizeSettings, PageDebug::self,
     "Размер настроек", "Size settings",
@@ -74,10 +50,13 @@ DEF_CHOICE_2(mcSizeSettings, PageDebug::self,
     size, nullptr, SettingsNRST::CommonOnChanged, OnDraw_SizeSettings
 )
 
+//----------------------------------------------------------------------------------------------------------------------
+
 static bool IsActive_SaveFirmware()
 {
     return FDrive::isConnected;
 }
+
 
 static void OnPress_SaveFirmware()
 {
@@ -101,6 +80,7 @@ static void OnPress_SaveFirmware()
     Warnings::ShowWarningGood(Warning::FirmwareSaved);
 }
 
+
 DEF_BUTTON(mbSaveFirmware, PageDebug::self,
     "Сохр. прошивку", "Save firmware",
     "Сохранение прошивки - секторов 5, 6, 7 общим объёмом 3 х 128 кБ, где хранится программа",
@@ -108,10 +88,13 @@ DEF_BUTTON(mbSaveFirmware, PageDebug::self,
     IsActive_SaveFirmware, OnPress_SaveFirmware
 )
 
+//----------------------------------------------------------------------------------------------------------------------
+
 static void OnPress_EraseData()
 {
     ROM::Data::EraseAll();
 }
+
 
 DEF_BUTTON(bEraseData, PageDebug::self,
     "Стереть данные", "Erase data",
@@ -119,6 +102,8 @@ DEF_BUTTON(bEraseData, PageDebug::self,
     "Erases data sectors",
     nullptr, OnPress_EraseData
 )
+
+//----------------------------------------------------------------------------------------------------------------------
 
 DEF_PAGE_7(pageDebug, PageMain::self, NamePage::Debug,
     "ОТЛАДКА", "DEBUG",

@@ -1,5 +1,6 @@
 // 2021/05/12 11:37:31 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
+#include "FPGA/FPGA.h"
 #include "Menu/Items/MenuItems.h"
 #include "Menu/Items/MenuItemsDefs.h"
 #include "Menu/Pages/Definition.h"
@@ -73,3 +74,20 @@ DEF_PAGE_3(pageStretchADC, PageDebug::PageADC::self, NamePage::DebugADCstretch,
 
 
 const Page *PageDebug::PageADC::PageStretch::self = &pageStretchADC;
+
+
+void PageDebug::LoadStretchADC(const Channel &ch)
+{
+    if (StretchADCtype::IsDisabled())
+    {
+        //        FPGA::WriteToHardware(ch == ChA ? WR_CAL_A : WR_CAL_B, 0x80, true);
+    }
+    else if (StretchADCtype::IsHand())
+    {
+        //        FPGA::WriteToHardware(ch == ChA ? WR_CAL_A : WR_CAL_B, (uint8)DEBUG_STRETCH_ADC(ch), true);
+    }
+    else if (StretchADCtype::IsSettings())
+    {
+        FPGA::Calibrator::LoadKoeff(ch);
+    }
+}
