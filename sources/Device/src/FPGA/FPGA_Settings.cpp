@@ -223,7 +223,7 @@ void TBase::Load()
     uint8 mask = !PeackDetMode::IsEnabled() ? masksTBase[base].maskNorm : masksTBase[base].maskPeackDet;
 
     FPGA::BUS::Write(WR_RAZV, mask);
-    setNRST.shift_T0 = deltaTShift[base];
+    setNRST.rand.shift_T0 = deltaTShift[base];
 }
 
 

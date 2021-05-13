@@ -43,7 +43,7 @@ DEF_GOVERNOR(gSamplesForGates, PageDebug::PageRandomizer::self,
 
 static void OnChanged_AltTShift0()
 {
-    TShift::SetDelta(setNRST.shift_T0);
+    TShift::SetDelta(setNRST.rand.shift_T0);
 }
 
 
@@ -51,7 +51,7 @@ DEF_GOVERNOR(gAltTShift0, PageDebug::PageRandomizer::self,
     "tShift доп.", "tShift alt.",
     "",
     "",
-    setNRST.shift_T0, 0, 510, nullptr, OnChanged_AltTShift0, nullptr
+    setNRST.rand.shift_T0, 0, 510, nullptr, OnChanged_AltTShift0, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
