@@ -3985,7 +3985,7 @@
 
   <Group>
     <GroupName>Menu/Pages/Debug</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -4020,8 +4020,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Menu\Pages\Debug\PageAltShiftADC.cpp</PathWithFileName>
-      <FilenameWithoutPath>PageAltShiftADC.cpp</FilenameWithoutPath>
+      <PathWithFileName>.\src\Menu\Pages\Debug\PageAddShiftADC.cpp</PathWithFileName>
+      <FilenameWithoutPath>PageAddShiftADC.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
