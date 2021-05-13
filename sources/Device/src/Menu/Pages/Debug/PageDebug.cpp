@@ -39,7 +39,7 @@ DEF_CHOICE_2(mcStats, PageDebug::self,
     ,
     "Не показывать", "Hide",
     "Показывать", "Show",
-    setNRST.show_stats, nullptr, nullptr, nullptr
+    setNRST.show_stats, nullptr, SettingsNRST::CommonOnChanged, nullptr
 )
 
 
@@ -71,7 +71,7 @@ DEF_CHOICE_2(mcSizeSettings, PageDebug::self,
     "Show size of struct Settings",
     "Размер", "Size",
     "Размер", "Size",
-    size, nullptr, nullptr, OnDraw_SizeSettings
+    size, nullptr, SettingsNRST::CommonOnChanged, OnDraw_SizeSettings
 )
 
 static bool IsActive_SaveFirmware()
