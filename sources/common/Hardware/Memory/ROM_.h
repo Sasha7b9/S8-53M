@@ -11,8 +11,6 @@ struct ROM
 {
 	static const uint SIZE = 2 * 1024 * 1024;
 
-    static void Init();
-
     // Функции для сохранения/загрузки настроек
     template<class T>
     struct Settings
@@ -51,8 +49,6 @@ struct ROM
 
 struct OTP
 {
-    static bool SaveSerialNumber(char *servialNumber);
-    
     // Возвращает текстовое представление серийного номера. В freeForWrite количество свободных мест для записи
     static String GetSerialNumber(int *freeForWrite);
 };

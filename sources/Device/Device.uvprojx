@@ -1269,11 +1269,6 @@
               <FilePath>..\common\Hardware\Memory\ROM_.h</FilePath>
             </File>
             <File>
-              <FileName>ROM_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\Memory\ROM_.cpp</FilePath>
-            </File>
-            <File>
               <FileName>ROM_Data_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\Memory\ROM_Data_.cpp</FilePath>
@@ -3697,11 +3692,6 @@
               <FileName>ROM_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Hardware\Memory\ROM_.h</FilePath>
-            </File>
-            <File>
-              <FileName>ROM_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\Memory\ROM_.cpp</FilePath>
             </File>
             <File>
               <FileName>ROM_Data_.cpp</FileName>
