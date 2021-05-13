@@ -5,6 +5,10 @@
 #include "Settings/SettingsNRST.h"
 
 
+template void ROM::Settings<SettingsNRST>::Save(SettingsNRST *nrst);
+template SettingsNRST *ROM::Settings<SettingsNRST>::GetSaved();
+
+
 struct Packet
 {
     uint size;
@@ -48,7 +52,8 @@ static const SectorNRST sector1 = { HAL_ROM::sectors[Sector::_03_NRST_1] };
 static const SectorNRST sector2 = { HAL_ROM::sectors[Sector::_04_NRST_2] };
 
 
-SettingsNRST *ROM::Settings::GetSaved()
+template<class T>
+T *ROM::Settings<T>::GetSaved()
 {
     SettingsNRST *settings = sector2.GetSaved();
 
@@ -61,7 +66,8 @@ SettingsNRST *ROM::Settings::GetSaved()
 }
 
 
-void ROM::Settings::Save(SettingsNRST *nrst)
+template<class T>
+void ROM::Settings<T>::Save(T *nrst)
 {
     if (!sector1.SaveSettings(nrst))
     {

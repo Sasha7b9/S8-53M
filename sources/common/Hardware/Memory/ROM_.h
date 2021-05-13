@@ -27,13 +27,14 @@ struct ROM
 //    };
 
     // Функции для сохранения/загрузки несбрасываемых калибровочных настроек
+    template<class T>
     struct Settings
     {
         // Возвращает указатель на хранящиеся в ROM несбрасываемые настройки. nullptr в случае, если настроек там нет
-        static SettingsNRST *GetSaved();
+        static T *GetSaved();
         
         // Сохраняет настройки из адреса nrst в ROM
-        static void Save(SettingsNRST *nrst);
+        static void Save(T *nrst);
 
         static void Erase();
     };
