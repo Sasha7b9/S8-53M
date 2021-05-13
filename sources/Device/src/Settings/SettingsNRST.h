@@ -24,7 +24,8 @@ struct SettingsNRST
 {
     struct RangomizerNRST
     {
-        int16       num_smooth;         // Число точек для скользящего фильтра
+        int16   num_smooth;             // Число точек для скользящего фильтра
+        int16   num_measures_for_gates; // Число измерений для ворот.
     };
 
     int16             num_srings;                 // Число строк в консоли.
@@ -36,7 +37,6 @@ struct SettingsNRST
     int16             balance_ADC[2];             // Значение дополнительного смещения АЦП для ручной балансировки.
     StretchADCtype::E stretch_ADC_type;           // Тип растяжки канала.
     int16             stretch_ADC[2];             // Значение растяжки канала для ручного режима.
-    int16             num_measures_for_gates;     // Число измерений для ворот.
     int16             shift_T0;                   // Дополнительное смещение по времени для данной развёртки режима
                                                   // рандомизатора.
     bool              show_stats;                 // Показывать статистику на экране (fps, например).

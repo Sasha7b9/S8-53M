@@ -12,7 +12,6 @@ static const SettingsNRST defaultNRST =
     {0, 5},                     // shiftADC
     StretchADCtype::Settings,   // stretch
     {128, 128},                 // stretchADC
-    1000,                       // numMeasuresForGates
     0,                          // shiftT0
     false,                      // showStats
     6,                          // numAveForRand
@@ -20,7 +19,8 @@ static const SettingsNRST defaultNRST =
     false,                      // view all altera writting data
     0,                          // alt shift
     {
-        1                       // num_smooth
+        1,                      // num_smooth
+        1000                    // num_measures_for_gates
     },
     {
         false,                  // отображать пред/после запуск

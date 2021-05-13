@@ -34,8 +34,8 @@ void FPGA::Init()
 //    Storage::Clear();
     FPGA::LoadSettings();
     FPGA::SetNumSignalsInSec(set.display.enum_fps.NumSignalsInS());
-    FPGA::Randomizer::SetNumberMeasuresForGates(setNRST.num_measures_for_gates);
-    FPGA::Randomizer::SetNumberMeasuresForGates(setNRST.num_measures_for_gates);
+    FPGA::Randomizer::SetNumberMeasuresForGates(setNRST.rand.num_measures_for_gates);
+    FPGA::Randomizer::SetNumberMeasuresForGates(setNRST.rand.num_measures_for_gates);
 } 
 
 

@@ -28,7 +28,7 @@ DEF_GOVERNOR(gNumSmooth, PageDebug::PageRandomizer::self,
 
 static void OnChanged_SamplesForGates()
 {
-    FPGA::Randomizer::SetNumberMeasuresForGates(setNRST.num_measures_for_gates);
+    FPGA::Randomizer::SetNumberMeasuresForGates(setNRST.rand.num_measures_for_gates);
 }
 
 
@@ -36,7 +36,7 @@ DEF_GOVERNOR(gSamplesForGates, PageDebug::PageRandomizer::self,
     "Выб-к/ворота", "Samples/gates",
     "",
     "",
-    setNRST.num_measures_for_gates, 1, 2500, nullptr, OnChanged_SamplesForGates, nullptr
+    setNRST.rand.num_measures_for_gates, 1, 2500, nullptr, OnChanged_SamplesForGates, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
