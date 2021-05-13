@@ -660,19 +660,19 @@ BalanceADCtype::E BalanceADCtype::Get()
 
 bool StretchADCtype::IsDisabled()
 {
-    return (setNRST.stretch_ADC_type == StretchADCtype::Disable);
+    return (setNRST.adc.type_stretch == StretchADCtype::Disable);
 }
 
 
 bool StretchADCtype::IsHand()
 {
-    return (setNRST.stretch_ADC_type == StretchADCtype::Hand);
+    return (setNRST.adc.type_stretch == StretchADCtype::Hand);
 }
 
 
 bool StretchADCtype::IsSettings()
 {
-    return (setNRST.stretch_ADC_type == StretchADCtype::Settings);
+    return (setNRST.adc.type_stretch == StretchADCtype::Settings);
 }
 
 

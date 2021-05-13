@@ -126,7 +126,7 @@ void FPGA::Calibrator::ProcedureCalibration()
             {
                 state.state_calibration = StateCalibration::ErrorCalibration0;
                 Panel::WaitPressingButton();
-                setNRST.stretch_ADC_type = StretchADCtype::Hand;
+                setNRST.adc.type_stretch = StretchADCtype::Hand;
                 PageDebug::LoadStretchADC(ChA);
             }
             else
@@ -164,7 +164,7 @@ void FPGA::Calibrator::ProcedureCalibration()
             {
                 state.state_calibration = StateCalibration::ErrorCalibration1;
                 Panel::WaitPressingButton();
-                setNRST.stretch_ADC_type = StretchADCtype::Hand;
+                setNRST.adc.type_stretch = StretchADCtype::Hand;
                 PageDebug::LoadStretchADC(ChB);
             }
             else

@@ -23,7 +23,7 @@ DEF_CHOICE_3(mcMode, PageDebug::PageADC::PageStretch::self,
     DISABLE_RU, DISABLE_EN,
     "Реальный", "Real",
     "Ручной", "Manual",
-    setNRST.stretch_ADC_type, nullptr, OnChanged_Mode, nullptr
+    setNRST.adc.type_stretch, nullptr, OnChanged_Mode, nullptr
 )
 
 
