@@ -24,9 +24,10 @@ struct SettingsNRST
 {
     struct RangomizerNRST
     {
+        int16   num_ave;                // По скольким измерениям усреднять сигнал
         int16   num_smooth;             // Число точек для скользящего фильтра
-        int16   num_measures_for_gates; // Число измерений для ворот.
-        int16   shift_T0;               // Дополнительное смещение по времени для данной развёртки режима рандомизатора
+        int16   num_measures_for_gates; // Число измерений для ворот
+        int16   shift_T0;               // Дополнительное смещение по времени для данной развёртки
     };
 
     int16             num_srings;                 // Число строк в консоли.
@@ -39,7 +40,6 @@ struct SettingsNRST
     StretchADCtype::E stretch_ADC_type;           // Тип растяжки канала.
     int16             stretch_ADC[2];             // Значение растяжки канала для ручного режима.
     bool              show_stats;                 // Показывать статистику на экране (fps, например).
-    int16             num_ave_for_rand;           // По скольким измерениям усреднять сигнал в режиме рандомизатора.
     bool              viewAlteraWrittingData;     // Показывать ли данные, идущие в альтеру.
     bool              viewAllAlteraWrittingData;  // \brief Показывать ли все данные, идущие в альтеру (если false, то
                                                   // постоянно идущие команды вроде 

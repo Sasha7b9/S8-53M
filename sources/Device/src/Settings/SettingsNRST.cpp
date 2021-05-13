@@ -13,11 +13,11 @@ static const SettingsNRST defaultNRST =
     StretchADCtype::Settings,   // stretch
     {128, 128},                 // stretchADC
     false,                      // showStats
-    6,                          // numAveForRand
     false,                      // view altera writting data
     false,                      // view all altera writting data
     0,                          // alt shift
     {
+        6,                      // num_ave
         1,                      // num_smooth
         1000,                   // num_measures_for_gates
         0                       // shift_T0

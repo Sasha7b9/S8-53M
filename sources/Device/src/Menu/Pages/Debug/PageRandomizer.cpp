@@ -12,7 +12,7 @@ DEF_GOVERNOR(gNumAverages, PageDebug::PageRandomizer::self,
     "Усредн.", "Average",
     "",
     "",
-    setNRST.num_ave_for_rand, 1, 32, nullptr, nullptr, nullptr
+    setNRST.rand.num_ave, 1, 32, nullptr, nullptr, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
