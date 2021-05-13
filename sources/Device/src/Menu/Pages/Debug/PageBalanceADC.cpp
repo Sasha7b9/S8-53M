@@ -15,8 +15,8 @@ static void Draw_Mode(int, int)
 {
     int8 shift[2][3] =
     {
-        {0, set.chan[ChA].balance_shift_ADC, (int8)setNRST.channel[ChA].balance_hand},
-        {0, set.chan[ChB].balance_shift_ADC, (int8)setNRST.channel[ChB].balance_hand}
+        {0, setNRST.channel[ChA].balance_auto, (int8)setNRST.channel[ChA].balance_hand},
+        {0, setNRST.channel[ChB].balance_auto, (int8)setNRST.channel[ChB].balance_hand}
     };
 
     shiftADCA = shift[0][BalanceADCtype::Get()];

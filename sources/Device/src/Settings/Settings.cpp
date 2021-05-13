@@ -69,8 +69,7 @@ static const Settings defaultSettings =
             Range::_500mV,          // range
             true,                   // enable
             false,                  // inverse
-            false,                  // filtr
-			0                       // addShiftADC
+            false                   // filtr
         },
         {
             RShift::ZERO,
@@ -79,8 +78,7 @@ static const Settings defaultSettings =
             Range::_500mV,          // range
             true,                   // enable
             false,                  // inverse
-            false,                  // filtr
-			5                       // addShiftADC
+            false                   // filtr
         }
         
     },

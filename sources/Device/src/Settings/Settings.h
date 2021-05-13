@@ -15,7 +15,6 @@ struct SettingsChannel
     bool       enable;                      // Включён ли канал.
     bool       inverse;                     // Инвертирован ли канал.
     bool       filtr;                       // Фильтр
-    int8       balance_shift_ADC;           // Добавочное смещение для балансировки АЦП
 };
 
 

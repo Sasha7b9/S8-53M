@@ -19,13 +19,15 @@ static const SettingsNRST defaultNRST =
     },
     {
         {
-            0,                      // balance
+            0,                      // balance_hand
+            0,                      // balance_auto
             128,                    // stretch_hand
             1.0f,                   // stretch_auto
             { { 0 }, { 0 } }        // rshift_add
         },
         {
-            0,                      // balance
+            0,                      // balance_hand
+            0,                      // balance_auto
             128,                    // stretch_hand
             1.0f,                   // stretch_auto
             { { 0 }, { 0 } }        // rshift_add
