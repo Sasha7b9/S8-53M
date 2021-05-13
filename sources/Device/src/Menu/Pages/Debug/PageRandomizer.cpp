@@ -21,7 +21,7 @@ DEF_GOVERNOR(gNumSmooth, PageDebug::PageRandomizer::self,
     "—глаживание", "Smoothing",
     "",
     "",
-    setNRST.num_smooth_for_rand, 1, 10, nullptr, nullptr, nullptr
+    setNRST.rand.num_smooth, 1, 10, nullptr, nullptr, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
