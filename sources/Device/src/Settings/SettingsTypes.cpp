@@ -654,7 +654,7 @@ bool ModeRegSet::IsRShift()
 
 BalanceADCtype::E BalanceADCtype::Get()
 {
-    return setNRST.balance_ADC_type;
+    return setNRST.adc.type_balance;
 }
 
 

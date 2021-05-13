@@ -40,7 +40,7 @@ DEF_CHOICE_3(mcMode, PageDebug::PageADC::PageBalance::self,
     DISABLE_RU, DISABLE_EN,
     "Реальный", "Real",
     "Ручной", "Manual",
-    setNRST.balance_ADC_type, nullptr, OnChanged_Mode, Draw_Mode
+    setNRST.adc.type_balance, nullptr, OnChanged_Mode, Draw_Mode
 )
 
 

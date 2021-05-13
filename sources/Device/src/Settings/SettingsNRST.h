@@ -30,12 +30,16 @@ struct SettingsNRST
         int16   shift_T0;               // Дополнительное смещение по времени для данной развёртки
     };
 
+    struct SettingsADC
+    {
+        BalanceADCtype::E type_balance; // Тип балансировки.
+    };
+
     int16             num_srings;                 // Число строк в консоли.
     int8              size_font;                  // Размер шрифта консоли - 0 - 5, 1 - 8,
     bool              console_in_pause;           // \brief Признак того, что консоль находится в режиме паузы. Режим
                                                   // паузы означает, что новые 
                                                   // сообщения она не записывает и не сохраняет.
-    BalanceADCtype::E balance_ADC_type;           // Тип балансировки.
     int16             balance_ADC[2];             // Значение дополнительного смещения АЦП для ручной балансировки.
     StretchADCtype::E stretch_ADC_type;           // Тип растяжки канала.
     int16             stretch_ADC[2];             // Значение растяжки канала для ручного режима.
@@ -47,6 +51,7 @@ struct SettingsNRST
     int16             altShift;                   // Добавочное смещение для устранения эффекта горизонтальной помехи
                                                   // синхронизации.
     SettingsRangomizer rand;
+    SettingsADC        adc;
     OutputRegisters    show_registers;
 
     static int  GetSizeFontForConsole();        // Возвращает размер шрифта, которым нужно выводить сообщения в консоли.

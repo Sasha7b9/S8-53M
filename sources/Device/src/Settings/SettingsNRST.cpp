@@ -8,7 +8,6 @@ static const SettingsNRST defaultNRST =
     10,                         // numStrings
     0,                          // размер шрифта - 5
     0,                          // consoleInPause
-    BalanceADCtype::Settings,   // balanceADC
     {0, 5},                     // shiftADC
     StretchADCtype::Settings,   // stretch
     {128, 128},                 // stretchADC
@@ -21,6 +20,9 @@ static const SettingsNRST defaultNRST =
         1,                      // num_smooth
         1000,                   // num_measures_for_gates
         0                       // shift_T0
+    },
+    {
+        BalanceADCtype::Settings,   // type_balance
     },
     {
         false,                  // отображать пред/после запуск
