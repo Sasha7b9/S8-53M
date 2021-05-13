@@ -9,7 +9,6 @@
 #include "FDrive/FDrive.h"
 #include "FPGA/FPGA.h"
 #include "LAN/LAN.h"
-#include "Settings/Settings.h"
 #include "VCP/VCP.h"
 #include <cstdio>
 #include <cstring>

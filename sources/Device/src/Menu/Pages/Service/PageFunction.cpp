@@ -8,7 +8,7 @@
 #include "Menu/Items/MenuItems.h"
 #include "Menu/Items/MenuItemsDefs.h"
 #include "Menu/Pages/Definition.h"
-#include "Settings/Settings.h"
+#include "Settings/SettingsCommon.h"
 
 
 DEF_SMALL_BUTTON(sbExit, PageService::PageMath::PageFunction::self,

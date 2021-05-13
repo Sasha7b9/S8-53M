@@ -9,7 +9,6 @@
 #include "Menu/Pages/Definition.h"
 #include "Menu/Pages/HelpContent.h"
 #include "Panel/Panel.h"
-#include "Settings/Settings.h"
 #include <cstring>
 
 

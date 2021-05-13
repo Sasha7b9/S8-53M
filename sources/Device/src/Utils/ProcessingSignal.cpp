@@ -5,7 +5,6 @@
 #include "FPGA/FPGA_Math.h"
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/Data/DataSettings.h"
-#include "Settings/Settings.h"
 #include "Utils/ProcessingSignal.h"
 #include <cmath>
 #include <cstdio>

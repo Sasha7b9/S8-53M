@@ -3,7 +3,6 @@
 #include "common/Hardware/Timer_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "FPGA/FPGA_Types.h"
-#include "Settings/Settings.h"
 #include <stm32f4xx_hal.h>
 #include <cstdlib>
 

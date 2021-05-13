@@ -2,7 +2,6 @@
 #include "defines.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/Data/DataSettings.h"
-#include "Settings/Settings.h"
 
 
 void DataSettings::Fill()

@@ -3,7 +3,7 @@
 #include "common/Hardware/Sound_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Hardware/Timer_.h"
-#include "Settings/Settings.h"
+#include "Settings/SettingsCommon.h"
 #include <cmath>
 
 

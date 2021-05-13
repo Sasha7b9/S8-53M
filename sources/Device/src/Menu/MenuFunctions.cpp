@@ -5,7 +5,6 @@
 #include "common/Utils/Math_.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
-#include "Settings/Settings.h"
 
 
 const Item* Menu::CurrentItem()

@@ -8,7 +8,6 @@
 #include "FPGA/FPGA.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
-#include "Settings/Settings.h"
 
 
 static int8 dServicetime = 0;

@@ -7,7 +7,7 @@
 #include "common/Utils/Math_.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
-#include "Settings/Settings.h"
+#include "Settings/SettingsCommon.h"
 #include "Utils/Measures.h"
 #include "Utils/ProcessingSignal.h"
 

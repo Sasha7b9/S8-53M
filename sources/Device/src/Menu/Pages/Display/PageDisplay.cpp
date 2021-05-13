@@ -4,7 +4,6 @@
 #include "FPGA/FPGA.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
-#include "Settings/Settings.h"
 
 
 DEF_CHOICE_2(mcMapping, PageDisplay::self,

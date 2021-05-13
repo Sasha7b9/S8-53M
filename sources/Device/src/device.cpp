@@ -9,7 +9,6 @@
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
 #include "Panel/Panel.h"
-#include "Settings/Settings.h"
 #include "Utils/ProcessingSignal.h"
 #include "VCP/VCP.h"
 

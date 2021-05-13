@@ -2,7 +2,7 @@
 #include "defines.h"
 #include "Display/Console.h"
 #include "Display/Display.h"
-#include "Settings/Settings.h"
+#include "Settings/SettingsCommon.h"
 #include <cstdarg>
 #include <cstdio>
 #include <cstring>

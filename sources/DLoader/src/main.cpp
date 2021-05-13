@@ -4,11 +4,11 @@
 #include "main.h"
 #include "FDrive/FDrive.h"
 #include "Hardware/Hardware.h"
-#include "Settings/Settings.h"
 #include "Display/Display.h"
 #include "common/Hardware/Timer_.h"
 #include "Panel/Panel.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "Settings/SettingsCommon.h"
 #include <cstdlib>
 
 

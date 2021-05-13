@@ -6,7 +6,6 @@
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Hardware/HAL/HAL_PINS_.h"
 #include "common/Utils/Math_.h"
-#include "Settings/Settings.h"
 
 
 static bool inverseColors = false;

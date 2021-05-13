@@ -2,7 +2,7 @@
 #include "defines.h"
 #include "common/Utils/StringUtils_.h"
 #include "common/Utils/Containers/Values_.h"
-#include "Settings/Settings.h"
+#include "Settings/SettingsCommon.h"
 #include <cmath>
 #include <cstdio>
 #include <cstdlib>

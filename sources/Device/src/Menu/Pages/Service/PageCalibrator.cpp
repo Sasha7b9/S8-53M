@@ -4,7 +4,6 @@
 #include "Menu/Items/MenuItems.h"
 #include "Menu/Items/MenuItemsDefs.h"
 #include "Menu/Pages/Definition.h"
-#include "Settings/Settings.h"
 
 
 static void OnChanged_Mode(bool)

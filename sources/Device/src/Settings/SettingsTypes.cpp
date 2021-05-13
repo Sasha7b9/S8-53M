@@ -14,7 +14,6 @@
 #include "FPGA/FPGA_Types.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
-#include "Settings/Settings.h"
 #include <climits>
 
 

@@ -1,7 +1,7 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "common/Utils/Math_.h"
-#include "Settings/Settings.h"
+#include "Settings/SettingsCommon.h"
 #include <cstdlib>
 #include <cstring>
 #include <cmath>

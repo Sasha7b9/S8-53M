@@ -9,7 +9,6 @@
 #include "FPGA/FPGA_Reader.h"
 #include "FPGA/Data/DataSettings.h"
 #include "Panel/Panel.h"
-#include "Settings/Settings.h"
 #include <cstring>
 
 

@@ -5,7 +5,6 @@
 #include "Display/Screen/Grid.h"
 #include "Display/Screen/TopPart.h"
 #include "FPGA/FPGA.h"
-#include "Settings/Settings.h"
 #include <cmath>
 
 

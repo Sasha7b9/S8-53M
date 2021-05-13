@@ -7,7 +7,7 @@
 #include "common/Utils/Math_.h"
 #include "FPGA/FPGA_Types.h"
 #include "Menu/Menu.h"
-#include "Settings/Settings.h"
+#include "Settings/SettingsCommon.h"
 
 
 void RShift::Draw()

@@ -5,7 +5,6 @@
 #include "LAN/LAN.h"
 #include "VCP/VCP.h"
 #include "VCP/SCPI/SCPI.h"
-#include "Settings/Settings.h"
 
 
 

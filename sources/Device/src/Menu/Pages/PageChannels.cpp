@@ -4,7 +4,6 @@
 #include "Menu/Items/MenuItems.h"
 #include "Menu/Pages/Definition.h"
 #include "Panel/Panel.h"
-#include "Settings/Settings.h"
 
 
 static const char chanInputRu[] =   "1. \"¬кл\" - выводить сигнал на экран.\n"

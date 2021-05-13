@@ -1,6 +1,6 @@
 #include "defines.h"
 #include "common/Display/Colors_.h"
-#include "Settings/Settings.h"
+#include "Settings/SettingsCommon.h"
 
 
 static const Settings defaultSettings =

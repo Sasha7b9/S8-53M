@@ -8,7 +8,6 @@
 #include "FPGA/FPGA_Reader.h"
 #include "FPGA/FPGA_Types.h"
 #include "Panel/Panel.h"
-#include "Settings/Settings.h"
 #include "Settings/SettingsNRST.h"
 #include "Utils/ProcessingSignal.h"
 #include <cstring>

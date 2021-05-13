@@ -4,7 +4,6 @@
 #include "common/Utils/Math_.h"
 #include "Menu/Items/MenuItems.h"
 #include "Menu/Pages/Definition.h"
-#include "Settings/Settings.h"
 #include "Utils/ProcessingSignal.h"
 
 

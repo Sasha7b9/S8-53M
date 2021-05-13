@@ -2,7 +2,6 @@
 #include "defines.h"
 #include "common/Utils/Math_.h"
 #include "FPGA/FPGA.h"
-#include "Settings/Settings.h"
 
 
 int ENumSignalsInSec::NumSignalsInS()

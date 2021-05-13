@@ -8,7 +8,6 @@
 #include "FPGA/FPGA.h"
 #include "Menu/Items/MenuItems.h"
 #include "Panel/Panel.h"
-#include "Settings/Settings.h"
 
 
 void CalculateConditions(int16 pos0, int16 pos1, CursCntrl::E cursCntrl, bool *cond0, bool *cond1)

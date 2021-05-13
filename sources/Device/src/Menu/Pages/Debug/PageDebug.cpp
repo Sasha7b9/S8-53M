@@ -10,7 +10,6 @@
 #include "FPGA/FPGA.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
-#include "Settings/Settings.h"
 #include <cstdio>
 #include <cstdlib>
 

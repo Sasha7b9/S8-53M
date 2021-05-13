@@ -2,7 +2,7 @@
 #include "defines.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "LAN/LAN.h"
-#include "Settings/Settings.h"
+#include "Settings/SettingsCommon.h"
 #include "VCP/SCPI/SCPI.h"
 #include <cstring>
 #include <ethernetif.h>

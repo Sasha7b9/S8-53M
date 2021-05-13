@@ -6,7 +6,6 @@
 #include "FPGA/FPGA.h"
 #include "Menu/Items/MenuItems.h"
 #include "Menu/Pages/Definition.h"
-#include "Settings/Settings.h"
 
 
 static bool IsActive_Sample()

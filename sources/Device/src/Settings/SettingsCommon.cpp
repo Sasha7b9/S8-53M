@@ -6,7 +6,6 @@
 #include "FPGA/FPGA.h"
 #include "Menu/Menu.h"
 #include "Panel/Panel.h"
-#include "Settings/Settings.h"
 #include <cstring>
 
 

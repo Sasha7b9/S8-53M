@@ -6,7 +6,7 @@
 #include "Menu/Items/MenuItems.h"
 #include "Menu/Items/MenuItemsDefs.h"
 #include "Menu/Pages/Definition.h"
-#include "Settings/Settings.h"
+#include "Settings/SettingsCommon.h"
 
 
 static void OnPress_Exit()
