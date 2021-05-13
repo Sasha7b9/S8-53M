@@ -15,9 +15,17 @@ static const SettingsNRST defaultNRST =
     },
     {
         BalanceADCtype::Settings,   // type_balance
-        {0, 5},                     // balance
         StretchADCtype::Settings,   // type_stretch
-        {128, 128}                  // stretch
+    },
+    {
+        {
+            0,                      // balance
+            128                     // stretch
+        },
+        {
+            0,                      // balance
+            128                     // stretch
+        }
     },
     {
         10,                         // num_srings

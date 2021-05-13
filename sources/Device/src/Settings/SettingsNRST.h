@@ -17,9 +17,13 @@ struct SettingsNRST
     struct SettingsADC
     {
         BalanceADCtype::E type_balance; // Тип балансировки
-        int16             balance[2];   // Значение дополнительного смещения АЦП для ручной балансировки
         StretchADCtype::E type_stretch; // Тип растяжки канала.
-        int16             stretch[2];   // Значение растяжки канала для ручного режима.
+    };
+
+    struct SettingsChannel
+    {
+        int16   balance;   // Значение дополнительного смещения АЦП для ручной балансировки
+        int16   stretch;   // Значение растяжки канала для ручного режима.
     };
 
     struct SettingsConsole
@@ -49,6 +53,7 @@ struct SettingsNRST
     bool               show_stats;                 // Показывать статистику на экране (fps, например).
     SettingsRangomizer rand;
     SettingsADC        adc;
+    SettingsChannel    channel[Channel::Count];
     SettingsConsole    console;
     SettingsRegisters  show_registers;
 

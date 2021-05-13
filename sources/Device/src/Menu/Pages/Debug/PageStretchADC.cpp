@@ -43,7 +43,7 @@ DEF_GOVERNOR(mgADC_A, PageDebug::PageADC::PageStretch::self,
     "Κξύττ. 1κ", "Koeff. 1ch",
     "",
     "",
-    setNRST.adc.stretch[ChA], 0, 255, IsActive, OnChanged_A, nullptr
+    setNRST.channel[ChA].stretch, 0, 255, IsActive, OnChanged_A, nullptr
 )
 
 
@@ -57,7 +57,7 @@ DEF_GOVERNOR(mgADC_B, PageDebug::PageADC::PageStretch::self,
     "Κξύττ. 2κ", "Koeff. 2ch",
     "",
     "",
-    setNRST.adc.stretch[ChB], 0, 255, IsActive, OnChanged_B, nullptr
+    setNRST.channel[ChB].stretch, 0, 255, IsActive, OnChanged_B, nullptr
 )
 
 
