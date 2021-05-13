@@ -17,7 +17,7 @@ static void OnChanged_Mode(bool active)
 }
 
 
-DEF_CHOICE_3(mcMode, PageDebug::PageADC::PageStretch::self,
+DEF_CHOICE_3(cMode, PageDebug::PageADC::PageStretch::self,
     "Ðåæèì", "Mode",
     "",
     "",
@@ -40,7 +40,7 @@ static bool IsActive()
 }
 
 
-DEF_GOVERNOR(mgADC_A, PageDebug::PageADC::PageStretch::self,
+DEF_GOVERNOR(gADC_A, PageDebug::PageADC::PageStretch::self,
     "Êîýôô. 1ê", "Koeff. 1ch",
     "",
     "",
@@ -54,7 +54,7 @@ static void OnChanged_B()
 }
 
 
-DEF_GOVERNOR(mgADC_B, PageDebug::PageADC::PageStretch::self,
+DEF_GOVERNOR(gADC_B, PageDebug::PageADC::PageStretch::self,
     "Êîýôô. 2ê", "Koeff. 2ch",
     "",
     "",
@@ -66,9 +66,9 @@ DEF_PAGE_3(pageStretchADC, PageDebug::PageADC::self, NamePage::DebugADCstretch,
     "ÐÀÑÒßÆÊÀ", "STRETCH",
     "",
     "",
-    mcMode,
-    mgADC_A,
-    mgADC_B,
+    cMode,
+    gADC_A,
+    gADC_B,
     nullptr, nullptr, nullptr, nullptr
 )
 
