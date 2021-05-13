@@ -10,7 +10,7 @@ int main()
 {
     setNRST.Init();
 
-    set.Load(true);
+    set.Load();
     
     Device::Init();
        

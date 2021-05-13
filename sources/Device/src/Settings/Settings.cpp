@@ -206,9 +206,18 @@ static const Settings defaultSettings =
 Settings set;
 
 
-void Settings::Load(bool /*_default*/)
+void Settings::Load()
 {
-    set = defaultSettings;
+    Settings *saved = ROM::Settings<Settings>::GetSaved();
+
+    if (saved)
+    {
+        set = *saved;
+    }
+    else
+    {
+        set = defaultSettings;
+    }
 
 //    if (!_default)
 //    {
@@ -251,6 +260,11 @@ void Settings::Load(bool /*_default*/)
 void Settings::Save()
 {
     ROM::Settings<Settings>::Save(this);
+}
+
+void Settings::Reset()
+{
+    set = defaultSettings;
 }
 
 bool Settings::DebugModeEnable()

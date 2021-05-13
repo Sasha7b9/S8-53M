@@ -7,6 +7,7 @@
 
 
 template void ROM::Settings< ::Settings>::Save(::Settings *set);
+template Settings *ROM::Settings< ::Settings>::GetSaved();
 
 template void ROM::Settings<SettingsNRST>::Save(SettingsNRST *nrst);
 template SettingsNRST *ROM::Settings<SettingsNRST>::GetSaved();
@@ -142,7 +143,7 @@ T *StructSector<T>::GetSaved() const
 {
     Packet<T> *last = LastPacket();
 
-    return (last && last->IsEmpty()) ? nullptr : (SettingsNRST *)last;
+    return (last && last->IsEmpty()) ? nullptr : (T *)last;
 }
 
 

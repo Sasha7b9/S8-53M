@@ -39,7 +39,7 @@ static void OnPress_ResetSettings()
 
     if (Panel::WaitPressingButton() == Key::Start)
     {
-        Settings::Load(true);
+        Settings::Reset();
         FPGA::Init();
     }
 

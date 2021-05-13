@@ -306,9 +306,10 @@ struct Settings
     SettingsCommon   common;               // системные настройки.
     SettingsMenu     menu;                 // состояние меню.
 
-    static void Load(bool _default);  // \brief Загрузить настройки. Если _default == true, загружаются настройки по
+    void Load();  // \brief Загрузить настройки. Если _default == true, загружаются настройки по
                                       // умолчанию, иначе пытается 
                                       // загрузить настройки из ПЗУ, а в случае неудачи - тоже настройки по умолчанию.
+    static void Reset();
     void Save();               // Сохранить настройки во флеш-память.
     static bool DebugModeEnable();    // Возвращает true, если включён режим отладки.
     static bool loaded;               // Эта переменная нужна для того, чтобы исключить ложную запись пустых настроек
