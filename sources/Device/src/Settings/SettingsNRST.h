@@ -60,7 +60,13 @@ struct SettingsNRST
     SettingsConsole    console;
     SettingsRegisters  show_registers;
 
-    static int  GetSizeFontForConsole();        // Возвращает размер шрифта, которым нужно выводить сообщения в консоли.
+    // Возвращает размер шрифта, которым нужно выводить сообщения в консоли.
+    static int  GetSizeFontForConsole();
+
+    // Эту функцию нужно вызывать после каждого изменения несбрасываемой настройки
+    static void CommonOnChanged();
+
+    static void Save();
 };
 
 

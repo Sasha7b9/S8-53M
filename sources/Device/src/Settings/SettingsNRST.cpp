@@ -52,3 +52,15 @@ int SettingsNRST::GetSizeFontForConsole()
 {
     return setNRST.console.size_font ? 8 : 5;
 }
+
+
+void SettingsNRST::Save()
+{
+
+}
+
+
+void SettingsNRST::CommonOnChanged()
+{
+    Save();
+}
