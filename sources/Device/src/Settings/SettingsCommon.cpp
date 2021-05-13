@@ -9,12 +9,12 @@
 #include <cstring>
 
 
-bool Settings::loaded = false;
+bool SettingsCommon::loaded = false;
 
 //MAKE_COLOR(31, 63, 31),  // Color::WHITE = 0x01,
 
 
-static const Settings defaultSettings =
+static const SettingsCommon defaultSettings =
 {
     0,                              // size
     0,                              // crc32
@@ -202,12 +202,12 @@ static const Settings defaultSettings =
     }
 };
 
-Settings set;
+SettingsCommon set;
 
 
-void Settings::Load()
+void SettingsCommon::Load()
 {
-    Settings *saved = ROM::Settings<Settings>::GetSaved();
+    SettingsCommon *saved = ROM::Settings<SettingsCommon>::GetSaved();
 
     if (saved)
     {
@@ -256,17 +256,17 @@ void Settings::Load()
 //    Settings::loaded = true;
 }
 
-void Settings::Save()
+void SettingsCommon::Save()
 {
-    ROM::Settings<Settings>::Save(this);
+    ROM::Settings<SettingsCommon>::Save(this);
 }
 
-void Settings::Reset()
+void SettingsCommon::Reset()
 {
     set = defaultSettings;
 }
 
-bool Settings::DebugModeEnable()
+bool SettingsCommon::DebugModeEnable()
 {
     return true;
 }
@@ -323,7 +323,7 @@ int16 SettingsMeasures::PosCursorT(int num)
 }
 
 
-uint Settings::CalcWriteCRC32()
+uint SettingsCommon::CalcWriteCRC32()
 {
     uint8 *buffer = reinterpret_cast<uint8 *>(this);
 

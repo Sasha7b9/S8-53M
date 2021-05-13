@@ -288,7 +288,7 @@ struct SettingsMenu
 
 
 // Струкура хранит все настройки прибора.
-struct Settings
+struct SettingsCommon
 {
     uint             size;
     uint             crc32;
@@ -322,7 +322,7 @@ struct Settings
 };
 
 
-extern Settings set;
+extern SettingsCommon set;
 
 
 #define MAC_ADDR0       (set.LAN.mac0)

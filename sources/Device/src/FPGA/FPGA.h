@@ -148,7 +148,7 @@ public:
         StateWorkFPGA       work;
         StateCalibration::E state_calibration;              // Текущее состояние калибровки. Используется в процессе
                                                             // калибровки
-        Settings            stored_settings;                // Здесь нужно уменьшить необходимый размер памяти -
+        SettingsCommon      stored_settings;                // Здесь нужно уменьшить необходимый размер памяти -
                                                             // сохранять настройки только альтеры
     };
 
