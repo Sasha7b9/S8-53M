@@ -48,7 +48,7 @@ static const SectorNRST sector1 = { HAL_ROM::sectors[Sector::_03_NRST_1] };
 static const SectorNRST sector2 = { HAL_ROM::sectors[Sector::_04_NRST_2] };
 
 
-SettingsNRST *ROM::NRST::GetSaved()
+SettingsNRST *ROM::Settings::GetSaved()
 {
     SettingsNRST *settings = sector2.GetSaved();
 
@@ -61,7 +61,7 @@ SettingsNRST *ROM::NRST::GetSaved()
 }
 
 
-void ROM::NRST::Save(SettingsNRST *nrst)
+void ROM::Settings::Save(SettingsNRST *nrst)
 {
     if (!sector1.SaveSettings(nrst))
     {
