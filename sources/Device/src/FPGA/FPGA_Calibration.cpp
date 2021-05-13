@@ -73,8 +73,8 @@ void FPGA::Calibrator::ProcedureCalibration()
     Display::SetDrawMode(DrawMode::Hand, FuncAttScreen);
     Timer::Enable(TypeTimer::TimerDrawHandFunction, 100, OnTimerDraw);
 
-    koeffCalibrationOld[ChA] = set.chan[ChA].stretch_ADC;
-    koeffCalibrationOld[ChB] = set.chan[ChB].stretch_ADC;
+    koeffCalibrationOld[ChA] = setNRST.channel[ChA].stretch_auto;
+    koeffCalibrationOld[ChB] = setNRST.channel[ChB].stretch_auto;
 
     bar0.fullTime = 0;
     bar0.passedTime = 0;
@@ -90,8 +90,8 @@ void FPGA::Calibrator::ProcedureCalibration()
 
         TBase::Set(TBase::_500us);
         TShift::Set(0);
-        set.chan[ChA].stretch_ADC = 1.0F;
-        set.chan[ChB].stretch_ADC = 1.0F;
+        setNRST.channel[ChA].stretch_auto = 1.0F;
+        setNRST.channel[ChB].stretch_auto = 1.0F;
         Calibrator::LoadKoeff(ChA);
         Calibrator::LoadKoeff(ChB);
         Range::Set(ChA, Range::_500mV);
@@ -131,7 +131,7 @@ void FPGA::Calibrator::ProcedureCalibration()
             }
             else
             {
-                set.chan[ChA].stretch_ADC = koeffCal0;
+                setNRST.channel[ChA].stretch_auto = koeffCal0;
                 Calibrator::LoadKoeff(ChA);
             }
 
@@ -169,7 +169,7 @@ void FPGA::Calibrator::ProcedureCalibration()
             }
             else
             {
-                set.chan[ChB].stretch_ADC = koeffCal1;
+                setNRST.channel[ChB].stretch_auto = koeffCal1;
                 Calibrator::LoadKoeff(ChB);
             }
 
@@ -201,11 +201,11 @@ void FPGA::Calibrator::ProcedureCalibration()
     RShift::Set(ChA, set.chan[ChA].rshift);
     RShift::Set(ChB, set.chan[ChB].rshift);
 
-    set.chan[ChA].stretch_ADC = koeffCal0.IsValid() ? (float)koeffCal0 : koeffCalibrationOld[0];
+    setNRST.channel[ChA].stretch_auto = koeffCal0.IsValid() ? (float)koeffCal0 : koeffCalibrationOld[0];
 
     Calibrator::LoadKoeff(ChA);
 
-    set.chan[ChB].stretch_ADC = koeffCal1.IsValid() ? (float)koeffCal1 : koeffCalibrationOld[1];
+    setNRST.channel[ChB].stretch_auto = koeffCal1.IsValid() ? (float)koeffCal1 : koeffCalibrationOld[1];
 
     Calibrator::LoadKoeff(ChB);
 
@@ -260,11 +260,11 @@ void FuncAttScreen()
                     Text("%d", setNRST.channel[ChB].rshift_add[i][1]).Draw(95 + i * 16 + dX, 90 + dY, Color::FILL);
                 }
                 
-                Text("Коэффициент калибровки 1к : %f, %d", set.chan[ChA].stretch_ADC,
-                    (int)(set.chan[ChA].stretch_ADC * 0x80)).Draw(10 + dX, 110 + dY, Color::FILL);
+                Text("Коэффициент калибровки 1к : %f, %d", setNRST.channel[ChA].stretch_auto,
+                    (int)(setNRST.channel[ChA].stretch_auto * 0x80)).Draw(10 + dX, 110 + dY, Color::FILL);
 
-                Text("Коэфффициент калибровки 2к : %f, %d", set.chan[ChB].stretch_ADC,
-                    (int)(set.chan[ChA].stretch_ADC * 0x80)).Draw(10 + dX, 130 + dY, Color::FILL);
+                Text("Коэфффициент калибровки 2к : %f, %d", setNRST.channel[ChB].stretch_auto,
+                    (int)(setNRST.channel[ChB].stretch_auto * 0x80)).Draw(10 + dX, 130 + dY, Color::FILL);
 
                 DrawParametersChannel(ChA, 10 + dX, 150 + dY, false);
                 DrawParametersChannel(ChB, 10 + dX, 200 + dY, false);

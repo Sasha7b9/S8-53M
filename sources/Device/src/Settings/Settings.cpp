@@ -63,7 +63,6 @@ static const Settings defaultSettings =
     // channels
     {
         {
-            1.0F,                   // коэффициент калибровки
             RShift::ZERO,
             ModeCouple::AC,         // ModCouple
             Divider::_1,            // Divider
@@ -74,7 +73,6 @@ static const Settings defaultSettings =
 			0                       // addShiftADC
         },
         {
-            1.0F,                   // коэффициент калибровки
             RShift::ZERO,
             ModeCouple::AC,         // ModCouple
             Divider::_1,            // Divider

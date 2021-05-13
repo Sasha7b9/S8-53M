@@ -8,7 +8,6 @@
  // Настройки каналов
 struct SettingsChannel
 {
-    float      stretch_ADC;                 // Поправочный коэффициент.
     int16      rshift;
     ModeCouple mode_couple;                 // Режим по входу.
     Divider    divider;                     // Множитель.
