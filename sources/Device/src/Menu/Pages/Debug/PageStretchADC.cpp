@@ -7,12 +7,23 @@
 #include "Settings/SettingsNRST.h"
 
 
+//----------------------------------------------------------------------------------------------------------------------
+
+static bool IsActive()
+{
+    return StretchADCtype::IsHand();
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_Mode(bool active)
 {
     if (active)
     {
         PageDebug::LoadStretchADC(ChA);
         PageDebug::LoadStretchADC(ChB);
+
+        SettingsNRST::CommonOnChanged();
     }
 }
 
@@ -27,16 +38,13 @@ DEF_CHOICE_3(cMode, PageDebug::PageADC::PageStretch::self,
     setNRST.adc.type_stretch, nullptr, OnChanged_Mode, nullptr
 )
 
+//----------------------------------------------------------------------------------------------------------------------
 
 static void OnChanged_A()
 {
     //    FPGA::WriteToHardware(WR_CAL_A, (uint8)DEBUG_STRETCH_ADC_A, true);
-}
 
-
-static bool IsActive()
-{
-    return StretchADCtype::IsHand();
+    SettingsNRST::CommonOnChanged();
 }
 
 
@@ -47,10 +55,13 @@ DEF_GOVERNOR(gADC_A, PageDebug::PageADC::PageStretch::self,
     setNRST.chan[ChA].stretch_hand, 0, 255, IsActive, OnChanged_A, nullptr
 )
 
+//----------------------------------------------------------------------------------------------------------------------
 
 static void OnChanged_B()
 {
     //    FPGA::WriteToHardware(WR_CAL_B, (uint8)DEBUG_STRETCH_ADC_B, true);
+
+    SettingsNRST::CommonOnChanged();
 }
 
 
@@ -61,6 +72,7 @@ DEF_GOVERNOR(gADC_B, PageDebug::PageADC::PageStretch::self,
     setNRST.chan[ChB].stretch_hand, 0, 255, IsActive, OnChanged_B, nullptr
 )
 
+//----------------------------------------------------------------------------------------------------------------------
 
 DEF_PAGE_3(pageStretchADC, PageDebug::PageADC::self, NamePage::DebugADCstretch,
     "–¿—“ﬂ∆ ¿", "STRETCH",
