@@ -14,17 +14,17 @@ struct ROM
     static void Init();
 
     // Функция для сохранения/восстановления настроек
-    struct Settings
-    {
-        // Проверяет память и устраняет найденные ошибки
-        static void CheckMemory();
-
-        static void Save();
-
-        static bool Load();
-
-        static void Erase();
-    };
+//    struct Settings
+//    {
+//        // Проверяет память и устраняет найденные ошибки
+//        static void CheckMemory();
+//
+//        static void Save();
+//
+//        static bool Load();
+//
+//        static void Erase();
+//    };
 
     // Функции для сохранения/загрузки несбрасываемых калибровочных настроек
     struct NRST

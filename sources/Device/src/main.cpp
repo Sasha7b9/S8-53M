@@ -8,6 +8,8 @@
 
 int main()
 {
+    setNRST.Init();
+
     set.Load(true);
     
     Device::Init();

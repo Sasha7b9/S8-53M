@@ -58,12 +58,14 @@ struct SettingsNRST
 
     uint               size;                // Размер структуры.За одно при загрузке из памяти можно определить, что
                                             // структура пуста - здесь будет значение 0xFFFFFFFF
+    uint               crc32;               // Контрольная сумма для проверки корректности сохранённых данных
     bool               show_stats;          // Показывать статистику на экране (fps, например).
     SettingsRangomizer rand;
     SettingsADC        adc;
     SettingsChannel    chan[Channel::Count];
     SettingsConsole    console;
     SettingsRegisters  show_registers;
+    uint               unused_crc32;        // Неиспользуемая переменная. Нужна для расчёта crc32. Всегда равна нулю
 
     // Инициализация при включении. Проиходит определние наличия настроек в ROM и их загрузка в случае, если настройки есть. Если настроек нету - инициализация значениями по умолчанию
     void Init();

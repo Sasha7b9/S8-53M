@@ -87,77 +87,77 @@ static SectorSet sectorSecond = { Sector::Get(Sector::_11_SETTINGS_2) };
 
 
 // Возвращает указатель на последнюю сохранённую запись
-static Record *LastSaved();
+//static Record *LastSaved();
 
 
 void ROM::Init()
 {
-    ROM::Settings::CheckMemory();
+//    ROM::Settings::CheckMemory();
 }
 
 
-void ROM::Settings::Erase()
-{
-    sectorFirst.sector.Erase();
-    sectorSecond.sector.Erase();
-}
+//void ROM::Settings::Erase()
+//{
+//    sectorFirst.sector.Erase();
+//    sectorSecond.sector.Erase();
+//}
 
 
-void ROM::Settings::Save()
-{
-    Record *record = nullptr;
-
-    Record *lastSaved = LastSaved();
-
-    if(lastSaved)
-    {
-        record = lastSaved->GetSector()->FirstFree();
-
-        if(!record)
-        {
-            SectorSet *sector = lastSaved->GetAnotherSector();
-            
-            record = sector->FirstFree();
-
-            if(!record)
-            {
-                sector->sector.Erase();
-
-                record = sector->FirstFree();
-            }
-        }
-    }
-    else
-    {
-        record = sectorFirst.FirstFree();
-    }
-
-                                                          // Если запись пустая, то номер будет равен 0 = 0xFFFFFFFF + 1
-    set.number = lastSaved ? (lastSaved->set.number + 1) : 0;
-    set.crc32 = set.CalcWriteCRC32();
-
-    HAL_ROM::WriteBufferBytes(Math::ToUINT(record), &set, sizeof(set));
-}
-
-
-bool ROM::Settings::Load()
-{
-    Record *record = LastSaved();
-
-    if(record)
-    {
-        std::memcpy(&set, &record->set, sizeof(record->set));
-    }
-
-    return (record != nullptr);
-}
+//void ROM::Settings::Save()
+//{
+//    Record *record = nullptr;
+//
+//    Record *lastSaved = LastSaved();
+//
+//    if(lastSaved)
+//    {
+//        record = lastSaved->GetSector()->FirstFree();
+//
+//        if(!record)
+//        {
+//            SectorSet *sector = lastSaved->GetAnotherSector();
+//            
+//            record = sector->FirstFree();
+//
+//            if(!record)
+//            {
+//                sector->sector.Erase();
+//
+//                record = sector->FirstFree();
+//            }
+//        }
+//    }
+//    else
+//    {
+//        record = sectorFirst.FirstFree();
+//    }
+//
+//                                                          // Если запись пустая, то номер будет равен 0 = 0xFFFFFFFF + 1
+//    set.number = lastSaved ? (lastSaved->set.number + 1) : 0;
+//    set.crc32 = set.CalcWriteCRC32();
+//
+//    HAL_ROM::WriteBufferBytes(Math::ToUINT(record), &set, sizeof(set));
+//}
 
 
-void ROM::Settings::CheckMemory()
-{
-    sectorFirst.CheckAndCorrect();
-    sectorSecond.CheckAndCorrect();
-}
+//bool ROM::Settings::Load()
+//{
+//    Record *record = LastSaved();
+//
+//    if(record)
+//    {
+//        std::memcpy(&set, &record->set, sizeof(record->set));
+//    }
+//
+//    return (record != nullptr);
+//}
+
+
+//void ROM::Settings::CheckMemory()
+//{
+//    sectorFirst.CheckAndCorrect();
+//    sectorSecond.CheckAndCorrect();
+//}
 
 
 String OTP::GetSerialNumber(int *freeForWrite)
@@ -174,28 +174,28 @@ bool OTP::SaveSerialNumber(char *servialNumber)
 }
 
 
-static Record *LastSaved()
-{
-    Record *saved1 = sectorFirst.LastSaved();
-    Record *saved2 = sectorSecond.LastSaved();
-
-    if (saved1 && saved2)
-    {
-        return (saved1->set.number > saved2->set.number) ? saved1 : saved2;
-    }
-
-    if (!saved1 && !saved2)
-    {
-        return nullptr;
-    }
-
-    if (!saved2)
-    {
-        return saved1;
-    }
-
-    return saved2;
-}
+//static Record *LastSaved()
+//{
+//    Record *saved1 = sectorFirst.LastSaved();
+//    Record *saved2 = sectorSecond.LastSaved();
+//
+//    if (saved1 && saved2)
+//    {
+//        return (saved1->set.number > saved2->set.number) ? saved1 : saved2;
+//    }
+//
+//    if (!saved1 && !saved2)
+//    {
+//        return nullptr;
+//    }
+//
+//    if (!saved2)
+//    {
+//        return saved1;
+//    }
+//
+//    return saved2;
+//}
 
 
 Record *Record::NextFree()

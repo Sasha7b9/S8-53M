@@ -8,6 +8,7 @@
 static const SettingsNRST defaultNRST =
 {
     0,
+    0,
     false,                          // show_stats
     {
         6,                          // num_ave
@@ -44,7 +45,8 @@ static const SettingsNRST defaultNRST =
     {
         false,                  // отображать пред/после запуск
         false, false, false, false, false, false, false, false, false, false, false
-    }
+    },
+    0
 };
 
 
@@ -59,7 +61,23 @@ int SettingsNRST::SettingsConsole::GetSizeFontForConsole()
 
 void SettingsNRST::Init()
 {
+    SettingsNRST *saved = ROM::NRST::GetSaved();
 
+    if (!saved ||                   // Если нет сохранённых настроек
+        saved->size == (uint)(-1))  // или записаное ещё ничего не было
+    {
+        setNRST = defaultNRST;
+    }
+    else if (saved->size != sizeof(*this))
+    {
+        setNRST = defaultNRST;
+        std::memcpy(&setNRST, saved, saved->size);
+        size = sizeof(*this);
+    }
+    else
+    {
+        setNRST = *saved;
+    }
 }
 
 

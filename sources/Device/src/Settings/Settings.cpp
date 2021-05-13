@@ -249,7 +249,7 @@ void Settings::Load(bool /*_default*/)
 
 void Settings::Save()
 {
-    ROM::Settings::Save();
+//    ROM::Settings::Save();
 }
 
 bool Settings::DebugModeEnable()
