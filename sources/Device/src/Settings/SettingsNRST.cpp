@@ -19,6 +19,7 @@ static const SettingsNRST defaultNRST =
     false,                      // view altera writting data
     false,                      // view all altera writting data
     0,                          // alt shift
+    1,                          // num_smooth_for_rand
     {
         false,                  // отображать пред/после запуск
         false, false, false, false, false, false, false, false, false, false, false

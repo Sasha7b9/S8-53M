@@ -42,6 +42,7 @@ struct SettingsNRST
                                                   // START, STOP не показываются).
     int16             altShift;                   // Добавочное смещение для устранения эффекта горизонтальной помехи
                                                   // синхронизации.
+    int16             num_smooth_for_rand;        // Число точек для скользящего фильтра в рандомизаторе
     OutputRegisters   show_registers;
 
     static int  GetSizeFontForConsole();        // Возвращает размер шрифта, которым нужно выводить сообщения в консоли.

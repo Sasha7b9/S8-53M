@@ -8,13 +8,31 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 
+DEF_GOVERNOR(gNumAverages, PageDebug::PageRandomizer::self,
+    "Усредн.", "Average",
+    "",
+    "",
+    setNRST.num_ave_for_rand, 1, 32, nullptr, nullptr, nullptr
+)
+
+//----------------------------------------------------------------------------------------------------------------------
+
+DEF_GOVERNOR(gNumSmooth, PageDebug::PageRandomizer::self,
+    "Сглаживание", "Smoothing",
+    "",
+    "",
+    setNRST.num_smooth_for_rand, 1, 10, nullptr, nullptr, nullptr
+)
+
+//----------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_SamplesForGates()
 {
     FPGA::Randomizer::SetNumberMeasuresForGates(setNRST.num_measures_for_gates);
 }
 
 
-DEF_GOVERNOR(mgSamplesForGates, PageDebug::PageRandomizer::self,
+DEF_GOVERNOR(gSamplesForGates, PageDebug::PageRandomizer::self,
     "Выб-к/ворота", "Samples/gates",
     "",
     "",
@@ -29,7 +47,7 @@ static void OnChanged_AltTShift0()
 }
 
 
-DEF_GOVERNOR(mgAltTShift0, PageDebug::PageRandomizer::self,
+DEF_GOVERNOR(gAltTShift0, PageDebug::PageRandomizer::self,
     "tShift доп.", "tShift alt.",
     "",
     "",
@@ -38,22 +56,14 @@ DEF_GOVERNOR(mgAltTShift0, PageDebug::PageRandomizer::self,
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_GOVERNOR(mgAverage, PageDebug::PageRandomizer::self,
-    "Усредн.", "Average",
-    "",
-    "",
-    setNRST.num_ave_for_rand, 1, 32, nullptr, nullptr, nullptr
-)
-
-//----------------------------------------------------------------------------------------------------------------------
-
-DEF_PAGE_3(pageRandomizer, PageDebug::self, NamePage::DebugRandomizer,
+DEF_PAGE_4(pageRandomizer, PageDebug::self, NamePage::DebugRandomizer,
     "РАНД-ТОР", "RANDOMIZER",
     "",
     "",
-    mgSamplesForGates,
-    mgAltTShift0,
-    mgAverage,
+    gNumAverages,
+    gNumSmooth,
+    gSamplesForGates,
+    gAltTShift0,
     nullptr, nullptr, nullptr, nullptr
 )
 
