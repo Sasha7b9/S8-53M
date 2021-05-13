@@ -35,6 +35,9 @@ struct SettingsNRST
         int8    size_font;      // Размер шрифта консоли - 0 - 5, 1 - 8,
         bool    in_pause;       // Признак того, что консоль находится в режиме паузы. Режим паузы означает, что новые 
                                 // сообщения она не записывает и не сохраняет.
+
+        // Возвращает размер шрифта, которым нужно выводить сообщения в консоли.
+        static int  GetSizeFontForConsole();
     };
 
     struct SettingsRegisters
@@ -59,9 +62,6 @@ struct SettingsNRST
     SettingsChannel    chan[Channel::Count];
     SettingsConsole    console;
     SettingsRegisters  show_registers;
-
-    // Возвращает размер шрифта, которым нужно выводить сообщения в консоли.
-    static int  GetSizeFontForConsole();
 
     // Эту функцию нужно вызывать после каждого изменения несбрасываемой настройки
     static void CommonOnChanged();

@@ -20,7 +20,7 @@ static int                      lastStringForPause = -1;
 void Console::Draw()
 {
     int count = 0;
-    Font::Set(SettingsNRST::GetSizeFontForConsole() == 5 ? TypeFont::S5 : TypeFont::S8);
+    Font::Set(SettingsNRST::SettingsConsole::GetSizeFontForConsole() == 5 ? TypeFont::S5 : TypeFont::S8);
     int height = Font::GetSize();
 
     int last_string = FirstEmptyString() - 1;

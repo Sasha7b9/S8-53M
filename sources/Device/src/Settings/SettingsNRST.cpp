@@ -48,7 +48,7 @@ static const SettingsNRST defaultNRST =
 SettingsNRST setNRST = defaultNRST;
 
 
-int SettingsNRST::GetSizeFontForConsole()
+int SettingsNRST::SettingsConsole::GetSizeFontForConsole()
 {
     return setNRST.console.size_font ? 8 : 5;
 }
