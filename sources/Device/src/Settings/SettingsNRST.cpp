@@ -20,11 +20,13 @@ static const SettingsNRST defaultNRST =
     {
         {
             0,                      // balance
-            128                     // stretch
+            128,                    // stretch
+            { { 0 }, { 0 } }        // rshift_add
         },
         {
             0,                      // balance
-            128                     // stretch
+            128,                    // stretch
+            { { 0 }, { 0 } }        // rshift_add
         }
     },
     {
