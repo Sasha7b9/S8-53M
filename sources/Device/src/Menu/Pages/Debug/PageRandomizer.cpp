@@ -41,6 +41,17 @@ DEF_GOVERNOR(gSamplesForGates, PageDebug::PageRandomizer::self,
 
 //----------------------------------------------------------------------------------------------------------------------
 
+DEF_CHOICE_2(gShowInfo, PageDebug::PageRandomizer::self,
+    "Информация", "Information",
+    "Показывать информацию о воротах рандомизатора",
+    "To show information on randomizer gate",
+    "Не показывать", "Hide",
+    "Показывать", "Show",
+    setNRST.rand.show_info, nullptr, nullptr, nullptr
+)
+
+//----------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_AltTShift0()
 {
     TShift::SetDelta(setNRST.rand.shift_T0);
@@ -56,13 +67,14 @@ DEF_GOVERNOR(gAltTShift0, PageDebug::PageRandomizer::self,
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_PAGE_4(pageRandomizer, PageDebug::self, NamePage::DebugRandomizer,
+DEF_PAGE_5(pageRandomizer, PageDebug::self, NamePage::DebugRandomizer,
     "РАНД-ТОР", "RANDOMIZER",
     "",
     "",
     gNumAverages,
     gNumSmooth,
     gSamplesForGates,
+    gShowInfo,
     gAltTShift0,
     nullptr, nullptr, nullptr, nullptr
 )

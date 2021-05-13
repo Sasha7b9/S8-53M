@@ -10,7 +10,8 @@ static const SettingsNRST defaultNRST =
         6,                          // num_ave
         1,                          // num_smooth
         1000,                       // num_measures_for_gates
-        0                           // shift_T0
+        0,                          // shift_T0
+        false                       // show_info
     },
     {
         BalanceADCtype::Settings,   // type_balance
