@@ -1279,9 +1279,9 @@
               <FilePath>..\common\Hardware\Memory\ROM_Data_.cpp</FilePath>
             </File>
             <File>
-              <FileName>ROM_NRST_.cpp</FileName>
+              <FileName>ROM_Settings_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\Memory\ROM_NRST_.cpp</FilePath>
+              <FilePath>..\common\Hardware\Memory\ROM_Settings_.cpp</FilePath>
             </File>
             <File>
               <FileName>Sector_.h</FileName>
@@ -3709,9 +3709,9 @@
               <FilePath>..\common\Hardware\Memory\ROM_Data_.cpp</FilePath>
             </File>
             <File>
-              <FileName>ROM_NRST_.cpp</FileName>
+              <FileName>ROM_Settings_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\Memory\ROM_NRST_.cpp</FilePath>
+              <FilePath>..\common\Hardware\Memory\ROM_Settings_.cpp</FilePath>
             </File>
             <File>
               <FileName>Sector_.h</FileName>

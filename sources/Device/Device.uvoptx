@@ -2525,7 +2525,7 @@
 
   <Group>
     <GroupName>Hardware/Memory</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -2572,8 +2572,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\common\Hardware\Memory\ROM_NRST_.cpp</PathWithFileName>
-      <FilenameWithoutPath>ROM_NRST_.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\Memory\ROM_Settings_.cpp</PathWithFileName>
+      <FilenameWithoutPath>ROM_Settings_.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
