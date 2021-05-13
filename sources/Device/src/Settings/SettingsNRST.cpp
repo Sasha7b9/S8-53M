@@ -1,10 +1,13 @@
 // 2021/05/12 10:18:26 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
+#include "common/Hardware/Memory/ROM_.h"
 #include "Settings/SettingsNRST.h"
+#include <cstring>
 
 
 static const SettingsNRST defaultNRST =
 {
+    0,
     false,                          // show_stats
     {
         6,                          // num_ave
@@ -54,19 +57,40 @@ int SettingsNRST::SettingsConsole::GetSizeFontForConsole()
 }
 
 
-void SettingsNRST::Save()
+void SettingsNRST::Init()
 {
 
 }
 
 
+void SettingsNRST::Save()
+{
+    SettingsNRST *saved = ROM::NRST::GetSaved();
+
+    size = sizeof(*this);
+
+    if (!saved ||               // ≈сли нет сохранЄнных настроек
+        saved->size != size ||  // или размер структуры не совпадают
+        *saved != setNRST)      // или записанные и текущие настройки не совпадают
+    {
+        ROM::NRST::Save(this);
+    }
+}
+
+
 void SettingsNRST::CommonOnChanged()
 {
-    Save();
+    setNRST.Save();
 }
 
 
 void SettingsNRST::CommonOnChanged(bool)
 {
     CommonOnChanged();
+}
+
+
+bool SettingsNRST::operator!=(const SettingsNRST &rhs)
+{
+    return std::memcmp(this, &rhs, sizeof(*this)) != 0;
 }
