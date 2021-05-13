@@ -6,142 +6,156 @@
 #include "Settings/SettingsNRST.h"
 
 
-DEF_CHOICE_2(mcLaunchFPGA, PageDebug::PageConsole::PageRegisters::self,
+//----------------------------------------------------------------------------------------------------------------------
+
+DEF_CHOICE_2(cLaunchFPGA, PageDebug::PageConsole::PageRegisters::self,
     "Çàïóñê", "Launch",
     "",
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    setNRST.show_registers.launch, nullptr, nullptr, nullptr
+    setNRST.show_registers.launch, nullptr, SettingsNRST::CommonOnChanged, nullptr
 )
 
+//----------------------------------------------------------------------------------------------------------------------
 
-DEF_CHOICE_2(mcRD_FL, PageDebug::PageConsole::PageRegisters::self,
+DEF_CHOICE_2(cRD_FL, PageDebug::PageConsole::PageRegisters::self,
     "RD_FL", "RD_FL",
     "",
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    setNRST.show_registers.flag, nullptr, nullptr, nullptr
+    setNRST.show_registers.flag, nullptr, SettingsNRST::CommonOnChanged, nullptr
 )
 
+//----------------------------------------------------------------------------------------------------------------------
 
-DEF_CHOICE_2(mcRShiftA, PageDebug::PageConsole::PageRegisters::self,
+DEF_CHOICE_2(cRShiftA, PageDebug::PageConsole::PageRegisters::self,
     "U ñì. 1ê", "U shift 1ch",
     "",
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    setNRST.show_registers.rShiftA, nullptr, nullptr, nullptr
+    setNRST.show_registers.rShiftA, nullptr, SettingsNRST::CommonOnChanged, nullptr
 )
 
+//----------------------------------------------------------------------------------------------------------------------
 
-DEF_CHOICE_2(mcRShiftB, PageDebug::PageConsole::PageRegisters::self,
+DEF_CHOICE_2(cRShiftB, PageDebug::PageConsole::PageRegisters::self,
     "U ñì. 2ê", "U shift 2ch",
     "",
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    setNRST.show_registers.rShiftB, nullptr, nullptr, nullptr
+    setNRST.show_registers.rShiftB, nullptr, SettingsNRST::CommonOnChanged, nullptr
 )
 
+//----------------------------------------------------------------------------------------------------------------------
 
-DEF_CHOICE_2(mcTrigLev, PageDebug::PageConsole::PageRegisters::self,
+DEF_CHOICE_2(cTrigLev, PageDebug::PageConsole::PageRegisters::self,
     "U ñèíõð.", "U trig.",
     "",
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    setNRST.show_registers.trigLev, nullptr, nullptr, nullptr
+    setNRST.show_registers.trigLev, nullptr, SettingsNRST::CommonOnChanged, nullptr
 )
 
+//----------------------------------------------------------------------------------------------------------------------
 
-DEF_CHOICE_2(mcRangeA, PageDebug::PageConsole::PageRegisters::self,
+DEF_CHOICE_2(cRangeA, PageDebug::PageConsole::PageRegisters::self,
     "ÂÎËÜÒ/ÄÅË 1", "Range 1",
     "",
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    setNRST.show_registers.rangeA, nullptr, nullptr, nullptr
+    setNRST.show_registers.rangeA, nullptr, SettingsNRST::CommonOnChanged, nullptr
 )
 
+//----------------------------------------------------------------------------------------------------------------------
 
-DEF_CHOICE_2(mcRangeB, PageDebug::PageConsole::PageRegisters::self,
+DEF_CHOICE_2(cRangeB, PageDebug::PageConsole::PageRegisters::self,
     "ÂÎËÜÒ/ÄÅË 2", "Range 2",
     "",
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    setNRST.show_registers.rangeB, nullptr, nullptr, nullptr
+    setNRST.show_registers.rangeB, nullptr, SettingsNRST::CommonOnChanged, nullptr
 )
 
+//----------------------------------------------------------------------------------------------------------------------
 
-DEF_CHOICE_2(mTrigParam, PageDebug::PageConsole::PageRegisters::self,
+DEF_CHOICE_2(cTrigParam, PageDebug::PageConsole::PageRegisters::self,
     "Ïàðàì. ñèíõð.", "Trig param",
     "",
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    setNRST.show_registers.trigParam, nullptr, nullptr, nullptr
+    setNRST.show_registers.trigParam, nullptr, SettingsNRST::CommonOnChanged, nullptr
 )
 
+//----------------------------------------------------------------------------------------------------------------------
 
-DEF_CHOICE_2(mcChanParamA, PageDebug::PageConsole::PageRegisters::self,
+DEF_CHOICE_2(cChanParamA, PageDebug::PageConsole::PageRegisters::self,
     "Ïàðàì. êàí. 1", "Chan 1 param",
     "",
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    setNRST.show_registers.chanParamA, nullptr, nullptr, nullptr
+    setNRST.show_registers.chanParamA, nullptr, SettingsNRST::CommonOnChanged, nullptr
 )
 
+//----------------------------------------------------------------------------------------------------------------------
 
-DEF_CHOICE_2(mcChanParamB, PageDebug::PageConsole::PageRegisters::self,
+DEF_CHOICE_2(cChanParamB, PageDebug::PageConsole::PageRegisters::self,
     "Ïàðàì. êàí. 2", "Chan 2 param",
     "",
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    setNRST.show_registers.chanParamB, nullptr, nullptr, nullptr
+    setNRST.show_registers.chanParamB, nullptr, SettingsNRST::CommonOnChanged, nullptr
 )
 
+//----------------------------------------------------------------------------------------------------------------------
 
-DEF_CHOICE_2(mcTBase, PageDebug::PageConsole::PageRegisters::self,
+DEF_CHOICE_2(cTBase, PageDebug::PageConsole::PageRegisters::self,
     "ÂÐÅÌß/ÄÅË", "TBase",
     "",
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    setNRST.show_registers.tBase, nullptr, nullptr, nullptr
+    setNRST.show_registers.tBase, nullptr, SettingsNRST::CommonOnChanged, nullptr
 )
 
+//----------------------------------------------------------------------------------------------------------------------
 
-DEF_CHOICE_2(mcTShift, PageDebug::PageConsole::PageRegisters::self,
+DEF_CHOICE_2(cTShift, PageDebug::PageConsole::PageRegisters::self,
     "Ò ñì.", "tShift",
     "",
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    setNRST.show_registers.tShift, nullptr, nullptr, nullptr
+    setNRST.show_registers.tShift, nullptr, SettingsNRST::CommonOnChanged, nullptr
 )
 
+//----------------------------------------------------------------------------------------------------------------------
 
 DEF_PAGE_12(pageRegisters, PageDebug::PageConsole::self, NamePage::DebugShowRegisters,
     "ÐÅÃÈÑÒÐÛ", "REGISTERS",
     "",
     "",
-    mcLaunchFPGA,
-    mcRD_FL,
-    mcRShiftA,
-    mcRShiftB,
-    mcTrigLev,
-    mcRangeA,
-    mcRangeB,
-    mTrigParam,
-    mcChanParamA,
-    mcChanParamB,
-    mcTBase,
-    mcTShift,
+    cLaunchFPGA,
+    cRD_FL,
+    cRShiftA,
+    cRShiftB,
+    cTrigLev,
+    cRangeA,
+    cRangeB,
+    cTrigParam,
+    cChanParamA,
+    cChanParamB,
+    cTBase,
+    cTShift,
     nullptr, nullptr, nullptr, nullptr
 )
 
