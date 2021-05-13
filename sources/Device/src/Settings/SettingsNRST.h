@@ -32,7 +32,8 @@ struct SettingsNRST
 
     struct SettingsADC
     {
-        BalanceADCtype::E type_balance; // Тип балансировки.
+        BalanceADCtype::E type_balance; // Тип балансировки
+        int16             balance[2];   // Значение дополнительного смещения АЦП для ручной балансировки
     };
 
     int16             num_srings;                 // Число строк в консоли.
@@ -40,7 +41,6 @@ struct SettingsNRST
     bool              console_in_pause;           // \brief Признак того, что консоль находится в режиме паузы. Режим
                                                   // паузы означает, что новые 
                                                   // сообщения она не записывает и не сохраняет.
-    int16             balance_ADC[2];             // Значение дополнительного смещения АЦП для ручной балансировки.
     StretchADCtype::E stretch_ADC_type;           // Тип растяжки канала.
     int16             stretch_ADC[2];             // Значение растяжки канала для ручного режима.
     bool              show_stats;                 // Показывать статистику на экране (fps, например).

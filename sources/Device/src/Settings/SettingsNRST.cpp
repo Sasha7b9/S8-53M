@@ -8,7 +8,6 @@ static const SettingsNRST defaultNRST =
     10,                         // numStrings
     0,                          // размер шрифта - 5
     0,                          // consoleInPause
-    {0, 5},                     // shiftADC
     StretchADCtype::Settings,   // stretch
     {128, 128},                 // stretchADC
     false,                      // showStats
@@ -23,6 +22,7 @@ static const SettingsNRST defaultNRST =
     },
     {
         BalanceADCtype::Settings,   // type_balance
+        {0, 5},                     // balance
     },
     {
         false,                  // отображать пред/после запуск
