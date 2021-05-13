@@ -290,6 +290,7 @@ struct SettingsMenu
 // Струкура хранит все настройки прибора.
 struct Settings
 {
+    uint             size;
     uint             crc32;
     uint             number;
     SettingsDisplay  display;              // настройки изображения          (меню ДИСПЛЕЙ).

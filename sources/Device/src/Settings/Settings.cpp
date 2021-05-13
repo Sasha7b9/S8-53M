@@ -17,6 +17,7 @@ bool Settings::loaded = false;
 
 static const Settings defaultSettings =
 {
+    0,                              // size
     0,                              // crc32
     0,                              // number
     // Display
@@ -249,7 +250,7 @@ void Settings::Load(bool /*_default*/)
 
 void Settings::Save()
 {
-//    ROM::Settings<Settings>::Save(this);
+    ROM::Settings<Settings>::Save(this);
 }
 
 bool Settings::DebugModeEnable()
