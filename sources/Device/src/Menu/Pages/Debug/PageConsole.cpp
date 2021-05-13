@@ -10,7 +10,7 @@ DEF_GOVERNOR(mgNumStrings, PageDebug::PageConsole::self,
     "Число строк", "Number strings",
     "",
     "",
-    setNRST.num_srings, 0, 33, nullptr, nullptr, nullptr
+    setNRST.console.num_srings, 0, 33, nullptr, nullptr, nullptr
 )
 
 

@@ -38,7 +38,11 @@ struct SettingsNRST
         int16             stretch[2];   // Значение растяжки канала для ручного режима.
     };
 
-    int16             num_srings;                 // Число строк в консоли.
+    struct SettingsConsole
+    {
+        int16             num_srings;   // Число строк в консоли.
+    };
+
     int8              size_font;                  // Размер шрифта консоли - 0 - 5, 1 - 8,
     bool              console_in_pause;           // \brief Признак того, что консоль находится в режиме паузы. Режим
                                                   // паузы означает, что новые 
@@ -52,6 +56,7 @@ struct SettingsNRST
                                                   // синхронизации.
     SettingsRangomizer rand;
     SettingsADC        adc;
+    SettingsConsole    console;
     OutputRegisters    show_registers;
 
     static int  GetSizeFontForConsole();        // Возвращает размер шрифта, которым нужно выводить сообщения в консоли.

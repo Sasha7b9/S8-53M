@@ -5,7 +5,6 @@
 
 static const SettingsNRST defaultNRST =
 {
-    10,                         // numStrings
     0,                          // размер шрифта - 5
     0,                          // consoleInPause
     false,                      // showStats
@@ -23,6 +22,9 @@ static const SettingsNRST defaultNRST =
         {0, 5},                     // balance
         StretchADCtype::Settings,   // type_stretch
         {128, 128}                  // stretch
+    },
+    {
+        10,                         // num_srings
     },
     {
         false,                  // отображать пред/после запуск

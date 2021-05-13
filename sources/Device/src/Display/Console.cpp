@@ -24,7 +24,7 @@ void Console::Draw()
     int height = Font::GetSize();
 
     int last_string = FirstEmptyString() - 1;
-    int numStr = setNRST.num_srings;
+    int numStr = setNRST.console.num_srings;
 
     if (height == 8 && numStr > 22)
     {
@@ -182,7 +182,7 @@ void Console::OneStringUp()
     if (!setNRST.console_in_pause)
     {
     }
-    else if (lastStringForPause > setNRST.num_srings - 1)
+    else if (lastStringForPause > setNRST.console.num_srings - 1)
     {
         lastStringForPause--;
     }
