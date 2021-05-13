@@ -22,7 +22,7 @@ struct OutputRegisters
 
 struct SettingsNRST
 {
-    struct RangomizerNRST
+    struct SettingsRangomizer
     {
         int16   num_ave;                // По скольким измерениям усреднять сигнал
         int16   num_smooth;             // Число точек для скользящего фильтра
@@ -46,8 +46,8 @@ struct SettingsNRST
                                                   // START, STOP не показываются).
     int16             altShift;                   // Добавочное смещение для устранения эффекта горизонтальной помехи
                                                   // синхронизации.
-    RangomizerNRST    rand;
-    OutputRegisters   show_registers;
+    SettingsRangomizer rand;
+    OutputRegisters    show_registers;
 
     static int  GetSizeFontForConsole();        // Возвращает размер шрифта, которым нужно выводить сообщения в консоли.
 };
