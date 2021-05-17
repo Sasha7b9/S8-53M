@@ -26,7 +26,7 @@ int main()
     MainStruct::ms = (MainStruct *)(std::malloc(sizeof(MainStruct)));
     MainStruct::ms->percentUpdate = 0.0F;
 
-    Hardware_Init();
+    HAL::Init();
 
 //    Settings_Load();
 
@@ -46,8 +46,10 @@ int main()
     {
     }
 
-    if (((MainStruct::ms->drive.connection != 0) && (MainStruct::ms->drive.active == 0)) ||  // ≈сли флеша подключена, но в активное состо€ние почему-то не перешла
-        ((MainStruct::ms->drive.active != 0) && (MainStruct::ms->state != State::Mount)))     // или перешла в активное состо€ние, по почему-то не запустилс€ процесс монтировани€
+        // ≈сли флеша подключена, но в активное состо€ние почему-то не перешла
+    if (((MainStruct::ms->drive.connection != 0) && (MainStruct::ms->drive.active == 0)) ||
+        // или перешла в активное состо€ние, по почему-то не запустилс€ процесс монтировани€
+        ((MainStruct::ms->drive.active != 0) && (MainStruct::ms->state != State::Mount)))
     {
         std::free(MainStruct::ms);
         HAL::SystemReset();
