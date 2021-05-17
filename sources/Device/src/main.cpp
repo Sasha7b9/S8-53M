@@ -8,9 +8,9 @@
 
 int main()
 {
-    setNRST.Init();
+//    setNRST.Init();
 
-    set.Load();
+//    set.Load();
     
     Device::Init();
        
