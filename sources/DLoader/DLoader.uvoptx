@@ -312,38 +312,6 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>403</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134225702</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\DLoader\../common/STM32Cube_F4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c\403</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>392</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134225678</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\DLoader\../common/STM32Cube_F4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c\392</Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
           <LineNumber>32</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>134260406</Address>
@@ -358,11 +326,11 @@
           <Expression>\\DLoader\src/main.cpp\32</Expression>
         </Bp>
         <Bp>
-          <Number>3</Number>
+          <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>28</LineNumber>
+          <LineNumber>34</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134260402</Address>
+          <Address>134260412</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -371,39 +339,39 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>&lt;2&gt;.\src\main.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\DLoader\src/main.cpp\28</Expression>
+          <Expression>\\DLoader\src/main.cpp\34</Expression>
         </Bp>
         <Bp>
-          <Number>4</Number>
+          <Number>2</Number>
           <Type>0</Type>
-          <LineNumber>32</LineNumber>
+          <LineNumber>403</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134252862</Address>
+          <Address>134225702</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;..\common\Hardware\HAL\HAL_.cpp</Filename>
+          <Filename>&lt;1&gt;..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\DLoader\../common/Hardware/HAL/HAL_.cpp\32</Expression>
+          <Expression>\\DLoader\../common/STM32Cube_F4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c\403</Expression>
         </Bp>
         <Bp>
-          <Number>5</Number>
+          <Number>3</Number>
           <Type>0</Type>
-          <LineNumber>56</LineNumber>
+          <LineNumber>400</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134252866</Address>
+          <Address>134225690</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;..\common\Hardware\HAL\HAL_.cpp</Filename>
+          <Filename>&lt;1&gt;..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\DLoader\../common/Hardware/HAL/HAL_.cpp\56</Expression>
+          <Expression>\\DLoader\../common/STM32Cube_F4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c\400</Expression>
         </Bp>
       </Breakpoint>
       <MemoryWindow1>
@@ -1612,7 +1580,7 @@
 
   <Group>
     <GroupName>src</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
