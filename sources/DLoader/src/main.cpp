@@ -28,7 +28,7 @@ int main()
 
     Hardware_Init();
 
-    Settings_Load();
+//    Settings_Load();
 
     HAL_TIM2::Delay(250);
 
