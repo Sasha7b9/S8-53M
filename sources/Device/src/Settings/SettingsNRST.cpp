@@ -60,9 +60,9 @@ int SettingsNRST::SettingsConsole::GetSizeFontForConsole()
 }
 
 
-void SettingsNRST::Init()
+void SettingsNRST::Load()
 {
-    SettingsNRST *saved = ROM::Settings<SettingsNRST>::GetSaved();
+    SettingsNRST *saved = ROM::Settings<SettingsNRST>::Load();
 
     if (!saved ||                   // Если нет сохранённых настроек
         saved->size == (uint)(-1))  // или записаное ещё ничего не было
@@ -84,7 +84,7 @@ void SettingsNRST::Init()
 
 void SettingsNRST::Save()
 {
-    SettingsNRST *saved = ROM::Settings<SettingsNRST>::GetSaved();
+    SettingsNRST *saved = ROM::Settings<SettingsNRST>::Load();
 
     size = sizeof(*this);
 

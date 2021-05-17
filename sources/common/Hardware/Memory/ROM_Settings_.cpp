@@ -7,10 +7,10 @@
 
 
 template void ROM::Settings<SettingsCommon>::Save(SettingsCommon *set);
-template SettingsCommon *ROM::Settings<SettingsCommon>::GetSaved();
+template SettingsCommon *ROM::Settings<SettingsCommon>::Load();
 
 template void ROM::Settings<SettingsNRST>::Save(SettingsNRST *nrst);
-template SettingsNRST *ROM::Settings<SettingsNRST>::GetSaved();
+template SettingsNRST *ROM::Settings<SettingsNRST>::Load();
 
 
 template<class T>
@@ -55,7 +55,7 @@ struct StructSector
 
 
 template<class T>
-T *ROM::Settings<T>::GetSaved()
+T *ROM::Settings<T>::Load()
 {
     StructSector<T> sector1 = { HAL_ROM::sectors[Sector::_03_NRST_1] };
     StructSector<T> sector2 = { HAL_ROM::sectors[Sector::_04_NRST_2] };

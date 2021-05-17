@@ -16,12 +16,10 @@ struct ROM
     struct Settings
     {
         // Возвращает указатель на хранящиеся в ROM несбрасываемые настройки. nullptr в случае, если настроек там нет
-        static T *GetSaved();
+        static T *Load();
         
         // Сохраняет настройки из адреса nrst в ROM
         static void Save(T *nrst);
-
-        static void Erase();
     };
 
     // Функция для сохранения/восстановления данных

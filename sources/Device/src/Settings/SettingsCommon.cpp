@@ -207,7 +207,7 @@ SettingsCommon set;
 
 void SettingsCommon::Load()
 {
-    SettingsCommon *saved = ROM::Settings<SettingsCommon>::GetSaved();
+    SettingsCommon *saved = ROM::Settings<SettingsCommon>::Load();
 
     if (saved)
     {
