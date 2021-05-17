@@ -7,59 +7,59 @@
 extern "C" {
 #endif
 
-void NMI_Handler()
-{
-}
-
-void HardFault_Handler()
-{
-    while (1)
-    {      
+    void NMI_Handler()
+    {
     }
-}
 
-void MemManage_Handler()
-{
-  while (1)
-  {
-  }
-}
+    void HardFault_Handler()
+    {
+        while (1)
+        {
+        }
+    }
 
-void BusFault_Handler()
-{
-  while (1)
-  {
-  }
-}
+    void MemManage_Handler()
+    {
+        while (1)
+        {
+        }
+    }
 
-void UsageFault_Handler()
-{
-  while (1)
-  {
-  }
-}
+    void BusFault_Handler()
+    {
+        while (1)
+        {
+        }
+    }
 
-void SVC_Handler()
-{
-}
+    void UsageFault_Handler()
+    {
+        while (1)
+        {
+        }
+    }
 
-void DebugMon_Handler()
-{
-}
+    void SVC_Handler()
+    {
+    }
 
-void PendSV_Handler()
-{
-}
+    void DebugMon_Handler()
+    {
+    }
 
-void SysTick_Handler()
-{
-  HAL_IncTick();
-}
+    void PendSV_Handler()
+    {
+    }
 
-void OTG_HS_IRQHandler()
-{
-    HAL_HCD_IRQHandler(reinterpret_cast<HCD_HandleTypeDef *>(HAL_HCD::handle));
-}
+    void SysTick_Handler()
+    {
+        HAL_IncTick();
+    }
+
+    void OTG_HS_IRQHandler()
+    {
+        HAL_HCD_IRQHandler(reinterpret_cast<HCD_HandleTypeDef *>(HAL_HCD::handle));
+    }
 
 #ifdef __cplusplus
 }

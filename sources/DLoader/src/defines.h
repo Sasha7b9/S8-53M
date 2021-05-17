@@ -8,8 +8,9 @@ typedef unsigned char bool;
 #define true    (!false)
 #endif
 
-
-#ifndef WIN32
+#ifdef WIN32
+#define __STATIC_INLINE inline
+#else
 #define nullptr 0
 #endif
 
