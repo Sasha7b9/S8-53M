@@ -3,7 +3,6 @@
 #include "common/Utils/Containers/String_.h"
 #include "main.h"
 #include "FDrive/FDrive.h"
-#include "Hardware/Hardware.h"
 #include "Display/Display.h"
 #include "common/Hardware/Timer_.h"
 #include "Panel/Panel.h"

@@ -719,11 +719,6 @@
           <GroupName>Hardware</GroupName>
           <Files>
             <File>
-              <FileName>Hardware.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\Hardware.h</FilePath>
-            </File>
-            <File>
               <FileName>Timer_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\Timer_.cpp</FilePath>
@@ -1930,11 +1925,6 @@
         <Group>
           <GroupName>Hardware</GroupName>
           <Files>
-            <File>
-              <FileName>Hardware.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\Hardware.h</FilePath>
-            </File>
             <File>
               <FileName>Timer_.cpp</FileName>
               <FileType>8</FileType>
