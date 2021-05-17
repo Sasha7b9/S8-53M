@@ -860,11 +860,6 @@
               <FilePath>..\common\Hardware\HAL\HAL_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL.cpp</FilePath>
-            </File>
-            <File>
               <FileName>HAL_IT.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Hardware\HAL\HAL_IT.cpp</FilePath>
@@ -2065,11 +2060,6 @@
               <FileName>HAL_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\HAL\HAL.cpp</FilePath>
             </File>
             <File>
               <FileName>HAL_IT.cpp</FileName>

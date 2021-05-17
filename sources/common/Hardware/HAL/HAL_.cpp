@@ -28,9 +28,11 @@ void HAL::Init()
     HAL_SPI1::Init();
 
     HAL_SPI5::Init();
-   
+
+#ifdef DEVICE    
     HAL_ADC1::Init();
-//
+#endif
+
     HAL_TIM7::Init();
 
     HAL_DAC2::Init();
