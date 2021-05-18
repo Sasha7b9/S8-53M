@@ -84,6 +84,8 @@ void SettingsNRST::Load()
 
 void SettingsNRST::Save()
 {
+    LOG_WRITE("—охран€ю несбрасываемые настройки");
+
     ROM::Settings<SettingsNRST>::Save(this);
 
     /*

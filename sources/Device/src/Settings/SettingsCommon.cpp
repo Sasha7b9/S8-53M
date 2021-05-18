@@ -207,16 +207,18 @@ SettingsCommon set;
 
 void SettingsCommon::Load()
 {
-    SettingsCommon *saved = ROM::Settings<SettingsCommon>::Load();
+    set = defaultSettings;
 
-    if (saved)
-    {
-        set = *saved;
-    }
-    else
-    {
-        set = defaultSettings;
-    }
+//    SettingsCommon *saved = ROM::Settings<SettingsCommon>::Load();
+//
+//    if (saved)
+//    {
+//        set = *saved;
+//    }
+//    else
+//    {
+//        set = defaultSettings;
+//    }
 
 //    if (!_default)
 //    {

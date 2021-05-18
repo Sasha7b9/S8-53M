@@ -60,35 +60,37 @@ struct StructSector
 template<class T>
 T *ROM::Settings<T>::Load()
 {
-    StructSector<T> &sector1 = StructSector<T>::GetSector1();
-    StructSector<T> &sector2 = StructSector<T>::GetSector2();
+    return nullptr;
 
-    T *settings = sector2.GetSaved();
-
-    if (settings)
-    {
-        return settings;
-    }
-
-    return sector1.GetSaved();
+//    StructSector<T> &sector1 = StructSector<T>::GetSector1();
+//    StructSector<T> &sector2 = StructSector<T>::GetSector2();
+//
+//    T *settings = sector2.GetSaved();
+//
+//    if (settings)
+//    {
+//        return settings;
+//    }
+//
+//    return sector1.GetSaved();
 }
 
 
 template<class T>
-void ROM::Settings<T>::Save(T *settings)
+void ROM::Settings<T>::Save(T */*settings*/)
 {
-    StructSector<T> &sector1 = StructSector<T>::GetSector1();
-    StructSector<T> &sector2 = StructSector<T>::GetSector2();
-
-    if (!sector1.SaveSettings(settings))
-    {
-        if (!sector2.SaveSettings(settings))
-        {
-            sector1.sector.Erase();
-            sector1.SaveSettings(settings);
-            sector2.sector.Erase();
-        }
-    }
+//    StructSector<T> &sector1 = StructSector<T>::GetSector1();
+//    StructSector<T> &sector2 = StructSector<T>::GetSector2();
+//
+//    if (!sector1.SaveSettings(settings))
+//    {
+//        if (!sector2.SaveSettings(settings))
+//        {
+//            sector1.sector.Erase();
+//            sector1.SaveSettings(settings);
+//            sector2.sector.Erase();
+//        }
+//    }
 }
 
 
