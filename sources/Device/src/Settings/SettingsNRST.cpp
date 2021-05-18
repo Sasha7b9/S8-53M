@@ -70,17 +70,17 @@ void SettingsNRST::Load()
     if (!saved ||                   // Если нет сохранённых настроек
         saved->size == (uint)(-1))  // или записаное ещё ничего не было
     {
-        setNRST = defaultNRST;
+        *this = defaultNRST;
     }
     else if (saved->size != sizeof(*this))
     {
-        setNRST = defaultNRST;
-        std::memcpy(&setNRST, saved, saved->size);
+        *this = defaultNRST;
+        std::memcpy(this, saved, saved->size);
         size = sizeof(*this);
     }
     else
     {
-        setNRST = *saved;
+        *this = *saved;
     }
 }
 
@@ -93,7 +93,7 @@ void SettingsNRST::Save()
 
     if (!saved ||               // Если нет сохранённых настроек
         saved->size != size ||  // или размер структуры не совпадают
-        *saved != setNRST)      // или записанные и текущие настройки не совпадают
+        *saved != *this)      // или записанные и текущие настройки не совпадают
     {
         ROM::Settings<SettingsNRST>::Save(this);
     }
