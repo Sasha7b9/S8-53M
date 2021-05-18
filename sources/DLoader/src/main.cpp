@@ -27,8 +27,6 @@ int main()
 
     HAL::Init();
 
-//    Settings_Load();
-
     HAL_TIM2::Delay(250);
 
     MainStruct::ms->state = State::Start;

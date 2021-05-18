@@ -312,38 +312,6 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>32</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134260406</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;2&gt;.\src\main.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\DLoader\src/main.cpp\32</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>34</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134260412</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;2&gt;.\src\main.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\DLoader\src/main.cpp\34</Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
           <LineNumber>403</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>134225702</Address>
@@ -358,7 +326,7 @@
           <Expression>\\DLoader\../common/STM32Cube_F4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c\403</Expression>
         </Bp>
         <Bp>
-          <Number>3</Number>
+          <Number>1</Number>
           <Type>0</Type>
           <LineNumber>400</LineNumber>
           <EnabledFlag>1</EnabledFlag>
