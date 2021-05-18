@@ -28,6 +28,10 @@ int main()
     HAL::Init();
 
     HAL_TIM2::Delay(250);
+    
+    HAL::DeInit();
+    
+    HAL::JumpToApplication();
 
     MainStruct::ms->state = State::Start;
 

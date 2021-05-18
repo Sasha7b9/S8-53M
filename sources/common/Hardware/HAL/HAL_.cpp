@@ -201,7 +201,7 @@ void HAL::DeInit()
 
 void HAL::JumpToApplication()
 {
-#define MAIN_PROGRAM_START_ADDRESS  (uint)0x8020000
+#define MAIN_PROGRAM_START_ADDRESS  (uint)0x08020000
 
     typedef void(*pFunction)();
 
