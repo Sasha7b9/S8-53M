@@ -12,8 +12,8 @@ static bool isRun[TypeTimer::Count] = {false};
 
 void Timer::PauseOnTicks(uint numTicks)
 {
-    uint startTicks = gTimerTics;
-    while (gTimerTics - startTicks < numTicks) {};
+    uint startTicks = TIME_TICKS;
+    while (TIME_TICKS - startTicks < numTicks) {};
 }
 
 
@@ -23,15 +23,15 @@ static uint timePrevPoint = 0;
 
 void Timer::StartLogging()
 {
-    timeStartLogging = gTimerTics;
+    timeStartLogging = TIME_TICKS;
     timePrevPoint = timeStartLogging;
 }
 
 
 uint Timer::LogPointUS(char *name)
 {
-    uint interval = gTimerTics - timePrevPoint;
-    timePrevPoint = gTimerTics;
+    uint interval = TIME_TICKS - timePrevPoint;
+    timePrevPoint = TIME_TICKS;
     LOG_WRITE("%s %.2f us", name, (float)(interval) / 120.0F);
     return interval;
 }
@@ -39,8 +39,8 @@ uint Timer::LogPointUS(char *name)
 
 uint Timer::LogPointMS(char *name)
 {
-    uint interval = gTimerTics - timePrevPoint;
-    timePrevPoint = gTimerTics;
+    uint interval = TIME_TICKS - timePrevPoint;
+    timePrevPoint = TIME_TICKS;
     LOG_WRITE("%s %.2f ms", name, interval / 120e3);
     return interval;
 }

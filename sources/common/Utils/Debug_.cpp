@@ -38,16 +38,16 @@ uint Debug::PointProfilingMS(const char *_file, int _line)
 
 void Debug::StartProfilingUS()
 {
-    timeStart = gTimerTics;
+    timeStart = TIME_TICKS;
     timePrev = timeStart;
 }
 
 
 uint Debug::PointProfilingUS(const char *_file, int _line)
 {
-    uint d = gTimerTics - timePrev;
+    uint d = TIME_TICKS - timePrev;
     LOG_WRITE("%s:%d - %d us", _file, _line, d);
-    timePrev = gTimerTics;
+    timePrev = TIME_TICKS;
     return d;
 }
 
@@ -60,13 +60,13 @@ void Debug::ClearTimeCounter()
 
 void Debug::StartIncreaseCounter()
 {
-    timeStartCounter = gTimerTics;
+    timeStartCounter = TIME_TICKS;
 }
 
 
 void Debug::StopIncreaseCounter()
 {
-    timeCounter += (gTimerTics - timeStartCounter);
+    timeCounter += (TIME_TICKS - timeStartCounter);
 }
 
 
