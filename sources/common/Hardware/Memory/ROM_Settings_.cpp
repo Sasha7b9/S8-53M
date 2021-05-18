@@ -57,39 +57,41 @@ struct StructSector
 template<class T>
 T *ROM::Settings<T>::Load()
 {
-    return nullptr;
+    StructSector<T> sector1 = { HAL_ROM::sectors[Sector::_12_NRST_1] };
+    StructSector<T> sector2 = { HAL_ROM::sectors[Sector::_13_NRST_2] };
 
-//    StructSector<T> sector1 = { HAL_ROM::sectors[Sector::_03_NRST_1] };
-//    StructSector<T> sector2 = { HAL_ROM::sectors[Sector::_04_NRST_2] };
-//
-//    T *settings = sector2.GetSaved();
-//
-//    if (settings)
-//    {
-//        return settings;
-//    }
-//
-//    return sector1.GetSaved();
+    T *settings = sector2.GetSaved();
+
+    if (settings)
+    {
+        return settings;
+    }
+
+    return sector1.GetSaved();
 }
 
 
 template<class T>
-void ROM::Settings<T>::Save(T * /*nrst*/)
+void ROM::Settings<T>::Save(T *settings)
 {
-    return;
+    StructSector<T> sectorNRST1 = { HAL_ROM::sectors[Sector::_12_NRST_1] };
+    StructSector<T> sectorNRST2 = { HAL_ROM::sectors[Sector::_13_NRST_2] };
 
-//    StructSector<T> sector1 = { HAL_ROM::sectors[Sector::_03_NRST_1] };
-//    StructSector<T> sector2 = { HAL_ROM::sectors[Sector::_04_NRST_2] };
-//
-//    if (!sector1.SaveSettings(nrst))
-//    {
-//        if (!sector2.SaveSettings(nrst))
-//        {
-//            sector1.sector.Erase();
-//            sector1.SaveSettings(nrst);
-//            sector2.sector.Erase();
-//        }
-//    }
+    StructSector<T> sectorCommon1 = { HAL_ROM::sectors[Sector::_10_SETTINGS_1] };
+    StructSector<T> sectorCommon2 = { HAL_ROM::sectors[Sector::_11_SETTINGS_2] };
+
+    StructSector<T> *sector1 = sizeof(*settings) == sizeof(SettingsNRST) ? &sectorNRST1 : &sectorCommon1;
+    StructSector<T> *sector2 = sizeof(*settings) == sizeof(SettingsNRST) ? &sectorNRST2 : &sectorCommon2;
+
+    if (!sector1->SaveSettings(settings))
+    {
+        if (!sector2->SaveSettings(settings))
+        {
+            sector1->sector.Erase();
+            sector1->SaveSettings(settings);
+            sector2->sector.Erase();
+        }
+    }
 }
 
 

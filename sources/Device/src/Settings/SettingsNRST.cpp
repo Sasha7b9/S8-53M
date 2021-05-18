@@ -84,6 +84,9 @@ void SettingsNRST::Load()
 
 void SettingsNRST::Save()
 {
+    ROM::Settings<SettingsNRST>::Save(this);
+
+    /*
     SettingsNRST *saved = ROM::Settings<SettingsNRST>::Load();
 
     size = sizeof(*this);
@@ -94,6 +97,7 @@ void SettingsNRST::Save()
     {
         ROM::Settings<SettingsNRST>::Save(this);
     }
+    */
 }
 
 

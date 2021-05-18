@@ -19,7 +19,7 @@ struct ROM
         static T *Load();
         
         // Сохраняет настройки из адреса nrst в ROM
-        static void Save(T *nrst);
+        static void Save(T *set);
     };
 
     // Функция для сохранения/восстановления данных
