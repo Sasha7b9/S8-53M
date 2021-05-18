@@ -9,7 +9,7 @@
 template void ROM::Settings<SettingsCommon>::Save(SettingsCommon *set);
 template SettingsCommon *ROM::Settings<SettingsCommon>::Load();
 
-template void ROM::Settings<SettingsNRST>::Save(SettingsNRST *nrst);
+template void ROM::Settings<SettingsNRST>::Save(SettingsNRST *sett);
 template SettingsNRST *ROM::Settings<SettingsNRST>::Load();
 
 
@@ -31,7 +31,7 @@ struct Packet
     bool IsEmpty() const;
 
     // ѕопытка записать в пакет структуру с данными
-    bool SaveSettings(T *nrst);
+    bool SaveSettings(T *sett);
 };
 
 
@@ -93,7 +93,7 @@ void ROM::Settings<T>::Save(T *settings)
 
 
 template<class T>
-bool StructSector<T>::SaveSettings(T *nrst) const
+bool StructSector<T>::SaveSettings(T *sett) const
 {
     Packet<T> *last = LastPacket();
 
@@ -101,10 +101,10 @@ bool StructSector<T>::SaveSettings(T *nrst) const
     {
         last = (Packet<T> *)sector.address;
 
-        return last->SaveSettings(nrst);
+        return last->SaveSettings(sett);
     }
 
-    return last->Next()->SaveSettings(nrst);
+    return last->Next()->SaveSettings(sett);
 }
 
 
@@ -171,7 +171,7 @@ T *StructSector<T>::GetSaved() const
 
 
 template<class T>
-bool Packet<T>::SaveSettings(T *nrst)
+bool Packet<T>::SaveSettings(T *sett)
 {
     const Sector &sector = Sector::Get(Begin());
 
@@ -182,9 +182,9 @@ bool Packet<T>::SaveSettings(T *nrst)
         return false;
     }
 
-    nrst->size = sizeof(T);
+    sett->size = sizeof(T);
 
-    HAL_ROM::WriteBufferBytes(Begin(), nrst, sizeof(T));
+    HAL_ROM::WriteBufferBytes(Begin(), sett, sizeof(T));
 
     return true;
 }
