@@ -202,7 +202,22 @@ SettingsCommon set;
 
 void SettingsCommon::Load()
 {
-    
+    SettingsCommon *saved = ROM::Settings<SettingsCommon>::Load();
+
+    if (!saved)
+    {
+        *this = defaultSettings;
+    }
+    else if (saved->size != sizeof(*this))
+    {
+        *this = defaultSettings;
+        std::memcpy(this, saved, saved->size);
+        size = sizeof(*this);
+    }
+    else
+    {
+        *this = *saved;
+    }
 }
 
 

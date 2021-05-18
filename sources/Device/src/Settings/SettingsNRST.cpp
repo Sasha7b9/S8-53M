@@ -93,7 +93,7 @@ void SettingsNRST::Save()
 
     if (!saved ||               // ≈сли нет сохранЄнных настроек
         saved->size != size ||  // или размер структуры не совпадают
-        *saved != *this)      // или записанные и текущие настройки не совпадают
+        *saved != *this)        // или записанные и текущие настройки не совпадают
     {
         ROM::Settings<SettingsNRST>::Save(this);
     }
