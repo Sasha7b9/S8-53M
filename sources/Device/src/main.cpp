@@ -8,13 +8,12 @@
 
 int main()
 {
-    setNRST.Test();
-
     Device::Init();
        
     while(1)
     {
         Device::Update();
-//        Panel::Draw();
+
+        setNRST.Test();
     }
 }
