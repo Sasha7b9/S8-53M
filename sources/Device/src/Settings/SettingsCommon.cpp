@@ -9,11 +9,6 @@
 #include <cstring>
 
 
-bool SettingsCommon::loaded = false;
-
-//MAKE_COLOR(31, 63, 31),  // Color::WHITE = 0x01,
-
-
 static const SettingsCommon defaultSettings =
 {
     0,                              // size
@@ -258,20 +253,18 @@ void SettingsCommon::Load()
 //    Settings::loaded = true;
 }
 
+
 void SettingsCommon::Save()
 {
     ROM::Settings<SettingsCommon>::Save(this);
 }
 
+
 void SettingsCommon::Reset()
 {
-    set = defaultSettings;
+    *this = defaultSettings;
 }
 
-bool SettingsCommon::DebugModeEnable()
-{
-    return true;
-}
 
 Range::E& operator++(Range::E &range)
 {

@@ -336,7 +336,7 @@ void DrawParametersChannel(const Channel &ch, int eX, int eY, bool inProgress)
         bar->Draw();
     }
 
-    if(SettingsCommon::DebugModeEnable())
+    if(SettingsCommon::DebugModeEnabled())
     {
         int x = inProgress ? 5 : eX;
         int y = eY + (inProgress ? 110 : 0);
