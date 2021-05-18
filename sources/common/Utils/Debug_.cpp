@@ -22,7 +22,7 @@ int Debug::posItem = -1;
 void Debug::StartProfilingMS()
 {
     timeStartMS = TIME_MS;
-    timePrevMS = TIME_MS;
+    timePrevMS = TIME_MS; //-V656
 }
 
 

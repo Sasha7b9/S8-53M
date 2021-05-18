@@ -53,13 +53,13 @@ struct Color
     static Color Trig();
 
     // Цвет окантовки меню.
-    static Color BorderMenu()          { return Color::MENU_TITLE; }
+    static Color BorderMenu()       { return Color::MENU_TITLE; }
+
+    // Светлый цвет в тени.
+    static Color LightShadingText() { return BorderMenu(); }
 
     // Возвращает цвет, контрастный к color. Может быть белым или чёрным.
     static Color Contrast(const Color &color);
-
-    // Светлый цвет в тени.
-    static Color LightShadingText()   { return Color::MENU_TITLE; }
 
     bool operator==(const Color &rhs) { return (index == rhs.index); }
     bool operator!=(const Color &rhs) { return (index != rhs.index); }

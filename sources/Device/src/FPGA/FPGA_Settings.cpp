@@ -530,35 +530,35 @@ void ChannelFiltr::Enable(const Channel &ch, bool enable)
 
 void TrigLev::FindAndSet()
 {
-    if (/*Storage::AllDatas() == 0 ||*/ TrigSource::IsExt())
-    {
-        return;
-    }
-
-    TrigSource::E trigSource = TrigSource::Get();
-
-    Channel::E chanTrig = (Channel::E)(trigSource);
-    uint8 *data0 = 0;
-    uint8 *data1 = 0;
-    DataSettings *ds_ = 0;
-
-//    Storage::GetDataFromEnd(0, &ds_, &data0, &data1);
-
-    puchar data = (chanTrig == ChA) ? data0 : data1;
-
-    uint lastPoint = ds_->BytesInChannel() - 1;
-
-    uint8 min = Math::GetMinFromArray(data, 0, lastPoint);
-    uint8 max = Math::GetMaxFromArray(data, 0, lastPoint);
-
-    uint8 aveValue = (uint8)(((int)(min) + (int)(max)) / 2);
-
-    static const float scale = (float)(TrigLev::MAX - TrigLev::ZERO) / (float)(Value::MAX - Value::AVE) / 2.4F;
-
-    int16 trigLev = (int16)(TrigLev::ZERO + scale * ((int)(aveValue) - Value::AVE) -
-        (set.chan[chanTrig].rshift - RShift::ZERO));
-
-    TrigLev::Set(trigSource, trigLev);
-
-    need_auto_find = false;
+//    if (/*Storage::AllDatas() == 0 ||*/ TrigSource::IsExt())
+//    {
+//        return;
+//    }
+//
+//    TrigSource::E trigSource = TrigSource::Get();
+//
+//    Channel::E chanTrig = (Channel::E)(trigSource);
+//    uint8 *data0 = 0;
+//    uint8 *data1 = 0;
+//    DataSettings *ds_ = 0;
+//
+////    Storage::GetDataFromEnd(0, &ds_, &data0, &data1);
+//
+//    puchar data = (chanTrig == ChA) ? data0 : data1;
+//
+//    uint lastPoint = ds_->BytesInChannel() - 1;
+//
+//    uint8 min = Math::GetMinFromArray(data, 0, lastPoint);
+//    uint8 max = Math::GetMaxFromArray(data, 0, lastPoint);
+//
+//    uint8 aveValue = (uint8)(((int)(min) + (int)(max)) / 2);
+//
+//    static const float scale = (float)(TrigLev::MAX - TrigLev::ZERO) / (float)(Value::MAX - Value::AVE) / 2.4F;
+//
+//    int16 trigLev = (int16)(TrigLev::ZERO + scale * ((int)(aveValue) - Value::AVE) -
+//        (set.chan[chanTrig].rshift - RShift::ZERO));
+//
+//    TrigLev::Set(trigSource, trigLev);
+//
+//    need_auto_find = false;
 }

@@ -171,7 +171,7 @@ float Choice::Step() const
     if (tsChoice.choice == this)
     {
         float delta = speed * (TIME_MS - tsChoice.timeStartMS);
-        if (delta == 0.0F)
+        if (delta == 0.0F) //-V550
         {
             delta = 0.001F; // Таймер в несколько первых кадров может показать, что прошло 0 мс, но мы возвращаем
                             // большее число, потому что ноль будет говорить о том, что движения нет
@@ -267,7 +267,8 @@ int Page::NumItems() const
 {
     if (OwnData()->name == NamePage::MainPage)
     {
-        return !Menu::showDebugMenu ? 11 : 11;
+        //return !Menu::showDebugMenu ? 11 : 11;
+        return 11;
     }
     else if (IsPageSB())
     {
@@ -364,12 +365,14 @@ bool Item::IsOpened() const
 {
     Page* page = Keeper();
 
-    if (IsPage())
-    {
-        return page->CurrentItemIsOpened();
-    }
-
     return page->CurrentItemIsOpened();
+
+//    if (IsPage())
+//    {
+//        return page->CurrentItemIsOpened();
+//    }
+//
+//    return page->CurrentItemIsOpened();
 }
 
 
