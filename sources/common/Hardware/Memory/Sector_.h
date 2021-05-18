@@ -93,7 +93,7 @@ struct Sector
     uint address;
 
     uint size;
-    
+
     // Адрес первого байта за сектором
     uint End() const;
 
