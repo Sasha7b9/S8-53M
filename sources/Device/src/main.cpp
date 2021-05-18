@@ -8,9 +8,8 @@
 
 int main()
 {
-    Sector::Get(Sector::_12_NRST_1).Erase();
-    Sector::Get(Sector::_13_NRST_2).Erase();
-    
+    setNRST.Test();
+
     Device::Init();
        
     while(1)

@@ -1,6 +1,8 @@
 // 2021/05/12 10:18:26 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "common/Hardware/Memory/ROM_.h"
+#include "common/Hardware/Memory/Sector_.h"
+#include "Display/Display.h"
 #include "Settings/SettingsNRST.h"
 #include <cstring>
 
@@ -122,4 +124,22 @@ void SettingsNRST::CommonOnChanged(bool)
 bool SettingsNRST::operator!=(const SettingsNRST &rhs)
 {
     return std::memcmp(this, &rhs, sizeof(*this)) != 0;
+}
+
+
+void SettingsNRST::Test()
+{
+    Sector::Get(Sector::_12_NRST_1).Erase();
+    Sector::Get(Sector::_13_NRST_2).Erase();
+
+    for (int i = 0; i < 10000; i++)
+    {
+        Save();
+
+        SettingsNRST *saved = ROM::Settings<SettingsNRST>::Load();
+
+        LOG_WRITE("Сохранено по адерсу %X", saved);
+
+        Display::Update();
+    }
 }

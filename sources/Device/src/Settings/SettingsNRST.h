@@ -74,6 +74,8 @@ struct SettingsNRST
     // Сохранение настроек в ROM. Происходит только если настройки в setNRST не совпадают с хранящимися в ROM
     void Save();
 
+    void Test();
+
     // Эту функцию нужно вызывать после каждого изменения несбрасываемой настройки
     static void CommonOnChanged();
     static void CommonOnChanged(bool);
