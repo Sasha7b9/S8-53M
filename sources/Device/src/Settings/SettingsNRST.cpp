@@ -1,5 +1,6 @@
 // 2021/05/12 10:18:26 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
+#include "common/Hardware/HAL/HAL_.h"
 #include "common/Hardware/Memory/ROM_.h"
 #include "common/Hardware/Memory/Sector_.h"
 #include "Display/Display.h"
@@ -86,15 +87,6 @@ void SettingsNRST::Load()
 
 void SettingsNRST::Save()
 {
-    LOG_WRITE("Сохраняю несбрасываемые настройки");
-
-    ROM::Settings<SettingsNRST>::Save(this);
-
-    SettingsNRST *saved = ROM::Settings<SettingsNRST>::Load();
-
-    LOG_WRITE("Настройки сохранены в %X", saved);
-
-    /*
     SettingsNRST *saved = ROM::Settings<SettingsNRST>::Load();
 
     size = sizeof(*this);
@@ -105,7 +97,6 @@ void SettingsNRST::Save()
     {
         ROM::Settings<SettingsNRST>::Save(this);
     }
-    */
 }
 
 
@@ -132,13 +123,13 @@ void SettingsNRST::Test()
     Sector::Get(Sector::_12_NRST_1).Erase();
     Sector::Get(Sector::_13_NRST_2).Erase();
 
-    for (int i = 0; i < 10000; i++)
+    for (uint i = 0; i < 0xffffffff; i++)
     {
-        Save();
+        ROM::Settings<SettingsNRST>::Save(this);
 
         SettingsNRST *saved = ROM::Settings<SettingsNRST>::Load();
 
-        LOG_WRITE("Сохранено по адерсу %X", saved);
+        LOG_WRITE("Сохранено по адерсу %X %d", saved, i);
 
         Display::Update();
     }
