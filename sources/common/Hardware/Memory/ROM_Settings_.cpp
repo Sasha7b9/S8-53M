@@ -50,6 +50,9 @@ struct StructSector
     // ѕопытка записать в сектор структуру с данными
     bool SaveSettings(T *) const;
 
+    static StructSector<T> &GetSector1();
+    static StructSector<T> &GetSector2();
+
     const Sector &sector;
 };
 
@@ -57,8 +60,8 @@ struct StructSector
 template<class T>
 T *ROM::Settings<T>::Load()
 {
-    StructSector<T> sector1 = { HAL_ROM::sectors[Sector::_12_NRST_1] };
-    StructSector<T> sector2 = { HAL_ROM::sectors[Sector::_13_NRST_2] };
+    StructSector<T> &sector1 = StructSector<T>::GetSector1();
+    StructSector<T> &sector2 = StructSector<T>::GetSector2();
 
     T *settings = sector2.GetSaved();
 
@@ -74,22 +77,16 @@ T *ROM::Settings<T>::Load()
 template<class T>
 void ROM::Settings<T>::Save(T *settings)
 {
-    StructSector<T> sectorNRST1 = { HAL_ROM::sectors[Sector::_12_NRST_1] };
-    StructSector<T> sectorNRST2 = { HAL_ROM::sectors[Sector::_13_NRST_2] };
+    StructSector<T> &sector1 = StructSector<T>::GetSector1();
+    StructSector<T> &sector2 = StructSector<T>::GetSector2();
 
-    StructSector<T> sectorCommon1 = { HAL_ROM::sectors[Sector::_10_SETTINGS_1] };
-    StructSector<T> sectorCommon2 = { HAL_ROM::sectors[Sector::_11_SETTINGS_2] };
-
-    StructSector<T> *sector1 = sizeof(*settings) == sizeof(SettingsNRST) ? &sectorNRST1 : &sectorCommon1;
-    StructSector<T> *sector2 = sizeof(*settings) == sizeof(SettingsNRST) ? &sectorNRST2 : &sectorCommon2;
-
-    if (!sector1->SaveSettings(settings))
+    if (!sector1.SaveSettings(settings))
     {
-        if (!sector2->SaveSettings(settings))
+        if (!sector2.SaveSettings(settings))
         {
-            sector1->sector.Erase();
-            sector1->SaveSettings(settings);
-            sector2->sector.Erase();
+            sector1.sector.Erase();
+            sector1.SaveSettings(settings);
+            sector2.sector.Erase();
         }
     }
 }
@@ -134,6 +131,26 @@ Packet<T> *StructSector<T>::LastPacket() const
     }
 
     return nullptr;
+}
+
+
+template<class T>
+StructSector<T> &StructSector<T>::GetSector1()
+{
+    static StructSector<T> sectorNRST1   = { HAL_ROM::sectors[Sector::_12_NRST_1] };
+    static StructSector<T> sectorCommon1 = { HAL_ROM::sectors[Sector::_10_SETTINGS_1] };
+
+    return (sizeof(T) == sizeof(SettingsNRST)) ? sectorNRST1 : sectorCommon1;
+}
+
+
+template<class T>
+StructSector<T> &StructSector<T>::GetSector2()
+{
+    static StructSector<T> sectorNRST2   = { HAL_ROM::sectors[Sector::_13_NRST_2] };
+    static StructSector<T> sectorCommon2 = { HAL_ROM::sectors[Sector::_11_SETTINGS_2] };
+
+    return (sizeof(T) == sizeof(SettingsNRST)) ? sectorNRST2 : sectorCommon2;
 }
 
 
