@@ -500,7 +500,7 @@ static void StartDown()
 static void PowerDown()
 {
     ((Page *)Item::Opened())->ShortPressOnItem(0);
-    set.Save();
+//    set.Save();
     Panel::TransmitData(0x04);           // Посылаем команду выключения
 }
 

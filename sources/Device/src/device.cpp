@@ -22,6 +22,7 @@ void Device::Init()
 {
     HAL::Init();
     Panel::Init();
+    set.Load();
     FPGA::Init();
     HAL_TIM2::Delay(250);
     Display::Init();

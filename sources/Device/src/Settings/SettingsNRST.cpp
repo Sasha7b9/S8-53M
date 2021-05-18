@@ -62,23 +62,23 @@ int SettingsNRST::SettingsConsole::GetSizeFontForConsole()
 
 void SettingsNRST::Load()
 {
-    SettingsNRST *saved = ROM::Settings<SettingsNRST>::Load();
-
-    if (!saved ||                   // Если нет сохранённых настроек
-        saved->size == (uint)(-1))  // или записаное ещё ничего не было
-    {
-        setNRST = defaultNRST;
-    }
-    else if (saved->size != sizeof(*this))
-    {
-        setNRST = defaultNRST;
-        std::memcpy(&setNRST, saved, saved->size);
-        size = sizeof(*this);
-    }
-    else
-    {
-        setNRST = *saved;
-    }
+//    SettingsNRST *saved = ROM::Settings<SettingsNRST>::Load();
+//
+//    if (!saved ||                   // Если нет сохранённых настроек
+//        saved->size == (uint)(-1))  // или записаное ещё ничего не было
+//    {
+//        setNRST = defaultNRST;
+//    }
+//    else if (saved->size != sizeof(*this))
+//    {
+//        setNRST = defaultNRST;
+//        std::memcpy(&setNRST, saved, saved->size);
+//        size = sizeof(*this);
+//    }
+//    else
+//    {
+//        setNRST = *saved;
+//    }
 }
 
 
@@ -87,6 +87,10 @@ void SettingsNRST::Save()
     LOG_WRITE("Сохраняю несбрасываемые настройки");
 
     ROM::Settings<SettingsNRST>::Save(this);
+
+    SettingsNRST *saved = ROM::Settings<SettingsNRST>::Load();
+
+    LOG_WRITE("Настройки сохранены в %X", saved);
 
     /*
     SettingsNRST *saved = ROM::Settings<SettingsNRST>::Load();
