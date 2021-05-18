@@ -445,7 +445,7 @@ static bool FindNextTransfer(pchar letters, int8 *lettersInSyllable)
 
     *lettersInSyllable = (int8)(std::strlen(letters));
 
-    if (std::strlen(letters) <= 3)
+    if (*lettersInSyllable <= 3)
     {
         return false;
     }
