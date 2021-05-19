@@ -3,38 +3,42 @@
 #include "HAL.h"
 #include "Interface.h"
 #include "Keyboard.h"
+#include "PowerSupply.h"
 
 
-void Interface::Update()
+void Interface::Update(KeyboardEvent &event)
 {
-    KeyboardEvent event = Keyboard::Buffer::GetNextEvent();
+    if (!PowerSupply::IsEnabled())
+    {
+        return;
+    }
 
     static const int SIZE_BUFFER = 3;
 
-    uint8 buffer_out[SIZE_BUFFER] = { 0xFF, (uint8)(event.key), (uint8)(event.action) };
+    uint8 bufferOut[SIZE_BUFFER] = { 0xFF, (uint8)(event.key), (uint8)(event.action) };
 
-    bool need_transmit = false;
+    bool needTransmit = false;
 
-    if (event.key != Key::None && event.key != Key::Power)
+    if (event.key != Key::None)
     {
-        need_transmit = true;
+        needTransmit = true;
     }
     else if (HAL_SPI2::TimeAfterTransmit() > 10)
     {
-        buffer_out[0] = 0x00;
+        bufferOut[0] = 0x00;
 
-        need_transmit = true;
+        needTransmit = true;
     }
 
-    if (need_transmit)
+    if (needTransmit)
     {
-        uint8 buffer_in[SIZE_BUFFER];
+        uint8 bufferIn[SIZE_BUFFER];
 
-        HAL_SPI2::TransmitReceivce(buffer_out, buffer_in, SIZE_BUFFER);
+        HAL_SPI2::TransmitReceivce(bufferOut, bufferIn, SIZE_BUFFER);
 
         for (uint i = 0; i < SIZE_BUFFER; i++)
         {
-            ProcessByte(buffer_in[i]);
+            ProcessByte(bufferIn[i]);
         }
     }
 }
@@ -46,10 +50,9 @@ void Interface::ProcessByte(uint8 byte)
 
     if (control == TypeLED::Power)
     {
-        pinPower.Reset();
+        PowerSupply::TurnOff();
     }
-
-    if (control > 0 && control < 5)
+    else if (control > 0 && control < 5)
     {
         static LED *leds[] = { nullptr, &led_Trig, &led_Set, &led_ChannelA, &led_ChannelB };
 

@@ -8,6 +8,7 @@
 #include "FPGA/FPGA_Math.h"
 #include "FPGA/FPGA_Reader.h"
 #include "FPGA/Data/DataSettings.h"
+#include "Menu/Pages/Definition.h"
 #include "Panel/Panel.h"
 #include <cstring>
 
@@ -49,6 +50,7 @@ void FPGA::LoadSettings()
     TrigPolarity::Load();
     RegUPR::Load();
     TrigLev::Load();
+    PageTime::OnChanged_PeakDet(true);
 
     /*
     LoadKoeffCalibration(ChA);

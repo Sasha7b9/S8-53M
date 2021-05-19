@@ -6,7 +6,13 @@ class PowerSupply
 {
 public:
 
-    static void Update();
+    static bool AttemptToTurnOn(KeyboardEvent &event);
+
+    static void TurnOff();
 
     static bool IsEnabled();
+
+private:
+
+    static uint timeEnabled;    // Время включения. Если (-1), то выключено
 };

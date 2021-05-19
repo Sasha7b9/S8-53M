@@ -503,8 +503,8 @@ static void StartDown()
 static void PowerDown()
 {
     ((Page *)Item::Opened())->ShortPressOnItem(0);
-//    set.Save();
-    Panel::TransmitData(0x04);           // Посылаем команду выключения
+
+    Panel::TransmitData(TypeLED::Power);
 }
 
 

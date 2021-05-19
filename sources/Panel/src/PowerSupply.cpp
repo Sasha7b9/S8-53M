@@ -5,21 +5,36 @@
 #include "PowerSupply.h"
 
 
+uint PowerSupply::timeEnabled = (uint)-1;
+
+
 bool PowerSupply::IsEnabled()
 {
-    return pinPower.Read() == 1;
+    return timeEnabled != (uint)-1;
 }
 
 
-void PowerSupply::Update()
+bool PowerSupply::AttemptToTurnOn(KeyboardEvent &event)
 {
-    if (!Keyboard::Buffer::IsEmpty())
+    if (event.key == Key::Power)
     {
-        KeyboardEvent event = Keyboard::Buffer::GetNextEvent();
-
-        if (event.key == Key::Power)
+        if (timeEnabled == (uint)-1)
         {
             pinPower.Set();
+
+            timeEnabled = TIME_MS;
+
+            return true;
         }
     }
+
+    return false;
+}
+
+
+void PowerSupply::TurnOff()
+{
+    pinPower.Reset();
+
+    timeEnabled = (uint)-1;
 }

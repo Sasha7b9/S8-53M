@@ -1,3 +1,4 @@
+// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "HAL.h"
 #include "Interface.h"
@@ -11,18 +12,18 @@ int main()
 
     Keyboard::Init();
 
-    while (!PowerSupply::IsEnabled())
-    {
-        Keyboard::Update();
-
-        PowerSupply::Update();
-    }
-
-
     while (1)
     {
         Keyboard::Update();
 
-        Interface::Update();
+        while (!Keyboard::Buffer::IsEmpty())
+        {
+            KeyboardEvent event = Keyboard::Buffer::GetNextEvent();
+
+            if (!PowerSupply::AttemptToTurnOn(event))
+            {
+                Interface::Update(event);
+            }
+        }
     }
 }

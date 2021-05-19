@@ -1,11 +1,12 @@
 #pragma once
+#include "common/Panel/Controls_.h"
 
 
 class Interface
 {
 public:
 
-    static void Update();
+    static void Update(KeyboardEvent &event);
 
 private:
 
