@@ -61,7 +61,7 @@ void SCPI::TBASE::RANGE(puchar buffer)
     };
     ENTER_ANALYSIS
         if (TBase::Count > value) { TBase::Set((TBase::E)value); }
-        else if (255 == value)
+        else if (255 == value)                                          // \todo Здесь ошибка. Не может быть 255 //-V547
         {
             SCPI_SEND(":TBASE:SET_RANGE %s", TBase::ToStringEN(set.time.base));
         }

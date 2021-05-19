@@ -176,14 +176,19 @@ static uint FindNumSymbolsInCommand(puchar buffer)
 bool SCPI::FirstIsInt(puchar buffer, int *value, int min, int max)
 {
     Word param;
+
     if (GetWord(buffer, &param, 0))
     {
         char *n = reinterpret_cast<char *>(std::malloc((uint)(param.numSymbols + 1)));
-        std::memcpy(n, param.address, (uint)(param.numSymbols));
-        n[param.numSymbols] = '\0';
-        bool res = String(n).ToInt(value) && *value >= min && *value <= max;
-        std::free(n);
-        return res;
+        if (n)
+        {
+            std::memcpy(n, param.address, (uint)(param.numSymbols));
+            n[param.numSymbols] = '\0';
+            bool res = String(n).ToInt(value) && *value >= min && *value <= max;
+            std::free(n);
+            return res;
+        }
     }
+
     return false;
 }

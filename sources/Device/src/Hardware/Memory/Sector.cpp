@@ -99,7 +99,7 @@ bool PacketROM::WriteToSector(const Sector *sector) const
 //        HAL_ROM::WriteBufferBytes(addressWrite, UnPack()->dataB, ds.BytesInChannel());
 //    }
 
-    return false;
+    return false; //-V523
 }
 
 
@@ -290,7 +290,7 @@ const DataReading *Sector::ReadData(uint numInROM) const
 {
     const PacketROM *packet = FindValidPacket(numInROM);
 
-    if (packet)
+    if (packet) //-V547
     {
         return packet->UnPack();
     }
@@ -303,7 +303,7 @@ const PacketROM *Sector::DeleteData(uint numInROM) const
 {
     const PacketROM *packet = FindValidPacket(numInROM);
 
-    if (packet)
+    if (packet) //-V547
     {
         packet->Erase();
         return packet;

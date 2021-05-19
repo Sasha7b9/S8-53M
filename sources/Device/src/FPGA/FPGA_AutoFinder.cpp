@@ -209,7 +209,7 @@ TBase::E AutoFinderFPGA::AccurateFindTBase(const Channel &ch)
     for (int i = 0; i < 5; i++)
     {
         TBase::E tBase = FindTBase(ch);
-        TBase::E secondTBase = FindTBase(ch);
+        TBase::E secondTBase = FindTBase(ch); //-V656
 
         if (tBase == secondTBase && tBase != TBase::Count)
         {

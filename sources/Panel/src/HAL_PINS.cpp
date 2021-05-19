@@ -147,7 +147,7 @@ void Pin::Init(PinMode::E mode)
 
     if (mode == PinMode::_Input)
     {
-        isGPIO.Mode = GPIO_MODE_INPUT;
+        isGPIO.Mode = GPIO_MODE_INPUT; //-V1048
     }
     else if (mode == PinMode::_Output)
     {
