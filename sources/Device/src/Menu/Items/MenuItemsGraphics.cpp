@@ -58,7 +58,6 @@ void GraphicGovernor::Draw(const Item *item, int x, int y)
         if (item->IsGovernor())
         {
             symbol = item->GetSymbolForGovernor();
-            Governor::address = const_cast<Item *>(item);
         }
         else if (item->IsChoiceReg() || (item->IsOpened() && item->IsChoice()))
         {

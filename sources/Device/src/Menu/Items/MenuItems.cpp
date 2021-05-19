@@ -34,7 +34,6 @@ Page Page::empty(&emptyDataItem, &subPageEmpty, &actItemEmpty, &actItemIsOpenedE
 
 bool Governor::inMoveIncrease = false;
 bool Governor::inMoveDecrease = false;
-Item *Governor::address = 0;
 uint Governor::timeStartMS = 0;
 
 uint8 Item::positionGovernor = 0;

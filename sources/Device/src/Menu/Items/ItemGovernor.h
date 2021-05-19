@@ -33,8 +33,6 @@ public:
     virtual void Draw(int x, int y, bool opened = false) const;
     void Draw(int x, int y);
 
-    static Item *address;
-
 private:
     void DrawOpened(int x, int y) const;
     void DrawClosed(int x, int y) const;

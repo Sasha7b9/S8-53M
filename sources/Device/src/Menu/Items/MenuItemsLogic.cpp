@@ -16,11 +16,11 @@ int8 Item::gCurDigit = 0;
 void Governor::StartChange(int delta)
 {
     Sound::GovernorChangedValue();
-    if (delta > 0 && (address == this) && inMoveIncrease)
+    if (delta > 0 && inMoveIncrease)
     {
         *OwnData()->cell = NextValue();
     }
-    else if (delta < 0 && (address == this) && inMoveDecrease)
+    else if (delta < 0 && inMoveDecrease)
     {
         *OwnData()->cell = PrevValue();
     }
@@ -118,7 +118,7 @@ float Governor::Step() const
 {
     static const float speed = 0.05F;
     static const int numLines = 10;
-    if ((address == this) && inMoveDecrease)
+    if (inMoveDecrease)
     {
         float delta = -speed * (TIME_MS - timeStartMS);
         if (delta == 0.0F)
@@ -138,7 +138,7 @@ float Governor::Step() const
         }
         return delta;
     }
-    if ((address == this) && inMoveIncrease)
+    if (inMoveIncrease)
     {
         float delta = speed * (TIME_MS - timeStartMS);
         if (delta == 0.0F)
