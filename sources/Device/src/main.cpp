@@ -14,7 +14,7 @@ int main()
     setNRST.Load();
 
 //    Sector::Get(Sector::_10_SETTINGS_1).Erase();
-//    Sector::Get(Sector::_11_SETTINGS_2).Erase();
+//    Sector::Get(Sector::_11_SETTINGS_2).Erase(); 
 
     Device::Init();
        

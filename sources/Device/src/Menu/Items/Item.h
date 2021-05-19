@@ -111,5 +111,5 @@ protected:
 
 struct GraphicGovernor
 {
-    static void Draw(const Item *item, int x, int y, bool pressed, bool opened);
+    static void Draw(const Item *item, int x, int y, bool opened);
 };
