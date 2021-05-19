@@ -7,6 +7,7 @@
 #include "common/Utils/Containers/Queue_.h"
 #include "FPGA/FPGA.h"
 #include "Menu/Menu.h"
+#include "Menu/Pages/Definition.h"
 #include "Menu/Pages/HelpContent.h"
 #include "Panel/Panel.h"
 #include <cstdio>
@@ -437,8 +438,10 @@ void Panel::Enable()
 
 void Panel::Init()
 {
-    // Ëàìïî÷êà ÓÑÒÀÍÎÂÊÀ  pinLED
     Panel::EnableLED(TypeLED::RegSet, false);
+    Panel::EnableLED(TypeLED::Trig, false);
+    PageChannelA::OnChanged_Input(true);
+    PageChannelB::OnChanged_Input(true);
 }
 
 Key::E Panel::WaitPressingButton()
