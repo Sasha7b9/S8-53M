@@ -299,6 +299,12 @@ bool Storage::Extract(uint from_end, DataReading &data)
 
     while (from_end != 0)
     {
+        if (record == nullptr)
+        {
+            LOG_ERROR("Îøèáêà");
+            break;
+        }
+
         record = record->prev;
         from_end--;
     }
