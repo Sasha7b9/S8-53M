@@ -320,11 +320,11 @@ char Item::GetSymbolForGovernor() const
 
     if (IsGovernor())
     {
-        return chars[*ReinterpretToGovernor()->OwnData()->cell];
+        return chars[GraphicGovernor::CalculatePosition(this)];
     }
     else if (IsChoiceReg() || (IsOpened() && IsChoice()))
     {
-        return chars[Item::positionGovernor];
+        return chars[GraphicGovernor::CalculatePosition(this)];
     }
     else if (IsTime())
     {

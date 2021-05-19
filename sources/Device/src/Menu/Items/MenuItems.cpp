@@ -32,7 +32,6 @@ static int8 actItemEmpty = -1;
 static bool actItemIsOpenedEmpty = false;
 Page Page::empty(&emptyDataItem, &subPageEmpty, &actItemEmpty, &actItemIsOpenedEmpty);
 
-uint8 Item::positionGovernor = 0;
 
 Item::Item(const DataItem *const _data) : data(_data)
 {
@@ -201,27 +200,9 @@ float Choice::Step() const
 }
 
 
-void Item::CalculatePositionGovernor(int delta)
-{
-    if (IsChoice() || IsChoiceReg())
-    {
-        if (delta < 0)
-        {
-            if (positionGovernor == 0) { positionGovernor = Item::NUM_STATES_GOVERNOR - 1; }
-            else                       { positionGovernor--; }
-        }
-        else
-        {
-            positionGovernor++;
-            positionGovernor %= Item::NUM_STATES_GOVERNOR;
-        }
-    }
-}
-
-
 void Choice::ChangeValue(int delta)
 {
-    CalculatePositionGovernor(delta);
+    GraphicGovernor::CalculatePosition(this);
 
     const DataChoice *own = OwnData();
 

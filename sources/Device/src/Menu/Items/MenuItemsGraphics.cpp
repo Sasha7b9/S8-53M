@@ -73,6 +73,29 @@ void GraphicGovernor::Draw(const Item *item, int x, int y)
     }
 }
 
+
+int GraphicGovernor::CalculatePosition(const Item *item)
+{
+    int value = 0;
+
+    if (item->IsGovernor())
+    {
+        value = *item->ReinterpretToGovernor()->OwnData()->cell;
+    }
+    else if (item->IsChoice() || item->IsChoiceReg())
+    {
+        value = *item->ReinterpretToChoice()->OwnData()->cell;
+    }
+
+    while (value < 0)
+    {
+        value += NUM_STATES;
+    }
+
+    return value % NUM_STATES;
+}
+
+
 void Governor::DrawLowPart(int x, int y) const
 {
     const DataGovernor *own = OwnData();

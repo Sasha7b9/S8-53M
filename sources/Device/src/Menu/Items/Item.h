@@ -25,7 +25,6 @@ public:
     static const int OPENED_WIDTH = TITLE_WIDTH;
     static const int OPENED_HEIGHT_TITLE = 19;
     static const int WIDTH_VALUE = WIDTH - 4;
-    static const int NUM_STATES_GOVERNOR = 4;       //  оличество положений ручки говернора
 
     const DataItem *data;
 
@@ -70,8 +69,6 @@ public:
     // ¬озвращает изображение регул€тора, соответствующее его текущему положению.
     char GetSymbolForGovernor() const;
 
-    void CalculatePositionGovernor(int delta);
-
     // ¬озвращает открытый элемент меню
     static const Item *Opened();
 
@@ -105,11 +102,15 @@ public:
 
 protected:
     static int8 gCurDigit;
-    static uint8 positionGovernor;   // «десь хранитс€ позици€ говернора
 };
 
 
 struct GraphicGovernor
 {
+    static const int NUM_STATES = 4;       //  оличество положений ручки говернора
+
     static void Draw(const Item *item, int x, int y);
+
+    // –ассчитывает позицию ручки, которую надо отрисовать
+    static int CalculatePosition(const Item *item);
 };
