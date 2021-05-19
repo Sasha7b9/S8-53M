@@ -223,7 +223,19 @@ void SettingsCommon::Load()
 
 void SettingsCommon::Save()
 {
-    ROM::Settings<SettingsCommon>::Save(this);
+    SettingsCommon *saved = ROM::Settings<SettingsCommon>::Load();
+
+    if (saved)
+    {
+        if (*saved != *this)
+        {
+            ROM::Settings<SettingsCommon>::Save(this);
+        }
+    }
+    else
+    {
+        ROM::Settings<SettingsCommon>::Save(this);
+    }
 }
 
 
@@ -290,4 +302,10 @@ uint SettingsCommon::CalcWriteCRC32()
     uint8 *buffer = reinterpret_cast<uint8 *>(this);
 
     return HAL_CRC::Calculate8bit(buffer + 2 * sizeof(uint), sizeof(*this) - 2 * sizeof(uint));
+}
+
+
+bool SettingsCommon::operator!=(const SettingsCommon &rhs)
+{
+    return std::memcmp(this, &rhs, sizeof(*this)) != 0;
 }

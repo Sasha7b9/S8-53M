@@ -317,6 +317,8 @@ struct SettingsCommon
     uint CalcWriteCRC32();
 
     static bool DebugModeEnabled() { return true; }
+
+    bool operator!=(const SettingsCommon &rhs);
 };
 
 
