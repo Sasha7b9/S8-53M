@@ -118,37 +118,46 @@ float Governor::Step() const
 {
     static const float speed = 0.05F;
     static const int numLines = 10;
+
     if (inMoveDecrease)
     {
         float delta = -speed * (TIME_MS - timeStartMS);
+
         if (delta == 0.0F)
         {
             return -0.001F;
         }
+
         if (delta < -numLines)
         {
-            inMoveDecrease = false;
-            inMoveIncrease = false;
+            const_cast<Governor *>(this)->inMoveDecrease = false;   // \todo Говнокод. Никаких const-приведений
+            const_cast<Governor *>(this)->inMoveIncrease = false;   // \todo Говнокод. Никаких const-приведений
             *OwnData()->cell = PrevValue();
+
             if (OwnData()->funcOfChanged)
             {
                 OwnData()->funcOfChanged();
             }
+
             return 0.0F;
         }
+
         return delta;
     }
+
     if (inMoveIncrease)
     {
         float delta = speed * (TIME_MS - timeStartMS);
+
         if (delta == 0.0F)
         {
             return 0.001F;
         }
+
         if (delta > numLines)
         {
-            inMoveDecrease = false;
-            inMoveIncrease = false;
+            const_cast<Governor *>(this)->inMoveDecrease = false;   // \todo Говнокод. Никаких const-приведений
+            const_cast<Governor *>(this)->inMoveIncrease = false;   // \todo Говнокод. Никаких const-приведений
             *OwnData()->cell = NextValue();
             if(OwnData()->funcOfChanged)
             {
@@ -156,8 +165,10 @@ float Governor::Step() const
             }
             return 0.0F;
         }
+
         return delta;
     }
+
     return 0.0F;
 }
 

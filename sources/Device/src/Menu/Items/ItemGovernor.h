@@ -4,11 +4,11 @@
 
 struct DataGovernor
 {
-    int16 *cell;
-    int         minValue;           // Минмальное значение, которое может принимать регулятор.
-    int16       maxValue;           // Максимальное значение.
-    pFuncVV     funcOfChanged;      // Функция, которую нужно вызывать после того, как значение регулятора изменилось.
-    pFuncVV     funcBeforeDraw;     // Функция, которая вызывается перед отрисовкой
+    int16  *cell;
+    int     minValue;           // Минмальное значение, которое может принимать регулятор.
+    int16   maxValue;           // Максимальное значение.
+    pFuncVV funcOfChanged;      // Функция, которую нужно вызывать после того, как значение регулятора изменилось.
+    pFuncVV funcBeforeDraw;     // Функция, которая вызывается перед отрисовкой
 };
 
 
@@ -17,7 +17,7 @@ class Governor : public Item
 {
 public:
 
-    Governor(const DataItem *const data) : Item(data) {};
+    Governor(const DataItem *const data) : Item(data), inMoveIncrease(false), inMoveDecrease(false), timeStartMS(0) {};
     const DataGovernor *OwnData() const {
         return (const DataGovernor *)(data->ad);
     }
@@ -47,7 +47,7 @@ private:
 
     void DrawLowPart(int x, int y) const;
 
-    static bool inMoveIncrease;
-    static bool inMoveDecrease;
-    static uint timeStartMS;
+    bool inMoveIncrease;
+    bool inMoveDecrease;
+    uint timeStartMS;
 };

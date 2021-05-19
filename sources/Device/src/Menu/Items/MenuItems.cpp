@@ -32,10 +32,6 @@ static int8 actItemEmpty = -1;
 static bool actItemIsOpenedEmpty = false;
 Page Page::empty(&emptyDataItem, &subPageEmpty, &actItemEmpty, &actItemIsOpenedEmpty);
 
-bool Governor::inMoveIncrease = false;
-bool Governor::inMoveDecrease = false;
-uint Governor::timeStartMS = 0;
-
 uint8 Item::positionGovernor = 0;
 
 Item::Item(const DataItem *const _data) : data(_data)
