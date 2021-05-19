@@ -107,3 +107,9 @@ protected:
     static int8 gCurDigit;
     static uint8 positionGovernor;   // Здесь хранится позиция говернора
 };
+
+
+struct GraphicGovernor
+{
+    static void Draw(const Item *item, int x, int y, bool pressed, bool opened);
+};
