@@ -16,11 +16,11 @@ int8 Item::gCurDigit = 0;
 void Governor::StartChange(int delta)
 {
     Sound::GovernorChangedValue();
-    if (delta > 0 && inMoveIncrease)
+    if (delta > 0 && inStateIncrease)
     {
         *OwnData()->cell = NextValue();
     }
-    else if (delta < 0 && inMoveDecrease)
+    else if (delta < 0 && inStateDecrease)
     {
         *OwnData()->cell = PrevValue();
     }
@@ -28,8 +28,8 @@ void Governor::StartChange(int delta)
     {
         timeStartMS = TIME_MS;
     }
-    inMoveIncrease = (delta > 0);
-    inMoveDecrease = (delta < 0);
+    inStateIncrease = (delta > 0);
+    inStateDecrease = (delta < 0);
 }
 
 void Governor::ChangeValue(int delta)
@@ -119,7 +119,7 @@ float Governor::Step() const
     static const float speed = 0.05F;
     static const int numLines = 10;
 
-    if (inMoveDecrease)
+    if (inStateDecrease)
     {
         float delta = -speed * (TIME_MS - timeStartMS);
 
@@ -130,8 +130,8 @@ float Governor::Step() const
 
         if (delta < -numLines)
         {
-            const_cast<Governor *>(this)->inMoveDecrease = false;   // \todo Говнокод. Никаких const-приведений
-            const_cast<Governor *>(this)->inMoveIncrease = false;   // \todo Говнокод. Никаких const-приведений
+            const_cast<Governor *>(this)->inStateDecrease = false;   // \todo Говнокод. Никаких const-приведений
+            const_cast<Governor *>(this)->inStateIncrease = false;   // \todo Говнокод. Никаких const-приведений
             *OwnData()->cell = PrevValue();
 
             if (OwnData()->funcOfChanged)
@@ -145,7 +145,7 @@ float Governor::Step() const
         return delta;
     }
 
-    if (inMoveIncrease)
+    if (inStateIncrease)
     {
         float delta = speed * (TIME_MS - timeStartMS);
 
@@ -156,8 +156,8 @@ float Governor::Step() const
 
         if (delta > numLines)
         {
-            const_cast<Governor *>(this)->inMoveDecrease = false;   // \todo Говнокод. Никаких const-приведений
-            const_cast<Governor *>(this)->inMoveIncrease = false;   // \todo Говнокод. Никаких const-приведений
+            const_cast<Governor *>(this)->inStateDecrease = false;   // \todo Говнокод. Никаких const-приведений
+            const_cast<Governor *>(this)->inStateIncrease = false;   // \todo Говнокод. Никаких const-приведений
             *OwnData()->cell = NextValue();
             if(OwnData()->funcOfChanged)
             {

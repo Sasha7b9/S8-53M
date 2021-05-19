@@ -14,8 +14,8 @@ struct TimeStructChoice
 {
     Choice* choice;                // јдрес Choice, который находитс€ в данный момент в движении. ≈сли 0 - все статичны.
     uint        timeStartMS;       // ¬рем€ начала анимации choice.
-    uint        inMoveIncrease : 1;
-    uint        inMoveDecrease : 1;
+    uint        inStateIncrease : 1;
+    uint        inStateDecrease : 1;
 };
 
 static TimeStructChoice tsChoice;
@@ -129,11 +129,11 @@ void Choice::StartChange(int delta)
         tsChoice.timeStartMS = TIME_MS;
         if (delta > 0)
         {
-            tsChoice.inMoveIncrease = 1;
+            tsChoice.inStateIncrease = 1;
         }
         else if (delta < 0)
         {
-            tsChoice.inMoveDecrease = 1;
+            tsChoice.inStateDecrease = 1;
         }
     }
 }
@@ -171,7 +171,7 @@ float Choice::Step() const
             delta = 0.001F; // “аймер в несколько первых кадров может показать, что прошло 0 мс, но мы возвращаем
                             // большее число, потому что ноль будет говорить о том, что движени€ нет
         }
-        if (tsChoice.inMoveIncrease == 1)
+        if (tsChoice.inStateIncrease == 1)
         {
             if (delta <= numLines)
             {
@@ -179,7 +179,7 @@ float Choice::Step() const
             }
             Math::CircleIncrease<int8>(own->cell, 0, (int8)(NumSubItems() - 1));
         }
-        else if (tsChoice.inMoveDecrease == 1)
+        else if (tsChoice.inStateDecrease == 1)
         {
             delta = -delta;
 
@@ -193,8 +193,8 @@ float Choice::Step() const
         tsChoice.choice = 0;
         FuncOnChanged(IsActive());
         Display::Redraw();
-        tsChoice.inMoveDecrease = 0;
-        tsChoice.inMoveIncrease = 0;
+        tsChoice.inStateDecrease = 0;
+        tsChoice.inStateIncrease = 0;
         return 0.0F;
     }
     return 0.0F;

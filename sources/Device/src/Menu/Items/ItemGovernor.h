@@ -17,7 +17,7 @@ class Governor : public Item
 {
 public:
 
-    Governor(const DataItem *const data) : Item(data), inMoveIncrease(false), inMoveDecrease(false), timeStartMS(0) {};
+    Governor(const DataItem *const data) : Item(data), inStateIncrease(false), inStateDecrease(false), timeStartMS(0) {};
     const DataGovernor *OwnData() const {
         return (const DataGovernor *)(data->ad);
     }
@@ -47,7 +47,7 @@ private:
 
     void DrawLowPart(int x, int y) const;
 
-    bool inMoveIncrease;
-    bool inMoveDecrease;
+    bool inStateIncrease;
+    bool inStateDecrease;
     uint timeStartMS;
 };
