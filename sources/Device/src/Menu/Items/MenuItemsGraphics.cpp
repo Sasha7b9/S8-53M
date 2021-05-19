@@ -29,9 +29,11 @@ Key::E GetFuncButtonFromY(int _y)
 }
 
  
-void GraphicGovernor::Draw(const Item *item, int x, int y, bool opened)
+void GraphicGovernor::Draw(const Item *item, int x, int y)
 {
     bool pressed = item->IsPressed();
+
+    bool opened = item->IsOpened();
 
     int delta = pressed ? 1 : 0;
     int width = Item::WIDTH_VALUE;
@@ -187,28 +189,28 @@ void Formula::DrawLowPart(int x, int y) const
 void Governor::DrawClosed(int x, int y) const
 {
     DrawLowPart(x, y);
-    GraphicGovernor::Draw(this, x, y, false);
+    GraphicGovernor::Draw(this, x, y);
 }
 
 
 void IPaddress::DrawClosed(int x, int y) const
 {
     DrawLowPart(x, y);
-    GraphicGovernor::Draw(this, x, y, false);
+    GraphicGovernor::Draw(this, x, y);
 }
 
 
 void MACaddress::DrawClosed(int x, int y) const
 {
     DrawLowPart(x, y);
-    GraphicGovernor::Draw(this, x, y, false);
+    GraphicGovernor::Draw(this, x, y);
 }
 
 
 void Formula::DrawClosed(int x, int y) const
 {
     DrawLowPart(x, y);
-    GraphicGovernor::Draw(this, x, y, false);
+    GraphicGovernor::Draw(this, x, y);
 }
 
 
@@ -427,7 +429,7 @@ void GovernorColor::DrawOpened(int x, int y) const
 void GovernorColor::DrawClosed(int x, int y) const
 {
     OwnData()->colorType->Init();
-    GraphicGovernor::Draw(this, x, y, true);
+    GraphicGovernor::Draw(this, x, y);
     Region(Item::WIDTH_VALUE, Item::HEIGHT_VALUE - 1).Fill(x + 2, y + 20, OwnData()->colorType->color);
 }
 
@@ -449,7 +451,7 @@ void Choice::DrawOpened(int x, int y) const
 
     Rectangle(Item::TITLE_WIDTH + 2, height + 3).Draw(x - 1, y - 1, Color::BACK);
     
-    GraphicGovernor::Draw(this, x - 1, y - 1, true);
+    GraphicGovernor::Draw(this, x - 1, y - 1);
     Rectangle(Item::TITLE_WIDTH + 1, height + 1).Draw(x - 1, y, Color::MENU_TITLE);
  
     HLine().Draw(y + Item::OPENED_HEIGHT_TITLE - 1, x, x + Item::OPENED_WIDTH);
@@ -479,7 +481,7 @@ void TimeItem::DrawOpened(int x, int y) const
     int width = Item::WIDTH_VALUE + 3;
     int height = 61;
     Rectangle(width + 2, height + 3).Draw(x - 1, y - 1, Color::BACK);
-    GraphicGovernor::Draw(this, x - 1, y - 1, true);
+    GraphicGovernor::Draw(this, x - 1, y - 1);
 
     Rectangle(width + 1, height + 1).Draw(x - 1, y, Color::MENU_TITLE);
 
@@ -544,7 +546,7 @@ static void GovernorIpCommon_DrawOpened(const Item *item, int x, int y, int dWid
     Rectangle(Item::TITLE_WIDTH + 2 + dWidth, height + 3).Draw(x - 1, y - 1, Color::BACK);
     Rectangle(Item::TITLE_WIDTH + 1 + dWidth, height + 1).Draw(x - 1, y, Color::MENU_TITLE);
     HLine().Draw(y + Item::OPENED_HEIGHT_TITLE - 1, x, x + Item::OPENED_WIDTH + dWidth);
-    GraphicGovernor::Draw(item, x - 1, y - 1, true);
+    GraphicGovernor::Draw(item, x - 1, y - 1);
     item->DrawVolumeButton(x, y + Item::OPENED_HEIGHT_TITLE, Item::OPENED_WIDTH - 1 + dWidth,
         height - Item::OPENED_HEIGHT_TITLE, 1, Color::BLACK, Color::MENU_TITLE_BRIGHT, Color::MENU_TITLE_DARK, false);
 }
@@ -593,7 +595,7 @@ void Choice::DrawClosed(int x, int y) const
 
     HLine().Draw(y + Item::HEIGHT + 1, x, x + Item::WIDTH, Color::BorderMenu());
 
-    GraphicGovernor::Draw(this, x, y, false);
+    GraphicGovernor::Draw(this, x, y);
 
     FuncForDraw(x, y);
 }
@@ -612,7 +614,7 @@ void Choice::Draw(int x, int y, bool opened) const
 
 void TimeItem::DrawClosed(int x, int y) const
 {
-    GraphicGovernor::Draw(this, x, y, false);
+    GraphicGovernor::Draw(this, x, y);
 
     DrawVolumeButton(x + 1, y + 17, Item::WIDTH_VALUE + 2, Item::HEIGHT_VALUE + 3, 2, Color::MENU_FIELD,
         Color::MENU_ITEM_BRIGHT, Color::MENU_ITEM_DARK, true);
