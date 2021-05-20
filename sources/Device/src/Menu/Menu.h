@@ -90,5 +90,5 @@ private:
     // Обработка события таймера автоматического сокрытия меню.
     static void OnTimerAutoHide();
     
-    static void ProcessButtonForHint(Key::E key);
+    static void ProcessKeyForHint(Key::E key);
 };
