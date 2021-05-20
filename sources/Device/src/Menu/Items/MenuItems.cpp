@@ -621,7 +621,7 @@ bool Item::ChangeOpened(int delta) const
     }
     else if (IsMAC())
     {
-        ((MACaddress *)this)->ChangeValue(delta);
+        ((MACaddress *)this)->ChangeOpened(delta);
     }
     else if (IsChoiceReg() || IsChoice())
     {

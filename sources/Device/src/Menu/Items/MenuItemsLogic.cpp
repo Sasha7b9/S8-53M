@@ -89,7 +89,7 @@ void IPaddress::ChangeOpened(int delta)
     }
 }
 
-void MACaddress::ChangeValue(int delta)
+void MACaddress::ChangeOpened(int delta)
 {
     uint8 *value = OwnData()->mac0 + gCurDigit;
     *value += delta > 0 ? 1 : -1;
