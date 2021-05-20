@@ -175,7 +175,7 @@ void Menu::ProcessButtonForHint(Key::E key)
 }
 
 
-void Menu::HandlerPressButton(Key::E key)
+void Menu::Handlers::PressButton(Key::E key)
 {
     Sound::ButtonPress();
     if (showHelpHints)
@@ -206,7 +206,7 @@ void Menu::HandlerPressButton(Key::E key)
 };
 
 
-void Menu::HandlerRegulatorSet(Action::E action)
+void Menu::Handlers::RegulatorSet(Action::E action)
 {
     // Угол, на который нужно повернуть ручку УСТАНОВКА - величина означает количество щелчков,
     // знак - направление - "-" - влево, "+" - вправо
@@ -338,7 +338,7 @@ void Menu::OnTimerAutoHide()
 }
 
 
-void Menu::HandlerShortPressureButton(Key::E key)
+void Menu::Handlers::ShortPressureButton(Key::E key)
 {
     if (!showHelpHints)
     {
@@ -414,7 +414,7 @@ void Menu::HandlerShortPressureButton(Key::E key)
 }
 
 
-void Menu::HandlerLongPressureButton(Key::E key)
+void Menu::Handlers::LongPressureButton(Key::E key)
 {
     if (!showHelpHints)
     {
@@ -455,7 +455,7 @@ void Menu::HandlerLongPressureButton(Key::E key)
 }
 
 
-void Menu::HandlerReleaseButton(Key::E )
+void Menu::Handlers::ReleaseButton(Key::E )
 {
     Sound::ButtonRelease();
 }
@@ -464,14 +464,14 @@ void Menu::HandlerReleaseButton(Key::E )
 void Menu::OpenItemTime()
 {
     Warnings::ShowWarningGood(Warning::TimeNotSet);
-    HandlerShortPressureButton(Key::Service);
+    Handlers::ShortPressureButton(Key::Service);
     Display::Update();
     for (int i = 0; i < 2; i++)
     {
-        Menu::HandlerRegulatorSet(Action::RotateRight);
+        Menu::Handlers::RegulatorSet(Action::RotateRight);
         Display::Update();
     }
-    HandlerShortPressureButton(Key::F4);
+    Handlers::ShortPressureButton(Key::F4);
     Display::Update();
 }
 
@@ -480,43 +480,43 @@ void Menu::OpenFileManager()
 {
     for (int i = 0; i < 10; i++)
     {
-        HandlerShortPressureButton(Key::Menu);
+        Handlers::ShortPressureButton(Key::Menu);
         Display::Update();
     }
 
     if (!IsShown())
     {
-        HandlerShortPressureButton(Key::Menu);
+        Handlers::ShortPressureButton(Key::Menu);
         Display::Update();
     }
 
     for (int i = 0; i < 5 * stepAngleRegSet + 1; i++)
     {
-        Menu::HandlerRegulatorSet(Action::RotateLeft);
+        Menu::Handlers::RegulatorSet(Action::RotateLeft);
         Display::Update();
     }
 
     for (int i = 0; i < 2 * stepAngleRegSet + 1; i++)
     {
-        Menu::HandlerRegulatorSet(Action::RotateRight);
+        Menu::Handlers::RegulatorSet(Action::RotateRight);
         Display::Update();
     }
 
-    HandlerShortPressureButton(Key::F2);
+    Handlers::ShortPressureButton(Key::F2);
     Display::Update();
 
-    HandlerShortPressureButton(Key::F4);
+    Handlers::ShortPressureButton(Key::F4);
     Display::Update();
 
     for (int i = 0; i < stepAngleRegSet + 1; i++)
     {
-        Menu::HandlerRegulatorSet(Action::RotateLeft);
+        Menu::Handlers::RegulatorSet(Action::RotateLeft);
         Display::Update();
     }
 
     for (int i = 0; i < 2; i++)
     {
-        HandlerShortPressureButton(Key::F1);
+        Handlers::ShortPressureButton(Key::F1);
         Display::Update();
     }
 }

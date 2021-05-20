@@ -318,18 +318,18 @@ void Panel::Update()
 
     if (action.IsUp())
     {
-        Menu::HandlerReleaseButton(key);
+        Menu::Handlers::ReleaseButton(key);
         funcOnKeyUp[key]();
         if (pressedKey != Key::None)
         {
-            Menu::HandlerShortPressureButton(key);
+            Menu::Handlers::ShortPressureButton(key);
             pressedKey = Key::None;
         }
     }
     else if (action.IsDown())
     {
         funcOnKeyDown[key]();
-        Menu::HandlerPressButton(key);
+        Menu::Handlers::PressButton(key);
         pressedKey = key;
     }
     else if (action.IsLong())
@@ -435,19 +435,19 @@ static void HelpLong()
 
 static void ChannelLongA()
 {
-    Menu::HandlerLongPressureButton(Key::ChannelA);
+    Menu::Handlers::LongPressureButton(Key::ChannelA);
 }
 
 
 static void ChannelLongB()
 {
-    Menu::HandlerLongPressureButton(Key::ChannelB);
+    Menu::Handlers::LongPressureButton(Key::ChannelB);
 }
 
 
 static void TimeLong()
 {
-    Menu::HandlerLongPressureButton(Key::Time);
+    Menu::Handlers::LongPressureButton(Key::Time);
 }
 
 
@@ -455,7 +455,7 @@ static void TrigLong()
 {
     if (ModeLongPressTrig::IsLevel0())
     {
-        Menu::HandlerLongPressureButton(Key::Trig);
+        Menu::Handlers::LongPressureButton(Key::Trig);
     }
     else
     {
@@ -468,7 +468,7 @@ static void StartDown()
 {
     if (set.memory.mode_work.IsDirect())
     {
-        Menu::HandlerPressButton(Key::Start);
+        Menu::Handlers::PressButton(Key::Start);
     }
 }
 
@@ -483,37 +483,37 @@ static void PowerDown()
 
 static void MenuLong()
 {
-    Menu::HandlerLongPressureButton(Key::Menu);
+    Menu::Handlers::LongPressureButton(Key::Menu);
 }
 
 
 static void F1Long()
 {
-    Menu::HandlerLongPressureButton(Key::F1);
+    Menu::Handlers::LongPressureButton(Key::F1);
 }
 
 
 static void F2Long()
 {
-    Menu::HandlerLongPressureButton(Key::F2);
+    Menu::Handlers::LongPressureButton(Key::F2);
 }
 
 
 static void F3Long()
 {
-    Menu::HandlerLongPressureButton(Key::F3);
+    Menu::Handlers::LongPressureButton(Key::F3);
 }
 
 
 static void F4Long()
 {
-    Menu::HandlerLongPressureButton(Key::F4);
+    Menu::Handlers::LongPressureButton(Key::F4);
 }
 
 
 static void F5Long()
 {
-    Menu::HandlerLongPressureButton(Key::F5);
+    Menu::Handlers::LongPressureButton(Key::F5);
 }
 
 
@@ -813,13 +813,13 @@ static void TBaseRight()
 
 static void SetLeft()
 {
-    Menu::HandlerRegulatorSet(Action::RotateLeft);
+    Menu::Handlers::RegulatorSet(Action::RotateLeft);
 }
 
 
 static void SetRight()
 {
-    Menu::HandlerRegulatorSet(Action::RotateRight);
+    Menu::Handlers::RegulatorSet(Action::RotateRight);
 }
 
 
