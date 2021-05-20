@@ -36,7 +36,7 @@ static const char chanMultiplierEn[] =
 
 void PageChannelA::OnChanged_Input(bool)
 {
-    led_ChA.SwitchToState(ChA.IsEnabled(), __FILE__, __LINE__);
+    led_ChA.SwitchToState(ChA.IsEnabled());
 }
 
 DEF_CHOICE_2(mcInputA, PageChannelA::self,
@@ -114,7 +114,7 @@ DEF_PAGE_5(pageChanA, PageMain::self, NamePage::ChannelA,
 
 void PageChannelB::OnChanged_Input(bool)
 {
-    led_ChB.SwitchToState(ChB.IsEnabled(), __FILE__, __LINE__);
+    led_ChB.SwitchToState(ChB.IsEnabled());
 }
 
 DEF_CHOICE_2(mcInputB, PageChannelB::self,

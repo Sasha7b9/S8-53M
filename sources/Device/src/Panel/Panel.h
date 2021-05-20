@@ -47,7 +47,7 @@ struct LED
 {
     LED(TypeLED::E led);
     void Disable();
-    void SwitchToState(bool enabled, pchar file, int line);
+    void SwitchToState(bool enabled);
 private:
     TypeLED::E led;
 };

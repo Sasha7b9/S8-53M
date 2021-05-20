@@ -830,11 +830,11 @@ LED::LED(TypeLED::E _led) : led(_led)
 
 void LED::Disable()
 {
-    SwitchToState(false, __FILE__, __LINE__);
+    SwitchToState(false);
 }
 
 
-void LED::SwitchToState(bool enabled, pchar file, int line)
+void LED::SwitchToState(bool enabled)
 {
     if (led == TypeLED::Trig)
     {
@@ -874,7 +874,7 @@ void LED::SwitchToState(bool enabled, pchar file, int line)
     {
         if (led == TypeLED::RegSet)
         {
-            LOG_WRITE("%s %d лампочка %d", file, line, enabled ? 1 : 0);
+            LOG_WRITE("лампочка %d", enabled ? 1 : 0);
         }
 
         uint8 value = (uint8)led;
@@ -899,12 +899,12 @@ void RegSetLED::Switch()
     if (first)
     {
         first = false;
-        led_RegSet.SwitchToState(state, __FILE__, __LINE__);
+        led_RegSet.SwitchToState(state);
         prevState = state;
     }
     else if (prevState != state)
     {
-        led_RegSet.SwitchToState(state, __FILE__, __LINE__);
+        led_RegSet.SwitchToState(state);
         prevState = state;
     }
 }
