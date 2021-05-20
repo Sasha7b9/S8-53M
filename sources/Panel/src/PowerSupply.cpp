@@ -16,6 +16,11 @@ bool PowerSupply::IsEnabled()
 
 void PowerSupply::AttemptToTurnOn(KeyboardEvent &event)
 {
+    if (IsEnabled())
+    {
+        return;
+    }
+
     if (event.key == Key::Power)
     {
         if (timeEnabled == (uint)-1)

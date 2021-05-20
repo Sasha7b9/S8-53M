@@ -16,18 +16,10 @@ int main()
     {
         Keyboard::Update();
 
-        while (!Keyboard::Buffer::IsEmpty())
-        {
-            KeyboardEvent event = Keyboard::Buffer::GetNextEvent();
+        KeyboardEvent event = Keyboard::Buffer::GetNextEvent();
 
-            if (PowerSupply::IsEnabled())
-            {
-                Interface::Update(event);
-            }
-            else
-            {
-                PowerSupply::AttemptToTurnOn(event);
-            }
-        }
+        PowerSupply::AttemptToTurnOn(event);
+
+        Interface::Update(event);
     }
 }

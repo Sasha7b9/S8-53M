@@ -6,6 +6,11 @@
 #include "PowerSupply.h"
 
 
+static const int SIZE_BUFFER = 3;
+
+uint8 output[SIZE_BUFFER] = { 0xFF, 0, 0 };
+
+
 void Interface::Update(KeyboardEvent &event)
 {
     if (!PowerSupply::IsEnabled())
@@ -13,11 +18,10 @@ void Interface::Update(KeyboardEvent &event)
         return;
     }
 
-    static const int SIZE_BUFFER = 3;
-
-    uint8 bufferOut[SIZE_BUFFER] = { 0xFF, (uint8)(event.key), (uint8)(event.action) };
-
     bool needTransmit = false;
+
+    output[1] = (uint8)event.key;
+    output[2] = (uint8)event.action;
 
     if (event.key != Key::None)
     {
@@ -25,7 +29,7 @@ void Interface::Update(KeyboardEvent &event)
     }
     else if (HAL_SPI2::TimeAfterTransmit() > 10)
     {
-        bufferOut[0] = 0x00;
+        output[0] = 0x00;
 
         needTransmit = true;
     }
@@ -34,7 +38,7 @@ void Interface::Update(KeyboardEvent &event)
     {
         uint8 bufferIn[SIZE_BUFFER];
 
-        HAL_SPI2::TransmitReceivce(bufferOut, bufferIn, SIZE_BUFFER);
+        HAL_SPI2::TransmitReceivce(output, bufferIn, SIZE_BUFFER);
 
         for (uint i = 0; i < SIZE_BUFFER; i++)
         {
