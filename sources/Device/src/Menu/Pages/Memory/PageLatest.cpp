@@ -96,7 +96,7 @@ static void DrawSB_EnterInt(int x, int y)
 DEF_SMALL_BUTTON(sbEnterInt, PageMemory::PageLatest::self,
     "Внутр ЗУ", "Internal storage",
     "Нажмите эту кнопку, чтобы сохранить сигнал во внутреннем запоминающем устройстве",
-    "Press this button to keep a signal in an internal memory",
+    "Press this key to keep a signal in an internal memory",
     nullptr, PressSB_EnterInt, DrawSB_EnterInt, nullptr
 )
 
@@ -122,7 +122,7 @@ static void DrawSB_SaveToFlash(int x, int y)
 DEF_SMALL_BUTTON(sbSaveToFlash, PageMemory::PageLatest::self,
     "Сохранить", "Save",
     "Кнопка становится доступна при присоединённом внешнем ЗУ. Позволяет сохранить сигнал на внешем ЗУ",
-    "Click this button to save the signal on the external FLASH",
+    "Click this key to save the signal on the external FLASH",
     nullptr, PressSB_SaveToFlash, DrawSB_SaveToFlash, nullptr
 )
 

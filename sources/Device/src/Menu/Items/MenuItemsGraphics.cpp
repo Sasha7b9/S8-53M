@@ -15,14 +15,14 @@ Key::E GetFuncButtonFromY(int _y)
 {
     int y = Grid::TOP + Grid::Height() / 12;
     int step = Grid::Height() / 6;
-    Key::E button = Key::None;
+    Key::E key = Key::None;
     for (int i = 0; i < 6; i++)
     {
         if (_y < y)
         {
-            return button;
+            return key;
         }
-        ++button;
+        ++key;
         y += step;
     }
     return  Key::F5;

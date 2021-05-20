@@ -34,7 +34,7 @@ static const Key::E sampleBufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {Key::F5, 
 void Menu::Update()
 {
     ProcessingRegulatorSet();
-    ProcessingPressButton();
+    HandlerPressButton();
     ProcessingReleaseButton();
 
     led_RegSet.Switch();
@@ -47,9 +47,9 @@ void Menu::Update()
 };
 
 
-void Menu::ProcessButtonForHint(Key::E button)
+void Menu::ProcessButtonForHint(Key::E key)
 {
-    if (button == Key::Menu)
+    if (key == Key::Menu)
     {
         PageHelpContent::stringForHint = LANG_RU ?
             "Кнопка МЕНЮ выполняет следующие функции:\n"
@@ -61,9 +61,9 @@ void Menu::ProcessButtonForHint(Key::E button)
             "меню. Если текущая страница последняя в текущем уровне, происходит переход на предыдущий уровень меню.\n"
             "5. Если меню находится в режиме малых кнопок, то нажатие закрывает страницу."
             :
-            "MENU button performs the following functions:\n"
+            "MENU key performs the following functions:\n"
             "1. At the closed menu pressing or pressing with deduction during 0.5s opens the menu.\n"
-            "2. At the open menu deduction of the button during 0.5s closes the menu.\n"
+            "2. At the open menu deduction of the key during 0.5s closes the menu.\n"
 #ifdef __ARMCC_VERSION
 #pragma push
 #pragma diag_suppress 192
@@ -78,21 +78,21 @@ void Menu::ProcessButtonForHint(Key::E button)
             "menu.\n"
             "5. If the menu is in the mode of small buttons, pressing closes the page.";
 
-    } else if (button == Key::Cursors)
+    } else if (key == Key::Cursors)
     {
         PageHelpContent::stringForHint = LANG_RU ?
             "Кнопка КУРСОРЫ открывает меню курсорных измерений."
             :
-            "КУРСОРЫ button to open the menu cursor measurements.";
+            "КУРСОРЫ key to open the menu cursor measurements.";
     }
-    else if (button == Key::Display)
+    else if (key == Key::Display)
     {
         PageHelpContent::stringForHint = LANG_RU ?
             "Кнопка ДИСПЛЕЙ открывает меню настроек дисплея."
             :
-            "DISPLAY button opens the display settings menu.";
+            "DISPLAY key opens the display settings menu.";
     }
-    else if (button == Key::Memory)
+    else if (key == Key::Memory)
     {
         PageHelpContent::stringForHint = LANG_RU ?
             "1. При настройке \"ПАМЯТЬ\x99ВНЕШН ЗУ\x99Реж кн ПАМЯТЬ\x99Меню\" открывает меню работы с памятью.\n"
@@ -101,64 +101,64 @@ void Menu::ProcessButtonForHint(Key::E button)
             "1. When setting \"MEMORY-EXT\x99STORAGE\x99Mode btn MEMORY\x99Menu\" opens a menu of memory\n"
             "2. When setting \"MEMORY-EXT\x99STORAGE\x99Mode btn MEMORY\x99Save\" saves the signal to the flash drive";
     }
-    else if (button == Key::Measures)
+    else if (key == Key::Measures)
     {
         PageHelpContent::stringForHint = LANG_RU ?
             "Кнопка ИЗМЕР открывает меню автоматических измерений."
             :
-            "ИЗМЕР button opens a menu of automatic measurements.";
+            "ИЗМЕР key opens a menu of automatic measurements.";
     }
-    else if (button == Key::Help)
+    else if (key == Key::Help)
     {
         PageHelpContent::stringForHint = LANG_RU ?
             "1. Кнопка ПОМОЩЬ открывает меню помощи.\n"
             "2. Нажатие и удержание кнопки ПОМОЩЬ в течение 0.5с включает и отключает режим вывода подсказок."
             :
-            "1. ПОМОЩЬ button opens the help menu.\n"
+            "1. ПОМОЩЬ key opens the help menu.\n"
             "2. Pressing and holding the ПОМОЩЬ for 0.5s enables and disables output mode hints.";
     }
-    else if (button == Key::Service)
+    else if (key == Key::Service)
     {
         PageHelpContent::stringForHint = LANG_RU ?
             "Кнопка СЕРВИС открывает меню сервисных возможностей."
             :
-            "СЕРВИС button opens a menu of service options.";
+            "СЕРВИС key opens a menu of service options.";
     }
-    else if (button == Key::Start)
+    else if (key == Key::Start)
     {
         PageHelpContent::stringForHint = LANG_RU ?
             "Кнопка ПУСК/СTOП запускает и останавливает процесс сбора информации."
             :
-            "ПУСК/СTOП button starts and stops the process of gathering information.";
+            "ПУСК/СTOП key starts and stops the process of gathering information.";
     }
-    else if (button == Key::ChannelA)
+    else if (key == Key::ChannelA)
     {
         PageHelpContent::stringForHint = LANG_RU ?
             "1. Кнопка КАНАЛ1 открывает меню настроек канала 1.\n"
             "2. Нажатие и удержание кнопки КАНАЛ1 в течение 0.5с устанавливает смещение канала 1 по вертикали 0В."
             :
-            "1. КАНАЛ1 button opens the settings menu of the channel 1.\n"
-            "2. Pressing and holding the button КАНАЛ1 for 0.5c for the offset of the vertical channel 1 0V.";
+            "1. КАНАЛ1 key opens the settings menu of the channel 1.\n"
+            "2. Pressing and holding the key КАНАЛ1 for 0.5c for the offset of the vertical channel 1 0V.";
     }
-    else if (button == Key::ChannelB)
+    else if (key == Key::ChannelB)
     {
         PageHelpContent::stringForHint = LANG_RU ?
             "1. Кнопка КАНАЛ2 открывает меню настроек канала 2.\n"
             "2. Нажатие и удержание кнопки КАНАЛ2 в течение 0.5с устанавливает смещение канала 2 по вертикали 0В."
             :
-            "1. КАНАЛ2 button opens the settings menu of the channel 2.\n"
-            "2. Pressing and holding the button КАНАЛ2 for 0.5c for the offset of the vertical channel 2 0V.";
+            "1. КАНАЛ2 key opens the settings menu of the channel 2.\n"
+            "2. Pressing and holding the key КАНАЛ2 for 0.5c for the offset of the vertical channel 2 0V.";
     }
-    else if (button == Key::Time)
+    else if (key == Key::Time)
     {
         PageHelpContent::stringForHint = LANG_RU ?
             "1. Кнопка РАЗВ открывает меню настроек развертки.\n"
             "2. Нажатие и удержание кнопки РАЗВ в течение 0.5с устанавливает смещение по горизонтали 0с."
             :
-            "1. РАЗВ button open the settings menu sweep.\n"
-            "2. Pressing and holding the button РАЗВ for 0.5s Is the offset horizontal 0s.";
+            "1. РАЗВ key open the settings menu sweep.\n"
+            "2. Pressing and holding the key РАЗВ for 0.5s Is the offset horizontal 0s.";
     }
-    else if (button == Key::Trig)
+    else if (key == Key::Trig)
     {
         PageHelpContent::stringForHint = LANG_RU ?
             "1. Кнопка СИНХР открывает меню настроек синхронизации.\n"
@@ -167,32 +167,32 @@ void Menu::ProcessButtonForHint(Key::E button)
             "3. Нажатие и удержание в течение 0.5с кнопки СИНХР при настройке \"СЕРВИС\x99Реж длит "
             "СИНХР\x99Сброс уровня\" устанавливает уровень синхронизации 0В."
             :
-            "1. СИНХР button opens a menu settings synchronization.\n"
+            "1. СИНХР key opens a menu settings synchronization.\n"
 #ifdef __ARMCC_VERSION
 #pragma push
 #pragma diag_suppress 192
 #endif
-            "2. Pressing and holding the button СИНХР for 0.5s when setting \"SERVICE\x99Mode long "
+            "2. Pressing and holding the key СИНХР for 0.5s when setting \"SERVICE\x99Mode long "
             "TRIG\x99\x41utolevel\" automatically adjust the trigger level.\n"
 #ifdef __ARMCC_VERSION
 #pragma pop
 #endif
-            "3. Pressing and holding the button СИНХР for 0.5s when setting \"SERVICE\x99Mode long TRIG\x99SReset trig "
+            "3. Pressing and holding the key СИНХР for 0.5s when setting \"SERVICE\x99Mode long TRIG\x99SReset trig "
             "level\" sets the trigger level 0V.";
     }
     else
     {
-        HandlerShortPressureButton(button);
+        HandlerShortPressureButton(key);
     }
 }
 
 
-void Menu::Event::PressButton(Key::E button)
+void Menu::Event::PressButton(Key::E key)
 {
     Sound::ButtonPress();
     if (showHelpHints)
     {
-        ProcessButtonForHint(button);
+        ProcessButtonForHint(key);
         return;
     }
 
@@ -202,7 +202,7 @@ void Menu::Event::PressButton(Key::E button)
         {
             bufferForButtons[i] = bufferForButtons[i - 1];
         }
-        bufferForButtons[0] = button;
+        bufferForButtons[0] = key;
       
         if (std::memcmp(bufferForButtons, sampleBufferForButtons, SIZE_BUFFER_FOR_BUTTONS * sizeof(Key::E)) == 0)
         {
@@ -211,16 +211,16 @@ void Menu::Event::PressButton(Key::E button)
         }
     }
 
-    pressButton = button;
+    pressButton = key;
 };
 
 
-void Menu::Event::ReleaseButton(Key::E button)
+void Menu::Event::ReleaseButton(Key::E key)
 {
     Sound::ButtonRelease();
     if (!showHelpHints)
     {
-        releaseButton = button;
+        releaseButton = key;
     }
 };
 
@@ -481,7 +481,7 @@ void Menu::ProcessingRegulatorSet()
 }
 
 
-void Menu::ProcessingPressButton()
+void Menu::HandlerPressButton()
 {
     if (pressButton == Key::Start && !set.memory.mode_work.IsLatest())
     {

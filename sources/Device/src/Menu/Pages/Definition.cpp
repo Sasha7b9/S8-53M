@@ -49,7 +49,7 @@ DEF_PAGE_11(mainPage, &Page::empty, NamePage::MainPage,
 
 
 
-const Page *PageForButton(Key::E button)
+const Page *PageForButton(Key::E key)
 {
     static const void *pages[Key::Count] = {  
         (void *)nullptr,            // Key::None
@@ -81,7 +81,7 @@ const Page *PageForButton(Key::E button)
         (void *)nullptr             // Key::Setting
     };
 
-    return reinterpret_cast<const Page *>(pages[button]);
+    return reinterpret_cast<const Page *>(pages[key]);
 }
 
 

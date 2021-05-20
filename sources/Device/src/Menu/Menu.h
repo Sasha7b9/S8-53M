@@ -15,13 +15,16 @@ public:
     // Обработка длинного нажатия кнопки.
     static void HandlerLongPressureButton(Key::E key);
 
+    // Обработка опускания кнопки вниз.
+    static void HandlerPressButton();
+
     struct Event
     {
         // Функция вызывается, когда кнопка переходит из отжатого в нажатое положение.
-        static void PressButton(Key::E button);
+        static void PressButton(Key::E key);
 
         // Функция вызывается, когда кнопка переходит из нажатого в отжатое положение.
-        static void ReleaseButton(Key::E button);
+        static void ReleaseButton(Key::E key);
 
         // Функция обработки поворота ручки УСТАНОВКА вправо.
         static void RotateRegSetRight();
@@ -37,8 +40,8 @@ public:
     // Функция должна вызываться в главном цикле.
     static void Update();
 
-    // Возвращает адрес элемента меню, соответствующего данной button.
-    static Item *ItemUnderButton(Key::E button);
+    // Возвращает адрес элемента меню, соответствующего данной key.
+    static Item *ItemUnderButton(Key::E key);
 
     // Установить время автоматического сокрытия меню в соответствии с установками.
     static void SetAutoHide(bool active);
@@ -88,9 +91,6 @@ public:
 
 private:
 
-    // Обработка опускания кнопки вниз.
-    static void ProcessingPressButton();
-
     // Обработка поднятия кнопки вверх.
     static void ProcessingReleaseButton();
 
@@ -102,5 +102,5 @@ private:
     // Обработка события таймера автоматического сокрытия меню.
     static void OnTimerAutoHide();
     
-    static void ProcessButtonForHint(Key::E button);
+    static void ProcessButtonForHint(Key::E key);
 };

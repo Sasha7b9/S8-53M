@@ -16,8 +16,8 @@ DEF_CHOICE_REG_9(mcNumber, PageDisplay::PageAccumulation::self,
     ,
     "Sets the maximum quantity of the last signals on the screen. If in control \"Mode\" it is chosen \"Infinity\", "
     "the screen is cleared only "
-    "by pressing of the button \"Clear\"."
-    "\"Infinity\" - each measurement remains on the display until the button \"Clear\" is pressed."
+    "by pressing of the key \"Clear\"."
+    "\"Infinity\" - each measurement remains on the display until the key \"Clear\" is pressed."
     ,
     DISABLE_RU, DISABLE_EN,
     "2", "2",

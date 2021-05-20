@@ -98,11 +98,11 @@ DEF_TIME(tTime, PageService::self,
     "времени"
     ,
     "Setting the current time. \nPoryadok work:\n"
-    "Click on the menu item \"Time\".The menu set the current time.By briefly pressing the button on the numeric "
+    "Click on the menu item \"Time\".The menu set the current time.By briefly pressing the key on the numeric "
     "keypad of conformity Item \"Time\", highlight the hours, minutes, seconds, year, month, or a number.The selected "
     "item is indicated by a flashing area. Turn the setting knob to set the desired value. Then highlight \"Save\", "
-    "press and udrezhivat more than 0.5 seconds, the button on the panel Item. Menu Setting the current time will be "
-    "closed to the conservation of the new current time. Pressing a button on the prolonged retention of any other "
+    "press and udrezhivat more than 0.5 seconds, the key on the panel Item. Menu Setting the current time will be "
+    "closed to the conservation of the new current time. Pressing a key on the prolonged retention of any other "
     "element will lead to the closure of the current time setting menu without saving the new current time"
     ,
     dServicetime, hours, minutes, secondes, month, day, year

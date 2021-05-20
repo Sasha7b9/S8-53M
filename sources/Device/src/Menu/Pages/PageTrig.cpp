@@ -106,7 +106,7 @@ DEF_CHOICE_2(mcAutoFind_Mode, PageTrig::PageAutoFind::self,
     "2. \"Автоматический\" - поиск производится автоматически."
     ,
     "Selecting the automatic search of synchronization:\n"
-    "1. \"Hand\" - search is run on pressing of the button \"Find\" or on deduction during 0.5s the СИНХР button if it"
+    "1. \"Hand\" - search is run on pressing of the key \"Find\" or on deduction during 0.5s the СИНХР key if it"
     " is established \"SERVICE\x99Mode long СИНХР\x99\x41utolevel\".\n"
     "2. \"Auto\" - the search is automatically."
     ,
