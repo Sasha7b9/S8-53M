@@ -25,7 +25,7 @@ public:
 
     virtual void Draw(int x, int y, bool opened = false) const;
 
-    void ChangeOpened(int delta);
+    virtual void OnRegSet(int delta);
 
     void DrawLowPart(int x, int y) const;
 

@@ -200,7 +200,7 @@ float Choice::Step() const
 }
 
 
-void Choice::ChangeOpened(int delta)
+void Choice::OnRegSet(int delta)
 {
     GraphicGovernor::CalculatePosition(this);
 
@@ -364,7 +364,7 @@ bool Item::IsOpened() const
 }
 
 
-void Page::ChangeOpened(int delta) const
+void Page::OnRegSet(int delta)
 {
     if (delta > 0 && GetCurrentSubPage() < NumSubPages() - 1)
     {
@@ -412,7 +412,7 @@ void Choice::ShortPress()
         }
         else
         {
-            ChangeOpened(-1);
+            OnRegSet(-1);
         }
     }
     else
@@ -569,7 +569,7 @@ void Item::Change(int delta) const
         }
         else
         {
-            governor->ChangeOpened(delta);
+            governor->OnRegSet(delta);
         }
     }
     else if (IsGovernorColor())
@@ -604,35 +604,6 @@ void Page::OpenAndSetItCurrent() const
     SetCurrent(true);
 
     ChangeOpenness();
-}
-
-
-bool Item::ChangeOpened(int delta) const
-{
-    delta *= 2;
-
-    if (IsPage())
-    {
-        ((const Page *)this)->ChangeOpened(delta);
-    }
-    else if (IsIP())
-    {
-        ((IPaddress *)this)->ChangeOpened(delta);
-    }
-    else if (IsMAC())
-    {
-        ((MACaddress *)this)->ChangeOpened(delta);
-    }
-    else if (IsChoiceReg() || IsChoice())
-    {
-        ((Choice *)this)->ChangeOpened(delta);
-    }
-    else if (IsGovernor())
-    {
-        ((Governor *)this)->ChangeOpened(delta);
-    }
-
-    return true;
 }
 
 
