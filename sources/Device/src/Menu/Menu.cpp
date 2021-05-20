@@ -373,7 +373,7 @@ void Menu::Handlers::ShortPressureKey(Key::E key)
                 CloseOpenedItem();
             }
         }
-        else if (IsShown() && Key::IsFunctionalButton(key)) // Если меню показано и нажата функциональная клавиша
+        else if (IsShown() && Key::IsFunctionalKey(key)) // Если меню показано и нажата функциональная клавиша
         {
             Item *item = ItemUnderButton(key);
 
@@ -444,7 +444,7 @@ void Menu::Handlers::LongPressureKey(Key::E key)
     {
         ChangeShowing();
     }
-    else if (IsShown() && Key::IsFunctionalButton(key))
+    else if (IsShown() && Key::IsFunctionalKey(key))
     {
         Item *item = ItemUnderButton(key);
         if (item->IsActive())

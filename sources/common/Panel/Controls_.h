@@ -58,8 +58,8 @@ struct Key { enum E
     static Key::E FromCode(uint16 code);
     static uint16 ToCode(Key::E key);
     static bool IsGovernor(Key::E key);
-    static bool IsButton(Key::E key);
-    static bool IsFunctionalButton(Key::E key);
+    static bool Is(Key::E key);
+    static bool IsFunctionalKey(Key::E key);
 };
 
 Key::E& operator++(Key::E &right);

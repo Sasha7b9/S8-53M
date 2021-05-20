@@ -75,7 +75,7 @@ bool Key::IsGovernor(Key::E key)
 }
 
 
-bool Key::IsButton(Key::E key)
+bool Key::Is(Key::E key)
 {
     return (key < Key::RangeA) && (key != Key::None);
 }
@@ -93,7 +93,7 @@ uint16 Action::ToCode(Action::E action)
 }
 
 
-bool Key::IsFunctionalButton(Key::E key)
+bool Key::IsFunctionalKey(Key::E key)
 {
     return (key >= Key::F1) && (key <= Key::F5);
 }
