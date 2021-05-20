@@ -22,13 +22,8 @@ static float PeriodCounterToValue(const BitSet32 *period);
 
 void AutoFinderFPGA::Find()
 {
-    //LOG_WRITE(" ");
-    //Timer::StartLogging();
-
-    //LOG_WRITE("Канал 1");
     if (!FindWave(Channel::A))
     {
-        //LOG_WRITE("Канал 2");
         if (!FindWave(Channel::B))
         {
             Warnings::ShowWarningBad(Warning::SignalNotFound);

@@ -350,8 +350,6 @@ void Menu::ProcessingShortPressureButton()
 {
     if(shortPressureButton != Key::None)
     {
-        LOG_WRITE(" ");
-
         if (shortPressureButton == Key::Memory &&
             set.memory.mode_button_memory.IsSave() &&
             FDrive::isConnected)
