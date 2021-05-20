@@ -228,15 +228,11 @@ void Menu::Handlers::RegulatorSet(Action::E action)
             if (angleRegSet > stepAngleRegSet || angleRegSet < -stepAngleRegSet)
             {
                 item->Change(angleRegSet);
-                angleRegSet = 0;
             }
-            return;
         }
         else
         {
             item = Item::Opened();
-
-            LOG_FUNC_ENTER();
 
             if (IsMinimize())
             {
@@ -245,11 +241,9 @@ void Menu::Handlers::RegulatorSet(Action::E action)
             else if (item->IsPage() || item->IsIP() || item->IsMAC() || item->IsChoice() || item->IsChoiceReg() ||
                 item->IsGovernor())
             {
-                if (item->ChangeOpened(angleRegSet))
-                {
-                    angleRegSet = 0;
-                }
-                return;
+                LOG_FUNC_ENTER();
+
+                item->ChangeOpened(angleRegSet);
             }
             else if (item->IsGovernorColor())
             {
