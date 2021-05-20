@@ -364,7 +364,7 @@ bool Item::IsOpened() const
 }
 
 
-void Page::ChangeSubPage(int delta) const
+void Page::ChangeOpened(int delta) const
 {
     if (delta > 0 && GetCurrentSubPage() < NumSubPages() - 1)
     {
@@ -613,7 +613,7 @@ bool Item::ChangeOpened(int delta) const
 
     if (IsPage())
     {
-        ((const Page *)this)->ChangeSubPage(delta);
+        ((const Page *)this)->ChangeOpened(delta);
     }
     else if (IsIP())
     {

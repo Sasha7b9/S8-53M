@@ -44,7 +44,7 @@ public:
 
     bool IsPageSB() const;
 
-    void ChangeSubPage(int delta) const;
+    void ChangeOpened(int delta) const;
 
     virtual void ShortPress();
 
