@@ -28,24 +28,33 @@ bool Menu::IsCurrentItem(const Item *item)
 void Menu::CloseOpenedItem()
 {
     const Item *item = Item::Opened();
+
     if(item->IsPage())
     {
         if (((const Page *)item)->IsPageSB())                                               // Для страницы малых кнопок
         {                                                                  // Выполняем функцию нажатия кнопки Key::Menu
             SmallButton *sb = item->ReinterpretToPage()->SmallButonFrom(0);
+
             if (sb->OwnData()->funcOnPress)                                                             // Если она есть
             {
                 sb->OwnData()->funcOnPress();
             }
+
+            if (needClosePageSB)
+            {
+                item->Keeper()->CloseOpenedItem();
+            }
+
+            needClosePageSB = true;
         }
-        if(Menu::needClosePageSB)
+        else
         {
             item->Keeper()->CloseOpenedItem();
         }
-        Menu::needClosePageSB = true;
+     
         if(item == PageMain::self)
         {
-            Menu::Show(false);
+            Hide();
         }
     }
     else

@@ -62,6 +62,7 @@ void Menu::Event::ShortPressureButton(Key::E button)
             PageHelpContent::stringForHint = 0;
             PageHelpContent::itemHint = 0;
         }
+
         shortPressureButton = button;
     }
 };
@@ -340,7 +341,7 @@ Text Menu::StringNavigation()
 
 void Menu::OnTimerAutoHide()
 {
-    Show(false);
+    Hide();
     Timer::Disable(TypeTimer::MenuAutoHide);
 }
 
@@ -349,6 +350,8 @@ void Menu::ProcessingShortPressureButton()
 {
     if(shortPressureButton != Key::None)
     {
+        LOG_WRITE(" ");
+
         if (shortPressureButton == Key::Memory &&
             set.memory.mode_button_memory.IsSave() &&
             FDrive::isConnected)
@@ -379,6 +382,7 @@ void Menu::ProcessingShortPressureButton()
             else if (IsShown() && Key::IsFunctionalButton(button)) // Если меню показано и нажата функциональная клавиша
             {
                 Item *item = ItemUnderButton(button);
+
                 if (showHelpHints)
                 {
                     PageHelpContent::SetItemForHint(item);
@@ -616,6 +620,12 @@ void Menu::Show(bool show)
 {
     set.menu.isShown = show ? 1U : 0U;
     SetAutoHide(true);
+}
+
+
+void Menu::Hide()
+{
+    Show(false);
 }
 
 

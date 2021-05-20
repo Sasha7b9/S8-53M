@@ -67,6 +67,8 @@ public:
     // Отобразить/скрыть меню.
     static void Show(bool show);
 
+    static void Hide();
+
     // Если true - меню находится в дополнительном режиме.
     static bool IsMinimize();
 
