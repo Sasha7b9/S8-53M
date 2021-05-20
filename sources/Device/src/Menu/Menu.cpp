@@ -35,7 +35,7 @@ static const Key::E sampleBufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {Key::F5, 
 
 void Menu::Update()
 {
-    ProcessingLongPressureButton();
+    HandlerLongPressureButton();
     ProcessingRegulatorSet();
     ProcessingPressButton();
     ProcessingReleaseButton();
@@ -403,7 +403,7 @@ void Menu::HandlerShortPressureButton(Key::E key)
 }
 
 
-void Menu::ProcessingLongPressureButton()
+void Menu::HandlerLongPressureButton()
 {
     if(longPressureButton != Key::None)
     {

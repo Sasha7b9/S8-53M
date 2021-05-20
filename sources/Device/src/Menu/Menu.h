@@ -9,6 +9,9 @@ class Menu
 {
 public:
 
+    // Обработка длинного нажатия кнопки.
+    static void HandlerLongPressureButton();
+
     // Функция обработки короткого нажатия кнопки (менее 0.5 сек.).
     static void HandlerShortPressureButton(Key::E button);
 
@@ -87,9 +90,6 @@ public:
     static bool needClosePageSB;    // Если 1, нужно закрывать страницу малых кнопок
 
 private:
-
-    // Обработка длинного нажатия кнопки.
-    static void ProcessingLongPressureButton();
 
     // Обработка опускания кнопки вниз.
     static void ProcessingPressButton();
