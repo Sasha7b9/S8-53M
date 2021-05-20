@@ -407,7 +407,7 @@ void Menu::ProcessingShortPressureButton()
                     if (page)
                     {
                         page->SetCurrent(true);
-                        page->Open(true);
+                        page->Open();
                         Show(true);
                     }
                 }

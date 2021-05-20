@@ -301,17 +301,27 @@ Page *Item::Keeper() const
 }
 
 
-void Item::Open(bool open) const
+void Item::Open() const
 {
-    Page *page = Keeper();
+    Keeper()->OpenActItem();
+}
 
-    if (open)
+
+void Item::Close() const
+{
+    Keeper()->CloseOpenedItem();
+}
+
+
+void Item::ChangeOpenness() const
+{
+    if (IsOpened())
     {
-        page->OpenActItem();
+        Close();
     }
     else
     {
-        page->CloseOpenedItem();
+        Open();
     }
 }
 
@@ -373,12 +383,15 @@ void Page::ShortPress()
     {
         OwnData()->funcOnPress();
     }
+
     if (!IsActive())
     {
         return;
     }
+
     SetCurrent(true);
-    Open(!IsOpened());
+
+    ChangeOpenness();
 }
 
 
@@ -431,7 +444,7 @@ void TimeItem::ShortPress()
     {
         SetCurrent(true);
         SetOpened();
-        Open(true);
+        Open();
     }
     else
     {
@@ -491,7 +504,8 @@ void Item::LongPress()
     {
         SetCurrent(true);
     }
-    Open(!IsOpened());
+    
+    ChangeOpenness();
 }
 
 
@@ -507,11 +521,14 @@ void TimeItem::LongPress()
     {
         SetCurrent(true);
     }
+
     if (IsOpened() && *OwnData()->curField == iSET)
     {
         SetNewTime();
     }
-    Open(!IsOpened());
+
+    ChangeOpenness();
+
     SetOpened();
 }
 
@@ -583,7 +600,8 @@ void Page::ShortPressOnItem(int numItem) const
 void Page::OpenAndSetItCurrent() const
 {
     SetCurrent(true);
-    Open(!IsOpened());
+
+    ChangeOpenness();
 }
 
 

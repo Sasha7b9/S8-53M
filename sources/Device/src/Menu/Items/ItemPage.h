@@ -32,10 +32,13 @@ public:
 
     virtual void Draw(int x, int y, bool opened = false) const;
     NamePage::E GetName() const;
+
     // Возвращает количество элементов в странице по адресу page.
     int NumItems() const;
+
     // Возвращает адрес элемента меню заданной страницы.
     const Item *GetItem(int numElement) const;
+
     // Dозвращает число подстраниц в странице по адресу page.
     int NumSubPages() const;
 
@@ -48,14 +51,17 @@ public:
     void DrawOpened(int yTop);
 
     const Item *RetLastOpened() const;
+
     // Вызывает функцию короткого нажатия кнопки над итемом numItem страницы page;
     void ShortPressOnItem(int numItem) const;
 
     void OpenAndSetItCurrent() const;
 
     SmallButton *SmallButonFrom(int numButton) const;
+
     // Возвращает номер текущей подстраницы страницы namePage.
     int GetCurrentSubPage() const;
+
     // Устанавливает номер текущей подстраницы в странице namePage.
     void SetCurrentSubPage(int posSubPage) const;
 

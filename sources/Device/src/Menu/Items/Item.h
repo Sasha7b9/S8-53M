@@ -41,8 +41,14 @@ public:
     // Возвращает адрес элемента, которому принадлежит элемент по адресу item.
     Page *Keeper() const;
 
-    // Открыть/закрыть элемент меню по адрему item.
-    void Open(bool open) const;
+    // Открыть
+    void Open() const;
+
+    // Закрыть
+    void Close() const;
+
+    // Изменить "закрытость"
+    void ChangeOpenness() const;
 
     // Сделать/разделать текущим пункт страницы.
     void SetCurrent(bool active) const;

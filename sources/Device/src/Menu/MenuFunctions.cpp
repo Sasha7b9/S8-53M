@@ -50,7 +50,7 @@ void Menu::CloseOpenedItem()
     }
     else
     {
-        item->Open(false);
+        item->Close();
     } 
 }
 
