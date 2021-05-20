@@ -1,3 +1,4 @@
+// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "common/Hardware/Memory/Sector_.h"
 #include "common/Utils/Containers/String_.h"

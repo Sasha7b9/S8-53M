@@ -86,9 +86,9 @@ file(GLOB HARDWARE             src/Hardware/*.h
                                src/Hardware/*.cpp
                          ../common/Hardware/Sound_c.*
                          ../common/Hardware/Timer_c.*)
-file(GLOB HARDWARE_CMSIS       src/Hardware/CMSIS/*)
-file(GLOB HARDWARE_FATFS       src/Hardware/FatFS/*)
-file(GLOB HARDWARE_HAL         src/Hardware/HAL/*
+file(GLOB HARDWARE_CMSIS       src/Hardware/CMSIS/*.*)
+file(GLOB HARDWARE_FATFS       src/Hardware/FatFS/*.*)
+file(GLOB HARDWARE_HAL         src/Hardware/HAL/*.*
                          ../common/Hardware/HAL/HAL_c.h
                          ../common/Hardware/HAL/HAL_c.cpp
                          ../common/Hardware/HAL/HAL_PINS_c.h
@@ -98,7 +98,7 @@ file(GLOB HARDWARE_HAL         src/Hardware/HAL/*
                          ../common/Hardware/HAL/HAL_TIM2_c.cpp
                          ../common/Hardware/HAL/HAL_TIM6_c.cpp
                          ../common/Hardware/HAL/HAL_TIM7_c.cpp)
-file(GLOB HARDWARE_USBH        src/Hardware/USBH/*)
+file(GLOB HARDWARE_USBH        src/Hardware/USBH/*.*)
 file(GLOB SRC            ../common/defines_.h
                          ../common/Log_.*
                                src/*.h
@@ -107,14 +107,14 @@ file(GLOB DISPLAY              src/Display/*.h
                                src/Display/*.cpp
                          ../common/Display/*.h
                          ../common/Display/*.cpp)
-file(GLOB DISPLAY_FONT   ../common/Display/Font/*)
-file(GLOB FDRIVE               src/FDrive/*)
-file(GLOB PANEL                src/Panel/*
-                         ../common/Keyboard/*)
-file(GLOB SETTINGS             src/Settings/*
+file(GLOB DISPLAY_FONT   ../common/Display/Font/*.*)
+file(GLOB FDRIVE               src/FDrive/*.*)
+file(GLOB PANEL                src/Panel/*.*
+                         ../common/Keyboard/*.*)
+file(GLOB SETTINGS             src/Settings/*.*
                          ../common/Settings/cSettingsTypes.h)
-file(GLOB UTILS                src/Utils/*
-                         ../common/Utils/*)
+file(GLOB UTILS                src/Utils/*.*
+                         ../common/Utils/*.*)
 
 set_source_files_properties(${LIBS_FATFS} ${LIBS_HAL} ${LIBS_USBH} PROPERTIES HEADER_FILE_ONLY TRUE)
 
