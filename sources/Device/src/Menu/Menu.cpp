@@ -372,7 +372,7 @@ void Menu::ProcessingShortPressureButton()
             {
                 if(!IsShown())
                 {
-                    Show(true);
+                    Show();
                 }
                 else
                 {
@@ -412,7 +412,7 @@ void Menu::ProcessingShortPressureButton()
                     {
                         page->SetCurrent(true);
                         page->Open();
-                        Show(true);
+                        Show();
                     }
                 }
             }
@@ -448,7 +448,7 @@ void Menu::ProcessingLongPressureButton()
         }
         else if(longPressureButton == Key::Menu)
         {
-                Show(!IsShown());
+            ShowHide(!IsShown());
         }
         else if(IsShown() && Key::IsFunctionalButton(longPressureButton))
         {
@@ -616,7 +616,7 @@ bool Menu::IsShown()
 }
 
 
-void Menu::Show(bool show)
+void Menu::ShowHide(bool show)
 {
     set.menu.isShown = show ? 1U : 0U;
     SetAutoHide(true);
@@ -625,7 +625,13 @@ void Menu::Show(bool show)
 
 void Menu::Hide()
 {
-    Show(false);
+    ShowHide(false);
+}
+
+
+void Menu::Show()
+{
+    ShowHide(true);
 }
 
 
