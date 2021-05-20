@@ -12,8 +12,6 @@
 #include <cstring>
 
 
-// Если произошло короткое нажатие кнопки, то здесь хранится имя этой кнопки до обработки этого  нажатия.
-static Key::E shortPressureButton = Key::None;
 // Если произошло длинное нажатие кнопки, то здесь хранится имя этой кнопки до обработки этого нажатия.
 static Key::E longPressureButton = Key::None;
 // При нажатии кнопки её имя записывается в эту переменную и хранится там до обратоки события нажатия кнопки.
@@ -37,7 +35,6 @@ static const Key::E sampleBufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {Key::F5, 
 
 void Menu::Update()
 {
-    ProcessingShortPressureButton();
     ProcessingLongPressureButton();
     ProcessingRegulatorSet();
     ProcessingPressButton();
@@ -50,23 +47,6 @@ void Menu::Update()
         OpenFileManager();       
     }
 };
-
-
-void Menu::Event::ShortPressureButton(Key::E button)
-{
-    if (!showHelpHints)
-    {
-        if(button == Key::Help)
-        {
-            showHelpHints = true;
-            PageHelpContent::stringForHint = 0;
-            PageHelpContent::itemHint = 0;
-        }
-
-        shortPressureButton = button;
-    }
-};
-
 
 
 void Menu::Event::LongPressureButton(Key::E button)
@@ -214,7 +194,7 @@ void Menu::ProcessButtonForHint(Key::E button)
     }
     else
     {
-        shortPressureButton = button;
+        ProcessingShortPressureButton(button);
     }
 }
 
@@ -346,78 +326,79 @@ void Menu::OnTimerAutoHide()
 }
 
 
-void Menu::ProcessingShortPressureButton()
+void Menu::ProcessingShortPressureButton(Key::E key)
 {
-    if(shortPressureButton != Key::None)
+    if (!showHelpHints)
     {
-        if (shortPressureButton == Key::Memory &&
-            set.memory.mode_button_memory.IsSave() &&
-            FDrive::isConnected)
+        if (key == Key::Help)
         {
-            PageMemory::exitFromModeSetNameTo = IsShown() ? RETURN_TO_MAIN_MENU : RETURN_TO_DISABLE_MENU;
-            PageMemory::PageExternal::SaveSignalToFlashDrive();
-            shortPressureButton = Key::None;
-            return;
+            showHelpHints = true;
+            PageHelpContent::stringForHint = 0;
+            PageHelpContent::itemHint = 0;
         }
-        Display::Redraw();
-        SetAutoHide(true);
+    }
 
-        Key::E button = shortPressureButton;
+    if (key == Key::Memory && set.memory.mode_button_memory.IsSave() && FDrive::isConnected)
+    {
+        PageMemory::exitFromModeSetNameTo = IsShown() ? RETURN_TO_MAIN_MENU : RETURN_TO_DISABLE_MENU;
+        PageMemory::PageExternal::SaveSignalToFlashDrive();
+        return;
+    }
 
-        do
+    Display::Redraw();
+    SetAutoHide(true);
+
+    do
+    {
+        if (key == Key::Menu)            // Если нажата кнопка МЕНЮ и мы не находимся в режме настройки измерений.
         {
-            if(button == Key::Menu)            // Если нажата кнопка МЕНЮ и мы не находимся в режме настройки измерений.
+            if (!IsShown())
             {
-                if(!IsShown())
+                Show();
+            }
+            else
+            {
+                CloseOpenedItem();
+            }
+        }
+        else if (IsShown() && Key::IsFunctionalButton(key)) // Если меню показано и нажата функциональная клавиша
+        {
+            Item *item = ItemUnderButton(key);
+
+            if (showHelpHints)
+            {
+                PageHelpContent::SetItemForHint(item);
+            }
+            else
+            {
+                item->ShortPress();
+            }
+        }
+        else                                                        // Если меню не показано.
+        {
+            NamePage::E name = ((const Page *)Item::Opened())->GetName();
+            if (key == Key::ChannelA && name == NamePage::ChannelA)
+            {
+                set.chan[ChA].enable = !ChA.IsEnabled();
+                PageChannelA::OnChanged_Input(true);
+            }
+            else if (key == Key::ChannelB && name == NamePage::ChannelB)
+            {
+                set.chan[ChB].enable = !ChB.IsEnabled();
+                PageChannelB::OnChanged_Input(true);
+            }
+            else
+            {
+                const Item *page = PageForButton(key);
+                if (page)
                 {
+                    page->SetCurrent(true);
+                    page->Open();
                     Show();
                 }
-                else
-                {
-                    CloseOpenedItem();
-                }
             }
-            else if (IsShown() && Key::IsFunctionalButton(button)) // Если меню показано и нажата функциональная клавиша
-            {
-                Item *item = ItemUnderButton(button);
-
-                if (showHelpHints)
-                {
-                    PageHelpContent::SetItemForHint(item);
-                }
-                else
-                {
-                    item->ShortPress();
-                }
-            }
-            else                                                        // Если меню не показано.
-            {
-                NamePage::E name = ((const Page *)Item::Opened())->GetName();
-                if(button == Key::ChannelA && name == NamePage::ChannelA)
-                {
-                    set.chan[ChA].enable = !ChA.IsEnabled();
-                    PageChannelA::OnChanged_Input(true);
-                }
-                else if(button == Key::ChannelB && name == NamePage::ChannelB)
-                {
-                    set.chan[ChB].enable = !ChB.IsEnabled();
-                    PageChannelB::OnChanged_Input(true);
-                }
-                else
-                {
-                    const Item *page = PageForButton(button);
-                    if (page)
-                    {
-                        page->SetCurrent(true);
-                        page->Open();
-                        Show();
-                    }
-                }
-            }
-        } while (false);
-
-        shortPressureButton = Key::None;
-    }
+        }
+    } while (false);
 }
 
 
@@ -534,8 +515,7 @@ void Menu::ProcessingReleaseButton()
 void Menu::OpenItemTime()
 {
     Warnings::ShowWarningGood(Warning::TimeNotSet);
-    Event::ShortPressureButton(Key::Service);
-    Update();
+    ProcessingShortPressureButton(Key::Service);
     Display::Update();
     for (int i = 0; i < 2; i++)
     {
@@ -543,8 +523,7 @@ void Menu::OpenItemTime()
         Update();
         Display::Update();
     }
-    Event::ShortPressureButton(Key::F4);
-    Update();
+    ProcessingShortPressureButton(Key::F4);
     Display::Update();
 }
 
@@ -554,15 +533,13 @@ void Menu::OpenFileManager()
     angleRegSet = 0;
     for (int i = 0; i < 10; i++)
     {
-        Event::ShortPressureButton(Key::Menu);
-        Update();
+        ProcessingShortPressureButton(Key::Menu);
         Display::Update();
     }
 
     if (!IsShown())
     {
-        Event::ShortPressureButton(Key::Menu);
-        Update();
+        ProcessingShortPressureButton(Key::Menu);
         Display::Update();
     }
 
@@ -584,12 +561,10 @@ void Menu::OpenFileManager()
 
     angleRegSet = 0;
 
-    Event::ShortPressureButton(Key::F2);
-    Update();
+    ProcessingShortPressureButton(Key::F2);
     Display::Update();
 
-    Event::ShortPressureButton(Key::F4);
-    Update();
+    ProcessingShortPressureButton(Key::F4);
     Display::Update();
 
     for (int i = 0; i < stepAngleRegSet + 1; i++)
@@ -601,8 +576,7 @@ void Menu::OpenFileManager()
 
     for (int i = 0; i < 2; i++)
     {
-        Event::ShortPressureButton(Key::F1);
-        Update();
+        ProcessingShortPressureButton(Key::F1);
         Display::Update();
     }
 }

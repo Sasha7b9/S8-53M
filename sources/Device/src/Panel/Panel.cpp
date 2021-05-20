@@ -322,7 +322,7 @@ void Panel::Update()
         funcOnKeyUp[key]();
         if (pressedKey != Key::None)
         {
-            Menu::Event::ShortPressureButton(key);
+            Menu::ProcessingShortPressureButton(key);
             pressedKey = Key::None;
         }
     }

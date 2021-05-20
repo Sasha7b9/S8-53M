@@ -9,11 +9,11 @@ class Menu
 {
 public:
 
+    // Функция обработки короткого нажатия кнопки (менее 0.5 сек.).
+    static void ProcessingShortPressureButton(Key::E button);
+
     struct Event
     {
-        // Функция обработки короткого нажатия кнопки (менее 0.5 сек.).
-        static void ShortPressureButton(Key::E button);
-
         // Функция обработки длинного нажатия кнопки (более 0.5 сек.).
         static void LongPressureButton(Key::E button);
 
@@ -87,9 +87,6 @@ public:
     static bool needClosePageSB;    // Если 1, нужно закрывать страницу малых кнопок
 
 private:
-
-    // Обработка короткого нажатия кнопки.
-    static void ProcessingShortPressureButton();
 
     // Обработка длинного нажатия кнопки.
     static void ProcessingLongPressureButton();
