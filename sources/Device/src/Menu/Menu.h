@@ -25,6 +25,8 @@ public:
 
         // Обработка поворота ручки УСТАНОВКА.
         static void RegulatorSet(Action::E action);
+
+        static void KeyForHint(Key::E key);
     };
 
     static const int ITEMS_ON_DISPLAY = 5;     // Сколько пунктов меню помещается на экране по вертикали.
@@ -89,6 +91,4 @@ private:
 
     // Обработка события таймера автоматического сокрытия меню.
     static void OnTimerAutoHide();
-    
-    static void ProcessKeyForHint(Key::E key);
 };

@@ -35,7 +35,7 @@ void Menu::Update()
 };
 
 
-void Menu::ProcessKeyForHint(Key::E key)
+void Menu::Handlers::KeyForHint(Key::E key)
 {
     if (key == Key::Menu)
     {
@@ -180,7 +180,7 @@ void Menu::Handlers::PressKey(Key::E key)
     Sound::ButtonPress();
     if (showHelpHints)
     {
-        ProcessKeyForHint(key);
+        KeyForHint(key);
         return;
     }
 
