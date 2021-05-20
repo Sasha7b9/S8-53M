@@ -12,7 +12,7 @@ public:
     struct Handlers
     {
         // Функция обработки короткого нажатия кнопки (менее 0.5 сек.).
-        static void ShortPressureButton(Key::E key);
+        static void ShortPressureKey(Key::E key);
 
         // Обработка длинного нажатия кнопки.
         static void LongPressureButton(Key::E key);

@@ -170,7 +170,7 @@ void Menu::ProcessButtonForHint(Key::E key)
     }
     else
     {
-        Handlers::ShortPressureButton(key);
+        Handlers::ShortPressureKey(key);
     }
 }
 
@@ -338,7 +338,7 @@ void Menu::OnTimerAutoHide()
 }
 
 
-void Menu::Handlers::ShortPressureButton(Key::E key)
+void Menu::Handlers::ShortPressureKey(Key::E key)
 {
     if (!showHelpHints)
     {
@@ -464,14 +464,14 @@ void Menu::Handlers::ReleaseButton(Key::E )
 void Menu::OpenItemTime()
 {
     Warnings::ShowWarningGood(Warning::TimeNotSet);
-    Handlers::ShortPressureButton(Key::Service);
+    Handlers::ShortPressureKey(Key::Service);
     Display::Update();
     for (int i = 0; i < 2; i++)
     {
         Menu::Handlers::RegulatorSet(Action::RotateRight);
         Display::Update();
     }
-    Handlers::ShortPressureButton(Key::F4);
+    Handlers::ShortPressureKey(Key::F4);
     Display::Update();
 }
 
@@ -480,13 +480,13 @@ void Menu::OpenFileManager()
 {
     for (int i = 0; i < 10; i++)
     {
-        Handlers::ShortPressureButton(Key::Menu);
+        Handlers::ShortPressureKey(Key::Menu);
         Display::Update();
     }
 
     if (!IsShown())
     {
-        Handlers::ShortPressureButton(Key::Menu);
+        Handlers::ShortPressureKey(Key::Menu);
         Display::Update();
     }
 
@@ -502,10 +502,10 @@ void Menu::OpenFileManager()
         Display::Update();
     }
 
-    Handlers::ShortPressureButton(Key::F2);
+    Handlers::ShortPressureKey(Key::F2);
     Display::Update();
 
-    Handlers::ShortPressureButton(Key::F4);
+    Handlers::ShortPressureKey(Key::F4);
     Display::Update();
 
     for (int i = 0; i < stepAngleRegSet + 1; i++)
@@ -516,7 +516,7 @@ void Menu::OpenFileManager()
 
     for (int i = 0; i < 2; i++)
     {
-        Handlers::ShortPressureButton(Key::F1);
+        Handlers::ShortPressureKey(Key::F1);
         Display::Update();
     }
 }
