@@ -32,7 +32,7 @@ void Governor::StartChange(int delta)
     inStateDecrease = (delta < 0);
 }
 
-void Governor::ChangeValue(int delta)
+void Governor::ChangeOpened(int delta)
 {
     int16 oldValue = *OwnData()->cell;
 

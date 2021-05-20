@@ -569,7 +569,7 @@ void Item::Change(int delta) const
         }
         else
         {
-            governor->ChangeValue(delta);
+            governor->ChangeOpened(delta);
         }
     }
     else if (IsGovernorColor())
@@ -629,7 +629,7 @@ bool Item::ChangeOpened(int delta) const
     }
     else if (IsGovernor())
     {
-        ((Governor *)this)->ChangeValue(delta);
+        ((Governor *)this)->ChangeOpened(delta);
     }
 
     return true;
