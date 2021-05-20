@@ -30,7 +30,7 @@ public:
     void NextPosition() const;
 
     // Изменяет значение в текущей позиции при открытом элементе
-    void ChangeValue(int delta);
+    void ChangeOpened(int delta);
 
     void DrawLowPart(int x, int y) const;
 

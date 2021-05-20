@@ -617,7 +617,7 @@ bool Item::ChangeOpened(int delta) const
     }
     else if (IsIP())
     {
-        ((IPaddress *)this)->ChangeValue(delta);
+        ((IPaddress *)this)->ChangeOpened(delta);
     }
     else if (IsMAC())
     {

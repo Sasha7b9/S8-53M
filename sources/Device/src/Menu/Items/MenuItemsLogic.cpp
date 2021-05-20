@@ -50,7 +50,7 @@ void Governor::ChangeValue(int delta)
     }
 }
 
-void IPaddress::ChangeValue(int delta)
+void IPaddress::ChangeOpened(int delta)
 {
     int numByte = 0;
     int numPos = 0;
