@@ -215,7 +215,7 @@ void Menu::Handlers::RegulatorSet(Action::E action)
 
     // Угол, на который нужно повернуть ручку УСТАНОВКА - величина означает количество щелчков,
     // знак - направление - "-" - влево, "+" - вправо
-    int angleRegSet = (action == Action::RotateRight) 1 : -1;
+    int angleRegSet = (action == Action::RotateRight) ? 1 : -1;
 
     Display::Redraw();
 
