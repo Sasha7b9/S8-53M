@@ -61,20 +61,17 @@ public:
     // Закрыть открытый элемент меню.
     static void CloseOpenedItem();
 
-    // Отображено ли меню на экране.
-    static bool IsShown();
-
-    // Отобразить/скрыть меню.
-    static void ShowHide(bool show);
-
-    // Изменить "показанность" - скрыть если открыто и наоборот
-    static void ChangeShowing();
-
     // Скрыть меню
     static void Hide();
 
     // Показать меню
     static void Show();
+
+    // Изменить "показанность" - скрыть если открыто и наоборот
+    static void ChangeShowing();
+
+    // Отображено ли меню на экране.
+    static bool IsShown();
 
     // Если true - меню находится в дополнительном режиме.
     static bool IsMinimize();

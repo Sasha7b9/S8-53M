@@ -10,7 +10,7 @@
 void Application::Init()
 {
     Device::Init();
-    Menu::Show(true);
+    Menu::Show();
 }
 
 

@@ -616,28 +616,29 @@ bool Menu::IsShown()
 }
 
 
-void Menu::ShowHide(bool show)
-{
-    set.menu.isShown = show ? 1U : 0U;
-    SetAutoHide(true);
-}
-
-
 void Menu::ChangeShowing()
 {
-    ShowHide(!IsShown());
+    if (IsShown())
+    {
+        Hide();
+    }
+    else
+    {
+        Show();
+    }
 }
 
 
 void Menu::Hide()
 {
-    ShowHide(false);
+    set.menu.isShown = 0U;
 }
 
 
 void Menu::Show()
 {
-    ShowHide(true);
+    set.menu.isShown = 1U;
+    SetAutoHide(true);
 }
 
 
