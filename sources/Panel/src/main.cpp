@@ -20,9 +20,13 @@ int main()
         {
             KeyboardEvent event = Keyboard::Buffer::GetNextEvent();
 
-            if (!PowerSupply::AttemptToTurnOn(event))
+            if (PowerSupply::IsEnabled())
             {
                 Interface::Update(event);
+            }
+            else
+            {
+                PowerSupply::AttemptToTurnOn(event);
             }
         }
     }

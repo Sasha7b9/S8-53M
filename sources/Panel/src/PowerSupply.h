@@ -6,7 +6,7 @@ class PowerSupply
 {
 public:
 
-    static bool AttemptToTurnOn(KeyboardEvent &event);
+    static void AttemptToTurnOn(KeyboardEvent &event);
 
     static void TurnOff();
 

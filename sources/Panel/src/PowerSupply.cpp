@@ -14,7 +14,7 @@ bool PowerSupply::IsEnabled()
 }
 
 
-bool PowerSupply::AttemptToTurnOn(KeyboardEvent &event)
+void PowerSupply::AttemptToTurnOn(KeyboardEvent &event)
 {
     if (event.key == Key::Power)
     {
@@ -23,12 +23,8 @@ bool PowerSupply::AttemptToTurnOn(KeyboardEvent &event)
             pinPower.Set();
 
             timeEnabled = TIME_MS;
-
-            return true;
         }
     }
-
-    return false;
 }
 
 
