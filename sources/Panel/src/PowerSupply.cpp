@@ -25,7 +25,7 @@ bool PowerSupply::AttemptToTurnOn(KeyboardEvent &event)
     {
         if (timeEnabled == (uint)-1)
         {
-            pinPower.Set();
+            pinPower.On();
 
             timeEnabled = TIME_MS;
 
@@ -39,7 +39,7 @@ bool PowerSupply::AttemptToTurnOn(KeyboardEvent &event)
 
 void PowerSupply::TurnOff()
 {
-    pinPower.Reset();
+    pinPower.Off();
 
     timeEnabled = (uint)-1;
 }

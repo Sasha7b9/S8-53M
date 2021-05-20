@@ -11,11 +11,11 @@ LED_Set      led_Set;
 
 void LED::Enable()
 {
-    (typeEnable == TypeEnable::Direct) ? pin.Set() : pin.Reset();
+    (typeEnable == TypeEnable::Direct) ? pin.On() : pin.Off();
 }
 
 
 void LED::Disable()
 {
-    (typeEnable == TypeEnable::Direct) ? pin.Reset() : pin.Set();
+    (typeEnable == TypeEnable::Direct) ? pin.Off() : pin.On();
 }

@@ -67,8 +67,8 @@ static KeyStruct keys[NUM_SL][NUM_RL] =
 static Pin *sls[NUM_SL] = { &pinSL0, &pinSL1, &pinSL2, &pinSL3, &pinSL4, &pinSL5 };
 static Pin *rls[NUM_RL] = { &pinRL0, &pinRL1, &pinRL2, &pinRL3, &pinRL4, &pinRL5, &pinRL6, &pinRL7 };
 
-#define SET_SL(n)       sls[n]->Set();
-#define RESET_SL(n)     sls[n]->Reset();
+#define SET_SL(n)       sls[n]->On();
+#define RESET_SL(n)     sls[n]->Off();
 #define READ_RL(n)      rls[n]->Read()
 
 

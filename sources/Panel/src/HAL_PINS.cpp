@@ -66,7 +66,7 @@ void HAL_PINS::InitSPI2()
     pinMOSI.Init(PinMode::_SPI2);
 
     pinSPI2_NSS.Init(PinMode::_Output);
-    pinSPI2_NSS.Set();
+    pinSPI2_NSS.On();
 }
 
 
@@ -89,19 +89,19 @@ void HAL_PINS::Init()
     pinSL5.Init(PinMode::_Output);
 
     pinRC0_ChannelA.Init(PinMode::_Output);
-    pinRC0_ChannelA.Reset();
+    pinRC0_ChannelA.Off();
 
     pinRC1_ChannelB.Init(PinMode::_Output);
-    pinRC1_ChannelB.Reset();
+    pinRC1_ChannelB.Off();
 
     pinRC2_Trig.Init(PinMode::_Output);
-    pinRC2_Trig.Reset();
+    pinRC2_Trig.Off();
 
     pinRC3_Set.Init(PinMode::_Output);
-    pinRC3_Set.Reset();
+    pinRC3_Set.Off();
 
     pinPower.Init(PinMode::_Output);
-    pinPower.Reset();
+    pinPower.Off();
 }
 
 
@@ -169,13 +169,13 @@ void Pin::Write(uint state)
 }
 
 
-void Pin::Set()
+void Pin::On()
 {
     HAL_GPIO_WritePin(reinterpret_cast<GPIO_TypeDef *>(port), pin, GPIO_PIN_SET);
 }
 
 
-void Pin::Reset()
+void Pin::Off()
 {
     HAL_GPIO_WritePin(reinterpret_cast<GPIO_TypeDef *>(port), pin, GPIO_PIN_RESET);
 }

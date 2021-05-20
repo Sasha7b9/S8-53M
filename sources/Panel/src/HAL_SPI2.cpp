@@ -38,13 +38,13 @@ bool HAL_SPI2::TransmitReceivce(uint8 *buffer_out, uint8 *buffer_in, uint size)
 {
     extern Pin pinSPI2_NSS;
 
-    pinSPI2_NSS.Reset();
+    pinSPI2_NSS.Off();
 
     bool result = (HAL_SPI_TransmitReceive(&handleSPI2, buffer_out, buffer_in, (uint16)size, 100) == HAL_OK);
 
     time_last_transmit = TIME_MS;
 
-    pinSPI2_NSS.Set();
+    pinSPI2_NSS.On();
 
     return (result == HAL_OK);
 }
