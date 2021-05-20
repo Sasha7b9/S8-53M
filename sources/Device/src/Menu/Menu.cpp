@@ -222,6 +222,7 @@ void Menu::Handlers::RegulatorSet(Action::E action)
     if (IsShown() || !Item::Opened()->IsPage())
     {
         const Item *item = CurrentItem();
+
         if (Item::Opened()->IsPage() && (item->IsChoiceReg() || item->IsGovernor() || item->IsIP() || item->IsMAC()))
         {
             if (angleRegSet > stepAngleRegSet || angleRegSet < -stepAngleRegSet)
@@ -234,6 +235,9 @@ void Menu::Handlers::RegulatorSet(Action::E action)
         else
         {
             item = Item::Opened();
+
+            LOG_FUNC_ENTER();
+
             if (IsMinimize())
             {
                 CurrentPageSBregSet(angleRegSet);
@@ -257,8 +261,6 @@ void Menu::Handlers::RegulatorSet(Action::E action)
             }
         }
     }
-
-    angleRegSet = 0;
 }
 
 
