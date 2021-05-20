@@ -200,7 +200,7 @@ float Choice::Step() const
 }
 
 
-void Choice::ChangeValue(int delta)
+void Choice::ChangeOpened(int delta)
 {
     GraphicGovernor::CalculatePosition(this);
 
@@ -412,7 +412,7 @@ void Choice::ShortPress()
         }
         else
         {
-            ChangeValue(-1);
+            ChangeOpened(-1);
         }
     }
     else
@@ -625,7 +625,7 @@ bool Item::ChangeOpened(int delta) const
     }
     else if (IsChoiceReg() || IsChoice())
     {
-        ((Choice *)this)->ChangeValue(delta);
+        ((Choice *)this)->ChangeOpened(delta);
     }
     else if (IsGovernor())
     {

@@ -34,7 +34,7 @@ public:
     // –ассчитывает следующий кадр анимации.
     float Step() const;
     // »змен€ет значение choice в зависимости от величины и знака delta.
-    void ChangeValue(int delta);
+    void ChangeOpened(int delta);
 
     void FuncOnChanged(bool active) const;
 
