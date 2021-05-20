@@ -318,7 +318,7 @@ void Panel::Update()
 
     if (action.IsUp())
     {
-        Menu::Handlers::ReleaseButton(key);
+        Menu::Handlers::ReleaseKey(key);
         funcOnKeyUp[key]();
         if (pressedKey != Key::None)
         {
@@ -329,7 +329,7 @@ void Panel::Update()
     else if (action.IsDown())
     {
         funcOnKeyDown[key]();
-        Menu::Handlers::PressButton(key);
+        Menu::Handlers::PressKey(key);
         pressedKey = key;
     }
     else if (action.IsLong())
@@ -435,19 +435,19 @@ static void HelpLong()
 
 static void ChannelLongA()
 {
-    Menu::Handlers::LongPressureButton(Key::ChannelA);
+    Menu::Handlers::LongPressureKey(Key::ChannelA);
 }
 
 
 static void ChannelLongB()
 {
-    Menu::Handlers::LongPressureButton(Key::ChannelB);
+    Menu::Handlers::LongPressureKey(Key::ChannelB);
 }
 
 
 static void TimeLong()
 {
-    Menu::Handlers::LongPressureButton(Key::Time);
+    Menu::Handlers::LongPressureKey(Key::Time);
 }
 
 
@@ -455,7 +455,7 @@ static void TrigLong()
 {
     if (ModeLongPressTrig::IsLevel0())
     {
-        Menu::Handlers::LongPressureButton(Key::Trig);
+        Menu::Handlers::LongPressureKey(Key::Trig);
     }
     else
     {
@@ -468,7 +468,7 @@ static void StartDown()
 {
     if (set.memory.mode_work.IsDirect())
     {
-        Menu::Handlers::PressButton(Key::Start);
+        Menu::Handlers::PressKey(Key::Start);
     }
 }
 
@@ -483,37 +483,37 @@ static void PowerDown()
 
 static void MenuLong()
 {
-    Menu::Handlers::LongPressureButton(Key::Menu);
+    Menu::Handlers::LongPressureKey(Key::Menu);
 }
 
 
 static void F1Long()
 {
-    Menu::Handlers::LongPressureButton(Key::F1);
+    Menu::Handlers::LongPressureKey(Key::F1);
 }
 
 
 static void F2Long()
 {
-    Menu::Handlers::LongPressureButton(Key::F2);
+    Menu::Handlers::LongPressureKey(Key::F2);
 }
 
 
 static void F3Long()
 {
-    Menu::Handlers::LongPressureButton(Key::F3);
+    Menu::Handlers::LongPressureKey(Key::F3);
 }
 
 
 static void F4Long()
 {
-    Menu::Handlers::LongPressureButton(Key::F4);
+    Menu::Handlers::LongPressureKey(Key::F4);
 }
 
 
 static void F5Long()
 {
-    Menu::Handlers::LongPressureButton(Key::F5);
+    Menu::Handlers::LongPressureKey(Key::F5);
 }
 
 

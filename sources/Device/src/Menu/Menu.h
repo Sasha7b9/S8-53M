@@ -15,13 +15,13 @@ public:
         static void ShortPressureKey(Key::E key);
 
         // Обработка длинного нажатия кнопки.
-        static void LongPressureButton(Key::E key);
+        static void LongPressureKey(Key::E key);
 
         // Обработка опускания кнопки вниз.
-        static void PressButton(Key::E key);
+        static void PressKey(Key::E key);
 
         // Обработка поднятия кнопки вверх.
-        static void ReleaseButton(Key::E key);
+        static void ReleaseKey(Key::E key);
 
         // Обработка поворота ручки УСТАНОВКА.
         static void RegulatorSet(Action::E action);

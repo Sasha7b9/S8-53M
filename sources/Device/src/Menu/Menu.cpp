@@ -175,7 +175,7 @@ void Menu::ProcessButtonForHint(Key::E key)
 }
 
 
-void Menu::Handlers::PressButton(Key::E key)
+void Menu::Handlers::PressKey(Key::E key)
 {
     Sound::ButtonPress();
     if (showHelpHints)
@@ -414,7 +414,7 @@ void Menu::Handlers::ShortPressureKey(Key::E key)
 }
 
 
-void Menu::Handlers::LongPressureButton(Key::E key)
+void Menu::Handlers::LongPressureKey(Key::E key)
 {
     if (!showHelpHints)
     {
@@ -455,7 +455,7 @@ void Menu::Handlers::LongPressureButton(Key::E key)
 }
 
 
-void Menu::Handlers::ReleaseButton(Key::E )
+void Menu::Handlers::ReleaseKey(Key::E )
 {
     Sound::ButtonRelease();
 }
