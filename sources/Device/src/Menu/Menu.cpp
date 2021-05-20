@@ -208,21 +208,14 @@ void Menu::Handlers::PressKey(Key::E key)
 
 void Menu::Handlers::RegulatorSet(Action::E action)
 {
+    if (showHelpHints)
+    {
+        return;
+    }
+
     // Угол, на который нужно повернуть ручку УСТАНОВКА - величина означает количество щелчков,
     // знак - направление - "-" - влево, "+" - вправо
-    int angleRegSet = 0;
-
-    if (!showHelpHints)
-    {
-        if (action == Action::RotateRight)
-        {
-            angleRegSet++;
-        }
-        else
-        {
-            angleRegSet--;
-        }
-    }
+    int angleRegSet = (action == Action::RotateRight) 1 : -1;
 
     Display::Redraw();
 
