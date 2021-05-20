@@ -371,7 +371,7 @@ void Panel::CallbackOnReceiveSPI5(uint8 *data, uint size)
 
 void Panel::DisablePower()
 {
-    if (TIME_MS < 1000)
+    if (TIME_MS > 1000)
     {
         Panel::TransmitData(TypeLED::Power);
     }
