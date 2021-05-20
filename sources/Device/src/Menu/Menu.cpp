@@ -39,6 +39,7 @@ void Menu::Update()
     ProcessingRegulatorSet();
     ProcessingPressButton();
     ProcessingReleaseButton();
+
     led_RegSet.Switch();
     
     if(FDrive::needOpenFileMananger)
@@ -194,7 +195,7 @@ void Menu::ProcessButtonForHint(Key::E button)
     }
     else
     {
-        ProcessingShortPressureButton(button);
+        HandlerShortPressureButton(button);
     }
 }
 
@@ -326,7 +327,7 @@ void Menu::OnTimerAutoHide()
 }
 
 
-void Menu::ProcessingShortPressureButton(Key::E key)
+void Menu::HandlerShortPressureButton(Key::E key)
 {
     if (!showHelpHints)
     {
@@ -515,7 +516,7 @@ void Menu::ProcessingReleaseButton()
 void Menu::OpenItemTime()
 {
     Warnings::ShowWarningGood(Warning::TimeNotSet);
-    ProcessingShortPressureButton(Key::Service);
+    HandlerShortPressureButton(Key::Service);
     Display::Update();
     for (int i = 0; i < 2; i++)
     {
@@ -523,7 +524,7 @@ void Menu::OpenItemTime()
         Update();
         Display::Update();
     }
-    ProcessingShortPressureButton(Key::F4);
+    HandlerShortPressureButton(Key::F4);
     Display::Update();
 }
 
@@ -533,13 +534,13 @@ void Menu::OpenFileManager()
     angleRegSet = 0;
     for (int i = 0; i < 10; i++)
     {
-        ProcessingShortPressureButton(Key::Menu);
+        HandlerShortPressureButton(Key::Menu);
         Display::Update();
     }
 
     if (!IsShown())
     {
-        ProcessingShortPressureButton(Key::Menu);
+        HandlerShortPressureButton(Key::Menu);
         Display::Update();
     }
 
@@ -561,10 +562,10 @@ void Menu::OpenFileManager()
 
     angleRegSet = 0;
 
-    ProcessingShortPressureButton(Key::F2);
+    HandlerShortPressureButton(Key::F2);
     Display::Update();
 
-    ProcessingShortPressureButton(Key::F4);
+    HandlerShortPressureButton(Key::F4);
     Display::Update();
 
     for (int i = 0; i < stepAngleRegSet + 1; i++)
@@ -576,7 +577,7 @@ void Menu::OpenFileManager()
 
     for (int i = 0; i < 2; i++)
     {
-        ProcessingShortPressureButton(Key::F1);
+        HandlerShortPressureButton(Key::F1);
         Display::Update();
     }
 }

@@ -10,7 +10,7 @@ class Menu
 public:
 
     // Функция обработки короткого нажатия кнопки (менее 0.5 сек.).
-    static void ProcessingShortPressureButton(Key::E button);
+    static void HandlerShortPressureButton(Key::E button);
 
     struct Event
     {
