@@ -16,4 +16,6 @@ public:
 private:
 
     static uint timeEnabled;    // Время включения. Если (-1), то выключено
+
+    static uint timeDisable;    // Время последнего выключения
 };

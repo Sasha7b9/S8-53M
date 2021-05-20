@@ -6,6 +6,7 @@
 
 
 uint PowerSupply::timeEnabled = (uint)-1;
+uint PowerSupply::timeDisable = 0;
 
 
 bool PowerSupply::IsEnabled()
@@ -17,6 +18,11 @@ bool PowerSupply::IsEnabled()
 bool PowerSupply::AttemptToTurnOn(KeyboardEvent &event)
 {
     if (IsEnabled())
+    {
+        return false;
+    }
+
+    if (TIME_MS - timeDisable < 100)
     {
         return false;
     }
@@ -42,4 +48,6 @@ void PowerSupply::TurnOff()
     pinPower.Off();
 
     timeEnabled = (uint)-1;
+
+    timeDisable = TIME_MS;
 }
