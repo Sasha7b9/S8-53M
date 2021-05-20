@@ -16,13 +16,10 @@ public:
     static void HandlerLongPressureButton(Key::E key);
 
     // Обработка опускания кнопки вниз.
-    static void HandlerPressButton();
+    static void HandlerPressButton(Key::E key);
 
     struct Event
     {
-        // Функция вызывается, когда кнопка переходит из отжатого в нажатое положение.
-        static void PressButton(Key::E key);
-
         // Функция вызывается, когда кнопка переходит из нажатого в отжатое положение.
         static void ReleaseButton(Key::E key);
 

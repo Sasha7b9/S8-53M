@@ -12,8 +12,6 @@
 #include <cstring>
 
 
-// При нажатии кнопки её имя записывается в эту переменную и хранится там до обратоки события нажатия кнопки.
-static Key::E pressButton = Key::None;
 // При отпускании кнопки её имя записывается в эту переменную и хранится там до обработки  события отпускания кнопки.
 static Key::E releaseButton = Key::None;
 // Угол, на который нужно повернуть ручку УСТАНОВКА - величина означает количество щелчков,
@@ -34,7 +32,6 @@ static const Key::E sampleBufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {Key::F5, 
 void Menu::Update()
 {
     ProcessingRegulatorSet();
-    HandlerPressButton();
     ProcessingReleaseButton();
 
     led_RegSet.Switch();
@@ -187,7 +184,7 @@ void Menu::ProcessButtonForHint(Key::E key)
 }
 
 
-void Menu::Event::PressButton(Key::E key)
+void Menu::HandlerPressButton(Key::E key)
 {
     Sound::ButtonPress();
     if (showHelpHints)
@@ -211,7 +208,10 @@ void Menu::Event::PressButton(Key::E key)
         }
     }
 
-    pressButton = key;
+    if (key == Key::Start && !set.memory.mode_work.IsLatest())
+    {
+        FPGA::CurrentStateWork().IsStop() ? FPGA::Start() : FPGA::Stop();
+    }
 };
 
 
@@ -481,20 +481,9 @@ void Menu::ProcessingRegulatorSet()
 }
 
 
-void Menu::HandlerPressButton()
-{
-    if (pressButton == Key::Start && !set.memory.mode_work.IsLatest())
-    {
-        FPGA::CurrentStateWork().IsStop() ? FPGA::Start() : FPGA::Stop();
-    } 
-
-    pressButton = Key::None;
-}
-
-
 void Menu::ProcessingReleaseButton()
 {
-    if((releaseButton >= Key::F1 && releaseButton <= Key::F5) || pressButton == Key::Menu)
+    if(releaseButton >= Key::F1 && releaseButton <= Key::F5)
     {
         releaseButton = Key::None;
     }

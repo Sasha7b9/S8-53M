@@ -329,7 +329,7 @@ void Panel::Update()
     else if (action.IsDown())
     {
         funcOnKeyDown[key]();
-        Menu::Event::PressButton(key);
+        Menu::HandlerPressButton(key);
         pressedKey = key;
     }
     else if (action.IsLong())
@@ -468,7 +468,7 @@ static void StartDown()
 {
     if (set.memory.mode_work.IsDirect())
     {
-        Menu::Event::PressButton(Key::Start);
+        Menu::HandlerPressButton(Key::Start);
     }
 }
 
