@@ -19,3 +19,12 @@ void LED::Disable()
 {
     (typeEnable == TypeEnable::Direct) ? pin.Off() : pin.On();
 }
+
+
+void LED::DisableAll()
+{
+    led_ChannelA.Disable();
+    led_ChannelB.Disable();
+    led_Trig.Disable();
+    led_Set.Disable();
+}

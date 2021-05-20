@@ -1,6 +1,7 @@
 // 2021/05/05 15:03:30 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "HAL.h"
+#include "LEDS.h"
 #include "Keyboard.h"
 #include "PowerSupply.h"
 
@@ -48,6 +49,8 @@ void PowerSupply::TurnOff()
     pinPower.Off();
 
     timeEnabled = (uint)-1;
+
+    LED::DisableAll();
 
     timeDisable = TIME_MS;
 }

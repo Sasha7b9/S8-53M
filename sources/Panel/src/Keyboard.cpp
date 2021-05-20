@@ -120,10 +120,7 @@ void Keyboard::Init()
 
     } while (!Buffer::IsEmpty());
 
-    led_ChannelA.Disable();
-    led_ChannelB.Disable();
-    led_Trig.Disable();
-    led_Set.Disable();
+    LED::DisableAll();
 }
 
 

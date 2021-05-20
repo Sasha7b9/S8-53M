@@ -18,6 +18,8 @@ struct LED
     void Enable();
     void Disable();
 
+    static void DisableAll();
+
 private:
     Pin          &pin;
     TypeEnable::E typeEnable;
