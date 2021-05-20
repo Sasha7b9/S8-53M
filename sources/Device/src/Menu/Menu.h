@@ -9,17 +9,14 @@ class Menu
 {
 public:
 
-    // Обработка длинного нажатия кнопки.
-    static void HandlerLongPressureButton();
-
     // Функция обработки короткого нажатия кнопки (менее 0.5 сек.).
-    static void HandlerShortPressureButton(Key::E button);
+    static void HandlerShortPressureButton(Key::E key);
+
+    // Обработка длинного нажатия кнопки.
+    static void HandlerLongPressureButton(Key::E key);
 
     struct Event
     {
-        // Функция обработки длинного нажатия кнопки (более 0.5 сек.).
-        static void LongPressureButton(Key::E button);
-
         // Функция вызывается, когда кнопка переходит из отжатого в нажатое положение.
         static void PressButton(Key::E button);
 

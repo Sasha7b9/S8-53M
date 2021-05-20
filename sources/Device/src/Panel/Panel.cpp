@@ -435,19 +435,19 @@ static void HelpLong()
 
 static void ChannelLongA()
 {
-    Menu::Event::LongPressureButton(Key::ChannelA);
+    Menu::HandlerLongPressureButton(Key::ChannelA);
 }
 
 
 static void ChannelLongB()
 {
-    Menu::Event::LongPressureButton(Key::ChannelB);
+    Menu::HandlerLongPressureButton(Key::ChannelB);
 }
 
 
 static void TimeLong()
 {
-    Menu::Event::LongPressureButton(Key::Time);
+    Menu::HandlerLongPressureButton(Key::Time);
 }
 
 
@@ -455,7 +455,7 @@ static void TrigLong()
 {
     if (ModeLongPressTrig::IsLevel0())
     {
-        Menu::Event::LongPressureButton(Key::Trig);
+        Menu::HandlerLongPressureButton(Key::Trig);
     }
     else
     {
@@ -483,37 +483,37 @@ static void PowerDown()
 
 static void MenuLong()
 {
-    Menu::Event::LongPressureButton(Key::Menu);
+    Menu::HandlerLongPressureButton(Key::Menu);
 }
 
 
 static void F1Long()
 {
-    Menu::Event::LongPressureButton(Key::F1);
+    Menu::HandlerLongPressureButton(Key::F1);
 }
 
 
 static void F2Long()
 {
-    Menu::Event::LongPressureButton(Key::F2);
+    Menu::HandlerLongPressureButton(Key::F2);
 }
 
 
 static void F3Long()
 {
-    Menu::Event::LongPressureButton(Key::F3);
+    Menu::HandlerLongPressureButton(Key::F3);
 }
 
 
 static void F4Long()
 {
-    Menu::Event::LongPressureButton(Key::F4);
+    Menu::HandlerLongPressureButton(Key::F4);
 }
 
 
 static void F5Long()
 {
-    Menu::Event::LongPressureButton(Key::F5);
+    Menu::HandlerLongPressureButton(Key::F5);
 }
 
 

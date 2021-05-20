@@ -12,8 +12,6 @@
 #include <cstring>
 
 
-// Если произошло длинное нажатие кнопки, то здесь хранится имя этой кнопки до обработки этого нажатия.
-static Key::E longPressureButton = Key::None;
 // При нажатии кнопки её имя записывается в эту переменную и хранится там до обратоки события нажатия кнопки.
 static Key::E pressButton = Key::None;
 // При отпускании кнопки её имя записывается в эту переменную и хранится там до обработки  события отпускания кнопки.
@@ -35,7 +33,6 @@ static const Key::E sampleBufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {Key::F5, 
 
 void Menu::Update()
 {
-    HandlerLongPressureButton();
     ProcessingRegulatorSet();
     ProcessingPressButton();
     ProcessingReleaseButton();
@@ -46,16 +43,6 @@ void Menu::Update()
     {
         FDrive::needOpenFileMananger = false;
         OpenFileManager();       
-    }
-};
-
-
-void Menu::Event::LongPressureButton(Key::E button)
-{
-    if (!showHelpHints)
-    {
-        longPressureButton = button;
-        Display::Redraw();
     }
 };
 
@@ -403,42 +390,43 @@ void Menu::HandlerShortPressureButton(Key::E key)
 }
 
 
-void Menu::HandlerLongPressureButton()
+void Menu::HandlerLongPressureButton(Key::E key)
 {
-    if(longPressureButton != Key::None)
+    if (!showHelpHints)
     {
         Display::Redraw();
-        SetAutoHide(true);
+    }
 
-        if(longPressureButton == Key::Time)
+    Display::Redraw();
+    SetAutoHide(true);
+
+    if (key == Key::Time)
+    {
+        TShift::Set(0);
+    }
+    else if (key == Key::Trig)
+    {
+        TrigLev::Set(TrigSource::Get(), TrigLev::ZERO);
+    }
+    else if (key == Key::ChannelA)
+    {
+        RShift::Set(ChA, RShift::ZERO);
+    }
+    else if (key == Key::ChannelB)
+    {
+        RShift::Set(ChB, RShift::ZERO);
+    }
+    else if (key == Key::Menu)
+    {
+        ChangeShowing();
+    }
+    else if (IsShown() && Key::IsFunctionalButton(key))
+    {
+        Item *item = ItemUnderButton(key);
+        if (item->IsActive())
         {
-            TShift::Set(0);
+            item->LongPress();
         }
-        else if(longPressureButton == Key::Trig)
-        {
-            TrigLev::Set(TrigSource::Get(), TrigLev::ZERO);
-        }
-        else if(longPressureButton == Key::ChannelA)
-        {
-            RShift::Set(ChA, RShift::ZERO);
-        }
-        else if(longPressureButton == Key::ChannelB)
-        {
-            RShift::Set(ChB, RShift::ZERO);
-        }
-        else if(longPressureButton == Key::Menu)
-        {
-            ChangeShowing();
-        }
-        else if(IsShown() && Key::IsFunctionalButton(longPressureButton))
-        {
-            Item *item = ItemUnderButton(longPressureButton);
-            if (item->IsActive())
-            {
-                item->LongPress();
-            }
-        }
-        longPressureButton = Key::None;
     }
 }
 
