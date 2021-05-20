@@ -18,8 +18,9 @@ int main()
 
         KeyboardEvent event = Keyboard::Buffer::GetNextEvent();
 
-        PowerSupply::AttemptToTurnOn(event);
-
-        Interface::Update(event);
+        if (!PowerSupply::AttemptToTurnOn(event))
+        {
+            Interface::Update(event);
+        }
     }
 }

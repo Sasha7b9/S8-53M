@@ -223,6 +223,11 @@ void GovernorStruct::SendEvent(Key::E key_, Action::E action)
 
 void Buffer::AppendEvent(Key::E key, Action::E action)
 {
+    if (key == Key::Power && action != Action::Down)
+    {
+        return;
+    }
+
     commands[pointer].key = key;
     commands[pointer].action = action;
     pointer++;

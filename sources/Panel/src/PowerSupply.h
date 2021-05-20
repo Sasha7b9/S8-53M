@@ -6,7 +6,8 @@ class PowerSupply
 {
 public:
 
-    static void AttemptToTurnOn(KeyboardEvent &event);
+    // Возвращает true только в том случае, если в момент вызова произошло включение
+    static bool AttemptToTurnOn(KeyboardEvent &event);
 
     static void TurnOff();
 
