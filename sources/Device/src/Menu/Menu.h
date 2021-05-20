@@ -67,8 +67,13 @@ public:
     // Отобразить/скрыть меню.
     static void ShowHide(bool show);
 
+    // Изменить "показанность" - скрыть если открыто и наоборот
+    static void ChangeShowing();
+
+    // Скрыть меню
     static void Hide();
 
+    // Показать меню
     static void Show();
 
     // Если true - меню находится в дополнительном режиме.

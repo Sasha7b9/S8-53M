@@ -448,7 +448,7 @@ void Menu::ProcessingLongPressureButton()
         }
         else if(longPressureButton == Key::Menu)
         {
-            ShowHide(!IsShown());
+            ChangeShowing();
         }
         else if(IsShown() && Key::IsFunctionalButton(longPressureButton))
         {
@@ -620,6 +620,12 @@ void Menu::ShowHide(bool show)
 {
     set.menu.isShown = show ? 1U : 0U;
     SetAutoHide(true);
+}
+
+
+void Menu::ChangeShowing()
+{
+    ShowHide(!IsShown());
 }
 
 
