@@ -894,7 +894,7 @@ void RegSetLED::Switch()
     static bool first = true;
     static bool prevState = false;  // true - горит, false - не горит
 
-    bool state = Menu::NeedForFireSetLED();
+    bool state = NeedForFire();
 
     if (first)
     {
@@ -907,4 +907,44 @@ void RegSetLED::Switch()
         led_RegSet.SwitchToState(state, __FILE__, __LINE__);
         prevState = state;
     }
+}
+
+
+bool RegSetLED::NeedForFire()
+{
+    if (!Menu::IsShown())
+    {
+        return false;
+    }
+    NamePage::E name = Menu::GetNameOpenedPage();
+
+    if (name == NamePage::SB_MeasTuneMeas && set.measures.number.Is1() && !PageMeasures::choiceMeasuresIsActive)
+    {
+        return false;
+    }
+
+    if (
+        name == NamePage::SB_MathCursorsFFT ||
+        name == NamePage::SB_MeasTuneMeas ||
+        name == NamePage::SB_MemLatest ||
+        name == NamePage::SB_MemInt ||
+        (name == NamePage::SB_MathFunction && !ModeDrawMath::IsDisabled()) ||
+        (name == NamePage::SB_Curs && Cursors::NecessaryDraw())
+        )
+    {
+        return true;
+    }
+
+    if (Menu::CurrentItem()->IsGovernor() || Menu::CurrentItem()->IsChoiceReg())
+    {
+        return true;
+    }
+
+    if (Item::Opened()->IsChoice() ||
+        (Item::Opened()->IsPage() && (Item::Opened()->ReinterpretToPage()->NumSubPages() > 1)))
+    {
+        return true;
+    }
+
+    return false;
 }

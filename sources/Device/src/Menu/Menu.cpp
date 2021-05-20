@@ -547,46 +547,6 @@ void Menu::OpenItemTime()
 }
 
 
-bool Menu::NeedForFireSetLED()    // Возвращает true, если лампочка УСТАНОВКА должна гореть
-{
-    if (!IsShown())
-    {
-        return false;
-    }
-    NamePage::E name = GetNameOpenedPage();
-
-    if (name == NamePage::SB_MeasTuneMeas && set.measures.number.Is1() && !PageMeasures::choiceMeasuresIsActive)
-    {
-        return false;
-    }
-
-    if (
-        name == NamePage::SB_MathCursorsFFT                                ||
-        name == NamePage::SB_MeasTuneMeas                                  ||
-        name == NamePage::SB_MemLatest                                     || 
-        name == NamePage::SB_MemInt                                        ||
-        (name == NamePage::SB_MathFunction && !ModeDrawMath::IsDisabled()) ||
-        (name == NamePage::SB_Curs && Cursors::NecessaryDraw())
-        )
-    {
-        return true;
-    }
-    
-    if (CurrentItem()->IsGovernor() || CurrentItem()->IsChoiceReg())
-    {
-        return true;
-    }
-
-    if (Item::Opened()->IsChoice()  ||
-        (Item::Opened()->IsPage() && (Item::Opened()->ReinterpretToPage()->NumSubPages() > 1)))
-    {
-        return true;
-    }
-    
-    return false;
-}
-
-
 void Menu::OpenFileManager()
 {
     angleRegSet = 0;

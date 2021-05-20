@@ -80,8 +80,6 @@ public:
     static bool showDebugMenu;
     static bool needClosePageSB;    // Если 1, нужно закрывать страницу малых кнопок
 
-    static bool NeedForFireSetLED();
-
 private:
 
     // Обработка короткого нажатия кнопки.

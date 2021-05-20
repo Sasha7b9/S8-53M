@@ -57,6 +57,9 @@ struct RegSetLED : public LED
 {
     RegSetLED(TypeLED::E led) : LED(led) {}
     void Switch();
+private:
+    // Возвращает true, если лампочка УСТАНОВКА должна гореть
+    bool NeedForFire();
 };
 
 
