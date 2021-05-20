@@ -609,10 +609,7 @@ void Page::OpenAndSetItCurrent() const
 
 bool Item::ChangeOpened(int delta) const
 {
-    if (delta < 2 && delta > -2)
-    {
-        return false;
-    }
+    delta *= 2;
 
     if (IsPage())
     {

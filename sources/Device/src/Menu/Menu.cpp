@@ -241,8 +241,6 @@ void Menu::Handlers::RegulatorSet(Action::E action)
             else if (item->IsPage() || item->IsIP() || item->IsMAC() || item->IsChoice() || item->IsChoiceReg() ||
                 item->IsGovernor())
             {
-                LOG_FUNC_ENTER();
-
                 item->ChangeOpened(angleRegSet);
             }
             else if (item->IsGovernorColor())
