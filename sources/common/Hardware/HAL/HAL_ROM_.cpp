@@ -48,29 +48,6 @@ const Sector HAL_ROM::sectors[Sector::Count] =
 };
 
 
-void Sector::Erase() const
-{
-    CLEAR_FLASH_FLAGS;
-
-    HAL_FLASH_Unlock();
-
-    FLASH_EraseInitTypeDef isFLASH =
-    {
-        FLASH_TYPEERASE_SECTORS,
-        0,
-        static_cast<uint>(number),
-        1,
-        FLASH_VOLTAGE_RANGE_3
-    };
-
-    uint error = 0;
-
-    HAL_FLASHEx_Erase(&isFLASH, &error);
-
-    HAL_FLASH_Lock();
-}
-
-
 void HAL_ROM::WriteBytes(uint address, const uint8 *data, uint size)
 {
     CLEAR_FLASH_FLAGS;
