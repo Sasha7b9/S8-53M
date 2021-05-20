@@ -12,8 +12,6 @@
 #include <cstring>
 
 
-// При отпускании кнопки её имя записывается в эту переменную и хранится там до обработки  события отпускания кнопки.
-static Key::E releaseButton = Key::None;
 // Угол, на который нужно повернуть ручку УСТАНОВКА - величина означает количество щелчков,
 // знак - направление - "-" - влево, "+" - вправо
 static int angleRegSet = 0;
@@ -32,7 +30,6 @@ static const Key::E sampleBufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {Key::F5, 
 void Menu::Update()
 {
     ProcessingRegulatorSet();
-    ProcessingReleaseButton();
 
     led_RegSet.Switch();
     
@@ -211,16 +208,6 @@ void Menu::HandlerPressButton(Key::E key)
     if (key == Key::Start && !set.memory.mode_work.IsLatest())
     {
         FPGA::CurrentStateWork().IsStop() ? FPGA::Start() : FPGA::Stop();
-    }
-};
-
-
-void Menu::Event::ReleaseButton(Key::E key)
-{
-    Sound::ButtonRelease();
-    if (!showHelpHints)
-    {
-        releaseButton = key;
     }
 };
 
@@ -481,12 +468,9 @@ void Menu::ProcessingRegulatorSet()
 }
 
 
-void Menu::ProcessingReleaseButton()
+void Menu::ProcessingReleaseButton(Key::E )
 {
-    if(releaseButton >= Key::F1 && releaseButton <= Key::F5)
-    {
-        releaseButton = Key::None;
-    }
+    Sound::ButtonRelease();
 }
 
 

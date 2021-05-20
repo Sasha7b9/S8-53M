@@ -318,7 +318,7 @@ void Panel::Update()
 
     if (action.IsUp())
     {
-        Menu::Event::ReleaseButton(key);
+        Menu::ProcessingReleaseButton(key);
         funcOnKeyUp[key]();
         if (pressedKey != Key::None)
         {

@@ -18,11 +18,12 @@ public:
     // Обработка опускания кнопки вниз.
     static void HandlerPressButton(Key::E key);
 
+    // Обработка поднятия кнопки вверх.
+    static void ProcessingReleaseButton(Key::E key);
+
+
     struct Event
     {
-        // Функция вызывается, когда кнопка переходит из нажатого в отжатое положение.
-        static void ReleaseButton(Key::E key);
-
         // Функция обработки поворота ручки УСТАНОВКА вправо.
         static void RotateRegSetRight();
 
@@ -87,9 +88,6 @@ public:
     static bool needClosePageSB;    // Если 1, нужно закрывать страницу малых кнопок
 
 private:
-
-    // Обработка поднятия кнопки вверх.
-    static void ProcessingReleaseButton();
 
     // Обработка поворота ручки УСТАНОВКА.
     static void ProcessingRegulatorSet();
