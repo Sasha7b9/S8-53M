@@ -22,7 +22,7 @@ public:
     static void HandlerReleaseButton(Key::E key);
 
     // Обработка поворота ручки УСТАНОВКА.
-    static void ProcessingRegulatorSet(Action::E action);
+    static void HandlerRegulatorSet(Action::E action);
 
     static const int ITEMS_ON_DISPLAY = 5;     // Сколько пунктов меню помещается на экране по вертикали.
 

@@ -206,7 +206,7 @@ void Menu::HandlerPressButton(Key::E key)
 };
 
 
-void Menu::ProcessingRegulatorSet(Action::E action)
+void Menu::HandlerRegulatorSet(Action::E action)
 {
     // Угол, на который нужно повернуть ручку УСТАНОВКА - величина означает количество щелчков,
     // знак - направление - "-" - влево, "+" - вправо
@@ -468,7 +468,7 @@ void Menu::OpenItemTime()
     Display::Update();
     for (int i = 0; i < 2; i++)
     {
-        Menu::ProcessingRegulatorSet(Action::RotateRight);
+        Menu::HandlerRegulatorSet(Action::RotateRight);
         Display::Update();
     }
     HandlerShortPressureButton(Key::F4);
@@ -492,13 +492,13 @@ void Menu::OpenFileManager()
 
     for (int i = 0; i < 5 * stepAngleRegSet + 1; i++)
     {
-        Menu::ProcessingRegulatorSet(Action::RotateLeft);
+        Menu::HandlerRegulatorSet(Action::RotateLeft);
         Display::Update();
     }
 
     for (int i = 0; i < 2 * stepAngleRegSet + 1; i++)
     {
-        Menu::ProcessingRegulatorSet(Action::RotateRight);
+        Menu::HandlerRegulatorSet(Action::RotateRight);
         Display::Update();
     }
 
@@ -510,7 +510,7 @@ void Menu::OpenFileManager()
 
     for (int i = 0; i < stepAngleRegSet + 1; i++)
     {
-        Menu::ProcessingRegulatorSet(Action::RotateLeft);
+        Menu::HandlerRegulatorSet(Action::RotateLeft);
         Display::Update();
     }
 
