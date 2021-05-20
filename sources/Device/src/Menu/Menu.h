@@ -19,7 +19,7 @@ public:
     static void HandlerPressButton(Key::E key);
 
     // Обработка поднятия кнопки вверх.
-    static void ProcessingReleaseButton(Key::E key);
+    static void HandlerReleaseButton(Key::E key);
 
 
     struct Event

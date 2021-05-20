@@ -468,7 +468,7 @@ void Menu::ProcessingRegulatorSet()
 }
 
 
-void Menu::ProcessingReleaseButton(Key::E )
+void Menu::HandlerReleaseButton(Key::E )
 {
     Sound::ButtonRelease();
 }
