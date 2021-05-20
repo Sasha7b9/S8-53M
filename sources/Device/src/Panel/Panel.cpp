@@ -28,11 +28,11 @@ bool Panel::isRunning = true;
 static Queue<uint8> data_for_panel;
 
 
-extern LED led_Trig(TypeLED::Trig);
-extern LED led_RegSet(TypeLED::RegSet);
-extern LED led_ChA(TypeLED::ChanA);
-extern LED led_ChB(TypeLED::ChanB);
-extern LED led_Power(TypeLED::Power);
+extern LED       led_Trig(TypeLED::Trig);
+extern RegSetLED led_RegSet(TypeLED::RegSet);
+extern LED       led_ChA(TypeLED::ChanA);
+extern LED       led_ChB(TypeLED::ChanB);
+extern LED       led_Power(TypeLED::Power);
 
 
 struct ReceivedBuffer
@@ -830,11 +830,11 @@ LED::LED(TypeLED::E _led) : led(_led)
 
 void LED::Disable()
 {
-    SwitchToState(false);
+    SwitchToState(false, __FILE__, __LINE__);
 }
 
 
-void LED::SwitchToState(bool enabled)
+void LED::SwitchToState(bool enabled, pchar file, int line)
 {
     if (led == TypeLED::Trig)
     {
@@ -872,6 +872,39 @@ void LED::SwitchToState(bool enabled)
     }
     else
     {
-        Panel::TransmitData(enabled ? (uint8)(led | 0x80) : (uint8)led);
+        if (led == TypeLED::RegSet)
+        {
+            LOG_WRITE("%s %d лампочка %d", file, line, enabled ? 1 : 0);
+        }
+
+        uint8 value = (uint8)led;
+
+        if (enabled)
+        {
+            value |= 0x80;
+        }
+
+        Panel::TransmitData(value);
+    }
+}
+
+
+void RegSetLED::Switch()
+{
+    static bool first = true;
+    static bool prevState = false;  // true - горит, false - не горит
+
+    bool state = Menu::NeedForFireSetLED();
+
+    if (first)
+    {
+        first = false;
+        led_RegSet.SwitchToState(state, __FILE__, __LINE__);
+        prevState = state;
+    }
+    else if (prevState != state)
+    {
+        led_RegSet.SwitchToState(state, __FILE__, __LINE__);
+        prevState = state;
     }
 }

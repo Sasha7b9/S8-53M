@@ -42,7 +42,7 @@ void Menu::Update()
     ProcessingRegulatorSet();
     ProcessingPressButton();
     ProcessingReleaseButton();
-    SwitchSetLED();
+    led_RegSet.Switch();
     
     if(FDrive::needOpenFileMananger)
     {
@@ -584,27 +584,6 @@ bool Menu::NeedForFireSetLED()    // Возвращает true, если лампочка УСТАНОВКА до
     }
     
     return false;
-}
-
-
-void Menu::SwitchSetLED()
-{
-    static bool first = true;
-    static bool prevState = false;  // true - горит, false - не горит
-
-    bool state = NeedForFireSetLED();
-
-    if (first)
-    {
-        first = false;
-        led_RegSet.SwitchToState(state);
-        prevState = state;
-    }
-    else if (prevState != state)
-    {
-        led_RegSet.SwitchToState(state);
-        prevState = state;
-    }
 }
 
 

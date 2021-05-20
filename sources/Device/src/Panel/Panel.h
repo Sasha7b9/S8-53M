@@ -47,14 +47,21 @@ struct LED
 {
     LED(TypeLED::E led);
     void Disable();
-    void SwitchToState(bool enabled);
+    void SwitchToState(bool enabled, pchar file, int line);
 private:
     TypeLED::E led;
 };
 
 
-extern LED led_Trig;
-extern LED led_RegSet;
-extern LED led_ChA;
-extern LED led_ChB;
-extern LED led_Power;
+struct RegSetLED : public LED
+{
+    RegSetLED(TypeLED::E led) : LED(led) {}
+    void Switch();
+};
+
+
+extern LED       led_Trig;
+extern RegSetLED led_RegSet;
+extern LED       led_ChA;
+extern LED       led_ChB;
+extern LED       led_Power;

@@ -80,6 +80,8 @@ public:
     static bool showDebugMenu;
     static bool needClosePageSB;    // Если 1, нужно закрывать страницу малых кнопок
 
+    static bool NeedForFireSetLED();
+
 private:
 
     // Обработка короткого нажатия кнопки.
@@ -96,11 +98,6 @@ private:
 
     // Обработка поворота ручки УСТАНОВКА.
     static void ProcessingRegulatorSet();
-
-    // Включить/выключить светодиод ручки УСТАНОВКА, если необходимо.
-    static void SwitchSetLED();
-
-    static bool NeedForFireSetLED();
 
     static void OpenFileManager();
 
