@@ -34,7 +34,7 @@ public:
     // –ассчитывает следующий кадр анимации.
     float Step() const;
     // »змен€ет значение choice в зависимости от величины и знака delta.
-    virtual void OnRegSet(int delta);
+    virtual void OnRegSet(int delta) const;
 
     void FuncOnChanged(bool active) const;
 

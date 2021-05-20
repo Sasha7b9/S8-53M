@@ -61,7 +61,7 @@ public:
     // ”меньшает или увеличивает значение Governor, GovernorColor или Choice по адресу item в зависимости от знака delta
     void Change(int delta) const;
 
-    virtual void OnRegSet(int) {};
+    virtual void OnRegSet(int) const {};
 
     // ¬озвращает высоту в пиксел€х открытого элемента Choice или NamePage::E по адресу item.
     int HeightOpened() const;

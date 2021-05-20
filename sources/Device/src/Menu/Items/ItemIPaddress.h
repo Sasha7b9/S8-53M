@@ -30,7 +30,7 @@ public:
     void NextPosition() const;
 
     // Изменяет значение в текущей позиции при открытом элементе
-    virtual void OnRegSet(int delta);
+    virtual void OnRegSet(int delta) const;
 
     void DrawLowPart(int x, int y) const;
 

@@ -32,7 +32,7 @@ void Governor::StartChange(int delta)
     inStateDecrease = (delta < 0);
 }
 
-void Governor::OnRegSet(int delta)
+void Governor::OnRegSet(int delta) const
 {
     int16 oldValue = *OwnData()->cell;
 
@@ -50,7 +50,7 @@ void Governor::OnRegSet(int delta)
     }
 }
 
-void IPaddress::OnRegSet(int delta)
+void IPaddress::OnRegSet(int delta) const
 {
     int numByte = 0;
     int numPos = 0;
@@ -89,7 +89,7 @@ void IPaddress::OnRegSet(int delta)
     }
 }
 
-void MACaddress::OnRegSet(int delta)
+void MACaddress::OnRegSet(int delta) const
 {
     uint8 *value = OwnData()->mac0 + gCurDigit;
     *value += delta > 0 ? 1 : -1;

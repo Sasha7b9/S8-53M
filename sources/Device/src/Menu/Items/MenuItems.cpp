@@ -200,7 +200,7 @@ float Choice::Step() const
 }
 
 
-void Choice::OnRegSet(int delta)
+void Choice::OnRegSet(int delta) const
 {
     GraphicGovernor::CalculatePosition(this);
 
@@ -364,7 +364,7 @@ bool Item::IsOpened() const
 }
 
 
-void Page::OnRegSet(int delta)
+void Page::OnRegSet(int delta) const
 {
     if (delta > 0 && GetCurrentSubPage() < NumSubPages() - 1)
     {
