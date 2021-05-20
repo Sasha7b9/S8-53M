@@ -872,11 +872,6 @@ void LED::SwitchToState(bool enabled)
     }
     else
     {
-        if (led == TypeLED::RegSet)
-        {
-            LOG_WRITE("лампочка %d", enabled ? 1 : 0);
-        }
-
         uint8 value = (uint8)led;
 
         if (enabled)
