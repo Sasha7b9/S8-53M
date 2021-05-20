@@ -375,7 +375,7 @@ void Menu::Handlers::ShortPressureKey(Key::E key)
         }
         else if (IsShown() && Key::IsFunctionalKey(key)) // Если меню показано и нажата функциональная клавиша
         {
-            Item *item = ItemUnderButton(key);
+            Item *item = ItemUnderKey(key);
 
             if (showHelpHints)
             {
@@ -446,7 +446,7 @@ void Menu::Handlers::LongPressureKey(Key::E key)
     }
     else if (IsShown() && Key::IsFunctionalKey(key))
     {
-        Item *item = ItemUnderButton(key);
+        Item *item = ItemUnderKey(key);
         if (item->IsActive())
         {
             item->LongPress();

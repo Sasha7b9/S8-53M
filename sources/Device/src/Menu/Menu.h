@@ -35,7 +35,7 @@ public:
     static void Update();
 
     // ¬озвращает адрес элемента меню, соответствующего данной key.
-    static Item *ItemUnderButton(Key::E key);
+    static Item *ItemUnderKey(Key::E key);
 
     // ”становить врем€ автоматического сокрыти€ меню в соответствии с установками.
     static void SetAutoHide(bool active);

@@ -837,7 +837,7 @@ void Page::DrawItems(int yTop) const
 }
 
 
-Item *Menu::ItemUnderButton(Key::E key)
+Item *Menu::ItemUnderKey(Key::E key)
 {
     return (key <= Key::F5) ? itemUnderButton[key - 1] : &Item::empty;
 }
