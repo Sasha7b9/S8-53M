@@ -494,7 +494,7 @@ void TrigPolarity::Switch()
 
     timeSwitch = TIME_MS;
 
-    Panel::EnableLED(TypeLED::Trig, false);
+    Panel::DisableLED(TypeLED::Trig);
 }
 
 

@@ -32,7 +32,7 @@ static void OnTimerDraw()
 
 static void OnPress_ResetSettings()
 {
-    Panel::Disable();
+    Panel::DisableInput();
     Display::SetDrawMode(DrawMode::Hand, FuncDraw);
     Timer::Enable(TypeTimer::TimerDrawHandFunction, 100, OnTimerDraw);
 
@@ -44,7 +44,7 @@ static void OnPress_ResetSettings()
 
     Timer::Disable(TypeTimer::TimerDrawHandFunction);
     Display::SetDrawMode(DrawMode::Auto, 0);
-    Panel::Enable();
+    Panel::EnableInput();
 }
 
 DEF_BUTTON(bResetSettings, PageService::self,

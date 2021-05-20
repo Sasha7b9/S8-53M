@@ -11,10 +11,24 @@ public:
 
     static void Update();
 
-    // В отлюченном режиме панель лишь обновляет состояние переменной pressedButton, не выполняя больше никаких действий
-    static void Disable();
+    // Отключить обработку ввода. В этом режиме панель лишь обновляет состояние переменной pressedButton, не выполняя
+    // больше никаких действий
+    static void DisableInput();
 
-    static void EnableLED(TypeLED::E led, bool endable);
+    // Включить обработку ввода
+    static void EnableInput();
+
+    // Послать сигнал выключения
+    static void DisablePower();
+
+    // Включить лампочку
+    static void EnableLED(TypeLED::E led);
+
+    // Выключить лампочку
+    static void DisableLED(TypeLED::E led);
+
+    // Переключить лампочку в соответствующее состояние
+    static void SwitchToStateLED(TypeLED::E led, bool enabled);
 
     // Эта функция должна вызываться из приёмной фунции SPI5
     static void CallbackOnReceiveSPI5(uint8 *data, uint size);
@@ -22,14 +36,12 @@ public:
     // Ожидать нажатие клавиши.
     static Key::E WaitPressingButton();
 
-    static void Enable();
-
-    // Передать даннные в мк панели управления.
-    static void TransmitData(uint8 data);
-
-    static uint8 NextData();
+   static uint8 NextData();
 
 private:
 
     static bool isRunning;
+
+    // Передать даннные в мк панели управления.
+    static void TransmitData(uint8 data);
 };

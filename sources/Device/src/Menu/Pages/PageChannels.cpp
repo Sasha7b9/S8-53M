@@ -36,7 +36,7 @@ static const char chanMultiplierEn[] =
 
 void PageChannelA::OnChanged_Input(bool)
 {
-    Panel::EnableLED(TypeLED::ChanA, ChA.IsEnabled());
+    Panel::SwitchToStateLED(TypeLED::ChanA, ChA.IsEnabled());
 }
 
 DEF_CHOICE_2(mcInputA, PageChannelA::self,
@@ -114,7 +114,7 @@ DEF_PAGE_5(pageChanA, PageMain::self, NamePage::ChannelA,
 
 void PageChannelB::OnChanged_Input(bool)
 {
-    Panel::EnableLED(TypeLED::ChanB, ChB.IsEnabled());
+    Panel::SwitchToStateLED(TypeLED::ChanB, ChB.IsEnabled());
 }
 
 DEF_CHOICE_2(mcInputB, PageChannelB::self,

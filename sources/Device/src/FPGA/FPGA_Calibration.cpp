@@ -80,8 +80,8 @@ void FPGA::Calibrator::ProcedureCalibration()
     bar1.fullTime = 0;
     bar1.passedTime = 0;
 
-    FPGA::state.Save();                               // Сохраняем текущее состояние.
-    Panel::Disable();                                // Отлкючаем панель управления.
+    FPGA::state.Save();                     // Сохраняем текущее состояние.
+    Panel::DisableInput();                  // Отлкючаем панель управления.
 
     while(1)
     {
@@ -210,7 +210,7 @@ void FPGA::Calibrator::ProcedureCalibration()
 
     state.state_calibration = StateCalibration::None;
     Panel::WaitPressingButton();
-    Panel::Enable();
+    Panel::EnableInput();
     Timer::Disable(TypeTimer::TimerDrawHandFunction);
     Display::SetDrawMode(DrawMode::Auto, 0);
     state.state_calibration = StateCalibration::None;

@@ -362,7 +362,19 @@ void Panel::CallbackOnReceiveSPI5(uint8 *data, uint size)
 }
 
 
-void Panel::EnableLED(TypeLED::E led, bool enable)
+void Panel::EnableLED(TypeLED::E led)
+{
+    SwitchToStateLED(led, true);
+}
+
+
+void Panel::DisableLED(TypeLED::E led)
+{
+    SwitchToStateLED(led, false);
+}
+
+
+void Panel::SwitchToStateLED(TypeLED::E led, bool enabled)
 {
     if (led == TypeLED::Trig)
     {
@@ -377,14 +389,14 @@ void Panel::EnableLED(TypeLED::E led, bool enable)
             first = false;
         }
 
-        if (enable)
+        if (enabled)
         {
             timeEnable = TIME_MS;
         }
 
-        if (enable != fired)
+        if (enabled != fired)
         {
-            if (enable)
+            if (enabled)
             {
                 Panel::TransmitData((uint8)(led | 0x80));
                 TrigLev::exist_impulse = true;
@@ -400,8 +412,14 @@ void Panel::EnableLED(TypeLED::E led, bool enable)
     }
     else
     {
-        Panel::TransmitData(enable ? (uint8)(led | 0x80) : (uint8)led);
+        Panel::TransmitData(enabled ? (uint8)(led | 0x80) : (uint8)led);
     }
+}
+
+
+void Panel::DisablePower()
+{
+    Panel::TransmitData(TypeLED::Power);
 }
 
 
@@ -424,13 +442,13 @@ uint8 Panel::NextData()
 }
 
 
-void Panel::Disable()
+void Panel::DisableInput()
 {
     Panel::isRunning = false;
 }
 
 
-void Panel::Enable()
+void Panel::EnableInput()
 {
     Panel::isRunning = true;
 }
@@ -438,8 +456,8 @@ void Panel::Enable()
 
 void Panel::Init()
 {
-    Panel::EnableLED(TypeLED::RegSet, false);
-    Panel::EnableLED(TypeLED::Trig, false);
+    Panel::DisableLED(TypeLED::RegSet);
+    Panel::DisableLED(TypeLED::Trig);
     PageChannelA::OnChanged_Input(true);
     PageChannelB::OnChanged_Input(true);
 }
@@ -504,7 +522,7 @@ static void PowerDown()
 {
     ((Page *)Item::Opened())->ShortPressOnItem(0);
 
-    Panel::TransmitData(TypeLED::Power);
+    Panel::DisablePower();
 }
 
 
