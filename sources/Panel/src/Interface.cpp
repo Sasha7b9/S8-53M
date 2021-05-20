@@ -9,6 +9,7 @@
 static const int SIZE_BUFFER = 3;
 
 uint8 output[SIZE_BUFFER] = { 0xFF, 0, 0 };
+uint8 input[SIZE_BUFFER];
 
 
 void Interface::Update(KeyboardEvent &event)
@@ -25,24 +26,23 @@ void Interface::Update(KeyboardEvent &event)
 
     if (event.key != Key::None)
     {
+        output[0] = 0xFF;
         needTransmit = true;
     }
-    else if (HAL_SPI2::TimeAfterTransmit() > 10)
-    {
+    
+    if (!needTransmit && HAL_SPI2::TimeAfterTransmit() > 10)      // Если данных нет (event.key == Key::None), но прошло
+    {                                                    // более 10мс делаем пустую посылку для приёма сообщений от ЦПУ
         output[0] = 0x00;
-
         needTransmit = true;
     }
 
     if (needTransmit)
     {
-        uint8 bufferIn[SIZE_BUFFER];
-
-        HAL_SPI2::TransmitReceivce(output, bufferIn, SIZE_BUFFER);
+        HAL_SPI2::TransmitReceivce(output, input, SIZE_BUFFER);
 
         for (uint i = 0; i < SIZE_BUFFER; i++)
         {
-            ProcessByte(bufferIn[i]);
+            ProcessByte(input[i]);
         }
     }
 }

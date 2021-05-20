@@ -306,6 +306,9 @@ void Panel::Update()
     Key::E key = (Key::E)queue.Front();
     Action action(queue.Front());
 
+    LOG_WRITE("key %d", key);
+    LOG_WRITE("action %d", action.value);
+
     if (action.IsDown())
     {
         pressedButton = key;
@@ -350,6 +353,8 @@ void Panel::Update()
 
 void Panel::CallbackOnReceiveSPI5(uint8 *data, uint size)
 {
+    LOG_FUNC_ENTER();
+
     static ReceivedBuffer buffer;
 
     for (uint i = 0; i < size; i++)              // Сначала сохраняем данные в промежуточный буфер
