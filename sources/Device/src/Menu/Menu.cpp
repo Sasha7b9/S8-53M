@@ -170,7 +170,7 @@ void Menu::ProcessButtonForHint(Key::E key)
     }
     else
     {
-        HandlerShortPressureButton(key);
+        Handlers::ShortPressureButton(key);
     }
 }
 

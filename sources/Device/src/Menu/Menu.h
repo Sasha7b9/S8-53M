@@ -9,20 +9,23 @@ class Menu
 {
 public:
 
-    // Функция обработки короткого нажатия кнопки (менее 0.5 сек.).
-    static void HandlerShortPressureButton(Key::E key);
+    struct Handlers
+    {
+        // Функция обработки короткого нажатия кнопки (менее 0.5 сек.).
+        static void ShortPressureButton(Key::E key);
 
-    // Обработка длинного нажатия кнопки.
-    static void HandlerLongPressureButton(Key::E key);
+        // Обработка длинного нажатия кнопки.
+        static void LongPressureButton(Key::E key);
 
-    // Обработка опускания кнопки вниз.
-    static void HandlerPressButton(Key::E key);
+        // Обработка опускания кнопки вниз.
+        static void PressButton(Key::E key);
 
-    // Обработка поднятия кнопки вверх.
-    static void HandlerReleaseButton(Key::E key);
+        // Обработка поднятия кнопки вверх.
+        static void ReleaseButton(Key::E key);
 
-    // Обработка поворота ручки УСТАНОВКА.
-    static void HandlerRegulatorSet(Action::E action);
+        // Обработка поворота ручки УСТАНОВКА.
+        static void RegulatorSet(Action::E action);
+    };
 
     static const int ITEMS_ON_DISPLAY = 5;     // Сколько пунктов меню помещается на экране по вертикали.
 
