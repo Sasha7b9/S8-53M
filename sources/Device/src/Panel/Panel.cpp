@@ -28,6 +28,13 @@ bool Panel::isRunning = true;
 static Queue<uint8> data_for_panel;
 
 
+extern LED led_Trig(TypeLED::Trig);
+extern LED led_RegSet(TypeLED::RegSet);
+extern LED led_ChA(TypeLED::ChanA);
+extern LED led_ChB(TypeLED::ChanB);
+extern LED led_Power(TypeLED::Power);
+
+
 struct ReceivedBuffer
 {
     ReceivedBuffer() : pointer(0)
@@ -362,61 +369,6 @@ void Panel::CallbackOnReceiveSPI5(uint8 *data, uint size)
 }
 
 
-void Panel::EnableLED(TypeLED::E led)
-{
-    SwitchToStateLED(led, true);
-}
-
-
-void Panel::DisableLED(TypeLED::E led)
-{
-    SwitchToStateLED(led, false);
-}
-
-
-void Panel::SwitchToStateLED(TypeLED::E led, bool enabled)
-{
-    if (led == TypeLED::Trig)
-    {
-        static uint timeEnable = 0;
-        static bool first = true;
-        static bool fired = false;
-        if (first)
-        {
-            Panel::TransmitData((uint8)led);
-            TrigLev::exist_impulse = false;
-            timeEnable = TIME_MS;
-            first = false;
-        }
-
-        if (enabled)
-        {
-            timeEnable = TIME_MS;
-        }
-
-        if (enabled != fired)
-        {
-            if (enabled)
-            {
-                Panel::TransmitData((uint8)(led | 0x80));
-                TrigLev::exist_impulse = true;
-                fired = true;
-            }
-            else if (TIME_MS - timeEnable > 100)
-            {
-                Panel::TransmitData((uint8)(led));
-                TrigLev::exist_impulse = false;
-                fired = false;
-            }
-        }
-    }
-    else
-    {
-        Panel::TransmitData(enabled ? (uint8)(led | 0x80) : (uint8)led);
-    }
-}
-
-
 void Panel::DisablePower()
 {
     Panel::TransmitData(TypeLED::Power);
@@ -456,8 +408,8 @@ void Panel::EnableInput()
 
 void Panel::Init()
 {
-    Panel::DisableLED(TypeLED::RegSet);
-    Panel::DisableLED(TypeLED::Trig);
+    led_RegSet.Disable();
+    led_Trig.Disable();
     PageChannelA::OnChanged_Input(true);
     PageChannelB::OnChanged_Input(true);
 }
@@ -865,4 +817,58 @@ static void SetLeft()
 static void SetRight()
 {
     Menu::Event::RotateRegSetRight();
+}
+
+
+LED::LED(TypeLED::E _led) : led(_led)
+{
+}
+
+
+void LED::Disable()
+{
+    SwitchToState(false);
+}
+
+
+void LED::SwitchToState(bool enabled)
+{
+    if (led == TypeLED::Trig)
+    {
+        static uint timeEnable = 0;
+        static bool first = true;
+        static bool fired = false;
+        if (first)
+        {
+            Panel::TransmitData((uint8)led);
+            TrigLev::exist_impulse = false;
+            timeEnable = TIME_MS;
+            first = false;
+        }
+
+        if (enabled)
+        {
+            timeEnable = TIME_MS;
+        }
+
+        if (enabled != fired)
+        {
+            if (enabled)
+            {
+                Panel::TransmitData((uint8)(led | 0x80));
+                TrigLev::exist_impulse = true;
+                fired = true;
+            }
+            else if (TIME_MS - timeEnable > 100)
+            {
+                Panel::TransmitData((uint8)(led));
+                TrigLev::exist_impulse = false;
+                fired = false;
+            }
+        }
+    }
+    else
+    {
+        Panel::TransmitData(enabled ? (uint8)(led | 0x80) : (uint8)led);
+    }
 }

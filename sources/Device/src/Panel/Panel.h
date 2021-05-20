@@ -5,6 +5,8 @@
 
 class Panel
 {
+    friend struct LED;
+
 public:
 
     static void Init();
@@ -21,22 +23,16 @@ public:
     // Послать сигнал выключения
     static void DisablePower();
 
-    // Включить лампочку
-    static void EnableLED(TypeLED::E led);
+    // Ожидать нажатие клавиши.
+    static Key::E WaitPressingButton();
 
-    // Выключить лампочку
-    static void DisableLED(TypeLED::E led);
-
-    // Переключить лампочку в соответствующее состояние
-    static void SwitchToStateLED(TypeLED::E led, bool enabled);
+public:
 
     // Эта функция должна вызываться из приёмной фунции SPI5
     static void CallbackOnReceiveSPI5(uint8 *data, uint size);
 
-    // Ожидать нажатие клавиши.
-    static Key::E WaitPressingButton();
-
-   static uint8 NextData();
+    // Эта функция вызывается из передающей функции SPI5
+    static uint8 NextData();
 
 private:
 
@@ -45,3 +41,20 @@ private:
     // Передать даннные в мк панели управления.
     static void TransmitData(uint8 data);
 };
+
+
+struct LED
+{
+    LED(TypeLED::E led);
+    void Disable();
+    void SwitchToState(bool enabled);
+private:
+    TypeLED::E led;
+};
+
+
+extern LED led_Trig;
+extern LED led_RegSet;
+extern LED led_ChA;
+extern LED led_ChB;
+extern LED led_Power;
