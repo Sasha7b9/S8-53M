@@ -21,15 +21,8 @@ public:
     // Обработка поднятия кнопки вверх.
     static void HandlerReleaseButton(Key::E key);
 
-
-    struct Event
-    {
-        // Функция обработки поворота ручки УСТАНОВКА вправо.
-        static void RotateRegSetRight();
-
-        // Функция обработки поворота ручки УСТАНОВКА влево.
-        static void RotateRegSetLeft();
-    };
+    // Обработка поворота ручки УСТАНОВКА.
+    static void ProcessingRegulatorSet(Action::E action);
 
     static const int ITEMS_ON_DISPLAY = 5;     // Сколько пунктов меню помещается на экране по вертикали.
 
@@ -88,9 +81,6 @@ public:
     static bool needClosePageSB;    // Если 1, нужно закрывать страницу малых кнопок
 
 private:
-
-    // Обработка поворота ручки УСТАНОВКА.
-    static void ProcessingRegulatorSet();
 
     static void OpenFileManager();
 

@@ -12,10 +12,6 @@
 #include <cstring>
 
 
-// Угол, на который нужно повернуть ручку УСТАНОВКА - величина означает количество щелчков,
-// знак - направление - "-" - влево, "+" - вправо
-static int angleRegSet = 0;
-
 static const int stepAngleRegSet = 2;
 
 bool Menu::showHelpHints = false;
@@ -29,8 +25,6 @@ static const Key::E sampleBufferForButtons[SIZE_BUFFER_FOR_BUTTONS] = {Key::F5, 
 
 void Menu::Update()
 {
-    ProcessingRegulatorSet();
-
     led_RegSet.Switch();
     
     if(FDrive::needOpenFileMananger)
@@ -212,24 +206,67 @@ void Menu::HandlerPressButton(Key::E key)
 };
 
 
-void Menu::Event::RotateRegSetRight()
-{   
-    if (!showHelpHints)
-    {
-        angleRegSet++;
-        Display::Redraw();
-    }
-};
-
-
-void Menu::Event::RotateRegSetLeft()
+void Menu::ProcessingRegulatorSet(Action::E action)
 {
+    // Угол, на который нужно повернуть ручку УСТАНОВКА - величина означает количество щелчков,
+    // знак - направление - "-" - влево, "+" - вправо
+    int angleRegSet = 0;
+
     if (!showHelpHints)
     {
-        angleRegSet--;
-        Display::Redraw();
+        if (action == Action::RotateRight)
+        {
+            angleRegSet++;
+        }
+        else
+        {
+            angleRegSet--;
+        }
     }
-};
+
+    Display::Redraw();
+
+    if (IsShown() || !Item::Opened()->IsPage())
+    {
+        const Item *item = CurrentItem();
+        if (Item::Opened()->IsPage() && (item->IsChoiceReg() || item->IsGovernor() || item->IsIP() || item->IsMAC()))
+        {
+            if (angleRegSet > stepAngleRegSet || angleRegSet < -stepAngleRegSet)
+            {
+                item->Change(angleRegSet);
+                angleRegSet = 0;
+            }
+            return;
+        }
+        else
+        {
+            item = Item::Opened();
+            if (IsMinimize())
+            {
+                CurrentPageSBregSet(angleRegSet);
+            }
+            else if (item->IsPage() || item->IsIP() || item->IsMAC() || item->IsChoice() || item->IsChoiceReg() ||
+                item->IsGovernor())
+            {
+                if (item->ChangeOpened(angleRegSet))
+                {
+                    angleRegSet = 0;
+                }
+                return;
+            }
+            else if (item->IsGovernorColor())
+            {
+                item->Change(angleRegSet);
+            }
+            else if (item->IsTime())
+            {
+                angleRegSet > 0 ? ((TimeItem *)item)->IncCurrentPosition() : ((TimeItem *)item)->DecCurrentPosition();
+            }
+        }
+    }
+
+    angleRegSet = 0;
+}
 
 
 Item* Menu::ItemUnderKey()
@@ -418,56 +455,6 @@ void Menu::HandlerLongPressureButton(Key::E key)
 }
 
 
-void Menu::ProcessingRegulatorSet()
-{
-    if (angleRegSet == 0)
-    {
-        return;
-    }
-
-    if (IsShown() || !Item::Opened()->IsPage())
-    {
-        const Item *item = CurrentItem();
-        if (Item::Opened()->IsPage() && (item->IsChoiceReg() || item->IsGovernor() || item->IsIP() || item->IsMAC()))
-        {
-            if (angleRegSet > stepAngleRegSet || angleRegSet < -stepAngleRegSet)
-            {
-                item->Change(angleRegSet);
-                angleRegSet = 0;
-            }
-            return;
-        }
-        else
-        {
-            item = Item::Opened();
-            if (IsMinimize())
-            {
-                CurrentPageSBregSet(angleRegSet);
-            }
-            else if (item->IsPage() || item->IsIP() || item->IsMAC() || item->IsChoice() || item->IsChoiceReg() ||
-                     item->IsGovernor())
-            {
-                if (item->ChangeOpened(angleRegSet))
-                {
-                    angleRegSet = 0;
-                }
-                return;
-            }
-            else if (item->IsGovernorColor())
-            {
-                item->Change(angleRegSet);
-            }
-            else if (item->IsTime())
-            {
-                angleRegSet > 0 ? ((TimeItem *)item)->IncCurrentPosition() : ((TimeItem *)item)->DecCurrentPosition();
-            }
-        }
-    }
-
-    angleRegSet = 0;
-}
-
-
 void Menu::HandlerReleaseButton(Key::E )
 {
     Sound::ButtonRelease();
@@ -481,8 +468,7 @@ void Menu::OpenItemTime()
     Display::Update();
     for (int i = 0; i < 2; i++)
     {
-        Event::RotateRegSetRight();
-        Update();
+        Menu::ProcessingRegulatorSet(Action::RotateRight);
         Display::Update();
     }
     HandlerShortPressureButton(Key::F4);
@@ -492,7 +478,6 @@ void Menu::OpenItemTime()
 
 void Menu::OpenFileManager()
 {
-    angleRegSet = 0;
     for (int i = 0; i < 10; i++)
     {
         HandlerShortPressureButton(Key::Menu);
@@ -507,21 +492,15 @@ void Menu::OpenFileManager()
 
     for (int i = 0; i < 5 * stepAngleRegSet + 1; i++)
     {
-        Event::RotateRegSetLeft();
-        Update();
+        Menu::ProcessingRegulatorSet(Action::RotateLeft);
         Display::Update();
     }
-
-    angleRegSet = 0;
 
     for (int i = 0; i < 2 * stepAngleRegSet + 1; i++)
     {
-        Event::RotateRegSetRight();
-        Update();
+        Menu::ProcessingRegulatorSet(Action::RotateRight);
         Display::Update();
     }
-
-    angleRegSet = 0;
 
     HandlerShortPressureButton(Key::F2);
     Display::Update();
@@ -531,8 +510,7 @@ void Menu::OpenFileManager()
 
     for (int i = 0; i < stepAngleRegSet + 1; i++)
     {
-        Event::RotateRegSetLeft();
-        Update();
+        Menu::ProcessingRegulatorSet(Action::RotateLeft);
         Display::Update();
     }
 

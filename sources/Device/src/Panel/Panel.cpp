@@ -813,13 +813,13 @@ static void TBaseRight()
 
 static void SetLeft()
 {
-    Menu::Event::RotateRegSetLeft();
+    Menu::ProcessingRegulatorSet(Action::RotateLeft);
 }
 
 
 static void SetRight()
 {
-    Menu::Event::RotateRegSetRight();
+    Menu::ProcessingRegulatorSet(Action::RotateRight);
 }
 
 
