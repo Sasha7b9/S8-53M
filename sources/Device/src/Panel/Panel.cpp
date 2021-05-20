@@ -924,10 +924,10 @@ bool RegSetLED::NeedForFire()
     }
 
     if (
-        name == NamePage::SB_MathCursorsFFT ||
-        name == NamePage::SB_MeasTuneMeas ||
-        name == NamePage::SB_MemLatest ||
-        name == NamePage::SB_MemInt ||
+         name == NamePage::SB_MathCursorsFFT                               ||
+         name == NamePage::SB_MeasTuneMeas                                 ||
+         name == NamePage::SB_MemLatest                                    ||
+         name == NamePage::SB_MemInt                                       ||
         (name == NamePage::SB_MathFunction && !ModeDrawMath::IsDisabled()) ||
         (name == NamePage::SB_Curs && Cursors::NecessaryDraw())
         )
