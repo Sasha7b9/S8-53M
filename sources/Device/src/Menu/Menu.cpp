@@ -215,7 +215,7 @@ void Menu::Handlers::RegulatorSet(Action::E action)
 
     // Угол, на который нужно повернуть ручку УСТАНОВКА - величина означает количество щелчков,
     // знак - направление - "-" - влево, "+" - вправо
-    int angleRegSet = (action == Action::RotateRight) ? 1 : -1;
+    int angle = (action == Action::RotateRight) ? 1 : -1;
 
     Display::Redraw();
 
@@ -225,10 +225,7 @@ void Menu::Handlers::RegulatorSet(Action::E action)
 
         if (Item::Opened()->IsPage() && (item->IsChoiceReg() || item->IsGovernor() || item->IsIP() || item->IsMAC()))
         {
-            if (angleRegSet > stepAngleRegSet || angleRegSet < -stepAngleRegSet)
-            {
-                item->Change(angleRegSet);
-            }
+            item->Change(angle);
         }
         else
         {
@@ -236,20 +233,20 @@ void Menu::Handlers::RegulatorSet(Action::E action)
 
             if (IsMinimize())
             {
-                CurrentPageSBregSet(angleRegSet);
+                CurrentPageSBregSet(angle);
             }
             else if (item->IsPage() || item->IsIP() || item->IsMAC() || item->IsChoice() || item->IsChoiceReg() ||
                 item->IsGovernor())
             {
-                item->OnRegSet(angleRegSet);
+                item->OnRegSet(angle);
             }
             else if (item->IsGovernorColor())
             {
-                item->Change(angleRegSet);
+                item->Change(angle);
             }
             else if (item->IsTime())
             {
-                angleRegSet > 0 ? ((TimeItem *)item)->IncCurrentPosition() : ((TimeItem *)item)->DecCurrentPosition();
+                (angle > 0) ? ((TimeItem *)item)->IncCurrentPosition() : ((TimeItem *)item)->DecCurrentPosition();
             }
         }
     }
