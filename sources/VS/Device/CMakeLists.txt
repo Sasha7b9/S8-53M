@@ -111,7 +111,8 @@ file(GLOB HARDWARE_HAL           ../../common/Hardware/HAL/HAL_.*
                                  ../../common/Hardware/HAL/HAL_TIM6_.cpp
                                  ../../common/Hardware/HAL/HAL_TIM7_.cpp
                                  ../../common/Hardware/HAL/HAL_USBD_.cpp
-                                          src/Hardware/HAL/HAL_FMC_win.cpp)
+                                          src/Hardware/HAL/HAL_FMC_win.cpp
+                                          src/Hardware/HAL/HAL_ROM_win.cpp)
 file(GLOB HARDWARE_MEMORY        ../../common/Hardware/Memory/ROM_.*
                                  ../../common/Hardware/Memory/ROM_Data_.cpp
                                  ../../common/Hardware/Memory/ROM_Settings_.cpp
