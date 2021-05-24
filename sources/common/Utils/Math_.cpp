@@ -7,6 +7,7 @@
 #include <cmath>
 
 
+template int   Math::Abs(int);
 template void  Math::Swap(int *, int *);
 template void  Math::Swap(uint8 *, uint8 *);
 template void  Math::Limitation(int *, int, int);
@@ -244,6 +245,13 @@ T Math::Max(T value1, T value2, T value3)
     }
 
     return result;
+}
+
+
+template<class T>
+T Math::Abs(T value)
+{
+    return (value < (T)0) ? -value : value;
 }
 
 

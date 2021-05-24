@@ -1186,6 +1186,10 @@ struct LaunchFPGA
     // На сколько менять адрес первого чтения
     static int DeltaReadAddress();
 
+    // Дополнительное смещение для первой считываемой точки (нужно для того, чтобы учесть, что в режиме рандомизатора
+    // изменение tShift вызывает перемещение по экрану не на 1 пиксель)
+    static int AdditionalOffsetIndexFirst();
+
 private:
 
     static void Calculate();

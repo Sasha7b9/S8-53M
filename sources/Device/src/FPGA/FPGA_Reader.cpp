@@ -94,7 +94,7 @@ bool ReaderFPGA::Read::Randomizer::IndexFirstPoint(int *first_out, int *skipped_
 
     int step = TBase::StepRand();
 
-    int index = Tsm - 2 * step;
+    int index = Tsm - 2 * step + LaunchFPGA::AdditionalOffsetIndexFirst();
 
     int num_skipped = 0;
 

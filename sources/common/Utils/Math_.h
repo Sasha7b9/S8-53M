@@ -36,6 +36,7 @@ namespace Math
 
     void CalculateFiltrArray(puchar data_in, uint8* data_out, int num_points, int num_smoothing);
 
+    template<class T> T    Abs(T value);
     template<class T> void Limitation(T *value, T min, T max);
     template<class T> T    Limitation(T value, T min, T max);
     template<class T> void LimitAbove(T *value, T max);
