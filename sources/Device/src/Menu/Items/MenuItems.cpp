@@ -303,7 +303,7 @@ Page *Item::Keeper() const
 
 void Item::Open() const
 {
-    Keeper()->OpenActItem();
+    Keeper()->OpenCurrentItem();
 }
 
 
@@ -671,7 +671,7 @@ void Page::CloseOpenedItem()
 }
 
 
-void Page::OpenActItem()
+void Page::OpenCurrentItem()
 {
     if (*posCurrentItem >= 0)
     {
