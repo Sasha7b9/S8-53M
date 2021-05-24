@@ -26,11 +26,11 @@ void Log_Write(pchar format, ...)
 }
 
 
-void Log_TraceWrite(pchar module, pchar func, int numLine, char *format, ...)
+void Log_TraceWrite(pchar func, int numLine, char *format, ...)
 {
     char buffer[SIZE_BUFFER_LOG];
 
-    std::sprintf(buffer, "%s:%s:%d ", module, func, numLine);
+    std::sprintf(buffer, "%s:%d ", func, numLine);
 
     std::va_list args;
     va_start(args, format);

@@ -703,13 +703,16 @@ int8 Item::GetPosition() const
 {
     Page *keeper = Keeper();
 
+    int8 result = 0;
+
     for (int i = 0; i < keeper->NumItems(); i++)
     {
         if (Keeper()->GetItem(i) == this)
         {
-            return (int8)i;
+            result = (int8)i;
+            break;
         }
     }
 
-    return 0;
+    return result;
 }
