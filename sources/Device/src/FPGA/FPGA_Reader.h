@@ -44,6 +44,9 @@ private:
 
             // Считать и выбрость num_words данных по адресу address
             static void UtilizeFirstBytes(const uint16 * const address, int num_words);
+
+            // Рассчитывает первый адрес, в который нужно записывать считанные данные
+            static uint8 *CalculateFirstAddressWrite(DataReading &dr, const ::Channel &ch);
         };
     };
 };

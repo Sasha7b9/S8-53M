@@ -111,14 +111,14 @@ bool ReaderFPGA::Read::Randomizer::IndexFirstPoint(int *first_out, int *skipped_
 }
 
 
-void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch, uint16 addr_read)
+uint8 *ReaderFPGA::Read::Randomizer::CalculateFirstAddressWrite(DataReading &dr, const ::Channel &ch)
 {
     int index = 0;
     int num_skipped = 0;
 
     if (!IndexFirstPoint(&index, &num_skipped))
     {
-        return;
+        return nullptr;
     }
 
     DataSettings &ds = dr.Settings();
@@ -127,7 +127,6 @@ void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch,
 
     const uint16 *const address = ADDRESS_READ(ch);
     uint8 *addr_wr = dr.Data(ch);                                           // —юда будем писать считываемые данные
-    const uint8 * const addr_wr_last = addr_wr + bytes_in_channel;
 
     if (ds.is_clean == 1)
     {
@@ -139,12 +138,30 @@ void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch,
 
     addr_wr += index;
 
+    return addr_wr;
+}
+
+
+void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch, uint16 addr_read)
+{
+    uint8 *addr_wr = CalculateFirstAddressWrite(dr, ch);
+
+    if (addr_wr == nullptr)
+    {
+        return;
+    }
+
     FPGA::BUS::Write(WR_PRED, addr_read, false);
     FPGA::BUS::Write(WR_ADDR_READ, 0xffff, false);
 
-    uint num_bytes = bytes_in_channel / TBase::StepRand();
+    uint bytesInChannel = dr.Settings().BytesInChannel();
+    uint numBytes = bytesInChannel / TBase::StepRand();
 
-    for (uint i = 0; i < num_bytes; i++)
+    const uint8 *const addr_wr_last = addr_wr + bytesInChannel;
+
+    const uint16 *const address = ADDRESS_READ(ch);
+
+    for (uint i = 0; i < numBytes; i++)
     {
         if (addr_wr >= dr.Data(ch) && addr_wr < addr_wr_last)
         {
