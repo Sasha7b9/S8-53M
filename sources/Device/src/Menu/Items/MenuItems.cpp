@@ -346,7 +346,7 @@ void Item::SetCurrent(bool active) const
     Page* page = Keeper();
     if (!active)
     {
-        page->SetPositionCurrentItem(-1);
+        page->ResetCurrentItem();
     }
     else
     {
@@ -356,7 +356,7 @@ void Item::SetCurrent(bool active) const
         {
             if (page->GetItem(i) == this)
             {
-                page->SetPositionCurrentItem(i);
+                *page->posCurrentItem = i;
                 return;
             }
         }
@@ -665,12 +665,6 @@ bool Item::IsOpened() const
 }
 
 
-void Page::SetPositionCurrentItem(int8 pos)
-{
-    *posCurrentItem = pos;
-}
-
-
 void Page::CloseOpenedItem()
 {
     *currentItemIsOpened = false;
@@ -709,4 +703,10 @@ int8 Item::GetPosition() const
     }
 
     return 0;
+}
+
+
+void Page::ResetCurrentItem()
+{
+    *posCurrentItem = -1;
 }

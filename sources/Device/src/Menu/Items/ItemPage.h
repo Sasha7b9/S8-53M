@@ -77,10 +77,10 @@ public:
 
     static Page empty;
 
-    // Установить позицию активного пункта на странице namePage.
-    void SetPositionCurrentItem(int8 pos);
-
     const Item *CurrentItem() const;
+
+    // Сбросить текущий итем. После вызова этой функции текущего итема не будет на странице
+    void ResetCurrentItem();
 
 protected:
 
