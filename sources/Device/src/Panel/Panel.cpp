@@ -655,12 +655,6 @@ static void TrigLevRight()
 }
 
 
-static void SetTShift(int tShift)
-{
-    TShift::Set(tShift);
-}
-
-
 static void ShiftScreen(int shift)
 {
     Display::ShiftScreen(shift);
@@ -752,7 +746,7 @@ static void XShift(int delta)
     }
     else
     {
-        ChangeTShift(&prevTime, SetTShift, (int16)delta);
+        ChangeTShift(&prevTime, TShift::Set, (int16)delta);
     }
 }
 
