@@ -79,8 +79,8 @@ public:
 
     const Item *CurrentItem() const;
 
-    // Сбросить текущий итем. После вызова этой функции текущего итема не будет на странице
-    void ResetCurrentItem();
+    void SetCurrentItem(const Item *item);
+
 
 protected:
 

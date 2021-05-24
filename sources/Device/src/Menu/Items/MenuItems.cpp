@@ -344,21 +344,31 @@ void Item::ChangeOpenness() const
 void Item::SetCurrent(bool active) const
 {
     Page* page = Keeper();
+
     if (!active)
     {
-        page->ResetCurrentItem();
+        page->SetCurrent(nullptr);
     }
     else
     {
-        int numItems = page->NumItems();
-        
-        for (int8 i = 0; i < numItems; i++)
+        page->SetCurrentItem(this);
+    }
+}
+
+
+void Page::SetCurrentItem(const Item *item)
+{
+    if (item == nullptr)
+    {
+        *posCurrentItem = -1;
+    }
+
+    for (int8 i = 0; i < NumItems(); i++)
+    {
+        if (GetItem(i) == item)
         {
-            if (page->GetItem(i) == this)
-            {
-                *page->posCurrentItem = i;
-                return;
-            }
+            *posCurrentItem = i;
+            return;
         }
     }
 }
@@ -696,17 +706,11 @@ int8 Item::GetPosition() const
 
     for (int i = 0; i < keeper->NumItems(); i++)
     {
-        if (keeper->OwnData()->items[i] == this)
+        if (Keeper()->GetItem(i) == this)
         {
             return (int8)i;
         }
     }
 
     return 0;
-}
-
-
-void Page::ResetCurrentItem()
-{
-    *posCurrentItem = -1;
 }
