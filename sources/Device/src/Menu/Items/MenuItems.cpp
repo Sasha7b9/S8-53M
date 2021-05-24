@@ -337,7 +337,9 @@ void Item::SetCurrent(bool active) const
     }
     else
     {
-        for (int8 i = 0; i < page->NumItems(); i++)
+        int numItems = page->NumItems();
+        
+        for (int8 i = 0; i < numItems; i++)
         {
             if (page->GetItem(i) == this)
             {
@@ -653,34 +655,36 @@ void Page::SetCurrentSubPage(int posSubPage) const
 
 bool Page::CurrentItemIsOpened() const
 {
-    return *actItemIsOpened;
+    return *currentItemIsOpened;
 }
 
 
 void Page::SetPositionActItem(int8 pos)
 {
-    *posActItem = pos;
+    *posCurrentItem = pos;
 }
 
 
 void Page::CloseOpenedItem()
 {
-    *actItemIsOpened = false;
+    *currentItemIsOpened = false;
 }
 
 
 void Page::OpenActItem()
 {
-    if (*posActItem >= 0)
+    if (*posCurrentItem >= 0)
     {
-        *actItemIsOpened = true;
+        *currentItemIsOpened = true;
     }
 }
 
 
 int8 Page::GetPositionActItem() const
 {
-    return *posActItem;
+    int8 result = *posCurrentItem;
+    
+    return result;
 }
 
 

@@ -24,7 +24,7 @@ public:
     };
 
     Page(const DataItem *const data, int8 *subPage, int8 *actItem, bool *opened) :
-        Item(data), currentSubPage(subPage), posActItem(actItem), actItemIsOpened(opened) {};
+        Item(data), currentSubPage(subPage), posCurrentItem(actItem), currentItemIsOpened(opened) {};
 
     const DataPage *OwnData() const {
         return (const DataPage *)(data->ad);
@@ -89,8 +89,8 @@ public:
 private:
 
     int8 *currentSubPage;                               // Указатель на номер текущей подстраницы
-    int8 *posActItem;                                   // Указатель на позицию активного итема
-    bool *actItemIsOpened;                              // true, если активный итем раскрыт
+    int8 *posCurrentItem;                               // Указатель на позицию текущего итема
+    bool *currentItemIsOpened;                          // true, если текущий итем раскрыт
     void DrawTitle(int yTop);
     void DrawItems(int yTop) const;
     void DrawPagesUGO(int right, int bottom) const;
