@@ -878,7 +878,7 @@ int LaunchFPGA::AdditionalOffsetIndexFirst()
 
     if (shift > 0)
     {
-        return shift % TBase::StepRand();
+        return TBase::StepRand() - (shift % TBase::StepRand());
     }
 
     shift = -shift;
