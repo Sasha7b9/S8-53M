@@ -65,6 +65,16 @@ public:
     // ”станавливает номер текущей подстраницы в странице namePage.
     void SetCurrentSubPage(int posSubPage) const;
 
+    // ¬озвращает позицию первого элемента страницы по адресу page на экране. ≈сли текуща€ подстраница 0, это будет 0,
+    // если текуща€ подстраница 1, это будет 5 и т.д.
+    int PosItemOnTop() const;
+
+    bool IsExist() const { return (this != &Page::empty); }
+
+    void CloseOpenedItem();
+
+    static Page empty;
+
     // ¬озвращает true, если текущий элемент страницы открыт
     bool CurrentItemIsOpened() const;
 
@@ -72,19 +82,9 @@ public:
     void SetPositionActItem(int8 pos);
 
     // ¬озвращает позицию активного пункта на странице namePage.
-    int8 GetPositionActItem() const;
-
-    void CloseOpenedItem();
+    int8 GetPositionCurrentItem() const;
 
     void OpenCurrentItem();
-
-    // ¬озвращает позицию первого элемента страницы по адресу page на экране. ≈сли текуща€ подстраница 0, это будет 0,
-    // если текуща€ подстраница 1, это будет 5 и т.д.
-    int PosItemOnTop() const;
-
-    bool IsExist() const { return (this != &Page::empty); }
-
-    static Page empty;
 
 private:
 

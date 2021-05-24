@@ -745,7 +745,7 @@ void Page::DrawOpened(int yTop)
 {
     if (CurrentItemIsOpened())
     {
-        int8 posCurItem = GetPositionActItem();
+        int8 posCurItem = GetPositionCurrentItem();
         const Item *item = GetItem(posCurItem);
 
         item->Draw(Page::X(), OpenedPosY(), true);

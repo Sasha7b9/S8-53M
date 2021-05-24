@@ -541,7 +541,7 @@ const Item *Page::RetLastOpened() const
 {
     if (CurrentItemIsOpened())
     {
-        int8 pActItem = GetPositionActItem();
+        int8 pActItem = GetPositionCurrentItem();
         const Item *item = GetItem(pActItem);
         if (GetItem(pActItem)->IsPage())
         {
@@ -680,7 +680,7 @@ void Page::OpenCurrentItem()
 }
 
 
-int8 Page::GetPositionActItem() const
+int8 Page::GetPositionCurrentItem() const
 {
     int8 result = *posCurrentItem;
     
