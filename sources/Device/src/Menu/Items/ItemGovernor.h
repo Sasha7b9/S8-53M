@@ -31,7 +31,6 @@ public:
     int16 PrevValue() const;            // Возвращает следующее меньшее значение, которое может принять governor.
 
     virtual void Draw(int x, int y, bool opened = false) const;
-    void Draw(int x, int y);
 
 private:
     void DrawOpened(int x, int y) const;

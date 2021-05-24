@@ -747,6 +747,7 @@ void Page::DrawOpened(int yTop)
     {
         int8 posCurItem = GetPositionActItem();
         const Item *item = GetItem(posCurItem);
+
         item->Draw(Page::X(), OpenedPosY(), true);
     }
     else
@@ -847,12 +848,6 @@ void Page::DrawItems(int yTop) const
 Item *Menu::ItemUnderKey(Key::E key)
 {
     return (key <= Key::F5) ? itemUnderButton[key - 1] : &Item::empty;
-}
-
-
-void Governor::Draw(int x, int y)
-{
-    Draw(x, y, false);
 }
 
 
