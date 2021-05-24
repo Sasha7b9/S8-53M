@@ -629,23 +629,17 @@ static void ChangeTrigLev(int *prevTime, void(*f)(TrigSource::E, int16), TrigSou
 }
 
 
-static void SetTrigLev(TrigSource::E ch, int16 trigLev)
-{
-    TrigLev::Set(ch, trigLev);
-}
-
-
 static void TrigLevLeft()
 {
     static int prevTime = 0;
-    ChangeTrigLev(&prevTime, SetTrigLev, TrigSource::Get(), -RShift::STEP());
+    ChangeTrigLev(&prevTime, TrigLev::Set, TrigSource::Get(), -RShift::STEP());
 }
 
 
 static void TrigLevRight()
 {
     static int prevTime = 0;
-    ChangeTrigLev(&prevTime, SetTrigLev, TrigSource::Get(), +RShift::STEP());
+    ChangeTrigLev(&prevTime, TrigLev::Set, TrigSource::Get(), +RShift::STEP());
 }
 
 
