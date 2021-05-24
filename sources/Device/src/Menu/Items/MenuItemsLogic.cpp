@@ -265,10 +265,13 @@ void TimeItem::DecCurrentPosition() const
     static const int8 max[] = {0, 31, 12, 99, 23, 59, 59};
     static const int8 min[] = {0, 1, 1, 15, 0, 0, 0};
     int8 position = *own->curField;
+
     if (position != iSET && position != iEXIT)
     {
         int8 *value[] = { 0, own->day, own->month, own->year, own->hours, own->minutes, own->seconds };
+
         (*(value[position]))--;
+
         if (*value[position] < min[position])
         {
             *value[position] = max[position];

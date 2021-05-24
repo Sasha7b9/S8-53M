@@ -9,8 +9,7 @@
 
 #ifdef DEVICE
 
-static bool loggerUSB = false;
-
+volatile static bool loggerUSB = false;
 
 #define SIZE_BUFFER_LOG 200
 
@@ -24,11 +23,21 @@ void Log_Write(pchar format, ...)
     va_end(args);
 
     Console::AddStringToIndicating(buffer);
+}
 
-    if(loggerUSB)
-    {
-        //VCP::SendFormatStringAsynch(buffer);
-    }
+
+void Log_TraceWrite(pchar module, pchar func, int numLine, char *format, ...)
+{
+    char buffer[SIZE_BUFFER_LOG];
+
+    std::sprintf(buffer, "%s:%s:%d ", module, func, numLine);
+
+    std::va_list args;
+    va_start(args, format);
+    std::vsprintf(buffer + std::strlen(buffer), format, args);
+    va_end(args);
+
+    Console::AddStringToIndicating(buffer);
 }
 
 
@@ -45,12 +54,6 @@ void Log_Error(pchar module, const char *func, int num_line, char *format, ...)
     Console::AddStringToIndicating(message.c_str());
 
     Console::AddStringToIndicating(buffer);
-
-    if(loggerUSB)
-    {
-        //VCP::SendFormatStringAsynch(message);
-        //VCP::SendFormatStringAsynch(buffer);
-    }
 }
 
 

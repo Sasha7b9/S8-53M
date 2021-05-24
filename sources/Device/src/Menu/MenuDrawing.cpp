@@ -115,6 +115,8 @@ int Item::OpenedPosY() const
 
     int8 posCurItem = page->CurrentItem()->GetPosition();
 
+//    LOG_WRITE("%d pos = %d", __LINE__, posCurItem);
+
     int y = Grid::TOP + (posCurItem % Menu::ITEMS_ON_DISPLAY) * Item::HEIGHT + Item::TITLE_HEIGHT;
 
     if(y + HeightOpened() > Grid::Bottom())
