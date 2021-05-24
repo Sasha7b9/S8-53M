@@ -10,7 +10,10 @@
 const Item* Menu::CurrentItem()
 {
     const Item *lastOpened = PageMain::self->RetLastOpened();
-    int8 pos = ((const Page *)lastOpened)->GetPositionCurrentItem();
+
+    const Page *page = (const Page *)lastOpened;
+
+    int8 pos = page->CurrentItem()->GetPosition();
 
     if(lastOpened->IsPage() && pos != -1)
     {

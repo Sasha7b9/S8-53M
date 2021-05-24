@@ -77,8 +77,6 @@ public:
 
     static Page empty;
 
-    int8 GetPositionCurrentItem() const;
-
     // ”становить позицию активного пункта на странице namePage.
     void SetPositionCurrentItem(int8 pos);
 

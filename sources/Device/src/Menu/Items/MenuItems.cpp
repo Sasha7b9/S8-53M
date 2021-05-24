@@ -320,12 +320,6 @@ void Item::Open() const
 }
 
 
-int8 Page::GetPositionCurrentItem() const
-{
-    return *posCurrentItem;
-}
-
-
 void Item::Close() const
 {
     LOG_FUNC_ENTER();
@@ -545,9 +539,10 @@ const Item *Page::RetLastOpened() const
 {
     if (CurrentItem()->IsOpened())
     {
-        int8 pActItem = GetPositionCurrentItem();
-        const Item *item = GetItem(pActItem);
-        if (GetItem(pActItem)->IsPage())
+        int8 position = CurrentItem()->GetPosition();
+        const Item *item = GetItem(position);
+
+        if (GetItem(position)->IsPage())
         {
             return ((Page *)item)->RetLastOpened();
         }
