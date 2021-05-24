@@ -699,3 +699,19 @@ const Item *Page::CurrentItem() const
 
     return OwnData()->items[position];
 }
+
+
+int8 Item::GetPosition() const
+{
+    Page *keeper = Keeper();
+
+    for (int i = 0; i < keeper->NumItems(); i++)
+    {
+        if (keeper->OwnData()->items[i] == this)
+        {
+            return (int8)i;
+        }
+    }
+
+    return 0;
+}

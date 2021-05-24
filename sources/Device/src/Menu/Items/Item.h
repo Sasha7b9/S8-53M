@@ -106,6 +106,9 @@ public:
 
     virtual void Draw(int, int, bool = false) const {};
 
+    // ¬озвращает позицию итема на странице
+    int8 GetPosition() const;
+
 protected:
     static int8 gCurDigit;
 };
