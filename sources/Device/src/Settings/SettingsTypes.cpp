@@ -886,17 +886,5 @@ int LaunchFPGA::AdditionalOffsetIndexFirst()
         result = shift % step;
     }
 
-    {
-        static int prevShift = 0;
-        static int prevResult = 0;
-
-        if (prevShift != shift || prevResult != result)
-        {
-            LOG_WRITE("step = %d, shift = %d, add = %d", step, set.time.shift, result);
-            prevShift = shift;
-            prevResult = result;
-        }
-    }
-
     return result;
 }

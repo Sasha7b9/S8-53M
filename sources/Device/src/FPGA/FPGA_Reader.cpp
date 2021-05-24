@@ -133,6 +133,18 @@ uint8 *ReaderFPGA::Read::Randomizer::CalculateFirstAddressWrite(DataReading &dr,
 
     UtilizeFirstBytes(ADDRESS_READ(ch), num_skipped);
 
+    {
+        static int prevShift = 0;
+        static int prevOffset = 0;
+
+        if (prevShift != set.time.shift || prevOffset != LaunchFPGA::AdditionalOffsetIndexFirst())
+        {
+            LOG_WRITE("shift = %d, offset = %d", set.time.shift, LaunchFPGA::AdditionalOffsetIndexFirst());
+            prevShift = set.time.shift;
+            prevOffset = LaunchFPGA::AdditionalOffsetIndexFirst();
+        }
+    }
+
     return awrite + index + LaunchFPGA::AdditionalOffsetIndexFirst();
 }
 
