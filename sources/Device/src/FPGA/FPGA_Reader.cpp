@@ -144,9 +144,9 @@ uint8 *ReaderFPGA::Read::Randomizer::CalculateFirstAddressWrite(DataReading &dr,
 
 void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch, uint16 addr_read)
 {
-    uint8 *addr_wr = CalculateFirstAddressWrite(dr, ch);
+    uint8 *awrite = CalculateFirstAddressWrite(dr, ch);       // Первый адрес сохранения читаемых данных
 
-    if (addr_wr == nullptr)
+    if (awrite == nullptr)
     {
         return;
     }
@@ -157,18 +157,18 @@ void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch,
     uint bytesInChannel = dr.Settings().BytesInChannel();
     uint numBytes = bytesInChannel / TBase::StepRand();
 
-    const uint8 *const addr_wr_last = addr_wr + bytesInChannel;
+    const uint8 *const awriteLast = awrite + bytesInChannel;
 
     const uint16 *const address = ADDRESS_READ(ch);
 
     for (uint i = 0; i < numBytes; i++)
     {
-        if (addr_wr >= dr.Data(ch) && addr_wr < addr_wr_last)
+        if (awrite >= dr.Data(ch) && awrite < awriteLast)
         {
-            *addr_wr = (uint8)*address;
+            *awrite = (uint8)*address;
         }
 
-        addr_wr += TBase::StepRand();
+        awrite += TBase::StepRand();
     }
 }
 
