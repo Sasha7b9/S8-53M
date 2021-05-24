@@ -389,7 +389,7 @@ void LaunchFPGA::Load()
 }
 
 
-String TShift::ToString(int16 shift)
+String TShift::ToString(int shift)
 {
     float abs = TShift::ToAbs(shift, set.time.base);
 

@@ -878,7 +878,7 @@ struct TShift
     static void SetDelta(int16 shift);
 
     // ¬озвращает установленное смещение по времени в текстовом виде, пригодном дл€ вывода на экран
-    static String ToString(int16 tshift_rel);
+    static String ToString(int tshift_rel);
 
     // ћинимальное смещение по времени, которое может быть записано в аппаратную часть.
     static int16 Min();
@@ -890,7 +890,8 @@ struct TShift
     static int ForLaunchFPGA();
 
     // tshift может принимать нецелые значени€ в результате расчЄта
-    static Time ToAbs(float tshift, TBase::E tbase);
+    static Time ToAbs(float shift, TBase::E base);
+    static Time ToAbs(int shift, TBase::E base);
 
     static float ToRel(float tshift_abs, TBase::E tbase);
 

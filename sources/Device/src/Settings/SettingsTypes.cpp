@@ -693,6 +693,12 @@ Time TShift::ToAbs(float shift, TBase::E base)
 }
 
 
+Time TShift::ToAbs(int shift, TBase::E base)
+{
+    return ToAbs((float)shift, base);
+}
+
+
 float TShift::ToRel(float shift, TBase::E base)
 {
     return shift / abs_step[base];

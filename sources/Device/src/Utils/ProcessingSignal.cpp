@@ -1230,9 +1230,10 @@ void Processing::CountedToCurrentSettings()
     
     int numPoints = (int)ds.BytesInChannel() * (ds.peak_det == PeackDetMode::Disable ? 1 : 2);
 
-    int16 dataTShift = ds.tshift;
+    int dataTShift = ds.tshift;
 
-    int16 dTShift = set.time.shift - dataTShift;
+    int dTShift = set.time.shift - dataTShift;
+
     for (int i = 0; i < numPoints; i++)
     {
         int index = i - dTShift;

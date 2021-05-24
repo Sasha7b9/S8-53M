@@ -24,7 +24,7 @@ struct DataSettings
     uint                is_clean     : 1;   // установленное в 1 значение означает, что данных нет (структура только
                                             // что создана)
     PackedTime          time;
-    int16               tshift;             // Смещение по времени
+    int                 tshift;             // Смещение по времени
     Range::E            range[2];           // Масштаб по напряжению обоих каналов.
     uint                num_in_rom;
 
