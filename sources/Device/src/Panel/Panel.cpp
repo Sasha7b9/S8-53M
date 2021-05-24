@@ -420,7 +420,12 @@ void Panel::Init()
 Key::E Panel::WaitPressingButton()
 {
     pressedButton = Key::None;
-    while (pressedButton == Key::None) {};
+
+    while (pressedButton == Key::None)
+    {
+        Update();
+    };
+
     return pressedButton;
 }
 
