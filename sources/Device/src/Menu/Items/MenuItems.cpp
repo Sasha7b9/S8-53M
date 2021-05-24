@@ -309,7 +309,10 @@ void Item::Open() const
     {
         int8 position = *keeper->posCurrentItem;
 
-        if (position > 0)
+        if(position < 0)
+        {
+        }
+        else
         {
             *keeper->currentItemIsOpened = true;
         }
