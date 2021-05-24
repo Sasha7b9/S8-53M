@@ -79,7 +79,7 @@ public:
     bool CurrentItemIsOpened() const;
 
     // ”становить позицию активного пункта на странице namePage.
-    void SetPositionActItem(int8 pos);
+    void SetPositionCurrentItem(int8 pos);
 
     // ¬озвращает позицию активного пункта на странице namePage.
     int8 GetPositionCurrentItem() const;
