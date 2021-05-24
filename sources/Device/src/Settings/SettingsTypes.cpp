@@ -869,19 +869,34 @@ int LaunchFPGA::DeltaReadAddress()
 
 int LaunchFPGA::AdditionalOffsetIndexFirst()
 {
-    if ((Math::Abs(set.time.shift) % TBase::StepRand()) == 0)
-    {
-        return 0;
-    }
+    int step = TBase::StepRand();
+
+    int result = 0;
 
     int shift = set.time.shift;
 
     if (shift > 0)
     {
-        return TBase::StepRand() - (shift % TBase::StepRand());
+        result = -(shift % step);
+    }
+    else if(shift < 0)
+    {
+        shift = -shift;
+
+        result = shift % step;
     }
 
-    shift = -shift;
+    {
+        static int prevShift = 0;
+        static int prevResult = 0;
 
-    return shift % TBase::StepRand();
+        if (prevShift != shift || prevResult != result)
+        {
+            LOG_WRITE("step = %d, shift = %d, add = %d", step, set.time.shift, result);
+            prevShift = shift;
+            prevResult = result;
+        }
+    }
+
+    return result;
 }

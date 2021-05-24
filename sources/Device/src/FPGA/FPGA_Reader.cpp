@@ -123,22 +123,17 @@ uint8 *ReaderFPGA::Read::Randomizer::CalculateFirstAddressWrite(DataReading &dr,
 
     DataSettings &ds = dr.Settings();
 
-    uint bytes_in_channel = ds.BytesInChannel();
-
-    const uint16 *const address = ADDRESS_READ(ch);
-    uint8 *addr_wr = dr.Data(ch);                                           // —юда будем писать считываемые данные
+    uint8 *awrite = dr.Data(ch);                                           // —юда будем писать считываемые данные
 
     if (ds.is_clean == 1)
     {
-        std::memset(addr_wr, Value::NONE, bytes_in_channel);
+        std::memset(awrite, Value::NONE, ds.BytesInChannel());
         ds.is_clean = 0;
     }
 
-    UtilizeFirstBytes(address, num_skipped);
+    UtilizeFirstBytes(ADDRESS_READ(ch), num_skipped);
 
-    addr_wr += index;
-
-    return addr_wr;
+    return awrite + index + LaunchFPGA::AdditionalOffsetIndexFirst();
 }
 
 
@@ -159,13 +154,13 @@ void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch,
 
     const uint8 *const awriteLast = awrite + bytesInChannel;
 
-    const uint16 *const address = ADDRESS_READ(ch);
+    const uint16 *const aread = ADDRESS_READ(ch);
 
     for (uint i = 0; i < numBytes; i++)
     {
         if (awrite >= dr.Data(ch) && awrite < awriteLast)
         {
-            *awrite = (uint8)*address;
+            *awrite = (uint8)*aread;
         }
 
         awrite += TBase::StepRand();
