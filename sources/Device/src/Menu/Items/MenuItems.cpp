@@ -347,7 +347,7 @@ void Item::SetCurrent(bool active) const
 
     if (!active)
     {
-        page->SetCurrent(nullptr);
+        page->SetCurrentItem(nullptr);
     }
     else
     {

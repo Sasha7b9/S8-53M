@@ -350,7 +350,7 @@
           <Type>0</Type>
           <LineNumber>370</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134429458</Address>
+          <Address>134429470</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -360,54 +360,6 @@
           <Filename>&lt;1&gt;.\src\Menu\Menu.cpp</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\S8_53M\src/Menu/Menu.cpp\370</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>360</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134460424</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\Menu\Items\MenuItems.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\S8_53M\src/Menu/Items/MenuItems.cpp\360</Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>362</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134460436</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\Menu\Items\MenuItems.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\S8_53M\src/Menu/Items/MenuItems.cpp\362</Expression>
-        </Bp>
-        <Bp>
-          <Number>3</Number>
-          <Type>0</Type>
-          <LineNumber>366</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134460456</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\Menu\Items\MenuItems.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\S8_53M\src/Menu/Items/MenuItems.cpp\366</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
