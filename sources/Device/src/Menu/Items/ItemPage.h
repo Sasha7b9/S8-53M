@@ -15,6 +15,8 @@ struct DataPage
 // Описывает страницу меню.
 class Page : public Item
 {
+    friend class Item;
+
 public:
 
     static const int Y = Grid::TOP + 1;
@@ -78,15 +80,14 @@ public:
     // Возвращает true, если текущий элемент страницы открыт
     bool CurrentItemIsOpened() const;
 
+    int8 GetPositionCurrentItem() const;
+
     // Установить позицию активного пункта на странице namePage.
     void SetPositionCurrentItem(int8 pos);
 
-    // Возвращает позицию активного пункта на странице namePage.
-    int8 GetPositionCurrentItem() const;
+    const Item *CurrentItem();
 
-    void OpenCurrentItem();
-
-private:
+protected:
 
     int8 *currentSubPage;                               // Указатель на номер текущей подстраницы
     int8 *posCurrentItem;                               // Указатель на позицию текущего итема

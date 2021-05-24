@@ -303,7 +303,23 @@ Page *Item::Keeper() const
 
 void Item::Open() const
 {
-    Keeper()->OpenCurrentItem();
+    Page *keeper = Keeper();
+
+    if (keeper)
+    {
+        int8 position = *keeper->posCurrentItem;
+
+        if (position > 0)
+        {
+            *keeper->currentItemIsOpened = true;
+        }
+    }
+}
+
+
+int8 Page::GetPositionCurrentItem() const
+{
+    return *posCurrentItem;
 }
 
 
@@ -671,24 +687,20 @@ void Page::CloseOpenedItem()
 }
 
 
-void Page::OpenCurrentItem()
-{
-    if (*posCurrentItem >= 0)
-    {
-        *currentItemIsOpened = true;
-    }
-}
-
-
-int8 Page::GetPositionCurrentItem() const
-{
-    int8 result = *posCurrentItem;
-    
-    return result;
-}
-
-
 int Page::PosItemOnTop() const
 {
     return GetCurrentSubPage() * Menu::ITEMS_ON_DISPLAY;
+}
+
+
+const Item *Page::CurrentItem()
+{
+    int position = *posCurrentItem;
+
+    if (position < 0)
+    {
+        return &empty;
+    }
+
+    return OwnData()->items[position];
 }
