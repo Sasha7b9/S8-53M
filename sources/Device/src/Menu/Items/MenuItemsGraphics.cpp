@@ -106,12 +106,16 @@ void Governor::DrawLowPart(int x, int y) const
         Color::MENU_ITEM_BRIGHT, Color::MENU_ITEM_DARK, true);
 
     x = Text("\x80").Draw(x + 4, y + 21, colorTextDown);
+
     if(!IsOpened())
     {
         float delta = Step();
+
+        x--;
+
         if(delta == 0.0F)
         {
-            x = Int(*own->cell).ToText(false, 1).Draw(x + 1, y + 21);
+            x = Int(*own->cell).ToText(false, 1).Draw(x + 1, y + 21) + 1;
         }
         else
         {
@@ -120,6 +124,7 @@ void Governor::DrawLowPart(int x, int y) const
             int limY = y + 19;
             int limWidth = Item::WIDTH_VALUE;
             int limHeight = Item::HEIGHT_VALUE - 1;
+
             if(delta > 0.0F)
             {
                 x = Int(*own->cell).ToText().DrawWithLimitation(drawX,
@@ -128,6 +133,7 @@ void Governor::DrawLowPart(int x, int y) const
                 Int(NextValue()).ToText().DrawWithLimitation(drawX,
                     (int)(y + 21 + 10 - delta), Color::BACK, limX, limY, limWidth, limHeight);
             }
+
             if(delta < 0.0F)
             {
                 x = Int(*own->cell).ToText().DrawWithLimitation(drawX,
@@ -142,6 +148,7 @@ void Governor::DrawLowPart(int x, int y) const
     {
         x = Int(*own->cell).ToText().Draw(x + 1, y + 21, Color::FILL);
     }
+
     Text("\x81").Draw(x + 1, y + 21, colorTextDown);
 }
 
