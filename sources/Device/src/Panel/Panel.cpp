@@ -581,37 +581,31 @@ static void ChangeRShift(int *prevTime, void(*f)(const Channel &, int16), const 
 }
 
 
-static void SetRShift(const Channel &ch, int16 rShift)
-{
-    RShift::Set(ch, rShift);
-}
-
-
 static void RShiftLeftA()
 {
     static int prevTime = 0;
-    ChangeRShift(&prevTime, SetRShift, ChA, -RShift::STEP());
+    ChangeRShift(&prevTime, RShift::Set, ChA, -RShift::STEP());
 }
 
 
 static void RShiftRightA()
 {
     static int prevTime = 0;
-    ChangeRShift(&prevTime, SetRShift, ChA, +RShift::STEP());
+    ChangeRShift(&prevTime, RShift::Set, ChA, +RShift::STEP());
 }
 
 
 static void RShiftLeftB()
 {
     static int prevTime = 0;
-    ChangeRShift(&prevTime, SetRShift, ChB, -RShift::STEP());
+    ChangeRShift(&prevTime, RShift::Set, ChB, -RShift::STEP());
 }
 
 
 static void RShiftRightB()
 {
     static int prevTime = 0;
-    ChangeRShift(&prevTime, SetRShift, ChB, +RShift::STEP());
+    ChangeRShift(&prevTime, RShift::Set, ChB, +RShift::STEP());
 }
 
 
@@ -652,12 +646,6 @@ static void TrigLevRight()
 {
     static int prevTime = 0;
     ChangeTrigLev(&prevTime, SetTrigLev, TrigSource::Get(), +RShift::STEP());
-}
-
-
-static void ShiftScreen(int shift)
-{
-    Display::ShiftScreen(shift);
 }
 
 
@@ -741,7 +729,7 @@ static void XShift(int delta)
     {
         if (set.memory.enum_points_fpga.PointsInChannel() != EnumPointsFPGA::_281)
         {
-            ChangeShiftScreen(&prevTime, ShiftScreen, (int16)(2 * delta));
+            ChangeShiftScreen(&prevTime,  Display::ShiftScreen, (int16)(2 * delta));
         }
     }
     else
