@@ -297,6 +297,7 @@ void Governor::ShortPress()
     {
         return;
     }
+
     if (IsOpened())
     {
         NextPosition();
