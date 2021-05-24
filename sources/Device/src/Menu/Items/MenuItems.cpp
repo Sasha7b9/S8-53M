@@ -367,21 +367,6 @@ void Item::SetCurrent(bool active) const
 }
 
 
-bool Item::IsOpened() const
-{
-    Page* page = Keeper();
-
-    return page->CurrentItemIsOpened();
-
-//    if (IsPage())
-//    {
-//        return page->CurrentItemIsOpened();
-//    }
-//
-//    return page->CurrentItemIsOpened();
-}
-
-
 void Page::OnRegSet(int delta) const
 {
     if (delta > 0 && GetCurrentSubPage() < NumSubPages() - 1)
@@ -555,7 +540,7 @@ void TimeItem::LongPress()
 
 const Item *Page::RetLastOpened() const
 {
-    if (CurrentItemIsOpened())
+    if (CurrentItem()->IsOpened())
     {
         int8 pActItem = GetPositionCurrentItem();
         const Item *item = GetItem(pActItem);
@@ -669,9 +654,16 @@ void Page::SetCurrentSubPage(int posSubPage) const
 }
 
 
-bool Page::CurrentItemIsOpened() const
+bool Item::IsOpened() const
 {
-    return *currentItemIsOpened;
+    Page *keeper = Keeper();
+
+    if (keeper)
+    {
+        return *keeper->currentItemIsOpened;
+    }
+
+    return false;
 }
 
 
@@ -693,7 +685,7 @@ int Page::PosItemOnTop() const
 }
 
 
-const Item *Page::CurrentItem()
+const Item *Page::CurrentItem() const
 {
     int position = *posCurrentItem;
 

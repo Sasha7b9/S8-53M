@@ -743,7 +743,7 @@ void Page::Draw(int x, int y, bool) const
 
 void Page::DrawOpened(int yTop)
 {
-    if (CurrentItemIsOpened())
+    if (CurrentItem()->IsOpened())
     {
         int8 posCurItem = GetPositionCurrentItem();
         const Item *item = GetItem(posCurItem);
@@ -785,7 +785,7 @@ void Page::DrawTitle(int ytop)
     }
 
     int height = HeightOpened();
-    bool shade = CurrentItemIsOpened();
+    bool shade = CurrentItem()->IsOpened();
 
     Rectangle(Item::TITLE_WIDTH + 2, height + 3).Draw(x, ytop, Color::BorderMenu());
     

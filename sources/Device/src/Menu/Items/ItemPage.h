@@ -77,15 +77,12 @@ public:
 
     static Page empty;
 
-    // Возвращает true, если текущий элемент страницы открыт
-    bool CurrentItemIsOpened() const;
-
     int8 GetPositionCurrentItem() const;
 
     // Установить позицию активного пункта на странице namePage.
     void SetPositionCurrentItem(int8 pos);
 
-    const Item *CurrentItem();
+    const Item *CurrentItem() const;
 
 protected:
 
