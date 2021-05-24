@@ -13,9 +13,6 @@ struct ReaderFPGA
 
     static void ReadPoint();
 
-    static int addition_shift;                  // ƒополнительное смещение. Ќужно дл€ правильной расстановки точек
-                                                // в режиме рандомизатора
-
     static Mutex mutex_read;                    // ћьютекс на чтение данных
 
 private:
@@ -41,6 +38,8 @@ private:
 
             // –ассчитывает индекс первой считываемой точки в массиве и также количество точек, которые нужно отбросить
             // при чтении
+            // firts_out - в этом место нужно поставить первую считанную точку
+            // skipped_out - перед чтением точек нужно отбросить столько точек
             static bool IndexFirstPoint(int *first_out, int *skipped_out);
 
             // —читать и выбрость num_words данных по адресу address

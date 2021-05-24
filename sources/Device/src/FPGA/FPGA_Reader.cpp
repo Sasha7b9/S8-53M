@@ -32,7 +32,6 @@ static uint8 InverseIfNecessary(uint8 data, Channel::E ch)
 */
 
 
-int   ReaderFPGA::addition_shift = 0;
 Mutex ReaderFPGA::mutex_read;
 
 
@@ -95,9 +94,7 @@ bool ReaderFPGA::Read::Randomizer::IndexFirstPoint(int *first_out, int *skipped_
 
     int step = TBase::StepRand();
 
-    static const int NUM_ADD_STEPS = 2;
-
-    int index = Tsm - addition_shift - NUM_ADD_STEPS * step;
+    int index = Tsm - 2 * step;
 
     int num_skipped = 0;
 
@@ -129,7 +126,7 @@ void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch,
     uint bytes_in_channel = ds.BytesInChannel();
 
     const uint16 *const address = ADDRESS_READ(ch);
-    uint8 *addr_wr = dr.Data(ch);                           // —юда будем писать считываемые данные
+    uint8 *addr_wr = dr.Data(ch);                                           // —юда будем писать считываемые данные
     const uint8 * const addr_wr_last = addr_wr + bytes_in_channel;
 
     if (ds.is_clean == 1)
