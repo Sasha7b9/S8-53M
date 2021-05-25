@@ -837,6 +837,16 @@ uint16 LaunchFPGA::PredForWrite()
         result *= 2;
     }
 
+    {
+        static int prev = 0;
+
+        if (result != prev)
+        {
+            LOG_WRITE("pred = %d", result);
+            prev = result;
+        }
+    }
+
     return (uint16)(~result);
 }
 
@@ -848,6 +858,16 @@ uint16 LaunchFPGA::PostForWrite()
     if (PeackDetMode::IsEnabled())
     {
         result *= 2;
+    }
+
+    {
+        static int prev = 0;
+
+        if (result != prev)
+        {
+            LOG_WRITE("post = %d", result);
+            prev = result;
+        }
     }
 
     return (uint16)(~result);
@@ -875,9 +895,14 @@ int LaunchFPGA::AdditionalOffsetIndexFirst()
 
     int shift = set.time.shift;
 
+//    //                       1ns 2ns 5ns 10ns 20ns 50ns
+//    static const int d[] = { 0,  0,  0,  -8,  0,   0 };
+//
+//    int delta = d[set.time.base];
+
     if (shift > 0)
     {
-        result = -(shift % step);
+        result = - (shift % step);
     }
     else if(shift < 0)
     {

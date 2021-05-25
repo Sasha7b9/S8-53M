@@ -145,7 +145,12 @@ uint8 *ReaderFPGA::Read::Randomizer::CalculateFirstAddressWrite(DataReading &dr,
         }
     }
 
-    return awrite + index + LaunchFPGA::AdditionalOffsetIndexFirst();
+    if (awrite != nullptr)
+    {
+        awrite += index + LaunchFPGA::AdditionalOffsetIndexFirst();
+    }
+
+    return awrite;
 }
 
 
@@ -177,6 +182,27 @@ void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch,
 
         awrite += TBase::StepRand();
     }
+
+//    uint8 *data = dr.Data(ch);
+//
+//    int shift = LaunchFPGA::AdditionalOffsetIndexFirst();
+//
+//    if (shift > 0)
+//    {
+//        for (uint i = numBytes - 1; i >= shift; i--)
+//        {
+//            data[i] = data[i - shift];
+//        }
+//    }
+//    else if (shift < 0)
+//    {
+//        shift = -shift;
+//
+//        for (uint i = 0; i < numBytes - shift; i++)
+//        {
+//            data[i] = data[i + shift];
+//        }
+//    }
 }
 
 
