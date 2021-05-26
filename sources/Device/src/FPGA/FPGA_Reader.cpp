@@ -163,6 +163,23 @@ void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch,
         return;
     }
 
+    {
+        static int counter = 0;
+        static uint prevTime = 0;
+
+        if (ch.IsA())
+        {
+            counter++;
+
+            if (TIME_MS - prevTime >= 1000)
+            {
+                LOG_WRITE("%d", counter);
+                counter = 0;
+                prevTime = TIME_MS;
+            }
+        }
+    }
+
     FPGA::BUS::Write(WR_PRED, addr_read, false);
     FPGA::BUS::Write(WR_ADDR_READ, 0xffff, false);
 
@@ -182,27 +199,6 @@ void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch,
 
         awrite += TBase::StepRand();
     }
-
-//    uint8 *data = dr.Data(ch);
-//
-//    int shift = LaunchFPGA::AdditionalOffsetIndexFirst();
-//
-//    if (shift > 0)
-//    {
-//        for (uint i = numBytes - 1; i >= shift; i--)
-//        {
-//            data[i] = data[i - shift];
-//        }
-//    }
-//    else if (shift < 0)
-//    {
-//        shift = -shift;
-//
-//        for (uint i = 0; i < numBytes - shift; i++)
-//        {
-//            data[i] = data[i + shift];
-//        }
-//    }
 }
 
 

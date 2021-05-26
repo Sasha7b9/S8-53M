@@ -79,6 +79,21 @@ void FPGA::Stop()
 }
 
 
+static int CalculateNumberCycles()
+{
+    int result = 0;
+
+    if (TBase::IsRandomize())
+    {
+        static const int num[] = { 25, 25, 20, 10, 5, 2 };
+
+        result = num[set.time.base];
+    }
+
+    return result;
+}
+
+
 void FPGA::Update()
 {
     if (state.work.IsStop())
@@ -88,15 +103,18 @@ void FPGA::Update()
 
     flag.Read();
 
-    if (flag.IsPredLaunchReady())
+    for (int i = 0; i < CalculateNumberCycles(); i++)
     {
-        if (flag.IsTrigReady())
+        if (flag.IsPredLaunchReady())
         {
-            if (flag.IsDataReady())
+            if (flag.IsTrigReady())
             {
-                ReaderFPGA::ReadData();
+                if (flag.IsDataReady())
+                {
+                    ReaderFPGA::ReadData();
 
-                StartIfNeed();
+                    StartIfNeed();
+                }
             }
         }
     }
