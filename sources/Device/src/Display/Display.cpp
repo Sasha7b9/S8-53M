@@ -79,8 +79,28 @@ bool Display::NeedForClearScreen()
 }
 
 
+bool Display::NeedUpdate()
+{
+    static uint prevTime = 0;       // Время предыдущей отрисовки
+
+    if (TIME_MS - prevTime >= set.display.enum_fps.DeltaTime())
+    {
+        prevTime = TIME_MS;
+
+        return true;
+    }
+
+    return false;
+}
+
+
 void Display::Update()
 {
+    if (!NeedUpdate())
+    {
+        return;
+    }
+
     bool need_clear = NeedForClearScreen();
 
     if (need_clear)

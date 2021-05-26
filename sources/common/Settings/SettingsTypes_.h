@@ -274,6 +274,9 @@ struct ENumSignalsInSec
     // ¬озвращает ограничение частоты кадров.
     int NumSignalsInS();
 
+    // ¬озвращает промежуток времени между отрисовками
+    uint DeltaTime();
+
     operator E() const { return value; }
 };
 

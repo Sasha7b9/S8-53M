@@ -69,4 +69,7 @@ private:
     static bool NeedForClearScreen();
 
     static void DrawTimeForFrame(uint timeMS);
+
+    // ¬озвращает true, если надо обновл€ть дисплей
+    static bool NeedUpdate();
 };

@@ -15,6 +15,12 @@ int ENumSignalsInSec::NumSignalsInS()
 }
 
 
+uint ENumSignalsInSec::DeltaTime()
+{
+    return 1000U / NumSignalsInS();
+}
+
+
 uint Smoothing::NumPoints()
 {
     if (set.display.smoothing.IsDisable())
