@@ -900,9 +900,23 @@ int LaunchFPGA::AdditionalOffsetIndexFirst()
 //
 //    int delta = d[set.time.base];
 
-    if (shift > 0)
+    if (shift >= 0)
     {
-        result = - (shift % step);
+            shift %= step;
+
+            if (set.time.base == TBase::_10ns)
+            {
+                if (shift == 0)         result = 7;
+                else if (shift == 1)    result = 6;
+                else if (shift == 2)    result = 5;
+                else if (shift == 3)    result = 4;
+                else if (shift == 4)    result = 3;
+                else if (shift == 5)    result = 2;
+                else if (shift == 6)    result = 1;
+                else if (shift == 7)    result = 0;
+                else if (shift == 8)    result = 9;
+                else if (shift == 9)    result = 8;
+            }
     }
     else if(shift < 0)
     {

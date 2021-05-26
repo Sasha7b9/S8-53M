@@ -358,8 +358,6 @@ void Item::SetCurrent(bool active) const
 
 void Page::SetCurrentItem(const Item *item)
 {
-    LOG_TRACE_WRITE("item = %X", item);
-
     *posCurrentItem = -1;
 
     for (int8 i = 0; i < NumItems(); i++)
