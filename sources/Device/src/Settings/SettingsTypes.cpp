@@ -907,56 +907,14 @@ int LaunchFPGA::AdditionalOffsetIndexFirst()
     
     if (set.time.base == TBase::_2ns)
     {
-        if (shift == 0)       result = 37;
-        else if (shift == 1)  result = 36;
-        else if (shift == 2)  result = 35;
-        else if (shift == 3)  result = 34;
-        else if (shift == 4)  result = 33;
-        else if (shift == 5)  result = 32;
-        else if (shift == 6)  result = 31;
-        else if (shift == 7)  result = 30;
-        else if (shift == 8)  result = 29;
-        else if (shift == 9)  result = 28;
-        else if (shift == 10) result = 27;
-        else if (shift == 11) result = 26;
-        else if (shift == 12) result = 25;
-        else if (shift == 13) result = 24;
-        else if (shift == 14) result = 23;
-        else if (shift == 15) result = 22;
-        else if (shift == 16) result = 21;
-        else if (shift == 17) result = 20;
-        else if (shift == 18) result = 19;
-        else if (shift == 19) result = 18;
-        else if (shift == 20) result = 17;
-        else if (shift == 21) result = 16;
-        else if (shift == 22) result = 15;
-        else if (shift == 23) result = 14;
-        else if (shift == 24) result = 13;
-        else if (shift == 25) result = 12;
-        else if (shift == 26) result = 11;
-        else if (shift == 27) result = 10;
-        else if (shift == 28) result = 9;
-        else if (shift == 29) result = 8;
-        else if (shift == 30) result = 7;
-        else if (shift == 31) result = 6;
-        else if (shift == 32) result = 5;
-        else if (shift == 33) result = 4;
-        else if (shift == 34) result = 3;
-        else if (shift == 35) result = 2;
-        else if (shift == 36) result = 1;
-        else if (shift == 37) result = 0;
-        else if (shift == 38) result = 49;
-        else if (shift == 39) result = 48;
-        else if (shift == 40) result = 47;
-        else if (shift == 41) result = 46;
-        else if (shift == 42) result = 45;
-        else if (shift == 43) result = 44;
-        else if (shift == 44) result = 43;
-        else if (shift == 45) result = 42;
-        else if (shift == 46) result = 41;
-        else if (shift == 47) result = 40;
-        else if (shift == 48) result = 39;
-        else if (shift == 49) result = 38;
+        if (shift <= 37)
+        {
+            result = 37 - shift;
+        }
+        else
+        {
+            result = 50 - (shift - 37);
+        }
     }
     else if (set.time.base == TBase::_5ns)
     {
