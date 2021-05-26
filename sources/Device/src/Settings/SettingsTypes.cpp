@@ -897,13 +897,11 @@ int LaunchFPGA::DeltaReadAddress()
 
 int LaunchFPGA::AdditionalOffsetIndexFirst()
 {
-    int step = TBase::StepRand();
-
     int result = 0;
 
     int shift = set.time.shift;
 
-    shift = (shift + 10000) % step;
+    shift = (shift + 10000) % TBase::StepRand();
     
     //                            1ns 2ns 5ns 10ns 20ns 50ns
     static const int deltas[] = { 50, 37, 7,  8,   2,   0 };
@@ -916,7 +914,7 @@ int LaunchFPGA::AdditionalOffsetIndexFirst()
     }
     else
     {
-        result = step - (shift - d);
+        result = TBase::StepRand() - (shift - d);
     }
 
     {
