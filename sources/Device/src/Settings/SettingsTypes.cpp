@@ -804,7 +804,7 @@ void LaunchFPGA::CalculateRandomize()
     else if (set.time.base == TBase::_10ns) shift += 20;
     else if (set.time.base == TBase::_5ns)  shift -= 160;
     else if (set.time.base == TBase::_2ns)  shift += 100;
-    else if (set.time.base == TBase::_1ns)  shift += 195;
+    else if (set.time.base == TBase::_1ns)  shift += 120;
 
     int num_points   = (int)set.memory.enum_points_fpga.PointsInChannel();
     int equal_points = num_points / k;      // Эквивалентное количество точек, которые нужно считать. Оно в коэффициент
@@ -845,16 +845,6 @@ uint16 LaunchFPGA::PredForWrite()
         result *= 2;
     }
 
-    {
-        static int prev = 0;
-
-        if (result != prev)
-        {
-            LOG_WRITE("pred = %d", result);
-            prev = result;
-        }
-    }
-
     return (uint16)(~result);
 }
 
@@ -866,16 +856,6 @@ uint16 LaunchFPGA::PostForWrite()
     if (PeackDetMode::IsEnabled())
     {
         result *= 2;
-    }
-
-    {
-        static int prev = 0;
-
-        if (result != prev)
-        {
-            LOG_WRITE("post = %d", result);
-            prev = result;
-        }
     }
 
     return (uint16)(~result);
@@ -904,29 +884,14 @@ int LaunchFPGA::AdditionalOffsetIndexFirst()
     shift = (shift + 10000) % TBase::StepRand();
     
     //                            1ns 2ns 5ns 10ns 20ns 50ns
-    static const int deltas[] = { 50, 37, 7,  8,   2,   0 };
+    static const int deltas[] = { 67, 37, 7,  7,   2,   0 };
 
     static const int d = deltas[set.time.base];
 
     if (shift <= d)
-    {
         result = d - shift;
-    }
     else
-    {
         result = TBase::StepRand() - (shift - d);
-    }
-
-    {
-        static int prevShift = 0;
-
-        if (shift != prevShift)
-        {
-            LOG_WRITE("shift = %d, delta = %d", shift, result);
-
-            prevShift = shift;
-        }
-    }
 
     return result;
 }
