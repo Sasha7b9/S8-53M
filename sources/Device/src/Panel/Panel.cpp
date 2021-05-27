@@ -296,11 +296,20 @@ void Panel::Update()
         queue.Front();
     }
 
-    if (queue.Size() < 3)
+    if (!Panel::isRunning)
     {
         return;
     }
 
+    while (queue.Size() >= 3)
+    {
+        ProcessEvent();
+    }
+}
+
+
+void Panel::ProcessEvent()
+{
     queue.Front();
 
     Key::E key = (Key::E)queue.Front();
@@ -309,11 +318,6 @@ void Panel::Update()
     if (action.IsDown())
     {
         pressedButton = key;
-    }
-
-    if (!Panel::isRunning)
-    {
-        return;
     }
 
     if (action.IsUp())
@@ -350,6 +354,11 @@ void Panel::Update()
 
 void Panel::CallbackOnReceiveSPI5(uint8 *data, uint size)
 {
+    if (size == 3 && data[1] == Key::None)
+    {
+        return;
+    }
+
     static ReceivedBuffer buffer;
 
     for (uint i = 0; i < size; i++)              // Сначала сохраняем данные в промежуточный буфер

@@ -266,7 +266,7 @@ Int ReaderFPGA::CalculateShift()
     }
     else
     {
-        LOG_WRITE("Невалидный ADC");
+//        LOG_WRITE("Невалидный ADC");
     }
 
     return InvalidInt();

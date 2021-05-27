@@ -40,6 +40,8 @@ private:
 
     // Передать даннные в мк панели управления.
     static void TransmitData(uint8 data);
+
+    static void ProcessEvent();
 };
 
 
