@@ -81,7 +81,7 @@ void FPGA::Stop()
 
 static int CalculateNumberCycles()
 {
-    int result = 0;
+    int result = 1;
 
     if (TBase::IsRandomize())
     {
@@ -354,7 +354,14 @@ void FPGA::Flag::RunPostLaunchIfNeed()
     {
         if (IsPredLaunchReady() && !IsTrigReady() && TIME_MS - time_pred_launch_ready > 1000)
         {
-            TrigPolarity::Switch();
+            static uint timePrev = 0;
+
+            if (TIME_MS - timePrev >= 100)
+            {
+                timePrev = TIME_MS;
+
+                TrigPolarity::Switch();
+            }
         }
     }
 }
