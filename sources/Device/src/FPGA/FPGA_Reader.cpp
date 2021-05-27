@@ -163,22 +163,22 @@ void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch,
         return;
     }
 
-    {
-        static int counter = 0;
-        static uint prevTime = 0;
-
-        if (ch.IsA())
-        {
-            counter++;
-
-            if (TIME_MS - prevTime >= 1000)
-            {
-                LOG_WRITE("%d", counter);
-                counter = 0;
-                prevTime = TIME_MS;
-            }
-        }
-    }
+//    {
+//        static int counter = 0;
+//        static uint prevTime = 0;
+//
+//        if (ch.IsA())
+//        {
+//            counter++;
+//
+//            if (TIME_MS - prevTime >= 1000)
+//            {
+//                LOG_WRITE("%d", counter);
+//                counter = 0;
+//                prevTime = TIME_MS;
+//            }
+//        }
+//    }
 
     FPGA::BUS::Write(WR_PRED, addr_read, false);
     FPGA::BUS::Write(WR_ADDR_READ, 0xffff, false);
