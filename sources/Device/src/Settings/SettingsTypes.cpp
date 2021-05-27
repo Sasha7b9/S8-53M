@@ -883,32 +883,15 @@ int LaunchFPGA::AdditionalOffsetIndexFirst()
 
     shift = (shift + 10000) % TBase::StepRand();
 
-//    if (set.time.base == TBase::_10ns)
-//    {
-//    }
-//    else
-    {
-        //                            1ns 2ns 5ns 10ns 20ns 50ns
-        static const int deltas[] = { 67, 37, 7,  7,   2,   0 };
+    //                            1ns 2ns 5ns 10ns 20ns
+    static const int deltas[] = { 67, 37, 7,  7,   2 };
 
-        static const int d = deltas[set.time.base];
+    int d = deltas[set.time.base];
 
-        if (shift <= d)
-            result = d - shift;
-        else
-            result = TBase::StepRand() - (shift - d);
-    }
-
-//    {
-//        static int prevShift = 0;
-//
-//        if (shift != prevShift)
-//        {
-//            LOG_WRITE("shift = %d, delta = %d", shift, result);
-//
-//            prevShift = shift;
-//        }
-//    }
+    if (shift <= d)
+        result = d - shift;
+    else
+        result = TBase::StepRand() - (shift - d);
 
     return result;
 }
