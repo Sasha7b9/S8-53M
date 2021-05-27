@@ -12,6 +12,8 @@ struct SettingsNRST
         int16   num_measures_for_gates; // Число измерений для ворот
         int16   shift_T0;               // Дополнительное смещение по времени для данной развёртки
         bool    show_info;              // Выводить ворота и считанное значение
+        int16   gate_min;
+        int16   gate_max;
     };
 
     struct SettingsADC

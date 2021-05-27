@@ -5,6 +5,67 @@
 #include "Menu/Items/MenuItemsDefs.h"
 #include "Menu/Pages/Definition.h"
 
+//----------------------------------------------------------------------------------------------------------------------
+
+DEF_CHOICE_21( gGateMin, PageDebug::PageRandomizer::self,
+    "Ворота низ", "Gates down",
+    "Устанавливает учитываемое расстояние от минимума ворот для рандомизатора",
+    "Sets the considered distance from the minimum gate for the randomizer",
+    "0",   "0",
+    "10",  "10",
+    "20",  "20",
+    "30",  "30",
+    "40",  "40",
+    "50",  "50",
+    "60",  "60",
+    "70",  "70",
+    "80",  "80",
+    "90",  "90",
+    "100", "100",
+    "110", "110",
+    "120", "120",
+    "130", "130",
+    "140", "140",
+    "150", "150",
+    "160", "160",
+    "170", "170",
+    "180", "180",
+    "190", "190",
+    "200", "200",
+    setNRST.rand.gate_min, nullptr, nullptr, nullptr
+)
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+DEF_CHOICE_21(gGateMax, PageDebug::PageRandomizer::self,
+    "Ворота верх", "Gates up",
+    "Устанавливает учитываемое расстояние от максимума ворот для рандомизатора",
+    "Sets the considered distance from the maximum gate for the randomizer",
+    "0", "0",
+    "10", "10",
+    "20", "20",
+    "30", "30",
+    "40", "40",
+    "50", "50",
+    "60", "60",
+    "70", "70",
+    "80", "80",
+    "90", "90",
+    "100", "100",
+    "110", "110",
+    "120", "120",
+    "130", "130",
+    "140", "140",
+    "150", "150",
+    "160", "160",
+    "170", "170",
+    "180", "180",
+    "190", "190",
+    "200", "200",
+    setNRST.rand.gate_min, nullptr, nullptr, nullptr
+)
+
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -71,10 +132,12 @@ DEF_GOVERNOR(gAltTShift0, PageDebug::PageRandomizer::self,
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_PAGE_5(pageRandomizer, PageDebug::self, NamePage::DebugRandomizer,
+DEF_PAGE_7(pageRandomizer, PageDebug::self, NamePage::DebugRandomizer,
     "РАНД-ТОР", "RANDOMIZER",
     "",
     "",
+    gGateMin,
+    gGateMax,
     gNumAverages,
     gNumSmooth,
     gSamplesForGates,

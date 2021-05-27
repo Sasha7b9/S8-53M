@@ -11,7 +11,7 @@ DEF_CHOICE_2(mcMapping, PageDisplay::self,
     "Задаёт режим отображения сигнала.",
     "Sets the display mode signal.",
     "Вектор", "Vector",
-    "Точки", "Points",
+    "Точки",  "Points",
     set.display.mode_draw_signal, nullptr, nullptr, nullptr
 )
 
