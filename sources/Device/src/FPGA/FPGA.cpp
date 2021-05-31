@@ -501,3 +501,9 @@ void FPGA::BUS::WriteToDAC(TypeWriteDAC::E type, uint16 data)
 
     Pin::SPI4_CS1.Set();
 }
+
+
+void FPGA::OnPressStartStop()
+{
+
+}

@@ -68,6 +68,7 @@ struct SettingsNRST
     SettingsChannel    chan[Channel::Count];
     SettingsConsole    console;
     SettingsRegisters  show_registers;
+    CalibrationMode::E calibration_mode[Channel::Count];
     uint               unused_crc32;        // Неиспользуемая переменная. Нужна для расчёта crc32. Всегда равна нулю
 
     // Инициализация при включении. Проиходит определние наличия настроек в ROM и их загрузка в случае, если настройки есть. Если настроек нету - инициализация значениями по умолчанию

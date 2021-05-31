@@ -285,3 +285,15 @@ void Display::RunAfterDraw(pFuncVV /*func*/)
 {
 //    funcAfterDraw = func;
 }
+
+
+void Display::FuncOnWaitStart(pchar /*text*/, bool /*eraseBackground*/)
+{
+
+}
+
+
+void Display::FuncOnWaitStop()
+{
+
+}

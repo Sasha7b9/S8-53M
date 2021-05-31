@@ -50,6 +50,9 @@ static const SettingsNRST defaultNRST =
         false,                  // отображать пред/после запуск
         false, false, false, false, false, false, false, false, false, false, false
     },
+    {
+        CalibrationMode::x1, CalibrationMode::x1
+    },
     0
 };
 

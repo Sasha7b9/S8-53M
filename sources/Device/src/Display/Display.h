@@ -60,6 +60,10 @@ public:
 
     static int DrawScaleLine(int x, bool for_trig_level);
 
+    static void FuncOnWaitStart(pchar text, bool eraseBackground);
+
+    static void FuncOnWaitStop();
+
 private:
 
     static void FuncOnTimerDisableShowLevelTrigLev();

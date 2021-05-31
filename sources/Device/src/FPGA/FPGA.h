@@ -70,6 +70,8 @@ public:
     // Загрузить настройки в аппаратную часть из глобальной структуры SSettings.
     static void LoadSettings();
 
+    static void OnPressStartStop();
+
 private:
 
     // Дать запуск, если в этом есть необходимость (например, включён автоматический режим запуска)
@@ -176,5 +178,19 @@ public:
 
         // Запуск функции калибровки.
         static void PerformCalibration();
+
+    private:
+
+        static void CreateCalibrationStruct();
+
+        // Если wait == true, то нужно ожидать после установки режима перед измерением для исключения переходного
+        // процесса
+        static void CalibrateAddRShift(Channel &ch, bool wait);
+
+        static void RestoreSettingsForCalibration(const SettingsCommon *savedSettings);
+
+        static void WriteAdditionRShifts(Channel &ch);
+
+        static void DeleteCalibrationStruct();
     };
 };

@@ -1211,3 +1211,14 @@ private:
     static const int8 d_post[TBase::Count];   // ƒополнительное смещение дл€ послезапуска
     static const int8 d_read[TBase::Count];   // ƒополнительное смещение дл€ чтени€ адреса
 };
+
+
+struct CalibrationMode
+{
+    enum E
+    {
+        x1,
+        x10,
+        Disable
+    };
+};

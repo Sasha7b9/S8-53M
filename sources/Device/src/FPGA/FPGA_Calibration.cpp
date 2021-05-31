@@ -579,7 +579,63 @@ Float CalculateKoeffCalibration(const Channel &ch)
 }
 
 
-void FPGA::Calibrator::PerformBalance(Channel & /*ch*/)
+void FPGA::Calibrator::PerformBalance(Channel &ch)
+{
+    CreateCalibrationStruct();
+
+    Display::FuncOnWaitStart(ch.IsA() ? (LANG_RU ? "Балансировка канала 1" : "Balance channel 1") :
+                                        (LANG_RU ? "Балансировка канала 2" : "Balance channel 2"), false);
+
+    SettingsCommon storedSettings = set;
+
+    Panel::DisableInput();
+
+    CalibrateAddRShift(ch, true);
+
+    RestoreSettingsForCalibration(&storedSettings);
+
+    CalibrationMode::E mode = setNRST.calibration_mode[ch];
+    setNRST.calibration_mode[ch] = CalibrationMode::x1;
+
+    WriteAdditionRShifts(ch);
+
+    setNRST.calibration_mode[ch] = mode;
+
+    Panel::EnableInput();
+
+    Display::FuncOnWaitStop();
+
+    FPGA::OnPressStartStop();
+
+    DeleteCalibrationStruct();
+}
+
+
+void FPGA::Calibrator::CreateCalibrationStruct()
+{
+
+}
+
+
+void FPGA::Calibrator::CalibrateAddRShift(Channel &/*ch*/, bool /*wait*/)
+{
+
+}
+
+
+void FPGA::Calibrator::RestoreSettingsForCalibration(const SettingsCommon * /*savedSettings*/)
+{
+
+}
+
+
+void FPGA::Calibrator::WriteAdditionRShifts(Channel & /*ch*/)
+{
+
+}
+
+
+void FPGA::Calibrator::DeleteCalibrationStruct()
 {
 
 }
