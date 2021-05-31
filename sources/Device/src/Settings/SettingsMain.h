@@ -48,7 +48,7 @@ struct SettingsLAN
 };
 
                                    
-struct SettingsSystem
+struct SettingsCommon
 {
     int         countEnables;               // Количество включений. Увеличивается при каждом включении.
     int         countErasedFlashData;       // Сколько раз стирался первый сектор с ресурсами.
@@ -303,7 +303,7 @@ struct SettingsMain
     SettingsMath     math;                 // настройки режима математических измерений.
     SettingsService  service;              // дополнительные настройки       (меню СЕРВИС).
     SettingsLAN      LAN;                  // настройки для соединения по локальной сети.
-    SettingsSystem   common;               // системные настройки.
+    SettingsCommon   common;               // системные настройки.
     SettingsMenu     menu;                 // состояние меню.
     uint             unused_crc32;
 
