@@ -82,7 +82,7 @@ void ReaderFPGA::Read::Real::Channel(DataReading &data, const ::Channel &ch, uin
         counter++;
     }
 
-    if (FPGA::flag.IsFirstByte0())
+    if (!PeackDetMode::IsEnabled() && FPGA::flag.IsFirstByte0())
     {
         uint8 *last = data.Data(ch) + data.Settings().BytesInChannel();
 

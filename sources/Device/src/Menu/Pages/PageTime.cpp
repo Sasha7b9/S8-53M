@@ -26,11 +26,6 @@ DEF_CHOICE_2(mcSample, PageTime::self,
     set.time.sample_type, IsActive_Sample, nullptr, nullptr
 )
 
-static bool IsActive_PeakDet()
-{
-    return (set.time.base >= TBase::MIN_PEAK_DET);
-}
-
 
 static void WriteRShiftADC()
 {
@@ -92,7 +87,7 @@ DEF_CHOICE_2(mcPeakDet, PageTime::self,
     "Turns on/off peak detector.",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.time.peak_det, IsActive_PeakDet, PageTime::OnChanged_PeakDet, nullptr
+    set.time.peak_det, TBase::IsPeakDetModeAllowed, PageTime::OnChanged_PeakDet, nullptr
 )
 
 void PageTime::OnChanged_TPos(bool active)

@@ -27,7 +27,7 @@ bool TrigLev::exist_impulse = false;
 bool TrigLev::show_level = false;
 
 TBase::E TBase::MIN_P2P = TBase::_20ms;
-TBase::E TBase::MIN_PEAK_DET = TBase::_500ns;
+TBase::E TBase::MIN_PEAK_DET = TBase::_1us;
 TBase::E TBase::MAX_RANOMIZE = TBase::_20ns;
 
 int LaunchFPGA::pred = 0;
@@ -323,6 +323,12 @@ bool TBase::IsRandomize()
 bool TBase::IsP2P()
 {
     return (set.time.base >= MIN_P2P);
+}
+
+
+bool TBase::IsPeakDetModeAllowed()
+{
+    return (set.time.base >= MIN_PEAK_DET);
 }
 
 

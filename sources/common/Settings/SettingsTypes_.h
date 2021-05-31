@@ -854,6 +854,9 @@ struct TBase
     // Возвращает true, если установлена поточечная развёртка
     static bool IsP2P();
 
+    // Возвращает true, если разрешён режим пикового детектора
+    static bool IsPeakDetModeAllowed();
+
     static pchar Name(TBase::E tbase);
 
     static pchar ToString(TBase::E tbase);
