@@ -248,6 +248,23 @@ void ReaderFPGA::InverseDataIsNecessary(DataReading &data, const Channel &ch)
 }
 
 
+// Возвращает true, если нужно отбросить значение рандомизатора
+static bool NeedToDiscardValueRandomizer(uint16 rand, uint16 min, uint16 max)
+{
+    if (rand > max - setNRST.rand.gate_max * 10)
+    {
+        return true;
+    }
+
+    if (rand < min + setNRST.rand.gate_max * 10)
+    {
+        return true;
+    }
+
+    return false;
+}
+
+
 Int ReaderFPGA::CalculateShift()
 {
     Uint16 rand = HAL_ADC1::GetValue();
@@ -259,14 +276,13 @@ Int ReaderFPGA::CalculateShift()
 
         if (FPGA::Randomizer::CalculateGate(rand, &min, &max))
         {
-            float tin = (float)(rand - min) / (max - min) * 10e-9F;
+            if (!NeedToDiscardValueRandomizer(rand, min, max))
+            {
+                float tin = (float)(rand - min) / (max - min) * 10e-9F;
 
-            return (int)(tin / 10e-9F * TBase::StepRand());
+                return (int)(tin / 10e-9F * TBase::StepRand());
+            }
         }
-    }
-    else
-    {
-//        LOG_WRITE("Невалидный ADC");
     }
 
     return InvalidInt();
