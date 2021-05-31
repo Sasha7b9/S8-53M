@@ -172,7 +172,9 @@ public:
         // Загрузить в аппарат коэффициенты калибровки каналов.
         static void LoadKoeff(const Channel &ch);
 
+        static void PerformBalance(Channel &ch);
+
         // Запуск функции калибровки.
-        static void ProcedureCalibration();
+        static void PerformCalibration();
     };
 };

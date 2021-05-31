@@ -100,7 +100,19 @@ DEF_CHOICE_2(mcMultiplierA, PageChannelA::self,
     set.chan[ChA].divider, nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_5(pageChanA, PageMain::self, NamePage::ChannelA,
+void PageChannelA::OnPress_Balance()
+{
+
+}
+
+DEF_BUTTON(mbBalanceA, PageChannelA::self,
+    "Балансировать", "Balance",
+    "Балансировать канал",
+    "Balancing channel",
+    nullptr, PageChannelA::OnPress_Balance
+)
+
+DEF_PAGE_6(pageChanA, PageMain::self, NamePage::ChannelA,
     "КАНАЛ 1", "CHANNEL 1",
     "Содержит настройки канала 1.",
     "Contains settings of the channel 1.",
@@ -109,6 +121,7 @@ DEF_PAGE_5(pageChanA, PageMain::self, NamePage::ChannelA,
     mcFiltrA,
     mcInverseA,
     mcMultiplierA,
+    mbBalanceA,
     nullptr, nullptr, nullptr, nullptr
 )
 
@@ -178,7 +191,20 @@ DEF_CHOICE_2(mcMultiplierB, PageChannelB::self,
     set.chan[ChB].divider, nullptr, nullptr, nullptr
 )
 
-DEF_PAGE_5(pageChanB, PageMain::self, NamePage::ChannelB,
+void PageChannelB::OnPress_Balance()
+{
+
+}
+
+DEF_BUTTON(mbBalanceB, PageChannelB::self,
+    "Балансировать", "Balance",
+    "Балансировать канал",
+    "Balancing channel",
+    nullptr, PageChannelB::OnPress_Balance
+)
+
+
+DEF_PAGE_6(pageChanB, PageMain::self, NamePage::ChannelB,
     "КАНАЛ 2", "CHANNEL 2",
     "Содержит настройки канала 2.",
     "Contains settings of the channel 2.",
@@ -187,6 +213,7 @@ DEF_PAGE_5(pageChanB, PageMain::self, NamePage::ChannelB,
     mcFiltrB,
     mcInverseB,
     mcMultiplierB,
+    mbBalanceB,
     nullptr, nullptr, nullptr, nullptr
 )
 

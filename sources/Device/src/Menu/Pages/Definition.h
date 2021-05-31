@@ -38,6 +38,7 @@ struct PageChannelA
     static void OnChanged_Input(bool);
     static void OnChanged_Couple(bool);
     static void OnChanged_Filtr(bool);
+    static void OnPress_Balance();
 };
 
 
@@ -47,6 +48,7 @@ struct PageChannelB
     static void OnChanged_Input(bool);
     static void OnChanged_Couple(bool);
     static void OnChanged_Filtr(bool);
+    static void OnPress_Balance();
 };
 
 

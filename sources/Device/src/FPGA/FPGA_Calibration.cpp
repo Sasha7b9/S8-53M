@@ -61,7 +61,7 @@ static void OnTimerDraw()
 }
 
 
-void FPGA::Calibrator::ProcedureCalibration()
+void FPGA::Calibrator::PerformCalibration()
 {
     bool chanAenable = ChA.IsEnabled();
     bool chanBenable = ChB.IsEnabled();
@@ -576,4 +576,10 @@ Float CalculateKoeffCalibration(const Channel &ch)
         return InvalidFloat();
     }
     return retValue * 1.004F;
+}
+
+
+void FPGA::Calibrator::PerformBalance(Channel & /*ch*/)
+{
+
 }
