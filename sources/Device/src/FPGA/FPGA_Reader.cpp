@@ -82,20 +82,29 @@ void ReaderFPGA::Read::Real::Channel(DataReading &data, const ::Channel &ch, uin
         counter++;
     }
 
-    if (FPGA::flag.IsFirstByte0())
+    if (setNRST.adc.firs_byte == 1)
     {
-        LOG_WRITE("сдивгаем");
-
-        uint8 *last = data.Data(ch) + data.Settings().BytesInChannel();
-
-        for (uint8 *pointer = data.Data(ch) + 1; pointer < last; pointer++)
+        if (FPGA::flag.IsFirstByte0())
         {
-            *(pointer - 1) = *pointer;
+            uint8 *last = data.Data(ch) + data.Settings().BytesInChannel();
+
+            for (uint8 *pointer = data.Data(ch) + 1; pointer < last; pointer++)
+            {
+                *(pointer - 1) = *pointer;
+            }
         }
     }
-    else
+    else if (setNRST.adc.firs_byte == -1)
     {
-        LOG_WRITE("         не сдвигаем");
+        if (FPGA::flag.IsFirstByte0())
+        {
+            uint8 *first = data.Data(ch);
+
+            for (uint8 *pointer = data.Data(ch) + data.Settings().BytesInChannel() - 2; pointer >= first; pointer--)
+            {
+                *(pointer + 1) = *pointer;
+            }
+        }
     }
 }
 
