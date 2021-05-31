@@ -7,7 +7,7 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_CHOICE_21( gGateMin, PageDebug::PageRandomizer::self,
+DEF_CHOICE_14( gGateMin, PageDebug::PageRandomizer::self,
     "¬орота низ", "Gates down",
     "”станавливает учитываемое рассто€ние от минимума ворот дл€ рандомизатора",
     "Sets the considered distance from the minimum gate for the randomizer",
@@ -25,20 +25,13 @@ DEF_CHOICE_21( gGateMin, PageDebug::PageRandomizer::self,
     "110", "110",
     "120", "120",
     "130", "130",
-    "140", "140",
-    "150", "150",
-    "160", "160",
-    "170", "170",
-    "180", "180",
-    "190", "190",
-    "200", "200",
     setNRST.rand.gate_min, nullptr, nullptr, nullptr
 )
 
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_CHOICE_21(gGateMax, PageDebug::PageRandomizer::self,
+DEF_CHOICE_14(gGateMax, PageDebug::PageRandomizer::self,
     "¬орота верх", "Gates up",
     "”станавливает учитываемое рассто€ние от максимума ворот дл€ рандомизатора",
     "Sets the considered distance from the maximum gate for the randomizer",
@@ -56,13 +49,6 @@ DEF_CHOICE_21(gGateMax, PageDebug::PageRandomizer::self,
     "110", "110",
     "120", "120",
     "130", "130",
-    "140", "140",
-    "150", "150",
-    "160", "160",
-    "170", "170",
-    "180", "180",
-    "190", "190",
-    "200", "200",
     setNRST.rand.gate_min, nullptr, nullptr, nullptr
 )
 
