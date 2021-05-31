@@ -6,14 +6,6 @@
 #include "Settings/SettingsCommon.h"
 
 
-DEF_GOVERNOR(gFirstByte, PageDebug::PageADC::PageAltRShift::self,
-    "ֿונגûי באיע", "First byte",
-    "",
-    "",
-    setNRST.adc.firs_byte, -1, 1, nullptr, nullptr, nullptr
-)
-
-
 //----------------------------------------------------------------------------------------------------------------------
 
 static void OnChanged_A()
@@ -113,11 +105,10 @@ DEF_GOVERNOR(b10mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_PAGE_8(pageAltShift, PageDebug::PageADC::self, NamePage::DebugADCrShift,
+DEF_PAGE_7(pageAltShift, PageDebug::PageADC::self, NamePage::DebugADCrShift,
     "ִ־ֿ ֵּׁÙ", "ADD RSHFIT",
     "",
     "",
-    gFirstByte,
     bReset,
     b2mV_DC_A,
     b2mV_DC_B,

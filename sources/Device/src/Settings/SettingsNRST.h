@@ -20,7 +20,6 @@ struct SettingsNRST
     {
         BalanceADCtype::E type_balance; // Тип балансировки
         StretchADCtype::E type_stretch; // Тип растяжки канала.
-        int16             firs_byte;    // Куда устанавливать первый байт
     };
 
     struct SettingsChannel
