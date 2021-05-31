@@ -325,8 +325,6 @@ void Item::Open() const
 
 void Item::Close() const
 {
-    LOG_FUNC_ENTER();
-
     Keeper()->CloseOpenedItem();
 }
 
