@@ -7,49 +7,21 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_CHOICE_14( gGateMin, PageDebug::PageRandomizer::self,
-    "Ворота низ", "Gates down",
+DEF_GOVERNOR( gGateMin, PageDebug::PageRandomizer::self,
+    "Ворота низ", "Gates bottom",
     "Устанавливает учитываемое расстояние от минимума ворот для рандомизатора",
     "Sets the considered distance from the minimum gate for the randomizer",
-    "0",   "0",
-    "10",  "10",
-    "20",  "20",
-    "30",  "30",
-    "40",  "40",
-    "50",  "50",
-    "60",  "60",
-    "70",  "70",
-    "80",  "80",
-    "90",  "90",
-    "100", "100",
-    "110", "110",
-    "120", "120",
-    "130", "130",
-    setNRST.rand.gate_min, nullptr, nullptr, nullptr
+    setNRST.rand.gate_min, 0, 20, nullptr, nullptr, nullptr
 )
 
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_CHOICE_14(gGateMax, PageDebug::PageRandomizer::self,
-    "Ворота верх", "Gates up",
+DEF_GOVERNOR(gGateMax, PageDebug::PageRandomizer::self,
+    "Ворота верх", "Gates top",
     "Устанавливает учитываемое расстояние от максимума ворот для рандомизатора",
     "Sets the considered distance from the maximum gate for the randomizer",
-    "0", "0",
-    "10", "10",
-    "20", "20",
-    "30", "30",
-    "40", "40",
-    "50", "50",
-    "60", "60",
-    "70", "70",
-    "80", "80",
-    "90", "90",
-    "100", "100",
-    "110", "110",
-    "120", "120",
-    "130", "130",
-    setNRST.rand.gate_min, nullptr, nullptr, nullptr
+    setNRST.rand.gate_max, 0, 20, nullptr, nullptr, nullptr
 )
 
 
