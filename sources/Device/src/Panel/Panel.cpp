@@ -316,6 +316,8 @@ void Panel::ProcessEvent()
     Key::E key = (Key::E)queue.Front();
     Action action(queue.Front());
 
+    timeLastEvent = TIME_MS;
+
     if (action.IsDown())
     {
         pressedButton = key;
@@ -359,8 +361,6 @@ void Panel::CallbackOnReceiveSPI5(uint8 *data, uint size)
     {
         return;
     }
-
-    timeLastEvent = TIME_MS;
 
     static ReceivedBuffer buffer;
 

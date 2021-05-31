@@ -149,11 +149,21 @@ bool FPGA::Randomizer::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
         first_after_write = false;
         return false;
     }
-    
+  
     if(rand < 500 || rand > 3500)
     {
         return false;
     }
+
+    if (Panel::TimePassedAfterLastEvent() < 20)
+    {
+        return false;
+    }
+
+//    if (rand > 2800)
+//    {
+//        LOG_WRITE("Error value %d", rand);
+//    }
     
     static const int numValues = 1000;
 
@@ -193,7 +203,7 @@ bool FPGA::Randomizer::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
     {
         minGate = 0.9F * minGate + 0.1F * min;
         maxGate = 0.9F * maxGate + 0.1F * max;
-        LOG_TRACE_WRITE("вор %.0F ... %.0F, min = %u, max = %u", minGate, maxGate, min, max);
+        LOG_WRITE("вор %.0F ... %.0F, min = %u, max = %u", minGate, maxGate, min, max);
         numElements = 0;
         min = 0xffff;
         max = 0;
