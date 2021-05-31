@@ -70,7 +70,7 @@ void ReaderFPGA::Read::Real::Channel(DataReading &data, const ::Channel &ch, uin
     FPGA::BUS::Write(WR_ADDR_READ, 0xffff, false);
 
     uint16 *p = (uint16 *)data.Data(ch);
-    uint16 *end = (uint16 *)(data.Data(ch) + data.Settings().BytesInChannel());
+    const uint16 *end = (uint16 *)(data.Data(ch) + data.Settings().BytesInChannel());
 
     volatile const uint16 * const address = ADDRESS_READ(ch);
 
@@ -80,6 +80,22 @@ void ReaderFPGA::Read::Real::Channel(DataReading &data, const ::Channel &ch, uin
     {
         *p++ = *address;
         counter++;
+    }
+
+    if (FPGA::flag.IsFirstByte0())
+    {
+        LOG_WRITE("сдивгаем");
+
+        uint8 *last = data.Data(ch) + data.Settings().BytesInChannel();
+
+        for (uint8 *pointer = data.Data(ch) + 1; pointer < last; pointer++)
+        {
+            *(pointer - 1) = *pointer;
+        }
+    }
+    else
+    {
+        LOG_WRITE("         не сдвигаем");
     }
 }
 

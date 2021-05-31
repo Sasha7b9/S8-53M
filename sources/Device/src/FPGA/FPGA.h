@@ -99,13 +99,11 @@ public:
 
         void Read();
 
-        inline bool IsTrigReady() const  { return _GET_BIT(flag, FL_TRIG_READY) == 1; }
-
-        inline bool IsDataReady() const  { return _GET_BIT(flag, FL_DATA_READY) == 1; };
-
-        inline bool IsPointReady() const { return _GET_BIT(flag, FL_POINT_READY) == 1; };
-
-        inline bool IsPredLaunchReady() const  { return _GET_BIT(flag, FL_PRED_READY) == 1; }
+        inline bool IsTrigReady()       const { return _GET_BIT(flag, FL_TRIG_READY) == 1; }
+        inline bool IsDataReady()       const { return _GET_BIT(flag, FL_DATA_READY) == 1; };
+        inline bool IsPointReady()      const { return _GET_BIT(flag, FL_POINT_READY) == 1; };
+        inline bool IsPredLaunchReady() const { return _GET_BIT(flag, FL_PRED_READY) == 1; }
+        inline bool IsFirstByte0()      const { return _GET_BIT(flag, FL_FIRST_BYTE) == 0; }
 
         // Рассчитать время, когда был установлен флаг предзапуска
         void CalculateTimeReadyPredLaunch();
