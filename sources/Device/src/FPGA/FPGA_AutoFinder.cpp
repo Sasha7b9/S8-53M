@@ -39,7 +39,7 @@ void AutoFinderFPGA::Find()
 
 bool AutoFinderFPGA::FindWave(const Channel &ch)
 {
-    SettingsCommon settings = set;    // Сохраняем предыдущие настройки
+    SettingsMain settings = set;    // Сохраняем предыдущие настройки
 
     FPGA::Stop();
     ch.Enable();

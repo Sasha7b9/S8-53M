@@ -3,7 +3,7 @@
 #include "Menu/Pages/Definition.h"
 #include "Menu/Items/MenuItems.h"
 #include "Menu/Items/MenuItemsDefs.h"
-#include "Settings/SettingsCommon.h"
+#include "Settings/SettingsMain.h"
 
 
 static int16 shiftADCA;

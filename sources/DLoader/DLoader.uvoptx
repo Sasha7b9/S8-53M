@@ -1927,31 +1927,31 @@
 
   <Group>
     <GroupName>Settings</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>16</GroupNumber>
       <FileNumber>117</FileNumber>
-      <FileType>8</FileType>
+      <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Settings\SettingsCommon.cpp</PathWithFileName>
-      <FilenameWithoutPath>SettingsCommon.cpp</FilenameWithoutPath>
+      <PathWithFileName>.\src\Settings\SettingsMain.h</PathWithFileName>
+      <FilenameWithoutPath>SettingsMain.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>16</GroupNumber>
       <FileNumber>118</FileNumber>
-      <FileType>5</FileType>
+      <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Settings\SettingsCommon.h</PathWithFileName>
-      <FilenameWithoutPath>SettingsCommon.h</FilenameWithoutPath>
+      <PathWithFileName>.\src\Settings\SettingsMain.cpp</PathWithFileName>
+      <FilenameWithoutPath>SettingsMain.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

@@ -2188,14 +2188,14 @@
           <GroupName>Settings</GroupName>
           <Files>
             <File>
-              <FileName>SettingsCommon.h</FileName>
+              <FileName>SettingsMain.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Settings\SettingsCommon.h</FilePath>
+              <FilePath>.\src\Settings\SettingsMain.h</FilePath>
             </File>
             <File>
-              <FileName>SettingsCommon.cpp</FileName>
+              <FileName>SettingsMain.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Settings\SettingsCommon.cpp</FilePath>
+              <FilePath>.\src\Settings\SettingsMain.cpp</FilePath>
             </File>
             <File>
               <FileName>SettingsNRST.h</FileName>
@@ -4618,14 +4618,14 @@
           <GroupName>Settings</GroupName>
           <Files>
             <File>
-              <FileName>SettingsCommon.h</FileName>
+              <FileName>SettingsMain.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Settings\SettingsCommon.h</FilePath>
+              <FilePath>.\src\Settings\SettingsMain.h</FilePath>
             </File>
             <File>
-              <FileName>SettingsCommon.cpp</FileName>
+              <FileName>SettingsMain.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Settings\SettingsCommon.cpp</FilePath>
+              <FilePath>.\src\Settings\SettingsMain.cpp</FilePath>
             </File>
             <File>
               <FileName>SettingsNRST.h</FileName>

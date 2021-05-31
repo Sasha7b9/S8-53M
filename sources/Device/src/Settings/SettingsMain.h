@@ -288,7 +288,7 @@ struct SettingsMenu
 
 
 // Струкура хранит все настройки прибора.
-struct SettingsCommon
+struct SettingsMain
 {
     uint             size;
     uint             crc32;
@@ -318,11 +318,11 @@ struct SettingsCommon
 
     static bool DebugModeEnabled() { return true; }
 
-    bool operator!=(const SettingsCommon &rhs);
+    bool operator!=(const SettingsMain &rhs);
 };
 
 
-extern SettingsCommon set;
+extern SettingsMain set;
 
 
 #define MAC_ADDR0       (set.LAN.mac0)
@@ -348,6 +348,6 @@ extern SettingsCommon set;
 #define GW_ADDR3        (set.LAN.gw3)
 
 
-#define LANG            (set.common.lang)       // SettingsCommon.lang
+#define LANG            (set.common.lang)       // SettingsMain.lang
 #define LANG_RU         (LANG == Language::Russian)
 #define LANG_EN         (LANG == Language::English)

@@ -6,7 +6,7 @@
 #include "common/Utils/Math_.h"
 #include "Menu/Pages/HelpContent.h"
 #include "Menu/Pages/HelpContentPages.h"
-#include "Settings/SettingsCommon.h"
+#include "Settings/SettingsMain.h"
 
 
 pchar PageHelpContent::stringForHint = 0;

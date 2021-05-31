@@ -4,7 +4,7 @@
 #include "common/Display/Font/Font_.h"
 #include "common/Display/Painter/Primitives_.h"
 #include "common/Display/Painter/Text_.h"
-#include "Settings/SettingsCommon.h"
+#include "Settings/SettingsMain.h"
 
 
 // Таблица символов алфавита и спецсимволов для ввода текста

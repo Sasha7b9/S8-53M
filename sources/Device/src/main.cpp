@@ -3,7 +3,7 @@
 #include "device.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "Panel/Panel.h"
-#include "Settings/SettingsCommon.h"
+#include "Settings/SettingsMain.h"
 
 
 int main()

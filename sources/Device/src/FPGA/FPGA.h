@@ -1,7 +1,7 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
 #include "FPGA/FPGA_Types.h"
-#include "Settings/SettingsCommon.h"
+#include "Settings/SettingsMain.h"
 
 
 struct DataSettings;
@@ -148,7 +148,7 @@ public:
         StateWorkFPGA       work;
         StateCalibration::E state_calibration;              // Текущее состояние калибровки. Используется в процессе
                                                             // калибровки
-        SettingsCommon      stored_settings;                // Здесь нужно уменьшить необходимый размер памяти -
+        SettingsMain      stored_settings;                // Здесь нужно уменьшить необходимый размер памяти -
                                                             // сохранять настройки только альтеры
     };
 
@@ -187,7 +187,7 @@ public:
         // процесса
         static void CalibrateAddRShift(Channel &ch, bool wait);
 
-        static void RestoreSettingsForCalibration(const SettingsCommon *savedSettings);
+        static void RestoreSettingsForCalibration(const SettingsMain *savedSettings);
 
         static void WriteAdditionRShifts(Channel &ch);
 

@@ -58,7 +58,7 @@
 #include "ethernetif.h"
 #include <cstring>
 #include "defines.h"
-#include "Settings/SettingsCommon.h"
+#include "Settings/SettingsMain.h"
 
 
 /* Private typedef -----------------------------------------------------------*/

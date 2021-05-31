@@ -5,7 +5,7 @@
 #include "common/Display/Painter/Text_.h"
 #include "Menu/Items/MenuItems.h"
 #include "Menu/Pages/Definition.h"
-#include "Settings/SettingsCommon.h"
+#include "Settings/SettingsMain.h"
 #include "Utils/Measures.h"
 
 bool PageMeasures::choiceMeasuresIsActive = false;

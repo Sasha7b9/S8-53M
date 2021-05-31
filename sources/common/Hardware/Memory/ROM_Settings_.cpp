@@ -2,12 +2,12 @@
 #include "defines.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Hardware/Memory/ROM_.h"
-#include "Settings/SettingsCommon.h"
+#include "Settings/SettingsMain.h"
 #include "Settings/SettingsNRST.h"
 
 
-template void ROM::Settings<SettingsCommon>::Save(SettingsCommon *set);
-template SettingsCommon *ROM::Settings<SettingsCommon>::Load();
+template void ROM::Settings<SettingsMain>::Save(SettingsMain *set);
+template SettingsMain *ROM::Settings<SettingsMain>::Load();
 
 template void ROM::Settings<SettingsNRST>::Save(SettingsNRST *sett);
 template SettingsNRST *ROM::Settings<SettingsNRST>::Load();

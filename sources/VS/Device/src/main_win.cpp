@@ -4,7 +4,7 @@
 #include "device.h"
 #include "GUI/Application.h"
 #include "Menu/Menu.h"
-#include "Settings/SettingsCommon.h"
+#include "Settings/SettingsMain.h"
 
 
 

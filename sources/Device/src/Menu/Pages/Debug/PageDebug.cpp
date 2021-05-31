@@ -36,7 +36,7 @@ static int8 size = 0;
 
 static void OnDraw_SizeSettings(int x, int y)
 {
-    Text("Размер %d", sizeof(SettingsCommon)).Draw(x + 5, y + 21, Color::BLACK);
+    Text("Размер %d", sizeof(SettingsMain)).Draw(x + 5, y + 21, Color::BLACK);
 }
 
 

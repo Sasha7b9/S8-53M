@@ -8,7 +8,7 @@
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Utils/Math_.h"
 #include "Display/Display.h"
-#include "Settings/SettingsCommon.h"
+#include "Settings/SettingsMain.h"
 #include <cmath>
 
 

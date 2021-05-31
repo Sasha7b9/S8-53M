@@ -14,7 +14,7 @@
 #include "Display/Screen/TopPart.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
-#include "Settings/SettingsCommon.h"
+#include "Settings/SettingsMain.h"
 #include <cstdio>
 #include <cstring>
 

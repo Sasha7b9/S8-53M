@@ -1090,14 +1090,14 @@
           <GroupName>Settings</GroupName>
           <Files>
             <File>
-              <FileName>SettingsCommon.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Settings\SettingsCommon.cpp</FilePath>
+              <FileName>SettingsMain.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Settings\SettingsMain.h</FilePath>
             </File>
             <File>
-              <FileName>SettingsCommon.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Settings\SettingsCommon.h</FilePath>
+              <FileName>SettingsMain.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Settings\SettingsMain.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -2277,14 +2277,14 @@
           <GroupName>Settings</GroupName>
           <Files>
             <File>
-              <FileName>SettingsCommon.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Settings\SettingsCommon.cpp</FilePath>
+              <FileName>SettingsMain.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Settings\SettingsMain.h</FilePath>
             </File>
             <File>
-              <FileName>SettingsCommon.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Settings\SettingsCommon.h</FilePath>
+              <FileName>SettingsMain.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Settings\SettingsMain.cpp</FilePath>
             </File>
           </Files>
         </Group>

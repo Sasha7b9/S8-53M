@@ -4,7 +4,7 @@
 #include "common/Display/Painter/Primitives_.h"
 #include "common/Display/Painter/Text_.h"
 #include "Menu/Menu.h"
-#include "Settings/SettingsCommon.h"
+#include "Settings/SettingsMain.h"
 
 
 int Grid::Bottom()
