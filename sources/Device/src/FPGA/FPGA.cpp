@@ -21,7 +21,6 @@ FPGA::State FPGA::state;
 float       FPGA::FreqMeter::freq = 0.0f;
 
 int         FPGA::Randomizer::number_measures_for_gates = 1000;
-bool        FPGA::Randomizer::first_after_write = false;
 
 
 // Функция вызывается, когда можно считывать очередной сигнал.
@@ -144,12 +143,6 @@ bool FPGA::IsRunning()
 
 bool FPGA::Randomizer::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
 {   
-    if(first_after_write)
-    {
-        first_after_write = false;
-        return false;
-    }
-  
     if(rand < 500 || rand > 3500)
     {
         return false;
@@ -159,11 +152,6 @@ bool FPGA::Randomizer::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
     {
         return false;
     }
-
-//    if (rand > 2800)
-//    {
-//        LOG_WRITE("Error value %d", rand);
-//    }
     
     static const int numValues = 1000;
 
@@ -203,7 +191,7 @@ bool FPGA::Randomizer::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
     {
         minGate = 0.9F * minGate + 0.1F * min;
         maxGate = 0.9F * maxGate + 0.1F * max;
-        LOG_WRITE("вор %.0F ... %.0F, min = %u, max = %u", minGate, maxGate, min, max);
+//        LOG_WRITE("вор %.0F ... %.0F, min = %u, max = %u", minGate, maxGate, min, max);
         numElements = 0;
         min = 0xffff;
         max = 0;
