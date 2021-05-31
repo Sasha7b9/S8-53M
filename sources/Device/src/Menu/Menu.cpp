@@ -30,7 +30,8 @@ void Menu::Update()
     if(FDrive::needOpenFileMananger)
     {
         FDrive::needOpenFileMananger = false;
-        OpenFileManager();       
+
+        OpenFileManager();
     }
 };
 
@@ -175,7 +176,7 @@ void Menu::Handlers::KeyForHint(Key::E key)
 }
 
 
-void Menu::Handlers::PressKey(Key::E key)
+void Menu::Handlers::PressKey(Key::E key) 
 {
     Sound::ButtonPress();
     if (showHelpHints)

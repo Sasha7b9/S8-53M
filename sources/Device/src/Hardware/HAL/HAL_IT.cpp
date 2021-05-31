@@ -7,6 +7,9 @@
 #include <stm32f4xx_hal.h>
 
 
+const Item *last_item = nullptr;
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -26,6 +29,8 @@ void HardFault_Handler()
 
     while (1) //-V776
     {
+        last_item = last_item;
+
         Display::Update();
         file = file; //-V570
         line = line; //-V570

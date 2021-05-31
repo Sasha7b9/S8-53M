@@ -52,6 +52,7 @@ public:
 
     void DrawOpened(int yTop);
 
+    // Возвращает адрес последнего раскрытого итема
     const Item *RetLastOpened() const;
 
     // Вызывает функцию короткого нажатия кнопки над итемом numItem страницы page;
@@ -84,9 +85,9 @@ public:
 
 protected:
 
-    int8 *currentSubPage;           // Указатель на номер текущей подстраницы
-    int8 *posCurrentItem;           // Указатель на позицию текущего итема. Если == -1, нет текущего
-    bool *currentItemIsOpened;      // true, если текущий итем раскрыт
+    int8 *currentSubPage;                           // Указатель на номер текущей подстраницы
+    int8 *posCurrentItem;                           // Указатель на позицию текущего итема. Если == -1, нет текущего
+    bool *currentItemIsOpened;                      // true, если текущий итем раскрыт
     void DrawTitle(int yTop);
     void DrawItems(int yTop) const;
     void DrawPagesUGO(int right, int bottom) const;

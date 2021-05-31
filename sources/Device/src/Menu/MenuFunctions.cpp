@@ -11,13 +11,16 @@ const Item* Menu::CurrentItem()
 {
     const Item *lastOpened = PageMain::self->RetLastOpened();
 
-    const Page *page = (const Page *)lastOpened;
-
-    int8 pos = page->CurrentItem()->GetPosition();
-
-    if(lastOpened->IsPage() && pos != -1)
+    if (lastOpened->IsPage())
     {
-        return lastOpened->ReinterpretToPage()->GetItem(pos);
+        const Page *page = (const Page *)lastOpened;
+
+        int8 pos = page->CurrentItem()->GetPosition();
+
+        if (lastOpened->IsPage() && pos != -1)
+        {
+            return lastOpened->ReinterpretToPage()->GetItem(pos);
+        }
     }
 
     return lastOpened;

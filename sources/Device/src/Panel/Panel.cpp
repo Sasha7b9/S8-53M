@@ -901,6 +901,7 @@ bool RegSetLED::NeedForFire()
     {
         return false;
     }
+
     NamePage::E name = Menu::GetNameOpenedPage();
 
     if (name == NamePage::SB_MeasTuneMeas && set.measures.number.Is1() && !PageMeasures::choiceMeasuresIsActive)
