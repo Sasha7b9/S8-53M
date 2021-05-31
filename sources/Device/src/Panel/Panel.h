@@ -26,6 +26,9 @@ public:
     // Ожидать нажатие клавиши.
     static Key::E WaitPressingButton();
 
+    // Прошло времени в миллисекундах после последнего переключения
+    static uint TimePassedAfterLastEvent();
+
 public:
 
     // Эта функция должна вызываться из приёмной фунции SPI5
@@ -37,6 +40,8 @@ public:
 private:
 
     static bool isRunning;
+
+    static uint timeLastEvent;
 
     // Передать даннные в мк панели управления.
     static void TransmitData(uint8 data);

@@ -24,6 +24,7 @@ static Key::E pressedKey = Key::None;
 volatile static Key::E pressedButton = Key::None;         // Это используется для отслеживания нажатой кнопки при
                                                           // отключенной панели
 bool Panel::isRunning = true;
+uint Panel::timeLastEvent = 0;
 
 static Queue<uint8> data_for_panel;
 
@@ -359,6 +360,8 @@ void Panel::CallbackOnReceiveSPI5(uint8 *data, uint size)
         return;
     }
 
+    timeLastEvent = TIME_MS;
+
     static ReceivedBuffer buffer;
 
     for (uint i = 0; i < size; i++)              // Сначала сохраняем данные в промежуточный буфер
@@ -375,6 +378,12 @@ void Panel::CallbackOnReceiveSPI5(uint8 *data, uint size)
 
         buffer.Clear();                         // И не забываем очистить прожежуточный
     }
+}
+
+
+uint Panel::TimePassedAfterLastEvent()
+{
+    return TIME_MS - timeLastEvent;
 }
 
 

@@ -7,6 +7,7 @@
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/Data/DataSettings.h"
 #include "FPGA/Data/Preparator.h"
+#include "Panel/Panel.h"
 #include "Utils/ProcessingSignal.h"
 #include <cstring>
 
@@ -40,6 +41,11 @@ const uint16 *const addresses_ADC[2] = { RD_ADC_A, RD_ADC_B };
 
 void ReaderFPGA::ReadData()
 {
+    if (TBase::IsRandomize() && Panel::TimePassedAfterLastEvent() < 100)
+    {
+        return;
+    }
+
     mutex_read.Lock();
 
     DataReadingKeeper data;
