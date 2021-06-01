@@ -132,11 +132,9 @@ static const Settings defaultSettings =
         0,                          // numStrings
         0,                          // נאחלונ רנטפעא - 5
         0,                          // consoleInPause
-        BalanceADCtype::Settings,   // balanceADC
         {0, 5},                     // shiftADC
         StretchADCtype::Settings,   // stretch
         {128, 128},                 // stretchADC
-//      RShiftADC_Settings,
         1000,                       // numMeasuresForGates
         0,                          // shiftT0
         false,                      // showStats

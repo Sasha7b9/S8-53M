@@ -22,7 +22,6 @@ static const SettingsNRST defaultNRST =
         false                       // show_info
     },
     {
-        BalanceADCtype::Settings,   // type_balance
         StretchADCtype::Settings,   // type_stretch
     },
     {

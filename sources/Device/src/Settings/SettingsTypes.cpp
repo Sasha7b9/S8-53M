@@ -663,12 +663,6 @@ bool ModeRegSet::IsRShift()
 }
 
 
-BalanceADCtype::E BalanceADCtype::Get()
-{
-    return setNRST.adc.type_balance;
-}
-
-
 bool StretchADCtype::IsDisabled()
 {
     return (setNRST.adc.type_stretch == StretchADCtype::Disable);
