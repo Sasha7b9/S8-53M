@@ -1,5 +1,6 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
+#include "Menu/Items/MenuItems.h"
 
 
 #define DEF_BUTTON(name, keeper, titleRU, titleEN, hintRU, hintEN, funcActive, funcPress)                              \

@@ -1993,11 +1993,6 @@
           <GroupName>Menu/Pages/Debug</GroupName>
           <Files>
             <File>
-              <FileName>PageDebug.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\Debug\PageDebug.cpp</FilePath>
-            </File>
-            <File>
               <FileName>PageADC.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Debug\PageADC.cpp</FilePath>
@@ -2018,6 +2013,21 @@
               <FilePath>.\src\Menu\Pages\Debug\PageConsole.cpp</FilePath>
             </File>
             <File>
+              <FileName>PageData.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Debug\PageData.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PageDebug.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Debug\PageDebug.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PageInfo.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Debug\PageInfo.cpp</FilePath>
+            </File>
+            <File>
               <FileName>PageRandomizer.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Debug\PageRandomizer.cpp</FilePath>
@@ -2036,11 +2046,6 @@
               <FileName>PageStretchADC.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Debug\PageStretchADC.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>PageInfo.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\Debug\PageInfo.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -4428,11 +4433,6 @@
           <GroupName>Menu/Pages/Debug</GroupName>
           <Files>
             <File>
-              <FileName>PageDebug.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\Debug\PageDebug.cpp</FilePath>
-            </File>
-            <File>
               <FileName>PageADC.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Debug\PageADC.cpp</FilePath>
@@ -4453,6 +4453,21 @@
               <FilePath>.\src\Menu\Pages\Debug\PageConsole.cpp</FilePath>
             </File>
             <File>
+              <FileName>PageData.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Debug\PageData.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PageDebug.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Debug\PageDebug.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PageInfo.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Debug\PageInfo.cpp</FilePath>
+            </File>
+            <File>
               <FileName>PageRandomizer.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Debug\PageRandomizer.cpp</FilePath>
@@ -4471,11 +4486,6 @@
               <FileName>PageStretchADC.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Debug\PageStretchADC.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>PageInfo.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Menu\Pages\Debug\PageInfo.cpp</FilePath>
             </File>
           </Files>
         </Group>

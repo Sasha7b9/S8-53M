@@ -653,7 +653,7 @@ void FPGA::Calibrator::DeleteCalibrationStruct()
 }
 
 
-void FPGA::Calibrator::CalibrateAddRShift(Channel &ch, bool wait)
+void FPGA::Calibrator::CalibrateAddRShift(Channel & /*ch*/, bool /*wait*/)
 {
 //    int16 add[3];
 //

@@ -46,18 +46,21 @@ struct NamePage { enum E
     DisplayGrid,           // дхяокеи - яерйю
     DisplayRefresh,        // дхяокеи - намнбкемхе
     MainPage,              // цКЮБМЮЪ ЯРПЮМХЖЮ ЛЕМЧ. хГ МЕ╦ ПЮЯРСР БЯЕ НЯРЮКЭМШЕ
+
     Debug,                 // нркюдйю
-    DebugConsole,          // нркюдйю - йнмянкэ
     DebugADC,              // нркюдйю - южо
     DebugADCbalance,       // нркюдйю - южо - аюкюмя
     DebugADCstretch,       // нркюдйю - южо - пюяръфйю
     DebugADCrShift,        // нркюдйю - южо - дно. ялеыемхе
     DebugADCaltShift,      // нркюдйю - южо - дно. ялеы. оюл.
-    DebugShowRegisters,    // нркюдйю - пецхярпш
-    DebugRandomizer,       // нркюдйю - пюмд-рнп
-    DebugInfo,             // нркюдйю - хмтнплюжхъ
-    DebugSound,            // нркюдйю - гбсй
     DebugAltera,           // нркюдйю - юкэрепю
+    DebugConsole,          // нркюдйю - йнмянкэ
+    DebugData,             // нркюдйю - дюрю
+    DebugInfo,             // нркюдйю - хмтн
+    DebugRandomizer,       // нркюдйю - пюмд-рнп
+    DebugShowRegisters,    // нркюдйю - пецхярпш
+    DebugSound,            // нркюдйю - гбсй
+
     ChannelA,              // йюмюк 1
     ChannelB,              // йюмюк 2
     Cursors,               // йспянпш

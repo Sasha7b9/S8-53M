@@ -16,60 +16,7 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 
-static bool IsActive_SaveFirmware()
-{
-    return FDrive::isConnected;
-}
-
-
-static void OnPress_SaveFirmware()
-{
-    StructForWrite structForWrite;
-
-    FDrive::OpenNewFileForWrite("S8-53.bin", &structForWrite);
-
-    uint8 *address = (uint8 *)0x08020000;
-    uint8 *endAddress = address + 128 * 1024 * 3;
-
-    int sizeBlock = 512;
-
-    while (address < endAddress)
-    {
-        FDrive::WriteToFile(address, sizeBlock, &structForWrite);
-        address += sizeBlock;
-    }
-
-    FDrive::CloseFile(&structForWrite);
-
-    Warnings::ShowWarningGood(Warning::FirmwareSaved);
-}
-
-
-DEF_BUTTON(bSaveFirmware, PageDebug::self,
-    "Сохр. прошивку", "Save firmware",
-    "Сохранение прошивки - секторов 5, 6, 7 общим объёмом 3 х 128 кБ, где хранится программа",
-    "Saving firmware - sectors 5, 6, 7 with a total size of 3 x 128 kB, where the program is stored",
-    IsActive_SaveFirmware, OnPress_SaveFirmware
-)
-
-//----------------------------------------------------------------------------------------------------------------------
-
-static void OnPress_EraseData()
-{
-    ROM::Data::EraseAll();
-}
-
-
-DEF_BUTTON(bEraseData, PageDebug::self,
-    "Стереть данные", "Erase data",
-    "Стирает сектора с данными",
-    "Erases data sectors",
-    nullptr, OnPress_EraseData
-)
-
-//----------------------------------------------------------------------------------------------------------------------
-
-DEF_PAGE_6(pageDebug, PageMain::self, NamePage::Debug,
+DEF_PAGE_5(pageDebug, PageMain::self, NamePage::Debug,
     "ОТЛАДКА", "DEBUG",
     "",
     "",
@@ -77,8 +24,7 @@ DEF_PAGE_6(pageDebug, PageMain::self, NamePage::Debug,
     *PageDebug::PageRandomizer::self,
     *PageDebug::PageConsole::self,
     *PageDebug::PageInfo::self,
-    bSaveFirmware,
-    bEraseData,
+    *PageDebug::PageData::self,
     nullptr, nullptr, nullptr, nullptr
 );
 

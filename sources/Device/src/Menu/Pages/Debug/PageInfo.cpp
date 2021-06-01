@@ -1,6 +1,5 @@
 // 2021/06/01 9:44:05 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
-#include "Menu/Items/MenuItems.h"
 #include "Menu/Items/MenuItemsDefs.h"
 #include "Menu/Pages/Definition.h"
 #include "Settings/SettingsMain.h"
@@ -38,8 +37,8 @@ DEF_CHOICE_2(cSizeSettings, PageDebug::self,
     "Размер настроек", "Size settings",
     "Вывод размера структуры Settings",
     "Show size of struct Settings",
-    "Размер", "Size",
-    "Размер", "Size",
+    "", "",
+    "", "",
     size, nullptr, SettingsNRST::CommonOnChanged, OnDraw_SizeSettings
 )
 
@@ -47,11 +46,12 @@ DEF_CHOICE_2(cSizeSettings, PageDebug::self,
 //----------------------------------------------------------------------------------------------------------------------
 
 
-DEF_PAGE_1(pageInfo, PageDebug::self, NamePage::DebugInfo,
+DEF_PAGE_2(pageInfo, PageDebug::self, NamePage::DebugInfo,
     "ИНФО", "INFO",
     "",
     "",
     cStats,
+    cSizeSettings,
     nullptr, nullptr, nullptr, nullptr
 )
 
