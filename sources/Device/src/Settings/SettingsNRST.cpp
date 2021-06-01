@@ -137,3 +137,31 @@ void SettingsNRST::Test()
         Display::Update();
     }
 }
+
+
+void SettingsNRST::SettingsADC::StoreAndResetRShifts(const Channel &ch, int16 shifts[3])
+{
+    for (int i = 0; i < 3; i++)                         // Сохраняем и сбрасываем ручные установки
+    {
+        shifts[i] = rshift_hand[ch][i];
+
+        rshift_hand[ch][i] = 0;
+    }
+
+    for (int range = 0; range < Range::Count; range++)  // Сбрасываем автоматические устаноки
+    {
+        for (int mode = 0; mode < 2; mode++)
+        {
+            rshift_auto[ch][range][mode] = 0;
+        }
+    }
+}
+
+
+void SettingsNRST::SettingsADC::RestoreRShifts(const Channel &ch, int16 shifts[3])
+{
+    for (int i = 0; i < 3; i++)                         // Восстанавливаем ручные установки
+    {
+        rshift_hand[ch][i];
+    }
+}

@@ -608,7 +608,7 @@ Float CalculateKoeffCalibration(const Channel &ch)
 }
 
 
-void FPGA::Calibrator::PerformBalance(Channel &ch)
+void FPGA::Calibrator::PerformBalance(const Channel &ch)
 {
     CreateCalibrationStruct();
 
@@ -653,11 +653,21 @@ void FPGA::Calibrator::DeleteCalibrationStruct()
 }
 
 
-void FPGA::Calibrator::CalibrateAddRShift(Channel & /*ch*/, bool /*wait*/)
+void FPGA::Calibrator::CalibrateAddRShift(const Channel &ch, bool /*wait*/)
 {
-//    int16 add[3];
-//
-//    for(int i = 0; )
+    int16 shifts[3];
+
+    setNRST.adc.StoreAndResetRShifts(ch, shifts);
+
+
+
+    setNRST.adc.RestoreRShifts(ch, shifts);
+}
+
+
+void FPGA::Calibrator::LoadSettingsCalcAddRShift(const Channel & /*ch*/)
+{
+
 }
 
 
@@ -667,7 +677,7 @@ void FPGA::Calibrator::RestoreSettingsForCalibration(const SettingsMain * /*save
 }
 
 
-void FPGA::Calibrator::WriteAdditionRShifts(Channel & /*ch*/)
+void FPGA::Calibrator::WriteAdditionRShifts(const Channel & /*ch*/)
 {
 
 }
