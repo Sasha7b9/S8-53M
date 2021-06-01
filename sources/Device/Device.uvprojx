@@ -2198,14 +2198,14 @@
           <GroupName>Settings</GroupName>
           <Files>
             <File>
-              <FileName>SettingsMain.h</FileName>
+              <FileName>Settings.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Settings\SettingsMain.h</FilePath>
+              <FilePath>.\src\Settings\Settings.h</FilePath>
             </File>
             <File>
-              <FileName>SettingsMain.cpp</FileName>
+              <FileName>Settings.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Settings\SettingsMain.cpp</FilePath>
+              <FilePath>.\src\Settings\Settings.cpp</FilePath>
             </File>
             <File>
               <FileName>SettingsNRST.h</FileName>
@@ -4638,14 +4638,14 @@
           <GroupName>Settings</GroupName>
           <Files>
             <File>
-              <FileName>SettingsMain.h</FileName>
+              <FileName>Settings.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Settings\SettingsMain.h</FilePath>
+              <FilePath>.\src\Settings\Settings.h</FilePath>
             </File>
             <File>
-              <FileName>SettingsMain.cpp</FileName>
+              <FileName>Settings.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Settings\SettingsMain.cpp</FilePath>
+              <FilePath>.\src\Settings\Settings.cpp</FilePath>
             </File>
             <File>
               <FileName>SettingsNRST.h</FileName>

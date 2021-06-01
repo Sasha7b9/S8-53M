@@ -48,7 +48,7 @@
 #include "main.h"
 #include "lwip/dhcp.h"
 #include "app_ethernet.h"
-#include "Settings/SettingsMain.h"
+#include "Settings/Settings.h"
 
 #ifdef USE_LCD
 #include "lcd_log.h"

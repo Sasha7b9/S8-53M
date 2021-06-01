@@ -5,7 +5,7 @@
 #include "common/Utils/Containers/Values_.h"
 #include "FPGA/FPGA_Math.h"
 #include "Menu/Menu.h"
-#include "Settings/SettingsMain.h"
+#include "Settings/Settings.h"
 #include <cmath>
 #include <cstring>
 

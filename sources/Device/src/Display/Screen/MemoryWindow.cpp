@@ -9,7 +9,7 @@
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/Data/DataSettings.h"
 #include "FPGA/Data/Storage.h"
-#include "Settings/SettingsMain.h"
+#include "Settings/Settings.h"
 
 
 void MemoryWindow::Draw(DataReading &data)

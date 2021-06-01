@@ -2,7 +2,7 @@
 #include "defines.h"
 #include "Menu/Items/MenuItemsDefs.h"
 #include "Menu/Pages/Definition.h"
-#include "Settings/SettingsMain.h"
+#include "Settings/Settings.h"
 
 
 //----------------------------------------------------------------------------------------------------------------------

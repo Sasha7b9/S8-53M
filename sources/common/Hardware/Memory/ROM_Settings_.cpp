@@ -2,7 +2,7 @@
 #include "defines.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Hardware/Memory/ROM_.h"
-#include "Settings/SettingsMain.h"
+#include "Settings/Settings.h"
 #include "Settings/SettingsNRST.h"
 
 

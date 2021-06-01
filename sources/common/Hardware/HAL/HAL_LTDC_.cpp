@@ -2,7 +2,7 @@
 #include "defines.h"
 #include "common/Display/Colors_.h"
 #include "common/Hardware/HAL/HAL_.h"
-#include "Settings/SettingsMain.h"
+#include "Settings/Settings.h"
 #include <stm32f4xx_hal.h>
 
 

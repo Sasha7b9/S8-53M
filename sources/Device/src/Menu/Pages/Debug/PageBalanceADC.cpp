@@ -3,7 +3,7 @@
 #include "Menu/Pages/Definition.h"
 #include "Menu/Items/MenuItems.h"
 #include "Menu/Items/MenuItemsDefs.h"
-#include "Settings/SettingsMain.h"
+#include "Settings/Settings.h"
 
 
 //----------------------------------------------------------------------------------------------------------------------

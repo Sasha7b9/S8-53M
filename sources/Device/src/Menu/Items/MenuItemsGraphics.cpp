@@ -6,7 +6,7 @@
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Utils/Math_.h"
 #include "Menu/Menu.h"
-#include "Settings/SettingsMain.h"
+#include "Settings/Settings.h"
 #include <cstdio>
 #include <cstring>
 

@@ -9,7 +9,7 @@
 #include "FDrive/FDrive.h"
 #include "Menu/FileManager.h"
 #include "Menu/Menu.h"
-#include "Settings/SettingsMain.h"
+#include "Settings/Settings.h"
 #include <cstring>
 
 

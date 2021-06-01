@@ -7,7 +7,7 @@
 #include "Menu/FileManager.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
-#include "Settings/SettingsMain.h"
+#include "Settings/Settings.h"
 
 
 int16 PageMemory::PageLatest::currentSignal = 0;

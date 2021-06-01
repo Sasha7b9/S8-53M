@@ -7,7 +7,7 @@
 #include "common/Hardware/HAL/HAL_.h"
 #include "Display/Warnings.h"
 #include "Display/Screen/Grid.h"
-#include "Settings/SettingsMain.h"
+#include "Settings/Settings.h"
 
 
 #define NUM_WARNINGS            10

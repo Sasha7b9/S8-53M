@@ -1,7 +1,7 @@
 #include "defines.h"
 #pragma warning(push, 0)
 #include "GUI/Application.h"
-#include "Settings/SettingsMain.h"
+#include "Settings/Settings.h"
 
 #define uint    unsigned int
 #define int8    signed char

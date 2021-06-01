@@ -2,7 +2,7 @@
 #include "Application.h"
 #include "ConsoleSCPI.h"
 #include "GUI/Dialogs/TuneGeneratorDialog.h"
-#include "Settings/SettingsMain.h"
+#include "Settings/Settings.h"
 #include <ctime>
 
 #pragma warning(push, 0)

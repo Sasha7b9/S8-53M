@@ -4,7 +4,7 @@
 #include "common/Display/Painter/Primitives_.h"
 #include "Display/Console.h"
 #include "Display/Screen/Grid.h"
-#include "Settings/SettingsMain.h"
+#include "Settings/Settings.h"
 #include <cstdio>
 #include <cstring>
 

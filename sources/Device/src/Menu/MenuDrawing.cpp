@@ -5,7 +5,7 @@
 #include "common/Utils/Math_.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/HelpContent.h"
-#include "Settings/SettingsMain.h"
+#include "Settings/Settings.h"
 #include <cstdio>
 
 

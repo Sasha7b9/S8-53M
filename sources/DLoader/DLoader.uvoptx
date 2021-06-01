@@ -1938,8 +1938,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Settings\SettingsMain.h</PathWithFileName>
-      <FilenameWithoutPath>SettingsMain.h</FilenameWithoutPath>
+      <PathWithFileName>.\src\Settings\Settings.h</PathWithFileName>
+      <FilenameWithoutPath>Settings.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1950,8 +1950,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Settings\SettingsMain.cpp</PathWithFileName>
-      <FilenameWithoutPath>SettingsMain.cpp</FilenameWithoutPath>
+      <PathWithFileName>.\src\Settings\Settings.cpp</PathWithFileName>
+      <FilenameWithoutPath>Settings.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

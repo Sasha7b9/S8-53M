@@ -3,7 +3,7 @@
 #include "common/Display/Colors_.h"
 #include "common/Display/Painter/Text_.h"
 #include "common/Utils/Math_.h"
-#include "Settings/SettingsMain.h"
+#include "Settings/Settings.h"
 
 const Color Color::BLACK(0);
 Color Color::WHITE(1);

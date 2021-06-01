@@ -3,7 +3,7 @@
 #include "Menu/Items/MenuItems.h"
 #include "Menu/Items/MenuItemsDefs.h"
 #include "Menu/Pages/Definition.h"
-#include "Settings/SettingsMain.h"
+#include "Settings/Settings.h"
 
 
 DEF_CHOICE_REG_9(mcNumber, PageDisplay::PageAccumulation::self,
