@@ -97,6 +97,14 @@ int Char::Draw(int x, int y, const Color &color)
 }
 
 
+Text::Text(const char symbol)
+{
+    char temp_buffer[2] = { symbol, '\0' };
+
+    Set(temp_buffer);
+}
+
+
 Text::Text(pchar format, ...)
 {
     char temp_buffer[1024];

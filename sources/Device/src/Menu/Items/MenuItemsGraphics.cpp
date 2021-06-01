@@ -92,7 +92,9 @@ void Governor::DrawLowPart(int x, int y) const
     DrawVolumeButton(x + 1, y + 17, Item::WIDTH_VALUE + 2, Item::HEIGHT_VALUE + 3, 2, Color::MENU_FIELD,
         Color::MENU_ITEM_BRIGHT, Color::MENU_ITEM_DARK, true);
 
-    x = Text("\x80").Draw(x + 4, y + 21, colorTextDown);
+    x = Text(Symbol::S8::TRIANGLE_LEFT).Draw(x + 4, y + 21, colorTextDown);
+
+    x++;
 
     if(!IsOpened())
     {
@@ -136,7 +138,7 @@ void Governor::DrawLowPart(int x, int y) const
         x = Int(*own->cell).ToText().Draw(x + 1, y + 21, Color::FILL);
     }
 
-    Text("\x81").Draw(x + 1, y + 21, colorTextDown);
+    Text(Symbol::S8::TRIANGLE_RIGHT).Draw(x, y + 21, colorTextDown);
 }
 
 void IPaddress::DrawLowPart(int x, int y) const

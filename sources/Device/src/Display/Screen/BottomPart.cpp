@@ -132,7 +132,7 @@ void BottomPart::Draw()
     // Флешка
     if (FDrive::isConnected)
     {
-        Char(Symbol::S8::FLASH_DRIVE).Draw4SymbolsInRect(x + 57, Grid::Bottom() + 2);
+        Char(Symbol::UGO2::FLASH_DRIVE).Draw4SymbolsInRect(x + 57, Grid::Bottom() + 2);
     }
 
     // Ethernet

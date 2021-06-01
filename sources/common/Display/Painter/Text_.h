@@ -29,6 +29,8 @@ public:
 
     explicit Text() : String() {}
 
+    explicit Text(const char symbol);
+
     explicit Text(pchar format, ...);
 
     virtual ~Text();
