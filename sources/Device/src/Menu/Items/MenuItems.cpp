@@ -348,11 +348,11 @@ void Item::ChangeOpenness() const
 }
 
 
-void Item::SetCurrent(bool active) const
+void Item::SetCurrent(bool current) const
 {
     Page* page = Keeper();
 
-    if (!active)
+    if (!current)
     {
         page->SetCurrentItem(nullptr);
     }
