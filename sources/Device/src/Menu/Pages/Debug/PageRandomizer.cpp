@@ -7,7 +7,7 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_GOVERNOR( gGateMin, PageDebug::PageRandomizer::self,
+DEF_GOVERNOR( gGateBottom, PageDebug::PageRandomizer::self,
     "Ворота низ", "Gates bottom",
     "Устанавливает учитываемое расстояние от минимума ворот для рандомизатора",
     "Sets the considered distance from the minimum gate for the randomizer",
@@ -17,7 +17,7 @@ DEF_GOVERNOR( gGateMin, PageDebug::PageRandomizer::self,
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_GOVERNOR(gGateMax, PageDebug::PageRandomizer::self,
+DEF_GOVERNOR(gGateTop, PageDebug::PageRandomizer::self,
     "Ворота верх", "Gates top",
     "Устанавливает учитываемое расстояние от максимума ворот для рандомизатора",
     "Sets the considered distance from the maximum gate for the randomizer",
@@ -94,8 +94,8 @@ DEF_PAGE_7(pageRandomizer, PageDebug::self, NamePage::DebugRandomizer,
     "РАНД-ТОР", "RANDOMIZER",
     "",
     "",
-    gGateMin,
-    gGateMax,
+    gGateBottom,
+    gGateTop,
     gNumAverages,
     gSamplesForGates,
     gNumSmooth,
