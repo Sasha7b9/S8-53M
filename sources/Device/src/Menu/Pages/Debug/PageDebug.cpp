@@ -16,25 +16,6 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 
-static int8 size = 0;
-
-static void OnDraw_SizeSettings(int x, int y)
-{
-    Text("Размер %d", sizeof(SettingsMain)).Draw(x + 5, y + 21, Color::BLACK);
-}
-
-
-DEF_CHOICE_2(cSizeSettings, PageDebug::self,
-    "Размер настроек", "Size settings",
-    "Вывод размера структуры Settings",
-    "Show size of struct Settings",
-    "Размер", "Size",
-    "Размер", "Size",
-    size, nullptr, SettingsNRST::CommonOnChanged, OnDraw_SizeSettings
-)
-
-//----------------------------------------------------------------------------------------------------------------------
-
 static bool IsActive_SaveFirmware()
 {
     return FDrive::isConnected;
@@ -88,7 +69,7 @@ DEF_BUTTON(bEraseData, PageDebug::self,
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_PAGE_7(pageDebug, PageMain::self, NamePage::Debug,
+DEF_PAGE_6(pageDebug, PageMain::self, NamePage::Debug,
     "ОТЛАДКА", "DEBUG",
     "",
     "",
@@ -96,7 +77,6 @@ DEF_PAGE_7(pageDebug, PageMain::self, NamePage::Debug,
     *PageDebug::PageRandomizer::self,
     *PageDebug::PageConsole::self,
     *PageDebug::PageInfo::self,
-    cSizeSettings,
     bSaveFirmware,
     bEraseData,
     nullptr, nullptr, nullptr, nullptr

@@ -3,7 +3,7 @@
 #include "Menu/Items/MenuItems.h"
 #include "Menu/Items/MenuItemsDefs.h"
 #include "Menu/Pages/Definition.h"
-#include "Settings/SettingsNRST.h"
+#include "Settings/SettingsMain.h"
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -21,6 +21,26 @@ DEF_CHOICE_2(cStats, PageDebug::self,
     "Не показывать", "Hide",
     "Показывать", "Show",
     setNRST.show_stats, nullptr, SettingsNRST::CommonOnChanged, nullptr
+)
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static int8 size = 0;
+
+static void OnDraw_SizeSettings(int x, int y)
+{
+    Text("Размер %d", sizeof(SettingsMain)).Draw(x + 5, y + 21, Color::BLACK);
+}
+
+
+DEF_CHOICE_2(cSizeSettings, PageDebug::self,
+    "Размер настроек", "Size settings",
+    "Вывод размера структуры Settings",
+    "Show size of struct Settings",
+    "Размер", "Size",
+    "Размер", "Size",
+    size, nullptr, SettingsNRST::CommonOnChanged, OnDraw_SizeSettings
 )
 
 

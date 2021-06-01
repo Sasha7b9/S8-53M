@@ -126,6 +126,11 @@ struct PageDebug
     {
         static const Page *self;
     };
+
+    struct PageData
+    {
+        static const Page *self;
+    };
 };
 
 
