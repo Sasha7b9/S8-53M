@@ -51,7 +51,7 @@ void GraphicGovernor::Draw(const Item *item, int x, int y)
 
     Text(item->Title()).Draw(x + 6 + delta, y + 6 + delta, color);
     
-    if(Menu::IsCurrentItem(item))
+    if(item->IsCurrent())
     {
         char symbol = 0;
 

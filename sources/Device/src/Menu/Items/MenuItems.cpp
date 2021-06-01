@@ -276,6 +276,12 @@ bool Item::IsActive() const
 }
 
 
+bool Item::IsCurrent() const
+{
+    return (Menu::CurrentItem() == this);
+}
+
+
 const Item *Page::GetItem(int numElement) const
 {
     return OwnData()->items[numElement + (IsPageSB() ? 1 : 0)];
@@ -415,7 +421,7 @@ void Choice::ShortPress()
         }
         else if (!IsOpened())
         {
-            SetCurrent(!Menu::IsCurrentItem(this));
+            SetCurrent(!IsCurrent());
             StartChange(1);
         }
         else
@@ -431,7 +437,7 @@ void Choice::ShortPress()
         }
         else if (!IsOpened())
         {
-            SetCurrent(!Menu::IsCurrentItem(this));
+            SetCurrent(!IsCurrent());
         }
     }
 }
@@ -510,7 +516,7 @@ void SmallButton::ShortPress()
 
 void Item::LongPress()
 {
-    if (!Menu::IsCurrentItem(this))
+    if (!IsCurrent())
     {
         SetCurrent(true);
     }
@@ -527,7 +533,7 @@ void Button::LongPress()
 
 void TimeItem::LongPress()
 {
-    if (!Menu::IsCurrentItem(this))
+    if (!IsCurrent())
     {
         SetCurrent(true);
     }

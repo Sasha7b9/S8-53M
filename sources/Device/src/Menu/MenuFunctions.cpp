@@ -27,12 +27,6 @@ const Item* Menu::CurrentItem()
 }
 
 
-bool Menu::IsCurrentItem(const Item *item)
-{
-    return CurrentItem() == item;
-}
-
-
 void Menu::CloseOpenedItem()
 {
     const Item *item = Item::Opened();

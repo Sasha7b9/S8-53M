@@ -307,7 +307,7 @@ void Governor::ShortPress()
     }
     else
     {
-        this->SetCurrent(!Menu::IsCurrentItem(this));
+        this->SetCurrent(!IsCurrent());
     }
 }
 
