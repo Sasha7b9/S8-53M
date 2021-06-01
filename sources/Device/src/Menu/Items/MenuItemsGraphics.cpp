@@ -51,12 +51,8 @@ void GraphicGovernor::Draw(const Item *item, int x, int y)
 
     Text(item->Title()).Draw(x + 6 + delta, y + 6 + delta, color);
     
-    bool isCurrent = item->IsCurrent();
-    
-    if(isCurrent)
+    if(item->IsCurrent())
     {
-        isCurrent = item->IsCurrent();
-        
         char symbol = 0;
 
         if (item->IsGovernor())
