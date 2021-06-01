@@ -18,7 +18,7 @@ struct SettingsNRST
 
     struct SettingsADC
     {
-        int16 balance[Channel::Count];   // Баланс АЦП для каждого из канала
+        int16 balance[Channel::Count];   // Баланс АЦП для каждого из каналов
 
         int16 rshift_auto[Channel::Count][Range::Count][2]; // Добавочное смещение, которое пишется сюда при калибровке
                                                             // и балансировке. При z == 0 - ModeCouple::DC, при z == 1

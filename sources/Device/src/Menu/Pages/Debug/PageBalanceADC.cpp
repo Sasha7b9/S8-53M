@@ -10,8 +10,6 @@
 
 static void OnChanged_A()
 {  
-//  FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC1, setNRST.adc.balance[ChA], false);
-
     SettingsNRST::CommonOnChanged();
 }
 
@@ -27,8 +25,6 @@ DEF_GOVERNOR(gShiftA, PageDebug::PageADC::PageBalance::self,
 
 static void OnChanged_ShiftB()
 {
-//  FPGA::WriteToHardware(WR_ADD_RSHIFT_DAC2, setNRST.adc.balance[ChB], false);
-
     SettingsNRST::CommonOnChanged();
 }
 

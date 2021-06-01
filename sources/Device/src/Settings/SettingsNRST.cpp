@@ -14,30 +14,34 @@ static const SettingsNRST defaultNRST =
     0,                              // crc32
     0,                              // number
     false,                          // show_stats
+    // SettingsRandomizer
     {
         6,                          // num_ave
         1,                          // num_smooth
         1000,                       // num_measures_for_gates
         0,                          // shift_T0
-        false                       // show_info
+        false,                      // show_info
+        0,                          // gate_min
+        0                           // game_max
     },
+    // SettingsADC
     {
+        {},                         // balance
+        {},                         // rshift_auto
+        {},                         // rshift_hand
         StretchADCtype::Settings,   // type_stretch
     },
+    // SettingsChannel
     {
         {
             0,                      // balance_hand
-            0,                      // balance_auto
-            128,                    // stretch_hand
             1.0f,                   // stretch_auto
-            { { 0 }, { 0 } }        // rshift_add
+            {}                      // rshift_add
         },
         {
             0,                      // balance_hand
-            0,                      // balance_auto
-            128,                    // stretch_hand
             1.0f,                   // stretch_auto
-            { { 0 }, { 0 } }        // rshift_add
+            {}                      // rshift_add
         }
     },
     {
