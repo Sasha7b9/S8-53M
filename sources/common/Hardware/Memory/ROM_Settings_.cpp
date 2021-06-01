@@ -6,8 +6,8 @@
 #include "Settings/SettingsNRST.h"
 
 
-template void ROM::Settings<SettingsMain>::Save(SettingsMain *set);
-template SettingsMain *ROM::Settings<SettingsMain>::Load();
+template void ROM::Settings< ::Settings>::Save(::Settings *set);
+template Settings *ROM::Settings<Settings>::Load();
 
 template void ROM::Settings<SettingsNRST>::Save(SettingsNRST *sett);
 template SettingsNRST *ROM::Settings<SettingsNRST>::Load();

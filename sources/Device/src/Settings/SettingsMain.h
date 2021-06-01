@@ -288,7 +288,7 @@ struct SettingsMenu
 
 
 // Струкура хранит все настройки прибора.
-struct SettingsMain
+struct Settings
 {
     uint             size;
     uint             crc32;
@@ -318,11 +318,11 @@ struct SettingsMain
 
     static bool DebugModeEnabled() { return true; }
 
-    bool operator!=(const SettingsMain &rhs);
+    bool operator!=(const Settings &rhs);
 };
 
 
-extern SettingsMain set;
+extern Settings set;
 
 
 #define MAC_ADDR0       (set.LAN.mac0)

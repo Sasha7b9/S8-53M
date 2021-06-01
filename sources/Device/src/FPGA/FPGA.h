@@ -148,7 +148,7 @@ public:
         StateWorkFPGA       work;
         StateCalibration::E state_calibration;              // Текущее состояние калибровки. Используется в процессе
                                                             // калибровки
-        SettingsMain      stored_settings;                // Здесь нужно уменьшить необходимый размер памяти -
+        Settings            stored_settings;                // Здесь нужно уменьшить необходимый размер памяти -
                                                             // сохранять настройки только альтеры
     };
 
@@ -190,7 +190,7 @@ public:
         // Загрузить настройки для расчёта дополнительного смещения канала ch
         static void LoadSettingsForCalculationAddRShift(const Channel &ch);
 
-        static void RestoreSettingsForCalibration(const SettingsMain *savedSettings);
+        static void RestoreSettingsForCalibration(const Settings *savedSettings);
 
         static void WriteAdditionRShifts(const Channel &ch);
 

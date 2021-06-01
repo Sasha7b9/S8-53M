@@ -9,7 +9,7 @@
 #include <cstring>
 
 
-static const SettingsMain defaultSettings =
+static const Settings defaultSettings =
 {
     0,                              // size
     0,                              // crc32
@@ -197,12 +197,12 @@ static const SettingsMain defaultSettings =
     }
 };
 
-SettingsMain set;
+Settings set;
 
 
-void SettingsMain::Load()
+void Settings::Load()
 {
-    SettingsMain *saved = ROM::Settings<SettingsMain>::Load();
+    Settings *saved = ROM::Settings< ::Settings>::Load();
 
     if (!saved)
     {
@@ -221,25 +221,25 @@ void SettingsMain::Load()
 }
 
 
-void SettingsMain::Save()
+void Settings::Save()
 {
-    SettingsMain *saved = ROM::Settings<SettingsMain>::Load();
+    Settings *saved = ROM::Settings<Settings>::Load();
 
     if (saved)
     {
         if (*saved != *this)
         {
-            ROM::Settings<SettingsMain>::Save(this);
+            ROM::Settings<Settings>::Save(this);
         }
     }
     else
     {
-        ROM::Settings<SettingsMain>::Save(this);
+        ROM::Settings<Settings>::Save(this);
     }
 }
 
 
-void SettingsMain::Reset()
+void Settings::Reset()
 {
     *this = defaultSettings;
 }
@@ -297,7 +297,7 @@ int16 SettingsMeasures::PosCursorT(int num)
 }
 
 
-uint SettingsMain::CalcWriteCRC32()
+uint Settings::CalcWriteCRC32()
 {
     uint8 *buffer = reinterpret_cast<uint8 *>(this);
 
@@ -305,7 +305,7 @@ uint SettingsMain::CalcWriteCRC32()
 }
 
 
-bool SettingsMain::operator!=(const SettingsMain &rhs)
+bool Settings::operator!=(const Settings &rhs)
 {
     return std::memcmp(this, &rhs, sizeof(*this)) != 0;
 }

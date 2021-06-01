@@ -359,7 +359,7 @@ void DrawParametersChannel(const Channel &ch, int eX, int eY, bool inProgress)
         bar->Draw();
     }
 
-    if(SettingsMain::DebugModeEnabled())
+    if(Settings::DebugModeEnabled())
     {
         int x = inProgress ? 5 : eX;
         int y = eY + (inProgress ? 110 : 0);
@@ -609,7 +609,7 @@ void FPGA::Calibrator::PerformBalance(const Channel &ch)
     Display::FuncOnWaitStart(ch.IsA() ? (LANG_RU ? "Балансировка канала 1" : "Balance channel 1") :
                                         (LANG_RU ? "Балансировка канала 2" : "Balance channel 2"), false);
 
-    SettingsMain storedSettings = set;
+    Settings storedSettings = set;
 
     Panel::DisableInput();
 
@@ -671,7 +671,7 @@ void FPGA::Calibrator::LoadSettingsForCalculationAddRShift(const Channel &ch)
 }
 
 
-void FPGA::Calibrator::RestoreSettingsForCalibration(const SettingsMain * /*savedSettings*/)
+void FPGA::Calibrator::RestoreSettingsForCalibration(const Settings * /*savedSettings*/)
 {
 
 }
