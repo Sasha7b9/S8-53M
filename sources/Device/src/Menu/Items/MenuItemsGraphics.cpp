@@ -53,20 +53,7 @@ void GraphicGovernor::Draw(const Item *item, int x, int y)
     
     if(item->IsCurrent())
     {
-        char symbol = 0;
-
-        if (item->IsGovernor())
-        {
-            symbol = item->GetSymbolForGovernor();
-        }
-        else if (item->IsChoiceReg() || (item->IsOpened() && item->IsChoice()))
-        {
-            symbol = item->GetSymbolForGovernor();
-        }
-        else if (item->IsTime())
-        {
-            symbol = item->GetSymbolForGovernor();
-        }
+        char symbol = item->GetSymbolForGovernor();
 
         Char(symbol).Draw4SymbolsInRect(x + Item::WIDTH - 13, y + 5 + (item->IsOpened() ? 0 : 15),
             ColorScheme::IsWhiteLetters() ? Color::BACK : Color::FILL);
