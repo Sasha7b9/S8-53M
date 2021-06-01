@@ -2037,6 +2037,11 @@
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Debug\PageStretchADC.cpp</FilePath>
             </File>
+            <File>
+              <FileName>PageInfo.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Debug\PageInfo.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4466,6 +4471,11 @@
               <FileName>PageStretchADC.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\Menu\Pages\Debug\PageStretchADC.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>PageInfo.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Menu\Pages\Debug\PageInfo.cpp</FilePath>
             </File>
           </Files>
         </Group>

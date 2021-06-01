@@ -55,7 +55,7 @@ struct NamePage { enum E
     DebugADCaltShift,      // нркюдйю - южо - дно. ялеы. оюл.
     DebugShowRegisters,    // нркюдйю - пецхярпш
     DebugRandomizer,       // нркюдйю - пюмд-рнп
-    DebugInformation,      // нркюдйю - хмтнплюжхъ
+    DebugInfo,             // нркюдйю - хмтнплюжхъ
     DebugSound,            // нркюдйю - гбсй
     DebugAltera,           // нркюдйю - юкэрепю
     ChannelA,              // йюмюк 1

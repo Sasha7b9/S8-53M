@@ -16,22 +16,6 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_CHOICE_2(cStats, PageDebug::self,
-    "—татистика", "Statistics"
-    ,
-    "ѕоказывать/не показывать врем€/кадр, кадров в секунду, количество сигналов с последними настройками в "
-    "пам€ти/количество сохран€емых в пам€ти сигналов"
-    ,
-    "To show/not to show a time/shot, frames per second, quantity of signals with the last settings in memory/quantity "
-    "of the signals kept in memory"
-    ,
-    "Ќе показывать", "Hide",
-    "ѕоказывать", "Show",
-    setNRST.show_stats, nullptr, SettingsNRST::CommonOnChanged, nullptr
-)
-
-//----------------------------------------------------------------------------------------------------------------------
-
 static int8 size = 0;
 
 static void OnDraw_SizeSettings(int x, int y)
@@ -111,7 +95,7 @@ DEF_PAGE_7(pageDebug, PageMain::self, NamePage::Debug,
     *PageDebug::PageADC::self,
     *PageDebug::PageRandomizer::self,
     *PageDebug::PageConsole::self,
-    cStats,
+    *PageDebug::PageInfo::self,
     cSizeSettings,
     bSaveFirmware,
     bEraseData,
