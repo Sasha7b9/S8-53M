@@ -12,7 +12,37 @@
 #include "Panel/Panel.h"
 #include <cmath>
 #include <cstdio>
+#include <cstdlib>
+#include <cstring>
 #include <limits>
+
+
+struct CalibrationStruct
+{
+    float deltaADC[2];
+    float deltaADCPercents[2];
+    float avrADC1[2];
+    float avrADC2[2];
+
+    float deltaADCold[2];
+    float deltaADCPercentsOld[2];
+    float avrADC1old[2];
+    float avrADC2old[2];
+
+    bool isCalculateStretch[2];
+
+    int8 shiftADCA;
+    int8 shiftADCB;
+
+    ProgressBar barA;       // ѕрогресс-бар дл€ калибровки первого канала.
+    ProgressBar barB;       // ѕрогресс-бар дл€ калибровки второго канала.
+
+    uint startTimeChanA;    // ¬рем€ начала калибровки первого канала.
+    uint startTimeChanB;    // ¬рем€ начала калибровки второго канала.
+};
+
+
+static CalibrationStruct *cal = nullptr;
 
 
 // »змерить добавочное смещение канала по напр€жению.
@@ -53,7 +83,6 @@ static uint startTimeChan0 = 0;                     // ¬рем€ начала калибровки п
 static uint startTimeChan1 = 0;                     // ¬рем€ начала калибровки второго канала.
 
 static float koeffCalibrationOld[2];
-
 
 static void OnTimerDraw()
 {
@@ -613,13 +642,22 @@ void FPGA::Calibrator::PerformBalance(Channel &ch)
 
 void FPGA::Calibrator::CreateCalibrationStruct()
 {
-
+    cal = (CalibrationStruct *)std::malloc(sizeof(CalibrationStruct));
+    std::memset(cal, 0, sizeof(CalibrationStruct));
 }
 
 
-void FPGA::Calibrator::CalibrateAddRShift(Channel &/*ch*/, bool /*wait*/)
+void FPGA::Calibrator::DeleteCalibrationStruct()
 {
+    std::free(cal);
+}
 
+
+void FPGA::Calibrator::CalibrateAddRShift(Channel &ch, bool wait)
+{
+//    int16 add[3];
+//
+//    for(int i = 0; )
 }
 
 
@@ -630,12 +668,6 @@ void FPGA::Calibrator::RestoreSettingsForCalibration(const SettingsMain * /*save
 
 
 void FPGA::Calibrator::WriteAdditionRShifts(Channel & /*ch*/)
-{
-
-}
-
-
-void FPGA::Calibrator::DeleteCalibrationStruct()
 {
 
 }
