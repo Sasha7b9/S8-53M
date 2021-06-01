@@ -123,6 +123,12 @@ void DataDrawing::DrawChannelPointed(int x, BufferU8 &buffer)
 
 void DataDrawing::DrawChannelLined(int x, BufferU8 &buffer)
 {
+    if (buffer.Size() == 0)
+    {
+        int i = 0;
+    }
+
+
     if (data.Settings().IsEnabledPeakDet())
     {
         uint size = buffer.Size();

@@ -92,7 +92,7 @@ void Buffer<T>::Malloc(uint s)
 
         if(!data)
         {
-            LOG_ERROR("Нет памяти");
+            LOG_TRACE_WRITE("Нет памяти");
         }
     }
     else
