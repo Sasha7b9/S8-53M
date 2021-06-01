@@ -25,5 +25,7 @@ int main()
         Device::Update();
 
         set.Save();
+
+        setNRST.Save();
     }
 }
