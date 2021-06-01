@@ -18,6 +18,11 @@ struct SettingsNRST
 
     struct SettingsADC
     {
+        int16 rshift_auto[Channel::Count][Range::Count][2]; // Добавочное смещение, которое пишется сюда при калибровке
+                                                            // и балансировке. При z == 0 - ModeCouple::DC, при z == 1
+                                                            // - ModeCouple::AC
+        int16 rshift_hand[Channel::Count][3]; // Добавочное смещение, устанавливаемое 
+
         BalanceADCtype::E type_balance; // Тип балансировки
         StretchADCtype::E type_stretch; // Тип растяжки канала.
     };
