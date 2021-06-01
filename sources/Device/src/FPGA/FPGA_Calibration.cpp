@@ -665,9 +665,15 @@ void FPGA::Calibrator::CalibrateAddRShift(const Channel &ch, bool /*wait*/)
 }
 
 
-void FPGA::Calibrator::LoadSettingsForCalculationAddRShift(const Channel & /*ch*/)
+void FPGA::Calibrator::LoadSettingsForCalculationAddRShift(const Channel &ch)
 {
-
+    RShift::Set(ch, RShift::ZERO);
+    ModeCouple::Set(ch, ModeCouple::DC);
+    TBase::Set(TBase::_200us);
+    TrigSource::Set(ch.ToTrigSource());
+    TrigPolarity::Set(TrigPolarity::Front);
+    TrigLev::Set(ch.ToTrigSource(), TrigLev::ZERO);
+    CalibratorMode::Set(CalibratorMode::GND);
 }
 
 

@@ -556,6 +556,7 @@ struct Channel
     Color GetColor() const;
     bool IsInversed() const;
     int ToNumber() const;
+    TrigSource::E ToTrigSource() const;
 
     // ƒанные этого канала нужно отрисовывать первыми
     static Channel &FirstDrawing();

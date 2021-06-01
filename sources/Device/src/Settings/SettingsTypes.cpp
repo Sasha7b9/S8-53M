@@ -430,6 +430,12 @@ int Channel::ToNumber() const
 }
 
 
+TrigSource::E Channel::ToTrigSource() const
+{
+    return IsA() ? TrigSource::A : TrigSource::B;
+}
+
+
 bool TPos::IsLeft()
 {
     return (set.time.t_pos == TPos::Left);
