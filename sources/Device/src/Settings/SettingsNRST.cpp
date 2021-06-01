@@ -162,6 +162,6 @@ void SettingsNRST::SettingsADC::RestoreRShifts(const Channel &ch, int16 shifts[3
 {
     for (int i = 0; i < 3; i++)                         // Восстанавливаем ручные установки
     {
-        rshift_hand[ch][i];
+        rshift_hand[ch][i] = shifts[3];
     }
 }

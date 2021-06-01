@@ -533,6 +533,25 @@ struct TPos
 };
 
 
+// Источник синхронизации.
+struct TrigSource
+{
+    enum E
+    {
+        A,      // Канал 1.
+        B,      // Канал 2.
+        Ext     // Внешняя.
+    } value;
+
+    static void Set(E source);
+
+    static E Get();
+    static bool IsA();
+    static bool IsB();
+    static bool IsExt();
+};
+
+
 struct Channel
 {
     enum E
@@ -706,24 +725,6 @@ struct StartMode {
     bool IsSingle() const { return value == Single; }
 
     operator E() const { return value; }
-};
-
-// Источник синхронизации.
-struct TrigSource
-{
-    enum E
-    {
-        A,      // Канал 1.
-        B,      // Канал 2.
-        Ext     // Внешняя.
-    } value;
-
-    static void Set(E source);
-
-    static E Get();
-    static bool IsA();
-    static bool IsB();
-    static bool IsExt();
 };
 
 
