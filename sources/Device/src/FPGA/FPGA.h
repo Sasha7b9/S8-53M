@@ -187,7 +187,8 @@ public:
         // процесса
         static void CalibrateAddRShift(const Channel &ch, bool wait);
 
-        static void LoadSettingsCalcAddRShift(const Channel &ch);
+        // Загрузить настройки для расчёта дополнительного смещения канала ch
+        static void LoadSettingsForCalculationAddRShift(const Channel &ch);
 
         static void RestoreSettingsForCalibration(const SettingsMain *savedSettings);
 

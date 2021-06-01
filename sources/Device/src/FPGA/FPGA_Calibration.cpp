@@ -659,13 +659,13 @@ void FPGA::Calibrator::CalibrateAddRShift(const Channel &ch, bool /*wait*/)
 
     setNRST.adc.StoreAndResetRShifts(ch, shifts);
 
-
+    LoadSettingsForCalculationAddRShift(ch);
 
     setNRST.adc.RestoreRShifts(ch, shifts);
 }
 
 
-void FPGA::Calibrator::LoadSettingsCalcAddRShift(const Channel & /*ch*/)
+void FPGA::Calibrator::LoadSettingsForCalculationAddRShift(const Channel & /*ch*/)
 {
 
 }
