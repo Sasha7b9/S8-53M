@@ -190,25 +190,6 @@ struct OutputRegisters
 };
 
 
-// Настройки отладчика
-struct SettingsDebug
-{
-    int16             numStrings;                 // Число строк в консоли.
-    int8              sizeFont;                   // Размер шрифта консоли - 0 - 5, 1 - 8,
-    bool              consoleInPause;             // Признак того, что консоль находится в режиме паузы. Режим паузы означает, что новые сообщения она не записывает и не сохраняет.
-    int16             balanceADC[2];              // Значение дополнительного смещения АЦП для ручной балансировки.
-    StretchADCtype::E stretchADCtype;             // Тип растяжки канала.
-    int16             stretchADC[2];              // Значение растяжки канала для ручного режима.
-    int16             numMeasuresForGates;        // Число измерений для ворот.
-    int16             shiftT0;                    // Дополнительное смещение по времени для данной развёртки режима рандомизатора.
-    bool              showStats;                  // Показывать статистику на экране (fps, например).
-    int16             numAveForRand;              // По скольким измерениям усреднять сигнал в режиме рандомизатора.
-    bool              viewAlteraWrittingData;     // Показывать ли данные, идущие в альтеру.
-    bool              viewAllAlteraWrittingData;  // Показывать ли все данные, идущие в альтеру (если false, то постоянно идущие команды вроде START, STOP не показываются).
-    int16             altShift;                   // Добавочное смещение для устранения эффекта горизонтальной помехи синхронизации.
-    OutputRegisters   showRegisters;
-};
-
 // Струкура хранит все настройки прибора.
 struct Settings
 {
@@ -220,7 +201,6 @@ struct Settings
     SettingsService     service;                    // дополнительные настройки       (меню СЕРВИС)
     SettingsEthernet    eth;
     SettingsCommon      common;                     // системные настройки
-    SettingsDebug       debug;                      // настройки режима отладки       (меню ОТЛАДКА)
     int temp;
 };
 
