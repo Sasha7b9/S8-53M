@@ -90,7 +90,7 @@ DEF_GOVERNOR(gAltTShift0, PageDebug::PageRandomizer::self,
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_PAGE_7(pageRandomizer, PageDebug::self, NamePage::DebugRandomizer,
+DEF_PAGE_4(pageRandomizer, PageDebug::self, NamePage::DebugRandomizer,
     "–¿Õƒ-“Œ–", "RANDOMIZER",
     "",
     "",
@@ -98,9 +98,9 @@ DEF_PAGE_7(pageRandomizer, PageDebug::self, NamePage::DebugRandomizer,
     gGateTop,
     gNumAverages,
     gSamplesForGates,
-    gNumSmooth,
-    gShowInfo,
-    gAltTShift0,
+//    gNumSmooth,
+//    gShowInfo,
+//    gAltTShift0,
     nullptr, nullptr, nullptr, nullptr
 )
 
