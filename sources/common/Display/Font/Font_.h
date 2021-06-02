@@ -21,6 +21,9 @@ struct Symbol
         static const char TPOS_3           = '\x8a';    // 2-я часть символа TPos
         static const char TPOS_2           = '\x8b';    // 1-я часть символа TPos
         static const char GOVERNOR_SHIFT_2 = '\x8c';    // Символ регулятора
+        static const char COUPLE_GND       = '\x90';
+        static const char COUPLE_AC        = '\x91';
+        static const char COUPLE_DC        = '\x92';
         static const char TSHIFT_RIGHT_1   = '\x93';    // 1-я часть символа смещения по времени справа от экрана
         static const char RSHIFT_NORMAL    = '\x93';    // Символ смещения по напряжению нормальный
         static const char TSHIFT_LEFT_1    = '\x94';    // 1-я часть символа смещения по времени слева от экрана

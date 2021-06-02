@@ -167,13 +167,6 @@ void BottomPart::Draw()
 
 void BottomPart::WriteTextVoltage(const Channel &ch, int x, int y)
 {
-    static pchar couple[] =
-    {
-        "\x92",
-        "\x91",
-        "\x90"
-    };
-
     bool inverse = ch.IsInversed();
     ModeCouple &mode_couple = set.chan[ch].mode_couple;
     Divider::E multiplier = set.chan[ch].divider;
@@ -208,7 +201,14 @@ void BottomPart::WriteTextVoltage(const Channel &ch, int x, int y)
             Region(widthField, heightField).Fill(x, y, color);
         }
 
-        Text("%s\xa5%s\xa5%s", (ch == ChA) ? (LANG_RU ? "1ê" : "1c") : (LANG_RU ? "2ê" : "2c"), couple[mode_couple],
+        static const char couple[] =
+        {
+            Symbol::S8::COUPLE_GND,
+            Symbol::S8::COUPLE_AC,
+            Symbol::S8::COUPLE_DC
+        };
+
+        Text("%s\xa5%c\xa5%s", (ch == ChA) ? (LANG_RU ? "1ê" : "1c") : (LANG_RU ? "2ê" : "2c"), couple[mode_couple],
             Range::ToString(range, multiplier)).Draw(x + 1, y, colorDraw);
 
         Text("\xa5%s", RShift::ToAbs((int16)rShift, range, multiplier).ToText().c_str()).Draw(x + 46, y);
