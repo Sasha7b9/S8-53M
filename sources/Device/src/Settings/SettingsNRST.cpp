@@ -31,20 +31,20 @@ static const SettingsNRST defaultNRST =
     // SettingsChannel
     {
         {
-            0,                      // balance_ADC
-            {},                     // rshift_hand
-            {},                     // rshift_auto
-            0,                      // balance_hand
-            1.0f,                   // stretch_auto
-            {}                      // rshift_add
+            0,                                                          // balance_ADC
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },                  // rshift_hand
+            { {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0},
+              {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}},  // rshift_auto
+            0,                                                          // balance_hand
+            1.0f                                                        // stretch_auto
         },
         {
-            0,                      // balance_ADC
-            {},                     // rshift_hand
-            {},                     // rshift_auto
-            0,                      // balance_hand
-            1.0f,                   // stretch_auto
-            {}                      // rshift_add
+            0,                                                          // balance_ADC
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },                  // rshift_hand
+            { {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0},
+              {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}},  // rshift_auto
+            0,                                                          // balance_hand
+            1.0f                                                        // stretch_auto
         }
     },
     {

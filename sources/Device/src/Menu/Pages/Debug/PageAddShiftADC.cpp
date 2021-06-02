@@ -32,10 +32,11 @@ static void OnPress_Reset()
         {
             for (int range = 0; range < Range::Count; range++)
             {
-                setNRST.chan[ch].rshift_add[range][mode] = 0;
+                setNRST.chan[ch].rshift_hand[range] = 0;
             }
         }
     }
+
     RShift::Set(ChA, set.chan[ChA].rshift);
     RShift::Set(ChB, set.chan[ChB].rshift);
 
@@ -55,7 +56,7 @@ DEF_GOVERNOR(b2mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
     "—м 1к 2м¬ пост", "Shift 1ch 2mV DC",
     "",
     "",
-    setNRST.chan[ChA].rshift_add[Range::_2mV][ModeCouple::DC], -100, 100, nullptr, OnChanged_A, nullptr
+    setNRST.chan[ChA].rshift_hand[Range::_2mV], -100, 100, nullptr, OnChanged_A, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -64,7 +65,7 @@ DEF_GOVERNOR(b2mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
     "—м 2к 2м¬ пост", "Shift 2ch 2mV DC",
     "",
     "",
-    setNRST.chan[ChB].rshift_add[Range::_2mV][ModeCouple::DC], -100, 100, nullptr, OnChanged_B, nullptr
+    setNRST.chan[ChB].rshift_hand[Range::_2mV], -100, 100, nullptr, OnChanged_B, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -73,7 +74,7 @@ DEF_GOVERNOR(b5mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
     "—м 1к 5м¬ пост", "Shift 1ch 5mV DC",
     "",
     "",
-    setNRST.chan[ChA].rshift_add[Range::_5mV][ModeCouple::DC], -100, 100, nullptr, OnChanged_A, nullptr
+    setNRST.chan[ChA].rshift_hand[Range::_5mV], -100, 100, nullptr, OnChanged_A, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -82,7 +83,7 @@ DEF_GOVERNOR(b5mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
     "—м 2к 5м¬ пост", "Shift 2ch 5mV DC",
     "",
     "",
-    setNRST.chan[ChB].rshift_add[Range::_5mV][ModeCouple::DC], -100, 100, nullptr, OnChanged_B, nullptr
+    setNRST.chan[ChB].rshift_hand[Range::_5mV], -100, 100, nullptr, OnChanged_B, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -91,7 +92,7 @@ DEF_GOVERNOR(b10mV_DC_A, PageDebug::PageADC::PageAltRShift::self,
     "—м 1к 10м¬ пост", "Shift 1ch 10mV DC",
     "",
     "",
-    setNRST.chan[ChA].rshift_add[Range::_10mV][ModeCouple::DC], -100, 100, nullptr, OnChanged_A, nullptr
+    setNRST.chan[ChA].rshift_hand[Range::_10mV], -100, 100, nullptr, OnChanged_A, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -100,7 +101,7 @@ DEF_GOVERNOR(b10mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
     "—м 2к 10м¬ пост", "Shift 2ch 10mV DC",
     "",
     "",
-    setNRST.chan[ChB].rshift_add[Range::_10mV][ModeCouple::DC], -100, 100, nullptr, OnChanged_B, nullptr
+    setNRST.chan[ChB].rshift_hand[Range::_10mV], -100, 100, nullptr, OnChanged_B, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -110,7 +111,6 @@ DEF_PAGE_7(pageAltShift, PageDebug::PageADC::self, NamePage::DebugADCrShift,
     "",
     "",
     bReset,
-//    bResetBalance,
     b2mV_DC_A,
     b2mV_DC_B,
     b5mV_DC_A,
