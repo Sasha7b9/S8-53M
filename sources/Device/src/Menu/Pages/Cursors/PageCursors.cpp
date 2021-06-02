@@ -175,11 +175,14 @@ void PageCursors::DrawMenuCursorsVoltage(int x, int y, bool top, bool bottom)
     x -= 65;
     y -= 21;
     int x0 = x, x1 = x, y0 = y, y1 = y;
+
     CalculateXY(&x0, &x1, &y0, &y1);
+
     for (int i = 0; i < (top ? 3 : 1); i++)
     {
         HLine().Draw(y0 + i, x0, x1);
     }
+
     for (int i = 0; i < (bottom ? 3 : 1); i++)
     {
         HLine().Draw(y1 - i, x0, x1);
@@ -192,13 +195,16 @@ void PageCursors::DrawMenuCursorsTime(int x, int y, bool left, bool right)
     x -= 58;
     y -= 16;
     int x0 = x, x1 = x, y0 = y, y1 = y;
+
     CalculateXY(&x0, &x1, &y0, &y1);
+
     for (int i = 0; i < (left ? 3 : 1); i++)
     {
-        HLine().Draw(x0 + i, y0, y1);
+        VLine().Draw(x0 + i, y0 - 1, y1);
     }
+
     for (int i = 0; i < (right ? 3 : 1); i++)
     {
-        HLine().Draw(x1 - i, y0, y1);
+        VLine().Draw(x1 - i, y0 - 1, y1);
     }
 }
