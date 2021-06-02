@@ -32,17 +32,15 @@ static const SettingsNRST defaultNRST =
     {
         {
             0,                                                          // balance_ADC
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },                  // rshift_hand
             { {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0},
-              {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}},  // rshift_auto
+              {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}},  // rshift
             0,                                                          // balance_hand
             1.0f                                                        // stretch_auto
         },
         {
             0,                                                          // balance_ADC
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },                  // rshift_hand
             { {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0},
-              {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}},  // rshift_auto
+              {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}},  // rshift
             0,                                                          // balance_hand
             1.0f                                                        // stretch_auto
         }
@@ -147,18 +145,16 @@ void SettingsNRST::Test()
 
 void SettingsNRST::SettingsChannel::StoreAndResetRShifts(int16 shifts[3])
 {
-    for (int i = 0; i < 3; i++)                         // Сохраняем и сбрасываем ручные установки
-    {
-        shifts[i] = rshift_hand[i];
-
-        rshift_hand[i] = 0;
-    }
-
     for (int range = 0; range < Range::Count; range++)  // Сбрасываем автоматические устаноки
     {
         for (int mode = 0; mode < 2; mode++)
         {
-            rshift_auto[range][mode] = 0;
+            if (mode == ModeCouple::DC && range < 3)
+            {
+                shifts[range] = rshift[range][mode];
+            }
+
+            rshift[range][mode] = 0;
         }
     }
 }
@@ -166,8 +162,8 @@ void SettingsNRST::SettingsChannel::StoreAndResetRShifts(int16 shifts[3])
 
 void SettingsNRST::SettingsChannel::RestoreRShifts(int16 shifts[3])
 {
-    for (int i = 0; i < 3; i++)                         // Восстанавливаем ручные установки
+    for (int range = 0; range < 3; range++)                         // Восстанавливаем ручные установки
     {
-        rshift_hand[i] = shifts[3];
+        rshift[range][ModeCouple::DC] = shifts[range];
     }
 }
