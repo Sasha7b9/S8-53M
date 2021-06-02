@@ -52,7 +52,13 @@ void RShift::Draw(const Channel &ch)
     int rShift = set.chan[ch].rshift;
 
     float scale = Grid::ChannelHeight() / (RShift::STEP() * 200.0F);
+
     float y = Grid::ChannelCenterHeight() - scale * (rShift - RShift::ZERO);
+
+    if (rShift > RShift::ZERO)      // \todo Сильный говнокод
+    {
+        y += 1;
+    }
 
     if (y > Grid::ChannelBottom())
     {
