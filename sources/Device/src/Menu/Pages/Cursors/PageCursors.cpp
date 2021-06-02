@@ -157,7 +157,7 @@ static int CalculateYforCurs(int y, bool top)
 
 static int CalculateXforCurs(int x, bool left)
 {
-    return left ? x + Item::WIDTH - 20 : x + Item::WIDTH - 5;
+    return left ? x + Item::WIDTH - 20 : x + Item::WIDTH - 6;
 }
 
 

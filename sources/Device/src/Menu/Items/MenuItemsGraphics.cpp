@@ -916,7 +916,7 @@ int Page::X() const
 {
     if (IsPageSB())
     {
-        return Display::WIDTH - SmallButton::WIDTH - 1;
+        return Display::WIDTH - SmallButton::WIDTH - 2;
     }
     return Grid::Right() - Item::TITLE_WIDTH - 1;
 }
