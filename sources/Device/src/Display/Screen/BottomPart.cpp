@@ -211,7 +211,9 @@ void BottomPart::WriteTextVoltage(const Channel &ch, int x, int y)
         Text("%s\xa5%c\xa5%s", (ch == ChA) ? (LANG_RU ? "1ê" : "1c") : (LANG_RU ? "2ê" : "2c"), couple[mode_couple],
             Range::ToString(range, multiplier)).Draw(x + 1, y, colorDraw);
 
-        Text("\xa5%s", RShift::ToAbs((int16)rShift, range, multiplier).ToText().c_str()).Draw(x + 46, y);
+        Voltage shift = RShift::ToAbs((int16)rShift, range, multiplier);
+
+        Text("\xa5%s", shift.ToText().c_str()).Draw(x + 46, y);
     }
 }
 
