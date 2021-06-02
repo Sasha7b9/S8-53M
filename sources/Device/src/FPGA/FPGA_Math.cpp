@@ -73,14 +73,7 @@ int RShift::ToRel(float rShiftAbs, Range::E range)
 
 Voltage RShift::ToAbs(int16 rshift, Range::E range)
 {
-    Voltage result = (-((float)ZERO - (float)(rshift)) * abs_step[(uint)(range)]);
-
-    if (rshift >= RShift::ZERO)
-    {
-        LOG_TRACE_WRITE("%d = s", rshift, result.ToText());
-    }
-
-    return result;
+    return (-((float)ZERO - (float)(rshift)) * abs_step[(uint)(range)]);
 }
 
 
