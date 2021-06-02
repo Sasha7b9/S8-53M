@@ -98,13 +98,13 @@ void DashedVLine::Draw(int x, int y0, int y1, int deltaStart) const
         y += (fill + empty - deltaStart);
         if (deltaStart < fill)     // Если начало линии приходится на штрих
         {
-            HLine().Draw(x, y0, y - 1);
+            VLine().Draw(x, y0, y - 1);
         }
     }
 
     while (y < y1)
     {
-        HLine().Draw(x, y, y + fill - 1);
+        VLine().Draw(x, y, y + fill - 1);
         y += (fill + empty);
     }
 }
