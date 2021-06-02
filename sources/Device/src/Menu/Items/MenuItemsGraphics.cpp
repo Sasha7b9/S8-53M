@@ -737,7 +737,7 @@ void Page::DrawOpened(int yTop)
         int8 posCurItem = CurrentItem()->GetPosition();
         const Item *item = GetItem(posCurItem);
 
-        item->Draw(Page::X(), OpenedPosY(), true);
+        item->Draw(X(), OpenedPosY(), true);
     }
     else
     {
@@ -765,7 +765,7 @@ static bool NeedDrawRegSet(const Page *page)
 
 void Page::DrawTitle(int ytop)
 {
-    int x = Page::X();
+    int x = X();
 
     if (IsPageSB())
     {
@@ -803,7 +803,7 @@ void Page::DrawTitle(int ytop)
     
     colorText.SetAsCurrent();
 
-    DrawPagesUGO(Page::X() + Item::TITLE_WIDTH - 3 + delta, ytop + Item::TITLE_HEIGHT - 2 + delta);
+    DrawPagesUGO(X() + Item::TITLE_WIDTH - 3 + delta, ytop + Item::TITLE_HEIGHT - 2 + delta);
 }
 
 
@@ -828,7 +828,7 @@ void Page::DrawItems(int yTop) const
         const Item *item = GetItem(posItem);
         itemUnderButton[count] = (Item *)item;
         int top = yTop + Item::HEIGHT * count;
-        item->Draw(Page::X(), top);
+        item->Draw(X(), top);
         count++;
     }
 }
@@ -909,4 +909,14 @@ void Item::DrawVolumeButton(int x, int y, int width, int height, int thickness, 
             HLine().Draw(y + height - i, x + 1 + i, x + width - i);
         }
     }
+}
+
+
+int Page::X() const
+{
+    if (IsPageSB())
+    {
+        return Display::WIDTH - SmallButton::WIDTH - 1;
+    }
+    return Grid::Right() - Item::TITLE_WIDTH - 1;
 }

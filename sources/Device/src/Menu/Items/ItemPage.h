@@ -21,9 +21,7 @@ public:
 
     static const int Y = Grid::TOP + 1;
 
-    inline static int X() {
-        return Grid::Right() - Item::TITLE_WIDTH - 1;
-    };
+    int X() const;
 
     Page(const DataItem *const data, int8 *subPage, int8 *actItem, bool *opened) :
         Item(data), currentSubPage(subPage), posCurrentItem(actItem), currentItemIsOpened(opened) {};

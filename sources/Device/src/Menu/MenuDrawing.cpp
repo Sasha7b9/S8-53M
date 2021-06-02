@@ -73,11 +73,11 @@ void Menu::Draw()
         {
             if(item->IsChoice())
             {
-                ((Choice *)item)->Draw(Page::X(), Grid::TOP, true);
+                ((Choice *)item)->Draw(item->Keeper()->X(), Grid::TOP, true);
             }
             else if(item->IsGovernor())
             {
-                ((Governor *)item)->Draw(Page::X(), Grid::TOP, true);
+                ((Governor *)item)->Draw(item->Keeper()->X(), Grid::TOP, true);
             }
         }
     }
