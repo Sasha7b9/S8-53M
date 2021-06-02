@@ -50,12 +50,12 @@ void GraphicGovernor::Draw(const Item *item, int x, int y)
         Color::MENU_ITEM_BRIGHT, Color::MENU_ITEM_DARK, pressed);
 
     Text(item->Title()).Draw(x + 6 + delta, y + 6 + delta, color);
-    
+
     if(item->IsCurrent())
     {
-        item->IsCurrent(true);
+        LOG_WRITE(" ");
 
-        LOG_TRACE_WRITE("текущий %x", item);
+        item->IsCurrent(true);
 
         char symbol = item->GetSymbolForGovernor();
 
