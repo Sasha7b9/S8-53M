@@ -26,12 +26,12 @@ static const SettingsNRST defaultNRST =
     },
     // SettingsADC
     {
-        {},                         // balance
-        StretchADCtype::Settings,   // type_stretch
+        StretchADCtype::Settings    // type_stretch
     },
     // SettingsChannel
     {
         {
+            0,                      // balance_ADC
             {},                     // rshift_hand
             {},                     // rshift_auto
             0,                      // balance_hand
@@ -39,6 +39,7 @@ static const SettingsNRST defaultNRST =
             {}                      // rshift_add
         },
         {
+            0,                      // balance_ADC
             {},                     // rshift_hand
             {},                     // rshift_auto
             0,                      // balance_hand

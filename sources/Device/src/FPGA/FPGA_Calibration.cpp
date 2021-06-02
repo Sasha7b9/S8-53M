@@ -374,7 +374,7 @@ void DrawParametersChannel(const Channel &ch, int eX, int eY, bool inProgress)
         Text("Расхождение Channel::A_ЦП = %.2f/%.2f %%", deltaADCPercentsOld[ch], deltaADCPercents[ch]).
             Draw(x, y + 11);
 
-        Text("Записано %d", setNRST.adc.balance[ch]).Draw(x, y + 19);
+        Text("Записано %d", setNRST.chan[ch].balance_ADC).Draw(x, y + 19);
     }
 }
 
@@ -442,10 +442,12 @@ static float CalculateDeltaADC(const Channel &ch, float *avgADC1, float *avgADC2
 void AlignmentADC()
 {
     shiftADC0 = (int8)((deltaADCold[0] > 0.0F) ? (deltaADCold[0] + 0.5F) : (deltaADCold[0] - 0.5F));
-    setNRST.adc.balance[ChA] = shiftADC0;
+    setNRST.chan[ChA].balance_ADC = shiftADC0;
+    
     shiftADC1 = (int8)((deltaADCold[1] > 0.0F) ? (deltaADCold[1] + 0.5F) : (deltaADCold[1] - 0.5F));
-    setNRST.adc.balance[ChB] = shiftADC1;
-//    HAL_FMC::Write(WR_ADD_RSHIFT_DAC1, (uint8)SET_BALANCE_ADC_A);
+    setNRST.chan[ChB].balance_ADC = shiftADC1;
+
+    //    HAL_FMC::Write(WR_ADD_RSHIFT_DAC1, (uint8)SET_BALANCE_ADC_A);
 //    HAL_FMC::Write(WR_ADD_RSHIFT_DAC2, (uint8)SET_BALANCE_ADC_B);
 }
 

@@ -18,12 +18,12 @@ struct SettingsNRST
 
     struct SettingsADC
     {
-        int16 balance[Channel::Count];  // Баланс АЦП для каждого из каналов
         StretchADCtype::E type_stretch; // Тип растяжки канала.
     };
 
     struct SettingsChannel
     {
+        int16 balance_ADC;                      // Баланс АЦП
         int16 rshift_hand[3];                   // Добавочное смещение, устанавливаемое в ручном режиме для
                                                 // ModeCouple::DC и трёх самых чувствительных диапазонах
         int16 rshift_auto[Range::Count][2];     // Добавочное смещение, которое пишется сюда при калибровке
