@@ -23,7 +23,7 @@ static void OnChanged_Mode(bool active)
         PageDebug::LoadStretchADC(ChA);
         PageDebug::LoadStretchADC(ChB);
 
-        SettingsNRST::CommonOnChanged();
+        SettingsNRST::ExecuteOnChanged();
     }
 }
 
@@ -44,7 +44,7 @@ static void OnChanged_A()
 {
     //    FPGA::WriteToHardware(WR_CAL_A, (uint8)DEBUG_STRETCH_ADC_A, true);
 
-    SettingsNRST::CommonOnChanged();
+    SettingsNRST::ExecuteOnChanged();
 }
 
 
@@ -61,7 +61,7 @@ static void OnChanged_B()
 {
     //    FPGA::WriteToHardware(WR_CAL_B, (uint8)DEBUG_STRETCH_ADC_B, true);
 
-    SettingsNRST::CommonOnChanged();
+    SettingsNRST::ExecuteOnChanged();
 }
 
 

@@ -108,15 +108,15 @@ void SettingsNRST::Save()
 }
 
 
-void SettingsNRST::CommonOnChanged()
+void SettingsNRST::ExecuteOnChanged()
 {
     setNRST.Save();
 }
 
 
-void SettingsNRST::CommonOnChanged(bool)
+void SettingsNRST::ExecuteOnChanged(bool)
 {
-    CommonOnChanged();
+    ExecuteOnChanged();
 }
 
 

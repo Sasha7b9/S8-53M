@@ -18,7 +18,7 @@ DEF_CHOICE_2(cStats, PageDebug::self,
     ,
     "Не показывать", "Hide",
     "Показывать", "Show",
-    setNRST.show_stats, nullptr, SettingsNRST::CommonOnChanged, nullptr
+    setNRST.show_stats, nullptr, SettingsNRST::ExecuteOnChanged, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------

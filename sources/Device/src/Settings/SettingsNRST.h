@@ -90,8 +90,8 @@ struct SettingsNRST
     void Test();
 
     // Эту функцию нужно вызывать после каждого изменения несбрасываемой настройки
-    static void CommonOnChanged();
-    static void CommonOnChanged(bool);
+    static void ExecuteOnChanged();
+    static void ExecuteOnChanged(bool);
 
     bool operator!=(const SettingsNRST &rhs);
 };

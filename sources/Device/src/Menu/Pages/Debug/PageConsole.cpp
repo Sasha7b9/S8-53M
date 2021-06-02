@@ -12,7 +12,7 @@ DEF_GOVERNOR(gNumStrings, PageDebug::PageConsole::self,
     "Число строк", "Number strings",
     "",
     "",
-    setNRST.console.num_srings, 0, 33, nullptr, SettingsNRST::CommonOnChanged, nullptr
+    setNRST.console.num_srings, 0, 33, nullptr, SettingsNRST::ExecuteOnChanged, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -23,7 +23,7 @@ DEF_CHOICE_2(cSizeFont, PageDebug::PageConsole::self,
     "",
     "5", "5",
     "8", "8",
-    setNRST.console.size_font, nullptr, SettingsNRST::CommonOnChanged, nullptr
+    setNRST.console.size_font, nullptr, SettingsNRST::ExecuteOnChanged, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------

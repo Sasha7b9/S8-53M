@@ -10,7 +10,7 @@
 
 static void OnChanged_A()
 {  
-    SettingsNRST::CommonOnChanged();
+    SettingsNRST::ExecuteOnChanged();
 }
 
 
@@ -25,7 +25,7 @@ DEF_GOVERNOR(gShiftA, PageDebug::PageADC::PageBalance::self,
 
 static void OnChanged_ShiftB()
 {
-    SettingsNRST::CommonOnChanged();
+    SettingsNRST::ExecuteOnChanged();
 }
 
 

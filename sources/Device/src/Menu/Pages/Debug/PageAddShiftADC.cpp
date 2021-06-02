@@ -14,7 +14,7 @@ static void OnChanged_Mode(bool)
     RShift::Load(ChA);
     RShift::Load(ChB);
 
-    SettingsNRST::CommonOnChanged();
+    SettingsNRST::ExecuteOnChanged();
 }
 
 DEF_CHOICE_2( cMode, PageDebug::PageADC::PageAltRShift::self,
@@ -33,14 +33,14 @@ static void OnChanged_A()
 {
     RShift::Set(ChA, set.chan[ChA].rshift);
 
-    SettingsNRST::CommonOnChanged();
+    SettingsNRST::ExecuteOnChanged();
 }
 
 static void OnChanged_B()
 {
     RShift::Set(ChB, set.chan[ChB].rshift);
 
-    SettingsNRST::CommonOnChanged();
+    SettingsNRST::ExecuteOnChanged();
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -61,7 +61,7 @@ static void OnPress_Reset()
     RShift::Set(ChA, set.chan[ChA].rshift);
     RShift::Set(ChB, set.chan[ChB].rshift);
 
-    SettingsNRST::CommonOnChanged();
+    SettingsNRST::ExecuteOnChanged();
 }
 
 

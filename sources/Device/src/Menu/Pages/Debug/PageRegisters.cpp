@@ -14,7 +14,7 @@ DEF_CHOICE_2(cLaunchFPGA, PageDebug::PageConsole::PageRegisters::self,
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    setNRST.show_registers.launch, nullptr, SettingsNRST::CommonOnChanged, nullptr
+    setNRST.show_registers.launch, nullptr, SettingsNRST::ExecuteOnChanged, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -25,7 +25,7 @@ DEF_CHOICE_2(cRD_FL, PageDebug::PageConsole::PageRegisters::self,
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    setNRST.show_registers.flag, nullptr, SettingsNRST::CommonOnChanged, nullptr
+    setNRST.show_registers.flag, nullptr, SettingsNRST::ExecuteOnChanged, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -36,7 +36,7 @@ DEF_CHOICE_2(cRShiftA, PageDebug::PageConsole::PageRegisters::self,
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    setNRST.show_registers.rShiftA, nullptr, SettingsNRST::CommonOnChanged, nullptr
+    setNRST.show_registers.rShiftA, nullptr, SettingsNRST::ExecuteOnChanged, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ DEF_CHOICE_2(cRShiftB, PageDebug::PageConsole::PageRegisters::self,
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    setNRST.show_registers.rShiftB, nullptr, SettingsNRST::CommonOnChanged, nullptr
+    setNRST.show_registers.rShiftB, nullptr, SettingsNRST::ExecuteOnChanged, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -58,7 +58,7 @@ DEF_CHOICE_2(cTrigLev, PageDebug::PageConsole::PageRegisters::self,
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    setNRST.show_registers.trigLev, nullptr, SettingsNRST::CommonOnChanged, nullptr
+    setNRST.show_registers.trigLev, nullptr, SettingsNRST::ExecuteOnChanged, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -69,7 +69,7 @@ DEF_CHOICE_2(cRangeA, PageDebug::PageConsole::PageRegisters::self,
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    setNRST.show_registers.rangeA, nullptr, SettingsNRST::CommonOnChanged, nullptr
+    setNRST.show_registers.rangeA, nullptr, SettingsNRST::ExecuteOnChanged, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -80,7 +80,7 @@ DEF_CHOICE_2(cRangeB, PageDebug::PageConsole::PageRegisters::self,
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    setNRST.show_registers.rangeB, nullptr, SettingsNRST::CommonOnChanged, nullptr
+    setNRST.show_registers.rangeB, nullptr, SettingsNRST::ExecuteOnChanged, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -91,7 +91,7 @@ DEF_CHOICE_2(cTrigParam, PageDebug::PageConsole::PageRegisters::self,
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    setNRST.show_registers.trigParam, nullptr, SettingsNRST::CommonOnChanged, nullptr
+    setNRST.show_registers.trigParam, nullptr, SettingsNRST::ExecuteOnChanged, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -102,7 +102,7 @@ DEF_CHOICE_2(cChanParamA, PageDebug::PageConsole::PageRegisters::self,
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    setNRST.show_registers.chanParamA, nullptr, SettingsNRST::CommonOnChanged, nullptr
+    setNRST.show_registers.chanParamA, nullptr, SettingsNRST::ExecuteOnChanged, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -113,7 +113,7 @@ DEF_CHOICE_2(cChanParamB, PageDebug::PageConsole::PageRegisters::self,
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    setNRST.show_registers.chanParamB, nullptr, SettingsNRST::CommonOnChanged, nullptr
+    setNRST.show_registers.chanParamB, nullptr, SettingsNRST::ExecuteOnChanged, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -124,7 +124,7 @@ DEF_CHOICE_2(cTBase, PageDebug::PageConsole::PageRegisters::self,
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    setNRST.show_registers.tBase, nullptr, SettingsNRST::CommonOnChanged, nullptr
+    setNRST.show_registers.tBase, nullptr, SettingsNRST::ExecuteOnChanged, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -135,7 +135,7 @@ DEF_CHOICE_2(cTShift, PageDebug::PageConsole::PageRegisters::self,
     "",
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    setNRST.show_registers.tShift, nullptr, SettingsNRST::CommonOnChanged, nullptr
+    setNRST.show_registers.tShift, nullptr, SettingsNRST::ExecuteOnChanged, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------

@@ -31,7 +31,7 @@ DEF_GOVERNOR(gNumAverages, PageDebug::PageRandomizer::self,
     "Усредн.", "Average",
     "",
     "",
-    setNRST.rand.num_ave, 1, 32, nullptr, SettingsNRST::CommonOnChanged, nullptr
+    setNRST.rand.num_ave, 1, 32, nullptr, SettingsNRST::ExecuteOnChanged, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ DEF_GOVERNOR(gNumSmooth, PageDebug::PageRandomizer::self,
     "Сглаживание", "Smoothing",
     "",
     "",
-    setNRST.rand.num_smooth, 1, 10, nullptr, SettingsNRST::CommonOnChanged, nullptr
+    setNRST.rand.num_smooth, 1, 10, nullptr, SettingsNRST::ExecuteOnChanged, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -49,7 +49,7 @@ static void OnChanged_SamplesForGates()
 {
     FPGA::Randomizer::SetNumberMeasuresForGates(setNRST.rand.num_measures_for_gates);
 
-    SettingsNRST::CommonOnChanged();
+    SettingsNRST::ExecuteOnChanged();
 }
 
 
@@ -68,7 +68,7 @@ DEF_CHOICE_2(gShowInfo, PageDebug::PageRandomizer::self,
     "To show information on randomizer gate",
     "Не показывать", "Hide",
     "Показывать", "Show",
-    setNRST.rand.show_info, nullptr, SettingsNRST::CommonOnChanged, nullptr
+    setNRST.rand.show_info, nullptr, SettingsNRST::ExecuteOnChanged, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -77,7 +77,7 @@ static void OnChanged_AltTShift0()
 {
     TShift::SetDelta(setNRST.rand.shift_T0);
 
-    SettingsNRST::CommonOnChanged();
+    SettingsNRST::ExecuteOnChanged();
 }
 
 
