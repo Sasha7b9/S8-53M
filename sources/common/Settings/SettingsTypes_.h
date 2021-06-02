@@ -84,6 +84,14 @@ struct StretchADCtype
 };
 
 
+// Нужно ли учитывать калибровчные коэффициенты для смещения
+struct RShiftADCtype { enum E
+{
+    Disabled,
+    Enabled
+}; };
+
+
 // Режим отрисовки сигнала.
 struct ModeDrawSignal
 {
@@ -996,15 +1004,6 @@ struct ScaleMath { enum E
     Channel0,     // Масштаб берётся из канала 1
     Channel1,     // Масштаб берётся из канала 2
     Hand          // Масштаб задаётся вручную.
-};};
-
-
-// Тип дополнительного смещения
-struct RShiftADCtype { enum E
-{
-    Disable,
-    Settings,
-    Hand
 };};
 
 

@@ -26,7 +26,8 @@ static const SettingsNRST defaultNRST =
     },
     // SettingsADC
     {
-        StretchADCtype::Settings    // type_stretch
+        StretchADCtype::Settings,   // type_stretch
+        RShiftADCtype::Enabled      // type_rshift
     },
     // SettingsChannel
     {

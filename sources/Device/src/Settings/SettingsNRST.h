@@ -18,7 +18,8 @@ struct SettingsNRST
 
     struct SettingsADC
     {
-        StretchADCtype::E type_stretch; // Тип растяжки канала.
+        StretchADCtype::E type_stretch;
+        RShiftADCtype::E type_rshift;   
     };
 
     struct SettingsChannel

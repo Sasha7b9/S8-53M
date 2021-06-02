@@ -8,6 +8,27 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 
+
+static void OnChanged_Mode(bool)
+{
+    RShift::Load(ChA);
+    RShift::Load(ChB);
+
+    SettingsNRST::CommonOnChanged();
+}
+
+DEF_CHOICE_2( cMode, PageDebug::PageADC::PageAltRShift::self,
+    "Ðוזטל", "Mode",
+    "",
+    "",
+    DISABLE_RU, DISABLE_EN,
+    "Ðואכüםי",  "Ðואכüםûי",
+    setNRST.adc.type_rshift, nullptr, OnChanged_Mode, nullptr
+)
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
 static void OnChanged_A()
 {
     RShift::Set(ChA, set.chan[ChA].rshift);
@@ -106,10 +127,11 @@ DEF_GOVERNOR(b10mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_PAGE_7(pageAltShift, PageDebug::PageADC::self, NamePage::DebugADCrShift,
+DEF_PAGE_8(pageAltShift, PageDebug::PageADC::self, NamePage::DebugADCrShift,
     "ÄÎÏ ÑÌÅÙ", "ADD RSHFIT",
     "",
     "",
+    cMode,
     bReset,
     b2mV_DC_A,
     b2mV_DC_B,
