@@ -100,8 +100,8 @@ void Cursors::Draw()
             y0 = (int)(Grid::TOP + Cursors::GetPosU(source, 0));
             y1 = (int)(Grid::TOP + Cursors::GetPosU(source, 1));
 
-            Rectangle(4, 4).Draw(x0 - 2, y0 - 2);
-            Rectangle(4, 4).Draw(x1 - 2, y1 - 2);
+            Rectangle(5, 5).Draw(x0 - 2, y0 - 2);
+            Rectangle(5, 5).Draw(x1 - 2, y1 - 2);
         }
 
         if (!set.cursors.cntrlT[source].IsDisabled())
@@ -133,8 +133,8 @@ void Cursors::DrawVertical(int x, int yTearing)
         DashedVLine(1, 1).Draw(x, yTearing + 2, Grid::ChannelBottom() - 1, 0);
     }
 
-    Rectangle(2, 2).Draw(x - 1, Grid::TOP - 1);
-    Rectangle(2, 2).Draw(x - 1, Grid::ChannelBottom() - 1);
+    Rectangle(3, 3).Draw(x - 1, Grid::TOP - 1);
+    Rectangle(3, 3).Draw(x - 1, Grid::ChannelBottom() - 1);
 }
 
 
@@ -152,6 +152,6 @@ void Cursors::DrawHorizontal(int y, int xTearing)
         DashedHLine(1, 1).Draw(y, xTearing + 2, Grid::Right() - 1, 0);
     }
 
-    Rectangle(2, 2).Draw(Grid::Left() - 1, y - 1);
-    Rectangle(2, 2).Draw(Grid::Right() - 1, y - 1);
+    Rectangle(3, 3).Draw(Grid::Left() - 1, y - 1);
+    Rectangle(3, 3).Draw(Grid::Right() - 1, y - 1);
 }
