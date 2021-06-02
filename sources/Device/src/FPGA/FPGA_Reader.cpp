@@ -43,31 +43,20 @@ void ReaderFPGA::ReadData()
 {
     mutex_read.Lock();
 
-    DEBUG_POINT_0;
     DataReadingKeeper data;
-    DEBUG_POINT_0;
 
     uint16 addr_read = CalculateAddressRead();
-    DEBUG_POINT_0;
 
     if (TBase::IsRandomize())
     {
-        DEBUG_POINT_0;
-//        Read::Randomizer::Channel(*data.data, ChA, addr_read);
-        DEBUG_POINT_0;
+        Read::Randomizer::Channel(*data.data, ChA, addr_read);
         Read::Randomizer::Channel(*data.data, ChB, addr_read);
-        DEBUG_POINT_0;
     }
     else
     {
-        DEBUG_POINT_0;
         Read::Real::Channel(*data.data, ChA, addr_read);
-        DEBUG_POINT_0;
         Read::Real::Channel(*data.data, ChB, addr_read);
-        DEBUG_POINT_0;
     }
-
-    DEBUG_POINT_0;
 
     Storage::Append(*data.data);
 

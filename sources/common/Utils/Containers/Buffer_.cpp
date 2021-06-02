@@ -39,15 +39,9 @@ Buffer<T>::~Buffer()
 template<class T>
 void Buffer<T>::Realloc(uint _size)
 {
-    DEBUG_POINT_0;
     Free();
-    DEBUG_POINT_0;
     Malloc(_size);
-    DEBUG_POINT_0;
 }
-
-
-
 
 
 template<class T>
@@ -88,35 +82,21 @@ void Buffer<T>::Free()
 template<class T>
 void Buffer<T>::Malloc(uint s)
 {
-    DEBUG_POINT_0;
     if (s > 0)
     {
-        DEBUG_POINT_0;
-
-        uint need_memory = (uint)(s) * sizeof(T);
-
-        extern uint _sized_;
-        _sized_ = need_memory;
-
-        data = (T *)(std::malloc(need_memory));
-        DEBUG_POINT_0;
+        data = (T *)(std::malloc((uint)(s) * sizeof(T)));
         size = (data) ? s : 0;
-        DEBUG_POINT_0;
 
         if(!data)
         {
-            DEBUG_POINT_0;
             LOG_TRACE_WRITE("Нет памяти");
         }
     }
     else
     {
-        DEBUG_POINT_0;
         data = nullptr;
-        DEBUG_POINT_0;
         size = 0U;
     }
-    DEBUG_POINT_0;
 }
 
 

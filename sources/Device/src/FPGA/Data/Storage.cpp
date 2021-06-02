@@ -21,16 +21,11 @@ DataReading::DataReading()
 
 void DataReading::CreateFromCurrentSettings()
 {
-    DEBUG_POINT_0;
     buffer.Realloc(sizeof(DataSettings) + set.memory.enum_points_fpga.BytesForData());
 
-    DEBUG_POINT_0;
     DataSettings &ds = *(DataSettings *)buffer.DataU8();
 
-    DEBUG_POINT_0;
-
     ds.Fill();
-    DEBUG_POINT_0;
 }
 
 

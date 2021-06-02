@@ -73,11 +73,6 @@ void DataDrawing::PrepareChannel(const Channel &ch)
             Math::CalculateFiltr(data_channel, i, (int)set.memory.enum_points_fpga.BytesInChannel(),
             (int)Smoothing::NumPoints()));
     }
-
-    if (points[ch].Size() == 0)
-    {
-        int i = 0;
-    }
 }
 
 
@@ -97,9 +92,7 @@ void DataDrawing::DrawChannel(const Channel &ch)
 
     if (set.display.mode_draw_signal.IsLines())
     {
-        DEBUG_POINT_0;
         DrawChannelLined(Grid::Left(), points[ch]);
-        DEBUG_POINT_0;
     }
     else
     {
@@ -135,12 +128,6 @@ void DataDrawing::DrawChannelPointed(int x, BufferU8 &buffer)
 
 void DataDrawing::DrawChannelLined(int x, BufferU8 &buffer)
 {
-    if (buffer.Size() == 0)
-    {
-        int i = 0;
-    }
-
-
     if (data.Settings().IsEnabledPeakDet())
     {
         uint size = buffer.Size();
