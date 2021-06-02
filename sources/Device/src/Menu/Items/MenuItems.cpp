@@ -276,9 +276,9 @@ bool Item::IsActive() const
 }
 
 
-bool Item::IsCurrent() const
+bool Item::IsCurrent(bool trace) const
 {
-    return (Menu::CurrentItem() == this);
+    return (Menu::CurrentItem(trace) == this);
 }
 
 

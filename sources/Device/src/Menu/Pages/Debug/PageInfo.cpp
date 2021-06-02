@@ -7,7 +7,7 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_CHOICE_2(cStats, PageDebug::self,
+DEF_CHOICE_2(cStats, PageDebug::PageInfo::self,
     "Статистика", "Statistics"
     ,
     "Показывать/не показывать время/кадр, кадров в секунду, количество сигналов с последними настройками в "
@@ -30,7 +30,7 @@ static void OnDraw_SizeSettings(int x, int y)
     Text("Размер %d", sizeof(Settings)).Draw(x + 5, y + 21, Color::BLACK);
 }
 
-DEF_CHOICE_2(cSizeSettings, PageDebug::self,
+DEF_CHOICE_2(cSizeSettings, PageDebug::PageInfo::self,
     "Размер настроек", "Size settings",
     "Вывод размера структуры Settings",
     "Show size of struct Settings",
@@ -48,7 +48,7 @@ static void OnDraw_SizeSettingsNRST(int x, int y)
     Text("Размер %d", sizeof(SettingsNRST)).Draw(x + 5, y + 21, Color::BLACK);
 }
 
-DEF_CHOICE_2(cSizeSettingsNRST, PageDebug::self,
+DEF_CHOICE_2(cSizeSettingsNRST, PageDebug::PageInfo::self,
     "Размер NRST", "Size NRST",
     "Вывод размера структуры несбрасываемых настроек",
     "Outputting the size of the non-resettable settings structure",

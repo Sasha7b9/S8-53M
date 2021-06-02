@@ -53,6 +53,10 @@ void GraphicGovernor::Draw(const Item *item, int x, int y)
     
     if(item->IsCurrent())
     {
+        item->IsCurrent(true);
+
+        LOG_TRACE_WRITE("текущий %x", item);
+
         char symbol = item->GetSymbolForGovernor();
 
         Char(symbol).Draw4SymbolsInRect(x + Item::WIDTH - 13, y + 5 + (item->IsOpened() ? 0 : 15),
