@@ -21,11 +21,16 @@ DataReading::DataReading()
 
 void DataReading::CreateFromCurrentSettings()
 {
+    DEBUG_POINT_0;
     buffer.Realloc(sizeof(DataSettings) + set.memory.enum_points_fpga.BytesForData());
 
+    DEBUG_POINT_0;
     DataSettings &ds = *(DataSettings *)buffer.DataU8();
 
+    DEBUG_POINT_0;
+
     ds.Fill();
+    DEBUG_POINT_0;
 }
 
 
@@ -70,6 +75,14 @@ uint8 *DataReading::Data(const Channel &ch)
     }
 
     return result;
+}
+
+
+uint8 *DataReading::DataEnd(const Channel &ch)
+{
+    uint8 *data = Data(ch);
+
+    return (data == nullptr) ? data : data + Settings().BytesInChannel();
 }
 
 

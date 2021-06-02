@@ -19,7 +19,7 @@ int main()
 
 
     Device::Init();
-       
+
     while(1)
     {
         Device::Update();

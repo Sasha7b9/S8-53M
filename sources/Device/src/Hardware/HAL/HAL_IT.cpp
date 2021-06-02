@@ -21,14 +21,20 @@ void NMI_Handler()
 }
 
 
+uint _sized_ = 0;
+
+
 void HardFault_Handler()
 {
     pchar file = Debug::file[0];
     int line = Debug::line[0];
     int posItem = Debug::posItem;
+    
+    int size = _sized_;
 
     while (1) //-V776
     {
+        size = _sized_;
         last_item = last_item;
 
         Display::Update();

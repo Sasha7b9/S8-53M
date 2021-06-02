@@ -348,18 +348,18 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>128</LineNumber>
+          <LineNumber>43</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134413842</Address>
+          <Address>134369274</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\Display\PainterData.cpp</Filename>
+          <Filename>&lt;1&gt;.\src\Hardware\HAL\HAL_IT.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\S8_53M\src/Display/PainterData.cpp\128</Expression>
+          <Expression>\\S8_53M\src/Hardware/HAL/HAL_IT.cpp\43</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -367,6 +367,21 @@
           <count>0</count>
           <WinNumber>1</WinNumber>
           <ItemText>lastOpened</ItemText>
+        </Ww>
+        <Ww>
+          <count>1</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>_sized_</ItemText>
+        </Ww>
+        <Ww>
+          <count>2</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>size</ItemText>
+        </Ww>
+        <Ww>
+          <count>3</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>_sized_</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>

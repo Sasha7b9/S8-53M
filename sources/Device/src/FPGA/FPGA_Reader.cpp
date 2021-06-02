@@ -43,20 +43,31 @@ void ReaderFPGA::ReadData()
 {
     mutex_read.Lock();
 
+    DEBUG_POINT_0;
     DataReadingKeeper data;
+    DEBUG_POINT_0;
 
     uint16 addr_read = CalculateAddressRead();
+    DEBUG_POINT_0;
 
     if (TBase::IsRandomize())
     {
-        Read::Randomizer::Channel(*data.data, ChA, addr_read);
+        DEBUG_POINT_0;
+//        Read::Randomizer::Channel(*data.data, ChA, addr_read);
+        DEBUG_POINT_0;
         Read::Randomizer::Channel(*data.data, ChB, addr_read);
+        DEBUG_POINT_0;
     }
     else
     {
+        DEBUG_POINT_0;
         Read::Real::Channel(*data.data, ChA, addr_read);
+        DEBUG_POINT_0;
         Read::Real::Channel(*data.data, ChB, addr_read);
+        DEBUG_POINT_0;
     }
+
+    DEBUG_POINT_0;
 
     Storage::Append(*data.data);
 
@@ -134,7 +145,7 @@ uint8 *ReaderFPGA::Read::Randomizer::CalculateFirstAddressWrite(DataReading &dr,
 
     DataSettings &ds = dr.Settings();
 
-    uint8 *awrite = dr.Data(ch);                                           // —юда будем писать считываемые данные
+    uint8 *awrite = dr.Data(ch);                                           // —юда будем писать считываемые данны
 
     if (ds.is_clean == 1)
     {
@@ -143,18 +154,6 @@ uint8 *ReaderFPGA::Read::Randomizer::CalculateFirstAddressWrite(DataReading &dr,
     }
 
     UtilizeFirstBytes(ADDRESS_READ(ch), num_skipped);
-
-    {
-//        static int prevShift = 0;
-//        static int prevOffset = 0;
-//
-//        if (prevShift != set.time.shift || prevOffset != LaunchFPGA::AdditionalOffsetIndexFirst())
-//        {
-//            LOG_WRITE("shift = %d, offset = %d", set.time.shift, LaunchFPGA::AdditionalOffsetIndexFirst());
-//            prevShift = set.time.shift;
-//            prevOffset = LaunchFPGA::AdditionalOffsetIndexFirst();
-//        }
-    }
 
     if (awrite != nullptr)
     {
@@ -174,30 +173,18 @@ void ReaderFPGA::Read::Randomizer::Channel(DataReading &dr, const ::Channel &ch,
         return;
     }
 
-//    {
-//        static int counter = 0;
-//        static uint prevTime = 0;
-//
-//        if (ch.IsA())
-//        {
-//            counter++;
-//
-//            if (TIME_MS - prevTime >= 1000)
-//            {
-//                LOG_WRITE("%d", counter);
-//                counter = 0;
-//                prevTime = TIME_MS;
-//            }
-//        }
-//    }
-
     FPGA::BUS::Write(WR_PRED, addr_read, false);
     FPGA::BUS::Write(WR_ADDR_READ, 0xffff, false);
 
     uint bytesInChannel = dr.Settings().BytesInChannel();
     uint numBytes = bytesInChannel / TBase::StepRand();
 
-    const uint8 *const awriteLast = awrite + bytesInChannel;
+    const uint8 *awriteLast = awrite + bytesInChannel;
+
+    if (awriteLast > dr.DataEnd(ch))
+    {
+        awriteLast = dr.DataEnd(ch);
+    }
 
     const uint16 *const aread = ADDRESS_READ(ch);
 

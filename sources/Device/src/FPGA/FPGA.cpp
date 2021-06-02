@@ -95,6 +95,8 @@ static int CalculateNumberCycles()
 
 void FPGA::Update()
 {
+    DEBUG_POINT_0;
+
     if (state.need_calibration)
     {
         Calibrator::PerformCalibration();
@@ -107,7 +109,9 @@ void FPGA::Update()
         return;
     }
 
+    DEBUG_POINT_0;
     flag.Read();
+    DEBUG_POINT_0;
 
     for (int i = 0; i < CalculateNumberCycles(); i++)
     {
@@ -115,11 +119,15 @@ void FPGA::Update()
         {
             if (flag.IsTrigReady())
             {
+                DEBUG_POINT_0;
                 if (flag.IsDataReady())
                 {
+                    DEBUG_POINT_0;
                     ReaderFPGA::ReadData();
+                    DEBUG_POINT_0;
 
                     StartIfNeed();
+                    DEBUG_POINT_0;
                 }
             }
         }

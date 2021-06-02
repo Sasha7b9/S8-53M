@@ -54,11 +54,17 @@ void Device::WriteFPS()
 
 void Device::Update()
 {
+    DEBUG_POINT_0;
     HAL_TIM2::StartMultiMeasurement();
+    DEBUG_POINT_0;
     FPGA::Update();
+    DEBUG_POINT_0;
     Panel::Update();
+    DEBUG_POINT_0;
     Display::Update();
+    DEBUG_POINT_0;
     Menu::Update();
+    DEBUG_POINT_0;
 }
 
 

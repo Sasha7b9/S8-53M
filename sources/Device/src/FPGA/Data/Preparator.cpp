@@ -40,29 +40,39 @@ DataReadingKeeper::~DataReadingKeeper()
 
 void DataReadingKeeper::Prepare()
 {
+    DEBUG_POINT_0;
     data = new DataReading();
+    DEBUG_POINT_0;
 
     if (Storage::SettingsIsEquals(0, *data))
     {
+        DEBUG_POINT_0;
         return;
     }
+    DEBUG_POINT_0;
 
     DataReading last;
 
+    DEBUG_POINT_0;
+
     if (Storage::ExtractLast(last))
     {
+        DEBUG_POINT_0;
         DataSettings &ds = data->Settings();
-
+        DEBUG_POINT_0;
         if (ds.IsEnabled(ChA))
         {
+            DEBUG_POINT_0;
             std::memcpy(data->Data(ChA), last.Data(ChA), ds.BytesInChannel());
         }
-
+        DEBUG_POINT_0;
         if (ds.IsEnabled(ChB))
         {
+            DEBUG_POINT_0;
             std::memcpy(data->Data(ChB), last.Data(ChB), ds.BytesInChannel());
         }
-
+        DEBUG_POINT_0;
         ds.is_clean = 0;
     }
+    DEBUG_POINT_0;
 }
