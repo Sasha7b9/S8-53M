@@ -86,7 +86,7 @@ void TopPart::WriteCursors()
                 Rectangle(width, 12).Draw(x0, Grid::TOP, Color::FILL);
                 Region(width - 2, 10).Fill(x0 + 1, Grid::TOP + 1, Color::BACK);
                 Text("1/dT=").Draw(x0 + 1, Grid::TOP + 2, colorText);
-                Text text = (std::fabsf(delta - 0.0F) < 1e-12f) ? Text("X") : Frequency(1.0F / delta).ToText();
+                Text text = (std::fabsf(delta - 0.0F) < 1e-12f) ? Text("---.---") : Frequency(1.0F / delta).ToText();
                 text.Draw(x0 + 25, Grid::TOP + 2);
             }
         }
