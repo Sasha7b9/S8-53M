@@ -267,23 +267,23 @@ struct SettingsTrig
 // Настройки оси X.
 struct SettingsTime
 {
-    TBase::E            base;           // Масштаб по времени.
-    FunctionTime::E     function_time;
-    TPos                t_pos;          // Привязка синхронизации к памяти.
-    SampleType::E       sample_type;    // Тип выборки для режима рандомизатора.
-    PeackDetMode        peak_det;       // Режим работы пикового детектора
-    EnumPointsFPGA::E old_num_points; // \brief Когда переключаемся в режим пикового детектора, устанавливаем
+    TBase::E          base;             // Масштаб по времени.
+    FunctionTime::E   function_time;
+    TPos              t_pos;            // Привязка синхронизации к памяти.
+    SampleType::E     sample_type;      // Тип выборки для режима рандомизатора.
+    PeackDetMode      peak_det;         // Режим работы пикового детектора
+    EnumPointsFPGA::E old_num_points;   // \brief Когда переключаемся в режим пикового детектора, устанавливаем
                                         // количество точек в 1024, а сюда  записываем то, что было, чтобы потом
                                         // восстановить.
-    int                 shift;          // Смещение по времени.
-    bool                self_recorder;  // Включен ли режим самописца.
+    int               shift;            // Смещение по времени.
+    bool              self_recorder;    // Включен ли режим самописца.
 };
 
 
 struct SettingsMenu
 {
-    bool        pageDebugActive;                  // Активна ли кнопка отладки в меню.
-    unsigned    isShown : 1;                      // Меню показано.
+    bool        pageDebugActive;        // Активна ли кнопка отладки в меню.
+    unsigned    isShown : 1;            // Меню показано.
 };
 
 

@@ -651,11 +651,11 @@ void FPGA::Calibrator::CalibrateAddRShift(const Channel &ch, bool /*wait*/)
 {
     int16 shifts[3];
 
-    setNRST.adc.StoreAndResetRShifts(ch, shifts);
+    setNRST.chan[ch].StoreAndResetRShifts(shifts);
 
     LoadSettingsForCalculationAddRShift(ch);
 
-    setNRST.adc.RestoreRShifts(ch, shifts);
+    setNRST.chan[ch].RestoreRShifts(shifts);
 }
 
 

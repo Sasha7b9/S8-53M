@@ -27,18 +27,20 @@ static const SettingsNRST defaultNRST =
     // SettingsADC
     {
         {},                         // balance
-        {},                         // rshift_auto
-        {},                         // rshift_hand
         StretchADCtype::Settings,   // type_stretch
     },
     // SettingsChannel
     {
         {
+            {},                     // rshift_hand
+            {},                     // rshift_auto
             0,                      // balance_hand
             1.0f,                   // stretch_auto
             {}                      // rshift_add
         },
         {
+            {},                     // rshift_hand
+            {},                     // rshift_auto
             0,                      // balance_hand
             1.0f,                   // stretch_auto
             {}                      // rshift_add
@@ -142,29 +144,29 @@ void SettingsNRST::Test()
 }
 
 
-void SettingsNRST::SettingsADC::StoreAndResetRShifts(const Channel &ch, int16 shifts[3])
+void SettingsNRST::SettingsChannel::StoreAndResetRShifts(int16 shifts[3])
 {
     for (int i = 0; i < 3; i++)                         // Сохраняем и сбрасываем ручные установки
     {
-        shifts[i] = rshift_hand[ch][i];
+        shifts[i] = rshift_hand[i];
 
-        rshift_hand[ch][i] = 0;
+        rshift_hand[i] = 0;
     }
 
     for (int range = 0; range < Range::Count; range++)  // Сбрасываем автоматические устаноки
     {
         for (int mode = 0; mode < 2; mode++)
         {
-            rshift_auto[ch][range][mode] = 0;
+            rshift_auto[range][mode] = 0;
         }
     }
 }
 
 
-void SettingsNRST::SettingsADC::RestoreRShifts(const Channel &ch, int16 shifts[3])
+void SettingsNRST::SettingsChannel::RestoreRShifts(int16 shifts[3])
 {
     for (int i = 0; i < 3; i++)                         // Восстанавливаем ручные установки
     {
-        rshift_hand[ch][i] = shifts[3];
+        rshift_hand[i] = shifts[3];
     }
 }

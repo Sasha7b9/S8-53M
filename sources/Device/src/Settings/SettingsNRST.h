@@ -18,29 +18,27 @@ struct SettingsNRST
 
     struct SettingsADC
     {
-        int16 balance[Channel::Count];   // Баланс АЦП для каждого из каналов
-
-        int16 rshift_auto[Channel::Count][Range::Count][2]; // Добавочное смещение, которое пишется сюда при калибровке
-                                                            // и балансировке. При z == 0 - ModeCouple::DC, при z == 1
-                                                            // - ModeCouple::AC
-        int16 rshift_hand[Channel::Count][3];   // Добавочное смещение, устанавливаемое в ручном режиме для
-                                                // ModeCouple::DC и трёх самых чувствительных диапазонах
-
-        StretchADCtype::E type_stretch;         // Тип растяжки канала.
-
-        // Сохранить дополнительные смещения и сбросить в ноль
-        void StoreAndResetRShifts(const Channel &ch, int16 shifts[3]);
-
-        // Восстановить необходимые дополнительные смещения (те, которые устанавливаются вручную для чувствительных
-        // диапазонов
-        void RestoreRShifts(const Channel &ch, int16 shifts[3]);
+        int16 balance[Channel::Count];  // Баланс АЦП для каждого из каналов
+        StretchADCtype::E type_stretch; // Тип растяжки канала.
     };
 
     struct SettingsChannel
     {
-        int16   stretch_hand;                // Значение растяжки канала для ручного режима
-        float   stretch_auto;                // Растяжка, рассчитанная в процессе калибровки
-        int16   rshift_add[Range::Count][2]; // Добавочное смещение для открытого (0) и закрытого (1) входов
+        int16 rshift_hand[3];                   // Добавочное смещение, устанавливаемое в ручном режиме для
+                                                // ModeCouple::DC и трёх самых чувствительных диапазонах
+        int16 rshift_auto[Range::Count][2];     // Добавочное смещение, которое пишется сюда при калибровке
+                                                // и балансировке. При z == 0 - ModeCouple::DC, при z == 1
+                                                // - ModeCouple::AC
+        int16 stretch_hand;                     // Значение растяжки канала для ручного режима
+        float stretch_auto;                     // Растяжка, рассчитанная в процессе калибровки
+        int16 rshift_add[Range::Count][2];      // Добавочное смещение для открытого (0) и закрытого (1) входов
+
+        // Сохранить дополнительные смещения и сбросить в ноль
+        void StoreAndResetRShifts(int16 shifts[3]);
+
+        // Восстановить необходимые дополнительные смещения (те, которые устанавливаются вручную для чувствительных
+        // диапазонов
+        void RestoreRShifts(int16 shifts[3]);
     };
 
     struct SettingsConsole
