@@ -921,13 +921,13 @@ struct CursCntrl
         _1,            // первым.
         _2,            // вторым.
         _1_2,          // обоими.
-        Disable        // никаким.
+        Disabled       // никаким.
     } value;
 
-    bool IsDisable() const { return value == Disable; }
-    bool Is1()       const { return value == _1; }
-    bool Is2()       const { return value == _2; }
-    bool Is1_2()     const { return value == _1_2; }
+    bool IsDisabled() const { return value == Disabled; }
+    bool Is1()        const { return value == _1; }
+    bool Is2()        const { return value == _2; }
+    bool Is1_2()      const { return value == _1_2; }
 };
 
 

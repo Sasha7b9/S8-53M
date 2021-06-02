@@ -78,7 +78,7 @@ static void IncCursCntrlU(const Channel &ch)
 
 static void PressSB_U()
 {
-    if (set.cursors.active.IsU() || set.cursors.cntrlU[set.cursors.source].IsDisable())
+    if (set.cursors.active.IsU() || set.cursors.cntrlU[set.cursors.source].IsDisabled())
     {
         IncCursCntrlU(set.cursors.source);
     }
@@ -121,7 +121,7 @@ static void DrawSB_Cursors_U(int x, int y)
 {
     CursCntrl &cursCntrl = set.cursors.cntrlU[set.cursors.source];
 
-    if (cursCntrl.IsDisable())
+    if (cursCntrl.IsDisabled())
     {
         DrawSB_U_Disable(x, y);
     }
@@ -187,7 +187,7 @@ void IncCursCntrlT(const Channel &ch)
 
 static void PressSB_Cursors_T()
 {
-    if (set.cursors.active.IsT() || set.cursors.cntrlT[set.cursors.source].IsDisable())
+    if (set.cursors.active.IsT() || set.cursors.cntrlT[set.cursors.source].IsDisabled())
     {
         IncCursCntrlT(set.cursors.source);
     }
@@ -231,7 +231,7 @@ static void DrawSB_Cursors_T(int x, int y)
     Channel &source = set.cursors.source;
     CursCntrl &curs_cntrl = set.cursors.cntrlT[source];
 
-    if (curs_cntrl.IsDisable())
+    if (curs_cntrl.IsDisabled())
     {
         DrawSB_Cursors_T_Disable(x, y);
     }

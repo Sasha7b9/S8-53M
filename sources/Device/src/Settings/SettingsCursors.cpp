@@ -19,7 +19,7 @@ float Cursors::GetPosU(const Channel &ch, int num)
 bool Cursors::NecessaryDraw()
 {
     return (
-        !set.cursors.cntrlU[set.cursors.source].IsDisable() || !set.cursors.cntrlT[set.cursors.source].IsDisable()
+        !set.cursors.cntrlU[set.cursors.source].IsDisabled() || !set.cursors.cntrlT[set.cursors.source].IsDisabled()
         ) &&
         (set.cursors.show || Menu::GetNameOpenedPage() == NamePage::SB_Curs);
 }
@@ -86,7 +86,7 @@ void Cursors::Draw()
     {
         // Признак того, что включены и вертикальные и горизонтальные курсоры - надо нарисовать квадраты в местах
         // пересечения
-        bool bothCursors = !set.cursors.cntrlT[source].IsDisable() && !set.cursors.cntrlU[source].IsDisable();  
+        bool bothCursors = !set.cursors.cntrlT[source].IsDisabled() && !set.cursors.cntrlU[source].IsDisabled();  
 
         int x0 = -1;
         int x1 = -1;
@@ -104,17 +104,13 @@ void Cursors::Draw()
             Rectangle(4, 4).Draw(x1 - 2, y1 - 2);
         }
 
-        CursCntrl &cntrl = set.cursors.cntrlT[source];
-
-        if (!cntrl.IsDisable())
+        if (!set.cursors.cntrlT[source].IsDisabled())
         {
             DrawVertical((int)(set.cursors.posT[source][0]), y0);
             DrawVertical((int)(set.cursors.posT[source][1]), y1);
         }
 
-        cntrl = set.cursors.cntrlT[source];
-
-        if (!cntrl.IsDisable())
+        if (!set.cursors.cntrlU[source].IsDisabled())
         {
             DrawHorizontal((int)(Cursors::GetPosU(source, 0)), x0);
             DrawHorizontal((int)(Cursors::GetPosU(source, 1)), x1);

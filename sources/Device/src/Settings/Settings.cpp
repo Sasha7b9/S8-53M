@@ -100,8 +100,8 @@ static const Settings defaultSettings =
     },
     // cursors
     {
-        { CursCntrl::Disable, CursCntrl::Disable },     // CursCntrl U
-        { CursCntrl::Disable, CursCntrl::Disable },     // CursCntrl T
+        { CursCntrl::Disabled, CursCntrl::Disabled },   // CursCntrl U
+        { CursCntrl::Disabled, CursCntrl::Disabled },   // CursCntrl T
         Channel::A,                                     // source
         { 60.0F,  140.0F, 60.0F, 140.0F },              // posCur U
         { 80.0F,  200.0F, 80.0F, 200.0F },              // posCur T

@@ -30,13 +30,13 @@ void TopPart::WriteCursors()
         int y1 = 0;
         int y2 = 9;
 
-        HLine().Draw(x, 1, Grid::TOP - 2, Color::FILL);
+        VLine().Draw(x, 1, Grid::TOP - 2, Color::FILL);
         x += 3;
         Channel source = set.cursors.source;
 
         Color colorText = source.GetColor();
 
-        if (!set.cursors.cntrlU[source].IsDisable())
+        if (!set.cursors.cntrlU[source].IsDisabled())
         {
             Text("1:").Draw(x, y1, colorText);
             Text("2:").Draw(x, y2);
@@ -59,10 +59,10 @@ void TopPart::WriteCursors()
         }
 
         x = startX + 101;
-        HLine().Draw(x, 1, Grid::TOP - 2, Color::FILL);
+        VLine().Draw(x, 1, Grid::TOP - 2, Color::FILL);
         x += 3;
 
-        if (!set.cursors.cntrlT[source].IsDisable())
+        if (!set.cursors.cntrlT[source].IsDisabled())
         {
             colorText.SetAsCurrent();
             Text("1:").Draw(x, y1);
