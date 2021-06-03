@@ -131,22 +131,14 @@ void PageChannelB::OnChanged_Input(bool)
     led_ChB.SwitchToState(ChB.IsEnabled());
 }
 
-static void OnDraw_InputB(int, int);
-
 DEF_CHOICE_2(mcInputB, PageChannelB::self,
     "¬ход 2", "Input",
     chanInputRu,
     chanInputEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.chan[Channel::B].enable, nullptr, PageChannelB::OnChanged_Input, OnDraw_InputB
+    set.chan[Channel::B].enable, nullptr, PageChannelB::OnChanged_Input, nullptr
 )
-
-static void OnDraw_InputB(int, int)
-{
-    LOG_WRITE("address enable 2 = %x", &set.chan[Channel::B].enable);
-    LOG_WRITE("address mcInputB own cell = %x", mcInputB.OwnData()->cell);
-}
 
 
 void PageChannelB::OnChanged_Couple(bool)
