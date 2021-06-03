@@ -98,7 +98,7 @@ void FPGA::Calibrator::PerformCalibration()
     set.chan[Channel::A].enable = true;
     set.chan[Channel::B].enable = true;
 
-    Display::SetDrawMode(DrawMode::Hand, FuncAttScreen);
+    Display::SetDrawMode(DrawMode::Timer, FuncAttScreen);
     Timer::Enable(TypeTimer::TimerDrawHandFunction, 100, OnTimerDraw);
 
     koeffCalibrationOld[ChA] = setNRST.chan[ChA].stretch_auto;
@@ -235,7 +235,7 @@ void FPGA::Calibrator::PerformCalibration()
     Panel::WaitPressingButton();
     Panel::EnableInput();
     Timer::Disable(TypeTimer::TimerDrawHandFunction);
-    Display::SetDrawMode(DrawMode::Auto, 0);
+    Display::SetDrawMode(DrawMode::Default);
     state.state_calibration = StateCalibration::None;
 
     set.chan[Channel::A].enable = chanAenable;
@@ -615,7 +615,7 @@ void FPGA::Calibrator::PerformBalance(const Channel &ch)
         {"Балансирую канал 2", "Balancing the channel 2"}
     };
 
-    Display::Message::Show(messages[LANG][ch], true);
+    Display::Message::Show(messages[LANG][ch]);
 
 
 //        - Сохранить настройки

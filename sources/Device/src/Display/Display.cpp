@@ -27,6 +27,9 @@ static bool needFinishDraw = true;      // ≈сли 1, то дисплей нуждаетс€ в перери
 static uint numDrawingSignals = 0;      // „исло нарисованных сигналов дл€ режима накоплени€
 
 
+pchar Display::Message::text = nullptr;
+
+
 void Display::RotateTrigLev()
 {
     if (set.display.time_show_levels)
@@ -227,8 +230,17 @@ void Display::DisableShowLevelTrigLev()
 }
 
 
-void Display::SetDrawMode(DrawMode::E /*mode*/, pFuncVV /*func*/)
+void Display::SetDrawMode(DrawMode::E mode, pFuncVV /*func*/)
 {
+    if (mode == DrawMode::Timer)
+    {
+
+    }
+    else if (mode == DrawMode::Default)
+    {
+
+    }
+
 //    funcOnHand = (mode == DrawMode::Auto) ? 0 : func;
 }
 
@@ -287,7 +299,15 @@ void Display::RunAfterDraw(pFuncVV /*func*/)
 }
 
 
-void Display::Message::Show(pchar text, bool eraseBackground)
+void Display::Message::Show(pchar _text)
+{
+    text = _text;
+
+    Display::SetDrawMode(DrawMode::Timer, FuncDraw);
+}
+
+
+void Display::Message::FuncDraw()
 {
 
 }

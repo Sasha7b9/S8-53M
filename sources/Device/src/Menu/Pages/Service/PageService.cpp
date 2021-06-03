@@ -33,7 +33,7 @@ static void OnTimerDraw()
 static void OnPress_ResetSettings()
 {
     Panel::DisableInput();
-    Display::SetDrawMode(DrawMode::Hand, FuncDraw);
+    Display::SetDrawMode(DrawMode::Timer, FuncDraw);
     Timer::Enable(TypeTimer::TimerDrawHandFunction, 100, OnTimerDraw);
 
     if (Panel::WaitPressingButton() == Key::Start)
@@ -43,7 +43,7 @@ static void OnPress_ResetSettings()
     }
 
     Timer::Disable(TypeTimer::TimerDrawHandFunction);
-    Display::SetDrawMode(DrawMode::Auto, 0);
+    Display::SetDrawMode(DrawMode::Default);
     Panel::EnableInput();
 }
 

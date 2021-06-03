@@ -6,14 +6,10 @@
 
 struct DataSettings;
 
-struct DrawMode
-{
-    enum E
-    {
-        Auto,
-        Hand
-    };
-};
+struct DrawMode { enum E {
+    Default,        // Стандартная отрисовка в цикле
+    Timer           // Отрисовка по таймеру заданной функции
+}; };
 
 
 class Display
@@ -39,7 +35,7 @@ public:
 
     static void Redraw();
 
-    static void SetDrawMode(DrawMode::E mode, pFuncVV func);
+    static void SetDrawMode(DrawMode::E mode, pFuncVV func = nullptr);
 
     static void SetAddDrawFunction(pFuncVV func);
 
@@ -62,7 +58,13 @@ public:
 
     struct Message
     {
-        static void Show(pchar text, bool eraseBackground);
+        static void Show(pchar text);
+
+    private:
+
+        static void FuncDraw();
+
+        static pchar text;
     };
 
 private:

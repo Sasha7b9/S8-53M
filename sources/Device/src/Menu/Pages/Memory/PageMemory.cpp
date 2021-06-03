@@ -174,7 +174,7 @@ void PageMemory::PageExternal::OnPress_FileManager()
     if(FDrive::isConnected)
     {
         PageMemory::PageFileManager::self->OpenAndSetItCurrent();
-        Display::SetDrawMode(DrawMode::Hand, FM::Draw);
+        Display::SetDrawMode(DrawMode::Timer, FM::Draw);
         FM::needRedrawFileManager = 1;
     }
 }

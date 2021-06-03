@@ -10,7 +10,7 @@
 
 static void PressSB_Exit()
 {
-    Display::SetDrawMode(DrawMode::Auto, 0);
+    Display::SetDrawMode(DrawMode::Default);
     Display::RemoveAddDrawFunction();
 }
 

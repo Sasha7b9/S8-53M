@@ -11,7 +11,7 @@
 
 static void OnPress_Exit()
 {
-    Display::SetDrawMode(DrawMode::Auto, 0);
+    Display::SetDrawMode(DrawMode::Default, 0);
     Display::RemoveAddDrawFunction();
 }
 
@@ -57,7 +57,7 @@ static void Information_Draw()
 static void OnPress()
 {
     PageService::PageInformation::self->OpenAndSetItCurrent();
-    Display::SetDrawMode(DrawMode::Hand, Information_Draw);
+    Display::SetDrawMode(DrawMode::Timer, Information_Draw);
 }
 
 
