@@ -40,7 +40,7 @@ void PageChannelA::OnChanged_Input(bool)
 }
 
 DEF_CHOICE_2(mcInputA, PageChannelA::self,
-    "¬ход 1", "Input",
+    "¬ход", "Input",
     chanInputRu,
     chanInputEn,
     DISABLE_RU, DISABLE_EN,
@@ -132,7 +132,7 @@ void PageChannelB::OnChanged_Input(bool)
 }
 
 DEF_CHOICE_2(mcInputB, PageChannelB::self,
-    "¬ход 2", "Input",
+    "¬ход", "Input",
     chanInputRu,
     chanInputEn,
     DISABLE_RU, DISABLE_EN,

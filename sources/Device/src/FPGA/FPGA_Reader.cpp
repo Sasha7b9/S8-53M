@@ -35,6 +35,9 @@ static uint8 InverseIfNecessary(uint8 data, Channel::E ch)
 
 Mutex ReaderFPGA::mutex_read;
 
+const uint16 *ReaderFPGA::ADC::address = nullptr;
+int16         ReaderFPGA::ADC::balance = 0;
+
 
 const uint16 *const addresses_ADC[2] = { RD_ADC_A, RD_ADC_B };
 
@@ -72,14 +75,13 @@ void ReaderFPGA::Read::Real::Channel(DataReading &data, const ::Channel &ch, uin
     uint16 *p = (uint16 *)data.Data(ch);
     const uint16 *end = (uint16 *)(data.Data(ch) + data.Settings().BytesInChannel());
 
-    volatile const uint16 * const address = ADDRESS_READ(ch);
+    const uint16 *address = ADDRESS_READ(ch);
 
-    int counter = 0;
+    ADC::SetParameters(address, ch.value);
 
     while (p < end)
     {
-        *p++ = *address;
-        counter++;
+        *p++ = ADC::ReadPoints();
     }
 
     if (!PeackDetMode::IsEnabled() && FPGA::flag.IsFirstByte0())
@@ -91,6 +93,26 @@ void ReaderFPGA::Read::Real::Channel(DataReading &data, const ::Channel &ch, uin
             *(pointer - 1) = *pointer;
         }
     }
+}
+
+
+uint16 ReaderFPGA::ADC::ReadPoints()
+{
+    BitSet16 data;
+    data.half_word = *address;
+
+    int16 byte1 = data.byte1;
+    Math::AddLimitation<int16>(&byte1, balance, 0, 255);
+    data.byte1 = (uint8)byte1;
+
+    return data.half_word;
+}
+
+
+void ReaderFPGA::ADC::SetParameters(const uint16 *_address, Channel::E ch)
+{
+    address = _address;
+    balance = setNRST.chan[ch].balance_ADC;
 }
 
 

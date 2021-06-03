@@ -25,14 +25,15 @@ template float Math::Limitation(float, float, float);
 template int16 Math::Limitation(int16, int16, int16);
 template void  Math::Sort(int *, int *);
 template float Math::Max(float, float, float);
-template int8  Math::CircleIncrease(int8 *val, int8 min, int8 max);
-template int16 Math::CircleIncrease(int16 *val, int16 min, int16 max);
-template int   Math::CircleIncrease(int *val, int min, int max);
-template int8  Math::CircleDecrease(int8 *val, int8 min, int8 max);
-template int16 Math::CircleDecrease(int16 *val, int16 min, int16 max);
-template int   Math::CircleDecrease(int *val, int min, int max);
-template void  Math::AddLimitation(float *val, float delta, float min, float max);
-template bool  Math::InRange(int value, int min, int max);
+template int8  Math::CircleIncrease(int8 *, int8, int8);
+template int16 Math::CircleIncrease(int16 *, int16, int16);
+template int   Math::CircleIncrease(int *, int, int);
+template int8  Math::CircleDecrease(int8 *, int8, int8);
+template int16 Math::CircleDecrease(int16 *, int16, int16);
+template int   Math::CircleDecrease(int *, int, int);
+template void  Math::AddLimitation(float *, float, float, float);
+template void  Math::AddLimitation(int16 *, int16, int16, int16);
+template bool  Math::InRange(int, int, int);
 
 
 const float Math::Pi = 3.14159265358979323846F;
@@ -434,7 +435,7 @@ T Math::CircleSub(T *val, T delta, T min, T max)
 template<class T>
 void Math::AddLimitation(T *val, T delta, T min, T max)
 {
-    float sum = *val + delta;
+    T sum = *val + delta;
 
     if (sum < min)
     {

@@ -49,4 +49,20 @@ private:
             static uint8 *CalculateFirstAddressWrite(DataReading &dr, const ::Channel &ch);
         };
     };
+
+    struct ADC
+    {
+        // Установить параметры для последующиего чтения:
+        // address - адрес чтения,
+        // ch - данные этого канала будут считываться.
+        static void SetParameters(const uint16 *address, Channel::E ch);
+
+        // Читает две точки (из двух АЦП) с учётом калибровок
+        static uint16 ReadPoints();
+
+    private:
+
+        static const uint16 *address;       // С этого адреса производится чтение
+        static int16  balance;              // Баланс второго АЦП
+    };
 };
