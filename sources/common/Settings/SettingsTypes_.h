@@ -64,7 +64,8 @@ struct SourceFFT {
 struct Language { enum E
 {
     Russian,    // Русский
-    English     // Английский
+    English,    // Английский
+    Count
 };};
 
 

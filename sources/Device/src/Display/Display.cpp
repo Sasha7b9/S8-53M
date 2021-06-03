@@ -287,13 +287,7 @@ void Display::RunAfterDraw(pFuncVV /*func*/)
 }
 
 
-void Display::FuncOnWaitStart(pchar /*text*/, bool /*eraseBackground*/)
-{
-
-}
-
-
-void Display::FuncOnWaitStop()
+void Display::Message::Show(pchar text, bool eraseBackground)
 {
 
 }

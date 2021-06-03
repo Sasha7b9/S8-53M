@@ -609,7 +609,13 @@ void FPGA::Calibrator::PerformBalance(const Channel &ch)
 //    *КК -калибровочный коээфициент
 
 //        - Вывести сообщение о балансировке.
+    static const pchar messages[Language::Count][Channel::Count] =
+    {
+        {"Балансирую канал 1", "Balancing the channel 1"},
+        {"Балансирую канал 2", "Balancing the channel 2"}
+    };
 
+    Display::Message::Show(messages[LANG][ch], true);
 
 
 //        - Сохранить настройки
@@ -625,33 +631,33 @@ void FPGA::Calibrator::PerformBalance(const Channel &ch)
 // 
  
 
-    CreateCalibrationStruct();
-
-    Display::FuncOnWaitStart(ch.IsA() ? (LANG_RU ? "Балансировка канала 1" : "Balance channel 1") :
-                                        (LANG_RU ? "Балансировка канала 2" : "Balance channel 2"), false);
-
-    Settings storedSettings = set;
-
-    Panel::DisableInput();
-
-    CalibrateAddRShift(ch, true);
-
-    RestoreSettingsForCalibration(&storedSettings);
-
-    CalibrationMode::E mode = setNRST.calibration_mode[ch];
-    setNRST.calibration_mode[ch] = CalibrationMode::x1;
-
-    WriteAdditionRShifts(ch);
-
-    setNRST.calibration_mode[ch] = mode;
-
-    Panel::EnableInput();
-
-    Display::FuncOnWaitStop();
-
-    FPGA::OnPressStartStop();
-
-    DeleteCalibrationStruct();
+//    CreateCalibrationStruct();
+//
+//    Display::FuncOnWaitStart(ch.IsA() ? (LANG_RU ? "Балансировка канала 1" : "Balance channel 1") :
+//                                        (LANG_RU ? "Балансировка канала 2" : "Balance channel 2"), false);
+//
+//    Settings storedSettings = set;
+//
+//    Panel::DisableInput();
+//
+//    CalibrateAddRShift(ch, true);
+//
+//    RestoreSettingsForCalibration(&storedSettings);
+//
+//    CalibrationMode::E mode = setNRST.calibration_mode[ch];
+//    setNRST.calibration_mode[ch] = CalibrationMode::x1;
+//
+//    WriteAdditionRShifts(ch);
+//
+//    setNRST.calibration_mode[ch] = mode;
+//
+//    Panel::EnableInput();
+//
+//    Display::FuncOnWaitStop();
+//
+//    FPGA::OnPressStartStop();
+//
+//    DeleteCalibrationStruct();
 }
 
 
