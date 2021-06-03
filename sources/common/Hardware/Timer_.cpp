@@ -65,7 +65,9 @@ void Timer::Disable(TypeTimer::E type)
 
 void Timer::Update1ms()
 {
-    for(int num = 0; num < TypeTimer::Count; num++)
+    LOG_FUNC_ENTER();
+
+        for(int num = 0; num < TypeTimer::Count; num++)
     {
         if(isRun[num])
         {

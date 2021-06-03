@@ -43,7 +43,7 @@ void HAL::Init()
 
 //    HAL_RTC::Init();
 
-//    HAL_TIM6::Init();
+    HAL_TIM6::Init();
 
 //    HAL_ETH::Init();
 
