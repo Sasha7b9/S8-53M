@@ -38,7 +38,7 @@ struct SettingsNRST
 
         // Восстановить необходимые дополнительные смещения (те, которые устанавливаются вручную для чувствительных
         // диапазонов
-        void RestoreRShifts(int16 shifts[3]);
+        void RestoreHandsRShifts(int16 shifts[3]);
     };
 
     struct SettingsConsole

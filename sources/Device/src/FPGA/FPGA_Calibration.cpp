@@ -620,7 +620,7 @@ void FPGA::Calibrator::CalibrateAddRShift(const Channel &ch)
 
     LoadSettingsForCalculationAddRShift(ch);
 
-    setNRST.chan[ch].RestoreRShifts(shifts);
+    setNRST.chan[ch].RestoreHandsRShifts(shifts);
 }
 
 

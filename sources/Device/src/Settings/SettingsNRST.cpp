@@ -161,7 +161,7 @@ void SettingsNRST::SettingsChannel::StoreAndResetRShifts(int16 shifts[3])
 }
 
 
-void SettingsNRST::SettingsChannel::RestoreRShifts(int16 shifts[3])
+void SettingsNRST::SettingsChannel::RestoreHandsRShifts(int16 shifts[3])
 {
     for (int range = 0; range < 3; range++)                         // Восстанавливаем ручные установки
     {
