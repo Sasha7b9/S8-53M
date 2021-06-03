@@ -99,7 +99,7 @@ void FPGA::Calibrator::PerformCalibration()
     set.chan[Channel::B].enable = true;
 
     Display::SetDrawMode(DrawMode::Timer, FuncAttScreen);
-    Timer::Enable(TypeTimer::TimerDrawHandFunction, 100, OnTimerDraw);
+    Timer::Enable(TypeTimer::DisplayUpdate, 100, OnTimerDraw);
 
     koeffCalibrationOld[ChA] = setNRST.chan[ChA].stretch_auto;
     koeffCalibrationOld[ChB] = setNRST.chan[ChB].stretch_auto;
@@ -234,7 +234,7 @@ void FPGA::Calibrator::PerformCalibration()
     state.state_calibration = StateCalibration::None;
     Panel::WaitPressingButton();
     Panel::EnableInput();
-    Timer::Disable(TypeTimer::TimerDrawHandFunction);
+    Timer::Disable(TypeTimer::DisplayUpdate);
     Display::SetDrawMode(DrawMode::Default);
     state.state_calibration = StateCalibration::None;
 
@@ -616,6 +616,10 @@ void FPGA::Calibrator::PerformBalance(const Channel &ch)
     };
 
     Display::Message::Show(messages[LANG][ch]);
+
+    HAL_TIM2::Delay(1000);
+
+    Display::Message::Hide();
 
 
 //        - Сохранить настройки

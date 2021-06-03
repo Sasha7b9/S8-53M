@@ -17,6 +17,8 @@ void Timer::PauseOnTicks(uint numTicks)
 }
 
 
+
+
 static uint timeStartLogging = 0;
 static uint timePrevPoint = 0;
 

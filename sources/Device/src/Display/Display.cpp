@@ -19,7 +19,6 @@
 #include <cstring>
 
 
-//static pFuncVV funcOnHand       = 0;
 //static pFuncVV funcAdditionDraw = 0;
 //static pFuncVV funcAfterDraw    = 0;
 
@@ -27,7 +26,9 @@ static bool needFinishDraw = true;      // Если 1, то дисплей нуждается в перери
 static uint numDrawingSignals = 0;      // Число нарисованных сигналов для режима накопления
 
 
+pFuncVV Display::funcDrawTimer = nullptr;
 pchar Display::Message::text = nullptr;
+uint  Display::Message::timeStart = 0;
 
 
 void Display::RotateTrigLev()
@@ -84,6 +85,11 @@ bool Display::NeedForClearScreen()
 
 bool Display::NeedUpdate()
 {
+    if (funcDrawTimer != nullptr)
+    {
+        return false;
+    }
+
     static uint prevTime = 0;       // Время предыдущей отрисовки
 
     if (TIME_MS - prevTime >= set.display.enum_fps.DeltaTime())
@@ -230,18 +236,20 @@ void Display::DisableShowLevelTrigLev()
 }
 
 
-void Display::SetDrawMode(DrawMode::E mode, pFuncVV /*func*/)
+void Display::SetDrawMode(DrawMode::E mode, pFuncVV func)
 {
+    funcDrawTimer = func;
+
     if (mode == DrawMode::Timer)
     {
-
+        Timer::Enable(TypeTimer::DisplayUpdate, 100, funcDrawTimer);
     }
     else if (mode == DrawMode::Default)
     {
+        funcDrawTimer = nullptr;
 
+        Timer::Disable(TypeTimer::DisplayUpdate);
     }
-
-//    funcOnHand = (mode == DrawMode::Auto) ? 0 : func;
 }
 
 
@@ -303,11 +311,54 @@ void Display::Message::Show(pchar _text)
 {
     text = _text;
 
+    timeStart = TIME_MS;
+
     Display::SetDrawMode(DrawMode::Timer, FuncDraw);
+}
+
+
+void Display::Message::Hide()
+{
+    Display::SetDrawMode(DrawMode::Default);
 }
 
 
 void Display::Message::FuncDraw()
 {
+    uint time = ((TIME_MS - timeStart) / 50) % 100;
 
+    if (time > 50)
+    {
+        time = (100 - time);
+    }
+
+    int width = 200;
+    int height = 80;
+    int x = Display::WIDTH - width / 2;
+    int y = Display::HEIGHT - height / 2;
+
+    Region(width, height).Fill(x, y, Color::BACK);
+    Rectangle(width, height).Draw(x, y, Color::FILL);
+
+    int length = Font::GetLengthText(text);
+
+    if (length < width)
+    {
+        Text(text).DrawInCenterRect(x, y, width, height - 20);
+    }
+    else
+    {
+        Text(text).DrawInRectWithTransfers(x + 11, y + 20, width - 22, height - 20);
+    }
+
+    char buf[100] = { 0 };
+
+    for (uint i = 0; i < time; i++)
+    {
+        std::strcat(buf, ".");
+    }
+
+    Text(buf).DrawInCenterRect(x, y + 20, width, height - 20);
+
+    Display::EndFrame();
 }

@@ -60,11 +60,14 @@ public:
     {
         static void Show(pchar text);
 
+        static void Hide();
+
     private:
 
         static void FuncDraw();
 
-        static pchar text;
+        static pchar text;          // Выводимое сообщение
+        static uint timeStart;      // Время начала вывода сообщения
     };
 
 private:
@@ -79,4 +82,6 @@ private:
 
     // Возвращает true, если надо обновлять дисплей
     static bool NeedUpdate();
+
+    static pFuncVV funcDrawTimer;                       // Эта функция будет отрисовываться в режиме DrawMode::Timer
 };
