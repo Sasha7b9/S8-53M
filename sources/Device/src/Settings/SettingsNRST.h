@@ -19,7 +19,8 @@ struct SettingsNRST
     struct SettingsADC
     {
         StretchADCtype::E type_stretch;
-        RShiftADCtype::E type_rshift;   
+        RShiftADCtype::E type_rshift;
+        int16 first_byte;
     };
 
     struct SettingsChannel

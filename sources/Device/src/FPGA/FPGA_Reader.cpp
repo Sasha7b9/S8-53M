@@ -85,9 +85,21 @@ void ReaderFPGA::Read::Real::Channel(DataReading &data, const ::Channel &ch, uin
     {
         uint8 *last = data.Data(ch) + data.Settings().BytesInChannel();
 
-        for (uint8 *pointer = data.Data(ch) + 1; pointer < last; pointer++)
+        if (setNRST.adc.first_byte == -1)
         {
-            *(pointer - 1) = *pointer;
+            uint8 *last = data.Data(ch) + data.Settings().BytesInChannel();
+
+            for (uint8 *pointer = data.Data(ch) + 1; pointer < last; pointer++)
+            {
+                *(pointer - 1) = *pointer;
+            }
+        }
+        else if (setNRST.adc.first_byte == 1)
+        {
+            for (uint8 *pointer = last - 2; pointer >= data.Data(ch); pointer--)
+            {
+                *(pointer + 1) = *pointer;
+            }
         }
     }
 }
