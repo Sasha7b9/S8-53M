@@ -162,20 +162,38 @@ float Choice::Step() const
 
     static const float speed = 0.1F;
     static const int numLines = 12;
+
     if (tsChoice.choice == this)
     {
         float delta = speed * (TIME_MS - tsChoice.timeStartMS);
+
         if (delta == 0.0F) //-V550
         {
             delta = 0.001F; // “аймер в несколько первых кадров может показать, что прошло 0 мс, но мы возвращаем
                             // большее число, потому что ноль будет говорить о том, что движени€ нет
         }
+
         if (tsChoice.inStateIncrease == 1)
         {
             if (delta <= numLines)
             {
                 return delta;
             }
+
+            int8 *enable1 = (int8 *)&set.chan[ChA].enable;
+            int8 *enable2 = (int8 *)&set.chan[ChB].enable;
+
+            LOG_TRACE_WRITE("%s", Title());
+
+            if (own->cell == enable1)
+            {
+                LOG_TRACE_WRITE("»змен€ем канал 1");
+            }
+            else if (own->cell == enable2)
+            {
+                LOG_TRACE_WRITE("»змен€ем канал 2");
+            }
+
             Math::CircleIncrease<int8>(own->cell, 0, (int8)(NumSubItems() - 1));
         }
         else if (tsChoice.inStateDecrease == 1)
@@ -189,6 +207,7 @@ float Choice::Step() const
 
             Math::CircleDecrease<int8>(own->cell, 0, (int8)(NumSubItems() - 1));
         }
+
         tsChoice.choice = 0;
         FuncOnChanged(IsActive());
         Display::Redraw();
@@ -196,6 +215,7 @@ float Choice::Step() const
         tsChoice.inStateIncrease = 0;
         return 0.0F;
     }
+
     return 0.0F;
 }
 

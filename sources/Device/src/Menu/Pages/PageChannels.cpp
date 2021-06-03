@@ -40,7 +40,7 @@ void PageChannelA::OnChanged_Input(bool)
 }
 
 DEF_CHOICE_2(mcInputA, PageChannelA::self,
-    "Вход", "Input",
+    "Вход 1", "Input",
     chanInputRu,
     chanInputEn,
     DISABLE_RU, DISABLE_EN,
@@ -57,7 +57,7 @@ DEF_CHOICE_3(mcCoupleA, PageChannelA::self,
     "Связь", "Couple",
     chanCoupleRu,
     chanCoupleEn,
-    "Пост", "AC",
+    "Пост",  "AC",
     "Перем", "DC",
     "Земля", "Ground",
     set.chan[Channel::A].mode_couple, nullptr, PageChannelA::OnChanged_Couple, nullptr
@@ -131,7 +131,7 @@ void PageChannelB::OnChanged_Input(bool)
 }
 
 DEF_CHOICE_2(mcInputB, PageChannelB::self,
-    "Вход", "Input",
+    "Вход 2", "Input",
     chanInputRu,
     chanInputEn,
     DISABLE_RU, DISABLE_EN,
