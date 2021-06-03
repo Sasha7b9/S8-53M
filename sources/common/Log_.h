@@ -11,12 +11,12 @@
 #endif
 
 
-#define LOG_WRITE(...)       Log_Write(__VA_ARGS__)
-#define LOG_TRACE_WRITE(...) Log_TraceWrite(__FUNCTION__, __LINE__, __VA_ARGS__);
-#define LOG_ERROR(...)       Log_Error(__MODULE__, __FUNCTION__, __LINE__, __VA_ARGS__)
-#define LOG_FUNC_ENTER()     Log_Write("%s:%d enter", __FUNCTION__, __LINE__);
-#define LOG_FUNC_LEAVE()     Log_Write("%s:%d leave", __FUNCTION__, __LINE__);
-#define LOG_TRACE()          Log_Write("%s : %d", __MODULE__, __LINE__);
+#define LOG_WRITE(...)   Log_Write(__VA_ARGS__)
+#define TLOG_WRITE(...)  Log_TraceWrite(__FUNCTION__, __LINE__, __VA_ARGS__);
+#define LOG_ERROR(...)   Log_Error(__MODULE__, __FUNCTION__, __LINE__, __VA_ARGS__)
+#define LOG_FUNC_ENTER() Log_Write("%s:%d enter", __FUNCTION__, __LINE__);
+#define LOG_FUNC_LEAVE() Log_Write("%s:%d leave", __FUNCTION__, __LINE__);
+#define LOG_TRACE()      Log_Write("%s : %d", __MODULE__, __LINE__);
 
 void Log_Error(pchar module, pchar func, int numLine, char *format, ...);
 void Log_Write(pchar format, ...);
