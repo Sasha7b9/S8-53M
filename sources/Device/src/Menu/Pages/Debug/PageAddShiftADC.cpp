@@ -6,12 +6,12 @@
 #include "Settings/Settings.h"
 
 
-DEF_GOVERNOR(gFirstByte, PageDebug::PageADC::PageAltRShift::self,
-    "Первый байт", "First byte",
-    "",
-    "",
-    setNRST.adc.first_byte, -1, 1, nullptr, nullptr, nullptr
-)
+//DEF_GOVERNOR(gFirstByte, PageDebug::PageADC::PageAltRShift::self,
+//    "Первый байт", "First byte",
+//    "",
+//    "",
+//    setNRST.adc.first_byte, -1, 1, nullptr, nullptr, nullptr
+//)
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -134,11 +134,11 @@ DEF_GOVERNOR(b10mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_PAGE_9(pageAltShift, PageDebug::PageADC::self, NamePage::DebugADCrShift,
+DEF_PAGE_8(pageAltShift, PageDebug::PageADC::self, NamePage::DebugADCrShift,
     "ДОП СМЕЩ", "ADD RSHFIT",
     "",
     "",
-    gFirstByte,
+//    gFirstByte,
     cMode,
     bReset,
     b2mV_DC_A,
