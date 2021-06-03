@@ -60,6 +60,9 @@ private:
         // Читает две точки (из двух АЦП) с учётом калибровок
         static uint16 ReadPoints();
 
+        // Читать массив точек от first до last
+        static void ReadPoints(uint16 *first, const uint16 *last);
+
     private:
 
         static const uint16 *address;       // С этого адреса производится чтение
