@@ -53,9 +53,9 @@ void GraphicGovernor::Draw(const Item *item, int x, int y)
 
     if(item->IsCurrent())
     {
-        LOG_WRITE(" ");
-
-        item->IsCurrent(true);
+//        LOG_WRITE(" ");
+//
+//        item->IsCurrent(true);
 
         char symbol = item->GetSymbolForGovernor();
 

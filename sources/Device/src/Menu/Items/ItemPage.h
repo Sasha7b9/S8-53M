@@ -76,7 +76,7 @@ public:
 
     static Page empty;
 
-    const Item *CurrentItem() const;
+    const Item *CurrentItem(bool trace = false) const;
 
     void SetCurrentItem(const Item *item);
 

@@ -21,18 +21,23 @@ public:
     }
 
     pchar NameSubItem(int i) const;
+
     // Возвращает имя текущего варианта выбора элемента choice, как оно записано в исходном коде программы.
     pchar NameCurrentSubItem() const;
+
     // Возвращает имя следующего варианта выбора элемента choice, как оно записано в исходном коде программы.
     pchar NameNextSubItem() const;
 
     pchar NamePrevSubItem() const;
+
     // Возвращает количество вариантов выбора в элементе по адресу choice.
     int NumSubItems() const;
 
     void StartChange(int delta);
+
     // Рассчитывает следующий кадр анимации.
     float Step() const;
+
     // Изменяет значение choice в зависимости от величины и знака delta.
     virtual void OnRegSet(int delta) const;
 
@@ -41,6 +46,7 @@ public:
     void FuncForDraw(int x, int y) const;
 
     virtual void Draw(int x, int y, bool opened = false) const;
+
     // Обработка короткого нажатия
     virtual void ShortPress();
 

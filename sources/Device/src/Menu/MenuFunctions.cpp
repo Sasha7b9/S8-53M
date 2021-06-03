@@ -22,11 +22,11 @@ const Item* Menu::CurrentItem(bool trace)
 
         if (trace) LOG_TRACE_WRITE("4");
 
-        int8 pos = page->CurrentItem()->GetPosition();
+        int8 pos = page->CurrentItem(trace)->GetPosition();
 
         if (trace) LOG_TRACE_WRITE("5");
 
-        if (lastOpened->IsPage() && pos != -1)
+        if (lastOpened->IsPage() && pos >= 0)
         {
             if (trace) LOG_TRACE_WRITE("6");
             return lastOpened->ReinterpretToPage()->GetItem(pos);

@@ -421,7 +421,6 @@ void Choice::ShortPress()
         }
         else if (!IsOpened())
         {
-            SetCurrent(!IsCurrent());
             StartChange(1);
         }
         else
@@ -691,14 +690,20 @@ int Page::PosItemOnTop() const
 }
 
 
-const Item *Page::CurrentItem() const
+const Item *Page::CurrentItem(bool trace) const
 {
+    if (trace) LOG_TRACE_WRITE("%d", __LINE__);
+
     int position = *posCurrentItem;
 
     if (position < 0)
     {
+        if (trace) LOG_TRACE_WRITE("%d", __LINE__);
+
         return &empty;
     }
+
+    if (trace) LOG_TRACE_WRITE("%d", __LINE__);
 
     return OwnData()->items[position];
 }

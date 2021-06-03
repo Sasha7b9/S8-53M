@@ -65,6 +65,22 @@ struct Uint8 : public ValueStruct<uint8>
 };
 
 
+struct Uint16 : public ValueStruct<uint16>
+{
+    Uint16(uint16 v = 0) : ValueStruct(v) {}
+
+    String ToStringBin();
+};
+
+
+struct Uint32 : public ValueStruct<uint>
+{
+    Uint32(uint v = 0) : ValueStruct(v) {}
+
+    String ToStringHex();
+};
+
+
 struct Int16 : public ValueStruct<int16>
 {
     Int16(int16 v = 0) : ValueStruct(v) {}
@@ -74,14 +90,6 @@ struct Int16 : public ValueStruct<int16>
 struct InvalidInt16 : public Int16
 {
     InvalidInt16() : Int16() { SetInvalid(); }
-};
-
-
-struct Uint16 : public ValueStruct<uint16>
-{
-    Uint16(uint16 v = 0) : ValueStruct(v) {}
-
-    String ToStringBin();
 };
 
 

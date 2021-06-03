@@ -258,6 +258,16 @@ String Uint8::ToStringHex()
 }
 
 
+String Uint32::ToStringHex()
+{
+    String result("00000000");
+
+    std::sprintf(&result[0], "%08x", value);
+
+    return result;
+}
+
+
 String Uint16::ToStringBin()
 {
     String result("000000000000000000");

@@ -526,6 +526,7 @@ bool TrigInput::IsAC()
 void ChannelFiltr::Enable(const Channel &ch, bool enable)
 {
     set.chan[ch].filtr = enable;
+
     FPGA::BUS::SetAttribChannelsAndTrig(ch == ChA ? TypeWriteAnalog::ChanParamA : TypeWriteAnalog::ChanParamB);
 }
 
