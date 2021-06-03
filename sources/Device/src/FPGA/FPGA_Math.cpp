@@ -400,17 +400,17 @@ void MathFPGA::ShiftBuffer(T * const first, T * const last, int shift)
 {
     if (shift < 0)
     {
-        T *pointer = first + shift;
+        T *pointer = first - shift;
 
         while (pointer < last)
         {
-            *(pointer - shift) = *pointer;
+            *(pointer + shift) = *pointer;
             pointer++;
         }
 
-        T value = *(last - shift - 1);
+        T value = *(last + shift - 1);
 
-        for (int i = 0; i < shift; i++)
+        for (int i = 0; i < -shift; i++)
         {
             *(last - i - 1) = value;
         }
