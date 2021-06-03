@@ -81,11 +81,6 @@ void ReaderFPGA::Read::Real::Channel(DataReading &data, const ::Channel &ch, uin
 
     ADC::ReadPoints(p, end);
 
-//    while (p < end)
-//    {
-//        *p++ = ADC::ReadPoints();
-//    }
-
     if (!PeackDetMode::IsEnabled() && FPGA::flag.IsFirstByte0())
     {
         uint8 *last = data.Data(ch) + data.Settings().BytesInChannel();
