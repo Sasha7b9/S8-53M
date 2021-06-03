@@ -45,12 +45,12 @@ DEF_CHOICE_2(mcInputA, PageChannelA::self,
     chanInputEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.chan[ChA].enable, nullptr, PageChannelA::OnChanged_Input, nullptr
+    set.chan[0].enable, nullptr, PageChannelA::OnChanged_Input, nullptr
 )
 
 void PageChannelA::OnChanged_Couple(bool)
 {
-    ModeCouple::Set(ChA, set.chan[ChA].mode_couple);
+    ModeCouple::Set(ChA, set.chan[Channel::A].mode_couple);
 }
 
 DEF_CHOICE_3(mcCoupleA, PageChannelA::self,
@@ -65,7 +65,7 @@ DEF_CHOICE_3(mcCoupleA, PageChannelA::self,
 
 void PageChannelA::OnChanged_Filtr(bool)
 {
-    ChannelFiltr::Enable(ChA, set.chan[ChA].filtr);
+    ChannelFiltr::Enable(ChA, set.chan[Channel::A].filtr);
 }
 
 DEF_CHOICE_2(mcFiltrA, PageChannelA::self,
@@ -74,12 +74,12 @@ DEF_CHOICE_2(mcFiltrA, PageChannelA::self,
     chanFiltrEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.chan[ChA].filtr, nullptr, PageChannelA::OnChanged_Filtr, nullptr
+    set.chan[Channel::A].filtr, nullptr, PageChannelA::OnChanged_Filtr, nullptr
 )
 
 static void OnChanged_InverseA(bool)
 {
-    RShift::Set(ChA, set.chan[ChA].rshift);
+    RShift::Set(ChA, set.chan[Channel::A].rshift);
 }
 
 DEF_CHOICE_2(mcInverseA, PageChannelA::self,
@@ -88,7 +88,7 @@ DEF_CHOICE_2(mcInverseA, PageChannelA::self,
     chanInverseEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.chan[ChA].inverse, nullptr, OnChanged_InverseA, nullptr
+    set.chan[Channel::A].inverse, nullptr, OnChanged_InverseA, nullptr
 )
 
 DEF_CHOICE_2(mcMultiplierA, PageChannelA::self,
@@ -97,7 +97,7 @@ DEF_CHOICE_2(mcMultiplierA, PageChannelA::self,
     chanMultiplierEn,
     "х1", "x1",
     "x10", "x10",
-    set.chan[ChA].divider, nullptr, nullptr, nullptr
+    set.chan[Channel::A].divider, nullptr, nullptr, nullptr
 )
 
 void PageChannelA::OnPress_Balance()
@@ -125,10 +125,13 @@ DEF_PAGE_6(pageChanA, PageMain::self, NamePage::ChannelA,
     nullptr, nullptr, nullptr, nullptr
 )
 
+
 void PageChannelB::OnChanged_Input(bool)
 {
     led_ChB.SwitchToState(ChB.IsEnabled());
 }
+
+static void OnDraw_InputB(int, int);
 
 DEF_CHOICE_2(mcInputB, PageChannelB::self,
     "¬ход 2", "Input",
@@ -136,12 +139,19 @@ DEF_CHOICE_2(mcInputB, PageChannelB::self,
     chanInputEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.chan[ChB].enable, nullptr, PageChannelB::OnChanged_Input, nullptr
+    set.chan[Channel::B].enable, nullptr, PageChannelB::OnChanged_Input, OnDraw_InputB
 )
+
+static void OnDraw_InputB(int, int)
+{
+    LOG_WRITE("address enable 2 = %x", &set.chan[Channel::B].enable);
+    LOG_WRITE("address mcInputB own cell = %x", mcInputB.OwnData()->cell);
+}
+
 
 void PageChannelB::OnChanged_Couple(bool)
 {
-    ModeCouple::Set(ChB, set.chan[ChB].mode_couple);
+    ModeCouple::Set(ChB, set.chan[Channel::B].mode_couple);
 }
 
 DEF_CHOICE_3(mcCoupleB, PageChannelB::self,
@@ -154,9 +164,10 @@ DEF_CHOICE_3(mcCoupleB, PageChannelB::self,
     set.chan[Channel::B].mode_couple, nullptr, PageChannelB::OnChanged_Couple, nullptr
 )
 
+
 void PageChannelB::OnChanged_Filtr(bool)
 {
-    ChannelFiltr::Enable(ChB, set.chan[ChB].filtr);
+    ChannelFiltr::Enable(ChB, set.chan[Channel::B].filtr);
 }
 
 DEF_CHOICE_2(mcFiltrB, PageChannelB::self,
@@ -165,12 +176,12 @@ DEF_CHOICE_2(mcFiltrB, PageChannelB::self,
     chanFiltrEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.chan[ChB].filtr, nullptr, PageChannelB::OnChanged_Filtr, nullptr
+    set.chan[Channel::B].filtr, nullptr, PageChannelB::OnChanged_Filtr, nullptr
 )
 
 static void OnChanged_InverseB(bool)
 {
-    RShift::Set(ChB, set.chan[ChB].rshift);
+    RShift::Set(ChB, set.chan[Channel::B].rshift);
 }
 
 DEF_CHOICE_2(mcInverseB, PageChannelB::self,
@@ -179,7 +190,7 @@ DEF_CHOICE_2(mcInverseB, PageChannelB::self,
     chanInverseEn,
     DISABLE_RU, DISABLE_EN,
     ENABLE_RU, ENABLE_EN,
-    set.chan[ChB].inverse, nullptr, OnChanged_InverseB, nullptr
+    set.chan[Channel::B].inverse, nullptr, OnChanged_InverseB, nullptr
 )
 
 DEF_CHOICE_2(mcMultiplierB, PageChannelB::self,
@@ -188,7 +199,7 @@ DEF_CHOICE_2(mcMultiplierB, PageChannelB::self,
     chanMultiplierEn,
     "х1", "x1",
     "x10", "x10",
-    set.chan[ChB].divider, nullptr, nullptr, nullptr
+    set.chan[Channel::B].divider, nullptr, nullptr, nullptr
 )
 
 void PageChannelB::OnPress_Balance()

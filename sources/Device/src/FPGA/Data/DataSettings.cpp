@@ -8,19 +8,19 @@ void DataSettings::Fill()
 {
     enabled_a = ChA.IsEnabled() ? 1U : 0U;
     enabled_b = ChB.IsEnabled() ? 1U : 0U;
-    r_shift_a = (uint)set.chan[ChA].rshift;
-    r_shift_b = (uint)set.chan[ChB].rshift;
+    r_shift_a = (uint)set.chan[Channel::A].rshift;
+    r_shift_b = (uint)set.chan[Channel::B].rshift;
     trig_lev_a = (uint)TrigLev::GetA();
     trig_lev_b = (uint)TrigLev::GetB();
-    couple_a = set.chan[ChA].mode_couple;
-    couple_b = set.chan[ChB].mode_couple;
+    couple_a = set.chan[Channel::A].mode_couple;
+    couple_b = set.chan[Channel::B].mode_couple;
     tbase = set.time.base;
     tshift = set.time.shift;
-    range[0] = set.chan[ChA].range;
-    range[1] = set.chan[ChB].range;
+    range[0] = set.chan[Channel::A].range;
+    range[1] = set.chan[Channel::B].range;
     peak_det = (uint)PeackDetMode::Get();
-    multiplier_a = set.chan[ChA].divider;
-    multiplier_b = set.chan[ChB].divider;
+    multiplier_a = set.chan[Channel::A].divider;
+    multiplier_b = set.chan[Channel::B].divider;
     enum_points = set.memory.enum_points_fpga;
     time = HAL_RTC::GetPackedTime();
 }

@@ -166,8 +166,8 @@ DEF_SMALL_BUTTON(sbModeRegSet, PageService::PageMath::PageFunction::self,
 
 static void OnPress_RangeA()
 {
-    set.math.range = set.chan[ChA].range;
-    set.math.multiplier = set.chan[ChA].divider;
+    set.math.range = set.chan[Channel::A].range;
+    set.math.multiplier = set.chan[Channel::A].divider;
 }
 
 
@@ -187,8 +187,8 @@ DEF_SMALL_BUTTON(sbRangeA, PageService::PageMath::PageFunction::self,
 
 static void OnPress_RangeB()
 {
-    set.math.range = set.chan[ChB].range;
-    set.math.multiplier = set.chan[ChB].divider;
+    set.math.range = set.chan[Channel::B].range;
+    set.math.multiplier = set.chan[Channel::B].divider;
 }
 
 

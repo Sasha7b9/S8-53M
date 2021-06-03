@@ -180,8 +180,8 @@ float Choice::Step() const
                 return delta;
             }
 
-            int8 *enable1 = (int8 *)&set.chan[ChA].enable;
-            int8 *enable2 = (int8 *)&set.chan[ChB].enable;
+            int8 *enable1 = (int8 *)&set.chan[Channel::A].enable;
+            int8 *enable2 = (int8 *)&set.chan[Channel::B].enable;
 
             LOG_TRACE_WRITE("%s", Title());
 

@@ -95,8 +95,8 @@ void FPGA::Calibrator::PerformCalibration()
     bool chanAenable = ChA.IsEnabled();
     bool chanBenable = ChB.IsEnabled();
 
-    set.chan[ChA].enable = true;
-    set.chan[ChB].enable = true;
+    set.chan[Channel::A].enable = true;
+    set.chan[Channel::B].enable = true;
 
     Display::SetDrawMode(DrawMode::Hand, FuncAttScreen);
     Timer::Enable(TypeTimer::TimerDrawHandFunction, 100, OnTimerDraw);
@@ -220,8 +220,8 @@ void FPGA::Calibrator::PerformCalibration()
 
     FPGA::state.Restore();
 
-    RShift::Set(ChA, set.chan[ChA].rshift);
-    RShift::Set(ChB, set.chan[ChB].rshift);
+    RShift::Set(ChA, set.chan[Channel::A].rshift);
+    RShift::Set(ChB, set.chan[Channel::B].rshift);
 
     setNRST.chan[ChA].stretch_auto = koeffCal0.IsValid() ? (float)koeffCal0 : koeffCalibrationOld[0];
 
@@ -238,8 +238,8 @@ void FPGA::Calibrator::PerformCalibration()
     Display::SetDrawMode(DrawMode::Auto, 0);
     state.state_calibration = StateCalibration::None;
 
-    set.chan[ChA].enable = chanAenable;
-    set.chan[ChB].enable = chanBenable;
+    set.chan[Channel::A].enable = chanAenable;
+    set.chan[Channel::B].enable = chanBenable;
 
     FPGA::Start();
 }

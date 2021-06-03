@@ -105,8 +105,8 @@ void FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::E type)
     */
 
     // Range0, Range1
-    data |= masksRange[set.chan[ChA].range];
-    data |= (masksRange[set.chan[ChB].range] << 8);
+    data |= masksRange[set.chan[Channel::A].range];
+    data |= (masksRange[set.chan[Channel::B].range] << 8);
 
     // Параметры каналов
     static const uint maskCouple[2][3] = 
@@ -115,8 +115,8 @@ void FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::E type)
         {0x0800, 0x0000, 0x3000}
     };
 
-    data |= maskCouple[ChA][set.chan[ChA].mode_couple];
-    data |= maskCouple[ChB][set.chan[ChB].mode_couple];
+    data |= maskCouple[ChA][set.chan[Channel::A].mode_couple];
+    data |= maskCouple[ChB][set.chan[Channel::B].mode_couple];
 
     static const uint maskFiltr[2][2] = 
     {
@@ -124,8 +124,8 @@ void FPGA::BUS::SetAttribChannelsAndTrig(TypeWriteAnalog::E type)
         {0x0000, 0x0100}
     };
 
-    data |= maskFiltr[ChA][set.chan[ChA].filtr];
-    data |= maskFiltr[ChB][set.chan[ChB].filtr];
+    data |= maskFiltr[ChA][set.chan[Channel::A].filtr];
+    data |= maskFiltr[ChB][set.chan[Channel::B].filtr];
 
 
     // Параметры синхронизации

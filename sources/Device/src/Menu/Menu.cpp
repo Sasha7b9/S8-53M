@@ -376,12 +376,12 @@ void Menu::Handlers::ShortPressureKey(Key::E key)
             NamePage::E name = ((const Page *)Item::Opened())->GetName();
             if (key == Key::ChannelA && name == NamePage::ChannelA)
             {
-                set.chan[ChA].enable = !ChA.IsEnabled();
+                set.chan[Channel::A].enable = !ChA.IsEnabled();
                 PageChannelA::OnChanged_Input(true);
             }
             else if (key == Key::ChannelB && name == NamePage::ChannelB)
             {
-                set.chan[ChB].enable = !ChB.IsEnabled();
+                set.chan[Channel::B].enable = !ChB.IsEnabled();
                 PageChannelB::OnChanged_Input(true);
             }
             else

@@ -18,7 +18,7 @@ DEF_GOVERNOR(gShiftA, PageDebug::PageADC::PageBalance::self,
     "Смещение 1", "Offset 1",
     "",
     "",
-    setNRST.chan[ChA].balance_ADC, -125, 125, nullptr, OnChanged_A, nullptr
+    setNRST.chan[0].balance_ADC, -125, 125, nullptr, OnChanged_A, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -33,7 +33,7 @@ DEF_GOVERNOR(gShiftB, PageDebug::PageADC::PageBalance::self,
     "Смещение 2", "Offset 2",
     "",
     "",
-    setNRST.chan[ChB].balance_ADC, -125, 125, nullptr, OnChanged_ShiftB, nullptr
+    setNRST.chan[1].balance_ADC, -125, 125, nullptr, OnChanged_ShiftB, nullptr
 )
 
 //----------------------------------------------------------------------------------------------------------------------

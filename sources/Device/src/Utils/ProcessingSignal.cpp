@@ -1244,10 +1244,10 @@ void Processing::CountedToCurrentSettings()
         }
     }
  
-    if (ds.IsEnabled(ChA) && (ds.range[0] != set.chan[ChA].range || ds.r_shift_a != (uint)set.chan[ChA].rshift))
+    if (ds.IsEnabled(ChA) && (ds.range[0] != set.chan[Channel::A].range || ds.r_shift_a != (uint)set.chan[Channel::A].rshift))
     {
-        Range::E range = set.chan[ChA].range;
-        int16 rShift = set.chan[ChA].rshift;
+        Range::E range = set.chan[Channel::A].range;
+        int16 rShift = set.chan[Channel::A].rshift;
 
         for (int i = 0; i < numPoints; i++)
         {
@@ -1261,10 +1261,10 @@ void Processing::CountedToCurrentSettings()
         }
     }
     if (ds.IsEnabled(ChB) &&
-        (ds.range[1] != set.chan[ChB].range || ds.r_shift_b != (uint)set.chan[ChB].rshift))
+        (ds.range[1] != set.chan[Channel::B].range || ds.r_shift_b != (uint)set.chan[Channel::B].rshift))
     {
-        Range::E range = set.chan[ChB].range;
-        int16 rShift = set.chan[ChB].rshift;
+        Range::E range = set.chan[Channel::B].range;
+        int16 rShift = set.chan[Channel::B].rshift;
 
         for (int i = 0; i < numPoints; i++)
         {
