@@ -325,6 +325,8 @@ void Display::Message::Hide()
 
 void Display::Message::FuncDraw()
 {
+    LOG_FUNC_ENTER();
+
     uint time = ((TIME_MS - timeStart) / 50) % 100;
 
     if (time > 50)
