@@ -410,10 +410,11 @@ bool Channel::IsEnabled() const
     {
         return !ModeDrawMath::IsDisabled();
     }
-    if (value == Channel::A_B)
+    else if (value == Channel::A_B)
     {
         return false;
     }
+
     return set.chan[value].enable;
 }
 
