@@ -7,33 +7,21 @@
 #include "Menu/Pages/Definition.h"
 
 
-const Item* Menu::CurrentItem(bool trace)
+const Item* Menu::CurrentItem()
 {
-    if(trace) LOG_TRACE_WRITE("1");
-
     const Item *lastOpened = PageMain::self->RetLastOpened();
-
-    if (trace) LOG_TRACE_WRITE("2");
 
     if (lastOpened->IsPage())
     {
-        if (trace) LOG_TRACE_WRITE("3");
         const Page *page = (const Page *)lastOpened;
 
-        if (trace) LOG_TRACE_WRITE("4");
-
-        int8 pos = page->CurrentItem(trace)->GetPosition();
-
-        if (trace) LOG_TRACE_WRITE("5");
+        int8 pos = page->CurrentItem()->GetPosition();
 
         if (lastOpened->IsPage() && pos >= 0)
         {
-            if (trace) LOG_TRACE_WRITE("6");
             return lastOpened->ReinterpretToPage()->GetItem(pos);
         }
     }
-
-    if (trace) LOG_TRACE_WRITE("7");
 
     return lastOpened;
 }

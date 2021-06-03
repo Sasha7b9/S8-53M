@@ -296,9 +296,9 @@ bool Item::IsActive() const
 }
 
 
-bool Item::IsCurrent(bool trace) const
+bool Item::IsCurrent() const
 {
-    return (Menu::CurrentItem(trace) == this);
+    return (Menu::CurrentItem() == this);
 }
 
 
@@ -710,20 +710,14 @@ int Page::PosItemOnTop() const
 }
 
 
-const Item *Page::CurrentItem(bool trace) const
+const Item *Page::CurrentItem() const
 {
-    if (trace) LOG_TRACE_WRITE("%d", __LINE__);
-
     int position = *posCurrentItem;
 
     if (position < 0)
     {
-        if (trace) LOG_TRACE_WRITE("%d", __LINE__);
-
         return &empty;
     }
-
-    if (trace) LOG_TRACE_WRITE("%d", __LINE__);
 
     return OwnData()->items[position];
 }

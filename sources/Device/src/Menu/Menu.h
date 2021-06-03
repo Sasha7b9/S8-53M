@@ -52,7 +52,7 @@ public:
 
     // Возвращает адрес текущего элемента меню (текущим, как правило, является элемент, кнопка которого была нажата
     // последней.
-    static const Item *CurrentItem(bool trace = false);
+    static const Item *CurrentItem();
 
     static NamePage::E GetNameOpenedPage();
 

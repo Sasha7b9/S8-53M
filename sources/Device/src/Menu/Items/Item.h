@@ -37,7 +37,7 @@ public:
     bool IsActive() const;
 
     // ¬озвращает true, если элемент €вл€етс€ текущим - вращение ручки действует на него
-    bool IsCurrent(bool trace = false) const;
+    bool IsCurrent() const;
 
     TypeItem::E Type() const;
 
