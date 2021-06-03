@@ -288,6 +288,29 @@ bool Item::IsCurrent() const
 }
 
 
+bool Item::IsMayCurrent() const
+{
+    static bool may[TypeItem::Count] =
+    {
+        false,  // None
+        false,  // Choice
+        false,  // Button
+        false,  // Page
+        true,   // Governor
+        false,  // Time
+        false,  // IP
+        false,  // SwitchButton
+        false,  // GovernorColor
+        false,  // Formula
+        false,  // MAC
+        true,   // ChoiceReg
+        false   // SmallButton
+    };
+
+    return may[data->type];
+}
+
+
 const Item *Page::GetItem(int numElement) const
 {
     return OwnData()->items[numElement + (IsPageSB() ? 1 : 0)];
