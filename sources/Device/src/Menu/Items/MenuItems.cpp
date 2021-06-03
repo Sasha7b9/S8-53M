@@ -361,6 +361,11 @@ void Item::Open() const
 void Item::Close() const
 {
     Keeper()->CloseOpenedItem();
+
+    if (!IsMayCurrent())
+    {
+        Keeper()->SetCurrentItem(nullptr);
+    }
 }
 
 
