@@ -580,7 +580,6 @@ void FPGA::Calibrator::PerformBalance(const Channel &ch)
 {
 //    *КК -калибровочный коээфициент
 
-//        - Вывести сообщение о балансировке.
     static const pchar messages[Channel::Count][Language::Count] =
     {
         {"Балансирую канал 1", "Balancing the channel 1"},
@@ -588,26 +587,16 @@ void FPGA::Calibrator::PerformBalance(const Channel &ch)
     };
 
     Panel::DisableInput();
-    Display::Message::Show(messages[LANG][ch]);
+    Display::Message::Show(messages[LANG][ch]);     // Вывести сообщение о балансировке.
 
-//        - Сохранить настройки
-    Settings storedSettings = set;
+    Settings storedSettings = set;                  // Сохранить настройки
 
-//        - Произвести балансировку канала:
-//            - обнулить КК по смещения
-//            - установить общие настройки : set.time.base
-//            - Для каждого из Range:
-//                - Для каждого из 2-x ModeCouple:
-//                    - запусить АЦП и считать 1024 точек
-//                    - рассчитать КК
-    CalibrateAddRShift(ch);
+    CalibrateAddRShift(ch);                         // Произвести балансировку канала:
 
-//        - Восстановить настройки
-    set = storedSettings;
+    set = storedSettings;                           // Восстановить настройки
     FPGA::LoadSettings();
 
-//        - Убрать сообщение о балансировке
-    Display::Message::Hide();
+    Display::Message::Hide();                       // Убрать сообщение о балансировке
     Panel::EnableInput();
 }
 
@@ -616,21 +605,35 @@ void FPGA::Calibrator::CalibrateAddRShift(const Channel &ch)
 {
     int16 shifts[3];
 
-    setNRST.chan[ch].StoreAndResetRShifts(shifts);
+    setNRST.chan[ch].StoreAndResetRShifts(shifts);                  // обнулить КК по смещения
 
-    LoadSettingsForCalculationAddRShift(ch);
-
-    setNRST.chan[ch].RestoreHandsRShifts(shifts);
-}
-
-
-void FPGA::Calibrator::LoadSettingsForCalculationAddRShift(const Channel &ch)
-{
-    RShift::Set(ch, RShift::ZERO);
+    RShift::Set(ch, RShift::ZERO);                                  // установить общие настройки
     ModeCouple::Set(ch, ModeCouple::DC);
     TBase::Set(TBase::_200us);
     TrigSource::Set(ch.ToTrigSource());
     TrigPolarity::Set(TrigPolarity::Front);
     TrigLev::Set(ch.ToTrigSource(), TrigLev::ZERO);
     CalibratorMode::Set(CalibratorMode::GND);
+
+    for (int range = 0; range < Range::Count; range++)              
+    {
+        for (int couple = 0; couple < 2; couple++)
+        {
+            if (range < 3 && couple == ModeCouple::DC)
+            {
+            }
+            else
+            {
+
+            }
+        }
+    }
+
+    setNRST.chan[ch].RestoreHandsRShifts(shifts);
+}
+
+
+float FPGA::Calibrator::ReadPoints1024(Range::E range, ModeCouple::E couple)
+{
+
 }

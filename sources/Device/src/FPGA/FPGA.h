@@ -184,7 +184,6 @@ public:
 
         static void CalibrateAddRShift(const Channel &ch);
 
-        // Загрузить настройки для расчёта дополнительного смещения канала ch
-        static void LoadSettingsForCalculationAddRShift(const Channel &ch);
+        static float ReadPoints1024(Range::E range, ModeCouple::E couple);
     };
 };
