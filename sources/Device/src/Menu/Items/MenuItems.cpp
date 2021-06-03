@@ -180,9 +180,6 @@ float Choice::Step() const
                 return delta;
             }
 
-            int8 *enable1 = (int8 *)&set.chan[Channel::A].enable;
-            int8 *enable2 = (int8 *)&set.chan[Channel::B].enable;
-
             Math::CircleIncrease<int8>(own->cell, 0, (int8)(NumSubItems() - 1));
         }
         else if (tsChoice.inStateDecrease == 1)
