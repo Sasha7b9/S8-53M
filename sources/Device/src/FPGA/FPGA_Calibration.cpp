@@ -606,6 +606,25 @@ Float CalculateKoeffCalibration(const Channel &ch)
 
 void FPGA::Calibrator::PerformBalance(const Channel &ch)
 {
+//    *КК -калибровочный коээфициент
+
+//        - Вывести сообщение о балансировке.
+
+
+
+//        - Сохранить настройки
+//        - Произвести балансировку канала:
+//            - обнулить КК по смещения
+//            - установить общие настройки : set.time.base
+//            - Для каждого из Range:
+//                - Для каждого из 2-x ModeCouple:
+//                    - запусить АЦП и считать 1024 точек
+//                    - рассчитать КК
+//        - Восстановить настройки
+//        - Убрать сообщение о балансировке
+// 
+ 
+
     CreateCalibrationStruct();
 
     Display::FuncOnWaitStart(ch.IsA() ? (LANG_RU ? "Балансировка канала 1" : "Balance channel 1") :
