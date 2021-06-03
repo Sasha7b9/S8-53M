@@ -325,8 +325,6 @@ void Display::Message::Hide()
 
 void Display::Message::FuncDraw()
 {
-    LOG_FUNC_ENTER();
-
     uint time = ((TIME_MS - timeStart) / 50) % 100;
 
     if (time > 50)
@@ -336,8 +334,8 @@ void Display::Message::FuncDraw()
 
     int width = 200;
     int height = 80;
-    int x = Display::WIDTH - width / 2;
-    int y = Display::HEIGHT - height / 2;
+    int x = (Display::WIDTH - width) / 2;
+    int y = (Display::HEIGHT - height) / 2;
 
     Region(width, height).Fill(x, y, Color::BACK);
     Rectangle(width, height).Draw(x, y, Color::FILL);
