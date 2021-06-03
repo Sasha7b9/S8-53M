@@ -79,12 +79,12 @@ void ReaderFPGA::Read::Real::Channel(DataReading &data, const ::Channel &ch, uin
 
     ADC::SetParameters(address, ch.value);
 
-//    ADC::ReadPoints(p, end);
+    ADC::ReadPoints(p, end);
 
-    while (p < end)
-    {
-        *p++ = ADC::ReadPoints();
-    }
+//    while (p < end)
+//    {
+//        *p++ = ADC::ReadPoints();
+//    }
 
     if (!PeackDetMode::IsEnabled() && FPGA::flag.IsFirstByte0())
     {
