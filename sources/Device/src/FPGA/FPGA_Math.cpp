@@ -9,15 +9,11 @@
 #include <cmath>
 
 
+template void MathFPGA::ShiftBuffer(uint8 *const first, uint8 *const last, int shift);
+
+
 const float MathFPGA::tableScalesRange[Range::Count] = { 2e-3F, 5e-3F, 10e-3F, 20e-3F, 50e-3F, 100e-3F, 200e-3F,
                                                             500e-3F, 1.0F, 2.0F, 5.0F, 10.0F, 20.0F };
-/*
-static const float tableScalesTBase[TBase::Count] =
-    {2e-9, 5e-9, 10e-9, 20e-9, 50e-9, 100e-9, 200e-9, 500e-9,
-    1e-6, 2e-6, 5e-6, 10e-6, 20e-6, 50e-6, 100e-6, 200e-6, 500e-6,
-    1e-3, 2e-3, 5e-3, 10e-3, 20e-3, 50e-3, 100e-3, 200e-3, 500e-3,
-    1.0F, 2.0F, 5.0F, 10.0F};
-*/
 
 
 const int voltsInPixelInt[] =   // Коэффициент 20000
@@ -394,6 +390,46 @@ void MathFPGA::CalculateMathFunction(float* data0andResult, const float* data1, 
         {
             *data0andResult *= *(data0andResult + delta);
             data0andResult++;
+        }
+    }
+}
+
+
+template <class T>
+void MathFPGA::ShiftBuffer(T * const first, T * const last, int shift)
+{
+    if (shift < 0)
+    {
+        T *pointer = first + shift;
+
+        while (pointer < last)
+        {
+            *(pointer - shift) = *pointer;
+            pointer++;
+        }
+
+        T value = *(last - shift - 1);
+
+        for (int i = 0; i < shift; i++)
+        {
+            *(last - i - 1) = value;
+        }
+    }
+    else if (shift > 0)
+    {
+        T *pointer = last - shift - 1;
+
+        while (pointer >= first)
+        {
+            *(pointer + shift) = *pointer;
+            pointer--;
+        }
+
+        T value = *(first + shift);
+
+        for (int i = 0; i < shift; i++)
+        {
+            *(first + i) = value;
         }
     }
 }

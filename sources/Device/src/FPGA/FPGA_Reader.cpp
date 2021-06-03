@@ -3,6 +3,7 @@
 #include "common/Utils/Math_.h"
 #include "Display/PainterData.h"
 #include "FPGA/FPGA.h"
+#include "FPGA/FPGA_Math.h"
 #include "FPGA/FPGA_Reader.h"
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/Data/DataSettings.h"
@@ -83,12 +84,7 @@ void ReaderFPGA::Read::Real::Channel(DataReading &data, const ::Channel &ch, uin
 
     if (!PeackDetMode::IsEnabled() && FPGA::flag.IsFirstByte0())
     {
-        uint8 *last = data.Data(ch) + data.Settings().BytesInChannel();
-
-        for (uint8 *pointer = data.Data(ch) + 1; pointer < last; pointer++)
-        {
-            *(pointer - 1) = *pointer;
-        }
+        MathFPGA::ShiftBuffer(data.Data(ch), data.Data(ch) + data.Settings().BytesInChannel(), -1);
     }
 
 //    if (!PeackDetMode::IsEnabled() && FPGA::flag.IsFirstByte0())
