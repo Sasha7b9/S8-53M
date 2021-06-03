@@ -891,7 +891,7 @@ int LaunchFPGA::AdditionalOffsetIndexFirst()
     shift = (shift + 10000) % TBase::StepRand();
 
     //                            1ns 2ns 5ns 10ns 20ns
-    static const int deltas[] = { 67, 37, 7,  7,   2 };
+    static const int deltas[] = { 97, 37, 7,  7,   2 };
 
     int d = deltas[set.time.base];
 
