@@ -17,34 +17,6 @@
 #include <limits>
 
 
-struct CalibrationStruct
-{
-    float deltaADC[2];
-    float deltaADCPercents[2];
-    float avrADC1[2];
-    float avrADC2[2];
-
-    float deltaADCold[2];
-    float deltaADCPercentsOld[2];
-    float avrADC1old[2];
-    float avrADC2old[2];
-
-    bool isCalculateStretch[2];
-
-    int8 shiftADCA;
-    int8 shiftADCB;
-
-    ProgressBar barA;       // Прогресс-бар для калибровки первого канала.
-    ProgressBar barB;       // Прогресс-бар для калибровки второго канала.
-
-    uint startTimeChanA;    // Время начала калибровки первого канала.
-    uint startTimeChanB;    // Время начала калибровки второго канала.
-};
-
-
-static CalibrationStruct *cal = nullptr;
-
-
 // Измерить добавочное смещение канала по напряжению.
 static Int16 CalculateAdditionRShift(const Channel &ch, Range::E range);
 
@@ -609,20 +581,18 @@ void FPGA::Calibrator::PerformBalance(const Channel &ch)
 //    *КК -калибровочный коээфициент
 
 //        - Вывести сообщение о балансировке.
-    static const pchar messages[Language::Count][Channel::Count] =
+    static const pchar messages[Channel::Count][Language::Count] =
     {
         {"Балансирую канал 1", "Balancing the channel 1"},
         {"Балансирую канал 2", "Balancing the channel 2"}
     };
 
+    Panel::DisableInput();
     Display::Message::Show(messages[LANG][ch]);
 
-    HAL_TIM2::Delay(1000);
-
-    Display::Message::Hide();
-
-
 //        - Сохранить настройки
+    Settings storedSettings = set;
+
 //        - Произвести балансировку канала:
 //            - обнулить КК по смещения
 //            - установить общие настройки : set.time.base
@@ -630,55 +600,19 @@ void FPGA::Calibrator::PerformBalance(const Channel &ch)
 //                - Для каждого из 2-x ModeCouple:
 //                    - запусить АЦП и считать 1024 точек
 //                    - рассчитать КК
+    CalibrateAddRShift(ch);
+
 //        - Восстановить настройки
+    set = storedSettings;
+    FPGA::LoadSettings();
+
 //        - Убрать сообщение о балансировке
-// 
- 
-
-//    CreateCalibrationStruct();
-//
-//    Display::FuncOnWaitStart(ch.IsA() ? (LANG_RU ? "Балансировка канала 1" : "Balance channel 1") :
-//                                        (LANG_RU ? "Балансировка канала 2" : "Balance channel 2"), false);
-//
-//    Settings storedSettings = set;
-//
-//    Panel::DisableInput();
-//
-//    CalibrateAddRShift(ch, true);
-//
-//    RestoreSettingsForCalibration(&storedSettings);
-//
-//    CalibrationMode::E mode = setNRST.calibration_mode[ch];
-//    setNRST.calibration_mode[ch] = CalibrationMode::x1;
-//
-//    WriteAdditionRShifts(ch);
-//
-//    setNRST.calibration_mode[ch] = mode;
-//
-//    Panel::EnableInput();
-//
-//    Display::FuncOnWaitStop();
-//
-//    FPGA::OnPressStartStop();
-//
-//    DeleteCalibrationStruct();
+    Display::Message::Hide();
+    Panel::EnableInput();
 }
 
 
-void FPGA::Calibrator::CreateCalibrationStruct()
-{
-    cal = (CalibrationStruct *)std::malloc(sizeof(CalibrationStruct));
-    std::memset(cal, 0, sizeof(CalibrationStruct));
-}
-
-
-void FPGA::Calibrator::DeleteCalibrationStruct()
-{
-    std::free(cal);
-}
-
-
-void FPGA::Calibrator::CalibrateAddRShift(const Channel &ch, bool /*wait*/)
+void FPGA::Calibrator::CalibrateAddRShift(const Channel &ch)
 {
     int16 shifts[3];
 
@@ -699,16 +633,4 @@ void FPGA::Calibrator::LoadSettingsForCalculationAddRShift(const Channel &ch)
     TrigPolarity::Set(TrigPolarity::Front);
     TrigLev::Set(ch.ToTrigSource(), TrigLev::ZERO);
     CalibratorMode::Set(CalibratorMode::GND);
-}
-
-
-void FPGA::Calibrator::RestoreSettingsForCalibration(const Settings * /*savedSettings*/)
-{
-
-}
-
-
-void FPGA::Calibrator::WriteAdditionRShifts(const Channel & /*ch*/)
-{
-
 }

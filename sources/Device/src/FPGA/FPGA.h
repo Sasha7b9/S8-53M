@@ -174,26 +174,17 @@ public:
         // Загрузить в аппарат коэффициенты калибровки каналов.
         static void LoadKoeff(const Channel &ch);
 
+        // Запуск частичной калибровки - только смещение
         static void PerformBalance(const Channel &ch);
 
-        // Запуск функции калибровки.
+        // Запуск функции полной калибровки - смещение и растяжка
         static void PerformCalibration();
 
     private:
 
-        static void CreateCalibrationStruct();
-
-        // Если wait == true, то нужно ожидать после установки режима перед измерением для исключения переходного
-        // процесса
-        static void CalibrateAddRShift(const Channel &ch, bool wait);
+        static void CalibrateAddRShift(const Channel &ch);
 
         // Загрузить настройки для расчёта дополнительного смещения канала ch
         static void LoadSettingsForCalculationAddRShift(const Channel &ch);
-
-        static void RestoreSettingsForCalibration(const Settings *savedSettings);
-
-        static void WriteAdditionRShifts(const Channel &ch);
-
-        static void DeleteCalibrationStruct();
     };
 };
