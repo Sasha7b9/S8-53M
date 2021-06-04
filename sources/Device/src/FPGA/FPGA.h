@@ -179,6 +179,7 @@ public:
         private:
 
             static void CalibrateAddRShift(const Channel &ch);
+            static int16 CalculateAddRShift(float ave);
         };
 
         struct Stretcher

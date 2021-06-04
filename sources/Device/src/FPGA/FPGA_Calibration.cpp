@@ -624,7 +624,8 @@ void FPGA::Calibrator::Balancer::CalibrateAddRShift(const Channel &ch)
             }
             else
             {
-
+                float ave = ReadPoints1024((Range::E)range, (ModeCouple::E)couple);
+                setNRST.chan[ch].rshift[range][couple] = CalculateAddRShift(ave);
             }
         }
     }
