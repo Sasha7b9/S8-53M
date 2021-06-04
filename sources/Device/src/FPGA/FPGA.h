@@ -171,18 +171,28 @@ public:
 
     struct Calibrator
     {
+        struct Balancer
+        {
+            // Запуск частичной калибровки - только смещение
+            static void Perform(const Channel &ch);
+
+        private:
+
+            static void CalibrateAddRShift(const Channel &ch);
+        };
+
+        struct Stretcher
+        {
+
+        };
+
         // Загрузить в аппарат коэффициенты калибровки каналов.
         static void LoadKoeff(const Channel &ch);
-
-        // Запуск частичной калибровки - только смещение
-        static void PerformBalance(const Channel &ch);
 
         // Запуск функции полной калибровки - смещение и растяжка
         static void PerformCalibration();
 
     private:
-
-        static void CalibrateAddRShift(const Channel &ch);
 
         static float ReadPoints1024(Range::E range, ModeCouple::E couple);
     };

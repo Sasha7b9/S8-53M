@@ -576,7 +576,7 @@ Float CalculateKoeffCalibration(const Channel &ch)
 }
 
 
-void FPGA::Calibrator::PerformBalance(const Channel &ch)
+void FPGA::Calibrator::Balancer::Perform(const Channel &ch)
 {
 //    *КК -калибровочный коээфициент
 
@@ -601,7 +601,7 @@ void FPGA::Calibrator::PerformBalance(const Channel &ch)
 }
 
 
-void FPGA::Calibrator::CalibrateAddRShift(const Channel &ch)
+void FPGA::Calibrator::Balancer::CalibrateAddRShift(const Channel &ch)
 {
     int16 shifts[3];
 
@@ -633,7 +633,7 @@ void FPGA::Calibrator::CalibrateAddRShift(const Channel &ch)
 }
 
 
-float FPGA::Calibrator::ReadPoints1024(Range::E range, ModeCouple::E couple)
+float FPGA::Calibrator::ReadPoints1024(Range::E /*range*/, ModeCouple::E /*couple*/)
 {
-
+    return 0.0f;
 }
