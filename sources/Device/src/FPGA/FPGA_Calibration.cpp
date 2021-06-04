@@ -603,38 +603,44 @@ void FPGA::Calibrator::Balancer::Perform(const Channel &ch)
 
 void FPGA::Calibrator::Balancer::CalibrateAddRShift(const Channel &ch)
 {
-    int16 shifts[3];
-
-    setNRST.chan[ch].StoreAndResetRShifts(shifts);                  // обнулить КК по смещения
+    Stop();
 
     RShift::Set(ch, RShift::ZERO);                                  // установить общие настройки
     ModeCouple::Set(ch, ModeCouple::DC);
     TBase::Set(TBase::_200us);
+    TShift::Set(0);
+    RShift::Set(ch, 0);
     TrigSource::Set(ch.ToTrigSource());
     TrigPolarity::Set(TrigPolarity::Front);
     TrigLev::Set(ch.ToTrigSource(), TrigLev::ZERO);
+    PeackDetMode::Set(PeackDetMode::Disable);
+
     CalibratorMode::Set(CalibratorMode::GND);
 
-    for (int range = 0; range < Range::Count; range++)              
+    for (int range = 2; range < Range::Count; range++)
     {
-        for (int couple = 0; couple < 2; couple++)
-        {
-            if (range < 3 && couple == ModeCouple::DC)
-            {
-            }
-            else
-            {
-                float ave = ReadPoints1024((Range::E)range, (ModeCouple::E)couple);
-                setNRST.chan[ch].rshift[range][couple] = CalculateAddRShift(ave);
-            }
-        }
-    }
+        setNRST.chan[ch].rshift[range][ModeCouple::DC] = 0;
+        setNRST.chan[ch].rshift[range][ModeCouple::AC] = 0;
 
-    setNRST.chan[ch].RestoreHandsRShifts(shifts);
+        Range::Set(ch, (Range::E)range);
+
+        float ave = ReadPoints1024(ch);
+
+        int16 addShift = CalculateAddRShift(ave);
+
+        setNRST.chan[ch].rshift[range][ModeCouple::DC] = addShift;
+        setNRST.chan[ch].rshift[range][ModeCouple::AC] = addShift;
+    }
 }
 
 
-float FPGA::Calibrator::ReadPoints1024(Range::E /*range*/, ModeCouple::E /*couple*/)
+float FPGA::Calibrator::ReadPoints1024(const Channel &ch)
 {
+    HAL_TIM2::Delay(100);
+
+    Start();
+
+
+
     return 0.0f;
 }

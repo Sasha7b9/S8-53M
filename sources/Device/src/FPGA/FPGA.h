@@ -195,6 +195,6 @@ public:
 
     private:
 
-        static float ReadPoints1024(Range::E range, ModeCouple::E couple);
+        static float ReadPoints1024(const Channel &ch);
     };
 };

@@ -32,13 +32,6 @@ struct SettingsNRST
                                                 // Range в 3-х первых индексах при ModeCouple::DC задаются вручную
         int16 stretch_hand;                     // Значение растяжки канала для ручного режима
         float stretch_auto;                     // Растяжка, рассчитанная в процессе калибровки
-
-        // Сохранить дополнительные смещения и сбросить в ноль
-        void StoreAndResetRShifts(int16 shifts[3]);
-
-        // Восстановить необходимые дополнительные смещения (те, которые устанавливаются вручную для чувствительных
-        // диапазонов
-        void RestoreHandsRShifts(int16 shifts[3]);
     };
 
     struct SettingsConsole
