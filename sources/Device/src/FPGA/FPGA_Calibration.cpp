@@ -192,8 +192,6 @@ void FPGA::Calibrator::PerformCalibration()
         break;
     }
 
-    FPGA::state.Restore();
-
     RShift::Set(ChA, set.chan[Channel::A].rshift);
     RShift::Set(ChB, set.chan[Channel::B].rshift);
 

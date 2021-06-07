@@ -139,9 +139,6 @@ public:
         // Сохраняет текущие настройки. Потом их можно восстановить функцией FPGA_RestoreState().
         void Save();
 
-        // Восстанавливает настройки, ранее сохранённые функцией FPGA_SaveState().
-        void Restore();
-
         bool                need_calibration;               // Установленное в true значение означает, что необходимо
                                                             // произвести калибровку
         StateWorkFPGA       work_before_calibration;
