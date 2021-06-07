@@ -144,7 +144,7 @@ void SettingsNRST::Test()
 }
 
 
-int16 SettingsNRST::SettingsChannel::AddRShift(Range::E range, ModeCouple::E mode)
+int16 SettingsNRST::SettingsChannel::AddRShift(Range::E range, int mode)
 {
     if (setNRST.adc.type_rshift == RShiftADCtype::Disabled)
     {
