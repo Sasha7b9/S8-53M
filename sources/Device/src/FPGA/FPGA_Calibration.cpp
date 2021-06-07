@@ -631,8 +631,6 @@ void FPGA::Calibrator::Balancer::CalibrateAddRShift(const Channel &ch)
 
         setNRST.chan[ch].rshift[range][ModeCouple::DC] = addShift;
         setNRST.chan[ch].rshift[range][ModeCouple::AC] = addShift;
-
-        LOG_WRITE("range = %d, addshift = %d", range, addShift);
     }
 }
 
@@ -676,5 +674,5 @@ float FPGA::Calibrator::ReadPoints1024(const Channel &ch)
 
 int16 FPGA::Calibrator::Balancer::CalculateAddRShift(float ave)
 {
-    return (int16)ave;
+    return (int16)((Value::AVE - ave) * 2);
 }
