@@ -142,3 +142,19 @@ void SettingsNRST::Test()
         Display::Update();
     }
 }
+
+
+int16 SettingsNRST::SettingsChannel::AddRShift(Range::E range, ModeCouple::E mode)
+{
+    if (setNRST.adc.type_rshift == RShiftADCtype::Disabled)
+    {
+        return 0;
+    }
+
+    if (mode > 1)
+    {
+        return 0;
+    }
+
+    return rshift[range][mode];
+}
