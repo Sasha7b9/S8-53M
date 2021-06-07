@@ -366,12 +366,6 @@ void RegUPR::Load()
 }
 
 
-void FPGA::Calibrator::LoadKoeff(const Channel & /*chan*/)
-{
-//    FPGA::WriteToHardware(ch == ChA ? WR_CAL_A : WR_CAL_B, (uint8)(STRETCH_ADC(ch) * 0x80), false);
-}
-
-
 void LaunchFPGA::Load()
 {
     if (!ReaderFPGA::mutex_read.IsLocked())

@@ -168,6 +168,9 @@ public:
 
     struct Calibrator
     {
+        // Запуск функции полной калибровки - смещение и растяжка
+        static void PerformCalibration();
+
         struct Balancer
         {
             // Запуск частичной калибровки - только смещение
@@ -183,12 +186,6 @@ public:
         {
 
         };
-
-        // Загрузить в аппарат коэффициенты калибровки каналов.
-        static void LoadKoeff(const Channel &ch);
-
-        // Запуск функции полной калибровки - смещение и растяжка
-        static void PerformCalibration();
 
     private:
 
