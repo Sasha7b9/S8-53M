@@ -25,16 +25,10 @@ static void FuncDraw()
     Painter::SendFrame();
 }
 
-static void OnTimerDraw()
-{
-    Display::Update();
-}
-
 static void OnPress_ResetSettings()
 {
     Panel::DisableInput();
     Display::SetDrawMode(DrawMode::Timer, FuncDraw);
-    Timer::Enable(TypeTimer::DisplayUpdate, 100, OnTimerDraw);
 
     if (Panel::WaitPressingButton() == Key::Start)
     {
@@ -42,7 +36,6 @@ static void OnPress_ResetSettings()
         FPGA::Init();
     }
 
-    Timer::Disable(TypeTimer::DisplayUpdate);
     Display::SetDrawMode(DrawMode::Default);
     Panel::EnableInput();
 }
