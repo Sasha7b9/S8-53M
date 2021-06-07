@@ -203,9 +203,9 @@ void BottomPart::WriteTextVoltage(const Channel &ch, int x, int y)
 
         static const char couple[] =
         {
-            Symbol::S8::COUPLE_GND,
+            Symbol::S8::COUPLE_DC,
             Symbol::S8::COUPLE_AC,
-            Symbol::S8::COUPLE_DC
+            Symbol::S8::COUPLE_GND
         };
 
         Text("%s\xa5%c\xa5%s", (ch == ChA) ? (LANG_RU ? "1ê" : "1c") : (LANG_RU ? "2ê" : "2c"), couple[mode_couple],
