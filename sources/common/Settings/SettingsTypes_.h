@@ -74,14 +74,12 @@ struct StretchADCtype
 {
     enum E
     {
-        Disable,
-        Settings,
-        Hand
+        Disabled,
+        Enabled
     };
 
     static bool IsDisabled();
-    static bool IsHand();
-    static bool IsSettings();
+    static bool IsEnabled();
 };
 
 

@@ -26,7 +26,7 @@ static const SettingsNRST defaultNRST =
     },
     // SettingsADC
     {
-        StretchADCtype::Settings,   // type_stretch
+        StretchADCtype::Enabled,    // type_stretch
         RShiftADCtype::Enabled      // type_rshift
     },
     // SettingsChannel
@@ -35,14 +35,12 @@ static const SettingsNRST defaultNRST =
             0,                                                          // balance_ADC
             { {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0},
               {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}},  // rshift
-            0,                                                          // balance_hand
             1.0f                                                        // stretch_auto
         },
         {
             0,                                                          // balance_ADC
             { {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0},
               {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}},  // rshift
-            0,                                                          // balance_hand
             1.0f                                                        // stretch_auto
         }
     },

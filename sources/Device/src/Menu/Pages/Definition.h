@@ -80,8 +80,6 @@ struct PageDebug
 {
     static const Page *self;
 
-    static void LoadStretchADC(const Channel &);
-
     struct PageSerialNumber
     {
         static const Page *self;

@@ -665,19 +665,13 @@ bool ModeRegSet::IsRShift()
 
 bool StretchADCtype::IsDisabled()
 {
-    return (setNRST.adc.type_stretch == StretchADCtype::Disable);
+    return (setNRST.adc.type_stretch == StretchADCtype::Disabled);
 }
 
 
-bool StretchADCtype::IsHand()
+bool StretchADCtype::IsEnabled()
 {
-    return (setNRST.adc.type_stretch == StretchADCtype::Hand);
-}
-
-
-bool StretchADCtype::IsSettings()
-{
-    return (setNRST.adc.type_stretch == StretchADCtype::Settings);
+    return (setNRST.adc.type_stretch == StretchADCtype::Enabled);
 }
 
 
