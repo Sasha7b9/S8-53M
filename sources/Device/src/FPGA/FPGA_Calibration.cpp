@@ -8,6 +8,7 @@
 #include "Display/Display.h"
 #include "Display/Painter/DisplayPrimitives.h"
 #include "FPGA/FPGA.h"
+#include "FPGA/ReaderFPGA.h"
 #include "Menu/Pages/Definition.h"
 #include "Panel/Panel.h"
 #include <cmath>
@@ -640,7 +641,28 @@ float FPGA::Calibrator::ReadPoints1024(const Channel &ch)
 
     Start();
 
+    flag.Clear();
 
+    while(!flag.IsPredLaunchReady()) {}
+
+    while (!flag.IsTrigReady()) {}
+
+    while(!flag.IsDataReady()) {}
+
+    uint16 addr_read = ReaderFPGA::CalculateAddressRead();
+
+    FPGA::BUS::Write(WR_PRED, addr_read, false);
+    FPGA::BUS::Write(WR_ADDR_READ, 0xffff, false);
+
+    uint8 buffer[1024];
+
+    ReaderFPGA::ADC::ReadPoints(ch, buffer, &buffer[0] + 1024);
 
     return 0.0f;
+}
+
+
+int16 FPGA::Calibrator::Balancer::CalculateAddRShift(float /*ave*/)
+{
+    return 0;
 }

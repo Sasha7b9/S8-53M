@@ -4,8 +4,8 @@
 #include "Display/PainterData.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGA_Math.h"
-#include "FPGA/FPGA_Reader.h"
 #include "FPGA/FPGA_Types.h"
+#include "FPGA/ReaderFPGA.h"
 #include "FPGA/Data/DataSettings.h"
 #include "FPGA/Data/Preparator.h"
 #include "Panel/Panel.h"
@@ -76,11 +76,7 @@ void ReaderFPGA::Read::Real::Channel(DataReading &data, const ::Channel &ch, uin
     uint16 *p = (uint16 *)data.Data(ch);
     const uint16 *end = (uint16 *)(data.Data(ch) + data.Settings().BytesInChannel());
 
-    const uint16 *address = ADDRESS_READ(ch);
-
-    ADC::SetParameters(address, ch.value);
-
-    ADC::ReadPoints(p, end);
+    ADC::ReadPoints(ch, p, end);
 
     if (!PeackDetMode::IsEnabled() && FPGA::flag.IsFirstByte0())
     {
@@ -88,9 +84,16 @@ void ReaderFPGA::Read::Real::Channel(DataReading &data, const ::Channel &ch, uin
     }
 }
 
- 
-void ReaderFPGA::ADC::ReadPoints(uint16 *first, const uint16 *last)
+
+void ReaderFPGA::ADC::ReadPoints(const Channel &ch, void *_first, const void *_last)
 {
+    address = ADDRESS_READ(ch);
+
+    balance = setNRST.chan[ch].balance_ADC;
+
+    uint16 *first = (uint16 *)_first;
+    const uint16 *last = (const uint16 *)_last;
+
     while (first < last)
     {
         *first++ = ReadPoints();
@@ -108,13 +111,6 @@ uint16 ReaderFPGA::ADC::ReadPoints()
     data.byte1 = (uint8)byte1;
 
     return data.half_word;
-}
-
-
-void ReaderFPGA::ADC::SetParameters(const uint16 *_address, Channel::E ch)
-{
-    address = _address;
-    balance = setNRST.chan[ch].balance_ADC;
 }
 
 

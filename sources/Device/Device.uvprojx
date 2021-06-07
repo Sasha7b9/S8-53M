@@ -1722,16 +1722,6 @@
               <FilePath>.\src\FPGA\FPGA_Math.cpp</FilePath>
             </File>
             <File>
-              <FileName>FPGA_Reader.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\FPGA\FPGA_Reader.h</FilePath>
-            </File>
-            <File>
-              <FileName>FPGA_Reader.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\FPGA\FPGA_Reader.cpp</FilePath>
-            </File>
-            <File>
               <FileName>FPGA_Settings.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\FPGA\FPGA_Settings.cpp</FilePath>
@@ -1740,6 +1730,16 @@
               <FileName>FPGA_Types.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\FPGA\FPGA_Types.h</FilePath>
+            </File>
+            <File>
+              <FileName>ReaderFPGA.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\FPGA\ReaderFPGA.h</FilePath>
+            </File>
+            <File>
+              <FileName>ReaderFPGA.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\FPGA\ReaderFPGA.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -4162,16 +4162,6 @@
               <FilePath>.\src\FPGA\FPGA_Math.cpp</FilePath>
             </File>
             <File>
-              <FileName>FPGA_Reader.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\FPGA\FPGA_Reader.h</FilePath>
-            </File>
-            <File>
-              <FileName>FPGA_Reader.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\FPGA\FPGA_Reader.cpp</FilePath>
-            </File>
-            <File>
               <FileName>FPGA_Settings.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\src\FPGA\FPGA_Settings.cpp</FilePath>
@@ -4180,6 +4170,16 @@
               <FileName>FPGA_Types.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\FPGA\FPGA_Types.h</FilePath>
+            </File>
+            <File>
+              <FileName>ReaderFPGA.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\FPGA\ReaderFPGA.h</FilePath>
+            </File>
+            <File>
+              <FileName>ReaderFPGA.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\FPGA\ReaderFPGA.cpp</FilePath>
             </File>
           </Files>
         </Group>

@@ -5,8 +5,8 @@
 #include "Display/PainterData.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGA_AutoFinder.h"
-#include "FPGA/FPGA_Reader.h"
 #include "FPGA/FPGA_Types.h"
+#include "FPGA/ReaderFPGA.h"
 #include "Panel/Panel.h"
 #include "Settings/SettingsNRST.h"
 #include "Utils/ProcessingSignal.h"
@@ -333,6 +333,12 @@ void FPGA::Flag::Read()
     CalculateTimeReadyPredLaunch();
 
     RunPostLaunchIfNeed();
+}
+
+
+void FPGA::Flag::Clear()
+{
+    flag = 0;
 }
 
 

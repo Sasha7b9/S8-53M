@@ -6,7 +6,7 @@
 #include "Display/Warnings.h"
 #include "FPGA/FPGA.h"
 #include "FPGA/FPGA_Math.h"
-#include "FPGA/FPGA_Reader.h"
+#include "FPGA/ReaderFPGA.h"
 #include "FPGA/Data/DataSettings.h"
 #include "Menu/Pages/Definition.h"
 #include "Panel/Panel.h"

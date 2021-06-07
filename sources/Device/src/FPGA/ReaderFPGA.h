@@ -13,7 +13,24 @@ struct ReaderFPGA
 
     static void ReadPoint();
 
+    // Возвращает адрес, с которого нужно читать первую точку
+    static uint16 CalculateAddressRead();
+
     static Mutex mutex_read;                    // Мьютекс на чтение данных
+
+    struct ADC
+    {
+        // Читает две точки (из двух АЦП) с учётом калибровок
+        static uint16 ReadPoints();
+
+        // Читать массив точек от first до last
+        static void ReadPoints(const Channel &ch, void *first, const void *last);
+
+    private:
+
+        static const uint16 *address;       // С этого адреса производится чтение
+        static int16  balance;              // Баланс второго АЦП
+    };
 
 private:
 
@@ -21,9 +38,6 @@ private:
     static void InverseDataIsNecessary(DataReading &data, const Channel &ch);
 
     static Int CalculateShift();
-
-    // Возвращает адрес, с которого нужно читать первую точку
-    static uint16 CalculateAddressRead();
 
     struct Read
     {
@@ -48,24 +62,5 @@ private:
             // Рассчитывает первый адрес, в который нужно записывать считанные данные
             static uint8 *CalculateFirstAddressWrite(DataReading &dr, const ::Channel &ch);
         };
-    };
-
-    struct ADC
-    {
-        // Установить параметры для последующиего чтения:
-        // address - адрес чтения,
-        // ch - данные этого канала будут считываться.
-        static void SetParameters(const uint16 *address, Channel::E ch);
-
-        // Читает две точки (из двух АЦП) с учётом калибровок
-        static uint16 ReadPoints();
-
-        // Читать массив точек от first до last
-        static void ReadPoints(uint16 *first, const uint16 *last);
-
-    private:
-
-        static const uint16 *address;       // С этого адреса производится чтение
-        static int16  balance;              // Баланс второго АЦП
     };
 };

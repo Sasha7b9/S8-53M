@@ -5,7 +5,6 @@
 #include "Display/PainterData.h"
 #include "Display/Screen/MemoryWindow.h"
 #include "FPGA/FPGA.h"
-#include "FPGA/FPGA_Reader.h"
 #include "FPGA/Data/DataSettings.h"
 #include "FPGA/Data/Preparator.h"
 #include "Menu/Menu.h"
