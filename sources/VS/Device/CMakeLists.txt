@@ -155,9 +155,9 @@ file(GLOB RESOURCES          resources/*)
 set_source_files_properties(resources/*
                             PROPERTIES LANGUAGE RC)
 
-
 set_source_files_properties(../../Device/src/Ethernet/Ethernet.cpp
                             ../../Device/src/Menu/Pages/PageHelp.cpp
+                            src/Hardware/HAL/HAL_ROM_win.cpp
                             PROPERTIES HEADER_FILE_ONLY TRUE)
 
 source_group(libs\\CMSIS          FILES ${LIBS_CMSIS})

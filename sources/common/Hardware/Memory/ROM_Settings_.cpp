@@ -42,7 +42,7 @@ struct StructSector
     T *GetSaved() const;
 
     // Возвращает указатель на пакет, установленный на начало сектора
-    Packet<T> *CreatePacket() const;
+    Packet<T> *FirstPacket() const;
 
     // Возвращает указатель на последний записанный в секторе пакет
     Packet<T> *LastPacket() const;
@@ -111,7 +111,7 @@ bool StructSector<T>::SaveSettings(T *sett) const
 template<class T>
 Packet<T> *StructSector<T>::LastPacket() const
 {
-    Packet<T> *packet = CreatePacket();
+    Packet<T> *packet = FirstPacket();
 
     while (!packet->IsEmpty())
     {
@@ -155,7 +155,7 @@ StructSector<T> &StructSector<T>::GetSector2()
 
 
 template<class T>
-Packet<T> *StructSector<T>::CreatePacket() const
+Packet<T> *StructSector<T>::FirstPacket() const
 {
     return (Packet<T> *)sector.address;
 }

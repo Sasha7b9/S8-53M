@@ -1,4 +1,5 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
+#include "common/Display/Font/Font_.h"
 #include "Menu/Items/MenuItems.h"
 #include "Menu/Pages/HelpContent.h"
 #include "Definition.h"

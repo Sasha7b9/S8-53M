@@ -153,8 +153,10 @@ file(GLOB VCP_SCPI                 src/VCP/SCPI/*.h
                                    src/VCP/SCPI/*.cpp)
 file(GLOB VCP_SCPI_UTILS           src/VCP/SCPI/Utils/*.*)
 
-set_source_files_properties(${LIBS_FATFS} ${LIBS_HAL} ${LIBS_USBH} ${HARDWARE_CMSIS}
-                            src/Menu/Pages/PageHelp.cpp
+file(GLOB ExcludedFiles src/Menu/Pages/PageHelp.cpp
+                        ../common/Hardware/HAL/HAL_ROM_stm_.cpp)
+
+set_source_files_properties(${LIBS_FATFS} ${LIBS_HAL} ${LIBS_USBH} ${HARDWARE_CMSIS} ${ExcludedFiles}
                             PROPERTIES HEADER_FILE_ONLY TRUE)
 
 source_group(libs\\vs_keil\\ARMCLANG FILES ${VS_KEIL_ARMCLANG})
