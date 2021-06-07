@@ -95,13 +95,6 @@ static int CalculateNumberCycles()
 
 void FPGA::Update()
 {
-    if (state.need_calibration)
-    {
-        Calibrator::PerformCalibration();
-
-        return;
-    }
-
     if (state.work.IsStop())
     {
         return;

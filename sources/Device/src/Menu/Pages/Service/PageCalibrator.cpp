@@ -25,7 +25,7 @@ DEF_CHOICE_3(cMode, PageService::PageCalibrator::self,
 
 static void OnPress_Calibrate()
 {
-    FPGA::state.need_calibration = true;
+    FPGA::Calibrator::PerformCalibration();
 }
 
 

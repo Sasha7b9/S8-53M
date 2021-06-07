@@ -131,7 +131,6 @@ public:
     struct State
     {
         State() : //-V730
-            need_calibration(false),
             work_before_calibration(StateWorkFPGA::Stop),
             state_calibration(StateCalibration::None)
         { }
@@ -139,8 +138,6 @@ public:
         // Сохраняет текущие настройки. Потом их можно восстановить функцией FPGA_RestoreState().
         void Save();
 
-        bool                need_calibration;               // Установленное в true значение означает, что необходимо
-                                                            // произвести калибровку
         StateWorkFPGA       work_before_calibration;
         StateWorkFPGA       work;
         StateCalibration::E state_calibration;              // Текущее состояние калибровки. Используется в процессе
@@ -184,11 +181,13 @@ public:
 
         struct Stretcher
         {
-
+            static void Perform(const Channel &ch);
         };
 
     private:
 
         static float ReadPoints1024(const Channel &ch);
+
+        static void FuncDraw();
     };
 };

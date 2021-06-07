@@ -22,9 +22,10 @@
 static Float koeffCal0 = -1.0F;
 static Float koeffCal1 = -1.0F;
 
+
 void FPGA::Calibrator::PerformCalibration()
 {
-
+   
 }
 
 
