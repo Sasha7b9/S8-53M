@@ -91,6 +91,11 @@ void ReaderFPGA::ADC::ReadPoints(const Channel &ch, void *_first, const void *_l
 
     balance = setNRST.chan[ch].balance_ADC;
 
+    if (TBase::IsRandomize() || PeackDetMode::IsEnabled())
+    {
+        balance = 0;
+    }
+
     uint16 *first = (uint16 *)_first;
     const uint16 *last = (const uint16 *)_last;
 
