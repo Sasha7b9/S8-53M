@@ -42,6 +42,12 @@ const Sector HAL_ROM::sectors[Sector::Count] =
 };
 
 
+void HAL_ROM::Init()
+{
+
+}
+
+
 void Sector::Erase() const
 {
     CLEAR_FLASH_FLAGS;
