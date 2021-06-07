@@ -33,6 +33,8 @@ public:
     T &operator[](uint i) const;
     T &operator[](int i) const;
 
+    static float Sum(T *data, uint number);
+
 private:
 
     uint size;

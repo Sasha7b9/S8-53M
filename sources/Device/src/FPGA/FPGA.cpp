@@ -336,12 +336,6 @@ void FPGA::Flag::Read()
 }
 
 
-void FPGA::Flag::Clear()
-{
-    flag = 0;
-}
-
-
 void FPGA::Flag::CalculateTimeReadyPredLaunch()
 {
     if (IsPredLaunchReady())

@@ -4,6 +4,7 @@
 #include "common/Display/Painter/Text_.h"
 #include "common/Hardware/Timer_.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "common/Utils/Containers/Buffer_.h"
 #include "common/Utils/Containers/Values_.h"
 #include "Display/Display.h"
 #include "Display/Painter/DisplayPrimitives.h"
@@ -607,10 +608,9 @@ void FPGA::Calibrator::Balancer::CalibrateAddRShift(const Channel &ch)
     Stop();
 
     RShift::Set(ch, RShift::ZERO);                                  // установить общие настройки
-    ModeCouple::Set(ch, ModeCouple::DC);
+    ModeCouple::Set(ch, ModeCouple::GND);
     TBase::Set(TBase::_200us);
     TShift::Set(0);
-    RShift::Set(ch, 0);
     TrigSource::Set(ch.ToTrigSource());
     TrigPolarity::Set(TrigPolarity::Front);
     TrigLev::Set(ch.ToTrigSource(), TrigLev::ZERO);
@@ -631,38 +631,50 @@ void FPGA::Calibrator::Balancer::CalibrateAddRShift(const Channel &ch)
 
         setNRST.chan[ch].rshift[range][ModeCouple::DC] = addShift;
         setNRST.chan[ch].rshift[range][ModeCouple::AC] = addShift;
+
+        LOG_WRITE("range = %d, addshift = %d", range, addShift);
     }
 }
 
 
 float FPGA::Calibrator::ReadPoints1024(const Channel &ch)
 {
-    HAL_TIM2::Delay(100);
-
     Start();
 
-    flag.Clear();
-
-    while(!flag.IsPredLaunchReady()) {}
-
-    while (!flag.IsTrigReady()) {}
-
-    while(!flag.IsDataReady()) {}
-
-    uint16 addr_read = ReaderFPGA::CalculateAddressRead();
-
-    FPGA::BUS::Write(WR_PRED, addr_read, false);
-    FPGA::BUS::Write(WR_ADDR_READ, 0xffff, false);
+    bool readed = false;
 
     uint8 buffer[1024];
 
-    ReaderFPGA::ADC::ReadPoints(ch, buffer, &buffer[0] + 1024);
+    std::memset(buffer, 255, 1024);
 
-    return 0.0f;
+    while (!readed)
+    {
+        flag.Read();
+
+        if (flag.IsPredLaunchReady())
+        {
+            if (flag.IsTrigReady())
+            {
+                if (flag.IsDataReady())
+                {
+                    uint16 addr_read = ReaderFPGA::CalculateAddressRead();
+
+                    FPGA::BUS::Write(WR_PRED, addr_read, false);
+                    FPGA::BUS::Write(WR_ADDR_READ, 0xffff, false);
+
+                    ReaderFPGA::ADC::ReadPoints(ch, buffer, &buffer[0] + 1024);
+
+                    readed = true;
+                }
+            }
+        }
+    }
+
+    return Buffer<uint8>::Sum(buffer, 1024) / 1024;
 }
 
 
-int16 FPGA::Calibrator::Balancer::CalculateAddRShift(float /*ave*/)
+int16 FPGA::Calibrator::Balancer::CalculateAddRShift(float ave)
 {
-    return 0;
+    return (int16)ave;
 }

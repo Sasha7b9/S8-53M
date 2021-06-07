@@ -12,8 +12,9 @@ template Buffer<uint8>::~Buffer();
 template Buffer<int>::~Buffer();
 template void Buffer<uint8>::Free();
 template void Buffer<uint8>::Realloc(uint);
-template void Buffer<uint8>::Fill(uint8 value);
-template void Buffer<int>::Fill(int value);
+template void Buffer<uint8>::Fill(uint8);
+template void Buffer<int>::Fill(int);
+template float Buffer<uint8>::Sum(uint8 *, uint);
 template uint8 &Buffer<uint8>::operator[](uint) const;
 template uint16 &Buffer<uint16>::operator[](uint) const;
 template int &Buffer<int>::operator[](uint) const;
@@ -143,4 +144,19 @@ T &Buffer<T>::operator[](int i) const
     static T empty(0);
 
     return empty;
+}
+
+
+template<class T>
+float Buffer<T>::Sum(T *data, uint number)
+{
+    float result = 0.0F;
+
+    for (uint i = 0; i < number; i++)
+    {
+        result += *data;
+        data++;
+    }
+
+    return result;
 }
