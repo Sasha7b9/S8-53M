@@ -107,7 +107,7 @@ bool FPGA::Calibrator::CalibrationChannel(const Channel &ch)
 }
 
 
-void FPGA::Calibrator::Balancer::PerformIndividual(const Channel &ch)
+void FPGA::Calibrator::Balancer::PerformOnGround(const Channel &ch)
 {
 //    *КК -калибровочный коээфициент
 

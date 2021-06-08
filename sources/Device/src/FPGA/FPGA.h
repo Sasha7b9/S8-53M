@@ -158,7 +158,7 @@ public:
         struct Balancer
         {
             // Запуск балансировки из меню КАНАЛ
-            static void PerformIndividual(const Channel &ch);
+            static void PerformOnGround(const Channel &ch);
 
         private:
 
