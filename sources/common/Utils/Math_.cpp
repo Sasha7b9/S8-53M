@@ -8,6 +8,7 @@
 
 
 template int   Math::Abs(int);
+template int16 Math::Abs(int16);
 template void  Math::Swap(int *, int *);
 template void  Math::Swap(uint8 *, uint8 *);
 template void  Math::Limitation(int *, int, int);

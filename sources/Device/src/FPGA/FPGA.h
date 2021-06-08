@@ -155,22 +155,21 @@ public:
 
         static bool CalibrationChannel(const Channel &ch);
 
-        static void ExitCalibration();
-
         struct Balancer
         {
             // Запуск частичной калибровки - только смещение
-            static void Perform(const Channel &ch);
+            // Если single == true, то это одиночная калибровка - из меню КАНАЛ
+            static bool Perform(const Channel &ch, bool single);
 
         private:
 
-            static void CalibrateAddRShift(const Channel &ch);
+            static bool CalibrateAddRShift(const Channel &ch);
             static int16 CalculateAddRShift(float ave);
         };
 
         struct Stretcher
         {
-            static void Perform(const Channel &ch);
+            static bool Perform(const Channel &ch);
         };
 
     private:
@@ -178,5 +177,7 @@ public:
         static float ReadPoints1024(const Channel &ch);
 
         static void FuncDraw();
+
+        static uint timeStart;
     };
 };

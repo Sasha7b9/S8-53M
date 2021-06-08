@@ -4,6 +4,7 @@
 #include "common/Display/Painter/Text_.h"
 #include "common/Hardware/Timer_.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "common/Utils/Math_.h"
 #include "common/Utils/Containers/Buffer_.h"
 #include "common/Utils/Containers/Values_.h"
 #include "Display/Display.h"
@@ -23,20 +24,29 @@ struct StateCalibration { enum E {
     None,
     NeedChannel1,       // Приглашение к калибровке 1-го канала
     NeedChannel2,       // Приглашение к калибровке 2-го канала
+    ProcessChannel1,    // Идёт калибровка первого канала
+    ProcessChannel2,    // Идёт калибровка второго канала
     ErrorChannel1,      // Ошибка калибровки 1-го канала
     ErrorChannel2,      // Ошибка калибровки 2-го канала
     Complete
 };};
 
 
-volatile static StateCalibration::E stateCalibration = StateCalibration::None;
+uint FPGA::Calibrator::timeStart = 0;
 
-static Float koeffCal0 = -1.0F;
-static Float koeffCal1 = -1.0F;
+static StateCalibration::E stateCalibration = StateCalibration::None;
+
+static bool errorCalibration = false;                   // Если true - произошла ошибка во время калибровки
 
 
 void FPGA::Calibrator::PerformCalibration()
 {
+    timeStart = TIME_MS;
+
+    Settings storedSettings = set;                          // Сохранить настройки
+
+    errorCalibration = false;                               // Если true - во время калибровки произошла ошибка
+
     stateCalibration = StateCalibration::None;
 
     Panel::DisableInput();
@@ -45,59 +55,59 @@ void FPGA::Calibrator::PerformCalibration()
 
     stateCalibration = StateCalibration::NeedChannel1;                              // Калибруем первый канал
 
-    if (Panel::WaitPressingKey() != Key::Start)
-    {
-        return ExitCalibration();
-    }
+    if (Panel::WaitPressingKey() != Key::Start)         { goto ExitCalibration; }
 
-    if (!CalibrationChannel(ChA))
-    {
-        stateCalibration = StateCalibration::ErrorChannel1;
+    stateCalibration = StateCalibration::ProcessChannel1;
 
-        Panel::WaitPressingKey();
-
-        return ExitCalibration();
-    }
+    if (!CalibrationChannel(ChA))                       { errorCalibration = true; }
 
     stateCalibration = StateCalibration::NeedChannel2;                              // Калибруем второй канал
 
-    if (Panel::WaitPressingKey() != Key::Start)
-    {
-        return ExitCalibration();
-    }
+    if (Panel::WaitPressingKey() != Key::Start)         { goto ExitCalibration; }
 
-    if (!CalibrationChannel(ChB))
-    {
-        stateCalibration = StateCalibration::ErrorChannel2;
+    stateCalibration = StateCalibration::ProcessChannel2;
 
-        Panel::WaitPressingKey();
-
-        return ExitCalibration();
-    }
+    if (!CalibrationChannel(ChB))                       { errorCalibration = true; }
 
     stateCalibration = StateCalibration::Complete;                                  // Выводим информацию о калибровке
 
     Panel::WaitPressingKey();
 
-    return ExitCalibration();
-}
+ExitCalibration:
 
+    set = storedSettings;                                                           // Восстановить настройки
+    FPGA::LoadSettings();
 
-bool FPGA::Calibrator::CalibrationChannel(const Channel & /*ch*/)
-{
-    return false;
-}
-
-
-void FPGA::Calibrator::ExitCalibration()
-{
     Display::SetDrawMode(DrawMode::Default);
 
     Panel::EnableInput();
 }
 
 
-void FPGA::Calibrator::Balancer::Perform(const Channel &ch)
+bool FPGA::Calibrator::CalibrationChannel(const Channel &ch)
+{
+    /*
+    * 1. Провести балансировку всех диапазонов.
+    * 2. Провести растяжку диапазонов.
+    */
+
+    bool result = true;
+
+    if (!Balancer::Perform(ch, false))
+    {
+        result = false;
+    }
+
+    if (!Stretcher::Perform(ch))
+    {
+        result = false;
+    }
+
+    return false;
+}
+
+
+bool FPGA::Calibrator::Balancer::Perform(const Channel &ch, bool single)
 {
 //    *КК -калибровочный коээфициент
 
@@ -107,22 +117,38 @@ void FPGA::Calibrator::Balancer::Perform(const Channel &ch)
         {"Балансирую канал 2", "Balancing the channel 2"}
     };
 
+    Settings storedSettings;
+
+    if (single)
+    {
+        storedSettings = set;
+    }
+
     Panel::DisableInput();
     Display::Message::Show(messages[LANG][ch]);     // Вывести сообщение о балансировке.
 
-    Settings storedSettings = set;                  // Сохранить настройки
+    bool result = CalibrateAddRShift(ch);           // Произвести балансировку канала:
 
-    CalibrateAddRShift(ch);                         // Произвести балансировку канала:
-
-    set = storedSettings;                           // Восстановить настройки
-    FPGA::LoadSettings();
+    if (single)
+    {
+        set = storedSettings;
+        FPGA::LoadSettings();
+    }
 
     Display::Message::Hide();                       // Убрать сообщение о балансировке
     Panel::EnableInput();
+
+    return result;
 }
 
 
-void FPGA::Calibrator::Balancer::CalibrateAddRShift(const Channel &ch)
+bool FPGA::Calibrator::Stretcher::Perform(const Channel &ch)
+{
+    return true;
+}
+
+
+bool FPGA::Calibrator::Balancer::CalibrateAddRShift(const Channel &ch)
 {
     Stop();
 
@@ -137,7 +163,7 @@ void FPGA::Calibrator::Balancer::CalibrateAddRShift(const Channel &ch)
 
     CalibratorMode::Set(CalibratorMode::GND);
 
-    Buffer<int16> buffer(Range::Count);
+    bool result = true;
 
     for (int range = 2; range < Range::Count; range++)
     {
@@ -150,13 +176,18 @@ void FPGA::Calibrator::Balancer::CalibrateAddRShift(const Channel &ch)
 
         int16 addShift = CalculateAddRShift(ave);
 
-        buffer[range] = addShift;
-
-        setNRST.chan[ch].rshift[range][ModeCouple::DC] = addShift;
-        setNRST.chan[ch].rshift[range][ModeCouple::AC] = addShift;
+        if (Math::Abs(addShift) < 40)
+        {
+            setNRST.chan[ch].rshift[range][ModeCouple::DC] = addShift;
+            setNRST.chan[ch].rshift[range][ModeCouple::AC] = addShift;
+        }
+        else
+        {
+            result = false;
+        }
     }
 
-    LOG_WRITE(buffer.ToString().c_str());
+    return result;
 }
 
 
@@ -217,16 +248,31 @@ void FPGA::Calibrator::FuncDraw()
         break;
 
     case StateCalibration::NeedChannel1:
+    case StateCalibration::NeedChannel2:
 
-        Text("Подключите ко входу канала 1 выход калибратора и нажмите кнопку ПУСК/СТОП. Нажмите любую другую кнопку"
-             " для выхода из режима калибровки").DrawInRect(50, y + 25, Display::WIDTH - 100, 100);
+        Text(LANG_RU ? "Подключите ко входу канала %d выход калибратора и нажмите кнопку ПУСК/СТОП."
+            " Нажмите любую другую кнопку для выхода из режима калибровки" :
+            "Connect the output of the calibrator to the input of channel %d and press the START/STOP button."
+            " Press any other button to exit calibration mode",
+            stateCalibration == StateCalibration::NeedChannel1 ? 1 : 2).
+            DrawInRect(50, y + 25, Display::WIDTH - 100, 100);
 
         break;
 
-    case StateCalibration::NeedChannel2:
+    case StateCalibration::ProcessChannel1:
+    case StateCalibration::ProcessChannel2:
+        {
+            uint time = ((TIME_MS - timeStart) / 50) % 100;
 
-        Text("Подключите ко входу канала 1 выход калибратора и нажмите кнопку ПУСК/СТОП. Нажмите любую другую кнопку"
-            " для выхода из режима калибровки").DrawInRect(50, y + 25, Display::WIDTH - 100, 100);
+            if (time > 50)
+            {
+                time = (100 - 50);
+            }
+
+            Text(LANG_RU ? "Выполняется калибровка канала %d" : "Channel %d is being calibrated",
+                stateCalibration == StateCalibration::ProcessChannel1 ? 1 : 2).
+                DrawInRect(50, y + 25, Display::WIDTH - 100, 100);
+        }
 
         break;
 

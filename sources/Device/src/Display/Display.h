@@ -60,8 +60,6 @@ public:
     {
         static void Show(pchar text);
 
-        static void ShowFullScreen(pchar text);
-
         static void Hide();
 
     private:
