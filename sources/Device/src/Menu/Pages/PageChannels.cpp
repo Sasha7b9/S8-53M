@@ -102,7 +102,7 @@ DEF_CHOICE_2(mcMultiplierA, PageChannelA::self,
 
 void PageChannelA::OnPress_Balance()
 {
-    FPGA::Calibrator::Balancer::Perform(ChA, true);
+    FPGA::Calibrator::Balancer::PerformIndividual(ChA);
 }
 
 DEF_BUTTON(mbBalanceA, PageChannelA::self,
@@ -196,7 +196,7 @@ DEF_CHOICE_2(mcMultiplierB, PageChannelB::self,
 
 void PageChannelB::OnPress_Balance()
 {
-    FPGA::Calibrator::Balancer::Perform(ChB, true);
+    FPGA::Calibrator::Balancer::PerformIndividual(ChB);
 }
 
 DEF_BUTTON(mbBalanceB, PageChannelB::self,

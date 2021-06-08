@@ -157,9 +157,8 @@ public:
 
         struct Balancer
         {
-            // Запуск частичной калибровки - только смещение
-            // Если single == true, то это одиночная калибровка - из меню КАНАЛ
-            static bool Perform(const Channel &ch, bool single);
+            // Запуск балансировки из меню КАНАЛ
+            static void PerformIndividual(const Channel &ch);
 
         private:
 

@@ -93,10 +93,10 @@ bool FPGA::Calibrator::CalibrationChannel(const Channel &ch)
 
     bool result = true;
 
-    if (!Balancer::Perform(ch, false))
-    {
-        result = false;
-    }
+//    if (!Balancer::Perform(ch, false))
+//    {
+//        result = false;
+//    }
 
     if (!Stretcher::Perform(ch))
     {
@@ -107,7 +107,7 @@ bool FPGA::Calibrator::CalibrationChannel(const Channel &ch)
 }
 
 
-bool FPGA::Calibrator::Balancer::Perform(const Channel &ch, bool single)
+void FPGA::Calibrator::Balancer::PerformIndividual(const Channel &ch)
 {
 //    *КК -калибровочный коээфициент
 
@@ -121,24 +121,16 @@ bool FPGA::Calibrator::Balancer::Perform(const Channel &ch, bool single)
 
     Settings storedSettings;
 
-    if (single)
-    {
-        storedSettings = set;
-        Display::Message::Show(messages[LANG][ch]);     // Вывести сообщение о балансировке.
-    }
+    storedSettings = set;
+    Display::Message::Show(messages[LANG][ch]);     // Вывести сообщение о балансировке.
 
-    bool result = CalibrateAddRShift(ch);           // Произвести балансировку канала:
+    CalibrateAddRShift(ch);                         // Произвести балансировку канала:
 
-    if (single)
-    {
-        set = storedSettings;
-        FPGA::LoadSettings();
-        Display::Message::Hide();                       // Убрать сообщение о балансировке
-    }
+    set = storedSettings;
+    FPGA::LoadSettings();
+    Display::Message::Hide();                       // Убрать сообщение о балансировке
 
     Panel::EnableInput();
-
-    return result;
 }
 
 
