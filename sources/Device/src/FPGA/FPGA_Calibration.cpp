@@ -211,6 +211,8 @@ bool FPGA::Calibrator::Balancer::CalibrateAddRShiftNormal(const Channel &ch)
 
 float FPGA::Calibrator::ReadPoints1024(const Channel &ch)
 {
+    HAL_TIM2::Delay((set.chan[ch].range < 2) ? 500U : 100U);
+
     Start();
 
     uint8 buffer[1024];
