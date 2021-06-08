@@ -103,7 +103,7 @@ bool FPGA::Calibrator::CalibrationChannel(const Channel &ch)
         result = false;
     }
 
-    return false;
+    return result;
 }
 
 
@@ -117,15 +117,15 @@ bool FPGA::Calibrator::Balancer::Perform(const Channel &ch, bool single)
         {"Балансирую канал 2", "Balancing the channel 2"}
     };
 
+    Panel::DisableInput();
+
     Settings storedSettings;
 
     if (single)
     {
         storedSettings = set;
+        Display::Message::Show(messages[LANG][ch]);     // Вывести сообщение о балансировке.
     }
-
-    Panel::DisableInput();
-    Display::Message::Show(messages[LANG][ch]);     // Вывести сообщение о балансировке.
 
     bool result = CalibrateAddRShift(ch);           // Произвести балансировку канала:
 
@@ -133,16 +133,16 @@ bool FPGA::Calibrator::Balancer::Perform(const Channel &ch, bool single)
     {
         set = storedSettings;
         FPGA::LoadSettings();
+        Display::Message::Hide();                       // Убрать сообщение о балансировке
     }
 
-    Display::Message::Hide();                       // Убрать сообщение о балансировке
     Panel::EnableInput();
 
     return result;
 }
 
 
-bool FPGA::Calibrator::Stretcher::Perform(const Channel &ch)
+bool FPGA::Calibrator::Stretcher::Perform(const Channel & /*ch*/)
 {
     return true;
 }
@@ -286,6 +286,12 @@ void FPGA::Calibrator::FuncDraw()
         break;
 
     case StateCalibration::Complete:
+
+        if (errorCalibration)
+        {
+
+        }
+
         break;
     }
 
