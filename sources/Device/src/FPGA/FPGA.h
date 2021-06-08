@@ -167,7 +167,6 @@ public:
         private:
 
             static void CalibrateAddRShiftGND(const Channel &ch);
-            static bool CalibrateAddRShiftNormal(const Channel &ch);
             static int16 CalculateAddRShift(float ave);
         };
 

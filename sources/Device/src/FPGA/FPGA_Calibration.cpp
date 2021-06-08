@@ -127,7 +127,43 @@ void FPGA::Calibrator::Balancer::PerformOnGround(const Channel &ch)
 
 bool FPGA::Calibrator::Balancer::PerformNormal(const Channel &ch)
 {
-    return CalibrateAddRShiftNormal(ch);
+    Stop();
+
+    RShift::Set(ch, RShift::ZERO);                                  // установить общие настройки
+    TBase::Set(TBase::_200us);
+    TShift::Set(0);
+    TrigSource::Set(ch.ToTrigSource());
+    TrigPolarity::Set(TrigPolarity::Front);
+    TrigLev::Set(ch.ToTrigSource(), TrigLev::ZERO);
+    PeackDetMode::Set(PeackDetMode::Disable);
+
+    CalibratorMode::Set(CalibratorMode::GND);
+
+    bool result = true;
+
+    for (int range = 0; range < Range::Count; range++)
+    {
+        for (int mode = 0; mode < 2; mode++)
+        {
+            setNRST.chan[ch].rshift[range][mode] = 0;
+            Range::Set(ch, (Range::E)range);
+
+            float ave = ReadPoints1024(ch);
+
+            int16 addShift = CalculateAddRShift(ave);
+
+            if (Math::Abs(addShift) < 40)
+            {
+                setNRST.chan[ch].rshift[range][mode] = addShift;
+            }
+            else
+            {
+                result = false;
+            }
+        }
+    }
+
+    return result;
 }
 
 
@@ -164,48 +200,6 @@ void FPGA::Calibrator::Balancer::CalibrateAddRShiftGND(const Channel &ch)
         setNRST.chan[ch].rshift[range][ModeCouple::DC] = addShift;
         setNRST.chan[ch].rshift[range][ModeCouple::AC] = addShift;
     }
-}
-
-
-bool FPGA::Calibrator::Balancer::CalibrateAddRShiftNormal(const Channel &ch)
-{
-    Stop();
-
-    RShift::Set(ch, RShift::ZERO);                                  // установить общие настройки
-    TBase::Set(TBase::_200us);
-    TShift::Set(0);
-    TrigSource::Set(ch.ToTrigSource());
-    TrigPolarity::Set(TrigPolarity::Front);
-    TrigLev::Set(ch.ToTrigSource(), TrigLev::ZERO);
-    PeackDetMode::Set(PeackDetMode::Disable);
-
-    CalibratorMode::Set(CalibratorMode::GND);
-
-    bool result = true;
-
-    for (int range = 0; range < Range::Count; range++)
-    {
-        for (int mode = 0; mode < 2; mode++)
-        {
-            setNRST.chan[ch].rshift[range][mode] = 0;
-            Range::Set(ch, (Range::E)range);
-
-            float ave = ReadPoints1024(ch);
-
-            int16 addShift = CalculateAddRShift(ave);
-
-            if (Math::Abs(addShift) < 40)
-            {
-                setNRST.chan[ch].rshift[range][mode] = addShift;
-            }
-            else
-            {
-                result = false;
-            }
-        }
-    }
-    
-    return result;
 }
 
 
