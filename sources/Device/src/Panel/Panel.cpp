@@ -442,7 +442,15 @@ void Panel::Init()
 
 Key::E Panel::WaitPressingKey()
 {
+    queue.Clear();
+
     pressedKey = Key::None;
+
+    while (received_buffer.Size() != 0)
+    {
+        CopyData();
+        queue.Clear();
+    }
 
     while (pressedKey == Key::None)
     {

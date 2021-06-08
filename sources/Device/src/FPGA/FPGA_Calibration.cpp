@@ -26,17 +26,14 @@ struct StateCalibration { enum E {
     NeedChannel2,       // Приглашение к калибровке 2-го канала
     ProcessChannel1,    // Идёт калибровка первого канала
     ProcessChannel2,    // Идёт калибровка второго канала
-    ErrorChannel1,      // Ошибка калибровки 1-го канала
-    ErrorChannel2,      // Ошибка калибровки 2-го канала
-    Complete
+    CompleteNormal,     // Нормальное завершение калибровки
+    CompleteFail        // Калибровка не прошла
 };};
 
 
 uint FPGA::Calibrator::timeStart = 0;
 
 static StateCalibration::E stateCalibration = StateCalibration::None;
-
-static bool errorCalibration = false;                   // Если true - произошла ошибка во время калибровки
 
 
 void FPGA::Calibrator::PerformCalibration()
@@ -45,9 +42,10 @@ void FPGA::Calibrator::PerformCalibration()
 
     timeStart = TIME_MS;
 
-    Settings storedSettings = set;                          // Сохранить настройки
+    bool channelAisOK = false;
+    bool channelBisOK = false;
 
-    errorCalibration = false;                               // Если true - во время калибровки произошла ошибка
+    Settings storedSettings = set;                          // Сохранить настройки
 
     stateCalibration = StateCalibration::None;
 
@@ -59,7 +57,7 @@ void FPGA::Calibrator::PerformCalibration()
 
     stateCalibration = StateCalibration::ProcessChannel1;
 
-    if (!CalibrationChannel(ChA))                       { errorCalibration = true; }
+    channelAisOK = CalibrationChannel(ChA);
 
     stateCalibration = StateCalibration::NeedChannel2;                              // Калибруем второй канал
 
@@ -67,16 +65,16 @@ void FPGA::Calibrator::PerformCalibration()
 
     stateCalibration = StateCalibration::ProcessChannel2;
 
-    if (!CalibrationChannel(ChB))                       { errorCalibration = true; }
+    channelBisOK = CalibrationChannel(ChB);
 
-    stateCalibration = StateCalibration::Complete;                                  // Выводим информацию о калибровке
+    stateCalibration = (channelAisOK && channelBisOK) ? StateCalibration::CompleteNormal : StateCalibration::CompleteFail;
 
     Panel::WaitPressingKey();
 
 ExitCalibration:
 
     set = storedSettings;                                                           // Восстановить настройки
-    FPGA::LoadSettings();
+    FPGA::Init();
 
     Display::SetDrawMode(DrawMode::Default);
 
@@ -91,19 +89,11 @@ bool FPGA::Calibrator::CalibrationChannel(const Channel &ch)
     * 2. Провести растяжку диапазонов.
     */
 
-    bool result = true;
+    bool balance = Balancer::PerformNormal(ch);
 
-    if (!Balancer::PerformNormal(ch))
-    {
-        result = false;
-    }
+    bool stretch = Stretcher::Perform(ch);
 
-    if (!Stretcher::Perform(ch))
-    {
-        result = false;
-    }
-
-    return result;
+    return (balance && stretch);
 }
 
 
@@ -134,9 +124,9 @@ void FPGA::Calibrator::Balancer::PerformOnGround(const Channel &ch)
 }
 
 
-bool FPGA::Calibrator::Balancer::PerformNormal(const Channel & /*ch*/)
+bool FPGA::Calibrator::Balancer::PerformNormal(const Channel &ch)
 {
-    return false;
+    return CalibrateAddRShiftNormal(ch);
 }
 
 
@@ -188,6 +178,7 @@ bool FPGA::Calibrator::Balancer::CalibrateAddRShiftNormal(const Channel &ch)
     TrigLev::Set(ch.ToTrigSource(), TrigLev::ZERO);
     PeackDetMode::Set(PeackDetMode::Disable);
 
+    CalibratorMode::Set(CalibratorMode::GND);
 
     bool result = true;
 
@@ -292,31 +283,40 @@ void FPGA::Calibrator::FuncDraw()
 
             if (time > 50)
             {
-                time = (100 - 50);
+                time = (100 - time);
             }
 
             Text(LANG_RU ? "Выполняется калибровка канала %d" : "Channel %d is being calibrated",
                 stateCalibration == StateCalibration::ProcessChannel1 ? 1 : 2).
                 DrawInRect(50, y + 25, Display::WIDTH - 100, 100);
+
+            char buf[100] = { 0 };
+
+            for (uint i = 0; i < time; i++)
+            {
+                std::strcat(buf, ".");
+            }
+
+            Text(buf).DrawInCenterRect(50, y + 25, Display::WIDTH - 100, 100);
         }
 
         break;
 
-    case StateCalibration::ErrorChannel1:
+    case StateCalibration::CompleteNormal:
+    case StateCalibration::CompleteFail:
 
-        break;
-
-
-    case StateCalibration::ErrorChannel2:
-
-        break;
-
-    case StateCalibration::Complete:
-
-        if (errorCalibration)
+        if (stateCalibration == StateCalibration::CompleteNormal)
         {
-
+            Text(LANG_RU ? "Калибровка завершена успешно" :
+                "Calibration completed successfully").Draw(50, 50);
         }
+        else
+        {
+            Text(LANG_RU ? "ОШИБКА !!! Колибровка завершена неуспешно" :
+                "ERROR !!! Calibration completed unsuccessfully").Draw(50, 50);
+        }
+
+
 
         break;
     }

@@ -16,6 +16,8 @@ public:
 
     T Back();
 
+    void Clear();
+
     uint Size() const;
 
     bool IsEmpty() const;

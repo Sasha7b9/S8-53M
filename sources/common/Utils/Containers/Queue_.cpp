@@ -135,3 +135,13 @@ T *Queue<T>::Data()
 {
     return pointer;
 }
+
+
+template<typename T>
+void Queue<T>::Clear()
+{
+    while (!IsEmpty())
+    {
+        Front();
+    }
+}

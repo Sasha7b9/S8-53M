@@ -51,6 +51,7 @@ void FPGA::LoadSettings()
     RegUPR::Load();
     TrigLev::Load();
     PageTime::OnChanged_PeakDet(true);
+    TrigSource::Set(set.trig.source);
 
     /*
     LoadKoeffCalibration(ChA);
