@@ -1,5 +1,6 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
+#include "common/Utils/Containers/Buffer_.h"
 #include "FPGA/FPGA_Types.h"
 #include "Settings/Settings.h"
 
@@ -182,5 +183,8 @@ public:
         static void FuncDraw();
 
         static uint timeStart;
+
+        // Заполнить буфер значениями смещения
+        static void FillBuffer(Buffer<int16> &buffer, int16 *first);
     };
 };

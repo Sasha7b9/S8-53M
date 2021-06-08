@@ -7,6 +7,7 @@
 #include "common/Utils/Math_.h"
 #include "common/Utils/Containers/Buffer_.h"
 #include "common/Utils/Containers/Values_.h"
+#include "Display/Console.h"
 #include "Display/Display.h"
 #include "Display/Painter/DisplayPrimitives.h"
 #include "FPGA/FPGA.h"
@@ -212,34 +213,30 @@ float FPGA::Calibrator::ReadPoints1024(const Channel &ch)
 {
     Start();
 
-    bool readed = false;
-
     uint8 buffer[1024];
 
     std::memset(buffer, 255, 1024);
 
-    while (!readed)
-    {
-        flag.Read();
+    HAL_TIM2::Delay(8);
 
-        if (flag.IsPredLaunchReady())
-        {
-            if (flag.IsTrigReady())
-            {
-                if (flag.IsDataReady())
-                {
-                    uint16 addr_read = ReaderFPGA::CalculateAddressRead();
+    uint16 fl = HAL_FMC::Read(RD_FL);
 
-                    FPGA::BUS::Write(WR_PRED, addr_read, false);
-                    FPGA::BUS::Write(WR_ADDR_READ, 0xffff, false);
+    while (_GET_BIT(fl, FL_PRED_READY) == 0) { fl = HAL_FMC::Read(RD_FL); }
 
-                    ReaderFPGA::ADC::ReadPoints(ch, buffer, &buffer[0] + 1024);
+    TrigPolarity::Switch();
 
-                    readed = true;
-                }
-            }
-        }
-    }
+    while (_GET_BIT(fl, FL_TRIG_READY) == 0) { fl = HAL_FMC::Read(RD_FL); }
+
+    HAL_TIM2::Delay(8);
+
+    while (_GET_BIT(fl, FL_DATA_READY) == 0) { fl = HAL_FMC::Read(RD_FL); }
+
+    uint16 addr_read = ReaderFPGA::CalculateAddressRead();
+
+    FPGA::BUS::Write(WR_PRED, addr_read, false);
+    FPGA::BUS::Write(WR_ADDR_READ, 0xffff, false);
+
+    ReaderFPGA::ADC::ReadPoints(ch, buffer, &buffer[0] + 1024);
 
     return Buffer<uint8>::Sum(buffer, 1024) / 1024;
 }
@@ -316,10 +313,30 @@ void FPGA::Calibrator::FuncDraw()
                 "ERROR !!! Calibration completed unsuccessfully").Draw(50, 50);
         }
 
+        Text(LANG_RU ? "Канал 1" : "Channel 1").Draw(10, 100);
 
+        Buffer<int16> buffer(Range::Count);
+
+        FillBuffer(buffer, &setNRST.chan[ChA].rshift[0][0]);
+
+        Text(buffer.ToString().c_str()).Draw(50, 100);
+
+        FillBuffer(buffer, &setNRST.chan[ChA].rshift[0][1]);
+
+        Text(buffer.ToString().c_str()).Draw(50, 110);
 
         break;
     }
 
     Display::EndFrame();
+}
+
+
+void FPGA::Calibrator::FillBuffer(Buffer<int16> &buffer, int16 *first)
+{
+    for (int i = 0; i < Range::Count; i++)
+    {
+        buffer[i] = *first;
+        first += 2;
+    }
 }
