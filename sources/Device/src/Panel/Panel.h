@@ -24,7 +24,7 @@ public:
     static void DisablePower();
 
     // Ожидать нажатие клавиши.
-    static Key::E WaitPressingButton();
+    static Key::E WaitPressingKey();
 
     // Прошло времени в миллисекундах после последнего переключения
     static uint TimePassedAfterLastEvent();

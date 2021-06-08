@@ -3,6 +3,7 @@
 #include "common/Display/Painter/Painter_.h"
 #include "common/Display/Painter/Text_.h"
 #include "common/Hardware/Timer_.h"
+#include "Display/Console.h"
 #include "Display/Display.h"
 #include "Panel/Panel.h"
 #include "FPGA/FPGA.h"
@@ -22,6 +23,8 @@ static void FuncDraw()
     Text("Подтвердите сброс настроек нажатием кнопки ПУСК/СТОП.\nНажмите любую другую кнопку, если сброс не нужен.").
         DrawInRectWithTransfers(30, 110, 300, 200, Color::FILL);
 
+    Console::Draw();
+
     Display::EndFrame();
 }
 
@@ -30,7 +33,7 @@ static void OnPress_ResetSettings()
     Panel::DisableInput();
     Display::SetDrawMode(DrawMode::Timer, FuncDraw);
 
-    if (Panel::WaitPressingButton() == Key::Start)
+    if (Panel::WaitPressingKey() == Key::Start)
     {
         set.Reset();
         FPGA::Init();

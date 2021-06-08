@@ -18,6 +18,7 @@ template void Buffer<uint8>::Fill(uint8);
 template void Buffer<int>::Fill(int);
 template float Buffer<uint8>::Sum(uint8 *, uint);
 template String Buffer<int16>::ToString();
+template String Buffer<uint8>::ToString();
 template uint8 &Buffer<uint8>::operator[](uint) const;
 template uint16 &Buffer<uint16>::operator[](uint) const;
 template int &Buffer<int>::operator[](uint) const;

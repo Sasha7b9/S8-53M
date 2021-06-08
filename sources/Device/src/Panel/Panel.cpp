@@ -4,6 +4,7 @@
 #include "common/Hardware/Timer_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Utils/Mutex_.h"
+#include "common/Utils/Containers/Buffer_.h"
 #include "common/Utils/Containers/Queue_.h"
 #include "FPGA/FPGA.h"
 #include "Menu/Menu.h"
@@ -21,8 +22,7 @@ inline void E() {};
 static const uint MIN_TIME = 500;
 
 static Key::E pressedKey = Key::None;
-volatile static Key::E pressedButton = Key::None;         // Это используется для отслеживания нажатой кнопки при
-                                                          // отключенной панели
+
 bool Panel::isRunning = true;
 uint Panel::timeLastEvent = 0;
 
@@ -297,11 +297,6 @@ void Panel::Update()
         queue.Front();
     }
 
-    if (!isRunning)
-    {
-        return;
-    }
-
     while (queue.Size() >= 3)
     {
         ProcessEvent();
@@ -316,12 +311,13 @@ void Panel::ProcessEvent()
     Key::E key = (Key::E)queue.Front();
     Action action(queue.Front());
 
-    timeLastEvent = TIME_MS;
-
-    if (action.IsDown())
+    if (!isRunning)
     {
-        pressedButton = key;
+        pressedKey = key;
+        return;
     }
+
+    timeLastEvent = TIME_MS;
 
     if (action.IsUp())
     {
@@ -357,7 +353,16 @@ void Panel::ProcessEvent()
 
 void Panel::CallbackOnReceiveSPI5(uint8 *data, uint size)
 {
-    if (size == 3 && data[1] == Key::None)
+//    Buffer<uint8> buf(size);
+//
+//    for (uint i = 0; i < size; i++)
+//    {
+//        buf[i] = data[i];
+//    }
+//
+//    LOG_WRITE(buf.ToString().c_str());
+
+    if (data[1] == Key::None)
     {
         return;
     }
@@ -435,16 +440,16 @@ void Panel::Init()
     PageChannelB::OnChanged_Input(true);
 }
 
-Key::E Panel::WaitPressingButton()
+Key::E Panel::WaitPressingKey()
 {
-    pressedButton = Key::None;
+    pressedKey = Key::None;
 
-    while (pressedButton == Key::None)
+    while (pressedKey == Key::None)
     {
         Update();
     };
 
-    return pressedButton;
+    return pressedKey;
 }
 
 
