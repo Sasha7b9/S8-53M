@@ -30,7 +30,7 @@ struct SettingsNRST
                                                 // и балансировке. При z == 0 - ModeCouple::DC, при z == 1
                                                 // - ModeCouple::AC
                                                 // Range в 3-х первых индексах при ModeCouple::DC задаются вручную
-        float stretch_auto;                     // Растяжка, рассчитанная в процессе калибровки
+        float stretch;                          // Растяжка, рассчитанная в процессе калибровки
 
         int16 AddRShift(Range::E range, int mode);
     };

@@ -6,6 +6,7 @@
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Utils/Math_.h"
 #include "common/Utils/Containers/Buffer_.h"
+#include "common/Utils/Containers/Queue_.h"
 #include "common/Utils/Containers/Values_.h"
 #include "Display/Console.h"
 #include "Display/Display.h"
@@ -148,7 +149,7 @@ bool FPGA::Calibrator::Balancer::PerformNormal(const Channel &ch)
             setNRST.chan[ch].rshift[range][mode] = 0;
             Range::Set(ch, (Range::E)range);
 
-            float ave = ReadPoints1024(ch);
+            float ave = ReadPoints1024ave(ch);
 
             int16 addShift = CalculateAddRShift(ave);
 
@@ -167,9 +168,43 @@ bool FPGA::Calibrator::Balancer::PerformNormal(const Channel &ch)
 }
 
 
-bool FPGA::Calibrator::Stretcher::Perform(const Channel & /*ch*/)
+bool FPGA::Calibrator::Stretcher::Perform(const Channel &ch)
 {
-    return true;
+    Stop();
+
+    ModeCouple::Set(ch, ModeCouple::AC);
+    Range::Set(ch, Range::_500mV);
+    RShift::Set(ch, RShift::ZERO);                                  // установить общие настройки
+    TBase::Set(TBase::_200us);
+    TShift::Set(0);
+    TrigSource::Set(ch.ToTrigSource());
+    TrigPolarity::Set(TrigPolarity::Front);
+    TrigLev::Set(ch.ToTrigSource(), TrigLev::ZERO);
+    PeackDetMode::Set(PeackDetMode::Disable);
+
+    CalibratorMode::Set(CalibratorMode::Freq);
+
+    bool result = true;
+
+    float min = 0.0f;
+    float max = 0.0f;
+
+    setNRST.chan[ch].stretch = 1.0f;
+
+    ReadPoints1024min_max(ch, &min, &max);
+
+    float stretch = Calculate(min, max);
+
+    if (stretch > 0.8f && stretch < 1.2f)
+    {
+        setNRST.chan[ch].stretch = stretch;
+    }
+    else
+    {
+        result = false;
+    }
+
+    return result;
 }
 
 
@@ -193,7 +228,7 @@ void FPGA::Calibrator::Balancer::CalibrateAddRShiftGND(const Channel &ch)
 
         Range::Set(ch, (Range::E)range);
 
-        float ave = ReadPoints1024(ch);
+        float ave = ReadPoints1024ave(ch);
 
         int16 addShift = CalculateAddRShift(ave);
 
@@ -203,13 +238,62 @@ void FPGA::Calibrator::Balancer::CalibrateAddRShiftGND(const Channel &ch)
 }
 
 
-float FPGA::Calibrator::ReadPoints1024(const Channel &ch)
+float FPGA::Calibrator::ReadPoints1024ave(const Channel &ch)
+{
+    uint8 buffer[1024];
+
+    ReadPoints1024(buffer, ch);
+
+    return Buffer<uint8>::Sum(buffer, 1024) / 1024;
+}
+
+
+void FPGA::Calibrator::ReadPoints1024min_max(const Channel &ch, float *min, float *max)
+{
+    uint8 buffer[1024];
+
+    ReadPoints1024(buffer, ch);
+
+    Queue<float> mins;
+    Queue<float> maxs;
+
+    for (int i = 0; i < 1024; i++)
+    {
+        if (buffer[i] > 200)
+        {
+            maxs.Push(buffer[i]);
+        }
+        else if (buffer[i] < 50)
+        {
+            mins.Push(buffer[i]);
+        }
+    }
+
+    *min = 0.0f;
+
+    for (uint i = 0; i < mins.Size(); i++)
+    {
+        *min += (float)mins[i];
+    }
+
+    *min = *min / mins.Size();
+
+    *max = 0.0f;
+
+    for (uint i = 0; i < maxs.Size(); i++)
+    {
+        *max += (float)maxs[i];
+    }
+
+    *max = *max / maxs.Size();
+}
+
+
+void FPGA::Calibrator::ReadPoints1024(uint8 buffer[1024], const Channel &ch)
 {
     HAL_TIM2::Delay((set.chan[ch].range < 2) ? 500U : 100U);
 
     Start();
-
-    uint8 buffer[1024];
 
     std::memset(buffer, 255, 1024);
 
@@ -233,14 +317,22 @@ float FPGA::Calibrator::ReadPoints1024(const Channel &ch)
     FPGA::BUS::Write(WR_ADDR_READ, 0xffff, false);
 
     ReaderFPGA::ADC::ReadPoints(ch, buffer, &buffer[0] + 1024);
-
-    return Buffer<uint8>::Sum(buffer, 1024) / 1024;
 }
 
 
 int16 FPGA::Calibrator::Balancer::CalculateAddRShift(float ave)
 {
     return (int16)((Value::AVE - ave) * 2);
+}
+
+
+float FPGA::Calibrator::Stretcher::Calculate(float min, float max)
+{
+    const float K = 200.0f;
+
+    float delta = min - max;
+
+    return K / delta;
 }
 
 

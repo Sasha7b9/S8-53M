@@ -173,11 +173,22 @@ public:
         struct Stretcher
         {
             static bool Perform(const Channel &ch);
+
+        private:
+
+            // Рассчитать коэффициент растяжки исходя из измеренных min и max
+            static float Calculate(float min, float max);
         };
 
     private:
 
-        static float ReadPoints1024(const Channel &ch);
+        static void ReadPoints1024(uint8 buffer[1024], const Channel &ch);
+
+        // Читает 1024 точки и возвращает их среднее значение
+        static float ReadPoints1024ave(const Channel &ch);
+
+        // Читает 1024 точки и возвращает минимальное и максимальное значения
+        static void ReadPoints1024min_max(const Channel &ch, float *min, float *max);
 
         static void FuncDraw();
 
