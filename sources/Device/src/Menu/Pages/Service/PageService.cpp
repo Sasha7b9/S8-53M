@@ -17,12 +17,12 @@ static int8 hours = 0, minutes = 0, secondes = 0, year = 0, month = 0, day = 0;
 
 static void FuncDraw()
 {
-//    Display::BeginFrame(Color::BACK);
-//
-//    Text("Подтвердите сброс настроек нажатием кнопки ПУСК/СТОП.\nНажмите любую другую кнопку, если сброс не нужен.").
-//        DrawInRectWithTransfers(30, 110, 300, 200, Color::FILL);
-//
-//    Painter::SendFrame();
+    Display::BeginFrame(Color::BACK);
+
+    Text("Подтвердите сброс настроек нажатием кнопки ПУСК/СТОП.\nНажмите любую другую кнопку, если сброс не нужен.").
+        DrawInRectWithTransfers(30, 110, 300, 200, Color::FILL);
+
+    Display::EndFrame();
 }
 
 static void OnPress_ResetSettings()
