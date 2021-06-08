@@ -297,7 +297,7 @@ void Panel::Update()
         queue.Front();
     }
 
-    if (!Panel::isRunning)
+    if (!isRunning)
     {
         return;
     }
@@ -417,13 +417,13 @@ uint8 Panel::NextData()
 
 void Panel::DisableInput()
 {
-    Panel::isRunning = false;
+    isRunning = false;
 }
 
 
 void Panel::EnableInput()
 {
-    Panel::isRunning = true;
+    isRunning = true;
 }
 
 

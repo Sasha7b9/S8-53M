@@ -269,7 +269,7 @@
         <LExpSel>0</LExpSel>
       </OPTXL>
       <OPTFL>
-        <tvExp>0</tvExp>
+        <tvExp>1</tvExp>
         <tvExpOptDlg>0</tvExpOptDlg>
         <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
@@ -348,18 +348,18 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>363</LineNumber>
+          <LineNumber>365</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134469294</Address>
+          <Address>134433690</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\src\Menu\Items\MenuItems.cpp</Filename>
+          <Filename>&lt;1&gt;.\src\Panel\Panel.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\S8_53M\src/Menu/Items/MenuItems.cpp\363</Expression>
+          <Expression>\\S8_53M\src/Panel/Panel.cpp\365</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -4306,7 +4306,7 @@
 
   <Group>
     <GroupName>Menu/Pages/Service</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -4466,7 +4466,7 @@
 
   <Group>
     <GroupName>Settings</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
