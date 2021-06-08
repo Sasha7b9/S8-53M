@@ -182,6 +182,8 @@ public:
 
         static void FuncDraw();
 
+        static void DrawParametersChannel(Channel &ch, int x, int y);
+
         static uint timeStart;
 
         // Заполнить буфер значениями смещения

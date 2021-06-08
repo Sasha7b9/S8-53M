@@ -313,22 +313,30 @@ void FPGA::Calibrator::FuncDraw()
                 "ERROR !!! Calibration completed unsuccessfully").Draw(50, 50);
         }
 
-        Text(LANG_RU ? "Канал 1" : "Channel 1").Draw(10, 100);
+        DrawParametersChannel(ChA, 10, 100);
 
-        Buffer<int16> buffer(Range::Count);
-
-        FillBuffer(buffer, &setNRST.chan[ChA].rshift[0][0]);
-
-        Text(buffer.ToString().c_str()).Draw(50, 100);
-
-        FillBuffer(buffer, &setNRST.chan[ChA].rshift[0][1]);
-
-        Text(buffer.ToString().c_str()).Draw(50, 110);
+        DrawParametersChannel(ChB, 10, 130);
 
         break;
     }
 
     Display::EndFrame();
+}
+
+
+void FPGA::Calibrator::DrawParametersChannel(Channel &ch, int x, int y)
+{
+    Text(LANG_RU ? "Канал %d" : "Channel %d", (int)ch.value + 1).Draw(x, y);
+
+    Buffer<int16> buffer(Range::Count);
+
+    FillBuffer(buffer, &setNRST.chan[ch].rshift[0][0]);
+
+    Text(buffer.ToString().c_str()).Draw(x + 40, y);
+
+    FillBuffer(buffer, &setNRST.chan[ch].rshift[0][1]);
+
+    Text(buffer.ToString().c_str()).Draw(x + 40, y + 10);
 }
 
 
