@@ -18,8 +18,8 @@ struct MeasureValue
 };
 
 
-static BufferU8 out[Channel::Count];
-static BufferU8 in[Channel::Count];
+static Buffer<uint8> out[Channel::Count];
+static Buffer<uint8> in[Channel::Count];
 
 static DataSettings *pDS = nullptr;
 static DataSettings &ds = *pDS;
@@ -1098,7 +1098,7 @@ void Processing::InterpolationSinX_X(Buffer<uint16> &buffer, TBase::E tBase)
     int deltas[5] = {50, 20, 10, 5, 2};
     int delta = deltas[tBase];
 
-    BufferU8 signedData(buffer.Size() / 2);
+    Buffer<uint8> signedData(buffer.Size() / 2);
 
     int numSignedPoints = 0;
     

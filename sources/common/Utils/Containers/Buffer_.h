@@ -35,6 +35,8 @@ public:
 
     static float Sum(T *data, uint number);
 
+    String ToString();
+
 private:
 
     uint size;
@@ -42,13 +44,4 @@ private:
     T *data;
 
     void Malloc(uint size);
-};
-
-
-class BufferU8 : public Buffer<uint8>
-{
-public:
-    BufferU8(uint size = 0U) : Buffer<uint8>(size) {}
-
-    String Log();
 };

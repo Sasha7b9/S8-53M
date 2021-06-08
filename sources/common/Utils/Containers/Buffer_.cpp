@@ -8,19 +8,23 @@
 
 template Buffer<uint8>::Buffer(uint);
 template Buffer<int>::Buffer(uint);
+template Buffer<int16>::Buffer(uint);
 template Buffer<uint8>::~Buffer();
 template Buffer<int>::~Buffer();
+template Buffer<int16>::~Buffer();
 template void Buffer<uint8>::Free();
 template void Buffer<uint8>::Realloc(uint);
 template void Buffer<uint8>::Fill(uint8);
 template void Buffer<int>::Fill(int);
 template float Buffer<uint8>::Sum(uint8 *, uint);
+template String Buffer<int16>::ToString();
 template uint8 &Buffer<uint8>::operator[](uint) const;
 template uint16 &Buffer<uint16>::operator[](uint) const;
 template int &Buffer<int>::operator[](uint) const;
 template uint8 &Buffer<uint8>::operator[](int) const;
 template uint16 &Buffer<uint16>::operator[](int) const;
 template int &Buffer<int>::operator[](int) const;
+template int16 &Buffer<int16>::operator[](int) const;
 
 
 template<class T>
@@ -101,13 +105,14 @@ void Buffer<T>::Malloc(uint s)
 }
 
 
-String BufferU8::Log()
+template<class T>
+String Buffer<T>::ToString()
 {
     String result;
 
     for (uint i = 0; i < Size(); i++)
     {
-        result.Append(Int((*this)[i]).ToText(false, 1).c_str());
+        result.Append(Int(data[i]).ToText(false, 1).c_str());
 
         if (i != Size() - 1)
         {
@@ -136,7 +141,7 @@ T &Buffer<T>::operator[](uint i) const
 template<class T>
 T &Buffer<T>::operator[](int i) const
 {
-    if (i <= 0 && i < (int)Size())
+    if (i >= 0 && i < (int)Size())
     {
         return data[i];
     }

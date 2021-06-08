@@ -69,6 +69,8 @@ void FPGA::Calibrator::Balancer::CalibrateAddRShift(const Channel &ch)
 
     CalibratorMode::Set(CalibratorMode::GND);
 
+    Buffer<int16> buffer(Range::Count);
+
     for (int range = 2; range < Range::Count; range++)
     {
         setNRST.chan[ch].rshift[range][ModeCouple::DC] = 0;
@@ -80,9 +82,13 @@ void FPGA::Calibrator::Balancer::CalibrateAddRShift(const Channel &ch)
 
         int16 addShift = CalculateAddRShift(ave);
 
+        buffer[range] = addShift;
+
         setNRST.chan[ch].rshift[range][ModeCouple::DC] = addShift;
         setNRST.chan[ch].rshift[range][ModeCouple::AC] = addShift;
     }
+
+    LOG_WRITE(buffer.ToString().c_str());
 }
 
 
