@@ -41,6 +41,8 @@ static bool errorCalibration = false;                   // Если true - произошла
 
 void FPGA::Calibrator::PerformCalibration()
 {
+    Panel::DisableInput();
+
     timeStart = TIME_MS;
 
     Settings storedSettings = set;                          // Сохранить настройки
@@ -48,8 +50,6 @@ void FPGA::Calibrator::PerformCalibration()
     errorCalibration = false;                               // Если true - во время калибровки произошла ошибка
 
     stateCalibration = StateCalibration::None;
-
-    Panel::DisableInput();
 
     Display::SetDrawMode(DrawMode::Timer, FPGA::Calibrator::FuncDraw);
 
@@ -93,10 +93,10 @@ bool FPGA::Calibrator::CalibrationChannel(const Channel &ch)
 
     bool result = true;
 
-//    if (!Balancer::Perform(ch, false))
-//    {
-//        result = false;
-//    }
+    if (!Balancer::PerformNormal(ch))
+    {
+        result = false;
+    }
 
     if (!Stretcher::Perform(ch))
     {
@@ -122,15 +122,21 @@ void FPGA::Calibrator::Balancer::PerformOnGround(const Channel &ch)
     Settings storedSettings;
 
     storedSettings = set;
-    Display::Message::Show(messages[LANG][ch]);     // Вывести сообщение о балансировке.
+    Display::Message::Show(messages[LANG][ch]);                         // Вывести сообщение о балансировке.
 
-    CalibrateAddRShift(ch);                         // Произвести балансировку канала:
+    CalibrateAddRShiftGND(ch);                                          // Произвести балансировку канала
 
     set = storedSettings;
     FPGA::LoadSettings();
-    Display::Message::Hide();                       // Убрать сообщение о балансировке
+    Display::Message::Hide();                                           // Убрать сообщение о балансировке
 
     Panel::EnableInput();
+}
+
+
+bool FPGA::Calibrator::Balancer::PerformNormal(const Channel & /*ch*/)
+{
+    return false;
 }
 
 
@@ -140,7 +146,7 @@ bool FPGA::Calibrator::Stretcher::Perform(const Channel & /*ch*/)
 }
 
 
-bool FPGA::Calibrator::Balancer::CalibrateAddRShift(const Channel &ch)
+void FPGA::Calibrator::Balancer::CalibrateAddRShiftGND(const Channel &ch)
 {
     Stop();
 
@@ -153,10 +159,6 @@ bool FPGA::Calibrator::Balancer::CalibrateAddRShift(const Channel &ch)
     TrigLev::Set(ch.ToTrigSource(), TrigLev::ZERO);
     PeackDetMode::Set(PeackDetMode::Disable);
 
-    CalibratorMode::Set(CalibratorMode::GND);
-
-    bool result = true;
-
     for (int range = 2; range < Range::Count; range++)
     {
         setNRST.chan[ch].rshift[range][ModeCouple::DC] = 0;
@@ -168,17 +170,49 @@ bool FPGA::Calibrator::Balancer::CalibrateAddRShift(const Channel &ch)
 
         int16 addShift = CalculateAddRShift(ave);
 
-        if (Math::Abs(addShift) < 40)
+        setNRST.chan[ch].rshift[range][ModeCouple::DC] = addShift;
+        setNRST.chan[ch].rshift[range][ModeCouple::AC] = addShift;
+    }
+}
+
+
+bool FPGA::Calibrator::Balancer::CalibrateAddRShiftNormal(const Channel &ch)
+{
+    Stop();
+
+    RShift::Set(ch, RShift::ZERO);                                  // установить общие настройки
+    TBase::Set(TBase::_200us);
+    TShift::Set(0);
+    TrigSource::Set(ch.ToTrigSource());
+    TrigPolarity::Set(TrigPolarity::Front);
+    TrigLev::Set(ch.ToTrigSource(), TrigLev::ZERO);
+    PeackDetMode::Set(PeackDetMode::Disable);
+
+
+    bool result = true;
+
+    for (int range = 0; range < Range::Count; range++)
+    {
+        for (int mode = 0; mode < 2; mode++)
         {
-            setNRST.chan[ch].rshift[range][ModeCouple::DC] = addShift;
-            setNRST.chan[ch].rshift[range][ModeCouple::AC] = addShift;
-        }
-        else
-        {
-            result = false;
+            setNRST.chan[ch].rshift[range][mode] = 0;
+            Range::Set(ch, (Range::E)range);
+
+            float ave = ReadPoints1024(ch);
+
+            int16 addShift = CalculateAddRShift(ave);
+
+            if (Math::Abs(addShift) < 40)
+            {
+                setNRST.chan[ch].rshift[range][mode] = addShift;
+            }
+            else
+            {
+                result = false;
+            }
         }
     }
-
+    
     return result;
 }
 

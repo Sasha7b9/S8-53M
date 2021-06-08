@@ -160,9 +160,13 @@ public:
             // Запуск балансировки из меню КАНАЛ
             static void PerformOnGround(const Channel &ch);
 
+            // Запуск балансировки для AC и DC (из процедуры калибровки)
+            static bool PerformNormal(const Channel &ch);
+
         private:
 
-            static bool CalibrateAddRShift(const Channel &ch);
+            static void CalibrateAddRShiftGND(const Channel &ch);
+            static bool CalibrateAddRShiftNormal(const Channel &ch);
             static int16 CalculateAddRShift(float ave);
         };
 
