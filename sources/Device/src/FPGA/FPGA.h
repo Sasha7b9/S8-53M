@@ -24,18 +24,6 @@ struct StateWorkFPGA
 };
 
 
-struct StateCalibration { enum E {
-    None,
-    ADCinProgress,
-    RShift0start,
-    RShift0inProgress,
-    RShift1start,
-    RShift1inProgress,
-    ErrorCalibration0,
-    ErrorCalibration1
-};};
-
-
 class FPGA
 {
 public:
@@ -131,8 +119,7 @@ public:
     struct State
     {
         State() : //-V730
-            work_before_calibration(StateWorkFPGA::Stop),
-            state_calibration(StateCalibration::None)
+            work_before_calibration(StateWorkFPGA::Stop)
         { }
 
         // Сохраняет текущие настройки. Потом их можно восстановить функцией FPGA_RestoreState().
@@ -140,8 +127,6 @@ public:
 
         StateWorkFPGA       work_before_calibration;
         StateWorkFPGA       work;
-        StateCalibration::E state_calibration;              // Текущее состояние калибровки. Используется в процессе
-                                                            // калибровки
         Settings            stored_settings;                // Здесь нужно уменьшить необходимый размер памяти -
                                                             // сохранять настройки только альтеры
     };
@@ -167,6 +152,10 @@ public:
     {
         // Запуск функции полной калибровки - смещение и растяжка
         static void PerformCalibration();
+
+        static bool CalibrationChannel(const Channel &ch);
+
+        static void ExitCalibration();
 
         struct Balancer
         {

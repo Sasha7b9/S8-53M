@@ -19,13 +19,81 @@
 #include <limits>
 
 
+struct StateCalibration { enum E {
+    None,
+    NeedChannel1,       // Приглашение к калибровке 1-го канала
+    NeedChannel2,       // Приглашение к калибровке 2-го канала
+    ErrorChannel1,      // Ошибка калибровки 1-го канала
+    ErrorChannel2,      // Ошибка калибровки 2-го канала
+    Complete
+};};
+
+
+volatile static StateCalibration::E stateCalibration = StateCalibration::None;
+
 static Float koeffCal0 = -1.0F;
 static Float koeffCal1 = -1.0F;
 
 
 void FPGA::Calibrator::PerformCalibration()
 {
-   
+    stateCalibration = StateCalibration::None;
+
+    Panel::DisableInput();
+
+    Display::SetDrawMode(DrawMode::Timer, FPGA::Calibrator::FuncDraw);
+
+    stateCalibration = StateCalibration::NeedChannel1;                              // Калибруем первый канал
+
+    if (Panel::WaitPressingKey() != Key::Start)
+    {
+        return ExitCalibration();
+    }
+
+    if (!CalibrationChannel(ChA))
+    {
+        stateCalibration = StateCalibration::ErrorChannel1;
+
+        Panel::WaitPressingKey();
+
+        return ExitCalibration();
+    }
+
+    stateCalibration = StateCalibration::NeedChannel2;                              // Калибруем второй канал
+
+    if (Panel::WaitPressingKey() != Key::Start)
+    {
+        return ExitCalibration();
+    }
+
+    if (!CalibrationChannel(ChB))
+    {
+        stateCalibration = StateCalibration::ErrorChannel2;
+
+        Panel::WaitPressingKey();
+
+        return ExitCalibration();
+    }
+
+    stateCalibration = StateCalibration::Complete;                                  // Выводим информацию о калибровке
+
+    Panel::WaitPressingKey();
+
+    return ExitCalibration();
+}
+
+
+bool FPGA::Calibrator::CalibrationChannel(const Channel & /*ch*/)
+{
+    return false;
+}
+
+
+void FPGA::Calibrator::ExitCalibration()
+{
+    Display::SetDrawMode(DrawMode::Default);
+
+    Panel::EnableInput();
 }
 
 
@@ -132,4 +200,48 @@ float FPGA::Calibrator::ReadPoints1024(const Channel &ch)
 int16 FPGA::Calibrator::Balancer::CalculateAddRShift(float ave)
 {
     return (int16)((Value::AVE - ave) * 2);
+}
+
+
+void FPGA::Calibrator::FuncDraw()
+{
+    Display::BeginFrame(Color::BLACK);
+
+    Color::WHITE.SetAsCurrent();
+
+    int y = 10;
+
+    switch (stateCalibration)
+    {
+    case StateCalibration::None:
+        break;
+
+    case StateCalibration::NeedChannel1:
+
+        Text("Подключите ко входу канала 1 выход калибратора и нажмите кнопку ПУСК/СТОП. Нажмите любую другую кнопку"
+             " для выхода из режима калибровки").DrawInRect(50, y + 25, Display::WIDTH - 100, 100);
+
+        break;
+
+    case StateCalibration::NeedChannel2:
+
+        Text("Подключите ко входу канала 1 выход калибратора и нажмите кнопку ПУСК/СТОП. Нажмите любую другую кнопку"
+            " для выхода из режима калибровки").DrawInRect(50, y + 25, Display::WIDTH - 100, 100);
+
+        break;
+
+    case StateCalibration::ErrorChannel1:
+
+        break;
+
+
+    case StateCalibration::ErrorChannel2:
+
+        break;
+
+    case StateCalibration::Complete:
+        break;
+    }
+
+    Display::EndFrame();
 }
