@@ -131,7 +131,6 @@ void Display::Update()
         RShift::DrawCursors();
         TrigLev::DrawCursor();
         RShift::Draw();
-        Measure::DrawAll();
         Menu::DrawStringNavigation();
         TPos::Draw();
         TShift::Draw();

@@ -982,10 +982,10 @@ Float Processing::CalculatePhazaMinus(Channel::E ch)
     return delay / period * 360.0F; 
 }
 
-void Processing::SetSignal(puchar data0, puchar data1, DataSettings *_ds, int _firstPoint, int _lastPoint)
+void Processing::SetSignal(Buffer<uint8> &data0, Buffer<uint8> &data1, DataSettings *_ds)
 {
-    firstP = (uint)_firstPoint;
-    lastP = (uint)_lastPoint;
+    firstP = (uint)0;
+    lastP = (uint)data1.Size();
     numP = lastP - firstP;
     pDS = _ds;
 
@@ -998,26 +998,12 @@ void Processing::SetSignal(puchar data0, puchar data1, DataSettings *_ds, int _f
 
     uint length = ds.BytesInChannel() * (ds.peak_det == PeackDetMode::Disable ? 1 : 2);
 
-    Math::CalculateFiltrArray(data0, &in[ChA][0], (int)length, (int)numSmoothing);
-    Math::CalculateFiltrArray(data1, &in[ChB][0], (int)length, (int)numSmoothing);
+    Math::CalculateFiltrArray(data0.Data(), &in[ChA][0], (int)length, (int)numSmoothing);
+    Math::CalculateFiltrArray(data1.Data(), &in[ChB][0], (int)length, (int)numSmoothing);
 
     CountedToCurrentSettings();
 }
 
-//void Processing::GetData(uint8 **data0, uint8 **data1, DataSettings **_ds)
-//{
-//    if (data0)
-//    {
-//        *data0 = dataOut0;
-//    }
-//
-//    if (data1)
-//    {
-//        *data1 = dataOut1;
-//    }
-//
-//    *_ds = pDS;
-//}
 
 float Processing::GetCursU(const Channel &ch, float posCurT)
 {   
@@ -1025,6 +1011,7 @@ float Processing::GetCursU(const Channel &ch, float posCurT)
 
     return Math::Limitation((float)(200.0F - (in[ch])[p.first + (int)posCurT] + Value::MIN), 0.0F, 200.0F);
 }
+
 
 float Processing::GetCursT(const Channel &ch, float posCurU, int numCur)
 {

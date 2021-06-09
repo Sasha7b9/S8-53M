@@ -15,7 +15,7 @@ class Processing
 public:
 
     // Установить сигнал для обработки.
-    static void SetSignal(puchar data0, puchar data1, DataSettings *ds, int firstPoint, int lastPoint);
+    static void SetSignal(Buffer<uint8> &pointsA, Buffer<uint8> &pointsB, DataSettings *ds);
 
     // Получить позицию курсора напряжения, соответствующю заданной позиции курсора posCurT.
     static float GetCursU(const Channel &ch, float posCurT);

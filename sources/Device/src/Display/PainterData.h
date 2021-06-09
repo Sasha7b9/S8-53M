@@ -13,6 +13,8 @@ struct DataReading;
 // Базовая структура для отрисовки данных - осциллографических и спектральных
 struct DataDrawing
 {
+friend class PainterData;
+
     void Prepare();
     void Draw();
 
