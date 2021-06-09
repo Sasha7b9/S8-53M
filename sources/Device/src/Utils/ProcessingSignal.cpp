@@ -186,14 +186,16 @@ void Processing::LeadToCurrentSetings(DataReading &dr)
     std::memcpy(dr.Data(ChA) + firstP, outA.Data(), numP);
     std::memcpy(dr.Data(ChB) + firstP, outB.Data(), numP);
 
-//    CountedToCurrentSettings();
+    CountedToCurrentSettings();
 }
 
 
-void Processing::CountedToCurrentSettings()
+void Processing::CountedToCurrentSettings(DataReading &dr)
 {
-    out[ChA].Fill(0);
-    out[ChB].Fill(0);
+    DataSettings &ds = dr.Settings();
+
+    out[ChA].Realloc(ds.BytesInChannel());
+    out[ChB].Realloc(ds.BytesInChannel());
 
     int numPoints = (int)in[ChA].Size();
 

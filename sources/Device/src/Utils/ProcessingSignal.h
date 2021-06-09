@@ -79,7 +79,7 @@ private:
     // начинается с 1. downToTop - если true, ищем пересечение сигнала со средней линией при прохождении из "-" в "+".
     static Float FindIntersectionWithHorLine(Channel::E ch, int numIntersection, bool downToUp, uint8 yLine);
 
-    static void CountedToCurrentSettings();
+    static void CountedToCurrentSettings(DataReading &dr);
 
     typedef Float(*pFuncCalculate)(Channel::E);
 
