@@ -222,6 +222,7 @@ void Measure::RotateRegSet(int angle)
 void Measure::ShorPressOnSmallButtonSettings()
 {
     PageMeasures::choiceMeasuresIsActive = !PageMeasures::choiceMeasuresIsActive;
+
     if(PageMeasures::choiceMeasuresIsActive)
     {
         posOnPageChoice = (int8)(Measure::Get(posActive));
@@ -337,7 +338,7 @@ void Measure::DrawAll()
 
             if (active)
             {
-                Region(dX - 4, dY - 4).Fill(x + 2, y + 2, Color::FILL);
+                Region(dX - 3, dY - 3).Fill(x + 2, y + 2, Color::FILL);
             }
 
             if (meas != Measure::None)
