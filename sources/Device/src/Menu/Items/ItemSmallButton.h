@@ -14,7 +14,7 @@ class SmallButton : public Item
 {
 public:
 
-    static const int WIDTH = 19;
+    static const int WIDTH = 20;
     static const int LEFT = 299;
 
     SmallButton(const DataItem *const data) : Item(data) {};
