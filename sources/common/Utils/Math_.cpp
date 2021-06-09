@@ -13,6 +13,7 @@ template void  Math::Swap(int *, int *);
 template void  Math::Swap(uint8 *, uint8 *);
 template void  Math::Limitation(int *, int, int);
 template void  Math::Limitation(int16 *, int16, int16);
+template void  Math::Limitation(float *, float, float);
 template void  Math::LimitAbove(int16 *, int16);
 template void  Math::LimitAbove(int *, int);
 template void  Math::LimitBelow(int16 *, int16);

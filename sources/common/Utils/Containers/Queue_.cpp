@@ -4,6 +4,7 @@
 
 
 template class Queue<uint8>;
+template class Queue<float>;
 
 
 template<typename T>

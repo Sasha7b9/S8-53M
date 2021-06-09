@@ -1125,6 +1125,7 @@ struct TrigLev
     static int16 Get(TrigSource::E ch);
     static int16 GetA();
     static int16 GetB();
+
     // Возвращает уровень синхронизации по текущему источнику синхронизации
     static int16 Get();
 
@@ -1133,6 +1134,7 @@ struct TrigLev
 
     static void DrawCursor();
 
+    // Отобразить значение на экране
     static void WriteValue();
 
     static bool need_auto_find;   // Если true, то нужно произвести поиск синхронизации
@@ -1142,9 +1144,8 @@ struct TrigLev
     static const int16 ZERO = RShift::ZERO;     // Нулевое значение уровня синхронизации, засылаемое в прибор.
                           // Маркер синхронизации при этом находитися на одном уровне с маркером смещения по напряжению.
 
-    static bool exist_impulse;          // Если true, нужно отображать значок наличия синхроимпульса
-
-    static bool show_level;             // Нужно ли рисовать горизонтальную линию уровня смещения уровня синхронизации
+    static bool exist_impulse;                  // Если true, нужно отображать значок наличия синхроимпульса
+    static bool show_level;                     // Нужно ли отображать значение на сетке
 };
 
 

@@ -176,11 +176,11 @@ void TrigLev::WriteValue()
         Text text(LANG_RU ? "Ур синхр = " : "Trig lvl = ");
         text.Append(Voltage(trigLev).ToText());
 
-        int width = 96;
+        int width = 97;
         int x = (Grid::Width() - width) / 2 + Grid::Left();
         int y = Grid::BottomMessages() - 20;
-        Rectangle(width, 10).Draw(x, y, Color::FILL);
-        Region(width - 2, 8).Fill(x + 1, y + 1, Color::BACK);
+        Rectangle(width, 11).Draw(x, y, Color::FILL);
+        Region(width - 2, 9).Fill(x + 1, y + 1, Color::BACK);
         text.Draw(x + 2, y + 1, Color::FILL);
     }
 }

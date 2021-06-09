@@ -134,19 +134,19 @@ DEF_GOVERNOR(b10mV_DC_B, PageDebug::PageADC::PageAltRShift::self,
 
 //----------------------------------------------------------------------------------------------------------------------
 
-DEF_PAGE_8(pageAltShift, PageDebug::PageADC::self, NamePage::DebugADCrShift,
+DEF_PAGE_2(pageAltShift, PageDebug::PageADC::self, NamePage::DebugADCrShift,
     "дно ялеы", "ADD RSHFIT",
     "",
     "",
 //    gFirstByte,
     cMode,
     bReset,
-    b2mV_DC_A,
-    b2mV_DC_B,
-    b5mV_DC_A,
-    b5mV_DC_B,
-    b10mV_DC_A,
-    b10mV_DC_B,
+//    b2mV_DC_A,
+//    b2mV_DC_B,
+//    b5mV_DC_A,
+//    b5mV_DC_B,
+//    b10mV_DC_A,
+//    b10mV_DC_B,
     nullptr, nullptr, nullptr, nullptr
 )
 

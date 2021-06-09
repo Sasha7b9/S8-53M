@@ -273,7 +273,7 @@ void FPGA::Calibrator::ReadPoints1024min_max(const Channel &ch, float *min, floa
 
     for (uint i = 0; i < mins.Size(); i++)
     {
-        *min += (float)mins[i];
+        *min += (float)mins[(int)i];
     }
 
     *min = *min / mins.Size();
@@ -282,7 +282,7 @@ void FPGA::Calibrator::ReadPoints1024min_max(const Channel &ch, float *min, floa
 
     for (uint i = 0; i < maxs.Size(); i++)
     {
-        *max += (float)maxs[i];
+        *max += (float)maxs[(int)i];
     }
 
     *max = *max / maxs.Size();
@@ -330,7 +330,7 @@ float FPGA::Calibrator::Stretcher::Calculate(float min, float max)
 {
     const float K = 200.0f;
 
-    float delta = min - max;
+    float delta = max - min;
 
     return K / delta;
 }
@@ -408,6 +408,8 @@ void FPGA::Calibrator::FuncDraw()
         break;
     }
 
+    Console::Draw();
+
     Display::EndFrame();
 }
 
@@ -421,6 +423,8 @@ void FPGA::Calibrator::DrawParametersChannel(Channel &ch, int x, int y)
     FillBuffer(buffer, &setNRST.chan[ch].rshift[0][0]);
 
     Text(buffer.ToString().c_str()).Draw(x + 40, y);
+    
+    Text("%f", setNRST.chan[ch].stretch).Draw(x + 250, y);
 
     FillBuffer(buffer, &setNRST.chan[ch].rshift[0][1]);
 

@@ -30,6 +30,9 @@ struct ReaderFPGA
 
         static const uint16 *address;       // С этого адреса производится чтение
         static int16  balance;              // Баланс второго АЦП
+        static float  stretch;              // Растяжка читаемых данных
+
+        static uint8 StretchOut(uint8 value);   // Растянуть считанное из АЦП значение
     };
 
 private:

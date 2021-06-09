@@ -38,6 +38,7 @@ Mutex ReaderFPGA::mutex_read;
 
 const uint16 *ReaderFPGA::ADC::address = nullptr;
 int16         ReaderFPGA::ADC::balance = 0;
+float         ReaderFPGA::ADC::stretch = 1.0f;
 
 
 const uint16 *const addresses_ADC[2] = { RD_ADC_A, RD_ADC_B };
@@ -91,6 +92,8 @@ void ReaderFPGA::ADC::ReadPoints(const Channel &ch, void *_first, const void *_l
 
     balance = setNRST.chan[ch].balance_ADC;
 
+    stretch = setNRST.chan[ch].stretch;
+
     if (TBase::IsRandomize() || PeackDetMode::IsEnabled())
     {
         balance = 0;
@@ -115,7 +118,29 @@ uint16 ReaderFPGA::ADC::ReadPoints()
     Math::AddLimitation<int16>(&byte1, balance, 0, 255);
     data.byte1 = (uint8)byte1;
 
+    data.byte0 = StretchOut(data.byte0);
+    data.byte1 = StretchOut(data.byte1);
+
     return data.half_word;
+}
+
+
+uint8 ReaderFPGA::ADC::StretchOut(uint8 value)
+{
+    if (value == Value::NONE)
+    {
+        return Value::NONE;
+    }
+
+    float delta = (float)value - (float)Value::AVE;
+
+    delta *= stretch;
+
+    float result = Value::AVE + delta;
+
+    Math::Limitation<float>(&result, Value::MIN, Value::MAX);
+
+    return (uint8)result;
 }
 
 
