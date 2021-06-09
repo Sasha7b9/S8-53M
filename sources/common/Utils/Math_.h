@@ -32,8 +32,6 @@ namespace Math
     // Возвращает модуль value.
     int FabsInt(int value);
 
-    uint8 CalculateFiltr(puchar data, int x, int num_points, int num_smoothing);
-
     void CalculateFiltrArray(Buffer<uint8> &data_in, Buffer<uint8> &data_out, int num_smoothing);
 
     template<class T> T    Abs(T value);

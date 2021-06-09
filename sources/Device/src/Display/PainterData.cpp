@@ -22,11 +22,6 @@ void PainterData::DrawData()
 {
     DataDrawingKeeper keeper;
 
-//    uint8 *p = keeper.data->points[ChA].Data();
-//
-//    LOG_WRITE("%d %d %d %d %d", p[0], p[1], p[2], p[3], p[4]);
-
-
     Processing::SetSignal(keeper.data->points[ChA], keeper.data->points[ChB], &keeper.data->data.Settings());
 
     keeper.data->Draw();
@@ -79,9 +74,7 @@ void DataDrawing::PrepareChannel(const Channel &ch)
     for (int i = p.first; i < p.second; i++)
     {
         int index = i - p.first;
-        CONVERT_DATA_TO_DISPLAY((points[ch][(uint)index]),
-            Math::CalculateFiltr(data_channel, i, (int)set.memory.enum_points_fpga.BytesInChannel(),
-            (int)Smoothing::NumPoints()));
+        CONVERT_DATA_TO_DISPLAY((points[ch][(uint)index]), data_channel[i]);
     }
 }
 

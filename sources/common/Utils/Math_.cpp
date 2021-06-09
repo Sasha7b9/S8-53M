@@ -259,42 +259,6 @@ T Math::Abs(T value)
 }
 
 
-uint8 Math::CalculateFiltr(puchar data, int x, int num_points, int numSmoothing)
-{
-    if (numSmoothing < 2)
-    {
-        return data[x];
-    }
-
-    int count = 1;
-    int sum = data[x];
-    int startDelta = 1;
-
-    int endDelta = numSmoothing / 2;
-
-    for (int delta = startDelta; delta <= endDelta; delta++)
-    {
-        if (((x - delta) >= 0) && ((x + delta) < (num_points)))
-        {
-            sum += data[x - delta];
-            sum += data[x + delta];
-            count += 2;
-        }
-    }
-
-    if ((numSmoothing % 2) == 1)
-    {
-        int delta = numSmoothing / 2;
-        if ((x + delta) < num_points)
-        {
-            sum += data[x + delta];
-            count++;
-        }
-    }
-
-    return (uint8)(sum / count);
-}
-
 void Math::CalculateFiltrArray(Buffer<uint8> &dataIn, Buffer<uint8> &dataOut, int numSmoothing)
 {
     int num_points = (int)dataIn.Size();

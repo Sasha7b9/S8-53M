@@ -174,11 +174,6 @@ void Processing::SetSignal(Buffer<uint8> &data0, Buffer<uint8> &data1, DataSetti
 
     int numSmoothing = (int)Smoothing::NumPoints();
 
-//    uint8 *p = data0.Data();
-//
-//    LOG_WRITE("%d %d %d %d %d", p[0], p[1], p[2], p[3], p[4]);
-
-
     Math::CalculateFiltrArray(data0, in[ChA], numSmoothing);
     Math::CalculateFiltrArray(data1, in[ChB], numSmoothing);
 
