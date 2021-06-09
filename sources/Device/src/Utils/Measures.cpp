@@ -331,7 +331,7 @@ void Measure::DrawAll()
 
             if (meas != Measure::None)
             {
-                Region(dX, dY).FillBounded(x, y, Color::BACK, Color::FILL);
+                Region(dX + 1, dY + 1).FillBounded(x, y, Color::BACK, Color::FILL);
                 top_measures = Math::MinFrom2(top_measures, y);
             }
 
