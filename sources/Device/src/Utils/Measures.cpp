@@ -361,6 +361,10 @@ void Measure::DrawAll()
                 {
                     Processing::GetStringMeasure(meas, Channel::A).Draw(x + 2, y + 11, ChA.GetColor());
                     Processing::GetStringMeasure(meas, Channel::B).Draw(x + 2, y + 20, ChB.GetColor());
+
+                    Text measur = Processing::GetStringMeasure(meas, Channel::A);
+
+                    LOG_WRITE(measur.c_str());
                 }
             }
         }

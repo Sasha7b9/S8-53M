@@ -30,6 +30,8 @@ void PainterData::DrawData()
 
     MemoryWindow::Draw(keeper.data->data);
 
+    Processing::CalculateMeasures();
+
     Measure::DrawAll();
 }
 

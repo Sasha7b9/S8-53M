@@ -994,12 +994,10 @@ void Processing::SetSignal(Buffer<uint8> &data0, Buffer<uint8> &data1, DataSetti
         return;
     }
     
-    uint numSmoothing = Smoothing::NumPoints();
-
     uint length = ds.BytesInChannel() * (ds.peak_det == PeackDetMode::Disable ? 1 : 2);
 
-    Math::CalculateFiltrArray(data0.Data(), &in[ChA][0], (int)length, (int)numSmoothing);
-    Math::CalculateFiltrArray(data1.Data(), &in[ChB][0], (int)length, (int)numSmoothing);
+    Math::CalculateFiltrArray(data0.Data(), in[ChA].Data(), (int)length);
+    Math::CalculateFiltrArray(data1.Data(), in[ChB].Data(), (int)length);
 
     CountedToCurrentSettings();
 }
@@ -1200,15 +1198,18 @@ Text Processing::GetStringMeasure(Measure::E measure, const Channel &ch)
     return result;
 }
 
+
 int Processing::GetMarkerHorizontal(Channel::E ch, int numMarker)
 {
     return markerHor[ch][numMarker] - Value::MIN;
 }
 
+
 int Processing::GetMarkerVertical(Channel::E ch, int numMarker)
 {
     return markerVert[ch][numMarker];
 }
+
 
 void Processing::CountedToCurrentSettings()
 {
