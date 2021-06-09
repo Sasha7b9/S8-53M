@@ -5,6 +5,7 @@
 #include "FPGA/FPGA_Math.h"
 #include "FPGA/FPGA_Types.h"
 #include "FPGA/Data/DataSettings.h"
+#include "FPGA/Data/Storage.h"
 #include "Utils/ProcessingSignal.h"
 #include <cmath>
 #include <cstdio>
@@ -160,12 +161,14 @@ void Processing::CalculateMeasures()
 }
 
 
-void Processing::SetSignal(Buffer<uint8> &data0, Buffer<uint8> &data1, DataSettings *_ds)
+void Processing::LeadToCurrentSetings(DataReading &dr)
 {
-    firstP = (uint)0;
-    lastP = (uint)data1.Size();
+    BitSet64 p = SettingsDisplay::BytesOnDisplay();
+
+    firstP = (uint)p.first;
+    lastP = (uint)p.second;
     numP = lastP - firstP;
-    pds = _ds;
+    pds = &dr.Settings();
 
     if (!pds)
     {
@@ -174,10 +177,16 @@ void Processing::SetSignal(Buffer<uint8> &data0, Buffer<uint8> &data1, DataSetti
 
     int numSmoothing = (int)Smoothing::NumPoints();
 
-    Math::CalculateFiltrArray(data0, in[ChA], numSmoothing);
-    Math::CalculateFiltrArray(data1, in[ChB], numSmoothing);
+    Buffer<uint8> outA(numP);
+    Buffer<uint8> outB(numP);
 
-    CountedToCurrentSettings();
+    Math::CalculateFiltrArray(dr.Data(ChA) + firstP, outA.Data(), (int)numP, numSmoothing);
+    Math::CalculateFiltrArray(dr.Data(ChB) + firstP, outB.Data(), (int)numP, numSmoothing);
+
+    std::memcpy(dr.Data(ChA) + firstP, outA.Data(), numP);
+    std::memcpy(dr.Data(ChB) + firstP, outB.Data(), numP);
+
+//    CountedToCurrentSettings();
 }
 
 

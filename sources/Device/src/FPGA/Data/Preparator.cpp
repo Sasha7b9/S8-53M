@@ -22,7 +22,7 @@ void DataDrawingKeeper::Prepare()
 {
     data = new DataDrawing();
 
-    data->PrepareForDrawing();
+    Storage::ExtractLast(data->data);
 }
 
 

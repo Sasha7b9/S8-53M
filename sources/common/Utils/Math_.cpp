@@ -259,15 +259,11 @@ T Math::Abs(T value)
 }
 
 
-void Math::CalculateFiltrArray(Buffer<uint8> &dataIn, Buffer<uint8> &dataOut, int numSmoothing)
+void Math::CalculateFiltrArray(uint8 *dataIn, uint8 *dataOut, int num_points, int numSmoothing)
 {
-    int num_points = (int)dataIn.Size();
-
-    dataOut.Realloc((uint)num_points);
-
     if (numSmoothing < 2)
     {
-        std::memcpy(dataOut.Data(), dataIn.Data(), (uint)(num_points));
+        std::memcpy(dataOut, dataIn, (uint)(num_points));
     }
     else
     {

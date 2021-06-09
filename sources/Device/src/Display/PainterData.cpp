@@ -22,13 +22,15 @@ void PainterData::DrawData()
 {
     DataDrawingKeeper keeper;
 
+    Processing::LeadToCurrentSetings(keeper.data->data);
+
+    keeper.data->PrepareForDrawing();
+
     keeper.data->Draw();
 
     Rectangle(Grid::Width() + 1, Grid::FullHeight() + 1).Draw(Grid::Left(), Grid::TOP, Color::FILL);
 
     MemoryWindow::Draw(keeper.data->data);
-
-    Processing::CalculateMeasures();
 
     Measure::DrawAll();
 }
@@ -36,8 +38,6 @@ void PainterData::DrawData()
 
 void DataDrawing::PrepareForDrawing()
 {
-    Storage::ExtractLast(data);
-
     PrepareChannel(ChA);
     PrepareChannel(ChB);
 }

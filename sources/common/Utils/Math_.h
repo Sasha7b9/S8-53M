@@ -1,6 +1,5 @@
 // 2021/03/01 10:48:35 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
-#include "common/Utils/Containers/Buffer_.h"
 
 
 namespace Math
@@ -32,7 +31,7 @@ namespace Math
     // Возвращает модуль value.
     int FabsInt(int value);
 
-    void CalculateFiltrArray(Buffer<uint8> &data_in, Buffer<uint8> &data_out, int num_smoothing);
+    void CalculateFiltrArray(uint8 *data_in, uint8 *data_out, int num_elements, int num_smoothing);
 
     template<class T> T    Abs(T value);
     template<class T> void Limitation(T *value, T min, T max);

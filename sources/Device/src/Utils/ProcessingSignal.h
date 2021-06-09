@@ -14,11 +14,11 @@ class Processing
 {
 public:
 
-    // Установить сигнал для обработки.
-    static void SetSignal(Buffer<uint8> &pointsA, Buffer<uint8> &pointsB, DataSettings *ds);
-
     // Расчитать все измерения.
     static void CalculateMeasures();
+
+    // Привести данные к текущим настройкам
+    static void LeadToCurrentSetings(DataReading &dr);
 
     // Получить позицию курсора напряжения, соответствующю заданной позиции курсора posCurT.
     static float GetCursU(const Channel &ch, float posCurT);
