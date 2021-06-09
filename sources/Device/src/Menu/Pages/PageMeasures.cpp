@@ -95,27 +95,27 @@ DEF_SMALL_BUTTON( sbMeasTuneMarkers, PageMeasures::PageTune::self,
 
 bool IsActiveChoiceMeasuresNumber()
 {
-    return set.measures.show;
+    return set.measures.show != 0;
 }
 
 bool IsActiveChoiceMeasuresChannels()
 {
-    return set.measures.show;
+    return set.measures.show != 0;
 }
 
 bool IsActivePageMeasuresFields()
 {
-    return set.measures.show;
+    return set.measures.show != 0;
 }
 
 bool IsActiveChoiceMeasuresSignal()
 {
-    return set.measures.show;
+    return set.measures.show != 0;
 }
 
 bool IsActiveButtonMeasuresTune()
 {
-    return set.measures.show;
+    return set.measures.show != 0;
 }
 
 bool IsActiveButtonMeasuresFieldSet()
@@ -193,7 +193,7 @@ DEF_SMALL_BUTTON(sbExitMeasTune, PageMeasures::PageTune::self,
     nullptr, PressSB_MeasTune_Exit, DrawSB_Exit, nullptr
 )
 
-DEF_PAGE_6(pageTune, PageMeasures::PageTune::self, NamePage::SB_MeasTuneMeas,
+DEF_PAGE_6(pageTune, PageMeasures::self, NamePage::SB_MeasTuneMeas,
     "НАСТРОИТЬ", "CONFIGURE",
     "Переход в режми точной настройки количества и видов измерений",
     "Transition to rezhm of exact control of quantity and types of measurements",

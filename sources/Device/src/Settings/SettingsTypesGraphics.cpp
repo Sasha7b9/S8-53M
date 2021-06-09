@@ -165,10 +165,11 @@ void TrigLev::WriteValue()
     {
         float trigLev = RShift::ToAbs(TrigLev::Get(), set.chan[TrigSource::Get()].range);     // WARN Здесь для внешней
                                                                     // синхронизации неправильно рассчитывается уровень.
-        TrigSource::E trigSource = TrigSource::Get();
+        int trigSource = TrigSource::Get();
+
         if (TrigInput::IsAC() && trigSource <= TrigSource::B)
         {
-            int16 rShift = set.chan[trigSource].rshift;
+            int16 rShift = set.chan[(trigSource < 2) ? trigSource : 0].rshift;
             float rShiftAbs = RShift::ToAbs(rShift, set.chan[trigSource].range);
             trigLev += rShiftAbs;
         }

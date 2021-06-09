@@ -203,6 +203,13 @@ void Region::Fill(int x, int y, const Color &color) const
 }
 
 
+void Region::FillBounded(int x, int y, const Color &fill, const Color &bounded)
+{
+    Fill(x, y, fill);
+    Rectangle(width, height).Draw(x, y, bounded);
+}
+
+
 void HLine::Draw(int x, int y, const Color &color) const
 {
     color.SetAsCurrent();

@@ -17,6 +17,7 @@ class Region
 {
 public:
     Region(int w, int h) : width(w), height(h) {}
+    void FillBounded(int x, int y, const Color &fill, const Color &bounded);
     void Fill(int x, int y, const Color &color) const;
     void Fill(int x, int y) const;
 
