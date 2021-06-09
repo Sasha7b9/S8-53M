@@ -22,7 +22,7 @@ void DataDrawingKeeper::Prepare()
 {
     data = new DataDrawing();
 
-    data->Prepare();
+    data->PrepareForDrawing();
 }
 
 

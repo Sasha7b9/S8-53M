@@ -15,7 +15,7 @@ struct DataDrawing
 {
 friend class PainterData;
 
-    void Prepare();
+    void PrepareForDrawing();
     void Draw();
 
     DataReading data;

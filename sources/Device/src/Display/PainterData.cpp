@@ -22,8 +22,6 @@ void PainterData::DrawData()
 {
     DataDrawingKeeper keeper;
 
-    Processing::SetSignal(keeper.data->points[ChA], keeper.data->points[ChB], &keeper.data->data.Settings());
-
     keeper.data->Draw();
 
     Rectangle(Grid::Width() + 1, Grid::FullHeight() + 1).Draw(Grid::Left(), Grid::TOP, Color::FILL);
@@ -36,7 +34,7 @@ void PainterData::DrawData()
 }
 
 
-void DataDrawing::Prepare()
+void DataDrawing::PrepareForDrawing()
 {
     Storage::ExtractLast(data);
 
