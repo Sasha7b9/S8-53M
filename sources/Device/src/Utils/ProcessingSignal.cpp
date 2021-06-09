@@ -18,8 +18,8 @@ struct MeasureValue
 };
 
 
-static Buffer<uint8> out[Channel::Count];
-static Buffer<uint8> in[Channel::Count];
+static Buffer<uint8> in[Channel::Count];        // —юда попадают входные данные после сглаживающего фильтра
+static Buffer<uint8> out[Channel::Count];       // —юда попадают данные после приведени€ к текущим настройкам
 
 static DataSettings *pDS = nullptr;
 static DataSettings &ds = *pDS;
@@ -160,6 +160,87 @@ void Processing::CalculateMeasures()
     }
 }
 
+
+void Processing::SetSignal(Buffer<uint8> &data0, Buffer<uint8> &data1, DataSettings *_ds)
+{
+    firstP = (uint)0;
+    lastP = (uint)data1.Size();
+    numP = lastP - firstP;
+    pDS = _ds;
+
+    if (!pDS)
+    {
+        return;
+    }
+
+    int numSmoothing = (int)Smoothing::NumPoints();
+
+    Math::CalculateFiltrArray(data0, in[ChA], numSmoothing);
+    Math::CalculateFiltrArray(data1, in[ChB], numSmoothing);
+
+    CountedToCurrentSettings();
+}
+
+
+void Processing::CountedToCurrentSettings()
+{
+    out[ChA].Fill(0);
+    out[ChB].Fill(0);
+
+    int numPoints = in[ChA].Size();
+
+    int dataTShift = ds.tshift;
+
+    int dTShift = set.time.shift - dataTShift;
+
+    for (int i = 0; i < numPoints; i++)
+    {
+        int index = i - dTShift;
+        if (index >= 0 && index < numPoints)
+        {
+            out[ChA][index] = in[0][i];
+            out[ChB][index] = in[1][i];
+        }
+    }
+
+    bool enabledA 
+    
+    if (ds.IsEnabled(ChA) && (ds.range[0] != set.chan[Channel::A].range || ds.r_shift_a != (uint)set.chan[Channel::A].rshift))
+    {
+        Range::E range = set.chan[Channel::A].range;
+        int16 rShift = set.chan[Channel::A].rshift;
+
+        for (int i = 0; i < numPoints; i++)
+        {
+            float absValue = Value::ToVoltage(out[ChA][i], ds.range[0], (int16)ds.r_shift_a);
+            int relValue = (int)((absValue + MAX_VOLTAGE_ON_SCREEN(range) + RShift::ToAbs(rShift, range)) /
+                MathFPGA::voltsInPixel[range] + Value::MIN);
+
+            if (relValue < Value::MIN) { out[ChA][i] = Value::MIN; }
+            else if (relValue > Value::MAX) { out[ChA][i] = Value::MAX; }
+            else { out[ChA][i] = (uint8)relValue; }
+        }
+    }
+    if (ds.IsEnabled(ChB) &&
+        (ds.range[1] != set.chan[Channel::B].range || ds.r_shift_b != (uint)set.chan[Channel::B].rshift))
+    {
+        Range::E range = set.chan[Channel::B].range;
+        int16 rShift = set.chan[Channel::B].rshift;
+
+        for (int i = 0; i < numPoints; i++)
+        {
+            float absValue = Value::ToVoltage(out[ChB][i], ds.range[1], (int16)ds.r_shift_b);
+            int relValue = (int)((absValue + MAX_VOLTAGE_ON_SCREEN(range) + RShift::ToAbs(rShift, range)) /
+                MathFPGA::voltsInPixel[range] + Value::MIN);
+
+            if (relValue < Value::MIN) { out[ChB][i] = Value::MIN; }
+            else if (relValue > Value::MAX) { out[ChB][i] = Value::MAX; }
+            else { out[ChB][i] = (uint8)relValue; }
+        }
+    }
+}
+
+
 Float Processing::CalculateVoltageMax(Channel::E ch)
 {
     Float max = CalculateMaxRel(ch);
@@ -174,6 +255,7 @@ Float Processing::CalculateVoltageMax(Channel::E ch)
     return Value::ToVoltage((uint8)max, ds.range[ch], (int16)((ch == ChA) ? ds.r_shift_a : ds.r_shift_b)) *
         Divider::ToAbs(ch);
 }
+
 
 Float Processing::CalculateVoltageMin(Channel::E ch)
 {
@@ -982,26 +1064,6 @@ Float Processing::CalculatePhazaMinus(Channel::E ch)
     return delay / period * 360.0F; 
 }
 
-void Processing::SetSignal(Buffer<uint8> &data0, Buffer<uint8> &data1, DataSettings *_ds)
-{
-    firstP = (uint)0;
-    lastP = (uint)data1.Size();
-    numP = lastP - firstP;
-    pDS = _ds;
-
-    if (!pDS)
-    {
-        return;
-    }
-    
-    uint length = ds.BytesInChannel() * (ds.peak_det == PeackDetMode::Disable ? 1 : 2);
-
-    Math::CalculateFiltrArray(data0.Data(), in[ChA].Data(), (int)length);
-    Math::CalculateFiltrArray(data1.Data(), in[ChB].Data(), (int)length);
-
-    CountedToCurrentSettings();
-}
-
 
 float Processing::GetCursU(const Channel &ch, float posCurT)
 {   
@@ -1208,61 +1270,4 @@ int Processing::GetMarkerHorizontal(Channel::E ch, int numMarker)
 int Processing::GetMarkerVertical(Channel::E ch, int numMarker)
 {
     return markerVert[ch][numMarker];
-}
-
-
-void Processing::CountedToCurrentSettings()
-{
-    out[ChA].Fill(0);
-    out[ChB].Fill(0);
-    
-    int numPoints = (int)ds.BytesInChannel() * (ds.peak_det == PeackDetMode::Disable ? 1 : 2);
-
-    int dataTShift = ds.tshift;
-
-    int dTShift = set.time.shift - dataTShift;
-
-    for (int i = 0; i < numPoints; i++)
-    {
-        int index = i - dTShift;
-        if (index >= 0 && index < numPoints)
-        {
-            out[ChA][index] = in[0][i];
-            out[ChB][index] = in[1][i];
-        }
-    }
- 
-    if (ds.IsEnabled(ChA) && (ds.range[0] != set.chan[Channel::A].range || ds.r_shift_a != (uint)set.chan[Channel::A].rshift))
-    {
-        Range::E range = set.chan[Channel::A].range;
-        int16 rShift = set.chan[Channel::A].rshift;
-
-        for (int i = 0; i < numPoints; i++)
-        {
-            float absValue = Value::ToVoltage(out[ChA][i], ds.range[0], (int16)ds.r_shift_a);
-            int relValue = (int)((absValue + MAX_VOLTAGE_ON_SCREEN(range) + RShift::ToAbs(rShift, range)) /
-                MathFPGA::voltsInPixel[range] + Value::MIN);
-
-            if (relValue < Value::MIN)      { out[ChA][i] = Value::MIN; }
-            else if (relValue > Value::MAX) { out[ChA][i] = Value::MAX; }
-            else                            { out[ChA][i] = (uint8)relValue; }
-        }
-    }
-    if (ds.IsEnabled(ChB) &&
-        (ds.range[1] != set.chan[Channel::B].range || ds.r_shift_b != (uint)set.chan[Channel::B].rshift))
-    {
-        Range::E range = set.chan[Channel::B].range;
-        int16 rShift = set.chan[Channel::B].rshift;
-
-        for (int i = 0; i < numPoints; i++)
-        {
-            float absValue = Value::ToVoltage(out[ChB][i], ds.range[1], (int16)ds.r_shift_b);
-            int relValue = (int)((absValue + MAX_VOLTAGE_ON_SCREEN(range) + RShift::ToAbs(rShift, range)) /
-                MathFPGA::voltsInPixel[range] + Value::MIN);
-
-            if (relValue < Value::MIN)      { out[ChB][i] = Value::MIN; }
-            else if (relValue > Value::MAX) { out[ChB][i] = Value::MAX; }
-            else                            { out[ChB][i] = (uint8)relValue; }
-        }
-    }
 }

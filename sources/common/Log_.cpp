@@ -80,4 +80,8 @@ void Log_Write(pchar, ...)
 {
 }
 
+void Log_TraceWrite(pchar, int, char *, ...)
+{
+}
+
 #endif

@@ -1,6 +1,6 @@
 // 2021/03/01 10:48:35 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
-
+#include "common/Utils/Containers/Buffer_.h"
 
 
 namespace Math
@@ -34,7 +34,7 @@ namespace Math
 
     uint8 CalculateFiltr(puchar data, int x, int num_points, int num_smoothing);
 
-    void CalculateFiltrArray(puchar data_in, uint8* data_out, int num_points);
+    void CalculateFiltrArray(Buffer<uint8> &data_in, Buffer<uint8> &data_out, int num_smoothing);
 
     template<class T> T    Abs(T value);
     template<class T> void Limitation(T *value, T min, T max);

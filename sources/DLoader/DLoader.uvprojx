@@ -1181,6 +1181,16 @@
           <GroupName>Utils/Containers</GroupName>
           <Files>
             <File>
+              <FileName>Buffer_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\Containers\Buffer_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Buffer_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\Containers\Buffer_.cpp</FilePath>
+            </File>
+            <File>
               <FileName>String_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Utils\Containers\String_.h</FilePath>
@@ -2418,6 +2428,16 @@
         <Group>
           <GroupName>Utils/Containers</GroupName>
           <Files>
+            <File>
+              <FileName>Buffer_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Utils\Containers\Buffer_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Buffer_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Utils\Containers\Buffer_.cpp</FilePath>
+            </File>
             <File>
               <FileName>String_.h</FileName>
               <FileType>5</FileType>

@@ -294,13 +294,15 @@ uint8 Math::CalculateFiltr(puchar data, int x, int num_points, int numSmoothing)
     return (uint8)(sum / count);
 }
 
-void Math::CalculateFiltrArray(puchar dataIn, uint8 *dataOut, int num_points)
+void Math::CalculateFiltrArray(Buffer<uint8> &dataIn, Buffer<uint8> &dataOut, int numSmoothing)
 {
-    int numSmoothing = (int)Smoothing::NumPoints();
+    int num_points = (int)dataIn.Size();
+
+    dataOut.Realloc((uint)num_points);
 
     if (numSmoothing < 2)
     {
-        std::memcpy(dataOut, dataIn, (uint)(num_points));
+        std::memcpy(dataOut.Data(), dataIn.Data(), (uint)(num_points));
     }
     else
     {
