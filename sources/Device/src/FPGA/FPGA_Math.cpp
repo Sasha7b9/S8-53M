@@ -359,7 +359,11 @@ Float MathFPGA::GetMaxFromArrayWithErrorCode(puchar data, uint firstPoint, uint 
 
 Float MathFPGA::GetMinFromArrayWithErrorCode(puchar data, uint firstPoint, uint lastPoint)
 {
+//    LOG_WRITE("%d %d %d %d %d", data[0], data[1], data[2], data[3], data[4]);
+
     Float min = Math::GetMinFromArray(data, firstPoint, lastPoint);
+
+//    LOG_WRITE("min = %f, first = %d, last = %d", min.value, firstPoint, lastPoint);
 
     if ((uint8)min < Value::MIN || min >= Value::MAX)
     {

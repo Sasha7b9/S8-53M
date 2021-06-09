@@ -22,6 +22,11 @@ void PainterData::DrawData()
 {
     DataDrawingKeeper keeper;
 
+//    uint8 *p = keeper.data->points[ChA].Data();
+//
+//    LOG_WRITE("%d %d %d %d %d", p[0], p[1], p[2], p[3], p[4]);
+
+
     Processing::SetSignal(keeper.data->points[ChA], keeper.data->points[ChB], &keeper.data->data.Settings());
 
     keeper.data->Draw();

@@ -174,6 +174,7 @@ uint8 Math::GetMinFromArray(puchar data, uint firstPoint, uint lastPoint)
         d = *pointer++;
         MIN_IF_LESS
     }
+
     if ((lastPoint - firstPoint + 1) & 1)
     {
         uint8 d = *pointer;

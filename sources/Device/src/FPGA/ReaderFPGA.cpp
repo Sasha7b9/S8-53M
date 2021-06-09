@@ -114,11 +114,11 @@ uint16 ReaderFPGA::ADC::ReadPoints()
     BitSet16 data;
     data.half_word = *address;
 
+    data.byte0 = StretchOut(data.byte0);
+
     int16 byte1 = data.byte1;
     Math::AddLimitation<int16>(&byte1, balance, 0, 255);
     data.byte1 = (uint8)byte1;
-
-    data.byte0 = StretchOut(data.byte0);
     data.byte1 = StretchOut(data.byte1);
 
     return data.half_word;
@@ -127,11 +127,6 @@ uint16 ReaderFPGA::ADC::ReadPoints()
 
 uint8 ReaderFPGA::ADC::StretchOut(uint8 value)
 {
-    if (value == Value::NONE)
-    {
-        return Value::NONE;
-    }
-
     float delta = (float)value - (float)Value::AVE;
 
     delta *= stretch;

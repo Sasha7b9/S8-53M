@@ -174,6 +174,11 @@ void Processing::SetSignal(Buffer<uint8> &data0, Buffer<uint8> &data1, DataSetti
 
     int numSmoothing = (int)Smoothing::NumPoints();
 
+//    uint8 *p = data0.Data();
+//
+//    LOG_WRITE("%d %d %d %d %d", p[0], p[1], p[2], p[3], p[4]);
+
+
     Math::CalculateFiltrArray(data0, in[ChA], numSmoothing);
     Math::CalculateFiltrArray(data1, in[ChB], numSmoothing);
 
@@ -259,6 +264,11 @@ Float Processing::CalculateVoltageMin(Channel::E ch)
 {
     Float min = CalculateMinRel(ch);
 
+//    if (ch == Channel::A)
+//    {
+//        LOG_WRITE("min = %f", min.value);
+//    }
+
     EXIT_IF_ERROR_FLOAT(min);
 
     if(set.measures.marked.Is(Measure::VoltageMin))
@@ -266,8 +276,15 @@ Float Processing::CalculateVoltageMin(Channel::E ch)
         markerHor[ch][0] = (int)(min);          // Здесь не округляем, потому что min может быть только целым
     }
 
-    return Value::ToVoltage((uint8)min, pds->range[ch], (int16)((ch == ChA) ? pds->r_shift_a : pds->r_shift_b)) *
+    Float result = Value::ToVoltage((uint8)min, pds->range[ch], (int16)((ch == ChA) ? pds->r_shift_a : pds->r_shift_b)) *
         Divider::ToAbs(ch);
+
+//    if (ch == Channel::A)
+//    {
+//        LOG_WRITE("min = %d, result = %f", (uint8)min, result.value);
+//    }
+
+    return result;
 }
 
 Float Processing::CalculateVoltagePic(Channel::E ch)

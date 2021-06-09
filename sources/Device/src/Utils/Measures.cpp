@@ -344,11 +344,13 @@ void Measure::DrawAll()
             if (meas != Measure::None)
             {
                 Measure::Name(str, elem).Draw(x + 4, y + 2, active ? Color::BACK : Color::FILL);
+
                 if (meas == set.measures.marked)
                 {
                     Region(dX - 2, 9).Fill(x + 1, y + 1, active ? Color::BACK : Color::FILL);
                     Measure::Name(str, elem).Draw(x + 4, y + 2, active ? Color::FILL : Color::BACK);
                 }
+
                 if (set.measures.source.IsA())
                 {
                     Processing::GetStringMeasure(meas, Channel::A).Draw(x + 2, y + 11, ChA.GetColor());
