@@ -397,7 +397,7 @@ void FPGA::Calibrator::FuncDraw()
         }
         else
         {
-            Text(LANG_RU ? "ОШИБКА !!! Колибровка завершена неуспешно" :
+            Text(LANG_RU ? "ОШИБКА !!! Калибровка завершена неуспешно" :
                 "ERROR !!! Calibration completed unsuccessfully").Draw(50, 50);
         }
 

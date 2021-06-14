@@ -186,7 +186,7 @@ void Processing::LeadToCurrentSetings(DataReading &dr)
     std::memcpy(dr.Data(ChA) + firstP, outA.Data(), numP);
     std::memcpy(dr.Data(ChB) + firstP, outB.Data(), numP);
 
-    CountedToCurrentSettings();
+//    CountedToCurrentSettings();
 }
 
 
