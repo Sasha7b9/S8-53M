@@ -49,7 +49,7 @@ void HAL::Init()
     
     HAL_RTC::Init();
 
-//    HAL_HCD::Init();
+    HAL_HCD::Init();
 
 //    HAL_ETH::Init();
 
