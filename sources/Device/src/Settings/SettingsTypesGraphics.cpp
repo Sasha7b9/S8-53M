@@ -169,7 +169,7 @@ void TrigLev::WriteValue()
 
         if (TrigInput::IsAC() && trigSource <= TrigSource::B)
         {
-            int16 rShift = set.chan[(trigSource < 2) ? trigSource : 0].rshift;
+            int16 rShift = set.chan[trigSource].rshift;
             float rShiftAbs = RShift::ToAbs(rShift, set.chan[trigSource].range);
             trigLev += rShiftAbs;
         }

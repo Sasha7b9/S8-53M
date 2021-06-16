@@ -29,7 +29,7 @@ void HardFault_Handler()
     
     while (1) //-V776
     {
-        last_item = last_item;
+        last_item = last_item; //-V570
         Display::Update();
         file = file; //-V570
         line = line; //-V570
