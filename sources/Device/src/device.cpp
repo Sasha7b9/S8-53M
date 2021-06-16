@@ -15,8 +15,6 @@
 
 bool Device::needResetSettings = false;
 
-//static void ProcessingSignal();
-
 
 void Device::Init()
 {
@@ -27,11 +25,10 @@ void Device::Init()
     HAL_TIM2::Delay(250);
     Display::Init();
     FPGA::Start();
+//    VCP::Init();
 
-    //    FPGA::OnPressStartStop();
     //    LAN::Init();
     //    FDrive::Init();
-    //    VCP::Init();
 }
 
 

@@ -66,28 +66,18 @@ void HAL_RTC::Init()
         ERROR_HANDLER();
     }
 
-    if (HAL_RTC_Init(reinterpret_cast<RTC_HandleTypeDef *>(handle)) != HAL_OK)
+    if (HAL_RTC_Init(&handleRTC) != HAL_OK)
     {
         ERROR_HANDLER();
     }
 
-//    if (HAL_RTCEx_BKUPRead(reinterpret_cast<RTC_HandleTypeDef *>(&handle), RTC_BKP_DR0) != VALUE_FOR_RTC)
-//    {
-//        if (SetTimeAndData(11, 11, 11, 11, 11, 11))
-//        {
-//            HAL_RTCEx_BKUPWrite(reinterpret_cast<RTC_HandleTypeDef *>(&handle), RTC_BKP_DR0, VALUE_FOR_RTC);
-//        }
-//    }
-}
-
-
-void HAL_RTC::Test()
-{
-    RTC_TimeTypeDef stimestructureget;
-
-    HAL_RTC_GetTime(&handleRTC, &stimestructureget, RTC_FORMAT_BIN);
-
-    LOG_WRITE("%d", stimestructureget.Seconds);
+    if (HAL_RTCEx_BKUPRead(&handleRTC, RTC_BKP_DR0) != VALUE_FOR_RTC)
+    {
+        if (SetTimeAndData(11, 11, 11, 11, 11, 11))
+        {
+            HAL_RTCEx_BKUPWrite(&handleRTC, RTC_BKP_DR0, VALUE_FOR_RTC);
+        }
+    }
 }
 
 
@@ -97,7 +87,7 @@ PackedTime HAL_RTC::GetPackedTime()
 
     RTC_TimeTypeDef isTime;
     
-    if (HAL_RTC_GetTime(reinterpret_cast<RTC_HandleTypeDef *>(&handle), &isTime, FORMAT_BIN) != HAL_OK)
+    if (HAL_RTC_GetTime(&handleRTC, &isTime, FORMAT_BIN) != HAL_OK)
     {
         ERROR_HANDLER();
     }
@@ -108,7 +98,7 @@ PackedTime HAL_RTC::GetPackedTime()
 
     RTC_DateTypeDef isDate;
 
-    if (HAL_RTC_GetDate(reinterpret_cast<RTC_HandleTypeDef *>(&handle), &isDate, FORMAT_BIN) != HAL_OK)
+    if (HAL_RTC_GetDate(&handleRTC, &isDate, FORMAT_BIN) != HAL_OK)
     {
         ERROR_HANDLER();
     }
@@ -131,7 +121,7 @@ bool HAL_RTC::SetTimeAndData(int8 day, int8 month, int8 year, int8 hours, int8 m
         (uint8)(year)
     };
 
-    if (HAL_RTC_SetDate(reinterpret_cast<RTC_HandleTypeDef *>(&handle), &dateStruct, FORMAT_BIN) != HAL_OK)
+    if (HAL_RTC_SetDate(&handleRTC, &dateStruct, FORMAT_BIN) != HAL_OK)
     {
         ERROR_HANDLER();
 
@@ -148,7 +138,7 @@ bool HAL_RTC::SetTimeAndData(int8 day, int8 month, int8 year, int8 hours, int8 m
         RTC_STOREOPERATION_SET
     };
 
-    if (HAL_RTC_SetTime(reinterpret_cast<RTC_HandleTypeDef *>(&handle), &timeStruct, FORMAT_BIN) != HAL_OK)
+    if (HAL_RTC_SetTime(&handleRTC, &timeStruct, FORMAT_BIN) != HAL_OK)
     {
         ERROR_HANDLER();
 
