@@ -22,6 +22,8 @@ void HAL::Init()
     ConfigSystemClock();
 
     EnablePeripherals();
+    
+    HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
 
     HAL_PINS::Init();
 
@@ -43,18 +45,15 @@ void HAL::Init()
 
     HAL_ROM::Init();
 
-//    HAL_RTC::Init();
-
     HAL_TIM6::Init();
+    
+    HAL_RTC::Init();
 
 //    HAL_ETH::Init();
 
 //    HAL_HCD::Init();
 
 #endif
-
-
-    HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
 }
 
 

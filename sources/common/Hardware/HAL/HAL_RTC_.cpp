@@ -66,18 +66,28 @@ void HAL_RTC::Init()
         ERROR_HANDLER();
     }
 
-    if (HAL_RTC_Init(reinterpret_cast<RTC_HandleTypeDef *>(&handle)) != HAL_OK)
+    if (HAL_RTC_Init(reinterpret_cast<RTC_HandleTypeDef *>(handle)) != HAL_OK)
     {
         ERROR_HANDLER();
     }
 
-    if (HAL_RTCEx_BKUPRead(reinterpret_cast<RTC_HandleTypeDef *>(&handle), RTC_BKP_DR0) != VALUE_FOR_RTC)
-    {
-        if (SetTimeAndData(11, 11, 11, 11, 11, 11))
-        {
-            HAL_RTCEx_BKUPWrite(reinterpret_cast<RTC_HandleTypeDef *>(&handle), RTC_BKP_DR0, VALUE_FOR_RTC);
-        }
-    }
+//    if (HAL_RTCEx_BKUPRead(reinterpret_cast<RTC_HandleTypeDef *>(&handle), RTC_BKP_DR0) != VALUE_FOR_RTC)
+//    {
+//        if (SetTimeAndData(11, 11, 11, 11, 11, 11))
+//        {
+//            HAL_RTCEx_BKUPWrite(reinterpret_cast<RTC_HandleTypeDef *>(&handle), RTC_BKP_DR0, VALUE_FOR_RTC);
+//        }
+//    }
+}
+
+
+void HAL_RTC::Test()
+{
+    RTC_TimeTypeDef stimestructureget;
+
+    HAL_RTC_GetTime(&handleRTC, &stimestructureget, RTC_FORMAT_BIN);
+
+    LOG_WRITE("%d", stimestructureget.Seconds);
 }
 
 

@@ -170,6 +170,8 @@ struct HAL_RTC
 
     static PackedTime GetPackedTime();
 
+    static void Test();
+
 private:
     static void *handle;    // RTC_HandleTypeDef
 };
