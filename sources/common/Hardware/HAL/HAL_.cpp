@@ -51,7 +51,7 @@ void HAL::Init()
 
     HAL_HCD::Init();
 
-//    HAL_ETH::Init();
+    HAL_ETH::Init();
 
 #endif
 }
