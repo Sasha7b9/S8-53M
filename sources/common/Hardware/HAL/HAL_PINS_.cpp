@@ -85,8 +85,6 @@ Pin Pin::SPI4_DAT(PinMode::_Output, PinPort::_E, PinPin::_6);
 Pin Pin::LED(PinMode::_Output, PinPort::_G, PinPin::_12);
 Pin Pin::DisplayReady(PinMode::_Input, PinPort::_G, PinPin::_11);
 
-Pin Pin::Temp(PinMode::_Output, PinPort::_I, PinPin::_9);
-
 
 void HAL_PINS::ADC1_::Init()
 {
@@ -223,8 +221,6 @@ void HAL_PINS::Init()
 //    Pin pinPWM(PinMode::_Output, PinPort::_A, PinPin::_4);
 //    pinPWM.Init();
 //    pinPWM.Set();
-
-    //    Pin::Temp.Init();
 
     Pin pinRL(PinMode::_Output, PinPort::_G, PinPin::_13);      // ¬ыбор горизонтальной ориентации диспле€ R/L
     pinRL.Init();

@@ -87,7 +87,6 @@ struct Pin
     static Pin SPI4_DAT;
     static Pin LED;
     static Pin DisplayReady;
-    static Pin Temp;
 
 private:
     PinPort::E port;
