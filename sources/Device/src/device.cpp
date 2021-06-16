@@ -27,8 +27,7 @@ void Device::Init()
     FPGA::Start();
     VCP::Init();
     FDrive::Init();
-
-    // LAN::Init();
+//    LAN::Init();
 }
 
 
