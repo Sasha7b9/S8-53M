@@ -181,16 +181,16 @@ uint8 *ReaderFPGA::Read::Randomizer::CalculateFirstAddressWrite(DataReading &dr,
 
     uint8 *awrite = dr.Data(ch);                                           // —юда будем писать считываемые данны
 
-    if (ds.is_clean == 1)
-    {
-        std::memset(awrite, Value::NONE, ds.BytesInChannel());
-        ds.is_clean = 0;
-    }
-
-    UtilizeFirstBytes(ADDRESS_READ(ch), num_skipped);
-
     if (awrite != nullptr)
     {
+        if (ds.is_clean == 1)
+        {
+            std::memset(awrite, Value::NONE, ds.BytesInChannel());
+            ds.is_clean = 0;
+        }
+
+        UtilizeFirstBytes(ADDRESS_READ(ch), num_skipped);
+
         awrite += index + LaunchFPGA::AdditionalOffsetIndexFirst();
     }
 
