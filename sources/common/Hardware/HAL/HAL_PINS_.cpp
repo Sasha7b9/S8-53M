@@ -218,9 +218,9 @@ void HAL_PINS::Init()
 
     Pin(PinMode::_DAC1, PinPort::_A, PinPin::_4).Init();        // PWM
 
-//    Pin pinPWM(PinMode::_Output, PinPort::_A, PinPin::_4);
-//    pinPWM.Init();
-//    pinPWM.Set();
+    Pin pinPWM(PinMode::_Output, PinPort::_A, PinPin::_4);
+    pinPWM.Init();
+    pinPWM.Set();
 
     Pin pinRL(PinMode::_Output, PinPort::_G, PinPin::_13);      // ¬ыбор горизонтальной ориентации диспле€ R/L
     pinRL.Init();
