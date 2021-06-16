@@ -62,12 +62,6 @@ int main(void)
      */
   HAL_Init();
 
-  /* Configure LED1, LED2, LED3 and LED4 */
-  BSP_LED_Init(LED1);
-  BSP_LED_Init(LED2);
-  BSP_LED_Init(LED3);
-  BSP_LED_Init(LED4);
-    
   /* Configure the system clock to 180 MHz */
   SystemClock_Config();
     
@@ -95,31 +89,32 @@ int main(void)
     Error_Handler(); 
   }
    
-  /*##-2- Check if Data stored in BackUp register0: No Need to reconfigure RTC#*/
-  /* Read the BackUp Register 0 Data */
-  if(HAL_RTCEx_BKUPRead(&RtcHandle, RTC_BKP_DR0) != 0x32F2)
-  {  
-    /* Configure RTC Calendar */
-    RTC_CalendarConfig();
-  }
-  else
-  {
-    /* Check if the Power On Reset flag is set */  
-    if(__HAL_RCC_GET_FLAG(RCC_FLAG_PORRST) != RESET)
-    {
-      /* Power on reset occured: Turn LED2 on */
-      BSP_LED_On(LED2);
-    }
-    /* Check if Pin Reset flag is set */
-    if(__HAL_RCC_GET_FLAG(RCC_FLAG_PINRST) != RESET)
-    {
-      /* External reset occured: Turn LED4 on */
-      BSP_LED_On(LED4);
-    }
-    
-    /* Clear Reset Flag */
-    __HAL_RCC_CLEAR_RESET_FLAGS();
-  }
+  
+//  RTC_CalendarConfig();
+  
+//  /*##-2- Check if Data stored in BackUp register0: No Need to reconfigure RTC#*/
+//  /* Read the BackUp Register 0 Data */
+//  if(HAL_RTCEx_BKUPRead(&RtcHandle, RTC_BKP_DR0) != 0x32F2)
+//  {  
+//    /* Configure RTC Calendar */
+//    RTC_CalendarConfig();
+//  }
+//  else
+//  {
+//    /* Check if the Power On Reset flag is set */  
+//    if(__HAL_RCC_GET_FLAG(RCC_FLAG_PORRST) != RESET)
+//    {
+//        Error_Handler();
+//    }
+//    /* Check if Pin Reset flag is set */
+//    if(__HAL_RCC_GET_FLAG(RCC_FLAG_PINRST) != RESET)
+//    {
+//        Error_Handler();
+//    }
+//    
+//    /* Clear Reset Flag */
+//    __HAL_RCC_CLEAR_RESET_FLAGS();
+//  }
 
   /* Infinite loop */  
   while (1)
@@ -151,49 +146,46 @@ int main(void)
   */
 static void SystemClock_Config(void)
 {
-  RCC_ClkInitTypeDef RCC_ClkInitStruct;
-  RCC_OscInitTypeDef RCC_OscInitStruct;
+    RCC_OscInitTypeDef RCC_OscInitStruct = { 0 };
+    RCC_ClkInitTypeDef RCC_ClkInitStruct = { 0 };
+    RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = { 0 };
 
-  /* Enable Power Control clock */
-  __HAL_RCC_PWR_CLK_ENABLE();
+    __HAL_RCC_PWR_CLK_ENABLE();
+    __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE3);
 
-  /* The voltage scaling allows optimizing the power consumption when the device is 
-     clocked below the maximum system frequency, to update the voltage scaling value 
-     regarding system frequency refer to product datasheet.  */
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+    RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+    RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+    RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+    RCC_OscInitStruct.PLL.PLLM = 15;
+    RCC_OscInitStruct.PLL.PLLN = 144;
+    RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+    RCC_OscInitStruct.PLL.PLLQ = 5;
 
-  /* Enable HSE Oscillator and activate PLL with HSE as source */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = 25;
-  RCC_OscInitStruct.PLL.PLLN = 360;
-  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 7;
-  if(HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  
-  /* Activate the Over Drive feature (available only for STM32F42xxx/43xxx devices)*/
-  if(HAL_PWREx_EnableOverDrive() != HAL_OK)
-  {
-    /* Initialization Error */
-    Error_Handler();
-  }
-  
-  /* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2 
-     clocks dividers */
-  RCC_ClkInitStruct.ClockType = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;  
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;  
-  if(HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
-  {
-    Error_Handler();
-  }
+    if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+    {
+        Error_Handler();
+    }
+
+    RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
+    RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+    RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+    RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
+    RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
+
+    if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_3) != HAL_OK)
+    {
+        Error_Handler();
+    }
+
+    PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_LTDC;
+    PeriphClkInitStruct.PLLSAI.PLLSAIN = 60;
+    PeriphClkInitStruct.PLLSAI.PLLSAIR = 2;
+    PeriphClkInitStruct.PLLSAIDivR = RCC_PLLSAIDIVR_2;
+    if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
+    {
+        Error_Handler();
+    }
 }
 
 /**
@@ -204,7 +196,6 @@ static void SystemClock_Config(void)
 void Error_Handler(void)
 {
   /* Turn LED3 on */
-  BSP_LED_On(LED3);
   while(1)
   {
   }
@@ -267,10 +258,17 @@ static void RTC_CalendarShow(uint8_t* showtime, uint8_t* showdate)
   HAL_RTC_GetTime(&RtcHandle, &stimestructureget, RTC_FORMAT_BIN);
   /* Get the RTC current Date */
   HAL_RTC_GetDate(&RtcHandle, &sdatestructureget, RTC_FORMAT_BIN);
-  /* Display time Format : hh:mm:ss */
-  sprintf((char*)showtime,"%02d:%02d:%02d",stimestructureget.Hours, stimestructureget.Minutes, stimestructureget.Seconds);
-  /* Display date Format : mm-dd-yy */
-  sprintf((char*)showdate,"%02d-%02d-%02d",sdatestructureget.Month, sdatestructureget.Date, 2000 + sdatestructureget.Year); 
+
+  uint8_t seconds = stimestructureget.Seconds;
+    
+  seconds = seconds;
+    
+  seconds = seconds;
+
+//  /* Display time Format : hh:mm:ss */
+//  sprintf((char*)showtime,"%02d:%02d:%02d",stimestructureget.Hours, stimestructureget.Minutes, stimestructureget.Seconds);
+//  /* Display date Format : mm-dd-yy */
+//  sprintf((char*)showdate,"%02d-%02d-%02d",sdatestructureget.Month, sdatestructureget.Date, 2000 + sdatestructureget.Year); 
 } 
 
 #ifdef  USE_FULL_ASSERT

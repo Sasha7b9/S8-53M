@@ -26,3 +26,5 @@ sources/Panel/Listings-Debug/*
 sources/Panel/DebugConfig/*
 
 sources/ThirdParty/wxWidgets/generated/*
+
+sources/exp/RTC_Calendar/MDK-ARM/STM324x9I_EVAL/*
