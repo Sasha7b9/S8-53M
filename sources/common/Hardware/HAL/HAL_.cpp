@@ -47,7 +47,7 @@ void HAL::Init()
 
     HAL_TIM6::Init();
     
-//    HAL_RTC::Init();
+    HAL_RTC::Init();
 
 //    HAL_HCD::Init();
 

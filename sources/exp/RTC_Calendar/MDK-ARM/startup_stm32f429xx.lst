@@ -28,9 +28,9 @@ ARM Macro Assembler    Page 1
                        ************************
    15 00000000         ;* @attention
    16 00000000         ;*
-   17 00000000         ;* <h2><center>&copy; Copyright (c) 2017 STMicroelectron
-                       ics.
-   18 00000000         ;* All rights reserved.</center></h2>
+   17 00000000         ;*  h2 center &copy; Copyright (c) 2017 STMicroelectroni
+                       cs.
+   18 00000000         ;* All rights reserved. /center /h2
    19 00000000         ;*
    20 00000000         ;* This software component is licensed by ST under BSD 3
                        -Clause license,

@@ -42,8 +42,6 @@ void *HAL_RTC::handle = &handleRTC;
 
 void HAL_RTC::Init()
 {
-    __HAL_RCC_RTC_ENABLE();
-
     RCC_OscInitTypeDef oscIS;
     RCC_PeriphCLKInitTypeDef periphClkIS;
 
@@ -66,9 +64,13 @@ void HAL_RTC::Init()
         ERROR_HANDLER();
     }
 
+    __HAL_RCC_RTC_ENABLE();
+
+    __HAL_RTC_RESET_HANDLE_STATE(&handleRTC);
+
     if (HAL_RTC_Init(&handleRTC) != HAL_OK)
     {
-        ERROR_HANDLER();
+//        ERROR_HANDLER();
     }
 
     if (HAL_RTCEx_BKUPRead(&handleRTC, RTC_BKP_DR0) != VALUE_FOR_RTC)
