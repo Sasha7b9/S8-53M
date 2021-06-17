@@ -81,6 +81,7 @@ file(GLOB LIBS_HAL       ../common/STM32Cube_F4/Drivers/STM32F4xx_HAL_Driver/Inc
                          ../common/STM32Cube_F4/Drivers/STM32F4xx_HAL_Driver/Src/*.c)
 
 file(GLOB LIBS_LWIP      ../common/STM32Cube_F4/Middlewares/Third_Party/LwIP/src/core/init.c
+                         ../common/STM32Cube_F4/Middlewares/Third_Party/LwIP/src/core/netif.c
                          ../common/STM32Cube_F4/Middlewares/Third_Party/LwIP/src/core/timeouts.c)
 
 file(GLOB LIBS_USBD      ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.*
