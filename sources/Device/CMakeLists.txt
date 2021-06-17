@@ -86,9 +86,10 @@ file(GLOB LIBS_LWIP      ../common/STM32Cube_F4/Middlewares/Third_Party/LwIP/src
 
 file(GLOB LIBS_USBD      ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.*
                          ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.*
-                         ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.*
+                         ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c
                          ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.*
                          ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.*
+                         ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.*
                          ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.*)
 
 file(GLOB LIBS_USBH      ../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Core/Inc/usbh_core.*
@@ -160,7 +161,8 @@ file(GLOB VCP_SCPI_UTILS           src/VCP/SCPI/Utils/*.*)
 file(GLOB ExcludedFiles src/Menu/Pages/PageHelp.cpp
                         ../common/Hardware/HAL/HAL_ROM_stm_.cpp)
 
-set_source_files_properties(${LIBS_FATFS} ${LIBS_HAL} ${LIBS_USBH} ${HARDWARE_CMSIS} ${ExcludedFiles} ${LIBS_LWIP}
+set_source_files_properties(${LIBS_FATFS} ${LIBS_HAL} ${LIBS_LWIP} ${LIBS_USBD} ${LIBS_USBH} ${HARDWARE_CMSIS}
+                            ${ExcludedFiles}
                             PROPERTIES HEADER_FILE_ONLY TRUE)
 
 source_group(libs\\vs_keil\\ARMCLANG FILES ${VS_KEIL_ARMCLANG})
@@ -170,6 +172,7 @@ source_group(libs\\CMSIS             FILES ${LIBS_CMSIS})
 source_group(libs\\FatFS             FILES ${LIBS_FATFS})
 source_group(libs\\LwIP              FILES ${LIBS_LWIP})
 source_group(libs\\HAL               FILES ${LIBS_HAL})
+source_group(libs\\UBSD              FILES ${LIBS_USBD})
 source_group(libs\\USBH              FILES ${LIBS_USBH})
 source_group(Hardware                FILES ${HARDWARE})
 source_group(Hardware\\CMSIS         FILES ${HARDWARE_CMSIS})
@@ -205,7 +208,7 @@ source_group(VCP\\SCPI               FILES ${VCP_SCPI})
 source_group(VCP\\SCPI\\Utils        FILES ${VCP_SCPI_UTILS})
 
 add_library(Device ${VS_KEIL_CMSIS} ${VS_KEIL_ARMCLANG} ${VS_KEIL_FATFS} ${LIBS_CMSIS} ${LIBS_FATFS} ${LIBS_HAL}
-                   ${LIBS_LWIP} ${LIBS_USBH} ${HARDWARE}
+                   ${LIBS_LWIP} ${LIBS_USBD} ${LIBS_USBH} ${HARDWARE}
                    ${HARDWARE_CMSIS} ${HARDWARE_FATFS} ${HARDWARE_HAL} ${HARDWARE_LWIP} ${HARDWARE_MEMORY}
                    ${HARDWARE_USBD} ${HARDWARE_USBH} ${SRC} ${DISPLAY} 
                    ${DISPLAY_FONT} ${DISPLAY_PAINTER} ${DISPLAY_SCREEN} ${FDRIVE} ${FPGA} ${FPGA_DATA} ${LAN}

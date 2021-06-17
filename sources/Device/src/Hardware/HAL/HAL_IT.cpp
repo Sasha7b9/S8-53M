@@ -119,12 +119,11 @@ void EXTI4_IRQHandler()
 //{
 //    HAL_HCD_IRQHandler(reinterpret_cast<HCD_HandleTypeDef *>(HAL_HCD::handle));
 //}
-//
-//
-//void OTG_FS_IRQHandler()
-//{
-//    HAL_PCD_IRQHandler(reinterpret_cast<PCD_HandleTypeDef *>(HAL_HCD::handle));
-//}
+
+void OTG_FS_IRQHandler()
+{
+    HAL_PCD_IRQHandler(reinterpret_cast<PCD_HandleTypeDef *>(HAL_PCD::handle));
+}
 
 #ifdef __cplusplus
 }
