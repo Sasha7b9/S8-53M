@@ -32,6 +32,7 @@
 #ifndef __CC_H__
 #define __CC_H__
 
+#include "defines.h"
 #include "cpu.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -79,8 +80,7 @@ typedef int sys_prot_t;
 
 #endif
 
-#define LWIP_PLATFORM_ASSERT(x) do {printf("Assertion \"%s\" failed at line %d in %s\n", \
-                                     x, __LINE__, __FILE__); } while(0)
+#define LWIP_PLATFORM_ASSERT(x)  LOG_WRITE("Assertion \"%s\" failed at line %d in %s\n", x, __LINE__, __FILE__)
 
 /* Define random number generator function */
 #define LWIP_RAND() ((u32_t)rand())
