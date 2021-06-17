@@ -17,9 +17,6 @@ static TIM_HandleTypeDef handleTIM6 =
 };
 
 
-void *HAL_TIM6::handle = &handleTIM6;
-
-
 void HAL_TIM6::Init()
 {
     // Таймер для мс
@@ -29,4 +26,20 @@ void HAL_TIM6::Init()
     HAL_TIM_Base_Init(&handleTIM6);
 
     HAL_TIM_Base_Start_IT(&handleTIM6);
+}
+
+
+bool HAL_TIM6::CallbackOnIRQ()
+{
+    if (__HAL_TIM_GET_FLAG(&handleTIM6, TIM_FLAG_UPDATE) == SET &&
+        __HAL_TIM_GET_ITSTATUS(&handleTIM6, TIM_IT_UPDATE))
+    {
+        Timer::Update1ms();
+        __HAL_TIM_CLEAR_FLAG(&handleTIM6, TIM_FLAG_UPDATE);
+        __HAL_TIM_CLEAR_IT(&handleTIM6, TIM_IT_UPDATE);
+
+        return true;
+    }
+
+    return false;
 }

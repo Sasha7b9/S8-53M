@@ -218,7 +218,7 @@ struct HAL_TIM6
 {
     static void Init();
 
-    static void *handle;    // TIM_HandleTypeDef
+    static bool CallbackOnIRQ();
 };
 
 

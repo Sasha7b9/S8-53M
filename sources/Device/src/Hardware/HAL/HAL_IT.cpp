@@ -124,15 +124,7 @@ void OTG_FS_IRQHandler()
 
 void TIM6_DAC_IRQHandler()
 {
-    TIM_HandleTypeDef *handleTIM6 = (TIM_HandleTypeDef *)HAL_TIM6::handle;
-
-    if (__HAL_TIM_GET_FLAG(handleTIM6, TIM_FLAG_UPDATE) == SET &&
-        __HAL_TIM_GET_ITSTATUS(handleTIM6, TIM_IT_UPDATE))
-    {
-        Timer::Update1ms();
-        __HAL_TIM_CLEAR_FLAG(handleTIM6, TIM_FLAG_UPDATE);
-        __HAL_TIM_CLEAR_IT(handleTIM6, TIM_IT_UPDATE);
-    }
+    HAL_TIM6::CallbackOnIRQ();
 }
 
 #ifdef __cplusplus
