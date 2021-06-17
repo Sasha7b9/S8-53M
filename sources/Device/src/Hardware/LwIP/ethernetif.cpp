@@ -1,4 +1,3 @@
-// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 /**
   ******************************************************************************
   * @file    LwIP/LwIP_TCP_Echo_Server/Src/ethernetif.c
@@ -7,39 +6,13 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics International N.V. 
+  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
   * All rights reserved.</center></h2>
   *
-  * Redistribution and use in source and binary forms, with or without 
-  * modification, are permitted, provided that the following conditions are met:
-  *
-  * 1. Redistribution of source code must retain the above copyright notice, 
-  *    this list of conditions and the following disclaimer.
-  * 2. Redistributions in binary form must reproduce the above copyright notice,
-  *    this list of conditions and the following disclaimer in the documentation
-  *    and/or other materials provided with the distribution.
-  * 3. Neither the name of STMicroelectronics nor the names of other 
-  *    contributors to this software may be used to endorse or promote products 
-  *    derived from this software without specific written permission.
-  * 4. This software, including modifications and/or derivative works of this 
-  *    software, must execute solely and exclusively on microcontroller or
-  *    microprocessor devices manufactured by or for STMicroelectronics.
-  * 5. Redistribution and use of this software other than as permitted under 
-  *    this license is void and will automatically terminate your rights under 
-  *    this license. 
-  *
-  * THIS SOFTWARE IS PROVIDED BY STMICROELECTRONICS AND CONTRIBUTORS "AS IS" 
-  * AND ANY EXPRESS, IMPLIED OR STATUTORY WARRANTIES, INCLUDING, BUT NOT 
-  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR ChA 
-  * PARTICULAR PURPOSE AND NON-INFRINGEMENT OF THIRD PARTY INTELLECTUAL PROPERTY
-  * RIGHTS ARE DISCLAIMED TO THE FULLEST EXTENT PERMITTED BY LAW. IN NO EVENT 
-  * SHALL STMICROELECTRONICS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-  * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
-  * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
-  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING 
-  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
-  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                             www.st.com/SLA0044
   *
   ******************************************************************************
   */
@@ -51,15 +24,13 @@
 #endif
 
 #include "defines.h"
-#include <stm32f4xx_hal.h>
+#include "stm32f4xx_hal.h"
 #include "lwip/timeouts.h"
 #include "lwip/tcpip.h"
 #include "netif/etharp.h"
 #include "ethernetif.h"
-#include <cstring>
-#include "defines.h"
 #include "Settings/Settings.h"
-
+#include <string.h>
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -91,6 +62,112 @@ __ALIGN_BEGIN uint8_t Tx_Buff[ETH_TXBUFNB][ETH_TX_BUF_SIZE] __ALIGN_END; /* Ethe
 
 ETH_HandleTypeDef EthHandle;
 
+/* Private function prototypes -----------------------------------------------*/
+/* Private functions ---------------------------------------------------------*/
+/*******************************************************************************
+                       Ethernet MSP Routines
+*******************************************************************************/
+/**
+  * @brief  Initializes the ETH MSP.
+  * @param  heth: ETH handle
+  * @retval None
+  */
+void HAL_ETH_MspInit(ETH_HandleTypeDef *)
+{ 
+  GPIO_InitTypeDef GPIO_InitStructure;
+  
+  /* Enable GPIOs clocks */
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
+  __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOF_CLK_ENABLE();
+  __HAL_RCC_GPIOG_CLK_ENABLE();
+  __HAL_RCC_GPIOH_CLK_ENABLE();
+  __HAL_RCC_GPIOI_CLK_ENABLE(); 
+
+/* Ethernet pins configuration ************************************************/
+  /*
+        ETH_MDIO -------------------------> PA2
+        ETH_MDC --------------------------> PC1
+        ETH_PPS_OUT ----------------------> PB5
+        ETH_MII_RXD2 ---------------------> PH6
+        ETH_MII_RXD3 ---------------------> PH7
+        ETH_MII_TX_CLK -------------------> PC3
+        ETH_MII_TXD2 ---------------------> PC2
+        ETH_MII_TXD3 ---------------------> PB8
+        ETH_MII_RX_CLK -------------------> PA1
+        ETH_MII_RX_DV --------------------> PA7
+        ETH_MII_RXD0 ---------------------> PC4
+        ETH_MII_RXD1 ---------------------> PC5
+        ETH_MII_TX_EN --------------------> PG11
+        ETH_MII_TXD0 ---------------------> PG13
+        ETH_MII_TXD1 ---------------------> PG14
+        ETH_MII_RX_ER --------------------> PI10 (not configured)        
+        ETH_MII_CRS ----------------------> PA0  (not configured)
+        ETH_MII_COL ----------------------> PH3  (not configured)
+  */
+
+  /* Configure PA1, PA2 and PA7 */
+  GPIO_InitStructure.Speed = GPIO_SPEED_HIGH;
+  GPIO_InitStructure.Mode = GPIO_MODE_AF_PP;
+  GPIO_InitStructure.Pull = GPIO_NOPULL; 
+  GPIO_InitStructure.Alternate = GPIO_AF11_ETH;
+  GPIO_InitStructure.Pin = GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_7;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+  /* Configure PB5 and PB8 */
+  GPIO_InitStructure.Pin = GPIO_PIN_5 | GPIO_PIN_8;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStructure);
+
+  /* Configure PC1, PC2, PC3, PC4 and PC5 */
+  GPIO_InitStructure.Pin = GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStructure);
+
+                                
+  /* Configure PG11, PG14 and PG13 */
+  GPIO_InitStructure.Pin =  GPIO_PIN_11 | GPIO_PIN_13 | GPIO_PIN_14;
+  HAL_GPIO_Init(GPIOG, &GPIO_InitStructure);
+
+  /* Configure PH6, PH7 */
+  GPIO_InitStructure.Pin =  GPIO_PIN_6 | GPIO_PIN_7;
+  HAL_GPIO_Init(GPIOH, &GPIO_InitStructure);
+  
+  /* Configure PA0 
+  GPIO_InitStructure.Pin =  GPIO_PIN_0;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);
+  
+  Note: Ethernet Full duplex mode works properly in the default setting
+  (which MII_CRS is not connected to PA0 of STM32F4x9NIH6) because PA0 is shared
+  with Wakeup button and MC_ENA. 
+  If Half duplex mode is needed, uncomment PA0 configuration code source (above 
+  the note) and close the SB7 solder bridge of the STM324x9I-EVAL board . 
+  */
+
+  /* Configure PH3 
+  GPIO_InitStructure.Pin =  GPIO_PIN_3;
+  HAL_GPIO_Init(GPIOH, &GPIO_InitStructure);
+  
+  Note: Ethernet Full duplex mode works properly in the default setting
+  (which MII_COL is not connected to PH3 of STM32F4x9NIH6) because PH3 is shared
+  with SDRAM chip select SDNE0. 
+  If Half duplex mode is needed, uncomment PH3 configuration code source (above 
+  the note) and close SB8 solder bridge of the STM324x9I-EVAL board. 
+  */
+
+  /* Configure PI10
+  GPIO_InitStructure.Pin = GPIO_PIN_10;
+  HAL_GPIO_Init(GPIOI, &GPIO_InitStructure); 
+  
+  Note: Ethernet works properly in the default setting (which RX_ER is not 
+  connected to PI10 of STM32F4x9NIH6) because PI10 is shared with data signal 
+  of SDRAM. 
+  If RX_ER signal is needed, uncomment PI10 configuration code source (above 
+  the note) then remove R244 and solder R43 of the STM324x9I-EVAL board. 
+  */
+  
+  /* Enable ETHERNET clock  */
+  __HAL_RCC_ETH_CLK_ENABLE();
+}
 
 /*******************************************************************************
                        LL Driver Interface ( LwIP stack --> ETH) 
@@ -105,7 +182,7 @@ ETH_HandleTypeDef EthHandle;
 static void low_level_init(struct netif *netif)
 { 
   uint32_t regvalue = 0;
-  static uint8_t macaddress[6]= { MAC_ADDR0, MAC_ADDR1, MAC_ADDR2, MAC_ADDR3, MAC_ADDR4, MAC_ADDR5 };
+  uint8_t macaddress[6]= { MAC_ADDR0, MAC_ADDR1, MAC_ADDR2, MAC_ADDR3, MAC_ADDR4, MAC_ADDR5 };
 
   EthHandle.Instance = ETH;  
   EthHandle.Init.MACAddr = macaddress;
@@ -216,7 +293,7 @@ static err_t low_level_output(struct netif *, struct pbuf *p)
     while( (byteslefttocopy + bufferoffset) > ETH_TX_BUF_SIZE )
     {
       /* Copy data to Tx buffer*/
-      std::memcpy( (uint8_t*)((uint8_t*)buffer + bufferoffset), (uint8_t*)((uint8_t*)q->payload + payloadoffset), (ETH_TX_BUF_SIZE - bufferoffset) );
+      memcpy( (uint8_t*)((uint8_t*)buffer + bufferoffset), (uint8_t*)((uint8_t*)q->payload + payloadoffset), (ETH_TX_BUF_SIZE - bufferoffset) );
       
       /* Point to next descriptor */
       DmaTxDesc = (ETH_DMADescTypeDef *)(DmaTxDesc->Buffer2NextDescAddr);
@@ -237,7 +314,7 @@ static err_t low_level_output(struct netif *, struct pbuf *p)
     }
     
     /* Copy the remaining bytes */
-    std::memcpy( (uint8_t*)((uint8_t*)buffer + bufferoffset), (uint8_t*)((uint8_t*)q->payload + payloadoffset), byteslefttocopy );
+    memcpy( (uint8_t*)((uint8_t*)buffer + bufferoffset), (uint8_t*)((uint8_t*)q->payload + payloadoffset), byteslefttocopy );
     bufferoffset = bufferoffset + byteslefttocopy;
     framelength = framelength + byteslefttocopy;
   }
@@ -271,84 +348,82 @@ error:
   */
 static struct pbuf * low_level_input(struct netif *)
 {
-    struct pbuf *p = NULL;
-    struct pbuf *q;
-    uint16_t len;
-    uint8_t *buffer;
-    __IO ETH_DMADescTypeDef *dmarxdesc;
-    uint32_t payloadoffset = 0;
-    uint32_t byteslefttocopy = 0;
-    uint32_t i = 0;
-
-    if (HAL_ETH_GetReceivedFrame(&EthHandle) != HAL_OK)
-    {
-        return NULL;
-    }
-
-    /* Obtain the size of the packet and put it into the "len" variable. */
-    len = (uint16_t)EthHandle.RxFrameInfos.length;
-    buffer = (uint8_t *)EthHandle.RxFrameInfos.buffer;
-
-    if (len > 0)
-    {
-        /* We allocate a pbuf chain of pbufs from the Lwip buffer pool */
-        p = pbuf_alloc(PBUF_RAW, len, PBUF_POOL);
-    }
-
-    if (p != NULL)
-    {
-        uint32_t bufferoffset = 0;
-        dmarxdesc = EthHandle.RxFrameInfos.FSRxDesc;
-        bufferoffset = 0;
-
-        for (q = p; q != NULL; q = q->next)
-        {
-            byteslefttocopy = q->len;
-            payloadoffset = 0;
-
-            /* Check if the length of bytes to copy in current pbuf is bigger than Rx buffer size */
-            while ((byteslefttocopy + bufferoffset) > ETH_RX_BUF_SIZE)
-            {
-                /* Copy data to pbuf */
-                std::memcpy((uint8_t *)((uint8_t *)q->payload + payloadoffset), (uint8_t *)((uint8_t *)buffer + bufferoffset), (ETH_RX_BUF_SIZE - bufferoffset));
-
-                /* Point to next descriptor */
-                dmarxdesc = (ETH_DMADescTypeDef *)(dmarxdesc->Buffer2NextDescAddr);
-                buffer = (uint8_t *)(dmarxdesc->Buffer1Addr);
-
-                byteslefttocopy = byteslefttocopy - (ETH_RX_BUF_SIZE - bufferoffset);
-                payloadoffset = payloadoffset + (ETH_RX_BUF_SIZE - bufferoffset);
-                bufferoffset = 0;
-            }
-
-            /* Copy remaining data in pbuf */
-            std::memcpy((uint8_t *)((uint8_t *)q->payload + payloadoffset), (uint8_t *)((uint8_t *)buffer + bufferoffset), byteslefttocopy);
-            bufferoffset = bufferoffset + byteslefttocopy;
-        }
-    }
-
-    /* Release descriptors to DMA */
-    /* Point to first descriptor */
+  struct pbuf *p = NULL;
+  struct pbuf *q;
+  uint16_t len;
+  uint8_t *buffer;
+  __IO ETH_DMADescTypeDef *dmarxdesc;
+  uint32_t bufferoffset = 0;
+  uint32_t payloadoffset = 0;
+  uint32_t byteslefttocopy = 0;
+  uint32_t i=0;
+  
+  if (HAL_ETH_GetReceivedFrame(&EthHandle) != HAL_OK)
+    return NULL;
+  
+  /* Obtain the size of the packet and put it into the "len" variable. */
+  len = (uint16_t)EthHandle.RxFrameInfos.length;
+  buffer = (uint8_t *)EthHandle.RxFrameInfos.buffer;
+  
+  if (len > 0)
+  {
+    /* We allocate a pbuf chain of pbufs from the Lwip buffer pool */
+    p = pbuf_alloc(PBUF_RAW, len, PBUF_POOL);
+  }
+  
+  if (p != NULL)
+  {
     dmarxdesc = EthHandle.RxFrameInfos.FSRxDesc;
-    /* Set Own bit in Rx descriptors: gives the buffers back to DMA */
-    for (i = 0; i < EthHandle.RxFrameInfos.SegCount; i++)
+    bufferoffset = 0;
+    
+    for(q = p; q != NULL; q = q->next)
     {
-        dmarxdesc->Status |= ETH_DMARXDESC_OWN;
+      byteslefttocopy = q->len;
+      payloadoffset = 0;
+      
+      /* Check if the length of bytes to copy in current pbuf is bigger than Rx buffer size */
+      while( (byteslefttocopy + bufferoffset) > ETH_RX_BUF_SIZE )
+      {
+        /* Copy data to pbuf */
+        memcpy( (uint8_t*)((uint8_t*)q->payload + payloadoffset), (uint8_t*)((uint8_t*)buffer + bufferoffset), (ETH_RX_BUF_SIZE - bufferoffset));
+        
+        /* Point to next descriptor */
         dmarxdesc = (ETH_DMADescTypeDef *)(dmarxdesc->Buffer2NextDescAddr);
+        buffer = (uint8_t *)(dmarxdesc->Buffer1Addr);
+        
+        byteslefttocopy = byteslefttocopy - (ETH_RX_BUF_SIZE - bufferoffset);
+        payloadoffset = payloadoffset + (ETH_RX_BUF_SIZE - bufferoffset);
+        bufferoffset = 0;
+      }
+      
+      /* Copy remaining data in pbuf */
+      memcpy( (uint8_t*)((uint8_t*)q->payload + payloadoffset), (uint8_t*)((uint8_t*)buffer + bufferoffset), byteslefttocopy);
+      bufferoffset = bufferoffset + byteslefttocopy;
     }
-
-    /* Clear Segment_Count */
-    EthHandle.RxFrameInfos.SegCount = 0;
-
-    /* When Rx Buffer unavailable flag is set: clear it and resume reception */
-    if ((EthHandle.Instance->DMASR & ETH_DMASR_RBUS) != (uint32_t)RESET)
-    {
-        /* Clear RBUS ETHERNET DMA flag */
-        EthHandle.Instance->DMASR = ETH_DMASR_RBUS;
-        /* Resume DMA reception */
-        EthHandle.Instance->DMARPDR = 0;
-    }
-    return p;
+  }    
+    
+  /* Release descriptors to DMA */
+  /* Point to first descriptor */
+  dmarxdesc = EthHandle.RxFrameInfos.FSRxDesc;
+  /* Set Own bit in Rx descriptors: gives the buffers back to DMA */
+  for (i=0; i< EthHandle.RxFrameInfos.SegCount; i++)
+  {  
+    dmarxdesc->Status |= ETH_DMARXDESC_OWN;
+    dmarxdesc = (ETH_DMADescTypeDef *)(dmarxdesc->Buffer2NextDescAddr);
+  }
+   
+  /* Clear Segment_Count */
+  EthHandle.RxFrameInfos.SegCount =0;
+  
+  /* When Rx Buffer unavailable flag is set: clear it and resume reception */
+  if ((EthHandle.Instance->DMASR & ETH_DMASR_RBUS) != (uint32_t)RESET)  
+  {
+    /* Clear RBUS ETHERNET DMA flag */
+    EthHandle.Instance->DMASR = ETH_DMASR_RBUS;
+    /* Resume DMA reception */
+    EthHandle.Instance->DMARPDR = 0;
+  }
+  return p;
 }
 
 /**
@@ -362,27 +437,24 @@ static struct pbuf * low_level_input(struct netif *)
   */
 void ethernetif_input(struct netif *netif)
 {
-    err_t err;
-    struct pbuf *p;
-
-    /* move received packet into a new pbuf */
-    p = low_level_input(netif);
-
-    /* no packet could be read, silently ignore this */
-    if (p == NULL)
-    {
-        return;
-    }
-
-    /* entry point to the LwIP stack */
-    err = netif->input(p, netif);
-
-    if (err != ERR_OK)
-    {
-        LWIP_DEBUGF(NETIF_DEBUG, ("ethernetif_input: IP input error\n"));
-        pbuf_free(p);
-        p = NULL;
-    }
+  err_t err;
+  struct pbuf *p;
+  
+  /* move received packet into a new pbuf */
+  p = low_level_input(netif);
+    
+  /* no packet could be read, silently ignore this */
+  if (p == NULL) return;
+    
+  /* entry point to the LwIP stack */
+  err = netif->input(p, netif);
+    
+  if (err != ERR_OK)
+  {
+    LWIP_DEBUGF(NETIF_DEBUG, ("ethernetif_input: IP input error\n"));
+    pbuf_free(p);
+    p = NULL;
+  }
 }
 
 /**
@@ -427,7 +499,7 @@ err_t ethernetif_init(struct netif *netif)
   * @param  None
   * @retval Current Time value
   */
-u32_t sys_now()
+u32_t sys_now(void)
 {
   return HAL_GetTick();
 }
@@ -532,8 +604,8 @@ void ethernetif_update_config(struct netif *netif)
       assert_param(IS_ETH_DUPLEX_MODE(EthHandle.Init.DuplexMode));
       
       /* Set MAC Speed and Duplex Mode to PHY */
-      HAL_ETH_WritePHYRegister(&EthHandle, PHY_BCR, (uint32_t)((uint16_t)(EthHandle.Init.DuplexMode >> 3) |
-                                                     (uint16_t)(EthHandle.Init.Speed >> 1))); 
+      HAL_ETH_WritePHYRegister(&EthHandle, PHY_BCR, ((uint16_t)(EthHandle.Init.DuplexMode >> 3) |
+                                                     (uint32_t)(EthHandle.Init.Speed >> 1))); 
     }
 
     /* ETHERNET MAC Re-Configuration */
@@ -556,10 +628,10 @@ void ethernetif_update_config(struct netif *netif)
   * @param  netif: the network interface
   * @retval None
   */
-//__weak void ethernetif_notify_conn_changed(struct netif *)
-//{
-//  /* NOTE : This is function clould be implemented in user file 
-//            when the callback is needed,
-//  */  
-//}
+__weak void ethernetif_notify_conn_changed(struct netif *)
+{
+  /* NOTE : This is function clould be implemented in user file 
+            when the callback is needed,
+  */  
+}
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
