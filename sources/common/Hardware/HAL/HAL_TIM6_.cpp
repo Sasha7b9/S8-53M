@@ -17,6 +17,9 @@ static TIM_HandleTypeDef handleTIM6 =
 };
 
 
+void *HAL_TIM6::handle = &handleTIM6;
+
+
 void HAL_TIM6::Init()
 {
     // Таймер для мс

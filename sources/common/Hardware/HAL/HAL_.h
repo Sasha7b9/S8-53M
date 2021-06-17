@@ -217,6 +217,8 @@ struct HAL_TIM2
 struct HAL_TIM6
 {
     static void Init();
+
+    static void *handle;    // TIM_HandleTypeDef
 };
 
 

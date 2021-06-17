@@ -1,5 +1,6 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
+#include "common/Hardware/Timer_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Settings/SettingsTypes_.h"
 #include "common/Utils/Debug_.h"
@@ -123,12 +124,14 @@ void OTG_FS_IRQHandler()
 
 void TIM6_DAC_IRQHandler()
 {
-    if (__HAL_TIM_GET_FLAG(&handleTIM6, TIM_FLAG_UPDATE) == SET &&
-        __HAL_TIM_GET_ITSTATUS(&handleTIM6, TIM_IT_UPDATE))
+    TIM_HandleTypeDef *handleTIM6 = (TIM_HandleTypeDef *)HAL_TIM6::handle;
+
+    if (__HAL_TIM_GET_FLAG(handleTIM6, TIM_FLAG_UPDATE) == SET &&
+        __HAL_TIM_GET_ITSTATUS(handleTIM6, TIM_IT_UPDATE))
     {
         Timer::Update1ms();
-        __HAL_TIM_CLEAR_FLAG(&handleTIM6, TIM_FLAG_UPDATE);
-        __HAL_TIM_CLEAR_IT(&handleTIM6, TIM_IT_UPDATE);
+        __HAL_TIM_CLEAR_FLAG(handleTIM6, TIM_FLAG_UPDATE);
+        __HAL_TIM_CLEAR_IT(handleTIM6, TIM_IT_UPDATE);
     }
 }
 
