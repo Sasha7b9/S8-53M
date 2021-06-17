@@ -86,6 +86,11 @@ static void USBH_Process_OS(void *argument);
 #endif
 
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 /**
   * @brief  HCD_Init
   *         Initialize the HOST Core.
@@ -167,6 +172,11 @@ USBH_StatusTypeDef  USBH_Init(USBH_HandleTypeDef *phost,
 
   return USBH_OK;
 }
+
+
+#ifdef __cplusplus
+}
+#endif
 
 
 /**

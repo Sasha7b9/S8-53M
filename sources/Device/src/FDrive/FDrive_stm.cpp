@@ -15,14 +15,14 @@
 
 
 
-//static FATFS USBDISKFatFs;
+static FATFS USBDISKFatFs;
 static char USBDISKPath[4];
 
 bool FDrive::isConnected = false;
 bool FDrive::needOpenFileMananger = false;
 
 
-//static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8 id);
+static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8 id);
 
 
 
@@ -32,9 +32,9 @@ void FDrive::Init(void)
 
     if(FATFS_LinkDriver(&USBH_Driver, USBDISKPath) == FR_OK)
     {
-//        USBH_Init(reinterpret_cast<USBH_HandleTypeDef *>(&HAL_USBH::handle), USBH_UserProcess, 0);
-//        USBH_RegisterClass(reinterpret_cast<USBH_HandleTypeDef *>(&HAL_USBH::handle), USBH_MSC_CLASS);
-//        USBH_Start(reinterpret_cast<USBH_HandleTypeDef *>(&HAL_USBH::handle));
+        USBH_Init((USBH_HandleTypeDef *)USBH::handle, USBH_UserProcess, 0);
+        USBH_RegisterClass((USBH_HandleTypeDef *)USBH::handle, USBH_MSC_CLASS);
+        USBH_Start((USBH_HandleTypeDef *)USBH::handle);
     }
 }
 
@@ -45,35 +45,35 @@ void FDrive::Update(void)
 }
 
 
-//void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
-//{
-//    switch (id)
-//    {
-//        case HOST_USER_SELECT_CONFIGURATION:
-//            break;
-//        case HOST_USER_CLASS_ACTIVE:
-//            FDrive::isConnected = true;
-//            FM::Init();
-//            FDrive::ChangeState();
-//            if (f_mount(&USBDISKFatFs, (TCHAR const*)USBDISKPath, 0) != FR_OK)
-//            {
-//                //LOG_ERROR("Ќе могу примонтировать диск");
-//            }
-//            break;
-//        case HOST_USER_CLASS_SELECTED:
-//            break;
-//        case HOST_USER_CONNECTION:
-//            f_mount(NULL, (TCHAR const*)"", 0);
-//            break;
-//        case HOST_USER_DISCONNECTION:
-//            FDrive::isConnected = false;
-//            FDrive::ChangeState();
-//            break;
-//        default:
-//            // здесь ничего
-//            break;
-//    }
-//}
+void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
+{
+    switch (id)
+    {
+        case HOST_USER_SELECT_CONFIGURATION:
+            break;
+        case HOST_USER_CLASS_ACTIVE:
+            FDrive::isConnected = true;
+            FM::Init();
+            FDrive::ChangeState();
+            if (f_mount(&USBDISKFatFs, (TCHAR const*)USBDISKPath, 0) != FR_OK)
+            {
+                //LOG_ERROR("Ќе могу примонтировать диск");
+            }
+            break;
+        case HOST_USER_CLASS_SELECTED:
+            break;
+        case HOST_USER_CONNECTION:
+            f_mount(NULL, (TCHAR const*)"", 0);
+            break;
+        case HOST_USER_DISCONNECTION:
+            FDrive::isConnected = false;
+            FDrive::ChangeState();
+            break;
+        default:
+            // здесь ничего
+            break;
+    }
+}
 
 
 bool FDrive::AppendStringToFile(const char*)
