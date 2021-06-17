@@ -6,7 +6,7 @@ include_directories(..
                     src/Hardware/HAL
                     src/Hardware/LwIP
                     src/Hardware/USBD
-                    src/Hardware/USBH
+                    ../common/Hardware/USBH
                     ../common/_VS_KEIL/ARMCLANG
                     ../common/_VS_KEIL/CMSIS
                     ../common/_VS_KEIL/FatFS
