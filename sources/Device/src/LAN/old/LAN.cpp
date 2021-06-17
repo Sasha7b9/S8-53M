@@ -1,27 +1,24 @@
+// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
-#include "common/Log_.h"
-#include "ethernetif.h"
-#include "main.h"
+#include "common/Hardware/HAL/HAL_.h"
 #include "LAN/LAN.h"
-#include "LAN/SocketTCP.h"
 #include "Settings/Settings.h"
 #include "VCP/SCPI/SCPI.h"
+#include <cstring>
+#include <ethernetif.h>
 #include <lwip/init.h>
 #include <lwip/ip_addr.h>
 #include <lwip/netif.h>
 #include <lwip/timeouts.h>
 #include <netif/etharp.h>
 
-
-
 static void Netif_Config();
 
 static struct netif gnetif;
 
 
-bool LAN::clientIsConnected = false;
 bool LAN::cableIsConnected = false;
-
+bool LAN::clientIsConnected = false;
 
 
 static void FuncConnect()
@@ -30,38 +27,20 @@ static void FuncConnect()
 
 
 
-static void FuncReceiver(const char *buffer, uint length)
+char *GetStringFromBuffer(pchar buffer, uint length, char *string)
 {
-    SCPI::AddNewData((puchar)buffer, length);
-
-//    static int sizeData = 0;
-//
-//#define SIZE_BUFFER_TCP 128
-//    static char data[SIZE_BUFFER_TCP];
-//
-//    for (uint i = 0; i < length; i++)
-//    {
-//        if (0 == sizeData && buffer[0] != ':')
-//        {
-//            continue;
-//        }
-//
-//        data[sizeData] = buffer[i];
-//        sizeData++;
-//        if (sizeData > 2 && data[sizeData - 1] == '\x0a' && data[sizeData - 2] == '\x0d')
-//        {
-//            SCPI::ParseNewCommand((uint8 *)&data[1]);
-//            sizeData = 0;
-//        }
-//        if (sizeData == SIZE_BUFFER_TCP)
-//        {
-//            LOG_ERROR_TRACE("Переполнение приёмного буфера ЕTH");
-//            sizeData = 0;
-//            break;
-//        }
-//    }
+    std::memcpy(string, buffer, (size_t)length);
+    string[length] = 'E';
+    string[length + 1] = '\0';
+    return string;
 }
 
+
+
+static void FuncReceiver(pchar buffer, uint length)
+{
+    SCPI::AddNewData((uint8 *)buffer, length);
+}
 
 
 void LAN::Init()
@@ -76,20 +55,18 @@ void LAN::Init()
 }
 
 
-
 void LAN::Update(uint timeMS)
 {
-    uint time = HAL_GetTick();
+    uint time = TIME_MS;
 
     do 
     {
-//        LAN::cableIsConnected = (HAL_GetTick() - gEthTimeLastEthifInput <= 1500) ? 1U : 0U;
+//        CABLE_LAN_IS_CONNECTED = (gTimerMS - gEthTimeLastEthifInput <= 1500) ? 1U : 0U;
 
         ethernetif_input(&gnetif);
         sys_check_timeouts();
-    } while (HAL_GetTick() - time < timeMS);
+    } while (TIME_MS - time < timeMS);
 }
-
 
 
 void Netif_Config()

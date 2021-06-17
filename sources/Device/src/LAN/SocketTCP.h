@@ -1,16 +1,19 @@
-// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
+#include "defines.h"
 
-struct tcp_pcb;
+ #define SOCKET_SEND(buffer, size) TCPSocket::Send(buffer, size)
 
 static const int    DEFAULT_PORT = 7,
                     POLICY_PORT = 843;
 
-struct TCPSocket
+class TCPSocket
 {
-    static bool Init(void (*funcConnect)(), void (*funcReciever)(const char* buffer, uint length));
-
-    static bool Send(const char* buffer, uint length);
-
-    static void SendFormatString(char* format, ...);
+public:
+    static bool Init(void (*funcConnect)(), void (*funcReceiver)(const char *buffer, uint length));
+    
+    static bool Send(const char *buffer, int length);
+    
+    static void SendFormatString(char *format, ...);
 };
+
+void ETH_SendFormatString(char *format, ...);
