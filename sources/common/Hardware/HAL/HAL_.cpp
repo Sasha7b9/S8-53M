@@ -44,8 +44,6 @@ void HAL::Init()
     
     HAL_RTC::Init();
 
-    HAL_HCD::Init();
-
 #endif
 }
 

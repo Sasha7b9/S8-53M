@@ -28,12 +28,14 @@ bool FDrive::needOpenFileMananger = false;
 
 void FDrive::Init(void)
 {
+    HAL_HCD::Init();
+
 //    if(FATFS_LinkDriver(&USBH_Driver, USBDISKPath) == FR_OK)  2001
-//    {
+    {
 //        USBH_Init(reinterpret_cast<USBH_HandleTypeDef *>(&HAL_USBH::handle), USBH_UserProcess, 0);
 //        USBH_RegisterClass(reinterpret_cast<USBH_HandleTypeDef *>(&HAL_USBH::handle), USBH_MSC_CLASS);
 //        USBH_Start(reinterpret_cast<USBH_HandleTypeDef *>(&HAL_USBH::handle));
-//    }
+    }
 }
 
 
