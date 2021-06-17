@@ -229,16 +229,6 @@ struct HAL_TIM7
 };
 
 
-struct HAL_USBD
-{
-    static void Init();
-    static bool PrevSendingComplete();
-    static void Transmit(uint8 *buffer, uint size);
-    static void Flush(uint8 *buffer, uint sizeBuffer);
-    static void Wait();
-    static void *handle;    // USBD_HandleTypeDef
-};
-
 struct HAL_USBH
 {
     static void *handle;    // USBH_HandleTypeDef

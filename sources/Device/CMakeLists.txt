@@ -118,7 +118,8 @@ file(GLOB HARDWARE_HAL             src/Hardware/HAL/*.*
 file(GLOB HARDWARE_LWIP            src/Hardware/LwIP/*.*)
 file(GLOB HARDWARE_MEMORY    ../common/Hardware/Memory/*.*
                                    src/Hardware/Memory/*.*)
-file(GLOB HARDWARE_USBD            src/Hardware/USBD/*.*)
+file(GLOB HARDWARE_USBD            src/Hardware/USBD/*.*
+                             ../common/Hardware/USBD/*.*)
 file(GLOB HARDWARE_USBH            src/Hardware/USBH/*.*)
 file(GLOB SRC                      src/*.h
                                    src/*.cpp

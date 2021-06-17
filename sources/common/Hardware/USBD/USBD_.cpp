@@ -1,7 +1,9 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
+
+// For cstdlib:23 : C2733: 'abs': you cannot overload a function with 'extern "C"' linkage
 #define _STL_COMPILER_PREPROCESSOR 0
 #include "defines.h"
-#include "common/Hardware/HAL/HAL_.h"
+#include "common/Hardware/USBD/USBD_.h"
 #include "Hardware/USBD/usbd_desc.h"
 #include "Hardware/USBD/usbd_cdc_interface.h"
 #include <usbd_def.h>
@@ -9,10 +11,10 @@
 
 
 static USBD_HandleTypeDef handleUSBD;
-void *HAL_USBD::handle = &handleUSBD;
+void *USBD::handle = &handleUSBD;
 
 
-void HAL_USBD::Init()
+void USBD::Init()
 {
     USBD_Init(&handleUSBD, &VCP_Desc, 0);
     USBD_RegisterClass(&handleUSBD, &USBD_CDC);
@@ -21,21 +23,21 @@ void HAL_USBD::Init()
 }
 
 
-bool HAL_USBD::PrevSendingComplete()
+bool USBD::PrevSendingComplete()
 {
     USBD_CDC_HandleTypeDef *pCDC = (USBD_CDC_HandleTypeDef *)handleUSBD.pClassData;
     return pCDC->TxState == 0;
 }
 
 
-void HAL_USBD::Transmit(uint8 *buffer, uint size)
+void USBD::Transmit(uint8 *buffer, uint size)
 {
     USBD_CDC_SetTxBuffer(&handleUSBD, buffer, (uint16)size);
     USBD_CDC_TransmitPacket(&handleUSBD);
 }
 
 
-void HAL_USBD::Flush(uint8 *buffer, uint sizeBuffer)
+void USBD::Flush(uint8 *buffer, uint sizeBuffer)
 {
     USBD_CDC_HandleTypeDef *pCDC = (USBD_CDC_HandleTypeDef *)handleUSBD.pClassData;
     while (pCDC->TxState == 1)
@@ -49,7 +51,7 @@ void HAL_USBD::Flush(uint8 *buffer, uint sizeBuffer)
 }
 
 
-void HAL_USBD::Wait()
+void USBD::Wait()
 {
     USBD_CDC_HandleTypeDef *pCDC = (USBD_CDC_HandleTypeDef *)handleUSBD.pClassData;
 

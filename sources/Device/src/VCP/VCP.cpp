@@ -1,6 +1,7 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "common/Hardware/USBD/USBD_.h"
 #include "common/Utils/Math_.h"
 #include "VCP/VCP.h"
 #include <cstdarg>
@@ -15,7 +16,7 @@ bool VCP::connectToHost = false;
 
 void VCP::Init()
 {
-    HAL_USBD::Init();
+    USBD::Init();
 } 
 
 
@@ -27,10 +28,10 @@ void VCP::SendDataAsinch(puchar buffer, uint size)
     static uint8 trBuf[SIZE_BUFFER];
 
     size = Math::MinFrom2(size, SIZE_BUFFER);
-    while (!HAL_USBD::PrevSendingComplete())  {};
+    while (!USBD::PrevSendingComplete())  {};
     std::memcpy(trBuf, buffer, (uint)(size));
 
-    HAL_USBD::Transmit(trBuf, size);
+    USBD::Transmit(trBuf, size);
 }
 
 static const int SIZE_BUFFER_VCP = 256;     // WARN если поставить размер буфера 512, то на ТЕ207 глюки
@@ -41,7 +42,7 @@ void VCP::Flush()
 {
     if (sizeBuffer)
     {
-        HAL_USBD::Flush(buffSend, sizeBuffer);
+        USBD::Flush(buffSend, sizeBuffer);
     }
     sizeBuffer = 0;
 }
@@ -61,9 +62,9 @@ void VCP::SendDataSynch(puchar buffer, uint size)
         {
             int reqBytes = Math::Limitation(SIZE_BUFFER_VCP - (int)sizeBuffer, 0, (int)size);
 
-            HAL_USBD::Wait();
+            USBD::Wait();
             std::memcpy(buffSend + sizeBuffer, buffer, (uint)(reqBytes));
-            HAL_USBD::Transmit(buffSend, SIZE_BUFFER_VCP);
+            USBD::Transmit(buffSend, SIZE_BUFFER_VCP);
             size -= reqBytes;
             buffer += reqBytes;
             sizeBuffer = 0;

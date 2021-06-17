@@ -119,7 +119,8 @@ file(GLOB HARDWARE_MEMORY        ../../common/Hardware/Memory/ROM_.*
                                  ../../common/Hardware/Memory/Sector_.*
                              ../../Device/src/Hardware/Memory/Sector.cpp)
 file(GLOB HARDWARE_USBD      ../../Device/src/Hardware/USBD/usbd_desc.cpp
-                             ../../Device/src/Hardware/USBD/usbd_cdc_interface.*)
+                             ../../Device/src/Hardware/USBD/usbd_cdc_interface.*
+                                 ../../common/Hardware/USBD/*.*)
 file(GLOB MENU               ../../Device/src/Menu/*.*)
 file(GLOB MENU_ITEMS         ../../Device/src/Menu/Items/*.*)
 file(GLOB MENU_PAGES         ../../Device/src/Menu/Pages/*.*)

@@ -5,7 +5,7 @@
 #include "VCP/SCPI/SCPI.h"
 #include "common/Hardware/Timer_.h"
 #include "common/Hardware/HAL/HAL_.h"
-
+#include "common/Hardware/USBD/USBD_.h"
 
 
 static USBD_CDC_LineCodingTypeDef LineCoding =
@@ -47,7 +47,7 @@ static void SetAttributeConnected()
 
 static int8_t CDC_Itf_Init()
 {
-    USBD_CDC_SetRxBuffer(reinterpret_cast<USBD_HandleTypeDef *>(HAL_USBD::handle), UserRxBuffer);
+    USBD_CDC_SetRxBuffer(reinterpret_cast<USBD_HandleTypeDef *>(USBD::handle), UserRxBuffer);
     Timer::Enable(TypeTimer::Temp, 100, SetAttributeConnected);    // GOVNOCODE Задержка введена для того, чтобы не было ложных срабатываний в 
     return (USBD_OK);                                   // usbd_conf.c:HAL_PCD_SetupStageCallback при определении подключения хоста
 }
@@ -128,6 +128,6 @@ static int8_t CDC_Itf_Receive(uint8_t * buffer, uint32_t *length)
 {
     SCPI::AddNewData(buffer, *length);
 
-    USBD_CDC_ReceivePacket(reinterpret_cast<USBD_HandleTypeDef *>(HAL_USBD::handle));
+    USBD_CDC_ReceivePacket(reinterpret_cast<USBD_HandleTypeDef *>(USBD::handle));
     return (USBD_OK);
 }

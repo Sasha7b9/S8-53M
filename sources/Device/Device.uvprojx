@@ -1279,11 +1279,6 @@
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_TIM7_.cpp</FilePath>
             </File>
-            <File>
-              <FileName>HAL_USBD_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_USBD_.cpp</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -1354,6 +1349,16 @@
         <Group>
           <GroupName>Hardware/USBD</GroupName>
           <Files>
+            <File>
+              <FileName>USBD_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\USBD\USBD_.h</FilePath>
+            </File>
+            <File>
+              <FileName>USBD_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\USBD\USBD_.cpp</FilePath>
+            </File>
             <File>
               <FileName>usbd_cdc_interface.cpp</FileName>
               <FileType>8</FileType>
@@ -3770,11 +3775,6 @@
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_TIM7_.cpp</FilePath>
             </File>
-            <File>
-              <FileName>HAL_USBD_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_USBD_.cpp</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -3845,6 +3845,16 @@
         <Group>
           <GroupName>Hardware/USBD</GroupName>
           <Files>
+            <File>
+              <FileName>USBD_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\USBD\USBD_.h</FilePath>
+            </File>
+            <File>
+              <FileName>USBD_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\USBD\USBD_.cpp</FilePath>
+            </File>
             <File>
               <FileName>usbd_cdc_interface.cpp</FileName>
               <FileType>8</FileType>
