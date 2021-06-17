@@ -26,10 +26,12 @@ void Device::Init()
     HAL_TIM2::Delay(250);
     Display::Init();
     FPGA::Start();
+
+    Sound::Init();
+
     VCP::Init();
     FDrive::Init();
     LAN::Init();
-    Sound::Init();
 }
 
 
