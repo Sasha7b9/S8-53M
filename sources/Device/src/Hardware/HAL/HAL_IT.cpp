@@ -98,15 +98,7 @@ void DMA1_Stream5_IRQHandler()
 
 void EXTI4_IRQHandler()
 {
-    if (__HAL_GPIO_EXTI_GET_IT(GPIO_PIN_4) != RESET)
-    {
-        __HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN_4);
-
-        if (TBase::IsRandomize())
-        {
-            HAL_ADC1::StartConversion();
-        }
-    }
+    HAL_ADC1::CallbackOnIRQ();
 }
 
 

@@ -1,6 +1,7 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "common/Settings/SettingsTypes_.h"
 #include <stm32f4xx_hal.h>
 
 
@@ -75,8 +76,6 @@ void HAL_ADC1::ResetValue()
 
 void HAL_ADC1::StartConversion()
 {
-    // HAL_ADC_Start((ADC_HandleTypeDef *)HAL_ADC1::handle);
-
     if ((handle.Instance->CR2 & ADC_CR2_ADON) != ADC_CR2_ADON)
     {
         __HAL_ADC_ENABLE(&handle);
@@ -100,4 +99,22 @@ void HAL_ADC1::StartConversion()
     {
         handle.Instance->CR2 |= (uint32_t)ADC_CR2_SWSTART;
     }
+}
+
+
+bool HAL_ADC1::CallbackOnIRQ()
+{
+    if (__HAL_GPIO_EXTI_GET_IT(GPIO_PIN_4) != RESET)
+    {
+        __HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN_4);
+
+        if (TBase::IsRandomize())
+        {
+            StartConversion();
+        }
+
+        return true;
+    }
+
+    return false;
 }

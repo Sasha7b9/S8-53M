@@ -46,10 +46,15 @@ struct HAL_ADC1
 {
     static void Init();
     static Uint16 GetValue();
-    static void StartConversion();
 
     // Вызывается после каждого запуска
     static void ResetValue();
+
+    static bool CallbackOnIRQ();
+
+private:
+
+    static void StartConversion();
 };
 
 
