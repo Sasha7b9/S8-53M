@@ -22,7 +22,9 @@
 #define __USBH_MSC_H
 
 #ifdef __cplusplus
+#ifndef WIN32
 extern "C" {
+#endif
 #endif
 
 /* Includes ------------------------------------------------------------------*/
@@ -189,7 +191,9 @@ USBH_StatusTypeDef USBH_MSC_Write(USBH_HandleTypeDef *phost, uint8_t lun,
   */
 
 #ifdef __cplusplus
+#ifndef WIN32
 }
+#endif
 #endif
 
 #endif  /* __USBH_MSC_H */

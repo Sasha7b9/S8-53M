@@ -1,3 +1,5 @@
+// Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
+#include "defines.h"
 #include "ff_gen_drv.h"
 #include "usbh_diskio.h"
 #include "common/Hardware/USBH/USBH_.h"
