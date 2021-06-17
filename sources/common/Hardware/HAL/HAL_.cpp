@@ -41,8 +41,6 @@ void HAL::Init()
 
     HAL_TIM7::Init();
 
-    HAL_DAC2::Init();
-
     HAL_ROM::Init();
 
     HAL_TIM6::Init();
@@ -50,8 +48,6 @@ void HAL::Init()
     HAL_RTC::Init();
 
     HAL_HCD::Init();
-
-    HAL_ETH::Init();
 
 #endif
 }

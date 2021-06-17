@@ -1,6 +1,7 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "device.h"
+#include "common/Hardware/Sound_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "Display/Display.h"
 #include "FDrive/FDrive.h"
@@ -28,6 +29,7 @@ void Device::Init()
     VCP::Init();
     FDrive::Init();
     LAN::Init();
+    Sound::Init();
 }
 
 

@@ -14,6 +14,8 @@ class Sound
 {
 public:
 
+    static void Init();
+
     static void ButtonPress();
 
     // Функция вызовет звук отпускаемой кнопки только если перед этим проигрывался звук нажатия кнопки.

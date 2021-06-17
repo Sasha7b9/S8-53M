@@ -26,6 +26,12 @@ bool Sound::warnIsBeep = false;
 bool Sound::buttonIsPressed = false;
 
 
+void Sound::Init()
+{
+    HAL_DAC2::Init();
+}
+
+
 static void Stop()
 {
     HAL_DAC2::StopDMA();
