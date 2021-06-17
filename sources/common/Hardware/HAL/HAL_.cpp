@@ -8,9 +8,6 @@
 static HCD_HandleTypeDef handleHCD;
 void *HAL_HCD::handle = &handleHCD;
 
-static USBH_HandleTypeDef handleUSBH;
-void *HAL_USBH::handle = &handleUSBH;
-
 static PCD_HandleTypeDef handlePCD;
 void *HAL_PCD::handle = &handlePCD;
 

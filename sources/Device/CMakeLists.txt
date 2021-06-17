@@ -120,7 +120,7 @@ file(GLOB HARDWARE_MEMORY    ../common/Hardware/Memory/*.*
                                    src/Hardware/Memory/*.*)
 file(GLOB HARDWARE_USBD            src/Hardware/USBD/*.*
                              ../common/Hardware/USBD/*.*)
-file(GLOB HARDWARE_USBH            src/Hardware/USBH/*.*)
+file(GLOB HARDWARE_USBH      ../common/Hardware/USBH/*.*)
 file(GLOB SRC                      src/*.h
                                    src/*.cpp
                              ../common/defines_.h

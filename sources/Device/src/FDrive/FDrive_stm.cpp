@@ -2,6 +2,7 @@
 #include "defines.h"
 #include "common/Display/Painter/Text_.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "common/Hardware/USBH/USBH_.h"
 #include "FDrive/FDrive.h"
 #include "Menu/FileManager.h"
 #include "Menu/Menu.h"
@@ -38,7 +39,7 @@ void FDrive::Init(void)
 
 void FDrive::Update(void)
 {
-    USBH_Process(reinterpret_cast<USBH_HandleTypeDef *>(&HAL_USBH::handle));
+    USBH_Process(reinterpret_cast<USBH_HandleTypeDef *>(&USBH::handle));
 }
 
 

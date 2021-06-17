@@ -966,6 +966,16 @@
           <GroupName>Hardware/USBH</GroupName>
           <Files>
             <File>
+              <FileName>USBH_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\USBH\USBH_.h</FilePath>
+            </File>
+            <File>
+              <FileName>USBH_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\USBH\USBH_.cpp</FilePath>
+            </File>
+            <File>
               <FileName>usbh_conf.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Hardware\USBH\usbh_conf.h</FilePath>
@@ -2213,6 +2223,16 @@
         <Group>
           <GroupName>Hardware/USBH</GroupName>
           <Files>
+            <File>
+              <FileName>USBH_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\USBH\USBH_.h</FilePath>
+            </File>
+            <File>
+              <FileName>USBH_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\USBH\USBH_.cpp</FilePath>
+            </File>
             <File>
               <FileName>usbh_conf.h</FileName>
               <FileType>5</FileType>

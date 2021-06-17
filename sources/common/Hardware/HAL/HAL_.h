@@ -227,9 +227,3 @@ struct HAL_TIM7
 
     static void Config(uint16 prescaler, uint16 period);
 };
-
-
-struct HAL_USBH
-{
-    static void *handle;    // USBH_HandleTypeDef
-};
