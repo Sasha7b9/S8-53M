@@ -27,24 +27,3 @@ void HAL_TIM6::Init()
 
     HAL_TIM_Base_Start_IT(&handleTIM6);
 }
-
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-
-    void TIM6_DAC_IRQHandler()
-    {
-        if (__HAL_TIM_GET_FLAG(&handleTIM6, TIM_FLAG_UPDATE) == SET &&
-            __HAL_TIM_GET_ITSTATUS(&handleTIM6, TIM_IT_UPDATE))
-        {
-            Timer::Update1ms();
-            __HAL_TIM_CLEAR_FLAG(&handleTIM6, TIM_FLAG_UPDATE);
-            __HAL_TIM_CLEAR_IT(&handleTIM6, TIM_IT_UPDATE);
-        }
-    }
-
-#ifdef __cplusplus
-}
-#endif

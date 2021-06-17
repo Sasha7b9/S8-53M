@@ -95,12 +95,6 @@ void DMA1_Stream5_IRQHandler()
 }
 
 
-//void ADC_IRQHandler()
-//{
-//    HAL_ADC_IRQHandler((ADC_HandleTypeDef *)HAL_ADC1::handle);
-//}
-
-
 void EXTI4_IRQHandler()
 {
     if (__HAL_GPIO_EXTI_GET_IT(GPIO_PIN_4) != RESET)
@@ -120,9 +114,22 @@ void OTG_HS_IRQHandler()
     HAL_HCD_IRQHandler((HCD_HandleTypeDef *)HAL_HCD::handle);
 }
 
+
 void OTG_FS_IRQHandler()
 {
     HAL_PCD_IRQHandler((PCD_HandleTypeDef *)HAL_PCD::handle);
+}
+
+
+void TIM6_DAC_IRQHandler()
+{
+    if (__HAL_TIM_GET_FLAG(&handleTIM6, TIM_FLAG_UPDATE) == SET &&
+        __HAL_TIM_GET_ITSTATUS(&handleTIM6, TIM_IT_UPDATE))
+    {
+        Timer::Update1ms();
+        __HAL_TIM_CLEAR_FLAG(&handleTIM6, TIM_FLAG_UPDATE);
+        __HAL_TIM_CLEAR_IT(&handleTIM6, TIM_IT_UPDATE);
+    }
 }
 
 #ifdef __cplusplus
