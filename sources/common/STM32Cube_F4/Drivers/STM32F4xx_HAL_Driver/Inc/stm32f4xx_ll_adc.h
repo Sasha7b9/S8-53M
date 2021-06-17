@@ -294,13 +294,8 @@ extern "C" {
   * @param  __REG_OFFFSET__ Offset to be applied (unit number of registers).
   * @retval Pointer to register address
   */
-
-#ifndef __linux__
 #define __ADC_PTR_REG_OFFSET(__REG__, __REG_OFFFSET__)                         \
  ((__IO uint32_t *)((uint32_t) ((uint32_t)(&(__REG__)) + ((__REG_OFFFSET__) << 2UL))))
-#else
-#define __ADC_PTR_REG_OFFSET(__REG__, __REG_OFFFSET__) 0
-#endif
 
 /**
   * @}
@@ -1871,17 +1866,13 @@ __STATIC_INLINE uint32_t LL_ADC_DMA_GetRegAddr(ADC_TypeDef *ADCx, uint32_t Regis
   
   if (Register == LL_ADC_DMA_REG_REGULAR_DATA)
   {
-#ifndef __linux__
     /* Retrieve address of register DR */
     data_reg_addr = (uint32_t)&(ADCx->DR);
-#endif
   }
   else /* (Register == LL_ADC_DMA_REG_REGULAR_DATA_MULTI) */
   {
-#ifndef __linux__
     /* Retrieve address of register CDR */
     data_reg_addr = (uint32_t)&((__LL_ADC_COMMON_INSTANCE(ADCx))->CDR);
-#endif
   }
   
   return data_reg_addr;
@@ -2503,15 +2494,11 @@ __STATIC_INLINE void LL_ADC_REG_SetSequencerRanks(ADC_TypeDef *ADCx, uint32_t Ra
   /* in register and register position depending on parameter "Rank".         */
   /* Parameters "Rank" and "Channel" are used with masks because containing   */
   /* other bits reserved for other purpose.                                   */
-
-#ifndef __linux__
-
   __IO uint32_t *preg = __ADC_PTR_REG_OFFSET(ADCx->SQR1, __ADC_MASK_SHIFT(Rank, ADC_REG_SQRX_REGOFFSET_MASK));
   
   MODIFY_REG(*preg,
              ADC_CHANNEL_ID_NUMBER_MASK << (Rank & ADC_REG_RANK_ID_SQRX_MASK),
              (Channel & ADC_CHANNEL_ID_NUMBER_MASK) << (Rank & ADC_REG_RANK_ID_SQRX_MASK));
-#endif
 }
 
 /**
@@ -2600,12 +2587,8 @@ __STATIC_INLINE void LL_ADC_REG_SetSequencerRanks(ADC_TypeDef *ADCx, uint32_t Ra
   */
 __STATIC_INLINE uint32_t LL_ADC_REG_GetSequencerRanks(ADC_TypeDef *ADCx, uint32_t Rank)
 {
-#ifndef __linux__
   __IO uint32_t *preg = __ADC_PTR_REG_OFFSET(ADCx->SQR1, __ADC_MASK_SHIFT(Rank, ADC_REG_SQRX_REGOFFSET_MASK));
-#else
-  __IO uint32_t *preg = 0;
-#endif  
-
+  
   return (uint32_t) (READ_BIT(*preg,
                               ADC_CHANNEL_ID_NUMBER_MASK << (Rank & ADC_REG_RANK_ID_SQRX_MASK))
                      >> (Rank & ADC_REG_RANK_ID_SQRX_MASK)
