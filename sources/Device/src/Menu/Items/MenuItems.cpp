@@ -741,6 +741,11 @@ int8 Item::GetPosition() const
 {
     Page *keeper = Keeper();
 
+    if (keeper == nullptr)
+    {
+        return -1;
+    }
+
     int8 result = -1;
 
     for (int i = 0; i < keeper->NumItems(); i++)
