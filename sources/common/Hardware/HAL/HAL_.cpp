@@ -155,6 +155,7 @@ void HAL::ConfigSystemClock()
     PeriphClkInitStruct.PLLSAI.PLLSAIN = 60;
     PeriphClkInitStruct.PLLSAI.PLLSAIR = 2;
     PeriphClkInitStruct.PLLSAIDivR = RCC_PLLSAIDIVR_2;
+
     if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
     {
         ERROR_HANDLER();

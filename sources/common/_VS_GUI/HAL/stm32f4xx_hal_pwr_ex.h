@@ -2,4 +2,6 @@
 #pragma once
 
 
+#define PWR_REGULATOR_VOLTAGE_SCALE3 1
+
 #define __HAL_PWR_VOLTAGESCALING_CONFIG(x)
