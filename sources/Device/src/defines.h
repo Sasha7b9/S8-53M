@@ -8,6 +8,8 @@
 #define __STATIC_INLINE inline
 #define __RBIT(VAL) 0
 #define __CLZ(x) 0
+#define __regControl
+#define __asm(x)
 #else
 #define nullptr 0
 #endif

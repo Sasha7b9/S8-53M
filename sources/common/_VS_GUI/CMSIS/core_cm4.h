@@ -1,29 +1,7 @@
+// 2021/06/20 20:26:16 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
 
-#define __sizeof_ptr 4
-#define __FPU_USED 0
 
-#include <stdint.h>
-
-#ifndef UNUSED
-#define UNUSED(x) (void)x
-#endif
-
-#ifndef __IO
-#define __IO
-#endif
-
-void NVIC_SystemReset();
-void NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority);
-inline void __disable_irq() {};
-inline void __set_MSP(uint32_t msp) { UNUSED(msp); };
-inline void __enable_irq() {};
-
-
-typedef struct
-{
-    uint32_t VTOR;
-} _SCB;
-
-
-extern _SCB *SCB;
+void __disable_irq(void);
+void __set_MSP(uint32_t);
+void __enable_irq(void);

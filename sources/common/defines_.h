@@ -6,10 +6,12 @@
 
 
 typedef signed      char        int8;
+typedef unsigned char uint8_t;
 typedef signed      short   int int16;
 typedef unsigned    char        uint8;
 typedef unsigned    short   int uint16;
 typedef unsigned    int         uint;
+typedef unsigned int uint32_t;
 typedef unsigned long long int  uint64;
 typedef unsigned    char        uchar;
 typedef const char             *pchar;

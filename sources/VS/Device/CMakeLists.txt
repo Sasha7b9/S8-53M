@@ -7,9 +7,10 @@ include_directories(../..
                     ../../Device/src/Hardware/LwIP
                     ../../Device/src/Hardware/USBD
                                  src
-                    ../../common/_VS_GUI/CMSIS
-                    ../../common/_VS_GUI/HAL
                     ../../common/Hardware/USBH
+                    ../../common/_VS_GUI/CMSIS
+                    ../../common/STM32Cube_F4/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+                    ../../common/STM32Cube_F4/Drivers/STM32F4xx_HAL_Driver/Inc
                     ../../common/STM32Cube_F4/Middlewares/Third_Party/FatFs/src
                     ../../common/STM32Cube_F4/Middlewares/Third_Party/LwIP/src/include
                     ../../common/STM32Cube_F4/Middlewares/Third_Party/LwIP/system
