@@ -3,6 +3,7 @@
 #include "common/Hardware/HAL/HAL_.h"
 #include "Panel/Panel.h"
 #include <stm32f4xx_hal.h>
+#include "common/redefine_hal_.h"
 
 
 static SPI_HandleTypeDef handleSPI5 =       // Для связи с панелью

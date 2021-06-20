@@ -3,6 +3,7 @@
 #include "common/Hardware/HAL/HAL_.h"
 #include <usbh_def.h>
 #include <stm32f4xx_hal.h>
+#include "common/redefine_hal_.h"
 
 
 static HCD_HandleTypeDef handleHCD;

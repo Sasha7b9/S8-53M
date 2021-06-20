@@ -110,6 +110,7 @@ file(GLOB HARDWARE_HAL           ../../common/Hardware/HAL/HAL_.*
                                  ../../common/Hardware/HAL/HAL_TIM6_.cpp
                                  ../../common/Hardware/HAL/HAL_TIM7_.cpp
                                  ../../common/Hardware/HAL/HAL_USBD_.cpp
+                             ../../Device/src/Hardware/HAL/*.h
                                           src/Hardware/HAL/HAL_FMC_win.cpp
                                           src/Hardware/HAL/HAL_ROM_win.cpp)
 file(GLOB HARDWARE_MEMORY        ../../common/Hardware/Memory/ROM_.*
@@ -140,7 +141,8 @@ file(GLOB SRC                             src/main_win.cpp
                              ../../Device/src/Globals.*
                              ../../Device/src/Tables.*
                                  ../../common/defines_.h
-                                 ../../common/Log_.*)
+                                 ../../common/Log_.*
+                                 ../../common/redefine_hal_.h)
 file(GLOB VCP                ../../Device/src/VCP/*.*)
 file(GLOB VCP_SCPI           ../../Device/src/VCP/SCPI/*.*)
 file(GLOB VCP_SCPI_UTILS     ../../Device/src/VCP/SCPI/Utils/*.*)
