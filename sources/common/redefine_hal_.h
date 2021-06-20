@@ -1,6 +1,10 @@
 // 2021/06/20 20:57:00 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
 
+/*
+    Переопределения макросов для GUI-версии
+*/
+
 #ifdef WIN32
 #undef __SYSCFG_CLK_ENABLE
 #define __SYSCFG_CLK_ENABLE()
