@@ -2,6 +2,6 @@
 #pragma once
 
 
-void __disable_irq(void);
-void __set_MSP(uint32_t);
-void __enable_irq(void);
+#define __disable_irq()
+#define __set_MSP(x)
+#define __enable_irq();
