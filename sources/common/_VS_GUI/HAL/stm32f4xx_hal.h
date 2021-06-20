@@ -3,6 +3,7 @@
 
 #include <stm32f4xx_hal_def.h>
 #include <stm32f4xx_hal_conf.h>
+#include <stm32f429xx.h>
 
 
 #define __weak
