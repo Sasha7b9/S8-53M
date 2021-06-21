@@ -1,59 +1,17 @@
-/**
-  ******************************************************************************
-  * @file    DAC/DAC_SignalsGeneration/Src/main.c 
-  * @author  MCD Application Team
-  * @brief   This example provides a short description of how to use the DAC 
-  *          peripheral to generate several signals.
-  ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
-  *
-  ******************************************************************************
-  */
-
-/* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
-
-/** @addtogroup STM32F4xx_HAL_Examples
-  * @{
-  */
-
-/** @addtogroup DAC_SignalsGeneration
-  * @{
-  */ 
-
-/* Private typedef -----------------------------------------------------------*/
-/* Private define ------------------------------------------------------------*/
-/* Private macro -------------------------------------------------------------*/
-/* Private variables ---------------------------------------------------------*/
 DAC_HandleTypeDef    DacHandle;
 static DAC_ChannelConfTypeDef sConfig;
 const uint8_t aEscalator8bit[6] = {0x0, 0x33, 0x66, 0x99, 0xCC, 0xFF};
 __IO uint8_t ubSelectedWavesForm = 1;
 __IO uint8_t ubKeyPressed = SET; 
 
-/* Private function prototypes -----------------------------------------------*/
 static void DAC_Ch1_TriangleConfig(void);
 static void DAC_Ch1_EscalatorConfig(void);
 static void TIM6_Config(void);
 static void SystemClock_Config(void);
 static void Error_Handler(void);
 
-/* Private functions ---------------------------------------------------------*/
-
-/**
-  * @brief  Main program
-  * @param  None
-  * @retval None
-  */
 int main(void)
 {
   /* STM32F4xx HAL library initialization:
