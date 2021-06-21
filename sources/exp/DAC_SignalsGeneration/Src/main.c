@@ -66,13 +66,7 @@ int main(void)
   
   /* Configure the system clock to 180 MHz */
   SystemClock_Config();
-  
-  /* Configure LED4 */
-  BSP_LED_Init(LED4);
-  
-  /* Configure USER Button */
-  BSP_PB_Init(BUTTON_KEY, BUTTON_MODE_EXTI);
-  
+
   /*##-1- Configure the DAC peripheral #######################################*/
   DacHandle.Instance = DAC;
   
@@ -172,8 +166,6 @@ static void SystemClock_Config(void)
   */
 static void Error_Handler(void)
 {
-  /* Turn LED4 on */
-  BSP_LED_On(LED4);
   while(1)
   {
   }

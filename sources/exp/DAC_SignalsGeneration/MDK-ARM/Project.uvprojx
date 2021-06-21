@@ -339,7 +339,7 @@
               <MiscControls>--C99</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F429xx,USE_STM32F429I_DISCO</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Inc;..\..\..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\..\..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;c:\Users\Sasha\STM32Cube\Repository\STM32Cube_FW_F4_V1.26.1\Drivers\BSP\STM32F429I-Discovery\</IncludePath>
+              <IncludePath>..\Inc;..\..\..\..\..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\..\..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -492,16 +492,6 @@
               <FileName>stm32f4xx_hal_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_spi.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Drivers/BSP/STM32F429I-Discovery</GroupName>
-          <Files>
-            <File>
-              <FileName>stm32f429i_discovery.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\Users\Sasha\STM32Cube\Repository\STM32Cube_FW_F4_V1.26.1\Drivers\BSP\STM32F429I-Discovery\stm32f429i_discovery.c</FilePath>
             </File>
           </Files>
         </Group>
