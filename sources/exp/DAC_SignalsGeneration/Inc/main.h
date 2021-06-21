@@ -3,7 +3,7 @@
 
 #include "stm32f4xx_hal.h"
 
-#define DACx_CHANNEL1_GPIO_CLK_ENABLE()  __HAL_RCC_GPIOA_CLK_ENABLE()
+#define DACx_CHANNEL2_GPIO_CLK_ENABLE()  __HAL_RCC_GPIOA_CLK_ENABLE()
 #define DMAx_CLK_ENABLE()               __HAL_RCC_DMA1_CLK_ENABLE()  
      
 #define DACx_FORCE_RESET()              __HAL_RCC_DAC_FORCE_RESET()

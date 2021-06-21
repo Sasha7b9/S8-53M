@@ -4,7 +4,7 @@ DAC_HandleTypeDef    DacHandle;
 static DAC_ChannelConfTypeDef sConfig;
 const uint8_t aEscalator8bit[6] = {0x0, 0x33, 0x66, 0x99, 0xCC, 0xFF};
 __IO uint8_t ubSelectedWavesForm = 1;
-__IO uint8_t ubKeyPressed = SET; 
+__IO uint8_t keyPressed = 1; 
 
 static void DAC_Ch1_TriangleConfig(void);
 static void DAC_Ch1_EscalatorConfig(void);
@@ -35,7 +35,7 @@ int main(void)
   while (1)
   {
     /* If USER Button is pressed */
-    if (ubKeyPressed != RESET)
+    if (keyPressed == 1)
     {
       HAL_DAC_DeInit(&DacHandle);
       
@@ -55,7 +55,7 @@ int main(void)
         DAC_Ch1_EscalatorConfig();
       }
       
-      ubKeyPressed = RESET; 
+      keyPressed = 0; 
     }
   }
 }
@@ -210,7 +210,7 @@ static void DAC_Ch1_TriangleConfig(void)
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
   /* Change the wave */
-    ubKeyPressed = 1;
+    keyPressed = 1;
 
   /* Change the selected waves forms */
   ubSelectedWavesForm = !ubSelectedWavesForm;

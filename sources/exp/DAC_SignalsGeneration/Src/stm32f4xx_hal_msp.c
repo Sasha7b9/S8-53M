@@ -9,7 +9,7 @@ void HAL_DAC_MspInit(DAC_HandleTypeDef* hdac)
   /* DAC Periph clock enable */
   __HAL_RCC_DAC_CLK_ENABLE();
   /* Enable GPIO clock ****************************************/
-  DACx_CHANNEL1_GPIO_CLK_ENABLE();
+  DACx_CHANNEL2_GPIO_CLK_ENABLE();
  /* DMA1 clock enable */
   DMAx_CLK_ENABLE();
   
