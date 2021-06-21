@@ -18,13 +18,13 @@ void HAL_DAC_MspInit(DAC_HandleTypeDef* hdac)
   GPIO_InitStruct.Pin = DACx_CHANNEL2_PIN;
   GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(DACx_CHANNEL1_GPIO_PORT, &GPIO_InitStruct);
+  HAL_GPIO_Init(DACx_CHANNEL2_GPIO_PORT, &GPIO_InitStruct);
   
   /*##-3- Configure the DMA streams ##########################################*/
   /* Set the parameters to be configured for Channel1*/
   hdma_dac1.Instance = DACx_DMA_STREAM1;
   
-  hdma_dac1.Init.Channel  = DACx_DMA_CHANNEL1;
+  hdma_dac1.Init.Channel  = DACx_DMA_CHANNEL2;
   hdma_dac1.Init.Direction = DMA_MEMORY_TO_PERIPH;
   hdma_dac1.Init.PeriphInc = DMA_PINC_DISABLE;
   hdma_dac1.Init.MemInc = DMA_MINC_ENABLE;
@@ -64,7 +64,7 @@ void HAL_DAC_MspDeInit(DAC_HandleTypeDef* hdac)
 
   /*##-2- Disable peripherals and GPIO Clocks ################################*/
   /* De-initialize the DAC Channel1 GPIO pin */
-  HAL_GPIO_DeInit(DACx_CHANNEL1_GPIO_PORT, DACx_CHANNEL2_PIN);
+  HAL_GPIO_DeInit(DACx_CHANNEL2_GPIO_PORT, DACx_CHANNEL2_PIN);
   
   /*##-3- Disable the DMA Streams ############################################*/
   /* De-Initialize the DMA Stream associate to Channel1 */
