@@ -18,7 +18,7 @@ void HAL_DAC2::Init()
 
     static DMA_HandleTypeDef hdmaDAC2 =
     {
-        DMA1_Stream5,
+        DMA1_Stream6,
         {
             DMA_CHANNEL_7,
             DMA_MEMORY_TO_PERIPH,
@@ -40,7 +40,7 @@ void HAL_DAC2::Init()
         ERROR_HANDLER();
     }
 
-    __HAL_LINKDMA(&handleDAC, DMA_Handle1, hdmaDAC2);
+    __HAL_LINKDMA(&handleDAC, DMA_Handle2, hdmaDAC2);
 
     HAL_NVIC_SetPriority(DMA1_Stream5_IRQn, 7, 0);
     HAL_NVIC_EnableIRQ(DMA1_Stream5_IRQn);
