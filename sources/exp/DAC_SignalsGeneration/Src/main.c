@@ -45,6 +45,10 @@ int main(void)
       
       keyPressed = 0; 
     }
+    else
+    {
+        int i = 0;
+    }
   }
 }
 

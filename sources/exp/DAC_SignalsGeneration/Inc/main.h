@@ -15,9 +15,9 @@
 #define DACx_CHANNEL2                    DAC_CHANNEL_2
 
 #define DACx_DMA_CHANNEL2                DMA_CHANNEL_7
-#define DACx_DMA_STREAM1                 DMA1_Stream6 
+#define DACx_DMA_STREAM1                 DMA1_Stream6
 
-#define DACx_DMA_IRQn1                   DMA1_Stream5_IRQn
-#define DACx_DMA_IRQHandler1             DMA1_Stream5_IRQHandler
+#define DACx_DMA_IRQn1                   DMA1_Stream6_IRQn
+#define DACx_DMA_IRQHandler1             DMA1_Stream6_IRQHandler
 
 #endif

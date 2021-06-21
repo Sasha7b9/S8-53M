@@ -40,7 +40,7 @@ void HAL_DAC_MspInit(DAC_HandleTypeDef* hdac)
   HAL_DMA_Init(&hdma_dac1);
     
   /* Associate the initialized DMA handle to the the DAC handle */
-  __HAL_LINKDMA(hdac, DMA_Handle1, hdma_dac1);
+  __HAL_LINKDMA(hdac, DMA_Handle2, hdma_dac1);
 
   /*##-4- Configure the NVIC for DMA #########################################*/
   /* Enable the DMA1 Stream5 IRQ Channel */
