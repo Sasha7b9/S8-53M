@@ -2,7 +2,7 @@
 
 DAC_HandleTypeDef    DacHandle;
 static DAC_ChannelConfTypeDef sConfig;
-const uint8_t aEscalator8bit[6] = {0x0, 0x33, 0x66, 0x99, 0xCC, 0xFF};
+const uint8_t aEscalator8bit[6] = {0x0, 10, 10, 10, 10, 10};
 __IO uint8_t ubSelectedWavesForm = 1;
 __IO uint8_t keyPressed = 1; 
 
