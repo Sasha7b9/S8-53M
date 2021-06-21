@@ -12,7 +12,7 @@
 #define DACx_CHANNEL2_PIN                GPIO_PIN_5
 #define DACx_CHANNEL1_GPIO_PORT          GPIOA 
 
-#define DACx_CHANNEL1                    DAC_CHANNEL_1
+#define DACx_CHANNEL2                    DAC_CHANNEL_2
 
 #define DACx_DMA_CHANNEL1                DMA_CHANNEL_7
 #define DACx_DMA_STREAM1                 DMA1_Stream5 

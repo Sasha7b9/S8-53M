@@ -142,14 +142,14 @@ static void DAC_Ch1_EscalatorConfig(void)
   sConfig.DAC_Trigger = DAC_TRIGGER_T6_TRGO;
   sConfig.DAC_OutputBuffer = DAC_OUTPUTBUFFER_ENABLE;  
 
-  if(HAL_DAC_ConfigChannel(&DacHandle, &sConfig, DACx_CHANNEL1) != HAL_OK)
+  if(HAL_DAC_ConfigChannel(&DacHandle, &sConfig, DACx_CHANNEL2) != HAL_OK)
   {
     /* Channel configuration Error */
     Error_Handler();
   }
   
   /*##-2- Enable DAC Channel1 and associated DMA #############################*/
-  if(HAL_DAC_Start_DMA(&DacHandle, DACx_CHANNEL1, (uint32_t*)aEscalator8bit, 6, DAC_ALIGN_8B_R) != HAL_OK)
+  if(HAL_DAC_Start_DMA(&DacHandle, DACx_CHANNEL2, (uint32_t*)aEscalator8bit, 6, DAC_ALIGN_8B_R) != HAL_OK)
   {
     /* Start DMA Error */
     Error_Handler();
@@ -174,28 +174,28 @@ static void DAC_Ch1_TriangleConfig(void)
   sConfig.DAC_Trigger = DAC_TRIGGER_T6_TRGO;
   sConfig.DAC_OutputBuffer = DAC_OUTPUTBUFFER_ENABLE;  
 
-  if(HAL_DAC_ConfigChannel(&DacHandle, &sConfig, DACx_CHANNEL1) != HAL_OK)
+  if(HAL_DAC_ConfigChannel(&DacHandle, &sConfig, DACx_CHANNEL2) != HAL_OK)
   {
     /* Channel configuration Error */
     Error_Handler();
   }
   
   /*##-3- DAC channel2 Triangle Wave generation configuration ################*/
-  if(HAL_DACEx_TriangleWaveGenerate(&DacHandle, DACx_CHANNEL1, DAC_TRIANGLEAMPLITUDE_1023) != HAL_OK)
+  if(HAL_DACEx_TriangleWaveGenerate(&DacHandle, DACx_CHANNEL2, DAC_TRIANGLEAMPLITUDE_1023) != HAL_OK)
   {
     /* Triangle wave generation Error */
     Error_Handler();
   }
   
   /*##-4- Enable DAC Channel1 ################################################*/
-  if(HAL_DAC_Start(&DacHandle, DACx_CHANNEL1) != HAL_OK)
+  if(HAL_DAC_Start(&DacHandle, DACx_CHANNEL2) != HAL_OK)
   {
     /* Start Error */
     Error_Handler();
   }
 
   /*##-5- Set DAC channel1 DHR12RD register ##################################*/
-  if(HAL_DAC_SetValue(&DacHandle, DACx_CHANNEL1, DAC_ALIGN_12B_R, 0x100) != HAL_OK)
+  if(HAL_DAC_SetValue(&DacHandle, DACx_CHANNEL2, DAC_ALIGN_12B_R, 0x100) != HAL_OK)
   {
     /* Setting value Error */
     Error_Handler();
