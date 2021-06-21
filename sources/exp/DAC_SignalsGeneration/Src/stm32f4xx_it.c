@@ -20,7 +20,6 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "main.h"
 #include "stm32f4xx_it.h"
    
 
@@ -151,53 +150,6 @@ void SysTick_Handler(void)
 {
 
 }
-
-
-/******************************************************************************/
-/*                 STM32F4xx Peripherals Interrupt Handlers                   */
-/*  Add here the Interrupt Handler for the used peripheral(s) (DAC), for the  */
-/*  available peripheral interrupt handler's name please refer to the startup */
-/*  file (startup_stm32f4xx.s).                                               */
-/******************************************************************************/
-
-/**
-* @brief  This function handles DMA interrupt request.
-* @param  None
-* @retval None
-*/
-void DACx_DMA_IRQHandler1(void)
-{
-  HAL_DMA_IRQHandler(DacHandle.DMA_Handle1);
-}
-
-/**
-* @brief  This function handles DMA interrupt request.
-* @param  None
-* @retval None
-*/
-void DACx_DMA_IRQHandler2(void)
-{
-  HAL_DMA_IRQHandler(DacHandle.DMA_Handle2); 
-}
-
-/**
-* @brief  This function handles DMA interrupt request.
-* @param  None
-* @retval None
-*/
-void DMA2_Stream0_IRQHandler(void)
-{
-  
-}
-
-/**
-  * @brief  This function handles PPP interrupt request.
-  * @param  None
-  * @retval None
-  */
-/*void PPP_IRQHandler(void)
-{
-}*/
 
 /**
   * @}

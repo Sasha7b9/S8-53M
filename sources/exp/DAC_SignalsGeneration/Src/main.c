@@ -1,8 +1,8 @@
-#include "main.h"
+#include "stm32f4xx_hal.h"
 
 DAC_HandleTypeDef    DacHandle;
 static DAC_ChannelConfTypeDef sConfig;
-const uint8_t aEscalator8bit[6] = {0x0, 10, 10, 10, 10, 10};
+const uint8_t aEscalator8bit[6] = {0x0, 4, 4, 4, 4, 0};
 __IO uint8_t ubSelectedWavesForm = 1;
 __IO uint8_t keyPressed = 1; 
 
@@ -44,10 +44,6 @@ int main(void)
       DAC_Ch1_EscalatorConfig();
       
       keyPressed = 0; 
-    }
-    else
-    {
-        int i = 0;
     }
   }
 }
@@ -141,14 +137,14 @@ static void DAC_Ch1_EscalatorConfig(void)
   sConfig.DAC_Trigger = DAC_TRIGGER_T6_TRGO;
   sConfig.DAC_OutputBuffer = DAC_OUTPUTBUFFER_ENABLE;  
 
-  if(HAL_DAC_ConfigChannel(&DacHandle, &sConfig, DACx_CHANNEL2) != HAL_OK)
+  if(HAL_DAC_ConfigChannel(&DacHandle, &sConfig, DAC_CHANNEL_2) != HAL_OK)
   {
     /* Channel configuration Error */
     Error_Handler();
   }
   
   /*##-2- Enable DAC Channel1 and associated DMA #############################*/
-  if(HAL_DAC_Start_DMA(&DacHandle, DACx_CHANNEL2, (uint32_t*)aEscalator8bit, 6, DAC_ALIGN_8B_R) != HAL_OK)
+  if(HAL_DAC_Start_DMA(&DacHandle, DAC_CHANNEL_2, (uint32_t*)aEscalator8bit, 6, DAC_ALIGN_8B_R) != HAL_OK)
   {
     /* Start DMA Error */
     Error_Handler();
@@ -173,28 +169,28 @@ static void DAC_Ch1_TriangleConfig(void)
   sConfig.DAC_Trigger = DAC_TRIGGER_T6_TRGO;
   sConfig.DAC_OutputBuffer = DAC_OUTPUTBUFFER_ENABLE;  
 
-  if(HAL_DAC_ConfigChannel(&DacHandle, &sConfig, DACx_CHANNEL2) != HAL_OK)
+  if(HAL_DAC_ConfigChannel(&DacHandle, &sConfig, DAC_CHANNEL_2) != HAL_OK)
   {
     /* Channel configuration Error */
     Error_Handler();
   }
   
   /*##-3- DAC channel2 Triangle Wave generation configuration ################*/
-  if(HAL_DACEx_TriangleWaveGenerate(&DacHandle, DACx_CHANNEL2, DAC_TRIANGLEAMPLITUDE_1023) != HAL_OK)
+  if(HAL_DACEx_TriangleWaveGenerate(&DacHandle, DAC_CHANNEL_2, DAC_TRIANGLEAMPLITUDE_1023) != HAL_OK)
   {
     /* Triangle wave generation Error */
     Error_Handler();
   }
   
   /*##-4- Enable DAC Channel1 ################################################*/
-  if(HAL_DAC_Start(&DacHandle, DACx_CHANNEL2) != HAL_OK)
+  if(HAL_DAC_Start(&DacHandle, DAC_CHANNEL_2) != HAL_OK)
   {
     /* Start Error */
     Error_Handler();
   }
 
   /*##-5- Set DAC channel1 DHR12RD register ##################################*/
-  if(HAL_DAC_SetValue(&DacHandle, DACx_CHANNEL2, DAC_ALIGN_12B_R, 0x100) != HAL_OK)
+  if(HAL_DAC_SetValue(&DacHandle, DAC_CHANNEL_2, DAC_ALIGN_12B_R, 0x100) != HAL_OK)
   {
     /* Setting value Error */
     Error_Handler();

@@ -1,4 +1,4 @@
-#include "main.h"
+#include "stm32f4xx_hal.h"
 
 void HAL_DAC_MspInit(DAC_HandleTypeDef* hdac)
 {
@@ -9,22 +9,22 @@ void HAL_DAC_MspInit(DAC_HandleTypeDef* hdac)
   /* DAC Periph clock enable */
   __HAL_RCC_DAC_CLK_ENABLE();
   /* Enable GPIO clock ****************************************/
-  DACx_CHANNEL2_GPIO_CLK_ENABLE();
+  __HAL_RCC_GPIOA_CLK_ENABLE();
  /* DMA1 clock enable */
-  DMAx_CLK_ENABLE();
+  __HAL_RCC_DMA1_CLK_ENABLE();
   
   /*##-2- Configure peripheral GPIO ##########################################*/ 
   /* DAC Channel1 GPIO pin configuration */
-  GPIO_InitStruct.Pin = DACx_CHANNEL2_PIN;
+  GPIO_InitStruct.Pin = GPIO_PIN_5;
   GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(DACx_CHANNEL2_GPIO_PORT, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
   
   /*##-3- Configure the DMA streams ##########################################*/
   /* Set the parameters to be configured for Channel1*/
-  hdma_dac1.Instance = DACx_DMA_STREAM1;
+  hdma_dac1.Instance = DMA1_Stream6;
   
-  hdma_dac1.Init.Channel  = DACx_DMA_CHANNEL2;
+  hdma_dac1.Init.Channel  = DMA_CHANNEL_7;
   hdma_dac1.Init.Direction = DMA_MEMORY_TO_PERIPH;
   hdma_dac1.Init.PeriphInc = DMA_PINC_DISABLE;
   hdma_dac1.Init.MemInc = DMA_MINC_ENABLE;
@@ -44,8 +44,8 @@ void HAL_DAC_MspInit(DAC_HandleTypeDef* hdac)
 
   /*##-4- Configure the NVIC for DMA #########################################*/
   /* Enable the DMA1 Stream5 IRQ Channel */
-  HAL_NVIC_SetPriority(DACx_DMA_IRQn1, 2, 0);
-  HAL_NVIC_EnableIRQ(DACx_DMA_IRQn1);
+  HAL_NVIC_SetPriority(DMA1_Stream6_IRQn, 2, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Stream6_IRQn);
 }
   
 /**
@@ -59,20 +59,20 @@ void HAL_DAC_MspDeInit(DAC_HandleTypeDef* hdac)
   static DMA_HandleTypeDef  hdma_dac1;
   
   /*##-1- Reset peripherals ##################################################*/
-  DACx_FORCE_RESET();
-  DACx_RELEASE_RESET();
+  __HAL_RCC_DAC_FORCE_RESET();
+  __HAL_RCC_DAC_RELEASE_RESET();
 
   /*##-2- Disable peripherals and GPIO Clocks ################################*/
   /* De-initialize the DAC Channel1 GPIO pin */
-  HAL_GPIO_DeInit(DACx_CHANNEL2_GPIO_PORT, DACx_CHANNEL2_PIN);
+  HAL_GPIO_DeInit(GPIOA, GPIO_PIN_5);
   
   /*##-3- Disable the DMA Streams ############################################*/
   /* De-Initialize the DMA Stream associate to Channel1 */
-  hdma_dac1.Instance = DACx_DMA_STREAM1;
+  hdma_dac1.Instance = DMA1_Stream6;
   HAL_DMA_DeInit(&hdma_dac1);
     
   /*##-4- Disable the NVIC for DMA ###########################################*/
-  HAL_NVIC_DisableIRQ(DACx_DMA_IRQn1);
+  HAL_NVIC_DisableIRQ(DMA1_Stream6_IRQn);
 }
 
 /**
