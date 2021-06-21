@@ -9,7 +9,7 @@
 #define DACx_FORCE_RESET()              __HAL_RCC_DAC_FORCE_RESET()
 #define DACx_RELEASE_RESET()            __HAL_RCC_DAC_RELEASE_RESET()
 
-#define DACx_CHANNEL1_PIN                GPIO_PIN_4
+#define DACx_CHANNEL2_PIN                GPIO_PIN_5
 #define DACx_CHANNEL1_GPIO_PORT          GPIOA 
 
 #define DACx_CHANNEL1                    DAC_CHANNEL_1

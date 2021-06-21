@@ -15,7 +15,7 @@ void HAL_DAC_MspInit(DAC_HandleTypeDef* hdac)
   
   /*##-2- Configure peripheral GPIO ##########################################*/ 
   /* DAC Channel1 GPIO pin configuration */
-  GPIO_InitStruct.Pin = DACx_CHANNEL1_PIN;
+  GPIO_InitStruct.Pin = DACx_CHANNEL2_PIN;
   GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(DACx_CHANNEL1_GPIO_PORT, &GPIO_InitStruct);
@@ -64,7 +64,7 @@ void HAL_DAC_MspDeInit(DAC_HandleTypeDef* hdac)
 
   /*##-2- Disable peripherals and GPIO Clocks ################################*/
   /* De-initialize the DAC Channel1 GPIO pin */
-  HAL_GPIO_DeInit(DACx_CHANNEL1_GPIO_PORT, DACx_CHANNEL1_PIN);
+  HAL_GPIO_DeInit(DACx_CHANNEL1_GPIO_PORT, DACx_CHANNEL2_PIN);
   
   /*##-3- Disable the DMA Streams ############################################*/
   /* De-Initialize the DMA Stream associate to Channel1 */
