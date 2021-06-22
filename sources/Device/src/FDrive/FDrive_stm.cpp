@@ -394,3 +394,9 @@ void FDrive::ChangeState()
         needOpenFileMananger = true;
     }
 }
+
+
+bool FDrive::IsConnected()
+{
+    return isConnected;
+}

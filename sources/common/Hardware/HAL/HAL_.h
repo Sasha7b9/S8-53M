@@ -119,6 +119,7 @@ public:
 };
 
 
+// Используется для флешки
 struct HAL_HCD
 {
     static void Init();
@@ -149,6 +150,7 @@ struct HAL_OTP
 };
 
 
+// Использвуется для VCP
 struct HAL_PCD
 {
     static void *handle;    // PCD_HandleTypeDef

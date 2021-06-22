@@ -166,6 +166,8 @@ void HAL::ConfigSystemClock()
 
 void HAL_HCD::Init()
 {
+    __HAL_RCC_USB_OTG_HS_CLK_ENABLE();
+
     /* Set USBHS Interrupt to the lowest priority */
     HAL_NVIC_SetPriority(OTG_HS_IRQn, 15, 0);
 
