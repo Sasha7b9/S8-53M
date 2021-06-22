@@ -1,5 +1,6 @@
 #include "defines.h"
 #include <stm32f4xx_hal.h>
+#include <ctime>
 
 
 uint SystemCoreClock = 128000000;
@@ -23,7 +24,7 @@ HAL_StatusTypeDef HAL_DeInit()
 
 __weak uint32_t HAL_GetTick()
 {
-    return 0;
+    return (uint)clock();
 }
 
 
