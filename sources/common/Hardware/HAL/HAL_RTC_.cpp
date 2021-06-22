@@ -126,8 +126,6 @@ bool HAL_RTC::SetTimeAndData(int8 day, int8 month, int8 year, int8 hours, int8 m
 
     if (HAL_RTC_SetDate(&handleRTC, &dateStruct, FORMAT_BIN) != HAL_OK)
     {
-        ERROR_HANDLER();
-
         return false;
     };
 
@@ -143,8 +141,6 @@ bool HAL_RTC::SetTimeAndData(int8 day, int8 month, int8 year, int8 hours, int8 m
 
     if (HAL_RTC_SetTime(&handleRTC, &timeStruct, FORMAT_BIN) != HAL_OK)
     {
-        ERROR_HANDLER();
-
         return false;
     };
 
