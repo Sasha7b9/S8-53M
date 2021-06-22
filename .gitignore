@@ -28,5 +28,5 @@ sources/Panel/DebugConfig/*
 sources/ThirdParty/wxWidgets/generated/*
 
 sources/exp/RTC_Calendar/MDK-ARM/STM324x9I_EVAL/*
-
-sources/exp/DAC_SignalsGeneration/MDK-ARM/STM32F429I-Discovery/
+sources/exp/DAC_SignalsGeneration/MDK-ARM/STM32F429I-Discovery/*
+sources/exp/FatFs_USBDisk/MDK-ARM/STM32F429I-DISCO/Exe/*
