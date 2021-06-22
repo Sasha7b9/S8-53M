@@ -60,10 +60,6 @@ int main(void)
      */
   HAL_Init();
   
-  /* Configure LED3 and LED4 */
-  BSP_LED_Init(LED3);  
-  BSP_LED_Init(LED4);
-
   /* Configure the system clock to 168 MHz */
   SystemClock_Config();
   
@@ -175,8 +171,6 @@ static void MSC_Application(void)
             }
             else
             {
-              /* Success of the demo: no error occurrence */
-              BSP_LED_On(LED3);
             }
           }
         }
@@ -203,8 +197,6 @@ static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8_t id)
     
   case HOST_USER_DISCONNECTION:
     Appli_state = APPLICATION_IDLE;
-    BSP_LED_Off(LED3); 
-    BSP_LED_Off(LED4);      
     f_mount(NULL, (TCHAR const*)"", 0);      
     break;
     
@@ -278,8 +270,6 @@ static void SystemClock_Config(void)
   */
 static void Error_Handler(void)
 {
-  /* Turn LED4 on */
-  BSP_LED_On(LED4);
   while(1)
   {
   }
