@@ -26,9 +26,7 @@ void Device::Init()
     HAL_TIM2::Delay(250);
     Display::Init();
     FPGA::Start();
-
     Sound::Init();
-
     VCP::Init();
     FDrive::Init();
     LAN::Init();
@@ -59,6 +57,7 @@ void Device::Update()
     Panel::Update();
     Display::Update();
     Menu::Update();
+    FDrive::Update();
 }
 
 

@@ -6,7 +6,6 @@
 
 
 static DAC_HandleTypeDef handleDAC = { DAC };
-void *HAL_DAC2::handle = &handleDAC;
 
 
 void HAL_DAC2::Init()

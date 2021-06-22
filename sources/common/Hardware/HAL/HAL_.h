@@ -85,7 +85,6 @@ struct HAL_DAC2
     static void Init();
     static void StartDMA(uint8 *points, int numPoints);
     static void StopDMA();
-    static void *handle;                                        // DAC_HandleTypeDef
 };
 
 
