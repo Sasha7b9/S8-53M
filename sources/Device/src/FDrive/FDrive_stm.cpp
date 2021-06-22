@@ -17,8 +17,8 @@
 
 static FATFS USBDISKFatFs;
 static char USBDISKPath[4];
+static bool isConnected = false;
 
-bool FDrive::isConnected = false;
 bool FDrive::needOpenFileMananger = false;
 
 
@@ -52,7 +52,7 @@ void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
         case HOST_USER_SELECT_CONFIGURATION:
             break;
         case HOST_USER_CLASS_ACTIVE:
-            FDrive::isConnected = true;
+            isConnected = true;
             FM::Init();
             FDrive::ChangeState();
             if (f_mount(&USBDISKFatFs, (TCHAR const*)USBDISKPath, 0) != FR_OK)
@@ -66,7 +66,7 @@ void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
             f_mount(NULL, (TCHAR const*)"", 0);
             break;
         case HOST_USER_DISCONNECTION:
-            FDrive::isConnected = false;
+            isConnected = false;
             FDrive::ChangeState();
             break;
         default:

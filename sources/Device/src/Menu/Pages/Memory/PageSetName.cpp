@@ -109,7 +109,7 @@ DEF_SMALL_BUTTON(sbInsert, PageMemory::PageSetName::self,
 
 static void PressSB_Save()
 {
-    if (FDrive::isConnected)
+    if (FDrive::IsConnected())
     {
         PressSB_Exit();
         PageMemory::needForSaveToFlashDrive = true;
@@ -119,7 +119,7 @@ static void PressSB_Save()
 
 static void DrawSB_Save(int x, int y)
 {
-    if (FDrive::isConnected)
+    if (FDrive::IsConnected())
     {
         Font::Set(TypeFont::UGO2);
         Char('\x42').Draw4SymbolsInRect(x + 2, y + 1);

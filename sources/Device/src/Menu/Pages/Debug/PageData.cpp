@@ -13,7 +13,7 @@
 
 static bool IsActive_SaveFirmware()
 {
-    return FDrive::isConnected;
+    return FDrive::IsConnected();
 }
 
 static void OnPress_SaveFirmware()

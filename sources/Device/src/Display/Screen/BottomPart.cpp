@@ -130,7 +130,7 @@ void BottomPart::Draw()
     Font::Set(TypeFont::UGO2);
 
     // Флешка
-    if (FDrive::isConnected)
+    if (FDrive::IsConnected())
     {
         Char(Symbol::UGO2::FLASH_DRIVE).Draw4SymbolsInRect(x + 57, Grid::Bottom() + 2);
     }

@@ -237,7 +237,7 @@ void PressSB_SaveToFlashDrive()
 
 void DrawSB_SaveToFlashDrive(int x, int y)
 {
-    if (FDrive::isConnected)
+    if (FDrive::IsConnected())
     {
         Font::Set(TypeFont::UGO2);
         Char('\x42').Draw4SymbolsInRect(x + 2, y + 1);

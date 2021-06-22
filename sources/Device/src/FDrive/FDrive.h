@@ -61,8 +61,7 @@ public:
 
     static void ChangeState();
 
-    static bool IsConnected() { return isConnected; };
-    static bool needOpenFileMananger;    // Если 1, то нужно открыть файловый менеджер (сработало автоподключение)
+    static bool IsConnected();
 
-    static bool isConnected;
+    static bool needOpenFileMananger;    // Если 1, то нужно открыть файловый менеджер (сработало автоподключение)
 };

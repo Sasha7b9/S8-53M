@@ -3,7 +3,6 @@
 #include "FDrive/FDrive.h"
 
 
-bool FDrive::isConnected = false;
 bool FDrive::needOpenFileMananger = false;
 
 
@@ -70,4 +69,10 @@ bool FDrive::CloseFile(StructForWrite *)
 void FDrive::Update()
 {
 
+}
+
+
+bool FDrive::IsConnected()
+{
+    return false;
 }

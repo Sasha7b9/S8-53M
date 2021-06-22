@@ -150,7 +150,7 @@ static void DrawSetName()
 
 void PageMemory::PageExternal::SaveSignalToFlashDrive()
 {
-    if (FDrive::isConnected)
+    if (FDrive::IsConnected())
     {
         if (set.memory.file_naming_mode.IsHand())
         {
@@ -171,7 +171,7 @@ void PageMemory::PageExternal::SaveSignalToFlashDrive()
 
 void PageMemory::PageExternal::OnPress_FileManager()
 {
-    if(FDrive::isConnected)
+    if(FDrive::IsConnected())
     {
         PageMemory::PageFileManager::self->OpenAndSetItCurrent();
         Display::SetDrawMode(DrawMode::Timer, FM::Draw);

@@ -72,7 +72,7 @@ DEF_SMALL_BUTTON(sbLevelDown, PageMemory::PageFileManager::self,
 
 static bool FuncActive()
 {
-    return FDrive::isConnected;
+    return FDrive::IsConnected();
 }
 
 
