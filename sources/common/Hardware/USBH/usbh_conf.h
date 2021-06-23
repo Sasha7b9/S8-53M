@@ -15,18 +15,18 @@
 #define USBH_MAX_DATA_BUFFER                  0x200
 #define USBH_DEBUG_LEVEL                      0
 #define USBH_USE_OS                           0
-    
-/* CMSIS OS macros */ 
+
+/* CMSIS OS macros */
 #if (USBH_USE_OS == 1)
-  #include "cmsis_os.h"
-  #define   USBH_PROCESS_PRIO    osPriorityNormal
+#include "cmsis_os.h"
+#define   USBH_PROCESS_PRIO    osPriorityNormal
 #endif    
 
 #define USBH_malloc        malloc
 #define USBH_free          free
 #define USBH_memset        memset
 #define USBH_memcpy        memcpy
-    
+
 #if (USBH_DEBUG_LEVEL > 0)
 #define USBH_UsrLog(...)   LOG_WRITE(__VA_ARGS__);
 #else
