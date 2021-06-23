@@ -41,7 +41,7 @@ void FDrive::Init(void)
 
 void FDrive::Update(void)
 {
-    USBH_Process(reinterpret_cast<USBH_HandleTypeDef *>(&USBH::handle));
+    USBH_Process(reinterpret_cast<USBH_HandleTypeDef *>(USBH::handle));
 }
 
 
