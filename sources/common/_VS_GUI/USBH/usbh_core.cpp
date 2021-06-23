@@ -28,3 +28,13 @@ void  USBH_LL_SetTimer(USBH_HandleTypeDef *, uint32_t)
 void  USBH_LL_IncTimer(USBH_HandleTypeDef *)
 {
 }
+
+
+void USBH_LL_PortDisabled(USBH_HandleTypeDef *)
+{
+}
+
+
+void USBH_LL_PortEnabled(USBH_HandleTypeDef *)
+{
+}
