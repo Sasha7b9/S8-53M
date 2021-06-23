@@ -96,7 +96,7 @@ static void SendPCB(struct tcp_pcb *tpcb, struct State *ss)
         else if (wr_err == ERR_MEM)
         {
             // we are low on memory, try later / harder, defer to poll
-            ss->p = ptr;
+//            ss->p = ptr;
         }
         else
         {
@@ -229,11 +229,11 @@ static err_t CallbackOnReceive(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, 
     else if (err != ERR_OK)
     {
         // cleanup, for unkown reason
-        if (p != NULL)
-        {
+//        if (p != NULL)
+//        {
             ss->p = NULL;
             pbuf_free(p);
-        }
+//        }
         ret_err = err;
     }
     else if (ss->state == S_ACCEPTED)
