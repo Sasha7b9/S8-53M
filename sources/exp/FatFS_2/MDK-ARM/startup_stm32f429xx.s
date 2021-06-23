@@ -1,4 +1,4 @@
-;******************** (C) COPYRIGHT 2017 STMicroelectronics  ********************
+;******************** (C) COPYRIGHT 2017 STMicroelectronics ********************
 ;* File Name          : startup_stm32f429xx.s
 ;* Author             : MCD Application Team
 ;* Description        : STM32F429x devices vector table for MDK-ARM toolchain. 
@@ -14,8 +14,8 @@
 ;*******************************************************************************
 ;* @attention
 ;*
-;* <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-;* All rights reserved.</center></h2>
+;* <center>&copy; Copyright (c) 2017 STMicroelectronics.
+;* All rights reserved.</center>
 ;*
 ;* This software component is licensed by ST under BSD 3-Clause license,
 ;* the "License"; You may not use this file except in compliance with the
@@ -30,7 +30,7 @@
 ;   <o> Stack Size (in Bytes) <0x0-0xFFFFFFFF:8>
 ; </h>
 
-Stack_Size      EQU     0x400;
+Stack_Size		EQU     0x800
 
                 AREA    STACK, NOINIT, READWRITE, ALIGN=3
 Stack_Mem       SPACE   Stack_Size
@@ -41,7 +41,7 @@ __initial_sp
 ;   <o>  Heap Size (in Bytes) <0x0-0xFFFFFFFF:8>
 ; </h>
 
-Heap_Size      EQU     0x200;
+Heap_Size      EQU     0x400
 
                 AREA    HEAP, NOINIT, READWRITE, ALIGN=3
 __heap_base

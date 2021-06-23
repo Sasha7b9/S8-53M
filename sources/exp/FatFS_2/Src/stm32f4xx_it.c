@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    DAC/DAC_SignalsGeneration/Src/stm32f4xx_it.c 
+  * @file    FatFs/FatFs_USBDisk/Src/stm32f4xx_it.c 
   * @author  MCD Application Team
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and 
@@ -8,50 +8,39 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
+  * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
+  * You may not use this file except in compliance with the License.
+  * You may obtain a copy of the License at:
+  *
+  *        http://www.st.com/software_license_agreement_liberty_v2
+  *
+  * Unless required by applicable law or agreed to in writing, software 
+  * distributed under the License is distributed on an "AS IS" BASIS, 
+  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
   *
   ******************************************************************************
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f4xx_it.h"
-   
-
-/** @addtogroup STM32F4xx_HAL_Examples
-  * @{
-  */
-
-/** @addtogroup DAC_SignalsGeneration
-  * @{
-  */
-
+#include "main.h"
+#include "stm32f4xx_it.h" 
+    
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-extern DAC_HandleTypeDef    DacHandle;
+extern HCD_HandleTypeDef hhcd;
+
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
 /******************************************************************************/
 /*            Cortex-M4 Processor Exceptions Handlers                         */
 /******************************************************************************/
-
-/**
-  * @brief  This function handles External line 0 interrupt request.
-  * @param  None
-  * @retval None
-  */
-void EXTI0_IRQHandler(void)
-{
-//  HAL_GPIO_EXTI_IRQHandler(KEY_BUTTON_PIN);
-}
 
 /**
   * @brief  This function handles NMI exception.
@@ -148,12 +137,33 @@ void PendSV_Handler(void)
   */
 void SysTick_Handler(void)
 {
+  HAL_IncTick();
+}
 
+/******************************************************************************/
+/*                 STM32F4xx Peripherals Interrupt Handlers                   */
+/*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */
+/*  available peripheral interrupt handler's name please refer to the startup */
+/*  file (startup_stm32f429xx.s).                                               */
+/******************************************************************************/
+
+/**
+  * @brief  This function handles USB-On-The-Go FS global interrupt requests.
+  * @param  None
+  * @retval None
+  */
+void OTG_HS_IRQHandler(void)
+{
+  HAL_HCD_IRQHandler(&hhcd);
 }
 
 /**
-  * @}
-  */ 
-
+  * @brief  This function handles PPP interrupt request.
+  * @param  None
+  * @retval None
+  */
+/*void PPP_IRQHandler(void)
+{
+}*/
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

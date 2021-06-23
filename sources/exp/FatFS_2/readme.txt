@@ -1,38 +1,60 @@
 /**
-  @page DAC_SignalsGeneration DAC Signals generation example
-  
+  @page FatFs_USBDisk   FatFs with USB disk drive application
+ 
   @verbatim
   ******************** (C) COPYRIGHT 2017 STMicroelectronics  *******************
-  * @file    DAC/DAC_SignalsGeneration/readme.txt 
+  * @file    readme.txt 
   * @author  MCD Application Team
-  * @brief   Description of the DAC Signals generation example.
+  * @brief   Description of the FatFs with USB disk drive application
   ******************************************************************************
+  * @attention
   *
   * Copyright (c) 2017 STMicroelectronics. All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                               www.st.com/SLA0044
   *
   ******************************************************************************
-   @endverbatim
+    @endverbatim
 
-@par Example Description 
+@par Application Description
 
-This example provides a short description of how to use the DAC peripheral to 
-generate several signals using DMA controller.
+How to use STM32Cube firmware with FatFs middleware component as a generic FAT
+file system module and STM32 USB On-The-Go (OTG) host library, in both Full
+Speed (FS) and High Speed (HS) modes. This example develops an application
+exploiting FatFs features with USB disk drive configuration.
 
-When the user presses the KEY push-button, DMA transfers the two selected 
-waveforms to the DAC.
-For each press on KEY button, a signal has been selected and can be monitored on  
-the DAC channel one:
-    - Triangle waveform (Channel 1).
-    - Escalator waveform (Channel 1).
+At the beginning of the main program the HAL_Init() function is called to reset 
+all the peripherals, initialize the Flash interface and the systick.
+Then the SystemClock_Config() function is used to configure the system clock
+(SYSCLK) to run at 168 MHz, to provide 48 MHz clock needed for the USB operation. 
+Please note that the USB is not functional if the system clock is set to 180 MHz.
+           
+The application is based on writing a text file to a drive, and it's performed 
+using FatFs APIs to access the FAT volume as described in the following steps: 
 
-STM32 Discovery board's LEDs can be used to monitor the transfer status:
-  - LED4 is ON when there are an error in initialization.
-    
+ - Link the USB Host disk I/O driver;
+ - Register the file system object (mount) to the FatFs module for the USB drive;
+ - Create and Open new text file object with write access;
+ - Write data to the text file;
+ - Close the open text file;
+ - Unlink the USB Host disk I/O driver.
+ 
+It is worth noting that the application manages any error occurred during the 
+access to FAT volume, when using FatFs APIs. Otherwise, user can check if the
+written text file is available on the USB disk.
+
+It is possible to fine tune needed FatFs features by modifying defines values 
+in FatFs configuration file “ffconf.h” available under the project includes 
+directory, in a way to fit the application requirements. 
+
+STM32 Discovery board's LEDs can be used to monitor the application status:
+  - LED3 is ON when the application runs successfully.
+  - LED4 is ON when any error occurs. 
+
+
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
       based on variable incremented in SysTick ISR. This implies that if HAL_Delay() is called from
       a peripheral ISR process, then the SysTick interrupt must have higher priority (numerically lower)
@@ -42,40 +64,44 @@ STM32 Discovery board's LEDs can be used to monitor the transfer status:
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+For more details about FatFs implementation on STM32Cube, please refer to UM1721 "Developing Applications 
+on STM32Cube with FatFs".
+
 @par Keywords
 
-Analog, DAC, Signals generation, DMA, Triangle, Escalator, Waveform, Amplitude
+Connectivity, FatFS, USB_Host, FAT, File system
 
-@par Directory contents 
-
-  - DAC/DAC_SignalsGeneration/Inc/stm32f4xx_hal_conf.h    HAL configuration file
-  - DAC/DAC_SignalsGeneration/Inc/stm32f4xx_it.h          Interrupt handlers header file
-  - DAC/DAC_SignalsGeneration/Inc/main.h                  Main program header file  
-  - DAC/DAC_SignalsGeneration/Src/stm32f4xx_it.c          Interrupt handlers
-  - DAC/DAC_SignalsGeneration/Src/main.c                  Main program
-  - DAC/DAC_SignalsGeneration/Src/stm32f4xx_hal_msp.c     HAL MSP module
-  - DAC/DAC_SignalsGeneration/Src/system_stm32f4xx.c      STM32F4xx system clock configuration file
-  
+@par Directory contents
+ 
+  - FatFs/FatFs_USBDisk/Inc/stm32f4xx_hal_conf.h    HAL configuration file
+  - FatFs/FatFs_USBDisk/Inc/stm32f4xx_it.h          Interrupt handlers header file
+  - FatFs/FatFs_USBDisk/Inc/main.h                  Main program header file
+  - FatFs/FatFs_USBDisk/Inc/usbh_diskio_dma.h       FatFS usbh diskio driver header file
+  - FatFs/FatFs_USBDisk/Inc/ffconf.h                FAT file system module configuration file   
+  - FatFs/FatFs_USBDisk/Src/stm32f4xx_it.c          Interrupt handlers
+  - FatFs/FatFs_USBDisk/Src/main.c                  Main program
+  - FatFs/FatFs_USBDisk/Src/usbh_diskio_dma.c       FatFS usbh diskio driver implementation
+  - FatFs/FatFs_USBDisk/Src/system_stm32f4xx.c      STM32F4xx system clock configuration file
+         
+ 
 @par Hardware and Software environment
-  
-  - This example runs on STM32F429xx devices.
-    
-  - This example has been tested with STMicroelectronics STM32F429I-Discovery RevC
-    boards and can be easily tailored to any other supported device 
-    and development board.
 
-  - STM32F429I-Discovery RevC Set-up	
-     - Use KEY push-button connected to PC13.
-     - Connect PA4 (DAC Channel1) pin to an oscilloscope.
-     
+  - This application runs on STM32F429xx Devices.
+    
+  - This application has been tested with STM32F429I-Discovery RevC board and can be
+    easily tailored to any other supported device and development board.  
+
+  - STM32F429I-DISCO RevB Set-up
+    - Plug the USB key into the STM32F429I-DISCO board through 'USB micro A-Male 
+      to A-Female' cable(CN6).
+
 
 @par How to use it ? 
 
 In order to make the program work, you must do the following :
  - Open your preferred toolchain 
  - Rebuild all files and load your image into target memory
- - Run the example
-  
+ - Run the application
+
  * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
  */
-

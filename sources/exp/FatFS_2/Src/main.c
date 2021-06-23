@@ -1,17 +1,55 @@
-#include "stm32f4xx_hal.h"
+/**
+  ******************************************************************************
+  * @file    FatFs/FatFs_USBDisk/Src/main.c 
+  * @author  MCD Application Team
+  * @brief   Main program body
+  *          This sample code shows how to use FatFs with USB disk drive.
+  ******************************************************************************
+  * @attention
+  *
+  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.</center></h2>
+  *
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                             www.st.com/SLA0044
+  *
+  ******************************************************************************
+  */
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"    
 
-DAC_HandleTypeDef    DacHandle;
-static DAC_ChannelConfTypeDef sConfig;
-const uint8_t aEscalator8bit[6] = {0x0, 4, 4, 4, 4, 0};
-__IO uint8_t ubSelectedWavesForm = 1;
-__IO uint8_t keyPressed = 1; 
+/* Private typedef -----------------------------------------------------------*/
+/* Private define ------------------------------------------------------------*/
+/* Private macro -------------------------------------------------------------*/
+/* Private variables ---------------------------------------------------------*/
+FATFS USBDISKFatFs;           /* File system object for USB disk logical drive */
+FIL MyFile;                   /* File object */
+char USBDISKPath[4];          /* USB Host logical drive path */
+USBH_HandleTypeDef hUSBHost; /* USB Host handle */
 
-static void DAC_Ch1_TriangleConfig(void);
-static void DAC_Ch1_EscalatorConfig(void);
-static void TIM6_Config(void);
+typedef enum {
+  APPLICATION_IDLE = 0,  
+  APPLICATION_START,    
+  APPLICATION_RUNNING,
+}MSC_ApplicationTypeDef;
+
+MSC_ApplicationTypeDef Appli_state = APPLICATION_IDLE;
+
+/* Private function prototypes -----------------------------------------------*/ 
 static void SystemClock_Config(void);
 static void Error_Handler(void);
+static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8_t id);
+static void MSC_Application(void);
 
+/* Private functions ---------------------------------------------------------*/
+
+/**
+  * @brief  Main program
+  * @param  None
+  * @retval None
+  */
 int main(void)
 {
   /* STM32F4xx HAL library initialization:
@@ -22,29 +60,152 @@ int main(void)
      */
   HAL_Init();
   
-  /* Configure the system clock to 180 MHz */
+  /* Configure the system clock to 168 MHz */
   SystemClock_Config();
-
-  /*##-1- Configure the DAC peripheral #######################################*/
-  DacHandle.Instance = DAC;
   
-  /*##-2- Configure the TIM peripheral #######################################*/
-  TIM6_Config();
-  
-  /* Infinite loop */
+  /*##-1- Link the USB Host disk I/O driver ##################################*/
+  if(FATFS_LinkDriver(&USBH_Driver, USBDISKPath) == 0)
+  {
+    /*##-2- Init Host Library ################################################*/
+    USBH_Init(&hUSBHost, USBH_UserProcess, 0);
+    
+    /*##-3- Add Supported Class ##############################################*/
+    USBH_RegisterClass(&hUSBHost, USBH_MSC_CLASS);
+    
+    /*##-4- Start Host Process ###############################################*/
+    USBH_Start(&hUSBHost);
+    
+    /*##-5- Run Application (Blocking mode) ##################################*/
+    while (1)
+    {
+      /* USB Host Background task */
+      USBH_Process(&hUSBHost);
+      
+      /* Mass Storage Application State Machine */
+      switch(Appli_state)
+      {
+      case APPLICATION_START:
+        MSC_Application();
+        Appli_state = APPLICATION_IDLE;
+        break;
+        
+      case APPLICATION_IDLE:
+      default:
+        break;      
+      }
+    }
+  }
+  /* TrueStudio compilation error correction */
   while (1)
   {
-    /* If USER Button is pressed */
-    if (keyPressed == 1)
-    {
-      HAL_DAC_DeInit(&DacHandle);
-      
-//      DAC_Ch1_TriangleConfig();
+  }
+}
 
-      DAC_Ch1_EscalatorConfig();
-      
-      keyPressed = 0; 
+/**
+  * @brief  Main routine for Mass Storage Class
+  * @param  None
+  * @retval None
+  */
+static void MSC_Application(void)
+{
+  FRESULT res;                                          /* FatFs function common result code */
+  uint32_t byteswritten, bytesread;                     /* File write/read counts */
+  uint8_t wtext[] = "This is STM32 working with FatFs"; /* File write buffer */
+  uint8_t rtext[100];                                   /* File read buffer */
+  
+  /* Register the file system object to the FatFs module */
+  if(f_mount(&USBDISKFatFs, (TCHAR const*)USBDISKPath, 0) != FR_OK)
+  {
+    /* FatFs Initialization Error */
+    Error_Handler();
+  }
+  else
+  {
+      /* Create and Open a new text file object with write access */
+      if(f_open(&MyFile, "STM32.TXT", FA_CREATE_ALWAYS | FA_WRITE) != FR_OK) 
+      {
+        /* 'STM32.TXT' file Open for write Error */
+        Error_Handler();
+      }
+      else
+      {
+        /* Write data to the text file */
+        res = f_write(&MyFile, wtext, sizeof(wtext), (void *)&byteswritten);
+        
+        if((byteswritten == 0) || (res != FR_OK))
+        {
+          /* 'STM32.TXT' file Write or EOF Error */
+          Error_Handler();
+        }
+        else
+        {
+          /* Close the open text file */
+          f_close(&MyFile);
+          
+        /* Open the text file object with read access */
+        if(f_open(&MyFile, "STM32.TXT", FA_READ) != FR_OK)
+        {
+          /* 'STM32.TXT' file Open for read Error */
+          Error_Handler();
+        }
+        else
+        {
+          /* Read data from the text file */
+          res = f_read(&MyFile, rtext, sizeof(rtext), (void *)&bytesread);
+          
+          if((bytesread == 0) || (res != FR_OK))
+          {
+            /* 'STM32.TXT' file Read or EOF Error */
+            Error_Handler();
+          }
+          else
+          {
+            /* Close the open text file */
+            f_close(&MyFile);
+            
+            /* Compare read data with the expected data */
+            if((bytesread != byteswritten))
+            {                
+              /* Read data is different from the expected data */
+              Error_Handler();
+            }
+            else
+            {
+            }
+          }
+        }
+      }
     }
+  }
+  
+  /* Unlink the USB disk I/O driver */
+  FATFS_UnLinkDriver(USBDISKPath);
+}
+
+/**
+  * @brief  User Process
+  * @param  phost: Host handle
+  * @param  id: Host Library user message ID
+  * @retval None
+  */
+static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8_t id)
+{  
+  switch(id)
+  { 
+  case HOST_USER_SELECT_CONFIGURATION:
+    break;
+    
+  case HOST_USER_DISCONNECTION:
+    Appli_state = APPLICATION_IDLE;
+    f_mount(NULL, (TCHAR const*)"", 0);      
+    break;
+    
+  case HOST_USER_CLASS_ACTIVE:
+    Appli_state = APPLICATION_START;
+    break;
+    
+  default:
+    break;
   }
 }
 
@@ -52,14 +213,14 @@ int main(void)
   * @brief  System Clock Configuration
   *         The system Clock is configured as follow : 
   *            System Clock source            = PLL (HSE)
-  *            SYSCLK(Hz)                     = 180000000
-  *            HCLK(Hz)                       = 180000000
+  *            SYSCLK(Hz)                     = 168000000
+  *            HCLK(Hz)                       = 168000000
   *            AHB Prescaler                  = 1
   *            APB1 Prescaler                 = 4
   *            APB2 Prescaler                 = 2
   *            HSE Frequency(Hz)              = 8000000
   *            PLL_M                          = 8
-  *            PLL_N                          = 360
+  *            PLL_N                          = 336
   *            PLL_P                          = 2
   *            PLL_Q                          = 7
   *            VDD(V)                         = 3.3
@@ -70,46 +231,36 @@ int main(void)
   */
 static void SystemClock_Config(void)
 {
-    RCC_OscInitTypeDef RCC_OscInitStruct = { 0 };
-    RCC_ClkInitTypeDef RCC_ClkInitStruct = { 0 };
-    RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = { 0 };
+  RCC_ClkInitTypeDef RCC_ClkInitStruct;
+  RCC_OscInitTypeDef RCC_OscInitStruct;
 
-    __HAL_RCC_PWR_CLK_ENABLE();
-    __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE3);
-
-    RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-    RCC_OscInitStruct.HSEState = RCC_HSE_ON;
-    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-    RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-    RCC_OscInitStruct.PLL.PLLM = 15;
-    RCC_OscInitStruct.PLL.PLLN = 144;
-    RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-    RCC_OscInitStruct.PLL.PLLQ = 5;
-
-    if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-    {
-        Error_Handler();
-    }
-
-    RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
-    RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-    RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-    RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
-    RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
-
-    if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_3) != HAL_OK)
-    {
-        Error_Handler();
-    }
-
-    PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_LTDC;
-    PeriphClkInitStruct.PLLSAI.PLLSAIN = 60;
-    PeriphClkInitStruct.PLLSAI.PLLSAIR = 2;
-    PeriphClkInitStruct.PLLSAIDivR = RCC_PLLSAIDIVR_2;
-    if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
-    {
-        Error_Handler();
-    }
+  /* Enable Power Control clock */
+  __HAL_RCC_PWR_CLK_ENABLE();
+  
+  /* The voltage scaling allows optimizing the power consumption when the device is 
+     clocked below the maximum system frequency, to update the voltage scaling value 
+     regarding system frequency refer to product datasheet.  */
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+  
+  /* Enable HSE Oscillator and activate PLL with HSE as source */
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLM = 8;
+  RCC_OscInitStruct.PLL.PLLN = 336;
+  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+  RCC_OscInitStruct.PLL.PLLQ = 7;
+  HAL_RCC_OscConfig (&RCC_OscInitStruct);
+  
+  /* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2 
+     clocks dividers */
+  RCC_ClkInitStruct.ClockType = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;  
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;  
+  HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5);
 }
 
 /**
@@ -122,125 +273,6 @@ static void Error_Handler(void)
   while(1)
   {
   }
-}
-
-static void DAC_Ch1_EscalatorConfig(void)
-{
-  /*##-1- Initialize the DAC peripheral ######################################*/
-  if(HAL_DAC_Init(&DacHandle) != HAL_OK)
-  {
-    /* Initialization Error */
-    Error_Handler();
-  }
-  
-  /*##-1- DAC channel1 Configuration #########################################*/
-  sConfig.DAC_Trigger = DAC_TRIGGER_T6_TRGO;
-  sConfig.DAC_OutputBuffer = DAC_OUTPUTBUFFER_ENABLE;  
-
-  if(HAL_DAC_ConfigChannel(&DacHandle, &sConfig, DAC_CHANNEL_2) != HAL_OK)
-  {
-    /* Channel configuration Error */
-    Error_Handler();
-  }
-  
-  /*##-2- Enable DAC Channel1 and associated DMA #############################*/
-  if(HAL_DAC_Start_DMA(&DacHandle, DAC_CHANNEL_2, (uint32_t*)aEscalator8bit, 6, DAC_ALIGN_8B_R) != HAL_OK)
-  {
-    /* Start DMA Error */
-    Error_Handler();
-  }
-}
-
-/**
-  * @brief  DAC Channel1 Triangle Configuration
-  * @param  None
-  * @retval None
-  */
-static void DAC_Ch1_TriangleConfig(void)
-{
-  /*##-1- Initialize the DAC peripheral ######################################*/
-  if(HAL_DAC_Init(&DacHandle) != HAL_OK)
-  {
-    /* Initialization Error */
-    Error_Handler();
-  }
-  
-  /*##-2- DAC channel2 Configuration #########################################*/
-  sConfig.DAC_Trigger = DAC_TRIGGER_T6_TRGO;
-  sConfig.DAC_OutputBuffer = DAC_OUTPUTBUFFER_ENABLE;  
-
-  if(HAL_DAC_ConfigChannel(&DacHandle, &sConfig, DAC_CHANNEL_2) != HAL_OK)
-  {
-    /* Channel configuration Error */
-    Error_Handler();
-  }
-  
-  /*##-3- DAC channel2 Triangle Wave generation configuration ################*/
-  if(HAL_DACEx_TriangleWaveGenerate(&DacHandle, DAC_CHANNEL_2, DAC_TRIANGLEAMPLITUDE_1023) != HAL_OK)
-  {
-    /* Triangle wave generation Error */
-    Error_Handler();
-  }
-  
-  /*##-4- Enable DAC Channel1 ################################################*/
-  if(HAL_DAC_Start(&DacHandle, DAC_CHANNEL_2) != HAL_OK)
-  {
-    /* Start Error */
-    Error_Handler();
-  }
-
-  /*##-5- Set DAC channel1 DHR12RD register ##################################*/
-  if(HAL_DAC_SetValue(&DacHandle, DAC_CHANNEL_2, DAC_ALIGN_12B_R, 0x100) != HAL_OK)
-  {
-    /* Setting value Error */
-    Error_Handler();
-  }
-}
-
-/**
-  * @brief EXTI line detection callbacks
-  * @param GPIO_Pin: Specifies the pins connected EXTI line
-  * @retval None
-  */
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-{
-  /* Change the wave */
-    keyPressed = 1;
-
-  /* Change the selected waves forms */
-  ubSelectedWavesForm = !ubSelectedWavesForm;
-}
-
-/**             
-  * @brief  TIM6 Configuration
-  * @note   TIM6 configuration is based on APB1 frequency
-  * @note   TIM6 Update event occurs each TIM6CLK/256   
-  * @param  None
-  * @retval None
-  */
-void TIM6_Config(void)
-{
-  static TIM_HandleTypeDef htim;
-  TIM_MasterConfigTypeDef  sMasterConfig;
-  
-  /*##-1- Configure the TIM peripheral #######################################*/
-  /* Time base configuration */
-  htim.Instance = TIM6;
-  
-  htim.Init.Period = 0x7FF;          
-  htim.Init.Prescaler = 0;       
-  htim.Init.ClockDivision = 0;    
-  htim.Init.CounterMode = TIM_COUNTERMODE_UP; 
-  HAL_TIM_Base_Init(&htim);
-
-  /* TIM6 TRGO selection */
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  
-  HAL_TIMEx_MasterConfigSynchronization(&htim, &sMasterConfig);
-  
-  /*##-2- Enable TIM peripheral counter ######################################*/
-  HAL_TIM_Base_Start(&htim);
 }
 
 #ifdef  USE_FULL_ASSERT
@@ -262,13 +294,5 @@ void assert_failed(uint8_t* file, uint32_t line)
   }
 }
 #endif
-
-/**
-  * @}
-  */
-
-/**
-  * @}
-  */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
