@@ -13,17 +13,24 @@ volatile static bool loggerUSB = false;
 
 #define SIZE_BUFFER_LOG 200
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-void Log_Write(pchar format, ...)
-{
-    char buffer[SIZE_BUFFER_LOG];
-    std::va_list args;
-    va_start(args, format);
-    std::vsprintf(buffer, format, args);
-    va_end(args);
+    void Log_Write(pchar format, ...)
+    {
+        char buffer[SIZE_BUFFER_LOG];
+        std::va_list args;
+        va_start(args, format);
+        std::vsprintf(buffer, format, args);
+        va_end(args);
 
-    Console::AddStringToIndicating(buffer);
+        Console::AddStringToIndicating(buffer);
+    }
+
+#ifdef __cplusplus
 }
+#endif
 
 
 void Log_TraceWrite(pchar func, int numLine, char *format, ...)

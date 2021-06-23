@@ -1,5 +1,6 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once   
+#include "defines.h"
 
 
 #ifdef WIN32
@@ -19,7 +20,13 @@
 #define LOG_TRACE()      Log_Write("%s : %d", __MODULE__, __LINE__);
 
 void Log_Error(pchar module, pchar func, int numLine, char *format, ...);
-void Log_Write(pchar format, ...);
+#ifdef __cplusplus
+extern "C" {
+#endif
+    void Log_Write(pchar format, ...);
+#ifdef __cplusplus
+}
+#endif
 void Log_TraceWrite(pchar func, int numLine, char *format, ...);
 void Log_DisconnectLoggerUSB();
 void Log_EnableLoggerUSB(bool enable);
