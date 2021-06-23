@@ -195,8 +195,9 @@ bool FPGA::Randomizer::CalculateGate(uint16 rand, uint16 *eMin, uint16 *eMax)
         min = 0xffff;
         max = 0;
     }
-    *eMin = (uint16)(minGate);
-    *eMax = (uint16)(maxGate);
+
+    *eMin = (uint16)(minGate); //-V519
+    *eMax = (uint16)(maxGate); //-V519
 
 //  LOG_WRITE("min %u, max %u, rand %d", *eMin, *eMax, rand);
     return true;

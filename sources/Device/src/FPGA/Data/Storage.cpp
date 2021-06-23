@@ -31,13 +31,20 @@ void DataReading::CreateFromCurrentSettings()
 
 void DataReading::CreateFromRecord(RecordStorage *record)
 {
-    DataSettings &ds = record->Data();
+    if (record == nullptr)
+    {
+        LOG_ERROR("Нулевой указатель");
+    }
+    else
+    {
+        DataSettings &ds = record->Data();
 
-    uint size = sizeof(DataSettings) + ds.BytesInData();
+        uint size = sizeof(DataSettings) + ds.BytesInData();
 
-    buffer.Realloc(size);
+        buffer.Realloc(size);
 
-    std::memcpy(buffer.DataU8(), &ds, size);
+        std::memcpy(buffer.DataU8(), &ds, size);
+    }
 }
 
 
