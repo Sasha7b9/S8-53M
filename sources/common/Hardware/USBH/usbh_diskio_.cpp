@@ -5,16 +5,16 @@
 #include "common/Hardware/USBH/USBH_.h"
 #include "FDrive/FDrive.h"
 
-DSTATUS USBH_initialize (BYTE);
-DSTATUS USBH_status (BYTE);
-DRESULT USBH_read (BYTE, BYTE*, DWORD, UINT);
+DSTATUS USBH_initialize(BYTE);
+DSTATUS USBH_status(BYTE);
+DRESULT USBH_read(BYTE, BYTE *, DWORD, UINT);
 
 #if _USE_WRITE == 1
-  DRESULT USBH_write (BYTE, const BYTE*, DWORD, UINT);
+DRESULT USBH_write(BYTE, const BYTE *, DWORD, UINT);
 #endif /* _USE_WRITE == 1 */
 
 #if _USE_IOCTL == 1
-  DRESULT USBH_ioctl (BYTE, BYTE, void*);
+DRESULT USBH_ioctl(BYTE, BYTE, void *);
 #endif /* _USE_IOCTL == 1 */
 
 const Diskio_drvTypeDef  USBH_Driver =
@@ -38,9 +38,9 @@ const Diskio_drvTypeDef  USBH_Driver =
   */
 DSTATUS USBH_initialize(BYTE)
 {
-  /* CAUTION : USB Host library has to be initialized in the application */
+    /* CAUTION : USB Host library has to be initialized in the application */
 
-  return RES_OK;
+    return RES_OK;
 }
 
 /**
@@ -50,18 +50,18 @@ DSTATUS USBH_initialize(BYTE)
   */
 DSTATUS USBH_status(BYTE lun)
 {
-  DRESULT res = RES_ERROR;
+    DRESULT res = RES_ERROR;
 
-    if(USBH_MSC_UnitIsReady((USBH_HandleTypeDef *)USBH::handle, lun))
-  {
-    res = RES_OK;
-  }
-  else
-  {
-    res = RES_ERROR;
-  }
+    if (USBH_MSC_UnitIsReady((USBH_HandleTypeDef *)USBH::handle, lun))
+    {
+        res = RES_OK;
+    }
+    else
+    {
+        res = RES_ERROR; //-V1048
+    }
 
-  return static_cast<DSTATUS>(res);
+    return static_cast<DSTATUS>(res);
 }
 
 /**
@@ -76,30 +76,30 @@ DRESULT USBH_read(BYTE lun, BYTE *buff, DWORD sector, UINT count)
 {
     DRESULT res = RES_ERROR;
     MSC_LUNTypeDef info;
-    
-    if(USBH_MSC_Read((USBH_HandleTypeDef *)USBH::handle, lun, sector, buff, count) == USBH_OK)
+
+    if (USBH_MSC_Read((USBH_HandleTypeDef *)USBH::handle, lun, sector, buff, count) == USBH_OK)
     {
         res = RES_OK;
     }
     else
     {
         USBH_MSC_GetLUNInfo((USBH_HandleTypeDef *)USBH::handle, lun, &info);
-    
+
         switch (info.sense.asc)
         {
         case SCSI_ASC_LOGICAL_UNIT_NOT_READY:
         case SCSI_ASC_MEDIUM_NOT_PRESENT:
         case SCSI_ASC_NOT_READY_TO_READY_CHANGE:
-        USBH_ErrLog ("USB Disk is not ready!");
-        res = RES_NOTRDY;
-        break;
-    
+            USBH_ErrLog("USB Disk is not ready!");
+            res = RES_NOTRDY;
+            break;
+
         default:
-        res = RES_ERROR;
-        break;
+            res = RES_ERROR; //-V1048
+            break;
         }
     }
-    
+
     return res;
 }
 
@@ -116,35 +116,35 @@ DRESULT USBH_write(BYTE lun, const BYTE *buff, DWORD sector, UINT count)
 {
     DRESULT res = RES_ERROR;
     MSC_LUNTypeDef info;
-    
-    if(USBH_MSC_Write((USBH_HandleTypeDef *)USBH::handle, lun, sector, const_cast<BYTE *>(buff), count) == USBH_OK)
+
+    if (USBH_MSC_Write((USBH_HandleTypeDef *)USBH::handle, lun, sector, const_cast<BYTE *>(buff), count) == USBH_OK)
     {
         res = RES_OK;
     }
     else
     {
         USBH_MSC_GetLUNInfo((USBH_HandleTypeDef *)USBH::handle, lun, &info);
-    
+
         switch (info.sense.asc)
         {
         case SCSI_ASC_WRITE_PROTECTED:
-        USBH_ErrLog("USB Disk is Write protected!");
-        res = RES_WRPRT;
-        break;
-    
+            USBH_ErrLog("USB Disk is Write protected!");
+            res = RES_WRPRT;
+            break;
+
         case SCSI_ASC_LOGICAL_UNIT_NOT_READY:
         case SCSI_ASC_MEDIUM_NOT_PRESENT:
         case SCSI_ASC_NOT_READY_TO_READY_CHANGE:
-        USBH_ErrLog("USB Disk is not ready!");
-        res = RES_NOTRDY;
-        break;
-    
+            USBH_ErrLog("USB Disk is not ready!");
+            res = RES_NOTRDY;
+            break;
+
         default:
-        res = RES_ERROR;
-        break;
+            res = RES_ERROR; //-V1048
+            break;
         }
     }
-    
+
     return res;
 }
 #endif /* _USE_WRITE == 1 */
@@ -161,58 +161,58 @@ DRESULT USBH_ioctl(BYTE lun, BYTE cmd, void *buff)
 {
     DRESULT res = RES_ERROR;
     MSC_LUNTypeDef info;
-    
+
     switch (cmd)
     {
-    /* Make sure that no pending write process */
+        /* Make sure that no pending write process */
     case CTRL_SYNC:
         res = RES_OK;
         break;
-    
-    /* Get number of sectors on the disk (DWORD) */
-    case GET_SECTOR_COUNT :
-        if(USBH_MSC_GetLUNInfo((USBH_HandleTypeDef *)USBH::handle, lun, &info) == USBH_OK)
+
+        /* Get number of sectors on the disk (DWORD) */
+    case GET_SECTOR_COUNT:
+        if (USBH_MSC_GetLUNInfo((USBH_HandleTypeDef *)USBH::handle, lun, &info) == USBH_OK)
         {
-        *static_cast<DWORD*>(buff) = info.capacity.block_nbr;
-        res = RES_OK;
+            *static_cast<DWORD *>(buff) = info.capacity.block_nbr; //-V525
+            res = RES_OK;
         }
         else
         {
-        res = RES_ERROR;
+            res = RES_ERROR; //-V1048
         }
         break;
-    
-    /* Get R/W sector size (WORD) */
-    case GET_SECTOR_SIZE :
-        if(USBH_MSC_GetLUNInfo((USBH_HandleTypeDef *)USBH::handle, lun, &info) == USBH_OK)
+
+        /* Get R/W sector size (WORD) */
+    case GET_SECTOR_SIZE:
+        if (USBH_MSC_GetLUNInfo((USBH_HandleTypeDef *)USBH::handle, lun, &info) == USBH_OK) //-V1037
         {
-        *static_cast<DWORD*>(buff) = info.capacity.block_size;
-        res = RES_OK;
+            *static_cast<DWORD *>(buff) = info.capacity.block_size;
+            res = RES_OK;
         }
         else
         {
-        res = RES_ERROR;
+            res = RES_ERROR; //-V1048
         }
         break;
-    
+
         /* Get erase block size in unit of sector (DWORD) */
-    case GET_BLOCK_SIZE :
-    
-        if(USBH_MSC_GetLUNInfo((USBH_HandleTypeDef *)USBH::handle, lun, &info) == USBH_OK)
+    case GET_BLOCK_SIZE:
+
+        if (USBH_MSC_GetLUNInfo((USBH_HandleTypeDef *)USBH::handle, lun, &info) == USBH_OK)
         {
-        *static_cast<DWORD*>(buff) = info.capacity.block_size;
-        res = RES_OK;
+            *static_cast<DWORD *>(buff) = info.capacity.block_size;
+            res = RES_OK;
         }
         else
         {
-        res = RES_ERROR;
+            res = RES_ERROR; //-V1048
         }
         break;
-    
+
     default:
         res = RES_PARERR;
     }
-    
+
     return res;
 }
 #endif /* _USE_IOCTL == 1 */

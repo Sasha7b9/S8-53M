@@ -245,7 +245,7 @@ USBH_SpeedTypeDef USBH_LL_GetSpeed (USBH_HandleTypeDef *phost)
     break;
     
   case 2: 
-    speed = USBH_SPEED_LOW;    
+    speed = USBH_SPEED_LOW;     //-V1048
     break;
 
    default:  

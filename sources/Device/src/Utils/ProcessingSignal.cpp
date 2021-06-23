@@ -170,11 +170,6 @@ void Processing::LeadToCurrentSetings(DataReading &dr)
     numP = lastP - firstP;
     pds = &dr.Settings();
 
-    if (!pds)
-    {
-        return;
-    }
-
     int numSmoothing = (int)Smoothing::NumPoints();
 
     Buffer<uint8> outA(numP);
