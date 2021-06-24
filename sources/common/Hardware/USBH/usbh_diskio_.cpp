@@ -1,3 +1,4 @@
+#include "defines.h"
 #include "ff_gen_drv.h"
 #include "usbh_diskio_.h"
 #include "common/Hardware/USBH/USBH_.h"
@@ -43,7 +44,7 @@ const Diskio_drvTypeDef  USBH_Driver =
   * @param  lun : lun id
   * @retval DSTATUS: Operation status
   */
-DSTATUS USBH_initialize(BYTE lun)
+DSTATUS USBH_initialize(BYTE)
 {
   /* CAUTION : USB Host library has to be initialized in the application */
 
@@ -68,7 +69,7 @@ DSTATUS USBH_status(BYTE lun)
     res = RES_ERROR;
   }
 
-  return res;
+  return (DSTATUS)res;
 }
 /**
   * @brief  Reads Sector(s)
@@ -250,7 +251,7 @@ DRESULT USBH_ioctl(BYTE lun, BYTE cmd, void *buff)
 
     if(USBH_MSC_GetLUNInfo((USBH_HandleTypeDef *)USBH::handle, lun, &info) == USBH_OK)
     {
-      *(DWORD*)buff = info.capacity.block_size / USB_DEFAULT_BLOCK_SIZE;
+      *(DWORD*)buff = (DWORD)(info.capacity.block_size / USB_DEFAULT_BLOCK_SIZE);
       res = RES_OK;
     }
     else
