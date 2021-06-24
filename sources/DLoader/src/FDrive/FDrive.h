@@ -3,6 +3,16 @@
 #include "main.h"
 
 
+typedef enum
+{
+    APPLICATION_IDLE = 0,
+    APPLICATION_START,
+    APPLICATION_RUNNING,
+}MSC_ApplicationTypeDef;
+
+extern MSC_ApplicationTypeDef Appli_state;
+
+
 void FDrive_Init();
 bool FDrive_Update();
 bool FDrive_FileExist(pchar fileName);

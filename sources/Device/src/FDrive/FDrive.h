@@ -31,6 +31,17 @@ typedef struct
     DIR dir;
 } StructForReadDir;
 
+
+typedef enum
+{
+    APPLICATION_IDLE = 0,
+    APPLICATION_START,
+    APPLICATION_RUNNING,
+}MSC_ApplicationTypeDef;
+
+extern MSC_ApplicationTypeDef Appli_state;
+
+
 class FDrive
 {
 public:

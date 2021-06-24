@@ -4,6 +4,7 @@
 #include "common/Hardware/Sound_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "Display/Display.h"
+#include "FDrive/FDrive.h"
 #include "FPGA/FPGA.h"
 #include "LAN/LAN.h"
 #include "Menu/Menu.h"
@@ -28,6 +29,7 @@ void Device::Init()
     Sound::Init();
     VCP::Init();
     LAN::Init();
+    FDrive::Init();
 }
 
 

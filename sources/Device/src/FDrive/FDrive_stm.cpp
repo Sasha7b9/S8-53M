@@ -2,7 +2,7 @@
 #include "defines.h"
 #include "common/Display/Painter/Text_.h"
 #include "common/Hardware/HAL/HAL_.h"
-//#include "common/Hardware/USBH/USBH_.h"
+#include "common/Hardware/USBH/USBH_.h"
 #include "FDrive/FDrive.h"
 #include "Menu/FileManager.h"
 #include "Menu/Menu.h"
@@ -15,11 +15,14 @@
 
 
 
-static FATFS USBDISKFatFs;
+//static FATFS USBDISKFatFs;
 static char USBDISKPath[4];
 static bool isConnected = false;
 
 bool FDrive::needOpenFileMananger = false;
+
+
+MSC_ApplicationTypeDef Appli_state = APPLICATION_IDLE;
 
 
 static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8 id);
@@ -29,13 +32,35 @@ static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8 id);
 void FDrive::Init(void)
 {
 //    HAL_HCD::Init();
-//
-//    if(FATFS_LinkDriver(&USBH_Driver, USBDISKPath) == FR_OK)
-//    {
-//        USBH_Init((USBH_HandleTypeDef *)USBH::handle, USBH_UserProcess, 0);
-//        USBH_RegisterClass((USBH_HandleTypeDef *)USBH::handle, USBH_MSC_CLASS);
-//        USBH_Start((USBH_HandleTypeDef *)USBH::handle);
-//    }
+
+    if (FATFS_LinkDriver(&USBH_Driver, USBDISKPath) == 0)
+    {
+        USBH_Init((USBH_HandleTypeDef *)USBH::handle, USBH_UserProcess, 0);
+        USBH_RegisterClass((USBH_HandleTypeDef *)USBH::handle, USBH_MSC_CLASS);
+        USBH_Start((USBH_HandleTypeDef *)USBH::handle);
+    }
+}
+
+
+static void USBH_UserProcess(USBH_HandleTypeDef *, uint8_t id)
+{
+    switch (id)
+    {
+    case HOST_USER_SELECT_CONFIGURATION:
+        break;
+
+    case HOST_USER_DISCONNECTION:
+        Appli_state = APPLICATION_IDLE;
+        f_mount(NULL, (TCHAR const *)"", 0);
+        break;
+
+    case HOST_USER_CLASS_ACTIVE:
+        Appli_state = APPLICATION_START;
+        break;
+
+    default:
+        break;
+    }
 }
 
 
@@ -45,6 +70,7 @@ void FDrive::Update(void)
 }
 
 
+/*
 void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
 {
     switch (id)
@@ -74,6 +100,7 @@ void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
             break;
     }
 }
+*/
 
 
 bool FDrive::AppendStringToFile(const char*)

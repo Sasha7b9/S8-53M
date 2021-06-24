@@ -7,10 +7,13 @@
 #include <usbh_core.h>
 #include <usbh_msc.h>
 #include "ffconf.h"
-#include "FDrive.h"
+#include "FDrive/FDrive.h"
 #include "main.h"
 #include <ctype.h>
 #include <cstring>
+
+
+MSC_ApplicationTypeDef Appli_state = APPLICATION_IDLE;
 
 
 struct StructForReadDir
