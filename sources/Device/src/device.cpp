@@ -52,11 +52,11 @@ void Device::WriteFPS()
 
 void Device::Update()
 {
-    HAL_TIM2::StartMultiMeasurement();
-    FPGA::Update();
-    Panel::Update();
-    Display::Update();
-    Menu::Update();
+//    HAL_TIM2::StartMultiMeasurement();
+//    FPGA::Update();
+//    Panel::Update();
+//    Display::Update();
+//    Menu::Update();
     FDrive::Update();
 }
 
