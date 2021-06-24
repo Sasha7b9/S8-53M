@@ -76,7 +76,7 @@ ETH_HandleTypeDef EthHandle;
 static void low_level_init(struct netif *netif)
 { 
   uint32_t regvalue = 0;
-  uint8_t macaddress[6]= { MAC_ADDR0, MAC_ADDR1, MAC_ADDR2, MAC_ADDR3, MAC_ADDR4, MAC_ADDR5 };
+  static uint8_t macaddress[6]= { MAC_ADDR0, MAC_ADDR1, MAC_ADDR2, MAC_ADDR3, MAC_ADDR4, MAC_ADDR5 };
 
   EthHandle.Instance = ETH;  
   EthHandle.Init.MACAddr = macaddress;
