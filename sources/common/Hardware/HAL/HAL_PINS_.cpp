@@ -190,9 +190,8 @@ void HAL_PINS::Init()
     Pin::LED.Init();
     Pin::DisplayReady.Init();
 
-//    PinOTG_HS(B, 15).Init();    // DP
-//    PinOTG_HS(B, 14).Init();    // DM
-//    PinOTG_HS(B, 13).Init();    // VBUS
+    PinOTG_HS(B, 15).Init();    // DP
+    PinOTG_HS(B, 14).Init();    // DM
 
     PinOTG_FS(A, 12).Init();    // DP
     PinOTG_FS(A, 11).Init();    // DM
