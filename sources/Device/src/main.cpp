@@ -2,6 +2,7 @@
 #include "defines.h"
 #include "device.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "common/Hardware/USBH/USBH_.h"
 #include "Panel/Panel.h"
 #include "Settings/Settings.h"
 #include <stm32f4xx_hal.h>
@@ -23,9 +24,6 @@ MSC_ApplicationTypeDef Appli_state = APPLICATION_IDLE;
 char USBDISKPath[4];
 
 
-USBH_HandleTypeDef hUSBHost;
-
-
 static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8_t id);
 static void MSC_Application(void);
 
@@ -44,19 +42,19 @@ int main()
   if(FATFS_LinkDriver(&USBH_Driver, USBDISKPath) == 0)
   {
     /*##-2- Init Host Library ################################################*/
-    USBH_Init(&hUSBHost, USBH_UserProcess, 0);
+      USBH_Init((USBH_HandleTypeDef *)USBH::handle, USBH_UserProcess, 0);
     
     /*##-3- Add Supported Class ##############################################*/
-    USBH_RegisterClass(&hUSBHost, USBH_MSC_CLASS);
+    USBH_RegisterClass((USBH_HandleTypeDef *)USBH::handle, USBH_MSC_CLASS);
     
     /*##-4- Start Host Process ###############################################*/
-    USBH_Start(&hUSBHost);
+    USBH_Start((USBH_HandleTypeDef *)USBH::handle);
     
     /*##-5- Run Application (Blocking mode) ##################################*/
     while (1)
     {
       /* USB Host Background task */
-      USBH_Process(&hUSBHost);
+      USBH_Process((USBH_HandleTypeDef *)USBH::handle);
       
       /* Mass Storage Application State Machine */
       switch(Appli_state)

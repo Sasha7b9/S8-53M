@@ -1,25 +1,6 @@
-/**
-  ******************************************************************************
-  * @file    usbh_diskio_dma.c
-  * @author  MCD Application Team
-  * @brief   USB Host Disk I/O driver (with internal DMA).
-  ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
-
-/* Includes ------------------------------------------------------------------*/
 #include "ff_gen_drv.h"
 #include "usbh_diskio_.h"
+#include "common/Hardware/USBH/USBH_.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -28,7 +9,6 @@
 
 /* Private variables ---------------------------------------------------------*/
 static DWORD scratch[_MAX_SS / 4];
-extern USBH_HandleTypeDef  hUSBHost;
 
 /* Private function prototypes -----------------------------------------------*/
 DSTATUS USBH_initialize (BYTE);
@@ -79,7 +59,7 @@ DSTATUS USBH_status(BYTE lun)
 {
   DRESULT res = RES_ERROR;
 
-  if(USBH_MSC_UnitIsReady(&hUSBHost, lun))
+    if(USBH_MSC_UnitIsReady((USBH_HandleTypeDef *)USBH::handle, lun))
   {
     res = RES_OK;
   }
@@ -104,11 +84,11 @@ DRESULT USBH_read(BYTE lun, BYTE *buff, DWORD sector, UINT count)
   MSC_LUNTypeDef info;
   USBH_StatusTypeDef  status = USBH_OK;
 
-  if (((DWORD)buff & 3) && (((HCD_HandleTypeDef *)hUSBHost.pData)->Init.dma_enable))
+  if (((DWORD)buff & 3) && (((HCD_HandleTypeDef *)((USBH_HandleTypeDef *)USBH::handle)->pData)->Init.dma_enable))
   {
     while ((count--)&&(status == USBH_OK))
     {
-      status = USBH_MSC_Read(&hUSBHost, lun, sector + count, (uint8_t *)scratch, 1);
+      status = USBH_MSC_Read((USBH_HandleTypeDef *)USBH::handle, lun, sector + count, (uint8_t *)scratch, 1);
 
       if(status == USBH_OK)
       {
@@ -122,7 +102,7 @@ DRESULT USBH_read(BYTE lun, BYTE *buff, DWORD sector, UINT count)
   }
   else
   {
-    status = USBH_MSC_Read(&hUSBHost, lun, sector, buff, count);
+    status = USBH_MSC_Read((USBH_HandleTypeDef *)USBH::handle, lun, sector, buff, count);
   }
 
   if(status == USBH_OK)
@@ -131,7 +111,7 @@ DRESULT USBH_read(BYTE lun, BYTE *buff, DWORD sector, UINT count)
   }
   else
   {
-    USBH_MSC_GetLUNInfo(&hUSBHost, lun, &info);
+    USBH_MSC_GetLUNInfo((USBH_HandleTypeDef *)USBH::handle, lun, &info);
 
     switch (info.sense.asc)
     {
@@ -165,15 +145,17 @@ DRESULT USBH_write(BYTE lun, const BYTE *buff, DWORD sector, UINT count)
   DRESULT res = RES_ERROR;
   MSC_LUNTypeDef info;
   USBH_StatusTypeDef  status = USBH_OK;
+    
+    USBH_HandleTypeDef *handle = (USBH_HandleTypeDef *)USBH::handle;
 
-  if (((DWORD)buff & 3) && (((HCD_HandleTypeDef *)hUSBHost.pData)->Init.dma_enable))
+  if (((DWORD)buff & 3) && (((HCD_HandleTypeDef *)handle->pData)->Init.dma_enable))
   {
 
     while (count--)
     {
       memcpy (scratch, &buff[count * _MAX_SS], _MAX_SS);
 
-      status = USBH_MSC_Write(&hUSBHost, lun, sector + count, (BYTE *)scratch, 1) ;
+      status = USBH_MSC_Write((USBH_HandleTypeDef *)USBH::handle, lun, sector + count, (BYTE *)scratch, 1) ;
       if(status == USBH_FAIL)
       {
         break;
@@ -182,7 +164,7 @@ DRESULT USBH_write(BYTE lun, const BYTE *buff, DWORD sector, UINT count)
   }
   else
   {
-    status = USBH_MSC_Write(&hUSBHost, lun, sector, (BYTE *)buff, count);
+    status = USBH_MSC_Write((USBH_HandleTypeDef *)USBH::handle, lun, sector, (BYTE *)buff, count);
   }
 
   if(status == USBH_OK)
@@ -191,7 +173,7 @@ DRESULT USBH_write(BYTE lun, const BYTE *buff, DWORD sector, UINT count)
   }
   else
   {
-    USBH_MSC_GetLUNInfo(&hUSBHost, lun, &info);
+    USBH_MSC_GetLUNInfo((USBH_HandleTypeDef *)USBH::handle, lun, &info);
 
     switch (info.sense.asc)
     {
@@ -239,7 +221,7 @@ DRESULT USBH_ioctl(BYTE lun, BYTE cmd, void *buff)
 
   /* Get number of sectors on the disk (DWORD) */
   case GET_SECTOR_COUNT :
-    if(USBH_MSC_GetLUNInfo(&hUSBHost, lun, &info) == USBH_OK)
+    if(USBH_MSC_GetLUNInfo((USBH_HandleTypeDef *)USBH::handle, lun, &info) == USBH_OK)
     {
       *(DWORD*)buff = info.capacity.block_nbr;
       res = RES_OK;
@@ -252,7 +234,7 @@ DRESULT USBH_ioctl(BYTE lun, BYTE cmd, void *buff)
 
   /* Get R/W sector size (WORD) */
   case GET_SECTOR_SIZE :
-    if(USBH_MSC_GetLUNInfo(&hUSBHost, lun, &info) == USBH_OK)
+    if(USBH_MSC_GetLUNInfo((USBH_HandleTypeDef *)USBH::handle, lun, &info) == USBH_OK)
     {
       *(DWORD*)buff = info.capacity.block_size;
       res = RES_OK;
@@ -266,7 +248,7 @@ DRESULT USBH_ioctl(BYTE lun, BYTE cmd, void *buff)
     /* Get erase block size in unit of sector (DWORD) */
   case GET_BLOCK_SIZE :
 
-    if(USBH_MSC_GetLUNInfo(&hUSBHost, lun, &info) == USBH_OK)
+    if(USBH_MSC_GetLUNInfo((USBH_HandleTypeDef *)USBH::handle, lun, &info) == USBH_OK)
     {
       *(DWORD*)buff = info.capacity.block_size / USB_DEFAULT_BLOCK_SIZE;
       res = RES_OK;
