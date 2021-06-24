@@ -10,7 +10,7 @@
 #include <ff.h>
 #include <ff_gen_drv.h>
 #include <usbh_def.h>
-#include <usbh_diskio.h>
+#include <usbh_diskio_.h>
 #include <cstring>
 
 

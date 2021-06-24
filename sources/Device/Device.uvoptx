@@ -286,7 +286,7 @@
         <LExpSel>0</LExpSel>
       </OPTXL>
       <OPTFL>
-        <tvExp>0</tvExp>
+        <tvExp>1</tvExp>
         <tvExpOptDlg>0</tvExpOptDlg>
         <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
@@ -365,18 +365,34 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>554</LineNumber>
+          <LineNumber>177</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134362390</Address>
+          <Address>134395466</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_hcd.c</Filename>
+          <Filename>&lt;1&gt;.\src\main.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\S8_53M\../common/STM32Cube_F4/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_hcd.c\554</Expression>
+          <Expression>\\S8_53M\src/main.cpp\177</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>182</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134395484</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>&lt;1&gt;.\src\main.cpp</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\S8_53M\src/main.cpp\182</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -2708,55 +2724,55 @@
 
   <Group>
     <GroupName>Hardware/USBH</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>14</GroupNumber>
       <FileNumber>180</FileNumber>
-      <FileType>1</FileType>
+      <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\common\Hardware\USBH\usbh_conf.c</PathWithFileName>
-      <FilenameWithoutPath>usbh_conf.c</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\USBH\usbh_conf_.h</PathWithFileName>
+      <FilenameWithoutPath>usbh_conf_.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>14</GroupNumber>
       <FileNumber>181</FileNumber>
-      <FileType>5</FileType>
+      <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\common\Hardware\USBH\usbh_conf.h</PathWithFileName>
-      <FilenameWithoutPath>usbh_conf.h</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\USBH\usbh_conf_.c</PathWithFileName>
+      <FilenameWithoutPath>usbh_conf_.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>14</GroupNumber>
       <FileNumber>182</FileNumber>
-      <FileType>1</FileType>
+      <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\common\Hardware\USBH\usbh_diskio.c</PathWithFileName>
-      <FilenameWithoutPath>usbh_diskio.c</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\USBH\usbh_diskio_.h</PathWithFileName>
+      <FilenameWithoutPath>usbh_diskio_.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>14</GroupNumber>
       <FileNumber>183</FileNumber>
-      <FileType>5</FileType>
+      <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\common\Hardware\USBH\usbh_diskio.h</PathWithFileName>
-      <FilenameWithoutPath>usbh_diskio.h</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\USBH\usbh_diskio_.c</PathWithFileName>
+      <FilenameWithoutPath>usbh_diskio_.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
