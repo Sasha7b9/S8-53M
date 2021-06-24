@@ -7,6 +7,7 @@
 #include "Display/Display.h"
 #include <stm32f4xx_hal.h>
 
+extern HCD_HandleTypeDef hhcd;
 
 const Item *last_item = nullptr;
 
@@ -96,9 +97,11 @@ void EXTI4_IRQHandler()
 }
 
 
-void OTG_HS_IRQHandler()
+void OTG_HS_IRQHandler(void)
 {
+    HAL_HCD_IRQHandler(&hhcd);
 }
+
 
 
 void OTG_FS_IRQHandler()
