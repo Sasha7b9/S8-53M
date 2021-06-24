@@ -2767,6 +2767,18 @@
     <File>
       <GroupNumber>14</GroupNumber>
       <FileNumber>183</FileNumber>
+      <FileType>8</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\common\Hardware\USBH\usbh_conf_.cpp</PathWithFileName>
+      <FilenameWithoutPath>usbh_conf_.cpp</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>14</GroupNumber>
+      <FileNumber>184</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -2778,25 +2790,13 @@
     </File>
     <File>
       <GroupNumber>14</GroupNumber>
-      <FileNumber>184</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\common\Hardware\USBH\usbh_diskio_.c</PathWithFileName>
-      <FilenameWithoutPath>usbh_diskio_.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>14</GroupNumber>
       <FileNumber>185</FileNumber>
       <FileType>8</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\common\Hardware\USBH\usbh_conf_.cpp</PathWithFileName>
-      <FilenameWithoutPath>usbh_conf_.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\USBH\usbh_diskio_.cpp</PathWithFileName>
+      <FilenameWithoutPath>usbh_diskio_.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
