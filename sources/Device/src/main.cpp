@@ -69,6 +69,11 @@ int main()
             break;
             
         case APPLICATION_IDLE:
+            break;
+
+        case APPLICATION_RUNNING:
+            break;
+
         default:
             break;      
         }
@@ -163,7 +168,7 @@ static void MSC_Application(void)
 }
 
 
-static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8_t id)
+static void USBH_UserProcess(USBH_HandleTypeDef *, uint8_t id)
 {  
   switch(id)
   { 

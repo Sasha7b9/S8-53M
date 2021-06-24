@@ -1,14 +1,14 @@
+// 2021/06/24 14:59:07 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
-
+#include "common/Hardware/HAL/HAL_.h"
 #include "stm32f4xx_hal.h"
 #include "usbh_core.h"
+
 
 /* Private define ------------------------------------------------------------*/
 #define HOST_POWERSW_PORT                 GPIOC
 #define HOST_POWERSW_VBUS                 GPIO_PIN_4
 
-/* Private variables ---------------------------------------------------------*/
-HCD_HandleTypeDef hhcd;
 
 /*******************************************************************************
                        HCD BSP Routines
@@ -18,7 +18,7 @@ HCD_HandleTypeDef hhcd;
   * @param  hhcd: HCD handle
   * @retval None
   */
-void HAL_HCD_MspInit(HCD_HandleTypeDef *hhcd)
+void HAL_HCD_MspInit(HCD_HandleTypeDef *)
 {
   /* Enable USB HS Clocks */ 
   __HAL_RCC_USB_OTG_HS_CLK_ENABLE();
@@ -37,7 +37,7 @@ void HAL_HCD_MspInit(HCD_HandleTypeDef *hhcd)
   * @param  hhcd: HCD handle
   * @retval None
   */
-void HAL_HCD_MspDeInit(HCD_HandleTypeDef *hhcd)
+void HAL_HCD_MspDeInit(HCD_HandleTypeDef *)
 {
   /* Disable USB HS Clocks */ 
   __HAL_RCC_USB_OTG_HS_CLK_DISABLE();
@@ -105,7 +105,7 @@ void HAL_HCD_PortDisabled_Callback(HCD_HandleTypeDef *hhcd)
   * @param  urb_state:
   * @retval None
   */
-void HAL_HCD_HC_NotifyURBChange_Callback(HCD_HandleTypeDef *hhcd, uint8_t chnum, HCD_URBStateTypeDef urb_state)
+void HAL_HCD_HC_NotifyURBChange_Callback(HCD_HandleTypeDef *, uint8_t, HCD_URBStateTypeDef)
 {
   /* To be used with OS to sync URB state with the global state machine */  
 }
@@ -120,6 +120,8 @@ void HAL_HCD_HC_NotifyURBChange_Callback(HCD_HandleTypeDef *hhcd, uint8_t chnum,
   */
 USBH_StatusTypeDef USBH_LL_Init(USBH_HandleTypeDef *phost)
 { 
+    HCD_HandleTypeDef &hhcd = *(HCD_HandleTypeDef *)HAL_HCD::handle;
+
   /*Set LL Driver parameters */
   hhcd.Instance = USB_OTG_HS;
   hhcd.Init.Host_channels = 11; 
@@ -344,7 +346,7 @@ USBH_URBStateTypeDef USBH_LL_GetURBState(USBH_HandleTypeDef *phost, uint8_t pipe
   *           1: VBUS Inactive
   * @retval USBH Status
   */
-USBH_StatusTypeDef USBH_LL_DriverVBUS(USBH_HandleTypeDef *phost, uint8_t state)
+USBH_StatusTypeDef USBH_LL_DriverVBUS(USBH_HandleTypeDef *, uint8_t state)
 {
   /*
     On-chip 5 V VBUS generation is not supported. For this reason, a charge pump 
@@ -380,8 +382,10 @@ USBH_StatusTypeDef USBH_LL_DriverVBUS(USBH_HandleTypeDef *phost, uint8_t state)
   * @param  toggle: toggle (0/1)
   * @retval USBH Status
   */
-USBH_StatusTypeDef USBH_LL_SetToggle(USBH_HandleTypeDef *phost, uint8_t pipe, uint8_t toggle)   
+USBH_StatusTypeDef USBH_LL_SetToggle(USBH_HandleTypeDef *, uint8_t pipe, uint8_t toggle)   
 {
+    HCD_HandleTypeDef &hhcd = *(HCD_HandleTypeDef *)HAL_HCD::handle;
+
   if(hhcd.hc[pipe].ep_is_in)
   {
     hhcd.hc[pipe].toggle_in = toggle;
@@ -399,8 +403,10 @@ USBH_StatusTypeDef USBH_LL_SetToggle(USBH_HandleTypeDef *phost, uint8_t pipe, ui
   * @param  pipe: Pipe index
   * @retval toggle (0/1)
   */
-uint8_t USBH_LL_GetToggle(USBH_HandleTypeDef *phost, uint8_t pipe)   
+uint8_t USBH_LL_GetToggle(USBH_HandleTypeDef *, uint8_t pipe)   
 {
+    HCD_HandleTypeDef &hhcd = *(HCD_HandleTypeDef *)HAL_HCD::handle;
+
   uint8_t toggle = 0;
   
   if(hhcd.hc[pipe].ep_is_in)
