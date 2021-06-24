@@ -367,7 +367,7 @@
           <Type>0</Type>
           <LineNumber>179</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134418192</Address>
+          <Address>134418096</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -383,7 +383,7 @@
           <Type>0</Type>
           <LineNumber>174</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134418174</Address>
+          <Address>134418078</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -2724,7 +2724,7 @@
 
   <Group>
     <GroupName>Hardware/USBH</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
