@@ -3,6 +3,7 @@
 #include "ff_gen_drv.h"
 #include "usbh_diskio_.h"
 #include "common/Hardware/USBH/USBH_.h"
+#include <stm32f4xx_hal.h>
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
