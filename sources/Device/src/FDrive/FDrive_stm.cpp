@@ -14,8 +14,7 @@
 #include <cstring>
 
 
-
-//static FATFS USBDISKFatFs;
+static FATFS USBDISKFatFs;
 static char USBDISKPath[4];
 static bool isConnected = false;
 
@@ -42,35 +41,12 @@ void FDrive::Init(void)
 }
 
 
-static void USBH_UserProcess(USBH_HandleTypeDef *, uint8_t id)
-{
-    switch (id)
-    {
-    case HOST_USER_SELECT_CONFIGURATION:
-        break;
-
-    case HOST_USER_DISCONNECTION:
-        Appli_state = APPLICATION_IDLE;
-        f_mount(NULL, (TCHAR const *)"", 0);
-        break;
-
-    case HOST_USER_CLASS_ACTIVE:
-        Appli_state = APPLICATION_START;
-        break;
-
-    default:
-        break;
-    }
-}
-
-
 void FDrive::Update(void)
 {
     USBH_Process((USBH_HandleTypeDef *)USBH::handle);
 }
 
 
-/*
 void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
 {
     switch (id)
@@ -100,7 +76,6 @@ void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
             break;
     }
 }
-*/
 
 
 bool FDrive::AppendStringToFile(const char*)
