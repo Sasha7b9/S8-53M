@@ -339,7 +339,7 @@
               <MiscControls>--cpp</MiscControls>
               <Define>USE_HAL_DRIVER, STM32F429xx, __cplusplus, LOADER</Define>
               <Undefine></Undefine>
-              <IncludePath>.\src;.\src\libs;.\src\Hardware\FatFS;.\src\Hardware\HAL;.\src\Hardware\USBH;..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\common\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\common\STM32Cube_F4\Drivers\CMSIS\Include;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc;..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src;..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\drivers;..</IncludePath>
+              <IncludePath>.\src;.\src\libs;.\src\Hardware\FatFS;.\src\Hardware\HAL;.\src\Hardware\USBH;..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\common\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\common\STM32Cube_F4\Drivers\CMSIS\Include;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc;..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src;..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\drivers;..\common\Hardware\USBH;..\..\sources</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -976,14 +976,14 @@
               <FilePath>..\common\Hardware\USBH\USBH_.cpp</FilePath>
             </File>
             <File>
-              <FileName>usbh_conf.h</FileName>
+              <FileName>usbh_conf_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Hardware\USBH\usbh_conf.h</FilePath>
+              <FilePath>..\common\Hardware\USBH\usbh_conf_.h</FilePath>
             </File>
             <File>
-              <FileName>usbh_conf.cpp</FileName>
+              <FileName>usbh_conf_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Hardware\USBH\usbh_conf.cpp</FilePath>
+              <FilePath>..\common\Hardware\USBH\usbh_conf_.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -1347,7 +1347,7 @@
             <nStopA1X>0</nStopA1X>
             <nStopA2X>0</nStopA2X>
           </AfterMake>
-          <SelectedForBatchBuild>1</SelectedForBatchBuild>
+          <SelectedForBatchBuild>0</SelectedForBatchBuild>
           <SVCSIdString></SVCSIdString>
         </TargetCommonOption>
         <CommonProperty>
@@ -1597,7 +1597,7 @@
               <MiscControls>--cpp</MiscControls>
               <Define>USE_HAL_DRIVER, STM32F429xx, __cplusplus, LOADER, DEBUG</Define>
               <Undefine></Undefine>
-              <IncludePath>.\src;.\src\libs;.\src\Hardware\FatFS;.\src\Hardware\HAL;.\src\Hardware\USBH;..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\common\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\common\STM32Cube_F4\Drivers\CMSIS\Include;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc;..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src;..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\drivers;..</IncludePath>
+              <IncludePath>.\src;.\src\libs;.\src\Hardware\FatFS;.\src\Hardware\HAL;..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\common\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\common\STM32Cube_F4\Drivers\CMSIS\Include;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc;..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src;..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\drivers;..\common\Hardware\USBH;..\..\sources</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -2234,14 +2234,14 @@
               <FilePath>..\common\Hardware\USBH\USBH_.cpp</FilePath>
             </File>
             <File>
-              <FileName>usbh_conf.h</FileName>
+              <FileName>usbh_conf_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Hardware\USBH\usbh_conf.h</FilePath>
+              <FilePath>..\common\Hardware\USBH\usbh_conf_.h</FilePath>
             </File>
             <File>
-              <FileName>usbh_conf.cpp</FileName>
+              <FileName>usbh_conf_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Hardware\USBH\usbh_conf.cpp</FilePath>
+              <FilePath>..\common\Hardware\USBH\usbh_conf_.cpp</FilePath>
             </File>
           </Files>
         </Group>

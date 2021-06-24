@@ -1405,14 +1405,14 @@
               <FilePath>..\common\Hardware\USBH\USBH_.cpp</FilePath>
             </File>
             <File>
-              <FileName>usbh_conf.h</FileName>
+              <FileName>usbh_conf_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Hardware\USBH\usbh_conf.h</FilePath>
+              <FilePath>..\common\Hardware\USBH\usbh_conf_.h</FilePath>
             </File>
             <File>
-              <FileName>usbh_conf.cpp</FileName>
+              <FileName>usbh_conf_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\USBH\usbh_conf.cpp</FilePath>
+              <FilePath>..\common\Hardware\USBH\usbh_conf_.cpp</FilePath>
             </File>
             <File>
               <FileName>usbh_diskio_.cpp</FileName>
@@ -2605,7 +2605,7 @@
             <nStopA1X>0</nStopA1X>
             <nStopA2X>0</nStopA2X>
           </AfterMake>
-          <SelectedForBatchBuild>1</SelectedForBatchBuild>
+          <SelectedForBatchBuild>0</SelectedForBatchBuild>
           <SVCSIdString></SVCSIdString>
         </TargetCommonOption>
         <CommonProperty>
@@ -3921,14 +3921,14 @@
               <FilePath>..\common\Hardware\USBH\USBH_.cpp</FilePath>
             </File>
             <File>
-              <FileName>usbh_conf.h</FileName>
+              <FileName>usbh_conf_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Hardware\USBH\usbh_conf.h</FilePath>
+              <FilePath>..\common\Hardware\USBH\usbh_conf_.h</FilePath>
             </File>
             <File>
-              <FileName>usbh_conf.cpp</FileName>
+              <FileName>usbh_conf_.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\common\Hardware\USBH\usbh_conf.cpp</FilePath>
+              <FilePath>..\common\Hardware\USBH\usbh_conf_.cpp</FilePath>
             </File>
             <File>
               <FileName>usbh_diskio_.cpp</FileName>

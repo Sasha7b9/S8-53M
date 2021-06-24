@@ -26,7 +26,7 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "usbh_conf.h"
+#include <usbh_conf_.h>
 
 /** @addtogroup USBH_LIB
   * @{

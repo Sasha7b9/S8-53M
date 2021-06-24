@@ -5,7 +5,7 @@ project (DLoader)
 include_directories(src
                     src/Hardware/FatFS
                     src/Hardware/HAL
-                    src/Hardware/USBH
+                    ../common/Hardware/USBH
                     ..
                     ../common/_VS_KEIL/ARMCLANG
                     ../common/_VS_KEIL/CMSIS
@@ -98,7 +98,7 @@ file(GLOB HARDWARE_HAL         src/Hardware/HAL/*.*
                          ../common/Hardware/HAL/HAL_TIM2_c.cpp
                          ../common/Hardware/HAL/HAL_TIM6_c.cpp
                          ../common/Hardware/HAL/HAL_TIM7_c.cpp)
-file(GLOB HARDWARE_USBH        src/Hardware/USBH/*.*)
+file(GLOB HARDWARE_USBH  ../common/Hardware/USBH/*.*)
 file(GLOB SRC            ../common/defines_.h
                          ../common/Log_.*
                                src/*.h
