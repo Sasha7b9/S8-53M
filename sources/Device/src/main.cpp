@@ -38,44 +38,43 @@ int main()
     Sector::Get(Sector::_11_SETTINGS_2).Erase(); 
     */
     
-      /*##-1- Link the USB Host disk I/O driver ##################################*/
-  if(FATFS_LinkDriver(&USBH_Driver, USBDISKPath) == 0)
-  {
-    /*##-2- Init Host Library ################################################*/
-      USBH_Init((USBH_HandleTypeDef *)USBH::handle, USBH_UserProcess, 0);
-    
-    /*##-3- Add Supported Class ##############################################*/
-    USBH_RegisterClass((USBH_HandleTypeDef *)USBH::handle, USBH_MSC_CLASS);
-    
-    /*##-4- Start Host Process ###############################################*/
-    USBH_Start((USBH_HandleTypeDef *)USBH::handle);
-    
-    /*##-5- Run Application (Blocking mode) ##################################*/
-    while (1)
-    {
-      /* USB Host Background task */
-      USBH_Process((USBH_HandleTypeDef *)USBH::handle);
-      
-      /* Mass Storage Application State Machine */
-      switch(Appli_state)
-      {
-      case APPLICATION_START:
-        MSC_Application();
-        Appli_state = APPLICATION_IDLE;
-        break;
-        
-      case APPLICATION_IDLE:
-      default:
-        break;      
-      }
-    }
-  }
+    setNRST.Load();
 
-//
-//    setNRST.Load();
-//
-//    Device::Init();
-//
+    Device::Init();
+
+      /*##-1- Link the USB Host disk I/O driver ##################################*/
+    if(FATFS_LinkDriver(&USBH_Driver, USBDISKPath) == 0)
+    {
+        /*##-2- Init Host Library ################################################*/
+        USBH_Init((USBH_HandleTypeDef *)USBH::handle, USBH_UserProcess, 0);
+        
+        /*##-3- Add Supported Class ##############################################*/
+        USBH_RegisterClass((USBH_HandleTypeDef *)USBH::handle, USBH_MSC_CLASS);
+        
+        /*##-4- Start Host Process ###############################################*/
+        USBH_Start((USBH_HandleTypeDef *)USBH::handle);
+        
+        /*##-5- Run Application (Blocking mode) ##################################*/
+        while (1)
+        {
+        /* USB Host Background task */
+        USBH_Process((USBH_HandleTypeDef *)USBH::handle);
+        
+        /* Mass Storage Application State Machine */
+        switch(Appli_state)
+        {
+        case APPLICATION_START:
+            MSC_Application();
+            Appli_state = APPLICATION_IDLE;
+            break;
+            
+        case APPLICATION_IDLE:
+        default:
+            break;      
+        }
+        }
+    }  
+  
 //    while(1)
 //    {
 //        Device::Update();
