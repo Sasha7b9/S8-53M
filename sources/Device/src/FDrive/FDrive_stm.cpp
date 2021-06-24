@@ -66,7 +66,24 @@ static void USBH_UserProcess(USBH_HandleTypeDef *, uint8_t id)
 
 void FDrive::Update(void)
 {
-//    USBH_Process(reinterpret_cast<USBH_HandleTypeDef *>(USBH::handle));
+    USBH_Process((USBH_HandleTypeDef *)USBH::handle);
+
+    /* Mass Storage Application State Machine */
+    switch (Appli_state)
+    {
+    case APPLICATION_START:
+        Appli_state = APPLICATION_IDLE;
+        break;
+
+    case APPLICATION_IDLE:
+        break;
+
+    case APPLICATION_RUNNING:
+        break;
+
+    default:
+        break;
+    }
 }
 
 

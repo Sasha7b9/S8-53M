@@ -31,35 +31,12 @@ int main()
 
     Device::Init();
 
-    while (1)
+    while(1)
     {
-        /* USB Host Background task */
-        USBH_Process((USBH_HandleTypeDef *)USBH::handle);
+        Device::Update();
 
-        /* Mass Storage Application State Machine */
-        switch (Appli_state)
-        {
-        case APPLICATION_START:
-            Appli_state = APPLICATION_IDLE;
-            break;
+        set.Save();
 
-        case APPLICATION_IDLE:
-            break;
-
-        case APPLICATION_RUNNING:
-            break;
-
-        default:
-            break;
-        }
+        setNRST.Save();
     }
-
-//    while(1)
-//    {
-//        Device::Update();
-//
-//        set.Save();
-//
-//        setNRST.Save();
-//    }
 }
