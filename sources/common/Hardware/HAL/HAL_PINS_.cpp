@@ -190,8 +190,8 @@ void HAL_PINS::Init()
     Pin::LED.Init();
     Pin::DisplayReady.Init();
 
-    PinOTG_HS(B, 15).Init();    // DP
-    PinOTG_HS(B, 14).Init();    // DM
+//    PinOTG_HS(B, 15).Init();    // DP
+//    PinOTG_HS(B, 14).Init();    // DM
 //    PinOTG_HS(B, 13).Init();    // VBUS
 
     PinOTG_FS(A, 12).Init();    // DP
@@ -292,7 +292,8 @@ void Pin::Init()
     else if (mode == PinMode::_OTG_HS_FS)
     {
         isGPIO.Mode = GPIO_MODE_AF_PP;
-        isGPIO.Speed = GPIO_SPEED_FAST;
+        isGPIO.Pull = GPIO_NOPULL;
+        isGPIO.Speed = GPIO_SPEED_HIGH;
         isGPIO.Alternate = GPIO_AF12_OTG_HS_FS;
     }
     else if (mode == PinMode::_OTG_FS)

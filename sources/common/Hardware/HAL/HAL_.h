@@ -119,14 +119,6 @@ public:
 };
 
 
-// Используется для флешки
-struct HAL_HCD
-{
-    static void Init();
-    static void *handle;    // HCD_HandleTypeDef
-};
-
-
 struct HAL_LTDC
 {
     static void Init(uint8 *frontBuffer, uint8 *backBuffer);

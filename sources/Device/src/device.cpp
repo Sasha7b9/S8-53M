@@ -4,7 +4,6 @@
 #include "common/Hardware/Sound_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "Display/Display.h"
-#include "FDrive/FDrive.h"
 #include "FPGA/FPGA.h"
 #include "LAN/LAN.h"
 #include "Menu/Menu.h"
@@ -28,7 +27,6 @@ void Device::Init()
     FPGA::Start();
     Sound::Init();
     VCP::Init();
-    FDrive::Init();
     LAN::Init();
 }
 
@@ -57,7 +55,7 @@ void Device::Update()
 //    Panel::Update();
 //    Display::Update();
 //    Menu::Update();
-    FDrive::Update();
+//    FDrive::Update();
 }
 
 

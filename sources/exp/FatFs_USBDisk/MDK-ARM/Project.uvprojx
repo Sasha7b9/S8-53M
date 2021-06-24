@@ -337,7 +337,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>USE_HAL_DRIVER,STM32F429xx,USE_STM32F429I_DISCO</Define>
+              <Define>USE_HAL_DRIVER,STM32F429xx</Define>
               <Undefine></Undefine>
               <IncludePath>../Inc;..\..\..\common\STM32Cube_F4/Drivers/CMSIS/Device/ST/STM32F4xx/Include;..\..\..\common\STM32Cube_F4/Drivers/STM32F4xx_HAL_Driver/Inc;..\..\..\common\STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Core/Inc;..\..\..\common\STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc;..\..\..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src</IncludePath>
             </VariousControls>

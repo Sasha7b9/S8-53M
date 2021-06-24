@@ -2,7 +2,7 @@
 #include "defines.h"
 #include "common/Display/Painter/Text_.h"
 #include "common/Hardware/HAL/HAL_.h"
-#include "common/Hardware/USBH/USBH_.h"
+//#include "common/Hardware/USBH/USBH_.h"
 #include "FDrive/FDrive.h"
 #include "Menu/FileManager.h"
 #include "Menu/Menu.h"
@@ -28,20 +28,20 @@ static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8 id);
 
 void FDrive::Init(void)
 {
-    HAL_HCD::Init();
-
-    if(FATFS_LinkDriver(&USBH_Driver, USBDISKPath) == FR_OK)
-    {
-        USBH_Init((USBH_HandleTypeDef *)USBH::handle, USBH_UserProcess, 0);
-        USBH_RegisterClass((USBH_HandleTypeDef *)USBH::handle, USBH_MSC_CLASS);
-        USBH_Start((USBH_HandleTypeDef *)USBH::handle);
-    }
+//    HAL_HCD::Init();
+//
+//    if(FATFS_LinkDriver(&USBH_Driver, USBDISKPath) == FR_OK)
+//    {
+//        USBH_Init((USBH_HandleTypeDef *)USBH::handle, USBH_UserProcess, 0);
+//        USBH_RegisterClass((USBH_HandleTypeDef *)USBH::handle, USBH_MSC_CLASS);
+//        USBH_Start((USBH_HandleTypeDef *)USBH::handle);
+//    }
 }
 
 
 void FDrive::Update(void)
 {
-    USBH_Process(reinterpret_cast<USBH_HandleTypeDef *>(USBH::handle));
+//    USBH_Process(reinterpret_cast<USBH_HandleTypeDef *>(USBH::handle));
 }
 
 

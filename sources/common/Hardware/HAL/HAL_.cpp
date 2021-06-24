@@ -7,7 +7,6 @@
 
 
 static HCD_HandleTypeDef handleHCD;
-void *HAL_HCD::handle = &handleHCD;
 
 static PCD_HandleTypeDef handlePCD;
 void *HAL_PCD::handle = &handlePCD;
@@ -161,18 +160,6 @@ void HAL::ConfigSystemClock()
     {
         ERROR_HANDLER();
     }
-}
-
-
-void HAL_HCD::Init()
-{
-    __HAL_RCC_USB_OTG_HS_CLK_ENABLE();
-
-    /* Set USBHS Interrupt to the lowest priority */
-    HAL_NVIC_SetPriority(OTG_HS_IRQn, 15, 0);
-
-    /* Enable USBHS Interrupt */
-    HAL_NVIC_EnableIRQ(OTG_HS_IRQn);
 }
 
 
