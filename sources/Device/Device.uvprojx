@@ -1404,6 +1404,16 @@
               <FileType>5</FileType>
               <FilePath>..\common\Hardware\USBH\usbh_conf.h</FilePath>
             </File>
+            <File>
+              <FileName>usbh_diskio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\Hardware\USBH\usbh_diskio.c</FilePath>
+            </File>
+            <File>
+              <FileName>usbh_diskio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\USBH\usbh_diskio.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3899,6 +3909,16 @@
               <FileName>usbh_conf.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Hardware\USBH\usbh_conf.h</FilePath>
+            </File>
+            <File>
+              <FileName>usbh_diskio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\common\Hardware\USBH\usbh_diskio.c</FilePath>
+            </File>
+            <File>
+              <FileName>usbh_diskio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\USBH\usbh_diskio.h</FilePath>
             </File>
           </Files>
         </Group>

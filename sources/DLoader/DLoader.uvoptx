@@ -1531,55 +1531,55 @@
 
   <Group>
     <GroupName>Hardware/USBH</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>10</GroupNumber>
       <FileNumber>88</FileNumber>
-      <FileType>5</FileType>
+      <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\common\Hardware\USBH\USBH_.h</PathWithFileName>
-      <FilenameWithoutPath>USBH_.h</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\USBH\usbh_conf.c</PathWithFileName>
+      <FilenameWithoutPath>usbh_conf.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>10</GroupNumber>
       <FileNumber>89</FileNumber>
-      <FileType>8</FileType>
+      <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\common\Hardware\USBH\USBH_.cpp</PathWithFileName>
-      <FilenameWithoutPath>USBH_.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\USBH\usbh_conf.h</PathWithFileName>
+      <FilenameWithoutPath>usbh_conf.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>10</GroupNumber>
       <FileNumber>90</FileNumber>
-      <FileType>5</FileType>
+      <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\common\Hardware\USBH\usbh_conf_.h</PathWithFileName>
-      <FilenameWithoutPath>usbh_conf_.h</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\USBH\usbh_diskio.c</PathWithFileName>
+      <FilenameWithoutPath>usbh_diskio.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>10</GroupNumber>
       <FileNumber>91</FileNumber>
-      <FileType>8</FileType>
+      <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\common\Hardware\USBH\usbh_conf_.cpp</PathWithFileName>
-      <FilenameWithoutPath>usbh_conf_.cpp</FilenameWithoutPath>
+      <PathWithFileName>..\common\Hardware\USBH\usbh_diskio.h</PathWithFileName>
+      <FilenameWithoutPath>usbh_diskio.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1587,7 +1587,7 @@
 
   <Group>
     <GroupName>src</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

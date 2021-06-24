@@ -10,10 +10,13 @@
 #include "common/Hardware/HAL/HAL_.h"
 #include "Settings/Settings.h"
 #include <cstdlib>
+#include <usbh_def.h>
 
 
 
 #define FILE_NAME "S8-53.bin"
+
+USBH_HandleTypeDef hUSBHost;
 
 MainStruct *MainStruct::ms = nullptr;
 
