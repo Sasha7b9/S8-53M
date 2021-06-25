@@ -68,7 +68,7 @@ DSTATUS USBH_status(BYTE lun)
     }
     else
     {
-        res = RES_ERROR;
+        res = RES_ERROR; //-V1048
     }
 
     return (DSTATUS)res;
@@ -126,7 +126,7 @@ DRESULT USBH_read(BYTE lun, BYTE *buff, DWORD sector, UINT count)
             break;
 
         default:
-            res = RES_ERROR;
+            res = RES_ERROR; //-V1048
             break;
         }
     }
@@ -193,7 +193,7 @@ DRESULT USBH_write(BYTE lun, const BYTE *buff, DWORD sector, UINT count)
             break;
 
         default:
-            res = RES_ERROR;
+            res = RES_ERROR; //-V1048
             break;
         }
     }
@@ -231,7 +231,7 @@ DRESULT USBH_ioctl(BYTE lun, BYTE cmd, void *buff)
         }
         else
         {
-            res = RES_ERROR;
+            res = RES_ERROR; //-V1048
         }
         break;
 
@@ -244,7 +244,7 @@ DRESULT USBH_ioctl(BYTE lun, BYTE cmd, void *buff)
         }
         else
         {
-            res = RES_ERROR;
+            res = RES_ERROR; //-V1048
         }
         break;
 
@@ -258,7 +258,7 @@ DRESULT USBH_ioctl(BYTE lun, BYTE cmd, void *buff)
         }
         else
         {
-            res = RES_ERROR;
+            res = RES_ERROR; //-V1048
         }
         break;
 
@@ -269,6 +269,3 @@ DRESULT USBH_ioctl(BYTE lun, BYTE cmd, void *buff)
     return res;
 }
 #endif /* _USE_IOCTL == 1 */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-
