@@ -11,6 +11,8 @@ struct Warnings
 
     static void ShowWarningBad(Warning::E warning);
 
+    static void ShowWarningBad(pchar textRu, pchar textEn);
+
     static void ShowWarningGood(Warning::E warning);
 
 private:

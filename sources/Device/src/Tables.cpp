@@ -48,8 +48,7 @@ const char* Tables::GetWarning(Warning::E warning)
         {"бшйкчвхре опханп",                "IN FORCE SWITCH OFF THE DEVICE"},
         {"нрйкчвхре бшвхякемхе аот",        "DISCONNECT CALCULATION OF FFT"},
         {"нрйкчвхре люрелюрхвеяйсч тсмйжхч", "DISCONNECT MATHEMATICAL FUNCTION"},
-        {"опньхбйю янупюмемю",              "FIRMWARE SAVED"},
-        {"оЮЛЪРЭ OTP ОНКМНЯРЭЧ ГЮОНКЕМЮ",   "OPT memory fully completed"}
+        {"опньхбйю янупюмемю",              "FIRMWARE SAVED"}
     };
     return warnings[warning][LANG];
 }

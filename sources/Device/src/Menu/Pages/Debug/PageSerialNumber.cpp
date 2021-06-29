@@ -60,7 +60,7 @@ static void OnPress_Save()
     //
     //    if (!HAL_OTP::SaveSerialNumber(stringSN))
     //    {
-    //        Warnings::ShowWarningBad(Warning::FullyCompletedOTP);
+    //        Warnings::ShowWarningBad("Память OTP полностью заполена", "OPT memory fully completed");
     //    }
 }
 

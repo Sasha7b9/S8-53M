@@ -30,7 +30,6 @@ struct Warning { enum E
     ImpossibleEnableMathFunction,
     ImpossibleEnableFFT,
     FirmwareSaved,
-    FullyCompletedOTP,
     Count
 };};
 
