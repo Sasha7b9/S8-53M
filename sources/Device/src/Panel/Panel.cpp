@@ -1,33 +1,33 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
 #include "common/Hardware/Sound_.h"
-#include "common/Hardware/Timer_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Utils/Mutex_.h"
-#include "common/Utils/Containers/Buffer_.h"
 #include "common/Utils/Containers/Queue_.h"
 #include "FPGA/FPGA.h"
 #include "Menu/Menu.h"
 #include "Menu/Pages/Definition.h"
 #include "Menu/Pages/HelpContent.h"
 #include "Panel/Panel.h"
-#include <cstdio>
+#include "Settings/Settings.h"
 #include <cstring>
 
 
-static void HelpLong();
-static void ChannelLongA();
-static void ChannelLongB();
-static void TimeLong();
-static void TrigLong();
-static void StartDown();
-static void PowerDown();
 static void F1Long();
 static void F2Long();
 static void F3Long();
 static void F4Long();
 static void F5Long();
+static void ChannelLongA();
+static void ChannelLongB();
+static void TimeLong();
+static void HelpLong();
 static void MenuLong();
+static void TrigLong();
+
+static void StartDown();
+static void PowerDown();
+
 static void RShiftLeftA();
 static void RShiftRightA();
 static void RShiftLeftB();
@@ -323,6 +323,7 @@ void Panel::ProcessEvent()
     {
         Menu::Handlers::ReleaseKey(key);
         funcOnKeyUp[key]();
+
         if (pressedKey != Key::None)
         {
             Menu::Handlers::ShortPressureKey(key);

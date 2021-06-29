@@ -1673,6 +1673,11 @@
               <FilePath>..\common\Display\Painter\Painter_.cpp</FilePath>
             </File>
             <File>
+              <FileName>Painter_stm_d_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Painter\Painter_stm_d_.cpp</FilePath>
+            </File>
+            <File>
               <FileName>Primitives_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Display\Painter\Primitives_.h</FilePath>
@@ -4187,6 +4192,11 @@
               <FileName>Painter_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Display\Painter\Painter_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Painter_stm_d_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Painter\Painter_stm_d_.cpp</FilePath>
             </File>
             <File>
               <FileName>Primitives_.h</FileName>

@@ -78,6 +78,7 @@ file(GLOB DISPLAY            ../../Device/src/Display/Console.*
                                           src/Display/*.*)
 file(GLOB DISPLAY_FONT           ../../common/Display/Font/*.*)
 file(GLOB DISPLAY_PAINTER        ../../common/Display/Painter/Painter_.*
+                                 ../../common/Display/Painter/Painter_stm_d_.*
                                  ../../common/Display/Painter/Primitives_.*
                                  ../../common/Display/Painter/Text_.*
                              ../../Device/src/Display/Painter/DisplayPrimitives.*)

@@ -1,5 +1,6 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
+#include "common/Display/Painter/Painter_.h"
 #include "common/Hardware/Sound_.h"
 #include "common/Hardware/Timer_.h"
 #include "Display/Warnings.h"
@@ -335,11 +336,9 @@ void Menu::Handlers::ShortPressureKey(Key::E key)
         }
     }
 
-    if (key == Key::Memory && set.memory.mode_button_memory.IsSave() && FDrive::IsConnected())
+    if (set.memory.mode_button_memory.IsSave() && FDrive::IsConnected())
     {
-        PageMemory::exitFromModeSetNameTo = IsShown() ? RETURN_TO_MAIN_MENU : RETURN_TO_DISABLE_MENU;
-        PageMemory::PageExternal::SaveSignalToFlashDrive();
-        return;
+        Painter::SaveScreenToFlashDrive();
     }
 
     Display::Redraw();
