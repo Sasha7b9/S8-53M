@@ -3,6 +3,7 @@
 #include "common/Display/Colors_.h"
 #include "common/Display/Painter/Painter_.h"
 #include "Display/Display.h"
+#include "Display/Warnings.h"
 #include "FDrive/FDrive.h"
 #include "Settings/Settings.h"
 #include <cstring>
@@ -134,7 +135,7 @@ bool Painter::SaveScreenToFlashDrive()
 
     FDrive::CloseFile(&structForWrite);
 
-    Display::Message::Show("‘‡ÈÎ ÒÓı‡Ì∏Ì", "File saved");
+    Warnings::ShowWarningGood("‘¿…À —Œ’–¿Õ≈Õ", "FILE IS SAVED");
 
     return true;
 }
