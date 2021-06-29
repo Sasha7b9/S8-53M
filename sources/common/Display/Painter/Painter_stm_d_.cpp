@@ -2,6 +2,10 @@
 #include "defines.h"
 #include "common/Display/Painter/Painter_.h"
 #include "FDrive/FDrive.h"
+#include <cstring>
+
+
+static void CreateFileName(char name[255]);
 
 
 bool Painter::SaveScreenToFlashDrive()
@@ -70,5 +74,15 @@ bool Painter::SaveScreenToFlashDrive()
 
     StructForWrite structForWrite;
 
+    char fileName[255];
+
+    CreateFileName(fileName);
+
     return true;
+}
+
+
+static void CreateFileName(char name[255])
+{
+    std::strcpy(name, "picture.bmp");
 }
