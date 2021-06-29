@@ -10,6 +10,7 @@ typedef enum
     APPLICATION_RUNNING,
 }MSC_ApplicationTypeDef;
 
+
 extern MSC_ApplicationTypeDef Appli_state;
 
 

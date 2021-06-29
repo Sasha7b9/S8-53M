@@ -97,9 +97,3 @@ uint Painter::ReduceBrightness(uint colorValue, float newBrightness)
 
     return Color::Make((uint8)(red), (uint8)(green), (uint8)(blue));
 }
-
-
-bool Painter::SaveScreenToFlashDrive()
-{
-    return true;
-}
