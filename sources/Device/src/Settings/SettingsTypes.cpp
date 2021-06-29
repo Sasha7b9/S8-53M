@@ -370,7 +370,7 @@ void TShift::Set(int tShift)
     {
         Math::Limitation<int>(&tShift, TShift::Min(), TShift::MAX);
 
-        Warnings::ShowWarningBad(Warning::LimitSweep_TShift);
+        Warnings::ShowWarningBad("опедек пюгбепрйю - \x97", "LIMIT SWEEP - \x97");
     }
 
     set.time.shift = (int16)tShift;
