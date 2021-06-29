@@ -8,8 +8,6 @@ struct Warning { enum E
     LimitChan2_Volts,
     LimitSweep_Time,
     SignalIsSaved,
-
-    SignalNotFound,
     NeedRebootDevice1,
     NeedRebootDevice2,
     ImpossibleEnableMathFunction,

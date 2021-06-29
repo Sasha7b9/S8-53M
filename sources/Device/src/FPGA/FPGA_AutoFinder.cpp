@@ -26,7 +26,7 @@ void AutoFinderFPGA::Find()
     {
         if (!FindWave(Channel::B))
         {
-            Warnings::ShowWarningBad(Warning::SignalNotFound);
+            Warnings::ShowWarningBad("—»√Õ¿À Õ≈ Õ¿…ƒ≈Õ", "SIGNAL IS NOT FOUND");
         }
     }
 

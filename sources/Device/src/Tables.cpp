@@ -27,8 +27,6 @@ const char* Tables::GetWarning(Warning::E warning)
         {"опедек йюмюк 2 - бнкэр/дек",      "LIMIT CHANNEL 2 - VOLTS/DIV"},
         {"опедек пюгбепрйю - бпелъ/дек",    "LIMIT SWEEP - TIME/DIV"},
         {"яхцмюк янупюмем",                 "SIGNAL IS SAVED"},
-
-        {"яхцмюк ме мюидем",                "SIGNAL IS NOT FOUND"},
         {"дкъ бярсокемхъ хглемемхи б яхкс", "FOR THE INTRODUCTION OF CHANGES"},
         {"бшйкчвхре опханп",                "IN FORCE SWITCH OFF THE DEVICE"},
         {"нрйкчвхре бшвхякемхе аот",        "DISCONNECT CALCULATION OF FFT"}
@@ -40,10 +38,12 @@ const char* Tables::GetWarning(Warning::E warning)
 void Tables::DrawStr(int index, int x, int y)
 {
     pchar str = symbolsAlphaBet[index];
+
     if (index == set.memory.index_cur_symbol_name_mask)
     {
         Region(Font::GetLengthText(str), 9).Fill(x - 1, y, Color::FLASH_10);
     }
+
     Text(symbolsAlphaBet[index]).Draw(x, y, (index == set.memory.index_cur_symbol_name_mask) ?
         Color::FLASH_01 : Color::FILL);
 }
