@@ -48,7 +48,7 @@ bool FDrive::GetNextNameFile(char *, StructForReadDir *)
 }
 
 
-bool FDrive::OpenNewFileForWrite(const char *, StructForWrite *)
+bool FDrive::OpenNewFileForWrite(const char *)
 {
     return false;
 }

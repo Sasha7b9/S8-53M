@@ -18,9 +18,7 @@ static bool IsActive_SaveFirmware()
 
 static void OnPress_SaveFirmware()
 {
-    StructForWrite structForWrite;
-
-    FDrive::OpenNewFileForWrite("S8-53.bin", &structForWrite);
+    FDrive::OpenNewFileForWrite("S8-53.bin");
 
     uint8 *address = (uint8 *)0x08020000;
     uint8 *endAddress = address + 128 * 1024 * 3;

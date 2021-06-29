@@ -73,11 +73,9 @@ bool Painter::SaveScreenToFlashDrive()
 
 #pragma pack(4)
 
-    StructForWrite structForWrite;
-
     String fileName = FDrive::CreateFileName("bmp");
 
-    FDrive::OpenNewFileForWrite(fileName.c_str(), &structForWrite);
+    FDrive::OpenNewFileForWrite(fileName.c_str());
 
     FDrive::WriteToFile((uint8 *)&bmFH, 14);
 

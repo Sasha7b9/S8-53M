@@ -313,9 +313,9 @@ bool FDrive::GetNextNameFile(char *nameFileOut, StructForReadDir *s)
 }
 
 
-bool FDrive::OpenNewFileForWrite(const char* fullPathToFile, StructForWrite *structForWrite)
+bool FDrive::OpenNewFileForWrite(const char* fullPathToFile)
 {
-    sfw = structForWrite;
+    sfw = new StructForWrite;
 
     if (f_open(&sfw->fileObj, fullPathToFile, FA_CREATE_ALWAYS | FA_WRITE) != FR_OK)
     {
@@ -365,6 +365,16 @@ bool FDrive::WriteToFile(uint8* data, int sizeData)
 }
 
 
+bool FDrive::WriteStringToFile(pchar string)
+{
+    String text(string);
+
+    text.Append("\n");
+
+    return WriteToFile((uint8 *)text.c_str(), (int)text.Size());
+}
+
+
 bool FDrive::CloseFile()
 {
     if (sfw->sizeData != 0)
@@ -376,9 +386,13 @@ bool FDrive::CloseFile()
         if (result != FR_OK || (uint)sfw->sizeData != wr)
         {
             f_close(&sfw->fileObj);
+
+            delete sfw;
+
             return false;
         }
     }
+
     f_close(&sfw->fileObj);
 
     FILINFO fno;
@@ -387,7 +401,7 @@ bool FDrive::CloseFile()
     fno.ftime = (WORD)((time.hours * 2048) | (time.minutes * 32) | (time.seconds / 2));
     f_utime(sfw->name, &fno);
 
-    sfw = nullptr;
+    delete sfw;
 
     return true;
 }
@@ -436,7 +450,19 @@ void FDrive::SaveCurrentSignal()
 
         String fileName = CreateFileName("csv");
 
+        OpenNewFileForWrite(fileName.c_str());
 
+        if (ds.IsEnabled(ChA))
+        {
+            WriteStringToFile("Data 1:");
+        }
+
+        if (ds.IsEnabled(ChB))
+        {
+            WriteStringToFile("Data 2:");
+        }
+
+        CloseFile();
     }
 }
 

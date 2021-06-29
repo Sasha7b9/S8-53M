@@ -63,9 +63,12 @@ public:
 
     // Функция создаст файл для записи. Если такой файл уже существует, сотрёт его, заменит новым нулевой длины и
     // откроет его
-    static bool OpenNewFileForWrite(const char* fullPathToFile, StructForWrite *structForWrite);
+    static bool OpenNewFileForWrite(const char* fullPathToFile);
 
     static bool WriteToFile(uint8* data, int sizeData);
+
+    // Записывает строку в файл, завершая её символами перевода каретки
+    static bool WriteStringToFile(pchar string);
 
     static bool CloseFile();
 
