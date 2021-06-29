@@ -28,8 +28,6 @@ const char* Tables::GetWarning(Warning::E warning)
         {"опедек пюгбепрйю - бпелъ/дек",    "LIMIT SWEEP - TIME/DIV"},
         {"яхцмюк янупюмем",                 "SIGNAL IS SAVED"},
 
-        {"онднфдхре меяйнкэйн яейсмд, хдер оепелеыемхе дюммшу", "WAIT ChA FEW SECONDS, GOES ChA MOVEMENT DATA"},
-        {"бпелъ ме сярюмнбкемн. лнфере сярюмнбхрэ ецн яеивюя", "TIME IS NOT SET. YOU CAN INSTALL IT NOW"},
         {"яхцмюк ме мюидем",                "SIGNAL IS NOT FOUND"},
         {"дкъ бярсокемхъ хглемемхи б яхкс", "FOR THE INTRODUCTION OF CHANGES"},
         {"бшйкчвхре опханп",                "IN FORCE SWITCH OFF THE DEVICE"},

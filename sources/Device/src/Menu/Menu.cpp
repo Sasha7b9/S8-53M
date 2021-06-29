@@ -447,7 +447,8 @@ void Menu::Handlers::ReleaseKey(Key::E )
 
 void Menu::OpenItemTime()
 {
-    Warnings::ShowWarningGood(Warning::TimeNotSet);
+    Warnings::ShowWarningGood("бпелъ ме сярюмнбкемн. лнфере сярюмнбхрэ ецн яеивюя",
+                              "TIME IS NOT SET. YOU CAN INSTALL IT NOW");
     Handlers::ShortPressureKey(Key::Service);
     Display::Update();
     for (int i = 0; i < 2; i++)

@@ -9,8 +9,6 @@ struct Warning { enum E
     LimitSweep_Time,
     SignalIsSaved,
 
-    MovingData,
-    TimeNotSet,
     SignalNotFound,
     NeedRebootDevice1,
     NeedRebootDevice2,
