@@ -56,9 +56,12 @@ public:
 
     static int DrawScaleLine(int x, bool for_trig_level);
 
+    // Читает строку row в буфер pixels
+    static void ReadRow(int row, uint8 pixels[320]);
+
     struct Message
     {
-        static void Show(pchar text);
+        static void Show(pchar textRu, pchar textEn);
 
         static void Hide();
 

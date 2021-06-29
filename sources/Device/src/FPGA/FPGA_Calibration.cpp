@@ -114,7 +114,7 @@ void FPGA::Calibrator::Balancer::PerformOnGround(const Channel &ch)
     Settings storedSettings;
 
     storedSettings = set;
-    Display::Message::Show(messages[LANG][ch]);                         // Вывести сообщение о балансировке.
+    Display::Message::Show(messages[0][ch], messages[1][ch]);           // Вывести сообщение о балансировке.
 
     CalibrateAddRShiftGND(ch);                                          // Произвести балансировку канала
 

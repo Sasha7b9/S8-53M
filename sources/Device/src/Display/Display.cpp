@@ -306,9 +306,9 @@ void Display::RunAfterDraw(pFuncVV /*func*/)
 }
 
 
-void Display::Message::Show(pchar _text)
+void Display::Message::Show(pchar textRu, pchar textEn)
 {
-    text = _text;
+    text = LANG_RU ? textRu : textEn;
 
     timeStart = TIME_MS;
 

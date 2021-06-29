@@ -1,7 +1,10 @@
 // 2021/06/29 11:34:35 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
+#include "common/Display/Colors_.h"
 #include "common/Display/Painter/Painter_.h"
+#include "Display/Display.h"
 #include "FDrive/FDrive.h"
+#include "Settings/Settings.h"
 #include <cstring>
 
 
@@ -77,6 +80,61 @@ bool Painter::SaveScreenToFlashDrive()
     char fileName[255];
 
     CreateFileName(fileName);
+
+    FDrive::OpenNewFileForWrite(fileName, &structForWrite);
+
+    FDrive::WriteToFile((uint8 *)&bmFH, 14, &structForWrite);
+
+    FDrive::WriteToFile((uint8 *)&bmIH, 40, &structForWrite);
+
+    uint8 buffer[320 * 3] = { 0 };
+
+    typedef struct tagRGBQUAD
+    {
+        uint8 blue;
+        uint8 green;
+        uint8 red;
+        uint8 rgbReserverd;
+    } RGBQUAD;
+
+    RGBQUAD colorStruct;
+
+    for (int i = 0; i < 16; i++)
+    {
+        uint color = COLOR(i);
+        colorStruct.blue = (uint8)((float)B_FROM_COLOR(color));
+        colorStruct.green = (uint8)((float)G_FROM_COLOR(color));
+        colorStruct.red = (uint8)((float)R_FROM_COLOR(color));
+        colorStruct.rgbReserverd = 0;
+        ((RGBQUAD *)(buffer))[i] = colorStruct;
+    }
+
+    for (int i = 16; i < 32; i++)
+    {
+        colorStruct.blue = 0;
+        colorStruct.green = 0;
+        colorStruct.red = 0;
+        colorStruct.rgbReserverd = 0;
+        ((RGBQUAD *)(buffer))[i] = colorStruct;
+    }
+
+    for (int i = 0; i < 4; i++)
+    {
+        FDrive::WriteToFile(buffer, 256, &structForWrite);
+    }
+
+    uint8 pixels[320];
+
+    for (int row = 239; row >= 0; row--)
+    {
+        Display::ReadRow((uint8)row, pixels);
+
+        FDrive::WriteToFile(pixels, 320, &structForWrite);
+    }
+
+    FDrive::CloseFile(&structForWrite);
+
+    Display::Message::Show("Файл сохранён", "File saved");
 
     return true;
 }
