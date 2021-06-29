@@ -77,7 +77,8 @@ void PageTime::OnChanged_PeakDet(bool active)
     }
     else
     {
-        Warnings::ShowWarningBad(Warning::TooSmallSweepForPeakDet);
+        Warnings::ShowWarningBad("охй. дер. ме пюанрюер мю пюгбепрйюу лемее 0.5ЛЙЯ/ДЕК",
+                                 "PEAK. DET. NOT WORK ON SWEETS LESS THAN 0.5us/div");
     }
 }
 
