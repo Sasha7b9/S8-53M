@@ -259,7 +259,7 @@ void TrigLev::Set(TrigSource::E ch, int16 trigLev)
     Display::ChangedRShiftMarkers();
     if (trigLev < TrigLev::MIN || trigLev > TrigLev::MAX)
     {
-        Warnings::ShowWarningBad(Warning::LimitSweep_Level);
+        Warnings::ShowWarningBad("опедек пюгбепрйю - спнбемэ", "LIMIT SWEEP - LEVEL");
     }
 
     Math::Limitation(&trigLev, TrigLev::MIN, TrigLev::MAX);

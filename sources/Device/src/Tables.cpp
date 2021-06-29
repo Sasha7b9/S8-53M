@@ -27,7 +27,6 @@ const char* Tables::GetWarning(Warning::E warning)
         {"опедек йюмюк 2 - бнкэр/дек",      "LIMIT CHANNEL 2 - VOLTS/DIV"},
         {"опедек пюгбепрйю - бпелъ/дек",    "LIMIT SWEEP - TIME/DIV"},
 
-        {"опедек пюгбепрйю - спнбемэ",      "LIMIT SWEEP - LEVEL"},
         {"опедек пюгбепрйю - \x97",         "LIMIT SWEEP - \x97"},
         {"охй. дер. ме пюанрюер мю пюгбепрйюу лемее 0.5ЛЙЯ/ДЕК", "PEAK. DET. NOT WORK ON SWEETS LESS THAN 0.5us/div"},
         {"яюлнохяеж ме лнфер пюанрюрэ мю ашярпшу пюгб╗прйюу", "SELF-RECORDER DOES NOT WORK FAST SCANS"},
