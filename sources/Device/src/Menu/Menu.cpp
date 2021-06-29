@@ -1,6 +1,5 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
-#include "common/Display/Painter/Painter_.h"
 #include "common/Hardware/Sound_.h"
 #include "common/Hardware/Timer_.h"
 #include "Display/Warnings.h"

@@ -1,5 +1,6 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
+#include "common/Display/Painter/Text_.h"
 #include "common/Panel/Controls_.h"
 #include "common/Utils/Containers/String_.h"
 #include "Menu/Items/MenuItems.h"
