@@ -43,7 +43,6 @@ const char* Tables::GetWarning(Warning::E warning)
         {"мю пюгбепрйюу ледкеммее 10ЛЯ/ДЕК фекюрекэмн сярюмюб-", "AT SCANNER SLOWLY 10ms/div DESIRABLY SET \"SCAN - \x7b\" IN"},
         {"кхбюрэ \"пюгбепрйю - \x7b\" б онкнфемхе \"кЕБН\" дкъ сяйнпе-", "SWITCH \"Left\" FOR TO ACCELERATE THE OUTPUT SIGNAL"},
         {"мхъ бшбндю яхцмюкю",              ""},
-        {"нвемэ люкн хглепемхи",            "VERY SMALL MEASURES"},
         {"дкъ бярсокемхъ хглемемхи б яхкс", "FOR THE INTRODUCTION OF CHANGES"},
         {"бшйкчвхре опханп",                "IN FORCE SWITCH OFF THE DEVICE"},
         {"нрйкчвхре бшвхякемхе аот",        "DISCONNECT CALCULATION OF FFT"}

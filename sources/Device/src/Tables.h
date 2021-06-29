@@ -24,7 +24,6 @@ struct Warning { enum E
     SetTPosToLeft1,
     SetTPosToLeft2,
     SetTPosToLeft3,
-    VerySmallMeasures,
     NeedRebootDevice1,
     NeedRebootDevice2,
     ImpossibleEnableMathFunction,
