@@ -2,12 +2,12 @@
 
 namespace std //-V1061
 {
-    unsigned int strlen(const char *);
-    int strcmp(const char *, const char *);
-    char *strcat(char *__restrict, const char *__restrict);
+    unsigned int strlen(const char * str);
+    int strcmp(const char * lhs, const char * rhs);
+    char *strcat(char *__restrict dest, const char *__restrict src);
     char *strcpy(char *__restrict dest, const char *__restrict src);
 
-    void *memset(void *, int val, unsigned int num);
-    int memcmp(const void *, const void *, unsigned int);
-    void *memcpy(void *dst, const void *src, unsigned int num);
+    void *memset(void * dest, int ch, unsigned int count);
+    int memcmp(const void * lhs, const void * rhs, unsigned int count);
+    void *memcpy(void * dest, const void * src, unsigned int count);
 }
