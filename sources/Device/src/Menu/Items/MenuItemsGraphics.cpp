@@ -679,7 +679,7 @@ void Button::Draw(int x, int y, bool) const
     bool pressed = IsPressed();
 
     HLine().Draw(y + 1, x, x + Item::WIDTH, Color::MENU_TITLE);
-    Color color = Color::WHITE;
+    Color color = IsActive() ? Color::WHITE : Color::MENU_ITEM_DARK;
     Region(Item::WIDTH - 1, Item::HEIGHT - 1).Fill(x + 1, y + 2, Color::MENU_ITEM);
     DrawVolumeButton(x + 4, y + 5, Item::WIDTH - 8, Item::HEIGHT - 8, 3, Color::MENU_ITEM, Color::MENU_ITEM_BRIGHT,
         Color::MENU_ITEM_DARK, pressed);

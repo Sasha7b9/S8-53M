@@ -15,6 +15,37 @@
 #include <cstring>
 
 
+static void HelpLong();
+static void ChannelLongA();
+static void ChannelLongB();
+static void TimeLong();
+static void TrigLong();
+static void StartDown();
+static void PowerDown();
+static void F1Long();
+static void F2Long();
+static void F3Long();
+static void F4Long();
+static void F5Long();
+static void MenuLong();
+static void RShiftLeftA();
+static void RShiftRightA();
+static void RShiftLeftB();
+static void RShiftRightB();
+static void TrigLevLeft();
+static void TrigLevRight();
+static void TShiftLeft();
+static void TShiftRight();
+static void RangeLeftA();
+static void RangeRightA();
+static void RangeLeftB();
+static void RangeRightB();
+static void TBaseLeft();
+static void TBaseRight();
+static void SetLeft();
+static void SetRight();
+
+
 #define MAX_DATA            20
 
 inline void E() {};
@@ -85,37 +116,6 @@ private:
 
 static ReceivedBuffer received_buffer;      // Прерывание от панели сюда складывает принятые данные
 static Queue<uint8> queue;                  // А здесь идёт обработка принятных данных
-
-
-static void HelpLong();
-static void ChannelLongA();
-static void ChannelLongB();
-static void TimeLong();
-static void TrigLong();
-static void StartDown();
-static void PowerDown();
-static void F1Long();
-static void F2Long();
-static void F3Long();
-static void F4Long();
-static void F5Long();
-static void MenuLong();
-static void RShiftLeftA();
-static void RShiftRightA();
-static void RShiftLeftB();
-static void RShiftRightB();
-static void TrigLevLeft();
-static void TrigLevRight();
-static void TShiftLeft();
-static void TShiftRight();
-static void RangeLeftA();
-static void RangeRightA();
-static void RangeLeftB();
-static void RangeRightB();
-static void TBaseLeft();
-static void TBaseRight();
-static void SetLeft();
-static void SetRight();
 
 
 static const pFuncVV funcOnKeyDown[Key::Count] =
