@@ -29,11 +29,11 @@ static void OnPress_SaveFirmware()
 
     while (address < endAddress)
     {
-        FDrive::WriteToFile(address, sizeBlock, &structForWrite);
+        FDrive::WriteToFile(address, sizeBlock);
         address += sizeBlock;
     }
 
-    FDrive::CloseFile(&structForWrite);
+    FDrive::CloseFile();
 
     Warnings::ShowWarningGood("ÏÐÎØÈÂÊÀ ÑÎÕÐÀÍÅÍÀ", "FIRMWARE SAVED");
 }

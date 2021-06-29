@@ -65,9 +65,9 @@ public:
     // откроет его
     static bool OpenNewFileForWrite(const char* fullPathToFile, StructForWrite *structForWrite);
 
-    static bool WriteToFile(uint8* data, int sizeData, StructForWrite *structForWrite);
+    static bool WriteToFile(uint8* data, int sizeData);
 
-    static bool CloseFile(StructForWrite *structForWrite);
+    static bool CloseFile();
 
     static bool AppendStringToFile(const char* string);
 
@@ -78,5 +78,11 @@ public:
     // Сохранить текущий сигнал на флешку в виде, соотвествующем установленным настройкам
     static void SaveCurrentSignal();
 
+    static String CreateFileName(pchar extension);
+
     static bool needOpenFileMananger;    // Если 1, то нужно открыть файловый менеджер (сработало автоподключение)
+
+private:
+
+    static StructForWrite *sfw;         // Указатель на структуру записи, используемую для текущего файла
 };

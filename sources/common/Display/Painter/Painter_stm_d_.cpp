@@ -9,9 +9,6 @@
 #include <cstring>
 
 
-static void CreateFileName(char name[255]);
-
-
 bool Painter::SaveScreenToFlashDrive()
 {
     if (!FDrive::IsConnected())
@@ -78,15 +75,13 @@ bool Painter::SaveScreenToFlashDrive()
 
     StructForWrite structForWrite;
 
-    char fileName[255];
+    String fileName = FDrive::CreateFileName("bmp");
 
-    CreateFileName(fileName);
+    FDrive::OpenNewFileForWrite(fileName.c_str(), &structForWrite);
 
-    FDrive::OpenNewFileForWrite(fileName, &structForWrite);
+    FDrive::WriteToFile((uint8 *)&bmFH, 14);
 
-    FDrive::WriteToFile((uint8 *)&bmFH, 14, &structForWrite);
-
-    FDrive::WriteToFile((uint8 *)&bmIH, 40, &structForWrite);
+    FDrive::WriteToFile((uint8 *)&bmIH, 40);
 
     uint8 buffer[320 * 3] = { 0 };
 
@@ -121,7 +116,7 @@ bool Painter::SaveScreenToFlashDrive()
 
     for (int i = 0; i < 4; i++)
     {
-        FDrive::WriteToFile(buffer, 256, &structForWrite);
+        FDrive::WriteToFile(buffer, 256);
     }
 
     uint8 pixels[320];
@@ -130,18 +125,12 @@ bool Painter::SaveScreenToFlashDrive()
     {
         Display::ReadRow((uint8)row, pixels);
 
-        FDrive::WriteToFile(pixels, 320, &structForWrite);
+        FDrive::WriteToFile(pixels, 320);
     }
 
-    FDrive::CloseFile(&structForWrite);
+    FDrive::CloseFile();
 
     Warnings::ShowWarningGood("ÔÀÉË ÑÎÕÐÀÍÅÍ", "FILE IS SAVED");
 
     return true;
-}
-
-
-static void CreateFileName(char name[255])
-{
-    std::strcpy(name, "picture.bmp");
 }

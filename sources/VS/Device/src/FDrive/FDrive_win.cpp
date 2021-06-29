@@ -54,13 +54,13 @@ bool FDrive::OpenNewFileForWrite(const char *, StructForWrite *)
 }
 
 
-bool FDrive::WriteToFile(uint8 *, int , StructForWrite *)
+bool FDrive::WriteToFile(uint8 *, int)
 {
     return false;
 }
 
 
-bool FDrive::CloseFile(StructForWrite *)
+bool FDrive::CloseFile()
 {
     return false;
 }
@@ -81,4 +81,10 @@ bool FDrive::IsConnected()
 void FDrive::SaveCurrentSignal()
 {
 
+}
+
+
+String FDrive::CreateFileName(pchar)
+{
+    return String("");
 }

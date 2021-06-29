@@ -5,6 +5,8 @@
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Hardware/USBH/USBH_.h"
 #include "FDrive/FDrive.h"
+#include "FPGA/Data/DataSettings.h"
+#include "FPGA/Data/Storage.h"
 #include "Menu/FileManager.h"
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
@@ -20,7 +22,7 @@ static char USBDISKPath[4];
 static bool isConnected = false;
 
 bool FDrive::needOpenFileMananger = false;
-
+StructForWrite *FDrive::sfw = nullptr;
 
 MSC_ApplicationTypeDef Appli_state = APPLICATION_IDLE;
 
@@ -313,42 +315,49 @@ bool FDrive::GetNextNameFile(char *nameFileOut, StructForReadDir *s)
 
 bool FDrive::OpenNewFileForWrite(const char* fullPathToFile, StructForWrite *structForWrite)
 {
-    if (f_open(&structForWrite->fileObj, fullPathToFile, FA_CREATE_ALWAYS | FA_WRITE) != FR_OK)
+    sfw = structForWrite;
+
+    if (f_open(&sfw->fileObj, fullPathToFile, FA_CREATE_ALWAYS | FA_WRITE) != FR_OK)
     {
         return false;
     }
-    std::strcpy(structForWrite->name, fullPathToFile);
-    structForWrite->sizeData = 0;
+
+    std::strcpy(sfw->name, fullPathToFile);
+
+    sfw->sizeData = 0;
+
     return true;
 }
 
 
-bool FDrive::WriteToFile(uint8* data, int sizeData, StructForWrite *structForWrite)
+bool FDrive::WriteToFile(uint8* data, int sizeData)
 {
     while (sizeData > 0)
     {
         int dataToCopy = sizeData;
-        if (sizeData + structForWrite->sizeData > SIZE_FLASH_TEMP_BUFFER)
+
+        if (sizeData + sfw->sizeData > SIZE_FLASH_TEMP_BUFFER)
         {
-            dataToCopy = SIZE_FLASH_TEMP_BUFFER - structForWrite->sizeData;
+            dataToCopy = SIZE_FLASH_TEMP_BUFFER - sfw->sizeData;
         }
+
         sizeData -= dataToCopy;
-        std::memcpy(structForWrite->tempBuffer + structForWrite->sizeData, data, (uint)dataToCopy);
+        std::memcpy(sfw->tempBuffer + sfw->sizeData, data, (uint)dataToCopy);
         data += dataToCopy;
-        structForWrite->sizeData += dataToCopy;
-        if (structForWrite->sizeData == SIZE_FLASH_TEMP_BUFFER)
+        sfw->sizeData += dataToCopy;
+
+        if (sfw->sizeData == SIZE_FLASH_TEMP_BUFFER)
         {
             uint wr = 0;
 
-            FRESULT result = f_write
-                            (&structForWrite->fileObj, structForWrite->tempBuffer, (uint)structForWrite->sizeData, &wr);
+            FRESULT result = f_write(&sfw->fileObj, sfw->tempBuffer, (uint)sfw->sizeData, &wr);
 
-            if (result != FR_OK || (uint)structForWrite->sizeData != wr)
+            if (result != FR_OK || (uint)sfw->sizeData != wr)
             {
                 return false;
             }
 
-            structForWrite->sizeData = 0;
+            sfw->sizeData = 0;
         }
     }
 
@@ -356,28 +365,29 @@ bool FDrive::WriteToFile(uint8* data, int sizeData, StructForWrite *structForWri
 }
 
 
-bool FDrive::CloseFile(StructForWrite *structForWrite)
+bool FDrive::CloseFile()
 {
-    if (structForWrite->sizeData != 0)
+    if (sfw->sizeData != 0)
     {
         uint wr = 0;
 
-        FRESULT result = f_write
-                            (&structForWrite->fileObj, structForWrite->tempBuffer, (uint)structForWrite->sizeData, &wr);
+        FRESULT result = f_write(&sfw->fileObj, sfw->tempBuffer, (uint)sfw->sizeData, &wr);
 
-        if (result != FR_OK || (uint)structForWrite->sizeData != wr)
+        if (result != FR_OK || (uint)sfw->sizeData != wr)
         {
-            f_close(&structForWrite->fileObj);
+            f_close(&sfw->fileObj);
             return false;
         }
     }
-    f_close(&structForWrite->fileObj);
+    f_close(&sfw->fileObj);
 
     FILINFO fno;
     PackedTime time = HAL_RTC::GetPackedTime();
     fno.fdate = (WORD)(((time.year + 20) * 512) | (time.month * 32) | time.day);
     fno.ftime = (WORD)((time.hours * 2048) | (time.minutes * 32) | (time.seconds / 2));
-    f_utime(structForWrite->name, &fno);
+    f_utime(sfw->name, &fno);
+
+    sfw = nullptr;
 
     return true;
 }
@@ -411,4 +421,31 @@ void FDrive::SaveCurrentSignal()
     {
         Painter::SaveScreenToFlashDrive();
     }
+    else
+    {
+        DataReading data;
+
+        Storage::ExtractLast(data);
+
+        DataSettings &ds = data.Settings();
+
+        if (!ds.IsEnabled(ChA) && !ds.IsEnabled(ChB))
+        {
+            return;
+        }
+
+        String fileName = CreateFileName("csv");
+
+
+    }
+}
+
+
+String FDrive::CreateFileName(pchar extension)
+{
+    String result("picture.");
+
+    result.Append(extension);
+
+    return result;
 }
