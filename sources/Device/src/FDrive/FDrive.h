@@ -60,6 +60,7 @@ public:
     static bool GetNameFile(pchar fullPath, int numFile, char *nameFileOut, StructForReadDir *sfrd);
 
     static bool GetNextNameFile(char *nameFileOut, StructForReadDir *sfrd);
+
     // Функция создаст файл для записи. Если такой файл уже существует, сотрёт его, заменит новым нулевой длины и
     // откроет его
     static bool OpenNewFileForWrite(const char* fullPathToFile, StructForWrite *structForWrite);
@@ -73,6 +74,9 @@ public:
     static void ChangeState();
 
     static bool IsConnected();
+
+    // Сохранить текущий сигнал на флешку в виде, соотвествующем установленным настройкам
+    static void SaveCurrentSignal();
 
     static bool needOpenFileMananger;    // Если 1, то нужно открыть файловый менеджер (сработало автоподключение)
 };

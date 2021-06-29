@@ -1,5 +1,6 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
+#include "common/Display/Painter/Painter_.h"
 #include "common/Display/Painter/Text_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Hardware/USBH/USBH_.h"
@@ -401,4 +402,13 @@ void FDrive::ChangeState()
 bool FDrive::IsConnected()
 {
     return isConnected;
+}
+
+
+void FDrive::SaveCurrentSignal()
+{
+    if (set.memory.mode_save_signal.IsBMP())
+    {
+        Painter::SaveScreenToFlashDrive();
+    }
 }

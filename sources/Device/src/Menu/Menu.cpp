@@ -338,7 +338,9 @@ void Menu::Handlers::ShortPressureKey(Key::E key)
 
     if (set.memory.mode_button_memory.IsSave() && FDrive::IsConnected())
     {
-        Painter::SaveScreenToFlashDrive();
+        FDrive::SaveCurrentSignal();
+
+        return;
     }
 
     Display::Redraw();

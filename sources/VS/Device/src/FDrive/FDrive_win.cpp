@@ -76,3 +76,9 @@ bool FDrive::IsConnected()
 {
     return false;
 }
+
+
+void FDrive::SaveCurrentSignal()
+{
+
+}
