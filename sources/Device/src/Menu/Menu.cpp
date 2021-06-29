@@ -197,7 +197,7 @@ void Menu::Handlers::PressKey(Key::E key)
         if (std::memcmp(bufferForButtons, sampleBufferForButtons, SIZE_BUFFER_FOR_BUTTONS * sizeof(Key::E)) == 0)
         {
             showDebugMenu = true;
-            Warnings::ShowWarningGood(Warning::MenuDebugEnabled);
+            Warnings::ShowWarningGood("лемч нркюдйю бйкчвемн", "DEBUGGING MENU ON");
         }
     }
 

@@ -26,10 +26,8 @@ const char* Tables::GetWarning(Warning::E warning)
         {"опедек йюмюк 1 - бнкэр/дек",      "LIMIT CHANNEL 1 - VOLTS/DIV"},
         {"опедек йюмюк 2 - бнкэр/дек",      "LIMIT CHANNEL 2 - VOLTS/DIV"},
         {"опедек пюгбепрйю - бпелъ/дек",    "LIMIT SWEEP - TIME/DIV"},
-
         {"яхцмюк янупюмем",                 "SIGNAL IS SAVED"},
-        {"яхцмкю сдюкем",                   "SIGNAL IS DELETED"},
-        {"лемч нркюдйю бйкчвемн",           "MENU DEBUG IS SET_ENABLED"},
+
         {"онднфдхре меяйнкэйн яейсмд, хдер оепелеыемхе дюммшу", "WAIT ChA FEW SECONDS, GOES ChA MOVEMENT DATA"},
         {"бпелъ ме сярюмнбкемн. лнфере сярюмнбхрэ ецн яеивюя", "TIME IS NOT SET. YOU CAN INSTALL IT NOW"},
         {"яхцмюк ме мюидем",                "SIGNAL IS NOT FOUND"},

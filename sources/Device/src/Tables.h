@@ -7,10 +7,8 @@ struct Warning { enum E
     LimitChan1_Volts,
     LimitChan2_Volts,
     LimitSweep_Time,
-
     SignalIsSaved,
-    SignalIsDeleted,
-    MenuDebugEnabled,
+
     MovingData,
     TimeNotSet,
     SignalNotFound,
