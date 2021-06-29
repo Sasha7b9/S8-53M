@@ -291,7 +291,8 @@ void TBase::Decrease()
     {
         if (PageTime::InSelfRecoredMode() && (set.time.base == TBase::MIN_P2P))
         {
-            Warnings::ShowWarningBad(Warning::TooFastScanForSelfRecorder);
+            Warnings::ShowWarningBad("—¿ÃŒœ»—≈÷ Õ≈ ÃŒ∆≈“ –¿¡Œ“¿“‹ Õ¿ ¡€—“–€’ –¿«¬®–“ ¿’",
+                                     "SELF-RECORDER DOES NOT WORK FAST SCANS");
         }
         else
         {

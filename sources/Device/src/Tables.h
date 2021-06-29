@@ -8,8 +8,6 @@ struct Warning { enum E
     LimitChan2_Volts,
     LimitSweep_Time,
 
-    TooSmallSweepForPeakDet,
-    TooFastScanForSelfRecorder,
     FileIsSaved,
     SignalIsSaved,
     SignalIsDeleted,

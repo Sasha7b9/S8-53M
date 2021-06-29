@@ -27,7 +27,6 @@ const char* Tables::GetWarning(Warning::E warning)
         {"опедек йюмюк 2 - бнкэр/дек",      "LIMIT CHANNEL 2 - VOLTS/DIV"},
         {"опедек пюгбепрйю - бпелъ/дек",    "LIMIT SWEEP - TIME/DIV"},
 
-        {"яюлнохяеж ме лнфер пюанрюрэ мю ашярпшу пюгб╗прйюу", "SELF-RECORDER DOES NOT WORK FAST SCANS"},
         {"тюик янупюмем",                   "FILE IS SAVED"},
         {"яхцмюк янупюмем",                 "SIGNAL IS SAVED"},
         {"яхцмкю сдюкем",                   "SIGNAL IS DELETED"},
