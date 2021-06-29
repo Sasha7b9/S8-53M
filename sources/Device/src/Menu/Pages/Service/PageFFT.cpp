@@ -77,7 +77,7 @@ static void OnPress()
 {
     if (!IsActive())
     {
-        Warnings::ShowWarningBad(Warning::ImpossibleEnableFFT);
+        Warnings::ShowWarningBad("нрйкчвхре люрелюрхвеяйсч тсмйжхч", "DISCONNECT MATHEMATICAL FUNCTION");
     }
 }
 

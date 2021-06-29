@@ -28,7 +28,6 @@ struct Warning { enum E
     NeedRebootDevice1,
     NeedRebootDevice2,
     ImpossibleEnableMathFunction,
-    ImpossibleEnableFFT,
     Count
 };};
 
