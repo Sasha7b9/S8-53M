@@ -26,7 +26,7 @@ const char* Tables::GetWarning(Warning::E warning)
         {"опедек йюмюк 1 - бнкэр/дек",      "LIMIT CHANNEL 1 - VOLTS/DIV"},
         {"опедек йюмюк 2 - бнкэр/дек",      "LIMIT CHANNEL 2 - VOLTS/DIV"},
         {"опедек пюгбепрйю - бпелъ/дек",    "LIMIT SWEEP - TIME/DIV"},
-        {"бйкчвем охйнбши дерейрнп",        "SET_ENABLED PEAK. DET."},
+
         {"опедек йюмюк 1 - \x0d",           "LIMIT CHANNEL 1 - \x0d"},
         {"опедек йюмюк 2 - \x0d",           "LIMIT CHANNEL 2 - \x0d"},
         {"опедек пюгбепрйю - спнбемэ",      "LIMIT SWEEP - LEVEL"},
@@ -40,9 +40,6 @@ const char* Tables::GetWarning(Warning::E warning)
         {"онднфдхре меяйнкэйн яейсмд, хдер оепелеыемхе дюммшу", "WAIT ChA FEW SECONDS, GOES ChA MOVEMENT DATA"},
         {"бпелъ ме сярюмнбкемн. лнфере сярюмнбхрэ ецн яеивюя", "TIME IS NOT SET. YOU CAN INSTALL IT NOW"},
         {"яхцмюк ме мюидем",                "SIGNAL IS NOT FOUND"},
-        {"мю пюгбепрйюу ледкеммее 10ЛЯ/ДЕК фекюрекэмн сярюмюб-", "AT SCANNER SLOWLY 10ms/div DESIRABLY SET \"SCAN - \x7b\" IN"},
-        {"кхбюрэ \"пюгбепрйю - \x7b\" б онкнфемхе \"кЕБН\" дкъ сяйнпе-", "SWITCH \"Left\" FOR TO ACCELERATE THE OUTPUT SIGNAL"},
-        {"мхъ бшбндю яхцмюкю",              ""},
         {"дкъ бярсокемхъ хглемемхи б яхкс", "FOR THE INTRODUCTION OF CHANGES"},
         {"бшйкчвхре опханп",                "IN FORCE SWITCH OFF THE DEVICE"},
         {"нрйкчвхре бшвхякемхе аот",        "DISCONNECT CALCULATION OF FFT"}

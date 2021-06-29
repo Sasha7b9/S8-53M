@@ -276,7 +276,7 @@ void TBase::Decrease()
     if (PeackDetMode::IsEnabled() && (set.time.base <= TBase::MIN_PEAK_DET))
     {
         Warnings::ShowWarningBad(Warning::LimitSweep_Time);
-        Warnings::ShowWarningBad(Warning::EnabledPeakDet);
+        Warnings::ShowWarningBad("ÂÊËÞ×ÅÍ ÏÈÊÎÂÛÉ ÄÅÒÅÊÒÎÐ", "PEAK DETECTOR IS ENABLED");
         return;
     }
 

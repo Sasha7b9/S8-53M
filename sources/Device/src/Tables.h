@@ -7,7 +7,7 @@ struct Warning { enum E
     LimitChan1_Volts,
     LimitChan2_Volts,
     LimitSweep_Time,
-    EnabledPeakDet,
+
     LimitChan1_RShift,
     LimitChan2_RShift,
     LimitSweep_Level,
@@ -21,9 +21,6 @@ struct Warning { enum E
     MovingData,
     TimeNotSet,
     SignalNotFound,
-    SetTPosToLeft1,
-    SetTPosToLeft2,
-    SetTPosToLeft3,
     NeedRebootDevice1,
     NeedRebootDevice2,
     ImpossibleEnableMathFunction,
