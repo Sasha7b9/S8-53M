@@ -4,7 +4,9 @@
 #include "common/Display/Painter/Text_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Hardware/USBH/USBH_.h"
+#include "Display/Warnings.h"
 #include "FDrive/FDrive.h"
+#include "FPGA/FPGA_Types.h"
 #include "FPGA/Data/DataSettings.h"
 #include "FPGA/Data/Storage.h"
 #include "Menu/FileManager.h"
@@ -452,17 +454,39 @@ void FDrive::SaveCurrentSignal()
 
         OpenNewFileForWrite(fileName.c_str());
 
+        WriteStringToFile(String("%d - top", Value::MAX).c_str());
+        WriteStringToFile(String("%d - center", Value::AVE).c_str());
+        WriteStringToFile(String("%d - bottom", Value::MIN).c_str());
+
         if (ds.IsEnabled(ChA))
         {
             WriteStringToFile("Data 1:");
+
+            uint numBytes = ds.BytesInChannel();
+            uint8 *bytes = data.Data(ChA);
+
+            for (uint i = 0; i < numBytes; i++)
+            {
+                WriteStringToFile(String("%d : %d", i, bytes[i]).c_str());
+            }
         }
 
         if (ds.IsEnabled(ChB))
         {
             WriteStringToFile("Data 2:");
+
+            uint numBytes = ds.BytesInChannel();
+            uint8 *bytes = data.Data(ChB);
+
+            for (uint i = 0; i < numBytes; i++)
+            {
+                WriteStringToFile(String("%d : %d", i, bytes[i]).c_str());
+            }
         }
 
         CloseFile();
+
+        Warnings::ShowWarningGood("ÔÀÉË ÑÎÕÐÀÍÅÍ", "FILE IS SAVED");
     }
 }
 
