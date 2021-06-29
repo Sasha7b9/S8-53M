@@ -243,7 +243,14 @@ void RShift::Set(const Channel &ch, int16 rShift)
 
     if (rShift > RShift::MAX || rShift < RShift::MIN)
     {
-        Warnings::ShowWarningBad(ch == ChA ? Warning::LimitChan1_RShift : Warning::LimitChan2_RShift);
+        if (ch.IsA())
+        {
+            Warnings::ShowWarningBad("ÏÐÅÄÅË ÊÀÍÀË 1 - \x0d", "LIMIT CHANNEL 1 - \x0d");
+        }
+        else
+        {
+            Warnings::ShowWarningBad("ÏÐÅÄÅË ÊÀÍÀË 2 - \x0d", "LIMIT CHANNEL 2 - \x0d");
+        }
     }
 
     Math::Limitation(&rShift, RShift::MIN, RShift::MAX);
