@@ -10,10 +10,10 @@ struct Warnings
     static void ClearFromWarnings();
 
     static void ShowWarningBad(Warning::E warning);
-
     static void ShowWarningBad(pchar textRu, pchar textEn);
 
     static void ShowWarningGood(Warning::E warning);
+    static void ShowWarningGood(pchar textRu, pchar textEn);
 
 private:
 

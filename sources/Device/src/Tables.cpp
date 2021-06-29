@@ -47,8 +47,7 @@ const char* Tables::GetWarning(Warning::E warning)
         {"дкъ бярсокемхъ хглемемхи б яхкс", "FOR THE INTRODUCTION OF CHANGES"},
         {"бшйкчвхре опханп",                "IN FORCE SWITCH OFF THE DEVICE"},
         {"нрйкчвхре бшвхякемхе аот",        "DISCONNECT CALCULATION OF FFT"},
-        {"нрйкчвхре люрелюрхвеяйсч тсмйжхч", "DISCONNECT MATHEMATICAL FUNCTION"},
-        {"опньхбйю янупюмемю",              "FIRMWARE SAVED"}
+        {"нрйкчвхре люрелюрхвеяйсч тсмйжхч", "DISCONNECT MATHEMATICAL FUNCTION"}
     };
     return warnings[warning][LANG];
 }

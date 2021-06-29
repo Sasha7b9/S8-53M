@@ -110,10 +110,26 @@ void Warnings::ShowWarningBad(Warning::E warning)
 }
 
 
+void Warnings::ShowWarningBad(pchar textRu, pchar textEn)
+{
+    Color::ResetFlash();
+    ShowWarn(LANG_RU ? textRu : textEn);
+    Sound::WarnBeepBad();
+}
+
+
 void Warnings::ShowWarningGood(Warning::E warning)
 {
     Color::ResetFlash();
     ShowWarn(Tables::GetWarning(warning));
+    Sound::WarnBeepGood();
+}
+
+
+void Warnings::ShowWarningGood(pchar textRu, pchar textEn)
+{
+    Color::ResetFlash();
+    ShowWarn(LANG_RU ? textRu : textEn);
     Sound::WarnBeepGood();
 }
 

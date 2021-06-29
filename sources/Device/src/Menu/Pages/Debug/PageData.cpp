@@ -35,7 +35,7 @@ static void OnPress_SaveFirmware()
 
     FDrive::CloseFile(&structForWrite);
 
-    Warnings::ShowWarningGood(Warning::FirmwareSaved);
+    Warnings::ShowWarningGood("опньхбйю янупюмемю", "FIRMWARE SAVED");
 }
 
 DEF_BUTTON(bSaveFirmware, PageDebug::PageData::self,
