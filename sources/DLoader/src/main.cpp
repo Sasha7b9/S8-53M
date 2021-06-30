@@ -26,8 +26,8 @@ void Upgrade();
 
 int main()
 {
-//    MainStruct::ms = (MainStruct *)(std::malloc(sizeof(MainStruct)));
-//    MainStruct::ms->percentUpdate = 0.0F;
+    MainStruct::ms = (MainStruct *)(std::malloc(sizeof(MainStruct)));
+    MainStruct::ms->percentUpdate = 0.0F;
 
     HAL::Init();
 

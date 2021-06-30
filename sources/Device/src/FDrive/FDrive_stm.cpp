@@ -35,8 +35,6 @@ static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8 id);
 
 void FDrive::Init(void)
 {
-//    HAL_HCD::Init();
-
     if (FATFS_LinkDriver(&USBH_Driver, USBDISKPath) == 0)
     {
         USBH_Init((USBH_HandleTypeDef *)USBH::handle, USBH_UserProcess, 0);

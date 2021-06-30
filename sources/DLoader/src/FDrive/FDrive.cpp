@@ -1,9 +1,10 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h" 
 #include "common/Hardware/HAL/HAL_.h"
+#include "common/Hardware/USBH/USBH_.h"
 #include <usbh_def.h>
 #include <ff_gen_drv.h>
-#include <usbh_diskio.h>
+#include <usbh_diskio_.h>
 #include <usbh_core.h>
 #include <usbh_msc.h>
 #include "ffconf.h"
@@ -28,7 +29,7 @@ struct StructForReadDir
 
 static bool GetNameFile(pchar fullPath, int numFile, char *nameFileOut, StructForReadDir *s);
 static bool GetNextNameFile(char *nameFileOut, StructForReadDir *s);
-//static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8 id);
+static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8 id);
 
 
 
@@ -38,43 +39,43 @@ void FDrive_Init()
     MainStruct::ms->drive.connection = 0;
     MainStruct::ms->drive.active = 0;
 
-//    if (FATFS_LinkDriver(&USBH_Driver, MainStruct::ms->drive.USBDISKPath) == FR_OK)
-//    {
-//        USBH_StatusTypeDef res = USBH_Init(&handleUSBH, USBH_UserProcess, 0);
-//        res = USBH_RegisterClass(&handleUSBH, USBH_MSC_CLASS);
-//        res = USBH_Start(&handleUSBH);
-//    }
+    if (FATFS_LinkDriver(&USBH_Driver, MainStruct::ms->drive.USBDISKPath) == FR_OK)
+    {
+        USBH_Init((USBH_HandleTypeDef *)USBH::handle, USBH_UserProcess, 0);
+        USBH_RegisterClass((USBH_HandleTypeDef *)USBH::handle, USBH_MSC_CLASS);
+        USBH_Start((USBH_HandleTypeDef *)USBH::handle);
+    }
 }
 
 
-//void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
-//{
-//    switch (id)
-//    {
-//        case HOST_USER_SELECT_CONFIGURATION:
-//            break;
-//
-//        case HOST_USER_CLASS_ACTIVE:
-//            MainStruct::ms->drive.active++;
-//            MainStruct::ms->drive.state = StateDisk_Start;
-//            break;
-//
-//        case HOST_USER_CLASS_SELECTED:
-//            break;
-//
-//        case HOST_USER_CONNECTION:
-//            MainStruct::ms->drive.connection++;
-//            MainStruct::ms->state = State::Mount;
-//            f_mount(NULL, (TCHAR const*)"", 0);
-//            break;
-//
-//        case HOST_USER_DISCONNECTION:
-//            break;
-//
-//        default:
-//            break;
-//    }
-//}
+void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
+{
+    switch (id)
+    {
+        case HOST_USER_SELECT_CONFIGURATION:
+            break;
+
+        case HOST_USER_CLASS_ACTIVE:
+            MainStruct::ms->drive.active++;
+            MainStruct::ms->drive.state = StateDisk::Start;
+            break;
+
+        case HOST_USER_CLASS_SELECTED:
+            break;
+
+        case HOST_USER_CONNECTION:
+            MainStruct::ms->drive.connection++;
+            MainStruct::ms->state = State::Mount;
+            f_mount(NULL, (TCHAR const*)"", 0);
+            break;
+
+        case HOST_USER_DISCONNECTION:
+            break;
+
+        default:
+            break;
+    }
+}
 
 
 bool FDrive_Update()
