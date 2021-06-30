@@ -17,12 +17,9 @@
 MSC_ApplicationTypeDef Appli_state = APPLICATION_IDLE;
 
 
-bool FDrive::connected = false;
-bool FDrive::active = false;
 FATFS FDrive::USBDISKFatFS;
 char FDrive::USBDISKPath[4];
 FIL FDrive::file;
-StateDisk::E FDrive::state = StateDisk::Idle;
 
 
 struct StructForReadDir
@@ -43,10 +40,6 @@ static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8 id);
 
 void FDrive::Init()
 {
-    state = StateDisk::Idle;
-    connected = false;
-    active = false;
-
     if (FATFS_LinkDriver(&USBH_Driver, USBDISKPath) == FR_OK)
     {
         USBH_Init((USBH_HandleTypeDef *)USBH::handle, USBH_UserProcess, 0);
@@ -64,21 +57,19 @@ void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
             break;
 
         case HOST_USER_CLASS_ACTIVE:
-            FDrive::active = true;
-            FDrive::state = StateDisk::Start;
+            MainStruct::state = State::NeedMount;
             break;
 
         case HOST_USER_CLASS_SELECTED:
             break;
 
         case HOST_USER_CONNECTION:
-            FDrive::connected = true;
-            MainStruct::state = State::Mount;
             f_mount(NULL, (TCHAR const*)"", 0);
             break;
 
         case HOST_USER_DISCONNECTION:
-            FDrive::connected = false;
+            MainStruct::state = State::Start;
+            f_mount(NULL, (TCHAR const *)"", 0);
             break;
 
         default:
@@ -91,11 +82,15 @@ void FDrive::Update()
 {
     USBH_Process(reinterpret_cast<USBH_HandleTypeDef *>(USBH::handle));
 
-    if (state == StateDisk::Start)
+    if (MainStruct::state == State::NeedMount)
     {
         if (f_mount(&USBDISKFatFS, (TCHAR const*)USBDISKPath, 0) != FR_OK)
         {
             MainStruct::state = State::WrongFlash;
+        }
+        else
+        {
+            MainStruct::state = State::Mounted;
         }
     }
 }
@@ -231,8 +226,9 @@ int FDrive::OpenFileForRead(pchar fileName)
 {
     if (f_open(&file, fileName, FA_READ) == FR_OK)
     {
-//        return (int)ms->drive.file.fsize;
+        return (int)f_size(&file);
     }
+
     return -1;
 }
 

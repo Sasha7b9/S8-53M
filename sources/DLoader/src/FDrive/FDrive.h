@@ -14,20 +14,11 @@ typedef enum
 extern MSC_ApplicationTypeDef Appli_state;
 
 
-struct StateDisk { enum E {
-    Idle,
-    Start
-}; };
-
-
 struct FDrive
 {
     static FATFS USBDISKFatFS;
     static char USBDISKPath[4];
-    static StateDisk::E state;
     static FIL file;
-    static bool connected;
-    static bool active;
 
     static void Init();
 

@@ -39,42 +39,35 @@ int main()
 
     uint timeStart = TIME_MS;
 
-    while (!FDrive::connected && (TIME_MS - timeStart < TIME_WAIT))
+    while (TIME_MS - timeStart < TIME_WAIT && (MainStruct::state != State::Mounted))
     {
         FDrive::Update();
     }
 
-    // Если флеша подключена, но в активное состояние почему-то не перешла
-    if ((FDrive::connected && !FDrive::active) ||
-        // или перешла в активное состояние, по почему-то не запустился процесс монтирования
-        (FDrive::active && (MainStruct::state != State::Mount)))
+    if (MainStruct::state == State::Mounted)                    // Это означает, что диск удачно примонтирован
     {
-        HAL::SystemReset();
-        return 0;
-    }
-
-    if (MainStruct::state == State::Mount)                           // Это означает, что диск удачно примонтирован
-    {
-        if (FDrive::FileExist(FILE_NAME))                    // Если на диске обнаружена прошивка
+        if (FDrive::FileExist(FILE_NAME))                       // Если на диске обнаружена прошивка
         {
-            MainStruct::state = State::RequestAction;
+            Upgrade();
 
-            while (1)
-            {
-                Key::E button = Panel::PressedButton();
-
-                if (button == Key::F1)
-                {
-                    MainStruct::state = State::Upgrade;
-                    Upgrade();
-                    break;
-                }
-                else if (button == Key::F5)
-                {
-                    MainStruct::state = State::Ok;
-                    break;
-                }
-            }
+//            MainStruct::state = State::RequestAction;
+//
+//            while (1)
+//            {
+//                Key::E button = Panel::PressedButton();
+//
+//                if (button == Key::F1)
+//                {
+//                    MainStruct::state = State::Upgrade;
+//                    Upgrade();
+//                    break;
+//                }
+//                else if (button == Key::F5)
+//                {
+//                    MainStruct::state = State::Ok;
+//                    break;
+//                }
+//            }
         }
         else
         {
@@ -109,7 +102,10 @@ void Upgrade()
 
     uint8 buffer[sizeSector];
 
-    Sector::Get(Sector::_05_FIRM_1).Erase();
+    for (int sector = Sector::_05_FIRM_1; sector <= Sector::_09_FIRM_5; sector++)
+    {
+        Sector::Get((Sector::E)sector).Erase();
+    }
 
     int size = FDrive::OpenFileForRead(FILE_NAME);
     int fullSize = size;

@@ -85,7 +85,7 @@ void Display::Update()
         Text("Отдел маркетинга: тел./факс. 8-017-270-02-00").DrawInCenterRect(0, 205, 320, 20);
         Text("Разработчики: e-mail: mnipi-24(@)tut.by, тел. 8-017-270-02-23").DrawInCenterRect(0, 220, 320, 20);
     }
-    else if (MainStruct::state == State::Mount)
+    else if (MainStruct::state == State::Mounted)
     {
         uint dT = TIME_MS - timePrev;
         DrawProgressBar(dT);
