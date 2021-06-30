@@ -2,24 +2,24 @@ project (S8-53M)
 
 include_directories(../..
                     ../../Device/src
-                    ../../Device/src/Hardware/FatFS
                     ../../Device/src/Hardware/HAL
                     ../../Device/src/Hardware/LwIP
                     ../../Device/src/Hardware/USBD
                                  src
-                    ../../common/Hardware/USBH
-                    ../../common/_VS_GUI/CMSIS
-                    ../../common/STM32Cube_F4/Drivers/CMSIS/Device/ST/STM32F4xx/Include
-                    ../../common/STM32Cube_F4/Drivers/STM32F4xx_HAL_Driver/Inc
-                    ../../common/STM32Cube_F4/Middlewares/Third_Party/FatFs/src
-                    ../../common/STM32Cube_F4/Middlewares/Third_Party/LwIP/src/include
-                    ../../common/STM32Cube_F4/Middlewares/Third_Party/LwIP/system
-                    ../../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc
-                    ../../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc
-                    ../../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Core/Inc
-                    ../../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc
-                    ../../ThirdParty/wxWidgets/include
-                    ../../ThirdParty/wxWidgets/generated/lib/vc_dll/mswud
+                        ../../common/Hardware/FatFS
+                        ../../common/Hardware/USBH
+                        ../../common/_VS_GUI/CMSIS
+                        ../../common/STM32Cube_F4/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+                        ../../common/STM32Cube_F4/Drivers/STM32F4xx_HAL_Driver/Inc
+                        ../../common/STM32Cube_F4/Middlewares/Third_Party/FatFs/src
+                        ../../common/STM32Cube_F4/Middlewares/Third_Party/LwIP/src/include
+                        ../../common/STM32Cube_F4/Middlewares/Third_Party/LwIP/system
+                        ../../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc
+                        ../../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc
+                        ../../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Core/Inc
+                        ../../common/STM32Cube_F4/Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Inc
+                        ../../ThirdParty/wxWidgets/include
+                        ../../ThirdParty/wxWidgets/generated/lib/vc_dll/mswud
                     )
 
 add_definitions(-DSTM32F429xx -DWXUSINGDLL -DGUI -DDEVICE)

@@ -2,9 +2,9 @@ project (DLoader)
 
 #set(CMAKE_UNITY_BUILD ON)
 
-include_directories(src
-                    src/Hardware/FatFS
-                    src/Hardware/HAL
+include_directories(      src
+                          src/Hardware/HAL
+                    ../common/Hardware/FatFS
                     ../common/Hardware/USBH
                     ..
                     ../common/_VS_KEIL/ARMCLANG

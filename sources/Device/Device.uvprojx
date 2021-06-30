@@ -339,7 +339,7 @@
               <MiscControls>--cpp</MiscControls>
               <Define>USE_HAL_DRIVER, STM32F429xx, __cplusplus, DEVICE</Define>
               <Undefine></Undefine>
-              <IncludePath>..\common\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Inc;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Src;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src;..\common\STM32Cube_F4\Middlewares\Third_Party\LwIP\src;..\common\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\include;..\common\STM32Cube_F4\Middlewares\Third_Party\LwIP\system;..\common\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\include\ipv4;..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src;..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\drivers;.\src;.\src\libs;..\common\Hardware\USBH;..\common\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\include\lwip;..\common\STM32Cube_F4\Drivers\CMSIS\Include;.\src\Hardware\HAL;.\src\Hardware\USBH;.\src\Hardware\FatFS;.\src\Hardware\USBD;.\src\Hardware\LwIP;..\..\sources</IncludePath>
+              <IncludePath>..\common\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Inc;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Src;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src;..\common\STM32Cube_F4\Middlewares\Third_Party\LwIP\src;..\common\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\include;..\common\STM32Cube_F4\Middlewares\Third_Party\LwIP\system;..\common\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\include\ipv4;..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src;..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\drivers;.\src;.\src\libs;..\common\Hardware\FatFS;..\common\Hardware\USBH;..\common\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\include\lwip;..\common\STM32Cube_F4\Drivers\CMSIS\Include;.\src\Hardware\HAL;.\src\Hardware\USBD;.\src\Hardware\LwIP;..\..\sources</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1111,12 +1111,7 @@
             <File>
               <FileName>ffconf.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Hardware\FatFS\ffconf.h</FilePath>
-            </File>
-            <File>
-              <FileName>usbh_diskio.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\FatFS\usbh_diskio.h</FilePath>
+              <FilePath>..\common\Hardware\FatFS\ffconf.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2610,7 +2605,7 @@
             <nStopA1X>0</nStopA1X>
             <nStopA2X>0</nStopA2X>
           </AfterMake>
-          <SelectedForBatchBuild>0</SelectedForBatchBuild>
+          <SelectedForBatchBuild>1</SelectedForBatchBuild>
           <SVCSIdString></SVCSIdString>
         </TargetCommonOption>
         <CommonProperty>
@@ -2860,7 +2855,7 @@
               <MiscControls>--cpp</MiscControls>
               <Define>USE_HAL_DRIVER, STM32F429xx, __cplusplus, DEBUG, DEVICE</Define>
               <Undefine></Undefine>
-              <IncludePath>..\common\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Inc;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Src;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src;..\common\STM32Cube_F4\Middlewares\Third_Party\LwIP\src;..\common\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\include;..\common\STM32Cube_F4\Middlewares\Third_Party\LwIP\system;..\common\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\include\ipv4;..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src;..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\drivers;.\src;.\src\libs;..\common\Hardware\USBH;..\common\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\include\lwip;..\common\STM32Cube_F4\Drivers\CMSIS\Include;.\src\Hardware\HAL;.\src\Hardware\USBH;.\src\Hardware\FatFS;.\src\Hardware\USBD;.\src\Hardware\LwIP;..\..\sources</IncludePath>
+              <IncludePath>..\common\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\common\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Src;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Inc;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Src;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Device_Library\Core\Src;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Inc;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Class\MSC\Src;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Inc;..\common\STM32Cube_F4\Middlewares\ST\STM32_USB_Host_Library\Core\Src;..\common\STM32Cube_F4\Middlewares\Third_Party\LwIP\src;..\common\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\include;..\common\STM32Cube_F4\Middlewares\Third_Party\LwIP\system;..\common\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\include\ipv4;..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src;..\common\STM32Cube_F4\Middlewares\Third_Party\FatFs\src\drivers;.\src;.\src\libs;..\common\Hardware\FatFS;..\common\Hardware\USBH;..\common\STM32Cube_F4\Middlewares\Third_Party\LwIP\src\include\lwip;..\common\STM32Cube_F4\Drivers\CMSIS\Include;.\src\Hardware\HAL;.\src\Hardware\USBD;.\src\Hardware\LwIP;..\..\sources</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -3632,12 +3627,7 @@
             <File>
               <FileName>ffconf.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Hardware\FatFS\ffconf.h</FilePath>
-            </File>
-            <File>
-              <FileName>usbh_diskio.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Hardware\FatFS\usbh_diskio.h</FilePath>
+              <FilePath>..\common\Hardware\FatFS\ffconf.h</FilePath>
             </File>
           </Files>
         </Group>

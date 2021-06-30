@@ -1,11 +1,11 @@
 project (Device)
 
 include_directories(..
-                    src
-                    src/Hardware/FatFS
-                    src/Hardware/HAL
-                    src/Hardware/LwIP
-                    src/Hardware/USBD
+                          src
+                          src/Hardware/HAL
+                          src/Hardware/LwIP
+                          src/Hardware/USBD
+                    ../common/Hardware/FatFS
                     ../common/Hardware/USBH
                     ../common/_VS_KEIL/ARMCLANG
                     ../common/_VS_KEIL/CMSIS
