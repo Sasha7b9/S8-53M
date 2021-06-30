@@ -68,7 +68,7 @@ void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
             break;
 
         case HOST_USER_DISCONNECTION:
-            MainStruct::state = State::Start;
+            MainStruct::state = State::NoDrive;
             f_mount(NULL, (TCHAR const *)"", 0);
             break;
 

@@ -16,10 +16,11 @@
 #define NUM_OF_PAGES                256
 #define FLASH_PAGE_SIZE             2048
 
-#define TIME_WAIT   5000    // Время работы заставки
+#define TIME_WAIT   10000    // Время работы заставки
 
 
 struct State { enum E {
+    NoDrive,            // Стартовое значение. Если оно, то не обнаружена флешка
     Start,              // Исходное состояние
     NeedMount,          // Требуется монтирование флешки
     Mounted,            // Флешка примонтирована

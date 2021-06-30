@@ -1,5 +1,6 @@
 // (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #include "defines.h"
+#include "main.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include <stm32f4xx_hal.h>
 
@@ -59,6 +60,11 @@ extern "C" {
     
     void OTG_HS_IRQHandler(void)
     {
+        if (MainStruct::state == State::NoDrive)
+        {
+            MainStruct::state = State::Start;
+        }
+
         HAL_HCD_IRQHandler((HCD_HandleTypeDef *)HAL_HCD::handle);
     }
 

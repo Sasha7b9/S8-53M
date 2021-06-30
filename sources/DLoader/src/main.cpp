@@ -22,11 +22,16 @@ void Upgrade();
 
 
 float MainStruct::percentUpdate = 0.0f;
-State::E MainStruct::state = State::Start;
+State::E MainStruct::state = State::NoDrive;
 
 
 int main()
 {
+    if (MainStruct::state == State::NoDrive)
+    {
+        HAL::JumpToApplication();
+    }
+
     HAL::Init();
 
     HAL_TIM2::Delay(250);
@@ -39,7 +44,7 @@ int main()
 
     uint timeStart = TIME_MS;
 
-    while (TIME_MS - timeStart < TIME_WAIT && (MainStruct::state != State::Mounted))
+    while (TIME_MS - timeStart < TIME_WAIT && (MainStruct::state != State::Mounted) && (MainStruct::state != State::WrongFlash))
     {
         FDrive::Update();
     }
@@ -83,7 +88,7 @@ int main()
 
     Timer::Disable(TypeTimer::Temp);
 
-    while (Display::IsRun())
+    while (Display::IsRunning())
     {
     }
 

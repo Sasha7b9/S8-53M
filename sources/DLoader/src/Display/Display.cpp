@@ -3,15 +3,22 @@
 #include "Display/Display.h"
 
 
+static bool running = false;
+
+
 void Display::Update()
 {
+    running = true;
+
     BeginFrame(Color::BLACK);
 
     EndFrame();
+
+    running = false;
 }
 
 
-bool Display::IsRun()
+bool Display::IsRunning()
 {
-    return false;
+    return running;
 }
