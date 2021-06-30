@@ -31,15 +31,15 @@ int main()
 
     HAL_TIM2::Delay(250);
     
-    HAL::DeInit();
-
     Display::Init();
 
     Timer::Enable(TypeTimer::Temp, 10, Display::Update);
 
     FDrive::Init();
 
-    while (!FDrive::connected)
+    uint timeStart = TIME_MS;
+
+    while (!FDrive::connected && (TIME_MS - timeStart < TIME_WAIT))
     {
         FDrive::Update();
     }
@@ -62,6 +62,7 @@ int main()
             while (1)
             {
                 Key::E button = Panel::PressedButton();
+
                 if (button == Key::F1)
                 {
                     MainStruct::state = State::Upgrade;
@@ -92,8 +93,6 @@ int main()
     while (Display::IsRun())
     {
     }
-
-    Display::Update();
 
     HAL::DeInit();
 
