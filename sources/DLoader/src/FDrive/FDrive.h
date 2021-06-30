@@ -28,9 +28,11 @@ struct FDrive
     FIL file;
     int connected;
     int active;
+
+    static void Init();
 };
 
-void FDrive_Init();
+
 bool FDrive_Update();
 bool FDrive_FileExist(pchar fileName);
 int FDrive_OpenFileForRead(pchar fileName);

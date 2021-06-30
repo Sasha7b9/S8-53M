@@ -33,7 +33,7 @@ static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8 id);
 
 
 
-void FDrive_Init()
+void FDrive::Init()
 {
     MainStruct::ms->drive.state = StateDisk::Idle;
     MainStruct::ms->drive.connected = 0;

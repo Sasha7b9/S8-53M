@@ -45,7 +45,7 @@ int main()
 
     uint timeStart = TIME_MS;
 
-    FDrive_Init();
+    FDrive::Init();
 
     while (TIME_MS - timeStart < TIME_WAIT && !FDrive_Update())
     {
