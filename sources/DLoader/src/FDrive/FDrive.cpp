@@ -87,23 +87,17 @@ void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
 }
 
 
-bool FDrive::Update()
+void FDrive::Update()
 {
     USBH_Process(reinterpret_cast<USBH_HandleTypeDef *>(USBH::handle));
 
     if (state == StateDisk::Start)
     {
-        if (f_mount(&USBDISKFatFS, (TCHAR const*)USBDISKPath, 0) == FR_OK)
-        {
-            return true;
-        }
-        else
+        if (f_mount(&USBDISKFatFS, (TCHAR const*)USBDISKPath, 0) != FR_OK)
         {
             MainStruct::state = State::WrongFlash;
-            return false;
         }
     }
-    return false;
 }
 
 

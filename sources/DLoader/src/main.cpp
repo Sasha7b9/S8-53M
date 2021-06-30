@@ -41,18 +41,12 @@ int main()
 
     FDrive::Init();
 
-    while (TIME_MS - timeStart < TIME_WAIT && !FDrive::Update())
-    {
-    }
-
-    volatile int counter = 0;
-
     while (FDrive::connected == false)
     {
-        counter++;
+        FDrive::Update();
     }
 
-        // Если флеша подключена, но в активное состояние почему-то не перешла
+    // Если флеша подключена, но в активное состояние почему-то не перешла
     if ((FDrive::connected && !FDrive::active) ||
         // или перешла в активное состояние, по почему-то не запустился процесс монтирования
         (FDrive::active && (MainStruct::state != State::Mount)))

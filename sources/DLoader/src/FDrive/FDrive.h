@@ -31,7 +31,7 @@ struct FDrive
 
     static void Init();
 
-    static bool Update();
+    static void Update();
 
     static bool FileExist(pchar fileName);
 
