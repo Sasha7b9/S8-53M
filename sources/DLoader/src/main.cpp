@@ -41,7 +41,7 @@ int main()
 
     FDrive::Init();
 
-    while (FDrive::connected == false)
+    while (!FDrive::connected)
     {
         FDrive::Update();
     }
