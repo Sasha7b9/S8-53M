@@ -37,8 +37,6 @@ int main()
 
     Timer::Enable(TypeTimer::Temp, 10, Display::Update);
 
-    uint timeStart = TIME_MS;
-
     FDrive::Init();
 
     while (!FDrive::connected)
