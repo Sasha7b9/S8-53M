@@ -1,33 +1,36 @@
-// (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
+// 2021/06/30 15:45:16 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
 #pragma once
+#include "common/Display/Colors_.h"
 
 
-struct Color;
+struct DataSettings;
+
+struct DrawMode { enum E {
+    Default,        // Стандартная отрисовка в цикле
+    Timer           // Отрисовка по таймеру заданной функции
+}; };
 
 
 class Display
 {
 public:
+
     static const int WIDTH = 320;
     static const int HEIGHT = 240;
 
     static void Init();
 
-    static void Update();
+    static uint8 *GetBuffer();
 
-    static bool IsRun();
+    static uint8 *GetBufferEnd();
 
     static void BeginFrame(const Color &color);
 
     static void EndFrame();
 
-    static bool isRun;
-    static float value;
-    static float direction;
-    static uint timePrev;
+    static void Update();
 
-private:
+    static bool IsRun();
 
-    static void DrawProgressBar(uint dT);
-    static void DrawBigMNIPI();
+    static void ReadRow(int row, uint8 pixels[320]);
 };
