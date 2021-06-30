@@ -73,7 +73,7 @@ void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
 
         case HOST_USER_CONNECTION:
             FDrive::connected = true;
-            MainStruct::ms->state = State::Mount;
+            MainStruct::state = State::Mount;
             f_mount(NULL, (TCHAR const*)"", 0);
             break;
 
@@ -99,7 +99,7 @@ bool FDrive::Update()
         }
         else
         {
-            MainStruct::ms->state = State::WrongFlash;
+            MainStruct::state = State::WrongFlash;
             return false;
         }
     }

@@ -18,3 +18,20 @@
 
 #define TIME_WAIT   5000    // Время работы заставки
 
+
+struct State { enum E {
+    Start,            // Исходное состояние
+    Mount,            // Монтирование флешки
+    WrongFlash,       // Флешка есть, но прочитать нельзя
+    RequestAction,    // Что делать - апгрейдить или нет
+    NotFile,          // Если диск примонтирован, но обновления на нём нету
+    Upgrade,          // Процесс апгрейда
+    Ok                // Обновление удачно завершено
+}; };
+
+
+struct MainStruct
+{
+    static float percentUpdate;
+    static State::E state;
+};

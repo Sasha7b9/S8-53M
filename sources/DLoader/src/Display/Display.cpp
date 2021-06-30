@@ -74,7 +74,7 @@ void Display::Update()
 
     Color::WHITE.SetAsCurrent();
 
-    if (MainStruct::ms->state == State::Start || MainStruct::ms->state == State::Ok)
+    if (MainStruct::state == State::Start || MainStruct::state == State::Ok)
     {
         Display::BeginFrame(Color::BACK);
         Color::FILL.SetAsCurrent();
@@ -85,17 +85,17 @@ void Display::Update()
         Text("Отдел маркетинга: тел./факс. 8-017-270-02-00").DrawInCenterRect(0, 205, 320, 20);
         Text("Разработчики: e-mail: mnipi-24(@)tut.by, тел. 8-017-270-02-23").DrawInCenterRect(0, 220, 320, 20);
     }
-    else if (MainStruct::ms->state == State::Mount)
+    else if (MainStruct::state == State::Mount)
     {
         uint dT = TIME_MS - timePrev;
         DrawProgressBar(dT);
     }
-    else if (MainStruct::ms->state == State::WrongFlash)
+    else if (MainStruct::state == State::WrongFlash)
     {
         Text("НЕ УДАЛОСЬ ПРОЧИТАТЬ ДИСК").DrawInCenterRect(0, 0, 320, 200, Color::FLASH_10);
         Text("УБЕДИТЕСЬ, ЧТО ФАЙЛОВАЯ СИСТЕМА FAT32").DrawInCenterRect(0, 20, 320, 200, Color::WHITE);
     }
-    else if (MainStruct::ms->state == State::RequestAction)
+    else if (MainStruct::state == State::RequestAction)
     {
         Text("Обнаружено программное обеспечение").DrawInCenterRect(0, 0, 320, 200);
         Text("Установить его?").DrawInCenterRect(0, 20, 320, 200);
@@ -103,14 +103,14 @@ void Display::Update()
         DrawButton(290, 55, "ДА");
         DrawButton(290, 195, "НЕТ");
     }
-    else if (MainStruct::ms->state == State::Upgrade)
+    else if (MainStruct::state == State::Upgrade)
     {
         Text("Подождите завершения").DrawInCenterRect(0, 0, 320, 190);
         Text("установки программного обеспечения").DrawInCenterRect(0, 0, 320, 220);
 
         int height = 30;
         int fullWidth = 280;
-        int width = (int)((float)(fullWidth) * MainStruct::ms->percentUpdate);
+        int width = (int)((float)(fullWidth) * MainStruct::percentUpdate);
 
         Region(width, height).Fill(20, 130);
         Rectangle(fullWidth, height).Draw(20, 130);

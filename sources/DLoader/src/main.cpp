@@ -18,24 +18,20 @@
 
 USBH_HandleTypeDef hUSBHost;
 
-MainStruct *MainStruct::ms = nullptr;
-
 void Upgrade();
 
+
+float MainStruct::percentUpdate = 0.0f;
+State::E MainStruct::state = State::Start;
 
 
 int main()
 {
-    MainStruct::ms = (MainStruct *)(std::malloc(sizeof(MainStruct)));
-    MainStruct::ms->percentUpdate = 0.0F;
-
     HAL::Init();
 
     HAL_TIM2::Delay(250);
     
     HAL::DeInit();
-    
-    MainStruct::ms->state = State::Start;
 
     Display::Init();
 
@@ -59,46 +55,45 @@ int main()
         // ≈сли флеша подключена, но в активное состо€ние почему-то не перешла
     if ((FDrive::connected && !FDrive::active) ||
         // или перешла в активное состо€ние, по почему-то не запустилс€ процесс монтировани€
-        (FDrive::active && (MainStruct::ms->state != State::Mount)))
+        (FDrive::active && (MainStruct::state != State::Mount)))
     {
-        std::free(MainStruct::ms);
         HAL::SystemReset();
         return 0;
     }
 
-    if (MainStruct::ms->state == State::Mount)                           // Ёто означает, что диск удачно примонтирован
+    if (MainStruct::state == State::Mount)                           // Ёто означает, что диск удачно примонтирован
     {
         if (FDrive::FileExist(FILE_NAME))                    // ≈сли на диске обнаружена прошивка
         {
-            MainStruct::ms->state = State::RequestAction;
+            MainStruct::state = State::RequestAction;
 
             while (1)
             {
                 Key::E button = Panel::PressedButton();
                 if (button == Key::F1)
                 {
-                    MainStruct::ms->state = State::Upgrade;
+                    MainStruct::state = State::Upgrade;
                     Upgrade();
                     break;
                 }
                 else if (button == Key::F5)
                 {
-                    MainStruct::ms->state = State::Ok;
+                    MainStruct::state = State::Ok;
                     break;
                 }
             }
         }
         else
         {
-            MainStruct::ms->state = State::NotFile;
+            MainStruct::state = State::NotFile;
         }
     }
-    else if (MainStruct::ms->state == State::WrongFlash) // ƒиск не удалось примонтировать
+    else if (MainStruct::state == State::WrongFlash) // ƒиск не удалось примонтировать
     {
         HAL_TIM2::Delay(5000);
     }
 
-    MainStruct::ms->state = State::Ok;
+    MainStruct::state = State::Ok;
 
     Timer::Disable(TypeTimer::Temp);
 
@@ -109,8 +104,6 @@ int main()
     Display::Update();
 
     HAL::DeInit();
-
-    std::free(MainStruct::ms);
 
     HAL::JumpToApplication();
     
@@ -140,7 +133,7 @@ void Upgrade()
         size -= readedBytes;
         address += readedBytes;
 
-        MainStruct::ms->percentUpdate = 1.0F - (float)(size) / (float)(fullSize);
+        MainStruct::percentUpdate = 1.0F - (float)(size) / (float)(fullSize);
     }
 
     FDrive::CloseOpenedFile();
