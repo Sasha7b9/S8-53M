@@ -41,7 +41,7 @@ struct FDrive
     char USBDISKPath[4];
     StateDisk::E state;
     FIL file;
-    int connection;
+    int connected;
     int active;
 };
 

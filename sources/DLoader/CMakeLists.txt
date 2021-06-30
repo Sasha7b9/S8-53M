@@ -41,7 +41,8 @@ if(WIN32)
                                     # exception
     add_compile_options(/wd5045)    # Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
     add_compile_options(/wd5219)    # implicit conversion from 'type1' to 'type2', possible loss of data
-    add_compile_options(/wd5220)    # 
+    add_compile_options(/wd5220)    #
+    add_compile_options(/wd26812)
 
 else()
 

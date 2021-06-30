@@ -51,8 +51,13 @@ int main()
     {
     }
 
+    while (MainStruct::ms->drive.connected == 0)
+    {
+        int i = 0;
+    }
+
         // ≈сли флеша подключена, но в активное состо€ние почему-то не перешла
-    if (((MainStruct::ms->drive.connection != 0) && (MainStruct::ms->drive.active == 0)) ||
+    if (((MainStruct::ms->drive.connected != 0) && (MainStruct::ms->drive.active == 0)) ||
         // или перешла в активное состо€ние, по почему-то не запустилс€ процесс монтировани€
         ((MainStruct::ms->drive.active != 0) && (MainStruct::ms->state != State::Mount)))
     {
