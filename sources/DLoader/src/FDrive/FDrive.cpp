@@ -17,6 +17,14 @@
 MSC_ApplicationTypeDef Appli_state = APPLICATION_IDLE;
 
 
+bool FDrive::connected = false;
+bool FDrive::active = false;
+FATFS FDrive::USBDISKFatFS;
+char FDrive::USBDISKPath[4];
+FIL FDrive::file;
+StateDisk::E FDrive::state = StateDisk::Idle;
+
+
 struct StructForReadDir
 {
     char nameDir[_MAX_LFN + 1];
@@ -35,11 +43,11 @@ static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8 id);
 
 void FDrive::Init()
 {
-    MainStruct::ms->drive.state = StateDisk::Idle;
-    MainStruct::ms->drive.connected = false;
-    MainStruct::ms->drive.active = 0;
+    state = StateDisk::Idle;
+    connected = false;
+    active = false;
 
-    if (FATFS_LinkDriver(&USBH_Driver, MainStruct::ms->drive.USBDISKPath) == FR_OK)
+    if (FATFS_LinkDriver(&USBH_Driver, USBDISKPath) == FR_OK)
     {
         USBH_Init((USBH_HandleTypeDef *)USBH::handle, USBH_UserProcess, 0);
         USBH_RegisterClass((USBH_HandleTypeDef *)USBH::handle, USBH_MSC_CLASS);
@@ -56,21 +64,21 @@ void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
             break;
 
         case HOST_USER_CLASS_ACTIVE:
-            MainStruct::ms->drive.active++;
-            MainStruct::ms->drive.state = StateDisk::Start;
+            FDrive::active = true;
+            FDrive::state = StateDisk::Start;
             break;
 
         case HOST_USER_CLASS_SELECTED:
             break;
 
         case HOST_USER_CONNECTION:
-            MainStruct::ms->drive.connected = true;
+            FDrive::connected = true;
             MainStruct::ms->state = State::Mount;
             f_mount(NULL, (TCHAR const*)"", 0);
             break;
 
         case HOST_USER_DISCONNECTION:
-            MainStruct::ms->drive.connected = false;
+            FDrive::connected = false;
             break;
 
         default:
@@ -83,9 +91,9 @@ bool FDrive::Update()
 {
     USBH_Process(reinterpret_cast<USBH_HandleTypeDef *>(USBH::handle));
 
-    if (MainStruct::ms->drive.state == StateDisk::Start)
+    if (state == StateDisk::Start)
     {
-        if (f_mount(&(MainStruct::ms->drive.USBDISKFatFS), (TCHAR const*)MainStruct::ms->drive.USBDISKPath, 0) == FR_OK)
+        if (f_mount(&USBDISKFatFS, (TCHAR const*)USBDISKPath, 0) == FR_OK)
         {
             return true;
         }
@@ -112,22 +120,22 @@ void ToLower(char *str)
 bool FDrive::FileExist(pchar fileName)
 {
     char nameFile[255];
-    char file[255];
-    std::strcpy(file, fileName);
-    ToLower(file);
+    char fil[255];
+    std::strcpy(fil, fileName);
+    ToLower(fil);
     StructForReadDir strd;
 
     if (GetNameFile("\\", 0, nameFile, &strd))
     {
         ToLower(nameFile);
-        if (std::strcmp(file, nameFile) == 0)
+        if (std::strcmp(fil, nameFile) == 0)
         {
             return true;
         }
         while (GetNextNameFile(nameFile, &strd))
         {
             ToLower(nameFile);
-            if (std::strcmp(file, nameFile) == 0)
+            if (std::strcmp(fil, nameFile) == 0)
             {
                 return true;
             }
@@ -227,7 +235,7 @@ static bool GetNextNameFile(char *nameFileOut, StructForReadDir *s)
 
 int FDrive::OpenFileForRead(pchar fileName)
 {
-    if (f_open(&MainStruct::ms->drive.file, fileName, FA_READ) == FR_OK)
+    if (f_open(&file, fileName, FA_READ) == FR_OK)
     {
 //        return (int)ms->drive.file.fsize;
     }
@@ -238,7 +246,7 @@ int FDrive::OpenFileForRead(pchar fileName)
 uint FDrive::ReadFromFile(int numBytes, uint8 *buffer)
 {
     uint readed = 0;
-    if (f_read(&MainStruct::ms->drive.file, buffer, (uint)(numBytes), &readed) == FR_OK)
+    if (f_read(&file, buffer, (uint)(numBytes), &readed) == FR_OK)
     {
         return readed;
     }
@@ -248,5 +256,5 @@ uint FDrive::ReadFromFile(int numBytes, uint8 *buffer)
 
 void FDrive::CloseOpenedFile()
 {
-    f_close(&MainStruct::ms->drive.file);
+    f_close(&file);
 }

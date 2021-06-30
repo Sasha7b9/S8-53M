@@ -377,6 +377,22 @@
           <ExecCommand></ExecCommand>
           <Expression>\\DLoader\src/FDrive/FDrive.cpp\67</Expression>
         </Bp>
+        <Bp>
+          <Number>2</Number>
+          <Type>0</Type>
+          <LineNumber>46</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134266166</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>&lt;2&gt;.\src\main.cpp</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\DLoader\src/main.cpp\46</Expression>
+        </Bp>
       </Breakpoint>
       <MemoryWindow1>
         <Mm>

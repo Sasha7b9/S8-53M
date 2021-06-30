@@ -22,12 +22,12 @@ struct StateDisk { enum E {
 
 struct FDrive
 {
-    FATFS USBDISKFatFS;
-    char USBDISKPath[4];
-    StateDisk::E state;
-    FIL file;
-    bool connected;
-    bool active;
+    static FATFS USBDISKFatFS;
+    static char USBDISKPath[4];
+    static StateDisk::E state;
+    static FIL file;
+    static bool connected;
+    static bool active;
 
     static void Init();
 
@@ -57,8 +57,6 @@ struct State { enum E {
 
 struct MainStruct
 {
-    FDrive drive;
-    Display display;
     float percentUpdate;
     volatile State::E state;
 

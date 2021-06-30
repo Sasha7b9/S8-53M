@@ -12,6 +12,12 @@
 #include <cmath>
 
 
+bool Display::isRun = false;
+float Display::value = 0.0f;
+uint Display::timePrev = 0;
+float Display::direction = 0.0f;
+
+
 struct Vector
 {
     uint16 x;
@@ -24,18 +30,16 @@ int numPoints = 0;
 Vector array[SIZE_ARRAY];
 
 
-static void DrawProgressBar(uint dT);
-static void DrawBigMNIPI();
-
 uint8 *display_back_buffer = nullptr;
 uint8 *display_back_buffer_end = nullptr;
 
+
 void Display::Init()
 {
-    MainStruct::ms->display.value = 0.0F;
-    MainStruct::ms->display.isRun = false;
-    MainStruct::ms->display.timePrev = 0;
-    MainStruct::ms->display.direction = 10.0F;
+    value = 0.0F;
+    isRun = false;
+    timePrev = 0;
+    direction = 10.0F;
 
     for (int i = 0; i < 14; i++)
     {
@@ -62,9 +66,9 @@ void DrawButton(int x, int y, pchar text)
 
 void Display::Update()
 {
-    MainStruct::ms->display.isRun = true;
+    isRun = true;
 
-    MainStruct::ms->display.timePrev = TIME_MS;
+    timePrev = TIME_MS;
 
     BeginFrame(Color::BLACK);
 
@@ -83,7 +87,7 @@ void Display::Update()
     }
     else if (MainStruct::ms->state == State::Mount)
     {
-        uint dT = TIME_MS - MainStruct::ms->display.timePrev;
+        uint dT = TIME_MS - timePrev;
         DrawProgressBar(dT);
     }
     else if (MainStruct::ms->state == State::WrongFlash)
@@ -113,51 +117,51 @@ void Display::Update()
     }
 
     Display::EndFrame();
-    MainStruct::ms->display.isRun = false;
+    isRun = false;
 }
 
 
-void DrawProgressBar(uint dT)
+void Display::DrawProgressBar(uint dT)
 {
-    const int WIDTH = 300;
-    const int HEIGHT = 20;
+    const int W = 300;
+    const int H = 20;
     const int X = 10;
     const int Y = 200;
 
-    float step = (float)(dT) / MainStruct::ms->display.direction;
+    float step = (float)(dT) / direction;
 
-    MainStruct::ms->display.value += step;
+    value += step;
 
-    if (MainStruct::ms->display.direction > 0.0F && MainStruct::ms->display.value > WIDTH)
+    if (direction > 0.0F && value > W)
     {
-        MainStruct::ms->display.direction = -MainStruct::ms->display.direction;
-        MainStruct::ms->display.value -= step;
+        direction = -direction;
+        value -= step;
     }
-    else if (MainStruct::ms->display.direction < 0.0F && MainStruct::ms->display.value < 0)
+    else if (direction < 0.0F && value < 0)
     {
-        MainStruct::ms->display.direction = -MainStruct::ms->display.direction;
-        MainStruct::ms->display.value -= step;
+        direction = -direction;
+        value -= step;
     }
 
     int dH = 15;
     int y0 = 50;
 
-    Text("Обнаружен USB-диск.").DrawInCenterRect(X, y0, WIDTH, 10, Color::WHITE);
-    Text("Идёт поиск программного обеспечения").DrawInCenterRect(X, y0 + dH, WIDTH, 10);
-    Text("Подождите...").DrawInCenterRect(X, y0 + 2 * dH, WIDTH, 10);
+    Text("Обнаружен USB-диск.").DrawInCenterRect(X, y0, W, 10, Color::WHITE);
+    Text("Идёт поиск программного обеспечения").DrawInCenterRect(X, y0 + dH, W, 10);
+    Text("Подождите...").DrawInCenterRect(X, y0 + 2 * dH, W, 10);
 
-    Rectangle(WIDTH, HEIGHT).Draw(X, Y);
-    Region((int)(MainStruct::ms->display.value), HEIGHT).Fill(X, Y);
+    Rectangle(W, H).Draw(X, Y);
+    Region((int)(value), H).Fill(X, Y);
 }
 
 
 bool Display::IsRun()
 {
-    return MainStruct::ms->display.isRun;
+    return isRun;
 }
 
 
-static void DrawBigMNIPI()
+void Display::DrawBigMNIPI()
 {
     static uint startTime = 0;
     static bool first = true;

@@ -21,8 +21,13 @@ public:
 
     static void EndFrame();
 
-    bool isRun;
-    float value;
-    float direction;
-    uint timePrev;
+    static bool isRun;
+    static float value;
+    static float direction;
+    static uint timePrev;
+
+private:
+
+    static void DrawProgressBar(uint dT);
+    static void DrawBigMNIPI();
 };

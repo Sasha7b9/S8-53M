@@ -51,15 +51,15 @@ int main()
 
     volatile int counter = 0;
 
-    while (MainStruct::ms->drive.connected == false)
+    while (FDrive::connected == false)
     {
         counter++;
     }
 
         // ≈сли флеша подключена, но в активное состо€ние почему-то не перешла
-    if ((MainStruct::ms->drive.connected && (MainStruct::ms->drive.active == 0)) ||
+    if ((FDrive::connected && !FDrive::active) ||
         // или перешла в активное состо€ние, по почему-то не запустилс€ процесс монтировани€
-        ((MainStruct::ms->drive.active != 0) && (MainStruct::ms->state != State::Mount)))
+        (FDrive::active && (MainStruct::ms->state != State::Mount)))
     {
         std::free(MainStruct::ms);
         HAL::SystemReset();
