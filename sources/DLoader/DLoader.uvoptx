@@ -269,7 +269,7 @@
         <LExpSel>0</LExpSel>
       </OPTXL>
       <OPTFL>
-        <tvExp>1</tvExp>
+        <tvExp>0</tvExp>
         <tvExpOptDlg>0</tvExpOptDlg>
         <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
@@ -348,9 +348,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>107</LineNumber>
+          <LineNumber>42</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134252370</Address>
+          <Address>134265808</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -359,7 +359,23 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>&lt;2&gt;.\src\main.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\DLoader\src/main.cpp\107</Expression>
+          <Expression>\\DLoader\src/main.cpp\42</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>47</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134265836</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>&lt;2&gt;.\src\main.cpp</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\DLoader\src/main.cpp\47</Expression>
         </Bp>
       </Breakpoint>
       <MemoryWindow1>
