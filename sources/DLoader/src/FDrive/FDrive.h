@@ -26,8 +26,8 @@ struct FDrive
     char USBDISKPath[4];
     StateDisk::E state;
     FIL file;
-    int connected;
-    int active;
+    bool connected;
+    bool active;
 
     static void Init();
 

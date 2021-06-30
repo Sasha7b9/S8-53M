@@ -56,6 +56,11 @@ extern "C" {
     {
         HAL_IncTick();
     }
+    
+    void OTG_HS_IRQHandler(void)
+    {
+        HAL_HCD_IRQHandler((HCD_HandleTypeDef *)HAL_HCD::handle);
+    }
 
 #ifdef __cplusplus
 }

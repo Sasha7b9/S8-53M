@@ -36,7 +36,7 @@ static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8 id);
 void FDrive::Init()
 {
     MainStruct::ms->drive.state = StateDisk::Idle;
-    MainStruct::ms->drive.connected = 0;
+    MainStruct::ms->drive.connected = false;
     MainStruct::ms->drive.active = 0;
 
     if (FATFS_LinkDriver(&USBH_Driver, MainStruct::ms->drive.USBDISKPath) == FR_OK)
@@ -64,12 +64,13 @@ void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
             break;
 
         case HOST_USER_CONNECTION:
-            MainStruct::ms->drive.connected++;
+            MainStruct::ms->drive.connected = true;
             MainStruct::ms->state = State::Mount;
             f_mount(NULL, (TCHAR const*)"", 0);
             break;
 
         case HOST_USER_DISCONNECTION:
+            MainStruct::ms->drive.connected = false;
             break;
 
         default:
