@@ -80,19 +80,20 @@ void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
 
 bool FDrive::Update()
 {
-//    USBH_Process(reinterpret_cast<USBH_HandleTypeDef *>(USBH::handle));
-//    if (MainStruct::ms->drive.state == StateDisk::Start)
-//    {
-//        if (f_mount(&(MainStruct::ms->drive.USBDISKFatFS), (TCHAR const*)MainStruct::ms->drive.USBDISKPath, 0) == FR_OK)
-//        {
-//            return true;
-//        }
-//        else
-//        {
-//            MainStruct::ms->state = State::WrongFlash;
-//            return false;
-//        }
-//    }
+    USBH_Process(reinterpret_cast<USBH_HandleTypeDef *>(USBH::handle));
+
+    if (MainStruct::ms->drive.state == StateDisk::Start)
+    {
+        if (f_mount(&(MainStruct::ms->drive.USBDISKFatFS), (TCHAR const*)MainStruct::ms->drive.USBDISKPath, 0) == FR_OK)
+        {
+            return true;
+        }
+        else
+        {
+            MainStruct::ms->state = State::WrongFlash;
+            return false;
+        }
+    }
     return false;
 }
 
@@ -136,57 +137,60 @@ bool FDrive::FileExist(pchar fileName)
 }
 
 
-static bool GetNameFile(pchar, int, char *, StructForReadDir *)
+static bool GetNameFile(pchar fullPath, int numFile, char *nameFileOut, StructForReadDir *s)
 {
-//    memcpy(s->nameDir, fullPath, strlen(fullPath));
-//    s->nameDir[strlen(fullPath)] = '\0';
-//
-//    s->fno.lfname = s->lfn;
-//    s->fno.lfsize = sizeof(s->lfn);
-//
-//    DIR *pDir = &s->dir;
-//    FILINFO *pFNO = &s->fno;
-//    if (f_opendir(pDir, s->nameDir) == FR_OK)
-//    {
-//        int numFiles = 0;
-//        bool alreadyNull = false;
-//        while (true)
-//        {
-//            if (f_readdir(pDir, pFNO) != FR_OK)
-//            {
-//                *nameFileOut = '\0';
-//                f_closedir(pDir);
-//                return false;
-//            }
-//            if (pFNO->fname[0] == 0)
-//            {
-//                if (alreadyNull)
-//                {
-//                    *nameFileOut = '\0';
-//                    f_closedir(pDir);
-//                    return false;
-//                }
-//                alreadyNull = true;
-//            }
-//            char *fn = *(pFNO->lfname) ? pFNO->lfname : pFNO->fname;
-//            if (numFile == numFiles && (pFNO->fattrib & AM_DIR) == 0)
-//            {
-//                strcpy(nameFileOut, fn);
-//                return true;
-//            }
-//            if ((pFNO->fattrib & AM_DIR) == 0 && (pFNO->fname[0] != '.'))
-//            {
-//                numFiles++;
-//            }
-//        }
-//    }
+    memcpy(s->nameDir, fullPath, strlen(fullPath));
+    s->nameDir[strlen(fullPath)] = '\0';
+
+    std::strcpy(s->fno.fname, s->lfn);
+
+    s->fno.fsize = sizeof(s->lfn);
+
+    DIR *pDir = &s->dir;
+    FILINFO *pFNO = &s->fno;
+    if (f_opendir(pDir, s->nameDir) == FR_OK)
+    {
+        int numFiles = 0;
+        bool alreadyNull = false;
+        while (true)
+        {
+            if (f_readdir(pDir, pFNO) != FR_OK)
+            {
+                *nameFileOut = '\0';
+                f_closedir(pDir);
+                return false;
+            }
+
+            if (pFNO->fname[0] == 0)
+            {
+                if (alreadyNull)
+                {
+                    *nameFileOut = '\0';
+                    f_closedir(pDir);
+                    return false;
+                }
+                alreadyNull = true;
+            }
+
+            if (numFile == numFiles && (pFNO->fattrib & AM_DIR) == 0)
+            {
+                strcpy(nameFileOut, pFNO->fname);
+                return true;
+            }
+
+            if ((pFNO->fattrib & AM_DIR) == 0 && (pFNO->fname[0] != '.'))
+            {
+                numFiles++;
+            }
+        }
+    }
     return false;
 }
 
 
 static bool GetNextNameFile(char *nameFileOut, StructForReadDir *s)
 {
-//    FILINFO *pFNO = &s->fno;
+    FILINFO *pFNO = &s->fno;
     bool alreadyNull = false;
     while (true)
     {
@@ -196,6 +200,7 @@ static bool GetNextNameFile(char *nameFileOut, StructForReadDir *s)
             f_closedir(&s->dir);
             return false;
         }
+
         if (s->fno.fname[0] == 0)
         {
             if (alreadyNull)
@@ -204,16 +209,16 @@ static bool GetNextNameFile(char *nameFileOut, StructForReadDir *s)
                 f_closedir(&s->dir);
                 return false;
             }
+
             alreadyNull = true;
         }
         else
         {
-//            char *fn = *(pFNO->lfname) ? pFNO->lfname : pFNO->fname;
-//            if ((pFNO->fattrib & AM_DIR) == 0 && pFNO->fname[0] != '.')
-//            {
-//                strcpy(nameFileOut, fn);
-//                return true;
-//            }
+            if ((pFNO->fattrib & AM_DIR) == 0 && pFNO->fname[0] != '.')
+            {
+                strcpy(nameFileOut, pFNO->fname);
+                return true;
+            }
         }
     }
 }
