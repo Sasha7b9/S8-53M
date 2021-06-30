@@ -27,18 +27,20 @@ State::E MainStruct::state = State::NoDrive;
 
 int main()
 {
-    if (MainStruct::state == State::NoDrive)
-    {
-        HAL::JumpToApplication();
-    }
+//    if (MainStruct::state == State::NoDrive)
+//    {
+//        HAL::JumpToApplication();
+//    }
 
     HAL::Init();
 
     HAL_TIM2::Delay(250);
     
     Display::Init();
+    
+    Display::Update();
 
-    Timer::Enable(TypeTimer::Temp, 10, Display::Update);
+//    Timer::Enable(TypeTimer::Temp, 10, Display::Update);
 
     FDrive::Init();
 
@@ -86,7 +88,7 @@ int main()
 
     MainStruct::state = State::Ok;
 
-    Timer::Disable(TypeTimer::Temp);
+//    Timer::Disable(TypeTimer::Temp);
 
     while (Display::IsRunning())
     {
@@ -103,6 +105,8 @@ int main()
 
 void Upgrade()
 {
+    MainStruct::state = State::Upgrade;
+
     const int sizeSector = 1 * 1024;
 
     uint8 buffer[sizeSector];
@@ -126,6 +130,8 @@ void Upgrade()
         address += readedBytes;
 
         MainStruct::percentUpdate = 1.0F - (float)(size) / (float)(fullSize);
+        
+        Display::Update();
     }
 
     FDrive::CloseOpenedFile();

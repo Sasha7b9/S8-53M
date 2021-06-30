@@ -58,6 +58,11 @@ extern "C" {
         HAL_IncTick();
     }
     
+    void TIM6_DAC_IRQHandler()
+    {
+        HAL_TIM6::CallbackOnIRQ();
+    }
+    
     void OTG_HS_IRQHandler(void)
     {
         if (MainStruct::state == State::NoDrive)
