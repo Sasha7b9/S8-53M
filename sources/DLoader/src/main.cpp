@@ -47,7 +47,7 @@ int main()
 
     FDrive::Init();
 
-    while (TIME_MS - timeStart < TIME_WAIT && !FDrive_Update())
+    while (TIME_MS - timeStart < TIME_WAIT && !FDrive::Update())
     {
     }
 
@@ -70,7 +70,7 @@ int main()
 
     if (MainStruct::ms->state == State::Mount)                           // Это означает, что диск удачно примонтирован
     {
-        if (FDrive_FileExist(FILE_NAME))                    // Если на диске обнаружена прошивка
+        if (FDrive::FileExist(FILE_NAME))                    // Если на диске обнаружена прошивка
         {
             MainStruct::ms->state = State::RequestAction;
 
@@ -129,13 +129,13 @@ void Upgrade()
 
     Sector::Get(Sector::_05_FIRM_1).Erase();
 
-    int size = FDrive_OpenFileForRead(FILE_NAME);
+    int size = FDrive::OpenFileForRead(FILE_NAME);
     int fullSize = size;
     uint address = 0x08020000U;
 
     while (size)
     {
-        uint readedBytes = FDrive_ReadFromFile(sizeSector, buffer);
+        uint readedBytes = FDrive::ReadFromFile(sizeSector, buffer);
 
         HAL_ROM::WriteBufferBytes(address, buffer, readedBytes);
 
@@ -145,7 +145,7 @@ void Upgrade()
         MainStruct::ms->percentUpdate = 1.0F - (float)(size) / (float)(fullSize);
     }
 
-    FDrive_CloseOpenedFile();
+    FDrive::CloseOpenedFile();
 }
 
 

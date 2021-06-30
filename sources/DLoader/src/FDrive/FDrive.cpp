@@ -78,7 +78,7 @@ void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
 }
 
 
-bool FDrive_Update()
+bool FDrive::Update()
 {
 //    USBH_Process(reinterpret_cast<USBH_HandleTypeDef *>(USBH::handle));
 //    if (MainStruct::ms->drive.state == StateDisk::Start)
@@ -107,7 +107,7 @@ void ToLower(char *str)
 }
 
 
-bool FDrive_FileExist(pchar fileName)
+bool FDrive::FileExist(pchar fileName)
 {
     char nameFile[255];
     char file[255];
@@ -219,7 +219,7 @@ static bool GetNextNameFile(char *nameFileOut, StructForReadDir *s)
 }
 
 
-int FDrive_OpenFileForRead(pchar fileName)
+int FDrive::OpenFileForRead(pchar fileName)
 {
     if (f_open(&MainStruct::ms->drive.file, fileName, FA_READ) == FR_OK)
     {
@@ -229,7 +229,7 @@ int FDrive_OpenFileForRead(pchar fileName)
 }
 
 
-uint FDrive_ReadFromFile(int numBytes, uint8 *buffer)
+uint FDrive::ReadFromFile(int numBytes, uint8 *buffer)
 {
     uint readed = 0;
     if (f_read(&MainStruct::ms->drive.file, buffer, (uint)(numBytes), &readed) == FR_OK)
@@ -240,7 +240,7 @@ uint FDrive_ReadFromFile(int numBytes, uint8 *buffer)
 }
 
 
-void FDrive_CloseOpenedFile()
+void FDrive::CloseOpenedFile()
 {
     f_close(&MainStruct::ms->drive.file);
 }
