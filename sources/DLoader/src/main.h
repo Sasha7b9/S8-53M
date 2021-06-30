@@ -2,6 +2,7 @@
 #pragma once
 #include <ff.h>
 #include "Display/Display.h"
+#include "FDrive/FDrive.h"
     
 
 // Key configuration
@@ -17,42 +18,3 @@
 
 #define TIME_WAIT   5000    // Время работы заставки
 
-
-struct State { enum E
-{
-    Start,            // Исходное состояние
-    Mount,            // Монтирование флешки
-    WrongFlash,       // Флешка есть, но прочитать нельзя
-    RequestAction,    // Что делать - апгрейдить или нет
-    NotFile,          // Если диск примонтирован, но обновления на нём нету
-    Upgrade,          // Процесс апгрейда
-    Ok                // Обновление удачно завершено
-};};
-
-struct StateDisk { enum E
-{
-    Idle,
-    Start
-};};
-
-struct FDrive
-{
-    FATFS USBDISKFatFS;
-    char USBDISKPath[4];
-    StateDisk::E state;
-    FIL file;
-    int connected;
-    int active;
-};
-
-struct MainStruct
-{
-    FDrive drive;
-    Display display;
-    float percentUpdate;
-    volatile State::E state;
-
-    // Данная структура используется во всех модулях программы для уменьшения расхода ОЗУ
-    // Память для деё должна быть выделена с помощью malloc в начале программы и возвращена в момент перехода на основную программу
-    static MainStruct *ms;
-};

@@ -51,9 +51,11 @@ int main()
     {
     }
 
+    volatile int counter = 0;
+
     while (MainStruct::ms->drive.connected == 0)
     {
-        int i = 0;
+        counter++;
     }
 
         // Если флеша подключена, но в активное состояние почему-то не перешла
