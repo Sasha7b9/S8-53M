@@ -13,6 +13,7 @@ void Application::Init()
     Sector::Get(Sector::_12_NRST_1).Erase();
 
     Device::Init();
+
     Menu::Show();
 }
 
