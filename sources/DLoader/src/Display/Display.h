@@ -28,7 +28,7 @@ public:
 
     static void EndFrame();
 
-    static void Update();
+    static void Update(int num = 5);
 
     static bool IsRunning();
 

@@ -27,18 +27,20 @@ State::E MainStruct::state = State::NoDrive;
 
 int main()
 {
-//    if (MainStruct::state == State::NoDrive)
-//    {
-//        HAL::JumpToApplication();
-//    }
+    Settings::Load();
 
     HAL::Init();
-
-    HAL_TIM2::Delay(250);
     
+    HAL_TIM2::Delay(250);
+
     Display::Init();
     
-    Display::Update();
+    for (int i = 0; i < 10; i++)
+    {
+        Display::Update(i);
+
+        HAL_TIM2::Delay(1000);
+    }
 
 //    Timer::Enable(TypeTimer::Temp, 10, Display::Update);
 

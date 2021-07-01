@@ -9,11 +9,16 @@
 static bool running = false;
 
 
-void Display::Update()
+void Display::Update(int num)
 {
     running = true;
 
     BeginFrame(Color::BLACK);
+
+    for (int i = 0; i < num; i++)
+    {
+        Region(10, 10).Fill(10 + i * 20, 10, Color::WHITE);
+    }
 
     if (MainStruct::state == State::Upgrade)
     {

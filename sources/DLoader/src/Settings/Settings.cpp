@@ -143,7 +143,7 @@ void LoadDefaultColors()
 
 
 
-void Settings_Load()
+void Settings::Load()
 {
     set = defaultSettings;
 }

@@ -202,8 +202,8 @@ struct Settings
     SettingsEthernet    eth;
     SettingsCommon      common;                     // системные настройки
     int temp;
+
+    static void Load();
 };
 
 extern Settings set;
-
-void    Settings_Load();    // Загрузить настройки

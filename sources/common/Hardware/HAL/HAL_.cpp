@@ -16,6 +16,8 @@ void *HAL_PCD::handle = &handlePCD;
 static const uint ADDR_BANK = 0x60000000;
 static const uint ADDR_RAM = ADDR_BANK + 0x04000000;
 
+#ifndef GUI
+
 // Адрес записи в аппаратные регистры. 0x100000 - это смещение нужно для установки A19 на FPGA в 1. Хотя по расчёту
 // должно быть 0x80000 (потому что a18 работает на 0x40000)
 uint16 *const HAL_FMC::ADDR_FPGA = (uint16 *)(ADDR_BANK + 0x00000000 + 0x100000);
@@ -25,6 +27,8 @@ uint8 *const HAL_FMC::ADDR_RAM_BEGIN = (uint8 *)(ADDR_RAM);
 uint8 *const HAL_FMC::ADDR_RAM_END = (uint8 *)(ADDR_RAM + 1024 * 1024 - 320 * 240);
 
 uint16 *const HAL_FMC::ADDR_RAM_DISPLAY_FRONT = (uint16 *)(ADDR_RAM + 1024 * 1024 - 320 * 240);
+
+#endif
 
 
 void HAL::Init()

@@ -71,7 +71,7 @@ void HLine::Draw(int y, int x0, int x1) const
     BoundingX(x0);
     BoundingX(x1);
 
-    if (x0 > x1)
+     if (x0 > x1)
     {
         Math::Swap(&x0, &x1);
     }
