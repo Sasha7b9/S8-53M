@@ -60,7 +60,7 @@ extern "C" {
     
     void TIM6_DAC_IRQHandler()
     {
-        HAL_TIM6::CallbackOnIRQ();
+       HAL_TIM6::CallbackOnIRQ();
     }
     
     void OTG_HS_IRQHandler(void)

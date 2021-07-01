@@ -46,7 +46,7 @@ void HAL::Init()
     HAL_TIM2::Init();
     
     HAL_TIM6::Init();
-
+    
 #ifdef DEVICE
 
     HAL_SPI1::Init();

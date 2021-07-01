@@ -804,14 +804,14 @@
               <FilePath>..\common\Hardware\HAL\HAL_TIM2_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_TIM6_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_TIM6_.cpp</FilePath>
-            </File>
-            <File>
               <FileName>HAL_FMC_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_FMC_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_TIM6_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_TIM6_.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -1925,14 +1925,14 @@
               <FilePath>..\common\Hardware\HAL\HAL_TIM2_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_TIM6_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_TIM6_.cpp</FilePath>
-            </File>
-            <File>
               <FileName>HAL_FMC_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_FMC_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_TIM6_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_TIM6_.cpp</FilePath>
             </File>
           </Files>
         </Group>
