@@ -69,35 +69,6 @@ void SysTick_Handler()
 }
 
 
-void SPI5_IRQHandler()
-{
-//    HAL_SPI_IRQHandler((SPI_HandleTypeDef *)HAL_SPI5::handle);
-}
-
-
-void EXTI4_IRQHandler()
-{
-}
-
-
-void OTG_HS_IRQHandler(void)
-{
-    HAL_HCD_IRQHandler((HCD_HandleTypeDef *)HAL_HCD::handle);
-}
-
-
-
-void OTG_FS_IRQHandler()
-{
-    HAL_PCD_IRQHandler((PCD_HandleTypeDef *)HAL_PCD::handle);
-}
-
-
-void TIM6_DAC_IRQHandler()
-{
-//    HAL_TIM6::CallbackOnIRQ();
-}
-
 #ifdef __cplusplus
 }
 #endif
