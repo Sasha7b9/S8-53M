@@ -31,3 +31,4 @@ sources/exp/RTC_Calendar/MDK-ARM/STM324x9I_EVAL/*
 sources/exp/DAC_SignalsGeneration/MDK-ARM/STM32F429I-Discovery/*
 sources/exp/FatFs_USBDisk/MDK-ARM/STM32F429I-DISCO/Exe/*
 sources/exp/FatFS_2/MDK-ARM/STM32F429I-Discovery/*
+sources/exp/TestLCD/Device/Objects/*
