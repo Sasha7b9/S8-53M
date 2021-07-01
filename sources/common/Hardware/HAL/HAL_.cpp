@@ -47,7 +47,7 @@ void HAL::Init()
     
     HAL_TIM6::Init();
 
-#ifdef DEVICE    
+#ifdef DEVICE
 
     HAL_SPI1::Init();
 
@@ -57,12 +57,17 @@ void HAL::Init()
 
     HAL_FMC::Init();
 
+#endif
+
     HAL_TIM7::Init();
 
     HAL_ROM::Init();
    
-    HAL_RTC::Init();
 
+#ifdef DEVICE
+
+    HAL_RTC::Init();
+    
 #endif
 }
 

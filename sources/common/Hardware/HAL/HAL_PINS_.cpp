@@ -215,7 +215,7 @@ void HAL_PINS::Init()
     PinETH(B, 12).Init();       // TXD0
     PinETH(G, 14).Init();       // TXD1
 
-    Pin(PinMode::_DAC1, PinPort::_A, PinPin::_4).Init();        // PWM
+    Pin(PinMode::_DAC1, PinPort::_A, PinPin::_4).Init();        // PWM для дисплея
 
     Pin pinPWM(PinMode::_Output, PinPort::_A, PinPin::_4);
     pinPWM.Init();

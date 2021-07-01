@@ -35,11 +35,14 @@ int main()
 
     Display::Init();
     
-    for (int i = 0; i < 10; i++)
+    while(true)
     {
-        Display::Update(i);
-
-        HAL_TIM2::Delay(1000);
+        for (int i = 0; i < 10; i++)
+        {
+            Display::Update(i);
+    
+            HAL_TIM2::Delay(10);
+        }
     }
 
 //    Timer::Enable(TypeTimer::Temp, 10, Display::Update);
