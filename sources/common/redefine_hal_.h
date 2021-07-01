@@ -6,6 +6,7 @@
 */
 
 #ifdef WIN32
+
 #undef __SYSCFG_CLK_ENABLE
 #define __SYSCFG_CLK_ENABLE()
 #undef __HAL_RCC_PWR_CLK_ENABLE
@@ -77,4 +78,5 @@
 #define __HAL_RCC_RTC_ENABLE()
 #undef __DAC_CLK_ENABLE
 #define __DAC_CLK_ENABLE()
+
 #endif
