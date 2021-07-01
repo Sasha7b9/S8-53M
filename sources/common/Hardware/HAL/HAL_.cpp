@@ -55,11 +55,11 @@ void HAL::Init()
 
     HAL_ADC1::Init();
 
+    HAL_TIM7::Init();
+
 #endif
 
     HAL_FMC::Init();
-
-    HAL_TIM7::Init();
 
     HAL_ROM::Init();
    
