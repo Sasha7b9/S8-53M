@@ -20,6 +20,8 @@
 
 void PainterData::DrawData()
 {
+#ifdef WIN32
+
     DataDrawingKeeper keeper;
 
     Processing::LeadToCurrentSetings(keeper.data->data);
@@ -33,6 +35,8 @@ void PainterData::DrawData()
     MemoryWindow::Draw(keeper.data->data);
 
     Measure::DrawAll();
+
+#endif
 }
 
 

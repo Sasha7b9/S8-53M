@@ -163,6 +163,8 @@ void Processing::CalculateMeasures()
 
 void Processing::LeadToCurrentSetings(DataReading &dr)
 {
+#ifndef WIN32
+
     BitSet64 p = SettingsDisplay::BytesOnDisplay();
 
     firstP = (uint)p.first;
@@ -182,6 +184,8 @@ void Processing::LeadToCurrentSetings(DataReading &dr)
     std::memcpy(dr.Data(ChB) + firstP, outB.Data(), numP);
 
 //    CountedToCurrentSettings();
+
+#endif
 }
 
 
