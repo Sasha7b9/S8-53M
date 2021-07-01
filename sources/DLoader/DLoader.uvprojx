@@ -699,16 +699,6 @@
           <GroupName>Hardware</GroupName>
           <Files>
             <File>
-              <FileName>Sound_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Hardware\Sound_.h</FilePath>
-            </File>
-            <File>
-              <FileName>Sound_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\Sound_.cpp</FilePath>
-            </File>
-            <File>
               <FileName>Timer_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Hardware\Timer_.h</FilePath>
@@ -1839,16 +1829,6 @@
         <Group>
           <GroupName>Hardware</GroupName>
           <Files>
-            <File>
-              <FileName>Sound_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Hardware\Sound_.h</FilePath>
-            </File>
-            <File>
-              <FileName>Sound_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\Sound_.cpp</FilePath>
-            </File>
             <File>
               <FileName>Timer_.h</FileName>
               <FileType>5</FileType>

@@ -49,7 +49,9 @@ void HAL_ROM::Fill(uint address, uint8 value, int size)
 
 void HAL_ROM::WriteBufferBytes(uint address, const void *buffer, uint size)
 {
+#ifdef DEVICE
     Sound::WaitForCompletion();
+#endif
 
     CLEAR_FLASH_FLAGS
 
