@@ -14,22 +14,22 @@ static const Settings defaultSettings =
         100,                        // brightness
         20,                         // brightnessGrid
         {
-            Color::Make(0, 0, 0),
-            Color::Make(31, 63, 31),
-            Color::Make(15, 31, 15),
-            Color::Make(1, 50, 31),
-            Color::Make(0, 63, 0),
-            Color::Make(26, 54, 26),
-            Color::Make(31, 44, 0),
-            Color::Make(15, 22, 0),
-            Color::Make(31, 63, 0),
-            Color::Make(26, 34, 0),
-            Color::Make(13, 17, 0),
-            Color::Make(31, 51, 0),
-            Color::Make(0, 0, 0),
-            Color::Make(0, 0, 0),
-            Color::Make(1, 40, 25),
-            Color::Make(0, 51, 0)
+            Color::Make(0x00, 0x00, 0x00),   // Color::BLACK = 0x00,
+            Color::Make(0xFF, 0xFF, 0xFF),   // Color::WHITE = 0x01,
+            Color::Make(0x80, 0x80, 0x80),   // Color::GRID = 0x02,
+            Color::Make(0x01, 0xCA, 0xFF),   // Color::DATA_A = 0x03,
+            Color::Make(0x00, 0xFF, 0x00),   // COLOR_DATA_B = 0x04,
+            Color::Make(0xD5, 0xDA, 0xD5),   // Color::MENU_FIELD = 0x05,
+            Color::Make(0xFF, 0xB2, 0x00),   // COLOR_MENU_TITLE = 0x06,
+            Color::Make(0x7B, 0x59, 0x00),   // Color::MENU_TITLE_DARK = 0x07,
+            Color::Make(0xFF, 0xFF, 0x00),   // Color::MENU_TITLE_BRIGHT = 0x08,
+            Color::Make(0x69, 0x89, 0x00),   // COLOR_MENU_ITEM = 0x09,
+            Color::Make(0x6B, 0x45, 0x00),   // Color::MENU_ITEM_DARK = 0x0a,
+            Color::Make(0xFF, 0xCE, 0x00),   // Color::MENU_ITEM_BRIGHT = 0x0b,
+            Color::Make(0x00, 0x00, 0x00),   // Color::MENU_SHADOW = 0x0c,
+            Color::Make(0x00, 0x00, 0x00),   // COLOR_EMPTY = 0x0d,
+            Color::Make(0x08, 0xA2, 0xCE),   // COLOR_EMPTY_A = 0x0e,
+            Color::Make(0x00, 0xCE, 0x00)    // COLOR_EMPTY_B = 0x0f,
         },
         ModeDrawSignal::Lines,      // modeDrawSignal
         TypeGrid::_1,               // typeGrid

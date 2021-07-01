@@ -699,14 +699,9 @@
           <GroupName>Hardware</GroupName>
           <Files>
             <File>
-              <FileName>Timer_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\Timer_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Timer_.h</FileName>
+              <FileName>Sound_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Hardware\Timer_.h</FilePath>
+              <FilePath>..\common\Hardware\Sound_.h</FilePath>
             </File>
             <File>
               <FileName>Sound_.cpp</FileName>
@@ -714,9 +709,14 @@
               <FilePath>..\common\Hardware\Sound_.cpp</FilePath>
             </File>
             <File>
-              <FileName>Sound_.h</FileName>
+              <FileName>Timer_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Hardware\Sound_.h</FilePath>
+              <FilePath>..\common\Hardware\Timer_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Timer_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\Timer_.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -769,6 +769,16 @@
               <FilePath>.\src\Hardware\HAL\stm32f4xx_hal_conf.h</FilePath>
             </File>
             <File>
+              <FileName>HAL_PINS_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_PINS_.h</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_PINS_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_PINS_.cpp</FilePath>
+            </File>
+            <File>
               <FileName>HAL_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_.h</FilePath>
@@ -784,6 +794,26 @@
               <FilePath>.\src\Hardware\HAL\HAL_IT.cpp</FilePath>
             </File>
             <File>
+              <FileName>HAL_DAC1_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_DAC1_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_DAC2_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_DAC2_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_LTDC_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_LTDC_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_ROM_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_ROM_.cpp</FilePath>
+            </File>
+            <File>
               <FileName>HAL_TIM2_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_TIM2_.cpp</FilePath>
@@ -794,39 +824,9 @@
               <FilePath>..\common\Hardware\HAL\HAL_TIM6_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_DAC2_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_DAC2_.cpp</FilePath>
-            </File>
-            <File>
               <FileName>HAL_TIM7_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_TIM7_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_ROM_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_ROM_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_PINS_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_PINS_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_PINS_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_PINS_.h</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_DAC1_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_DAC1_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_LTDC_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_LTDC_.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -1835,14 +1835,9 @@
           <GroupName>Hardware</GroupName>
           <Files>
             <File>
-              <FileName>Timer_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\Timer_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Timer_.h</FileName>
+              <FileName>Sound_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Hardware\Timer_.h</FilePath>
+              <FilePath>..\common\Hardware\Sound_.h</FilePath>
             </File>
             <File>
               <FileName>Sound_.cpp</FileName>
@@ -1850,9 +1845,14 @@
               <FilePath>..\common\Hardware\Sound_.cpp</FilePath>
             </File>
             <File>
-              <FileName>Sound_.h</FileName>
+              <FileName>Timer_.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\common\Hardware\Sound_.h</FilePath>
+              <FilePath>..\common\Hardware\Timer_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Timer_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\Timer_.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -1905,6 +1905,16 @@
               <FilePath>.\src\Hardware\HAL\stm32f4xx_hal_conf.h</FilePath>
             </File>
             <File>
+              <FileName>HAL_PINS_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_PINS_.h</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_PINS_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_PINS_.cpp</FilePath>
+            </File>
+            <File>
               <FileName>HAL_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_.h</FilePath>
@@ -1920,6 +1930,26 @@
               <FilePath>.\src\Hardware\HAL\HAL_IT.cpp</FilePath>
             </File>
             <File>
+              <FileName>HAL_DAC1_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_DAC1_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_DAC2_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_DAC2_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_LTDC_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_LTDC_.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_ROM_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Hardware\HAL\HAL_ROM_.cpp</FilePath>
+            </File>
+            <File>
               <FileName>HAL_TIM2_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_TIM2_.cpp</FilePath>
@@ -1930,39 +1960,9 @@
               <FilePath>..\common\Hardware\HAL\HAL_TIM6_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_DAC2_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_DAC2_.cpp</FilePath>
-            </File>
-            <File>
               <FileName>HAL_TIM7_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_TIM7_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_ROM_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_ROM_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_PINS_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_PINS_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_PINS_.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_PINS_.h</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_DAC1_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_DAC1_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_LTDC_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_LTDC_.cpp</FilePath>
             </File>
           </Files>
         </Group>

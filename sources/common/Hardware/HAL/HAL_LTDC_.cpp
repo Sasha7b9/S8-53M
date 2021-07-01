@@ -43,6 +43,10 @@ void HAL_LTDC::Init(uint8 *front, uint8 *back)
 
 void HAL_LTDC::LoadPalette()
 {
+    uint *addrColors = &set.display.colors[0];
+
+    addrColors = addrColors;
+
     if (HAL_LTDC_ConfigCLUT(&handleLTDC, set.display.colors, Color::Count, 0) != HAL_OK)
     {
         ERROR_HANDLER();
@@ -104,11 +108,23 @@ void HAL_LTDC::ToggleBuffers()
 
     hDMA2D.Instance = DMA2D;
 
-    HAL_DMA2D_Init(&hDMA2D);
+    if (HAL_DMA2D_Init(&hDMA2D) != HAL_OK)
+    {
+        ERROR_HANDLER();
+    }
 
-    HAL_DMA2D_ConfigLayer(&hDMA2D, 1);
+    if (HAL_DMA2D_ConfigLayer(&hDMA2D, 1) != HAL_OK)
+    {
+        ERROR_HANDLER();
+    }
 
-    HAL_DMA2D_Start(&hDMA2D, backBuffer, frontBuffer, 320, 240);
+    if (HAL_DMA2D_Start(&hDMA2D, backBuffer, frontBuffer, 320, 240) != HAL_OK)
+    {
+        ERROR_HANDLER();
+    }
 
-    HAL_DMA2D_PollForTransfer(&hDMA2D, 100);
+    if (HAL_DMA2D_PollForTransfer(&hDMA2D, 100) != HAL_OK)
+    {
+        ERROR_HANDLER();
+    }
 }
