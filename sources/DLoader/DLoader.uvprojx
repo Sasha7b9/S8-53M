@@ -789,11 +789,6 @@
               <FilePath>..\common\Hardware\HAL\HAL_DAC1_.cpp</FilePath>
             </File>
             <File>
-              <FileName>HAL_DAC2_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_DAC2_.cpp</FilePath>
-            </File>
-            <File>
               <FileName>HAL_LTDC_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_LTDC_.cpp</FilePath>
@@ -1918,11 +1913,6 @@
               <FileName>HAL_DAC1_.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\common\Hardware\HAL\HAL_DAC1_.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>HAL_DAC2_.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\common\Hardware\HAL\HAL_DAC2_.cpp</FilePath>
             </File>
             <File>
               <FileName>HAL_LTDC_.cpp</FileName>
