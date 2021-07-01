@@ -153,6 +153,7 @@ file(GLOB UTILS_CONTAINERS       ../../common/Utils/Containers/*.*)
 file(GLOB GUI                             src/GUI/*.*)
 file(GLOB GUI_CONTROLS                    src/GUI/Controls/*.*)
 file(GLOB GUI_DIALOGS                     src/GUI/Dialogs/*.*)
+file(GLOB GUI_DISPLAY                     src/GUI/Display/*.*)
 file(GLOB GUI_VCP                         src/GUI/VCP/*.*)
 file(GLOB RESOURCES          resources/*)
 
@@ -181,6 +182,7 @@ source_group(FPGA\\Data           FILES ${FPGA_DATA})
 source_group(GUI                  FILES ${GUI})
 source_group(GUI\\Controls        FILES ${GUI_CONTROLS})
 source_group(GUI\\Dialogs         FILES ${GUI_DIALOGS})
+source_group(GUI\\Display         FILES ${GUI_DISPLAY})
 source_group(GUI\\VCP             FILES ${GUI_VCP})
 source_group(Hardware             FILES ${HARDWARE})
 source_group(Hardware\\HAL        FILES ${HARDWARE_HAL})
@@ -206,8 +208,8 @@ source_group(Utils                FILES ${UTILS})
 source_group(Utils\\Containers    FILES ${UTILS_CONTAINERS})
 
 add_executable(S8-53M ${LIBS_CMSIS} ${LIBS_FATFS} ${LIBS_LWIP} ${LIBS_HAL} ${LIBS_USBD} ${LIBS_USBH} ${DISPLAY}
-          ${DISPLAY_FONT} ${DISPLAY_PAINTER} ${DISPLAY_SCREEN} ${LAN} ${FDRIVE} ${FPGA} ${FPGA_DATA} ${GUI}
-          ${GUI_CONTROLS} ${GUI_DIALOGS} ${GUI_VCP} ${HARDWARE}
+          ${DISPLAY_FONT} ${DISPLAY_PAINTER} ${DISPLAY_SCREEN} ${LAN} ${FDRIVE} ${FPGA} ${FPGA_DATA}
+          ${GUI} ${GUI_CONTROLS} ${GUI_DIALOGS} ${GUI_DISPLAY} ${GUI_VCP} ${HARDWARE}
           ${HARDWARE_HAL} ${HARDWARE_MEMORY} ${HARDWARE_USBD} ${HARDWARE_USBH} ${MENU} ${MENU_ITEMS}
           ${MENU_PAGES} ${MENU_PAGES_CURSORS} ${MENU_PAGES_DEBUG} ${MENU_PAGES_DISPLAY} ${MENU_PAGES_MEMORY}
           ${MENU_PAGES_SERVICE}
