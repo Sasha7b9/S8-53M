@@ -1,0 +1,3 @@
+Load "D:\\Projects\\stm32\\S8-53M\\sources\\Device\\Objects\\S8-53M.axf" 
+Erase Done.Programming Done.Application running ...
+Flash Load finished at 08:37:59
