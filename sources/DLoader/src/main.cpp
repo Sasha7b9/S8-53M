@@ -31,21 +31,14 @@ int main()
 
     HAL::Init();
     
-    HAL_TIM2::Delay(250);
-
     Display::Init();
+
+    Timer::Enable(TypeTimer::Temp, 1000 / 30, Display::Update);
     
     while(true)
     {
-        for (int i = 0; i < 10; i++)
-        {
-            Display::Update(i);
-    
-            HAL_TIM2::Delay(10);
-        }
     }
 
-//    Timer::Enable(TypeTimer::Temp, 10, Display::Update);
 
     FDrive::Init();
 

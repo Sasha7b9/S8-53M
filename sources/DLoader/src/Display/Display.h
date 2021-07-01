@@ -3,14 +3,6 @@
 #include "common/Display/Colors_.h"
 
 
-struct DataSettings;
-
-struct DrawMode { enum E {
-    Default,        // Стандартная отрисовка в цикле
-    Timer           // Отрисовка по таймеру заданной функции
-}; };
-
-
 class Display
 {
 public:
@@ -28,7 +20,7 @@ public:
 
     static void EndFrame();
 
-    static void Update(int num = 5);
+    static void Update();
 
     static bool IsRunning();
 

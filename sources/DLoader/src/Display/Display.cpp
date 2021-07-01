@@ -3,22 +3,28 @@
 #include "main.h"
 #include "common/Display/Painter/Primitives_.h"
 #include "common/Display/Painter/Text_.h"
+#include "common/Hardware/HAL/HAL_.h"
 #include "Display/Display.h"
 
 
 static bool running = false;
 
 
-void Display::Update(int num)
+void Display::Update()
 {
     running = true;
 
     BeginFrame(Color::BLACK);
 
-    for (int i = 0; i < num; i++)
+    static int i = 0;
+    i++;
+
+    if (i > 10)
     {
-        Region(10, 10).Fill(10 + i * 20, 10, Color::WHITE);
+        i = 0;
     }
+
+    Region(10, 10).Fill(10 + (int)(i % 10) * 20, 10, Color::WHITE);
 
     if (MainStruct::state == State::Upgrade)
     {
