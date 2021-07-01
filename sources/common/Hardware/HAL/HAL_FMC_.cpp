@@ -16,7 +16,9 @@ void HAL_FMC::Write(uint16 * const address, uint16 value)
 
     if (address == WR_START)
     {
+#ifdef DEVICE
         HAL_ADC1::ResetValue();
+#endif
     }
 
     if (address == WR_UPR)
