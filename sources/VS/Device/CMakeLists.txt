@@ -74,8 +74,7 @@ file(GLOB DISPLAY            ../../Device/src/Display/Console.*
                              ../../Device/src/Display/Painter.*
                              ../../Device/src/Display/PainterData.*
                              ../../Device/src/Display/Warnings.*
-                                 ../../common/Display/Colors_.*
-                                          src/Display/*.*)
+                                 ../../common/Display/Colors_.*)
 file(GLOB DISPLAY_FONT           ../../common/Display/Font/*.*)
 file(GLOB DISPLAY_PAINTER        ../../common/Display/Painter/Painter_.*
                                  ../../common/Display/Painter/Painter_stm_d_.*
@@ -132,8 +131,7 @@ file(GLOB MENU_PAGES_DISPLAY ../../Device/src/Menu/Pages/Display/*.*)
 file(GLOB MENU_PAGES_MEMORY  ../../Device/src/Menu/Pages/Memory/*.*)
 file(GLOB MENU_PAGES_SERVICE ../../Device/src/Menu/Pages/Service/*.*)
 file(GLOB PANEL                  ../../common/Panel/Controls_.*
-                             ../../Device/src/Panel/*.*
-                                          src/Panel/*.*)
+                             ../../Device/src/Panel/*.*)
 file(GLOB SETTINGS               ../../common/Settings/SettingsTypes_.h
                              ../../Device/src/Settings/*.*)
 file(GLOB SRC                             src/main_win.cpp
@@ -154,6 +152,7 @@ file(GLOB GUI                             src/GUI/*.*)
 file(GLOB GUI_CONTROLS                    src/GUI/Controls/*.*)
 file(GLOB GUI_DIALOGS                     src/GUI/Dialogs/*.*)
 file(GLOB GUI_DISPLAY                     src/GUI/Display/*.*)
+file(GLOB GUI_PANEL                       src/GUI/Panel/*.*)
 file(GLOB GUI_VCP                         src/GUI/VCP/*.*)
 file(GLOB RESOURCES          resources/*)
 
@@ -183,6 +182,7 @@ source_group(GUI                  FILES ${GUI})
 source_group(GUI\\Controls        FILES ${GUI_CONTROLS})
 source_group(GUI\\Dialogs         FILES ${GUI_DIALOGS})
 source_group(GUI\\Display         FILES ${GUI_DISPLAY})
+source_group(GUI\\Panel           FILES ${GUI_PANEL})
 source_group(GUI\\VCP             FILES ${GUI_VCP})
 source_group(Hardware             FILES ${HARDWARE})
 source_group(Hardware\\HAL        FILES ${HARDWARE_HAL})
@@ -209,7 +209,7 @@ source_group(Utils\\Containers    FILES ${UTILS_CONTAINERS})
 
 add_executable(S8-53M ${LIBS_CMSIS} ${LIBS_FATFS} ${LIBS_LWIP} ${LIBS_HAL} ${LIBS_USBD} ${LIBS_USBH} ${DISPLAY}
           ${DISPLAY_FONT} ${DISPLAY_PAINTER} ${DISPLAY_SCREEN} ${LAN} ${FDRIVE} ${FPGA} ${FPGA_DATA}
-          ${GUI} ${GUI_CONTROLS} ${GUI_DIALOGS} ${GUI_DISPLAY} ${GUI_VCP} ${HARDWARE}
+          ${GUI} ${GUI_CONTROLS} ${GUI_DIALOGS} ${GUI_DISPLAY} ${GUI_PANEL} ${GUI_VCP} ${HARDWARE}
           ${HARDWARE_HAL} ${HARDWARE_MEMORY} ${HARDWARE_USBD} ${HARDWARE_USBH} ${MENU} ${MENU_ITEMS}
           ${MENU_PAGES} ${MENU_PAGES_CURSORS} ${MENU_PAGES_DEBUG} ${MENU_PAGES_DISPLAY} ${MENU_PAGES_MEMORY}
           ${MENU_PAGES_SERVICE}
