@@ -10,7 +10,7 @@
 
 static bool running = false;
 
-static ABorder border(100, 100);
+static ABorder border(Display::WIDTH - 4, Display::HEIGHT - 4);
 
 
 void Display::Update()
@@ -19,7 +19,9 @@ void Display::Update()
 
     BeginFrame(Color::BLACK);
 
-    border.Draw(0, 0);
+    Rectangle(Display::WIDTH, Display::HEIGHT).Draw(0, 0, Color::WHITE);
+    border.Draw(2, 2);
+    Rectangle(Display::WIDTH - 8, Display::HEIGHT - 8).Draw(4, 4);
 
     if (MainStruct::state == State::UpdateInProgress)
     {

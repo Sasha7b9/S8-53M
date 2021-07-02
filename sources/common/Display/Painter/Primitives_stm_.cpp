@@ -5,14 +5,14 @@
 #include "common/Utils/Math_.h"
 #include "Display/Display.h"
 
-
+ 
 extern uint8 *display_back_buffer;
 extern uint8 *display_back_buffer_end;
 
 
 void Point::Draw(int x, int y) const
 {
-    if (x < 0 || y < 0)
+    if (x < 0 || y < 0 || (x > Display::WIDTH - 1) || (y > Display::HEIGHT - 1))
     {
         return;
     }

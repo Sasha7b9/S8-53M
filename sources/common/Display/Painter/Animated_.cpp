@@ -21,7 +21,7 @@ void ABorder::Draw(int x, int y)
 
         BitSet64 coord = CalculateCoord(value + i * (GetPerimeter() / numPoints));
 
-        Point().Draw(x + coord.first, x + coord.second, Color::FILL);
+        Point().Draw(x + coord.first, y + coord.second, Color::FILL);
     }
 }
 
