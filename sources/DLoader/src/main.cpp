@@ -39,47 +39,30 @@ int main()
 
     uint timeStart = TIME_MS;
 
-    while (TIME_MS - timeStart < TIME_WAIT && (MainStruct::state != State::Mounted) && (MainStruct::state != State::WrongFlash))
+    while ((TIME_MS - timeStart < TIME_WAIT) &&
+        (MainStruct::state != State::DriveIsMounted) &&
+        (MainStruct::state != State::WrongDrive))
     {
         FDrive::Update();
     }
 
-    if (MainStruct::state == State::Mounted)                    // Это означает, что диск удачно примонтирован
+    if (MainStruct::state == State::DriveIsMounted)                    // Это означает, что диск удачно примонтирован
     {
         if (FDrive::FileExist(FILE_NAME))                       // Если на диске обнаружена прошивка
         {
             Upgrade();
-
-//            MainStruct::state = State::RequestAction;
-//
-//            while (1)
-//            {
-//                Key::E button = Panel::PressedButton();
-//
-//                if (button == Key::F1)
-//                {
-//                    MainStruct::state = State::Upgrade;
-//                    Upgrade();
-//                    break;
-//                }
-//                else if (button == Key::F5)
-//                {
-//                    MainStruct::state = State::Ok;
-//                    break;
-//                }
-//            }
         }
         else
         {
-            MainStruct::state = State::NotFile;
+            MainStruct::state = State::FileNotFound;
         }
     }
-    else if (MainStruct::state == State::WrongFlash) // Диск не удалось примонтировать
+    else if (MainStruct::state == State::WrongDrive) // Диск не удалось примонтировать
     {
         HAL_TIM2::Delay(5000);
     }
 
-    MainStruct::state = State::Ok;
+    MainStruct::state = State::UpdateIsFinished;
 
 //    Timer::Disable(TypeTimer::Temp);
 
@@ -98,7 +81,7 @@ int main()
 
 void Upgrade()
 {
-    MainStruct::state = State::Upgrade;
+    MainStruct::state = State::UpdateInProgress;
 
     const int sizeSector = 1 * 1024;
 

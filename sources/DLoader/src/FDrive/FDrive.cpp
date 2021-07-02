@@ -57,7 +57,7 @@ void USBH_UserProcess(USBH_HandleTypeDef *, uint8 id)
             break;
 
         case HOST_USER_CLASS_ACTIVE:
-            MainStruct::state = State::NeedMount;
+            MainStruct::state = State::DriveNeedMount;
             break;
 
         case HOST_USER_CLASS_SELECTED:
@@ -82,15 +82,15 @@ void FDrive::Update()
 {
     USBH_Process(reinterpret_cast<USBH_HandleTypeDef *>(USBH::handle));
 
-    if (MainStruct::state == State::NeedMount)
+    if (MainStruct::state == State::DriveNeedMount)
     {
         if (f_mount(&USBDISKFatFS, (TCHAR const*)USBDISKPath, 0) != FR_OK)
         {
-            MainStruct::state = State::WrongFlash;
+            MainStruct::state = State::WrongDrive;
         }
         else
         {
-            MainStruct::state = State::Mounted;
+            MainStruct::state = State::DriveIsMounted;
         }
     }
 }

@@ -26,7 +26,7 @@ void Display::Update()
 
     Region(10, 10).Fill(10 + (int)(i % 10) * 20, 10, Color::WHITE);
 
-    if (MainStruct::state == State::Upgrade)
+    if (MainStruct::state == State::UpdateInProgress)
     {
         Text("Подождите завершения").DrawInCenterRect(0, 0, 320, 190);
         Text("установки программного обеспечения").DrawInCenterRect(0, 0, 320, 220);

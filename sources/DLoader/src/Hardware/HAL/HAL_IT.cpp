@@ -67,7 +67,7 @@ extern "C" {
     {
         if (MainStruct::state == State::NoDrive)
         {
-            MainStruct::state = State::Start;
+            MainStruct::state = State::DriveDetected;
         }
 
         HAL_HCD_IRQHandler((HCD_HandleTypeDef *)HAL_HCD::handle);
