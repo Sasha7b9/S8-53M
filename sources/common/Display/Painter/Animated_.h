@@ -8,7 +8,7 @@ public:
 
     ABorder(int width, int height);
 
-    void Draw();
+    void Draw(int x, int y);
 
     int GetPerimeter();
 

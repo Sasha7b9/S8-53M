@@ -11,7 +11,7 @@ ABorder::ABorder(int _w, int _h) : width(_w), height(_h)
 }
 
 
-void ABorder::Draw()
+void ABorder::Draw(int x, int y)
 {
     static const int numPoints = GetPerimeter() / 10;
 
@@ -21,7 +21,7 @@ void ABorder::Draw()
 
         BitSet64 coord = CalculateCoord(value + i * (GetPerimeter() / numPoints));
 
-        Point().Draw(coord.first, coord.second, Color::FILL);
+        Point().Draw(x + coord.first, x + coord.second, Color::FILL);
     }
 }
 
