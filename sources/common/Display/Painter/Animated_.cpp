@@ -44,7 +44,6 @@ BitSet64 ABorder::CalculateCoord(int value)
     }
     else if (value < width + height)
     {
-
         return BitSet64(width - 1, value - width);
     }
     else if (value < width * 2 + height)
