@@ -62,7 +62,8 @@ void Display::Update()
 
     if (MainStruct::state == State::NoDrive)
     {
-        DrawBigMNIPI();
+        Text("ÃÕ»œ»").DrawBig(30, 80, 9);
+//        DrawBigMNIPI();
     }
     else if (MainStruct::state == State::DriveDetected)
     {
@@ -178,8 +179,8 @@ static void InitPoints()
         {
             if (*(buffer.Data() + y * 320 + x))
             {
-                array[numPoints].x = x;
-                array[numPoints].y = y;
+                array[numPoints].x = (uint16)x;
+                array[numPoints].y = (uint8)y;
                 numPoints++;
             }
         }
