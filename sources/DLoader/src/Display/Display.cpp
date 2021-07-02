@@ -24,6 +24,11 @@ void Display::Update()
 
     BeginFrame(Color::BLACK);
 
+    if (MainStruct::state != State::NoDrive)
+    {
+        Text("%d сек", TIME_MS / 1000).Draw(20, 20, Color::WHITE);
+    }
+
     Rectangle(Display::WIDTH, Display::HEIGHT).Draw(0, 0, Color::WHITE);
     border.Draw(2, 2);
     Rectangle(Display::WIDTH - 8, Display::HEIGHT - 8).Draw(4, 4);
@@ -44,8 +49,8 @@ void Display::Update()
 
         DrawProgressBar();
 
-        Text("%d/%d кЅайт, %d кЅайт/сек", MainStruct::sizeUpdated / 1024, MainStruct::sizeFirmware / 1024,
-            MainStruct::speed / 1024).Draw(100, 200);
+        Text("%d/%d кЅайт, %d кЅайт/сек, осталось %d сек", MainStruct::sizeUpdated / 1024,
+            MainStruct::sizeFirmware / 1024, MainStruct::speed / 1024, MainStruct::timeLeft).Draw(60, 200);
     }
     else if (MainStruct::state == State::UpdateIsFinished)
     {

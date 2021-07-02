@@ -40,4 +40,5 @@ struct MainStruct
     static int sizeFirmware;        // Размер прошивки
     static int sizeUpdated;         // Обновлено байт
     static int speed;               // Скорость обновления в байтах/секунду
+    static int timeLeft;            // Осталось времени
 };

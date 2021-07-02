@@ -27,6 +27,7 @@ State::E MainStruct::state = State::NoDrive;
 int MainStruct::sizeFirmware = 0;
 int MainStruct::sizeUpdated = 0;
 int MainStruct::speed = 0;
+int MainStruct::timeLeft = 0;
 
 
 int main()
@@ -34,9 +35,9 @@ int main()
     Settings::Load();
 
     HAL::Init();
-
+ 
     FDrive::Init();
-
+    
     Display::Init();
 
     Timer::Enable(TypeTimer::Temp, 10, Display::Update);
@@ -63,15 +64,15 @@ int main()
         }
 
         MainStruct::state = State::UpdateIsFinished;
-
-        Timer::Disable(TypeTimer::Temp);
-
-        while (Display::IsRunning())
-        {
-        }
-
-        Display::Update();
     }
+    
+    Timer::Disable(TypeTimer::Temp);
+    
+    while (Display::IsRunning())
+    {
+    }
+    
+    Display::Update();
 
     HAL::DeInit();
 
@@ -123,7 +124,7 @@ static void Update()
     uint8 buffer[sizeSector];
 
     int size = FDrive::OpenFileForRead(FILE_NAME);
-    int fullSize = size;
+    const int fullSize = size;
     uint address = 0x08020000U;
 
     MainStruct::percentUpdate = 0.0f;
@@ -131,6 +132,7 @@ static void Update()
     MainStruct::sizeFirmware = size;
     MainStruct::sizeUpdated = 0;
     MainStruct::speed = 0;
+    MainStruct::timeLeft = 0;
 
     uint timeStart = TIME_MS;
 
@@ -147,8 +149,11 @@ static void Update()
 
         MainStruct::sizeUpdated += readedBytes;
         MainStruct::speed = (int)(MainStruct::sizeUpdated * 1000.0f / (TIME_MS - timeStart));
-        
-        Display::Update();
+
+        int timePassed = (int)(TIME_MS - timeStart);       // Прошло времени
+        int timeNeed = fullSize / MainStruct::speed * 1000;
+
+        MainStruct::timeLeft = (timeNeed - timePassed) / 1000 + 1;
     }
 
     FDrive::CloseOpenedFile();
