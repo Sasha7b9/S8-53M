@@ -23,6 +23,4 @@ public:
     static void Update();
 
     static bool IsRunning();
-
-    static void ReadRow(int row, uint8 pixels[320]);
 };

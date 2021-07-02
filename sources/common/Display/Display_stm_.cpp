@@ -49,12 +49,6 @@ uint8 *Display::GetBuffer()
 }
 
 
-void Display::ReadRow(int row, uint8 pixels[320])
-{
-    std::memcpy(pixels, &back[row][0], 320);
-}
-
-
 uint8 *Display::GetBufferEnd()
 {
     return GetBuffer() + SIZE_BUFFER;
@@ -106,3 +100,12 @@ void HLine::Draw(int x, int y) const
     std::memset(address, Color::GetCurrent().index, (uint)w);
 }
 
+
+#ifdef DEVICE
+
+void Display::ReadRow(int row, uint8 pixels[320])
+{
+    std::memcpy(pixels, &back[row][0], 320);
+}
+
+#endif
