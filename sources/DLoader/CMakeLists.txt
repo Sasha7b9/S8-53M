@@ -112,6 +112,7 @@ file(GLOB SETTINGS               src/Settings/*.*
                            ../common/Settings/cSettingsTypes.h)
 file(GLOB UTILS                  src/Utils/*.*
                            ../common/Utils/*.*)
+file(GLOB UTILS_CONTAINERS ../common/Utils/Containers/Buffer_.*)
 
 set_source_files_properties(${LIBS_FATFS} ${LIBS_HAL} ${LIBS_USBH} PROPERTIES HEADER_FILE_ONLY TRUE)
 
@@ -134,10 +135,12 @@ source_group(FDrive                  FILES ${FDRIVE})
 source_group(Panel                   FILES ${PANEL})
 source_group(Settings                FILES ${SETTINGS})
 source_group(Utils                   FILES ${UTILS})
+source_group(Utils\\Containers       FILES ${UTILS_CONTAINERS})
 
                    
 add_library(DLoader ${VS_KEIL_CMSIS} ${VS_KEIL_ARMCLANG} ${VS_KEIL_FATFS} ${LIBS_CMSIS}
                     ${LIBS_FATFS} ${LIBS_HAL} ${LIBS_USBH}
                     ${HARDWARE} ${HARDWARE_CMSIS} ${HARDWARE_HAL} ${HARDWARE_USBH}
-                    ${SRC} ${DISPLAY} ${DISPLAY_FONT} ${DISPLAY_PAINTER} ${FDRIVE} ${PANEL} ${SETTINGS} ${UTILS})
+                    ${SRC} ${DISPLAY} ${DISPLAY_FONT} ${DISPLAY_PAINTER} ${FDRIVE} ${PANEL} ${SETTINGS}
+                    ${UTILS} ${UTILS_CONTAINERS})
                     

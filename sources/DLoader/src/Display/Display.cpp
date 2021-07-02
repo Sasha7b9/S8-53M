@@ -6,8 +6,10 @@
 #include "common/Display/Painter/Text_.h"
 #include "common/Hardware/HAL/HAL_.h"
 #include "common/Utils/Math_.h"
+#include "common/Utils/Containers/Buffer_.h"
 #include "Display/Display.h"
 #include <cmath>
+#include <cstring>
 
 
 typedef struct
@@ -26,6 +28,9 @@ static bool running = false;
 static ABorder border(Display::WIDTH - 4, Display::HEIGHT - 4);
 
 
+static void InitPoints();
+
+
 void Display::Update()
 {
     if (running)
@@ -34,6 +39,15 @@ void Display::Update()
     }
 
     running = true;
+
+    static bool first = true;
+
+    if (first)
+    {
+        first = false;
+
+        InitPoints();
+    }
 
     BeginFrame(Color::BLACK);
 
@@ -147,6 +161,27 @@ void Display::DrawBigMNIPI()
         if (x > 0 && x < 319 && y > 0 && y < 239)
         {
             Point().Draw(x, y);
+        }
+    }
+}
+
+
+static void InitPoints()
+{
+    Buffer<uint8> buffer(320 * 240);
+
+    Text::DrawBigTextInBuffer(31, 70, 9, "ÃÕ»œ»", buffer.Data());
+
+    for (int x = 0; x < 320; x++)
+    {
+        for (int y = 0; y < 240; y++)
+        {
+            if (*(buffer.Data() + y * 320 + x))
+            {
+                array[numPoints].x = x;
+                array[numPoints].y = y;
+                numPoints++;
+            }
         }
     }
 }

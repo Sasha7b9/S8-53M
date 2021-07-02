@@ -775,3 +775,64 @@ int Text::Draw(int x, int y) const
 
     return x;
 }
+
+
+static int DrawBigCharInBuffer(int eX, int eY, int size, char symbol, uint8 *buffer)
+{
+    int8 width = (int8)Font::GetLengthSymbol((uchar)symbol);
+    int8 height = (int8)Font::GetHeightSymbol();
+
+    for (int b = 0; b < height; b++)
+    {
+        if (ByteFontNotEmpty(symbol, b))
+        {
+            int x = eX;
+            int y = eY + b * size + 9 - height;
+            int endBit = 8 - width;
+            for (int bit = 7; bit >= endBit; bit--)
+            {
+                if (BitInFontIsExist(symbol, b, bit))
+                {
+                    for (int i = 0; i < size; i++)
+                    {
+                        for (int j = 0; j < size; j++)
+                        {
+                            int fullX = x + i;
+                            int fullY = y + j;
+
+                            if (fullX >= 0 && fullX < 320 && fullY >= 0 && fullY < 240)
+                            {
+                                *(buffer + fullY * 320 + fullX) = 1;
+                            }
+                        }
+                    }
+                }
+                x += size;
+            }
+        }
+    }
+
+    return eX + width * size;
+}
+
+
+void Text::DrawBigTextInBuffer(int eX, int eY, int size, const char *text, uint8 *buffer)
+{
+    for (int x = 0; x < 320; x++)
+    {
+        for (int y = 0; y < 240; y++)
+        {
+            *(buffer + (y * 320) + x) = 0;
+        }
+    }
+
+    int numSymbols = (int)std::strlen(text);
+
+    int x = eX;
+
+    for (int i = 0; i < numSymbols; i++)
+    {
+        x = DrawBigCharInBuffer(x, eY, size, text[i], buffer);
+        x += size;
+    }
+}

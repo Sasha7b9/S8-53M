@@ -64,6 +64,8 @@ public:
     int DrawInCenterRectAndBoundIt(int x, int y, int width, int height, const Color &colorBackground,
         const Color &colorFill);
 
+    static void DrawBigTextInBuffer(int eX, int eY, int size, const char *text, uint8 *buffer /* [320][240] */);
+
 private:
 
     int DrawChar(int x, int y, uint8 symbol) const;
