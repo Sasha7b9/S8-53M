@@ -894,6 +894,16 @@
           <GroupName>Display</GroupName>
           <Files>
             <File>
+              <FileName>Animated_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\Painter\Animated_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Animated_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Painter\Animated_.cpp</FilePath>
+            </File>
+            <File>
               <FileName>Colors_.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\common\Display\Colors_.h</FilePath>
@@ -2014,6 +2024,16 @@
         <Group>
           <GroupName>Display</GroupName>
           <Files>
+            <File>
+              <FileName>Animated_.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\common\Display\Painter\Animated_.h</FilePath>
+            </File>
+            <File>
+              <FileName>Animated_.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\common\Display\Painter\Animated_.cpp</FilePath>
+            </File>
             <File>
               <FileName>Colors_.h</FileName>
               <FileType>5</FileType>

@@ -101,7 +101,8 @@ file(GLOB SRC              ../common/defines_.h
                                  src/*.*)
 file(GLOB DISPLAY                src/Display/*.*
                            ../common/Display/*.*)
-file(GLOB DISPLAY_PAINTER  ../common/Display/Painter/Primitives_.*
+file(GLOB DISPLAY_PAINTER  ../common/Display/Painter/Animated_.*
+                           ../common/Display/Painter/Primitives_.*
                            ../common/Display/Painter/Text_.*)
 file(GLOB DISPLAY_FONT     ../common/Display/Font/*.*)
 file(GLOB FDRIVE                 src/FDrive/*.*)
