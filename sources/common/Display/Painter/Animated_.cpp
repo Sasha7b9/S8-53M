@@ -33,40 +33,26 @@ BitSet64 ABorder::CalculateCoord(int value)
 {
     value %= (GetPerimeter());
 
-    if (rotate == DirectionRotate::Right)
+    if (rotate == DirectionRotate::Left)
     {
-        if (value < width)
-        {
-            return BitSet64(value, 0);
-        }
-        else if (value < width + height)
-        {
-            return BitSet64(width - 1, value - width);
-        }
-        else if (value < width * 2 + height)
-        {
-            return BitSet64(width - (value - width - height) - 1, height - 1);
-        }
-
-        return BitSet64(0, height - (value - width * 2 - height) - 1);
+        value = GetPerimeter() - value;
     }
-    else
+
+    if (value < width)
     {
-        if (value < width)
-        {
-            return BitSet64(width - value, 0);
-        }
-        else if (value < width + height)
-        {
-            return BitSet64(width - 1, width - value);
-        }
-        else if (value < width * 2 + height)
-        {
-            return BitSet64((value - width - height) - width - 1, height - 1);
-        }
-
-        return BitSet64(0, (value - width * 2 - height) - 1 - height);
+        return BitSet64(value, 0);
     }
+    else if (value < width + height)
+    {
+
+        return BitSet64(width - 1, value - width);
+    }
+    else if (value < width * 2 + height)
+    {
+        return BitSet64(width - (value - width - height) - 1, height - 1);
+    }
+
+    return BitSet64(0, height - (value - width * 2 - height) - 1);
 }
 
 

@@ -25,8 +25,8 @@ static Vector array[SIZE_ARRAY];
 
 static bool running = false;
 
-static ABorder border(Display::WIDTH - 4, Display::HEIGHT - 4, DirectionRotate::Right);
-
+static ABorder border1(Display::WIDTH - 4, Display::HEIGHT - 4, DirectionRotate::Right);
+//static ABorder border2(Display::WIDTH - 12, Display::HEIGHT - 12, DirectionRotate::Left);
 
 static void InitPoints();
 
@@ -57,8 +57,10 @@ void Display::Update()
     }
 
     Rectangle(Display::WIDTH, Display::HEIGHT).Draw(0, 0, Color::WHITE);
-    border.Draw(2, 2);
+    border1.Draw(2, 2);
     Rectangle(Display::WIDTH - 8, Display::HEIGHT - 8).Draw(4, 4);
+//    border2.Draw(6, 6);
+//    Rectangle(Display::WIDTH - 16, Display::HEIGHT - 16).Draw(8, 8);
 
     if (MainStruct::state == State::NoDrive)
     {
