@@ -44,6 +44,10 @@ void Display::Update()
 
         DrawProgressBar();
     }
+    else if (MainStruct::state == State::UpdateIsFinished)
+    {
+        DrawMessage("Обновление завершено");
+    }
 
     EndFrame();
 

@@ -59,11 +59,15 @@ int main()
             }
         }
 
+        MainStruct::state = State::UpdateIsFinished;
+
         Timer::Disable(TypeTimer::Temp);
 
         while (Display::IsRunning())
         {
         }
+
+        Display::Update();
     }
 
     HAL::DeInit();
@@ -80,9 +84,18 @@ static void EraseSectors()
 
     const int startSector = Sector::_05_FIRM_1;
 
-    const int numSectors = 5;
-
     MainStruct::percentUpdate = 0.0f;
+
+    int size = FDrive::OpenFileForRead(FILE_NAME);
+
+    FDrive::CloseOpenedFile();
+
+    int numSectors = size / (128 * 1024);
+
+    if (size % (128 * 1024) != 0)
+    {
+        numSectors++;
+    }
 
     for (int sector = startSector; sector <= startSector + numSectors; sector++)
     {
@@ -100,7 +113,6 @@ static void EraseSectors()
 
 static void Update()
 {
-
     MainStruct::state = State::UpdateInProgress;
 
     const int sizeSector = 1 * 1024;
