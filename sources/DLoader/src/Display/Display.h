@@ -25,4 +25,6 @@ private:
     static void DrawMessage(pchar message1, pchar message2 = nullptr);
 
     static void DrawProgressBar();
+
+    static void DrawBigMNIPI();
 };

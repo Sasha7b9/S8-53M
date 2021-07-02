@@ -5,8 +5,21 @@
 #include "common/Display/Painter/Primitives_.h"
 #include "common/Display/Painter/Text_.h"
 #include "common/Hardware/HAL/HAL_.h"
+#include "common/Utils/Math_.h"
 #include "Display/Display.h"
+#include <cmath>
 
+
+typedef struct
+{
+    uint16 x;
+    uint8 y;
+} Vector;
+
+
+static int numPoints = 0;
+static const int SIZE_ARRAY = 7000;
+static Vector array[SIZE_ARRAY];
 
 static bool running = false;
 
@@ -35,7 +48,7 @@ void Display::Update()
 
     if (MainStruct::state == State::NoDrive)
     {
-
+        DrawBigMNIPI();
     }
     else if (MainStruct::state == State::DriveDetected)
     {
@@ -91,5 +104,49 @@ void Display::DrawMessage(pchar message1, pchar message2)
     if (message2)
     {
         Text(message2).DrawInCenterRect(0, 0, Display::WIDTH, 120);
+    }
+}
+
+
+void Display::DrawBigMNIPI()
+{
+    static uint startTime = 0;
+    static bool first = true;
+
+    if (first)
+    {
+        first = false;
+        startTime = TIME_MS;
+    }
+
+    uint time = TIME_MS - startTime;
+
+    int numColor = (int)(time / (float)TIME_WAIT * 13.0f);
+    Math::Limitation<int>(&numColor, 0, 13);
+
+    Color((uint8)(numColor + 2)).SetAsCurrent();
+
+    float amplitude = 3.0f - (time / (TIME_WAIT / 2.0f)) * 3;
+    Math::LimitBelow(&amplitude, 0.0f);
+    float frequency = 0.05f;
+
+    float radius = 5000.0f * (TIME_WAIT) / 3000.0f / time;
+    Math::LimitBelow(&radius, 0.0f);
+
+    float shift[240];
+
+    for (int i = 0; i < 240; i++)
+    {
+        shift[i] = amplitude * std::sin(frequency * time + i / 5.0f);
+    }
+
+    for (int i = 0; i < numPoints; i++)
+    {
+        int x = (int)(array[i].x + shift[array[i].y]);
+        int y = array[i].y;
+        if (x > 0 && x < 319 && y > 0 && y < 239)
+        {
+            Point().Draw(x, y);
+        }
     }
 }
