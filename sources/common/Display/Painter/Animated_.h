@@ -6,15 +6,16 @@ class ABorder
 {
 public:
 
-    ABorder();
+    ABorder(int width, int height);
 
     void Draw();
 
     int GetPerimeter();
 
-    BitSet64 CalculateCoord(uint value);
+    BitSet64 CalculateCoord(int value);
 
 private:
 
-    uint startTime;
+    int width;
+    int height;
 };

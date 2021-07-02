@@ -10,7 +10,7 @@
 
 static bool running = false;
 
-static ABorder border;
+static ABorder border(Display::WIDTH, Display::HEIGHT);
 
 
 void Display::Update()

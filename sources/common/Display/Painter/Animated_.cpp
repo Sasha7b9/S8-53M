@@ -5,7 +5,7 @@
 #include "common/Hardware/HAL/HAL_.h"
 
 
-ABorder::ABorder() : startTime(TIME_MS)
+ABorder::ABorder(int _w, int _h) : width(_w), height(_h)
 {
 
 }
@@ -17,40 +17,38 @@ void ABorder::Draw()
 
     for (int i = 0; i < numPoints; i++)
     {
-        uint value = (TIME_MS - startTime) / 20;
+        int value = (int)(TIME_MS / 20);
 
         BitSet64 coord = CalculateCoord(value + i * (GetPerimeter() / numPoints));
 
         Point().Draw(coord.first, coord.second, Color::FILL);
     }
-
-    Rectangle(Display::WIDTH - 2, Display::HEIGHT - 2).Draw(1, 1);
 }
 
 
-BitSet64 ABorder::CalculateCoord(uint value)
+BitSet64 ABorder::CalculateCoord(int value)
 {
     value %= GetPerimeter();
 
-    if (value < Display::WIDTH)
+    if (value < width)
     {
         return BitSet64((int)value, 0);
     }
-    else if (value < Display::WIDTH + Display::HEIGHT)
+    else if (value < width + height)
     {
-        return BitSet64(Display::WIDTH - 1, (int)value - Display::WIDTH);
+        return BitSet64(width - 1, (int)value - width);
     }
-    else if (value < Display::WIDTH * 2 + Display::HEIGHT)
+    else if (value < width * 2 + height)
     {
-        return BitSet64(Display::WIDTH - ((int)value - Display::WIDTH - Display::HEIGHT), Display::HEIGHT - 1);
+        return BitSet64(width - ((int)value - width - height), height - 1);
     }
 
-    return BitSet64(0, Display::HEIGHT - ((int)value - Display::WIDTH * 2 - Display::HEIGHT));
+    return BitSet64(0, height - ((int)value - width * 2 - height));
 }
 
 
 int ABorder::GetPerimeter()
 {
-    return Display::WIDTH * 2 + Display::HEIGHT * 2;
+    return width * 2 + height * 2;
 }
 
