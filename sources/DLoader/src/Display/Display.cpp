@@ -33,7 +33,11 @@ void Display::Update()
     border.Draw(2, 2);
     Rectangle(Display::WIDTH - 8, Display::HEIGHT - 8).Draw(4, 4);
 
-    if (MainStruct::state == State::DriveDetected)
+    if (MainStruct::state == State::NoDrive)
+    {
+
+    }
+    else if (MainStruct::state == State::DriveDetected)
     {
         DrawMessage("Обнаружен диск. Попытка подключения...");
     }

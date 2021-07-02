@@ -74,6 +74,7 @@ struct HAL_CRC
 struct HAL_DAC1
 {
     static void Init();
+
     // «начение value от 0 до 100
     static void SetValue(int value);
 };

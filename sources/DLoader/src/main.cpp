@@ -65,6 +65,10 @@ int main()
 
         MainStruct::state = State::UpdateIsFinished;
     }
+    else
+    {
+        HAL_TIM2::Delay(3000);
+    }
     
     Timer::Disable(TypeTimer::Temp);
     
