@@ -43,18 +43,6 @@ void Display::EndFrame()
 }
 
 
-uint8 *Display::GetBuffer()
-{
-    return &back[0][0];
-}
-
-
-uint8 *Display::GetBufferEnd()
-{
-    return GetBuffer() + SIZE_BUFFER;
-}
-
-
 void HLine::Draw(int y, int x0, int x1) const
 {
     if (y < 0 || y >= Display::HEIGHT)
@@ -107,5 +95,16 @@ void Display::ReadRow(int row, uint8 pixels[320])
 {
     std::memcpy(pixels, &back[row][0], 320);
 }
+
+uint8 *Display::GetBufferEnd()
+{
+    return GetBuffer() + SIZE_BUFFER;
+}
+
+uint8 *Display::GetBuffer()
+{
+    return &back[0][0];
+}
+
 
 #endif
