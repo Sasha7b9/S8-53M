@@ -13,22 +13,25 @@ ABorder::ABorder(int _w, int _h) : width(_w), height(_h)
 
 void ABorder::Draw(int x, int y)
 {
-    static const int numPoints = GetPerimeter() / 10;
+    static const int numPoints = 38;
 
     for (int i = 0; i < numPoints; i++)
     {
-        int value = (int)(TIME_MS / 20);
+        int value = (int)(TIME_MS / 10);
 
-        BitSet64 coord = CalculateCoord(value + i * (GetPerimeter() / numPoints));
+        for (int num = 0; num < 13; num++)
+        {
+            BitSet64 coord = CalculateCoord(value + i * (GetPerimeter() / numPoints) + num);
 
-        Point().Draw(x + coord.first, y + coord.second, Color::FILL);
+            Point().Draw(x + coord.first, y + coord.second, Color::FILL);
+        }
     }
 }
 
 
 BitSet64 ABorder::CalculateCoord(int value)
 {
-    value %= GetPerimeter();
+    value %= (GetPerimeter());
 
     if (value < width)
     {
@@ -40,10 +43,10 @@ BitSet64 ABorder::CalculateCoord(int value)
     }
     else if (value < width * 2 + height)
     {
-        return BitSet64(width - ((int)value - width - height), height - 1);
+        return BitSet64(width - ((int)value - width - height) - 1, height - 1);
     }
 
-    return BitSet64(0, height - ((int)value - width * 2 - height));
+    return BitSet64(0, height - ((int)value - width * 2 - height) - 1);
 }
 
 

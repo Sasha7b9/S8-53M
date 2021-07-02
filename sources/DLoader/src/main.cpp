@@ -36,8 +36,8 @@ int main()
 
     Display::Init();
 
-    Timer::Enable(TypeTimer::Temp, 1000 / 30, Display::Update);
-
+    Timer::Enable(TypeTimer::Temp, 10, Display::Update);
+    
     if (MainStruct::state != State::NoDrive)
     {
         uint timeStart = TIME_MS;
