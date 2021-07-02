@@ -67,7 +67,7 @@ int main()
     }
     else
     {
-        HAL_TIM2::Delay(3000);
+        HAL_TIM2::Delay(30000);
     }
     
     Timer::Disable(TypeTimer::Temp);

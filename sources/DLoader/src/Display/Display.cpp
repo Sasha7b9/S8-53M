@@ -25,7 +25,7 @@ static Vector array[SIZE_ARRAY];
 
 static bool running = false;
 
-static ABorder border(Display::WIDTH - 4, Display::HEIGHT - 4);
+static ABorder border(Display::WIDTH - 4, Display::HEIGHT - 4, DirectionRotate::Right);
 
 
 static void InitPoints();

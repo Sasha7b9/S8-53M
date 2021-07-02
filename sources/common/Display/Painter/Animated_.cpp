@@ -5,7 +5,7 @@
 #include "common/Hardware/HAL/HAL_.h"
 
 
-ABorder::ABorder(int _w, int _h) : width(_w), height(_h)
+ABorder::ABorder(int _w, int _h, DirectionRotate::E _rotate) : width(_w), height(_h), rotate(_rotate)
 {
 
 }
@@ -33,20 +33,40 @@ BitSet64 ABorder::CalculateCoord(int value)
 {
     value %= (GetPerimeter());
 
-    if (value < width)
+    if (rotate == DirectionRotate::Right)
     {
-        return BitSet64((int)value, 0);
-    }
-    else if (value < width + height)
-    {
-        return BitSet64(width - 1, (int)value - width);
-    }
-    else if (value < width * 2 + height)
-    {
-        return BitSet64(width - ((int)value - width - height) - 1, height - 1);
-    }
+        if (value < width)
+        {
+            return BitSet64(value, 0);
+        }
+        else if (value < width + height)
+        {
+            return BitSet64(width - 1, value - width);
+        }
+        else if (value < width * 2 + height)
+        {
+            return BitSet64(width - (value - width - height) - 1, height - 1);
+        }
 
-    return BitSet64(0, height - ((int)value - width * 2 - height) - 1);
+        return BitSet64(0, height - (value - width * 2 - height) - 1);
+    }
+    else
+    {
+        if (value < width)
+        {
+            return BitSet64(width - value, 0);
+        }
+        else if (value < width + height)
+        {
+            return BitSet64(width - 1, width - value);
+        }
+        else if (value < width * 2 + height)
+        {
+            return BitSet64((value - width - height) - width - 1, height - 1);
+        }
+
+        return BitSet64(0, (value - width * 2 - height) - 1 - height);
+    }
 }
 
 

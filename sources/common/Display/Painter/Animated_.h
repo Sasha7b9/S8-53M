@@ -2,11 +2,17 @@
 #pragma once
 
 
+struct DirectionRotate { enum E {
+    Left,
+    Right
+};};
+
+
 class ABorder
 {
 public:
 
-    ABorder(int width, int height);
+    ABorder(int width, int height, DirectionRotate::E rotate);
 
     void Draw(int x, int y);
 
@@ -18,4 +24,5 @@ private:
 
     int width;
     int height;
+    DirectionRotate::E rotate;
 };
