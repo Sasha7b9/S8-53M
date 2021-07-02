@@ -26,6 +26,8 @@ private:
     {
         static void Draw();
 
+        static int GetPerimeter();
+
         static BitSet64 CalculateCoord(uint value);
     };
 };

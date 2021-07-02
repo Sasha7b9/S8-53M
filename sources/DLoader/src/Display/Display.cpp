@@ -45,22 +45,24 @@ bool Display::IsRunning()
 
 void Display::Border::Draw()
 {
-    for (int i = 0; i < 10; i++)
-    {
-        uint value = TIME_MS / 5;
+    static const int numPoints = GetPerimeter() / 10;
 
-        BitSet64 coord = CalculateCoord(value + i * 10);
+    for (int i = 0; i < numPoints; i++)
+    {
+        uint value = TIME_MS / 20;
+
+        BitSet64 coord = CalculateCoord(value + i * (GetPerimeter() / numPoints));
         
-        Point().Draw(coord.first, coord.second);
+        Point().Draw(coord.first, coord.second, Color::FILL);
     }
+
+    Rectangle(Display::WIDTH - 2, Display::HEIGHT - 2).Draw(1, 1);
 }
 
 
 BitSet64 Display::Border::CalculateCoord(uint value)
 {
-    int perimeter = Display::WIDTH * 2 + Display::HEIGHT * 2;
-
-    value %= perimeter;
+    value %= GetPerimeter();
 
     if (value < Display::WIDTH)
     {
@@ -76,4 +78,10 @@ BitSet64 Display::Border::CalculateCoord(uint value)
     }
 
     return BitSet64(0, Display::HEIGHT - ((int)value - Display::WIDTH * 2 - Display::HEIGHT));
+}
+
+
+int Display::Border::GetPerimeter()
+{
+    return Display::WIDTH * 2 + Display::HEIGHT * 2;
 }
