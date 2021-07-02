@@ -26,6 +26,7 @@ struct State { enum E {
     DriveIsMounted,     // Флешка примонтирована
     WrongDrive,         // Флешка есть, но прочитать нельзя
     FileNotFound,       // Если диск примонтирован, но обновления на нём нету
+    EraseSectors,       // Происходит стирание секторов
     UpdateInProgress,   // Идёт процесс обновления
     UpdateIsFinished    // Обновление удачно завершено
 }; };

@@ -18,7 +18,8 @@
 
 USBH_HandleTypeDef hUSBHost;
 
-void Upgrade();
+static void Update();
+static void EraseSectors();
 
 
 float MainStruct::percentUpdate = 0.0f;
@@ -52,7 +53,9 @@ int main()
         {
             if (FDrive::FileExist(FILE_NAME))                       // Если на диске обнаружена прошивка
             {
-                Upgrade();
+                EraseSectors();
+
+                Update();
             }
         }
 
@@ -71,23 +74,44 @@ int main()
 }
 
 
-
-void Upgrade()
+static void EraseSectors()
 {
+    MainStruct::state = State::EraseSectors;
+
+    const int startSector = Sector::_05_FIRM_1;
+
+    const int numSectors = 5;
+
+    MainStruct::percentUpdate = 0.0f;
+
+    for (int sector = startSector; sector <= startSector + numSectors; sector++)
+    {
+        Display::Update();
+
+        Sector::Get((Sector::E)sector).Erase();
+
+        MainStruct::percentUpdate += 1.0f / (float)numSectors;
+
+        Display::Update();
+    }
+
+}
+
+
+static void Update()
+{
+
     MainStruct::state = State::UpdateInProgress;
 
     const int sizeSector = 1 * 1024;
 
     uint8 buffer[sizeSector];
 
-    for (int sector = Sector::_05_FIRM_1; sector <= Sector::_09_FIRM_5; sector++)
-    {
-        Sector::Get((Sector::E)sector).Erase();
-    }
-
     int size = FDrive::OpenFileForRead(FILE_NAME);
     int fullSize = size;
     uint address = 0x08020000U;
+
+    MainStruct::percentUpdate = 0.0f;
 
     while (size)
     {

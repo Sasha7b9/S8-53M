@@ -15,6 +15,11 @@ static ABorder border(Display::WIDTH - 4, Display::HEIGHT - 4);
 
 void Display::Update()
 {
+    if (running)
+    {
+        return;
+    }
+
     running = true;
 
     BeginFrame(Color::BLACK);
@@ -27,21 +32,33 @@ void Display::Update()
     {
         DrawMessage("Обнаружен диск. Попытка подключения...");
     }
+    else if (MainStruct::state == State::EraseSectors)
+    {
+        DrawMessage("Стираю сектора...");
+
+        DrawProgressBar();
+    }
     else if (MainStruct::state == State::UpdateInProgress)
     {
         DrawMessage("Подождите завершения", "установки программного обеспечения");
 
-        int height = 30;
-        int fullWidth = 280;
-        int width = (int)((float)(fullWidth)*MainStruct::percentUpdate);
-
-        Region(width, height).Fill(20, 130);
-        Rectangle(fullWidth, height).Draw(20, 130);
+        DrawProgressBar();
     }
 
     EndFrame();
 
     running = false;
+}
+
+
+void Display::DrawProgressBar()
+{
+    int height = 30;
+    int fullWidth = 280;
+    int width = (int)((float)(fullWidth)*MainStruct::percentUpdate);
+
+    Region(width, height).Fill(20, 130);
+    Rectangle(fullWidth, height).Draw(20, 130);
 }
 
 
