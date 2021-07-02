@@ -20,7 +20,7 @@
 
 void PainterData::DrawData()
 {
-#ifdef WIN32
+#ifndef GUI
 
     DataDrawingKeeper keeper;
 

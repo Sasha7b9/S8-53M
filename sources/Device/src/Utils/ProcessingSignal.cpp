@@ -163,7 +163,9 @@ void Processing::CalculateMeasures()
 
 void Processing::LeadToCurrentSetings(DataReading &dr)
 {
-#ifndef WIN32
+    UNUSED(dr);
+
+#ifndef GUI
 
     BitSet64 p = SettingsDisplay::BytesOnDisplay();
 

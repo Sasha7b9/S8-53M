@@ -5,18 +5,18 @@
 #endif
 
 
-typedef signed      char        int8;
-typedef unsigned char uint8_t;
-typedef signed      short   int int16;
-typedef unsigned    char        uint8;
-typedef unsigned    short   int uint16;
-typedef unsigned    int         uint;
-typedef unsigned int uint32_t;
-typedef unsigned long long int  uint64;
-typedef unsigned    char        uchar;
-typedef const char             *pchar;
-typedef const uint8            *puchar;
-typedef const char *const       pstring;
+typedef signed char        int8;
+typedef unsigned char      uint8_t;
+typedef signed short       int16;
+typedef unsigned char      uint8;
+typedef unsigned short     uint16;
+typedef unsigned int       uint;
+typedef unsigned int       uint32_t;
+typedef unsigned long long uint64;
+typedef unsigned char      uchar;
+typedef const char        *pchar;
+typedef const uint8       *puchar;
+typedef const char *const  pstring;
 
 
 typedef void  (*pFuncVV)();
@@ -35,6 +35,9 @@ inline void EmptyFuncVV() {};
 #define _SET_BIT(value, bit) ((value) |= (1 << (bit)))
 #define _CLEAR_BIT(value, bit) ((value) &= (~(1 << (bit))))
 
+#ifndef UNUSED
+#define UNUSED(x) (void)x
+#endif
 
 union BitSet16
 {

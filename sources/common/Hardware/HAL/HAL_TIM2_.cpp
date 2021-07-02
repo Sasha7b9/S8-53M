@@ -26,7 +26,7 @@ void HAL_TIM2::Init()
 
 uint HAL_TIM2::GetTicks()
 {
-#ifdef WIN32
+#ifdef GUI
     return HAL_TIM::TimeMS();
 #else
     return TIM2->CNT;
@@ -36,7 +36,7 @@ uint HAL_TIM2::GetTicks()
 
 void HAL_TIM2::StartMultiMeasurement()
 {
-#ifndef WIN32
+#ifndef GUI
     TIM2->CR1 &= (uint)~TIM_CR1_CEN;
     TIM2->CNT = 0;
     TIM2->CR1 |= TIM_CR1_CEN;
