@@ -30,44 +30,37 @@ int main()
     Settings::Load();
 
     HAL::Init();
-    
+
+    FDrive::Init();
+
     Display::Init();
 
     Timer::Enable(TypeTimer::Temp, 1000 / 30, Display::Update);
-    
-    FDrive::Init();
 
-    uint timeStart = TIME_MS;
-
-    while ((TIME_MS - timeStart < TIME_WAIT) &&
-        (MainStruct::state != State::DriveIsMounted) &&
-        (MainStruct::state != State::WrongDrive))
+    if (MainStruct::state != State::NoDrive)
     {
-        FDrive::Update();
-    }
+        uint timeStart = TIME_MS;
 
-    if (MainStruct::state == State::DriveIsMounted)                    // Это означает, что диск удачно примонтирован
-    {
-        if (FDrive::FileExist(FILE_NAME))                       // Если на диске обнаружена прошивка
+        while ((TIME_MS - timeStart < TIME_WAIT) &&
+            (MainStruct::state != State::DriveIsMounted) &&
+            (MainStruct::state != State::WrongDrive))
         {
-            Upgrade();
+            FDrive::Update();
         }
-        else
+
+        if (MainStruct::state == State::DriveIsMounted)                    // Это означает, что диск удачно примонтирован
         {
-            MainStruct::state = State::FileNotFound;
+            if (FDrive::FileExist(FILE_NAME))                       // Если на диске обнаружена прошивка
+            {
+                Upgrade();
+            }
         }
-    }
-    else if (MainStruct::state == State::WrongDrive) // Диск не удалось примонтировать
-    {
-        HAL_TIM2::Delay(5000);
-    }
 
-    MainStruct::state = State::UpdateIsFinished;
+        Timer::Disable(TypeTimer::Temp);
 
-//    Timer::Disable(TypeTimer::Temp);
-
-    while (Display::IsRunning())
-    {
+        while (Display::IsRunning())
+        {
+        }
     }
 
     HAL::DeInit();
