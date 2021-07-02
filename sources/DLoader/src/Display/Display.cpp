@@ -23,10 +23,13 @@ void Display::Update()
     border.Draw(2, 2);
     Rectangle(Display::WIDTH - 8, Display::HEIGHT - 8).Draw(4, 4);
 
-    if (MainStruct::state == State::UpdateInProgress)
+    if (MainStruct::state == State::DriveDetected)
     {
-        Text("Подождите завершения").DrawInCenterRect(0, 0, 320, 190);
-        Text("установки программного обеспечения").DrawInCenterRect(0, 0, 320, 220);
+        DrawMessage("Обнаружен диск. Попытка подключения...");
+    }
+    else if (MainStruct::state == State::UpdateInProgress)
+    {
+        DrawMessage("Подождите завершения", "установки программного обеспечения");
 
         int height = 30;
         int fullWidth = 280;
@@ -45,4 +48,15 @@ void Display::Update()
 bool Display::IsRunning()
 {
     return running;
+}
+
+
+void Display::DrawMessage(pchar message1, pchar message2)
+{
+    Text(message1).DrawInCenterRect(0, 0, Display::WIDTH, 100);
+
+    if (message2)
+    {
+        Text(message2).DrawInCenterRect(0, 0, Display::WIDTH, 120);
+    }
 }

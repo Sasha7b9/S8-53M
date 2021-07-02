@@ -19,4 +19,8 @@ public:
     static void Update();
 
     static bool IsRunning();
+
+private:
+
+    static void DrawMessage(pchar message1, pchar message2 = nullptr);
 };
