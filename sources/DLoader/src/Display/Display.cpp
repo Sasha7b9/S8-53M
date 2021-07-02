@@ -43,6 +43,9 @@ void Display::Update()
         DrawMessage("Подождите завершения", "установки программного обеспечения");
 
         DrawProgressBar();
+
+        Text("%d/%d кБайт, %d кБайт/сек", MainStruct::sizeUpdated / 1024, MainStruct::sizeFirmware / 1024,
+            MainStruct::speed / 1024).Draw(100, 200);
     }
     else if (MainStruct::state == State::UpdateIsFinished)
     {

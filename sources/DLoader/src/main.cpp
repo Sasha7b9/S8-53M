@@ -24,6 +24,9 @@ static void EraseSectors();
 
 float MainStruct::percentUpdate = 0.0f;
 State::E MainStruct::state = State::NoDrive;
+int MainStruct::sizeFirmware = 0;
+int MainStruct::sizeUpdated = 0;
+int MainStruct::speed = 0;
 
 
 int main()
@@ -125,6 +128,12 @@ static void Update()
 
     MainStruct::percentUpdate = 0.0f;
 
+    MainStruct::sizeFirmware = size;
+    MainStruct::sizeUpdated = 0;
+    MainStruct::speed = 0;
+
+    uint timeStart = TIME_MS;
+
     while (size)
     {
         uint readedBytes = FDrive::ReadFromFile(sizeSector, buffer);
@@ -135,6 +144,9 @@ static void Update()
         address += readedBytes;
 
         MainStruct::percentUpdate = 1.0F - (float)(size) / (float)(fullSize);
+
+        MainStruct::sizeUpdated += readedBytes;
+        MainStruct::speed = (int)(MainStruct::sizeUpdated * 1000.0f / (TIME_MS - timeStart));
         
         Display::Update();
     }

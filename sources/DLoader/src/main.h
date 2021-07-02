@@ -36,4 +36,8 @@ struct MainStruct
 {
     static float percentUpdate;
     static State::E state;
+
+    static int sizeFirmware;        // Размер прошивки
+    static int sizeUpdated;         // Обновлено байт
+    static int speed;               // Скорость обновления в байтах/секунду
 };
