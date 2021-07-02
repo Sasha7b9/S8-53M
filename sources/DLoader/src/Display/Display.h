@@ -19,4 +19,13 @@ public:
     static void Update();
 
     static bool IsRunning();
+
+private:
+
+    struct Border
+    {
+        static void Draw();
+
+        static BitSet64 CalculateCoord(uint value);
+    };
 };

@@ -72,5 +72,7 @@ union BitSet64
         uint u_first;
         uint u_second;
     };
+
+    BitSet64(int _first = 0, int _second = 0) : first(_first), second(_second) {}
 };
 

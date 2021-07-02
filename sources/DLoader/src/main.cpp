@@ -37,6 +37,8 @@ int main()
 
     Timer::Enable(TypeTimer::Temp, 1000 / 30, Display::Update);
 
+    HAL_TIM2::Delay(10000);
+
     if (MainStruct::state != State::NoDrive)
     {
         uint timeStart = TIME_MS;

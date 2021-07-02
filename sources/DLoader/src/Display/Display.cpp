@@ -16,15 +16,7 @@ void Display::Update()
 
     BeginFrame(Color::BLACK);
 
-    static int i = 0;
-    i++;
-
-    if (i > 10)
-    {
-        i = 0;
-    }
-
-    Region(10, 10).Fill(10 + (int)(i % 10) * 20, 10, Color::WHITE);
+    Border::Draw();
 
     if (MainStruct::state == State::UpdateInProgress)
     {
@@ -48,4 +40,40 @@ void Display::Update()
 bool Display::IsRunning()
 {
     return running;
+}
+
+
+void Display::Border::Draw()
+{
+    for (int i = 0; i < 10; i++)
+    {
+        uint value = TIME_MS / 5;
+
+        BitSet64 coord = CalculateCoord(value + i * 10);
+        
+        Point().Draw(coord.first, coord.second);
+    }
+}
+
+
+BitSet64 Display::Border::CalculateCoord(uint value)
+{
+    int perimeter = Display::WIDTH * 2 + Display::HEIGHT * 2;
+
+    value %= perimeter;
+
+    if (value < Display::WIDTH)
+    {
+        return BitSet64((int)value, 0);
+    }
+    else if (value < Display::WIDTH + Display::HEIGHT)
+    {
+        return BitSet64(Display::WIDTH - 1, (int)value - Display::WIDTH);
+    }
+    else if (value < Display::WIDTH * 2 + Display::HEIGHT)
+    {
+        return BitSet64(Display::WIDTH - ((int)value - Display::WIDTH - Display::HEIGHT), Display::HEIGHT - 1);
+    }
+
+    return BitSet64(0, Display::HEIGHT - ((int)value - Display::WIDTH * 2 - Display::HEIGHT));
 }

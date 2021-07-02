@@ -106,5 +106,4 @@ uint8 *Display::GetBuffer()
     return &back[0][0];
 }
 
-
 #endif
