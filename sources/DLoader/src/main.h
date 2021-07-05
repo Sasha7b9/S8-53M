@@ -3,6 +3,10 @@
 #include <ff.h>
 #include "Display/Display.h"
 #include "FDrive/FDrive.h"
+
+
+#define FILE_NAME "S8-53M.bin"
+// #define ENABLE_UPDATE
     
 
 // Key configuration

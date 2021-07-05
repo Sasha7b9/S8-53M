@@ -12,10 +12,6 @@
 #include <cstdlib>
 #include <usbh_def.h>
 
-
-
-#define FILE_NAME "S8-53M.bin"
-
 USBH_HandleTypeDef hUSBHost;
 
 static void Update();
@@ -32,6 +28,10 @@ int MainStruct::timeLeft = 0;
 
 int main()
 {
+#ifndef ENABLE_UPDATE
+    HAL::JumpToApplication();
+#endif
+    
     Settings::Load();
 
     HAL::Init();
