@@ -239,8 +239,8 @@ void BottomPart::WriteStringAndNumber(pchar text, int x, int y, int number)
 
 void BottomPart::DrawTime(int x, int y)
 {
-    const int dField = 13;
-    int dSeparator = -1;
+//    const int dField = 13;
+//    int dSeparator = -1;
 
     PackedTime time = HAL_RTC::GetPackedTime();
 
@@ -275,8 +275,8 @@ void BottomPart::DrawTime(int x, int y)
 
     x -= 1;
     Int((int)time.hours).ToText(false, 2).Draw(x, y);
-    Text(":").Draw(x + dField, y);
-    Int((int)time.minutes).ToText(false, 2).Draw(x + dField + dSeparator, y);
-    Text(":").Draw(x + 2 * dField + dSeparator, y);
-    Int((int)time.seconds).ToText(false, 2).Draw(x + 2 * dField + 2 * dSeparator, y);
+    Text(":").Draw(x + 10, y);
+    Int((int)time.minutes).ToText(false, 2).Draw(x + 12, y);
+    Text(":").Draw(x + 22, y);
+    Int((int)time.seconds).ToText(false, 2).Draw(x + 24, y);
 }
